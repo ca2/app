@@ -140,9 +140,11 @@ namespace datetime
       inline class  international& international() { return *m_pinternational; }
       inline class str& str() { return* m_pstr; }
 
-      string strftime(const char * psz,time_t timeParam);
+      string strftime(const char * psz, const ::datetime::time & time);
       string strftime(const char * psz);
 
+      string utc_strftime(const char * psz, const ::datetime::time & time);
+      string utc_strftime(const char * psz);
 
       i32 SWN(i32 y,i32 m,i32 d);
       i32 DP(i32 y,i32 m);

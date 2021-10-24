@@ -31,7 +31,7 @@ namespace datetime
 
       }
 
-      estatus = ::__construct_new(m_pscanner);
+      estatus = __construct_new(m_pscanner);
 
       if (!estatus)
       {
@@ -83,7 +83,7 @@ element * parser::parse(const ::string & psz)
 
    ::datetime::element *node;
 
-   m_pscanner->initialize(psz);
+   m_pscanner->initialize_scanner(psz);
 
    node = expr(term(factor()));
 
@@ -205,7 +205,9 @@ element * parser::expr(::datetime::element * pelement1)
          }
          else
          {
-            __throw(::exception("unknown function"));
+            
+            throw ::exception(error_failed, "unknown function");
+
          }
          expect(e_token_open_paren);
          int32_t iElem = 1;
@@ -270,7 +272,7 @@ element * parser::expr(::datetime::element * pelement1)
       string str;
       str = "error: ";
       str += psz;
-      throw_datetime_parser_exception(str);
+      throw_datetime_parsing_exception(str);
 
    }
 

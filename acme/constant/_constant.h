@@ -358,8 +358,8 @@ enum enum_task_flag
    e_task_flag_prevent_bad_status_exception,
    e_task_flag_using_sockets,
    e_task_flag_avoid_parsing_exception,
-   e_task_flag_avoid_numeric_parser_exception,
-   e_task_flag_avoid_datetime_parser_exception,
+   e_task_flag_avoid_numeric_parsing_exception,
+   e_task_flag_avoid_datetime_parsing_exception,
    e_task_flag_dynamic_source_script_instance,
    e_task_flag_count,
 

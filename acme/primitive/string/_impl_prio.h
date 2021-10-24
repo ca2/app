@@ -115,28 +115,10 @@ inline string_base < TYPE_CHAR > operator+(const string_base < TYPE_CHAR > & str
 }
 
 
-inline ::string operator+(const char * pszLeft, const ::string & stringableRight)
-{
-
-   ::ansistring strLeft(pszLeft);
-
-   ::ansistring strRight(stringableRight);
-
-   return strLeft + strRight;
-
-}
-
-
-inline ::string operator+(const char * pszLeft, const ::id & stringableRight)
-{
-
-   ::ansistring strLeft(pszLeft);
-
-   ::ansistring strRight(stringableRight);
-
-   return strLeft + strRight;
-
-}
+inline ::string operator+(const char * psz, const ::string & str) { return string(psz) + str; }
+inline ::string operator+(const char * psz, const ::id & id) { return string(psz) + id.to_string(); }
+inline ::string operator+(const char * psz, const ::payload & payload) { return string(psz) + payload.get_string(); }
+inline ::string operator+(const char * psz, const ::property& property) { return string(psz) + property.get_string(); }
 
 
 //inline ::ansistring CLASS_DECL_ACME operator + (ansichar ansich, const ::ansistring & str2)

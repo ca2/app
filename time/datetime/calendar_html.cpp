@@ -124,17 +124,21 @@ namespace datetime
             {
                time_t w;   
                
+               auto psystem = m_psystem;
+
+               auto pdatetime = psystem->datetime();
+
                if (pfile->m_strOptions.find("<monday-first>") >= 0)
                {
-                  auto psystem = m_psystem;
-
-                  auto pdatetime = psystem->datetime();
-
+                  
                   w = atoi(pdatetime->strftime("%V", (time_t)::datetime::time(iYear, iMonth, iDay, 0, 0, 0).get_time()));
+
                }
                else
                {
-                  w = atoi(::datetime::time(iYear, iMonth, iDay, 0, 0, 0).Format("%U"));
+
+                  w = atoi(pdatetime->strftime("%U", (time_t)::datetime::time(iYear, iMonth, iDay, 0, 0, 0).get_time()));
+
                }
 
                pfile->raw_print("<td>");

@@ -198,13 +198,18 @@ namespace mysql
    }
 
 
-   string database::error1(const ::string & pszPrefix)
+   string database::query_error(const ::string & strPrefixParam)
    {
-      string strPrefix(pszPrefix);
+      
+      string strPrefix(strPrefixParam);
+
       string strFormat;
+
       if (m_pmysql == nullptr)
       {
+
          strFormat = "mysql error => nullptr sql connection pointer";
+
       }
       else
       {
@@ -320,7 +325,7 @@ namespace mysql
       if (pres) /* a result dataset was returned */
       {
 
-         m_iLastUsedTime = _get_micros();
+         m_durationLastUse.Now();
 
          return pres;
 
@@ -331,7 +336,7 @@ namespace mysql
       if (m_iLastError == 0)
       {
 
-         m_iLastUsedTime = ::_get_micros();
+         m_durationLastUse.Now();
 
          m_cAffectedRows = mysql_affected_rows((MYSQL*)m_pmysql);
 

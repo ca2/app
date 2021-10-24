@@ -66,30 +66,30 @@ namespace database
       virtual bool in_transaction() = 0;
 
 
-      virtual bool exec(const ::string & pszQuery) = 0;
+      virtual bool exec(const ::string & strQuery) = 0;
 
 
-      virtual __pointer(result_set) query_result(const ::string & pszQuery, ::count iRowCount = -1, ::count iColumnCount = -1) = 0;
-      virtual __pointer(result_set)  query(const ::string & pszQuery, ::count iRowCount = -1, ::count iColumnCount = -1);
+      virtual __pointer(result_set) query_result(const ::string & strQuery, ::count iRowCount = -1, ::count iColumnCount = -1) = 0;
+      virtual __pointer(result_set)  query(const ::string & strQuery, ::count iRowCount = -1, ::count iColumnCount = -1);
 
 
-      //virtual ::payload query(const ::string & pszQuery, ::count iMaxRowCount = -1, ::count iMaxColumnCount = -1);
+      //virtual ::payload query(const ::string & strQuery, ::count iMaxRowCount = -1, ::count iMaxColumnCount = -1);
       virtual ::payload query_table_item(const ::string & table, const ::string & item, const ::string & where, const ::payload & payload = ::payload());
-      virtual __pointer(row_array) query_rows(const ::string & pszQuery);
-      virtual __pointer(row) query_row(const ::string & pszQuery);
-      virtual __pointer(payload_array) query_items(const ::string & pszQuery);
-      virtual ::payload query_item(const ::string & pszQuery, const ::payload & payloadDefault = ::payload());
-      //virtual bool query_blob(get_memory getmemory, const ::string & pszQuery);
+      virtual __pointer(row_array) query_rows(const ::string & strQuery);
+      virtual __pointer(row) query_row(const ::string & strQuery);
+      virtual __pointer(payload_array) query_items(const ::string & strQuery);
+      virtual ::payload query_item(const ::string & strQuery, const ::payload & payloadDefault = ::payload());
+      //virtual bool query_blob(get_memory getmemory, const ::string & strQuery);
 
 
       virtual bool query_table_item(::payload& payload, const ::string & table, const ::string & item, const ::string & where);
 
 
-      virtual bool query_rows(__pointer(row_array)& rows, const ::string & pszQuery);
-      virtual bool query_row(__pointer(row)& rows, const ::string & pszQuery);
-      virtual bool query_items(__pointer(payload_array)& items, const ::string & pszQuery);
-      virtual bool query_item(::payload& item, const ::string & pszQuery);
-      virtual bool query_blob(get_memory getmemory, const ::string & pszQuery);
+      virtual bool query_rows(__pointer(row_array)& rows, const ::string & strQuery);
+      virtual bool query_row(__pointer(row)& rows, const ::string & strQuery);
+      virtual bool query_items(__pointer(payload_array)& items, const ::string & strQuery);
+      virtual bool query_item(::payload& item, const ::string & strQuery);
+      virtual bool query_blob(get_memory getmemory, const ::string & strQuery);
 
 
 

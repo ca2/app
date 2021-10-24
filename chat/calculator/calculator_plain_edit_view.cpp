@@ -144,7 +144,7 @@ namespace calculator
                pmatter = parser.parse(strExp);
 
             }
-            catch(numeric_parser_exception & exp)
+            catch(numeric_parsing_exception & exp)
             {
 
                e.m_strMessage = exp.m_strMessage;

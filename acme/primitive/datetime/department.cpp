@@ -693,21 +693,32 @@ namespace datetime
    }
 
 
-   string department::strftime(const char * psz, time_t timeParam)
+   string department::strftime(const char * psz, const ::datetime::time & time)
    {
+
       string strFormat(psz);
+
       string str;
-      ::datetime::time time(timeParam);
+
       strsize iFind = strFormat.find("%V");
+
       if (iFind >= 0)
       {
+
          string strV;
+
          strV.Format("%02d", ISO_WN(time.GetYear(), time.GetMonth(), time.GetDay()));
+
          strFormat.replace("%V", strV);
+
       }
+
       str = FormatGmt(strFormat, time);
+
       return str;
+
    }
+
 
    string department::strftime(const char * psz)
    {
@@ -717,6 +728,37 @@ namespace datetime
       str = FormatGmt(psz, time);
       return str;
    }
+
+
+   string department::utc_strftime(const char* psz, const ::datetime::time & time)
+   {
+
+      string strFormat(psz);
+
+      string str;
+
+      strsize iFind = strFormat.find("%V");
+
+      if (iFind >= 0)
+      {
+
+         string strV;
+         strV.Format("%02d", ISO_WN(time.GetGmtYear(), time.GetGmtMonth(), time.GetGmtDay()));
+         strFormat.replace("%V", strV);
+      }
+      str = FormatGmt(strFormat, time);
+      return str;
+   }
+
+   string department::utc_strftime(const char* psz)
+   {
+      string str;
+      ::datetime::time time;
+      time = ::datetime::time::now();
+      str = FormatGmt(psz, time);
+      return str;
+   }
+
 
    string department::friend_time(const ::text::context * pcontext, ::datetime::time timeNow, ::datetime::time time)
    {

@@ -584,7 +584,7 @@ string file_path_folder(const char * path1)
        break;
        psz--;
        }*/
-      return string(path1, pszEnd - path1 + 1);
+      return string(path1, pszEnd - path1);
    }
    else
    {

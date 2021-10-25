@@ -91,14 +91,14 @@ namespace datetime
 
       pgraphics->move_to(pointCenter);
       {
-         double angle = pmathematics->get_pi() / 2.0 - timeNow.GetHour() * pmathematics->get_pi() * 2.0 / (12.0);
+         double angle = pmathematics->get_pi() / 2.0 - timeNow.hour() * pmathematics->get_pi() * 2.0 / (12.0);
          point_i32 pointHour((::i32)(cos(angle) * dRHour),(::i32)(-sin(angle) * dRHour));
          pointHour.offset(pointCenter);
          pgraphics->line_to(pointHour);
       }
       pgraphics->move_to(pointCenter);
       {
-         double angle = pmathematics->get_pi() / 2.0 - timeNow.GetMinute() * pmathematics->get_pi() * 2.0 / (60.0);
+         double angle = pmathematics->get_pi() / 2.0 - timeNow.minute() * pmathematics->get_pi() * 2.0 / (60.0);
          point_i32 pointMinute((::i32)(cos(angle) * dRMinute),(::i32)(-sin(angle) * dRMinute));
          pointMinute.offset(pointCenter);
          pgraphics->line_to(pointMinute);
@@ -108,7 +108,7 @@ namespace datetime
       pgraphics->set(ppenRed);
       pgraphics->move_to(pointCenter);
       {
-         double angle = pmathematics->get_pi() / 2.0 - timeNow.GetSecond() * pmathematics->get_pi() * 2.0 / (60.0);
+         double angle = pmathematics->get_pi() / 2.0 - timeNow.second() * pmathematics->get_pi() * 2.0 / (60.0);
          point_i32 pointSecond((::i32)(cos(angle) * dRSecond),(::i32)(-sin(angle) * dRSecond));
          pointSecond.offset(pointCenter);
          pgraphics->line_to(pointSecond);

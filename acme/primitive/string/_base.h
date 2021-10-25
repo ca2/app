@@ -62,8 +62,8 @@ public:
 
    template < has_to_string HAS_TO_STRING >
    string_base(const HAS_TO_STRING & has_to_string) : string_base(has_to_string.to_string()) { }
-   //template < has_to_string HAS_TO_STRING >
-   //string_base(HAS_TO_STRING& has_to_string) : string_base(has_to_string.to_string()) { }
+   template < has_get_string HAS_GET_STRING >
+   string_base(const HAS_GET_STRING & has_get_string) : string_base(has_get_string.get_string()) { }
 
    string_base(const ansichar * pansichar);
    string_base(const ansichar * pansichar, strsize len);
@@ -94,8 +94,8 @@ public:
 //#endif
 
    //string_base(const ::payload & payload);
-   //string_base(const property & property);
-   //string_base(const id & id);
+   //string_base(const ::property & property);
+   //string_base(const ::id & id);
    //string_base(::payload & payload);
    //string_base(property & property);
    //string_base(id & id);

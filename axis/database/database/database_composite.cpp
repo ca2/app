@@ -134,10 +134,10 @@ namespace database
    }
 
 
-   string composite::error1(const ::string & pszPrefix)
+   string composite::query_error(const ::string & pszPrefix)
    {
 
-      return m_pdatabase->error1(pszPrefix);
+      return m_pdatabase->query_error(pszPrefix);
 
    }
 

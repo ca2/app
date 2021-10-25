@@ -258,7 +258,7 @@ namespace http
                      while (true)
                      {
 
-                        strTime = FormatGmt("%Y\\%m\\%d\\%H\\%M\\%S\\", t);
+                        strTime = ::datetime::format("%Y\\%m\\%d\\%H\\%M\\%S\\", t);
 
                         strIndex.Format("%08x\\", i);
 
@@ -277,7 +277,7 @@ namespace http
 
                         auto pdatetime = psystem->datetime();
 
-                        strMessage = pdatetime->international().get_gmt_date_time() + " " + strTempFile;
+                        strMessage = pdatetime->international().get_date_time() + " " + strTempFile;
 
                         m_psystem->m_pacmefile->append_wait("C:\\ca2\\toomuchuploads.txt", strMessage);
 

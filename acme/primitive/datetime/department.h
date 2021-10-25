@@ -45,32 +45,35 @@ namespace datetime
          void parse_str(const char * psz,property_set & set);
 
 
-         string get_gmt_date_time(const ::datetime::time & time, string strFormat = INTERNATIONAL_DATE_TIME_FORMAT);
-         string get_gmt_date_time(string strFormat = INTERNATIONAL_DATE_TIME_FORMAT);
-         string get_gmt_date_time_for_file();
-         string get_local_date_time(const ::datetime::time & time, string strFormat = INTERNATIONAL_DATE_TIME_FORMAT);
-         string get_local_date_time(string strFormat = INTERNATIONAL_DATE_TIME_FORMAT);
-         string get_local_date_time_for_file();
+         string get_date_time(const ::datetime::time & time, string strFormat = INTERNATIONAL_DATE_TIME_FORMAT, const ::time_shift& timeshift = ::time_shift::none());
+         string get_date_time(string strFormat = INTERNATIONAL_DATE_TIME_FORMAT, const ::time_shift& timeshift = ::time_shift::none());
+         string get_date_time_for_file(const ::time_shift& timeshift = ::time_shift::none());
+         
 
-         string get_gmt_date_time_for_file_with_no_spaces();
-         string get_local_date_time_for_file_with_no_spaces();
-
-
-         inline string get_gmt(string strFormat = INTERNATIONAL_DATE_TIME_FORMAT) { return get_gmt_date_time(strFormat);  }
-         inline string get_gmt(const ::datetime::time & time, string strFormat = INTERNATIONAL_DATE_TIME_FORMAT) { return get_gmt_date_time(time, strFormat); }
-         inline string get_local(string strFormat = INTERNATIONAL_DATE_TIME_FORMAT) { return get_local_date_time(strFormat); }
-         inline string get_local(const ::datetime::time & time, string strFormat = INTERNATIONAL_DATE_TIME_FORMAT) { return get_local_date_time(time, strFormat); }
+         //string local_get_date_time(const ::datetime::time & time, string strFormat = INTERNATIONAL_DATE_TIME_FORMAT);
+         //string local_get_date_time(string strFormat = INTERNATIONAL_DATE_TIME_FORMAT);
+         //string local_get_date_time_for_file();
 
 
-         inline string gmt() { return get_gmt(); }
-         inline string gmt(const ::datetime::time & time) { return get_gmt(time); }
-         inline string local() { return get_local(); }
-         inline string local(const ::datetime::time & time) { return get_local(time); }
+         string get_date_time_for_file_with_no_spaces(const ::time_shift& timeshift = ::time_shift::none());
+         //string local_get_date_time_for_file_with_no_spaces();
 
 
+         inline string get_string(string strFormat = INTERNATIONAL_DATE_TIME_FORMAT, const ::time_shift& timeshift = ::time_shift::none()) { return get_date_time(strFormat, timeshift);  }
+         inline string get_string(const ::datetime::time & time, string strFormat = INTERNATIONAL_DATE_TIME_FORMAT, const ::time_shift& timeshift = ::time_shift::none()) { return get_date_time(time, strFormat, timeshift); }
+         
+         //inline string local_get(string strFormat = INTERNATIONAL_DATE_TIME_FORMAT) { return local_get_date_time(strFormat); }
+         //inline string local_get(const ::datetime::time & time, string strFormat = INTERNATIONAL_DATE_TIME_FORMAT) { return local_get_date_time(time, strFormat); }
+
+
+         //inline string utc() { return utc_get(); }
+         //inline string utc(const ::datetime::time & time) { return utc_get(time); }
+         //inline string local() { return local_get(); }
+         //inline string local(const ::datetime::time & time) { return local_get(time); }
 
 
       };
+
 
       class CLASS_DECL_ACME str:
          virtual public ::object
@@ -85,7 +88,7 @@ namespace datetime
 
          virtual ::e_status initialize(::object * pobject) override;
          
-         string get_gmt_date_time();
+         string get_date_time(const ::time_shift& timeshift = ::time_shift::none());
 
 
       };
@@ -115,15 +118,22 @@ namespace datetime
       virtual ::e_status initialize(::object * pobject) override;
       ::e_status destroy() override;
 
-      i32 get_month_day_count(i32 year,i32 month);
-      i32 get_weekday(i32 year,i32 month,i32 day);
-      i64 get_timestamp(i32 year,i32 month,i32 day);
-      i64 strtotime(const ::text::context * pcontext,const char * psz,time_t time,i32 iPath,i32 & iPathCount);
-      i64 strtotime(const ::text::context * pcontext,const char * psz,i32 iPath,i32 & iPathCount);
-      i64 gmt_strtotime(const ::text::context * pcontext,const char * psz,i32 iPath,i32 & iPathCount);
 
-      ::datetime::time from_local(const ::text::context* pcontext, const ::string & str);
-      ::datetime::time from_gmt(const ::text::context* pcontext, const string& str);
+      i64 get_timestamp(i32 year, i32 month, i32 day);
+
+      
+      i32 get_month_day_count(i32 year, i32 month);
+
+
+      i32 get_weekday(i32 year, i32 month, i32 day);
+
+
+      i64 strtotime(const ::text::context * pcontext,const char * psz,time_t time,i32 iPath,i32 & iPathCount, const time_shift& timezone = ::time_shift::none());
+      i64 strtotime(const ::text::context * pcontext,const char * psz,i32 iPath,i32 & iPathCount, const time_shift& timezone = ::time_shift::none());
+
+      
+      ::datetime::time from_string(const ::text::context* pcontext, const ::string & str, const time_shift& timezone = ::time_shift::none());
+
 
       // 1 - domingo
       string get_week_day_str(const ::text::context * pcontext,i32 iWeekDay);
@@ -132,19 +142,13 @@ namespace datetime
       string get_month_str(const ::text::context * pcontext,i32 iMonth);
       string get_short_month_str(const ::text::context * pcontext,i32 iMonth);
 
-      static time_t s_local_mktime(i32 iHour,i32 iMinute,i32 iSecond,i32 iMonth,i32 iDay,i32 iYear);
-      static time_t s_gmt_mktime(i32 iHour, i32 iMinute, i32 iSecond, i32 iMonth, i32 iDay, i32 iYear);
-
-      ::datetime::time from_gmt_date_time(i32 iYear,i32 iMonth,i32 iDay,i32 iHour,i32 iMinute,i32 iSecond);
+      static time_t s_mktime(i32 iHour,i32 iMinute,i32 iSecond,i32 iMonth,i32 iDay,i32 iYear, const time_shift& timezone = ::time_shift::none());
 
       inline class  international& international() { return *m_pinternational; }
       inline class str& str() { return* m_pstr; }
 
-      string strftime(const char * psz, const ::datetime::time & time);
-      string strftime(const char * psz);
-
-      string utc_strftime(const char * psz, const ::datetime::time & time);
-      string utc_strftime(const char * psz);
+      string strftime(const char * psz, const ::datetime::time & time, const time_shift& timezone = ::time_shift::none());
+      string strftime(const char * psz, const time_shift& timezone = ::time_shift::none());
 
       i32 SWN(i32 y,i32 m,i32 d);
       i32 DP(i32 y,i32 m);
@@ -156,21 +160,15 @@ namespace datetime
       i32 getDayOfWeek(i32 month,i32 day,i32 year,i32 CalendarSystem);
       i32 ISO_WN(i32  y,i32 m,i32 d);
 
-      virtual string to_string(const ::text::context* pcontext, const ::datetime::result& payload);
+      virtual string to_string(const ::text::context* pcontext, const ::datetime::result& result, const time_shift& timeshift = ::time_shift::none());
 
-      virtual result span_strtotime(const ::text::context* pcontext, const char* psz);
-      //CLASS_DECL_ACME result strtotime(::object* pobject, const ::text::context* pcontext, const char* psz, i32& iPath, i32& iPathCount, bool bForceUTC = false);
+      virtual result span_parse_time(const ::text::context* pcontext, const char* psz, const time_shift& timeshift = ::time_shift::none());
 
-      virtual result strtotime(const ::text::context* pcontext, const char* psz, i32& iPath, i32& iPathCount, bool bUTC);
+      virtual result parse_time(const ::text::context* pcontext, const char* psz, i32& iPath, i32& iPathCount, const time_shift& timeshift = ::time_shift::none());
 
-      string friend_time(const ::text::context * pcontext,::datetime::time timeNow,::datetime::time time);
+      string friend_time(const ::text::context * pcontext,::datetime::time timeNow,::datetime::time time, const time_shift& timeshift = ::time_shift::none());
 
-
-
-      virtual string _001FriendTime(const ::text::context* pcontext, const ::datetime::time& timeNow, const ::datetime::time& time);
-
-
-      //virtual string to_string(const ::text::context* pcontext, const ::datetime::result& result);
+      virtual string _001FriendTime(const ::text::context* pcontext, const ::datetime::time& timeNow, const ::datetime::time& time, const time_shift& timeshift = ::time_shift::none());
 
 
    };

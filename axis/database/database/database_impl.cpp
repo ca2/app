@@ -107,7 +107,7 @@ namespace database
    }
 
    
-   string database_impl::error1(const ::string & pszPrefix)
+   string database_impl::query_error(const ::string & pszPrefix)
    {
 
       return string(pszPrefix) + " (error)";
@@ -116,8 +116,9 @@ namespace database
 
    void database_impl::trace_error1(const ::string & pszPrefix)
    {
-      m_strLastError += error1(pszPrefix);
-   TRACE("%s", m_strLastError.c_str());
+      m_strLastError += query_error(pszPrefix);
+   
+      TRACE("%s", m_strLastError.c_str());
 
    }
 

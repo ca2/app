@@ -30,7 +30,7 @@ namespace datetime
    }
 
 
-   time::time(i32 nYear, i32 nMonth, i32 nDay, i32 nHour, i32 nMin, i32 nSec, i32 nDST)
+   time::time(i32 nYear, i32 nMonth, i32 nDay, i32 nHour, i32 nMin, i32 nSec, const ::time_shift & timeshift)
    {
 
 
@@ -47,18 +47,10 @@ namespace datetime
       atm.tm_mday = nDay;
       atm.tm_mon = nMonth - 1;        // tm_mon is 0 based
       atm.tm_year = nYear - 1900;     // tm_year is 1900 based
-      atm.tm_isdst = nDST;
+      //atm.tm_isdst = nDST;
 
 
-#ifdef WINDOWS
-
-      m_i = _mktime64(&atm);
-
-#else
-
-      m_i = mktime(&atm);
-
-#endif
+      m_i = make_utc_time(&atm) - (time_t) timeshift.m_d;
 
 
       /*
@@ -209,8 +201,10 @@ namespace datetime
    }
 
 
-   struct tm* time::GetGmtTm(struct tm* ptm) const
+   struct tm* time::tm_struct(struct tm* ptm, const ::time_shift & timeshift) const
    {
+
+      time_t time = m_i + (time_t) timeshift.m_d;
 
       if (ptm != nullptr)
       {
@@ -219,7 +213,7 @@ namespace datetime
 
          struct tm tmTemp;
 
-         errno_t err = _gmtime64_s(&tmTemp, &m_i);
+         errno_t err = _gmtime64_s(&tmTemp, &time);
 
          if (err != 0)
          {
@@ -234,7 +228,7 @@ namespace datetime
 
          struct tm * ptmTemp;
 
-         ptmTemp = gmtime((time_t *)&m_i);
+         ptmTemp = gmtime((time_t *)&time);
 
          // gmtime can return nullptr
          if(ptmTemp == nullptr)
@@ -262,58 +256,58 @@ namespace datetime
    }
 
 
-   struct tm* time::GetLocalTm(struct tm* ptm) const
-   {
-
-      if (ptm != nullptr)
-      {
-
-
-#ifdef WINDOWS
-
-         //SYSTEMTIME st;
-
-         //::GetLocalTime(&st);
-
-         //ptm->tm_hour = st.wHour;
-         //ptm->tm_isdst = -1;
-         //ptm->tm_mday = st.wDay;
-         //ptm->tm_min = st.wMinute;
-         //ptm->tm_mon = st.wMonth;
-         //ptm->tm_sec = st.wSecond;
-         //ptm->tm_wday = st.wDayOfWeek;
-         //ptm->tm_yday = -1;
-         //ptm->tm_year = st.wYear;
-
-         struct tm tmTemp;
-
-         errno_t err = _localtime64_s(&tmTemp, &m_i);
-
-         if (err != 0)
-         {
-            return nullptr;    // indicates that m_time was not initialized!
-         }
-
-         *ptm = tmTemp;
-
-         return ptm;
-
-#else
-
-         return localtime_r((time_t *)&m_i, ptm);
-
-#endif
-
-      }
-      else
-      {
-
-         return nullptr;
-
-      }
-
-   }
-
+//   struct tm* time::GetLocalTm(struct tm* ptm) const
+//   {
+//
+//      if (ptm != nullptr)
+//      {
+//
+//
+//#ifdef WINDOWS
+//
+//         //SYSTEMTIME st;
+//
+//         //::GetLocalTime(&st);
+//
+//         //ptm->tm_hour = st.wHour;
+//         //ptm->tm_isdst = -1;
+//         //ptm->tm_mday = st.wDay;
+//         //ptm->tm_min = st.wMinute;
+//         //ptm->tm_mon = st.wMonth;
+//         //ptm->tm_sec = st.wSecond;
+//         //ptm->tm_wday = st.wDayOfWeek;
+//         //ptm->tm_yday = -1;
+//         //ptm->tm_year = st.wYear;
+//
+//         struct tm tmTemp;
+//
+//         errno_t err = _localtime64_s(&tmTemp, &m_i);
+//
+//         if (err != 0)
+//         {
+//            return nullptr;    // indicates that m_time was not initialized!
+//         }
+//
+//         *ptm = tmTemp;
+//
+//         return ptm;
+//
+//#else
+//
+//         return localtime_r((time_t *)&m_i, ptm);
+//
+//#endif
+//
+//      }
+//      else
+//      {
+//
+//         return nullptr;
+//
+//      }
+//
+//   }
+//
 
    time_t time::get_time() const noexcept
    {
@@ -323,210 +317,210 @@ namespace datetime
    }
 
 
-   i32 time::GetYear() const noexcept
+   i32 time::year(const ::time_shift & timeshift) const noexcept
    {
 
       struct tm ttm;
 
       struct tm * ptm;
 
-      ptm = GetLocalTm(&ttm);
+      ptm = tm_struct(&ttm, timeshift);
 
       return ptm ? (ptm->tm_year) + 1900 : 0 ;
 
    }
 
 
-   i32 time::GetMonth() const noexcept
+   i32 time::month(const ::time_shift& timeshift) const noexcept
    {
 
       struct tm ttm;
 
       struct tm * ptm;
 
-      ptm = GetLocalTm(&ttm);
+      ptm = tm_struct(&ttm, timeshift);
 
       return ptm ? ptm->tm_mon + 1 : 0;
 
    }
 
 
-   i32 time::GetDay() const noexcept
+   i32 time::day(const ::time_shift& timeshift) const noexcept
    {
 
       struct tm ttm;
 
       struct tm * ptm;
 
-      ptm = GetLocalTm(&ttm);
+      ptm = tm_struct(&ttm, timeshift);
 
       return ptm ? ptm->tm_mday : 0 ;
 
    }
 
 
-   i32 time::GetHour() const noexcept
+   i32 time::hour(const ::time_shift& timeshift) const noexcept
    {
 
       struct tm ttm;
 
       struct tm * ptm;
 
-      ptm = GetLocalTm(&ttm);
+      ptm = tm_struct(&ttm, timeshift);
 
       return ptm ? ptm->tm_hour : -1 ;
 
    }
 
 
-   i32 time::GetMinute() const noexcept
+   i32 time::minute(const ::time_shift& timeshift) const noexcept
    {
 
       struct tm ttm;
 
       struct tm * ptm;
 
-      ptm = GetLocalTm(&ttm);
+      ptm = tm_struct(&ttm, timeshift);
 
       return ptm ? ptm->tm_min : -1 ;
 
    }
 
 
-   i32 time::GetSecond() const noexcept
+   i32 time::second(const ::time_shift& timeshift) const noexcept
    {
 
       struct tm ttm;
 
       struct tm * ptm;
 
-      ptm = GetLocalTm(&ttm);
+      ptm = tm_struct(&ttm, timeshift);
 
       return ptm ? ptm->tm_sec : -1 ;
 
    }
 
 
-   i32 time::GetDayOfWeek() const noexcept
+   i32 time::day_of_week(const ::time_shift & timeshift) const noexcept
    {
 
       struct tm ttm;
 
       struct tm * ptm;
 
-      ptm = GetLocalTm(&ttm);
+      ptm = tm_struct(&ttm, timeshift);
 
       return ptm ? ptm->tm_wday + 1 : 0 ;
 
    }
 
 
-   i32 time::GetGmtYear() const noexcept
-   {
+   //i32 time::GetGmtYear() const noexcept
+   //{
 
-      struct tm ttm;
+   //   struct tm ttm;
 
-      struct tm * ptm;
+   //   struct tm * ptm;
 
-      ptm = GetGmtTm(&ttm);
+   //   ptm = GetGmtTm(&ttm);
 
-      return ptm ? (ptm->tm_year) + 1900 : 0 ;
+   //   return ptm ? (ptm->tm_year) + 1900 : 0 ;
 
-   }
-
-
-   i32 time::GetGmtMonth() const noexcept
-   {
-
-      struct tm ttm;
-
-      struct tm * ptm;
-
-      ptm = GetGmtTm(&ttm);
-
-      return ptm ? ptm->tm_mon + 1 : 0;
-
-   }
+   //}
 
 
-   i32 time::GetGmtDay() const noexcept
-   {
+   //i32 time::GetGmtMonth() const noexcept
+   //{
 
-      struct tm ttm;
+   //   struct tm ttm;
 
-      struct tm * ptm;
+   //   struct tm * ptm;
 
-      ptm = GetGmtTm(&ttm);
+   //   ptm = GetGmtTm(&ttm);
 
-      return ptm ? ptm->tm_mday : 0;
+   //   return ptm ? ptm->tm_mon + 1 : 0;
 
-   }
-
-
-   i32 time::GetGmtHour() const noexcept
-   {
-
-      struct tm ttm;
-
-      struct tm * ptm;
-
-      ptm = GetGmtTm(&ttm);
-
-      return ptm ? ptm->tm_hour : -1 ;
-
-   }
+   //}
 
 
-   i32 time::GetGmtMinute() const noexcept
-   {
+   //i32 time::GetGmtDay() const noexcept
+   //{
 
-      struct tm ttm;
+   //   struct tm ttm;
 
-      struct tm * ptm;
+   //   struct tm * ptm;
 
-      ptm = GetGmtTm(&ttm);
+   //   ptm = GetGmtTm(&ttm);
 
-      return ptm ? ptm->tm_min : -1 ;
+   //   return ptm ? ptm->tm_mday : 0;
 
-   }
-
-
-   i32 time::GetGmtSecond() const noexcept
-   {
-
-      struct tm ttm;
-
-      struct tm * ptm;
-
-      ptm = GetGmtTm(&ttm);
-
-      return ptm ? ptm->tm_sec : -1;
-
-   }
+   //}
 
 
-   i32 time::GetGmtDayOfWeek() const noexcept
-   {
+   //i32 time::GetGmtHour() const noexcept
+   //{
 
-      struct tm ttm;
+   //   struct tm ttm;
 
-      struct tm * ptm;
+   //   struct tm * ptm;
 
-      ptm = GetGmtTm(&ttm);
+   //   ptm = GetGmtTm(&ttm);
 
-      return ptm ? ptm->tm_wday + 1 : 0;
+   //   return ptm ? ptm->tm_hour : -1 ;
 
-   }
+   //}
 
 
-   time time::get_sunday() const
+   //i32 time::GetGmtMinute() const noexcept
+   //{
+
+   //   struct tm ttm;
+
+   //   struct tm * ptm;
+
+   //   ptm = GetGmtTm(&ttm);
+
+   //   return ptm ? ptm->tm_min : -1 ;
+
+   //}
+
+
+   //i32 time::GetGmtSecond() const noexcept
+   //{
+
+   //   struct tm ttm;
+
+   //   struct tm * ptm;
+
+   //   ptm = GetGmtTm(&ttm);
+
+   //   return ptm ? ptm->tm_sec : -1;
+
+   //}
+
+
+   //i32 time::GetGmtDayOfWeek() const noexcept
+   //{
+
+   //   struct tm ttm;
+
+   //   struct tm * ptm;
+
+   //   ptm = GetGmtTm(&ttm);
+
+   //   return ptm ? ptm->tm_wday + 1 : 0;
+
+   //}
+
+
+   time time::get_sunday(const time_shift& timeshift) const
    {
 
       time sunday(*this);
 
-      sunday = time(sunday.GetYear(),sunday.GetMonth(),sunday.GetDay(),0,0,0);
+      sunday = time(sunday.year(timeshift),sunday.month(timeshift),sunday.day(timeshift),0,0,0);
 
-      sunday -= time_span(sunday.GetDayOfWeek() - 1,0,0,0);
+      sunday -= time_span(sunday.day_of_week(timeshift) - 1,0,0,0);
 
       return sunday;
 
@@ -549,60 +543,60 @@ namespace datetime
    }
 
 
-   time_t time::GetTimeOfDay() const noexcept
+   time_t time::time_of_day(const time_shift& timeshift) const noexcept
    {
 
       struct tm ttm;
 
       struct tm * ptm;
 
-      ptm = GetLocalTm(&ttm);
+      ptm = tm_struct(&ttm, timeshift);
 
       return ptm ? ((ptm->tm_hour * 3600) + (ptm->tm_min * 60) + ptm->tm_sec) : 0;
 
    }
 
 
-   time_t time::GetGmtTimeOfDay() const noexcept
+   //time_t time::GetGmtTimeOfDay() const noexcept
+   //{
+
+   //   struct tm ttm;
+
+   //   struct tm * ptm;
+
+   //   ptm = GetGmtTm(&ttm);
+
+   //   return ptm ? ((ptm->tm_hour * 3600) + (ptm->tm_min * 60) + ptm->tm_sec) : 0;
+
+   //}
+
+
+   i64 time::day_sig(const time_shift& timeshift) const noexcept
    {
 
       struct tm ttm;
 
       struct tm * ptm;
 
-      ptm = GetGmtTm(&ttm);
-
-      return ptm ? ((ptm->tm_hour * 3600) + (ptm->tm_min * 60) + ptm->tm_sec) : 0;
-
-   }
-
-
-   i64 time::GetDaySig() const noexcept
-   {
-
-      struct tm ttm;
-
-      struct tm * ptm;
-
-      ptm = GetLocalTm(&ttm);
+      ptm = tm_struct(&ttm, timeshift);
 
       return ptm ? ((ptm->tm_year * 500) + (ptm->tm_mon * 40) + ptm->tm_mday) : 0;
 
    }
 
 
-   i64 time::GetGmtDaySig() const noexcept
-   {
+   //i64 time::GetGmtDaySig() const noexcept
+   //{
 
-      struct tm ttm;
+   //   struct tm ttm;
 
-      struct tm * ptm;
+   //   struct tm * ptm;
 
-      ptm = GetGmtTm(&ttm);
+   //   ptm = GetGmtTm(&ttm);
 
-      return ptm ? ((ptm->tm_year * 500) + (ptm->tm_mon * 40) + ptm->tm_mday) : 0;
+   //   return ptm ? ((ptm->tm_year * 500) + (ptm->tm_mon * 40) + ptm->tm_mday) : 0;
 
-   }
+   //}
 
 
 } // namespace datetime
@@ -667,7 +661,7 @@ CLASS_DECL_ACME SYSTEMTIME __SYSTEMTIME(const ::datetime::time & time)
 
    struct tm * ptm;
 
-   ptm = time.GetGmtTm(&ttm);
+   ptm = time.tm_struct(&ttm);
 
    st.wDay = ptm->tm_mday;
    st.wDayOfWeek = ptm->tm_wday;
@@ -768,171 +762,151 @@ CLASS_DECL_ACME FILETIME __FILETIME(const ::datetime::time & time)
 //}
 
 
-
 namespace datetime
 {
+
+
+   string format(const ::string & strFormat, const ::datetime::time & time, const ::time_shift& timeshift)
+   {
+
+      string str;
+
+   #if defined(LINUX) || defined(ANDROID) || defined(SOLARIS)
+      char * szBuffer = str.get_string_buffer(maxTimeBufferSize);
+      struct tm * ptmTemp = localtime(&time.m_i);
+      if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
+      {
+         szBuffer[0] = '\0';
+      }
+
+      str.release_string_buffer();
+
+      return str;
+
+   #elif defined(__APPLE__)
+
+   #if __WORDSIZE != 64
+   #pragma error "error: long should 8-byte on __APPLE__"
+   #endif
+
+      char * szBuffer = str.get_string_buffer(maxTimeBufferSize);
+
+      struct tm * ptmTemp = localtime((time_t *)&time.m_i);
+
+      if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
+      {
+
+         szBuffer[0] = '\0';
+
+      }
+
+      str.release_string_buffer();
+
+      return str;
+
+   #elif _SECURE_TEMPLATE
+
+      char * szBuffer = str.get_string_buffer(maxTimeBufferSize);
+
+      struct tm ptmTemp;
+
+      errno_t err = _localtime64_s(&ptmTemp, &m_time);
+
+      if (err != 0 || !_tcsftime(szBuffer, maxTimeBufferSize, strFormat, &ptmTemp))
+      {
+
+         szBuffer[0] = '\0';
+
+      }
+
+
+      str.ReleaseBuffer();
+
+      return str;
+
+      //#elif defined(ANDROID) || defined(SOLARIS)
+      //
+      //      struct tm* ptmTemp = localtime(&m_time);
+      //
+      //      if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
+      //      {
+      //
+      //         szBuffer[0] = '\0';
+      //
+      //      }
+      //
+   #else
+
+      str = strFormat;
+
+      str.replace("%Y", __string(time.year(timeshift)));
+      str.replace("%m", ::str::zero_padded(__string(time.month(timeshift)), 2));
+      str.replace("%d", ::str::zero_padded(__string(time.day(timeshift)), 2));
+      str.replace("%H", ::str::zero_padded(__string(time.hour(timeshift)), 2));
+      str.replace("%M", ::str::zero_padded(__string(time.minute(timeshift)), 2));
+      str.replace("%S", ::str::zero_padded(__string(time.second(timeshift)), 2));
+
+      return str;
+
+   #endif
+
+
+
+   }
+
+
+   //string utc_format(const string & strFormat, const ::datetime::time & time)
+   //{
+
+   //   string str;
+
+   //   char szBuffer[maxTimeBufferSize];
+
+   //#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+
+   //   struct tm * ptmTemp = gmtime((time_t *)&time.m_i);
+
+   //   if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
+   //   {
+
+   //      szBuffer[0] = '\0';
+
+   //   }
+
+   //#elif _SECURE_TEMPLATE
+
+   //   struct tm ptmTemp;
+
+   //   errno_t err = _gmtime64_s(&ptmTemp, &m_time);
+
+   //   if (err != 0 || !_tcsftime(szBuffer, maxTimeBufferSize, strFormat, &ptmTemp))
+   //   {
+
+   //      szBuffer[0] = '\0';
+
+   //   }
+
+   //#else
+
+   //   struct tm * ptmTemp = _gmtime64(&time.m_i);
+
+   //   if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
+   //   {
+
+   //      szBuffer[0] = '\0';
+
+   //   }
+
+   //#endif
+
+   //   str = szBuffer;
+
+   //   return szBuffer;
+
+   //}
 
 
 } // namespace datetime
 
 
 
-
-
-
-string Format(const ::string & strFormat, const ::datetime::time & time)
-{
-
-   string str;
-
-#if defined(LINUX) || defined(ANDROID) || defined(SOLARIS)
-   char * szBuffer = str.get_string_buffer(maxTimeBufferSize);
-   struct tm * ptmTemp = localtime(&time.m_i);
-   if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
-   {
-      szBuffer[0] = '\0';
-   }
-
-   str.release_string_buffer();
-
-   return str;
-
-#elif defined(__APPLE__)
-
-#if __WORDSIZE != 64
-#pragma error "error: long should 8-byte on __APPLE__"
-#endif
-
-   char * szBuffer = str.get_string_buffer(maxTimeBufferSize);
-
-   struct tm * ptmTemp = localtime((time_t *)&time.m_i);
-
-   if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
-   {
-
-      szBuffer[0] = '\0';
-
-   }
-
-   str.release_string_buffer();
-
-   return str;
-
-#elif _SECURE_TEMPLATE
-
-   char * szBuffer = str.get_string_buffer(maxTimeBufferSize);
-
-   struct tm ptmTemp;
-
-   errno_t err = _localtime64_s(&ptmTemp, &m_time);
-
-   if (err != 0 || !_tcsftime(szBuffer, maxTimeBufferSize, strFormat, &ptmTemp))
-   {
-
-      szBuffer[0] = '\0';
-
-   }
-
-
-   str.ReleaseBuffer();
-
-   return str;
-
-   //#elif defined(ANDROID) || defined(SOLARIS)
-   //
-   //      struct tm* ptmTemp = localtime(&m_time);
-   //
-   //      if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
-   //      {
-   //
-   //         szBuffer[0] = '\0';
-   //
-   //      }
-   //
-#else
-
-   str = strFormat;
-
-   str.replace("%Y", __string(time.GetYear()));
-   str.replace("%m", ::str::zero_padded(__string(time.GetMonth()), 2));
-   str.replace("%d", ::str::zero_padded(__string(time.GetDay()), 2));
-   str.replace("%H", ::str::zero_padded(__string(time.GetHour()), 2));
-   str.replace("%M", ::str::zero_padded(__string(time.GetMinute()), 2));
-   str.replace("%S", ::str::zero_padded(__string(time.GetSecond()), 2));
-
-   return str;
-
-#endif
-
-
-
-}
-
-
-string FormatGmt(const string & strFormat, const ::datetime::time & time)
-{
-
-   string str;
-
-   char szBuffer[maxTimeBufferSize];
-
-#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
-
-   struct tm * ptmTemp = gmtime((time_t *)&time.m_i);
-
-   if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
-   {
-
-      szBuffer[0] = '\0';
-
-   }
-
-#elif _SECURE_TEMPLATE
-
-   struct tm ptmTemp;
-
-   errno_t err = _gmtime64_s(&ptmTemp, &m_time);
-
-   if (err != 0 || !_tcsftime(szBuffer, maxTimeBufferSize, strFormat, &ptmTemp))
-   {
-
-      szBuffer[0] = '\0';
-
-   }
-
-#else
-
-   struct tm * ptmTemp = _gmtime64(&time.m_i);
-
-   if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
-   {
-
-      szBuffer[0] = '\0';
-
-   }
-
-#endif
-
-   str = szBuffer;
-
-   return szBuffer;
-
-}
-
-
-//
-//
-//string Format(const ::string & strFormat, const ::datetime::time & time)
-//{
-//   string str;
-//   str = Format(strFormat, time);
-//   return str;
-//}
-//
-//
-//string FormatGmt(const ::string & strFormat, const ::datetime::time & time)
-//{
-//   string str;
-//   str = FormatGmt(strFormat, time);
-//   return str;
-//}

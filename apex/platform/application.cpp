@@ -4555,7 +4555,7 @@ auto psystem = m_psystem;
 
 auto pdatetime = psystem->m_pdatetime;
 
-strMessage = pdatetime->international().get_gmt_date_time();
+strMessage = pdatetime->international().get_date_time();
 strMessage += " ";
 strMessage += pszMessage;
 strMessage += "\n";

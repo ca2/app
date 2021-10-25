@@ -205,7 +205,7 @@ namespace apex
       if (pnode)
       {
 
-         if (timeNow.GetHour() >= 6 && timeNow.GetHour() <= 17)
+         if (timeNow.hour() >= 6 && timeNow.hour() <= 17)
          {
 
             pnode->set_simple_ui_darkness(0);
@@ -1519,7 +1519,7 @@ pacmedir->create("/ca2core");
 
       auto pdatetime = psystem->datetime();
 
-      string strLogTime = pdatetime->international().get_gmt_date_time_for_file_with_no_spaces();
+      string strLogTime = pdatetime->international().get_date_time_for_file_with_no_spaces();
 
       strLogTime.replace("-", "/");
 

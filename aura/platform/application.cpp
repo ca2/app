@@ -1772,7 +1772,7 @@ retry_license:
 
       }
 
-      INFORMATION("initial_check_directrix : ok (%s)%s\n\n", __type_name(this), m_strAppId.c_str());
+      INFORMATION("initial_check_directrix : ok ("<< __type_name(this) << ")" << m_strAppId);
 
       return true;
 

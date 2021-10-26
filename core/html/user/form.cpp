@@ -512,7 +512,7 @@ void html_form::set_need_load_form_data()
 
          auto pdatetime = psystem->datetime();
 
-         path = pdatetime->international().get_gmt_date_time() + "." + get_document()->get_document_template()->find_string("default_extension");
+         path = pdatetime->international().get_date_time() + "." + get_document()->get_document_template()->find_string("default_extension");
 
       }
       else

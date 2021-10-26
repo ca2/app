@@ -160,7 +160,7 @@ public:
    }
 
 
-   virtual ::e_status get_lines(string_array & stra, const ::payload & payloadFile, bool bAddEmpty = false);
+   virtual ::e_status get_lines(string_array & stra, const ::payload & payloadFile, bool bAddEmpty = true);
    virtual ::e_status put_lines(const ::payload& payloadFile, const string_array& stra, const plain_text_file_options& options = {});
    //virtual ::e_status put_lines_utf8(const ::payload & payloadFile, const string_array & stra);
    

@@ -464,8 +464,6 @@ public:
 };
 
 
-//#define __composite(TYPE) ::reference < TYPE >
-
 template<class T>
    class ___pointer;
 
@@ -1674,13 +1672,11 @@ class synchronization_object;
 #include "acme/primitive/primitive/payload_type.h"
 
 
-#define IMPL_OPERATOR_PLUS(type) \
-template < typename TYPE > \
-type operator + (const TYPE & t) const { auto copy = *this; copy.add(t); return copy; }
-
 #include "acme/memory/_heap.h"
 
+
 //#include "acme/exception/_const.h"
+
 
 #include "acme/primitive/primitive/bits.h"
 
@@ -3294,6 +3290,7 @@ class CLASS_DECL_ACME integral_byte { public: integral_byte(memsize memsize = 1)
 
 
 #include "acme/subject/handler.h"
+#include "acme/primitive/primitive/e_flag.h"
 #include "acme/primitive/primitive/element.h"
 #include "acme/primitive/primitive/tracer.h"
 #include "acme/primitive/primitive/matter.h"

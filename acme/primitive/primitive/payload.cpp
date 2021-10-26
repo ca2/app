@@ -456,10 +456,10 @@ bool payload::convert(const ::payload & payload)
 }
 
 
-strsize payload::get_length() const
+strsize payload::length() const
 {
 
-   return string().get_length();
+   return string().length();
 
 }
 

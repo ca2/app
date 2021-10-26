@@ -1594,6 +1594,14 @@ concept has_to_string = requires(T t)
 
 };
 
+template < typename T >
+concept has_get_string = requires(T t)
+{
+
+   { t.get_string() } -> std::same_as < ::string >;
+
+};
+
 
 class machine_event_central;
 
@@ -1977,7 +1985,7 @@ template < a_pointer POINTER >
 inline bool is_null(POINTER p)
 {
 
-   const auto maximum = (size_t) (-1) - 65536;
+   const auto maximum = ((size_t) (-1)) - 65536;
 
    return ((size_t) p <= 65536) || ((size_t) p) >= (maximum);
 
@@ -2851,6 +2859,13 @@ concept an_object = !std::is_pointer < T >::value
 && !std::is_floating_point < T >::value;
 
 
+template<typename TYPE>
+inline bool is_null(const __pointer(TYPE)& p);
+
+
+template<typename TYPE>
+inline bool is_set(const __pointer(TYPE)& p);
+
 
 template < non_pointer NOT_A_POINTER >
 inline bool is_null(const NOT_A_POINTER & t)
@@ -3028,23 +3043,25 @@ template<typename T>
 void __destroy_and_release(__pointer(T) & p)
 {
 
-   if (::is_set(p))
+   if (::is_null(p))
    {
 
-      try
-      {
-
-         p->destroy();
-
-      }
-      catch (...)
-      {
-
-      }
-
-      p.release();
+      return;
 
    }
+
+   try
+   {
+
+      p->destroy();
+
+   }
+   catch (...)
+   {
+
+   }
+
+   p.release();
 
 }
 

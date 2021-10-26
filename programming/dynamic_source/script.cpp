@@ -26,8 +26,6 @@ namespace dynamic_source
 
       defer_create_mutex();
 
-      m_streamError.m_p = m_pfileError;
-
    }
 
 
@@ -51,6 +49,8 @@ namespace dynamic_source
       }
 
       m_pfileError.create_new(this);
+
+      m_streamError.m_p = m_pfileError;
 
       return estatus;
 
@@ -543,7 +543,8 @@ namespace dynamic_source
          if (iRetry == 0)
          {
 
-            TRACE("Build: %s\n%s\n", m_strName.c_str(), str.c_str());
+            TRACE("Build: " << m_strName);
+            TRACE(str);
 
          }
          else

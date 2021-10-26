@@ -524,7 +524,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    ::f64 & as_f64();
 
 
-   strsize get_length() const;
+   strsize length() const;
 
    template < typename TYPE >
    inline payload & operator = (const __composite(TYPE) & composite)

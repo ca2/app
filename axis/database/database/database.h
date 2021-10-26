@@ -101,7 +101,7 @@ namespace database
       virtual string add_error_message(const ::string& strErrorMessage);
 
 
-      virtual string error1(const ::string & strPrefix = nullptr) = 0;
+      //virtual string query_error(const ::string & strPrefix = nullptr) = 0;
       virtual void trace_error1(const ::string & strPrefix = nullptr) = 0;
 
       virtual string query_error(const ::string& strPrefix = nullptr) = 0;

@@ -14,8 +14,8 @@ namespace datetime
       {
 
          ::datetime::time time = ::datetime::time::now();
-         m_iYear = time.GetYear();
-         m_iMonth = time.GetMonth();
+         m_iYear = time.year();
+         m_iMonth = time.month();
          m_bRange = false;
 
       }
@@ -56,7 +56,7 @@ namespace datetime
       void calendar::GetRectDay(::datetime::time& time, RECTANGLE_I32 * lprect)
       {
 
-         int32_t iWeekDay = time.GetDayOfWeek();
+         int32_t iWeekDay = time.day_of_week();
          int32_t iWeek = get_week_of_month(time);
          GetRectDay(iWeekDay, iWeek + 1, lprect);
 
@@ -135,14 +135,14 @@ namespace datetime
          string strTime;
          strDate.Format(
             "%d de %s de %d",
-            time.GetDay(),
-            GetMonth(pcontext, time.GetMonth()),
-            time.GetYear());
-         strWeekDay = GetWeekDay(pcontext, time.GetDayOfWeek());
+            time.day(),
+            GetMonth(pcontext, time.month()),
+            time.year());
+         strWeekDay = GetWeekDay(pcontext, time.day_of_week());
          strTime.Format("%02d:%02d:%02d",
-            time.GetHour(),
-            time.GetMinute(),
-            time.GetSecond());
+            time.hour(),
+            time.minute(),
+            time.second());
          strDateTime.Format("%s %s, %s", strTime, strWeekDay, strDate);
       }
 
@@ -277,7 +277,7 @@ namespace datetime
                return true;
             }
             time += timespan;
-            if (time.GetMonth() != iMonth)
+            if (time.month() != iMonth)
                break;
          }
          return false;
@@ -299,9 +299,9 @@ namespace datetime
       int32_t calendar::get_week_of_month(::datetime::time& time)
       {
          
-         ::datetime::time timeMonth(time.GetYear(), time.GetMonth(), 1, 0, 0, 0);
+         ::datetime::time timeMonth(time.year(), time.month(), 1, 0, 0, 0);
          
-         return (time.GetDay() + timeMonth.GetDayOfWeek() - 2) / 7;
+         return (time.day() + timeMonth.day_of_week() - 2) / 7;
 
       }
 

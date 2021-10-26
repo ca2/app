@@ -16,9 +16,9 @@ namespace datetime
 
       ::datetime::time time = ::datetime::time::now();
       
-      m_iYear = time.GetYear();
+      m_iYear = time.year();
 
-      m_iMonth = time.GetMonth();
+      m_iMonth = time.month();
 
    }
 
@@ -61,7 +61,7 @@ namespace datetime
          int32_t iMonth = m_iMonth;
          int32_t iYear = m_iYear;
 
-         if (iYear > (timeNow.GetYear() + 100))
+         if (iYear > (timeNow.year() + 100))
             return;
 
          int32_t iWeekDay;
@@ -70,7 +70,7 @@ namespace datetime
          ::datetime::time_span timespan(1, 0, 0, 0);
          ::datetime::time timeLastDayOfMonth((iMonth == 12) ? (iYear + 1) : iYear, (iMonth == 12) ? 1 : (iMonth + 1), 1, 0, 0, 0);
          timeLastDayOfMonth -= ::datetime::time_span(1, 0, 0, 0);
-         int32_t iFirstDayOfWeek = time.GetDayOfWeek();
+         int32_t iFirstDayOfWeek = time.day_of_week();
 
          if (pfile->m_strOptions.find("<monday-first>") >= 0 && iFirstDayOfWeek == 1)
          {
@@ -78,8 +78,8 @@ namespace datetime
          }
 
          //      int32_t iFirstWeek;
-         int32_t iLastDayOfWeek = timeLastDayOfMonth.GetDayOfWeek();
-         int32_t iLastDayPreviousMonth = (time - ::datetime::time_span(1, 0, 0, 0)).GetDay();
+         int32_t iLastDayOfWeek = timeLastDayOfMonth.day_of_week();
+         int32_t iLastDayPreviousMonth = (time - ::datetime::time_span(1, 0, 0, 0)).day();
          rectangle_i32 rectangleDay;
          int32_t iDay;
          pfile->raw_print("<table cellpadding=\"0\" cellspacing=\"0\">");
@@ -109,7 +109,7 @@ namespace datetime
          }
 
 
-         int32_t iDayCount = timeLastDayOfMonth.GetDay();
+         int32_t iDayCount = timeLastDayOfMonth.day();
          int32_t iLineCount = (iDayCount + iFirstDayOfWeek - 1) / 7;
          if (((iDayCount + iFirstDayOfWeek - 1) % 7) > 0)
             iLineCount++;
@@ -156,9 +156,9 @@ namespace datetime
                pfile->raw_print("<td>");
 
                if ((!m_bRange &&
-                  iMonth == m_time.GetMonth()
-                  && iYear == m_time.GetYear()
-                  && iDay == m_time.GetDay()) ||
+                  iMonth == m_time.month()
+                  && iYear == m_time.year()
+                  && iDay == m_time.day()) ||
                   (m_bRange &&
                      ::datetime::time(iYear, iMonth, iDay, 23, 59, 59) >= m_time
                      && ::datetime::time(iYear, iMonth, iDay, 0, 0, 0) <= m_timeEnd))
@@ -170,13 +170,13 @@ namespace datetime
                {
                   pfile->raw_print("<div class=\"" + pfile->m_strStyle + "calendar-out-of-month-day\">");
                }
-               else if ((timeNow.GetDay() == iDay &&
-                  timeNow.GetMonth() == iMonth &&
-                  timeNow.GetYear() == iYear)
+               else if ((timeNow.day() == iDay &&
+                  timeNow.month() == iMonth &&
+                  timeNow.year() == iYear)
                   ||
-                  (iDay == m_time.GetDay() &&
-                     iMonth == m_time.GetMonth() &&
-                     iYear == m_time.GetYear()))
+                  (iDay == m_time.day() &&
+                     iMonth == m_time.month() &&
+                     iYear == m_time.year()))
                {
                   pfile->raw_print("<div class=\"" + pfile->m_strStyle + "calendar-today\">");
                }

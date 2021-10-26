@@ -678,12 +678,12 @@ namespace sqlite
 
    //}
 
-   string database::error1(const ::string& pszPrefix)
-   {
+   //string database::error1(const ::string& pszPrefix)
+   //{
 
-      return "";
+   //   return "";
 
-   }
+   //}
 
 
    void database::trace_error1(const ::string& pszPrefix)

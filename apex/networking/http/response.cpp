@@ -11,6 +11,8 @@ namespace http
 
       __UNREFERENCED_PARAMETER(version);
 
+      __defer_construct_new(m_pmemfileBody);
+
    }
 
 

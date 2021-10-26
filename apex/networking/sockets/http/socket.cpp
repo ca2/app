@@ -228,7 +228,7 @@ namespace sockets
 
 #endif
 
-         m_microsFirstTime = get_microsecond();
+         m_durationFirstTime.Now();
 
          ::str::parse pa(line);
 

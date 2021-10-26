@@ -16320,7 +16320,13 @@ order(zorderParam);
    __pointer(::extended::sequence < ::conversation >) interaction::message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox)
    {
 
-      return nullptr;
+      auto pmessagebox = __create < ::user::message_box >();
+
+      auto pfuture = pmessagebox->::extended::asynchronous<::conversation>::sequence();
+
+      auto pextendedfuture = pmessagebox->show(this, strMessage, strTitle, emessagebox);
+
+      return pextendedfuture;
 
    }
 

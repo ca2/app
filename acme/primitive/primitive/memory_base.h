@@ -108,6 +108,9 @@ public:
    ~memory_base() override;
 
 
+   using ::material_object::clear;
+
+
    virtual string as_utf8() const;
 
    virtual char * c_str();

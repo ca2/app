@@ -705,7 +705,7 @@ namespace user
 
          auto pdatetime = psystem->datetime();
 
-         strPathName = pdatetime->international().get_gmt_date_time() + "." + get_document_template()->find_string("default_extension");
+         strPathName = pdatetime->international().get_date_time() + "." + get_document_template()->find_string("default_extension");
 
       }
       else

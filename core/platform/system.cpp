@@ -104,7 +104,7 @@ namespace core
 
          auto pdatetime = psystem->datetime();
 
-         ftpFileStatus.m_strModificationTime = pdatetime->international().get_gmt_date_time(ftpFileStatus.m_timeModification);
+         ftpFileStatus.m_strModificationTime = pdatetime->international().get_date_time(ftpFileStatus.m_timeModification);
 
       }
 

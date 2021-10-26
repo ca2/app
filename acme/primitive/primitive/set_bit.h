@@ -2,20 +2,20 @@
 #pragma once
 
 
-template < primitive_integral INTEGRAL >
+template < typename TYPE >
 class set_bit
 {
 public:
    
 
-   INTEGRAL &      m_field;
-   INTEGRAL        m_mask;
+   TYPE &         m_field;
+   ::u64          m_mask;
 
 
-   set_bit(INTEGRAL & field, INTEGRAL mask) :
+   set_bit(TYPE & field, ::u64 mask) :
       m_field(field), m_mask(mask) { }
 
-   bool is_set() const { return (m_field & m_mask) == m_mask; }
+   bool is_set() const { return ((::u64)m_field & m_mask) == m_mask; }
 
    void set(bool bSet)
    {
@@ -45,7 +45,7 @@ public:
 
       }
 
-      m_field = (INTEGRAL) (((::u64) m_field) | ((::u64)m_mask));
+      m_field = (TYPE) (((::u64) m_field) | ((::u64)m_mask));
 
    }
 
@@ -59,7 +59,7 @@ public:
 
       }
 
-      m_field = (INTEGRAL) (((::u64)m_field) & (~((::u64)m_mask)));
+      m_field = (TYPE) (((::u64)m_field) & (~((::u64)m_mask)));
 
    }
 

@@ -2,9 +2,9 @@
 #pragma once
 
 
-template < primitive_integral INTEGRAL >
+template < typename TYPE >
 class ___synchronously_keep_bit :
-   public set_bit < INTEGRAL >
+   public set_bit < TYPE >
 {
 public:
 
@@ -15,11 +15,11 @@ public:
    bool        m_bKept;
 
 
-   ___synchronously_keep_bit(::matter * pmatterLock, INTEGRAL & field, INTEGRAL mask, bool bKeepValue) :
+   ___synchronously_keep_bit(::matter * pmatterLock, TYPE & field, ::u64 mask, bool bKeepValue) :
       ___synchronously_keep_bit(pmatterLock, field, mask, bKeepValue, (field & mask) == mask) {}
 
-   ___synchronously_keep_bit(::matter * pmatterLock, INTEGRAL & field, INTEGRAL mask, bool bKeepValue, bool bKeepAwayValue) :
-      set_bit < INTEGRAL > (field, mask), m_pmatterLock(pmatterLock), m_bKeepValue(bKeepValue), m_bKeepAwayValue(bKeepAwayValue), m_bKept(false)
+   ___synchronously_keep_bit(::matter * pmatterLock, TYPE & field, ::u64 mask, bool bKeepValue, bool bKeepAwayValue) :
+      set_bit < TYPE > (field, mask), m_pmatterLock(pmatterLock), m_bKeepValue(bKeepValue), m_bKeepAwayValue(bKeepAwayValue), m_bKept(false)
    {
 
       keep();
@@ -75,20 +75,20 @@ public:
 };
 
 
-template < primitive_integral INTEGRAL >
-auto synchronously_keep_bit(::matter * pmatterLock, INTEGRAL & field, INTEGRAL mask, bool bKeepValue)
+template < typename TYPE >
+auto synchronously_keep_bit(::matter * pmatterLock, TYPE & field, ::u64 mask, bool bKeepValue)
 {
    
-   return ___synchronously_keep_bit < INTEGRAL >(pmatterLock, field, mask, bKeepValue);
+   return ___synchronously_keep_bit < TYPE >(pmatterLock, field, mask, bKeepValue);
 
 }
 
 
-template < primitive_integral INTEGRAL >
-auto synchronously_keep_bit(::matter * pmatterLock, INTEGRAL & field, INTEGRAL mask, bool bKeepValue, bool bKeepAwayValue)
+template < typename TYPE >
+auto synchronously_keep_bit(::matter * pmatterLock, TYPE & field, ::u64 mask, bool bKeepValue, bool bKeepAwayValue)
 {
 
-   return ___synchronously_keep_bit < INTEGRAL >(pmatterLock, field, mask, bKeepValue, bKeepAwayValue);
+   return ___synchronously_keep_bit < TYPE >(pmatterLock, field, mask, bKeepValue, bKeepAwayValue);
 
 }
 

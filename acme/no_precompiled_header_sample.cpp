@@ -33,6 +33,7 @@ namespace message
 #include "acme/primitive/primitive/interlocked_count.h"
 #include "acme/primitive/primitive/estatus.h"
 #include "acme/subject/handler.h"
+#include "acme/primitive/primitive/e_flag.h"
 #include "acme/primitive/primitive/element.h"
 #include "acme/filesystem/file/translatable.h"
 #include "acme/filesystem/file/streamable.h"

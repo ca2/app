@@ -17,7 +17,7 @@ public:
    
    ::interlocked_count                 m_countReference;
 
-   enum_flag                           m_eflagElement;
+   ::e_flag                            m_eflagElement;
 
 
 #if OBJECT_REFERENCE_COUNT_DEBUG

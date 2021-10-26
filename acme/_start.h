@@ -8,8 +8,6 @@
 #pragma once
 
 
-//#pragma pack(show)
-
 #include "acme/include/_acme.h"
 #include "acme/version/version.h"
 #include "acme/platform/_features.h"
@@ -24,7 +22,6 @@
 #include "acme/constant/memory_heap.h"
 #include "operating_system/types.h"
 #include "operating_system/system.h"
-
 
 
 #ifdef WINDOWS
@@ -69,6 +66,11 @@
 //
 //
 //#define __discrete_cflag(EXPORT, CLASS, ENUM) __class(EXPORT, CLASS, enumeration < ENUM >)
+
+
+#define IMPL_OPERATOR_PLUS(type) \
+template < typename TYPE > \
+type operator + (const TYPE & t) const { auto copy = *this; copy.add(t); return copy; }
 
 
 #define TOKENPASTE(x, y) x ## y

@@ -9588,7 +9588,7 @@ bool interaction::call_and_set_timer(uptr uEvent, const ::duration & durationEla
 }
 
 
-bool interaction::set_timer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer)
+bool interaction::set_timer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer, bool bPeriodic, void* pdata)
 {
 
    if (is_destroying())
@@ -9598,12 +9598,12 @@ bool interaction::set_timer(uptr uEvent, const ::duration & durationElapse, PFN_
 
    }
 
-   return SetTimer(uEvent, durationElapse, pfnTimer);
+   return SetTimer(uEvent, durationElapse, pfnTimer, bPeriodic, pdata);
 
 }
 
 
-bool interaction::SetTimer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer)
+bool interaction::SetTimer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer, bool bPeriodic, void* pdata)
 {
 
    if (m_pimpl == nullptr)
@@ -9620,7 +9620,7 @@ bool interaction::SetTimer(uptr uEvent, const ::duration & durationElapse, PFN_T
 
    }
 
-   return m_pimpl->SetTimer(uEvent, durationElapse, pfnTimer);
+   return m_pimpl->SetTimer(uEvent, durationElapse, pfnTimer, bPeriodic, pdata);
 
 }
 

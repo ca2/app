@@ -1145,7 +1145,7 @@ namespace user
    }
 
 
-   bool primitive_impl::SetTimer(uptr uEvent, ::duration millisEllapse, PFN_TIMER pfnTimer)
+   bool primitive_impl::SetTimer(uptr uEvent, const ::duration & millisEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void* pdata)
    {
 
       if (millisEllapse < 500_ms)
@@ -1170,7 +1170,7 @@ namespace user
 
       }
 
-      return m_ptimerarray->create_timer(this, uEvent, millisEllapse, pfnTimer, true);
+      return m_ptimerarray->create_timer(this, uEvent, millisEllapse, pfnTimer, bPeriodic, pdata);
 
    }
 

@@ -5,6 +5,8 @@
 timer_task::timer_task()
 {
 
+   m_pTimerTask = this;
+
 }
 
 

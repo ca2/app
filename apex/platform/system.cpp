@@ -5798,7 +5798,7 @@ string get_bundle_app_library_name();
 
 
 
-::apex::system* platform_create_system(const char * pszAppId)
+__pointer(::apex::system) platform_create_system(const char * pszAppId)
 {
 
    string strAppId(pszAppId);
@@ -5878,7 +5878,7 @@ string get_bundle_app_library_name();
 
    psystem->m_strAppId = strAppId;
 
-   return psystem;
+   return ::move_transfer(psystem);
 
 }
 

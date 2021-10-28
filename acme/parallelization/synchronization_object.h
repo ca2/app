@@ -36,7 +36,7 @@ public:
    virtual ::e_status _wait(const class ::wait & wait);
 
    
-   virtual ::e_status wait();
+   ::e_status wait() override;
    virtual ::e_status wait(const class ::wait & wait);
 
 

@@ -780,6 +780,7 @@
 		9ACC5DAE251A96B2008528B1 /* AuraViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9AD695F5251A77AE00C0EBD7 /* AuraViewController.mm */; };
 		9ACC5DAF251A96B2008528B1 /* RoundCaretView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A214B2424BEC793002C1331 /* RoundCaretView.mm */; };
 		9ACC5E0E251A9744008528B1 /* aura_mq.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ACC5E0D251A9743008528B1 /* aura_mq.cpp */; };
+		9AD0CAA2272AE2D600468A67 /* application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD0CAA1272AE2D600468A67 /* application.h */; };
 		9AD116D224F5147800177261 /* primitive_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD1165B24F5146700177261 /* primitive_impl.h */; };
 		9AD116D424F5147800177261 /* user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD1165D24F5146700177261 /* user.cpp */; };
 		9AD116D724F5147800177261 /* _experience_const.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD1166024F5146700177261 /* _experience_const.h */; };
@@ -1826,6 +1827,7 @@
 		9AC2CECB2653455600CC8096 /* menu_command.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = menu_command.cpp; sourceTree = "<group>"; };
 		9AC35AE8247450370044A638 /* _ios.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _ios.h; sourceTree = "<group>"; };
 		9ACC5E0D251A9743008528B1 /* aura_mq.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aura_mq.cpp; sourceTree = "<group>"; };
+		9AD0CAA1272AE2D600468A67 /* application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = application.h; sourceTree = "<group>"; };
 		9AD1165B24F5146700177261 /* primitive_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive_impl.h; sourceTree = "<group>"; };
 		9AD1165D24F5146700177261 /* user.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user.cpp; sourceTree = "<group>"; };
 		9AD1166024F5146700177261 /* _experience_const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _experience_const.h; sourceTree = "<group>"; };
@@ -3373,6 +3375,7 @@
 				9A268CE724CE118800C94D85 /* _defer.h */,
 				9A16E07A24BBFEEE00C3DD5B /* __matter_ca2.cpp */,
 				9A52538A24A801D80088E35A /* _.cpp */,
+				9AD0CAA1272AE2D600468A67 /* application.h */,
 				9A24892D2452CE7900F23D28 /* framework.h */,
 				9A16414919C4A4CE00966C5E /* aura_iosTests */,
 				9A20198B24772E9000A31CBF /* ios_aura */,
@@ -3599,6 +3602,7 @@
 				9AD116E124F5147800177261 /* scroll.h in Headers */,
 				9A23A5A026CE988300F98012 /* gen_1.h in Headers */,
 				9A3764792409BF0C002D15D3 /* image_header.h in Headers */,
+				9AD0CAA2272AE2D600468A67 /* application.h in Headers */,
 				9A23A6C226CE988400F98012 /* file_winrt.h in Headers */,
 				9A2486EB2452C49100F23D28 /* _macos.h in Headers */,
 				9A41733420004E7A0056265A /* ossl_typ.h in Headers */,

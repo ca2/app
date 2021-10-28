@@ -2276,41 +2276,42 @@ namespace user
          }
 
       }
-
-      auto puserinteraction = get_wnd();
-
-      //#ifdef WINDOWS_DESKTOP
-      //
-      //      if (puserinteraction == this)
-      //      {
-      //
-      //         ::KillTimer((HWND)get_oswindow(), e_timer_transparent_mouse_event);
-      //
-      //      }
-      //
-      //#endif
-
-      if (puserinteraction == this)
+      
+      prodevian_stop();
+      
       {
 
-         prodevian_stop();
+         auto puserinteractionTopLevelHost = get_wnd();
 
-      }
+         //#ifdef WINDOWS_DESKTOP
+         //
+         //      if (puserinteraction == this)
+         //      {
+         //
+         //         ::KillTimer((HWND)get_oswindow(), e_timer_transparent_mouse_event);
+         //
+         //      }
+         //
+         //#endif
 
-      if(::is_set(puserinteraction) && puserinteraction != this)
-      {
+            
 
-         auto pimpl = puserinteraction->m_pimpl2;
-
-         if(pimpl)
+         if(::is_set(puserinteractionTopLevelHost) && puserinteractionTopLevelHost != this)
          {
 
-            synchronous_lock synchronouslock(pimpl->mutex());
+            auto pimpl = puserinteractionTopLevelHost->m_pimpl2;
 
-            pimpl->m_userinteractionaMouseHover.erase(this);
+            if(pimpl)
+            {
+
+               synchronous_lock synchronouslock(pimpl->mutex());
+
+               pimpl->m_userinteractionaMouseHover.erase(this);
+
+            }
 
          }
-
+         
       }
 
       {

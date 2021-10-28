@@ -640,6 +640,8 @@ namespace user
             auto pthread = m_puserinteraction->m_puserinteractionOwner->m_pthreadUserInteraction;
 
             m_puserinteraction->m_pthreadUserInteraction = pthread;
+            
+            __refer(m_puserthread, pthread.get());
 
          }
 
@@ -688,8 +690,6 @@ namespace user
 
          m_puserthread->initialize_user_thread(this);
 
-         m_puserthread->add_task(m_puserinteraction);
-
          m_puserinteraction->__refer(m_puserinteraction->m_pthreadUserInteraction, m_puserthread OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_NOTE(__FUNCTION__));
 
          //peventStartedUser = __new(manual_reset_event());
@@ -697,6 +697,8 @@ namespace user
          //m_puserthread->m_peventStarted = peventStartedUser;
 
       }
+
+      m_puserthread->add_task(m_puserinteraction);
 
       __pointer(::user::prodevian) pprodevian;
 

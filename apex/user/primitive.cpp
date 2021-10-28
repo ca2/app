@@ -2460,7 +2460,7 @@ namespace user
    //}
 
 
-   bool primitive::SetTimer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer)
+   bool primitive::SetTimer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer, bool bPeriodic, void* pdata)
    {
 
       throw ::interface_only_exception();

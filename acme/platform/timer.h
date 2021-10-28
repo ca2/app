@@ -15,6 +15,7 @@ public:
 
    };
 
+   timer_task *                     m_pTimerTask;
    bool                             m_bPeriodic;
    bool                             m_bHandling;
    bool                             m_bRet;

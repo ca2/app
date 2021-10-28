@@ -219,7 +219,7 @@ namespace user
       virtual bool get_rect_normal(RECTANGLE_I32 * prectangle);
 
 
-      virtual bool SetTimer(uptr uEvent, ::duration millisElapse, PFN_TIMER pfnTimer = nullptr) override;
+      virtual bool SetTimer(uptr uEvent, const ::duration & millisElapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void * pdata = nullptr) override;
       virtual bool KillTimer(uptr uEvent) override;
 
 

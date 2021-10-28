@@ -2060,6 +2060,7 @@ namespace acme
 
 
 class timer;
+class timer_task;
 
 
 typedef bool FN_TIMER(timer *ptimer);

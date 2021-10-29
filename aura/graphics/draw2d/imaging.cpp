@@ -6969,7 +6969,7 @@ void imaging::AlphaTextOut(::draw2d::graphics *pgraphics,i32 left,i32 top, const
 
 //#ifndef __APPLE__
 //
-// ::e_status imaging::_load_image(::context_image * pobject, ::image * pimageParam, const ::payload & varFile, bool bSync, bool bCreateHelperMaps)
+// ::e_status imaging::_load_image(::context_image * pobject, ::image * pimageParam, const ::payload & payloadFile, bool bSync, bool bCreateHelperMaps)
 // {
 //
 //   return ::error_failed;

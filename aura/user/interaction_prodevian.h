@@ -92,6 +92,9 @@ namespace user
       bool update_screen();
 
       
+      virtual void profiling_on_before_update_screen();
+      virtual void profiling_on_after_update_screen();
+      
 
       void defer_prodevian_step();
 

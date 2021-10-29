@@ -243,7 +243,7 @@ void html_form::on_message_create(::message::message * pmessage)
 void html_form::on_message_left_button_down(::message::message * pmessage)
 {
 
-   auto pmouse = pmessage->m_pmouse;
+   auto pmouse = pmessage->m_union.m_pmouse;
 
    ::point_i32 point;
 
@@ -289,7 +289,7 @@ void html_form::on_message_left_button_down(::message::message * pmessage)
 void html_form::on_message_mouse_move(::message::message * pmessage)
 {
 
-   auto pmouse = pmessage->m_pmouse;
+   auto pmouse = pmessage->m_union.m_pmouse;
 
    track_mouse_hover();
 
@@ -370,7 +370,7 @@ void html_form::on_message_mouse_leave(::message::message * pmessage)
 void html_form::on_message_left_button_up(::message::message * pmessage)
 {
 
-   auto pmouse = pmessage->m_pmouse;
+   auto pmouse = pmessage->m_union.m_pmouse;
 
    ::point_i32 point(pmouse->m_point);
 
@@ -489,36 +489,36 @@ void html_form::set_need_load_form_data()
 }
 
 
-::e_status html_form::open_document(const ::payload & varFile)
+::e_status html_form::open_document(const ::payload & payloadFile)
 {
 
-   auto path = varFile.get_file_path();
+   auto path = payloadFile.get_file_path();
 
    auto psystem = m_psystem->m_paurasystem;
 
    if (path.is_empty())
    {
 
-      if (varFile.get_type() == ::e_type_property_set && varFile.propset()["url"].has_char())
+      if (payloadFile.get_type() == ::e_type_property_set && payloadFile.propset()["url"].has_char())
       {
 
-         path = varFile.propset()["url"];
+         path = payloadFile.propset()["url"];
 
       }
-      else if (varFile.cast < ::file::file >() != nullptr)
+      else if (payloadFile.cast < ::file::file >() != nullptr)
       {
 
          auto psystem = m_psystem;
 
          auto pdatetime = psystem->datetime();
 
-         path = pdatetime->international().get_gmt_date_time() + "." + get_document()->get_document_template()->find_string("default_extension");
+         path = pdatetime->international().get_date_time() + "." + get_document()->get_document_template()->find_string("default_extension");
 
       }
       else
       {
 
-         path = varFile;
+         path = payloadFile;
 
       }
 
@@ -526,7 +526,7 @@ void html_form::set_need_load_form_data()
 
    auto phtmldata = get_html_data();
 
-   if(!phtmldata->open_document(varFile))
+   if(!phtmldata->open_document(payloadFile))
    {
 
       return false;
@@ -678,7 +678,7 @@ void html_form::_001SetText(const ::string & str, const ::action_context & conte
 void html_form::on_message_key_down(::message::message * pmessage)
 {
    
-   auto pkey = pmessage->m_pkey;
+   auto pkey = pmessage->m_union.m_pkey;
    
    if(pkey->m_ekey == ::user::e_key_tab)
    {

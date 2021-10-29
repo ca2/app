@@ -62,39 +62,6 @@ void application_common(::apex::system * psystem)
 
 
 
-template < typename APPLICATION >
-class static_application_factory :
-   public static_setup
-{
-public:
-
-
-   ::matter * new_application_as_matter() override
-   {
-      
-      auto papplication = new APPLICATION;
-      
-#ifdef NO_IMAGING
-      
-      papplication->m_bImaging = false;
-      
-#endif
-
-      return papplication;
-
-   }
-
-
-   static_application_factory(const char * pszName = "") :
-      static_setup(flag_application, pszName)
-   {
-
-
-   }
-
-
-};
-
 
 #define __namespace_application_factory(APPID) \
 ::static_application_factory < application > g_applicationfactory(APPID);

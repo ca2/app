@@ -71,7 +71,7 @@ namespace simple_ui
    void tap::on_message_left_button_down(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       pmouse->m_bRet = true;
 
@@ -96,7 +96,7 @@ namespace simple_ui
    void tap::on_message_left_button_up(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       pmouse->m_bRet = true;
 
@@ -115,7 +115,7 @@ namespace simple_ui
    void tap::on_message_mouse_move(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       INFORMATION("simple_ui::tap::on_message_mouse_move");
 
@@ -489,7 +489,7 @@ namespace simple_ui
    void tap::on_message_key_down(::message::message * pmessage)
    {
 
-      auto pkey = pmessage->m_pkey;
+      auto pkey = pmessage->m_union.m_pkey;
 
       ::user::enum_key iKey = pkey->m_ekey;
 

@@ -114,7 +114,7 @@ namespace user
 
       virtual bool create_menu(const string_array & straCommand, const string_array & straCommandTitle);
 
-      virtual void destroy_menu();
+      ::e_status destroy() override;
 
       virtual bool add_menu(::xml::node * pnode);
 

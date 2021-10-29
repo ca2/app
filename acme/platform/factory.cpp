@@ -1,48 +1,6 @@
 #include "framework.h"
 
-#ifdef WINDOWS
-
-
-bool demangle(string& str, const char* pszType)
-{
-
-   str = pszType;
-
-   if (!str::begins_eat_ci(str, "class "))
-   {
-
-      if (!str::begins_eat_ci(str, "struct "))
-      {
-
-
-      }
-
-   }
-
-   return true;
-
-}
-
-
-//bool demangle(string& str)
-//{
-//
-//   if (!str::begins_eat_ci(str, "class "))
-//   {
-//
-//      if (!str::begins_eat_ci(str, "struct "))
-//      {
-//
-//
-//      }
-//
-//   }
-//
-//   return true;
-//
-//}
-
-#else
+#ifndef WINDOWS
 
 
 #include <cxxabi.h>
@@ -79,7 +37,7 @@ bool demangle (string & str, const char * pszType)
 //bool demangle (string & str)
 //{
 //
-//   return demangle(str, str.c_str());
+//   return str, str.c_str();
 //
 //}
 

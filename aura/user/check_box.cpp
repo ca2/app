@@ -39,7 +39,7 @@ namespace user
    }
 
 
-   ::matter* check_box::clone() const
+   ::element * check_box::clone() const
    {
 
       auto pcheckbox = new ::user::check_box;
@@ -631,7 +631,7 @@ namespace user
    void check_box::on_message_key_up(::message::message * pmessage)
    {
 
-      auto pkey = pmessage->m_pkey;
+      auto pkey = pmessage->m_union.m_pkey;
 
       if(pkey->m_ekey == ::user::e_key_space)
       {

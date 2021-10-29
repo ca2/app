@@ -84,26 +84,26 @@ i64 object::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 string object::get_string() const
 {
 
-   return string(type_name()) + " (0x" + ::hex::lower_from((uptr)this) + ")";
+   return string(__type_name(this)) + " (0x" + ::hex::lower_from((uptr)this) + ")";
 
 }
 
 
-::e_status object::add_composite(::matter* pmatter OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+::e_status object::add_composite(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
    _synchronous_lock synchronouslock(mutex());
 
    __defer_construct_new(m_pcompositea);
 
-   if (!m_pcompositea->add_unique(pmatter OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS))
+   if (!m_pcompositea->add_unique(pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS))
    {
 
       return success_none;
 
 //#ifdef _DEBUG
 //
-//      object_on_add_composite(pmatter);
+//      object_on_add_composite(pelement);
 //
 //#endif
 
@@ -114,23 +114,25 @@ string object::get_string() const
 }
 
 
-::e_status object::add_reference(::matter* pmatter OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+::e_status object::add_reference(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
    _synchronous_lock synchronouslock(mutex());
 
    __defer_construct_new(m_preferencea);
 
-   m_preferencea->add_unique(pmatter OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+   m_preferencea->add_unique(pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
    if (m_preferencea->get_upper_bound() == 8)
    {
 
-      if (string(type_name()).contains("application"))
+      if (__type_name(this).contains("application"))
       {
 
-         string strMessage = "what is this? : " + string(m_preferencea->last()->type_name());
+         string strMessage = "what is this? : " + __type_name(m_preferencea->last());
+
          output_debug_string(strMessage);
+
       }
 
    }
@@ -140,10 +142,10 @@ string object::get_string() const
 }
 
 
-//::e_status object::release_composite2(::matter* pmatter OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//::e_status object::release_composite2(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 //{
 //
-//   if (::is_null(pmatter))
+//   if (::is_null(pelement))
 //   {
 //
 //      return ::success_none;
@@ -155,7 +157,7 @@ string object::get_string() const
 //   if (m_pcompositea)
 //   {
 //
-//      if (m_pcompositea->erase(pmatter))
+//      if (m_pcompositea->erase(pelement))
 //      {
 //
 //         return ::success;
@@ -169,10 +171,10 @@ string object::get_string() const
 //}
 //
 //
-//::e_status object::finalize_composite(::matter* pmatter OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//::e_status object::finalize_composite(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 //{
 //
-//   if (::is_null(pmatter))
+//   if (::is_null(pelement))
 //   {
 //
 //      return ::success_none;
@@ -184,19 +186,19 @@ string object::get_string() const
 //   if (m_pcompositea)
 //   {
 //
-//      if (m_pcompositea->contains(pmatter))
+//      if (m_pcompositea->contains(pelement))
 //      {
 //
 //         synchronouslock.unlock();
 //
-//         pmatter->destroy();
+//         pelement->destroy();
 //
 //         synchronouslock.lock();
 //
 //         if (m_pcompositea)
 //         {
 //
-//            m_pcompositea->erase(pmatter);
+//            m_pcompositea->erase(pelement);
 //
 //         }
 //
@@ -211,10 +213,10 @@ string object::get_string() const
 //}
 //
 //
-//::e_status object::release_reference(::matter* pmatter  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//::e_status object::release_reference(::element* pelement  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 //{
 //
-//   if (::is_null(pmatter))
+//   if (::is_null(pelement))
 //   {
 //
 //      return ::success_none;
@@ -226,7 +228,7 @@ string object::get_string() const
 //   if (m_preferencea)
 //   {
 //
-//      if (m_preferencea->erase(pmatter) > 0)
+//      if (m_preferencea->erase(pelement) > 0)
 //      {
 //
 //         return ::success;
@@ -386,14 +388,14 @@ void object::dev_log(string strMessage)
 //}
 
 //
-//void object::enumerate_composite(matter_array& a)
+//void object::enumerate_composite(element_array& a)
 //{
 //
 //
 //}
 
 
-//void object::enumerate_reference(matter_array& a)
+//void object::enumerate_reference(element_array& a)
 //{
 //
 //
@@ -608,16 +610,16 @@ bool object::is_running() const
 //   try
 //   {
 //
-//      auto pmatter = running(pszTag);
+//      auto pelement = running(pszTag);
 //
-//      if (pmatter.is_null())
+//      if (pelement.is_null())
 //      {
 //
 //         return;
 //
 //      }
 //
-//      pmatter->destroy();
+//      pelement->destroy();
 //
 //   }
 //   catch (...)
@@ -634,16 +636,16 @@ bool object::is_running() const
 //   try
 //   {
 //
-//      auto pmatter = running(pszTag);
+//      auto pelement = running(pszTag);
 //
-//      if (pmatter.is_null())
+//      if (pelement.is_null())
 //      {
 //
 //         return;
 //
 //      }
 //
-//      pmatter->destroy();
+//      pelement->destroy();
 //
 //      string strTag(pszTag);
 //
@@ -683,7 +685,7 @@ void object::defer_update_object_id()
 ::id object::calc_default_object_id() const
 {
 
-   string strType = type_name();
+   string strType = __type_name(this);
 
    ::str::begins_eat_ci(strType, "class ");
 
@@ -715,20 +717,20 @@ void object::defer_update_object_id()
 //}
 
 
-//::e_status     object::request_file(const ::payload& varFile)
+//::e_status     object::request_file(const ::payload& payloadFile)
 //{
 //
-//   return request_file(varFile, e_type_new);
+//   return request_file(payloadFile, e_type_new);
 //
 //}
 
 
-//::e_status object::request_file(const ::payload& varFile, ::payload varQuery)
+//::e_status object::request_file(const ::payload& payloadFile, ::payload varQuery)
 //{
 //
 //   auto pcommandline = __create_new< command_line >();
 //
-//   pcommandline->m_varFile = varFile;
+//   pcommandline->m_varFile = payloadFile;
 //
 //   pcommandline->m_varQuery = varQuery;
 //
@@ -1072,7 +1074,7 @@ void object::add_task(::object* pobjectTask)
 
    __defer_construct_new(m_pobjectaChildrenTask);
 
-   string strType = type_c_str();
+   string strType = __type_name(this);
 
    if (strType.contains("prodevian"))
    {
@@ -1129,7 +1131,7 @@ void object::erase_task(::object* pobjectTask)
 
    }
 
-   string strType = type_c_str();
+   string strType = __type_name(this);
 
    if (strType.contains("user::thread"))
    {
@@ -1289,7 +1291,7 @@ bool object::check_tasks_finished()
 
    }
 
-   auto synchronouslykeepbitCheckingChildrenTask = synchronously_keep_bit(this, m_ematter, e_matter_checking_children_task, true, false);
+   auto synchronouslykeepbitCheckingChildrenTask = synchronously_keep_bit(this, m_eflagElement, e_flag_checking_children_task, true, false);
 
    try
    {
@@ -1302,7 +1304,7 @@ bool object::check_tasks_finished()
          if (ptaskChild)
          {
 
-            string strType = ptaskChild->type_c_str();
+            string strType = __type_name(ptaskChild);
 
             ptaskChild->set_finish();
 
@@ -1332,7 +1334,7 @@ bool object::check_tasks_finished()
 
       //       _synchronous_lock synchronouslockChild(ptaskChild->mutex());
 
-      //       string strType = ptaskChild->type_c_str();
+      //       string strType = __type_name(ptaskChild);
 
       //       if (ptaskChild->m_bTaskTerminated || !ptaskChild->m_bTaskStarted)
       //       {
@@ -1371,7 +1373,7 @@ bool object::check_tasks_finished()
 
    }
 
-   if(!is(e_matter_checking_children_task))
+   if(!has(e_flag_checking_children_task))
    {
 
       try
@@ -1476,19 +1478,19 @@ void object::delete_this()
 
    ::e_status estatus = ::success;
 
-   string strTypeName = type_name();
+   string strTypeName = __type_name(this);
 
    _synchronous_lock synchronouslock(mutex());
 
    if (m_pcompositea)
    {
 
-      for (auto& pmatter : *m_pcompositea)
+      for (auto& pelement : *m_pcompositea)
       {
 
          synchronouslock.unlock();
 
-         auto estatusItem = pmatter->destroy();
+         auto estatusItem = pelement->destroy();
 
          synchronouslock.lock();
 
@@ -1508,7 +1510,7 @@ void object::delete_this()
 
    ::e_status estatus = ::success;
 
-   string strTypeName = type_name();
+   string strTypeName = __type_name(this);
 
    _synchronous_lock synchronouslock(mutex());
 
@@ -1528,10 +1530,10 @@ CLASS_DECL_ACME::mutex* get_children_mutex();
 
 
 /// tells if pobject is dependant of this object or of any dependant objects
-bool object::___is_reference(::matter* pmatter) const
+bool object::___is_reference(::element* pelement) const
 {
 
-   if (::is_null(pmatter))
+   if (::is_null(pelement))
    {
 
       return false;
@@ -1547,7 +1549,7 @@ bool object::___is_reference(::matter* pmatter) const
 
    }
 
-   if (m_preferencea->contains(pmatter))
+   if (m_preferencea->contains(pelement))
    {
 
       return true;
@@ -1559,10 +1561,10 @@ bool object::___is_reference(::matter* pmatter) const
 }
 
 
-bool object::__is_composite(::matter* pmatter) const
+bool object::__is_composite(::element* pelement) const
 {
 
-   if (::is_null(pmatter))
+   if (::is_null(pelement))
    {
 
       return false;
@@ -1576,7 +1578,7 @@ bool object::__is_composite(::matter* pmatter) const
 
    }
 
-   if (!m_pcompositea->contains(pmatter))
+   if (!m_pcompositea->contains(pelement))
    {
 
       return true;
@@ -1771,7 +1773,7 @@ void object::branch_each(const ::routine_array& routinea)
 
    ptask = __create_new < task >();
 
-   ptask->m_pmatter = routine;
+   ptask->m_pelement = routine;
 
    get_property_set()[__id(thread)][id] = ptask;
 
@@ -1782,10 +1784,10 @@ void object::branch_each(const ::routine_array& routinea)
 }
 
 
-__transport(task) object::branch_task(matter * pmatter, ::enum_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
+__transport(task) object::branch_task(element * pelement, ::enum_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
 {
 
-   if (::is_null(pmatter))
+   if (::is_null(pelement))
    {
 
       return error_failed;
@@ -1801,9 +1803,9 @@ __transport(task) object::branch_task(matter * pmatter, ::enum_priority epriorit
 
    }
 
-   ptask->m_pmatter = pmatter;
+   ptask->m_pelement = pelement;
 
-   ptask->m_id = typeid(*pmatter).name();
+   ptask->m_id = typeid(*pelement).name();
 
    auto estatus = ptask->branch(epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
 
@@ -1941,9 +1943,9 @@ void object::task_erase(::task* ptask)
    try
    {
 
-      string strThreadThis = type_name();
+      string strThreadThis = __type_name(this);
 
-      string strThreadChild = ptask->type_name();
+      string strThreadChild = __type_name(ptask);
 
       _synchronous_lock synchronouslock(mutex());
 
@@ -2206,7 +2208,7 @@ void object::task_erase(::task* ptask)
 
 
 //__pointer(thread) object::start(
-//   ::matter* pmatter,
+//   ::element* pelement,
 //   ::enum_priority epriority = e_priority_normal,
 //   u32 nStackSize = 0,
 //   u32 dwCreateFlags = 0)
@@ -2233,7 +2235,7 @@ void object::_001OnUpdate(::message::message* pmessage)
 
    //::subject subject(this, (::iptr)pmessage->m_wparam);
 
-   //subject.m_payload = (::matter*)(::iptr)pmessage->m_lparam;
+   //subject.m_payload = (::element*)(::iptr)pmessage->m_lparam;
 
    //process(&subject);
 
@@ -2250,7 +2252,7 @@ void object::install_message_routing(::channel* pchannel)
 }
 
 
-//__pointer(::matter) object::running(const ::string & pszTag) const
+//__pointer(::element) object::running(const ::string & pszTag) const
 //{
 //
 //   //if (m_pcompositea)
@@ -2363,10 +2365,10 @@ void object::install_message_routing(::channel* pchannel)
 //}
 
 
-::file_transport object::get_file(const ::payload& varFile, const ::file::e_open& eopen)
+::file_transport object::get_file(const ::payload& payloadFile, const ::file::e_open& eopen)
 {
 
-   return m_pcontext->get_file(varFile, eopen);
+   return m_pcontext->get_file(payloadFile, eopen);
 
 }
 
@@ -2384,7 +2386,7 @@ struct context_object_test_struct :
    virtual public object
 {
 
-   context_object_test_struct(::matter* p)
+   context_object_test_struct(::element* p)
    {
 
 
@@ -2411,10 +2413,10 @@ struct context_object_test_struct :
 //}
 //
 //
-//CLASS_DECL_ACME void object_on_add_composite(const matter* pusermessage)
+//CLASS_DECL_ACME void object_on_add_composite(const element* pusermessage)
 //{
 //
-//   string strType = ::str::demangle(pusermessage->type_name());
+//   string strType = __type_name(pusermessage);
 //
 //   if (strType.contains_ci("user::thread"))
 //   {
@@ -2527,16 +2529,16 @@ string object::get_text(const ::payload& payload, const ::id& id)
 }
 
 
-__pointer(::extended::sequence < ::conversation >) object::message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box& emessagebox)
-{
-
-   auto psystem = m_psystem;
-
-   auto psequence = psystem->message_box(puserinteraction, strMessage, strTitle, emessagebox);
-
-   return psequence;
-
-}
+//__pointer(::extended::sequence < ::conversation >) object::message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box& emessagebox)
+//{
+//
+//   auto psystem = m_psystem;
+//
+//   auto psequence = psystem->message_box(puserinteraction, strMessage, strTitle, emessagebox);
+//
+//   return psequence;
+//
+//}
 
 
 //::e_status object::message_box_timeout(const ::string & pszMessage, const ::string & pszTitle, const ::duration& durationTimeout, const ::e_message_box & emessagebox, const ::future & process)
@@ -2609,7 +2611,7 @@ __pointer(::extended::sequence < ::conversation >) object::message_box(::user::i
 #endif
 
 
-matter* object::get_taskpool_container()
+element* object::get_taskpool_container()
 {
 
    //return m_pthread;
@@ -2715,7 +2717,7 @@ matter* object::get_taskpool_container()
 
 
 //template < typename BASE_TYPE >
-//__pointer(BASE_TYPE) file_as(const ::payload& varFile);
+//__pointer(BASE_TYPE) file_as(const ::payload& payloadFile);
 
 //
 //void object::add_routine(const ::id& idRoutine, const ::routine& routine)
@@ -2768,7 +2770,7 @@ matter* object::get_taskpool_container()
 
 
 //template < typename BASE_TYPE >
-//void save_to(const ::payload& varFile, BASE_TYPE* pobject);
+//void save_to(const ::payload& payloadFile, BASE_TYPE* pobject);
 
 
 ::e_status object::initialize(::object* pobject)
@@ -2791,7 +2793,7 @@ matter* object::get_taskpool_container()
 
    //#if OBJECT_REFERENCE_COUNT_DEBUG
    //
-   //   string strType = type_name();
+   //   string strType = __type_name(this);
    //
    //   if (strType.contains_ci("session"))
    //   {
@@ -2900,9 +2902,9 @@ matter* object::get_taskpool_container()
 //
 //   auto pthread = __create_new < ::thread >();
 //
-//   pthread->m_pmatter = routine;
+//   pthread->m_pelement = routine;
 //
-//   pthread->m_id = pthread->m_pmatter->type_name();
+//   pthread->m_id = __type_name(pthread->m_pelement);
 //
 //   pthread->begin_thread();
 //
@@ -3033,7 +3035,7 @@ matter* object::get_taskpool_container()
 //::image_transport create_image();
 //::image_transport create_image(const ::size_i32 & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
 
-//::image_transport get_image(const ::payload & varFile, bool bCache = true, bool bSync = true);
+//::image_transport get_image(const ::payload & payloadFile, bool bCache = true, bool bSync = true);
 //::image_transport matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true);
 
 //template < typename BASE_TYPE >
@@ -3117,13 +3119,13 @@ matter* object::get_taskpool_container()
 //inline ::e_status release_reference(__pointer(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 
-// ::e_status add_composite(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) 
-// ::e_status add_reference(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) 
+// ::e_status add_composite(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
+// ::e_status add_reference(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
 
 
-// ::e_status release_composite2(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) 
-// ::e_status finalize_composite(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) 
-// ::e_status release_reference(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) 
+// ::e_status release_composite2(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
+// ::e_status finalize_composite(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
+// ::e_status release_reference(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
 
 
 //template < typename BASE_TYPE >
@@ -3338,7 +3340,7 @@ matter* object::get_taskpool_container()
 //}
 
 
-//::e_status object::request_file(const ::payload& varFile)
+//::e_status object::request_file(const ::payload& payloadFile)
 //{
 //
 //   return ::success;
@@ -3346,7 +3348,7 @@ matter* object::get_taskpool_container()
 //}
 
 
-//::e_status object::request_file(const ::payload& varFile, ::payload varQuery)
+//::e_status object::request_file(const ::payload& payloadFile, ::payload varQuery)
 //{
 //
 //   return ::success;
@@ -3398,21 +3400,21 @@ matter* object::get_taskpool_container()
 //
 //}
 
-//__pointer(::matter) object::running(const ::string & pszTag) const
+//__pointer(::element) object::running(const ::string & pszTag) const
 //{
 //
 //   return nullptr;
 //
 //}
 
-//bool object::___is_reference(::matter* pobject) const
+//bool object::___is_reference(::element* pobject) const
 //{
 //
 //   return false;
 //
 //}
 
-//bool object::__is_composite(::matter* pobject) const
+//bool object::__is_composite(::element* pobject) const
 //{
 //
 //   return false;
@@ -3448,8 +3450,8 @@ matter* object::get_taskpool_container()
 //}
 
 // ::user::document* open_document_file(::application* pappOnBehalfOf);
-// ::user::document* open_document_file(::application* pappOnBehalfOf, const ::payload& varFile, const ::payload & varOptions, ::user::interaction* puiParent = nullptr, ewindowflag eflag = e_window_flag_none, ::id id = ::id());
-// ::user::document* open_document_file(::application* pappOnBehalfOf, const ::payload& varFile);
+// ::user::document* open_document_file(::application* pappOnBehalfOf, const ::payload& payloadFile, const ::payload & varOptions, ::user::interaction* puiParent = nullptr, ewindowflag eflag = e_window_flag_none, ::id id = ::id());
+// ::user::document* open_document_file(::application* pappOnBehalfOf, const ::payload& payloadFile);
 // ::user::document* create_subdocument(::user::impact_data* pimpactdata);
 
 //
@@ -3479,12 +3481,12 @@ matter* object::get_taskpool_container()
 
 
 //template < typename PRED >
-//::image_transport get_image(const ::payload & varFile, ::u64 uTrait, PRED pred);
+//::image_transport get_image(const ::payload & payloadFile, ::u64 uTrait, PRED pred);
 
-// ::image_transport load_image(const ::payload & varFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
+// ::image_transport load_image(const ::payload & payloadFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
 // ::image_transport load_matter_image(const char * pszMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
 // ::image_transport load_matter_icon(string_array & straMatter, string strIcon);
-// ::image_transport load_thumbnail(const ::payload & varFile, int w, int h);
+// ::image_transport load_thumbnail(const ::payload & payloadFile, int w, int h);
 // ::image_transport load_thumbnail(const char * pszPath);
 // ::image_transport load_dib(const ::file::path & pathDib);
 
@@ -3636,22 +3638,22 @@ bool object::IsSerializable() const
 //    void ns_main_async(dispatch_block_t block);
 //#endif
 
-   //inline ::file_transport get_reader(const ::payload& varFile, const ::file::e_open & eopen = ::file::e_open());
-   //inline ::file_transport get_writer(const ::payload& varFile, const ::file::e_open & eopen = ::file::e_open());
+   //inline ::file_transport get_reader(const ::payload& payloadFile, const ::file::e_open & eopen = ::file::e_open());
+   //inline ::file_transport get_writer(const ::payload& payloadFile, const ::file::e_open & eopen = ::file::e_open());
 
 
    // void to_string(string & str) const 
 
 
-//::file_transport object::get_file(const ::payload& varFile, const ::file::e_open& eopen)
+//::file_transport object::get_file(const ::payload& payloadFile, const ::file::e_open& eopen)
 //{
 //
 //   return nullptr;
 //
 //}
 
-//inline ::file_transport get_reader(const ::payload& varFile, const ::file::e_open& eopen = ::file::e_open_binary);
-//inline ::file_transport get_writer(const ::payload& varFile, const ::file::e_open& eopen = ::file::e_open_binary | ::file::e_open_defer_create_directory | ::file::e_open_create);
+//inline ::file_transport get_reader(const ::payload& payloadFile, const ::file::e_open& eopen = ::file::e_open_binary);
+//inline ::file_transport get_writer(const ::payload& payloadFile, const ::file::e_open& eopen = ::file::e_open_binary | ::file::e_open_defer_create_directory | ::file::e_open_create);
 
 
 

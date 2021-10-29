@@ -34,9 +34,9 @@ namespace aura
    //   m_pimpl->_001OnFileNew(nullptr);
    //}
 
-   //::user::document * application::_001OpenDocumentFile(::payload varFile)
+   //::user::document * application::_001OpenDocumentFile(::payload payloadFile)
    //{
-   //   return m_pimpl->_001OpenDocumentFile(varFile);
+   //   return m_pimpl->_001OpenDocumentFile(payloadFile);
    //}
 
    //::e_status application::_001InitializeShellOpen()

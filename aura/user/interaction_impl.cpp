@@ -640,6 +640,8 @@ namespace user
             auto pthread = m_puserinteraction->m_puserinteractionOwner->m_pthreadUserInteraction;
 
             m_puserinteraction->m_pthreadUserInteraction = pthread;
+            
+            __refer(m_puserthread, pthread.get());
 
          }
 
@@ -688,8 +690,6 @@ namespace user
 
          m_puserthread->initialize_user_thread(this);
 
-         m_puserthread->add_task(m_puserinteraction);
-
          m_puserinteraction->__refer(m_puserinteraction->m_pthreadUserInteraction, m_puserthread OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_NOTE(__FUNCTION__));
 
          //peventStartedUser = __new(manual_reset_event());
@@ -697,6 +697,8 @@ namespace user
          //m_puserthread->m_peventStarted = peventStartedUser;
 
       }
+
+      m_puserthread->add_task(m_puserinteraction);
 
       __pointer(::user::prodevian) pprodevian;
 
@@ -1580,7 +1582,7 @@ namespace user
    void interaction_impl::on_message_destroy(::message::message * pmessage)
    {
 
-      if (m_puserinteraction && ::str::demangle(m_puserinteraction->type_name()).contains("notify_icon"))
+      if (m_puserinteraction && __type_name(m_puserinteraction).contains("notify_icon"))
       {
 
          INFORMATION("notify_icon");
@@ -1617,7 +1619,7 @@ namespace user
    void interaction_impl::post_non_client_destroy()
    {
 
-      string strType = m_puserinteraction->type_name();
+      string strType = __type_name(m_puserinteraction);
 
 //      if (strType.contains("main_frame"))
 //      {
@@ -1680,7 +1682,7 @@ namespace user
          if (::is_set(m_puserinteraction))
          {
 
-            INFORMATION(::str::demangle(m_puserinteraction->type_name()) << "::destroy_impl_only");
+            INFORMATION(__type_name(m_puserinteraction) << "::destroy_impl_only");
 
             m_puserinteraction->transfer_handler(m_dispatchermap, this);
 
@@ -1705,7 +1707,7 @@ namespace user
          if (m_puserinteraction)
          {
 
-            INFORMATION(::str::demangle(m_puserinteraction->type_name()) << "::destroy_impl_only ( 2)");
+            INFORMATION(__type_name(m_puserinteraction) << "::destroy_impl_only ( 2)");
 
          }
 
@@ -1767,7 +1769,7 @@ namespace user
    void interaction_impl::destroy_window()
    {
 
-      auto strType = ::str::demangle(m_puserinteraction->type_name());
+      auto strType = __type_name(m_puserinteraction);
 
       if (strType.contains("main_frame"))
       {
@@ -1776,7 +1778,7 @@ namespace user
 
       }
       
-      m_puserinteraction->set(e_matter_destroying);
+      m_puserinteraction->set(e_flag_destroying);
       
       m_puserinteraction->m_ewindowflag -= e_window_flag_window_created;
 
@@ -1916,7 +1918,7 @@ namespace user
 
          TRACE("e_message_left_button_down");
 
-         string strType = ::str::demangle(m_puserinteraction->type_name());
+         string strType = __type_name(m_puserinteraction);
 
          if (strType.contains_ci("list_box"))
          {
@@ -1987,7 +1989,7 @@ namespace user
          if (m_puserinteraction)
          {
 
-            strType = ::str::demangle(m_puserinteraction->type_name());
+            strType = __type_name(m_puserinteraction);
 
             if (strType.contains_ci("list_box"))
             {
@@ -2036,7 +2038,7 @@ namespace user
       if (pchild)
       {
 
-         string strType = ::str::demangle(pchild->type_name());
+         string strType = __type_name(pchild);
 
          if (strType.contains_ci("button"))
          {
@@ -2085,9 +2087,9 @@ namespace user
    bool interaction_impl::IsTopParentActive()
    {
 
-      throw ::interface_only_exception();
+      return m_puserinteraction->window()->is_active_window();
 
-      return false;
+      //return false;
 
    }
 
@@ -4033,7 +4035,7 @@ namespace user
 
       windowing_output_debug_string("\n_001UpdateBuffer : after get_window_rect");
 
-      string strType = ::str::demangle(m_puserinteraction->type_name());
+      string strType = __type_name(m_puserinteraction);
 
       if (strType.contains("list_box"))
       {
@@ -4296,7 +4298,7 @@ namespace user
 
       }
 
-      string strType = m_puserinteraction->type_c_str();
+      string strType = __type_name(m_puserinteraction);
 
       if(strType.contains_ci("list_box"))
       {
@@ -5418,7 +5420,7 @@ namespace user
 
       }
 
-      string strType = ::str::demangle(m_puserinteraction->type_name());
+      string strType = __type_name(m_puserinteraction);
 
       if (strType.contains("font_format"))
       {
@@ -5469,7 +5471,7 @@ namespace user
          )
       {
 
-         string strType = ::str::demangle(m_puserinteraction->type_name());
+         string strType = __type_name(m_puserinteraction);
 
          if (strType.contains("font_format"))
          {
@@ -5768,7 +5770,7 @@ namespace user
 
       }
 
-      string strType = ::str::demangle(m_puserinteraction->type_name());
+      string strType = __type_name(m_puserinteraction);
 
       if (strType.contains_ci("filemanager"))
       {
@@ -6002,7 +6004,7 @@ namespace user
    void interaction_impl::_001OnDestroyWindow(::message::message* pmessage)
    {
 
-      if (m_puserinteraction && ::str::demangle(m_puserinteraction->type_name()).contains("notify_icon"))
+      if (m_puserinteraction && __type_name(m_puserinteraction).contains("notify_icon"))
       {
 
          INFORMATION("notify_icon");

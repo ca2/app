@@ -2,7 +2,6 @@
 #pragma once
 
 
-
 class CLASS_DECL_ACME hour :
    public duration
 {

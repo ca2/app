@@ -247,7 +247,7 @@ namespace filemanager
 
                //   });
 
-               message_box(this, "Do you want to replace the existing file " + strPath + "?", nullptr, e_message_box_yes_no)
+               message_box("Do you want to replace the existing file " + strPath + "?", nullptr, e_message_box_yes_no)
                   ->then([this, strPath](auto pfuture)
                      {
 

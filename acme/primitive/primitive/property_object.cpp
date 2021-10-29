@@ -48,7 +48,7 @@ property_object::~property_object()
 void property_object::notify_on_destroy(::property_object * pcontextobjectFinish)
 {
 
-   if (has(e_matter_destroying))
+   if (has(e_flag_destroying))
    {
 
       //finish(nullptr);
@@ -363,8 +363,7 @@ stream & property_object::read(::stream & stream)
 }
 
 
-
-inline routine_array * property_object::routine_array(const ::id & id, bool bCreate)
+routine_array * property_object::routine_array(const ::id & id, bool bCreate)
 {
 
    if (!bCreate)
@@ -721,7 +720,7 @@ string property_object::get_text(const ::payload & payload, const ::id & id)
 //void property_object::to_string(const class string_exchange & str) const
 //{
 //
-//   str = typeid(*this).name();
+//   str = __type_name(this);
 //
 //}
 

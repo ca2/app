@@ -446,7 +446,7 @@ namespace user
    void list_header::on_message_left_button_down(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       auto pointCursor = _001ScreenToClient(pmouse->m_point);
 
@@ -465,7 +465,7 @@ namespace user
    void list_header::on_message_left_button_up(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       list * plist = m_plistctrlinterface;
 
@@ -533,7 +533,7 @@ namespace user
    void list_header::on_message_mouse_move(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       auto pointCursor = _001ScreenToClient(pmouse->m_point);
 
@@ -621,7 +621,7 @@ namespace user
    void list_header::on_message_left_button_double_click(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       auto pointCursor = _001ScreenToClient(pmouse->m_point);
 
@@ -665,7 +665,7 @@ namespace user
 
       //   bool bFirst = true;
 
-      //   string strType = type_name();
+      //   string strType = __type_name(this);
 
       //   if (strType.contains_ci("control_box"))
       //   {

@@ -2460,7 +2460,7 @@ namespace user
    //}
 
 
-   bool primitive::SetTimer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer)
+   bool primitive::SetTimer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer, bool bPeriodic, void* pdata)
    {
 
       throw ::interface_only_exception();
@@ -3287,7 +3287,7 @@ namespace user
    //}
 
 
-   //__pointer(::user::menu) primitive::track_popup_xml_menu_file(::payload varFile, i32 iFlags, const ::point_i32 & point, const ::size_i32 & sizeMinimum)
+   //__pointer(::user::menu) primitive::track_popup_xml_menu_file(::payload payloadFile, i32 iFlags, const ::point_i32 & point, const ::size_i32 & sizeMinimum)
    //{
 
    //   throw ::interface_only_exception();
@@ -3828,6 +3828,29 @@ namespace user
 
    bool primitive::call_message_handler(const ::id & id, wparam wparam, lparam lparam, const ::point_i32 & point, lresult * plresult)
    {
+      
+      if(id == e_message_post_user)
+      {
+
+         if(wparam==1)
+         {
+
+            auto pelement = (::element *) lparam.m_lparam;
+
+            __pointer(::message::message) pmessage(e_move_transfer, pelement);
+
+            if(pmessage)
+            {
+
+               message_handler(pmessage);
+
+               return true;
+
+            }
+
+         }
+
+      }
 
       auto pmessage = get_message(id, wparam, lparam);
 

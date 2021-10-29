@@ -74,7 +74,7 @@
     <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
     <AppContainerApplication>true</AppContainerApplication>
     <ApplicationType>Windows Store</ApplicationType>
-    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <WindowsTargetPlatformMinVersion>10.0.10240.0</WindowsTargetPlatformMinVersion>
     <ApplicationTypeRevision>10.0</ApplicationTypeRevision>
     <ProjectName>acme</ProjectName>
@@ -83,90 +83,90 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='console_basis|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='console_basis|ARM'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='console_basis|ARM64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='console_basis|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cover|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cover|ARM'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cover|ARM64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cover|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -2112,7 +2112,7 @@
     <ClCompile Include="platform\math.cpp" />
     <ClCompile Include="platform\message_box.cpp" />
     <ClCompile Include="platform\muldiv64.cpp" />
-    <ClCompile Include="platform\nano_timer.cpp" />
+    <ClCompile Include="platform\nanosecond_timer.cpp" />
     <ClCompile Include="platform\net.cpp" />
     <ClCompile Include="platform\node.cpp" />
     <ClCompile Include="platform\object_reference_count_debug.cpp" />
@@ -2175,20 +2175,20 @@
     <ClCompile Include="primitive\datetime\datetime.cpp" />
     <ClCompile Include="primitive\datetime\date_span.cpp" />
     <ClCompile Include="primitive\datetime\department.cpp" />
-    <ClCompile Include="primitive\datetime\duration.cpp" />
     <ClCompile Include="primitive\datetime\filetime.cpp" />
     <ClCompile Include="primitive\datetime\filetime_span.cpp" />
-    <ClCompile Include="primitive\datetime\micros.cpp" />
     <ClCompile Include="primitive\datetime\microsecond_sleep.cpp" />
     <ClCompile Include="primitive\datetime\mktime.cpp" />
     <ClCompile Include="primitive\datetime\result.cpp" />
-    <ClCompile Include="primitive\datetime\secs.cpp" />
     <ClCompile Include="primitive\datetime\system_time.cpp" />
     <ClCompile Include="primitive\datetime\time.cpp" />
     <ClCompile Include="primitive\datetime\time_span.cpp" />
     <ClCompile Include="primitive\datetime\zonetime.cpp" />
     <ClCompile Include="primitive\datetime\_.cpp" />
     <ClCompile Include="primitive\datetime\_c.cpp" />
+    <ClCompile Include="primitive\duration\duration\duration.cpp" />
+    <ClCompile Include="primitive\duration\duration\microsecond.cpp" />
+    <ClCompile Include="primitive\duration\duration\second.cpp" />
     <ClCompile Include="primitive\geometry2d\geometry.cpp" />
     <ClCompile Include="primitive\geometry2d\point.cpp" />
     <ClCompile Include="primitive\geometry2d\rectangle.cpp" />
@@ -2219,6 +2219,7 @@
     <ClCompile Include="primitive\primitive\command.cpp" />
     <ClCompile Include="primitive\primitive\context_object_traits.cpp" />
     <ClCompile Include="primitive\primitive\edit.cpp" />
+    <ClCompile Include="primitive\primitive\element.cpp" />
     <ClCompile Include="primitive\primitive\element_array.cpp" />
     <ClCompile Include="primitive\primitive\estatus.cpp" />
     <ClCompile Include="primitive\primitive\factory.cpp" />
@@ -2244,7 +2245,6 @@
     <ClCompile Include="primitive\primitive\property_set.cpp" />
     <ClCompile Include="primitive\primitive\property_set_composite.cpp" />
     <ClCompile Include="primitive\primitive\property_set_papaya.cpp" />
-    <ClCompile Include="primitive\primitive\referenceable.cpp" />
     <ClCompile Include="primitive\primitive\runnable.cpp" />
     <ClCompile Include="primitive\primitive\shared_memory.cpp" />
     <ClCompile Include="primitive\primitive\traits.cpp" />

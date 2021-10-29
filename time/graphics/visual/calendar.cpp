@@ -56,60 +56,60 @@ namespace datetime
          }
          for(iDay = 1; iDay <= 33; iDay++)
          {
-            if((timeNow.GetDay() == iDay &&
-                  timeNow.GetMonth() == iMonth &&
-                  timeNow.GetYear() == iYear)
+            if((timeNow.day() == iDay &&
+                  timeNow.month() == iMonth &&
+                  timeNow.year() == iYear)
                   ||
-                  (iDay == m_time.GetDay() &&
-                   iMonth == m_time.GetMonth() &&
-                   iYear == m_time.GetYear()))
+                  (iDay == m_time.day() &&
+                   iMonth == m_time.month() &&
+                   iYear == m_time.year()))
             {
                time += timespan;
-               if(time.GetMonth() != iMonth)
+               if(time.month() != iMonth)
                   break;
                continue;
             }
             GetRectDay(time,rectangleDay);
-            crBorder = rgb(184,184,177);
-            pgraphics->draw_rectangle(rectangleDay,crBorder);
+            crBorder = rgb(189,189,177);
+            pgraphics->draw_inset_rectangle(rectangleDay,crBorder);
             rectangleDay.deflate(m_iColWidth / 5,m_iLineHeight / 5);
             string strDay;
             strDay.Format("%d",iDay);
             pgraphics->draw_text(strDay,rectangleDay,e_align_bottom_right);
             time += timespan;
-            if(time.GetMonth() != iMonth)
+            if(time.month() != iMonth)
                break;
          }
-         if(timeNow.GetMonth() == iMonth
-               && timeNow.GetYear() == iYear)
+         if(timeNow.month() == iMonth
+               && timeNow.year() == iYear)
          {
             crBorder = rgb(90, 90, 80);
             GetRectDay(timeNow,rectangleDay);
             rectangleDay.inflate(m_iColWidth / 10,m_iColWidth / 10);
             pgraphics->fill_rectangle(rectangleDay,rgb(220,220,210));
-            pgraphics->draw_rectangle(rectangleDay,crBorder);
+            pgraphics->draw_inset_rectangle(rectangleDay,crBorder);
             rectangleDay.deflate(1,1);
-            pgraphics->draw_rectangle(rectangleDay,crBorder);
+            pgraphics->draw_inset_rectangle(rectangleDay,crBorder);
             rectangleDay.deflate(m_iColWidth / 5,m_iLineHeight / 5);
             string strDay;
-            strDay.Format("%d",timeNow.GetDay());
+            strDay.Format("%d",timeNow.day());
             pgraphics->draw_text(strDay,rectangleDay,e_align_bottom_right);
          }
          ::datetime::time timeEmp = m_time;
-         for(int32_t iDay = timeEmp.GetDay(); time.GetYear() == iYear
-               && time.GetMonth() == iMonth &&
-               (m_time.GetDay() == iDay || (
+         for(int32_t iDay = timeEmp.day(); time.year() == iYear
+               && time.month() == iMonth &&
+               (m_time.day() == iDay || (
                 m_bRange && time <= m_timeEnd)); time += timespan)
          {
             crBorder = rgb(240,120,52);
             GetRectDay(m_time,rectangleDay);
             rectangleDay.inflate(m_iColWidth / 10,m_iColWidth / 10);
-            pgraphics->draw_rectangle(rectangleDay,crBorder);
+            pgraphics->draw_inset_rectangle(rectangleDay,crBorder);
             rectangleDay.deflate(1,1);
-            pgraphics->draw_rectangle(rectangleDay,crBorder);
+            pgraphics->draw_inset_rectangle(rectangleDay,crBorder);
             rectangleDay.deflate(m_iColWidth / 5,m_iLineHeight / 5);
             string strDay;
-            strDay.Format("%d",timeEmp.GetDay());
+            strDay.Format("%d",timeEmp.day());
             pgraphics->draw_text(strDay,rectangleDay,e_align_bottom_right);
          }
 
@@ -140,7 +140,7 @@ namespace datetime
 
       void graphics::GetRectDay(::datetime::time & time,RECTANGLE_I32 * lprect)
       {
-         int32_t iWeekDay = time.GetDayOfWeek();
+         int32_t iWeekDay = time.day_of_week();
          ::datetime::time timeMonth(m_iYear,m_iMonth,1,0,0,0);
          int32_t iWeek = get_week_of_month(time);
          GetRectDay(iWeekDay,iWeek + 1,lprect);
@@ -237,7 +237,7 @@ namespace datetime
                return true;
             }
             time += timespan;
-            if(time.GetMonth() != iMonth)
+            if(time.month() != iMonth)
                break;
          }
          return false;

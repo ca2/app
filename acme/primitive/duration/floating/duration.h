@@ -10,7 +10,7 @@ public:
 
 
    using BASE_DURATION = DURATION;
-   using BASE_TYPE = BASE_DURATION::BASE_TYPE;
+   using BASE_TYPE = typename BASE_DURATION::BASE_TYPE;
 
 
    using DURATION::DURATION;

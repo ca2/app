@@ -23,7 +23,7 @@
 //extern thread_local __pointer(property_set) t_ppropertyset;
 
 
-CLASS_DECL_APEX void main_branch(::matter* pobjectTask, enum_priority epriority);
+//CLASS_DECL_APEX void main_branch(::element * pelementTask, enum_priority epriority);
 
 
 property_set& _thread_property_set();
@@ -310,19 +310,19 @@ string get_task_name(htask_t htask);
 //CLASS_DECL_APEX void __post_quit_message(i32 nExitCode);
 
 
-#if !defined(_UWP)
-
-
-
-inline void main_async(const ::routine & routine, enum_priority epriority = e_priority_normal)
-{
-
-   main_branch(routine, epriority);
-
-}
-
-
-#endif
+//#if !defined(_UWP)
+//
+//
+//
+//inline void main_async(const ::routine & routine, enum_priority epriority = e_priority_normal)
+//{
+//
+//   main_branch(routine, epriority);
+//
+//}
+//
+//
+//#endif
 
 
 

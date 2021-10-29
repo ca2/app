@@ -9,7 +9,7 @@
 
 
 class CLASS_DECL_APEX menu_shared_command :
-   virtual public ::matter
+   virtual public ::element
 {
 public: // re-implementations only
 

@@ -374,6 +374,7 @@ inline void from_string(u64 & u, i32 iBase, const ansichar * psz)
 
 }
 
+
 #if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN)
 inline void from_string(long & l, const ansichar * psz)
 {
@@ -389,7 +390,6 @@ inline void from_string(long & l, const ansichar * psz)
 
 }
 #endif
-
 
 
 #if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN)
@@ -408,6 +408,7 @@ inline void from_string(long & l, i32 iBase, const ansichar * psz)
 
 }
 #endif
+
 
 inline void from_string(i32 & i, const wd16char * psz)
 {
@@ -546,7 +547,7 @@ inline void from_string(wd32char * sz, const ansichar * psz)
 
 
 template < size_t n >
-inline  void           from_string(ansichar sz[n], const ansichar * psz)
+inline void from_string(ansichar sz[n], const ansichar * psz)
 {
 
    if (strlen(psz) >= n)
@@ -560,8 +561,9 @@ inline  void           from_string(ansichar sz[n], const ansichar * psz)
 
 }
 
+
 template < size_t n >
-inline  void           from_string(wd16char sz[n], const ansichar * psz)
+inline void from_string(wd16char sz[n], const ansichar * psz)
 {
 
    if (::str::utf_to_utf_length(sz, psz) >= n)
@@ -575,8 +577,9 @@ inline  void           from_string(wd16char sz[n], const ansichar * psz)
 
 }
 
+
 template < size_t n >
-inline  void           from_string(wd32char sz[n], const ansichar * psz)
+inline void from_string(wd32char sz[n], const ansichar * psz)
 {
 
    if (::str::utf_to_utf_length(sz, psz) >= n)
@@ -599,14 +602,14 @@ inline void from_string(::id & id, const ansichar * psz)
 }
 
 
-inline void from_string(::matter & matter, const ansichar * psz)
+inline void from_string(::element & element, const ansichar * psz)
 {
 
    var_stream stream;
 
    stream.m_ppayload->parse_json(psz);
 
-   matter.exchange(stream);
+   element.exchange(stream);
 
 }
 
@@ -620,7 +623,7 @@ inline void to_string(string & str, const TYPE & t)
 }
 
 
-//inline void to_string(string & str, const matter & t)
+//inline void to_string(string & str, const element & t)
 //{
 
 //   auto len = t.sz_len();
@@ -646,7 +649,7 @@ inline void to_string(string & str, const TYPE & t)
 //
 //#endif
 
-inline void to_string(string & str, const matter & o)
+inline void to_string(string & str, const element & o)
 {
 
    auto len = o.sz_len();
@@ -660,7 +663,7 @@ inline void to_string(string & str, const matter & o)
 }
 
 
-//inline void to_string(string & str, const matter & o)
+//inline void to_string(string & str, const element & o)
 //{
 
 //   o.to_string(str);
@@ -820,7 +823,7 @@ inline string string_from_u(const T& t)
 //
 //}
 
-// besides returning a matter (and const does not really impedes changing), do not machine a string_base (or string) directly,
+// besides returning a element (and const does not really impedes changing), do not machine a string_base (or string) directly,
 // there may be multiple instances of a string (all referencing the same pointer).
 //template < typename TYPE_CHAR >
 //inline const ansichar & string_base < TYPE_CHAR >::operator [](index iChar ) const

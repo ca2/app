@@ -37,7 +37,7 @@ namespace user
 
 
       virtual string get_path();
-      virtual ::e_status open_document(const ::payload & varFile) override;
+      virtual ::e_status open_document(const ::payload & payloadFile) override;
       //::type controltype_to_typeinfo(::user::enum_control_type econtroltype);
 
       virtual ::e_status open_html(const ::string & str) override;
@@ -151,7 +151,7 @@ namespace user
 
 
 
-      //virtual bool open_document(const ::payload & varFile) override;
+      //virtual bool open_document(const ::payload & payloadFile) override;
 
 
    };

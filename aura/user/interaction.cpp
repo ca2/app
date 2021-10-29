@@ -642,7 +642,7 @@ namespace user
    string interaction::default_id_prefix() const
    {
 
-      return string(typeid(*this).name()) + "_";
+      return __type_name(this) + "_";
 
    }
 
@@ -923,7 +923,7 @@ namespace user
    }
 
 
-   matter *interaction::get_taskpool_container()
+   ::element *interaction::get_taskpool_container()
    {
 
       return get_parent_frame();
@@ -1475,7 +1475,7 @@ namespace user
 
       MESSAGE_LINK(e_message_create, pchannel, this, &interaction::on_message_create);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction::on_message_destroy);
-      MESSAGE_LINK(e_message_post_user, pchannel, this, &interaction::on_message_user_post);
+//      MESSAGE_LINK(e_message_post_user, pchannel, this, &interaction::on_message_user_post);
       MESSAGE_LINK(e_message_text_composition, pchannel, this, &interaction::_001OnTextComposition);
 
       primitive::install_message_routing(pchannel);
@@ -1835,7 +1835,7 @@ namespace user
 
       string strType;
 
-      strType = type_name();
+      strType = __type_name(this);
 
       if (strType.contains("main_frame"))
       {
@@ -1852,35 +1852,35 @@ namespace user
 
    }
 
-
-   void interaction::on_message_user_post(::message::message * pmessage)
-   {
-
-      if (pmessage->m_wparam == 1)
-      {
-
-         __pointer(::message::object) pobjectmessage(pmessage);
-
-         __pointer(::message::message) pmessage(pobjectmessage->m_pmatter);
-
-         if (pmessage)
-         {
-
-            message_handler(pmessage);
-
-         }
-
-         pmessage->m_bRet = true;
-
-      }
-      else
-      {
-
-         __throw(error_invalid_argument);
-
-      }
-
-   }
+//e_message_post_user
+//   void interaction::on_message_user_post(::message::message * pmessage)
+//   {
+//
+//      if (pmessage->m_wparam == 1)
+//      {
+//
+//         __pointer(::message::object) pobjectmessage(pmessage);
+//
+//         __pointer(::message::message) pmessage(pobjectmessage->m_pmatter);
+//
+//         if (pmessage)
+//         {
+//
+//            message_handler(pmessage);
+//
+//         }
+//
+//         pmessage->m_bRet = true;
+//
+//      }
+//      else
+//      {
+//
+//         __throw(error_invalid_argument);
+//
+//      }
+//
+//   }
 
 
    void interaction::user_interaction_on_hide()
@@ -2276,41 +2276,42 @@ namespace user
          }
 
       }
-
-      auto puserinteraction = get_wnd();
-
-      //#ifdef WINDOWS_DESKTOP
-      //
-      //      if (puserinteraction == this)
-      //      {
-      //
-      //         ::KillTimer((HWND)get_oswindow(), e_timer_transparent_mouse_event);
-      //
-      //      }
-      //
-      //#endif
-
-      if (puserinteraction == this)
+      
+      prodevian_stop();
+      
       {
 
-         prodevian_stop();
+         auto puserinteractionTopLevelHost = get_wnd();
 
-      }
+         //#ifdef WINDOWS_DESKTOP
+         //
+         //      if (puserinteraction == this)
+         //      {
+         //
+         //         ::KillTimer((HWND)get_oswindow(), e_timer_transparent_mouse_event);
+         //
+         //      }
+         //
+         //#endif
 
-      if(::is_set(puserinteraction) && puserinteraction != this)
-      {
+            
 
-         auto pimpl = puserinteraction->m_pimpl2;
-
-         if(pimpl)
+         if(::is_set(puserinteractionTopLevelHost) && puserinteractionTopLevelHost != this)
          {
 
-            synchronous_lock synchronouslock(pimpl->mutex());
+            auto pimpl = puserinteractionTopLevelHost->m_pimpl2;
 
-            pimpl->m_userinteractionaMouseHover.erase(this);
+            if(pimpl)
+            {
+
+               synchronous_lock synchronouslock(pimpl->mutex());
+
+               pimpl->m_userinteractionaMouseHover.erase(this);
+
+            }
 
          }
-
+         
       }
 
       {
@@ -2417,7 +2418,7 @@ namespace user
 
       m_ewindowflag -= e_window_flag_is_window;
 
-      string strType = type_name();
+      string strType = __type_name(this);
 
       if (strType.contains_ci("simple_scroll_bar"))
       {
@@ -2456,7 +2457,7 @@ namespace user
 
             auto pinteraction = puserinteractionpointeraChild->interaction_at(i);
 
-            string strType = pinteraction->type_c_str();
+            string strType = __type_name(pinteraction);
 
             if (strType == "auraclick::impact")
             {
@@ -2775,7 +2776,7 @@ namespace user
 
          bool bFirst = true;
 
-         string strType = type_name();
+         string strType = __type_name(this);
 
          if(strType.contains_ci("control_box"))
          {
@@ -2948,7 +2949,7 @@ namespace user
             if (durationElapsed > 50_ms)
             {
 
-               auto type = ::str::demangle(this->type_name());
+               auto type = __type_name(this);
 
                if (type.contains("font_list"))
                {
@@ -2974,7 +2975,7 @@ namespace user
       catch (...)
       {
 
-         TRACE("Exception: interaction::_001DrawThis %s", typeid(*this).name());
+         INFORMATION("Exception: interaction::_001DrawThis %s" << __type_name(this));
 
       }
 
@@ -3074,7 +3075,7 @@ auto tickStartWithLock = ::duration::now();
             if (durationElapsed > 100_ms)
             {
 
-               CATEGORY_INFORMATION(prodevian, "\ndrawing at " << type_name() << "!!");
+               CATEGORY_INFORMATION(prodevian, "\ndrawing at " << __type_name(this) << "!!");
                CATEGORY_INFORMATION(prodevian, "\ndrawing took " << durationElapsed.integral_millisecond() << + "!!");
                CATEGORY_INFORMATION(prodevian, "\ndrawing took more more than 100ms more than 50ms to complete!!");
                CATEGORY_INFORMATION(prodevian, "\n");
@@ -3099,7 +3100,7 @@ auto tickStartWithLock = ::duration::now();
       if (tickElapsedWithLock > 3_ms)
       {
 
-         string strType = type_name();
+         string strType = __type_name(this);
 
          //         output_debug_string("\n" + strType + "drawing took " + __string(tickElapsedWithLock.m_i) + "!!");
          //       output_debug_string("\ndrawing took more than 3ms to complete!!");
@@ -3293,7 +3294,7 @@ auto tickStartWithLock = ::duration::now();
                      //   //if(d1.m_i > 50)
                      //   //{
 
-                     //   //   string strType = ::str::demangle(pinteraction->type_name());
+                     //   //   string strType = __type_name(pinteraction);
 
                      //   //   if(strType.contains("hellomultiverse") && strType.contains("frame"))
                      //   //   {
@@ -3629,7 +3630,7 @@ return "";
 
       bool bUpdateWindow = false;
 
-      string strType(type_c_str());
+      string strType(__type_name(this));
 
       if (strType.contains_ci("veriwell_keyboard") && strType.contains_ci("main_frame"))
       {
@@ -3821,7 +3822,7 @@ return "";
       try
       {
 
-         string strType = type_name();
+         string strType = __type_name(this);
 
          if (strType == "waven::impact")
          {
@@ -3855,7 +3856,7 @@ return "";
          catch (...)
          {
 
-            TRACE("Exception: interaction::_000OnDraw _001DrawThis %s", typeid(*this).name());
+            TRACE("Exception: interaction::_000OnDraw _001DrawThis %s", __type_name(this));
 
          }
 
@@ -3880,7 +3881,7 @@ return "";
             catch (...)
             {
 
-               TRACE("Exception: interaction::_000OnDraw _001DrawChildren %s", typeid(*this).name());
+               TRACE("Exception: interaction::_000OnDraw _001DrawChildren %s" << __type_name(this));
 
             }
 
@@ -3909,7 +3910,7 @@ return "";
                if (d1 > 50_ms)
                {
 
-                  string strType = type_name();
+                  string strType = __type_name(this);
 
                   CATEGORY_INFORMATION(prodevian, "(more than 50ms) " + strType + "::_008CallOnDraw took " + d1.integral_millisecond() + "::duration.\n");
 
@@ -5090,7 +5091,7 @@ return "";
       if (m_bEditDefaultHandling || m_bKeyboardMultipleSelectionDefaultHandling)
       {
 
-         auto pkey = pmessage->m_pkey;
+         auto pkey = pmessage->m_union.m_pkey;
 
          if (pkey)
          {
@@ -5141,7 +5142,7 @@ return "";
       if (m_bEditDefaultHandling || m_bKeyboardMultipleSelectionDefaultHandling)
       {
 
-         auto pkey = pmessage->m_pkey;
+         auto pkey = pmessage->m_union.m_pkey;
 
          if (pkey)
          {
@@ -5722,7 +5723,7 @@ void interaction::route_message_to_descendants(::message::message * pmessage)
 //   //if(pmessage->m_id == e_message_key_down)
 //   //{
 
-//   //   auto pkey = pmessage->m_pkey;
+//   //   auto pkey = pmessage->m_union.m_pkey;
 
 //   //   if(pkey->m_ekey == ::user::e_key_tab)
 //   //   {
@@ -7199,7 +7200,7 @@ bool interaction::start_destroying_window()
 
    string strType;
 
-   strType = type_name();
+   strType = __type_name(this);
 
    if (strType.contains("main_frame"))
    {
@@ -7338,9 +7339,9 @@ void interaction::post_non_client_destroy()
 
    }
 
-   set(e_matter_task_ready);
+   set(e_flag_task_ready);
 
-   set(e_matter_task_terminated);
+   set(e_flag_task_terminated);
 
    if (::is_set(m_pobjectParentTask))
    {
@@ -7378,7 +7379,7 @@ void interaction::post_non_client_destroy()
 
    string strType;
 
-   strType = type_name();
+   strType = __type_name(this);
 
    if (strType.contains("main_frame"))
    {
@@ -7403,7 +7404,7 @@ bool interaction::is_ready_to_quit() const
 
    bool bShouldContinue = task_get_run();
 
-   return !bShouldContinue && is(e_matter_task_ready);
+   return !bShouldContinue && has(e_flag_task_ready);
 
 }
 
@@ -7813,7 +7814,7 @@ void interaction::on_defer_display()
 bool interaction::defer_design_display()
 {
 
-   if (string(type_name()).contains_ci("page_home"))
+   if (__type_name(this).contains_ci("page_home"))
    {
 
       INFORMATION("page_home");
@@ -7846,7 +7847,7 @@ bool interaction::defer_design_display()
 bool interaction::design_display()
 {
 
-   string strType = type_name();
+   string strType = __type_name(this);
 
    if (strType.contains_ci("page_home"))
    {
@@ -7988,7 +7989,7 @@ bool interaction::design_display()
    else
    {
 
-      if (string(type_name()).contains_ci("page_home"))
+      if (__type_name(this).contains_ci("page_home"))
       {
 
          INFORMATION("page_home");
@@ -8056,7 +8057,7 @@ bool interaction::design_zorder()
 
       //synchronous_lock slChildren(::user::mutex_children());
 
-      string strType = type_name();
+      string strType = __type_name(this);
 
       auto puiptraChildNew = __new(::user::interaction_array(*m_puserinteractionpointeraChild));
 
@@ -8105,7 +8106,7 @@ bool interaction::design_reposition()
 
       #ifdef EXTRA_DESIGN_REPOSITION_LOG
 
-   if(type_name().contains_ci("control_box"))
+   if(__type_name(this).contains_ci("control_box"))
    {
 
       output_debug_string("control_box design_reposition");
@@ -8120,7 +8121,7 @@ bool interaction::design_reposition()
 
    ::point_i32 pointHost;
 
-   const char* pszType = this->type_c_str();
+   const char* pszType = __type_name(this);
 
    if(string(pszType).contains("list_box"))
    {
@@ -8157,10 +8158,10 @@ bool interaction::design_reposition()
    //
    //      }
 
-   if(string(type_name()).contains_ci("tap"))
+   if(__type_name(this).contains_ci("tap"))
    {
 
-      INFORMATION("tap prodevian_reposition (%d, %d)", this->screen_origin().x, this->screen_origin().y);
+      INFORMATION("tap prodevian_reposition (" << this->screen_origin().x << ", "  << this->screen_origin().y << ")");
    }
 
    if(bRepositionThis)
@@ -8396,7 +8397,7 @@ void interaction::message_handler(::message::message * pmessage)
 
    string strType;
 
-   strType = type_name();
+   strType = __type_name(this);
 
    if (strType.contains_ci("list_box"))
    {
@@ -9513,7 +9514,7 @@ bool interaction::post_message(const ::id & id, wparam wparam, lparam lparam)
 
    }
 
-   string strType = type_name();
+   string strType = __type_name(this);
 
    if (strType.contains("list_box"))
    {
@@ -9538,7 +9539,7 @@ bool interaction::post_object(const ::id & id, wparam wparam, lparam lparam)
       {
 
          // discards object
-         __pointer(::object) spo(lparam);
+         __pointer(::element) spo(lparam);
 
 
       }
@@ -9572,7 +9573,7 @@ bool interaction::post_object(const ::id & id, wparam wparam, lparam lparam)
 bool interaction::call_and_set_timer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer)
 {
 
-   if (is(e_matter_destroying))
+   if (has(e_flag_destroying))
    {
 
       return false;
@@ -9588,7 +9589,7 @@ bool interaction::call_and_set_timer(uptr uEvent, const ::duration & durationEla
 }
 
 
-bool interaction::set_timer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer)
+bool interaction::set_timer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer, bool bPeriodic, void* pdata)
 {
 
    if (is_destroying())
@@ -9598,12 +9599,12 @@ bool interaction::set_timer(uptr uEvent, const ::duration & durationElapse, PFN_
 
    }
 
-   return SetTimer(uEvent, durationElapse, pfnTimer);
+   return SetTimer(uEvent, durationElapse, pfnTimer, bPeriodic, pdata);
 
 }
 
 
-bool interaction::SetTimer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer)
+bool interaction::SetTimer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer, bool bPeriodic, void* pdata)
 {
 
    if (m_pimpl == nullptr)
@@ -9620,7 +9621,7 @@ bool interaction::SetTimer(uptr uEvent, const ::duration & durationElapse, PFN_T
 
    }
 
-   return m_pimpl->SetTimer(uEvent, durationElapse, pfnTimer);
+   return m_pimpl->SetTimer(uEvent, durationElapse, pfnTimer, bPeriodic, pdata);
 
 }
 
@@ -10141,7 +10142,7 @@ void interaction::sketch_to_design(::draw2d::graphics_pointer& pgraphics, bool &
 
    bUpdateWindow = false;
 
-   string strType = type_name();
+   string strType = __type_name(this);
 
    if (strType.contains("veriwell_keyboard") && strType.contains("main_frame"))
    {
@@ -10723,7 +10724,7 @@ bool interaction::on_add_child(::user::interaction * puserinteractionChild)
 
    puserinteractionpointeraChildNew->add_unique_interaction(puserinteractionChild);
 
-   string strType = type_c_str();
+   string strType = __type_name(this);
 
    m_puserinteractionpointeraChild = puserinteractionpointeraChildNew;
 
@@ -11378,7 +11379,7 @@ bool interaction::mouse_hover_erase(::user::interaction * pinterface)
 
    auto puserinteraction = get_wnd();
 
-   if (!puserinteraction)
+   if (!puserinteraction || puserinteraction == this)
    {
 
       return false;
@@ -12055,7 +12056,7 @@ bool interaction::has_command_handler(::message::command * pcommand)
 //bool interaction::track_popup_menu(::user::menu_item * pitem, i32 iFlags, ::message::message * pmessage)
 //{
 
-//   auto pmouse = pmessage->m_pmouse;
+//   auto pmouse = pmessage->m_union.m_pmouse;
 
 //   ::point_i32 point = pmouse->m_point;
 
@@ -12069,7 +12070,7 @@ bool interaction::has_command_handler(::message::command * pcommand)
 //__pointer(::user::menu) interaction::track_popup_xml_menu_text(string strXml, i32 iFlags, ::message::message * pmessage)
 //{
 
-//   auto pmouse = pmessage->m_pmouse;
+//   auto pmouse = pmessage->m_union.m_pmouse;
 
 //   auto point = pmouse->m_point;
 
@@ -12084,7 +12085,7 @@ bool interaction::has_command_handler(::message::command * pcommand)
 //__pointer(::user::menu) interaction::track_popup_xml_matter_menu(const ::string & pszMatter, i32 iFlags, ::message::message * pmessage)
 //{
 
-//   auto pmouse = pmessage->m_pmouse;
+//   auto pmouse = pmessage->m_union.m_pmouse;
 
 //   ::point_i32 point = pmouse->m_point;
 
@@ -12718,7 +12719,7 @@ interaction& interaction::operator =(const ::rectangle_i32& rectangle)
    if (bSet && rectangleNew.is_set() && iMatchingMonitor >= 0)
    {
 
-      INFORMATION("interaction::bestmonitor (%d, %d, %d, %d) activation %d", rectangleNew.left, rectangleNew.top, rectangleNew.right, rectangleNew.bottom, (i32) eactivation);
+      INFORMATION("interaction::bestmonitor (" << rectangleNew.left << ", " << rectangleNew.top << ", " <<  rectangleNew.right << ", " <<  rectangleNew.bottom << ") activation " <<  (i32) eactivation);
 
       order(zorderParam);
 
@@ -13701,7 +13702,7 @@ order(zorderParam);
 
       __pointer(::message::show_window) pshowwindow(pmessage);
       
-//      string strType = type_c_str();
+//      string strType = __type_name(this);
 //      
 //      if(strType.contains("main_frame"))
 //      {
@@ -13917,7 +13918,7 @@ order(zorderParam);
    void interaction::keyboard_focus_OnKeyDown(::message::message * pmessage)
    {
 
-      auto pkey = pmessage->m_pkey;
+      auto pkey = pmessage->m_union.m_pkey;
 
       if (pkey->m_ekey == ::user::e_key_tab)
       {
@@ -15277,7 +15278,7 @@ order(zorderParam);
    void interaction::prodevian_redraw(bool bUpdateBuffer)
    {
 
-      string strType = type_name();
+      string strType = __type_name(this);
 
       if (strType.contains_ci("list_box"))
       {
@@ -15449,9 +15450,9 @@ order(zorderParam);
    void interaction::on_message_left_button_down(::message::message* pmessage)
    {
       
-      string strType = this->type_c_str();
+      string strType = __type_name(this);
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       if (!is_window_enabled())
       {
@@ -15611,7 +15612,7 @@ order(zorderParam);
    void interaction::on_message_left_button_up(::message::message* pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       if (!is_window_enabled())
       {
@@ -15678,7 +15679,7 @@ order(zorderParam);
 
             bool bSameItemAsMouseDown = m_itemLButtonDown == item;
 
-            TRACE("interaction::on_message_left_button_up item=%d, SameUserInteractionAsMsDwn=%d, SameItemAsMsDwn=%d", (int) item.m_iItem, (int) bSameUserInteractionAsMouseDown, (int) bSameItemAsMouseDown);
+            TRACE("interaction::on_message_left_button_up item="<< (int) item.m_iItem<<", SameUserInteractionAsMsDwn="<< (int) bSameUserInteractionAsMouseDown<<", SameItemAsMsDwn=%d" << (int) bSameItemAsMouseDown);
 
             if (m_itemLButtonDown.is_set() && bSameUserInteractionAsMouseDown && bSameItemAsMouseDown)
             {
@@ -15687,7 +15688,7 @@ order(zorderParam);
 
                pmessage->m_bRet = on_click(item);
 
-               TRACE("interaction::on_message_left_button_up on_click_ret=%d", (int) pmessage->m_bRet);
+               INFORMATION("interaction::on_message_left_button_up on_click_ret=" << (int) pmessage->m_bRet);
                
                if (pmessage->m_bRet)
                {
@@ -15707,8 +15708,6 @@ order(zorderParam);
 
                      subject.m_puserelement = this;
 
-                     subject.m_id = id;
-
                      subject.m_id = ::e_subject_click;
 
                      subject.m_item = item;
@@ -15719,7 +15718,7 @@ order(zorderParam);
 
                      route(&subject);
 
-                     TRACE("interaction::on_message_left_button_up route_btn_clked=%d", (int) subject.m_bRet);
+                     INFORMATION("interaction::on_message_left_button_up route_btn_clked=" << (int) subject.m_bRet);
 
                      pmessage->m_bRet = subject.m_bRet;
                   
@@ -15745,7 +15744,7 @@ order(zorderParam);
 
                      route_command(&command);
 
-                     TRACE("interaction::on_message_left_button_up route_cmd_msg=%d", (int) command.m_bRet);
+                     TRACE("interaction::on_message_left_button_up route_cmd_msg=" <<  (int) command.m_bRet);
 
                      pmessage->m_bRet = command.m_bRet;
 
@@ -15807,7 +15806,7 @@ order(zorderParam);
    void interaction::on_message_middle_button_down(::message::message* pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       pmessage->previous();
 
@@ -15831,7 +15830,7 @@ order(zorderParam);
    void interaction::on_message_middle_button_up(::message::message* pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       pmessage->previous();
 
@@ -15857,7 +15856,7 @@ order(zorderParam);
    void interaction::on_message_mouse_move(::message::message* pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       if (!is_window_enabled())
       {
@@ -15915,7 +15914,7 @@ order(zorderParam);
       if (m_bHoverDefaultMouseHandling)
       {
 
-         if(string(type_c_str()).contains_ci("button"))
+         if(__type_name(this).contains_ci("button"))
          {
 
             //output_debug_string("button");
@@ -16315,6 +16314,20 @@ order(zorderParam);
          ::user::draw_switch_button(pgraphics, this, pitem);
 
       }
+
+   }
+
+
+   __pointer(::extended::sequence < ::conversation >) interaction::message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox)
+   {
+
+      auto pmessagebox = __create < ::user::message_box >();
+
+      auto pfuture = pmessagebox->::extended::asynchronous<::conversation>::sequence();
+
+      auto pextendedfuture = pmessagebox->show(this, strMessage, strTitle, emessagebox);
+
+      return pextendedfuture;
 
    }
 

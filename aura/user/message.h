@@ -10,7 +10,6 @@ namespace user
    {
    public:
 
-
       ::channel * m_pchannel;
       __pointer(::windowing::window)   m_pwindow;
       bool                             m_bConditional;
@@ -20,7 +19,7 @@ namespace user
 
 
       message();
-      virtual ~message();
+      ~message() override;
 
 
       virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam) override;

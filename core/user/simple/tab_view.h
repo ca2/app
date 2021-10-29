@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 class CLASS_DECL_CORE simple_tab_view :
@@ -10,7 +10,7 @@ public:
    simple_tab_view();
    virtual ~simple_tab_view();
 
-   virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
+   virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
    void assert_valid() const override;
    void dump(dump_context & dumpcontext) const override;
@@ -20,7 +20,7 @@ public:
    DECLARE_MESSAGE_HANDLER(on_message_create);
    DECLARE_MESSAGE_HANDLER(on_message_destroy);
 
-   void on_layout(::draw2d::graphics_pointer & pgraphics);
+   void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
 
    virtual bool get_client_rect(RECTANGLE_I32 * prectangle);

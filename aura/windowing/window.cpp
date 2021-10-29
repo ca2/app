@@ -115,6 +115,36 @@ namespace windowing
 
    void window::message_handler(::message::message * pmessage)
    {
+      
+      if(pmessage->m_id == e_message_post_user)
+      {
+
+         if (pmessage->m_wparam == 1)
+         {
+            
+            auto pobject = pmessage->m_union.m_pobject;
+            
+            auto pmatter = pobject->m_pelement.m_p;
+            
+            pmessage = dynamic_cast < ::message::message * >(pmatter);
+
+            if (::is_null(pmessage))
+            {
+
+               return;
+
+            }
+
+            if(pmessage->m_id==e_message_vscroll)
+            {
+               
+               ::output_debug_string("vscroll");
+            
+            }
+
+         }
+         
+      }
 
       m_pimpl->message_handler(pmessage);
 

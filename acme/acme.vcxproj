@@ -65,7 +65,7 @@
     <WholeProgramOptimization>false</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cover|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v143</PlatformToolset>
@@ -100,7 +100,7 @@
     <WholeProgramOptimization>false</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cover|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v143</PlatformToolset>
@@ -264,7 +264,6 @@
       <CompileAsWinRT>false</CompileAsWinRT>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <Optimization>Disabled</Optimization>
-      <OpenMPSupport>false</OpenMPSupport>
       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
@@ -275,7 +274,7 @@
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
-      <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-windows\third\library\$(PlatformName)\$(Configuration)\;$(__archive)storage-windows\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <EntryPointSymbol>
       </EntryPointSymbol>
       <IgnoreSpecificDefaultLibraries>
@@ -309,8 +308,8 @@
       <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
     </Xdcmake>
     <PostBuildEvent>
-      <Command>copy $(__archive)storage-windows\binary\$(PlatformName)\$(Configuration)\*.* $(OutDir)
-copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*.* $(OutDir)</Command>
+      <Command>copy $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\binary\*.* $(OutDir)
+copy $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\binary\*.* $(OutDir)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">
@@ -343,7 +342,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <CompileAsWinRT>false</CompileAsWinRT>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <Optimization>Disabled</Optimization>
-      <OpenMPSupport>false</OpenMPSupport>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -354,7 +352,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>pcre.lib;zlib.lib;bzip2.lib;libcrypto.lib;libssl.lib;dwrite.lib;d2d1.lib;d3d11.lib;dxgi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
-      <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-windows\third\library\$(PlatformName)\$(Configuration)\;$(__archive)storage-windows\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <EntryPointSymbol>
       </EntryPointSymbol>
       <IgnoreSpecificDefaultLibraries>
@@ -429,7 +427,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <CompileAsManaged>false</CompileAsManaged>
       <CompileAsWinRT>false</CompileAsWinRT>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <OpenMPSupport>false</OpenMPSupport>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <EnableModules>false</EnableModules>
@@ -438,7 +435,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
-      <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-windows\third\library\$(PlatformName)\$(Configuration)\;$(__archive)storage-windows\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <EntryPointSymbol>
       </EntryPointSymbol>
       <IgnoreSpecificDefaultLibraries>
@@ -504,10 +501,8 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>true</WholeProgramOptimization>
-      <BufferSecurityCheck>
-      </BufferSecurityCheck>
-      <SDLCheck>
-      </SDLCheck>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <SDLCheck>false</SDLCheck>
       <OmitFramePointers>true</OmitFramePointers>
       <EnableFiberSafeOptimizations>false</EnableFiberSafeOptimizations>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
@@ -516,7 +511,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <CompileAsManaged>false</CompileAsManaged>
       <CompileAsWinRT>false</CompileAsWinRT>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <OpenMPSupport>false</OpenMPSupport>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <EnableModules>false</EnableModules>
@@ -525,7 +519,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
-      <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-windows\third\library\$(PlatformName)\$(Configuration)\;$(__archive)storage-windows\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
       <EntryPointSymbol>
@@ -572,7 +566,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>CUBE;_ACME_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_ACME_LIBRARY;USE_OS_IMAGE_LOADER;CUBE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-windows/include;$(__archive)third-windows/third/include;$(__archive)third-windows/third/include/include;$(SolutionDir)../../../archive/platform-windows/_include;$(SolutionDir)../../../archive/platform-windows;$(SolutionDir)../../../archive/platform-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>MinSpace</Optimization>
@@ -581,7 +575,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <StringPooling>false</StringPooling>
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <SmallerTypeCheck>false</SmallerTypeCheck>
@@ -595,8 +589,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
       <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
-      <SDLCheck>
-      </SDLCheck>
+      <SDLCheck>false</SDLCheck>
       <OmitFramePointers>true</OmitFramePointers>
       <EnableFiberSafeOptimizations>false</EnableFiberSafeOptimizations>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
@@ -605,17 +598,17 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <CompileAsManaged>false</CompileAsManaged>
       <CompileAsWinRT>false</CompileAsWinRT>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <OpenMPSupport>false</OpenMPSupport>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <WholeProgramOptimization>true</WholeProgramOptimization>
       <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>pcre.lib;zlib.lib;bzip2.lib;libcrypto.lib;libssl.lib;dwrite.lib;d2d1.lib;d3d11.lib;dxgi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
-      <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-windows\third\library\$(PlatformName)\$(Configuration)\;$(__archive)storage-windows\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
       <EntryPointSymbol>
@@ -694,7 +687,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <LanguageStandard>stdcpp20</LanguageStandard>
       <OmitFramePointers>false</OmitFramePointers>
       <Optimization>Disabled</Optimization>
-      <OpenMPSupport>false</OpenMPSupport>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -706,7 +698,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
-      <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-windows\third\library\$(PlatformName)\$(Configuration)\;$(__archive)storage-windows\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <EntryPointSymbol>
@@ -732,8 +724,8 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       </TreatOutputAsContent>
     </CustomBuildStep>
     <PostBuildEvent>
-      <Command>copy $(__archive)storage-windows\binary\$(PlatformName)\$(Configuration)\*.* $(OutDir)
-copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*.* $(OutDir)</Command>
+      <Command>copy $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\binary\*.* $(OutDir)
+copy $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\binary\*.* $(OutDir)</Command>
     </PostBuildEvent>
     <Manifest>
       <AdditionalManifestFiles>
@@ -774,7 +766,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <LanguageStandard>stdcpp20</LanguageStandard>
       <OmitFramePointers>false</OmitFramePointers>
       <Optimization>Disabled</Optimization>
-      <OpenMPSupport>false</OpenMPSupport>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
@@ -785,7 +776,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>pcre.lib;zlib.lib;bzip2.lib;libcrypto.lib;libssl.lib;dwrite.lib;d2d1.lib;d3d11.lib;dxgi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
-      <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-windows\third\library\$(PlatformName)\$(Configuration)\;$(__archive)storage-windows\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <EntryPointSymbol>
@@ -863,7 +854,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <CompileAsManaged>false</CompileAsManaged>
       <CompileAsWinRT>false</CompileAsWinRT>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <OpenMPSupport>false</OpenMPSupport>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <EnableModules>false</EnableModules>
@@ -872,7 +862,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
-      <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-windows\third\library\$(PlatformName)\$(Configuration)\;$(__archive)storage-windows\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <EntryPointSymbol>
@@ -920,8 +910,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <StringPooling>false</StringPooling>
       <ExceptionHandling>Async</ExceptionHandling>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
-      <BufferSecurityCheck>
-      </BufferSecurityCheck>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
       <FloatingPointModel>Precise</FloatingPointModel>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <Optimization>MaxSpeed</Optimization>
@@ -939,15 +928,13 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>true</WholeProgramOptimization>
       <EnableFiberSafeOptimizations>false</EnableFiberSafeOptimizations>
-      <SDLCheck>
-      </SDLCheck>
+      <SDLCheck>false</SDLCheck>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
       <UseFullPaths>true</UseFullPaths>
       <CompileAsManaged>false</CompileAsManaged>
       <CompileAsWinRT>false</CompileAsWinRT>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <OpenMPSupport>false</OpenMPSupport>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <EnableModules>false</EnableModules>
@@ -956,7 +943,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
-      <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-windows\third\library\$(PlatformName)\$(Configuration)\;$(__archive)storage-windows\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>
@@ -998,7 +985,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>CUBE;_ACME_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_ACME_LIBRARY;USE_OS_IMAGE_LOADER;CUBE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-windows/include;$(__archive)third-windows/third/include;$(__archive)third-windows/third/include/include;$(SolutionDir)../../../archive/platform-windows/_include;$(SolutionDir)../../../archive/platform-windows;$(SolutionDir)../../../archive/platform-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -1015,7 +1002,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <MinimalRebuild>false</MinimalRebuild>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
       <OmitFramePointers>true</OmitFramePointers>
       <FloatingPointExceptions>true</FloatingPointExceptions>
       <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
@@ -1023,25 +1010,24 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
       <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
       <EnableFiberSafeOptimizations>false</EnableFiberSafeOptimizations>
-      <SDLCheck>
-      </SDLCheck>
+      <SDLCheck>false</SDLCheck>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
       <UseFullPaths>true</UseFullPaths>
       <CompileAsManaged>false</CompileAsManaged>
       <CompileAsWinRT>false</CompileAsWinRT>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <OpenMPSupport>false</OpenMPSupport>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <WholeProgramOptimization>true</WholeProgramOptimization>
       <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>pcre.lib;zlib.lib;bzip2.lib;libcrypto.lib;libssl.lib;dwrite.lib;d2d1.lib;d3d11.lib;dxgi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
-      <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-windows\third\library\$(PlatformName)\$(Configuration)\;$(__archive)storage-windows\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>
@@ -1191,6 +1177,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="exception\not_implemented.h" />
     <ClInclude Include="filesystem\filesystem\acme_file.h" />
     <ClInclude Include="filesystem\filesystem\file_path.h" />
+    <ClInclude Include="filesystem\file\plain_text_file_options.h" />
     <ClInclude Include="filesystem\file\streamable.h" />
     <ClInclude Include="filesystem\file\translatable.h" />
     <ClInclude Include="include\_forward_declaration.h" />
@@ -1520,7 +1507,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="primitive\primitive\element_array.cpp" />
     <ClCompile Include="primitive\primitive\match.cpp" />
     <ClCompile Include="primitive\primitive\payload.cpp" />
-    <ClCompile Include="primitive\primitive\referenceable.cpp" />
+    <ClCompile Include="primitive\primitive\element.cpp" />
     <ClCompile Include="primitive\primitive\work.cpp" />
     <ClCompile Include="primitive\promise\signalization.cpp" />
     <ClCompile Include="primitive\text\data.cpp" />
@@ -1711,6 +1698,8 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="parallelization\keep_task_payload.h" />
     <ClInclude Include="parallelization\manual_reset_event.h" />
     <ClInclude Include="parallelization\message_queue.h" />
+    <ClInclude Include="parallelization\synchronously_keep_bit.h" />
+    <ClInclude Include="parallelization\synchronously_set_bit.h" />
     <ClInclude Include="parallelization\wait.h" />
     <ClInclude Include="parallelization\multiple_lock.h" />
     <ClInclude Include="parallelization\mutex.h" />
@@ -1991,15 +1980,23 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="primitive\mathematics\value.h" />
     <ClInclude Include="primitive\mathematics\_.h" />
     <ClInclude Include="primitive\mathematics\_impl.h" />
-    <ClInclude Include="primitive\primitive\aaa_want_to_remove_pointer1.h" />
-    <ClInclude Include="primitive\primitive\action.h" />
+    <ClInclude Include="primitive\primitive\bbb_object.h" />
     <ClInclude Include="primitive\primitive\bits.h" />
     <ClInclude Include="primitive\primitive\block.h" />
     <ClInclude Include="primitive\primitive\compare_predicate.h" />
+    <ClInclude Include="primitive\primitive\element.h" />
+    <ClInclude Include="primitive\primitive\element_array.h" />
+    <ClInclude Include="primitive\primitive\enumeration.h" />
+    <ClInclude Include="primitive\primitive\enumeration1.h" />
     <ClInclude Include="primitive\primitive\enum_bitset.h" />
-    <ClInclude Include="primitive\primitive\layered.h" />
+    <ClInclude Include="primitive\primitive\e_flag.h" />
+    <ClInclude Include="primitive\primitive\id_array.h" />
+    <ClInclude Include="primitive\primitive\interlocked.h" />
+    <ClInclude Include="primitive\primitive\interlocked_count.h" />
     <ClInclude Include="primitive\primitive\object.h" />
+    <ClInclude Include="primitive\primitive\object_meta.h" />
     <ClInclude Include="primitive\primitive\osdata_array.h" />
+    <ClInclude Include="primitive\primitive\payload_type.h" />
     <ClInclude Include="primitive\primitive\property_object.h" />
     <ClInclude Include="primitive\primitive\material_object.h" />
     <ClInclude Include="primitive\primitive\linked_property.h" />
@@ -2007,23 +2004,13 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="primitive\primitive\estatus.h" />
     <ClInclude Include="primitive\primitive\match.h" />
     <ClInclude Include="primitive\primitive\payload.h" />
-    <ClInclude Include="primitive\primitive\pred_method.h" />
-    <ClInclude Include="primitive\primitive\pred_future.h" />
-    <ClInclude Include="primitive\primitive\procedure.h" />
-    <ClInclude Include="primitive\primitive\promise.h" />
-    <ClInclude Include="primitive\primitive\promise1.h" />
-    <ClInclude Include="primitive\primitive\future.h" />
-    <ClInclude Include="primitive\primitive\function_pointer.h" />
     <ClInclude Include="primitive\primitive\member.h" />
-    <ClInclude Include="primitive\primitive\change.h" />
-    <ClInclude Include="primitive\primitive\aaa_update.h" />
     <ClInclude Include="primitive\primitive\referenceable.h" />
-    <ClInclude Include="primitive\primitive\source.h" />
-    <ClInclude Include="primitive\primitive\text.h" />
+    <ClInclude Include="primitive\primitive\set_bit.h" />
+    <ClInclude Include="primitive\primitive\stick.h" />
+    <ClInclude Include="primitive\primitive\system.h" />
     <ClInclude Include="primitive\primitive\tracer.h" />
     <ClInclude Include="primitive\primitive\work.h" />
-    <ClInclude Include="primitive\primitive\update.h" />
-    <ClInclude Include="primitive\primitive\_context_object_impl.h" />
     <ClInclude Include="primitive\primitive\_id_impl.h" />
     <ClInclude Include="primitive\primitive\_payload_impl.h" />
     <ClInclude Include="primitive\promise\signalization.h" />
@@ -2303,42 +2290,28 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="primitive\geometry2d\size_array.h" />
     <ClInclude Include="primitive\geometry2d\types.h" />
     <ClInclude Include="primitive\geometry2d\_.h" />
-    <ClInclude Include="primitive\primitive\application_bias.h" />
     <ClInclude Include="primitive\primitive\atomic.h" />
     <ClInclude Include="primitive\primitive\bit.h" />
-    <ClInclude Include="primitive\primitive\cflag.h" />
-    <ClInclude Include="primitive\primitive\collection.h" />
     <ClInclude Include="primitive\primitive\collection_file.h" />
-    <ClInclude Include="primitive\primitive\command.h" />
-    <ClInclude Include="primitive\primitive\aaa_command_line.h" />
     <ClInclude Include="primitive\primitive\action_context.h" />
-    <ClInclude Include="primitive\primitive\edit.h" />
-    <ClInclude Include="primitive\primitive\enum.h" />
     <ClInclude Include="primitive\primitive\eobject.h" />
     <ClInclude Include="primitive\primitive\factory.h" />
-    <ClInclude Include="primitive\primitive\enum_type.h" />
     <ClInclude Include="primitive\primitive\id.h" />
     <ClInclude Include="primitive\primitive\id_space.h" />
-    <ClInclude Include="primitive\primitive\interlocked_long.h" />
     <ClInclude Include="primitive\primitive\interlocked_long_pulse.h" />
     <ClInclude Include="primitive\primitive\papaya.h" />
     <ClInclude Include="primitive\primitive\logic.h" />
     <ClInclude Include="primitive\primitive\malloc.h" />
     <ClInclude Include="primitive\primitive\map.h" />
-    <ClInclude Include="primitive\primitive\math_math.h" />
     <ClInclude Include="primitive\primitive\memory.h" />
     <ClInclude Include="primitive\primitive\memory_base.h" />
-    <ClInclude Include="primitive\primitive\memory_c.h" />
     <ClInclude Include="primitive\primitive\memory_container.h" />
     <ClInclude Include="primitive\primitive\natural.h" />
     <ClInclude Include="primitive\primitive\number.h" />
     <ClInclude Include="primitive\primitive\pointer.h" />
     <ClInclude Include="primitive\primitive\pointer2.h" />
     <ClInclude Include="primitive\primitive\simple_object.h" />
-    <ClInclude Include="primitive\primitive\smillis.h" />
-    <ClInclude Include="primitive\primitive\topic_text_string.h" />
     <ClInclude Include="primitive\primitive\_.h" />
-    <ClInclude Include="primitive\primitive\primitive_update.h" />
     <ClInclude Include="primitive\primitive\property.h" />
     <ClInclude Include="primitive\primitive\property_set.h" />
     <ClInclude Include="primitive\primitive\request_interface.h" />
@@ -2353,7 +2326,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="primitive\primitive\uid.h" />
     <ClInclude Include="primitive\primitive\util.h" />
     <ClInclude Include="primitive\primitive\value.h" />
-    <ClInclude Include="primitive\primitive\var.h" />
     <ClInclude Include="primitive\primitive\var2.h" />
     <ClInclude Include="primitive\primitive\virtual_memory.h" />
     <ClInclude Include="primitive\primitive\property_set_papaya.h" />
@@ -2362,7 +2334,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="primitive\primitive\_memory.h" />
     <ClInclude Include="primitive\primitive\_papaya.h" />
     <ClInclude Include="primitive\primitive\_papaya_impl.h" />
-    <ClInclude Include="primitive\primitive\_property_set_composite_impl.h" />
     <ClInclude Include="primitive\string\_c_trait_wd32.h" />
     <ClInclude Include="primitive\string\_c_trait_wd32_impl.h" />
     <ClInclude Include="primitive\string\_c_trait.h" />
@@ -2448,7 +2419,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="primitive\string\__c_wide.h" />
     <ClInclude Include="primitive\string\__c_wide_impl.h" />
     <ClInclude Include="primitive\string\___ch_impl.h" />
-    <ClInclude Include="user\user\impact_data.h" />
     <ClInclude Include="_.h" />
     <ClInclude Include="_c.h" />
     <ClInclude Include="_defer.h" />
@@ -2459,7 +2429,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <None Include="filesystem\file\_impl.h" />
     <None Include="filesystem\file\_serializable_impl.h" />
     <None Include="memory\namespace_heap.inl" />
-    <None Include="primitive\primitive\block.inl" />
     <None Include="primitive\primitive\_factory_impl.h" />
     <None Include="primitive\primitive\_impl.h" />
     <None Include="primitive\string\aaa_want_to_remove_str.inl" />

@@ -638,9 +638,7 @@ namespace apex
 
       }
 
-      INFORMATION("::apex::session::on_request(__pointer(::create)) " << type_name());
-
-      INFORMATION("::apex::session::on_request(__pointer(::create)) %s " << THIS_FRIENDLY_NAME());
+      INFORMATION("::apex::session::on_request(__pointer(::create)) " << __type_name(this));
 
       string strAppId = pcreate->m_strAppId;
 
@@ -1606,7 +1604,7 @@ namespace apex
    {
 
 
-      return m_pcontext->m_papexcontext->os().is_remote_session();
+      return m_pcontext->m_papexcontext->os_context()->is_remote_session();
 
 
    }

@@ -34,7 +34,7 @@ public:
 
    bool zip(const ::file::path & psz, ::application * papp);
 
-   bool unzip(const ::payload & varFile, const ::file::path & pathZipFileCompressed);
+   bool unzip(const ::payload & payloadFile, const ::file::path & pathZipFileCompressed);
 
    bool unzip(memory & m, const ::file::path & pathZipFileCompressed);
 

@@ -4,6 +4,9 @@
 #include "item.h"
 
 
+#include "plain_text_file_options.h"
+
+
 #include "stdio_file.h"
 
 

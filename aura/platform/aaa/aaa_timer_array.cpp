@@ -253,7 +253,7 @@ namespace aura
 
                synchronous_lock synchronouslock(ptimer->mutex());
 
-               ptimer->m_eobject -= e_object_success;
+               ptimer->clear(e_flag_success);
 
                if(!ptimer->m_bHandling)
                {

@@ -7,7 +7,7 @@
 e_status application::enable_service()
 {
 
-   auto estatus = m_psystem->m_papexsystem->os().enable_service();
+   auto estatus = m_psystem->m_papexsystem->os_context()->enable_service();
 
    if (!estatus)
    {
@@ -42,7 +42,7 @@ e_status application::disable_service()
 
    }
 
-   estatus = os().disable_service();
+   estatus = os_context()->disable_service();
 
    if (!estatus)
    {

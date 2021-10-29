@@ -13,7 +13,7 @@ public:
    ::payload                                          m_varFile;
 
 
-   ifs_file(::payload varFile);
+   ifs_file(::payload payloadFile);
    virtual ~ifs_file();
 
    using ::sockets::http_batch_buffer::read;

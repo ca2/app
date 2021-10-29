@@ -56,7 +56,7 @@ namespace user
 
       virtual ::e_status open_html(const ::string& str);
 
-      virtual ::e_status open_document(const ::payload& varFile);
+      virtual ::e_status open_document(const ::payload& payloadFile);
 
       virtual void soft_reload();
 

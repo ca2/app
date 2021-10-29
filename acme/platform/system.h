@@ -207,6 +207,9 @@ public:
    virtual ::e_status process_init();
 
 
+   virtual ::e_status call_init_system();
+
+
    virtual ::e_status init_system();
 
 
@@ -277,7 +280,7 @@ public:
 #endif
 
 
-   __pointer(::extended::sequence < ::conversation >) message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
+   //__pointer(::extended::sequence < ::conversation >) message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
 
 
    //virtual ::e_status on_initialize_window_object();

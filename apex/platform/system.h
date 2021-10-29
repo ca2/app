@@ -734,7 +734,7 @@ namespace apex
 
       virtual bool merge_accumulated_on_open_file(::create * pcreate);
 
-      virtual bool on_open_file(::payload varFile, string strExtra);
+      virtual bool on_open_file(::payload payloadFile, string strExtra);
       
       ::e_status on_open_file(const ::string & pszFile) override;
 

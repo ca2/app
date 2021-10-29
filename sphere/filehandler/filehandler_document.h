@@ -26,7 +26,7 @@ namespace filehandler
 
 
 
-      virtual bool on_open_document(const ::payload & varFile) override;
+      virtual bool on_open_document(const ::payload & payloadFile) override;
 
 
    };

@@ -107,12 +107,12 @@ namespace userfs
             return false;
          if(iUItem >= pdata->m_itema.get_size())
             iUItem = pdata->m_itema.get_upper_bound();
-         ::payload varFile;
+         ::payload payloadFile;
          ::payload varQuery;
          if(iUItem == iLItem)
          {
 
-            varFile = fs_list_item(iLItem)->get_user_path();
+            payloadFile = fs_list_item(iLItem)->get_user_path();
 
          }
          else
@@ -127,11 +127,11 @@ namespace userfs
 
             }
 
-            varFile = stra;
+            payloadFile = stra;
 
          }
 
-         //get_document()->request_file(varFile, varQuery);
+         //get_document()->request_file(payloadFile, varQuery);
 
       }
 
@@ -165,7 +165,7 @@ namespace userfs
    void list::on_message_left_button_double_click(::message::message * pmessage)
    {
       __UNREFERENCED_PARAMETER(pmessage);
-//      auto pmouse = pmessage->m_pmouse;
+//      auto pmouse = pmessage->m_union.m_pmouse;
       /*         index iItem;
             list_data * pdata = fslist();
             if(_001HitTest_(pmouse->m_point, iItem))

@@ -39,27 +39,29 @@ namespace user
 
 
       check_box(e_style estyle = style_normal);
-      virtual ~check_box();
+      ~check_box() override;
 
-      ::matter* clone() const override;
+      
+      ::element* clone() const override;
 
-      virtual enum_element get_default_element() const override;
+
+      enum_element get_default_element() const override;
 
 
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _001OnDrawNormal(::draw2d::graphics_pointer & pgraphics);
       virtual void _001OnDrawRedGreenCircle(::draw2d::graphics_pointer & pgraphics);
       virtual void _001OnDrawToggleSwitch(::draw2d::graphics_pointer & pgraphics);
 //      virtual ::enum_check _001GetCheck() override;
       //using ::user::interaction::_001SetCheck;
       using check::_001SetCheck;
-      virtual void _001SetCheck(::enum_check check, const ::action_context & action_context) override;
+      void _001SetCheck(::enum_check check, const ::action_context & action_context) override;
 
       void install_message_routing(::channel * pchannel) override;
 
-      virtual void handle(::subject * psubject, ::context * pcontext) override;
+      void handle(::subject * psubject, ::context * pcontext) override;
 
-      virtual bool on_click(const ::item & item) override;
+      bool on_click(const ::item & item) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
       //DECLARE_MESSAGE_HANDLER(on_message_left_button_down);

@@ -100,7 +100,7 @@ namespace database
 
       string escape(const ::string & psz) override;
 
-      string error1(const ::string & pszPrefix = nullptr) override;
+      string query_error(const ::string & pszPrefix = nullptr) override;
       void trace_error1(const ::string & pszPrefix = nullptr) override;
 
       ::payload get_insert_id() override;

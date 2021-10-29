@@ -7,8 +7,11 @@
 #pragma once
 
 
+class system;
+
+
 class CLASS_DECL_APEX menu_shared :
-   virtual public ::matter
+   virtual public ::element
 {
 public:
 
@@ -29,7 +32,7 @@ public:
    void **              m_ositema;
    int  *               m_statusa;
    int                  m_iCount;
-  
+   class ::system *     m_psystem;
 
    menu_shared();
    virtual ~menu_shared();

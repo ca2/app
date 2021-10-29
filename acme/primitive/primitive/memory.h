@@ -62,6 +62,24 @@ inline integral_byte operator ""_gb(unsigned long long i)
    return (memsize) (1024 * 1024 * 1024 * i);
 }
 
+class CLASS_DECL_ACME read_only_memory :
+   public memory_base
+{
+public:
+   read_only_memory(const void *p, memsize size)
+   {
+      m_memory.m_bOwn = false;
+      m_memory.m_preadonlymemory = this;
+      m_memory.m_pbStorage = (byte *) p;
+      m_memory.m_pdata = (byte *) p;
+      m_memory.m_cbStorage = size;
+      m_memory.m_iSize = size;
+
+   }
+
+};
+
+
 class CLASS_DECL_ACME memory :
    public memory_base
 {

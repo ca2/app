@@ -344,12 +344,12 @@ public:
 
    inline void exchange(const ::id & id, void * pdata, memsize s);
 
-   virtual void add_exception(const ::exception & e);
-   virtual void on_catch_all_exception();
+   void add_exception(const ::exception & e) override;
+   void on_catch_all_exception() override;
 
-   virtual void write_object(const ::id & id, ::matter * pobject);
+   virtual void write_element(const ::id & id, ::element * pelement);
 
-   virtual __pointer(::matter) read_object(const ::id & id);
+   virtual __pointer(::element) read_element(const ::id & id);
 
 
    virtual bool is_open() const;

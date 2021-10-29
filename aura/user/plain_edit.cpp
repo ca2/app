@@ -945,7 +945,7 @@ namespace user
    void plain_edit::on_message_right_button_down(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       ::point_i32 point = pmouse->m_point;
 
@@ -989,7 +989,7 @@ namespace user
    void plain_edit::on_message_right_button_up(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       ::point_i32 point = pmouse->m_point;
 
@@ -1164,7 +1164,7 @@ namespace user
 
       INFORMATION("on_message_key_down (2)");
 
-      auto pkey = pmessage->m_pkey;
+      auto pkey = pmessage->m_union.m_pkey;
 
       if (pkey->m_ekey == ::user::e_key_return)
       {
@@ -1286,9 +1286,9 @@ namespace user
       else if (pkey->m_ekey == ::user::e_key_c)
       {
 
-      auto psession = get_session();
+         auto psession = get_session();
 
-      if (psession->is_key_pressed(::user::e_key_control))
+         if (psession->is_key_pressed(::user::e_key_control))
          {
 
             pkey->m_bRet = true;
@@ -1375,7 +1375,7 @@ namespace user
    void plain_edit::on_message_key_up(::message::message * pmessage)
    {
 
-      auto pkey = pmessage->m_pkey;
+      auto pkey = pmessage->m_union.m_pkey;
 
       auto psession = get_session();
 
@@ -1896,7 +1896,7 @@ namespace user
       if (plain_edit_is_enabled())
       {
 
-         auto pmouse = pmessage->m_pmouse;
+         auto pmouse = pmessage->m_union.m_pmouse;
 
          auto psession = get_session();
 
@@ -1971,7 +1971,7 @@ namespace user
    void plain_edit::on_message_left_button_down(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       if (plain_edit_is_enabled())
       {
@@ -2035,7 +2035,7 @@ namespace user
    void plain_edit::on_message_left_button_up(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       auto psession = get_session();
 
@@ -4373,7 +4373,7 @@ finished_update:
 
          INFORMATION("plain_edit::on_message_character (1)");
 
-         auto pkey = pmessage->m_pkey;
+         auto pkey = pmessage->m_union.m_pkey;
 
          string strChar;
 
@@ -5536,7 +5536,7 @@ finished_update:
 
       synchronous_lock synchronouslock(mutex());
 
-      auto pkey = pmessage->m_pkey;
+      auto pkey = pmessage->m_union.m_pkey;
 
       if (pkey->m_ekey == ::user::e_key_delete)
       {

@@ -29,7 +29,7 @@ namespace database
       bool              m_bTransactionActive;
       i32               m_iLastError;
       string            m_strLastError;
-      i64               m_iLastUsedTime;
+      ::duration        m_durationLastUse;
 
 
 
@@ -83,7 +83,7 @@ namespace database
       bool in_transaction() override;
 
 
-      virtual bool exec(const ::string & pszQuery) override;
+      virtual bool exec(const ::string & strQuery) override;
 
 
       ::payload get_agent(const ::string & pszTable, const ::string & psz, const ::string & pszUser) override;
@@ -107,7 +107,7 @@ namespace database
 
       string escape(const ::string & psz) override;
 
-      string error1(const ::string & pszPrefix = nullptr) override;
+      string query_error(const ::string & pszPrefix = nullptr) override;
       void trace_error1(const ::string & pszPrefix = nullptr) override;
 
       ::payload get_insert_id() override;

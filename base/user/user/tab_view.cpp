@@ -456,7 +456,7 @@ namespace user
    }
 
 
-   void tab_view::on_change_cur_sel()
+   void tab_view::_on_change_cur_sel()
    {
 
       index iTab = get_current_tab_index();
@@ -688,6 +688,29 @@ namespace user
 
       papplication->on_change_cur_sel(this);
 
+
+
+   }
+
+
+   void tab_view::on_change_cur_sel()
+   {
+
+      _on_change_cur_sel();
+
+      if (m_pimpactdata->m_id == MENU_IMPACT)
+      {
+
+         create_impact_menu(m_pimpactdata);
+
+         __pointer(::user::menu) pmenu = get_view_uie();
+
+         prepare_impact_menu(pmenu);
+
+         return;
+
+      }
+
    }
 
 
@@ -711,6 +734,21 @@ namespace user
       }
 
       return get_data()->m_tabpanecompositea[iTab];
+
+   }
+
+
+   ::e_status tab_view::prepare_impact_menu(::user::menu * pmenu)
+   {
+
+      if (pmenu->load_xml_menu("matter://impact.menu"))
+      {
+
+         pmenu->create_inline_menu(this, m_pimpactdata->m_pplaceholder);
+
+      }
+
+      return ::success;
 
    }
 
@@ -956,7 +994,7 @@ namespace user
             if(d1 > 50_ms)
             {
 
-               string strType = type_name();
+               string strType = __type_name(this);
 
                CATEGORY_INFORMATION(prodevian, "(more than 50ms) " << strType << "::_000DrawThis took " << integral_millisecond(d1) << ".\n");
 
@@ -1175,7 +1213,7 @@ namespace user
    void tab_drop_target_window::on_message_left_button_up(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       auto psession = get_session();
 

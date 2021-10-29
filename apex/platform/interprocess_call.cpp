@@ -66,7 +66,7 @@ bool interprocess_call::is_auto_launch() const
 void interprocess_call::exclude_this_app()
 {
 
-   m_iaExclude.add(m_pcontext->m_papexcontext->os().get_pid());
+   m_iaExclude.add(m_pcontext->m_papexcontext->os_context()->get_pid());
 
 }
 

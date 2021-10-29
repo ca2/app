@@ -1676,7 +1676,7 @@ namespace user
       if(bCreate && toolbartransport.not_initialized())
       {
 
-         toolbartransport = create_toolbar(idToolbar, strToolbarParam, dwCtrlStyle, uStyle, type);
+         toolbartransport = create_toolbar(idToolbar, strToolbarParam, dwCtrlStyle, uStyle, "simple_toolbar");
 
          if(toolbartransport)
          {
@@ -2531,7 +2531,7 @@ namespace user
 
       bool bUpdateWindow;
 
-      string strType = type_name();
+      string strType = __type_name(this);
 
       if(strType.contains_ci("veriwell_keyboard") && strType.contains_ci("main_frame"))
       {

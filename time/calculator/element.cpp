@@ -74,19 +74,19 @@ namespace datetime
       else if(m_ptoken->m_etoken == e_token_multiplication)
       {
 
-         throw_datetime_parser_exception("multiplication of datetime not supported (yet? meaningful?)");
+         throw_datetime_parsing_exception("multiplication of datetime not supported (yet? meaningful?)");
 
       }
       else if(m_ptoken->m_etoken == e_token_division)
       {
 
-         throw_datetime_parser_exception("division of datetime not supported (yet? meaningful?)");
+         throw_datetime_parsing_exception("division of datetime not supported (yet? meaningful?)");
 
       }
       else if(m_ptoken->m_etoken == e_token_function)
       {
 
-         throw_datetime_parser_exception("\"" +m_ptoken->m_str + "\" function applied to datetime not supported (yet? meaningful?)");
+         throw_datetime_parsing_exception("\"" +m_ptoken->m_str + "\" function applied to datetime not supported (yet? meaningful?)");
 
          /*if(m_ptoken->m_str == "sqr")
          {
@@ -134,7 +134,7 @@ namespace datetime
 
          auto pdatetime = psystem->datetime();
 
-         return pdatetime->international().get_gmt_date_time(::datetime::time((pdatetime->strtotime(pcontext,m_ptoken->m_str,iPath,iPathCount))));
+         return pdatetime->international().get_date_time(::datetime::time((pdatetime->strtotime(pcontext,m_ptoken->m_str,iPath,iPathCount))));
 
       }
       else if(m_ptoken->m_etoken == e_token_identifier)
@@ -144,7 +144,7 @@ namespace datetime
 
          auto pdatetime = psystem->datetime();
 
-         return pdatetime->international().get_gmt_date_time(::datetime::time((pdatetime->strtotime(pcontext,m_ptoken->m_str,iPath,iPathCount))));
+         return pdatetime->international().get_date_time(::datetime::time((pdatetime->strtotime(pcontext,m_ptoken->m_str,iPath,iPathCount))));
 
       }
       else if(m_ptoken->m_etoken == e_token_addition)

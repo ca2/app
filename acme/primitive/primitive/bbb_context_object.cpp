@@ -91,7 +91,7 @@ void object::process_exit_status(const ::e_status& estatus)
 
 
    //template < typename BASE_TYPE >
-   //__pointer(BASE_TYPE) file_as(const ::payload& varFile);
+   //__pointer(BASE_TYPE) file_as(const ::payload& payloadFile);
 
 
    void object::add_routine(const ::id& idRoutine, const ::routine& routine)
@@ -144,7 +144,7 @@ void object::process_exit_status(const ::e_status& estatus)
 
 
    //template < typename BASE_TYPE >
-   //void save_to(const ::payload& varFile, BASE_TYPE* pobject);
+   //void save_to(const ::payload& payloadFile, BASE_TYPE* pobject);
 
    
    ::e_status object::initialize(::object * pobject)
@@ -166,7 +166,7 @@ void object::process_exit_status(const ::e_status& estatus)
 
       //#if OBJECT_REFERENCE_COUNT_DEBUG
       //
-      //   string strType = type_name();
+      //   string strType = __type_name(this);
       //
       //   if (strType.contains_ci("session"))
       //   {
@@ -253,7 +253,7 @@ void object::process_exit_status(const ::e_status& estatus)
 
        pthread->m_pmatter = routine;
 
-       pthread->m_id = pthread->m_pmatter->type_name();
+       pthread->m_id = __type_name(pthread->m_pmatter);
 
        pthread->begin_thread();
 
@@ -384,7 +384,7 @@ void object::process_exit_status(const ::e_status& estatus)
    //::image_transport create_image();
    //::image_transport create_image(const ::size_i32 & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
 
-   //::image_transport get_image(const ::payload & varFile, bool bCache = true, bool bSync = true);
+   //::image_transport get_image(const ::payload & payloadFile, bool bCache = true, bool bSync = true);
    //::image_transport matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true);
 
    //template < typename BASE_TYPE >
@@ -689,7 +689,7 @@ void object::delete_this()
    }
 
 
-   ::e_status object::request_file(const ::payload& varFile)
+   ::e_status object::request_file(const ::payload& payloadFile)
    {
 
       return ::success;
@@ -697,7 +697,7 @@ void object::delete_this()
     }
 
 
-    ::e_status object::request_file(const ::payload& varFile, ::payload varQuery)
+    ::e_status object::request_file(const ::payload& payloadFile, ::payload varQuery)
     {
 
       return ::success;
@@ -799,8 +799,8 @@ void object::delete_this()
     }
 
    // ::user::document* open_document_file(::application* pappOnBehalfOf);
-   // ::user::document* open_document_file(::application* pappOnBehalfOf, const ::payload& varFile, const ::payload & varOptions, ::user::interaction* puiParent = nullptr, ewindowflag eflag = e_window_flag_none, ::id id = ::id());
-   // ::user::document* open_document_file(::application* pappOnBehalfOf, const ::payload& varFile);
+   // ::user::document* open_document_file(::application* pappOnBehalfOf, const ::payload& payloadFile, const ::payload & varOptions, ::user::interaction* puiParent = nullptr, ewindowflag eflag = e_window_flag_none, ::id id = ::id());
+   // ::user::document* open_document_file(::application* pappOnBehalfOf, const ::payload& payloadFile);
    // ::user::document* create_subdocument(::user::impact_data* pimpactdata);
 
 
@@ -830,12 +830,12 @@ void object::delete_this()
 
 
    //template < typename PRED >
-   //::image_transport get_image(const ::payload & varFile, ::u64 uTrait, PRED pred);
+   //::image_transport get_image(const ::payload & payloadFile, ::u64 uTrait, PRED pred);
 
-   // ::image_transport load_image(const ::payload & varFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
+   // ::image_transport load_image(const ::payload & payloadFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
    // ::image_transport load_matter_image(const char * pszMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
    // ::image_transport load_matter_icon(string_array & straMatter, string strIcon);
-   // ::image_transport load_thumbnail(const ::payload & varFile, int w, int h);
+   // ::image_transport load_thumbnail(const ::payload & payloadFile, int w, int h);
    // ::image_transport load_thumbnail(const char * pszPath);
    // ::image_transport load_dib(const ::file::path & pathDib);
 
@@ -987,22 +987,22 @@ void object::delete_this()
 //    void ns_main_async(dispatch_block_t block);
 //#endif
 
-   //inline ::file_transport get_reader(const ::payload& varFile, const ::file::e_open & eopen = ::file::e_open());
-   //inline ::file_transport get_writer(const ::payload& varFile, const ::file::e_open & eopen = ::file::e_open());
+   //inline ::file_transport get_reader(const ::payload& payloadFile, const ::file::e_open & eopen = ::file::e_open());
+   //inline ::file_transport get_writer(const ::payload& payloadFile, const ::file::e_open & eopen = ::file::e_open());
 
 
    // void to_string(string & str) const 
 
 
-    ::file_transport object::get_file(const ::payload& varFile, const ::file::e_open& eopen)
+    ::file_transport object::get_file(const ::payload& payloadFile, const ::file::e_open& eopen)
     {
 
        return nullptr;
 
     }
 
-   //inline ::file_transport get_reader(const ::payload& varFile, const ::file::e_open& eopen = ::file::e_open_binary);
-   //inline ::file_transport get_writer(const ::payload& varFile, const ::file::e_open& eopen = ::file::e_open_binary | ::file::e_open_defer_create_directory | ::file::e_open_create);
+   //inline ::file_transport get_reader(const ::payload& payloadFile, const ::file::e_open& eopen = ::file::e_open_binary);
+   //inline ::file_transport get_writer(const ::payload& payloadFile, const ::file::e_open& eopen = ::file::e_open_binary | ::file::e_open_defer_create_directory | ::file::e_open_create);
 
 
 

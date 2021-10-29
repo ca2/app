@@ -338,10 +338,10 @@ namespace str
    }
 
 
-   bool zip_context::extract_all(const char * pszDir,::payload varFile, ::file::patha * ppatha, string_array * pstraFilter, bool_array * pbaBeginsFilterEat)
+   bool zip_context::extract_all(const char * pszDir,::payload payloadFile, ::file::patha * ppatha, string_array * pstraFilter, bool_array * pbaBeginsFilterEat)
    {
 
-      auto pfile = m_pcontext->m_papexcontext->file().get_file(varFile,::file::e_open_binary | ::file::e_open_read);
+      auto pfile = m_pcontext->m_papexcontext->file().get_file(payloadFile,::file::e_open_binary | ::file::e_open_read);
 
       if (!pfile)
       {

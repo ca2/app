@@ -102,7 +102,7 @@ namespace app_shader
    void main_window::on_message_key_down(::message::message* pmessage)
    {
 
-      auto pkey = pmessage->m_pkey;
+      auto pkey = pmessage->m_union.m_pkey;
 
       if (pkey->m_ekey == ::user::e_key_s)
       {
@@ -183,7 +183,7 @@ namespace app_shader
 
                     auto pdatetime = psystem->m_pdatetime;
 
-                    string strDate = pdatetime->international().get_gmt_date_time(INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE);
+                    string strDate = pdatetime->international().get_date_time(INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE);
 
                     //auto papplication = get_application();
 

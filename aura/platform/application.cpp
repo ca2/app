@@ -1141,7 +1141,7 @@ namespace aura
 
 
 
-   /*::user::document *  application::_001OpenDocumentFile(::payload varFile)
+   /*::user::document *  application::_001OpenDocumentFile(::payload payloadFile)
    {
 
       throw ::interface_only_exception();
@@ -1772,8 +1772,7 @@ retry_license:
 
       }
 
-      INFORMATION("initial_check_directrix : ok (%s)%s\n\n", typeid(*this).name(), m_strAppId.c_str());
-
+      INFORMATION("initial_check_directrix : ok ("<< __type_name(this) << ")" << m_strAppId);
 
       return true;
 
@@ -1919,7 +1918,7 @@ retry_license:
 //      if (!init1())
 //      {
 //
-//         //dappy(string(typeid(*this).name()) + " : init1 failure : " + __string(m_iErrorCode));
+//         //dappy(__type_name(this) + " : init1 failure : " + __string(m_iErrorCode));
 //
 //         return false;
 //
@@ -1934,7 +1933,7 @@ retry_license:
 //      if (!init2())
 //      {
 //
-//         //dappy(string(typeid(*this).name()) + " : init2 failure : " + __string(m_iErrorCode));
+//         //dappy(__type_name(this) + " : init2 failure : " + __string(m_iErrorCode));
 //
 //         return false;
 //
@@ -1949,7 +1948,7 @@ retry_license:
 //      if (!init3())
 //      {
 //
-//         //dappy(string(typeid(*this).name()) + " : init3 failure : " + __string(m_iErrorCode));
+//         //dappy(__type_name(this) + " : init3 failure : " + __string(m_iErrorCode));
 //
 //         return false;
 //
@@ -1961,7 +1960,7 @@ retry_license:
 //
 //      m_durationHeartBeat.Now();
 //
-//      //dappy(string(typeid(*this).name()) + " : init3 ok : " + __string(m_iErrorCode));
+//      //dappy(__type_name(this) + " : init3 ok : " + __string(m_iErrorCode));
 //
 //      try
 //      {
@@ -1969,7 +1968,7 @@ retry_license:
 //         if (!init())
 //         {
 //
-//            //dappy(string(typeid(*this).name()) + " : initialize failure : " + __string(m_iErrorCode));
+//            //dappy(__type_name(this) + " : initialize failure : " + __string(m_iErrorCode));
 //
 //            return false;
 //
@@ -3273,10 +3272,10 @@ retry_license:
    //}
 
 
-   //void application::play_audio(::payload varFile, bool bSynch)
+   //void application::play_audio(::payload payloadFile, bool bSynch)
    //{
 
-   //   __UNREFERENCED_PARAMETER(varFile);
+   //   __UNREFERENCED_PARAMETER(payloadFile);
    //   __UNREFERENCED_PARAMETER(bSynch);
 
    //}
@@ -3460,12 +3459,12 @@ retry_license:
    //}
 
 
-   //bool application::on_open_document_file(::payload varFile)
+   //bool application::on_open_document_file(::payload payloadFile)
    //{
 
-   //   request_file(varFile);
+   //   request_file(payloadFile);
 
-   //   return varFile["document"].cast < ::object > () != nullptr;
+   //   return payloadFile["document"].cast < ::object > () != nullptr;
 
    //}
 
@@ -3800,7 +3799,7 @@ retry_license:
 
          }
 
-         INFORMATION("::base::application::add_user_interaction ::user::interaction = 0x%" PRIxPTR " (%s) app=%s", puserinteraction, typeid(*puserinteraction).name(), typeid(*this).name());
+         INFORMATION("::base::application::add_user_interaction ::user::interaction = 0x" << (::iptr) (puserinteraction) << " (" << typeid(*puserinteraction).name() << ") app=" << __type_name(this));
 
          if (!(puserinteraction->m_ewindowflag & e_window_flag_satellite_window))
          {
@@ -3858,7 +3857,7 @@ retry_license:
          if (m_puserinteractiona->erase_interaction(puserinteraction) > 0)
          {
 
-            INFORMATION("::base::application::erase_user_interaction ::user::interaction = 0x%016x (%s) app=%s", puserinteraction, typeid(*puserinteraction).name(), typeid(*this).name());
+            INFORMATION("::base::application::erase_user_interaction ::user::interaction = 0x"<<(iptr)puserinteraction<<" ("<<typeid(*puserinteraction).name()<<") app=" << __type_name(this));
 
          }
 
@@ -3872,7 +3871,7 @@ retry_license:
          if (m_puserinteractionaFrame->erase_interaction(puserinteraction) > 0)
          {
 
-            INFORMATION("::base::application::erase_frame ::user::interaction = 0x%016x (%s) app=%s", puserinteraction, typeid(*puserinteraction).name(), typeid(*this).name());
+            INFORMATION("::base::application::erase_frame ::user::interaction = 0x"<<(iptr)puserinteraction<<" ("<<typeid(*puserinteraction).name()<<") app=" <<__type_name(this));
 
          }
 
@@ -4818,7 +4817,7 @@ retry_license:
    //   try
    //   {
 
-   //      string strType = type_name();
+   //      string strType = __type_name(this);
 
    //      //if(::is_set(m_psystem))
    //      //{
@@ -5267,17 +5266,17 @@ retry_license:
    string application::matter_as_string(const ::string & pszMatter, const ::string & pszMatter2)
    {
 
-      ::payload varFile;
+      ::payload payloadFile;
 
-      varFile["disable_ca2_sessid"] = true;
+      payloadFile["disable_ca2_sessid"] = true;
 
       auto pcontext = get_context();
 
       string strMatter = dir().matter(::file::path(pszMatter) / pszMatter2);
 
-      varFile["url"] = strMatter;
+      payloadFile["url"] = strMatter;
 
-      return file().as_string(varFile);
+      return file().as_string(payloadFile);
 
    }
 
@@ -5458,10 +5457,10 @@ retry_license:
 
    }
 
-   //bool application::do_prompt_file_name(::payload & varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument)
+   //bool application::do_prompt_file_name(::payload & payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument)
    //{
 
-   //   __UNREFERENCED_PARAMETER(varFile);
+   //   __UNREFERENCED_PARAMETER(payloadFile);
    //   __UNREFERENCED_PARAMETER(nIDSTitle);
 
    //   return false;
@@ -5617,21 +5616,21 @@ retry_license:
    //}
 
 
-   //bool application::on_open_document(::user::document * pdocument, ::payload varFile)
+   //bool application::on_open_document(::user::document * pdocument, ::payload payloadFile)
    //{
 
    //   __UNREFERENCED_PARAMETER(pdocument);
-   //   __UNREFERENCED_PARAMETER(varFile);
+   //   __UNREFERENCED_PARAMETER(payloadFile);
    //   return true;
 
    //}
 
 
-   //bool application::on_save_document(::user::document * pdocument, ::payload varFile)
+   //bool application::on_save_document(::user::document * pdocument, ::payload payloadFile)
    //{
 
    //   __UNREFERENCED_PARAMETER(pdocument);
-   //   __UNREFERENCED_PARAMETER(varFile);
+   //   __UNREFERENCED_PARAMETER(payloadFile);
    //   return true;
 
    //}
@@ -7697,13 +7696,13 @@ namespace aura
    void application::_001OnFileNew(::message::message* pmessage)
    {
 
-      ::payload varFile;
+      ::payload payloadFile;
 
       ::payload varQuery;
 
       varQuery["command"] = "new_file";
 
-      //request_file(varFile, varQuery);
+      //request_file(payloadFile, varQuery);
 
       pmessage->m_bRet = true;
 
@@ -7711,19 +7710,19 @@ namespace aura
 
 
 
-   //   bool application::on_open_document_file(::payload varFile)
+   //   bool application::on_open_document_file(::payload payloadFile)
    //   {
    //
-   //      return _001OpenDocumentFile(varFile);
+   //      return _001OpenDocumentFile(payloadFile);
    //
    //   }
 
-   //::user::document* application::_001OpenDocumentFile(::payload varFile)
+   //::user::document* application::_001OpenDocumentFile(::payload payloadFile)
    //{
 
-   //   request_file(varFile);
+   //   request_file(payloadFile);
 
-   //   return varFile["document"].cast < ::user::document >();
+   //   return payloadFile["document"].cast < ::user::document >();
 
    //}
 
@@ -8707,7 +8706,7 @@ namespace aura
                      auto pcontext = get_context();
 
                      pcheck->_001SetCheck(
-                        os().is_user_auto_start(get_executable_appid()),
+                        os_context()->is_user_auto_start(get_executable_appid()),
                         ::e_source_initialize);
 
                   }
@@ -8737,7 +8736,7 @@ namespace aura
                   if (pcheck.is_set())
                   {
 
-                     os().register_user_auto_start(
+                     os_context()->register_user_auto_start(
                         get_executable_appid(),
                         get_executable_path(),
                         pcheck->echeck() == ::check_checked);
@@ -9210,7 +9209,7 @@ namespace aura
    }
 
 
-//   icon_transport application::load_icon(const ::payload& varFile)
+//   icon_transport application::load_icon(const ::payload& payloadFile)
 //   {
 //
 //#ifdef WINDOWS_DESKTOP

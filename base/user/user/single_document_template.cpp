@@ -208,9 +208,9 @@ namespace user
 
       }
 
-      ::payload varFile = pcreate->get_file();
+      ::payload payloadFile = pcreate->get_file();
 
-      if (varFile.is_empty() || varFile.is_numeric())
+      if (payloadFile.is_empty() || payloadFile.is_numeric())
       {
 
          // create a new ::user::document
@@ -282,7 +282,7 @@ namespace user
             }
             return;        // open failed
          }
-         pdocument->set_path_name(varFile);
+         pdocument->set_path_name(payloadFile);
          pdocument->update_title();
          pdocument->id_update_all_views(OPEN_DOCUMENT_UPDATE);
 

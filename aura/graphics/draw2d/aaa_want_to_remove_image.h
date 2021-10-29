@@ -79,17 +79,17 @@ public:
 
    inline ::image_pointer frame(iptr i) const;
 
-   virtual image get_image(::payload varFile, bool bSync = false) override;
+   virtual image get_image(::payload payloadFile, bool bSync = false) override;
    virtual image matter_image(string strMatter, bool bSync = false) override;
-   virtual image load_image(::payload varFile, bool bCreateHelperMaps = false) override;
+   virtual image load_image(::payload payloadFile, bool bCreateHelperMaps = false) override;
    virtual image load_matter_image(const ::string & pszMatter, bool bCache = true, bool bCreateHelperMaps = false) override;
    virtual image load_matter_icon(string_array & straMatter, string strIcon) override;
-   virtual image load_thumbnail(::payload varFile, int w, int h) override;
+   virtual image load_thumbnail(::payload payloadFile, int w, int h) override;
    virtual image load_thumbnail(const ::string & pszPath) override;
    virtual image load_dib(const ::file::path & pathDib) override;
 
 
-   virtual bool save_image(::payload varFile, ::save_image * psaveimage = nullptr) override;
+   virtual bool save_image(::payload payloadFile, ::save_image * psaveimage = nullptr) override;
    virtual bool save_dib(const ::file::path & pathDib) override;
 
 

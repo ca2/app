@@ -1,7 +1,7 @@
 // Created by camilo on 2021-03-10 06:22 BRT ThomasBS_!!
 #include "framework.h"
 #include "apex/networking/sockets/_sockets.h"
-
+#define ERROR(...) TRACE_LOG_ERROR(__VA_ARGS__)
 
 //#include <stdio.h>
 

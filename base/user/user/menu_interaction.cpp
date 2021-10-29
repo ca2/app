@@ -167,7 +167,7 @@ namespace user
    void menu_interaction::on_message_mouse_move(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       pmouse->previous();
 

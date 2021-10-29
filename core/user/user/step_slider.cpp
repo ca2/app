@@ -61,7 +61,7 @@ namespace user
    void step_slider::on_message_left_button_down(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       m_itemLButtonDown = hit_test(pmouse);
 
@@ -71,7 +71,7 @@ namespace user
    void step_slider::on_message_left_button_up(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       auto item = hit_test(pmouse);
 

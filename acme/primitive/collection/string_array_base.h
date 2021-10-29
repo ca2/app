@@ -570,7 +570,6 @@ public:
 };
 
 
-
 template < typename Type, typename RawType, enum_type t_etypePayload >
 template < typename PRED >
 Type string_array_base < Type, RawType, t_etypePayload > ::predicate_implode(PRED pred, const Type& strSeparator,::index i,::count inCountLastOut) const

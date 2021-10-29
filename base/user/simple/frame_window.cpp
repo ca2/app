@@ -1029,7 +1029,7 @@ void simple_frame_window::on_message_show_window(::message::message * pmessage)
    if(pshow->m_bShow)
    {
 
-      output_debug_string("\nsimple_frame_window::on_message_show_window true " + string(typeid(*this).name()));
+      output_debug_string("\nsimple_frame_window::on_message_show_window true " + __type_name(this));
 
       //defer_set_icon();
 
@@ -1037,7 +1037,7 @@ void simple_frame_window::on_message_show_window(::message::message * pmessage)
    else
    {
 
-      output_debug_string("\nsimple_frame_window::on_message_show_window false " + string(typeid(*this).name()));
+      output_debug_string("\nsimple_frame_window::on_message_show_window false " + __type_name(this));
 
    }
 
@@ -1198,7 +1198,7 @@ bool simple_frame_window::pre_create_window(::user::system * pusersystem)
 void simple_frame_window::on_layout(::draw2d::graphics_pointer & pgraphics)
 {
 
-   if (string(type_name()).contains_ci("child_frame"))
+   if (__type_name(this).contains_ci("child_frame"))
    {
 
       output_debug_string("%child_frame%\n");
@@ -2472,7 +2472,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 
          ::duration d1 = t1.elapsed();
 
-         string strType = type_name();
+         string strType = __type_name(this);
 
          if(d1 > 50_ms)
          {
@@ -2501,7 +2501,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
             if(d1 > 50_ms)
             {
 
-               CATEGORY_INFORMATION(prodevian, "(more than 50ms) draw_frame_and_control_box_over took " << INTEGRAL_SECOND(d1) << "::duration.\n");
+               CATEGORY_INFORMATION(prodevian, "(more than 50ms) draw_frame_and_control_box_over took " << d1.integral_millisecond() << "::duration.\n");
 
             }
 
@@ -2557,7 +2557,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    if(bBlurBackground)
    {
 
-      //printf("simplefrmwnd : " + string(type_name()) + " : blur_background");
+      //printf("simplefrmwnd : " + __type_name(this) + " : blur_background");
 
       //auto psystem = m_psystem->m_pbasesystem;
 
@@ -2589,7 +2589,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
 #ifndef LINUX
 
-         //printf("simplefrmwnd : " + string(type_name()) + " : ifndef LINUX");
+         //printf("simplefrmwnd : " + __type_name(this) + " : ifndef LINUX");
 
          if(rectangleClient.size() != m_pimageBk->size())
          {
@@ -2657,7 +2657,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    }
 
-   //printf("simplefrmwnd : " + string(type_name()) + " : draw_frame");
+   //printf("simplefrmwnd : " + __type_name(this) + " : draw_frame");
 
    draw_frame(pgraphics);
 
@@ -3373,7 +3373,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
                      if(d1 > 50_ms)
                      {
 
-                        string strType = pinteraction->type_name();
+                        string strType = __type_name(pinteraction);
 
                         //if(strType.contains("pane_view"))
                         //{

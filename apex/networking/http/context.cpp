@@ -388,17 +388,17 @@ namespace http
    //}
 
 
-   //bool context::download(__pointer(::sockets::http_session) & psession, const char * pszUrl, ::payload varFile, property_set & set)
+   //bool context::download(__pointer(::sockets::http_session) & psession, const char * pszUrl, ::payload payloadFile, property_set & set)
    //{
 
-   //   return download(psession, pszUrl, varFile, process_set(set, pszUrl));
+   //   return download(psession, pszUrl, payloadFile, process_set(set, pszUrl));
 
    //}
 
 
- /*  bool context::download(const char * pszUrl, ::payload varFile, property_set & set)
+ /*  bool context::download(const char * pszUrl, ::payload payloadFile, property_set & set)
    {
-      return download(pszUrl, varFile, process_set(set, pszUrl));
+      return download(pszUrl, payloadFile, process_set(set, pszUrl));
    }*/
 
    bool context::put(const char * pszUrl, memory_base * pmemory, property_set & set)
@@ -677,13 +677,13 @@ namespace http
 
          ppac->m_strUrl = pszUrl;
 
-         ::payload varFile;
+         ::payload payloadFile;
 
-         varFile["url"] = ppac->m_strUrl;
-         varFile["disable_ca2_sessid"] = true;
-         varFile["no_proxy_config"] = true;
+         payloadFile["url"] = ppac->m_strUrl;
+         payloadFile["disable_ca2_sessid"] = true;
+         payloadFile["no_proxy_config"] = true;
 
-         ppac->m_strAutoConfigScript = m_pcontext->m_papexcontext->file().as_string(varFile);
+         ppac->m_strAutoConfigScript = m_pcontext->m_papexcontext->file().as_string(payloadFile);
 
 
          m_mapPac.set_at(pszUrl, ppac);
@@ -2650,10 +2650,10 @@ namespace http
    }
 
 
-   bool context::download(__pointer(::sockets::http_session) & psession, const char * pszRequest, ::payload varFile, property_set & set)
+   bool context::download(__pointer(::sockets::http_session) & psession, const char * pszRequest, ::payload payloadFile, property_set & set)
    {
 
-      file_pointer spfile = m_pcontext->m_papexcontext->file().get_file(varFile,
+      file_pointer spfile = m_pcontext->m_papexcontext->file().get_file(payloadFile,
          ::file::e_open_binary | ::file::e_open_create | ::file::e_open_read_write | ::file::e_open_defer_create_directory);
 
       set["file"] = spfile;
@@ -2667,7 +2667,7 @@ namespace http
    }
 
 
-   bool context::download(const char * pszUrl, ::payload varFile, property_set & set)
+   bool context::download(const char * pszUrl, ::payload payloadFile, property_set & set)
    {
 
       auto phandler = __create_new < ::sockets::socket_handler >();
@@ -2678,7 +2678,7 @@ namespace http
 
       {
 
-         auto rfile = m_pcontext->m_papexcontext->file().get_file(varFile,
+         auto rfile = m_pcontext->m_papexcontext->file().get_file(payloadFile,
             ::file::e_open_binary | ::file::e_open_create | ::file::e_open_read_write | ::file::e_open_defer_create_directory);
 
          if (!rfile)

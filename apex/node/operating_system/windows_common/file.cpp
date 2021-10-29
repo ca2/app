@@ -327,7 +327,7 @@ namespace apex
       if (os_is_alias(psz))
       {
 
-         return os().resolve_link(path, psz, nullptr, nullptr);
+         return os_context()->resolve_link(path, psz, nullptr, nullptr);
 
       }
 

@@ -49,13 +49,13 @@ BOOL WINAPI DllMain(HINSTANCE hinstance, ::u32 dwReason, LPVOID pReserved)
 #if !defined(__APPLE__)
 
 
-//#if !defined(CUBE)
+#if !defined(CUBE)
 
 
 #include "acme/asset/new.cpp"
 
 
-//#endif
+#endif
 
 
 #endif

@@ -29,9 +29,9 @@ namespace acme
 //      //      ::ca2::pointer < ::application_base > ::m_p->_001OnFileNew(nullptr);
 //   }
 //
-//   ::user::document * application::_001OpenDocumentFile(::payload varFile)
+//   ::user::document * application::_001OpenDocumentFile(::payload payloadFile)
 //   {
-//      //    return ::ca2::pointer < ::application_base > ::m_p->_001OpenDocumentFile(varFile);
+//      //    return ::ca2::pointer < ::application_base > ::m_p->_001OpenDocumentFile(payloadFile);
 //      return nullptr;
 //   }
 

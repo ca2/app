@@ -43,7 +43,7 @@ public:
 
    
    virtual ::e_status initialize_create(arguments arguments);
-   virtual ::e_status initialize_create(string strAppId, ::payload varFile, const ::payload& varOptions = __visible(true), ::user::primitive* puiParent = nullptr, ewindowflag eflag = e_window_flag_none, ::id = ::id());
+   virtual ::e_status initialize_create(string strAppId, ::payload payloadFile, const ::payload& varOptions = __visible(true), ::user::primitive* puiParent = nullptr, ewindowflag eflag = e_window_flag_none, ::id = ::id());
 
 
    void create_common_construct(const ::payload & varOptions, ::user::primitive * puiParent);

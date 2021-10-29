@@ -340,15 +340,15 @@ namespace helloworld
 
 
                get_document()->on_open_document(m_strImage);
-               //   ::payload varFile;
+               //   ::payload payloadFile;
                //
-               //   varFile["url"] = strImage;
+               //   payloadFile["url"] = strImage;
                //
-               //   varFile["http_set"]["raw_http"] = purl->get_server(m_strImage).find_wci("ca2") < 0;
+               //   payloadFile["http_set"]["raw_http"] = purl->get_server(m_strImage).find_wci("ca2") < 0;
                //
                //   ::image_pointer pimage;
                //
-/*               //   if(pimage->load_image(varFile))
+/*               //   if(pimage->load_image(payloadFile))
                //   {
                //
                //      if(strImage == m_strImage)

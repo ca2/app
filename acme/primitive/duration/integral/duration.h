@@ -96,12 +96,12 @@ public:
 
    integral_duration operator -() const { return BASE_TYPE(-this->m_i); }
 
-   bool operator ==(const BASE_TYPE & duration) const { return this->m_i == duration.m_i; }
-   bool operator >(const BASE_TYPE & duration) const { return this->m_i > duration.m_i; }
-   bool operator >=(const BASE_TYPE & duration) const { return this->m_i >= duration.m_i; }
-   bool operator <(const BASE_TYPE & duration) const { return this->m_i < duration.m_i; }
-   bool operator <=(const BASE_TYPE & duration) const { return this->m_i <= duration.m_i; }
-   bool operator !=(const BASE_TYPE & duration) const { return this->m_i != duration.m_i; }
+//   bool operator ==(const BASE_TYPE & duration) const { return this->m_i == duration.m_i; }
+//   bool operator >(const BASE_TYPE & duration) const { return this->m_i > duration.m_i; }
+//   bool operator >=(const BASE_TYPE & duration) const { return this->m_i >= duration.m_i; }
+//   bool operator <(const BASE_TYPE & duration) const { return this->m_i < duration.m_i; }
+//   bool operator <=(const BASE_TYPE & duration) const { return this->m_i <= duration.m_i; }
+//   bool operator !=(const BASE_TYPE & duration) const { return this->m_i != duration.m_i; }
 
 
    string get_string() const

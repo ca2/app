@@ -50,7 +50,7 @@ UninstPage instfiles
 ;--------------------------------
 
 ; The stuff to install
-Section "tranquillum_composite (required)"
+Section "app_app (required)"
 
   SectionIn RO
 
@@ -94,7 +94,7 @@ Section "tranquillum_composite (required)"
   File "C:\basis\time-windows\Win32\stage\zlib.dll"
   File "C:\basis\time-windows\Win32\stage\windowing_win32.dll"
   File "C:\basis\time-windows\Win32\stage\app_app.exe"
-  File "C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Redist\MSVC\v142\vc_redist.x86.exe"
+  File "C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Redist\MSVC\v143\vc_redist.x86.exe"
   
 ${If} ${Runningx64}
 	ReadRegStr $1 HKLM "SOFTWARE\Wow6432Node\Microsoft\VisualStudio\14.0\VC\Runtimes\x86" "Installed"
@@ -122,7 +122,7 @@ installed_redist:
   WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\app_app" "NoRepair" 1
   WriteUninstaller "uninstall.exe"
   
-  CreateShortCut "$DESKTOP\composite.lnk" "$INSTDIR\time\stage\Win32\app_app.exe" ""
+  CreateShortCut "$DESKTOP\app.lnk" "$INSTDIR\time\stage\Win32\app_app.exe" ""
 
   
 SectionEnd
@@ -132,7 +132,7 @@ Section "Start Menu Shortcuts"
 
   CreateDirectory "$SMPROGRAMS\composite"
   CreateShortcut "$SMPROGRAMS\composite\Uninstall.lnk" "$INSTDIR\uninstall.exe" "" "$INSTDIR\uninstall.exe" 0
-  CreateShortcut "$SMPROGRAMS\composite\app.lnk" "$INSTDIR\time\x86\stage\app_app.exe" "" "$INSTDIR\time\stage\Win32\app_app.exe" 0
+  CreateShortcut "$SMPROGRAMS\composite\app.lnk" "$INSTDIR\time\stage\Win32\app_app.exe" "" "$INSTDIR\time\stage\Win32\app_app.exe" 0
   
 SectionEnd
 

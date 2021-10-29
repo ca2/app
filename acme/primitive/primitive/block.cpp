@@ -85,8 +85,8 @@ string block::to_base64() const
 //
 
 
-#ifdef __DEBUG
+//#ifdef __DEBUG
 
-#include "block.inl"
+//#include "block.inl"
 
-#endif //__DEBUG
+//#endif //__DEBUG

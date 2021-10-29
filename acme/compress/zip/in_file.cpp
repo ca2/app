@@ -645,12 +645,12 @@ namespace zip
 
       __memset(&zipfi,0,sizeof(zipfi));
 
-      zipfi.tmz_date.tm_hour = status.m_ctime.GetGmtHour();
-      zipfi.tmz_date.tm_sec  = status.m_ctime.GetGmtSecond();
-      zipfi.tmz_date.tm_min  = status.m_ctime.GetGmtMinute();
-      zipfi.tmz_date.tm_year = status.m_ctime.GetGmtYear();
-      zipfi.tmz_date.tm_mon  = status.m_ctime.GetGmtMonth();
-      zipfi.tmz_date.tm_mday = status.m_ctime.GetGmtDay();
+      zipfi.tmz_date.tm_hour = status.m_ctime.hour();
+      zipfi.tmz_date.tm_sec  = status.m_ctime.second();
+      zipfi.tmz_date.tm_min  = status.m_ctime.minute();
+      zipfi.tmz_date.tm_year = status.m_ctime.year();
+      zipfi.tmz_date.tm_mon  = status.m_ctime.month();
+      zipfi.tmz_date.tm_mday = status.m_ctime.day();
 
       zipOpenNewFileInZip(get_zip_file()->m_pfZip,pszRelative,&zipfi,nullptr,0,nullptr,0,nullptr,Z_DEFLATED,Z_DEFAULT_COMPRESSION);
 

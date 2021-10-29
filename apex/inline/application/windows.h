@@ -4,6 +4,12 @@
 i32 WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, TCHAR * pCmdLine, int nCmdShow)
 {
 
+#ifdef CUBE
+
+   main_hold mainhold;
+
+#endif
+
    set_main_thread();
 
    string strAppId;

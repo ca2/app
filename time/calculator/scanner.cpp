@@ -386,12 +386,18 @@ namespace datetime
                   string strNat3 = check_natural(input, scanner);
                   if(strNat3.has_char())
                   {
+                     
                      input = scanner;
+                     
                      if(!check_expression_separator(input, scanner))
                      {
-                        __throw(::exception("invalid date"));
+                     
+                        throw ::exception(error_failed, "invalid date");
+
                      }
+
                      return string(start, scanner - start);
+
                   }
 
                }
@@ -401,31 +407,49 @@ namespace datetime
                   string strMonth = check_month(input, scanner);
                   if(strMonth.has_char())
                   {
+                     
                      input = scanner;
+                     
                      if(!check_expression_separator(input, scanner))
                      {
-                        __throw(::exception("invalid date"));
+                     
+                        throw ::exception(error_failed, "invalid date");
+
                      }
+
                      return string(start, scanner - start);
+
                   }
                   else
                   {
-                     __throw(::exception("invalid date"));
+                     
+                     throw ::exception(error_failed, "invalid date");
+
                   }
+
                }
                else if(!strSep2.has_char())
                {
+
                   input = scanner;
+
                   if(!check_expression_separator(input, scanner))
                   {
-                     __throw(::exception("invalid date"));
+
+                     throw ::exception(error_failed, "invalid date");
+
                   }
+
                   return string(start, scanner - start);
+
                }
                else
                {
-                  __throw(::exception("invalid date"));
+               
+                  throw ::exception(error_failed, "invalid date");
+
                }
+
             }
             else
             {
@@ -441,12 +465,18 @@ namespace datetime
                      string strNat3 = check_natural(input, scanner);
                      if(strNat3.has_char())
                      {
+                        
                         input = scanner;
+
                         if(!check_expression_separator(input, scanner))
                         {
-                           __throw(::exception("invalid date"));
+                           
+                           throw ::exception(error_failed, "invalid date");
+
                         }
+
                         return string(start, scanner - start);
+
                      }
 
                   }
@@ -456,163 +486,298 @@ namespace datetime
                      string strNat2 = check_natural(input, scanner);
                      if(strNat2.has_char())
                      {
+
                         input = scanner;
+
                         if(!check_expression_separator(input, scanner))
                         {
-                           __throw(::exception("invalid date"));
+                        
+                           throw ::exception(error_failed, "invalid date");
+
                         }
+
                         return string(start, scanner - start);
+
                      }
                      else
                      {
-                        __throw(::exception("invalid date"));
+
+                        throw ::exception(error_failed, "invalid date");
+
                      }
+
                   }
                   else
                   {
-                     __throw(::exception("invalid date"));
+
+                     throw ::exception(error_failed, "invalid date");
+
                   }
+
                }
+
             }
+
          }
          else
          {
+
             return "";
+
          }
+
          return "";
+
       }
       else
       {
+
          return "";
+
       }
+
    }
+
 
    string check_offset(const ::text::context * pcontext, const char * input, const char * & scanner)
    {
-      if(check_end_expression(input, scanner))
+
+      if (check_end_expression(input, scanner))
+      {
+
          return "";
+
+      }
+
       const char * start = input;
+
       int32_t iCount = 0;
+
       while(true)
       {
+
          input = scanner;
+
          string strNat = check_natural(input, scanner);
+
          if(!strNat.has_char())
          {
-            if(iCount > 0)
+
+            if (iCount > 0)
+            {
+
                break;
+
+            }
+
             return "";
+
          }
+
          input = scanner;
+
          string strUnit = check_unit(pcontext, input, scanner);
+
          if(!strNat.has_char())
          {
+
             return "";
+
          }
+
          iCount++;
+
       }
+
       string strOff = check_lang_offset(input, scanner);
+
       return string(start, scanner - start);
+
    }
+
 
    string consume_date_expression(const ::text::context * pcontext, const char * & input)
    {
+
       const char * scanner;
-      if(check_end_expression(input, scanner))
+
+      if (check_end_expression(input, scanner))
+      {
+
          return "";
+
+      }
+
       const char * start = input;
+
       string strDate = check_date(input, scanner);
+
       if(strDate.has_char())
       {
+
          input = scanner;
+
          string strOffset = check_offset(pcontext, input, scanner);
+
          if(strOffset.has_char())
          {
+
             input = scanner;
-            if(check_end_expression(input, scanner))
+
+            if (check_end_expression(input, scanner))
+            {
+
                return string(start, scanner - start);
+
+            }
             else
             {
-               __throw(::exception("invalid date expression"));
+
+               throw ::exception(error_failed, "invalid date expression");
+
             }
+
          }
          else
          {
+
             input = scanner;
-            if(check_end_expression(input, scanner))
+
+            if (check_end_expression(input, scanner))
+            {
+             
                return string(start, scanner - start);
+
+            }
             else
             {
-               __throw(::exception("invalid date expression"));
+               
+               throw ::exception(error_failed, "invalid date expression");
+
             }
+
          }
+
       }
       else
       {
+
          string strLangDate = check_lang_date(input, scanner);
+
          if(strLangDate.has_char())
          {
+
             input = scanner;
+
             string strOffset = check_offset(pcontext, input, scanner);
+
             if(strOffset.has_char())
             {
+
                input = scanner;
-               if(check_end_expression(input, scanner))
+
+               if (check_end_expression(input, scanner))
+               {
+
                   return string(start, scanner - start);
+
+               }
                else
                {
-                  __throw(::exception("invalid date expression"));
+
+                  throw ::exception(error_failed, "invalid date expression");
+
                }
+
             }
             else
             {
+
                input = scanner;
-               if(check_end_expression(input, scanner))
+
+               if (check_end_expression(input, scanner))
+               {
+                
                   return string(start, scanner - start);
+
+               }
                else
                {
-                  __throw(::exception("invalid date expression"));
+
+                  throw ::exception(error_failed, "invalid date expression");
+
                }
+
             }
+
          }
          else
          {
+
             input = scanner;
+
             string strOffset = check_offset(pcontext, input, scanner);
+
             if(strOffset.has_char())
             {
+
                input = scanner;
-               if(check_end_expression(input, scanner))
+
+               if (check_end_expression(input, scanner))
+               {
+                
                   return string(start, scanner - start);
+
+               }
                else
                {
-                  __throw(::exception("invalid date expression"));
+
+                  throw ::exception(error_failed, "invalid date expression");
+
                }
+
             }
             else
             {
+
                input = scanner;
-               if(check_end_expression(input, scanner))
+
+               if (check_end_expression(input, scanner))
+               {
+
                   return string(start, scanner - start);
+
+               }
                else
                {
-                  __throw(::exception("invalid date expression"));
+                  
+                  throw ::exception(error_failed, "invalid date expression");
+
                }
+
             }
+
          }
+
       }
+
    }
+
 
    scanner::scanner()
    {
+
       m_ptoken          = NULL;
+
       input             = NULL;
+
    }
+
 
    scanner::~scanner()
    {
-   }
 
+   }
 
 
    ::e_status scanner::initialize_datetime_scanner(::text::context* ptextcontext)
@@ -634,22 +799,36 @@ namespace datetime
    }
 
 
-   void scanner::initialize(const ::string & psz)
+   void scanner::initialize_scanner(const ::string & strInput)
    {
-      input          = psz;
+
+      input          = strInput;
+
       next_input     = input;
+
    }
 
 
    void scanner::peek()
    {
+
       const char *beginning;
-      if(input != next_input && next_input != NULL)
+
+      if (input != next_input && next_input != NULL)
+      {
+
          return;
+
+      }
+
       beginning = input;
+
       m_ptoken = look_ahead();
+
       next_input = input;
+
       input = beginning;
+
    }
 
    void scanner::next()

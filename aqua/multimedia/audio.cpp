@@ -78,7 +78,7 @@ namespace aqua
    }
 
 
-   ::file_pointer audio::get_rtp_file(const ::payload & varFile)
+   ::file_pointer audio::get_rtp_file(const ::payload & payloadFile)
    {
 
       throw ::interface_only_exception();

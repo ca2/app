@@ -8,6 +8,7 @@ namespace user
    message::message()
    {
 
+      //m_union.m_p = nullptr;
       m_uiMessageFlags = 0;
       m_lresult = 0;
       m_bDestroyed = false;

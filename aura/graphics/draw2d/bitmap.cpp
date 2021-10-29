@@ -237,9 +237,11 @@ namespace draw2d
 
       throw interface_only_exception();
 
-      ::size_i32 sizeRet(0,0);
+//      ::size_i32 sizeRet(0,0);
 
-      return sizeRet;
+  //    return sizeRet;
+      
+      return nullptr;
 
    }
 

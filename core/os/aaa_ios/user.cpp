@@ -8,14 +8,14 @@
 #include <stdio.h>
 
 
-CLASS_DECL_CORE void main_branch(::matter* pobjectTask, enum_priority epriority)
-{
-
-   ns_main_sync(^()
-   {
-
-      pobjectTask->call();
-
-   });
-
-}
+//CLASS_DECL_CORE void main_branch(::matter* pelementTask, enum_priority epriority)
+//{
+//
+//   ns_main_sync(^()
+//   {
+//
+//      pelementTask->call();
+//
+//   });
+//
+//}

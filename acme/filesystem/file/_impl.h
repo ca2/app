@@ -568,18 +568,18 @@ inline stream & __save_object(stream & stream, BASE_TYPE * p)
 
    string strText;
 
-   auto type = p->type_name();
+   auto type = __type_name(p);
 
-   if (p->has(e_object_factory))
+   if (p->has(e_flag_factory))
    {
 
-      strText = stream.factory_id_to_text(::str::demangle(type));
+      strText = stream.factory_id_to_text(type);
 
    }
    else
    {
 
-      strText = "factoryless://" + ::str::demangle(type);
+      strText = "factoryless://" + type;
 
    }
 
@@ -593,10 +593,10 @@ inline stream & __save_object(stream & stream, BASE_TYPE * p)
 
 
 //template < typename BASE_TYPE >
-//void matter::save_to(const ::payload & varFile, BASE_TYPE * pobject)
+//void matter::save_to(const ::payload & payloadFile, BASE_TYPE * pobject)
 //{
 //
-//   auto writer = m_pcontext->m_papexcontext->file().get_writer(varFile, ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_truncate | ::file::e_open_defer_create_directory | ::file::e_open_share_exclusive);
+//   auto writer = m_pcontext->m_papexcontext->file().get_writer(payloadFile, ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_truncate | ::file::e_open_defer_create_directory | ::file::e_open_share_exclusive);
 //
 //   __save_object(writer, pobject);
 //

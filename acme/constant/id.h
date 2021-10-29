@@ -209,7 +209,7 @@ enum enum_id : u64
    id_font_list_total_size,
    id_font_list_redraw,
    //id_check_os_dark_mode,
-
+   id_set_dark_mode,
 
    id_application,
    id_session,

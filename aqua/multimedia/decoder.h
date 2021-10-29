@@ -26,7 +26,7 @@ namespace multimedia
       virtual ::e_status      multimedia_open(::file::file * pfile);
       virtual ::e_status      multimedia_close();
 
-      virtual ::e_status      impl_multimedia_open(::file::file * varFile);
+      virtual ::e_status      impl_multimedia_open(::file::file * payloadFile);
       virtual ::e_status      impl_multimedia_close();
 
 

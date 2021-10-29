@@ -46,7 +46,7 @@
 //      virtual HINSTANCE GetHinstance();
 //      bool _001OnDDECommand(const ::string & pcsz);
 //      virtual void _001EnableShellOpen();
-//      virtual ::user::document * _001OpenDocumentFile(::payload varFile);
+//      virtual ::user::document * _001OpenDocumentFile(::payload payloadFile);
 //      virtual void _001OnFileNew();
 //      
 //

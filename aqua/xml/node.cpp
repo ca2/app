@@ -1,6 +1,8 @@
 #include "framework.h"
 #include "aqua/xml.h"
 #include "aura/astr.h"
+#include "aqua/_defer.h"
+
 
 // https://www.codeproject.com/Articles/3426/XMLite-simple-XML-parser
 
@@ -298,7 +300,8 @@ namespace xml
             if(::str::begins_consume(pszXml, "<!ENTITY"))
             {
                ::str::consume_spaces(pszXml);
-               string entity_name = ::str::consume_nc_name(pszXml);
+               string entity_name;
+               entity_name = ::str::consume_nc_name(pszXml);
                ::str::consume_spaces(pszXml);
                string entity_value;
                string ext_entity_value;
@@ -487,7 +490,7 @@ namespace xml
                      if( pparseinfo->m_bEntityValue && pparseinfo->m_pentities )
                      {
 
-                        property = pparseinfo->m_pentities->ref_to_entity(property.string());
+                        property = pparseinfo->m_pentities->ref_to_entity(property.get_string());
 
                      }
 
@@ -666,7 +669,7 @@ namespace xml
                      if (pparseinfo->m_bEntityValue && pparseinfo->m_pentities)
                      {
 
-                        property = pparseinfo->m_pentities->ref_to_entity(property.string());
+                        property = pparseinfo->m_pentities->ref_to_entity(property.get_string());
 
                      }
                      if( quote == '"' || quote == '\'' )
@@ -1331,7 +1334,9 @@ namespace xml
             
             auto pxmlnode = pnode->get_xml_node();
             
-            string strXml = pxmlnode->get_xml(opt);
+            string strXml;
+            
+            strXml = pxmlnode->get_xml(opt);
              
             ostring += strXml;
 
@@ -1356,7 +1361,9 @@ namespace xml
 
          }
 
-         string strTrimmedValue = m_strValue;
+         string strTrimmedValue;
+         
+         strTrimmedValue = m_strValue;
 
          strTrimmedValue.trim();
          // Text Value
@@ -1659,7 +1666,7 @@ namespace xml
       string str;
       while(pnode != nullptr && pnode != this)
       {
-         str = pnode->attribute(pszAttr).string() + ::str::has_char(str, "/");
+         str = pnode->attribute(pszAttr).get_string() + ::str::has_char(str, "/");
          pnode = pnode->m_pnodeParent->get_xml_node();
       }
       if(pnode == nullptr)

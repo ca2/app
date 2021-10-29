@@ -325,22 +325,22 @@ namespace ios
 //         return true;
 //      }
 //
-//      string file_system::as_string(::payload varFile, ::aura::application *  papp)
+//      string file_system::as_string(::payload payloadFile, ::aura::application *  papp)
 //      {
 //         ::payload varQuery;
-//         return as_string(varFile, varQuery, papp);
+//         return as_string(payloadFile, varQuery, papp);
 //      }
 //
-//      string file_system::as_string(::payload varFile, ::payload & varQuery, ::aura::application *  papp)
+//      string file_system::as_string(::payload payloadFile, ::payload & varQuery, ::aura::application *  papp)
 //      {
 //         memory storage;
-//         if(varFile.cast < ::file::reader > () != nullptr)
+//         if(payloadFile.cast < ::file::reader > () != nullptr)
 //         {
-//            storage.transfer_from(*varFile.cast < ::file::reader >());
+//            storage.transfer_from(*payloadFile.cast < ::file::reader >());
 //         }
 //         else
 //         {
-//            string strFilePath(varFile);
+//            string strFilePath(payloadFile);
 //            if(papp->m_bZipIsDir && (::str::find_ci(".zip:", strFilePath) >= 0))
 //            {
 //               ::memory_file memfile(papp, &storage);
@@ -428,20 +428,20 @@ namespace ios
 //         return strResult;
 //      }
 //
-//      void file_system::as_memory(::payload varFile, memory_base & mem, ::aura::application *  papp)
+//      void file_system::as_memory(::payload payloadFile, memory_base & mem, ::aura::application *  papp)
 //      {
 //
 //         mem.set_size(0);
 //
-//         if(varFile.get_type() == ::e_type_string)
+//         if(payloadFile.get_type() == ::e_type_string)
 //         {
 //
-//            string strPath = varFile.get_string();
+//            string strPath = payloadFile.get_string();
 //
 //            if(strPath.is_empty())
 //            {
 //
-//               TRACE("::file::file_system::as_memory varFile is a empty file name!!");
+//               TRACE("::file::file_system::as_memory payloadFile is a empty file name!!");
 //
 //               return;
 //
@@ -467,7 +467,7 @@ namespace ios
 //         try
 //         {
 //
-//            spfile = App(papp).file().get_file(varFile, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_none);
+//            spfile = App(papp).file().get_file(payloadFile, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_none);
 //
 //            mem.transfer_from(*spfile);
 //
@@ -480,7 +480,7 @@ namespace ios
 //
 //      }
 //
-//      void file_system::lines(string_array & stra, ::payload varFile, ::aura::application *  papp)
+//      void file_system::lines(string_array & stra, ::payload payloadFile, ::aura::application *  papp)
 //      {
 //
 //         __UNREFERENCED_PARAMETER(pobject);
@@ -489,7 +489,7 @@ namespace ios
 //
 //         try
 //         {
-//            if(spfile->open(varFile, ::file::e_open_text | ::file::e_open_read).failed())
+//            if(spfile->open(payloadFile, ::file::e_open_text | ::file::e_open_read).failed())
 //            {
 //               return;
 //            }
@@ -506,12 +506,12 @@ namespace ios
 //
 //      }
 //
-//      bool file_system::put_contents(::payload varFile, const void * pvoidContents, count count, ::aura::application *  papp)
+//      bool file_system::put_contents(::payload payloadFile, const void * pvoidContents, count count, ::aura::application *  papp)
 //      {
 //
 //         file_pointer spfile;
 //
-//         spfile = App(papp).file().get_file(varFile, ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_share_deny_none | ::file::e_open_defer_create_directory);
+//         spfile = App(papp).file().get_file(payloadFile, ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_share_deny_none | ::file::e_open_defer_create_directory);
 //
 //         if(spfile.is_null())
 //            return false;
@@ -522,22 +522,22 @@ namespace ios
 //
 //      }
 //
-//      bool file_system::put_contents(::payload varFile, const ::string & lpcszContents, ::aura::application *  papp)
+//      bool file_system::put_contents(::payload payloadFile, const ::string & lpcszContents, ::aura::application *  papp)
 //      {
 //         if(lpcszContents == nullptr)
 //         {
-//            return put_contents(varFile, "", 0, papp);
+//            return put_contents(payloadFile, "", 0, papp);
 //         }
 //         else
 //         {
-//            return put_contents(varFile, lpcszContents, strlen(lpcszContents), papp);
+//            return put_contents(payloadFile, lpcszContents, strlen(lpcszContents), papp);
 //         }
 //      }
 //
-//      bool file_system::put_contents(::payload varFile, ::file::reader & reader, ::aura::application *  papp)
+//      bool file_system::put_contents(::payload payloadFile, ::file::reader & reader, ::aura::application *  papp)
 //      {
 //         file_pointer spfile;
-//         spfile = App(papp).file().get_file(varFile, ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_share_deny_none | ::file::e_open_defer_create_directory);
+//         spfile = App(papp).file().get_file(payloadFile, ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_share_deny_none | ::file::e_open_defer_create_directory);
 //         if(spfile.is_null())
 //            return false;
 //         memory mem;
@@ -550,15 +550,15 @@ namespace ios
 //         return true;
 //      }
 //
-//      bool file_system::put_contents(::payload varFile, memory & mem, ::aura::application *  papp)
+//      bool file_system::put_contents(::payload payloadFile, memory & mem, ::aura::application *  papp)
 //      {
-//         return put_contents(varFile, mem.get_data(), (count) mem.get_size(), papp);
+//         return put_contents(payloadFile, mem.get_data(), (count) mem.get_size(), papp);
 //      }
 //
-//      bool file_system::put_contents_utf8(::payload varFile, const ::string & lpcszContents, ::aura::application *  papp)
+//      bool file_system::put_contents_utf8(::payload payloadFile, const ::string & lpcszContents, ::aura::application *  papp)
 //      {
 //         file_pointer spfile;
-//         spfile = App(papp).file().get_file(varFile, ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_share_deny_none | ::file::e_open_defer_create_directory);
+//         spfile = App(papp).file().get_file(payloadFile, ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_share_deny_none | ::file::e_open_defer_create_directory);
 //         if(spfile.is_null())
 //            return false;
 //
@@ -1244,12 +1244,12 @@ namespace ios
 //         strFile = strFile.Left(iEnd) + ::str::has_char(pszExtension, ".");
 //      }
 
-      file_pointer file_system::get_file(::payload varFile,::u32 nOpenFlags,::extended::status * pfesp,::aura::application * papp)
+      file_pointer file_system::get_file(::payload payloadFile,::u32 nOpenFlags,::extended::status * pfesp,::aura::application * papp)
       {
 
          file_pointer spfile;
 
-         spfile = ::file::axis::system::get_file(varFile,nOpenFlags,pfesp,papp);
+         spfile = ::file::axis::system::get_file(payloadFile,nOpenFlags,pfesp,papp);
 
          if(spfile.is_set())
          {
@@ -1258,7 +1258,7 @@ namespace ios
 
          }
 
-         spfile = ::ios::file_system::get_file(varFile,nOpenFlags,pfesp,papp);
+         spfile = ::ios::file_system::get_file(payloadFile,nOpenFlags,pfesp,papp);
 
          if(spfile.is_set())
          {

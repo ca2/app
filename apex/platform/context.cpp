@@ -211,7 +211,7 @@ namespace apex
 
       }
 
-      estatus = __compose(m_pos);
+      estatus = __compose(m_poscontext);
 
       if (!estatus)
       {
@@ -780,13 +780,13 @@ namespace apex
 
 
 
-   file_pointer context::friendly_get_file(::payload varFile, const ::file::e_open & eopen)
+   file_pointer context::friendly_get_file(::payload payloadFile, const ::file::e_open & eopen)
    {
 
       try
       {
 
-         return file().get_file(varFile, eopen);
+         return file().get_file(payloadFile, eopen);
 
       }
       catch (::file::exception& e)
@@ -1128,10 +1128,10 @@ namespace apex
 
 
 
-   ::e_status context::_load_from_file(::matter* pobject, const ::payload& varFile, const ::payload& varOptions)
+   ::e_status context::_load_from_file(::matter* pobject, const ::payload& payloadFile, const ::payload& varOptions)
    {
 
-      binary_stream reader(m_pcontext->m_papexcontext->file().get_reader(varFile));
+      binary_stream reader(m_pcontext->m_papexcontext->file().get_reader(payloadFile));
 
       read(reader);
 
@@ -1140,10 +1140,10 @@ namespace apex
    }
 
 
-   ::e_status context::_save_to_file(const ::payload& varFile, const ::payload& varOptions, const ::matter * pobject)
+   ::e_status context::_save_to_file(const ::payload& payloadFile, const ::payload& varOptions, const ::matter * pobject)
    {
 
-      binary_stream writer(m_pcontext->m_papexcontext->file().get_writer(varFile));
+      binary_stream writer(m_pcontext->m_papexcontext->file().get_writer(payloadFile));
 
       write(writer);
 
@@ -1162,10 +1162,10 @@ namespace apex
 //   }
 
 
-   file_transport context::get_file(const ::payload& varFile, const ::file::e_open& eopen)
+   file_transport context::get_file(const ::payload& payloadFile, const ::file::e_open& eopen)
    {
 
-      auto pfile = m_papexcontext->file().get_file(varFile, eopen);
+      auto pfile = m_papexcontext->file().get_file(payloadFile, eopen);
 
       return pfile;
 

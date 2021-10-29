@@ -41,7 +41,7 @@ bool simple_pane_document::on_new_document()
 }
 
 
-bool simple_pane_document::on_open_document(const ::payload & varFile)
+bool simple_pane_document::on_open_document(const ::payload & payloadFile)
 {
 
    return true;

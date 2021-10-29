@@ -683,7 +683,7 @@ namespace html
 
       id idConcatFallback = (id)(id1.str() + id2.str());
 
-      TRACE("id not pre setup concat html %s", idConcatFallback.m_psz);
+      INFORMATION("id not pre setup concat html " << idConcatFallback.m_psz);
 
       return idConcatFallback;
 

@@ -784,13 +784,13 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_ety
          if (::get_task()->m_strDebug.has_char())
          {
 
-            m_pData = ALLOCATOR::alloc(nAllocSize, "thread://" + demangle(typeid(*::get_task()).name()) + ", " + ::get_task()->m_strDebug + ", " + string(__FILE__), __LINE__);
+            m_pData = ALLOCATOR::alloc(nAllocSize, "thread://" + typeid(*::get_task()).name()) + ", " + ::get_task()->m_strDebug + ", " + string(__FILE__), __LINE__;
 
          }
          else
          {
 
-            m_pData = ALLOCATOR::alloc(nAllocSize, "thread://" + demangle(typeid(*::get_task()).name()) + ", " + string(__FILE__), __LINE__);
+            m_pData = ALLOCATOR::alloc(nAllocSize, "thread://" + typeid(*::get_task()).name()) + ", " + string(__FILE__), __LINE__;
 
          }
 
@@ -909,13 +909,13 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_ety
          if (::get_task()->m_strDebug.has_char())
          {
 
-            pNewData = ALLOCATOR::alloc(nNewMax, "thread://" + demangle(typeid(*::get_task()).name()) + ", " + ::get_task()->m_strDebug + ", " + string(__FILE__), __LINE__);
+            pNewData = ALLOCATOR::alloc(nNewMax, "thread://" + typeid(*::get_task()).name()) + ", " + ::get_task()->m_strDebug + ", " + string(__FILE__), __LINE__;
 
          }
          else
          {
 
-            pNewData = ALLOCATOR::alloc(nNewMax, "thread://" + demangle(typeid(*::get_task()).name()) + ", " + string(__FILE__), __LINE__);
+            pNewData = ALLOCATOR::alloc(nNewMax, "thread://" + typeid(*::get_task()).name()) + ", " + string(__FILE__), __LINE__;
 
          }
 

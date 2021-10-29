@@ -48,6 +48,8 @@ public:
    
    bool operator !() const { return failed();}
 
+   bool ok() const { return ::succeeded(m_estatus); }
+
    bool succeeded() const { return ::succeeded(m_estatus); }
 
    bool failed() const { return ::failed(m_estatus); }

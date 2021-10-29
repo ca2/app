@@ -30,10 +30,10 @@ namespace user
    }
 
 
-   ::user::impact * tree_data::get_data_bound_view(index iView)
+   ::user::primitive * tree_data::get_data_bound_view(index iView)
    {
 
-      return m_usertreeaBound[iView].cast < ::user::impact >();
+      return m_usertreeaBound[iView].cast < ::user::primitive >();
 
    }
 

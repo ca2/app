@@ -457,12 +457,12 @@ void memory_file::dump(dump_context & dumpcontext) const
 }
 
 
-//void memory_file::full_load(::payload varFile)
+//void memory_file::full_load(::payload payloadFile)
 //{
 //
 //   ASSERT(is_valid());
 //
-//   auto pfile = m_pcontext->m_papexcontext->file().get_file(varFile, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_none);
+//   auto pfile = m_pcontext->m_papexcontext->file().get_file(payloadFile, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_none);
 //
 //   if (!pfile)
 //   {

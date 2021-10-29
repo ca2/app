@@ -396,8 +396,8 @@ list(APPEND library_source
    primitive/primitive/property_set.cpp
    primitive/primitive/property_set_composite.cpp
    primitive/primitive/property_set_papaya.cpp
-   primitive/primitive/referenceable.cpp
-   primitive/primitive/referenceable.h
+   primitive/primitive/element.cpp
+   primitive/primitive/element.h
    primitive/primitive/runnable.cpp
    primitive/primitive/shared_memory.cpp
    primitive/primitive/traits.cpp

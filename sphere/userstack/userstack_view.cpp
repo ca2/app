@@ -193,7 +193,7 @@ namespace userstack
    void impact::on_message_set_cursor(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       pmouse->m_ecursor = cursor_arrow;
 
@@ -272,7 +272,7 @@ namespace userstack
 
    void impact::on_message_left_button_up(::message::message * pmessage)
    {
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
       pmouse->m_lresult = 1;
       KillTimer(5432180);
       auto point = pmouse->m_point;

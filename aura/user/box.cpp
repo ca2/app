@@ -44,7 +44,7 @@ namespace user
       if (m_id.is_empty())
       {
 
-         m_id = type_name();
+         m_id = __type_name(this);
 
       }
 

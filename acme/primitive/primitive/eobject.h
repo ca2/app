@@ -2,10 +2,6 @@
 #pragma once
 
 
-inline bool __enum_is_ok(const ::enum_object& e) { return (e & e_object_success) != 0; }
-inline bool __enum_is_failed(const ::enum_object & e) { return (e & e_object_failure) != 0 || ( e & e_object_timeout) != 0 ; }
-
-
 class CLASS_DECL_ACME eobject
 {
 public:
@@ -70,12 +66,12 @@ public:
    enum_object& eflag() { return (enum_object&)m_eobject; }
    enum_object eflag() const { return (enum_object)m_eobject; }
 
-   bool operator !()
-   {
+   // bool operator !()
+   // {
 
-      return __enum_is_failed((enum_object)m_eobject);
+   //    return __enum_is_failed((enum_object)m_eobject);
 
-   }
+   // }
 
    operator enum_object& ()
    {
@@ -130,12 +126,6 @@ public:
 
     
 };
-
-
-inline bool __enum_is_ok(const ::eobject& e) { return __enum_is_ok(e.m_eobject); }
-inline bool __enum_is_failed(const ::eobject & e) { return __enum_is_failed(e.m_eobject); }
-
-
 
 
 

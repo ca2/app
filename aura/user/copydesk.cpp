@@ -288,17 +288,17 @@ namespace user
 
                   ::file::path path = straLines[iFind];
 
-                  ::payload varFile;
+                  ::payload payloadFile;
 
-                  varFile["url"] = path;
-                  varFile["raw_http"] = true;
-                  varFile["disable_common_name_cert_check"] = true;
+                  payloadFile["url"] = path;
+                  payloadFile["raw_http"] = true;
+                  payloadFile["disable_common_name_cert_check"] = true;
 
                   auto pcontext = m_pcontext->m_pauracontext;
 
                   auto pcontextimage = pcontext->context_image();
 
-                  auto pimage = pcontextimage->load_image(varFile, { .cache = false });
+                  auto pimage = pcontextimage->load_image(payloadFile, { .cache = false });
 
                   if (pimage)
                   {
@@ -307,7 +307,7 @@ namespace user
 
                      auto pcontext = get_context();
 
-                     pcontext->m_papexcontext->file().as_memory(varFile, mem);
+                     pcontext->m_papexcontext->file().as_memory(payloadFile, mem);
 
                      auto psystem = m_psystem;
 
@@ -420,15 +420,15 @@ namespace user
 
             {
 
-               ::payload varFile;
+               ::payload payloadFile;
 
-               varFile["url"] = str;
-               varFile["http_set"]["raw_http"] = true;
-               varFile["http_set"]["disable_common_name_cert_check"] = true;
+               payloadFile["url"] = str;
+               payloadFile["http_set"]["raw_http"] = true;
+               payloadFile["http_set"]["disable_common_name_cert_check"] = true;
 
                auto pcontext = get_context();
 
-               pcontext->m_papexcontext->file().as_memory(varFile, *pmemory);
+               pcontext->m_papexcontext->file().as_memory(payloadFile, *pmemory);
 
             }
 

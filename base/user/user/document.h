@@ -73,7 +73,7 @@ namespace user
       virtual string get_save_file_extension();
 
       const ::file::path & get_file_path() const;
-      virtual void set_path_name(::payload varFile, bool bAddToMRU = true);
+      virtual void set_path_name(::payload payloadFile, bool bAddToMRU = true);
 
       ::user::impact_system * get_document_template() const;
       virtual bool is_modified();
@@ -267,22 +267,22 @@ namespace user
 
       virtual bool new_document();
       virtual bool open_document(::create * pcreate);
-      virtual bool open_document(const ::payload & varFile);
+      virtual bool open_document(const ::payload & payloadFile);
       virtual bool save_document();
       virtual bool defer_save_document();
 
       // File helpers
       virtual bool on_new_document();
-      virtual bool on_open_document(const ::payload & varFile);
+      virtual bool on_open_document(const ::payload & payloadFile);
       virtual bool on_open_document(::file::file * pfile);
-      virtual bool on_save_document(const ::payload & varFile);
+      virtual bool on_save_document(const ::payload & payloadFile);
       virtual bool on_save_document(::file::file * pfile);
       virtual void on_close_document();
       virtual void pre_close_document();
       virtual void close_document();
-      virtual void report_load_exception(const ::payload & varFile, ::file_transport presult, const ::string & pszDefault);
-      virtual void report_save_exception(const ::payload & varFile, ::file_transport presult, const ::string & pszDefault);
-      virtual void report_save_load_exception(const ::payload & varFile, ::file_transport presult, bool bSave, const ::string & pszDefault);
+      virtual void report_load_exception(const ::payload & payloadFile, ::file_transport presult, const ::string & pszDefault);
+      virtual void report_save_exception(const ::payload & payloadFile, ::file_transport presult, const ::string & pszDefault);
+      virtual void report_save_load_exception(const ::payload & payloadFile, ::file_transport presult, bool bSave, const ::string & pszDefault);
 
 
       // advanced overridables, closing down frame/doc, etc.
@@ -294,9 +294,9 @@ namespace user
 
 
       // implementation helpers
-      virtual bool on_filemanager_open(::filemanager::document * pfilemanagerdocument, ::payload varFile);
-      virtual bool on_filemanager_save(::filemanager::document * pfilemanagerdocument, ::payload varFile, bool bReplace = true);
-      virtual bool do_save(::payload varFile, bool bReplace = true);
+      virtual bool on_filemanager_open(::filemanager::document * pfilemanagerdocument, ::payload payloadFile);
+      virtual bool on_filemanager_save(::filemanager::document * pfilemanagerdocument, ::payload payloadFile, bool bReplace = true);
+      virtual bool do_save(::payload payloadFile, bool bReplace = true);
       virtual bool do_file_save();
       virtual void update_frame_counts();
       virtual void disconnect_views();

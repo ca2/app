@@ -15,7 +15,7 @@ public:
 
 
 CLASS_DECL_ACME bool should_avoid_parsing_exception();
-CLASS_DECL_ACME void set_avoid_parsing_exception(bool bSet);
+//CLASS_DECL_ACME void set_avoid_parsing_exception(bool bSet);
 CLASS_DECL_ACME bool throw_parsing_exception(const ::string & strMessage);
 
 

@@ -24,10 +24,10 @@ namespace user
       void assert_valid() const override;
       void dump(dump_context & dumpcontext) const override;
 
-      void install_message_routing(::channel * pchannel);
+      void install_message_routing(::channel * pchannel) override;
 
 
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
+      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
 
    };

@@ -49,7 +49,7 @@ CLASS_DECL_ACME void preempt(const duration & duration)
 
          auto microsecond = duration.integral_microsecond();
 
-         if (microsecond >= 20_μs)
+         if (microsecond >= 20_µs)
          {
 
             preempt(microsecond);

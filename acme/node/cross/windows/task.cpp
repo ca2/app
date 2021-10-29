@@ -210,9 +210,9 @@ bool task::on_get_thread_name(string & strThreadName)
    else
    {
 
-      //::task_set_name(type_name());
+      //::task_set_name(__type_name(this));
 
-      strThreadName = type_name();
+      strThreadName = __type_name(this);
 
    }
 
@@ -241,13 +241,13 @@ void task::init_task()
 
    }
 
-   if (string(type_name()).contains("synth_thread"))
+   if (__type_name(this).contains("synth_thread"))
    {
 
       output_debug_string("synth_thread thread::thread_proc");
 
    }
-   else if (string(type_name()).ends_ci("out"))
+   else if (__type_name(this).ends_ci("out"))
    {
 
       output_debug_string("synth_thread thread::out");
@@ -346,7 +346,7 @@ void task::term_task()
 
          }
 
-         m_id = pmatter->type_name();
+         m_id = __type_name(pmatter);
 
          task_set_name(m_id);
 
@@ -372,7 +372,7 @@ void task::term_task()
 
    m_pmatter = pmatter;
 
-   m_id = pmatter->type_name();
+   m_id = __type_name(pmatter);
 
    return begin_task(epriority, nStackSize, uCreateFlags);
 
@@ -391,13 +391,13 @@ void task::term_task()
       if (m_pmatter)
       {
 
-         m_id = m_pmatter->type_name();
+         m_id = __type_name(m_pmatter);
 
       }
       else
       {
 
-         m_id = type_name();
+         m_id = __type_name(this);
 
       }
 

@@ -193,12 +193,12 @@ i32 process_get_scheduling_priority(i32 iOsPriority)
 }
 
 
-namespace process
-{
+//namespace operating_system
+//{
 
 
 
-   bool set_priority(::enum_priority epriority)
+   bool set_process_priority(::enum_priority epriority)
    {
 
       int iOsPriority = process_get_os_priority(epriority);
@@ -210,9 +210,9 @@ namespace process
    }
 
 
-
-} // namespace ca2
-
+//
+//} // namespace ca2
+//
 
 
 

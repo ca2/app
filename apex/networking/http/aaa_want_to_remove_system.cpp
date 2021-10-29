@@ -170,13 +170,13 @@ namespace http
 
          ppac->m_strUrl = pszUrl;
 
-         ::payload varFile;
+         ::payload payloadFile;
 
-         varFile["url"] = ppac->m_strUrl;
-         varFile["disable_ca2_sessid"] = true;
-         varFile["no_proxy_config"] = true;
+         payloadFile["url"] = ppac->m_strUrl;
+         payloadFile["disable_ca2_sessid"] = true;
+         payloadFile["no_proxy_config"] = true;
 
-         ppac->m_strAutoConfigScript = pcontext->m_papexcontext->file().as_string(varFile);
+         ppac->m_strAutoConfigScript = pcontext->m_papexcontext->file().as_string(payloadFile);
 
 
          m_mapPac.set_at(pszUrl, ppac);
@@ -2014,10 +2014,10 @@ retry_session:
    }
 
 
-   bool system::download(sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession,const char * pszRequest,::payload varFile,property_set & set)
+   bool system::download(sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession,const char * pszRequest,::payload payloadFile,property_set & set)
    {
 
-      file_pointer spfile = set.cast < ::application >("app",get_application())->get_session()->file().get_file(varFile,
+      file_pointer spfile = set.cast < ::application >("app",get_application())->get_session()->file().get_file(payloadFile,
                        ::file::e_open_binary | ::file::e_open_create | ::file::e_open_read_write | ::file::e_open_defer_create_directory);
 
       set["file"] = spfile;
@@ -2031,7 +2031,7 @@ retry_session:
    }
 
 
-   bool system::download(const char * pszUrl, ::payload varFile, property_set & set)
+   bool system::download(const char * pszUrl, ::payload payloadFile, property_set & set)
    {
 
       ::sockets::socket_handler handler(this);
@@ -2042,7 +2042,7 @@ retry_session:
 
       {
 
-         auto rfile = set.cast < ::application >("app", get_application())->get_session()->file().get_file(varFile,
+         auto rfile = set.cast < ::application >("app", get_application())->get_session()->file().get_file(payloadFile,
                           ::file::e_open_binary | ::file::e_open_create | ::file::e_open_read_write | ::file::e_open_defer_create_directory);
 
          if(!rfile)

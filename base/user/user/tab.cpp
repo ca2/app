@@ -1683,7 +1683,7 @@ namespace user
    void tab::on_message_left_button_down(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       pmouse->previous();
 
@@ -1784,7 +1784,7 @@ namespace user
    void tab::on_message_left_button_up(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       if(m_bMouseDown)
       {
@@ -1858,7 +1858,7 @@ namespace user
    void tab::on_message_mouse_move(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       if(m_bMouseDown)
       {

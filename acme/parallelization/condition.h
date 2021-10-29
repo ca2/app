@@ -36,7 +36,7 @@ public:
    //virtual bool lock(const class ::wait & wait);
 
    using synchronization_object::unlock;
-   virtual bool unlock();
+   virtual bool unlock() override;
 
    virtual void * get_os_data() const;
 

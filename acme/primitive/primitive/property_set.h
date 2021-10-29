@@ -246,9 +246,9 @@ public:
    }
 
 
-   void _008ParseCommandLine(const char * pszCmdLine, ::payload & varFile);
-   void _008ParseCommandFork(const char * pszCmdLine, ::payload & varFile, string & strApp);
-   void _008Parse(bool bApp, const char * pszCmdLine, ::payload & varFile, string & strApp);
+   void _008ParseCommandLine(const char * pszCmdLine, ::payload & payloadFile);
+   void _008ParseCommandFork(const char * pszCmdLine, ::payload & payloadFile, string & strApp);
+   void _008Parse(bool bApp, const char * pszCmdLine, ::payload & payloadFile, string & strApp);
    void _008Add(const char * pszKey, const char * pszValue);
 
 

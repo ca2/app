@@ -42,8 +42,8 @@ namespace http
 
       virtual bool request(const char * pszRequest, const char * pszUrl, property_set & set);
 
-      virtual bool download(::sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession,const char * pszUrl, ::payload varFile,property_set & set);
-      virtual bool download(const char * pszUrl, ::payload varFile, property_set & set);
+      virtual bool download(::sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession,const char * pszUrl, ::payload payloadFile,property_set & set);
+      virtual bool download(const char * pszUrl, ::payload payloadFile, property_set & set);
 
 
       virtual bool put(const char * pszUrl, memory & memory, property_set & set);

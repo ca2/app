@@ -464,8 +464,6 @@ public:
 };
 
 
-//#define __composite(TYPE) ::reference < TYPE >
-
 template<class T>
    class ___pointer;
 
@@ -477,7 +475,9 @@ template<class T>
 
 #include <type_traits>
 
+
 class matter;
+class element;
 
 
 
@@ -494,10 +494,17 @@ template < typename T >
 concept primitive_integral = std::is_integral < T >::value || std::is_enum < T >::value || std::same_as < T, ::e_status >;
 
 template < typename T >
-concept primitive_integer = (std::is_integral < T >::value || std::is_enum < T >::value) && std::is_signed < T >::value;
+concept primitive_integer = std::is_integral < T >::value;
 
 template < typename T >
-concept primitive_natural = (std::is_integral < T >::value || std::is_enum < T >::value ) && !std::is_signed < T >::value;
+concept primitive_natural = std::is_integral < T >::value && !std::is_signed < T >::value;
+
+template < typename T >
+concept primitive_signed = (std::is_integral < T >::value || std::is_enum < T >::value) && std::is_signed < T >::value;
+
+template < typename T >
+concept primitive_unsigned = (std::is_integral < T >::value || std::is_enum < T >::value) && !std::is_signed < T >::value;
+
 
 template < typename T >
 concept primitive_floating = std::is_floating_point < T >::value;
@@ -789,6 +796,7 @@ CLASS_DECL_ACME int throw_assert_exception(const char *pszFileName, int iLineNum
 
 
 #include "acme/parallelization/_types.h"
+#include "acme/constant/_enumeration.h"
 
 
 #define low_byte(w)              ((byte)((w) & 0xff))
@@ -1084,8 +1092,6 @@ CLASS_DECL_ACME ::enum_priority get_os_class_scheduling_priority(i32 iCa2Priorit
 
 #include "acme/node/operating_system/argcargv.h"
 
-
-class matter;
 
 
 CLASS_DECL_ACME void release_on_end(::matter *pmatter);
@@ -1586,6 +1592,14 @@ concept has_to_string = requires(T t)
 
 };
 
+template < typename T >
+concept has_get_string = requires(T t)
+{
+
+   { t.get_string() } -> std::same_as < ::string >;
+
+};
+
 
 class machine_event_central;
 
@@ -1658,13 +1672,11 @@ class synchronization_object;
 #include "acme/primitive/primitive/payload_type.h"
 
 
-#define IMPL_OPERATOR_PLUS(type) \
-template < typename TYPE > \
-type operator + (const TYPE & t) const { auto copy = *this; copy.add(t); return copy; }
-
 #include "acme/memory/_heap.h"
 
+
 //#include "acme/exception/_const.h"
+
 
 #include "acme/primitive/primitive/bits.h"
 
@@ -1699,29 +1711,6 @@ enum enum_command
 class composite_base;
 
 
-class matter;
-
-
-class matter;
-
-
-//namespace acme
-//{
-//
-//
-//   class printer;
-//
-//
-//
-//} // namespace acme
-
-
-//extern "C"
-//CLASS_DECL_ACME void register_acme_library(const char * psz, ::acme::library * plibrary);
-//
-//
-//extern "C"
-//CLASS_DECL_ACME void register_get_new_acme_library(const char* psz, PFN_NEW_ACME_LIBRARY pfnNewAuraLibrary);
 
 
 #define DECLARE_NEW_ACME_LIBRARY(X) extern "C" \
@@ -1992,7 +1981,7 @@ template < a_pointer POINTER >
 inline bool is_null(POINTER p)
 {
 
-   const auto maximum = (size_t) (-1) - 65536;
+   const auto maximum = ((size_t) (-1)) - 65536;
 
    return ((size_t) p <= 65536) || ((size_t) p) >= (maximum);
 
@@ -2050,13 +2039,7 @@ inline bool nok(const TYPE *p)
 class istring;
 
 
-class payload;
-
-
 class property_set;
-
-
-class matter;
 
 
 class payload_array;
@@ -2077,15 +2060,16 @@ namespace acme
 
 
 class timer;
+class timer_task;
 
 
 typedef bool FN_TIMER(timer *ptimer);
 
 typedef FN_TIMER *PFN_TIMER;
 
-#define NOK_IMAGE_OBJECT (NONE_ID)
-#define IMAGE_OBJECT_OK (SUCCESS)
-#define DEFAULT_CREATE_IMAGE_OBJECT_FLAG (IMAGE_OBJECT_OK)
+#define NOK_IMAGE (::e_flag_none)
+#define OK_IMAGE (::e_flag_success)
+#define DEFAULT_CREATE_IMAGE_FLAG (::e_flag_success)
 
 //#include "acme/constant/_constant.h"
 
@@ -2246,9 +2230,6 @@ class fixed_alloc_no_sync;
 class critical_section;
 
 
-class payload_array;
-
-
 class channel;
 
 
@@ -2374,7 +2355,12 @@ namespace audio
 
 #include "acme/platform/auto.h"
 #include "acme/primitive/comparison/compare.h"
+
+
 #include "acme/primitive/primitive/papaya.h"
+
+
+#include "acme/primitive/duration/_unit.h"
 
 
 template<class t>
@@ -2718,18 +2704,8 @@ class factory_map;
 
 typedef void(*PFN_factory_exchange)(::factory_map * pfactorymap);
 
-//#ifdef WINDOWS
-//CLASS_DECL_ACME HRESULT defer_co_initialize_ex(bool bMultiThread, bool bDisableOleDDE = false);
-//#endif
-
-
-class matter;
-
 
 using argument = payload;
-
-
-class payload_array;
 
 
 using arguments = payload_array;
@@ -2880,6 +2856,13 @@ concept an_object = !std::is_pointer < T >::value
 && !std::is_floating_point < T >::value;
 
 
+template<typename TYPE>
+inline bool is_null(const __pointer(TYPE)& p);
+
+
+template<typename TYPE>
+inline bool is_set(const __pointer(TYPE)& p);
+
 
 template < non_pointer NOT_A_POINTER >
 inline bool is_null(const NOT_A_POINTER & t)
@@ -2948,6 +2931,9 @@ concept matter_pointer_castable = pointer_castable < FROM, ::matter >;
 
 template < typename FROM >
 concept non_matter_pointer_castable = !pointer_castable < FROM, ::matter >;
+
+
+using element_pointer = __pointer(::element);
 
 
 using matter_pointer = __pointer(::matter);
@@ -3024,6 +3010,12 @@ using wparam = c_number<iptr>;
 #include "acme/primitive/mathematics/math_clip.h"
 
 
+#include "acme/primitive/duration/_unit_operator.h"
+
+
+#include "acme/primitive/duration/_string_format.h"
+
+
 #include "acme/primitive/duration/_.h"
 
 
@@ -3048,23 +3040,25 @@ template<typename T>
 void __destroy_and_release(__pointer(T) & p)
 {
 
-   if (::is_set(p))
+   if (::is_null(p))
    {
 
-      try
-      {
-
-         p->destroy();
-
-      }
-      catch (...)
-      {
-
-      }
-
-      p.release();
+      return;
 
    }
+
+   try
+   {
+
+      p->destroy();
+
+   }
+   catch (...)
+   {
+
+   }
+
+   p.release();
 
 }
 
@@ -3296,8 +3290,9 @@ class CLASS_DECL_ACME integral_byte { public: integral_byte(memsize memsize = 1)
 #include "acme/primitive/primitive/interlocked_count.h"
 
 
-#include "acme/primitive/primitive/referenceable.h"
 #include "acme/subject/handler.h"
+#include "acme/primitive/primitive/e_flag.h"
+#include "acme/primitive/primitive/element.h"
 #include "acme/primitive/primitive/tracer.h"
 #include "acme/primitive/primitive/matter.h"
 #include "acme/primitive/primitive/material_object.h"
@@ -3997,7 +3992,9 @@ CLASS_DECL_ACME string get_status_message(::e_status estatus);
 
 #include "acme/primitive/collection/file_path_map.h"
 
-#include "acme/primitive/primitive/edit.h"
+
+//#include "acme/primitive/primitive/edit.h"
+
 
 class mq_base;
 

@@ -635,7 +635,7 @@ namespace filemanager
 
          auto pcontext = get_context();
 
-         pcontext->m_papexcontext->os().file_extension_get_open_with_list_keys(stra, strExt);
+         pcontext->m_papexcontext->os_context()->file_extension_get_open_with_list_keys(stra, strExt);
 
          m_straOpenWith = stra;
 
@@ -762,7 +762,7 @@ namespace filemanager
 
          auto pcontext = get_context();
 
-         pcontext->m_papexcontext->os().file_open(pathUser);
+         pcontext->m_papexcontext->os_context()->file_open(pathUser);
 
          pcommand->m_bRet = true;
 

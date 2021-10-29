@@ -16,7 +16,7 @@ namespace fs
       ::payload                              m_varFile;
 
 
-      remote_native_file(::payload varFile);
+      remote_native_file(::payload payloadFile);
       virtual ~remote_native_file();
 
       using ::sockets::http_batch_buffer::read;

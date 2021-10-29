@@ -707,10 +707,10 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 
 
 //template < typename PRED >
-//::image_pointer get_image(::object * pobject, const ::payload & varFile, bool bAsync = false)
+//::image_pointer get_image(::object * pobject, const ::payload & payloadFile, bool bAsync = false)
 //{
 //
-//   ::file::path path = varFile.get_file_path();
+//   ::file::path path = payloadFile.get_file_path();
 //
 //   if (path.is_empty())
 //   {
@@ -732,7 +732,7 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 //
 //      synchronouslock.unlock();
 //
-//      psystem->m_pimaging->_load_image(pobject->get_context(), pimage, varFile, !bAsync, false);
+//      psystem->m_pimaging->_load_image(pobject->get_context(), pimage, payloadFile, !bAsync, false);
 //
 //   }
 //

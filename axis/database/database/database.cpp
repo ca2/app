@@ -478,7 +478,7 @@ namespace database
    }
 
 
-   string database::error1(const ::string & strPrefix)
+   string database::query_error(const ::string & strPrefix)
    {
 
       return strPrefix + " (error)";

@@ -30,19 +30,19 @@ void stream::on_catch_all_exception()
 }
 
 
-void stream::write_object(const ::id & id, ::matter * pobject)
+void stream::write_element(const ::id & id, ::element * pelement)
 {
 
-   auto strId = factory_id_to_text(pobject->type_name());
+   auto strId = factory_id_to_text(__type_name(pelement));
 
    exchange(e_property_id, strId);
 
-   pobject->exchange(*this);
+   pelement->exchange(*this);
 
 }
 
 
-__pointer(::matter) stream::read_object(const ::id & id)
+__pointer(::element) stream::read_element(const ::id & id)
 {
 
    string strId;

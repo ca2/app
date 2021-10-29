@@ -411,17 +411,17 @@ namespace http
    }
 
 
-   bool application::download(::sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession,const char * pszUrl,::payload varFile,property_set & set)
+   bool application::download(::sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession,const char * pszUrl,::payload payloadFile,property_set & set)
    {
 
-      return pcontext->m_papexcontext->http().download(handler, psession, pszUrl,varFile,process_set(set,pszUrl));
+      return pcontext->m_papexcontext->http().download(handler, psession, pszUrl,payloadFile,process_set(set,pszUrl));
 
    }
 
 
-   bool application::download(const char * pszUrl, ::payload varFile, property_set & set)
+   bool application::download(const char * pszUrl, ::payload payloadFile, property_set & set)
    {
-      return pcontext->m_papexcontext->http().download(pszUrl, varFile, process_set(set, pszUrl));
+      return pcontext->m_papexcontext->http().download(pszUrl, payloadFile, process_set(set, pszUrl));
    }
 
    bool application::put(const char * pszUrl, memory & memory, property_set & set)

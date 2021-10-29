@@ -47,7 +47,7 @@ int main(int argc, char * argv[], char * envp[])
       //
       //   return iErrorStatus;
 
-      auto estatus = psystem->init_system();
+      auto estatus = psystem->call_init_system();
 
       if (!estatus)
       {

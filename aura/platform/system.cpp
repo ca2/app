@@ -1096,7 +1096,7 @@ namespace aura
       if (!estatus)
       {
 
-         INFORMATION("draw2d_factory_exchange has failed.\n\nSome reasons:\n   - No draw2d library present;\n   - Failure to open any suitable draw2d library.", e_message_box_ok);
+         INFORMATION("draw2d_factory_exchange has failed.\n\nSome reasons:\n   - No draw2d library present;\n   - Failure to open any suitable draw2d library.");
 
          return estatus;
 
@@ -2293,7 +2293,7 @@ namespace aura
 
    //   //   try
    //   //   {
-   //   //      strMessage += pobject->type_name();
+   //   //      strMessage += __type_name(pobject);
 
    //   //   }
    //   //   catch (...)
@@ -2809,7 +2809,7 @@ namespace aura
 
    //   }
 
-   //   INFORMATION("%s", ("::aura::system::on_request session = " + string(psession->type_name()) + "("+__string((iptr) psession)+")\n\n").c_str());
+   //   INFORMATION("%s", ("::aura::system::on_request session = " + string(__type_name(psession)) + "("+__string((iptr) psession)+")\n\n").c_str());
 
    //   psession->do_request(pcreate);
 
@@ -3328,7 +3328,7 @@ namespace aura
    //}
 
 
-   //bool system::on_open_file(::payload varFile, string strExtra)
+   //bool system::on_open_file(::payload payloadFile, string strExtra)
    //{
 
    //   auto psession = get_session();
@@ -3353,7 +3353,7 @@ namespace aura
    //   if(papp != nullptr)
    //   {
 
-   //      if(varFile.is_empty())
+   //      if(payloadFile.is_empty())
    //      {
 
    //         papp->request({"app.exe : open_default " + strExtra});
@@ -3362,7 +3362,7 @@ namespace aura
    //      else
    //      {
 
-   //         papp->request({"app.exe \"" + varFile.get_file_path() + "\" " + ::str::has_char(strExtra, " : ")});
+   //         papp->request({"app.exe \"" + payloadFile.get_file_path() + "\" " + ::str::has_char(strExtra, " : ")});
 
    //      }
 
@@ -3834,10 +3834,10 @@ namespace aura
 
 
 
-   ::image_pointer system::get_cache_image(::object * pobject, const ::payload & varFile)
+   ::image_pointer system::get_cache_image(::object * pobject, const ::payload & payloadFile)
    {
 
-      ::file::path path = varFile.get_file_path();
+      ::file::path path = payloadFile.get_file_path();
 
       if (path.is_empty())
       {
@@ -3864,10 +3864,10 @@ namespace aura
    }
 
 
-   ::image_pointer system::get_image(::object * pobject, const ::payload & varFile, const ::image::load_options & loadoptions)
+   ::image_pointer system::get_image(::object * pobject, const ::payload & payloadFile, const ::image::load_options & loadoptions)
    {
 
-      auto pimage = get_cache_image(pobject, varFile);
+      auto pimage = get_cache_image(pobject, payloadFile);
 
       if (!::is_ok(pimage))
       {
@@ -3876,7 +3876,7 @@ namespace aura
 
          auto pcontextimage = pcontext->context_image();
 
-         pcontextimage->_load_image(pimage, varFile, loadoptions);
+         pcontextimage->_load_image(pimage, payloadFile, loadoptions);
 
       }
 
@@ -4725,6 +4725,8 @@ namespace aura
 
       if (!estatus)
       {
+
+         ERROR("gpu_opengl do_factory_exchange has failed");
 
          return estatus;
 
@@ -6468,7 +6470,7 @@ namespace aura
 
       }
 
-      /// ::aqua::system::handle(psubject);
+      ::aqua::system::handle(psubject, pcontext);
 
    }
 
@@ -6935,12 +6937,12 @@ namespace aura
    //}
 
 
-   __pointer(::extended::sequence < ::conversation >) system::message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
-   {
+   //__pointer(::extended::sequence < ::conversation >) system::message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
+   //{
 
-      return m_pnode->message_box(puserinteraction, strMessage, strTitle, emessagebox);
+   //   return m_pnode->message_box(puserinteraction, strMessage, strTitle, emessagebox);
 
-   }
+   //}
 
 
    __namespace_system_factory(system);

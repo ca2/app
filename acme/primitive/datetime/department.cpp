@@ -11,24 +11,24 @@ namespace datetime
 {
 
 
-   ::datetime::time department::from_local(const ::text::context* pcontext, const ::string & str)
+   ::datetime::time department::from_string(const ::text::context* pcontext, const ::string & str, const ::time_shift & timeshift)
    {
 
       int iPathCount;
 
-      return ::datetime::time(strtotime(pcontext, str, 0, iPathCount));
+      return ::datetime::time(strtotime(pcontext, str, 0, iPathCount, timeshift));
 
    }
 
 
-   ::datetime::time department::from_gmt(const ::text::context* pcontext, const string& str)
-   {
+   //::datetime::time department::from_utc(const ::text::context* pcontext, const string& str)
+   //{
 
-      int iPathCount;
+   //   int iPathCount;
 
-      return ::datetime::time(gmt_strtotime(pcontext, str, 0, iPathCount));
+   //   return ::datetime::time(utc_strtotime(pcontext, str, 0, iPathCount));
 
-   }
+   //}
 
 
    department::department()
@@ -172,23 +172,29 @@ namespace datetime
       return -1;
    }
 
+
    // 0 is Sunday
    i32 department::get_weekday(i32 year, i32 month, i32 day)
    {
+
       ::datetime::time time(year, month, day, 0, 0, 0);
-      return atoi(Format("%w", time));
+
+      return time.day_of_week();
+
    }
+
 
    i64 department::get_timestamp(i32 year, i32 month, i32 day)
    {
-      string strInternationalDate;
-      strInternationalDate.Format("%d-%02d-%02d", year, month, day);
-      i32 i;
-      return strtotime(nullptr, strInternationalDate, 0, i);
+      
+      ::datetime::time time(year, month, day, 0, 0, 0);
+
+      return time.m_i;
+
    }
 
-   
-   i64 department::strtotime(const ::text::context * pcontext, const char * psz, i32 iPath, i32 & iPathCount)
+
+   i64 department::strtotime(const ::text::context * pcontext, const char * psz, i32 iPath, i32 & iPathCount, const ::time_shift & timeshift)
    {
 
       if (::is_null(psz) || string(psz).trimmed().is_empty())
@@ -199,15 +205,28 @@ namespace datetime
       }
 
       ::datetime::time time;
-      ::datetime::result val = strtotime(pcontext, psz, iPath, iPathCount, false);
+
+      ::datetime::result val = parse_time(pcontext, psz, iPath, iPathCount, timeshift);
+
       if (val.m_bSpan)
+      {
+
          time = ::datetime::time::now() + val.GetSpan();
+
+      }
       else
+      {
+
          time = val.get_time();
+
+      }
+
       return time.get_time();
+
    }
 
-   i64 department::strtotime(const ::text::context * pcontext, const char * psz, time_t timeParam, i32 iPath, i32 & iPathCount)
+
+   i64 department::strtotime(const ::text::context * pcontext, const char * psz, time_t timeParam, i32 iPath, i32 & iPathCount, const ::time_shift& timeshift)
    {
 
       if (::is_null(psz) || string(psz).trimmed().is_empty())
@@ -218,31 +237,48 @@ namespace datetime
       }
 
       __UNREFERENCED_PARAMETER(iPath);
+
       ::datetime::time time(timeParam);
+
       iPathCount = 1;
-      ::datetime::result val = ::datetime::result(time) +
-                              span_strtotime( pcontext, psz);
+
+      ::datetime::result val = ::datetime::result(time) + span_parse_time(pcontext, psz);
+
       return val.get_time().get_time();
+
    }
 
-   i64 department::gmt_strtotime(const ::text::context * pcontext, const char * psz, i32 iPath, i32 & iPathCount)
-   {
 
-      if (::is_null(psz) || string(psz).trimmed().is_empty())
-      {
+   //i64 department::utc_strtotime(const ::text::context * pcontext, const char * psz, i32 iPath, i32 & iPathCount)
+   //{
 
-         return 0;
+   //   if (::is_null(psz) || string(psz).trimmed().is_empty())
+   //   {
 
-      }
+   //      return 0;
 
-      ::datetime::time time;
-      ::datetime::result val = strtotime(pcontext, psz, iPath, iPathCount, true);
-      if (val.m_bSpan)
-         time = ::datetime::time::now() + val.GetSpan();
-      else
-         time = val.get_time();
-      return time.get_time();
-   }
+   //   }
+
+   //   ::datetime::time time;
+
+   //   ::datetime::result val = strtotime(pcontext, psz, iPath, iPathCount, true);
+
+   //   if (val.m_bSpan)
+   //   {
+
+   //      time = ::datetime::time::now() + val.GetSpan();
+
+   //   }
+   //   else
+   //   {
+
+   //      time = val.get_time();
+
+   //   }
+
+   //   return time.get_time();
+
+   //}
 
 
    department::international::international()
@@ -320,56 +356,74 @@ namespace datetime
    }
 
 
-   string department::international::get_gmt_date_time(const ::datetime::time & time, string strFormat)
+   string department::international::get_date_time(const ::datetime::time & time, string strFormat, const ::time_shift& timeshift)
    {
+      
       string str;
-      str = FormatGmt(strFormat, time);
+      
+      str = datetime::format(strFormat, time, timeshift);
+      
       return str;
+
    }
 
-   string department::international::get_gmt_date_time(string strFormat)
+
+   //string department::international::utc_get_date_time(string strFormat)
+   //{
+
+   //   ::datetime::time time;
+
+   //   time = ::datetime::time::now();
+
+   //   return utc_get_date_time(time, strFormat);
+
+   //}
+
+
+   string department::international::get_date_time_for_file(const ::time_shift& timeshift)
    {
+
+      return get_date_time(INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE, timeshift);
+
+   }
+
+
+   //string department::international::get_date_time(const ::datetime::time & time, string strFormat, const ::time_shift& timeshift)
+   //{
+   //   
+   //   string str;
+   //   
+   //   str = ::datetime::local_format(strFormat, time);
+
+   //   return str;
+
+   //}
+
+
+   string department::international::get_date_time(string strFormat, const ::time_shift& timeshift)
+   {
+
       ::datetime::time time;
+
       time = ::datetime::time::now();
-      return get_gmt_date_time(time, strFormat);
-   }
 
-
-   string department::international::get_gmt_date_time_for_file()
-   {
-
-      return get_gmt_date_time(INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE);
+      return get_date_time(time, strFormat, timeshift);
 
    }
 
 
-   string department::international::get_local_date_time(const ::datetime::time & time, string strFormat)
-   {
-      string str;
-      str = Format(strFormat, time);
-      return str;
-   }
+   //string department::international::get_date_time_for_file(const ::time_shift& timeshift)
+   //{
 
-   string department::international::get_local_date_time(string strFormat)
-   {
-      ::datetime::time time;
-      time = ::datetime::time::now();
-      return get_local_date_time(time, strFormat);
-   }
+   //   return get_date_time(INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE, timeshift);
+
+   //}
 
 
-   string department::international::get_local_date_time_for_file()
+   string department::international::get_date_time_for_file_with_no_spaces(const ::time_shift& timeshift)
    {
 
-      return get_local_date_time(INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE);
-
-   }
-
-
-   string department::international::get_gmt_date_time_for_file_with_no_spaces()
-   {
-
-      string str = get_gmt_date_time_for_file();
+      string str = get_date_time_for_file(timeshift);
 
       str.replace(" ", "_");
 
@@ -378,16 +432,16 @@ namespace datetime
    }
 
 
-   string department::international::get_local_date_time_for_file_with_no_spaces()
-   {
+   //string department::international::get_date_time_for_file_with_no_spaces(const ::time_shift& timeshift)
+   //{
 
-      string str = get_local_date_time_for_file();
+   //   string str = get_date_time_for_file(timeshift);
 
-      str.replace(" ", "_");
+   //   str.replace(" ", "_");
 
-      return str;
+   //   return str;
 
-   }
+   //}
 
 
    department::str::str()
@@ -398,38 +452,21 @@ namespace datetime
    }
 
 
-   string department::str::get_gmt_date_time()
+   string department::str::get_date_time(const ::time_shift& timeshift)
    {
-      return m_pdatetime->international().get_gmt_date_time(::datetime::time::now());
+
+      return m_pdatetime->international().get_date_time(::datetime::time::now(), timeshift);
+
    }
 
 
-   time_t department::s_local_mktime(i32 iHour, i32 iMinute, i32 iSecond, i32 iMonth, i32 iDay, i32 iYear)
+   time_t department::s_mktime(i32 iHour, i32 iMinute, i32 iSecond, i32 iMonth, i32 iDay, i32 iYear, const ::time_shift& timeshift)
    {
 
       struct ::tm tm;
 
       __zero(tm);
-      tm.tm_hour = iHour;
-      tm.tm_min = iMinute;
-      tm.tm_sec = iSecond;
-      tm.tm_mon = iMonth - 1;
-      tm.tm_mday = iDay;
-      tm.tm_year = iYear - 1900;
-#ifdef WINDOWS
-      return _mktime64(&tm);
-#else
-      return ::mktime(&tm);
-#endif
-   }
 
-
-   time_t department::s_gmt_mktime(i32 iHour, i32 iMinute, i32 iSecond, i32 iMonth, i32 iDay, i32 iYear)
-   {
-
-      struct ::tm tm;
-
-      __zero(tm);
       tm.tm_hour = iHour;
       tm.tm_min = iMinute;
       tm.tm_sec = iSecond;
@@ -437,18 +474,40 @@ namespace datetime
       tm.tm_mday = iDay;
       tm.tm_year = iYear - 1900;
 
-#ifdef WINDOWS
+      auto time = make_utc_time(&tm);
 
-      return _mkgmtime64(&tm);
+      return (time_t) (time - (time_t) timeshift.m_d);
 
-#else
-
-      return ::timegm(&tm);
-
-#endif
+//#ifdef WINDOWS
+//
+//      return _mktime64(&tm);
+//
+//#else
+//
+//      return ::mktime(&tm);
+//
+//#endif
 
    }
 
+
+   //time_t department::s_utc_mktime(i32 iHour, i32 iMinute, i32 iSecond, i32 iMonth, i32 iDay, i32 iYear)
+   //{
+
+   //   struct ::tm tm;
+
+   //   __zero(tm);
+   //   
+   //   tm.tm_hour = iHour;
+   //   tm.tm_min = iMinute;
+   //   tm.tm_sec = iSecond;
+   //   tm.tm_mon = iMonth - 1;
+   //   tm.tm_mday = iDay;
+   //   tm.tm_year = iYear - 1900;
+
+//      return make_utc_time(&tm);
+
+   //}
 
 
    string department::get_week_day_str(const ::text::context * pcontext, i32 iWeekDay) // 1 - domingo
@@ -491,23 +550,12 @@ namespace datetime
    }
 
 
-   ::datetime::time department::from_gmt_date_time(i32 iYear, i32 iMonth, i32 iDay, i32 iHour, i32 iMinute, i32 iSecond)
-   {
+   //::datetime::time department::from_date_time(i32 iYear, i32 iMonth, i32 iDay, i32 iHour, i32 iMinute, i32 iSecond)
+   //{
 
-      ::datetime::time timeLocalNow = ::datetime::time::now();
+   //   return s_utc_mktime(iYear, iMonth, iDay, iHour, iMinute, iSecond);
 
-      struct ::tm tmLocalNow;
-
-      timeLocalNow.GetGmtTm(&tmLocalNow);
-
-      ::datetime::time timeUTCNow(tmLocalNow.tm_year + 1900, tmLocalNow.tm_mon + 1, tmLocalNow.tm_mday, tmLocalNow.tm_hour, tmLocalNow.tm_min, tmLocalNow.tm_sec);
-
-      ::datetime::time timeUTC(tmLocalNow.tm_year + 1900, tmLocalNow.tm_mon + 1, tmLocalNow.tm_mday, tmLocalNow.tm_hour, tmLocalNow.tm_min, tmLocalNow.tm_sec);
-
-      return timeUTC + (timeUTCNow - timeLocalNow);
-
-   }
-
+   //}
 
 
    /*
@@ -701,32 +749,77 @@ namespace datetime
    }
 
 
-   string department::strftime(const char * psz, time_t timeParam)
+   string department::strftime(const char * psz, const ::datetime::time & time, const time_shift & timeshift)
    {
+
       string strFormat(psz);
+
       string str;
-      ::datetime::time time(timeParam);
+
       strsize iFind = strFormat.find("%V");
+
       if (iFind >= 0)
       {
+
          string strV;
-         strV.Format("%02d", ISO_WN(time.GetYear(), time.GetMonth(), time.GetDay()));
+
+         strV.Format("%02d", ISO_WN(time.year(timeshift), time.month(timeshift), time.day(timeshift)));
+
          strFormat.replace("%V", strV);
+
       }
-      str = FormatGmt(strFormat, time);
+
+      str = ::datetime::format(strFormat, time, timeshift);
+
       return str;
+
    }
 
-   string department::strftime(const char * psz)
+
+   string department::strftime(const char * psz, const ::time_shift& timeshift)
    {
-      string str;
-      ::datetime::time time;
-      time = ::datetime::time::now();
-      str = FormatGmt(psz, time);
-      return str;
+
+      return strftime(psz, ::datetime::time::now(), timeshift);
+
    }
 
-   string department::friend_time(const ::text::context * pcontext, ::datetime::time timeNow, ::datetime::time time)
+
+   //string department::strftime(const char* psz, const ::datetime::time & time, const ::time_shift& timeshift)
+   //{
+
+   //   string strFormat(psz);
+
+   //   string str;
+
+   //   strsize iFind = strFormat.find("%V");
+
+   //   if (iFind >= 0)
+   //   {
+
+   //      string strV;
+   //      
+   //      strV.Format("%02d", ISO_WN(time.utc_year(), time.utc_month(), time.utc_day()));
+
+   //      strFormat.replace("%V", strV);
+
+   //   }
+
+   //   str = ::datetime::utc_format(strFormat, time);
+
+   //   return str;
+
+   //}
+
+
+   //string department::utc_strftime(const char* psz)
+   //{
+   //   
+   //   return utc_strftime(psz, ::datetime::time::now());
+   //   
+   //}
+
+
+   string department::friend_time(const ::text::context * pcontext, ::datetime::time timeNow, ::datetime::time time, const ::time_shift& timeshift)
    {
       bool bDiff = false;
       bool bSolved = false;
@@ -778,15 +871,15 @@ namespace datetime
       }
       else
       {
-         if (!bSolved && timeNow.GetGmtYear() != time.GetGmtYear())
+         if (!bSolved && timeNow.year(timeshift) != time.year(timeshift))
          {
             bDiff = true;
-            str.Format("%04d", time.GetGmtYear());
+            str.Format("%04d", time.year(timeshift));
             strTime = str;
          }
-         if (!bSolved && (bDiff || timeNow.GetGmtMonth() != time.GetGmtMonth()))
+         if (!bSolved && (bDiff || timeNow.month(timeshift) != time.month(timeshift)))
          {
-            str = get_month_str(pcontext, time.GetGmtMonth());
+            str = get_month_str(pcontext, time.month(timeshift));
             if (bDiff)
             {
                strTime += "-";
@@ -797,9 +890,9 @@ namespace datetime
             }
             strTime += str;
          }
-         if (!bSolved && (bDiff || timeNow.GetGmtDay() != time.GetGmtDay()))
+         if (!bSolved && (bDiff || timeNow.day(timeshift) != time.day(timeshift)))
          {
-            str.Format("%02d", time.GetGmtDay());
+            str.Format("%02d", time.day());
             if (bDiff)
             {
                strTime += "-";
@@ -810,9 +903,9 @@ namespace datetime
             }
             strTime += str;
          }
-         if (!bSolved && (bDiff || timeNow.GetGmtHour() != time.GetGmtHour()))
+         if (!bSolved && (bDiff || timeNow.hour(timeshift) != time.hour(timeshift)))
          {
-            str.Format("%02d", time.GetGmtHour());
+            str.Format("%02d", time.hour(timeshift));
             if (bDiff)
             {
                strTime += " ";
@@ -823,11 +916,11 @@ namespace datetime
             }
             strTime += str;
          }
-         if (!bSolved && (bDiff || timeNow.GetGmtMinute() != time.GetGmtMinute()))
+         if (!bSolved && (bDiff || timeNow.minute(timeshift) != time.minute(timeshift)))
          {
             if (bDiff)
             {
-               str.Format("%02d", time.GetGmtMinute());
+               str.Format("%02d", time.minute(timeshift));
                strTime += ":";
                strTime += str;
             }
@@ -841,14 +934,18 @@ namespace datetime
          {
             if (bDiff)
             {
-               str.Format("%02d", time.GetGmtSecond());
+               str.Format("%02d", time.second(timeshift));
                strTime += ":" + str;
             }
             else
             {
+
             }
+
          }
+
       }
+
       return strTime;
 
    }
@@ -861,7 +958,7 @@ namespace datetime
 
 
 
-   string department::_001FriendTime(const ::text::context* pcontext, const ::datetime::time& timeNow, const ::datetime::time& time)
+   string department::_001FriendTime(const ::text::context* pcontext, const ::datetime::time& timeNow, const ::datetime::time& time, const ::time_shift& timeshift)
    {
 
       bool bDiff = false;
@@ -922,15 +1019,15 @@ namespace datetime
       }
       else
       {
-         if (!bSolved && timeNow.GetGmtYear() != time.GetGmtYear())
+         if (!bSolved && timeNow.year(timeshift) != time.year(timeshift))
          {
             bDiff = true;
-            str.Format("%04d", time.GetGmtYear());
+            str.Format("%04d", time.year(timeshift));
             strTime = str;
          }
-         if (!bSolved && (bDiff || timeNow.GetGmtMonth() != time.GetGmtMonth()))
+         if (!bSolved && (bDiff || timeNow.month(timeshift) != time.month(timeshift)))
          {
-            str = get_month_str(pcontext, time.GetGmtMonth());
+            str = get_month_str(pcontext, time.month(timeshift));
             if (bDiff)
             {
                strTime += "-";
@@ -961,7 +1058,7 @@ namespace datetime
                straWeekDay.add("Sat");
 
                //str = Sys(pscript->get_application()).datetime().get_tiny_week_day_str(pscript->textcontext(), time.GetGmtDayOfWeek());
-               str = straWeekDay[time.GetGmtDayOfWeek() % 7];
+               str = straWeekDay[time.day_of_week(timeshift) % 7];
 
             }
             else
@@ -979,9 +1076,9 @@ namespace datetime
             }
             strTime += str;
          }
-         if (!bSolved && (bDiff || timeNow.GetGmtHour() != time.GetGmtHour()))
+         if (!bSolved && (bDiff || timeNow.hour(timeshift) != time.hour(timeshift)))
          {
-            str.Format("%02d", time.GetGmtHour());
+            str.Format("%02d", time.hour(timeshift));
             if (bDiff)
             {
                strTime += "&nbsp;";
@@ -992,41 +1089,55 @@ namespace datetime
             }
             strTime += str;
          }
-         if (!bSolved && (bDiff || timeNow.GetGmtMinute() != time.GetGmtMinute()))
+         if (!bSolved && (bDiff || timeNow.minute(timeshift) != time.minute(timeshift)))
          {
             if (bDiff)
             {
-               str.Format("%02d", time.GetGmtMinute());
+               
+               str.Format("%02d", time.minute(timeshift));
+               
                strTime += ":";
+
                strTime += str;
+
             }
             else
             {
+               
                bSolved = true;
+               
                bDiff = true;
+
             }
+
          }
+
          if (!bDiff || !bSolved)
          {
+
             if (bDiff)
             {
-               str.Format("%02d", time.GetGmtSecond());
+               
+               str.Format("%02d", time.second(timeshift));
+
                strTime += ":" + str;
+
             }
             else
             {
+
             }
+
          }
+
       }
+
       return strTime;
+
    }
 
 
-
 } // namespace datetime
-
-
-
 
 
 //
@@ -1088,7 +1199,7 @@ namespace datetime
 {
 
 
-   result department::span_strtotime(const ::text::context* pcontext, const char* pszSpanExpression)
+   result department::span_parse_time(const ::text::context* pcontext, const char* pszSpanExpression, const ::time_shift & timeshift)
    {
 
       static id idCalendarDay("calendar:day");
@@ -1302,7 +1413,7 @@ namespace datetime
    }
 
 
-   result department::strtotime(const ::text::context* pcontext, const char* psz, i32& iPath, i32& iPathCount, bool bUTC)
+   result department::parse_time(const ::text::context* pcontext, const char* psz, i32& iPath, i32& iPathCount, const ::time_shift& timeshift)
    {
       ::datetime::time time;
       string str(psz);
@@ -1317,11 +1428,13 @@ namespace datetime
       // if is international date time 2009-04-31 21:45
       if (str.get_length() >= 16)
       {
+
          if (((str.Mid(4, 1) == "-") || (str.Mid(4, 1) == ":"))
             && ((str.Mid(7, 1) == "-") || (str.Mid(7, 1) == ":"))
             && str.Mid(10, 1) == " "
             && str.Mid(13, 1) == ":")
          {
+
             bBaseTime = true;
             
             auto psystem = m_psystem;
@@ -1334,10 +1447,11 @@ namespace datetime
             strWord.trim_left();
             strWord = ::str::get_word(strWord, " ");
             if (strWord.compare_ci("UTC") == 0
-               || strWord.compare_ci("GMT") == 0
-               || bUTC)
+               || strWord.compare_ci("GMT") == 0)
             {
+
                struct tm atm;
+
                atm.tm_sec = set["second"].i32();
                atm.tm_min = set["minute"].i32();
                atm.tm_hour = set["hour"].i32();
@@ -1348,14 +1462,12 @@ namespace datetime
                /*time_t now = _time64(nullptr);
                time_t nowUtc = mktime(gmtime(&now));
                time_t tDiff = difftime(nowUtc, now);*/
-#ifdef WINDOWS
-               time = ::datetime::time(_mkgmtime64(&atm));
-#else
-               time = ::datetime::time(timegm(&atm));
-#endif
+               time = ::datetime::time(make_utc_time(&atm));
+
             }
             else
             {
+
                time = ::datetime::time(
                   set["year"].i32(),
                   set["month"].i32(),
@@ -1363,8 +1475,11 @@ namespace datetime
                   set["hour"].i32(),
                   set["minute"].i32(),
                   set["second"].i32());
+
             }
+
             iStart = 20;
+
          }
       }
       // if is international date time 2009-04-31
@@ -1415,7 +1530,7 @@ namespace datetime
          (pcontext != nullptr && pcontext->begins_eat(str, "calendar:today"))))
       {
          time = ::datetime::time::now();
-         time = ::datetime::time(time.GetYear(), time.GetMonth(), time.GetDay(), 0, 0, 0);
+         time = ::datetime::time(time.year(timeshift), time.month(timeshift), time.day(timeshift), 0, 0, 0);
          bBaseTime = true;
       }
       if (!bBaseTime && (
@@ -1423,7 +1538,7 @@ namespace datetime
          (pcontext != nullptr && pcontext->begins_eat(str, "calendar:tomorrow"))))
       {
          time = ::datetime::time::now();
-         time = ::datetime::time(time.GetYear(), time.GetMonth(), time.GetDay(), 0, 0, 0);
+         time = ::datetime::time(time.year(timeshift), time.month(timeshift), time.day(timeshift), 0, 0, 0);
          time += ::datetime::time_span(1, 0, 0, 0);
          bBaseTime = true;
       }
@@ -1432,7 +1547,7 @@ namespace datetime
          (pcontext != nullptr && pcontext->begins_eat(str, "calendar:yesterday"))))
       {
          time = ::datetime::time::now();
-         time = ::datetime::time(time.GetYear(), time.GetMonth(), time.GetDay(), 0, 0, 0);
+         time = ::datetime::time(time.year(timeshift), time.month(timeshift), time.day(timeshift), 0, 0, 0);
          time -= ::datetime::time_span(1, 0, 0, 0);
          bBaseTime = true;
       }
@@ -1467,14 +1582,14 @@ namespace datetime
          if (i1 != i2
             && i1 >= 1 && i1 <= 12
             && i2 >= 1 && i2 <=
-            pdatetime->get_month_day_count(time.GetYear(), i1))
+            pdatetime->get_month_day_count(time.year(timeshift), i1))
          {
             bFirst = true;
             iCount++;
          }
          if (i2 >= 1 && i2 <= 12
             && i1 >= 1 && i1 <=
-            pdatetime->get_month_day_count(time.GetYear(), i2))
+            pdatetime->get_month_day_count(time.year(timeshift), i2))
          {
             iCount++;
          }
@@ -1484,17 +1599,17 @@ namespace datetime
             {
                i32 iDay = i2;
                i32 iMonth = i1;
-               time = ::datetime::time(time.GetYear(), iMonth, iDay,
-                  time.GetHour(), time.GetMinute(), time.GetSecond());
-               time = ::datetime::time(time.GetYear(), time.GetMonth(), time.GetDay(), 0, 0, 0);
+               time = ::datetime::time(time.year(timeshift), iMonth, iDay,
+                  time.hour(timeshift), time.minute(timeshift), time.second(timeshift));
+               time = ::datetime::time(time.year(timeshift), time.month(timeshift), time.day(timeshift), 0, 0, 0);
             }
             else if ((iCount == 1 && !bFirst) || (iCount == 2 && (iPath % iCount) == 1))
             {
                i32 iDay = i1;
                i32 iMonth = i2;
-               time = ::datetime::time(time.GetYear(), iMonth, iDay,
-                  time.GetHour(), time.GetMinute(), time.GetSecond());
-               time = ::datetime::time(time.GetYear(), time.GetMonth(), time.GetDay(), 0, 0, 0);
+               time = ::datetime::time(time.year(timeshift), iMonth, iDay,
+                  time.hour(timeshift), time.minute(timeshift), time.second(timeshift));
+               time = ::datetime::time(time.year(timeshift), time.month(timeshift), time.day(timeshift), 0, 0, 0);
             }
             iPath = iPath / iCount;
             iPathCount = iPathCount * iCount;
@@ -1510,20 +1625,20 @@ namespace datetime
 
          }
 
-         return result(time) + span_strtotime(pcontext, str.Mid(iStart));
+         return result(time) + span_parse_time(pcontext, str.Mid(iStart));
 
       }
       else
       {
 
-         return span_strtotime(pcontext, str.Mid(iStart));
+         return span_parse_time(pcontext, str.Mid(iStart));
 
       }
 
    }
 
 
-   string department::to_string(const ::text::context* pcontext, const ::datetime::result& result)
+   string department::to_string(const ::text::context* pcontext, const ::datetime::result& result, const time_shift& timeshift)
    {
 
       string str;
@@ -1616,37 +1731,37 @@ namespace datetime
       else
       {
          ::datetime::time time = result.get_time();
-         if (time.GetSecond() == 0)
+         if (time.second(timeshift) == 0)
          {
-            if (time.GetHour() == 0 && time.GetMinute() == 0)
+            if (time.hour(timeshift) == 0 && time.minute(timeshift) == 0)
             {
 
-               str = Format("%Y-", time);
+               str = ::datetime::format("%Y-", time, timeshift);
 
-               get_month_str(pcontext, time.GetMonth());
+               get_month_str(pcontext, time.month(timeshift));
 
-               str += Format("-%d", time);
+               str += ::datetime::format("-%d", time, timeshift);
 
             }
             else
             {
 
-               str = Format("%Y-", time);
+               str = ::datetime::format("%Y-", time, timeshift);
 
-               str += get_month_str(pcontext, time.GetMonth());
+               str += get_month_str(pcontext, time.month(timeshift));
 
-               str += Format("-%d %H:%M", time);
+               str += ::datetime::format("-%d %H:%M", time, timeshift);
 
             }
          }
          else
          {
 
-            str = Format("%Y-", time);
+            str = ::datetime::format("%Y-", time, timeshift);
 
-            str += get_month_str(pcontext, time.GetMonth());
+            str += get_month_str(pcontext, time.month(timeshift));
 
-            str += Format("-%d %H:%M:%S", time);
+            str += ::datetime::format("-%d %H:%M:%S", time, timeshift);
 
          }
 

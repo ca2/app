@@ -24,7 +24,7 @@ namespace windowing
       __pointer(::user::interaction_impl)       m_pimpl;
       string                                    m_strDebug;
       __pointer(::message_queue)                m_pmessagequeue;
-      ::duration                                    m_durationLastMouseMove;
+      ::duration                                m_durationLastMouseMove;
       __pointer(::windowing::window)            m_pwindowParent;
       ::point_i32                               m_point;
       ::size_i32                                m_size;
@@ -144,7 +144,7 @@ namespace windowing
 
 
 
-      void message_handler(::message::message* pusermessage);
+      void message_handler(::message::message* pusermessage) override;
 
 
       void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
@@ -290,7 +290,7 @@ namespace windowing
       virtual ::e_status window_send(const ::routine & routine);
       virtual ::e_status window_post(const ::routine & routine);
 
-      virtual bool is_branch_current() const;
+      bool is_branch_current() const override;
 
 
    };

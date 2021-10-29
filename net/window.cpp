@@ -6,7 +6,7 @@ namespace app_net
 {
 
 
-   window::window()
+   window::window() 
    {
 
       m_bGettingUrl = false;
@@ -17,7 +17,7 @@ namespace app_net
 
       m_dBreathPeriod = 60.0;
 
-      m_dStartTime = (double) ::get_secs().m_i;
+      m_durationStart.Now();
 
       m_dPhaseShift = 0.0;
 
@@ -90,9 +90,7 @@ namespace app_net
 
          auto elapsed = m_durationStartGettingUrl.elapsed();
 
-         auto ::duration = duration(elapsed).::duration();
-
-         strGet = "Getting Url " + strDots.Left((::duration.m_i / 300) % 4);
+         strGet = "Getting Url " + strDots.Left((elapsed.integral_millisecond().m_i / 300) % 4);
 
       }
       else

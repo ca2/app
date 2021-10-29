@@ -790,7 +790,7 @@ namespace sockets
             {
 
 
-               WARNING( "tcp_socket::read",0,"ibuf overflow");
+               WARNING( "tcp_socket::read : ibuf overflow");
 
 
             }

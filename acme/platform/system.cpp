@@ -159,6 +159,8 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
       if(!estatus)
       {
 
+         FATAL("Failed to construct node " << estatus);
+
          return estatus;
 
       }
@@ -490,22 +492,22 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   __pointer(::extended::sequence < ::conversation >) system::message_box(::user::interaction * puserinteraction, const ::string & pszText, const ::string & pszTitle, const ::e_message_box & emessagebox)
-   {
+   //__pointer(::extended::sequence < ::conversation >) system::message_box(::user::interaction * puserinteraction, const ::string & pszText, const ::string & pszTitle, const ::e_message_box & emessagebox)
+   //{
 
-      auto psequence = __new(::sequence < ::conversation >);
+   //   auto psequence = __new(::sequence < ::conversation >);
 
-      psequence->set_status(error_interface_only);
+   //   psequence->set_status(error_interface_only);
 
-      //return presult;
+   //   //return presult;
 
-      //auto pprocess = __new(status < enum_dialog_result >);
+   //   //auto pprocess = __new(status < enum_dialog_result >);
 
-      //pprocess->set_result(message_box_for_console(pszText, pszTitle, emessagebox));
+   //   //pprocess->set_result(message_box_for_console(pszText, pszTitle, emessagebox));
 
-      return psequence;
+   //   return psequence;
 
-   }
+   //}
 
 
    //::e_status system::on_initialize_window_object()
@@ -627,16 +629,21 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       ::str::begins_eat_ci(strImplementation, strComponent);
 
+      string strLibrary = strComponent + "_" + strImplementation;
+
    #ifdef CUBE
 
-      auto pfnFactoryExchange = m_mapFactoryExchange[strComponent][strImplementation];
+      auto pfnFactoryExchange = ::static_setup::get_factory_exchange(strLibrary);
 
+      //if (::is_null(pfnFactoryExchange))
       if (::is_null(pfnFactoryExchange))
       {
 
          return ::error_failed;
 
       }
+
+//      auto pfnFactoryExchange = m_mapFactoryExchange[strComponent][strImplementation];
 
       ::factory_map * pfactorymap = ::factory::get_factory_map();
 
@@ -706,6 +713,25 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
+   ::e_status system::call_init_system()
+   {
+
+      auto estatus = init_system();
+
+      if(!estatus)
+      {
+
+         FATAL("system init_system has failed " << estatus);
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
    ::e_status system::init_system()
    {
 
@@ -713,6 +739,8 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       if (!estatus)
       {
+
+         FATAL("node_factory_exchange has failed (status=" << estatus << ")");
 
          return estatus;
 
@@ -722,6 +750,8 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       if (!estatus)
       {
+
+         FATAL("create_os_node has failed " << estatus);
 
          return estatus;
 
@@ -957,10 +987,35 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       ::str::begins_eat_ci(strImplementation, strComponent);
 
-   #ifdef CUBE
+   //#ifdef CUBE
 
-      auto pfnFactoryExchange = m_mapFactoryExchange[strComponent][strImplementation];
+      //auto pfnFactoryExchange = m_mapFactoryExchange[strComponent][strImplementation];
 
+      //if (::is_null(pfnFactoryExchange))
+      //{
+
+      //   return ::error_failed;
+
+      //}
+
+#ifdef CUBE
+
+      synchronous_lock synchronouslock(&m_mutexContainerizedLibrary);
+
+      auto & plibrary = m_mapContainerizedLibrary[strComponent][strImplementation];
+
+      if (plibrary && plibrary->is_opened())
+      {
+
+         return plibrary;
+
+      }
+
+      string strLibrary = strComponent + "_" + strImplementation;
+
+      auto pfnFactoryExchange = ::static_setup::get_factory_exchange(strLibrary);
+
+      //if (::is_null(pfnFactoryExchange))
       if (::is_null(pfnFactoryExchange))
       {
 
@@ -968,11 +1023,17 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       }
 
-      ::factory_map * pfactorymap = ::factory::get_factory_map();
+      plibrary = __new(::acme::library);
 
-      pfnFactoryExchange(pfactorymap);
+      plibrary->initialize_matter(this);
 
-      return ::success;
+      __construct_new(plibrary->m_pfactorymap);
+
+      plibrary->m_pfactorymap->initialize_matter(this);
+
+      pfnFactoryExchange(plibrary->m_pfactorymap);
+
+      return plibrary;
 
    #else
 

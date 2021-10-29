@@ -76,7 +76,7 @@ namespace experience
          || pmessage->m_id == e_message_sys_key_up)
       {
 
-         auto pkey = pmessage->m_pkey;
+         auto pkey = pmessage->m_union.m_pkey;
 
          auto psession = get_session();
 
@@ -1244,7 +1244,7 @@ namespace experience
    void frame_window::on_message_left_button_down(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       if(!is_frame_experience_enabled())
       {
@@ -1291,7 +1291,7 @@ namespace experience
    void frame_window::on_message_mouse_move(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       if(!is_frame_experience_enabled())
       {
@@ -1344,7 +1344,7 @@ namespace experience
    void frame_window::on_message_left_button_up(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       if(!is_frame_experience_enabled())
       {
@@ -1425,7 +1425,7 @@ namespace experience
    void frame_window::_001OnNcLButtonDown(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       if(!is_frame_experience_enabled())
       {
@@ -1452,7 +1452,7 @@ namespace experience
    void frame_window::_001OnNcMouseMove(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       if(!is_frame_experience_enabled())
       {
@@ -1476,7 +1476,7 @@ namespace experience
 
    void frame_window::_001OnNcLButtonUp(::message::message * pmessage)
    {
-   auto pmouse = pmessage->m_pmouse;
+   auto pmouse = pmessage->m_union.m_pmouse;
    if(!is_frame_experience_enabled())
    {
    pmouse->m_bRet = false;
@@ -2065,7 +2065,7 @@ namespace experience
 //      void frame_window::on_message_dock_button_left_button_down(::message::message *pmessage)
 //      {
 //
-//         auto pmouse = pmessage->m_pmouse;
+//         auto pmouse = pmessage->m_union.m_pmouse;
 //
 //         if (!WfiOnStartDock())
 //         {

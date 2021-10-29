@@ -242,32 +242,46 @@ using map_string_to_ob = map < string, const string &, matter *, matter * >;
 
 
 template < typename TYPE >
-inline const char * ___type_c_str()
+inline string __type_name()
 {
 
    auto pszType = typeid(TYPE).name();
 
-   return pszType;
+   string strName = demangle(pszType);
+
+   return strName;
 
 }
-
 
 
 template < typename TYPE >
-inline string ___type_str()
+inline string __type_name(const TYPE & t)
 {
 
-   string strType = typeid(TYPE).name();
+   TYPE & tNonConst = (TYPE &) t;
 
-   ::demangle(strType);
+   auto pszType = typeid(tNonConst).name();
 
-   return strType;
+   string strName = demangle(pszType);
+
+   return strName;
 
 }
 
-#define __type_str(TYPE) ::___type_str < TYPE >()
 
-#define __type_c_str(TYPE) ::___type_c_str < TYPE >()
+template < typename TYPE >
+inline string __type_name(const TYPE * p)
+{
+
+   TYPE * pNonConst = (TYPE *) p;
+
+   auto pszType = typeid(*pNonConst).name();
+
+   string strName = demangle(pszType);
+
+   return strName;
+
+}
 
 
 #include "acme/graphics/draw2d/_const.h"
@@ -290,8 +304,6 @@ inline string ___type_str()
 #include "acme/primitive/primitive/property.h"
 
 
-
-//#include "acme/message/_.h"
 #include "acme/primitive/primitive/property_set.h"
 
 

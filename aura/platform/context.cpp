@@ -51,18 +51,18 @@ namespace aura
    }
 
 
-   __pointer(::extended::sequence < ::conversation >) context::message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
-   {
+   //__pointer(::extended::sequence < ::conversation >) context::message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
+   //{
 
-      auto pmessagebox = __create < ::user::message_box >();
+   //   auto pmessagebox = __create < ::user::message_box >();
 
-      auto pfuture = pmessagebox->::extended::asynchronous<::conversation>::sequence();
+   //   auto pfuture = pmessagebox->::extended::asynchronous<::conversation>::sequence();
 
-      auto pextendedfuture = pmessagebox->show(puserinteraction, strMessage, strTitle, emessagebox);
+   //   auto pextendedfuture = pmessagebox->show(puserinteraction, strMessage, strTitle, emessagebox);
 
-      return pextendedfuture;
+   //   return pextendedfuture;
 
-   }
+   //}
 
 
 //   ::file::path context::defer_make_file_system_url(string str)
@@ -608,13 +608,13 @@ namespace aura
 //
 //
 //
-//   file_pointer context::friendly_get_file(::payload varFile, const ::file::e_open& eopen)
+//   file_pointer context::friendly_get_file(::payload payloadFile, const ::file::e_open& eopen)
 //   {
 //
 //      try
 //      {
 //
-//         return file().get_file(varFile, eopen);
+//         return file().get_file(payloadFile, eopen);
 //
 //      }
 //      catch (::file::exception& e)
@@ -954,10 +954,10 @@ namespace aura
 //
 //
 //
-//   ::e_status context::_load_from_file(::matter* pobject, const ::payload& varFile, const ::payload& varOptions)
+//   ::e_status context::_load_from_file(::matter* pobject, const ::payload& payloadFile, const ::payload& varOptions)
 //   {
 //
-//      binary_stream reader(m_pcontext->m_papexcontext->file().get_reader(varFile));
+//      binary_stream reader(m_pcontext->m_papexcontext->file().get_reader(payloadFile));
 //
 //      read(reader);
 //
@@ -966,10 +966,10 @@ namespace aura
 //   }
 //
 //
-//   ::e_status context::_save_to_file(const ::payload& varFile, const ::payload& varOptions, const ::matter* pobject)
+//   ::e_status context::_save_to_file(const ::payload& payloadFile, const ::payload& varOptions, const ::matter* pobject)
 //   {
 //
-//      binary_stream writer(m_pcontext->m_papexcontext->file().get_writer(varFile));
+//      binary_stream writer(m_pcontext->m_papexcontext->file().get_writer(payloadFile));
 //
 //      write(writer);
 //

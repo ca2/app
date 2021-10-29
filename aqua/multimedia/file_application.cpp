@@ -17,17 +17,17 @@ namespace multimedia
    }
 
 
-   file_pointer file_application::get_file(::payload varFile, const ::file::e_open & eopen)
+   file_pointer file_application::get_file(::payload payloadFile, const ::file::e_open & eopen)
    {
 
       file_pointer spfile;
 
       string strPath;
 
-      if (varFile.get_type() == ::e_type_string)
+      if (payloadFile.get_type() == ::e_type_string)
       {
          
-         strPath = varFile;
+         strPath = payloadFile;
 
          strPath.trim("\"'");
 
@@ -49,7 +49,7 @@ namespace multimedia
 
       auto pcontext = get_context();
 
-      return pcontext->m_papexcontext->file().get_file(varFile, eopen);
+      return pcontext->m_papexcontext->file().get_file(payloadFile, eopen);
 
    }
 

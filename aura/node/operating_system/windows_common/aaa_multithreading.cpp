@@ -67,7 +67,7 @@ string get_task_name(htask_t htask)
 
    }
 
-   return pthread->type_name();
+   return __type_name(pthread);
 
 }
 

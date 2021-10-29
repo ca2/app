@@ -1,4 +1,9 @@
+#undef ERROR
+
+
 #include <windows.h>
+
+
 class RunBeforeMain
 {
 public:

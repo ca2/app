@@ -159,27 +159,27 @@ void application_common(::apex::system * psystem)
 
 }
 
-
-template < typename APPLICATION >
-class static_application_factory :
-   public static_setup
-{
-public:
-
-
-   virtual ::application* new_application() { return new APPLICATION; }
-
-
-   static_application_factory(const char * pszName = "") :
-      static_setup(flag_application, pszName)
-   {
-
-
-   }
-
-
-};
-
+//
+//template < typename APPLICATION >
+//class static_application_factory :
+//   public static_setup
+//{
+//public:
+//
+//
+//   virtual ::application* new_application() { return new APPLICATION; }
+//
+//
+//   static_application_factory(const char * pszName = "") :
+//      static_setup(flag_application, pszName)
+//   {
+//
+//
+//   }
+//
+//
+//};
+//
 
 #define __namespace_application_factory(APPID) \
 ::static_application_factory < application > g_applicationfactory(APPID);

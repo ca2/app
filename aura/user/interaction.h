@@ -349,7 +349,7 @@ namespace user
       virtual void on_create_user_interaction();
 
 
-      virtual bool is_branch_current() const;
+      virtual bool is_branch_current() const override;
 
 
       bool is_ready_to_quit() const override;
@@ -579,15 +579,15 @@ namespace user
 
       interaction * get_tooltip();
 
-      virtual ::e_status set_tool_window(bool bSet = true) override;
+      ::e_status set_tool_window(bool bSet = true) override;
 
       virtual double get_rotate();
-      virtual ::user::form * get_form();
-      virtual ::user::form * get_parent_form();
+      ::user::form * get_form() override;
+      ::user::form * get_parent_form() override;
 
       ::user::interaction * get_user_interaction() override;
 
-      virtual matter* get_taskpool_container() override;
+      ::element * get_taskpool_container() override;
 
       //task_pointer defer_fork(const ::id& id, const matter_pointer& pmatter);
 
@@ -1092,8 +1092,8 @@ namespace user
 
 
       virtual bool call_and_set_timer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer = nullptr);
-      virtual bool set_timer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer = nullptr);
-      virtual bool SetTimer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer = nullptr) override;
+      virtual bool set_timer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void* pdata = nullptr);
+      virtual bool SetTimer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void* pdata = nullptr) override;
       virtual bool KillTimer(uptr uEvent) override;
 
 //      virtual bool enable_window(bool bEnable = true) override;
@@ -1230,7 +1230,7 @@ namespace user
 
       /*virtual bool pre_create_window(::user::system* pusersystem);*/
       using ::user::primitive::handle;
-      virtual void handle(::subject * psubject, ::context * pcontext);
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
 
 
@@ -1264,7 +1264,7 @@ namespace user
       virtual bool on_timer(::timer* ptimer) override;
       DECLARE_MESSAGE_HANDLER(on_message_character);
       DECLARE_MESSAGE_HANDLER(on_message_destroy);
-      DECLARE_MESSAGE_HANDLER(on_message_user_post);
+      //DECLARE_MESSAGE_HANDLER(on_message_user_post);
       DECLARE_MESSAGE_HANDLER(on_message_size);
       DECLARE_MESSAGE_HANDLER(on_message_move);
       DECLARE_MESSAGE_HANDLER(on_message_create);
@@ -1778,6 +1778,11 @@ namespace user
       virtual void _001DrawItem(::draw2d::graphics_pointer& pgraphics, ::item * pitem);
 
 
+      __pointer(::extended::sequence < ::conversation >) message_box(const ::string& strMessage, const ::string& strTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok);
+
+
+
+
       // control member function BEGIN
       //
       //
@@ -1869,11 +1874,11 @@ namespace user
       virtual enum_stock_icon get_stock_icon();
 
 
-      virtual ::e_status post_routine(const ::routine & routine);
+      virtual ::e_status post_routine(const ::routine & routine) override;
       virtual ::e_status prodevian_post_routine(const ::routine & routine);
 
 
-      virtual ::e_status send_routine(const ::routine & routine);
+      virtual ::e_status send_routine(const ::routine & routine) override;
 
 
    /*   template < typename PRED >

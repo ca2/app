@@ -42,9 +42,9 @@ enum enum_factory : ::i64
 #define INVALID_ID ((::u64) -1)
 
 
-//#define e_object_success (1 << 0)
-//#define e_object_timeout (1 << 1)
-//#define e_object_failure (1 << 2)
+//#define e_flag_success (1 << 0)
+//#define e_flag_timeout (1 << 1)
+//#define e_flag_failure (1 << 2)
 //#define PERSIST_ID (1 << 3)
 //#define e_object_factory (1 << 4)
 //#define e_object_storing (1 << 5)
@@ -167,14 +167,34 @@ enum enum_type
    e_type_string = 4000,
    e_type_pstring,
    e_type_type,
-   e_type_secs,
-   e_type_psecs,
-   e_type_millis,
-   e_type_pmillis,
-   e_type_micros,
-   e_type_pmicros,
-   e_type_nanos,
-   e_type_pnanos,
+   e_type_integral_nanosecond,
+   e_type_pintegral_nanosecond,
+   e_type_integral_microsecond,
+   e_type_pintegral_microsecond,
+   e_type_integral_millisecond,
+   e_type_pintegral_millisecond,
+   e_type_integral_second,
+   e_type_pintegral_second,
+   e_type_integral_minute,
+   e_type_pintegral_minute,
+   e_type_integral_hour,
+   e_type_pintegral_hour,
+   e_type_integral_day,
+   e_type_pintegral_day,
+   e_type_floating_nanosecond,
+   e_type_pfloating_nanosecond,
+   e_type_floating_microsecond,
+   e_type_pfloating_microsecond,
+   e_type_floating_millisecond,
+   e_type_pfloating_millisecond,
+   e_type_floating_second,
+   e_type_pfloating_second,
+   e_type_floating_minute,
+   e_type_pfloating_minute,
+   e_type_floating_hour,
+   e_type_pfloating_hour,
+   e_type_floating_day,
+   e_type_pfloating_day,
    e_type_duration,
    e_type_pduration,
    e_type_id,
@@ -279,15 +299,6 @@ enum enum_object : i64
 
 
    e_object_none,
-   e_object_success = 1 << 0,
-   e_object_timeout = 1 << 1,
-   e_object_failure = 1 << 2,
-   e_object_persist = 1 << 3,
-   e_object_factory = 1 << 4,
-   e_object_storing = 1 << 5,
-   e_object_acquire = 1 << 6,
-   e_object_default = 1 << 7,
-   e_object_changed = 1 << 9,
    aaa_want_to_erase_object_locked = 1 << 10,
    aaa_want_to_erase_object_shared = 1 << 11,
    aaa_want_to_erase_object_read_only_link = 1 << 12,
@@ -347,8 +358,8 @@ enum enum_task_flag
    e_task_flag_prevent_bad_status_exception,
    e_task_flag_using_sockets,
    e_task_flag_avoid_parsing_exception,
-   e_task_flag_avoid_numeric_parser_exception,
-   e_task_flag_avoid_datetime_parser_exception,
+   e_task_flag_avoid_numeric_parsing_exception,
+   e_task_flag_avoid_datetime_parsing_exception,
    e_task_flag_dynamic_source_script_instance,
    e_task_flag_count,
 

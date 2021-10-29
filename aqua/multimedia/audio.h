@@ -31,7 +31,7 @@ namespace aqua
       virtual void google_speak(const ::string & strLang, const ::string & strText, bool bSynch);
 
 
-      virtual ::file_pointer get_rtp_file(const ::payload & varFile);
+      virtual ::file_pointer get_rtp_file(const ::payload & payloadFile);
 
 
       virtual LPFN_NEW_MULTIMEDIA_DECODER get_multimedia_decoder_factory(const ::string & pszTitle);

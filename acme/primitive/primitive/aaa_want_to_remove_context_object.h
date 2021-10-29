@@ -215,7 +215,7 @@ struct CLASS_DECL_ACME matter :
    //}
 
 
-   inline ::image_pointer get_image(const ::payload & varFile, bool bCache = true, bool bSync = false);
+   inline ::image_pointer get_image(const ::payload & payloadFile, bool bCache = true, bool bSync = false);
    inline ::image_pointer matter_image(const ::string & strMatter, bool bCache = true, bool bSync = false);
 
 

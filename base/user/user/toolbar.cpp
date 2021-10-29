@@ -1133,37 +1133,39 @@ return { 0,0 };
    bool toolbar::SetButtonText(index nIndex, const ::string & pszText)
 
    {
-      // attempt to lookup string index in map
-      iptr nString = -1;
-      void * p;
-      string wstrText(pszText);
-
-      if (m_pStringMap != nullptr && m_pStringMap->lookup(wstrText, p))
-         nString = (iptr)p;
-
-      // add new string if not already in map
-      if (nString == -1)
-      {
-         // initialize map if necessary
-         if (m_pStringMap == nullptr)
-            m_pStringMap = new string_to_ptr;
-
-         string str;
-         str = pszText;
-
-         // add new string to toolbar list
-         string strTemp(str);
-         throw interface_only_exception();
-         // xxx nString = (index)default_window_procedure(TB_ADDSTRINGW, 0, (LPARAM)(const ::string &)(const unichar *)strTemp);
-         if (nString == -1)
-            return false;
-
-         // cache string away in string map
-         m_pStringMap->set_at(wstrText, (void *)nString);
-
-         ASSERT(m_pStringMap->lookup(wstrText, p));
-
-      }
+      
+      throw todo;
+//      // attempt to lookup string index in map
+//      iptr nString = -1;
+//      void * p;
+//      string wstrText(pszText);
+//
+//      if (m_pStringMap != nullptr && m_pStringMap->lookup(wstrText, p))
+//         nString = (iptr)p;
+//
+//      // add new string if not already in map
+//      if (nString == -1)
+//      {
+//         // initialize map if necessary
+//         if (m_pStringMap == nullptr)
+//            m_pStringMap = new string_to_ptr;
+//
+//         string str;
+//         str = pszText;
+//
+//         // add new string to toolbar list
+//         string strTemp(str);
+//         throw interface_only_exception();
+//         // xxx nString = (index)default_window_procedure(TB_ADDSTRINGW, 0, (LPARAM)(const ::string &)(const unichar *)strTemp);
+//         if (nString == -1)
+//            return false;
+//
+//         // cache string away in string map
+//         m_pStringMap->set_at(wstrText, (void *)nString);
+//
+//         ASSERT(m_pStringMap->lookup(wstrText, p));
+//
+//      }
 
 
       // machine the toolbar button description

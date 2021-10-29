@@ -73,7 +73,7 @@ namespace windowing
       //memset(pmenushared->m_ositema, 0, sizeof(void *) * iCount);
       //memset(pmenushared->m_statusa, 0, sizeof(menu::enum_status) * iCount);
 
-      return pmenu;
+      return ::move(pmenu);
 
    }
 

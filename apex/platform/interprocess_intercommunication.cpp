@@ -63,7 +63,7 @@ interprocess_intercommunication::~interprocess_intercommunication()
 
    }
 
-   int iPid = m_pcontext->m_papexcontext->os().get_pid();
+   int iPid = m_pcontext->m_papexcontext->os_context()->get_pid();
 
    //defer_add_module(m_pcontext->m_papexcontext->file().module(), iPid);
 

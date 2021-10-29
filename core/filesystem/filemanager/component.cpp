@@ -595,7 +595,7 @@ namespace filemanager
    }
 
 
-   document * component::find_filemanager(::payload varFile)
+   document * component::find_filemanager(::payload payloadFile)
    {
 
       __pointer(document) pdocument;
@@ -614,14 +614,14 @@ namespace filemanager
 
       //   pdocument = pdocument->get_main_document();
 
-      //   if (pdocument->m_strManagerId == varFile.get_string().Left(get_manager_id_len()))
+      //   if (pdocument->m_strManagerId == payloadFile.get_string().Left(get_manager_id_len()))
       //   {
 
       //      return pdocument;
 
       //   }
 
-      //   if (pdocument->filemanager_item()->m_filepathFinal.is_equal_fast(varFile))
+      //   if (pdocument->filemanager_item()->m_filepathFinal.is_equal_fast(payloadFile))
       //   {
 
       //      return pdocument;
@@ -636,7 +636,7 @@ namespace filemanager
    }
 
 
-   document * component::open_filemanager(::payload varFile, ::create * pcreate, ::fs::data * pfsdata, callback * pcallback)
+   document * component::open_filemanager(::payload payloadFile, ::create * pcreate, ::fs::data * pfsdata, callback * pcallback)
    {
 
       //document * pdocument;
@@ -644,7 +644,7 @@ namespace filemanager
       //if (pcreate == nullptr)
       //{
 
-      //   pcreate = __new(::create(papplication->handler(), varFile, true));
+      //   pcreate = __new(::create(papplication->handler(), payloadFile, true));
 
       //}
 
@@ -654,7 +654,7 @@ namespace filemanager
 
       //pcreate->prop("component::callback") = pcallback;
 
-      //pcreate->m_pcommandline->m_varFile = varFile;
+      //pcreate->m_pcommandline->m_varFile = payloadFile;
 
       //m_pdocumenttemplateProject->m_bQueueDocumentOpening = false;
 
@@ -678,7 +678,7 @@ namespace filemanager
 
       //   string strManagerId;
 
-      //   ::file::path pathFolder = filemanager_project_entry(strManagerId, varFile, get_application());
+      //   ::file::path pathFolder = filemanager_project_entry(strManagerId, payloadFile, get_application());
 
       //   ptabview->set_current_tab_by_id("verifile://" + pathFolder);
 
@@ -691,10 +691,10 @@ namespace filemanager
    }
 
 
-   document * component::restore_filemanager(::payload varFile, ::create * pcreate, ::fs::data * pfsdata, callback * pcallback)
+   document * component::restore_filemanager(::payload payloadFile, ::create * pcreate, ::fs::data * pfsdata, callback * pcallback)
    {
 
-      filemanager()->m_filepath = varFile.get_file_path();
+      filemanager()->m_filepath = payloadFile.get_file_path();
 
       filemanager()->m_pcreate = pcreate;
 
@@ -702,7 +702,7 @@ namespace filemanager
 
       filemanager()->m_pcallback = pcallback;
 
-      filemanager()->open(nullptr, varFile);
+      filemanager()->open(nullptr, payloadFile);
 
       return filemanager()->m_pdocument;
 
@@ -731,10 +731,10 @@ namespace filemanager
    }
 
 
-   bool component::erase_filemanager(::payload varFile)
+   bool component::erase_filemanager(::payload payloadFile)
    {
 
-      //document * pdocument = find_manager(varFile);
+      //document * pdocument = find_manager(payloadFile);
 
       //m_pdocumenttemplateProject->erase_document(pdocument);
 

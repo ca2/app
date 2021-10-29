@@ -2437,7 +2437,7 @@ namespace user
    void mesh::on_message_key_down(::message::message * pmessage)
    {
 
-      auto pkey = pmessage->m_pkey;
+      auto pkey = pmessage->m_union.m_pkey;
 
       if (pkey->previous()) // give chance to child
       {
@@ -2543,7 +2543,7 @@ namespace user
    void mesh::on_message_mouse_move(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       pmouse->m_lresult = 1;
 
@@ -2653,7 +2653,7 @@ namespace user
    void mesh::on_message_left_button_down(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       pmouse->previous(); // give chance to child control and to base views
 
@@ -2876,7 +2876,7 @@ namespace user
    void mesh::on_message_left_button_up(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       ::point_i32 point = pmouse->m_point;
 
@@ -2977,7 +2977,7 @@ namespace user
    void mesh::on_message_right_button_down(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       pmouse->previous();
 
@@ -3028,7 +3028,7 @@ namespace user
    void mesh::on_message_right_button_up(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       pmouse->previous();
 
@@ -3183,7 +3183,7 @@ namespace user
    void mesh::on_message_left_button_double_click(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       m_iClick = 2;
 

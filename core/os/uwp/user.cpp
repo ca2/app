@@ -102,18 +102,18 @@ CLASS_DECL_CORE void defer_dock_application(int_bool bDock)
 
 }
 
-CLASS_DECL_CORE void main_branch(::matter* pobjectTask, enum_priority epriority)
-{
-
-   ::wait(
-      ::winrt::Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal, ref new ::winrt::Windows::UI::Core::DispatchedHandler([pobjectTask]()
-   {
-
-            pobjectTask->call();
-
-   })));
-
-}
+//CLASS_DECL_CORE void main_branch(::matter* pobjectTask, enum_priority epriority)
+//{
+//
+//   ::wait(
+//      ::winrt::Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal, ref new ::winrt::Windows::UI::Core::DispatchedHandler([pobjectTask]()
+//   {
+//
+//            pobjectTask->call();
+//
+//   })));
+//
+//}
 
 #undef papplication
 

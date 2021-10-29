@@ -4,7 +4,7 @@
 #include "exit_status.h"
 
 
-CLASS_DECL_ACME string app_id_to_app_name(string strId);
+//CLASS_DECL_ACME string app_id_to_app_name(string strId);
 
 
 #if !defined(_UWP)

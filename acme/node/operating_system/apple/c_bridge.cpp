@@ -8,7 +8,7 @@
 
 #include <time.h>
 
-time_t _mkgmtime(struct tm * const ptm)
-{
-   return timegm(ptm);
-}
+//time_t _mkgmtime(struct tm * const ptm)
+//{
+//   return timegm(ptm);
+//}

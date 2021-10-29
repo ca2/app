@@ -90,6 +90,12 @@ namespace dynamic_source
             m_strVsTools = "142";
 
          }
+         else if (m_strVs == "2022")
+         {
+
+            m_strVsTools = "143";
+
+         }
          else
          {
 
@@ -97,7 +103,7 @@ namespace dynamic_source
 
             strMessage = "There is a hole here. You should fill it with fullfillment. Missing f**k " + path;
 
-            //message_box(this, strMessage, strMessage, e_message_box_ok);
+            FATAL(strMessage);
 
          }
 
@@ -181,7 +187,15 @@ namespace dynamic_source
       try
       {
 
-         if (m_strVs == "2019")
+         if (m_strVs == "2022")
+         {
+
+            m_strEnv = "C:/Program Files/Microsoft Visual Studio/2022/Preview/VC/Auxiliary/Build/vcvarsall.bat";
+
+            m_strVCVersion = papplication->get_visual_studio_build();
+
+         }
+         else if (m_strVs == "2019")
          {
 
             m_strEnv = "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Auxiliary/Build/vcvarsall.bat";
@@ -248,6 +262,12 @@ namespace dynamic_source
       {
 
          m_strSdk1 = "vc142";
+
+      }
+      else if (m_strVs == "2022")
+      {
+
+         m_strSdk1 = "vc143";
 
       }
 
@@ -329,7 +349,7 @@ namespace dynamic_source
 
       synchronous_lock synchronouslock(pscript->mutex());
 
-      TRACE("Compiling script \"%s\"\n",pscript->m_strName.c_str());
+      INFORMATION("Compiling script " << pscript->m_strName.c_str());
 
       ::text_stream & ostreamError = pscript->m_streamError;
 
@@ -413,7 +433,7 @@ namespace dynamic_source
 
       auto pdatetime = psystem->datetime();
 
-      strRndTitle = "_" + pdatetime->international().get_gmt_date_time("%Y-%m-%d_%H-%M-%S") + "_" + strMillis;
+      strRndTitle = "_" + pdatetime->international().get_date_time("%Y-%m-%d_%H-%M-%S") + "_" + strMillis;
 
       string strTime = m_strTime;
 
@@ -423,7 +443,7 @@ namespace dynamic_source
 
       ::datetime::time timeNow = ::datetime::time::now();
 
-      string strCompileLogUnique = Format(INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE, timeNow);
+      string strCompileLogUnique = ::datetime::format(INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE, timeNow);
 
       strClog.Format(m_strTime / "dynamic_source/%s-compile-log-%s.txt",strTransformName.c_str(), strCompileLogUnique.c_str());
       strLlog.Format(m_strTime / "dynamic_source/%s-link-log.txt",strTransformName.c_str());
@@ -834,7 +854,7 @@ pacmedir->create(pathDVP_Folder);
 
          sleep(100_ms);
 
-         if(tickStart.elapsed() > 840 * 1000) // 14 minutes
+         if(tickStart.elapsed() > 890_s) // 14 minutes
          {
 
             bTimeout = true;
@@ -876,11 +896,8 @@ pacmedir->create(pathDVP_Folder);
 
             //ostreamError << "Compiling Command\n";
             //ostreamError << pathCompiler << "\n";
-            TRACE("Compiling Command File");
-            TRACE(pathCompiler);
-            //ostreamError << strCompiler << "\n";
-            TRACE("Compiling Command");
-            TRACE(strCompiler);
+            TRACE("Compiling Command File " << pathCompiler);
+            TRACE("Compiling Command " << strCompiler);
             ostreamError << "Compiling...\n";
             ostreamError << pscript->m_strCppPath;
             ostreamError << "\n";
@@ -898,7 +915,7 @@ pacmedir->create(pathDVP_Folder);
          if (process->m_exitstatus.m_iExitCode != 0 || m_pcontext->m_papexcontext->file().length(pathObjFile) < iObjFileMinimumByteCount)
          {
 
-            TRACE("Compilation FAILED: or object file is shorter than %d bytes...", iObjFileMinimumByteCount);
+            TRACE("Compilation FAILED: or object file is shorter than "<<iObjFileMinimumByteCount<<" bytes...");
 
             string_array straLog;
             straLog.add_lines(strLog);
@@ -1021,7 +1038,7 @@ pacmedir->create(pathDVP_Folder);
 
             sleep(100_ms);
 
-            if(tickStart.elapsed() > 840 * 1000) // 14 minutes
+            if(tickStart.elapsed() > 890_s) // 14 minutes
             {
 
                bTimeout = true;
@@ -1054,10 +1071,10 @@ pacmedir->create(pathDVP_Folder);
                ostreamError << "Linking...\n";
                //ostreamError << "Linker Command File" << "\n";
                //ostreamError << pathLinker << "\n";
-               INFORMATION("Linker Command File %s", pathLinker.c_str());
+               INFORMATION("Linker Command File " << pathLinker.c_str());
                //ostreamError << "Linker Command" << "\n";
                //ostreamError << strLinker << "\n";
-               INFORMATION("Linker Command %s", strLinker.c_str());
+               INFORMATION("Linker Command " << strLinker.c_str());
                str.replace("\r\n","\n");
                ostreamError << str;
                ostreamError << "</pre>";
@@ -1369,6 +1386,14 @@ pacmedir->create(pathDVP_Folder);
       {
 
          strBuildCmd = "\"" + strBuildCmd + "\" " + m_strPlat2 + " " + papplication->get_visual_studio_build();
+
+      }
+      else if (m_strVs == "2022")
+      {
+
+         //strBuildCmd = "\"" + strBuildCmd + "\" " + m_strPlat2 + " " + papplication->get_visual_studio_build();
+
+         strBuildCmd = "\"C:/Program Files/Microsoft Visual Studio/2022/Preview/VC/Auxiliary/Build/vcvars64.bat\"";
 
       }
 
@@ -1966,7 +1991,7 @@ pacmedir->create(pathDVP_Folder);
 
             sleep(100_ms);
 
-            if(tickStart.elapsed() > 840 * 1000) // 14 minutes
+            if(tickStart.elapsed() > 890_s) // 14 minutes
             {
 
                bTimeout = true;
@@ -2113,7 +2138,7 @@ auto tickStart = ::duration::now();
 
          sleep(100_ms);
 
-         if(tickStart.elapsed() > 840 * 1000) // 14 minutes
+         if(tickStart.elapsed() > 890_s) // 14 minutes
          {
 
             bTimeout = true;

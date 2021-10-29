@@ -64,7 +64,7 @@ public:
 
 
    PREDICATE      m_predicate;
-   ::duration     m_durationTimeout = DURATION(64,0);
+   ::duration     m_durationTimeout = DURATION{64,0};
 
 
 
@@ -77,7 +77,7 @@ public:
 
    //inline ::e_status operator()() const;
 
-   DURATION timeout() const { return m_durationTimeout; }
+   DURATION timeout() const override { return m_durationTimeout; }
 
 
    virtual ::e_status run() override

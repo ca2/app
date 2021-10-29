@@ -266,7 +266,7 @@
 		9A6A480D26611372004ED97A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A6A481726611373004ED97A /* libwindowing_macos.dylib */,
+				9A6A481726611373004ED97A /* lib.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -274,7 +274,7 @@
 		9A6A48202661155F004ED97A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A6A48242661155F004ED97A /* lib.dylib */,
+				9A6A48242661155F004ED97A /* libwrite_text_quartz2d.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -379,7 +379,7 @@
 		070B8EE21B6E53F900D26137 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1250;
+				LastUpgradeCheck = 1300;
 				ORGANIZATIONNAME = "ca2 Desenvolvimento de Software Ltdal";
 				TargetAttributes = {
 					070B8EE91B6E53F900D26137 = {
@@ -450,17 +450,17 @@
 			remoteRef = 9A6A47D626611129004ED97A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A6A481726611373004ED97A /* libwindowing_macos.dylib */ = {
+		9A6A481726611373004ED97A /* lib.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
+			name = lib.dylib;
 			path = libwindowing_macos.dylib;
 			remoteRef = 9A6A481626611373004ED97A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A6A48242661155F004ED97A /* lib.dylib */ = {
+		9A6A48242661155F004ED97A /* libwrite_text_quartz2d.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			name = lib.dylib;
 			path = libwrite_text_quartz2d.dylib;
 			remoteRef = 9A6A48232661155F004ED97A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -707,6 +707,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/macos/Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -726,6 +727,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/macos/Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

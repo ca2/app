@@ -331,7 +331,7 @@ namespace user
       //virtual void SetWindowDisplayChanged();
 
       // timer Functions
-      virtual bool SetTimer(uptr uEvent, ::duration millisElapse, PFN_TIMER pfnTimer);
+      virtual bool SetTimer(uptr uEvent, const ::duration & millisElapse, PFN_TIMER pfnTimer, bool bPeriodic = true, void* pdata = nullptr);
       virtual bool KillTimer(uptr uEvent);
 
 
@@ -513,7 +513,7 @@ namespace user
 
       virtual bool is_selected(::data::item * pitem);
 
-      virtual void handle(::subject * psubject, ::context * pcontext);
+      void handle(::subject * psubject, ::context * pcontext) override;
 
       //virtual void on_notify_control_event(control_event* pevent);
 
@@ -522,7 +522,7 @@ namespace user
       //virtual bool track_popup_menu(::user::menu_item * pitem,i32 iFlags, const ::point_i32 & point = nullptr);
       //virtual __pointer(::user::menu) track_popup_xml_matter_menu(const ::string & pszMatter,i32 iFlags, const ::point_i32 & point);
       //virtual __pointer(::user::menu) track_popup_xml_menu(const ::payload & varXml, i32 iFlags, const ::point_i32 & pointScreen = nullptr, const ::size_i32& sizeMinimum = size_i32(0, 0));
-      //virtual __pointer(::user::menu) track_popup_xml_menu_file(::payload varFile, i32 iFlags, const ::point_i32 & point = nullptr, const ::size_i32 & sizeMinimum = size_i32(0, 0));
+      //virtual __pointer(::user::menu) track_popup_xml_menu_file(::payload payloadFile, i32 iFlags, const ::point_i32 & point = nullptr, const ::size_i32 & sizeMinimum = size_i32(0, 0));
 
       //virtual bool track_popup_menu(::user::menu_item * pitem,i32 iFlags,::message::message * pmessage);
       //virtual __pointer(::user::menu) track_popup_xml_matter_menu(const ::string & pszMatter,i32 iFlags,::message::message * pmessage);

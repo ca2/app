@@ -62,8 +62,8 @@ public:
 
 
    //__pointer(__pointer_array(::object))                m_pobjecta;
-   __pointer(__pointer_array(::matter))                  m_pcompositea;
-   __pointer(__pointer_array(::matter))                  m_preferencea;
+   __pointer(__pointer_array(::element))                  m_pcompositea;
+   __pointer(__pointer_array(::element))                  m_preferencea;
 
 
 
@@ -100,18 +100,18 @@ public:
 
    //inline class ::system* get_system() const;
 
-   //inline matter_array * _composite_array() { return m_pcompositea; }
-   //inline matter_array * _reference_array() { return m_preferencea; }
+   //inline element_array * _composite_array() { return m_pcompositea; }
+   //inline element_array * _reference_array() { return m_preferencea; }
 
 
-   //inline matter_array & composite_array() { ::__defer_construct_new(m_pcompositea); return *m_pcompositea; }
-   //inline matter_array & reference_array() { ::__defer_construct_new(m_preferencea); return *m_preferencea; }
+   //inline element_array & composite_array() { ::__defer_construct_new(m_pcompositea); return *m_pcompositea; }
+   //inline element_array & reference_array() { ::__defer_construct_new(m_preferencea); return *m_preferencea; }
 
    //virtual void add_object(::object * pobject);
    //virtual void on_delete_object(::object * pobject);
 
-   //virtual void enumerate_composite(matter_array& a);
-   //virtual void enumerate_reference(matter_array& a);
+   //virtual void enumerate_composite(element_array& a);
+   //virtual void enumerate_reference(element_array& a);
 
    //virtual void process_exit_status(const ::e_status& estatus);
 
@@ -126,7 +126,7 @@ public:
    //virtual ::application* _get_application() override;
 
    template < typename BASE_TYPE >
-   __pointer(BASE_TYPE) file_as(const ::payload& varFile);
+   __pointer(BASE_TYPE) file_as(const ::payload& payloadFile);
 
 
    //virtual void add_routine(const ::id& idRoutine, const ::routine& routine);
@@ -211,7 +211,7 @@ public:
 
 
    template < typename BASE_TYPE >
-   void save_to(const ::payload& varFile, BASE_TYPE* pobject);
+   void save_to(const ::payload& payloadFile, BASE_TYPE* pobject);
 
    
    virtual ::e_status initialize(::object * pobject) override;
@@ -344,7 +344,7 @@ public:
    //::image_transport create_image();
    //::image_transport create_image(const ::size_i32 & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
 
-   //::image_transport get_image(const ::payload & varFile, bool bCache = true, bool bSync = true);
+   //::image_transport get_image(const ::payload & payloadFile, bool bCache = true, bool bSync = true);
    //::image_transport matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true);
 
    template < typename BASE_TYPE >
@@ -384,13 +384,13 @@ public:
    //inline ::e_status release_reference(__pointer(SOURCE) & psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 
-   //virtual ::e_status add_composite(::matter * pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
-   //virtual ::e_status add_reference(::matter * pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   //virtual ::e_status add_composite(::element * pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   //virtual ::e_status add_reference(::element * pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
 
 
-   //virtual ::e_status release_composite2(::matter * pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
-   //virtual ::e_status finalize_composite(::matter * pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
-   //virtual ::e_status release_reference(::matter * pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   //virtual ::e_status release_composite2(::element * pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   //virtual ::e_status finalize_composite(::element * pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   //virtual ::e_status release_reference(::element * pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
 
 
    //template < typename BASE_TYPE >
@@ -447,9 +447,9 @@ public:
 
    void _001OnUpdate(::message::message* pmessage);
 
-   //virtual ::e_status request_file(const ::payload& varFile);
+   //virtual ::e_status request_file(const ::payload& payloadFile);
 
-   //virtual ::e_status request_file(const ::payload& varFile, ::payload varQuery);
+   //virtual ::e_status request_file(const ::payload& payloadFile, ::payload varQuery);
 
    //virtual ::e_status request(arguments arguments);
 
@@ -457,7 +457,7 @@ public:
 
    virtual void do_request(::create* pcreate);
 
-   virtual __pointer(::extended::sequence < ::conversation >)  message_box(::user::interaction * puserinteraction, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok);
+   //virtual __pointer(::extended::sequence < ::conversation >)  message_box(::user::interaction * puserinteraction, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok);
    //{
    //
    //   return message_box(nullptr, pszMessage, pszTitle, emessagebox, process);
@@ -477,11 +477,11 @@ public:
 
    //virtual void release_references();
 
-   //virtual __pointer(::matter) running(const char* pszTag) const;
+   //virtual __pointer(::element) running(const char* pszTag) const;
 
-   virtual bool ___is_reference(::matter* pobject) const;
+   virtual bool ___is_reference(::element* pobject) const;
 
-   virtual bool __is_composite(::matter* pobject) const;
+   virtual bool __is_composite(::element* pobject) const;
 
    virtual bool __is_child_task(::object * pobject) const;
 
@@ -496,8 +496,8 @@ public:
    //virtual ::user::document* open_new_document(::application* pappOnBehalfOf);
    virtual void on_request(::create* pcreate);
    //virtual ::user::document* open_document_file(::application* pappOnBehalfOf);
-   //virtual ::user::document* open_document_file(::application* pappOnBehalfOf, const ::payload& varFile, const ::payload & varOptions, ::user::interaction* puiParent = nullptr, ewindowflag eflag = e_window_flag_none, ::id id = ::id());
-   //virtual ::user::document* open_document_file(::application* pappOnBehalfOf, const ::payload& varFile);
+   //virtual ::user::document* open_document_file(::application* pappOnBehalfOf, const ::payload& payloadFile, const ::payload & varOptions, ::user::interaction* puiParent = nullptr, ewindowflag eflag = e_window_flag_none, ::id id = ::id());
+   //virtual ::user::document* open_document_file(::application* pappOnBehalfOf, const ::payload& payloadFile);
    //virtual ::user::document* create_subdocument(::user::impact_data* pimpactdata);
 
 
@@ -508,12 +508,12 @@ public:
    //virtual string __get_text(string str);
 
    //template < typename PRED >
-   //::image_transport get_image(const ::payload & varFile, ::u64 uTrait, PRED pred);
+   //::image_transport get_image(const ::payload & payloadFile, ::u64 uTrait, PRED pred);
 
-   //virtual ::image_transport load_image(const ::payload & varFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
+   //virtual ::image_transport load_image(const ::payload & payloadFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
    //virtual ::image_transport load_matter_image(const char * pszMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
    //virtual ::image_transport load_matter_icon(string_array & straMatter, string strIcon);
-   //virtual ::image_transport load_thumbnail(const ::payload & varFile, int w, int h);
+   //virtual ::image_transport load_thumbnail(const ::payload & payloadFile, int w, int h);
    //virtual ::image_transport load_thumbnail(const char * pszPath);
    //virtual ::image_transport load_dib(const ::file::path & pathDib);
 
@@ -548,7 +548,7 @@ public:
 
       }
 
-      ptask->m_pmatter = routine;
+      ptask->m_pelement = routine;
 
       ptask->branch();
 
@@ -633,7 +633,7 @@ public:
    }
 
 
-   __transport(::task) branch_task(matter* pmatter,
+   __transport(::task) branch_task(element* pelement,
       ::enum_priority epriority = e_priority_normal,
       ::u32 nStackSize = 0,
       ::u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
@@ -655,22 +655,22 @@ public:
 //   virtual void ns_main_async(dispatch_block_t block);
 //#endif
 
-   inline ::file_transport get_reader(const ::payload& varFile, const ::file::e_open & eopen = ::file::e_open());
-   inline ::file_transport get_writer(const ::payload& varFile, const ::file::e_open & eopen = ::file::e_open());
-   inline ::file_transport fully_shared_reader(const ::payload& varFile) { return get_reader(varFile, ::file::e_open_share_deny_none); }
+   inline ::file_transport get_reader(const ::payload& payloadFile, const ::file::e_open & eopen = ::file::e_open());
+   inline ::file_transport get_writer(const ::payload& payloadFile, const ::file::e_open & eopen = ::file::e_open());
+   inline ::file_transport fully_shared_reader(const ::payload& payloadFile) { return get_reader(payloadFile, ::file::e_open_share_deny_none); }
 
    //virtual void to_string(string & str) const override;
 
 
-   virtual ::file_transport get_file(const ::payload& varFile, const ::file::e_open& eopen);
-   //inline ::file_transport get_reader(const ::payload& varFile, const ::file::e_open& eopen = ::file::e_open_binary);
-   //inline ::file_transport get_writer(const ::payload& varFile, const ::file::e_open& eopen = ::file::e_open_binary | ::file::e_open_defer_create_directory | ::file::e_open_create);
+   virtual ::file_transport get_file(const ::payload& payloadFile, const ::file::e_open& eopen);
+   //inline ::file_transport get_reader(const ::payload& payloadFile, const ::file::e_open& eopen = ::file::e_open_binary);
+   //inline ::file_transport get_writer(const ::payload& payloadFile, const ::file::e_open& eopen = ::file::e_open_binary | ::file::e_open_defer_create_directory | ::file::e_open_create);
 
 
 
    //::e_status add_update_notification(property * pproperty);
    //::e_status add_update_notification(const ::id & id, bool bCreate = true);
-   //::e_status property_notify(const ::id & id, ::matter * pmatter);
+   //::e_status property_notify(const ::id & id, ::element * pelement);
 
 
 //   inline void format_topic_text(const char * psz, ...)
@@ -731,7 +731,7 @@ public:
 
    ::task_pointer defer_branch(const ::id& id, const ::routine & routine, enum_priority epriority = e_priority_normal);
 
-   virtual matter* get_taskpool_container() override;
+   virtual element* get_taskpool_container() override;
 
    //object() : m_pmeta(nullptr) { }
    //object(::object * pobject);
@@ -760,12 +760,12 @@ public:
 
 
 
-   //inline matter_array* _composite_array() { return m_pcompositea; }
-   //inline matter_array* _reference_array() { return m_preferencea; }
+   //inline element_array* _composite_array() { return m_pcompositea; }
+   //inline element_array* _reference_array() { return m_preferencea; }
 
 
-   //inline matter_array& composite_array() { ::__defer_construct_new(m_pcompositea); return *m_pcompositea; }
-   //inline matter_array& reference_array() { ::__defer_construct_new(m_preferencea); return *m_preferencea; }
+   //inline element_array& composite_array() { ::__defer_construct_new(m_pcompositea); return *m_pcompositea; }
+   //inline element_array& reference_array() { ::__defer_construct_new(m_preferencea); return *m_preferencea; }
 
 
 
@@ -788,7 +788,7 @@ public:
 
 
    //template < typename BASE_TYPE >
-   //__pointer(BASE_TYPE) file_as(const ::payload& varFile);
+   //__pointer(BASE_TYPE) file_as(const ::payload& payloadFile);
 
 
    //virtual void add_routine(const ::id& idRoutine, const ::routine& routine);
@@ -813,7 +813,7 @@ public:
 
 
    //template < typename BASE_TYPE >
-   //void save_to(const ::payload& varFile, BASE_TYPE* pobject);
+   //void save_to(const ::payload& payloadFile, BASE_TYPE* pobject);
 
    //virtual ::e_status initialize(::object * pobject) override;
    //virtual ::e_status destroy() override;
@@ -961,13 +961,13 @@ public:
    inline ::e_status __release(__pointer(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 
-   virtual ::e_status add_composite(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
-   virtual ::e_status add_reference(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   virtual ::e_status add_composite(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   virtual ::e_status add_reference(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
 
 
-   //virtual ::e_status release_composite2(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
-   //virtual ::e_status finalize_composite(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
-   //virtual ::e_status release_reference(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   //virtual ::e_status release_composite2(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   //virtual ::e_status finalize_composite(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   //virtual ::e_status release_reference(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
 
 
    //template < typename BASE_TYPE >
@@ -1033,9 +1033,9 @@ public:
 
    //void _001OnUpdate(::message::message* pmessage);
 
-   //virtual ::e_status request_file(const ::payload& varFile);
+   //virtual ::e_status request_file(const ::payload& payloadFile);
 
-   //virtual ::e_status request_file(const ::payload& varFile, ::payload varQuery);
+   //virtual ::e_status request_file(const ::payload& payloadFile, ::payload varQuery);
 
    //virtual ::e_status request(arguments arguments);
 
@@ -1061,11 +1061,11 @@ public:
 
    //virtual void release_references();
 
-   //virtual __pointer(::matter) running(const ::string & pszTag) const;
+   //virtual __pointer(::element) running(const ::string & pszTag) const;
 
-   //virtual bool ___is_reference(::matter* pobject) const;
+   //virtual bool ___is_reference(::element* pobject) const;
 
-   //virtual bool __is_composite(::matter* pobject) const;
+   //virtual bool __is_composite(::element* pobject) const;
 
    //virtual bool __is_child_task(::task* ptask) const;
 
@@ -1077,8 +1077,8 @@ public:
    //virtual ::user::document* open_new_document(::application* pappOnBehalfOf);
    //virtual void on_request(::create* pcreate);
    //virtual ::user::document* open_document_file(::application* pappOnBehalfOf);
-   //virtual ::user::document* open_document_file(::application* pappOnBehalfOf, const ::payload& varFile, const ::payload & varOptions, ::user::interaction* puiParent = nullptr, ewindowflag eflag = e_window_flag_none, ::id id = ::id());
-   //virtual ::user::document* open_document_file(::application* pappOnBehalfOf, const ::payload& varFile);
+   //virtual ::user::document* open_document_file(::application* pappOnBehalfOf, const ::payload& payloadFile, const ::payload & varOptions, ::user::interaction* puiParent = nullptr, ewindowflag eflag = e_window_flag_none, ::id id = ::id());
+   //virtual ::user::document* open_document_file(::application* pappOnBehalfOf, const ::payload& payloadFile);
    //virtual ::user::document* create_subdocument(::user::impact_data* pimpactdata);
 
 
@@ -1089,12 +1089,12 @@ public:
    //virtual string __get_text(string str);
 
    //template < typename PRED >
-   //::image_transport get_image(const ::payload & varFile, ::u64 uTrait, PRED pred);
+   //::image_transport get_image(const ::payload & payloadFile, ::u64 uTrait, PRED pred);
 
-   //virtual ::image_transport load_image(const ::payload & varFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
+   //virtual ::image_transport load_image(const ::payload & payloadFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
    //virtual ::image_transport load_matter_image(const char * pszMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
    //virtual ::image_transport load_matter_icon(string_array & straMatter, string strIcon);
-   //virtual ::image_transport load_thumbnail(const ::payload & varFile, int w, int h);
+   //virtual ::image_transport load_thumbnail(const ::payload & payloadFile, int w, int h);
    //virtual ::image_transport load_thumbnail(const char * pszPath);
    //virtual ::image_transport load_dib(const ::file::path & pathDib);
 
@@ -1226,22 +1226,22 @@ public:
 //   virtual void ns_main_async(dispatch_block_t block);
 //#endif
 
-   //inline ::file_transport get_reader(const ::payload& varFile, const ::file::e_open & eopen = ::file::e_open());
-   //inline ::file_transport get_writer(const ::payload& varFile, const ::file::e_open & eopen = ::file::e_open());
+   //inline ::file_transport get_reader(const ::payload& payloadFile, const ::file::e_open & eopen = ::file::e_open());
+   //inline ::file_transport get_writer(const ::payload& payloadFile, const ::file::e_open & eopen = ::file::e_open());
 
 
    //virtual void to_string(string & str) const override;
 
 
-   //virtual ::file_transport get_file(const ::payload& varFile, const ::file::e_open& eopen);
-   //inline ::file_transport get_reader(const ::payload& varFile, const ::file::e_open& eopen = ::file::e_open_binary);
-   //inline ::file_transport get_writer(const ::payload& varFile, const ::file::e_open& eopen = ::file::e_open_binary | ::file::e_open_defer_create_directory | ::file::e_open_create);
+   //virtual ::file_transport get_file(const ::payload& payloadFile, const ::file::e_open& eopen);
+   //inline ::file_transport get_reader(const ::payload& payloadFile, const ::file::e_open& eopen = ::file::e_open_binary);
+   //inline ::file_transport get_writer(const ::payload& payloadFile, const ::file::e_open& eopen = ::file::e_open_binary | ::file::e_open_defer_create_directory | ::file::e_open_create);
 
 
 
    //::e_status add_update_notification(property * pproperty);
    //::e_status add_update_notification(const ::id & id, bool bCreate = true);
-   //::e_status property_notify(const ::id & id, ::matter * pmatter);
+   //::e_status property_notify(const ::id & id, ::element * pelement);
 
 
 //   inline void format_topic_text(const char * psz, ...)
@@ -1301,7 +1301,7 @@ public:
    //::task_pointer __start_thread(const ::id& id, void(TYPE::* pfn)(), enum_priority epriority = e_priority_normal);
 
 
-   //virtual matter* get_taskpool_container() override;
+   //virtual element* get_taskpool_container() override;
 
 
 };

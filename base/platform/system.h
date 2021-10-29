@@ -11,6 +11,9 @@ namespace base
    public:
 
 
+
+
+
 //      __pointer(::aura::application)                     m_papplicationStartup;
 //
 //      __composite(::aura::system)                        m_psystemParent;
@@ -530,10 +533,10 @@ namespace base
 //
 //      virtual ::e_status initialize_sockets();
 //
-//      ::image_pointer get_cache_image(::object * pobject, const ::payload & varFile);
+//      ::image_pointer get_cache_image(::object * pobject, const ::payload & payloadFile);
 //      ::image_pointer matter_cache_image(::object * pobject, const ::string & strMatter);
 //
-//      ::image_pointer get_image(::object * pobject, const ::payload & varFile, bool bCache = true, bool bSync = false);
+//      ::image_pointer get_image(::object * pobject, const ::payload & payloadFile, bool bCache = true, bool bSync = false);
 //      ::image_pointer matter_image(::object * pobject, const ::string & strMatter, bool bCache = true, bool bSync = false);
 //
 //      virtual bool on_get_thread_name(string& strThreadName) override;
@@ -711,7 +714,7 @@ namespace base
 //
 //      virtual bool merge_accumulated_on_open_file(::create * pcreate);
 //
-//      virtual bool on_open_file(::payload varFile, string strExtra);
+//      virtual bool on_open_file(::payload payloadFile, string strExtra);
 //
 //      virtual LPWAVEOUT waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback);
 //

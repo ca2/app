@@ -238,7 +238,7 @@ namespace userex
    //void image_list_view::on_message_left_button_down(::message::message * pmessage)
    //{
 
-   //   auto pmouse = pmessage->m_pmouse;
+   //   auto pmouse = pmessage->m_union.m_pmouse;
 
    //   const ::point_i32 & point = pmouse->m_point;
 
@@ -265,7 +265,7 @@ namespace userex
    //void image_list_view::on_message_mouse_move(::message::message * pmessage)
    //{
 
-   //   auto pmouse = pmessage->m_pmouse;
+   //   auto pmouse = pmessage->m_union.m_pmouse;
 
    //   const ::point_i32 & point = pmouse->m_point;
 

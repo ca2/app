@@ -114,12 +114,12 @@ namespace datetime
    {
 
       m_bSpan     = false;
-      m_iYear     = time.GetYear();
-      m_iMonth    = time.GetMonth();
-      m_iDay      = time.GetDay();
-      m_iHour     = time.GetHour();
-      m_iMinute   = time.GetMinute();
-      m_iSecond   = time.GetSecond();
+      m_iYear     = time.year();
+      m_iMonth    = time.month();
+      m_iDay      = time.day();
+      m_iHour     = time.hour();
+      m_iMinute   = time.minute();
+      m_iSecond   = time.second();
 
       return *this;
 

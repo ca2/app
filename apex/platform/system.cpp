@@ -205,7 +205,7 @@ namespace apex
       if (pnode)
       {
 
-         if (timeNow.GetHour() >= 6 && timeNow.GetHour() <= 17)
+         if (timeNow.hour() >= 6 && timeNow.hour() <= 17)
          {
 
             pnode->set_simple_ui_darkness(0);
@@ -1519,7 +1519,7 @@ pacmedir->create("/ca2core");
 
       auto pdatetime = psystem->datetime();
 
-      string strLogTime = pdatetime->international().get_gmt_date_time_for_file_with_no_spaces();
+      string strLogTime = pdatetime->international().get_date_time_for_file_with_no_spaces();
 
       strLogTime.replace("-", "/");
 
@@ -1665,26 +1665,52 @@ pacmedir->create("/ca2core");
 
       bool bMatterFromHttpCache = false;
 
-      if (m_iMatterFromHttpCache == -1)
+      bool bMatterFromResource = false;
+
+      auto pfile = m_papexsystem->file().create_resource_file("app/_matter/main/_std/_std/thomasborregaardsorensen.txt");
+
+      if (pfile)
       {
 
-         ::file::path pathSide = m_pcontext->m_papexcontext->side_get_matter_path("app/_matter/main");
+         bMatterFromResource = true;
 
-         ::file::path pathLocal = local_get_matter_path("app/_matter/main");
+      }
 
-         bool bFileSystemMatter = m_pacmedir->is(pathSide) || m_pacmedir->is(pathLocal);
+      if (bMatterFromResource)
+      {
 
-         bMatterFromHttpCache = !bFileSystemMatter;
+         m_pdirsystem->m_bMatterFromHttpCache = false;
+
+         m_pdirsystem->m_bMatterFromResource = true;
 
       }
       else
       {
 
-         bMatterFromHttpCache = m_iMatterFromHttpCache != 0;
+         if (m_iMatterFromHttpCache == -1)
+         {
+
+            ::file::path pathSide = m_pcontext->m_papexcontext->side_get_matter_path("app/_matter/main");
+
+            ::file::path pathLocal = local_get_matter_path("app/_matter/main");
+
+            bool bFileSystemMatter = m_pacmedir->is(pathSide) || m_pacmedir->is(pathLocal);
+
+            bMatterFromHttpCache = !bFileSystemMatter;
+
+         }
+         else
+         {
+
+            bMatterFromHttpCache = m_iMatterFromHttpCache != 0;
+
+         }
+
+         m_pdirsystem->m_bMatterFromHttpCache = bMatterFromHttpCache;
+
+         m_pdirsystem->m_bMatterFromResource = false;
 
       }
-
-      m_pdirsystem->m_bMatterFromHttpCache = bMatterFromHttpCache;
 
       //estatus = create_html();
 
@@ -2823,7 +2849,7 @@ pacmedir->create("/ca2core");
 
    //   //   try
    //   //   {
-   //   //      strMessage += pobject->type_name();
+   //   //      strMessage += __type_name(pobject);
 
    //   //   }
    //   //   catch (...)
@@ -3325,7 +3351,7 @@ pacmedir->create("/ca2core");
 
       }
 
-      INFORMATION("::apex::system::on_request session = " << psession->type_name() << "(" << __string((iptr) psession) << ")");
+      INFORMATION("::apex::system::on_request session = " << __type_name(psession) << "(" << __string((iptr) psession) << ")");
 
       psession->do_request(pcreate);
 
@@ -3733,9 +3759,9 @@ pacmedir->create("/ca2core");
 
          __pointer(::create) pcreate(e_create_new, this);
 
-         merge_accumulated_on_open_file(pcreate);
-
-         papp->post_object(e_message_system, e_system_message_create, pcreate);
+         merge_accumulated_on_open_file(pcreate)
+;
+         papp->post_element(e_message_system, e_system_message_create, pcreate);
 
       }
 
@@ -3811,7 +3837,7 @@ pacmedir->create("/ca2core");
    }
 
 
-   bool system::on_open_file(::payload varFile, string strExtra)
+   bool system::on_open_file(::payload payloadFile, string strExtra)
    {
 
       //auto psession = get_session();
@@ -3836,7 +3862,7 @@ pacmedir->create("/ca2core");
       //if(papp != nullptr)
       //{
 
-      //   if(varFile.is_empty())
+      //   if(payloadFile.is_empty())
       //   {
 
       //      papp->request({"app.exe : open_default " + strExtra});
@@ -3845,7 +3871,7 @@ pacmedir->create("/ca2core");
       //   else
       //   {
 
-      //      papp->request({"app.exe \"" + varFile.get_file_path() + "\" " + ::str::has_char(strExtra, " : ")});
+      //      papp->request({"app.exe \"" + payloadFile.get_file_path() + "\" " + ::str::has_char(strExtra, " : ")});
 
       //   }
 
@@ -4176,7 +4202,7 @@ pacmedir->create("/ca2core");
    ::e_status system::browser(string strUrl, string strBrowser, string strProfile, string strTarget)
    {
 
-       m_pcontext->m_papexcontext->os().link_open(strUrl);
+       m_pcontext->m_papexcontext->os_context()->link_open(strUrl);
 
        return ::success;
 
@@ -5459,12 +5485,8 @@ namespace apex
 
    void system::system_id_update(::i64 iUpdate, ::i64 iPayload)
    {
-
-      auto psignal = get_signal((::enum_id) iUpdate);
-
-      psignal->m_payload = iPayload;
-
-      handle(psignal, nullptr);
+      
+      call((::enum_id) iUpdate, iPayload);
 
    }
 
@@ -5494,7 +5516,30 @@ namespace apex
    void system::handle(::subject * psubject, ::context * pcontext)
    {
 
-      if (psubject->id() == id_os_user_theme)
+//      auto psignal = get_signal((::enum_id) iUpdate);
+//
+//      psignal->m_payload = iPayload;
+//
+//      psignal->notify();
+      
+      if(psubject->id() == id_set_dark_mode)
+      {
+         
+         if(psubject->m_payload.is_true())
+         {
+
+            m_pnode->background_color(::color::black);
+            
+         }
+         else
+         {
+            
+            m_pnode->background_color(::color::white);
+
+         }
+         
+      }
+      else if (psubject->id() == id_os_user_theme)
       {
 
          auto pnode = node();
@@ -5753,7 +5798,7 @@ string get_bundle_app_library_name();
 
 
 
-::apex::system* platform_create_system(const char * pszAppId)
+__pointer(::apex::system) platform_create_system(const char * pszAppId)
 {
 
    string strAppId(pszAppId);
@@ -5833,7 +5878,7 @@ string get_bundle_app_library_name();
 
    psystem->m_strAppId = strAppId;
 
-   return psystem;
+   return ::move_transfer(psystem);
 
 }
 
@@ -5954,11 +5999,11 @@ namespace apex
 //
 
 
-void system_id_update(void* pSystem, ::i64 iUpdate, ::i64 iPayload)
-{
-
-   auto psystem = (class ::system *) pSystem;
-
-   psystem->system_id_update(iUpdate, iPayload);
-
-}
+//void system_id_update(void* pSystem, ::i64 iUpdate, ::i64 iPayload)
+//{
+//
+//   auto psystem = (class ::system *) pSystem;
+//
+//   psystem->system_id_update(iUpdate, iPayload);
+//
+//}

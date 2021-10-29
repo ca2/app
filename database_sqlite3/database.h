@@ -102,9 +102,9 @@ namespace sqlite
 
       //virtual string escape(const ::string & psz);
 
-      virtual string error1(const ::string & pszPrefix = nullptr);
-      virtual void trace_error1(const ::string & pszPrefix = nullptr);
-      virtual string query_error(const ::string& pszPrefix = nullptr);
+      //string query_error(const ::string & pszPrefix = nullptr) override;
+      void trace_error1(const ::string & pszPrefix = nullptr) override;
+      string query_error(const ::string& pszPrefix = nullptr) override;
 
 
       virtual ::e_status set_id_blob(string strKey, ::block block) override;

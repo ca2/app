@@ -62,7 +62,7 @@ namespace windowing
       ::windowing::keyboard * keyboard();
 
 
-      virtual bool is_branch_current() const;
+      bool is_branch_current() const override;
 
 
       inline ::aura::application* get_application() const;

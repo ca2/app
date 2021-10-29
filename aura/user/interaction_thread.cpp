@@ -78,7 +78,7 @@ namespace user
 
       m_pimpl = pimpl;
 
-      string strType = ::str::demangle(m_pimpl->m_puserinteraction->type_name());
+      string strType = __type_name(m_pimpl->m_puserinteraction);
 
       m_strDebugType = strType;
 
@@ -218,9 +218,9 @@ namespace user
 
 #endif
 
-      //set_topic_text("window_thread_" + ::str::demangle(m_pimpl->m_puserinteraction->type_name()) + "> ");
+      //set_topic_text("window_thread_" + __type_name(m_pimpl->m_puserinteraction)) + "> ";
 
-      ::task_set_name(::str::demangle(m_pimpl->m_puserinteraction->type_name()));
+      ::task_set_name(__type_name(m_pimpl->m_puserinteraction));
 
 #ifdef WINDOWS_DESKTOP
 
@@ -394,9 +394,9 @@ namespace user
 
             }
 
-            CATEGORY_INFORMATION(appmsg, string(type_name()) + " thread::pump_message - Received e_message_quit.\n");
+            CATEGORY_INFORMATION(appmsg, __type_name(this) << " thread::pump_message - Received e_message_quit.\n");
 
-            ::output_debug_string(string(type_name()) + " thread::pump_message - Received e_message_quit.\n");
+            //::output_debug_string(__type_name(this)) << " thread::pump_message - Received e_message_quit.\n");
 
             m_nDisablePumpCount++; // application must die
             // Note: prevents calling message loop things in 'exit_thread'
@@ -559,7 +559,7 @@ namespace user
                      if (msg.m_id == ::e_message_redraw)
                      {
 
-                        string strType = ::str::demangle(puserinteraction->type_name());
+                        string strType = __type_name(puserinteraction);
 
                         if (strType.contains_ci("filemanager"))
                         {
@@ -1125,7 +1125,7 @@ namespace user
       else
       {
 
-         //string strType = m_puserinteraction->type_name();
+         //string strType = __type_name(m_puserinteraction);
 
          if (m_strDebugType.contains("filemanager"))
          {

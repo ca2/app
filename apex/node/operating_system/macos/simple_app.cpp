@@ -92,11 +92,11 @@
 //
 //         }
 //
-//         dappy(string(typeid(*this).name()) + " : s_app pre_runned : " + __string(m_iErrorCode));
+//         dappy(__type_name(this) + " : s_app pre_runned : " + __string(m_iErrorCode));
 //
 //         SetCurrentHandles();
 //
-//         dappy(string(typeid(*this).name()) + " : handles set s_app : " + __string(m_iErrorCode));
+//         dappy(__type_name(this) + " : handles set s_app : " + __string(m_iErrorCode));
 //
 //      }
 //      catch(...)
@@ -113,7 +113,7 @@
 //      try
 //      {
 //
-//         dappy(string(typeid(*this).name()) + " : s_app going to intro : " + __string(m_iErrorCode));
+//         dappy(__type_name(this) + " : s_app going to intro : " + __string(m_iErrorCode));
 //
 //         if(!intro())
 //         {
@@ -125,7 +125,7 @@
 //
 //         }
 //
-//         dappy(string(typeid(*this).name()) + " : s_app introduced : " + __string(m_iErrorCode));
+//         dappy(__type_name(this) + " : s_app introduced : " + __string(m_iErrorCode));
 //
 //      }
 //      catch(...)

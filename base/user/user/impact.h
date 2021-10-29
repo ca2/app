@@ -24,9 +24,10 @@ namespace user
 
 
       impact();
-      virtual ~impact();
+      ~impact() override;
 
-      virtual void dump(dump_context&) const override;
+      
+      void dump(dump_context&) const override;
       void assert_valid() const override;
 
 

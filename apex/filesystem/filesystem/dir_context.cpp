@@ -1920,31 +1920,63 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
       }
 
    }
-   else
+   else if(psystem->m_pdirsystem->m_bMatterFromResource)
    {
 
-      string strMatter;
+   string strMatter;
 
-      for (auto & strLs : straLs)
+   for (auto& strLs : straLs)
+   {
+
+      for (auto& pathItem : patha)
       {
 
-         for (auto & pathItem : patha)
+         strMatter = strLs / pathItem;
+
+         strMatter.replace("\\", "/");
+
+         if (m_psystem->m_papexsystem->file().resource_is_file_or_dir(strMatter))
+         
          {
 
-            strMatter = strLs / pathItem;
+            path = "zipresource://" + strMatter;
 
-            path = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / strMatter;
-
-            if (m_psystem->m_pacmepath->is_file_or_dir(path, nullptr))
-            {
-
-               goto ret;
-
-            }
+            goto ret;
 
          }
 
       }
+
+   }
+
+   }
+   else
+   {
+
+
+
+   string strMatter;
+
+   for (auto& strLs : straLs)
+   {
+
+      for (auto& pathItem : patha)
+      {
+
+         strMatter = strLs / pathItem;
+
+         path = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / strMatter;
+
+         if (m_psystem->m_pacmepath->is_file_or_dir(path, nullptr))
+         {
+
+            goto ret;
+
+         }
+
+      }
+
+   }
 
    }
 

@@ -51,7 +51,59 @@ namespace user
             return true;
 
          }
-         else if(m_puserinteractionpointeraChild->interaction_count() >= 1)
+         else if (m_puserinteractionpointeraChild->interaction_count() == 1)
+         {
+
+            __pointer(::user::interaction) puserinteractionOld = m_puserinteractionpointeraChild->first_interaction();
+
+            puserinteractionChild->m_pinteractionScaler = m_pinteractionScaler;
+
+            m_puserinteractionpointeraChild->m_interactiona.set_at(0, puserinteractionChild);
+
+            if (puserinteractionOld)
+            {
+
+               puserinteractionOld->m_puserinteraction->m_puserinteractionParent.release();
+
+               __pointer(::user::interaction) puserinteractionParent = this;
+
+               auto pimpact = puserinteractionChild->cast < ::user::impact>();
+
+               if (pimpact)
+               {
+
+                  while (puserinteractionParent)
+                  {
+
+                     __pointer(::user::frame) pframe = puserinteractionParent;
+
+                     if (pframe)
+                     {
+
+                        if (pframe->get_active_view() == puserinteractionOld)
+                        {
+
+                           pframe->set_active_view(pimpact);
+
+                        }
+
+                     }
+
+                     puserinteractionParent = puserinteractionParent->get_parent();
+
+                  }
+
+               }
+
+
+               puserinteractionOld->set_finish();
+
+            }
+
+            return true;
+
+         }
+         else if(m_puserinteractionpointeraChild->interaction_count() > 1)
          {
 
             throw exception(error_wrong_state);

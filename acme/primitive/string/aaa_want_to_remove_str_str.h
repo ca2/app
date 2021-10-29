@@ -595,22 +595,10 @@ inline c_number < T > & c_number < T >::to_string(const ::string & str)
 }
 
 
-
-
-
-
 CLASS_DECL_ACME string normalize_wildcard_criteria(const ::string & strPattern);
 
 
-
-
-namespace stra
-{
-
-   CLASS_DECL_ACME string_array string_from_strdup(char ** ppParam);
-
-} // namespace stra
-
-
-
 CLASS_DECL_ACME string _002Underscore(string str);
+
+
+

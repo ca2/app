@@ -401,7 +401,7 @@ namespace sphere
    }
 
 
-   ::user::document *  application::_001OpenDocumentFile(::payload varFile)
+   ::user::document *  application::_001OpenDocumentFile(::payload payloadFile)
    {
 
       //string strId = m_strId;
@@ -421,7 +421,7 @@ namespace sphere
       //   if(strId == "default_file_handler")
       //   {
 
-      //      return ::filehandler::application::_001OpenDocumentFile(varFile);
+      //      return ::filehandler::application::_001OpenDocumentFile(payloadFile);
 
       //   }
 
@@ -431,7 +431,7 @@ namespace sphere
 
       //}
 
-      //return ::asphere::application::_001OpenDocumentFile(varFile);
+      //return ::asphere::application::_001OpenDocumentFile(payloadFile);
 
       return nullptr;
 

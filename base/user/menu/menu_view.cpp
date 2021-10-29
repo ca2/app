@@ -656,12 +656,12 @@ namespace user
    }
 
 
-   bool menu_view::load_xml(::payload varFile)
+   bool menu_view::load_xml(::payload payloadFile)
    {
 
       auto pcontext = get_context();
 
-      string str = pcontext->m_papexcontext->file().as_string(varFile);
+      string str = pcontext->m_papexcontext->file().as_string(payloadFile);
 
       if (!m_pxmldoc->load(str))
       {

@@ -378,7 +378,7 @@ namespace sqlite
 
          if (iResult != SQLITE_OK)
          {
-            TRACE("Error: %s", err);
+            INFORMATION("Error: " <<  err);
             throw ::database::exception(get_error_message());
          }
 //         if (setErr(sqlite3_exec((sqlite3 *)get_handle(), "PRAGMA cache_size=-20000", nullptr, nullptr, &err)) != SQLITE_OK)
@@ -678,12 +678,12 @@ namespace sqlite
 
    //}
 
-   string database::error1(const ::string& pszPrefix)
-   {
+   //string database::error1(const ::string& pszPrefix)
+   //{
 
-      return "";
+   //   return "";
 
-   }
+   //}
 
 
    void database::trace_error1(const ::string& pszPrefix)

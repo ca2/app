@@ -27,7 +27,7 @@ public:
    string                                          m_strTaskName;
    string                                          m_strTaskTag;
 
-   __pointer(::matter)                             m_pmatter;
+   __pointer(::element)                      m_pelement;
    __pointer(manual_reset_event)                   m_pevSleep;
 
 #ifdef WINDOWS
@@ -169,7 +169,7 @@ public:
 
    virtual void kick_idle() override;
 
-   bool is_branch_current() const;
+   bool is_branch_current() const override;
 
 
 };

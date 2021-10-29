@@ -2280,7 +2280,7 @@ namespace aura
 
       auto pcontext = get_context();
 
-      return pcontext->m_papexcontext->os().is_remote_session();
+      return pcontext->m_papexcontext->os_context()->is_remote_session();
 
    }
 

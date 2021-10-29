@@ -240,21 +240,6 @@ namespace userex
    }
 
 
-   ::e_status pane_tab_view::prepare_impact_menu(::user::menu * pmenu)
-   {
-
-      if (pmenu->load_xml_menu("matter://impact_menu.xml"))
-      {
-
-         pmenu->create_inline_menu(this, m_pimpactdata->m_pplaceholder);
-
-      }
-
-      return ::success;
-
-   }
-
-
    void pane_tab_view::on_change_cur_sel()
    {
 
@@ -276,18 +261,6 @@ namespace userex
             filemanager_document()->filemanager_data()->m_pdocumentTopic = nullptr;
 
          }
-
-      }
-      else if (m_pimpactdata->m_id == MENU_IMPACT)
-      {
-
-         __pointer(::user::menu) pmenu = get_view_uie();
-
-         pmenu->destroy_menu();
-
-         prepare_impact_menu(pmenu);
-
-         return;
 
       }
       else if(m_pimpactdata->m_id == OPTIONS_IMPACT)
@@ -477,14 +450,6 @@ namespace userex
    }
 
 
-   void pane_tab_view::create_menu_impact(::user::impact_data * pimpactdata)
-   {
-
-      ::user::impact::create_view < ::user::menu_list_view >(pimpactdata);
-
-   }
-
-
    void pane_tab_view::on_create_impact(::user::impact_data * pimpactdata)
    {
 
@@ -517,7 +482,7 @@ namespace userex
       else if (pimpactdata->m_id == MENU_IMPACT)
       {
 
-         create_menu_impact(pimpactdata);
+//         create_menu_impact(pimpactdata);
 
       }
       else if (pimpactdata->m_id == OPTIONS_IMPACT)

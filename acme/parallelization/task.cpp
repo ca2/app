@@ -245,12 +245,12 @@ bool task::kick_thread()
 ::e_status task::main()
 {
 
-   if (::is_set(m_pmatter) && m_pmatter != this)
+   if (::is_set(m_pelement) && m_pelement != this)
    {
 
       run_posted_routines();
 
-      auto estatus = m_pmatter->run();
+      auto estatus = m_pelement->run();
 
       run_posted_routines();
 
@@ -356,9 +356,7 @@ void* task::s_os_task(void* p)
 
       clear_message_queue(ptask->m_itask);
 
-      ptask->set(e_matter_task_terminated);
-
-      //ptask->m_ptaskParent.release();
+      ptask->set(e_flag_task_terminated);
 
 #if OBJECT_REFERENCE_COUNT_DEBUG
 
@@ -482,8 +480,10 @@ void task::unregister_task()
    if (m_routinea.has_element())
    {
 
-      while (auto routine = m_routinea.pick_first())
+      do
       {
+
+         auto routine = m_routinea.pick_first();
 
          synchronouslock.unlock();
 
@@ -491,26 +491,29 @@ void task::unregister_task()
 
          synchronouslock.lock();
 
-      }
+      } while (m_routinea.has_element());
+
+
+      return ::success;
 
    }
 
-   return ::success;
+   return ::success_none;
 
 }
 
 
-//void task::add_notify(::matter* pmatter)
+//void task::add_notify(::element* pelement)
 //{
 //
 //   synchronous_lock synchronouslock(mutex());
 //
-//   notify_array().add_item(pmatter OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
+//   notify_array().add_item(pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
 //
 //}
 //
 //
-//void task::erase_notify(::matter* pmatter)
+//void task::erase_notify(::element* pelement)
 //{
 //
 //   synchronous_lock synchronouslock(mutex());
@@ -518,7 +521,7 @@ void task::unregister_task()
 //   if (m_pnotifya)
 //   {
 //
-//      m_pnotifya->erase_item(pmatter OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
+//      m_pnotifya->erase_item(pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
 //
 //   }
 //
@@ -539,9 +542,9 @@ bool task::on_get_task_name(string & strTaskName)
    else
    {
 
-      //::task_set_name(type_name());
+      //::task_set_name(__type_name(this));
 
-      strTaskName = type_name();
+      strTaskName = __type_name(this);
 
    }
 
@@ -570,13 +573,13 @@ void task::init_task()
 
    }
 
-   if (string(type_name()).contains("synth_thread"))
+   if (__type_name(this).contains("synth_thread"))
    {
 
       output_debug_string("synth_thread thread::thread_proc");
 
    }
-   else if (string(type_name()).ends_ci("out"))
+   else if (__type_name(this).ends_ci("out"))
    {
 
       output_debug_string("synth_thread thread::out");
@@ -609,12 +612,12 @@ void task::term_task()
 
    //   synchronouslock.unlock();
 
-   //   for (auto & pmatter : notifya)
+   //   for (auto & pelement : notifya)
    //   {
 
-   //      pmatter->task_erase(this);
+   //      pelement->task_erase(this);
 
-   //      pmatter->task_on_term(this);
+   //      pelement->task_on_term(this);
 
    //   }
 
@@ -658,15 +661,15 @@ void task::term_task()
 //   //while (!m_bSetFinish)
 //   //{
 //
-//   //   ::matter* pmatter;
+//   //   ::element* pelement;
 //
 //   //   {
 //
 //   //      synchronous_lock synchronouslock(mutex());
 //
-//   //      pmatter = m_pmatter.m_p;
+//   //      pelement = m_pelement.m_p;
 //
-//   //      m_bitIsRunning = pmatter != nullptr;
+//   //      m_bitIsRunning = pelement != nullptr;
 //
 //   //      if (!m_bitIsRunning)
 //   //      {
@@ -675,15 +678,15 @@ void task::term_task()
 //
 //   //      }
 //
-//   //      m_id = pmatter->type_name();
+//   //      m_id = __type_name(pelement);
 //
 //   //      task_set_name(m_id);
 //
-//   //      m_pmatter.m_p = nullptr;
+//   //      m_pelement.m_p = nullptr;
 //
 //   //   }
 //
-//   //   pmatter->on_task();
+//   //   pelement->on_task();
 //
 //   //}
 //
@@ -723,40 +726,37 @@ bool task::has_message() const
 
 
 //::e_status task::branch(
-//   ::matter* pmatter,
+//   ::element* pelement,
 //   ::enum_priority epriority,
 //   u32 nStackSize,
 //   u32 uCreateFlags ARG_SEC_ATTRS)
 //{
 //
-//   m_pmatter = pmatter;
+//   m_pelement = pelement;
 //
-//   m_id = pmatter->type_name();
+//   m_id = __type_name(pelement);
 //
 //   return branch(epriority, nStackSize, uCreateFlags ADD_PARAM_SEC_ATTRS);
 //
 //}
 
 
-::e_status task::branch(
-   ::enum_priority epriority,
-   u32 nStackSize,
-   u32 uCreateFlags ARG_SEC_ATTRS)
+::e_status task::branch(::enum_priority epriority, u32 nStackSize, u32 uCreateFlags ARG_SEC_ATTRS)
 {
 
    if (m_id.is_empty())
    {
 
-      if (m_pmatter)
+      if (m_pelement)
       {
 
-         m_id = m_pmatter->type_name();
+         m_id = __type_name(m_pelement);
 
       }
       else
       {
 
-         m_id = type_name();
+         m_id = __type_name(this);
 
       }
 
@@ -771,10 +771,10 @@ bool task::has_message() const
 
    }
 
-//   if (::is_null(m_pmatter))
+//   if (::is_null(m_pelement))
 //   {
 //
-//      m_pmatter = this;
+//      m_pelement = this;
 //
 //   }
 
@@ -856,12 +856,12 @@ bool task::has_message() const
 
    //}
 
-   // __task_procedure() should release this (pmatter)
+   // __task_procedure() should release this (pelement)
    //increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS_FUNCTION_LINE);
 
    m_bIsRunning = true;
 
-   set(e_matter_task_started);
+   set(e_flag_task_started);
 
    if (::is_null(m_pobjectParentTask))
    {
@@ -972,12 +972,12 @@ bool task::task_sleep(const class ::wait & wait)
 
 }
 
-//::e_status task::branch(::matter * pmatter, ::enum_priority epriority, ::u32 nStackSize, u32 uCreateFlags ARG_SEC_ATTRS)
+//::e_status task::branch(::element * pelement, ::enum_priority epriority, ::u32 nStackSize, u32 uCreateFlags ARG_SEC_ATTRS)
 //{
 //
 //   auto ptask = __new(task);
 //
-//   ptask->branch(pmatter, epriority, nStackSize, uCreateFlags ADD_PARAM_SEC_ATTRS);
+//   ptask->branch(pelement, epriority, nStackSize, uCreateFlags ADD_PARAM_SEC_ATTRS);
 //
 //   return ptask;
 //

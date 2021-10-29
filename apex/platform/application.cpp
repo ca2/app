@@ -1309,7 +1309,7 @@ return get_temp_file_name_template(strRet, lpszName, pszExtension, nullptr);
 //////         if(m_iErrorCode != 0)
 //////         {
 //////
-//////            dappy(string(typeid(*this).name()) + " : on_run failure : " + __string(m_iErrorCode));
+//////            dappy(__type_name(this) + " : on_run failure : " + __string(m_iErrorCode));
 //////
 //////            ::output_debug_string("application::main on_run termination failure\n");
 //////
@@ -1329,7 +1329,7 @@ return get_temp_file_name_template(strRet, lpszName, pszExtension, nullptr);
 ////      catch (...)
 ////      {
 ////
-////         //dappy(string(typeid(*this).name()) + " : on_run general exception");
+////         //dappy(__type_name(this) + " : on_run general exception");
 ////
 ////      }
 ////
@@ -1782,7 +1782,9 @@ INFORMATION("apex::application::init_application .2");
 if (m_pinterprocessintercommunication)
 {
 
-m_pinterprocessintercommunication->on_new_instance(m_pcontext->m_papexcontext->file().module(), m_pcontext->m_papexcontext->os().get_pid());
+m_pinterprocessintercommunication->on_new_instance(
+   m_pcontext->m_papexcontext->file().module(),
+   m_pcontext->m_papexcontext->os_context()->get_pid());
 
 }
 
@@ -2453,55 +2455,61 @@ bool application::do_install()
 ::e_status application::on_before_launching()
 {
 
-string strLicense = get_license_id();
+   string strLicense = get_license_id();
 
-//::payload & varTopicQuey = psystem->m_varTopicQuery;
+   //::payload & varTopicQuey = psystem->m_varTopicQuery;
 
-auto psystem = get_system()->m_papexsystem;
+   auto psystem = get_system()->m_papexsystem;
 
-bool bHasInstall = psystem->is_true("install");
+   bool bHasInstall = psystem->is_true("install");
 
-bool bHasUninstall = psystem->is_true("uninstall");
+   bool bHasUninstall = psystem->is_true("uninstall");
 
-if (!(bHasInstall || bHasUninstall)
-&& m_bLicense
-&& strLicense.has_char())
-{
+   if (!(bHasInstall || bHasUninstall)
+   && m_bLicense
+   && strLicense.has_char())
+   {
 
-if (!assert_user_logged_in())
-{
-return false;
-}
+      if (!assert_user_logged_in())
+      {
 
-// call application's is_licensed function
-// because if delay is needed for authentication -
-// or either asking for authentication -
-// current application startup won't be
-// exited by timeout.
+         return false;
 
-i32 iRetry = 1;
+      }
 
-auto psession = get_session();
+      // call application's is_licensed function
+      // because if delay is needed for authentication -
+      // or either asking for authentication -
+      // current application startup won't be
+      // exited by timeout.
 
-retry_license:
+      i32 iRetry = 1;
 
-iRetry--;
+      auto psession = get_session();
 
-if (!psession->is_licensed(strLicense))
-{
+      retry_license:
 
-if (iRetry > 0)
-   goto retry_license;
+      iRetry--;
 
-return false;
+      if (!psession->is_licensed(strLicense))
+      {
 
-}
+         if (iRetry > 0)
+         {
 
-}
+            goto retry_license;
 
-INFORMATION("initial_check_directrix : ok ("<< typeid(*this).name() <<")"<< m_strAppId);
+         }
 
-return true;
+         return false;
+
+      }
+
+   }
+
+   INFORMATION("initial_check_directrix : ok ("<< __type_name(this) <<")"<< m_strAppId);
+
+   return true;
 
 }
 
@@ -3057,7 +3065,7 @@ m_durationHeartBeat.Now();
 if (!init1())
 {
 
-//dappy(string(typeid(*this).name()) + " : init1 failure : " + __string(m_iErrorCode));
+//dappy(__type_name(this) + " : init1 failure : " + __string(m_iErrorCode));
 
 return false;
 
@@ -3072,7 +3080,7 @@ m_durationHeartBeat.Now();
 if (!init2())
 {
 
-//dappy(string(typeid(*this).name()) + " : init2 failure : " + __string(m_iErrorCode));
+//dappy(__type_name(this) + " : init2 failure : " + __string(m_iErrorCode));
 
 return false;
 
@@ -3087,7 +3095,7 @@ m_durationHeartBeat.Now();
 if (!init3())
 {
 
-//dappy(string(typeid(*this).name()) + " : init3 failure : " + __string(m_iErrorCode));
+//dappy(__type_name(this) + " : init3 failure : " + __string(m_iErrorCode));
 
 return false;
 
@@ -3099,7 +3107,7 @@ psystem->install_progress_add_up(); // 4
 
 m_durationHeartBeat.Now();
 
-//dappy(string(typeid(*this).name()) + " : init3 ok : " + __string(m_iErrorCode));
+//dappy(__type_name(this) + " : init3 ok : " + __string(m_iErrorCode));
 
 try
 {
@@ -3107,7 +3115,7 @@ try
 if (!init())
 {
 
-//dappy(string(typeid(*this).name()) + " : initialize failure : " + __string(m_iErrorCode));
+//dappy(__type_name(this) + " : initialize failure : " + __string(m_iErrorCode));
 
 return false;
 
@@ -3894,7 +3902,7 @@ auto pcall = m_pinterprocessintercommunication->create_call("application", "on_a
 
 pcall->add_arg(m_pcontext->m_papexcontext->file().module());
 
-pcall->add_arg(m_pcontext->m_papexcontext->os().get_pid());
+pcall->add_arg(m_pcontext->m_papexcontext->os_context()->get_pid());
 
 pcall->add_arg(psystem->command_line_text());
 
@@ -3955,7 +3963,7 @@ auto pcall = m_pinterprocessintercommunication->create_call("application", "on_a
 
 pcall->add_arg(m_pcontext->m_papexcontext->file().module());
 
-pcall->add_arg(m_pcontext->m_papexcontext->os().get_pid());
+pcall->add_arg(m_pcontext->m_papexcontext->os_context()->get_pid());
 
 pcall->add_arg(psystem->command_line_text());
 
@@ -4530,10 +4538,10 @@ return !is_session() && !is_system();
 //}
 
 
-//void application::play_audio(::payload varFile, bool bSynch)
+//void application::play_audio(::payload payloadFile, bool bSynch)
 //{
 
-//   __UNREFERENCED_PARAMETER(varFile);
+//   __UNREFERENCED_PARAMETER(payloadFile);
 //   __UNREFERENCED_PARAMETER(bSynch);
 
 //}
@@ -4547,7 +4555,7 @@ auto psystem = m_psystem;
 
 auto pdatetime = psystem->m_pdatetime;
 
-strMessage = pdatetime->international().get_gmt_date_time();
+strMessage = pdatetime->international().get_date_time();
 strMessage += " ";
 strMessage += pszMessage;
 strMessage += "\n";
@@ -4595,7 +4603,7 @@ g_iCount++;
 if (g_iCount == 1)
 {
 
-m_pcontext->m_papexcontext->os().file_open(strFile);
+m_pcontext->m_papexcontext->os_context()->file_open(strFile);
 
 }
 
@@ -4724,12 +4732,12 @@ return m_pcontext->m_papexcontext->sys_get(::file::path(m_strAppName) / strPath,
 }
 
 
-bool application::on_open_document_file(::payload varFile)
+bool application::on_open_document_file(::payload payloadFile)
 {
 
-//request_file(varFile);
+//request_file(payloadFile);
 
-//return varFile["document"].cast < ::object > () != nullptr;
+//return payloadFile["document"].cast < ::object > () != nullptr;
 
 return false;
 
@@ -5801,7 +5809,7 @@ m_bReady = true;
 try
 {
 
-string strType = type_name();
+   string strType = __type_name(this);
 
 //if(::is_set(m_psystem))
 //{
@@ -6602,15 +6610,15 @@ bool application::assert_user_logged_in()
 string application::matter_as_string(const ::string & pszMatter, const ::string & pszMatter2)
 {
 
-::payload varFile;
+::payload payloadFile;
 
-varFile["disable_ca2_sessid"] = true;
+payloadFile["disable_ca2_sessid"] = true;
 
 string strMatter = m_pcontext->m_papexcontext->dir().matter(::file::path(pszMatter) / pszMatter2);
 
-varFile["url"] = strMatter;
+payloadFile["url"] = strMatter;
 
-return m_pcontext->m_papexcontext->file().as_string(varFile);
+return m_pcontext->m_papexcontext->file().as_string(payloadFile);
 
 }
 
@@ -6802,10 +6810,10 @@ return"";
 
 }
 
-//bool application::do_prompt_file_name(::payload & varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument)
+//bool application::do_prompt_file_name(::payload & payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument)
 //{
 
-//   __UNREFERENCED_PARAMETER(varFile);
+//   __UNREFERENCED_PARAMETER(payloadFile);
 //   __UNREFERENCED_PARAMETER(nIDSTitle);
 
 //   return false;
@@ -6963,21 +6971,21 @@ return -1;
 //}
 
 
-//bool application::on_open_document(::user::document * pdocument, ::payload varFile)
+//bool application::on_open_document(::user::document * pdocument, ::payload payloadFile)
 //{
 
 //   __UNREFERENCED_PARAMETER(pdocument);
-//   __UNREFERENCED_PARAMETER(varFile);
+//   __UNREFERENCED_PARAMETER(payloadFile);
 //   return true;
 
 //}
 
 
-//bool application::on_save_document(::user::document * pdocument, ::payload varFile)
+//bool application::on_save_document(::user::document * pdocument, ::payload payloadFile)
 //{
 
 //   __UNREFERENCED_PARAMETER(pdocument);
-//   __UNREFERENCED_PARAMETER(varFile);
+//   __UNREFERENCED_PARAMETER(payloadFile);
 //   return true;
 
 //}
@@ -8981,13 +8989,13 @@ return true;
 void application::_001OnFileNew(::message::message* pmessage)
 {
 
-::payload varFile;
+::payload payloadFile;
 
 ::payload varQuery;
 
 varQuery["command"] = "new_file";
 
-//request_file(varFile, varQuery);
+//request_file(payloadFile, varQuery);
 
 pmessage->m_bRet = true;
 
@@ -8995,19 +9003,19 @@ pmessage->m_bRet = true;
 
 
 
-//   bool application::on_open_document_file(::payload varFile)
+//   bool application::on_open_document_file(::payload payloadFile)
 //   {
 //
-//      return _001OpenDocumentFile(varFile);
+//      return _001OpenDocumentFile(payloadFile);
 //
 //   }
 
-//::user::document* application::_001OpenDocumentFile(::payload varFile)
+//::user::document* application::_001OpenDocumentFile(::payload payloadFile)
 //{
 
-//   request_file(varFile);
+//   request_file(payloadFile);
 
-//   return varFile["document"].cast < ::user::document >();
+//   return payloadFile["document"].cast < ::user::document >();
 
 //}
 

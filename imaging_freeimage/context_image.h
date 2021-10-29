@@ -15,7 +15,7 @@ namespace imaging_freeimage
       ~context_image() override;
 
 
-      virtual ::e_status _load_image(::image * pimageParam, const ::payload & varFile, const image::load_options & loadoptions) override;
+      virtual ::e_status _load_image(::image * pimageParam, const ::payload & payloadFile, const image::load_options & loadoptions) override;
 
       virtual ::e_status _load_image(::image * pimage, __pointer(image_frame_array) & pframea, memory & memory) override;
       virtual ::e_status save_image(memory & memory, const ::image * pimage, const ::save_image * psaveimage) override;

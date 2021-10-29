@@ -1753,6 +1753,8 @@ __transport(::application) app_core::new_application(const char* pszAppId)
 
    }
 
+#ifndef CUBE
+
    if (!papp)
    {
 
@@ -1856,6 +1858,8 @@ __transport(::application) app_core::new_application(const char* pszAppId)
       }
 
    }
+
+#endif
 
    if (!papp)
    {

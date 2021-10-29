@@ -72,7 +72,7 @@ namespace aura
       inline ::windowing::windowing * windowing() { return m_pwindowing; }
 
 
-      __pointer(::extended::sequence < ::conversation >) message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox) override;
+      //__pointer(::extended::sequence < ::conversation >) message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox) override;
 
 
       void BeginWaitCursor();

@@ -35,7 +35,7 @@ namespace draw2d_cairo
 
       bool dc_select(bool bSelect = true) override;
 
-      virtual ::e_status create(const ::size_i32 & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false) override;
+      virtual ::e_status create(const ::size_i32 & size, ::enum_flag eflagCreate = OK_IMAGE, int iGoodStride = -1, bool bPreserve = false) override;
       virtual ::e_status create(::draw2d::graphics * pgraphics) override;
       virtual ::e_status destroy() override;
 

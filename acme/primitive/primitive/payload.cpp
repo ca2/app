@@ -23,22 +23,22 @@ payload::payload(const char * psz)
 }
 
 
-payload::payload(::matter * pmatter)
+payload::payload(::element * pelement)
 {
 
    m_etype = e_type_new;
 
-   operator = (pmatter);
+   operator = (pelement);
 
 }
 
 
-payload::payload(const ::matter & matter)
+payload::payload(const ::element & element)
 {
 
    m_etype = e_type_new;
 
-   operator = (matter);
+   operator = (element);
 
 }
 
@@ -304,9 +304,9 @@ payload::payload(const ::routine & routine)
 
     set_type(e_type_routine, false);
 
-    m_pmatterRoutine = routine.m_p;
+    m_pelementRoutine = routine.m_p;
     
-    ::increment_reference_count(m_pmatterRoutine);
+    ::increment_reference_count(m_pelementRoutine);
 
 }
 
@@ -456,10 +456,10 @@ bool payload::convert(const ::payload & payload)
 }
 
 
-strsize payload::get_length() const
+strsize payload::length() const
 {
 
-   return string().get_length();
+   return string().length();
 
 }
 
@@ -1632,7 +1632,7 @@ bool payload::is_empty() const
       return m_pid->is_empty();
 
 
-      // matter classes
+      // element classes
    case e_type_element:
       return is_element_null();
    case e_type_string_array:
@@ -2219,7 +2219,7 @@ string payload::string(const char * pszOnNull) const
       else if (is_element_set())
       {
          
-         str = __string(*matter());
+         str = __string(*element());
 
       }
 
@@ -2822,7 +2822,7 @@ unsigned long payload::get_unsigned_long(unsigned long ulDefault) const
 
    }
 
-   return m_pmatterRoutine;
+   return m_pelementRoutine;
 
 }
 
@@ -6851,11 +6851,11 @@ bool payload::is_false() const
    case e_type_property:
       return m_pproperty || !*m_pproperty;
    case e_type_routine:
-         return ::is_null(m_pmatterRoutine);
+         return ::is_null(m_pelementRoutine);
    //case e_type_process:
      //    return !m_process;
 
-   // matter classes
+   // element classes
    case e_type_element:
       return is_element_null();
    case e_type_string_array:
@@ -6876,25 +6876,66 @@ bool payload::is_false() const
    //   return !::is_ok(m_pimage);
 
    // enum
-   //case e_type_secs:
-   //   return !m_secs.m_i;
-   //case e_type_psecs:
-   //   return !m_psecs || !m_psecs->m_i;
-   //case e_type_millis:
-   //   return !m_millis.m_i;
-   //case e_type_pmillis:
-   //   return !m_pmillis || !m_pmillis->m_i;
-   //case e_type_micros:
-   //   return !m_micros.m_i;
-   //case e_type_pmicros:
-   //   return !m_pmicros || !m_pmicros->m_i;
-   //case e_type_nanos:
-   //   return !m_nanos.m_i;
-   //case e_type_pnanos:
-   //   return !m_pnanos || !m_pnanos->m_i;
+   case e_type_integral_nanosecond:
+      return !m_integralnanosecond.m_i;
+   case e_type_pintegral_nanosecond:
+      return !m_pintegralnanosecond || !m_pintegralnanosecond->m_i;
+      case e_type_integral_microsecond:
+         return !m_integralmicrosecond.m_i;
+      case e_type_pintegral_microsecond:
+         return !m_pintegralmicrosecond || !m_pintegralmicrosecond->m_i;
+      case e_type_integral_millisecond:
+         return !m_integralmillisecond.m_i;
+      case e_type_pintegral_millisecond:
+         return !m_pintegralmillisecond || !m_pintegralmillisecond->m_i;
+      case e_type_integral_second:
+         return !m_integralsecond.m_i;
+      case e_type_pintegral_second:
+         return !m_pintegralsecond || !m_pintegralsecond->m_i;
+      case e_type_integral_minute:
+         return !m_integralminute.m_i;
+      case e_type_pintegral_minute:
+         return !m_pintegralminute || !m_pintegralminute->m_i;
+      case e_type_integral_hour:
+         return !m_integralhour.m_i;
+      case e_type_pintegral_hour:
+         return !m_pintegralhour || !m_pintegralhour->m_i;
+      case e_type_integral_day:
+         return !m_integralday.m_i;
+      case e_type_pintegral_day:
+         return !m_pintegralday || !m_pintegralday->m_i;
+      case e_type_floating_nanosecond:
+         return !m_floatingnanosecond.m_d;
+      case e_type_pfloating_nanosecond:
+         return !m_pfloatingnanosecond || !m_pfloatingnanosecond->m_d;
+         case e_type_floating_microsecond:
+            return !m_floatingmicrosecond.m_d;
+         case e_type_pfloating_microsecond:
+            return !m_pfloatingmicrosecond || !m_pfloatingmicrosecond->m_d;
+         case e_type_floating_millisecond:
+            return !m_floatingmillisecond.m_d;
+         case e_type_pfloating_millisecond:
+            return !m_pfloatingmillisecond || !m_pfloatingmillisecond->m_d;
+         case e_type_floating_second:
+            return !m_floatingsecond.m_d;
+         case e_type_pfloating_second:
+            return !m_pfloatingsecond || !m_pfloatingsecond->m_d;
+         case e_type_floating_minute:
+            return !m_floatingminute.m_d;
+         case e_type_pfloating_minute:
+            return !m_pfloatingminute || !m_pfloatingminute->m_d;
+         case e_type_floating_hour:
+            return !m_floatinghour.m_d;
+         case e_type_pfloating_hour:
+            return !m_pfloatinghour || !m_pfloatinghour->m_d;
+         case e_type_floating_day:
+            return !m_floatingday.m_d;
+         case e_type_pfloating_day:
+            return !m_pfloatingday || !m_pfloatingday->m_d;
    case e_type_enum_command:
    case e_type_enum_status:
    case e_type_enum_check:
+      case e_type_enum_flag:
       return !m_i64;
    case e_type_color:
       return !m_color.u32;
@@ -6996,11 +7037,11 @@ bool payload::is_set_false() const
    case e_type_property:
       return m_pproperty || !*m_pproperty;
    case e_type_routine:
-      return ::is_null(m_pmatterRoutine);
+      return ::is_null(m_pelementRoutine);
    //case type_process:
    //   return !m_process;
 
-      // matter classes
+      // element classes
    case e_type_element:
       return is_element_null();
    case e_type_string_array:
@@ -7021,25 +7062,66 @@ bool payload::is_set_false() const
    //   return !::is_ok(m_pimage);
 
    // enum
-   //case e_type_secs:
-   //   return !m_secs.m_i;
-   //case e_type_psecs:
-   //   return !m_psecs || !m_psecs->m_i;
-   //case e_type_millis:
-   //   return !m_millis.m_i;
-   //case e_type_pmillis:
-   //   return !m_pmillis || !m_pmillis->m_i;
-   //case e_type_micros:
-   //   return !m_micros.m_i;
-   //case e_type_pmicros:
-   //   return !m_pmicros || !m_pmicros->m_i;
-   //case e_type_nanos:
-   //   return !m_nanos.m_i;
-   //case e_type_pnanos:
-   //   return !m_pnanos || !m_pnanos->m_i;
+      case e_type_integral_nanosecond:
+         return !m_integralnanosecond.m_i;
+      case e_type_pintegral_nanosecond:
+         return !m_pintegralnanosecond || !m_pintegralnanosecond->m_i;
+         case e_type_integral_microsecond:
+            return !m_integralmicrosecond.m_i;
+         case e_type_pintegral_microsecond:
+            return !m_pintegralmicrosecond || !m_pintegralmicrosecond->m_i;
+         case e_type_integral_millisecond:
+            return !m_integralmillisecond.m_i;
+         case e_type_pintegral_millisecond:
+            return !m_pintegralmillisecond || !m_pintegralmillisecond->m_i;
+         case e_type_integral_second:
+            return !m_integralsecond.m_i;
+         case e_type_pintegral_second:
+            return !m_pintegralsecond || !m_pintegralsecond->m_i;
+         case e_type_integral_minute:
+            return !m_integralminute.m_i;
+         case e_type_pintegral_minute:
+            return !m_pintegralminute || !m_pintegralminute->m_i;
+         case e_type_integral_hour:
+            return !m_integralhour.m_i;
+         case e_type_pintegral_hour:
+            return !m_pintegralhour || !m_pintegralhour->m_i;
+         case e_type_integral_day:
+            return !m_integralday.m_i;
+         case e_type_pintegral_day:
+            return !m_pintegralday || !m_pintegralday->m_i;
+         case e_type_floating_nanosecond:
+            return !m_floatingnanosecond.m_d;
+         case e_type_pfloating_nanosecond:
+            return !m_pfloatingnanosecond || !m_pfloatingnanosecond->m_d;
+            case e_type_floating_microsecond:
+               return !m_floatingmicrosecond.m_d;
+            case e_type_pfloating_microsecond:
+               return !m_pfloatingmicrosecond || !m_pfloatingmicrosecond->m_d;
+            case e_type_floating_millisecond:
+               return !m_floatingmillisecond.m_d;
+            case e_type_pfloating_millisecond:
+               return !m_pfloatingmillisecond || !m_pfloatingmillisecond->m_d;
+            case e_type_floating_second:
+               return !m_floatingsecond.m_d;
+            case e_type_pfloating_second:
+               return !m_pfloatingsecond || !m_pfloatingsecond->m_d;
+            case e_type_floating_minute:
+               return !m_floatingminute.m_d;
+            case e_type_pfloating_minute:
+               return !m_pfloatingminute || !m_pfloatingminute->m_d;
+            case e_type_floating_hour:
+               return !m_floatinghour.m_d;
+            case e_type_pfloating_hour:
+               return !m_pfloatinghour || !m_pfloatinghour->m_d;
+            case e_type_floating_day:
+               return !m_floatingday.m_d;
+            case e_type_pfloating_day:
+               return !m_pfloatingday || !m_pfloatingday->m_d;
    case e_type_enum_command:
    case e_type_enum_status:
    case e_type_enum_check:
+      case e_type_enum_flag:
       return !m_i64;
    case e_type_color:
       return !m_color.u32;
@@ -7118,10 +7200,10 @@ void payload::_001Add(const string_array & straParam)
 }
 
 
-::payload & payload::operator = (const ::matter & o)
+::payload & payload::operator = (const ::element & o)
 {
 
-   _set_element((::matter *) &o);
+   _set_element((::element *) &o);
 
    return *this;
 
@@ -7432,9 +7514,9 @@ void payload::receive_response(const ::payload & payload)
 
    set_type(e_type_routine, false);
 
-   m_pmatterRoutine = routine.m_p;
+   m_pelementRoutine = routine.m_p;
 
-   ::increment_reference_count(m_pmatterRoutine);
+   ::increment_reference_count(m_pelementRoutine);
 
    return *this;
 

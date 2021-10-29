@@ -12,12 +12,16 @@ namespace factory
 
 
       factory_interface();
-      virtual ~factory_interface();
+      ~factory_interface() override;
 
 
-      virtual __pointer(::matter) call_new() = 0;
+      virtual string base_type_name() const = 0;
 
-      virtual void return_back(::matter * pmatter) = 0;
+      virtual string __type_name() const = 0;
+
+      virtual __pointer(::element) call_new() = 0;
+
+      virtual void return_back(::element * pelement) = 0;
 
 
    };
@@ -30,19 +34,21 @@ namespace factory
    public:
 
 
+      string base_type_name() const override { return ::demangle(typeid(BASE_TYPE).name()); }
+
       virtual __pointer(BASE_TYPE) _call_new() = 0;
 
-      virtual __pointer(::matter) call_new() override
+      virtual __pointer(::element) call_new() override
       {
 
          return _call_new();
 
       }
 
-      virtual void return_back(::matter * pmatter) override
+      virtual void return_back(::element * pelement) override
       {
 
-         delete pmatter;
+         delete pelement;
 
       }
 
@@ -56,6 +62,8 @@ namespace factory
    {
    public:
 
+
+      virtual string __type_name() const { return ::demangle(typeid(TYPE).name()); }
 
       virtual __pointer(BASE_TYPE) _call_new()
       {
@@ -178,15 +186,11 @@ namespace factory
    inline __pointer(factory_interface) & get_factory()
    {
 
-      auto pszTypename = typeid(BASE_TYPE).name();
+      string strTypename = typeid(BASE_TYPE).name();
 
-      //string strTypename(typeid(BASE_TYPE).name());
+      strTypename = demangle(strTypename);
 
-      pszTypename = demangle_cstr(pszTypename);
-
-      //return get_factory(strTypename);
-
-      return get_factory(pszTypename);
+      return get_factory(strTypename);
 
    }
 
@@ -196,7 +200,7 @@ namespace factory
 
 
 template < typename TYPE, typename BASE_TYPE = TYPE >
-//inline __pointer(::factory::factory_base < BASE_TYPE >) create_factory(const ::id & id = ::str::demangle(typeid(BASE_TYPE).name()));
+//inline __pointer(::factory::factory_base < BASE_TYPE >) create_factory(const ::id & id = typeid(BASE_TYPE).name());
 inline __pointer(::factory::factory_base < BASE_TYPE >) create_factory(const ::id & id);
 
 

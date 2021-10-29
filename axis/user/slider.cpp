@@ -51,7 +51,7 @@ namespace user
    void slider::on_message_left_button_down(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       //::rectangle_i32 rectangle;
 
@@ -87,7 +87,7 @@ namespace user
    void slider::on_message_left_button_up(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       if(m_bSlide)
       {
@@ -118,7 +118,7 @@ namespace user
    void slider::on_message_mouse_move(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       if(m_bSlide)
       {

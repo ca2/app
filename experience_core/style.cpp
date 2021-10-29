@@ -848,7 +848,7 @@ namespace experience
          if (::is_set(pinteraction))
          {
 
-            //string strType = pinteraction->type_c_str();
+            //string strType = __type_name(pinteraction);
 
 //            if (strType.contains("form"))
 //            {

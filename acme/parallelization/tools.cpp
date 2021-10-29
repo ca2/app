@@ -80,7 +80,7 @@ task_group::~task_group()
 }
 
 
-bool task_group::prepare(::enum_task_op etaskop, ::count cIteration)
+::e_status task_group::prepare(::enum_task_op etaskop, ::count cIteration)
 {
 
    synchronous_lock synchronouslock(mutex());
@@ -111,7 +111,7 @@ bool task_group::prepare(::enum_task_op etaskop, ::count cIteration)
 
    m_cSpan = maximum(1, cIteration / get_count());
 
-   return true;
+   return ::success;
 
 }
 
@@ -201,7 +201,7 @@ bool task_group::add_predicate(::predicate_holder_base * ppred)
 }
 
 
-bool task_group::wait()
+::e_status task_group::wait()
 {
 
    //synchronous_lock synchronouslock(mutex());
@@ -222,16 +222,24 @@ bool task_group::wait()
 }
 
 
-bool task_group::process()
+::e_status task_group::process()
 {
 
    set_ready_to_start();
 
-   wait();
+   auto estatus = wait();
 
-   return true;
+   if(!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   return estatus;
 
 }
+
 
 //bool task_group::select_toolset(task_group * pset)
 //{

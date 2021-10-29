@@ -84,7 +84,7 @@ namespace user
    }
 
 
-   ::e_status form_view::open_document(const ::payload & varFile)
+   ::e_status form_view::open_document(const ::payload & payloadFile)
    {
 
       auto psystem = m_psystem->m_pbasesystem;
@@ -104,7 +104,7 @@ namespace user
 
       ::file::path pathHtml;
 
-      bool bHtml = psystem->m_phtml->defer_get_html(strHtml, pathHtml, this, varFile);
+      bool bHtml = psystem->m_phtml->defer_get_html(strHtml, pathHtml, this, payloadFile);
 
       bool bOk = true;
 

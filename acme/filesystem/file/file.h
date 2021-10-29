@@ -173,6 +173,9 @@ namespace file
       virtual bool is_opened() const;
 
 
+      virtual void put_lines(const string_array& stra);
+
+
    };
 
    
@@ -183,7 +186,3 @@ namespace file
 
 
 
-
-
-
-//}

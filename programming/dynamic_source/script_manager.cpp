@@ -1110,31 +1110,31 @@ namespace dynamic_source
    ::file::path script_manager::real_path(const ::file::path & str)
    {
 
-#ifdef WINDOWS
-
+//#ifdef WINDOWS
+//
+//      if(file_path_is_absolute(str))
+//      {
+//
+//         if(include_matches_file_exists(str))
+//            return str;
+//         return "";
+//      }
+//      else
+//      {
+//         return real_path(m_strNetseedDsCa2Path, str);
+//      }
+//#else
       if(file_path_is_absolute(str))
       {
-
          if(include_matches_file_exists(str))
             return str;
-         return "";
+         return real_path(m_strNetseedDsCa2Path, str);
       }
       else
       {
          return real_path(m_strNetseedDsCa2Path, str);
       }
-#else
-      if(file_path_is_absolute(str))
-      {
-         if(include_matches_file_exists(str))
-            return str;
-         return real_path(m_strNetseedDsCa2Path, str);
-      }
-      else
-      {
-         return real_path(m_strNetseedDsCa2Path, str);
-      }
-#endif
+//#endif
    }
 
 

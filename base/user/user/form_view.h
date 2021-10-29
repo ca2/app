@@ -32,7 +32,7 @@ namespace user
 
       virtual void handle(::subject * psubject, ::context * pcontext) override;
 
-      virtual ::e_status open_document(const ::payload & varFile) override;
+      virtual ::e_status open_document(const ::payload & payloadFile) override;
       
       virtual ::e_status open_html(const ::string & str) override;
 

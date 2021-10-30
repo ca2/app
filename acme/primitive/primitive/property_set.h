@@ -264,18 +264,18 @@ public:
    //void parse_ini_file(const ::file::path& path);
    //void parse_ini_folder(const ::file::path& path);
 
-   void parse_json(const ::string & strJson);
-   void parse_json(const char * & pszJson);
-   void parse_json(const char * & pszJson, const char * pszEnd);
+   void parse_network_payload(const ::string & strNetworkPayload);
+   void parse_network_payload(const char * & pszNetworkPayload);
+   void parse_network_payload(const char * & pszNetworkPayload, const char * pszEnd);
    void parse_url_query(const char * pszUrl);
    void _parse_url_query(const char * pszUrlQuery);
    void parse_http_headers(const char * pszHeaders);
 
 
    string & get_http_post(string & str) const;
-   string & get_json(string & str, bool bNewLine = true) const;
+   string & get_network_payload(string & str, bool bNewLine = true) const;
    string get_http_post() const { string str; return get_http_post(str); }
-   string get_json() const { string str; return get_json(str); }
+   string get_network_payload() const { string str; return get_network_payload(str); }
    string get_command_line(const string_array & straKeys) const;
    string get_command_line() const;
 
@@ -328,8 +328,8 @@ public:
 };
 
 
-CLASS_DECL_ACME void property_set_skip_json(const char *& pszJson);
-CLASS_DECL_ACME void property_set_skip_json(const char *& pszJson, const char * pszEnd);
+CLASS_DECL_ACME void property_set_skip_network_payload(const char *& pszNetworkPayload);
+CLASS_DECL_ACME void property_set_skip_network_payload(const char *& pszNetworkPayload, const char * pszEnd);
 
 
 // <3tbs!! - Talking... ~ and then end up creating a Handler that handles...

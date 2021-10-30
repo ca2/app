@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "_app.h"
+#define __APP_ID "app/app"
 #include "aura/application.h"
 
 
@@ -11,6 +11,7 @@ namespace app_app
 
 
 } // namespace app_app
+
 
 
 

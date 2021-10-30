@@ -150,7 +150,7 @@ public:
    ::id name() const { return m_id; }
 
   
-   inline ::string & get_json(::string & str, bool bNewLine = true) const
+   inline ::string & get_network_payload(::string & str, bool bNewLine = true) const
    {
 
       str += "\"";
@@ -161,18 +161,18 @@ public:
 
       str += ": ";
 
-      payload::get_json(str, bNewLine);
+      payload::get_network_payload(str, bNewLine);
 
       return str;
 
    }
 
-  ::string get_json(bool bNewLine = true) const
+  ::string get_network_payload(bool bNewLine = true) const
   {
 
      ::string str;
 
-     return get_json(str, bNewLine);
+     return get_network_payload(str, bNewLine);
 
   }
 
@@ -189,10 +189,10 @@ public:
 using property_pointer = ::property *;
 
 
-CLASS_DECL_ACME void property_parse_json_id(id & id, const char *& pszJson, const char * pszEnd);
-CLASS_DECL_ACME void property_parse_json_value(::payload & payload, const char *& pszJson, const char * pszEnd);
-CLASS_DECL_ACME void property_skip_json_id(const char *& pszJson, const char * pszEnd);
-CLASS_DECL_ACME void property_skip_json_value(const char *& pszJson, const char * pszEnd);
+CLASS_DECL_ACME void property_parse_network_payload_id(id & id, const char *& pszNetworkPayload, const char * pszEnd);
+CLASS_DECL_ACME void property_parse_network_payload_value(::payload & payload, const char *& pszNetworkPayload, const char * pszEnd);
+CLASS_DECL_ACME void property_skip_network_payload_id(const char *& pszNetworkPayload, const char * pszEnd);
+CLASS_DECL_ACME void property_skip_network_payload_value(const char *& pszNetworkPayload, const char * pszEnd);
 
 
 #include "acme/primitive/collection/ptr_array.h"

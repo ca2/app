@@ -475,7 +475,7 @@ public:
    ::count count_except_ci(const Type& psz);
    ::count count_except_ci(const string_array_base & stra);
 
-   Type & get_json(Type & str, bool bNewLine = true) const;
+   Type & get_network_payload(Type & str, bool bNewLine = true) const;
 
 
    typedef Type BASE_TYPE;
@@ -4654,7 +4654,7 @@ template < typename Type, typename RawType, enum_type t_etypePayload >
 
 
 template < typename Type, typename RawType, enum_type t_etypePayload >
-Type & string_array_base < Type, RawType, t_etypePayload > ::get_json(Type & str, bool bNewLine) const
+Type & string_array_base < Type, RawType, t_etypePayload > ::get_network_payload(Type & str, bool bNewLine) const
 {
 
    str += "[";

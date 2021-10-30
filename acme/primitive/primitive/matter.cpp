@@ -358,15 +358,10 @@ void matter::kick_idle()
 
 
 
-
 void matter::on_future(const ::payload & payload)
 {
 
 }
-
-
-
-
 
 
 //::task* matter::defer_branch(const ::id& id, const ::routine & routine)

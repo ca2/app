@@ -3,7 +3,6 @@ project(app_shader CXX)
 
 
 list(APPEND library_source
-   _.cpp
    _.h
    _user.h
    application.cpp
@@ -61,10 +60,7 @@ target_include_directories(app_shader PRIVATE ${library_include_directories})
 target_compile_definitions(app_shader PRIVATE _APP_SIMPLE_DRAWING_LIBRARY)
 
 
-add_executable(_app_shader ${PLATFORM_NAME}/main.cpp)
-
-
-target_compile_definitions(_app_shader PRIVATE _APP_ID="app/shader")
+add_executable(_app_shader _.cpp)
 
 
 if (MSVC)
@@ -84,7 +80,6 @@ elseif (LINUX)
 endif ()
 
 
-add_dependencies(_app_shader app_shader)
 add_dependencies(_app_shader ${default_draw2d})
 add_dependencies(_app_shader ${default_imaging})
 add_dependencies(_app_shader ${default_write_text})
@@ -97,7 +92,7 @@ target_include_directories(_app_shader PRIVATE ${library_include_directories})
 
 target_link_directories(_app_shader PRIVATE ${library_link_directories})
 
-target_link_libraries(_app_shader PRIVATE acme apex)
+target_link_libraries(_app_shader PRIVATE acme apex app_shader)
 
 set_target_properties(_app_shader PROPERTIES LINKER_LANGUAGE CXX)
 

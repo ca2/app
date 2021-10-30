@@ -5385,15 +5385,15 @@ auto psystem = get_system()->m_papexsystem;
 
 auto& file = psystem->file();
 
-string strJson = file.as_string(m_psystem->m_pacmedir->config() / strAppId / +"http.json");
+string strNetworkPayload = file.as_string(m_psystem->m_pacmedir->config() / strAppId / +"http.network_payload");
 
-if (strJson.has_char())
+if (strNetworkPayload.has_char())
 {
 
 try
 {
 
-psystem->http().m_setHttp.parse_json(strJson);
+psystem->http().m_setHttp.parse_network_payload(strNetworkPayload);
 
 }
 catch (...)

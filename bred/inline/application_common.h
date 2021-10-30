@@ -81,7 +81,7 @@ public:
    }
 
 
-   static_application_factory(const ::string & pszName = "") :
+   static_application_factory(const char * pszName = "") :
       static_setup(flag_application, pszName)
    {
 
@@ -92,8 +92,8 @@ public:
 };
 
 
-#define __namespace_application_factory(APPID) \
-::static_application_factory < application > g_applicationfactory(APPID);
+//#define __namespace_application_factory(APPID) \
+//::static_application_factory < application > g_applicationfactory(APPID);
 
 
 #ifdef WINDOWS_DESKTOP

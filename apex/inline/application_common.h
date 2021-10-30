@@ -8,6 +8,9 @@
 
 CLASS_DECL_ACME void set_main_thread();
 
+static set_app_id g_setappid(__APP_ID);
+
+
 //#ifndef NO_DRAW2D
 //#ifdef WINDOWS
 //

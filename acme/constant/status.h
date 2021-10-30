@@ -109,7 +109,7 @@ enum enum_status : ::i64
    error_exit_end,
    error_user,
    error_hresult,
-   error_json_parsing,
+   error_network_payload_parsing,
    error_pure_call,
    error_invalid_operation,
    error_wait_io_completion,

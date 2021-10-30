@@ -530,34 +530,34 @@ payload_array & payload_array::operator = (const payload_array & payloada)
    return *this;
 }
 
-void payload_array::parse_json(const char * & pszJson)
+void payload_array::parse_network_payload(const char * & pszNetworkPayload)
 {
-   parse_json(pszJson, pszJson + strlen(pszJson) - 1);
+   parse_network_payload(pszNetworkPayload, pszNetworkPayload + strlen(pszNetworkPayload) - 1);
 }
 
 int g_iRandomNumberGenerator = 0;
 
 
-void payload_array::parse_json(const char * & pszJson, const char * pszEnd)
+void payload_array::parse_network_payload(const char * & pszNetworkPayload, const char * pszEnd)
 {
 
-   if(pszJson > pszEnd)
+   if(pszNetworkPayload > pszEnd)
    {
 
       return;
 
    }
 
-   ::str::consume_spaces(pszJson, 0, pszEnd);
+   ::str::consume_spaces(pszNetworkPayload, 0, pszEnd);
 
-   ::str::consume(pszJson, "[", 1, pszEnd);
+   ::str::consume(pszNetworkPayload, "[", 1, pszEnd);
 
-   ::str::consume_spaces(pszJson, 0, pszEnd);
+   ::str::consume_spaces(pszNetworkPayload, 0, pszEnd);
 
-   if (*pszJson == ']')
+   if (*pszNetworkPayload == ']')
    {
 
-      pszJson++;
+      pszNetworkPayload++;
 
       return;
 
@@ -592,22 +592,22 @@ void payload_array::parse_json(const char * & pszJson, const char * pszEnd)
 
       ::payload & payload = add_new();
 
-      payload.parse_json(pszJson, pszEnd);
+      payload.parse_network_payload(pszNetworkPayload, pszEnd);
 
-      ::str::consume_spaces(pszJson, 0, pszEnd);
+      ::str::consume_spaces(pszNetworkPayload, 0, pszEnd);
 
-      if(*pszJson == ',')
+      if(*pszNetworkPayload == ',')
       {
 
-         pszJson++;
+         pszNetworkPayload++;
 
          continue;
 
       }
-      else if(*pszJson == ']')
+      else if(*pszNetworkPayload == ']')
       {
 
-         pszJson++;
+         pszNetworkPayload++;
 
          return;
 
@@ -617,7 +617,7 @@ void payload_array::parse_json(const char * & pszJson, const char * pszEnd)
 
          string str = "not expected character : ";
 
-         str += pszJson;
+         str += pszNetworkPayload;
 
          __throw(error_parsing, str);
 
@@ -628,40 +628,40 @@ void payload_array::parse_json(const char * & pszJson, const char * pszEnd)
 }
 
 
-void var_array_skip_json(const char *& pszJson)
+void var_array_skip_network_payload(const char *& pszNetworkPayload)
 {
 
-   var_array_skip_json(pszJson, pszJson + strlen(pszJson) - 1);
+   var_array_skip_network_payload(pszNetworkPayload, pszNetworkPayload + strlen(pszNetworkPayload) - 1);
 
 }
 
 
-void var_array_skip_json(const char *& pszJson, const char * pszEnd)
+void var_array_skip_network_payload(const char *& pszNetworkPayload, const char * pszEnd)
 {
    
-   ::str::consume_spaces(pszJson, 0, pszEnd);
+   ::str::consume_spaces(pszNetworkPayload, 0, pszEnd);
    
-   ::str::consume(pszJson, "[", 1, pszEnd);
+   ::str::consume(pszNetworkPayload, "[", 1, pszEnd);
 
    while (true)
    {
       
-      var_skip_json(pszJson, pszEnd);
+      var_skip_network_payload(pszNetworkPayload, pszEnd);
       
-      ::str::consume_spaces(pszJson, 0, pszEnd);
+      ::str::consume_spaces(pszNetworkPayload, 0, pszEnd);
 
-      if (*pszJson == ',')
+      if (*pszNetworkPayload == ',')
       {
          
-         pszJson++;
+         pszNetworkPayload++;
          
          continue;
 
       }
-      else if (*pszJson == ']')
+      else if (*pszNetworkPayload == ']')
       {
          
-         pszJson++;
+         pszNetworkPayload++;
          
          return;
 
@@ -671,7 +671,7 @@ void var_array_skip_json(const char *& pszJson, const char * pszEnd)
          
          string str = "not expected character : ";
          
-         str += pszJson;
+         str += pszNetworkPayload;
 
          __throw(error_parsing, str);
 
@@ -682,7 +682,7 @@ void var_array_skip_json(const char *& pszJson, const char * pszEnd)
 }
 
 
-string & payload_array::get_json(string & str, bool bNewLine) const
+string & payload_array::get_network_payload(string & str, bool bNewLine) const
 {
 
    str +="[";
@@ -690,7 +690,7 @@ string & payload_array::get_json(string & str, bool bNewLine) const
    if(get_count() > 0)
    {
 
-      element_at(0).get_json(str, bNewLine);
+      element_at(0).get_network_payload(str, bNewLine);
 
    }
 
@@ -710,7 +710,7 @@ string & payload_array::get_json(string & str, bool bNewLine) const
 
       }
 
-      element_at(i).get_json(str, bNewLine);
+      element_at(i).get_network_payload(str, bNewLine);
 
    }
 

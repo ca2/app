@@ -164,7 +164,7 @@ public:
 
 
 
-   string & get_json(string & str, bool bNewLine = true) const;
+   string & get_network_payload(string & str, bool bNewLine = true) const;
 
 
    int compare(const numeric_array < TYPE, t_etypePayload > & a) const
@@ -331,11 +331,11 @@ public:
 
 
 template < typename T >
-string & to_json(string & str, const T & t, bool bNewLine);
+string & to_network_payload(string & str, const T & t, bool bNewLine);
 
 
 template < typename TYPE, enum_type t_etypePayload >
-string & numeric_array < TYPE, t_etypePayload >::get_json(string & str, bool bNewLine) const
+string & numeric_array < TYPE, t_etypePayload >::get_network_payload(string & str, bool bNewLine) const
 {
 
 
@@ -344,7 +344,7 @@ string & numeric_array < TYPE, t_etypePayload >::get_json(string & str, bool bNe
    if(this->get_count() > 0)
    {
 
-      to_json(str, this->element_at(0), bNewLine);
+      to_network_payload(str, this->element_at(0), bNewLine);
 
    }
 
@@ -364,7 +364,7 @@ string & numeric_array < TYPE, t_etypePayload >::get_json(string & str, bool bNe
 
       }
 
-      to_json(str, this->element_at(i), bNewLine);
+      to_network_payload(str, this->element_at(i), bNewLine);
 
    }
 

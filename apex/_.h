@@ -7,6 +7,16 @@
 #include "acme/_.h"
 
 
+
+class set_app_id
+{
+public:
+
+   set_app_id(const char * pszAppId);
+   
+};
+
+
 #if defined(_APEX_LIBRARY)
 #define CLASS_DECL_APEX  CLASS_DECL_EXPORT
 #define LIBIDN_BUILDING

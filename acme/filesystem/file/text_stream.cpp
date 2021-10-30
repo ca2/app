@@ -513,34 +513,34 @@ void text_stream::write(const void * psz, strsize s)
 }
 
 
-//void text_stream::json_write(const ::matter & matter)
+//void text_stream::network_payload_write(const ::matter & matter)
 //{
 //
 //   var_stream s;
 //
-//   string strJson;
+//   string strNetworkPayload;
 //
 //   s.set_storing();
 //
 //   ::__exchange(s, t);
 //
-//   strJson = s.m_ppayload->get_json();
+//   strNetworkPayload = s.m_ppayload->get_network_payload();
 //
-//   string_write(strJson);
+//   string_write(strNetworkPayload);
 //
 //}
 //
 //
-//void text_stream::json_read(::matter & matter)
+//void text_stream::network_payload_read(::matter & matter)
 //{
 //
 //   var_stream s;
 //
-//   string strJson;
+//   string strNetworkPayload;
 //
-//   string_read(strJson);
+//   string_read(strNetworkPayload);
 //
-//   s.m_ppayload->parse_json(strJson);
+//   s.m_ppayload->parse_network_payload(strNetworkPayload);
 //
 //   s.set_loading();
 //

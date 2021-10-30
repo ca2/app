@@ -133,7 +133,7 @@ namespace geo
 
          string str;
 
-         str = file.as_string("https://server.ca2.software/city-list.json");
+         str = file.as_string("https://server.ca2.software/city-list.network_payload");
 
          if (str.has_char())
          {
@@ -142,16 +142,16 @@ namespace geo
 
             stra.add_lines(str);
 
-            for (auto strJson : stra)
+            for (auto strNetworkPayload : stra)
             {
 
-               const char* pszJson = strJson;
+               const char* pszNetworkPayload = strNetworkPayload;
 
-               //const char * pszJson = "{\"_id\":6322752, \"name\" : \"Curitiba\", \"country\" : \"BR\", \"coord\" : {\"lon\":-49.290821, \"lat\" : -25.50395}}";
+               //const char * pszNetworkPayload = "{\"_id\":6322752, \"name\" : \"Curitiba\", \"country\" : \"BR\", \"coord\" : {\"lon\":-49.290821, \"lat\" : -25.50395}}";
 
                ::payload v;
 
-               v.parse_json(pszJson);
+               v.parse_network_payload(pszNetworkPayload);
 
                string strLine = v["name"].string() + ", " + v["country"].string();
 
@@ -502,11 +502,11 @@ namespace geo
 
       synchronous_lock synchronouslock(mutex());
 
-      const char* pszJson = str;
+      const char* pszNetworkPayload = str;
 
       ::payload v;
 
-      v.parse_json(pszJson);
+      v.parse_network_payload(pszNetworkPayload);
 
       ::datetime::zonetime timeSunrise(v["sys"]["sunrise"].i64(), iTimeZone);
 
@@ -632,19 +632,19 @@ namespace geo
 
       auto pcontext = get_context();
 
-      string str = pcontext->m_papexcontext->http().get("http://api.timezonedb.com/?key=" + strKey + "&format=json&lat=" + strLat + "&lng=" + strLng, set);
+      string str = pcontext->m_papexcontext->http().get("http://api.timezonedb.com/?key=" + strKey + "&format=network_payload&lat=" + strLat + "&lng=" + strLng, set);
 
       if (str.has_char())
       {
 
-         const char* pszJson = str;
+         const char* pszNetworkPayload = str;
 
          ::payload v;
 
          try
          {
 
-            v.parse_json(pszJson);
+            v.parse_network_payload(pszNetworkPayload);
 
             str = v["abbreviation"].string().lowered();
 
@@ -762,19 +762,19 @@ namespace geo
       //
       //#endif
       //
-      //         str = papplication->http_get("http://api.timezonedb.com/?key=" + strKey + "&format=json&lat=" + strLat + "&lng=" + strLng, set);
+      //         str = papplication->http_get("http://api.timezonedb.com/?key=" + strKey + "&format=network_payload&lat=" + strLat + "&lng=" + strLng, set);
       //
       //         if (str.has_char())
       //         {
       //
-      //            const char * pszJson = str;
+      //            const char * pszNetworkPayload = str;
       //
       //            ::payload v;
       //
       //            try
       //            {
       //
-      //               v.parse_json(pszJson);
+      //               v.parse_network_payload(pszNetworkPayload);
       //
       //               str = v["abbreviation"].get_string().lowered();
       //

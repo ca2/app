@@ -32,7 +32,7 @@ namespace linux
       virtual bool is_link(string strPath) override;
 
 
-      virtual ::file::path dropbox_info_json() override;
+      virtual ::file::path dropbox_info_network_payload() override;
 
 
    };

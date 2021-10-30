@@ -36,15 +36,15 @@ public:
 
 
 
-class json_parsing_exception :
+class network_payload_parsing_exception :
    public ::parsing_exception
 {
 public:
 
-   json_parsing_exception(const char * pszMessage = nullptr);
-   virtual ~json_parsing_exception();
+   network_payload_parsing_exception(const char * pszMessage = nullptr);
+   virtual ~network_payload_parsing_exception();
 
 };
 
 
-CLASS_DECL_ACME bool throw_json_parsing_exception(const ::string & strMessage);
+CLASS_DECL_ACME bool throw_network_payload_parsing_exception(const ::string & strMessage);

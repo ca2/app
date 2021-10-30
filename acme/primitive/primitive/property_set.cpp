@@ -646,34 +646,34 @@ void property_set::_008Parse(bool bApp, const char * pszCmdLine, ::payload & pay
 }
 
 
-void property_set_skip_json(const char *& pszJson)
+void property_set_skip_network_payload(const char *& pszNetworkPayload)
 {
 
-   property_set_skip_json(pszJson, pszJson + strlen(pszJson) - 1);
+   property_set_skip_network_payload(pszNetworkPayload, pszNetworkPayload + strlen(pszNetworkPayload) - 1);
 
 }
 
 
-void property_set_skip_json(const char *& pszJson, const char * pszEnd)
+void property_set_skip_network_payload(const char *& pszNetworkPayload, const char * pszEnd)
 {
 
-   ::str::consume_spaces(pszJson, 0, pszEnd);
+   ::str::consume_spaces(pszNetworkPayload, 0, pszEnd);
 
-   if (*pszJson == '\0')
+   if (*pszNetworkPayload == '\0')
    {
 
       return;
 
    }
 
-   ::str::consume(pszJson, "{", 1, pszEnd);
+   ::str::consume(pszNetworkPayload, "{", 1, pszEnd);
 
-   ::str::consume_spaces(pszJson, 0, pszEnd);
+   ::str::consume_spaces(pszNetworkPayload, 0, pszEnd);
 
-   if (*pszJson == '}')
+   if (*pszNetworkPayload == '}')
    {
 
-      pszJson++;
+      pszNetworkPayload++;
 
       return;
 
@@ -684,24 +684,24 @@ void property_set_skip_json(const char *& pszJson, const char * pszEnd)
 
       ::id id;
 
-      property_skip_json_id(pszJson, pszEnd);
+      property_skip_network_payload_id(pszNetworkPayload, pszEnd);
 
-      property_skip_json_value(pszJson, pszEnd);
+      property_skip_network_payload_value(pszNetworkPayload, pszEnd);
 
-      ::str::consume_spaces(pszJson, 0, pszEnd);
+      ::str::consume_spaces(pszNetworkPayload, 0, pszEnd);
 
-      if (*pszJson == ',')
+      if (*pszNetworkPayload == ',')
       {
 
-         pszJson++;
+         pszNetworkPayload++;
 
          continue;
 
       }
-      else if (*pszJson == '}')
+      else if (*pszNetworkPayload == '}')
       {
 
-         pszJson++;
+         pszNetworkPayload++;
 
          return;
 
@@ -711,7 +711,7 @@ void property_set_skip_json(const char *& pszJson, const char * pszEnd)
 
          string str = "not expected character : ";
 
-         str += pszJson;
+         str += pszNetworkPayload;
 
          __throw(error_failed, str);
 
@@ -776,7 +776,7 @@ void property_set::parse_ini(const ::string & strIni)
 }
 
 
-void property_set::parse_json(const ::string & strJson)
+void property_set::parse_network_payload(const ::string & strNetworkPayload)
 {
 
 #ifdef LINUX
@@ -785,37 +785,37 @@ void property_set::parse_json(const ::string & strJson)
 
 #endif
 
-   const char * pszJson = strJson;
+   const char * pszNetworkPayload = strNetworkPayload;
 
-   parse_json(pszJson, pszJson + strJson.get_length() - 1);
+   parse_network_payload(pszNetworkPayload, pszNetworkPayload + strNetworkPayload.get_length() - 1);
 
 }
 
 
-void property_set::parse_json(const char * & pszJson)
+void property_set::parse_network_payload(const char * & pszNetworkPayload)
 {
 
 #ifdef LINUX
    uselocale(::acme::g_localeC);
 #endif
 
-   parse_json(pszJson, pszJson + strlen(pszJson) - 1);
+   parse_network_payload(pszNetworkPayload, pszNetworkPayload + strlen(pszNetworkPayload) - 1);
 
 }
 
 
-void property_set::parse_json(const char * & pszJson, const char * pszEnd)
+void property_set::parse_network_payload(const char * & pszNetworkPayload, const char * pszEnd)
 {
-   ::str::consume_spaces(pszJson, 0, pszEnd);
-   if (*pszJson == '\0')
+   ::str::consume_spaces(pszNetworkPayload, 0, pszEnd);
+   if (*pszNetworkPayload == '\0')
    {
       return;
    }
-   ::str::consume(pszJson, "{", 1, pszEnd);
-   ::str::consume_spaces(pszJson, 0, pszEnd);
-   if (*pszJson == '}')
+   ::str::consume(pszNetworkPayload, "{", 1, pszEnd);
+   ::str::consume_spaces(pszNetworkPayload, 0, pszEnd);
+   if (*pszNetworkPayload == '}')
    {
-      pszJson++;
+      pszNetworkPayload++;
       return;
    }
    while(true)
@@ -823,26 +823,26 @@ void property_set::parse_json(const char * & pszJson, const char * pszEnd)
 
       ::id id;
 
-      ::property_parse_json_id(id, pszJson,pszEnd);
+      ::property_parse_network_payload_id(id, pszNetworkPayload,pszEnd);
 
       auto & property = operator[](id);
 
-      ::property_parse_json_value(property,pszJson,pszEnd);
+      ::property_parse_network_payload_value(property,pszNetworkPayload,pszEnd);
 
-      ::str::consume_spaces(pszJson, 0, pszEnd);
+      ::str::consume_spaces(pszNetworkPayload, 0, pszEnd);
 
-      if(*pszJson == ',')
+      if(*pszNetworkPayload == ',')
       {
 
-         pszJson++;
+         pszNetworkPayload++;
 
          continue;
 
       }
-      else if(*pszJson == '}')
+      else if(*pszNetworkPayload == '}')
       {
 
-         pszJson++;
+         pszNetworkPayload++;
 
          return;
 
@@ -852,7 +852,7 @@ void property_set::parse_json(const char * & pszJson, const char * pszEnd)
 
          string str = "not expected character : ";
 
-         str += pszJson;
+         str += pszNetworkPayload;
 
          __throw(error_parsing, str);
 
@@ -863,7 +863,7 @@ void property_set::parse_json(const char * & pszJson, const char * pszEnd)
 }
 
 
-string & property_set::get_json(string & str, bool bNewLine) const
+string & property_set::get_network_payload(string & str, bool bNewLine) const
 {
 
    str += "{";
@@ -873,7 +873,7 @@ string & property_set::get_json(string & str, bool bNewLine) const
    if(p)
    {
 
-      p->get_json(str, bNewLine);
+      p->get_network_payload(str, bNewLine);
 
       p++;
 
@@ -895,7 +895,7 @@ string & property_set::get_json(string & str, bool bNewLine) const
 
       }
 
-      p->get_json(str, bNewLine);
+      p->get_network_payload(str, bNewLine);
 
    }
 

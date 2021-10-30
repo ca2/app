@@ -5,7 +5,7 @@ template < typename TYPE >
 inline void __string_exchange(text_stream & s, TYPE & t)
 {
 
-   s.json_exchange(t);
+   s.network_payload_exchange(t);
 
 }
 
@@ -32,28 +32,28 @@ inline void __string_exchange(text_stream & s, ::file::path & path) { s.string_e
 inline void __string_exchange(text_stream & s, ::id & id) { s.string_exchange(id); }
 inline void __string_exchange(text_stream & s, void * & p) { s.number_exchange((::iptr &)p); }
 inline void __string_exchange(text_stream & s, wchar_t wsz[]) { s.string_exchange(wsz); }
-//inline void __string_exchange(text_stream & s, matter & matter) { s.json_exchange(matter); }
+//inline void __string_exchange(text_stream & s, matter & matter) { s.network_payload_exchange(matter); }
 
 
-//inline void __string_exchange(text_stream & s, ::rectangle_i32 & r) { s.json_exchange(r); }
+//inline void __string_exchange(text_stream & s, ::rectangle_i32 & r) { s.network_payload_exchange(r); }
 
 
 
 
 template < typename TYPE >
-inline void text_stream::json_exchange(TYPE & t)
+inline void text_stream::network_payload_exchange(TYPE & t)
 {
 
    if (is_storing())
    {
 
-      json_write(t);
+      network_payload_write(t);
 
    }
    else
    {
 
-      json_read(t);
+      network_payload_read(t);
 
    }
 
@@ -61,35 +61,35 @@ inline void text_stream::json_exchange(TYPE & t)
 
 
 template < typename TYPE >
-inline void text_stream::json_write(const TYPE & t)
+inline void text_stream::network_payload_write(const TYPE & t)
 {
 
    var_stream s;
 
-   string strJson;
+   string strNetworkPayload;
 
    s.set_storing();
 
    ::__exchange(s, (TYPE &) t);
 
-   strJson = s.m_ppayload->get_json();
+   strNetworkPayload = s.m_ppayload->get_network_payload();
 
-   string_write(strJson);
+   string_write(strNetworkPayload);
 
 }
 
 
 template < typename TYPE >
-inline void text_stream::json_read(TYPE & t)
+inline void text_stream::network_payload_read(TYPE & t)
 {
 
    var_stream s;
 
-   string strJson;
+   string strNetworkPayload;
 
-   string_read(strJson);
+   string_read(strNetworkPayload);
 
-   s.m_ppayload->parse_json(strJson);
+   s.m_ppayload->parse_network_payload(strNetworkPayload);
 
    s.set_loading();
 

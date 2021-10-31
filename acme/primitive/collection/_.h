@@ -255,6 +255,30 @@ inline string __type_name()
 
 
 template < typename TYPE >
+inline string __type_name(const TYPE * p)
+{
+
+   TYPE * pNonConst = (TYPE *) p;
+
+   auto pszType = typeid(*pNonConst).name();
+
+   string strName = demangle(pszType);
+
+   return strName;
+
+}
+
+
+template < typename TYPE >
+inline string __type_name(const __pointer(TYPE) & pointer)
+{
+
+   return __type_name((const TYPE *) pointer.m_p);
+
+}
+
+
+template < typename TYPE >
 inline string __type_name(const TYPE & t)
 {
 
@@ -269,19 +293,7 @@ inline string __type_name(const TYPE & t)
 }
 
 
-template < typename TYPE >
-inline string __type_name(const TYPE * p)
-{
 
-   TYPE * pNonConst = (TYPE *) p;
-
-   auto pszType = typeid(*pNonConst).name();
-
-   string strName = demangle(pszType);
-
-   return strName;
-
-}
 
 
 #include "acme/graphics/draw2d/_const.h"

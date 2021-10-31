@@ -1475,7 +1475,6 @@ namespace user
 
       MESSAGE_LINK(e_message_create, pchannel, this, &interaction::on_message_create);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction::on_message_destroy);
-//      MESSAGE_LINK(e_message_post_user, pchannel, this, &interaction::on_message_user_post);
       MESSAGE_LINK(e_message_text_composition, pchannel, this, &interaction::_001OnTextComposition);
 
       primitive::install_message_routing(pchannel);
@@ -1554,6 +1553,11 @@ namespace user
 
       //MESSAGE_LINK(e_message_command, pchannel, this, &interaction::_001OnCommand);
       MESSAGE_LINK(e_message_simple_command, pchannel, this, &interaction::on_message_simple_command);
+
+
+      MESSAGE_LINK(e_message_right_button_down, pchannel, this, &interaction::on_message_right_button_down);
+      MESSAGE_LINK(e_message_right_button_up, pchannel, this, &interaction::on_message_right_button_up);
+
 
       //if (m_bClickDefaultMouseHandling)
       //{
@@ -3303,7 +3307,7 @@ auto tickStartWithLock = ::duration::now();
 
                      //   //   }
 
-                     //   //   CINFO(prodevian)("(more than 50ms) "+strType+"::_000OnDraw took " + __string(d1.m_i) + "::duration.\n");
+                     //   //   CINFO(prodevian)("(more than 50ms)(D) "+strType+"::_000OnDraw took " + __string(d1.m_i) + "::duration.\n");
 
                      //   //   //pinteraction->_000OnDraw(pgraphics);
 
@@ -3912,7 +3916,7 @@ return "";
 
                   string strType = __type_name(this);
 
-                  CATEGORY_INFORMATION(prodevian, "(more than 50ms) " + strType + "::_008CallOnDraw took " + d1.integral_millisecond() + "::duration.\n");
+                  CATEGORY_INFORMATION(prodevian, "(more than 50ms)(E) " + strType + "::_008CallOnDraw took " + d1.integral_millisecond() + "::duration.\n");
 
                }
 
@@ -15794,6 +15798,50 @@ order(zorderParam);
          set_need_redraw();
 
          post_redraw();
+
+      }
+
+   }
+
+
+
+   void interaction::on_message_right_button_down(::message::message* pmessage)
+   {
+
+      auto pmouse = pmessage->m_union.m_pmouse;
+
+      if (!is_window_enabled())
+      {
+
+         return;
+
+      }
+
+      if(pmessage->previous())
+      {
+
+         return;
+
+      }
+
+      auto pcontextmenu = __new(::message::context_menu);
+
+      pcontextmenu->set(get_oswindow(), get_window(), e_message_context_menu, get_oswindow(), pmessage->m_lparam);
+
+      message_handler(pcontextmenu);
+
+   }
+
+
+   void interaction::on_message_right_button_up(::message::message* pmessage)
+   {
+
+      auto pmouse = pmessage->m_union.m_pmouse;
+
+      if (!is_window_enabled())
+      {
+
+         return;
 
       }
 

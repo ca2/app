@@ -2477,7 +2477,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
          if(d1 > 50_ms)
          {
 
-            CATEGORY_INFORMATION(prodevian, "(more than 50ms) " << strType << "::_001OnDraw took " << integral_millisecond(d1) << "::duration.\n");
+            CATEGORY_INFORMATION(prodevian, "(more than 50ms)(G) " << strType << "::_001OnDraw took " << integral_millisecond(d1) << "::duration.\n");
 
          }
 
@@ -2501,7 +2501,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
             if(d1 > 50_ms)
             {
 
-               CATEGORY_INFORMATION(prodevian, "(more than 50ms) draw_frame_and_control_box_over took " << d1.integral_millisecond() << "::duration.\n");
+               CATEGORY_INFORMATION(prodevian, "(more than 50ms)(K) draw_frame_and_control_box_over took " << d1.integral_millisecond() << "::duration.\n");
 
             }
 
@@ -3382,7 +3382,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
                         //}
 
-                        CATEGORY_INFORMATION(prodevian, "(more than 50ms) " << strType << "::_001OnDraw took " << integral_millisecond(d1) << "::duration.");
+                        CATEGORY_INFORMATION(prodevian, "(more than 50ms)(J) " << strType << "::_001OnDraw took " << integral_millisecond(d1) << "::duration.");
 
                      }
 
@@ -3415,7 +3415,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
       if(d1 > 50_ms)
       {
 
-         CATEGORY_INFORMATION(prodevian, "(more than 50ms) simple_frame_windows::_001DrawThis took " << integral_millisecond(d1) << "::duration.\n");
+         CATEGORY_INFORMATION(prodevian, "(more than 50ms)(L) simple_frame_windows::_001DrawThis took " << integral_millisecond(d1) << "::duration.\n");
 
       }
 
@@ -3491,7 +3491,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
                         if (d1 > 50_ms)
                         {
 
-                           CATEGORY_INFORMATION(prodevian, "(more than 50ms) simple_frame_windows::_001DrawThis took " << integral_millisecond(d1) << ".\n");
+                           CATEGORY_INFORMATION(prodevian, "(more than 50ms)(M) simple_frame_windows::_001DrawThis took " << integral_millisecond(d1) << ".\n");
 
                         }
 
@@ -3541,7 +3541,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
       if(d1 > 50_ms)
       {
 
-         CATEGORY_INFORMATION(prodevian, "(more than 50ms) simple_frame_windows::_001DrawThis took " << integral_millisecond(d1) << ".\n");
+         CATEGORY_INFORMATION(prodevian, "(more than 50ms)(N) simple_frame_windows::_001DrawThis took " << integral_millisecond(d1) << ".\n");
 
       }
 

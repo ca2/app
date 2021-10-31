@@ -17,16 +17,20 @@ namespace message
    class key;
    class mouse;
    class object;
+   class context_menu;
+
 
    union message_union
    {
      
-      void *                  m_p;
-      ::message::object *     m_pobject;
-      ::message::key *        m_pkey;
-      ::message::mouse *      m_pmouse;
+      void *                        m_p;
+      ::message::object *           m_pobject;
+      ::message::key *              m_pkey;
+      ::message::mouse *            m_pmouse;
+      ::message::context_menu *     m_pcontextmenu;
       
    };
+
 
    class CLASS_DECL_APEX message :
       virtual public ::acme::message

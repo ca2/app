@@ -1251,6 +1251,10 @@ namespace user
 
 
       DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
+
+      DECLARE_MESSAGE_HANDLER(on_message_right_button_down);
+      DECLARE_MESSAGE_HANDLER(on_message_right_button_up);
+
       DECLARE_MESSAGE_HANDLER(on_message_show_window);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_enter);

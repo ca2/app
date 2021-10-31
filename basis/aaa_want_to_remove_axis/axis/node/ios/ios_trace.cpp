@@ -329,7 +329,7 @@ void __trace_message(const char * lpszPrefix, ::message::message * pmessage)
    if (lpszMsgName != nullptr)
    {
 #ifdef _WIN64
-      //TRACE(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%p, msg = %s (%p, %p)\n",
+      //FORMATTED_TRACE(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%p, msg = %s (%p, %p)\n",
       // lpszPrefix, pusermessage->m_hwnd, lpszMsgName,
       //pusermessage->m_wparam, pusermessage->m_lparam);
 #else
@@ -412,7 +412,7 @@ void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg)
    if (lpszMsgName != nullptr)
    {
 #ifdef WIN64
-      //      TRACE(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%p, msg = %hs (%p, %p)\n",
+      //      FORMATTED_TRACE(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%p, msg = %hs (%p, %p)\n",
       //       lpszPrefix, pMsg->hwnd, lpszMsgName,
       //     pMsg->wParam, pMsg->lParam);
 #else

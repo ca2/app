@@ -67,7 +67,7 @@ void logger::t_release()
    //   if(g_Allocator.GetProcess()->m_bFileNameAndLineNo)
    //   {
    //   i32 nTemp;
-   //   C_RUNTIME_ERRORCHECK_SPRINTF(nTemp = _snprintf_s(szBuf + nLen, nCount - nLen, nCount - nLen - 1, "%s(%d) : ", pszFileName, nLine));
+   //   C_RUNTIME_FORMATTED_ERRORCHECK_SPRINTF(nTemp = _snprintf_s(szBuf + nLen, nCount - nLen, nCount - nLen - 1, "%s(%d) : ", pszFileName, nLine));
    //   if( nTemp < 0 )
    //   nLen = nCount;
    //   else
@@ -79,7 +79,7 @@ void logger::t_release()
    //   if(pCategory && g_Allocator.GetProcess()->m_bFuncAndCategoryNames)
    //   {
    //   i32 nTemp;
-   //   C_RUNTIME_ERRORCHECK_SPRINTF(nTemp = _snprintf_s(szBuf + nLen, nCount - nLen, nCount - nLen - 1, "%S: ", pCategory->Name()));
+   //   C_RUNTIME_FORMATTED_ERRORCHECK_SPRINTF(nTemp = _snprintf_s(szBuf + nLen, nCount - nLen, nCount - nLen - 1, "%S: ", pCategory->Name()));
    //   if( nTemp < 0 )
    //   nLen = nCount;
    //   else
@@ -96,7 +96,7 @@ void logger::t_release()
 
    //   string str;
 
-   //   str.Format(pszFormat, args);
+   //   str.format(pszFormat, args);
 
    //   ::output_debug_string(str);
 
@@ -136,7 +136,7 @@ void logger::t_release()
 
    //   string str;
 
-   //   str.Format(pszFmt, args);
+   //   str.format(pszFmt, args);
 
    //   ::output_debug_string(str);
 

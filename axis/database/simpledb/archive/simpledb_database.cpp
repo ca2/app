@@ -59,7 +59,7 @@ namespace simpledb
 
       m_strLastError += error1(pszPrefix);
 
-      TRACE("%s", m_strLastError);
+      FORMATTED_TRACE("%s", m_strLastError);
 
    }
 

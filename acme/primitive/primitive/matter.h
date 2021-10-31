@@ -249,6 +249,34 @@ public:
    inline tracer trace_log_fatal() { return tracer(m_psystem, e_trace_level_fatal, trace_category()); }
 
 
+   virtual void trace_arguments(enum_trace_level etracelevel, enum_trace_category etracecategory, const char * pszFormat, va_list & arguments);
+   virtual void trace_log_information_arguments(enum_trace_category etracecategory, const char * pszFormat, va_list & arguments);
+   virtual void trace_log_warning_arguments(enum_trace_category etracecategory, const char * pszFormat, va_list & arguments);
+   virtual void trace_log_error_arguments(enum_trace_category etracecategory, const char * pszFormat, va_list & arguments);
+   virtual void trace_log_fatal_arguments(enum_trace_category etracecategory, const char * pszFormat, va_list & arguments);
+
+
+   virtual void trace_arguments(enum_trace_level etracelevel, const char * pszFormat, va_list & arguments);
+   virtual void trace_log_information_arguments(const char * pszFormat, va_list & arguments);
+   virtual void trace_log_warning_arguments(const char * pszFormat, va_list & arguments);
+   virtual void trace_log_error_arguments(const char * pszFormat, va_list & arguments);
+   virtual void trace_log_fatal_arguments(const char * pszFormat, va_list & arguments);
+
+
+   virtual void trace(enum_trace_level etracelevel, enum_trace_category etracecategory, const char * pszFormat, ...);
+   virtual void trace_log_information(enum_trace_category etracecategory, const char * pszFormat, ...);
+   virtual void trace_log_warning(enum_trace_category etracecategory, const char * pszFormat, ...);
+   virtual void trace_log_error(enum_trace_category etracecategory, const char * pszFormat, ...);
+   virtual void trace_log_fatal(enum_trace_category etracecategory, const char * pszFormat, ...);
+
+
+   virtual void trace(enum_trace_level etracelevel, const char * pszFormat, ...);
+   virtual void trace_log_information(const char * pszFormat, ...);
+   virtual void trace_log_warning(const char * pszFormat, ...);
+   virtual void trace_log_error(const char * pszFormat, ...);
+   virtual void trace_log_fatal(const char * pszFormat, ...);
+
+
    virtual void trace_last_status();
 
 

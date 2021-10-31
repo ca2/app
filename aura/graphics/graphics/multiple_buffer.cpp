@@ -263,14 +263,14 @@ namespace graphics
 
 #ifdef EXTRALOG
 
-      strFormat.Format(" age %d", iAge);
+      strFormat.format(" age %d", iAge);
 
       str += strFormat;
 
       if (!bFoundExact)
       {
 
-         strFormat.Format(" buffer size_i32 %d, %d", pimageBuffer2->width(), pimageBuffer2->height());
+         strFormat.format(" buffer size_i32 %d, %d", pimageBuffer2->width(), pimageBuffer2->height());
 
          s_iLastExact = -1;
 
@@ -278,7 +278,7 @@ namespace graphics
       else
       {
 
-         strFormat.Format("!!");
+         strFormat.format("!!");
 
          s_iLastExact++;
 

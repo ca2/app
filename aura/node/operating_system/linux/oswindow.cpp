@@ -1378,7 +1378,7 @@ bool oswindow_data::_set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx,
 
          #ifdef SET_WINDOW_POS_LOG
 
-         INFORMATION("XMoveResizeWindow (%d, %d) - (%d, %d)", x, y, cx, cy);
+         FORMATTED_  FORMATTED_INFORMATION("XMoveResizeWindow (%d, %d) - (%d, %d)", x, y, cx, cy);
 
          #endif
 
@@ -1391,7 +1391,7 @@ bool oswindow_data::_set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx,
 
             #ifdef SET_WINDOW_POS_LOG
 
-            INFORMATION("Changing parameters... (%d, %d) - (%d, %d)", x, y, cx, cy);
+            FORMATTED_INFORMATION("Changing parameters... (%d, %d) - (%d, %d)", x, y, cx, cy);
 
             #endif
 

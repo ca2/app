@@ -172,7 +172,7 @@ namespace hotplugin
 
             //::u32 dwTime9= ::duration::now();
 
-            //TRACE("plugin->on_paint %d",dwTime9 - dwTime1);
+            //FORMATTED_TRACE("plugin->on_paint %d",dwTime9 - dwTime1);
 
          }
          catch(...)
@@ -197,7 +197,7 @@ namespace hotplugin
          ::user::interaction::m_pimpl->_001Print(pgraphics);
          //::u32 dwTime9= ::duration::now();
 
-         //TRACE("m_pimpl->_001Print %d",dwTime9 - dwTime1);
+         //FORMATTED_TRACE("m_pimpl->_001Print %d",dwTime9 - dwTime1);
 
       }
       //::u32 dwTime1= ::duration::now();
@@ -205,7 +205,7 @@ namespace hotplugin
       deferred_prodevian_redraw();
       //::u32 dwTime9= ::duration::now();
 
-      //TRACE("deferred_prodevian_redraw %d",dwTime9 - dwTime1);
+      //FORMATTED_TRACE("deferred_prodevian_redraw %d",dwTime9 - dwTime1);
 
    }
 

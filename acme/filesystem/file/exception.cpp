@@ -118,11 +118,11 @@ namespace file
 
 #ifdef WINDOWS_DESKTOP
 
-         strException.Format(":file(%hs(%" PRId64 "),%d,%s)", psz, estatus.m_estatus, uLastError, path.c_str());
+         strException.format(":file(%hs(%" PRId64 "),%d,%s)", psz, estatus.m_estatus, uLastError, path.c_str());
 
 #else
 
-         strException.Format(":file(%s(%" PRId64 "),%d,%s)", psz, estatus.m_estatus, iErrNo, path.c_str());
+         strException.format(":file(%s(%" PRId64 "),%d,%s)", psz, estatus.m_estatus, iErrNo, path.c_str());
 
 #endif
 
@@ -269,7 +269,7 @@ namespace file
 
       strExtra = get_last_error_message(m_lOsError);
 
-      strMessage.Format("file error number: %d - %s - file: %s", m_cause, strExtra, strFileName);
+      strMessage.format("file error number: %d - %s - file: %s", m_cause, strExtra, strFileName);
 
       str = strMessage;
 
@@ -435,7 +435,7 @@ namespace file
 //
 //      string strFormat;
 //
-//      strFormat.Format("file exception: %hs, file %s, App error information = %s (%ld).\n", psz, (path.is_empty()) ? "Unknown" : path.c_str(), FormatMessageFromSystem(lOsError).c_str(), lOsError);
+//      strFormat.format("file exception: %hs, file %s, App error information = %s (%ld).\n", psz, (path.is_empty()) ? "Unknown" : path.c_str(), FormatMessageFromSystem(lOsError).c_str(), lOsError);
 //
 //      ::acme::application* papp = ::get_application();
 //

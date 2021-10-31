@@ -3919,7 +3919,7 @@ bool graphics::internal_draw_text(const ::block & block, const ::rectangle_f64 &
 
             const char * pszStatus = cairo_status_to_string(status);
 
-            TRACE("cairo error : graphics::draw_text %d %s", status, pszStatus);
+            FORMATTED_TRACE("cairo error : graphics::draw_text %d %s", status, pszStatus);
 
         }
 
@@ -4237,7 +4237,7 @@ bool graphics::_GetTextExtent(size_f64 & size, const char * lpszString, strsize 
 
         const char * pszStatus = cairo_status_to_string(status);
 
-        TRACE("cairo error : graphics::_GetTextExtent %d %s", status, pszStatus);
+        FORMATTED_TRACE("cairo error : graphics::_GetTextExtent %d %s", status, pszStatus);
 
     }
 
@@ -5592,7 +5592,7 @@ bool graphics::_set(const ::write_text::text_out & textout)
 
         const char * pszStatus = cairo_status_to_string(status);
 
-        TRACE("cairo error : graphics::set(string_path) %d %s", status, pszStatus);
+        FORMATTED_TRACE("cairo error : graphics::set(string_path) %d %s", status, pszStatus);
 
     }
 
@@ -5625,7 +5625,7 @@ bool graphics::_set(const ::write_text::draw_text & drawtext)
 
       const char * pszStatus = cairo_status_to_string(status);
 
-      TRACE("cairo error : graphics::set(string_path) %d %s", status, pszStatus);
+      FORMATTED_TRACE("cairo error : graphics::set(string_path) %d %s", status, pszStatus);
 
    }
 
@@ -6239,7 +6239,7 @@ FT_Face graphics::ftface(const ::string & pszFontName, int iWeight, bool bItalic
       else
       {
 
-         TRACE("Creating font : %s", pszFontName);
+         FORMATTED_TRACE("Creating font : %s", pszFontName);
 
       }
 

@@ -409,7 +409,7 @@ namespace introjection
 
       ::payload payload = psystem->process().get_output(strCommandLine);
 
-      TRACE("%s", payload.string().c_str());
+      FORMATTED_TRACE("%s", payload.string().c_str());
 
 #endif
 
@@ -512,7 +512,7 @@ namespace introjection
       for (auto & pproperty : setEnvironment)
       {
 
-         TRACE("%s : %s", pproperty->m_id.to_string().c_str(), pproperty->string().c_str());
+         FORMATTED_TRACE("%s : %s", pproperty->m_id.to_string().c_str(), pproperty->string().c_str());
 
          SetEnvironmentVariableW(wstring(pproperty->m_id), wstring(pproperty->string()));
 
@@ -765,7 +765,7 @@ pacmedir->create("/::payload/tmp/ca2/intermediate");
       //if(!pcontext->m_papexcontext->file().exists(lib->m_strSourcePath))
       //{
       //   lib->m_memfileError << "<pre>";
-      //   str.Format("Source File : \"%s\" does not exist",lib->m_strSourcePath);
+      //   str.format("Source File : \"%s\" does not exist",lib->m_strSourcePath);
       //   lib->m_memfileError << str;
       //   lib->m_memfileError << "</pre>";
       //   return;
@@ -817,7 +817,7 @@ pacmedir->create("/::payload/tmp/ca2/intermediate");
       //lib->m_strBuildBat = strB;
       //m_pathScript = m_pmanager->get_script_path(strName);
       //#else
-      // lib->m_strLibraryPath.Format(pcontext->m_papexcontext->dir().install(m_strDynamicSourceStage /" Release\\%s.dll"), strName);
+      // lib->m_strLibraryPath.format(pcontext->m_papexcontext->dir().install(m_strDynamicSourceStage /" Release\\%s.dll"), strName);
       //#endif
 
       try
@@ -964,7 +964,7 @@ pacmedir->create("/::payload/tmp/ca2/intermediate");
       catch(string strError)
       {
 
-         TRACE("%s", (strError + "\n").c_str());
+         FORMATTED_TRACE("%s", (strError + "\n").c_str());
 
       }
       //try
@@ -1057,9 +1057,9 @@ pacmedir->create("/::payload/tmp/ca2/intermediate");
 #ifdef LINUX
       strBuildCmd = pcontext->m_papexcontext->dir().install() / "platform/stage/introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_c" + m_strPlat1 + ".bash");
 #elif defined(__APPLE__)
-      strBuildCmd.Format(pcontext->m_papexcontext->dir().install() / "platform/stage/introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_c" + m_strPlat1 + ".bat"));
+      strBuildCmd.format(pcontext->m_papexcontext->dir().install() / "platform/stage/introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_c" + m_strPlat1 + ".bat"));
 #else
-      strBuildCmd.Format(pcontext->m_papexcontext->dir().install() / "platform/stage/introjection" / m_strApp / m_strVsTools / (m_strDynamicSourceConfiguration + "_c" + m_strPlat1 + ".bat"));
+      strBuildCmd.format(pcontext->m_papexcontext->dir().install() / "platform/stage/introjection" / m_strApp / m_strVsTools / (m_strDynamicSourceConfiguration + "_c" + m_strPlat1 + ".bat"));
 #endif
 
       str = pcontext->m_papexcontext->file().as_string(strBuildCmd);
@@ -1259,9 +1259,9 @@ auto tickStart = ::duration::now();
 #ifndef MACOS
 
 #ifdef LINUX
-         strBuildCmd.Format(pcontext->m_papexcontext->dir().install() / "platform\\stage\\introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_l" + m_strPlat1 + ".bash"));
+         strBuildCmd.format(pcontext->m_papexcontext->dir().install() / "platform\\stage\\introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_l" + m_strPlat1 + ".bash"));
 #else
-         strBuildCmd.Format(pcontext->m_papexcontext->dir().install() / "platform\\stage\\introjection" / m_strApp / m_strVsTools / (m_strDynamicSourceConfiguration + "_l" + m_strPlat1 + ".bat"));
+         strBuildCmd.format(pcontext->m_papexcontext->dir().install() / "platform\\stage\\introjection" / m_strApp / m_strVsTools / (m_strDynamicSourceConfiguration + "_l" + m_strPlat1 + ".bat"));
 #endif
 
          str = pcontext->m_papexcontext->file().as_string(strBuildCmd);

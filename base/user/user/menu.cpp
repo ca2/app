@@ -6,6 +6,8 @@
 #include "aura/astr.h"
 #include "aura/user/menu_command.h"
 
+#define SWP_NOSIZE          0x0001
+#define SWP_NOMOVE          0x0002
 
 namespace user
 {
@@ -286,7 +288,7 @@ namespace user
       if (pshow->m_bShow)
       {
 
-         TRACE("menu::on_message_show_window bShow = %d", pshow->m_bShow);
+         FORMATTED_TRACE("menu::on_message_show_window bShow = %d", pshow->m_bShow);
 
          if (m_puserinteractionParent)
          {
@@ -303,7 +305,7 @@ namespace user
 
                      get_window()->bring_to_front();
 
-                     get_window()->set_window_position(e_zorder_top_most, 0, 0, 0, 0, 0);
+                     get_window()->set_window_position(e_zorder_top_most, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
 
                   }));
 
@@ -315,7 +317,7 @@ namespace user
       else
       {
 
-         TRACE("menu::on_message_show_window bShow = %d", pshow->m_bShow);
+         FORMATTED_TRACE("menu::on_message_show_window bShow = %d", pshow->m_bShow);
 
       }
 

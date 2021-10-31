@@ -127,7 +127,7 @@ i32                 cy)
    if(!pgraphics->ExtTextOut(x,y,0,nullptr,pcsz,(int)cb,nullptr))
 
    {
-      //      TRACE("Failed to ExtTextOut, get_last_error() -->%d\n", get_last_error());
+      //      FORMATTED_TRACE("Failed to ExtTextOut, get_last_error() -->%d\n", get_last_error());
    }
 
    /* restore the DC

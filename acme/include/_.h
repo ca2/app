@@ -1156,42 +1156,75 @@ inline const ::matter * context_trace_object() { return general_trace_object(); 
 //#define __alog(...) __tracef(__VA_ARGS__)
 
 
-#define _CATEGORY_INFORMATION(p, etracecategory, ...) p->trace_log_information(e_trace_category_ ## etracecategory) << __VA_ARGS__
-#define _CATEGORY_WARNING(p, etracecategory, ...) p->trace_log_warning(e_trace_category_ ## etracecategory) << __VA_ARGS__
-#define _CATEGORY_ERROR(p, etracecategory, ...) p->trace_log_error(e_trace_category_ ## etracecategory) << __VA_ARGS__
-#define _CATEGORY_FATAL(p, etracecategory, ...) p->trace_log_fatal(e_trace_category_ ## etracecategory) << __VA_ARGS__
+#define _FORMATTED_CATEGORY_INFORMATION(p, etracecategory, ...)   p->trace_log_information   (e_trace_category_ ## etracecategory, __VA_ARGS__)
+#define _FORMATTED_CATEGORY_WARNING(p, etracecategory, ...)   p->trace_log_warning       (e_trace_category_ ## etracecategory, __VA_ARGS__)
+#define _FORMATTED_CATEGORY_ERROR(p, etracecategory, ...)   p->trace_log_error         (e_trace_category_ ## etracecategory, __VA_ARGS__)
+#define _FORMATTED_CATEGORY_FATAL(p, etracecategory, ...)   p->trace_log_fatal         (e_trace_category_ ## etracecategory, __VA_ARGS__)
 
 
-#define CATEGORY_INFORMATION(etracecategory, ...) trace_log_information(e_trace_category_ ## etracecategory) << __VA_ARGS__
-#define CATEGORY_WARNING(etracecategory, ...) trace_log_warning(e_trace_category_ ## etracecategory) << __VA_ARGS__
-#define CATEGORY_ERROR(etracecategory, ...) trace_log_error(e_trace_category_ ## etracecategory) << __VA_ARGS__
-#define CATEGORY_FATAL(etracecategory, ...) trace_log_fatal(e_trace_category_ ## etracecategory) << __VA_ARGS__
+#define _CATEGORY_INFORMATION(p, etracecategory, ...)   p->trace_log_information   (e_trace_category_ ## etracecategory) << __VA_ARGS__
+#define _CATEGORY_WARNING(p, etracecategory, ...)   p->trace_log_warning       (e_trace_category_ ## etracecategory) << __VA_ARGS__
+#define _CATEGORY_ERROR(p, etracecategory, ...)   p->trace_log_error         (e_trace_category_ ## etracecategory) << __VA_ARGS__
+#define _CATEGORY_FATAL(p, etracecategory, ...)   p->trace_log_fatal         (e_trace_category_ ## etracecategory) << __VA_ARGS__
 
 
-#define _INFORMATION(p, ...) p->trace_log_information() << __VA_ARGS__
-#define _WARNING(p, ...) p->trace_log_warning() << __VA_ARGS__
-#define _ERROR(p, ...) p->trace_log_error() << __VA_ARGS__
-#define _FATAL(p, ...) p->trace_log_fatal() << __VA_ARGS__
+#define FORMATTED_CATEGORY_INFORMATION(etracecategory, ...)      trace_log_information            (e_trace_category_ ## etracecategory, __VA_ARGS__)
+#define FORMATTED_CATEGORY_WARNING(etracecategory, ...)      trace_log_warning                (e_trace_category_ ## etracecategory, __VA_ARGS__)
+#define FORMATTED_CATEGORY_ERROR(etracecategory, ...)      trace_log_error                  (e_trace_category_ ## etracecategory, __VA_ARGS__)
+#define FORMATTED_CATEGORY_FATAL(etracecategory, ...)      trace_log_fatal                  (e_trace_category_ ## etracecategory, __VA_ARGS__)
 
 
-#define TRACE_LOG_INFORMATION(...) trace_log_information() << __VA_ARGS__
-#define TRACE_LOG_WARNING(...) trace_log_warning() << __VA_ARGS__
-#define TRACE_LOG_ERROR(...) trace_log_error() << __VA_ARGS__
-#define TRACE_LOG_FATAL(...) trace_log_fatal() << __VA_ARGS__
+#define CATEGORY_INFORMATION(etracecategory, ...)      trace_log_information            (e_trace_category_ ## etracecategory) << __VA_ARGS__
+#define CATEGORY_WARNING(etracecategory, ...)      trace_log_warning                (e_trace_category_ ## etracecategory) << __VA_ARGS__
+#define CATEGORY_ERROR(etracecategory, ...)      trace_log_error                  (e_trace_category_ ## etracecategory) << __VA_ARGS__
+#define CATEGORY_FATAL(etracecategory, ...)      trace_log_fatal                  (e_trace_category_ ## etracecategory) << __VA_ARGS__
 
 
-#define INFORMATION(...) TRACE_LOG_INFORMATION(__VA_ARGS__)
-#define WARNING(...) TRACE_LOG_WARNING(__VA_ARGS__)
-#define ERROR(...) TRACE_LOG_ERROR(__VA_ARGS__)
-#define FATAL(...) TRACE_LOG_FATAL(__VA_ARGS__)
+#define _FORMATTED_INFORMATION(p, ...)                   p->trace_log_information         (__VA_ARGS__)
+#define _FORMATTED_WARNING(p, ...)                   p->trace_log_warning             (__VA_ARGS__)
+#define _FORMATTED_ERROR(p, ...)                   p->trace_log_error               (__VA_ARGS__)
+#define _FORMATTED_FATAL(p, ...)                   p->trace_log_fatal               (__VA_ARGS__)
 
 
-//#define INFORMATION(...) trace_object(ALOG_CONTEXT)->__alog(e_trace_level_information, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
-//#define WARN(...) trace_object(ALOG_CONTEXT)->__alog(e_trace_level_warning, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
-//#define ERR(...) trace_object(ALOG_CONTEXT)->__alog(e_trace_level_error, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
-//#define FATAL(...) trace_object(ALOG_CONTEXT)->__alog(e_trace_level_fatal, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
+#define _INFORMATION(p, ...)                   p->trace_log_information         () << __VA_ARGS__
+#define _WARNING(p, ...)                   p->trace_log_warning             () << __VA_ARGS__
+#define _ERROR(p, ...)                   p->trace_log_error               () << __VA_ARGS__
+#define _FATAL(p, ...)                   p->trace_log_fatal               () << __VA_ARGS__
 
-#define TRACE(...) INFORMATION(__VA_ARGS__)
+
+#define TRACE_LOG_FORMATTED_INFORMATION(...)                      trace_log_information            (__VA_ARGS__)
+#define TRACE_LOG_FORMATTED_WARNING(...)                      trace_log_warning                (__VA_ARGS__)
+#define TRACE_LOG_FORMATTED_ERROR(...)                      trace_log_error                  (__VA_ARGS__)
+#define TRACE_LOG_FORMATTED_FATAL(...)                      trace_log_fatal                  (__VA_ARGS__)
+
+
+#define TRACE_LOG_INFORMATION(...)                      trace_log_information            () << __VA_ARGS__
+#define TRACE_LOG_WARNING(...)                      trace_log_warning                () << __VA_ARGS__
+#define TRACE_LOG_ERROR(...)                      trace_log_error                  () << __VA_ARGS__
+#define TRACE_LOG_FATAL(...)                      trace_log_fatal                  () << __VA_ARGS__
+
+
+#define FORMATTED_INFORMATION(...)                      TRACE_LOG_FORMATTED_INFORMATION(__VA_ARGS__)
+#define FORMATTED_WARNING(...)                      TRACE_LOG_FORMATTED_WARNING(__VA_ARGS__)
+#define FORMATTED_ERROR(...)                      TRACE_LOG_FORMATTED_ERROR(__VA_ARGS__)
+#define FORMATTED_FATAL(...)                      TRACE_LOG_FORMATTED_FATAL(__VA_ARGS__)
+
+
+#define INFORMATION(...)                      TRACE_LOG_INFORMATION(__VA_ARGS__)
+#define WARNING(...)                      TRACE_LOG_WARNING(__VA_ARGS__)
+#define ERROR(...)                                                   TRACE_LOG_ERROR(__VA_ARGS__)
+#define FATAL(...)                      TRACE_LOG_FATAL(__VA_ARGS__)
+
+
+//#define INFORMATION(...) trace_object(ALOG_CONTEXT)->__alog(e_trace_level_information   , ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
+//#define WARN(...) trace_object(ALOG_CONTEXT)->__alog(e_trace_level_warning       , ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
+//#define ERR(...) trace_object(ALOG_CONTEXT)->__alog(e_trace_level_error         , ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
+//#define FATAL(...) trace_object(ALOG_CONTEXT)->__alog(e_trace_level_fatal         , ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
+
+
+#define FORMATTED_TRACE(...)              FORMATTED_INFORMATION(__VA_ARGS__)
+#define TRACE(...)                        INFORMATION(__VA_ARGS__)
+
 
 
 

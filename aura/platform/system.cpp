@@ -308,7 +308,7 @@ namespace aura
 //   }
 
 
-   //bool system::on_get_thread_name(string& strThreadName)
+   //bool system::on_get_task_name(string& strTaskName)
    //{
 
    //   if (is_console_app())
@@ -318,7 +318,7 @@ namespace aura
 
    //   }
 
-   //   return ::apex::system::on_get_thread_name(strThreadName);
+   //   return ::apex::system::on_get_task_name(strTaskName);
 
    //}
 
@@ -910,7 +910,7 @@ namespace aura
 //
 //         if(status != errAuthorizationSuccess)
 //         {
-//            TRACE("Error Creating Initial Authorization: %d", status);
+//            FORMATTED_TRACE("Error Creating Initial Authorization: %d", status);
 //
 //            return false;
 //
@@ -933,7 +933,7 @@ namespace aura
 //         if (status != errAuthorizationSuccess)
 //         {
 //
-//            TRACE("Copy Rights Unsuccessful: %d", status);
+//            FORMATTED_TRACE("Copy Rights Unsuccessful: %d", status);
 //
 //            return false;
 //
@@ -2177,7 +2177,7 @@ namespace aura
 ////         if(list != nullptr)
 //         {
 //
-//            str2.Format(pszFormat,list);
+//            str2.format(pszFormat,list);
 //
 //         }
 //         //     else
@@ -2809,7 +2809,7 @@ namespace aura
 
    //   }
 
-   //   INFORMATION("%s", ("::aura::system::on_request session = " + string(__type_name(psession)) + "("+__string((iptr) psession)+")\n\n").c_str());
+   //   FORMATTED_INFORMATION("%s", ("::aura::system::on_request session = " + string(__type_name(psession)) + "("+__string((iptr) psession)+")\n\n").c_str());
 
    //   psession->do_request(pcreate);
 
@@ -4601,7 +4601,7 @@ namespace aura
    //string system::get_local_mutex_name(const ::string & pszAppName)
    //{
    //   string strMutex;
-   //   strMutex.Format("Local\\ca2_application_local_mutex:%s", pszAppName);
+   //   strMutex.format("Local\\ca2_application_local_mutex:%s", pszAppName);
    //   return strMutex;
    //}
 
@@ -4609,14 +4609,14 @@ namespace aura
    //{
    //   string strId(pszId);
    //   string strMutex;
-   //   strMutex.Format("Local\\ca2_application_local_mutex:%s, id:%s", pszAppName, strId.c_str());
+   //   strMutex.format("Local\\ca2_application_local_mutex:%s, id:%s", pszAppName, strId.c_str());
    //   return strMutex;
    //}
 
    //string system::get_global_mutex_name(const ::string & pszAppName)
    //{
    //   string strMutex;
-   //   strMutex.Format("Global\\ca2_application_global_mutex:%s", pszAppName);
+   //   strMutex.format("Global\\ca2_application_global_mutex:%s", pszAppName);
    //   return strMutex;
    //}
 
@@ -4624,7 +4624,7 @@ namespace aura
    //{
    //   string strId(pszId);
    //   string strMutex;
-   //   strMutex.Format("Global\\ca2_application_global_mutex:%s, id:%s", pszAppName, strId.c_str());
+   //   strMutex.format("Global\\ca2_application_global_mutex:%s, id:%s", pszAppName, strId.c_str());
    //   return strMutex;
    //}
 
@@ -6077,7 +6077,7 @@ namespace aura
 
       string strMessage;
 
-      strMessage.Format("system::on_allocation_error Implement \"%s\" allocation\n", str.c_str());
+      strMessage.format("system::on_allocation_error Implement \"%s\" allocation\n", str.c_str());
 
       dev_log(strMessage);
 

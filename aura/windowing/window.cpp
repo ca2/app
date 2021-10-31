@@ -1261,7 +1261,28 @@ namespace windowing
    ::e_status window::window_post(const ::routine & routine)
    {
 
-      throw ::interface_only_exception();
+      auto pimpl = m_pimpl;
+
+      if(pimpl)
+      {
+
+         auto puserinteraction = pimpl->m_puserinteraction;
+
+         if (puserinteraction)
+         {
+
+            auto pthread = puserinteraction->m_pthreadUserInteraction;
+
+            if (pthread)
+            {
+
+               pthread->post_routine(routine);
+
+            }
+
+         }
+
+      }
 
       return error_interface_only;
 

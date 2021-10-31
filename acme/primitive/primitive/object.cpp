@@ -3677,7 +3677,7 @@ bool object::IsSerializable() const
 //   {
 //
 //      string str;
-//      str.FormatV(psz, valist);
+//      str.format_arguments(psz, valist);
 //      set_topic_text(str);
 //
 //   }

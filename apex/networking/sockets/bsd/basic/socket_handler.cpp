@@ -1419,7 +1419,7 @@ end_processing_adding:
                   {
 
                      //SOCKET nn = *it; //(*it3).element1();
-                     //INFORMATION(" close(2) fd %d\n", socket));
+                     //FORMATTED_INFORMATION(" close(2) fd %d\n", socket));
 
                      ptcpsocket->SetCloseAndDelete(false);
 
@@ -1458,7 +1458,7 @@ end_processing_adding:
                   else
                   {
 
-                     //INFORMATION(" close(3) fd %d GetSocket() %d\n", socket, point_i32 -> GetSocket()));
+                     //FORMATTED_INFORMATION(" close(3) fd %d GetSocket() %d\n", socket, point_i32 -> GetSocket()));
 
                      if (psocket && psocket->IsConnected() && ptcpsocket->GetOutputLength())
                      {
@@ -1750,7 +1750,7 @@ end_processing_adding:
 //
 //      m_resolve_q[pbasesocket] = true;
 //
-//      INFORMATION(" *** Resolve '%s:%d' id#%d  m_resolve_q size_i32: %d  base_socket: %p\n", host.c_str(), port, presolvsocket->GetId(), m_resolve_q.get_size(), pbasesocket));
+//      FORMATTED_INFORMATION(" *** Resolve '%s:%d' id#%d  m_resolve_q size_i32: %d  base_socket: %p\n", host.c_str(), port, presolvsocket->GetId(), m_resolve_q.get_size(), pbasesocket));
 //
 //      return presolvsocket->GetId();
 //
@@ -2085,7 +2085,7 @@ end_processing_adding:
 //         if (!::contains_value(m_delete, *p))
 //         {
 //
-//            INFORMATION("CheckList failed for \"%s\": fd %d\n", listname.c_str(), *p));
+//            FORMATTED_INFORMATION("CheckList failed for \"%s\": fd %d\n", listname.c_str(), *p));
 //
 //         }
 
@@ -2147,7 +2147,7 @@ end_processing_adding:
 
       //if (add)
       //{
-      //   /*         INFORMATION("AddList);  %5d: %s: %s\n", s, (which_one == e_list_call_on_connect) ? "CallOnConnect" :
+      //   /*         FORMATTED_INFORMATION("AddList);  %5d: %s: %s\n", s, (which_one == e_list_call_on_connect) ? "CallOnConnect" :
       //               (which_one == e_list_detach) ? "detach" :
       //               (which_one == e_list_timeout) ? "time_out" :
       //               (which_one == e_list_retry) ? "Retry" :
@@ -2183,7 +2183,7 @@ end_processing_adding:
 
          //if (add)
          //{
-         //   /*         INFORMATION("AddList);  %5d: %s: %s\n", s, (which_one == e_list_call_on_connect) ? "CallOnConnect" :
+         //   /*         FORMATTED_INFORMATION("AddList);  %5d: %s: %s\n", s, (which_one == e_list_call_on_connect) ? "CallOnConnect" :
          //               (which_one == e_list_detach) ? "detach" :
          //               (which_one == e_list_timeout) ? "time_out" :
          //               (which_one == e_list_retry) ? "Retry" :

@@ -7,7 +7,7 @@
 CLASS_DECL_ACME void to_string(string & str, const e_status & estatus)
 {
 
-   str.Format("%" PRId64, estatus);
+   str.format("%" PRId64, estatus);
 
 }
 

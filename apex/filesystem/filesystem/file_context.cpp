@@ -367,7 +367,7 @@ file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPref
 
             }
 
-            strFormat.Format("%02d", iMax);
+            strFormat.format("%02d", iMax);
 
             str /= strFormat;
 
@@ -422,13 +422,13 @@ file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPref
                if (bTryDelete)
                {
 
-                  strFormat.Format("%d", iMax);
+                  strFormat.format("%d", iMax);
 
                }
                else
                {
 
-                  strFormat.Format("%02d", iMax);
+                  strFormat.format("%02d", iMax);
 
                }
 
@@ -1118,7 +1118,7 @@ bool file_context::resource_is_file_or_dir(const char* path)
       if (ofile.is_null())
       {
          string strError;
-         strError.Format("Failed to copy file \"%s\" to \"%s\" bFailIfExists=%d error=could not open output file",
+         strError.format("Failed to copy file \"%s\" to \"%s\" bFailIfExists=%d error=could not open output file",
                          varSource.get_file_path().c_str(), varNew.get_file_path().c_str(), bFailIfExists);
          throw ::exception(::error_io, strError);
       }
@@ -1135,7 +1135,7 @@ bool file_context::resource_is_file_or_dir(const char* path)
          if (!ifile)
          {
             string strError;
-            strError.Format("Failed to copy file \"%s\" to \"%s\" bFailIfExists=%d error=could not open input file",
+            strError.format("Failed to copy file \"%s\" to \"%s\" bFailIfExists=%d error=could not open input file",
                             varSource.get_file_path().c_str(), varNew.get_file_path().c_str(), bFailIfExists);
             __throw(::error_io, strError);
          }
@@ -1223,7 +1223,7 @@ bool file_context::resource_is_file_or_dir(const char* path)
          if (bOutputFail)
          {
             string strError;
-            strError.Format(
+            strError.format(
                "During copy, failed to close both input file \"%s\" and output file \"%s\" bFailIfExists=%d",
                varSource.get_file_path().c_str(), varTarget.get_file_path().c_str(), bFailIfExists);
             __throw(::error_io, strError);
@@ -1231,7 +1231,7 @@ bool file_context::resource_is_file_or_dir(const char* path)
          else
          {
             string strError;
-            strError.Format("During copy, failed to close input file \"%s\" bFailIfExists=%d",
+            strError.format("During copy, failed to close input file \"%s\" bFailIfExists=%d",
                             varSource.get_file_path().c_str(), bFailIfExists);
             __throw(::error_io, strError);
          }
@@ -1239,7 +1239,7 @@ bool file_context::resource_is_file_or_dir(const char* path)
       else if (bOutputFail)
       {
          string strError;
-         strError.Format("During copy, failed to close output file \"%s\" bFailIfExists=%d",
+         strError.format("During copy, failed to close output file \"%s\" bFailIfExists=%d",
                          varTarget.get_file_path().c_str(), bFailIfExists);
          __throw(::error_io, strError);
       }
@@ -1283,9 +1283,9 @@ bool file_context::resource_is_file_or_dir(const char* path)
 //
 //               string strError;
 //
-//               strError.Format("Failed to delete the file to move \"%s\" error=%d", psz, dwError);
+//               strError.format("Failed to delete the file to move \"%s\" error=%d", psz, dwError);
 //
-//               TRACE("%s", strError);
+//               FORMATTED_TRACE("%s", strError);
 //
 //            }
 //
@@ -1299,7 +1299,7 @@ bool file_context::resource_is_file_or_dir(const char* path)
 //
 //      string strError;
 //
-//      strError.Format("Failed to move file \"%s\" to \"%s\" error=%d", psz, pszNew, dwError);
+//      strError.format("Failed to move file \"%s\" to \"%s\" error=%d", psz, pszNew, dwError);
 //
 //      __throw(io_exception(::error_io, strError));
 //
@@ -1353,7 +1353,7 @@ bool file_context::resource_is_file_or_dir(const char* path)
 //   {
 //      i32 err = errno;
 //      string strError;
-//      strError.Format("Failed to delete file error=%d", err);
+//      strError.format("Failed to delete file error=%d", err);
 //      __throw(::exception(strError));
 //   }
 //#endif
@@ -1390,7 +1390,7 @@ bool file_context::resource_is_file_or_dir(const char* path)
 //
 //      string strError;
 //
-//      strError.Format("Failed to delete file \"%s\" error=%d", psz, dwError);
+//      strError.format("Failed to delete file \"%s\" error=%d", psz, dwError);
 //
 //      return ::error_failed;
 //
@@ -1407,7 +1407,7 @@ bool file_context::resource_is_file_or_dir(const char* path)
 //   if(dwError == 2) // the file does not exist, so delete "failed"
 //   return;
 //   string strError;
-//   strError.Format("Failed to delete file \"%s\" error=%d", psz, dwError);
+//   strError.format("Failed to delete file \"%s\" error=%d", psz, dwError);
 //   __throw(io_exception(strError));
 //   }*/
 //
@@ -1420,7 +1420,7 @@ bool file_context::resource_is_file_or_dir(const char* path)
 //      if (err != ENOENT) // already does not exist - consider removal successful - does not issue an exception
 //      {
 //         string strError;
-//         strError.Format("Failed to delete file error=%d", err);
+//         strError.format("Failed to delete file error=%d", err);
 //         __throw(::exception(strError));
 //      }
 //   }
@@ -1440,7 +1440,7 @@ bool file_context::resource_is_file_or_dir(const char* path)
       i32 i = 1;
       while (i <= 100)
       {
-         strNew.Format("%s-%s-%d", psz.c_str(), strCopy.c_str(), i);
+         strNew.format("%s-%s-%d", psz.c_str(), strCopy.c_str(), i);
          if (!exists(strNew))
          {
             copy(strNew, psz, false, extract_all);
@@ -1459,7 +1459,7 @@ bool file_context::resource_is_file_or_dir(const char* path)
       i32 i = 1;
       while (i <= 100)
       {
-         strNew.Format("%s-%s-%d%s", psz.c_str(), strCopy.c_str(), i, strExt.c_str());
+         strNew.format("%s-%s-%d%s", psz.c_str(), strCopy.c_str(), i, strExt.c_str());
          if (!exists(strNew))
          {
             copy(strNew, psz, false, extract_all);
@@ -1983,7 +1983,7 @@ i32 file_context::cmp(const ::file::path &psz1, const ::file::path &psz2)
 //
 //   string str;
 //
-//   str.Format("%I64dn", iNumber);
+//   str.format("%I64dn", iNumber);
 //
 //   pfile->write((const char *)str);
 //
@@ -2819,7 +2819,7 @@ file_transport file_context::get_file(const ::payload &payloadFile, const ::file
 
          //   /*            if((nOpenFlags & ::file::e_open_create) == 0 && !exists(strPath))
          //   {
-         //   TRACE("::application::file does not exist!! : \"%s\"",strPath);
+         //   FORMATTED_TRACE("::application::file does not exist!! : \"%s\"",strPath);
          //   return spfile;
          //   }
          //   */

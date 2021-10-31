@@ -2361,7 +2361,7 @@ string & payload::as_string(const char * pszOnNull)
 
          ::string str;
 
-         str.Format("%f", m_f32);
+         str.format("%f", m_f32);
 
          id = str;
 
@@ -2371,7 +2371,7 @@ string & payload::as_string(const char * pszOnNull)
 
          ::string str;
 
-         str.Format("%f", m_f64);
+         str.format("%f", m_f64);
 
          id = str;
 
@@ -6576,7 +6576,7 @@ string & payload::get_network_payload(::string & str, bool bNewLine) const
 
       ::string strHls;
 
-      strHls.Format("\"hls://%f32:%f32:%f32\"", m_hls.m_dH, m_hls.m_dL, m_hls.m_dS);
+      strHls.format("\"hls://%f32:%f32:%f32\"", m_hls.m_dH, m_hls.m_dL, m_hls.m_dS);
 
       str += strHls;
 

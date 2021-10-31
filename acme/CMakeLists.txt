@@ -403,6 +403,8 @@ list(APPEND library_source
    primitive/primitive/traits.cpp
    primitive/primitive/type.cpp
    primitive/primitive/payload.cpp
+   primitive/primitive/tracer.cpp
+   primitive/primitive/tracer.h
    primitive/primitive/var_element.cpp
    primitive/primitive/virtual_memory.cpp
    primitive/primitive/work.cpp

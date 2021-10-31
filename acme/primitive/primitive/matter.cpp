@@ -437,7 +437,7 @@ void matter::delete_this()
 //
 //   va_copy(ptr1, valist);
 //
-//   str.FormatV(pszFormat, valist);
+//   str.format_arguments(pszFormat, valist);
 //
 //   va_end(ptr1);
 //
@@ -484,6 +484,235 @@ string matter::topic_text() const
    return __type_name(this);
 
 }
+
+
+void matter::trace_arguments(enum_trace_level etracelevel, enum_trace_category etracecategory, const char * pszFormat, va_list & arguments)
+{
+
+
+   tracer(m_psystem, etracelevel, etracecategory).format_output_arguments(pszFormat, arguments);
+
+
+}
+
+
+void matter::trace_log_information_arguments(enum_trace_category etracecategory, const char * pszFormat, va_list & arguments)
+{
+
+   tracer(m_psystem, e_trace_level_information, etracecategory).format_output_arguments(pszFormat, arguments);
+
+}
+
+
+void matter::trace_log_warning_arguments(enum_trace_category etracecategory, const char * pszFormat, va_list & arguments)
+{
+
+   tracer(m_psystem, e_trace_level_warning, etracecategory).format_output_arguments(pszFormat, arguments);
+
+}
+
+
+void matter::trace_log_error_arguments(enum_trace_category etracecategory, const char * pszFormat, va_list & arguments)
+{
+
+   tracer(m_psystem, e_trace_level_error, etracecategory).format_output_arguments(pszFormat, arguments);
+
+}
+
+
+void matter::trace_log_fatal_arguments(enum_trace_category etracecategory, const char * pszFormat, va_list & arguments)
+{
+
+   tracer(m_psystem, e_trace_level_fatal, etracecategory).format_output_arguments(pszFormat, arguments);
+
+}
+
+
+
+
+void matter::trace_arguments(enum_trace_level etracelevel, const char * pszFormat, va_list & arguments)
+{
+
+
+   tracer(m_psystem, etracelevel, trace_category()).format_output_arguments(pszFormat, arguments);
+
+}
+
+
+void matter::trace_log_information_arguments(const char * pszFormat, va_list & arguments)
+{
+
+   tracer(m_psystem, e_trace_level_information, trace_category()).format_output_arguments(pszFormat, arguments);
+
+}
+
+
+void matter::trace_log_warning_arguments(const char * pszFormat, va_list & arguments)
+{
+
+   tracer(m_psystem, e_trace_level_warning, trace_category()).format_output_arguments(pszFormat, arguments);
+
+}
+
+
+void matter::trace_log_error_arguments(const char * pszFormat, va_list & arguments)
+{
+
+   tracer(m_psystem, e_trace_level_error, trace_category()).format_output_arguments(pszFormat, arguments);
+
+}
+
+
+void matter::trace_log_fatal_arguments(const char * pszFormat, va_list & arguments)
+{
+
+   tracer(m_psystem, e_trace_level_fatal, trace_category()).format_output_arguments(pszFormat, arguments);
+
+}
+
+
+
+
+
+void matter::trace(enum_trace_level etracelevel, enum_trace_category etracecategory, const char * psz, ...)
+{
+
+   va_list arguments;
+
+   va_start(arguments, psz);
+
+   trace_arguments(etracelevel, etracecategory, psz, arguments);
+
+   va_end(arguments);
+
+}
+
+
+void matter::trace_log_information(enum_trace_category etracecategory, const char * psz, ...)
+{
+
+   va_list arguments;
+
+   va_start(arguments, psz);
+
+   trace_arguments(e_trace_level_information, etracecategory, psz, arguments);
+
+   va_end(arguments);
+
+}
+
+
+void matter::trace_log_warning(enum_trace_category etracecategory, const char * psz, ...)
+{
+
+   va_list arguments;
+
+   va_start(arguments, psz);
+
+   trace_arguments(e_trace_level_warning, etracecategory, psz, arguments);
+
+   va_end(arguments);
+
+}
+
+
+void matter::trace_log_error(enum_trace_category etracecategory, const char * psz, ...)
+{
+
+   va_list arguments;
+
+   va_start(arguments, psz);
+
+   trace_arguments(e_trace_level_error, etracecategory, psz, arguments);
+
+   va_end(arguments);
+
+}
+
+
+void matter::trace_log_fatal(enum_trace_category etracecategory, const char * psz, ...)
+{
+
+   va_list arguments;
+
+   va_start(arguments, psz);
+
+   trace_arguments(e_trace_level_fatal, etracecategory, psz, arguments);
+
+   va_end(arguments);
+
+}
+
+
+void matter::trace(enum_trace_level etracelevel, const char * psz, ...)
+{
+
+   va_list arguments;
+
+   va_start(arguments, psz);
+
+   trace_arguments(etracelevel, trace_category(), psz, arguments);
+
+   va_end(arguments);
+
+}
+
+
+void matter::trace_log_information(const char * psz, ...)
+{
+
+   va_list arguments;
+
+   va_start(arguments, psz);
+
+   trace_arguments(e_trace_level_information, trace_category(), psz, arguments);
+
+   va_end(arguments);
+
+}
+
+
+void matter::trace_log_warning(const char * psz, ...)
+{
+
+   va_list arguments;
+
+   va_start(arguments, psz);
+
+   trace_arguments(e_trace_level_warning, trace_category(), psz, arguments);
+
+   va_end(arguments);
+
+}
+
+
+void matter::trace_log_error(const char * psz, ...)
+{
+
+   va_list arguments;
+
+   va_start(arguments, psz);
+
+   trace_arguments(e_trace_level_error, trace_category(), psz, arguments);
+
+   va_end(arguments);
+
+}
+
+
+void matter::trace_log_fatal(const char * psz, ...)
+{
+
+   va_list arguments;
+
+   va_start(arguments, psz);
+
+   trace_arguments(e_trace_level_fatal, trace_category(), psz, arguments);
+
+   va_end(arguments);
+
+}
+
 
 
 //void matter::future(const ::id & id, const ::payload & payload)

@@ -98,13 +98,13 @@ namespace sockets
 
    void AjpBaseSocket::OnRawData(char *buf, memsize sz)
    {
-   TRACE("OnRawData: %d bytes\n", sz);
+   FORMATTED_TRACE("OnRawData: %d bytes\n", sz);
       memsize ptr = 0;
       while (true)
       {
          memsize left = sz - ptr;
-   TRACE(" left: %d bytes\n", left);
-   TRACE(" state: %d\n", m_state);
+   FORMATTED_TRACE(" left: %d bytes\n", left);
+   FORMATTED_TRACE(" state: %d\n", m_state);
          switch (m_state)
          {
          case 0:

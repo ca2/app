@@ -87,7 +87,7 @@ namespace graphics
 
       string strName;
 
-      strName.Format(szName, m_strBitmapSource.c_str());
+      strName.format(szName, m_strBitmapSource.c_str());
 
       m_pmemorymap->open_name(strName, false, true, true, 128_mb);
 

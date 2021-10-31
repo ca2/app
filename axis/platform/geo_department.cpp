@@ -1124,7 +1124,7 @@ namespace geo
 
             string strMinutes;
 
-            strMinutes.Format("%02d", (int)(60.0 * dMod));
+            strMinutes.format("%02d", (int)(60.0 * dMod));
 
             strUTCOffset += ":" + strMinutes;
 
@@ -1353,7 +1353,7 @@ namespace geo
       else if (!::mathematics::convert_to_double(dTimeZoneOffset, strCountryCode))
       {
 
-         TRACE("(2) ERROR !! Missing timezone offset information for \"%s\" - \"%s\"", str.c_str(), strCountryCode.c_str());
+         FORMATTED_TRACE("(2) ERROR !! Missing timezone offset information for \"%s\" - \"%s\"", str.c_str(), strCountryCode.c_str());
 
       }
 

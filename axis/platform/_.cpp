@@ -420,7 +420,7 @@ CLASS_DECL_AXIS u32 g_tickStartTime = 0;
 //   string strExtra;
 //   va_list argList;
 //   va_start(argList, pszFormat);
-//   strExtra.Format(pszFormat, argList);
+//   strExtra.format(pszFormat, argList);
 //   va_end(argList);
 //
 //   string strModule;
@@ -428,7 +428,7 @@ CLASS_DECL_AXIS u32 g_tickStartTime = 0;
 //   if (pszModuleName != nullptr && *pszModuleName != '\0')
 //   {
 //
-//      strModule.Format("%s: ", pszModuleName);
+//      strModule.format("%s: ", pszModuleName);
 //
 //   }
 //
@@ -451,7 +451,7 @@ CLASS_DECL_AXIS u32 g_tickStartTime = 0;
 //   string strFormat;
 //   strFormat = pszFormat;
 //   strFormat.replace("%s", "%S");
-//   strExtra.Format(strFormat, argList);
+//   strExtra.format(strFormat, argList);
 //   va_end(argList);
 //
 //   string strModule;
@@ -461,7 +461,7 @@ CLASS_DECL_AXIS u32 g_tickStartTime = 0;
 //   if (pszModuleName != nullptr && *pszModuleName != '\0')
 //   {
 //
-//      strModule.Format("%S: ", pszModuleName);
+//      strModule.format("%S: ", pszModuleName);
 //
 //   }
 //

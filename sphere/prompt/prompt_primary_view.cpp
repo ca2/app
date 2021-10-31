@@ -70,7 +70,7 @@ namespace prompt
 
                   string strValue;
 
-                  strValue.Format("%f", pmatter->get_value().to_string().c_str());
+                  strValue.format("%f", pmatter->get_value().to_string().c_str());
 
                   string strNewText = str + pmatter->get_expression() + " = " + strValue  + "\n";
 
@@ -88,7 +88,7 @@ namespace prompt
                catch(const ::string & psz)
                {
 
-                  TRACE("error %s", psz);
+                  FORMATTED_TRACE("error %s", psz);
 
                   bOk = false;
 
@@ -110,19 +110,19 @@ namespace prompt
 
                         string strValue;
 
-                        strValue.Format("%f", pmatter->get_value().to_string().c_str());
+                        strValue.format("%f", pmatter->get_value().to_string().c_str());
 
                         string strMinFrac;
 
-                        strMinFrac.Format("%f", pmatter->get_value().mod() / 60.0);
+                        strMinFrac.format("%f", pmatter->get_value().mod() / 60.0);
 
                         string strMin;
 
-                        strMin.Format("%d", ((i32)pmatter->get_value().mod() / 60));
+                        strMin.format("%d", ((i32)pmatter->get_value().mod() / 60));
 
                         string strMinSec;
 
-                        strMinSec.Format("%f", fmod(pmatter->get_value().mod(), 60.0));
+                        strMinSec.format("%f", fmod(pmatter->get_value().mod(), 60.0));
 
                         string strNewText = str + pmatter->get_expression() + " segundos = " + strValue  + " segundos = " + strMinFrac + " minutos = " + strMin + " minutos e " + strMinSec + " segundos\n";
 
@@ -146,19 +146,19 @@ namespace prompt
 
                         string strValue;
 
-                        strValue.Format("%f", pmatter->get_value().to_string().c_str());
+                        strValue.format("%f", pmatter->get_value().to_string().c_str());
 
                         string strMinFrac;
 
-                        strMinFrac.Format("%f", pmatter->get_value().mod() / 60.0);
+                        strMinFrac.format("%f", pmatter->get_value().mod() / 60.0);
 
                         string strMin;
 
-                        strMin.Format("%d", ((i32)pmatter->get_value().mod() / 60));
+                        strMin.format("%d", ((i32)pmatter->get_value().mod() / 60));
 
                         string strMinSec;
 
-                        strMinSec.Format("%f", fmod(pmatter->get_value().mod(), 60.0));
+                        strMinSec.format("%f", fmod(pmatter->get_value().mod(), 60.0));
 
                         string strNewText = str + pmatter->get_expression() + " segundos = " + strValue  + " segundos = " + strMinFrac + " minutos = " + strMin + " minutos e " + strMinSec + " segundos\n";
 
@@ -182,7 +182,7 @@ namespace prompt
                catch(const ::string & psz)
                {
 
-                  TRACE("error %s", psz);
+                  FORMATTED_TRACE("error %s", psz);
 
                   bOk = false;
 

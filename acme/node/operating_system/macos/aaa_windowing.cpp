@@ -792,7 +792,7 @@ void ns_main_async(dispatch_block_t block);
 //}
 //
 //
-////#define FUNCTION_TRACE(...) strFormat.Format(__VA_ARGS__); str+=strFormat;
+////#define FUNCTION_TRACE(...) strFormat.format(__VA_ARGS__); str+=strFormat;
 //#undef FUNCTION_TRACE
 //
 //
@@ -1034,8 +1034,8 @@ void ns_main_async(dispatch_block_t block);
 //
 //#ifdef FUNCTION_TRACE
 //
-//      FUNCTION_TRACE("Owner: \"%s\"; ", strAppName.c_str());
-//      FUNCTION_TRACE("Name: \"%s\"; ", strName.c_str());
+//      FUNCTION_FORMATTED_TRACE("Owner: \"%s\"; ", strAppName.c_str());
+//      FUNCTION_FORMATTED_TRACE("Name: \"%s\"; ", strName.c_str());
 //
 //      bFullTrace = true;
 //
@@ -1061,7 +1061,7 @@ void ns_main_async(dispatch_block_t block);
 //#endif
 //
 //
-////#define FUNCTION_TRACE(...) strFormat.Format(__VA_ARGS__); str+=strFormat;
+////#define FUNCTION_TRACE(...) strFormat.format(__VA_ARGS__); str+=strFormat;
 //#undef FUNCTION_TRACE
 //
 //
@@ -1244,8 +1244,8 @@ void ns_main_async(dispatch_block_t block);
 //
 //#ifdef FUNCTION_TRACE
 //
-//      FUNCTION_TRACE("Owner: \"%s\"; ", strAppName.c_str());
-//      FUNCTION_TRACE("Name: \"%s\"; ", strName.c_str());
+//      FUNCTION_FORMATTED_TRACE("Owner: \"%s\"; ", strAppName.c_str());
+//      FUNCTION_FORMATTED_TRACE("Name: \"%s\"; ", strName.c_str());
 //
 //      bFullTrace = true;
 //

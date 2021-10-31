@@ -185,7 +185,7 @@ void dump_context::write(char i)
 
    string str;
 
-   str.Format("%d", (i32) i);
+   str.format("%d", (i32) i);
 
    output_string(str);
 
@@ -199,7 +199,7 @@ void dump_context::write(u8 u)
 
    string str;
 
-   str.Format("%u", (i32) u);
+   str.format("%u", (i32) u);
 
    output_string(str);
 
@@ -213,7 +213,7 @@ void dump_context::write(i16 i)
 
    string str;
 
-   str.Format("%d", (i32) i);
+   str.format("%d", (i32) i);
 
    output_string(str);
 
@@ -227,7 +227,7 @@ void dump_context::write(u16 u)
 
    string str;
 
-   str.Format("%u", (u16) u);
+   str.format("%u", (u16) u);
 
    output_string(str);
 
@@ -241,7 +241,7 @@ void dump_context::write(i32 i)
 
    string str;
 
-   str.Format("%d", i);
+   str.format("%d", i);
 
    output_string(str);
 
@@ -255,7 +255,7 @@ void dump_context::write(u32 u)
 
    string str;
 
-   str.Format("%u", u);
+   str.format("%u", u);
 
    output_string(str);
 
@@ -269,7 +269,7 @@ void dump_context::write(i64 i)
 
    string str;
 
-   str.Format("%l64d", i);
+   str.format("%l64d", i);
 
    output_string(str);
 
@@ -283,7 +283,7 @@ void dump_context::write(u64 u)
 
    string str;
 
-   str.Format("%l64u", u);
+   str.format("%l64u", u);
 
    output_string(str);
 
@@ -297,7 +297,7 @@ void dump_context::hex_dump(i8 i)
 
    string str;
 
-   str.Format("0x%02x", (u32) i);
+   str.format("0x%02x", (u32) i);
 
    output_string(str);
 
@@ -311,7 +311,7 @@ void dump_context::hex_dump(u8 u)
 
    string str;
 
-   str.Format("0x%02x", (u32)u);
+   str.format("0x%02x", (u32)u);
 
    output_string(str);
 
@@ -325,7 +325,7 @@ void dump_context::hex_dump(i16 i)
 
    string str;
 
-   str.Format("0x%04x", (u32) i);
+   str.format("0x%04x", (u32) i);
 
    output_string(str);
 
@@ -339,7 +339,7 @@ void dump_context::hex_dump(u16 u)
 
    string str;
 
-   str.Format("0x%04x", (u32) u);
+   str.format("0x%04x", (u32) u);
 
    output_string(str);
 
@@ -353,7 +353,7 @@ void dump_context::hex_dump(i32 i)
 
    string str;
 
-   str.Format("0x%08x", i);
+   str.format("0x%08x", i);
 
    output_string(str);
 
@@ -367,7 +367,7 @@ void dump_context::hex_dump(u32 u)
 
    string str;
 
-   str.Format("0x%08x", u);
+   str.format("0x%08x", u);
 
    output_string(str);
 
@@ -381,7 +381,7 @@ void dump_context::hex_dump(i64 i)
 
    string str;
 
-   str.Format("0x%016l64x", i);
+   str.format("0x%016l64x", i);
 
    output_string(str);
 
@@ -395,7 +395,7 @@ void dump_context::hex_dump(u64 u)
 
    string str;
 
-   str.Format("0x%016l64x", u);
+   str.format("0x%016l64x", u);
 
    output_string(str);
 
@@ -441,7 +441,7 @@ void dump_context::write(const void * p)
    string str;
 
    // prefix a pointer with "$" and print in hex
-   str.Format("$%point_i32", p);
+   str.format("$%point_i32", p);
 
    output_string(str);
 
@@ -545,12 +545,12 @@ void dump_context::hex_dump(const char * pszLine, byte* pby, i32 nBytes, i32 nWi
 
       if (nRow == 0)
       {
-         str.Format(pszLine, pby);
+         str.format(pszLine, pby);
 
          *this << str;
       }
 
-      str.Format(" %02X", *pby);
+      str.format(" %02X", *pby);
       *this << str;
 
       pby++;

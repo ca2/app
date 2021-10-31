@@ -130,7 +130,7 @@ void fixed_string_log::OnAllocateSpill(strsize nActualChars,strsize nFixedChars,
 ()nActualChars;
 ()nFixedChars;
 ()pData;
-//   TRACE(::acme::trace::category_String, 0, _T( "fixed_string_manager::allocate() spilling to heap.  %d chars (fixed size = %d chars)\n" ), nActualChars, nFixedChars );
+//   FORMATTED_TRACE(::acme::trace::category_String, 0, _T( "fixed_string_manager::allocate() spilling to heap.  %d chars (fixed size = %d chars)\n" ), nActualChars, nFixedChars );
 ::output_debug_string("fixed_string_log::OnAllocateSpill");
 }
 
@@ -139,7 +139,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 ()nActualChars;
 ()nFixedChars;
 ()pData;
-//   TRACE(::acme::trace::category_String, 0, _T( "fixed_string_manager::Reallocate() spilling to heap.  %d chars (fixed size = %d chars)\n" ), nActualChars, nFixedChars );
+//   FORMATTED_TRACE(::acme::trace::category_String, 0, _T( "fixed_string_manager::Reallocate() spilling to heap.  %d chars (fixed size = %d chars)\n" ), nActualChars, nFixedChars );
 ::output_debug_string("fixed_string_log::OnReallocateSpill");
 }
 
@@ -2981,7 +2981,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   return(Left(str::string_span_excluding(m_psz,pszCharSet)));
 //}
 //
-//void string::AppendFormatV(const char * pszFormat,va_list args)
+//void string::append_format_arguments(const char * pszFormat,va_list args)
 //{
 //
 //   ASSERT(__is_valid_string(pszFormat));
@@ -3178,7 +3178,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 ////   va_list argList;
 ////   va_start(argList, pszFormat);
 ////
-////   AppendFormatV(pszFormat, argList);
+////   append_format_arguments(pszFormat, argList);
 ////
 ////   va_end(argList);
 ////}
@@ -3206,7 +3206,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   va_list argList;
 //   va_start(argList,pszFormat);
 //
-//   AppendFormatV(pszFormat,argList);
+//   append_format_arguments(pszFormat,argList);
 //
 //   va_end(argList);
 //}

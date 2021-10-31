@@ -273,7 +273,7 @@ void * plex_heap_alloc_array::alloc_debug(memsize size, i32 nBlockUse, const cha
 
    string str;
 
-   str.Format("%s(%d)", pszFileName, iLine);
+   str.format("%s(%d)", pszFileName, iLine);
 
    memsize nAllocSize = size + sizeof(memsize) + 128;
 
@@ -356,7 +356,7 @@ void * plex_heap_alloc_array::realloc_debug(void * p,  memsize size, memsize siz
 
    string str;
 
-   str.Format("%s(%d)", szFileName, iLine);
+   str.format("%s(%d)", szFileName, iLine);
 
    memsize * psize = (memsize *) realloc(&((memsize *)(((u8 *)pvoidOld) - 128))[-1], ((memsize *)(((u8 *)pvoidOld) - 128))[-1], size + sizeof(memsize) + 128);
 

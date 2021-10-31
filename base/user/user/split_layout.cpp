@@ -300,9 +300,9 @@ namespace user
          //   synchronous_lock synchronouslock(mutex());
          //   //critical_section_lock synchronouslock(&m_mutex);
          //   {
-         //      //      TRACE("split_layout::RelayChildEvent LOWORD(pMsg->lParam) %d\n", LOWORD(lpMsg->lParam));
+         //      //      FORMATTED_TRACE("split_layout::RelayChildEvent LOWORD(pMsg->lParam) %d\n", LOWORD(lpMsg->lParam));
 
-         //      //      TRACE("split_layout::RelayChildEvent HIWORD(pMsg->lParam) %d\n", HIWORD(lpMsg->lParam));
+         //      //      FORMATTED_TRACE("split_layout::RelayChildEvent HIWORD(pMsg->lParam) %d\n", HIWORD(lpMsg->lParam));
 
 
 
@@ -330,8 +330,8 @@ namespace user
          //      {
          //         bMove = nPos != (i32) m_splitbara[m_iIndex]->m_dwPosition;
          //      }
-         //      TRACE("split_layout::RelayChildEvent nPos %d\nOldPos", m_splitbara[m_iIndex]->m_dwPosition);
-         //      TRACE("split_layout::RelayChildEvent nPos %d\n", nPos);
+         //      FORMATTED_TRACE("split_layout::RelayChildEvent nPos %d\nOldPos", m_splitbara[m_iIndex]->m_dwPosition);
+         //      FORMATTED_TRACE("split_layout::RelayChildEvent nPos %d\n", nPos);
          //      if(bMove)
          //      {
 
@@ -1220,8 +1220,8 @@ namespace user
 //            synchronous_lock synchronouslock(mutex());
 //
 //            {
-//               TRACE("split_layout::RelayChildEvent LOWORD(lParam) %d\n", LOWORD(lParam));
-//               TRACE("split_layout::RelayChildEvent HIWORD(lParam) %d\n", HIWORD(lParam));
+//               FORMATTED_TRACE("split_layout::RelayChildEvent LOWORD(lParam) %d\n", LOWORD(lParam));
+//               FORMATTED_TRACE("split_layout::RelayChildEvent HIWORD(lParam) %d\n", HIWORD(lParam));
 //
 //
 //               i32 nPos;

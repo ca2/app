@@ -198,7 +198,7 @@ void text_stream::write(float f)
 
    string str;
 
-   str.Format("%f", f);
+   str.format("%f", f);
 
    print_number(str);
 
@@ -210,7 +210,7 @@ void text_stream::write(double d)
 
    string str;
 
-   str.Format("%f", d);
+   str.format("%f", d);
 
    print_number(__string(d));
 

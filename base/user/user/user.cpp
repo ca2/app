@@ -1366,7 +1366,7 @@ namespace base
          if (!plibrary)
          {
 
-            ERROR("Failed to Load %s", strLibrary.c_str());
+            FORMATTED_ERROR("Failed to Load %s", strLibrary.c_str());
 
             continue;
 

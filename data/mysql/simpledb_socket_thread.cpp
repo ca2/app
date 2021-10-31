@@ -108,7 +108,7 @@ namespace simpledb
                   if (ll.Bind(m_strIp, (port_t) m_iPort))
                   {
                      string strMessage;
-                     strMessage.Format("could not bind to address %s %d", m_strIp, m_iPort);
+                     strMessage.format("could not bind to address %s %d", m_strIp, m_iPort);
                      TRACE(strMessage);
                      //message_box(nullptr, strMessage);
                      return;

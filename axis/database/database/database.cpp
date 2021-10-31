@@ -90,7 +90,7 @@ namespace database
    //void database::trace_error1(const ::string & pszPrefix)
    //{
    //   //m_pdatabase->add_error_message(error1(pszPrefix));
-   //   //TRACE("%s", m_strLastError.c_str());
+   //   //FORMATTED_TRACE("%s", m_strLastError.c_str());
    //}
 
 
@@ -409,7 +409,7 @@ namespace database
 
       string strSql;
 
-      strSql.Format("SELECT `%s` FROM `%s` WHERE %s", item.c_str(), table.c_str(), where.c_str());
+      strSql.format("SELECT `%s` FROM `%s` WHERE %s", item.c_str(), table.c_str(), where.c_str());
 
       return database::query_item(payload, strSql);
 
@@ -490,7 +490,7 @@ namespace database
    {
 
      //m_strLastError += error1(pszPrefix);
-     //TRACE("%s", m_strLastError.c_str());
+     //FORMATTED_TRACE("%s", m_strLastError.c_str());
 
    }
 

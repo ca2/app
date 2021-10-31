@@ -26,11 +26,11 @@ namespace simple_shader
 
       string str1;
 
-      str1.Format("Start: %0.0f", dStart);
+      str1.format("Start: %0.0f", dStart);
 
       string str2;
 
-      str2.Format("Angle: %0.0f", dAngle);
+      str2.format("Angle: %0.0f", dAngle);
 
       auto size1 = pgraphics->get_text_extent(str1);
 

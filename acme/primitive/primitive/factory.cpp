@@ -183,7 +183,7 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 //   if (!pfactory)
 //   {
 //
-//      INFORMATION("plibrary->create_factory()? : Library \"%s\" didn't register any relevant factory for type name \"%s\"?", strLibrary.c_str(), strName.c_str());
+//      FORMATTED_INFORMATION("plibrary->create_factory()? : Library \"%s\" didn't register any relevant factory for type name \"%s\"?", strLibrary.c_str(), strName.c_str());
 //
 //   }
 //

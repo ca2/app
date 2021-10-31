@@ -2005,8 +2005,8 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
 
          rectangleFrame = screen_rect();
 
-         INFORMATION("simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left, rectangleFrame.top, rectangleFrame.width(), rectangleFrame.height());
-         INFORMATION("simple_frame_window::LoadFrame edisplay=%s", __cstr(layout().sketch().display().eflag()));
+         FORMATTED_INFORMATION("simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left, rectangleFrame.top, rectangleFrame.width(), rectangleFrame.height());
+         FORMATTED_INFORMATION("simple_frame_window::LoadFrame edisplay=%s", __cstr(layout().sketch().display().eflag()));
 
          if (wfi_is_up_down())
          {
@@ -2055,8 +2055,8 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
 
       //pusersystem->set_rect(rectangleFrame);
 
-      INFORMATION("(2) simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left, rectangleFrame.top, rectangleFrame.width(), rectangleFrame.height());
-      INFORMATION("(2) simple_frame_window::LoadFrame edisplay=%s", __cstr(layout().sketch().display().eflag()));
+      FORMATTED_INFORMATION("(2) simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left, rectangleFrame.top, rectangleFrame.width(), rectangleFrame.height());
+      FORMATTED_INFORMATION("(2) simple_frame_window::LoadFrame edisplay=%s", __cstr(layout().sketch().display().eflag()));
 
       if (pusersystem->m_pcreate->m_bMakeVisible)
       {
@@ -3055,7 +3055,7 @@ void simple_frame_window::route_command(::message::command * pcommand, bool bRou
 //   // don't execute the command when the u is disabled
 //   if (!is_window_enabled())
 //   {
-//      TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: DDE command '%s' ignored because u is disabled.\n",
+//      FORMATTED_TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: DDE command '%s' ignored because u is disabled.\n",
 //            string(strCommand).c_str());
 //      return 0;
 //   }
@@ -3065,7 +3065,7 @@ void simple_frame_window::route_command(::message::command * pcommand, bool bRou
 //
 //   //if (!psystem->OnDDECommand(pszCommand))
 //
-//   //   TRACE(trace_category_appmsg, e_trace_level_warning, "Error: failed to execute DDE command '%s'.\n", pszCommand);
+//   //   FORMATTED_TRACE(trace_category_appmsg, e_trace_level_warning, "Error: failed to execute DDE command '%s'.\n", pszCommand);
 //
 //   //strCommand.release_string_buffer();
 //

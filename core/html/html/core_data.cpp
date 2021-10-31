@@ -860,7 +860,7 @@ namespace html
       
       property_set_replace(str);
       
-      TRACE("%s", str.c_str());
+      FORMATTED_TRACE("%s", str.c_str());
       
       if (str.has_char())
       {

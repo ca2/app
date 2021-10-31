@@ -687,7 +687,7 @@ namespace experience
 
          pframewindow->place(rectangleParentClient);
 
-         TRACE("Size Manager Changed (%d, %d)", rectangleParentClient.right, rectangleParentClient.bottom);
+         FORMATTED_TRACE("Size Manager Changed (%d, %d)", rectangleParentClient.right, rectangleParentClient.bottom);
 
          pframewindow->display();
 

@@ -1982,7 +1982,7 @@ namespace user
 
          pmouse->m_pcursor = pcursor;
 
-         //INFORMATION("windows::e_message_mouse_move(%d,%d)", pmouse->m_point.x, pmouse->m_point.y);
+         //FORMATTED_INFORMATION("windows::e_message_mouse_move(%d,%d)", pmouse->m_point.x, pmouse->m_point.y);
 
          string strType;
 
@@ -4125,7 +4125,7 @@ namespace user
 
             m_rectangleUpdateBuffer = r;
 
-            //TRACE("PrintBuffer (%d, %d)",  r.right, r.bottom);
+            //FORMATTED_TRACE("PrintBuffer (%d, %d)",  r.right, r.bottom);
 
             if(!m_pgraphics)
             {

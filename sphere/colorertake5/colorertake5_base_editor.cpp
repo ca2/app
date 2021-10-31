@@ -402,7 +402,7 @@ namespace colorertake5
    void base_editor::modifyEvent(index topLine)
    {
 
-      CLR_TRACE("axis_editor", "modifyEvent:%d", topLine);
+      CLR_FORMATTED_TRACE("axis_editor", "modifyEvent:%d", topLine);
 
       if (invalidLine > topLine)
       {
@@ -428,7 +428,7 @@ namespace colorertake5
    void base_editor::visibleTextEvent(index wStart, ::count wSize)
    {
 
-      CLR_TRACE("axis_editor", "visibleTextEvent:%d-%d", wStart, wSize);
+      CLR_FORMATTED_TRACE("axis_editor", "visibleTextEvent:%d-%d", wStart, wSize);
 
       this->wStart = wStart;
       this->wSize = wSize;
@@ -438,7 +438,7 @@ namespace colorertake5
    void base_editor::lineCountEvent(::count newLineCount)
    {
 
-      CLR_TRACE("axis_editor", "lineCountEvent:%d", newLineCount);
+      CLR_FORMATTED_TRACE("axis_editor", "lineCountEvent:%d", newLineCount);
       lineCount = newLineCount;
 
    }
@@ -513,7 +513,7 @@ namespace colorertake5
          }
          firstLine = newFirstLine;
          layoutChanged = true;
-         CLR_TRACE("axis_editor", "newFirstLine=%d, parseFrom=%d, parseTo=%d", firstLine, parseFrom, parseTo);
+         CLR_FORMATTED_TRACE("axis_editor", "newFirstLine=%d, parseFrom=%d, parseTo=%d", firstLine, parseFrom, parseTo);
       }
 
       if (!layoutChanged)
@@ -542,7 +542,7 @@ namespace colorertake5
       if (parseTo-parseFrom > 0)
       {
 
-         CLR_TRACE("axis_editor", "validate:parse:%d-%d, %s", parseFrom, parseTo, tpmode == TPM_CACHE_READ?"READ":"UPDATE");
+         CLR_FORMATTED_TRACE("axis_editor", "validate:parse:%d-%d, %s", parseFrom, parseTo, tpmode == TPM_CACHE_READ?"READ":"UPDATE");
 
          index stopLine = textParser->parse(parseFrom, parseTo-parseFrom, tpmode);
 
@@ -550,7 +550,7 @@ namespace colorertake5
          {
             invalidLine = stopLine+1;
          }
-         CLR_TRACE("axis_editor", "validate:parsed: invalidLine=%d", invalidLine);
+         CLR_FORMATTED_TRACE("axis_editor", "validate:parsed: invalidLine=%d", invalidLine);
       }
    }
 

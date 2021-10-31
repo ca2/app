@@ -808,11 +808,11 @@ namespace sockets
 
          //string strLine;
 
-         //strLine.Format("OnRawData len %d", (uptr)len);
+         //strLine.format("OnRawData len %d", (uptr)len);
 
          //str += strLine + "\r\n";
 
-         //TRACE("%s", strLine);
+         //FORMATTED_TRACE("%s", strLine);
 
          m_memResponse.append(buf, len);
 

@@ -1395,7 +1395,7 @@ pacmedir->create("/ca2core");
 
          if (status != errAuthorizationSuccess)
          {
-            TRACE("Error Creating Initial Authorization: %d", status);
+            FORMATTED_TRACE("Error Creating Initial Authorization: %d", status);
 
             return false;
 
@@ -1418,7 +1418,7 @@ pacmedir->create("/ca2core");
          if (status != errAuthorizationSuccess)
          {
 
-            TRACE("Copy Rights Unsuccessful: %d", status);
+            FORMATTED_TRACE("Copy Rights Unsuccessful: %d", status);
 
             return false;
 
@@ -2731,7 +2731,7 @@ pacmedir->create("/ca2core");
 //         if(list != nullptr)
          {
 
-            str2.Format(pszFormat,list);
+            str2.format(pszFormat,list);
 
          }
          //     else
@@ -4041,13 +4041,13 @@ pacmedir->create("/ca2core");
 
          string strMessage;
 
-         strMessage.Format("protocol: ca2project\nbase: %s\nAppId: %s\nquery: %s\n", strBase, strAppId, strQuery);
+         strMessage.format("protocol: ca2project\nbase: %s\nAppId: %s\nquery: %s\n", strBase, strAppId, strQuery);
 
          //message_box(strMessage, e_message_box_ok);
 
          string strParams;
 
-         //strParams.Format("\"ca2project\" \"%s\" \"%s\" \"%s\"\n", strBase, strAppId, strQuery);
+         //strParams.format("\"ca2project\" \"%s\" \"%s\" \"%s\"\n", strBase, strAppId, strQuery);
 
          string strProj;
 
@@ -4062,7 +4062,7 @@ pacmedir->create("/ca2core");
 
          //strProj = "..\\..\\..\\" + stra[0] + "\\" + stra[1] + "\\" + stra[1] + ".vcxproj";
 
-         strParams.Format("\"openvsproject://%s\"", strProj);
+         strParams.format("\"openvsproject://%s\"", strProj);
 
 
          //int iRet = call_sync("C:\\bergedge\\time\\stage\\visual_studio_automation_2017.exe",strParams, "C:\\bergedge\\time\\stage\\", e_display_none, 30, 1000, nullptr, 0);
@@ -4816,7 +4816,7 @@ pacmedir->create("/ca2core");
    string system::get_local_mutex_name(const ::string & pszAppName)
    {
       string strMutex;
-      strMutex.Format("Local\\ca2_application_local_mutex:%s", pszAppName.c_str());
+      strMutex.format("Local\\ca2_application_local_mutex:%s", pszAppName.c_str());
       return strMutex;
    }
 
@@ -4824,14 +4824,14 @@ pacmedir->create("/ca2core");
    {
       string strId(pszId);
       string strMutex;
-      strMutex.Format("Local\\ca2_application_local_mutex:%s, id:%s", pszAppName.c_str(), strId.c_str());
+      strMutex.format("Local\\ca2_application_local_mutex:%s, id:%s", pszAppName.c_str(), strId.c_str());
       return strMutex;
    }
 
    string system::get_global_mutex_name(const ::string & pszAppName)
    {
       string strMutex;
-      strMutex.Format("Global\\ca2_application_global_mutex:%s", pszAppName.c_str());
+      strMutex.format("Global\\ca2_application_global_mutex:%s", pszAppName.c_str());
       return strMutex;
    }
 
@@ -4839,7 +4839,7 @@ pacmedir->create("/ca2core");
    {
       string strId(pszId);
       string strMutex;
-      strMutex.Format("Global\\ca2_application_global_mutex:%s, id:%s", pszAppName.c_str(), strId.c_str());
+      strMutex.format("Global\\ca2_application_global_mutex:%s, id:%s", pszAppName.c_str(), strId.c_str());
       return strMutex;
    }
 
@@ -5182,7 +5182,7 @@ namespace apex
 
       string strMessage;
 
-      strMessage.Format("system::on_allocation_error Implement \"%s\" allocation\n", str.c_str());
+      strMessage.format("system::on_allocation_error Implement \"%s\" allocation\n", str.c_str());
 
       dev_log(strMessage);
 

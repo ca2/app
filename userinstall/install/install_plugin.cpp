@@ -850,7 +850,7 @@ run_install:
       {
          //::u32 dwTime3= ::duration::now();
 
-         //TRACE("eval1 %d",dwTime3 - dwTime1);
+         //FORMATTED_TRACE("eval1 %d",dwTime3 - dwTime1);
 
          //if(ensure_tx(::hotplugin::message_paint, (void *) &lprect, sizeof(lprect)))
          if(ensure_tx(WM_APP+WM_USER,(void *)&lprect,sizeof(lprect)))
@@ -858,7 +858,7 @@ run_install:
 
             //::u32 dwTime5= ::duration::now();
 
-            //TRACE("ensure_tx %d",dwTime5 - dwTime3);
+            //FORMATTED_TRACE("ensure_tx %d",dwTime5 - dwTime3);
 
             if(m_phost->m_pbasecomposer->m_bSendActivationState)
             {
@@ -948,14 +948,14 @@ run_install:
 
             //::u32 dwTime7= ::duration::now();
 
-            //TRACE("focus_update %d",dwTime7 - dwTime5);
+            //FORMATTED_TRACE("focus_update %d",dwTime7 - dwTime5);
 
 
             m_phost->blend_bitmap(pgraphics, lprect);
 
             //::u32 dwTime9= ::duration::now();
 
-            //TRACE("blend %d",dwTime9 - dwTime7);
+            //FORMATTED_TRACE("blend %d",dwTime9 - dwTime7);
 
 
             return;

@@ -63,7 +63,7 @@ namespace colorertake5
       breakParsing = false;
       updateCache = (mode == TPM_CACHE_UPDATE);
 
-      CLR_TRACE("text_parser_impl", "parse from=%d, num=%d", from, num);
+      CLR_FORMATTED_TRACE("text_parser_impl", "parse from=%d, num=%d", from, num);
       /* Check for initial bad conditions */
       if (regionHandler == nullptr)
          return from;
@@ -92,7 +92,7 @@ namespace colorertake5
 
          if (parent != nullptr)
          {
-            CLR_TRACE("TPCache", "searchLine() parent:%s,%d-%d", parent->scheme->getName().c_str(), parent->sline, parent->eline);
+            CLR_FORMATTED_TRACE("TPCache", "searchLine() parent:%s,%d-%d", parent->scheme->getName().c_str(), parent->sline, parent->eline);
          }
 
       }
@@ -360,7 +360,7 @@ namespace colorertake5
       parse_cache *ResF = nullptr;
       parse_cache *ResP = nullptr;
 
-      CLR_TRACE("text_parser_impl", "searchRE: entered scheme \"%s\"", cscheme->getName().c_str());
+      CLR_FORMATTED_TRACE("text_parser_impl", "searchRE: entered scheme \"%s\"", cscheme->getName().c_str());
 
       if (!cscheme)
          return MATCH_NOTHING;
@@ -368,7 +368,7 @@ namespace colorertake5
       for(index idx = 0; idx < cscheme->nodes.get_size(); idx++)
       {
          SchemeNode *schemeNode = cscheme->nodes.element_at(idx);
-         CLR_TRACE("text_parser_impl", "searchRE: processing node:%d/%d, type:%s", idx+1, cscheme->nodes.get_size(), schemeNodeTypeNames[schemeNode->type]);
+         CLR_FORMATTED_TRACE("text_parser_impl", "searchRE: processing node:%d/%d, type:%s", idx+1, cscheme->nodes.get_size(), schemeNodeTypeNames[schemeNode->type]);
          switch(schemeNode->type)
          {
          case SNT_INHERIT:
@@ -532,7 +532,7 @@ namespace colorertake5
 
       for (; gy < gy2; )
       {
-         CLR_TRACE("text_parser_impl", "colorize: line no %d", gy);
+         CLR_FORMATTED_TRACE("text_parser_impl", "colorize: line no %d", gy);
          // clears line at start,
          // prevents multiple requests on each line
          if (clearLine != gy)

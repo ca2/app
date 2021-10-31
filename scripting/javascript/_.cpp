@@ -1461,7 +1461,7 @@ void CScriptVar::trace(string indentStr, const string &name)
 
    string str;
 
-   str.Format("%s'%s' = '%s' %s\n",
+   str.format("%s'%s' = '%s' %s\n",
               indentStr.c_str(),
               name.c_str(),
               getString().c_str(),
@@ -2117,7 +2117,7 @@ CScriptVarLink *tinyjs::factor(bool &execute)
             CScriptVarLink *objClassOrFunc = findInScopes(className);
             if (!objClassOrFunc)
             {
-               TRACE("%s is not a valid class name", className.c_str());
+               FORMATTED_TRACE("%s is not a valid class name", className.c_str());
                return new CScriptVarLink(new CScriptVar());
             }
             l->match(LEX_ID);

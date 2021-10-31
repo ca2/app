@@ -333,7 +333,7 @@ string url_encode(const char * psz)
 //   }
 //   else
 //   {
-//      strChar.Format("%02X", *psz);
+//      strChar.format("%02X", *psz);
 //      str += "%" + strChar.Right(2);
 //   }
 //
@@ -884,7 +884,7 @@ CLASS_DECL_ACME string url_decode(const char* psz)
 //   }
 //   else
 //   {
-//      strChar.Format("%02X", *psz);
+//      strChar.format("%02X", *psz);
 //      str += "%" + strChar.Right(2);
 //   }
 //

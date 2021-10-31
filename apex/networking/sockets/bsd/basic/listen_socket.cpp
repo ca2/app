@@ -320,13 +320,13 @@ namespace sockets
       if (sizeof(lId) == 4)
       {
 
-         strTopicText.Format("listensckt_%" PRId32 "> ", lId);
+         strTopicText.format("listensckt_%" PRId32 "> ", lId);
 
       }
       else
       {
 
-         strTopicText.Format("listensckt_%" PRId64 "> ", lId);
+         strTopicText.format("listensckt_%" PRId64 "> ", lId);
 
       }
 

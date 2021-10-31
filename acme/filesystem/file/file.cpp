@@ -771,7 +771,7 @@ namespace file
 
       va_start(list, format);
 
-      strFormat.Format(format, list);
+      strFormat.format(format, list);
 
       va_end(list);
 

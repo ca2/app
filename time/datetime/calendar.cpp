@@ -133,17 +133,17 @@ namespace datetime
          string strDate;
          string strWeekDay;
          string strTime;
-         strDate.Format(
+         strDate.format(
             "%d de %s de %d",
             time.day(),
             GetMonth(pcontext, time.month()),
             time.year());
          strWeekDay = GetWeekDay(pcontext, time.day_of_week());
-         strTime.Format("%02d:%02d:%02d",
+         strTime.format("%02d:%02d:%02d",
             time.hour(),
             time.minute(),
             time.second());
-         strDateTime.Format("%s %s, %s", strTime, strWeekDay, strDate);
+         strDateTime.format("%s %s, %s", strTime, strWeekDay, strDate);
       }
 
 

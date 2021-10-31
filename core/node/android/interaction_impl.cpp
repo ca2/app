@@ -324,11 +324,11 @@ namespace android
 
          string strMessage;
 
-         strMessage.Format("%s\n\nSystem Error Code: %d",strLastError.c_str(),dwLastError);
+         strMessage.format("%s\n\nSystem Error Code: %d",strLastError.c_str(),dwLastError);
 
          TRACE("Warning: Window creation failed: get_last_error returned:\n");
 
-         TRACE("%s\n", strMessage.c_str());
+         FORMATTED_TRACE("%s\n", strMessage.c_str());
 
          try
          {
@@ -342,7 +342,7 @@ namespace android
             else
             {
 
-               TRACE("%s", strMessage.c_str());
+               FORMATTED_TRACE("%s", strMessage.c_str());
 
             }
 
@@ -919,7 +919,7 @@ namespace android
       // need to use top level parent (for the case where get_handle() is in DLL)
       __pointer(::user::interaction) pwindow = EnsureTopLevelParent();
 
-      TRACE(trace_category_appmsg, 0, "WinHelp: pszHelpFile = '%s', dwData: $%lx, fuCommand: %d.\n", pApp->m_pszHelpFilePath, dwData, nCmd);
+      FORMATTED_TRACE(trace_category_appmsg, 0, "WinHelp: pszHelpFile = '%s', dwData: $%lx, fuCommand: %d.\n", pApp->m_pszHelpFilePath, dwData, nCmd);
 
       // finally, run the Windows Help engine
       /* trans   if (!::WinHelp(NODE_WINDOW(pwindow)->get_handle(), pApp->m_pszHelpFilePath, nCmd, dwData))
@@ -947,7 +947,7 @@ namespace android
    // need to use top level parent (for the case where get_handle() is in DLL)
    __pointer(::user::interaction) pwindow = EnsureTopLevelParent();
 
-   TRACE(trace_category_appmsg, 0, "HtmlHelp: pszHelpFile = '%s', dwData: $%lx, fuCommand: %d.\n", pApp->m_pszHelpFilePath, dwData, nCmd);
+   FORMATTED_TRACE(trace_category_appmsg, 0, "HtmlHelp: pszHelpFile = '%s', dwData: $%lx, fuCommand: %d.\n", pApp->m_pszHelpFilePath, dwData, nCmd);
 
    // run the HTML Help engine
    /* trans   if (!::aura::HtmlHelp(NODE_WINDOW(pwindow)->get_handle(), pApp->m_pszHelpFilePath, nCmd, dwData))

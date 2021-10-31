@@ -89,7 +89,7 @@ CLASS_DECL_APEX string bsd_socket_error(i32 x)
 
       string str;
 
-      str.Format("Winsock error code: %d", x);
+      str.format("Winsock error code: %d", x);
 
       return str;
 

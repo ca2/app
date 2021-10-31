@@ -229,7 +229,7 @@ namespace user
 
          string strNum;
 
-         strNum.Format("%d", m_nUntitledCount+1);
+         strNum.format("%d", m_nUntitledCount+1);
 
          strDocName += strNum;
 

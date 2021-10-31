@@ -921,13 +921,13 @@ public:
    // Return the substring consisting of the leftmost characters not in the set 'pszCharSet'
    string_base span_excluding(const CHAR_TYPE* pszCharSet) const;
 
-   void Format(const CHAR_TYPE* pszFormat, ...);
+   void format(const CHAR_TYPE* pszFormat, ...);
 
-   void FormatV(const CHAR_TYPE * pszFormat, va_list args);
+   void format_arguments(const CHAR_TYPE * pszFormat, va_list args);
 
-   void AppendFormat(const CHAR_TYPE* pszFormat, ...);
+   void append_format(const CHAR_TYPE* pszFormat, ...);
 
-   void AppendFormatV(const CHAR_TYPE* pszFormat, va_list args);
+   void append_format_arguments(const CHAR_TYPE* pszFormat, va_list args);
 
    //void FormatMessage(const CHAR_TYPE* pszFormat, ...);
 

@@ -117,7 +117,7 @@ public:
 
          // can use string because messed all with cache out hot hit !!/^`}{{ **!
          //::acme::application * papp = get_application();
-         //TRACE("handler oriented cache: memory out of cache palace garden (size=%d)", c);
+         //FORMATTED_TRACE("handler oriented cache: memory out of cache palace garden (size=%d)", c);
       }
       return pb;
 

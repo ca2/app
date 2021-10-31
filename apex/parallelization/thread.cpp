@@ -2678,7 +2678,7 @@ void thread::__os_initialize()
 
 #ifndef WINDOWS
 
-   INFORMATION("init_thread : %s", __type_name(this));
+   INFORMATION("init_thread : " << __type_name(this));
 
 #endif
 
@@ -3699,7 +3699,7 @@ int_bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilte
 ////            if (strWaiting.has_char())
 ////            {
 ////
-////               TRACE("The thread %s is waiting for the following threads to finish:\r\n%s", __type_name(this), strWaiting.c_str());
+////               FORMATTED_TRACE("The thread %s is waiting for the following threads to finish:\r\n%s", __type_name(this), strWaiting.c_str());
 ////
 ////            }
 ////

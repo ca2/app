@@ -22,7 +22,7 @@ string _001FileSizeText(i64 i)
    if(d < 2)
    {
 
-      str.Format("%0.1fKB", d);
+      str.format("%0.1fKB", d);
 
       return str;
 
@@ -30,7 +30,7 @@ string _001FileSizeText(i64 i)
    if(d < 1024.0)
    {
 
-      str.Format("%0.0fKB", d);
+      str.format("%0.0fKB", d);
 
       return str;
 
@@ -40,7 +40,7 @@ string _001FileSizeText(i64 i)
    if(d < 2)
    {
 
-      str.Format("%0.1fMB", d);
+      str.format("%0.1fMB", d);
 
       return str;
 
@@ -48,7 +48,7 @@ string _001FileSizeText(i64 i)
    if(d < 1024.0)
    {
 
-      str.Format("%0.0fMB", d);
+      str.format("%0.0fMB", d);
 
       return str;
 
@@ -58,7 +58,7 @@ string _001FileSizeText(i64 i)
    if(d < 2)
    {
 
-      str.Format("%0.1fGB", d);
+      str.format("%0.1fGB", d);
 
       return str;
 
@@ -66,7 +66,7 @@ string _001FileSizeText(i64 i)
    if(d < 1024.0)
    {
 
-      str.Format("%0.0fGB", d);
+      str.format("%0.0fGB", d);
 
       return str;
 
@@ -74,7 +74,7 @@ string _001FileSizeText(i64 i)
 
    d /= 1024.0;
 
-   str.Format("%0.0fTB", d);
+   str.format("%0.0fTB", d);
 
    return str;
 

@@ -278,11 +278,11 @@ inline string __type_name(const __pointer(TYPE) & pointer)
 }
 
 
-template < typename TYPE >
-inline string __type_name(const TYPE & t)
+template < non_pointer NON_POINTER >
+inline string __type_name(const NON_POINTER & t)
 {
 
-   TYPE & tNonConst = (TYPE &) t;
+   NON_POINTER & tNonConst = (NON_POINTER &) t;
 
    auto pszType = typeid(tNonConst).name();
 

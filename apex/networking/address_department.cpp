@@ -252,7 +252,7 @@ namespace net
             l = item.m_ipaddr;
          }
          //         ::duration tick2= ::duration::now();
-         /*TRACE("Got from cache address_department::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
+         /*FORMATTED_TRACE("Got from cache address_department::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
          (u32)((byte*)&pitem->m_ipaddr)[0],
          (u32)((byte*)&pitem->m_ipaddr)[1],
          (u32)((byte*)&pitem->m_ipaddr)[2],
@@ -370,7 +370,7 @@ namespace net
       }
 
       //      ::duration tick2= ::duration::now();
-      //      TRACE("DNS lookup address_department::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
+      //      FORMATTED_TRACE("DNS lookup address_department::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
          //       (u32)((byte*)&pitem->m_ipaddr)[0],
          //     (u32)((byte*)&pitem->m_ipaddr)[1],
          //   (u32)((byte*)&pitem->m_ipaddr)[2],

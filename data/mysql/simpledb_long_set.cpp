@@ -279,7 +279,7 @@ bool db_long_set::load(const ::string & lpKey, i64 * plValue)
       strKey.replace("'", "''");
 
       string strSql;
-      strSql.Format(
+      strSql.format(
          "select value FROM integertable WHERE id = '%s';",
          strKey);
 
@@ -359,7 +359,7 @@ bool db_long_set::save(const ::string & lpKey, i64 lValue)
       slDatabase.lock();
       if(load(lpKey, &l))
       {
-         strSql.Format(
+         strSql.format(
             "UPDATE integertable SET value = '%d' WHERE id = '%s';",
             lValue,
             strKey);
@@ -379,7 +379,7 @@ bool db_long_set::save(const ::string & lpKey, i64 lValue)
       else
       {
 
-         strSql.Format(
+         strSql.format(
             "INSERT INTO integertable (id, value) values ('%s', '%d');",
             strKey,
             lValue);

@@ -42,7 +42,7 @@ bool veiev_post::write(::payload rec)
 
    string strSql;
 
-   strSql.Format(
+   strSql.format(
    "insert into veiev_post (`sender`, `recipient`, `sent`, `datetime`, `index`, `message`) VALUES ('%s', '%s', '%s', '%s', '%s', '%s');",
    rec["sender"].get_string(),
    rec["recipient"].get_string(),
@@ -142,7 +142,7 @@ bool veiev_post::write(::payload rec)
 
    string strSql;
 
-   strSql.Format(
+   strSql.format(
    "select * FROM veiev_post ORDER BY datetime DESC, `index` DESC LIMIT %d, %d",
    iPage * iMessageCountPerPage,
    iMessageCountPerPage);

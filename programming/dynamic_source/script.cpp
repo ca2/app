@@ -374,13 +374,13 @@ namespace dynamic_source
 
             }
 
-            TRACE("Error Message Id: %d\n", dwMessageId);
+            FORMATTED_TRACE("Error Message Id: %d\n", dwMessageId);
 
             string strError = last_error_message(dwMessageId);
 
             string str;
 
-            str.Format("%d - ", dwMessageId);
+            str.format("%d - ", dwMessageId);
 
             m_streamError << strStagePath << " : LoadLibrary, get_last_error : " << str << dwMessageId;
 

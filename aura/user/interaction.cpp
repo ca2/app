@@ -670,7 +670,7 @@ namespace user
       for (index iIdSuffix = 1; iIdSuffix <= 1000; iIdSuffix++)
       {
 
-         strCandidateId.Format("%s_%d", strDefaultIdPrefix.c_str(), iIdSuffix);
+         strCandidateId.format("%s_%d", strDefaultIdPrefix.c_str(), iIdSuffix);
 
          bDuplicate = false;
 
@@ -2974,12 +2974,11 @@ namespace user
          }
 
 
-
       }
       catch (...)
       {
 
-         INFORMATION("Exception: interaction::_001DrawThis %s" << __type_name(this));
+         FORMATTED_INFORMATION("Exception: interaction::_001DrawThis %s", __type_name(this));
 
       }
 
@@ -3860,7 +3859,7 @@ return "";
          catch (...)
          {
 
-            TRACE("Exception: interaction::_000OnDraw _001DrawThis %s", __type_name(this));
+            FORMATTED_TRACE("Exception: interaction::_000OnDraw _001DrawThis %s", __type_name(this));
 
          }
 
@@ -3885,7 +3884,7 @@ return "";
             catch (...)
             {
 
-               TRACE("Exception: interaction::_000OnDraw _001DrawChildren %s" << __type_name(this));
+               FORMATTED_TRACE("Exception: interaction::_000OnDraw _001DrawChildren %s", __type_name(this));
 
             }
 
@@ -15683,7 +15682,7 @@ order(zorderParam);
 
             bool bSameItemAsMouseDown = m_itemLButtonDown == item;
 
-            TRACE("interaction::on_message_left_button_up item="<< (int) item.m_iItem<<", SameUserInteractionAsMsDwn="<< (int) bSameUserInteractionAsMouseDown<<", SameItemAsMsDwn=%d" << (int) bSameItemAsMouseDown);
+            TRACE("interaction::on_message_left_button_up item=" << (int) item.m_iItem<<", SameUserInteractionAsMsDwn="<< (int) bSameUserInteractionAsMouseDown<<", SameItemAsMsDwn=" << (int) bSameItemAsMouseDown);
 
             if (m_itemLButtonDown.is_set() && bSameUserInteractionAsMouseDown && bSameItemAsMouseDown)
             {
@@ -15826,7 +15825,7 @@ order(zorderParam);
 
       auto pcontextmenu = __new(::message::context_menu);
 
-      pcontextmenu->set(get_oswindow(), get_window(), e_message_context_menu, get_oswindow(), pmessage->m_lparam);
+      pcontextmenu->set(get_oswindow(), get_window(), e_message_context_menu, (wparam) (iptr) get_oswindow(), pmessage->m_lparam);
 
       message_handler(pcontextmenu);
 

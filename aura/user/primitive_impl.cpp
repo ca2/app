@@ -1153,7 +1153,7 @@ namespace user
 
          //         string str;
          //
-         //         str.Format("creating fast timer: %d\n", nEllapse);
+         //         str.format("creating fast timer: %d\n", nEllapse);
          //
          //         ::output_debug_string(str);
 
@@ -1256,7 +1256,7 @@ namespace user
 
       bool bOk = start_destroying_window();
 
-      //TRACE("destroy_impl_only DestroyWindow %d", bOk != false);
+      //FORMATTED_TRACE("destroy_impl_only DestroyWindow %d", bOk != false);
 
       return bOk;
 

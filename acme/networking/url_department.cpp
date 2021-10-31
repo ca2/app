@@ -364,7 +364,7 @@ namespace url
          if(iStart < 0)
          {
 
-//xxx            TRACE("invalid url %s", pszUrl);
+//xxx            FORMATTED_TRACE("invalid url %s", pszUrl);
 
             iStart = 0;
 

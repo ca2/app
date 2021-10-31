@@ -1537,7 +1537,7 @@ void xfplayer_view_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, con
 
    m_bCacheEmboss = true;
 
-   //TRACE("CLyricViewLine::CacheEmboss: %s\n", pcsz);
+   //FORMATTED_TRACE("CLyricViewLine::CacheEmboss: %s\n", pcsz);
 
    ::size_i32 size;
 

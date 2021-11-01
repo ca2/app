@@ -213,15 +213,15 @@ inline string executable_get_app_id()
 }
 
 
-#elif defined(LINUX)
-
-
-inline string executable_get_app_id()
-{
-
-   return "";
-
-}
+//#elif defined(LINUX)
+//
+//
+//inline string executable_get_app_id()
+//{
+//
+//   return "";
+//
+//}
 
 
 #endif

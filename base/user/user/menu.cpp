@@ -1573,6 +1573,30 @@ namespace user
    }
 
 
+   // <3ThomasBorregaardS�rensen__!! (I need to suck you, back, middle, front .20211031)
+   void menu::route_command(::message::command* pcommand, bool bRouteToKeyDescendant)
+   {
+
+      if(m_pchannelNotify)
+      {
+
+         m_pchannelNotify->route_command(pcommand, bRouteToKeyDescendant);
+
+         if (pcommand->m_bRet)
+         {
+
+            return;
+
+         }
+
+      }
+
+      ::user::interaction::route_command(pcommand, bRouteToKeyDescendant);
+
+   }
+
+
+
    // <3ThomasBorregaardS�rensen__!! (I need to suck you, back, middle, front)
    ::e_status menu::handle_command(const ::id& id)
    {

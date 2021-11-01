@@ -285,6 +285,8 @@ public:
    inline void Empty() noexcept
    {
 
+      ASSERT(this->metadata()->m_countReference >= 1);
+
       if (this->has_char())
       {
 
@@ -299,6 +301,8 @@ public:
    {
 
       auto p = this->metadata();
+
+      ASSERT(p->m_countReference >= 1);
 
       if (p->natural_is_shared())
       {
@@ -316,6 +320,8 @@ public:
    {
 
       auto p = this->metadata();
+
+      ASSERT(p->m_countReference >= 1);
 
       if (::is_null(p) || p->natural_is_shared() || size > p->length())
       {
@@ -339,6 +345,8 @@ public:
    {
 
       auto p = this->metadata();
+
+      ASSERT(p->m_countReference >= 1);
 
       if (::is_null(p) || p->natural_is_shared() || size > p->length() || p->contains_data(psz))
       {
@@ -399,11 +407,13 @@ public:
    CHAR_TYPE * fork_string(strsize strsize)
    {
 
+      auto pOld = this->metadata();
+
+      ASSERT(pOld->m_countReference >= 1);
+
       auto memsize = ::str::char_length_to_byte_length(this->m_pdata, strsize + 1);
 
       auto pNew = this->create_meta_data(memsize);
-
-      auto pOld = this->metadata();
 
       if (::is_set(pOld))
       {

@@ -16,18 +16,33 @@ protected:
 public:
 
 
-   interlocked_i64(::i64 l = 0)
-   {  
+   inline void construct(::i64 l = 0)
+   {
 
       m_plong = (::i64 *) (((::iptr)this + 7) & ~7);
 
       *m_plong = l;
 
+   }
+
+
+   interlocked_i64(::i64 l = 0)
+   {  
+
+      construct(l);
 
    }
 
 
-   interlocked_i64 & operator = (::i64 i);
+   interlocked_i64 & operator = (::i64 i)
+   {
+
+      *m_plong = i;
+
+      return *this;
+
+   }
+
 
    operator ::i64() const { return *m_plong; }
 
@@ -37,8 +52,23 @@ public:
    ::i64 operator++(int);
    ::i64 operator--(int);
 
-   interlocked_i64 & operator+=(::i64 l);
-   interlocked_i64 & operator-=(::i64 l);
+   interlocked_i64 & operator+=(::i64 l)
+   {
+
+      atomic_add(m_plong, l);
+
+      return *this;
+
+   }
+
+   interlocked_i64 & operator-=(::i64 l)
+   {
+
+      atomic_subtract(m_plong, l);
+
+      return *this;
+
+   }
 
    
 };
@@ -56,18 +86,32 @@ protected:
 public:
 
 
-   interlocked_i32(::i32 l = 0)
+   inline void construct(::i32 l = 0)
    {
 
       m_plong = (::i32 *) (((iptr)this + 7) & ~7);
 
       *m_plong = l;
 
+   }
+
+
+   interlocked_i32(::i32 l = 0)
+   {
+
+      construct(l);
 
    }
 
 
-   interlocked_i32 & operator = (::i32 i);
+   interlocked_i32 & operator = (::i32 i)
+   {
+
+      *m_plong = i;
+
+      return *this;
+
+   }
 
    operator ::i32() const { return *m_plong; }
 
@@ -77,10 +121,25 @@ public:
    ::i32 operator++(int);
    ::i32 operator--(int);
 
-   interlocked_i32 & operator+=(::i32 l);
-   interlocked_i32 & operator-=(::i32 l);
+   interlocked_i32 & operator+=(::i32 l)
+   {
 
-   
+      atomic_add(m_plong, l);
+
+      return *this;
+
+   }
+
+   interlocked_i32 & operator-=(::i32 l)
+   {
+
+      atomic_subtract(m_plong, l);
+
+      return *this;
+
+   }
+
+
 };
 
 

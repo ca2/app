@@ -92,15 +92,15 @@ inline string executable_get_app_id()
 
 string executable_get_app_id();
 
-#else
-
-inline string executable_get_app_id()
-{
-
-   return "";
-
-}
-
+//#else
+//
+//inline string executable_get_app_id()
+//{
+//
+//   return "";
+//
+//}
+//
 
 #endif
 

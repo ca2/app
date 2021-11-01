@@ -253,19 +253,19 @@ string url_encode(const char * psz)
    while(*psz != '\0')
    {
 
-      char uch = *psz;
+      char ch = *psz;
 
-      if(ansi_char_is_digit(uch)
-            || ansi_char_is_alphabetic(uch)
-            || uch == '.'
-            || uch == '-'
-            || uch == '_')
+      if(ansi_char_is_digit(ch)
+            || ansi_char_is_alphabetic(ch)
+            || ch == '.'
+            || ch == '-'
+            || ch == '_')
       {
 
-         str += uch;
+         str += ch;
 
       }
-      else if(uch == ' ')
+      else if(ch == ' ')
       {
 
          str += "+";
@@ -274,7 +274,7 @@ string url_encode(const char * psz)
       else
       {
 
-         ansi_from_i64(sz,uch,16);
+         ansi_from_i64(sz,(i64)(byte) ch,16);
 
          ansi_upper(sz);
 

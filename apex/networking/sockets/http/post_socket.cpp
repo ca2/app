@@ -109,17 +109,36 @@ namespace sockets
 
          string body;
 
-         if (m_fields.has_property("network_payload") && m_fields["network_payload"].get_type() == ::e_type_property_set)
+         if (m_fields.has_property("raw_text"))
          {
 
-            m_fields["network_payload"].propset().get_network_payload(body);
+            body = m_fields["raw_text"];
 
-            INFORMATION("JSON BODY: "<< body);
+            string strContentType = m_fields["raw_text_content_type"];
 
-            if (inheader(__id(content_type)).string().find_ci("application/network_payload") < 0)
+            inheader(__id(content_type)) = strContentType;
+
+         }
+         else if (m_fields.has_property("network_payload"))
+         {
+
+            auto & payload = m_fields["network_payload"];
+
+            if(payload.get_type() == ::e_type_property_set)
             {
 
-               inheader(__id(content_type)) = "application/network_payload" + ::str::has_char(inheader(__id(content_type)).string(), "; ");
+               payload.propset().get_network_payload(body);
+
+               INFORMATION("JSON BODY: " << body);
+
+               string strContentType = inheader(__id(content_type)).string();
+
+               if (strContentType.find_ci("application/json") < 0)
+               {
+
+                  inheader(__id(content_type)) = "application/json;" + strContentType;
+
+               }
 
             }
 

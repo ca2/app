@@ -1,74 +1,37 @@
 #pragma once
 
 
-#include "acme/primitive/primitive/atomic.h"
-
-
 class CLASS_DECL_ACME interlocked_i64
 {
 protected:
 
 
-   char                         m_sz[(sizeof(::i64) + 7) & ~7];
-   ::i64 *                      m_plong;
+   char                 m_sz[16];
+   ::i64 *              m_plong;
 
 
 public:
 
 
-   inline void construct(::i64 l = 0)
-   {
-
-      m_plong = (::i64 *) (((::iptr)this + 7) & ~7);
-
-      *m_plong = l;
-
-   }
+   inline void construct(::i64 l = 0);
 
 
-   interlocked_i64(::i64 l = 0)
-   {  
-
-      construct(l);
-
-   }
+   inline interlocked_i64(::i64 l = 0);
 
 
-   interlocked_i64 & operator = (::i64 i)
-   {
-
-      *m_plong = i;
-
-      return *this;
-
-   }
+   inline interlocked_i64& operator = (::i64 i);
 
 
-   operator ::i64() const { return *m_plong; }
+   inline operator ::i64() const;
 
 
-   ::i64 operator++();
-   ::i64 operator--();
-   ::i64 operator++(int);
-   ::i64 operator--(int);
+   inline ::i64 operator++();
+   inline ::i64 operator--();
+   inline ::i64 operator++(int);
+   inline ::i64 operator--(int);
 
-   interlocked_i64 & operator+=(::i64 l)
-   {
-
-      atomic_add(m_plong, l);
-
-      return *this;
-
-   }
-
-   interlocked_i64 & operator-=(::i64 l)
-   {
-
-      atomic_subtract(m_plong, l);
-
-      return *this;
-
-   }
+   inline interlocked_i64& operator+=(::i64 l);
+   inline interlocked_i64& operator-=(::i64 l);
 
    
 };
@@ -79,69 +42,33 @@ class CLASS_DECL_ACME interlocked_i32
 protected:
 
 
-   char                       m_sz[(sizeof(::i32) + 7) & ~7];
-   ::i32 *         m_plong;
+   char                 m_sz[8];
+   ::i32 *              m_plong;
 
 
 public:
 
 
-   inline void construct(::i32 l = 0)
-   {
+   inline void construct(::i32 l = 0);
 
-      m_plong = (::i32 *) (((iptr)this + 7) & ~7);
+   inline interlocked_i32(::i32 l = 0);
 
-      *m_plong = l;
-
-   }
-
-
-   interlocked_i32(::i32 l = 0)
-   {
-
-      construct(l);
-
-   }
+   inline interlocked_i32& operator = (::i32 i);
+   
+   inline operator ::i32() const;
 
 
-   interlocked_i32 & operator = (::i32 i)
-   {
-
-      *m_plong = i;
-
-      return *this;
-
-   }
-
-   operator ::i32() const { return *m_plong; }
+   inline interlocked_i32 & operator++();
+   inline interlocked_i32 & operator--();
+   inline ::i32 operator++(int);
+   inline ::i32 operator--(int);
 
 
-   interlocked_i32 & operator++();
-   interlocked_i32 & operator--();
-   ::i32 operator++(int);
-   ::i32 operator--(int);
-
-   interlocked_i32 & operator+=(::i32 l)
-   {
-
-      atomic_add(m_plong, l);
-
-      return *this;
-
-   }
-
-   interlocked_i32 & operator-=(::i32 l)
-   {
-
-      atomic_subtract(m_plong, l);
-
-      return *this;
-
-   }
+   inline interlocked_i32& operator+=(::i32 l);
+   inline interlocked_i32& operator-=(::i32 l);
 
 
 };
-
 
 
 #if defined(WINDOWS) && OSBIT == 32
@@ -156,53 +83,40 @@ using interlocked_count = ::interlocked_i64;
 
 
 
-
-
-inline interlocked_i32 & interlocked_i32::operator++()
+inline void interlocked_i64::construct(::i64 l)
 {
 
-   atomic_increment(m_plong);
+   m_plong = (::i64*)(((::iptr)this + 7) & ~7);
+
+   *m_plong = l;
+
+}
+
+
+inline interlocked_i64::interlocked_i64(::i64 l)
+{
+
+   construct(l);
+
+}
+
+
+inline interlocked_i64& interlocked_i64::operator = (::i64 i)
+{
+
+   *m_plong = i;
 
    return *this;
 
 }
 
 
-inline interlocked_i32 & interlocked_i32::operator--()
+inline interlocked_i64::operator ::i64() const
 {
 
-   atomic_decrement(m_plong);
-
-   return *this;
+   return *m_plong;
 
 }
-
-
-inline ::i32 interlocked_i32::operator++(int)
-{
-
-  auto l = *m_plong;
-
-  atomic_increment(m_plong);
-
-  return l;
-
-}
-
-
-inline ::i32 interlocked_i32::operator--(int)
-{
-
-  auto l = *m_plong;
-
-  atomic_decrement(m_plong);
-
-  return l;
-
-}
-
-
-
 
 
 inline ::i64 interlocked_i64::operator++()
@@ -224,11 +138,11 @@ inline ::i64 interlocked_i64::operator--()
 inline ::i64 interlocked_i64::operator++(int)
 {
 
-  auto l = *m_plong;
+   auto l = *m_plong;
 
-  atomic_increment(m_plong);
+   atomic_increment(m_plong);
 
-  return l;
+   return l;
 
 }
 
@@ -236,13 +150,140 @@ inline ::i64 interlocked_i64::operator++(int)
 inline ::i64 interlocked_i64::operator--(int)
 {
 
-  auto l = *m_plong;
+   auto l = *m_plong;
 
-  atomic_decrement(m_plong);
+   atomic_decrement(m_plong);
 
-  return l;
+   return l;
 
 }
+
+
+inline interlocked_i64& interlocked_i64::operator+=(::i64 l)
+{
+
+   atomic_add(m_plong, l);
+
+   return *this;
+
+}
+
+
+inline interlocked_i64& interlocked_i64::operator-=(::i64 l)
+{
+
+   atomic_subtract(m_plong, l);
+
+   return *this;
+
+}
+
+
+
+
+
+
+
+inline void interlocked_i32::construct(::i32 l)
+{
+
+   m_plong = (::i32*)(((iptr)this + 7) & ~7);
+
+   *m_plong = l;
+
+}
+
+
+inline interlocked_i32::interlocked_i32(::i32 l)
+{
+
+   construct(l);
+
+}
+
+
+inline interlocked_i32& interlocked_i32::operator = (::i32 i)
+{
+
+   *m_plong = i;
+
+   return *this;
+
+}
+
+
+inline interlocked_i32::operator ::i32() const
+{
+
+   return *m_plong;
+
+}
+
+
+inline interlocked_i32& interlocked_i32::operator++()
+{
+
+   atomic_increment(m_plong);
+
+   return *this;
+
+}
+
+
+inline interlocked_i32& interlocked_i32::operator--()
+{
+
+   atomic_decrement(m_plong);
+
+   return *this;
+
+}
+
+
+inline ::i32 interlocked_i32::operator++(int)
+{
+
+   auto l = *m_plong;
+
+   atomic_increment(m_plong);
+
+   return l;
+
+}
+
+
+inline ::i32 interlocked_i32::operator--(int)
+{
+
+   auto l = *m_plong;
+
+   atomic_decrement(m_plong);
+
+   return l;
+
+}
+
+
+inline interlocked_i32& interlocked_i32::operator+=(::i32 l)
+{
+
+   atomic_add(m_plong, l);
+
+   return *this;
+
+}
+
+
+inline interlocked_i32& interlocked_i32::operator-=(::i32 l)
+{
+
+   atomic_subtract(m_plong, l);
+
+   return *this;
+
+}
+
+
 
 
 

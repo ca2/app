@@ -147,7 +147,7 @@ namespace base
    }
 
 
-   __namespace_system_factory(system);
+   //__namespace_system_factory(system);
 
 
 } // namespace base

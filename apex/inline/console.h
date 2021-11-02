@@ -1,6 +1,11 @@
 #include "console_common.h"
 
 
+#include "apex/platform/layer.h"
+
+
+static ::apex::layer g_layer;
+
 
 #ifdef LINUX
 

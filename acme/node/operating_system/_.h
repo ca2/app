@@ -95,11 +95,6 @@ CLASS_DECL_ACME void press_any_key_to_exit(const char* psz = nullptr);
 
 //CLASS_DECL_ACME void defer_dock_application(int_bool bDock);
 
-#ifdef WINDOWS
-CLASS_DECL_ACME string executable_get_app_id(hinstance hinstance);
-#endif
-
-CLASS_DECL_ACME const char * executable_get_app_id();
 
 
 CLASS_DECL_ACME string get_current_login_name();

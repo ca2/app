@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "acme/operating_system.h"
-#include "task.h"
+//#include "task.h"
 
 
 #ifdef PARALLELIZATION_PTHREAD
@@ -17,6 +17,8 @@ CLASS_DECL_ACME void clear_message_queue(itask_t idthread);
 
 task::task()
 {
+
+   m_pfnImplement = nullptr;
 
    //m_bTaskPending = true;
 
@@ -245,6 +247,13 @@ bool task::kick_thread()
 ::e_status task::main()
 {
 
+   if(defer_implement(m_psystem))
+   {
+
+      return m_psystem->m_estatus;
+
+   }
+
    if (::is_set(m_pelement) && m_pelement != this)
    {
 
@@ -293,12 +302,17 @@ bool task::kick_thread()
 
    }
 
+   if (defer_implement(m_psystem))
+   {
+
+      return m_psystem->m_estatus;
+
+
+   }
+
    return estatus;
 
 }
-
-
-
 
 
 ::e_status task::stop_task()

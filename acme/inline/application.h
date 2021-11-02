@@ -1,6 +1,12 @@
 #include "application_common.h"
 
 
+#include "acme/platform/layer.h"
+
+
+::acme::layer g_layer;
+
+
 #ifdef LINUX
 
 #include "application/linux.h"

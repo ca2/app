@@ -93,14 +93,12 @@ namespace axis
    system::system()
    {
 
-      m_paxissystem = this;
 
-      m_pfactorymapsquare = new string_map < __pointer(::factory_map) >();
+      common_construct();
 
-      create_factory < ::axis::application, ::application >();
-      create_factory < ::axis::session, ::apex::session >();
-      create_factory < ::axis::idpool, ::acme::idpool >();
-      create_factory < ::geo::department >();
+      
+
+
 
    }
 
@@ -114,7 +112,12 @@ namespace axis
    void system::common_construct()
    {
 
-      create_factory < ::aura::session >();
+      m_paxissystem = this;
+
+      create_factory < ::axis::application, ::application >();
+      create_factory < ::axis::session, ::apex::session >();
+      create_factory < ::axis::idpool, ::acme::idpool >();
+      create_factory < ::geo::department >();
       //create_factory < ::imaging >();
 
       m_bSimpleMessageLoop = false;
@@ -557,8 +560,6 @@ namespace axis
 
 
 
-
-   __namespace_system_factory(system);
 
 
 } // namespace axis

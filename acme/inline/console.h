@@ -8,6 +8,10 @@
 class ::system * acme_system_init();
 void acme_system_term();
 
+#include "acme/platform/layer.h"
+
+::acme::layer g_layer;
+
 #ifdef _UWP
 #include "acme/node/operating_system/console.inl"
 
@@ -21,6 +25,26 @@ int wmain(int argc, wchar_t* argv[], wchar_t* envp[])
 int main(int argc, platform_char ** argv, platform_char ** envp)
 #endif
 {
+
+   main_arguments mainarguments;
+
+   mainarguments.m_argc = argc;
+#ifdef WINDOWS
+   mainarguments.m_wargv = argv;
+   mainarguments.m_wenvp = envp;
+#else
+   mainarguments.m_argv = argv;
+   mainarguments.m_envp = envp;
+#endif
+
+   mainarguments.m_pfnImplement = &::implement;
+
+   auto estatus = __main(mainarguments);
+
+   int iStatus = estatus.error_status();
+
+   return iStatus;
+
 
 //   process_set_args(argc, argv);
 //
@@ -36,59 +60,62 @@ int main(int argc, platform_char ** argv, platform_char ** envp)
 //
 //#endif
 
-   ::e_status estatus = ::success;
-
-   //process_set_args(argc, argv);
-
-   auto psystem = acme_system_init();
-
-   if (!psystem)
-   {
-
-      return -1;
-
-   }
-
-   //psystem->m_bConsole = false;
-
-   //application_common(psystem);
-
-   //string strCommandLine(pCmdLine);
-
-   {
-//#ifdef WINDOWS
+//   ::e_status estatus = ::success;
 //
-//      //wcsdup_array wcsdupa;
+//   //process_set_args(argc, argv);
 //
-//      //auto envp = psystem->node()->_get_envp(wcsdupa);
+//   auto psystem = acme_system_init();
 //
-//      platform_char** envp = nullptr;
+//   if (!psystem)
+//   {
 //
-//#endif
-
-      psystem->system_construct(argc, argv, envp);
-
-   //psystem->set_current_handles();
-
-   estatus = psystem->init_system();
-
-   if (!estatus)
-   {
-
-      return estatus.error_status();
-
-   }
-
-
-      implement(psystem);
-
-   }
-
-   acme_system_term();
-
-   return process_get_status();
+//      return -1;
+//
+//   }
+//
+//   //psystem->m_bConsole = false;
+//
+//   //application_common(psystem);
+//
+//   //string strCommandLine(pCmdLine);
+//
+//   {
+////#ifdef WINDOWS
+////
+////      //wcsdup_array wcsdupa;
+////
+////      //auto envp = psystem->node()->_get_envp(wcsdupa);
+////
+////      platform_char** envp = nullptr;
+////
+////#endif
+//
+//      psystem->system_construct(argc, argv, envp);
+//
+//   //psystem->set_current_handles();
+//
+//   estatus = psystem->init_system();
+//
+//   if (!estatus)
+//   {
+//
+//      return estatus.error_status();
+//
+//   }
+//
+//
+//      implement(psystem);
+//
+//   }
+//
+//   acme_system_term();
+//
+//   return process_get_status();
 
 }
+
+
+
 
 #if !defined(CUBE)
 

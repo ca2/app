@@ -140,6 +140,8 @@ public:
 
    //virtual logger & log() { return *m_plogger; }
 
+   virtual void set_current_handles();
+
    virtual void TermSystem();
 
 
@@ -174,8 +176,10 @@ public:
    virtual ::application* get_main_application();
 
 
-   virtual void system_construct(int argc, char** argv, char** envp);
-   virtual void system_construct(int argc, wchar_t** argv, wchar_t** envp);
+   virtual void system_construct(main_arguments & mainarguments);
+
+   //virtual void system_construct(int argc, char** argv, char** envp);
+   //virtual void system_construct(int argc, wchar_t** argv, wchar_t** envp);
 
 
 #ifdef WINDOWS_DESKTOP
@@ -226,6 +230,8 @@ public:
 
 
    ::e_status main() override;
+
+
 
 
    virtual ::e_status end();

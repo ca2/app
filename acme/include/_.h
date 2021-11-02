@@ -127,6 +127,7 @@ class system; // acme - cam
 class application; // apex - tbs
 
 
+
 namespace acme
 {
 
@@ -674,7 +675,11 @@ namespace windowing
 //using oswindow = void *;
 using windows_handle = void *;
 using hinstance = void *;
-
+#ifdef UNICODE
+using tchar = wchar_t;
+#else
+using tchar = char;
+#endif
 
 
 
@@ -1808,6 +1813,11 @@ using subject_pointer = __pointer(subject);
 using context_pointer = __pointer(context);
 
 
+
+// From apex by camilo 2021-11-01 13:41 BRT <3ThomasBorregaardSørensen!!
+CLASS_DECL_ACME __pointer(class ::system) platform_create_system(const char* pszAppId);
+
+
 //} // namespace subject
 
 
@@ -2849,7 +2859,6 @@ class thread_parameter;
 
 
 #include "acme/primitive/primitive/interlocked.h"
-#include "acme/primitive/primitive/interlocked_count.h"
 #include "acme/primitive/primitive/interlocked_long_pulse.h"
 #include "acme/primitive/primitive/type.h"
 #include "acme/primitive/primitive/id.h"
@@ -3319,8 +3328,6 @@ class CLASS_DECL_ACME integral_byte { public: integral_byte(memsize memsize = 1)
 
 
 #include "acme/parallelization/synchronization_result.h"
-#include "acme/primitive/primitive/atomic.h"
-#include "acme/primitive/primitive/interlocked_count.h"
 
 
 #include "acme/subject/handler.h"
@@ -4658,6 +4665,9 @@ class wcsdup_array;
 #include "acme/parallelization/tools.h"
 
 
+#include "acme/inline/main_arguments.h"
+
+
 #include "acme/platform/acme_main_data.h"
 
 
@@ -4860,6 +4870,9 @@ DECLARE_ENUMERATION(e_element, enum_element);
 
 
 #include "acme/primitive/primitive/_property_object_impl.h"
+
+
+#include "acme/primitive/primitive/_interlocked_count_impl.h"
 
 
 #include "acme/memory/_impl.h"

@@ -1913,7 +1913,18 @@ u32 __thread_entry(void * p);
 
       }
 
-      estatus = run();
+      if (defer_implement(m_psystem))
+      {
+
+         estatus = m_psystem->m_estatus;
+
+      }
+      else
+      {
+
+         estatus = run();
+
+      }
 
       m_bThreadClosed = true;
 

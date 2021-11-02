@@ -1771,7 +1771,7 @@ end:
    if(str.get_length() > iPos)
    {
 
-      add((Type)RawType(&str[iPos],str.get_length() - iPos));
+      add((Type)RawType(&str[iPos]));
 
    }
    else if(bAddEmpty)

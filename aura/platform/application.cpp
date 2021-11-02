@@ -154,7 +154,7 @@ namespace aura
       //m_bAuraInitializeInstance = false;
       //m_bAuraInitializeInstanceResult = false;
 
-      create_factory < ::user::user >();
+      //create_factory < ::user::user >();
       //create_factory < ::userfs::userfs >();
 
       //m_pmainpane = nullptr;

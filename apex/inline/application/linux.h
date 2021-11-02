@@ -1,11 +1,21 @@
 
 
-int __main(int argc, char * argv[], char * envp[]);
+#include "acme/inline/main_arguments.h"
+//int __main(int argc, char * argv[], char * envp[]);
+
 
 int main(int argc, char * argv[], char * envp[])
 {
 
-   return __main(argc, argv, envp);
+   main_arguments mainarguments;
+
+   mainarguments.m_argc = argc;
+
+   mainarguments.m_argv = argv;
+
+   mainarguments.m_envp = envp;
+
+   return __main(mainarguments);
 
 }
 

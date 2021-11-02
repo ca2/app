@@ -163,7 +163,7 @@ string acme_file::as_string(const char * path, strsize iReadAtMostByteCount)
 
    psz[iPos] = '\0';
 
-   str.release_string_buffer(iReadAtMostByteCount);
+   str.release_string_buffer();
 
    return str;
 

@@ -1245,6 +1245,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="platform\interprocess_communication.cpp" />
     <ClCompile Include="platform\interprocess_intercommunication.cpp" />
     <ClCompile Include="platform\launcher.cpp" />
+    <ClCompile Include="platform\layer.cpp" />
     <ClCompile Include="platform\log.cpp" />
     <ClCompile Include="platform\machine_event.cpp" />
     <ClCompile Include="platform\machine_event_central.cpp" />
@@ -1491,6 +1492,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="platform\interprocess_intercommunication.h" />
     <ClInclude Include="platform\interprocess_task.h" />
     <ClInclude Include="platform\launcher.h" />
+    <ClInclude Include="platform\layer.h" />
     <ClInclude Include="platform\library.h" />
     <ClInclude Include="platform\log.h" />
     <ClInclude Include="platform\machine_event.h" />

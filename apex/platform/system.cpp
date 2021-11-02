@@ -1297,9 +1297,9 @@ namespace apex
 
             {
 
-               ASSERT(m_hPrevInstance == nullptr);
+               ASSERT(m_hinstancePrev == nullptr);
 
-               HINSTANCE hinstance = (HINSTANCE)m_hinstance;
+               HINSTANCE hinstance = (HINSTANCE)m_hinstanceThis;
 
                //auto edisplay = m_edisplay;
 
@@ -2281,7 +2281,7 @@ pacmedir->create("/ca2core");
       m_papplicationStartup->get_property_set().merge(get_property_set());
 
       set_main_struct(*m_papplicationStartup);
-      
+
       return estatus;
 
    }
@@ -5442,17 +5442,6 @@ namespace apex
    ::e_status system::main()
    {
 
-//      auto estatus = init_system();
-//
-//      if (!estatus)
-//      {
-//
-//         return estatus;
-//
-//      }
-//
-//      //auto estatus = class ::system::main();
-
       auto estatus = ::thread::main();
 
       if (!estatus)
@@ -5724,67 +5713,76 @@ namespace apex
    }
 
 
-   void system::system_construct(int argc, char** argv, char** envp)
+   void system::system_construct(main_arguments & mainarguments)
    {
 
-      apex_main_data::system_construct(argc, argv, envp);
+      apex_main_data::system_construct(mainarguments);
 
    }
 
 
-   void system::system_construct(int argc, wchar_t** argv, wchar_t** envp)
-   {
 
-      apex_main_data::system_construct(argc, argv, envp);
+   //void system::system_construct(int argc, char** argv, char** envp)
+   //{
 
-   }
+   //   apex_main_data::system_construct(argc, argv, envp);
 
-
-#ifdef WINDOWS_DESKTOP
-
-   
-   ::e_status system::system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char* pCmdLine, i32 nCmdShow)
-   {
-
-      return apex_main_data::system_construct(hinstanceThis, hPrevInstance, pCmdLine, nCmdShow);
-
-   }
+   //}
 
 
-#elif defined(_UWP)
+   //void system::system_construct(int argc, wchar_t** argv, wchar_t** envp)
+   //{
 
-   
-   ::e_status system::system_construct(const ::string_array & stra)
-   {
+   //   apex_main_data::system_construct(argc, argv, envp);
 
-      return ::success;
-
-   }
+   //}
 
 
-#else
+//#ifdef WINDOWS_DESKTOP
+//
+//   
+//   ::e_status system::system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char* pCmdLine, i32 nCmdShow)
+//   {
+//
+//      return apex_main_data::system_construct(hinstanceThis, hPrevInstance, pCmdLine, nCmdShow);
+//
+//   }
+//
+//
+//#elif defined(_UWP)
+//
+//   
+//   ::e_status system::system_construct(const ::string_array & stra)
+//   {
+//
+//      return ::success;
+//
+//   }
+//
+//
+//#else
+//
+//
+//   ::e_status system::system_construct(const ::string & pszCommandLine, const ::e_display& edisplay)
+//   {
+//
+//      return ::success;
+//
+//   }
+//
+//
+//   ::e_status system::system_construct(os_local* poslocal, const ::e_display& edisplay)
+//   {
+//
+//      return ::success;
+//
+//   }
+//
+//
+//#endif
 
 
-   ::e_status system::system_construct(const ::string & pszCommandLine, const ::e_display& edisplay)
-   {
-
-      return ::success;
-
-   }
-
-
-   ::e_status system::system_construct(os_local* poslocal, const ::e_display& edisplay)
-   {
-
-      return ::success;
-
-   }
-
-
-#endif
-
-
-   __namespace_system_factory(system);
+   //__namespace_system_factory(system);
 
 
 } // namespace apex
@@ -5797,90 +5795,6 @@ string get_bundle_app_library_name();
 #endif
 
 
-
-__pointer(::apex::system) platform_create_system(const char * pszAppId)
-{
-
-   string strAppId(pszAppId);
-
-#if !defined(CUBE)
-
-   if (strAppId.has_char())
-   {
-
-      string strMessage;
-
-      string strLibrary = strAppId;
-
-      strLibrary.replace("/", "_");
-
-      strLibrary.replace("-", "_");
-
-      strLibrary.replace(".", "_");
-
-      auto plibrary = __node_library_open(strLibrary, strMessage);
-
-      if (!plibrary)
-      {
-
-         //{
-
-         //   //auto pfuture = __sync_future();
-
-         //   //message_box(strMessage, "Could not open required library. Want to give an yes/no answer insted of pression cancel?", e_message_box_icon_exclamation | e_message_box_yes_no_cancel, pfuture);
-
-         //   //pfuture->wait(10_s);
-
-         //   int iDialogResult = pfuture->m_var;
-
-         //   ::output_debug_string("result " + __string(iDialogResult));
-
-         //}
-
-         //__throw(error_failed, strMessage + "\n\nCould not open required library.");
-
-         ::output_debug_string("The application library for appid \"" + strAppId + "\" wasn't loaded.");
-
-      }
-
-   }
-
-#endif
-
-   auto pstaticsetup = ::static_setup::get_first(::static_setup::flag_system, "");
-
-   if (!pstaticsetup)
-   {
-
-      return nullptr;
-
-   }
-
-   auto pobject = pstaticsetup->new_object();
-
-   if (!pobject)
-   {
-
-      return nullptr;
-
-   }
-
-   auto psystem = dynamic_cast<::apex::system*>(pobject);
-
-   if(!psystem)
-   {
-
-      delete pobject;
-
-      return nullptr;
-
-   }
-
-   psystem->m_strAppId = strAppId;
-
-   return ::move_transfer(psystem);
-
-}
 
 
 ::apex::session * platform_create_session()

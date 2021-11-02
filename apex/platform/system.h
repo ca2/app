@@ -235,13 +235,16 @@ namespace apex
 
       void install_message_routing(::channel * pchannel) override;
 
-      virtual void system_construct(int argc, char** argv, char** envp) override;
-      virtual void system_construct(int argc, wchar_t** argv, wchar_t** envp) override;
+      //virtual void system_construct(int argc, char** argv, char** envp) override;
+      //virtual void system_construct(int argc, wchar_t** argv, wchar_t** envp) override;
 
+      void system_construct(main_arguments & mainarguments) override;
+
+//#ifdef WINDOWS_DESKTOP
+//
+//      ::e_status system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char* pCmdLine, i32 nCmdShow);
 
 #ifdef WINDOWS_DESKTOP
-
-      ::e_status system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char* pCmdLine, i32 nCmdShow);
 
 #elif defined(_UWP)
 
@@ -932,7 +935,7 @@ namespace apex
       void dump(dump_context& action_context) const override;
 
 
-      virtual ::e_status     main() override;
+      ::e_status     main() override;
       //virtual void hist_hist(const ::string & psz) override;
 
 

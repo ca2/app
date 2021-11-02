@@ -111,13 +111,8 @@ namespace aura
    system::system()
    {
 
-      m_paurasystem = this;
-
       m_bAvoidFirstResponder = false;
 
-      create_factory < ::aura::session, ::apex::session >();
-      create_factory < ::aura::application, ::application >();
-      create_factory < ::aura::idpool, ::acme::idpool >();
 
       m_bMessageThread = true;
 
@@ -130,6 +125,8 @@ namespace aura
    {
 
 
+      m_paurasystem = this;
+
       m_bSimpleMessageLoop = false;
 
       m_bFinalizeIfNoSession = false;
@@ -137,6 +134,14 @@ namespace aura
 
       m_bFinalizeIfNoSessionSetting = true;
       m_bFinalizeIfNoSession = false;
+
+      create_factory < ::aura::session, ::apex::session >();
+      create_factory < ::aura::application, ::application >();
+      create_factory < ::aura::idpool, ::acme::idpool >();
+      create_factory < ::user::user >();
+
+
+
 
    }
 
@@ -6945,7 +6950,7 @@ namespace aura
    //}
 
 
-   __namespace_system_factory(system);
+//   __namespace_system_factory(system);
 
 
 } // namespace aura

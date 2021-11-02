@@ -1,73 +1,97 @@
 #include "apex/operating_system.h"
 
 
-i32 WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, TCHAR * pCmdLine, int nCmdShow)
+CLASS_DECL_ACME void set_main_thread();
+
+
+i32 WINAPI _tWinMain(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, TCHAR * pCmdLine, int nCmdShow)
 {
 
-#ifdef CUBE
 
-   main_hold mainhold;
+   main_arguments mainarguments;
 
-#endif
+   mainarguments.m_argc = __argc;
 
-   set_main_thread();
+   mainarguments.m_argv = __argv;
 
-   string strAppId;
+   mainarguments.m_wargv = __wargv;
 
-#ifdef _APP_ID
+   mainarguments.m_envp = *__p__environ();
 
-   strAppId = _APP_ID;
+   mainarguments.m_wenvp = *__p__wenviron();
 
-#else
+   mainarguments.m_hinstanceThis = hinstanceThis;
 
-   strAppId = executable_get_app_id(hinstance);
+   mainarguments.m_hinstancePrev = hinstancePrev;
 
-#endif;
+   mainarguments.m_pszCommandLine = pCmdLine;
 
-   auto psystem = platform_create_system(strAppId);
+   mainarguments.m_nCmdShow = nCmdShow;
 
-   if (!psystem)
-   {
+   mainarguments.m_bConsole = false;
 
-      return -1;
-
-   }
-
-   psystem->m_bConsole = false;
-
-   application_common(psystem);
-
-   string strCommandLine(pCmdLine);
-
-   psystem->system_construct(hinstance, hPrevInstance, strCommandLine, nCmdShow);
-
-   psystem->set_current_handles();
-
-//   auto estatus = psystem->system_main();
+//   set_main_thread();
 //
-//   if (!estatus)
+//   string strAppId;
+//
+//#ifdef _APP_ID
+//
+//   strAppId = _APP_ID;
+//
+//#else
+//
+//   strAppId = executable_get_app_id(hinstance);
+//
+//#endif;
+//
+//   auto psystem = platform_create_system(strAppId);
+//
+//   if (!psystem)
 //   {
-//    
-//      ::i32 iErrorStatus = estatus.error_status();
 //
-//      return iErrorStatus;
+//      return -1;
 //
 //   }
+//
+//   psystem->m_bConsole = false;
+//
+//   application_common(psystem);
+//
+//   string strCommandLine(pCmdLine);
+//
+//   psystem->system_construct(hinstance, hPrevInstance, strCommandLine, nCmdShow);
+//
+//   psystem->set_current_handles();
+//
+////   auto estatus = psystem->system_main();
+////
+////   if (!estatus)
+////   {
+////    
+////      ::i32 iErrorStatus = estatus.error_status();
+////
+////      return iErrorStatus;
+////
+////   }
+//
+//   auto estatus = psystem->init_system();
+//   
+//   if(!estatus)
+//   {
+//      
+//      return estatus.error_status();
+//      
+//   }
+//
+//   auto pnode = psystem->node();
+//
+//   estatus = pnode->implement();
+//
+//   auto estatusEnd = psystem->end();
+//
+   auto estatus = __main(mainarguments);
 
-   auto estatus = psystem->init_system();
-   
-   if(!estatus)
-   {
-      
-      return estatus.error_status();
-      
-   }
-
-   auto pnode = psystem->node();
-
-   estatus = pnode->implement();
-
-   auto estatusEnd = psystem->end();
+   //return iExitCode;
 
    ::i32 iErrorStatus = estatus.error_status();
 

@@ -234,7 +234,7 @@ CLASS_DECL_ACME enum_dialog_result message_box_for_console(const char * psz, con
 
       strLine += pszTitle;
 
-      strLine += " : ";
+      strLine += "\n";
 
    }
 
@@ -281,13 +281,13 @@ CLASS_DECL_ACME enum_dialog_result message_box_for_console(const char * psz, con
    if (str.has_char())
    {
 
-      strLine += " : (" + str + ") ? ";
+      strLine += "\n(" + str + ") ? ";
 
    }
    else
    {
 
-      strLine += " : (Press any key to continue) ";
+      strLine += "\n(Press any key to continue) ";
 
    }
 

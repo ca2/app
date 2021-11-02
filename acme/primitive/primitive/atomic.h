@@ -9,14 +9,14 @@
 
 #ifdef WINDOWS
 
-// To declare an interlocked function for use as an intrinsic,
-// include intrin.h and put the function in a #pragma intrinsic
-// statement.
+//// To declare an interlocked function for use as an intrinsic,
+//// include intrin.h and put the function in a #pragma intrinsic
+//// statement.
 #include <intrin.h>
 
 
-#pragma intrinsic (_InterlockedIncrement)
-#pragma intrinsic (_InterlockedDecrement)
+//#pragma intrinsic (_InterlockedIncrement)
+//#pragma intrinsic (_InterlockedDecrement)
 
 
 #endif
@@ -108,7 +108,7 @@ inline i64 atomic_add(i64 * pi, i64 i)
 
 #ifdef WINDOWS
 
-   **return _interlockedincrement64(pi);
+   return _interlockedadd64(pi, i);
 
 #elif defined(RASPBIAN) && defined(OS32BIT)
 
@@ -128,7 +128,7 @@ inline i32 atomic_add(i32* pi, i32 i)
 
 #ifdef WINDOWS
 
-   **return _InterlockedIncrement((long *) pi);
+   return _interlockedadd((long *)pi, i);
 
 #elif defined(RASPBIAN) && defined(OS32BIT)
 
@@ -148,7 +148,7 @@ inline i64 atomic_subtract(i64 * pi, i64 i)
 
 #ifdef WINDOWS
 
-   **return _interlockeddecrement64(pi);
+   return _interlockedadd64(pi, -i);
 
 #elif defined(RASPBIAN) && defined(OS32BIT)
 
@@ -168,7 +168,7 @@ inline i32 atomic_subtract(i32* pi, i32 i)
 
 #ifdef WINDOWS
 
-   ***return _InterlockedDecrement((long*)pi);
+   return _interlockedadd((long*)pi, -i);
 
 #elif defined(RASPBIAN) && defined(OS32BIT)
 

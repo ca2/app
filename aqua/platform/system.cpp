@@ -328,7 +328,6 @@ namespace aqua
    }
 
 
-   __namespace_system_factory(system);
 
 
 } // namespace aqua

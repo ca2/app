@@ -5,6 +5,8 @@
 #ifdef LINUX
 #include "acme/node/operating_system/ansi/binreloc.h"
 #endif
+#include "acme/platform/set_app_id.h"
+
 
 
 //const char * br_init_get_symbol();
@@ -47,26 +49,28 @@ set_app_id::set_app_id(const char * pszAppId)
 CLASS_DECL_ACME void set_main_thread();
 
 
-int __main(int argc, char * argv[], char * envp[])
+::e_status __main(main_arguments & mainarguments)
 {
 
    set_main_thread();
 
    string strAppId = executable_get_app_id();
 
-   __pointer(::apex::node) pnode;
+   __pointer(::acme::node) pnode;
 
    ::e_status estatus = error_failed;
+
+   ::e_status estatusEnd = error_failed;
 
    {
 
       auto psystem = platform_create_system(strAppId); // new:platform_create_system
 
-      auto papplicationStartup = psystem->new_application(strAppId);
+      //auto papplicationStartup = psystem->new_application(strAppId);
 
-      psystem->__refer(psystem->m_papplicationStartup, papplicationStartup);
+      //psystem->__refer(psystem->m_papplicationStartup, papplicationStartup);
 
-      psystem->set_main_struct(*psystem->m_papplicationStartup);
+      //psystem->set_main_struct(*psystem->m_papplicationStartup);
 
       //   ::e_status estatus = ::success;
 
@@ -84,7 +88,7 @@ int __main(int argc, char * argv[], char * envp[])
       //
       //   }
 
-      psystem->m_bConsole = false;
+      //psystem->m_bConsole = false;
 
       //application_common(psystem);
       //
@@ -296,7 +300,7 @@ int __main(int argc, char * argv[], char * envp[])
 //
 
 
-      psystem->system_construct(argc, argv, envp);
+      psystem->system_construct(mainarguments);
 
       //   auto estatus = psystem->system_main();
       //
@@ -304,14 +308,16 @@ int __main(int argc, char * argv[], char * envp[])
       //
       //   return iErrorStatus;
 
-      auto estatus = psystem->call_init_system();
+      estatus = psystem->call_init_system();
 
       if (!estatus)
       {
 
-         auto iExitCode = estatus.exit_code();
+//         auto iExitCode = estatus.exit_code();
 
-         return iExitCode;
+         //return iExitCode;
+
+         return estatus;
 
       }
 
@@ -321,12 +327,16 @@ int __main(int argc, char * argv[], char * envp[])
 
 //ss      ::release(psystem);
 
-      estatus = pnode->main();
+      //estatus = pnode->main();
+      estatus = pnode->implement();
+
+      estatusEnd = psystem->end();
 
    }
 
-   int iExitCode = estatus.exit_code();
-
-   return iExitCode;
+   return estatus;
 
 }
+//int iExitCode = estatus.exit_code();
+//
+//return iExitCode;

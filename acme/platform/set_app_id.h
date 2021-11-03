@@ -2,13 +2,13 @@
 #pragma once
 
 
-class CLASS_DECL_ACME set_app_id
-{
-public:
-
-   set_app_id(const char* pszAppId);
-
-};
+//class CLASS_DECL_ACME set_app_id
+//{
+//public:
+//
+//   set_app_id(const char* pszAppId);
+//
+//};
 
 
 

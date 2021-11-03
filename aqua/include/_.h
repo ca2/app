@@ -18,6 +18,8 @@
 
 #pragma once
 
+#undef LAYER_NAMESPACE
+#define LAYER_NAMESPACE aqua
 
 
 //#undef get_system()

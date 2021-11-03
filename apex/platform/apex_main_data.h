@@ -26,13 +26,13 @@ public:
 
 
    apex_main_data();
-   virtual ~apex_main_data();
+   ~apex_main_data() override;
 
 
    void set_main_struct(const apex_main_struct  & mainstruct);
 
 
-   ::e_status system_construct(main_arguments & mainarguments);
+   ::e_status system_construct(const ::main & main);
 
 
    //::e_status system_construct(int argc, char** argv, char ** envp);

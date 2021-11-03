@@ -743,6 +743,8 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    ::e_status system::init_system()
    {
 
+      set_current_handles();
+
       auto estatus = node_factory_exchange();
 
       if (!estatus)
@@ -1417,12 +1419,19 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   void system::system_construct(main_arguments & mainarguments)
+   ::e_status system::system_construct(const ::main & main)
    {
 
-      acme_main_data::system_construct(mainarguments);
+      auto estatus = ::main::system_construct(main);
 
-      set_current_handles();
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 

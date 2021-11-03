@@ -72,6 +72,13 @@
 #pragma once
 
 
+#define LAYER_NAMESPACE acme
+
+#define _STRINGFY(identifier) #identifier
+#define STRINGFY(identifier) _STRINGFY(identifier)
+#define STRING_PREFIX_LAYER_NAMESPACE(str) STRINGFY(LAYER_NAMESPACE) str
+
+
 //#undef Sys
 
 
@@ -1815,7 +1822,7 @@ using context_pointer = __pointer(context);
 
 
 // From apex by camilo 2021-11-01 13:41 BRT <3ThomasBorregaardSørensen!!
-CLASS_DECL_ACME __pointer(class ::system) platform_create_system(const char* pszAppId);
+CLASS_DECL_ACME __pointer(class ::system) platform_create_system(const char * pszAppId);
 
 
 //} // namespace subject
@@ -4665,7 +4672,7 @@ class wcsdup_array;
 #include "acme/parallelization/tools.h"
 
 
-#include "acme/inline/main_arguments.h"
+#include "acme/platform/main.h"
 
 
 #include "acme/platform/acme_main_data.h"

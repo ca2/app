@@ -2,21 +2,25 @@
 #include "framework.h"
 
 
-::e_status acme_main_data::system_construct(main_arguments & mainarguments)
-{
-
-   *((main_arguments *) this) = mainarguments;
-
-   if (mainarguments.m_pszCommandLine)
-   {
-
-      m_strCommandLine = mainarguments.m_pszCommandLine;
-
-   }
-
-   return ::success;
-
-}
+//::e_status acme_main_data::system_construct(main_arguments & mainarguments)
+//{
+//
+//   *((main_arguments *) this) = mainarguments;
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//   if (mainarguments.m_pszCommandLine)
+//   {
+//
+//      m_strCommandLine = mainarguments.m_pszCommandLine;
+//
+//   }
+//
+//#endif
+//
+//   return ::success;
+//
+//}
 
 
 //::e_status acme_main_data::system_construct(int argc, wchar_t** argv, wchar_t** envp)

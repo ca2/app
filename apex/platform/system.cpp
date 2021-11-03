@@ -4519,7 +4519,7 @@ pacmedir->create("/ca2core");
 
 #ifdef _UWP
 
-      m_pcontext->m_papexcontext->os().native_full_web_browser(strUrl);
+      m_pcontext->m_papexcontext->os_context()->native_full_web_browser(strUrl);
 
       return;
 
@@ -4735,7 +4735,7 @@ pacmedir->create("/ca2core");
 
 #ifdef _UWP
 
-      m_pcontext->m_papexcontext->os().native_full_web_browser(strUrl);
+      m_pcontext->m_papexcontext->os_context()->native_full_web_browser(strUrl);
 
 #else
 
@@ -5713,10 +5713,19 @@ namespace apex
    }
 
 
-   void system::system_construct(main_arguments & mainarguments)
+   ::e_status system::system_construct(const ::main & main)
    {
 
-      apex_main_data::system_construct(mainarguments);
+      auto estatus = apex_main_data::system_construct(main);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 

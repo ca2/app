@@ -3,7 +3,7 @@
 
 class CLASS_DECL_ACME system :
    virtual public ::acme::context,
-   virtual public ::acme_main_data,
+   virtual public ::main,
    //virtual public ::manager,
    virtual public ::task //,  virtual public ::logger
    //, public layered < system >
@@ -176,7 +176,11 @@ public:
    virtual ::application* get_main_application();
 
 
-   virtual void system_construct(main_arguments & mainarguments);
+   ::e_status system_construct(const ::main & main) override;
+
+   //using main::operator =;
+   
+
 
    //virtual void system_construct(int argc, char** argv, char** envp);
    //virtual void system_construct(int argc, wchar_t** argv, wchar_t** envp);

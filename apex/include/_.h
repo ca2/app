@@ -74,7 +74,8 @@
 
 #pragma once
 
-
+#undef LAYER_NAMESPACE
+#define LAYER_NAMESPACE apex
 
 
 #define __spin_namespace apex // back bone / four-letter "spin*" namespace name

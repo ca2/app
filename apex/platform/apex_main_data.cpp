@@ -37,10 +37,10 @@ apex_main_data::~apex_main_data()
 }
 
 
-::e_status apex_main_data::system_construct(main_arguments & mainarguments)
+::e_status apex_main_data::system_construct(const ::main & main)
 {
 
-   auto estatus = acme_main_data::system_construct(mainarguments);
+   auto estatus = ::main::system_construct(main);
 
    if (!estatus)
    {

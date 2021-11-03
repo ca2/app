@@ -1111,6 +1111,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="memory\allocation.cpp" />
     <ClCompile Include="memory\array_memory_allocate.cpp" />
     <ClCompile Include="memory\counter.cpp" />
+    <ClInclude Include="application.h" />
     <ClInclude Include="constant\activate.h" />
     <ClInclude Include="constant\button_state.h" />
     <ClInclude Include="constant\character_set.h" />

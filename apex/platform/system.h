@@ -238,7 +238,7 @@ namespace apex
       //virtual void system_construct(int argc, char** argv, char** envp) override;
       //virtual void system_construct(int argc, wchar_t** argv, wchar_t** envp) override;
 
-      void system_construct(main_arguments & mainarguments) override;
+      ::e_status system_construct(const ::main & main) override;
 
 //#ifdef WINDOWS_DESKTOP
 //

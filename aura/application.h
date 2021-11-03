@@ -1,7 +1,7 @@
 #include "aura/inline/application.h"
 #include "acme/platform/set_app_id.h"
 
-static set_app_id g_setappid(__APP_ID);
+//static set_app_id g_setappid(__APP_ID);
 
 #ifdef CUBE
 
@@ -28,7 +28,7 @@ static set_app_id g_setappid(__APP_ID);
 #endif
 
 
-#include "acme/inline/_static_setup.h"
+//#include "acme/inline/_static_setup.h"
 
 
 

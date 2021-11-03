@@ -15,7 +15,7 @@ namespace apex
 
 
 struct CLASS_DECL_APEX apex_main_struct :
-   virtual public acme_main_data
+   virtual public ::main
 {
 
 

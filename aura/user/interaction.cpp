@@ -3635,10 +3635,10 @@ return "";
 
       string strType(__type_name(this));
 
-      if (strType.contains_ci("veriwell_keyboard") && strType.contains_ci("main_frame"))
+      if (strType.contains_ci("app_veriwell_keyboard") && strType.contains_ci("main_frame"))
       {
 
-         // output_debug_string("veriwell_keyboard::main_frame");
+         // output_debug_string("app_veriwell_keyboard::main_frame");
 
       }
       else if (strType.contains_ci("plain_edit"))
@@ -10147,10 +10147,10 @@ void interaction::sketch_to_design(::draw2d::graphics_pointer& pgraphics, bool &
 
    string strType = __type_name(this);
 
-   if (strType.contains("veriwell_keyboard") && strType.contains("main_frame"))
+   if (strType.contains("app_veriwell_keyboard") && strType.contains("main_frame"))
    {
 
-      //output_debug_string("veriwell_keyboard::main_frame");
+      //output_debug_string("app_veriwell_keyboard::main_frame");
 
    }
    //      else if (strType.contains("main_frame"))

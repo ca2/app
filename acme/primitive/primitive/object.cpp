@@ -1980,10 +1980,10 @@ void object::task_erase(::task* ptask)
       if (is_finishing())
       {
 
-         if (strThreadThis == "veriwell_keyboard::application")
+         if (strThreadThis == "app_veriwell_keyboard::application")
          {
 
-            output_debug_string("veriwell_keyboard::application");
+            output_debug_string("app_veriwell_keyboard::application");
 
          }
 

@@ -165,7 +165,7 @@ namespace linux
 
       auto pacmedir = psystem->m_pacmedir;
 
-      path = pacmedir->localconfig() / "monitor-0/desk/2desk";
+      path = pacmedir->localconfig() / "monitor-0/app_core_desk/2desk";
 
       auto papplication = get_application();
 

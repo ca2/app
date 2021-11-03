@@ -71,7 +71,7 @@ namespace userex
 
 
 
-namespace flag
+namespace app_core_flag
 {
 
 

@@ -17,7 +17,7 @@ struct CLASS_DECL_ACME PLAIN_MAIN
 
    bool              m_bConsole = false;
 
-#ifdef WINDOWS_DESKTOP
+#ifdef WINDOWS
 
    hinstance         m_hinstanceThis = nullptr;
    hinstance         m_hinstancePrev = nullptr;

@@ -76,6 +76,7 @@
 
 #undef LAYER_NAMESPACE
 #define LAYER_NAMESPACE apex
+#define SYSTEM_NAMESPACE LAYER_NAMESPACE
 
 
 #define __spin_namespace apex // back bone / four-letter "spin*" namespace name

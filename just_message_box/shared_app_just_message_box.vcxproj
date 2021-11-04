@@ -236,7 +236,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp" />
-    <ClCompile Include="_.cpp" />
+    <ClCompile Include="_main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\..\archive\platform-windows\version.rc" />
@@ -276,20 +276,8 @@
     <ProjectReference Include="..\..\app\aura\aura.vcxproj">
       <Project>{e000ffaf-392f-4e32-bf51-fd7ed638991f}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\app\axis\axis.vcxproj">
-      <Project>{a2cbd4ed-ed0f-482b-9b16-f48f21c32835}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\app\base\base.vcxproj">
-      <Project>{a216abd4-26c4-4746-96b3-9d30ed28cf92}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\app\bred\bred.vcxproj">
-      <Project>{dfbf067f-aff9-4bd6-a5e1-72af984d1476}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\app\core\core.vcxproj">
-      <Project>{29c1eb5b-060e-4021-ae12-d1bcfb1b1359}</Project>
-    </ProjectReference>
-    <ProjectReference Include="simple_application.vcxproj">
-      <Project>{4eeb9763-3caf-4436-8654-a583351353e2}</Project>
+    <ProjectReference Include="just_app_message_box.vcxproj">
+      <Project>{5f24e5df-0984-45cf-bc93-c850814c0eeb}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

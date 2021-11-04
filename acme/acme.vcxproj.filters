@@ -2753,9 +2753,6 @@
     <ClInclude Include="primitive\primitive\_interlocked_count_impl.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="inline\main_arguments.h">
-      <Filter>Header Files\inline</Filter>
-    </ClInclude>
     <ClInclude Include="platform\set_app_id.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
@@ -2770,6 +2767,9 @@
     </ClInclude>
     <ClInclude Include="application.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\_main_hold.h">
+      <Filter>Header Files\inline</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

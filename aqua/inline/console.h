@@ -1,8 +1,9 @@
+#include "apex/inline/console.h"
 #include "console_common.h"
 #include "aqua/platform/layer.h"
 
 
-static ::aqua::layer g_layer;
+static ::aqua::layer g_aqualayer;
 
 
 //#ifdef LINUX
@@ -35,16 +36,16 @@ static ::aqua::layer g_layer;
 #if !defined(CUBE)
 
 
-#include "_new_impl.h"
-
-
-#if defined(WINDOWS)
-
-
-#include "acme/asset/new.cpp"
-
-
-#endif
+//#include "_new_impl.h"
+//
+//
+//#if defined(WINDOWS)
+//
+//
+//#include "acme/asset/new.cpp"
+//
+//
+//#endif
 
 
 #endif

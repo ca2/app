@@ -16,6 +16,8 @@
 
 #pragma once
 
+#undef LAYER_NAMESPACE
+#define LAYER_NAMESPACE core
 
 
 

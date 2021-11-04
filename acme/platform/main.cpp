@@ -55,6 +55,8 @@
 
    m_strAppId = main.m_strAppId;
 
+   m_pfnImplement = main.m_pfnImplement;
+
    return ::success;
 
 }

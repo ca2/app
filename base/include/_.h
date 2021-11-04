@@ -17,6 +17,11 @@
 #pragma once
 
 
+#undef LAYER_NAMESPACE
+#define LAYER_NAMESPACE base
+
+
+
 //#undef System
 //#undef Sess
 //#undef App

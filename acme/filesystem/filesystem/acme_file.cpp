@@ -26,6 +26,27 @@ acme_file::~acme_file()
 }
 
 
+::e_status acme_file::ensure_exists(const char* path)
+{
+
+   throw interface_only_exception();
+
+   return error_interface_only;
+
+}
+
+
+::e_status acme_file::touch(const char* path)
+{
+
+   throw interface_only_exception();
+
+   return error_interface_only;
+
+
+}
+
+
 ::file::path acme_file::executable()
 {
 

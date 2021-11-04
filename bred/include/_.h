@@ -19,6 +19,10 @@
 #pragma once
 
 
+#undef LAYER_NAMESPACE
+#define LAYER_NAMESPACE bred
+
+
 #define __spin_namespace bred // back bone / four-letter "spin*" namespace name
 
 

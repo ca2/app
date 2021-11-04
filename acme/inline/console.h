@@ -1,16 +1,23 @@
+#include "acme/_start.h"
+#include "acme/_.h"
 #include "console_common.h"
 #include "acme/operating_system.h"
 #ifdef WINDOWS
 #include "acme/primitive/collection/strdup_array.h"
 #endif
+#include "acme/_defer.h"
+
+#include "acme/platform/static_setup.h"
+#include "_main_hold.h"
+
 
 //void stage();
 class ::system * acme_system_init();
 void acme_system_term();
 
-#include "acme/platform/layer.h"
+//#include "acme/platform/layer.h"
 
-::acme::layer g_layer;
+//::acme::layer g_layer;
 
 #ifdef _UWP
 #include "acme/node/operating_system/console.inl"
@@ -26,20 +33,20 @@ int main(int argc, platform_char ** argv, platform_char ** envp)
 #endif
 {
 
-   main_arguments mainarguments;
+   ::main main;
 
-   mainarguments.m_argc = argc;
+   main.m_argc = argc;
 #ifdef WINDOWS
-   mainarguments.m_wargv = argv;
-   mainarguments.m_wenvp = envp;
+   main.m_wargv = argv;
+   main.m_wenvp = envp;
 #else
-   mainarguments.m_argv = argv;
-   mainarguments.m_envp = envp;
+   main.m_argv = argv;
+   main.m_envp = envp;
 #endif
 
-   mainarguments.m_pfnImplement = &::implement;
+   main.m_pfnImplement = &::implement;
 
-   auto estatus = __main(mainarguments);
+   auto estatus = __main(main);
 
    int iStatus = estatus.error_status();
 

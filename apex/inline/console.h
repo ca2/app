@@ -1,10 +1,11 @@
+#include "acme/inline/console.h"
 #include "console_common.h"
 
 
 #include "apex/platform/layer.h"
 
 
-static ::apex::layer g_layer;
+static ::apex::layer g_apexlayer;
 
 
 #ifdef LINUX
@@ -37,16 +38,16 @@ static ::apex::layer g_layer;
 #if !defined(CUBE)
 
 
-#include "_new_impl.h"
+//#include "_new_impl.h"
 
 
-#if defined(WINDOWS)
-
-
-#include "apex/library.h"
-
-
-#endif
+//#if defined(WINDOWS)
+//
+//
+//#include "apex/library.h"
+//
+//
+//#endif
 
 
 #endif

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 //
 //sync_task::sync_task(::matter* pobjectRunnable) :

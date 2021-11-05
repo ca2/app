@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
 invalid_index_exception::invalid_index_exception(const char * pszMessage):

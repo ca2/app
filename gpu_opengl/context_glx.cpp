@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "_.h"
 #include "context_glx.h"
 #include "platform-posix/aura_posix/_.h"

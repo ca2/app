@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "_android.h"
 #include "buffer.h"
 //#include "aura/node/posix/pipe.h"

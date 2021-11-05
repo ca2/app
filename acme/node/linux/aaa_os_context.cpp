@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/platform/app_core.h"
 #include "_linux.h"
 #include "acme/node/operating_system/linux/gnome_gnome.h"

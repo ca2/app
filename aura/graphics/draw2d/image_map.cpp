@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
 image_pointer & size_image::operator[](const concrete < ::size_i32 > & size)

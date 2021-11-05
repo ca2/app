@@ -1,4 +1,4 @@
-/*
+﻿/*
  *  Http put/get mini lib
  *  written by L. Demailly
  *  (c) 1998 Laurent Demailly - http://www.demailly.com/~dl/

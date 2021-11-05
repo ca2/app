@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include <memory.h>
 
 CLASS_DECL_ACME char * const * alloc_c_string_array(const string_array & stra)

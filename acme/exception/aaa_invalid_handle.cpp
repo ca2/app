@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
 invalid_handle_exception::invalid_handle_exception(const char * pszMessage) :

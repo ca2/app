@@ -1,4 +1,4 @@
-#include <shobjidl.h>
+﻿#include <shobjidl.h>
 
 #include "windows.h"
 //#include "windows_factory_exchange.h"

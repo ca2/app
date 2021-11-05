@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
  string i64toa_dup(i64 i, i32 iBase)

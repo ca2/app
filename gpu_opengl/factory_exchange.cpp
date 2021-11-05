@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
 extern "C" void gpu_opengl_factory_exchange(::factory_map * pfactorymap)

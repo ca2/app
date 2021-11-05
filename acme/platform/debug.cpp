@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/id.h"
 //#if !BROAD_PRECOMPILED_HEADER
 //#include "acme/user/_user.h"

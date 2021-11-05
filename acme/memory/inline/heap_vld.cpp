@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
 #define AXIS_MEMORY_MANAGEMENT true

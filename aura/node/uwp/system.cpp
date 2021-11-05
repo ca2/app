@@ -1,4 +1,4 @@
-// Created by CamiloSTTBS 2020-12-25 14:01 BRT <3ThomasBS_, Mummi and bilbo!!
+﻿// Created by CamiloSTTBS 2020-12-25 14:01 BRT <3ThomasBS_, Mummi and bilbo!!
 #include "framework.h"
 #include "aura/node/universal_windows/_uwp.h"
 #include "aura/os/windows_common/draw2d_direct2d_global.h"

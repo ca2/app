@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 //#include "apex/os/console.h"
 #include "console_window.h"
 #include <ncurses.h>

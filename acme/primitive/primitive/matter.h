@@ -127,9 +127,6 @@ public:
    virtual void on_set_finish();
 
 
-   virtual ::e_status set_library_name(const char* pszLibraryName);
-   // if this is an application/or nano application
-   virtual ::e_status set_application_id(const char* pszApplicationId);
 
 
    //virtual ::e_status do_task();

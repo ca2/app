@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
 //void point_i32::offset(i32 xOffset, i32 yOffset) noexcept

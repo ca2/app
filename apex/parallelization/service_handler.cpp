@@ -1,4 +1,4 @@
-// Created on 2021-03-17 by camilo 13:12 BRT <3ThomasBS_!!
+﻿// Created on 2021-03-17 by camilo 13:12 BRT <3ThomasBS_!!
 #include "framework.h"
 #include "service_handler.h"
 #include "service.h"

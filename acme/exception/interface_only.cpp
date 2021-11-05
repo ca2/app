@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
 interface_only_exception::interface_only_exception(const char * pszMessage, const ::e_status & estatus) :

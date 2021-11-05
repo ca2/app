@@ -1225,6 +1225,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="parallelization\_.cpp" />
     <ClCompile Include="platform\apex_main_data.cpp" />
     <ClCompile Include="platform\apex_main_struct.cpp" />
+    <ClCompile Include="platform\api.cpp" />
     <ClCompile Include="platform\application.cpp" />
     <ClCompile Include="platform\application_array.cpp" />
     <ClCompile Include="platform\application_container.cpp" />
@@ -1465,6 +1466,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="parallelization\_.h" />
     <ClInclude Include="parallelization\_impl.h" />
     <ClInclude Include="platform\apex_main_struct.h" />
+    <ClInclude Include="platform\api.h" />
     <ClInclude Include="platform\application.h" />
     <ClInclude Include="platform\application_array.h" />
     <ClInclude Include="platform\application_consumer.h" />

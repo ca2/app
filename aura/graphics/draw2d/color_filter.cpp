@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
 bool color_filter::get_matrix(color_matrix & colormatrix) const

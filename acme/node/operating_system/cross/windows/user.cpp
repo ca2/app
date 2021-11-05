@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #if defined(LINUX)
 #include "acme/node/operating_system/linux/_user.h"
 #elif defined(ANDROID)

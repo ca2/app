@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "apex/const/method.h"
 #include "apex/platform/launcher.h"
 #include "apex/platform/app_launcher.h"

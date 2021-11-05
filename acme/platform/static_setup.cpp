@@ -1,4 +1,4 @@
-//  Moved from Apex to Acme on 2021-03-20 18:39 <3ThomasBS_
+﻿//  Moved from Apex to Acme on 2021-03-20 18:39 <3ThomasBS_
 #include "framework.h"
 #include "static_setup.h"
 
@@ -204,7 +204,7 @@ static_setup* static_setup::get_last(::static_setup::enum_flag eflag, const char
 //}
 
 
-__pointer(::matter) static_setup::create_element()
+__pointer(::element) static_setup::create_element()
 {
 
    auto pobject = _create_element();
@@ -221,10 +221,10 @@ __pointer(::matter) static_setup::create_element()
 }
 
 
-::matter * static_setup::create_new_application()
+__pointer(::element) static_setup::create_application_as_element()
 {
 
-   auto papplication = new_application_as_matter();
+   auto papplication = _create_application_as_element();
 
    if (::is_set(papplication))
    {
@@ -238,10 +238,10 @@ __pointer(::matter) static_setup::create_element()
 }
 
 
-::acme::library* static_setup::create_new_library()
+__pointer(::acme::library) static_setup::create_library()
 {
 
-   auto plibrary = new_library();
+   auto plibrary = _create_library();
 
    if (::is_set(plibrary))
    {
@@ -256,7 +256,7 @@ __pointer(::matter) static_setup::create_element()
 
 
 
-::matter * static_setup::new_object()
+__pointer(::element) static_setup::_create_element()
 {
 
    return nullptr;
@@ -264,7 +264,7 @@ __pointer(::matter) static_setup::create_element()
 }
 
 
-::matter * static_setup::new_application_as_matter()
+__pointer(::element) static_setup::_create_application_as_element()
 {
 
    return nullptr;
@@ -272,7 +272,7 @@ __pointer(::matter) static_setup::create_element()
 }
 
 
-::acme::library* static_setup::new_library()
+__pointer(::acme::library) static_setup::_create_library()
 {
 
    return nullptr;

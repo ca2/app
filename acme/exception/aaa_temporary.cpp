@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
 temporary_exception::temporary_exception(const char * pszMessage):

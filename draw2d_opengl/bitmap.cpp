@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 void resizeBilinear(memory & m, int w2, int h2, int * pixels, int w, int h);
 

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 var_stream::~var_stream()
 {

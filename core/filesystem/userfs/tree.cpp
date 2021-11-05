@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "_data.h"
 #include "aura/update.h"
 #if !BROAD_PRECOMPILED_HEADER

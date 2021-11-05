@@ -68,12 +68,12 @@ public:
 
    virtual __pointer(::acme::library) create_library();
    virtual __pointer(::element) create_element();
-   virtual __pointer(::element) create_application_as_matter();
+   virtual __pointer(::element) create_application_as_element();
 
 
    virtual __pointer(::acme::library) _create_library();
    virtual __pointer(::element) _create_element();
-   virtual __pointer(::element) _create_application_as_matter();
+   virtual __pointer(::element) _create_application_as_element();
 
 
 };
@@ -147,7 +147,7 @@ class static_application_factory :
 public:
 
 
-   virtual __pointer(::matter) _create_application_as_matter() override
+   virtual __pointer(::element) _create_application_as_element() override
    {
 
       auto papplication = __new(APPLICATION);

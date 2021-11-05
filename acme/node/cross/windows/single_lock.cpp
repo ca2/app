@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
 single_lock::single_lock(synchronization_object * psync, bool bInitialLock)

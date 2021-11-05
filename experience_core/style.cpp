@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "base/user/simple/scroll_bar.h"
 #include "base/user/user/tab_pane.h"
 

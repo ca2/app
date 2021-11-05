@@ -1,4 +1,4 @@
-/*
+﻿/*
  * this is part of the libspopc library sources
  * copyright  2002 Benoit Rouits <brouits@free.fr>
  * released under the terms of GNU LGPL

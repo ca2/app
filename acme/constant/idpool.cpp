@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "idpool.h"
 //#include "acme/platform/static_start.h"
 //

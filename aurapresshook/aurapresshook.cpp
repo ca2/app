@@ -1,4 +1,4 @@
-// http://stackoverflow.com/questions/11451618/how-do-you-read-the-mouse-button-state-from-dev-input-mice
+﻿// http://stackoverflow.com/questions/11451618/how-do-you-read-the-mouse-button-state-from-dev-input-mice
 // http://stackoverflow.com/users/884434/justinb
 int main(int argc char ** argv)
 {

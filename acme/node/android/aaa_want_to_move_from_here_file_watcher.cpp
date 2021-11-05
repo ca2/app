@@ -1,4 +1,4 @@
-///**
+﻿///**
 //   Copyright (c) 2009 James Wynn (james@jameswynn.com)
 //
 //   Permission is hereby granted, free of charge, to any person obtaining a copy

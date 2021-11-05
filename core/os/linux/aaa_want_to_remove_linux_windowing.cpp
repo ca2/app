@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "linux_user_impl.h"
 #include <X11/Xatom.h>
 #include <sys/stat.h>

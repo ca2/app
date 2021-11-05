@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "core/html/html/_html.h"
 #include "core/html/impl/_impl.h"
 #if !BROAD_PRECOMPILED_HEADER

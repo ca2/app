@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
 //bool os_usleep::sleep(unsigned long usec)

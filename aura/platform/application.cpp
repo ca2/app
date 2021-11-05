@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "aura/id.h"
 #include "acme/platform/version.h"
 #include "apex/platform/app_core.h"

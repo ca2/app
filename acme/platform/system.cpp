@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/id.h"
 #include "node.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
@@ -1661,21 +1661,19 @@ __pointer(class ::system) platform_create_system(const char* pszAppId)
 
    }
 
-   auto pobject = pstaticsetup->new_object();
+   auto pelement = pstaticsetup->create_element();
 
-   if (!pobject)
+   if (!pelement)
    {
 
       return nullptr;
 
    }
 
-   auto psystem = dynamic_cast<class ::system*>(pobject);
+   __pointer(class ::system) psystem = pelement;
 
    if (!psystem)
    {
-
-      delete pobject;
 
       return nullptr;
 
@@ -1683,7 +1681,7 @@ __pointer(class ::system) platform_create_system(const char* pszAppId)
 
    psystem->m_strAppId = strAppId;
 
-   return ::move_transfer(psystem);
+   return ::move(psystem);
 
 }
 

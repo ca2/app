@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "aura/operating_system.h"
 #include "aura/node/_node.h"
 #include <VersionHelpers.h>

@@ -83,7 +83,6 @@
     <ClInclude Include="node\windows\_windows.h" />
     <ClInclude Include="os\_.h" />
     <ClInclude Include="platform\application.h" />
-    <ClInclude Include="platform\layer.h" />
     <ClInclude Include="platform\session.h" />
     <ClInclude Include="platform\system.h" />
     <ClInclude Include="platform\_impl.h" />
@@ -146,7 +145,6 @@
     <ClCompile Include="node\windows\system.cpp" />
     <ClCompile Include="os\windows\audio.cpp" />
     <ClCompile Include="platform\application.cpp" />
-    <ClCompile Include="platform\layer.cpp" />
     <ClCompile Include="platform\session.cpp" />
     <ClCompile Include="platform\system.cpp" />
     <ClCompile Include="user\controller.cpp" />

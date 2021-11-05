@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Nt time functions.
  *
  * RtlTimeToTimeFields, RtlTimeFieldsToTime and defines are taken from ReactOS and

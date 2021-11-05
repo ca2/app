@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 stringtow::stringtow(wstring & str, i32 iAllocCount)
 {

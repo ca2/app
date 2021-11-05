@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
 cairo_keep::cairo_keep(cairo_t * pgraphics, bool bSave)

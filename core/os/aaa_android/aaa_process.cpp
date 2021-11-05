@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
 void get_os_priority(i32 * piPolicy, sched_param * pparam, i32 nCa2Priority);

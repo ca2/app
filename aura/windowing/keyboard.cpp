@@ -1,4 +1,4 @@
-// created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
+﻿// created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
 // recreated by Camilo 2021-01-28 22:20
 // xkeyboard.cpp
 // Implementation of a class to get keyboard on_layout information and machine layouts

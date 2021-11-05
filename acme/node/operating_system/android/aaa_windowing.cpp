@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/node/operating_system/android/windowing.h"
 #include "acme/platform/app_core.h"
 

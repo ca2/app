@@ -1,4 +1,4 @@
-//
+﻿//
 //  visual_apple_image_gif.cpp
 //  acme
 //

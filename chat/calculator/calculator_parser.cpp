@@ -1,4 +1,4 @@
-/* (C) Copyright 2008 Nick Mudge <mudgen@gmail.com>
+﻿/* (C) Copyright 2008 Nick Mudge <mudgen@gmail.com>
  * This code can be freely copied and modified.
  */
 #include "framework.h"

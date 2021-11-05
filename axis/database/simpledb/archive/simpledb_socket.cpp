@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "simpledb_socket.h"
 #include "simpledb_socket_thread.h"
 

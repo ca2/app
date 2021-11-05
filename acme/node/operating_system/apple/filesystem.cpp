@@ -1,4 +1,4 @@
-//
+﻿//
 //  ns_exe_path.cpp
 //  acme
 //

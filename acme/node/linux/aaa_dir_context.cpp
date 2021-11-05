@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 //#include "acme/xml/_.h"
 #include "acme/constant/id.h"
 #include "_linux.h"

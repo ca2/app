@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 //#include "android.h"
 //#include "android1.h"
 

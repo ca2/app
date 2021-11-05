@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
 CLASS_DECL_AURA void black_body(float * r, float * g, float * b, ::u32 dwTemp);

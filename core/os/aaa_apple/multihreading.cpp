@@ -1,4 +1,4 @@
-// Internet, 21 de Julho de 2017
+﻿// Internet, 21 de Julho de 2017
 // 01:00:30 (friday dawn)
 // bilbo (sleeping) and Mummi (Discovery ID)!!
 // (after Pizza slice and Lamen...)

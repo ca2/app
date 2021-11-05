@@ -65,13 +65,15 @@ public:
    static static_setup* get_first(::static_setup::enum_flag eflag, const char* pszName = nullptr);
    static PFN_factory_exchange get_factory_exchange(const char* pszName = nullptr);
 
-   virtual ::matter * create_new_object();
-   virtual ::matter* create_new_application();
-   virtual ::acme::library* create_new_library();
 
-   virtual ::matter* new_object();
-   virtual ::matter* new_application_as_matter();
-   virtual ::acme::library* new_library();
+   virtual __pointer(::acme::library) create_library();
+   virtual __pointer(::element) create_element();
+   virtual __pointer(::element) create_application_as_element();
+
+
+   virtual __pointer(::acme::library) _create_library();
+   virtual __pointer(::element) _create_element();
+   virtual __pointer(::element) _create_application_as_element();
 
 
 };
@@ -84,7 +86,7 @@ class static_library_factory :
 public:
 
 
-   virtual ::acme::library* new_library() override { return new LIBRARY; }
+   __pointer(::acme::library) _create_library() override { return __new(LIBRARY); }
 
 
    static_library_factory(const char * pszName = "") :
@@ -105,7 +107,7 @@ class static_object_factory :
 public:
 
 
-   virtual ::matter * new_object() override { return new OBJECT; }
+   __pointer(::element) _create_element() override { return __new(OBJECT); }
 
 
    static_object_factory(::static_setup::enum_flag eflag, const char* pszName = "") :
@@ -145,12 +147,10 @@ class static_application_factory :
 public:
 
 
-   virtual ::matter* new_application_as_matter() override
+   virtual __pointer(::element) _create_application_as_element() override
    {
-      auto papplication = new APPLICATION;
-#ifdef NO_IMAGING
-      papplication->m_bImaging = false;
-#endif
+
+      auto papplication = __new(APPLICATION);
 
       return papplication;
 

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "core/user/rich_text/_rich_text.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"

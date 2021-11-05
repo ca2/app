@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
 parsing_exception::parsing_exception(const char * pszMessage) :

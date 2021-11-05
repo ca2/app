@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "core/networking/ftp/_.h"
 #include "core/filesystem/fs/_fs.h"
 #include "ftpnet.h"

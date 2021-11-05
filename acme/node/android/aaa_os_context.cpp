@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "_android.h"
 #include "acme/platform/static_start.h"
 #include "acme/xml/_.h"

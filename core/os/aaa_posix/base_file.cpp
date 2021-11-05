@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "aura/os/_c.h"
 #include "aura/os/_.h"
 #ifdef WINDOWS

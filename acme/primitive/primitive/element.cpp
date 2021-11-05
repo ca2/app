@@ -1,4 +1,4 @@
-// Created by camilo on 2021-08-01 23:42 Thomas Month!! <3ThomasBS__!!
+﻿// Created by camilo on 2021-08-01 23:42 Thomas Month!! <3ThomasBS__!!
 #include "framework.h"
 
 
@@ -171,6 +171,30 @@ void element::operator()(const ::payload & payload)
 {
 
    return ::success;
+
+}
+
+
+::e_status element::set_generic_object_name(const char* pszName)
+{
+
+   return ::success_none;
+
+}
+
+
+::e_status element::set_application_id(const char* pszApplicationId)
+{
+
+   return error_none;
+
+}
+
+
+::e_status element::set_library_name(const char* pszLibraryName)
+{
+
+   return error_none;
 
 }
 

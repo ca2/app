@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
 void ns_Sleep(unsigned int uiMillis);

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "static_setup.h"
 
 ::static_setup * static_setup::s_psetupList = nullptr;

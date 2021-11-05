@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "aura/graphics/graphics/_graphics.h"
 #include "opengl_buffer.h"
 

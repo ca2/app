@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 //#if !BROAD_PRECOMPILED_HEADER
 #if !BROAD_PRECOMPILED_HEADER
 #include "_graphics.h"

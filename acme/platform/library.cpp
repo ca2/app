@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/platform/static_setup.h"
 
 
@@ -603,23 +603,14 @@ namespace acme
          if (psetup)
          {
 
-            auto papp = psetup->create_new_application();
+            auto pelementApplication = psetup->create_application_as_element();
 
-//            if (papp)
-//            {
-//
-//               auto estatus = papp->initialize(pobject);
-//
-//               if (!estatus)
-//               {
-//
-//                  return estatus;
-//
-//               }
-//
-//               return papp;
-//
-//            }
+            if (pelementApplication)
+            {
+
+               return pelementApplication;
+
+            }
 
          }
 
@@ -665,13 +656,6 @@ namespace acme
             {
 
                auto papp = (*p)();
-
-//               if (papp)
-//               {
-//
-//                  papp->initialize(pobject);
-//
-//               }
 
                return papp;
 

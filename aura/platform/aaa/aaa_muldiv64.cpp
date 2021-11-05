@@ -1,4 +1,4 @@
-/*
+﻿/*
  *   Source file:      muldiv64.cpp
  *   Author:            Richard van der Wal
  *   Contact:         R.vdWal@xs4all.nl

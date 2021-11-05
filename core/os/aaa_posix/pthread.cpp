@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "aura/os/ansios/_ansios.h"
 #include "aura/platform/message_queue.h"
 #ifdef LINUX

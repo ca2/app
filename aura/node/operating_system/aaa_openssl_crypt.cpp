@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 #include <openssl/ssl.h>
 #include <openssl/md5.h>

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/id.h"
 #include <jni.h>
 #include "acme/node/operating_system/android/_os_object.h"

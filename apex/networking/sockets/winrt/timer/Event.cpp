@@ -1,4 +1,4 @@
-/** \file Event.cpp
+﻿/** \file Event.cpp
  **   \date  2005-12-07
  **   \author grymse@alhem.net
 **/

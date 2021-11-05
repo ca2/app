@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 #define BYTE_ALIGN (8)
 #define INT_ALIGN (BYTE_ALIGN * sizeof(i32))

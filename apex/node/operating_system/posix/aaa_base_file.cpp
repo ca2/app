@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "apex/os/_c.h"
 #include "apex/os/_.h"
 #ifdef WINDOWS

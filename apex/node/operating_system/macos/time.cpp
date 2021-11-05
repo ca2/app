@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 //
 //CLASS_DECL_APEX bool sleep(unsigned int dwMillis)

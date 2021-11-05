@@ -1,4 +1,4 @@
-#include "framework.h" 
+﻿#include "framework.h" 
 #include "aura/user/menu/user_menu_central.h"
 #include "core/user/userex/userex.h"
 // pgraphics->get_text_extent("->:<-"); // oh no!! omg!! The size_i32 is the size_i32 of the alien!!

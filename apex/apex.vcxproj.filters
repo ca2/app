@@ -123,9 +123,6 @@
     <Filter Include="Header Files\inline\implement">
       <UniqueIdentifier>{78f8d54c-d7ac-45af-8d44-3331413b29d7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\parallelization">
-      <UniqueIdentifier>{f5fb0b8d-82f2-4a87-b245-1747ef8e70a3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\progress">
       <UniqueIdentifier>{f1b2880e-2015-4295-84bc-e2996bcfa2d5}</UniqueIdentifier>
     </Filter>
@@ -230,6 +227,9 @@
     </Filter>
     <Filter Include="Header Files\subject">
       <UniqueIdentifier>{9de9273b-1c23-4a67-a244-075fc3af4d01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\platform\parallelization">
+      <UniqueIdentifier>{f5fb0b8d-82f2-4a87-b245-1747ef8e70a3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1274,6 +1274,9 @@
     <ClInclude Include="platform\thread_set.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
+    <ClInclude Include="platform\api.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="filesystem\file\set.cpp">
@@ -1544,19 +1547,19 @@
       <Filter>Source Files\crypto\openssl</Filter>
     </ClCompile>
     <ClCompile Include="parallelization\_.cpp">
-      <Filter>Source Files\parallelization</Filter>
+      <Filter>Source Files\platform\parallelization</Filter>
     </ClCompile>
     <ClCompile Include="parallelization\handler_manager.cpp">
-      <Filter>Source Files\parallelization</Filter>
+      <Filter>Source Files\platform\parallelization</Filter>
     </ClCompile>
     <ClCompile Include="parallelization\thread.cpp">
-      <Filter>Source Files\parallelization</Filter>
+      <Filter>Source Files\platform\parallelization</Filter>
     </ClCompile>
     <ClCompile Include="parallelization\thread_os.cpp">
-      <Filter>Source Files\parallelization</Filter>
+      <Filter>Source Files\platform\parallelization</Filter>
     </ClCompile>
     <ClCompile Include="parallelization\threading.cpp">
-      <Filter>Source Files\parallelization</Filter>
+      <Filter>Source Files\platform\parallelization</Filter>
     </ClCompile>
     <ClCompile Include="platform\node.cpp">
       <Filter>Source Files\platform</Filter>
@@ -1571,10 +1574,10 @@
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="parallelization\service.cpp">
-      <Filter>Source Files\parallelization</Filter>
+      <Filter>Source Files\platform\parallelization</Filter>
     </ClCompile>
     <ClCompile Include="parallelization\service_handler.cpp">
-      <Filter>Source Files\parallelization</Filter>
+      <Filter>Source Files\platform\parallelization</Filter>
     </ClCompile>
     <ClCompile Include="platform\launcher.cpp">
       <Filter>Source Files\platform</Filter>
@@ -1878,6 +1881,9 @@
     </ClCompile>
     <ClCompile Include="message\dispatcher.cpp">
       <Filter>Source Files\message</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\api.cpp">
+      <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

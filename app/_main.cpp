@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #define APPLICATION app_app
 #define __APP_ID "app/app"
 #if defined(WINDOWS_DESKTOP) && defined(CUBE)

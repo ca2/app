@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #ifdef LINUX
 #include <unistd.h>
 #endif

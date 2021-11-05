@@ -1,4 +1,4 @@
-// Created on 2021-03-17 by camilo 13:12 BRT <3ThomasBS_!!
+﻿// Created on 2021-03-17 by camilo 13:12 BRT <3ThomasBS_!!
 #include "framework.h"
 #include "service_handler.h"
 #include "service.h"
@@ -36,7 +36,7 @@ service* service_handler::get_service()
 
       __pointer(::application) papplication = get_application();
 
-      auto pservice = papplication->new_service();
+      auto pservice = papplication->create_service();
 
       if (!pservice)
       {

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
 #define STR_BOM "\xEF\xBB\xBF"

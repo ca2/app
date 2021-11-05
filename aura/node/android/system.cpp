@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 //#include "aura/platform/app_core.h"
 //#include "windowing.h"
 CLASS_DECL_AURA::e_status android_os_message_box(const ::string & pText, const ::string & lpCaption, const ::e_message_box & emessagebox, const ::future & process);

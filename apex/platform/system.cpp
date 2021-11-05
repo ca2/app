@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "apex/operating_system.h"
 #include "apex/platform/machine_event_data.h"
 #include "apex/platform/machine_event.h"
@@ -5806,30 +5806,30 @@ string get_bundle_app_library_name();
 
 
 
-::apex::session * platform_create_session()
-{
-
-   auto pstaticsetup = ::static_setup::get_first(::static_setup::flag_system, "");
-
-   if (!pstaticsetup)
-   {
-
-      return nullptr;
-
-   }
-
-   auto pobject = move_transfer(pstaticsetup->new_object());
-
-   if (!pobject)
-   {
-
-      return nullptr;
-
-   }
-
-   return pobject.cast < ::apex::session >();
-
-}
+//__pointer()::apex::session* platform_create_session()
+//{
+//
+//   auto pstaticsetup = ::static_setup::get_first(::static_setup::flag_system, "");
+//
+//   if (!pstaticsetup)
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   auto pelement = pstaticsetup->create_element();
+//
+//   if (!pelement)
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   return pelement();
+//
+//}
 
 
 //

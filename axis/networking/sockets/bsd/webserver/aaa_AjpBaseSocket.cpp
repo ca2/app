@@ -1,4 +1,4 @@
-/**
+﻿/**
  **   \file AjpBaseSocket.cpp
  **   \date  2007-10-05
  **   \author grymse@alhem.net

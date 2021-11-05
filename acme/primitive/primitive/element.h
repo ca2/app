@@ -48,7 +48,6 @@ public:
    virtual void delete_this() { delete this; };
 
 
-   
    // <3ThomasBorregaardSørensen__!! likes handler concept...
    //void route(::signal * psignal) override;
    //void signal(::signal * psignal) override;
@@ -70,6 +69,10 @@ public:
    virtual ::e_status step();
    virtual ::payload realize();
 
+   virtual ::e_status set_generic_object_name(const char* pszName);
+   virtual ::e_status set_library_name(const char* pszLibraryName);
+   // if this is an application/or nano application
+   virtual ::e_status set_application_id(const char* pszApplicationId);
 
    virtual ::e_status wait();
    virtual ::e_status wait(const ::duration & duration);

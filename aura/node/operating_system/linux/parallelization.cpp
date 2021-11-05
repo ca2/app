@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "_linux.h"
 //#include "gnome_gnome.h"
 

@@ -1,4 +1,4 @@
-/**
+﻿/**
  *   PROJECT - HTML Reader Class Library
  *
  *   LiteHTMLEntityResolver.cpp

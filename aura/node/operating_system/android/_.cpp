@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
 CLASS_DECL_AURA bool _istlead(i32 ch)

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+﻿#include "StdAfx.h"
 
 void * DECL_C _malloc_debug(size_t _Size, int _BlockType, const ::string & _Filename, int _LineNumber)
 {

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "apex/operating_system.h"
 #include "acme/id.h"
 #include "apex/platform/app_core.h"

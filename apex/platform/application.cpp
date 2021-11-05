@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "apex/message/application.h"
 #include "apex/id.h"
 #include "acme/platform/version.h"
@@ -2768,10 +2768,10 @@ return ::thread::run();
 //}
 
 
-service * application::new_service()
+__pointer(::service) application::create_service()
 {
 
-return nullptr;
+   return nullptr;
 
 }
 

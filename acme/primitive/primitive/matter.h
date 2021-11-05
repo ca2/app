@@ -127,9 +127,6 @@ public:
    virtual void on_set_finish();
 
 
-   virtual ::e_status set_library_name(const char* pszLibraryName);
-   // if this is an application/or nano application
-   virtual ::e_status set_application_id(const char* pszApplicationId);
 
 
    //virtual ::e_status do_task();
@@ -152,7 +149,7 @@ public:
 //   virtual ::e_status release_reference(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 
-   virtual ::e_status set_generic_object_name(const char* pszName);
+   //virtual ::e_status set_generic_object_name(const char* pszName);
 
 
 

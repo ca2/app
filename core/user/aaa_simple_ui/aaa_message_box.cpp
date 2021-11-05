@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "core/user/simple_ui/_simple_ui.h"
 
 void maximum_line_length(string_array & stra, int iLen)

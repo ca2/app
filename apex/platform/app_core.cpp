@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "apex/operating_system.h"
 #include "app_core.h"
 #include "acme/platform/static_setup.h"
@@ -1738,9 +1738,9 @@ __transport(::application) app_core::new_application(const char* pszAppId)
    if (psetup)
    {
 
-      auto pmatterApp = psetup->create_new_application();
+      auto pelementApp = psetup->create_application_as_element();
 
-      __pointer(::application) papexApplication = pmatterApp;
+      __pointer(::application) papexApplication = pelementApp;
 
       papp.reset(papexApplication OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
 

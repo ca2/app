@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "_linux.h"
 #include "apex/platform/app_core.h"
 

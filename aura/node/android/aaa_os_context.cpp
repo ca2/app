@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "_android.h"
 #include "aura/platform/static_start.h"
 #include "aqua/xml.h"

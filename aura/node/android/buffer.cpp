@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "_.h"
 #include "buffer.h"
 #include "aura/os/android/window_android.h"

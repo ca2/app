@@ -1,4 +1,4 @@
-// sprintf.cpp
+﻿// sprintf.cpp
 
 // based on:
 // LIBCTINY - Matt Pietrek 2001

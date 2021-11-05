@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "_os_impl.h"
 //#include "acme/user/interaction_thread.h"
 //#include "acme/user/interaction_prodevian.h"

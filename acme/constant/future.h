@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 enum enum_process : ::i32

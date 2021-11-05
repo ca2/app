@@ -1,4 +1,4 @@
-// -*- C++ -*-
+﻿// -*- C++ -*-
 // $Id: io_decorators.h,v 1.5 2002/07/02 22:10:51 t1mpy Exp $
 
 // id3lib: a software library for creating and manipulating id3v1/v2 tags

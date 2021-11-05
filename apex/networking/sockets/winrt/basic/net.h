@@ -1,4 +1,4 @@
-// http://www.alhem.net/
+﻿// http://www.alhem.net/
 /** from C++ Sockets Library
 **/
 /*

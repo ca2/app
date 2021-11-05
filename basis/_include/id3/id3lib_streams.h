@@ -1,4 +1,4 @@
-// id3lib: a C++ library for creating and manipulating id3v1/v2 tags
+﻿// id3lib: a C++ library for creating and manipulating id3v1/v2 tags
 // Copyright 2002 Thijmen Klok
 
 // This library is free software; you can redistribute it and/or modify it

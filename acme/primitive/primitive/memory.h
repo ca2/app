@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 inline strsize safe_strlen(void * p, strsize n)

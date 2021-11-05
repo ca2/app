@@ -1,4 +1,4 @@
-#include "console_common.h"
+﻿#include "console_common.h"
 
 
 #ifdef LINUX

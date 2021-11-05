@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 inline bool get_bounding_rectangle(RECTANGLE_I32 * prectangleBounding, const ::arc* parc)

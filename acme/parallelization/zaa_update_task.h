@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 typedef ::i64 UPDATE_SERIAL();

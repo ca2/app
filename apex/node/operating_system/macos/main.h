@@ -1,4 +1,4 @@
-//
+﻿//
 //  macos_main.h
 //  apex
 //

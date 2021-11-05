@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 //CLASS_DECL_APEX string url_encode(const char * psz);

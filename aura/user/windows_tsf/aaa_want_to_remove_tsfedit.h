@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <windowsx.h>
 #include <msctf.h>

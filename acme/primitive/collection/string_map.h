@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 template < class VALUE, class ARG_VALUE = typename argument_of < VALUE >::type, typename PAIR = pair < string, VALUE, typename argument_of < string >::type, ARG_VALUE > >

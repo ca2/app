@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 string get_error_message(::u32 dwError);

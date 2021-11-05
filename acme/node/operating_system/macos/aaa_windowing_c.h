@@ -1,4 +1,4 @@
-//
+﻿//
 //  macos_windowing_c.h
 //  base
 //

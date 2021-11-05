@@ -1,4 +1,4 @@
-/* crypt.h -- axis code for crypt/uncrypt ZIPfile
+﻿/* crypt.h -- axis code for crypt/uncrypt ZIPfile
 
 
    Version 1.00, September 10th, 2003

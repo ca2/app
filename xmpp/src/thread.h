@@ -1,4 +1,4 @@
-/* thread.h
+﻿/* thread.h
 ** strophe XMPP client library -- thread abstraction header
 **
 ** Copyright (C) 2005-2009 Collecta, Inc. 

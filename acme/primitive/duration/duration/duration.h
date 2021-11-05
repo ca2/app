@@ -1,4 +1,4 @@
-// Refactoring by camilo on 2021-10-05 12:46 BRT <3ThomasBorregaardS�rensen!!
+﻿// Refactoring by camilo on 2021-10-05 12:46 BRT <3ThomasBorregaardS�rensen!!
 #pragma once
 
 

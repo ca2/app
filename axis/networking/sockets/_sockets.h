@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "axis/networking/sockets/bsd/smtp/smtp_socket.h"

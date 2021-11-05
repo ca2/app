@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #if WCHAR_T_SIZE == 16
 

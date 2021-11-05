@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #ifndef CROSS_WINDOWS_NT_FILE_H
 #define CROSS_WINDOWS_NT_FILE_H

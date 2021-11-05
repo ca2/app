@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 template < typename NATURAL, typename CHAR_TYPE >
 CHAR_TYPE * __natural_to_string_internal(NATURAL u, CHAR_TYPE * buf, int iBase, ::i32 & iIndex)

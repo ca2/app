@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 //
 //CLASS_DECL_APEX void defer_dock_application(int_bool bDock);

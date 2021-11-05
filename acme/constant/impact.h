@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 enum e_impact : ::i64

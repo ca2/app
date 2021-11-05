@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "platform/__/__bit.h"

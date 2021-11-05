@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #pragma pack(push, geometry2d_f64, 1)

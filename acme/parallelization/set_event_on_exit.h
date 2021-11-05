@@ -1,4 +1,4 @@
-//
+﻿//
 //  multithreading_set_event_on_exit.h
 //  acme
 //

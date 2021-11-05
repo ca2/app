@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECTANGLE_BASE_TYPE >

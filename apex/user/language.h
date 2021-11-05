@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #define BEGIN_PRIVATE_LANGUAGE_MAP

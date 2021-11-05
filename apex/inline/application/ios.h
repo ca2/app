@@ -1,4 +1,4 @@
-//#include "apex/platform/static_start.h"
+﻿//#include "apex/platform/static_start.h"
 //
 //extern ::apex::apex g_apex;
 

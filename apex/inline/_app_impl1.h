@@ -1,4 +1,4 @@
-#include "_app_common_impl.h"
+﻿#include "_app_common_impl.h"
 
 //#error "not two use it"
 //#ifdef CORE_LEVEL

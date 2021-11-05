@@ -1,4 +1,4 @@
-/* Alloc.h -- Memory allocation functions
+﻿/* Alloc.h -- Memory allocation functions
 2009-02-07 : Igor Pavlov : Public domain */
 // from 7-zip on 2010-12-19
 #pragma once

@@ -1,4 +1,4 @@
-// X11Exception.h
+﻿// X11Exception.h
 // C++ exception that wraps X11 errors.
 // Copyright (C) 2008 Jay Bromley <jbromley@gmail.com>
 //

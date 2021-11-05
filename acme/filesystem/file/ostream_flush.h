@@ -1,4 +1,4 @@
-// from ICoder.h from 7-zip on 2010-12-20
+﻿// from ICoder.h from 7-zip on 2010-12-20
 #pragma once
 
 

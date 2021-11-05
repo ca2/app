@@ -1,4 +1,4 @@
-/* common.h
+﻿/* common.h
 ** strophe XMPP client library -- internal common structures
 **
 ** Copyright (C) 2005-2009 Collecta, Inc. 

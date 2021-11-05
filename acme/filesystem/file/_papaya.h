@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >

@@ -1,4 +1,4 @@
-//
+﻿//
 //  account_license.h
 //  aura
 //

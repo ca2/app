@@ -1,4 +1,4 @@
-//
+﻿//
 //  macos_ns_exception.hpp
 //  apex
 //

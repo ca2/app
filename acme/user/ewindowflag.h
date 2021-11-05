@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 // Camilo Sasuke Tsumanuma 2020-04-15 // from ewindowflag

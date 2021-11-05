@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 inline int32_t is_leap_year(int32_t year)

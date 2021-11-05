@@ -1,4 +1,4 @@
-enum enum_element : ::i64
+﻿enum enum_element : ::i64
 {
 
    e_element_none,

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 typedef int_bool DEFER_INIT();

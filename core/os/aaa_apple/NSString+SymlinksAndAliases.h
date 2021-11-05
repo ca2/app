@@ -1,4 +1,4 @@
-//
+﻿//
 //  NSString+SymlinksAndAliases.h
 //  ResolvePath
 //

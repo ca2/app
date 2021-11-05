@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 CLASS_DECL_ACME i32 random_context_entropy(i32 iLevel= 3);

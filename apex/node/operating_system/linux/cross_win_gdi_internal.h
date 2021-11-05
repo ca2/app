@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 //struct CLASS_DECL_APEX gdi_object
 //{

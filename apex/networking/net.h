@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #if defined(LINUX) || defined(__APPLE__)
 

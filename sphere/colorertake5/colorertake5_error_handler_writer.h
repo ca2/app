@@ -1,4 +1,4 @@
-#ifndef _COLORER_ERRORHANDLERWRITER_H_
+﻿#ifndef _COLORER_ERRORHANDLERWRITER_H_
 #define _COLORER_ERRORHANDLERWRITER_H_
 
 /** writer implementation of ErrorHandler.

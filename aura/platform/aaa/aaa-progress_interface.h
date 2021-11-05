@@ -1,4 +1,4 @@
-// Interface/IProgress.h
+﻿// Interface/IProgress.h
 // from 7-zip
 #pragma once
 /*#define __IPROGRESS_H

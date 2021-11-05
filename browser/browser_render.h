@@ -1,4 +1,4 @@
-//
+﻿//
 //  browser_render.h
 //  app_core_browser
 //

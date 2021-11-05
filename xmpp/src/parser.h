@@ -1,4 +1,4 @@
-/* parser.h
+﻿/* parser.h
 ** strophe XMPP client library -- parser structures and functions
 **
 ** Copyright (C) 2005-2009 Collecta, Inc. 

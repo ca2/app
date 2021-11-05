@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 //inline ::file_transport matter::get_reader(const ::payload & payloadFile, const ::file::e_open & eopen)

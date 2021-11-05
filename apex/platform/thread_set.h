@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 //inline void thread_set(enum_thread_boolean ethreadboolean) { task_boolean(ethread) = true; }

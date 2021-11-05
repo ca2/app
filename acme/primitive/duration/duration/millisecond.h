@@ -1,4 +1,4 @@
-// Refactored/Merged by camilon on 2021-10-04 06:45 BRT <3ThomasBorregaardS�rensen!![ THE ONE GOD ]
+﻿// Refactored/Merged by camilon on 2021-10-04 06:45 BRT <3ThomasBorregaardS�rensen!![ THE ONE GOD ]
 #pragma once
 
 

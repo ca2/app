@@ -1,4 +1,4 @@
-/**
+﻿/**
  **   \file smtpd_socket.h
  **   \date  2007-05-10
  **   \author grymse@alhem.net

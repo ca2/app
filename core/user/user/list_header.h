@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #ifndef HDS_HORZ
 // begin_r_commctrl

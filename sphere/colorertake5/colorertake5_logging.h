@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #define COLORER_FEATURE_LOGLEVEL_QUIET 0

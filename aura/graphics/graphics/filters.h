@@ -1,4 +1,4 @@
-#ifndef _FILTERS_H_
+﻿#ifndef _FILTERS_H_
 #define _FILTERS_H_
 
 class CGenericFilter

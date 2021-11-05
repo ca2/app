@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 // ::stream is stream
 // ::stream is stream

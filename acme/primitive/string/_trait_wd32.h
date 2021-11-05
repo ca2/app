@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #define const_wd32char_trigger const wd32char *

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #define __EXCHANGE(xxx) stream.stream_exchange(__STRING(xxx), m_##xxx)

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * apih
  * 
  * This file is a part of NSIS.

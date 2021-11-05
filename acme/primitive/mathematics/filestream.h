@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 template < class t1, class t2, class t3, class t4 >

@@ -1,4 +1,4 @@
-//
+﻿//
 //  RoundWindowFrameView.h
 //  RoundWindow
 //

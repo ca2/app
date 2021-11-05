@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 template < class TYPE, class ARG_TYPE = const TYPE &, class LIST_TYPE = comparable_eq_list < TYPE, ARG_TYPE > >

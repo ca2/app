@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #define original_linux linux
 #define linux original_linux
 

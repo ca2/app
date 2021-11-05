@@ -1,4 +1,4 @@
-/* md5.h
+﻿/* md5.h
 ** interface to MD5 hash function
 **
 ** This code is in the Public Domain.

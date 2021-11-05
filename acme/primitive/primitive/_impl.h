@@ -2391,7 +2391,7 @@ inline __transport(TYPE) object::__create()
 
    }
 
-   auto ptypeNew = pfactory->call_new();
+   auto ptypeNew = pfactory->create_element();
 
    if (!ptypeNew)
    {
@@ -2460,7 +2460,7 @@ inline __transport(TYPE) object::__id_create(const ::id& id)
    
    }
    
-   auto ptypeNew = pfactory->call_new();
+   auto ptypeNew = pfactory->create_element();
    
    if (!ptypeNew)
    {
@@ -2539,16 +2539,16 @@ inline ::e_status object::__compose(__composite(BASE_TYPE)& pcomposite)
 
       }
 
-      auto ptypeNew = ::move(pfactory->call_new());
+      auto pelement = ::move(pfactory->create_element());
 
-      if (!ptypeNew)
+      if (!pelement)
       {
 
          return ::error_no_memory;
 
       }
 
-      pcomposite = ptypeNew;
+      pcomposite = pelement;
 
       if (!pcomposite)
       {
@@ -2598,16 +2598,16 @@ inline ::e_status object::__raw_compose(__composite(BASE_TYPE)& pusermessage)
 
       }
 
-      auto ptypeNew = pfactory->call_new();
+      auto pelement = pfactory->create_element();
 
-      if (!ptypeNew)
+      if (!pelement)
       {
 
          return ::error_no_memory;
 
       }
 
-      pusermessage = ptypeNew;
+      pusermessage = pelement;
 
       if (!pusermessage)
       {
@@ -2711,7 +2711,7 @@ inline ::e_status object::__id_compose(__composite(BASE_TYPE)& pusermessage, con
 
    }
 
-   auto ptypeNew = pfactory->call_new();
+   auto ptypeNew = pfactory->create_element();
 
    if (!ptypeNew)
    {
@@ -2881,7 +2881,7 @@ inline ::e_status object::__construct(__pointer(TYPE) & p)
 
    }
    
-   auto ptypeNew = pfactory->call_new();
+   auto ptypeNew = pfactory->create_element();
    
    if (!ptypeNew)
    {
@@ -2930,7 +2930,7 @@ inline ::e_status object::__id_construct(__pointer(TYPE)& p, const ::id& id)
 
    }
 
-   auto ptypeNew = pfactory->call_new();
+   auto ptypeNew = pfactory->create_element();
 
    if (!ptypeNew)
    {

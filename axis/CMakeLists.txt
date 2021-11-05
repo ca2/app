@@ -153,33 +153,33 @@ list(APPEND library_source
         inline/console.h
         inline/console_common.h
         inline/library.h
-        math/calculator/_.h
+        mathematics/calculator/_.h
         #math/calculator/_update.cpp
-        math/calculator/calculator.cpp
-        math/calculator/calculator.h
-        math/calculator/element.cpp
-        math/calculator/element.h
-        math/calculator/parser.cpp
-        math/calculator/parser.h
-        math/calculator/parser_exception.cpp
-        math/calculator/parser_exception.h
-        math/calculator/result.cpp
-        math/calculator/result.h
-        math/calculator/scanner.cpp
-        math/calculator/scanner.h
-        math/calculator/token.h
-        math/kissfft/_.h
-        math/kissfft/fft.cpp
-        math/kissfft/fft.h
-        math/kissfft/fft_guts.h
-        math/kissfft/fft_shared.cpp
-        math/kissfft/fftd.cpp
-        math/kissfft/fftd.h
-        math/kissfft/ifft.cpp
-        math/kissfft/ifft.h
-        math/kissfft/ifftd.cpp
-        math/kissfft/ifftd.h
-        math/_.h
+   mathematics/calculator/calculator.cpp
+   mathematics/calculator/calculator.h
+   mathematics/calculator/element.cpp
+   mathematics/calculator/element.h
+   mathematics/calculator/parser.cpp
+   mathematics/calculator/parser.h
+   mathematics/calculator/parser_exception.cpp
+   mathematics/calculator/parser_exception.h
+   mathematics/calculator/result.cpp
+   mathematics/calculator/result.h
+   mathematics/calculator/scanner.cpp
+   mathematics/calculator/scanner.h
+   mathematics/calculator/token.h
+   mathematics/kissfft/_.h
+   mathematics/kissfft/fft.cpp
+   mathematics/kissfft/fft.h
+   mathematics/kissfft/fft_guts.h
+   mathematics/kissfft/fft_shared.cpp
+   mathematics/kissfft/fftd.cpp
+   mathematics/kissfft/fftd.h
+   mathematics/kissfft/ifft.cpp
+   mathematics/kissfft/ifft.h
+   mathematics/kissfft/ifftd.cpp
+   mathematics/kissfft/ifftd.h
+   mathematics/_.h
         networking/netserver/_.h
         networking/netserver/socket.cpp
         networking/netserver/socket.h

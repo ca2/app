@@ -710,12 +710,12 @@ inline __pointer(::factory::factory_interface) & factory_map::get_factory()
 
 
 template < typename BASE_TYPE >
-inline __pointer(BASE_TYPE) factory_map::new_object()
+inline __pointer(BASE_TYPE) factory_map::create()
 {
 
    auto pfactoryinterface = get_factory < BASE_TYPE >();
 
-   return pfactoryinterface->call_new();
+   return pfactoryinterface->create_element();
 
 }
 

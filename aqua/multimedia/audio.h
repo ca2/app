@@ -17,18 +17,19 @@ namespace aqua
 
 
       audio();
-      virtual ~audio();
+      ~audio() override;
 
 
       virtual void play_audio(::file::file * pfile, bool bSynch = false);
 
 
-      virtual __pointer(::text_to_speech::speaker) create_tts_speaker();
+      virtual __pointer(::text_to_speech::speaker) create_text_to_speech_speaker(const ::string& strImplementation = nullptr);
+
 
       virtual void speak(const ::string & strText);
-      virtual void speak(const ::string & strLang, const ::string & strText, bool bSynch);
-      virtual void trans_speak(const ::string & strLang, const ::string & strText, bool bSynch);
-      virtual void google_speak(const ::string & strLang, const ::string & strText, bool bSynch);
+      virtual void speak(const ::string & strLang, const ::string & strText, bool bSynch, const ::string & strImplementation = nullptr);
+      //virtual void trans_speak(const ::string & strLang, const ::string & strText, bool bSynch);
+      //virtual void google_speak(const ::string & strLang, const ::string & strText, bool bSynch);
 
 
       virtual ::file_pointer get_rtp_file(const ::payload & payloadFile);

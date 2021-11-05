@@ -1372,7 +1372,7 @@ namespace base
 
          }
 
-         pstyle = plibrary->m_pfactorymap->new_object < ::user::style >();
+         pstyle = plibrary->m_pfactorymap->create < ::user::style >();
 
          if (!pstyle)
          {

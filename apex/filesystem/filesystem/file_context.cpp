@@ -367,7 +367,7 @@ file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPref
 
             }
 
-            strFormat.Format("%02d", iMax);
+            strFormat.format("%02d", iMax);
 
             str /= strFormat;
 
@@ -422,13 +422,13 @@ file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPref
                if (bTryDelete)
                {
 
-                  strFormat.Format("%d", iMax);
+                  strFormat.format("%d", iMax);
 
                }
                else
                {
 
-                  strFormat.Format("%02d", iMax);
+                  strFormat.format("%02d", iMax);
 
                }
 
@@ -1118,7 +1118,7 @@ bool file_context::resource_is_file_or_dir(const char* path)
       if (ofile.is_null())
       {
          string strError;
-         strError.Format("Failed to copy file \"%s\" to \"%s\" bFailIfExists=%d error=could not open output file",
+         strError.format("Failed to copy file \"%s\" to \"%s\" bFailIfExists=%d error=could not open output file",
                          varSource.get_file_path().c_str(), varNew.get_file_path().c_str(), bFailIfExists);
          throw ::exception(::error_io, strError);
       }
@@ -1135,7 +1135,7 @@ bool file_context::resource_is_file_or_dir(const char* path)
          if (!ifile)
          {
             string strError;
-            strError.Format("Failed to copy file \"%s\" to \"%s\" bFailIfExists=%d error=could not open input file",
+            strError.format("Failed to copy file \"%s\" to \"%s\" bFailIfExists=%d error=could not open input file",
                             varSource.get_file_path().c_str(), varNew.get_file_path().c_str(), bFailIfExists);
             __throw(::error_io, strError);
          }
@@ -1223,7 +1223,7 @@ bool file_context::resource_is_file_or_dir(const char* path)
          if (bOutputFail)
          {
             string strError;
-            strError.Format(
+            strError.format(
                "During copy, failed to close both input file \"%s\" and output file \"%s\" bFailIfExists=%d",
                varSource.get_file_path().c_str(), varTarget.get_file_path().c_str(), bFailIfExists);
             __throw(::error_io, strError);
@@ -1231,7 +1231,7 @@ bool file_context::resource_is_file_or_dir(const char* path)
          else
          {
             string strError;
-            strError.Format("During copy, failed to close input file \"%s\" bFailIfExists=%d",
+            strError.format("During copy, failed to close input file \"%s\" bFailIfExists=%d",
                             varSource.get_file_path().c_str(), bFailIfExists);
             __throw(::error_io, strError);
          }
@@ -1239,7 +1239,7 @@ bool file_context::resource_is_file_or_dir(const char* path)
       else if (bOutputFail)
       {
          string strError;
-         strError.Format("During copy, failed to close output file \"%s\" bFailIfExists=%d",
+         strError.format("During copy, failed to close output file \"%s\" bFailIfExists=%d",
                          varTarget.get_file_path().c_str(), bFailIfExists);
          __throw(::error_io, strError);
       }
@@ -1440,7 +1440,7 @@ bool file_context::resource_is_file_or_dir(const char* path)
       i32 i = 1;
       while (i <= 100)
       {
-         strNew.Format("%s-%s-%d", psz.c_str(), strCopy.c_str(), i);
+         strNew.format("%s-%s-%d", psz.c_str(), strCopy.c_str(), i);
          if (!exists(strNew))
          {
             copy(strNew, psz, false, extract_all);
@@ -1459,7 +1459,7 @@ bool file_context::resource_is_file_or_dir(const char* path)
       i32 i = 1;
       while (i <= 100)
       {
-         strNew.Format("%s-%s-%d%s", psz.c_str(), strCopy.c_str(), i, strExt.c_str());
+         strNew.format("%s-%s-%d%s", psz.c_str(), strCopy.c_str(), i, strExt.c_str());
          if (!exists(strNew))
          {
             copy(strNew, psz, false, extract_all);

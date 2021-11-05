@@ -1124,7 +1124,7 @@ namespace geo
 
             string strMinutes;
 
-            strMinutes.Format("%02d", (int)(60.0 * dMod));
+            strMinutes.format("%02d", (int)(60.0 * dMod));
 
             strUTCOffset += ":" + strMinutes;
 

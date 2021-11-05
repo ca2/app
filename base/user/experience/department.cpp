@@ -94,7 +94,7 @@ namespace experience
 
       //}
 
-      auto pexperience = plibrary->m_pfactorymap->new_object <::experience::experience>();
+      auto pexperience = plibrary->m_pfactorymap->create <::experience::experience>();
 
       if(pexperience == nullptr)
       {

@@ -264,11 +264,23 @@ namespace acme
    ::e_status node::implement()
    {
 
-      auto psystem = m_psystem;
+//      auto psystem = m_psystem;
+//
+//      auto estatus = psystem->main();
+//
+//      if (!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
+//
+//      return estatus;
 
-      auto estatus = psystem->main();
 
-      if (!estatus)
+      auto estatus = system_main();
+
+      if(!estatus)
       {
 
          return estatus;

@@ -26,8 +26,6 @@ int main(int argc, char * argv[], char * envp[])
 
    main.m_strAppId = __APP_ID;
 
-   main.m_nCmdShow = nCmdShow;
-
    main.m_bConsole = false;
 
    auto estatus = __main(main);
@@ -39,13 +37,13 @@ int main(int argc, char * argv[], char * envp[])
 }
 
 
-#ifdef CLASS_DECL_APEX
-
-
-#include "openssl/applink.c"
-
-
-#endif
+//#ifdef CLASS_DECL_APEX
+//
+//
+//#include "openssl/applink.c"
+//
+//
+//#endif
 
 
 

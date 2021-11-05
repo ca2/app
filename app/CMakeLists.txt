@@ -22,7 +22,7 @@ list(APPEND library_references
    )
 
 
-add_library(app_app ${library_source})
+add_library(app_app SHARED ${library_source})
 
 target_precompile_headers(app_app PRIVATE framework.h)
 
@@ -62,18 +62,29 @@ target_compile_definitions(app_app PRIVATE _APP_APP_LIBRARY)
 add_executable(_app_app _main.cpp)
 
 
+
+
+list(APPEND executable_references
+   acme
+   apex
+   aqua
+   aura
+   app_app
+   )
+
+
+
 if (MSVC)
 
     target_compile_options(_app_app PRIVATE "/MD$<$<CONFIG:Debug>:d>")
     target_link_options(_app_app PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
     target_link_options(_app_app PRIVATE "/SUBSYSTEM:WINDOWS")
-    target_link_libraries(_app_app PRIVATE ${app_core_hellomultiverse_references} app_core_hellomultiverse)
+    target_link_libraries(_app_app PRIVATE ${executable_references})
 
 elseif (LINUX)
 
     target_compile_options(_app_app PRIVATE -fpermissive)
-    #target_link_options(_app_app PRIVATE -Wl,-rpath=$ORIGIN)
-    target_link_libraries(_app_app PRIVATE ${app_core_hellomultiverse_references} app_core_hellomultiverse)
+    target_link_libraries(_app_app PRIVATE ${executable_references})
     target_link_options(_app_app PRIVATE -Wl,-z,defs)
 
 endif ()
@@ -86,8 +97,6 @@ add_dependencies(_app_app ${default_draw2d})
 target_include_directories(_app_app PRIVATE ${library_include_directories})
 
 target_link_directories(_app_app PRIVATE ${library_link_directories})
-
-target_link_libraries(_app_app PRIVATE acme apex aqua aura app_app)
 
 set_target_properties(_app_app PROPERTIES LINKER_LANGUAGE CXX)
 

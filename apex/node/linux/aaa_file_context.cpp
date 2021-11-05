@@ -96,7 +96,7 @@ namespace linux
    }
 
 
-   ::file::path file_context::dropbox_info_json()
+   ::file::path file_context::dropbox_info_network_payload()
    {
 
       ::file::path pathJson;
@@ -109,7 +109,7 @@ namespace linux
 
          auto pacmedir = psystem->m_pacmedir;
 
-pacmedir->home() / ".dropbox/info.json";
+pacmedir->home() / ".dropbox/info.network_payload";
 
       return pathJson;
 

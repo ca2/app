@@ -1,8 +1,0 @@
-; app_helloaxis.def
-
-LIBRARY  "m_app_core_helloaxis"
-; For Win32 DLLs, only EXPORTs really required.
-
-EXPORTS
-get_new_library
-

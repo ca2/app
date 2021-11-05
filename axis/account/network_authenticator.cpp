@@ -70,7 +70,7 @@ namespace account
 
       }
 
-      __throw(todo, "xml->json");
+      __throw(todo, "xml->network_payload");
 
       //xml::document doc;
 

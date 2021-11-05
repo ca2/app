@@ -143,7 +143,7 @@ public:
    virtual bool try_create_file(const ::file::path & path, bool bTryDelete);
 
 
-   virtual ::payload as_json(const ::payload & payloadFile);
+   virtual ::payload as_network_payload(const ::payload & payloadFile);
    virtual string as_string(const ::payload & payloadFile);
    virtual bool as_memory(const ::payload & payloadFile, memory_base & mem);
 
@@ -243,7 +243,7 @@ public:
 
    virtual bool transfer(::file::file * pfileOut, ::file::file * pfileIn);
 
-   virtual ::file::path dropbox_info_json();
+   virtual ::file::path dropbox_info_network_payload();
 
 
    virtual ::file::path onedrive_global_ini();
@@ -417,7 +417,7 @@ public:
 
    //virtual string nessie(const ::payload & payloadFile);
 
-   //virtual ::file::path dropbox_info_json();
+   //virtual ::file::path dropbox_info_network_payload();
 
    //virtual ::file::path onedrive_global_ini();
 

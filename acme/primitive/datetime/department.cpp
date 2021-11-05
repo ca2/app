@@ -194,10 +194,10 @@ namespace datetime
    }
 
 
-   i64 department::strtotime(const ::text::context * pcontext, const char * psz, i32 iPath, i32 & iPathCount, const ::time_shift & timeshift)
+   i64 department::strtotime(const ::text::context * pcontext, const string & str, i32 iPath, i32 & iPathCount, const ::time_shift & timeshift)
    {
 
-      if (::is_null(psz) || string(psz).trimmed().is_empty())
+      if (str.trimmed().is_empty())
       {
 
          return 0;
@@ -206,7 +206,7 @@ namespace datetime
 
       ::datetime::time time;
 
-      ::datetime::result val = parse_time(pcontext, psz, iPath, iPathCount, timeshift);
+      ::datetime::result val = parse_time(pcontext, str, iPath, iPathCount, timeshift);
 
       if (val.m_bSpan)
       {
@@ -226,10 +226,10 @@ namespace datetime
    }
 
 
-   i64 department::strtotime(const ::text::context * pcontext, const char * psz, time_t timeParam, i32 iPath, i32 & iPathCount, const ::time_shift& timeshift)
+   i64 department::strtotime(const ::text::context * pcontext, const string & str, time_t timeParam, i32 iPath, i32 & iPathCount, const ::time_shift& timeshift)
    {
 
-      if (::is_null(psz) || string(psz).trimmed().is_empty())
+      if (str.trimmed().is_empty())
       {
 
          return 0;
@@ -242,7 +242,7 @@ namespace datetime
 
       iPathCount = 1;
 
-      ::datetime::result val = ::datetime::result(time) + span_parse_time(pcontext, psz);
+      ::datetime::result val = ::datetime::result(time) + span_parse_time(pcontext, str);
 
       return val.get_time().get_time();
 
@@ -288,71 +288,117 @@ namespace datetime
    }
 
 
-   void department::international::parse_str(const char * psz, property_set & set)
+   void department::international::parse_str(const string & strSrc, property_set & set)
    {
-      string src(psz);
+      
+      string src(strSrc);
+
       src.trim();
+
       string str;
+
       if (src.get_length() >= 4)
       {
+
          str = src.Mid(0, 4);
+
          str.trim_left('0');
+
          set["year"] = str;
+
       }
       else
       {
+         
          set["year"] = 0;
+
       }
+      
       if (src.get_length() >= 7)
       {
+
          str = src.Mid(5, 2);
+
          str.trim_left('0');
+
          set["month"] = str;
+
       }
       else
       {
+         
          set["month"] = 0;
+
       }
+
       if (src.get_length() >= 10)
       {
+      
          str = src.Mid(8, 2);
+
          str.trim_left('0');
+
          set["day"] = str;
+
       }
       else
       {
+         
          set["day"] = 0;
+
       }
+
       if (src.get_length() >= 13)
       {
+      
          str = src.Mid(11, 2);
+         
          str.trim_left('0');
+         
          set["hour"] = str;
+
       }
       else
       {
+         
          set["hour"] = 0;
+
       }
+
       if (src.get_length() >= 16)
       {
+      
          str = src.Mid(14, 2);
+         
          str.trim_left('0');
+         
          set["minute"] = str;
+
       }
       else
       {
+         
          set["minute"] = 0;
+
       }
+
       if (src.get_length() >= 19)
       {
+        
          str = src.Mid(17, 2);
+
          str.trim_left('0');
+
          set["second"] = str;
+
       }
       else
       {
+         
          set["second"] = 0;
+
       }
+
    }
 
 
@@ -749,10 +795,10 @@ namespace datetime
    }
 
 
-   string department::strftime(const char * psz, const ::datetime::time & time, const time_shift & timeshift)
+   string department::strftime(const string & strFormatParam, const ::datetime::time & time, const time_shift & timeshift)
    {
 
-      string strFormat(psz);
+      string strFormat(strFormatParam);
 
       string str;
 
@@ -776,10 +822,10 @@ namespace datetime
    }
 
 
-   string department::strftime(const char * psz, const ::time_shift& timeshift)
+   string department::strftime(const string & str, const ::time_shift& timeshift)
    {
 
-      return strftime(psz, ::datetime::time::now(), timeshift);
+      return strftime(str, ::datetime::time::now(), timeshift);
 
    }
 
@@ -1199,7 +1245,7 @@ namespace datetime
 {
 
 
-   result department::span_parse_time(const ::text::context* pcontext, const char* pszSpanExpression, const ::time_shift & timeshift)
+   result department::span_parse_time(const ::text::context* pcontext, const string & strSpanExpression, const ::time_shift & timeshift)
    {
 
       static id idCalendarDay("calendar:day");
@@ -1214,7 +1260,7 @@ namespace datetime
 
       result time;
       time.m_bSpan = true;
-      string str(pszSpanExpression);
+      string str(strSpanExpression);
       str.trim();
       str += " ";
       property_set set;
@@ -1413,10 +1459,10 @@ namespace datetime
    }
 
 
-   result department::parse_time(const ::text::context* pcontext, const char* psz, i32& iPath, i32& iPathCount, const ::time_shift& timeshift)
+   result department::parse_time(const ::text::context* pcontext, const string & strParam, i32& iPath, i32& iPathCount, const ::time_shift& timeshift)
    {
       ::datetime::time time;
-      string str(psz);
+      string str(strParam);
       str.trim();
       str += " ";
       property_set set;

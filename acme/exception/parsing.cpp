@@ -72,7 +72,7 @@ CLASS_DECL_ACME bool throw_parsing_exception(const ::string & strMessage)
 
 
 
-json_parsing_exception::json_parsing_exception(const char * pszMessage) :
+network_payload_parsing_exception::network_payload_parsing_exception(const char * pszMessage) :
    parsing_exception(pszMessage)
 {
 
@@ -81,14 +81,14 @@ json_parsing_exception::json_parsing_exception(const char * pszMessage) :
 }
 
 
-json_parsing_exception::~json_parsing_exception()
+network_payload_parsing_exception::~network_payload_parsing_exception()
 {
 
 }
 
 
 
-CLASS_DECL_ACME bool throw_json_parsing_exception(const ::string & strMessage)
+CLASS_DECL_ACME bool throw_network_payload_parsing_exception(const ::string & strMessage)
 {
 
    if (should_avoid_parsing_exception())
@@ -98,7 +98,7 @@ CLASS_DECL_ACME bool throw_json_parsing_exception(const ::string & strMessage)
 
    }
 
-   __throw(error_json_parsing, strMessage);
+   __throw(error_network_payload_parsing, strMessage);
 
    return true;
 

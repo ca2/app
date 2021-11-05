@@ -141,7 +141,7 @@ public:
 
 
    template < typename TYPE >
-   void json_exchange(TYPE & t);
+   void network_payload_exchange(TYPE & t);
 
 
    template < typename TYPE >
@@ -195,9 +195,9 @@ public:
    virtual void write(const ::string & str) override;
    virtual void write(const property_set& set) override;
    template < typename TYPE >
-   void json_write(const TYPE & t);
+   void network_payload_write(const TYPE & t);
 
-   //virtual void json_write(const ::matter & matter);
+   //virtual void network_payload_write(const ::matter & matter);
 
 
    virtual void raw_print(const ::string & str);
@@ -230,7 +230,7 @@ public:
    virtual void read(::id & id) override;
 
    template < typename TYPE >
-   void json_read(TYPE & matter);
+   void network_payload_read(TYPE & matter);
 
 
 };

@@ -167,16 +167,16 @@ CLASS_DECL_ACME void debug_debug_reference()
    ref.m_bTest1 = true;
    ref.m_strText1 = "Text1";
 
-   auto json1 = ref.get_json();
+   auto network_payload1 = ref.get_network_payload();
 
-   output_debug_string(json1);
+   output_debug_string(network_payload1);
 
    ref.m_bTest1 = false;
-   ref.m_strText1 = ref.get_json();
+   ref.m_strText1 = ref.get_network_payload();
 
-   auto json2 = ref.get_json();
+   auto network_payload2 = ref.get_network_payload();
 
-   output_debug_string(json2);
+   output_debug_string(network_payload2);
 
    output_debug_string("debug_debug_reference end");
 

@@ -607,7 +607,7 @@ inline void from_string(::element & element, const ansichar * psz)
 
    var_stream stream;
 
-   stream.m_ppayload->parse_json(psz);
+   stream.m_ppayload->parse_network_payload(psz);
 
    element.exchange(stream);
 

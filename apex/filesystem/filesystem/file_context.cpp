@@ -570,7 +570,7 @@ bool file_context::try_create_file(const ::file::path &path, bool bTryDelete)
 }
 
 
-::payload file_context::as_json(const ::payload &payloadFile)
+::payload file_context::as_network_payload(const ::payload &payloadFile)
 {
 
    string str = as_string(payloadFile);
@@ -591,7 +591,7 @@ bool file_context::try_create_file(const ::file::path &path, bool bTryDelete)
    try
    {
 
-      v.parse_json(pszJson);
+      v.parse_network_payload(pszJson);
 
    }
    catch (const ::exception & e)
@@ -605,7 +605,7 @@ bool file_context::try_create_file(const ::file::path &path, bool bTryDelete)
    catch (...)
    {
 
-      INFORMATION("GENERAL Exception parsing json file_context::as_json : \"" << str << "\"");
+      INFORMATION("GENERAL Exception parsing network_payload file_context::as_network_payload : \"" << str << "\"");
 
       v = ::e_type_new;
 
@@ -2995,12 +2995,12 @@ bool file_context::is_link(string strPath)
 }
 
 
-::file::path file_context::dropbox_info_json()
+::file::path file_context::dropbox_info_network_payload()
 {
 
    ::file::path pathJson;
 
-   pathJson = m_psystem->m_pacmedir->home() / ".dropbox/info.json";
+   pathJson = m_psystem->m_pacmedir->home() / ".dropbox/info.network_payload";
 
    return pathJson;
 
@@ -3182,10 +3182,10 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
 //}
 
 
-//::payload file_context::as_json(const ::payload & payloadFile)
+//::payload file_context::as_network_payload(const ::payload & payloadFile)
 //{
 //
-//   return psystem->m_spfile->as_json(get_application(), payloadFile);
+//   return psystem->m_spfile->as_network_payload(get_application(), payloadFile);
 //
 //}
 
@@ -3486,10 +3486,10 @@ bool file_context::touch(const ::file::path &path)
 //}
 
 //
-//::file::path file_context::dropbox_info_json()
+//::file::path file_context::dropbox_info_network_payload()
 //{
 //
-//   return psystem->m_spfile->dropbox_info_json(get_application());
+//   return psystem->m_spfile->dropbox_info_network_payload(get_application());
 //
 //}
 

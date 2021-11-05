@@ -67,7 +67,7 @@ namespace sockets
 
       virtual void write(const void *buf, memsize c) override;
 
-      virtual bool send_json(::payload varJson);
+      virtual bool send_network_payload(::payload varJson);
       virtual bool send_memory(memory & memory);
 
       virtual void OnRawData(char *buf, memsize len) override;

@@ -646,15 +646,15 @@ void property_set::_008Parse(bool bApp, const char * pszCmdLine, ::payload & pay
 }
 
 
-void property_set_skip_json(const char *& pszJson)
+void property_set_skip_network_payload(const char *& pszJson)
 {
 
-   property_set_skip_json(pszJson, pszJson + strlen(pszJson) - 1);
+   property_set_skip_network_payload(pszJson, pszJson + strlen(pszJson) - 1);
 
 }
 
 
-void property_set_skip_json(const char *& pszJson, const char * pszEnd)
+void property_set_skip_network_payload(const char *& pszJson, const char * pszEnd)
 {
 
    ::str::consume_spaces(pszJson, 0, pszEnd);
@@ -684,9 +684,9 @@ void property_set_skip_json(const char *& pszJson, const char * pszEnd)
 
       ::id id;
 
-      property_skip_json_id(pszJson, pszEnd);
+      property_skip_network_payload_id(pszJson, pszEnd);
 
-      property_skip_json_value(pszJson, pszEnd);
+      property_skip_network_payload_value(pszJson, pszEnd);
 
       ::str::consume_spaces(pszJson, 0, pszEnd);
 
@@ -776,7 +776,7 @@ void property_set::parse_ini(const ::string & strIni)
 }
 
 
-void property_set::parse_json(const ::string & strJson)
+void property_set::parse_network_payload(const ::string & strJson)
 {
 
 #ifdef LINUX
@@ -787,24 +787,24 @@ void property_set::parse_json(const ::string & strJson)
 
    const char * pszJson = strJson;
 
-   parse_json(pszJson, pszJson + strJson.get_length() - 1);
+   parse_network_payload(pszJson, pszJson + strJson.get_length() - 1);
 
 }
 
 
-void property_set::parse_json(const char * & pszJson)
+void property_set::parse_network_payload(const char * & pszJson)
 {
 
 #ifdef LINUX
    uselocale(::acme::g_localeC);
 #endif
 
-   parse_json(pszJson, pszJson + strlen(pszJson) - 1);
+   parse_network_payload(pszJson, pszJson + strlen(pszJson) - 1);
 
 }
 
 
-void property_set::parse_json(const char * & pszJson, const char * pszEnd)
+void property_set::parse_network_payload(const char * & pszJson, const char * pszEnd)
 {
    ::str::consume_spaces(pszJson, 0, pszEnd);
    if (*pszJson == '\0')
@@ -823,11 +823,11 @@ void property_set::parse_json(const char * & pszJson, const char * pszEnd)
 
       ::id id;
 
-      ::property_parse_json_id(id, pszJson,pszEnd);
+      ::property_parse_network_payload_id(id, pszJson,pszEnd);
 
       auto & property = operator[](id);
 
-      ::property_parse_json_value(property,pszJson,pszEnd);
+      ::property_parse_network_payload_value(property,pszJson,pszEnd);
 
       ::str::consume_spaces(pszJson, 0, pszEnd);
 
@@ -863,7 +863,7 @@ void property_set::parse_json(const char * & pszJson, const char * pszEnd)
 }
 
 
-string & property_set::get_json(string & str, bool bNewLine) const
+string & property_set::get_network_payload(string & str, bool bNewLine) const
 {
 
    str += "{";
@@ -873,7 +873,7 @@ string & property_set::get_json(string & str, bool bNewLine) const
    if(p)
    {
 
-      p->get_json(str, bNewLine);
+      p->get_network_payload(str, bNewLine);
 
       p++;
 
@@ -895,7 +895,7 @@ string & property_set::get_json(string & str, bool bNewLine) const
 
       }
 
-      p->get_json(str, bNewLine);
+      p->get_network_payload(str, bNewLine);
 
    }
 

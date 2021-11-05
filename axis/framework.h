@@ -24,9 +24,9 @@
 #include "axis/html/html_lite/_.h"
 #include "axis/geoip/_.h"
 #endif
-#include "axis/math/_.h"
-#include "axis/math/calculator/_.h"
-#include "axis/math/kissfft/_.h"
+#include "axis/mathematics/_.h"
+#include "axis/mathematics/calculator/_.h"
+#include "axis/mathematics/kissfft/_.h"
 //#include "aura/crypto/crypto_openssl.h"
 #include "aura/_defer.h"
 

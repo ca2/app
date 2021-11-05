@@ -768,12 +768,12 @@ namespace sockets
    }
 
 
-   bool websocket_client::send_json(::payload varJson)
+   bool websocket_client::send_network_payload(::payload varJson)
    {
 
       string strJson;
 
-      varJson.get_json(strJson, true);
+      varJson.get_network_payload(strJson, true);
 
       memory m;
 

@@ -2566,7 +2566,36 @@ namespace sockets
                         break;
 
                      }
+                     else
+                     {
+                        string str = strDnsName;
+                        if (::str::begins_eat(str, "*."))
+                        {
+                           string strCommon = common_name;
+                           if (strCommon == str)
+                           {
+                              ok = true;
+                              break;
+                           }
+                           else
+                           {
 
+                              strsize iFind = strCommon.find('.');
+
+                              if (iFind >= 0)
+                              {
+                                 if (str == strCommon.Mid(iFind + 1))
+                                 {
+                                    ok = true;
+                                    break;
+                                 }
+                              }
+
+                           }
+
+
+                        }
+                     }
                   }
                }
                sk_GENERAL_NAME_pop_free(san_names, GENERAL_NAME_free);

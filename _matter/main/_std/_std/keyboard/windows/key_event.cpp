@@ -1,4 +1,4 @@
-if(pkey->m_uiMessage == e_message_key_down ||
+﻿if(pkey->m_uiMessage == e_message_key_down ||
    pkey->m_uiMessage == e_message_key_up)
 {
 

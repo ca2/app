@@ -2768,10 +2768,10 @@ return ::thread::run();
 //}
 
 
-service * application::new_service()
+__pointer(::service) application::create_service()
 {
 
-return nullptr;
+   return nullptr;
 
 }
 

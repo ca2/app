@@ -152,7 +152,7 @@ public:
 //   virtual ::e_status release_reference(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 
-   virtual ::e_status set_generic_object_name(const char* pszName);
+   //virtual ::e_status set_generic_object_name(const char* pszName);
 
 
 

@@ -175,6 +175,14 @@ void element::operator()(const ::payload & payload)
 }
 
 
+::e_status element::set_generic_object_name(const char* pszName)
+{
+
+   return ::success_none;
+
+}
+
+
 ::e_status element::wait()
 {
 

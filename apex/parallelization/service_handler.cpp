@@ -36,7 +36,7 @@ service* service_handler::get_service()
 
       __pointer(::application) papplication = get_application();
 
-      auto pservice = papplication->new_service();
+      auto pservice = papplication->create_service();
 
       if (!pservice)
       {

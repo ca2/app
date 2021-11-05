@@ -220,7 +220,7 @@
 
       virtual bool is_service() const;
       virtual bool is_user_service() const;
-      virtual service* new_service();
+      virtual __pointer(::service) create_service();
 
       virtual void on_service_request(::create* pcreate);
 

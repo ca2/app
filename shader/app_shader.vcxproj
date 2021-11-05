@@ -51,64 +51,64 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <UseOfAtl>false</UseOfAtl>
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <UseOfAtl>false</UseOfAtl>
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cover|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <UseOfAtl>false</UseOfAtl>
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <UseOfAtl>false</UseOfAtl>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <UseOfAtl>false</UseOfAtl>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <UseOfAtl>false</UseOfAtl>
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <UseOfAtl>false</UseOfAtl>
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cover|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <UseOfAtl>false</UseOfAtl>
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <UseOfAtl>false</UseOfAtl>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <UseOfAtl>false</UseOfAtl>
     <PlatformToolset>v143</PlatformToolset>
@@ -303,8 +303,7 @@
       <PreserveSBR>false</PreserveSBR>
     </Bscmake>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>build_helper $(ProjectDir)</Command>
     </PostBuildEvent>
     <CustomBuildStep>
       <Command>
@@ -398,8 +397,7 @@
       <PreserveSBR>false</PreserveSBR>
     </Bscmake>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>build_helper $(ProjectDir)</Command>
     </PostBuildEvent>
     <CustomBuildStep>
       <Command>
@@ -493,8 +491,7 @@
       <PreserveSBR>false</PreserveSBR>
     </Bscmake>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>build_helper $(ProjectDir)</Command>
     </PostBuildEvent>
     <CustomBuildStep>
       <Command>
@@ -597,8 +594,7 @@
       <PreserveSBR>false</PreserveSBR>
     </Bscmake>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>build_helper $(ProjectDir)</Command>
     </PostBuildEvent>
     <CustomBuildStep>
       <Command>
@@ -703,8 +699,7 @@
       <PreserveSBR>false</PreserveSBR>
     </Bscmake>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>build_helper $(ProjectDir)</Command>
     </PostBuildEvent>
     <CustomBuildStep>
       <Command>
@@ -810,6 +805,9 @@
       <Inputs>
       </Inputs>
     </CustomBuildStep>
+    <PostBuildEvent>
+      <Command>build_helper $(ProjectDir)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">
     <PreBuildEvent>
@@ -896,6 +894,9 @@
       <Inputs>
       </Inputs>
     </CustomBuildStep>
+    <PostBuildEvent>
+      <Command>build_helper $(ProjectDir)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cover|x64'">
     <PreBuildEvent>
@@ -984,6 +985,9 @@
       <Inputs>
       </Inputs>
     </CustomBuildStep>
+    <PostBuildEvent>
+      <Command>build_helper $(ProjectDir)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
     <PreBuildEvent>
@@ -1078,6 +1082,9 @@
       <Inputs>
       </Inputs>
     </CustomBuildStep>
+    <PostBuildEvent>
+      <Command>build_helper $(ProjectDir)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">
     <PreBuildEvent>
@@ -1174,6 +1181,9 @@
       <Inputs>
       </Inputs>
     </CustomBuildStep>
+    <PostBuildEvent>
+      <Command>build_helper $(ProjectDir)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="application.cpp" />
@@ -1191,7 +1201,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="main_window.cpp" />
-    <ClCompile Include="_.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="application.h" />
@@ -1217,6 +1226,10 @@
     <ProjectReference Include="..\aqua\aqua.vcxproj">
       <Project>{1b06fe5f-f783-41a1-ac68-0e02880dbbac}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="deps.txt" />
+    <Text Include="matter.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

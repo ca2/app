@@ -607,7 +607,7 @@ inline void from_string(::element & element, const ansichar * psz)
 
    var_stream stream;
 
-   stream.m_ppayload->parse_json(psz);
+   stream.m_ppayload->parse_network_payload(psz);
 
    element.exchange(stream);
 
@@ -961,6 +961,7 @@ inline string string_from_u(const T& t)
 //
 //}
 
+
 template < typename TYPE_CHAR >
 inline void string_base < TYPE_CHAR >::truncate(strsize nNewLength)
 {
@@ -972,11 +973,19 @@ inline void string_base < TYPE_CHAR >::truncate(strsize nNewLength)
 
    }
 
+   if(nNewLength <= 0)
+   {
+
+      Empty();
+
+   }
+
    get_string_buffer(nNewLength);
 
    release_string_buffer(nNewLength);
 
 }
+
 
 template < typename TYPE_CHAR >
 inline void string_base < TYPE_CHAR >::set_at(strsize iChar, CHAR_TYPE ch)
@@ -994,7 +1003,6 @@ inline void string_base < TYPE_CHAR >::set_at(strsize iChar, CHAR_TYPE ch)
    this->m_pdata[iChar] = ch;
 
 }
-
 
 
 #ifdef WINDOWS

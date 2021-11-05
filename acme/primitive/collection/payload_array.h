@@ -95,13 +95,13 @@ public:
    payload_array & operator = (const payload_array & payloada);
 
 
-   void parse_json(const char * & pszJson);
-   void parse_json(const char * & pszJson, const char * pszEnd);
+   void parse_network_payload(const char * & pszJson);
+   void parse_network_payload(const char * & pszJson, const char * pszEnd);
 
-   void find_json_child(const char * & pszJson, const char * pszEnd, const ::payload & payload);
+   void find_network_payload_child(const char * & pszJson, const char * pszEnd, const ::payload & payload);
 
 
-   string & get_json(string & str, bool bNewLine = true) const;
+   string & get_network_payload(string & str, bool bNewLine = true) const;
 
 
    payload_array array()
@@ -127,8 +127,8 @@ public:
 };
 
 
-CLASS_DECL_ACME void var_array_skip_json(const char *& pszJson);
-CLASS_DECL_ACME void var_array_skip_json(const char *& pszJson, const char * pszEnd);
+CLASS_DECL_ACME void var_array_skip_network_payload(const char *& pszJson);
+CLASS_DECL_ACME void var_array_skip_network_payload(const char *& pszJson, const char * pszEnd);
 
 
 inline ::payload payload_array::value_at(::index i) const

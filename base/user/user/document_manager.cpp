@@ -86,7 +86,7 @@ namespace user
 
       ASSERT(strFileTypeId.find(' ') == -1);  // no spaces allowed
 
-      strTemp.Format(gen_DefaultIconFmt, (const ::string &)strFileTypeId);
+      strTemp.format(gen_DefaultIconFmt, (const ::string &)strFileTypeId);
       __delete_reg_key(strTemp);
 
       // If MDI System
@@ -94,33 +94,33 @@ namespace user
       strTemp.is_empty())
       {
       // path\shell\open\ddeexec = [open("%1")]
-      strTemp.Format(gen_ShellOpenFmt, (const ::string &)strFileTypeId,
+      strTemp.format(gen_ShellOpenFmt, (const ::string &)strFileTypeId,
       (const ::string &)gen_DDEExec);
       __delete_reg_key(strTemp);
 
       // path\shell\print\ddeexec = [print("%1")]
-      strTemp.Format(gen_ShellPrintFmt, (const ::string &)strFileTypeId,
+      strTemp.format(gen_ShellPrintFmt, (const ::string &)strFileTypeId,
       (const ::string &)gen_DDEExec);
       __delete_reg_key(strTemp);
 
       // path\shell\printto\ddeexec = [printto("%1","%2","%3","%4")]
-      strTemp.Format(gen_ShellPrintToFmt, (const ::string &)strFileTypeId,
+      strTemp.format(gen_ShellPrintToFmt, (const ::string &)strFileTypeId,
       (const ::string &)gen_DDEExec);
       __delete_reg_key(strTemp);
       }
 
       // path\shell\open\command = path filename
-      strTemp.Format(gen_ShellOpenFmt, (const ::string &)strFileTypeId,
+      strTemp.format(gen_ShellOpenFmt, (const ::string &)strFileTypeId,
       (const ::string &)gen_Command);
       __delete_reg_key(strTemp);
 
       // path\shell\print\command = path /point_i32 filename
-      strTemp.Format(gen_ShellPrintFmt, (const ::string &)strFileTypeId,
+      strTemp.format(gen_ShellPrintFmt, (const ::string &)strFileTypeId,
       (const ::string &)gen_Command);
       __delete_reg_key(strTemp);
 
       // path\shell\printto\command = path /point_i32 filename printer driver port
-      strTemp.Format(gen_ShellPrintToFmt, (const ::string &)strFileTypeId,
+      strTemp.format(gen_ShellPrintToFmt, (const ::string &)strFileTypeId,
       (const ::string &)gen_Command);
       __delete_reg_key(strTemp);
 
@@ -137,7 +137,7 @@ namespace user
       if (lResult != ERROR_SUCCESS || strTemp.is_empty() ||
       strTemp == strFileTypeId)
       {
-      strTemp.Format(gen_ShellNewFmt, (const ::string &)strFilterExt);
+      strTemp.format(gen_ShellNewFmt, (const ::string &)strFilterExt);
       __delete_reg_key(strTemp);
 
       // no association for that suffix
@@ -176,12 +176,12 @@ namespace user
       HICON hIcon = ::ExtractIcon(psystem->m_hInstance, strPathName, nTemplateIndex);
       if (hIcon != nullptr)
       {
-      strIconIndex.Format(gen_IconIndexFmt, nTemplateIndex);
+      strIconIndex.format(gen_IconIndexFmt, nTemplateIndex);
       DestroyIcon(hIcon);
       }
       else
       {
-      strIconIndex.Format(gen_IconIndexFmt, DEFAULT_ICON_INDEX);
+      strIconIndex.format(gen_IconIndexFmt, DEFAULT_ICON_INDEX);
       }
       strDefaultIconCommandLine += strIconIndex;
       }
@@ -204,7 +204,7 @@ namespace user
       if (bCompat)
       {
       // path\DefaultIcon = path,1
-      strTemp.Format(gen_DefaultIconFmt, (const ::string &)strFileTypeId);
+      strTemp.format(gen_DefaultIconFmt, (const ::string &)strFileTypeId);
       if (!__set_reg_key(strTemp, strDefaultIconCommandLine))
       continue;       // just skip it
       }
@@ -214,7 +214,7 @@ namespace user
       strTemp.is_empty())
       {
       // path\shell\open\ddeexec = [open("%1")]
-      strTemp.Format(gen_ShellOpenFmt, (const ::string &)strFileTypeId,
+      strTemp.format(gen_ShellOpenFmt, (const ::string &)strFileTypeId,
       (const ::string &)gen_DDEExec);
       if (!__set_reg_key(strTemp, gen_DDEOpen))
       continue;       // just skip it
@@ -222,13 +222,13 @@ namespace user
       if (bCompat)
       {
       // path\shell\print\ddeexec = [print("%1")]
-      strTemp.Format(gen_ShellPrintFmt, (const ::string &)strFileTypeId,
+      strTemp.format(gen_ShellPrintFmt, (const ::string &)strFileTypeId,
       (const ::string &)gen_DDEExec);
       if (!__set_reg_key(strTemp, gen_DDEPrint))
       continue;       // just skip it
 
       // path\shell\printto\ddeexec = [printto("%1","%2","%3","%4")]
-      strTemp.Format(gen_ShellPrintToFmt, (const ::string &)strFileTypeId,
+      strTemp.format(gen_ShellPrintToFmt, (const ::string &)strFileTypeId,
       (const ::string &)gen_DDEExec);
       if (!__set_reg_key(strTemp, gen_DDEPrintTo))
       continue;       // just skip it
@@ -259,7 +259,7 @@ namespace user
       }
 
       // path\shell\open\command = path filename
-      strTemp.Format(gen_ShellOpenFmt, (const ::string &)strFileTypeId,
+      strTemp.format(gen_ShellOpenFmt, (const ::string &)strFileTypeId,
       (const ::string &)gen_Command);
       if (!__set_reg_key(strTemp, strOpenCommandLine))
       continue;       // just skip it
@@ -267,13 +267,13 @@ namespace user
       if (bCompat)
       {
       // path\shell\print\command = path /point_i32 filename
-      strTemp.Format(gen_ShellPrintFmt, (const ::string &)strFileTypeId,
+      strTemp.format(gen_ShellPrintFmt, (const ::string &)strFileTypeId,
       (const ::string &)gen_Command);
       if (!__set_reg_key(strTemp, strPrintCommandLine))
       continue;       // just skip it
 
       // path\shell\printto\command = path /point_i32 filename printer driver port
-      strTemp.Format(gen_ShellPrintToFmt, (const ::string &)strFileTypeId,
+      strTemp.format(gen_ShellPrintToFmt, (const ::string &)strFileTypeId,
       (const ::string &)gen_Command);
       if (!__set_reg_key(strTemp, strPrintToCommandLine))
       continue;       // just skip it
@@ -298,7 +298,7 @@ namespace user
 
       if (bCompat)
       {
-      strTemp.Format(gen_ShellNewFmt, (const ::string &)strFilterExt);
+      strTemp.format(gen_ShellNewFmt, (const ::string &)strFilterExt);
       ()__set_reg_key(strTemp, gen_ShellNewValue, gen_ShellNewValueName);
       }
       }

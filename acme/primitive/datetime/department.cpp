@@ -194,10 +194,10 @@ namespace datetime
    }
 
 
-   i64 department::strtotime(const ::text::context * pcontext, const char * psz, i32 iPath, i32 & iPathCount, const ::time_shift & timeshift)
+   i64 department::strtotime(const ::text::context * pcontext, const string & str, i32 iPath, i32 & iPathCount, const ::time_shift & timeshift)
    {
 
-      if (::is_null(psz) || string(psz).trimmed().is_empty())
+      if (str.trimmed().is_empty())
       {
 
          return 0;
@@ -206,7 +206,7 @@ namespace datetime
 
       ::datetime::time time;
 
-      ::datetime::result val = parse_time(pcontext, psz, iPath, iPathCount, timeshift);
+      ::datetime::result val = parse_time(pcontext, str, iPath, iPathCount, timeshift);
 
       if (val.m_bSpan)
       {
@@ -226,10 +226,10 @@ namespace datetime
    }
 
 
-   i64 department::strtotime(const ::text::context * pcontext, const char * psz, time_t timeParam, i32 iPath, i32 & iPathCount, const ::time_shift& timeshift)
+   i64 department::strtotime(const ::text::context * pcontext, const string & str, time_t timeParam, i32 iPath, i32 & iPathCount, const ::time_shift& timeshift)
    {
 
-      if (::is_null(psz) || string(psz).trimmed().is_empty())
+      if (str.trimmed().is_empty())
       {
 
          return 0;
@@ -242,7 +242,7 @@ namespace datetime
 
       iPathCount = 1;
 
-      ::datetime::result val = ::datetime::result(time) + span_parse_time(pcontext, psz);
+      ::datetime::result val = ::datetime::result(time) + span_parse_time(pcontext, str);
 
       return val.get_time().get_time();
 
@@ -288,71 +288,117 @@ namespace datetime
    }
 
 
-   void department::international::parse_str(const char * psz, property_set & set)
+   void department::international::parse_str(const string & strSrc, property_set & set)
    {
-      string src(psz);
+      
+      string src(strSrc);
+
       src.trim();
+
       string str;
+
       if (src.get_length() >= 4)
       {
+
          str = src.Mid(0, 4);
+
          str.trim_left('0');
+
          set["year"] = str;
+
       }
       else
       {
+         
          set["year"] = 0;
+
       }
+      
       if (src.get_length() >= 7)
       {
+
          str = src.Mid(5, 2);
+
          str.trim_left('0');
+
          set["month"] = str;
+
       }
       else
       {
+         
          set["month"] = 0;
+
       }
+
       if (src.get_length() >= 10)
       {
+      
          str = src.Mid(8, 2);
+
          str.trim_left('0');
+
          set["day"] = str;
+
       }
       else
       {
+         
          set["day"] = 0;
+
       }
+
       if (src.get_length() >= 13)
       {
+      
          str = src.Mid(11, 2);
+         
          str.trim_left('0');
+         
          set["hour"] = str;
+
       }
       else
       {
+         
          set["hour"] = 0;
+
       }
+
       if (src.get_length() >= 16)
       {
+      
          str = src.Mid(14, 2);
+         
          str.trim_left('0');
+         
          set["minute"] = str;
+
       }
       else
       {
+         
          set["minute"] = 0;
+
       }
+
       if (src.get_length() >= 19)
       {
+        
          str = src.Mid(17, 2);
+
          str.trim_left('0');
+
          set["second"] = str;
+
       }
       else
       {
+         
          set["second"] = 0;
+
       }
+
    }
 
 
@@ -749,10 +795,10 @@ namespace datetime
    }
 
 
-   string department::strftime(const char * psz, const ::datetime::time & time, const time_shift & timeshift)
+   string department::strftime(const string & strFormatParam, const ::datetime::time & time, const time_shift & timeshift)
    {
 
-      string strFormat(psz);
+      string strFormat(strFormatParam);
 
       string str;
 
@@ -763,7 +809,7 @@ namespace datetime
 
          string strV;
 
-         strV.Format("%02d", ISO_WN(time.year(timeshift), time.month(timeshift), time.day(timeshift)));
+         strV.format("%02d", ISO_WN(time.year(timeshift), time.month(timeshift), time.day(timeshift)));
 
          strFormat.replace("%V", strV);
 
@@ -776,10 +822,10 @@ namespace datetime
    }
 
 
-   string department::strftime(const char * psz, const ::time_shift& timeshift)
+   string department::strftime(const string & str, const ::time_shift& timeshift)
    {
 
-      return strftime(psz, ::datetime::time::now(), timeshift);
+      return strftime(str, ::datetime::time::now(), timeshift);
 
    }
 
@@ -798,7 +844,7 @@ namespace datetime
 
    //      string strV;
    //      
-   //      strV.Format("%02d", ISO_WN(time.utc_year(), time.utc_month(), time.utc_day()));
+   //      strV.format("%02d", ISO_WN(time.utc_year(), time.utc_month(), time.utc_day()));
 
    //      strFormat.replace("%V", strV);
 
@@ -831,7 +877,7 @@ namespace datetime
       if (iSecDiff <= 59)
       {
          bSolved = true;
-         strTime.Format("about %d seconds ago", (timeNow - time).GetTotalSeconds());
+         strTime.format("about %d seconds ago", (timeNow - time).GetTotalSeconds());
       }
       else if (iMinDiff <= 59)
       {
@@ -857,11 +903,11 @@ namespace datetime
          bSolved = true;
          if (iHouDiff <= 1)
          {
-            strTime.Format("about 1 hour and %d minutes ago", (timeNow - time).GetMinutes());
+            strTime.format("about 1 hour and %d minutes ago", (timeNow - time).GetMinutes());
          }
          else if (iHouDiff <= 2)
          {
-            strTime.Format("about 2 hours and %d minutes ago", (timeNow - time).GetMinutes());
+            strTime.format("about 2 hours and %d minutes ago", (timeNow - time).GetMinutes());
          }
          else
          {
@@ -874,7 +920,7 @@ namespace datetime
          if (!bSolved && timeNow.year(timeshift) != time.year(timeshift))
          {
             bDiff = true;
-            str.Format("%04d", time.year(timeshift));
+            str.format("%04d", time.year(timeshift));
             strTime = str;
          }
          if (!bSolved && (bDiff || timeNow.month(timeshift) != time.month(timeshift)))
@@ -892,7 +938,7 @@ namespace datetime
          }
          if (!bSolved && (bDiff || timeNow.day(timeshift) != time.day(timeshift)))
          {
-            str.Format("%02d", time.day());
+            str.format("%02d", time.day());
             if (bDiff)
             {
                strTime += "-";
@@ -905,7 +951,7 @@ namespace datetime
          }
          if (!bSolved && (bDiff || timeNow.hour(timeshift) != time.hour(timeshift)))
          {
-            str.Format("%02d", time.hour(timeshift));
+            str.format("%02d", time.hour(timeshift));
             if (bDiff)
             {
                strTime += " ";
@@ -920,7 +966,7 @@ namespace datetime
          {
             if (bDiff)
             {
-               str.Format("%02d", time.minute(timeshift));
+               str.format("%02d", time.minute(timeshift));
                strTime += ":";
                strTime += str;
             }
@@ -934,7 +980,7 @@ namespace datetime
          {
             if (bDiff)
             {
-               str.Format("%02d", time.second(timeshift));
+               str.format("%02d", time.second(timeshift));
                strTime += ":" + str;
             }
             else
@@ -971,8 +1017,8 @@ namespace datetime
       if (iSecDiff <= 59)
       {
          bSolved = true;
-         //strTime.Format("about %d seconds ago", (timeNow - time).GetTotalSeconds());
-         strTime.Format("%ds", (timeNow - time).GetTotalSeconds());
+         //strTime.format("about %d seconds ago", (timeNow - time).GetTotalSeconds());
+         strTime.format("%ds", (timeNow - time).GetTotalSeconds());
       }
       else if (iMinDiff <= 59)
       {
@@ -981,19 +1027,19 @@ namespace datetime
          {
             //strTime = pscript->pstr("about 1 minute and %SECONDS% seconds ago");
             //strTime = pscript->pstr("1m %SECONDS%s seconds ago");
-            strTime.Format("1m %ds", (timeNow - time).GetSeconds());
+            strTime.format("1m %ds", (timeNow - time).GetSeconds());
          }
          else if (iMinDiff <= 2)
          {
             //strTime = pscript->pstr("about 2 minutes and %SECONDS% seconds ago");
             //strTime = pscript->pstr("2 minutes and %SECONDS% seconds ago");
-            strTime.Format("2m %ds", (timeNow - time).GetSeconds());
+            strTime.format("2m %ds", (timeNow - time).GetSeconds());
          }
          else
          {
             //strTime = pscript->pstr("about %MINUTES% minutes ago");
             //strTime = pscript->pstr("%MINUTES% minutes ago");
-            strTime.Format("%dm", iMinDiff);
+            strTime.format("%dm", iMinDiff);
          }
       }
       else if (iHouDiff <= 24)
@@ -1001,20 +1047,20 @@ namespace datetime
          bSolved = true;
          if (iHouDiff <= 1)
          {
-            //strTime.Format("about 1 hour and %d minutes ago", (timeNow - time).GetMinutes());
-            strTime.Format("1h %dm", (timeNow - time).GetMinutes());
+            //strTime.format("about 1 hour and %d minutes ago", (timeNow - time).GetMinutes());
+            strTime.format("1h %dm", (timeNow - time).GetMinutes());
 
          }
          else if (iHouDiff <= 2)
          {
-            //strTime.Format("about 2 hours and %d minutes ago", (timeNow - time).GetMinutes());
-            strTime.Format("2h %dm", (timeNow - time).GetMinutes());
+            //strTime.format("about 2 hours and %d minutes ago", (timeNow - time).GetMinutes());
+            strTime.format("2h %dm", (timeNow - time).GetMinutes());
          }
          else
          {
             //strTime = pscript->pstr("about %HOURS% hours ago");
             //strTime = pscript->pstr("%HOURS% hours ago");
-            strTime.Format("%dh", iHouDiff);
+            strTime.format("%dh", iHouDiff);
          }
       }
       else
@@ -1022,7 +1068,7 @@ namespace datetime
          if (!bSolved && timeNow.year(timeshift) != time.year(timeshift))
          {
             bDiff = true;
-            str.Format("%04d", time.year(timeshift));
+            str.format("%04d", time.year(timeshift));
             strTime = str;
          }
          if (!bSolved && (bDiff || timeNow.month(timeshift) != time.month(timeshift)))
@@ -1063,7 +1109,7 @@ namespace datetime
             }
             else
             {
-               str.Format("%dd, time.GetGmtDay()");
+               str.format("%dd, time.GetGmtDay()");
 
             }
             if (bDiff)
@@ -1078,7 +1124,7 @@ namespace datetime
          }
          if (!bSolved && (bDiff || timeNow.hour(timeshift) != time.hour(timeshift)))
          {
-            str.Format("%02d", time.hour(timeshift));
+            str.format("%02d", time.hour(timeshift));
             if (bDiff)
             {
                strTime += "&nbsp;";
@@ -1094,7 +1140,7 @@ namespace datetime
             if (bDiff)
             {
                
-               str.Format("%02d", time.minute(timeshift));
+               str.format("%02d", time.minute(timeshift));
                
                strTime += ":";
 
@@ -1118,7 +1164,7 @@ namespace datetime
             if (bDiff)
             {
                
-               str.Format("%02d", time.second(timeshift));
+               str.format("%02d", time.second(timeshift));
 
                strTime += ":" + str;
 
@@ -1199,7 +1245,7 @@ namespace datetime
 {
 
 
-   result department::span_parse_time(const ::text::context* pcontext, const char* pszSpanExpression, const ::time_shift & timeshift)
+   result department::span_parse_time(const ::text::context* pcontext, const string & strSpanExpression, const ::time_shift & timeshift)
    {
 
       static id idCalendarDay("calendar:day");
@@ -1214,7 +1260,7 @@ namespace datetime
 
       result time;
       time.m_bSpan = true;
-      string str(pszSpanExpression);
+      string str(strSpanExpression);
       str.trim();
       str += " ";
       property_set set;
@@ -1413,10 +1459,10 @@ namespace datetime
    }
 
 
-   result department::parse_time(const ::text::context* pcontext, const char* psz, i32& iPath, i32& iPathCount, const ::time_shift& timeshift)
+   result department::parse_time(const ::text::context* pcontext, const string & strParam, i32& iPath, i32& iPathCount, const ::time_shift& timeshift)
    {
       ::datetime::time time;
-      string str(psz);
+      string str(strParam);
       str.trim();
       str += " ";
       property_set set;
@@ -1651,11 +1697,11 @@ namespace datetime
          {
             if (abs(result.m_iYear) == 1)
             {
-               strItem.Format("%d year", result.m_iYear);
+               strItem.format("%d year", result.m_iYear);
             }
             else
             {
-               strItem.Format("%d years", result.m_iYear);
+               strItem.format("%d years", result.m_iYear);
             }
             stra.add(strItem);
          }
@@ -1663,11 +1709,11 @@ namespace datetime
          {
             if (abs(result.m_iMonth) == 1)
             {
-               strItem.Format("%d month", result.m_iMonth);
+               strItem.format("%d month", result.m_iMonth);
             }
             else
             {
-               strItem.Format("%d months", result.m_iMonth);
+               strItem.format("%d months", result.m_iMonth);
             }
             stra.add(strItem);
          }
@@ -1675,11 +1721,11 @@ namespace datetime
          {
             if (abs(result.m_iDay) == 1)
             {
-               strItem.Format("%d day", result.m_iDay);
+               strItem.format("%d day", result.m_iDay);
             }
             else
             {
-               strItem.Format("%d days", result.m_iDay);
+               strItem.format("%d days", result.m_iDay);
             }
             stra.add(strItem);
          }
@@ -1687,11 +1733,11 @@ namespace datetime
          {
             if (abs(result.m_iHour) == 1)
             {
-               strItem.Format("%d hour", result.m_iHour);
+               strItem.format("%d hour", result.m_iHour);
             }
             else
             {
-               strItem.Format("%d hours", result.m_iHour);
+               strItem.format("%d hours", result.m_iHour);
             }
             stra.add(strItem);
          }
@@ -1699,11 +1745,11 @@ namespace datetime
          {
             if (abs(result.m_iMinute) == 1)
             {
-               strItem.Format("%d minute", result.m_iMinute);
+               strItem.format("%d minute", result.m_iMinute);
             }
             else
             {
-               strItem.Format("%d minutes", result.m_iMinute);
+               strItem.format("%d minutes", result.m_iMinute);
             }
             stra.add(strItem);
          }
@@ -1711,11 +1757,11 @@ namespace datetime
          {
             if (abs(result.m_iSecond) == 1)
             {
-               strItem.Format("%d second", result.m_iSecond);
+               strItem.format("%d second", result.m_iSecond);
             }
             else
             {
-               strItem.Format("%d seconds", result.m_iSecond);
+               strItem.format("%d seconds", result.m_iSecond);
             }
             stra.add(strItem);
          }

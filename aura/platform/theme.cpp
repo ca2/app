@@ -123,7 +123,7 @@ namespace aura
       string strTheme = get_theme();
 
       //__throw(todo("core"));
-      // Sess(this).userex()->shell()->m_strShellThemePrefix = "desk/" + strTheme + "/";
+      // Sess(this).userex()->shell()->m_strShellThemePrefix = "app_core_desk/" + strTheme + "/";
 
       m_pcolors = m_mapColors[strTheme];
 

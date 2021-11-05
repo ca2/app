@@ -820,7 +820,7 @@ namespace core
 
          double d = (double)i64Size / (1024.0 * 1024.0 * 1024.0);
 
-         strSize.Format("%0.2f GB", d);
+         strSize.format("%0.2f GB", d);
 
       }
       else if (i64Size > 1024 * 1024)
@@ -828,7 +828,7 @@ namespace core
 
          double d = (double)i64Size / (1024.0 * 1024.0);
 
-         strSize.Format("%0.1f MB", d);
+         strSize.format("%0.1f MB", d);
 
       }
       else if (i64Size > 1024)
@@ -836,19 +836,19 @@ namespace core
 
          double d = (double)i64Size / (1024.0);
 
-         strSize.Format("%0.0f KB", d);
+         strSize.format("%0.0f KB", d);
 
       }
       else if (i64Size > 0)
       {
 
-         strSize.Format("1 KB");
+         strSize.format("1 KB");
 
       }
       else
       {
 
-         strSize.Format("0 KB");
+         strSize.format("0 KB");
 
       }
 

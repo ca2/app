@@ -68,9 +68,9 @@ namespace databaseuser
 
       // default implementation
 
-      key1.m_strDataKey.Format("%d", iSubItem);
+      key1.m_strDataKey.format("%d", iSubItem);
 
-      key2.m_strDataKey.Format("%d.%d", iItem, iListItem);
+      key2.m_strDataKey.format("%d.%d", iItem, iListItem);
 
       return true;
 

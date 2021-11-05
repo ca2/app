@@ -2423,7 +2423,7 @@ namespace user
    }
 
 
-   bool element::SetTimer(uptr uEvent, ::duration millisElapse, PFN_TIMER pfnTimer)
+   bool element::SetTimer(uptr uEvent, const ::duration & millisElapse, PFN_TIMER pfnTimer, bool bPeriodic, void* pdata)
    {
 
       throw ::interface_only_exception();

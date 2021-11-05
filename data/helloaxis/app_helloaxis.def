@@ -1,8 +1,0 @@
-; app_helloworld.def
-
-LIBRARY  "app_helloworld"
-; For Win32 DLLs, only EXPORTs really required.
-
-EXPORTS
-app_helloworld_get_new_library
-

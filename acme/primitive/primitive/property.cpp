@@ -185,25 +185,25 @@ void prop_id_debug(::matter * pobject);
 //   return implode(pszGlue);
 //}
 //
-//void property::parse_json(const ::string & str)
+//void property::parse_network_payload(const ::string & str)
 //{
 //   const char * pszJson = str;
-//   parse_json(pszJson, str.get_length());
+//   parse_network_payload(pszJson, str.get_length());
 //}
 //
-//void property::parse_json(const char * & pszJson, strsize length)
+//void property::parse_network_payload(const char * & pszJson, strsize length)
 //{
-//   parse_json(pszJson, pszJson + length - 1);
+//   parse_network_payload(pszJson, pszJson + length - 1);
 //}
 //
-//void property::parse_json(const char * & pszJson,const char * pszEnd)
+//void property::parse_network_payload(const char * & pszJson,const char * pszEnd)
 //{
-//   ::property_parse_json_id(m_id, pszJson, pszEnd);
-//   ::property_parse_json_value(m_var,pszJson,pszEnd);
+//   ::property_parse_network_payload_id(m_id, pszJson, pszEnd);
+//   ::property_parse_network_payload_value(m_var,pszJson,pszEnd);
 //}
 //
 //
-void property_parse_json_id(id & id, const char *& pszJson, const char * pszEnd)
+void property_parse_network_payload_id(id & id, const char *& pszJson, const char * pszEnd)
 {
 
    ::str::consume_spaces(pszJson, 0, pszEnd);
@@ -228,15 +228,15 @@ void property_parse_json_id(id & id, const char *& pszJson, const char * pszEnd)
 }
 
 
-void property_parse_json_value(::payload & payload, const char *& pszJson, const char * pszEnd)
+void property_parse_network_payload_value(::payload & payload, const char *& pszJson, const char * pszEnd)
 {
    ::str::consume_spaces(pszJson, 0, pszEnd);
    ::str::consume(pszJson, ":", 1, pszEnd);
-   payload.parse_json(pszJson, pszEnd);
+   payload.parse_network_payload(pszJson, pszEnd);
 }
 
 
-void property_skip_json_id(const char *& pszJson, const char * pszEnd)
+void property_skip_network_payload_id(const char *& pszJson, const char * pszEnd)
 {
 
    ::str::consume_spaces(pszJson, 0, pszEnd);
@@ -246,14 +246,14 @@ void property_skip_json_id(const char *& pszJson, const char * pszEnd)
 }
 
 
-void property_skip_json_value(const char *& pszJson, const char * pszEnd)
+void property_skip_network_payload_value(const char *& pszJson, const char * pszEnd)
 {
 
    ::str::consume_spaces(pszJson, 0, pszEnd);
 
    ::str::consume(pszJson, ":", 1, pszEnd);
 
-   var_skip_json(pszJson, pszEnd);
+   var_skip_network_payload(pszJson, pszEnd);
 
 }
 

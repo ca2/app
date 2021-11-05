@@ -85,12 +85,6 @@ public:
 //    return ::NAMESPACE::g_applicationfactory.new_application(); \
 // }
 
-#define __namespace_application_factory(APPID) \
-::static_application_factory < application > g_applicationfactory(APPID);
-
-
-
-
 // \
 // extern "C" \
 // CLASS_DECL_EXPORT ::acme::library * get_new_library() \

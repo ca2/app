@@ -52,8 +52,8 @@ namespace simple_ui
    void tap::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      INFORMATION("simple_ui::_001OnDraw pos(%d,%d)", layout().sketch().origin().x, layout().sketch().origin().y);
-      INFORMATION("simple_ui::_001OnDraw scr_pos(%d,%d)", screen_origin().x, screen_origin().y);
+      FORMATTED_INFORMATION("simple_ui::_001OnDraw pos(%d,%d)", layout().sketch().origin().x, layout().sketch().origin().y);
+      FORMATTED_INFORMATION("simple_ui::_001OnDraw scr_pos(%d,%d)", screen_origin().x, screen_origin().y);
 
       simple_ui_draw_volume(pgraphics);
 

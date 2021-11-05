@@ -352,7 +352,7 @@ bool db_str_set::load(const ::string & lpKey, string & strValue)
       strKey.replace("'", "''");
 
       string strSql;
-      strSql.Format(
+      strSql.format(
          "select value FROM stringtable WHERE id = '%s';",
          strKey);
 
@@ -402,7 +402,7 @@ bool db_str_set::save(const ::string & lpKey, const ::string & lpcsz)
       slDatabase.lock();
       if(load(lpKey, str))
       {
-         strSql.Format(
+         strSql.format(
             "UPDATE stringtable SET value = '%s' WHERE id = '%s';",
             strValue,
             strKey);
@@ -418,7 +418,7 @@ bool db_str_set::save(const ::string & lpKey, const ::string & lpcsz)
       else
       {
 
-         strSql.Format(
+         strSql.format(
             "INSERT INTO stringtable (id, value) values ('%s', '%s');",
             strKey,
             strValue);

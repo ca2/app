@@ -74,7 +74,9 @@
 
 #pragma once
 
-
+#undef LAYER_NAMESPACE
+#define LAYER_NAMESPACE apex
+#define SYSTEM_NAMESPACE LAYER_NAMESPACE
 
 
 #define __spin_namespace apex // back bone / four-letter "spin*" namespace name
@@ -484,8 +486,8 @@ namespace colorertake5
 class memory;
 
 
-CLASS_DECL_APEX ::apex::system* platform_create_system(const char * pszAppId);
-CLASS_DECL_APEX ::apex::session* platform_create_session();
+//CLASS_DECL_APEX __pointer(::apex::system) platform_create_system(const char * pszAppId);
+//CLASS_DECL_APEX ::apex::session* platform_create_session();
 
 
 #define SECOND_NANOS 1000000000

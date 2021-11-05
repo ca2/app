@@ -966,7 +966,7 @@ namespace http
 
       //            pproxy->m_iPort = pnode->attribute("port");
 
-      //            TRACE("Select Proxy : address %s mask %s server %s port %d", pnode->attribute("address").get_string().c_str(),
+      //            FORMATTED_TRACE("Select Proxy : address %s mask %s server %s port %d", pnode->attribute("address").get_string().c_str(),
       //               pnode->attribute("mask").get_string().c_str(), pproxy->m_strProxy.c_str(), pproxy->m_iPort);
 
       //            return;
@@ -1013,7 +1013,7 @@ namespace http
       ////         //   if(strUrl.has_char())
       ////         //   {
       ////
-      ////         //      TRACE("get_auto_config_url : %s",strUrl);
+      ////         //      FORMATTED_TRACE("get_auto_config_url : %s",strUrl);
       ////
       ////         //      if(try_pac_script(strUrl,pszUrl,pproxy))
       ////         //         return;
@@ -1031,7 +1031,7 @@ namespace http
       ////         //   if(strUrl.has_char())
       ////         //   {
       ////
-      ////         //      TRACE("get_auto_config_url : %s",strUrl);
+      ////         //      FORMATTED_TRACE("get_auto_config_url : %s",strUrl);
       ////
       ////         //      if(try_pac_script(strUrl,pszUrl,pproxy))
       ////         //         return;
@@ -1300,7 +1300,7 @@ namespace http
 
             }
 
-            INFORMATION("opening context::request time(%d) = " << tickBeg.elapsed().integral_second());
+            FORMATTED_INFORMATION("opening context::request time(%d) = ", tickBeg.elapsed().integral_second());
 
          }
          catch (...)
@@ -1487,7 +1487,7 @@ namespace http
 
          //}
 
-         INFORMATION("opening preparation context::request time(%d) = " << tickBegA.elapsed().integral_second());
+         FORMATTED_INFORMATION("opening preparation context::request time(%d) = ", tickBegA.elapsed().integral_second());
 
          tick1 = payload("dw").duration();
 
@@ -1665,7 +1665,7 @@ namespace http
 
          set["get_status"] = (i64)estatus;
 
-         INFORMATION("Total time ::http::apex::context::get(\"%s\") " << strUrl.Left(minimum(255, strUrl.get_length()))<< tick1.elapsed().integral_second());
+         FORMATTED_INFORMATION("Total time ::http::apex::context::get(\"%s\") ", strUrl.Left(minimum(255, strUrl.get_length())), tick1.elapsed().integral_second());
 
       }
       catch (...)
@@ -1958,7 +1958,7 @@ namespace http
 
       string strTopicText;
 
-      strTopicText.Format(__prhttpget, iHttpGetSerial);
+      strTopicText.format(__prhttpget, iHttpGetSerial);
 
       //psocket->set_topic_text(strTopicText);
 
@@ -2424,7 +2424,7 @@ namespace http
 
             auto tick2 = ::duration::now();
 
-            INFORMATION(LOG_HTTP_PREFIX << "Not Licensed Result Total time ::http::apex::context::get(\"%s" << strUrl.Left(minimum(255, strUrl.get_length())) << "\") " << tick1.elapsed().integral_second());
+            INFORMATION(LOG_HTTP_PREFIX << "Not Licensed Result Total time ::http::apex::context::get(\"" << strUrl.Left(minimum(255, strUrl.get_length())) << "\") " << tick1.elapsed().integral_second());
 
             string strLocation;
             
@@ -2927,7 +2927,7 @@ namespace http
    //   string strPasswordFile;
    //   string strSection;
 
-   //   strSection.Format("proxy_auth\\%s.%s", puser->m_strLogin.c_str(), "proxy_auth");
+   //   strSection.format("proxy_auth\\%s.%s", puser->m_strLogin.c_str(), "proxy_auth");
 
    //   strUserNameFile = m_pcontext->m_papexcontext->dir().appdata() / strSection + "_1";
 
@@ -2983,7 +2983,7 @@ namespace http
 
    //   string strSection;
 
-   //   strSection.Format("proxy_auth\\%s.%s", puser->m_strLogin.c_str(), "proxy_auth");
+   //   strSection.format("proxy_auth\\%s.%s", puser->m_strLogin.c_str(), "proxy_auth");
 
    //   m_pcontext->m_papexcontext->file().del(m_pcontext->m_papexcontext->dir().appdata() / strSection + "_1");
 

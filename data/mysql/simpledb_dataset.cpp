@@ -136,7 +136,7 @@ namespace simpledb
          {
             m_strQueryErrorMessage = errmsg;
             m_strDatabaseErrorMessage = db->getErrorMsg();
-            TRACE("sqlite::set::exec: Error %s, %s", errmsg, db->getErrorMsg());
+            FORMATTED_TRACE("sqlite::set::exec: Error %s, %s", errmsg, db->getErrorMsg());
             return false;
          }
       }
@@ -647,7 +647,7 @@ namespace simpledb
             {
                //m_strQueryErrorMessage = errmsg;
                //m_strDatabaseErrorMessage = db->getErrorMsg();
-               //TRACE("set::query: Error: %s, %s", errmsg, db->getErrorMsg());
+               //FORMATTED_TRACE("set::query: Error: %s, %s", errmsg, db->getErrorMsg());
                //return false;
             }*/
       return false;

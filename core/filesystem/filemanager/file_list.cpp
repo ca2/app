@@ -830,7 +830,7 @@ namespace filemanager
 
    //   string strTime;
 
-   //   strTime.Format("%04d-%02d-%02d %02d-%02d",
+   //   strTime.format("%04d-%02d-%02d %02d-%02d",
    //                  time.GetYear(),
    //                  time.GetMonth(),
    //                  time.GetDay(),
@@ -925,7 +925,7 @@ namespace filemanager
 
    //   string strTime;
 
-   //   strTime.Format("%04d-%02d-%02d %02d-%02d",
+   //   strTime.format("%04d-%02d-%02d %02d-%02d",
    //                  time.GetYear(),
    //                  time.GetMonth(),
    //                  time.GetDay(),

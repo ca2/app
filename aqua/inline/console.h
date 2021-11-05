@@ -1,54 +1,14 @@
-#include "console_common.h"
-
-
-#ifdef LINUX
-
-#include "apex/inline/console/linux.h"
-
-#elif defined(_UWP)
-
-#include "apex/inline/console/universal_windows.h"
-
-#elif defined(WINDOWS)
-
-#include "apex/inline/console/windows.h"
-
-#elif defined(MACOS)
-
-#include "apex/inline/console/macos.h"
-
-#elif defined(ANDROID)
-
-#include "apex/inline/console/android.h"
-
-#else
-
-#include "apex/inline/console/---->platform_name<---- not implemented"
-
+#include "acme/_start.h"
+#include "aqua/_.h"
+#include "acme/platform/static_setup.h"
+#include "apex/operating_system.h"
+#ifdef WINDOWS
+#include "acme/primitive/collection/strdup_array.h"
 #endif
+#include "apex/_defer.h"
 
 
-#if !defined(CUBE)
-
-
-#include "_new_impl.h"
-
-
-#if defined(WINDOWS)
-
-
-#include "acme/asset/new.cpp"
-
-
-#endif
-
-
-#endif
-
-
-
-
-#include "aura/_defer.h"
+#include "acme/inline/implement_console.h"
 
 
 

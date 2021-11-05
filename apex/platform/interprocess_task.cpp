@@ -33,7 +33,7 @@ void interprocess_task::do_task(const string& strObject, const string& strMember
 
    string strPid = __string(m_pcall->m_pinterprocessintercommunication->m_idApp);
 
-   strSource.Format(" from %s:%s ", m_pcall->m_pinterprocessintercommunication->m_strApp.c_str(), strPid.c_str());
+   strSource.format(" from %s:%s ", m_pcall->m_pinterprocessintercommunication->m_strApp.c_str(), strPid.c_str());
 
    string str = "call " + __string(m_iTask) + strSource + strObject + "." + strMember + ": " + strVara;
 

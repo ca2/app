@@ -768,16 +768,16 @@ namespace sockets
    }
 
 
-   bool websocket_client::send_json(::payload varJson)
+   bool websocket_client::send_network_payload(::payload varNetworkPayload)
    {
 
-      string strJson;
+      string strNetworkPayload;
 
-      varJson.get_json(strJson, true);
+      varNetworkPayload.get_network_payload(strNetworkPayload, true);
 
       memory m;
 
-      client_send_text(m, strJson, true);
+      client_send_text(m, strNetworkPayload, true);
 
       write(m.get_data(), m.get_size());
 
@@ -808,11 +808,11 @@ namespace sockets
 
          //string strLine;
 
-         //strLine.Format("OnRawData len %d", (uptr)len);
+         //strLine.format("OnRawData len %d", (uptr)len);
 
          //str += strLine + "\r\n";
 
-         //TRACE("%s", strLine);
+         //FORMATTED_TRACE("%s", strLine);
 
          m_memResponse.append(buf, len);
 

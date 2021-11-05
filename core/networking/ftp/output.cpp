@@ -65,7 +65,7 @@ namespace ftp
 
       string strMessage;
 
-      strMessage.Format(("%s ==> File \"%s\" (%d)"), strErrorMsg.c_str(), strFileName.c_str(), dwLineNr);
+      strMessage.format(("%s ==> File \"%s\" (%d)"), strErrorMsg.c_str(), strFileName.c_str(), dwLineNr);
 
       WriteLine(strMessage, "E");
 
@@ -74,7 +74,7 @@ namespace ftp
    void output::WriteLine(const ::string & strLine, const string &  strStatus)
    {
 
-      TRACE("%s: %s", strStatus.c_str(), strLine.c_str());
+      FORMATTED_TRACE("%s: %s", strStatus.c_str(), strLine.c_str());
 
    }
 

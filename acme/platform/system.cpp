@@ -5,12 +5,10 @@
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
 #include "acme/platform/static_start_internal.h"
-#ifdef CUBE
 #include "acme/platform/static_setup.h"
-#endif
 #include "simple_log.h"
 
-
+//__namespace_object_factory(class ::system, ::static_setup::flag_system)
 
 
 CLASS_DECL_ACME void trace_category_static_init(class ::system* psystem);
@@ -111,10 +109,20 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
+
    ::e_status system::main()
    {
 
-      auto estatus = run();
+      auto estatus = process_init();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = run();
 
       if (!estatus)
       {
@@ -735,6 +743,8 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    ::e_status system::init_system()
    {
 
+      set_current_handles();
+
       auto estatus = node_factory_exchange();
 
       if (!estatus)
@@ -766,7 +776,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       //}
 
-      return ::success;
+      return success;
 
    }
 
@@ -783,6 +793,13 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    {
 
       return ::success;
+
+   }
+
+
+   void system::set_current_handles()
+   {
+
 
    }
 
@@ -1224,7 +1241,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
       for (auto& str : stra)
       {
 
-         INFORMATION("%s" << str);
+         FORMATTED_INFORMATION("%s", str);
 
       }
 
@@ -1402,20 +1419,29 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   void system::system_construct(int argc, char** argv, char** envp)
+   ::e_status system::system_construct(const ::main & main)
    {
 
-      acme_main_data::system_construct(argc, argv, envp);
+      auto estatus = ::main::system_construct(main);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 
 
-   void system::system_construct(int argc, wchar_t** argv, wchar_t** envp)
-   {
+   //void system::system_construct(int argc, wchar_t** argv, wchar_t** envp)
+   //{
 
-      acme_main_data::system_construct(argc, argv, envp);
+   //   acme_main_data::system_construct(argc, argv, envp);
 
-   }
+   //}
 
 
 
@@ -1575,6 +1601,93 @@ void system_on_open_file(void * pSystem, const char * pszFile)
 
 
 }
+
+
+__pointer(class ::system) platform_create_system(const char* pszAppId)
+{
+
+   string strAppId(pszAppId);
+
+#if !defined(CUBE)
+
+   if (strAppId.has_char())
+   {
+
+      string strMessage;
+
+      string strLibrary = strAppId;
+
+      strLibrary.replace("/", "_");
+
+      strLibrary.replace("-", "_");
+
+      strLibrary.replace(".", "_");
+
+      auto plibrary = __node_library_open(strLibrary, strMessage);
+
+      if (!plibrary)
+      {
+
+         //{
+
+         //   //auto pfuture = __sync_future();
+
+         //   //message_box(strMessage, "Could not open required library. Want to give an yes/no answer insted of pression cancel?", e_message_box_icon_exclamation | e_message_box_yes_no_cancel, pfuture);
+
+         //   //pfuture->wait(10_s);
+
+         //   int iDialogResult = pfuture->m_var;
+
+         //   ::output_debug_string("result " + __string(iDialogResult));
+
+         //}
+
+         //__throw(error_failed, strMessage + "\n\nCould not open required library.");
+
+         ::output_debug_string("The application library for appid \"" + strAppId + "\" wasn't loaded.");
+
+      }
+
+   }
+
+#endif
+
+   auto pstaticsetup = ::static_setup::get_first(::static_setup::flag_system, "");
+
+   if (!pstaticsetup)
+   {
+
+      return nullptr;
+
+   }
+
+   auto pobject = pstaticsetup->new_object();
+
+   if (!pobject)
+   {
+
+      return nullptr;
+
+   }
+
+   auto psystem = dynamic_cast<class ::system*>(pobject);
+
+   if (!psystem)
+   {
+
+      delete pobject;
+
+      return nullptr;
+
+   }
+
+   psystem->m_strAppId = strAppId;
+
+   return ::move_transfer(psystem);
+
+}
+
+
 
 
 

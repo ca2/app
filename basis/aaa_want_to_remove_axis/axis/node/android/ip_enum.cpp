@@ -47,7 +47,7 @@ namespace android
       char szHostname[256];
       if (gethostname(szHostname, sizeof(szHostname)))
       {
-         TRACE("Failed in call to gethostname, errno returns %d\n", errno);
+         FORMATTED_TRACE("Failed in call to gethostname, errno returns %d\n", errno);
          return false;
       }
 
@@ -55,7 +55,7 @@ namespace android
       hostent * phostent = gethostbyname(szHostname);
       if (phostent == nullptr)
       {
-         TRACE("Failed in call to gethostbyname, errno returns %d\n", errno);
+         FORMATTED_TRACE("Failed in call to gethostbyname, errno returns %d\n", errno);
          return false;
       }
 

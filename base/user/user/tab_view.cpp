@@ -996,7 +996,7 @@ namespace user
 
                string strType = __type_name(this);
 
-               CATEGORY_INFORMATION(prodevian, "(more than 50ms) " << strType << "::_000DrawThis took " << integral_millisecond(d1) << ".\n");
+               CATEGORY_INFORMATION(prodevian, "(more than 50ms)(B) " << strType << "::_000DrawThis took " << integral_millisecond(d1) << ".\n");
 
             }
 

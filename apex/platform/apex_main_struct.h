@@ -14,30 +14,29 @@ namespace apex
 } // namespace apex
 
 
-
-
-
-struct CLASS_DECL_APEX apex_main_struct
+struct CLASS_DECL_APEX apex_main_struct :
+   virtual public ::main
 {
+
 
    bool                          m_bDataCentralRequired : 1;
 
-   ::boolean                  m_bLocalization;
-   ::boolean                  m_bConsole;
-   ::boolean                  m_bDraw2d;
-   ::boolean                  m_bWriteText;
-   ::boolean                  m_bUser;
-   ::boolean                  m_bUserEx;
-   ::boolean                  m_bImaging;
-   ::boolean                  m_bAudio;
-   ::boolean                  m_bInitializeDataCentral;
+   ::boolean                     m_bLocalization;
+   ::boolean                     m_bConsole;
+   ::boolean                     m_bDraw2d;
+   ::boolean                     m_bWriteText;
+   ::boolean                     m_bUser;
+   ::boolean                     m_bUserEx;
+   ::boolean                     m_bImaging;
+   ::boolean                     m_bAudio;
+   ::boolean                     m_bInitializeDataCentral;
 #ifdef WINDOWS_DESKTOP
-   ::boolean                  m_bGdiplus;
+   ::boolean                     m_bGdiplus;
 #elif defined(LINUX)
-   ::boolean                  m_bGtkApp;
+   ::boolean                     m_bGtkApp;
 #endif
-   ::boolean                  m_bShowApplicationInformation;
-   ::boolean                  m_bPreferNoFrameWindow;
+   ::boolean                     m_bShowApplicationInformation;
+   ::boolean                     m_bPreferNoFrameWindow;
    INT_STRING *                  m_pintstringLanguageResourceMap;
    int                           m_iMatterFromHttpCache;
 

@@ -240,7 +240,7 @@ namespace ios
 //                  {
 //                     iMax++;
 //                  }
-//                  strFormat.Format("%02d", iMax);
+//                  strFormat.format("%02d", iMax);
 //                  str = pcontext->m_papexcontext->dir().path(str, strFormat);
 //                  if(i == iIncLevel)
 //                  {
@@ -267,7 +267,7 @@ namespace ios
 //               else
 //               {
 //                  iMax++;
-//                  strFormat.Format("%02d", iMax);
+//                  strFormat.format("%02d", iMax);
 //                  str = pcontext->m_papexcontext->dir().path(str, strPrefix+strFormat+strSuffix);
 //                  if(file_system::mk_time(str))
 //                     break;
@@ -743,7 +743,7 @@ namespace ios
 //            if(ofile.is_null())
 //            {
 //               string strError;
-//               strError.Format("Failed to copy file \"%s\" to \"%s\" bFailIfExists=%d error=could not open output file", psz, pszNew, bFailIfExists);
+//               strError.format("Failed to copy file \"%s\" to \"%s\" bFailIfExists=%d error=could not open output file", psz, pszNew, bFailIfExists);
 //               __throw(strError);
 //            }
 //
@@ -752,7 +752,7 @@ namespace ios
 //            if(ifile.is_null())
 //            {
 //               string strError;
-//               strError.Format("Failed to copy file \"%s\" to \"%s\" bFailIfExists=%d error=could not open input file", psz, pszNew, bFailIfExists);
+//               strError.format("Failed to copy file \"%s\" to \"%s\" bFailIfExists=%d error=could not open input file", psz, pszNew, bFailIfExists);
 //               __throw(strError);
 //            }
 //
@@ -794,20 +794,20 @@ namespace ios
 //               if(bOutputFail)
 //               {
 //                  string strError;
-//                  strError.Format("During copy, failed to close both input file \"%s\" and output file \"%s\" bFailIfExists=%d", psz, pszNew, bFailIfExists);
+//                  strError.format("During copy, failed to close both input file \"%s\" and output file \"%s\" bFailIfExists=%d", psz, pszNew, bFailIfExists);
 //                  __throw(strError);
 //               }
 //               else
 //               {
 //                  string strError;
-//                  strError.Format("During copy, failed to close input file \"%s\" bFailIfExists=%d", psz, bFailIfExists);
+//                  strError.format("During copy, failed to close input file \"%s\" bFailIfExists=%d", psz, bFailIfExists);
 //                  __throw(strError);
 //               }
 //            }
 //            else if(bOutputFail)
 //            {
 //               string strError;
-//               strError.Format("During copy, failed to close output file \"%s\" bFailIfExists=%d", pszNew, bFailIfExists);
+//               strError.format("During copy, failed to close output file \"%s\" bFailIfExists=%d", pszNew, bFailIfExists);
 //               __throw(strError);
 //            }
 //
@@ -824,7 +824,7 @@ namespace ios
 //         {
 //            u32 dwError = ::get_last_error();
 //            string strError;
-//            strError.Format("Failed to move file \"%s\" to \"%s\" error=%d", psz, pszNew, dwError);
+//            strError.format("Failed to move file \"%s\" to \"%s\" error=%d", psz, pszNew, dwError);
 //            __throw(strError);
 //         }
 //#elif defined(_UWP)
@@ -869,7 +869,7 @@ namespace ios
 //         {
 //            i32 err = errno;
 //            string strError;
-//            strError.Format("Failed to delete file error=%d", err);
+//            strError.format("Failed to delete file error=%d", err);
 //            __throw(strError);
 //         }
 //#endif
@@ -885,7 +885,7 @@ namespace ios
 //            if(dwError == 2) // the file does not exist, so delete "failed"
 //               return;
 //            string strError;
-//            strError.Format("Failed to delete file \"%s\" error=%d", psz, dwError);
+//            strError.format("Failed to delete file \"%s\" error=%d", psz, dwError);
 //            __throw(strError);
 //         }
 //#else
@@ -893,7 +893,7 @@ namespace ios
 //         {
 //            i32 err = errno;
 //            string strError;
-//            strError.Format("Failed to delete file error=%d", err);
+//            strError.format("Failed to delete file error=%d", err);
 //            __throw(strError);
 //         }
 //#endif
@@ -910,7 +910,7 @@ namespace ios
 //            i32 i = 1;
 //            while( i <= 100)
 //            {
-//               strNew.Format("%s-%s-%d", psz, strCopy.c_str(), i);
+//               strNew.format("%s-%s-%d", psz, strCopy.c_str(), i);
 //               if(!exists(strNew, papp))
 //               {
 //                  copy(strNew, psz, false, extract_all, papp);
@@ -929,7 +929,7 @@ namespace ios
 //            i32 i = 1;
 //            while( i <= 100)
 //            {
-//               strNew.Format("%s-%s-%d%s", psz, strCopy.c_str(), i, strExt.c_str());
+//               strNew.format("%s-%s-%d%s", psz, strCopy.c_str(), i, strExt.c_str());
 //               if(!exists(strNew, papp))
 //               {
 //                  copy(strNew, psz, false, extract_all, papp);

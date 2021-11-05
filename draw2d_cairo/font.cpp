@@ -165,6 +165,17 @@ namespace draw2d_cairo
 
 #if defined(USE_PANGO)
 
+      int iPangoSize = (int) (m_dFontSize * PANGO_SCALE);
+
+      if(iPangoSize <= 0)
+      {
+
+         WARNING("Invalid size for font: pango_font_description_set_size: assertion 'size >= 0' failed");
+
+         return false;
+
+      }
+
       m_mapPangoLayout.erase_all();
 
       m_pdesc = pango_font_description_new();

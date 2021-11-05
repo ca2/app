@@ -986,7 +986,7 @@ namespace ftp
       if (sckDataConnection.Bind(0, "tcp", 1))
       {
          string strMessage;
-         strMessage.Format("could not bind to address %s %d", strIp.c_str(), iPort);
+         strMessage.format("could not bind to address %s %d", strIp.c_str(), iPort);
          TRACE(strMessage);
          //message_box(nullptr, strMessage);
          return false;

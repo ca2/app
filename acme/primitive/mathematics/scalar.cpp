@@ -592,7 +592,7 @@ string scalar_base::Format(const ::string & strFormat)
 //
 //   string str;
 //
-//   str.Format(strFormat,get());
+//   str.format(strFormat,get());
 //
 //   return str;
 //
@@ -694,7 +694,7 @@ string scalar_base::Format(const ::string & strFormat)
 //
 //   string str;
 //
-//   str.Format(strFormat,get());
+//   str.format(strFormat,get());
 //
 //   return str;
 //

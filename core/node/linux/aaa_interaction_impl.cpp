@@ -364,7 +364,7 @@ namespace linux
 
             //attr.override_redirect = True;
 
-            INFORMATION("XCreateWindow (l=%d, t=%d) (w=%d, h=%d)", pusersystem->m_createstruct.x, pusersystem->m_createstruct.y, pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy);
+            FORMATTED_INFORMATION("XCreateWindow (l=%d, t=%d) (w=%d, h=%d)", pusersystem->m_createstruct.x, pusersystem->m_createstruct.y, pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy);
 
             Window window = XCreateWindow(display, DefaultRootWindow(display), pusersystem->m_createstruct.x, pusersystem->m_createstruct.y, pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy,
             0,
@@ -428,11 +428,11 @@ namespace linux
 
                string strMessage;
 
-               strMessage.Format("%s\n\nSystem Error Code: %d", strLastError.c_str(), dwLastError);
+               strMessage.format("%s\n\nSystem Error Code: %d", strLastError.c_str(), dwLastError);
 
                TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: oswindow creation failed: get_last_error returned:\n");
 
-               TRACE(trace_category_appmsg, e_trace_level_warning, "%s\n", strMessage.c_str());
+               FORMATTED_TRACE(trace_category_appmsg, e_trace_level_warning, "%s\n", strMessage.c_str());
 
                try
                {
@@ -770,7 +770,7 @@ namespace linux
       if (bMove)
       {
 
-         INFORMATION("linux::interaction_impl Window Manager Move (%d, %d)", m_pointLastMove.x, m_pointLastMove.y);
+         FORMATTED_INFORMATION("linux::interaction_impl Window Manager Move (%d, %d)", m_pointLastMove.x, m_pointLastMove.y);
 
          m_puserinteraction->move_to(m_pointLastMove);
 
@@ -785,7 +785,7 @@ namespace linux
       if (bSize)
       {
 
-         INFORMATION("linux::interaction_impl Window Manager Size (%d, %d)", m_sizeLastSize.cx, m_sizeLastSize.cy);
+         FORMATTED_INFORMATION("linux::interaction_impl Window Manager Size (%d, %d)", m_sizeLastSize.cx, m_sizeLastSize.cy);
 
          m_puserinteraction->set_size(m_sizeLastSize);
 
@@ -898,7 +898,7 @@ namespace linux
       if(pshowwindow->m_bShow)
       {
 
-         INFORMATION("linux::interaction_impl::on_message_show_window VISIBLE edisplay=%s", __cstr(m_puserinteraction->ui_state().m_edisplay3.m_eenum));
+         FORMATTED_INFORMATION("linux::interaction_impl::on_message_show_window VISIBLE edisplay=%s", __cstr(m_puserinteraction->ui_state().m_edisplay3.m_eenum));
 
          m_puserinteraction->ModifyStyle(0, WS_VISIBLE);
 

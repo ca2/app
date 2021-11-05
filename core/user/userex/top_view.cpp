@@ -123,7 +123,7 @@ namespace userex
       if(d1 > 50_ms)
       {
 
-         CATEGORY_INFORMATION(prodevian, "(more than 50ms) "<< strType << "::_000OnDraw took " << integral_millisecond(d1) << ".\n");
+         CATEGORY_INFORMATION(prodevian, "(more than 50ms)(H) "<< strType << "::_000OnDraw took " << integral_millisecond(d1) << ".\n");
 
       }
 

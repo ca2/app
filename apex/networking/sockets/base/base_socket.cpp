@@ -278,7 +278,7 @@ namespace sockets
          
           //string strTopicText;
 
-          //strTopicText.Format("socket_%d> ", s);
+          //strTopicText.format("socket_%d> ", s);
 
           //set_topic_text(strTopicText);
 

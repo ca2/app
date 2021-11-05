@@ -122,7 +122,7 @@ namespace filemanager
 
          //   string str;
 
-         //   str.Format("(%s)", filemanager_data()->m_id.str().c_str());
+         //   str.format("(%s)", filemanager_data()->m_id.str().c_str());
 
          //   __pointer(::database::client) pframe = get_parent_frame();
 
@@ -238,7 +238,7 @@ namespace filemanager
 
                auto pdatetime = psystem->datetime();
 
-               strName = strPrefix + pdatetime->international().get_gmt_date_time() + strSuffix;
+               strName = strPrefix + pdatetime->international().get_date_time() + strSuffix;
 
                strName.replace(":", "-");
 

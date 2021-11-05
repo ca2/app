@@ -818,11 +818,11 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
          if (m_pdocumenttemplate->m_id.has_char())
          {
 
-            ::file::path pathFrameJson = "matter://" + m_pdocumenttemplate->m_id + "/frame.json";
+            ::file::path pathFrameJson = "matter://" + m_pdocumenttemplate->m_id + "/frame.network_payload";
 
             auto pcontext = get_context();
 
-            m_varFrame = pcontext->m_papexcontext->file().as_json(pathFrameJson);
+            m_varFrame = pcontext->m_papexcontext->file().as_network_payload(pathFrameJson);
 
          }
 

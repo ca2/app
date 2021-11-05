@@ -58,11 +58,11 @@ namespace sockets
    //{
    //   if (m_nError == 0)
    //   {
-   //      strError.Format("%s error", m_strMessage);
+   //      strError.format("%s error", m_strMessage);
    //   }
    //   else
    //   {
-   //      strError.Format("%s error 0x%08x", m_strMessage, m_nError);
+   //      strError.format("%s error 0x%08x", m_strMessage, m_nError);
    //   }
    //   return true;
    //}

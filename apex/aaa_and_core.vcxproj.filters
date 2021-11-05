@@ -848,7 +848,7 @@
     <ClInclude Include="apex\apex\core_types.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
-    <ClInclude Include="apex\apex\core_timer.h">
+    <ClInclude Include="apex\apex\app_core_timer.h">
       <Filter>Header Files\apex\apex</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\filemanager_manager_template.h">

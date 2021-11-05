@@ -489,7 +489,7 @@ namespace sockets
             string strValue = straValue[j];
             //         strLine = ;
             msg += strKey + ": " + strValue + "\r\n";
-            //TRACE("%s: %s", strKey, strValue);
+            //FORMATTED_TRACE("%s: %s", strKey, strValue);
          }
          //TRACE(strTrace + "\n");
       }
@@ -727,7 +727,7 @@ namespace sockets
       //http_socket::OnHeader(key, value);
       /*if(key.compare_ci("user-agent") == 0)
       {
-         TRACE("  (request)OnHeader %s: %s\n", (const char *) key, (const char *) value);
+         FORMATTED_TRACE("  (request)OnHeader %s: %s\n", (const char *) key, (const char *) value);
       }*/
       if(key == __id(cookie))
       {

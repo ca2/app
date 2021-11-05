@@ -15,6 +15,10 @@
 #pragma once
 
 
+#undef LAYER_NAMESPACE
+#define LAYER_NAMESPACE axis
+
+
 namespace axis
 {
 
@@ -75,7 +79,7 @@ namespace axis
 
 #include "axis/platform/openweather_city.h"
 
-#include "axis/math/_.h"
+#include "axis/mathematics/_.h"
 
 #include "axis/database/database/_.h"
 
@@ -104,7 +108,7 @@ namespace axis
 
 
 
-#include "axis/compress/_.h"
+//#include "axis/compress/_.h"
 
 
 

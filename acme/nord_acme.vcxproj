@@ -31,7 +31,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <AndroidAPILevel>android-19</AndroidAPILevel>
+    <AndroidAPILevel>android-27</AndroidAPILevel>
+    <UseOfStl>c++_shared</UseOfStl>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -39,13 +40,13 @@
     <PlatformToolset>Clang_5_0</PlatformToolset>
     <UseOfStl>c++_shared</UseOfStl>
     <ThumbMode>Disabled</ThumbMode>
-    <AndroidAPILevel>android-19</AndroidAPILevel>
+    <AndroidAPILevel>android-27</AndroidAPILevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>Clang_5_0</PlatformToolset>
-    <AndroidAPILevel>android-19</AndroidAPILevel>
+    <AndroidAPILevel>android-27</AndroidAPILevel>
     <UseOfStl>c++_shared</UseOfStl>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
@@ -54,7 +55,7 @@
     <PlatformToolset>Clang_5_0</PlatformToolset>
     <UseOfStl>c++_shared</UseOfStl>
     <ThumbMode>Disabled</ThumbMode>
-    <AndroidAPILevel>android-19</AndroidAPILevel>
+    <AndroidAPILevel>android-27</AndroidAPILevel>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings" />
@@ -101,7 +102,7 @@
       <PreprocessorDefinitions>DEBUG;__ANDROID_API__=19;_ACME_LIBRARY</PreprocessorDefinitions>
       <ExceptionHandling>Enabled</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <CppLanguageStandard>-std=c++20</CppLanguageStandard>
+      <CppLanguageStandard>-std=c++1z</CppLanguageStandard>
       <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -Wno-char-subscripts</AdditionalOptions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
@@ -131,6 +132,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
+      <CppLanguageStandard>-std=c++1z</CppLanguageStandard>
     </ClCompile>
     <Link />
     <Link>
@@ -145,7 +147,7 @@
       <PreprocessorDefinitions>__ANDROID_API__=19;_ACME_LIBRARY</PreprocessorDefinitions>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CLanguageStandard>c11</CLanguageStandard>
-      <CppLanguageStandard>-std=c++20</CppLanguageStandard>
+      <CppLanguageStandard>-std=c++1z</CppLanguageStandard>
       <ExceptionHandling>Enabled</ExceptionHandling>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <BufferSecurityCheck>false</BufferSecurityCheck>
@@ -168,7 +170,7 @@
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CLanguageStandard>c11</CLanguageStandard>
-      <CppLanguageStandard>-std=c++20</CppLanguageStandard>
+      <CppLanguageStandard>-std=c++1z</CppLanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-android/$(PlatformName)/$(Configuration)/include;$(__archive)third-android/include;$(__archive)third-android/third/include;$(__archive)third-android/third/include/include;$(SolutionDir)../../platform-android/_include;$(SolutionDir)../../platform-android;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>__ANDROID_API__=19;_ACME_LIBRARY</PreprocessorDefinitions>
       <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -Wno-char-subscripts</AdditionalOptions>

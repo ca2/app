@@ -31,7 +31,7 @@ public:
    virtual ~sync_future() {}
 
 
-   inline virtual void operator()(const ::payload & payload) override
+   void operator()(const ::payload & payload) override
    {
 
       m_var = payload;
@@ -40,7 +40,8 @@ public:
 
    }
 
-   inline ::e_status wait(const ::duration& duration = duration::infinite())
+   
+   ::e_status wait(const ::duration& duration = duration::infinite()) override
    {
 
       return m_peventCompletion->wait(duration);

@@ -786,7 +786,7 @@ string MYCFStringCopyUTF8String(CFStringRef aString)
    
 }
 
-#define FUNCTION_TRACE(...) strFormat.Format(__VA_ARGS__); str+=strFormat;
+#define FUNCTION_TRACE(...) strFormat.format(__VA_ARGS__); str+=strFormat;
 
 
 rectangle_i32_array cg_get_window_rect_list_intersect_above(CGWindowID windowid)
@@ -1027,8 +1027,8 @@ rectangle_i32_array cg_get_window_rect_list_intersect_above(CGWindowID windowid)
       
 #ifdef FUNCTION_TRACE
       
-      FUNCTION_TRACE("Owner: \"%s\"; ", strAppName.c_str());
-      FUNCTION_TRACE("Name: \"%s\"; ", strName.c_str());
+      FUNCTION_FORMATTED_TRACE("Owner: \"%s\"; ", strAppName.c_str());
+      FUNCTION_FORMATTED_TRACE("Name: \"%s\"; ", strName.c_str());
       
       bFullTrace = true;
       
@@ -1054,7 +1054,7 @@ end1:
 #endif
 
 
-#define FUNCTION_TRACE(...) strFormat.Format(__VA_ARGS__); str+=strFormat;
+#define FUNCTION_TRACE(...) strFormat.format(__VA_ARGS__); str+=strFormat;
 
 
 void cg_get_window_rect_list(rectangle_i32_array & recta, array < CGWindowID > & windowida)
@@ -1236,8 +1236,8 @@ void cg_get_window_rect_list(rectangle_i32_array & recta, array < CGWindowID > &
       
 #ifdef FUNCTION_TRACE
       
-      FUNCTION_TRACE("Owner: \"%s\"; ", strAppName.c_str());
-      FUNCTION_TRACE("Name: \"%s\"; ", strName.c_str());
+      FUNCTION_FORMATTED_TRACE("Owner: \"%s\"; ", strAppName.c_str());
+      FUNCTION_FORMATTED_TRACE("Name: \"%s\"; ", strName.c_str());
       
       bFullTrace = true;
       

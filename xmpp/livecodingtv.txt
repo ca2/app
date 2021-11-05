@@ -1,6 +1,6 @@
 By kristian (as Realoader)
 
-On chat page, check the request for xmpp-session.json and you'll find the xmpp jid and password from there
+On chat page, check the request for xmpp-session.network_payload and you'll find the xmpp jid and password from there
 
 Chat room address is <username>@chat.livecoding.tv
 

@@ -530,15 +530,15 @@ payload_array & payload_array::operator = (const payload_array & payloada)
    return *this;
 }
 
-void payload_array::parse_json(const char * & pszJson)
+void payload_array::parse_network_payload(const char * & pszJson)
 {
-   parse_json(pszJson, pszJson + strlen(pszJson) - 1);
+   parse_network_payload(pszJson, pszJson + strlen(pszJson) - 1);
 }
 
 int g_iRandomNumberGenerator = 0;
 
 
-void payload_array::parse_json(const char * & pszJson, const char * pszEnd)
+void payload_array::parse_network_payload(const char * & pszJson, const char * pszEnd)
 {
 
    if(pszJson > pszEnd)
@@ -592,7 +592,7 @@ void payload_array::parse_json(const char * & pszJson, const char * pszEnd)
 
       ::payload & payload = add_new();
 
-      payload.parse_json(pszJson, pszEnd);
+      payload.parse_network_payload(pszJson, pszEnd);
 
       ::str::consume_spaces(pszJson, 0, pszEnd);
 
@@ -628,15 +628,15 @@ void payload_array::parse_json(const char * & pszJson, const char * pszEnd)
 }
 
 
-void var_array_skip_json(const char *& pszJson)
+void var_array_skip_network_payload(const char *& pszJson)
 {
 
-   var_array_skip_json(pszJson, pszJson + strlen(pszJson) - 1);
+   var_array_skip_network_payload(pszJson, pszJson + strlen(pszJson) - 1);
 
 }
 
 
-void var_array_skip_json(const char *& pszJson, const char * pszEnd)
+void var_array_skip_network_payload(const char *& pszJson, const char * pszEnd)
 {
    
    ::str::consume_spaces(pszJson, 0, pszEnd);
@@ -646,7 +646,7 @@ void var_array_skip_json(const char *& pszJson, const char * pszEnd)
    while (true)
    {
       
-      var_skip_json(pszJson, pszEnd);
+      var_skip_network_payload(pszJson, pszEnd);
       
       ::str::consume_spaces(pszJson, 0, pszEnd);
 
@@ -682,7 +682,7 @@ void var_array_skip_json(const char *& pszJson, const char * pszEnd)
 }
 
 
-string & payload_array::get_json(string & str, bool bNewLine) const
+string & payload_array::get_network_payload(string & str, bool bNewLine) const
 {
 
    str +="[";
@@ -690,7 +690,7 @@ string & payload_array::get_json(string & str, bool bNewLine) const
    if(get_count() > 0)
    {
 
-      element_at(0).get_json(str, bNewLine);
+      element_at(0).get_network_payload(str, bNewLine);
 
    }
 
@@ -710,7 +710,7 @@ string & payload_array::get_json(string & str, bool bNewLine) const
 
       }
 
-      element_at(i).get_json(str, bNewLine);
+      element_at(i).get_network_payload(str, bNewLine);
 
    }
 

@@ -3,7 +3,7 @@
 
 class CLASS_DECL_ACME system :
    virtual public ::acme::context,
-   virtual public ::acme_main_data,
+   virtual public ::main,
    //virtual public ::manager,
    virtual public ::task //,  virtual public ::logger
    //, public layered < system >
@@ -140,6 +140,8 @@ public:
 
    //virtual logger & log() { return *m_plogger; }
 
+   virtual void set_current_handles();
+
    virtual void TermSystem();
 
 
@@ -174,8 +176,14 @@ public:
    virtual ::application* get_main_application();
 
 
-   virtual void system_construct(int argc, char** argv, char** envp);
-   virtual void system_construct(int argc, wchar_t** argv, wchar_t** envp);
+   ::e_status system_construct(const ::main & main) override;
+
+   //using main::operator =;
+   
+
+
+   //virtual void system_construct(int argc, char** argv, char** envp);
+   //virtual void system_construct(int argc, wchar_t** argv, wchar_t** envp);
 
 
 #ifdef WINDOWS_DESKTOP
@@ -226,6 +234,8 @@ public:
 
 
    ::e_status main() override;
+
+
 
 
    virtual ::e_status end();

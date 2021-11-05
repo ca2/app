@@ -68,8 +68,8 @@ namespace dynamic_source
       script_manager* manager();
 
 
-      virtual void set_session_value(const ::id & id, ::payload value);
-      virtual ::payload get_session_value(const ::id & id);
+      virtual void set_session_payload(const ::id & id, const ::payload & payload);
+      virtual ::payload get_session_payload(const ::id & id);
       virtual ::id session_id(const ::id & id = nullptr);
 
       

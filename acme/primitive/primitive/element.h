@@ -17,7 +17,7 @@ public:
    
    ::interlocked_count                 m_countReference;
 
-   enum_flag                           m_eflagElement;
+   ::e_flag                            m_eflagElement;
 
 
 #if OBJECT_REFERENCE_COUNT_DEBUG
@@ -75,7 +75,7 @@ public:
    virtual ::e_status wait(const ::duration & duration);
 
 
-   virtual DURATION timeout() const;
+   [[nodiscard]] virtual DURATION timeout() const;
 
 
    virtual ::element * get_taskpool_container();
@@ -90,7 +90,7 @@ public:
    virtual ::e_status initialize_matter(::matter* pmatter);
 
 
-   inline bool has(enum_flag eflag) const { return (m_eflagElement & eflag) == eflag; }
+   [[nodiscard]] inline bool has(enum_flag eflag) const { return (m_eflagElement & eflag) == eflag; }
    inline void set(enum_flag eflag) { m_eflagElement = (enum_flag)((::u64)(m_eflagElement) | (::u64)(eflag)); }
    inline void set(enum_flag eflag, bool bSet) { if(bSet) set(eflag); else clear(eflag); }
    inline void clear(enum_flag eflag) { m_eflagElement = (enum_flag)((::u64)(m_eflagElement) & (~(::u64)(eflag))); }
@@ -106,30 +106,30 @@ public:
    inline void set_persistent(bool bSet = true) { set(e_flag_persist, bSet); }
 
 
-   inline bool is_ok() const { return has(e_flag_success); }
-   inline bool nok() const { return has(e_flag_failure) || has(e_flag_timeout); }
-   inline bool is_modified() const { return has(e_flag_changed); }
-   inline bool is_persistent() { return has(e_flag_persist); }
+   [[nodiscard]] inline bool is_ok() const { return has(e_flag_success); }
+   [[nodiscard]] inline bool nok() const { return has(e_flag_failure) || has(e_flag_timeout); }
+   [[nodiscard]] inline bool is_modified() const { return has(e_flag_changed); }
+   [[nodiscard]] inline bool is_persistent() const { return has(e_flag_persist); }
 
 
 
-   inline bool is_finishing() const { return has(e_flag_finishing); }
+   [[nodiscard]] inline bool is_finishing() const { return has(e_flag_finishing); }
    inline void set_finishing() { set(e_flag_finishing); }
    inline void unset_finishing() { clear(e_flag_finishing); }
 
 
-   inline bool is_heap_allocated() const { return has(e_flag_heap_allocated); }
+   [[nodiscard]] inline bool is_heap_allocated() const { return has(e_flag_heap_allocated); }
    inline void set_heap_allocated() { set(e_flag_heap_allocated); }
    inline void unset_heap_allocated() { clear(e_flag_heap_allocated); }
 
 
-   inline bool is_destroying() const { return has(e_flag_destroying); }
+   [[nodiscard]] inline bool is_destroying() const { return has(e_flag_destroying); }
    inline void set_destroying() { set(e_flag_destroying); }
    inline void unset_destroying() { clear(e_flag_destroying); }
 
 
-   inline bool is_storing() const { return has(e_flag_storing); }
-   inline bool is_loading() const { return !is_storing(); }
+   [[nodiscard]] inline bool is_storing() const { return has(e_flag_storing); }
+   [[nodiscard]] inline bool is_loading() const { return !is_storing(); }
 
 
    inline void set_storing() { set(e_flag_storing); }
@@ -140,15 +140,15 @@ public:
    inline void defer_set_loading() { if (!is_loading()) set_loading(); }
 
 
-   virtual bool should_run_async() const;
+   [[nodiscard]] virtual bool should_run_async() const;
 
 
    //virtual void to_string(string_exchange & str) const;
-   virtual strsize sz_len() const;
+   [[nodiscard]] virtual strsize sz_len() const;
    virtual void to_sz(char* sz, strsize len) const;
 
 
-   virtual ::enum_type get_payload_type() const;
+   [[nodiscard]] virtual ::enum_type get_payload_type() const;
 
 
    virtual void exchange(::stream& s);

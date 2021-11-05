@@ -54,12 +54,12 @@ namespace opengl
          
 #ifdef __APPLE__
 //         auto errString = glErrorString(eerror);
-         TRACE("error %d \"%s\"", eerror);
+         FORMATTED_TRACE("error %d \"%s\"", eerror);
 
 #else
 
          auto errString = gluErrorString(eerror);
-         TRACE("error %d \"%s\"", eerror, errString);
+         FORMATTED_TRACE("error %d \"%s\"", eerror, errString);
 
 #endif
          
@@ -315,7 +315,7 @@ namespace opengl
       if (success)
       {
 
-         strSummary.Format("SUCCESS::SHADER_COMPILATION (%s) \n -- --------------------------------------------------- -- \n", shader_type_c_str(type));
+         strSummary.format("SUCCESS::SHADER_COMPILATION (%s) \n -- --------------------------------------------------- -- \n", shader_type_c_str(type));
 
       }
       else
@@ -327,7 +327,7 @@ namespace opengl
 
          const char * pszLog = infoLog;
 
-         strSummary.Format("ERROR::SHADER_COMPILATION_ERROR of type: %s \n %s \n -- --------------------------------------------------- -- \n", psz, pszLog);
+         strSummary.format("FORMATTED_ERROR::SHADER_COMPILATION_ERROR of type: %s \n %s \n -- --------------------------------------------------- -- \n", psz, pszLog);
 
          estatus = ::error_failed;
 
@@ -354,7 +354,7 @@ namespace opengl
       if (success)
       {
 
-         strSummary.Format("SUCCESS::PROGRAM_LINKING \n -- --------------------------------------------------- -- \n");
+         strSummary.format("SUCCESS::PROGRAM_LINKING \n -- --------------------------------------------------- -- \n");
 
       }
       else
@@ -362,7 +362,7 @@ namespace opengl
 
          glGetProgramInfoLog(program, sizeof(infoLog), NULL, infoLog);
 
-         strSummary.Format("ERROR::PROGRAM_LINKING_ERROR : \n %s \n -- --------------------------------------------------- -- \n", infoLog);
+         strSummary.format("FORMATTED_ERROR::PROGRAM_LINKING_ERROR : \n %s \n -- --------------------------------------------------- -- \n", infoLog);
 
          estatus = ::error_failed;
 

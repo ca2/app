@@ -755,7 +755,7 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 //   inline void from(string & str, const ::duration & duration)
 //   {
 //
-//      str.Format(__prtick, ::duration.m_i);
+//      str.format(__prtick, ::duration.m_i);
 //
 //   }
 //

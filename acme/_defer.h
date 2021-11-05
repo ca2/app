@@ -32,24 +32,6 @@ namespace primitive
 
 } // namespace primitive
 
-
-//template < class T >
-//template < typename T2 >
-//inline __pointer(T) & ___pointer < T >::defer_create_new()
-//{
-//
-//   if (is_null())
-//   {
-//
-//      create_new < T2 >();
-//
-//   }
-//
-//   return *this;
-//
-//}
-
-
 template < class T >
 template < typename T2 >
 inline __pointer(T) & ___pointer < T >::defer_assign_to(T2 * & p)
@@ -75,17 +57,6 @@ inline __pointer(T) & ___pointer < T >::defer_assign_to(T2 * & p)
 
 }
 
-
-//template < class T >
-//template < typename T2 >
-//inline __pointer(T) & ___pointer < T >::create_new()
-//{
-//
-//   auto p = __new(T2);
-//
-//   return operator=(p);
-//
-//}
 
 
 template < class T >

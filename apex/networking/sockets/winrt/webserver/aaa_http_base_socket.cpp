@@ -108,9 +108,9 @@ namespace sockets
       // parse form data / query_string and cookie header if available
       m_request.ParseBody();
 
-      //TRACE("http version: %s\n", m_request.attr("http_version").get_string());
-      //TRACE("connection: %s\n", m_request.header("connection").get_string());
-      //TRACE("keepalive: %s\n", m_b_keepalive ? "true" : "false");
+      //FORMATTED_TRACE("http version: %s\n", m_request.attr("http_version").get_string());
+      //FORMATTED_TRACE("connection: %s\n", m_request.header("connection").get_string());
+      //FORMATTED_TRACE("keepalive: %s\n", m_b_keepalive ? "true" : "false");
    /*   if(::str::ends(m_request.attr("http_version").get_string(), "/1.1")
          && m_request.header("connection").get_string().compare_ci("close") != 0)
       {

@@ -19,7 +19,7 @@ inline string hex_color(const COLOR32 & c)
 
    string str;
 
-   str.Format("%02x%02x%02x", c.red, c.green, c.blue);
+   str.format("%02x%02x%02x", c.red, c.green, c.blue);
 
    return str;
 

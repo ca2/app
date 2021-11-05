@@ -100,7 +100,7 @@ namespace filemanager
 //
 //            //   string str;
 //
-//            //   str.Format("frame(%s)", filemanager_data()->m_id.str().c_str());
+//            //   str.format("frame(%s)", filemanager_data()->m_id.str().c_str());
 //
 //            //   __pointer(::user::frame_window) pframe = get_parent_frame();
 //

@@ -133,7 +133,7 @@ namespace geo
 
          string str;
 
-         str = file.as_string("https://server.ca2.software/city-list.json");
+         str = file.as_string("https://server.ca2.software/city-list.network_payload");
 
          if (str.has_char())
          {
@@ -151,7 +151,7 @@ namespace geo
 
                ::payload v;
 
-               v.parse_json(pszJson);
+               v.parse_network_payload(pszJson);
 
                string strLine = v["name"].string() + ", " + v["country"].string();
 
@@ -506,7 +506,7 @@ namespace geo
 
       ::payload v;
 
-      v.parse_json(pszJson);
+      v.parse_network_payload(pszJson);
 
       ::datetime::zonetime timeSunrise(v["sys"]["sunrise"].i64(), iTimeZone);
 
@@ -632,7 +632,7 @@ namespace geo
 
       auto pcontext = get_context();
 
-      string str = pcontext->m_papexcontext->http().get("http://api.timezonedb.com/?key=" + strKey + "&format=json&lat=" + strLat + "&lng=" + strLng, set);
+      string str = pcontext->m_papexcontext->http().get("http://api.timezonedb.com/?key=" + strKey + "&format=network_payload&lat=" + strLat + "&lng=" + strLng, set);
 
       if (str.has_char())
       {
@@ -644,7 +644,7 @@ namespace geo
          try
          {
 
-            v.parse_json(pszJson);
+            v.parse_network_payload(pszJson);
 
             str = v["abbreviation"].string().lowered();
 
@@ -762,7 +762,7 @@ namespace geo
       //
       //#endif
       //
-      //         str = papplication->http_get("http://api.timezonedb.com/?key=" + strKey + "&format=json&lat=" + strLat + "&lng=" + strLng, set);
+      //         str = papplication->http_get("http://api.timezonedb.com/?key=" + strKey + "&format=network_payload&lat=" + strLat + "&lng=" + strLng, set);
       //
       //         if (str.has_char())
       //         {
@@ -774,7 +774,7 @@ namespace geo
       //            try
       //            {
       //
-      //               v.parse_json(pszJson);
+      //               v.parse_network_payload(pszJson);
       //
       //               str = v["abbreviation"].get_string().lowered();
       //

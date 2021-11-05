@@ -67,7 +67,7 @@
 //   if (plibrary != nullptr)
 //   {
 //
-//      TRACE("Loaded Library (1) %s", strPath.c_str());
+//      FORMATTED_TRACE("Loaded Library (1) %s", strPath.c_str());
 //
 //      goto finished;
 //

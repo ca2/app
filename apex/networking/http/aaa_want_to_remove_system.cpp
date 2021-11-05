@@ -437,8 +437,8 @@ namespace http
                   pproxy->m_strProxy = pnode->attribute("server");
                   
                   pproxy->m_iPort = pnode->attribute("port");
-                  
-                  TRACE("Select Proxy : address %s mask %s server %s port %d",pnode->attribute("address").get_string().c_str(),
+
+                  FORMATTED_TRACE("Select Proxy : address %s mask %s server %s port %d",pnode->attribute("address").get_string().c_str(),
                         pnode->attribute("mask").get_string().c_str(), pproxy->m_strProxy.c_str(), pproxy->m_iPort);
 
                   return;
@@ -485,7 +485,7 @@ namespace http
 //         //   if(strUrl.has_char())
 //         //   {
 //
-//         //      TRACE("get_auto_config_url : %s",strUrl);
+//         //      FORMATTED_TRACE("get_auto_config_url : %s",strUrl);
 //
 //         //      if(try_pac_script(strUrl,pszUrl,pproxy))
 //         //         return;
@@ -503,7 +503,7 @@ namespace http
 //         //   if(strUrl.has_char())
 //         //   {
 //
-//         //      TRACE("get_auto_config_url : %s",strUrl);
+//         //      FORMATTED_TRACE("get_auto_config_url : %s",strUrl);
 //
 //         //      if(try_pac_script(strUrl,pszUrl,pproxy))
 //         //         return;
@@ -663,7 +663,7 @@ namespace http
       if(!psession->open(bConfigProxy))
       {
 
-         TRACE("Not Opened/Connected Result Total time ::http::system::get(\"%s\") " __prtick, strUrl.Left(minimum(255,strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
+         FORMATTED_TRACE("Not Opened/Connected Result Total time ::http::system::get(\"%s\") " __prtick, strUrl.Left(minimum(255,strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
 
          return false;
 
@@ -679,7 +679,7 @@ namespace http
    bool system::request(::sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession, const char * pszRequest, property_set & set)
    {
 
-      TRACE("http system request : %s",pszRequest);
+      FORMATTED_TRACE("http system request : %s",pszRequest);
 
       ::duration tick1;
 
@@ -758,7 +758,7 @@ retry:
 
             }
 
-            TRACE("opening system::request time(%d) = " __prtick, __pr(tickBeg.elapsed()));
+FORMATTED_TRACE("opening system::request time(%d) = " __prtick, __pr(tickBeg.elapsed()));
 
          }
          catch(...)
@@ -945,13 +945,13 @@ retry:
 
          }
 
-         TRACE("opening preparation system::request time(%d) = " __prtick, __pr(tickBegA.elapsed()));
+FORMATTED_TRACE("opening preparation system::request time(%d) = " __prtick, __pr(tickBegA.elapsed()));
 
          tick1 = (*this)("dw").::duration();
 
          tick2.Now();
 
-         TRACE("Higher Level Diagnosis : iNTERTIMe system::request time(%d) = " __prtick __prtick __prtick, iIteration, __pr(tick1), __pr(tick2), __pr(tick2 - tick1));
+FORMATTED_TRACE("Higher Level Diagnosis : iNTERTIMe system::request time(%d) = " __prtick __prtick __prtick, iIteration, __pr(tick1), __pr(tick2), __pr(tick2 - tick1));
 
          while((handler.get_count() > 0 && !psession->m_bRequestComplete) && (::get_task() == nullptr || ::task_get_run()))
             //while(psession->get_count() > 0 && !psession->m_bRequestComplete) // should only exit in case of process exit signal
@@ -1092,7 +1092,7 @@ retry:
                if(::str::begins_ci(strCa2Realm,"n7ot licensed: "))
                {
 
-                  TRACE("Not Licensed Result Total time ::http::system::get(\"%s\") " __prtick, strUrl.Left(minimum(255,strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
+                  FORMATTED_TRACE("Not Licensed Result Total time ::http::system::get(\"%s\") " __prtick, strUrl.Left(minimum(255,strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
 
                   string strLocation = psession->outheader("Location");
 
@@ -1116,7 +1116,7 @@ retry:
 
          set["get_status"] = (i64)estatus;
 
-         TRACE("Total time ::http::system::get(\"%s\") " __prtick, strUrl.Left(minimum(255,strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
+         FORMATTED_TRACE("Total time ::http::system::get(\"%s\") " __prtick, strUrl.Left(minimum(255,strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
 
       }
       catch(...)
@@ -1221,7 +1221,7 @@ retry:
       TRACE("");
       TRACE("");
       TRACE("------------------------------------------------------");
-      TRACE(__prhttpget "Start: %s", iHttpGetSerial, pszUrl);
+      FORMATTED_TRACE(__prhttpget "Start: %s", iHttpGetSerial, pszUrl);
 
       set["http_get_serial"] = iHttpGetSerial;
 
@@ -1549,7 +1549,7 @@ retry_session:
 
             auto tick2 = ::duration::now();
 
-            TRACE(__prhttpget "Not Opened/Connected Result Total time ::http::system::get(\"%s\") " __prtick, iHttpGetSerial, strUrl.Left(minimum(255, strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
+            FORMATTED_TRACE(__prhttpget "Not Opened/Connected Result Total time ::http::system::get(\"%s\") " __prtick, iHttpGetSerial, strUrl.Left(minimum(255, strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
 
             return false;
 
@@ -1561,7 +1561,7 @@ retry_session:
 
          set["get_status"] = (i64) error_http;
 
-         TRACE(__prhttpget "Not Opened/Connected Result Total time ::http::system::get(\"%s\") " __prtick, iHttpGetSerial, strUrl.Left(minimum(255,strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
+         FORMATTED_TRACE(__prhttpget "Not Opened/Connected Result Total time ::http::system::get(\"%s\") " __prtick, iHttpGetSerial, strUrl.Left(minimum(255,strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
 
          return false;
 
@@ -1611,7 +1611,7 @@ retry_session:
          if (tickStart.elapsed() > tickTotalTimeout)
          {
 
-            TRACE(__prhttpget "FAILING BY Timeout after %d steps " __prtick, iHttpGetSerial, iIteration, __pr(tick1.elapsed()));
+FORMATTED_TRACE(__prhttpget "FAILING BY Timeout after %d steps " __prtick, iHttpGetSerial, iIteration, __pr(tick1.elapsed()));
 
             break;
 
@@ -1652,7 +1652,7 @@ retry_session:
          if(set.has_property("cancel") && set["cancel"].get_bool())
          {
 
-            TRACE(__prhttpget "FAILING BY Cancellation at step %d " __prtick, iHttpGetSerial, iIteration, __pr(tick1.elapsed()));
+FORMATTED_TRACE(__prhttpget "FAILING BY Cancellation at step %d " __prtick, iHttpGetSerial, iIteration, __pr(tick1.elapsed()));
 
             break;
 
@@ -1682,7 +1682,7 @@ retry_session:
                || psocket->m_estatus == error_on_connection_timeout)
          {
 
-            TRACE(__prhttpget "FAILING BY Connection Timeout after %d steps " __prtick, iHttpGetSerial, iIteration, __pr(tick1.elapsed()));
+FORMATTED_TRACE(__prhttpget "FAILING BY Connection Timeout after %d steps " __prtick, iHttpGetSerial, iIteration, __pr(tick1.elapsed()));
 
             break;
 
@@ -1691,7 +1691,7 @@ retry_session:
          if (psocket->m_b_complete)
          {
 
-            TRACE(__prhttpget "Complete! in %d steps " __prtick, iHttpGetSerial, iIteration, __pr(tick1.elapsed()));
+FORMATTED_TRACE(__prhttpget "Complete! in %d steps " __prtick, iHttpGetSerial, iIteration, __pr(tick1.elapsed()));
 
             break;
 
@@ -1700,13 +1700,13 @@ retry_session:
          if (iContentLength >= 0)
          {
 
-            TRACE(__prhttpget "%d. step " __prtick " Content-Length:%" PRIi64, iHttpGetSerial, iIteration, __pr(tick1.elapsed()), iContentLength);
+FORMATTED_TRACE(__prhttpget "%d. step " __prtick " Content-Length:%" PRIi64, iHttpGetSerial, iIteration, __pr(tick1.elapsed()), iContentLength);
 
          }
          else
          {
 
-            TRACE(__prhttpget "%d. step " __prtick, iHttpGetSerial, iIteration, __pr(tick1.elapsed()));
+FORMATTED_TRACE(__prhttpget "%d. step " __prtick, iHttpGetSerial, iIteration, __pr(tick1.elapsed()));
 
          }
 
@@ -1714,7 +1714,7 @@ retry_session:
          if(HTTP_DEBUG_LEVEL >= DEBUG_LEVEL_SICK)
          {
 
-            TRACE(__prhttpget "iSelectTimeoutSeconds=%d\n", iHttpGetSerial, iSelectTimeoutSeconds);
+FORMATTED_TRACE(__prhttpget "iSelectTimeoutSeconds=%d\n", iHttpGetSerial, iSelectTimeoutSeconds);
 
          }
 
@@ -1782,7 +1782,7 @@ retry_session:
 
          }
 
-         TRACE(__prhttpget "URL: %s Too much tries (%d)", iHttpGetSerial, strUrl.c_str(), iTry);
+         FORMATTED_TRACE(__prhttpget "URL: %s Too much tries (%d)", iHttpGetSerial, strUrl.c_str(), iTry);
 
          estatus = error_http;
 
@@ -1809,7 +1809,7 @@ retry_session:
 
             auto tick2 = ::duration::now();
 
-            TRACE(__prhttpget "Not Licensed Result Total time ::http::system::get(\"%s\") " __prtick, iHttpGetSerial, strUrl.Left(minimum(255,strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
+            FORMATTED_TRACE(__prhttpget "Not Licensed Result Total time ::http::system::get(\"%s\") " __prtick, iHttpGetSerial, strUrl.Left(minimum(255,strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
 
             string strLocation = psocket->outheader("Location");
 
@@ -2283,7 +2283,7 @@ retry_session:
       string strPasswordFile;
       string strSection;
       
-      strSection.Format("proxy_auth\\%s.%s", puser->m_strLogin.c_str(), "proxy_auth");
+      strSection.format("proxy_auth\\%s.%s", puser->m_strLogin.c_str(), "proxy_auth");
       
       strUserNameFile = pcontext->m_papexcontext->dir().appdata() / strSection + "_1";
       
@@ -2339,7 +2339,7 @@ retry_session:
       
       string strSection;
       
-      strSection.Format("proxy_auth\\%s.%s", puser->m_strLogin.c_str(), "proxy_auth");
+      strSection.format("proxy_auth\\%s.%s", puser->m_strLogin.c_str(), "proxy_auth");
       
       pcontext->m_papexcontext->file().del(pcontext->m_papexcontext->dir().appdata() / strSection + "_1");
       

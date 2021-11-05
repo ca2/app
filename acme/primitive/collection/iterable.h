@@ -393,7 +393,7 @@ namespace iter
    ::count get_count_except_iter_ci(const ITERABLE & iterable, const ITERABLE & set);
 
    template < typename ITERABLE, typename ITYPE >
-   ITYPE & get_json(const ITERABLE & iterable, ITYPE & str, bool bNewLine = true);
+   ITYPE & get_network_payload(const ITERABLE & iterable, ITYPE & str, bool bNewLine = true);
 
    template < typename ITERABLE, typename ITYPE >
    void c_add(ITERABLE & iterable, char ** ppsz, ::count iCount);
@@ -3624,7 +3624,7 @@ end:
 
 
    template < typename ITERABLE, typename ITYPE >
-   ITYPE & get_json(const ITERABLE & iterable, ITYPE & str, bool bNewLine)
+   ITYPE & get_network_payload(const ITERABLE & iterable, ITYPE & str, bool bNewLine)
    {
 
       str += "[";
@@ -4529,10 +4529,10 @@ public:
    }
 
    template < typename ITYPE >
-   ITYPE & get_json(ITYPE & str, bool bNewLine = true) const
+   ITYPE & get_network_payload(ITYPE & str, bool bNewLine = true) const
    {
 
-      return ::iter::get_json(*this, str, bNewLine);
+      return ::iter::get_network_payload(*this, str, bNewLine);
 
    }
 

@@ -86,8 +86,9 @@ public:
 
 #include "static_string.h"
 
-
 #include "acme/primitive/primitive/atomic.h"
+
+#include "acme/primitive/primitive/interlocked_count.h"
 
 #include "acme/memory/memory_allocator.h"
 

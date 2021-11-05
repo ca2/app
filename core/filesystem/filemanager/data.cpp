@@ -260,7 +260,7 @@ namespace filemanager
 //      if(m_datakey.is_empty())
 //      {
 //
-//         m_datakey.m_strDataKey.Format("%s", m_id.str().c_str());
+//         m_datakey.m_strDataKey.format("%s", m_id.str().c_str());
 //
 //      }
 //

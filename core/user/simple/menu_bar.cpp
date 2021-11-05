@@ -276,7 +276,7 @@ void simple_menu_bar::on_message_create(::message::message * pmessage)
 //
 //         //index yPos = HIWORD(pmsg->lParam);
 //
-//         TRACE("simple_menu_bar::MessageProc %d %d %d \n", fwKeys, point.x, point.y);
+//         FORMATTED_TRACE("simple_menu_bar::MessageProc %d %d %d \n", fwKeys, point.x, point.y);
 //
 //         //::point_i32 point(xPos, yPos);
 //

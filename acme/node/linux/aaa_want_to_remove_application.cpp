@@ -121,7 +121,7 @@ namespace acme
 
                      ::u32 uSize;
 
-                     strKey.Format(
+                     strKey.format(
                         TEXT("\\StringFileInfo\\%04x%04x\\FileDescription"),
                         pTranslate[i].wLanguage,
 
@@ -131,7 +131,7 @@ namespace acme
 
 
 
-                     strKey.Format(
+                     strKey.format(
                         TEXT("\\StringFileInfo\\%04x%04x\\FileVersion"),
                         pTranslate[i].wLanguage,
 

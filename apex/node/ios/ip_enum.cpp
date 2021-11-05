@@ -27,8 +27,8 @@ namespace ios
       
       if (gethostname(szHostname, sizeof(szHostname)))
       {
-         
-         TRACE("Failed in call to gethostname, errno returns %d\n", errno);
+
+         FORMATTED_TRACE("Failed in call to gethostname, errno returns %d", errno);
          
          return false;
          
@@ -39,8 +39,8 @@ namespace ios
       
       if (phostent == nullptr)
       {
-         
-         TRACE("Failed in call to gethostbyname, errno returns %d\n", errno);
+
+         FORMATTED_TRACE("Failed in call to gethostbyname, errno returns %d", errno);
          
          return false;
          

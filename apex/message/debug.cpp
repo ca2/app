@@ -136,7 +136,7 @@ else __msg_entry(e_message_initialize_menu_popup)      //             0x0117
 #endif
 else
 {
-str.Format("message 0x%04x (%d)", uMessage, uMessage);
+str.format("message 0x%04x (%d)", uMessage, uMessage);
 
 return str;
 
@@ -151,7 +151,7 @@ return str;
 
  string strNumbers;
 
- strNumbers.Format("%s 0x%04x (%d)", str.c_str(), uMessage, uMessage);
+ strNumbers.format("%s 0x%04x (%d)", str.c_str(), uMessage, uMessage);
 
  return strNumbers;
 

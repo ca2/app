@@ -25,9 +25,6 @@
     <ClCompile Include="main_window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="_.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -53,5 +50,13 @@
     <ResourceCompile Include="..\..\..\archive\platform-windows\version.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="deps.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="matter.txt">
+      <Filter>Source Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

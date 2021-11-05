@@ -42,7 +42,7 @@ namespace datetime
          virtual ::e_status initialize(::object * pobject) override;
 
 
-         void parse_str(const char * psz,property_set & set);
+         void parse_str(const string & str, property_set & set);
 
 
          string get_date_time(const ::datetime::time & time, string strFormat = INTERNATIONAL_DATE_TIME_FORMAT, const ::time_shift& timeshift = ::time_shift::none());
@@ -128,8 +128,8 @@ namespace datetime
       i32 get_weekday(i32 year, i32 month, i32 day);
 
 
-      i64 strtotime(const ::text::context * pcontext,const char * psz,time_t time,i32 iPath,i32 & iPathCount, const time_shift& timezone = ::time_shift::none());
-      i64 strtotime(const ::text::context * pcontext,const char * psz,i32 iPath,i32 & iPathCount, const time_shift& timezone = ::time_shift::none());
+      i64 strtotime(const ::text::context * pcontext, const ::string & str, time_t time,i32 iPath,i32 & iPathCount, const time_shift& timezone = ::time_shift::none());
+      i64 strtotime(const ::text::context * pcontext, const ::string & str, i32 iPath,i32 & iPathCount, const time_shift& timezone = ::time_shift::none());
 
       
       ::datetime::time from_string(const ::text::context* pcontext, const ::string & str, const time_shift& timezone = ::time_shift::none());
@@ -147,8 +147,8 @@ namespace datetime
       inline class  international& international() { return *m_pinternational; }
       inline class str& str() { return* m_pstr; }
 
-      string strftime(const char * psz, const ::datetime::time & time, const time_shift& timezone = ::time_shift::none());
-      string strftime(const char * psz, const time_shift& timezone = ::time_shift::none());
+      string strftime(const string & str, const ::datetime::time & time, const time_shift& timezone = ::time_shift::none());
+      string strftime(const string & str, const time_shift& timezone = ::time_shift::none());
 
       i32 SWN(i32 y,i32 m,i32 d);
       i32 DP(i32 y,i32 m);
@@ -162,9 +162,9 @@ namespace datetime
 
       virtual string to_string(const ::text::context* pcontext, const ::datetime::result& result, const time_shift& timeshift = ::time_shift::none());
 
-      virtual result span_parse_time(const ::text::context* pcontext, const char* psz, const time_shift& timeshift = ::time_shift::none());
+      virtual result span_parse_time(const ::text::context* pcontext, const string & str, const time_shift& timeshift = ::time_shift::none());
 
-      virtual result parse_time(const ::text::context* pcontext, const char* psz, i32& iPath, i32& iPathCount, const time_shift& timeshift = ::time_shift::none());
+      virtual result parse_time(const ::text::context* pcontext, const string & str, i32& iPath, i32& iPathCount, const time_shift& timeshift = ::time_shift::none());
 
       string friend_time(const ::text::context * pcontext,::datetime::time timeNow,::datetime::time time, const time_shift& timeshift = ::time_shift::none());
 

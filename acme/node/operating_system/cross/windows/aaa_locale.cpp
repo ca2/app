@@ -58,7 +58,7 @@ i32 WINAPI GetLocaleInfoW( LCID lcid, LCTYPE lctype, LPWSTR buffer, i32 len )
    lcflags = lctype & LOCALE_LOCALEINFOFLAGSMASK;
    lctype &= 0xffff;
 
-   //TRACE( "(lcid=0x%x,lctype=0x%x,%point,%d)\n", lcid, lctype, buffer, len );
+   //FORMATTED_TRACE( "(lcid=0x%x,lctype=0x%x,%point,%d)\n", lcid, lctype, buffer, len );
 
    /* first check for overrides in the registry */
 
@@ -153,14 +153,14 @@ i32 WINAPI GetLocaleInfoW( LCID lcid, LCTYPE lctype, LPWSTR buffer, i32 len )
 //        HeapFree( GetProcessHeap(), 0, tmp );
       free(tmp);
 
-      //TRACE( "(lcid=0x%x,lctype=0x%x,%point,%d) returning number %d\n", lcid, lctype, buffer, len, number );
+      //FORMATTED_TRACE( "(lcid=0x%x,lctype=0x%x,%point,%d) returning number %d\n", lcid, lctype, buffer, len, number );
    }
    else
    {
       ::memcpy_dup( buffer, point_i32 + 1, ret * sizeof(WCHAR) );
       if (lctype != LOCALE_FONTSIGNATURE) buffer[ret-1] = 0;
 
-      //TRACE( "(lcid=0x%x,lctype=0x%x,%point,%d) returning %d %s\n", lcid, lctype, buffer, len, ret, debugstr_w(buffer) );
+      //FORMATTED_TRACE( "(lcid=0x%x,lctype=0x%x,%point,%d) returning %d %s\n", lcid, lctype, buffer, len, ret, debugstr_w(buffer) );
    }
    return ret;
 }

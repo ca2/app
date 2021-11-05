@@ -331,7 +331,7 @@ namespace user
       //virtual void SetWindowDisplayChanged();
 
       // timer Functions
-      virtual bool SetTimer(uptr uEvent, ::duration millisElapse, PFN_TIMER pfnTimer);
+      virtual bool SetTimer(uptr uEvent, const ::duration & millisElapse, PFN_TIMER pfnTimer, bool bPeriodic = true, void* pdata = nullptr);
       virtual bool KillTimer(uptr uEvent);
 
 

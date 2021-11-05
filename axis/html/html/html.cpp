@@ -277,7 +277,7 @@ namespace html
          }
          else
          {
-            strChar.Format("&#%d;", iChar);
+            strChar.format("&#%d;", iChar);
             str += strChar;
          }
          psz = ::str::utf8_inc(psz);
@@ -329,7 +329,7 @@ namespace html
          }
          else
          {
-            strChar.Format("&#%d;", iChar);
+            strChar.format("&#%d;", iChar);
             str += strChar;
          }
          

@@ -227,7 +227,7 @@ void filemanager_impact_base::handle(::subject * psubject, ::context * pcontext)
 
             string str;
 
-            str.Format("frame(%s)", filemanager_data()->m_id.str().c_str());
+            str.format("frame(%s)", filemanager_data()->m_id.str().c_str());
 
             pclient->set_data_key_modifier(str);
 

@@ -89,7 +89,7 @@ namespace hotplugin
 
                      string str;
 
-                     str.Format("::hotplugin::g_pbasesystem initialization error %d",::hotplugin::get_aura_system()->get_result_status());
+                     str.format("::hotplugin::g_pbasesystem initialization error %d",::hotplugin::get_aura_system()->get_result_status());
 
                      ::output_debug_string(str);
 
@@ -140,7 +140,7 @@ namespace hotplugin
 
                      string str;
 
-                     str.Format("m_pcomposersystem initialization error %d",get_composer_system()->get_result_status());
+                     str.format("m_pcomposersystem initialization error %d",get_composer_system()->get_result_status());
 
                      ::output_debug_string(str);
 
@@ -194,7 +194,7 @@ namespace hotplugin
 
                      string str;
 
-                     str.Format("::hotplugin::composer::m_paxishost initialization error %d",::hotplugin::get_aura_system()->get_result_status());
+                     str.format("::hotplugin::composer::m_paxishost initialization error %d",::hotplugin::get_aura_system()->get_result_status());
 
                      ::output_debug_string(str);
 

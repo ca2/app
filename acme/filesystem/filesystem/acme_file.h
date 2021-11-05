@@ -19,6 +19,11 @@ public:
    ~acme_file() override;
 
 
+   virtual ::e_status ensure_exists(const char* path);
+   virtual ::e_status touch(const char* path);
+
+
+
    virtual ::file::path executable();
 
 

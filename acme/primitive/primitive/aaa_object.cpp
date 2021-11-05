@@ -312,7 +312,7 @@ void object::to_string(const class string_exchange & str) const
 void object::dev_log(string strMessage) const
 {
 
-   TRACE("%s", strMessage.c_str());
+   FORMATTED_TRACE("%s", strMessage.c_str());
 
 #ifdef __DEBUG
 
@@ -1239,7 +1239,7 @@ void object::copy_from(const object & o)
    //         if (strWaiting.has_char())
    //         {
 
-   //            TRACE("The thread %s is waiting for the following threads to finish:\r\n%s", __type_name(this), strWaiting.c_str());
+   //            FORMATTED_TRACE("The thread %s is waiting for the following threads to finish:\r\n%s", __type_name(this), strWaiting.c_str());
 
    //         }
 

@@ -77,7 +77,7 @@ namespace database
    void database::trace_error1(const char * pszPrefix)
    {
       m_strLastError += error1(pszPrefix);
-      TRACE("%s", m_strLastError.c_str());
+      FORMATTED_TRACE("%s", m_strLastError.c_str());
    }
 
 

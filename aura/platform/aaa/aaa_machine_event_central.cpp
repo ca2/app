@@ -114,7 +114,7 @@ bool machine_event_central::is_close_application()
 //
 //   m_machineevent.read(&data);
 //
-//   __throw(todo("xml->json"));
+//   __throw(todo("xml->network_payload"));
 //
 //   //xml::document doc;
 //

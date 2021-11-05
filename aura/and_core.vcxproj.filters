@@ -848,7 +848,7 @@
     <ClInclude Include="aura\aura\core_types.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\core_timer.h">
+    <ClInclude Include="aura\aura\app_core_timer.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\filemanager_manager_template.h">

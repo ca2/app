@@ -71,7 +71,7 @@ namespace apex
       //set_layer(LAYERED_APEX, this);
 
       //create_factory < ::user::user >();
-      create_factory < ::apex::session, ::apex::session >();
+      //create_factory < ::apex::session, ::apex::session >();
 
       //m_XstrAppId                    = "core_session";
       //m_strAppName                  = "core_session";
@@ -2204,7 +2204,6 @@ namespace apex
    }
 
    
-   __namespace_session_factory(session);
 
 
 } // namespace apex

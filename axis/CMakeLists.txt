@@ -45,10 +45,10 @@ list(APPEND library_source
         axispolicy/policy_objc.h
         axispolicy/policy_objcpp.h
         axispolicy/policy_winrt.h
-        compress/_.h
-        compress/bz.cpp
-        compress/bz.h
-        compress/bzip.h
+#        compress/_.h
+#        compress/bz.cpp
+#        compress/bz.h
+#        compress/bzip.h
         #const/_const.h
    #const/callback.h
    #const/charset.h

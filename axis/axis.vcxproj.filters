@@ -31,24 +31,6 @@
     <Filter Include="Header Files\geoip">
       <UniqueIdentifier>{d88ad1e9-f034-46ab-8774-2ee102280746}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\math">
-      <UniqueIdentifier>{ad13cd40-dc53-493e-97d9-b9150e528515}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\math\kissfft">
-      <UniqueIdentifier>{884d67d7-f140-4f63-9576-64aed5a3d748}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\math\calculator">
-      <UniqueIdentifier>{5ef78e00-2086-4116-9d7a-c1edc3c52407}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\math">
-      <UniqueIdentifier>{2339bdcd-dfff-440a-a07c-7858db32668f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\math\kissfft">
-      <UniqueIdentifier>{9526fccf-7b8c-41ea-8a45-ad64bde279e8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\math\calculator">
-      <UniqueIdentifier>{6a37fb68-d64d-411d-b3d3-d6ff7d4dc37d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\html">
       <UniqueIdentifier>{1343948a-99fd-4ce1-bd0b-591500dc0e02}</UniqueIdentifier>
     </Filter>
@@ -66,12 +48,6 @@
     </Filter>
     <Filter Include="Header Files\html\html_lite">
       <UniqueIdentifier>{a5e1c026-c7bc-4484-9896-bfd8f3e9e0d4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\compress">
-      <UniqueIdentifier>{e94d7d55-a151-4500-aced-7d4f79210c46}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\compress">
-      <UniqueIdentifier>{45b7490b-3cd7-4087-be5f-2273b3a7d92b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\net">
       <UniqueIdentifier>{d0f5a16d-4995-4d49-ac69-fddd5c40456d}</UniqueIdentifier>
@@ -150,6 +126,24 @@
     </Filter>
     <Filter Include="Source Files\networking\netserver">
       <UniqueIdentifier>{4f0d0e3f-570b-4d67-a5d9-7dadef149528}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\mathematics">
+      <UniqueIdentifier>{ad13cd40-dc53-493e-97d9-b9150e528515}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\mathematics\kissfft">
+      <UniqueIdentifier>{884d67d7-f140-4f63-9576-64aed5a3d748}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\mathematics\calculator">
+      <UniqueIdentifier>{5ef78e00-2086-4116-9d7a-c1edc3c52407}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\mathematics">
+      <UniqueIdentifier>{2339bdcd-dfff-440a-a07c-7858db32668f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\mathematics\kissfft">
+      <UniqueIdentifier>{9526fccf-7b8c-41ea-8a45-ad64bde279e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\mathematics\calculator">
+      <UniqueIdentifier>{6a37fb68-d64d-411d-b3d3-d6ff7d4dc37d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -241,43 +235,43 @@
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="math\_.h">
-      <Filter>Header Files\math</Filter>
+      <Filter>Header Files\mathematics</Filter>
     </ClInclude>
     <ClInclude Include="math\calculator\_.h">
-      <Filter>Header Files\math\calculator</Filter>
+      <Filter>Header Files\mathematics\calculator</Filter>
     </ClInclude>
     <ClInclude Include="math\calculator\calculator.h">
-      <Filter>Header Files\math\calculator</Filter>
+      <Filter>Header Files\mathematics\calculator</Filter>
     </ClInclude>
     <ClInclude Include="math\calculator\parser.h">
-      <Filter>Header Files\math\calculator</Filter>
+      <Filter>Header Files\mathematics\calculator</Filter>
     </ClInclude>
     <ClInclude Include="math\calculator\parser_exception.h">
-      <Filter>Header Files\math\calculator</Filter>
+      <Filter>Header Files\mathematics\calculator</Filter>
     </ClInclude>
     <ClInclude Include="math\calculator\scanner.h">
-      <Filter>Header Files\math\calculator</Filter>
+      <Filter>Header Files\mathematics\calculator</Filter>
     </ClInclude>
     <ClInclude Include="math\calculator\token.h">
-      <Filter>Header Files\math\calculator</Filter>
+      <Filter>Header Files\mathematics\calculator</Filter>
     </ClInclude>
     <ClInclude Include="math\kissfft\_.h">
-      <Filter>Header Files\math\kissfft</Filter>
+      <Filter>Header Files\mathematics\kissfft</Filter>
     </ClInclude>
     <ClInclude Include="math\kissfft\fft.h">
-      <Filter>Header Files\math\kissfft</Filter>
+      <Filter>Header Files\mathematics\kissfft</Filter>
     </ClInclude>
     <ClInclude Include="math\kissfft\fft_guts.h">
-      <Filter>Header Files\math\kissfft</Filter>
+      <Filter>Header Files\mathematics\kissfft</Filter>
     </ClInclude>
     <ClInclude Include="math\kissfft\fftd.h">
-      <Filter>Header Files\math\kissfft</Filter>
+      <Filter>Header Files\mathematics\kissfft</Filter>
     </ClInclude>
     <ClInclude Include="math\kissfft\ifft.h">
-      <Filter>Header Files\math\kissfft</Filter>
+      <Filter>Header Files\mathematics\kissfft</Filter>
     </ClInclude>
     <ClInclude Include="math\kissfft\ifftd.h">
-      <Filter>Header Files\math\kissfft</Filter>
+      <Filter>Header Files\mathematics\kissfft</Filter>
     </ClInclude>
     <ClInclude Include="geoip\_.h">
       <Filter>Header Files\geoip</Filter>
@@ -522,15 +516,6 @@
     <ClInclude Include="user\simple_ui_draw.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="compress\_.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\bz.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\bzip.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
     <ClInclude Include="const\idpool.h">
       <Filter>Header Files\const</Filter>
     </ClInclude>
@@ -538,13 +523,13 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="math\calculator\element.h">
-      <Filter>Header Files\math\calculator</Filter>
+      <Filter>Header Files\mathematics\calculator</Filter>
     </ClInclude>
     <ClInclude Include="net\netserver\_netserver.h">
       <Filter>Header Files\net\netserver</Filter>
     </ClInclude>
     <ClInclude Include="math\calculator\result.h">
-      <Filter>Header Files\math\calculator</Filter>
+      <Filter>Header Files\mathematics\calculator</Filter>
     </ClInclude>
     <ClInclude Include="database\database\database_composite.h">
       <Filter>Header Files\database\database</Filter>
@@ -668,33 +653,6 @@
     <ClCompile Include="database\database\field_definition.cpp">
       <Filter>Source Files\database\database</Filter>
     </ClCompile>
-    <ClCompile Include="math\calculator\calculator.cpp">
-      <Filter>Source Files\math\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="math\calculator\parser.cpp">
-      <Filter>Source Files\math\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="math\calculator\parser_exception.cpp">
-      <Filter>Source Files\math\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="math\calculator\scanner.cpp">
-      <Filter>Source Files\math\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="math\kissfft\fft.cpp">
-      <Filter>Source Files\math\kissfft</Filter>
-    </ClCompile>
-    <ClCompile Include="math\kissfft\fft_shared.cpp">
-      <Filter>Source Files\math\kissfft</Filter>
-    </ClCompile>
-    <ClCompile Include="math\kissfft\fftd.cpp">
-      <Filter>Source Files\math\kissfft</Filter>
-    </ClCompile>
-    <ClCompile Include="math\kissfft\ifft.cpp">
-      <Filter>Source Files\math\kissfft</Filter>
-    </ClCompile>
-    <ClCompile Include="math\kissfft\ifftd.cpp">
-      <Filter>Source Files\math\kissfft</Filter>
-    </ClCompile>
     <ClCompile Include="html\html_lite\attributes.cpp">
       <Filter>Source Files\html\html_lite</Filter>
     </ClCompile>
@@ -734,17 +692,8 @@
     <ClCompile Include="user\simple_ui_draw.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="compress\bz.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
     <ClCompile Include="const\idpool.cpp">
       <Filter>Source Files\const</Filter>
-    </ClCompile>
-    <ClCompile Include="math\calculator\element.cpp">
-      <Filter>Source Files\math\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="math\calculator\result.cpp">
-      <Filter>Source Files\math\calculator</Filter>
     </ClCompile>
     <ClCompile Include="database\database\database_impl.cpp">
       <Filter>Source Files\database\database</Filter>
@@ -775,6 +724,39 @@
     </ClCompile>
     <ClCompile Include="networking\netserver\socket_thread.cpp">
       <Filter>Source Files\networking\netserver</Filter>
+    </ClCompile>
+    <ClCompile Include="mathematics\calculator\calculator.cpp">
+      <Filter>Source Files\mathematics\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="mathematics\calculator\element.cpp">
+      <Filter>Source Files\mathematics\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="mathematics\calculator\parser.cpp">
+      <Filter>Source Files\mathematics\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="mathematics\calculator\parser_exception.cpp">
+      <Filter>Source Files\mathematics\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="mathematics\calculator\result.cpp">
+      <Filter>Source Files\mathematics\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="mathematics\calculator\scanner.cpp">
+      <Filter>Source Files\mathematics\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="mathematics\kissfft\fft.cpp">
+      <Filter>Source Files\mathematics\kissfft</Filter>
+    </ClCompile>
+    <ClCompile Include="mathematics\kissfft\fft_shared.cpp">
+      <Filter>Source Files\mathematics\kissfft</Filter>
+    </ClCompile>
+    <ClCompile Include="mathematics\kissfft\fftd.cpp">
+      <Filter>Source Files\mathematics\kissfft</Filter>
+    </ClCompile>
+    <ClCompile Include="mathematics\kissfft\ifft.cpp">
+      <Filter>Source Files\mathematics\kissfft</Filter>
+    </ClCompile>
+    <ClCompile Include="mathematics\kissfft\ifftd.cpp">
+      <Filter>Source Files\mathematics\kissfft</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

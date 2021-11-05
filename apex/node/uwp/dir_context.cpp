@@ -530,7 +530,7 @@ pacmedir->ca2roaming() / "home";
 
                string strError = get_last_error_message(dwError);
 
-               TRACE("dir_context::mk CreateDirectoryW last error(%d)=%s", dwError, strError);
+               FORMATTED_TRACE("dir_context::mk CreateDirectoryW last error(%d)=%s", dwError, strError);
 
                //m_isdirmap.set(stra[i], false, 0);
 
@@ -617,7 +617,7 @@ try1:;
          string strFormat;
          ::datetime::time time;
          time = ::datetime::time::now();
-         strFormat.Format("%04d-%02d-%02d %02d-%02d-%02d\\",time.GetYear(),time.GetMonth(),time.GetDay(),time.GetHour(),time.GetMinute(),time.GetSecond());
+         strFormat.format("%04d-%02d-%02d %02d-%02d-%02d\\",time.GetYear(),time.GetMonth(),time.GetDay(),time.GetHour(),time.GetMinute(),time.GetSecond());
          str += strFormat;
          if(strDir[2] == '\\')
          {

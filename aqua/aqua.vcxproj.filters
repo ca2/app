@@ -300,9 +300,6 @@
     <ClInclude Include="xml\xmlite.h">
       <Filter>Header Files\xml</Filter>
     </ClInclude>
-    <ClInclude Include="platform\layer.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -424,9 +421,6 @@
     </ClCompile>
     <ClCompile Include="node\windows\system.cpp">
       <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\layer.cpp">
-      <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

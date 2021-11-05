@@ -1,12 +1,7 @@
 #pragma once
 
-////////////////////////////////////////////////////////////////////////////////
-//
-//   ::tts::speaker class
-//
 
-
-namespace tts
+namespace text_to_speech
 {
 
 
@@ -20,8 +15,7 @@ namespace tts
 
 
       speaker();
-
-      virtual ~speaker();
+      ~speaker() override;
 
 
       virtual bool speak(const ::string & strText);
@@ -38,10 +32,7 @@ namespace tts
    };
 
 
-} // namespace tts
-
-
-
+} // namespace text_to_speech
 
 
 

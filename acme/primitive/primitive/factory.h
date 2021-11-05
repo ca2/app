@@ -19,7 +19,7 @@ namespace factory
 
       virtual string __type_name() const = 0;
 
-      virtual __pointer(::element) call_new() = 0;
+      virtual __pointer(::element) create_element() = 0;
 
       virtual void return_back(::element * pelement) = 0;
 
@@ -36,12 +36,12 @@ namespace factory
 
       string base_type_name() const override { return ::demangle(typeid(BASE_TYPE).name()); }
 
-      virtual __pointer(BASE_TYPE) _call_new() = 0;
+      virtual __pointer(BASE_TYPE) _create() = 0;
 
-      virtual __pointer(::element) call_new() override
+      virtual __pointer(::element) create_element() override
       {
 
-         return _call_new();
+         return _create();
 
       }
 
@@ -65,7 +65,7 @@ namespace factory
 
       virtual string __type_name() const { return ::demangle(typeid(TYPE).name()); }
 
-      virtual __pointer(BASE_TYPE) _call_new()
+      virtual __pointer(BASE_TYPE) _create()
       {
 
          return __new(TYPE);
@@ -95,7 +95,7 @@ namespace factory
 
 
 
-      virtual __pointer(BASE_TYPE) _call_new();
+      virtual __pointer(BASE_TYPE) _create();
 
 
       void return_back(BASE_TYPE * p);
@@ -149,7 +149,7 @@ public:
    inline __pointer(::factory::factory_base < BASE_TYPE >) create_factory();
 
    template < typename BASE_TYPE >
-   inline __pointer(BASE_TYPE) new_object();
+   inline __pointer(BASE_TYPE) create();
 
 
 };

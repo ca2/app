@@ -85,16 +85,16 @@ namespace acme
       virtual ::matter* new_object(const char* pszClass);
       
       template < typename BASE_TYPE >
-      inline __pointer(BASE_TYPE) new_object()
+      inline __pointer(BASE_TYPE) create()
       {
-         return m_pfactorymap->new_object <BASE_TYPE>();
+         return m_pfactorymap->create <BASE_TYPE>();
       }
 
       template < typename BASE_TYPE >
       inline ::e_status __construct(__pointer(BASE_TYPE) & p)
       {
 
-         auto pNew = m_pfactorymap->new_object <BASE_TYPE>();
+         auto pNew = m_pfactorymap->create <BASE_TYPE>();
 
          if (!pNew)
          {

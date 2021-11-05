@@ -238,7 +238,7 @@ namespace factory
 
 
    template < typename TYPE, typename BASE_TYPE >
-   inline __pointer(BASE_TYPE) reusable_factory < TYPE, BASE_TYPE >::_call_new()
+   inline __pointer(BASE_TYPE) reusable_factory < TYPE, BASE_TYPE >::_create()
    {
 
       {

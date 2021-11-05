@@ -48,7 +48,7 @@ namespace aqua
    }
 
 
-   void audio::speak(const ::string & strLang, const ::string & strText, bool bSynch)
+   void audio::speak(const ::string & strLang, const ::string & strText, bool bSynch, const ::string & strImplementation)
    {
 
       throw ::interface_only_exception();
@@ -56,20 +56,20 @@ namespace aqua
    }
 
 
-   void audio::trans_speak(const ::string & strLang, const ::string & strText, bool bSynch)
-   {
+   //void audio::trans_speak(const ::string & strLang, const ::string & strText, bool bSynch)
+   //{
 
-      throw ::interface_only_exception();
+   //   throw ::interface_only_exception();
 
-   }
+   //}
 
 
-   void audio::google_speak(const ::string & strLang, const ::string & strText, bool bSynch)
-   {
+   //void audio::google_speak(const ::string & strLang, const ::string & strText, bool bSynch)
+   //{
 
-      throw ::interface_only_exception();
+   //   throw ::interface_only_exception();
 
-   }
+   //}
 
 
    LPFN_NEW_MULTIMEDIA_DECODER audio::get_multimedia_decoder_factory(const ::string & strTitle)

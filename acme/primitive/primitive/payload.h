@@ -962,14 +962,14 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    void consume_number(const char * & psz,const char * pszEnd);
    void consume_identifier(const char * & psz);
    void consume_identifier(const char * & psz,const char * pszEnd);
-   void parse_network_payload(const char * & pszNetworkPayload);
-   void parse_network_payload(const char * & pszNetworkPayload, const char * pszEnd);
-   const char * parse_network_payload(const ::string & strNetworkPayload);
-   ::enum_type find_network_payload_child(const char * & pszNetworkPayload, const payload & payload);
-   ::enum_type find_network_payload_child(const char * & pszNetworkPayload, const char * pszEnd, const payload & payload);
-   ::enum_type find_network_payload_id(const char * & pszNetworkPayload, const char * pszEnd, const payload & payload);
-   bool parse_network_payload_step(const char * & pszNetworkPayload);
-   bool parse_network_payload_step(const char * & pszNetworkPayload, const char * pszEnd);
+   void parse_network_payload(const char * & pszJson);
+   void parse_network_payload(const char * & pszJson, const char * pszEnd);
+   const char * parse_network_payload(const ::string & strJson);
+   ::enum_type find_network_payload_child(const char * & pszJson, const payload & payload);
+   ::enum_type find_network_payload_child(const char * & pszJson, const char * pszEnd, const payload & payload);
+   ::enum_type find_network_payload_id(const char * & pszJson, const char * pszEnd, const payload & payload);
+   bool parse_network_payload_step(const char * & pszJson);
+   bool parse_network_payload_step(const char * & pszJson, const char * pszEnd);
 
    ::string & get_network_payload(::string & str, bool bNewLine = true) const;
    ::string get_network_payload(bool bNewLine = true) const;
@@ -1129,8 +1129,8 @@ CLASS_DECL_ACME void var_skip_number(const char *& psz);
 CLASS_DECL_ACME void var_skip_number(const char *& psz, const char * pszEnd);
 CLASS_DECL_ACME void var_skip_identifier(const char *& psz);
 CLASS_DECL_ACME void var_skip_identifier(const char *& psz, const char * pszEnd);
-CLASS_DECL_ACME void var_skip_network_payload(const char *& pszNetworkPayload);
-CLASS_DECL_ACME void var_skip_network_payload(const char *& pszNetworkPayload, const char * pszEnd);
+CLASS_DECL_ACME void var_skip_network_payload(const char *& pszJson);
+CLASS_DECL_ACME void var_skip_network_payload(const char *& pszJson, const char * pszEnd);
 
 
 

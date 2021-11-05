@@ -187,26 +187,26 @@ void prop_id_debug(::matter * pobject);
 //
 //void property::parse_network_payload(const ::string & str)
 //{
-//   const char * pszNetworkPayload = str;
-//   parse_network_payload(pszNetworkPayload, str.get_length());
+//   const char * pszJson = str;
+//   parse_network_payload(pszJson, str.get_length());
 //}
 //
-//void property::parse_network_payload(const char * & pszNetworkPayload, strsize length)
+//void property::parse_network_payload(const char * & pszJson, strsize length)
 //{
-//   parse_network_payload(pszNetworkPayload, pszNetworkPayload + length - 1);
+//   parse_network_payload(pszJson, pszJson + length - 1);
 //}
 //
-//void property::parse_network_payload(const char * & pszNetworkPayload,const char * pszEnd)
+//void property::parse_network_payload(const char * & pszJson,const char * pszEnd)
 //{
-//   ::property_parse_network_payload_id(m_id, pszNetworkPayload, pszEnd);
-//   ::property_parse_network_payload_value(m_var,pszNetworkPayload,pszEnd);
+//   ::property_parse_network_payload_id(m_id, pszJson, pszEnd);
+//   ::property_parse_network_payload_value(m_var,pszJson,pszEnd);
 //}
 //
 //
-void property_parse_network_payload_id(id & id, const char *& pszNetworkPayload, const char * pszEnd)
+void property_parse_network_payload_id(id & id, const char *& pszJson, const char * pszEnd)
 {
 
-   ::str::consume_spaces(pszNetworkPayload, 0, pszEnd);
+   ::str::consume_spaces(pszJson, 0, pszEnd);
 
    char sz[1024];
 
@@ -214,7 +214,7 @@ void property_parse_network_payload_id(id & id, const char *& pszNetworkPayload,
 
    strsize iBuffer = sizeof(sz);
 
-   ::str::consume_quoted_value_ex2(pszNetworkPayload, pszEnd, &psz, iBuffer);
+   ::str::consume_quoted_value_ex2(pszJson, pszEnd, &psz, iBuffer);
 
    id = psz;
 
@@ -228,32 +228,32 @@ void property_parse_network_payload_id(id & id, const char *& pszNetworkPayload,
 }
 
 
-void property_parse_network_payload_value(::payload & payload, const char *& pszNetworkPayload, const char * pszEnd)
+void property_parse_network_payload_value(::payload & payload, const char *& pszJson, const char * pszEnd)
 {
-   ::str::consume_spaces(pszNetworkPayload, 0, pszEnd);
-   ::str::consume(pszNetworkPayload, ":", 1, pszEnd);
-   payload.parse_network_payload(pszNetworkPayload, pszEnd);
+   ::str::consume_spaces(pszJson, 0, pszEnd);
+   ::str::consume(pszJson, ":", 1, pszEnd);
+   payload.parse_network_payload(pszJson, pszEnd);
 }
 
 
-void property_skip_network_payload_id(const char *& pszNetworkPayload, const char * pszEnd)
+void property_skip_network_payload_id(const char *& pszJson, const char * pszEnd)
 {
 
-   ::str::consume_spaces(pszNetworkPayload, 0, pszEnd);
+   ::str::consume_spaces(pszJson, 0, pszEnd);
 
-   ::str::skip_quoted_value_ex2(pszNetworkPayload, pszEnd);
+   ::str::skip_quoted_value_ex2(pszJson, pszEnd);
 
 }
 
 
-void property_skip_network_payload_value(const char *& pszNetworkPayload, const char * pszEnd)
+void property_skip_network_payload_value(const char *& pszJson, const char * pszEnd)
 {
 
-   ::str::consume_spaces(pszNetworkPayload, 0, pszEnd);
+   ::str::consume_spaces(pszJson, 0, pszEnd);
 
-   ::str::consume(pszNetworkPayload, ":", 1, pszEnd);
+   ::str::consume(pszJson, ":", 1, pszEnd);
 
-   var_skip_network_payload(pszNetworkPayload, pszEnd);
+   var_skip_network_payload(pszJson, pszEnd);
 
 }
 

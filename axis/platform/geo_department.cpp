@@ -142,16 +142,16 @@ namespace geo
 
             stra.add_lines(str);
 
-            for (auto strNetworkPayload : stra)
+            for (auto strJson : stra)
             {
 
-               const char* pszNetworkPayload = strNetworkPayload;
+               const char* pszJson = strJson;
 
-               //const char * pszNetworkPayload = "{\"_id\":6322752, \"name\" : \"Curitiba\", \"country\" : \"BR\", \"coord\" : {\"lon\":-49.290821, \"lat\" : -25.50395}}";
+               //const char * pszJson = "{\"_id\":6322752, \"name\" : \"Curitiba\", \"country\" : \"BR\", \"coord\" : {\"lon\":-49.290821, \"lat\" : -25.50395}}";
 
                ::payload v;
 
-               v.parse_network_payload(pszNetworkPayload);
+               v.parse_network_payload(pszJson);
 
                string strLine = v["name"].string() + ", " + v["country"].string();
 
@@ -502,11 +502,11 @@ namespace geo
 
       synchronous_lock synchronouslock(mutex());
 
-      const char* pszNetworkPayload = str;
+      const char* pszJson = str;
 
       ::payload v;
 
-      v.parse_network_payload(pszNetworkPayload);
+      v.parse_network_payload(pszJson);
 
       ::datetime::zonetime timeSunrise(v["sys"]["sunrise"].i64(), iTimeZone);
 
@@ -637,14 +637,14 @@ namespace geo
       if (str.has_char())
       {
 
-         const char* pszNetworkPayload = str;
+         const char* pszJson = str;
 
          ::payload v;
 
          try
          {
 
-            v.parse_network_payload(pszNetworkPayload);
+            v.parse_network_payload(pszJson);
 
             str = v["abbreviation"].string().lowered();
 
@@ -767,14 +767,14 @@ namespace geo
       //         if (str.has_char())
       //         {
       //
-      //            const char * pszNetworkPayload = str;
+      //            const char * pszJson = str;
       //
       //            ::payload v;
       //
       //            try
       //            {
       //
-      //               v.parse_network_payload(pszNetworkPayload);
+      //               v.parse_network_payload(pszJson);
       //
       //               str = v["abbreviation"].get_string().lowered();
       //
@@ -1353,7 +1353,7 @@ namespace geo
       else if (!::mathematics::convert_to_double(dTimeZoneOffset, strCountryCode))
       {
 
-         FORMATTED_TRACE("(2) ERROR !! Missing timezone offset information for \"%s\" - \"%s\"", str.c_str(), strCountryCode.c_str());
+         TRACE("(2) ERROR !! Missing timezone offset information for \"%s\" - \"%s\"", str.c_str(), strCountryCode.c_str());
 
       }
 

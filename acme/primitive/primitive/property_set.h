@@ -264,9 +264,9 @@ public:
    //void parse_ini_file(const ::file::path& path);
    //void parse_ini_folder(const ::file::path& path);
 
-   void parse_network_payload(const ::string & strNetworkPayload);
-   void parse_network_payload(const char * & pszNetworkPayload);
-   void parse_network_payload(const char * & pszNetworkPayload, const char * pszEnd);
+   void parse_network_payload(const ::string & strJson);
+   void parse_network_payload(const char * & pszJson);
+   void parse_network_payload(const char * & pszJson, const char * pszEnd);
    void parse_url_query(const char * pszUrl);
    void _parse_url_query(const char * pszUrlQuery);
    void parse_http_headers(const char * pszHeaders);
@@ -328,8 +328,8 @@ public:
 };
 
 
-CLASS_DECL_ACME void property_set_skip_network_payload(const char *& pszNetworkPayload);
-CLASS_DECL_ACME void property_set_skip_network_payload(const char *& pszNetworkPayload, const char * pszEnd);
+CLASS_DECL_ACME void property_set_skip_network_payload(const char *& pszJson);
+CLASS_DECL_ACME void property_set_skip_network_payload(const char *& pszJson, const char * pszEnd);
 
 
 // <3tbs!! - Talking... ~ and then end up creating a Handler that handles...

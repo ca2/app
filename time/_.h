@@ -2,7 +2,7 @@
 
 
 #include "axis/_.h"
-#include "axis/math/_.h"
+#include "axis/mathematics/_.h"
 
 
 #if defined(_CA2_TIME_DLL)

@@ -5888,10 +5888,10 @@ end:
 
 
 
-void payload::parse_network_payload(const char * & pszNetworkPayload)
+void payload::parse_network_payload(const char * & pszJson)
 {
 
-   parse_network_payload(pszNetworkPayload, pszNetworkPayload + strlen(pszNetworkPayload) - 1);
+   parse_network_payload(pszJson, pszJson + strlen(pszJson) - 1);
 
 }
 
@@ -5944,11 +5944,8 @@ void var_skip_identifier(const char *& psz, const char * pszEnd)
 
 void var_skip_number(const char *& psz)
 {
-
    var_skip_number(psz, psz + strlen(psz) - 1);
-
 }
-
 
 void var_skip_number(const char *& psz, const char * pszEnd)
 {
@@ -6018,48 +6015,48 @@ end:
 }
 
 
-void var_skip_network_payload(const char *& pszNetworkPayload, const char * pszEnd)
+void var_skip_network_payload(const char *& pszJson, const char * pszEnd)
 {
 
-   ::str::consume_spaces(pszNetworkPayload, 0, pszEnd);
+   ::str::consume_spaces(pszJson, 0, pszEnd);
 
-   if (*pszNetworkPayload == '{')
+   if (*pszJson == '{')
    {
 
-      property_set_skip_network_payload(pszNetworkPayload, pszEnd);
+      property_set_skip_network_payload(pszJson, pszEnd);
 
    }
-   else if (*pszNetworkPayload == '\"')
+   else if (*pszJson == '\"')
    {
 
-      ::str::skip_quoted_value_ex(pszNetworkPayload, pszEnd);
+      ::str::skip_quoted_value_ex(pszJson, pszEnd);
 
    }
-   else if (*pszNetworkPayload == '\'')
+   else if (*pszJson == '\'')
    {
 
-      ::str::skip_quoted_value_ex(pszNetworkPayload, pszEnd);
+      ::str::skip_quoted_value_ex(pszJson, pszEnd);
 
    }
-   else if (ansi_char_is_digit(*pszNetworkPayload) || *pszNetworkPayload == '-' || *pszNetworkPayload == '.')
+   else if (ansi_char_is_digit(*pszJson) || *pszJson == '-' || *pszJson == '.')
    {
 
-      var_skip_number(pszNetworkPayload, pszEnd);
+      var_skip_number(pszJson, pszEnd);
 
    }
-   else if (*pszNetworkPayload == '[')
+   else if (*pszJson == '[')
    {
 
-      var_array_skip_network_payload(pszNetworkPayload, pszEnd);
+      var_array_skip_network_payload(pszJson, pszEnd);
 
    }
-   else if (*pszNetworkPayload == ']')
+   else if (*pszJson == ']')
    {
 
       ::output_debug_string("");
 
    }
-   else if (*pszNetworkPayload == '\0')
+   else if (*pszJson == '\0')
    {
 
       ::output_debug_string("");
@@ -6068,48 +6065,48 @@ void var_skip_network_payload(const char *& pszNetworkPayload, const char * pszE
    else
    {
 
-      var_skip_identifier(pszNetworkPayload, pszEnd);
+      var_skip_identifier(pszJson, pszEnd);
 
    }
 
 }
 
 
-void var_skip_network_payload(const char *& pszNetworkPayload)
+void var_skip_network_payload(const char *& pszJson)
 {
-   var_skip_network_payload(pszNetworkPayload, pszNetworkPayload + strlen(pszNetworkPayload) - 1);
+   var_skip_network_payload(pszJson, pszJson + strlen(pszJson) - 1);
 }
 
 
 
 
-const char * payload::parse_network_payload(const ::string & strNetworkPayload)
+const char * payload::parse_network_payload(const ::string & strJson)
 {
 
-   const char * pszNetworkPayload = strNetworkPayload;
+   const char * pszJson = strJson;
 
-   parse_network_payload(pszNetworkPayload, pszNetworkPayload + strNetworkPayload.get_length());
+   parse_network_payload(pszJson, pszJson + strJson.get_length());
 
-   return pszNetworkPayload;
+   return pszJson;
 
 }
 
 
-void payload::parse_network_payload(const char *& pszNetworkPayload, const char * pszEnd)
+void payload::parse_network_payload(const char *& pszJson, const char * pszEnd)
 {
 
-   ::str::consume_spaces(pszNetworkPayload, 0, pszEnd);
+   ::str::consume_spaces(pszJson, 0, pszEnd);
 
-   if (*pszNetworkPayload == '{')
+   if (*pszJson == '{')
    {
 
-      as_propset().parse_network_payload(pszNetworkPayload, pszEnd);
+      as_propset().parse_network_payload(pszJson, pszEnd);
 
    }
-   else if (*pszNetworkPayload == '\"')
+   else if (*pszJson == '\"')
    {
 
-      ::string str = ::str::consume_quoted_value_ex(pszNetworkPayload, pszEnd);
+      ::string str = ::str::consume_quoted_value_ex(pszJson, pszEnd);
 
       if(str.begins_eat_ci("hls://"))
       {
@@ -6147,27 +6144,27 @@ void payload::parse_network_payload(const char *& pszNetworkPayload, const char 
       operator=(str);
 
    }
-   else if (ansi_char_is_digit(*pszNetworkPayload) || *pszNetworkPayload == '-' || *pszNetworkPayload == '.')
+   else if (ansi_char_is_digit(*pszJson) || *pszJson == '-' || *pszJson == '.')
    {
 
-      consume_number(pszNetworkPayload, pszEnd);
+      consume_number(pszJson, pszEnd);
 
    }
-   else if (*pszNetworkPayload == '[')
+   else if (*pszJson == '[')
    {
 
-      as_payloada().parse_network_payload(pszNetworkPayload, pszEnd);
+      as_payloada().parse_network_payload(pszJson, pszEnd);
 
    }
-   else if (*pszNetworkPayload == ']')
+   else if (*pszJson == ']')
    {
 
       ::output_debug_string("");
 
-      //pszNetworkPayload++;
+      //pszJson++;
 
    }
-   else if (*pszNetworkPayload == '\0')
+   else if (*pszJson == '\0')
    {
 
       ::output_debug_string("");
@@ -6176,38 +6173,38 @@ void payload::parse_network_payload(const char *& pszNetworkPayload, const char 
    else
    {
 
-      consume_identifier(pszNetworkPayload, pszEnd);
+      consume_identifier(pszJson, pszEnd);
 
    }
 
 }
 
 
-::enum_type payload::find_network_payload_child(const char *& pszNetworkPayload, const char * pszEnd, const ::payload & varChild)
+::enum_type payload::find_network_payload_child(const char *& pszJson, const char * pszEnd, const ::payload & varChild)
 {
 
-   ::str::consume_spaces(pszNetworkPayload, 0, pszEnd);
+   ::str::consume_spaces(pszJson, 0, pszEnd);
 
-   if (*pszNetworkPayload == '{')
+   if (*pszJson == '{')
    {
 
-      ::str::consume_spaces(pszNetworkPayload, 0, pszEnd);
+      ::str::consume_spaces(pszJson, 0, pszEnd);
 
-      if (*pszNetworkPayload == '\0')
+      if (*pszJson == '\0')
       {
 
          return ::e_type_new;
 
       }
 
-      ::str::consume(pszNetworkPayload, "{", 1, pszEnd);
+      ::str::consume(pszJson, "{", 1, pszEnd);
 
-      ::str::consume_spaces(pszNetworkPayload, 0, pszEnd);
+      ::str::consume_spaces(pszJson, 0, pszEnd);
 
-      if (*pszNetworkPayload == '}')
+      if (*pszJson == '}')
       {
 
-         pszNetworkPayload++;
+         pszJson++;
 
          return ::e_type_new;
 
@@ -6218,31 +6215,31 @@ void payload::parse_network_payload(const char *& pszNetworkPayload, const char 
       while (true)
       {
 
-         property_parse_network_payload_id(id, pszNetworkPayload, pszEnd);
+         property_parse_network_payload_id(id, pszJson, pszEnd);
 
          if (varChild.string().compare_ci(id) == 0)
          {
 
-            ::str::consume_spaces(pszNetworkPayload, 0, pszEnd);
-            ::str::consume(pszNetworkPayload, ":", 1, pszEnd);
+            ::str::consume_spaces(pszJson, 0, pszEnd);
+            ::str::consume(pszJson, ":", 1, pszEnd);
 
 
             return ::e_type_property_set;
 
          }
 
-         property_skip_network_payload_value(pszNetworkPayload, pszEnd);
+         property_skip_network_payload_value(pszJson, pszEnd);
 
-         ::str::consume_spaces(pszNetworkPayload, 0, pszEnd);
+         ::str::consume_spaces(pszJson, 0, pszEnd);
 
-         if (*pszNetworkPayload == ',')
+         if (*pszJson == ',')
          {
-            pszNetworkPayload++;
+            pszJson++;
             continue;
          }
-         else if (*pszNetworkPayload == '}')
+         else if (*pszJson == '}')
          {
-            pszNetworkPayload++;
+            pszJson++;
             return ::e_type_new;
          }
          else
@@ -6250,7 +6247,7 @@ void payload::parse_network_payload(const char *& pszNetworkPayload, const char 
 
             ::string str = "not expected character : ";
 
-            str += pszNetworkPayload;
+            str += pszJson;
 
             __throw(error_parsing, str);
 
@@ -6259,9 +6256,9 @@ void payload::parse_network_payload(const char *& pszNetworkPayload, const char 
       }
 
    }
-   else if (*pszNetworkPayload == '\"')
+   else if (*pszJson == '\"')
    {
-      operator=(::str::consume_quoted_value_ex(pszNetworkPayload, pszEnd));
+      operator=(::str::consume_quoted_value_ex(pszJson, pszEnd));
       if (operator == (varChild))
       {
          return ::e_type_string;
@@ -6271,9 +6268,9 @@ void payload::parse_network_payload(const char *& pszNetworkPayload, const char 
          return ::e_type_new;
       }
    }
-   else if (ansi_char_is_digit(*pszNetworkPayload) || *pszNetworkPayload == '-' || *pszNetworkPayload == '.')
+   else if (ansi_char_is_digit(*pszJson) || *pszJson == '-' || *pszJson == '.')
    {
-      consume_number(pszNetworkPayload, pszEnd);
+      consume_number(pszJson, pszEnd);
       if (operator == (varChild))
       {
          return get_type();
@@ -6283,11 +6280,11 @@ void payload::parse_network_payload(const char *& pszNetworkPayload, const char 
          return ::e_type_new;
       }
    }
-   else if (*pszNetworkPayload == '[')
+   else if (*pszJson == '[')
    {
-      ::str::consume_spaces(pszNetworkPayload, 0, pszEnd);
-      ::str::consume(pszNetworkPayload, "[", 1, pszEnd);
-      ::enum_type etype = find_network_payload_id(pszNetworkPayload, pszEnd, varChild);
+      ::str::consume_spaces(pszJson, 0, pszEnd);
+      ::str::consume(pszJson, "[", 1, pszEnd);
+      ::enum_type etype = find_network_payload_id(pszJson, pszEnd, varChild);
       if (etype == ::e_type_new)
       {
 
@@ -6295,11 +6292,11 @@ void payload::parse_network_payload(const char *& pszNetworkPayload, const char 
 
       }
 
-      ::str::consume_spaces(pszNetworkPayload, 0, pszEnd);
+      ::str::consume_spaces(pszJson, 0, pszEnd);
 
-      if (*pszNetworkPayload == ']')
+      if (*pszJson == ']')
       {
-         pszNetworkPayload++;
+         pszJson++;
 
          return etype;
 
@@ -6308,19 +6305,19 @@ void payload::parse_network_payload(const char *& pszNetworkPayload, const char 
       return ::e_type_new;
 
    }
-   else if (*pszNetworkPayload == ']')
+   else if (*pszJson == ']')
    {
       ::output_debug_string("");
       return ::e_type_new;
    }
-   else if (*pszNetworkPayload == '\0')
+   else if (*pszJson == '\0')
    {
       ::output_debug_string("");
       return ::e_type_new;
    }
    else
    {
-      consume_identifier(pszNetworkPayload, pszEnd);
+      consume_identifier(pszJson, pszEnd);
       if (operator==(varChild))
       {
          return get_type();
@@ -6334,21 +6331,21 @@ void payload::parse_network_payload(const char *& pszNetworkPayload, const char 
 }
 
 
-::enum_type payload::find_network_payload_id(const char * & pszNetworkPayload, const char * pszEnd, const ::payload & varChild)
+::enum_type payload::find_network_payload_id(const char * & pszJson, const char * pszEnd, const ::payload & varChild)
 {
 
-   ::str::consume_spaces(pszNetworkPayload, 0, pszEnd);
+   ::str::consume_spaces(pszJson, 0, pszEnd);
 
-   if (*pszNetworkPayload == '{')
+   if (*pszJson == '{')
    {
 
       return ::e_type_new;
 
 
    }
-   else if (*pszNetworkPayload == '\"')
+   else if (*pszJson == '\"')
    {
-      operator=(::str::consume_quoted_value_ex(pszNetworkPayload, pszEnd));
+      operator=(::str::consume_quoted_value_ex(pszJson, pszEnd));
       if (operator == (varChild))
       {
          return ::e_type_string;
@@ -6358,9 +6355,9 @@ void payload::parse_network_payload(const char *& pszNetworkPayload, const char 
          return ::e_type_new;
       }
    }
-   else if (ansi_char_is_digit(*pszNetworkPayload) || *pszNetworkPayload == '-' || *pszNetworkPayload == '.')
+   else if (ansi_char_is_digit(*pszJson) || *pszJson == '-' || *pszJson == '.')
    {
-      consume_number(pszNetworkPayload, pszEnd);
+      consume_number(pszJson, pszEnd);
       if (operator == (varChild))
       {
          return get_type();
@@ -6370,23 +6367,23 @@ void payload::parse_network_payload(const char *& pszNetworkPayload, const char 
          return ::e_type_new;
       }
    }
-   else if (*pszNetworkPayload == '[')
+   else if (*pszJson == '[')
    {
 
       return ::e_type_new;
 
    }
-   else if (*pszNetworkPayload == ']')
+   else if (*pszJson == ']')
    {
       return ::e_type_new;
    }
-   else if (*pszNetworkPayload == '\0')
+   else if (*pszJson == '\0')
    {
       return ::e_type_new;
    }
    else
    {
-      consume_identifier(pszNetworkPayload, pszEnd);
+      consume_identifier(pszJson, pszEnd);
       if (operator==(varChild))
       {
          return get_type();

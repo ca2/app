@@ -189,10 +189,10 @@ public:
 using property_pointer = ::property *;
 
 
-CLASS_DECL_ACME void property_parse_network_payload_id(id & id, const char *& pszNetworkPayload, const char * pszEnd);
-CLASS_DECL_ACME void property_parse_network_payload_value(::payload & payload, const char *& pszNetworkPayload, const char * pszEnd);
-CLASS_DECL_ACME void property_skip_network_payload_id(const char *& pszNetworkPayload, const char * pszEnd);
-CLASS_DECL_ACME void property_skip_network_payload_value(const char *& pszNetworkPayload, const char * pszEnd);
+CLASS_DECL_ACME void property_parse_network_payload_id(id & id, const char *& pszJson, const char * pszEnd);
+CLASS_DECL_ACME void property_parse_network_payload_value(::payload & payload, const char *& pszJson, const char * pszEnd);
+CLASS_DECL_ACME void property_skip_network_payload_id(const char *& pszJson, const char * pszEnd);
+CLASS_DECL_ACME void property_skip_network_payload_value(const char *& pszJson, const char * pszEnd);
 
 
 #include "acme/primitive/collection/ptr_array.h"

@@ -79,7 +79,7 @@ namespace axis
 
 #include "axis/platform/openweather_city.h"
 
-#include "axis/math/_.h"
+#include "axis/mathematics/_.h"
 
 #include "axis/database/database/_.h"
 

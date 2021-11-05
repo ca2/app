@@ -1262,7 +1262,7 @@ namespace dynamic_source
 
       __pointer(::crypto::rsa) prsa = get_rsa_key();
 
-      pscriptinterface->set_session_value("rsa", prsa);
+      pscriptinterface->set_session_payload("rsa", prsa);
 
       return prsa->n;
 

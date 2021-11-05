@@ -192,13 +192,13 @@ namespace dynamic_source
    //}
 
 
-   void script_interface::set_session_value(const ::id & id, ::payload)
+   void script_interface::set_session_payload(const ::id & id, const ::payload &)
    {
 
    }
 
 
-   ::payload script_interface::get_session_value(const ::id & id)
+   ::payload script_interface::get_session_payload(const ::id & id)
    {
 
       return ::payload(::e_type_new);

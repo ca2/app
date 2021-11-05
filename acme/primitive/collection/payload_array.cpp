@@ -530,34 +530,34 @@ payload_array & payload_array::operator = (const payload_array & payloada)
    return *this;
 }
 
-void payload_array::parse_network_payload(const char * & pszNetworkPayload)
+void payload_array::parse_network_payload(const char * & pszJson)
 {
-   parse_network_payload(pszNetworkPayload, pszNetworkPayload + strlen(pszNetworkPayload) - 1);
+   parse_network_payload(pszJson, pszJson + strlen(pszJson) - 1);
 }
 
 int g_iRandomNumberGenerator = 0;
 
 
-void payload_array::parse_network_payload(const char * & pszNetworkPayload, const char * pszEnd)
+void payload_array::parse_network_payload(const char * & pszJson, const char * pszEnd)
 {
 
-   if(pszNetworkPayload > pszEnd)
+   if(pszJson > pszEnd)
    {
 
       return;
 
    }
 
-   ::str::consume_spaces(pszNetworkPayload, 0, pszEnd);
+   ::str::consume_spaces(pszJson, 0, pszEnd);
 
-   ::str::consume(pszNetworkPayload, "[", 1, pszEnd);
+   ::str::consume(pszJson, "[", 1, pszEnd);
 
-   ::str::consume_spaces(pszNetworkPayload, 0, pszEnd);
+   ::str::consume_spaces(pszJson, 0, pszEnd);
 
-   if (*pszNetworkPayload == ']')
+   if (*pszJson == ']')
    {
 
-      pszNetworkPayload++;
+      pszJson++;
 
       return;
 
@@ -592,22 +592,22 @@ void payload_array::parse_network_payload(const char * & pszNetworkPayload, cons
 
       ::payload & payload = add_new();
 
-      payload.parse_network_payload(pszNetworkPayload, pszEnd);
+      payload.parse_network_payload(pszJson, pszEnd);
 
-      ::str::consume_spaces(pszNetworkPayload, 0, pszEnd);
+      ::str::consume_spaces(pszJson, 0, pszEnd);
 
-      if(*pszNetworkPayload == ',')
+      if(*pszJson == ',')
       {
 
-         pszNetworkPayload++;
+         pszJson++;
 
          continue;
 
       }
-      else if(*pszNetworkPayload == ']')
+      else if(*pszJson == ']')
       {
 
-         pszNetworkPayload++;
+         pszJson++;
 
          return;
 
@@ -617,7 +617,7 @@ void payload_array::parse_network_payload(const char * & pszNetworkPayload, cons
 
          string str = "not expected character : ";
 
-         str += pszNetworkPayload;
+         str += pszJson;
 
          __throw(error_parsing, str);
 
@@ -628,40 +628,40 @@ void payload_array::parse_network_payload(const char * & pszNetworkPayload, cons
 }
 
 
-void var_array_skip_network_payload(const char *& pszNetworkPayload)
+void var_array_skip_network_payload(const char *& pszJson)
 {
 
-   var_array_skip_network_payload(pszNetworkPayload, pszNetworkPayload + strlen(pszNetworkPayload) - 1);
+   var_array_skip_network_payload(pszJson, pszJson + strlen(pszJson) - 1);
 
 }
 
 
-void var_array_skip_network_payload(const char *& pszNetworkPayload, const char * pszEnd)
+void var_array_skip_network_payload(const char *& pszJson, const char * pszEnd)
 {
    
-   ::str::consume_spaces(pszNetworkPayload, 0, pszEnd);
+   ::str::consume_spaces(pszJson, 0, pszEnd);
    
-   ::str::consume(pszNetworkPayload, "[", 1, pszEnd);
+   ::str::consume(pszJson, "[", 1, pszEnd);
 
    while (true)
    {
       
-      var_skip_network_payload(pszNetworkPayload, pszEnd);
+      var_skip_network_payload(pszJson, pszEnd);
       
-      ::str::consume_spaces(pszNetworkPayload, 0, pszEnd);
+      ::str::consume_spaces(pszJson, 0, pszEnd);
 
-      if (*pszNetworkPayload == ',')
+      if (*pszJson == ',')
       {
          
-         pszNetworkPayload++;
+         pszJson++;
          
          continue;
 
       }
-      else if (*pszNetworkPayload == ']')
+      else if (*pszJson == ']')
       {
          
-         pszNetworkPayload++;
+         pszJson++;
          
          return;
 
@@ -671,7 +671,7 @@ void var_array_skip_network_payload(const char *& pszNetworkPayload, const char 
          
          string str = "not expected character : ";
          
-         str += pszNetworkPayload;
+         str += pszJson;
 
          __throw(error_parsing, str);
 

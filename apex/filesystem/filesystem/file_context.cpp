@@ -584,14 +584,14 @@ bool file_context::try_create_file(const ::file::path &path, bool bTryDelete)
 
    }
 
-   const char *pszNetworkPayload = str;
+   const char *pszJson = str;
 
    ::payload v;
 
    try
    {
 
-      v.parse_network_payload(pszNetworkPayload);
+      v.parse_network_payload(pszJson);
 
    }
    catch (const ::exception & e)
@@ -1283,9 +1283,9 @@ bool file_context::resource_is_file_or_dir(const char* path)
 //
 //               string strError;
 //
-//               strError.format("Failed to delete the file to move \"%s\" error=%d", psz, dwError);
+//               strError.Format("Failed to delete the file to move \"%s\" error=%d", psz, dwError);
 //
-//               FORMATTED_TRACE("%s", strError);
+//               TRACE("%s", strError);
 //
 //            }
 //
@@ -1299,7 +1299,7 @@ bool file_context::resource_is_file_or_dir(const char* path)
 //
 //      string strError;
 //
-//      strError.format("Failed to move file \"%s\" to \"%s\" error=%d", psz, pszNew, dwError);
+//      strError.Format("Failed to move file \"%s\" to \"%s\" error=%d", psz, pszNew, dwError);
 //
 //      __throw(io_exception(::error_io, strError));
 //
@@ -1353,7 +1353,7 @@ bool file_context::resource_is_file_or_dir(const char* path)
 //   {
 //      i32 err = errno;
 //      string strError;
-//      strError.format("Failed to delete file error=%d", err);
+//      strError.Format("Failed to delete file error=%d", err);
 //      __throw(::exception(strError));
 //   }
 //#endif
@@ -1390,7 +1390,7 @@ bool file_context::resource_is_file_or_dir(const char* path)
 //
 //      string strError;
 //
-//      strError.format("Failed to delete file \"%s\" error=%d", psz, dwError);
+//      strError.Format("Failed to delete file \"%s\" error=%d", psz, dwError);
 //
 //      return ::error_failed;
 //
@@ -1407,7 +1407,7 @@ bool file_context::resource_is_file_or_dir(const char* path)
 //   if(dwError == 2) // the file does not exist, so delete "failed"
 //   return;
 //   string strError;
-//   strError.format("Failed to delete file \"%s\" error=%d", psz, dwError);
+//   strError.Format("Failed to delete file \"%s\" error=%d", psz, dwError);
 //   __throw(io_exception(strError));
 //   }*/
 //
@@ -1420,7 +1420,7 @@ bool file_context::resource_is_file_or_dir(const char* path)
 //      if (err != ENOENT) // already does not exist - consider removal successful - does not issue an exception
 //      {
 //         string strError;
-//         strError.format("Failed to delete file error=%d", err);
+//         strError.Format("Failed to delete file error=%d", err);
 //         __throw(::exception(strError));
 //      }
 //   }
@@ -1983,7 +1983,7 @@ i32 file_context::cmp(const ::file::path &psz1, const ::file::path &psz2)
 //
 //   string str;
 //
-//   str.format("%I64dn", iNumber);
+//   str.Format("%I64dn", iNumber);
 //
 //   pfile->write((const char *)str);
 //
@@ -2819,7 +2819,7 @@ file_transport file_context::get_file(const ::payload &payloadFile, const ::file
 
          //   /*            if((nOpenFlags & ::file::e_open_create) == 0 && !exists(strPath))
          //   {
-         //   FORMATTED_TRACE("::application::file does not exist!! : \"%s\"",strPath);
+         //   TRACE("::application::file does not exist!! : \"%s\"",strPath);
          //   return spfile;
          //   }
          //   */
@@ -2998,11 +2998,11 @@ bool file_context::is_link(string strPath)
 ::file::path file_context::dropbox_info_network_payload()
 {
 
-   ::file::path pathNetworkPayload;
+   ::file::path pathJson;
 
-   pathNetworkPayload = m_psystem->m_pacmedir->home() / ".dropbox/info.network_payload";
+   pathJson = m_psystem->m_pacmedir->home() / ".dropbox/info.network_payload";
 
-   return pathNetworkPayload;
+   return pathJson;
 
 }
 

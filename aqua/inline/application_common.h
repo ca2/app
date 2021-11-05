@@ -1,108 +1,109 @@
-#include "acme/_start.h"
-#include "aqua/_.h"
-#include "apex/platform/app_core.h"
-#include "acme/platform/static_setup.h"
-#include "aqua/_defer.h"
+//#include "acme/_start.h"
+//#include "aqua/_.h"
+//#include "apex/platform/app_core.h"
+//#include "acme/platform/static_setup.h"
+//#include "aqua/_defer.h"
 
-
-#ifdef LINUX
-
-#include "acme/node/operating_system/ansi/binreloc.h"
-
-const char* br_init_get_symbol();
-
-#endif
-
-
-//CLASS_DECL_AQUA ::e_status os_application_system_run(::apex::system* psystem);
-
-//CLASS_DECL_APEX ::e_status set_main_app_id(const char * pszAppId);
-
-
-void application_common(::apex::system * psystem)
-{
-
-//#ifdef MAIN_STRING
 //
-//   psystem->m_pszMain = MAIN_STRING;
+//
+//#ifdef LINUX
+//
+//#include "acme/node/operating_system/ansi/binreloc.h"
+//
+//const char* br_init_get_symbol();
 //
 //#endif
 //
-////#ifdef MAINAPPID
+//
+////CLASS_DECL_AQUA ::e_status os_application_system_run(::apex::system* psystem);
+//
+////CLASS_DECL_APEX ::e_status set_main_app_id(const char * pszAppId);
+//
+//
+//void application_common(::apex::system * psystem)
+//{
+//
+////#ifdef MAIN_STRING
 ////
-////   psystem->m_pszMain = "app : app=" MAINAPPID;
-////
-////   set_main_app_id(MAIN_APP_ID);
+////   psystem->m_pszMain = MAIN_STRING;
 ////
 ////#endif
-
-//#ifdef ACID_APP
+////
+//////#ifdef MAINAPPID
+//////
+//////   psystem->m_pszMain = "app : app=" MAINAPPID;
+//////
+//////   set_main_app_id(MAIN_APP_ID);
+//////
+//////#endif
 //
-//   psystem->m_pfnNewAuraApplication = &new_aura_application;
+////#ifdef ACID_APP
+////
+////   psystem->m_pfnNewAuraApplication = &new_aura_application;
+////
+////#endif
+////
+////#ifdef ACID_LIBRARY
+////
+////   psystem->m_pfnNewLibrary = &new_aura_library;
+////
+////#endif
+//
+//#ifdef LINUX
+//
+//  br_init_set_symbol(br_init_get_symbol());
 //
 //#endif
 //
-//#ifdef ACID_LIBRARY
 //
-//   psystem->m_pfnNewLibrary = &new_aura_library;
+//
+//
+//}
+//
+//
+//
+//
+//
+//#define __namespace_application_factory(APPID) \
+//::static_application_factory < application > g_applicationfactory(APPID);
+//
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//#pragma comment(lib, "Dxva2.lib")
 //
 //#endif
-
-#ifdef LINUX
-
-  br_init_set_symbol(br_init_get_symbol());
-
-#endif
-
-
-
-
-}
-
-
-
-
-
-#define __namespace_application_factory(APPID) \
-::static_application_factory < application > g_applicationfactory(APPID);
-
-
-#ifdef WINDOWS_DESKTOP
-
-#pragma comment(lib, "Dxva2.lib")
-
-#endif
-
-
-
-
-#ifdef MAINAPPID
-
-
-inline string executable_get_app_id()
-{
-
-   return MAINAPPID;
-
-}
-
-
-#elif defined(__APPLE__)
-
-
-string executable_get_app_id();
-
-//#else
+//
+//
+//
+//
+//#ifdef MAINAPPID
+//
 //
 //inline string executable_get_app_id()
 //{
 //
-//   return "";
+//   return MAINAPPID;
 //
 //}
 //
-
-#endif
-
-
-
+//
+//#elif defined(__APPLE__)
+//
+//
+//string executable_get_app_id();
+//
+////#else
+////
+////inline string executable_get_app_id()
+////{
+////
+////   return "";
+////
+////}
+////
+//
+//#endif
+//
+//
+//

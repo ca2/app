@@ -210,12 +210,16 @@ list(APPEND library_source
    platform/fixed_alloc.cpp
    platform/flags.cpp
    platform/hyperlink.cpp
+   platform/implementable.cpp
+   platform/implementable.h
    platform/library.cpp
    platform/library.h
    platform/log.cpp
    platform/log.h
    platform/logic.cpp
    platform/lparam.cpp
+   platform/main.cpp
+   platform/main.h
    platform/math.cpp
    platform/message_box.cpp
    platform/message.h
@@ -358,8 +362,13 @@ list(APPEND library_source
    primitive/primitive/command.cpp
    primitive/primitive/context_object_traits.cpp
    primitive/primitive/edit.cpp
+   primitive/primitive/element.cpp
+   primitive/primitive/element.h
    primitive/primitive/estatus.cpp
    primitive/primitive/element_array.cpp
+   primitive/primitive/element_array.h
+   primitive/primitive/enum_bitset.h
+   primitive/primitive/enumeration.h
    primitive/primitive/factory.cpp
    #primitive/promise_predicate/predicate_function.cpp
    #primitive/promise/process.cpp
@@ -1887,7 +1896,7 @@ if (LINUX)
 endif ()
 
 
-add_library(acme SHARED ${library_source})
+add_library(acme SHARED ${library_source} inline/application/linux.h)
 
 
 target_precompile_headers(acme PRIVATE framework.h)

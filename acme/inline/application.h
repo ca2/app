@@ -1,21 +1,17 @@
 #include "application_common.h"
 
 
-//#include "acme/platform/layer.h"
-
-
 #include "acme/platform/static_setup.h"
 
 
 #include "_main_hold.h"
 
 
-//::acme::layer g_layer;
-
-
 #ifdef LINUX
 
+
 #include "application/linux.h"
+
 
 #elif defined(_UWP)
 

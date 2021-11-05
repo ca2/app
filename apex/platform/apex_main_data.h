@@ -32,7 +32,7 @@ public:
    void set_main_struct(const apex_main_struct  & mainstruct);
 
 
-   ::e_status system_construct(const ::main & main);
+   ::e_status system_construct(const class ::main & main);
 
 
    //::e_status system_construct(int argc, char** argv, char ** envp);

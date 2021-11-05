@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 //#include "aqua/xml/_.h"
 //#include "apex/platform/app_core.h"
 //#include "acme/constant/id.h"

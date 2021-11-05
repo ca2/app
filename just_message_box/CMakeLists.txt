@@ -63,4 +63,37 @@ target_include_directories(app_just_message_box PRIVATE ${CMAKE_CURRENT_SOURCE_D
 target_compile_definitions(app_just_message_box PRIVATE _app_just_message_box_LIBRARY)
 
 
+add_executable(_app_just_message_box _main.cpp)
+
+
+if (MSVC)
+
+    target_compile_options(_app_just_message_box PRIVATE "/MD$<$<CONFIG:Debug>:d>")
+    target_link_options(_app_just_message_box PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+    target_link_options(_app_just_message_box PRIVATE "/SUBSYSTEM:WINDOWS")
+    target_link_libraries(_app_just_message_box PRIVATE ${app_core_hellomultiverse_references} app_core_hellomultiverse)
+
+elseif (LINUX)
+
+    target_compile_options(_app_just_message_box PRIVATE -fpermissive)
+    #target_link_options(_app_just_message_box PRIVATE -Wl,-rpath=$ORIGIN)
+    target_link_libraries(_app_just_message_box PRIVATE ${app_core_hellomultiverse_references} app_core_hellomultiverse)
+    target_link_options(_app_just_message_box PRIVATE -Wl,-z,defs)
+
+endif ()
+
+
+add_dependencies(_app_just_message_box ${app_common_dependencies})
+add_dependencies(_app_just_message_box ${default_draw2d})
+
+
+target_include_directories(_app_just_message_box PRIVATE ${library_include_directories})
+
+target_link_directories(_app_just_message_box PRIVATE ${library_link_directories})
+
+target_link_libraries(_app_just_message_box PRIVATE acme apex aqua aura app_app)
+
+set_target_properties(_app_just_message_box PROPERTIES LINKER_LANGUAGE CXX)
+
+
 

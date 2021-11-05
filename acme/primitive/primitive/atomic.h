@@ -9,14 +9,14 @@
 
 #ifdef WINDOWS
 
-// To declare an interlocked function for use as an intrinsic,
-// include intrin.h and put the function in a #pragma intrinsic
-// statement.
+//// To declare an interlocked function for use as an intrinsic,
+//// include intrin.h and put the function in a #pragma intrinsic
+//// statement.
 #include <intrin.h>
 
 
-#pragma intrinsic (_InterlockedIncrement)
-#pragma intrinsic (_InterlockedDecrement)
+//#pragma intrinsic (_InterlockedIncrement)
+//#pragma intrinsic (_InterlockedDecrement)
 
 
 #endif
@@ -101,5 +101,85 @@ inline i32 atomic_decrement(i32* pi)
 
 }
 
+
+
+inline i64 atomic_add(i64 * pi, i64 i)
+{
+
+#ifdef WINDOWS
+
+   return _interlockedadd64(pi, i);
+
+#elif defined(RASPBIAN) && defined(OS32BIT)
+
+   **return __sync_add_and_fetch_4(pi, 1);
+
+#else
+
+   return __sync_add_and_fetch(pi, i);
+
+#endif
+
+}
+
+
+inline i32 atomic_add(i32* pi, i32 i)
+{
+
+#ifdef WINDOWS
+
+   return _interlockedadd((long *)pi, i);
+
+#elif defined(RASPBIAN) && defined(OS32BIT)
+
+   **return __sync_add_and_fetch_4(pi, 1);
+
+#else
+
+   return __sync_add_and_fetch(pi, i);
+
+#endif
+
+}
+
+
+inline i64 atomic_subtract(i64 * pi, i64 i)
+{
+
+#ifdef WINDOWS
+
+   return _interlockedadd64(pi, -i);
+
+#elif defined(RASPBIAN) && defined(OS32BIT)
+
+   **return __sync_sub_and_fetch_4(pi, 1);
+
+#else
+
+   return __sync_sub_and_fetch(pi, i);
+
+#endif
+
+}
+
+
+inline i32 atomic_subtract(i32* pi, i32 i)
+{
+
+#ifdef WINDOWS
+
+   return _interlockedadd((long*)pi, -i);
+
+#elif defined(RASPBIAN) && defined(OS32BIT)
+
+   **return __sync_sub_and_fetch_4(pi, 1);
+
+#else
+
+   return __sync_sub_and_fetch(pi, i);
+
+#endif
+
+}
 
 

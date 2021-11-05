@@ -475,7 +475,7 @@ namespace apple
       if (status != errAuthorizationSuccess)
       {
 
-         TRACE("Error Creating Initial Authorization: %d", status);
+         FORMATTED_TRACE("Error Creating Initial Authorization: %d", status);
 
          return false;
 
@@ -495,13 +495,13 @@ namespace apple
       if (status != errAuthorizationSuccess)
       {
 
-         TRACE("Copy Rights Unsuccessful: %d", status);
+         FORMATTED_TRACE("Copy Rights Unsuccessful: %d", status);
 
          return false;
 
       }
 
-      TRACE("\n\n** %s **\n\n", "This command should work.");
+      FORMATTED_TRACE("\n\n** %s **\n\n", "This command should work.");
 
 //      string_array straParam;
 //
@@ -573,7 +573,7 @@ namespace apple
 
       //    if(i != 0)
       //  {
-      //   TRACE("Failed to setuid: %d", i);
+      //   FORMATTED_TRACE("Failed to setuid: %d", i);
       // return -1;
       //}
 
@@ -623,7 +623,7 @@ auto tickStart = ::duration::now();
       if (status != errAuthorizationSuccess)
       {
 
-         TRACE("AuthorizationExecuteWithPrivileges Error: %d", status);
+         FORMATTED_TRACE("AuthorizationExecuteWithPrivileges Error: %d", status);
 
          return false;
 
@@ -643,7 +643,7 @@ auto tickStart = ::duration::now();
       status = AuthorizationExecuteWithPrivileges(authorizationRef, tool, kAuthorizationFlagDefaults, args, &pipe);
       if (status != errAuthorizationSuccess)
       {
-         TRACE("AuthorizationExecuteWithPrivileges Error: %d", status);
+         FORMATTED_TRACE("AuthorizationExecuteWithPrivileges Error: %d", status);
          return -1;
       }
 
@@ -770,7 +770,7 @@ auto tickStart = ::duration::now();
 
       if (status != errAuthorizationSuccess)
       {
-         TRACE("AuthorizationFree Error: %d", status);
+         FORMATTED_TRACE("AuthorizationFree Error: %d", status);
       }
 
       //return dwExitCode;

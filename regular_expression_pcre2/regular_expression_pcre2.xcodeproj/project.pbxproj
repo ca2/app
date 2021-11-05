@@ -24,7 +24,7 @@
 		9A6543D22666B05100F8A254 /* topic.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A6543B72666B05100F8A254 /* topic.h */; };
 		9A6543D32666B05100F8A254 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A6543BB2666B05100F8A254 /* _.h */; };
 		9A6543E02666B21C00F8A254 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6543DA2666B1F300F8A254 /* libacme.dylib */; };
-		9A6543F62666B65300F8A254 /* libpcre.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6543F12666B62E00F8A254 /* libpcre.dylib */; };
+		9AD0CB81272B9CF100468A67 /* libpcre.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AD0CB7C272B9CB000468A67 /* libpcre.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,23 +49,23 @@
 			remoteGlobalIDString = 9A68A41325114352008DABD2;
 			remoteInfo = acme;
 		};
-		9A6543F02666B62E00F8A254 /* PBXContainerItemProxy */ = {
+		9AD0CB7B272B9CB000468A67 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A6543EB2666B62E00F8A254 /* pcre.xcodeproj */;
+			containerPortal = 9AD0CB76272B9CAF00468A67 /* pcre.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9AA539B119B763C400B9F861;
 			remoteInfo = pcre;
 		};
-		9A6543F22666B62E00F8A254 /* PBXContainerItemProxy */ = {
+		9AD0CB7D272B9CB000468A67 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A6543EB2666B62E00F8A254 /* pcre.xcodeproj */;
+			containerPortal = 9AD0CB76272B9CAF00468A67 /* pcre.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 07D6A8471B4CBB45004FEBC2;
 			remoteInfo = ios_pcre;
 		};
-		9A6543F42666B63F00F8A254 /* PBXContainerItemProxy */ = {
+		9AD0CB7F272B9CCA00468A67 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A6543EB2666B62E00F8A254 /* pcre.xcodeproj */;
+			containerPortal = 9AD0CB76272B9CAF00468A67 /* pcre.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 9AA5E4C216F7C61B005C45CE;
 			remoteInfo = pcre;
@@ -90,7 +90,8 @@
 		9A6543B72666B05100F8A254 /* topic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = topic.h; sourceTree = "<group>"; };
 		9A6543BB2666B05100F8A254 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A6543D42666B1F300F8A254 /* acme.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = acme.xcodeproj; path = ../acme/acme.xcodeproj; sourceTree = "<group>"; };
-		9A6543EB2666B62E00F8A254 /* pcre.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = pcre.xcodeproj; path = ../../third/pcre/pcre.xcodeproj; sourceTree = "<group>"; };
+		9AD0CB74272B99BA00468A67 /* libpcre.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libpcre.tbd; path = usr/lib/libpcre.tbd; sourceTree = SDKROOT; };
+		9AD0CB76272B9CAF00468A67 /* pcre.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = pcre.xcodeproj; path = ../../third/pcre/pcre.xcodeproj; sourceTree = "<group>"; };
 		9AE12E8D2661E9B4009F476A /* libregular_expression_pcre2.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libregular_expression_pcre2.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -99,7 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A6543F62666B65300F8A254 /* libpcre.dylib in Frameworks */,
+				9AD0CB81272B9CF100468A67 /* libpcre.dylib in Frameworks */,
 				9A6543E02666B21C00F8A254 /* libacme.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -142,15 +143,16 @@
 		9A6543DF2666B21B00F8A254 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9AD0CB74272B99BA00468A67 /* libpcre.tbd */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		9A6543EC2666B62E00F8A254 /* Products */ = {
+		9AD0CB77272B9CAF00468A67 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A6543F12666B62E00F8A254 /* libpcre.dylib */,
-				9A6543F32666B62E00F8A254 /* libios_pcre.a */,
+				9AD0CB7C272B9CB000468A67 /* libpcre.dylib */,
+				9AD0CB7E272B9CB000468A67 /* libios_pcre.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -159,7 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				9A6543D42666B1F300F8A254 /* acme.xcodeproj */,
-				9A6543EB2666B62E00F8A254 /* pcre.xcodeproj */,
+				9AD0CB76272B9CAF00468A67 /* pcre.xcodeproj */,
 				9A65438D2666B05100F8A254 /* regular_expression_pcre2 */,
 				9AE12E8E2661E9B4009F476A /* Products */,
 				9A6543DF2666B21B00F8A254 /* Frameworks */,
@@ -208,7 +210,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				9A6543F52666B63F00F8A254 /* PBXTargetDependency */,
+				9AD0CB80272B9CCA00468A67 /* PBXTargetDependency */,
 				9A6543DE2666B20E00F8A254 /* PBXTargetDependency */,
 			);
 			name = regular_expression_pcre2;
@@ -246,8 +248,8 @@
 					ProjectRef = 9A6543D42666B1F300F8A254 /* acme.xcodeproj */;
 				},
 				{
-					ProductGroup = 9A6543EC2666B62E00F8A254 /* Products */;
-					ProjectRef = 9A6543EB2666B62E00F8A254 /* pcre.xcodeproj */;
+					ProductGroup = 9AD0CB77272B9CAF00468A67 /* Products */;
+					ProjectRef = 9AD0CB76272B9CAF00468A67 /* pcre.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -272,18 +274,18 @@
 			remoteRef = 9A6543DB2666B1F300F8A254 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A6543F12666B62E00F8A254 /* libpcre.dylib */ = {
+		9AD0CB7C272B9CB000468A67 /* libpcre.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
 			path = libpcre.dylib;
-			remoteRef = 9A6543F02666B62E00F8A254 /* PBXContainerItemProxy */;
+			remoteRef = 9AD0CB7B272B9CB000468A67 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A6543F32666B62E00F8A254 /* libios_pcre.a */ = {
+		9AD0CB7E272B9CB000468A67 /* libios_pcre.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
 			path = libios_pcre.a;
-			remoteRef = 9A6543F22666B62E00F8A254 /* PBXContainerItemProxy */;
+			remoteRef = 9AD0CB7D272B9CB000468A67 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -310,10 +312,10 @@
 			name = acme;
 			targetProxy = 9A6543DD2666B20E00F8A254 /* PBXContainerItemProxy */;
 		};
-		9A6543F52666B63F00F8A254 /* PBXTargetDependency */ = {
+		9AD0CB80272B9CCA00468A67 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = pcre;
-			targetProxy = 9A6543F42666B63F00F8A254 /* PBXContainerItemProxy */;
+			targetProxy = 9AD0CB7F272B9CCA00468A67 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -379,7 +381,6 @@
 					"$(inherited)",
 					"$(WorkspaceDir)/archive",
 					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library/$(ARCHS)/$(CONFIGURATION)",
-					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/third/library/$(ARCHS)/$(CONFIGURATION)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -469,7 +470,6 @@
 					"$(inherited)",
 					"$(WorkspaceDir)/archive",
 					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library/$(ARCHS)/$(CONFIGURATION)",
-					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/third/library/$(ARCHS)/$(CONFIGURATION)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;

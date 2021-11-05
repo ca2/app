@@ -127,7 +127,7 @@ namespace aura
 //
 //                     ::u32 uSize;
 //
-//                     strKey.Format(
+//                     strKey.format(
 //                        TEXT("\\StringFileInfo\\%04x%04x\\FileDescription"),
 //                        pTranslate[i].wLanguage,
 //
@@ -137,7 +137,7 @@ namespace aura
 //
 //
 //
-//                     strKey.Format(
+//                     strKey.format(
 //                        TEXT("\\StringFileInfo\\%04x%04x\\FileVersion"),
 //                        pTranslate[i].wLanguage,
 //

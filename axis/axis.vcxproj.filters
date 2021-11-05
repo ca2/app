@@ -67,12 +67,6 @@
     <Filter Include="Header Files\html\html_lite">
       <UniqueIdentifier>{a5e1c026-c7bc-4484-9896-bfd8f3e9e0d4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\compress">
-      <UniqueIdentifier>{e94d7d55-a151-4500-aced-7d4f79210c46}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\compress">
-      <UniqueIdentifier>{45b7490b-3cd7-4087-be5f-2273b3a7d92b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\net">
       <UniqueIdentifier>{d0f5a16d-4995-4d49-ac69-fddd5c40456d}</UniqueIdentifier>
     </Filter>
@@ -522,15 +516,6 @@
     <ClInclude Include="user\simple_ui_draw.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="compress\_.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\bz.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\bzip.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
     <ClInclude Include="const\idpool.h">
       <Filter>Header Files\const</Filter>
     </ClInclude>
@@ -733,9 +718,6 @@
     </ClCompile>
     <ClCompile Include="user\simple_ui_draw.cpp">
       <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\bz.cpp">
-      <Filter>Source Files\compress</Filter>
     </ClCompile>
     <ClCompile Include="const\idpool.cpp">
       <Filter>Source Files\const</Filter>

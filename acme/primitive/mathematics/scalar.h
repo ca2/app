@@ -28,7 +28,7 @@ namespace str
 
       string str;
 
-      str.Format(strFormat,f);
+      str.format(strFormat,f);
 
       return str;
 

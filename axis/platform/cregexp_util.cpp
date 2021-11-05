@@ -205,7 +205,7 @@
 //   for(i32 i = 0; i < wstraArg.get_size(); i++)
 //   {
 //
-//      wstrExp.Format("/(%%%d)(\\d?!|$)/", i);
+//      wstrExp.format("/(%%%d)(\\d?!|$)/", i);
 //
 //      __pointer(cregexp) pre = CompileExpression(wstrExp, false);
 //

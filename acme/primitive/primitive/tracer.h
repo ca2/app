@@ -41,6 +41,19 @@ public:
    }
 
 
+   void format_output_arguments(const char * psz, va_list & arguments)
+   {
+
+      string str;
+
+      str.format_arguments(psz, arguments);
+
+      operator << (str);
+
+   }
+
+
+
    tracer & format_output(const char * psz, ...)
    {
 
@@ -50,7 +63,7 @@ public:
 
       string str;
 
-      str.FormatV(psz, arguments);
+      str.format_arguments(psz, arguments);
 
       operator << (str);
 
@@ -102,6 +115,12 @@ public:
 
 
 };
+
+
+CLASS_DECL_ACME void trace_log_information(const char * psz, ...);
+CLASS_DECL_ACME void trace_log_warning(const char * psz, ...);
+CLASS_DECL_ACME void trace_log_error(const char * psz, ...);
+CLASS_DECL_ACME void trace_log_fatal(const char * psz, ...);
 
 
 inline tracer trace_log_information();

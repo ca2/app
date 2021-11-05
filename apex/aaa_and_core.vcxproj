@@ -599,7 +599,7 @@
     <ClInclude Include="apex\apex\core_system.h" />
     <ClInclude Include="apex\apex\core_timer_callback.h" />
     <ClInclude Include="apex\apex\core_timer_listener.h" />
-    <ClInclude Include="apex\apex\core_timer.h" />
+    <ClInclude Include="apex\apex\app_core_timer.h" />
     <ClInclude Include="apex\apex\core_types.h" />
     <ClInclude Include="apex\plugin\plugin.h" />
     <ClInclude Include="apex\plugin\plugin_gen.h" />

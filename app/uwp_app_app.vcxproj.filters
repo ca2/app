@@ -11,9 +11,6 @@
     <Filter Include="Source Files">
       <UniqueIdentifier>{e158df90-895f-41dc-a33b-4f6050669943}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\universal_windows">
-      <UniqueIdentifier>{a1d64786-692a-45ed-9af9-ea7d868bb66e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Libraries">
       <UniqueIdentifier>{8a24db2e-6172-4ee0-a0f0-864740b1ff43}</UniqueIdentifier>
     </Filter>
@@ -111,10 +108,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="universal_windows\main.cpp">
-      <Filter>Source Files\universal_windows</Filter>
-    </ClCompile>
     <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="_main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

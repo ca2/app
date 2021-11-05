@@ -428,23 +428,23 @@ namespace user
 //      }
 //      if(initialize(playout, strPath))
 //      {
-//         TRACE("setting keyboard on_layout to %s (path=%s)", playout->m_strName.c_str(), playout->m_strPath.c_str());
+//         FORMATTED_TRACE("setting keyboard on_layout to %s (path=%s)", playout->m_strName.c_str(), playout->m_strPath.c_str());
 //         if(playout->load(playout->m_strPath))
 //         {
 //            m_playout = playout;
 //// xxx            papplication->simpledb().on_set_keyboard_layout(playout->m_strPath, context);
-//            TRACE("successfully set keyboard on_layout to %s (path=%s)", playout->m_strName.c_str(), playout->m_strPath.c_str());
+//            FORMATTED_TRACE("successfully set keyboard on_layout to %s (path=%s)", playout->m_strName.c_str(), playout->m_strPath.c_str());
 //            return true;
 //         }
 //         else
 //         {
 //            playout->release();
-//            TRACE("failed to load keyboard on_layout : %s (path=%s)", playout->m_strName.c_str(), playout->m_strPath.c_str());
+//            FORMATTED_TRACE("failed to load keyboard on_layout : %s (path=%s)", playout->m_strName.c_str(), playout->m_strPath.c_str());
 //         }
 //      }
 //      else
 //      {
-//         TRACE("failed to set keyboard on_layout path=%s", pszPath);
+//         FORMATTED_TRACE("failed to set keyboard on_layout path=%s", pszPath);
 //      }
 //      return false;
 //   }

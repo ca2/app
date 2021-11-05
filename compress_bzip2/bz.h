@@ -46,18 +46,25 @@ i32  aLen=plain.Length;    // Length is length of unzipped data.
 
 
 
-
-class CLASS_DECL_AXIS compress_bz:
+class CLASS_DECL_COMPRESS_BZIP2 compress_bz:
    virtual public ::object
 {
 public:
 
+   
    int m_iBlockSize;
    int m_iVerbosity;
    int m_iWorkFactor;
 
-   compress_bz(::object * pobject, int iBlockSize, int iVerbosity, int iWorkFactor);
-   virtual ~compress_bz();
+
+   compress_bz();
+   ~compress_bz() override;
+
+
+   ::e_status initialize(::object* pobject) override;
+
+
+   ::e_status set_bzip2_parameters(int iBlockSize, int iVerbosity, int iWorkFactor);
 
 
    bool transfer(::file::file* pfileOut, ::file::file* pfileIn);
@@ -66,14 +73,17 @@ public:
 };
 
 
-class CLASS_DECL_AXIS uncompress_bz :
+class CLASS_DECL_COMPRESS_BZIP2 uncompress_bz :
    virtual public ::object
 {
 public:
 
 
-   uncompress_bz(::object * pobject);
-   virtual ~uncompress_bz();
+   uncompress_bz();
+   ~uncompress_bz() override;
+
+
+   ::e_status initialize(::object* pobject) override;
 
 
    bool transfer(::file::file* pfileOut, ::file::file* pfileIn);

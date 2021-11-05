@@ -380,7 +380,7 @@ auto tickA1 = ::duration::now();
          ::u32 dwA2 = dwA1 - dwA0;
          string str;
 
-         str.Format("%d",dwA2);
+         str.format("%d",dwA2);
 
       }
 
@@ -411,9 +411,9 @@ auto tick2 = ::duration::now();
          ::u32 dw3 = dw2 - dw1;
 
          string str1;
-         str1.Format("| Parameters: w=%d h=%d rectangle=%d  \n",w,h,m_iRadius);
+         str1.format("| Parameters: w=%d h=%d rectangle=%d  \n",w,h,m_iRadius);
          string str2;
-         str2.Format("| time for calculating box blur : %d\b",dw3);
+         str2.format("| time for calculating box blur : %d\b",dw3);
 
          output_debug_string("/-----------------------------------------\n");
          output_debug_string("| \n");
@@ -425,7 +425,7 @@ auto tick2 = ::duration::now();
          TRACE("/--------------------------------");
          TRACE("| fastblur::blur");
          TRACE("| ");
-         TRACE("| do_fastblur = %d ms",dw3);
+         FORMATTED_TRACE("| do_fastblur = %d ms",dw3);
       }
 
       {
@@ -447,7 +447,7 @@ auto tickC1 = ::duration::now();
          ::u32 dwC2 = dwC1 - dwC0;
          string str;
 
-         str.Format("%d",dwC2);
+         str.format("%d",dwC2);
       }
 #else
       u32 * pdata = (u32 *)pimage->colorref();
@@ -528,9 +528,9 @@ auto tickC1 = ::duration::now();
          {
 
             string str1;
-            str1.Format("| Parameters: w=%d h=%d rectangle=%d  \n",wj,hj,m_iRadius);
+            str1.format("| Parameters: w=%d h=%d rectangle=%d  \n",wj,hj,m_iRadius);
             string str2;
-            str2.Format("| time for calculating stack blur : %" PRId64 "ms\b",tick3.integral_millisecond().m_i);
+            str2.format("| time for calculating stack blur : %" PRId64 "ms\b",tick3.integral_millisecond().m_i);
 
             output_debug_string("/-----------------------------------------\n");
             output_debug_string("| \n");
@@ -622,9 +622,9 @@ auto tickC1 = ::duration::now();
 auto tick2 = ::duration::now();
       ::u32 dw3 = dw2 - dw1;
       string str1;
-      str1.Format("| Parameters: w=%d h=%d rectangle=%d  \n",m_size.cx,m_size.cy,m_iRadius);
+      str1.format("| Parameters: w=%d h=%d rectangle=%d  \n",m_size.cx,m_size.cy,m_iRadius);
       string str2;
-      str2.Format("| time for calculating fast blur : %d\b",dw3);
+      str2.format("| time for calculating fast blur : %d\b",dw3);
 
       output_debug_string("/-----------------------------------------\n");
       output_debug_string("| \n");
@@ -636,7 +636,7 @@ auto tick2 = ::duration::now();
       TRACE("/--------------------------------");
       TRACE("| fastblur::blur");
       TRACE("| ");
-      TRACE("| do_fastblur = %d ms",dw3);
+      FORMATTED_TRACE("| do_fastblur = %d ms",dw3);
       */
 #endif
 

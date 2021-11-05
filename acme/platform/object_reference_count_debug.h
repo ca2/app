@@ -7,8 +7,6 @@
 
 #pragma once
 
-#define _STRINGFY(identifier) #identifier
-#define STRINGFY(identifier) _STRINGFY(identifier)
 #define __FUNCTION_LINE_STRING__  string(__FUNCTION__) + (" (" STRINGFY(__LINE__) ")")
 
 class object_reference_count_debug;

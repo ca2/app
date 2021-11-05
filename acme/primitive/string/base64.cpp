@@ -460,7 +460,7 @@ namespace str
 
                string str;
 
-               str.Format("Illegal character '%ca' in input spfile->\n", uch);
+               str.format("Illegal character '%ca' in input spfile->\n", uch);
 
                //__throw(io_exception(str));
                return false;
@@ -520,7 +520,7 @@ namespace str
 
                string str;
 
-               str.Format("Illegal character '%ca' in input spfile->\n", uch);
+               str.format("Illegal character '%ca' in input spfile->\n", uch);
 
                //__throw(io_exception(str));
                return -1;

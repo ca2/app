@@ -282,6 +282,9 @@
     <Filter Include="Header Files\primitive\duration\floating">
       <UniqueIdentifier>{67103b60-a7e1-463b-9626-3d6f73c5b71b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\inline\application">
+      <UniqueIdentifier>{7cc6d354-98d2-42bc-8927-fd4b29369376}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -2747,6 +2750,27 @@
     <ClInclude Include="parallelization\synchronously_set_bit.h">
       <Filter>Header Files\parallelization</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\primitive\_interlocked_count_impl.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\set_app_id.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\layer.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\implementable.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\application\windows.h">
+      <Filter>Header Files\inline\application</Filter>
+    </ClInclude>
+    <ClInclude Include="application.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\_main_hold.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">
@@ -3861,6 +3885,15 @@
     </ClCompile>
     <ClCompile Include="primitive\collection\string_array.cpp">
       <Filter>Source Files\primitive\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\main.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\layer.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\implementable.cpp">
+      <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

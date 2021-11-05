@@ -63,9 +63,7 @@ namespace base
    }
 
 
-   __namespace_session_factory(session);
-
-
+   
 } // namespace base
 
 

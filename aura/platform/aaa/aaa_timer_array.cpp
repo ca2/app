@@ -33,7 +33,7 @@ namespace aura
 
 //         string str;
 //
-//         str.Format("creating fast timer: %d\n", nEllapse);
+//         str.format("creating fast timer: %d\n", nEllapse);
 //
 //         ::output_debug_string(str);
 

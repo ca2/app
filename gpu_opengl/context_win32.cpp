@@ -44,7 +44,7 @@ namespace opengl
 
          TRACE("MS GDI - RegisterClass failed\n");
 
-         TRACE("last-error code: %d\n", GetLastError());
+         FORMATTED_TRACE("last-error code: %d\n", GetLastError());
 
          return ::error_failed;
 
@@ -78,7 +78,7 @@ namespace opengl
 
          TRACE("MS GDI - CreateWindow failed\n");
 
-         TRACE("last-error code: %d\n", GetLastError());
+         FORMATTED_TRACE("last-error code: %d\n", GetLastError());
 
          return ::error_failed;
 
@@ -96,8 +96,8 @@ namespace opengl
       {
          
          TRACE("MS GDI - GetDC failed\n");
-         
-         TRACE("last-error code: %d\n", GetLastError());
+
+         FORMATTED_TRACE("last-error code: %d\n", GetLastError());
 
          return ::error_failed;
 
@@ -122,8 +122,8 @@ namespace opengl
       {
          
          TRACE("MS GDI - ChoosePixelFormat failed\n");
-         
-         TRACE("last-error code: %d\n", GetLastError());
+
+         FORMATTED_TRACE("last-error code: %d\n", GetLastError());
 
          ReleaseDC(window, hdc);
 
@@ -138,7 +138,7 @@ namespace opengl
 
          TRACE("MS GDI - SetPixelFormat failed\n");
 
-         TRACE("last-error code: %d\n", GetLastError());
+         FORMATTED_TRACE("last-error code: %d\n", GetLastError());
 
          ReleaseDC(window, hdc);
 
@@ -153,7 +153,7 @@ namespace opengl
 
          TRACE("MS WGL - wglCreateContext failed\n");
 
-         TRACE("last-error code: %d\n", GetLastError());
+         FORMATTED_TRACE("last-error code: %d\n", GetLastError());
 
          ReleaseDC(window, hdc);
 
@@ -168,7 +168,7 @@ namespace opengl
          
          TRACE("MS WGL - wglMakeCurrent failed\n");
 
-         TRACE("last-error code: %d\n", GetLastError());
+         FORMATTED_TRACE("last-error code: %d\n", GetLastError());
          
          ReleaseDC(window, hdc);
 
@@ -252,7 +252,7 @@ namespace opengl
 
          TRACE("MS WGL - wglMakeCurrent failed\n");
 
-         TRACE("last-error code: %d\n", GetLastError());
+         FORMATTED_TRACE("last-error code: %d\n", GetLastError());
 
          estatus = error_failed;
 

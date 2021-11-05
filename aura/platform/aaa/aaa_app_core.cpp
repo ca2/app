@@ -355,7 +355,7 @@ CLASS_DECL_AURA void set_debug_pointer(void * p);
 
          string strError;
 
-         strError.Format("errno=%d uid=%d", iErr);
+         strError.format("errno=%d uid=%d", iErr);
 
          os_message_box(nullptr, strError, "seteuid failed", e_message_box_icon_exclamation);
 

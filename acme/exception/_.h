@@ -252,9 +252,9 @@ CLASS_DECL_ACME void __set_thread_note(const char * pszNote);
    do { \
       string str; \
       if (pException->get_error_message(str, 0)) \
-         TRACE(trace_category_appmsg, 0, "%s (%s:%d)\n%s\n", szMsg, __FILE__, __LINE__, str); \
+         FORMATTED_TRACE(trace_category_appmsg, 0, "%s (%s:%d)\n%s\n", szMsg, __FILE__, __LINE__, str); \
       else \
-         TRACE(trace_category_appmsg, 0, "%s (%s:%d)\n", szMsg, __FILE__, __LINE__); \
+         FORMATTED_TRACE(trace_category_appmsg, 0, "%s (%s:%d)\n", szMsg, __FILE__, __LINE__); \
       ASSERT(false); \
    } while (0)
 #else // NNDEBUG
@@ -263,9 +263,9 @@ CLASS_DECL_ACME void __set_thread_note(const char * pszNote);
       string strMsg; \
       char  szErrorMessage[512]; \
       if (pException->get_error_message(szErrorMessage, sizeof(szErrorMessage)/sizeof(*szErrorMessage), 0)) \
-         strMsg.Format("%s (%s:%d)\n%s", szMsg, __FILE__, __LINE__, szErrorMessage); \
+         strMsg.format("%s (%s:%d)\n%s", szMsg, __FILE__, __LINE__, szErrorMessage); \
       else \
-         strMsg.Format("%s (%s:%d)", szMsg, __FILE__, __LINE__); \
+         strMsg.format("%s (%s:%d)", szMsg, __FILE__, __LINE__); \
       get_system()->message_box(strMsg); \
    } while (0)
 #endif //!NNDEBUG

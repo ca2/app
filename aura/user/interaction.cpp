@@ -670,7 +670,7 @@ namespace user
       for (index iIdSuffix = 1; iIdSuffix <= 1000; iIdSuffix++)
       {
 
-         strCandidateId.Format("%s_%d", strDefaultIdPrefix.c_str(), iIdSuffix);
+         strCandidateId.format("%s_%d", strDefaultIdPrefix.c_str(), iIdSuffix);
 
          bDuplicate = false;
 
@@ -1475,7 +1475,6 @@ namespace user
 
       MESSAGE_LINK(e_message_create, pchannel, this, &interaction::on_message_create);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction::on_message_destroy);
-//      MESSAGE_LINK(e_message_post_user, pchannel, this, &interaction::on_message_user_post);
       MESSAGE_LINK(e_message_text_composition, pchannel, this, &interaction::_001OnTextComposition);
 
       primitive::install_message_routing(pchannel);
@@ -1554,6 +1553,11 @@ namespace user
 
       //MESSAGE_LINK(e_message_command, pchannel, this, &interaction::_001OnCommand);
       MESSAGE_LINK(e_message_simple_command, pchannel, this, &interaction::on_message_simple_command);
+
+
+      MESSAGE_LINK(e_message_right_button_down, pchannel, this, &interaction::on_message_right_button_down);
+      MESSAGE_LINK(e_message_right_button_up, pchannel, this, &interaction::on_message_right_button_up);
+
 
       //if (m_bClickDefaultMouseHandling)
       //{
@@ -2970,12 +2974,11 @@ namespace user
          }
 
 
-
       }
       catch (...)
       {
 
-         INFORMATION("Exception: interaction::_001DrawThis %s" << __type_name(this));
+         FORMATTED_INFORMATION("Exception: interaction::_001DrawThis %s", __type_name(this));
 
       }
 
@@ -3303,7 +3306,7 @@ auto tickStartWithLock = ::duration::now();
 
                      //   //   }
 
-                     //   //   CINFO(prodevian)("(more than 50ms) "+strType+"::_000OnDraw took " + __string(d1.m_i) + "::duration.\n");
+                     //   //   CINFO(prodevian)("(more than 50ms)(D) "+strType+"::_000OnDraw took " + __string(d1.m_i) + "::duration.\n");
 
                      //   //   //pinteraction->_000OnDraw(pgraphics);
 
@@ -3632,10 +3635,10 @@ return "";
 
       string strType(__type_name(this));
 
-      if (strType.contains_ci("veriwell_keyboard") && strType.contains_ci("main_frame"))
+      if (strType.contains_ci("app_veriwell_keyboard") && strType.contains_ci("main_frame"))
       {
 
-         // output_debug_string("veriwell_keyboard::main_frame");
+         // output_debug_string("app_veriwell_keyboard::main_frame");
 
       }
       else if (strType.contains_ci("plain_edit"))
@@ -3856,7 +3859,7 @@ return "";
          catch (...)
          {
 
-            TRACE("Exception: interaction::_000OnDraw _001DrawThis %s", __type_name(this));
+            FORMATTED_TRACE("Exception: interaction::_000OnDraw _001DrawThis %s", __type_name(this));
 
          }
 
@@ -3881,7 +3884,7 @@ return "";
             catch (...)
             {
 
-               TRACE("Exception: interaction::_000OnDraw _001DrawChildren %s" << __type_name(this));
+               FORMATTED_TRACE("Exception: interaction::_000OnDraw _001DrawChildren %s", __type_name(this));
 
             }
 
@@ -3912,7 +3915,7 @@ return "";
 
                   string strType = __type_name(this);
 
-                  CATEGORY_INFORMATION(prodevian, "(more than 50ms) " + strType + "::_008CallOnDraw took " + d1.integral_millisecond() + "::duration.\n");
+                  CATEGORY_INFORMATION(prodevian, "(more than 50ms)(E) " + strType + "::_008CallOnDraw took " + d1.integral_millisecond() + "::duration.\n");
 
                }
 
@@ -10144,10 +10147,10 @@ void interaction::sketch_to_design(::draw2d::graphics_pointer& pgraphics, bool &
 
    string strType = __type_name(this);
 
-   if (strType.contains("veriwell_keyboard") && strType.contains("main_frame"))
+   if (strType.contains("app_veriwell_keyboard") && strType.contains("main_frame"))
    {
 
-      //output_debug_string("veriwell_keyboard::main_frame");
+      //output_debug_string("app_veriwell_keyboard::main_frame");
 
    }
    //      else if (strType.contains("main_frame"))
@@ -15679,7 +15682,7 @@ order(zorderParam);
 
             bool bSameItemAsMouseDown = m_itemLButtonDown == item;
 
-            TRACE("interaction::on_message_left_button_up item="<< (int) item.m_iItem<<", SameUserInteractionAsMsDwn="<< (int) bSameUserInteractionAsMouseDown<<", SameItemAsMsDwn=%d" << (int) bSameItemAsMouseDown);
+            TRACE("interaction::on_message_left_button_up item=" << (int) item.m_iItem<<", SameUserInteractionAsMsDwn="<< (int) bSameUserInteractionAsMouseDown<<", SameItemAsMsDwn=" << (int) bSameItemAsMouseDown);
 
             if (m_itemLButtonDown.is_set() && bSameUserInteractionAsMouseDown && bSameItemAsMouseDown)
             {
@@ -15794,6 +15797,50 @@ order(zorderParam);
          set_need_redraw();
 
          post_redraw();
+
+      }
+
+   }
+
+
+
+   void interaction::on_message_right_button_down(::message::message* pmessage)
+   {
+
+      auto pmouse = pmessage->m_union.m_pmouse;
+
+      if (!is_window_enabled())
+      {
+
+         return;
+
+      }
+
+      if(pmessage->previous())
+      {
+
+         return;
+
+      }
+
+      auto pcontextmenu = __new(::message::context_menu);
+
+      pcontextmenu->set(get_oswindow(), get_window(), e_message_context_menu, (wparam) (iptr) get_oswindow(), pmessage->m_lparam);
+
+      message_handler(pcontextmenu);
+
+   }
+
+
+   void interaction::on_message_right_button_up(::message::message* pmessage)
+   {
+
+      auto pmouse = pmessage->m_union.m_pmouse;
+
+      if (!is_window_enabled())
+      {
+
+         return;
 
       }
 

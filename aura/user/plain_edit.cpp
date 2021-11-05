@@ -525,7 +525,7 @@ namespace user
 
             auto psz = strLine.c_str();
 
-            TRACE("Line %s", psz);
+            FORMATTED_TRACE("Line %s", psz);
 
          }
 

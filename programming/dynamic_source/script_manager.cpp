@@ -397,7 +397,7 @@ namespace dynamic_source
 
                TRACE("Error: exception * at script_manager::handle run");
 
-               TRACE("%s", str.c_str());
+               FORMATTED_TRACE("%s", str.c_str());
 
             }
             catch (...)

@@ -344,7 +344,7 @@ bool launch_command(const char * const pszCommand)
    
    strCommand.replace("\"", "\\\"");
    
-   strParams.Format("-c \"screen -d -m %s\"", strCommand.c_str());
+   strParams.format("-c \"screen -d -m %s\"", strCommand.c_str());
    
    if (call_async("/bin/bash", strParams,          auto psystem = m_psystem;
 
@@ -374,7 +374,7 @@ bool launch_macos_app(const char * pszAppFolder)
    
    string strCommand;
    
-   strCommand.Format("open \"%s\"", pszAppFolder);
+   strCommand.format("open \"%s\"", pszAppFolder);
    
    return ::launch_command(strCommand);
    
@@ -393,7 +393,7 @@ bool launch_macos_app_args(const char * pszAppFolder, const char * pszArgs)
    
    string strCommand;
    
-   strCommand.Format("open \"%s\" --args %s", pszAppFolder, pszArgs);
+   strCommand.format("open \"%s\" --args %s", pszAppFolder, pszArgs);
    
    return ::launch_command(strCommand);
    

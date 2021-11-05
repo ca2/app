@@ -424,6 +424,8 @@ namespace message
    context_menu::context_menu()
    {
 
+      m_union.m_pcontextmenu = this;
+
    }
 
 

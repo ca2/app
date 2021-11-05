@@ -60,64 +60,64 @@ RunBeforeMain go;
 //#include "openssl/applink.c"
 
 
-CLASS_DECL_EXPORT int unicode_main(int argc, wchar_t ** argv, const char * pszAppId)
-{
-
-   string strAppId = pszAppId;
-
-   set_main_thread();
-
-   auto psystem = platform_create_system(strAppId);
-
-   if (!psystem)
-   {
-
-      return -1;
-
-   }
-
-   psystem->m_bConsole = false;
-
-   psystem->m_bPreferNoFrameWindow = true;
-
-   application_common(psystem);
-
-   psystem->system_construct(argc, argv, nullptr);
-
-   //psystem->set_current_handles();
-
-   //   auto estatus = psystem->system_main();
-   //
-   //   if (!estatus)
-   //   {
-   //    
-   //      ::i32 iErrorStatus = estatus.error_status();
-   //
-   //      return iErrorStatus;
-   //
-   //   }
-
-   auto estatus = psystem->init_system();
-
-   if (!estatus)
-   {
-
-      return estatus.error_status();
-
-   }
-
-   auto pnode = psystem->node();
-
-   estatus = pnode->implement();
-
-   auto estatusEnd = psystem->end();
-
-   ::i32 iErrorStatus = estatus.error_status();
-
-   return iErrorStatus;
-
-
-}
+//CLASS_DECL_EXPORT int unicode_main(int argc, wchar_t ** argv, const char * pszAppId)
+//{
+//
+//   string strAppId = pszAppId;
+//
+//   set_main_thread();
+//
+//   auto psystem = platform_create_system(strAppId);
+//
+//   if (!psystem)
+//   {
+//
+//      return -1;
+//
+//   }
+//
+//   psystem->m_bConsole = false;
+//
+//   psystem->m_bPreferNoFrameWindow = true;
+//
+//   application_common(psystem);
+//
+//   psystem->system_construct(argc, argv, nullptr);
+//
+//   //psystem->set_current_handles();
+//
+//   //   auto estatus = psystem->system_main();
+//   //
+//   //   if (!estatus)
+//   //   {
+//   //    
+//   //      ::i32 iErrorStatus = estatus.error_status();
+//   //
+//   //      return iErrorStatus;
+//   //
+//   //   }
+//
+//   auto estatus = psystem->init_system();
+//
+//   if (!estatus)
+//   {
+//
+//      return estatus.error_status();
+//
+//   }
+//
+//   auto pnode = psystem->node();
+//
+//   estatus = pnode->implement();
+//
+//   auto estatusEnd = psystem->end();
+//
+//   ::i32 iErrorStatus = estatus.error_status();
+//
+//   return iErrorStatus;
+//
+//
+//}
 
 
 //#include "openssl/applink.c"

@@ -122,7 +122,7 @@ namespace filemanager
 
          //   string str;
 
-         //   str.Format("(%s)", filemanager_data()->m_id.str().c_str());
+         //   str.format("(%s)", filemanager_data()->m_id.str().c_str());
 
          //   __pointer(::database::client) pframe = get_parent_frame();
 

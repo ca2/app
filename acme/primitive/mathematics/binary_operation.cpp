@@ -78,7 +78,7 @@ namespace mathematics
                    atof(m_pvalue2->get_value_string(egetvalue));
          }
          string str;
-         str.Format("%d", d);
+         str.format("%d", d);
          return str;
 
       }

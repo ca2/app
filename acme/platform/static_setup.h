@@ -168,3 +168,8 @@ public:
 };
 
 
+#define __namespace_application_factory(APPID) \
+::static_application_factory < application > g_applicationfactory(APPID);
+
+
+

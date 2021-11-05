@@ -223,7 +223,7 @@ namespace sqlite
       } else
       {
 
-         TRACE("sqlite::database::_sqlite_query_result: Error %s", m_strLastError.c_str());
+         FORMATTED_TRACE("sqlite::database::_sqlite_query_result: Error %s", m_strLastError.c_str());
 
          return nullptr;
 
@@ -383,7 +383,7 @@ namespace sqlite
          }
 //         if (setErr(sqlite3_exec((sqlite3 *)get_handle(), "PRAGMA cache_size=-20000", nullptr, nullptr, &err)) != SQLITE_OK)
 //         {
-//            TRACE("Error: %s", err);
+//            FORMATTED_TRACE("Error: %s", err);
 //            const char * pszErrorMessage = get_error_message();
 //            if(pszErrorMessage != nullptr)
 //            {
@@ -399,7 +399,7 @@ namespace sqlite
 ////         }
          //if (setErr(sqlite3_exec((sqlite3 *)get_handle(), "PRAGMA temp_store=MEMORY", nullptr, nullptr, &err)) != SQLITE_OK)
          //{
-         //   TRACE("Error: %s", err);
+         //   FORMATTED_TRACE("Error: %s", err);
          //   //__throw(::database::exception(get_error_message()));
          //}
 

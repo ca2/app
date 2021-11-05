@@ -84,8 +84,8 @@ namespace aura
       m_iEdge = -1;
 
 
-      create_factory < ::user::user >();
-      create_factory < ::aura::session, ::aura::session >();
+      //create_factory < ::user::user >();
+      //create_factory < ::aura::session, ::aura::session >();
 
       //m_XstrAppId                    = "core_session";
       //m_strAppName                  = "core_session";
@@ -1819,28 +1819,28 @@ namespace aura
 
          INFORMATION("success");
 
-         auto psetup = static_setup::get_first(::static_setup::flag_object_user);
+         //auto psetup = static_setup::get_first(::static_setup::flag_object_user);
 
-         if (psetup)
-         {
+         //if (psetup)
+         //{
 
-            estatus = __compose(m_puser, psetup->create_new_object());
+         //   estatus = __compose(m_puser, psetup->create_new_object());
 
-            if(!estatus)
-            {
+         //   if(!estatus)
+         //   {
 
-               output_debug_string("\nFailed to __compose(m_puser)");
+         //      output_debug_string("\nFailed to __compose(m_puser)");
 
-            }
+         //   }
 
-         }
+         //}
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            estatus = __compose_new(m_puser);
+         estatus = __compose(m_puser);
 
-         }
+         //}
 
          if (!estatus || !m_puser)
          {
@@ -2669,7 +2669,7 @@ namespace aura
    //}
 
 
-   __namespace_session_factory(session);
+   //__namespace_session_factory(session);
 
 
 } // namespace aura

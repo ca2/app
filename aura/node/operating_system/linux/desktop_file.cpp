@@ -141,7 +141,7 @@ namespace linux
 
             string strMessage;
 
-            strMessage.Format("Category \"%s\"has not been found", strCategoryParam.c_str());
+            strMessage.format("Category \"%s\"has not been found", strCategoryParam.c_str());
 
             TRACE(strMessage);
 
@@ -165,7 +165,7 @@ namespace linux
 
       auto pacmedir = psystem->m_pacmedir;
 
-      path = pacmedir->localconfig() / "monitor-0/desk/2desk";
+      path = pacmedir->localconfig() / "monitor-0/app_core_desk/2desk";
 
       auto papplication = get_application();
 

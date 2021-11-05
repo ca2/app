@@ -81,7 +81,7 @@ namespace userex
 
       void handle(::subject * psubject, ::context * pcontext) override;
 
-      void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
+      //void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
 
       virtual void prepare_form(id id, ::form_document * pdocument);
 
@@ -90,6 +90,110 @@ namespace userex
 
 
 } // namespace userex
+
+
+template <  typename APPLICATION, typename BASE1 = optional_interaction1, typename BASE2 = optional_interaction2, typename BASE3 = optional_interaction3, typename BASE4 = optional_interaction4 >
+class application_pane_tab_view :
+   virtual public ::object,
+   virtual public BASE1,
+   virtual public BASE2,
+   virtual public BASE3,
+   virtual public BASE4
+{
+public:
+
+
+   __pointer(APPLICATION) m_papplication;
+
+
+   application_pane_tab_view()
+   {
+
+   }
+
+
+   ::e_status initialize(::object* pobject) override
+   {
+
+      auto estatus = BASE1::initialize(pobject);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = BASE2::initialize(pobject);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = BASE3::initialize(pobject);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = BASE4::initialize(pobject);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+   APPLICATION_CONSUMER_BODY
+
+
+   virtual void install_message_routing(::channel* pchannel) override
+   {
+
+      BASE1::install_message_routing(pchannel);
+
+      BASE2::install_message_routing(pchannel);
+
+      BASE3::install_message_routing(pchannel);
+
+      BASE4::install_message_routing(pchannel);
+
+   }
+
+
+   void on_layout(::draw2d::graphics_pointer& pgraphics) override
+   {
+
+      BASE1::on_layout(pgraphics);
+
+      BASE2::on_layout(pgraphics);
+
+      BASE3::on_layout(pgraphics);
+
+      BASE4::on_layout(pgraphics);
+
+   }
+
+
+   inline APPLICATION* get_application() { return m_papplication.get(); }
+   inline APPLICATION* get_application() const { return (APPLICATION *) m_papplication.get(); }
+
+   void on_change_cur_sel() override = 0;
+   void on_create_impact(::user::impact_data * pimpactdata) override = 0;
+
+
+};
 
 
 

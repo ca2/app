@@ -459,7 +459,7 @@ namespace sockets
    void sip_base_client_socket::OnHeader(id key, const string & value)
    {
       //sip_base_client_socket::OnHeader(key, value);
-      TRACE("  (request)OnHeader %s: %s\n", (const ::string &) string(key), (const ::string &) value);
+      FORMATTED_TRACE("  (request)OnHeader %s: %s\n", (const ::string &) string(key), (const ::string &) value);
       if(key == "cookie")
       {
          m_request.cookies().parse_header(value);

@@ -155,7 +155,7 @@ inline ::xml::output_tree & operator << (::xml::output_tree & xmlof, point_array
 
       string strPoint;
 
-      strPoint.Format(strFormat, point.x, point.y);
+      strPoint.format(strFormat, point.x, point.y);
 
       strPoints += strPoint;
 

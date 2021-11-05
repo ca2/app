@@ -167,7 +167,7 @@ namespace opengl
 
             //__throw(error_resource);
             // Problem: glewInit failed, something is seriously wrong.
-            TRACE("glewInit failed: %s (%d)\n", pszErrorString, err);
+            FORMATTED_TRACE("glewInit failed: %s (%d)\n", pszErrorString, err);
 
             return ::error_failed;
 

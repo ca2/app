@@ -357,7 +357,7 @@ namespace filemanager
                   if(!bStatusOk)
                   {
 
-                     TRACE("Failed to set status of destination file '%s' using file status of '%s' file",strDestPath.c_str(),m_fileSrc->get_file_path().c_str());
+                     FORMATTED_TRACE("Failed to set status of destination file '%s' using file status of '%s' file",strDestPath.c_str(),m_fileSrc->get_file_path().c_str());
 
                   }
 
@@ -365,7 +365,7 @@ namespace filemanager
                else
                {
 
-                  TRACE("Failed to get status of source file '%s' for setting file status of '%s' file",m_fileSrc->get_file_path().c_str(),strDestPath.c_str());
+                  FORMATTED_TRACE("Failed to get status of source file '%s' for setting file status of '%s' file",m_fileSrc->get_file_path().c_str(),strDestPath.c_str());
 
                }
 
@@ -559,7 +559,7 @@ namespace filemanager
 
       string str;
 
-      str.Format("Copying %s (%s) to %s", m_stra[iItem].name().c_str(),m_stra[iItem].name().c_str(),m_str.c_str());
+      str.format("Copying %s (%s) to %s", m_stra[iItem].name().c_str(),m_stra[iItem].name().c_str(),m_str.c_str());
 
       return str;
 
@@ -739,7 +739,7 @@ namespace filemanager
          string strFormat;
          for(i32 i = 1; i < 1000; i++)
          {
-            strFormat.Format("-Copy-%03d",i);
+            strFormat.format("-Copy-%03d",i);
             str = strDir /strName + strFormat + strExtension;
             if(!pcontext->m_papexcontext->file().exists(str))
                return true;

@@ -1022,10 +1022,10 @@ namespace user
 
       on_change_view_size(pgraphics);
 
-      //TRACE("mesh::_001OnUpdateItemCount ItemCount %d\n",m_nItemCount);
+      //FORMATTED_TRACE("mesh::_001OnUpdateItemCount ItemCount %d\n",m_nItemCount);
       //if(m_bGroup)
       //{
-        // TRACE("mesh::_001OnUpdateItemCount GroupCount %d\n",m_nGroupCount);
+        // FORMATTED_TRACE("mesh::_001OnUpdateItemCount GroupCount %d\n",m_nGroupCount);
       //}
 
       return true;

@@ -8,6 +8,14 @@
 
 CLASS_DECL_ACME void set_main_thread();
 
+
+#ifdef __APP_ID
+
+static set_app_id g_setappid(__APP_ID);
+
+#endif
+
+
 //#ifndef NO_DRAW2D
 //#ifdef WINDOWS
 //
@@ -64,100 +72,100 @@ const char* br_init_get_symbol();
 
 //CLASS_DECL_APEX ::e_status os_application_system_run(::apex::system* psystem);
 
-
-void application_common(::apex::system * psystem)
-{
-
-#ifdef MAIN_STRING
-
-   pmainstruct->m_pszMain = MAIN_STRING;
-
-#endif
-
-#ifdef MAINAPPID
-
-   pmainstruct->m_pszMain = "app : app=" MAINAPPID;
-
-#endif
-
-#ifdef ACID_APP
-
-   pmainstruct->m_pfnNewAuraApplication = &new_apex_application;
-
-#endif
-
-#ifdef ACID_LIBRARY
-
-   pmainstruct->m_pfnNewLibrary = &new_apex_library;
-
-#endif
-
-#ifdef LINUX
-
-  br_init_set_symbol(br_init_get_symbol());
-
-#endif
-
-
-#ifdef CUBE
-
-//#ifndef NO_DRAW2D
 //
-//#ifdef WINDOWS_DESKTOP
+//void application_common(::apex::system * psystem)
+//{
 //
-//  psystem->set_factory_exchange("draw2d", "gdiplus", &draw2d_gdiplus_factory_exchange);
+//#ifdef MAIN_STRING
 //
-//#elif _UWP
-//
-//  psystem->set_factory_exchange("draw2d", "direct2d", &draw2d_direct2d_factory_exchange);
-//
-//#elif defined(LINUX)
-//
-//  psystem->set_factory_exchange("draw2d", "cairo", &draw2d_cairo_factory_exchange);
-//
-//#elif defined(__APPLE__)
-//
-//  psystem->set_factory_exchange("draw2d", "quartz", &draw2d_quartz_factory_exchange);
-//
-//#else
-//
-//  psystem->set_factory_exchange("draw2d", &draw2d_factory_exchange);
+//   pmainstruct->m_pszMain = MAIN_STRING;
 //
 //#endif
 //
-//#endif
+//#ifdef MAINAPPID
 //
-//#ifndef NO_IMAGING
-//
-//#ifdef WINDOWS_DESKTOP
-//
-//  psystem->set_factory_exchange("imaging", "wic", &imaging_wic_factory_exchange);
-//
-//#else
-//
-//  psystem->set_factory_exchange("imaging", "freeimage", &imaging_freeimage_factory_exchange);
+//   pmainstruct->m_pszMain = "app : app=" MAINAPPID;
 //
 //#endif
+//
+//#ifdef ACID_APP
+//
+//   pmainstruct->m_pfnNewAuraApplication = &new_apex_application;
+//
+//#endif
+//
+//#ifdef ACID_LIBRARY
+//
+//   pmainstruct->m_pfnNewLibrary = &new_apex_library;
+//
+//#endif
+//
+//#ifdef LINUX
+//
+//  br_init_set_symbol(br_init_get_symbol());
 //
 //#endif
 //
 //
-//#ifdef WITH_GPU
+//#ifdef CUBE
 //
-//  psystem->set_factory_exchange("gpu", "opengl", &gpu_opengl_factory_exchange);
+////#ifndef NO_DRAW2D
+////
+////#ifdef WINDOWS_DESKTOP
+////
+////  psystem->set_factory_exchange("draw2d", "gdiplus", &draw2d_gdiplus_factory_exchange);
+////
+////#elif _UWP
+////
+////  psystem->set_factory_exchange("draw2d", "direct2d", &draw2d_direct2d_factory_exchange);
+////
+////#elif defined(LINUX)
+////
+////  psystem->set_factory_exchange("draw2d", "cairo", &draw2d_cairo_factory_exchange);
+////
+////#elif defined(__APPLE__)
+////
+////  psystem->set_factory_exchange("draw2d", "quartz", &draw2d_quartz_factory_exchange);
+////
+////#else
+////
+////  psystem->set_factory_exchange("draw2d", &draw2d_factory_exchange);
+////
+////#endif
+////
+////#endif
+////
+////#ifndef NO_IMAGING
+////
+////#ifdef WINDOWS_DESKTOP
+////
+////  psystem->set_factory_exchange("imaging", "wic", &imaging_wic_factory_exchange);
+////
+////#else
+////
+////  psystem->set_factory_exchange("imaging", "freeimage", &imaging_freeimage_factory_exchange);
+////
+////#endif
+////
+////#endif
+////
+////
+////#ifdef WITH_GPU
+////
+////  psystem->set_factory_exchange("gpu", "opengl", &gpu_opengl_factory_exchange);
+////
+////#endif
+//
 //
 //#endif
-
-
-#endif
-
-#ifdef NO_AUDIO
-
-   psystem->m_bImaging = false;
-
-#endif
-
-}
+//
+//#ifdef NO_AUDIO
+//
+//   psystem->m_bImaging = false;
+//
+//#endif
+//
+//}
 
 //
 //template < typename APPLICATION >
@@ -205,15 +213,15 @@ inline string executable_get_app_id()
 }
 
 
-#elif defined(LINUX)
-
-
-inline string executable_get_app_id()
-{
-
-   return "";
-
-}
+//#elif defined(LINUX)
+//
+//
+//inline string executable_get_app_id()
+//{
+//
+//   return "";
+//
+//}
 
 
 #endif

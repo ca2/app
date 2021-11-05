@@ -26,6 +26,27 @@ acme_file::~acme_file()
 }
 
 
+::e_status acme_file::ensure_exists(const char* path)
+{
+
+   throw interface_only_exception();
+
+   return error_interface_only;
+
+}
+
+
+::e_status acme_file::touch(const char* path)
+{
+
+   throw interface_only_exception();
+
+   return error_interface_only;
+
+
+}
+
+
 ::file::path acme_file::executable()
 {
 
@@ -163,7 +184,7 @@ string acme_file::as_string(const char * path, strsize iReadAtMostByteCount)
 
    psz[iPos] = '\0';
 
-   str.release_string_buffer(iReadAtMostByteCount);
+   str.release_string_buffer();
 
    return str;
 

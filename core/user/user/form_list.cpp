@@ -695,7 +695,7 @@ break_click:;
          //      case ::type_int32:
          //      {
          //         string str;
-         //         str.Format("%d", payload.i32());
+         //         str.format("%d", payload.i32());
          //         ptext->_001SetText(str, ::e_source_database);
          //      }
          //      break;

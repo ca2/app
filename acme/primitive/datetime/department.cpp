@@ -763,7 +763,7 @@ namespace datetime
 
          string strV;
 
-         strV.Format("%02d", ISO_WN(time.year(timeshift), time.month(timeshift), time.day(timeshift)));
+         strV.format("%02d", ISO_WN(time.year(timeshift), time.month(timeshift), time.day(timeshift)));
 
          strFormat.replace("%V", strV);
 
@@ -798,7 +798,7 @@ namespace datetime
 
    //      string strV;
    //      
-   //      strV.Format("%02d", ISO_WN(time.utc_year(), time.utc_month(), time.utc_day()));
+   //      strV.format("%02d", ISO_WN(time.utc_year(), time.utc_month(), time.utc_day()));
 
    //      strFormat.replace("%V", strV);
 
@@ -831,7 +831,7 @@ namespace datetime
       if (iSecDiff <= 59)
       {
          bSolved = true;
-         strTime.Format("about %d seconds ago", (timeNow - time).GetTotalSeconds());
+         strTime.format("about %d seconds ago", (timeNow - time).GetTotalSeconds());
       }
       else if (iMinDiff <= 59)
       {
@@ -857,11 +857,11 @@ namespace datetime
          bSolved = true;
          if (iHouDiff <= 1)
          {
-            strTime.Format("about 1 hour and %d minutes ago", (timeNow - time).GetMinutes());
+            strTime.format("about 1 hour and %d minutes ago", (timeNow - time).GetMinutes());
          }
          else if (iHouDiff <= 2)
          {
-            strTime.Format("about 2 hours and %d minutes ago", (timeNow - time).GetMinutes());
+            strTime.format("about 2 hours and %d minutes ago", (timeNow - time).GetMinutes());
          }
          else
          {
@@ -874,7 +874,7 @@ namespace datetime
          if (!bSolved && timeNow.year(timeshift) != time.year(timeshift))
          {
             bDiff = true;
-            str.Format("%04d", time.year(timeshift));
+            str.format("%04d", time.year(timeshift));
             strTime = str;
          }
          if (!bSolved && (bDiff || timeNow.month(timeshift) != time.month(timeshift)))
@@ -892,7 +892,7 @@ namespace datetime
          }
          if (!bSolved && (bDiff || timeNow.day(timeshift) != time.day(timeshift)))
          {
-            str.Format("%02d", time.day());
+            str.format("%02d", time.day());
             if (bDiff)
             {
                strTime += "-";
@@ -905,7 +905,7 @@ namespace datetime
          }
          if (!bSolved && (bDiff || timeNow.hour(timeshift) != time.hour(timeshift)))
          {
-            str.Format("%02d", time.hour(timeshift));
+            str.format("%02d", time.hour(timeshift));
             if (bDiff)
             {
                strTime += " ";
@@ -920,7 +920,7 @@ namespace datetime
          {
             if (bDiff)
             {
-               str.Format("%02d", time.minute(timeshift));
+               str.format("%02d", time.minute(timeshift));
                strTime += ":";
                strTime += str;
             }
@@ -934,7 +934,7 @@ namespace datetime
          {
             if (bDiff)
             {
-               str.Format("%02d", time.second(timeshift));
+               str.format("%02d", time.second(timeshift));
                strTime += ":" + str;
             }
             else
@@ -971,8 +971,8 @@ namespace datetime
       if (iSecDiff <= 59)
       {
          bSolved = true;
-         //strTime.Format("about %d seconds ago", (timeNow - time).GetTotalSeconds());
-         strTime.Format("%ds", (timeNow - time).GetTotalSeconds());
+         //strTime.format("about %d seconds ago", (timeNow - time).GetTotalSeconds());
+         strTime.format("%ds", (timeNow - time).GetTotalSeconds());
       }
       else if (iMinDiff <= 59)
       {
@@ -981,19 +981,19 @@ namespace datetime
          {
             //strTime = pscript->pstr("about 1 minute and %SECONDS% seconds ago");
             //strTime = pscript->pstr("1m %SECONDS%s seconds ago");
-            strTime.Format("1m %ds", (timeNow - time).GetSeconds());
+            strTime.format("1m %ds", (timeNow - time).GetSeconds());
          }
          else if (iMinDiff <= 2)
          {
             //strTime = pscript->pstr("about 2 minutes and %SECONDS% seconds ago");
             //strTime = pscript->pstr("2 minutes and %SECONDS% seconds ago");
-            strTime.Format("2m %ds", (timeNow - time).GetSeconds());
+            strTime.format("2m %ds", (timeNow - time).GetSeconds());
          }
          else
          {
             //strTime = pscript->pstr("about %MINUTES% minutes ago");
             //strTime = pscript->pstr("%MINUTES% minutes ago");
-            strTime.Format("%dm", iMinDiff);
+            strTime.format("%dm", iMinDiff);
          }
       }
       else if (iHouDiff <= 24)
@@ -1001,20 +1001,20 @@ namespace datetime
          bSolved = true;
          if (iHouDiff <= 1)
          {
-            //strTime.Format("about 1 hour and %d minutes ago", (timeNow - time).GetMinutes());
-            strTime.Format("1h %dm", (timeNow - time).GetMinutes());
+            //strTime.format("about 1 hour and %d minutes ago", (timeNow - time).GetMinutes());
+            strTime.format("1h %dm", (timeNow - time).GetMinutes());
 
          }
          else if (iHouDiff <= 2)
          {
-            //strTime.Format("about 2 hours and %d minutes ago", (timeNow - time).GetMinutes());
-            strTime.Format("2h %dm", (timeNow - time).GetMinutes());
+            //strTime.format("about 2 hours and %d minutes ago", (timeNow - time).GetMinutes());
+            strTime.format("2h %dm", (timeNow - time).GetMinutes());
          }
          else
          {
             //strTime = pscript->pstr("about %HOURS% hours ago");
             //strTime = pscript->pstr("%HOURS% hours ago");
-            strTime.Format("%dh", iHouDiff);
+            strTime.format("%dh", iHouDiff);
          }
       }
       else
@@ -1022,7 +1022,7 @@ namespace datetime
          if (!bSolved && timeNow.year(timeshift) != time.year(timeshift))
          {
             bDiff = true;
-            str.Format("%04d", time.year(timeshift));
+            str.format("%04d", time.year(timeshift));
             strTime = str;
          }
          if (!bSolved && (bDiff || timeNow.month(timeshift) != time.month(timeshift)))
@@ -1063,7 +1063,7 @@ namespace datetime
             }
             else
             {
-               str.Format("%dd, time.GetGmtDay()");
+               str.format("%dd, time.GetGmtDay()");
 
             }
             if (bDiff)
@@ -1078,7 +1078,7 @@ namespace datetime
          }
          if (!bSolved && (bDiff || timeNow.hour(timeshift) != time.hour(timeshift)))
          {
-            str.Format("%02d", time.hour(timeshift));
+            str.format("%02d", time.hour(timeshift));
             if (bDiff)
             {
                strTime += "&nbsp;";
@@ -1094,7 +1094,7 @@ namespace datetime
             if (bDiff)
             {
                
-               str.Format("%02d", time.minute(timeshift));
+               str.format("%02d", time.minute(timeshift));
                
                strTime += ":";
 
@@ -1118,7 +1118,7 @@ namespace datetime
             if (bDiff)
             {
                
-               str.Format("%02d", time.second(timeshift));
+               str.format("%02d", time.second(timeshift));
 
                strTime += ":" + str;
 
@@ -1651,11 +1651,11 @@ namespace datetime
          {
             if (abs(result.m_iYear) == 1)
             {
-               strItem.Format("%d year", result.m_iYear);
+               strItem.format("%d year", result.m_iYear);
             }
             else
             {
-               strItem.Format("%d years", result.m_iYear);
+               strItem.format("%d years", result.m_iYear);
             }
             stra.add(strItem);
          }
@@ -1663,11 +1663,11 @@ namespace datetime
          {
             if (abs(result.m_iMonth) == 1)
             {
-               strItem.Format("%d month", result.m_iMonth);
+               strItem.format("%d month", result.m_iMonth);
             }
             else
             {
-               strItem.Format("%d months", result.m_iMonth);
+               strItem.format("%d months", result.m_iMonth);
             }
             stra.add(strItem);
          }
@@ -1675,11 +1675,11 @@ namespace datetime
          {
             if (abs(result.m_iDay) == 1)
             {
-               strItem.Format("%d day", result.m_iDay);
+               strItem.format("%d day", result.m_iDay);
             }
             else
             {
-               strItem.Format("%d days", result.m_iDay);
+               strItem.format("%d days", result.m_iDay);
             }
             stra.add(strItem);
          }
@@ -1687,11 +1687,11 @@ namespace datetime
          {
             if (abs(result.m_iHour) == 1)
             {
-               strItem.Format("%d hour", result.m_iHour);
+               strItem.format("%d hour", result.m_iHour);
             }
             else
             {
-               strItem.Format("%d hours", result.m_iHour);
+               strItem.format("%d hours", result.m_iHour);
             }
             stra.add(strItem);
          }
@@ -1699,11 +1699,11 @@ namespace datetime
          {
             if (abs(result.m_iMinute) == 1)
             {
-               strItem.Format("%d minute", result.m_iMinute);
+               strItem.format("%d minute", result.m_iMinute);
             }
             else
             {
-               strItem.Format("%d minutes", result.m_iMinute);
+               strItem.format("%d minutes", result.m_iMinute);
             }
             stra.add(strItem);
          }
@@ -1711,11 +1711,11 @@ namespace datetime
          {
             if (abs(result.m_iSecond) == 1)
             {
-               strItem.Format("%d second", result.m_iSecond);
+               strItem.format("%d second", result.m_iSecond);
             }
             else
             {
-               strItem.Format("%d seconds", result.m_iSecond);
+               strItem.format("%d seconds", result.m_iSecond);
             }
             stra.add(strItem);
          }

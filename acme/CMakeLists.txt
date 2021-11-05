@@ -353,7 +353,7 @@ list(APPEND library_source
    primitive/primitive/application_bias.cpp
    primitive/primitive/bit.cpp
    primitive/primitive/block.cpp
-   primitive/primitive/block.inl
+   #primitive/primitive/block.inl
    #primitive/promise/context.cpp
    primitive/primitive/command.cpp
    primitive/primitive/context_object_traits.cpp
@@ -403,6 +403,8 @@ list(APPEND library_source
    primitive/primitive/traits.cpp
    primitive/primitive/type.cpp
    primitive/primitive/payload.cpp
+   primitive/primitive/tracer.cpp
+   primitive/primitive/tracer.h
    primitive/primitive/var_element.cpp
    primitive/primitive/virtual_memory.cpp
    primitive/primitive/work.cpp
@@ -1144,15 +1146,15 @@ list(APPEND library_source
    primitive/primitive/_papaya_impl.h
    primitive/primitive/_payload_impl.h
    primitive/primitive/action_context.h
-   primitive/primitive/application_bias.h
+   #primitive/primitive/application_bias.h
    primitive/primitive/atomic.h
    primitive/primitive/bit.h
    primitive/primitive/block.h
-   primitive/primitive/collection.h
+   #primitive/primitive/collection.h
    primitive/primitive/collection_file.h
-   primitive/primitive/command.h
+   #primitive/primitive/command.h
    primitive/primitive/compare_predicate.h
-   primitive/primitive/edit.h
+   #primitive/primitive/edit.h
    primitive/primitive/element_array.h
    primitive/primitive/enumeration.h
    primitive/primitive/enumeration.h
@@ -1163,7 +1165,7 @@ list(APPEND library_source
    primitive/primitive/id_array.h
    primitive/primitive/id_space.h
    primitive/primitive/interlocked_long_pulse.h
-   primitive/primitive/layered.h
+   #primitive/primitive/layered.h
    primitive/primitive/logic.h
    primitive/primitive/malloc.h
    primitive/primitive/map.h
@@ -1179,7 +1181,7 @@ list(APPEND library_source
    primitive/primitive/payload.h
    primitive/primitive/pointer.h
    primitive/primitive/pointer2.h
-   primitive/primitive/primitive_update.h
+   #primitive/primitive/primitive_update.h
    primitive/primitive/property.h
    primitive/primitive/property_set.h
    primitive/primitive/property_set_papaya.h

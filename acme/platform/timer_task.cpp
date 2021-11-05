@@ -106,7 +106,7 @@ bool timer_task::start(const class ::wait & wait, bool bPeriodic)
 
       m_bRunning = true;
 
-      m_strDebugNote.Format("uEvent=%d", m_uEvent);
+      m_strDebugNote.format("uEvent=%d", m_uEvent);
 
       //auto pparent = m_ptimera->m_pobject;
 
@@ -122,7 +122,7 @@ bool timer_task::start(const class ::wait & wait, bool bPeriodic)
 
       //      string strFormat;
 
-      //      strFormat.Format(",container: [% s", typeid(*playeredContainer).name());
+      //      strFormat.format(",container: [% s", typeid(*playeredContainer).name());
 
       //      m_strDebugNote += strFormat;
 
@@ -131,7 +131,7 @@ bool timer_task::start(const class ::wait & wait, bool bPeriodic)
       //      if (pcontextobjectContainer)
       //      {
 
-      //         strFormat.Format(", id = % s]", __string(pcontextobjectContainer->m_id).c_str());
+      //         strFormat.format(", id = % s]", __string(pcontextobjectContainer->m_id).c_str());
       //         
       //         m_strDebugNote += strFormat;
 

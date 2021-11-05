@@ -1607,10 +1607,10 @@ void thread::task_erase(::task * ptask)
       if (is_finishing())
       {
 
-         if (strThreadThis == "veriwell_keyboard::application")
+         if (strThreadThis == "app_veriwell_keyboard::application")
          {
 
-            output_debug_string("veriwell_keyboard::application");
+            output_debug_string("app_veriwell_keyboard::application");
 
          }
 
@@ -1913,7 +1913,18 @@ u32 __thread_entry(void * p);
 
       }
 
-      estatus = run();
+      if (defer_implement(m_psystem))
+      {
+
+         estatus = m_psystem->m_estatus;
+
+      }
+      else
+      {
+
+         estatus = run();
+
+      }
 
       m_bThreadClosed = true;
 
@@ -2678,7 +2689,7 @@ void thread::__os_initialize()
 
 #ifndef WINDOWS
 
-   INFORMATION("init_thread : %s", __type_name(this));
+   INFORMATION("init_thread : " << __type_name(this));
 
 #endif
 
@@ -3699,7 +3710,7 @@ int_bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilte
 ////            if (strWaiting.has_char())
 ////            {
 ////
-////               TRACE("The thread %s is waiting for the following threads to finish:\r\n%s", __type_name(this), strWaiting.c_str());
+////               FORMATTED_TRACE("The thread %s is waiting for the following threads to finish:\r\n%s", __type_name(this), strWaiting.c_str());
 ////
 ////            }
 ////

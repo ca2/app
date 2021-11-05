@@ -130,7 +130,7 @@ namespace sockets
 
          m_data = pa.getrest();
 
-         TRACE(" *** resolv_socket server; query=%s, data=%s\n", m_query, m_data);
+         FORMATTED_TRACE(" *** resolv_socket server; query=%s, data=%s\n", m_query, m_data);
 
          // %! check cache
          {
@@ -145,7 +145,7 @@ namespace sockets
                if (time(nullptr) - ::apex::get_system()->sockets().m_resolvtimeout[m_query][m_data] < 3600) // ttl
                {
                   
-                  TRACE(" *** Returning cache for [%s][%s] = '%s'\n", m_query, m_data, result);
+                  FORMATTED_TRACE(" *** Returning cache for [%s][%s] = '%s'\n", m_query, m_data, result);
 
                   print("Cached\n");
 
@@ -211,7 +211,7 @@ namespace sockets
 
       string value = pa.getrest();
 
-      TRACE(" *** resolv_socket response;  %s: %s\n", key, value);
+      FORMATTED_TRACE(" *** resolv_socket response;  %s: %s\n", key, value);
 
       if (key == "Cached")
       {
@@ -237,7 +237,7 @@ namespace sockets
 
             single_lock lock(::apex::get_system()->sockets().m_mutexResolvCache, true);
    
-            TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
+            FORMATTED_TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
             
             ::apex::get_system()->sockets().m_resolvcache[m_query][m_data] = value;
 
@@ -264,7 +264,7 @@ namespace sockets
 
             single_lock lock(::apex::get_system()->sockets().m_mutexResolvCache, true);
             
-            TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
+            FORMATTED_TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
 
             ::apex::get_system()->sockets().m_resolvcache[m_query][m_data] = value;
 
@@ -294,7 +294,7 @@ namespace sockets
 
             single_lock lock(::apex::get_system()->sockets().m_mutexResolvCache, true);
 
-            TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
+            FORMATTED_TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
 
             ::apex::get_system()->sockets().m_resolvcache[m_query][m_data] = value;
 
@@ -324,7 +324,7 @@ namespace sockets
          
             single_lock lock(::apex::get_system()->sockets().m_mutexResolvCache, true);
    
-            TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
+            FORMATTED_TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
             
             ::apex::get_system()->sockets().m_resolvcache[m_query][m_data] = value;
             
@@ -342,7 +342,7 @@ namespace sockets
    void resolv_socket::OnDetached()
    {
       
-      TRACE(" *** resolv_socket::OnDetached(); query=%s, data=%s\n", m_query, m_data);
+      FORMATTED_TRACE(" *** resolv_socket::OnDetached(); query=%s, data=%s\n", m_query, m_data);
 
       if(m_query == "gethostbyname")
       {
@@ -536,7 +536,7 @@ namespace sockets
 
             string value;
 
-            TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
+            FORMATTED_TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
             
             ::apex::get_system()->sockets().m_resolvcache[m_query][m_data] = value;
             

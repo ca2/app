@@ -230,7 +230,7 @@ void simple_log::print(enum_trace_level etracelevel, enum_trace_category etracec
    else
    {
 
-      str.Format("%c %s %d %s\n", trace_level_char(etracelevel), pszFunction, iLine, psz);
+      str.format("%c %s %d %s\n", trace_level_char(etracelevel), pszFunction, iLine, psz);
 
    }
 
@@ -275,13 +275,13 @@ CLASS_DECL_ACME void __simple_tracea(::matter * pobject, enum_trace_level elevel
 
       ::str::begins_eat_ci(strTopic, "struct ");
 
-      strMessage.Format("%c:%s> %s", trace_level_char(elevel), strTopic.c_str(), psz);
+      strMessage.format("%c:%s> %s", trace_level_char(elevel), strTopic.c_str(), psz);
 
    }
    else
    {
 
-      strMessage.Format("%c> %s", trace_level_char(elevel), psz);
+      strMessage.format("%c> %s", trace_level_char(elevel), psz);
 
    }
 
@@ -339,7 +339,7 @@ CLASS_DECL_ACME void __simple_tracev(::matter * pobject, enum_trace_level elevel
 
    string strMessage;
 
-   strMessage.FormatV(pszFormat, args);
+   strMessage.format_arguments(pszFormat, args);
 
    __simple_tracea(pobject, elevel, pszFunction, pszFileName, iLine, strMessage);
 

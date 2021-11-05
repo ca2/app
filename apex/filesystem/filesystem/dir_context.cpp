@@ -2544,9 +2544,9 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 
    }
 
-   ::file::path pathJson = m_pcontext->m_papexcontext->file().dropbox_info_json();
+   ::file::path pathNetworkPayload = m_pcontext->m_papexcontext->file().dropbox_info_network_payload();
 
-   if (!m_pcontext->m_papexcontext->file().exists(pathJson))
+   if (!m_pcontext->m_papexcontext->file().exists(pathNetworkPayload))
    {
 
 #ifdef _UWP_CONSOLE
@@ -2572,11 +2572,11 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 
    }
 
-   string strJson = m_pcontext->m_papexcontext->file().as_string(pathJson);
+   string strNetworkPayload = m_pcontext->m_papexcontext->file().as_string(pathNetworkPayload);
 
    ::property_set set;
 
-   set.parse_json(strJson);
+   set.parse_network_payload(strNetworkPayload);
 
    m_pathDropbox = set["personal"]["path"];
 

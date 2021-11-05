@@ -2,7 +2,6 @@
 
 
 class CLASS_DECL_APEX apex_main_data :
-   virtual public acme_main_data,
    virtual public apex_main_struct,
    virtual public ::object
 {
@@ -15,27 +14,29 @@ public:
    //LPFN_MAIN_RUNNER                 m_mainrunnera[64];
    ::e_display                      m_edisplay;
    ::e_activation                   m_eactivation;
-   string                           m_strAppId;
    ::file::path                     m_pathCacheDirectory;
 
-#ifdef WINDOWS
-
-   hinstance                        m_hinstance;
-   hinstance                        m_hPrevInstance;
-   int                              m_nCmdShow;
-
-#endif
+//#ifdef WINDOWS
+//
+//   hinstance                        m_hinstance;
+//   hinstance                        m_hPrevInstance;
+//   int                              m_nCmdShow;
+//
+//#endif
 
 
    apex_main_data();
-   virtual ~apex_main_data();
+   ~apex_main_data() override;
 
 
    void set_main_struct(const apex_main_struct  & mainstruct);
 
 
-   ::e_status system_construct(int argc, char** argv, char ** envp);
-   ::e_status system_construct(int argc, wchar_t** argv, wchar_t ** envp);
+   ::e_status system_construct(const ::main & main);
+
+
+   //::e_status system_construct(int argc, char** argv, char ** envp);
+   //::e_status system_construct(int argc, wchar_t** argv, wchar_t ** envp);
 
    virtual ::e_status on_system_construct();
 

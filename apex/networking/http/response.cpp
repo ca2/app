@@ -53,7 +53,7 @@ namespace http
       
       string str;
       
-      str.FormatV(pszFormat, args);
+      str.format_arguments(pszFormat, args);
       
       va_end(args);
         

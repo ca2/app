@@ -818,11 +818,11 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
          if (m_pdocumenttemplate->m_id.has_char())
          {
 
-            ::file::path pathFrameJson = "matter://" + m_pdocumenttemplate->m_id + "/frame.json";
+            ::file::path pathFrameNetworkPayload = "matter://" + m_pdocumenttemplate->m_id + "/frame.network_payload";
 
             auto pcontext = get_context();
 
-            m_varFrame = pcontext->m_papexcontext->file().as_json(pathFrameJson);
+            m_varFrame = pcontext->m_papexcontext->file().as_network_payload(pathFrameNetworkPayload);
 
          }
 
@@ -2005,8 +2005,8 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
 
          rectangleFrame = screen_rect();
 
-         INFORMATION("simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left, rectangleFrame.top, rectangleFrame.width(), rectangleFrame.height());
-         INFORMATION("simple_frame_window::LoadFrame edisplay=%s", __cstr(layout().sketch().display().eflag()));
+         FORMATTED_INFORMATION("simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left, rectangleFrame.top, rectangleFrame.width(), rectangleFrame.height());
+         FORMATTED_INFORMATION("simple_frame_window::LoadFrame edisplay=%s", __cstr(layout().sketch().display().eflag()));
 
          if (wfi_is_up_down())
          {
@@ -2055,8 +2055,8 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
 
       //pusersystem->set_rect(rectangleFrame);
 
-      INFORMATION("(2) simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left, rectangleFrame.top, rectangleFrame.width(), rectangleFrame.height());
-      INFORMATION("(2) simple_frame_window::LoadFrame edisplay=%s", __cstr(layout().sketch().display().eflag()));
+      FORMATTED_INFORMATION("(2) simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left, rectangleFrame.top, rectangleFrame.width(), rectangleFrame.height());
+      FORMATTED_INFORMATION("(2) simple_frame_window::LoadFrame edisplay=%s", __cstr(layout().sketch().display().eflag()));
 
       if (pusersystem->m_pcreate->m_bMakeVisible)
       {
@@ -2477,7 +2477,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
          if(d1 > 50_ms)
          {
 
-            CATEGORY_INFORMATION(prodevian, "(more than 50ms) " << strType << "::_001OnDraw took " << integral_millisecond(d1) << "::duration.\n");
+            CATEGORY_INFORMATION(prodevian, "(more than 50ms)(G) " << strType << "::_001OnDraw took " << integral_millisecond(d1) << "::duration.\n");
 
          }
 
@@ -2501,7 +2501,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
             if(d1 > 50_ms)
             {
 
-               CATEGORY_INFORMATION(prodevian, "(more than 50ms) draw_frame_and_control_box_over took " << d1.integral_millisecond() << "::duration.\n");
+               CATEGORY_INFORMATION(prodevian, "(more than 50ms)(K) draw_frame_and_control_box_over took " << d1.integral_millisecond() << "::duration.\n");
 
             }
 
@@ -3055,7 +3055,7 @@ void simple_frame_window::route_command(::message::command * pcommand, bool bRou
 //   // don't execute the command when the u is disabled
 //   if (!is_window_enabled())
 //   {
-//      TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: DDE command '%s' ignored because u is disabled.\n",
+//      FORMATTED_TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: DDE command '%s' ignored because u is disabled.\n",
 //            string(strCommand).c_str());
 //      return 0;
 //   }
@@ -3065,7 +3065,7 @@ void simple_frame_window::route_command(::message::command * pcommand, bool bRou
 //
 //   //if (!psystem->OnDDECommand(pszCommand))
 //
-//   //   TRACE(trace_category_appmsg, e_trace_level_warning, "Error: failed to execute DDE command '%s'.\n", pszCommand);
+//   //   FORMATTED_TRACE(trace_category_appmsg, e_trace_level_warning, "Error: failed to execute DDE command '%s'.\n", pszCommand);
 //
 //   //strCommand.release_string_buffer();
 //
@@ -3382,7 +3382,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
                         //}
 
-                        CATEGORY_INFORMATION(prodevian, "(more than 50ms) " << strType << "::_001OnDraw took " << integral_millisecond(d1) << "::duration.");
+                        CATEGORY_INFORMATION(prodevian, "(more than 50ms)(J) " << strType << "::_001OnDraw took " << integral_millisecond(d1) << "::duration.");
 
                      }
 
@@ -3415,7 +3415,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
       if(d1 > 50_ms)
       {
 
-         CATEGORY_INFORMATION(prodevian, "(more than 50ms) simple_frame_windows::_001DrawThis took " << integral_millisecond(d1) << "::duration.\n");
+         CATEGORY_INFORMATION(prodevian, "(more than 50ms)(L) simple_frame_windows::_001DrawThis took " << integral_millisecond(d1) << "::duration.\n");
 
       }
 
@@ -3491,7 +3491,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
                         if (d1 > 50_ms)
                         {
 
-                           CATEGORY_INFORMATION(prodevian, "(more than 50ms) simple_frame_windows::_001DrawThis took " << integral_millisecond(d1) << ".\n");
+                           CATEGORY_INFORMATION(prodevian, "(more than 50ms)(M) simple_frame_windows::_001DrawThis took " << integral_millisecond(d1) << ".\n");
 
                         }
 
@@ -3541,7 +3541,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
       if(d1 > 50_ms)
       {
 
-         CATEGORY_INFORMATION(prodevian, "(more than 50ms) simple_frame_windows::_001DrawThis took " << integral_millisecond(d1) << ".\n");
+         CATEGORY_INFORMATION(prodevian, "(more than 50ms)(N) simple_frame_windows::_001DrawThis took " << integral_millisecond(d1) << ".\n");
 
       }
 

@@ -331,7 +331,7 @@ string url_encode(const ::string & psz)
 //   }
 //   else
 //   {
-//      strChar.Format("%02X", *psz);
+//      strChar.format("%02X", *psz);
 //      str += "%" + strChar.Right(2);
 //   }
 //

@@ -108,11 +108,11 @@ namespace hi5
       TWIT_SAVEDSEARCHDESTROY_URL("http://twitter.com/saved_searches/destroy/"),
 
       /* Trends URLs */
-      TWIT_TRENDS_URL("http://api.twitter.com/1/trends.json"),
-      TWIT_TRENDSDAILY_URL("http://api.twitter.com/1/trends/daily.json"),
-      TWIT_TRENDSCURRENT_URL("http://api.twitter.com/1/trends/current.json"),
-      TWIT_TRENDSWEEKLY_URL("http://api.twitter.com/1/trends/weekly.json"),
-      TWIT_TRENDSAVAILABLE_URL("http://api.twitter.com/1/trends/available.json"),
+      TWIT_TRENDS_URL("http://api.twitter.com/1/trends.network_payload"),
+      TWIT_TRENDSDAILY_URL("http://api.twitter.com/1/trends/daily.network_payload"),
+      TWIT_TRENDSCURRENT_URL("http://api.twitter.com/1/trends/current.network_payload"),
+      TWIT_TRENDSWEEKLY_URL("http://api.twitter.com/1/trends/weekly.network_payload"),
+      TWIT_TRENDSAVAILABLE_URL("http://api.twitter.com/1/trends/available.network_payload"),
       m_oauth(pobject, psimplelog, iLogTarget)
    {
 
@@ -502,7 +502,7 @@ namespace hi5
 
       string strResp = m_strResponse;
 
-      string strUrl("https://upload.twitter.com/1.1/media/upload.json");
+      string strUrl("https://upload.twitter.com/1.1/media/upload.network_payload");
 
       bool bOk = performMultiPartPost(strUrl, post, false);
 
@@ -515,7 +515,7 @@ namespace hi5
       try
       {
 
-         v.parse_json(p);
+         v.parse_network_payload(p);
 
       }
       catch (::exception * pe)
@@ -581,7 +581,7 @@ namespace hi5
 
       string strResp = m_strResponse;
 
-      string strUrl("https://upload.twitter.com/1.1/media/upload.json");
+      string strUrl("https://upload.twitter.com/1.1/media/upload.network_payload");
 
       //strUrl += "?command=APPEND&segment_index=" + str::from(iIndex);
 
@@ -622,7 +622,7 @@ namespace hi5
 
       string strResp = m_strResponse;
 
-      string strUrl("https://upload.twitter.com/1.1/media/upload.json");
+      string strUrl("https://upload.twitter.com/1.1/media/upload.network_payload");
 
       bool bOk = performMultiPartPost(strUrl, post, false);
 
@@ -635,7 +635,7 @@ namespace hi5
       try
       {
 
-         v.parse_json(p);
+         v.parse_network_payload(p);
 
       }
       catch (::exception * pe)
@@ -684,7 +684,7 @@ namespace hi5
 
       property_set post;
 
-      string strUrl("https://upload.twitter.com/1.1/media/upload.json");
+      string strUrl("https://upload.twitter.com/1.1/media/upload.network_payload");
 
       strUrl += "?command=STATUS&media_id=" + strMediaId;
 
@@ -699,7 +699,7 @@ namespace hi5
       try
       {
 
-         v.parse_json(p);
+         v.parse_network_payload(p);
 
       }
       catch (::exception * pe)
@@ -780,7 +780,7 @@ namespace hi5
 
       post["status"] = newStatus;
 
-      string strUrl("https://api.twitter.com/1.1/statuses/update.json");
+      string strUrl("https://api.twitter.com/1.1/statuses/update.network_payload");
 
       int i = 0;
 

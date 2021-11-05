@@ -18,6 +18,8 @@
 
 #pragma once
 
+#undef LAYER_NAMESPACE
+#define LAYER_NAMESPACE aqua
 
 
 //#undef get_system()
@@ -59,6 +61,7 @@ namespace multimedia
 
 
 } // namespace multimedia
+
 
 
 #include "aqua/multimedia/_c.h"

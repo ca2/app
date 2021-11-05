@@ -6,6 +6,8 @@
 #include "aura/astr.h"
 #include "aura/user/menu_command.h"
 
+#define SWP_NOSIZE          0x0001
+#define SWP_NOMOVE          0x0002
 
 namespace user
 {
@@ -286,7 +288,7 @@ namespace user
       if (pshow->m_bShow)
       {
 
-         TRACE("menu::on_message_show_window bShow = %d", pshow->m_bShow);
+         FORMATTED_TRACE("menu::on_message_show_window bShow = %d", pshow->m_bShow);
 
          if (m_puserinteractionParent)
          {
@@ -303,7 +305,7 @@ namespace user
 
                      get_window()->bring_to_front();
 
-                     get_window()->set_window_position(e_zorder_top_most, 0, 0, 0, 0, 0);
+                     get_window()->set_window_position(e_zorder_top_most, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
 
                   }));
 
@@ -315,7 +317,7 @@ namespace user
       else
       {
 
-         TRACE("menu::on_message_show_window bShow = %d", pshow->m_bShow);
+         FORMATTED_TRACE("menu::on_message_show_window bShow = %d", pshow->m_bShow);
 
       }
 
@@ -1569,6 +1571,30 @@ namespace user
       return pinteraction;
 
    }
+
+
+   // <3ThomasBorregaardS�rensen__!! (I need to suck you, back, middle, front .20211031)
+   void menu::route_command(::message::command* pcommand, bool bRouteToKeyDescendant)
+   {
+
+      if(m_pchannelNotify)
+      {
+
+         m_pchannelNotify->route_command(pcommand, bRouteToKeyDescendant);
+
+         if (pcommand->m_bRet)
+         {
+
+            return;
+
+         }
+
+      }
+
+      ::user::interaction::route_command(pcommand, bRouteToKeyDescendant);
+
+   }
+
 
 
    // <3ThomasBorregaardS�rensen__!! (I need to suck you, back, middle, front)

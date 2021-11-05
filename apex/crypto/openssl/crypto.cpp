@@ -999,7 +999,7 @@ namespace crypto
       for (i32 i = 0; i < CA4_CRYPT_V5_FINAL_HASH_BYTES - CA4_BASE_HASH_DIGEST_LENGTH; i += 2)
       {
          i64 iDigit = __random<char>();
-         strFormat.Format("%02x", iDigit);
+         strFormat.format("%02x", iDigit);
          strSalt += strFormat;
       }
       return strSalt;

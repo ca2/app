@@ -51,7 +51,7 @@ namespace datetime
             //pgraphics->Draw3dRect(rectangleDay, crBorder, crBorder);
             rectangleDay.deflate(m_iColWidth / 10,m_iLineHeight / 10);
             string strDay;
-            strDay.Format("%s",GetTinyWeekDay(pgraphics->textcontext(),iDay));
+            strDay.format("%s",GetTinyWeekDay(pgraphics->textcontext(),iDay));
             pgraphics->draw_text(strDay,rectangleDay,e_align_bottom_right);
          }
          for(iDay = 1; iDay <= 33; iDay++)
@@ -74,7 +74,7 @@ namespace datetime
             pgraphics->draw_inset_rectangle(rectangleDay,crBorder);
             rectangleDay.deflate(m_iColWidth / 5,m_iLineHeight / 5);
             string strDay;
-            strDay.Format("%d",iDay);
+            strDay.format("%d",iDay);
             pgraphics->draw_text(strDay,rectangleDay,e_align_bottom_right);
             time += timespan;
             if(time.month() != iMonth)
@@ -92,7 +92,7 @@ namespace datetime
             pgraphics->draw_inset_rectangle(rectangleDay,crBorder);
             rectangleDay.deflate(m_iColWidth / 5,m_iLineHeight / 5);
             string strDay;
-            strDay.Format("%d",timeNow.day());
+            strDay.format("%d",timeNow.day());
             pgraphics->draw_text(strDay,rectangleDay,e_align_bottom_right);
          }
          ::datetime::time timeEmp = m_time;
@@ -109,7 +109,7 @@ namespace datetime
             pgraphics->draw_inset_rectangle(rectangleDay,crBorder);
             rectangleDay.deflate(m_iColWidth / 5,m_iLineHeight / 5);
             string strDay;
-            strDay.Format("%d",timeEmp.day());
+            strDay.format("%d",timeEmp.day());
             pgraphics->draw_text(strDay,rectangleDay,e_align_bottom_right);
          }
 
@@ -117,7 +117,7 @@ namespace datetime
          ::rectangle_i32 rectangle;
          GetRect(rectangle,e_element_year_title);
          string strYear;
-         strYear.Format("%d",iYear);
+         strYear.format("%d",iYear);
          pgraphics->draw_text(strYear,rectangle,e_align_center);
 
          pgraphics->set(m_pfontMonth);

@@ -15,6 +15,10 @@
 #pragma once
 
 
+#undef LAYER_NAMESPACE
+#define LAYER_NAMESPACE axis
+
+
 namespace axis
 {
 
@@ -104,7 +108,7 @@ namespace axis
 
 
 
-#include "axis/compress/_.h"
+//#include "axis/compress/_.h"
 
 
 

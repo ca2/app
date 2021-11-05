@@ -196,7 +196,7 @@ void task::erase_notify(::matter* pmatter)
 }
 
 
-bool task::on_get_thread_name(string & strThreadName)
+bool task::on_get_task_name(string & strTaskName)
 {
 
    if (m_strTaskTag.has_char())
@@ -204,7 +204,7 @@ bool task::on_get_thread_name(string & strThreadName)
 
       //::task_set_name(m_strTaskTag);
 
-      strThreadName = m_strTaskTag;
+      strTaskName = m_strTaskTag;
 
    }
    else
@@ -212,7 +212,7 @@ bool task::on_get_thread_name(string & strThreadName)
 
       //::task_set_name(__type_name(this));
 
-      strThreadName = __type_name(this);
+      strTaskName = __type_name(this);
 
    }
 
@@ -234,7 +234,7 @@ void task::init_task()
 
    string strThreadName;
 
-   if (on_get_thread_name(strThreadName))
+   if (on_get_task_name(strThreadName))
    {
 
       task_set_name(strThreadName);

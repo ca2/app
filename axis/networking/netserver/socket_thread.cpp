@@ -70,7 +70,7 @@ namespace netserver
 
          string strMessage;
 
-         strMessage.Format("Invalid address \"%s\" or invalid port %d", m_strIp.c_str(), m_iPort);
+         strMessage.format("Invalid address \"%s\" or invalid port %d", m_strIp.c_str(), m_iPort);
 
          TRACE(strMessage);
 
@@ -106,7 +106,7 @@ namespace netserver
 
                   string strMessage;
 
-                  strMessage.Format("\n\netserver::socket_thread_base::run Couldn't bind to address %s:%d!!\n\n", m_strIp.c_str(), m_iPort);
+                  strMessage.format("\n\netserver::socket_thread_base::run Couldn't bind to address %s:%d!!\n\n", m_strIp.c_str(), m_iPort);
 
                   TRACE(strMessage);
 

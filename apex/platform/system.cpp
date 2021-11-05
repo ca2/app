@@ -1297,9 +1297,9 @@ namespace apex
 
             {
 
-               ASSERT(m_hPrevInstance == nullptr);
+               ASSERT(m_hinstancePrev == nullptr);
 
-               HINSTANCE hinstance = (HINSTANCE)m_hinstance;
+               HINSTANCE hinstance = (HINSTANCE)m_hinstanceThis;
 
                //auto edisplay = m_edisplay;
 
@@ -1395,7 +1395,7 @@ pacmedir->create("/ca2core");
 
          if (status != errAuthorizationSuccess)
          {
-            TRACE("Error Creating Initial Authorization: %d", status);
+            FORMATTED_TRACE("Error Creating Initial Authorization: %d", status);
 
             return false;
 
@@ -1418,7 +1418,7 @@ pacmedir->create("/ca2core");
          if (status != errAuthorizationSuccess)
          {
 
-            TRACE("Copy Rights Unsuccessful: %d", status);
+            FORMATTED_TRACE("Copy Rights Unsuccessful: %d", status);
 
             return false;
 
@@ -2281,7 +2281,7 @@ pacmedir->create("/ca2core");
       m_papplicationStartup->get_property_set().merge(get_property_set());
 
       set_main_struct(*m_papplicationStartup);
-      
+
       return estatus;
 
    }
@@ -2731,7 +2731,7 @@ pacmedir->create("/ca2core");
 //         if(list != nullptr)
          {
 
-            str2.Format(pszFormat,list);
+            str2.format(pszFormat,list);
 
          }
          //     else
@@ -4041,13 +4041,13 @@ pacmedir->create("/ca2core");
 
          string strMessage;
 
-         strMessage.Format("protocol: ca2project\nbase: %s\nAppId: %s\nquery: %s\n", strBase, strAppId, strQuery);
+         strMessage.format("protocol: ca2project\nbase: %s\nAppId: %s\nquery: %s\n", strBase, strAppId, strQuery);
 
          //message_box(strMessage, e_message_box_ok);
 
          string strParams;
 
-         //strParams.Format("\"ca2project\" \"%s\" \"%s\" \"%s\"\n", strBase, strAppId, strQuery);
+         //strParams.format("\"ca2project\" \"%s\" \"%s\" \"%s\"\n", strBase, strAppId, strQuery);
 
          string strProj;
 
@@ -4062,7 +4062,7 @@ pacmedir->create("/ca2core");
 
          //strProj = "..\\..\\..\\" + stra[0] + "\\" + stra[1] + "\\" + stra[1] + ".vcxproj";
 
-         strParams.Format("\"openvsproject://%s\"", strProj);
+         strParams.format("\"openvsproject://%s\"", strProj);
 
 
          //int iRet = call_sync("C:\\bergedge\\time\\stage\\visual_studio_automation_2017.exe",strParams, "C:\\bergedge\\time\\stage\\", e_display_none, 30, 1000, nullptr, 0);
@@ -4519,7 +4519,7 @@ pacmedir->create("/ca2core");
 
 #ifdef _UWP
 
-      m_pcontext->m_papexcontext->os().native_full_web_browser(strUrl);
+      m_pcontext->m_papexcontext->os_context()->native_full_web_browser(strUrl);
 
       return;
 
@@ -4735,7 +4735,7 @@ pacmedir->create("/ca2core");
 
 #ifdef _UWP
 
-      m_pcontext->m_papexcontext->os().native_full_web_browser(strUrl);
+      m_pcontext->m_papexcontext->os_context()->native_full_web_browser(strUrl);
 
 #else
 
@@ -4816,7 +4816,7 @@ pacmedir->create("/ca2core");
    string system::get_local_mutex_name(const ::string & pszAppName)
    {
       string strMutex;
-      strMutex.Format("Local\\ca2_application_local_mutex:%s", pszAppName.c_str());
+      strMutex.format("Local\\ca2_application_local_mutex:%s", pszAppName.c_str());
       return strMutex;
    }
 
@@ -4824,14 +4824,14 @@ pacmedir->create("/ca2core");
    {
       string strId(pszId);
       string strMutex;
-      strMutex.Format("Local\\ca2_application_local_mutex:%s, id:%s", pszAppName.c_str(), strId.c_str());
+      strMutex.format("Local\\ca2_application_local_mutex:%s, id:%s", pszAppName.c_str(), strId.c_str());
       return strMutex;
    }
 
    string system::get_global_mutex_name(const ::string & pszAppName)
    {
       string strMutex;
-      strMutex.Format("Global\\ca2_application_global_mutex:%s", pszAppName.c_str());
+      strMutex.format("Global\\ca2_application_global_mutex:%s", pszAppName.c_str());
       return strMutex;
    }
 
@@ -4839,7 +4839,7 @@ pacmedir->create("/ca2core");
    {
       string strId(pszId);
       string strMutex;
-      strMutex.Format("Global\\ca2_application_global_mutex:%s, id:%s", pszAppName.c_str(), strId.c_str());
+      strMutex.format("Global\\ca2_application_global_mutex:%s, id:%s", pszAppName.c_str(), strId.c_str());
       return strMutex;
    }
 
@@ -5182,7 +5182,7 @@ namespace apex
 
       string strMessage;
 
-      strMessage.Format("system::on_allocation_error Implement \"%s\" allocation\n", str.c_str());
+      strMessage.format("system::on_allocation_error Implement \"%s\" allocation\n", str.c_str());
 
       dev_log(strMessage);
 
@@ -5441,17 +5441,6 @@ namespace apex
 
    ::e_status system::main()
    {
-
-//      auto estatus = init_system();
-//
-//      if (!estatus)
-//      {
-//
-//         return estatus;
-//
-//      }
-//
-//      //auto estatus = class ::system::main();
 
       auto estatus = ::thread::main();
 
@@ -5724,67 +5713,85 @@ namespace apex
    }
 
 
-   void system::system_construct(int argc, char** argv, char** envp)
+   ::e_status system::system_construct(const ::main & main)
    {
 
-      apex_main_data::system_construct(argc, argv, envp);
+      auto estatus = apex_main_data::system_construct(main);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 
 
-   void system::system_construct(int argc, wchar_t** argv, wchar_t** envp)
-   {
 
-      apex_main_data::system_construct(argc, argv, envp);
+   //void system::system_construct(int argc, char** argv, char** envp)
+   //{
 
-   }
+   //   apex_main_data::system_construct(argc, argv, envp);
 
-
-#ifdef WINDOWS_DESKTOP
-
-   
-   ::e_status system::system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char* pCmdLine, i32 nCmdShow)
-   {
-
-      return apex_main_data::system_construct(hinstanceThis, hPrevInstance, pCmdLine, nCmdShow);
-
-   }
+   //}
 
 
-#elif defined(_UWP)
+   //void system::system_construct(int argc, wchar_t** argv, wchar_t** envp)
+   //{
 
-   
-   ::e_status system::system_construct(const ::string_array & stra)
-   {
+   //   apex_main_data::system_construct(argc, argv, envp);
 
-      return ::success;
-
-   }
+   //}
 
 
-#else
+//#ifdef WINDOWS_DESKTOP
+//
+//   
+//   ::e_status system::system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char* pCmdLine, i32 nCmdShow)
+//   {
+//
+//      return apex_main_data::system_construct(hinstanceThis, hPrevInstance, pCmdLine, nCmdShow);
+//
+//   }
+//
+//
+//#elif defined(_UWP)
+//
+//   
+//   ::e_status system::system_construct(const ::string_array & stra)
+//   {
+//
+//      return ::success;
+//
+//   }
+//
+//
+//#else
+//
+//
+//   ::e_status system::system_construct(const ::string & pszCommandLine, const ::e_display& edisplay)
+//   {
+//
+//      return ::success;
+//
+//   }
+//
+//
+//   ::e_status system::system_construct(os_local* poslocal, const ::e_display& edisplay)
+//   {
+//
+//      return ::success;
+//
+//   }
+//
+//
+//#endif
 
 
-   ::e_status system::system_construct(const ::string & pszCommandLine, const ::e_display& edisplay)
-   {
-
-      return ::success;
-
-   }
-
-
-   ::e_status system::system_construct(os_local* poslocal, const ::e_display& edisplay)
-   {
-
-      return ::success;
-
-   }
-
-
-#endif
-
-
-   __namespace_system_factory(system);
+   //__namespace_system_factory(system);
 
 
 } // namespace apex
@@ -5797,90 +5804,6 @@ string get_bundle_app_library_name();
 #endif
 
 
-
-__pointer(::apex::system) platform_create_system(const char * pszAppId)
-{
-
-   string strAppId(pszAppId);
-
-#if !defined(CUBE)
-
-   if (strAppId.has_char())
-   {
-
-      string strMessage;
-
-      string strLibrary = strAppId;
-
-      strLibrary.replace("/", "_");
-
-      strLibrary.replace("-", "_");
-
-      strLibrary.replace(".", "_");
-
-      auto plibrary = __node_library_open(strLibrary, strMessage);
-
-      if (!plibrary)
-      {
-
-         //{
-
-         //   //auto pfuture = __sync_future();
-
-         //   //message_box(strMessage, "Could not open required library. Want to give an yes/no answer insted of pression cancel?", e_message_box_icon_exclamation | e_message_box_yes_no_cancel, pfuture);
-
-         //   //pfuture->wait(10_s);
-
-         //   int iDialogResult = pfuture->m_var;
-
-         //   ::output_debug_string("result " + __string(iDialogResult));
-
-         //}
-
-         //__throw(error_failed, strMessage + "\n\nCould not open required library.");
-
-         ::output_debug_string("The application library for appid \"" + strAppId + "\" wasn't loaded.");
-
-      }
-
-   }
-
-#endif
-
-   auto pstaticsetup = ::static_setup::get_first(::static_setup::flag_system, "");
-
-   if (!pstaticsetup)
-   {
-
-      return nullptr;
-
-   }
-
-   auto pobject = pstaticsetup->new_object();
-
-   if (!pobject)
-   {
-
-      return nullptr;
-
-   }
-
-   auto psystem = dynamic_cast<::apex::system*>(pobject);
-
-   if(!psystem)
-   {
-
-      delete pobject;
-
-      return nullptr;
-
-   }
-
-   psystem->m_strAppId = strAppId;
-
-   return ::move_transfer(psystem);
-
-}
 
 
 ::apex::session * platform_create_session()

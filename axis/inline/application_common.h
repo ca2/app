@@ -85,8 +85,8 @@ public:
 //    return ::NAMESPACE::g_applicationfactory.new_application(); \
 // }
 
-#define __namespace_application_factory(APPID) \
-::static_application_factory < application > g_applicationfactory(APPID);
+//#define __namespace_application_factory(APPID) \
+//::static_application_factory < application > g_applicationfactory(APPID);
 
 
 

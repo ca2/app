@@ -332,7 +332,7 @@ CLASS_DECL_ACME void TRACELASTERROR()
 
    string strError;
 
-   strError.Format("\nError Message:\n%s\n\n", strErrorMessage.c_str());
+   strError.format("\nError Message:\n%s\n\n", strErrorMessage.c_str());
 
    ::output_debug_string(strError);
 

@@ -612,7 +612,7 @@ namespace aura
 
       //sqlite3_config(SQLITE_CONFIG_MULTITHREAD);
 
-      ::channel::s_pmutexChannel = __new(::mutex);
+      //::channel::s_pmutexChannel = __new(::mutex);
 
       //g_paurastrpool = new aura_str_pool();
 

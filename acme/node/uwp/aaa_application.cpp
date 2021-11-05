@@ -101,7 +101,7 @@ namespace acme
                char * lpsz;
                ::u32 uSize;
 
-               strKey.Format(
+               strKey.format(
                TEXT("\\StringFileInfo\\%04x%04x\\FileDescription"),
                lpTranslate[i].wLanguage,
                lpTranslate[i].wCodePage);
@@ -109,7 +109,7 @@ namespace acme
 
 
 
-               strKey.Format(
+               strKey.format(
                TEXT("\\StringFileInfo\\%04x%04x\\FileVersion"),
                lpTranslate[i].wLanguage,
                lpTranslate[i].wCodePage);

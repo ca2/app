@@ -1093,12 +1093,12 @@ namespace user
 
       set_need_layout();
 
-      //TRACE("list::_001OnUpdateItemCount ItemCount %d\n", m_nItemCount);
+      //FORMATTED_TRACE("list::_001OnUpdateItemCount ItemCount %d\n", m_nItemCount);
 
       //if (m_bGroup)
       //{
 
-        // TRACE("list::_001OnUpdateItemCount GroupCount %d\n", m_nGroupCount);
+        // FORMATTED_TRACE("list::_001OnUpdateItemCount GroupCount %d\n", m_nGroupCount);
 
       //}
 
@@ -4534,7 +4534,7 @@ namespace user
       for (i = 0; i < m_columna.get_count(); i++)
       {
 
-         str.Format("list_column[%d].width", i);
+         str.format("list_column[%d].width", i);
 
          width = m_columna.element_at(i)->m_iWidth;
 
@@ -4576,7 +4576,7 @@ namespace user
 
       string str;
 
-      str.Format("SubItem[%d].Visible", iSubItem);
+      str.format("SubItem[%d].Visible", iSubItem);
 
       //data_set(str, bShow ? 1 : 0);
 
@@ -5176,7 +5176,7 @@ namespace user
 //
 //         list_column * pcolumn = element_at(i);
 //
-//         str.Format("list_column[%d].Next", i);
+//         str.format("list_column[%d].Next", i);
 //
 //         //m_plist->data_set(str, pcolumn->m_iOrder);
 //
@@ -5197,7 +5197,7 @@ namespace user
 //
 //         list_column * pcolumn = element_at(i);
 //
-//         str.Format("list_column[%d].Next", i);
+//         str.format("list_column[%d].Next", i);
 //
 //         //m_plist->data_get(str, pcolumn->m_iOrder);
 //

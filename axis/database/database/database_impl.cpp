@@ -118,7 +118,7 @@ namespace database
    {
       m_strLastError += query_error(pszPrefix);
    
-      TRACE("%s", m_strLastError.c_str());
+      FORMATTED_TRACE("%s", m_strLastError.c_str());
 
    }
 

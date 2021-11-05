@@ -133,6 +133,8 @@ namespace user
 
       virtual __pointer(::user::menu_interaction) create_menu_button(::draw2d::graphics_pointer & pgraphics, ::user::menu_item * pitem);
 
+      void route_command(::message::command* pcommand, bool bRouteToKeyDescendant) override;
+
       //// <3ThomasBorregaardS�rensen__!!
       ::e_status handle_command(const ::id& id) override;
 

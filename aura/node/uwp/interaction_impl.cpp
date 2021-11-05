@@ -5916,7 +5916,7 @@ bool CLASS_DECL_AURA __register_class(WNDCLASS* lpWndClass)
 
    if (!::RegisterClass(lpWndClass))
    {
-      //      TRACE(::aura::trace::category_AppMsg, 0, "Can't register interaction_impl class named %s\n",
+      //      FORMATTED_TRACE(::aura::trace::category_AppMsg, 0, "Can't register interaction_impl class named %s\n",
       //       lpWndClass->lpszClassName);
       return false;
    }

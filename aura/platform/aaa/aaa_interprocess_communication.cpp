@@ -37,7 +37,7 @@ namespace aura
 
       string strPid = __string(m_pcall->m_pinterprocessintercommunication->m_idApp);
 
-      strSource.Format(" from %s:%s ", m_pcall->m_pinterprocessintercommunication->m_strApp.c_str(), strPid.c_str());
+      strSource.format(" from %s:%s ", m_pcall->m_pinterprocessintercommunication->m_strApp.c_str(), strPid.c_str());
 
       string str = "call " + __string(m_iTask) + strSource + strObject + "." + strMember + ": " + strVara;
 
@@ -548,7 +548,7 @@ pacmedir->system() / "interprocess_communication" / strApp / __string(idPid);
 
       string str(pszMessage);
 
-      INFORMATION("interprocess_intercommunication::on_receive %s", pszMessage);
+      FORMATTED_INFORMATION("interprocess_intercommunication::on_receive %s", pszMessage);
 
       if(!::str::begins_eat(str, "call "))
       {

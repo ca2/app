@@ -1122,7 +1122,7 @@ pacmedir->localconfig() / "user.component";
 //   if (pdocument->filemanager_data()->m_datakey.is_empty())
 //   {
 
-//      pdocument->filemanager_data()->m_datakey.m_strDataKey.Format("%s(%d)",
+//      pdocument->filemanager_data()->m_datakey.m_strDataKey.format("%s(%d)",
 //            psession->component().m_idFileManager.str(),
 //            pdocument->filemanager_data()->m_iDocument);
 

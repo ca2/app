@@ -862,14 +862,14 @@ namespace userex
    }
 
 
-   void pane_tab_view::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
-   {
-
-
-      ::user::tab_view::_001OnNcDraw(pgraphics);
-
-
-   }
+//   void pane_tab_view::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+//   {
+//
+//
+//      ::user::tab_view::_001OnNcDraw(pgraphics);
+//
+//
+//   }
 
 
    //void pane_tab_view::handle(::subject * psubject, ::context * pcontext)

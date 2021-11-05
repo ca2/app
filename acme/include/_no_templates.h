@@ -99,6 +99,7 @@ class duration;
 #include "acme/primitive/primitive/atomic.h"
 #include "acme/primitive/primitive/interlocked_count.h"
 #include "acme/subject/handler.h"
+#include "acme/primitive/primitive/e_flag.h"
 #include "acme/primitive/primitive/element.h"
 //#include "acme/primitive/primitive/tracer.h"
 //#include "acme/subject/handler.h"

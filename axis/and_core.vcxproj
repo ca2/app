@@ -599,7 +599,7 @@
     <ClInclude Include="aura\aura\core_system.h" />
     <ClInclude Include="aura\aura\core_timer_callback.h" />
     <ClInclude Include="aura\aura\core_timer_listener.h" />
-    <ClInclude Include="aura\aura\core_timer.h" />
+    <ClInclude Include="aura\aura\app_core_timer.h" />
     <ClInclude Include="aura\aura\core_types.h" />
     <ClInclude Include="aura\plugin\plugin.h" />
     <ClInclude Include="aura\plugin\plugin_gen.h" />

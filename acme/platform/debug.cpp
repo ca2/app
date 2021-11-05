@@ -294,13 +294,13 @@ string get_status_message(::e_status estatus)
    if(estatus)
    {
     
-      str.Format("success status (%" PRId64 ")", (::i64) estatus.m_estatus);
+      str.format("success status (%" PRId64 ")", (::i64) estatus.m_estatus);
       
    }
    else
    {
          
-      str.Format("failure status (%" PRId64 ")", (::i64) estatus.m_estatus);
+      str.format("failure status (%" PRId64 ")", (::i64) estatus.m_estatus);
          
    }
 

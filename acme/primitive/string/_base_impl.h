@@ -2784,7 +2784,7 @@ string_base < TYPE_CHAR > string_base < TYPE_CHAR >::span_excluding(const CHAR_T
 
 
 template < typename TYPE_CHAR >
-void string_base < TYPE_CHAR >::AppendFormatV(const CHAR_TYPE* pszFormat, va_list args)
+void string_base < TYPE_CHAR >::append_format_arguments(const CHAR_TYPE* pszFormat, va_list args)
 {
 
    ASSERT(__is_valid_string(pszFormat));
@@ -2811,7 +2811,7 @@ void string_base < TYPE_CHAR >::AppendFormatV(const CHAR_TYPE* pszFormat, va_lis
 
 
 template < typename TYPE_CHAR >
-void string_base < TYPE_CHAR >::FormatV(const CHAR_TYPE* pszFormat, va_list args)
+void string_base < TYPE_CHAR >::format_arguments(const CHAR_TYPE* pszFormat, va_list args)
 {
 
    ASSERT(__is_valid_string(pszFormat));
@@ -2902,7 +2902,7 @@ void string_base < TYPE_CHAR >::FormatV(const CHAR_TYPE* pszFormat, va_list args
 
 
 template < typename TYPE_CHAR >
-void string_base < TYPE_CHAR >::Format(const CHAR_TYPE * pszFormat, ...)
+void string_base < TYPE_CHAR >::format(const CHAR_TYPE * pszFormat, ...)
 {
 
    ASSERT(__is_valid_string(pszFormat));
@@ -2911,7 +2911,7 @@ void string_base < TYPE_CHAR >::Format(const CHAR_TYPE * pszFormat, ...)
 
    va_start(argList, pszFormat);
 
-   FormatV(pszFormat, argList);
+   format_arguments(pszFormat, argList);
 
    va_end(argList);
 
@@ -2920,7 +2920,7 @@ void string_base < TYPE_CHAR >::Format(const CHAR_TYPE * pszFormat, ...)
 
 // append formatted data using format string_base < TYPE_CHAR > 'pszFormat'
 template < typename TYPE_CHAR >
-void __cdecl string_base < TYPE_CHAR >::AppendFormat(const CHAR_TYPE* pszFormat, ...)
+void __cdecl string_base < TYPE_CHAR >::append_format(const CHAR_TYPE* pszFormat, ...)
 {
 
    ASSERT(__is_valid_string(pszFormat));
@@ -2929,7 +2929,7 @@ void __cdecl string_base < TYPE_CHAR >::AppendFormat(const CHAR_TYPE* pszFormat,
 
    va_start(argList, pszFormat);
 
-   AppendFormatV(pszFormat, argList);
+   append_format_arguments(pszFormat, argList);
 
    va_end(argList);
 

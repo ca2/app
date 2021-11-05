@@ -123,7 +123,7 @@ void application_container::request_exit()
                else
                {
 
-                  TRACE("Waiting France Exit of %s", typeid(pappItem.m_p).name());
+                  FORMATTED_TRACE("Waiting France Exit of %s", typeid(pappItem.m_p).name());
 
                   j++;
 

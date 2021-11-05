@@ -514,7 +514,7 @@ namespace account
 //
 //      ::u32 tickEnd= ::duration::now();
 //
-//      TRACE("get_account_login HTTP GET time = %dms",tickEnd - dwBeg);
+//      FORMATTED_TRACE("get_account_login HTTP GET time = %dms",tickEnd - dwBeg);
 //
 //   }
 //   catch(...)

@@ -16,7 +16,7 @@ ErrorHandlerWriter::~ErrorHandlerWriter()
 void ErrorHandlerWriter::error(const string &msg)
 {
    
-   TRACE(trace_category_colorertake5, e_trace_level_error, "%s", msg.c_str());
+   FORMATTED_TRACE(trace_category_colorertake5, e_trace_level_error, "%s", msg.c_str());
    
 }
 

@@ -150,7 +150,7 @@ namespace userex
 
          string str;
 
-         str.Format("%d", second.m_i);
+         str.format("%d", second.m_i);
 
          pinteraction->_001SetText(str, ::e_source_sync);
 

@@ -1270,7 +1270,7 @@ namespace axis
       }
 
    }
-   __namespace_session_factory(session);
+//   __namespace_session_factory(session);
 
 } // namespace axis
 

@@ -418,7 +418,7 @@ int __cdecl debug_report(int iType, char const* psz, int iLine, char const* pszM
    string strExtra;
    va_list argList;
    va_start(argList, pszFormat);
-   strExtra.Format(pszFormat, argList);
+   strExtra.format(pszFormat, argList);
    va_end(argList);
 
    string strModule;
@@ -426,7 +426,7 @@ int __cdecl debug_report(int iType, char const* psz, int iLine, char const* pszM
    if (pszModuleName != nullptr && *pszModuleName != '\0')
    {
 
-      strModule.Format("%s: ", pszModuleName);
+      strModule.format("%s: ", pszModuleName);
 
    }
 
@@ -449,7 +449,7 @@ int __cdecl debug_report(int iType, wchar_t const* pszFile, int iLine, wchar_t c
    string strFormat;
    strFormat = pszFormat;
    strFormat.replace("%s", "%S");
-   strExtra.Format(strFormat, argList);
+   strExtra.format(strFormat, argList);
    va_end(argList);
 
    string strModule;
@@ -459,7 +459,7 @@ int __cdecl debug_report(int iType, wchar_t const* pszFile, int iLine, wchar_t c
    if (pszModuleName != nullptr && *pszModuleName != '\0')
    {
 
-      strModule.Format("%S: ", pszModuleName);
+      strModule.format("%S: ", pszModuleName);
 
    }
 

@@ -1008,7 +1008,7 @@ namespace user
 
          ::file::path path = payloadFile.get_file_path();
 
-         TRACE("Failed to save document : file path : %s", path.c_str());
+         FORMATTED_TRACE("Failed to save document : file path : %s", path.c_str());
 
          //report_save_exception(payloadFile, pwriter, "__IDP_INVALID_FILENAME");
 

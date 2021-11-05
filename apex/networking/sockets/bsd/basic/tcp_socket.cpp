@@ -542,7 +542,7 @@ namespace sockets
 //
 //      auto paddressdepartment = ::net::address_department();
 //
-//      INFORMATION("OnResolved id %d addr %s port %d\n",id,paddressdepartment->canonical_name(a).c_str(),a.u.s.m_port);
+//      FORMATTED_INFORMATION("OnResolved id %d addr %s port %d\n",id,paddressdepartment->canonical_name(a).c_str(),a.u.s.m_port);
 //
 //      if(id == m_resolver_id)
 //      {
@@ -635,14 +635,14 @@ namespace sockets
                      SetLost();
                      break;
                   case SSL_ERROR_SYSCALL:
-                     INFORMATION("SSL read problem, errcode = %d (SSL_ERROR_SYSCALL) errno = %d " << n << errno);
+                     FORMATTED_INFORMATION("SSL read problem, errcode = %d (SSL_FORMATTED_ERROR_SYSCALL) errno = %d ", n , errno);
                      OnDisconnect();
                      SetCloseAndDelete(true);
                      SetFlushBeforeClose(false);
                      SetLost();
                      break;
                   default:
-                     INFORMATION("SSL read problem, errcode = %d" << n);
+                     FORMATTED_INFORMATION("SSL read problem, errcode = %d", n);
                      OnDisconnect();
                      SetCloseAndDelete(true);
                      SetFlushBeforeClose(false);
@@ -1898,7 +1898,7 @@ namespace sockets
             //if (!(SSL_CTX_use_RSAPrivateKey(m_psslcontext->m_pclientcontext->m_psslcontext, key)))
             //{
 
-            //   ERROR("tcp_socket InitializeContext,0,Couldn't read private key file %s e_trace_level_fatal", keyfile.c_str());
+            //   FORMATTED_ERROR("tcp_socket InitializeContext,0,Couldn't read private key file %s e_trace_level_fatal", keyfile.c_str());
 
             //}
 
@@ -1958,7 +1958,7 @@ namespace sockets
                if (!SSL_CTX_use_cert_and_key(m_psslcontext->m_pclientcontext->m_psslcontext, certificate, key, pchain, 1))
                {
 
-                  ERROR("tcp_socket InitializeContext,-1,Couldn't read certificate string %s e_trace_level_fatal" << keyfile);
+                  FATAL("tcp_socket InitializeContext,-1,Couldn't read certificate string " << keyfile);
 
                }
 
@@ -2027,8 +2027,11 @@ namespace sockets
 
          if (!(SSL_CTX_use_PrivateKey_file(m_psslcontext->m_pclientcontext->m_psslcontext, keyfile, SSL_FILETYPE_PEM)))
          {
-            FATAL("tcp_socket InitializeContext: Couldn't read private key file %s " << keyfile);
+
+            FORMATTED_FATAL("tcp_socket InitializeContext: Couldn't read private key file %s ", keyfile);
+
          }
+
       }
 
 

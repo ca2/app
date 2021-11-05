@@ -670,7 +670,7 @@ namespace user
       for (index iIdSuffix = 1; iIdSuffix <= 1000; iIdSuffix++)
       {
 
-         strCandidateId.Format("%s_%d", strDefaultIdPrefix.c_str(), iIdSuffix);
+         strCandidateId.format("%s_%d", strDefaultIdPrefix.c_str(), iIdSuffix);
 
          bDuplicate = false;
 
@@ -1475,7 +1475,6 @@ namespace user
 
       MESSAGE_LINK(e_message_create, pchannel, this, &interaction::on_message_create);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction::on_message_destroy);
-//      MESSAGE_LINK(e_message_post_user, pchannel, this, &interaction::on_message_user_post);
       MESSAGE_LINK(e_message_text_composition, pchannel, this, &interaction::_001OnTextComposition);
 
       primitive::install_message_routing(pchannel);
@@ -1554,6 +1553,11 @@ namespace user
 
       //MESSAGE_LINK(e_message_command, pchannel, this, &interaction::_001OnCommand);
       MESSAGE_LINK(e_message_simple_command, pchannel, this, &interaction::on_message_simple_command);
+
+
+      MESSAGE_LINK(e_message_right_button_down, pchannel, this, &interaction::on_message_right_button_down);
+      MESSAGE_LINK(e_message_right_button_up, pchannel, this, &interaction::on_message_right_button_up);
+
 
       //if (m_bClickDefaultMouseHandling)
       //{
@@ -2276,41 +2280,42 @@ namespace user
          }
 
       }
-
-      auto puserinteraction = get_wnd();
-
-      //#ifdef WINDOWS_DESKTOP
-      //
-      //      if (puserinteraction == this)
-      //      {
-      //
-      //         ::KillTimer((HWND)get_oswindow(), e_timer_transparent_mouse_event);
-      //
-      //      }
-      //
-      //#endif
-
-      if (puserinteraction == this)
+      
+      prodevian_stop();
+      
       {
 
-         prodevian_stop();
+         auto puserinteractionTopLevelHost = get_wnd();
 
-      }
+         //#ifdef WINDOWS_DESKTOP
+         //
+         //      if (puserinteraction == this)
+         //      {
+         //
+         //         ::KillTimer((HWND)get_oswindow(), e_timer_transparent_mouse_event);
+         //
+         //      }
+         //
+         //#endif
 
-      if(::is_set(puserinteraction) && puserinteraction != this)
-      {
+            
 
-         auto pimpl = puserinteraction->m_pimpl2;
-
-         if(pimpl)
+         if(::is_set(puserinteractionTopLevelHost) && puserinteractionTopLevelHost != this)
          {
 
-            synchronous_lock synchronouslock(pimpl->mutex());
+            auto pimpl = puserinteractionTopLevelHost->m_pimpl2;
 
-            pimpl->m_userinteractionaMouseHover.erase(this);
+            if(pimpl)
+            {
+
+               synchronous_lock synchronouslock(pimpl->mutex());
+
+               pimpl->m_userinteractionaMouseHover.erase(this);
+
+            }
 
          }
-
+         
       }
 
       {
@@ -2969,12 +2974,11 @@ namespace user
          }
 
 
-
       }
       catch (...)
       {
 
-         INFORMATION("Exception: interaction::_001DrawThis %s" << __type_name(this));
+         FORMATTED_INFORMATION("Exception: interaction::_001DrawThis %s", __type_name(this));
 
       }
 
@@ -3302,7 +3306,7 @@ auto tickStartWithLock = ::duration::now();
 
                      //   //   }
 
-                     //   //   CINFO(prodevian)("(more than 50ms) "+strType+"::_000OnDraw took " + __string(d1.m_i) + "::duration.\n");
+                     //   //   CINFO(prodevian)("(more than 50ms)(D) "+strType+"::_000OnDraw took " + __string(d1.m_i) + "::duration.\n");
 
                      //   //   //pinteraction->_000OnDraw(pgraphics);
 
@@ -3631,10 +3635,10 @@ return "";
 
       string strType(__type_name(this));
 
-      if (strType.contains_ci("veriwell_keyboard") && strType.contains_ci("main_frame"))
+      if (strType.contains_ci("app_veriwell_keyboard") && strType.contains_ci("main_frame"))
       {
 
-         // output_debug_string("veriwell_keyboard::main_frame");
+         // output_debug_string("app_veriwell_keyboard::main_frame");
 
       }
       else if (strType.contains_ci("plain_edit"))
@@ -3855,7 +3859,7 @@ return "";
          catch (...)
          {
 
-            TRACE("Exception: interaction::_000OnDraw _001DrawThis %s", __type_name(this));
+            FORMATTED_TRACE("Exception: interaction::_000OnDraw _001DrawThis %s", __type_name(this));
 
          }
 
@@ -3880,7 +3884,7 @@ return "";
             catch (...)
             {
 
-               TRACE("Exception: interaction::_000OnDraw _001DrawChildren %s" << __type_name(this));
+               FORMATTED_TRACE("Exception: interaction::_000OnDraw _001DrawChildren %s", __type_name(this));
 
             }
 
@@ -3911,7 +3915,7 @@ return "";
 
                   string strType = __type_name(this);
 
-                  CATEGORY_INFORMATION(prodevian, "(more than 50ms) " + strType + "::_008CallOnDraw took " + d1.integral_millisecond() + "::duration.\n");
+                  CATEGORY_INFORMATION(prodevian, "(more than 50ms)(E) " + strType + "::_008CallOnDraw took " + d1.integral_millisecond() + "::duration.\n");
 
                }
 
@@ -9588,7 +9592,7 @@ bool interaction::call_and_set_timer(uptr uEvent, const ::duration & durationEla
 }
 
 
-bool interaction::set_timer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer)
+bool interaction::set_timer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer, bool bPeriodic, void* pdata)
 {
 
    if (is_destroying())
@@ -9598,12 +9602,12 @@ bool interaction::set_timer(uptr uEvent, const ::duration & durationElapse, PFN_
 
    }
 
-   return SetTimer(uEvent, durationElapse, pfnTimer);
+   return SetTimer(uEvent, durationElapse, pfnTimer, bPeriodic, pdata);
 
 }
 
 
-bool interaction::SetTimer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer)
+bool interaction::SetTimer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer, bool bPeriodic, void* pdata)
 {
 
    if (m_pimpl == nullptr)
@@ -9620,7 +9624,7 @@ bool interaction::SetTimer(uptr uEvent, const ::duration & durationElapse, PFN_T
 
    }
 
-   return m_pimpl->SetTimer(uEvent, durationElapse, pfnTimer);
+   return m_pimpl->SetTimer(uEvent, durationElapse, pfnTimer, bPeriodic, pdata);
 
 }
 
@@ -10143,10 +10147,10 @@ void interaction::sketch_to_design(::draw2d::graphics_pointer& pgraphics, bool &
 
    string strType = __type_name(this);
 
-   if (strType.contains("veriwell_keyboard") && strType.contains("main_frame"))
+   if (strType.contains("app_veriwell_keyboard") && strType.contains("main_frame"))
    {
 
-      //output_debug_string("veriwell_keyboard::main_frame");
+      //output_debug_string("app_veriwell_keyboard::main_frame");
 
    }
    //      else if (strType.contains("main_frame"))
@@ -15678,7 +15682,7 @@ order(zorderParam);
 
             bool bSameItemAsMouseDown = m_itemLButtonDown == item;
 
-            TRACE("interaction::on_message_left_button_up item="<< (int) item.m_iItem<<", SameUserInteractionAsMsDwn="<< (int) bSameUserInteractionAsMouseDown<<", SameItemAsMsDwn=%d" << (int) bSameItemAsMouseDown);
+            TRACE("interaction::on_message_left_button_up item=" << (int) item.m_iItem<<", SameUserInteractionAsMsDwn="<< (int) bSameUserInteractionAsMouseDown<<", SameItemAsMsDwn=" << (int) bSameItemAsMouseDown);
 
             if (m_itemLButtonDown.is_set() && bSameUserInteractionAsMouseDown && bSameItemAsMouseDown)
             {
@@ -15793,6 +15797,50 @@ order(zorderParam);
          set_need_redraw();
 
          post_redraw();
+
+      }
+
+   }
+
+
+
+   void interaction::on_message_right_button_down(::message::message* pmessage)
+   {
+
+      auto pmouse = pmessage->m_union.m_pmouse;
+
+      if (!is_window_enabled())
+      {
+
+         return;
+
+      }
+
+      if(pmessage->previous())
+      {
+
+         return;
+
+      }
+
+      auto pcontextmenu = __new(::message::context_menu);
+
+      pcontextmenu->set(get_oswindow(), get_window(), e_message_context_menu, (wparam) (iptr) get_oswindow(), pmessage->m_lparam);
+
+      message_handler(pcontextmenu);
+
+   }
+
+
+   void interaction::on_message_right_button_up(::message::message* pmessage)
+   {
+
+      auto pmouse = pmessage->m_union.m_pmouse;
+
+      if (!is_window_enabled())
+      {
+
+         return;
 
       }
 

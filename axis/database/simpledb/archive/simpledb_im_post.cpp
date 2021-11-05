@@ -55,7 +55,7 @@ bool im_post::write(::payload rec)
 
    string strSql;
 
-   strSql.Format("insert into im_post (`sender`, `recipient`, `name`, `sent`, `send_time`, `index`, `message`) VALUES ('%s', '%s','%s', '%s', '%s', '%s', '%s');",
+   strSql.format("insert into im_post (`sender`, `recipient`, `name`, `sent`, `send_time`, `index`, `message`) VALUES ('%s', '%s','%s', '%s', '%s', '%s', '%s');",
                  rec["sender"].get_string(),
                  rec["recipient"].get_string(),
                  rec["name"].get_string(),
@@ -93,7 +93,7 @@ bool im_post::write(::payload rec)
 
    string strSql;
 
-   strSql.Format(
+   strSql.format(
    "select * FROM im_post WHERE ((sender = '%s' AND recipient = '%s') OR (sender = '%s' AND recipient = '%s')) AND ((send_time > '%s') OR ((send_time == '%s') AND ('index' > '%s'))) ORDER BY `send_time` ASC, `index` ASC",
    rec["sender"].get_string(),
    rec["recipient"].get_string(),
@@ -150,7 +150,7 @@ bool im_post::write(::payload rec)
 
    string strSql;
 
-   strSql.Format(
+   strSql.format(
    "select * FROM im_post WHERE ((sender = '%s' AND recipient = '%s') OR (sender = '%s' AND recipient = '%s')) ORDER BY `send_time` DESC, `index` DESC LIMIT 1",
    user1.get_string(),
    user2.get_string(),

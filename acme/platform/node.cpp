@@ -264,9 +264,30 @@ namespace acme
    ::e_status node::implement()
    {
 
-      throw ::interface_only_exception();
+//      auto psystem = m_psystem;
+//
+//      auto estatus = psystem->main();
+//
+//      if (!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
+//
+//      return estatus;
 
-      return error_interface_only;
+
+      auto estatus = system_main();
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 

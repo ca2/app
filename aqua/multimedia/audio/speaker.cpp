@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace tts
+namespace text_to_speech
 {
 
 
@@ -92,7 +92,7 @@ namespace tts
 
 
 
-} // namespace tts
+} // namespace text_to_speech
 
 
 

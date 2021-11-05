@@ -186,6 +186,9 @@
     <ClCompile Include="game\game.cpp">
       <Filter>Source Files\game</Filter>
     </ClCompile>
+    <ClCompile Include="platform\layer.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="platform\system.h">
@@ -239,48 +242,6 @@
     <ClInclude Include="multimedia\_.h">
       <Filter>Header Files\multimedia</Filter>
     </ClInclude>
-    <ClInclude Include="include\_.h">
-      <Filter>Header Files\inline</Filter>
-    </ClInclude>
-    <ClInclude Include="inline\library.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="inline\console_common.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="inline\console.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="inline\application_common.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="inline\application.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="inline\_new_impl.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="inline\_draw2d_impl.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="inline\_console_old.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="inline\_application.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="inline\_app_impl1.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="inline\_acid_app_impl.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="inline\__debug_box_set_impl.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="inline\__debug_box_clear_impl.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -301,6 +262,51 @@
     </ClInclude>
     <ClInclude Include="game\_.h">
       <Filter>Header Files\game</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\layer.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="include\_.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\library.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\console_common.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\console.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\application_common.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\application.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\_new_impl.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\_draw2d_impl.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\_console_old.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\_application.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\_app_impl1.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\_acid_app_impl.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\__debug_box_set_impl.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\__debug_box_clear_impl.h">
+      <Filter>Header Files\inline</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

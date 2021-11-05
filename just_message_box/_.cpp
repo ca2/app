@@ -1,16 +1,11 @@
 #include "framework.h"
-#define _APP_ID "app/just_message_box"
+#define SYSTEM base
+#define APPLICATION app_just_message_box
+#define __APP_ID "app/just_message_box"
+#if defined(WINDOWS_DESKTOP) && defined(CUBE)
+#include "_static_factory_exchange.inl"
+#endif
 #include "aura/application.h"
-
-
-namespace app_just_message_box
-{
-
-
-   __namespace_application_factory("app/just_message_box");
-
-
-} // namespace app_just_message_box
 
 
 

@@ -66,15 +66,15 @@ inline void text_stream::network_payload_write(const TYPE & t)
 
    var_stream s;
 
-   string strJson;
+   string strNetworkPayload;
 
    s.set_storing();
 
    ::__exchange(s, (TYPE &) t);
 
-   strJson = s.m_ppayload->get_network_payload();
+   strNetworkPayload = s.m_ppayload->get_network_payload();
 
-   string_write(strJson);
+   string_write(strNetworkPayload);
 
 }
 
@@ -85,11 +85,11 @@ inline void text_stream::network_payload_read(TYPE & t)
 
    var_stream s;
 
-   string strJson;
+   string strNetworkPayload;
 
-   string_read(strJson);
+   string_read(strNetworkPayload);
 
-   s.m_ppayload->parse_network_payload(strJson);
+   s.m_ppayload->parse_network_payload(strNetworkPayload);
 
    s.set_loading();
 

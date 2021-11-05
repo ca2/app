@@ -176,7 +176,7 @@ public:
       ::exception(error_failed)
    {
 
-      m_strMessage.Format("Assert Exception at file \"%s\", line %d", pszFileName, iLine);
+      m_strMessage.format("Assert Exception at file \"%s\", line %d", pszFileName, iLine);
 
    }
 

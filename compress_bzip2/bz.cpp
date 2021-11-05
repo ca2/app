@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "aura/operating_system.h"
+#include "acme/operating_system.h"
 #include "bz.h"
 #include <bzlib.h>
 
@@ -33,21 +33,44 @@ extern "C"
 //uptr                   m_crc;     /* crc32 of uncompressed data */
 
 
+compress_bz::compress_bz()
+{
+
+}
 
 
+compress_bz::~compress_bz()
+{
 
-compress_bz::compress_bz(::object * pobject, int iBlockSize, int iVerbosity, int iWorkFactor)
+
+}
+
+
+::e_status compress_bz::initialize(::object* pobject)
+{
+
+   auto estatus = ::object::initialize(pobject);
+
+   if (!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   return estatus;
+
+}
+
+
+::e_status compress_bz::set_bzip2_parameters(int iBlockSize, int iVerbosity, int iWorkFactor)
 {
 
    m_iBlockSize = iBlockSize;
    m_iVerbosity = iVerbosity;
    m_iWorkFactor = iWorkFactor;
 
-}
-
-compress_bz::~compress_bz()
-{
-
+   return ::success;
 
 }
 
@@ -176,16 +199,35 @@ stop1:
 
 
 
-uncompress_bz::uncompress_bz(::object * pobject)
+uncompress_bz::uncompress_bz()
 {
 
-   initialize(pobject);
-
 }
+
 
 uncompress_bz::~uncompress_bz()
 {
+
+
 }
+
+
+::e_status uncompress_bz::initialize(::object* pobject)
+{
+
+   auto estatus = ::object::initialize(pobject);
+
+   if (!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   return estatus;
+
+}
+
 
 
 bool uncompress_bz::transfer(::file::file * pfileOut, ::file::file * pfileIn)

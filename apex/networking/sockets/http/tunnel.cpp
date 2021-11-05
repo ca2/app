@@ -65,11 +65,11 @@ namespace sockets
 
             string str;
 
-            str.Format("CONNECT %s:%d HTTP/1.0\r\n", GetUrlHost().c_str(), (int)GetUrlPort());
+            str.format("CONNECT %s:%d HTTP/1.0\r\n", GetUrlHost().c_str(), (int)GetUrlPort());
 
             print(str);
 
-            str.Format("host: %s:%d\r\n", GetUrlHost().c_str(), (int)GetUrlPort());
+            str.format("host: %s:%d\r\n", GetUrlHost().c_str(), (int)GetUrlPort());
 
             print(str);
 

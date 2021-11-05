@@ -3,11 +3,11 @@
 #include "aura/node/_node.h"
 #include <VersionHelpers.h>
 
-#ifndef USE_OS_IMAGE_LOADER
+// #ifndef USE_OS_IMAGE_LOADER
 
-#include "FreeImage/FreeImage.h"
+// #include "FreeImage/FreeImage.h"
 
-#endif
+// #endif
 
 #undef new
 #include "gdiplus.h"

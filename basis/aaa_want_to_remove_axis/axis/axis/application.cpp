@@ -1027,7 +1027,7 @@ m_durationHeartBeat.Now();
 
       string strLocale;
       string strSchema;
-      TRACE("update_appmatter(root=%s, relative=%s, locale=%s, style=%s)",pszRoot.c_str(),pszRelative.c_str(),pszLocale.c_str(),pszStyle.c_str());
+      FORMATTED_TRACE("update_appmatter(root=%s, relative=%s, locale=%s, style=%s)",pszRoot.c_str(),pszRelative.c_str(),pszLocale.c_str(),pszStyle.c_str());
       ::file::path strRelative = ::file::path(pszRoot) / "appmatter" / pszRelative  / get_locale_schema_dir(pszLocale,pszStyle) + ".zip";
       ::file::path strFile = pcontext->m_papexcontext->dir().install() / strRelative;
       ::file::path strUrl(::file::path_url);

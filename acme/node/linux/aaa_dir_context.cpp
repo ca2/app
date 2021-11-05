@@ -651,7 +651,7 @@ pacmedir->is(path))
          string strFormat;
          ::datetime::time time;
          time = ::datetime::time::now();
-         strFormat.Format("%04d-%02d-%02d %02d-%02d-%02d\\", time.GetYear(), time.GetMonth(), time.GetDay(), time.GetHour(), time.GetMinute(), time.GetSecond());
+         strFormat.format("%04d-%02d-%02d %02d-%02d-%02d\\", time.GetYear(), time.GetMonth(), time.GetDay(), time.GetHour(), time.GetMinute(), time.GetSecond());
          str += strFormat;
          if(strDir[2] == '\\')
          {

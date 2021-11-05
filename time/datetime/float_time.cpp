@@ -79,7 +79,7 @@ CLASS_DECL_CA2_TIME ::i32 SystemTimeToFloatTime(LPSYSTEMTIME lpSt, double *pDate
 {
   UDATE ud;
 
-/*  TRACE("(%p->%d/%d/%d %d:%d:%d,%p)\n", lpSt, lpSt->wDay, lpSt->wMonth,
+/*  FORMATTED_TRACE("(%p->%d/%d/%d %d:%d:%d,%p)\n", lpSt, lpSt->wDay, lpSt->wMonth,
         lpSt->wYear, lpSt->wHour, lpSt->wMinute, lpSt->wSecond, pDateOut);*/
 
   if (lpSt->wMonth > 12)
@@ -134,7 +134,7 @@ static HRESULT FLOATTIME_RollUdate(UDATE *lpUd)
   iMinute = lpUd->st.wMinute;
   iSecond = lpUd->st.wSecond;
 
-  /*TRACE("Raw date: %d/%d/%d %d:%d:%d\n", iDay, iMonth,
+  /*FORMATTED_TRACE("Raw date: %d/%d/%d %d:%d:%d\n", iDay, iMonth,
         iYear, iHour, iMinute, iSecond);*/
 
   if (iYear > 9999 || iYear < -9999)
@@ -184,7 +184,7 @@ static HRESULT FLOATTIME_RollUdate(UDATE *lpUd)
   lpUd->st.wMinute = iMinute;
   lpUd->st.wSecond = iSecond;
 
-  /*TRACE("Rolled date: %d/%d/%d %d:%d:%d\n", lpUd->st.wDay, lpUd->st.wMonth,
+  /*FORMATTED_TRACE("Rolled date: %d/%d/%d %d:%d:%d\n", lpUd->st.wDay, lpUd->st.wMonth,
         lpUd->st.wYear, lpUd->st.wHour, lpUd->st.wMinute, lpUd->st.wSecond);*/
   return S_OK;
 }
@@ -272,7 +272,7 @@ CLASS_DECL_CA2_TIME HRESULT FloatTimeFromUdateEx(UDATE *pUdateIn, LCID lcid, u32
   UDATE ud;
   double dateVal, dateSign;
 
-/*  TRACE("(%p->%d/%d/%d %d:%d:%d:%d %d %d,0x%08x,0x%08x,%p)\n", pUdateIn,
+/*  FORMATTED_TRACE("(%p->%d/%d/%d %d:%d:%d:%d %d %d,0x%08x,0x%08x,%p)\n", pUdateIn,
         pUdateIn->st.wMonth, pUdateIn->st.wDay, pUdateIn->st.wYear,
         pUdateIn->st.wHour, pUdateIn->st.wMinute, pUdateIn->st.wSecond,
         pUdateIn->st.wMilliseconds, pUdateIn->st.wDayOfWeek,
@@ -372,7 +372,7 @@ CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const char * strIn, LCID lcid, u32 
 
   *pdateOut = 0.0;
 
-//  TRACE("(%s,0x%08x,0x%08x,%p)\n", debugstr_w(strIn), lcid, dwFlags, pdateOut);
+//  FORMATTED_TRACE("(%s,0x%08x,0x%08x,%p)\n", debugstr_w(strIn), lcid, dwFlags, pdateOut);
 
   memset(&dp, 0, sizeof(dp));
 
@@ -383,7 +383,7 @@ CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const char * strIn, LCID lcid, u32 
 #else
   GetLocaleInfoW(lcid, LOCALE_IDATE|LOCALE_RETURN_NUMBER|(dwFlags & LOCALE_NOUSEROVERRIDE),
                  (LPWSTR)&iDate, sizeof(iDate)/sizeof(WCHAR));
-//  TRACE("iDate is %d\n", iDate);
+//  FORMATTED_TRACE("iDate is %d\n", iDate);
 
   /* Get the month/day/am/pm tokens for this locale */
   for (i = 0; i < sizeof(tokens)/sizeof(tokens[0]); i++)
@@ -397,7 +397,7 @@ CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const char * strIn, LCID lcid, u32 
     buff[0] = '\0';
     GetLocaleInfoW(lcid, lctype, buff, sizeof(buff)/sizeof(WCHAR));
     tokens[i] = SysAllocString(buff);
-//    TRACE("token %d is %s\n", i, debugstr_w(tokens[i]));
+//    FORMATTED_TRACE("token %d is %s\n", i, debugstr_w(tokens[i]));
   }
 
 #endif
@@ -471,7 +471,7 @@ CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const char * strIn, LCID lcid, u32 
         }
         else
         {
-//xxx          TRACE("No matching token for %s\n", debugstr_w(strIn));
+//xxx          FORMATTED_TRACE("No matching token for %s\n", debugstr_w(strIn));
           hRet = DISP_E_TYPEMISMATCH;
           break;
         }
@@ -717,7 +717,7 @@ static inline HRESULT FLOATTIME_MakeDate(DATEPARSE *dp, ::u32 iDate, ::u32 offse
   else
     v3 = dp->dwValues[offset + 2];
 
-//xxx  TRACE("(%d,%d,%d,%d,%d)\n", v1, v2, v3, iDate, offset);
+//xxx  FORMATTED_TRACE("(%d,%d,%d,%d,%d)\n", v1, v2, v3, iDate, offset);
 
   /* If one number must be a month (Because a month name was given), then only
    * consider orders with the month in that position.
@@ -777,7 +777,7 @@ VARIANT_MakeDate_Start:
       dwTry = dwAllOrders;
     }
 
-//xxx    TRACE("Attempt %d, dwTry is 0x%08x\n", dwCount, dwTry);
+//xxx    FORMATTED_TRACE("Attempt %d, dwTry is 0x%08x\n", dwCount, dwTry);
 
     dwCount++;
     if (!dwTry)
@@ -851,12 +851,12 @@ VARIANT_MakeDate_OK:
   if (st->wHour > 23 || st->wMinute > 59 || st->wSecond > 59)
     return DISP_E_TYPEMISMATCH;
 
-//xxx  TRACE("Time %d %d %d\n", st->wHour, st->wMinute, st->wSecond);
+//xxx  FORMATTED_TRACE("Time %d %d %d\n", st->wHour, st->wMinute, st->wSecond);
   if (st->wHour < 12 && (dp->dwParseFlags & DP_PM))
     st->wHour += 12;
   else if (st->wHour == 12 && (dp->dwParseFlags & DP_AM))
     st->wHour = 0;
-//xxx  TRACE("Time %d %d %d\n", st->wHour, st->wMinute, st->wSecond);
+//xxx  FORMATTED_TRACE("Time %d %d %d\n", st->wHour, st->wMinute, st->wSecond);
 
   st->wDay = (::u16) v1;
   st->wMonth = (::u16) v2;
@@ -866,7 +866,7 @@ VARIANT_MakeDate_OK:
    * But Wine doesn't have/use that key as at the time of writing.
    */
   st->wYear = (::u16) (v3 < 30 ? 2000 + v3 : v3 < 100 ? 1900 + v3 : v3);
-//xxx  TRACE("Returning date %d/%d/%d\n", v1, v2, st->wYear);
+//xxx  FORMATTED_TRACE("Returning date %d/%d/%d\n", v1, v2, st->wYear);
   return S_OK;
 }
 
@@ -922,7 +922,7 @@ static HRESULT VARIANT_RollUdate(UDATE *lpUd)
   iMinute = lpUd->st.wMinute;
   iSecond = lpUd->st.wSecond;
 
-//  TRACE("Raw date: %d/%d/%d %d:%d:%d\n", iDay, iMonth, iYear, iHour, iMinute, iSecond);
+//  FORMATTED_TRACE("Raw date: %d/%d/%d %d:%d:%d\n", iDay, iMonth, iYear, iHour, iMinute, iSecond);
 
   if (iYear > 9999 || iYear < -9999)
     return E_INVALIDARG; /* Invalid value */
@@ -971,7 +971,7 @@ static HRESULT VARIANT_RollUdate(UDATE *lpUd)
   lpUd->st.wMinute = iMinute;
   lpUd->st.wSecond = iSecond;
 
-//  TRACE("Rolled date: %d/%d/%d %d:%d:%d\n", lpUd->st.wDay, lpUd->st.wMonth, lpUd->st.wYear, lpUd->st.wHour, lpUd->st.wMinute, lpUd->st.wSecond);
+//  FORMATTED_TRACE("Rolled date: %d/%d/%d %d:%d:%d\n", lpUd->st.wDay, lpUd->st.wMonth, lpUd->st.wYear, lpUd->st.wHour, lpUd->st.wMinute, lpUd->st.wSecond);
   return S_OK;
 }
 

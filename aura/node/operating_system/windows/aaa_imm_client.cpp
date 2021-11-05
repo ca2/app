@@ -363,7 +363,7 @@ void imm_client::_001OnIme(::message::message * pmessage)
 
          string str;
 
-         str.Format("\n" "WM_IME_NOTIFY" " > " "IMN_SETCONVERSIONMODE conversion=%d sentence=%d", dwConversion, dwSentence);
+         str.format("\n" "WM_IME_NOTIFY" " > " "IMN_SETCONVERSIONMODE conversion=%d sentence=%d", dwConversion, dwSentence);
 
          str += "\n";
 

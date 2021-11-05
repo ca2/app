@@ -2047,7 +2047,7 @@ namespace user
                string strText;
 
                // :%d will produce a maximum of 11 TCHARs
-               strText.Format(":%d", m_nWindow);
+               strText.format(":%d", m_nWindow);
 
                WindowText += strText;
 
@@ -2076,7 +2076,7 @@ namespace user
                string strText;
 
                // :%d will produce a maximum of 11 TCHARs
-               strText.Format(":%d", m_nWindow);
+               strText.format(":%d", m_nWindow);
 
                WindowText += strText;
 
@@ -2171,8 +2171,8 @@ namespace user
 
          //         ::u32 dwTime2= ::duration::now();
 
-         //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-         //TRACE("userframewindow call time1= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+         //FORMATTED_TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+         //FORMATTED_TRACE("userframewindow call time1= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
 
       }
 
@@ -2533,10 +2533,10 @@ namespace user
 
       string strType = __type_name(this);
 
-      if(strType.contains_ci("veriwell_keyboard") && strType.contains_ci("main_frame"))
+      if(strType.contains_ci("app_veriwell_keyboard") && strType.contains_ci("main_frame"))
       {
 
-         //::output_debug_string("veriwell_keyboard::main_frame");
+         //::output_debug_string("app_veriwell_keyboard::main_frame");
 
       }
       else if(strType.contains_ci("simple_child_frame"))

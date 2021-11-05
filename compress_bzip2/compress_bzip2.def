@@ -1,0 +1,7 @@
+LIBRARY "compress_bzip2"
+
+EXPORTS
+compress_bzip2_factory_exchange
+
+
+

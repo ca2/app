@@ -139,7 +139,7 @@ namespace draw2d_opengl
 
       if (class_atom == 0) {
          TRACE("MS GDI - RegisterClass failed\n");
-         TRACE("last-error code: %d\n", GetLastError());
+         FORMATTED_TRACE("last-error code: %d\n", GetLastError());
          return false;
       }
 
@@ -147,7 +147,7 @@ namespace draw2d_opengl
       GLenum err = glewInit();
       if (err != GLEW_OK) {
          // Problem: glewInit failed, something is seriously wrong.
-         TRACE( "glewInit failed: %s\n",glewGetErrorString(err));
+         FORMATTED_TRACE( "glewInit failed: %s\n",glewGetErrorString(err));
          return false;
       }
       LPCTSTR lpClassName = L"draw2d_opengl_offscreen_buffer_window";
@@ -176,7 +176,7 @@ namespace draw2d_opengl
       if (window == nullptr) 
       {
          TRACE("MS GDI - CreateWindow failed\n");
-         TRACE("last-error code: %d\n", GetLastError());
+         FORMATTED_TRACE("last-error code: %d\n", GetLastError());
          return false;
       }
 
@@ -188,7 +188,7 @@ namespace draw2d_opengl
       if (dev_context == nullptr) 
       {
          TRACE("MS GDI - GetDC failed\n");
-         TRACE("last-error code: %d\n", GetLastError());
+         FORMATTED_TRACE("last-error code: %d\n", GetLastError());
          return false;
       }
 
@@ -206,7 +206,7 @@ namespace draw2d_opengl
       if (chosenformat == 0) 
       {
          TRACE("MS GDI - ChoosePixelFormat failed\n");
-         TRACE("last-error code: %d\n", GetLastError());
+         FORMATTED_TRACE("last-error code: %d\n", GetLastError());
          return false;
       }
 
@@ -214,7 +214,7 @@ namespace draw2d_opengl
       if (!spfok) 
       {
          TRACE("MS GDI - SetPixelFormat failed\n");
-         TRACE("last-error code: %d\n", GetLastError());
+         FORMATTED_TRACE("last-error code: %d\n", GetLastError());
          return false;
       }
 
@@ -222,7 +222,7 @@ namespace draw2d_opengl
       if (gl_render_context == nullptr) 
       {
          TRACE("MS WGL - wglCreateContext failed\n");
-         TRACE("last-error code: %d\n", GetLastError());
+         FORMATTED_TRACE("last-error code: %d\n", GetLastError());
          ReleaseDC(m_hwnd, m_hdc);
          return false;
       }
@@ -231,7 +231,7 @@ namespace draw2d_opengl
       if (!mcok) 
       {
          TRACE("MS WGL - wglMakeCurrent failed\n");
-         TRACE("last-error code: %d\n", GetLastError());
+         FORMATTED_TRACE("last-error code: %d\n", GetLastError());
          return false;
       }
 

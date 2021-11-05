@@ -481,11 +481,11 @@ namespace datetime
 //         {
 //            if(abs(value.m_iYear) == 1)
 //            {
-//               strItem.Format("%d year",value.m_iYear);
+//               strItem.format("%d year",value.m_iYear);
 //            }
 //            else
 //            {
-//               strItem.Format("%d years",value.m_iYear);
+//               strItem.format("%d years",value.m_iYear);
 //            }
 //            stra.add(strItem);
 //         }
@@ -493,11 +493,11 @@ namespace datetime
 //         {
 //            if(abs(value.m_iMonth) == 1)
 //            {
-//               strItem.Format("%d month",value.m_iMonth);
+//               strItem.format("%d month",value.m_iMonth);
 //            }
 //            else
 //            {
-//               strItem.Format("%d months",value.m_iMonth);
+//               strItem.format("%d months",value.m_iMonth);
 //            }
 //            stra.add(strItem);
 //         }
@@ -505,11 +505,11 @@ namespace datetime
 //         {
 //            if(abs(value.m_iDay) == 1)
 //            {
-//               strItem.Format("%d day",value.m_iDay);
+//               strItem.format("%d day",value.m_iDay);
 //            }
 //            else
 //            {
-//               strItem.Format("%d days",value.m_iDay);
+//               strItem.format("%d days",value.m_iDay);
 //            }
 //            stra.add(strItem);
 //         }
@@ -517,11 +517,11 @@ namespace datetime
 //         {
 //            if(abs(value.m_iHour) == 1)
 //            {
-//               strItem.Format("%d hour",value.m_iHour);
+//               strItem.format("%d hour",value.m_iHour);
 //            }
 //            else
 //            {
-//               strItem.Format("%d hours",value.m_iHour);
+//               strItem.format("%d hours",value.m_iHour);
 //            }
 //            stra.add(strItem);
 //         }
@@ -529,11 +529,11 @@ namespace datetime
 //         {
 //            if(abs(value.m_iMinute) == 1)
 //            {
-//               strItem.Format("%d minute",value.m_iMinute);
+//               strItem.format("%d minute",value.m_iMinute);
 //            }
 //            else
 //            {
-//               strItem.Format("%d minutes",value.m_iMinute);
+//               strItem.format("%d minutes",value.m_iMinute);
 //            }
 //            stra.add(strItem);
 //         }
@@ -541,11 +541,11 @@ namespace datetime
 //         {
 //            if(abs(value.m_iSecond) == 1)
 //            {
-//               strItem.Format("%d second",value.m_iSecond);
+//               strItem.format("%d second",value.m_iSecond);
 //            }
 //            else
 //            {
-//               strItem.Format("%d seconds",value.m_iSecond);
+//               strItem.format("%d seconds",value.m_iSecond);
 //            }
 //            stra.add(strItem);
 //         }

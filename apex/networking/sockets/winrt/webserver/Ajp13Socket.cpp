@@ -26,7 +26,7 @@ namespace sockets
       }
       else
       {
-         TRACE("Packet size_i32: %d bytes\n", len);
+         FORMATTED_TRACE("Packet size_i32: %d bytes\n", len);
       }
    }
 
@@ -345,7 +345,7 @@ namespace sockets
    // --------------------------------------------------------------------------------------
    void Ajp13Socket::OnPacket( const char *buf, memsize sz )
    {
-      TRACE("OnPacket: %d bytes, code 0x%02x %02x %02x %02x\n", sz, *buf, buf[1], buf[2], buf[3]);
+      FORMATTED_TRACE("OnPacket: %d bytes, code 0x%02x %02x %02x %02x\n", sz, *buf, buf[1], buf[2], buf[3]);
 
       // check body size_i32 left to read, if non-zero packet is body data
       if (m_body_size_left) // must be a body packet

@@ -188,7 +188,7 @@ namespace filemanager
                      SetDataInterface(&m_datainterface);
                      AddClient(&m_datainterface);
                      string str;
-                     str.Format("::filemanager::file_list(%d,%d)", filemanager_data()->m_iTemplate, filemanager_data()->m_iDocument);
+                     str.format("::filemanager::file_list(%d,%d)", filemanager_data()->m_iTemplate, filemanager_data()->m_iDocument);
                      if(filemanager_data()->m_bTransparentBackground)
                      {
                      ::user::list::m_etranslucency = ::user::list::e_translucency_present;

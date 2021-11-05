@@ -28,7 +28,7 @@ namespace aqua
    }
 
 
-   __pointer(::tts::speaker) audio::create_tts_speaker()
+   __pointer(::text_to_speech::speaker) audio::create_tts_speaker()
    {
 
       throw ::interface_only_exception();

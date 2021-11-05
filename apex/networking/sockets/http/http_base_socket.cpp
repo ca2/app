@@ -136,7 +136,7 @@ namespace sockets
       if(m_request.headers().has_property(__id(accept_language)))
       {
 
-         INFORMATION("accept-language: %s", m_request.header(__id(accept_language)).string());
+         FORMATTED_INFORMATION("accept-language: %s", m_request.header(__id(accept_language)).string());
 
       }
 
@@ -168,9 +168,9 @@ namespace sockets
       // parse form data / query_string and cookie header if available
       m_request.ParseBody();
 
-      //TRACE("http version: %s\n", m_request.attr("http_version").string());
-      //TRACE("connection: %s\n", m_request.header("connection").string());
-      //TRACE("keepalive: %s\n", m_b_keepalive ? "true" : "false");
+      //FORMATTED_TRACE("http version: %s\n", m_request.attr("http_version").string());
+      //FORMATTED_TRACE("connection: %s\n", m_request.header("connection").string());
+      //FORMATTED_TRACE("keepalive: %s\n", m_b_keepalive ? "true" : "false");
       /*   if(::str::ends(m_request.attr("http_version").string(), "/1.1")
             && m_request.header("connection").string().compare_ci("close") != 0)
          {

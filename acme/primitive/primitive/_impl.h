@@ -46,7 +46,7 @@ inline type::type(const ::element * pelement)
 
    m_strName = typeid(*(element *)pelement).name();
 
-   m_strName;
+   m_strName = demangle(m_strName);
 
 }
 
@@ -57,7 +57,7 @@ inline type::type(const __pointer(BASE) & point)
 
    m_strName = typeid(*((BASE *)point.m_p)).name();
 
-   m_strName;
+   m_strName = demangle(m_strName);
 
 }
 

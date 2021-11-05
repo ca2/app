@@ -23,7 +23,7 @@ namespace aqua
       virtual void play_audio(::file::file * pfile, bool bSynch = false);
 
 
-      virtual __pointer(::tts::speaker) create_tts_speaker();
+      virtual __pointer(::text_to_speech::speaker) create_tts_speaker();
 
       virtual void speak(const ::string & strText);
       virtual void speak(const ::string & strLang, const ::string & strText, bool bSynch);

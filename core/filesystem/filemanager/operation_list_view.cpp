@@ -56,7 +56,7 @@ namespace filemanager
       {
          double d;
          d = get_document()->m_thread.get_item_progress((i32)pitem->m_iItem);
-         pitem->m_strText.Format("%0.1f%%",d * 100.0);
+         pitem->m_strText.format("%0.1f%%",d * 100.0);
          pitem->m_bOk = true;
       }
    }

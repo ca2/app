@@ -535,8 +535,8 @@ namespace lite
 
          //         ::u32 dwTime2= ::duration::now();
 
-         //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-         //TRACE("usertab::on_layout call time1= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+         //FORMATTED_TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+         //FORMATTED_TRACE("usertab::on_layout call time1= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
       }
       if(!ptab->get_data()->m_bCreated)
          return false;

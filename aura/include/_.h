@@ -14,6 +14,8 @@
 //
 #pragma once
 
+#undef LAYER_NAMESPACE
+#define LAYER_NAMESPACE aura
 
 
 //#undef ::aura::get_system()

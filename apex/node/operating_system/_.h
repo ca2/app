@@ -2,6 +2,13 @@
 #pragma once
 
 
+#ifdef WINDOWS
+CLASS_DECL_ACME string executable_get_app_id(hinstance hinstance);
+#endif
+
+CLASS_DECL_ACME const char* executable_get_app_id();
+
+
 #include "acme/node/operating_system/_.h"
 
 

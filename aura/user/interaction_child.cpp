@@ -120,7 +120,7 @@ namespace user
          //   INFORMATION("-------------------------------------------------------------------");
          //   INFORMATION("");
          //   INFORMATION("");
-         //   INFORMATION("interaction_child::create_window_ex (rectangleChild %d, %d, (%d, %d))", rectangleChild.origin().x, rectangleChild.origin().y, rectangleChild.width(), rectangleChild.height());
+         //   FORMATTED_INFORMATION("interaction_child::create_window_ex (rectangleChild %d, %d, (%d, %d))", rectangleChild.origin().x, rectangleChild.origin().y, rectangleChild.width(), rectangleChild.height());
          //   INFORMATION("");
          //   INFORMATION("");
 

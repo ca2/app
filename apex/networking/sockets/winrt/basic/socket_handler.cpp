@@ -201,7 +201,7 @@ namespace sockets
 
    void socket_handler::set(SOCKET s,bool bRead,bool bWrite,bool bException)
    {
-      //TRACE("Set(%d, %s, %s, %s)\n", s, bRead ? "true" : "false", bWrite ? "true" : "false", bException ? "true" : "false");
+      //FORMATTED_TRACE("Set(%d, %s, %s, %s)\n", s, bRead ? "true" : "false", bWrite ? "true" : "false", bException ? "true" : "false");
       if (s >= 0)
       {
          /*         if (bRead)
@@ -456,7 +456,7 @@ namespace sockets
       }
       add(resolv);
       m_resolve_q[p] = true;
-      TRACE(" *** Resolve '%s:%d' id#%d  m_resolve_q size_i32: %d  p: %p\n", host, port, resolv -> GetId(), m_resolve_q.get_size(), p);
+      FORMATTED_TRACE(" *** Resolve '%s:%d' id#%d  m_resolve_q size_i32: %d  p: %p\n", host, port, resolv -> GetId(), m_resolve_q.get_size(), p);
       return resolv -> GetId();
    }
 
@@ -678,8 +678,8 @@ namespace sockets
          }
          if (!found)
          {
-            //TRACE("CheckList failed for \"%s\": fd %d\n", listname, s);
-            TRACE("CheckList failed for \"%s\"\n", listname);
+            //FORMATTED_TRACE("CheckList failed for \"%s\": fd %d\n", listname, s);
+            FORMATTED_TRACE("CheckList failed for \"%s\"\n", listname);
          }
       }
    }
@@ -700,7 +700,7 @@ namespace sockets
       (which_one == LIST_CLOSE) ? m_fds_close : m_fds_close;
       if (add)
       {
-         /*         TRACE("AddList;  %5d: %s: %s\n", s, (which_one == LIST_CALLONCONNECT) ? "CallOnConnect" :
+         /*         FORMATTED_TRACE("AddList;  %5d: %s: %s\n", s, (which_one == LIST_CALLONCONNECT) ? "CallOnConnect" :
                      (which_one == LIST_DETACH) ? "detach" :
                      (which_one == LIST_TIMEOUT) ? "Timeout" :
                      (which_one == LIST_RETRY) ? "Retry" :

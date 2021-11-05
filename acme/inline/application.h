@@ -1,9 +1,17 @@
 #include "application_common.h"
 
 
+#include "acme/platform/static_setup.h"
+
+
+#include "_main_hold.h"
+
+
 #ifdef LINUX
 
+
 #include "application/linux.h"
+
 
 #elif defined(_UWP)
 

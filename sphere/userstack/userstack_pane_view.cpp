@@ -134,7 +134,7 @@ namespace userstack
       //   else if(get_view_id() == ::bergedge::impact_winactionarea)
       //   {
       //      string strDirName;
-      //      strDirName.Format("desktop-%d", m_iDisplay);
+      //      strDirName.format("desktop-%d", m_iDisplay);
       //      string strDir = pcontext->m_papexcontext->dir().userfolder(strDirName);
       //      if(m_iDisplay <= 0)
       //      {
@@ -281,7 +281,7 @@ namespace userstack
             L"\"" + ::str::international::utf8_to_unicode(pcontext->m_papexcontext->dir().name(itema[0].m_strPath)) + L"\"",
             SW_SHOWNORMAL);
          string str;
-         str.Format("%d", i);
+         str.format("%d", i);
          //message_box(str);
          if(i == ERROR_FILE_NOT_FOUND)
          {

@@ -37,10 +37,10 @@ apex_main_data::~apex_main_data()
 }
 
 
-::e_status apex_main_data::system_construct(int argc, char** argv, char ** envp)
+::e_status apex_main_data::system_construct(const ::main & main)
 {
 
-   auto estatus = acme_main_data::system_construct(argc, argv, envp);
+   auto estatus = ::main::system_construct(main);
 
    if (!estatus)
    {
@@ -53,11 +53,21 @@ apex_main_data::~apex_main_data()
 
 #ifdef WINDOWS_DESKTOP
 
-   m_hinstance = ::GetModuleHandle(nullptr);
+   if (!m_hinstanceThis)
+   {
 
-   m_hPrevInstance = nullptr;
+      m_hinstanceThis = ::GetModuleHandle(nullptr);
 
-   m_nCmdShow = SW_SHOWDEFAULT;
+   }
+
+   //m_hPrevInstance = nullptr;
+
+   if (m_nCmdShow == -1000)
+   {
+
+      m_nCmdShow = SW_SHOWDEFAULT;
+
+   }
 
 #elif defined(LINUX)
 
@@ -66,23 +76,6 @@ apex_main_data::~apex_main_data()
 #endif
 
    estatus = on_system_construct();
-
-   if(!estatus)
-   {
-
-      return estatus;
-
-   }
-
-   return estatus;
-
-}
-
-
-::e_status apex_main_data::system_construct(int argc, wchar_t** argv, wchar_t ** envp)
-{
-
-   auto estatus = acme_main_data::system_construct(argc, argv, envp);
 
    if (!estatus)
    {
@@ -91,34 +84,93 @@ apex_main_data::~apex_main_data()
 
    }
 
-   m_iPathInstallFolderExeArg = -1;
-
-#ifdef WINDOWS_DESKTOP
-
-   m_hinstance = ::GetModuleHandle(nullptr);
-
-   m_hPrevInstance = nullptr;
-
-   m_nCmdShow = SW_SHOWDEFAULT;
-
-#elif defined(LINUX)
-
-   m_bGtkApp = false;
-
-#endif
-
-   estatus = on_system_construct();
-
-   if(!estatus)
-   {
-
-      return estatus;
-
-   }
-
    return estatus;
 
 }
+
+
+//::e_status apex_main_data::system_construct(int argc, char** argv, char ** envp)
+//{
+//
+//   auto estatus = acme_main_data::system_construct(argc, argv, envp);
+//
+//   if (!estatus)
+//   {
+//
+//      return estatus;
+//
+//   }
+//
+//   m_iPathInstallFolderExeArg = -1;
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//   m_hinstance = ::GetModuleHandle(nullptr);
+//
+//   m_hPrevInstance = nullptr;
+//
+//   m_nCmdShow = SW_SHOWDEFAULT;
+//
+//#elif defined(LINUX)
+//
+//   m_bGtkApp = false;
+//
+//#endif
+//
+//   estatus = on_system_construct();
+//
+//   if(!estatus)
+//   {
+//
+//      return estatus;
+//
+//   }
+//
+//   return estatus;
+//
+//}
+//
+//
+//::e_status apex_main_data::system_construct(int argc, wchar_t** argv, wchar_t ** envp)
+//{
+//
+//   auto estatus = acme_main_data::system_construct(argc, argv, envp);
+//
+//   if (!estatus)
+//   {
+//
+//      return estatus;
+//
+//   }
+//
+//   m_iPathInstallFolderExeArg = -1;
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//   m_hinstance = ::GetModuleHandle(nullptr);
+//
+//   m_hPrevInstance = nullptr;
+//
+//   m_nCmdShow = SW_SHOWDEFAULT;
+//
+//#elif defined(LINUX)
+//
+//   m_bGtkApp = false;
+//
+//#endif
+//
+//   estatus = on_system_construct();
+//
+//   if(!estatus)
+//   {
+//
+//      return estatus;
+//
+//   }
+//
+//   return estatus;
+//
+//}
 
 
 e_status apex_main_data::on_system_construct()
@@ -132,39 +184,39 @@ e_status apex_main_data::on_system_construct()
 #ifdef WINDOWS_DESKTOP
 
 
-::e_status apex_main_data::system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char * pCmdLine, i32 nCmdShow)
-{
-
-   auto estatus = acme_main_data::system_construct(pCmdLine);
-
-   if (!estatus)
-   {
-
-      return estatus;
-
-   }
-
-   m_hinstance = hinstanceThis;
-
-   m_hPrevInstance = hPrevInstance;
-
-   m_nCmdShow = nCmdShow;
-
-   //__zero(m_mainrunnera);
-
-   estatus = on_system_construct();
-
-   if (!estatus)
-   {
-
-      return estatus;
-
-   }
-
-   return estatus;
-
-
-}
+//::e_status apex_main_data::system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char * pCmdLine, i32 nCmdShow)
+//{
+//
+//   auto estatus = acme_main_data::system_construct(pCmdLine);
+//
+//   if (!estatus)
+//   {
+//
+//      return estatus;
+//
+//   }
+//
+//   m_hinstance = hinstanceThis;
+//
+//   m_hPrevInstance = hPrevInstance;
+//
+//   m_nCmdShow = nCmdShow;
+//
+//   //__zero(m_mainrunnera);
+//
+//   estatus = on_system_construct();
+//
+//   if (!estatus)
+//   {
+//
+//      return estatus;
+//
+//   }
+//
+//   return estatus;
+//
+//
+//}
 
 
 #elif defined(_UWP)

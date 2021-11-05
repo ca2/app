@@ -34,7 +34,7 @@ namespace factory
    public:
 
 
-      virtual string base_type_name() const { return ::demangle(typeid(BASE_TYPE).name()); }
+      string base_type_name() const override { return ::demangle(typeid(BASE_TYPE).name()); }
 
       virtual __pointer(BASE_TYPE) _call_new() = 0;
 

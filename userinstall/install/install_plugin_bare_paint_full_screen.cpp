@@ -41,7 +41,7 @@ namespace hotplugin
 
       string strProgress;
 
-      strProgress.Format("%0.3f%%", dRate * 100.0);
+      strProgress.format("%0.3f%%", dRate * 100.0);
 
       auto pbrush = __create < ::draw2d::brush > ();
 

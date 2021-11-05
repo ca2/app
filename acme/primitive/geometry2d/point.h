@@ -86,6 +86,14 @@ public:
    inline UNIT_TYPE set_normal_dimension(enum_orientation eorientation, UNIT_TYPE l)  noexcept { return set_orthogonal_dimension(eorientation,l); }
    inline UNIT_TYPE set_normal(enum_orientation eorientation, UNIT_TYPE l) noexcept { return set_orthogonal_dimension(eorientation,l); }
 
+   template < primitive_point POINT >
+   double distance(const POINT& point) const { auto s = *this - point; return sqrt((double) (s.cx * s.cx + s.cy * s.cy)); }
+
+   template < primitive_point POINT >
+   point_type mid(const POINT& point) const
+   {
+      return { (UNIT_TYPE)((this->x + point.x) / (UNIT_TYPE)2), (UNIT_TYPE)((this->y + point.y) / (UNIT_TYPE)2) };
+   }
 
 
    template < primitive_point POINT >

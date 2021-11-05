@@ -232,7 +232,7 @@ namespace account
 //
 //      ::u32 dwGetFontopusEnd= ::duration::now();
 //
-//      TRACE("NetLogin: Get Fontopus Millis = %d",dwGetFontopusEnd - dwGetFontopusBeg);
+//      FORMATTED_TRACE("NetLogin: Get Fontopus Millis = %d",dwGetFontopusEnd - dwGetFontopusBeg);
 //
 //      return strFontopusServer;
 //

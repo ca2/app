@@ -397,7 +397,7 @@ namespace sockets
 
    void tcp_socket::OnResolved(int id, const ::net::address & addr)
    {
-      TRACE("tcp_socket::OnResolved id %d addr %x port %d\n", id, addr.get_display_number(), addr.get_service_number());
+      FORMATTED_TRACE("tcp_socket::OnResolved id %d addr %x port %d\n", id, addr.get_display_number(), addr.get_service_number());
       if (id == m_resolver_id)
       {
          if(open(addr))
@@ -1103,7 +1103,7 @@ namespace sockets
                   if (r != SSL_ERROR_WANT_READ && r != SSL_ERROR_WANT_WRITE)
                   {
                      INFO(log_this, "SSLNegotiate/SSL_connect", -1, "Connection failed");
-         TRACE("SSL_connect() failed - closing socket, return code: %d\n",r);
+         FORMATTED_TRACE("SSL_connect() failed - closing socket, return code: %d\n",r);
                      SetSSLNegotiate(false);
                      SetCloseAndDelete(true);
                      OnSSLConnectFailed();
@@ -1145,7 +1145,7 @@ namespace sockets
                   if (r != SSL_ERROR_WANT_READ && r != SSL_ERROR_WANT_WRITE)
                   {
                      INFO(log_this, "SSLNegotiate/SSL_accept", -1, "Connection failed");
-         TRACE("SSL_accept() failed - closing socket, return code: %d\n",r);
+         FORMATTED_TRACE("SSL_accept() failed - closing socket, return code: %d\n",r);
                      SetSSLNegotiate(false);
                      SetCloseAndDelete(true);
                      OnSSLAcceptFailed();

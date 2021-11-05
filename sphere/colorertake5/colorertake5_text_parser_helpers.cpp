@@ -15,7 +15,7 @@ namespace colorertake5
 
    parse_cache::~parse_cache()
    {
-      CLR_TRACE("TPCache", "~parse_cache():%s,%d-%d", scheme->getName().c_str(), sline, eline);
+      CLR_FORMATTED_TRACE("TPCache", "~parse_cache():%s,%d-%d", scheme->getName().c_str(), sline, eline);
       delete children;
       delete next;
       delete[] vcache;
@@ -30,7 +30,7 @@ namespace colorertake5
       while(tmp)
       {
 
-         CLR_TRACE("TPCache", "  searchLine() tmp:%s,%d-%d", tmp->scheme->getName().c_str(), tmp->sline, tmp->eline);
+         CLR_FORMATTED_TRACE("TPCache", "  searchLine() tmp:%s,%d-%d", tmp->scheme->getName().c_str(), tmp->sline, tmp->eline);
 
          if (tmp->sline <=ln && tmp->eline >= ln)
          {

@@ -115,15 +115,15 @@ namespace linux
    ::file::path file_context::dropbox_info_network_payload()
    {
 
-      ::file::path pathJson;
+      ::file::path pathNetworkPayload;
 
-      pathJson =          auto psystem = m_psystem;
+      pathNetworkPayload =          auto psystem = m_psystem;
 
          auto pacmedir = psystem->m_pacmedir;
 
 pacmedir->home() / ".dropbox/info.network_payload";
 
-      return pathJson;
+      return pathNetworkPayload;
 
    }
 

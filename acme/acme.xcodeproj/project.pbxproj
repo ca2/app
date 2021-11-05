@@ -582,7 +582,6 @@
 		9A68AE5225114435008DABD2 /* virtual_memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68A64D2511442F008DABD2 /* virtual_memory.cpp */; };
 		9A68AE5325114435008DABD2 /* shared_memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68A64E2511442F008DABD2 /* shared_memory.cpp */; };
 		9A68AE5425114435008DABD2 /* map.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A64F2511442F008DABD2 /* map.h */; };
-		9A68AE5525114435008DABD2 /* application_bias.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A6502511442F008DABD2 /* application_bias.h */; };
 		9A68AE5925114435008DABD2 /* property.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68A6542511442F008DABD2 /* property.cpp */; };
 		9A68AE5C25114435008DABD2 /* papaya.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A6572511442F008DABD2 /* papaya.h */; };
 		9A68AE5D25114435008DABD2 /* id.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68A6582511442F008DABD2 /* id.cpp */; };
@@ -2312,7 +2311,6 @@
 		9AD69065251A753A00C0EBD7 /* time.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A61C2511442F008DABD2 /* time.h */; };
 		9AD69066251A753A00C0EBD7 /* uid.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A6A62511442F008DABD2 /* uid.h */; };
 		9AD69068251A753A00C0EBD7 /* edit.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A6432511442F008DABD2 /* edit.h */; };
-		9AD6906C251A753A00C0EBD7 /* application_bias.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A6502511442F008DABD2 /* application_bias.h */; };
 		9AD6906E251A753A00C0EBD7 /* iowin32.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A4632511442E008DABD2 /* iowin32.h */; };
 		9AD6906F251A753A00C0EBD7 /* astr.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A4E42511442E008DABD2 /* astr.h */; };
 		9AD69070251A753A00C0EBD7 /* fixed_alloc.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A53E2511442E008DABD2 /* fixed_alloc.h */; };
@@ -3248,7 +3246,6 @@
 		9A68A64D2511442F008DABD2 /* virtual_memory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = virtual_memory.cpp; sourceTree = "<group>"; };
 		9A68A64E2511442F008DABD2 /* shared_memory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = shared_memory.cpp; sourceTree = "<group>"; };
 		9A68A64F2511442F008DABD2 /* map.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = map.h; sourceTree = "<group>"; };
-		9A68A6502511442F008DABD2 /* application_bias.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = application_bias.h; sourceTree = "<group>"; };
 		9A68A6542511442F008DABD2 /* property.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = property.cpp; sourceTree = "<group>"; };
 		9A68A6572511442F008DABD2 /* papaya.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = papaya.h; sourceTree = "<group>"; };
 		9A68A6582511442F008DABD2 /* id.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = id.cpp; sourceTree = "<group>"; };
@@ -5211,7 +5208,6 @@
 				9A786193264B9095003DF8A0 /* _property_object_impl.h */,
 				9AB988AD2519B9720040B207 /* action_context.h */,
 				9A68A6712511442F008DABD2 /* application_bias.cpp */,
-				9A68A6502511442F008DABD2 /* application_bias.h */,
 				9A68A6AB2511442F008DABD2 /* atomic.h */,
 				9A68A6752511442F008DABD2 /* bit.cpp */,
 				9A68A65E2511442F008DABD2 /* bit.h */,
@@ -7358,7 +7354,6 @@
 				9A68AE2225114435008DABD2 /* time.h in Headers */,
 				9A68AEAB25114435008DABD2 /* uid.h in Headers */,
 				9A68AE4825114435008DABD2 /* edit.h in Headers */,
-				9A68AE5525114435008DABD2 /* application_bias.h in Headers */,
 				9A68ACA325114434008DABD2 /* iowin32.h in Headers */,
 				9A787DBF264CA807003DF8A0 /* pipe.h in Headers */,
 				9A68AD0325114434008DABD2 /* astr.h in Headers */,
@@ -8281,7 +8276,6 @@
 				9ADD652026B5CF1300D11298 /* set_element.h in Headers */,
 				9A892DF526CD9062008D6412 /* cursor.h in Headers */,
 				9AF8CDE7271A99A200BF80B7 /* check.h in Headers */,
-				9AD6906C251A753A00C0EBD7 /* application_bias.h in Headers */,
 				9AD6906E251A753A00C0EBD7 /* iowin32.h in Headers */,
 				9AD6906F251A753A00C0EBD7 /* astr.h in Headers */,
 				9A786229264B90B5003DF8A0 /* objects.h in Headers */,

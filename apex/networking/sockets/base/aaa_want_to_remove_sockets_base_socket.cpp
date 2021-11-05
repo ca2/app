@@ -128,7 +128,7 @@ namespace sockets
       // %! exception doesn't always mean something bad happened, this code should be reworked
       // errno valid here?
       int err = SoError();
-      FATAL(log_this, "exception on select %d %s" , err, __cstr(bsd_socket_error(err)));
+      FORMATTED_FATAL(log_this, "exception on select %d %s" , err, __cstr(bsd_socket_error(err)));
       SetIsCloseAndDelete();
    }
 
@@ -351,7 +351,7 @@ namespace sockets
       int n = ioctlsocket(m_socket, FIONBIO, &l);
       if (n != 0)
       {
-         INFORMATION("ioctlsocket(FIONBIO) %d", Errno);
+         FORMATTED_INFORMATION("ioctlsocket(FIONBIO) %d", Errno);
          return false;
       }
       return true;

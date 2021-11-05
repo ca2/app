@@ -395,7 +395,7 @@ CLASS_DECL_APEX int get_apex_init()
 ////   string strExtra;
 ////   va_list argList;
 ////   va_start(argList, pszFormat);
-////   strExtra.Format(pszFormat, argList);
+////   strExtra.format(pszFormat, argList);
 ////   va_end(argList);
 ////
 ////   string strModule;
@@ -403,7 +403,7 @@ CLASS_DECL_APEX int get_apex_init()
 ////   if (pszModuleName != nullptr && *pszModuleName != '\0')
 ////   {
 ////
-////      strModule.Format("%s: ", pszModuleName);
+////      strModule.format("%s: ", pszModuleName);
 ////
 ////   }
 ////
@@ -426,7 +426,7 @@ CLASS_DECL_APEX int get_apex_init()
 ////   string strFormat;
 ////   strFormat = pszFormat;
 ////   strFormat.replace("%s", "%S");
-////   strExtra.Format(strFormat, argList);
+////   strExtra.format(strFormat, argList);
 ////   va_end(argList);
 ////
 ////   string strModule;
@@ -436,7 +436,7 @@ CLASS_DECL_APEX int get_apex_init()
 ////   if (pszModuleName != nullptr && *pszModuleName != '\0')
 ////   {
 ////
-////      strModule.Format("%S: ", pszModuleName);
+////      strModule.format("%S: ", pszModuleName);
 ////
 ////   }
 ////

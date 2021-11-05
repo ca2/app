@@ -550,7 +550,7 @@ namespace user
 
       pdisplay->get_main_monitor(rectangleMainMonitor);
 
-      strDisplay.Format("Display(%d, %d)", rectangleMainMonitor.width(), rectangleMainMonitor.height());
+      strDisplay.format("Display(%d, %d)", rectangleMainMonitor.width(), rectangleMainMonitor.height());
 
       return strDisplay;
 

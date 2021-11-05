@@ -1456,6 +1456,15 @@
     <ClCompile Include="platform\nanosecond_timer.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
+    <ClCompile Include="platform\implementable.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\main.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\layer.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="astr.h">
@@ -3538,6 +3547,12 @@
       <Filter>Header Files\constant</Filter>
     </ClInclude>
     <ClInclude Include="platform\options.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\implementable.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\layer.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
   </ItemGroup>

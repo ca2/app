@@ -1092,8 +1092,8 @@ namespace user
 
 
       virtual bool call_and_set_timer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer = nullptr);
-      virtual bool set_timer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer = nullptr);
-      virtual bool SetTimer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer = nullptr) override;
+      virtual bool set_timer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void* pdata = nullptr);
+      virtual bool SetTimer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void* pdata = nullptr) override;
       virtual bool KillTimer(uptr uEvent) override;
 
 //      virtual bool enable_window(bool bEnable = true) override;
@@ -1251,6 +1251,10 @@ namespace user
 
 
       DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
+
+      DECLARE_MESSAGE_HANDLER(on_message_right_button_down);
+      DECLARE_MESSAGE_HANDLER(on_message_right_button_up);
+
       DECLARE_MESSAGE_HANDLER(on_message_show_window);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_enter);

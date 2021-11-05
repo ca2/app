@@ -519,8 +519,8 @@ namespace turboc
 
             //          ::u32 dwTime2= ::duration::now();
 
-            //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-//            TRACE("hello_view::lyot call timeA= %d ms",(u64) (dwTime2 - t_time1.operator DWORD_PTR()));
+            //FORMATTED_TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+//            FORMATTED_TRACE("hello_view::lyot call timeA= %d ms",(u64) (dwTime2 - t_time1.operator DWORD_PTR()));
 
          }
 
@@ -570,8 +570,8 @@ namespace turboc
 
 //            ::u32 dwTime2= ::duration::now();
 
-            //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-            //TRACE("hello_view::lyot call timeB= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+            //FORMATTED_TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+            //FORMATTED_TRACE("hello_view::lyot call timeB= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
 
          }
 

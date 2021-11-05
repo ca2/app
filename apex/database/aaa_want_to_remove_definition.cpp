@@ -29,7 +29,7 @@ namespace database
       try
       {
 
-         str.FormatV(pszFormat, args);
+         str.format_arguments(pszFormat, args);
 
       }
       catch (...)

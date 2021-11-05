@@ -360,7 +360,7 @@ namespace prompt
 
          //string str;
 
-         //str.Format("%d", i);
+         //str.format("%d", i);
 
          ////message_box(str);
 

@@ -829,6 +829,9 @@
     <ClCompile Include="message\dispatcher.cpp">
       <Filter>Source Files\message</Filter>
     </ClCompile>
+    <ClCompile Include="platform\layer.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="astr.h">
@@ -1961,6 +1964,9 @@
     </ClInclude>
     <ClInclude Include="message\predicate_handler.h">
       <Filter>Header Files\message</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\layer.h">
+      <Filter>Header Files\platform</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1849,7 +1849,7 @@ namespace user
 
             string strSize;
 
-            strSize.Format("%d", iSize);
+            strSize.format("%d", iSize);
 
             ::file::path pathImage = pathFolder / strSize / (strIcon + ".png");
 
@@ -1871,7 +1871,7 @@ namespace user
                   if (iSizeFallback != iSize)
                   {
 
-                     strSize.Format("%d", iSizeFallback);
+                     strSize.format("%d", iSizeFallback);
 
                      pathImage = pathFolder / strSize / (strIcon + ".png");
 

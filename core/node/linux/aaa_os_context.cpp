@@ -599,7 +599,7 @@ namespace linux
             registry::Key keyLink1(keyLink2, "command", true);
 
             string strFormat;
-            strFormat.Format("\"%s\" \"%%L\" %s", pszCommand, pszParam);
+            strFormat.format("\"%s\" \"%%L\" %s", pszCommand, pszParam);
             keyLink1.SetValue(nullptr, strFormat);
 
             return true;
@@ -1092,7 +1092,7 @@ namespace linux
             if(!iBool)
             {
 
-               _S_TRACE("Error launching file : \"%s\" , %s", strUri.c_str(), strError.c_str());
+               _S_FORMATTED_TRACE("Error launching file : \"%s\" , %s", strUri.c_str(), strError.c_str());
 
             }
 

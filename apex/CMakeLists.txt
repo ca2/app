@@ -461,6 +461,7 @@ list(APPEND apex_source
    platform/machine_event_central.h
    platform/machine_event_data.cpp
    platform/machine_event_data.h
+   #platform/main.cpp
    platform/message_box.h
    platform/net.cpp
    #platform/net.h

@@ -33,7 +33,7 @@ public:
    typedef TYPE_DATA                   DATA;
 
 
-   iptr                                m_countReference;
+   interlocked_count                   m_countReference;
    memsize_storage                     m_memsize;
    memsize_storage                     m_datasize;
    DATA                                m_endofmetadata[1024];
@@ -173,7 +173,7 @@ public:
 
       auto pmetadata = (natural_meta_data < BASE_META_DATA > *) ALLOCATOR::allocate(memsize + BASE_META_DATA::natural_offset());
 
-      pmetadata->m_countReference = 0;
+      pmetadata->m_countReference.construct();
 
       pmetadata->m_memsize = memsize;
 

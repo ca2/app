@@ -155,7 +155,7 @@ namespace filemanager
 
                phttpmessage->payload("request") = "";
 
-               phttpmessage->m_strUrl.Format("http://file.ca2.software/ifs/ls?id=%I64d", iFolder);
+               phttpmessage->m_strUrl.format("http://file.ca2.software/ifs/ls?id=%I64d", iFolder);
 
                phttpmessage->want_memory_response();
 
@@ -179,7 +179,7 @@ namespace filemanager
             
             string strFileNameEncoded =  purl->url_encode(pszFileName);
 
-            strUrl.Format("http://file.ca2.software/ifs/get?name=%s&folder=%I64d&extension=.%s",strFileNameEncoded.c_str(), iFolder, pszExtension.c_str());
+            strUrl.format("http://file.ca2.software/ifs/get?name=%s&folder=%I64d&extension=.%s",strFileNameEncoded.c_str(), iFolder, pszExtension.c_str());
 
             //if(m_prequestinterface != nullptr)
             //{

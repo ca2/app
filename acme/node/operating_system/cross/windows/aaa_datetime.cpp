@@ -694,7 +694,7 @@ static time_t find_dst_change(time_t minimum, time_t maximum, i32 *is_dst)
    start = minimum;
    tm = localtime(&start);
    *is_dst = !tm->tm_isdst;
-// xxx    TRACE("starting date isdst %d, %s", !*is_dst, ctime(&start));
+// xxx    FORMATTED_TRACE("starting date isdst %d, %s", !*is_dst, ctime(&start));
 
    while (minimum <= maximum)
    {
@@ -733,25 +733,25 @@ static i32 init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
 
    __memset(tzi, 0, sizeof(*tzi));
 
-//xxx    TRACE("tz data will be valid through year %d\n", tm->tm_year + 1900);
+//xxx    FORMATTED_TRACE("tz data will be valid through year %d\n", tm->tm_year + 1900);
    current_year = tm->tm_year;
 
    tm->tm_isdst = 0;
    tm->tm_mday = 1;
    tm->tm_mon = tm->tm_hour = tm->tm_min = tm->tm_sec = tm->tm_wday = tm->tm_yday = 0;
    year_start = mktime(tm);
-//xxx    TRACE("year_start: %s", ctime(&year_start));
+//xxx    FORMATTED_TRACE("year_start: %s", ctime(&year_start));
 
    tm->tm_mday = tm->tm_wday = tm->tm_yday = 0;
    tm->tm_mon = 12;
    tm->tm_hour = 23;
    tm->tm_min = tm->tm_sec = 59;
    year_end = mktime(tm);
-//xxx    TRACE("year_end: %s", ctime(&year_end));
+//xxx    FORMATTED_TRACE("year_end: %s", ctime(&year_end));
 
    tm = gmtime(&year_start);
    tzi->Bias = (::i32)(mktime(tm) - year_start) / 60;
-//xxx    TRACE("bias: %d\n", tzi->Bias);
+//xxx    FORMATTED_TRACE("bias: %d\n", tzi->Bias);
 
    tmp = find_dst_change(year_start, year_end, &is_dst);
    if (is_dst)
@@ -765,8 +765,8 @@ static i32 init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
    else
       iStandard = tmp;
 
-//xxx    TRACE("Standard: %s", ctimeiStandardstd));
-//xxx    TRACE("dlt: %s", ctime(&dlt));
+//xxx    FORMATTED_TRACE("Standard: %s", ctimeiStandardstd));
+//xxx    FORMATTED_TRACE("dlt: %s", ctime(&dlt));
 
    if (dlt == iStandard || !dlt || !iStandard)
    {
@@ -776,7 +776,7 @@ static i32 init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
    {
       tmp = dlt - tzi->Bias * 60;
       tm = gmtime(&tmp);
-//xxx   TRACE("dlt gmtime: %s", asctime(tm));
+//xxx   FORMATTED_TRACE("dlt gmtime: %s", asctime(tm));
 
       tzi->DaylightBias = -60;
       tzi->DaylightDate.wYear = tm->tm_year + 1900;
@@ -788,7 +788,7 @@ static i32 init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
       tzi->DaylightDate.wSecond = tm->tm_sec;
       tzi->DaylightDate.wMilliseconds = 0;
 
-//xxx        TRACE("daylight (d/m/y): %u/%02u/%04u day of week %u %u:%02u:%02u.%03u bias %d\n",
+//xxx        FORMATTED_TRACE("daylight (d/m/y): %u/%02u/%04u day of week %u %u:%02u:%02u.%03u bias %d\n",
 //xxx            tzi->DaylightDate.wDay, tzi->DaylightDate.wMonth,
 //xxx            tzi->DaylightDate.wYear, tzi->DaylightDate.wDayOfWeek,
 //xxx            tzi->DaylightDate.wHour, tzi->DaylightDate.wMinute,
@@ -797,7 +797,7 @@ static i32 init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
 
       tmp = iStandard - tzi->Bias * 60 - tzi->DaylightBias * 60;
       tm = gmtime(&tmp);
-//xxx        TRACE("Standard gmtime: %s", asctime(tm));
+//xxx        FORMATTED_TRACE("Standard gmtime: %s", asctime(tm));
 
       tzi->StandardBias = 0;
       tzi->StandardDate.wYear = tm->tm_year + 1900;
@@ -809,7 +809,7 @@ static i32 init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
       tzi->StandardDate.wSecond = tm->tm_sec;
       tzi->StandardDate.wMilliseconds = 0;
 
-//xxx        TRACE("standard (d/m/y): %u/%02u/%04u day of week %u %u:%02u:%02u.%03u bias %d\n",
+//xxx        FORMATTED_TRACE("standard (d/m/y): %u/%02u/%04u day of week %u %u:%02u:%02u.%03u bias %d\n",
 //xxx            tzi->StandardDate.wDay, tzi->StandardDate.wMonth,
 //xxx            tzi->StandardDate.wYear, tzi->StandardDate.wDayOfWeek,
 //xxx            tzi->StandardDate.wHour, tzi->StandardDate.wMinute,
@@ -900,7 +900,7 @@ NTSTATUS WINAPI NtSetSystemTime(const LARGE_INTEGER *NewTime, LARGE_INTEGER *Old
    if (!settimeofday(&tv, nullptr)) /* 0 is OK, -1 is error */
       return STATUS_SUCCESS;
    //tm_t = sec;
-   // xxx ERROR("Cannot set time to %s, time adjustment %ld: %s\n",
+   // xxx FORMATTED_ERROR("Cannot set time to %s, time adjustment %ld: %s\n",
    // xxx ctime(&tm_t), (long)(sec-oldsec), strerror(errno));
    if (errno == EPERM)
       return STATUS_PRIVILEGE_NOT_HELD;

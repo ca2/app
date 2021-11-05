@@ -19,7 +19,7 @@ public:
       va_list valist;
       va_start(valist, psz);
       string str;
-      str.Format(psz, valist);
+      str.format(psz, valist);
       set_topic_text(str);
       va_end(valist);
 

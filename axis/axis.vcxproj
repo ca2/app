@@ -546,9 +546,6 @@
     <ClInclude Include="account\user_set.h" />
     <ClInclude Include="account\_.h" />
     <ClInclude Include="account\_account.h" />
-    <ClInclude Include="compress\_.h" />
-    <ClInclude Include="compress\bz.h" />
-    <ClInclude Include="compress\bzip.h" />
     <ClInclude Include="const\idpool.h" />
     <ClInclude Include="database\database\const.h" />
     <ClInclude Include="database\database\database.h" />
@@ -675,7 +672,6 @@
     <ClCompile Include="account\usera.cpp" />
     <ClCompile Include="account\user_array.cpp" />
     <ClCompile Include="account\user_set.cpp" />
-    <ClCompile Include="compress\bz.cpp" />
     <ClCompile Include="const\idpool.cpp" />
     <ClCompile Include="database\database\database.cpp" />
     <ClCompile Include="database\database\database_composite.cpp" />

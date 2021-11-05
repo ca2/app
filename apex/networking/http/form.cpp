@@ -260,7 +260,7 @@ namespace http
 
                         strTime = ::datetime::format("%Y\\%m\\%d\\%H\\%M\\%S\\", t);
 
-                        strIndex.Format("%08x\\", i);
+                        strIndex.format("%08x\\", i);
 
                         strTempFile = "C:\\upload\\" + strTime + strIndex + current_filename;
 
@@ -393,7 +393,7 @@ namespace http
 
          //strsize len = str.get_length();
 //         strsize clen = content_length;
-         //TRACE("x-www-form-urlencoded POST is %d bytes length and reported content-length header is %d.", len);
+         //FORMATTED_TRACE("x-www-form-urlencoded POST is %d bytes length and reported content-length header is %d.", len);
          m_setPost.parse_url_query(str);
 
       }

@@ -649,7 +649,7 @@ namespace experience
 
          string str(__string(id));
 
-         TRACE("frame_window::handle_event btn_clkd=%s", str.c_str());
+         FORMATTED_TRACE("frame_window::handle_event btn_clkd=%s", str.c_str());
 
          auto ebutton = m_pframe->get_control_box()->get_control_box_button_type(id);
 
@@ -1006,7 +1006,7 @@ namespace experience
       if (is_different(fActive, m_fActive))
       {
 
-         TRACE("frame_window::SetActiveFlag %d\n", fActive);
+         FORMATTED_TRACE("frame_window::SetActiveFlag %d\n", fActive);
 
          m_fActive = fActive;
 

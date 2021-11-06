@@ -7,4 +7,7 @@
 #include "url_department.h"
 
 
+#define NETWORK_PAYLOAD_DEFAULT_EXTENSION ".\x6ason"
+
+
 

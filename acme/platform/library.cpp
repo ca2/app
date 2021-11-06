@@ -603,23 +603,14 @@ namespace acme
          if (psetup)
          {
 
-            auto papp = psetup->create_new_application();
+            auto pelementApplication = psetup->create_application_as_element();
 
-//            if (papp)
-//            {
-//
-//               auto estatus = papp->initialize(pobject);
-//
-//               if (!estatus)
-//               {
-//
-//                  return estatus;
-//
-//               }
-//
-//               return papp;
-//
-//            }
+            if (pelementApplication)
+            {
+
+               return pelementApplication
+
+            }
 
          }
 

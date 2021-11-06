@@ -204,7 +204,7 @@ static_setup* static_setup::get_last(::static_setup::enum_flag eflag, const char
 //}
 
 
-__pointer(::matter) static_setup::create_element()
+__pointer(::element) static_setup::create_element()
 {
 
    auto pobject = _create_element();

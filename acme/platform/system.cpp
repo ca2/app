@@ -856,7 +856,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       }
 
-      plibrary = plibraryfactory->new_library();
+      plibrary = plibraryfactory->create_library();
 
    #else
 
@@ -943,7 +943,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       }
 
-      plibrary = plibraryfactory->new_library();
+      plibrary = plibraryfactory->create_library();
 
    #else
 

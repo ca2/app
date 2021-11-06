@@ -7,8 +7,10 @@
 //
 #pragma once
 
+
 #define DECLARE_FACTORY_EXCHANGE(library) \
 extern "C" void library ## _factory_exchange(::factory_map* pfactorymap);
+
 
 #define SETUP_FACTORY_EXCHANGE(library) \
 static_setup      m_setup_ ## library{ &library ## _factory_exchange, #library}

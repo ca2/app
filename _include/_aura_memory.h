@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #if OSBIT == 32

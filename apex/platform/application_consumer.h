@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #define APPLICATION_CONSUMER_BODY                                                      \

@@ -1,4 +1,4 @@
-/**
+﻿/**
 	Implementation for Windows. Uses ReadDirectoryChangesW to watch for
 	file system changes.
 

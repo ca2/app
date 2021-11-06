@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #define TEXT_COMPOSITION_MESSAGE_UPDATE_CANDIDATE_WINDOW_POSITION 256

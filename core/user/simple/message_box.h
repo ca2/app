@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 //CLASS_DECL_CORE void set_message_box(i32 (* pfn)(oswindow, const ::string &, const ::string &, u32, const ::function &));

@@ -1,4 +1,4 @@
-//
+﻿//
 //  helloworld_render.cpp
 //  app_core_helloworld
 //

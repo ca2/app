@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #define FOREGROUND_BLUE      0x0001 // text color contains blue.

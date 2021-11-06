@@ -1,4 +1,4 @@
-#ifndef _COLORER_MEMORYFILE_H_
+﻿#ifndef _COLORER_MEMORYFILE_H_
 #define _COLORER_MEMORYFILE_H_
 #include<contrib/minizip/unzip.h>
 

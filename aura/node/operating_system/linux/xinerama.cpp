@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "base/user/user/_user.h"
 #include "aura/os/linux/_user.h"
 //!!!#define pointer x11_pointer

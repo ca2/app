@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 /*HDC GetDC(oswindow hwnd);
 HFONT CreateFontIndirect(const LOGFONT * lf);

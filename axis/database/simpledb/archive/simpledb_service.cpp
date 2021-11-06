@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "axis/database/simpledb/simpledb_socket_thread.h"
 
 #ifdef WINDOWS

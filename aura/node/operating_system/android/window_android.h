@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 class CLASS_DECL_AURA window_android :

@@ -1,4 +1,4 @@
-#ifndef _COLORER_FILEWRITER_H_
+﻿#ifndef _COLORER_FILEWRITER_H_
 #define _COLORER_FILEWRITER_H_
 
 #include<common/io/StreamWriter.h>

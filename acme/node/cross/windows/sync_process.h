@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 class sync_future;

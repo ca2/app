@@ -1,4 +1,4 @@
-/**
+﻿/**
 	Implementation header file for Linux based on inotify.
 
 	@author James Wynn

@@ -1,4 +1,4 @@
-/* ostypes.h
+﻿/* ostypes.h
 ** strophe XMPP client library -- type definitions for platforms 
 **     without stdint.h
 **

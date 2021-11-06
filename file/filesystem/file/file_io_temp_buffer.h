@@ -1,4 +1,4 @@
-// InOutTempBuffer.h
+﻿// InOutTempBuffer.h
 #pragma once
 
 

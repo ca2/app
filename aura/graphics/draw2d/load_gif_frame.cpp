@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 //#define unequal(a, b, n) ((a) > (b) - (n))
 #undef pixel

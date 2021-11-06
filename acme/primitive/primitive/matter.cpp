@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/id.h"
 //#include "acme/primitive/primitive/layered.h"
 
@@ -151,21 +151,6 @@ void matter::on_set_finish()
 
 }
 
-
-::e_status matter::set_library_name(const char* pszLibraryName)
-{
-
-   return error_none;
-
-}
-
-
-::e_status matter::set_application_id(const char* pszApplicationId)
-{
-
-   return error_none;
-
-}
 
 
 const char* matter::debug_note() const
@@ -380,13 +365,6 @@ void matter::on_future(const ::payload & payload)
 //
 //}
 
-
-::e_status matter::set_generic_object_name(const char* pszName)
-{
-
-   return ::success_none;
-
-}
 
 
 void matter::delete_this()

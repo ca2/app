@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #ifdef LINUX
 #include "apex/os/linux/_linux.h"
 #include "apex/node/linux/_linux.h"

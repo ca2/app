@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 //
 //#define ROUND(x,y) (((x)+(y-1))&~(y-1))

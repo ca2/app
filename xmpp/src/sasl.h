@@ -1,4 +1,4 @@
-/* sasl.h
+﻿/* sasl.h
 ** strophe XMPP client library -- SASL authentication helpers
 ** 
 ** Copyright (C) 2005-2009 Collecta, Inc. 

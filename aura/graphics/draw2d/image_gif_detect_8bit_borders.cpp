@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
 #define pixel(x, y) (ba[(pointer->m_rectangle.height() - (y) - 1) * iScan + (x)])

@@ -1,4 +1,4 @@
-// LockedStream.h
+﻿// LockedStream.h
 #pragma once
 
 

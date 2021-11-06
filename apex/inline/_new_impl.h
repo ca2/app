@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #if !defined(NO_APEX_MEMORY_MANAGEMENT)
 

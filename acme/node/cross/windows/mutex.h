@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 CLASS_DECL_ACME ::mutex open_mutex(::matter * pmatter, const char * lpszName);

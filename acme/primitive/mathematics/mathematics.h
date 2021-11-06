@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 //CLASS_DECL_ACME void generate_random_bytes(void* p, memsize s);

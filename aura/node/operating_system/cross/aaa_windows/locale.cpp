@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "aura/os/cross/windows/e.h"
 
 #undef WINAXISAPI

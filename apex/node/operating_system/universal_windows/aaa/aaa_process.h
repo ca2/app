@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 CLASS_DECL_APEX bool process_modules(string_array & stra, ::u32 processID);

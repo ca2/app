@@ -1,4 +1,4 @@
-#ifndef _2_PASS_SCALE_H_
+﻿#ifndef _2_PASS_SCALE_H_
 #define _2_PASS_SCALE_H_
 
 #include <math.h>

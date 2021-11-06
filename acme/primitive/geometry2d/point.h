@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 //
 //#undef new
 //#ifdef WINDOWS_DESKTOP

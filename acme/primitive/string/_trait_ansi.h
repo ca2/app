@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #define const_ansichar_trigger const ansichar *

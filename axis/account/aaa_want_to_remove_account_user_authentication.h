@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 template < int t_iTimeout = ((5000) * 2) >
 class string_timeout

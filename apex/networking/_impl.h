@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 inline bool is_url_dup(const ::string & strCandidate)

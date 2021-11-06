@@ -1,4 +1,4 @@
-//
+﻿//
 //  host_interaction.cpp
 //  acme
 //

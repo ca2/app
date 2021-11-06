@@ -1,4 +1,4 @@
-//        apex / thomas thomas thomas my pray my life my GOD
+﻿//        apex / thomas thomas thomas my pray my life my GOD
 // 
 //   
 //    
@@ -949,6 +949,7 @@ class handler_manager;
 class service;
 class service_handler;
 
+#include "apex/parallelization/service.h"
 
 //#include "apex/parallelization/handler_manager.h"
 //#include "apex/parallelization/service_status.h"

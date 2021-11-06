@@ -1,4 +1,4 @@
-// StreamBinder.h
+﻿// StreamBinder.h
 // from 7-zip on dawn of 13/01/2001 - Thursday
 #pragma once
 

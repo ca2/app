@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 //
 // see collection_raw_array_decl.h for declaration

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #define e_message_box_ok                       0x00000000L

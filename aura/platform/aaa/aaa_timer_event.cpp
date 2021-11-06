@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
 timer_event::timer_event(::aura::timer_array * ptimera, int iTimer) :

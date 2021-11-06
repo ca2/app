@@ -1,4 +1,4 @@
-//
+﻿//
 //  menu_command.h
 //  apex
 //

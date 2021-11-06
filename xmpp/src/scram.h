@@ -1,4 +1,4 @@
-/* scram.h
+﻿/* scram.h
  * strophe XMPP client library -- SCRAM-SHA1 helper functions
  *
  * Copyright (C) 2013 Dmitry Podgorny <pasis.ua@gmail.com>

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 //CLASS_DECL_APEX int_bool ensure_file_size_fd(int32_t fd, size_t iSize);

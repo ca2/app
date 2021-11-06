@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #define SYSTEM aura
 #define APPLICATION app_message_box
 #define __APP_ID "app/message_box"

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 CLASS_DECL_ACME bool avoid_bad_status_exception();

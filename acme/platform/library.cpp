@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/platform/static_setup.h"
 
 
@@ -608,7 +608,7 @@ namespace acme
             if (pelementApplication)
             {
 
-               return pelementApplication
+               return pelementApplication;
 
             }
 
@@ -656,13 +656,6 @@ namespace acme
             {
 
                auto papp = (*p)();
-
-//               if (papp)
-//               {
-//
-//                  papp->initialize(pobject);
-//
-//               }
 
                return papp;
 

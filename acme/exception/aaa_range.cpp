@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
 range_exception::range_exception(const char * pszMessage):

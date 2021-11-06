@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 inline void * fixed_alloc_sync::Alloc()

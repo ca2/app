@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 //CLASS_DECL_ACME i32 ansi_to_i32(const char * sz, const char ** pszEnd, i32 iBase);
 //CLASS_DECL_ACME i32 ansi_to_i32(const char * sz, const char ** pszEnd);

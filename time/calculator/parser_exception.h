@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 //class CLASS_DECL_CA2_TIME datetime_parsing_exception:

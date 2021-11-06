@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #define INVALID_HANDLE_VALUE ((HANDLE)(long_ptr)-1)

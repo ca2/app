@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
 ::count regex::matches(string_array& stra, const string& str)

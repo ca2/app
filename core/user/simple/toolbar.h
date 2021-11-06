@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #define TBSTYLE_ALIGN_LEFT     0x10000

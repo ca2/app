@@ -1,4 +1,4 @@
-// created by Camilo AS DRAW2D::icon
+﻿// created by Camilo AS DRAW2D::icon
 // created by Camilo 2021-02-04 08:42 BRT CamiloSasuke<3ThomasBorregaardSoerensen
 // Changing to windowing by Camilo on 2021-02-08 <3TBS_!!
 #pragma once

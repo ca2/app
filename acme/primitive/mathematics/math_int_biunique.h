@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 template < class T, class T_to_T = map < T, T, T, T > >

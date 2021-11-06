@@ -1,4 +1,4 @@
-//
+﻿//
 //  object_reference_count_debug.h
 //  apex
 //

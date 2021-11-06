@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 CLASS_DECL_ACME const char * status_message(const ::e_status & estatus);

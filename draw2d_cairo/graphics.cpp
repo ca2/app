@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include <math.h>
 
 #ifdef _DEBUG

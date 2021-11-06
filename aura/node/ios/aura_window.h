@@ -1,4 +1,4 @@
-//
+﻿//
 //  aura_window.h
 //  os
 //

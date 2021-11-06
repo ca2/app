@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "_android.h"
 #include "apex/platform/static_start.h"
 //#include "apex/xml/_.h"

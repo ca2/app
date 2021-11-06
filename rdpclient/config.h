@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #if defined(_WIN32) && !defined(CINTERFACE)
 #include <WinSock2.h>

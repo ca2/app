@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 class CLASS_DECL_CORE simple_tab_control :
    virtual public ::user::interaction,

@@ -1,4 +1,4 @@
-#ifndef __JPCNTX_H__
+﻿#ifndef __JPCNTX_H__
 #define __JPCNTX_H__
 
 #define NUM_OF_CATEGORY 6

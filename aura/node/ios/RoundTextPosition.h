@@ -1,4 +1,4 @@
-/*
+﻿/*
      File: RoundTextPosition.h
  Abstract: A UITextPosition object represents a position in a text container; in other words, it is an index into the backing string in a text-displaying impact.
  Classes that adopt the UITextInput protocol must create custom UITextPosition objects for representing specific locations within the text managed by the class. The text input system uses both these objects and UITextRange objects for communicating text-layout information.

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
 void os_menu_item_enable(void * pitem, bool bEnable)

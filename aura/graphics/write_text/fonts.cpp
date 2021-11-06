@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
 #define FONTFACENAME_MENU pnode->font_name(e_font_sans)

@@ -1,4 +1,4 @@
-#undef ERROR
+﻿#undef ERROR
 
 
 #include <windows.h>

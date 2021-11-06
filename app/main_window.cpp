@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "aura/graphics/user/close_button.h"
 
 #define STEPPY_DEBUG 0

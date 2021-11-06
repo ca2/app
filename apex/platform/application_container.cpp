@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "apex/platform/app_core.h"
 #include "apex/platform/node.h"
 #include "acme/filesystem/filesystem/acme_path.h"

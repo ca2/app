@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "aura/node/posix/pipe.h"
 #include "aura/platform/static_start.h"
 #include "process.h"

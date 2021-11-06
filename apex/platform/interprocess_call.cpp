@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
 interprocess_call::interprocess_call(interprocess_intercommunication* pipi, const string& strApp, const string& strObject, const string& strMember) :

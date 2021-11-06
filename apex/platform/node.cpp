@@ -1,4 +1,4 @@
-//
+﻿//
 // Created by camilo on 19/01/2021. --<33ThomasBS!!
 //
 #include "framework.h"
@@ -137,7 +137,7 @@ namespace apex
    ::e_status node::thread_initialize(::thread * pthread)
    {
 
-      return ::error_interface_only;
+      return ::success;
 
    }
 
@@ -145,7 +145,7 @@ namespace apex
    ::e_status node::thread_finalize(::thread * pthread)
    {
 
-      return ::error_interface_only;
+      return ::success;
 
    }
 

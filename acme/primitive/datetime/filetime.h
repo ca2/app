@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #define make64_from32(l, h) ((::u64) (l)) | (((::u64) (h)) << 32)

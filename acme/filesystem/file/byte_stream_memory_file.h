@@ -1,4 +1,4 @@
-//
+﻿//
 //  file_byte_stream_memory_file.h
 //  acme
 //

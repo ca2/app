@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 int_bool AfxInternalPreTranslateMessage(MESSAGE* pMsg);

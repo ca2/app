@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "aura/node/universal_windows/directx.h"
 #include "aura/node/universal_windows/directx_interaction.h"
 #include "aura/node/universal_windows/directx_impact.h"

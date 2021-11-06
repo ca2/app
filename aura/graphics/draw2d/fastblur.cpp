@@ -1,4 +1,4 @@
-// Super Fast Blur v1.1
+﻿// Super Fast Blur v1.1
 // by Mario Klingemann <http://incubator.quasimondo.com>
 //
 // Tip: Multiple invovations of this filter with a small

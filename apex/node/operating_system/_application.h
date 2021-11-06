@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 void __set_apex_application_factory(__PFN_NEW_APEX_APPLICATION pfnNewAuraApplication);

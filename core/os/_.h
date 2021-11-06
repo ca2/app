@@ -1,4 +1,4 @@
-//  Created by Camilo Sasuke Tsumanuma on 05/01/18.
+﻿//  Created by Camilo Sasuke Tsumanuma on 05/01/18.
 #pragma once
 
 //CLASS_DECL_CORE string get_command_line();

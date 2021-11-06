@@ -1,4 +1,4 @@
-// InBuffer.cpp
+﻿// InBuffer.cpp
 // from 7-zip on 2012-12-23, dawn
 #include "framework.h"
 

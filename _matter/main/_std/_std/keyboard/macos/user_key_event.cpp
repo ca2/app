@@ -1,4 +1,4 @@
-if([event modifierFlags] & NSNumericPadKeyMask) // arrow keys have this mask
+﻿if([event modifierFlags] & NSNumericPadKeyMask) // arrow keys have this mask
 {
    
    NSString * arrow = [event charactersIgnoringModifiers];

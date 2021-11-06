@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 //CLASS_DECL_ACME void main_async_runnable(::object * pobjectTask);

@@ -1,4 +1,4 @@
-#ifndef ___NSIS_PLUGIN__H___
+﻿#ifndef ___NSIS_PLUGIN__H___
 #define ___NSIS_PLUGIN__H___
 
 #ifdef __cplusplus

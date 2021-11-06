@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 //
 //#ifndef _APP_SHADER_LIBRARY

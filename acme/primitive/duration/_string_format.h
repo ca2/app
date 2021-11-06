@@ -1,4 +1,4 @@
-//
+﻿//
 //  _string_format.h
 //  acme
 //

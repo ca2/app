@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 class hwnd_map;
 class hmenu_map;

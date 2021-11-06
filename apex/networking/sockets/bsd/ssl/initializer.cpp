@@ -1,4 +1,4 @@
-/**
+﻿/**
  **   \file SSLInitializer.cpp
  **   \date  2007-04-30
  **   \author grymse@alhem.net

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #if OBJECT_TYPE_COUNTER

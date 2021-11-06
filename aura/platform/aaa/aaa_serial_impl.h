@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 /* Copyright 2012 William Woodall and John Harrison */
 
 

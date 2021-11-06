@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/platform/static_setup.h"
 //#if !BROAD_PRECOMPILED_HEADER
 //#include "core/user/user/_user.h"
@@ -220,16 +220,16 @@ namespace aqua
          if (psetup)
          {
 
-            auto pmultimedia = psetup->create_new_object();
+            auto pelement = psetup->create_element();
 
-            if (!pmultimedia)
+            if (!pelement)
             {
 
                return error_no_factory;
 
             }
 
-            auto estatus = __compose(m_pmultimedia, pmultimedia);
+            auto estatus = __compose(m_pmultimedia, pelement);
 
             if (!estatus)
             {

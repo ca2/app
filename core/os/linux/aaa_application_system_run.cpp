@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "_user.h"
 #include <gio/gio.h>
 //#include "third/sn/sn.h"

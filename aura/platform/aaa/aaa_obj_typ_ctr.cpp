@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 #if OBJECT_TYPE_COUNTER
 

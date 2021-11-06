@@ -1,4 +1,4 @@
-#include "application_common.h"
+﻿#include "application_common.h"
 
 
 #include "acme/platform/static_setup.h"

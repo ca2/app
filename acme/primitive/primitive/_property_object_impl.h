@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 inline material_object::material_object(const material_object & idmatter) :

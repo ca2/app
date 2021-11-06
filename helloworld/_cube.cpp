@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 ::aura::application * get_acid_app(::object * pobject)
 {

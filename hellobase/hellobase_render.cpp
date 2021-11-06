@@ -1,4 +1,4 @@
-//
+﻿//
 //  hellobase_render.cpp
 //  app_core_hellobase
 //

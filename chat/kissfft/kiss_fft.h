@@ -1,4 +1,4 @@
-#ifndef KISS_FFT_H
+﻿#ifndef KISS_FFT_H
 #define KISS_FFT_H
 
 

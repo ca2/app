@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "apex/operating_system.h"
 #include "acme/platform/acme_str_pool.h"
 #include "apex/platform/machine_event.h"
@@ -2998,11 +2998,11 @@ bool file_context::is_link(string strPath)
 ::file::path file_context::dropbox_info_network_payload()
 {
 
-   ::file::path pathJson;
+   ::file::path pathNetworkPayload;
 
-   pathJson = m_psystem->m_pacmedir->home() / ".dropbox/info.network_payload";
+   pathNetworkPayload = m_psystem->m_pacmedir->home() / ".dropbox/info" NETWORK_PAYLOAD_DEFAULT_EXTENSION;
 
-   return pathJson;
+   return pathNetworkPayload;
 
 }
 

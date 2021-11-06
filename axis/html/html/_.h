@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 typedef string_map < status < ::color::color > > string_to_color;

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "_android.h"
 //#include "buffer.h"
 #include "acme/node/posix/pipe.h"

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 // ::message_receiver== obyet
 //namespace message

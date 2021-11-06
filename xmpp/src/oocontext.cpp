@@ -1,4 +1,4 @@
-/* oocontext.cpp
+﻿/* oocontext.cpp
 ** strophe XMPP client library -- C++ context implementation
 ** 
 ** Copyright (C) 2005-2009 Collecta, Inc. 

@@ -1,4 +1,4 @@
-#include "aura/inline/application.h"
+﻿#include "aura/inline/application.h"
 #include "acme/platform/set_app_id.h"
 
 //static set_app_id g_setappid(__APP_ID);

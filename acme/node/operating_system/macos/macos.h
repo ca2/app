@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 //#include "macos_ns_exception.h"

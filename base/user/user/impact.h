@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 //#define WM_VIEW (WM_USER + 1023)

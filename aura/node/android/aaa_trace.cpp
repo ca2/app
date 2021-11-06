@@ -1,4 +1,4 @@
-
+﻿
 
 void __trace_message(const char * pszPrefix, LPMESSAGE lpmsg)
 {

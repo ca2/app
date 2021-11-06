@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #if !defined(NO_ACME_MEMORY_MANAGEMENT)
 

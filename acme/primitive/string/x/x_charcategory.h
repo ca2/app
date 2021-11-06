@@ -1,4 +1,4 @@
-#ifndef AXIS_X_CHARCATEGORY_H
+﻿#ifndef AXIS_X_CHARCATEGORY_H
 #define AXIS_X_CHARCATEGORY_H
 
 #pragma once

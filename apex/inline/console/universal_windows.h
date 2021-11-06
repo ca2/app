@@ -1,4 +1,4 @@
-
+﻿
 
 ////CLASS_DECL_ACME string executable_get_app_id(hinstance hinstance);
 //CLASS_DECL_ACME hinstance get_module_handle(const platform_char* psz);

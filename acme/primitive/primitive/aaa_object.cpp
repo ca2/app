@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "apex/message.h"
 #include "acme/update.h"
 #if OBJECT_REFERENCE_COUNT_DEBUG

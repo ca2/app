@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 typedef CLASS_DECL_ACME __pointer_array(::matter) object_array;

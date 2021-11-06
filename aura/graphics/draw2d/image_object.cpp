@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
 //::image_transport con::get_image(const ::payload & payloadFile, bool bCache, bool bSync)

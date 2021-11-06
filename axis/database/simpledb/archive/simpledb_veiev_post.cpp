@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
 veiev_post::veiev_post(db_server * pserver) :

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #define __sizeof(TYPE) ((memsize)sizeof(TYPE))

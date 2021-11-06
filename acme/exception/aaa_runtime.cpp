@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
 runtime_exception::runtime_exception(const char * pszMessage):

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "aura/printer2.h"
 #include "printer.h"
 #include <WinSpool.h>

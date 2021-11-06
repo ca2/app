@@ -1,4 +1,4 @@
-//   Creator : El Barto (ef00@luc.ac.be)
+﻿//   Creator : El Barto (ef00@luc.ac.be)
 //   Location : http://www.luc.ac.be/~ef00/ebgfx
 //   Date : 09-04-98
 //////////////////////////////////////////////////////////////////////

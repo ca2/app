@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "apex/networking/sockets/base/base_socket_handler.h"
 

@@ -1,4 +1,4 @@
-//
+﻿//
 //  AppDelegate.h
 //  teste_ios
 //

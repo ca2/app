@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 class CLASS_DECL_CORE html_form_view :
    virtual public ::html_form

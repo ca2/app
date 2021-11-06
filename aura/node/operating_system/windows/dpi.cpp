@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
 // typedef ::u32 FN_GetDpiForWindow(HWND hwnd);

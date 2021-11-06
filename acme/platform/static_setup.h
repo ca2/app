@@ -1,4 +1,4 @@
-//
+﻿//
 //  apex_app.h
 //  apex
 //
@@ -7,8 +7,10 @@
 //
 #pragma once
 
+
 #define DECLARE_FACTORY_EXCHANGE(library) \
 extern "C" void library ## _factory_exchange(::factory_map* pfactorymap);
+
 
 #define SETUP_FACTORY_EXCHANGE(library) \
 static_setup      m_setup_ ## library{ &library ## _factory_exchange, #library}
@@ -147,7 +149,7 @@ class static_application_factory :
 public:
 
 
-   virtual __pointer(::matter) _create_application_as_matter() override
+   virtual __pointer(::element) _create_application_as_element() override
    {
 
       auto papplication = __new(APPLICATION);

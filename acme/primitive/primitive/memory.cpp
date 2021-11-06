@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #define HEAP_NAMESPACE_PREFIX main
 #include "acme/memory/_____heap_namespace.h"
 

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
 wtostring::wtostring(string& str, i32 iAllocCount)

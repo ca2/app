@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 #ifndef X86
 //#include <math.h>

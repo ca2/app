@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 CLASS_DECL_AURA int_bool file_exists_raw(const ::string & path1);

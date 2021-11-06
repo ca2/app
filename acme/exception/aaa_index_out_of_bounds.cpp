@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
 index_out_of_bounds::index_out_of_bounds(const char * pszMessage) :

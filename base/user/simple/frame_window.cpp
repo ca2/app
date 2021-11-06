@@ -1742,8 +1742,6 @@ void simple_frame_window::on_message_close(::message::message * pmessage)
 
 #endif // LINUX
 
-      //ModifyStyleEx(0, WS_EX_TOOLWINDOW);
-
       set_tool_window();
 
       return;

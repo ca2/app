@@ -766,36 +766,6 @@ namespace user
 
 
 
-//::userex::format_tool * simple_frame_window::format_tool(bool bCreate)
-//{
-//
-//   synchronous_lock synchronouslock(mutex());
-//
-//   __pointer(::userex::format_tool) pfontformattool = m_ptoolwindowFont;
-//
-//   if (pfontformattool.is_null() && bCreate)
-//   {
-//
-//      __construct_new < ::userex::format_tool> (pfontformattool);
-//
-//      m_ptoolwindowFont = pfontformattool;
-//
-//      synchronouslock.unlock();
-//
-//      //pfontformattool->m_ewindowflag |= e_window_flag_embedded_prodevian;
-//      //pfontformattool->m_ewindowflag |= e_window_flag_satellite_window;
-//
-//      ::user::system createstruct(WS_EX_NOACTIVATE | WS_EX_TOPMOST | WS_EX_TOOLWINDOW | WS_EX_LAYERED);
-//      //::user::system createstruct;
-//
-//      pfontformattool->create_window_ex(createstruct, nullptr, "textformat_sys_format_tool");
-//
-//   }
-//
-//   return pfontformattool;
-//
-//}
-
 
    } // namespace rich_text
 

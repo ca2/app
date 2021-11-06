@@ -440,11 +440,6 @@ namespace user
 //         if (puiParent == nullptr)
 //         {
 //
-////#ifdef WINDOWS_DESKTOP
-////
-////            iStyleEx = WS_EX_LAYERED | WS_EX_TOOLWINDOW;
-////
-////#endif
 //
 //         }
 
@@ -1376,13 +1371,6 @@ namespace user
    bool menu::pre_create_window(::user::system * pusersystem)
    {
 
-//#ifdef WINDOWS_DESKTOP
-//
-//      pusersystem->m_createstruct.dwExStyle = WS_EX_LAYERED | WS_EX_TOPMOST | WS_EX_TOOLWINDOW;
-//
-//      pusersystem->m_createstruct.style &= ~WS_VISIBLE;
-//
-//#endif
 
       return true;
 

@@ -3143,9 +3143,7 @@ inline ::e_status object::add_reference(SOURCE* psource OBJECT_REFERENCE_COUNT_D
 
    }
 
-   //return add_reference(pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
-
-   return ::success;
+   return add_reference(pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
 }
 

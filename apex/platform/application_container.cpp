@@ -300,7 +300,9 @@ __pointer(::application) application_container::instantiate_application(const ch
       if (psystem->m_papplicationStartup.is_set())
       {
 
-         if (psystem->m_papplicationStartup->m_strAppId != strAppId)
+         string strStartupApplicationAppId = psystem->m_papplicationStartup->m_strAppId;
+
+         if (strStartupApplicationAppId != strAppId)
          {
 
             INFORMATION("Wrong papplication Data Type");

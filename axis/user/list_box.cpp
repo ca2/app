@@ -739,24 +739,6 @@ namespace user
    bool list_box::pre_create_window(::user::system * pusersystem)
    {
 
-//#ifdef WINDOWS_DESKTOP
-//
-//      if (pusersystem->m_createstruct.style & WS_BORDER)
-//      {
-//
-//         pusersystem->m_createstruct.style &= ~WS_BORDER;
-//
-//      }
-//
-//      pusersystem->m_createstruct.dwExStyle |= WS_EX_TOOLWINDOW;
-//
-//      pusersystem->m_createstruct.dwExStyle |= WS_EX_TOPMOST;
-//
-//#endif
-//
-//      pusersystem->m_createstruct.dwExStyle |= WS_EX_LAYERED;
-      
-      //pusersystem->m_createstruct.dwExStyle |= WS_EX_NOACTIVATE;
 
       return true;
 

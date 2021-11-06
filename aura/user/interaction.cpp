@@ -54,6 +54,8 @@ namespace user
    void interaction::user_interaction_common_construct()
    {
 
+      m_uUserInteractionFlags = 0;
+
       m_bEnableDragMove = false;
 
       //m_bTaskPending = true;
@@ -8498,13 +8500,7 @@ bool interaction::pre_create_window(::user::system * pusersystem)
    //
    //#ifdef WINDOWS_DESKTOP
    //
-   //      if (m_bToolWindow)
-   //      {
-   //
-   //         pusersystem->m_createstruct.dwExStyle |= WS_EX_TOOLWINDOW;
-   //
-   //      }
-   //
+
    //#endif
 
    return true;
@@ -14248,15 +14244,6 @@ order(zorderParam);
 //
 //         m_ptooltip = __new(tooltip(this));
 //
-////#ifdef WINDOWS_DESKTOP
-////
-////         ::user::system pusersystem(WS_EX_LAYERED | WS_EX_TOOLWINDOW, nullptr, L"tooltip", 0, nullptr);
-////
-////#else
-//
-//         ::user::system pusersystem(WS_EX_LAYERED | WS_EX_TOOLWINDOW, nullptr, "tooltip", 0, nullptr);
-//
-////#endif
 //
 //         m_ptooltip->create_window_ex(pusersystem);
 //

@@ -1,4 +1,4 @@
-﻿#include "aura/.h"
+#include "aura/.h"
 #include "rdpclient/client/common/rdpclient.h"
 
 struct CLASS_DECL_AXIS_RDPCLIENT rdp_event_item

@@ -1,4 +1,4 @@
-﻿//
+//
 //  round_window.h
 //  os
 //

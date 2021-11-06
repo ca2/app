@@ -1,4 +1,4 @@
-﻿//
+//
 //  _unit_operator.h
 //  acme
 //

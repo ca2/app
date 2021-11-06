@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 //#include "universal_windows.h"
 //#include <process.h>    // for _beginthreadex and _endthreadex
 //#include <ddeml.h>  // for MSGF_DDEMGR

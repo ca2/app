@@ -1,4 +1,4 @@
-﻿#include "acme/_start.h"
+#include "acme/_start.h"
 #include "aqua/_.h"
 #include "apex/platform/app_core.h"
 #include "apex/platform/static_setup.h"

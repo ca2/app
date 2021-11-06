@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 // CLASS_DECL_APEX u32 thread_alloc(void);

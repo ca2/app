@@ -1,4 +1,4 @@
-﻿//
+//
 //  winpr_scancode.cpp
 //  apex
 //

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 // Experimental at ca2 Framework

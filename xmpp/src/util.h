@@ -1,4 +1,4 @@
-﻿/* util.h
+/* util.h
 ** strophe XMPP client library -- various utility functions
 **
 ** Copyright (C) 2005-2009 Collecta, Inc. 

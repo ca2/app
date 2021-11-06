@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 CLASS_DECL_ACME void * processor_cache_oriented_memory_alloc(size_t s);

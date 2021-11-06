@@ -1,4 +1,4 @@
-﻿/* tls.h
+/* tls.h
 ** strophe XMPP client library -- TLS abstraction header
 **
 ** Copyright (C) 2005-2009 Collecta, Inc. 

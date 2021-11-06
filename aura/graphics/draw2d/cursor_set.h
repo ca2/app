@@ -1,4 +1,4 @@
-﻿//// Created by Camilo
+//// Created by Camilo
 //// Changing to windowing by Camilo on 2021-02-08 <3TBS_!!
 //#pragma once
 //

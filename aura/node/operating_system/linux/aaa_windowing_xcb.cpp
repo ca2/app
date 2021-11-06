@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "base/user/user/_user.h"
 #include "acme/node/operating_system/x11/_x11.h"
 #include "acme/node/operating_system/xcb/_xcb.h"

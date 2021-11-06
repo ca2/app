@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //CLASS_DECL_APEX int create_process(const char * _cmd_line, int * pprocessId);

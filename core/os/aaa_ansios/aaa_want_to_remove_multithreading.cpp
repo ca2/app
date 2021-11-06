@@ -1,4 +1,4 @@
-﻿#include "framework.h" // from "axis/user/user.h"
+#include "framework.h" // from "axis/user/user.h"
 #include "_c.h"
 //#include "_ansios.h"
 //#include <time.h>

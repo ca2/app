@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "aura/update.h"
 
 #include "include/base/cef_bind.h"

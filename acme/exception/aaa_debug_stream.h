@@ -1,4 +1,4 @@
-﻿/*
+/*
  Using an output stream for debugging (http://www.codetools.com/useritems/debugout.asp)
  By Sven Axelsson (svenax@bredband.net)
 

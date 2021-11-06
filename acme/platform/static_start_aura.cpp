@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "static_start.h"
 #include "static_start_internal.h"
 

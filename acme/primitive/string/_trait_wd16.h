@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #define const_wd16char_trigger const wd16char *

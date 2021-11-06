@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include <dirent.h>
 
 i32 get_process_pid(const char * procNameParam)

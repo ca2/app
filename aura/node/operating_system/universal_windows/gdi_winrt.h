@@ -1,4 +1,4 @@
-﻿#include <D2D1_1.h>
+#include <D2D1_1.h>
 #include <DWRITE.h>
 #include <d3d11_1.h>
 

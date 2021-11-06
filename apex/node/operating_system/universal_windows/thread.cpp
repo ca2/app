@@ -1,4 +1,4 @@
-﻿// Created on 2021-08-30 03:15 BRT <3ThomasBS__!!
+// Created on 2021-08-30 03:15 BRT <3ThomasBS__!!
 #include "framework.h"
 
 

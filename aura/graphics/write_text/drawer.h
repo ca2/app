@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2021-06-08 02:26 BRT <3ThomasBorregaardS�rensen__!!
+// Created by camilo on 2021-06-08 02:26 BRT <3ThomasBorregaardS�rensen__!!
 #pragma once
 
 

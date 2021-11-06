@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "_imaging_freeimage.h"
 #include <math.h>
 

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "data.h"
 #include "_data.h"
 

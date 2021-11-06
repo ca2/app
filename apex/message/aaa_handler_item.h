@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 //
 //// with tbs in <3!! (Thomas Boregaard Soerensen)

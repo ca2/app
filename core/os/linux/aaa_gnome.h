@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 // GDK, GTK :: C

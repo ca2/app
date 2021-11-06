@@ -1,4 +1,4 @@
-﻿// LockedStream.cpp
+// LockedStream.cpp
 
 #include "framework.h"
 

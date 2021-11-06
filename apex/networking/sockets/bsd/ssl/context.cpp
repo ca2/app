@@ -1,4 +1,4 @@
-﻿//
+//
 //  sockets_ssl_context.cpp
 //  apex
 //

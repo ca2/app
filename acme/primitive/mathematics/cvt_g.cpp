@@ -1,4 +1,4 @@
-﻿// http://www.beedub.com/Sprite093/src/lib/c/etc/gcvt.c
+// http://www.beedub.com/Sprite093/src/lib/c/etc/gcvt.c
 //#if defined(LIBC_SCCS) && !defined(lint)
 //static char sccsid[] = "@(#)gcvt.c	5.2 (Berkeley) 3/9/86";
 //#endif LIBC_SCCS and not lint

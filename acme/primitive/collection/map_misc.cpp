@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 
 //map_ptr_to_ptr::map_ptr_to_ptr()

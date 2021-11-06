@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 
 /*void sprint_hex(char * sz, i32 iValue)

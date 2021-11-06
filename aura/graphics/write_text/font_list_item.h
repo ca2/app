@@ -1,4 +1,4 @@
-﻿// Created by camilo 2021-06-06 04:25 <3ThomasBS_!!
+// Created by camilo 2021-06-06 04:25 <3ThomasBS_!!
 #pragma once
 
 

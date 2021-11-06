@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //#include "exception_installing.h"

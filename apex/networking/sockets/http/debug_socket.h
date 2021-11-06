@@ -1,4 +1,4 @@
-﻿/** \file http_debug_socket.h
+/** \file http_debug_socket.h
 **   \date  2004-09-27
 **/
 /*

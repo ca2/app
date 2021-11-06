@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 //#ifndef AXIS_AXIS_CORE_OS_H
 //#define AXIS_AXIS_CORE_OS_H
 

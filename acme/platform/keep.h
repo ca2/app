@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //inline ::payload & thread_property(const ::id & id);

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #if !defined COLORERMODE || defined NAMED_MATCHES_IN_HASH

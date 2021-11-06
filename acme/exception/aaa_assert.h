@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 class CLASS_DECL_ACME assert_exception :

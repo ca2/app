@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 // <3tbs, Mummi and bilbo!!

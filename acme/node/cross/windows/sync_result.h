@@ -1,4 +1,4 @@
-﻿/**
+/**
 * \brief	Session independent waitables
 */
 #pragma once

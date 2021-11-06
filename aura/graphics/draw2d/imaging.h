@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #define XFM_LOAD_IMAGE 12

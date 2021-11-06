@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #define NTDDI_VERSION   0x0A000000 // NTDDI_WIN10

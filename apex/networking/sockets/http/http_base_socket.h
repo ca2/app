@@ -1,4 +1,4 @@
-﻿/**
+/**
  **   \file http_base_socket.h
  **   \date  2007-10-05
  **   \author grymse@alhem.net

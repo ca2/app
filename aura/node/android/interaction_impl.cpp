@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "_android.h"
 #include "acme/node/operating_system/cross.h"
 #include "aura/os/android/windowing.h"

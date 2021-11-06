@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //CLASS_DECL_CORE int create_process(const ::string & _cmd_line, int * pprocessId);

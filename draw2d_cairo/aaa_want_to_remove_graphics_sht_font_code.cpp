@@ -1,4 +1,4 @@
-﻿
+
       if(g_iFtLevel < 0)
       {
 

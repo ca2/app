@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 class user_notify_icon_bridge;

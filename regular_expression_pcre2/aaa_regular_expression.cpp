@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "_regular_expression_pcre2.h"
 
 

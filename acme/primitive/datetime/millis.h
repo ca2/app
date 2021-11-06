@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 inline millis operator -(const ::millis& millis1, const ::millis& millis2);

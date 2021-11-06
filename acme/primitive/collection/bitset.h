@@ -1,4 +1,4 @@
-﻿// bitset standard header
+// bitset standard header
 #pragma once
 
 

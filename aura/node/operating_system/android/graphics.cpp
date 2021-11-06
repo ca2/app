@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "aqua/xml.h"
 #include "aura/graphics/draw2d/ttf_util.h"
 #include "aura/platform/static_start.h"

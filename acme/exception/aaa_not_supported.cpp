@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 
 not_supported_exception::not_supported_exception(const char * pszMessage) :

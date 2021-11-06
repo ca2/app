@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //template < class TYPE, class ARG_TYPE, class BASE_ARRAY >

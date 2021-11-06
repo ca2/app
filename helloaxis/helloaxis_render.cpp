@@ -1,4 +1,4 @@
-﻿//
+//
 //  helloaxis_render.cpp
 //  app_core_helloaxis
 //

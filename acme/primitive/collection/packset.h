@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 template < typename ID_TYPE, typename ARG_ID_TYPE, typename ITEM_TYPE, typename ARG_ITEM_TYPE, typename ARRAY = array < ITEM_TYPE, ARG_ITEM_TYPE > >

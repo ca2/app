@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/constant/timer.h"
 #include "core/user/user/_user.h"
 

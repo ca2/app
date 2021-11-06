@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 typedef void GENERATE_RANDOM_BYTES(void * p, memsize s);

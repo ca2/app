@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 // from cplusplus.com
 // FIFO queue

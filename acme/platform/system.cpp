@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/id.h"
 #include "node.h"
 #include "acme/filesystem/filesystem/acme_dir.h"

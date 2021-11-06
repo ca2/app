@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 // text_stream can be used for text string_streams (almost always)?
 

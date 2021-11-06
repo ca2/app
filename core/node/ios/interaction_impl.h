@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "round_window.h"

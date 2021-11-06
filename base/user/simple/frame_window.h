@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 class CLASS_DECL_BASE simple_frame_window :

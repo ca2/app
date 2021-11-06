@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "_linux.h"
 #include <sys/types.h>
 #include <sys/stat.h>

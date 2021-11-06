@@ -1,4 +1,4 @@
-﻿//
+//
 //  UncaughtExceptionHandler.h
 //  UncaughtExceptions
 //

@@ -1,4 +1,4 @@
-﻿/*
+/*
  *   Header file:      muldiv64.h
  *   Author:            Richard van der Wal
  *   Contact:         R.vdWal@xs4all.nl

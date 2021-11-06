@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/platform/static_setup.h"
 #include "core/user/user/_user.h"
 #include "core/const/idpool.h"

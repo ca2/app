@@ -1,4 +1,4 @@
-﻿/* -*- Mode: C; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
+/* -*- Mode: C; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*
  * Copyright (c) 2004, Apple Computer, Inc. and The Mozilla Foundation. 
  * All rights reserved.

@@ -1,4 +1,4 @@
-﻿/** \file socket_thread.cpp
+/** \file socket_thread.cpp
 **   \date  2021-07-26
 **   \author grymse@alhem.net
 **   \moved to this file by camilosasuketbs@gmail.com

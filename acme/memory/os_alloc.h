@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 void * os_alloc(memsize size);

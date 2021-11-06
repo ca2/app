@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "GLOBAL_ID.h"

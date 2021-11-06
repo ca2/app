@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #undef ::acme::get_system()

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 // raw_array is an array that does not call constructors or destructor in elements

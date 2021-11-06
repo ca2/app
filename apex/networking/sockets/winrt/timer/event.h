@@ -1,4 +1,4 @@
-﻿/** \file Event.h
+/** \file Event.h
  **   \date  2005-12-07
  **   \author grymse@alhem.net
 **/

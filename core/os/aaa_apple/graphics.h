@@ -1,4 +1,4 @@
-﻿//
+//
 //  apple_graphics.h
 //  aura
 //

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #include "LocalMemory.h"
 #include "ManualResetEvent.h"

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 
 //const char * callstack::get_dup(const char * pszFormat, i32 iSkip, int iCount)

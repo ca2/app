@@ -1,4 +1,4 @@
-﻿//
+//
 //  AuraWindow.h
 //  AuraWindow
 //

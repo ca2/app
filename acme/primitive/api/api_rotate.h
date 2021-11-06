@@ -1,4 +1,4 @@
-﻿/* RotateDefs.h -- Rotate functions
+/* RotateDefs.h -- Rotate functions
 2009-02-07 : Igor Pavlov : Public domain */
 // from 7-zip on 2012-12-23, lunch time
 #pragma once

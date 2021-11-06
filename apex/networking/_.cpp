@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "apex/networking/sockets/_sockets.h"
 #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 #include <arpa/inet.h>

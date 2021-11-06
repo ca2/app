@@ -1,4 +1,4 @@
-﻿// Create by camilo on 2021-04-11 00:45 BRT <3TBS_!!
+// Create by camilo on 2021-04-11 00:45 BRT <3TBS_!!
 #pragma once
 
 

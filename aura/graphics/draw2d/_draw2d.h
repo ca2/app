@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 DECLARE_ENUMERATION(e_dock, enum_dock);

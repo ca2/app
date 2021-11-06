@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 
 //char * ansi_copy(char * dest, const char * cpy)

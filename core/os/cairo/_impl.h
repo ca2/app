@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //inline void copy(RECTANGLE_I32 * prectTarget, const cairo_rectangle_int_t * prectSource)

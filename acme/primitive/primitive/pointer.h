@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #define TEMPLATE_TYPE typename __TEMPLATE_TYPE__ = nullptr_t

@@ -1,4 +1,4 @@
-﻿/**
+/**
  *   PROJECT - HTML Reader Class Library
  *
  *   lite_html_tag.h - Defines lite_html_tag

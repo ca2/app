@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 //thread_pointer < lconv > t_plconv;
 

@@ -1,4 +1,4 @@
-﻿//        apex / thomas thomas thomas my pray my life my GOD
+//        apex / thomas thomas thomas my pray my life my GOD
 // 
 //   
 //    

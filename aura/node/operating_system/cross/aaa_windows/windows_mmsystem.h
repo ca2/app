@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 typedef ::u32           FOURCC;         /* a four character code */

@@ -1,4 +1,4 @@
-﻿#include "StdAfx.h"
+#include "StdAfx.h"
 #include "ca2/radix/cafxdllx.h"
 
 #define sclip1(v, c) \

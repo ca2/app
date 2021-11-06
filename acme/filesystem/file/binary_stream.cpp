@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 
 binary_stream::binary_stream(const ::file_pointer & p) :

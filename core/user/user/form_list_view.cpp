@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "core/user/user/_user.h"
 #include "aura/update.h"
 #include "acme/constant/id.h"

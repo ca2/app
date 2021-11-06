@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "internal.h"
 #include "oswindow_data.h"
 

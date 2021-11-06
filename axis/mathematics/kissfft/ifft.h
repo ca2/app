@@ -1,4 +1,4 @@
-﻿#ifndef KISS_FTR_H
+#ifndef KISS_FTR_H
 #define KISS_FTR_H
 
 #include "fft.h"

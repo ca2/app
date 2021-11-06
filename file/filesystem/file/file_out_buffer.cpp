@@ -1,4 +1,4 @@
-﻿/*      void SetMemStream(byte *buffer) { _buffer2 = buffer; }
+/*      void SetMemStream(byte *buffer) { _buffer2 = buffer; }
 void SetStream(writer *stream);
 void Init();
 HRESULT flush();

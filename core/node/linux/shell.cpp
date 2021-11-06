@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 //#include "aura/node/ansios/ansios.h"
 #include "aura/node/linux/_linux.h"
 

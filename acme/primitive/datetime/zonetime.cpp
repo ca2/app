@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #if defined(LINUX)
 #include <time.h>
 #elif defined(__APPLE__)

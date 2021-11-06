@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 CLASS_DECL_AURA HANDLE create_file(

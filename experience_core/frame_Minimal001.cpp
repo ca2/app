@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 #define GRIP_CORNER_LARGE_CX 16
 #define GRIP_CORNER_SMALL_CX 5

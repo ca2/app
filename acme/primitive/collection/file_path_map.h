@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 template < class VALUE, typename ARG_VALUE = typename argument_of < VALUE >::type >

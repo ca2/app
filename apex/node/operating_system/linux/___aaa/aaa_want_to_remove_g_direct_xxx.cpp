@@ -1,4 +1,4 @@
-﻿#include "gnome.h"
+#include "gnome.h"
 #include "gtk_things/gnome_internal_glue.h"
 #include "apex/message/message_global.h"
 #include "platform/platform/platform.h"

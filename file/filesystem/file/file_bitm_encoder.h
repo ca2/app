@@ -1,4 +1,4 @@
-﻿// BitmEncoder.h -- the Most Significant Bit of byte is First
+// BitmEncoder.h -- the Most Significant Bit of byte is First
 // from 7-zip on 2012-12-23, dawn
 #pragma once
 

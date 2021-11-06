@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 
 os_exception::os_exception(const char * pszMessage):

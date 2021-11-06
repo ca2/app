@@ -1,4 +1,4 @@
-﻿//#include "apex/operating_system.h"
+//#include "apex/operating_system.h"
 //
 //
 //CLASS_DECL_ACME void set_main_thread();

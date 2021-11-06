@@ -1,4 +1,4 @@
-﻿/**
+/**
  * FreeRDP: A Remote Desktop Protocol Implementation
  * Event Handling
  *

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 //#include "acme/filesystem/file/stdio_file.h"
 #include "apex/filesystem/fs/_fs.h"
 

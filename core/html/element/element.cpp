@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "core/id.h"
 #include "core/html/html/_.h"
 #include "core/html/impl/_impl.h"

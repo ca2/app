@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //#include "acme/primitive/datetime/system_time.h"

@@ -1,4 +1,4 @@
-﻿
+
 void __node_axis_factory_exchange(::factory_map * pfactorymap);
 
 

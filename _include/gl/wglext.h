@@ -1,4 +1,4 @@
-﻿#ifndef __wglext_h_
+#ifndef __wglext_h_
 #define __wglext_h_
 
 #ifdef __cplusplus

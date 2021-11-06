@@ -1,4 +1,4 @@
-﻿//
+//
 //  RoundWindow.h
 //  RoundWindow
 //

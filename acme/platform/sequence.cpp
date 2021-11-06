@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 
 critical_section * g_pcriticalsectionSequence = nullptr;

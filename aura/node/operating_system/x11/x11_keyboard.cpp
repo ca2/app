@@ -1,4 +1,4 @@
-﻿// xkeyboard.cpp
+// xkeyboard.cpp
 // Implementation of a class to get keyboard on_layout information and machine layouts
 // Copyright (C) 2008 by Jay Bromley <jbromley@gmail.com>
 //

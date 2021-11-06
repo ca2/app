@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 // ThomasBS_ likes handler thing... ("everything" can turn into a handler when

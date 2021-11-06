@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 CLASS_DECL_APEX::e_status os_shell_initialize();

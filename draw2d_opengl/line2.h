@@ -1,4 +1,4 @@
-﻿/* Drawing nearly perfect 2D line segments in OpenGL
+/* Drawing nearly perfect 2D line segments in OpenGL
  * You can use this code however you want.
  * I just hope you to cite my name and the page of this technique:
  * http://artgrammer.blogspot.com/2011/05/drawing-nearly-perfect-2d-line-segments.html

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #if defined(MCHECK) || defined(_VLD) || defined(__MCRTDBG)
 

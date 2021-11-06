@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "_uwp.h"
 #include "acme/node/operating_system/universal_windows/_uwp.h"
 #include "acme/message.h"

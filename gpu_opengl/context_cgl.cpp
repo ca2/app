@@ -1,4 +1,4 @@
-﻿//
+//
 //  context_cgl.cpp
 //  gpu_opengl
 //

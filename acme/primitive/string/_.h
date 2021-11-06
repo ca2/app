@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 CLASS_DECL_ACME int trailingBytesForUTF8(ansichar ch);

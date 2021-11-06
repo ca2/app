@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "base/user/user/_user.h"
 #include "imm_client.h"
 #include "aaa_composition_imm_client.h"

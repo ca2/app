@@ -1,4 +1,4 @@
-﻿/*
+/*
      File: RoundTextRange.h
  Abstract: A UITextRange object represents a range of characters in a text container; in other words, it identifies a starting index and an ending index in string backing a text-entry object.
 

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 
 natural_meta_data < string_meta_data < wd16char > > * g_pwd16stringNil = nullptr;

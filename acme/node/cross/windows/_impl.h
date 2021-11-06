@@ -1,4 +1,4 @@
-﻿// This is acme API library.
+// This is acme API library.
 //
 //
 //

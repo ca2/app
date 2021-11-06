@@ -1,4 +1,4 @@
-﻿#ifndef __LIBSTROPHE_TEST_H__
+#ifndef __LIBSTROPHE_TEST_H__
 #define __LIBSTROPHE_TEST_H__
 
 #define TEST_MAIN \

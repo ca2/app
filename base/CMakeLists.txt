@@ -3,11 +3,11 @@ project(base CXX)
 
 
 list(APPEND library_source
-        const/charset.h
-        const/GLOBAL_ID.h
+        #const/charset.h
+   #const/GLOBAL_ID.h
         const/idpool.cpp
         const/idpool.h
-        const/procedure.h
+   #    const/procedure.h
         include/_.cpp
         include/_.h
         include/_c.h
@@ -231,7 +231,7 @@ list(APPEND library_source
         message.h
         procedure.h
         #timer.mm
-        update.h
+        #update.h
         user.h)
 
 if(WIN32)

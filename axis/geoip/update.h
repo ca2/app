@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 typedef enum {
    GEOIP_NO_NEW_UPDATES          = 1,   /* Dataaxis up-to-date, no action taken */

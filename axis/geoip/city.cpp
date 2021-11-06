@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "apex/networking/_networking.h"
 #include <stdio.h>
 #if !BROAD_PRECOMPILED_HEADER

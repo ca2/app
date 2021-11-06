@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "aura/os/android/windowing.h"
 #include "aura/platform/app_core.h"
 

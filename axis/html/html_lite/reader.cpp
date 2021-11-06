@@ -1,4 +1,4 @@
-﻿/**
+/**
 *   PROJECT - HTML Reader Class Library
 *
 *   lite_html_reader.cpp - lite_html_reader implementation

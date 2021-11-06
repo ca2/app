@@ -1,4 +1,4 @@
-﻿/*
+/*
  * CRT definitions
  *
  * Copyright 2000 Francois Gouget.

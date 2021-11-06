@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 
 ::crypto::hasher_algorithm* __hasher_algorithm(enum_hash ehash)

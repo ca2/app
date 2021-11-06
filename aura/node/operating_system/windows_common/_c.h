@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //struct lib_main_int

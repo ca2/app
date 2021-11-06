@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2006-2012 Spotify Ltd
  *
  * The terms of use for this and related files can be read in

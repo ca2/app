@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "aqua/multimedia/_.h"
 #include "tts_speaker.h"
 

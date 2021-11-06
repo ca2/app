@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "core/html/graphics/_.h"

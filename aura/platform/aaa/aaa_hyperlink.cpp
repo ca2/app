@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 
 hyperlink::hyperlink(::object * pobject) :

@@ -1,4 +1,4 @@
-﻿#include "framework.h" // from "aura/net/net_sockets.h"
+#include "framework.h" // from "aura/net/net_sockets.h"
 #include "aura/net/net_sockets.h"
 #include "pop3_socket.h"
 #include "simple_pop3.h"

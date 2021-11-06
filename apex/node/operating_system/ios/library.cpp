@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include <dlfcn.h>
 
 void * __node_library_touch(const char * pszPath, string & strMessage)

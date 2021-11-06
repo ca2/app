@@ -1,4 +1,4 @@
-﻿//
+//
 //  ios_main.cpp
 //  ios_apex
 //

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "xfplayer_view_line_selection.h"

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #define APPLICATION app_shader
 #define __APP_ID "app/shader"
 #if defined(WINDOWS_DESKTOP) && defined(CUBE)

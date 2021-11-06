@@ -1,4 +1,4 @@
-﻿/*
+/*
    Author   :   Nishant Sivakumar
    Date   :   June 9, 2005
    Info   :   Template class that makes it easy to use data allocated

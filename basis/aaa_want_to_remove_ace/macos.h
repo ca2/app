@@ -1,4 +1,4 @@
-﻿//
+//
 //  macos_file_raw.hpp
 //  ace
 //

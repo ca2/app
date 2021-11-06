@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //class library_object_allocator_base :

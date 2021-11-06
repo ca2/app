@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 
 interprocess_task::interprocess_task(interprocess_call* pcall, const ::id& idPid, i64 iTask) :

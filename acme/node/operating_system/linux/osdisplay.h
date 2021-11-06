@@ -1,4 +1,4 @@
-﻿
+
 
 
 class CLASS_DECL_AURA osdisplay_data

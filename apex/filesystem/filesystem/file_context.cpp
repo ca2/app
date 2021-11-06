@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "apex/operating_system.h"
 #include "acme/platform/acme_str_pool.h"
 #include "apex/platform/machine_event.h"

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "text_box.h"
 #include "font_list.h"
 

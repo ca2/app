@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 // Cynokron "influenced" by handjob collaboration to use just C - the best choice, Artful Ubuntu 17.10
 // using C++ to proof that C is better

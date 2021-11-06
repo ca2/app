@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE >, enum_type t_etypePayload = e_type_element >

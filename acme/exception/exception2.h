@@ -1,4 +1,4 @@
-﻿#define C_RUNTIME_ERROR_CHECK(expr) ::c_runtime_error_check(expr)
+#define C_RUNTIME_ERROR_CHECK(expr) ::c_runtime_error_check(expr)
 #ifndef C_RUNTIME_ERRORCHECK_SPRINTF
 #define C_RUNTIME_ERRORCHECK_SPRINTF(expr) \
 do { \

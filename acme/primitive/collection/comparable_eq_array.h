@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 template < class TYPE, class ARG_TYPE = const TYPE &, class ARRAY_TYPE = array < TYPE, ARG_TYPE > >
 class comparable_eq_array:

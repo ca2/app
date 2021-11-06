@@ -1,4 +1,4 @@
-﻿// -*- C++ -*-
+// -*- C++ -*-
 // $Id: io_strings.h,v 1.6 2002/06/29 17:43:24 t1mpy Exp $
 
 // id3lib: a software library for creating and manipulating id3v1/v2 tags

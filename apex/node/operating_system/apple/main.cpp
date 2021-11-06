@@ -1,4 +1,4 @@
-﻿//
+//
 //  apple_main.cpp
 //  apex
 //

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 //#include "universal_windows.h"
 //#include <winternl.h>
 //#include <VersionHelpers.h>

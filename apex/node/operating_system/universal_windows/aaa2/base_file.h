@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //CLASS_DECL_APEX void hfile_set_size(HANDLE h, i64 iSize);

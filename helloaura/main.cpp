@@ -1,4 +1,4 @@
-﻿#include "aura/console_slim.h"
+#include "aura/console_slim.h"
 
 
 int main(int argc, char * argv[])

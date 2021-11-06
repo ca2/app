@@ -1,4 +1,4 @@
-﻿//
+//
 //  apex_application_menu.cpp
 //  apex
 //

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //#include "apex/networking/sockets/bsd/webserver/httpd_socket.h"

@@ -1,4 +1,4 @@
-﻿#ifndef AXIS_X_TABLES_H
+#ifndef AXIS_X_TABLES_H
 #define AXIS_X_TABLES_H
 
 #pragma once

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include <sys/resource.h>
 #include "acme/node/operating_system/ansi/_pthread.h"
 

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "kiss_fft_guts.h"

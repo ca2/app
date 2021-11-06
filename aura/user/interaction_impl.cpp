@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "aura/user/_user.h"
 //#include "acme/node/operating_system/cross.h"
 #include "aura/platform/message_queue.h"

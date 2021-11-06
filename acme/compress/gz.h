@@ -1,4 +1,4 @@
-﻿/* version: 1.0, Feb, 2003
+/* version: 1.0, Feb, 2003
    Author : Gao Dasheng
    Copyright (C) 1995-2002 Gao Dasheng(dsgao@hotmail.com)
 

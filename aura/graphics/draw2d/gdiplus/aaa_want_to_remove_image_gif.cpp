@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 //#include "fiasco_finder.h"
 #include <Wincodec.h>
 

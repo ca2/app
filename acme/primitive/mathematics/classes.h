@@ -1,4 +1,4 @@
-﻿//
+//
 //  math_objects.h
 //  acme
 //

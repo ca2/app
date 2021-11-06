@@ -1,4 +1,4 @@
-﻿//
+//
 //  helloworld_render.h
 //  app_core_helloworld
 //

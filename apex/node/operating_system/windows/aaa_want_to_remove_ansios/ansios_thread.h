@@ -1,4 +1,4 @@
-﻿//#ifndef AXIS_ANSIOS_THREAD_H
+//#ifndef AXIS_ANSIOS_THREAD_H
 //#define AXIS_ANSIOS_THREAD_H
 
 

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 // arthur o'dwyer and stefanus du toit => AUTO Macro -> also may be a good idea to use proper case for template typename parameters
 // for not to be confused with MACROs

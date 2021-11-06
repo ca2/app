@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 /***
  *i32 _validdrive( unsigned drive ) -

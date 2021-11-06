@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //CLASS_DECL_APEX bool vfxFullPath(unichar * pszPathOut, const unichar * pszFileIn);

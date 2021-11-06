@@ -1,4 +1,4 @@
-﻿
+
 
 [MTAThread]
 int main(Array < String ^ > ^ stra)

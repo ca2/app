@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include <sys/time.h>
 
 // http://stackoverflow.com/questions/5167269/clock-gettime-alternative-in-mac-os-x

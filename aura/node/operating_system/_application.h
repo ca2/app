@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 void __set_aura_application_factory(__PFN_NEW_AURA_APPLICATION pfnNewAuraApplication);

@@ -1,4 +1,4 @@
-﻿//Copied by camilo on 2021-07-25 17:37 BRT <3ThomasBorregaardSørensen!!
+//Copied by camilo on 2021-07-25 17:37 BRT <3ThomasBorregaardSørensen!!
 #pragma once
 
 

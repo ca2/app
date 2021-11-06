@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 
 overflow_exception::overflow_exception(const char * pszMessage):

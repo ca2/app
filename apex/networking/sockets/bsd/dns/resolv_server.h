@@ -1,4 +1,4 @@
-﻿/** \file resolv_server.h
+/** \file resolv_server.h
 **   \date  2005-03-24
 **   \author grymse@alhem.net
 **/

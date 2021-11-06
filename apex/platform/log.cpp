@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "apex/networking/sockets/_.h"
 #include "apex/platform/app_core.h"
 #include "acme/filesystem/filesystem/acme_dir.h"

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 // xxf_is_zero

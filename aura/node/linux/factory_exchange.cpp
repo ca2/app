@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 //#include "acme/node/operating_system/_const_console.h"
 //#include "acme/node/operating_system/console.h"
 //#include "console.h"

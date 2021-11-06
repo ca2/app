@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 
 class CLASS_DECL_ACME what_exclamation_exclamation :

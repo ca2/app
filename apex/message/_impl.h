@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #define MESSAGE_LINK(id, pchannel, preceiver, phandler) \

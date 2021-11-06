@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "base/net/net_sockets.h"
 #include "db_str_set.h"
 

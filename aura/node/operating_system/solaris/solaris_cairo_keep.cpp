@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 
 cairo_surface_t *  ca_cairo_keep::g_cairosurface = nullptr;

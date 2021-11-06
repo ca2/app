@@ -1,4 +1,4 @@
-﻿//
+//
 //  message_loop.cpp
 //  aura
 //

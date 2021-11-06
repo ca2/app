@@ -1,4 +1,4 @@
-﻿/*
+/*
      File: RoundTextView.h
  Abstract:
  A impact that draws text, reasons about layout, and manages a selection over its text range.

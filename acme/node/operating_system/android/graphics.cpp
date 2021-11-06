@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 
 //int_bool window_set_mouse_cursor(oswindow window, HCURSOR hcursor)

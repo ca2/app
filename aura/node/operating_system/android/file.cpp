@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "aura/node/android/_android.h"
 #include "_android.h"
 

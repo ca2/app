@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 
 #if !defined(ANDROID) && !defined(WINDOWS_DESKTOP)

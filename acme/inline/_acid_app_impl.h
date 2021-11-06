@@ -1,4 +1,4 @@
-﻿
+
 
 
 ::acme::application * get_acid_app();

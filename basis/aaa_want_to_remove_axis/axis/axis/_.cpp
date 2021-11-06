@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 
 //#define LIB_MAIN_DEBUG_BOX (lib_main_any | lib_main_process_attach | lib_main_process_detach  | lib_main_thread_attach  | lib_main_thread_detach)

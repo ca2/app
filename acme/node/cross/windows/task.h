@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 typedef __pointer_array(::matter) object_array;

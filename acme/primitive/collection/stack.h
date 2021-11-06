@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 template < class TYPE, class ARG_TYPE = const TYPE &, class BASE_CONTAINER = deque < TYPE, ARG_TYPE > >

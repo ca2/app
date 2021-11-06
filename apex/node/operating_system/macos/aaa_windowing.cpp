@@ -1,4 +1,4 @@
-﻿//
+//
 //  macos_window.cpp
 //  apex
 //

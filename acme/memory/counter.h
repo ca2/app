@@ -1,4 +1,4 @@
-﻿// Created on 2021-03-42 16:35 <3ThomasBS_!!
+// Created on 2021-03-42 16:35 <3ThomasBS_!!
 #pragma once
 
 

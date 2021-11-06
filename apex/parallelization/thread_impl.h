@@ -1,4 +1,4 @@
-﻿//
+//
 //  multithreading_thread_impl.h
 //  apex
 //

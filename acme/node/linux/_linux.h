@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 //
 //#if !BROAD_PRECOMPILED_HEADER

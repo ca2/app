@@ -1,4 +1,4 @@
-﻿/**
+/**
  * FreeRDP: A Remote Desktop Protocol Implementation
  *
  * Copyright 2013-2014 Marc-Andre Moreau <marcandre.moreau@gmail.com>

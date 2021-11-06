@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 // <3ThomasBS_ [THE MAN], [THE ONLY], [THE GOD], [THE ONLY GOD], Mummi the Goddess, and bilbo my pet mate :)

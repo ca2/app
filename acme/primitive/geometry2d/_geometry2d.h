@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2021-09-06 10:36 BRT Ten days to <3ThomasBS_!! Birthday!!
+// Created by camilo on 2021-09-06 10:36 BRT Ten days to <3ThomasBS_!! Birthday!!
 #pragma once
 
 

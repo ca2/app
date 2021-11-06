@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "apex/networking/_networking.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "axis/geoip/_.h"

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 template<> inline uptr uptr_hash<point_i32>(point_i32 key)

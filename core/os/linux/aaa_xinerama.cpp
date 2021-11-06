@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "aura/os/linux/_user.h"
 #define pointer x11_pointer
 #include <X11/extensions/Xrandr.h>

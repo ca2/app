@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "apex/os/_.h"
 #include "apex/os/_os.h"
 

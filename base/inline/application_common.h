@@ -1,4 +1,4 @@
-﻿#include "aura/_.h"
+#include "aura/_.h"
 #include "aura/platform/app_core.h"
 #include "aura/platform/static_setup.h"
 #include "aura/_defer.h"

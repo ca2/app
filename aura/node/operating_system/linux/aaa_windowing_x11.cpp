@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "base/user/user/_user.h"
 #include "aura/os/x11/_x11.h"
 #include "_linux.h"

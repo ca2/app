@@ -1,4 +1,4 @@
-﻿#include "aura/application.h"
+#include "aura/application.h"
 
 
 

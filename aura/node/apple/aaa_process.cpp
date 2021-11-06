@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "aura/node/posix/pipe.h"
 #include "aura/node/apple/process.h"
 #include "apex/platform/app_core.h"

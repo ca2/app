@@ -1,4 +1,4 @@
-﻿#ifdef _UWP
+#ifdef _UWP
 
 
 CLASS_DECL_AURA bool windows_load_image_from_file(::image * pimage, ::winrt::Windows::Storage::Streams::IRandomAccessStream ^stream, ::aura::application * papp)

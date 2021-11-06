@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 
 user_exception::user_exception(::enum_status estatus, const char * pszMessage) :

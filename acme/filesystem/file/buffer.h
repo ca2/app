@@ -1,4 +1,4 @@
-﻿//// Common/Buffer.h
+//// Common/Buffer.h
 //// from 7-zip
 //#pragma once
 //

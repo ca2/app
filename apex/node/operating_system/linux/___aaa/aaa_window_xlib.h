@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 //#include <X11/extensions/Xrender.h>
 
 //#include "app/base/graphics/graphics_window_buffer.h"

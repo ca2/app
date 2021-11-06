@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 // Ubuntu apt-get install libx11-dev

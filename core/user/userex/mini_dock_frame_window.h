@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 class CLASS_DECL_CORE mini_dock_frame_window :

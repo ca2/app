@@ -1,4 +1,4 @@
-﻿/* public api for steve reid's public domain SHA-1 implementation */
+/* public api for steve reid's public domain SHA-1 implementation */
 /* this file is in the public domain */
 
 /** @file

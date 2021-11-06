@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 
 CLASS_DECL_ACME i32 ca2_main();

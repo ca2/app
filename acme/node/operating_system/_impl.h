@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #if defined(WINDOWS_DESKTOP)

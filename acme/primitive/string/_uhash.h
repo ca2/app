@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 template < >
 inline uptr uptr_hash < const char * >(const char * psz)

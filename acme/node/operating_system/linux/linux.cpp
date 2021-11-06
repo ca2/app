@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2021-09-13 00:13 BRT Thomas Month!! <3ThomasBS_!!
+// Created by camilo on 2021-09-13 00:13 BRT Thomas Month!! <3ThomasBS_!!
 #include "framework.h"
 #include "acme/operating_system.h"
 //#define _GNU_SOURCE

@@ -1,4 +1,4 @@
-﻿//
+//
 //  _impl_synchronization_result.h
 //  acme
 //

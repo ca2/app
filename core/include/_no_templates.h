@@ -1,4 +1,4 @@
-﻿//
+//
 //  _no_templates.h
 //  aura
 //

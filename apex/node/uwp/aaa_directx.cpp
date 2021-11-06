@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "app/draw2d_direct2d/_.h"
 #include "_uwp.h"
 

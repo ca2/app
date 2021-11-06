@@ -1,4 +1,4 @@
-﻿#include "framework.h" // previously aura/user/user.h
+#include "framework.h" // previously aura/user/user.h
 
 
 

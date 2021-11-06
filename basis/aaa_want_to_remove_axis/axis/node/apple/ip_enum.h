@@ -1,4 +1,4 @@
-﻿//
+//
 //  apple_ip_enum.hpp
 //  axis
 //

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "base/user/simple_ui/simple_ui_style.h"

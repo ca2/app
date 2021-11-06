@@ -1,4 +1,4 @@
-﻿//
+//
 //
 //	   Main header for the watcher class. Declares all implementation
 //	   classes to reduce compilation overhead.

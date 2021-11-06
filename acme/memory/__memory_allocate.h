@@ -1,4 +1,4 @@
-﻿//Created by camilo on 2021-07-24 01:05 BRT <3ThomasBorregaardSørensen!!
+//Created by camilo on 2021-07-24 01:05 BRT <3ThomasBorregaardSørensen!!
 
 
 #if !defined(MCHECK) && !defined(__VLD) && !defined(__MCRTDBG)

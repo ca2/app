@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 void __set_acme_application_factory(__PFN_NEW_ACME_APPLICATION pfnNewAuraApplication);

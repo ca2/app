@@ -1,4 +1,4 @@
-﻿void * CreateDispatchQueue();
+void * CreateDispatchQueue();
 
 void CancelDispatchSource(void * p);
 

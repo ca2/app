@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 #include "turboc.h"
 #include "turboc_private.h"

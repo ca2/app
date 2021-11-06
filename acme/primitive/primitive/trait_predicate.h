@@ -1,4 +1,4 @@
-﻿////
+////
 ////  trait_predicate.h
 ////  acme
 ////

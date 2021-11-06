@@ -1,4 +1,4 @@
-﻿#include "charguess.h"
+#include "charguess.h"
 #include <string.h>
 
 

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "_impl_prio.h"

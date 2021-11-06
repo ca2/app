@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (ca) 2001 - 2002
 Author: Konstantin Boukreev
 E-mail: konstantin@mail.primorye.ru

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "apex/networking/sockets/_sockets.h"
 #include "apex/filesystem/fs/_fs.h"
 #include "ifs_file.h"

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "hi5_oauth.h"

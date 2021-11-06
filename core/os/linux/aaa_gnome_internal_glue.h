@@ -1,4 +1,4 @@
-﻿
+
 
 //int m_psystem->m_pacmefile->exists(const ::string & path1);
 int is_dir(const ::string & path);

@@ -1,4 +1,4 @@
-﻿//
+//
 // crypto_initializer.h
 //
 // Created by camilo 2021-05-24 05:39 BRT <3ThomasBS_!!

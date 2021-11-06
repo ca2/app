@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "_.h"
 #include "_uwp.h"
 #include "aura/platform/message_queue.h"

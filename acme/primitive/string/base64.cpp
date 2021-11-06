@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 #define N1_A 0
 #define N1_B 1

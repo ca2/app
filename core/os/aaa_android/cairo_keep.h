@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 class CLASS_DECL_CORE ca_cairo_keep

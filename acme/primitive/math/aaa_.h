@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 //// SIGNED SIGNED
 //inline constexpr bool __lt(const i64 & a, const i64 & b) { return a < b; }

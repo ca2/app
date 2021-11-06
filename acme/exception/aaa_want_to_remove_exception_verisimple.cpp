@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 //
 //veri::exception::veri::exception(const char * pszMessage):

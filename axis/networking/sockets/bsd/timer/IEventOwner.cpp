@@ -1,4 +1,4 @@
-﻿/** \file IEventOwner.cpp
+/** \file IEventOwner.cpp
  **   \date  2005-12-07
  **   \author grymse@alhem.net
 **/

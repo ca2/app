@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #define TINY_ARRAY_BUILTIN_SIZE 4

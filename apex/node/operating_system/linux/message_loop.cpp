@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "_user.h"
 #include "acme/parallelization/message_queue.h"
 

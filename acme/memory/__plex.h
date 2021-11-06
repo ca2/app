@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #define CA2_PALACE_SAFE_ZONE_BORDER_SIZE 32
 

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 //#include "apex/node/ansios/ansios.h"
 #include "linux.h"
 

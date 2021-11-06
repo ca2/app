@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 
 BSTR CLASS_DECL_AURA bstring::sys_alloc_string_byte_len(const ::string & psz, strsize len)

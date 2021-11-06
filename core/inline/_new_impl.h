@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #if !defined(NO_AURA_MEMORY_MANAGEMENT)
 

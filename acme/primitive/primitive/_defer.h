@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #ifdef new
 #undef new

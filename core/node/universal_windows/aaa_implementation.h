@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 //#define __defer_register_class(fClass) __end_defer_register_class(fClass)
 

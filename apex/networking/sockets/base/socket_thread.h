@@ -1,4 +1,4 @@
-﻿// Copied by camilo on 2021-07-26 02:20 BRT <3ThomasBorregaardS�rensen!!
+// Copied by camilo on 2021-07-26 02:20 BRT <3ThomasBorregaardS�rensen!!
 #pragma once
 
 

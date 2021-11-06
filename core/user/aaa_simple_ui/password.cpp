@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "core/user/simple_ui/_simple_ui.h"
 
 namespace simple_ui

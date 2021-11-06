@@ -1,4 +1,4 @@
-﻿// Extrapolation from merge with control_"subject" by camilo on day after ThomasBirthday2021 10:16!!
+// Extrapolation from merge with control_"subject" by camilo on day after ThomasBirthday2021 10:16!!
 #pragma once
 
 

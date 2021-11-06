@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 /// Base class for implementing the notification stuff.

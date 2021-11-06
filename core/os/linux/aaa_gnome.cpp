@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "gtk_things/gnome_gnome.h"
 #include "aura/os/linux/appindicator.h"
 

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 template < typename OBJECT, typename TRANSPORT = transport < OBJECT > >

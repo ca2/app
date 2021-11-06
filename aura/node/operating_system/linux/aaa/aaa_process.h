@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //i32 create_process(const ::string & _cmd_line, i32 * pprocessId);

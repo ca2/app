@@ -1,4 +1,4 @@
-﻿#include "acme/_start.h"
+#include "acme/_start.h"
 #include "aura/_.h"
 #include "apex/platform/app_core.h"
 #include "acme/platform/static_setup.h"

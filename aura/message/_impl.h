@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //#define MSG_TYPE_LINK(emessagetype, pchannel, preceiver, phandler) \

@@ -1,4 +1,4 @@
-﻿//
+//
 //  winpr_keycode.hpp
 //  aura
 //

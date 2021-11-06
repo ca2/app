@@ -1,4 +1,4 @@
-﻿//
+//
 //  user_shell_metrowin.cpp
 //  apex
 //

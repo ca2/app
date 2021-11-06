@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 
 ::e_status gdiplus_draw_text(::draw2d::graphics* pgraphicsParam, ::draw2d::path* ppathParam, const string& str, rectangle_f64& rectangleParam, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::write_text::font* pfontParam, double dFontWidth, ::draw2d::brush* pbrushParam, bool bMeasure)

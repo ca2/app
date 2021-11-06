@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #define CA2_BASIS 1

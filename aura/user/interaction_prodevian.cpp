@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "aura/user/_user.h"
 #include "aura/message.h"
 #include "interaction_prodevian.h"

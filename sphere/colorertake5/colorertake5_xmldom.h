@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 /**
  * If true, traces line/column of an errors in the document

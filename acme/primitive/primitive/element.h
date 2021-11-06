@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2021-08-01 22:55 Thomas Month!! <3ThomasBS__!!
+// Created by camilo on 2021-08-01 22:55 Thomas Month!! <3ThomasBS__!!
 #pragma once
 
 

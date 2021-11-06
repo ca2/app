@@ -1,4 +1,4 @@
-﻿/*
+/*
      File: RoundEditView.h
  Abstract:
 A impact that illustrates how to implement and use the UITextInput protocol.

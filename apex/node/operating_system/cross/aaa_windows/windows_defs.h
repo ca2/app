@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #define WINE_NO_UNICODE_MACROS

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 using string_list = list < string >;

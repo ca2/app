@@ -1,4 +1,4 @@
-﻿#ifndef _COLORER_SHAREDINPUTSOURCE_H_
+#ifndef _COLORER_SHAREDINPUTSOURCE_H_
 #define _COLORER_SHAREDINPUTSOURCE_H_
 
 #include<common/Common.h>

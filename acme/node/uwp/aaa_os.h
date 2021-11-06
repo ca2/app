@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 bool CLASS_DECL_ACME vfxResolveShortcut(string & strTarget, const char * pszSource, ::user::primitive * puiMessageParentOptional = nullptr);

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 
 extern bool g_bCoreWindowOnceVisible;

@@ -1,4 +1,4 @@
-﻿//
+//
 //  browser_render.cpp
 //  app_core_browser
 //

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 
 not_licensed::not_licensed(const char * pszRealm, const char * pszUrl)

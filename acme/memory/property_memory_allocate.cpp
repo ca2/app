@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2021-07-25 01:30 BRT <3ThomasBorregaardSørensen!!
+// Created by camilo on 2021-07-25 01:30 BRT <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "acme/operating_system.h"
 

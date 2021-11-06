@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 template < typename CONTAINER, typename VALUE >

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/graphics/draw2d/common.h"
 #include "_uwp.h"
 #include <shlobj.h>

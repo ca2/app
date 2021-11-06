@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 template < typename SCALAR >
 inline string get_default_scalar_format()

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 // primitive array is a special array and should be used with care
 // it uses operations like __memmov and memcopy to move objects and does not

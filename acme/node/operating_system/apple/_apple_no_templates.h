@@ -1,4 +1,4 @@
-﻿//
+//
 //  _apple_no_templates.h
 //  acme
 //

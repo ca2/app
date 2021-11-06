@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "x/x_charcategory2.h"
 #include "x/x_charcategory_names.h"
 

@@ -1,4 +1,4 @@
-﻿// 2020-01-11 - Curitiba, ca2
+// 2020-01-11 - Curitiba, ca2
 
 // "pluggable" non-member non-virtual global serializers
 

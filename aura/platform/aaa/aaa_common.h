@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 CLASS_DECL_AURA errno_t c_runtime_error_check(errno_t error);
 CLASS_DECL_AURA void __cdecl __clearerr_s(FILE * stream);

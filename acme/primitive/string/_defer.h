@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #include "_conv_ansi_impl.h"
 

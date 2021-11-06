@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //#include "acme/regular_expression/_regular_expression.h"

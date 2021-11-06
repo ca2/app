@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "app/axis/axis/axis/axis.h"

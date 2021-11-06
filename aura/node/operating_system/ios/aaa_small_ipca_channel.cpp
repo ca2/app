@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include <sys/ipc.h>
 #include <sys/msg.h>
 #include <pthread.h>

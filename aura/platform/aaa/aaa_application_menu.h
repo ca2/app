@@ -1,4 +1,4 @@
-﻿//
+//
 //  aura_application_menu.hpp
 //  aura
 //

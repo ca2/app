@@ -1,4 +1,4 @@
-﻿#include "ace.h"
+#include "ace.h"
 #include "version.h"
 
 #define VER_PLATFORM_WIN32s                     0

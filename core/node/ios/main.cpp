@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 //#include <crt_externs.h>
 CLASS_DECL_CORE i32 ca2_main();

@@ -1,4 +1,4 @@
-﻿/* Copyright 2012 William Woodall and John Harrison */
+/* Copyright 2012 William Woodall and John Harrison */
 #include "framework.h"
 //
 //#if defined(WINDOWS_DESKTOP) || defined(LINUX) || defined(MACOS)

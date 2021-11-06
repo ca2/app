@@ -1,4 +1,4 @@
-﻿// http://www.jbox.dk/sanos/source/lib/fcvt.c.html
+// http://www.jbox.dk/sanos/source/lib/fcvt.c.html
 //
 // fcvt.c
 //

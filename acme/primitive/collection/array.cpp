@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 
 void _123abc_debug_gen_array_randomize(::matter * pobject);

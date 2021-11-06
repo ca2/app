@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "handler_manager.h"
 
 //handler_manager::handler_manager(const string& strThreadName, bool bSingleThread, int iAliveCount) :

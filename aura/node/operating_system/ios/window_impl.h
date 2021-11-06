@@ -1,4 +1,4 @@
-﻿//
+//
 //  ios_window_impl.h
 //  base
 //

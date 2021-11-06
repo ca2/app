@@ -1,4 +1,4 @@
-﻿// This is apex API library.
+// This is apex API library.
 //
 //
 //

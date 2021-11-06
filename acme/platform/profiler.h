@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 // circles, chain, daisies, sunflowers

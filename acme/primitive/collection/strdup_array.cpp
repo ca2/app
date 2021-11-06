@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2021-04-02 01:59 BRT <3TBS_!!
+// Created by camilo on 2021-04-02 01:59 BRT <3TBS_!!
 #include "framework.h"
 #include "strdup_array.h"
 

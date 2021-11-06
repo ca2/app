@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 //#include "draw2d_object.h"
 //#include "draw2d_bitmap.h"
 

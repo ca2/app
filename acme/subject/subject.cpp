@@ -1,4 +1,4 @@
-﻿// Injected in acme (camilo) from apex(thomas) by camilo on ThomasMonth19-2021 12:27 BRT
+// Injected in acme (camilo) from apex(thomas) by camilo on ThomasMonth19-2021 12:27 BRT
 #include "framework.h"
 #include "acme/platform/object_reference_count_debug.h"
 

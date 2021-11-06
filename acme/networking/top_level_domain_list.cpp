@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 
 const char8_t * g_pszTopLevelDomainList[] = 

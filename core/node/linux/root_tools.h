@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #ifdef IMPLEMENT_VISTA_TOOLS
 

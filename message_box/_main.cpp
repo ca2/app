@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #define APPLICATION app_message_box
 #define __APP_ID "app/message_box"
 #if defined(WINDOWS_DESKTOP) && defined(CUBE)

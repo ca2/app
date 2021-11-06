@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "platform/platform_setup.h"
 #include <limits.h>
 #include "__standard_type.h"

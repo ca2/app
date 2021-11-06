@@ -1,4 +1,4 @@
-﻿#ifndef _COLORER_FEATURES_H_
+#ifndef _COLORER_FEATURES_H_
 #define _COLORER_FEATURES_H_
 
 /**

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 inline bool tolerance_is_equal(double tolerance, double d1, double d2)

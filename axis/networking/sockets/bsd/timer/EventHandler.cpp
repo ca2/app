@@ -1,4 +1,4 @@
-﻿/** \file EventHandler.cpp
+/** \file EventHandler.cpp
  **   \date  2005-12-07
  **   \author grymse@alhem.net
 **/

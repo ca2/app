@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include <fcntl.h>
 #include <sys/file.h>
 #include <errno.h>

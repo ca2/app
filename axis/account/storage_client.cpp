@@ -1,4 +1,4 @@
-﻿//
+//
 //  account_storage_client.cpp
 //  aura
 //

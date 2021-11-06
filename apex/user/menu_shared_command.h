@@ -1,4 +1,4 @@
-﻿////
+////
 ////  menu_shared_command.h
 ////  apex
 ////

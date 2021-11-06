@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Win32 definitions for Windows NT
  *
  * Copyright 1996 Alexandre Julliard

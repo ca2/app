@@ -1,4 +1,4 @@
-﻿/*
+/*
   TurboC, a library for porting Borland Turbo C to GNU gcc.
   The entire contents of this source file is 
   Copyright (c) Igor Bujna 1999-2001.

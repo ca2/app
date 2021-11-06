@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #pragma pack(push, image_header, 1)

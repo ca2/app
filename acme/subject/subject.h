@@ -1,4 +1,4 @@
-﻿// Injected in acme (camilo) from apex(thomas) by camilo on ThomasMonth19-2021 12:27 BRT
+// Injected in acme (camilo) from apex(thomas) by camilo on ThomasMonth19-2021 12:27 BRT
 // Merge with control_"subject" by camilo on day after ThomasBirthday2021 10:14
 #pragma once
 

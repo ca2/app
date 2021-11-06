@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright(C) Nishant Sivakumar.
 URLs - http://blog.voidnish.com and http://www.voidnish.com
 Contact : nish@voidnish.com

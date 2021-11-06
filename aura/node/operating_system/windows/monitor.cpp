@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "aura/operating_system.h"
 #include "_windows.h"
 #include <highlevelmonitorconfigurationapi.h>

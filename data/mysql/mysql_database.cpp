@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/platform/profiler.h"
 #ifndef _UWP
 #include "acme/operating_system.h"

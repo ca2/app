@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 GEOIP_API u32 _GeoIP_seek_record (GeoIP *gi, u32 ipnum);
 GEOIP_API u32 _GeoIP_addr_to_num (const char *addr);

@@ -1,4 +1,4 @@
-﻿#include <sys/types.h>
+#include <sys/types.h>
 #include <sys/param.h>
 #define user user_struct
 //#include <sys/user.h>

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "core/user/simple/_simple.h"

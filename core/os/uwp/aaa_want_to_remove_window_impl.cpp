@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "metrowin.h"
 #include "metrowin_window_impl.h"
 

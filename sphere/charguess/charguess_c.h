@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 /*
 libcharguess   -  Guess the encoding/charset of a string

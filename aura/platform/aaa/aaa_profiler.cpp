@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "aura/platform/profiler2.h"
 #include <stdio.h>
 

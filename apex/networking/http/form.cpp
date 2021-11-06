@@ -1,4 +1,4 @@
-﻿#include "framework.h" 
+#include "framework.h" 
 #include "apex/networking/sockets/_.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #ifdef _MSC_VER

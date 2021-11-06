@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 //#include "plex_heap1.h"
 

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 template < typename TYPE, enum_type t_etypePayload = e_type_element >

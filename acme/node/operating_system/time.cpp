@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/operating_system.h"
 #include <time.h>
 #if defined(LINUX) || defined(__APPLE__)

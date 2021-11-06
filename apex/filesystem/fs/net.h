@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "fs_ifs_file.h"

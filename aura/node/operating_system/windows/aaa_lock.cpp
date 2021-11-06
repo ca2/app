@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 //i32 _c_lock_is_active(const ::string & lpszName)
 //{

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //inline void __var_exchange(var_stream & s, const ::id & id, i8 & i) { s.default_exchange(id, i); }

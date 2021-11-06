@@ -1,4 +1,4 @@
-﻿#ifndef _COLORER_FILEINPUTSOURCE_H_
+#ifndef _COLORER_FILEINPUTSOURCE_H_
 #define _COLORER_FILEINPUTSOURCE_H_
 
 #include<common/io/input_source.h>

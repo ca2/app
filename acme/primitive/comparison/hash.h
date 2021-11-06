@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 inline u32 hash_cat(u32 uHash1, u32 uHash2) { return uHash1 << 16 | uHash2; }

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 using base_string_to_string = string_map < string,const string & > ;

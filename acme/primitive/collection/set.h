@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #define new ACME_NEW

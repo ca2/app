@@ -1,4 +1,4 @@
-﻿//#include "acme/platform/static_start.h"
+//#include "acme/platform/static_start.h"
 //
 //extern ::acme::acme g_acme;
 

@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2021-03-24 15:03 BRT <3ThomasBS_!!
+// Created by camilo on 2021-03-24 15:03 BRT <3ThomasBS_!!
 #include "framework.h"
 #include "cleanup_task.h"
 

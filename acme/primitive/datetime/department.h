@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #define INTERNATIONAL_DATE_HOUR_FORMAT_FOR_FILE "%Y-%m-%d %H"

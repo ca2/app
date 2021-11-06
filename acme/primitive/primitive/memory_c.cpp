@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 
 CLASS_DECL_ACME void* __memmov(void * dst, const void * src, memsize iSize)

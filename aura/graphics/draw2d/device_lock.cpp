@@ -1,4 +1,4 @@
-﻿// Refactoring device_lock by camilo by 2021-09-08 16:25 BRT <3ThomasBS__!!
+// Refactoring device_lock by camilo by 2021-09-08 16:25 BRT <3ThomasBS__!!
 #include "framework.h"
 
 

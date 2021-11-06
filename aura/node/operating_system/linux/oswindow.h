@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 //
 //// define portable types for 32-bit / 64-bit OS

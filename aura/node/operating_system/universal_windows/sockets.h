@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #define AF_UNSPEC       0                 
 #define AF_INET         2                 // internetwork: UDP, TCP, etc.

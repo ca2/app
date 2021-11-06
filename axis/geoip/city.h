@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 typedef struct GeoIPRecordTag {
    char *country_code;

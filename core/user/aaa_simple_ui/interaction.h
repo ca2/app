@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //#include "base/base/message/message_user.h"

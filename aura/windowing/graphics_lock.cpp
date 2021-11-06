@@ -1,4 +1,4 @@
-﻿// Created by camilo from graphics/draw2d/device_lock on 2021-09-04 06:08 BRT <3ThomasBS__!!
+// Created by camilo from graphics/draw2d/device_lock on 2021-09-04 06:08 BRT <3ThomasBS__!!
 #include "framework.h"
 #include "aura/operating_system.h"
 

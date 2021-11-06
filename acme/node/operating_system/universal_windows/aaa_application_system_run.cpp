@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 //#include "acme/node/universal_windows/directx.h"
 //#include "acme/node/universal_windows/directx_interaction.h"
 //#include "acme/node/universal_windows/directx_impact.h"

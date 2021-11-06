@@ -1,4 +1,4 @@
-﻿//
+//
 //  boot_window.h
 //  os
 //

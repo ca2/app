@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "aqua/xml.h"
 #include "aura/const/idpool.h"
 

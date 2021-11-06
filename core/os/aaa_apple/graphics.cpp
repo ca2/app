@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "graphics.h"
 #include <CoreFoundation/CoreFoundation.h>
 #include <CoreText/CoreText.h>

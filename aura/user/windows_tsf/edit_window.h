@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //#include  "aura/user/edit_window.h"

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //#include "android_vsnord_native_app_glue.h"

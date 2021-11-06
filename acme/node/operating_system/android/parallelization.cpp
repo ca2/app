@@ -1,4 +1,4 @@
-﻿// Created by camilo 2020-12-18 05:48 BRT <3TBS, Mummi and bilbo!!
+// Created by camilo 2020-12-18 05:48 BRT <3TBS, Mummi and bilbo!!
 #include "framework.h"
 
 

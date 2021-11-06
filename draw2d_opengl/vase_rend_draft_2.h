@@ -1,4 +1,4 @@
-﻿// Original Name : vase_rend_draft_1.h
+// Original Name : vase_rend_draft_1.h
 
 /* Drawing nearly perfect 2D line segments in OpenGL
  * You can use this code however you want.

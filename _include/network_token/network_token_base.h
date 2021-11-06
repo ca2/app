@@ -1,4 +1,4 @@
-﻿#ifndef NETWORK_TOKEN_BASE_H
+#ifndef NETWORK_TOKEN_BASE_H
 #define NETWORK_TOKEN_BASE_H
 
 #include <array>

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //#include "core/user/experience/control_box.h"

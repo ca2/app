@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 
 int_bool delete_hcursor(HCURSOR hcursor)

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 typedef struct ssl_st SSL;

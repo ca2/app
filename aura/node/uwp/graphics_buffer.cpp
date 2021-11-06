@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "_uwp.h"
 #include "aura/os/universal_windows/_uwp.h"
 #include "aura/message.h"

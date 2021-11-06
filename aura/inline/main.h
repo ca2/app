@@ -1,4 +1,4 @@
-﻿#include "main_common.h"
+#include "main_common.h"
 
 
 #ifdef LINUX

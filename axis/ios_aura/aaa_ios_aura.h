@@ -1,4 +1,4 @@
-﻿//
+//
 //  ios_aura.h
 //  ios_aura
 //

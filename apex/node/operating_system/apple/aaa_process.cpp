@@ -1,4 +1,4 @@
-﻿//
+//
 //  process.cpp
 //  ios_apex
 //

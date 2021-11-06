@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Compilers that uses ILP32, LP64 or P64 type models
  * for both Win32 and Win64 are supported by this file.
  *

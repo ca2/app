@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "sphere/net/mail/pop3_socket.h"

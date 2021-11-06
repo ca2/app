@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "_uwp.h"
 //#include "metrowin_window_impl.h"
 //#include "base/user/user.h"

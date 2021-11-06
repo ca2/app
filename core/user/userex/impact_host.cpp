@@ -1,4 +1,4 @@
-﻿//
+//
 //  userex_view_container.cpp
 //  app_veriwell_musical_player
 //

@@ -1,4 +1,4 @@
-﻿//
+//
 //  ui_interaction.cpp
 //  apex
 //

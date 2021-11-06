@@ -1,4 +1,4 @@
-﻿/** \file base_socket_handler.h
+/** \file base_socket_handler.h
 **   \date  2004-02-13
 **   \author grymse@alhem.net
 **/

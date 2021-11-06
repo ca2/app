@@ -1,4 +1,4 @@
-﻿//
+//
 //  windows_thread.h
 //  apex
 //

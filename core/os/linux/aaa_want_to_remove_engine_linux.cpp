@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #ifdef WINDOWS_DESKTOP
 #define WORK_AROUND_SRCLINE_BUG
 

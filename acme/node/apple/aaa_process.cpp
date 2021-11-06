@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/node/posix/pipe.h"
 #include "acme/node/apple/process.h"
 #include "acme/platform/app_core.h"

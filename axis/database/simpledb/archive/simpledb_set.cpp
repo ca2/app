@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 
 db_set::db_set(db_server * pserver, const ::string & pszTable)

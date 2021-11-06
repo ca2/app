@@ -1,3 +1,3 @@
-﻿
+
 #include "framework.h"
 

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "base/user/experience/_experience.h"
 #include "acme/constant/timer.h"
 

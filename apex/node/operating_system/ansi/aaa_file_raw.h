@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //CLASS_DECL_APEX int_bool file_exists_raw(const char * path1);

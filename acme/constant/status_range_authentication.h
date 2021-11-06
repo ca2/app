@@ -1,4 +1,4 @@
-﻿//
+//
 //  status_range_authentication.h
 //  (account_e_success.h)
 //  acme

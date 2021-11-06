@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "_linux.h"
 
 #define DEFINE_MESSAGE(wm)  { wm, #wm }

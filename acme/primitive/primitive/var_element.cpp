@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 /*
 e_type_element = 8000,

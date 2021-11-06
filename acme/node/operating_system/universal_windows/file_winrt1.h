@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 CLASS_DECL_ACME ::winrt::Windows::Storage::StorageFolder ^ get_os_folder(const char * lpcszDirName);

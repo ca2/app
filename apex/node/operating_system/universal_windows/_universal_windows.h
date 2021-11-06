@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "acme/node/operating_system/universal_windows/_universal_windows.h"

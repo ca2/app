@@ -1,4 +1,4 @@
-﻿/** \file socket_include.cpp
+/** \file socket_include.cpp
  **   \date  2004-11-28
  **   \author grymse@alhem.net
 **/

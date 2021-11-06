@@ -1,4 +1,4 @@
-﻿//
+//
 //  macos_user.h
 //  acme
 //

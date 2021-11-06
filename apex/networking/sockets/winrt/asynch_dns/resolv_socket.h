@@ -1,4 +1,4 @@
-﻿/** \file resolv_socket.h
+/** \file resolv_socket.h
 **   \date  2005-03-24
 **   \author grymse@alhem.net
 **/

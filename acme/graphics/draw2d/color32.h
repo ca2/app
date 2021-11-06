@@ -1,4 +1,4 @@
-﻿//
+//
 // Created by camilo on 28/01/2021. 03:28 CamiloSasukeThomasBorregaardSørensen
 //
 #pragma once

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 // pgraphics->get_text_extent("->:<-"); // oh no!! omg!! The size is the size of the alien!!
 #define MAGIC_PALACE_TAB_SPLT "->:<-"

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "apex/os/linux/_linux.h"

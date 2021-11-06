@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 
 exit_exception::exit_exception(__pointer(::task) playeredThreadExit, const char * pszMessage) :

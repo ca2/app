@@ -1,4 +1,4 @@
-﻿//
+//
 // Created by camilo on 04/03/2021. 06:40 BRT ThomasBS_, I love you!!
 //
 #include "framework.h"

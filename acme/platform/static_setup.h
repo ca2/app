@@ -1,4 +1,4 @@
-﻿//
+//
 //  apex_app.h
 //  apex
 //
@@ -16,7 +16,7 @@ extern "C" void library ## _factory_exchange(::factory_map* pfactorymap);
 static_setup      m_setup_ ## library{ &library ## _factory_exchange, #library}
 
 
-class node_data_exchange;
+//class node_data_exchange;
 
 
 //void apex_set_get_new_application(PFN_NEW_APEX_APPLICATION pnewapplication);
@@ -60,7 +60,7 @@ public:
 
 
    inline bool should_install() { return !has_flag(flag_do_not_install); }
-   bool has_flag(::static_setup::enum_flag eflag) { return ((int)m_eflag & (int)eflag) == (int)eflag; }
+   [[nodiscard]] bool has_flag(::static_setup::enum_flag eflag) { return ((int)m_eflag & (int)eflag) == (int)eflag; }
 
 
    static static_setup* get_last(::static_setup::enum_flag eflag, const char* pszName = nullptr);
@@ -91,7 +91,7 @@ public:
    __pointer(::acme::library) _create_library() override { return __new(LIBRARY); }
 
 
-   static_library_factory(const char * pszName = "") :
+   explicit static_library_factory(const char * pszName = "") :
       static_setup(flag_library, pszName)
    {
 
@@ -112,7 +112,7 @@ public:
    __pointer(::element) _create_element() override { return __new(OBJECT); }
 
 
-   static_object_factory(::static_setup::enum_flag eflag, const char* pszName = "") :
+   explicit static_object_factory(::static_setup::enum_flag eflag, const char* pszName = "") :
       static_setup(eflag, pszName)
    {
 

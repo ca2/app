@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "media_foundation.h"
 #undef Context
 #include "apex/operating_system.h"

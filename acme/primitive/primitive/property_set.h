@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 // property set key is case insensitive

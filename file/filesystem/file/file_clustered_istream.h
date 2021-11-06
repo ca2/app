@@ -1,4 +1,4 @@
-﻿// LimitedStreams.h
+// LimitedStreams.h
 // from 7-zip on 2012-12-23, lunch time
 #pragma once
 

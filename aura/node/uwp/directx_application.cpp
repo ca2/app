@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "aura/os/windows_common/draw2d_direct2d_global.h"
 #include "aura/os/universal_windows/_winrt.h"
 #include "aura/node/universal_windows/_uwp.h"

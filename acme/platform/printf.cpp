@@ -1,4 +1,4 @@
-﻿// print formatted.cpp
+// print formatted.cpp
 
 // based on:
 // LIBCTINY - Matt Pietrek 2001

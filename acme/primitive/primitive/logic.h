@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 inline bool _xor(bool b1, bool b2)
 {

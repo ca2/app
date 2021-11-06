@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 typedef void FN_CAIRO_TEXT(cairo_t *, const char *);

@@ -1,4 +1,4 @@
-﻿// Camilo Sasuke Tsumanuma 2020-03-08
+// Camilo Sasuke Tsumanuma 2020-03-08
 #pragma once
 
 

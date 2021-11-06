@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "aura/node/universal_windows/_uwp.h"
 #include "aura/node/universal_windows/directx_application.h"
 

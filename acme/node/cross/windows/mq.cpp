@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 //#include "acme/node/operating_system/_c.h"
 //#include "acme/node/operating_system/_.h"
 //#include "acme/node/operating_system/_os.h"

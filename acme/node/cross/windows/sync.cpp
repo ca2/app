@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 
 //synchronization_object::synchronization_object(const char * lpszName)

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #if defined(ANDROID)
 //#define index system_index

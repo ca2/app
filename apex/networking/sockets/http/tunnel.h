@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //#include "sockets_http_socket.h"

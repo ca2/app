@@ -1,4 +1,4 @@
-﻿//
+//
 //  context_fbo.hpp
 //  gpu_opengl
 //

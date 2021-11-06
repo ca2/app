@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "base/user/simple/_simple.h"
 #include "base/user/menu/_menu.h"
 #include "aura/update.h"

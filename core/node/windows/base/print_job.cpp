@@ -1,4 +1,4 @@
-﻿#include "framework.h" 
+#include "framework.h" 
 #include "aura/user/print_job.h"
 #include "_windows.h"
 

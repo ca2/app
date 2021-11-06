@@ -1,4 +1,4 @@
-﻿// BitlEncoder.h -- the Least Significant Bit of byte is First
+// BitlEncoder.h -- the Least Significant Bit of byte is First
 // from 7-zip on 2012-12-23, dawn
 #pragma once
 

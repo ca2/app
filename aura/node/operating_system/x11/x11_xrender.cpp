@@ -1,4 +1,4 @@
-﻿#include "platform/config.h"
+#include "platform/config.h"
 //!!!#include <X11/Xlib.h>
 //!!!#include <X11/extensions/Xinerama.h>
 #define pointer x11pointer

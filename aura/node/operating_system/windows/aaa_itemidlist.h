@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 /*-------------------------------------
 |   itemidlist class for operate     |
 | ITEMIDLIST data type and more       |

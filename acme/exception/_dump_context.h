@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 void __dump_stack(u32 dwFlags = __stack_dump_TARGET_DEFAULT);

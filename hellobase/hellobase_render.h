@@ -1,4 +1,4 @@
-﻿//
+//
 //  hellobase_render.h
 //  app_core_hellobase
 //

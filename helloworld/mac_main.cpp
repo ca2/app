@@ -1,4 +1,4 @@
-﻿//
+//
 //  mac_main.cpp
 //  Hello World!!
 //

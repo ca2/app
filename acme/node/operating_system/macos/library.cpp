@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include <dlfcn.h>
 #ifdef __APPLE__
 #include <mach-o/dyld.h>

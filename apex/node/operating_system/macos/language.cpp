@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 //
 //CLASS_DECL_APEX ::file::path get_resource_path()

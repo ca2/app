@@ -1,4 +1,4 @@
-﻿// -*- C++ -*-
+// -*- C++ -*-
 // $Id: reader.h,v 1.13 2002/07/02 22:10:57 t1mpy Exp $
 
 // id3lib: a software library for creating and manipulating id3v1/v2 tags

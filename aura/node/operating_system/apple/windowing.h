@@ -1,4 +1,4 @@
-﻿//
+//
 //  windowing.hpp
 //  aura
 //

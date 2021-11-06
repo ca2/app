@@ -1,4 +1,4 @@
-﻿/* sock.h
+/* sock.h
 ** strophe XMPP client library -- socket abstraction header
 **
 ** Copyright (C) 2005-2009 Collecta, Inc. 

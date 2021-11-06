@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "apex/node/operating_system/windows/_windows.h"

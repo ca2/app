@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 /* Copyright 2012 William Woodall and John Harrison */
 
 

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "_windows_runtime.h"
 //#include "apex/node/universal_windows/_windows_runtime.h"
 //#include "apex/os/windows_common/draw2d_direct2d_global.h"

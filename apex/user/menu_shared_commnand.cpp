@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "menu_shared_command.h"
 #include "menu_shared.h"
 

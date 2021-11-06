@@ -1,4 +1,4 @@
-﻿// From user namespace to global at apex by camilo on day after ThomasBirthday2021 04:36 BRT
+// From user namespace to global at apex by camilo on day after ThomasBirthday2021 04:36 BRT
 // From aura by camilo on ThomasBirthday2021 21:12 BRT
 #pragma once
 

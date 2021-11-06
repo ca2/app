@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 // // application_bias contains information inherited mainly and by-designly from method party/application/system

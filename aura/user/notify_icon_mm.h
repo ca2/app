@@ -1,4 +1,4 @@
-﻿//
+//
 //  user_notify_icon_mm.h
 //  aura
 //

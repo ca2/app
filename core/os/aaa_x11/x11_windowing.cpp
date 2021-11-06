@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "aura/os/linux/_user.h"
 //!!!#include <X11/extensions/Xinerama.h>
 

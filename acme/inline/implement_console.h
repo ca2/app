@@ -1,6 +1,5 @@
 ﻿
 
-#include "acme/platform/static_setup.h"
 #include "_main_hold.h"
 
 

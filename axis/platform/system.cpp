@@ -4,8 +4,7 @@
 #include "acme/constant/id.h"
 #include "acme/platform/profiler.h"
 #include "acme/platform/static_setup.h"
-#include "axis/const/idpool.h"
-//#include "axis/database/sqlitedb/database.h"
+#include "axis/constant/idpool.h"
 
 
 void __node_axis_factory_exchange(::factory_map * pfactorymap);

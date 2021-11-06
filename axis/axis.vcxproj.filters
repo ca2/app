@@ -88,12 +88,6 @@
     <Filter Include="Source Files\graphics\render">
       <UniqueIdentifier>{61eb10b5-b625-4953-aeb5-ca7c37ae009a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\const">
-      <UniqueIdentifier>{a750a202-9e18-49c5-9e98-56d9beca276b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\const">
-      <UniqueIdentifier>{1f7a5706-62b9-4115-a745-628e4325230b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\database">
       <UniqueIdentifier>{18a61fd2-bfd9-4f88-9df9-c7dc6120a358}</UniqueIdentifier>
     </Filter>
@@ -144,6 +138,12 @@
     </Filter>
     <Filter Include="Source Files\mathematics\calculator">
       <UniqueIdentifier>{6a37fb68-d64d-411d-b3d3-d6ff7d4dc37d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\constant">
+      <UniqueIdentifier>{1f7a5706-62b9-4115-a745-628e4325230b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\constant">
+      <UniqueIdentifier>{a750a202-9e18-49c5-9e98-56d9beca276b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -233,9 +233,6 @@
     </ClInclude>
     <ClInclude Include="platform\system.h">
       <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="math\_.h">
-      <Filter>Header Files\mathematics</Filter>
     </ClInclude>
     <ClInclude Include="math\calculator\_.h">
       <Filter>Header Files\mathematics\calculator</Filter>
@@ -516,9 +513,6 @@
     <ClInclude Include="user\simple_ui_draw.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="const\idpool.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
     <ClInclude Include="id.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -539,6 +533,21 @@
     </ClInclude>
     <ClInclude Include="database\database\transaction.h">
       <Filter>Header Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="mathematics\_.h">
+      <Filter>Header Files\mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="mathematics\_mathematics.h">
+      <Filter>Header Files\mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="geoip\_geoip.h">
+      <Filter>Header Files\geoip</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\idpool.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="_.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -692,9 +701,6 @@
     <ClCompile Include="user\simple_ui_draw.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="const\idpool.cpp">
-      <Filter>Source Files\const</Filter>
-    </ClCompile>
     <ClCompile Include="database\database\database_impl.cpp">
       <Filter>Source Files\database\database</Filter>
     </ClCompile>
@@ -757,6 +763,9 @@
     </ClCompile>
     <ClCompile Include="mathematics\kissfft\ifftd.cpp">
       <Filter>Source Files\mathematics\kissfft</Filter>
+    </ClCompile>
+    <ClCompile Include="constant\idpool.cpp">
+      <Filter>Source Files\constant</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

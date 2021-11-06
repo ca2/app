@@ -1821,7 +1821,7 @@ using context_pointer = __pointer(context);
 
 
 
-// From apex by camilo 2021-11-01 13:41 BRT <3ThomasBorregaardSørensen!!
+// From apex by camilo 2021-11-01 13:41 BRT <3ThomasBorregaardSï¿½rensen!!
 CLASS_DECL_ACME __pointer(class ::system) platform_create_system(const char * pszAppId);
 
 

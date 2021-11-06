@@ -3,6 +3,7 @@
 #include <stdio.h>
 #if !BROAD_PRECOMPILED_HEADER
 #include "axis/geoip/_.h"
+#include "axis/geoip/_geoip.h"
 #endif
 
 

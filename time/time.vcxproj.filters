@@ -95,6 +95,9 @@
     <ClInclude Include="datetime\clock_visual.h">
       <Filter>Header Files\datetime</Filter>
     </ClInclude>
+    <ClInclude Include="_time.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">

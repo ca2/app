@@ -945,6 +945,7 @@
     <ClInclude Include="graphics\visual\calendar.h" />
     <ClInclude Include="graphics\visual\clock.h" />
     <ClInclude Include="_.h" />
+    <ClInclude Include="_time.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="calculator\element.cpp" />

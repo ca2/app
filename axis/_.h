@@ -1,6 +1,9 @@
 ///TBS__<3tbs
 #pragma once
 
+#undef __spin_namespace
+#define __spin_namespace axis // back bone / four-letter "spin*" namespace name
+
 
 #include "aura/_.h"
 

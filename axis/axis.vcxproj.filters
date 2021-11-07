@@ -582,6 +582,9 @@
     <ClInclude Include="networking\_.h">
       <Filter>Header Files\networking</Filter>
     </ClInclude>
+    <ClInclude Include="networking\networking_application_handler.h">
+      <Filter>Header Files\networking</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platform\application.cpp">
@@ -804,6 +807,9 @@
       <Filter>Source Files\networking</Filter>
     </ClCompile>
     <ClCompile Include="networking\networking_application.cpp">
+      <Filter>Source Files\networking</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\networking_application_handler.cpp">
       <Filter>Source Files\networking</Filter>
     </ClCompile>
   </ItemGroup>

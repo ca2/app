@@ -627,6 +627,7 @@
     <ClInclude Include="math\kissfft\ifft.h" />
     <ClInclude Include="math\kissfft\ifftd.h" />
     <ClInclude Include="math\kissfft\_.h" />
+    <ClInclude Include="networking\networking_application_handler.h" />
     <ClInclude Include="networking\networking_application_socket.h" />
     <ClInclude Include="networking\netserver\socket.h" />
     <ClInclude Include="networking\netserver\socket_handler.h" />
@@ -734,6 +735,7 @@
     <ClCompile Include="mathematics\kissfft\ifft.cpp" />
     <ClCompile Include="mathematics\kissfft\ifftd.cpp" />
     <ClCompile Include="networking\networking_application.cpp" />
+    <ClCompile Include="networking\networking_application_handler.cpp" />
     <ClCompile Include="networking\networking_application_socket.cpp" />
     <ClCompile Include="networking\email_department.cpp" />
     <ClCompile Include="networking\netserver\socket.cpp" />

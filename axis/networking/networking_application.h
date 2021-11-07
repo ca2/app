@@ -4,13 +4,14 @@
 
 
 class CLASS_DECL_AXIS networking_application :
-   virtual public ::object
+   virtual public ::networking_application_handler
 {
 public:
 
 
-   __composite(::netserver::socket_thread_base)       m_psocketthread;
-   int                                                m_iPort;
+   __composite(::netserver::socket_thread_base)                   m_psocketthread;
+   int                                                            m_iPort;
+   string_map < __pointer(::networking_application_handler) >     m_mapnetworkingapplicationhandler;
 
 
    networking_application();
@@ -23,7 +24,7 @@ public:
    ::e_status create_networking_application();
 
 
-   string on_html_response(const ::string& strUrl, const ::property_set& setPost);
+   string on_html_response(const ::string& strUrl, const ::property_set& setPost) override;
 
 
 };

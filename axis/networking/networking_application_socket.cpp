@@ -23,7 +23,7 @@ void networking_application_socket::on_send_response()
 
    string strUrl;
 
-   strUrl = request().m_strRequestUri;
+   strUrl = request().a_url();
 
    property_set setPost;
 

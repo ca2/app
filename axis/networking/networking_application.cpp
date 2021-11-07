@@ -74,6 +74,33 @@ networking_application::~networking_application()
 string networking_application::on_html_response(const ::string& strUrl, const ::property_set& setPost)
 {
 
+   string strRequestScript = m_psystem->url()->get_script(strUrl);
+
+   for (auto& assoc : m_mapnetworkingapplicationhandler)
+   {
+
+      auto strFolder = assoc.m_element1;
+
+      auto phandler = assoc.m_element2;
+
+      if (phandler && strFolder.has_char())
+      {
+
+         string strScript = "/" + strFolder;
+
+         string strScriptPrefix = strScript + "/";
+
+         if (strRequestScript == strScript || strRequestScript.begins(strScriptPrefix))
+         {
+
+            return phandler->on_html_response(strUrl, setPost);
+
+         }
+
+      }
+
+   }
+
    string strHtml;
 
    auto psystem = m_psystem;

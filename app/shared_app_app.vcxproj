@@ -236,7 +236,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp" />
-    <ClCompile Include="_main.cpp" />
+    <ClCompile Include="_app_app.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\..\archive\platform-windows\version.rc" />

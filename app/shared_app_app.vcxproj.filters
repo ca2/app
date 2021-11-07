@@ -26,7 +26,7 @@
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="_main.cpp">
+    <ClCompile Include="_app_app.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

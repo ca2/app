@@ -24,7 +24,7 @@ namespace axis
 
 
       __pointer(::simpledb::server)                   m_psimpledb;
-
+      __pointer(::networking_application)             m_pnetworkingapplication;
 
 
       application();
@@ -49,6 +49,13 @@ namespace axis
 
       virtual ::simpledb::server * simpledb();
       virtual ::database::server * dataserver() override;
+      virtual class networking_application* networking_application();
+
+
+      virtual ::e_status create_networking_application();
+
+
+      virtual string on_html_response(const ::string& strUrl, const ::property_set& setPost);
 
 
       virtual ::e_status verb() override;

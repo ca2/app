@@ -374,7 +374,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    ::e_status system::open_link(string strUrl, string strProfile, string strTarget)
    {
 
-      return error_interface_only;
+      return open_profile_link(strUrl, strProfile, strTarget);
 
    }
 

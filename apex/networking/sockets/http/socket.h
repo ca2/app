@@ -123,70 +123,103 @@ namespace sockets
    };
 
 
-
    inline ::http::request & http_socket::request()
    {
+      
       return m_request;
+
    }
+
 
    inline ::http::response & http_socket::response()
    {
+
       return m_response;
+
    }
+
 
    inline property & http_socket::inattr(const char * lpszName)
    {
+
       return m_request.attr(lpszName);
+
    }
+
 
    inline property_set & http_socket::inattrs()
    {
+
       return m_request.attrs();
+
    }
+
 
    inline property & http_socket::outattr(const char * lpszName)
    {
+
       return m_response.attr(lpszName);
+
    }
+
 
    inline property_set & http_socket::outattrs()
    {
+
       return m_response.attrs();
+
    }
+
 
    inline property & http_socket::inheader(const char * lpszName)
    {
+
       return m_request.header(lpszName);
+
    }
+
 
    inline property_set & http_socket::inheaders()
    {
+
       return m_request.headers();
+
    }
+
 
    inline property & http_socket::outheader(const char * lpszName)
    {
+
       return m_response.header(lpszName);
+
    }
+
 
    inline property_set & http_socket::outheaders()
    {
+
       return m_response.headers();
+
    }
+
 
    inline bool http_socket::IsRequest()
    {
+
       return m_bRequest;
+
    }
 
 
    inline bool http_socket::IsResponse()
    {
+
       return m_bResponse;
+
    }
 
 
-
 } // namespace sockets
+
 
 

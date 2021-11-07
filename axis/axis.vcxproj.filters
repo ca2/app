@@ -145,6 +145,12 @@
     <Filter Include="Header Files\constant">
       <UniqueIdentifier>{a750a202-9e18-49c5-9e98-56d9beca276b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\networking">
+      <UniqueIdentifier>{0d64a29e-0c32-4055-af8d-1577316d6aad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\networking\netserver">
+      <UniqueIdentifier>{2de40e4d-2763-437d-a527-0ce2dd7b9c4f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -549,6 +555,33 @@
     <ClInclude Include="_.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="networking\netserver\socket_thread.h">
+      <Filter>Header Files\networking\netserver</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\netserver\socket_handler.h">
+      <Filter>Header Files\networking\netserver</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\netserver\socket.h">
+      <Filter>Header Files\networking\netserver</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\netserver\_netserver.h">
+      <Filter>Header Files\networking\netserver</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\netserver\_.h">
+      <Filter>Header Files\networking\netserver</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\networking_application_socket.h">
+      <Filter>Header Files\networking</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\_networking.h">
+      <Filter>Header Files\networking</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\networking_application.h">
+      <Filter>Header Files\networking</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\_.h">
+      <Filter>Header Files\networking</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platform\application.cpp">
@@ -766,6 +799,12 @@
     </ClCompile>
     <ClCompile Include="constant\idpool.cpp">
       <Filter>Source Files\constant</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\networking_application_socket.cpp">
+      <Filter>Source Files\networking</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\networking_application.cpp">
+      <Filter>Source Files\networking</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

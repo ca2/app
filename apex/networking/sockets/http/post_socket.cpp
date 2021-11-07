@@ -107,134 +107,136 @@ namespace sockets
       else
       {
 
-      string body;
+         string body;
 
-      if (m_fields.has_property("raw_text"))
-      {
-
-         body = m_fields["raw_text"];
-
-         string strContentType = m_fields["raw_text_content_type"];
-
-         inheader(__id(content_type)) = strContentType;
-
-      }
-      else if (m_fields.has_property("network_payload"))
-      {
-
-         auto& payload = m_fields["network_payload"];
-
-         if (payload.get_type() == ::e_type_property_set)
+         if (m_fields.has_property("raw_text"))
          {
 
-            payload.propset().get_network_payload(body);
+            body = m_fields["raw_text"];
 
-            INFORMATION("JSON BODY: " << body);
+            string strContentType = m_fields["raw_text_content_type"];
 
-            string strContentType = inheader(__id(content_type)).string();
-
-            if (strContentType.find_ci("application/json") < 0)
-            {
-
-               inheader(__id(content_type)) = "application/json;" + strContentType;
-
-            }
+            inheader(__id(content_type)) = strContentType;
 
          }
-         else if (m_fields.has_property("xml") && m_fields["xml"].get_type() == ::e_type_element)
+         else if (m_fields.has_property("network_payload"))
          {
 
-            __throw(todo, "xml");
+            auto& payload = m_fields["network_payload"];
 
-            //::xml::node * pnode = m_fields["xml"].cast < ::xml::node >();
-            //body = pnode->get_xml();
-            //body.trim();
-            //if(inheader(__id(content_type)).string().find_ci("application/xml") < 0)
-            //{
-            //   inheader(__id(content_type)) = "application/xml; " + inheader(__id(content_type)).string();
-            //}
-
-         }
-         else
-         {
-
-            m_fields.get_http_post(body);
-
-            if(inheader(__id(content_type)).string().find_ci("application/x-www-form-urlencoded") < 0)
+            if (payload.get_type() == ::e_type_property_set)
             {
 
-               inheader(__id(content_type)) = "application/x-www-form-urlencoded" + ::str::has_char(inheader(__id(content_type)).string(),"; ");
+               payload.propset().get_network_payload(body);
 
-            }
+               INFORMATION("JSON BODY: " << body);
 
-         }
+               string strContentType = inheader(__id(content_type)).string();
 
-         // only fields, no files, add urlencoding
-         /*for (std::map<string,list<string> >::iterator it = m_fields.begin(); it != m_fields.end(); it++)
-         {
-            string name = (*it).first;
-            list<string>& ref = (*it).element2();
-            if (body.get_length())
-            {
-               body += '&';
-            }
-            body += name + "=";
-            bool first = true;
-            for (list<string>::iterator it = ref.begin(); it != ref.end(); it++)
-            {
-               string value = *it;
-               if (!first)
+               if (strContentType.find_ci("application/json") < 0)
                {
-                  body += "%0d%0a"; // CRLF
+
+                  inheader(__id(content_type)) = "application/json;" + strContentType;
+
                }
-               body += Utility::rfc1738_encode(value);
-               first = false;
+
             }
-         }*/
-
-         // build header, send body
-         m_request.attr(__id(http_method)) = "POST";
-
-         m_request.attr(__id(http_version)) = "HTTP/1.1";
-
-         string strHost = GetUrlHost();
-
-         inheader(__id(host)) = strHost; // oops - this is actually a request header that we're adding..
-
-         string strUserAgent = MyUseragent();
-
-         if(m_request.attr("minimal_headers").is_false())
-         {
-
-            inheader(__id(user_agent)) = "ca2_netnode";
-
-            if(inheader(__id(accept)).is_empty())
+            else if (m_fields.has_property("xml") && m_fields["xml"].get_type() == ::e_type_element)
             {
 
-               inheader(__id(accept)) = "text/html, text/plain, application/xml, */*;q=0.01";
+               __throw(todo, "xml");
+
+               //::xml::node * pnode = m_fields["xml"].cast < ::xml::node >();
+               //body = pnode->get_xml();
+               //body.trim();
+               //if(inheader(__id(content_type)).string().find_ci("application/xml") < 0)
+               //{
+               //   inheader(__id(content_type)) = "application/xml; " + inheader(__id(content_type)).string();
+               //}
 
             }
-            //inheader(__id(connection)) = "close";
+            else
+            {
+
+               m_fields.get_http_post(body);
+
+               if (inheader(__id(content_type)).string().find_ci("application/x-www-form-urlencoded") < 0)
+               {
+
+                  inheader(__id(content_type)) = "application/x-www-form-urlencoded" + ::str::has_char(inheader(__id(content_type)).string(), "; ");
+
+               }
+
+            }
+
+            // only fields, no files, add urlencoding
+            /*for (std::map<string,list<string> >::iterator it = m_fields.begin(); it != m_fields.end(); it++)
+            {
+               string name = (*it).first;
+               list<string>& ref = (*it).element2();
+               if (body.get_length())
+               {
+                  body += '&';
+               }
+               body += name + "=";
+               bool first = true;
+               for (list<string>::iterator it = ref.begin(); it != ref.end(); it++)
+               {
+                  string value = *it;
+                  if (!first)
+                  {
+                     body += "%0d%0a"; // CRLF
+                  }
+                  body += Utility::rfc1738_encode(value);
+                  first = false;
+               }
+            }*/
+
+            // build header, send body
+            m_request.attr(__id(http_method)) = "POST";
+
+            m_request.attr(__id(http_version)) = "HTTP/1.1";
+
+            string strHost = GetUrlHost();
+
+            inheader(__id(host)) = strHost; // oops - this is actually a request header that we're adding..
+
+            string strUserAgent = MyUseragent();
+
+            if (m_request.attr("minimal_headers").is_false())
+            {
+
+               inheader(__id(user_agent)) = "ca2_netnode";
+
+               if (inheader(__id(accept)).is_empty())
+               {
+
+                  inheader(__id(accept)) = "text/html, text/plain, application/xml, */*;q=0.01";
+
+               }
+               //inheader(__id(connection)) = "close";
+            }
+
          }
 
-         inheader(__id(content_length)) = (i64) body.get_length();
+            inheader(__id(content_length)) = (i64)body.get_length();
 
 #if !defined(BSD_STYLE_SOCKETS)
 
-         m_bExpectResponse = true;
+            m_bExpectResponse = true;
 
-         m_bExpectRequest = false;
+            m_bExpectRequest = false;
 
 #endif
 
-         SendRequest();
+            SendRequest();
 
-         if(body.get_length() > 0)
-         {
-            // send body
-            print( body );
+            if (body.get_length() > 0)
+            {
+               // send body
+               print(body);
 
-         }
+            }
 
       }
 

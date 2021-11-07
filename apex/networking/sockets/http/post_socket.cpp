@@ -136,7 +136,7 @@ namespace sockets
                if (strContentType.find_ci("application/json") < 0)
                {
 
-                  inheader(__id(content_type)) = "application/json;" + strContentType;
+                  inheader(__id(content_type)) = "application/json" + ::str::has_char(strContentType, ";", strContentType);
 
                }
 
@@ -223,7 +223,9 @@ namespace sockets
          }
 
 
-            inheader(__id(content_length)) = (i64)body.get_length();
+         auto content_length = body.length();
+
+            inheader(__id(content_length)) = content_length;
 
 #if !defined(BSD_STYLE_SOCKETS)
 

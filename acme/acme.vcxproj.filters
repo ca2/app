@@ -2771,9 +2771,6 @@
     <ClInclude Include="inline\_main_hold.h">
       <Filter>Header Files\inline</Filter>
     </ClInclude>
-    <ClInclude Include="__apps.inl">
-      <Filter>Header Files\inline</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">
@@ -3944,6 +3941,9 @@
     </None>
     <None Include="memory\heap_namespace.inl">
       <Filter>Header Files\memory</Filter>
+    </None>
+    <None Include="inline\__apps.inl">
+      <Filter>Header Files\inline</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

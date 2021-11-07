@@ -446,6 +446,64 @@ namespace user
    void interaction_child::message_handler(::message::message * pmessage)
    {
 
+      ::message::key* pkey = nullptr;
+
+      bool bKeyMessage = false;
+
+      if (m_puserinteraction->pre_message_handler(pkey, bKeyMessage, pmessage))
+      {
+
+         return;
+
+      }
+
+      if (bKeyMessage)
+      {
+
+         //__pointer(::user::interaction) puiFocus;
+
+         //puiFocus = m_puserinteractionFocus1;
+
+         /////auto pkey = pmessage->m_pkey;
+
+         //if (message == e_message_key_down)
+         //{
+
+         //   output_debug_string("\n Key Down Event ");
+
+         //}
+
+         //if (puiFocus)
+         //{
+
+         //   puiFocus->route_message(pmessage);
+
+         //}
+         //else
+         //{
+
+         m_puserinteraction->route_message(pmessage);
+
+         //         }
+
+         //if (pmessage->m_bRet)
+         {
+
+            return;
+
+         }
+
+         //m_wparam-
+
+         //m_lparam = pmessage->m_lparam;
+
+         //pmessage->set_lresult(::default_window_procedure(message, pmessage->m_wparam, pmessage->m_lparam));
+
+         //return;
+
+      }
+
+
       ::u32 message;
 
       message = pmessage->m_id.umessage();

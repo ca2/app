@@ -1,4 +1,5 @@
 #include "application_common.h"
+#include "__apps.inl"
 
 
 #include "acme/platform/static_setup.h"

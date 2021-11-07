@@ -950,6 +950,9 @@ namespace user
       virtual ::user::interaction* get_os_focus_uie();
 
 
+      virtual bool pre_message_handler(::message::key*& puserkey, bool& bKeyMessage, ::message::message* pmessage);
+
+
       virtual void on_set_keyboard_focus() override;
       virtual void on_kill_keyboard_focus() override;
 

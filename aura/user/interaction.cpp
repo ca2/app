@@ -1324,6 +1324,100 @@ namespace user
    }
 
 
+   bool interaction::pre_message_handler(::message::key*& pkey, bool& bKeyMessage, ::message::message* pmessage)
+   {
+
+      ::u32 message = pmessage->m_id.umessage();
+
+      bKeyMessage = message == e_message_key_down ||
+         message == e_message_key_up ||
+         message == e_message_char ||
+         message == e_message_text_composition
+#ifdef WINDOWS_DESKTOP
+         || message == e_message_sys_key_down
+         || message == e_message_sys_key_up
+         || message == e_message_sys_char
+         || message == e_message_ime_key_down
+         || message == e_message_ime_key_up
+         || message == e_message_ime_char
+         || message == e_message_ime_select
+         || message == e_message_ime_set_context
+         || message == e_message_ime_start_composition
+         || message == e_message_ime_composition
+         || message == e_message_ime_composition_full
+         || message == e_message_ime_notify
+         || message == e_message_ime_end_composition
+         || message == e_message_input_language
+#endif
+         ;
+
+      if (bKeyMessage)
+      {
+
+         pkey = dynamic_cast <::message::key*> (pmessage);
+
+         if (pkey)
+         {
+
+            windowing()->set(pkey, pkey->m_oswindow, pkey->m_pwindow, pkey->m_id, pkey->m_wparam, pkey->m_lparam);
+
+         }
+
+         if (message == e_message_key_down || message == e_message_sys_key_down)
+         {
+
+            auto psession = get_session();
+
+            try
+            {
+
+               psession->set_key_pressed(pkey->m_ekey, true);
+
+            }
+            catch (...)
+            {
+            }
+         }
+         else if (message == e_message_key_up || message == e_message_sys_key_up)
+         {
+
+            auto psession = get_session();
+
+            try
+            {
+
+               psession->set_key_pressed(pkey->m_ekey, false);
+
+            }
+            catch (...)
+            {
+
+            }
+
+         }
+
+      }
+
+
+      if (::is_set(m_puserinteraction))
+      {
+
+         m_puserinteraction->pre_translate_message(pmessage);
+
+      }
+
+      if (pmessage->m_bRet)
+      {
+
+         return true;
+
+      }
+
+      return false;
+
+   }
+
+
    void interaction::on_set_keyboard_focus()
    {
 
@@ -15812,7 +15906,7 @@ order(zorderParam);
 
       auto pcontextmenu = __new(::message::context_menu);
 
-      pcontextmenu->set(get_oswindow(), get_window(), e_message_context_menu, (wparam) (iptr) get_oswindow(), pmessage->m_lparam);
+      pcontextmenu->set(get_oswindow(), get_window(), e_message_context_menu, (wparam) (iptr) get_oswindow(), pmouse->m_point.lparam());
 
       message_handler(pcontextmenu);
 

@@ -40,6 +40,8 @@ i32 WINAPI _tWinMain(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, TCHAR* pC
 
    main.m_bConsole = false;
 
+   __apps(main);
+
    auto estatus = __main(main);
 
    int iStatus = estatus.error_status();

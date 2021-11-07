@@ -1,4 +1,4 @@
-// ReCreated/Merged (from acme_main_data) on 2021-11-01 12:24 BRT <3ThomasBorregaardSørensen!!
+// ReCreated/Merged (from acme_main_data) on 2021-11-01 12:24 BRT <3ThomasBorregaardSï¿½rensen!!
 // Created by camilo 2021-03-12 12:08 BRT <3_ThomasBS, Mummi and bilbo!!
 #pragma once
 
@@ -15,8 +15,6 @@ struct CLASS_DECL_ACME PLAIN_MAIN
    wchar_t** m_wargv = nullptr;
    wchar_t** m_wenvp = nullptr;
 
-   bool              m_bConsole = false;
-
 #ifdef WINDOWS
 
    hinstance         m_hinstanceThis = nullptr;
@@ -25,8 +23,24 @@ struct CLASS_DECL_ACME PLAIN_MAIN
 
 #endif
 
-   int               m_iExitCode = 0;
+   int                           m_iExitCode = 0;
 
+   ::boolean                     m_bLocalization;
+   ::boolean                     m_bConsole;
+   ::boolean                     m_bDraw2d;
+   ::boolean                     m_bWriteText;
+   ::boolean                     m_bUser;
+   ::boolean                     m_bUserEx;
+   ::boolean                     m_bImaging;
+   ::boolean                     m_bAudio;
+   ::boolean                     m_bInitializeDataCentral;
+#ifdef WINDOWS_DESKTOP
+   ::boolean                     m_bGdiplus;
+#elif defined(LINUX)
+   ::boolean                     m_bGtkApp;
+#endif
+   ::boolean                     m_bShowApplicationInformation;
+   ::boolean                     m_bPreferNoFrameWindow;
 
 
 };
@@ -39,8 +53,9 @@ class CLASS_DECL_ACME main :
 public:
 
    
-   string            m_strCommandLine;
-   string            m_strAppId;
+   string                        m_strCommandLine;
+   string                        m_strAppId;
+
 
 
    virtual ::e_status system_construct(const main& main);

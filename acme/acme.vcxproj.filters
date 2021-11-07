@@ -2771,6 +2771,9 @@
     <ClInclude Include="inline\_main_hold.h">
       <Filter>Header Files\inline</Filter>
     </ClInclude>
+    <ClInclude Include="__apps.inl">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">

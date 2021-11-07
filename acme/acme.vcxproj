@@ -47,6 +47,7 @@
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>app</RootNamespace>
     <ProjectName>acme</ProjectName>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">
@@ -1150,6 +1151,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="inline\application\windows.h" />
     <ClInclude Include="inline\_main_hold.h" />
     <ClInclude Include="memory\array_memory_allocate.h" />
+    <ClInclude Include="__apps.inl" />
     <None Include="memory\heap_namespace.inl">
       <FileType>Document</FileType>
     </None>

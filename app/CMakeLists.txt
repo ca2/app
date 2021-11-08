@@ -59,7 +59,7 @@ target_compile_definitions(app_app PRIVATE _APP_APP_LIBRARY)
 
 
 
-add_executable(_app_app _main.cpp)
+add_executable(_app_app _app_app.cpp)
 
 
 

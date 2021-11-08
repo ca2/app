@@ -395,6 +395,8 @@ list(APPEND apex_source
    #platform/_system_smart_pointer_impl.h
    #platform/_system_var_impl.h
    #platform/all.h
+   platform/api.cpp
+   platform/api.h
    platform/apex_aura.h
    platform/apex_main_data.cpp
    platform/apex_main_data.h

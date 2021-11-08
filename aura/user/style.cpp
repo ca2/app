@@ -1061,13 +1061,16 @@ namespace user
          if (is_dark_mode())
          {
 
-            crBk = argb(255, 0x40, 0x40, 0x40);
+            crBk = m_psystem->node()->background_color();
+
+            //crBk = argb(255, 0x40, 0x40, 0x40);
 
          }
          else
          {
 
-            crBk = argb(255, 255, 255, 255);
+            crBk = m_psystem->node()->background_color();
+            //crBk = argb(255, 255, 255, 255);
 
          }
 

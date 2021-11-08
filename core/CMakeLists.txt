@@ -459,6 +459,7 @@ list(APPEND library_source
    user/user/list_view.cpp
    user/user/list_view.h
    user/user/listing.h
+   user/user/main_frame.cpp
    user/user/main_frame.h
    user/user/mesh.cpp
    user/user/mesh.h

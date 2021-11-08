@@ -215,6 +215,12 @@ list(APPEND library_source
         networking/_networking.h
         networking/email_department.cpp
         networking/email_department.h
+        networking/networking_application.cpp
+        networking/networking_application.h
+        networking/networking_application_handler.cpp
+        networking/networking_application_handler.h
+        networking/networking_application_socket.cpp
+        networking/networking_application_socket.h
         platform/_.cpp
         platform/_features.h
         platform/_generic_object_constructor_impl.h

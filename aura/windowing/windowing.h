@@ -223,6 +223,7 @@ namespace windowing
 
 
       virtual bool _visible_top_level_contains_name(string str) = 0;
+      virtual bool _visible_top_level_contains_all_names(const ::string_array & stra) = 0;
       virtual bool _top_level_contains_name(string str) = 0;
       virtual string _get_window_text_timeout(oswindow oswindow, const ::duration& duration = 1_s) = 0;
 

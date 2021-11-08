@@ -1463,6 +1463,15 @@ namespace acme
 
    }
 
+
+   ::e_status node::set_environment_variable(const ::string& pszEnvironmentVariable, const ::string& pszValue)
+   {
+
+      return error_interface_only;
+
+   }
+
+
 #if !defined(_UWP)
 
    array <::serial::port_info> node::list_serial_ports()

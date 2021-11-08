@@ -122,7 +122,7 @@ namespace sockets
          else if (m_fields.has_property("network_payload"))
          {
 
-            auto& payload = m_fields["network_payload"];
+            auto & payload = m_fields["network_payload"];
 
             if (payload.get_type() == ::e_type_property_set)
             {
@@ -170,8 +170,6 @@ namespace sockets
             }
 
          }
-
-
 
             // only fields, no files, add urlencoding
             /*for (std::map<string,list<string> >::iterator it = m_fields.begin(); it != m_fields.end(); it++)

@@ -56,8 +56,8 @@ list(APPEND library_source
    #    const/context.h
    #    const/GLOBAL_ID.h
    #    const/id.h
-        const/idpool.cpp
-        const/idpool.h
+        constant/idpool.cpp
+        constant/idpool.h
    #       const/impact.h
    #  const/message.h
    #    const/procedure.h

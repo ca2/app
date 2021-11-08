@@ -688,21 +688,12 @@
    }
 
 
-   //::icon_transport os_context::load_icon(const ::payload & payloadFile)
-   //{
+::e_status os_context::broadcast_environment_variable_change()
+{
+
+   return ::success_none;
+
+}
 
 
-   //   return error_failed;
 
-   //}
-
-//
-//} // namespace apex
-//
-//
-
-   //void os_context::enum_draw2d_fonts(::write_text::font_enumeration_item_array& itema)
-   //{
-
-
-   //}

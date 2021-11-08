@@ -118,5 +118,16 @@ namespace http
       file().set_size(0);
    }
 
+
+   string request::a_url()
+   {
+
+      string strUrl = attr("http_protocol").string() + "://" + header("host").string() + attr("request_uri").string();
+
+      return strUrl;
+
+   }
+
+
 } // namespace http
 

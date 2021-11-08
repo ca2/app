@@ -351,6 +351,8 @@ namespace acme
       
       virtual string expand_environment_variables(const string & str);
 
+      virtual ::e_status set_environment_variable(const ::string& pszEnvironmentVariable, const ::string& pszValue);
+
 #ifndef _UWP
       virtual array <::serial::port_info> list_serial_ports();
 

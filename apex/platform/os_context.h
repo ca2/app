@@ -138,6 +138,8 @@
 
       //virtual void enum_draw2d_fonts(::write_text::font_enumeration_item_array& itema);
 
+      virtual ::e_status broadcast_environment_variable_change();
+
 
    };
 

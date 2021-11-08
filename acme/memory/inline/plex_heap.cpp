@@ -590,7 +590,7 @@ plex_heap_alloc * plex_heap_alloc_array::find(memsize nAllocSize)
          if (palloc->m_iAllocSize == 16384)
          {
 
-            ::output_debug_string(".");
+            //::output_debug_string(".");
 
          }
 

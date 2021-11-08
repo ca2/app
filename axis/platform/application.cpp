@@ -14,6 +14,8 @@ namespace axis
       m_paxisapplication = this;
       m_bInitializeDataCentral = true;
 
+      create_factory < ::networking_application >();
+
    }
 
 
@@ -1661,6 +1663,57 @@ namespace axis
    }
 
 
+   class networking_application* application::networking_application()
+   {
+
+      if (!m_pnetworkingapplication)
+      {
+
+         create_networking_application();
+
+      }
+
+      return m_pnetworkingapplication;
+
+   }
+
+
+   ::e_status application::create_networking_application()
+   {
+
+      auto estatus = __defer_construct(m_pnetworkingapplication);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = m_pnetworkingapplication->create_networking_application();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
+   string application::on_html_response(const ::string& strUrl, const ::property_set& setPost)
+   {
+
+      string strHtml = networking_application()->on_html_response(strUrl, setPost);
+
+      return strHtml;
+
+   }
+
+
    ::e_status application::verb()
    {
 
@@ -2178,6 +2231,8 @@ namespace axis
       return new ::user::button;
 
    }
+
+
 
 
 } // namespace axis

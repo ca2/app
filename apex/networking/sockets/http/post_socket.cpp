@@ -107,36 +107,38 @@ namespace sockets
       else
       {
 
-      string body;
+         string body;
 
-      if (m_fields.has_property("raw_text"))
-      {
-
-         body = m_fields["raw_text"];
-
-         string strContentType = m_fields["raw_text_content_type"];
-
-         inheader(__id(content_type)) = strContentType;
-
-      }
-      else if (m_fields.has_property("network_payload"))
-      {
-
-         auto& payload = m_fields["network_payload"];
-
-         if (payload.get_type() == ::e_type_property_set)
+         if (m_fields.has_property("raw_text"))
          {
 
-            payload.propset().get_network_payload(body);
+            body = m_fields["raw_text"];
 
-            INFORMATION("JSON BODY: " << body);
+            string strContentType = m_fields["raw_text_content_type"];
 
-            string strContentType = inheader(__id(content_type)).string();
+            inheader(__id(content_type)) = strContentType;
 
-            if (strContentType.find_ci("application/json") < 0)
+         }
+         else if (m_fields.has_property("network_payload"))
+         {
+
+            auto& payload = m_fields["network_payload"];
+
+            if (payload.get_type() == ::e_type_property_set)
             {
 
-               inheader(__id(content_type)) = "application/json;" + strContentType;
+               payload.propset().get_network_payload(body);
+
+               INFORMATION("JSON BODY: " << body);
+
+               string strContentType = inheader(__id(content_type)).string();
+
+               if (strContentType.find_ci("application/json") < 0)
+               {
+
+                  inheader(__id(content_type)) = "application/json" + ::str::has_char(strContentType, ";", strContentType);
+
+               }
 
             }
 
@@ -160,37 +162,39 @@ namespace sockets
 
             m_fields.get_http_post(body);
 
-            if(inheader(__id(content_type)).string().find_ci("application/x-www-form-urlencoded") < 0)
+            if (inheader(__id(content_type)).string().find_ci("application/x-www-form-urlencoded") < 0)
             {
 
-               inheader(__id(content_type)) = "application/x-www-form-urlencoded" + ::str::has_char(inheader(__id(content_type)).string(),"; ");
+               inheader(__id(content_type)) = "application/x-www-form-urlencoded" + ::str::has_char(inheader(__id(content_type)).string(), "; ");
 
             }
 
          }
 
-         // only fields, no files, add urlencoding
-         /*for (std::map<string,list<string> >::iterator it = m_fields.begin(); it != m_fields.end(); it++)
-         {
-            string name = (*it).first;
-            list<string>& ref = (*it).element2();
-            if (body.get_length())
+
+
+            // only fields, no files, add urlencoding
+            /*for (std::map<string,list<string> >::iterator it = m_fields.begin(); it != m_fields.end(); it++)
             {
-               body += '&';
-            }
-            body += name + "=";
-            bool first = true;
-            for (list<string>::iterator it = ref.begin(); it != ref.end(); it++)
-            {
-               string value = *it;
-               if (!first)
+               string name = (*it).first;
+               list<string>& ref = (*it).element2();
+               if (body.get_length())
                {
-                  body += "%0d%0a"; // CRLF
+                  body += '&';
                }
-               body += Utility::rfc1738_encode(value);
-               first = false;
-            }
-         }*/
+               body += name + "=";
+               bool first = true;
+               for (list<string>::iterator it = ref.begin(); it != ref.end(); it++)
+               {
+                  string value = *it;
+                  if (!first)
+                  {
+                     body += "%0d%0a"; // CRLF
+                  }
+                  body += Utility::rfc1738_encode(value);
+                  first = false;
+               }
+            }*/
 
          // build header, send body
          m_request.attr(__id(http_method)) = "POST";
@@ -203,38 +207,42 @@ namespace sockets
 
          string strUserAgent = MyUseragent();
 
-         if(m_request.attr("minimal_headers").is_false())
+         if (m_request.attr("minimal_headers").is_false())
          {
 
             inheader(__id(user_agent)) = "ca2_netnode";
 
-            if(inheader(__id(accept)).is_empty())
+            if (inheader(__id(accept)).is_empty())
             {
 
                inheader(__id(accept)) = "text/html, text/plain, application/xml, */*;q=0.01";
 
             }
             //inheader(__id(connection)) = "close";
+
          }
 
-         inheader(__id(content_length)) = (i64) body.get_length();
+
+         auto content_length = body.length();
+
+            inheader(__id(content_length)) = content_length;
 
 #if !defined(BSD_STYLE_SOCKETS)
 
-         m_bExpectResponse = true;
+            m_bExpectResponse = true;
 
-         m_bExpectRequest = false;
+            m_bExpectRequest = false;
 
 #endif
 
-         SendRequest();
+            SendRequest();
 
-         if(body.get_length() > 0)
-         {
-            // send body
-            print( body );
+            if (body.get_length() > 0)
+            {
+               // send body
+               print(body);
 
-         }
+            }
 
       }
 

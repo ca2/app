@@ -53,7 +53,7 @@ namespace http
 
       virtual void clear();
 
-
+      virtual string a_url();
 
    }; // end of class
 

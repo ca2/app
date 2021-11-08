@@ -591,6 +591,8 @@ namespace sockets
       for(auto & pproperty : m_request.m_propertysetHeader)
       {
 
+         string strKey = pproperty->name();
+
          string strValue = pproperty->string();
 
          if (pproperty->name() == __id(content_type))
@@ -601,8 +603,6 @@ namespace sockets
          }
          else
          {
-
-            string strKey = pproperty->name();
 
             if (strKey.compare_ci("host") == 0)
             {

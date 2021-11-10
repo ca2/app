@@ -32,9 +32,6 @@
     <Filter Include="Source Files\user\menu">
       <UniqueIdentifier>{72a49cdf-de09-4494-98c0-e9c3981b16a5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\const">
-      <UniqueIdentifier>{7c1254ce-a663-4741-9380-0b58d03bd502}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
@@ -74,6 +71,9 @@
     </Filter>
     <Filter Include="Source Files\user\simple">
       <UniqueIdentifier>{96c6dd28-7346-40a8-9af1-42d218048e5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\constant">
+      <UniqueIdentifier>{7c1254ce-a663-4741-9380-0b58d03bd502}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -754,9 +754,6 @@
     <ClCompile Include="user\menu\menu_view.cpp">
       <Filter>Source Files\user\menu</Filter>
     </ClCompile>
-    <ClCompile Include="const\idpool.cpp">
-      <Filter>Source Files\const</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\tab_data.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -768,6 +765,9 @@
     </ClCompile>
     <ClCompile Include="user\user\split_pane.cpp">
       <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="constant\idpool.cpp">
+      <Filter>Source Files\constant</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

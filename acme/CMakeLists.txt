@@ -3,14 +3,18 @@ project(acme CXX)
 
 
 list(APPEND library_source
-   compress/zip/api.cpp
-   compress/zip/file.cpp
-   compress/zip/in_file.cpp
-   compress/zip/ioapi.cpp
-   compress/zip/memory_buffer.cpp
-   compress/zip/unzip.cpp
-   compress/zip/zip.cpp
-   compress/gz.cpp
+   #compress/zip/api.cpp
+   #compress/zip/file.cpp
+   #compress/zip/in_file.cpp
+   #compress/zip/ioapi.cpp
+   #compress/zip/memory_buffer.cpp
+   #compress/zip/unzip.cpp
+   #compress/zip/zip.cpp
+   compress/_.h
+   compress/compress.cpp
+   compress/compress.h
+   compress/uncompress.cpp
+   compress/uncompress.h
    constant/_.h
    constant/code_page.h
    constant/idpool.cpp
@@ -520,19 +524,19 @@ list(APPEND library_source
    axispolicy/policy_objcpp.h
    axispolicy/policy_winrt.h
    callback.h
-   compress/_.h
-   compress/gz.h
-   compress/zip/_.h
-   compress/zip/_internal.h
-   compress/zip/api.h
-   compress/zip/crypt.h
-   compress/zip/file.h
-   compress/zip/impl.h
-   compress/zip/in_file.h
-   compress/zip/ioapi.h
-   compress/zip/iowin32.h
-   compress/zip/memory_buffer.h
-   compress/zip/unzip.h
+   #compress/_.h
+   #compress/gz.h
+   #compress/zip/_.h
+   #compress/zip/_internal.h
+   #compress/zip/api.h
+   #compress/zip/crypt.h
+   #compress/zip/file.h
+   #compress/zip/impl.h
+   #compress/zip/in_file.h
+   #compress/zip/ioapi.h
+   #compress/zip/iowin32.h
+   #compress/zip/memory_buffer.h
+   #compress/zip/unzip.h
    console.h
    constant/GLOBAL_ID.h
    constant/_constant.h
@@ -681,6 +685,7 @@ list(APPEND library_source
    inline/_console_old.h
    inline/_draw2d_impl.h
    inline/_new_impl.h
+   inline/application/linux.h
    inline/application.h
    inline/application_common.h
    inline/console.h
@@ -1896,7 +1901,7 @@ if (LINUX)
 endif ()
 
 
-add_library(acme SHARED ${library_source} inline/application/linux.h)
+add_library(acme SHARED ${library_source})
 
 
 target_precompile_headers(acme PRIVATE framework.h)

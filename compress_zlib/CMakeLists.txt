@@ -1,14 +1,16 @@
 cmake_minimum_required(VERSION 3.17)
-project(compress_bzip2 CXX)
+project(compress_zlib CXX)
 
 
 list(APPEND library_source
-        _.cpp
-        _.h
-        _compress_bzip2.h
-        bz.cpp
-        bz.h
-        factory_exchange.cpp)
+   _.cpp
+   _.h
+   _compress_zlib.h
+   compress.cpp
+   compress.h
+   uncompress.cpp
+   uncompress.h
+   factory_exchange.cpp)
 
 
 
@@ -19,30 +21,30 @@ else()
 endif()
 
 
-add_library(compress_bzip2 SHARED ${library_source})
+add_library(compress_zlib SHARED ${library_source})
 
-target_precompile_headers(compress_bzip2 PRIVATE framework.h)
+target_precompile_headers(compress_zlib PRIVATE framework.h)
 
-set_target_properties(compress_bzip2 PROPERTIES LINKER_LANGUAGE CXX)
+set_target_properties(compress_zlib PROPERTIES LINKER_LANGUAGE CXX)
 
 if (MSVC)
-    target_compile_options(compress_bzip2 PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-    target_link_options(compress_bzip2 PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-    target_link_options(compress_bzip2 PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/compress_bzip2.lib")
-    target_link_options(compress_bzip2 PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/compress_bzip2.def")
-    target_link_libraries(compress_bzip2 PRIVATE acme apex aqua aura Gdiplus)
+    target_compile_options(compress_zlib PRIVATE "/MD$<$<CONFIG:Debug>:d>")
+    target_link_options(compress_zlib PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+    target_link_options(compress_zlib PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/compress_zlib.lib")
+    target_link_options(compress_zlib PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/compress_zlib.def")
+    target_link_libraries(compress_zlib PRIVATE acme apex aqua aura Gdiplus)
 elseif(LINUX)
-    target_compile_options(compress_bzip2 PRIVATE ${PKGCONFIG_CFLAGS})
-    #target_link_options(compress_bzip2 PRIVATE -Wl,-rpath=$ORIGIN)
-    target_link_libraries(compress_bzip2 PRIVATE ${PKGCONFIG_LIBRARIES})
-    target_link_options(compress_bzip2 PRIVATE -Wl,-z,defs)
+    target_compile_options(compress_zlib PRIVATE ${PKGCONFIG_CFLAGS})
+    #target_link_options(compress_zlib PRIVATE -Wl,-rpath=$ORIGIN)
+    target_link_libraries(compress_zlib PRIVATE ${PKGCONFIG_LIBRARIES})
+    target_link_options(compress_zlib PRIVATE -Wl,-z,defs)
     message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 endif()
 
 
-target_include_directories(compress_bzip2 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
-target_include_directories(compress_bzip2 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
-target_include_directories(compress_bzip2 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(compress_zlib PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
+target_include_directories(compress_zlib PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
+target_include_directories(compress_zlib PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 
-target_compile_definitions(compress_bzip2 PRIVATE _COMPRESS_BZIP2_LIBRARY)
+target_compile_definitions(compress_zlib PRIVATE _COMPRESS_BZIP2_LIBRARY)

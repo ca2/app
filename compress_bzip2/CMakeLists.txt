@@ -3,12 +3,14 @@ project(compress_bzip2 CXX)
 
 
 list(APPEND library_source
-        _.cpp
-        _.h
-        _compress_bzip2.h
-        bz.cpp
-        bz.h
-        factory_exchange.cpp)
+   _.cpp
+   _.h
+   _compress_bzip2.h
+   compress.cpp
+   compress.h
+   uncompress.cpp
+   uncompress.cpp
+   factory_exchange.cpp)
 
 
 

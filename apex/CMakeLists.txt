@@ -21,31 +21,33 @@ list(APPEND apex_source
    compress/_.h
    compress/context.cpp
    compress/context.h
-   compress/zip_is_dir.cpp
-   compress/zip_is_dir.h
-   compress/zip/_.h
-   compress/zip/context.cpp
-   compress/zip/context.h
+   compress/is_dir.cpp
+   compress/is_dir.h
+   compress/not_dir.cpp
+   compress/not_dir.h
+   #compress/zip/_.h
+   #compress/zip/context.cpp
+   #compress/zip/context.h
    #const/_const.h
    #const/charset.h
    #const/id.h
-   const/idpool.cpp
-   const/idpool.h
+   constant/idpool.cpp
+   constant/idpool.h
    #const/impact.h
-   const/method.h
+   constant/method.h
    #const/status.h
    #const/status_range_authentication.h
    #const/thread.h
    #const/timer.h
-   crypto/openssl/_.cpp
-   crypto/openssl/_openssl.h
-   crypto/openssl/crypto.cpp
-   crypto/openssl/hasher.cpp
-   crypto/openssl/hasher.h
-   crypto/openssl/hasher_algorithm.cpp
-   crypto/openssl/hasher_algorithm.h
-   crypto/openssl/rsa.cpp
-   crypto/openssl/rsa.h
+   #crypto/openssl/_.cpp
+   #crypto/openssl/_openssl.h
+   #crypto/openssl/crypto.cpp
+   #crypto/openssl/hasher.cpp
+   #crypto/openssl/hasher.h
+   #crypto/openssl/hasher_algorithm.cpp
+   #crypto/openssl/hasher_algorithm.h
+   #crypto/openssl/rsa.cpp
+   #crypto/openssl/rsa.h
    crypto/_.h
    crypto/_crypto.h
    crypto/crypto.cpp
@@ -98,7 +100,7 @@ list(APPEND apex_source
    filesystem/filesystem/file_system.h
    filesystem/filesystem/file_watcher.cpp
    filesystem/filesystem/file_watcher.h
-   filesystem/filesystem/path.h
+   #filesystem/filesystem/path.h
    filesystem/fs/_.h
    filesystem/fs/_fs.h
    filesystem/fs/data.cpp
@@ -1210,19 +1212,19 @@ if (APPLE)
 
 endif ()
 
-if (USE_OPENSSL)
-   list(APPEND apex_source
-      crypto/openssl/_.cpp
-      crypto/openssl/_openssl.h
-      crypto/openssl/crypto.cpp
-      crypto/openssl/hasher.cpp
-      crypto/openssl/hasher.h
-      crypto/openssl/hasher_algorithm.cpp
-      crypto/openssl/hasher_algorithm.h
-      crypto/openssl/rsa.cpp
-      crypto/openssl/rsa.h
-      )
-endif ()
+#if (USE_OPENSSL)
+#   list(APPEND apex_source
+#      crypto/openssl/_.cpp
+#      crypto/openssl/_openssl.h
+#      crypto/openssl/crypto.cpp
+#      crypto/openssl/hasher.cpp
+#      crypto/openssl/hasher.h
+#      crypto/openssl/hasher_algorithm.cpp
+#      crypto/openssl/hasher_algorithm.h
+#      crypto/openssl/rsa.cpp
+#      crypto/openssl/rsa.h
+#      )
+#endif ()
 
 
 if (SOLARIS)

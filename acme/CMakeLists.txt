@@ -80,6 +80,8 @@ list(APPEND library_source
    filesystem/file/dir2.cpp
    filesystem/file/exception.cpp
    filesystem/file/file.cpp
+   filesystem/file/folder.cpp
+   filesystem/file/folder.h
    filesystem/file/item.cpp
    filesystem/file/item_array.cpp
    filesystem/file/memory_file.cpp
@@ -97,6 +99,8 @@ list(APPEND library_source
    filesystem/file/string_file.cpp
    filesystem/file/text_file.cpp
    filesystem/file/text_stream.cpp
+   filesystem/file/transfer.cpp
+   filesystem/file/transfer.h
    filesystem/file/var_stream.cpp
    filesystem/filesystem/acme_dir.cpp
    filesystem/filesystem/acme_dir.h

@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "apex/platform/app_core.h"
-#include "apex/compress/zip/_.h"
+//#include "apex/compress/zip/_.h"
 #include "acme/id.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
 #include "acme/filesystem/filesystem/acme_path.h"
@@ -407,7 +407,7 @@ inline bool myspace(char ch)
    if (l.m_bRecursive)
    {
 
-      if (l.m_eextract != extract_none && task_flag().is_set(e_task_flag_zip_is_dir) && (icmp(l.m_pathFinal.final_extension(), "zip") == 0 || l.m_pathFinal.find_ci("zip:") >= 0))
+      if (l.m_eextract != extract_none && task_flag().is_set(e_task_flag_compress_is_dir) && (icmp(l.m_pathFinal.final_extension(), "zip") == 0 || l.m_pathFinal.find_ci("zip:") >= 0))
       {
 
          //__throw(::exception("should implement recursive zip"));
@@ -440,12 +440,52 @@ inline bool myspace(char ch)
          l.add_tokens(str, "\n", false);
 
       }
-      else if (task_flag().is_set(e_task_flag_zip_is_dir) && (::str::ends_ci(l.m_pathFinal, ".zip") || ::str::find_file_extension("zip:", l.m_pathFinal) >= 0))
+      else if (task_flag().is_set(e_task_flag_compress_is_dir) && (::str::ends_ci(l.m_pathFinal, ".zip") || ::str::find_file_extension("zip:", l.m_pathFinal) >= 0))
       {
 
-         zip_context zip(this);
+         auto plibrary = m_psystem->do_containerized_factory_exchange("folder", "zip");
 
-         zip.ls(l);
+         if (!plibrary)
+         {
+
+            l = ::error_failed;
+
+         }
+         else
+         {
+
+            auto pfilecontainer = plibrary->create < ::folder >();
+
+            if (!pfilecontainer)
+            {
+
+               l = ::error_failed;
+
+            }
+            else
+            {
+
+               file_transport pfile;
+
+               {
+
+                  compress_not_dir notdir;
+
+                  pfilecontainer->perform_file_listing(l);
+
+                  //   pfile = 
+
+                  //pfilecontainer->open_for_reading()
+
+                  //zip_context zip(this);
+
+                  //zip.ls(l);
+
+               }
+
+            }
+
+         }
 
       }
       else
@@ -467,7 +507,7 @@ inline bool myspace(char ch)
    if (l.m_bRecursive)
    {
 
-      if (l.m_eextract != extract_none && ::task_flag().is_set(e_task_flag_zip_is_dir) && (icmp(l.m_pathUser.final_extension(), "zip") == 0 || l.m_pathUser.find_ci("zip:") >= 0))
+      if (l.m_eextract != extract_none && ::task_flag().is_set(e_task_flag_compress_is_dir) && (icmp(l.m_pathUser.final_extension(), "zip") == 0 || l.m_pathUser.find_ci("zip:") >= 0))
       {
 
          //__throw(::exception("should implement recursive zip"));
@@ -498,12 +538,53 @@ inline bool myspace(char ch)
          l.add_tokens(str, "\n", false);
 
       }
-      else if (::task_flag().is_set(e_task_flag_zip_is_dir) && (::str::ends_ci(l.m_pathUser, ".zip") || ::str::find_file_extension("zip:", l.m_pathUser) >= 0))
+      else if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str::ends_ci(l.m_pathUser, ".zip") || ::str::find_file_extension("zip:", l.m_pathUser) >= 0))
       {
 
-         zip_context zip(this);
+         auto plibrary = m_psystem->do_containerized_factory_exchange("folder", "zip");
 
-         zip.ls(l);
+         if (!plibrary)
+         {
+
+            l = ::error_failed;
+
+         }
+         else
+         {
+
+            auto pfilecontainer = plibrary->create < ::folder >();
+
+            if (!pfilecontainer)
+            {
+
+               l = ::error_failed;
+
+            }
+            else
+            {
+
+               file_transport pfile;
+
+               {
+
+                  compress_not_dir notdir;
+
+                  pfilecontainer->perform_file_relative_name_listing(l);
+
+                  //   pfile = 
+
+                  //pfilecontainer->open_for_reading()
+
+                  //zip_context zip(this);
+
+                  //zip.ls(l);
+
+               }
+
+            }
+
+         }
+
 
       }
       else
@@ -738,7 +819,7 @@ bool dir_context::is_cached(bool & bIs, const ::file::path & path)
 
    //}
 
-   if (::task_flag().is_set(e_task_flag_zip_is_dir) && (::str::ends_ci(path, ".zip")))
+   if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str::ends_ci(path, ".zip")))
    {
 
       bIs = true;
@@ -746,7 +827,7 @@ bool dir_context::is_cached(bool & bIs, const ::file::path & path)
       return true;
    }
 
-   if (::task_flag().is_set(e_task_flag_zip_is_dir) && (::str::find_file_extension("zip:", path) >= 0))
+   if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str::find_file_extension("zip:", path) >= 0))
    {
 
       bool bHasSubFolder;
@@ -763,9 +844,54 @@ bool dir_context::is_cached(bool & bIs, const ::file::path & path)
 
                   //}
 
-      zip_context zip(this);
+//      zip_context zip(this);
 
-      bHasSubFolder = zip.has_sub_folder(path);
+  //    bHasSubFolder = zip.has_sub_folder(path);
+
+
+      auto plibrary = m_psystem->do_containerized_factory_exchange("folder", "zip");
+
+      if (!plibrary)
+      {
+
+         return false;
+
+      }
+      else
+      {
+
+         auto pfilecontainer = plibrary->create < ::folder >();
+
+         if (!pfilecontainer)
+         {
+
+            return false;
+
+         }
+         else
+         {
+
+            file_transport pfile;
+
+            {
+
+               compress_not_dir notdir;
+
+               bHasSubFolder = pfilecontainer->has_sub_folder(path);
+
+               //   pfile = 
+
+               //pfilecontainer->open_for_reading()
+
+               //zip_context zip(this);
+
+               //zip.ls(l);
+
+            }
+
+         }
+
+      }
 
       //m_isdirmap.set(pcszPath, bHasSubFolder, ::get_last_error());
 
@@ -879,7 +1005,7 @@ bool dir_context::is_impl(const ::file::path & path)
 
    }
 
-   if (::task_flag().is_set(e_task_flag_zip_is_dir) && (::str::ends_ci(path, ".zip")))
+   if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str::ends_ci(path, ".zip")))
    {
 
       //m_isdirmap.set(path, true, 0);
@@ -888,14 +1014,58 @@ bool dir_context::is_impl(const ::file::path & path)
 
    }
 
-   if (::task_flag().is_set(e_task_flag_zip_is_dir) && (::str::find_file_extension("zip:", path) >= 0))
+   if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str::find_file_extension("zip:", path) >= 0))
    {
 
       bool bHasSubFolder;
 
-      zip_context zip(this);
+      auto plibrary = m_psystem->do_containerized_factory_exchange("folder", "zip");
 
-      bHasSubFolder = zip.has_sub_folder(path);
+      if (!plibrary)
+      {
+
+         bHasSubFolder = false;
+
+      }
+      else
+      {
+
+         auto pfilecontainer = plibrary->create < ::folder >();
+
+         if (!pfilecontainer)
+         {
+
+            bHasSubFolder = false;
+
+         }
+         else
+         {
+
+            file_transport pfile;
+
+            {
+
+               compress_not_dir notdir;
+
+               bHasSubFolder = pfilecontainer->has_sub_folder(path);
+
+               //   pfile = 
+
+               //pfilecontainer->open_for_reading()
+
+               //zip_context zip(this);
+
+               //zip.ls(l);
+
+            }
+
+         }
+
+      }
+
+      //zip_context zip(this);
+
+      //bHasSubFolder = zip.has_sub_folder(path);
 
       //            m_isdirmap.set(path, bHasSubFolder, get_last_error());
 
@@ -912,20 +1082,64 @@ bool dir_context::name_is(const ::file::path & strPath)
 {
 
    //output_debug_string(strPath);
-   if (::task_flag().is_set(e_task_flag_zip_is_dir) && (::str::ends_ci(strPath, ".zip")))
+   if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str::ends_ci(strPath, ".zip")))
    {
       //            m_isdirmap.set(strPath, true, 0);
       return true;
    }
-   if (::task_flag().is_set(e_task_flag_zip_is_dir) && (::str::find_file_extension("zip:", strPath) >= 0))
+   if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str::find_file_extension("zip:", strPath) >= 0))
    {
       bool bHasSubFolder;
 
-      zip_context zip(this);
+      auto plibrary = m_psystem->do_containerized_factory_exchange("folder", "zip");
+
+      if (!plibrary)
+      {
+
+         bHasSubFolder = false;
+
+      }
+      else
+      {
+
+         auto pfilecontainer = plibrary->create < ::folder >();
+
+         if (!pfilecontainer)
+         {
+
+            bHasSubFolder = false;
+
+         }
+         else
+         {
+
+            file_transport pfile;
+
+            {
+
+               compress_not_dir notdir;
+
+               bHasSubFolder = pfilecontainer->has_sub_folder(strPath);
+
+               //   pfile = 
+
+               //pfilecontainer->open_for_reading()
+
+               //zip_context zip(this);
+
+               //zip.ls(l);
+
+            }
+
+         }
+
+      }
+
+//      zip_context zip(this);
       //            u32 dwLastError;
                   //if (m_isdirmap.lookup(strPath, bHasSubFolder, dwLastError))
                   //   return bHasSubFolder;
-      bHasSubFolder = zip.has_sub_folder(strPath);
+  //    bHasSubFolder = zip.has_sub_folder(strPath);
       //m_isdirmap.set(strPath, bHasSubFolder, get_last_error());
       return bHasSubFolder;
    }

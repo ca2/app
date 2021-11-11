@@ -8,6 +8,7 @@ enum enum_hash
    e_hash_md5,
    e_hash_sha1,
    e_hash_sha256,
+   e_hash_nessie,
 
 };
 

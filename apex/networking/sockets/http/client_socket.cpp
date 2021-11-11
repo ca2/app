@@ -354,9 +354,7 @@ namespace sockets
 
          m_memoryfile.seek_to_begin();
 
-         compress_context compress(this);
-
-         compress.ungz(&memoryfile, &m_memoryfile);
+         m_psystem->uncompress(&memoryfile, &m_memoryfile, "zlib");
 
          m_memoryfile = memoryfile;
 

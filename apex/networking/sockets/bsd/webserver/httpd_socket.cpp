@@ -325,14 +325,14 @@ namespace sockets
 
       //int nid = OBJ_sn2nid(ECDHE_CURVE);
 
-      if (strCipherList.find("ECDH") >= 0)
-      {
+      //if (strCipherList.find("ECDH") >= 0)
+      //{
 
-         EC_KEY *ecdh = EC_KEY_new_by_curve_name(NID_secp384r1);
+      //   EC_KEY *ecdh = EC_KEY_new_by_curve_name(NID_secp384r1);
 
-         SSL_CTX_set_tmp_ecdh(m_psslcontext->m_pclientcontext->m_psslcontext, ecdh);
+      //   SSL_CTX_set_tmp_ecdh(m_psslcontext->m_pclientcontext->m_psslcontext, ecdh);
 
-      }
+      //}
 
       //if (strCipherList.find("DH") >= 0)
       //{

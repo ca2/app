@@ -4,6 +4,7 @@
 namespace file
 {
 
+
    // inline path::path(const ::payload & payload,e_path epath): path(payload.get_file_path(),epath){}
    // inline path::path(const property & property,e_path epath, int iDir): path(property.get_file_path(),epath, iDir) {}
    inline path & path::operator = (const ::payload & payload) { return operator = (payload.string()); }
@@ -873,10 +874,14 @@ namespace file
    {
 
       if (this == &listing)
+      {
+
          return *this;
 
+      }
+
       patha::operator         = (listing);
-      *((listing_meta *)this) = (const listing_meta &)listing;
+      *((LISTING *)this) = (const LISTING&)listing;
       m_pathUser = listing.m_pathUser;
       m_pathFinal = listing.m_pathFinal;
       m_straPattern = listing.m_straPattern;

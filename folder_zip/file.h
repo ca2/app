@@ -1,0 +1,105 @@
+#pragma once
+
+
+namespace folder_zip
+{
+
+
+   class CLASS_DECL_FOLDER_ZIP file:
+      virtual public ::file::file
+   {
+   public:
+
+
+      enum e_mode
+      {
+
+         mode_undefined,
+         mode_zip,
+         mode_unzip
+
+      };
+
+
+      enum BufferCommand
+      {
+
+         bufferRead,
+         bufferWrite,
+         bufferCommit,
+         bufferCheck
+
+      };
+
+
+      //void *                              m_punzfileinfo;
+      string                              m_strFileName;
+      u64                                 m_iPosition;
+      string_array                        m_straPath;
+      __pointer(folder)                   m_pfolder;
+      //__pointer_array(::file_container)   m_filea;
+      //__pointer_array(::zip::in_file)     m_infilea;
+      string_array                        m_straPrefix;
+      e_mode                              m_emode;
+      string                              m_strZipFile;
+
+
+      file();
+      ~file() override;
+
+
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
+
+
+
+
+      virtual filesize get_position() const override;
+
+      //virtual bool zip_open(const char *,::u32);
+      //virtual bool zip_open(::zip::file * pzfile,const char * pcszFileName);
+
+
+      //virtual bool unzip_open(::file::file * pfile, const string_array & = {}, int iBufferLevel = 2, ::file::enum_type * petype = nullptr);
+      //virtual bool unzip_open(::zip::file * pzfile,const char * pcszFileName);
+
+      //virtual bool unzip_open(const char *, ::file::enum_type * petype = nullptr);
+
+      //virtual bool locate(const char * pszFileName);
+
+      //virtual void add_file(const ::file::path & pszDir,const ::file::path & pszRelative);
+
+      //bool dump(file_pointer pfile);
+
+      //bool dump(memory & m);
+
+      
+      ::folder_zip::folder * get_folder();
+
+      
+      filesize translate(filesize offset, ::enum_seek eseek) override;
+      void set_size(filesize dwNewLen) override;
+      filesize get_size() const override;
+
+
+      using ::file::file::read;
+      memsize read(void * pdata, memsize nCount) override;
+
+
+      using ::file::file::write;
+      void write(const void * pdata,memsize nCount) override;
+
+
+      void flush() override;
+      void close() override;
+
+      bool is_opened() const override;
+
+
+   };
+
+
+} // namespace folder_zip
+
+
+

@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "apex/const/method.h"
+#include "apex/constant/method.h"
 #include "apex/platform/launcher.h"
 #include "apex/platform/app_launcher.h"
 #include "acme/filesystem/filesystem/acme_dir.h"

@@ -1,13 +1,10 @@
 #pragma once
 
 
-#include "zip/_.h"
+#include "compress.h"
 
 
-//#include "zip_is_dir.h"
-
-
-//#include "compress_context.h"
+#include "uncompress.h"
 
 
 

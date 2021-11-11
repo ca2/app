@@ -108,17 +108,11 @@
     <Filter Include="Source Files\compress">
       <UniqueIdentifier>{6c63ec8b-0cad-40df-9485-b9a8fd37179b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\compress\zip">
-      <UniqueIdentifier>{aee72124-45e4-4971-809f-9ca4184ee7cd}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\platform">
       <UniqueIdentifier>{0700aa41-3b42-4581-ab4a-a8dc6683d8a6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\memory\os_alloc">
       <UniqueIdentifier>{f1d64368-6958-4b0f-a00d-2213b49194d9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\filesystem\const">
-      <UniqueIdentifier>{d1dc7140-9c26-4249-9bf3-84fc6fbb92d7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\filesystem\filesystem">
       <UniqueIdentifier>{602198df-4001-470f-9b99-25c7896b16de}</UniqueIdentifier>
@@ -284,6 +278,9 @@
     </Filter>
     <Filter Include="Header Files\inline\application">
       <UniqueIdentifier>{7cc6d354-98d2-42bc-8927-fd4b29369376}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\compress">
+      <UniqueIdentifier>{029fd5d0-35f1-489e-a65d-bf45039ad5f1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1685,48 +1682,6 @@
     <ClInclude Include="user\conversation.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="compress\zip\_.h">
-      <Filter>Source Files\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\zip\_internal.h">
-      <Filter>Source Files\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\zip\api.h">
-      <Filter>Source Files\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\zip\crypt.h">
-      <Filter>Source Files\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\zip\file.h">
-      <Filter>Source Files\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\zip\impl.h">
-      <Filter>Source Files\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\zip\in_file.h">
-      <Filter>Source Files\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\zip\ioapi.h">
-      <Filter>Source Files\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\zip\iowin32.h">
-      <Filter>Source Files\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\zip\memory_buffer.h">
-      <Filter>Source Files\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\zip\unzip.h">
-      <Filter>Source Files\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\_.h">
-      <Filter>Source Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\aaa_want_to_move_compress_bz.h">
-      <Filter>Source Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\gz.h">
-      <Filter>Source Files\compress</Filter>
-    </ClInclude>
     <ClInclude Include="_start.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -2771,6 +2726,21 @@
     <ClInclude Include="inline\_main_hold.h">
       <Filter>Header Files\inline</Filter>
     </ClInclude>
+    <ClInclude Include="compress\uncompress.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\_.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\transfer.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\folder.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">
@@ -3175,27 +3145,6 @@
     <ClCompile Include="include\_.cpp">
       <Filter>Source Files\include</Filter>
     </ClCompile>
-    <ClCompile Include="compress\zip\api.cpp">
-      <Filter>Source Files\compress\zip</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\zip\file.cpp">
-      <Filter>Source Files\compress\zip</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\zip\in_file.cpp">
-      <Filter>Source Files\compress\zip</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\zip\ioapi.cpp">
-      <Filter>Source Files\compress\zip</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\zip\memory_buffer.cpp">
-      <Filter>Source Files\compress\zip</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\zip\unzip.cpp">
-      <Filter>Source Files\compress\zip</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\zip\zip.cpp">
-      <Filter>Source Files\compress\zip</Filter>
-    </ClCompile>
     <ClCompile Include="platform\static_start.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
@@ -3300,9 +3249,6 @@
     </ClCompile>
     <ClCompile Include="primitive\primitive\match.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\gz.cpp">
-      <Filter>Source Files\compress</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\circular_buffer.cpp">
       <Filter>Source Files\filesystem\file</Filter>
@@ -3894,6 +3840,18 @@
     </ClCompile>
     <ClCompile Include="platform\implementable.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\compress.cpp">
+      <Filter>Source Files\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\uncompress .cpp">
+      <Filter>Source Files\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\container.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\transfer.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -940,14 +940,16 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="bz.h" />
+    <ClInclude Include="compress.h" />
     <ClInclude Include="bzip.h" />
+    <ClInclude Include="uncompress.h" />
     <ClInclude Include="_.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="_compress_bzip2.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="bz.cpp" />
+    <ClCompile Include="compress.cpp" />
+    <ClCompile Include="uncompress.cpp" />
     <ClCompile Include="_.cpp" />
     <ClCompile Include="factory_exchange.cpp" />
     <ClCompile Include="framework.cpp">

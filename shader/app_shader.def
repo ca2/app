@@ -1,0 +1,8 @@
+﻿; app_shader.def
+
+LIBRARY  "app_shader"
+; For Win32 DLLs, only EXPORTs really required.
+
+EXPORTS
+app_shader_get_new_library
+

@@ -434,8 +434,8 @@
       <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
     </Xdcmake>
     <PostBuildEvent>
-      <Command>copy $(__archive)storage-windows\binary\$(PlatformName)\$(Configuration)\*.* $(OutDir)
-copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*.* $(OutDir)</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">
@@ -765,8 +765,8 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       </TreatOutputAsContent>
     </CustomBuildStep>
     <PostBuildEvent>
-      <Command>copy $(__archive)storage-windows\binary\$(PlatformName)\$(Configuration)\*.* $(OutDir)
-copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*.* $(OutDir)</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
     <Manifest>
       <AdditionalManifestFiles>
@@ -868,9 +868,9 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="compress\context.cpp" />
-    <ClCompile Include="compress\zip_is_dir.cpp" />
-    <ClCompile Include="compress\zip\context.cpp" />
-    <ClCompile Include="const\idpool.cpp" />
+    <ClCompile Include="compress\is_dir.cpp" />
+    <ClCompile Include="compress\not_dir.cpp" />
+    <ClCompile Include="constant\idpool.cpp" />
     <ClCompile Include="crypto\crypto.cpp" />
     <ClCompile Include="crypto\crypto_initializer.cpp" />
     <ClCompile Include="crypto\hasher.cpp" />
@@ -885,11 +885,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="crypto\openssl\hasher.cpp" />
-    <ClCompile Include="crypto\openssl\hasher_algorithm.cpp" />
-    <ClCompile Include="crypto\openssl\rsa.cpp" />
-    <ClCompile Include="crypto\openssl\crypto.cpp" />
-    <ClCompile Include="crypto\openssl\_.cpp" />
     <ClCompile Include="crypto\rsa.cpp" />
     <ClCompile Include="database\client.cpp" />
     <ClCompile Include="database\event_change.cpp" />
@@ -1009,6 +1004,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="node\operating_system\windows\_.cpp" />
     <ClCompile Include="node\operating_system\windows_common\file.cpp" />
     <ClCompile Include="node\operating_system\_application.cpp" />
+    <ClInclude Include="compress\not_dir.h" />
     <ClInclude Include="crypto\crypto_initializer.h" />
     <ClInclude Include="inline\implement\ansi.h" />
     <ClInclude Include="inline\implement\windows.h" />
@@ -1084,17 +1080,13 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="crypto\crypto.h" />
     <ClInclude Include="crypto\hasher.h" />
     <ClInclude Include="crypto\hasher_algorithm.h" />
-    <ClInclude Include="crypto\openssl\hasher.h" />
-    <ClInclude Include="crypto\openssl\hasher_algorithm.h" />
-    <ClInclude Include="crypto\openssl\rsa.h" />
-    <ClInclude Include="crypto\openssl\_openssl.h" />
     <ClInclude Include="crypto\rsa.h" />
     <ClInclude Include="crypto\_.h" />
     <ClInclude Include="crypto\_crypto.h" />
     <ClInclude Include="future.h" />
     <ClInclude Include="compress\_.h" />
     <ClInclude Include="compress\context.h" />
-    <ClInclude Include="compress\zip_is_dir.h" />
+    <ClInclude Include="compress\is_dir.h" />
     <ClInclude Include="console.h" />
     <ClInclude Include="console_slim.h" />
     <ClInclude Include="const\charset.h" />
@@ -1109,7 +1101,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="database\stringhelper.h" />
     <ClInclude Include="database\_.h" />
     <ClInclude Include="database\_impl.h" />
-    <ClInclude Include="filesystem\filesystem\path_object.h" />
     <ClInclude Include="filesystem\file\html_file.h" />
     <ClInclude Include="filesystem\file\_data.h" />
     <ClInclude Include="framework.h" />
@@ -1360,8 +1351,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="filesystem\filesystem\dir_system.h" />
     <ClInclude Include="filesystem\filesystem\file_context.h" />
     <ClInclude Include="filesystem\filesystem\file_system.h" />
-    <ClInclude Include="filesystem\file\_var_stream_impl.h" />
-    <ClInclude Include="filesystem\file\___serialization_draft.h" />
     <ClCompile Include="filesystem\file\set.cpp" />
     <ClCompile Include="filesystem\fs\data.cpp" />
     <ClCompile Include="filesystem\fs\fs.cpp" />
@@ -1381,26 +1370,10 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="const\timer.h" />
     <ClInclude Include="filesystem\filesystem.h" />
     <ClInclude Include="filesystem\filesystem\file_watcher.h" />
-    <ClInclude Include="filesystem\filesystem\listing.h" />
-    <ClInclude Include="filesystem\filesystem\path.h" />
-    <ClInclude Include="filesystem\file\_const.h" />
-    <ClInclude Include="filesystem\file\cpp.h" />
+    <ClInclude Include="filesystem\filesystem\aaa_path.h" />
     <ClInclude Include="filesystem\file\edit_file.h" />
     <ClInclude Include="filesystem\file\_.h" />
-    <ClInclude Include="filesystem\file\file1.h" />
-    <ClInclude Include="filesystem\file\item_array.h" />
-    <ClInclude Include="filesystem\file\listing_provider.h" />
-    <ClInclude Include="filesystem\file\ostream_flush.h" />
-    <ClInclude Include="filesystem\file\primitive.h" />
-    <ClInclude Include="filesystem\file\serialize.h" />
     <ClInclude Include="filesystem\file\set.h" />
-    <ClInclude Include="filesystem\file\file_stream1.h" />
-    <ClInclude Include="filesystem\file\stream2.h" />
-    <ClInclude Include="filesystem\file\transfer_file.h" />
-    <ClInclude Include="filesystem\file\_papaya.h" />
-    <ClInclude Include="filesystem\file\_papaya_impl.h" />
-    <ClInclude Include="filesystem\file\_stream_process_impl.h" />
-    <ClInclude Include="filesystem\file\_text_stream_impl.h" />
     <ClInclude Include="filesystem\fs\data.h" />
     <ClInclude Include="filesystem\fs\fs.h" />
     <ClInclude Include="filesystem\fs\ifs.h" />
@@ -1437,7 +1410,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="_defer.h" />
     <None Include="apex.def" />
     <None Include="filesystem\_impl.h" />
-    <None Include="filesystem\file\_serializable_impl.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\..\archive\platform-windows\version.rc" />

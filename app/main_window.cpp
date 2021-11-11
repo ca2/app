@@ -85,10 +85,25 @@ namespace app_app
 
       rectangleClient.deflate((::i32) dBase);
 
+      ::color::color colorInset;
+
+      if (m_psystem->node()->background_color().get_luminance() < 0.5)
+      {
+
+         colorInset = __acolor(255, 89, 89, 89);
+
+      }
+      else
+      {
+
+         colorInset = __acolor(255, 127, 127, 127);
+
+      }
+
       for (int i = 0; i < dBase; i++)
       {
 
-         pgraphics->draw_inset_rectangle(rectangleClient, __acolor(255, 127, 127, 127));
+         pgraphics->draw_inset_rectangle(rectangleClient, colorInset);
 
          rectangleClient.deflate(1, 1);
 

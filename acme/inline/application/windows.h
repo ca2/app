@@ -51,13 +51,13 @@ i32 WINAPI _tWinMain(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, TCHAR* pC
 }
 
 
-#ifdef CLASS_DECL_APEX
-
-
-#include "openssl/applink.c"
-
-
-#endif
+//#ifdef CLASS_DECL_APEX
+//
+//
+//#include "openssl/applink.c"
+//
+//
+//#endif
 
 
 

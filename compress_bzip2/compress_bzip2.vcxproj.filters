@@ -23,10 +23,13 @@
     <ClInclude Include="_compress_bzip2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="bz.h">
+    <ClInclude Include="compress.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="bzip.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="uncompress.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -40,7 +43,10 @@
     <ClCompile Include="_.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="bz.cpp">
+    <ClCompile Include="compress.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="uncompress.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -20,8 +20,10 @@ public:
    //::core::system *              m_pcoresystem;
    
    //bool                             m_bOnInitializeWindowObject;
+
+   __transport(::acme::library)                 m_plibraryFolder;
    
-   bool                             m_bPostedInitialRequest;
+   bool                                         m_bPostedInitialRequest;
 
 
    __reference(::application)                   m_papplicationStartup;
@@ -174,6 +176,9 @@ public:
 
 
    virtual ::application* get_main_application();
+
+
+   virtual ::e_status defer_folder_library();
 
 
    ::e_status system_construct(const ::main & main) override;
@@ -475,7 +480,39 @@ public:
    
    virtual ::e_status on_open_file(const ::string &pszFile);
 
+   template < typename BASE_TYPE >
+   __transport(BASE_TYPE) create(const char * pszComponent, const char* pszImplementation)
+   {
 
+      auto plibrary = do_containerized_factory_exchange(pszComponent, pszImplementation);
+
+      if (!plibrary)
+      {
+
+         return error_not_found;
+
+      }
+
+      auto p = plibrary->create<BASE_TYPE>();
+
+      if (!p)
+      {
+
+         return error_not_found;
+
+      }
+
+      return p;
+
+   }
+
+
+   __transport(::compress) create_compress(const char* pszImplementation);
+   __transport(::uncompress) create_uncompress(const char* pszImplementation);
+
+
+   ::e_status compress(::file::file* pfileOut, ::file::file* pfileIn, const char* pszImplementation);
+   ::e_status uncompress(::file::file* pfileOut, ::file::file* pfileIn, const char* pszImplementation);
 
 
 };

@@ -31,7 +31,8 @@ namespace crypto
          const string& dmp1,
          const string& dmq1,
          const string& iqmp);
-      virtual ~rsa();
+      ~rsa() override;
+
 
       virtual int public_encrypt(memory& out, const memory& in, string& strError);
       virtual int private_decrypt(memory& out, const memory& in, string& strError);
@@ -48,6 +49,6 @@ namespace crypto
 
 
 
-__pointer(::crypto::rsa) __create_rsa(const string& str);
+//__pointer(::crypto::rsa) __create_rsa(const string& str);
 
 

@@ -3020,10 +3020,15 @@ class duration;
 
 #include "acme/platform/keep_true.h"
 
+class folder;
 
 using file_pointer = __pointer(::file::file);
 
 using file_transport = __transport(::file::file);
+
+using folder_pointer = __pointer(::folder);
+
+using folder_transport = __transport(::folder);
 
 class stream;
 
@@ -4622,6 +4627,9 @@ CLASS_DECL_ACME string get_last_error_string();
 
 
 //#include "acme/scripting/javascript/javascript.h"
+
+
+#include "acme/filesystem/file/transfer.h"
 
 
 #include "acme/compress/_.h"

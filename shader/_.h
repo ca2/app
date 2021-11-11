@@ -36,10 +36,4 @@ namespace opengl
 } // namespace opengl
 
 
-#include "render.h"
-
-
-#include "application.h"
-
-
 

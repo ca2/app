@@ -352,7 +352,7 @@ enum enum_task_flag
 {
 
    e_task_flag_fast_path, // 0 --> 1 << 0
-   e_task_flag_zip_is_dir, // 1 --> 1 << 1
+   e_task_flag_compress_is_dir, // 1 --> 1 << 1
    e_task_flag_is_timer, // 2 --> 1 << 2
    e_task_flag_resolve_alias, // 3 -->
    e_task_flag_prevent_bad_status_exception,

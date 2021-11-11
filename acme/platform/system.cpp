@@ -8,6 +8,7 @@
 #include "acme/platform/static_setup.h"
 #include "simple_log.h"
 
+
 //__namespace_object_factory(class ::system, ::static_setup::flag_system)
 
 
@@ -1419,6 +1420,21 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
+   ::e_status system::defer_folder_library()
+   {
+
+      if (m_plibraryFolder.not_initialized())
+      {
+
+         m_plibraryFolder = do_containerized_factory_exchange("folder", "zip");
+
+      }
+
+      return m_plibraryFolder;
+
+   }
+
+
    ::e_status system::system_construct(const ::main & main)
    {
 
@@ -1517,6 +1533,91 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    
       return error_interface_only;
       
+   }
+
+
+   __transport(::compress) system::create_compress(const char* pszImplementation)
+   {
+
+      auto pcompress = create < ::compress >("compress", pszImplementation);
+
+      if (!pcompress)
+      {
+
+         return pcompress;
+
+      }
+
+      return pcompress;
+
+   }
+
+
+   __transport(::uncompress) system::create_uncompress(const char* pszImplementation)
+   {
+
+      auto puncompress = create < ::uncompress >("compress", pszImplementation);
+
+      if (!puncompress)
+      {
+
+         return puncompress;
+
+      }
+
+      return puncompress;
+
+   }
+
+   ::e_status system::compress(::file::file* pfileOut, ::file::file* pfileIn, const char* pszImplementation)
+   {
+
+      auto pcompress = create_compress(pszImplementation);
+
+      if (!pcompress)
+      {
+
+         return pcompress;
+
+      }
+
+      auto estatus = pcompress->transfer(pfileOut, pfileIn);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
+   ::e_status system::uncompress(::file::file* pfileOut, ::file::file* pfileIn, const char* pszImplementation)
+   {
+
+      auto puncompress = create_uncompress(pszImplementation);
+
+      if (!puncompress)
+      {
+
+         return puncompress;
+
+      }
+
+      auto estatus = puncompress->transfer(pfileOut, pfileIn);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
    }
 
 

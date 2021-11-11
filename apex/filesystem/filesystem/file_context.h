@@ -224,7 +224,7 @@ public:
 
    virtual ::file_transport data_get_file(string strData, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
 
-   virtual ::file_transport zip_get_file(::file::file * pfile, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
+   virtual ::folder_transport get_folder(::file::file * pfile, const char * pszImplementation, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
 
    virtual ::file_transport http_get_file(const ::payload & payloadFile, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
 

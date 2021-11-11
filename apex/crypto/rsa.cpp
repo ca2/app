@@ -5,49 +5,56 @@ namespace crypto
 {
 
 
-    rsa::rsa(const string& nParam)
-    {
+   rsa::rsa()
+   {
 
 
-    }
+   }
 
 
-    rsa::~rsa()
-    {
-
-    }
+   rsa::rsa(const string& nParam)
+   {
 
 
-    int rsa::public_encrypt(memory& out, const memory& in, string& strError)
-    {
-
-        return -1;
-
-    }
+   }
 
 
-    int rsa::private_decrypt(memory& out, const memory& in, string& strError)
-    {
+   rsa::~rsa()
+   {
 
-        return -1;
-
-    }
+   }
 
 
-    int rsa::private_encrypt(memory& out, const memory& in, string& strError)
-    {
+   int rsa::public_encrypt(memory& out, const memory& in, string& strError)
+   {
 
-        return -1;
+      return -1;
 
-    }
+   }
 
 
-    int rsa::public_decrypt(memory& out, const memory& in, string& strError)
-    {
+   int rsa::private_decrypt(memory& out, const memory& in, string& strError)
+   {
 
-        return -1;
+      return -1;
 
-    }
+   }
+
+
+   int rsa::private_encrypt(memory& out, const memory& in, string& strError)
+   {
+
+      return -1;
+
+   }
+
+
+   int rsa::public_decrypt(memory& out, const memory& in, string& strError)
+   {
+
+      return -1;
+
+   }
 
 
 } // namespace crypto

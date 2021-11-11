@@ -22,7 +22,7 @@
 #define UTF8_BOM "\xef\xbb\xbf"
 
 
-#include "apex/compress/zip/_.h"
+//#include "apex/compress/zip/_.h"
 #include "acme/id.h"
 
 
@@ -139,7 +139,7 @@ bool file_context::is_file_or_dir(const ::file::path &path, ::payload *pvarQuery
 
    }
 
-   if (::task_flag().is_set(e_task_flag_zip_is_dir))
+   if (::task_flag().is_set(e_task_flag_compress_is_dir))
    {
 
       strsize iFind = ::str::find_file_extension("zip:", path);
@@ -154,24 +154,28 @@ bool file_context::is_file_or_dir(const ::file::path &path, ::payload *pvarQuery
 
          }
 
-         compress_context compress(this);
+         throw todo;
 
-         ::file::path pathZip;
+         //compress_context compress(this);
 
-         string_array straPath;
+         //::file::path pathZip;
 
-         if (!compress.get_patha(pathZip, straPath, path))
-         {
+         //string_array straPath;
 
-            return false;
+         //if (!compress.get_patha(pathZip, straPath, path))
+         //{
 
-         }
+         //   return false;
 
-         auto pfile = m_pcontext->m_papexcontext->file().get_reader(pathZip);
+         //}
 
-         zip_context zip(this);
+         //auto pfile = m_pcontext->m_papexcontext->file().get_reader(pathZip);
 
-         return zip.is_file_or_dir(pfile, straPath, petype);
+         //zip_context zip(this);
+
+         //return zip.is_file_or_dir(pfile, straPath, petype);
+
+         return false;
 
       }
 
@@ -1020,7 +1024,7 @@ bool file_context::resource_is_file_or_dir(const char* path)
       ::file::path strDirSrc(varSource.get_file_path());
       ::file::path strDirDst(varTarget.get_file_path());
 
-      if (::task_flag().is_set(e_task_flag_zip_is_dir) && (::str::ends(strDirSrc, ".zip")))
+      if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str::ends(strDirSrc, ".zip")))
       {
 
          strDirSrc += ":";
@@ -2415,20 +2419,49 @@ file_transport file_context::data_get_file(string strData, const ::file::e_open 
 }
 
 
-file_transport file_context::zip_get_file(::file::file *pfile, const ::file::e_open &eopenFlags)
+folder_transport file_context::get_folder(::file::file *pfile, const char * pszImplementation, const ::file::e_open &eopen)
 {
 
-   auto pinfile = __new(zip::in_file);
+   auto plibrary = m_psystem->do_containerized_factory_exchange("folder", "zip");
 
-   if (pinfile.is_set())
+   if (!plibrary)
    {
 
-      if (pinfile->unzip_open(pfile))
+     return ::error_failed;
+
+   }
+
+   auto pfolder = plibrary->create < ::folder >();
+
+   if (!pfolder)
+   {
+
+      return ::error_failed;
+
+   }
+
+   if(eopen & ::file::e_open_read)
+   {
+
+      if (pfolder->open_for_reading(pfile))
       {
 
          INFORMATION("::file::file_context::zip_get_file Succeeded");
 
-         return pinfile;
+         return pfolder;
+
+      }
+
+   }
+   else if (eopen & ::file::e_open_write)
+   {
+
+      if (pfolder->open_for_writing(pfile))
+      {
+
+         INFORMATION("::file::file_context::zip_get_file Succeeded");
+
+         return pfolder;
 
       }
 
@@ -2740,12 +2773,16 @@ file_transport file_context::get_file(const ::payload &payloadFile, const ::file
          return ::error_file_not_found;
 
       }
-      else if (::task_flag().is_set(e_task_flag_zip_is_dir) && (::str::find_file_extension("zip:", path) >= 0))
+      else if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str::find_file_extension("zip:", path) >= 0))
       {
 
-         auto pfile = get_reader(path);
+         //auto pfile = get_reader(path);
 
-         return zip_get_file(pfile.m_p, eopenFlags);
+         //return zip_get_file(pfile.m_p, eopenFlags);
+
+         throw todo;
+
+         return nullptr;
 
       }
       else if (::str::begins_eat(path, "file:///") || ::str::begins_eat(path, "file:\\\\\\"))

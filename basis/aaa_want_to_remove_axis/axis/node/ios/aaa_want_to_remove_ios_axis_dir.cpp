@@ -120,7 +120,7 @@ pacmedir->is(const ::string & strPath, ::aura::application * papp)
             return true; // assume empty string is root_ones directory
          }
 
-         if(thread_set(e_task_flag_zip_is_dir) && iLast >= 3 && !ansi_count_compare_ci(&((const ::string &)str)[iLast - 3],".zip",4))
+         if(thread_set(e_task_flag_compress_is_dir) && iLast >= 3 && !ansi_count_compare_ci(&((const ::string &)str)[iLast - 3],".zip",4))
          {
 
             return true;
@@ -129,7 +129,7 @@ pacmedir->is(const ::string & strPath, ::aura::application * papp)
 
          strsize iFind = ::str::find_ci(".zip:", str);
 
-         if(thread_set(e_task_flag_zip_is_dir) && iFind >= 0 && iFind < iLast)
+         if(thread_set(e_task_flag_compress_is_dir) && iFind >= 0 && iFind < iLast)
          {
 
             bool bHasSubFolder = m_pziputil->has_sub_folder(papp, str);

@@ -332,6 +332,7 @@ namespace core
 
 
 
+
 //class eimpact;
 //
 //enum e_simple_command : ::i64;
@@ -1254,7 +1255,7 @@ namespace mathematics
 #include "apex/platform/async.h"
 
 
-#include "apex/const/idpool.h"
+#include "apex/constant/idpool.h"
 
 
 #include "apex/user/_.h"

@@ -63,7 +63,7 @@ CLASS_DECL_ACME htask_t get_current_hthread();
 //CLASS_DECL_ACME void thread_set_fast_path(bool bFastPath = true);
 //CLASS_DECL_ACME bool thread_is_fast_path();
 //CLASS_DECL_ACME void thread_set_zip_is_dir(bool bZipIsDir = true);
-//CLASS_DECL_ACME bool thread_set(e_task_flag_zip_is_dir);
+//CLASS_DECL_ACME bool thread_set(e_task_flag_compress_is_dir);
 //CLASS_DECL_ACME void thread_set_is_timer(bool bIsTimer = true);
 //CLASS_DECL_ACME bool thread_is_timer();
 //CLASS_DECL_ACME void thread_set_resolve_alias(bool bResolveAlias = true);

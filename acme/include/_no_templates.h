@@ -19,7 +19,6 @@
 #define CLASS_DECL_ACME
 #endif // CLASS_DECL_ACME
 
-
 #include "operating_system/system.h"
 #include "operating_system/types.h"
 #include "acme/platform/text.h"

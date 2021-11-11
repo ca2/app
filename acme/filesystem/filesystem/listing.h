@@ -8,34 +8,24 @@ namespace file
    class listing;
 
 
-   class CLASS_DECL_ACME listing_provider :
-      virtual public ::matter
+   struct CLASS_DECL_ACME LISTING
    {
-   public:
 
-
-      virtual ::file::listing & perform_file_listing(::file::listing & listing) = 0;
-      virtual ::file::listing & perform_file_relative_name_listing(::file::listing & listing) = 0;
-
-
-   };
-
-
-   struct CLASS_DECL_ACME listing_meta
-   {
 
       listing_provider *   m_pprovider = nullptr;
       bool                 m_bFile = true;
       bool                 m_bDir = true;
       bool                 m_bRecursive = false;
       e_extract            m_eextract = extract_first;
+
+
    };
 
 
    class CLASS_DECL_ACME listing:
    // recursive fetchings should set a meaningful m_iRelative value at each returned path
       public ::file::patha,
-      public listing_meta
+      public LISTING
    {
    public:
 

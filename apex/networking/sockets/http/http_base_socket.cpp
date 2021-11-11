@@ -334,12 +334,10 @@ namespace sockets
 
             auto pfile = create_memory_file();
 
-            compress_context compress(this);
-
             if (response().m_strFile.has_char())
             {
 
-               compress.gz(pfile, m_pcontext->m_papexcontext->file().get_reader(response().m_strFile));
+               m_psystem->compress(pfile, m_pcontext->m_papexcontext->file().get_reader(response().m_strFile), "zlib");
 
                response().m_strFile.Empty();
 
@@ -349,7 +347,7 @@ namespace sockets
 
                response().file()->seek_to_begin();
 
-               compress.gz(pfile, response().file());
+               m_psystem->compress(pfile, response().file(), "zlib");
 
             }
 
@@ -482,9 +480,7 @@ namespace sockets
 
             auto preader = m_pcontext->m_papexcontext->file().get_reader(pcsz);
 
-            compress_context compress(this);
-
-            if (!compress.ungz(response().file(), preader))
+            if (!m_psystem->uncompress(response().file(), preader, "zlib"))
             {
 
                response().file()->from_begin(preader);

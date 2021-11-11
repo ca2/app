@@ -4,7 +4,7 @@
 #include "apex/platform/app_core.h"
 #include "acme/platform/profiler.h"
 #include "acme/primitive/text/context.h"
-#include "apex/compress/zip/context.h"
+//#include "apex/compress/zip/context.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
 #include "acme/platform/node.h"
 
@@ -5186,7 +5186,9 @@ retry_license:
       if (set["get_memory"].cast < memory >() != nullptr && set["get_memory"].cast < memory >()->get_size() > 0)
       {
 
-         zip_context zip(this);
+//         zip_context zip(this);
+
+         auto pfolder = m_pcontext->m_papexcontext->file().get_folder(&file, "zip", ::file::e_open_read);
 
          string strDir = strFile;
 
@@ -5195,7 +5197,7 @@ retry_license:
          try
          {
 
-            zip.extract_all(strDir, &file);
+            pfolder->extract_all(strDir);
 
          }
          catch (...)

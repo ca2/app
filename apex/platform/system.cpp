@@ -1634,7 +1634,18 @@ pacmedir->create("/ca2core");
 
       }
 
-      estatus = __compose_new(m_pcrypto);
+      estatus = do_factory_exchange("crypto", "openssl");
+
+      if (!estatus)
+      {
+
+         WARNING("Could not open crypto openssl plugin.");
+
+         return estatus;
+
+      }
+
+      estatus = __compose(m_pcrypto);
 
       if(!estatus)
       {

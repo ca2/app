@@ -26,21 +26,24 @@ namespace crypto
       ~crypto() override;
 
       
-      virtual void defer_initialize();
+      virtual ::e_status defer_initialize();
 
 
-      virtual __pointer(hasher) create_hasher(enum_hash ehash);
+      virtual __transport(hasher_algorithm) create_hasher_algorithm(enum_hash ehash);
+      virtual __transport(hasher) create_hasher(enum_hash ehash);
 
 
-      virtual bool encrypt(memory & storageEncrypt, const memory & storageDecrypt, const char * pszSalt);
-      virtual bool decrypt(memory & storageDecrypt, const memory & storageEncrypt, const char * pszSalt);
-      virtual bool encrypt(memory & storageEncrypt, const char * pszDecrypt, const char * pszSalt);
-      virtual bool decrypt(string & strDecrypt, const memory & storageEncrypt, const char * pszSalt);
+      virtual ::e_status encrypt(memory& storageEncrypt, const memory& storageDecrypt, const memory& storageKey) = 0;
+      virtual ::e_status decrypt(memory& storageDecrypt, const memory& storageEncrypt, const memory& storageKey) = 0;
+
+ 
+      virtual ::e_status encrypt(memory & storageEncrypt, const memory & storageDecrypt, const char * pszSalt);
+      virtual ::e_status decrypt(memory & storageDecrypt, const memory & storageEncrypt, const char * pszSalt);
+      virtual ::e_status encrypt(memory & storageEncrypt, const char * pszDecrypt, const char * pszSalt);
+      virtual ::e_status decrypt(string & strDecrypt, const memory & storageEncrypt, const char * pszSalt);
 
 
       virtual i32 key(memory & storage);
-      virtual bool encrypt(memory & storageEncrypt, const memory & storageDecrypt, const memory & storageKey);
-      virtual bool decrypt(memory & storageDecrypt, const memory & storageEncrypt, const memory & storageKey);
 
       virtual string strkey();
       virtual i32 encrypt(string & str,const char * psz,const char * pszKey);
@@ -53,7 +56,7 @@ namespace crypto
       virtual int get_nessie_digest_length() const;
 
 
-      static u32 crc32(u32 dwPrevious, const char * psz);
+      //virtual u32 crc32(u32 dwPrevious, const char * psz) = 0;
       virtual string md5(const char * psz);
       virtual string sha1(const char * psz);
       virtual string nessie(const char * psz);
@@ -62,17 +65,19 @@ namespace crypto
       virtual string sha1(const memory & mem);
       virtual string nessie(const memory & mem);
 
+      virtual int get_hash_digest_length(enum_hash) const = 0;
 
-      virtual void hash(memory& memMd5, const block & block, enum_hash ehash);
+      virtual ::e_status hash(memory& memOut, const block & blockIn, enum_hash ehash);
 
-      virtual void md5(memory & memMd5, const block& block);
-      virtual void sha1(memory & memSha1, const block& block);
-      virtual void sha256(memory & memSha256, const block& block);
-      virtual void nessie(memory & memNessie, const block& block);
+
+      virtual ::e_status md5(memory & memMd5, const block& block);
+      virtual ::e_status sha1(memory & memSha1, const block& block);
+      virtual ::e_status sha256(memory & memSha256, const block& block);
+      virtual ::e_status nessie(memory & memNessie, const block& block);
 
       // result is 20-byte digest
-      virtual void hmac(void * result,const memory & memMessage,const memory & key);
-      virtual void hmac(void * result,const string & memMessage,const string & key);
+      virtual void hmac(void * result,const memory & memMessage,const memory & key) = 0;
+      virtual void hmac(void * result,const string & memMessage,const string & key) = 0;
 
       virtual bool file_set(::payload payloadFile,const char * pszData,const char * pszSalt, ::application * papp);
       virtual ::e_status     file_get(::payload payloadFile,string & str,const char * pszSalt, ::application * papp);
@@ -95,6 +100,8 @@ namespace crypto
       virtual ::file::path get_crypt_key_file_path();
       virtual string defer_get_cryptkey();
 
+      
+      virtual __pointer(rsa) create_rsa_key(const ::string & strRsa);
 
       virtual __pointer(rsa) generate_rsa_key();
 
@@ -103,10 +110,10 @@ namespace crypto
       virtual __pointer(rsa) read_pub_pem(const ::string & strFile);
 
 
-      virtual void err_load_rsa_strings();
+      //void err_load_rsa_strings();
 
 
-      virtual void err_load_crypto_strings();
+      //void err_load_crypto_strings();
 
 
       virtual string spa_login_crypt(const char * psz,const string & pszRsa);
@@ -119,7 +126,7 @@ namespace crypto
       virtual string txt_encrypt(const char * psz,rsa * prsa);
       virtual string txt_decrypt(const char * psz,rsa * prsa);
 
-      virtual void np_make_zigbert_rsa(const ::string & strDir, const ::string & strSignerPath, const ::string & strKeyPath, const ::string & strOthersPath, const ::string & strSignature);
+      //virtual void np_make_zigbert_rsa(const ::string & strDir, const ::string & strSignerPath, const ::string & strKeyPath, const ::string & strOthersPath, const ::string & strSignature);
 
 
    };

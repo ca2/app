@@ -39,7 +39,7 @@
     <ClInclude Include="render.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="_user.h">
+    <ClInclude Include="_app_shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="main_window.h">
@@ -58,5 +58,10 @@
     <Text Include="matter.txt">
       <Filter>Source Files</Filter>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app_shader.def">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

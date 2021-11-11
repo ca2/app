@@ -45,9 +45,6 @@
     <Filter Include="Resource Files">
       <UniqueIdentifier>{884e337b-3347-4863-8d95-d6b0a4245427}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\const">
-      <UniqueIdentifier>{f8ac833f-c335-48be-81bf-1c8408752720}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\filesystem\fs">
       <UniqueIdentifier>{3dbb64e5-0f7f-4246-9de1-8b9aef3918e4}</UniqueIdentifier>
     </Filter>
@@ -84,9 +81,6 @@
     <Filter Include="Source Files\compress">
       <UniqueIdentifier>{6c63ec8b-0cad-40df-9485-b9a8fd37179b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\compress\zip">
-      <UniqueIdentifier>{aee72124-45e4-4971-809f-9ca4184ee7cd}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\platform">
       <UniqueIdentifier>{0700aa41-3b42-4581-ab4a-a8dc6683d8a6}</UniqueIdentifier>
     </Filter>
@@ -107,12 +101,6 @@
     </Filter>
     <Filter Include="Header Files\crypto">
       <UniqueIdentifier>{2c023ae4-19da-43f2-98ec-7bd160bb2def}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\crypto\openssl">
-      <UniqueIdentifier>{05147215-12a4-40cf-b2b7-d8f8d5368a10}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\crypto\openssl">
-      <UniqueIdentifier>{ef60f9ff-0945-49f5-81d9-12fa6c3dae42}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\crypto\macos">
       <UniqueIdentifier>{df2a4f13-4c81-43cc-8afc-41791d4c6d1f}</UniqueIdentifier>
@@ -231,69 +219,24 @@
     <Filter Include="Source Files\platform\parallelization">
       <UniqueIdentifier>{f5fb0b8d-82f2-4a87-b245-1747ef8e70a3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\constant">
+      <UniqueIdentifier>{f8ac833f-c335-48be-81bf-1c8408752720}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
       <Filter>Header Files\filesystem</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filesystem\listing.h">
+    <ClInclude Include="filesystem\filesystem\aaa_path.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filesystem\path.h">
-      <Filter>Header Files\filesystem\filesystem</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\cpp.h">
-      <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\file\edit_file.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file1.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\item_array.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\listing_provider.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\ostream_flush.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\primitive.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\serialize.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\file\set.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\file\stream2.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\transfer_file.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_stream1.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\file\_.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\_papaya.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\_papaya_impl.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\_stream_process_impl.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\_text_stream_impl.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\___serialization_draft.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
     <ClInclude Include="net\http\_.h">
@@ -343,9 +286,6 @@
     </ClInclude>
     <ClInclude Include="filesystem\filesystem\dir_system.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\_var_stream_impl.h">
-      <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
     <ClInclude Include="inline\__debug_box_clear_impl.h">
       <Filter>Header Files\inline</Filter>
@@ -418,9 +358,6 @@
     </ClInclude>
     <ClInclude Include="const\timer.h">
       <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\_const.h">
-      <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
     <ClInclude Include="include\_.h">
       <Filter>Header Files\include</Filter>
@@ -629,9 +566,6 @@
     <ClInclude Include="node\opengl\shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filesystem\path_object.h">
-      <Filter>Header Files\filesystem\filesystem</Filter>
-    </ClInclude>
     <ClInclude Include="astr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -707,7 +641,7 @@
     <ClInclude Include="compress\context.h">
       <Filter>Header Files\compress</Filter>
     </ClInclude>
-    <ClInclude Include="compress\zip_is_dir.h">
+    <ClInclude Include="compress\is_dir.h">
       <Filter>Header Files\compress</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\file\html_file.h">
@@ -812,9 +746,6 @@
     <ClInclude Include="platform\machine_event.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="crypto\openssl\hasher.h">
-      <Filter>Header Files\crypto\openssl</Filter>
-    </ClInclude>
     <ClInclude Include="crypto\hasher.h">
       <Filter>Header Files\crypto</Filter>
     </ClInclude>
@@ -827,20 +758,11 @@
     <ClInclude Include="crypto\_.h">
       <Filter>Header Files\crypto</Filter>
     </ClInclude>
-    <ClInclude Include="crypto\openssl\rsa.h">
-      <Filter>Header Files\crypto\openssl</Filter>
-    </ClInclude>
     <ClInclude Include="crypto\rsa.h">
       <Filter>Header Files\crypto</Filter>
     </ClInclude>
-    <ClInclude Include="crypto\openssl\_openssl.h">
-      <Filter>Header Files\crypto\openssl</Filter>
-    </ClInclude>
     <ClInclude Include="crypto\hasher_algorithm.h">
       <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\openssl\hasher_algorithm.h">
-      <Filter>Header Files\crypto\openssl</Filter>
     </ClInclude>
     <ClInclude Include="const\aaa_simple_command.h">
       <Filter>Header Files\const</Filter>
@@ -1277,13 +1199,13 @@
     <ClInclude Include="platform\api.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
+    <ClInclude Include="compress\not_dir.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="filesystem\file\set.cpp">
       <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="const\idpool.cpp">
-      <Filter>Source Files\const</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filesystem\file_context.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
@@ -1350,9 +1272,6 @@
     </ClCompile>
     <ClCompile Include="include\_.cpp">
       <Filter>Source Files\include</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\zip\context.cpp">
-      <Filter>Source Files\compress\zip</Filter>
     </ClCompile>
     <ClCompile Include="platform\app_core.cpp">
       <Filter>Source Files\platform</Filter>
@@ -1483,7 +1402,7 @@
     <ClCompile Include="platform\text.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="compress\zip_is_dir.cpp">
+    <ClCompile Include="compress\is_dir.cpp">
       <Filter>Source Files\compress</Filter>
     </ClCompile>
     <ClCompile Include="compress\context.cpp">
@@ -1516,35 +1435,20 @@
     <ClCompile Include="process\department.cpp">
       <Filter>Source Files\process</Filter>
     </ClCompile>
-    <ClCompile Include="crypto\openssl\hasher.cpp">
-      <Filter>Source Files\crypto\openssl</Filter>
-    </ClCompile>
     <ClCompile Include="crypto\crypto.cpp">
       <Filter>Source Files\crypto</Filter>
     </ClCompile>
     <ClCompile Include="crypto\hasher.cpp">
       <Filter>Source Files\crypto</Filter>
     </ClCompile>
-    <ClCompile Include="crypto\openssl\hasher_algorithm.cpp">
-      <Filter>Source Files\crypto\openssl</Filter>
-    </ClCompile>
     <ClCompile Include="crypto\hasher_algorithm.cpp">
       <Filter>Source Files\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\openssl\rsa.cpp">
-      <Filter>Source Files\crypto\openssl</Filter>
     </ClCompile>
     <ClCompile Include="crypto\rsa.cpp">
       <Filter>Source Files\crypto</Filter>
     </ClCompile>
     <ClCompile Include="crypto\macos\rsa.cpp">
       <Filter>Source Files\crypto\macos</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\openssl\crypto.cpp">
-      <Filter>Source Files\crypto\openssl</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\openssl\_.cpp">
-      <Filter>Source Files\crypto\openssl</Filter>
     </ClCompile>
     <ClCompile Include="parallelization\_.cpp">
       <Filter>Source Files\platform\parallelization</Filter>
@@ -1885,11 +1789,14 @@
     <ClCompile Include="platform\api.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
+    <ClCompile Include="constant\idpool.cpp">
+      <Filter>Source Files\constant</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\not_dir.cpp">
+      <Filter>Source Files\compress</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="filesystem\file\_serializable_impl.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </None>
     <None Include="filesystem\_impl.h">
       <Filter>Header Files\filesystem</Filter>
     </None>

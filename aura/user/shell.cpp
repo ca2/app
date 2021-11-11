@@ -2,8 +2,8 @@
 //#include "aura/operating_system.h"
 #include "aura/user/_user.h"
 #include "aura/user/shell.h"
-#include "acme/compress/zip/_.h"
-#include "acme/compress/gz.h"
+//#include "acme/compress/zip/_.h"
+//#include "acme/compress/gz.h"
 #include "acme/primitive/primitive/atomic.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
 

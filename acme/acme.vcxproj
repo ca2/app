@@ -866,14 +866,8 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
     <Lib />
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="compress\gz.cpp" />
-    <ClCompile Include="compress\zip\api.cpp" />
-    <ClCompile Include="compress\zip\file.cpp" />
-    <ClCompile Include="compress\zip\in_file.cpp" />
-    <ClCompile Include="compress\zip\ioapi.cpp" />
-    <ClCompile Include="compress\zip\memory_buffer.cpp" />
-    <ClCompile Include="compress\zip\unzip.cpp" />
-    <ClCompile Include="compress\zip\zip.cpp" />
+    <ClCompile Include="compress\compress.cpp" />
+    <ClCompile Include="compress\uncompress .cpp" />
     <ClCompile Include="constant\idpool.cpp" />
     <ClCompile Include="exception\engine.cpp" />
     <ClCompile Include="exception\extended_status.cpp" />
@@ -906,12 +900,14 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
     <ClCompile Include="filesystem\file\c.cpp" />
     <ClCompile Include="filesystem\file\circular_buffer.cpp" />
     <ClCompile Include="filesystem\file\composite.cpp" />
+    <ClCompile Include="filesystem\file\container.cpp" />
     <ClCompile Include="filesystem\file\cpp.cpp" />
     <ClCompile Include="filesystem\file\dir2.cpp" />
     <ClCompile Include="filesystem\file\exception.cpp" />
     <ClCompile Include="filesystem\file\stdio_file.cpp" />
     <ClCompile Include="filesystem\file\streamable.cpp" />
     <ClCompile Include="filesystem\file\streamable_composite.cpp" />
+    <ClCompile Include="filesystem\file\transfer.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">Create</PrecompiledHeader>
@@ -936,6 +932,8 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
     <ClCompile Include="memory\array_memory_allocate.cpp" />
     <ClCompile Include="memory\counter.cpp" />
     <ClInclude Include="application.h" />
+    <ClInclude Include="compress\compress.h" />
+    <ClInclude Include="compress\uncompress.h" />
     <ClInclude Include="constant\activate.h" />
     <ClInclude Include="constant\button_state.h" />
     <ClInclude Include="constant\character_set.h" />
@@ -967,8 +965,10 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
     <ClInclude Include="exception\not_implemented.h" />
     <ClInclude Include="filesystem\filesystem\acme_file.h" />
     <ClInclude Include="filesystem\filesystem\file_path.h" />
+    <ClInclude Include="filesystem\file\folder.h" />
     <ClInclude Include="filesystem\file\plain_text_file_options.h" />
     <ClInclude Include="filesystem\file\streamable.h" />
+    <ClInclude Include="filesystem\file\transfer.h" />
     <ClInclude Include="filesystem\file\translatable.h" />
     <ClInclude Include="include\_forward_declaration.h" />
     <ClInclude Include="inline\application\windows.h" />
@@ -1306,20 +1306,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
     <ClCompile Include="__matter_ca2.cpp" />
     <ClInclude Include="astr.h" />
     <ClInclude Include="callback.h" />
-    <ClInclude Include="compress\aaa_want_to_move_compress_bz.h" />
-    <ClInclude Include="compress\zip\api.h" />
-    <ClInclude Include="compress\zip\crypt.h" />
-    <ClInclude Include="compress\zip\file.h" />
-    <ClInclude Include="compress\zip\impl.h" />
-    <ClInclude Include="compress\zip\in_file.h" />
-    <ClInclude Include="compress\zip\ioapi.h" />
-    <ClInclude Include="compress\zip\iowin32.h" />
-    <ClInclude Include="compress\zip\memory_buffer.h" />
-    <ClInclude Include="compress\zip\unzip.h" />
-    <ClInclude Include="compress\zip\_.h" />
-    <ClInclude Include="compress\zip\_internal.h" />
     <ClInclude Include="compress\_.h" />
-    <ClInclude Include="compress\gz.h" />
     <ClInclude Include="console.h" />
     <ClInclude Include="exception\aaa_assert.h" />
     <ClInclude Include="exception\aaa_base.h" />

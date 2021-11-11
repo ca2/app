@@ -980,7 +980,7 @@
     <ClInclude Include="_.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="main_window.h" />
-    <ClInclude Include="_user.h" />
+    <ClInclude Include="_app_shader.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\..\archive\platform-windows\version.rc" />
@@ -1002,6 +1002,9 @@
   <ItemGroup>
     <Text Include="deps.txt" />
     <Text Include="matter.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app_shader.def" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -7,7 +7,7 @@
 #include "apex/platform/machine_event_central.h"
 #include "apex/platform/app_core.h"
 #include "acme/platform/profiler.h"
-#include "apex/compress/zip/_.h"
+//#include "apex/compress/zip/_.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "apex/platform/node.h"
@@ -6534,7 +6534,9 @@ return false;
 if (set["get_memory"].cast < memory >() != nullptr && set["get_memory"].cast < memory >()->get_size() > 0)
 {
 
-zip_context zip(this);
+//zip_context zip(this);
+
+   auto pfolder = m_pcontext->m_papexcontext->file().get_folder(&file, "zip", ::file::e_open_read);
 
 string strDir = strFile;
 
@@ -6543,7 +6545,7 @@ string strDir = strFile;
 try
 {
 
-zip.extract_all(strDir, &file);
+pfolder->extract_all(strDir);
 
 }
 catch (...)

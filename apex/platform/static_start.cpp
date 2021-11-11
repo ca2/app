@@ -70,8 +70,6 @@ namespace apex
 
    ::mutex * g_pmutexChildren;
 
-   ::mutex * g_pmutexThreadWaitClose;
-
    //string_map < __pointer(::acme::library) >* g_pmapLibrary;
    //string_map < PFN_NEW_APEX_LIBRARY >* g_pmapNewAuraLibrary;
 
@@ -252,8 +250,6 @@ namespace apex
 #endif
 
       g_pmutexChildren = nullptr;
-
-      g_pmutexThreadWaitClose = nullptr;
 
 #if !defined(WINDOWS)
 
@@ -460,8 +456,6 @@ namespace apex
 //      g_pheap = new plex_heap_alloc_array();
 //
 //#endif
-      // at acme
-      //::id_space::s_pidspace = new id_space();
 
       //::apex::idpool::init();
 //
@@ -489,8 +483,6 @@ namespace apex
       g_pmutexCvt = new ::mutex();
 
 #endif
-
-      g_pmutexThreadWaitClose = new ::mutex();
 
       //g_pmutexThreadOn = new ::mutex();
 
@@ -764,8 +756,6 @@ namespace apex
 
       //del(g_pmapThreadOn);
 
-      ::acme::del(g_pmutexThreadWaitClose);
-
 #ifdef __APPLE__
 
       ::acme::del(g_pmutexCvt);
@@ -788,8 +778,6 @@ namespace apex
 //
 //#endif
 
-//      ::acme::del(::id_space::s_pidspace);
-//
 ////#if !defined(__MCRTDBG) && !MEMDLEAK
 ////
 ////      auto pheap = g_pheap;

@@ -21,6 +21,7 @@ public:
 
    virtual ::e_status ensure_exists(const char* path);
    virtual ::e_status touch(const char* path);
+   virtual ::e_status clear_read_only(const char* path);
 
 
 

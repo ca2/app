@@ -1005,25 +1005,3 @@ memsize memory_size_debug(void * p, i32 iBlockType)
 
 
 
-//id_space * create_id_space()
-//{
-//
-//   return new id_space();
-//
-//}
-
-/*
-void destroy_id_space() // let it go with the ({"eco}system") processs
-{
-
-   delete class ::system::s_pidspace;
-
-   class ::system::s_pidspace = nullptr;
-
-}
-*/
-
-
-
-
-

@@ -1,14 +1,9 @@
 #include "framework.h"
+#include "acme/platform/static_start_internal.h"
 
 
 namespace factory
 {
-
-
-
-   CLASS_DECL_ACME critical_section * g_pcsFactory = nullptr;
-   CLASS_DECL_ACME factory_map * g_pfactorymap = nullptr;
-   CLASS_DECL_ACME factory_array * g_pfactorya = nullptr;
 
 
    factory_interface::factory_interface()
@@ -28,7 +23,7 @@ namespace factory
     CLASS_DECL_ACME factory_array * get_factory_array()
     {
 
-       return g_pfactorya;
+       return ::acme::static_start::g_staticstart.m_pfactorya;
 
     }
 
@@ -36,7 +31,7 @@ namespace factory
     CLASS_DECL_ACME critical_section * get_factory_critical_section()
     {
 
-       return g_pcsFactory;
+       return &::acme::static_start::g_staticstart.m_criticalsectionFactory;
 
     }
 
@@ -44,7 +39,7 @@ namespace factory
     CLASS_DECL_ACME factory_map * get_factory_map()
     {
 
-       return g_pfactorymap;
+       return ::acme::static_start::g_staticstart.m_pfactorymap;
 
     }
 
@@ -53,13 +48,11 @@ namespace factory
     void factory_init()
     {
 
-        g_pcsFactory = new critical_section();
+       ::acme::static_start::g_staticstart.m_pfactorymap = new factory_map();
 
-        g_pfactorymap = new factory_map();
+       ::acme::static_start::g_staticstart.m_pfactorymap->InitHashTable(16189);
 
-        g_pfactorymap->InitHashTable(16189);
-
-        g_pfactorya = new factory_array();
+       ::acme::static_start::g_staticstart.m_pfactorya = new factory_array();
 
     }
 
@@ -67,24 +60,22 @@ namespace factory
    void factory_close()
    {
 
-      critical_section_lock synchronouslock(g_pcsFactory);
+      critical_section_lock synchronouslock(&::acme::static_start::g_staticstart.m_criticalsectionFactory);
 
-      g_pfactorymap->erase_all();
+      ::acme::static_start::g_staticstart.m_pfactorymap->erase_all();
 
-      g_pfactorya->erase_all();
+      ::acme::static_start::g_staticstart.m_pfactorya->erase_all();
 
    }
 
    void factory_term()
    {
 
-      critical_section_lock synchronouslock(g_pcsFactory);
+      critical_section_lock synchronouslock(&::acme::static_start::g_staticstart.m_criticalsectionFactory);
 
-      ::acme::del(g_pfactorya);
+      ::acme::del(::acme::static_start::g_staticstart.m_pfactorya);
 
-      ::acme::del(g_pfactorymap);
-
-      ::acme::del(g_pcsFactory);
+      ::acme::del(::acme::static_start::g_staticstart.m_pfactorymap);
 
    }
 

@@ -502,8 +502,6 @@ namespace aura
 //
 //#endif
 
-      //::id_space::s_pidspace = new id_space();
-
       //init_id_pool();
 
 //#ifdef ANDROID
@@ -860,8 +858,6 @@ namespace aura
 //#endif
 
       //term_id_pool();
-
-      //del(::id_space::s_pidspace);
 
 //#if !defined(__MCRTDBG) && !MEMDLEAK
 //

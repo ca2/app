@@ -1,22 +1,20 @@
 #include "framework.h"
 
 
-//id_space * create_id_space();
+
 class ::id_space * id_space::s_pidspace = nullptr;
 
 
 id_space::id_space()
 {
    
-   m_pcs = new critical_section();
-
 }
 
 
 const char * id_space::get_id(const char * psz)
 {
 
-   critical_section_lock synchronouslock(m_pcs);
+   critical_section_lock synchronouslock(&m_criticalsection);
 
    index iIndex = 0;
 
@@ -53,15 +51,13 @@ id_space::~id_space()
 
    free_all();
 
-   ::acme::del(m_pcs);
-
 }
 
 
 void id_space::free_all()
 {
 
-   critical_section_lock synchronouslock(m_pcs);
+   critical_section_lock synchronouslock(&m_criticalsection);
 
    try
    {
@@ -523,13 +519,12 @@ bool strid_array::find(const id & id,index & iIndex) const
 }
 
 
-
-
 ::id_space & get_id_space()
 {
-   //if(::id_space::s_pidspace == nullptr)
-   //{
-   //   ::id_space::s_pidspace = create_id_space();
-   //}
+
    return *::id_space::s_pidspace;
+
 }
+
+
+

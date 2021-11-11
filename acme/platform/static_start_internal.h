@@ -34,7 +34,7 @@ namespace acme
 #endif
 
    extern ::mutex * g_pmutexChildren;
-   extern ::mutex * g_pmutexThreadWaitClose;
+   //extern ::mutex * g_pmutexThreadWaitClose;
 //extern string_map < __pointer(::acme::library) >* g_pmapLibrary;
 //extern string_map < PFN_NEW_ACME_LIBRARY >* g_pmapNewAuraLibrary;
 
@@ -197,6 +197,12 @@ namespace acme
 
 
       bool m_bRef;
+
+
+      critical_section                 m_criticalsectionFactory;
+      factory_map *                    m_pfactorymap = nullptr;
+      ::factory::factory_array *       m_pfactorya = nullptr;
+
 
 
       static_start();

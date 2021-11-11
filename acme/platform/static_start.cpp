@@ -178,7 +178,7 @@ namespace acme
    //CLASS_DECL_ACME string_map < int_to_string > * g_pmapFontFaceName = nullptr;
 
    ::mutex * g_pmutexChildren;
-   ::mutex * g_pmutexThreadWaitClose;
+   //::mutex * g_pmutexThreadWaitClose;
 
 
 #if !defined(WINDOWS)
@@ -367,7 +367,7 @@ namespace acme
 
       g_pmutexChildren = nullptr;
 
-      g_pmutexThreadWaitClose = nullptr;
+      //g_pmutexThreadWaitClose = nullptr;
 
 #if !defined(WINDOWS)
 
@@ -663,7 +663,7 @@ namespace acme
 
 #endif
 
-      g_pmutexThreadWaitClose = new ::mutex();
+      //g_pmutexThreadWaitClose = new ::mutex();
 
       //g_pmutexThreadOn = new ::mutex();
 
@@ -981,7 +981,7 @@ namespace acme
 
       //::acme::del(g_pmapThreadOn);
 
-      ::acme::del(g_pmutexThreadWaitClose);
+      //::acme::del(g_pmutexThreadWaitClose);
 
 #ifdef __APPLE__
 

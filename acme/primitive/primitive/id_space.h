@@ -22,7 +22,7 @@ protected:
 
 
    raw_array < char *  >      m_psza;
-   critical_section *         m_pcs;
+   critical_section           m_criticalsection;
 
 
    bool find(const char * pszFind,index & iIndex);

@@ -47,6 +47,17 @@ acme_file::~acme_file()
 }
 
 
+::e_status acme_file::clear_read_only(const char* path)
+{
+
+   throw interface_only_exception();
+
+   return error_interface_only;
+
+
+}
+
+
 ::file::path acme_file::executable()
 {
 

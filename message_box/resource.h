@@ -8,7 +8,7 @@
 #define IDM_ABOUT                       104
 #define IDM_EXIT                        105
 #define IDR_MAIN                        128
-#define IDC_MATTER                      1024
+#define IDR_MATTER                      1024
 #define IDC_STATIC                      -1
 
 // Next default values for new objects

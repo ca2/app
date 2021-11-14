@@ -1059,7 +1059,7 @@ namespace user
 
       auto psession = get_session();
 
-      if (!::is_null(psession))
+      if (::is_null(psession))
       {
 
          return false;
@@ -8343,7 +8343,7 @@ bool interaction::design_layout(::draw2d::graphics_pointer & pgraphics)
 
             if (pinteraction->m_bExtendOnParent ||
             (pinteraction->m_bExtendOnParentIfClientOnly
-            && papplication->is_true("client_only")))
+            && papplication->m_bExperienceMainFrame))
             {
 
                bool bThisVisible = pinteraction->is_this_visible();
@@ -16658,7 +16658,7 @@ order(zorderParam);
       __pointer(::aura::application) papplication = get_application();
 
       if (m_bExtendOnParent ||
-         (m_bExtendOnParentIfClientOnly && papplication->is_true("client_only")))
+         (m_bExtendOnParentIfClientOnly && papplication->m_bExperienceMainFrame))
       {
 
          auto puserinteractionParent = get_parent();

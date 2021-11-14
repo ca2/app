@@ -1201,8 +1201,8 @@ namespace aura
 
       __pointer(::aura::application) papplication = get_application();
 
-      if (pcreate->m_bClientOnly ||
-            papplication->has_property("client_only") ||
+      if (pcreate->m_bExperienceMainFrame ||
+            papplication->m_bExperienceMainFrame ||
             pcreate->m_bOuterPopupAlertLike)
       {
          

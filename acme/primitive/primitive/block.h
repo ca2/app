@@ -48,7 +48,10 @@ struct CLASS_DECL_ACME block :
    memsize get_size() const { return m_iSize; }
    memsize size() const { return (memsize)m_iSize; }
 
-   inline bool is_empty() const { return get_size() <= 0; }
+   inline bool is_empty() const { return m_pdata == nullptr || get_size() <= 0; }
+
+
+   inline bool operator !() const { return is_empty(); }
 
 //#ifdef _UWP
 //

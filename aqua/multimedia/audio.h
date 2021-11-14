@@ -8,6 +8,11 @@ namespace aqua
    class CLASS_DECL_AQUA audio :
       virtual public ::acme::department
    {
+   protected:
+      
+      bool                 m_bTtsOptionInitialized;
+      ::string             m_strTtsImplementation;
+
    public:
 
 
@@ -23,6 +28,9 @@ namespace aqua
       virtual void play_audio(::file::file * pfile, bool bSynch = false);
 
 
+      virtual string text_to_speech_implementation();
+      virtual ::e_status text_to_speech_implementation(const ::string & strImplementation);
+
       virtual __pointer(::text_to_speech::speaker) create_text_to_speech_speaker(const ::string& strImplementation = nullptr);
 
 
@@ -31,6 +39,7 @@ namespace aqua
       //virtual void trans_speak(const ::string & strLang, const ::string & strText, bool bSynch);
       //virtual void google_speak(const ::string & strLang, const ::string & strText, bool bSynch);
 
+      
 
       virtual ::file_pointer get_rtp_file(const ::payload & payloadFile);
 

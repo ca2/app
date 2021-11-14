@@ -14,7 +14,7 @@ namespace helloworld
 
       window_enable_full_screen();
 
-      m_bWindowFrame = !papplication->has_property("client_only");
+      m_bWindowFrame = !papplication->m_bExperienceMainFrame;
 
 
 

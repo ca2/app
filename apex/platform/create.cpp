@@ -115,7 +115,7 @@ void create::create_common_construct(const ::payload & varOptions, ::user::primi
    m_ecommand                          = command_default;
    m_varOptions                        = varOptions;
    m_bTransparentBackground            = true;
-   m_bClientOnly                       = false;
+   m_bExperienceMainFrame                       = false;
    m_bOuterPopupAlertLike              = false;
    m_bHold                             = true;
    m_bMakeVisible                      = m_varOptions.is_true("visible", true);
@@ -166,13 +166,13 @@ void create::create_common_construct(const ::payload & varOptions, ::user::primi
 
    }
 
-   if(m_pcommandline)
+   if(get_application())
    {
 
-      if(m_pcommandline->m_varQuery.has_property("client_only"))
+      if(get_application()->m_bExperienceMainFrame)
       {
 
-         m_bClientOnly = true;
+         m_bExperienceMainFrame = true;
 
       }
 

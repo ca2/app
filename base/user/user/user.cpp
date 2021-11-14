@@ -840,8 +840,8 @@ namespace base
 //
 //      }*/
 //
-//      if (pcreate->m_bClientOnly ||
-//            papplication->has_property("client_only") ||
+//      if (pcreate->m_bExperienceMainFrame ||
+//            papplication->m_bExperienceMainFrame ||
 //            pcreate->m_bOuterPopupAlertLike)
 //      {
 //         return puiParent;

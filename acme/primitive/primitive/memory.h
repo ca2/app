@@ -66,8 +66,13 @@ class CLASS_DECL_ACME read_only_memory :
    public memory_base
 {
 public:
+
+
+   read_only_memory(const block& block) : read_only_memory(block.get_data(), block.get_size()) {}
+
    read_only_memory(const void *p, memsize size)
    {
+
       m_memory.m_bOwn = false;
       m_memory.m_preadonlymemory = this;
       m_memory.m_pbStorage = (byte *) p;

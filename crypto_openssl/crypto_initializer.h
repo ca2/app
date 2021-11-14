@@ -10,7 +10,7 @@ namespace crypto
 {
 
 
-   class CLASS_DECL_APEX initializer :
+   class CLASS_DECL_CRYPTO_OPENSSL initializer :
       virtual public ::object
    {
    public:

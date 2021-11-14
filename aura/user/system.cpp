@@ -70,7 +70,7 @@ namespace user
    {
 
       m_bAutoWindowFrame = true;
-      m_bWindowFrame = false;
+      //m_bWindowFrame = false;
 
    }
 

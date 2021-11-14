@@ -993,17 +993,169 @@ bool file_context::put_contents_utf8(const ::payload &payloadFile, const char *p
 }
 
 
+void file_context::calculate_main_resource_memory()
+{
+
+
+}
+
+
+::block file_context::get_main_resource_block()
+{
+
+   if (!m_bMainResourceMemoryCalculated)
+   {
+
+      m_bMainResourceMemoryCalculated = true;
+
+      calculate_main_resource_memory();
+
+   }
+
+   if (m_memoryMainResource.is_empty())
+   {
+
+      return {};
+
+   }
+
+   return m_memoryMainResource;
+
+}
+
+
+::folder* file_context::defer_resource_folder()
+{
+
+   auto estatus = m_psystem->defer_folder_library();
+
+   if (!estatus)
+   {
+
+      return nullptr;
+
+   }
+
+
+   if (m_bFolderResourceCalculated)
+   {
+
+      return m_pfolderResource;
+
+   }
+
+   m_bFolderResourceCalculated = true;
+
+   auto block = get_main_resource_block();
+
+   if (!block)
+   {
+
+      return nullptr;
+
+   }
+
+   auto pmemory = __new(read_only_memory(block));
+
+   auto pfile = __new(::memory_file(pmemory));
+
+   m_psystem->m_plibraryFolder->__construct(m_pfolderResource);
+
+   m_pfolderResource->initialize(this);
+
+   if (!m_pfolderResource->open_for_reading(pfile))
+   {
+
+
+      return nullptr;
+
+   }
+
+   return m_pfolderResource;
+
+}
+
+
 ::file_transport file_context::create_resource_file(const char* path)
 {
 
-   return nullptr;
+   synchronous_lock synchronouslock(&m_mutexResource);
+
+   auto pfolder = defer_resource_folder();
+
+   if (is_null(pfolder))
+   {
+
+      return nullptr;
+
+   }
+
+   string strPath(path);
+
+   strPath.replace("\\", "/");
+
+   if (!pfolder->locate(strPath))
+   {
+
+      return nullptr;
+
+   }
+
+   auto pfile = pfolder->get_file();
+
+   if (!pfile)
+   {
+
+      return nullptr;
+
+   }
+
+   char buffer[1024];
+
+   auto pfileOutput = create_memory_file();
+
+   memsize read;
+
+   while ((read = pfile->read(buffer, sizeof(buffer))) > 0)
+   {
+
+      pfileOutput->write(buffer, read);
+
+   }
+
+   pfileOutput->seek_to_begin();
+
+   return pfileOutput;
 
 }
+
 
 bool file_context::resource_is_file_or_dir(const char* path)
 {
 
-   return false;
+   synchronous_lock synchronouslock(&m_mutexResource);
+
+   auto pfolder = defer_resource_folder();
+
+   if (is_null(pfolder))
+   {
+
+      return false;
+
+   }
+
+   string strPath(path);
+
+   strPath.replace("\\", "/");
+
+   if (!pfolder->locate(strPath))
+   {
+
+      return false;
+
+   }
+
+   return true;
 
 }
 

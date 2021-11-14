@@ -130,7 +130,7 @@ namespace console
 
 } // namespace console
 
-#if !defined(_UWP) || defined(_UWP_CONSOLE)
+//#if !defined(_UWP) || defined(_UWP_CONSOLE)
 
 
 void press_any_key_to_exit(const char * pszPrompt)
@@ -377,7 +377,7 @@ repeat:
 }
 
 
-#endif
+//#endif
 
 
 #if defined(HAVE_TERMIOS_H) && HAVE_TERMIOS_H

@@ -677,8 +677,8 @@ namespace apex
 
       //if ((pcreate->m_pcommandline->m_varQuery["app"].array_get_count() > 1
       //      || pcreate->m_pcommandline->m_varQuery["show_platform"] == 1 || m_varTopicQuery["show_platform"] == 1)
-      //      && (!(bool)pcreate->m_pcommandline->m_varQuery.has_property("client_only") && !(bool)has_property("client_only"))
-      //      && (!pcreate->m_pcommandline->m_varQuery.has_property("client_only") && !has_property("client_only")))
+      //      && (!(bool)pcreate->m_pcommandline->m_varQuery.m_bExperienceMainFrame && !(bool)m_bExperienceMainFrame)
+      //      && (!pcreate->m_pcommandline->m_varQuery.m_bExperienceMainFrame && !m_bExperienceMainFrame))
       //{
       //   m_bShowPlatform = true;
       //}

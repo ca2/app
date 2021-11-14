@@ -8,6 +8,7 @@ namespace aqua
    audio::audio()
    {
 
+      m_bTtsOptionInitialized = false;
       m_paudio = nullptr;
 
    }
@@ -24,6 +25,56 @@ namespace aqua
    {
 
       throw ::interface_only_exception();
+
+   }
+
+
+
+   string audio::text_to_speech_implementation()
+   {
+
+      if (!m_bTtsOptionInitialized)
+      {
+
+         m_bTtsOptionInitialized = true;
+
+         if(m_strTtsImplementation.is_empty())
+         {
+
+            ::file::path pathImplementation;
+
+            pathImplementation = m_pcontext->m_papexcontext->dir().config() / "config/system/text_to_speech.txt";
+
+            m_strTtsImplementation = m_pcontext->m_papexcontext->file().as_string(pathImplementation);
+
+         }
+
+      }
+
+      return m_strTtsImplementation;
+
+   }
+
+
+   ::e_status audio::text_to_speech_implementation(const ::string & strTtsImplementation)
+   {
+
+      if (!m_bTtsOptionInitialized)
+      {
+
+         m_bTtsOptionInitialized = true;
+
+      }
+
+      ::file::path pathImplementation;
+
+      pathImplementation = m_pcontext->m_papexcontext->dir().config() / "config/system/text_to_speech.txt";
+
+      m_pcontext->m_papexcontext->file().put_contents(pathImplementation, strTtsImplementation);
+
+      m_strTtsImplementation = m_pcontext->m_papexcontext->file().as_string(pathImplementation);
+
+      return ::success;
 
    }
 

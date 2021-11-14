@@ -11,7 +11,7 @@ namespace hellobase
 
       WfiEnableFullScreen();
 
-      m_bWindowFrame = !papplication->has_property("client_only");
+      m_bWindowFrame = !papplication->m_bExperienceMainFrame;
 
 
 

@@ -21,6 +21,7 @@ struct CLASS_DECL_APEX apex_main_struct :
 
    bool                          m_bDataCentralRequired : 1;
 
+   ::boolean                     m_bExperienceMainFrame;
 
    INT_STRING *                  m_pintstringLanguageResourceMap;
    int                           m_iMatterFromHttpCache;
@@ -48,6 +49,13 @@ struct CLASS_DECL_APEX apex_main_struct :
       #else
 
          m_iMatterFromHttpCache = 0; // 0 = Roaming
+
+      #endif
+
+
+      #if defined(_UWP) || defined(APPLE_IOS) || defined(ANDROID)
+
+         m_bExperienceMainFrame = false;
 
       #endif
       

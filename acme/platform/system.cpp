@@ -1621,6 +1621,23 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
+   bool system::fast_is_decompressable_folder(const ::file::path & path)
+   {
+
+      auto bZip = path.ends_ci(".zip");
+
+      if (bZip)
+      {
+
+         return true;
+
+      }
+
+      return false;
+
+   }
+
+
 //} // namespace acme
 
 

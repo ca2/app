@@ -867,7 +867,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="compress\compress.cpp" />
-    <ClCompile Include="compress\uncompress .cpp" />
+    <ClCompile Include="compress\uncompress.cpp" />
     <ClCompile Include="constant\idpool.cpp" />
     <ClCompile Include="exception\engine.cpp" />
     <ClCompile Include="exception\extended_status.cpp" />
@@ -900,10 +900,10 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
     <ClCompile Include="filesystem\file\c.cpp" />
     <ClCompile Include="filesystem\file\circular_buffer.cpp" />
     <ClCompile Include="filesystem\file\composite.cpp" />
-    <ClCompile Include="filesystem\file\container.cpp" />
     <ClCompile Include="filesystem\file\cpp.cpp" />
     <ClCompile Include="filesystem\file\dir2.cpp" />
     <ClCompile Include="filesystem\file\exception.cpp" />
+    <ClCompile Include="filesystem\file\folder.cpp" />
     <ClCompile Include="filesystem\file\stdio_file.cpp" />
     <ClCompile Include="filesystem\file\streamable.cpp" />
     <ClCompile Include="filesystem\file\streamable_composite.cpp" />

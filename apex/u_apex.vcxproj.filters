@@ -83,9 +83,6 @@
     <Filter Include="Source Files\filesystem\fs">
       <UniqueIdentifier>{48cdfea0-2d85-4873-94cd-4211b93931d4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\const">
-      <UniqueIdentifier>{108de330-251d-4ca9-a5a8-9961d6a467af}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\database">
       <UniqueIdentifier>{97a515da-a16f-4900-ae9f-159498f1313d}</UniqueIdentifier>
     </Filter>
@@ -103,9 +100,6 @@
     </Filter>
     <Filter Include="Source Files\compress">
       <UniqueIdentifier>{67e3464b-5bb1-46be-b216-20667dd2699f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\compress\zip">
-      <UniqueIdentifier>{0821766a-d8a9-4256-ae8e-a22bd70d4f29}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\platform">
       <UniqueIdentifier>{52263240-d997-4d51-91da-6d4f5f75ac5f}</UniqueIdentifier>
@@ -191,9 +185,6 @@
     <Filter Include="Source Files\node\operating_system\universal_windows">
       <UniqueIdentifier>{5a92173a-7d6e-4a29-9202-eb270a06f060}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\crypto\openssl">
-      <UniqueIdentifier>{be020730-e7fe-4164-b444-6f04b4d73822}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\progress">
       <UniqueIdentifier>{b66d52fe-289e-41b7-bf23-864034a60102}</UniqueIdentifier>
     </Filter>
@@ -241,6 +232,9 @@
     </Filter>
     <Filter Include="Header Files\subject">
       <UniqueIdentifier>{41142859-2b36-4c31-90a3-30c80dbeb767}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\constant">
+      <UniqueIdentifier>{108de330-251d-4ca9-a5a8-9961d6a467af}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -319,9 +313,6 @@
     <ClCompile Include="filesystem\fs\set.cpp">
       <Filter>Source Files\filesystem\fs</Filter>
     </ClCompile>
-    <ClCompile Include="const\idpool.cpp">
-      <Filter>Source Files\const</Filter>
-    </ClCompile>
     <ClCompile Include="database\client.cpp">
       <Filter>Source Files\database</Filter>
     </ClCompile>
@@ -384,15 +375,6 @@
     </ClCompile>
     <ClCompile Include="process\process.cpp">
       <Filter>Source Files\process</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\context.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\zip_is_dir.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\zip\context.cpp">
-      <Filter>Source Files\compress\zip</Filter>
     </ClCompile>
     <ClCompile Include="crypto\hasher.cpp">
       <Filter>Source Files\crypto</Filter>
@@ -670,21 +652,6 @@
     <ClCompile Include="crypto\crypto_initializer.cpp">
       <Filter>Source Files\crypto</Filter>
     </ClCompile>
-    <ClCompile Include="crypto\openssl\_.cpp">
-      <Filter>Source Files\crypto\openssl</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\openssl\crypto.cpp">
-      <Filter>Source Files\crypto\openssl</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\openssl\hasher.cpp">
-      <Filter>Source Files\crypto\openssl</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\openssl\hasher_algorithm.cpp">
-      <Filter>Source Files\crypto\openssl</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\openssl\rsa.cpp">
-      <Filter>Source Files\crypto\openssl</Filter>
-    </ClCompile>
     <ClCompile Include="progress\integer.cpp">
       <Filter>Source Files\progress</Filter>
     </ClCompile>
@@ -829,7 +796,16 @@
     <ClCompile Include="message\dispatcher.cpp">
       <Filter>Source Files\message</Filter>
     </ClCompile>
-    <ClCompile Include="platform\layer.cpp">
+    <ClCompile Include="compress\is_dir.cpp">
+      <Filter>Source Files\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\not_dir.cpp">
+      <Filter>Source Files\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="constant\idpool.cpp">
+      <Filter>Source Files\constant</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\api.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1312,9 +1288,6 @@
       <Filter>Header Files\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="compress\_.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\context.h">
       <Filter>Header Files\compress</Filter>
     </ClInclude>
     <ClInclude Include="compress\zip_is_dir.h">
@@ -1966,6 +1939,15 @@
       <Filter>Header Files\message</Filter>
     </ClInclude>
     <ClInclude Include="platform\layer.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\is_dir.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\not_dir.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\api.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
   </ItemGroup>

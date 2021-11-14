@@ -34,9 +34,6 @@
     <Filter Include="Header Files\platform">
       <UniqueIdentifier>{f4f7f813-11cb-4f98-b74b-45d91cdb08c5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\const">
-      <UniqueIdentifier>{232a6874-aaa3-4df0-affa-e19b9f131313}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files">
       <UniqueIdentifier>{d614105b-eb5f-4738-b5cb-6759e4f92ed0}</UniqueIdentifier>
     </Filter>
@@ -67,8 +64,11 @@
     <Filter Include="Source Files\node\windows">
       <UniqueIdentifier>{ad55d56f-01be-40f7-b420-9acadea1aad5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\const">
+    <Filter Include="Source Files\constant">
       <UniqueIdentifier>{70ad3e80-24b3-41e4-a0ee-dffee8ed5f8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\constant">
+      <UniqueIdentifier>{232a6874-aaa3-4df0-affa-e19b9f131313}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -522,9 +522,6 @@
     <ClInclude Include="platform\_impl.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="const\idpool.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
     <ClInclude Include="user\user\tab_data.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
@@ -533,6 +530,9 @@
     </ClInclude>
     <ClInclude Include="user\user\tab_pane_array.h">
       <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\idpool.h">
+      <Filter>Header Files\constant</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -775,9 +775,6 @@
     <ClCompile Include="node\windows\frame_window.cpp">
       <Filter>Source Files\node\windows</Filter>
     </ClCompile>
-    <ClCompile Include="const\idpool.cpp">
-      <Filter>Source Files\const</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\tab_data.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -789,6 +786,9 @@
     </ClCompile>
     <ClCompile Include="user\user\split_pane.cpp">
       <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="constant\idpool.cpp">
+      <Filter>Source Files\constant</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -26,7 +26,7 @@ public:
 
    bool                                                        m_bMakeVisible;
    bool                                                        m_bTransparentBackground;
-   bool                                                        m_bClientOnly;
+   bool                                                        m_bExperienceMainFrame;
    bool                                                        m_bOuterPopupAlertLike;
    bool                                                        m_bHold;
    __pointer(::user::primitive)                                m_puserprimitiveParent;

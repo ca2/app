@@ -743,7 +743,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
          m_bAutoWindowFrame = pusersystem->m_bAutoWindowFrame;
 
-         m_bWindowFrame = pusersystem->m_bWindowFrame;
+         m_bWindowFrame = pusersystem->m_psystem->m_papexsystem->m_bExperienceMainFrame;
 
          if (m_psystem->m_papexsystem->m_bPreferNoFrameWindow)
          {
@@ -777,7 +777,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
    if (m_bAutoWindowFrame)
    {
 
-      if(papplication->is_true("client_only"))
+      if(papplication->m_bExperienceMainFrame)
       {
 
          m_bWindowFrame = false;
@@ -1207,7 +1207,7 @@ void simple_frame_window::on_layout(::draw2d::graphics_pointer & pgraphics)
 
    auto papplication = get_application();
 
-   if (papplication->is_true("client_only") && get_parent() == nullptr)
+   if (papplication->m_bExperienceMainFrame && get_parent() == nullptr)
    {
 
       auto rectangle = get_host_window()->get_client_rect();
@@ -2215,7 +2215,14 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
 
    try
    {
-      if (m_bFrameMoveEnable)
+
+      if(!m_bWindowFrame)
+      {
+
+         display(e_display_full_screen);
+
+      }
+      else if (m_bFrameMoveEnable)
       {
 
          bool bHostTopLevel = is_host_top_level();
@@ -2238,7 +2245,7 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
             display(e_display_zoomed);
 
          }
-            //else if(papplication->has_property("client_only"))
+            //else if(papplication->m_bExperienceMainFrame)
             //{
 
             //   if(is_frame_experience_enabled())

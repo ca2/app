@@ -3913,7 +3913,7 @@ namespace aura
    void system::on_initial_frame_position(::user::frame * pframe)
    {
 
-      if(has_property("client_only"))
+      if(m_bExperienceMainFrame)
       {
 
 //#ifdef _UWP

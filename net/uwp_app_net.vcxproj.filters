@@ -11,9 +11,6 @@
     <Filter Include="Source Files">
       <UniqueIdentifier>{e158df90-895f-41dc-a33b-4f6050669943}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\universal_windows">
-      <UniqueIdentifier>{a1d64786-692a-45ed-9af9-ea7d868bb66e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Libraries">
       <UniqueIdentifier>{dc535c98-b364-4bad-9669-8dcea246d5ab}</UniqueIdentifier>
     </Filter>
@@ -86,24 +83,30 @@
   <ItemGroup>
     <None Include="uwp_app_net_TemporaryKey.pfx" />
     <None Include="uwp_app_simple_app_TemporaryKey.pfx" />
-    <None Include="..\..\..\archive\storage-universal_windows\third\binary\Win32\basis\pcre.dll">
-      <Filter>Libraries\x86\basis</Filter>
-    </None>
-    <None Include="..\..\..\archive\storage-universal_windows\third\binary\Win32\basis\zlib.dll">
-      <Filter>Libraries\x86\basis</Filter>
-    </None>
     <None Include="..\..\..\archive\storage-universal_windows\third\binary\x64\basis\pcre.dll">
       <Filter>Libraries\x64\basis</Filter>
     </None>
     <None Include="..\..\..\archive\storage-universal_windows\third\binary\x64\basis\zlib.dll">
       <Filter>Libraries\x64\basis</Filter>
     </None>
+    <None Include="..\..\..\..\archive\storage-universal_windows\Win32\basis\binary\libcrypto-3.dll">
+      <Filter>Libraries\x86\basis</Filter>
+    </None>
+    <None Include="..\..\..\..\archive\storage-universal_windows\Win32\basis\binary\libssl-3.dll">
+      <Filter>Libraries\x86\basis</Filter>
+    </None>
+    <None Include="..\..\..\..\archive\storage-universal_windows\Win32\basis\third\binary\pcre.dll">
+      <Filter>Libraries\x86\basis</Filter>
+    </None>
+    <None Include="..\..\..\..\archive\storage-universal_windows\Win32\basis\third\binary\zlib.dll">
+      <Filter>Libraries\x86\basis</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="universal_universal\main.cpp">
-      <Filter>Source Files\universal_windows</Filter>
-    </ClCompile>
     <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="_app_net.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

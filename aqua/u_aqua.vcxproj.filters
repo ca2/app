@@ -186,9 +186,6 @@
     <ClCompile Include="game\game.cpp">
       <Filter>Source Files\game</Filter>
     </ClCompile>
-    <ClCompile Include="platform\layer.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="platform\system.h">

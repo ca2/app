@@ -418,7 +418,7 @@ namespace universal_windows
    //void directx_base::defer_resize_top_level_windows()
    //{
 
-   //   if (::aura::get_system()->has_property("client_only"))
+   //   if (::aura::get_system()->m_bExperienceMainFrame)
    //   {
 
    //      auto puserinteractionpointeraChild = m_pimpl->m_puserinteraction->m_puserinteractionpointeraChild;

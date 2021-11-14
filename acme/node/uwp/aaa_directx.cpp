@@ -343,7 +343,7 @@ namespace universal_windows
 
       m_pimpl->m_puserinteraction->set_window_position(e_zorder_top, 0, 0, m_size.cx, m_size.cy, SWP_SHOWWINDOW);
 
-      if (::acme::get_system()->has_property("client_only"))
+      if (::acme::get_system()->m_bExperienceMainFrame)
       {
 
          ::user::interaction_pointer_array children = m_pimpl->m_puserinteraction->m_uiptraChild;

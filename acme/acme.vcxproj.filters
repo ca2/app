@@ -3844,13 +3844,13 @@
     <ClCompile Include="compress\compress.cpp">
       <Filter>Source Files\compress</Filter>
     </ClCompile>
-    <ClCompile Include="compress\uncompress .cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\container.cpp">
+    <ClCompile Include="filesystem\file\transfer.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\file\transfer.cpp">
+    <ClCompile Include="compress\uncompress.cpp">
+      <Filter>Source Files\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\folder.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
   </ItemGroup>

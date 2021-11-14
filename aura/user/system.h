@@ -41,7 +41,6 @@ namespace user
       __pointer(::windowing::window)         m_pwindow;
 
       bool                                   m_bAutoWindowFrame;
-      bool                                   m_bWindowFrame;
       ::type                                 m_typeNewView;
       __pointer(::object)                    m_pdocumentCurrent;
       __pointer(::user::primitive)           m_puserprimitiveNew;

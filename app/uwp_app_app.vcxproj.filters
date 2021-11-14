@@ -94,16 +94,16 @@
     <None Include="..\..\..\archive\storage-universal_windows\binary\x64\basis\libssl-1_1-x64.dll">
       <Filter>Libraries\x64\basis</Filter>
     </None>
-    <None Include="..\..\..\archive\storage-universal_windows\third\binary\Win32\basis\pcre.dll">
+    <None Include="..\..\..\..\archive\storage-universal_windows\Win32\basis\binary\libcrypto-3.dll">
       <Filter>Libraries\x86\basis</Filter>
     </None>
-    <None Include="..\..\..\archive\storage-universal_windows\third\binary\Win32\basis\zlib.dll">
+    <None Include="..\..\..\..\archive\storage-universal_windows\Win32\basis\binary\libssl-3.dll">
       <Filter>Libraries\x86\basis</Filter>
     </None>
-    <None Include="..\..\..\archive\storage-universal_windows\binary\Win32\basis\libcrypto-1_1.dll">
+    <None Include="..\..\..\..\archive\storage-universal_windows\Win32\basis\third\binary\pcre.dll">
       <Filter>Libraries\x86\basis</Filter>
     </None>
-    <None Include="..\..\..\archive\storage-universal_windows\binary\Win32\basis\libssl-1_1.dll">
+    <None Include="..\..\..\..\archive\storage-universal_windows\Win32\basis\third\binary\zlib.dll">
       <Filter>Libraries\x86\basis</Filter>
     </None>
   </ItemGroup>
@@ -111,7 +111,7 @@
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="_main.cpp">
+    <ClCompile Include="_app_app.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

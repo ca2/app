@@ -511,8 +511,11 @@ public:
    __transport(::uncompress) create_uncompress(const char* pszImplementation);
 
 
-   ::e_status compress(::file::file* pfileOut, ::file::file* pfileIn, const char* pszImplementation);
-   ::e_status uncompress(::file::file* pfileOut, ::file::file* pfileIn, const char* pszImplementation);
+   virtual ::e_status compress(::file::file* pfileOut, ::file::file* pfileIn, const char* pszImplementation);
+   virtual ::e_status uncompress(::file::file* pfileOut, ::file::file* pfileIn, const char* pszImplementation);
+
+   
+   virtual bool fast_is_decompressable_folder(const ::file::path & path);
 
 
 };

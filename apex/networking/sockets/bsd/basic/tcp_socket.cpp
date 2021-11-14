@@ -2562,7 +2562,7 @@ namespace sockets
                   {
                      // Current name is a DNS name, let's check it
 
-#if (defined(_UWP) || defined(LINUX)) && (OPENSSL_API_COMPAT < 0x10100000L)
+#if (defined(LINUX)) && (OPENSSL_API_COMPAT < 0x10100000L)
                      string strDnsName((const char *)ASN1_STRING_data(current_name->d.dNSName), ASN1_STRING_length(current_name->d.dNSName));
 #else
                      string strDnsName((const char *)ASN1_STRING_get0_data(current_name->d.dNSName), ASN1_STRING_length(current_name->d.dNSName));

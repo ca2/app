@@ -7,6 +7,13 @@ class CLASS_DECL_APEX file_context :
 public:
 
 
+   ::mutex                       m_mutexResource;
+   __pointer(::folder)           m_pfolderResource;
+   bool                          m_bFolderResourceCalculated;
+   bool                          m_bMainResourceMemoryCalculated;
+   ::memory                      m_memoryMainResource;
+
+
    file_context();
    ~file_context() override;
 
@@ -20,7 +27,14 @@ public:
    
    virtual ::e_status update_module_path();
 
+
+   virtual void calculate_main_resource_memory();
+
+
+   virtual ::block get_main_resource_block();
+
    
+   virtual ::folder* defer_resource_folder();
    virtual ::file_transport create_resource_file(const char * path);
    virtual bool resource_is_file_or_dir(const char* path);
 

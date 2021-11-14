@@ -90,10 +90,7 @@
     <ClInclude Include="account\user_set.h" />
     <ClInclude Include="account\_.h" />
     <ClInclude Include="account\_account.h" />
-    <ClInclude Include="compress\bz.h" />
-    <ClInclude Include="compress\bzip.h" />
-    <ClInclude Include="compress\_.h" />
-    <ClInclude Include="const\idpool.h" />
+    <ClInclude Include="constant\idpool.h" />
     <ClInclude Include="database\database\const.h" />
     <ClInclude Include="database\database\database.h" />
     <ClInclude Include="database\database\database_composite.h" />
@@ -157,28 +154,32 @@
     <ClInclude Include="inline\_new_impl.h" />
     <ClInclude Include="inline\__debug_box_clear_impl.h" />
     <ClInclude Include="inline\__debug_box_set_impl.h" />
-    <ClInclude Include="math\calculator\calculator.h" />
-    <ClInclude Include="math\calculator\element.h" />
-    <ClInclude Include="math\calculator\parser.h" />
-    <ClInclude Include="math\calculator\parser_exception.h" />
-    <ClInclude Include="math\calculator\result.h" />
-    <ClInclude Include="math\calculator\scanner.h" />
-    <ClInclude Include="math\calculator\token.h" />
-    <ClInclude Include="math\calculator\payload.h" />
-    <ClInclude Include="math\calculator\_.h" />
-    <ClInclude Include="math\kissfft\fft.h" />
-    <ClInclude Include="math\kissfft\fftd.h" />
-    <ClInclude Include="math\kissfft\fft_guts.h" />
-    <ClInclude Include="math\kissfft\ifft.h" />
-    <ClInclude Include="math\kissfft\ifftd.h" />
-    <ClInclude Include="math\kissfft\_.h" />
-    <ClInclude Include="math\_.h" />
+    <ClInclude Include="mathematics\calculator\aaa_want_to_remove_plain_edit_view.h" />
+    <ClInclude Include="mathematics\calculator\calculator.h" />
+    <ClInclude Include="mathematics\calculator\element.h" />
+    <ClInclude Include="mathematics\calculator\parser.h" />
+    <ClInclude Include="mathematics\calculator\parser_exception.h" />
+    <ClInclude Include="mathematics\calculator\result.h" />
+    <ClInclude Include="mathematics\calculator\scanner.h" />
+    <ClInclude Include="mathematics\calculator\token.h" />
+    <ClInclude Include="mathematics\calculator\_.h" />
+    <ClInclude Include="mathematics\kissfft\fft.h" />
+    <ClInclude Include="mathematics\kissfft\fftd.h" />
+    <ClInclude Include="mathematics\kissfft\fft_guts.h" />
+    <ClInclude Include="mathematics\kissfft\ifft.h" />
+    <ClInclude Include="mathematics\kissfft\ifftd.h" />
+    <ClInclude Include="mathematics\kissfft\_.h" />
+    <ClInclude Include="mathematics\_.h" />
+    <ClInclude Include="mathematics\_mathematics.h" />
     <ClInclude Include="networking\email_department.h" />
     <ClInclude Include="networking\netserver\socket.h" />
     <ClInclude Include="networking\netserver\socket_handler.h" />
     <ClInclude Include="networking\netserver\socket_thread.h" />
     <ClInclude Include="networking\netserver\_.h" />
     <ClInclude Include="networking\netserver\_netserver.h" />
+    <ClInclude Include="networking\networking_application.h" />
+    <ClInclude Include="networking\networking_application_handler.h" />
+    <ClInclude Include="networking\networking_application_socket.h" />
     <ClInclude Include="networking\sockets\bsd\smtp\smtpd_socket.h" />
     <ClInclude Include="networking\sockets\bsd\smtp\smtp_socket.h" />
     <ClInclude Include="networking\sockets\_sockets.h" />
@@ -219,8 +220,7 @@
     <ClCompile Include="account\usera.cpp" />
     <ClCompile Include="account\user_array.cpp" />
     <ClCompile Include="account\user_set.cpp" />
-    <ClCompile Include="compress\bz.cpp" />
-    <ClCompile Include="const\idpool.cpp" />
+    <ClCompile Include="constant\idpool.cpp" />
     <ClCompile Include="database\database\database.cpp" />
     <ClCompile Include="database\database\database_composite.cpp" />
     <ClCompile Include="database\database\database_impl.cpp" />
@@ -264,21 +264,24 @@
     <ClCompile Include="html\html_lite\entity_resolver.cpp" />
     <ClCompile Include="html\html_lite\reader.cpp" />
     <ClCompile Include="html\html_lite\tag.cpp" />
-    <ClCompile Include="math\calculator\calculator.cpp" />
-    <ClCompile Include="math\calculator\element.cpp" />
-    <ClCompile Include="math\calculator\parser.cpp" />
-    <ClCompile Include="math\calculator\parser_exception.cpp" />
-    <ClCompile Include="math\calculator\result.cpp" />
-    <ClCompile Include="math\calculator\scanner.cpp" />
-    <ClCompile Include="math\kissfft\fft.cpp" />
-    <ClCompile Include="math\kissfft\fftd.cpp" />
-    <ClCompile Include="math\kissfft\fft_shared.cpp" />
-    <ClCompile Include="math\kissfft\ifft.cpp" />
-    <ClCompile Include="math\kissfft\ifftd.cpp" />
+    <ClCompile Include="mathematics\calculator\calculator.cpp" />
+    <ClCompile Include="mathematics\calculator\element.cpp" />
+    <ClCompile Include="mathematics\calculator\parser.cpp" />
+    <ClCompile Include="mathematics\calculator\parser_exception.cpp" />
+    <ClCompile Include="mathematics\calculator\result.cpp" />
+    <ClCompile Include="mathematics\calculator\scanner.cpp" />
+    <ClCompile Include="mathematics\kissfft\fft.cpp" />
+    <ClCompile Include="mathematics\kissfft\fftd.cpp" />
+    <ClCompile Include="mathematics\kissfft\fft_shared.cpp" />
+    <ClCompile Include="mathematics\kissfft\ifft.cpp" />
+    <ClCompile Include="mathematics\kissfft\ifftd.cpp" />
     <ClCompile Include="networking\email_department.cpp" />
     <ClCompile Include="networking\netserver\socket.cpp" />
     <ClCompile Include="networking\netserver\socket_handler.cpp" />
     <ClCompile Include="networking\netserver\socket_thread.cpp" />
+    <ClCompile Include="networking\networking_application.cpp" />
+    <ClCompile Include="networking\networking_application_handler.cpp" />
+    <ClCompile Include="networking\networking_application_socket.cpp" />
     <ClCompile Include="networking\sockets\bsd\smtp\smtpd_socket.cpp" />
     <ClCompile Include="networking\sockets\bsd\smtp\smtp_socket.cpp" />
     <ClCompile Include="platform\application.cpp" />
@@ -319,7 +322,7 @@
     <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
     <AppContainerApplication>true</AppContainerApplication>
     <ApplicationType>Windows Store</ApplicationType>
-    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
     <WindowsTargetPlatformMinVersion>10.0.10240.0</WindowsTargetPlatformMinVersion>
     <ApplicationTypeRevision>10.0</ApplicationTypeRevision>
     <ProjectName>axis</ProjectName>
@@ -331,12 +334,12 @@
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
@@ -346,12 +349,12 @@
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|ARM'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|ARM'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
@@ -361,12 +364,12 @@
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|ARM64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|ARM64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
@@ -376,12 +379,12 @@
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
@@ -603,7 +606,7 @@
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time-universal_windows\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
     </Link>
@@ -683,7 +686,7 @@
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time-universal_windows\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
     </Link>
@@ -713,7 +716,7 @@
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time-universal_windows\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
     </Link>
@@ -794,7 +797,7 @@
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time-universal_windows\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
     </Link>
@@ -822,7 +825,7 @@
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time-universal_windows\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -898,7 +901,7 @@
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time-universal_windows\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -926,7 +929,7 @@
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time-universal_windows\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
     </Link>
@@ -1006,7 +1009,7 @@
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time-universal_windows\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>

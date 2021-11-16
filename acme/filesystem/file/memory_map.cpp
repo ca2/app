@@ -98,7 +98,7 @@ namespace file
    bool memory_map::open_path(const char * pszPath, bool bRead, bool bWrite, bool bCreate, memsize size)
    {
 
-      return open("", pszPath, bRead, bWrite, bCreate, size);
+      return open(pszPath, pszPath, bRead, bWrite, bCreate, size);
 
    }
 

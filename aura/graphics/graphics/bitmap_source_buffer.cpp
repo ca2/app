@@ -34,24 +34,30 @@ namespace graphics
 
       }
 
-      estatus = __construct(m_pmemorymap);
-
-      if (!estatus)
+      if (pimpl->m_strBitmapSource.has_char())
       {
 
-         ::output_debug_string("no memory map for the graphics buffer");
-         //return estatus;
 
-         estatus = ::success;
+         estatus = __construct(m_pmemorymap);
 
-      }
+         if (!estatus)
+         {
 
-      estatus = set_bitmap_source(pimpl->m_strBitmapSource);
-      
-      if (!estatus)
-      {
+            ::output_debug_string("no memory map for the graphics buffer");
+            //return estatus;
 
-         return estatus;
+            estatus = ::success;
+
+         }
+
+         estatus = set_bitmap_source(pimpl->m_strBitmapSource);
+
+         if (!estatus)
+         {
+
+            return estatus;
+
+         }
 
       }
 
@@ -86,13 +92,22 @@ namespace graphics
 
       ::file::path pathFolder;
 
-      pathFolder = m_pcontext->m_papexcontext->dir().appdata();
+      pathFolder = m_pcontext->m_papexcontext->dir().config();
 
       ::file::path path;
 
       path = pathFolder / "bitmap-source" / strBitmapSource;
 
-      auto estatus = m_pmemorymap->open_path(path, false, true, true, 128_mb);
+      auto estatus = __construct(m_pmemorymap);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = m_pmemorymap->open_path(path, false, true, true, 128_mb);
 
       if (!estatus)
       {

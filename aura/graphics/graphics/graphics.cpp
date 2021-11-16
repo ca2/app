@@ -33,17 +33,6 @@ namespace graphics
    ::e_status graphics::initialize_graphics_graphics(::user::interaction_impl * pimpl)
    {
 
-      try
-      {
-
-         destroy();
-
-      }
-      catch (...)
-      {
-
-      }
-
       auto estatus = object::initialize(pimpl);
 
       if (!estatus)

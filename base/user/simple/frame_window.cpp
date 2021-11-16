@@ -755,6 +755,12 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
       }
 
    }
+   else
+   {
+
+      m_bWindowFrame = m_psystem->m_papexsystem->m_bExperienceMainFrame;
+
+   }
 
    __pointer(::user::place_holder) pplaceholder = get_parent();
 

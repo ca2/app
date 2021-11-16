@@ -149,7 +149,7 @@ public:
    inline __pointer(::factory::factory_base < BASE_TYPE >) create_factory();
 
    template < typename BASE_TYPE >
-   inline __pointer(BASE_TYPE) create();
+   inline __transport(BASE_TYPE) create();
 
 
 };

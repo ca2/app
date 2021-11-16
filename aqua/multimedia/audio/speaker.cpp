@@ -8,15 +8,18 @@ namespace text_to_speech
    speaker::speaker()
    {
 
+
    }
 
 
    speaker::~speaker()
    {
+
+
    }
 
 
-   bool speaker::speak(const ::string & strText)
+   ::e_status speaker::speak(const ::string & strText)
    {
 
       if (m_pspeakerFallback.is_null())
@@ -31,7 +34,7 @@ namespace text_to_speech
    }
 
 
-   bool speaker::speak(const ::string & strLang, const ::string & strText, bool bSynch)
+   ::e_status speaker::speak(const ::string & strLang, const ::string & strText, bool bSynch)
    {
 
       if (m_pspeakerFallback.is_null())
@@ -46,7 +49,7 @@ namespace text_to_speech
    }
 
 
-   bool speaker::speak(const ::string & strAttributes, const ::string & strLang, const ::string & strText, bool bSynch)
+   ::e_status speaker::speak(const ::string & strAttributes, const ::string & strLang, const ::string & strText, bool bSynch)
    {
 
       if (m_pspeakerFallback.is_null())
@@ -61,7 +64,7 @@ namespace text_to_speech
    }
 
 
-   bool speaker::stop(string strLang)
+   ::e_status speaker::stop(string strLang)
    {
 
       if (m_pspeakerFallback.is_null())
@@ -91,9 +94,7 @@ namespace text_to_speech
    }
 
 
-
 } // namespace text_to_speech
-
 
 
 

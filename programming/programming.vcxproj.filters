@@ -24,6 +24,12 @@
     <Filter Include="Resource Files">
       <UniqueIdentifier>{7eea1287-02d2-4c52-80cf-d1182c13c43e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\programming">
+      <UniqueIdentifier>{75c3f63d-236f-419f-9599-00b62749a0ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\programming">
+      <UniqueIdentifier>{de15afe4-6a2c-487f-afdf-8ca707d1e6a7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -80,6 +86,18 @@
     <ClInclude Include="dynamic_source\session.h">
       <Filter>Header Files\dynamic_source</Filter>
     </ClInclude>
+    <ClInclude Include="programming\compiler.h">
+      <Filter>Header Files\programming</Filter>
+    </ClInclude>
+    <ClInclude Include="programming\_.h">
+      <Filter>Header Files\programming</Filter>
+    </ClInclude>
+    <ClInclude Include="programming\_programming.h">
+      <Filter>Header Files\programming</Filter>
+    </ClInclude>
+    <ClInclude Include="introjection\library.h">
+      <Filter>Header Files\introjection</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dynamic_source\exit_exception.cpp">
@@ -126,6 +144,12 @@
     </ClCompile>
     <ClCompile Include="dynamic_source\library.cpp">
       <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="programming\compiler.cpp">
+      <Filter>Source Files\programming</Filter>
+    </ClCompile>
+    <ClCompile Include="introjection\library.cpp">
+      <Filter>Source Files\introjection</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

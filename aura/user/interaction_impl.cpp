@@ -63,6 +63,8 @@ namespace user
 
       m_pinteractionimpl = this;
 
+      m_bOfflineRender = false;
+
       m_iState1 = 0;
 
       m_uCodePage = 0;
@@ -4013,6 +4015,23 @@ namespace user
 
          }
 
+         string strBitmapSource = payload("bitmap-source");
+
+         if (strBitmapSource.has_char())
+         {
+
+            auto pbitmapsourcebuffer = pgraphics->cast < ::graphics::bitmap_source_buffer >();
+
+            if(pbitmapsourcebuffer)
+            {
+
+
+
+
+            }
+
+         }
+
          if(m_puserinteraction)
          {
 
@@ -4206,6 +4225,13 @@ namespace user
 
       }
 
+      if (m_bOfflineRender)
+      {
+
+         return;
+
+      }
+
       string strType = __type_name(m_puserinteraction);
 
       if(strType.contains_ci("list_box"))
@@ -4219,14 +4245,19 @@ namespace user
 
       }
 
-      if (m_pgraphics.is_set() && m_puserinteraction->layout().is_this_screen_visible())
+      if (m_pgraphics.is_set())
       {
 
-         //CINFO(prodevian)("going to update_window (1)");
+         if (m_puserinteraction->layout().is_this_screen_visible())
+         {
 
-         m_pgraphics->update_window();
+            //CINFO(prodevian)("going to update_window (1)");
 
-         m_puserinteraction->layout().output() = m_puserinteraction->layout().design();
+            m_pgraphics->update_window();
+
+            m_puserinteraction->layout().output() = m_puserinteraction->layout().design();
+
+         }
 
       }
 
@@ -4287,6 +4318,40 @@ namespace user
 
       }
 
+
+   }
+
+
+   ::e_status interaction_impl::set_bitmap_source(const string& strBitmapSource)
+   {
+
+      m_strBitmapSource = strBitmapSource;
+
+      if (m_pgraphics)
+      {
+
+         m_pgraphics->set_bitmap_source(strBitmapSource);
+
+      }
+
+      return ::success;
+
+   }
+
+
+   ::e_status interaction_impl::clear_bitmap_source()
+   {
+
+      m_strBitmapSource.Empty();
+
+      if (m_pgraphics)
+      {
+
+         m_pgraphics->clear_bitmap_source();
+
+      }
+
+      return ::success;
 
    }
 
@@ -6276,6 +6341,13 @@ namespace user
       {
 
          return false;
+
+      }
+
+      if (m_bOfflineRender)
+      {
+
+         return true;
 
       }
 

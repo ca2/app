@@ -170,6 +170,21 @@ namespace aura
    }
 
 
+#ifdef WINDOWS_DESKTOP
+
+
+   void* node::HICON_from_ico_file(const ::block& block)
+   {
+
+      throw interface_only_exception();
+
+      return nullptr;
+
+   }
+
+
+#endif
+
 
 } // namespace aura
 

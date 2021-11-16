@@ -1207,7 +1207,7 @@ void simple_frame_window::on_layout(::draw2d::graphics_pointer & pgraphics)
 
    auto papplication = get_application();
 
-   if (papplication->m_bExperienceMainFrame && get_parent() == nullptr)
+   if (papplication->m_bExperienceMainFrame.is_false() && get_parent() == nullptr)
    {
 
       auto rectangle = get_host_window()->get_client_rect();

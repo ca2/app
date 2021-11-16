@@ -31,40 +31,7 @@ struct CLASS_DECL_APEX apex_main_struct :
    PFN_NEW_LIBRARY               m_pfnnewlibrary;
 
 
-   apex_main_struct()
-   {
-
-      m_bDataCentralRequired = false;
-
-      m_pintstringLanguageResourceMap = nullptr;
-
-      #if defined(ANDROID) || defined(_UWP) || defined(APPLE_IOS)
-
-         m_iMatterFromHttpCache = 1;
-
-      #elif defined(MACOS) || (defined(LINUX) && defined(DEBUG))
-
-         m_iMatterFromHttpCache = -1; // -1 = overridable
-
-      #else
-
-         m_iMatterFromHttpCache = 0; // 0 = Roaming
-
-      #endif
-
-
-      #if defined(_UWP) || defined(APPLE_IOS) || defined(ANDROID)
-
-         m_bExperienceMainFrame = false;
-
-      #endif
-      
-      m_pszMain = nullptr;
-      m_pfnnewmatterApplication = nullptr;
-      m_pfnnewlibrary = nullptr;
-      
-   }
-
+   apex_main_struct();
 
    apex_main_struct & operator = (const apex_main_struct & mainstruct)
    {

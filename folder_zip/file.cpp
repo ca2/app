@@ -193,6 +193,9 @@ namespace folder_zip
 
 memsize file::read(void* pdata, memsize nCount)
 {
+
+   synchronous_lock synchronouslock(m_pfolder->mutex());
+
    //   ASSERT_VALID(this);
    ASSERT(m_pfolder->m_unzfile != nullptr);
 
@@ -208,10 +211,11 @@ memsize file::read(void* pdata, memsize nCount)
    m_iPosition += iRead;
 
    return (::u32)iRead;
+
 }
 
-void file::write(const void* pdata, memsize nCount)
 
+void file::write(const void* pdata, memsize nCount)
 {
 
    return;
@@ -291,10 +295,10 @@ void file::write(const void* pdata, memsize nCount)
    }
 
 
-
-
    filesize file::translate(filesize offset, ::enum_seek eseek)
    {
+
+      synchronous_lock synchronouslock(m_pfolder->mutex());
 
       u64 iNewPosition;
 
@@ -384,7 +388,6 @@ void file::write(const void* pdata, memsize nCount)
    }
 
 
-
    bool file::is_opened() const
    {
 
@@ -407,7 +410,6 @@ void file::write(const void* pdata, memsize nCount)
       return m_pfolder->m_unzfileinfo.uncompressed_size;
 
    }
-
 
 
 } // namespace folder_zip
@@ -477,5 +479,6 @@ void file::write(const void* pdata, memsize nCount)
 //
 //
 //
+
 
 

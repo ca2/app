@@ -1704,12 +1704,12 @@ namespace axis
    }
 
 
-   string application::on_html_response(const ::string& strUrl, const ::property_set& setPost)
+   ::e_status application::on_html_response(string & strHtml, const ::string& strUrl, const ::property_set& setPost)
    {
 
-      string strHtml = networking_application()->on_html_response(strUrl, setPost);
+      auto estatus = networking_application()->on_html_response(strHtml, strUrl, setPost);
 
-      return strHtml;
+      return estatus;
 
    }
 

@@ -50,6 +50,36 @@ networking_application::~networking_application()
 
    m_psocketthread->m_strIp = "127.0.0.1";
    m_psocketthread->m_iPort = m_iPort;
+
+   auto pfolder = m_psystem->m_papexsystem->file().defer_resource_folder();
+
+   if (pfolder)
+   {
+
+      auto pfile = pfolder->get_file("sensitive/sensitive/api/localwebserver.cat");
+
+      if (pfile)
+      {
+
+         string strCat;
+
+         pfile->full_read_string(strCat);
+
+         if (strCat)
+         {
+
+            m_psocketthread->m_strCat = "cat://"+strCat;
+            m_psocketthread->m_strCipherList = "ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES128-SHA:ECDHE-RSA-RC4-SHA:DHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA:RSA:SHA:3DES:!aNULL:!eNULL:!EXP:!LOW:!MD5:@STRENGTH";
+            m_psocketthread->m_iSsl = 1;
+
+         }
+
+
+      }
+
+   }
+
+
    //      m_psocketthread->m_strCat = "cat://"+m_psystem->m_pacmefile->as_string("C:\\sensitive\\sensitive\\certificate\\localwebserver.app\\localwebserver.cat");
      //    m_psocketthread->m_strCipherList = "ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES128-SHA:ECDHE-RSA-RC4-SHA:DHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA:RSA:SHA:3DES:!aNULL:!eNULL:!EXP:!LOW:!MD5:@STRENGTH";
        //  m_psocketthread->m_iSsl = 1;
@@ -71,37 +101,47 @@ networking_application::~networking_application()
 }
 
 
-string networking_application::on_html_response(const ::string& strUrl, const ::property_set& setPost)
+::e_status networking_application::on_html_response(::string & strHtml, const ::string& strUrl, const ::property_set& setPost)
 {
 
    string strRequestScript = m_psystem->url()->get_script(strUrl);
 
-   for (auto& assoc : m_mapnetworkingapplicationhandler)
+   for (auto& assoc : m_mapnetworkingapplicationhandlera)
    {
 
-      auto strFolder = assoc.m_element1;
+      auto & strFolder = assoc.m_element1;
 
-      auto phandler = assoc.m_element2;
+      auto & handlera = assoc.m_element2;
 
-      if (phandler && strFolder.has_char())
+      if (strFolder.has_char())
       {
 
-         string strScript = "/" + strFolder;
-
-         string strScriptPrefix = strScript + "/";
-
-         if (strRequestScript == strScript || strRequestScript.begins(strScriptPrefix))
+         for (auto& phandler : handlera)
          {
 
-            return phandler->on_html_response(strUrl, setPost);
+            string strScript = "/" + strFolder;
+
+            string strScriptPrefix = strScript + "/";
+
+            if (strRequestScript == strScript || strRequestScript.begins(strScriptPrefix))
+            {
+
+               auto estatus = phandler->on_html_response(strHtml, strUrl, setPost);
+
+               if (estatus.succeeded())
+               {
+
+                  return estatus;
+
+               }
+
+            }
 
          }
 
       }
 
    }
-
-   string strHtml;
 
    auto psystem = m_psystem;
 
@@ -123,7 +163,7 @@ string networking_application::on_html_response(const ::string& strUrl, const ::
    strHtml += "</body>";
    strHtml += "</html>";
 
-   return strHtml;
+   return ::success;
 
 }
 

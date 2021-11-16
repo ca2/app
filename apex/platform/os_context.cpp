@@ -108,7 +108,7 @@
    }
 
 
-   ::e_status     os_context::link_open(string strUrl)
+   ::e_status os_context::link_open(const string & strUrl, const string & strProfile)
    {
 
       if (!file_open(strUrl))

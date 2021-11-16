@@ -440,14 +440,14 @@ namespace windowing
 
 
 
-   ::extended::transport < ::windowing::icon > windowing::load_icon(const ::payload & payloadFile)
-   {
+   //::extended::transport < ::windowing::icon > window::load_icon(const ::payload & payloadFile)
+   //{
 
-      return nullptr;
+   //   return nullptr;
 
-   }
+   //}
 
-   
+   //
    ::e_status windowing::term1()
    {
 

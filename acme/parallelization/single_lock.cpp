@@ -35,6 +35,84 @@ single_lock::~single_lock()
 }
 
 
+::e_status single_lock::_wait()
+{
+
+   ::e_status estatus(signaled_base);
+
+   if (m_bAcquired)
+   {
+
+      return estatus;
+
+   }
+
+   if (m_psync == nullptr)
+   {
+
+      return estatus;
+
+   }
+
+   try
+   {
+
+      estatus = m_psync->_wait();
+
+   }
+   catch (...)
+   {
+
+      estatus = error_failed;
+
+   }
+
+   m_bAcquired = estatus.signaled();
+
+   return estatus;
+
+}
+
+
+::e_status single_lock::_wait(const class ::wait& wait)
+{
+
+   ::e_status estatus(signaled_base);
+
+   if (m_bAcquired)
+   {
+
+      return estatus;
+
+   }
+
+   if (m_psync == nullptr)
+   {
+
+      return estatus;
+
+   }
+
+   try
+   {
+
+      estatus = m_psync->_wait(wait);
+
+   }
+   catch (...)
+   {
+
+      estatus = error_failed;
+
+   }
+
+   m_bAcquired = estatus.signaled();
+
+   return estatus;
+
+}
+
+
 ::e_status single_lock::wait()
 {
 
@@ -74,7 +152,7 @@ single_lock::~single_lock()
 }
 
 
-::e_status single_lock::wait(const duration & durationTimeOut)
+::e_status single_lock::wait(const class ::wait & wait)
 {
 
    ::e_status estatus(signaled_base);
@@ -96,7 +174,7 @@ single_lock::~single_lock()
    try
    {
 
-      estatus = m_psync->wait(durationTimeOut);
+      estatus = m_psync->wait(wait);
 
    }
    catch(...)
@@ -168,9 +246,7 @@ bool single_lock::unlock(::i32 lCount, ::i32 * pPrevCount /* = nullptr */)
 }
 
 
-
-
-bool single_lock::IsLocked()
+bool single_lock::is_locked() const
 {
 
    return m_bAcquired;

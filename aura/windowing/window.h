@@ -231,6 +231,10 @@ namespace windowing
 
       virtual void DragAcceptFiles(bool bAccept = true);
 
+
+      virtual __transport(::windowing::icon) load_icon(const ::payload& payloadFile);
+
+
       virtual ::e_status set_icon(::windowing::icon * picon);
       virtual __pointer(::windowing::icon) get_icon() const;
 

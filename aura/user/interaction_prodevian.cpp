@@ -1217,6 +1217,34 @@ namespace user
    bool prodevian::update_screen()
    {
 
+      //if (m_pimpl)
+      //{
+
+      //   if (m_pimpl->m_pgraphics)
+      //   {
+
+      //      auto pbitmapsource = m_pimpl->m_pgraphics.cast < ::graphics::bitmap_source_buffer >();
+
+      //      if (pbitmapsource)
+      //      {
+
+      //         string strBitmapSource = m_puserinteraction->payload("bitmap-source");
+
+      //         if (pbitmapsource->m_strBitmapSource != strBitmapSource)
+      //         {
+
+      //            pbitmapsource->enable_ipc_copy(strBitmapSource);
+
+      //         }
+
+      //      }
+
+
+      //   }
+
+      //}
+
+
       try
       {
 

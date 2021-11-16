@@ -240,7 +240,7 @@ namespace user
 
          }
 
-         pdocument->id_update_all_views(NEW_DOCUMENT_UPDATE);
+         pdocument->id_update_all_views(id_new_document);
 
       }
       else

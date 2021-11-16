@@ -1423,6 +1423,8 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    ::e_status system::defer_folder_library()
    {
 
+      synchronous_lock synchronouslock(mutex());
+
       if (m_plibraryFolder.not_initialized())
       {
 

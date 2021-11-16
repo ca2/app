@@ -32,13 +32,13 @@ class virtual_memory;
 class memory_container;
 
 
-enum e_memory
+enum enum_memory
 {
 
-   memory_none,
-   memory_primitive,
-   memory_shared,
-   memory_virtual,
+   e_memory_none,
+   e_memory_primitive,
+   e_memory_shared,
+   e_memory_virtual,
 
 };
 
@@ -60,7 +60,7 @@ public:
 
    memory_container *      m_pcontainer;
 
-   e_memory                m_ememory;
+   enum_memory             m_ememory;
 
    read_only_memory *      m_preadonlymemory;
    memory *                m_pprimitivememory;
@@ -100,9 +100,7 @@ public:
 #endif
 
 
-
-
-   memory_base() {}
+   memory_base() { }
    memory_base(const memory_base & base) : m_memory(base.m_memory) {}
    memory_base(memory_base && base) : m_memory(base.m_memory) { __zero(base.m_memory); }
    ~memory_base() override;
@@ -127,7 +125,7 @@ public:
    virtual bool ends(const ::string & str, strsize iCount = -1) const;
    virtual bool ends_ci(const ::string & str, strsize iCount = -1) const;
 
-   //virtual byte * detach_primitive_memory();
+   virtual memory detach_as_primitive_memory();
    //virtual byte * detach_virtual_memory();
    //virtual HGLOBAL detach_shared_memory();
 

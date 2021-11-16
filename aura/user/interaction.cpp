@@ -2725,7 +2725,7 @@ namespace user
 
          ::file::path pathIcon = "matter://main/icon.ico";
 
-         auto picon = pwindowing->load_icon(pathIcon);
+         auto picon = window()->load_icon(pathIcon);
 
          //      HICON hicon = load_icon(get_application(), straMatter, "icon.ico", 16, 16);
 
@@ -10272,6 +10272,18 @@ void interaction::sketch_to_design(::draw2d::graphics_pointer& pgraphics, bool &
 
    bool bDisplay = defer_design_display();
 
+   if (m_pimpl2 && m_pimpl2->m_bOfflineRender)
+   {
+
+      if (layout().sketch().display() != e_display_hide)
+      {
+
+         hide();
+
+      }
+
+   }
+
    if (!is_equivalent(layout().sketch().display(), layout().design().display()))
    {
 
@@ -15049,21 +15061,52 @@ order(zorderParam);
    }
 
 
-   void interaction::set_bitmap_source(string strBitmapSource)
+   ::e_status interaction::set_bitmap_source(const string & strBitmapSource)
    {
 
-      payload("bitmap-source") = strBitmapSource;
+      if (!m_pimpl)
+      {
+
+         return error_failed;
+
+      }
+
+      auto estatus = m_pimpl->set_bitmap_source(strBitmapSource);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 
 
-   void interaction::clear_bitmap_source()
+   ::e_status interaction::clear_bitmap_source()
    {
 
-      payload("bitmap-source").unset();
+      if (!m_pimpl)
+      {
+
+         return error_failed;
+
+      }
+
+      auto estatus = m_pimpl->clear_bitmap_source();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
-
 
    //::item interaction::hit_test(::message::mouse* pmouse->
    //{

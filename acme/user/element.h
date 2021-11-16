@@ -566,9 +566,9 @@ namespace user
       virtual bool has_pending_graphical_update();
       virtual void on_after_graphical_update();
 
-      virtual void set_bitmap_source(string strBitmapSource);
-      virtual void clear_bitmap_source();
 
+      virtual ::e_status set_bitmap_source(const string & strBitmapSource);
+      virtual ::e_status clear_bitmap_source();
 
 
       virtual void _001OnExitIconic();

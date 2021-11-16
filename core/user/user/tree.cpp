@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "core/user/user/_user.h"
 #include "_data.h"
 #include "_tree.h"
@@ -240,10 +240,11 @@ namespace user
             }
             else
             {
+               auto 😁 = MATH_PI;
                auto f = 1.0 / duration(dwHoverIn).floating_second().m_d;
-               auto ω = -π * f; // omega pi
+               auto 😃 = -😁 * f; // omega pi
                auto t = m_durationHoverStart.elapsed().floating_second().m_d;
-               ::u32 dwCurve =  (::u32) (255.0 * (1.0 - exp(ω * t)));
+               ::u32 dwCurve =  (::u32) (255.0 * (1.0 - exp(😃 * t)));
                if(m_uchHoverAlphaInit + dwCurve > 255)
                   m_uchHoverAlpha = 255;
                else
@@ -267,10 +268,11 @@ namespace user
             }
             else
             {
+               auto 😁 = MATH_PI;
                auto f = 1.0 / ::duration(dwHoverOut).floating_second().m_d;
-               auto ω = -π * f; // omega pi
+               auto 😃 = -😁 * f; // omega pi
                auto t = m_durationHoverStart.elapsed().floating_second().m_d;
-               ::u32 dwCurve = (::u32)(255.0 * (1.0 - exp(ω * t)));
+               ::u32 dwCurve = (::u32)(255.0 * (1.0 - exp(😃 * t)));
                if(m_uchHoverAlphaInit < dwCurve)
                   m_uchHoverAlpha = 0;
                else

@@ -42,6 +42,8 @@
 file_context::file_context()
 {
 
+   defer_create_mutex();
+
 }
 
 
@@ -1027,6 +1029,8 @@ void file_context::calculate_main_resource_memory()
 ::folder* file_context::defer_resource_folder()
 {
 
+   synchronous_lock synchronouslock(mutex());
+
    auto estatus = m_psystem->defer_folder_library();
 
    if (!estatus)
@@ -1076,19 +1080,27 @@ void file_context::calculate_main_resource_memory()
 }
 
 
-::file_transport file_context::create_resource_file(const char* path)
+::memory_file_transport file_context::create_resource_file(const char* path)
 {
 
-   synchronous_lock synchronouslock(&m_mutexResource);
+   ::folder* pfolder = nullptr;
 
-   auto pfolder = defer_resource_folder();
-
-   if (is_null(pfolder))
    {
 
-      return nullptr;
+      synchronous_lock synchronouslock(mutex());
+
+      pfolder = defer_resource_folder();
+
+      if (is_null(pfolder))
+      {
+
+         return nullptr;
+
+      }
 
    }
+
+   synchronous_lock synchronouslock(pfolder->mutex());
 
    string strPath(path);
 
@@ -1130,19 +1142,44 @@ void file_context::calculate_main_resource_memory()
 }
 
 
+::memory file_context::get_resource_memory(const char* path)
+{
+
+   auto pfile = create_resource_file(path);
+   
+   if (!pfile)
+   {
+
+      return {};
+
+   }
+
+   return ::move(*pfile->memory().m_memory.m_pprimitivememory);
+
+}
+
+
 bool file_context::resource_is_file_or_dir(const char* path)
 {
 
-   synchronous_lock synchronouslock(&m_mutexResource);
+   ::folder* pfolder = nullptr;
 
-   auto pfolder = defer_resource_folder();
-
-   if (is_null(pfolder))
    {
 
-      return false;
+      synchronous_lock synchronouslock(mutex());
+
+      pfolder = defer_resource_folder();
+
+      if (is_null(pfolder))
+      {
+
+         return false;
+
+      }
 
    }
+
+   synchronous_lock synchronouslock(pfolder->mutex());
 
    string strPath(path);
 

@@ -12,13 +12,16 @@ public:
 
 
    explicit single_lock(synchronization_object * pobject, bool bInitialLock = false);
-   ~single_lock();
+   ~single_lock() override;
 
-   ::e_status wait();
-   ::e_status wait(const duration & duration);
-   bool unlock();
-   bool unlock(::i32 lCount, ::i32 * lPrevCount = nullptr);
-   bool IsLocked();
+
+   ::e_status _wait() override;
+   ::e_status _wait(const class ::wait& wait) override;
+   ::e_status wait() override;
+   ::e_status wait(const class ::wait& wait) override;
+   bool unlock() override;
+   bool unlock(::i32 lCount, ::i32 * lPrevCount = nullptr) override;
+   bool is_locked() const override;
 
 
 };

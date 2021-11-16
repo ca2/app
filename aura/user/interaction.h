@@ -1750,8 +1750,8 @@ namespace user
       virtual bool has_pending_redraw_flags() override;
 
 
-      virtual void set_bitmap_source(string strBitmapFileTitle) override;
-      virtual void clear_bitmap_source() override;
+      virtual ::e_status set_bitmap_source(const string & strBitmapFileTitle) override;
+      virtual ::e_status clear_bitmap_source() override;
 
 
       //void install_click_default_mouse_handling(::channel* pchannel);

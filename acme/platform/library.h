@@ -28,9 +28,9 @@ namespace acme
       virtual ~library();
 
       void assert_valid() const override;
-      virtual void dump(dump_context &) const override;
+      void dump(dump_context &) const override;
 
-      virtual ::e_status     initialize_matter(::matter * pmatter) override;
+      ::e_status     initialize_matter(::matter * pmatter) override;
       virtual ::e_status     initialize_library(::matter* pmatter, int iDesmabi, const char * pszRoot = nullptr, const char * pszName = nullptr, const char * pszFolder = nullptr);
 
       virtual bool open(const char * pszPath,bool bAutoClose = true,bool bCa2Path = false);
@@ -159,7 +159,9 @@ namespace acme
 
       //virtual bool create_factory();
 
-      virtual ::e_status factory_exchange(::factory_map * pfactorymap);
+      virtual ::e_status do_factory_exchange(const ::string& strName = nullptr, ::factory_map * pfactorymap = nullptr);
+
+      virtual ::e_status factory_exchange(const ::string & strName = nullptr, ::factory_map * pfactorymap = nullptr);
 
 
    };

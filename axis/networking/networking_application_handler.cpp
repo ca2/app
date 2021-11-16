@@ -16,10 +16,8 @@ networking_application_handler::~networking_application_handler()
 }
 
 
-string networking_application_handler::on_html_response(const ::string& strUrl, const ::property_set& setPost)
+::e_status networking_application_handler::on_html_response(string & strHtml, const ::string& strUrl, const ::property_set& setPost)
 {
-
-   string strHtml;
 
    auto psystem = m_psystem;
 
@@ -41,7 +39,7 @@ string networking_application_handler::on_html_response(const ::string& strUrl, 
    strHtml += "</body>";
    strHtml += "</html>";
 
-   return strHtml;
+   return ::success;
 
 }
 

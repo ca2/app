@@ -151,7 +151,7 @@ namespace aqua
 
       }
 
-      auto estatus = plibrary->factory_exchange(::factory::get_factory_map());
+      auto estatus = plibrary->do_factory_exchange();
 
       if (!estatus)
       {

@@ -28,7 +28,11 @@ namespace graphics
 
       synchronous_lock synchronouslock(mutex());
 
-      return update_window(m_pimageBuffer);
+      auto bOk = update_window(m_pimageBuffer);
+
+      ipc_copy(m_pimageBuffer);
+
+      return bOk;
 
    }
 

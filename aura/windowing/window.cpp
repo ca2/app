@@ -812,6 +812,32 @@ namespace windowing
    }
 
 
+   __transport(::windowing::icon) window::load_icon(const ::payload& payloadFile)
+   {
+
+      auto picon = __create < icon >();
+
+      if (!picon)
+      {
+
+         return nullptr;
+
+      }
+
+      auto estatus = picon->load_file(payloadFile);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return picon;
+
+   }
+
+
    ::e_status window::set_icon(::windowing::icon * picon)
    {
 

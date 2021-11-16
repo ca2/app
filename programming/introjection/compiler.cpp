@@ -41,50 +41,6 @@ namespace introjection
 {
 
 
-   library::library()
-   {
-
-      defer_create_mutex();
-
-      //initialize(pobject);
-
-      __zero(m_filetimeset);
-
-   }
-
-
-   library::~library()
-   {
-
-
-   }
-
-
-   ::e_status library::initialize (::object * pobject) 
-   {
-
-      auto estatus = ::object::initialize(pobject);
-
-      if (!estatus)
-      {
-         
-         return estatus;
-
-      }
-
-      estatus = __construct_new(m_plibrary);
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      return estatus;
-
-   }
-
 
    compiler::compiler()
    {
@@ -101,10 +57,10 @@ namespace introjection
    }
 
 
-   ::e_status compiler::initialize(::object * pobject)
+   ::e_status compiler::initialize_introjection_compiler(::object * pobject, const ::string& pszRepos, const ::string& pszApp, const ::string& pszProjectName)
    {
 
-      auto estatus = ::object::initialize(pobject);
+      auto estatus = initialize_programming_compiler(pobject);
 
       if (!estatus)
       {
@@ -113,88 +69,86 @@ namespace introjection
 
       }
 
-      auto pcontext = get_context();
-
-#ifdef WINDOWS
-      {
-
-         ::file::path path;
-
-         auto pacmedir = m_psystem->m_pacmedir;
-
-         path = pacmedir->config() / "programming/vs.txt";
-
-         m_strVs = pcontext->m_papexcontext->file().as_string(path);
-
-         m_strVs.trim();
-
-         if (m_strVs == "2015")
-         {
-
-            m_strVsTools = "140";
-
-         }
-         else if (m_strVs == "2017")
-         {
-
-            m_strVsTools = "141";
-
-         }
-         else if (m_strVs == "2019")
-         {
-
-            m_strVsTools = "142";
-
-         }
-         else
-         {
-
-            string strMessage;
-
-            strMessage = "There is a hole here. You should fill it with fullfillment. Missing f**k " + path;
-
-            //message_box(strMessage, strMessage, e_message_box_ok);
-
-         }
-
-      }
-
-#endif
-
-      ::file::path path;
-
-      path = THIS_FILE;
-
-      m_pathProjectDir = path.folder();
-
-#if MEMDLEAK
-
-      m_strDynamicSourceConfiguration = "basis";
-      m_strDynamicSourceStage = "time";
-
-
-#elif defined(_DEBUG)
-
-      m_strDynamicSourceConfiguration = "basis";
-      m_strDynamicSourceStage = "time-" PLATFORM_NAME;
-
-#else
-
-      m_strDynamicSourceConfiguration = "profiler";
-      m_strDynamicSourceStage = "profiler";
-
-#endif
-
-      m_strDynamicSourceStageFolder = pcontext->m_papexcontext->dir().install() / m_strDynamicSourceStage;
-
-
-      return estatus;
-
-   }
-
-
-   void compiler::initialize_compiler(const ::string & pszRepos, const ::string & pszApp, const ::string & pszProjectName)
-   {
+//      auto pcontext = get_context();
+//
+//#ifdef WINDOWS
+//      {
+//
+//         ::file::path path;
+//
+//         auto pacmedir = m_psystem->m_pacmedir;
+//
+//         path = pacmedir->config() / "programming/vs.txt";
+//
+//         m_strVs = pcontext->m_papexcontext->file().as_string(path);
+//
+//         m_strVs.trim();
+//
+//         if (m_strVs == "2015")
+//         {
+//
+//            m_strVsTools = "140";
+//
+//         }
+//         else if (m_strVs == "2017")
+//         {
+//
+//            m_strVsTools = "141";
+//
+//         }
+//         else if (m_strVs == "2019")
+//         {
+//
+//            m_strVsTools = "142";
+//
+//         }
+//         else if (m_strVs == "2022")
+//         {
+//
+//            m_strVsTools = "143";
+//
+//         }
+//         else
+//         {
+//
+//            string strMessage;
+//
+//            strMessage = "There is a hole here. You should fill it with fullfillment. Missing f**k " + path;
+//
+//            //message_box(strMessage, strMessage, e_message_box_ok);
+//
+//         }
+//
+//      }
+//
+//#endif
+//
+//      ::file::path path;
+//
+//      path = THIS_FILE;
+//
+//      m_pathProjectDir = path.folder();
+//
+//#if MEMDLEAK
+//
+//      m_strDynamicSourceConfiguration = "basis";
+//      m_strDynamicSourceStage = "time";
+//
+//
+//#elif defined(_DEBUG)
+//
+//      m_strDynamicSourceConfiguration = "basis";
+//      m_strDynamicSourceStage = "time-" PLATFORM_NAME;
+//
+//#else
+//
+//      m_strDynamicSourceConfiguration = "profiler";
+//      m_strDynamicSourceStage = "profiler";
+//
+//#endif
+//
+//      m_strDynamicSourceStageFolder = pcontext->m_papexcontext->dir().install() / m_strDynamicSourceStage;
+//
 
       m_strRepos = pszRepos;
 
@@ -204,383 +158,400 @@ namespace introjection
 
       prepare_compile_and_link_environment();
 
-   }
 
-
-   void compiler::prepare_compile_and_link_environment()
-   {
-
-      //auto papplication = get_application();
-
-      auto pcontext = get_context();
-
-      auto pacmedir = m_psystem->m_pacmedir;
-
-      pcontext->m_papexcontext->dir().mk(pacmedir->system() / "introjection\\symbols");
-
-      ::file::path strVars;
-
-#ifndef _UWP
-#ifdef WINDOWS_DESKTOP
-
-      if (m_strVs == "2015")
-      {
-
-         strVars = getenv("VS140COMNTOOLS");
-
-      }
-#endif
-#endif
-
-#ifdef WINDOWS_DESKTOP
-
-      if (m_strVs == "2019")
-      {
-
-         m_strEnv = "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Auxiliary/Build/vcvarsall.bat";
-
-         ::windows::registry::key key;
-
-         if (key._open(HKEY_LOCAL_MACHINE, "SOFTWARE\\WOW6432Node\\Microsoft\\VisualStudio\\SxS\\VS7", false))
-         {
-
-            string strPath;
-
-            if (key._get("16.0", strPath))
-            {
-
-               ::file::path path = strPath;
-
-               m_strEnv = path / "VC/Auxiliary/Build/vcvarsall.bat";
-
-            }
-
-         }
-
-         __pointer(application) papplication = get_application();
-
-         m_strVCVersion = papplication->get_visual_studio_build();
-
-      }
-      else if (m_strVs == "2017")
-      {
-
-         m_strEnv = "C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Auxiliary/Build/vcvarsall.bat";
-
-         ::windows::registry::key key;
-
-         if (key._open(HKEY_LOCAL_MACHINE, "SOFTWARE\\WOW6432Node\\Microsoft\\VisualStudio\\SxS\\VS7", false))
-         {
-
-            string strPath;
-
-            if (key._get("15.0", strPath))
-            {
-
-               ::file::path path = strPath;
-
-               m_strEnv = path / "VC/Auxiliary/Build/vcvarsall.bat";
-
-            }
-
-         }
-
-         __pointer(application) papplication = get_application();
-
-         m_strVCVersion = papplication->get_visual_studio_build();
-
-      }
-      else if (m_strVs == "2015")
-      {
-
-         m_strEnv = strVars.up(2);
-         m_strEnv = m_strEnv / "vc\\vcvarsall.bat";
-         //m_strEnv = ".\\vc_vars.bat";
-
-      }
-
-      m_strTime = pcontext->m_papexcontext->dir().install() / "time";
-
-      //m_strEnv = "C:\\Program Files\\Microsoft SDKs\\Windows\\v7.1\\Bin\\SetEnv.cmd";
-
-      //m_strSdk1 = "windows7.1sdk";
-      if (m_strVs == "2015")
-      {
-
-         m_strSdk1 = "vc140";
-
-      }
-      else if (m_strVs == "2017")
-      {
-
-         m_strSdk1 = "vc141";
-
-      }
-      else if (m_strVs == "2019")
-      {
-
-         m_strSdk1 = "vc142";
-
-      }
-
-#endif
-
-#ifdef OS64BIT
-#ifdef LINUX
-      m_strPlat1     = "64";
-      m_strPlatform = "x64";
-      m_strStagePlatform = "x64";
-      m_strLibPlatform = "x64/";
-#else
-      m_strPlat1     = "64";
-      m_strPlat2 = "x86_amd64";
-      //m_strPlat2 = "amd64";
-      m_strPlatform = "x64";
-      m_strStagePlatform = "x64";
-      m_strLibPlatform = "x64/";
-#endif
-#else
-      m_strPlat1     = "32";
-      m_strPlat2 = " x86";
-      m_strPlatform = "Win32";
-      m_strStagePlatform = "x86";
-      m_strLibPlatform = "x86/";
-#endif
-
-      //pcontext->m_papexcontext->file().lines(m_straSync, "C:\\aura\\database\\text\\introjection\\syncer.txt", get_application());
-#if defined(LINUX)
-      prepare1(m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bash",
-               m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bash");
-      prepare1(m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bash",
-               m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bash");
-      prepare1(m_strDynamicSourceConfiguration + "_libl" + m_strPlat1 + ".bash",
-               m_strDynamicSourceConfiguration + "_libl" + m_strPlat1 + ".bash");
-#else
-      prepare1(m_strPlat1,m_strPlat1);
-      //prepare1(m_strDynamicSourceConfiguration  + "_cl" + m_strPlat1 + ".bat",
-      //   m_strDynamicSourceConfiguration  + "_cl" + m_strPlat1 + ".bat");
-      //prepare1(m_strDynamicSourceConfiguration  + "_libc" + m_strPlat1 + ".bat",
-      //   m_strDynamicSourceConfiguration  + "_libc" + m_strPlat1 + ".bat");
-      //prepare1(m_strDynamicSourceConfiguration  + "_libl" + m_strPlat1 + ".bat",
-      //   m_strDynamicSourceConfiguration  + "_libl" + m_strPlat1 + ".bat");
-#endif
-
-      pcontext->m_papexcontext->dir().mk(pcontext->m_papexcontext->dir().install() / m_strDynamicSourceStage / "front");
-
-      //#ifdef WINDOWS
-      //      string vars1batSrc;
-      //      string vars2batSrc;
-      //      string vars1batDst;
-      //      string vars2batDst;
-      //      vars1batSrc = pcontext->m_papexcontext->dir().install()/"platform/stage/introjection/vc_vars.bat";
-      //      vars2batSrc = pcontext->m_papexcontext->dir().install()/"platform/stage/introjection/vc_vars_query_registry.bat";
-      //      vars1batDst = pcontext->m_papexcontext->dir().install()/ m_strDynamicSourceStage / "front"/"vc_vars.bat";
-      //      vars2batDst = pcontext->m_papexcontext->dir().install()/m_strDynamicSourceStage /"front"/"vc_vars_query_registry.bat";
-      //      try
-      //      {
-      //         pcontext->m_papexcontext->file().copy(vars1batDst, vars1batSrc, false);
-      //      }
-      //      catch(...)
-      //      {
-      //      }
-      //      try
-      //      {
-      //         pcontext->m_papexcontext->file().copy(vars2batDst, vars2batSrc, false);
-      //      }
-      //      catch(...)
-      //      {
-      //      }
-      //
-      //#endif
-
-      auto psystem = m_psystem->m_paurasystem;
-
-#ifdef _UWP
-
-      __throw(todo);
-
-#elif defined(LINUX)
-
-#else
-
-      //string strCommandLine = "\"" + m_strEnv + "\" " + m_strPlat2 + " "10.0.16299.0";
-
-      string strCommandLine = "\"" + m_strEnv + "\" " + m_strPlat2 + " " + vs_build(this);
-
-      ::payload payload = psystem->process().get_output(strCommandLine);
-
-      FORMATTED_TRACE("%s", payload.string().c_str());
-
-#endif
-
-      string str;
-      string strItem;
-
-      strItem = pcontext->m_papexcontext->dir().install() / m_strDynamicSourceStage / m_strStagePlatform;
-      str = str + strItem + ";";
-
-      strItem = pcontext->m_papexcontext->dir().install() / m_strDynamicSourceStage / m_strStagePlatform / "introjection\\library";
-      str = str + strItem + ";";
-
-      //auto psystem = m_psystem;
-
-      auto pnode = psystem->node();
-
-      str += pnode->get_environment_variable("PATH");
-
-      bool bResult = false;
-#ifdef WINDOWS_DESKTOP
-      //bResult = SetEnvironmentVariable("PATH",str) != false;
-#elif defined(_UWP)
-
-      __throw(todo);
-
-#elif defined(LINUX)
-#else
-      bResult = setenv("PATH",str,true);
-#endif
-
-      TRACE("compiler::prepare_compile_and_link_environment SetEnvironmentVariable return bool " << bResult);
-
+      return estatus;
 
    }
 
 
+   //void compiler::initialize_compiler(const ::string & pszRepos, const ::string & pszApp, const ::string & pszProjectName)
+   //{
+
+   //   m_strRepos = pszRepos;
+
+   //   m_strApp = pszApp;
+
+   //   m_strProjectName = pszProjectName;
+
+   //   prepare_compile_and_link_environment();
+
+   //}
 
 
+//   void compiler::prepare_compile_and_link_environment()
+//   {
+//
+//      //auto papplication = get_application();
+//
+//      auto pcontext = get_context();
+//
+//      auto pacmedir = m_psystem->m_pacmedir;
+//
+//      pcontext->m_papexcontext->dir().mk(pacmedir->system() / "introjection\\symbols");
+//
+//      ::file::path strVars;
+//
+//#ifndef _UWP
+//#ifdef WINDOWS_DESKTOP
+//
+//      if (m_strVs == "2015")
+//      {
+//
+//         strVars = getenv("VS140COMNTOOLS");
+//
+//      }
+//#endif
+//#endif
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//      if (m_strVs == "2019")
+//      {
+//
+//         m_strEnv = "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Auxiliary/Build/vcvarsall.bat";
+//
+//         ::windows::registry::key key;
+//
+//         if (key._open(HKEY_LOCAL_MACHINE, "SOFTWARE\\WOW6432Node\\Microsoft\\VisualStudio\\SxS\\VS7", false))
+//         {
+//
+//            string strPath;
+//
+//            if (key._get("16.0", strPath))
+//            {
+//
+//               ::file::path path = strPath;
+//
+//               m_strEnv = path / "VC/Auxiliary/Build/vcvarsall.bat";
+//
+//            }
+//
+//         }
+//
+//         __pointer(application) papplication = get_application();
+//
+//         m_strVCVersion = papplication->get_visual_studio_build();
+//
+//      }
+//      else if (m_strVs == "2017")
+//      {
+//
+//         m_strEnv = "C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Auxiliary/Build/vcvarsall.bat";
+//
+//         ::windows::registry::key key;
+//
+//         if (key._open(HKEY_LOCAL_MACHINE, "SOFTWARE\\WOW6432Node\\Microsoft\\VisualStudio\\SxS\\VS7", false))
+//         {
+//
+//            string strPath;
+//
+//            if (key._get("15.0", strPath))
+//            {
+//
+//               ::file::path path = strPath;
+//
+//               m_strEnv = path / "VC/Auxiliary/Build/vcvarsall.bat";
+//
+//            }
+//
+//         }
+//
+//         __pointer(application) papplication = get_application();
+//
+//         m_strVCVersion = papplication->get_visual_studio_build();
+//
+//      }
+//      else if (m_strVs == "2015")
+//      {
+//
+//         m_strEnv = strVars.up(2);
+//         m_strEnv = m_strEnv / "vc\\vcvarsall.bat";
+//         //m_strEnv = ".\\vc_vars.bat";
+//
+//      }
+//
+//      m_strTime = pcontext->m_papexcontext->dir().install() / "time";
+//
+//      //m_strEnv = "C:\\Program Files\\Microsoft SDKs\\Windows\\v7.1\\Bin\\SetEnv.cmd";
+//
+//      //m_strSdk1 = "windows7.1sdk";
+//      if (m_strVs == "2015")
+//      {
+//
+//         m_strSdk1 = "vc140";
+//
+//      }
+//      else if (m_strVs == "2017")
+//      {
+//
+//         m_strSdk1 = "vc141";
+//
+//      }
+//      else if (m_strVs == "2019")
+//      {
+//
+//         m_strSdk1 = "vc142";
+//
+//      }
+//      else if (m_strVs == "2022")
+//      {
+//
+//         m_strSdk1 = "vc143";
+//
+//      }
+//
+//#endif
+//
+//#ifdef OS64BIT
+//#ifdef LINUX
+//      m_strPlat1     = "64";
+//      m_strPlatform = "x64";
+//      m_strStagePlatform = "x64";
+//      m_strLibPlatform = "x64/";
+//#else
+//      m_strPlat1     = "64";
+//      m_strPlat2 = "x86_amd64";
+//      //m_strPlat2 = "amd64";
+//      m_strPlatform = "x64";
+//      m_strStagePlatform = "x64";
+//      m_strLibPlatform = "x64/";
+//#endif
+//#else
+//      m_strPlat1     = "32";
+//      m_strPlat2 = " x86";
+//      m_strPlatform = "Win32";
+//      m_strStagePlatform = "x86";
+//      m_strLibPlatform = "x86/";
+//#endif
+//
+//      //pcontext->m_papexcontext->file().lines(m_straSync, "C:\\aura\\database\\text\\introjection\\syncer.txt", get_application());
+//#if defined(LINUX)
+//      prepare1(m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bash",
+//               m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bash");
+//      prepare1(m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bash",
+//               m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bash");
+//      prepare1(m_strDynamicSourceConfiguration + "_libl" + m_strPlat1 + ".bash",
+//               m_strDynamicSourceConfiguration + "_libl" + m_strPlat1 + ".bash");
+//#else
+//      prepare1(m_strPlat1,m_strPlat1);
+//      //prepare1(m_strDynamicSourceConfiguration  + "_cl" + m_strPlat1 + ".bat",
+//      //   m_strDynamicSourceConfiguration  + "_cl" + m_strPlat1 + ".bat");
+//      //prepare1(m_strDynamicSourceConfiguration  + "_libc" + m_strPlat1 + ".bat",
+//      //   m_strDynamicSourceConfiguration  + "_libc" + m_strPlat1 + ".bat");
+//      //prepare1(m_strDynamicSourceConfiguration  + "_libl" + m_strPlat1 + ".bat",
+//      //   m_strDynamicSourceConfiguration  + "_libl" + m_strPlat1 + ".bat");
+//#endif
+//
+//      pcontext->m_papexcontext->dir().mk(pcontext->m_papexcontext->dir().install() / m_strDynamicSourceStage / "front");
+//
+//      //#ifdef WINDOWS
+//      //      string vars1batSrc;
+//      //      string vars2batSrc;
+//      //      string vars1batDst;
+//      //      string vars2batDst;
+//      //      vars1batSrc = pcontext->m_papexcontext->dir().install()/"platform/stage/introjection/vc_vars.bat";
+//      //      vars2batSrc = pcontext->m_papexcontext->dir().install()/"platform/stage/introjection/vc_vars_query_registry.bat";
+//      //      vars1batDst = pcontext->m_papexcontext->dir().install()/ m_strDynamicSourceStage / "front"/"vc_vars.bat";
+//      //      vars2batDst = pcontext->m_papexcontext->dir().install()/m_strDynamicSourceStage /"front"/"vc_vars_query_registry.bat";
+//      //      try
+//      //      {
+//      //         pcontext->m_papexcontext->file().copy(vars1batDst, vars1batSrc, false);
+//      //      }
+//      //      catch(...)
+//      //      {
+//      //      }
+//      //      try
+//      //      {
+//      //         pcontext->m_papexcontext->file().copy(vars2batDst, vars2batSrc, false);
+//      //      }
+//      //      catch(...)
+//      //      {
+//      //      }
+//      //
+//      //#endif
+//
+//      auto psystem = m_psystem->m_paurasystem;
+//
+//#ifdef _UWP
+//
+//      __throw(todo);
+//
+//#elif defined(LINUX)
+//
+//#else
+//
+//      //string strCommandLine = "\"" + m_strEnv + "\" " + m_strPlat2 + " "10.0.16299.0";
+//
+//      string strCommandLine = "\"" + m_strEnv + "\" " + m_strPlat2 + " " + vs_build(this);
+//
+//      ::payload payload = psystem->process().get_output(strCommandLine);
+//
+//      FORMATTED_TRACE("%s", payload.string().c_str());
+//
+//#endif
+//
+//      string str;
+//      string strItem;
+//
+//      strItem = pcontext->m_papexcontext->dir().install() / m_strDynamicSourceStage / m_strStagePlatform;
+//      str = str + strItem + ";";
+//
+//      strItem = pcontext->m_papexcontext->dir().install() / m_strDynamicSourceStage / m_strStagePlatform / "introjection\\library";
+//      str = str + strItem + ";";
+//
+//      //auto psystem = m_psystem;
+//
+//      auto pnode = psystem->node();
+//
+//      str += pnode->get_environment_variable("PATH");
+//
+//      bool bResult = false;
+//#ifdef WINDOWS_DESKTOP
+//      //bResult = SetEnvironmentVariable("PATH",str) != false;
+//#elif defined(_UWP)
+//
+//      __throw(todo);
+//
+//#elif defined(LINUX)
+//#else
+//      bResult = setenv("PATH",str,true);
+//#endif
+//
+//      TRACE("compiler::prepare_compile_and_link_environment SetEnvironmentVariable return bool " << bResult);
+//
+//
+//   }
 
-   void compiler::prepare1(const ::string & lpcszSource, const ::string & lpcszDest)
-   {
 
-      //auto papplication = get_application();
-
-#ifdef WINDOWS
-      //sleep(15000_ms);
-
-      __pointer(application) papplication = get_application();
-
-      string strBuildCmd = m_strEnv;
-
-      if (m_strVs == "2015")
-      {
-
-         strBuildCmd = "\"" + strBuildCmd + "\" " + m_strPlat2;
-
-      }
-      else if (m_strVs >= "2017")
-      {
-
-         strBuildCmd = "\"" + strBuildCmd + "\" " + m_strPlat2 + " " + papplication->get_visual_studio_build();
-
-      }
-
-      ::operating_system::process_pointer process(e_create, this);
-
-      ::file::path pathEnvTxt;
-
-      auto pacmedir = m_psystem->m_pacmedir;
-
-      pathEnvTxt = pacmedir->system() / "env.txt";
-
-      m_psystem->m_pacmefile->put_contents(pacmedir->system() / "env1.bat", pacmedir->system() / "env.bat > \"" + pathEnvTxt + "\"");
-
-      m_psystem->m_pacmefile->put_contents(pacmedir->system() / "env.bat","@call " + strBuildCmd + "\r\n@set");
-
-      auto psystem = m_psystem;
-
-      auto pnode = psystem->node();
-
-      pnode->run_silent(pacmedir->system() / "env1.bat","");
-
-      string strLog;
-
-      strLog = m_psystem->m_pacmefile->as_string(pacmedir->system() / "env.txt");
-
-      string_array stra;
-
-      stra.add_lines(strLog);
-
-      //sleep(10000_ms);
-
-#ifdef WINDOWS_DESKTOP
-
-
-      property_set setEnvironment;
-
-      setEnvironment.parse_environment_variable(stra);
-
-      for (auto & pproperty : setEnvironment)
-      {
-
-         FORMATTED_TRACE("%s : %s", pproperty->m_id.to_string().c_str(), pproperty->string().c_str());
-
-         SetEnvironmentVariableW(wstring(pproperty->m_id), wstring(pproperty->string()));
-
-      }
-
-
-
-#endif
-#endif
-
-      auto pcontext = get_context();
-
-      ::file::path strFolder;
-
-      strFolder = pcontext->m_papexcontext->dir().install();
-      if(!::str::ends(strFolder,"/") && !::str::ends(strFolder,"\\"))
-         strFolder += "/";
-      string strTemplate;
-      string strSource = "platform/time/dynamic_source/";
-      strSource += lpcszSource;
-
-      ::file::path pathN = m_pathProjectDir;
-      pathN -= 3;
-      string strN = pathN;
-      strN.replace("\\", "/");
-      strN += "/";
-
-
-      //#ifdef _DEBUG
-      strTemplate = strFolder / strSource;
-      //#else
-      // strTemplate = strFolder, "app/time/aura/account/app/main/matter/dynamic_source_cl.bat", false);
-      //#endif
-      string str;
-      str = pcontext->m_papexcontext->file().as_string(strTemplate);
-      /*string strVars = getenv("VS100COMNTOOLS");
-      pcontext->m_papexcontext->file().path().eat_end_level(strVars, 2, "/");
-      strVars += "vc/bin/vcvars32.bat";*/
-      str.replace("%VS_VARS%",m_strEnv);
-      str.replace("%VS_VARS_PLAT2%",m_strPlat2);
-
-      string strV(pcontext->m_papexcontext->dir().install());
-      strV.replace("\\","/");
-      if(!::str::ends(strV,"/") && !::str::ends(strV,"\\"))
-         strV += "/";
-      str.replace("%CA2_ROOT%",strV);
-      str.replace("%PROJECT_DIR%", m_pathProjectDir);
-      str.replace("%NETNODE_ROOT%",strN);
-      str.replace("%SDK1%",m_strSdk1);
-      string strDest = m_strDynamicSourceStage / "front" / lpcszDest;
-      ::file::path strCmd;
-      //#ifdef _DEBUG
-      strCmd = strFolder / strDest;
-      //#else
-      // strCmd = strFolder, "app\\time\\aura\\account\\app\\main\\front\\dynamic_source_cl.bat", false);
-      //#endif
-      pcontext->m_papexcontext->dir().mk(strCmd.folder());
-      //pcontext->m_papexcontext->file().put_contents_utf8(strCmd, str);
-      pcontext->m_papexcontext->file().put_contents(strCmd,str);
-      pcontext->m_papexcontext->dir().mk(m_strTime / "dynamic_source");
-
-   }
-
-
-
+//   void compiler::prepare1(const ::string & lpcszSource, const ::string & lpcszDest)
+//   {
+//
+//      //auto papplication = get_application();
+//
+//#ifdef WINDOWS
+//      //sleep(15000_ms);
+//
+//      __pointer(application) papplication = get_application();
+//
+//      string strBuildCmd = m_strEnv;
+//
+//      if (m_strVs == "2015")
+//      {
+//
+//         strBuildCmd = "\"" + strBuildCmd + "\" " + m_strPlat2;
+//
+//      }
+//      else if (m_strVs >= "2017")
+//      {
+//
+//         strBuildCmd = "\"" + strBuildCmd + "\" " + m_strPlat2 + " " + papplication->get_visual_studio_build();
+//
+//      }
+//
+//      ::operating_system::process_pointer process(e_create, this);
+//
+//      ::file::path pathEnvTxt;
+//
+//      auto pacmedir = m_psystem->m_pacmedir;
+//
+//      pathEnvTxt = pacmedir->system() / "env.txt";
+//
+//      m_psystem->m_pacmefile->put_contents(pacmedir->system() / "env1.bat", pacmedir->system() / "env.bat > \"" + pathEnvTxt + "\"");
+//
+//      m_psystem->m_pacmefile->put_contents(pacmedir->system() / "env.bat","@call " + strBuildCmd + "\r\n@set");
+//
+//      auto psystem = m_psystem;
+//
+//      auto pnode = psystem->node();
+//
+//      pnode->run_silent(pacmedir->system() / "env1.bat","");
+//
+//      string strLog;
+//
+//      strLog = m_psystem->m_pacmefile->as_string(pacmedir->system() / "env.txt");
+//
+//      string_array stra;
+//
+//      stra.add_lines(strLog);
+//
+//      //sleep(10000_ms);
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//
+//      property_set setEnvironment;
+//
+//      setEnvironment.parse_environment_variable(stra);
+//
+//      for (auto & pproperty : setEnvironment)
+//      {
+//
+//         FORMATTED_TRACE("%s : %s", pproperty->m_id.to_string().c_str(), pproperty->string().c_str());
+//
+//         SetEnvironmentVariableW(wstring(pproperty->m_id), wstring(pproperty->string()));
+//
+//      }
+//
+//
+//
+//#endif
+//#endif
+//
+//      auto pcontext = get_context();
+//
+//      ::file::path strFolder;
+//
+//      strFolder = pcontext->m_papexcontext->dir().install();
+//      if(!::str::ends(strFolder,"/") && !::str::ends(strFolder,"\\"))
+//         strFolder += "/";
+//      string strTemplate;
+//      string strSource = "platform/time/dynamic_source/";
+//      strSource += lpcszSource;
+//
+//      ::file::path pathN = m_pathProjectDir;
+//      pathN -= 3;
+//      string strN = pathN;
+//      strN.replace("\\", "/");
+//      strN += "/";
+//
+//
+//      //#ifdef _DEBUG
+//      strTemplate = strFolder / strSource;
+//      //#else
+//      // strTemplate = strFolder, "app/time/aura/account/app/main/matter/dynamic_source_cl.bat", false);
+//      //#endif
+//      string str;
+//      str = pcontext->m_papexcontext->file().as_string(strTemplate);
+//      /*string strVars = getenv("VS100COMNTOOLS");
+//      pcontext->m_papexcontext->file().path().eat_end_level(strVars, 2, "/");
+//      strVars += "vc/bin/vcvars32.bat";*/
+//      str.replace("%VS_VARS%",m_strEnv);
+//      str.replace("%VS_VARS_PLAT2%",m_strPlat2);
+//
+//      string strV(pcontext->m_papexcontext->dir().install());
+//      strV.replace("\\","/");
+//      if(!::str::ends(strV,"/") && !::str::ends(strV,"\\"))
+//         strV += "/";
+//      str.replace("%CA2_ROOT%",strV);
+//      str.replace("%PROJECT_DIR%", m_pathProjectDir);
+//      str.replace("%NETNODE_ROOT%",strN);
+//      str.replace("%SDK1%",m_strSdk1);
+//      string strDest = m_strDynamicSourceStage / "front" / lpcszDest;
+//      ::file::path strCmd;
+//      //#ifdef _DEBUG
+//      strCmd = strFolder / strDest;
+//      //#else
+//      // strCmd = strFolder, "app\\time\\aura\\account\\app\\main\\front\\dynamic_source_cl.bat", false);
+//      //#endif
+//      pcontext->m_papexcontext->dir().mk(strCmd.folder());
+//      //pcontext->m_papexcontext->file().put_contents_utf8(strCmd, str);
+//      pcontext->m_papexcontext->file().put_contents(strCmd,str);
+//      pcontext->m_papexcontext->dir().mk(m_strTime / "dynamic_source");
+//
+//   }
 
 
-   ::acme::library * compiler::compile(string strFilePath,bool bNew)
+   ::acme::library * compiler::compile(const ::file::path & pathFile,bool bNew)
    {
 
       if (m_strApp.is_empty())
@@ -590,16 +561,16 @@ namespace introjection
 
       }
 
-
-
       synchronous_lock slCompiler(mutex());
 
-      auto & plibrary = m_lib[strFilePath];
+      auto & plibrary = m_lib[pathFile];
 
       if(!plibrary)
       {
 
          plibrary = __create_new < library > ();
+
+         plibrary->defer_create_mutex();
 
       }
       else if(!bNew)
@@ -634,9 +605,9 @@ namespace introjection
 
       bNew = true;
 
-      plibrary->m_filetimeset = get_filetime_set(strFilePath);
+      plibrary->m_filetimeset = get_filetime_set(pathFile);
 
-      ::file::path strName(strFilePath);
+      ::file::path strName(pathFile);
 
       plibrary->m_pathScript = strName;
 
@@ -721,13 +692,13 @@ namespace introjection
 
          auto pacmedir = psystem->m_pacmedir;
 
-pacmedir->create("/::payload/tmp/ca2/intermediate");
+pacmedir->create("/var/tmp/ca2/intermediate");
 
 #else
 
       string strCmd;
 
-      strCmd = ::file::path(strFilePath).folder() / "build_bot";
+      strCmd = pathFile.folder() / "build_bot";
       string strCmdCompile;
       string strCmdLink;
       strCmdCompile = strCmd + "-win-compile.bat";
@@ -781,8 +752,8 @@ pacmedir->create("/::payload/tmp/ca2/intermediate");
 
 
 
-      strClog = plibrary->m_pathScript.folder() / "build_" + plibrary->m_pathScript.title() + "-compile-log.txt";
-      strLlog = plibrary->m_pathScript.folder() / "build_" + plibrary->m_pathScript.title() + "-link-log.txt";
+      strClog = plibrary->m_pathScript.folder() / "build_" + plibrary->m_pathScript.title() + "-compile-log.log";
+      strLlog = plibrary->m_pathScript.folder() / "build_" + plibrary->m_pathScript.title() + "-link-log.log";
       ::file::path strDynamicSourceScriptFolder = m_strTime / "intermediate" / m_strPlatform / m_strDynamicSourceConfiguration / string("introjection");
 
       //#ifdef _DEBUG
@@ -1055,11 +1026,11 @@ pacmedir->create("/::payload/tmp/ca2/intermediate");
       string strBuildCmd;
 
 #ifdef LINUX
-      strBuildCmd = pcontext->m_papexcontext->dir().install() / "platform/stage/introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_c" + m_strPlat1 + ".bash");
+      strBuildCmd = pcontext->m_papexcontext->dir().install() / "archive/platform-linux/stage/_introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_c" + m_strPlat1 + ".bash");
 #elif defined(__APPLE__)
-      strBuildCmd.format(pcontext->m_papexcontext->dir().install() / "platform/stage/introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_c" + m_strPlat1 + ".bat"));
+      strBuildCmd.format(pcontext->m_papexcontext->dir().install() / "archive/platform-macos/_stage/introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_c" + m_strPlat1 + ".bat"));
 #else
-      strBuildCmd.format(pcontext->m_papexcontext->dir().install() / "platform/stage/introjection" / m_strApp / m_strVsTools / (m_strDynamicSourceConfiguration + "_c" + m_strPlat1 + ".bat"));
+      strBuildCmd.format(pcontext->m_papexcontext->dir().install() / "archive/platform-windows/_stage/introjection" / m_strApp / m_strVsTools / (m_strDynamicSourceConfiguration + "_c" + m_strPlat1 + ".bat"));
 #endif
 
       str = pcontext->m_papexcontext->file().as_string(strBuildCmd);
@@ -1105,6 +1076,19 @@ pacmedir->create("/::payload/tmp/ca2/intermediate");
       strT2.replace("/",".");
       strT2.replace(":","_");
 
+      ::file::path pathOutputFolder;
+      
+      pathOutputFolder = 
+         (strElem 
+            + "time-windows/intermediate/" 
+            + m_strPlatform + "/"
+            + m_strDynamicSourceConfiguration 
+            + "/app-core/app_core_resident_desktop/" 
+            + strTransformName);
+
+      m_pcontext->m_papexcontext->dir().mk(pathOutputFolder);
+      
+
 #ifdef LINUX
 
       string strTargetPath =  pcontext->m_papexcontext->dir().install() /"time" / m_strPlatform / m_strDynamicSourceConfiguration / plibrary->m_pathScript.title();
@@ -1113,7 +1097,7 @@ pacmedir->create("/::payload/tmp/ca2/intermediate");
 
 #else
 
-      string strTargetPath = pcontext->m_papexcontext->dir().install() / "time" / m_strPlatform / m_strDynamicSourceConfiguration / strT2 ;
+      string strTargetPath = pcontext->m_papexcontext->dir().install() / "time-windows" / m_strPlatform / m_strDynamicSourceConfiguration / strT2 ;
       ::str::ends_eat_ci(strTargetPath, ".cpp");
       ::str::ends_eat_ci(strTargetPath,".dll");
 
@@ -1218,6 +1202,7 @@ auto tickStart = ::duration::now();
 
 
 
+
 #ifdef LINUX
       if(!bTimeout)
 #else
@@ -1259,9 +1244,9 @@ auto tickStart = ::duration::now();
 #ifndef MACOS
 
 #ifdef LINUX
-         strBuildCmd.format(pcontext->m_papexcontext->dir().install() / "platform\\stage\\introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_l" + m_strPlat1 + ".bash"));
+         strBuildCmd.format(pcontext->m_papexcontext->dir().install() / "archive/platform-linux/_stage/introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_l" + m_strPlat1 + ".bash"));
 #else
-         strBuildCmd.format(pcontext->m_papexcontext->dir().install() / "platform\\stage\\introjection" / m_strApp / m_strVsTools / (m_strDynamicSourceConfiguration + "_l" + m_strPlat1 + ".bat"));
+         strBuildCmd.format(pcontext->m_papexcontext->dir().install() / "archive/platform-windows/_stage/introjection" / m_strApp / m_strVsTools / (m_strDynamicSourceConfiguration + "_l" + m_strPlat1 + ".bat"));
 #endif
 
          str = pcontext->m_papexcontext->file().as_string(strBuildCmd);
@@ -1319,7 +1304,7 @@ auto tickStart = ::duration::now();
 
 #else
 
-         process->create_child_process(str,true,nullptr,::e_priority_highest);
+         process->create_child_process(str,true, m_pathProjectDir,::e_priority_highest);
 #endif
 #else
 

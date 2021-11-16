@@ -328,7 +328,7 @@ namespace acme
 
       m_pca2library->initialize_library(this, 0, m_strRoot, m_strName, m_strFolder);
 
-      m_pca2library->factory_exchange(::factory::get_factory_map());
+      m_pca2library->do_factory_exchange();
 
       //m_pca2library->initialize(this);
 
@@ -957,9 +957,35 @@ namespace acme
 
    //}
 
-
-   ::e_status library::factory_exchange(::factory_map * pfactorymap)
+   
+   ::e_status library::do_factory_exchange(const ::string& strName, ::factory_map* pfactorymap)
    {
+
+      if (::is_null(pfactorymap))
+      {
+
+         pfactorymap = ::factory::get_factory_map();
+
+      }
+
+      auto estatus = factory_exchange(strName, pfactorymap);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
+   ::e_status library::factory_exchange(const ::string& strNameParam, ::factory_map * pfactorymap)
+   {
+
+      string strName(strNameParam);
 
       if (pfactorymap == nullptr)
       {
@@ -972,16 +998,32 @@ namespace acme
 
       string strFactoryExchange;
 
-      string strName = m_strName;
+      if (strName.is_empty())
+      {
+
+         strName = m_strName;
+
+         if (strName.is_empty())
+         {
+
+            strName = ::file::path(m_strPath).name();
+
+         }
+
+      }
 
       if (strName.is_empty())
       {
 
-         strName = ::file::path(m_strPath).name();
+         strFactoryExchange = "factory_exchange";
 
       }
+      else
+      {
 
-      strFactoryExchange = strName + "_factory_exchange";
+         strFactoryExchange = strName + "_factory_exchange";
+
+      }
 
       auto pfn_create_factory = get < PFN_factory_exchange >(strFactoryExchange);
 
@@ -997,6 +1039,7 @@ namespace acme
       return ::success;
 
    }
+
 
 
    //bool library::create_factory()

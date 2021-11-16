@@ -267,7 +267,7 @@ namespace imaging_freeimage
 
       auto p1 = memory.get_data();
 
-      int s1 = memory.get_size();
+      auto s1 = memory.get_size();
 
       if(!estatus)
       {
@@ -308,7 +308,7 @@ namespace imaging_freeimage
 
       auto pszData = memory.get_data();
 
-      int size = memory.get_size();
+      auto size = memory.get_size();
 
       char  pszPngSignature []= {(char)137, 80, 78 ,71, 13 ,10, 26 ,10};
 

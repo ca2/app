@@ -54,6 +54,14 @@ namespace graphics
 
       virtual bool update_buffer(const ::size_i32 & size, int iStrideParam = -1);
 
+      virtual bool ipc_copy(const pixmap* ppixmap);
+
+      virtual ::e_status set_bitmap_source(const string& strBitmapSource);
+
+      virtual ::e_status clear_bitmap_source();
+
+      virtual string get_bitmap_source() const;
+
 
       virtual ::image_pointer & get_buffer_image();
       virtual synchronization_object * get_buffer_sync();

@@ -79,7 +79,11 @@ namespace aura
       void EndWaitCursor();
       void RestoreWaitCursor();
 
+#ifdef WINDOWS_DESKTOP
 
+      virtual void* HICON_from_ico_file(const ::block& block);
+
+#endif
 
    };
 

@@ -5,26 +5,49 @@
 class CLASS_DECL_APEX api :
    virtual public ::object
 {
+protected:
+
+   
+   using ::object::initialize;
+
+
 public:
+
+
+   bool              m_bAuthenticated;
+   string            m_strConfig;
+   string            m_strProfile;
+   string            m_strToken;
+   ::file::path      m_pathProfile;
+   ::payload         m_payloadProfile;
 
 
    api();
    ~api() override;
 
    
-   ::e_status initialize(::object* pobject) override;
+   virtual ::e_status initialize_api(::object* pobject, const ::file::path & pathProfile);
 
 
-   virtual ::e_status api_login(const ::string & strConfig);
+   virtual ::e_status load_profile();
+   virtual ::e_status save_profile();
 
 
-   virtual ::e_status api_get(string strGet, ::payload& payload, property_set & set);
+   virtual ::e_status api_login(const ::string & strConfig, const ::string & strProfile);
+
+
+   virtual ::e_status api_get(::string & strNetworkPayload, const ::string & strUrl, property_set& set);
+
+   virtual ::e_status api_get(::payload & payload, const ::string & strUrl, property_set & set);
 
 
    virtual ::e_status api_download(string strGet, const ::file::path& path, property_set& set);
 
 
    virtual string api_token(bool bForce);
+
+
+   virtual void on_login_authentication_failed();
 
 
 };

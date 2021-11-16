@@ -161,6 +161,38 @@ namespace graphics
    }
 
 
+   bool graphics::ipc_copy(const pixmap* ppixmap)
+   {
+
+      return false;
+
+   }
+
+
+   ::e_status graphics::set_bitmap_source(const string& strBitmapSource)
+   {
+
+      return error_interface_only;
+
+   }
+
+
+   ::e_status graphics::clear_bitmap_source()
+   {
+
+      return error_interface_only;
+
+   }
+
+
+   string graphics::get_bitmap_source() const
+   {
+
+      return "";
+
+   }
+
+
    ::image_pointer & graphics::get_buffer_image()
    {
 

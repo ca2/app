@@ -11,22 +11,26 @@ namespace graphics
    public:
 
 
-      __pointer(file::memory_map)   m_pmemorymap;
+      __pointer(file::memory_map)         m_pmemorymap;
       string                              m_strBitmapSource;
+      __pointer(::mutex)                  m_pmutexBitmapSource;
 
 
       bitmap_source_buffer();
-      virtual ~bitmap_source_buffer();
+      ~bitmap_source_buffer() override;
 
 
       inline bool is_ipc_copy_enabled() const { return m_pmemorymap && m_pmemorymap->is_mapped(); }
 
-
       virtual ::e_status initialize_graphics_graphics(::user::interaction_impl* pimpl) override;
 
-      virtual ::e_status enable_ipc_copy(const ::string & strBitmapSource);
+      bool ipc_copy(const pixmap * ppixmap) override;
 
-      virtual bool ipc_copy(const pixmap * ppixmap);
+      virtual ::e_status set_bitmap_source(const string& strBitmapSource);
+
+      virtual ::e_status clear_bitmap_source();
+
+      virtual string get_bitmap_source() const;
 
       virtual bool buffer_lock_round_swap_key_buffers() override;
 

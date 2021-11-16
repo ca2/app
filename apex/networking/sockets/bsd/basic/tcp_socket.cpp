@@ -111,7 +111,9 @@ static int find_session_key(::sockets::tcp_socket *c, unsigned char key_name[16]
 }
 
 
-static int ssl_tlsext_ticket_key_cb(SSL *s, unsigned char key_name[16], unsigned char *iv, EVP_CIPHER_CTX *ctx, EVP_MAC_CTX *macctx, int enc)
+static int ssl_tlsext_ticket_key_evp_cb(SSL* s, unsigned char key_name[16],
+   unsigned char iv[EVP_MAX_IV_LENGTH],
+   EVP_CIPHER_CTX* ctx, EVP_MAC_CTX* hctx, int enc)
 {
    ::sockets::tcp_socket *c = (::sockets::tcp_socket *) SSL_get_app_data2(s);
    ssl_ticket_key key;
@@ -128,7 +130,11 @@ static int ssl_tlsext_ticket_key_cb(SSL *s, unsigned char key_name[16], unsigned
          EVP_EncryptInit_ex(ctx, EVP_aes_128_cbc(), nullptr, key.aes_key, iv);
          //auto mac = EVP_MAC_fetch(0, "sha256", 0);
          //auto macctx = EVP_MAC_CTX_new(mac)
-         EVP_MAC_init(macctx, (const unsigned char*)key.hmac_key, 16, 0);
+         OSSL_PARAM params [] = {
+            OSSL_PARAM_construct_utf8_string("digest",
+              (char *) EVP_MD_get0_name(EVP_sha256()), 0),
+OSSL_PARAM_construct_end() };
+         EVP_MAC_init(hctx, (const unsigned char*)key.hmac_key, 16, params);
          //HMAC_Init_ex(hctx, key.hmac_key, 16, EVP_sha256(), nullptr);
          return 1;
       }
@@ -140,7 +146,7 @@ static int ssl_tlsext_ticket_key_cb(SSL *s, unsigned char key_name[16], unsigned
       if (find_session_key(c, key_name, &key, &is_current_key))
       {
          //EVP_MAC_init(hctx, key.hmac_key, 16, EVP_sha256(), nullptr);
-         EVP_MAC_init(macctx, (const unsigned char*)key.hmac_key, 16, 0);
+         EVP_MAC_init(hctx, (const unsigned char*)key.hmac_key, 16, 0);
          EVP_DecryptInit_ex(ctx, EVP_aes_128_cbc(), nullptr, key.aes_key, iv);
          if (!is_current_key)
          {
@@ -2058,7 +2064,7 @@ namespace sockets
          }
       }
 
-      SSL_CTX_set_tlsext_ticket_key_cb(m_psslcontext->m_pclientcontext->m_psslcontext, ssl_tlsext_ticket_key_cb);
+      SSL_CTX_set_tlsext_ticket_key_evp_cb(m_psslcontext->m_pclientcontext->m_psslcontext, &ssl_tlsext_ticket_key_evp_cb);
 
    }
 

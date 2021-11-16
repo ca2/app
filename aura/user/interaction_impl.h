@@ -87,6 +87,7 @@ namespace user
       __pointer_array(::matter)                 m_matteraProdevian;
       bool                                      m_bTransparentMouseEvents;
       bool                                      m_bOfflineRender;
+      string                                    m_strBitmapSource;
 //      bool                                      m_bFocus;
       __pointer(::windowing::windowing)         m_pwindowing;
       bool                                      m_bCursorRedraw;
@@ -178,6 +179,11 @@ namespace user
       virtual ::user::interaction_impl * get_user_interaction_impl() override;
 
       virtual bool post(::message::message* pusermessage) override;
+
+
+      virtual ::e_status set_bitmap_source(const string& strBitmapSource) override;
+      virtual ::e_status clear_bitmap_source() override;
+
 
       virtual ::e_status update_graphics_resources();
 

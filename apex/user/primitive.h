@@ -521,11 +521,11 @@ namespace user
       void keep_alive(::object * pliveobject = nullptr) override;
 
 
-       bool has_pending_graphical_update() override;
-       void on_after_graphical_update() override;
+      bool has_pending_graphical_update() override;
+      void on_after_graphical_update() override;
 
-      void set_bitmap_source(string strBitmapSource) override;
-      void clear_bitmap_source() override;
+      ::e_status set_bitmap_source(const string & strBitmapSource) override;
+      ::e_status clear_bitmap_source() override;
 
 
       virtual bool WfiOnStartDock();

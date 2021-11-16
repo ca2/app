@@ -104,6 +104,20 @@ memory_base & memory_base::prefix_der_sequence()
 }
 
 
+memory memory_base::detach_as_primitive_memory()
+{
+
+   if (m_memory.m_ememory == e_memory_primitive && m_memory.m_pprimitivememory)
+   {
+
+      return ::move(*m_memory.m_pprimitivememory);
+
+   }
+
+   return { get_data(), get_size() };
+
+}
+
 
 bool memory_base::set_size(memsize dwNewLength)
 {

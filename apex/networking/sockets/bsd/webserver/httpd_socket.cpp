@@ -325,14 +325,46 @@ namespace sockets
 
       //int nid = OBJ_sn2nid(ECDHE_CURVE);
 
-      //if (strCipherList.find("ECDH") >= 0)
-      //{
+      if (strCipherList.find("ECDH") >= 0)
+      {
 
-      //   EC_KEY *ecdh = EC_KEY_new_by_curve_name(NID_secp384r1);
+         //EVP_PKEY_CTX_new_from_name(nullptr, )
 
-      //   SSL_CTX_set_tmp_ecdh(m_psslcontext->m_pclientcontext->m_psslcontext, ecdh);
+         //EC_KEY *ecdh = EC_KEY_new_by_curve_name(NID_secp384r1);
 
-      //}
+         //SSL_CTX_set_tmp_ecdh(m_psslcontext->m_pclientcontext->m_psslcontext, ecdh);
+
+         i32_array iaCurves;
+         //int* curves_new;
+         char* cs = NULL;
+         //char* p, * q;
+         int rv = -1;
+         //int nid;
+
+
+#define TLS_ECDHE_CURVES	"X25519,P-256,P-384"
+         //const char* curves = NID_secp384r1;
+
+         //free(config->ecdhecurves);
+         //config->ecdhecurves = NULL;
+         //config->ecdhecurves_len = 0;
+
+         //if (curves == NULL || strcasecmp(curves, "default") == 0)
+         //   curves = TLS_ECDHE_CURVES;
+
+         iaCurves.add(NID_X25519);
+         iaCurves.add(NID_secp256k1);
+         iaCurves.add(NID_secp384r1);
+         // iaCurves.add(NID_secp521r1);
+
+         if (!SSL_CTX_set1_groups(m_psslcontext->m_pclientcontext->m_psslcontext, iaCurves.get_data(), (long) iaCurves.get_size()))
+         {
+         
+            WARNING("failed to set ecdhe curves");
+
+         }
+
+      }
 
       //if (strCipherList.find("DH") >= 0)
       //{
@@ -347,7 +379,12 @@ namespace sockets
 
       }
 
-      SSL_CTX_set_cipher_list(m_psslcontext->m_pclientcontext->m_psslcontext, strCipherList);
+      if (!SSL_CTX_set_cipher_list(m_psslcontext->m_pclientcontext->m_psslcontext, strCipherList))
+      {
+
+         WARNING("failed to set cipher_list");
+
+      }
 
    }
 

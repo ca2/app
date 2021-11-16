@@ -38,7 +38,7 @@
       virtual ::payload connection_settings_get_auto_detect();
       virtual ::payload connection_settings_get_auto_config_url();
 
-      virtual ::e_status     link_open(string strUrl);
+      virtual ::e_status link_open(const string & strUrl, const string & strProfile);
 
       virtual bool local_machine_set_run(const ::string & pszKey, const ::string & pszCommand, bool bSet);
       virtual bool local_machine_set_run_once(const ::string & pszKey, const ::string & pszCommand, bool bSet);

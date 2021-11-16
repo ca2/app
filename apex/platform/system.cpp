@@ -4213,7 +4213,7 @@ pacmedir->create("/ca2core");
    ::e_status system::browser(string strUrl, string strBrowser, string strProfile, string strTarget)
    {
 
-       m_pcontext->m_papexcontext->os_context()->link_open(strUrl);
+       m_pcontext->m_papexcontext->os_context()->link_open(strUrl, strProfile);
 
        return ::success;
 

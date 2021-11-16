@@ -362,7 +362,13 @@ namespace graphics
 
       synchronous_lock slBuffer(get_screen_sync());
 
-      return update_window(get_screen_image());
+      auto bOk = update_window(get_screen_image());
+
+      ipc_copy(get_screen_image());
+
+      return bOk;
+
+
 
    }
 

@@ -1348,4 +1348,3 @@ __pointer(xxx ## _properties) m_pobjectproperties
 
 
 
-

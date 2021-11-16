@@ -3484,29 +3484,20 @@ namespace user
    }
 
 
-   void element::set_bitmap_source(string strBitmapSource)
+   ::e_status element::set_bitmap_source(const string & strBitmapSource)
    {
 
-   }
-
-   void element::clear_bitmap_source()
-   {
+      return error_interface_only;
 
    }
 
 
-   //bool element::WfiOnStartDock()
-   //{
+   ::e_status element::clear_bitmap_source()
+   {
 
-   //   return true;
+      return error_interface_only;
 
-   //}
-
-
-   //void element::WfiOnDock(edisplay edisplay)
-   //{
-
-   //}
+   }
 
 
    void element::design_down()
@@ -3519,48 +3510,6 @@ namespace user
    {
 
    }
-
-
-   //void element::WfiOnRestore()
-   //{
-
-   //}
-
-
-   //void element::WfiOnMinimize(bool bNoActivate)
-   //{
-
-   //}
-
-
-   //void element::WfiOnMaximize()
-   //{
-
-   //}
-
-
-   //void element::WfiOnFullScreen()
-   //{
-
-   //}
-
-
-   //void element::WfiOnExitFullScreen()
-   //{
-
-   //}
-
-
-   //void element::WfiOnClose()
-   //{
-
-   //}
-
-
-   //void element::WfiOnNotifyIcon()
-   //{
-
-   //}
 
 
    void element::prodevian_redraw(bool bUpdateBuffer)

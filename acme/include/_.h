@@ -3022,9 +3022,13 @@ class duration;
 
 class folder;
 
+class memory_file;
+
 using file_pointer = __pointer(::file::file);
 
 using file_transport = __transport(::file::file);
+
+using memory_file_transport = __transport(::memory_file);
 
 using folder_pointer = __pointer(::folder);
 

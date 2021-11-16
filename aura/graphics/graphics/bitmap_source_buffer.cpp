@@ -17,8 +17,10 @@ namespace graphics
    bitmap_source_buffer::~bitmap_source_buffer()
    {
 
+      clear_bitmap_source();
 
    }
+
 
    ::e_status bitmap_source_buffer::initialize_graphics_graphics(::user::interaction_impl* pimpl)
    {
@@ -44,10 +46,12 @@ namespace graphics
 
       }
 
-      if (m_strBitmapSource.is_empty())
+      estatus = set_bitmap_source(pimpl->m_strBitmapSource);
+      
+      if (!estatus)
       {
 
-         m_strBitmapSource = pimpl->payload("bitmap-source");
+         return estatus;
 
       }
 
@@ -55,43 +59,84 @@ namespace graphics
 
    }
 
-   ::e_status bitmap_source_buffer::enable_ipc_copy(const ::string &strBitmapSource)
+
+   ::e_status bitmap_source_buffer::set_bitmap_source(const ::string &strBitmapSource)
    {
 
-      //if (m_pwindow == nullptr || m_pimpl->m_puserinteraction->payload("bitmap-source").is_empty())
-      //{
-
-        // return;
-
-      //}
-
-      if(m_pwindow == nullptr)
+      if (m_strBitmapSource == strBitmapSource)
       {
 
-         return false;
+         return true;
 
       }
 
-//      if (m_pmemorymap->is_mapped())
-//      {
-//
-//         return;
-//
-//      }
-
-      //m_strBitmapSource = m_pimpl->m_puserinteraction->payload("bitmap-source");
+      clear_bitmap_source();
 
       m_strBitmapSource = strBitmapSource;
 
-      char szName[] = "Local\\bitmap-source-%s";
+      char szName[] = "Local\\bitmap-source:%s";
 
-      string strName;
+      string strMutexName;
 
-      strName.format(szName, m_strBitmapSource.c_str());
+      strMutexName.format(szName, strBitmapSource.c_str());
 
-      m_pmemorymap->open_name(strName, false, true, true, 128_mb);
+      m_pmutexBitmapSource = __new(::mutex(this, false, strMutexName));
+
+      synchronous_lock synchronouslock(m_pmutexBitmapSource);
+
+      ::file::path pathFolder;
+
+      pathFolder = m_pcontext->m_papexcontext->dir().appdata();
+
+      ::file::path path;
+
+      path = pathFolder / "bitmap-source" / strBitmapSource;
+
+      auto estatus = m_pmemorymap->open_path(path, false, true, true, 128_mb);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
 
       return ::success;
+
+   }
+
+
+   ::e_status bitmap_source_buffer::clear_bitmap_source()
+   {
+
+      m_strBitmapSource.Empty();
+
+      if (m_pmemorymap)
+      {
+
+         synchronous_lock synchronouslock(m_pmutexBitmapSource);
+
+         auto estatus = m_pmemorymap.release();
+
+      }
+
+      m_pmutexBitmapSource.release();
+      
+      return ::success;
+
+   }
+
+   string bitmap_source_buffer::get_bitmap_source() const
+   {
+
+      if (!is_ipc_copy_enabled())
+      {
+
+         return "";
+
+      }
+
+      return m_strBitmapSource;
 
    }
 
@@ -115,7 +160,7 @@ namespace graphics
 
       }
 
-      synchronous_lock synchronouslock(m_pmemorymap->mutex());
+      synchronous_lock synchronouslock(m_pmutexBitmapSource);
 
       try
       {
@@ -128,7 +173,9 @@ namespace graphics
          *p++ = ppixmap->height();
          *p++ = iScan;
 
-         ::copy_colorref((::color32_t*)p, ppixmap->size(), iScan, ppixmap);
+         //::copy_colorref((::color32_t*)p, ppixmap->size(), iScan, ppixmap);
+
+         memcpy(p, ppixmap->m_pcolorrefRaw, ppixmap->height() * iScan);
 
       }
       catch (...)

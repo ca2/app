@@ -29,7 +29,9 @@ void networking_application_socket::on_send_response()
 
    setPost = request().form().post();
 
-   string strHtml = papplication->on_html_response(strUrl, setPost);
+   string strHtml;
+      
+   auto estatus = papplication->on_html_response(strHtml, strUrl, setPost);
 
    response().file()->write(strHtml);
 

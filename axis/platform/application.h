@@ -56,7 +56,7 @@ namespace axis
       virtual ::e_status create_networking_application();
 
 
-      string on_html_response(const ::string& strUrl, const ::property_set& setPost) override;
+      ::e_status on_html_response(::string & strHtml, const ::string& strUrl, const ::property_set& setPost) override;
 
 
       virtual ::e_status verb() override;

@@ -3521,16 +3521,38 @@ namespace user
    }
 
 
-   void primitive::set_bitmap_source(string strBitmapSource)
+   ::e_status primitive::set_bitmap_source(const string & strBitmapSource)
    {
+
+      auto estatus = ::user::element::set_bitmap_source(strBitmapSource);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 
-   void primitive::clear_bitmap_source()
+   
+   ::e_status primitive::clear_bitmap_source()
    {
 
-   }
+      auto estatus = ::user::element::clear_bitmap_source();
 
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
 
    bool primitive::WfiOnStartDock()
    {

@@ -7,6 +7,7 @@ api::api()
 {
 
    m_bAuthenticated = false;
+   m_bWaitingResponseFromUser = false;
 
 }
 

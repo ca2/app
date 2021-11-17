@@ -54,17 +54,17 @@ namespace app_message_box
    void application::on_request(::create * pcreate)
    {
 
-      __compose_new(m_pwindow);
+      __compose_new(m_pmainwindow);
 
-      m_pwindow->display(e_display_normal);
+      m_pmainwindow->display(e_display_normal);
 
-      m_pwindow->create_main_window();
+      m_pmainwindow->create_main_window();
 
-      m_pwindow->set_need_layout();
+      m_pmainwindow->set_need_layout();
 
-      m_pwindow->set_need_redraw();
+      m_pmainwindow->set_need_redraw();
 
-      m_pwindow->post_redraw();
+      m_pmainwindow->post_redraw();
 
    }
 

@@ -6,7 +6,7 @@ namespace app_app
 {
 
 
-   class CLASS_DECL_APP_APP_APP application :
+   class CLASS_DECL_APP_APP application :
       virtual public ::aura::application
    {
    public:
@@ -16,7 +16,8 @@ namespace app_app
 
 
       application();
-      virtual ~application();
+      ~application() override;
+
 
       virtual ::e_status init_instance() override;
       virtual void term_application() override;

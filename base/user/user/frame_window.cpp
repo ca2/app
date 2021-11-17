@@ -28,8 +28,8 @@ namespace user
       m_flagNonClient.erase(non_client_focus_rect);
 
       m_pviewMain = nullptr;
-      m_bAutoWindowFrame = true;
-      m_bWindowFrame = true;
+      //m_bAutoWindowFrame = true;
+      //m_bWindowFrame = true;
       m_nWindow = -1;                 // unknown interaction_impl ID
       m_bAutoMenuEnable = true;       // auto enable on by default
       //m_lpfnCloseProc = nullptr;

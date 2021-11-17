@@ -44,6 +44,13 @@ namespace experience
 
       __pointer(::user::message) pusermessage(pmessage);
 
+      if (!pusermessage)
+      {
+
+         return;
+
+      }
+
       if (m_pframewindow == nullptr || pusermessage->userinteraction() != m_pframewindow)
       {
 
@@ -53,10 +60,13 @@ namespace experience
 
       if(pusermessage->m_id == e_message_right_button_down)
       {
+
          m_enumState = StateMBDown;
+
       }
       else if(pusermessage->m_id == e_message_right_button_up)
       {
+
          if(m_enumState == StateMBDown)
          {
             //               auto pframewindow = m_pframewindow;

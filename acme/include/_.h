@@ -1094,9 +1094,10 @@ CLASS_DECL_ACME ::enum_priority get_os_thread_scheduling_priority(i32 iCa2Priori
 CLASS_DECL_ACME ::enum_priority get_os_class_scheduling_priority(i32 iCa2Priority);
 
 
-
 //#include "acme/primitive/datetime/mktime.h"
 #include "acme/primitive/api/api.h"
+
+
 
 
 //#include "acme/multimedia/_c.h"

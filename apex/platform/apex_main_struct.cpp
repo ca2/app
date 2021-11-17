@@ -1,4 +1,4 @@
-// apex_main_struct constructor by camilo on 2021-11-16 14:53 BRT <3ThomasBorregaardSørensen!!
+// apex_main_struct constructor by camilo on 2021-11-16 14:53 BRT <3ThomasBorregaardSï¿½rensen!!
 #include "framework.h"
 
 
@@ -44,5 +44,38 @@ apex_main_struct::apex_main_struct()
 
 }
 
+
+apex_main_struct& apex_main_struct::operator = (const apex_main_struct& mainstruct)
+{
+
+   if (this != &mainstruct)
+   {
+
+      m_bLocalization = mainstruct.m_bLocalization;
+      m_bConsole = mainstruct.m_bConsole;
+      m_bDraw2d = mainstruct.m_bDraw2d;
+      m_bWriteText = mainstruct.m_bWriteText;
+      m_bUser = mainstruct.m_bUser;
+      m_bUserEx = mainstruct.m_bUserEx;
+      m_bImaging = mainstruct.m_bImaging;
+      m_bAudio = mainstruct.m_bAudio;
+
+#ifdef WINDOWS_DESKTOP
+      m_bGdiplus = mainstruct.m_bGdiplus;
+#elif defined(LINUX)
+      m_bGtkApp = mainstruct.m_bGtkApp;
+#endif
+      m_bShowApplicationInformation = mainstruct.m_bShowApplicationInformation;
+      m_pintstringLanguageResourceMap = mainstruct.m_pintstringLanguageResourceMap;
+      m_iMatterFromHttpCache = mainstruct.m_iMatterFromHttpCache;
+
+      m_pszMain = mainstruct.m_pszMain;
+      m_pfnnewmatterApplication = mainstruct.m_pfnnewmatterApplication;
+      m_pfnnewlibrary = mainstruct.m_pfnnewlibrary;
+
+   }
+
+   return *this;
+}
 
 

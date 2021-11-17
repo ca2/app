@@ -1,22 +1,22 @@
 #pragma once
 
 
-
 namespace app_message_box
 {
 
 
-   class CLASS_DECL_APP_MESSAGE_BOX_APP application :
+   class CLASS_DECL_APP_MESSAGE_BOX application :
       virtual public ::aura::application
    {
    public:
 
 
-      __composite(window)                             m_pwindow;
+      __composite(::app_message_box::main_window)        m_pmainwindow;
 
 
       application();
-      virtual ~application();
+      ~application() override;
+
 
       virtual ::e_status init_instance() override;
       virtual void term_application() override;

@@ -2,6 +2,9 @@
 #pragma once
 
 
+class api_client;
+
+
 class CLASS_DECL_APEX api :
    virtual public ::object
 {
@@ -14,12 +17,14 @@ protected:
 public:
 
 
-   bool              m_bAuthenticated;
-   string            m_strConfig;
-   string            m_strProfile;
-   string            m_strToken;
-   ::file::path      m_pathProfile;
-   ::payload         m_payloadProfile;
+   bool                       m_bAuthenticated;
+   string                     m_strConfig;
+   string                     m_strProfile;
+   string                     m_strToken;
+   ::file::path               m_pathProfile;
+   ::payload                  m_payloadProfile;
+   bool                       m_bWaitingResponseFromUser;
+   __pointer(::api_client)    m_papiclient;
 
 
    api();
@@ -51,6 +56,10 @@ public:
 
 
 };
+
+
+#include "api_client.h"
+
 
 
 

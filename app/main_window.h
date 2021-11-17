@@ -5,23 +5,20 @@ namespace app_app
 {
 
 
-   class CLASS_DECL_APP_APP_APP main_window :
+   class CLASS_DECL_APP_APP main_window :
       virtual public ::user::main_window
    {
    public:
 
 
-      double      m_dBreathPeriod;
-      ::duration      m_durationStart;
-      double      m_dPhaseShift;
-      int         m_iCloseButtonDraw;
+      double            m_dBreathPeriod;
+      ::duration        m_durationStart;
+      double            m_dPhaseShift;
+      int               m_iCloseButtonDraw;
 
 
       main_window();
       ~main_window() override;
-
-
-      //bool is_frame_window() override;
 
 
       virtual void on_create_user_interaction() override;

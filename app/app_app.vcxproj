@@ -984,7 +984,7 @@
     <ClInclude Include="_.h" />
     <ClInclude Include="main_window.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="_user.h" />
+    <ClInclude Include="_app_app.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\..\archive\platform-windows\version.rc" />

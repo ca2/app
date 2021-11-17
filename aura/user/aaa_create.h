@@ -12,8 +12,8 @@ namespace user
 
 
 
-      bool                             m_bAutoWindowFrame;
-      bool                             m_bWindowFrame;
+      //bool                           m_bAutoWindowFrame;
+      boolean                          m_bWindowFrame;
       ::type                           m_typeNewView;
       //::user::document *             m_pdocumentCurrent;
       ::object *                       m_pdocumentCurrent;

@@ -7,7 +7,7 @@ simple_main_frame::simple_main_frame()
 
    m_ewindowflag              |= e_window_flag_auto_store_window_rect;
    m_ewindowflag              |= e_window_flag_main_frame;
-   m_bAutoWindowFrame         = false;
+   ///m_bAutoWindowFrame         = false;
    m_bPlacing                 = false;
    m_bExplicitTranslucency    = false;
 

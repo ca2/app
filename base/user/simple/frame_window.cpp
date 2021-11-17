@@ -72,9 +72,11 @@ simple_frame_window::simple_frame_window()
 
    m_bFullScreenOnMaximize = false;
 
+   //m_bWindowFrame = true;
+
 //#if defined(APPLE_IOS) || defined(ANDROID)
 
-   m_bWindowFrame = false;
+//   m_bWindowFrame = false;
 
 //#else
 
@@ -741,26 +743,29 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
       if (pusersystem)
       {
 
-         m_bAutoWindowFrame = pusersystem->m_bAutoWindowFrame;
-
-         m_bWindowFrame = pusersystem->m_psystem->m_papexsystem->m_bExperienceMainFrame;
-
-         if (m_psystem->m_papexsystem->m_bPreferNoFrameWindow)
+         if (pusersystem->m_bWindowFrame.is_set())
          {
 
-            m_bWindowFrame = false;
+            m_bWindowFrame = pusersystem->m_bWindowFrame;
 
          }
+
+         //if (m_psystem->m_papexsystem->m_bPreferNoFrameWindow)
+         //{
+
+         //   m_bWindowFrame = false;
+
+         //}
 
       }
 
    }
-   else
-   {
+   //else
+   //{
 
-      m_bWindowFrame = m_psystem->m_papexsystem->m_bExperienceMainFrame;
+   //   m_bWindowFrame = m_psystem->m_papexsystem->m_bExperienceMainFrame;
 
-   }
+   //}
 
    __pointer(::user::place_holder) pplaceholder = get_parent();
 
@@ -780,13 +785,26 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
    auto papplication = get_application();
 
-   if (m_bAutoWindowFrame)
+   if (m_bWindowFrame.is_none())
    {
 
-      if(papplication->m_bExperienceMainFrame)
+      auto& bApplicationExperienceMainFrame = papplication->m_bExperienceMainFrame;
+
+      if(bApplicationExperienceMainFrame.is_set())
       {
 
-         m_bWindowFrame = false;
+         if (get_parent() == nullptr)
+         {
+
+            m_bWindowFrame = bApplicationExperienceMainFrame;
+
+         }
+         else
+         {
+
+            m_bWindowFrame = false;
+
+         }
 
       }
       else
@@ -806,12 +824,12 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
    }
 
-   if (m_psystem->m_papexsystem->m_bPreferNoFrameWindow)
-   {
+   //if (m_psystem->m_papexsystem->m_bPreferNoFrameWindow)
+   //{
 
-      m_bWindowFrame = false;
+   //   m_bWindowFrame = false;
 
-   }
+   //}
 
    if (m_bWindowFrame || m_bFramePayloadFlags)
    {
@@ -2204,18 +2222,18 @@ void simple_frame_window::on_frame_position()
 void simple_frame_window::InitialFramePosition(bool bForceRestore)
 {
 
-   if (m_psystem->m_papexsystem->m_bPreferNoFrameWindow)
-   {
+   //if (m_psystem->m_papexsystem->m_bPreferNoFrameWindow)
+   //{
 
-      set_need_layout();
+   //   set_need_layout();
 
-      set_need_redraw();
+   //   set_need_redraw();
 
-      post_redraw();
+   //   post_redraw();
 
-      return;
+   //   return;
 
-   }
+   //}
 
    auto papplication = get_application();
 

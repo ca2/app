@@ -50,7 +50,7 @@ namespace linux
       stra.add("Office");
       stra.add("Science");
       stra.add("Settings");
-      stra.add("::apex::get_system()");
+      stra.add("System");
       stra.add("Utility");
 
       return stra;
@@ -218,7 +218,7 @@ pacmedir->home();
 
       straLine.add("[Desktop Entry]");
       straLine.add("Version=1.0");
-      straLine.add("Type=papplication");
+      straLine.add("Type=application");
       straLine.add("Name=");
       straLine.add("GenericName=");
       straLine.add("Comment=");
@@ -271,17 +271,9 @@ pacmedir->home();
 
       strName.replace(".", "_");
 
-      //pathLaunch =          auto psystem = m_psystem;
+      auto pacmedir = psystem->m_pacmedir;
 
-         auto pacmedir = psystem->m_pacmedir;
-
-pacmedir->home() / ".config/ca2/bin" / (strName + ".sh");
-
-      pathUserBin =          auto psystem = m_psystem;
-
-         auto pacmedir = psystem->m_pacmedir;
-
-pacmedir->home() / "bin" / strName;
+      pathUserBin = pacmedir->home() / "bin" / strName;
 
       ::file::path pathIcon = pcontext->m_papexcontext->dir().matter("main/icon-256.png");
 

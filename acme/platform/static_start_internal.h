@@ -199,7 +199,7 @@ namespace acme
       bool m_bRef;
 
 
-      critical_section                 m_criticalsectionFactory;
+      critical_section *               m_pcriticalsectionFactory;
       factory_map *                    m_pfactorymap = nullptr;
       ::factory::factory_array *       m_pfactorya = nullptr;
 

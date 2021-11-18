@@ -319,41 +319,42 @@ namespace acme
 #endif
       
       
-   virtual ::e_status launch_app(const ::string & psz, const char ** argv, int iFlags);
+      virtual ::e_status launch_app(const ::string & psz, const char ** argv, int iFlags);
 
-   virtual ::e_status create_process(const ::string & pszCommandLine, u32 * pprocessID);
+      virtual ::e_status create_process(const ::string & pszCommandLine, u32 * pprocessID);
 
-   virtual ::e_status run_silent(const ::string & strFunct, const ::string & strstrParams);
+      virtual ::e_status run_silent(const ::string & strFunct, const ::string & strstrParams);
 
-   virtual bool process_modules(string_array& stra, u32 processID);
+      virtual bool process_modules(string_array& stra, u32 processID);
 
-   virtual bool load_modules_diff(string_array& straOld, string_array& straNew, const ::string & pszExceptDir);
+      virtual bool load_modules_diff(string_array& straOld, string_array& straNew, const ::string & pszExceptDir);
 
-   virtual id_array get_pids();
-      
+      virtual id_array get_pids();
+
       virtual id_array module_path_get_pid(const ::string & pszModulePath, bool bModuleNameIsPropertyFormatted);
-      
+
       virtual string module_path_from_pid(u32 pid);
-      
+
       virtual string command_line_from_pid(u32 pid);
 
       virtual bool is_shared_library_busy(u32 processid, const string_array& stra);
 
       virtual bool is_shared_library_busy(const string_array& stra);
-      
+
       virtual bool process_contains_module(string& strImage, ::u32 processID, const ::string & pszLibrary);
 
       virtual void shared_library_process(dword_array& dwa, string_array& straProcesses, const ::string & pszLibrary);
 
       virtual bool is_process_running(::u32 pid);
-      
+
       virtual string get_environment_variable(const ::string & pszEnvironmentVariable);
-      
+
       virtual string expand_environment_variables(const string & str);
 
       virtual ::e_status set_environment_variable(const ::string& pszEnvironmentVariable, const ::string& pszValue);
 
 #ifndef _UWP
+
       virtual array <::serial::port_info> list_serial_ports();
 
 #endif
@@ -374,7 +375,7 @@ namespace acme
 
 
       //virtual ::string expand_environment_variables(const ::string & str);
-      
+
       virtual ::file::path command_find_path(const ::string & pszCommand);
 
 
@@ -389,14 +390,14 @@ namespace acme
       virtual ::e_status root_execute_async(const char * pszFile, const char * pszParams);
       virtual ::e_status root_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout = minute());
 
-      
+
       //::file::path command_find_path(const ::string & pszCommand);
 
 
-//      virtual ::user::enum_desktop calculate_edesktop();
-//
-//
-//      virtual ::user::enum_desktop get_edesktop();
+      //virtual ::user::enum_desktop calculate_edesktop();
+      //
+      //
+      //virtual ::user::enum_desktop get_edesktop();
 
       virtual ::e_status on_start_system();
 

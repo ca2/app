@@ -41,6 +41,9 @@ namespace crypto_openssl
       BN_hex2bn(&dmq1, strDmq1);
       BN_hex2bn(&iqmp, strIqmp);
 
+
+#if OPENSSL_VERSION_NUMBER >= 0x30000000
+
       OSSL_PARAM params[] = {
          OSSL_PARAM_BN("n", n, (size_t)BN_num_bytes(n)),
          OSSL_PARAM_BN("e", e, (size_t)BN_num_bytes(e)),
@@ -67,6 +70,32 @@ namespace crypto_openssl
       }
 
       EVP_PKEY_CTX_free(pctx);
+
+#else
+
+      m_prsa = RSA_new();
+
+#if OPENSSL_VERSION_NUMBER < 0x10100000L
+
+      m_prsa->n = n;
+      m_prsa->e = e;
+      m_prsa->d = d;
+      m_prsa->p = point;
+      m_prsa->q = q;
+      m_prsa->dmp1 = dmp1;
+      m_prsa->dmq1 = dmq1;
+      m_prsa->iqmp = iqmp;
+
+#else
+
+      RSA_set0_key(m_prsa, n, e, d);
+      RSA_set0_factors(m_prsa, p, q);
+      RSA_set0_crt_params(m_prsa, dmp1, dmq1, iqmp);
+
+#endif
+
+#endif
+
 
       //#if OPENSSL_VERSION_NUMBER < 0x10100000L
       //      m_prsa->n = n;
@@ -95,6 +124,8 @@ namespace crypto_openssl
       BN_hex2bn(&n, nParam);
       BN_hex2bn(&e, "10001");
 
+#if OPENSSL_VERSION_NUMBER >= 0x30000000
+
       OSSL_PARAM params[] = {
          OSSL_PARAM_BN("n", n, (size_t)BN_num_bytes(n)),
          OSSL_PARAM_BN("e", e, (size_t)BN_num_bytes(e)),
@@ -117,11 +148,32 @@ namespace crypto_openssl
 
       EVP_PKEY_CTX_free(pctx);
 
+#else
+
+
+      m_prsa = RSA_new();
+
+#if OPENSSL_VERSION_NUMBER < 0x10100000L
+
+      m_prsa->n = n;
+      m_prsa->e = e;
+
+#else
+
+      RSA_set0_key(m_prsa, n, e, nullptr);
+
+#endif
+
+
+#endif
+
    }
 
 
    rsa::~rsa()
    {
+
+#if OPENSSL_VERSION_NUMBER >= 0x30000000
 
       if (m_pkey != nullptr)
       {
@@ -130,11 +182,25 @@ namespace crypto_openssl
 
       }
 
+#else
+
+      if (m_prsa != nullptr)
+      {
+
+         RSA_free(m_prsa);
+
+      }
+
+#endif
+
    }
 
 
    int rsa::public_encrypt(memory& out, const memory& in, string& strError)
    {
+
+
+#if OPENSSL_VERSION_NUMBER >= 0x30000000
 
       auto pctx = EVP_PKEY_CTX_new(m_pkey, nullptr);
 
@@ -177,6 +243,20 @@ namespace crypto_openssl
 
       EVP_PKEY_CTX_free(pctx);
 
+#else
+
+
+      i32 i = RSA_public_encrypt((i32)in.get_size(), (const uchar*)(const char*)in.get_data(), out.get_data(), m_prsa, RSA_PKCS1_PADDING);
+
+      strError = ERR_error_string(ERR_get_error(), nullptr);
+
+      out.set_size(i);
+
+      return int(out.get_size());
+
+
+#endif
+
       return int(out.get_size());
 
    }
@@ -190,7 +270,7 @@ namespace crypto_openssl
 
       out.set_os_crypt_buffer(::winrt::Windows::Security::Cryptography::Core::CryptographicEngine::Decrypt(m_prsa, in.get_os_crypt_buffer(), nullptr));
 
-#else
+#elif OPENSSL_VERSION_NUMBER >= 0x30000000
 
       single_lock synchronouslock(mutex(), true);
 
@@ -234,6 +314,31 @@ namespace crypto_openssl
       }
 
       EVP_PKEY_CTX_free(pctx);
+
+#else
+
+
+      single_lock sl(mutex(), true);
+
+      i32 iRsaSize = 8192;
+
+      out.set_size(iRsaSize);
+
+      out.set(0);
+
+      ::count i = RSA_private_decrypt((int)in.get_size(), in.get_data(), out.get_data(), m_prsa, RSA_PKCS1_PADDING);
+
+      if (i < 0 || i >(1024 * 1024))
+      {
+
+         strError = ERR_error_string(ERR_get_error(), nullptr);
+
+         return (int)i;
+
+      }
+
+      out.set_size(i);
+
 
 #endif
 
@@ -330,7 +435,7 @@ namespace crypto_openssl
 
 
 
-#else
+#elif OPENSSL_VERSION_NUMBER >= 0x30000000
 
       auto iInSize = (i32)in.get_size();
 
@@ -379,6 +484,23 @@ namespace crypto_openssl
 
       EVP_PKEY_CTX_free(pctx);
 
+#else
+
+      auto iInSize = (i32)in.get_size();
+
+      auto pInData = (const uchar*)(const char*)in.get_data();
+
+      auto pOutData = out.get_data();
+
+      auto prsa = m_prsa;
+
+      i32 i = RSA_private_encrypt(iInSize, pInData, pOutData, prsa, RSA_PKCS1_PADDING);
+
+      strError = ERR_error_string(ERR_get_error(), nullptr);
+
+      out.set_size(i);
+
+
 #endif
 
       return int(out.get_size());
@@ -394,7 +516,7 @@ namespace crypto_openssl
 
       out.set_os_crypt_buffer(::winrt::Windows::Security::Cryptography::Core::CryptographicEngine::Decrypt(m_prsa, in.get_os_crypt_buffer(), nullptr));
 
-#else
+#elif OPENSSL_VERSION_NUMBER >= 0x30000000
 
       single_lock synchronouslock(mutex(), true);
 
@@ -442,6 +564,31 @@ namespace crypto_openssl
       }
 
       out.set_size(i);
+
+#else
+
+
+      single_lock sl(mutex(), true);
+
+      i32 iRsaSize = 8192;
+
+      out.set_size(iRsaSize);
+
+      out.set(0);
+
+      ::count i = RSA_public_decrypt((int)in.get_size(), in.get_data(), out.get_data(), m_prsa, RSA_PKCS1_PADDING);
+
+      if (i < 0 || i >(1024 * 1024))
+      {
+
+         strError = ERR_error_string(ERR_get_error(), nullptr);
+
+         return (int)i;
+
+      }
+
+      out.set_size(i);
+
 
 #endif
 

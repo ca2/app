@@ -1005,6 +1005,21 @@ void file_context::calculate_main_resource_memory()
 ::block file_context::get_main_resource_block()
 {
 
+#ifdef LINUX
+
+   if(m_psystem->_binary__matter_zip_start && m_psystem->_binary__matter_zip_end)
+   {
+
+      return {
+         m_psystem->_binary__matter_zip_start,
+         m_psystem->_binary__matter_zip_end - m_psystem->_binary__matter_zip_start
+      };
+
+   }
+
+
+#endif
+
    if (!m_bMainResourceMemoryCalculated)
    {
 

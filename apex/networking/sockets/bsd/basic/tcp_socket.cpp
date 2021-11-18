@@ -110,6 +110,7 @@ static int find_session_key(::sockets::tcp_socket *c, unsigned char key_name[16]
    return result;
 }
 
+#if OPENSSL_VERSION_NUMBER >= 0x30000000
 
 static int ssl_tlsext_ticket_key_evp_cb(SSL* s, unsigned char key_name[16],
    unsigned char iv[EVP_MAX_IV_LENGTH],
@@ -158,6 +159,47 @@ OSSL_PARAM_construct_end() };
       return 0;
    }
 }
+#else
+static int ssl_tlsext_ticket_key_cb(SSL *s, unsigned char key_name[16], unsigned char *iv, EVP_CIPHER_CTX *ctx, HMAC_CTX *hctx, int enc)
+{
+   ::sockets::tcp_socket *c = (::sockets::tcp_socket *) SSL_get_app_data2(s);
+   ssl_ticket_key key;
+   int is_current_key;
+   if (enc)   /* create new session */
+   {
+      if (current_session_key(c, &key))
+      {
+         if (RAND_bytes(iv, EVP_MAX_IV_LENGTH) <= 0)
+         {
+            return -1; /* insufficient random */
+         }
+         ::memcpy_dup(key_name, key.key_name, 16);
+         EVP_EncryptInit_ex(ctx, EVP_aes_128_cbc(), nullptr, key.aes_key, iv);
+         HMAC_Init_ex(hctx, key.hmac_key, 16, EVP_sha256(), nullptr);
+         return 1;
+      }
+      // No ticket configured
+      return 0;
+   }
+   else   /* retrieve session */
+   {
+      if (find_session_key(c, key_name, &key, &is_current_key))
+      {
+         HMAC_Init_ex(hctx, key.hmac_key, 16, EVP_sha256(), nullptr);
+         EVP_DecryptInit_ex(ctx, EVP_aes_128_cbc(), nullptr, key.aes_key, iv);
+         if (!is_current_key)
+         {
+            return 2;
+         }
+         return 1;
+      }
+      // No ticket
+      return 0;
+   }
+}
+
+
+#endif
 
 #ifndef ETIMEDOUT
 #define ETIMEDOUT       138
@@ -2064,7 +2106,15 @@ namespace sockets
          }
       }
 
+#if OPENSSL_VERSION_NUMBER >= 0x30000000
+
       SSL_CTX_set_tlsext_ticket_key_evp_cb(m_psslcontext->m_pclientcontext->m_psslcontext, &ssl_tlsext_ticket_key_evp_cb);
+
+#else
+
+      SSL_CTX_set_tlsext_ticket_key_cb(m_psslcontext->m_pclientcontext->m_psslcontext, ssl_tlsext_ticket_key_cb);
+
+#endif
 
    }
 

@@ -63,8 +63,37 @@ api::~api()
 }
 
 
+void api::on_login_response()
+{
+
+   m_bWaitingResponseFromUser = false;
+
+   m_eventResponse.SetEvent();
+
+   if (!m_bAuthenticated)
+   {
+
+      m_strToken.Empty();
+
+      if (m_papiclient->m_papi == this)
+      {
+
+         m_papiclient->m_papi.release();
+
+         m_papiclient.release();
+
+      }
+
+   }
+
+   save_profile();
+
+}
+
+
 ::e_status api::save_profile()
 {
+
 
    ::payload payload;
 

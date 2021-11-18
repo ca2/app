@@ -17,6 +17,8 @@ list(APPEND library_source
    rsa.h
    )
 
+list(APPEND library_references
+   acme apex)
 
 
 if (MSVC)
@@ -37,11 +39,13 @@ if (MSVC)
     target_link_options(crypto_openssl PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
     target_link_options(crypto_openssl PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/crypto_openssl.lib")
     target_link_options(crypto_openssl PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/crypto_openssl.def")
-    target_link_libraries(crypto_openssl PRIVATE acme apex aqua aura Gdiplus)
+    target_link_libraries(crypto_openssl PRIVATE ${library_references})
 elseif(LINUX)
+    pkg_check_modules(PKGCONFIG libcrypto)
     target_compile_options(crypto_openssl PRIVATE ${PKGCONFIG_CFLAGS})
     #target_link_options(crypto_openssl PRIVATE -Wl,-rpath=$ORIGIN)
     target_link_libraries(crypto_openssl PRIVATE ${PKGCONFIG_LIBRARIES})
+    target_link_libraries(crypto_openssl PRIVATE ${library_references})
     target_link_options(crypto_openssl PRIVATE -Wl,-z,defs)
     message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 endif()

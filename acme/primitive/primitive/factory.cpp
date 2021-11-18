@@ -31,7 +31,7 @@ namespace factory
     CLASS_DECL_ACME critical_section * get_factory_critical_section()
     {
 
-       return &::acme::static_start::g_staticstart.m_criticalsectionFactory;
+       return ::acme::static_start::g_staticstart.m_pcriticalsectionFactory;
 
     }
 
@@ -60,7 +60,7 @@ namespace factory
    void factory_close()
    {
 
-      critical_section_lock synchronouslock(&::acme::static_start::g_staticstart.m_criticalsectionFactory);
+      critical_section_lock synchronouslock(::acme::static_start::g_staticstart.m_pcriticalsectionFactory);
 
       ::acme::static_start::g_staticstart.m_pfactorymap->erase_all();
 
@@ -71,7 +71,7 @@ namespace factory
    void factory_term()
    {
 
-      critical_section_lock synchronouslock(&::acme::static_start::g_staticstart.m_criticalsectionFactory);
+      critical_section_lock synchronouslock(::acme::static_start::g_staticstart.m_pcriticalsectionFactory);
 
       ::acme::del(::acme::static_start::g_staticstart.m_pfactorya);
 

@@ -5,13 +5,13 @@ project(app_message_box CXX)
 list(APPEND library_source
         _.cpp
         _.h
-        _user.h
+        _app_message_box.h
         application.cpp
         application.h
         framework.cpp
         framework.h
-        window.cpp
-        window.h)
+        main_window.cpp
+        main_window.h)
 
 
 add_library(app_message_box SHARED ${library_source})
@@ -22,6 +22,7 @@ list(APPEND library_references
    apex
    aqua
    aura
+   app_app
    )
 
 
@@ -60,6 +61,19 @@ target_include_directories(app_message_box PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 target_compile_definitions(app_message_box PRIVATE _APP_MESSAGE_BOX_LIBRARY)
 
 add_executable(_app_message_box _main.cpp)
+
+
+add_custom_command(
+   TARGET ${PROJECT_NAME}
+   POST_BUILD
+   WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+   COMMAND ${APPLICATION_BUILD_HELPER} ${PROJECT_SOURCE_DIR}
+   COMMAND ld -r -b binary -o ${PROJECT_BINARY_DIR}/_matter.zip.o _matter.zip
+)
+
+list(APPEND executable_references ${PROJECT_BINARY_DIR}/_matter.zip.o)
+
+
 
 
 list(APPEND executable_references

@@ -51,7 +51,7 @@ namespace linux
       stra.add("Office");
       stra.add("Science");
       stra.add("Settings");
-      stra.add("::aura::get_system()");
+      stra.add("System");
       stra.add("Utility");
 
       return stra;
@@ -205,7 +205,7 @@ namespace linux
 
       straLine.add("[Desktop Entry]");
       straLine.add("Version=1.0");
-      straLine.add("Type=papplication");
+      straLine.add("Type=application");
       straLine.add("Name=");
       straLine.add("GenericName=");
       straLine.add("Comment=");

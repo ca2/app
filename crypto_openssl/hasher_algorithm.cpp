@@ -39,13 +39,30 @@ namespace crypto_openssl
    ::e_status hasher_algorithm::hash(memory& memoryHash, const block& block)
    {
 
+#if OPENSSL_VERSION_NUMBER >= 0x30000000
+
       unsigned int digest_size = EVP_MD_get_size(m_pmd);
+
+#else
+
+      unsigned int digest_size = EVP_MD_size(m_pmd);
+
+#endif
 
       memoryHash.set_size(digest_size);
 
       auto mdctx = EVP_MD_CTX_new();
 
+#if OPENSSL_VERSION_NUMBER >= 0x30000000
+
       EVP_DigestInit_ex2(mdctx, m_pmd, NULL);
+
+#else
+
+      EVP_DigestInit_ex(mdctx, m_pmd, nullptr);
+
+#endif
+
 
       EVP_DigestUpdate(mdctx, block.get_data(), block.get_size());
 

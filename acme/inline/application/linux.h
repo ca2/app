@@ -4,6 +4,10 @@
 #include "acme/operating_system.h"
 
 
+extern char _binary__matter_zip_start[];
+extern char _binary__matter_zip_end[];
+
+
 #ifndef __APP_ID
 
 
@@ -27,6 +31,10 @@ int main(int argc, char * argv[], char * envp[])
    main.m_strAppId = __APP_ID;
 
    main.m_bConsole = false;
+
+   main._binary__matter_zip_start = _binary__matter_zip_start;
+
+   main._binary__matter_zip_end = _binary__matter_zip_end;
 
    auto estatus = __main(main);
 

@@ -46,6 +46,7 @@ list(APPEND apex_source
    #crypto/openssl/hasher.h
    #crypto/openssl/hasher_algorithm.cpp
    #crypto/openssl/hasher_algorithm.h
+   #crypto/openssl/hasher_algorithm.h
    #crypto/openssl/rsa.cpp
    #crypto/openssl/rsa.h
    crypto/_.h
@@ -399,6 +400,8 @@ list(APPEND apex_source
    #platform/all.h
    platform/api.cpp
    platform/api.h
+   platform/api_client.cpp
+   platform/api_client.h
    platform/apex_aura.h
    platform/apex_main_data.cpp
    platform/apex_main_data.h

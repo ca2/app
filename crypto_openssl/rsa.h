@@ -10,9 +10,16 @@ namespace crypto_openssl
    {
    public:
 
-      
+
+#if OPENSSL_VERSION_NUMBER >= 0x30000000
+
       EVP_PKEY* m_pkey;
 
+#else
+
+      RSA * m_prsa;
+
+#endif
 
       rsa();
 

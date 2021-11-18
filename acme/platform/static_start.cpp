@@ -557,6 +557,8 @@ namespace acme
 
 #endif
 
+      m_pcriticalsectionFactory = new critical_section;
+
 #ifndef WINDOWS
 
       g_pcsDemangle = new critical_section;
@@ -1071,6 +1073,8 @@ namespace acme
       ::acme::del(g_pcsDemangle);
 
 #endif
+
+      ::acme::del(m_pcriticalsectionFactory);
 
 #ifdef WINDOWS
       _free_locale(g_localeC);

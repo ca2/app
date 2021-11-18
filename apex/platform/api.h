@@ -17,14 +17,16 @@ protected:
 public:
 
 
-   bool                       m_bAuthenticated;
-   string                     m_strConfig;
-   string                     m_strProfile;
-   string                     m_strToken;
-   ::file::path               m_pathProfile;
-   ::payload                  m_payloadProfile;
-   bool                       m_bWaitingResponseFromUser;
+   bool                             m_bAuthenticated;
+   string                           m_strConfig;
+   string                           m_strProfile;
+   string                           m_strToken;
+   string                           m_strState;
+   ::file::path                     m_pathProfile;
+   ::payload                        m_payloadProfile;
+   bool                             m_bWaitingResponseFromUser;
    __pointer(::api_client)    m_papiclient;
+   ::manual_reset_event             m_eventResponse;
 
 
    api();
@@ -36,6 +38,9 @@ public:
 
    virtual ::e_status load_profile();
    virtual ::e_status save_profile();
+
+
+   virtual void on_login_response();
 
 
    virtual ::e_status api_login(const ::string & strConfig, const ::string & strProfile);

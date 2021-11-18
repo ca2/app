@@ -811,7 +811,15 @@
 
          auto pmd = __evp_md(ehash);
 
+#if OPENSSL_VERSION_NUMBER >= 0x30000000
+
          auto iSize = EVP_MD_get_size(pmd);
+
+#else
+
+         auto iSize = EVP_MD_size(pmd);
+
+#endif
 
          return iSize;
 
@@ -1749,91 +1757,99 @@
 
          auto popensslrsa = __new(::crypto_openssl::rsa);
 
+#if OPENSSL_VERSION_NUMBER >= 0x30000000
+
          auto & pkey = popensslrsa->m_pkey;
 
          throw todo;
 
          return nullptr;
 
-//         prsa = RSA_new();
-//
-//         {
-//
-//            BIGNUM* e = BN_new();
-//
-//            BN_set_word(e, 65537);
-//
-//            int ret = RSA_generate_key_ex(prsa, 1024, e, nullptr);
-//
-//            if (ret != 1)
-//            {
-//
-//               BN_free(e);
-//
-//               return nullptr;
-//
-//            }
-//
-//            BN_free(e);
-//
-//         }
-//
-//#if OPENSSL_VERSION_NUMBER < 0x10100000L
-//
-//         char* hexN = BN_bn2hex(prsa->n);
-//         char* hexE = BN_bn2hex(prsa->e);
-//         char* hexD = BN_bn2hex(prsa->d);
-//         char* hexP = BN_bn2hex(prsa->p);
-//         char* hexQ = BN_bn2hex(prsa->q);
-//         char* hexDmp1 = BN_bn2hex(prsa->dmp1);
-//         char* hexDmq1 = BN_bn2hex(prsa->dmq1);
-//         char* hexIqmp = BN_bn2hex(prsa->iqmp);
-//
-//#else
-//
-//         const BIGNUM* n = nullptr;
-//         const BIGNUM* e = nullptr;
-//         const BIGNUM* d = nullptr;
-//         const BIGNUM* p = nullptr;
-//         const BIGNUM* q = nullptr;
-//         const BIGNUM* dmp1 = nullptr;
-//         const BIGNUM* dmq1 = nullptr;
-//         const BIGNUM* iqmp = nullptr;
-//
-//         RSA_get0_key(prsa, &n, &e, &d);
-//         RSA_get0_factors(prsa, &p, &q);
-//         RSA_get0_crt_params(prsa, &dmp1, &dmq1, &iqmp);
-//
-//         char* hexN = BN_bn2hex(n);
-//         char* hexE = BN_bn2hex(e);
-//         char* hexD = BN_bn2hex(d);
-//         char* hexP = BN_bn2hex(p);
-//         char* hexQ = BN_bn2hex(q);
-//         char* hexDmp1 = BN_bn2hex(dmp1);
-//         char* hexDmq1 = BN_bn2hex(dmq1);
-//         char* hexIqmp = BN_bn2hex(iqmp);
-//
-//#endif
-//
-//         popensslrsa->n = hexN;
-//         popensslrsa->e = hexE;
-//         popensslrsa->d = hexD;
-//         popensslrsa->p = hexP;
-//         popensslrsa->q = hexQ;
-//         popensslrsa->dmp1 = hexDmp1;
-//         popensslrsa->dmq1 = hexDmq1;
-//         popensslrsa->iqmp = hexIqmp;
-//
-//         OPENSSL_free(hexN);
-//         OPENSSL_free(hexE);
-//         OPENSSL_free(hexD);
-//         OPENSSL_free(hexP);
-//         OPENSSL_free(hexQ);
-//         OPENSSL_free(hexDmp1);
-//         OPENSSL_free(hexDmq1);
-//         OPENSSL_free(hexIqmp);
-//
-//         return popensslrsa;
+#else
+
+         auto & prsa = popensslrsa->m_prsa;
+
+         prsa = RSA_new();
+
+         {
+
+            BIGNUM* e = BN_new();
+
+            BN_set_word(e, 65537);
+
+            int ret = RSA_generate_key_ex(prsa, 1024, e, nullptr);
+
+            if (ret != 1)
+            {
+
+               BN_free(e);
+
+               return nullptr;
+
+            }
+
+            BN_free(e);
+
+         }
+
+#if OPENSSL_VERSION_NUMBER < 0x10100000L
+
+         char* hexN = BN_bn2hex(prsa->n);
+         char* hexE = BN_bn2hex(prsa->e);
+         char* hexD = BN_bn2hex(prsa->d);
+         char* hexP = BN_bn2hex(prsa->p);
+         char* hexQ = BN_bn2hex(prsa->q);
+         char* hexDmp1 = BN_bn2hex(prsa->dmp1);
+         char* hexDmq1 = BN_bn2hex(prsa->dmq1);
+         char* hexIqmp = BN_bn2hex(prsa->iqmp);
+
+#else
+
+         const BIGNUM* n = nullptr;
+         const BIGNUM* e = nullptr;
+         const BIGNUM* d = nullptr;
+         const BIGNUM* p = nullptr;
+         const BIGNUM* q = nullptr;
+         const BIGNUM* dmp1 = nullptr;
+         const BIGNUM* dmq1 = nullptr;
+         const BIGNUM* iqmp = nullptr;
+
+         RSA_get0_key(prsa, &n, &e, &d);
+         RSA_get0_factors(prsa, &p, &q);
+         RSA_get0_crt_params(prsa, &dmp1, &dmq1, &iqmp);
+
+         char* hexN = BN_bn2hex(n);
+         char* hexE = BN_bn2hex(e);
+         char* hexD = BN_bn2hex(d);
+         char* hexP = BN_bn2hex(p);
+         char* hexQ = BN_bn2hex(q);
+         char* hexDmp1 = BN_bn2hex(dmp1);
+         char* hexDmq1 = BN_bn2hex(dmq1);
+         char* hexIqmp = BN_bn2hex(iqmp);
+
+#endif
+
+         popensslrsa->n = hexN;
+         popensslrsa->e = hexE;
+         popensslrsa->d = hexD;
+         popensslrsa->p = hexP;
+         popensslrsa->q = hexQ;
+         popensslrsa->dmp1 = hexDmp1;
+         popensslrsa->dmq1 = hexDmq1;
+         popensslrsa->iqmp = hexIqmp;
+
+         OPENSSL_free(hexN);
+         OPENSSL_free(hexE);
+         OPENSSL_free(hexD);
+         OPENSSL_free(hexP);
+         OPENSSL_free(hexQ);
+         OPENSSL_free(hexDmp1);
+         OPENSSL_free(hexDmq1);
+         OPENSSL_free(hexIqmp);
+
+         return popensslrsa;
+
+#endif
 
       }
 
@@ -1852,19 +1868,27 @@
 
          auto popensslrsa = __new(::crypto_openssl::rsa);
 
+#if OPENSSL_VERSION_NUMBER >= 0x30000000
+
          auto & pkey = popensslrsa->m_pkey;
 
          throw todo;
 
          return nullptr;
 
-         //auto pbio = BIO_new_mem_buf(memory.get_data(), (int)memory.get_size());
+#else
 
-         //PEM_read_bio_RSAPrivateKey(pbio, &prsa, nullptr, nullptr);
+         auto & prsa = popensslrsa->m_prsa;
 
-         //BIO_free(pbio);
+         auto pbio = BIO_new_mem_buf(memory.get_data(), (int)memory.get_size());
 
-         //return popensslrsa;
+         PEM_read_bio_RSAPrivateKey(pbio, &prsa, nullptr, nullptr);
+
+         BIO_free(pbio);
+
+         return popensslrsa;
+
+#endif
 
       }
 

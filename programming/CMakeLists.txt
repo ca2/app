@@ -31,7 +31,14 @@ list(APPEND library_source
    dynamic_source/session.cpp
    dynamic_source/session.h
    introjection/compiler.cpp
-   introjection/compiler.h)
+   introjection/compiler.h
+   introjection/library.cpp
+   introjection/library.h
+   programming/_.h
+   programming/_programming.h
+   programming/compiler.cpp
+   programming/compiler.h
+   )
 
 
 

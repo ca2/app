@@ -1,31 +1,30 @@
 #include "framework.h"
-#include "crypto_initializer.h"
+#include "initializer.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
-
-//
-//#include <openssl/ssl.h>
-//#include <openssl/md5.h>
-//#include <openssl/err.h>
-//#include <openssl/whrlpool.h>
-//#include <openssl/pem.h>
-
 
 
 namespace crypto
 {
 
 
-   //crypto::~crypto()
-   //{
+   crypto::crypto()
+   {
 
 
-   //}
+   }
+
+
+   crypto::~crypto()
+   {
+
+
+   }
 
 
    ::e_status crypto::defer_initialize()
    {
 
-      auto estatus = __defer_compose_new(m_pinitializer);
+      auto estatus = __defer_compose(m_pinitializer);
 
       if (!estatus)
       {
@@ -100,63 +99,6 @@ namespace crypto
    }
 
 
-   //namespace str
-   //{
-   //
-   //
-   //   CLASS_DECL_APEX void from(string& str, const MD5_CTX& ctx)
-   //   {
-   //
-   //      unsigned char digest[MD5_DIGEST_LENGTH];
-   //
-   //      MD5_Final(digest, (MD5_CTX*)&ctx);
-   //
-   //      str = ::hex::lower_from(digest, MD5_DIGEST_LENGTH);
-   //
-   //   }
-   //
-   //
-   //   CLASS_DECL_APEX void from(string& str, const WHIRLPOOL_CTX& ctx)
-   //   {
-   //
-   //      unsigned char digest[WHIRLPOOL_DIGEST_LENGTH];
-   //
-   //      WHIRLPOOL_Final(digest, (WHIRLPOOL_CTX*)&ctx);
-   //
-   //      str = ::hex::lower_from(digest, WHIRLPOOL_DIGEST_LENGTH);
-   //
-   //   }
-   //
-   //
-   //   void md5(void* ptarget, const void* psource, ::memsize size)
-   //   {
-   //
-   //      MD5((const unsigned char*)psource, size, (unsigned char*)ptarget);
-   //
-   //   }
-   //
-   //
-   //   void sha1(void* ptarget, const void* psource, ::memsize size)
-   //   {
-   //
-   //      SHA1((const unsigned char*)psource, size, (unsigned char*)ptarget);
-   //
-   //   }
-   //
-   //
-   //   void sha256(void* ptarget, const void* psource, ::memsize size)
-   //   {
-   //
-   //      SHA256((const unsigned char*)psource, size, (unsigned char*)ptarget);
-   //
-   //   }
-   //
-   //
-   //} // namespace str
-
-
-
-
 
 
 
@@ -170,13 +112,6 @@ namespace crypto
    string chunk_split(const string& body, i32 chunklen = 76, const string& end = "\r\n");
 
 
-      crypto::crypto()
-      {
-      }
-
-      crypto::~crypto()
-      {
-      }
 
 
 

@@ -44,6 +44,28 @@ namespace crypto_openssl
 
 #if OPENSSL_VERSION_NUMBER >= 0x30000000
 
+
+      //OSSL_PARAM_BLD* params_build = OSSL_PARAM_BLD_new();
+      //if (params_build == NULL) {
+      //   goto OPENSSL_ERROR;
+      //}
+      //if (!OSSL_PARAM_BLD_push_BN(params_build, "n", modulus)) {
+      //   ERROR("Error: failed to push modulus into param build.\n");
+      //   goto OPENSSL_ERROR;
+      //}
+      //if (!OSSL_PARAM_BLD_push_BN(params_build, "e", exponent)) {
+      //   ERROR("Error: failed to push exponent into param build.\n");
+      //   goto OPENSSL_ERROR;
+      //}
+      //if (!OSSL_PARAM_BLD_push_BN(params_build, "d", NULL)) {
+      //   ERROR("Error: failed to push NULL into param build.\n");
+      //   goto OPENSSL_ERROR;
+      //}
+      //OSSL_PARAM* params = OSSL_PARAM_BLD_to_param(params_build);
+      //if (params == NULL) {
+      //   ERROR("Error: failed to construct params from build.\n");
+      //   goto OPENSSL_ERROR;
+      //}
       OSSL_PARAM params[] = {
          OSSL_PARAM_BN("n", n, (size_t)BN_num_bytes(n)),
          OSSL_PARAM_BN("e", e, (size_t)BN_num_bytes(e)),

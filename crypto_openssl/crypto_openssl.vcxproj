@@ -941,8 +941,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="crypto.h" />
+    <ClInclude Include="initializer.h" />
     <ClInclude Include="hasher.h" />
     <ClInclude Include="hasher_algorithm.h" />
+    <ClInclude Include="aaa_initializer.h" />
     <ClInclude Include="rsa.h" />
     <ClInclude Include="_.h" />
     <ClInclude Include="framework.h" />
@@ -951,6 +953,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="crypto.cpp" />
+    <ClCompile Include="initializer.cpp" />
     <ClCompile Include="hasher.cpp" />
     <ClCompile Include="hasher_algorithm.cpp" />
     <ClCompile Include="rsa.cpp" />

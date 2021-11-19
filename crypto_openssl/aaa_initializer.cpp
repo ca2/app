@@ -2,9 +2,11 @@
 // crypto_initializer.h
 //
 // Created by camilo 2021-05-24 05:39 BRT <3ThomasBS_!!
+// Refactored to crypto_openssl by camilo 2021-11-19 14:19 BRT <3ThomasBS_!!
 //
 #include "framework.h"
 #include "crypto_initializer.h"
+
 
 #ifdef HAVE_OPENSSL
 #include <openssl/ssl.h>
@@ -15,7 +17,6 @@
 
 
 #include <openssl/conf.h>
-
 
 
 #if OPENSSL_API_COMPAT < 0x10100000L
@@ -47,7 +48,7 @@ namespace crypto
 
 
 #endif
-   
+
 
    initializer::initializer()
    {
@@ -69,20 +70,20 @@ namespace crypto
 #endif
 
 
-//#if OPENSSL_API_COMPAT < 0x10100000L
-//
-//      rand_meth.add = &crypto_initializer_rand_add;
-//      rand_meth.bytes = &crypto_initializer_rand_bytes;
-//      rand_meth.cleanup = &crypto_initializer_rand_cleanup;
-//      rand_meth.pseudorand = &crypto_initializer_rand_pseudorand;
-//      rand_meth.seed = &crypto_initializer_rand_seed;
-//      rand_meth.status = &crypto_initializer_rand_status;
-//
-//      RAND_set_rand_method(&rand_meth);
-//
-//#endif
+      //#if OPENSSL_API_COMPAT < 0x10100000L
+      //
+      //      rand_meth.add = &crypto_initializer_rand_add;
+      //      rand_meth.bytes = &crypto_initializer_rand_bytes;
+      //      rand_meth.cleanup = &crypto_initializer_rand_cleanup;
+      //      rand_meth.pseudorand = &crypto_initializer_rand_pseudorand;
+      //      rand_meth.seed = &crypto_initializer_rand_seed;
+      //      rand_meth.status = &crypto_initializer_rand_status;
+      //
+      //      RAND_set_rand_method(&rand_meth);
+      //
+      //#endif
 
-      //if (!initialized)
+            //if (!initialized)
       {
          RAND_poll();
          // initialized = 1;
@@ -96,7 +97,9 @@ namespace crypto
    initializer::~initializer()
    {
 
-#if OPENSSL_API_COMPAT < 0x10100000L
+#if OPENSSL_VERSION_NUMBER < 0x10100000L
+
+      DeleteRandFile();
 
       if (g_pmapMutex != nullptr)
       {
@@ -125,10 +128,10 @@ namespace crypto
 
 
 
+#if OPENSSL_VERSION_NUMBER < 0x10100000L
+
    void initializer::DeleteRandFile()
    {
-
-#if OPENSSL_API_COMPAT < 0x10100000L
 
       if (m_rand_file.get_length())
       {
@@ -137,9 +140,10 @@ namespace crypto
 
       }
 
-#endif
-
    }
+
+
+#endif
 
 
 } // namespace crypto

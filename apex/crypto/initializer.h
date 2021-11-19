@@ -10,27 +10,14 @@ namespace crypto
 {
 
 
-   class CLASS_DECL_CRYPTO_OPENSSL initializer :
+   class CLASS_DECL_APEX initializer :
       virtual public ::object
    {
    public:
 
 
-#if OPENSSL_API_COMPAT < 0x10100000L
-
-
-      string m_rand_file;
-      long m_rand_size;
-
-
-#endif
-
-
       initializer();
       ~initializer() override;
-
-
-      void DeleteRandFile();
 
 
    };

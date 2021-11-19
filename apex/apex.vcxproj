@@ -872,7 +872,7 @@
     <ClCompile Include="compress\not_dir.cpp" />
     <ClCompile Include="constant\idpool.cpp" />
     <ClCompile Include="crypto\crypto.cpp" />
-    <ClCompile Include="crypto\crypto_initializer.cpp" />
+    <ClCompile Include="crypto\initializer.cpp" />
     <ClCompile Include="crypto\hasher.cpp" />
     <ClCompile Include="crypto\hasher_algorithm.cpp" />
     <ClCompile Include="crypto\macos\rsa.cpp">
@@ -1005,7 +1005,7 @@
     <ClCompile Include="node\operating_system\windows_common\file.cpp" />
     <ClCompile Include="node\operating_system\_application.cpp" />
     <ClInclude Include="compress\not_dir.h" />
-    <ClInclude Include="crypto\crypto_initializer.h" />
+    <ClInclude Include="crypto\initializer.h" />
     <ClInclude Include="inline\implement\ansi.h" />
     <ClInclude Include="inline\implement\windows.h" />
     <ClCompile Include="parallelization\handler_manager.cpp" />

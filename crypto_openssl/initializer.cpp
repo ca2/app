@@ -2,11 +2,12 @@
 // crypto_initializer.h
 //
 // Created by camilo 2021-05-24 05:39 BRT <3ThomasBS_!!
+// Refactored to crypto_openssl by camilo 2021-11-19 14:19 BRT <3ThomasBS_!!
 //
 #include "framework.h"
-#include "crypto_initializer.h"
+#include "initializer.h"
 
-#ifdef HAVE_OPENSSL
+
 #include <openssl/ssl.h>
 #include <openssl/crypto.h>
 #include <openssl/rand.h>
@@ -17,8 +18,7 @@
 #include <openssl/conf.h>
 
 
-
-#if OPENSSL_API_COMPAT < 0x10100000L
+#if OPENSSL_VERSION_NUMBER < 0x10100000L
 
 RAND_METHOD rand_meth;
 extern "C" void crypto_initializer_locking_function(i32 mode, i32 n, const char* file, i32 line);
@@ -33,11 +33,11 @@ extern "C" i32 crypto_initializer_rand_status();
 
 #endif
 
-namespace crypto
+namespace crypto_openssl
 {
 
 
-#if OPENSSL_API_COMPAT < 0x10100000L
+#if OPENSSL_VERSION_NUMBER < 0x10100000L
 
 
    map < i32, ::mutex* >* g_pmapMutex = nullptr;
@@ -52,7 +52,7 @@ namespace crypto
    initializer::initializer()
    {
 
-#if OPENSSL_API_COMPAT < 0x10100000L
+#if OPENSSL_VERSION_NUMBER < 0x10100000L
 
       m_rand_size = 1024;
 
@@ -96,7 +96,9 @@ namespace crypto
    initializer::~initializer()
    {
 
-#if OPENSSL_API_COMPAT < 0x10100000L
+#if OPENSSL_VERSION_NUMBER < 0x10100000L
+
+      DeleteRandFile();
 
       if (g_pmapMutex != nullptr)
       {
@@ -124,11 +126,11 @@ namespace crypto
    }
 
 
+#if OPENSSL_VERSION_NUMBER < 0x10100000L
+
 
    void initializer::DeleteRandFile()
    {
-
-#if OPENSSL_API_COMPAT < 0x10100000L
 
       if (m_rand_file.get_length())
       {
@@ -137,15 +139,18 @@ namespace crypto
 
       }
 
-#endif
-
    }
+
+
+#endif
 
 
 } // namespace crypto
 
 
-#if OPENSSL_API_COMPAT < 0x10100000L
+#if OPENSSL_VERSION_NUMBER < 0x10100000L
+
+
 extern "C" void crypto_initializer_SSL_locking_function(i32 mode, i32 n, const char* file, i32 line)
 {
 
@@ -195,8 +200,6 @@ extern "C" void crypto_initializer_SSL_locking_function(i32 mode, i32 n, const c
 
 }
 
-#endif
-
 extern "C" unsigned long crypto_initializer_SSL_id_function()
 {
 
@@ -213,9 +216,6 @@ extern "C" unsigned long crypto_initializer_SSL_id_function()
    //#endif
    //
 }
-
-
-#if OPENSSL_API_COMPAT < 0x10100000L
 
 
 extern "C" int crypto_initializer_rand_seed(const void* buf, i32 num)
@@ -270,8 +270,6 @@ extern "C" i32 crypto_initializer_rand_status()
 
 
 #endif
-
-#endif // HAVE_OPENSSL
 
 
 

@@ -137,6 +137,7 @@
 
       virtual ::file::path desktop();
       virtual ::file::path document();
+      virtual ::file::path document2();
       virtual ::file::path download();
 
       virtual ::file::path music();

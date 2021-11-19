@@ -445,6 +445,17 @@ namespace user
 
          set_tool_window();
 
+
+#if defined(_UWP)
+
+         if (!create_interaction(puiParent))
+         {
+
+            return false;
+
+         }
+
+#else
          //auto pusersystem = __new(::user::system (iStyleEx, nullptr, nullptr, 0, nullptr, pcreate));
 
          //if (!create_window_ex(pusersystem, puiParent))
@@ -454,6 +465,8 @@ namespace user
             return false;
 
          }
+
+#endif
 
          if (pchannelNotify != nullptr)
          {

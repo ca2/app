@@ -980,7 +980,7 @@ namespace aura
 
 
 
-      virtual i32 track_popup_menu(const ::string & pszMatter, const ::point_i32& point, __pointer(::user::interaction) puie);
+      virtual i32 track_popup_menu(const ::string & pszMatter, const ::point_i32& point, __pointer(::user::interaction) puserelement);
 
       virtual bool get_fs_size(string& strSize, const ::string & pszPath, bool& bPending) override;
       virtual bool get_fs_size(i64& i64Size, const ::string & pszPath, bool& bPending) override;

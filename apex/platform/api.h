@@ -59,6 +59,11 @@ public:
 
    virtual void on_login_authentication_failed();
 
+   virtual string randomDataBase64url(u32 length);
+   virtual memory sha256(string strInput);
+   virtual string base64urlencodeNoPadding(memory m);
+
+
 
 };
 

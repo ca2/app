@@ -12,54 +12,19 @@
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="framework_c.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="application.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="library.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="_.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="procedure.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="callback.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\filemanager\impact_base.h" />
-    <ClInclude Include="main.h">
+    <ClInclude Include="_compress_zlib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="rsa.h">
+    <ClInclude Include="compress.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="hasher_algorithm.h">
+    <ClInclude Include="uncompress.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="hasher.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto_initializer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="aaa__openssl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="_crypto_openssl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="u_crypto_openssl.def">
-      <Filter>Source Files</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -68,23 +33,19 @@
     <ClCompile Include="_.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="rsa.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="hasher_algorithm.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="hasher.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="factory_exchange.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="crypto_initializer.cpp">
+    <ClCompile Include="compress.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="crypto.cpp">
+    <ClCompile Include="uncompress.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="u_compress_zlib.def">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

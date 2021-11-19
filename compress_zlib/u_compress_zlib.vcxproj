@@ -67,29 +67,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="aaa__openssl.h" />
-    <ClInclude Include="application.h" />
-    <ClInclude Include="callback.h" />
-    <ClInclude Include="crypto.h" />
-    <ClInclude Include="crypto_initializer.h" />
+    <ClInclude Include="compress.h" />
     <ClInclude Include="filesystem\filemanager\impact_base.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="framework_c.h" />
-    <ClInclude Include="hasher.h" />
-    <ClInclude Include="hasher_algorithm.h" />
-    <ClInclude Include="library.h" />
-    <ClInclude Include="main.h" />
-    <ClInclude Include="procedure.h" />
-    <ClInclude Include="rsa.h" />
+    <ClInclude Include="uncompress.h" />
     <ClInclude Include="_.h" />
-    <ClInclude Include="_crypto_openssl.h" />
+    <ClInclude Include="_compress_zlib.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="u_crypto_openssl.def" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="crypto.cpp" />
-    <ClCompile Include="crypto_initializer.cpp" />
+    <ClCompile Include="compress.cpp" />
     <ClCompile Include="factory_exchange.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
@@ -125,9 +111,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x64'">$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
-    <ClCompile Include="hasher.cpp" />
-    <ClCompile Include="hasher_algorithm.cpp" />
-    <ClCompile Include="rsa.cpp" />
+    <ClCompile Include="uncompress.cpp" />
     <ClCompile Include="_.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -141,16 +125,19 @@
       <Project>{d6fc3dc0-a19a-4f63-a3f1-3426fe53920b}</Project>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="u_compress_zlib.def" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{BC919186-F67A-4FFC-B6BE-0E63DC652A63}</ProjectGuid>
+    <ProjectGuid>{D3D27C4C-23A9-4BD0-BE78-8FBF6B228217}</ProjectGuid>
     <Keyword>DynamicLibrary</Keyword>
-    <ProjectName>crypto_openssl</ProjectName>
+    <ProjectName>compress_zlib</ProjectName>
     <RootNamespace>app</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
     <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
     <AppContainerApplication>true</AppContainerApplication>
     <ApplicationType>Windows Store</ApplicationType>
-    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
     <WindowsTargetPlatformMinVersion>10.0.10240.0</WindowsTargetPlatformMinVersion>
     <ApplicationTypeRevision>10.0</ApplicationTypeRevision>
   </PropertyGroup>
@@ -416,7 +403,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PreprocessorDefinitions>_CRYPTO_OPENSSL_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_COMPRESS_ZLIB_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-universal_windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-universal_windows/include;$(__archive)third-universal_windows/third/include;$(__archive)third-universal_windows/third/include/include;$(SolutionDir)../../../archive/platform-universal_windows/_include;$(SolutionDir)../../../archive/platform-universal_windows;$(SolutionDir)../../../archive/platform-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
@@ -442,7 +429,7 @@
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time-universal_windows\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
-      <AdditionalDependencies>libcrypto.lib;libssl.lib;dxgi.lib;Windowscodecs.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
@@ -451,7 +438,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PreprocessorDefinitions>_CRYPTO_OPENSSL_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_COMPRESS_ZLIB_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-universal_windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-universal_windows/include;$(__archive)third-universal_windows/third/include;$(__archive)third-universal_windows/third/include/include;$(SolutionDir)../../../archive/platform-universal_windows/_include;$(SolutionDir)../../../archive/platform-universal_windows;$(SolutionDir)../../../archive/platform-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
@@ -477,7 +464,7 @@
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time-universal_windows\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
-      <AdditionalDependencies>dxgi.lib;Windowscodecs.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
@@ -491,7 +478,7 @@
       <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
       <ExceptionHandling>Async</ExceptionHandling>
       <CompileAsManaged>false</CompileAsManaged>
-      <PreprocessorDefinitions>_CRYPTO_OPENSSL_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_COMPRESS_ZLIB_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -504,7 +491,7 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time-universal_windows\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
-      <AdditionalDependencies>libcrypto.lib;libssl.lib;dxgi.lib;Windowscodecs.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
@@ -519,7 +506,7 @@
       <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
       <ExceptionHandling>Async</ExceptionHandling>
       <CompileAsManaged>false</CompileAsManaged>
-      <PreprocessorDefinitions>_CRYPTO_OPENSSL_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_COMPRESS_ZLIB_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
@@ -532,14 +519,14 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
-      <AdditionalDependencies>dxgi.lib;Windowscodecs.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|arm'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PreprocessorDefinitions>_CRYPTO_OPENSSL_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_COMPRESS_ZLIB_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAsManaged>false</CompileAsManaged>
       <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-universal_windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-universal_windows/include;$(__archive)third-universal_windows/third/include;$(__archive)third-universal_windows/third/include/include;$(SolutionDir)../../../archive/platform-universal_windows/_include;$(SolutionDir)../../../archive/platform-universal_windows;$(SolutionDir)../../../archive/platform-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
@@ -560,7 +547,7 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time-universal_windows\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
-      <AdditionalDependencies>libcrypto.lib;libssl.lib;dxgi.lib;Windowscodecs.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
@@ -570,7 +557,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|arm'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PreprocessorDefinitions>_CRYPTO_OPENSSL_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_COMPRESS_ZLIB_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAsManaged>false</CompileAsManaged>
       <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-universal_windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-universal_windows/include;$(__archive)third-universal_windows/third/include;$(__archive)third-universal_windows/third/include/include;$(SolutionDir)../../../archive/platform-universal_windows/_include;$(SolutionDir)../../../archive/platform-universal_windows;$(SolutionDir)../../../archive/platform-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
@@ -591,7 +578,7 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time-universal_windows\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
-      <AdditionalDependencies>dxgi.lib;Windowscodecs.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
@@ -601,7 +588,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM64'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PreprocessorDefinitions>_CRYPTO_OPENSSL_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_COMPRESS_ZLIB_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAsManaged>false</CompileAsManaged>
       <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-universal_windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-universal_windows/include;$(__archive)third-universal_windows/third/include;$(__archive)third-universal_windows/third/include/include;$(SolutionDir)../../../archive/platform-universal_windows/_include;$(SolutionDir)../../../archive/platform-universal_windows;$(SolutionDir)../../../archive/platform-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
@@ -620,7 +607,7 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time-universal_windows\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
-      <AdditionalDependencies>libcrypto.lib;libssl.lib;dxgi.lib;Windowscodecs.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
@@ -628,7 +615,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|ARM64'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PreprocessorDefinitions>_CRYPTO_OPENSSL_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_COMPRESS_ZLIB_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAsManaged>false</CompileAsManaged>
       <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-universal_windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-universal_windows/include;$(__archive)third-universal_windows/third/include;$(__archive)third-universal_windows/third/include/include;$(SolutionDir)../../../archive/platform-universal_windows/_include;$(SolutionDir)../../../archive/platform-universal_windows;$(SolutionDir)../../../archive/platform-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
@@ -647,7 +634,7 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time-universal_windows\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
-      <AdditionalDependencies>dxgi.lib;Windowscodecs.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
@@ -660,7 +647,7 @@
       <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
       <ExceptionHandling>Async</ExceptionHandling>
       <CompileAsManaged>false</CompileAsManaged>
-      <PreprocessorDefinitions>_CRYPTO_OPENSSL_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_COMPRESS_ZLIB_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -673,7 +660,7 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time-universal_windows\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
-      <AdditionalDependencies>libcrypto.lib;libssl.lib;dxgi.lib;Windowscodecs.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
@@ -688,7 +675,7 @@
       <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
       <ExceptionHandling>Async</ExceptionHandling>
       <CompileAsManaged>false</CompileAsManaged>
-      <PreprocessorDefinitions>_CRYPTO_OPENSSL_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_COMPRESS_ZLIB_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
@@ -701,7 +688,7 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
-      <AdditionalDependencies>dxgi.lib;Windowscodecs.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
   </ItemDefinitionGroup>
@@ -713,7 +700,7 @@
       <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
       <ExceptionHandling>Async</ExceptionHandling>
       <CompileAsManaged>false</CompileAsManaged>
-      <PreprocessorDefinitions>_CRYPTO_OPENSSL_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_COMPRESS_ZLIB_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
@@ -725,7 +712,7 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time-universal_windows\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
-      <AdditionalDependencies>libcrypto.lib;libssl.lib;dxgi.lib;Windowscodecs.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
   </ItemDefinitionGroup>
@@ -738,7 +725,7 @@
       <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
       <ExceptionHandling>Async</ExceptionHandling>
       <CompileAsManaged>false</CompileAsManaged>
-      <PreprocessorDefinitions>_CRYPTO_OPENSSL_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_COMPRESS_ZLIB_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
@@ -751,14 +738,14 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
-      <AdditionalDependencies>dxgi.lib;Windowscodecs.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PreprocessorDefinitions>_CRYPTO_OPENSSL_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_COMPRESS_ZLIB_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAsManaged>false</CompileAsManaged>
       <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-universal_windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-universal_windows/include;$(__archive)third-universal_windows/third/include;$(__archive)third-universal_windows/third/include/include;$(SolutionDir)../../../archive/platform-universal_windows/_include;$(SolutionDir)../../../archive/platform-universal_windows;$(SolutionDir)../../../archive/platform-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
@@ -779,7 +766,7 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time-universal_windows\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
-      <AdditionalDependencies>libcrypto.lib;libssl.lib;dxgi.lib;Windowscodecs.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
@@ -789,7 +776,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PreprocessorDefinitions>_CRYPTO_OPENSSL_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_COMPRESS_ZLIB_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAsManaged>false</CompileAsManaged>
       <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-universal_windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-universal_windows/include;$(__archive)third-universal_windows/third/include;$(__archive)third-universal_windows/third/include/include;$(SolutionDir)../../../archive/platform-universal_windows/_include;$(SolutionDir)../../../archive/platform-universal_windows;$(SolutionDir)../../../archive/platform-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
@@ -810,7 +797,7 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time-universal_windows\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
-      <AdditionalDependencies>dxgi.lib;Windowscodecs.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
@@ -825,7 +812,7 @@
       <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
       <ExceptionHandling>Async</ExceptionHandling>
       <CompileAsManaged>false</CompileAsManaged>
-      <PreprocessorDefinitions>_CRYPTO_OPENSSL_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_COMPRESS_ZLIB_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -838,7 +825,7 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time-universal_windows\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
-      <AdditionalDependencies>libcrypto.lib;libssl.lib;dxgi.lib;Windowscodecs.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
       <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
@@ -854,7 +841,7 @@
       <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
       <ExceptionHandling>Async</ExceptionHandling>
       <CompileAsManaged>false</CompileAsManaged>
-      <PreprocessorDefinitions>_CRYPTO_OPENSSL_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_COMPRESS_ZLIB_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
@@ -867,7 +854,7 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
-      <AdditionalDependencies>dxgi.lib;Windowscodecs.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
   </ItemDefinitionGroup>

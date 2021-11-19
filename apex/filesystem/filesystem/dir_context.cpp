@@ -2714,6 +2714,21 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 }
 
 
+::file::path dir_context::document2()
+{
+
+#ifdef _UWP
+
+    return image();
+
+#else
+
+    return document();
+
+#endif
+
+}
+
 
 ::file::path dir_context::download()
 {

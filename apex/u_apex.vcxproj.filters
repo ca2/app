@@ -808,6 +808,9 @@
     <ClCompile Include="platform\api.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
+    <ClCompile Include="platform\api_client.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="astr.h">
@@ -1948,6 +1951,9 @@
       <Filter>Header Files\compress</Filter>
     </ClInclude>
     <ClInclude Include="platform\api.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\api_client.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
   </ItemGroup>

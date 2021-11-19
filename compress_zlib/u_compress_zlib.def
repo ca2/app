@@ -1,0 +1,7 @@
+LIBRARY "compress_zlib"
+
+EXPORTS
+compress_zlib_factory_exchange
+
+
+

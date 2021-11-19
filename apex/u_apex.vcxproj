@@ -1037,6 +1037,7 @@
     <ClInclude Include="platform\apex_main_data.h" />
     <ClInclude Include="platform\apex_main_struct.h" />
     <ClInclude Include="platform\api.h" />
+    <ClInclude Include="platform\api_client.h" />
     <ClInclude Include="platform\application.h" />
     <ClInclude Include="platform\application_array.h" />
     <ClInclude Include="platform\application_consumer.h" />
@@ -1277,6 +1278,7 @@
     <ClCompile Include="platform\apex_main_data.cpp" />
     <ClCompile Include="platform\apex_main_struct.cpp" />
     <ClCompile Include="platform\api.cpp" />
+    <ClCompile Include="platform\api_client.cpp" />
     <ClCompile Include="platform\application.cpp" />
     <ClCompile Include="platform\application_array.cpp" />
     <ClCompile Include="platform\application_container.cpp" />

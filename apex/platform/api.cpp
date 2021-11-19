@@ -186,3 +186,58 @@ void api::on_login_authentication_failed()
    api_login(m_strConfig, m_strProfile);
 
 }
+
+
+
+   string api::randomDataBase64url(u32 length)
+   {
+
+      memory m;
+
+      m.set_size(length);
+
+      generate_random_bytes(m.get_data(), m.get_length());
+
+      return base64urlencodeNoPadding(m);
+
+   }
+
+
+   memory api::sha256(string strInput)
+   {
+
+      memory m;
+
+      m.from_asc(strInput);
+
+      memory mDst;
+
+      auto psystem = m_psystem->m_papexsystem;
+
+      auto pcrypto = psystem->crypto();
+
+      pcrypto->sha256(mDst, m);
+
+      return mDst;
+
+   }
+
+
+   string api::base64urlencodeNoPadding(memory m)
+   {
+
+      auto psystem = m_psystem;
+
+      auto pbase64 = psystem->base64();
+
+      string str = pbase64->encode(m);
+
+      // Converts base64 to base64url.
+      str.replace("+", "-");
+      str.replace("/", "_");
+      // Strips padding.
+      str.replace("=", "");
+
+      return str;
+
+   }

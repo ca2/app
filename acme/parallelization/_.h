@@ -63,6 +63,19 @@ CLASS_DECL_ACME bool is_main_thread();
 //#define MUTEX_NAMED_VSEM // get_system() V Semaphore
 #undef MUTEX_NAMED_VSEM
 
+#elif defined(FREEBSD)
+
+//#define MUTEX_COND_TIMED
+#undef MUTEX_NAMED_POSIX
+#undef MUTEX_NAMED_FD
+#define MUTEX_NAMED_FD // File Descriptor "Semaphore"
+//#define MUTEX_NAMED_VSEM // get_system() V Semaphore
+#undef MUTEX_NAMED_VSEM
+
+#else
+
+#error "Operating system not supported..."
+
 #endif
 
 

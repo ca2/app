@@ -992,8 +992,7 @@ class ::payload & payload::operator = (::u32 u)
 }
 
 
-#if !defined(LINUX) && !defined(MACOS) && !defined(ANDROID) && !defined(APPLE_IOS)
-
+#if !defined(LINUX) && !defined(MACOS) && !defined(ANDROID) && !defined(APPLE_IOS) && !defined(FREEBSD)
 
 class ::payload & payload::operator = (long l)
 {
@@ -2902,7 +2901,7 @@ bool & payload::as_bool()
    case e_type_f64:
       return (::i8)m_f64;
    case e_type_string:
-#if defined(LINUX) || defined(ANDROID)
+#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
       return (::i8)atof(m_str);
 #else
       return (::i8)_atof_l(m_str, ::acme::get_c_locale());
@@ -2944,7 +2943,7 @@ bool & payload::as_bool()
    case e_type_f64:
       return (::u8)m_f64;
    case e_type_string:
-#if defined(LINUX) || defined(ANDROID)
+#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
       return (::u8)atof(m_str);
 #else
       return (::u8)_atof_l(m_str, ::acme::get_c_locale());
@@ -3013,7 +3012,7 @@ bool & payload::as_bool()
    case e_type_f64:
       return (::i16)m_f64;
    case e_type_string:
-#if defined(LINUX) || defined(ANDROID)
+#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
       return (::i16)atof(m_str);
 #else
       return (::i16)_atof_l(m_str, ::acme::get_c_locale());
@@ -3083,7 +3082,7 @@ bool & payload::as_bool()
    case e_type_f64:
       return (::u16)m_f64;
    case e_type_string:
-#if defined(LINUX) || defined(ANDROID)
+#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
       return (::u16)atof(m_str);
 #else
       return (::u16)_atof_l(m_str, ::acme::get_c_locale());

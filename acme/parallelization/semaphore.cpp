@@ -12,7 +12,7 @@
 #endif
 
 
-#if defined(LINUX) || defined(__APPLE__)
+#if defined(LINUX) || defined(__APPLE__) || defined(FREEBSD)
 #include <sys/ipc.h>
 #include <sys/sem.h>
 #include "acme/node/operating_system/ansi/_ansi.h"

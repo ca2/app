@@ -1024,34 +1024,34 @@ bool mutex::already_exists()
 
       ::duration d;
 
-      d.m_i = abs_time.tv_sec + duration.m_i;
+      d.m_iSecond = abs_time.tv_sec + wait.m_i / 1'000;
 
-      d.m_i = abs_time.tv_nsec + duration.m_i;
+      d.m_iNanosecond = abs_time.tv_nsec + ((wait.m_i % 1'000) * 1'000'000);
 
       d.normalize();
 
-      abs_time.tv_sec = d.m_i;
+      abs_time.tv_sec = d.m_iSecond;
 
-      abs_time.tv_nsec = d.m_i;
+      abs_time.tv_nsec = d.m_iNanosecond;
 
       int rc = pthread_mutex_timedlock (&m_mutex, &abs_time);
 
       if (!rc)
       {
 
-         return e_synchronization_result_signaled_base;
+         return signaled_base;
 
       }
       else if(rc == ETIMEDOUT)
       {
 
-         return e_synchronization_result_timed_out;
+         return error_timeout;
 
       }
       else
       {
 
-         return e_synchronization_result_error;
+         return error_failed;
 
       }
 

@@ -1,7 +1,7 @@
 #pragma once
 
 
-#if defined(LINUX) || defined(__APPLE__)
+#if defined(LINUX) || defined(__APPLE__) || defined(FREEBSD)
 #include <sys/types.h>
 #include <sys/sem.h>
 #endif
@@ -14,7 +14,7 @@ class CLASS_DECL_ACME event :
 public:
 
 
-#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD)
 
    /// Private Mutexes
    bool              m_bManualEvent;
@@ -27,7 +27,7 @@ public:
 #endif
 
 
-#if defined(LINUX) || defined(__APPLE__)
+#if defined(LINUX) || defined(__APPLE__) || defined(FREEBSD)
 
    /// Named Mutexes
    int               m_sem;

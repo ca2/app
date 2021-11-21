@@ -2,7 +2,7 @@
 #include "acme/operating_system.h"
 
 
-#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD)
 
 #include <sys/ipc.h>
 #include <sys/sem.h>

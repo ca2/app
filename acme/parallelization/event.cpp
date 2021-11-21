@@ -12,7 +12,7 @@
 #endif
 
 
-#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD)
 #include <sys/ipc.h>
 #include "acme/node/operating_system/ansi/_pthread.h"
 #include <sys/time.h>

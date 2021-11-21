@@ -1242,7 +1242,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
       for (auto& str : stra)
       {
 
-         FORMATTED_INFORMATION("%s", str);
+         FORMATTED_INFORMATION("%s", str.c_str());
 
       }
 

@@ -76,8 +76,8 @@ namespace crypto_openssl
       //virtual void nessie(memory & memNessie, const block& block);
 
       // result is 20-byte digest
-      virtual void hmac(void * result,const memory & memMessage,const memory & key);
-      virtual void hmac(void * result,const string & memMessage,const string & key);
+      void hmac(void * result,const memory & memMessage,const memory & key) override;
+      void hmac(void * result,const string & memMessage,const string & key) override;
 
       //virtual bool file_set(::payload payloadFile,const char * pszData,const char * pszSalt, ::application * papp);
       //virtual ::e_status     file_get(::payload payloadFile,string & str,const char * pszSalt, ::application * papp);
@@ -101,13 +101,13 @@ namespace crypto_openssl
       //virtual string defer_get_cryptkey();
 
       
-      virtual __pointer(::crypto::rsa) create_rsa_key(const ::string& strRsa);
+      __pointer(::crypto::rsa) create_rsa_key(const ::string& strRsa) override;
 
-      virtual __pointer(::crypto::rsa) generate_rsa_key();
+      __pointer(::crypto::rsa) generate_rsa_key() override;
 
-      virtual __pointer(::crypto::rsa) read_priv_pem(const ::string & strFile);
+      __pointer(::crypto::rsa) read_priv_pem(const ::string & strFile) override;
 
-      virtual __pointer(::crypto::rsa) read_pub_pem(const ::string & strFile);
+      __pointer(::crypto::rsa) read_pub_pem(const ::string & strFile) override;
 
 
       void err_load_rsa_strings();

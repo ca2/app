@@ -3033,7 +3033,7 @@ namespace user
       catch (...)
       {
 
-         FORMATTED_INFORMATION("Exception: interaction::_001DrawThis %s", __type_name(this));
+         INFORMATION("Exception: interaction::_001DrawThis %s" << __type_name(this));
 
       }
 
@@ -3914,7 +3914,7 @@ return "";
          catch (...)
          {
 
-            FORMATTED_TRACE("Exception: interaction::_000OnDraw _001DrawThis %s", __type_name(this));
+            TRACE("Exception: interaction::_000OnDraw _001DrawThis %s" << __type_name(this));
 
          }
 
@@ -3939,7 +3939,7 @@ return "";
             catch (...)
             {
 
-               FORMATTED_TRACE("Exception: interaction::_000OnDraw _001DrawChildren %s", __type_name(this));
+               TRACE("Exception: interaction::_000OnDraw _001DrawChildren %s" << __type_name(this));
 
             }
 

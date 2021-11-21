@@ -136,7 +136,7 @@ namespace sockets
       if(m_request.headers().has_property(__id(accept_language)))
       {
 
-         FORMATTED_INFORMATION("accept-language: %s", m_request.header(__id(accept_language)).string());
+         FORMATTED_INFORMATION("accept-language: %s", m_request.header(__id(accept_language)).string().c_str());
 
       }
 

@@ -106,7 +106,7 @@
     <ClInclude Include="zutil.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="axiszlib.def" />
+    
     <None Include="contrib\masmx64\gvmat64.asm" />
     <None Include="contrib\masmx64\inffasx64.asm" />
     <None Include="contrib\masmx86\inffas32.asm" />

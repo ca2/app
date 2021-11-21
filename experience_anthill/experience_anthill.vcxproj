@@ -56,7 +56,7 @@
     <ClCompile Include="frame_011.cpp" />
     <ClCompile Include="frame_013.cpp" />
     <ClCompile Include="frame_Minimal001.cpp" />
-    <ClCompile Include="factory_exchange.cpp" />
+    <ClCompile Include="_factory.cpp" />
     <ClCompile Include="style.cpp" />
     <ClCompile Include="_.cpp" />
   </ItemGroup>
@@ -97,9 +97,7 @@
       <Project>{a216abd4-26c4-4746-96b3-9d30ed28cf92}</Project>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="experience_anthill.def" />
-  </ItemGroup>
+  
   <PropertyGroup Label="Globals">
     <ProjectName>experience_anthill</ProjectName>
     <ProjectGuid>{0BB1A1D1-7B7D-4484-9DF5-060481390526}</ProjectGuid>
@@ -447,7 +445,7 @@
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>
       </EntryPointSymbol>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <ShowProgress>NotSet</ShowProgress>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <MergeSections>
@@ -530,7 +528,7 @@
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>
       </EntryPointSymbol>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <ShowProgress>NotSet</ShowProgress>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <MergeSections>
@@ -751,7 +749,7 @@
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>
       </EntryPointSymbol>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
     <CustomBuildStep>
@@ -828,7 +826,7 @@
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>
       </EntryPointSymbol>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
     <CustomBuildStep>

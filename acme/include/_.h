@@ -2751,9 +2751,18 @@ struct plane_system;
 
 #endif
 
-class factory_map;
 
-typedef void(*PFN_factory_exchange)(::factory_map * pfactorymap);
+namespace factory
+{
+
+
+   class factory;
+
+
+} // namespace factory
+
+
+typedef void(*PFN_factory)(::factory::factory * pfactory);
 
 
 using argument = payload;
@@ -3332,7 +3341,7 @@ namespace factory
 {
 
 
-   class factory_interface;
+   class factory_item_interface;
 
 
 } // namespace factory
@@ -4689,6 +4698,18 @@ class wcsdup_array;
 
 
 #include "acme/platform/acme_main_data.h"
+
+
+CLASS_DECL_ACME string implementation_name(const ::string& strComponent, const ::string& strImplementation);
+
+
+CLASS_DECL_ACME string library_name(const ::string & strComponent, const ::string & strImplementation);
+
+
+CLASS_DECL_ACME string factory_name(const ::string& strLibrary);
+
+
+CLASS_DECL_ACME string library_filter(const ::string& str);
 
 
 #include "acme/platform/library.h"

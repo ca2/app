@@ -102,7 +102,7 @@ namespace aura
       virtual void initialize_factory();
 
 
-      virtual bool create_factory();
+      virtual bool add_factory_item();
 
 
    };

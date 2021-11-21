@@ -17,7 +17,7 @@
 		9A00E6BC266172DE00517464 /* button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A00E6632661721100517464 /* button.cpp */; };
 		9A00E6BD266172DE00517464 /* control_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A00E6662661721100517464 /* control_box.cpp */; };
 		9A00E6BE266172DE00517464 /* experience.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A00E6A72661721100517464 /* experience.cpp */; };
-		9A00E6BF266172DE00517464 /* factory_exchange.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A00E68A2661721100517464 /* factory_exchange.cpp */; };
+		9A00E6BF266172DE00517464 /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A00E68A2661721100517464 /* _factory.cpp */; };
 		9A00E6C0266172DE00517464 /* frame_001.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A00E6922661721100517464 /* frame_001.cpp */; };
 		9A00E6C1266172DE00517464 /* frame_002.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A00E6952661721100517464 /* frame_002.cpp */; };
 		9A00E6C2266172DE00517464 /* frame_005.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A00E6A92661721100517464 /* frame_005.cpp */; };
@@ -88,7 +88,7 @@
 		9A00E6862661721100517464 /* button.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = button.h; sourceTree = "<group>"; };
 		9A00E6872661721100517464 /* frame_008.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = frame_008.h; sourceTree = "<group>"; };
 		9A00E6892661721100517464 /* frame_002.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = frame_002.h; sourceTree = "<group>"; };
-		9A00E68A2661721100517464 /* factory_exchange.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = factory_exchange.cpp; sourceTree = "<group>"; };
+		9A00E68A2661721100517464 /* _factory.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _factory.cpp; sourceTree = "<group>"; };
 		9A00E6922661721100517464 /* frame_001.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = frame_001.cpp; sourceTree = "<group>"; };
 		9A00E6942661721100517464 /* framework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
 		9A00E6952661721100517464 /* frame_002.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = frame_002.cpp; sourceTree = "<group>"; };
@@ -157,7 +157,7 @@
 				9A00E65C2661721100517464 /* control_box.h */,
 				9A00E6A72661721100517464 /* experience.cpp */,
 				9A00E67A2661721100517464 /* experience.h */,
-				9A00E68A2661721100517464 /* factory_exchange.cpp */,
+				9A00E68A2661721100517464 /* _factory.cpp */,
 				9A00E6922661721100517464 /* frame_001.cpp */,
 				9A00E6A42661721100517464 /* frame_001.h */,
 				9A00E6952661721100517464 /* frame_002.cpp */,
@@ -373,7 +373,7 @@
 				9A00E6BC266172DE00517464 /* button.cpp in Sources */,
 				9A00E6BD266172DE00517464 /* control_box.cpp in Sources */,
 				9A00E6BE266172DE00517464 /* experience.cpp in Sources */,
-				9A00E6BF266172DE00517464 /* factory_exchange.cpp in Sources */,
+				9A00E6BF266172DE00517464 /* _factory.cpp in Sources */,
 				9A00E6C0266172DE00517464 /* frame_001.cpp in Sources */,
 				9A00E6C1266172DE00517464 /* frame_002.cpp in Sources */,
 				9A00E6C2266172DE00517464 /* frame_005.cpp in Sources */,

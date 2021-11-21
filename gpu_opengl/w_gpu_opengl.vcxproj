@@ -306,7 +306,7 @@
     <ClCompile Include="context_egl.cpp" />
     <ClCompile Include="context_glx.cpp" />
     <ClCompile Include="context_win32.cpp" />
-    <ClCompile Include="factory_exchange.cpp" />
+    <ClCompile Include="_factory.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">Create</PrecompiledHeader>
@@ -334,9 +334,7 @@
   <ItemGroup>
     <ResourceCompile Include="gpu_opengl.rc" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="gpu_opengl.def" />
-  </ItemGroup>
+  
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

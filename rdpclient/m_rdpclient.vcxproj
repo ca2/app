@@ -45,7 +45,7 @@
     <ClCompile Include="dllmain.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="axisrdpclient.def" />
+    
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\clientchannels\m_axisclientchannels.vcxproj">

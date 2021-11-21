@@ -33,7 +33,7 @@ public:
    virtual ::block get_main_resource_block();
 
    
-   virtual ::folder* defer_resource_folder();
+   virtual ::folder* resource_folder();
    virtual ::memory_file_transport create_resource_file(const char * path);
    virtual ::memory get_resource_memory(const char* path);
    virtual bool resource_is_file_or_dir(const char* path);

@@ -89,36 +89,52 @@ namespace apex
 
       string strFooter__;
 
-      strFooter__ += "<br/>";
-      strFooter__ += "<br/>";
+      if (m_psystem->m_bAudio)
+      {
 
+         strFooter__ += "<br/>";
+         strFooter__ += "<br/>";
 
-      strFooter__ += "<h2>Text to Speech</h2>";
+         strFooter__ += "<h2>Text to Speech</h2>";
 
-      strFooter__ += "<br/>";
-      strFooter__ += "<br/>";
-      strFooter__ += "<input type=\"checkbox\" id=\"text_to_speech_azure.checkbox\" />";
-      strFooter__ += "&nbsp;Azure";
-      strFooter__ += "<br/>";
-      strFooter__ += "<br/>";
+         strFooter__ += "<br/>";
+         strFooter__ += "<br/>";
+         strFooter__ += "<input type=\"checkbox\" id=\"text_to_speech_azure.checkbox\" />";
+         strFooter__ += "&nbsp;Azure";
+         strFooter__ += "<br/>";
+         strFooter__ += "<br/>";
 
-      strFooter__ += "<br/>";
-      strFooter__ += "<br/>";
-      strFooter__ += "<input type=\"checkbox\" id=\"text_to_speech_google.checkbox\" />";
-      strFooter__ += "&nbsp;Google";
-      strFooter__ += "<br/>";
-      strFooter__ += "<br/>";
+         strFooter__ += "<br/>";
+         strFooter__ += "<br/>";
+         strFooter__ += "<input type=\"checkbox\" id=\"text_to_speech_google.checkbox\" />";
+         strFooter__ += "&nbsp;Google";
+         strFooter__ += "<br/>";
+         strFooter__ += "<br/>";
 
 #ifdef WINDOWS_DESKTOP
 
-      strFooter__ += "<br/>";
-      strFooter__ += "<br/>";
-      strFooter__ += "<input type=\"checkbox\" id=\"text_to_speech_sapi.checkbox\" />";
-      strFooter__ += "&nbsp;Microsoft Speech API";
-      strFooter__ += "<br/>";
-      strFooter__ += "<br/>";
+         strFooter__ += "<br/>";
+         strFooter__ += "<br/>";
+         strFooter__ += "<input type=\"checkbox\" id=\"text_to_speech_sapi.checkbox\" />";
+         strFooter__ += "&nbsp;Microsoft Speech API";
+         strFooter__ += "<br/>";
+         strFooter__ += "<br/>";
 
 #endif
+
+      }
+      else
+      {
+
+         strFooter__ += "<br/>";
+         strFooter__ += "<br/>";
+
+         strFooter__ += "(No Audio)";
+
+         strFooter__ += "<br/>";
+         strFooter__ += "<br/>";
+
+      }
 
       strFooter__ += system_options_main_body();
 

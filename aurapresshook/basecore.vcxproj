@@ -143,7 +143,7 @@
     <Link>
       <GenerateDebugInformation>Debug</GenerateDebugInformation>
       <AdditionalDependencies>OleAut32.lib;user32.lib</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../time/library/$(PlatformName)/$(ConfigurationName);$(__archive)third-windows/thirdparty/library/$(PlatformName)/$(ConfigurationName);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <EntryPointSymbol>
@@ -208,7 +208,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>OleAut32.lib;user32.lib</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../time/library/$(PlatformName)/$(ConfigurationName);$(__archive)third-windows/thirdparty/library/$(PlatformName)/$(ConfigurationName);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <EntryPointSymbol>
@@ -268,7 +268,7 @@
     <Link>
       <GenerateDebugInformation>Debug</GenerateDebugInformation>
       <AdditionalDependencies>OleAut32.lib;user32.lib</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../time/library/$(PlatformName)/$(ConfigurationName);$(__archive)third-windows/thirdparty/library/$(PlatformName)/$(ConfigurationName);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -339,7 +339,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>OleAut32.lib;user32.lib</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../time/library/$(PlatformName)/$(ConfigurationName);$(__archive)third-windows/thirdparty/library/$(PlatformName)/$(ConfigurationName);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -418,7 +418,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="time.def" />
+    
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

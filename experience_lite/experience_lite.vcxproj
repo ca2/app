@@ -87,9 +87,7 @@
       <Project>{e000ffaf-392f-4e32-bf51-fd7ed638991f}</Project>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="experience_lite.def" />
-  </ItemGroup>
+  
   <PropertyGroup Label="Globals">
     <ProjectName>experience_lite</ProjectName>
     <ProjectGuid>{0BB1A1D1-7B7D-4484-9DF5-060481390526}</ProjectGuid>
@@ -252,7 +250,7 @@
       <RandomizedBaseAddress>true</RandomizedBaseAddress>
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <TargetMachine>MachineX86</TargetMachine>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <ShowProgress>NotSet</ShowProgress>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
@@ -319,7 +317,7 @@
       <RandomizedBaseAddress>true</RandomizedBaseAddress>
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <TargetMachine>MachineX86</TargetMachine>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <ShowProgress>NotSet</ShowProgress>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
@@ -394,7 +392,7 @@
       <RandomizedBaseAddress>true</RandomizedBaseAddress>
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <TargetMachine>MachineX86</TargetMachine>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <FixedBaseAddress>false</FixedBaseAddress>
       <ShowProgress>NotSet</ShowProgress>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
@@ -462,7 +460,7 @@
       </EntryPointSymbol>
       <RandomizedBaseAddress>true</RandomizedBaseAddress>
       <DataExecutionPrevention>true</DataExecutionPrevention>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
     <CustomBuildStep>
@@ -525,7 +523,7 @@
       </EntryPointSymbol>
       <RandomizedBaseAddress>true</RandomizedBaseAddress>
       <DataExecutionPrevention>true</DataExecutionPrevention>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
     <CustomBuildStep>
@@ -595,7 +593,7 @@
       </EntryPointSymbol>
       <RandomizedBaseAddress>true</RandomizedBaseAddress>
       <DataExecutionPrevention>true</DataExecutionPrevention>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <FixedBaseAddress>false</FixedBaseAddress>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>

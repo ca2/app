@@ -181,7 +181,7 @@
 		<Unit filename="axis/node/linux/aaa_want_to_remove_linux_crypto.h" />
 		<Unit filename="axis/node/linux/copydesk.cpp" />
 		<Unit filename="axis/node/linux/copydesk.h" />
-		<Unit filename="axis/node/linux/factory_exchange.cpp" />
+		<Unit filename="axis/node/linux/_factory.cpp" />
 		<Unit filename="axis/node/linux/factory_exchange.h" />
 		<Unit filename="axis/node/linux/ip_enum.cpp" />
 		<Unit filename="axis/node/linux/ip_enum.h" />

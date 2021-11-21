@@ -107,9 +107,7 @@
     <ClInclude Include="experience_lite_interaction.h" />
     <ClInclude Include="experience_lite_library.h" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="experience_lite.def" />
-  </ItemGroup>
+  
   <ItemGroup>
     <ProjectReference Include="..\..\..\source\app\aura\nord_aura.vcxproj">
       <Project>{02207bc4-c08b-4a2d-b754-f3bd46ad3098}</Project>

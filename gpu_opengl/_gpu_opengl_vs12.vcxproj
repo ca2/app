@@ -215,7 +215,7 @@
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)third-windows/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>
@@ -307,7 +307,7 @@
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)third-windows/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>
@@ -407,7 +407,7 @@
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)third-windows/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>
@@ -503,7 +503,7 @@
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)third-windows/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>
@@ -590,7 +590,7 @@
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)third-windows/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>
@@ -684,7 +684,7 @@
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)third-windows/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>

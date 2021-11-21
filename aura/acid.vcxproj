@@ -224,7 +224,7 @@
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>zlib.lib;bzip2.lib;libcrypto.lib;libssl.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;pcre.lib;version.lib;Secur32.lib;gdiplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)third-windows/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <EntryPointSymbol>
       </EntryPointSymbol>
@@ -297,7 +297,7 @@
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>zlib.lib;bzip2.lib;libcrypto.lib;libssl.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;pcre.lib;version.lib;Secur32.lib;gdiplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)third-windows/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <EntryPointSymbol>
       </EntryPointSymbol>
@@ -364,7 +364,7 @@
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>zlib.lib;bzip2.lib;libcrypto.lib;libssl.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;pcre.lib;version.lib;Secur32.lib;gdiplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)third-windows/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
@@ -450,7 +450,7 @@
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>zlib.lib;bzip2.lib;libcrypto.lib;libssl.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;pcre.lib;version.lib;Secur32.lib;gdiplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)third-windows/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
@@ -530,7 +530,7 @@
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>zlib.lib;bzip2.lib;libcrypto.lib;libssl.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;pcre.lib;version.lib;Secur32.lib;gdiplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)third-windows/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
@@ -605,7 +605,7 @@
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>zlib.lib;bzip2.lib;libcrypto.lib;libssl.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;pcre.lib;version.lib;Secur32.lib;gdiplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)third-windows/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
@@ -685,7 +685,7 @@
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>zlib.lib;bzip2.lib;libcrypto.lib;libssl.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;pcre.lib;version.lib;Secur32.lib;gdiplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)third-windows/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
@@ -769,7 +769,7 @@
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>zlib.lib;bzip2.lib;libcrypto.lib;libssl.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;pcre.lib;version.lib;Secur32.lib;gdiplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)third-windows/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
@@ -1142,7 +1142,7 @@
     <ClCompile Include="aura\node\windows\crypto.cpp" />
     <ClCompile Include="aura\node\windows\dir_context.cpp" />
     <ClCompile Include="aura\node\windows\dir_system.cpp" />
-    <ClCompile Include="aura\node\windows\factory_exchange.cpp" />
+    <ClCompile Include="aura\node\windows\_factory.cpp" />
     <ClCompile Include="aura\node\windows\file.cpp" />
     <ClCompile Include="aura\node\windows\file_context.cpp" />
     <ClCompile Include="aura\node\windows\file_find.cpp" />
@@ -2934,7 +2934,7 @@
     <ClCompile Include="primitive\math\scalar.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="aura.def" />
+    
     <None Include="aura\message\_impl.h" />
     <None Include="primitive\geometry\geometry.inl" />
     <None Include="primitive\geometry\geometry_size.inl" />

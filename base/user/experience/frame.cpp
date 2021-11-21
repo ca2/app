@@ -834,7 +834,7 @@ namespace experience
       if (!m_pcontrolbox)
       {
 
-         __compose(m_pcontrolbox, m_pexperience->m_plibrary->create < ::experience::control_box >());
+         __compose(m_pcontrolbox, m_pexperience->m_pfactory->create < ::experience::control_box >());
 
          m_pcontrolbox->initialize(this);
 

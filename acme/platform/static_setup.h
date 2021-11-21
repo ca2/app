@@ -8,11 +8,11 @@
 #pragma once
 
 
-#define DECLARE_FACTORY_EXCHANGE(library) \
-extern "C" void library ## _factory_exchange(::factory_map* pfactorymap);
+#define DECLARE_FACTORY(library) \
+extern "C" void library ## _factory_exchange(::factory::factory* pfactory);
 
 
-#define SETUP_FACTORY_EXCHANGE(library) \
+#define SETUP_FACTORY(library) \
 static_setup      m_setup_ ## library{ &library ## _factory_exchange, #library}
 
 
@@ -37,23 +37,23 @@ public:
       flag_multimedia = 8,
       flag_library = 16,
       flag_object_user = 32,
-      flag_factory_exchange = 64,
+      flag_factory = 64,
       flag_do_not_install = 4096,
 
    };
 
 
    const char *                  m_pszName;
-   enum_flag                        m_eflag;
+   enum_flag                     m_eflag;
    static_setup*                 m_ppropertysetupNext;
-   PFN_factory_exchange          m_pfnFactoryExchange;
+   PFN_factory                   m_pfnFactory;
 
 
    static static_setup *         s_psetupList;
 
 
    static_setup(::static_setup::enum_flag eflag, const char * pszName);
-   static_setup(PFN_factory_exchange pfnFactoryExchange, const char* pszName);
+   static_setup(PFN_factory pfnFactory, const char* pszName);
 
 
    void construct();
@@ -65,7 +65,7 @@ public:
 
    static static_setup* get_last(::static_setup::enum_flag eflag, const char* pszName = nullptr);
    static static_setup* get_first(::static_setup::enum_flag eflag, const char* pszName = nullptr);
-   static PFN_factory_exchange get_factory_exchange(const char* pszName = nullptr);
+   static PFN_factory get_factory_function(const char* pszName = nullptr);
 
 
    virtual __pointer(::acme::library) create_library();

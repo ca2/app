@@ -5,31 +5,31 @@ namespace factory
 {
 
 
-   inline __pointer(factory_interface) & get_factory(const ::id & id)
+   inline __pointer(factory_item_interface) & get_factory_item(const ::id & id)
    {
 
       critical_section_lock cs(get_factory_critical_section());
 
-      return (*get_factory_map())[id];
+      return (*get_factory())[id];
 
    }
 
 
-   inline void set_factory(const ::id & id, const __pointer(factory_interface) & pfactory)
+   inline void set_factory(const ::id & id, const __pointer(factory_item_interface) & pfactory)
    {
 
       critical_section_lock cs(get_factory_critical_section());
 
-      get_factory_map()->set_at(id, pfactory);
+      get_factory()->set_at(id, pfactory);
 
    }
 
 
    template < typename TYPE, typename BASE >
-   inline void create_factory(const ::id & id)
+   inline void add_factory_item(const ::id & id)
    {
 
-      set_factory(id, __new(factory < TYPE, BASE >()));
+      set_factory(id, __new(factory_item < TYPE, BASE >()));
 
    }
 
@@ -142,7 +142,7 @@ namespace factory
 //inline __pointer(BASE_TYPE) __create()
 //{
 //
-//   auto pfactory = ::factory::get_factory < BASE_TYPE >();
+//   auto pfactory = ::factory::get_factory_item < BASE_TYPE >();
 //
 //   if (!pfactory)
 //   {
@@ -205,7 +205,7 @@ namespace factory
 //inline __pointer(BASE_TYPE) __id_create(const ::id & id)
 //{
 //
-//   auto pfactory = ::factory::get_factory(id);
+//   auto pfactory = ::factory::get_factory_item(id);
 //
 //   if (!pfactory)
 //   {
@@ -557,7 +557,7 @@ namespace factory
 //inline ::e_status __construct(__pointer(BASE_TYPE) & pusermessage)
 //{
 //
-//   auto & pfactory = ::factory::get_factory < BASE_TYPE >();
+//   auto & pfactory = ::factory::get_factory_item < BASE_TYPE >();
 //
 //   if (pfactory)
 //   {
@@ -618,7 +618,7 @@ namespace factory
 //inline ::e_status __id_construct(__pointer(BASE_TYPE) & pusermessage, const ::id & id)
 //{
 //
-//   auto pfactory = ::factory::get_factory(id);
+//   auto pfactory = ::factory::get_factory_item(id);
 //
 //   if (!pfactory)
 //   {
@@ -686,60 +686,170 @@ namespace factory
 //
 
 
-inline __pointer(::factory::factory_interface) & factory_map::get_factory(const ::id & id)
+namespace factory
 {
 
-   critical_section_lock cs(::factory::get_factory_critical_section());
 
-   return (*this)[id];
-
-}
-
-
-template < typename BASE_TYPE >
-inline __pointer(::factory::factory_interface) & factory_map::get_factory()
-{
-
-   string strTypename(typeid(BASE_TYPE).name());
-
-   strTypename = ::demangle(strTypename);
-
-   return get_factory(strTypename);
-
-}
-
-
-template < typename BASE_TYPE >
-inline __transport(BASE_TYPE) factory_map::create()
-{
-
-   auto pfactoryinterface = get_factory < BASE_TYPE >();
-
-   if (!pfactoryinterface)
+   inline __pointer(::factory::factory_item_interface)& factory::get_factory_item(const ::id& id)
    {
 
-      return error_no_factory;
+      critical_section_lock cs(::factory::get_factory_critical_section());
+
+
+      return (*this)[id];
 
    }
 
-   return pfactoryinterface->create_element();
 
-}
+   inline ::factory::factory_item_interface * factory::get_factory_item(const ::id& id) const
+   {
+
+      critical_section_lock cs(::factory::get_factory_critical_section());
+
+      auto p = this->plookup(id);
+
+      if (!p)
+      {
+
+         return nullptr;
+
+      }
+
+      return p->m_element2;
+
+   }
 
 
-template < typename TYPE, typename BASE_TYPE>
-inline __pointer(::factory::factory_base < BASE_TYPE >) factory_map::create_factory()
-{
+   template < typename BASE_TYPE >
+   inline __pointer(::factory::factory_item_interface)& factory::get_factory_item()
+   {
 
-   critical_section_lock lock(::factory::get_factory_critical_section());
+      string strTypename(typeid(BASE_TYPE).name());
 
-   auto pfactory = __new(::factory::factory< TYPE, BASE_TYPE >());
+      strTypename = ::demangle(strTypename);
 
-   get_factory < BASE_TYPE >() = pfactory;
+      return get_factory_item(strTypename);
 
-   return pfactory;
+   }
 
-}
+
+   template < typename BASE_TYPE >
+   inline __transport(BASE_TYPE) factory::create()
+   {
+
+      auto pfactoryinterface = get_factory_item < BASE_TYPE >();
+
+      if (!pfactoryinterface)
+      {
+
+         return error_no_factory;
+
+      }
+
+      return pfactoryinterface->create_element();
+
+   }
+
+
+   template < typename TYPE, typename BASE_TYPE>
+   inline __pointer(::factory::factory_item_base < BASE_TYPE >) factory::add_factory_item()
+   {
+
+      critical_section_lock lock(::factory::get_factory_critical_section());
+
+      auto pfactory = __new(::factory::factory_item< TYPE, BASE_TYPE >());
+
+      get_factory_item < BASE_TYPE >() = pfactory;
+
+      return pfactory;
+
+   }
+
+
+   template < typename BASE_TYPE >
+   inline ::e_status factory::__compose(::object* pobjectComposer, __composite(BASE_TYPE)& pcomposite)
+   {
+
+      if (!pcomposite)
+      {
+
+         auto& pfactoryitem = get_factory_item < BASE_TYPE >();
+
+         if (!pfactoryitem)
+         {
+
+            return ::error_no_factory;
+
+         }
+
+         auto pelement = ::move(pfactoryitem->create_element());
+
+         if (!pelement)
+         {
+
+            return ::error_no_memory;
+
+         }
+
+         auto estatus = pobjectComposer->__compose(pcomposite, pelement);
+
+         if (!pcomposite)
+         {
+
+            return estatus;
+
+         }
+
+      }
+
+      return ::success;
+
+   }
+
+
+   template < typename BASE_TYPE >
+   inline ::e_status factory::__raw_compose(::object* pobjectComposer, __composite(BASE_TYPE)& pcomposite)
+   {
+
+      if (!pcomposite)
+      {
+
+         auto& pfactoryitem = get_factory_item < BASE_TYPE >();
+
+         if (!pfactoryitem)
+         {
+
+            return ::error_no_factory;
+
+         }
+
+         auto pelement = pfactoryitem->create_element();
+
+         if (!pelement)
+         {
+
+            return ::error_no_memory;
+
+         }
+
+         auto estatus = pobjectComposer->__raw_compose(pcomposite, pelement);
+
+         if (!estatus)
+         {
+
+            return estatus;
+
+         }
+
+      }
+
+      return ::success;
+
+   }
+
+
+
+} // namespace factory
 
 
 

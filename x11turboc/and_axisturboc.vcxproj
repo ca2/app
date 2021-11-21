@@ -172,7 +172,7 @@
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir)</AdditionalLibraryDirectories>
       <AdditionalOptions>-Wl,-z,defs %(AdditionalOptions)</AdditionalOptions>
     </Link>
@@ -212,7 +212,7 @@
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir)</AdditionalLibraryDirectories>
       <AdditionalOptions>-Wl,-z,defs %(AdditionalOptions)</AdditionalOptions>
     </Link>
@@ -247,7 +247,7 @@
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(IntDir);$(SolutionDir)../../time/library/x86/$(ConfigurationName);$(__archive)third-windows/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>-Wl,-z,defs %(AdditionalOptions)</AdditionalOptions>
     </Link>
@@ -276,7 +276,7 @@
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(IntDir);$(SolutionDir)../../time/library/x86/$(ConfigurationName);$(__archive)third-windows/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>-Wl,-z,defs %(AdditionalOptions)</AdditionalOptions>
     </Link>
@@ -315,7 +315,7 @@
       <AdditionalDependencies>inffas.o;match.o;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(IntDir);$(SolutionDir)../../time/library/x86/$(ConfigurationName);$(__archive)third-windows/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PreLinkEvent>
@@ -381,7 +381,7 @@ ml /safeseh /coff /Zi /Fo"$(IntDir)match.o" /c /Fl"$(IntDir)match.lst" "$(Projec
     <ClInclude Include="zutil.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="axiszlib.def" />
+    
     <None Include="contrib\masmx64\gvmat64.asm">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>

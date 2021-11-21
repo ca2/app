@@ -845,7 +845,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="acme\acme\aura_gudo_application.inl" />
-    <None Include="acme.def" />
+    
     <None Include="acme\acme\acme.inl" />
     <None Include="acme\acme\aura_system_factory.inl" />
     <None Include="acme\acme\aura_system_id.inl" />
@@ -4623,7 +4623,7 @@
       <SubSystem>Windows</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <ModuleDefinitionFile>$(TargetName).def</ModuleDefinitionFile>
+      
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <AdditionalDependencies>Shcore.lib;Oleaut32.lib;DWrite.lib;D3D11.lib;D2D1.lib;Wtsapi32.lib;version.lib;Shlwapi.lib;Secur32.lib;Crypt32.lib;Ole32.lib;Gdiplus.lib;psapi.lib;msimg32.lib;gdi32.lib;user32.lib;Winmm.lib;WinINet.lib;shell32.lib;advapi32.lib;kernel32.lib;Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)../../time/library/x86/$(ConfigurationName);$(__archive)third-universal_windows/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -4660,7 +4660,7 @@
       <SubSystem>Windows</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <ModuleDefinitionFile>$(TargetName).def</ModuleDefinitionFile>
+      
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <AdditionalDependencies>Oleaut32.lib;DWrite.lib;D3D11.lib;D2D1.lib;Wtsapi32.lib;version.lib;Shlwapi.lib;Secur32.lib;Crypt32.lib;Ole32.lib;Gdiplus.lib;psapi.lib;msimg32.lib;gdi32.lib;user32.lib;Winmm.lib;WinINet.lib;shell32.lib;advapi32.lib;kernel32.lib;Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)../../time/library/x86/$(ConfigurationName);$(__archive)third-universal_windows/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -4754,7 +4754,7 @@
       <SubSystem>Windows</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <AdditionalLibraryDirectories>$(IntDir);$(SolutionDir)../../time/library/$(PlatformName)/$(Configuration)/;$(__archive)third-universal_windows/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>$(TargetName).def</ModuleDefinitionFile>
+      
       <AdditionalDependencies>ShCore.lib;OleAut32.lib;kernel32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>

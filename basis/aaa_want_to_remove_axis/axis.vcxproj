@@ -294,7 +294,7 @@
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>Msimg32.lib;bzip2.lib;libcrypto.lib;libssl.lib;sqlite.lib;winmm.lib;windowscodecs.lib;gdiplus.lib;Crypt32.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <EntryPointSymbol>
       </EntryPointSymbol>
@@ -368,7 +368,7 @@
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>Msimg32.lib;bzip2.lib;libcrypto.lib;libssl.lib;sqlite.lib;winmm.lib;windowscodecs.lib;gdiplus.lib;Crypt32.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <EntryPointSymbol>
       </EntryPointSymbol>
@@ -444,7 +444,7 @@
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>Msimg32.lib;bzip2.lib;libcrypto.lib;libssl.lib;sqlite.lib;winmm.lib;windowscodecs.lib;gdiplus.lib;Crypt32.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <EntryPointSymbol>
       </EntryPointSymbol>
@@ -523,7 +523,7 @@
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>Msimg32.lib;bzip2.lib;libcrypto.lib;libssl.lib;sqlite.lib;winmm.lib;windowscodecs.lib;gdiplus.lib;Crypt32.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <FixedBaseAddress>false</FixedBaseAddress>
@@ -584,7 +584,7 @@
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>Msimg32.lib;bzip2.lib;libcrypto.lib;libssl.lib;sqlite.lib;winmm.lib;windowscodecs.lib;gdiplus.lib;Crypt32.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <FixedBaseAddress>false</FixedBaseAddress>
@@ -643,7 +643,7 @@
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>Msimg32.lib;bzip2.lib;libcrypto.lib;libssl.lib;sqlite.lib;winmm.lib;windowscodecs.lib;gdiplus.lib;Crypt32.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
@@ -720,7 +720,7 @@
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>Msimg32.lib;bzip2.lib;libcrypto.lib;libssl.lib;sqlite.lib;winmm.lib;windowscodecs.lib;gdiplus.lib;Crypt32.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
@@ -799,7 +799,7 @@
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>Msimg32.lib;bzip2.lib;libcrypto.lib;libssl.lib;sqlite.lib;winmm.lib;windowscodecs.lib;gdiplus.lib;Crypt32.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
@@ -881,7 +881,7 @@
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>Msimg32.lib;bzip2.lib;libcrypto.lib;libssl.lib;sqlite.lib;winmm.lib;windowscodecs.lib;gdiplus.lib;Crypt32.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
@@ -960,7 +960,7 @@
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>Msimg32.lib;bzip2.lib;libcrypto.lib;libssl.lib;sqlite.lib;winmm.lib;windowscodecs.lib;gdiplus.lib;Crypt32.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
@@ -1132,7 +1132,7 @@
     </ClCompile>
     <ClCompile Include="axis\geoip\geoip_update.cpp">
     </ClCompile>
-    <ClCompile Include="axis\node\windows\factory_exchange.cpp">
+    <ClCompile Include="axis\node\windows\_factory.cpp">
     </ClCompile>
     <ClCompile Include="axis\node\windows\port_forward.cpp">
     </ClCompile>
@@ -1205,7 +1205,7 @@
     <ClInclude Include="user\userpresence\_.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="axis.def" />
+    
     <None Include="axis\axis\_impl.h" />
   </ItemGroup>
   <ItemGroup>

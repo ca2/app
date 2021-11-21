@@ -28,7 +28,7 @@ extern ::app_core * g_pappcore;
 //extern "C"
 //{
 //
-//   typedef void FN_factory_exchange(::factory_map * pfactorymap);
+//   typedef void FN_factory_exchange(::factory::factory * pfactory);
 //
 //   typedef FN_factory_exchange * PFN_factory_exchange;
 //
@@ -37,7 +37,7 @@ extern ::app_core * g_pappcore;
 //PFN_factory_exchange g_pfnfactoryDraw2d = nullptr;
 //
 //
-//PFN_factory_exchange get_draw2d_factory_exchange(::factory_map * pfactorymap)
+//PFN_factory_exchange ([a-z0-9_]+)_factory(::factory::factory * pfactory)
 //{
 //
 //   return g_pfnfactoryDraw2d;
@@ -45,7 +45,7 @@ extern ::app_core * g_pappcore;
 //}
 
 //
-//void set_draw2d_factory_exchange(PFN_factory_exchange pfnfactoryDraw2d)
+//void ([a-z0-9_]+)_factory(PFN_factory_exchange pfnfactoryDraw2d)
 //{
 //
 //   g_pfnfactoryDraw2d = pfnfactoryDraw2d;
@@ -190,8 +190,8 @@ m_bInterprocessIntercommunication = false;
 //m_bAuraInitializeInstance = false;
 //m_bAuraInitializeInstanceResult = false;
 
-//create_factory < ::user::user >();
-//create_factory < ::userfs::userfs >();
+//add_factory_item < ::user::user >();
+//add_factory_item < ::userfs::userfs >();
 
 //m_pmainpane = nullptr;
 
@@ -2926,9 +2926,9 @@ return false;
 
 INFORMATION("apex::application::process_init success");
 
-//create_factory < ::database::field_array >();
-//create_factory < ::database::row >();
-//create_factory < ::database::row_array >();
+//add_factory_item < ::database::field_array >();
+//add_factory_item < ::database::row >();
+//add_factory_item < ::database::row_array >();
 
 //if (m_bAxisProcessInitialize)
 //{
@@ -6038,9 +6038,9 @@ try
 //::e_status application::process_init()
 //{
 
-//   create_factory < ::database::field_array >();
-//   create_factory < ::database::row >();
-//   create_factory < ::database::row_array >();
+//   add_factory_item < ::database::field_array >();
+//   add_factory_item < ::database::row >();
+//   add_factory_item < ::database::row_array >();
 
 //   //if (m_bAxisProcessInitialize)
 //   //{
@@ -7170,8 +7170,8 @@ return m_datakey.m_bLocalData;
 //application::application()
 //{
 
-//   create_factory < ::user::user >();
-//   create_factory < ::userfs::userfs >();
+//   add_factory_item < ::user::user >();
+//   add_factory_item < ::userfs::userfs >();
 
 //   m_pmainpane = nullptr;
 

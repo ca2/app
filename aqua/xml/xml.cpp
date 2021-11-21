@@ -40,7 +40,7 @@ namespace xml
       //if(papplication->is_system())
       //{
 
-         create_factory < edit_item > ();
+      ::factory::add_factory_item < edit_item > ();
 
       //}
 

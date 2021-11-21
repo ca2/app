@@ -171,7 +171,7 @@
     <ClCompile Include="_math_math.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="math.def" />
+    
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{05C5BF74-ED25-4AB8-A8D3-4D680DD9ACED}</ProjectGuid>
@@ -315,7 +315,7 @@
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(IntDir);$(SolutionDir)../../time/library/x86/$(ConfigurationName);$(__archive)third-universal_windows/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>$(TargetName).def</ModuleDefinitionFile>
+      
       <GenerateDebugInformation>Debug</GenerateDebugInformation>
       <FixedBaseAddress>false</FixedBaseAddress>
     </Link>

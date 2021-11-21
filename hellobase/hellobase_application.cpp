@@ -39,10 +39,10 @@ namespace hellobase
    ::e_status application::init_instance()
    {
 
-      create_factory <::hellobase::document >();
-      create_factory <::hellobase::main_frame >();
-      create_factory <::user::button_view >();
-      create_factory <::hellobase::impact >();
+      add_factory_item <::hellobase::document >();
+      add_factory_item <::hellobase::main_frame >();
+      add_factory_item <::user::button_view >();
+      add_factory_item <::hellobase::impact >();
 
       if (!::base::application::init_instance())
       {

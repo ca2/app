@@ -17,7 +17,7 @@ __pointer(::aura::application)     ios_instantiate_application(__pointer(::aura:
 #include "ios_implementation.h"
 #include "ios_axis_dir.h"
 #include "ios_axis_file_system.h"
-#include "ios_factory_exchange.h"
+#include "([a-z0-9_]+)_factory.h"
 #include "ios_port_forward.h"
 #include "ios_copydesk.h"
 #include "ios_crypto.h"

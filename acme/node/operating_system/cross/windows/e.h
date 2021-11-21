@@ -25480,7 +25480,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// AppliCAtion was launched but it didn't register a class factory
+// AppliCAtion was launched but it didn't register a class factory_item
 //
 #define CO_E_APPDIDNTREG                 _HRESULT_TYPEDEF_(0x800401FEL)
 

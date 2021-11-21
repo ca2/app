@@ -304,7 +304,7 @@
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)third-windows/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <GenerateDebugInformation>Debug</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>
@@ -395,7 +395,7 @@
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)third-windows/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <GenerateDebugInformation>Debug</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>
@@ -486,7 +486,7 @@
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)third-windows/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <GenerateDebugInformation>Debug</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>
@@ -584,7 +584,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)third-windows/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <GenerateDebugInformation>DebugFastLink</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>
@@ -686,7 +686,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)third-windows/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <GenerateDebugInformation>DebugFastLink</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>
@@ -781,7 +781,7 @@
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <GenerateDebugInformation>Debug</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>
@@ -867,7 +867,7 @@
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <GenerateDebugInformation>Debug</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>
@@ -953,7 +953,7 @@
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <GenerateDebugInformation>Debug</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>
@@ -1045,7 +1045,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)third-windows/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <GenerateDebugInformation>DebugFastLink</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>
@@ -1139,7 +1139,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)third-windows/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <GenerateDebugInformation>DebugFastLink</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>
@@ -1189,7 +1189,7 @@
     <ClCompile Include="bitmap.cpp" />
     <ClCompile Include="brush.cpp" />
     <ClCompile Include="_.cpp" />
-    <ClCompile Include="factory_exchange.cpp" />
+    <ClCompile Include="_factory.cpp" />
     <ClCompile Include="font.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Create</PrecompiledHeader>

@@ -599,7 +599,7 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
          if(pschemaRef.is_set())
          {
 
-            auto pframe = get_frame_experience(pschemaRef->m_strLibrary, pschemaRef->m_strName);
+            auto pframe = frame_experience(pschemaRef->m_strExperience, pschemaRef->m_strFrameSchema);
 
             if(::is_set(pframe))
             {
@@ -618,7 +618,7 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
 
    }
 
-   auto pframe = get_frame_experience(m_varFrame["experience"], m_varFrame["schema"]);
+   auto pframe = frame_experience(m_varFrame["experience"], m_varFrame["schema"]);
 
    string strStyle;
    
@@ -644,15 +644,6 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
    return pframe;
 
 }
-
-
-//bool simple_frame_window::WfiOnBeforeUpDown()
-//{
-//
-//
-//
-//
-//}
 
 
 ::e_status simple_frame_window::initialize_frame_window_experience()

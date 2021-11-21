@@ -70,7 +70,7 @@
     <ClCompile Include="button.cpp" />
     <ClCompile Include="control_box.cpp" />
     <ClCompile Include="experience.cpp" />
-    <ClCompile Include="factory_exchange.cpp" />
+    <ClCompile Include="_factory.cpp" />
     <ClCompile Include="frame.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
@@ -96,9 +96,7 @@
     <ClCompile Include="style.cpp" />
     <ClCompile Include="_.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="u_experience_tranquillum.def" />
-  </ItemGroup>
+  
   <ItemGroup>
     <ProjectReference Include="..\acme\u_acme.vcxproj">
       <Project>{74a3ea71-9358-4441-a0cc-d5771df8dfbd}</Project>

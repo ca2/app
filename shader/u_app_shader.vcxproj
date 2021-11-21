@@ -51,9 +51,7 @@
     <ClCompile Include="shader_object.cpp" />
     <ClCompile Include="window.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="u_app_shader.def" />
-  </ItemGroup>
+  
   <ItemGroup>
     <ProjectReference Include="..\acme\u_acme.vcxproj">
       <Project>{74a3ea71-9358-4441-a0cc-d5771df8dfbd}</Project>

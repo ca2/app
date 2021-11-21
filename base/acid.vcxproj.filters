@@ -4093,7 +4093,7 @@
     <ClCompile Include="aura\node\windows\crypto.cpp">
       <Filter>Source Files\aura\node\windows</Filter>
     </ClCompile>
-    <ClCompile Include="aura\node\windows\factory_exchange.cpp">
+    <ClCompile Include="aura\node\windows\_factory.cpp">
       <Filter>Source Files\aura\node\windows</Filter>
     </ClCompile>
     <ClCompile Include="aura\node\windows\file.cpp">

@@ -1466,12 +1466,12 @@ auto tickStart = ::duration::now();
 
       }
 
-      if(!plibrary->m_plibrary->open_library(strLibTitle))
-      {
+      //if(!plibrary->m_plibrary->open_library(strLibTitle))
+      //{
 
-         output_error_message("Failed to open bot library (2)\n\n" + plibrary->m_plibrary->m_strMessage);
+      //   output_error_message("Failed to open bot library (2)\n\n" + plibrary->m_plibrary->m_strMessage);
 
-      }
+      //}
 
       return plibrary->m_plibrary;
 

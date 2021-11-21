@@ -68,7 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="context.cpp" />
-    <ClCompile Include="factory_exchange.cpp" />
+    <ClCompile Include="_factory.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">Create</PrecompiledHeader>

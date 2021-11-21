@@ -200,7 +200,7 @@ namespace acme
 
 
       critical_section *               m_pcriticalsectionFactory;
-      factory_map *                    m_pfactorymap = nullptr;
+      ::factory::factory *             m_pfactory = nullptr;
       ::factory::factory_array *       m_pfactorya = nullptr;
 
 

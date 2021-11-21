@@ -14,53 +14,53 @@ namespace factory
    CLASS_DECL_ACME critical_section * get_factory_critical_section();
 
 
+
+   template < typename TYPE, typename BASE_TYPE>
+   inline __pointer(::factory::factory_item_base < BASE_TYPE >) add_factory_item(const ::id & id)
+   {
+
+      critical_section_lock lock(::factory::get_factory_critical_section());
+
+      auto pfactory = __new(::factory::factory_item< TYPE, BASE_TYPE >());
+
+      ::factory::get_factory()->set_at(id, pfactory);
+
+      return pfactory;
+
+   }
+
+
+   template < typename TYPE, typename BASE_TYPE>
+   inline __pointer(::factory::factory_item_base < BASE_TYPE >) add_factory_item()
+   {
+
+      critical_section_lock lock(::factory::get_factory_critical_section());
+
+      auto pfactory = __new(::factory::factory_item< TYPE, BASE_TYPE >());
+
+      ::factory::get_factory_item < BASE_TYPE >() = pfactory;
+
+      return pfactory;
+
+   }
+
+
+   template < typename TYPE, typename BASE_TYPE>
+   inline __pointer(::factory::factory_item_base < BASE_TYPE >) create_reusable_factory()
+   {
+
+      critical_section_lock lock(::factory_item::get_factory_critical_section());
+
+      auto pfactory = __new(::factory::reusable_factory_item< TYPE, BASE_TYPE >());
+
+      ::factory::get_factory_item < BASE_TYPE >() = pfactory;
+
+      return pfactory;
+
+   }
+
+
 } // namespace factory
-
-
-template < typename TYPE, typename BASE_TYPE>
-inline __pointer(::factory::factory_base < BASE_TYPE >) create_factory(const ::id & id)
-{
-
-   critical_section_lock lock(::factory::get_factory_critical_section());
-
-   auto pfactory = __new(::factory::factory< TYPE, BASE_TYPE >());
-
-   ::factory::get_factory_map()->set_at(id, pfactory);
-
-   return pfactory;
-
-}
-
-
-template < typename TYPE, typename BASE_TYPE>
-inline __pointer(::factory::factory_base < BASE_TYPE >) create_factory()
-{
-
-   critical_section_lock lock(::factory::get_factory_critical_section());
-
-   auto pfactory = __new(::factory::factory< TYPE, BASE_TYPE >());
-
-   ::factory::get_factory < BASE_TYPE >() = pfactory;
-
-   return pfactory;
-
-}
-
-
-template < typename TYPE, typename BASE_TYPE>
-inline __pointer(::factory::factory_base < BASE_TYPE >) create_reusable_factory()
-{
-
-   critical_section_lock lock(::factory::get_factory_critical_section());
-
-   auto pfactory = __new(::factory::reusable_factory< TYPE, BASE_TYPE >());
-
-   ::factory::get_factory < BASE_TYPE >() = pfactory;
-
-   return pfactory;
-
-}
-
 
 
 
@@ -71,9 +71,6 @@ inline void __dynamic_cast(TYPE1*& ptype1, const __pointer(TYPE2)& ptype2)
    ptype1 = ptype2.template cast < TYPE1 >().m_p;
 
 }
-
-
-//class object;
 
 
 namespace papaya
@@ -238,7 +235,7 @@ namespace factory
 
 
    template < typename TYPE, typename BASE_TYPE >
-   inline __pointer(BASE_TYPE) reusable_factory < TYPE, BASE_TYPE >::_create()
+   inline __pointer(BASE_TYPE) reusable_factory_item < TYPE, BASE_TYPE >::_create()
    {
 
       {
@@ -260,13 +257,13 @@ namespace factory
 
       }
 
-      return factory < TYPE, BASE_TYPE >::_call_new();
+      return factory_item < TYPE, BASE_TYPE >::_call_new();
 
    }
 
 
    template < typename TYPE, typename BASE_TYPE >
-   inline void reusable_factory < TYPE, BASE_TYPE >::return_back(BASE_TYPE * p)
+   inline void reusable_factory_item < TYPE, BASE_TYPE >::return_back(BASE_TYPE * p)
    {
 
       critical_section_lock lock(&m_criticalsection);

@@ -85,15 +85,15 @@ pacmedir->create(szRelative);  // or SHCreateDirectory(NULL, szCacheDir); - need
 
       pcoression->will_use_view_hint(FONTSEL_IMPACT);
 
-      create_factory <::browser::document >();
-      create_factory <::browser::frame >();
-      create_factory <::browser::main_frame >();
-      create_factory <::user::button_view >();
-      create_factory <::browser::impact >();
-      create_factory <::browser::main_impact >();
-      create_factory <::browser::switcher_view >();
-      create_factory <::browser::pane_view >();
-      create_factory <::browser::gcom >();
+      add_factory_item <::browser::document >();
+      add_factory_item <::browser::frame >();
+      add_factory_item <::browser::main_frame >();
+      add_factory_item <::user::button_view >();
+      add_factory_item <::browser::impact >();
+      add_factory_item <::browser::main_impact >();
+      add_factory_item <::browser::switcher_view >();
+      add_factory_item <::browser::pane_view >();
+      add_factory_item <::browser::gcom >();
       add_matter_locator("app-core/hellomultiverse");
 
 

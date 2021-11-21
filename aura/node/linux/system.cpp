@@ -116,7 +116,7 @@ namespace aura
 //    ::e_status system::on_start_system()
 //    {
 
-// //      auto estatus = do_factory_exchange("windowing", "x11");
+// //      auto estatus = ([a-z0-9_]+)_factory("windowing", "x11");
 // //
 // //      if(!estatus)
 // //      {

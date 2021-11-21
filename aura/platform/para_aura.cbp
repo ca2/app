@@ -871,7 +871,7 @@
 		<Unit filename="aura/node/linux/dumpinit.cpp" />
 		<Unit filename="aura/node/linux/error.cpp" />
 		<Unit filename="aura/node/linux/exception.cpp" />
-		<Unit filename="aura/node/linux/factory_exchange.cpp" />
+		<Unit filename="aura/node/linux/_factory.cpp" />
 		<Unit filename="aura/node/linux/factory_exchange.h" />
 		<Unit filename="aura/node/linux/file.cpp" />
 		<Unit filename="aura/node/linux/file.h" />

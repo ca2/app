@@ -230,7 +230,7 @@
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>user32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(OutDir)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
@@ -297,7 +297,7 @@
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>user32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
@@ -370,7 +370,7 @@
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>user32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(OutDir)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
@@ -445,7 +445,7 @@
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>user32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
@@ -514,7 +514,7 @@
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>user32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(OutDir)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
@@ -589,7 +589,7 @@
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>user32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
@@ -669,7 +669,7 @@
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>user32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(OutDir)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
@@ -750,7 +750,7 @@
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>user32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
@@ -839,7 +839,7 @@
     <ClCompile Include="_.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="programming.def" />
+    
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\..\archive\platform-windows\version.rc" />

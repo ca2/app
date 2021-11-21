@@ -42,7 +42,7 @@
     <ClCompile Include="client\common\file.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="axisrdpclient.def" />
+    
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{7AEF277A-CE4F-4588-A0A2-BEB7CE9AF7B0}</ProjectGuid>

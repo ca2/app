@@ -13,19 +13,19 @@
 //
 //#ifdef WINDOWS_DESKTOP
 //
-//extern "C" void draw2d_gdiplus_factory_exchange(::factory_map * pfactorymap);
+//extern "C" void ([a-z0-9_]+)_factory(::factory::factory * pfactory);
 //
 //#endif
 //
-//extern "C" void draw2d_direct2d_factory_exchange(::factory_map * pfactorymap);
+//extern "C" void ([a-z0-9_]+)_factory(::factory::factory * pfactory);
 //
 //#elif defined(__APPLE__)
 //
-//extern "C" void draw2d_quartz_factory_exchange(::factory_map * pfactorymap);
+//extern "C" void ([a-z0-9_]+)_factory(::factory::factory * pfactory);
 //
 //#else
 //
-//extern "C" void draw2d_factory_exchange(::factory_map * pfactorymap);
+//extern "C" void ([a-z0-9_]+)_factory(::factory::factory * pfactory);
 //
 //#endif
 //
@@ -39,17 +39,17 @@
 //#ifndef NO_IMAGING
 //#ifdef WINDOWS_DESKTOP
 //
-//extern "C" void imaging_wic_factory_exchange(::factory_map * pfactorymap);
+//extern "C" void ([a-z0-9_]+)_factory(::factory::factory * pfactory);
 //
 //#endif
 //
-//extern "C" void imaging_freeimage_factory_exchange(::factory_map * pfactorymap);
+//extern "C" void ([a-z0-9_]+)_factory(::factory::factory * pfactory);
 //
 //#endif
 //
 //#ifdef WITH_GPU
 //
-//extern "C" void gpu_opengl_factory_exchange(::factory_map * pfactorymap);
+//extern "C" void ([a-z0-9_]+)_factory(::factory::factory * pfactory);
 //
 //#endif
 //
@@ -111,23 +111,23 @@
 //
 //#ifdef WINDOWS_DESKTOP
 //
-//  psystem->set_factory_exchange("draw2d", "gdiplus", &draw2d_gdiplus_factory_exchange);
+//  psystem->([a-z0-9_]+)_factory("draw2d", "gdiplus", &([a-z0-9_]+)_factory);
 //
 //#elif _UWP
 //
-//  psystem->set_factory_exchange("draw2d", "direct2d", &draw2d_direct2d_factory_exchange);
+//  psystem->([a-z0-9_]+)_factory("draw2d", "direct2d", &([a-z0-9_]+)_factory);
 //
 //#elif defined(LINUX)
 //
-//  psystem->set_factory_exchange("draw2d", "cairo", &draw2d_cairo_factory_exchange);
+//  psystem->([a-z0-9_]+)_factory("draw2d", "cairo", &([a-z0-9_]+)_factory);
 //
 //#elif defined(__APPLE__)
 //
-//  psystem->set_factory_exchange("draw2d", "quartz", &draw2d_quartz_factory_exchange);
+//  psystem->([a-z0-9_]+)_factory("draw2d", "quartz", &([a-z0-9_]+)_factory);
 //
 //#else
 //
-//  psystem->set_factory_exchange("draw2d", &draw2d_factory_exchange);
+//  psystem->([a-z0-9_]+)_factory("draw2d", &([a-z0-9_]+)_factory);
 //
 //#endif
 //
@@ -137,11 +137,11 @@
 //
 //#ifdef WINDOWS_DESKTOP
 //
-//  psystem->set_factory_exchange("imaging", "wic", &imaging_wic_factory_exchange);
+//  psystem->([a-z0-9_]+)_factory("imaging", "wic", &([a-z0-9_]+)_factory);
 //
 //#else
 //
-//  psystem->set_factory_exchange("imaging", "freeimage", &imaging_freeimage_factory_exchange);
+//  psystem->([a-z0-9_]+)_factory("imaging", "freeimage", &([a-z0-9_]+)_factory);
 //
 //#endif
 //
@@ -150,7 +150,7 @@
 //
 //#ifdef WITH_GPU
 //
-//  psystem->set_factory_exchange("gpu", "opengl", &gpu_opengl_factory_exchange);
+//  psystem->([a-z0-9_]+)_factory("gpu", "opengl", &([a-z0-9_]+)_factory);
 //
 //#endif
 //

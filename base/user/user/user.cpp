@@ -57,18 +57,18 @@ namespace base
    {
 
 
-      create_factory <::user::document >();
-      //create_factory <::user::message_queue >();
-      create_factory <::user::simple_view >();
-      create_factory <::user::still >();
-      create_factory <::user::combo_box >();
-      create_factory <::user::place_holder >();
-      //create_factory <::user::font_combo_box >();
+      ::factory::add_factory_item <::user::document >();
+      //add_factory_item <::user::message_queue >();
+      ::factory::add_factory_item <::user::simple_view >();
+      ::factory::add_factory_item <::user::still >();
+      ::factory::add_factory_item <::user::combo_box >();
+      ::factory::add_factory_item <::user::place_holder >();
+      //add_factory_item <::user::font_combo_box >();
 
       ////if(get_application()->is_system())
       //{
 
-      //   create_factory <keyboard_layout >();
+      //   add_factory_item <keyboard_layout >();
 
       //}
 
@@ -101,22 +101,22 @@ namespace base
 
       }
 
-      create_factory <::simple_scroll_bar, ::user::scroll_bar>();
+      ::factory::add_factory_item <::simple_scroll_bar, ::user::scroll_bar>();
 
-      create_factory <::user::menu_item >();
-      create_factory <::user::menu >();
-      create_factory <::user::menu_list_view >();
-
-
-      create_factory < ::user::split_layout  >();
-      create_factory < ::user::split_bar  >();
+      ::factory::add_factory_item <::user::menu_item >();
+      ::factory::add_factory_item <::user::menu >();
+      ::factory::add_factory_item <::user::menu_list_view >();
 
 
-      create_factory < simple_frame_window  >();
-      //create_factory < prodevian_translucent_simple_frame_window  >();
-      create_factory < simple_main_frame  >();
-      create_factory < ::user::document  >();
-      create_factory < ::user::split_view  >();
+      ::factory::add_factory_item < ::user::split_layout  >();
+      ::factory::add_factory_item < ::user::split_bar  >();
+
+
+      ::factory::add_factory_item < simple_frame_window  >();
+      //add_factory_item < prodevian_translucent_simple_frame_window  >();
+      ::factory::add_factory_item < simple_main_frame  >();
+      ::factory::add_factory_item < ::user::document  >();
+      ::factory::add_factory_item < ::user::split_view  >();
 
 
       auto estatus = __compose_new(m_pmenucentral);
@@ -1211,191 +1211,29 @@ namespace base
    }
 
 
-   ::user::style_pointer user::instantiate_user_style(const ::string & pszExperienceLibrary, ::application* papp)
+   ::user::style_pointer user::instantiate_user_style(const ::string & strExperience, ::application* papp)
    {
 
-      INFORMATION("aura::session::instantiate_user_theme");
-
-      if (papp == nullptr)
-      {
-
-         papp = get_application();
-
-      }
-
-      string_array straLibrary;
-
-      {
-
-         string strId(pszExperienceLibrary);
-
-         if (strId.has_char())
-         {
-
-            straLibrary.add(strId);
-
-         }
-
-      }
-
-      __pointer(::base::application) papplication = papp;
-
-      auto pcontext = papplication->get_context();
-
-      {
-
-         string strId(papplication->preferred_experience());
-
-         if (strId.has_char())
-         {
-
-            straLibrary.add(strId);
-
-         }
-
-      }
-
-      {
-
-         string strConfig;
-
-         if (has_property("experience"))
-         {
-
-            strConfig = payload("experience");
-
-         }
-
-         if (strConfig.has_char())
-         {
-
-            string strLibrary = string("experience_") + strConfig;
-
-            straLibrary.add(strConfig);
-
-         }
-
-      }
-
-      {
-
-         string strWndFrm = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedir->config() / papplication->m_strAppName / "experience.txt");
-
-         if (strWndFrm.has_char())
-         {
-
-            straLibrary.add(strWndFrm);
-
-         }
-
-      }
-
-      {
-
-         string strWndFrm = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedir->config() / ::file::path(papplication->m_strAppName).folder() / "experience.txt");
-
-         if (strWndFrm.has_char())
-         {
-
-            straLibrary.add(strWndFrm);
-
-         }
-
-      }
-
-      {
-
-         string strWndFrm = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedir->config() / ::file::path(papplication->m_strAppName).name() / "experience.txt");
-
-         if (strWndFrm.has_char())
-         {
-
-            straLibrary.add(strWndFrm);
-
-         }
-
-      }
-
-      {
-
-         string strWndFrm = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedir->config() / "system/experience.txt");
-
-         if (strWndFrm.has_char())
-         {
-
-            straLibrary.add(strWndFrm);
-
-         }
-
-      }
-
-      straLibrary.add_unique("experience_core");
-
-      straLibrary.add_unique("experience_metro");
-
-      straLibrary.add_unique("experience_rootkiller");
-
-      straLibrary.add_unique("experience_hyper");
+      auto pexperience = experience()->experience(papp, strExperience);
 
       ::user::style_pointer pstyle;
 
-      for (string strLibrary : straLibrary)
+      pexperience->m_pfactory->__construct(pstyle);
+
+      if (!pstyle)
       {
 
-         strLibrary.replace("-", "_");
+         INFORMATION("could not create user_style from " << pexperience->m_strExperience);
 
-         strLibrary.replace("/", "_");
-
-         if (!::str::begins_ci(strLibrary, "experience_"))
-         {
-
-            strLibrary = "experience_" + strLibrary;
-
-         }
-
-         auto psystem = m_psystem->m_pbasesystem;
-
-         string strComponent = "experience";
-
-         string strImplementation = strLibrary;
-
-         strImplementation.begins_eat_ci("experience_");
-
-         auto plibrary = psystem->do_containerized_factory_exchange("experience", strImplementation);
-
-         if (!plibrary)
-         {
-
-            FORMATTED_ERROR("Failed to Load %s", strLibrary.c_str());
-
-            continue;
-
-         }
-
-         pstyle = plibrary->m_pfactorymap->create < ::user::style >();
-
-         if (!pstyle)
-         {
-
-            INFORMATION("could not create user_style from ", strLibrary.c_str());
-
-            continue;
-
-         }
-
-         pstyle->initialize(papp);
-
-         //synchronous_lock synchronouslock(psystem->m_mutexLibrary);
-
-         //psystem->m_mapLibrary[strLibrary] = plibrary;
-
-         pstyle->m_plibrary = plibrary;
-
-         m_puserstyle = pstyle;
-
-         break;
+         return nullptr;
 
       }
+
+      pstyle->initialize(papp);
+
+      pstyle->m_pfactory = pexperience->m_pfactory;
+
+      m_puserstyle = pstyle;
 
       if (!pstyle)
       {

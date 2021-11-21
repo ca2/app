@@ -290,10 +290,18 @@ namespace extended
       }
 
 
+      bool is_initialized() const
+      {
+
+         return m_estatus != error_not_initialized;
+
+      }
+
+
       bool not_initialized() const
       {
 
-         return m_estatus == error_not_initialized;
+         return !is_initialized();
 
       }
 

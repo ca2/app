@@ -30,7 +30,7 @@ namespace draw2d
 
       //m_pmutexFont = __new(::mutex);
 
-      //create_factory < e_cursor_set >();
+      //add_factory_item < e_cursor_set >();
 
    }
 
@@ -1292,14 +1292,20 @@ breakFilter2:
       try
       {
 
-         estatus = write_text_factory_exchange(::factory::get_factory_map());
+         auto & pfactoryWriteText = write_text_factory();
 
-         if (!estatus)
+         if (pfactoryWriteText)
+         {
+
+            pfactoryWriteText->merge_to_global_factory();
+
+         }
+         else
          {
 
             output_error_message("Failed to initialize write_text library.");
 
-            estatus = error_failed;
+            pfactoryWriteText = (const ::extended::status &) error_failed;
 
          }
 
@@ -1314,15 +1320,13 @@ breakFilter2:
       if (!estatus)
       {
 
-         INFORMATION("write_text factory exchange has failed.\n\nSome reasons:\n   - No write_text library present;\n   - Failure to open any suitable write_text library.");
+         INFORMATION("write_text factory_item exchange has failed.\n\nSome reasons:\n   - No write_text library present;\n   - Failure to open any suitable write_text library.");
 
          return estatus;
 
       }
 
       auto psystem = get_system();
-
-      synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 
       estatus = __construct(m_pwritetext);
 
@@ -1349,7 +1353,7 @@ breakFilter2:
       if (::succeeded(estatus))
       {
 
-         create_factory < ::draw2d::task_tool_item >(::e_task_tool_draw2d);
+         ::factory::add_factory_item < ::draw2d::task_tool_item >(::e_task_tool_draw2d);
 
       }
 
@@ -1358,7 +1362,7 @@ breakFilter2:
    }
 
 
-   ::e_status draw2d::write_text_factory_exchange(::factory_map * pfactorymap)
+   __transport(::factory::factory) & draw2d::write_text_factory()
    {
 
       string strLibrary;
@@ -1390,12 +1394,12 @@ breakFilter2:
 
          __pointer(::aura::system) psystem = m_psystem;
 
-         estatus = psystem->do_factory_exchange("write_text", strLibrary);
+         auto & pfactoryWriteText = psystem->factory("write_text", strLibrary);
 
-         if(estatus.succeeded())
+         if(pfactoryWriteText.succeeded())
          {
 
-            return ::success;
+            return pfactoryWriteText;
 
          }
 
@@ -1420,12 +1424,12 @@ breakFilter2:
 
       auto psystem = m_psystem;
 
-      estatus = psystem->do_factory_exchange("write_text", strLibrary);
+      auto & pfactoryWriteText = psystem->factory("write_text", strLibrary);
 
-      if (estatus.succeeded())
+      if (pfactoryWriteText.succeeded())
       {
 
-         return ::success;
+         return pfactoryWriteText;
 
       }
 
@@ -1437,12 +1441,12 @@ breakFilter2:
 
          __pointer(::aura::system) psystem = m_psystem;
 
-         estatus = psystem->do_factory_exchange("write_text", "gdiplus");
+         auto & pfactoryWriteText = psystem->factory("write_text", "gdiplus");
 
-         if(estatus.succeeded())
+         if(pfactoryWriteText.succeeded())
          {
 
-            return ::success;
+            return pfactoryWriteText;
 
          }
 
@@ -1454,12 +1458,12 @@ breakFilter2:
 
          __pointer(::aura::system) psystem = m_psystem;
 
-         estatus = psystem->do_factory_exchange("write_text", "direct2d");
+         auto & pfactoryWriteText = psystem->factory("write_text", "direct2d");
 
-         if(estatus.succeeded())
+         if(pfactoryWriteText.succeeded())
          {
 
-            return ::success;
+            return pfactoryWriteText;
 
          }
 
@@ -1473,32 +1477,32 @@ breakFilter2:
 
          auto psystem = m_psystem;
 
-         estatus = psystem->do_factory_exchange("write_text", "pango");
+         auto & pfactoryWriteText = psystem->factory("write_text", "pango");
 
-         if(estatus.succeeded())
+         if(pfactoryWriteText.succeeded())
          {
 
-            return ::success;
+            return pfactoryWriteText;
 
          }
 
       }
 
       //output_debug_string("No write_text pluging available!!.");
-      return error_failed;
+      return pfactoryWriteText;
 
       //destroy:
 
-      //   PFN_factory_exchange pfn_factory_exchange = plibrary->get < PFN_factory_exchange >("write_text_factory_exchange");
+      //   PFN_factory_exchange ([a-z0-9_]+)_factory = plibrary->get < PFN_factory_exchange >("([a-z0-9_]+)_factory");
 
-      //   if (pfn_factory_exchange == nullptr)
+      //   if (([a-z0-9_]+)_factory == nullptr)
       //   {
 
       //      return false;
 
       //   }
 
-      //   pfn_factory_exchange(::factory_map * pfactorymap);
+      //   ([a-z0-9_]+)_factory(::factory::factory * pfactory);
 
       //   return true;
 

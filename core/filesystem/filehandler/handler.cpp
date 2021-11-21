@@ -100,7 +100,7 @@ namespace filehandler
 
          }
 
-         pitem->m_straHandlerLibrary.add(plibrary->m_strCa2Name);
+         pitem->m_straHandlerLibrary.add(plibrary->m_strName);
 
          plibrary->get_extension_app(pitem->m_straApp, straExtension[i]);
 
@@ -131,7 +131,7 @@ namespace filehandler
 
          }
 
-         pitem->m_straHandlerLibrary.add(plibrary->m_strCa2Name);
+         pitem->m_straHandlerLibrary.add(plibrary->m_strName);
 
          plibrary->get_mime_type_app(pitem->m_straApp, straMimeType[i]);
 
@@ -167,7 +167,7 @@ namespace filehandler
 
          }
 
-         pitem->m_straMenuLibrary.add(plibrary->m_strCa2Name);
+         pitem->m_straMenuLibrary.add(plibrary->m_strName);
 
          plibrary->get_extension_app(pitem->m_straApp, straExtension[i]);
 
@@ -198,7 +198,7 @@ namespace filehandler
 
          }
 
-         pitem->m_straMenuLibrary.add(plibrary->m_strCa2Name);
+         pitem->m_straMenuLibrary.add(plibrary->m_strName);
 
          plibrary->get_mime_type_app(pitem->m_straApp, straMimeType[i]);
 

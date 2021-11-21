@@ -51,7 +51,7 @@ networking_application::~networking_application()
    m_psocketthread->m_strIp = "127.0.0.1";
    m_psocketthread->m_iPort = m_iPort;
 
-   auto pfolder = m_psystem->m_papexsystem->file().defer_resource_folder();
+   auto pfolder = m_psystem->m_papexsystem->file().resource_folder();
 
    if (pfolder)
    {

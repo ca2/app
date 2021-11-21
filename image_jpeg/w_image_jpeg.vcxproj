@@ -40,9 +40,7 @@
   <ItemGroup>
     <ClCompile Include="Source\FreeImage\PluginJPEG.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="image_decode_jpeg.def" />
-  </ItemGroup>
+  
   <PropertyGroup Label="Globals">
     <ProjectGuid>{B4517713-2000-419D-A87F-4338C9DDE3FA}</ProjectGuid>
     <Keyword>DynamicLibrary</Keyword>

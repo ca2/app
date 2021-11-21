@@ -229,7 +229,7 @@
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>freetype.lib;cairo.lib;Shlwapi.lib;Gdiplus.lib;WinInet.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
@@ -290,7 +290,7 @@
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>freetype.lib;cairo.lib;Shlwapi.lib;Gdiplus.lib;WinInet.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
@@ -356,7 +356,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>freetype.lib;cairo.lib;Shlwapi.lib;Gdiplus.lib;WinInet.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)third-windows/$(PlatformName)/$(Configuration)/lib;$(__archive)third-windows/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
@@ -426,7 +426,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>freetype.lib;cairo.lib;Shlwapi.lib;Gdiplus.lib;WinInet.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)third-windows/$(PlatformName)/$(Configuration)/lib;$(__archive)third-windows/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
@@ -492,7 +492,7 @@
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>freetype.lib;cairo.lib;Shlwapi.lib;Gdiplus.lib;WinInet.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
@@ -564,7 +564,7 @@
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>freetype.lib;cairo.lib;Shlwapi.lib;Gdiplus.lib;WinInet.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
@@ -641,7 +641,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>freetype.lib;cairo.lib;Shlwapi.lib;Gdiplus.lib;WinInet.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)third-windows/$(PlatformName)/$(Configuration)/lib;$(__archive)third-windows/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
@@ -718,7 +718,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>freetype.lib;cairo.lib;Shlwapi.lib;Gdiplus.lib;WinInet.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)third-windows/$(PlatformName)/$(Configuration)/lib;$(__archive)third-windows/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
@@ -775,7 +775,7 @@
     <ClCompile Include="brush.cpp" />
     <ClCompile Include="cairo.cpp" />
     <ClCompile Include="draw2d.cpp" />
-    <ClCompile Include="factory_exchange.cpp" />
+    <ClCompile Include="_factory.cpp" />
     <ClCompile Include="font.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>

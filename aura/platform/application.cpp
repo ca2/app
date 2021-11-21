@@ -15,7 +15,7 @@ extern ::app_core * g_pappcore;
 extern "C"
 {
 
-   typedef void FN_factory_exchange(::factory_map * pfactorymap);
+   typedef void FN_factory_exchange(::factory::factory * pfactory);
 
    typedef FN_factory_exchange * PFN_factory_exchange;
 
@@ -154,8 +154,8 @@ namespace aura
       //m_bAuraInitializeInstance = false;
       //m_bAuraInitializeInstanceResult = false;
 
-      //create_factory < ::user::user >();
-      //create_factory < ::userfs::userfs >();
+      //add_factory_item < ::user::user >();
+      //add_factory_item < ::userfs::userfs >();
 
       //m_pmainpane = nullptr;
 
@@ -5825,8 +5825,8 @@ namespace aura
    //application::application()
    //{
 
-   //   create_factory < ::user::user >();
-   //   create_factory < ::userfs::userfs >();
+   //   add_factory_item < ::user::user >();
+   //   add_factory_item < ::userfs::userfs >();
 
    //   m_pmainpane = nullptr;
 
@@ -8623,7 +8623,7 @@ namespace aura
    //application::application()
    //{
 
-   //   create_factory < ::user::user >();
+   //   add_factory_item < ::user::user >();
 
    //   //m_bBaseProcessInitialize         = false;
    //   //m_bBaseProcessInitializeResult   = false;

@@ -37,10 +37,10 @@ namespace aqua
    void system::common_construct()
    {
 
-      create_factory < ::aqua::application, ::application >();
-      create_factory < ::aqua::session, ::apex::session >();
-      create_factory < ::aqua::idpool, ::acme::idpool >();
-      create_factory < ::aqua::multimedia >();
+      ::factory::add_factory_item < ::aqua::application, ::application >();
+      ::factory::add_factory_item < ::aqua::session, ::apex::session >();
+      ::factory::add_factory_item < ::aqua::idpool, ::acme::idpool >();
+      ::factory::add_factory_item < ::aqua::multimedia >();
 
    }
 
@@ -142,25 +142,16 @@ namespace aqua
    ::e_status system::create_audio()
    {
 
-      auto plibrary = get_library("audio");
+      auto & pfactory = factory("audio");
 
-      if (!plibrary)
+      if (!pfactory)
       {
 
-         return error_failed;
+         return pfactory;
 
       }
 
-      auto estatus = plibrary->do_factory_exchange();
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      estatus = __compose(m_paudio);
+      auto estatus = pfactory->__compose(this, m_paudio);
 
       if (!estatus)
       {
@@ -208,9 +199,7 @@ namespace aqua
 
       }
 
-      auto psystem = get_system();
-
-      synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
+      synchronous_lock synchronouslock(&m_mutexLibrary4);
 
       try
       {

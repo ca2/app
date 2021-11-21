@@ -86,7 +86,7 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <SubSystem Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Windows</SubSystem>
       <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(SolutionDir)../../time/library/x86/$(ConfigurationName);$(__archive)third-universal_windows/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(TargetName).def</ModuleDefinitionFile>
+      
       <ImportLibrary Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(OutDir)$(TargetName).lib</ImportLibrary>
       <IgnoreAllDefaultLibraries Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -94,7 +94,7 @@
       <ImportLibrary Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(OutDir)$(TargetName).lib</ImportLibrary>
       <ImportLibrary Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">$(OutDir)$(TargetName).lib</ImportLibrary>
       <IgnoreAllDefaultLibraries Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</IgnoreAllDefaultLibraries>
-      <ModuleDefinitionFile Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(TargetName).def</ModuleDefinitionFile>
+      
     </Link>
     <ClCompile>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
@@ -180,9 +180,7 @@
       <Project>{420d7aeb-cfca-45de-bb6e-95055df21987}</Project>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="app_core_helloworld.def" />
-  </ItemGroup>
+  
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

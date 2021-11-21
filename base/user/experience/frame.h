@@ -29,8 +29,8 @@ namespace experience
       status < ::color::color >       m_colorCaptionText;
 
       bool                                   m_bHollow;
-      string                                 m_strLibrary;
-      string                                 m_strName;
+      string                                 m_strExperience;
+      string                                 m_strFrameSchema;
       ::rectangle_i32                        m_rectangleCaption;
       ::rectangle_i32                        m_rectangleWindowText;
       int                                    m_iControlBoxPosition;

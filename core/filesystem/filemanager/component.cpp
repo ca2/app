@@ -185,32 +185,32 @@ namespace filemanager
 
       }
 
-      create_factory <form >();
-      create_factory <document >();
-      create_factory <child_frame >();
-      create_factory <impact >();
-      create_factory <path_view >();
-      create_factory <save_as_view >();
-      create_factory <left_view >();
-      create_factory <main_impact >();
-      create_factory <file_list >();
-      create_factory <preview >();
-      create_factory <main_frame >();
-      create_factory <frame >();
-      create_factory <tab_view >();
-      create_factory <form_child_frame >();
-      create_factory <::simple_form_view >();
-      create_factory <folder_selection_list_view >();
-      create_factory <folder_list_view >();
-      create_factory <operation_document >();
-      create_factory <operation_child_frame >();
-      create_factory <operation_view >();
-      create_factory <operation_info_view >();
-      create_factory <operation_list_view >();
-      create_factory <save_as_edit_view >();
-      create_factory <save_as_button>();
-      create_factory <fs::simple::impact >();
-      create_factory <fs::simple::list_view >();
+      ::factory::add_factory_item <form >();
+      ::factory::add_factory_item <document >();
+      ::factory::add_factory_item <child_frame >();
+      ::factory::add_factory_item <impact >();
+      ::factory::add_factory_item <path_view >();
+      ::factory::add_factory_item <save_as_view >();
+      ::factory::add_factory_item <left_view >();
+      ::factory::add_factory_item <main_impact >();
+      ::factory::add_factory_item <file_list >();
+      ::factory::add_factory_item <preview >();
+      ::factory::add_factory_item <main_frame >();
+      ::factory::add_factory_item <frame >();
+      ::factory::add_factory_item <tab_view >();
+      ::factory::add_factory_item <form_child_frame >();
+      ::factory::add_factory_item <::simple_form_view >();
+      ::factory::add_factory_item <folder_selection_list_view >();
+      ::factory::add_factory_item <folder_list_view >();
+      ::factory::add_factory_item <operation_document >();
+      ::factory::add_factory_item <operation_child_frame >();
+      ::factory::add_factory_item <operation_view >();
+      ::factory::add_factory_item <operation_info_view >();
+      ::factory::add_factory_item <operation_list_view >();
+      ::factory::add_factory_item <save_as_edit_view >();
+      ::factory::add_factory_item <save_as_button>();
+      ::factory::add_factory_item <fs::simple::impact >();
+      ::factory::add_factory_item <fs::simple::list_view >();
 
       //__compose_new(this, m_pmap);
 

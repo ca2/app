@@ -7,7 +7,7 @@
 
 
 static_setup::static_setup(::static_setup::enum_flag eflag, const char * pszName) :
-   m_pfnFactoryExchange(nullptr),
+   m_pfnFactory(nullptr),
    m_pszName(pszName),
    m_eflag(eflag)
 {
@@ -16,10 +16,10 @@ static_setup::static_setup(::static_setup::enum_flag eflag, const char * pszName
 
 }
 
-static_setup::static_setup(PFN_factory_exchange pfnFactoryExchange, const char* pszName) :
-   m_pfnFactoryExchange(pfnFactoryExchange),
+static_setup::static_setup(PFN_factory pfnFactory, const char* pszName) :
+   m_pfnFactory(pfnFactory),
    m_pszName(pszName),
-   m_eflag(flag_factory_exchange)
+   m_eflag(flag_factory)
 {
 
    construct();
@@ -86,7 +86,7 @@ static_setup* static_setup::get_first(::static_setup::enum_flag eflag, const cha
 }
 
 
-PFN_factory_exchange static_setup::get_factory_exchange(const char* pszName)
+PFN_factory static_setup::get_factory_function(const char* pszName)
 {
 
    if (::is_null(pszName))
@@ -101,10 +101,10 @@ PFN_factory_exchange static_setup::get_factory_exchange(const char* pszName)
    while (psetup != nullptr)
    {
 
-      if (psetup->m_eflag == flag_factory_exchange && !stricmp(pszName, psetup->m_pszName))
+      if (psetup->m_eflag == flag_factory && !stricmp(pszName, psetup->m_pszName))
       {
 
-         return psetup->m_pfnFactoryExchange;
+         return psetup->m_pfnFactory;
 
       }
 

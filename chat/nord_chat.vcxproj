@@ -101,7 +101,7 @@
     <ClCompile Include="_math_math.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="math.def" />
+    
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{57542d84-fffb-445a-a568-8830653fe8e8}</ProjectGuid>

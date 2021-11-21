@@ -823,9 +823,7 @@
     <ClCompile Include="xml\_from.cpp" />
     <ClCompile Include="_.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="w_aqua.def" />
-  </ItemGroup>
+  
   <ItemGroup>
     <ProjectReference Include="..\acme\u_acme.vcxproj">
       <Project>{74a3ea71-9358-4441-a0cc-d5771df8dfbd}</Project>

@@ -111,9 +111,7 @@
       <Project>{b3b6a9d8-7776-434e-8e3b-d2696632df39}</Project>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="u_app_net.def" />
-  </ItemGroup>
+  
   <PropertyGroup Label="Globals">
     <ProjectGuid>{3C40C5D6-4AA7-4E7D-8F7A-A9D61BF70929}</ProjectGuid>
     <Keyword>DynamicLibrary</Keyword>

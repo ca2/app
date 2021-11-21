@@ -175,7 +175,7 @@ namespace aura
 //
 //#endif
 //
-//    //factory_map                                    m_factorymap;
+//    //factory                                    m_factorymap;
 
       map < ::file::path, ::image_pointer >                m_mapImage;
 
@@ -336,7 +336,7 @@ namespace aura
       //virtual i32 install_start(const ::string & pszCommandLine, const ::string & pszBuild) override;
       //virtual i32 install_progress_app_add_up(int iAddUp = 1) override;
 
-      virtual ::e_status node_factory_exchange() override;
+      virtual __transport(::factory::factory) & node_factory() override;
 
       virtual ::e_status process_init() override;
 
@@ -434,13 +434,13 @@ namespace aura
 
       //__pointer(::acme::library) open_component_library(const ::string & pszComponent, const ::string & pszImplementation);
 
-      //::e_status do_factory_exchange(const ::string & pszComponent, const ::string & pszImplementation);
+      //::e_status ([a-z0-9_]+)_factory(const ::string & pszComponent, const ::string & pszImplementation);
 
-      //::e_status set_factory_exchange(const ::string & pszComponent, const ::string & pszImplementation, PFN_factory_exchange pfnFactoryExchange);
+      //::e_status ([a-z0-9_]+)_factory(const ::string & pszComponent, const ::string & pszImplementation, PFN_factory_exchange pfnFactoryExchange);
 
 
       //class ::aura::os                             &  os();
-      //class base_factory                           &  factory();
+      //class base_factory                           &  factory_item();
 
 
       //::aura::str                                  &  str();
@@ -594,10 +594,10 @@ namespace aura
 
       virtual ::e_status initialize_draw2d();
       //virtual ::e_status initialize_write_text();
-      virtual ::e_status draw2d_factory_exchange(::factory_map * pfactorymap);
+      virtual __transport(::factory::factory) & draw2d_factory();
       virtual string draw2d_get_default_library_name();
 
-      virtual bool imaging_factory_exchange(::factory_map * pfactorymap);
+      virtual __transport(::factory::factory)& imaging_factory();
       virtual string imaging_get_default_library_name();
 
       virtual ::e_status init_thread() override;
@@ -907,7 +907,7 @@ namespace aura
 
       virtual string get_host_location_url() override;
 
-      virtual ::e_status add_view_library(::acme::library* plibrary);
+//      virtual ::e_status add_view_library(::acme::library* plibrary);
 
       //virtual void get_cursor_position(POINT_I32 * ppoint);
 

@@ -189,7 +189,7 @@
     <ClInclude Include="cpp\UTF8Prober.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="auracharguess.def" />
+    
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

@@ -7711,7 +7711,7 @@
     <ClCompile Include="node\windows\dir_system.cpp">
       <Filter>Source Files\node\windows</Filter>
     </ClCompile>
-    <ClCompile Include="node\windows\factory_exchange.cpp">
+    <ClCompile Include="node\windows\_factory.cpp">
       <Filter>Source Files\node\windows</Filter>
     </ClCompile>
     <ClCompile Include="node\windows\file.cpp">

@@ -200,7 +200,7 @@ xcopy /Y /R /D /I /C /E "$(__archive)storage-windows\binary\$(PlatformName)\$(Co
       </IgnoreSpecificDefaultLibraries>
       <LargeAddressAware>true</LargeAddressAware>
       <SubSystem>Windows</SubSystem>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
@@ -426,7 +426,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <LargeAddressAware>true</LargeAddressAware>
       <ProgramDataBaseFile>C:/cef/build/third_party/cef/cef_binary_3.3538.1852.gcb937fc_windows64/tests/browser/Release/browser.pdb</ProgramDataBaseFile>
       <SubSystem>Windows</SubSystem>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
     </Link>
     <ProjectReference />
     <Manifest>
@@ -649,7 +649,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <LargeAddressAware>true</LargeAddressAware>
       <ProgramDataBaseFile>C:/cef/build/third_party/cef/cef_binary_3.3538.1852.gcb937fc_windows64/tests/browser/Release/browser.pdb</ProgramDataBaseFile>
       <SubSystem>Windows</SubSystem>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
     </Link>
     <ProjectReference />
     <Manifest>

@@ -219,7 +219,7 @@
       <AdditionalDependencies>DWrite.lib;Msxml6.lib;D3D11.lib;D2D1.lib;kernel32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
-      <ModuleDefinitionFile>$(TargetName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(SolutionDir)../../time/library/x86/$(ConfigurationName);$(__archive)third-universal_windows/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
     </Link>
@@ -248,7 +248,7 @@
       <AdditionalDependencies>DWrite.lib;Msxml6.lib;D3D11.lib;D2D1.lib;kernel32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
-      <ModuleDefinitionFile>$(TargetName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(SolutionDir)../../time/library/x86/$(ConfigurationName);$(__archive)third-universal_windows/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>$(SolutionDir)../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
     </Link>
@@ -277,7 +277,7 @@
       <AdditionalDependencies>DWrite.lib;Msxml6.lib;D3D11.lib;D2D1.lib;kernel32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
-      <ModuleDefinitionFile>$(TargetName).def</ModuleDefinitionFile>
+      
     </Link>
     <PreBuildEvent>
       <Command>copy "$(SolutionDir)..\..\..\platform\stage\matter\msvc++\msvcp110d.dll" "$(OutDir)"
@@ -313,7 +313,7 @@ copy "$(SolutionDir)..\..\..\platform\thirdparty\binary\FreeImage.dll" "$(OutDir
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <ModuleDefinitionFile>$(TargetName).def</ModuleDefinitionFile>
+      
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
@@ -370,7 +370,7 @@ copy "$(SolutionDir)..\..\..\platform\thirdparty\binary\FreeImage.dll" "$(OutDir
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(IntDir);$(SolutionDir)../../time/library/$(PlatformName)/$(Configuration)/;$(__archive)third-universal_windows/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>$(TargetName).def</ModuleDefinitionFile>
+      
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
@@ -420,7 +420,7 @@ copy "$(SolutionDir)..\..\..\platform\thirdparty\binary\FreeImage.dll" "$(OutDir
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="math.def" />
+    
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

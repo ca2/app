@@ -11,6 +11,11 @@ namespace acme
 
    const char * psz_empty_app_id = "";
 
+   library::library()
+   {
+
+   }
+
 
    ::e_status library::initialize_matter(::matter * pmatter)
    {
@@ -19,80 +24,80 @@ namespace acme
 
       m_plibrary = nullptr;
 
-      m_bAutoUnload = false;
+      //m_bAutoUnload = false;
 
       return estatus;
 
    }
 
 
-   ::e_status library::initialize_library(::matter * pmatter,int iDesambig,const char * pszRoot, const char * pszName, const char * pszFolder)
-   {
+   //::e_status library::initialize_library(::matter * pmatter,int iDesambig,const char * pszRoot, const char * pszName, const char * pszFolder)
+   //{
 
-      auto estatus = initialize_matter(pmatter);
+   //   auto estatus = initialize_matter(pmatter);
 
-      if (!estatus)
-      {
+   //   if (!estatus)
+   //   {
 
-         return estatus;
+   //      return estatus;
 
-      }
+   //   }
 
-      string strRoot(pszRoot);
+   //   string strRoot(pszRoot);
 
-      strRoot.trim();
+   //   strRoot.trim();
 
-      if (strRoot.has_char())
-      {
+   //   if (strRoot.has_char())
+   //   {
 
-         m_strRoot = strRoot;
+   //      m_strRoot = strRoot;
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         strRoot = m_strRoot;
+   //      strRoot = m_strRoot;
 
-      }
+   //   }
 
-      m_strName = ::is_null(pszName) ? strRoot : string(pszName);
+   //   m_strName = ::is_null(pszName) ? strRoot : string(pszName);
 
-      if (::is_set(pszFolder))
-      {
+   //   if (::is_set(pszFolder))
+   //   {
 
-         m_strFolder = pszFolder;
+   //      m_strFolder = pszFolder;
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         m_strFolder = m_strName;
+   //      m_strFolder = m_strName;
 
-      }
+   //   }
 
-      m_bAutoUnload = false;
+   //   m_bAutoUnload = false;
 
-      m_plibrary = nullptr;
+   //   m_plibrary = nullptr;
 
-      m_strCa2Name = strRoot;
+   //   m_strCa2Name = strRoot;
 
-      if(strRoot.has_char())
-      {
+   //   if(strRoot.has_char())
+   //   {
 
-         m_strRoot = strRoot;
+   //      m_strRoot = strRoot;
 
-         if(m_strRoot.find('/') > 0)
-         {
+   //      if(m_strRoot.find('/') > 0)
+   //      {
 
-            m_strRoot = m_strRoot.substr(0, m_strRoot.find('/'));
+   //         m_strRoot = m_strRoot.substr(0, m_strRoot.find('/'));
 
-         }
+   //      }
 
-      }
+   //   }
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
 
    library::~library()
@@ -116,12 +121,13 @@ namespace acme
    }
 
 
-   bool library::open(const char * pszPath,bool bAutoClose,bool bCa2Path)
+   //::e_status library::open(const char * pszPath,bool bAutoClose,bool bCa2Path)
+   ::e_status library::open(const char* pszPath)
    {
 
       auto psystem = get_system();
 
-      synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
+      synchronous_lock synchronouslock(&psystem->m_mutexLibrary4);
 
       m_strMessage.Empty();
 
@@ -146,18 +152,18 @@ namespace acme
       try
       {
 
-         if(bCa2Path)
-         {
+         //if(bCa2Path)
+         //{
 
-            m_plibrary = __node_library_open_ca2(pszPath, m_strMessage);
+         //   m_plibrary = __node_library_open_ca2(pszPath, m_strMessage);
 
-         }
-         else
-         {
+         //}
+         //else
+         //{
 
             m_plibrary = __node_library_open(pszPath, m_strMessage);
 
-         }
+///         }
 
          if(m_plibrary == nullptr)
          {
@@ -168,13 +174,15 @@ namespace acme
 
          }
 
-         m_strPath = pszPath;
+         //m_strPath = pszPath;
+
+         m_strName = ::file::path(pszPath).title();
 
       }
       catch(...)
       {
 
-         ERROR("acme::library::open Failed to open library " << ( bCa2Path ? " (ca2 path)" : "") << " with errors " << m_strMessage);
+         //ERROR("acme::library::open Failed to open library " << ( bCa2Path ? " (ca2 path)" : "") << " with errors " << m_strMessage);
 
          return false;
 
@@ -182,10 +190,10 @@ namespace acme
 
       INFORMATION("acme::library::open success");
 
-      if (m_strCa2Name.has_char())
+      if (m_strName.has_char())
       {
 
-         m_psystem->m_mapLibrary[m_strCa2Name] = this;
+         m_psystem->m_mapLibrary4[m_strName] = this;
 
       }
 
@@ -194,214 +202,216 @@ namespace acme
    }
 
 
-   bool library::open_library(string strTitle)
-   {
+   //bool library::open_library(string strTitle)
+   //{
 
-      auto psystem = get_system();
+   //   auto psystem = get_system();
 
-      synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
+   //   synchronous_lock synchronouslock(&psystem->m_mutexRawLibrary);
 
-      if (m_pca2library.is_set())
-      {
+   //   if (m_pca2library.is_set())
+   //   {
 
-         return true;
+   //      return true;
 
-      }
+   //   }
 
-      ::exception_engine().reset();
+   //   ::exception_engine().reset();
 
-      PFN_NEW_LIBRARY pfnNewAcmeLibrary = nullptr;
+   //   PFN_NEW_LIBRARY pfnNewAcmeLibrary = nullptr;
 
-      int iPhase = 0;
+   //   int iPhase = 0;
 
-      try
-      {
-      
-         m_pca2library = psystem->on_get_library(m_strName);
+   //   try
+   //   {
+   //   
+   //      m_pca2library = psystem->on_get_library(m_strName);
 
-      }
-      catch (...)
-      {
+   //   }
+   //   catch (...)
+   //   {
 
-         m_pca2library.release();
+   //      m_pca2library.release();
 
-      }
+   //   }
 
-      //if (!m_pca2library)
-      //{
+   //   //if (!m_pca2library)
+   //   //{
 
-      //   try
-      //   {
+   //   //   try
+   //   //   {
 
-      //      pfnNewAuraLibrary = get_get_new_apex_library(m_strPath);
+   //   //      pfnNewAuraLibrary = get_get_new_apex_library(m_strPath);
 
-      //      if (pfnNewAuraLibrary == nullptr)
-      //      {
+   //   //      if (pfnNewAuraLibrary == nullptr)
+   //   //      {
 
-      //         iPhase++;
+   //   //         iPhase++;
 
-      //         if (strTitle.has_char())
-      //         {
+   //   //         if (strTitle.has_char())
+   //   //         {
 
-      //            get(pfnNewAuraLibrary, strTitle + "_get_new_library");
+   //   //            get(pfnNewAuraLibrary, strTitle + "_get_new_library");
 
-      //         }
+   //   //         }
 
-      //      }
+   //   //      }
 
-      //      if (pfnNewAuraLibrary == nullptr)
-      //      {
+   //   //      if (pfnNewAuraLibrary == nullptr)
+   //   //      {
 
-      //         iPhase++;
+   //   //         iPhase++;
 
-      //         strTitle = m_strPath.title();
+   //   //         strTitle = m_strPath.title();
 
-      //         get(pfnNewAuraLibrary, strTitle + "_get_new_library");
+   //   //         get(pfnNewAuraLibrary, strTitle + "_get_new_library");
 
-      //      }
+   //   //      }
 
-      //      if (pfnNewAuraLibrary == nullptr)
-      //      {
+   //   //      if (pfnNewAuraLibrary == nullptr)
+   //   //      {
 
-      //         iPhase++;
+   //   //         iPhase++;
 
-      //         if (::str::begins_eat(strTitle, "lib"))
-      //         {
+   //   //         if (::str::begins_eat(strTitle, "lib"))
+   //   //         {
 
-      //            get(pfnNewAuraLibrary, strTitle + "_get_new_library");
+   //   //            get(pfnNewAuraLibrary, strTitle + "_get_new_library");
 
-      //         }
+   //   //         }
 
-      //      }
+   //   //      }
 
-      //      if (pfnNewAuraLibrary == nullptr)
-      //      {
+   //   //      if (pfnNewAuraLibrary == nullptr)
+   //   //      {
 
-      //         iPhase++;
+   //   //         iPhase++;
 
-      //         get(pfnNewAuraLibrary, "get_new_library");
+   //   //         get(pfnNewAuraLibrary, "get_new_library");
 
-      //      }
+   //   //      }
 
-      //   }
-      //   catch (...)
-      //   {
+   //   //   }
+   //   //   catch (...)
+   //   //   {
 
-      //      close();
+   //   //      close();
 
-      //      return false;
+   //   //      return false;
 
-      //   }
+   //   //   }
 
-      //   if (pfnNewAuraLibrary == nullptr)
-      //   {
+   //   //   if (pfnNewAuraLibrary == nullptr)
+   //   //   {
 
-      //      close();
+   //   //      close();
 
-      //      return false;
+   //   //      return false;
 
-      //   }
+   //   //   }
 
-      //   try
-      //   {
+   //   //   try
+   //   //   {
 
-      //      m_pca2library = ::move(pfnNewAuraLibrary());
+   //   //      m_pca2library = ::move(pfnNewAuraLibrary());
 
-      //   }
-      //   catch (...)
-      //   {
+   //   //   }
+   //   //   catch (...)
+   //   //   {
 
-      //      m_pca2library.release();
+   //   //      m_pca2library.release();
 
-      //   }
+   //   //   }
 
-      //}
+   //   //}
 
-      if(m_pca2library.is_null())
-      {
+   //   if(m_pca2library.is_null())
+   //   {
 
-         close();
+   //      close();
 
-         return false;
+   //      return false;
 
-      }
+   //   }
 
-      m_pca2library->initialize_library(this, 0, m_strRoot, m_strName, m_strFolder);
+   //   m_pca2library->initialize_library(this, 0, m_strRoot, m_strName, m_strFolder);
 
-      m_pca2library->do_factory_exchange();
+   //   //m_pca2library->factory();
 
-      //m_pca2library->initialize(this);
+   //   //m_pca2library->initialize(this);
 
-      if (m_pca2library->m_strCa2Name.is_empty())
-      {
+   //   if (m_pca2library->m_strCa2Name.is_empty())
+   //   {
 
-         m_pca2library->m_strCa2Name = m_strPath.title();
+   //      m_pca2library->m_strCa2Name = m_strPath.title();
 
-         m_strCa2Name = m_strPath;
+   //      m_strCa2Name = m_strPath;
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         m_strCa2Name = m_pca2library->m_strCa2Name;
+   //      m_strCa2Name = m_pca2library->m_strCa2Name;
 
-      }
+   //   }
 
-      if (m_strCa2Name.has_char())
-      {
+   //   if (m_strCa2Name.has_char())
+   //   {
 
-         m_psystem->m_mapLibrary[m_strCa2Name] = this;
+   //      m_psystem->m_mapLibrary[m_strCa2Name] = this;
 
-      }
+   //   }
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
-   library * library::get_library()
-   {
+   //library * library::get_library()
+   //{
 
-      return m_pca2library;
+   //   return m_pca2library;
 
-   }
+   //}
 
 
    string library::get_library_name()
    {
 
-      auto psystem = get_system();
+      return m_strName;
 
-      synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
-
-      if(m_pca2library)
-      {
-
-         return m_pca2library->get_library_name();
-
-      }
-      else
-      {
-
-         string strName(m_strCa2Name);
-
-         string strPrefix(get_root());
-
-#ifdef _UWP
-
-         //         strPrefix = "m_" + strPrefix;
-
-#endif
-
-         strPrefix.replace("-","_");
-
-         strPrefix += "_";
-
-         strName.begins_eat_ci(strPrefix);
-
-         return strName;
-
-      }
+//      auto psystem = get_system();
+//
+//      synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
+//
+//      if(m_pca2library)
+//      {
+//
+//         return m_pca2library->get_library_name();
+//
+//      }
+//      else
+//      {
+//
+//         string strName(m_strCa2Name);
+//
+//         string strPrefix(get_root());
+//
+//#ifdef _UWP
+//
+//         //         strPrefix = "m_" + strPrefix;
+//
+//#endif
+//
+//         strPrefix.replace("-","_");
+//
+//         strPrefix += "_";
+//
+//         strName.begins_eat_ci(strPrefix);
+//
+//         return strName;
+//
+//      }
 
    }
 
@@ -419,16 +429,16 @@ namespace acme
 
       auto psystem = get_system();
 
-      synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
+      synchronous_lock synchronouslock(&psystem->m_mutexLibrary4);
 
       try
       {
 
          bool bOk = true;
 
-         m_pca2library.release();
+//         m_pca2library.release();
 
-         if (m_bAutoUnload)
+         //if (m_bAutoUnload)
          {
 
             try
@@ -466,400 +476,349 @@ namespace acme
    }
 
 
-   string library::get_app_id(const char * pszAppName)
-   {
-
-      auto psystem = get_system();
-
-      synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
-
-      if (!contains_app(pszAppName))
-      {
-
-         return "";
-
-      }
-
-      string strPrefix(get_root());
-
-      string strLibraryName(get_library_name());
-
-#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
-
-      if(strLibraryName == "libca2")
-      {
-
-         strLibraryName = "ca2";
-
-      }
-      else if(!::str::begins_eat(strLibraryName,"libca2"))
-      {
-
-         ::str::begins_eat(strLibraryName,"lib");
-
-      }
-
-#elif defined(_UWP)
-
-      //      ::str::begins_eat_ci(strLibraryName, "m_");
-
-#endif
-
-
-      string_array straAppList;
-
-      get_app_list(straAppList);
-
-      strPrefix += "/";
-
-      if(straAppList.get_count() > 1)
-      {
-
-         strPrefix += strLibraryName;
-
-         strPrefix += "/";
-
-      }
-
-      return strPrefix + pszAppName;
-
-   }
-
-
-   string library::get_app_name(const char * pszAppId)
-   {
-
-      auto psystem = get_system();
-
-      synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
-
-      string strAppName(pszAppId);
-
-      string strPrefix(get_root());
-
-      string strLibraryName(get_library_name());
-
-#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
-
-      if(strLibraryName == "libca2")
-      {
-
-         strLibraryName = "ca2";
-
-      }
-      else if(!::str::begins_eat(strLibraryName,"libca2"))
-      {
-
-         ::str::begins_eat(strLibraryName,"lib");
-
-      }
-
-#elif defined(_UWP)
-
-      //      ::str::begins_eat_ci(strLibraryName, "m_");
-
-#endif
-
-      strPrefix += "/";
-
-      strPrefix += strLibraryName;
-
-      strPrefix += "/";
-
-      ::str::begins_eat(strAppName,strPrefix);
-
-      if(!contains_app(strAppName))
-      {
-
-         strAppName     = pszAppId;
-
-         strPrefix      = get_root();
-
-         strPrefix += "/";
-
-         ::str::begins_eat(strAppName,strPrefix);
-
-         if(!contains_app(strAppName))
-            return "";
-      }
-
-      return strAppName;
-
-   }
-
-
-   __transport(::matter) library::new_application(const char * pszAppId)
-   {
-
-      auto psystem = get_system();
-
-      synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
-
-      try
-      {
-
-         auto psetup = ::static_setup::get_first(::static_setup::flag_application, pszAppId);
-
-         if (psetup)
-         {
-
-            auto pelementApplication = psetup->create_application_as_element();
-
-            if (pelementApplication)
-            {
-
-               return pelementApplication;
-
-            }
-
-         }
-
-         if (get_library() == nullptr)
-         {
-
-            open_library();
-
-         }
-
-         if(get_library() != nullptr)
-         {
-
-            string strAppName = get_app_name(pszAppId);
-
-            if (strAppName.is_empty())
-            {
-
-               return nullptr;
-
-            }
-
-            auto papp = get_library()->new_application(strAppName);
-
-            if (!papp)
-            {
-
-               return papp;
-
-            }
-
-            papp->set_library_name(m_strCa2Name);
-
-            return papp;
-
-         }
-         else
-         {
-
-            auto p = get<PFN_NEW_MATTER>("new_application_as_matter");
-
-            if (p)
-            {
-
-               auto papp = (*p)();
-
-               return papp;
-
-            }
-
-         }
-
-      }
-      catch(...)
-      {
-
-      }
-
-      return nullptr;
-
-   }
-
-
-   void library::get_extension_list(string_array & stra)
-   {
-
-
-   }
-
-
-   void library::get_app_list(string_array & stra)
-   {
-
-      auto psystem = get_system();
-
-      synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
-
-      if(get_library() != nullptr)
-      {
-         try
-         {
-            get_library()->get_app_list(stra);
-         }
-         catch(...)
-         {
-         }
-      }
-      else
-      {
-
-         string strAppId = m_strCa2Name;
-
-         stra.add(strAppId);
-
+//   string library::get_app_id(const char * pszAppName)
+//   {
 //
+//      auto psystem = get_system();
 //
-//         string strPrefix = get_root();
+//      synchronous_lock synchronouslock(&psystem->m_mutexRawLibrary);
 //
-//#if defined(LINUX) || defined(__APPLE__)
+//      if (!contains_app(pszAppName))
+//      {
 //
-//         ::str::begins_eat(strAppId,"lib");
+//         return "";
+//
+//      }
+//
+//      string strPrefix(get_root());
+//
+//      string strLibraryName(get_library_name());
+//
+//#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+//
+//      if(strLibraryName == "libca2")
+//      {
+//
+//         strLibraryName = "ca2";
+//
+//      }
+//      else if(!::str::begins_eat(strLibraryName,"libca2"))
+//      {
+//
+//         ::str::begins_eat(strLibraryName,"lib");
+//
+//      }
 //
 //#elif defined(_UWP)
 //
-//         //         strPrefix = "m_" + strPrefix;
+//      //      ::str::begins_eat_ci(strLibraryName, "m_");
 //
 //#endif
 //
-//         strPrefix.replace("-","_");
 //
-//         strPrefix += "_";
+//      string_array straAppList;
 //
-//         ::str::begins_eat_ci(strAppId,strPrefix);
+//      get_app_list(straAppList);
 //
-//         //if(::str::begins_eat_ci(strAppId,strPrefix))
+//      strPrefix += "/";
+//
+//      if(straAppList.get_count() > 1)
+//      {
+//
+//         strPrefix += strLibraryName;
+//
+//         strPrefix += "/";
+//
+//      }
+//
+//      return strPrefix + pszAppName;
+//
+//   }
+
+
+//   string library::get_app_name(const char * pszAppId)
+//   {
+//
+//      auto psystem = get_system();
+//
+//      synchronous_lock synchronouslock(&psystem->m_mutexRawLibrary);
+//
+//      string strAppName(pszAppId);
+//
+//      string strPrefix(get_root());
+//
+//      string strLibraryName(get_library_name());
+//
+//#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+//
+//      if(strLibraryName == "libca2")
+//      {
+//
+//         strLibraryName = "ca2";
+//
+//      }
+//      else if(!::str::begins_eat(strLibraryName,"libca2"))
+//      {
+//
+//         ::str::begins_eat(strLibraryName,"lib");
+//
+//      }
+//
+//#elif defined(_UWP)
+//
+//      //      ::str::begins_eat_ci(strLibraryName, "m_");
+//
+//#endif
+//
+//      strPrefix += "/";
+//
+//      strPrefix += strLibraryName;
+//
+//      strPrefix += "/";
+//
+//      ::str::begins_eat(strAppName,strPrefix);
+//
+//      if(!contains_app(strAppName))
+//      {
+//
+//         strAppName     = pszAppId;
+//
+//         strPrefix      = get_root();
+//
+//         strPrefix += "/";
+//
+//         ::str::begins_eat(strAppName,strPrefix);
+//
+//         if(!contains_app(strAppName))
+//            return "";
+//      }
+//
+//      return strAppName;
+//
+//   }
+
+
+   //__transport(::object) library::new_application(const ::string & strAppId)
+   //{
+
+   //   auto psystem = get_system();
+
+   //   synchronous_lock synchronouslock(&psystem->m_mutexRawLibrary);
+
+   //   try
+   //   {
+
+   //      auto psetup = ::static_setup::get_first(::static_setup::flag_application, pszAppId);
+
+   //      if (psetup)
+   //      {
+
+   //         auto pelementApplication = psetup->create_application_as_element();
+
+   //         if (pelementApplication)
+   //         {
+
+   //            return pelementApplication;
+
+   //         }
+
+   //      }
+
+   //      string strAppId(pszAppId);
+
+   //      strAppId.replace("/", "_");
+
+   //      strAppId.replace("-", "_");
+
+   //      auto & pfactory = this->factory(strAppId);
+
+   //         //string strAppName = get_app_name(pszAppId);
+
+   //      if (!pfactory)
+   //      {
+
+   //         return nullptr;
+
+   //      }
+
+   //      auto papp = pfactory->create("application");
+
+   //         //auto papp = get_library()->new_application(strAppName);
+
+   //         //if (!papp)
+   //         //{
+
+   //         //   return papp;
+
+   //         //}
+
+   //         //papp->set_library_name(m_strCa2Name);
+
+   //      papp->set_library_name(m_strName);
+
+   //      return papp;
+
+   //      }
+   //      //else
+   //      //{
+
+   //      //   auto p = get<PFN_NEW_MATTER>("new_application_as_matter");
+
+   //      //   if (p)
+   //      //   {
+
+   //      //      auto papp = (*p)();
+
+   //      //      return papp;
+
+   //      //   }
+
+   //      //}
+
+   //   }
+   //   catch(...)
+   //   {
+
+   //   }
+
+   //   return nullptr;
+
+   //}
+
+
+   //void library::get_extension_list(string_array & stra)
+   //{
+
+
+   //}
+
+
+//   void library::get_app_list(string_array & stra)
+//   {
+//
+//      auto psystem = get_system();
+//
+//      synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
+//
+//      if(get_library() != nullptr)
+//      {
+//         try
 //         {
-//
-//            stra.add(strAppId);
-//
+//            get_library()->get_app_list(stra);
 //         }
-
-      }
-
-   }
-
-
-   ::matter* library::new_object(const char * pszClassId)
-   {
-
-      if (!m_pca2library)
-      {
-
-         return nullptr;
-
-      }
-
-      return m_pca2library->new_object(pszClassId);
-
-   }
-
-
-   __pointer(::matter) library::create_object(const char * pszClass)
-   {
-
-      auto psystem = get_system();
-
-      synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
-
-      ::matter * p = nullptr;
-
-      if(get_library() != nullptr)
-      {
-
-         p = get_library()->new_object(pszClass);
-
-      }
-      else
-      {
-         
-         p = new_object(pszClass);
-
-      }
-
-      auto pobject = ::move_transfer(p);
-      
-      if (!pobject)
-      {
-
-         return nullptr;
-
-      }
-
-      return pobject;
-
-   }
+//         catch(...)
+//         {
+//         }
+//      }
+//      else
+//      {
+//
+//         string strAppId = m_strCa2Name;
+//
+//         stra.add(strAppId);
+//
+////
+////
+////         string strPrefix = get_root();
+////
+////#if defined(LINUX) || defined(__APPLE__)
+////
+////         ::str::begins_eat(strAppId,"lib");
+////
+////#elif defined(_UWP)
+////
+////         //         strPrefix = "m_" + strPrefix;
+////
+////#endif
+////
+////         strPrefix.replace("-","_");
+////
+////         strPrefix += "_";
+////
+////         ::str::begins_eat_ci(strAppId,strPrefix);
+////
+////         //if(::str::begins_eat_ci(strAppId,strPrefix))
+////         {
+////
+////            stra.add(strAppId);
+////
+////         }
+//
+//      }
+//
+//   }
 
 
-   bool library::has_object_class(const char * pszClassId)
-   {
+   //::matter* library::new_object(const char * pszClassId)
+   //{
 
-      auto psystem = get_system();
+   //   if (!m_pca2library)
+   //   {
 
-      synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
+   //      return nullptr;
 
-      if (get_library() == nullptr)
-      {
+   //   }
 
-         return false;
+   //   return m_pca2library->new_object(pszClassId);
 
-      }
-
-      return get_library()->has_object_class(pszClassId);
-
-   }
+   //}
 
 
-   bool library::contains_app(const char * pszAppId)
-   {
-
-      auto psystem = get_system();
-
-      synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
-
-      string_array stra;
-
-      get_app_list(stra);
-
-      return stra.contains(pszAppId);
-
-   }
 
 
-   string library::get_root()
-   {
+   //bool library::contains_app(const char * pszAppId)
+   //{
 
-      auto psystem = get_system();
+   //   auto psystem = get_system();
 
-      synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
+   //   synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 
-      if(m_pca2library)
-      {
+   //   string_array stra;
 
-         return m_pca2library->m_strRoot;
+   //   get_app_list(stra);
 
-      }
+   //   return stra.contains(pszAppId);
 
-      return m_strRoot;
-
-   }
+   //}
 
 
-   void library::get_create_view_id_list(::array < ::id > & ida)
-   {
+   //string library::get_root()
+   //{
 
-      auto psystem = get_system();
+   //   //auto psystem = get_system();
 
-      synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
+   //   //synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 
-      __UNREFERENCED_PARAMETER(ida);
+   //   //if(m_pca2library)
+   //   //{
 
-   }
+   //   //   return m_pca2library->m_strRoot;
+
+   //   //}
+
+   //   return m_strRoot;
+
+   //}
+
+
+   //void library::get_create_view_id_list(::array < ::id > & ida)
+   //{
+
+   //   auto psystem = get_system();
+
+   //   synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
+
+   //   __UNREFERENCED_PARAMETER(ida);
+
+   //}
 
 
    bool library::is_opened()
    {
 
-      auto psystem = get_system();
+      //auto psystem = get_system();
 
-      synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
+      //synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 
       return m_plibrary != nullptr;
 
@@ -879,7 +838,7 @@ namespace acme
 
       auto psystem = get_system();
 
-      synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
+      synchronous_lock synchronouslock(&psystem->m_mutexLibrary4);
 
       return __node_library_raw_get(m_plibrary,pszEntryName);
 
@@ -951,101 +910,116 @@ namespace acme
 
    //}
 
-
-   //void library::initialize_factory()
+   
+   //__transport(::factory::factory)& library::factory(const ::string& strComponent, const ::string& strImplementation)
    //{
+
+   //   if (strComponent.is_empty() || strImplementation.is_empty())
+   //   {
+
+   //      throw error_invalid_argument;
+
+   //   }
+
+   //   string strLibrary;
+
+   //   strLibrary = strComponent + "_" + strImplementation;
+
+   //   auto& pfactory = factory(strLibrary);
+
+   //   if (!pfactory)
+   //   {
+
+   //      return pfactory;
+
+   //   }
+
+   //   return pfactory;
+
 
    //}
 
-   
-   ::e_status library::do_factory_exchange(const ::string& strName, ::factory_map* pfactorymap)
-   {
 
-      if (::is_null(pfactorymap))
-      {
-
-         pfactorymap = ::factory::get_factory_map();
-
-      }
-
-      auto estatus = factory_exchange(strName, pfactorymap);
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      return estatus;
-
-   }
-
-
-   ::e_status library::factory_exchange(const ::string& strNameParam, ::factory_map * pfactorymap)
-   {
-
-      string strName(strNameParam);
-
-      if (pfactorymap == nullptr)
-      {
-
-         m_psystem->__construct_new(m_pfactorymap);
-
-         pfactorymap = m_pfactorymap;
-
-      }
-
-      string strFactoryExchange;
-
-      if (strName.is_empty())
-      {
-
-         strName = m_strName;
-
-         if (strName.is_empty())
-         {
-
-            strName = ::file::path(m_strPath).name();
-
-         }
-
-      }
-
-      if (strName.is_empty())
-      {
-
-         strFactoryExchange = "factory_exchange";
-
-      }
-      else
-      {
-
-         strFactoryExchange = strName + "_factory_exchange";
-
-      }
-
-      auto pfn_create_factory = get < PFN_factory_exchange >(strFactoryExchange);
-
-      if (!pfn_create_factory)
-      {
-
-         return error_failed;
-
-      }
-
-      pfn_create_factory(pfactorymap);
-
-      return ::success;
-
-   }
-
-
-
-   //bool library::create_factory()
+   //__transport(::factory::factory) & library::factory(const ::string& strLibrary)
    //{
 
-   //   auto pfn_create_factory = get < PFN_create_factory >("create_factory");
+   //   if (strLibrary.is_empty())
+   //   {
+
+   //      throw error_invalid_argument;
+
+   //   }
+
+   //   auto& pfactory = m_mapFactory[strLibrary];
+
+   //   if (pfactory.is_initialized())
+   //   {
+
+   //      return pfactory;
+
+   //   }
+
+   //   _load_factory(pfactory, strLibrary);
+
+   //   return pfactory;
+
+   //}
+
+
+   //void library::_load_factory(__transport(::factory::factory) & pfactory, const ::string & strComponent)
+   //{
+
+   //   if (strComponent.is_empty())
+   //   {
+
+   //      throw error_invalid_argument;
+
+   //   }
+
+   //   string strFactory;
+
+   //   strFactory = strComponent + "_factory";
+
+   //   auto pfn_factory = get < PFN_factory >(strFactory);
+
+   //   if (!pfn_factory)
+   //   {
+
+   //      pfactory = (const ::extended::status &) error_failed;
+
+   //      return;
+
+   //   }
+
+   //   pfactory = __new(::factory::factory);
+
+   //   if (!pfactory)
+   //   {
+
+   //      pfactory = (const ::extended::status &) error_failed;
+
+   //      return;
+
+   //   }
+
+   //   try
+   //   {
+
+   //      pfn_factory(pfactory);
+
+   //   }
+   //   catch (const ::exception& e)
+   //   {
+
+   //   }
+
+   //}
+
+
+   //bool library::add_factory_item()
+   //{
+
+   //   auto pfn_create_factory = get < PFN_create_factory >("add_factory_item");
 
    //   if (pfn_create_factory == nullptr)
    //   {
@@ -1059,6 +1033,28 @@ namespace acme
    //   return true;
 
    //}
+
+
+   __transport(::factory::factory) library::create_factory(const ::string & strLibrary)
+   {
+
+      auto pfnFactory = get < PFN_factory >(factory_name(strLibrary));
+
+      if (::is_null(pfnFactory))
+      {
+
+         return error_function_entry_not_found;
+
+      }
+
+      auto pfactory = __new(::factory::factory);
+
+      pfnFactory(pfactory);
+
+      return pfactory;
+
+   }
+
 
 } // namespace acme
 
@@ -1126,3 +1122,57 @@ namespace acme
 #endif
 
 
+CLASS_DECL_ACME string implementation_name(const ::string& strComponent, const ::string& strImplementation)
+{
+
+   if (strImplementation.begins_ci(strComponent) && strImplementation[strComponent.length()] == '_')
+   {
+
+      return strImplementation.c_str() + strComponent.length() + 1;
+
+   }
+
+   return strImplementation;
+
+}
+
+
+CLASS_DECL_ACME string library_name(const ::string& strComponent, const ::string& strImplementation)
+{
+
+   string strLibrary;
+
+   strLibrary = strComponent + "_" + implementation_name(strComponent, strImplementation);
+
+   return strLibrary;
+
+}
+
+
+CLASS_DECL_ACME string factory_name(const ::string& strLibrary)
+{
+
+   string strFactory;
+
+   strFactory = strLibrary + "_factory";
+
+   return strFactory;
+
+}
+
+
+CLASS_DECL_ACME string library_filter(const ::string& str)
+{
+
+   string strLibrary;
+
+   strLibrary = str;
+
+   strLibrary.ends_eat_ci(".dll");
+   strLibrary.ends_eat_ci(".so");
+   strLibrary.ends_eat_ci(".dylib");
+   strLibrary.begins_eat_ci("lib");
+
+   return strLibrary;
+
+}

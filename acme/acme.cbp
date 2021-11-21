@@ -608,7 +608,7 @@
 		<Unit filename="node/linux/dumpinit.cpp" />
 		<Unit filename="node/linux/error.cpp" />
 		<Unit filename="node/linux/exception.cpp" />
-		<Unit filename="node/linux/factory_exchange.cpp" />
+		<Unit filename="node/linux/_factory.cpp" />
 		<Unit filename="node/linux/factory_exchange.h" />
 		<Unit filename="node/linux/file.cpp" />
 		<Unit filename="node/linux/file.h" />

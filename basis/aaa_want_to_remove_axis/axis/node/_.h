@@ -1,5 +1,5 @@
 
-void __node_axis_factory_exchange(::factory_map * pfactorymap);
+void ([a-z0-9_]+)_factory(::factory::factory * pfactory);
 
 
 

@@ -283,7 +283,7 @@ void stream::getline(char * sz, strsize n)
 //
 //   memory_stream stream;
 //
-//   ::factory::load_object(stream, ppathobject);
+//   ::factory_item::load_object(stream, ppathobject);
 //
 //}
 

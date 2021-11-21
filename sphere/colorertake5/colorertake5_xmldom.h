@@ -83,7 +83,7 @@ namespace colorertak5
    };
 
    /**
-    * Document factory, used to build xml document tree from input stream.
+    * Document factory_item, used to build xml document tree from input stream.
     * Contains parser settings, can be used to generate multiple DOM trees.
     * Should not be used simultaneously from several threads.
     * @ingroup xml

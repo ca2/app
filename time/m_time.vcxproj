@@ -149,7 +149,7 @@
       <AdditionalDependencies>DWrite.lib;Msxml6.lib;D3D11.lib;D2D1.lib;kernel32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
-      <ModuleDefinitionFile>$(TargetName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../nodelfs/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
     </Link>
@@ -178,7 +178,7 @@
       <AdditionalDependencies>DWrite.lib;Msxml6.lib;D3D11.lib;D2D1.lib;kernel32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
-      <ModuleDefinitionFile>$(TargetName).def</ModuleDefinitionFile>
+      
     </Link>
     <PreBuildEvent>
       <Command>copy "$(SolutionDir)..\..\..\nodeapp\stage\matter\msvc++\msvcp110d.dll" "$(OutDir)"
@@ -290,7 +290,7 @@ copy "$(SolutionDir)..\..\..\nodelfs\thirdparty\binary\FreeImage.dll" "$(OutDir)
     <ClCompile Include="kissfft\kiss_ifft.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="math.def" />
+    
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

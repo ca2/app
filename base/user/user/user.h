@@ -98,9 +98,9 @@ namespace base
       virtual __pointer(::user::menu) track_popup_xml_menu_file(::user::interaction* pinteraction, ::payload varXmlFile, i32 iFlags, const ::point_i32& point, const ::size_i32& sizeMinimum = ::size_i32(), ::channel* pchannelNotify = nullptr);
 
 
-      virtual void defer_instantiate_user_style(const ::string & pszUiInteractionLibrary = nullptr);
-      ::user::style_pointer instantiate_user_style(const ::string & pszExperienceLibrary, ::application* papp = nullptr);
-      ::user::style_pointer get_user_style(const ::string & pszExperienceLibrary, ::application* papp = nullptr);
+      virtual void defer_instantiate_user_style(const ::string & strExperience = nullptr);
+      ::user::style_pointer instantiate_user_style(const ::string & strExperience, ::application* papp = nullptr);
+      ::user::style_pointer get_user_style(const ::string & strExperience, ::application* papp = nullptr);
 
 
       //virtual ::type get_pane_tab_view_type_info();

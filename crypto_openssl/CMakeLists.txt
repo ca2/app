@@ -8,7 +8,7 @@ list(APPEND library_source
    _crypto_openssl.h
    crypto.cpp
    crypto.h
-   factory_exchange.cpp
+   _factory.cpp
    hasher.cpp
    hasher.h
    hasher_algorithm.cpp

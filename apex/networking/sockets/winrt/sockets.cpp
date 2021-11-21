@@ -101,10 +101,10 @@ namespace sockets
 
    //      /*            ::sockets::SSLInitializer ssl_init(m_psystem);*/
 
-   //      //create_factory <::http::memory_file > ();
-   //      //create_factory < ::sockets::winrt_address  >  (::apex::get_system()->template type_info < ::net::address_base > ());
-   //      /*            create_factory < ::sockets::ipv4_address  > ();
-   //               create_factory < ::sockets::ipv6_address  > ();*/
+   //      //add_factory_item <::http::memory_file > ();
+   //      //add_factory_item < ::sockets::winrt_address  >  (::apex::get_system()->template type_info < ::net::address_base > ());
+   //      /*            add_factory_item < ::sockets::ipv4_address  > ();
+   //               add_factory_item < ::sockets::ipv6_address  > ();*/
 
    //      m_pajpbasesocketinit = new AjpBaseSocket::Initializer;
    //   }

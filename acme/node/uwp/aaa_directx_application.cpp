@@ -37,7 +37,7 @@ namespace universal_windows
 
       m_puisettings = ref new ::winrt::Windows::UI::ViewManagement::UISettings;
          
-      create_factory < ::universal_windows::buffer, ::graphics::graphics >();
+      add_factory_item < ::universal_windows::buffer, ::graphics::graphics >();
 
       m_dwMouseMoveThrottle = 10;
 

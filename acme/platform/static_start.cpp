@@ -108,7 +108,7 @@ CLASS_DECL_ACME enum_platform_level get_platform_level()
 
 }
 
-//void __node_acme_factory_exchange(::factory_map * pfactorymap);
+//void ([a-z0-9_]+)_factory(::factory::factory * pfactory);
 
 
 
@@ -752,7 +752,7 @@ namespace acme
       //::thread::g_pthreadmap = new ::thread_map();
 
       // acme commented
-      //create_factory < ::context >();
+      //add_factory_item < ::context >();
 
 
 #if OBJECT_TYPE_COUNTER
@@ -766,7 +766,7 @@ namespace acme
       init();
 
 
-      create_factory < manual_reset_event >();
+      ::factory::add_factory_item < manual_reset_event >();
 
 #ifdef LINUX
 
@@ -1141,9 +1141,9 @@ namespace acme
 //
 //#endif
 
-      //create_factory < ::stdio_file >();
+      //add_factory_item < ::stdio_file >();
 
-      //__node_acme_factory_exchange(::factory::get_factory_map());
+      //([a-z0-9_]+)_factory(::factory_item::get_factory());
 
       return true;
 

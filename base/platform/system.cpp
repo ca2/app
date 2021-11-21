@@ -4,7 +4,7 @@
 #include "base/constant/idpool.h"
 
 
-void __node_base_factory_exchange(::factory_map * pfactorymap);
+void base_factory(::factory::factory * pfactory);
 
 
 namespace base
@@ -64,7 +64,7 @@ namespace base
 //      //}
 //      //catch (...)
 //      //{
-//      //   TRACE("system::~system: Potentially catastrophical error : error disabling simple factory request");
+//      //   TRACE("system::~system: Potentially catastrophical error : error disabling simple factory_item request");
 //      //}
 //
 //      if (g_p == this)
@@ -98,10 +98,10 @@ namespace base
 
       m_pbasesystem = this;
 
-      create_factory < ::base::session, ::apex::session >();
-      create_factory < ::base::application, ::application >();
-      create_factory < ::base::idpool, ::acme::idpool >();
-      create_factory < ::base::user, ::user::user >();
+      ::factory::add_factory_item < ::base::session, ::apex::session >();
+      ::factory::add_factory_item < ::base::application, ::application >();
+      ::factory::add_factory_item < ::base::idpool, ::acme::idpool >();
+      ::factory::add_factory_item < ::base::user, ::user::user >();
 
    }
 
@@ -118,7 +118,7 @@ namespace base
 
       }
 
-      __node_base_factory_exchange(::factory::get_factory_map());
+      base_factory(::factory::get_factory());
 
       return estatus;
 
@@ -153,10 +153,7 @@ namespace base
 } // namespace base
 
 
-
-
-
-void __node_base_factory_exchange(::factory_map * pfactorymap)
+void base_factory(::factory::factory * pfactory)
 {
 
 

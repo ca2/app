@@ -153,7 +153,7 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalDependencies>kernel32.lib;OleAut32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)../../time/library/x86/$(ConfigurationName);$(__archive)third-universal_windows/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>$(TargetName).def</ModuleDefinitionFile>
+      
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">
@@ -175,7 +175,7 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalDependencies>FreeImage.lib;m_freetype.lib;kernel32.lib;OleAut32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)../../time/library/x86/$(ConfigurationName);$(__archive)third-universal_windows/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>$(TargetName).def</ModuleDefinitionFile>
+      
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|arm'">

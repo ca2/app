@@ -1005,7 +1005,7 @@
     <ClCompile Include="userstack\_userstack.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="sphere.def" />
+    
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\winmetro\app\aura\w_aura.vcxproj">

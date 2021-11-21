@@ -1292,7 +1292,7 @@
 		9AE64F4B252A681B00BED5B8 /* RoundTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundTextView.h; sourceTree = "<group>"; };
 		9AE64F4C252A681B00BED5B8 /* RoundTextRange.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RoundTextRange.mm; sourceTree = "<group>"; };
 		9AE64F4D252A681B00BED5B8 /* RoundWindow.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RoundWindow.mm; sourceTree = "<group>"; };
-		9AE64F4E252A681B00BED5B8 /* factory_exchange.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = factory_exchange.cpp; sourceTree = "<group>"; };
+		9AE64F4E252A681B00BED5B8 /* _factory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _factory.cpp; sourceTree = "<group>"; };
 		9AE64F4F252A681B00BED5B8 /* host_interaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = host_interaction.h; sourceTree = "<group>"; };
 		9AE64F50252A681B00BED5B8 /* RoundCaretView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RoundCaretView.mm; sourceTree = "<group>"; };
 		9AE64F51252A681B00BED5B8 /* RoundEditView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RoundEditView.mm; sourceTree = "<group>"; };
@@ -2322,7 +2322,7 @@
 				9AE64F27252A681B00BED5B8 /* round_window.mm */,
 				9AE64F28252A681B00BED5B8 /* exception.cpp */,
 				9AE64F4D252A681B00BED5B8 /* RoundWindow.mm */,
-				9AE64F4E252A681B00BED5B8 /* factory_exchange.cpp */,
+				9AE64F4E252A681B00BED5B8 /* _factory.cpp */,
 				9AE64F48252A681B00BED5B8 /* file_system.cpp */,
 				9AE64F41252A681B00BED5B8 /* file_context.cpp */,
 				9AE64F44252A681B00BED5B8 /* file.cpp */,

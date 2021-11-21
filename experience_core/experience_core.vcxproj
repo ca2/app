@@ -57,7 +57,7 @@
     <ClCompile Include="frame_011.cpp" />
     <ClCompile Include="frame_013.cpp" />
     <ClCompile Include="frame_Minimal001.cpp" />
-    <ClCompile Include="factory_exchange.cpp" />
+    <ClCompile Include="_factory.cpp" />
     <ClCompile Include="style.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -100,9 +100,7 @@
       <Project>{a216abd4-26c4-4746-96b3-9d30ed28cf92}</Project>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="experience_core.def" />
-  </ItemGroup>
+  
   <PropertyGroup Label="Globals">
     <ProjectName>experience_core</ProjectName>
     <ProjectGuid>{E2D7833B-9B59-4826-BBDF-C270A2115E86}</ProjectGuid>
@@ -296,7 +294,7 @@
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>
       </EntryPointSymbol>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <ShowProgress>NotSet</ShowProgress>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
@@ -371,7 +369,7 @@
       <RandomizedBaseAddress>true</RandomizedBaseAddress>
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <TargetMachine>MachineX86</TargetMachine>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <ShowProgress>NotSet</ShowProgress>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
@@ -452,7 +450,7 @@
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>
       </EntryPointSymbol>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <ShowProgress>NotSet</ShowProgress>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <MergeSections>
@@ -537,7 +535,7 @@
       <RandomizedBaseAddress>true</RandomizedBaseAddress>
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <TargetMachine>MachineX86</TargetMachine>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <FixedBaseAddress>false</FixedBaseAddress>
       <ShowProgress>NotSet</ShowProgress>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
@@ -612,7 +610,7 @@
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>
       </EntryPointSymbol>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
     </Link>
@@ -683,7 +681,7 @@
       </EntryPointSymbol>
       <RandomizedBaseAddress>true</RandomizedBaseAddress>
       <DataExecutionPrevention>true</DataExecutionPrevention>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
     </Link>
@@ -760,7 +758,7 @@
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>
       </EntryPointSymbol>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
     <CustomBuildStep>
@@ -838,7 +836,7 @@
       </EntryPointSymbol>
       <RandomizedBaseAddress>true</RandomizedBaseAddress>
       <DataExecutionPrevention>true</DataExecutionPrevention>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <FixedBaseAddress>false</FixedBaseAddress>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>

@@ -34,10 +34,10 @@ namespace filehandler
    {
 
 
-      create_factory <pane_view >();
-      create_factory <document >();
-      create_factory <frame >();
-      create_factory <impact >();
+      add_factory_item <pane_view >();
+      add_factory_item <document >();
+      add_factory_item <frame >();
+      add_factory_item <impact >();
 
       if(!::acme::department::init_instance())
          return false;

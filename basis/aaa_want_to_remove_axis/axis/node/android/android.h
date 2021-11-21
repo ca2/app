@@ -11,7 +11,7 @@ string get_error_message(::u32 dwError);
 //#include "android1.h"
 //#include "android_implementation.h"
 #include "android_axis_dir.h"
-#include "android_factory_exchange.h"
+#include "([a-z0-9_]+)_factory.h"
 //#include "android_window_draw.h"
 //#include "android_thread.h"
 //#include "android_window.h"

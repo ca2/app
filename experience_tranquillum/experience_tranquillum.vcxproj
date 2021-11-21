@@ -56,7 +56,7 @@
     <ClCompile Include="frame_011.cpp" />
     <ClCompile Include="frame_013.cpp" />
     <ClCompile Include="frame_Minimal001.cpp" />
-    <ClCompile Include="factory_exchange.cpp" />
+    <ClCompile Include="_factory.cpp" />
     <ClCompile Include="style.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -99,9 +99,7 @@
       <Project>{a216abd4-26c4-4746-96b3-9d30ed28cf92}</Project>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="experience_tranquillum.def" />
-  </ItemGroup>
+  
   <PropertyGroup Label="Globals">
     <ProjectName>experience_tranquillum</ProjectName>
     <ProjectGuid>{3C892817-9F8B-493C-A3E1-AAC25943A7F9}</ProjectGuid>
@@ -293,7 +291,7 @@
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>
       </EntryPointSymbol>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <ShowProgress>NotSet</ShowProgress>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
@@ -440,7 +438,7 @@
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>
       </EntryPointSymbol>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <ShowProgress>NotSet</ShowProgress>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <MergeSections>
@@ -592,7 +590,7 @@
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>
       </EntryPointSymbol>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
     <CustomBuildStep>
@@ -732,7 +730,7 @@
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>
       </EntryPointSymbol>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
     <CustomBuildStep>

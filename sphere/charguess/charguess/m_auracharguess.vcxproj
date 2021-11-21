@@ -89,7 +89,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="auracharguess.def" />
+    
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{67C95418-596B-4860-AFAE-B53262AE5E43}</ProjectGuid>
@@ -274,7 +274,7 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalDependencies>Oleaut32.lib;Msxml6.lib;DWrite.lib;D3D11.lib;D2D1.lib;kernel32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ModuleDefinitionFile>$(TargetName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(SolutionDir)../../time/library/x86/$(ConfigurationName);C:/archive/platform-universal_windows/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
     </Link>
@@ -303,7 +303,7 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalDependencies>Oleaut32.lib;Msxml6.lib;DWrite.lib;D3D11.lib;D2D1.lib;kernel32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ModuleDefinitionFile>$(TargetName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(SolutionDir)../../time/library/x86/$(ConfigurationName);C:/archive/platform-universal_windows/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>$(SolutionDir)../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
     </Link>
@@ -438,7 +438,7 @@ copy "$(SolutionDir)..\..\..\platform\thirdparty\binary\FreeImage.dll" "$(OutDir
       <SubSystem>Windows</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <ModuleDefinitionFile>$(TargetName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(IntDir);$(SolutionDir)../../time/library/$(PlatformName)/$(Configuration)/;C:/archive/platform-universal_windows/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
       <AdditionalDependencies>aura.lib;kernel32.lib;%(AdditionalDependencies)</AdditionalDependencies>

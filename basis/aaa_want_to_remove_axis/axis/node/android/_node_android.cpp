@@ -6,7 +6,7 @@
 #include "android_axis_file_system.cpp"
 #include "android_copydesk.cpp"
 #include "android_crypto.cpp"
-#include "android_factory_exchange.cpp"
+#include "([a-z0-9_]+)_factory.cpp"
 #include "android_ip_enum.cpp"
 #include "android_port_forward.cpp"
 

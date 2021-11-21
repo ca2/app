@@ -72,10 +72,10 @@ namespace experience
       }
 
 
-      ::experience::frame * experience::experience_get_frame(const ::string & pszSchema)
+      ::experience::frame * experience::frame_experience(const ::string & strFrameSchema)
       {
 
-         string strSchema(pszSchema);
+         string strSchema(strFrameSchema);
 
          if(strSchema == "001")
          {

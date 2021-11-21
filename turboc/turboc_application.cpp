@@ -49,17 +49,17 @@ namespace turboc
       m_pcontext = new context(this);
 
 
-      create_factory <::turboc::document >();
-      create_factory <::turboc::frame >();
-      create_factory <::turboc::edit_view >();
-      create_factory <::turboc::toggle_view >();
-      create_factory <::turboc::top_view >();
-      create_factory <::turboc::lite_view >();
-      create_factory <::turboc::full_view >();
-      create_factory <::turboc::impact >();
-      create_factory <::turboc::main_impact >();
-      create_factory <::turboc::switcher_view >();
-      create_factory <::turboc::pane_view >();
+      add_factory_item <::turboc::document >();
+      add_factory_item <::turboc::frame >();
+      add_factory_item <::turboc::edit_view >();
+      add_factory_item <::turboc::toggle_view >();
+      add_factory_item <::turboc::top_view >();
+      add_factory_item <::turboc::lite_view >();
+      add_factory_item <::turboc::full_view >();
+      add_factory_item <::turboc::impact >();
+      add_factory_item <::turboc::main_impact >();
+      add_factory_item <::turboc::switcher_view >();
+      add_factory_item <::turboc::pane_view >();
 
       if(!::console::application::initialize_application())
          return false;

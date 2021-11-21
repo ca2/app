@@ -31,11 +31,11 @@ namespace core
 
       m_pcoresystem = this;
 
-      create_factory < ::core::application, ::application >();
-      create_factory < ::core::session, ::apex::session >();
-      create_factory < ::core::idpool, ::acme::idpool >();
-      create_factory < ::core::user, ::user::user >();
-      //create_factory < ::core::idpool, ::apex::idpool >();
+      ::factory::add_factory_item < ::core::application, ::application >();
+      ::factory::add_factory_item < ::core::session, ::apex::session >();
+      ::factory::add_factory_item < ::core::idpool, ::acme::idpool >();
+      ::factory::add_factory_item < ::core::user, ::user::user >();
+      //add_factory_item < ::core::idpool, ::apex::idpool >();
 
    }
 

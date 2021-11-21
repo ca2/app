@@ -6,21 +6,21 @@ namespace factory
 {
 
 
-   factory_interface::factory_interface()
+   factory_item_interface::factory_item_interface()
    {
 
 
    }
 
 
-   factory_interface::~factory_interface()
+   factory_item_interface::~factory_item_interface()
    {
 
 
    }
 
 
-    CLASS_DECL_ACME factory_array * get_factory_array()
+    CLASS_DECL_ACME factory_array * get_factory_item_array()
     {
 
        return ::acme::static_start::g_staticstart.m_pfactorya;
@@ -36,10 +36,10 @@ namespace factory
     }
 
 
-    CLASS_DECL_ACME factory_map * get_factory_map()
+    CLASS_DECL_ACME factory * get_factory()
     {
 
-       return ::acme::static_start::g_staticstart.m_pfactorymap;
+       return ::acme::static_start::g_staticstart.m_pfactory;
 
     }
 
@@ -48,9 +48,9 @@ namespace factory
     void factory_init()
     {
 
-       ::acme::static_start::g_staticstart.m_pfactorymap = new factory_map();
+       ::acme::static_start::g_staticstart.m_pfactory = new factory();
 
-       ::acme::static_start::g_staticstart.m_pfactorymap->InitHashTable(16189);
+       ::acme::static_start::g_staticstart.m_pfactory->InitHashTable(16189);
 
        ::acme::static_start::g_staticstart.m_pfactorya = new factory_array();
 
@@ -62,7 +62,7 @@ namespace factory
 
       critical_section_lock synchronouslock(::acme::static_start::g_staticstart.m_pcriticalsectionFactory);
 
-      ::acme::static_start::g_staticstart.m_pfactorymap->erase_all();
+      ::acme::static_start::g_staticstart.m_pfactory->erase_all();
 
       ::acme::static_start::g_staticstart.m_pfactorya->erase_all();
 
@@ -75,7 +75,28 @@ namespace factory
 
       ::acme::del(::acme::static_start::g_staticstart.m_pfactorya);
 
-      ::acme::del(::acme::static_start::g_staticstart.m_pfactorymap);
+      ::acme::del(::acme::static_start::g_staticstart.m_pfactory);
+
+   }
+
+
+   void factory::merge(const ::factory::factory* pfactory)
+   {
+
+      for (auto& pair : *pfactory)
+      {
+
+         set_at(pair.m_element1, pair.m_element2);
+
+      }
+
+   }
+
+
+   void factory::merge_to_global_factory() const
+   {
+
+      ::factory::get_factory()->merge(this);
 
    }
 
@@ -154,7 +175,7 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 }
 
 
-//CLASS_DECL_ACME __pointer(alloc_interface) & get_factory2(const ::string & strName)
+//CLASS_DECL_ACME __pointer(alloc_interface) & get_factory_item2(const ::string & strName)
 //{
 //
 //   string_array stra;
@@ -167,14 +188,14 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 //
 //   auto plibrary = get_system()->get_library(strLibrary);
 //
-//   plibrary->create_factory();
+//   plibrary->add_factory_item();
 //
-//   auto & pfactory = get_factory(strName);
+//   auto & pfactory = get_factory_item(strName);
 //
 //   if (!pfactory)
 //   {
 //
-//      FORMATTED_INFORMATION("plibrary->create_factory()? : Library \"%s\" didn't register any relevant factory for type name \"%s\"?", strLibrary.c_str(), strName.c_str());
+//      FORMATTED_INFORMATION("plibrary->add_factory_item()? : Library \"%s\" didn't register any relevant factory_item for type name \"%s\"?", strLibrary.c_str(), strName.c_str());
 //
 //   }
 //
@@ -188,7 +209,7 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 
 
 //#ifdef __DEBUG
-//#include "acme/inline/factory.cpp"
+//#include "acme/inline/factory_item.cpp"
 //#endif
 
 

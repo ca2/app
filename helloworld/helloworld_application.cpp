@@ -58,14 +58,14 @@ namespace helloworld
 
       pcoression->use_font_sel();
 
-      create_factory <::helloworld::document >();
-      create_factory <::helloworld::frame >();
-      create_factory <::helloworld::main_frame >();
-      create_factory <::user::button_view >();
-      create_factory <::helloworld::impact >();
-      create_factory <::helloworld::main_impact >();
-      create_factory <::helloworld::switcher_view >();
-      create_factory <::helloworld::pane_view >();
+      add_factory_item <::helloworld::document >();
+      add_factory_item <::helloworld::frame >();
+      add_factory_item <::helloworld::main_frame >();
+      add_factory_item <::user::button_view >();
+      add_factory_item <::helloworld::impact >();
+      add_factory_item <::helloworld::main_impact >();
+      add_factory_item <::helloworld::switcher_view >();
+      add_factory_item <::helloworld::pane_view >();
 
       if (!::aura::application::init_instance())
       {

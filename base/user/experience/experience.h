@@ -13,12 +13,13 @@ namespace experience
    public:
 
 
-      __pointer(::acme::library)          m_plibrary;
+      __pointer(::factory::factory)       m_pfactory;
       property_set                        m_set;
+      string                              m_strExperience;
 
 
       experience();
-      virtual ~experience();
+      ~experience() override;
 
 
       inline ::base::application* get_application() const { return m_pcontext ? m_pcontext->m_pbaseapplication : nullptr; }
@@ -31,7 +32,7 @@ namespace experience
 
       virtual void get_frame_list(string_array & stra);
 
-      virtual frame * experience_get_frame(const ::string & pszSchema);
+      virtual frame * frame_experience(const ::string & strFrameSchema);
 
 
    };

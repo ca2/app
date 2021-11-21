@@ -7,7 +7,7 @@ list(APPEND library_source
         _.h
         context_image.cpp
         context_image.h
-        factory_exchange.cpp
+        _factory.cpp
         factory_exchange.h
         file_procedure.cpp
         file_procedure_ex1.cpp

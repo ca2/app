@@ -14,7 +14,7 @@ namespace axis
       m_paxisapplication = this;
       m_bInitializeDataCentral = true;
 
-      create_factory < ::networking_application >();
+      ::factory::add_factory_item < ::networking_application >();
 
    }
 
@@ -741,9 +741,9 @@ namespace axis
 
       INFORMATION("axis::application::process_init");
 
-      create_factory < ::database::field_array >();
-      create_factory < ::database::row >();
-      create_factory < ::database::row_array >();
+      ::factory::add_factory_item < ::database::field_array >();
+      ::factory::add_factory_item < ::database::row >();
+      ::factory::add_factory_item < ::database::row_array >();
 
       //if (m_bAxisProcessInitialize)
       //{

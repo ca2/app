@@ -4093,7 +4093,7 @@
     <ClCompile Include="apex\node\windows\crypto.cpp">
       <Filter>Source Files\apex\node\windows</Filter>
     </ClCompile>
-    <ClCompile Include="apex\node\windows\factory_exchange.cpp">
+    <ClCompile Include="apex\node\windows\_factory.cpp">
       <Filter>Source Files\apex\node\windows</Filter>
     </ClCompile>
     <ClCompile Include="apex\node\windows\file.cpp">

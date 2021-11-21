@@ -19,82 +19,21 @@ namespace experience
    }
 
 
-   __pointer(::experience::experience) department::create_experience2(::object * pobject, const ::string & pszExperienceLibrary)
+   __pointer(::experience::experience) department::create_experience(::object * pobject, const ::string & strExperienceRequest)
    {
 
-      string strId(pszExperienceLibrary);
+      string strExperience = experience_name(strExperienceRequest);
 
-      string strBuild;
+      auto & pfactory = m_psystem->factory("experience", strExperience);
 
-      auto psystem = get_system()->m_pbasesystem;
-      
-      strBuild = psystem->payload("build");
-
-      if(strBuild.is_empty())
-      {
-
-         strBuild = "installed";
-
-      }
-
-#ifdef CUBE
-
-      // should implemente
-
-#else
-
-
-#endif
-
-      string strLibrary(strId);
-
-      strLibrary.replace("-", "_");
-
-      strLibrary.replace("/", "_");
-
-      if (!strLibrary.begins_ci("experience_"))
-      {
-
-         strLibrary = "experience_" + strLibrary;
-
-      }
-
-      string strComponent = "experience";
-
-      string strImplementation = strLibrary;
-
-      strImplementation.begins_eat_ci("experience_");
-
-      auto plibrary = psystem->do_containerized_factory_exchange(strComponent, strImplementation);
-
-      if (!plibrary)
+      if (!pfactory)
       {
 
          return nullptr;
 
       }
 
-      //string_array stra;
-
-      //plibrary->get_app_list(stra);
-
-      //if (stra.get_size() != 1) // a department OSLibrary should have one department
-      //{
-
-      //   return nullptr;
-
-      //}
-
-      //string strAppId(stra[0]);
-
-      //if (strAppId.is_empty()) // trivial validity check
-      //{
-
-      //   return nullptr;
-
-      //}
-
-      auto pexperience = plibrary->m_pfactorymap->create <::experience::experience>();
+      auto pexperience = pfactory->create <::experience::experience>();
 
       if(pexperience == nullptr)
       {
@@ -105,217 +44,172 @@ namespace experience
 
       pexperience->initialize(pobject);
 
-      pexperience->m_plibrary = plibrary;
+      pexperience->m_pfactory = pfactory;
+
+      pexperience->m_strExperience = strExperience;
 
       return pexperience;
 
    }
 
 
-   __pointer(::experience::experience) department::get_experience2(::object * pobject, const ::string & pszUinteraction)
+   __pointer(::experience::experience) department::experience(::object * pobject, const ::string & strExperienceRequest)
    {
 
-      auto & pexperience = m_mapExperience[pszUinteraction];
+      auto & pexperience = m_mapExperience[experience_name(strExperienceRequest)];
 
       if(pexperience == nullptr)
       {
 
-         __compose(pexperience, create_experience2(pobject, pszUinteraction));
+         string_array straExperience;
+
+         {
+
+            straExperience.add(strExperienceRequest);
+
+         }
+
+         {
+
+            auto psystem = m_psystem->m_pbasesystem;
+
+            auto strExperience = psystem->payload("experience").string();
+
+            straExperience.add(strExperience);
+
+         }
+
+         {
+
+            auto papplication = pobject->get_application();
+
+            {
+
+               auto strExperience = papplication->preferred_experience();
+
+               straExperience.add(strExperience);
+
+            }
+
+            {
+
+               auto strExperience = papplication->payload("experience");
+
+               straExperience.add(strExperience);
+
+            }
+
+            {
+
+               auto pcontext = get_context();
+
+               {
+
+                  auto strExperience = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedir->config() / papplication->m_strAppName / "experience.txt");
+
+                  straExperience.add(strExperience);
+
+               }
+
+               {
+
+                  auto strExperience = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedir->config() / ::file::path(papplication->m_strAppName).folder() / "experience.txt");
+
+                  straExperience.add(strExperience);
+
+               }
+
+               {
+
+                  auto strExperience = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedir->config() / ::file::path(papplication->m_strAppName).name() / "experience.txt");
+
+                  straExperience.add(strExperience);
+
+               }
+
+               {
+
+                  auto strExperience = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedir->config() / "system/experience.txt");
+
+                  straExperience.add(strExperience);
+
+               }
+
+               {
+
+                  string strExperience = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedir->config() / "system/experience.txt");
+
+                  straExperience.add(strExperience);
+
+               }
+
+            }
+
+         }
+
+         straExperience.add(" core  ");
+         straExperience.add("  metro  ");
+         straExperience.add("   experience_rootkiller  ");
+         straExperience.add("     experience_hyper   ");
+         straExperience.add("       experience_anthill   ");
+         straExperience.add("         ");
+         straExperience.add("");
+
+         straExperience.trim();
+
+         straExperience.erase_empty();
+
+         straExperience.erase_duplicates_ci();
+
+         __pointer(::experience::experience) pexperienceSelected;
+
+         for (auto& str : straExperience)
+         {
+
+            pexperienceSelected = create_experience(pobject, str);
+
+            if (pexperienceSelected.is_set())
+            {
+
+               break;
+
+            }
+
+         }
+
+         if (pexperienceSelected.is_null())
+         {
+
+            auto psystem = m_psystem->m_pbasesystem;
+
+            throw exit_exception(psystem, "no experience_* plugin installed");
+
+         }
+
+         __compose(pexperience, pexperienceSelected);
 
       }
 
       return pexperience;
 
-
    }
 
 
-   __pointer(::experience::frame) department::experience_get_frame2(::object * pobject, const ::string & pszLibrary, const ::string & pszFrame)
+   __pointer(::experience::frame) department::frame_experience(::object * pobject, const ::string & strExperienceRequest, const ::string & strFrameSchema)
    {
 
-      string_array straLibrary;
+      auto strExperience = experience_name(strExperienceRequest);
 
-      auto psystem = m_psystem->m_pbasesystem;
+      auto pexperience = experience(pobject, strExperience);
 
-      auto strExperience = psystem->payload("experience").string();
-
-      if (strExperience.has_char())
+      if (!pexperience)
       {
 
-         string strLibrary(strExperience);
-
-         strLibrary.trim();
-
-         if (strLibrary.has_char())
-         {
-
-            if (!strLibrary.begins_ci("experience_"))
-            {
-
-               strLibrary = "experience_" + strLibrary;
-
-            }
-
-            straLibrary.add(strLibrary);
-
-         }
+         return nullptr;
 
       }
 
-      {
-
-         string strLibrary(pszLibrary);
-
-         if (strLibrary.has_char())
-         {
-
-            straLibrary.add(strLibrary);
-
-         }
-
-      }
-
-      auto papplication = pobject->get_application();
-
-      {
-
-         string strLibrary = papplication->preferred_experience();
-
-         if (strLibrary.has_char())
-         {
-
-            straLibrary.add(strLibrary);
-
-         }
-
-      }
-
-
-      {
-
-         string strConfig;
-
-         strConfig = papplication->payload("experience");
-
-         if (strConfig.has_char())
-         {
-
-            string strLibrary = string("experience_") + strConfig;
-
-            straLibrary.add(strConfig);
-
-         }
-
-      }
-
-      auto pcontext = get_context();
-
-      {
-
-         string strWndFrm = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedir->config() / papplication->m_strAppName / "experience.txt");
-
-         if (strWndFrm.has_char())
-         {
-
-            straLibrary.add(strWndFrm);
-
-         }
-
-      }
-
-      {
-
-         string strWndFrm = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedir->config() / ::file::path(papplication->m_strAppName).folder() / "experience.txt");
-
-         if (strWndFrm.has_char())
-         {
-
-            straLibrary.add(strWndFrm);
-
-         }
-
-      }
-
-      {
-
-         string strWndFrm = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedir->config() / ::file::path(papplication->m_strAppName).name() / "experience.txt");
-
-         if (strWndFrm.has_char())
-         {
-
-            straLibrary.add(strWndFrm);
-
-         }
-
-      }
-
-      {
-
-         string strWndFrm = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedir->config() / "system/experience.txt");
-
-         if (strWndFrm.has_char())
-         {
-
-            straLibrary.add(strWndFrm);
-
-         }
-
-      }
-
-
-      {
-
-         string strConfig = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedir->config() / "system/experience.txt");
-
-         if (strConfig.has_char())
-         {
-
-            string strLibrary = string("experience_") + strConfig;
-
-            straLibrary.add(strLibrary);
-
-         }
-
-      }
-
-      straLibrary.add("experience_core");
-      straLibrary.add("experience_metro");
-      straLibrary.add("experience_rootkiller");
-      straLibrary.add("experience_hyper");
-      straLibrary.add("experience_anthill");
-
-      straLibrary.erase_duplicates_ci();
-
-      __pointer(::experience::experience) pexperience;
-
-      string strLib;
-
-      for(string strLibrary : straLibrary)
-      {
-
-         pexperience = get_experience2(pobject, strLibrary);
-
-         if (pexperience.is_set())
-         {
-
-            strLib = strLibrary;
-
-            break;
-
-         }
-
-      }
-
-      if (pexperience.is_null())
-      {
-
-         auto psystem = m_psystem->m_pbasesystem;
-
-         throw exit_exception(psystem, "no experience_* plugin installed");
-
-      }
-
-      auto pframe = pexperience->experience_get_frame(pszFrame);
+      auto pframe = pexperience->frame_experience(strFrameSchema);
 
       if(!pframe)
       {
@@ -330,11 +224,27 @@ namespace experience
 
       pframe->m_pexperience = pexperience;
 
-      pframe->m_strLibrary = strLib;
+      pframe->m_strExperience = strExperience;
 
-      pframe->m_strName = pszFrame;
+      pframe->m_strFrameSchema = strFrameSchema;
 
       return pframe;
+
+   }
+
+
+   CLASS_DECL_BASE string experience_name(const ::string& str)
+   {
+
+      string strExperience;
+
+      strExperience = str;
+
+      strExperience.trim();
+
+      strExperience.begins_eat_ci("experience_");
+
+      return strExperience;
 
    }
 
@@ -385,7 +295,7 @@ namespace base
 
    }
 
-
+   
 } // namespace base
 
 

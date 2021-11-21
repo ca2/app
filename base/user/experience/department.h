@@ -16,12 +16,12 @@ namespace experience
 
 
       department();
-      virtual ~department();
+      ~department() override;
 
 
-      virtual __pointer(::experience::experience) create_experience2(::object * pobject, const ::string & pszExperienceLibrary);
-      virtual __pointer(::experience::experience) get_experience2(::object * pobject, const ::string & pszExperienceLibrary);
-      virtual __pointer(::experience::frame) experience_get_frame2(::object * pobject, const ::string & pszExperienceLibrary, const ::string & pszFrame);
+      virtual __pointer(::experience::experience) create_experience(::object * pobject, const ::string & strExperience);
+      virtual __pointer(::experience::experience) experience(::object * pobject, const ::string & strExperience);
+      virtual __pointer(::experience::frame) frame_experience(::object * pobject, const ::string & strExperience, const ::string & strFrameSchema);
 
 
    };

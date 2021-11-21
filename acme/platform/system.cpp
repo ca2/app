@@ -33,7 +33,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       trace_category_static_init(this);
 
-      create_factory < simple_log, logger >();
+      ::factory::add_factory_item < simple_log, logger >();
       
       m_bPostedInitialRequest = false;
 
@@ -42,16 +42,20 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
       //m_pcleanuptask = __new(::parallelization::cleanup_task);
 
       //m_pcleanuptask->begin();
-      create_factory<acme::idpool>();
+      ::factory::add_factory_item<acme::idpool>();
 
       //m_pacme = nullptr;
       //m_pacmedir = nullptr;
       //m_pacmepath = nullptr;
 
       m_pacmesystem = this;
+
+
       ::object::m_pcontext = this;
 
-      ::factory::get_factory_map()->initialize(this);
+      ::factory::get_factory()->initialize(this);
+
+
    //#ifdef LINUX
    //
    //      m_elinuxdistribution = e_linux_distribution_unknown;
@@ -190,19 +194,21 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   ::e_status system::node_factory_exchange()
+   __transport(::factory::factory) & system::node_factory()
    {
 
-      auto estatus = do_factory_exchange("acme", PLATFORM_NAME);
+      auto & pfactory = factory("acme", PLATFORM_NAME);
 
-      if(!estatus)
+      if(!pfactory)
       {
 
-         return estatus;
+         return pfactory;
 
       }
 
-      return estatus;
+      pfactory->merge_to_global_factory();
+
+      return pfactory;
 
    }
 
@@ -212,16 +218,16 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       ::acme::idpool::init(this);
 
-      auto estatus = __defer_construct_new(m_pfactorymapsquare);
+      //auto estatus = __defer_construct_new(m_pfactorysquare);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      // auto estatus = do_factory_exchange("acme", PLATFORM_NAME);
+      // auto estatus = ([a-z0-9_]+)_factory("acme", PLATFORM_NAME);
 
       // if (!estatus)
       // {
@@ -239,7 +245,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       //}
 
-      estatus = __raw_compose(m_pacmedir);
+      auto estatus = __raw_compose(m_pacmedir);
 
       if (!estatus)
       {
@@ -361,7 +367,22 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
    }
 
+   
+   ::u32 system::crc32(::u32 uCrc, const ::block& block)
+   {
 
+      auto pcompress = create < ::compress >("compress", "zlib");
+
+      if (!pcompress)
+      {
+
+         throw "Couldn't create compress_zlib::compress instance.";
+
+      }
+
+      return pcompress->crc32(uCrc, block);
+
+   }
 
 
    ::e_status system::open_profile_link(string strUrl, string strProfile, string strTarget)
@@ -627,82 +648,80 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   ::e_status system::do_factory_exchange(const ::string & pszComponent, const ::string & pszImplementation)
-   {
 
-      string strComponent(pszComponent);
+//      string strComponent(pszComponent);
+//
+//      string strImplementation(pszImplementation);
+//
+//      ::str::begins_eat_ci(strImplementation, strComponent + "_");
+//
+//      ::str::begins_eat_ci(strImplementation, strComponent);
+//
+//      string strLibrary = strComponent + "_" + strImplementation;
+//
+//   #ifdef CUBE
+//
+//      auto pfnFactoryExchange = ::static_setup::get_factory_item_exchange(strLibrary);
+//
+//      //if (::is_null(pfnFactoryExchange))
+//      if (::is_null(pfnFactoryExchange))
+//      {
+//
+//         return ::error_failed;
+//
+//      }
+//
+////      auto pfnFactoryExchange = m_mapFactoryExchange[strComponent][strImplementation];
+//
+//      ::factory * pfactory = ::factory_item::get_factory();
+//
+//      pfnFactoryExchange(pfactory);
+//
+//      return ::success;
+//
+//   #else
+//
+//      auto plibrary = open_containerized_component_library(pszComponent, pszImplementation);
+//
+//      if (!plibrary)
+//      {
+//
+//         return ::error_failed;
+//
+//      }
+//
+//      PFN_factory_exchange ([a-z0-9_]+)_factory = plibrary->get < PFN_factory_exchange >(strComponent + "_" + strImplementation + "_factory_exchange");
+//
+//      if (([a-z0-9_]+)_factory == nullptr)
+//      {
+//
+//         ([a-z0-9_]+)_factory = plibrary->get < PFN_factory_exchange >(strComponent + "_factory_exchange");
+//
+//         if (([a-z0-9_]+)_factory == nullptr)
+//         {
+//
+//            ([a-z0-9_]+)_factory = plibrary->get < PFN_factory_exchange >("factory_exchange");
+//
+//            if (([a-z0-9_]+)_factory == nullptr)
+//            {
+//
+//               return ::error_failed;
+//
+//            }
+//
+//         }
+//
+//      }
+//
+//      ::factory* pfactory = ::factory_item::get_factory();
+//
+//      ([a-z0-9_]+)_factory(pfactory);
+//
+//      return ::success;
+//
+//   #endif
 
-      string strImplementation(pszImplementation);
-
-      ::str::begins_eat_ci(strImplementation, strComponent + "_");
-
-      ::str::begins_eat_ci(strImplementation, strComponent);
-
-      string strLibrary = strComponent + "_" + strImplementation;
-
-   #ifdef CUBE
-
-      auto pfnFactoryExchange = ::static_setup::get_factory_exchange(strLibrary);
-
-      //if (::is_null(pfnFactoryExchange))
-      if (::is_null(pfnFactoryExchange))
-      {
-
-         return ::error_failed;
-
-      }
-
-//      auto pfnFactoryExchange = m_mapFactoryExchange[strComponent][strImplementation];
-
-      ::factory_map * pfactorymap = ::factory::get_factory_map();
-
-      pfnFactoryExchange(pfactorymap);
-
-      return ::success;
-
-   #else
-
-      auto plibrary = open_containerized_component_library(pszComponent, pszImplementation);
-
-      if (!plibrary)
-      {
-
-         return ::error_failed;
-
-      }
-
-      PFN_factory_exchange pfn_factory_exchange = plibrary->get < PFN_factory_exchange >(strComponent + "_" + strImplementation + "_factory_exchange");
-
-      if (pfn_factory_exchange == nullptr)
-      {
-
-         pfn_factory_exchange = plibrary->get < PFN_factory_exchange >(strComponent + "_factory_exchange");
-
-         if (pfn_factory_exchange == nullptr)
-         {
-
-            pfn_factory_exchange = plibrary->get < PFN_factory_exchange >("factory_exchange");
-
-            if (pfn_factory_exchange == nullptr)
-            {
-
-               return ::error_failed;
-
-            }
-
-         }
-
-      }
-
-      ::factory_map* pfactorymap = ::factory::get_factory_map();
-
-      pfn_factory_exchange(pfactorymap);
-
-      return ::success;
-
-   #endif
-
-   }
+//   }
 
 
    ::e_status system::inline_init()
@@ -746,18 +765,18 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       set_current_handles();
 
-      auto estatus = node_factory_exchange();
+      auto & pfactory = node_factory();
 
-      if (!estatus)
+      if (!pfactory)
       {
 
-         FATAL("node_factory_exchange has failed (status=" << estatus << ")");
+         FATAL("([a-z0-9_]+)_factory has failed (status=" << (const ::e_status &) pfactory << ")");
 
-         return estatus;
+         return pfactory;
 
       }
 
-      estatus = create_os_node();
+      auto estatus = create_os_node();
 
       if (!estatus)
       {
@@ -805,48 +824,10 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   __pointer(::acme::library) system::open_component_library(const ::string & pszComponent, const ::string & pszImplementation)
+   __transport(::acme::library) system::create_library(const ::string& strLibrary)
    {
 
-      // Ex. "draw2d" (Component) and implementation: either "draw2dcairo", "cairo", "draw2d_cairo"
-
-      auto psystem = get_system();
-
-      synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
-
-      __pointer(::acme::library) plibrary = psystem->m_mapLibrary[pszComponent];
-
-      if (plibrary && plibrary->is_opened())
-      {
-
-         return plibrary;
-
-      }
-
-      string strComponent(pszComponent);
-
-      string strImplementation(pszImplementation);
-
-      strComponent.trim();
-
-      strImplementation.trim();
-
-      string strLibrary;
-
-      if (strImplementation.is_empty())
-      {
-
-         return nullptr;
-
-      }
-
-      ::str::begins_eat_ci(strImplementation, strComponent + "_");
-
-      ::str::begins_eat_ci(strImplementation, strComponent);
-
-      strLibrary = strComponent + "_" + strImplementation;
-
-   #ifdef CUBE
+#ifdef CUBE
 
       auto plibraryfactory = ::static_setup::get_first(::static_setup::flag_library, strLibrary);
 
@@ -859,123 +840,287 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       plibrary = plibraryfactory->create_library();
 
-   #else
+#else
 
-      if (!plibrary)
+      auto plibrary = __new(::acme::library);
+
+      plibrary->initialize_matter(this);
+
+      auto estatus = plibrary->open(strLibrary);
+
+      if (!estatus)
       {
 
-         plibrary = __new(::acme::library);
-
-         plibrary->initialize_matter(this);
+         return estatus;
 
       }
-
-      if (!plibrary->open(strLibrary))
-      {
-
-         return nullptr;
-
-      }
-
 
       if (!plibrary->is_opened())
       {
 
-         return nullptr;
+         return error_failed;
 
       }
 
-   #endif
+#endif
 
       return plibrary;
 
    }
 
 
-   __pointer(::acme::library) system::open_containerized_component_library(const ::string & pszComponent, const ::string & pszImplementation)
+   __transport(::acme::library)& system::library(const ::string& str)
    {
 
-      // Ex. "draw2d" (Component) and implementation: either "draw2dcairo", "cairo", "draw2d_cairo"
+      // Ex. "audio" (library)
 
-      string strComponent(pszComponent);
-
-      string strImplementation(pszImplementation);
-
-      strComponent.trim();
-
-      strImplementation.trim();
-
-      string strLibrary;
-
-      if (strImplementation.is_empty())
+      if (str.is_empty())
       {
 
-         return nullptr;
+         throw error_invalid_argument;
 
       }
 
-      ::str::begins_eat_ci(strImplementation, strComponent + "_");
+      synchronous_lock synchronouslock(&m_mutexLibrary4);
 
-      ::str::begins_eat_ci(strImplementation, strComponent);
+      string strLibrary = library_filter(str);
 
-      auto psystem = get_system();
+      auto& plibrary = m_mapLibrary4[strLibrary];
 
-      synchronous_lock synchronouslock(&psystem->m_mutexContainerizedLibrary);
-
-      __pointer(::acme::library) plibrary = psystem->m_mapContainerizedLibrary[strComponent][strImplementation];
-
-      if (plibrary && plibrary->is_opened())
+      if (plibrary.is_initialized())
       {
 
          return plibrary;
 
       }
 
-      strLibrary = strComponent + "_" + strImplementation;
-
-   #ifdef CUBE
-
-      auto plibraryfactory = ::static_setup::get_first(::static_setup::flag_library, strLibrary);
-
-      if (!plibraryfactory)
-      {
-
-         return nullptr;
-
-      }
-
-      plibrary = plibraryfactory->create_library();
-
-   #else
-
-      if (!plibrary)
-      {
-
-         plibrary = __new(::acme::library);
-
-         plibrary->initialize_matter(this);
-
-      }
-
-      if (!plibrary->open(strLibrary))
-      {
-
-         return nullptr;
-
-      }
-
-      if (!plibrary->is_opened())
-      {
-
-         return nullptr;
-
-      }
-
-   #endif
+      plibrary = create_library(strLibrary);
 
       return plibrary;
 
    }
+
+   
+   //__transport(::acme::library)& system::library(const ::string& strComponent, const ::string& strImplementationParam)
+   //{
+
+   //   string strImplementation(strImplementationParam);
+
+   //   strImplementation.begins_eat_ci(strComponent + "_");
+
+   //   string strLibrary;
+
+   //   strLibrary = strComponent + "_" + strImplementation;
+
+   //   auto& plibrary = library(strLibrary);
+
+   //   if (!plibrary)
+   //   {
+
+   //      return plibrary;
+
+   //   }
+
+   //   return plibrary;
+
+   //}
+
+
+   __transport(::factory::factory)& system::factory(const ::string& strComponent, const ::string& strImplementation)
+   {
+
+      synchronous_lock synchronouslock(&m_mutexComponentFactory);
+
+      auto& pfactory = m_mapComponentFactory[strComponent][implementation_name(strComponent, strImplementation)];
+
+      if (pfactory.is_initialized())
+      {
+
+         return pfactory;
+
+      }
+
+      string strLibrary;
+
+      strLibrary = library_name(strComponent, strImplementation);
+
+      auto& plibrary = library(strLibrary);
+
+      if (!plibrary)
+      {
+
+         pfactory = (const ::extended::status&)plibrary;
+
+         return pfactory;
+
+      }
+
+      pfactory = plibrary->create_factory(strLibrary);
+
+      return pfactory;
+
+   }
+
+
+   __transport(::factory::factory)& system::factory(const ::string& strLibrary)
+   {
+
+      synchronous_lock synchronouslock(&m_mutexFactory);
+
+      auto& pfactory = m_mapFactory[strLibrary];
+
+      if (pfactory.is_initialized())
+      {
+
+         return pfactory;
+
+      }
+
+      auto& plibrary = library(strLibrary);
+
+      if (!plibrary)
+      {
+
+         pfactory = (const ::extended::status&)plibrary;
+
+         return pfactory;
+
+      }
+
+      pfactory = plibrary->create_factory(strLibrary);
+
+      if (!pfactory)
+      {
+
+         return pfactory;
+
+      }
+
+      return pfactory;
+
+   }
+
+
+   //__transport(::acme::library) & system::library(const ::string & strComponent, const ::string & strImplementation)
+   //{
+
+   //   // Ex. "draw2d" (Component) and implementation: either "draw2dcairo", "cairo", "draw2d_cairo"
+
+   //   if (strComponent.is_empty() || strImplementation.is_empty())
+   //   {
+
+   //      throw error_invalid_argument;
+
+   //   }
+
+   //   auto psystem = get_system();
+
+   //   synchronous_lock synchronouslock(&psystem->m_mutexLibrary2);
+
+   //   auto & plibrary = psystem->m_mapLibrarySquare[strComponent][strImplementation];
+
+   //   if (plibrary.is_initialized())
+   //   {
+
+   //      return plibrary;
+
+   //   }
+
+   //   string strLibrary;
+
+   //   strLibrary = strComponent + "_" + strImplementation;
+
+   //   _load_library(plibrary, strLibrary);
+
+   //   return plibrary;
+
+   //}
+
+
+   //__pointer(::acme::library) system::open_containerized_component_library(const ::string & pszComponent, const ::string & pszImplementation)
+   //{
+
+   //   // Ex. "draw2d" (Component) and implementation: either "draw2dcairo", "cairo", "draw2d_cairo"
+
+   //   string strComponent(pszComponent);
+
+   //   string strImplementation(pszImplementation);
+
+   //   strComponent.trim();
+
+   //   strImplementation.trim();
+
+   //   string strLibrary;
+
+   //   if (strImplementation.is_empty())
+   //   {
+
+   //      return nullptr;
+
+   //   }
+
+   //   ::str::begins_eat_ci(strImplementation, strComponent + "_");
+
+   //   ::str::begins_eat_ci(strImplementation, strComponent);
+
+   //   auto psystem = get_system();
+
+   //   synchronous_lock synchronouslock(&psystem->m_mutexContainerizedLibrary);
+
+   //   __pointer(::acme::library) plibrary = psystem->m_mapContainerizedLibrary[strComponent][strImplementation];
+
+   //   if (plibrary && plibrary->is_opened())
+   //   {
+
+   //      return plibrary;
+
+   //   }
+
+   //   strLibrary = strComponent + "_" + strImplementation;
+
+   //#ifdef CUBE
+
+   //   auto plibraryfactory = ::static_setup::get_first(::static_setup::flag_library, strLibrary);
+
+   //   if (!plibraryfactory)
+   //   {
+
+   //      return nullptr;
+
+   //   }
+
+   //   plibrary = plibraryfactory->create_library();
+
+   //#else
+
+   //   if (!plibrary)
+   //   {
+
+   //      plibrary = __new(::acme::library);
+
+   //      plibrary->initialize_matter(this);
+
+   //   }
+
+   //   if (!plibrary->open(strLibrary))
+   //   {
+
+   //      return nullptr;
+
+   //   }
+
+   //   if (!plibrary->is_opened())
+   //   {
+
+   //      return nullptr;
+
+   //   }
+
+   //#endif
+
+   //   return plibrary;
+
+   //}
 
 
    ::duration system::get_update_poll_time(const ::id & id)
@@ -994,112 +1139,114 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   ::extended::transport < ::acme::library > system::do_containerized_factory_exchange(const ::string & pszComponent, const ::string & pszImplementation)
-   {
-
-      string strComponent(pszComponent);
-
-      string strImplementation(pszImplementation);
-
-      ::str::begins_eat_ci(strImplementation, strComponent + "_");
-
-      ::str::begins_eat_ci(strImplementation, strComponent);
-
-   //#ifdef CUBE
-
-      //auto pfnFactoryExchange = m_mapFactoryExchange[strComponent][strImplementation];
-
-      //if (::is_null(pfnFactoryExchange))
-      //{
-
-      //   return ::error_failed;
-
-      //}
-
-#ifdef CUBE
-
-      synchronous_lock synchronouslock(&m_mutexContainerizedLibrary);
-
-      auto & plibrary = m_mapContainerizedLibrary[strComponent][strImplementation];
-
-      if (plibrary && plibrary->is_opened())
-      {
-
-         return plibrary;
-
-      }
-
-      string strLibrary = strComponent + "_" + strImplementation;
-
-      auto pfnFactoryExchange = ::static_setup::get_factory_exchange(strLibrary);
-
-      //if (::is_null(pfnFactoryExchange))
-      if (::is_null(pfnFactoryExchange))
-      {
-
-         return ::error_failed;
-
-      }
-
-      plibrary = __new(::acme::library);
-
-      plibrary->initialize_matter(this);
-
-      __construct_new(plibrary->m_pfactorymap);
-
-      plibrary->m_pfactorymap->initialize_matter(this);
-
-      pfnFactoryExchange(plibrary->m_pfactorymap);
-
-      return plibrary;
-
-   #else
-
-      auto plibrary = open_containerized_component_library(pszComponent, pszImplementation);
-
-      if (!plibrary)
-      {
-
-         return ::error_failed;
-
-      }
-
-      string strFunctionName = strComponent + "_" + strImplementation + "_factory_exchange";
-
-      PFN_factory_exchange pfn_factory_exchange = plibrary->get < PFN_factory_exchange >(strFunctionName);
-
-      if (pfn_factory_exchange == nullptr)
-      {
-
-         pfn_factory_exchange = plibrary->get < PFN_factory_exchange >(strComponent + "_factory_exchange");
-
-         if (pfn_factory_exchange == nullptr)
-         {
-
-            pfn_factory_exchange = plibrary->get < PFN_factory_exchange >("factory_exchange");
-
-            if (pfn_factory_exchange == nullptr)
-            {
-
-               return ::error_failed;
-
-            }
-
-         }
-
-      }
-
-      __construct_new(plibrary->m_pfactorymap);
-
-      plibrary->m_pfactorymap->initialize_matter(this);
-
-      pfn_factory_exchange(plibrary->m_pfactorymap);
-
-      return plibrary;
-
-#endif
-
-   }
+//   ::extended::transport < ::factory::factory > system::([a-z0-9_]+)_factory(const ::string & pszComponent, const ::string & pszImplementation)
+//   {
+//
+//      auto& pfactory = m_mapFactoryMap[strComponent][strImplementation];
+//
+//      string strComponent(pszComponent);
+//
+//      string strImplementation(pszImplementation);
+//
+//      ::str::begins_eat_ci(strImplementation, strComponent + "_");
+//
+//      ::str::begins_eat_ci(strImplementation, strComponent);
+//
+//   //#ifdef CUBE
+//
+//      //auto pfnFactoryExchange = m_mapFactoryExchange[strComponent][strImplementation];
+//
+//      //if (::is_null(pfnFactoryExchange))
+//      //{
+//
+//      //   return ::error_failed;
+//
+//      //}
+//
+//#ifdef CUBE
+//
+//      synchronous_lock synchronouslock(&m_mutexContainerizedLibrary);
+//
+//      auto & plibrary = m_mapContainerizedLibrary[strComponent][strImplementation];
+//
+//      if (plibrary && plibrary->is_opened())
+//      {
+//
+//         return plibrary;
+//
+//      }
+//
+//      string strLibrary = strComponent + "_" + strImplementation;
+//
+//      auto pfnFactoryExchange = ::static_setup::get_factory_item_exchange(strLibrary);
+//
+//      //if (::is_null(pfnFactoryExchange))
+//      if (::is_null(pfnFactoryExchange))
+//      {
+//
+//         return ::error_failed;
+//
+//      }
+//
+//      plibrary = __new(::acme::library);
+//
+//      plibrary->initialize_matter(this);
+//
+//      __construct_new(plibrary->m_pfactory);
+//
+//      plibrary->m_pfactory->initialize_matter(this);
+//
+//      pfnFactoryExchange(plibrary->m_pfactory);
+//
+//      return plibrary;
+//
+//   #else
+//
+//      auto plibrary = open_containerized_component_library(pszComponent, pszImplementation);
+//
+//      if (!plibrary)
+//      {
+//
+//         return ::error_failed;
+//
+//      }
+//
+//      string strFunctionName = strComponent + "_" + strImplementation + "_factory_exchange";
+//
+//      PFN_factory_exchange ([a-z0-9_]+)_factory = plibrary->get < PFN_factory_exchange >(strFunctionName);
+//
+//      if (([a-z0-9_]+)_factory == nullptr)
+//      {
+//
+//         ([a-z0-9_]+)_factory = plibrary->get < PFN_factory_exchange >(strComponent + "_factory_exchange");
+//
+//         if (([a-z0-9_]+)_factory == nullptr)
+//         {
+//
+//            ([a-z0-9_]+)_factory = plibrary->get < PFN_factory_exchange >("factory_exchange");
+//
+//            if (([a-z0-9_]+)_factory == nullptr)
+//            {
+//
+//               return ::error_failed;
+//
+//            }
+//
+//         }
+//
+//      }
+//
+//      __construct_new(pfactory);
+//
+//      plibrary->m_pfactory->initialize_matter(this);
+//
+//      ([a-z0-9_]+)_factory(plibrary->m_pfactory);
+//
+//      return plibrary;
+//
+//#endif
+//
+//   }
 
 
    void system::check_exit()
@@ -1135,7 +1282,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   __pointer(::regular_expression::context) system::get_regular_expression_context(const ::string & pszStyle)
+   __transport(::regular_expression::context) system::get_regular_expression_context(const ::string & pszStyle)
    {
 
       __defer_construct_new(m_pmapRegularExpressionContext);
@@ -1145,16 +1292,16 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
       if(!pcontext)
       {
 
-         auto ptransport = do_containerized_factory_exchange("regular_expression", pszStyle);
+         auto & pfactory  = factory("regular_expression", pszStyle);
 
-         if(!ptransport)
+         if(!pfactory)
          {
 
-            return nullptr;
+            return (const ::extended::status &) pfactory;
 
          }
 
-         ptransport->__construct(pcontext);
+         pfactory->__construct(pcontext);
 
       }
 
@@ -1171,7 +1318,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   __pointer(::regular_expression::context) system::get_pcre_context()
+   __transport(::regular_expression::context) system::get_pcre_context()
    {
 
       return get_regular_expression_context("pcre2");
@@ -1420,19 +1567,28 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   ::e_status system::defer_folder_library()
+   __transport(::factory::factory) & system::folder_factory()
    {
 
-      synchronous_lock synchronouslock(mutex());
-
-      if (m_plibraryFolder.not_initialized())
+      if (m_pfactoryFolder.is_initialized())
       {
 
-         m_plibraryFolder = do_containerized_factory_exchange("folder", "zip");
+         return m_pfactoryFolder;
 
       }
 
-      return m_plibraryFolder;
+      m_pfactoryFolder = factory("folder", "zip");
+
+      if (!m_pfactoryFolder)
+      {
+
+         return m_pfactoryFolder;
+
+      }
+
+      m_pfactoryFolder->merge_to_global_factory();
+
+      return m_pfactoryFolder;
 
    }
 

@@ -39,7 +39,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <None Include="axiszlib.def" />
+    
     <None Include="contrib\masmx64\gvmat64.asm" />
     <None Include="contrib\masmx64\inffasx64.asm" />
     <None Include="contrib\masmx86\inffas32.asm" />
@@ -273,7 +273,7 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalDependencies>inffas.o;match.o;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ModuleDefinitionFile>$(TargetName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(IntDir);$(SolutionDir)../../time/library/x86/$(ConfigurationName);$(__archive)third-universal_windows/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>$(SolutionDir)../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
     </Link>
@@ -314,7 +314,7 @@ ml /safeseh /coff /Zi /Fo"$(IntDir)match.o" /c /Fl"$(IntDir)match.lst" "$(Projec
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalDependencies>inffas.o;match.o;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ModuleDefinitionFile>$(TargetName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(IntDir);$(SolutionDir)../../time/library/x86/$(ConfigurationName);$(__archive)third-universal_windows/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>$(SolutionDir)../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
     </Link>

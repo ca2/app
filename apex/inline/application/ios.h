@@ -2,8 +2,8 @@
 //
 //extern ::apex::apex g_apex;
 
-extern "C" void draw2d_factory_exchange(::factory_map * pfactorymap);
-extern "C" void imaging_factory_exchange(::factory_map * pfactorymap);
+extern "C" void ([a-z0-9_]+)_factory(::factory::factory * pfactory);
+extern "C" void ([a-z0-9_]+)_factory(::factory::factory * pfactory);
 
 
 int main(int argc, char * argv[])
@@ -15,9 +15,9 @@ int main(int argc, char * argv[])
 
    //{
       
-      g_pfnfactoryexchangeDraw2d = &draw2d_factory_exchange;
+      g_pfnfactoryexchangeDraw2d = &([a-z0-9_]+)_factory;
       
-      g_pfnfactoryexchangeImaging = &imaging_factory_exchange;
+      g_pfnfactoryexchangeImaging = &([a-z0-9_]+)_factory;
 
       //::apex_main_struct mainstruct;
 

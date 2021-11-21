@@ -272,7 +272,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>Debug</GenerateDebugInformation>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)third-windows/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <EntryPointSymbol>
       </EntryPointSymbol>
@@ -338,7 +338,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>Debug</GenerateDebugInformation>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)third-windows/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <EntryPointSymbol>
       </EntryPointSymbol>
@@ -405,7 +405,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>Debug</GenerateDebugInformation>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)third-windows/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <EntryPointSymbol>
       </EntryPointSymbol>
@@ -479,7 +479,7 @@
     <Link>
       <GenerateDebugInformation>DebugFastLink</GenerateDebugInformation>
       <AdditionalDependencies>user32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)third-windows/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <EntryPointSymbol>
@@ -555,7 +555,7 @@
     <Link>
       <GenerateDebugInformation>DebugFastLink</GenerateDebugInformation>
       <AdditionalDependencies>user32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)third-windows/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <EntryPointSymbol>
@@ -625,7 +625,7 @@
     <Link>
       <GenerateDebugInformation>Debug</GenerateDebugInformation>
       <AdditionalDependencies>msvcrtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)third-windows/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <SubSystem>Windows</SubSystem>
@@ -698,7 +698,7 @@
     <Link>
       <GenerateDebugInformation>Debug</GenerateDebugInformation>
       <AdditionalDependencies>msvcrtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)third-windows/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <SubSystem>Windows</SubSystem>
@@ -772,7 +772,7 @@
     <Link>
       <GenerateDebugInformation>Debug</GenerateDebugInformation>
       <AdditionalDependencies>msvcrtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)third-windows/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <SubSystem>Windows</SubSystem>
@@ -851,7 +851,7 @@
     <Link>
       <GenerateDebugInformation>DebugFastLink</GenerateDebugInformation>
       <AdditionalDependencies>user32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)third-windows/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -933,7 +933,7 @@
     <Link>
       <GenerateDebugInformation>DebugFastLink</GenerateDebugInformation>
       <AdditionalDependencies>user32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)third-windows/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>

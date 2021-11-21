@@ -121,7 +121,7 @@
 		<Unit filename="context_glx.cpp" />
 		<Unit filename="context_glx.h" />
 		<Unit filename="context_win32.h" />
-		<Unit filename="factory_exchange.cpp" />
+		<Unit filename="_factory.cpp" />
 		<Unit filename="factory_exchange.h" />
 		<Unit filename="framework.cpp" />
 		<Unit filename="framework.h" />

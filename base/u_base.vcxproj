@@ -217,7 +217,7 @@
     <ClInclude Include="user\user\user.h" />
     <ClInclude Include="user\user\_.h" />
     <ClInclude Include="user\user\_const.h" />
-    <None Include="base.def" />
+    
     <None Include="user\user\_impl.h" />
     <ClInclude Include="user\user\_user.h" />
     <ClInclude Include="user\_.h" />

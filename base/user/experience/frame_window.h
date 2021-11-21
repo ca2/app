@@ -53,9 +53,9 @@ namespace experience
       ~frame_window() override;
 
 
-      virtual __pointer(::experience::experience) create_experience(const ::string & strExperienceLibrary);
-      virtual __pointer(::experience::experience) get_experience(const ::string & strExperienceLibrary);
-      virtual __pointer(::experience::frame) get_frame_experience(const ::string & strExperienceLibrary, const ::string & strFrame, const ::string & strStyle = nullptr);
+      virtual __pointer(::experience::experience) create_experience(const ::string & strExperience);
+      virtual __pointer(::experience::experience) experience(const ::string & strExperience);
+      virtual __pointer(::experience::frame) frame_experience(const ::string & strExperience, const ::string & strFrame, const ::string & strStyle = nullptr);
 
 
 

@@ -443,9 +443,9 @@ inline bool myspace(char ch)
       else if (task_flag().is_set(e_task_flag_compress_is_dir) && (::str::ends_ci(l.m_pathFinal, ".zip") || ::str::find_file_extension("zip:", l.m_pathFinal) >= 0))
       {
 
-         auto plibrary = m_psystem->do_containerized_factory_exchange("folder", "zip");
+         auto & pfactory = m_psystem->folder_factory();
 
-         if (!plibrary)
+         if (!pfactory)
          {
 
             l = ::error_failed;
@@ -454,9 +454,9 @@ inline bool myspace(char ch)
          else
          {
 
-            auto pfilecontainer = plibrary->create < ::folder >();
+            auto pfolder = pfactory->create < ::folder >();
 
-            if (!pfilecontainer)
+            if (!pfolder)
             {
 
                l = ::error_failed;
@@ -471,7 +471,7 @@ inline bool myspace(char ch)
 
                   compress_not_dir notdir;
 
-                  pfilecontainer->perform_file_listing(l);
+                  pfolder->perform_file_listing(l);
 
                   //   pfile = 
 
@@ -541,9 +541,9 @@ inline bool myspace(char ch)
       else if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str::ends_ci(l.m_pathUser, ".zip") || ::str::find_file_extension("zip:", l.m_pathUser) >= 0))
       {
 
-         auto plibrary = m_psystem->do_containerized_factory_exchange("folder", "zip");
+         auto & pfactory = m_psystem->folder_factory();
 
-         if (!plibrary)
+         if (!pfactory)
          {
 
             l = ::error_failed;
@@ -552,9 +552,9 @@ inline bool myspace(char ch)
          else
          {
 
-            auto pfilecontainer = plibrary->create < ::folder >();
+            auto pfolder = pfactory->create < ::folder >();
 
-            if (!pfilecontainer)
+            if (!pfolder)
             {
 
                l = ::error_failed;
@@ -569,7 +569,7 @@ inline bool myspace(char ch)
 
                   compress_not_dir notdir;
 
-                  pfilecontainer->perform_file_relative_name_listing(l);
+                  pfolder->perform_file_relative_name_listing(l);
 
                   //   pfile = 
 
@@ -849,9 +849,9 @@ bool dir_context::is_cached(bool & bIs, const ::file::path & path)
   //    bHasSubFolder = zip.has_sub_folder(path);
 
 
-      auto plibrary = m_psystem->do_containerized_factory_exchange("folder", "zip");
+      auto & pfactory = m_psystem->folder_factory();
 
-      if (!plibrary)
+      if (!pfactory)
       {
 
          return false;
@@ -860,9 +860,9 @@ bool dir_context::is_cached(bool & bIs, const ::file::path & path)
       else
       {
 
-         auto pfilecontainer = plibrary->create < ::folder >();
+         auto pfolder = pfactory->create < ::folder >();
 
-         if (!pfilecontainer)
+         if (!pfolder)
          {
 
             return false;
@@ -877,7 +877,7 @@ bool dir_context::is_cached(bool & bIs, const ::file::path & path)
 
                compress_not_dir notdir;
 
-               bHasSubFolder = pfilecontainer->has_sub_folder(path);
+               bHasSubFolder = pfolder->has_sub_folder(path);
 
                //   pfile = 
 
@@ -1019,9 +1019,9 @@ bool dir_context::is_impl(const ::file::path & path)
 
       bool bHasSubFolder;
 
-      auto plibrary = m_psystem->do_containerized_factory_exchange("folder", "zip");
+      auto & pfactory = m_psystem->folder_factory();
 
-      if (!plibrary)
+      if (!pfactory)
       {
 
          bHasSubFolder = false;
@@ -1030,9 +1030,9 @@ bool dir_context::is_impl(const ::file::path & path)
       else
       {
 
-         auto pfilecontainer = plibrary->create < ::folder >();
+         auto pfolder = pfactory->create < ::folder >();
 
-         if (!pfilecontainer)
+         if (!pfolder)
          {
 
             bHasSubFolder = false;
@@ -1047,7 +1047,7 @@ bool dir_context::is_impl(const ::file::path & path)
 
                compress_not_dir notdir;
 
-               bHasSubFolder = pfilecontainer->has_sub_folder(path);
+               bHasSubFolder = pfolder->has_sub_folder(path);
 
                //   pfile = 
 
@@ -1091,9 +1091,9 @@ bool dir_context::name_is(const ::file::path & strPath)
    {
       bool bHasSubFolder;
 
-      auto plibrary = m_psystem->do_containerized_factory_exchange("folder", "zip");
+      auto & pfactory = m_psystem->folder_factory();
 
-      if (!plibrary)
+      if (!pfactory)
       {
 
          bHasSubFolder = false;
@@ -1102,9 +1102,9 @@ bool dir_context::name_is(const ::file::path & strPath)
       else
       {
 
-         auto pfilecontainer = plibrary->create < ::folder >();
+         auto pfolder = pfactory->create < ::folder >();
 
-         if (!pfilecontainer)
+         if (!pfolder)
          {
 
             bHasSubFolder = false;
@@ -1119,7 +1119,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 
                compress_not_dir notdir;
 
-               bHasSubFolder = pfilecontainer->has_sub_folder(strPath);
+               bHasSubFolder = pfolder->has_sub_folder(strPath);
 
                //   pfile = 
 

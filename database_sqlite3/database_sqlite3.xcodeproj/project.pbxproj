@@ -21,7 +21,7 @@
 		9AE12EEF2661EA35009F476A /* database.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE12ED92661EA35009F476A /* database.h */; };
 		9AE12EF02661EA35009F476A /* _2.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE12EDA2661EA35009F476A /* _2.h */; };
 		9AE12EF12661EA35009F476A /* _database_sqlite3.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE12EDC2661EA35009F476A /* _database_sqlite3.h */; };
-		9AE12EF22661EA35009F476A /* factory_exchange.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE12EDD2661EA35009F476A /* factory_exchange.cpp */; };
+		9AE12EF22661EA35009F476A /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE12EDD2661EA35009F476A /* _factory.cpp */; };
 		9AE12EF32661EA35009F476A /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE12EDF2661EA35009F476A /* framework.h */; };
 		9AE12EF42661EA35009F476A /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE12EE92661EA35009F476A /* _.h */; };
 /* End PBXBuildFile section */
@@ -59,7 +59,7 @@
 		9AE12ED92661EA35009F476A /* database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = database.h; sourceTree = "<group>"; };
 		9AE12EDA2661EA35009F476A /* _2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _2.h; sourceTree = "<group>"; };
 		9AE12EDC2661EA35009F476A /* _database_sqlite3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _database_sqlite3.h; sourceTree = "<group>"; };
-		9AE12EDD2661EA35009F476A /* factory_exchange.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = factory_exchange.cpp; sourceTree = "<group>"; };
+		9AE12EDD2661EA35009F476A /* _factory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _factory.cpp; sourceTree = "<group>"; };
 		9AE12EDF2661EA35009F476A /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
 		9AE12EE92661EA35009F476A /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -129,7 +129,7 @@
 				9AE12ED72661EA35009F476A /* database.cpp */,
 				9AE12ED92661EA35009F476A /* database.h */,
 				9AE12ED62661EA35009F476A /* dataset.h */,
-				9AE12EDD2661EA35009F476A /* factory_exchange.cpp */,
+				9AE12EDD2661EA35009F476A /* _factory.cpp */,
 				9AE12ED12661EA35009F476A /* factory_exchange.h */,
 				9AE12ECB2661EA35009F476A /* framework.cpp */,
 				9AE12EDF2661EA35009F476A /* framework.h */,
@@ -230,7 +230,7 @@
 				9AE12EEE2661EA35009F476A /* _.cpp in Sources */,
 				9AE12EED2661EA35009F476A /* database.cpp in Sources */,
 				9AE12EEA2661EA35009F476A /* framework.cpp in Sources */,
-				9AE12EF22661EA35009F476A /* factory_exchange.cpp in Sources */,
+				9AE12EF22661EA35009F476A /* _factory.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

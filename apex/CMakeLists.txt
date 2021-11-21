@@ -576,7 +576,7 @@ if (WIN32)
       #node/windows/dir_context.h
       #node/windows/dir_system.cpp
       #node/windows/dir_system.h
-      #node/windows/factory_exchange.cpp
+      #node/windows/_factory.cpp
       #node/windows/factory_exchange.h
       #node/windows/file_context.cpp
       #node/windows/file_context.h
@@ -736,7 +736,7 @@ if (UWP)
       node/universal_windows/directx_impact.cpp
       node/universal_windows/directx_interaction.cpp
       node/universal_windows/error.cpp
-      node/universal_windows/factory_exchange.cpp
+      node/universal_windows/_factory.cpp
       node/universal_windows/factory_exchange.h
       node/universal_windows/file_context.cpp
       node/universal_windows/file_context.h
@@ -815,7 +815,7 @@ if (LINUX)
       node/linux/dumpinit.cpp
       node/linux/error.cpp
       node/linux/exception.cpp
-      node/linux/factory_exchange.cpp
+      node/linux/_factory.cpp
       node/linux/factory_exchange.h
       #node/linux/file_context.cpp
       #node/linux/file_context.h
@@ -908,7 +908,7 @@ if (MACOS)
       #node/macos/dir_context.h
       #node/macos/dir_system.cpp
       #node/macos/dir_system.h
-      #node/macos/factory_exchange.cpp
+      #node/macos/_factory.cpp
       #node/macos/factory_exchange.h
       #node/macos/file.cpp
       #node/macos/file_context.cpp
@@ -1002,7 +1002,7 @@ if (IOS)
       node/ios/dir_system.cpp
       node/ios/dir_system.h
       node/ios/exception.cpp
-      node/ios/factory_exchange.cpp
+      node/ios/_factory.cpp
       node/ios/factory_exchange.h
       node/ios/file.cpp
       node/ios/file.h
@@ -1109,7 +1109,7 @@ if (ANDROID)
       node/android/dir_system.h
       node/android/error.cpp
       node/android/exception.cpp
-      node/android/factory_exchange.cpp
+      node/android/_factory.cpp
       node/android/factory_exchange.h
       node/android/file.cpp
       node/android/file.h

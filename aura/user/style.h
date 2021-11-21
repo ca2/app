@@ -11,8 +11,8 @@ namespace user
    public:
 
 
-      ::index                                m_iUpdate;
-      __pointer(::acme::library)             m_plibrary;
+      ::index                                    m_iUpdate;
+      __pointer(::factory::factory)              m_pfactory;
       map < ::user::enum_control_type, __pointer(control_style) > m_controlstyle;
       //__pointer(::user::plain_edit_style)    m_pplaineditstyel;
 

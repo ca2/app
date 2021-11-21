@@ -1,70 +1,70 @@
 #pragma once
 
 
-namespace apex
-{
-
-
-   template < class APP >
-   __transport(::matter) single_application_library < APP > ::new_application(const char * pszAppId)
-   {
-
-      if(!contains_app(pszAppId))
-      {
-
-         return error_not_found;
-
-      }
-
-      auto pappNew = __new(APP);
-
-      if(pappNew == nullptr)
-      {
-
-         return error_no_memory;
-
-      }
-
-      __pointer(::application) papp;
-
-      papp = pappNew;
-
-      if (!papp)
-      {
-
-         return error_wrong_type;
-
-      }
-
-//      auto estatus = papp->initialize(pobject);
+//namespace apex
+//{
 //
-//      if (!estatus)
+//
+//   template < class APP >
+//   __transport(::matter) single_application_library < APP > ::new_application(const char * pszAppId)
+//   {
+//
+//      if(!contains_app(pszAppId))
 //      {
 //
-//         return estatus;
+//         return error_not_found;
 //
 //      }
-
-      return papp;
-
-   }
-
-
-   template < class APP >
-   void single_application_library < APP > ::get_extension_list(string_array & stra)
-   {
-
-      if (m_strFileExt.has_char())
-      {
-
-         stra.add(m_strFileExt);
-
-      }
-
-   }
-
-
-} // namespace apex
+//
+//      auto pappNew = __new(APP);
+//
+//      if(pappNew == nullptr)
+//      {
+//
+//         return error_no_memory;
+//
+//      }
+//
+//      __pointer(::application) papp;
+//
+//      papp = pappNew;
+//
+//      if (!papp)
+//      {
+//
+//         return error_wrong_type;
+//
+//      }
+//
+////      auto estatus = papp->initialize(pobject);
+////
+////      if (!estatus)
+////      {
+////
+////         return estatus;
+////
+////      }
+//
+//      return papp;
+//
+//   }
+//
+//
+//   template < class APP >
+//   void single_application_library < APP > ::get_extension_list(string_array & stra)
+//   {
+//
+//      if (m_strFileExt.has_char())
+//      {
+//
+//         stra.add(m_strFileExt);
+//
+//      }
+//
+//   }
+//
+//
+//} // namespace apex
 
 
 //template < typename RECEIVER >

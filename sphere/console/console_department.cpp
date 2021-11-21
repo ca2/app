@@ -22,9 +22,9 @@ namespace console
    {
 
 
-      create_factory <console::prompt_document >();
-      create_factory <console::prompt_frame >();
-      create_factory <console::prompt_impact >();
+      add_factory_item <console::prompt_document >();
+      add_factory_item <console::prompt_frame >();
+      add_factory_item <console::prompt_impact >();
 
       if(!::acme::department::init_instance())
          return false;

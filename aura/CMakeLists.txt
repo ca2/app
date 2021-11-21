@@ -454,7 +454,7 @@ if (WIN32)
 
    list(APPEND library_source
       #node/windows/base/_windows.h
-      #node/windows/base/factory_exchange.cpp
+      #node/windows/base/_factory.cpp
       #node/windows/base/factory_exchange.h
       #node/windows/base/implementation.h
       #node/windows/base/print_job.cpp
@@ -467,7 +467,7 @@ if (WIN32)
       #node/windows/buffer.h
       #node/windows/copydesk.cpp
       #node/windows/copydesk.h
-      #node/windows/factory_exchange.cpp
+      #node/windows/_factory.cpp
       #node/windows/factory_exchange.h
       #node/windows/graphics_buffer.cpp
       #node/windows/interaction_impl.cpp
@@ -596,7 +596,7 @@ if (UWP)
       node/universal_windows/directx_interaction.cpp
       node/universal_windows/directx_interaction.h
       node/universal_windows/error.cpp
-      node/universal_windows/factory_exchange.cpp
+      node/universal_windows/_factory.cpp
       node/universal_windows/factory_exchange.h
       node/universal_windows/graphics_buffer.cpp
       node/universal_windows/interaction_impl.cpp
@@ -684,7 +684,7 @@ if (LINUX)
       #node/linux/console.h
       #node/linux/copydesk.cpp
       #node/linux/copydesk.h
-      node/linux/factory_exchange.cpp
+      node/linux/_factory.cpp
       node/linux/factory_exchange.h
       #node/linux/interaction_impl.cpp
       #node/linux/interaction_impl.h
@@ -782,7 +782,7 @@ if (MACOS)
       node/macos/application.h
       #node/macos/copydesk.cpp
       #node/macos/copydesk.h
-      node/macos/factory_exchange.cpp
+      node/macos/_factory.cpp
       node/macos/factory_exchange.h
       node/macos/frame_window.cpp
       #node/macos/interaction_impl.cpp
@@ -875,7 +875,7 @@ if (IOS)
       node/ios/AuraWindowFrameView.h
       node/ios/AuraWindowFrameView.mm
       node/ios/exception.cpp
-      node/ios/factory_exchange.cpp
+      node/ios/_factory.cpp
       node/ios/factory_exchange.h
       node/ios/host_interaction.cpp
       node/ios/host_interaction.h
@@ -1020,7 +1020,7 @@ if (ANDROID)
       node/android/dir_system.h
       node/android/error.cpp
       node/android/exception.cpp
-      node/android/factory_exchange.cpp
+      node/android/_factory.cpp
       node/android/factory_exchange.h
       node/android/file.cpp
       node/android/file.h

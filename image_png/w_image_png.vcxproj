@@ -29,9 +29,7 @@
   <ItemGroup>
     <ClCompile Include="Source\FreeImage\PluginPNG.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="axis_image_png.def" />
-  </ItemGroup>
+  
   <ItemGroup>
     <ProjectReference Include="..\ace\w_ace.vcxproj">
       <Project>{e8826c3e-de08-4292-b797-4802c710e2c3}</Project>

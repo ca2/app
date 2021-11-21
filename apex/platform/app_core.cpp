@@ -1753,7 +1753,7 @@ __transport(::application) app_core::new_application(const char* pszAppId)
 
    }
 
-#ifndef CUBE
+//#ifndef CUBE
 
    if (!papp)
    {
@@ -1784,7 +1784,7 @@ __transport(::application) app_core::new_application(const char* pszAppId)
 
          auto psystem = get_system()->m_papexsystem;
 
-         auto plibrary = psystem->get_library(strLibrary);
+         auto & plibrary = psystem->library(strLibrary);
 
          if (!plibrary)
          {
@@ -1830,36 +1830,42 @@ __transport(::application) app_core::new_application(const char* pszAppId)
 
          }
 
-         papp = plibrary->new_application(strAppId);
-         
-         if (!papp)
+         auto pfactory = plibrary->create_factory(strLibrary);
+
+         if (pfactory.succeeded())
          {
 
-            ::output_debug_string("\n\n::apex::session::get_new_application\n...but this new found library:\n\n   -->  " + strLibrary + "  <--\n\ncannot instantiate application with following AppId:\n\n   -->  "+strAppId+"  <--\n\nIs it missing application factory?\n\n\n");
+            papp = pfactory->create < ::application >();
+
+            if (!papp)
+            {
+
+               ::output_debug_string("\n\n::apex::session::get_new_application\n...but this new found library:\n\n   -->  " + strLibrary + "  <--\n\ncannot instantiate application with following AppId:\n\n   -->  " + strAppId + "  <--\n\nIs it missing application factory_item?\n\n\n");
+
+            }
+
+            ::e_status estatus;
+
+            //         if(papp)
+            //         {
+            //
+            //            estatus = papp->initialize(pobject);
+            //
+            //         }
+
+            ::output_debug_string("\n\n\n|(4)----");
+            ::output_debug_string("| app : " + strAppId + "(papp=0x" + ::hex::upper_from((uptr)papp.m_p) + ")\n");
+            ::output_debug_string("|\n");
+            ::output_debug_string("|\n");
+            ::output_debug_string("|----");
 
          }
-
-
-         ::e_status estatus;
-
-//         if(papp)
-//         {
-//
-//            estatus = papp->initialize(pobject);
-//
-//         }
-
-         ::output_debug_string("\n\n\n|(4)----");
-         ::output_debug_string("| app : " + strAppId + "(papp=0x" + ::hex::upper_from((uptr)papp.m_p) + ")\n");
-         ::output_debug_string("|\n");
-         ::output_debug_string("|\n");
-         ::output_debug_string("|----");
 
       }
 
    }
 
-#endif
+//#endif
 
    if (!papp)
    {

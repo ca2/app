@@ -114,9 +114,9 @@ namespace apex
 
       m_papexsystem = this;
 
-      create_factory < ::thread >();
+      ::factory::add_factory_item < ::thread >();
 
-      create_factory<::apex::idpool, ::acme::idpool >();
+      ::factory::add_factory_item<::apex::idpool, ::acme::idpool >();
 
       m_edisplay = e_display_default;
 
@@ -145,9 +145,9 @@ namespace apex
    void system::common_construct()
    {
 
-      create_factory < ::apex::session >();
-      create_factory < ::application >();
-      //create_factory < ::imaging >();
+      ::factory::add_factory_item < ::apex::session >();
+      ::factory::add_factory_item < ::application >();
+      //add_factory_item < ::imaging >();
 
       m_bSimpleMessageLoop = false;
 
@@ -289,7 +289,7 @@ namespace apex
 
       }
 
-      //::factory::g_pfactorymap->InitHashTable(16189);
+      //::factory_item::g_pfactorymap->InitHashTable(16189);
 
 #ifdef __DEBUG
 
@@ -359,36 +359,36 @@ namespace apex
 
       }
 
-      //create_factory < ::stdio_file, ::file::text_file >();
-      //create_factory < ::stdio_file, ::file::file >();
-      create_factory < ::i64_array >();
-      create_factory < ::double_array >();
-      create_factory < ::acme::library >();
+      //add_factory_item < ::stdio_file, ::file::text_file >();
+      //add_factory_item < ::stdio_file, ::file::file >();
+      ::factory::add_factory_item < ::i64_array >();
+      ::factory::add_factory_item < ::double_array >();
+      ::factory::add_factory_item < ::acme::library >();
 
-      create_factory < ::file::path_object >();
+      ::factory::add_factory_item < ::file::path_object >();
 
-      create_factory < string_array >();
-      create_factory < memory >();
-      create_factory < memory_file >();
-      create_factory < int_array >();
+      ::factory::add_factory_item < string_array >();
+      ::factory::add_factory_item < memory >();
+      ::factory::add_factory_item < memory_file >();
+      ::factory::add_factory_item < int_array >();
 
 
 
-      create_factory < ::file::path_object >();
-      create_factory < ::i64_array >();
-      create_factory < ::double_array >();
-      create_factory < ::acme::library >();
+      ::factory::add_factory_item < ::file::path_object >();
+      ::factory::add_factory_item < ::i64_array >();
+      ::factory::add_factory_item < ::double_array >();
+      ::factory::add_factory_item < ::acme::library >();
 
-      create_factory < ::file::path_object >();
+      ::factory::add_factory_item < ::file::path_object >();
 
-      create_factory < string_array >();
-      create_factory < memory >();
-      create_factory < memory_file >();
-      create_factory < int_array >();
+      ::factory::add_factory_item < string_array >();
+      ::factory::add_factory_item < memory >();
+      ::factory::add_factory_item < memory_file >();
+      ::factory::add_factory_item < int_array >();
 
-      //create_factory < ::draw2d::icon >();
+      //add_factory_item < ::draw2d::icon >();
 
-      //__node_apex_factory_exchange(::factory::get_factory_map());
+      //([a-z0-9_]+)_factory(::factory_item::get_factory());
 
       estatus = __compose_new(m_pdatetime);
 
@@ -435,7 +435,7 @@ namespace apex
 
       //m_ptexttable = nullptr;
 
-//      __node_axis_factory_exchange(::factory_map * pfactorymap);
+//      ([a-z0-9_]+)_factory(::factory::factory * pfactory);
 
 
 
@@ -453,7 +453,7 @@ namespace apex
      //m_strBaseSupportId = "base_system";
      //m_strInstallToken = "base_system";
 
-      //create_factory < ::draw2d::icon >();
+      //add_factory_item < ::draw2d::icon >();
 
       //#if defined(_UWP) || defined(APPLE_IOS) || defined(ANDROID)
       //
@@ -584,14 +584,14 @@ namespace apex
 
 
 
-   ::e_status system::set_factory_exchange(const ::string & pszComponent, const ::string & pszImplementation, PFN_factory_exchange pfnFactoryExchange)
-   {
+   //::e_status system::([a-z0-9_]+)_factory(const ::string & pszComponent, const ::string & pszImplementation, PFN_factory_exchange pfnFactoryExchange)
+   //{
 
-      m_mapFactoryExchange[pszComponent][pszImplementation] = pfnFactoryExchange;
+   //   m_mapFactoryExchange[pszComponent][pszImplementation] = pfnFactoryExchange;
 
-      return ::success;
+   //   return ::success;
 
-   }
+   //}
 
 
    // acme commented
@@ -789,92 +789,86 @@ namespace apex
    }
 
 
-
-   ::acme::library * system::get_library(const ::string & pszLibrary1, bool bOpenCa2)
-   {
-
-      auto psystem = get_system()->m_papexsystem;
-
-      synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
-
-      string strLibrary(pszLibrary1);
-
-      strLibrary.ends_eat_ci(".dll");
-      strLibrary.ends_eat_ci(".so");
-      strLibrary.ends_eat_ci(".dylib");
-      strLibrary.begins_eat_ci("lib");
-
-      __pointer(::acme::library) & plibrary = psystem->m_mapLibrary[strLibrary];
-
-      bool bLibraryOk = true;
-
-      if (plibrary.is_null())
-      {
-
-         plibrary = on_get_library(strLibrary);
-
-         if (plibrary.is_null())
-         {
-
-            psystem->__construct_new(plibrary);
-
-            plibrary->initialize_matter(psystem);
-
-            if (!plibrary->open(strLibrary))
-            {
-
-//#if !defined(ANDROID)
-//               if (!plibrary->open(m_pcontext->m_papexcontext->dir().ca2module() / pszLibrary))
-//#endif
-//               {
+//   __transport(::acme::library) system::get_library(const ::string& str)
+//   {
 //
-//               }
-
-            }
-
-            bLibraryOk = plibrary->is_opened();
-
-         }
-
-#ifndef CUBE
-
-         if (bOpenCa2 && bLibraryOk)
-         {
-
-            plibrary->open_library();
-
-         }
-
-#endif
-
-      }
-
-      if(!bLibraryOk)
-      {
-
-         return nullptr;
-
-      }
-
-#ifndef CUBE
-
-      if (bOpenCa2)
-      {
-
-         if (plibrary->m_pca2library.is_null())
-         {
-
-            return nullptr;
-
-         }
-
-      }
-
-#endif
-
-      return plibrary;
-
-   }
+//      synchronous_lock synchronouslock(&m_mutexLibrary4);
+//
+//      string strLibrary;
+//
+//      strLibrary = library_filter(str);
+//
+//      auto & plibrary = m_mapLibrary4[strLibrary];
+//
+//      bool bLibraryOk = true;
+//
+//      if (plibrary.is_null())
+//      {
+//
+//         plibrary = on_get_library(strLibrary);
+//
+//         if (plibrary.is_null())
+//         {
+//
+//            psystem->__construct_new(plibrary);
+//
+//            plibrary->initialize_matter(psystem);
+//
+//            if (!plibrary->open(strLibrary))
+//            {
+//
+////#if !defined(ANDROID)
+////               if (!plibrary->open(m_pcontext->m_papexcontext->dir().ca2module() / pszLibrary))
+////#endif
+////               {
+////
+////               }
+//
+//            }
+//
+//            bLibraryOk = plibrary->is_opened();
+//
+//         }
+//
+////#ifndef CUBE
+////
+////         if (bOpenCa2 && bLibraryOk)
+////         {
+////
+////            plibrary->open_library();
+////
+////         }
+////
+////#endif
+//
+//      }
+//
+//      if(!bLibraryOk)
+//      {
+//
+//         return nullptr;
+//
+//      }
+//
+////#ifndef CUBE
+////
+////      if (bOpenCa2)
+////      {
+////
+////         if (plibrary->m_pca2library.is_null())
+////         {
+////
+////            return nullptr;
+////
+////         }
+////
+////      }
+////
+////#endif
+//
+//      return plibrary;
+//
+//   }
 
 
    system::~system()
@@ -914,7 +908,7 @@ namespace apex
       //}
       //catch (...)
       //{
-      //   TRACE("system::~system: Potentially catastrophical error : error disabling simple factory request");
+      //   TRACE("system::~system: Potentially catastrophical error : error disabling simple factory_item request");
       //}
 
       //if (g_p == this)
@@ -1021,7 +1015,7 @@ namespace apex
    //}
 
 
-   //base_factory & system::factory()
+   //base_factory & system::factory_item()
    //{
 
    //   return *m_pfactory;
@@ -1038,19 +1032,21 @@ namespace apex
 
    //}
 
-   ::e_status system::node_factory_exchange()
+   __transport(::factory::factory) & system::node_factory()
    {
 
-      auto estatus = do_factory_exchange("apex", PLATFORM_NAME);
+      auto & pfactory = factory("apex", PLATFORM_NAME);
 
-      if(!estatus)
+      if(!pfactory)
       {
 
-         return estatus;
+         return pfactory;
 
       }
 
-      return estatus;
+      pfactory->merge_to_global_factory();
+
+      return pfactory;
 
    }
 
@@ -1058,9 +1054,9 @@ namespace apex
    ::e_status system::process_init()
    {
 
-      create_factory<::create>();
-      create_factory<command_line>();
-      create_factory<http::context>();
+      ::factory::add_factory_item<::create>();
+      ::factory::add_factory_item<command_line>();
+      ::factory::add_factory_item<http::context>();
 
       auto estatus = ::system::process_init();
 
@@ -1071,7 +1067,7 @@ namespace apex
 
       }
 
-      // estatus = do_factory_exchange("apex", PLATFORM_NAME);
+      // estatus = ([a-z0-9_]+)_factory("apex", PLATFORM_NAME);
 
       // if (!estatus)
       // {
@@ -1342,10 +1338,10 @@ namespace apex
 
       //}
 
-      //create_factory < application_bias >();
+      //add_factory_item < application_bias >();
 
-      //create_factory < ::mutex >();
-      //create_factory < event >();
+      //add_factory_item < ::mutex >();
+      //add_factory_item < event >();
 
       //if (!::application::process_init())
       //{
@@ -1634,18 +1630,18 @@ pacmedir->create("/ca2core");
 
       }
 
-      estatus = do_factory_exchange("crypto", "openssl");
+      auto & pfactoryCrypto = factory("crypto", "openssl");
 
-      if (!estatus)
+      if (!pfactoryCrypto)
       {
 
          WARNING("Could not open crypto openssl plugin.");
 
-         return estatus;
+         return pfactoryCrypto;
 
       }
 
-      estatus = __compose(m_pcrypto);
+      estatus = pfactoryCrypto->__compose(this, m_pcrypto);
 
       if(!estatus)
       {
@@ -1790,28 +1786,28 @@ pacmedir->create("/ca2core");
 
       //}
 
-#if !defined(CUBE) && !defined(ANDROID)
-
-#if !defined(_DEBUG) || defined(WINDOWS)
-
-      try
-      {
-
-#endif
-
-      find_applications_from_cache();
-
-#if !defined(_DEBUG) || defined(WINDOWS)
-
-      }
-      catch (...)
-      {
-
-      }
-
-#endif
-
-#endif
+//#if !defined(CUBE) && !defined(ANDROID)
+//
+//#if !defined(_DEBUG) || defined(WINDOWS)
+//
+//      try
+//      {
+//
+//#endif
+//
+//      find_applications_from_cache();
+//
+//#if !defined(_DEBUG) || defined(WINDOWS)
+//
+//      }
+//      catch (...)
+//      {
+//
+//      }
+//
+//#endif
+//
+//#endif
 
       auto strMain = m_pcontext->m_papexcontext->dir().install() / "app/_appmatter/main";
 
@@ -2032,7 +2028,7 @@ pacmedir->create("/ca2core");
    ::e_status system::init_thread()
    {
 
-      //auto estatus = node_factory_exchange();
+      //auto estatus = ([a-z0-9_]+)_factory();
 
       //if(!estatus)
       //{
@@ -2343,27 +2339,27 @@ pacmedir->create("/ca2core");
    }
 
 
-   ::acme::library * system::lib(const ::string & psz)
-   {
+   //::acme::library * system::lib(const ::string & psz)
+   //{
 
-      synchronous_lock synchronouslock(&m_mutexLibrary);
+   //   synchronous_lock synchronouslock(&m_mutexRawLibrary);
 
-      auto & plibrary = m_mapLibCall[psz];
+   //   auto & plibrary = m_mapLibCall[psz];
 
-      if(!plibrary)
-      {
-      
-         m_mapLibCall[psz] =  __new(::acme::library);
+   //   if(!plibrary)
+   //   {
+   //   
+   //      m_mapLibCall[psz] =  __new(::acme::library);
 
-         plibrary->initialize(this);
+   //      plibrary->initialize(this);
 
-         plibrary->open(psz);
+   //      plibrary->open(psz);
 
-      }
+   //   }
 
-      return plibrary;
+   //   return plibrary;
 
-   }
+   //}
 
 
    string system::get_application_server_name()
@@ -3409,217 +3405,217 @@ pacmedir->create("/ca2core");
    }
 
 
-   bool system::find_applications_from_cache()
-   {
+//   bool system::find_applications_from_cache()
+//   {
+//
+//      return false;
+//
+////      on_start_find_applications_from_cache();
+////
+////      if(has_property("install"))
+////         return true;
+////
+////      file_pointer pfile = m_pcontext->m_papexcontext->file().get_file(m_pcontext->m_papexcontext->dir().appdata() / "applibcache.bin",::file::e_open_binary | ::file::e_open_read);
+////
+////      if(!pfile)
+////         return false;
+////
+////      ::binary_stream is(pfile);
+////
+////      is >> m_mapAppLibrary;
+////
+////      on_end_find_applications_from_cache(is);
+////
+////      return true;
+//
+//   }
 
-      return false;
 
-//      on_start_find_applications_from_cache();
-//
-//      if(has_property("install"))
-//         return true;
-//
-//      file_pointer pfile = m_pcontext->m_papexcontext->file().get_file(m_pcontext->m_papexcontext->dir().appdata() / "applibcache.bin",::file::e_open_binary | ::file::e_open_read);
-//
-//      if(!pfile)
-//         return false;
-//
-//      ::binary_stream is(pfile);
-//
-//      is >> m_mapAppLibrary;
-//
-//      on_end_find_applications_from_cache(is);
-//
-//      return true;
-
-   }
-
-
-   bool system::find_applications_to_cache(bool bSave)
-   {
-
-      return true;
-
-#if defined(CUBE) || defined(ANDROID)
-      return true;
-#endif
-
-      /*      m_spfilehandler(new ::apex::filehandler::handler(this));*/
-
-//      m_mapAppLibrary.erase_all();
-//
-//      string strLibraryId;
-//
-//      ::file::listing straTitle(this);
-//
-//      ::file::path pathCa2Module = m_pcontext->m_papexcontext->dir().ca2module();
-//
-//      ::output_debug_string("\n\n::apex::system::find_applications_to_cache\n\n");
-//
-//      ::output_debug_string("ca2 module folder : " + pathCa2Module);
-//
-//      ::output_debug_string("\n\n\n");
-//
-//      straTitle.ls_pattern(pathCa2Module, { "*.*" });
-//
-//      for(i32 i = 0; i < straTitle.get_count(); i++)
-//      {
-//
-//         strLibraryId = straTitle[i];
-//
-//
-//         if(::str::ends_eat_ci(strLibraryId,".dll")
-//               || ::str::ends_eat_ci(strLibraryId,".so")
-//               || ::str::ends_eat_ci(strLibraryId,".dylib"))
-//         {
-//
-//            if(::str::begins_ci(strLibraryId,"libdraw2d_")
-//                  || ::str::begins_ci(strLibraryId,"libbase"))
-//            {
-//               continue;
-//            }
-//
-//            ::output_debug_string("library("+__string(i)+") : " + strLibraryId+"\n\n");
-//
-//            map_application_library(strLibraryId);
-//
-//         }
-//
-//      }
-//
-//      if(!bSave)
-//         return true;
-//
-//      file_pointer file;
-//
-//      try
-//      {
-//
-//         file = psession->file().get_file(m_pcontext->m_papexcontext->dir().appdata() / "applibcache.bin",::file::e_open_defer_create_directory | ::file::e_open_binary | ::file::e_open_create | ::file::e_open_write);
-//
-//      }
-//      catch(::exception &)
-//      {
-//
-//         return false;
-//
-//      }
-//
-//      stream os(file);
-//
-//      os << m_mapAppLibrary;
-//
-//      on_end_find_applications_to_cache(os);
+//   bool system::find_applications_to_cache(bool bSave)
+//   {
 //
 //      return true;
+//
+//#if defined(CUBE) || defined(ANDROID)
+//      return true;
+//#endif
+//
+//      /*      m_spfilehandler(new ::apex::filehandler::handler(this));*/
+//
+////      m_mapAppLibrary.erase_all();
+////
+////      string strLibraryId;
+////
+////      ::file::listing straTitle(this);
+////
+////      ::file::path pathCa2Module = m_pcontext->m_papexcontext->dir().ca2module();
+////
+////      ::output_debug_string("\n\n::apex::system::find_applications_to_cache\n\n");
+////
+////      ::output_debug_string("ca2 module folder : " + pathCa2Module);
+////
+////      ::output_debug_string("\n\n\n");
+////
+////      straTitle.ls_pattern(pathCa2Module, { "*.*" });
+////
+////      for(i32 i = 0; i < straTitle.get_count(); i++)
+////      {
+////
+////         strLibraryId = straTitle[i];
+////
+////
+////         if(::str::ends_eat_ci(strLibraryId,".dll")
+////               || ::str::ends_eat_ci(strLibraryId,".so")
+////               || ::str::ends_eat_ci(strLibraryId,".dylib"))
+////         {
+////
+////            if(::str::begins_ci(strLibraryId,"libdraw2d_")
+////                  || ::str::begins_ci(strLibraryId,"libbase"))
+////            {
+////               continue;
+////            }
+////
+////            ::output_debug_string("library("+__string(i)+") : " + strLibraryId+"\n\n");
+////
+////            map_application_library(strLibraryId);
+////
+////         }
+////
+////      }
+////
+////      if(!bSave)
+////         return true;
+////
+////      file_pointer file;
+////
+////      try
+////      {
+////
+////         file = psession->file().get_file(m_pcontext->m_papexcontext->dir().appdata() / "applibcache.bin",::file::e_open_defer_create_directory | ::file::e_open_binary | ::file::e_open_create | ::file::e_open_write);
+////
+////      }
+////      catch(::exception &)
+////      {
+////
+////         return false;
+////
+////      }
+////
+////      stream os(file);
+////
+////      os << m_mapAppLibrary;
+////
+////      on_end_find_applications_to_cache(os);
+////
+////      return true;
+//
+//   }
 
-   }
 
-
-   bool system::map_application_library(const ::string & pszLibrary)
-   {
-
-      ::acme::library library;
-
-      library.initialize_library(this, 0);
-
-      if(!strcmp(pszLibrary,"app_core_rdpclient"))
-      {
-         INFORMATION("reach");
-      }
-
-      if(!ansi_compare_ci(pszLibrary, "app_core_hellomultiverse"))
-      {
-         INFORMATION("reach app_core_hellomultiverse");
-      }
-
-      if(!ansi_compare_ci(pszLibrary, "experience_lite"))
-      {
-         INFORMATION("reach experience_lite");
-      }
-
-      if(!ansi_compare_ci(pszLibrary, "app_core_hellomultiverse"))
-      {
-         INFORMATION("reach app_core_hellomultiverse");
-      }
-
-      if(!library.open(pszLibrary, true))
-      {
-         INFORMATION("::system::map_application_library Failed to open library :" << pszLibrary);
-         return false;
-      }
-
-      if(!library.open_library())
-      {
-
-         ::output_debug_string("::system::map_application_library open_ca2_library(2) Failed :" + string(pszLibrary) + "\n\n");
-
-         return false;
-
-      }
-
-      on_map_application_library(library);
-
-      string_array stra;
-
-      string strRoot = library.get_root();
-
-      library.get_app_list(stra);
-
-      if(stra.get_count() <= 0)
-         return false;
-
-      strRoot += "/";
-
-      if(stra.get_count() == 1)
-      {
-
-         m_mapAppLibrary.set_at(strRoot + stra[0],pszLibrary);
-
-      }
-
-      string strLibrary = ::file::path(pszLibrary).title();
-
-#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
-
-      if(strLibrary == "libbase")
-      {
-
-         strLibrary = "base";
-
-      }
-      else if(!::str::begins_eat(strLibrary,"libbase"))
-      {
-
-         ::str::begins_eat(strLibrary,"lib");
-
-      }
-
-#endif
-
-      string strPrefix = strRoot;
-
-      strPrefix.replace("-","_");
-
-      strPrefix.replace("/","_");
-
-      ::str::begins_eat_ci(strLibrary,strPrefix);
-
-      strRoot += strLibrary;
-
-      strRoot += "/";
-
-      for(i32 i = 0; i < stra.get_count(); i++)
-      {
-
-         m_mapAppLibrary.set_at(strRoot + stra[i],pszLibrary);
-
-      }
-
-      return true;
-
-   }
-
+//   bool system::map_application_library(const ::string & pszLibrary)
+//   {
+//
+//      ::acme::library library;
+//
+//      library.initialize_library(this, 0);
+//
+//      if(!strcmp(pszLibrary,"app_core_rdpclient"))
+//      {
+//         INFORMATION("reach");
+//      }
+//
+//      if(!ansi_compare_ci(pszLibrary, "app_core_hellomultiverse"))
+//      {
+//         INFORMATION("reach app_core_hellomultiverse");
+//      }
+//
+//      if(!ansi_compare_ci(pszLibrary, "experience_lite"))
+//      {
+//         INFORMATION("reach experience_lite");
+//      }
+//
+//      if(!ansi_compare_ci(pszLibrary, "app_core_hellomultiverse"))
+//      {
+//         INFORMATION("reach app_core_hellomultiverse");
+//      }
+//
+//      if(!library.open(pszLibrary, true))
+//      {
+//         INFORMATION("::system::map_application_library Failed to open library :" << pszLibrary);
+//         return false;
+//      }
+//
+//      //if(!library.open_library())
+//      //{
+//
+//      //   ::output_debug_string("::system::map_application_library open_ca2_library(2) Failed :" + string(pszLibrary) + "\n\n");
+//
+//      //   return false;
+//
+//      //}
+//
+//      on_map_application_library(library);
+//
+//      string_array stra;
+//
+//      string strRoot = library.get_root();
+//
+//      library.get_app_list(stra);
+//
+//      if(stra.get_count() <= 0)
+//         return false;
+//
+//      strRoot += "/";
+//
+//      if(stra.get_count() == 1)
+//      {
+//
+//         m_mapAppLibrary.set_at(strRoot + stra[0],pszLibrary);
+//
+//      }
+//
+//      string strLibrary = ::file::path(pszLibrary).title();
+//
+//#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+//
+//      if(strLibrary == "libbase")
+//      {
+//
+//         strLibrary = "base";
+//
+//      }
+//      else if(!::str::begins_eat(strLibrary,"libbase"))
+//      {
+//
+//         ::str::begins_eat(strLibrary,"lib");
+//
+//      }
+//
+//#endif
+//
+//      string strPrefix = strRoot;
+//
+//      strPrefix.replace("-","_");
+//
+//      strPrefix.replace("/","_");
+//
+//      ::str::begins_eat_ci(strLibrary,strPrefix);
+//
+//      strRoot += strLibrary;
+//
+//      strRoot += "/";
+//
+//      for(i32 i = 0; i < stra.get_count(); i++)
+//      {
+//
+//         m_mapAppLibrary.set_at(strRoot + stra[i],pszLibrary);
+//
+//      }
+//
+//      return true;
+//
+//   }
+//
 
    void system::do_request(::create * pcreate)
    {
@@ -5646,7 +5642,7 @@ namespace apex
 
 #endif
 
-      for (auto& plibrary : m_mapLibrary.values())
+      for (auto& plibrary : m_mapLibrary4.values())
       {
 
          if (plibrary)
@@ -5658,7 +5654,7 @@ namespace apex
 
       }
 
-      m_mapLibrary.erase_all();
+      m_mapLibrary4.clear();
 
       return ::success;
 

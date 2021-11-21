@@ -197,7 +197,7 @@
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>Msimg32.lib;bzip2.lib;libcrypto.lib;libssl.lib;sqlite.lib;winmm.lib;windowscodecs.lib;gdiplus.lib;Crypt32.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)third-windows/$(PlatformName)/$(Configuration)/lib;$(__archive)third-windows/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <EntryPointSymbol>
       </EntryPointSymbol>
@@ -273,7 +273,7 @@
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>Msimg32.lib;bzip2.lib;libcrypto.lib;libssl.lib;sqlite.lib;winmm.lib;windowscodecs.lib;gdiplus.lib;Crypt32.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)third-windows/$(PlatformName)/$(Configuration)/lib;$(__archive)third-windows/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <EntryPointSymbol>
       </EntryPointSymbol>
@@ -352,7 +352,7 @@
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>Msimg32.lib;bzip2.lib;libcrypto.lib;libssl.lib;sqlite.lib;winmm.lib;windowscodecs.lib;gdiplus.lib;Crypt32.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)third-windows/$(PlatformName)/$(Configuration)/lib;$(__archive)third-windows/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <FixedBaseAddress>false</FixedBaseAddress>
@@ -406,7 +406,7 @@
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>Msimg32.lib;bzip2.lib;libcrypto.lib;libssl.lib;sqlite.lib;winmm.lib;windowscodecs.lib;gdiplus.lib;Crypt32.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)third-windows/$(PlatformName)/$(Configuration)/lib;$(__archive)third-windows/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
@@ -482,7 +482,7 @@
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>Msimg32.lib;bzip2.lib;libcrypto.lib;libssl.lib;sqlite.lib;winmm.lib;windowscodecs.lib;gdiplus.lib;Crypt32.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)third-windows/$(PlatformName)/$(Configuration)/lib;$(__archive)third-windows/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
@@ -561,7 +561,7 @@
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>Msimg32.lib;bzip2.lib;libcrypto.lib;libssl.lib;sqlite.lib;winmm.lib;windowscodecs.lib;gdiplus.lib;Crypt32.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)third-windows/$(PlatformName)/$(Configuration)/lib;$(__archive)third-windows/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
@@ -986,7 +986,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="axis.def" />
+    
     <None Include="axis\axis\axis.inl" />
   </ItemGroup>
   <ItemGroup>

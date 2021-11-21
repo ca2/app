@@ -225,7 +225,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>$(SolutionDir)../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <EntryPointSymbol>
@@ -284,7 +284,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>aura;axis;base;axiszlib;axisfreeimage;axisfreetype;axiscairo;axisopenssl;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>$(SolutionDir)../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\stage\$(PlatformName)\</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <EntryPointSymbol>
@@ -343,7 +343,7 @@
       <AdditionalDependencies>
       </AdditionalDependencies>
       <ImportLibrary>$(SolutionDir)../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\stage\$(PlatformName)\</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <EntryPointSymbol>
@@ -402,7 +402,7 @@
       <AdditionalDependencies>
       </AdditionalDependencies>
       <ImportLibrary>$(SolutionDir)../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\stage\$(PlatformName)\</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <EntryPointSymbol>
@@ -454,7 +454,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>Gdiplus.lib;WinInet.lib;libmysql.lib;libcrypto.lib;FreeImage.lib;libssl.lib;Crypt32.lib;Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>$(SolutionDir)../../time/library/x86/$(TargetName).lib</ImportLibrary>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(SolutionDir)../../time/library/x86/;$(SolutionDir)../../../source/app/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <EntryPointSymbol>
@@ -496,7 +496,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>Shlwapi.lib;Gdiplus.lib;WinInet.lib;libmysql.lib;libcrypto.lib;FreeImage.lib;libssl.lib;Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>$(SolutionDir)../../time/library/x86/$(TargetName).lib</ImportLibrary>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(SolutionDir)../../time/library/x86/;$(SolutionDir)../../../source/app/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <Profile>true</Profile>
@@ -1407,7 +1407,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="aura.def" />
+    
     <None Include="aura\aura\aura.inl" />
     <None Include="user\user\interaction.inl" />
     <None Include="user\user\user_interaction.inl" />

@@ -122,7 +122,7 @@
 		<Unit filename="brush.cpp" />
 		<Unit filename="brush.h" />
 		<Unit filename="cairo.cpp" />
-		<Unit filename="factory_exchange.cpp" />
+		<Unit filename="_factory.cpp" />
 		<Unit filename="factory_exchange.h" />
 		<Unit filename="font.cpp" />
 		<Unit filename="font.h" />

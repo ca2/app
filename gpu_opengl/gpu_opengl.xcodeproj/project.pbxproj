@@ -14,7 +14,7 @@
 		07B6577B190F3CA2002DAADE /* libios_gpu_opengl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65764190F3CA2002DAADE /* libios_gpu_opengl.dylib */; };
 		9A204A6E2433C68300D45614 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A204A3A2433C68300D45614 /* framework.cpp */; };
 		9A204A6F2433C68300D45614 /* factory_exchange.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A204A3B2433C68300D45614 /* factory_exchange.h */; };
-		9A204A742433C68300D45614 /* factory_exchange.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A204A592433C68300D45614 /* factory_exchange.cpp */; };
+		9A204A742433C68300D45614 /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A204A592433C68300D45614 /* _factory.cpp */; };
 		9A204A762433C68300D45614 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A204A5E2433C68300D45614 /* framework.h */; };
 		9A204A7A2433C68300D45614 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A204A662433C68300D45614 /* _.h */; };
 		9A6A479B2660E6E2004ED97A /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6A479A2660E6E2004ED97A /* libacme.dylib */; };
@@ -94,7 +94,7 @@
 		07B65777190F3CA2002DAADE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		9A204A3A2433C68300D45614 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
 		9A204A3B2433C68300D45614 /* factory_exchange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = factory_exchange.h; sourceTree = "<group>"; };
-		9A204A592433C68300D45614 /* factory_exchange.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = factory_exchange.cpp; sourceTree = "<group>"; };
+		9A204A592433C68300D45614 /* _factory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _factory.cpp; sourceTree = "<group>"; };
 		9A204A5E2433C68300D45614 /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
 		9A204A662433C68300D45614 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A574B9816AAB906000CC4EF /* libgpu_opengl.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libgpu_opengl.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -186,7 +186,7 @@
 				9A8B64F424CCE39F00A93185 /* context_win32.cpp */,
 				9A8B646024CBE90100A93185 /* context.cpp */,
 				9A8B645B24CBE90100A93185 /* context.h */,
-				9A204A592433C68300D45614 /* factory_exchange.cpp */,
+				9A204A592433C68300D45614 /* _factory.cpp */,
 				9A204A3B2433C68300D45614 /* factory_exchange.h */,
 				9A204A3A2433C68300D45614 /* framework.cpp */,
 				9A204A5E2433C68300D45614 /* framework.h */,
@@ -407,7 +407,7 @@
 				9A204A6E2433C68300D45614 /* framework.cpp in Sources */,
 				9A8B647124CBE90100A93185 /* context.cpp in Sources */,
 				9A8B646624CBE90100A93185 /* image_opengl.cpp in Sources */,
-				9A204A742433C68300D45614 /* factory_exchange.cpp in Sources */,
+				9A204A742433C68300D45614 /* _factory.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

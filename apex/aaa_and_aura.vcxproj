@@ -599,7 +599,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="apex\apex\apex_gudo_application.inl" />
-    <None Include="apex.def" />
+    
     <None Include="apex\apex\apex.inl" />
     <None Include="apex\apex\apex_system_factory.inl" />
     <None Include="apex\apex\apex_system_id.inl" />

@@ -30,7 +30,14 @@ namespace experience
 
 //#include "experience.h"
 //#include "frame.h"
+namespace experience
+{
 
+
+   CLASS_DECL_BASE string experience_name(const ::string& str);
+
+
+} // namespace experience
 
 #include "department.h"
 

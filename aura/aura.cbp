@@ -529,7 +529,7 @@
 		<Unit filename="node/linux/copydesk.h" />
 		<Unit filename="node/linux/dir_context.h" />
 		<Unit filename="node/linux/dir_system.h" />
-		<Unit filename="node/linux/factory_exchange.cpp" />
+		<Unit filename="node/linux/_factory.cpp" />
 		<Unit filename="node/linux/factory_exchange.h" />
 		<Unit filename="node/linux/file.h" />
 		<Unit filename="node/linux/file_context.h" />

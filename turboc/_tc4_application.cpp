@@ -44,17 +44,17 @@ namespace tc4
    bool application::initialize_application()
    {
 
-      create_factory <::tc4::document >();
-      create_factory <::tc4::frame >();
-      create_factory <::tc4::edit_view >();
-      create_factory <::tc4::toggle_view >();
-      create_factory <::tc4::top_view >();
-      create_factory <::tc4::lite_view >();
-      create_factory <::tc4::full_view >();
-      create_factory <::tc4::impact >();
-      create_factory <::tc4::main_impact >();
-      create_factory <::tc4::switcher_view >();
-      create_factory <::tc4::pane_view >();
+      add_factory_item <::tc4::document >();
+      add_factory_item <::tc4::frame >();
+      add_factory_item <::tc4::edit_view >();
+      add_factory_item <::tc4::toggle_view >();
+      add_factory_item <::tc4::top_view >();
+      add_factory_item <::tc4::lite_view >();
+      add_factory_item <::tc4::full_view >();
+      add_factory_item <::tc4::impact >();
+      add_factory_item <::tc4::main_impact >();
+      add_factory_item <::tc4::switcher_view >();
+      add_factory_item <::tc4::pane_view >();
 
       if(!::turboc::application::initialize_application())
          return false;

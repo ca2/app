@@ -24,7 +24,7 @@ namespace axis
 
       __composite(::html::html)                         m_phtml;
 
-      __pointer(::factory_map)                           m_pfactorymapRegularExpressionPcre;
+      __pointer(::factory::factory)                           m_pfactoryRegularExpressionPcre;
 
 
       system();

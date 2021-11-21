@@ -1021,10 +1021,10 @@ namespace tts_sapi
 } // namespace tts_sapi
 
 
-void tts_sapi_tts_speaker_factory_exchange(::factory_map * pfactorymap)
+void ([a-z0-9_]+)_factory(::factory::factory * pfactory)
 {
 
-   create_factory < ::tts_sapi::tts::speaker, ::tts::speaker >();
+   add_factory_item < ::tts_sapi::tts::speaker, ::tts::speaker >();
 
 }
 

@@ -1,4 +1,4 @@
-// Created by camilo on 2021-11-15 15:39 BRT <3ThomasBorregaardSørensen!!
+// Created by camilo on 2021-11-15 15:39 BRT <3ThomasBorregaardSï¿½rensen!!
 #include "framework.h"
 #ifdef WINDOWS_DESKTOP
 #include "acme_windows/_.h"
@@ -154,7 +154,7 @@ namespace programming
          if (m_strVs == "2022")
          {
 
-            m_strEnv = "C:/Program Files/Microsoft Visual Studio/2022/Preview/VC/Auxiliary/Build/vcvarsall.bat";
+            m_strEnv = "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Auxiliary/Build/vcvarsall.bat";
 
             m_strVCVersion = papplication->get_visual_studio_build();
 
@@ -348,7 +348,7 @@ namespace programming
 
          //strBuildCmd = "\"" + strBuildCmd + "\" " + m_strPlat2 + " " + papplication->get_visual_studio_build();
 
-         strBuildCmd = "\"C:/Program Files/Microsoft Visual Studio/2022/Preview/VC/Auxiliary/Build/vcvars64.bat\"";
+         strBuildCmd = "\"C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Auxiliary/Build/vcvars64.bat\"";
 
       }
 

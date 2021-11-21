@@ -30,11 +30,11 @@ namespace axis
 
       }
 
-      create_factory <::user::still >();
-      create_factory < ::user::button >();
-      create_factory < ::user::check_box >();
-      create_factory <::user::list_box >();
-      create_factory <::user::combo_box >();
+      ::factory::add_factory_item <::user::still >();
+      ::factory::add_factory_item < ::user::button >();
+      ::factory::add_factory_item < ::user::check_box >();
+      ::factory::add_factory_item <::user::list_box >();
+      ::factory::add_factory_item <::user::combo_box >();
 
       return ::success;
 

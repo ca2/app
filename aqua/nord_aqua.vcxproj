@@ -1218,7 +1218,7 @@
     <ClInclude Include="_defer.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="apex.def" />
+    
     <None Include="apex\message\message.inl" />
     <None Include="inline\aaa_want_to_remove_app_prelude.inl" />
     <None Include="multithreading\multithreading.inl" />

@@ -1,6 +1,8 @@
 #pragma once
 
 
+
+
 namespace acme
 {
 
@@ -11,36 +13,39 @@ namespace acme
    public:
 
 
-      __pointer(::factory_map)      m_pfactorymap;
-      string                        m_strFolder;
-      string                        m_strName;
-      void *                        m_plibrary;
-      __pointer(library)            m_pca2library;
-      string                        m_strCa2Name;
-      string                        m_strRoot;
-      ::file::path                  m_strPath;
-      string                        m_strMessage;
-      bool                          m_bAutoUnload;
+      //string_map < __transport(::factory::factory) >  m_mapFactory;
+      string                                          m_strFolder;
+      string                                          m_strName;
+      void *                                          m_plibrary;
+      //__pointer(library)                              m_pca2library;
+      //string                                          m_strCa2Name;
+      //string                                          m_strRoot;
+      //::file::path                                    m_strPath;
+      string                                          m_strMessage;
+      //bool                                            m_bAutoUnload;
       //__pointer_array(library_object_allocator_base) m_allocatorptra;                     \
 
 
-      library() {}
-      virtual ~library();
+      library();
+      ~library() override;
 
       void assert_valid() const override;
       void dump(dump_context &) const override;
 
       ::e_status     initialize_matter(::matter * pmatter) override;
-      virtual ::e_status     initialize_library(::matter* pmatter, int iDesmabi, const char * pszRoot = nullptr, const char * pszName = nullptr, const char * pszFolder = nullptr);
+      //virtual ::e_status     initialize_library(::matter* pmatter, int iDesmabi, const char * pszRoot = nullptr, const char * pszName = nullptr, const char * pszFolder = nullptr);
+      //virtual ::e_status initialize_library(::matter* pmatter, const char* pszName = nullptr, const char* pszFolder = nullptr);
 
-      virtual bool open(const char * pszPath,bool bAutoClose = true,bool bCa2Path = false);
+      //virtual ::e_status open(const char * pszPath,bool bAutoClose = true,bool bCa2Path = false);
 
-      virtual bool open_library(string strTitle = "");
+      virtual ::e_status open(const char* pszPath);
 
-      library * get_library();
+      //virtual bool open_library(string strTitle = "");
+
+      //library * get_library();
 
 
-      virtual ::factory_map * factory_map() { return m_pfactorymap; }
+      //virtual ::factory::factory * factory() { return m_pfactory; }
 
 
       virtual bool close();
@@ -68,82 +73,28 @@ namespace acme
 
 
 
-      virtual bool contains_app(const char * pszAppId);
+      // virtual bool contains_app(const char* pszAppId);
 
 
-      virtual void get_create_view_id_list(::array < ::id > & ida);
+      //virtual void get_create_view_id_list(::array < ::id > & ida);
 
 
-      virtual string get_root();
+      //virtual string get_root();
 
 
-      // impl
-      virtual __transport(::matter) new_application(const char * pszAppId);
-      virtual void get_app_list(string_array & stra);
+      //virtual __transport(::object) new_application(const ::string & strAppId);
+      //virtual void get_app_list(string_array & stra);
 
       
-      virtual ::matter* new_object(const char* pszClass);
+      //virtual ::matter* new_object(const char* pszClass);
       
-      template < typename BASE_TYPE >
-      inline __pointer(BASE_TYPE) create()
-      {
-         return m_pfactorymap->create <BASE_TYPE>();
-      }
-
-      template < typename BASE_TYPE >
-      inline ::e_status __construct(__pointer(BASE_TYPE) & p)
-      {
-
-         auto pNew = m_pfactorymap->create <BASE_TYPE>();
-
-         if (!pNew)
-         {
-
-            return error_no_factory;
-
-         }
-         
-         p = pNew;
-
-         if (!p)
-         {
-
-            return error_no_interface;
-
-         }
-
-         return ::success;
-
-      }
-
-
-      template < typename BASE_TYPE >
-      inline ::e_status __defer_construct(__pointer(BASE_TYPE)& p)
-      {
-
-         ::e_status estatus = ::success_not_constructed;
-
-         if (!p)
-         {
-
-            estatus = __construct(p);
-         }
-
-         return estatus;
-
-      }
-
-
-      virtual __pointer(::matter) create_object(const char* pszClass);
-      virtual bool has_object_class(const char * lpszClass);
-
 
       virtual string get_library_name();
 
-      virtual string get_app_id(const char * pszAppName);
-      virtual string get_app_name(const char * pszAppId);
+      //virtual string get_app_id(const char * pszAppName);
+      //virtual string get_app_name(const char * pszAppId);
 
-      virtual void get_extension_list(string_array & stra);
+      //virtual void get_extension_list(string_array & stra);
 
 
       // virtual ::matter * factory_new(::object * pobject, const char * lpszClass);
@@ -157,11 +108,16 @@ namespace acme
       //virtual void initialize_factory();
 
 
-      //virtual bool create_factory();
+      //virtual bool add_factory_item();
 
-      virtual ::e_status do_factory_exchange(const ::string& strName = nullptr, ::factory_map * pfactorymap = nullptr);
+      //virtual __transport(::factory::factory) & factory(const ::string & strComponent, const ::string & strImplementation);
 
-      virtual ::e_status factory_exchange(const ::string & strName = nullptr, ::factory_map * pfactorymap = nullptr);
+      //virtual __transport(::factory::factory) & factory(const ::string & strLibrary);
+
+      //virtual void _load_factory(__transport(::factory::factory) & pfactory, const ::string& strComponent);
+
+      //virtual ::e_status factory_exchange(const ::string & strName = nullptr, ::factory::factory * pfactory = nullptr);
+      virtual __transport(::factory::factory) create_factory(const ::string& strLibrary);
 
 
    };
@@ -174,7 +130,7 @@ namespace acme
 
 
    
-   using library_map = string_map < __pointer(::acme::library) >;
+   using library_map = string_map < __transport(::acme::library) >;
 
 
 } // namespace acme

@@ -164,7 +164,7 @@ namespace base
 //
 //#endif
 //
-//      //factory_map                                      m_factorymap;
+//      //factory                                      m_factorymap;
 //
 //      keymap < ::file::path, ::image_pointer >           m_mapImage;
 //
@@ -408,7 +408,7 @@ namespace base
 //      virtual ::aura::multimedia * defer_get_multimedia();
 //
 //      //class ::aura::os                             &  os();
-//      //class base_factory                           &  factory();
+//      //class base_factory                           &  factory_item();
 //
 //
 //      ::aura::str                                  &  str();
@@ -560,10 +560,10 @@ namespace base
 //      //virtual ::e_status process_init();
 //
 //      virtual ::e_status init_draw2d();
-//      virtual bool draw2d_factory_exchange(::factory_map * pfactorymap);
+//      virtual bool ([a-z0-9_]+)_factory(::factory::factory * pfactory);
 //      virtual string draw2d_get_default_library_name();
 //
-//      virtual bool imaging_factory_exchange(::factory_map * pfactorymap);
+//      virtual bool ([a-z0-9_]+)_factory(::factory::factory * pfactory);
 //      virtual string imaging_get_default_library_name();
 //
 //      virtual ::e_status init_thread() override;

@@ -659,9 +659,9 @@ namespace experience
 
       auto & pbutton = pitem->m_pbutton;
 
-      auto plibrary = m_pframewindow->m_pframe->m_pexperience->m_plibrary;
+      auto pfactory = m_pframewindow->m_pframe->m_pexperience->m_pfactory;
 
-      plibrary->__defer_construct(pbutton);
+      pfactory->__defer_construct(pbutton);
 
       pbutton->initialize(this);
 

@@ -8,7 +8,7 @@
 #include "metrowin_dir.cpp"
 #include "metrowin_dll.cpp"
 #include "metrowin_error.cpp"
-#include "metrowin_factory_exchange.cpp"
+#include "([a-z0-9_]+)_factory.cpp"
 #include "metrowin_file.cpp"
 #include "metrowin_file_find.cpp"
 #include "metrowin_file_system.cpp"

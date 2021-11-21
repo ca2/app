@@ -747,7 +747,7 @@
     <ClInclude Include="user\user\_interaction_impl.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="aura.def" />
+    
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\acme\nord_acme.vcxproj">

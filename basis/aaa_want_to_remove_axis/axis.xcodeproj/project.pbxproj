@@ -217,7 +217,7 @@
 		9A9874741F5CBBB800CB62EB /* geoip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A98746F1F5CBBB800CB62EB /* geoip.cpp */; };
 		9A9874871F5CBBF600CB62EB /* copydesk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9874791F5CBBF600CB62EB /* copydesk.cpp */; };
 		9A9874881F5CBBF600CB62EB /* crypto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A98747A1F5CBBF600CB62EB /* crypto.cpp */; };
-		9A98748B1F5CBBF600CB62EB /* factory_exchange.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A98747D1F5CBBF600CB62EB /* factory_exchange.cpp */; };
+		9A98748B1F5CBBF600CB62EB /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A98747D1F5CBBF600CB62EB /* _factory.cpp */; };
 		9A98748C1F5CBBF600CB62EB /* file_set.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A98747E1F5CBBF600CB62EB /* file_set.cpp */; };
 		9A98748E1F5CBBF600CB62EB /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9874801F5CBBF600CB62EB /* main.cpp */; };
 		9A98748F1F5CBBF600CB62EB /* port_forward.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9874811F5CBBF600CB62EB /* port_forward.cpp */; };
@@ -589,7 +589,7 @@
 		9A98746F1F5CBBB800CB62EB /* geoip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = geoip.cpp; sourceTree = "<group>"; };
 		9A9874791F5CBBF600CB62EB /* copydesk.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = copydesk.cpp; sourceTree = "<group>"; };
 		9A98747A1F5CBBF600CB62EB /* crypto.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crypto.cpp; sourceTree = "<group>"; };
-		9A98747D1F5CBBF600CB62EB /* factory_exchange.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = factory_exchange.cpp; sourceTree = "<group>"; };
+		9A98747D1F5CBBF600CB62EB /* _factory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _factory.cpp; sourceTree = "<group>"; };
 		9A98747E1F5CBBF600CB62EB /* file_set.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = file_set.cpp; sourceTree = "<group>"; };
 		9A9874801F5CBBF600CB62EB /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		9A9874811F5CBBF600CB62EB /* port_forward.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = port_forward.cpp; sourceTree = "<group>"; };
@@ -744,7 +744,7 @@
 				07A372ED1B26054100E4F888 /* crypto.h */,
 				9A9874791F5CBBF600CB62EB /* copydesk.cpp */,
 				07A372EB1B26054100E4F888 /* copydesk.h */,
-				9A98747D1F5CBBF600CB62EB /* factory_exchange.cpp */,
+				9A98747D1F5CBBF600CB62EB /* _factory.cpp */,
 				07A372F31B26054100E4F888 /* factory_exchange.h */,
 				9A98747E1F5CBBF600CB62EB /* file_set.cpp */,
 				07A372F51B26054100E4F888 /* file_set.h */,
@@ -1531,7 +1531,7 @@
 				077C2A1D190F144000A1F6B0 /* framework.cpp in Sources */,
 				9A376C152409C36C002D15D3 /* server.cpp in Sources */,
 				9A9874721F5CBBB800CB62EB /* geoip_time_zone.cpp in Sources */,
-				9A98748B1F5CBBF600CB62EB /* factory_exchange.cpp in Sources */,
+				9A98748B1F5CBBF600CB62EB /* _factory.cpp in Sources */,
 				9A376BE52409C36C002D15D3 /* thread.cpp in Sources */,
 				9A376C272409C36C002D15D3 /* fs.cpp in Sources */,
 				9A376BDE2409C36C002D15D3 /* server.cpp in Sources */,

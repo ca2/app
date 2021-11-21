@@ -2081,7 +2081,7 @@ namespace sockets
          if (!(SSL_CTX_use_PrivateKey_file(m_psslcontext->m_pclientcontext->m_psslcontext, keyfile, SSL_FILETYPE_PEM)))
          {
 
-            FORMATTED_FATAL("tcp_socket InitializeContext: Couldn't read private key file %s ", keyfile);
+            FORMATTED_FATAL("tcp_socket InitializeContext: Couldn't read private key file %s ", keyfile.c_str());
 
          }
 

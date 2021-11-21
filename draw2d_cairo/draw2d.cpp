@@ -28,7 +28,7 @@ namespace draw2d_cairo
 
       //m_pmutexFont = __new(::mutex);
 
-      //create_factory < e_cursor_set >();
+      //add_factory_item < e_cursor_set >();
 
    }
 
@@ -1161,7 +1161,7 @@ namespace draw2d_cairo
 //      try
 //      {
 //
-//         if (!write_text_factory_exchange(::factory::get_factory_map()))
+//         if (!([a-z0-9_]+)_factory(::factory_item::get_factory()))
 //         {
 //
 //            output_error_message("Failed to initialize draw2d library.");
@@ -1181,7 +1181,7 @@ namespace draw2d_cairo
 //      if (!estatus)
 //      {
 //
-//         TRACE("draw2d_factory_exchange has failed.\n\nSome reasons:\n   - No draw2d library present;\n   - Failure to open any suitable draw2d library.", e_message_box_ok);
+//         TRACE("([a-z0-9_]+)_factory has failed.\n\nSome reasons:\n   - No draw2d library present;\n   - Failure to open any suitable draw2d library.", e_message_box_ok);
 //
 //         return estatus;
 //
@@ -1215,7 +1215,7 @@ namespace draw2d_cairo
 //      if (::succeeded(estatus))
 //      {
 //
-//         create_factory < ::draw2d::task_tool_item >(::e_task_tool_draw2d);
+//         add_factory_item < ::draw2d::task_tool_item >(::e_task_tool_draw2d);
 //
 //      }
 //
@@ -1224,7 +1224,7 @@ namespace draw2d_cairo
 //   }
 
 
-//   ::e_status draw2d::write_text_factory_exchange(::factory_map * pfactorymap)
+//   ::e_status draw2d::([a-z0-9_]+)_factory(::factory::factory * pfactory)
 //   {
 //
 //      string strLibrary;
@@ -1254,7 +1254,7 @@ namespace draw2d_cairo
 //      if (strLibrary.has_char())
 //      {
 //
-//         estatus = psystem->do_factory_exchange("write_text", strLibrary);
+//         estatus = psystem->([a-z0-9_]+)_factory("write_text", strLibrary);
 //
 //         if(estatus.succeeded())
 //         {
@@ -1282,7 +1282,7 @@ namespace draw2d_cairo
 //
 //      }
 //
-//      estatus = psystem->do_factory_exchange("write_text", strLibrary);
+//      estatus = psystem->([a-z0-9_]+)_factory("write_text", strLibrary);
 //
 //      if(estatus.succeeded())
 //      {
@@ -1298,7 +1298,7 @@ namespace draw2d_cairo
 //      if (strLibrary != "write_text_gdiplus")
 //      {
 //
-//         estatus = psystem->do_factory_exchange("write_text", "gdiplus");
+//         estatus = psystem->([a-z0-9_]+)_factory("write_text", "gdiplus");
 //
 //         if(estatus.succeeded())
 //         {
@@ -1313,7 +1313,7 @@ namespace draw2d_cairo
 //      if (strLibrary != "write_text_direct2d")
 //      {
 //
-//         estatus = psystem->do_factory_exchange("write_text", "direct2d");
+//         estatus = psystem->([a-z0-9_]+)_factory("write_text", "direct2d");
 //
 //         if(estatus.succeeded())
 //         {
@@ -1331,7 +1331,7 @@ namespace draw2d_cairo
 //      {
 //
 //
-//         estatus = psystem->do_factory_exchange("write_text", "cairo");
+//         estatus = psystem->([a-z0-9_]+)_factory("write_text", "cairo");
 //
 //         if(estatus.succeeded())
 //         {
@@ -1347,16 +1347,16 @@ namespace draw2d_cairo
 //
 //      //destroy:
 //
-//      //   PFN_factory_exchange pfn_factory_exchange = plibrary->get < PFN_factory_exchange >("write_text_factory_exchange");
+//      //   PFN_factory_exchange ([a-z0-9_]+)_factory = plibrary->get < PFN_factory_exchange >("([a-z0-9_]+)_factory");
 //
-//      //   if (pfn_factory_exchange == nullptr)
+//      //   if (([a-z0-9_]+)_factory == nullptr)
 //      //   {
 //
 //      //      return false;
 //
 //      //   }
 //
-//      //   pfn_factory_exchange(::factory_map * pfactorymap);
+//      //   ([a-z0-9_]+)_factory(::factory::factory * pfactory);
 //
 //      //   return true;
 //

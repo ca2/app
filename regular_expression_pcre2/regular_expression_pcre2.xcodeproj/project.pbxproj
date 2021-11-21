@@ -19,7 +19,7 @@
 		9A6543CA2666B05100F8A254 /* util_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A6543AB2666B05100F8A254 /* util_impl.h */; };
 		9A6543CB2666B05100F8A254 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6543AC2666B05100F8A254 /* _.cpp */; };
 		9A6543CC2666B05100F8A254 /* _2.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A6543AD2666B05100F8A254 /* _2.h */; };
-		9A6543CE2666B05100F8A254 /* factory_exchange.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6543AF2666B05100F8A254 /* factory_exchange.cpp */; };
+		9A6543CE2666B05100F8A254 /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6543AF2666B05100F8A254 /* _factory.cpp */; };
 		9A6543D12666B05100F8A254 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A6543B32666B05100F8A254 /* framework.h */; };
 		9A6543D22666B05100F8A254 /* topic.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A6543B72666B05100F8A254 /* topic.h */; };
 		9A6543D32666B05100F8A254 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A6543BB2666B05100F8A254 /* _.h */; };
@@ -85,7 +85,7 @@
 		9A6543AB2666B05100F8A254 /* util_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = util_impl.h; sourceTree = "<group>"; };
 		9A6543AC2666B05100F8A254 /* _.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
 		9A6543AD2666B05100F8A254 /* _2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _2.h; sourceTree = "<group>"; };
-		9A6543AF2666B05100F8A254 /* factory_exchange.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = factory_exchange.cpp; sourceTree = "<group>"; };
+		9A6543AF2666B05100F8A254 /* _factory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _factory.cpp; sourceTree = "<group>"; };
 		9A6543B32666B05100F8A254 /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
 		9A6543B72666B05100F8A254 /* topic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = topic.h; sourceTree = "<group>"; };
 		9A6543BB2666B05100F8A254 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
@@ -118,7 +118,7 @@
 				9A6543AA2666B05100F8A254 /* _regular_expression_pcre2.h */,
 				9A65439D2666B05100F8A254 /* context.cpp */,
 				9A6543A22666B05100F8A254 /* context.h */,
-				9A6543AF2666B05100F8A254 /* factory_exchange.cpp */,
+				9A6543AF2666B05100F8A254 /* _factory.cpp */,
 				9A6543A02666B05100F8A254 /* factory_exchange.h */,
 				9A6543972666B05100F8A254 /* framework.cpp */,
 				9A6543B32666B05100F8A254 /* framework.h */,
@@ -298,7 +298,7 @@
 				9A6543CB2666B05100F8A254 /* _.cpp in Sources */,
 				9A6543BF2666B05100F8A254 /* context.cpp in Sources */,
 				9A6543BE2666B05100F8A254 /* framework.cpp in Sources */,
-				9A6543CE2666B05100F8A254 /* factory_exchange.cpp in Sources */,
+				9A6543CE2666B05100F8A254 /* _factory.cpp in Sources */,
 				9A6543C22666B05100F8A254 /* regular_expression.cpp in Sources */,
 				9A6543BC2666B05100F8A254 /* topic.cpp in Sources */,
 			);

@@ -1300,7 +1300,7 @@ namespace http
 
             }
 
-            FORMATTED_INFORMATION("opening context::request time(%d) = ", tickBeg.elapsed().integral_second());
+            FORMATTED_INFORMATION("opening context::request time(%d) = ", tickBeg.elapsed().integral_second().m_i);
 
          }
          catch (...)
@@ -1487,7 +1487,7 @@ namespace http
 
          //}
 
-         FORMATTED_INFORMATION("opening preparation context::request time(%d) = ", tickBegA.elapsed().integral_second());
+         FORMATTED_INFORMATION("opening preparation context::request time(%d) = ", tickBegA.elapsed().integral_second().m_i);
 
          tick1 = payload("dw").duration();
 
@@ -1665,7 +1665,7 @@ namespace http
 
          set["get_status"] = (i64)estatus;
 
-         FORMATTED_INFORMATION("Total time ::http::apex::context::get(\"%s\") ", strUrl.Left(minimum(255, strUrl.get_length())), tick1.elapsed().integral_second());
+         FORMATTED_INFORMATION("Total time ::http::apex::context::get(\"%s\") %d ms ", strUrl.Left(minimum(255, strUrl.get_length())).c_str(), tick1.elapsed().integral_second().m_i);
 
       }
       catch (...)

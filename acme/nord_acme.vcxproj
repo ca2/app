@@ -343,7 +343,7 @@
     <ClCompile Include="node\android\android1.cpp" />
     <ClCompile Include="node\android\error.cpp" />
     <ClCompile Include="node\android\exception.cpp" />
-    <ClCompile Include="node\android\factory_exchange.cpp" />
+    <ClCompile Include="node\android\_factory.cpp" />
     <ClCompile Include="node\android\file.cpp" />
     <ClCompile Include="node\android\main.cpp" />
     <ClCompile Include="node\android\process.cpp" />
@@ -1730,7 +1730,7 @@
     <ClInclude Include="_defer.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="acme.def" />
+    
     <None Include="acme\message\message.inl" />
     <None Include="exception\_.inl" />
     <None Include="inline\aaa_want_to_remove_app_prelude.inl" />

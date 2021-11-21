@@ -35,10 +35,10 @@ namespace userfs
       }
 
 
-      create_factory <::userfs::main_impact > ();
-      create_factory <::userfs::tree > ();
-      create_factory <::userfs::list > ();
-      create_factory <::userfs::list_item > ();
+      ::factory::add_factory_item <::userfs::main_impact > ();
+      ::factory::add_factory_item <::userfs::tree > ();
+      ::factory::add_factory_item <::userfs::list > ();
+      ::factory::add_factory_item <::userfs::list_item > ();
 
       if (!::acme::department::init())
       {

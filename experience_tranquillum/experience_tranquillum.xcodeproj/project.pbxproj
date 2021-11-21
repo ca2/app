@@ -22,7 +22,7 @@
 		9A415C3D247393D800EF2BCD /* frame_Minimal001.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8F8865240BEBF50097E249 /* frame_Minimal001.cpp */; };
 		9A415C3E247393D800EF2BCD /* frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8F8867240BEBF50097E249 /* frame.cpp */; };
 		9A415C3F247393D800EF2BCD /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8F886F240BEBF50097E249 /* framework.cpp */; };
-		9A42D7D2266599BA0011645D /* factory_exchange.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A42D7D1266599BA0011645D /* factory_exchange.cpp */; };
+		9A42D7D2266599BA0011645D /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A42D7D1266599BA0011645D /* _factory.cpp */; };
 		9A42D7E12665A4620011645D /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A42D7E02665A4620011645D /* libacme.dylib */; };
 		9A42D7E32665A4790011645D /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A42D7E22665A4790011645D /* libapex.dylib */; };
 		9A42D7E52665A4790011645D /* libaqua.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A42D7E42665A4790011645D /* libaqua.dylib */; };
@@ -100,7 +100,7 @@
 		9A389A4224F53F4000185630 /* style.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = style.h; sourceTree = "<group>"; };
 		9A389A4324F53F4000185630 /* style.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = style.cpp; sourceTree = "<group>"; };
 		9A389A6924F5414A00185630 /* base.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = base.xcodeproj; path = ../base/base.xcodeproj; sourceTree = "<group>"; };
-		9A42D7D1266599BA0011645D /* factory_exchange.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = factory_exchange.cpp; sourceTree = "<group>"; };
+		9A42D7D1266599BA0011645D /* _factory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _factory.cpp; sourceTree = "<group>"; };
 		9A42D7E02665A4620011645D /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A42D7E22665A4790011645D /* libapex.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A42D7E42665A4790011645D /* libaqua.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaqua.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -193,7 +193,7 @@
 				9A8F8866240BEBF50097E249 /* control_box.h */,
 				9A8F889D240BEBF50097E249 /* experience.cpp */,
 				9A8F8880240BEBF50097E249 /* experience.h */,
-				9A42D7D1266599BA0011645D /* factory_exchange.cpp */,
+				9A42D7D1266599BA0011645D /* _factory.cpp */,
 				9A8F888E240BEBF50097E249 /* frame_001.cpp */,
 				9A8F8899240BEBF50097E249 /* frame_001.h */,
 				9A8F8894240BEBF50097E249 /* frame_002.cpp */,
@@ -427,7 +427,7 @@
 				9A8F88A1240BEBF50097E249 /* frame_008.cpp in Sources */,
 				9A389A4524F53F4000185630 /* style.cpp in Sources */,
 				9A8F88B4240BEBF50097E249 /* frame_001.cpp in Sources */,
-				9A42D7D2266599BA0011645D /* factory_exchange.cpp in Sources */,
+				9A42D7D2266599BA0011645D /* _factory.cpp in Sources */,
 				9A8F88A3240BEBF50097E249 /* frame_Minimal001.cpp in Sources */,
 				9A8F88A5240BEBF50097E249 /* frame.cpp in Sources */,
 				9A8F88A6240BEBF50097E249 /* button.cpp in Sources */,

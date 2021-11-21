@@ -32,10 +32,10 @@ namespace experience
    }
 
 
-   ::experience::frame * experience::experience_get_frame(const ::string & pszSchema)
+   ::experience::frame * experience::frame_experience(const ::string & strFrameSchema)
    {
 
-      __UNREFERENCED_PARAMETER(pszSchema);
+      __UNREFERENCED_PARAMETER(strFrameSchema);
 
       return nullptr;
 

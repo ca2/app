@@ -1330,7 +1330,7 @@ if (UWP)
    list(APPEND library_source
       exception/winrt/engine_winrt.cpp
       node/universal_windows/error.cpp
-      node/universal_windows/factory_exchange.cpp
+      node/universal_windows/_factory.cpp
       node/universal_windows/file.cpp
       node/universal_windows/file_find.cpp
       node/universal_windows/native_buffer.cpp
@@ -1376,7 +1376,7 @@ if (WIN32)
 
    list(APPEND library_source
 #      node/windows/console.cpp
-#      node/windows/factory_exchange.cpp
+#      node/windows/_factory.cpp
 #      node/windows/file.cpp
 #      node/windows/file_find.cpp
 #      node/windows/pipe.cpp
@@ -1525,7 +1525,7 @@ if (LINUX)
       node/linux/dumpinit.cpp
       node/linux/error.cpp
       node/linux/exception.cpp
-      node/linux/factory_exchange.cpp
+      node/linux/_factory.cpp
       #node/linux/file.cpp
       node/linux/linux.cpp
       #node/linux/node.cpp
@@ -1600,7 +1600,7 @@ if (MACOS)
       os/cross/universal_windows/cross_metrowin_user.cpp
       os/cross/universal_windows/metrowin_user.cpp
       #node/macos/application.cpp
-      #node/macos/factory_exchange.cpp
+      #node/macos/_factory.cpp
       #node/macos/file.cpp
       #node/macos/main.cpp
       #node/macos/stdio_file.cpp
@@ -1677,7 +1677,7 @@ if (IOS)
       os/cross/universal_windows/cross_metrowin_user.cpp
       os/cross/universal_windows/metrowin_user.cpp
       node/ios/exception.cpp
-      node/ios/factory_exchange.cpp
+      node/ios/_factory.cpp
       node/ios/file.cpp
       node/ios/ios.cpp
       node/ios/ip_enum.cpp
@@ -1803,7 +1803,7 @@ if (ANDROID)
       node/android/android1.cpp
       node/android/error.cpp
       node/android/exception.cpp
-      node/android/factory_exchange.cpp
+      node/android/_factory.cpp
       node/android/file.cpp
       node/android/main.cpp
       node/android/process.cpp

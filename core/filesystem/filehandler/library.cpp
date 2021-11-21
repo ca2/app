@@ -56,12 +56,14 @@ namespace filehandler
 
       string_array stra;
 
-      get_app_list(stra);
+      throw todo;
 
-      if(stra.get_count() == 1)
-      {
-         straAppId.add(m_strRoot + "/" + stra[0]);
-      }
+      //get_app_list(stra);
+
+      //if(stra.get_count() == 1)
+      //{
+      //   straAppId.add(m_strRoot + "/" + stra[0]);
+      //}
 
    }
 
@@ -73,18 +75,23 @@ namespace filehandler
 
       string_array stra;
 
-      get_app_list(stra);
+      throw todo;
 
-      if(stra.get_count() == 1)
-      {
-         straAppId.add(m_strRoot + "/" + stra[0]);
-      }
+      //get_app_list(stra);
+
+      //if(stra.get_count() == 1)
+      //{
+      //   straAppId.add(m_strRoot + "/" + stra[0]);
+      //}
 
    }
 
+
    void library::get_extension_list(string_array & stra)
    {
+
       __UNREFERENCED_PARAMETER(stra);
+
    }
 
 

@@ -10,7 +10,7 @@ namespace factory
 
 
    template < typename TYPE, typename BASE_TYPE >
-   class reusable_factory;
+   class reusable_factory_item;
 
 
 } // namespace factory

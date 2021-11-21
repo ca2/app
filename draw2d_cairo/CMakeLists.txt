@@ -13,7 +13,7 @@ list(APPEND library_source
         cairo.cpp
         draw2d.cpp
         draw2d.h
-        factory_exchange.cpp
+        _factory.cpp
         factory_exchange.h
         font.cpp
         font.h

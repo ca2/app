@@ -6,7 +6,7 @@ list(APPEND library_source
    _.cpp
    _.h
    _folder_zip.h
-   factory_exchange.cpp
+   _factory.cpp
    file.cpp
    file.h
    file_function_definitions.cpp

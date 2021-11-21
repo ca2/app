@@ -1005,9 +1005,7 @@
     <Text Include="deps.txt" />
     <Text Include="matter.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="app_shader.def" />
-  </ItemGroup>
+  
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

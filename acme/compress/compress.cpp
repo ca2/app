@@ -36,3 +36,13 @@ compress::~compress()
 
 
 
+::u32 compress::crc32(::u32 uCrc, const ::block& block)
+{
+
+   throw interface_only_exception("this function is expected to be called just from zlib compress implementation. So no need to implement it except at compress_zlib.");
+
+   return 0;
+
+}
+
+

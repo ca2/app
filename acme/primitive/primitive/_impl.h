@@ -983,7 +983,7 @@ inline __pointer(T) & ___pointer < T >::create(::object * pobject, bool bCreate)
 //   if (!pusermessage)
 //   {
 //
-//      auto & pfactory = ::factory::get_factory < BASE_TYPE >();
+//      auto & pfactory = ::factory::get_factory_item < BASE_TYPE >();
 //
 //      if (!pfactory)
 //      {
@@ -1042,7 +1042,7 @@ inline __pointer(T) & ___pointer < T >::create(::object * pobject, bool bCreate)
 //   if (!pusermessage)
 //   {
 //
-//      auto & pfactory = ::factory::get_factory < BASE_TYPE >();
+//      auto & pfactory = ::factory::get_factory_item < BASE_TYPE >();
 //
 //      if (!pfactory)
 //      {
@@ -1155,7 +1155,7 @@ inline __pointer(T) & ___pointer < T >::create(::object * pobject, bool bCreate)
 //inline ::e_status matter::__id_compose(__composite(BASE_TYPE) & pusermessage, const ::id & id)
 //{
 //
-//   auto & pfactory = ::factory::get_factory(id);
+//   auto & pfactory = ::factory::get_factory_item(id);
 //
 //   if (!pfactory)
 //   {
@@ -2382,7 +2382,7 @@ template < typename TYPE >
 inline __transport(TYPE) object::__create()
 {
 
-   auto & pfactory = ::factory::get_factory < TYPE >();
+   auto & pfactory = ::factory::get_factory_item < TYPE >();
 
    if (!pfactory)
    {
@@ -2451,7 +2451,7 @@ template < typename TYPE >
 inline __transport(TYPE) object::__id_create(const ::id& id)
 {
 
-   auto pfactory = ::factory::get_factory(id);
+   auto pfactory = ::factory::get_factory_item(id);
    
    if (!pfactory)
    {
@@ -2530,7 +2530,7 @@ inline ::e_status object::__compose(__composite(BASE_TYPE)& pcomposite)
    if (!pcomposite)
    {
 
-      auto& pfactory = ::factory::get_factory < BASE_TYPE >();
+      auto& pfactory = ::factory::get_factory_item < BASE_TYPE >();
 
       if (!pfactory)
       {
@@ -2589,7 +2589,7 @@ inline ::e_status object::__raw_compose(__composite(BASE_TYPE)& pusermessage)
    if (!pusermessage)
    {
 
-      auto& pfactory = ::factory::get_factory < BASE_TYPE >();
+      auto& pfactory = ::factory::get_factory_item < BASE_TYPE >();
 
       if (!pfactory)
       {
@@ -2702,7 +2702,7 @@ template < typename BASE_TYPE >
 inline ::e_status object::__id_compose(__composite(BASE_TYPE)& pusermessage, const ::id& id)
 {
 
-   auto& pfactory = ::factory::get_factory(id);
+   auto& pfactory = ::factory::get_factory_item(id);
 
    if (!pfactory)
    {
@@ -2870,12 +2870,12 @@ template < typename TYPE >
 inline ::e_status object::__construct(__pointer(TYPE) & p)
 {
 
-   auto & pfactory = ::factory::get_factory < TYPE >();
+   auto & pfactory = ::factory::get_factory_item < TYPE >();
    
    if (!pfactory)
    {
 
-      ERROR("object::__construct has failed to find factory for type \"" <<  __type_name < TYPE >() << "\"");
+      ERROR("object::__construct has failed to find factory_item for type \"" <<  __type_name < TYPE >() << "\"");
 
       return ::error_not_implemented;
 
@@ -2921,7 +2921,7 @@ template < typename TYPE >
 inline ::e_status object::__id_construct(__pointer(TYPE)& p, const ::id& id)
 {
 
-   auto pfactory = ::factory::get_factory(id);
+   auto pfactory = ::factory::get_factory_item(id);
 
    if (!pfactory)
    {

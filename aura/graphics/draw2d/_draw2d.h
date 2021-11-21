@@ -259,84 +259,84 @@ namespace draw2d
 
 
 
-namespace factory
-{
-
-
-   template < >
-   inline __pointer(factory_interface) & get_factory < ::draw2d::bitmap >()
-   {
-
-      return ::factory::get_factory_array()->element_at_grow(e_factory_draw2d_bitmap);
-
-   }
-
-
-   template < >
-   inline __pointer(factory_interface) & get_factory < ::draw2d::brush >()
-   {
-
-      return ::factory::get_factory_array()->element_at_grow(e_factory_draw2d_brush);
-
-   }
-
-
-   template < >
-   inline __pointer(factory_interface) & get_factory < ::write_text::font >()
-   {
-
-      return ::factory::get_factory_array()->element_at_grow(e_factory_draw2d_font);
-
-   }
-
-
-   template < >
-   inline __pointer(factory_interface) & get_factory < ::draw2d::graphics >()
-   {
-
-      return ::factory::get_factory_array()->element_at_grow(e_factory_draw2d_graphics);
-
-   }
-
-
-   template < >
-   inline __pointer(factory_interface) & get_factory < ::image >()
-   {
-
-      return ::factory::get_factory_array()->element_at_grow(e_factory_draw2d_image);
-
-   }
-
-
-   template < >
-   inline __pointer(factory_interface) & get_factory < ::draw2d::path >()
-   {
-
-      return ::factory::get_factory_array()->element_at_grow(e_factory_draw2d_path);
-
-   }
-
-
-   template < >
-   inline __pointer(factory_interface) & get_factory < ::draw2d::pen >()
-   {
-
-      return ::factory::get_factory_array()->element_at_grow(e_factory_draw2d_pen);
-
-   }
-
-
-   template < >
-   inline __pointer(factory_interface) & get_factory < ::draw2d::region >()
-   {
-
-      return ::factory::get_factory_array()->element_at_grow(e_factory_draw2d_region);
-
-   }
-
-
-} // namespace factory
-
+//namespace factory
+//{
+//
+//
+//   template < >
+//   inline __pointer(factory_item_interface) & get_factory_item < ::draw2d::bitmap >()
+//   {
+//
+//      return ::factory::get_factory_item_array()->element_at_grow(e_factory_draw2d_bitmap);
+//
+//   }
+//
+//
+//   template < >
+//   inline __pointer(factory_item_interface) & get_factory_item < ::draw2d::brush >()
+//   {
+//
+//      return ::factory::get_factory_item_array()->element_at_grow(e_factory_draw2d_brush);
+//
+//   }
+//
+//
+//   template < >
+//   inline __pointer(factory_item_interface) & get_factory_item < ::write_text::font >()
+//   {
+//
+//      return ::factory::get_factory_item_array()->element_at_grow(e_factory_draw2d_font);
+//
+//   }
+//
+//
+//   template < >
+//   inline __pointer(factory_item_interface) & get_factory_item < ::draw2d::graphics >()
+//   {
+//
+//      return ::factory::get_factory_item_array()->element_at_grow(e_factory_draw2d_graphics);
+//
+//   }
+//
+//
+//   template < >
+//   inline __pointer(factory_item_interface) & get_factory_item < ::image >()
+//   {
+//
+//      return ::factory::get_factory_item_array()->element_at_grow(e_factory_draw2d_image);
+//
+//   }
+//
+//
+//   template < >
+//   inline __pointer(factory_item_interface) & get_factory_item < ::draw2d::path >()
+//   {
+//
+//      return ::factory::get_factory_item_array()->element_at_grow(e_factory_draw2d_path);
+//
+//   }
+//
+//
+//   template < >
+//   inline __pointer(factory_item_interface) & get_factory_item < ::draw2d::pen >()
+//   {
+//
+//      return ::factory::get_factory_item_array()->element_at_grow(e_factory_draw2d_pen);
+//
+//   }
+//
+//
+//   template < >
+//   inline __pointer(factory_item_interface) & get_factory_item < ::draw2d::region >()
+//   {
+//
+//      return ::factory::get_factory_item_array()->element_at_grow(e_factory_draw2d_region);
+//
+//   }
+//
+//
+//} // namespace factory
+//
 
 #include "device_lock.h"
 #include "lock.h"

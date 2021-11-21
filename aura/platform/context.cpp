@@ -40,6 +40,8 @@ namespace aura
          if (!estatus)
          {
 
+            WARNING("No contextimage!!");
+
             return estatus;
 
          }

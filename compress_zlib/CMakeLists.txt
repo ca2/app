@@ -10,7 +10,7 @@ list(APPEND library_source
    compress.h
    uncompress.cpp
    uncompress.h
-   factory_exchange.cpp)
+   _factory.cpp)
 
 
 

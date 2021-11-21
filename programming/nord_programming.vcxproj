@@ -52,7 +52,7 @@
     <ClCompile Include="programming\programming_application.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="programming.def" />
+    
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{87D326C9-973E-4FFA-86C8-5C08AB4E0639}</ProjectGuid>

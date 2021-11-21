@@ -27,7 +27,7 @@ namespace axis
 
 #ifdef CUBE
 
-      set_draw2d_factory_exchange(&::draw2d_factory_exchange);
+      ([a-z0-9_]+)_factory(&::([a-z0-9_]+)_factory);
 
 #endif
 
@@ -569,9 +569,9 @@ resume_on_exception:
    ::e_status application::process_init()
    {
 
-      create_factory < ::database::field_array >();
-      create_factory < ::database::row >();
-      create_factory < ::database::row_array >();
+      add_factory_item < ::database::field_array >();
+      add_factory_item < ::database::row >();
+      add_factory_item < ::database::row_array >();
 
       //if (m_bAxisProcessInitialize)
       //{

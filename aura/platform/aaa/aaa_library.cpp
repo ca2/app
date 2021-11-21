@@ -944,10 +944,10 @@ namespace aura
    }
 
 
-   bool library::create_factory()
+   bool library::add_factory_item()
    {
 
-      auto pfn_create_factory = get < PFN_create_factory >("create_factory");
+      auto pfn_create_factory = get < PFN_create_factory >("add_factory_item");
 
       if (pfn_create_factory == nullptr)
       {

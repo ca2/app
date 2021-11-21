@@ -1041,20 +1041,19 @@ void file_context::calculate_main_resource_memory()
 }
 
 
-::folder* file_context::defer_resource_folder()
+::folder* file_context::resource_folder()
 {
 
    synchronous_lock synchronouslock(mutex());
 
-   auto estatus = m_psystem->defer_folder_library();
+   auto & pfactory = m_psystem->folder_factory();
 
-   if (!estatus)
+   if (!pfactory)
    {
 
       return nullptr;
 
    }
-
 
    if (m_bFolderResourceCalculated)
    {
@@ -1078,7 +1077,7 @@ void file_context::calculate_main_resource_memory()
 
    auto pfile = __new(::memory_file(pmemory));
 
-   m_psystem->m_plibraryFolder->__construct(m_pfolderResource);
+   m_psystem->m_pfactoryFolder->__construct(m_pfolderResource);
 
    m_pfolderResource->initialize(this);
 
@@ -1104,7 +1103,7 @@ void file_context::calculate_main_resource_memory()
 
       synchronous_lock synchronouslock(mutex());
 
-      pfolder = defer_resource_folder();
+      pfolder = resource_folder();
 
       if (is_null(pfolder))
       {
@@ -1183,7 +1182,7 @@ bool file_context::resource_is_file_or_dir(const char* path)
 
       synchronous_lock synchronouslock(mutex());
 
-      pfolder = defer_resource_folder();
+      pfolder = resource_folder();
 
       if (is_null(pfolder))
       {
@@ -2626,16 +2625,16 @@ file_transport file_context::data_get_file(string strData, const ::file::e_open 
 folder_transport file_context::get_folder(::file::file *pfile, const char * pszImplementation, const ::file::e_open &eopen)
 {
 
-   auto plibrary = m_psystem->do_containerized_factory_exchange("folder", "zip");
+   auto & pfactory = m_psystem->folder_factory();
 
-   if (!plibrary)
+   if (!pfactory)
    {
 
      return ::error_failed;
 
    }
 
-   auto pfolder = plibrary->create < ::folder >();
+   auto pfolder = pfactory->create < ::folder >();
 
    if (!pfolder)
    {

@@ -2035,7 +2035,7 @@
     <ClCompile Include="node\windows\aaa_want_to_erase\dir_system.cpp">
       <Filter>Source Files\node\windows\aaa_want_to_erase</Filter>
     </ClCompile>
-    <ClCompile Include="node\windows\aaa_want_to_erase\factory_exchange.cpp">
+    <ClCompile Include="node\windows\aaa_want_to_erase\_factory.cpp">
       <Filter>Source Files\node\windows\aaa_want_to_erase</Filter>
     </ClCompile>
     <ClCompile Include="node\windows\aaa_want_to_erase\file.cpp">

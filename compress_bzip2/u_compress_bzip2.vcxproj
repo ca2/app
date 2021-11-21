@@ -84,13 +84,11 @@
     <ClInclude Include="_.h" />
     <ClInclude Include="_crypto_openssl.h" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="u_crypto_openssl.def" />
-  </ItemGroup>
+  
   <ItemGroup>
     <ClCompile Include="crypto.cpp" />
     <ClCompile Include="crypto_initializer.cpp" />
-    <ClCompile Include="factory_exchange.cpp" />
+    <ClCompile Include="_factory.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">Create</PrecompiledHeader>

@@ -15,11 +15,9 @@ namespace experience
          public:
 
 
-
-
-
             experience();
-            virtual ~experience();
+            ~experience() override;
+
 
             virtual void update() override;
 
@@ -29,7 +27,7 @@ namespace experience
             virtual void get_frame_list(string_array & stra) override;
 
 
-            virtual ::experience::frame * experience_get_frame(const ::string & pszSchema) override;
+            ::experience::frame * frame_experience(const ::string & strFrameSchema) override;
 
 
          };

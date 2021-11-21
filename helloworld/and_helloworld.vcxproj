@@ -261,7 +261,7 @@
       <DataExecutionPrevention>
       </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalOptions>-Wl,-z,defs</AdditionalOptions>
       <AndroidSystemLibs>c;m;log;gcc;aura;axis;base;aura</AndroidSystemLibs>
     </Link>
@@ -346,7 +346,7 @@
       <DataExecutionPrevention>
       </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalOptions>-Wl,-z,defs</AdditionalOptions>
       <AndroidSystemLibs>c;m;log;gcc;aura;axis;base;aura</AndroidSystemLibs>
     </Link>
@@ -429,7 +429,7 @@
       <DataExecutionPrevention>
       </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalOptions>-Wl,-z,defs</AdditionalOptions>
     </Link>
     <Manifest>
@@ -507,7 +507,7 @@
       <DataExecutionPrevention>
       </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalOptions>-Wl,-z,defs</AdditionalOptions>
     </Link>
     <Manifest>
@@ -578,7 +578,7 @@
       <DataExecutionPrevention>
       </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)../../time/library/x86/$(TargetName).lib</ImportLibrary>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
     </Link>
     <Manifest>
       <AdditionalManifestFiles>
@@ -652,7 +652,7 @@
       <DataExecutionPrevention>
       </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <Profile>true</Profile>
     </Link>
     <Manifest>

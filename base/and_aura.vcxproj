@@ -599,7 +599,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="aura\aura\aura_gudo_application.inl" />
-    <None Include="aura.def" />
+    
     <None Include="aura\aura\aura.inl" />
     <None Include="aura\aura\aura_system_factory.inl" />
     <None Include="aura\aura\aura_system_id.inl" />

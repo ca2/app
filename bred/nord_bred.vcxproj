@@ -316,7 +316,7 @@
     <ClInclude Include="_defer.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="aura.def" />
+    
     <None Include="inline\aaa_want_to_remove_app_prelude.inl" />
   </ItemGroup>
   <ItemGroup>

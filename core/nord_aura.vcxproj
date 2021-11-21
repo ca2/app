@@ -699,7 +699,7 @@
     <ClCompile Include="node\android\dir_system.cpp" />
     <ClCompile Include="node\android\error.cpp" />
     <ClCompile Include="node\android\exception.cpp" />
-    <ClCompile Include="node\android\factory_exchange.cpp" />
+    <ClCompile Include="node\android\_factory.cpp" />
     <ClCompile Include="node\android\file.cpp" />
     <ClCompile Include="node\android\file_context.cpp" />
     <ClCompile Include="node\android\file_system.cpp" />
@@ -2784,7 +2784,7 @@
     <ClInclude Include="_defer.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="aura.def" />
+    
     <None Include="aura\message\message.inl" />
     <None Include="exception\_.inl" />
     <None Include="inline\aaa_want_to_erase_app_prelude.inl" />

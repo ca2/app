@@ -84,8 +84,8 @@ namespace aura
       m_iEdge = -1;
 
 
-      //create_factory < ::user::user >();
-      //create_factory < ::aura::session, ::aura::session >();
+      //add_factory_item < ::user::user >();
+      //add_factory_item < ::aura::session, ::aura::session >();
 
       //m_XstrAppId                    = "core_session";
       //m_strAppName                  = "core_session";

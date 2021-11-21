@@ -624,7 +624,7 @@ namespace aura
 
       //::thread::g_pthreadmap = new ::thread_map();
 
-      create_factory < ::aura::context >();
+      ::factory::add_factory_item < ::aura::context >();
 
 
 #if OBJECT_TYPE_COUNTER

@@ -18,9 +18,9 @@ namespace core
       m_typeHtmlDocument = typeid(html_document);
       m_typeHtmlView = typeid(html_view);
 
-      create_factory < html_document >();
-      create_factory < html_view >();
-      create_factory < ::html::core_data::image >();
+      ::factory::add_factory_item < html_document >();
+      ::factory::add_factory_item < html_view >();
+      ::factory::add_factory_item < ::html::core_data::image >();
 
       auto ptemplate = __new(::user::multiple_document_template(
          "system/form",

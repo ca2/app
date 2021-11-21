@@ -34,9 +34,9 @@ namespace fs
 //      {
 //
 ///*       
-//         create_factory <main_impact > ();
-//         create_factory <tree > ();
-//         create_factory <list > ();
+//         add_factory_item <main_impact > ();
+//         add_factory_item <tree > ();
+//         add_factory_item <list > ();
 //*/
 //
 //      }

@@ -893,7 +893,7 @@
     <ClInclude Include="user\menu_shared_command.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="crypto\crypto_initializer.h">
+    <ClInclude Include="crypto\initializer.h">
       <Filter>Header Files\crypto</Filter>
     </ClInclude>
     <ClInclude Include="platform\application_exit.h">
@@ -1501,7 +1501,7 @@
     <ClCompile Include="user\menu_shared_commnand.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="crypto\crypto_initializer.cpp">
+    <ClCompile Include="crypto\initializer.cpp">
       <Filter>Source Files\crypto</Filter>
     </ClCompile>
     <ClCompile Include="platform\application_exit.cpp">

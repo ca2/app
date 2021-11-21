@@ -50,18 +50,18 @@ namespace simpledb
 
       }
 
-      auto ptransport = m_psystem->do_containerized_factory_exchange("database", "sqlite3");
+      auto & pfactoryDatabase = m_psystem->factory("database", "sqlite3");
 
-      if(!ptransport)
+      if(!pfactoryDatabase)
       {
          
          WARNING("Failed to load database_sqlite3");
 
-         return false;
+         return pfactoryDatabase;
 
       }
 
-      estatus = ptransport->__construct(m_pdatabaseLocal);
+      estatus = pfactoryDatabase->__construct(m_pdatabaseLocal);
 
       if (!estatus)
       {

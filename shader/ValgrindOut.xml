@@ -207,7 +207,7 @@
     <frame>
       <ip>0x58410E4</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>alloc_factory_base&lt;file::path_object&gt;* create_alloc_factory&lt;file::path_object, file::path_object&gt;()</fn>
+      <fn>alloc_factory_base&lt;file::path_object&gt;* ([a-z0-9_]+)_factory&lt;file::path_object, file::path_object&gt;()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura.inl</file>
       <line>958</line>
@@ -405,7 +405,7 @@
     <frame>
       <ip>0x58FEAB0</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>alloc_factory_base&lt;file::file&gt;* create_alloc_factory&lt;linux::file, file::file&gt;()</fn>
+      <fn>alloc_factory_base&lt;file::file&gt;* ([a-z0-9_]+)_factory&lt;linux::file, file::file&gt;()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura.inl</file>
       <line>958</line>
@@ -801,7 +801,7 @@
     <frame>
       <ip>0xD9A6B7E</ip>
       <obj>/xcore/time/x64/basis/libaxis.so</obj>
-      <fn>alloc_factory_base&lt;file::system&gt;* create_alloc_factory&lt;linux::axis::file_system, file::system&gt;()</fn>
+      <fn>alloc_factory_base&lt;file::system&gt;* ([a-z0-9_]+)_factory&lt;linux::axis::file_system, file::system&gt;()</fn>
       <dir>/xcore/app/axis/../aura/</dir>
       <file>aura.inl</file>
       <line>958</line>
@@ -999,7 +999,7 @@
     <frame>
       <ip>0xD9A6FF6</ip>
       <obj>/xcore/time/x64/basis/libaxis.so</obj>
-      <fn>alloc_factory_base&lt;file::dir::system&gt;* create_alloc_factory&lt;linux::axis::dir, file::dir::system&gt;()</fn>
+      <fn>alloc_factory_base&lt;file::dir::system&gt;* ([a-z0-9_]+)_factory&lt;linux::axis::dir, file::dir::system&gt;()</fn>
       <dir>/xcore/app/axis/../aura/</dir>
       <file>aura.inl</file>
       <line>958</line>
@@ -1197,7 +1197,7 @@
     <frame>
       <ip>0xD97A882</ip>
       <obj>/xcore/time/x64/basis/libaxis.so</obj>
-      <fn>alloc_factory_base&lt;file::application&gt;* create_alloc_factory&lt;file::axis::application, file::application&gt;()</fn>
+      <fn>alloc_factory_base&lt;file::application&gt;* ([a-z0-9_]+)_factory&lt;file::axis::application, file::application&gt;()</fn>
       <dir>/xcore/app/axis/../aura/</dir>
       <file>aura.inl</file>
       <line>958</line>
@@ -1395,7 +1395,7 @@
     <frame>
       <ip>0xD97ACFA</ip>
       <obj>/xcore/time/x64/basis/libaxis.so</obj>
-      <fn>alloc_factory_base&lt;file::dir::application&gt;* create_alloc_factory&lt;file::dir::axis::application, file::dir::application&gt;()</fn>
+      <fn>alloc_factory_base&lt;file::dir::application&gt;* ([a-z0-9_]+)_factory&lt;file::dir::axis::application, file::dir::application&gt;()</fn>
       <dir>/xcore/app/axis/../aura/</dir>
       <file>aura.inl</file>
       <line>958</line>
@@ -1593,7 +1593,7 @@
     <frame>
       <ip>0x5843C68</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>alloc_factory_base&lt;draw2d::icon&gt;* create_alloc_factory&lt;draw2d::icon, draw2d::icon&gt;()</fn>
+      <fn>alloc_factory_base&lt;draw2d::icon&gt;* ([a-z0-9_]+)_factory&lt;draw2d::icon, draw2d::icon&gt;()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura.inl</file>
       <line>958</line>
@@ -4297,7 +4297,7 @@
     <frame>
       <ip>0xE69A6A2</ip>
       <obj>/xcore/time/x64/basis/libbase.so</obj>
-      <fn>alloc_factory_base&lt;user::document&gt;* create_alloc_factory&lt;user::document, user::document&gt;()</fn>
+      <fn>alloc_factory_base&lt;user::document&gt;* ([a-z0-9_]+)_factory&lt;user::document, user::document&gt;()</fn>
       <dir>/xcore/app/base/../aura/</dir>
       <file>aura.inl</file>
       <line>958</line>
@@ -4496,7 +4496,7 @@
     <frame>
       <ip>0x1223E5BC</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>alloc_factory_base&lt;user::plain_edit&gt;* create_alloc_factory&lt;user::plain_edit, user::plain_edit&gt;()</fn>
+      <fn>alloc_factory_base&lt;user::plain_edit&gt;* ([a-z0-9_]+)_factory&lt;user::plain_edit, user::plain_edit&gt;()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura.inl</file>
       <line>958</line>
@@ -4695,7 +4695,7 @@
     <frame>
       <ip>0x12241B5C</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>alloc_factory_base&lt;user::button&gt;* create_alloc_factory&lt;user::button, user::button&gt;()</fn>
+      <fn>alloc_factory_base&lt;user::button&gt;* ([a-z0-9_]+)_factory&lt;user::button, user::button&gt;()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura.inl</file>
       <line>958</line>
@@ -5292,7 +5292,7 @@
     <frame>
       <ip>0x1223CAEC</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>alloc_factory_base&lt;userex::keyboard_layout&gt;* create_alloc_factory&lt;userex::keyboard_layout, userex::keyboard_layout&gt;()</fn>
+      <fn>alloc_factory_base&lt;userex::keyboard_layout&gt;* ([a-z0-9_]+)_factory&lt;userex::keyboard_layout, userex::keyboard_layout&gt;()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura.inl</file>
       <line>958</line>

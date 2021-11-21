@@ -20,14 +20,14 @@
 		9A389A3124F538B900185630 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A389A3024F538B900185630 /* AppKit.framework */; };
 		9A4E5C9E2519315800CC6817 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4E5C9D2519315800CC6817 /* libacme.dylib */; };
 		9A4E5CA02519315800CC6817 /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4E5C9F2519315800CC6817 /* libapex.dylib */; };
-		9A4E5D452519370500CC6817 /* idpool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E5D432519370500CC6817 /* idpool.cpp */; };
-		9A4E5D462519370500CC6817 /* idpool.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4E5D442519370500CC6817 /* idpool.h */; };
+		9AC01DCF2748CB16006BEBCC /* idpool.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC01DCA2748CB15006BEBCC /* idpool.h */; };
+		9AC01DD02748CB16006BEBCC /* aaa_charset.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC01DCB2748CB15006BEBCC /* aaa_charset.h */; };
+		9AC01DD12748CB16006BEBCC /* idpool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC01DCC2748CB15006BEBCC /* idpool.cpp */; };
+		9AC01DD22748CB16006BEBCC /* aaa_GLOBAL_ID.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC01DCD2748CB15006BEBCC /* aaa_GLOBAL_ID.h */; };
+		9AC01DD32748CB16006BEBCC /* aaa_procedure.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC01DCE2748CB15006BEBCC /* aaa_procedure.h */; };
 		9AD1183124F51CE500177261 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AD1183024F51CE500177261 /* libaura.dylib */; };
 		9AD1183224F51CEC00177261 /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AD1182324F51C4100177261 /* libaxis.dylib */; };
 		9AD11EA824F51D4800177261 /* frame_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD11C7124F51D4500177261 /* frame_window.cpp */; };
-		9AD11EA924F51D4800177261 /* procedure.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD11C7324F51D4500177261 /* procedure.h */; };
-		9AD11EAA24F51D4800177261 /* GLOBAL_ID.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD11C7424F51D4500177261 /* GLOBAL_ID.h */; };
-		9AD11EAB24F51D4800177261 /* charset.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD11C7524F51D4600177261 /* charset.h */; };
 		9AD11EAC24F51D4800177261 /* _impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD11C7724F51D4600177261 /* _impl.h */; };
 		9AD11EAD24F51D4800177261 /* _features.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD11C7824F51D4600177261 /* _features.h */; };
 		9AD11EAE24F51D4800177261 /* application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD11C7924F51D4600177261 /* application.h */; };
@@ -266,15 +266,15 @@
 		9A389A3024F538B900185630 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		9A4E5C9D2519315800CC6817 /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A4E5C9F2519315800CC6817 /* libapex.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A4E5D432519370500CC6817 /* idpool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = idpool.cpp; sourceTree = "<group>"; };
-		9A4E5D442519370500CC6817 /* idpool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = idpool.h; sourceTree = "<group>"; };
+		9AC01DCA2748CB15006BEBCC /* idpool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = idpool.h; sourceTree = "<group>"; };
+		9AC01DCB2748CB15006BEBCC /* aaa_charset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aaa_charset.h; sourceTree = "<group>"; };
+		9AC01DCC2748CB15006BEBCC /* idpool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = idpool.cpp; sourceTree = "<group>"; };
+		9AC01DCD2748CB15006BEBCC /* aaa_GLOBAL_ID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aaa_GLOBAL_ID.h; sourceTree = "<group>"; };
+		9AC01DCE2748CB15006BEBCC /* aaa_procedure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aaa_procedure.h; sourceTree = "<group>"; };
 		9AD117F324F51BE400177261 /* libbase.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libbase.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AD1181E24F51C4000177261 /* axis.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axis.xcodeproj; path = ../axis/axis.xcodeproj; sourceTree = "<group>"; };
 		9AD1183024F51CE500177261 /* libaura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AD11C7124F51D4500177261 /* frame_window.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = frame_window.cpp; sourceTree = "<group>"; };
-		9AD11C7324F51D4500177261 /* procedure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = procedure.h; sourceTree = "<group>"; };
-		9AD11C7424F51D4500177261 /* GLOBAL_ID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLOBAL_ID.h; sourceTree = "<group>"; };
-		9AD11C7524F51D4600177261 /* charset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = charset.h; sourceTree = "<group>"; };
 		9AD11C7724F51D4600177261 /* _impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _impl.h; sourceTree = "<group>"; };
 		9AD11C7824F51D4600177261 /* _features.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _features.h; sourceTree = "<group>"; };
 		9AD11C7924F51D4600177261 /* application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = application.h; sourceTree = "<group>"; };
@@ -496,6 +496,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9AC01DC92748CB15006BEBCC /* constant */ = {
+			isa = PBXGroup;
+			children = (
+				9AC01DCA2748CB15006BEBCC /* idpool.h */,
+				9AC01DCB2748CB15006BEBCC /* aaa_charset.h */,
+				9AC01DCC2748CB15006BEBCC /* idpool.cpp */,
+				9AC01DCD2748CB15006BEBCC /* aaa_GLOBAL_ID.h */,
+				9AC01DCE2748CB15006BEBCC /* aaa_procedure.h */,
+			);
+			path = constant;
+			sourceTree = SOURCE_ROOT;
+		};
 		9AD117EA24F51BE400177261 = {
 			isa = PBXGroup;
 			children = (
@@ -517,7 +529,7 @@
 		9AD117F524F51BE400177261 /* base */ = {
 			isa = PBXGroup;
 			children = (
-				9AD11C7224F51D4500177261 /* const */,
+				9AC01DC92748CB15006BEBCC /* constant */,
 				9AD11E6524F51D4700177261 /* include */,
 				9AD11D4524F51D4600177261 /* inline */,
 				9AD11C6F24F51D4500177261 /* node */,
@@ -566,18 +578,6 @@
 			);
 			path = windows;
 			sourceTree = "<group>";
-		};
-		9AD11C7224F51D4500177261 /* const */ = {
-			isa = PBXGroup;
-			children = (
-				9A4E5D432519370500CC6817 /* idpool.cpp */,
-				9A4E5D442519370500CC6817 /* idpool.h */,
-				9AD11C7324F51D4500177261 /* procedure.h */,
-				9AD11C7424F51D4500177261 /* GLOBAL_ID.h */,
-				9AD11C7524F51D4600177261 /* charset.h */,
-			);
-			path = const;
-			sourceTree = SOURCE_ROOT;
 		};
 		9AD11C7624F51D4600177261 /* platform */ = {
 			isa = PBXGroup;
@@ -887,6 +887,7 @@
 				9AD11F2D24F51D4800177261 /* user.h in Headers */,
 				9AD11F3624F51D4800177261 /* impact_data.h in Headers */,
 				9AD11F7E24F51D4900177261 /* linux.h in Headers */,
+				9AC01DD22748CB16006BEBCC /* aaa_GLOBAL_ID.h in Headers */,
 				9AD1208124F51D4A00177261 /* _.h in Headers */,
 				9AD11F4F24F51D4900177261 /* tab.h in Headers */,
 				9AD11F4024F51D4900177261 /* form_data.h in Headers */,
@@ -919,19 +920,19 @@
 				9AD11EE724F51D4800177261 /* _const.h in Headers */,
 				9AD11F7024F51D4900177261 /* prelude.h in Headers */,
 				9AD1207824F51D4A00177261 /* _no_templates.h in Headers */,
-				9A4E5D462519370500CC6817 /* idpool.h in Headers */,
+				9AC01DD02748CB16006BEBCC /* aaa_charset.h in Headers */,
 				9AD11EF924F51D4800177261 /* control_ddx_dbflags.h in Headers */,
 				9AD11EAE24F51D4800177261 /* application.h in Headers */,
 				9AD11F0C24F51D4800177261 /* split_view.h in Headers */,
 				9AD11F1F24F51D4800177261 /* impact.h in Headers */,
 				9AD11EB324F51D4800177261 /* system.h in Headers */,
-				9AD11EAB24F51D4800177261 /* charset.h in Headers */,
 				9AD11EF124F51D4800177261 /* style.h in Headers */,
 				9A00E60326614FE700517464 /* tab_pane_array.h in Headers */,
 				9AD11F6F24F51D4900177261 /* _.h in Headers */,
 				9AD11F8024F51D4900177261 /* windows.h in Headers */,
 				9AD11F4E24F51D4900177261 /* menu_item.h in Headers */,
 				9AD11F7224F51D4900177261 /* console.h in Headers */,
+				9AC01DD32748CB16006BEBCC /* aaa_procedure.h in Headers */,
 				9AD11F2A24F51D4800177261 /* form_update_hint.h in Headers */,
 				9AD11EC724F51D4800177261 /* experience.h in Headers */,
 				9AD11F5824F51D4900177261 /* _.h in Headers */,
@@ -939,7 +940,6 @@
 				9AD11F6324F51D4900177261 /* _.h in Headers */,
 				9AD11F1D24F51D4800177261 /* place_holder.h in Headers */,
 				9AD11ECD24F51D4800177261 /* _experience.h in Headers */,
-				9AD11EAA24F51D4800177261 /* GLOBAL_ID.h in Headers */,
 				9AD11EB724F51D4800177261 /* version.h in Headers */,
 				9AD11EF324F51D4800177261 /* edit_window.h in Headers */,
 				9AD11EED24F51D4800177261 /* form_document.h in Headers */,
@@ -980,7 +980,6 @@
 				9AD11EBC24F51D4800177261 /* control_box.h in Headers */,
 				9AD11F1A24F51D4800177261 /* image_manager.h in Headers */,
 				9AD11F5B24F51D4900177261 /* frame_window.h in Headers */,
-				9AD11EA924F51D4800177261 /* procedure.h in Headers */,
 				9AD11F8824F51D4900177261 /* windows.h in Headers */,
 				9AD11F1224F51D4800177261 /* form_control.h in Headers */,
 				9AD11F3E24F51D4900177261 /* toolbar.h in Headers */,
@@ -1004,6 +1003,7 @@
 				9AD11F8624F51D4900177261 /* _acid_app_impl.h in Headers */,
 				9AD11F6024F51D4900177261 /* scroll_bar.h in Headers */,
 				9AD11F2924F51D4800177261 /* tab_view.h in Headers */,
+				9AC01DCF2748CB16006BEBCC /* idpool.h in Headers */,
 				9AD11EBA24F51D4800177261 /* frame_window.h in Headers */,
 				9AD11EE024F51D4800177261 /* split_layout.h in Headers */,
 				9AD11F8724F51D4900177261 /* linux.h in Headers */,
@@ -1111,7 +1111,6 @@
 				9AD11EF424F51D4800177261 /* control_bar.cpp in Sources */,
 				9AD11F1824F51D4800177261 /* control_property.cpp in Sources */,
 				9AD11EE624F51D4800177261 /* form_data.cpp in Sources */,
-				9A4E5D452519370500CC6817 /* idpool.cpp in Sources */,
 				9AD11F0724F51D4800177261 /* menu_item.cpp in Sources */,
 				9AD11EC224F51D4800177261 /* control_box.cpp in Sources */,
 				9AD1207D24F51D4A00177261 /* _.cpp in Sources */,
@@ -1158,6 +1157,7 @@
 				9A00E60226614FE700517464 /* split_pane.cpp in Sources */,
 				9AD11F0424F51D4800177261 /* menu_interaction.cpp in Sources */,
 				9AD11F6A24F51D4900177261 /* list_window.cpp in Sources */,
+				9AC01DD12748CB16006BEBCC /* idpool.cpp in Sources */,
 				9AD11F1724F51D4800177261 /* impact_data.cpp in Sources */,
 				9AD11EBF24F51D4800177261 /* experience_updown.cpp in Sources */,
 				9AD11F6524F51D4900177261 /* button.cpp in Sources */,

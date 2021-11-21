@@ -80,11 +80,9 @@
     <ClInclude Include="_.h" />
     <ClInclude Include="_folder_zip.h" />
   </ItemGroup>
+  
   <ItemGroup>
-    <None Include="u_folder_zip.def" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="factory_exchange.cpp" />
+    <ClCompile Include="_factory.cpp" />
     <ClCompile Include="file.cpp" />
     <ClCompile Include="file_function_definitions.cpp" />
     <ClCompile Include="folder.cpp" />

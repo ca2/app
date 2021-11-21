@@ -417,7 +417,7 @@
     <ClInclude Include="windowing\_.h" />
     <ClInclude Include="windowing\_impl.h" />
     <ClInclude Include="windowing\_windowing.h" />
-    <None Include="aura.def" />
+    
     <None Include="graphics\draw2d\_impl.h" />
     <ClInclude Include="graphics\write_text\drawer.h" />
     <ClInclude Include="graphics\_.h" />

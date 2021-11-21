@@ -214,38 +214,38 @@ namespace experience
    }
 
 
-   __pointer(::experience::experience) frame_window::create_experience(const ::string & strExperienceLibrary)
+   __pointer(::experience::experience) frame_window::create_experience(const ::string & strExperience)
    {
 
       auto psession = get_session();
 
       auto puser = psession->user();
 
-      return puser->experience()->create_experience2(this, strExperienceLibrary);
+      return puser->experience()->create_experience(this, strExperience);
 
    }
 
 
-   __pointer(::experience::experience) frame_window::get_experience(const ::string & strExperienceLibrary)
+   __pointer(::experience::experience) frame_window::experience(const ::string & strExperience)
    {
 
       auto psession = get_session();
 
       auto puser = psession->user();
 
-      return puser->experience()->get_experience2(this, strExperienceLibrary);
+      return puser->experience()->experience(this, strExperience);
 
    }
 
 
-   __pointer(::experience::frame) frame_window::get_frame_experience(const ::string & strExperienceLibrary, const ::string & strFrame, const ::string & strStyle)
+   __pointer(::experience::frame) frame_window::frame_experience(const ::string & strExperience, const ::string & strFrame, const ::string & strStyle)
    {
 
       auto psession = get_session();
 
       auto puser = psession->user();
 
-      auto pframe = puser->experience()->experience_get_frame2(this, strExperienceLibrary, strFrame);
+      auto pframe = puser->experience()->frame_experience(this, strExperience, strFrame);
 
       pframe->m_pframewindow = this;
 

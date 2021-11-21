@@ -7,7 +7,7 @@
 #include "axis/constant/idpool.h"
 
 
-void __node_axis_factory_exchange(::factory_map * pfactorymap);
+void axis_factory(::factory::factory * pfactory);
 
 
 //int GetMainScreenRect(RECTANGLE_I32 * lprect);
@@ -113,11 +113,11 @@ namespace axis
 
       m_paxissystem = this;
 
-      create_factory < ::axis::application, ::application >();
-      create_factory < ::axis::session, ::apex::session >();
-      create_factory < ::axis::idpool, ::acme::idpool >();
-      create_factory < ::geo::department >();
-      //create_factory < ::imaging >();
+      ::factory::add_factory_item < ::axis::application, ::application >();
+      ::factory::add_factory_item < ::axis::session, ::apex::session >();
+      ::factory::add_factory_item < ::axis::idpool, ::acme::idpool >();
+      ::factory::add_factory_item < ::geo::department >();
+      //add_factory_item < ::imaging >();
 
       m_bSimpleMessageLoop = false;
 
@@ -151,7 +151,7 @@ namespace axis
 
       }
 
-      __node_axis_factory_exchange(::factory::get_factory_map());
+      axis_factory(::factory::get_factory());
 
       return estatus;
 
@@ -192,27 +192,27 @@ namespace axis
 
       }
 
-      auto & factorymapsquare = *m_pfactorymapsquare;
+      //auto & factorymapsquare = *m_pfactorysquare;
 
-      auto & pfactorySimpledb = factorymapsquare["simpledb"];
+      //auto & pfactorySimpledb = factorymapsquare["simpledb"];
 
-      if (!pfactorySimpledb)
-      {
+      //if (!pfactorySimpledb)
+      //{
 
-         estatus = __construct_new(pfactorySimpledb);
+      //   estatus = __construct_new(pfactorySimpledb);
 
-         if (!estatus)
-         {
+      //   if (!estatus)
+      //   {
 
-            return estatus;
+      //      return estatus;
 
-         }
+      //   }
 
 
 
-      }
+      //}
 
-      create_factory < ::database::field >();
+      ::factory::add_factory_item < ::database::field >();
 
       return true;
 
@@ -304,7 +304,7 @@ namespace axis
 
       //}
 
-      m_pfactorymapsquare.release();
+      //m_pfactorysquare.release();
 
       return estatus;
 
@@ -565,7 +565,7 @@ namespace axis
 
 
 
-void __node_axis_factory_exchange(::factory_map * pfactorymap)
+void axis_factory(::factory::factory * pfactory)
 {
    
 }

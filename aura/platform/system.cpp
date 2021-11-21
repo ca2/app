@@ -26,7 +26,7 @@ int GetMainScreenRect(RECTANGLE_I32 * lprect);
 const char * get_main_app_id();
 #endif
 
-//void __node_aura_factory_exchange(::factory_map * pfactorymap);
+//void ([a-z0-9_]+)_factory(::factory::factory * pfactory);
 
 #ifdef CUBE
 extern "C"
@@ -138,10 +138,10 @@ namespace aura
       m_bFinalizeIfNoSessionSetting = true;
       m_bFinalizeIfNoSession = false;
 
-      create_factory < ::aura::session, ::apex::session >();
-      create_factory < ::aura::application, ::application >();
-      create_factory < ::aura::idpool, ::acme::idpool >();
-      create_factory < ::user::user >();
+      ::factory::add_factory_item < ::aura::session, ::apex::session >();
+      ::factory::add_factory_item < ::aura::application, ::application >();
+      ::factory::add_factory_item < ::aura::idpool, ::acme::idpool >();
+      ::factory::add_factory_item < ::user::user >();
 
 
 
@@ -211,7 +211,7 @@ namespace aura
 
       }
  
-      //__node_aura_factory_exchange(::factory::get_factory_map());
+      //([a-z0-9_]+)_factory(::factory_item::get_factory());
 
       m_bGudoNetCache = true;
 
@@ -235,9 +235,9 @@ namespace aura
   
       m_pDraw2dFactoryExchange = nullptr;
 
-      //create_factory < ::user::control_descriptor >();
+      //add_factory_item < ::user::control_descriptor >();
 
-      create_factory < ::draw2d::icon >();
+      ::factory::add_factory_item < ::draw2d::icon >();
 
     
 #ifdef WINDOWS_DESKTOP
@@ -507,7 +507,7 @@ namespace aura
    //}
 
 
-   //base_factory & system::factory()
+   //base_factory & system::factory_item()
    //{
 
    //   return *m_pfactory;
@@ -597,10 +597,10 @@ namespace aura
    //}
 
 
-   ::e_status system::node_factory_exchange()
+   __transport(::factory::factory) & system::node_factory()
    {
 
-      auto estatus = do_factory_exchange("node", PLATFORM_NAME);
+      auto & pfactory = factory("node", PLATFORM_NAME);
 
 //#ifdef LINUX
 //
@@ -609,24 +609,24 @@ namespace aura
 //      if (edesktop & ::user::e_desktop_kde)
 //      {
 //
-//         estatus = do_factory_exchange("desktop_environment", "kde");
+//         estatus = ([a-z0-9_]+)_factory("desktop_environment", "kde");
 //
 //      }
 //      else if (edesktop & ::user::e_desktop_gnome)
 //      {
 //
-//         estatus = do_factory_exchange("desktop_environment", "gnome");
+//         estatus = ([a-z0-9_]+)_factory("desktop_environment", "gnome");
 //
 //      }
 //      else
 //      {
 //
-//         estatus = do_factory_exchange("desktop_environment", "gnome");
+//         estatus = ([a-z0-9_]+)_factory("desktop_environment", "gnome");
 //
 //         if (!estatus)
 //         {
 //
-//            estatus = do_factory_exchange("desktop_environment", "kde");
+//            estatus = ([a-z0-9_]+)_factory("desktop_environment", "kde");
 //
 //         }
 //
@@ -634,20 +634,22 @@ namespace aura
 //
 //#else
 //
-//      estatus = do_factory_exchange("aura", "windows");
+//      estatus = ([a-z0-9_]+)_factory("aura", "windows");
 //
 //#endif
 
-      if (!estatus)
+      if (!pfactory)
       {
 
-         output_debug_string("Fatal Error: Failed to do node factory exchange (system::node_factory_exchange).\n");
+         output_debug_string("Fatal Error: Failed to do node factory_item exchange (system::([a-z0-9_]+)_factory).\n");
 
-         return estatus;
+         return pfactory;
 
       }
 
-      return estatus;
+      pfactory->merge_to_global_factory();
+
+      return pfactory;
 
    }
 
@@ -727,7 +729,7 @@ namespace aura
       //pcreate->m_XstrAppId = strAppId;
       //TRACE("m_pcreate COMMENT END");
 
-      //create_factory < ::database::field >();
+      //add_factory_item < ::database::field >();
 
 
       //if (is_true("show_application_information"))
@@ -863,12 +865,12 @@ namespace aura
 
       //}
 
-//      create_factory < ::create >();
-//      //create_factory < application_bias >();
-//      create_factory < command_line >();
-//      create_factory < http::context >();
-//      //create_factory < ::mutex >();
-//      //create_factory < event >();
+//      add_factory_item < ::create >();
+//      //add_factory_item < application_bias >();
+//      add_factory_item < command_line >();
+//      add_factory_item < http::context >();
+//      //add_factory_item < ::mutex >();
+//      //add_factory_item < event >();
 //
 //      //if (!::aura::application::process_init())
 //      //{
@@ -1084,14 +1086,24 @@ namespace aura
       try
       {
 
-         if (!draw2d_factory_exchange(::factory::get_factory_map()))
+         auto& pfactoryDraw2d = draw2d_factory();
+
+         if (pfactoryDraw2d)
+         {
+
+            pfactoryDraw2d->merge_to_global_factory();
+
+         }
+         else
          {
 
             output_debug_string("ERROR: Failed to initialize draw2d library.");
 
-            estatus = error_failed;
+            estatus = (const ::extended::status &) pfactoryDraw2d;
 
          }
+
+         pfactoryDraw2d->merge_to_global_factory();
 
       }
       catch (...)
@@ -1104,7 +1116,7 @@ namespace aura
       if (!estatus)
       {
 
-         INFORMATION("draw2d_factory_exchange has failed.\n\nSome reasons:\n   - No draw2d library present;\n   - Failure to open any suitable draw2d library.");
+         INFORMATION("draw2d_factory has failed.\n\nSome reasons:\n   - No draw2d library present;\n   - Failure to open any suitable draw2d library.");
 
          return estatus;
 
@@ -1116,9 +1128,15 @@ namespace aura
          try
          {
 
-            estatus = imaging_factory_exchange(::factory::get_factory_map());
+            auto & pfactoryImaging = imaging_factory();
 
-            if(!estatus)
+            if (pfactoryImaging)
+            {
+
+               pfactoryImaging->merge_to_global_factory();
+
+            }
+            else
             {
 
                WARNING("Failed to initialize imaging library.");
@@ -1143,7 +1161,7 @@ namespace aura
 
       auto psystem = get_system();
 
-      synchronous_lock synchronouslock(&m_mutexLibrary);
+      synchronous_lock synchronouslock(&m_mutexLibrary4);
 
       estatus = __construct(m_pdraw2d);
 
@@ -1170,7 +1188,7 @@ namespace aura
       if (::succeeded(estatus))
       {
 
-         create_factory < ::draw2d::task_tool_item >(::e_task_tool_draw2d);
+         ::factory::add_factory_item < ::draw2d::task_tool_item >(::e_task_tool_draw2d);
 
       }
 
@@ -1227,7 +1245,7 @@ namespace aura
    }
 
 
-   ::e_status system::draw2d_factory_exchange(::factory_map * pfactorymap)
+   __transport(::factory::factory) & system::draw2d_factory()
    {
 
       string strLibrary;
@@ -1257,12 +1275,12 @@ namespace aura
       if (strLibrary.has_char())
       {
 
-         estatus = do_factory_exchange("draw2d", strLibrary);
+         auto & pfactoryDraw2d = factory("draw2d", strLibrary);
 
-         if(estatus.succeeded())
+         if(pfactoryDraw2d.succeeded())
          {
 
-            return ::success;
+            return pfactoryDraw2d;
 
          }
 
@@ -1285,12 +1303,12 @@ namespace aura
 
       }
 
-      estatus = do_factory_exchange("draw2d", strLibrary);
+      auto & pfactoryDraw2d = factory("draw2d", strLibrary);
 
-      if(estatus.succeeded())
+      if(pfactoryDraw2d.succeeded())
       {
 
-         return ::success;
+         return pfactoryDraw2d;
 
       }
 
@@ -1301,12 +1319,12 @@ namespace aura
       if (strLibrary != "draw2d_gdiplus")
       {
 
-         estatus = do_factory_exchange("draw2d", "gdiplus");
+         auto & pfactoryDraw2d = factory("draw2d", "gdiplus");
 
-         if(estatus.succeeded())
+         if(pfactoryDraw2d.succeeded())
          {
 
-            return ::success;
+            return pfactoryDraw2d;
 
          }
 
@@ -1316,12 +1334,12 @@ namespace aura
       if (strLibrary != "draw2d_direct2d")
       {
 
-         estatus = do_factory_exchange("draw2d", "direct2d");
+         auto & pfactoryDraw2d = factory("draw2d", "direct2d");
 
-         if(estatus.succeeded())
+         if(pfactoryDraw2d.succeeded())
          {
 
-            return ::success;
+            return pfactoryDraw2d;
 
          }
 
@@ -1333,33 +1351,32 @@ namespace aura
       if (strLibrary != "draw2d_cairo")
       {
 
+         auto & pfactoryDraw2d = factory("draw2d", "cairo");
 
-         estatus = do_factory_exchange("draw2d", "cairo");
-
-         if(estatus.succeeded())
+         if(pfactoryDraw2d.succeeded())
          {
 
-            return ::success;
+            return pfactoryDraw2d;
 
          }
 
       }
 
       //output_debug_string("No draw2d pluging available!!.");
-      return error_failed;
+      return pfactoryDraw2d;
 
    //destroy:
 
-   //   PFN_factory_exchange pfn_factory_exchange = plibrary->get < PFN_factory_exchange >("draw2d_factory_exchange");
+   //   PFN_factory_exchange ([a-z0-9_]+)_factory = plibrary->get < PFN_factory_exchange >("([a-z0-9_]+)_factory");
 
-   //   if (pfn_factory_exchange == nullptr)
+   //   if (([a-z0-9_]+)_factory == nullptr)
    //   {
 
    //      return false;
 
    //   }
 
-   //   pfn_factory_exchange(::factory_map * pfactorymap);
+   //   ([a-z0-9_]+)_factory(::factory::factory * pfactory);
 
    //   return true;
 
@@ -1368,7 +1385,7 @@ namespace aura
    }
 
 
-   bool system::imaging_factory_exchange(::factory_map * pfactorymap)
+   __transport(::factory::factory) & system::imaging_factory()
    {
 
 
@@ -1403,12 +1420,12 @@ namespace aura
       if (strLibrary.has_char())
       {
 
-         estatus = do_factory_exchange("imaging", strLibrary);
+         auto & pfactoryImaging = factory("imaging", strLibrary);
 
-         if(estatus.succeeded())
+         if(pfactoryImaging.succeeded())
          {
 
-            return true;
+            return pfactoryImaging;
 
          }
 
@@ -1435,12 +1452,12 @@ namespace aura
 
       }
 
-      estatus = do_factory_exchange("imaging", strLibrary);
+      auto & pfactoryImaging = factory("imaging", strLibrary);
 
-      if(estatus.succeeded())
+      if(pfactoryImaging.succeeded())
       {
 
-         return true;
+         return pfactoryImaging;
 
       }
 
@@ -1449,12 +1466,12 @@ namespace aura
       if (strLibrary != "imaging_wic")
       {
 
-         estatus = do_factory_exchange("imaging", "wic");
+         auto & pfactoryImaging = factory("imaging", "wic");
 
-         if(estatus.succeeded())
+         if(pfactoryImaging.succeeded())
          {
 
-            return true;
+            return pfactoryImaging;
 
          }
 
@@ -1465,12 +1482,12 @@ namespace aura
       if (strLibrary != "imaging_freeimage")
       {
 
-         estatus = do_factory_exchange("imaging", "freeimage");
+         auto & pfactoryImaging = factory("imaging", "freeimage");
 
-         if(estatus.succeeded())
+         if(pfactoryImaging.succeeded())
          {
 
-            return true;
+            return pfactoryImaging;
 
          }
 
@@ -1478,20 +1495,20 @@ namespace aura
 
       output_debug_string("No imaging pluging available!!.");
 
-      return false;
+      return pfactoryImaging;
 
 //   destroy:
 //
-//      PFN_factory_exchange pfn_factory_exchange = plibrary->get < PFN_factory_exchange >("imaging_factory_exchange");
+//      PFN_factory_exchange ([a-z0-9_]+)_factory = plibrary->get < PFN_factory_exchange >("([a-z0-9_]+)_factory");
 //
-//      if (pfn_factory_exchange == nullptr)
+//      if (([a-z0-9_]+)_factory == nullptr)
 //      {
 //
 //         return false;
 //
 //      }
 //
-//      pfn_factory_exchange(::factory_map * pfactorymap);
+//      ([a-z0-9_]+)_factory(::factory::factory * pfactory);
 //
 //      return true;
 //
@@ -1660,28 +1677,28 @@ namespace aura
 
       //}
 
-#if !defined(CUBE) && !defined(ANDROID)
-
-#if !defined(_DEBUG) || defined(WINDOWS)
-
-      try
-      {
-
-#endif
-
-         find_applications_from_cache();
-
-#if !defined(_DEBUG) || defined(WINDOWS)
-
-      }
-      catch (...)
-      {
-
-      }
-
-#endif
-
-#endif
+//#if !defined(CUBE) && !defined(ANDROID)
+//
+//#if !defined(_DEBUG) || defined(WINDOWS)
+//
+//      try
+//      {
+//
+//#endif
+//
+//         find_applications_from_cache();
+//
+//#if !defined(_DEBUG) || defined(WINDOWS)
+//
+//      }
+//      catch (...)
+//      {
+//
+//      }
+//
+//#endif
+//
+//#endif
 
       on_update_matter_locator();
 
@@ -1921,32 +1938,32 @@ namespace aura
       }
 
 
-      try
-      {
+      //try
+      //{
 
-         auto psystem = m_psystem->m_paurasystem;
+      //   auto psystem = m_psystem->m_paurasystem;
 
-         synchronous_lock synchronouslock(&m_mutexLibrary);
+      //   synchronous_lock synchronouslock(&m_mutexLibrary2);
 
-         if (m_mapLibrary["draw2d"].is_set() && m_mapLibrary["draw2d"]->is_opened())
-         {
+      //   if (m_mapLibrary["draw2d"].is_set() && m_mapLibrary["draw2d"]->is_opened())
+      //   {
 
-            if (m_pDraw2dFactoryExchange != nullptr)
-            {
+      //      if (m_pDraw2dFactoryExchange != nullptr)
+      //      {
 
-               delete m_pDraw2dFactoryExchange;
+      //         delete m_pDraw2dFactoryExchange;
 
-               m_pDraw2dFactoryExchange = nullptr;
+      //         m_pDraw2dFactoryExchange = nullptr;
 
-            }
+      //      }
 
-         }
+      //   }
 
-      }
-      catch (...)
-      {
+      //}
+      //catch (...)
+      //{
 
-      }
+      //}
 
 
       ::aqua::system::term2();
@@ -4725,22 +4742,24 @@ namespace aura
 
       //load_library("gpu_opengl");
 
-      auto estatus = do_factory_exchange("gpu", "opengl");
+      auto & pfactoryGpu = factory("gpu", "opengl");
 
       //get_library("gpu_opengl");
 
 
 
-      if (!estatus)
+      if (!pfactoryGpu)
       {
 
-         ERROR("gpu_opengl do_factory_exchange has failed");
+         ERROR("gpu_opengl ([a-z0-9_]+)_factory has failed");
 
-         return estatus;
+         return pfactoryGpu;
 
       }
 
-      estatus = __compose(m_pgpu);
+      pfactoryGpu->merge_to_global_factory();
+
+      auto estatus = pfactoryGpu->__compose(this, m_pgpu);
 
       if (!estatus)
       {
@@ -5318,7 +5337,7 @@ namespace aura
      //   m_bFinalizeIfNoSessionSetting = true;
      //   m_bFinalizeIfNoSession = false;
 
-     //   create_factory < ::aura::session, ::aura::session >();
+     //   add_factory_item < ::aura::session, ::aura::session >();
 
      //}
 
@@ -5349,7 +5368,7 @@ namespace aura
   //     //m_strBaseSupportId = "base_system";
   //     //m_strInstallToken = "base_system";
   //
-  //      create_factory < ::draw2d::icon >();
+  //      add_factory_item < ::draw2d::icon >();
   //
   //      //#if defined(_UWP) || defined(APPLE_IOS) || defined(ANDROID)
   //      //
@@ -6248,25 +6267,25 @@ namespace aura
    }
 
 
-   ::e_status system::add_view_library(::acme::library* plibrary)
-   {
+   //::e_status system::add_view_library(::acme::library* plibrary)
+   //{
 
-      m_libraryspa.add(plibrary);
+   //   m_libraryspa.add(plibrary);
 
-      ::array < ::id > ida;
+   //   ::array < ::id > ida;
 
-      plibrary->get_create_view_id_list(ida);
+   //   plibrary->get_create_view_id_list(ida);
 
-      for (i32 i = 0; i < ida.get_count(); i++)
-      {
+   //   for (i32 i = 0; i < ida.get_count(); i++)
+   //   {
 
-         m_idmapCreateViewLibrary.set_at(ida[i], plibrary);
+   //      m_idmapCreateViewLibrary.set_at(ida[i], plibrary);
 
-      }
+   //   }
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
    //   void system::post_fork_uri(const ::string & pszUri,application_bias * papplicationbias)
@@ -6426,7 +6445,7 @@ namespace aura
 //      //m_strBaseSupportId = "base_system";
 //      //m_strInstallToken = "base_system";
 //
-//      create_factory < ::draw2d::icon >();
+//      add_factory_item < ::draw2d::icon >();
 //
 //      g_pszCooperativeLevel = "aura";
 //

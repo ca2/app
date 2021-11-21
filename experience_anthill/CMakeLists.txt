@@ -12,7 +12,7 @@ list(APPEND library_source
         control_box.h
         experience.cpp
         experience.h
-        factory_exchange.cpp
+        _factory.cpp
         factory_exchange.h
         frame.cpp
         frame.h

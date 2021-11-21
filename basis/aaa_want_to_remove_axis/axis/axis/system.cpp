@@ -9,7 +9,7 @@ namespace axis
    system::system()
    {
 
-      create_factory < ::axis::session, ::aura::session >();
+      add_factory_item < ::axis::session, ::aura::session >();
 
    }
 
@@ -43,8 +43,8 @@ namespace axis
       //}
 
 
-      //create_factory < ::file::axis::system_dir, ::file::system_dir >();
-      //create_factory < ::file::axis::system_file, ::file::system_file >();
+      //add_factory_item < ::file::axis::system_dir, ::file::system_dir >();
+      //add_factory_item < ::file::axis::system_file, ::file::system_file >();
 
       //::aura::application * papp = ::get_application(pobject);
 
@@ -62,11 +62,11 @@ namespace axis
 
       m_puserstr = nullptr;
 
-      __node_axis_factory_exchange(::factory_map * pfactorymap);
+      ([a-z0-9_]+)_factory(::factory::factory * pfactory);
 
 
-      //create_factory < ::file::axis::application_dir, ::file::application_dir >();
-      //create_factory < ::file::axis::application_file, ::file::application_file >();
+      //add_factory_item < ::file::axis::application_dir, ::file::application_dir >();
+      //add_factory_item < ::file::axis::application_file, ::file::application_file >();
 
 
 
@@ -78,7 +78,7 @@ namespace axis
    ::e_status system::process_init()
    {
 
-      create_factory < ::database::field >();
+      add_factory_item < ::database::field >();
 
 //#ifndef WINDOWS
 //

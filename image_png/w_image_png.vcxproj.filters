@@ -16,7 +16,5 @@
       <Filter>Source Files\Plugins</Filter>
     </ClCompile>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="axis_image_png.def" />
-  </ItemGroup>
+  
 </Project>

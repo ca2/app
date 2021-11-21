@@ -383,21 +383,21 @@ namespace user
    ::e_status user::init1()
    {
 
-      create_factory <::user::button >();
-      create_factory <::user::check_box >();
-      create_factory <::user::still >();
-      //create_factory <::user::document >();
+      ::factory::add_factory_item <::user::button >();
+      ::factory::add_factory_item <::user::check_box >();
+      ::factory::add_factory_item <::user::still >();
+      //add_factory_item <::user::document >();
 #ifdef WINDOWS_DESKTOP
-      create_factory <::user::message_window >();
+      ::factory::add_factory_item <::user::message_window >();
 #endif
-      //create_factory <::user::simple_view >();
-      //create_factory <::user::place_holder >();
-      //create_factory <::user::font_combo_box >();
+      //add_factory_item <::user::simple_view >();
+      //add_factory_item <::user::place_holder >();
+      //add_factory_item <::user::font_combo_box >();
 
       //if(get_application()->is_system())
       //{
 
-      //   create_factory <keyboard_layout >();
+      //   add_factory_item <keyboard_layout >();
 
       //}
 
@@ -423,7 +423,7 @@ namespace user
 
       }
 
-      create_factory <::user::plain_edit >();
+      ::factory::add_factory_item <::user::plain_edit >();
 
 
 
@@ -1414,24 +1414,24 @@ namespace user
 //         if (edesktop & ::user::e_desktop_kde)
 //         {
 //
-//            estatus = psystem->do_factory_exchange("windowing", "xcb");
+//            estatus = psystem->([a-z0-9_]+)_factory("windowing", "xcb");
 //
 //         }
 //         else if (edesktop & ::user::e_desktop_gnome)
 //         {
 //
-//            estatus = psystem->do_factory_exchange("windowing", "x11");
+//            estatus = psystem->([a-z0-9_]+)_factory("windowing", "x11");
 //
 //         }
 //         else
 //         {
 //
-//            estatus = psystem->do_factory_exchange("windowing", "xcb");
+//            estatus = psystem->([a-z0-9_]+)_factory("windowing", "xcb");
 //
 //            //if (!estatus)
 //            {
 //
-//               estatus = psystem->do_factory_exchange("windowing", "x11");
+//               estatus = psystem->([a-z0-9_]+)_factory("windowing", "x11");
 //
 //            }
 //
@@ -1441,7 +1441,7 @@ namespace user
 //
 //         auto psystem = m_psystem->m_paurasystem;
 //
-//         estatus = psystem->do_factory_exchange("windowing", "win32");
+//         estatus = psystem->([a-z0-9_]+)_factory("windowing", "win32");
 //
 //#endif
 //

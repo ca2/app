@@ -87,7 +87,7 @@
 		9A201BB0247733DB00A31CBF /* apple_timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2480E72452C48300F23D28 /* apple_timer.cpp */; };
 		9A201BB3247733DB00A31CBF /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2481472452C48300F23D28 /* application.cpp */; };
 		9A201BB6247733DB00A31CBF /* exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A24812B2452C48300F23D28 /* exception.cpp */; };
-		9A201BB7247733DB00A31CBF /* factory_exchange.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2481462452C48300F23D28 /* factory_exchange.cpp */; };
+		9A201BB7247733DB00A31CBF /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2481462452C48300F23D28 /* _factory.cpp */; };
 		9A201BBC247733DB00A31CBF /* interaction_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A24814A2452C48300F23D28 /* interaction_impl.cpp */; };
 		9A201BBD247733DB00A31CBF /* ios.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2481362452C48300F23D28 /* ios.cpp */; };
 		9A201BBF247733DB00A31CBF /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A24814D2452C48300F23D28 /* main.cpp */; };
@@ -401,7 +401,7 @@
 		9A2486E92452C49100F23D28 /* thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2481062452C48300F23D28 /* thread.h */; };
 		9A2486EB2452C49100F23D28 /* _macos.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2481082452C48300F23D28 /* _macos.h */; };
 		9A2486ED2452C49200F23D28 /* user.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A24810A2452C48300F23D28 /* user.h */; };
-		9A2486F22452C49200F23D28 /* factory_exchange.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A24810F2452C48300F23D28 /* factory_exchange.cpp */; };
+		9A2486F22452C49200F23D28 /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A24810F2452C48300F23D28 /* _factory.cpp */; };
 		9A2486F52452C49200F23D28 /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2481122452C48300F23D28 /* application.cpp */; };
 		9A2486F92452C49200F23D28 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2481162452C48300F23D28 /* main.cpp */; };
 		9A2486FE2452C49200F23D28 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A24811B2452C48300F23D28 /* _.h */; };
@@ -1437,7 +1437,7 @@
 		9A2481062452C48300F23D28 /* thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = thread.h; sourceTree = "<group>"; };
 		9A2481082452C48300F23D28 /* _macos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _macos.h; sourceTree = "<group>"; };
 		9A24810A2452C48300F23D28 /* user.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user.h; sourceTree = "<group>"; };
-		9A24810F2452C48300F23D28 /* factory_exchange.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = factory_exchange.cpp; sourceTree = "<group>"; };
+		9A24810F2452C48300F23D28 /* _factory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _factory.cpp; sourceTree = "<group>"; };
 		9A2481122452C48300F23D28 /* application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = application.cpp; sourceTree = "<group>"; };
 		9A2481162452C48300F23D28 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		9A24811B2452C48300F23D28 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
@@ -1464,7 +1464,7 @@
 		9A2481412452C48300F23D28 /* _m.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _m.h; sourceTree = "<group>"; };
 		9A2481422452C48300F23D28 /* interaction_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = interaction_impl.h; sourceTree = "<group>"; };
 		9A2481452452C48300F23D28 /* AuraWindow.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AuraWindow.mm; sourceTree = "<group>"; };
-		9A2481462452C48300F23D28 /* factory_exchange.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = factory_exchange.cpp; sourceTree = "<group>"; };
+		9A2481462452C48300F23D28 /* _factory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _factory.cpp; sourceTree = "<group>"; };
 		9A2481472452C48300F23D28 /* application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = application.cpp; sourceTree = "<group>"; };
 		9A24814A2452C48300F23D28 /* interaction_impl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = interaction_impl.cpp; sourceTree = "<group>"; };
 		9A24814B2452C48300F23D28 /* state.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = state.h; sourceTree = "<group>"; };
@@ -2681,7 +2681,7 @@
 				9A2480F02452C48300F23D28 /* _mm.h */,
 				9A2481122452C48300F23D28 /* application.cpp */,
 				9A2480F82452C48300F23D28 /* application.h */,
-				9A24810F2452C48300F23D28 /* factory_exchange.cpp */,
+				9A24810F2452C48300F23D28 /* _factory.cpp */,
 				9A2480FA2452C48300F23D28 /* factory_exchange.h */,
 				9A2481162452C48300F23D28 /* main.cpp */,
 				9AEF8E84251AD91900E967EF /* mm.mm */,
@@ -2699,7 +2699,7 @@
 			children = (
 				9A2481472452C48300F23D28 /* application.cpp */,
 				9A24812B2452C48300F23D28 /* exception.cpp */,
-				9A2481462452C48300F23D28 /* factory_exchange.cpp */,
+				9A2481462452C48300F23D28 /* _factory.cpp */,
 				9AAD46AD249E9FA000B23B86 /* host_interaction.cpp */,
 				9A24814A2452C48300F23D28 /* interaction_impl.cpp */,
 				9A2481362452C48300F23D28 /* ios.cpp */,
@@ -4134,7 +4134,7 @@
 				9A201BB0247733DB00A31CBF /* apple_timer.cpp in Sources */,
 				9A201BB3247733DB00A31CBF /* application.cpp in Sources */,
 				9A201BB6247733DB00A31CBF /* exception.cpp in Sources */,
-				9A201BB7247733DB00A31CBF /* factory_exchange.cpp in Sources */,
+				9A201BB7247733DB00A31CBF /* _factory.cpp in Sources */,
 				9A23A6F526CE990300F98012 /* language.cpp in Sources */,
 				9A201BBC247733DB00A31CBF /* interaction_impl.cpp in Sources */,
 				9A23A70D26CE990B00F98012 /* MessageBoxA_W.mm in Sources */,
@@ -4195,7 +4195,7 @@
 				9A3764902409BF0C002D15D3 /* color_matrix.cpp in Sources */,
 				9AD1170B24F5147800177261 /* interaction_thread.cpp in Sources */,
 				9AD116FE24F5147800177261 /* primitive_impl.cpp in Sources */,
-				9A2486F22452C49200F23D28 /* factory_exchange.cpp in Sources */,
+				9A2486F22452C49200F23D28 /* _factory.cpp in Sources */,
 				9A2486CB2452C49100F23D28 /* apple_timer.cpp in Sources */,
 				9AD19A102512B8CB00B4C44A /* timer.cpp in Sources */,
 				9A1E1D8722F0AF69004243B8 /* graphics.cpp in Sources */,

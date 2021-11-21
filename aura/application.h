@@ -13,7 +13,7 @@
 
 
 
-// #define DO_FACTORY_EXCHANGE(do) \
+// #define DO_FACTORY(do) \
 // do(node_windows); \
 // do(draw2d_gdiplus); \
 // do(write_text_win32); \
@@ -22,7 +22,7 @@
 // do(database_sqlite3); \
 // do(regular_expression_pcre2);
 
-#include "_static_factory_exchange.inl"
+#include "([a-z0-9_]+)_factory.inl"
 
 
 #endif

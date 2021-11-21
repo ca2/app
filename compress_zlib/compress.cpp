@@ -164,6 +164,14 @@ namespace compress_zlib
    }
 
 
+   ::u32 compress::crc32(::u32 uCrc, const ::block& block)
+   {
+
+      return ::crc32(uCrc, (const Bytef *) block.get_data(), (uInt) block.get_size());
+
+   }
+
+
 } // namespace compress_zlib
 
 

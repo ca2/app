@@ -23,16 +23,16 @@ api_client::~api_client()
    if (!m_papi)
    {
 
-      auto plibrary = m_psystem->do_containerized_factory_exchange("api", strImplementation);
+      auto & pfactory = m_psystem->factory("api", strImplementation);
 
-      if (!plibrary)
+      if (!pfactory)
       {
 
-         return error_failed;
+         return pfactory;
 
       }
 
-      m_papi = plibrary->create < ::api >();
+      m_papi = pfactory->create < ::api >();
 
       if (!m_papi)
       {

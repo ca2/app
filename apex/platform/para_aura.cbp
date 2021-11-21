@@ -871,7 +871,7 @@
 		<Unit filename="apex/node/linux/dumpinit.cpp" />
 		<Unit filename="apex/node/linux/error.cpp" />
 		<Unit filename="apex/node/linux/exception.cpp" />
-		<Unit filename="apex/node/linux/factory_exchange.cpp" />
+		<Unit filename="apex/node/linux/_factory.cpp" />
 		<Unit filename="apex/node/linux/factory_exchange.h" />
 		<Unit filename="apex/node/linux/file.cpp" />
 		<Unit filename="apex/node/linux/file.h" />

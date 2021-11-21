@@ -286,7 +286,7 @@ namespace apex
 
       virtual string get_application_server_name();
 
-      virtual ::acme::library* lib(const ::string & psz);
+      //virtual ::acme::library* lib(const ::string & psz);
       //CLASS_DECL_APEX::acme::library* lib(const ::string & psz);
       //
       //template < typename FUNCTION >
@@ -354,7 +354,7 @@ namespace apex
 
       //virtual ::layered * get_layered_window(oswindow oswindow);
 
-      virtual ::e_status node_factory_exchange() override;
+      virtual __transport(::factory::factory) & node_factory() override;
 
       virtual ::e_status process_init() override;
 
@@ -456,7 +456,7 @@ namespace apex
       //class ::user::window_map                     &  window_map();
 
 
-      ::e_status set_factory_exchange(const ::string & pszComponent, const ::string & pszImplementation, PFN_factory_exchange pfnFactoryExchange);
+      //::e_status ([a-z0-9_]+)_factory(const ::string & pszComponent, const ::string & pszImplementation, ::fac);
 
       // apex commented
       //virtual void defer_audio();
@@ -471,7 +471,7 @@ namespace apex
       //virtual ::apex::multimedia * defer_get_multimedia();
 
       //class ::apex::os                             &  os();
-      //class base_factory                           &  factory();
+      //class base_factory                           &  factory_item();
 
 
       ::operating_system::department                        &  process();
@@ -581,7 +581,10 @@ namespace apex
 
       virtual bool on_get_task_name(string& strTaskName) override;
 
-      virtual ::acme::library * get_library(const ::string & pszLibrary, bool bOpenCa2 = false);
+      //virtual ::acme::library * get_library(const ::string & pszLibrary, bool bOpenCa2 = false);
+
+      
+      //virtual __transport(::acme::library) get_library(const ::string& str);
 
 
       virtual ::u32 os_post_to_all_threads(const ::id & id,wparam wparam = 0,lparam lparam = 0);
@@ -598,10 +601,10 @@ namespace apex
       //virtual ::e_status process_init();
 
       //virtual ::e_status init_draw2d();
-      //virtual ::e_status draw2d_factory_exchange(::factory_map * pfactorymap);
+      //virtual ::e_status ([a-z0-9_]+)_factory(::factory::factory * pfactory);
       //virtual string draw2d_get_default_library_name();
 
-      //virtual bool imaging_factory_exchange(::factory_map * pfactorymap);
+      //virtual bool ([a-z0-9_]+)_factory(::factory::factory * pfactory);
       //virtual string imaging_get_default_library_name();
 
       virtual ::e_status init_thread() override;
@@ -683,9 +686,9 @@ namespace apex
       virtual ::file::path local_get_matter_path();
       virtual ::file::path local_get_matter_path(string strMatter);
 
-      virtual bool find_applications_from_cache();
-      virtual bool find_applications_to_cache(bool bSave = true);
-      virtual bool map_application_library(const ::string & pszLibrary);
+      //virtual bool find_applications_from_cache();
+      //virtual bool find_applications_to_cache(bool bSave = true);
+      //virtual bool map_application_library(const ::string & pszLibrary);
 
 
       virtual void install_progress_add_up(int iAddUp = 1);
@@ -1034,7 +1037,7 @@ namespace apex
 
 //#ifndef __DEBUG
 //
-//#include "apex/inline/factory.cpp"
+//#include "apex/inline/factory_item.cpp"
 //
 //#endif // __DEBUG
 

@@ -110,7 +110,7 @@
 			<Add directory="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
 		</Linker>
 		<Unit filename="_.h" />
-		<Unit filename="factory_exchange.cpp" />
+		<Unit filename="_factory.cpp" />
 		<Unit filename="factory_exchange.h" />
 		<Unit filename="file_procedure.cpp" />
 		<Unit filename="file_procedure_ex1.cpp" />

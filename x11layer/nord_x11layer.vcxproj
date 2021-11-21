@@ -28,7 +28,7 @@
     <ClCompile Include="framework.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="aqua.def" />
+    
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{bd207bc4-c08b-4a2d-b754-f3bd46ad3098}</ProjectGuid>

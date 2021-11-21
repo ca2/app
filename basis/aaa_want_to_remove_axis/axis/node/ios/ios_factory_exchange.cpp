@@ -31,7 +31,7 @@ namespace ios
 
 
 
-void __node_axis_factory_exchange(::factory_map * pfactorymap)
+void __node_axis_factory(::factory::factory * pfactory)
 {
 
    ios::axis::factory_exchange factoryexchange();

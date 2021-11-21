@@ -21,7 +21,7 @@ public:
    
    //bool                             m_bOnInitializeWindowObject;
 
-   __transport(::acme::library)                 m_plibraryFolder;
+   __transport(::factory::factory)              m_pfactoryFolder;
    
    bool                                         m_bPostedInitialRequest;
 
@@ -33,12 +33,19 @@ public:
 
    //__pointer(::trace::log)                      m_ptracelog;
 
-   string_map < string_map < PFN_factory_exchange > > m_mapFactoryExchange;
+   
+
+   
 
 
 
+   ::mutex                                                           m_mutexFactory;
+   string_map < __transport(::factory::factory) >                    m_mapFactory;
+   //__pointer(string_map < __pointer(::factory::factory) > )                         m_pfactorysquare;
+   ::mutex                                                           m_mutexComponentFactory;
+   string_map < string_map < __transport(::factory::factory) > >     m_mapComponentFactory;
 
-   __pointer(string_map < __pointer(::factory_map) > )                         m_pfactorymapsquare;
+
    __pointer(string_map < __pointer(::regular_expression::context) >)          m_pmapRegularExpressionContext;
 
 #ifdef MACOS
@@ -55,13 +62,14 @@ public:
    __composite(class ::datetime::department)          m_pdatetime;
 
 
-   ::mutex                                            m_mutexLibrary;
-   ::acme::library_map                                m_mapLibrary;
-   string_map < PFN_NEW_LIBRARY >                     m_mapNewLibrary;
-   ::acme::library_map                                m_mapLibCall;
+   //::mutex                                            m_mutexRawLibrary;
+   //::acme::library_map                                m_mapRawLibrary;
+   //string_map < PFN_NEW_LIBRARY >                     m_mapNewLibrary;
+   //::acme::library_map                                m_mapLibCall;
 
-   ::mutex                                            m_mutexContainerizedLibrary;
-   ::string_map < ::acme::library_map >               m_mapContainerizedLibrary;
+   ::mutex                                            m_mutexLibrary4;
+   ::acme::library_map                                m_mapLibrary4;
+   //::string_map < ::acme::library_map >               m_mapLibrarySquare;
 
 
    string                                             m_strOsUserTheme;
@@ -154,6 +162,36 @@ public:
 
    virtual string os_get_user_theme();
 
+
+   template < typename BASE_TYPE >
+   __transport(BASE_TYPE) create(const ::string& strComponent, const ::string& strImplementation)
+   {
+
+      auto & pfactory = this->factory(strComponent, strImplementation);
+
+      if (!pfactory)
+      {
+
+         return (const ::extended::status &) pfactory;
+
+      }
+
+      auto p = pfactory->create< BASE_TYPE >();
+
+      if (!p)
+      {
+
+         return p;
+
+      }
+
+      return p;
+
+   }
+
+
+   virtual ::u32 crc32(::u32 uCrc, const ::block & block);
+
    //virtual enum_linux_distribution get_linux_distribution() const;
 
    //virtual enum_operating_system get_operating_system() const;
@@ -178,7 +216,7 @@ public:
    virtual ::application* get_main_application();
 
 
-   virtual ::e_status defer_folder_library();
+   virtual __transport(::factory::factory) & folder_factory();
 
 
    ::e_status system_construct(const ::main & main) override;
@@ -210,7 +248,7 @@ public:
 #endif
 
 
-   virtual ::e_status node_factory_exchange();
+   virtual __transport(::factory::factory)& node_factory();
 
 
    virtual ::e_status inline_init();
@@ -255,14 +293,24 @@ public:
 
    virtual ::acme::library* on_get_library(const ::string &pszLibrary);
 
-   virtual ::e_status do_factory_exchange(const ::string &pszComponent, const ::string &pszImplementation);
+   //virtual ::e_status set_factory_global(const ::string &pszComponent, const ::string &pszImplementation);
 
-   virtual __pointer(::acme::library) open_component_library(const ::string &pszComponent, const ::string &pszImplementation);
+   //virtual __pointer(::acme::library) open_component_library(const ::string &pszComponent, const ::string &pszImplementation);
 
-   virtual __pointer(::acme::library) open_containerized_component_library(const ::string &pszComponent, const ::string &pszImplementation);
+   virtual __transport(::acme::library) create_library(const ::string& strLibrary);
 
-   virtual ::extended::transport < ::acme::library > do_containerized_factory_exchange(const ::string &pszComponent, const ::string &pszImplementation);
+   virtual __transport(::acme::library)& library(const ::string& str);
 
+   //virtual __transport(::acme::library)& library(const ::string& strComponent, const ::string& strImplementation);
+
+
+   virtual __transport(::factory::factory)& factory(const ::string& strLibrary);
+
+
+   //virtual __transport(::acme::library) & library(const ::string &strComponent, const ::string &strImplementation);
+
+
+   virtual __transport(::factory::factory) & factory(const ::string& strComponent, const ::string& strImplementation);
 
 
    virtual ::e_status open_profile_link(string strUrl, string strProfile, string strTarget);
@@ -464,10 +512,10 @@ public:
 
    virtual ::regular_expression_pointer create_regular_expression(const ::string &pszStyle, const string& str);
    //virtual __pointer(::regular_expression::context) create_regular_expression_context(const ::string &pszStyle, int iCount);
-   virtual __pointer(::regular_expression::context) get_regular_expression_context(const ::string &pszStyle);
+   virtual __transport(::regular_expression::context) get_regular_expression_context(const ::string &pszStyle);
 
    virtual ::regular_expression_pointer create_pcre(const string& str);
-   virtual __pointer(::regular_expression::context) get_pcre_context();
+   virtual __transport(::regular_expression::context) get_pcre_context();
    //virtual int system::pcre_add_tokens(string_array& stra, const string& strTopic, const string& strRegexp, int nCount)
 
    virtual ::e_status get_public_internet_domain_extension_list(string_array& stra);
@@ -480,31 +528,31 @@ public:
    
    virtual ::e_status on_open_file(const ::string &pszFile);
 
-   template < typename BASE_TYPE >
-   __transport(BASE_TYPE) create(const char * pszComponent, const char* pszImplementation)
-   {
+   //template < typename BASE_TYPE >
+   //__transport(BASE_TYPE) create(const char * pszComponent, const char* pszImplementation)
+   //{
 
-      auto plibrary = do_containerized_factory_exchange(pszComponent, pszImplementation);
+   //   auto plibrary = ([a-z0-9_]+)_factory(pszComponent, pszImplementation);
 
-      if (!plibrary)
-      {
+   //   if (!plibrary)
+   //   {
 
-         return error_not_found;
+   //      return error_not_found;
 
-      }
+   //   }
 
-      auto p = plibrary->create<BASE_TYPE>();
+   //   auto p = plibrary->create<BASE_TYPE>();
 
-      if (!p)
-      {
+   //   if (!p)
+   //   {
 
-         return error_not_found;
+   //      return error_not_found;
 
-      }
+   //   }
 
-      return p;
+   //   return p;
 
-   }
+   //}
 
 
    __transport(::compress) create_compress(const char* pszImplementation);

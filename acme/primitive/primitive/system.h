@@ -422,13 +422,13 @@ namespace apex
 
       __pointer(::acme::library) open_component_library(const char* pszComponent, const char* pszImplementation);
 
-      ::e_status do_factory_exchange(const char* pszComponent, const char* pszImplementation);
+      ::e_status ([a-z0-9_]+)_factory(const char* pszComponent, const char* pszImplementation);
 
       __pointer(::acme::library) open_containerized_component_library(const char * pszComponent, const char * pszImplementation);
 
-      ::extended::transport < ::acme::library > do_containerized_factory_exchange(const char * pszComponent, const char * pszImplementation);
+      ::extended::transport < ::acme::library > ([a-z0-9_]+)_factory(const char * pszComponent, const char * pszImplementation);
 
-      ::e_status set_factory_exchange(const char* pszComponent, const char * pszImplementation, PFN_factory_exchange pfnFactoryExchange);
+      ::e_status ([a-z0-9_]+)_factory(const char* pszComponent, const char * pszImplementation, PFN_factory_exchange pfnFactoryExchange);
 
       // apex commented
       //virtual void defer_audio();
@@ -443,7 +443,7 @@ namespace apex
       //virtual ::apex::multimedia * defer_get_multimedia();
 
       //class ::apex::os                             &  os();
-      //class base_factory                           &  factory();
+      //class base_factory                           &  factory_item();
 
 
       ::apex::str                                  &  str();
@@ -590,10 +590,10 @@ namespace apex
       //virtual ::e_status process_init();
 
       //virtual ::e_status init_draw2d();
-      //virtual ::e_status draw2d_factory_exchange(::factory_map * pfactorymap);
+      //virtual ::e_status ([a-z0-9_]+)_factory(::factory::factory * pfactory);
       //virtual string draw2d_get_default_library_name();
 
-      //virtual bool imaging_factory_exchange(::factory_map * pfactorymap);
+      //virtual bool ([a-z0-9_]+)_factory(::factory::factory * pfactory);
       //virtual string imaging_get_default_library_name();
 
       virtual ::e_status init_thread() override;
@@ -1024,7 +1024,7 @@ namespace apex
 
 //#ifndef __DEBUG
 //
-//#include "apex/inline/factory.cpp"
+//#include "apex/inline/factory_item.cpp"
 //
 //#endif // __DEBUG
 

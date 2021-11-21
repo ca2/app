@@ -67,7 +67,7 @@ namespace multimedia
 
       auto psystem = get_system()->m_paquasystem;
 
-      m_plibrary = psystem->get_library(pszTitle);
+      m_plibrary = psystem->library(pszTitle);
 
       if (m_plibrary.is_null())
       {

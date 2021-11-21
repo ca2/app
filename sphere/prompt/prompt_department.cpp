@@ -31,11 +31,11 @@ namespace prompt
    bool department::init_instance()
    {
 
-      create_factory <prompt::document >();
-      create_factory <prompt::frame >();
-      create_factory <prompt::impact >();
-      create_factory <prompt::pane_view >();
-      create_factory <prompt::primary_view >();
+      add_factory_item <prompt::document >();
+      add_factory_item <prompt::frame >();
+      add_factory_item <prompt::impact >();
+      add_factory_item <prompt::pane_view >();
+      add_factory_item <prompt::primary_view >();
 
       if (!::acme::department::init_instance())
       {

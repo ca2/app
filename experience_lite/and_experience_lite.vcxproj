@@ -71,9 +71,7 @@
       <Project>{e000ffaf-392f-4e32-bf51-fd7ed638991f}</Project>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="experience_lite.def" />
-  </ItemGroup>
+  
   <PropertyGroup Label="Globals">
     <ProjectName>experience_lite</ProjectName>
     <ProjectGuid>{E2D7833B-9B59-4826-BBDF-C270A2115E86}</ProjectGuid>
@@ -282,7 +280,7 @@
       <DataExecutionPrevention>
       </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalOptions>-Wl,-z,defs</AdditionalOptions>
       <AndroidSystemLibs>c;m;log;gcc;aura;axis;base;aura</AndroidSystemLibs>
     </Link>
@@ -341,7 +339,7 @@
       <DataExecutionPrevention>
       </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalOptions>-Wl,-z,defs</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
@@ -393,7 +391,7 @@
       <DataExecutionPrevention>
       </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalOptions>-Wl,-z,defs</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
@@ -444,7 +442,7 @@
       <DataExecutionPrevention>
       </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalOptions>-Wl,-z,defs</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
@@ -489,7 +487,7 @@
       <DataExecutionPrevention>
       </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)../../time/library/x86/$(TargetName).lib</ImportLibrary>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">
@@ -538,7 +536,7 @@
       </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)../../time/library/x64/$(TargetName).lib</ImportLibrary>
       <Profile>true</Profile>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

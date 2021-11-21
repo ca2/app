@@ -144,7 +144,7 @@
     <Link>
       <GenerateDebugInformation>Debug</GenerateDebugInformation>
       <AdditionalDependencies>user32.lib</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../time/library/$(PlatformName)/$(ConfigurationName);$(__archive)third-windows/thirdparty/library/$(PlatformName)/$(ConfigurationName);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <EntryPointSymbol>
@@ -209,7 +209,7 @@
     <Link>
       <GenerateDebugInformation>Debug</GenerateDebugInformation>
       <AdditionalDependencies>user32.lib</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../time/library/$(PlatformName)/$(ConfigurationName);$(__archive)third-windows/thirdparty/library/$(PlatformName)/$(ConfigurationName);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <EntryPointSymbol>
@@ -269,7 +269,7 @@
     <Link>
       <GenerateDebugInformation>Debug</GenerateDebugInformation>
       <AdditionalDependencies>user32.lib</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../time/library/$(PlatformName)/$(ConfigurationName);$(__archive)third-windows/thirdparty/library/$(PlatformName)/$(ConfigurationName);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -340,7 +340,7 @@
     <Link>
       <GenerateDebugInformation>Debug</GenerateDebugInformation>
       <AdditionalDependencies>user32.lib</AdditionalDependencies>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../time/library/$(PlatformName)/$(ConfigurationName);$(__archive)third-windows/thirdparty/library/$(PlatformName)/$(ConfigurationName);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -495,7 +495,7 @@
     <ClCompile Include="_math_math.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="math.def" />
+    
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\aura\aura.vcxproj">

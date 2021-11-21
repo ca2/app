@@ -35,7 +35,7 @@ namespace app_shader
 
       set_local_data();
 
-      create_factory <::app_shader::main_window >();
+      ::factory::add_factory_item <::app_shader::main_window >();
 
       if (!::aura::application::init_instance())
       {

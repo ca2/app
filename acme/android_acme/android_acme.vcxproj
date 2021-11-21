@@ -352,7 +352,7 @@
     <ClCompile Include="..\node\android\android1.cpp" />
     <ClCompile Include="..\node\android\error.cpp" />
     <ClCompile Include="..\node\android\exception.cpp" />
-    <ClCompile Include="..\node\android\factory_exchange.cpp" />
+    <ClCompile Include="..\node\android\_factory.cpp" />
     <ClCompile Include="..\node\android\file.cpp" />
     <ClCompile Include="..\node\android\main.cpp" />
     <ClCompile Include="..\node\android\process.cpp" />

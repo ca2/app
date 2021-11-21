@@ -45,7 +45,78 @@ bool demangle (string & str, const char * pszType)
 #endif
 
 
+namespace factory
+{
 
+
+
+   __transport(::element) factory::create(const ::string & strType)
+   {
+
+      //auto psystem = get_system();
+
+      //synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
+
+      //::matter* p = nullptr;
+
+      ////if (get_library() != nullptr)
+      ////{
+
+      ////   p = get_library()->new_object(pszClass);
+
+      ////}
+      ////else
+      //{
+
+      //   p = new_object(pszClass);
+
+      //}
+
+      //auto pobject = ::move_transfer(p);
+
+      //if (!pobject)
+      //{
+
+      //   return nullptr;
+
+      //}
+
+      //return pobject;
+
+      auto pfactoryinterface = get_factory_item(strType);
+
+      if (!pfactoryinterface)
+      {
+
+         return error_no_factory;
+
+      }
+
+      return pfactoryinterface->create_element();
+
+   }
+
+
+   bool factory::has_type(const ::string & strType) const
+   {
+
+      //auto psystem = get_system();
+
+      //synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
+
+      //if (get_library() == nullptr)
+      //{
+
+      //   return false;
+
+      //}
+
+      return get_factory_item(strType) != nullptr;
+
+   }
+
+
+} // namespace factory
 
 
 

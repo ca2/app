@@ -114,6 +114,10 @@ namespace crypto_openssl
          return EVP_sha1();
       case e_hash_sha256:
          return EVP_sha256();
+      case e_hash_nessie:
+         return EVP_whirlpool();
+      case e_hash_none:
+         break;
       }
       return nullptr;
 

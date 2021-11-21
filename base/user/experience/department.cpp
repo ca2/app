@@ -107,7 +107,7 @@ namespace experience
 
       pexperience->m_plibrary = plibrary;
 
-      return pexperience;
+      return ::move(pexperience);
 
    }
 

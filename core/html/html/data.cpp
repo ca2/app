@@ -161,6 +161,13 @@ void html_data::on_layout(::draw2d::graphics_pointer & pgraphics)
 
 void html_data::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 {
+   
+   if(::is_null(m_pcoredata))
+   {
+      
+      return;
+      
+   }
 
    m_pcoredata->_001OnDraw(pgraphics);
 

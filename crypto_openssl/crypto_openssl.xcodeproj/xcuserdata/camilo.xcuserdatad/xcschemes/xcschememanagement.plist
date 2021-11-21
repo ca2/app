@@ -3,11 +3,13 @@
 <plist version="1.0">
 <dict>
 	<key>SchemeUserState</key>
+	<dict/>
+	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>crypto_openssl.xcscheme_^#shared#^_</key>
+		<key>9AC019332748A002006BEBCC</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>4</integer>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

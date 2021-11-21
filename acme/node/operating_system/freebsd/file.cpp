@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "_linux.h"
+#include "_freebsd.h"
 #include "acme/node/operating_system/ansi/binreloc.h"
 
 
@@ -119,6 +119,8 @@ CLASS_DECL_ACME bool _os_may_have_alias(const char * psz)
 //}
 
 
+
+
 namespace path
 {
 
@@ -126,30 +128,18 @@ namespace path
    ::file::path module()
    {
 
-      char *pszModuleFilePath = nullptr;
+      // https://arstechnica.com/civis/viewtopic.php?t=433790
 
-#if defined(__APPLE__)
+      char exepath[PATH_MAX];
 
-      pszModuleFilePath = ns_get_executable_path();
+      char temp[PATH_MAX];
 
-#else
+      ::snprintf(temp, sizeof(temp),"/proc/%d/file", ::getpid());
 
-      pszModuleFilePath = br_find_exe("app");
+      ::realpath(temp, exepath);
+      // end https://arstechnica.com/civis/viewtopic.php?t=433790
 
-#endif
-
-      if (pszModuleFilePath == nullptr)
-      {
-
-         return "";
-
-      }
-
-      string strModuleFileName(pszModuleFilePath);
-
-      free(pszModuleFilePath);
-
-      return strModuleFileName;
+      return exepath;
 
    }
 

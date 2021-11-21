@@ -10,7 +10,7 @@
 #elif defined(APPLE_IOS)
 #include "acme/node/operating_system/ios/oswindow_data.h"
 #endif
-#if defined(__APPLE__) || defined(LINUX) || defined(ANDROID)
+#if defined(__APPLE__) || defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
 #include <iconv.h>
 #else
 //#include "atom/iconv/include/iconv.h"

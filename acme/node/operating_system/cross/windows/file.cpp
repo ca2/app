@@ -4,7 +4,7 @@
 #ifdef LINUX
 #include "acme/node/operating_system/ansi/binreloc.h"
 #endif
-#if defined(LINUX) || defined(MACOS)
+#if defined(LINUX) || defined(MACOS) || defined(FREEBSD)
 #include <sys/stat.h>
 #endif
 

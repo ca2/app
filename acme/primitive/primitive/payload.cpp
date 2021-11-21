@@ -5203,7 +5203,7 @@ bool payload::is_double() const
       
       ::string str = string();
 
-#if defined(LINUX) || defined(ANDROID)
+#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
       if(is_scalar()
             && (fmod(atof(str), 1.0) == 0.0
                 && fabs(atof(str)) <= pow(2.0, 31.0)))
@@ -5323,7 +5323,7 @@ bool payload::is_integer() const
       
       ::string str = string();
 
-#if defined(LINUX) || defined(ANDROID)
+#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
       if(is_scalar()
             && (fmod(atof(str), 1.0) == 0.0
                 && fabs(atof(str)) <= pow(2.0, 31.0)))
@@ -5371,7 +5371,7 @@ bool payload::is_natural() const
       
       ::string str = string();
 
-#if defined(LINUX) || defined(ANDROID)
+#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
       if(is_scalar()
             && (fmod(atof(str), 1.0) == 0.0
                 && fabs(atof(str)) <= pow(2.0, 31.0)))
@@ -5859,7 +5859,7 @@ end:
    if(bFloat)
    {
 
-#if defined(LINUX) || defined(ANDROID)
+#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
 
       ::f64 f64 = atof(strNumber);
 

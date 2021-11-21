@@ -10,7 +10,7 @@ string get_current_directory_name()
 
     string strCurrentDirName;
 
-#ifdef __APPLE__
+#if defined(__APPLE__) || defined(FREEBSD)
 
    strCurrentDirName = ::string_from_strdup(getcwd(nullptr, 0));
 

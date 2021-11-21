@@ -24,8 +24,8 @@ public:
    virtual ::e_status clear_read_only(const char* path);
 
 
-
-   virtual ::file::path executable();
+   // executable path
+   virtual ::file::path module();
 
 
    virtual file_transport open(const ::file::path & path, const ::file::e_open & eopen);

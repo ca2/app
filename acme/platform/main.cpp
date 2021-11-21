@@ -65,12 +65,10 @@
 CLASS_DECL_ACME void set_main_thread();
 
 
-::e_status __main(main & main)
+::e_status __main(main& main)
 {
 
    set_main_thread();
-
-   __pointer(::acme::node) pnode;
 
    ::e_status estatus = error_failed;
 
@@ -96,11 +94,15 @@ CLASS_DECL_ACME void set_main_thread();
 
    }
 
-   pnode = psystem->node();
+   {
 
-   estatus = pnode->implement();
+      auto pnode = psystem->node();
 
-   estatusEnd = psystem->end();
+      estatus = pnode->implement();
+
+      estatusEnd = psystem->end();
+
+   }
 
    return estatus;
 

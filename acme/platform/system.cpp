@@ -92,8 +92,6 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       trace_category_static_term();
 
-      m_pnode->node_quit();
-
    }
 
 
@@ -348,6 +346,25 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       ::acme::idpool::term();
       
+      m_pnode->node_quit();
+
+      m_pnode.release();
+
+      try
+      {
+
+         ::factory::factory_close();
+
+      }
+      catch (...)
+      {
+
+      }
+
+      m_mapFactory.clear();
+
+      m_mapComponentFactory.clear();
+
       //m_pnode->os_post_quit();
 
    }
@@ -1524,6 +1541,8 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    //
    ::e_status system::on_end()
    {
+
+      TermSystem();
 
       return ::success;
 

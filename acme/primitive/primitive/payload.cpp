@@ -3263,7 +3263,7 @@ bool & payload::as_bool()
    else if(m_etype == ::e_type_string)
    {
 
-#if defined(LINUX) || defined(ANDROID)
+#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
 
       f64 = atof(m_str);
 
@@ -5073,7 +5073,7 @@ bool payload::is_floating() const
 
       ::string str = string();
 
-#if defined(LINUX) || defined(ANDROID)
+#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
       if(is_scalar()
             && (fmod(atof(str), 1.0) == 0.0
                 && fabs(atof(str)) <= pow(2.0, 31.0)))

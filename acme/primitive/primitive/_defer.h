@@ -49,7 +49,7 @@ namespace factory
    inline __pointer(::factory::factory_item_base < BASE_TYPE >) create_reusable_factory()
    {
 
-      critical_section_lock lock(::factory_item::get_factory_critical_section());
+      critical_section_lock lock(::factory::get_factory_critical_section());
 
       auto pfactory = __new(::factory::reusable_factory_item< TYPE, BASE_TYPE >());
 

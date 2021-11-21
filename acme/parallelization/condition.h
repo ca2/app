@@ -6,7 +6,7 @@ class CLASS_DECL_ACME condition :
 {
 public:
 
-#if defined(LINUX) || defined(__APPLE__) || defined(SOLARIS)
+#if defined(LINUX) || defined(__APPLE__) || defined(SOLARIS) || defined(FREEBSD)
 
    iptr           m_hsync;
    bool              m_bManualEvent;

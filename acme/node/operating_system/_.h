@@ -54,6 +54,12 @@ CLASS_DECL_ACME bool is_verbose();
 //#include "acme/node/operating_system/ansi/_.h"
 //#include "acme/node/operating_system/linux/_.h"
 
+#elif defined(FREEBSD)
+
+//#include "acme/node/operating_system/cairo/_.h"
+//#include "acme/node/operating_system/ansi/_.h"
+//#include "acme/node/operating_system/linux/_.h"
+
 #elif defined(_UWP)
 
 #include "acme/node/operating_system/ansi/_.h"

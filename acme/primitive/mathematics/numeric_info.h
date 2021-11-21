@@ -373,7 +373,7 @@ namespace numeric_info_internal
 
    };
 
-#ifndef LINUX
+#if !defined(LINUX) && !defined(FREEBSD)
 
    template < >
    class CLASS_DECL_ACME numeric_info < i64 > :

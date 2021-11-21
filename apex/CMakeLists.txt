@@ -53,12 +53,12 @@ list(APPEND apex_source
    crypto/_crypto.h
    crypto/crypto.cpp
    crypto/crypto.h
-   crypto/crypto_initializer.cpp
-   crypto/crypto_initializer.h
    crypto/hasher.cpp
    crypto/hasher.h
    crypto/hasher_algorithm.cpp
    crypto/hasher_algorithm.h
+   crypto/initializer.cpp
+   crypto/initializer.h
    crypto/rsa.cpp
    crypto/rsa.h
    database/_.h

@@ -1238,7 +1238,7 @@ inline void to_string(string& str, const u64& u)
 }
 
 
-#if !defined(WINDOWS) && !defined(LINUX)
+#if !defined(WINDOWS) && !defined(LINUX) && !defined(FREEBSD)
 
 
 inline void to_string(string& str, const unsigned long & ul)

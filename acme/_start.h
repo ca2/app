@@ -148,7 +148,14 @@ typedef i64 filesize;
 #define MEMORY_INLINE RELEASE_INLINE
 
 
-#if defined(WINDOWS)
+#if defined(FREEBSD)
+
+#define inplace_new_throw_spec throw()
+#define new_throw_spec
+#define del_throw_spec throw()
+#define MEMORY_DECL
+
+#elif defined(WINDOWS)
 
 //#define inplace_new_throw_spec
 #define inplace_new_throw_spec noexcept

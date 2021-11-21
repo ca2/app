@@ -19,7 +19,7 @@ inline void __string_exchange(text_stream & s, u8 & u) { s.number_exchange(u); }
 inline void __string_exchange(text_stream & s, u16 & u) { s.number_exchange(u); }
 inline void __string_exchange(text_stream & s, u32 & u) { s.number_exchange(u); }
 inline void __string_exchange(text_stream & s, u64 & u) { s.number_exchange(u); }
-#if !defined(LINUX)
+#if !defined(LINUX) && !defined(FREEBSD)
 inline void __string_exchange(text_stream & s, long & l) { s.number_exchange(l); }
 #endif
 inline void __string_exchange(text_stream & s, float & f) { s.number_exchange(f); }

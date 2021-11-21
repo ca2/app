@@ -13,6 +13,10 @@
 // apt install libidn11-dev
 // dnf install libidn-devel
 #include <idna.h>
+#elif defined(FREEBSD)
+// apt install libidn11-dev
+// dnf install libidn-devel
+#include <idna.h>
 #endif
 
 

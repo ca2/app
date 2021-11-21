@@ -490,7 +490,7 @@ string acme_file::get_temporary_file_name(const char * lpszName, const char * ps
    while (true)
    {
 
-#if defined(__APPLE__) || defined(LINUX) || defined(ANDROID)
+#if defined(__APPLE__) || defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
       
       pfile = fopen(strFile, "ab");
 
@@ -1241,7 +1241,7 @@ string_array acme_file::lines(const char * path)
    while (true)
    {
 
-#if defined(__APPLE__) || defined(LINUX) || defined(ANDROID)
+#if defined(__APPLE__) || defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
       
       pfile = fopen(strFile, "ab");
 

@@ -37,10 +37,10 @@ if (MSVC)
     target_link_libraries(app_message_box PRIVATE ${library_references})
 elseif(LINUX)
 
-    #if(LINUX_GNOME)
+    #if(GNOME_DESKTOP)
     #    add_dependencies(app_message_box node_gnome windowing_x11)
     #endif()
-    #if(LINUX_KDE)
+    #if(KDE_DESKTOP)
     #   add_dependencies(app_message_box node_kde windowing_xcb)
     #endif()
 
@@ -92,7 +92,7 @@ if (MSVC)
     target_link_options(_app_message_box PRIVATE "/SUBSYSTEM:WINDOWS")
     target_link_libraries(_app_message_box PRIVATE ${executable_references})
 
-elseif (LINUX)
+elseif(LINUX OR FREEBSD)
 
     target_compile_options(_app_message_box PRIVATE -fpermissive)
     target_link_libraries(_app_message_box PRIVATE ${executable_references})

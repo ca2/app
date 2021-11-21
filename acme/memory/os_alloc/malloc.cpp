@@ -1,4 +1,4 @@
-#ifdef LINUX
+#if defined(LINUX) || defined(FREEBSD)
 #include <malloc.h>
 #endif
 

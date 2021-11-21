@@ -25,6 +25,12 @@
 #include "acme/node/operating_system/posix/_posix.h"
 #include "acme/node/operating_system/linux/_linux.h"
 
+#elif defined(FREEBSD)
+
+#include "acme/node/operating_system/ansi/_ansi.h"
+#include "acme/node/operating_system/posix/_posix.h"
+#include "acme/node/operating_system/freebsd/_freebsd.h"
+
 #elif defined(_UWP)
 
 #include "acme/node/operating_system/ansi/_ansi.h"

@@ -37,7 +37,7 @@ if (MSVC)
    target_link_options(app_shader PRIVATE "/SUBSYSTEM:WINDOWS")
    target_link_libraries(app_shader PRIVATE ${library_references})
 
-elseif (LINUX)
+elseif(LINUX OR FREEBSD)
 
    target_compile_options(app_shader PRIVATE -fpermissive)
    #target_link_options(app_shader PRIVATE -Wl,-rpath=$ORIGIN)
@@ -71,7 +71,7 @@ if (MSVC)
    target_link_options(_app_shader PRIVATE "/SUBSYSTEM:WINDOWS")
    target_link_libraries(_app_shader PRIVATE ${library_references})
 
-elseif (LINUX)
+elseif(LINUX OR FREEBSD)
 
    target_compile_options(_app_shader PRIVATE -fpermissive)
    #target_link_options(_app_shader PRIVATE -Wl,-rpath=$ORIGIN)

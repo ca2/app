@@ -1924,7 +1924,7 @@ if (MSVC)
    target_link_libraries(acme PRIVATE zlib dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32.lib)
 
 
-elseif (LINUX)
+elseif(LINUX OR FREEBSD)
 
 
    pkg_check_modules(PKGCONFIG freetype2)

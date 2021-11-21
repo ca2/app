@@ -81,7 +81,7 @@ if (MSVC)
     target_link_options(_app_app PRIVATE "/SUBSYSTEM:WINDOWS")
     target_link_libraries(_app_app PRIVATE ${executable_references})
 
-elseif (LINUX)
+elseif(LINUX OR FREEBSD)
 
     target_compile_options(_app_app PRIVATE -fpermissive)
     target_link_libraries(_app_app PRIVATE ${executable_references})

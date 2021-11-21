@@ -100,7 +100,7 @@ CLASS_DECL_ACME void set_main_thread();
 
       estatus = pnode->implement();
 
-      estatusEnd = psystem->end();
+      //estatusEnd = psystem->end();
 
    }
 

@@ -1927,7 +1927,7 @@ if (MSVC)
 elseif(LINUX OR FREEBSD)
 
 
-   pkg_check_modules(PKGCONFIG freetype2)
+   pkg_check_modules(PKGCONFIG freetype2 libidn)
    target_compile_options(acme PRIVATE -fpermissive)
    target_compile_options(acme PRIVATE ${PKGCONFIG_CFLAGS})
    #target_link_options(acme PRIVATE -L . -Wl,-rpath .)

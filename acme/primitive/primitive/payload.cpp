@@ -3152,7 +3152,7 @@ bool & payload::as_bool()
    case e_type_f64:
       return (::f32) m_f64;
    case e_type_string:
-   #if defined(LINUX) || defined(ANDROID)
+   #if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
       return (::f32) atof(m_str);
    #else
       return (::f32) _atof_l(m_str, ::acme::get_c_locale());

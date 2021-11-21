@@ -299,6 +299,13 @@ namespace html
 
    void core_data::implement(::draw2d::graphics_pointer & pgraphics)
    {
+      
+      if(::is_null(m_pelement))\
+      {
+         
+         return;
+         
+      }
 
       m_bImplemented = false;
 

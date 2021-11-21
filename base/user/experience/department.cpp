@@ -48,7 +48,7 @@ namespace experience
 
       pexperience->m_strExperience = strExperience;
 
-      return pexperience;
+      return ::move(pexperience);
 
    }
 

@@ -21,7 +21,7 @@
 		9AAC1D252474FD360013AB72 /* libios_draw2d_quartz2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2F61012474FC8000D392E8 /* libios_draw2d_quartz2d.a */; };
 		9AAC1D262474FD360013AB72 /* libios_idn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AAC1D102474FCB60013AB72 /* libios_idn.a */; };
 		9AAC1D272474FD360013AB72 /* libios_pcre.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AAC1D192474FCC00013AB72 /* libios_pcre.a */; };
-		9AAC1D362474FDBD0013AB72 /* libios_experience_lite.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AAC1D312474FD540013AB72 /* libios_experience_lite.a */; };
+		9AAC1D362474FDBD0013AB72 /* libexperience_lite.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AAC1D312474FD540013AB72 /* libexperience_lite.dylib */; };
 		9AAC20ED247566B50013AB72 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AAC20EB247566B50013AB72 /* libcrypto.a */; };
 		9AAC20EE247566B50013AB72 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AAC20EC247566B50013AB72 /* libssl.a */; };
 		9AAC2145247571180013AB72 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AAC2144247571180013AB72 /* libbz2.tbd */; };
@@ -374,7 +374,7 @@
 				9AAC1D272474FD360013AB72 /* libios_pcre.a in Frameworks */,
 				9AAC1D262474FD360013AB72 /* libios_idn.a in Frameworks */,
 				9AAC1D232474FD360013AB72 /* libios_aura.a in Frameworks */,
-				9AAC1D362474FDBD0013AB72 /* libios_experience_lite.a in Frameworks */,
+				9AAC1D362474FDBD0013AB72 /* libexperience_lite.dylib in Frameworks */,
 				9AAC1D252474FD360013AB72 /* libios_draw2d_quartz2d.a in Frameworks */,
 				9A449B3A247745750002A827 /* libios_coreimage_imaging.a in Frameworks */,
 				9A2019DF2477329700A31CBF /* libios_simple_app.a in Frameworks */,
@@ -646,7 +646,7 @@
 			isa = PBXGroup;
 			children = (
 				9AAC1D2F2474FD540013AB72 /* libexperience_lite.dylib */,
-				9AAC1D312474FD540013AB72 /* libios_experience_lite.a */,
+				9AAC1D312474FD540013AB72 /* libexperience_lite.dylib */,
 				9AAC1D332474FD540013AB72 /* experience_lite_iosTests.xctest */,
 			);
 			name = Products;
@@ -705,7 +705,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = ca2;
-				LastUpgradeCheck = 1140;
+				LastUpgradeCheck = 1310;
 				ORGANIZATIONNAME = "Camilo Sasuke Tsumanuma";
 				TargetAttributes = {
 					078C352E1921758500354453 = {
@@ -895,10 +895,10 @@
 			remoteRef = 9AAC1D2E2474FD540013AB72 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9AAC1D312474FD540013AB72 /* libios_experience_lite.a */ = {
+		9AAC1D312474FD540013AB72 /* libexperience_lite.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libios_experience_lite.a;
+			path = libexperience_lite.dylib;
 			remoteRef = 9AAC1D302474FD540013AB72 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1025,7 +1025,8 @@
 				"LIBRARY_SEARCH_PATHS[sdk=iphonesimulator*]" = (
 					"$(inherited)",
 					"\"$(TARGET_BUILD_DIR)\"",
-					"$(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/storage-ios/iPhoneSimulator13.4-x86_64.sdk/lib",
+					"$(WorkspaceDir)/archive",
+					"$(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/storage-ios/iPhoneSimulator13.4-x86_64.sdk/lib",
 				);
 				OTHER_LDFLAGS = "-all_load";
 				PLATFORM_MODIFIER = ios;
@@ -1089,7 +1090,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "wiossimple_drawing_simple_drawingTests/wiossimple_drawing_simple_drawingTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ca2.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -1114,7 +1115,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "wiossimple_drawing_simple_drawingTests/wiossimple_drawing_simple_drawingTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ca2.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -1146,6 +1147,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1172,8 +1174,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LIBRARY_SEARCH_PATHS = "$(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/storage-ios/iPhoneSimulator11.2-x86_64.sdk/lib";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(WorkspaceDir)/archive",
+					"$(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/storage-ios/iPhoneSimulator11.2-x86_64.sdk/lib",
+				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRESERVE_DEAD_CODE_INITS_AND_TERMS = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1210,6 +1215,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1228,8 +1234,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LIBRARY_SEARCH_PATHS = "$(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/storage-ios/iPhoneSimulator11.2-x86_64.sdk/lib";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(WorkspaceDir)/archive",
+					"$(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/storage-ios/iPhoneSimulator11.2-x86_64.sdk/lib",
+				);
 				PRESERVE_DEAD_CODE_INITS_AND_TERMS = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;

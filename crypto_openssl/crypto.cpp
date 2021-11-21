@@ -492,7 +492,7 @@ namespace crypto_openssl
 
 
 
-      int iKeyLen = EVP_CIPHER_key_length(EVP_aes_256_ecb());
+      //int iKeyLen = EVP_CIPHER_key_length(EVP_aes_256_ecb());
       memsize iShaLen = memSha1.get_size();
 
       if (iShaLen <= 0)
@@ -1229,6 +1229,8 @@ namespace crypto_openssl
 
       auto popensslrsa = __new(::crypto_openssl::rsa);
 
+#if OPENSSL_VERSION_NUMBER >= 0x30000000
+
       BIGNUM* n = nullptr;
       BIGNUM* e = nullptr;
       BIGNUM* d = nullptr;
@@ -1237,10 +1239,6 @@ namespace crypto_openssl
       BIGNUM* dmp1 = nullptr;
       BIGNUM* dmq1 = nullptr;
       BIGNUM* iqmp = nullptr;
-
-#undef FREE_BN_HERE
-
-#if OPENSSL_VERSION_NUMBER >= 0x30000000
 
       popensslrsa->m_pkey = EVP_RSA_gen(1024);
 
@@ -1306,7 +1304,17 @@ namespace crypto_openssl
 
       }
 
-#else
+#else // OPENSSL_VERSION_NUMBER < 0x30000000
+      
+      const BIGNUM* n = nullptr;
+      const BIGNUM* e = nullptr;
+      const BIGNUM* d = nullptr;
+      const BIGNUM* p = nullptr;
+      const BIGNUM* q = nullptr;
+      const BIGNUM* dmp1 = nullptr;
+      const BIGNUM* dmq1 = nullptr;
+      const BIGNUM* iqmp = nullptr;
+
 
       auto& prsa = popensslrsa->m_prsa;
 
@@ -1396,7 +1404,7 @@ namespace crypto_openssl
 
       }
 
-#if FREE_BN_HERE
+#if OPENSSL_VERSION_NUMBER >= 0x30000000
 
       if (n)      BN_free(n);
       if (e)      BN_free(e);

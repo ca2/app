@@ -26,11 +26,11 @@ namespace graphics
 
       bool ipc_copy(const pixmap * ppixmap) override;
 
-      virtual ::e_status set_bitmap_source(const string& strBitmapSource);
+      ::e_status set_bitmap_source(const string& strBitmapSource) override;
 
-      virtual ::e_status clear_bitmap_source();
+      ::e_status clear_bitmap_source() override;
 
-      virtual string get_bitmap_source() const;
+      string get_bitmap_source() const override;
 
       virtual bool buffer_lock_round_swap_key_buffers() override;
 

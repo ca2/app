@@ -876,16 +876,6 @@ namespace acme
 
       //}
 
-      try
-      {
-
-         ::factory::factory_close();
-
-      }
-      catch (...)
-      {
-
-      }
 
       //::acme::del(::thread::g_pmutex);
 

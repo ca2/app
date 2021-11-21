@@ -2711,9 +2711,6 @@
     <ClInclude Include="platform\set_app_id.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\layer.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="platform\implementable.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
@@ -3835,9 +3832,6 @@
     <ClCompile Include="platform\main.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\layer.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="platform\implementable.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
@@ -3887,9 +3881,6 @@
     </None>
     <None Include="primitive\primitive\_factory_impl.h">
       <Filter>Header Files\primitive\primitive</Filter>
-    </None>
-    <None Include="acme.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="exception\_.inl">
       <Filter>Header Files\exception</Filter>

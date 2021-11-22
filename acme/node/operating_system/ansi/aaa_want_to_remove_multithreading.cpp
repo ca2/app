@@ -525,36 +525,7 @@
 ////}
 ////
 ////
-////int_bool WINAPI SetThreadPriority(htask_t htask,i32 nCa2Priority)
-////{
-////
-////   synchronous_lock lock(g_pmutexPendingThreadsLock);
-////
-////   // Look up the requested thread.
-////   map < htask_t,htask_t,PendingThreadInfo,PendingThreadInfo >::pair * threadInfo = pendingThreads().plookup(htask);
-////
-////   if(threadInfo == NULL)
-////   {
-////
-////      i32 iPolicy;
-////
-////      sched_param schedparam;
-////
-////      thread_get_os_priority(&iPolicy,&schedparam,nCa2Priority);
-////
-////      pthread_setschedparam(htask->m_posthread->m_pthread,iPolicy,&schedparam);
-////
-////      return true;
-////
-////   }
-////
-////   // Store the new priority.
-////   threadInfo->m_element2.nPriority = nCa2Priority;
-////
-////   return true;
-////}
-////
-////
+
 ////
 ////
 ////::u32 WINAPI TlsAlloc()

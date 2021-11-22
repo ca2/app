@@ -321,21 +321,6 @@ void * os_thread_thread_proc(void * pparameter);
 
 
 
-//int_bool WINAPI SetThreadPriority(htask_t htask, i32 nCa2Priority)
-//{
-//
-//   i32 iPolicy;
-//
-//   sched_param schedparam;
-//
-//   thread_get_os_priority(&iPolicy, &schedparam, (::enum_priority)nCa2Priority);
-//
-//   pthread_setschedparam((pthread_t)htask, iPolicy, &schedparam);
-//
-//   return true;
-//
-//}
-
 
 i32 get_os_thread_priority(::enum_priority epriority)
 {
@@ -479,27 +464,6 @@ int g_iDebug_post_thread_msg_time;
 //    return pthread_self();
 
 // }
-
-//
-//namespace parallelization
-//{
-//
-//   CLASS_DECL_ACME bool set_priority(::enum_priority epriority)
-//   {
-//
-//      return (::SetThreadPriority(::get_current_hthread(), epriority) != 0);
-//   }
-//
-//
-//   CLASS_DECL_ACME i32 priority()
-//   {
-//
-//      return ::GetThreadPriority(::get_current_hthread());
-//
-//   }
-//
-//
-//} // namespace acme
 
 
 //bool on_init_thread()

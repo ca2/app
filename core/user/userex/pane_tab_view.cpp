@@ -275,7 +275,7 @@ namespace userex
 
             auto pcontext = m_pcontext->m_papexcontext;
 
-            pcontext->file().put(pcontext->dir().home() / "debug_ca2/menu_view" / get_application()->m_strAppId + ".html", strOptionsImpact);
+            pcontext->file().put_memory(pcontext->dir().home() / "debug_ca2/menu_view" / get_application()->m_strAppId + ".html", strOptionsImpact);
 
 #endif
 

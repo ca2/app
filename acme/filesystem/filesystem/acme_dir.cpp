@@ -366,6 +366,10 @@ pacmedir->roaming();
 
    return "";
 
+#elif defined(FREEBSD)
+
+   return m_psystem->m_pacmefile->module() - 2;
+
 #else
 
    return m_psystem->m_pacmefile->module() - 4;

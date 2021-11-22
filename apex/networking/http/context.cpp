@@ -2328,7 +2328,7 @@ namespace http
 
       set[__id(cookie)] = strCookie;
 
-      ::e_status     estatus = error_failed;
+      ::e_status estatus = error_failed;
 
       i32 iStatusCode;
 

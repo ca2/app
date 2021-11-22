@@ -7,6 +7,9 @@ if (LINUX)
    set(PTHREAD TRUE)
 elseif (WIN32)
    set(USE_OPENSSL TRUE)
+elseif(FREEBSD)
+   set(USE_OPENSSL TRUE)
+   set(PTHREAD TRUE)
 endif ()
 
 
@@ -1184,6 +1187,90 @@ if (ANDROID)
 endif ()
 
 
+
+if (FREEBSD)
+
+   list(APPEND apex_source
+      node/freebsd/_.h
+      node/freebsd/_freebsd.h
+      node/freebsd/application.cpp
+      node/freebsd/application.h
+      #node/freebsd/dir_context.cpp
+      #node/freebsd/dir_context.h
+      #node/freebsd/dir_system.cpp
+      #node/freebsd/dir_system.h
+      node/freebsd/dumpinit.cpp
+      node/freebsd/error.cpp
+      node/freebsd/exception.cpp
+      node/freebsd/_factory.cpp
+      node/freebsd/
+      #node/freebsd/file_context.cpp
+      #node/freebsd/file_context.h
+      #node/freebsd/file_system.cpp
+      #node/freebsd/file_system.h
+      #node/freebsd/frame_window.cpp
+      node/freebsd/internal.h
+      node/freebsd/freebsd.cpp
+      #node/freebsd/os_context.cpp
+      #node/freebsd/os_context.h
+      #node/freebsd/process.cpp
+      #node/freebsd/process.h
+      node/freebsd/root_tools.cpp
+      node/freebsd/root_tools.h
+      node/freebsd/thread.cpp
+      node/freebsd/parallelization.h
+      node/freebsd/trace.cpp
+      node/freebsd/util.cpp
+      #node/posix/file_os_watcher.cpp
+      #node/posix/file_os_watcher.cpp
+      node/operating_system/posix/_posix.h
+      node/operating_system/posix/_.h
+      node/operating_system/freebsd/_.h
+      node/operating_system/freebsd/_c.h
+      node/operating_system/freebsd/_freebsd.h
+      node/operating_system/freebsd/_user.h
+      node/operating_system/freebsd/apex.cpp
+      node/operating_system/freebsd/application_system_run.cpp
+      node/operating_system/freebsd/callstack.cpp
+      node/operating_system/freebsd/cross_win_file.cpp
+      node/operating_system/freebsd/cross_win_file.h
+      node/operating_system/freebsd/cross_win_gdi.cpp
+      node/operating_system/freebsd/cross_win_gdi.h
+      node/operating_system/freebsd/cross_win_gdi_internal.h
+      node/operating_system/freebsd/debug.cpp
+      node/operating_system/freebsd/debug.h
+      # os/freebsd/exception_engine.cpp
+      # os/freebsd/exception_engine.h
+      node/operating_system/freebsd/file.cpp
+      node/operating_system/freebsd/file.h
+      node/operating_system/freebsd/graphics.cpp
+      node/operating_system/freebsd/graphics.h
+      node/operating_system/freebsd/graphics2.h
+      node/operating_system/freebsd/language.cpp
+      #os/freebsd/library.cpp
+      node/operating_system/freebsd/freebsd_freebsd.h
+      #node/operating_system/freebsd/lock.cpp
+      node/operating_system/freebsd/menu.cpp
+      node/operating_system/freebsd/message_loop.cpp
+      node/operating_system/freebsd/parallelization.cpp
+      node/operating_system/freebsd/os.cpp
+      #os/freebsd/process.cpp
+      #os/freebsd/process.h
+      #os/freebsd/process_pid.cpp
+      node/operating_system/freebsd/simple_app.cpp
+      node/operating_system/freebsd/shell_launcher.cpp
+      node/operating_system/freebsd/shell_launcher.h
+      node/operating_system/freebsd/standard_exception.cpp
+      #node/freebsd/interprocess_communication.cpp
+      node/operating_system/freebsd/time.cpp
+      node/operating_system/freebsd/user.cpp
+      node/operating_system/freebsd/user.h
+      node/operating_system/freebsd/user_private.h
+      node/operating_system/freebsd/win_base.cpp)
+endif ()
+
+
+
 if (APPLE)
    list(APPEND apex_source
       #timer.mm
@@ -1309,7 +1396,7 @@ if (MSVC)
 elseif(LINUX OR FREEBSD)
    pkg_check_modules(PKGCONFIG libcrypto libssl)
    target_compile_options(apex PRIVATE -fpermissive)
-      target_compile_options(apex PRIVATE ${PKGCONFIG_CFLAGS})
+   target_compile_options(apex PRIVATE ${PKGCONFIG_CFLAGS})
    target_link_options(apex PRIVATE ${PKGCONFIG_LDFLAGS})
    #target_link_options(apex PRIVATE -Wl,-rpath=$ORIGIN)
    target_link_libraries(apex PRIVATE dl pthread idn z)

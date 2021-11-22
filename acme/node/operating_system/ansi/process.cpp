@@ -30,7 +30,7 @@ CLASS_DECL_ACME int_bool is_process_running(::u32 pid)
 
 
 
-#if defined(LINUX) || defined(ANDROID)
+#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
 
 
 

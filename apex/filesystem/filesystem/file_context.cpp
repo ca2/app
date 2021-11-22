@@ -929,7 +929,7 @@ bool file_context::as_memory(const ::payload &payloadFile, memory_base &mem)
 }
 
 
-::e_status file_context::put(const ::payload &payloadFile, ::file::file *pfileSrc)
+::e_status file_context::put_memory(const ::payload &payloadFile, ::file::file *pfileSrc)
 {
 
    file_pointer pfile;

@@ -28,6 +28,12 @@
 #include "aura/node/operating_system/linux/_linux.h"
 #include "aura/node/operating_system/linux/_user.h"
 
+#elif defined(FREEBSD)
+
+#include "aura/node/operating_system/ansi/_ansi.h"
+#include "aura/node/operating_system/freebsd/_freebsd.h"
+#include "aura/node/operating_system/freebsd/_user.h"
+
 #elif defined(_UWP)
 
 #include "aura/node/operating_system/ansi/_ansi.h"

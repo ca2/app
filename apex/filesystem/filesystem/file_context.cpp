@@ -929,7 +929,7 @@ bool file_context::as_memory(const ::payload &payloadFile, memory_base &mem)
 }
 
 
-::e_status file_context::put(const ::payload &payloadFile, ::file::file *pfileSrc)
+::e_status file_context::put_memory(const ::payload &payloadFile, ::file::file *pfileSrc)
 {
 
    file_pointer pfile;
@@ -3703,9 +3703,7 @@ bool file_context::touch(const ::file::path &path)
    if (!exists(path))
    {
 
-      char ch = 0;
-
-      if (!put(path, { &ch, 0 }))
+      if (!put_memory(path, { nullptr, 0 }))
       {
 
          return false;

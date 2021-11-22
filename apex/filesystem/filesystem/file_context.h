@@ -179,8 +179,8 @@ public:
    //virtual ::e_status put_lines_utf8(const ::payload & payloadFile, const string_array & stra);
    
 
-   virtual ::e_status put(const ::payload & payloadFile, ::file::file * pfile);
-   virtual ::e_status put(const ::payload & payloadFile, const ::block & block);
+   virtual ::e_status put_memory(const ::payload & payloadFile, ::file::file * pfile);
+   virtual ::e_status put_memory(const ::payload & payloadFile, const ::block & block);
    virtual ::e_status put_text(const ::payload& payloadFile, const ::block& block);
    virtual ::e_status put_utf8_text(const ::payload & payloadFile, const ::block& block);
 

@@ -9,6 +9,10 @@ public:
 
 
    __pointer(::api)     m_papi;
+   string               m_strImplementation;
+   string               m_strProfileStore;
+   string               m_strApiClientConfig;
+   string               m_strBrowserProfile;
 
 
    api_client();
@@ -16,6 +20,9 @@ public:
 
 
    virtual ::e_status defer_api();
+
+
+   virtual ::e_status create_api();
 
 
    virtual ::e_status create_api(const ::string& strImplementation);

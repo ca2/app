@@ -17,12 +17,59 @@ api_client::~api_client()
 }
 
 
+
 ::e_status api_client::defer_api()
 {
 
-   throw interface_only_exception();
+   if (!m_papi)
+   {
 
-   return error_interface_only;
+      auto estatus = create_api();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      ::file::path pathProfile;
+
+      pathProfile = m_pcontext->m_papexcontext->dir().appdata() / "api" / m_strImplementation / (m_strProfileStore + ".network_payload");
+
+      estatus = m_papi->initialize_api(this, pathProfile);
+
+      if (!estatus)
+      {
+
+         m_papi.release();
+
+         return false;
+
+      }
+
+      estatus = m_papi->api_login(m_strApiClientConfig, m_strBrowserProfile);
+
+      if (!estatus && estatus != success_scheduled)
+      {
+
+         m_papi.release();
+
+         return false;
+
+      }
+
+   }
+
+   return true;
+
+}
+
+
+::e_status api_client::create_api()
+{
+
+   return create_api(m_strImplementation);
 
 }
 

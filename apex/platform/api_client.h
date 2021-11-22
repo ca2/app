@@ -21,6 +21,9 @@ public:
    virtual ::e_status create_api(const ::string& strImplementation);
 
 
+   ::e_status api_get(::payload& payload, const string& strUrl, property_set& set);
+
+
 };
 
 

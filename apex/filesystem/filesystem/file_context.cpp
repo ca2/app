@@ -896,7 +896,7 @@ bool file_context::as_memory(const ::payload &payloadFile, memory_base &mem)
    if (block.get_data() == nullptr || block.get_size() <= 0)
    {
 
-      return put_memory(payloadFile, { "", 0 });
+      return put_memory(payloadFile, nullptr);
 
    }
    else

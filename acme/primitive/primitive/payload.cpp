@@ -2672,6 +2672,14 @@ string & payload::as_string(const char * pszOnNull)
          return m_ppayload->i64(iDefault);
       case e_type_property:
          return m_pproperty->i64(iDefault);
+      case e_type_enum_command:
+         return m_ecommand;
+      case e_type_enum_status:
+         return m_estatus;
+      case e_type_enum_check:
+         return m_echeck;
+      case e_type_enum_flag
+         return m_eflag;
       default:
          return iDefault;
 

@@ -102,6 +102,7 @@ public:
       ::enum_status              m_estatus;
       ::enum_command             m_ecommand;
       ::enum_check               m_echeck;
+      ::enum_flag                m_eflag;
       ::color::color             m_color;
       ::color::hls               m_hls;
 

@@ -455,7 +455,7 @@ if (WIN32)
    list(APPEND library_source
       #node/windows/base/_windows.h
       #node/windows/base/_factory.cpp
-      #node/windows/base/factory_exchange.h
+      #node/windows/base/
       #node/windows/base/implementation.h
       #node/windows/base/print_job.cpp
       #node/windows/base/print_job.h
@@ -468,7 +468,7 @@ if (WIN32)
       #node/windows/copydesk.cpp
       #node/windows/copydesk.h
       #node/windows/_factory.cpp
-      #node/windows/factory_exchange.h
+      #node/windows/
       #node/windows/graphics_buffer.cpp
       #node/windows/interaction_impl.cpp
       #node/windows/interaction_impl.h
@@ -597,7 +597,7 @@ if (UWP)
       node/universal_windows/directx_interaction.h
       node/universal_windows/error.cpp
       node/universal_windows/_factory.cpp
-      node/universal_windows/factory_exchange.h
+      node/universal_windows/
       node/universal_windows/graphics_buffer.cpp
       node/universal_windows/interaction_impl.cpp
       node/universal_windows/interaction_impl.h
@@ -685,7 +685,7 @@ if (LINUX)
       #node/linux/copydesk.cpp
       #node/linux/copydesk.h
       node/linux/_factory.cpp
-      node/linux/factory_exchange.h
+      node/linux/
       #node/linux/interaction_impl.cpp
       #node/linux/interaction_impl.h
       node/linux/system.cpp
@@ -783,7 +783,7 @@ if (MACOS)
       #node/macos/copydesk.cpp
       #node/macos/copydesk.h
       node/macos/_factory.cpp
-      node/macos/factory_exchange.h
+      node/macos/
       node/macos/frame_window.cpp
       #node/macos/interaction_impl.cpp
       #node/macos/interaction_impl.h
@@ -876,7 +876,7 @@ if (IOS)
       node/ios/AuraWindowFrameView.mm
       node/ios/exception.cpp
       node/ios/_factory.cpp
-      node/ios/factory_exchange.h
+      node/ios/
       node/ios/host_interaction.cpp
       node/ios/host_interaction.h
       node/ios/implementation.h
@@ -1021,7 +1021,7 @@ if (ANDROID)
       node/android/error.cpp
       node/android/exception.cpp
       node/android/_factory.cpp
-      node/android/factory_exchange.h
+      node/android/
       node/android/file.cpp
       node/android/file.h
       node/android/file_context.cpp

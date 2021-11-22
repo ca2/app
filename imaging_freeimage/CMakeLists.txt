@@ -8,7 +8,7 @@ list(APPEND library_source
         context_image.cpp
         context_image.h
         _factory.cpp
-        factory_exchange.h
+
         file_procedure.cpp
         file_procedure_ex1.cpp
         fimemory.h

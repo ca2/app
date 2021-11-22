@@ -369,7 +369,7 @@ if(MACOS)
     list(APPEND library_source
             #node/macos/_.h
             #node/macos/_factory.cpp
-            #node/macos/factory_exchange.h
+            #node/macos/
 
 
 
@@ -438,7 +438,7 @@ if(ANDROID)
         node/android/error.cpp
         node/android/exception.cpp
         node/android/_factory.cpp
-        node/android/factory_exchange.h
+        node/android/
         node/android/file.cpp
         node/android/file.h
         node/android/file_context.cpp

@@ -117,7 +117,7 @@ namespace acme
       //virtual void _load_factory(__transport(::factory::factory) & pfactory, const ::string& strComponent);
 
       //virtual ::e_status factory_exchange(const ::string & strName = nullptr, ::factory::factory * pfactory = nullptr);
-      virtual __transport(::factory::factory) add_factory_item(const ::string& strLibrary);
+      virtual __transport(::factory::factory) create_factory(const ::string& strLibrary);
 
 
    };

@@ -10,7 +10,7 @@ list(APPEND library_source
         context.cpp
         context.h
         _factory.cpp
-        factory_exchange.h
+
         framework.cpp
         framework.h
         image_opengl.cpp

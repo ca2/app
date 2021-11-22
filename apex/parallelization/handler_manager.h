@@ -32,7 +32,7 @@ public:
    ::e_status destroy_composites() override;
 
 
-   virtual bool is_branch_current() const;
+   bool is_branch_current() const override;
 
 
    ::e_status handler_sync(const ::routine & routine);

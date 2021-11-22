@@ -1,7 +1,7 @@
 #pragma once
 
 
-#if defined(LINUX)
+#if defined(LINUX) || defined(FREEBSD)
 #include <netdb.h>
 #define in_addr6 in6_addr
 #elif defined(ANDROID)

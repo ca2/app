@@ -7,7 +7,7 @@
 
 #endif
 
-#if defined(__APPLE__)
+#if defined(__APPLE__) || defined(FREEBSD)
 
 #define bcopy(src, dest, len) ::memcpy_dup(dest, src, len)
 

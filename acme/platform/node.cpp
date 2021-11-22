@@ -561,7 +561,7 @@ namespace acme
    ::e_status node::set_last_run_application_path(const ::string & strAppId)
    {
 
-      ::file::path path = m_psystem->m_pacmefile->executable();
+      ::file::path path = m_psystem->m_pacmefile->module();
 
       ::file::path pathFile = get_last_run_application_path_file(strAppId);
 

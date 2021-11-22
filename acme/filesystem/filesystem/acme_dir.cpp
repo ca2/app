@@ -224,9 +224,9 @@ string acme_dir::system_short_name()
 ::file::path acme_dir::app_relative()
 {
 
-   ::file::path path = m_psystem->m_pacmefile->executable();
+   ::file::path path = m_psystem->m_pacmefile->module();
 
-   path = relative(path);
+   path = file_path_folder(path);
 
    return path;
 
@@ -290,7 +290,7 @@ pacmedir->roaming();
 
 #else
 
-   return m_psystem->m_pacmefile->executable() - 4;
+   return m_psystem->m_pacmefile->module() - 4;
 
 #endif
 
@@ -325,10 +325,9 @@ pacmedir->roaming();
 
 #else
 
-   return m_psystem->m_pacmefile->executable() - 4;
+   return m_psystem->m_pacmefile->module() - 4;
 
 #endif
-
 
 }
 
@@ -369,7 +368,7 @@ pacmedir->roaming();
 
 #else
 
-   return m_psystem->m_pacmefile->executable()-4;
+   return m_psystem->m_pacmefile->module() - 4;
 
 #endif
 
@@ -382,10 +381,6 @@ pacmedir->roaming();
    return ::file_path_folder(install());
 
 }
-
-
-
-
 
 
 #ifdef WINDOWS_DESKTOP

@@ -58,7 +58,7 @@ acme_file::~acme_file()
 }
 
 
-::file::path acme_file::executable()
+::file::path acme_file::module()
 {
 
    if (m_pathExecutable.is_empty())

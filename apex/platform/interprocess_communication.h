@@ -1,15 +1,15 @@
 #pragma once
 
 
-#ifdef __APPLE__
-typedef int key_t;
-#elif defined(LINUX)
-typedef __key_t key_t;
-#elif defined(ANDROID)
-#else
-//#include "ca_mutex.h"
-#endif
-
+//#ifdef __APPLE__
+//typedef int key_t;
+//#elif defined(LINUX)
+//typedef __key_t key_t;
+//#elif defined(ANDROID)
+//#else
+////#include "ca_mutex.h"
+//#endif
+//
 
 namespace interprocess_communication
 {
@@ -42,12 +42,12 @@ namespace interprocess_communication
 
 
 
-      virtual bool open(const ::string & pszChannel, ::launcher * plauncher = nullptr);
-      virtual bool close();
+      virtual ::e_status open(const ::string & strChannel, ::launcher * plauncher = nullptr);
+      virtual ::e_status close();
 
 
-      virtual bool send(const ::string & pszMessage, duration durationTimeout);
-      virtual bool send(int message,void * pdata,int len, duration durationTimeout);
+      virtual ::e_status send(const ::string & strMessage, const duration & durationTimeout);
+      virtual ::e_status send(int message,void * pdata,int len, const duration & durationTimeout);
 
 
       virtual bool is_tx_ok();
@@ -125,7 +125,7 @@ namespace interprocess_communication
       ::e_status on_initialize_object() override;
 
 
-      virtual bool create(const ::string & pszChannel);
+      virtual ::e_status create(const ::string & strChannel);
       ::e_status destroy() override;
 
 

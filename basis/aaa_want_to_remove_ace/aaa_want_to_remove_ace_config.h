@@ -1,8 +1,6 @@
 #pragma once
 
 
-#define __DEBUG_POWER
-
 
 #include "platform/platform/config.h"
 

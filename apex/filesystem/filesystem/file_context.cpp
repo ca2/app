@@ -805,7 +805,7 @@ bool file_context::as_memory(const ::payload &payloadFile, memory_base &mem)
 }
 
 
-::e_status file_context::put(const ::payload &payloadFile, const block & block)
+::e_status file_context::put_memory(const ::payload &payloadFile, const block & block)
 {
 
    file_transport pfile;

@@ -24,7 +24,7 @@ namespace browser
 
       using ::simple_main_frame::get_translucency;
       virtual ::user::enum_translucency get_translucency(::user::style * pstyle) const override;
-      virtual ::experience::frame * experience_get_frame() override;
+      virtual ::experience::frame * frame_experience() override;
 
       virtual bool has_pending_graphical_update() override;
 

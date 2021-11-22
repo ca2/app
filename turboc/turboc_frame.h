@@ -20,7 +20,7 @@ namespace turboc
 
 
       virtual ::user::enum_translucency get_translucency(::user::style * pstyle) const override;
-      virtual ::experience::frame * experience_get_frame();
+      virtual ::experience::frame * frame_experience();
 
 
    };

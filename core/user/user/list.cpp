@@ -3980,7 +3980,7 @@ namespace user
 
                         auto pcontext = get_context();
 
-                        pcontext->m_papexcontext->file().put_contents(strSort, stra.implode("\r\n"));
+                        pcontext->m_papexcontext->file().put_text(strSort, stra.implode("\n"));
 
                         synchronouslock.unlock();
 

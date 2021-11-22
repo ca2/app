@@ -295,7 +295,7 @@ namespace http
 
       }
 
-      m_pcontext->m_papexcontext->file().put_contents(strFile, strCache);
+      m_pcontext->m_papexcontext->file().put_text(strFile, strCache);
 
       if (::is_set(petype))
       {
@@ -373,7 +373,7 @@ namespace http
 
       }
 
-      m_pcontext->m_papexcontext->file().put_contents(strFile, strCache);
+      m_pcontext->m_papexcontext->file().put_text(strFile, strCache);
 
       return len;
 

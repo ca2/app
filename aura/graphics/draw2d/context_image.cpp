@@ -619,7 +619,7 @@ context_image::~context_image()
 
    auto pcontext = get_context();
 
-   return pcontext->m_papexcontext->file().put_contents(payloadFile, mem);
+   return pcontext->m_papexcontext->file().put(payloadFile, mem);
 
 }
 

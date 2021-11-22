@@ -1796,7 +1796,7 @@ void dir_context::matter_ls(const ::file::path & path, ::file::listing & stra)
 
          strLs = m_pcontext->m_papexcontext->http().get(strUrl, set);
 
-         m_pcontext->m_papexcontext->file().put_contents(strFile, strLs);
+         m_pcontext->m_papexcontext->file().put_text(strFile, strLs);
 
       }
 
@@ -2201,7 +2201,7 @@ ret:
    if (pathCache.has_char() && psystem->m_pdirsystem->m_bMatterFromHttpCache)
    {
 
-      m_pcontext->m_papexcontext->file().put_contents(pathCache, path);
+      m_pcontext->m_papexcontext->file().put_text(pathCache, path);
 
       //::file::path pathCache2 = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / path;
 

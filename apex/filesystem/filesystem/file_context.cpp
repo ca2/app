@@ -805,7 +805,7 @@ bool file_context::as_memory(const ::payload &payloadFile, memory_base &mem)
 }
 
 
-bool file_context::put_contents(const ::payload &payloadFile, const void *pvoidContents, ::count count)
+::e_status file_context::put(const ::payload &payloadFile, const block & block)
 {
 
    file_transport pfile;
@@ -840,10 +840,12 @@ bool file_context::put_contents(const ::payload &payloadFile, const void *pvoidC
 
    }
 
-   if(count > 0)
+   pfile->set_size(0);
+
+   if(block.size() > 0)
    {
 
-      pfile->write(pvoidContents, count);
+      pfile->write(block.get_data(), block.get_size());
 
    }
 
@@ -852,15 +854,15 @@ bool file_context::put_contents(const ::payload &payloadFile, const void *pvoidC
 }
 
 
-bool file_context::add_contents(const ::payload &payloadFile, const void *pvoidContents, ::count count)
+::e_status file_context::add_contents(const ::payload &payloadFile, const void *pvoidContents, ::count count)
 {
 
-   file_pointer spfile;
+   file_pointer pfile;
 
    try
    {
 
-      spfile = get_file(payloadFile,
+      pfile = get_file(payloadFile,
                         ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_no_truncate |
                         ::file::e_open_share_exclusive | ::file::e_open_defer_create_directory);
 
@@ -872,43 +874,46 @@ bool file_context::add_contents(const ::payload &payloadFile, const void *pvoidC
 
    }
 
-   if (spfile.is_null())
+   if (pfile.is_null())
+   {
+
       return false;
 
+   }
 
-   spfile->seek_to_end();
+   pfile->seek_to_end();
 
-   spfile->write(pvoidContents, count);
+   pfile->write(pvoidContents, count);
 
    return true;
 
 }
 
 
-bool file_context::put_contents(const ::payload &payloadFile, const char *pcszContents)
+::e_status file_context::put_text(const ::payload& payloadFile, const ::block & block)
 {
 
-   if (pcszContents == nullptr)
+   if (block.get_data() == nullptr || block.get_size() <= 0)
    {
 
-      return put_contents(payloadFile, "", 0);
+      return put(payloadFile, { "", 0 });
 
    }
    else
    {
 
-      string strContents(pcszContents, strlen(pcszContents));
+      string strContents((const char *) block.get_data(), block.get_size());
 
       ::str::fix_eol(strContents);
 
-      return put_contents(payloadFile, strContents, strContents.get_length());
+      return put(payloadFile, strContents);
 
    }
 
 }
 
 
-bool file_context::add_contents(const ::payload &payloadFile, const char *pcszContents)
+::e_status file_context::add_contents(const ::payload &payloadFile, const char *pcszContents)
 {
 
    if (pcszContents != nullptr)
@@ -924,16 +929,16 @@ bool file_context::add_contents(const ::payload &payloadFile, const char *pcszCo
 }
 
 
-bool file_context::put_contents(const ::payload &payloadFile, ::file::file *pfile)
+::e_status file_context::put(const ::payload &payloadFile, ::file::file *pfileSrc)
 {
 
-   file_pointer spfile;
+   file_pointer pfile;
 
-   spfile = get_file(payloadFile,
+   pfile = get_file(payloadFile,
                      ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_share_deny_write |
                      ::file::e_open_defer_create_directory);
 
-   if (spfile.is_null())
+   if (pfile.is_null())
    {
 
       return false;
@@ -946,10 +951,10 @@ bool file_context::put_contents(const ::payload &payloadFile, ::file::file *pfil
 
    memsize uRead;
 
-   while ((uRead = pfile->read(mem.get_data(), mem.get_size())) > 0)
+   while ((uRead = pfileSrc->read(mem.get_data(), mem.get_size())) > 0)
    {
 
-      spfile->write(mem.get_data(), uRead);
+      pfile->write(mem.get_data(), uRead);
 
    }
 
@@ -958,37 +963,35 @@ bool file_context::put_contents(const ::payload &payloadFile, ::file::file *pfil
 }
 
 
-bool file_context::put_contents(const ::payload &payloadFile, memory &mem)
+//bool file_context::put_contents(const ::payload &payloadFile, memory &mem)
+//{
+//
+//   return put_contents(payloadFile, mem.get_data(), (count) mem.get_size());
+//
+//}
+
+
+::e_status file_context::put_utf8_text(const ::payload &payloadFile, const ::block & block)
 {
 
-   return put_contents(payloadFile, mem.get_data(), (count) mem.get_size());
-
-}
-
-
-bool file_context::put_contents_utf8(const ::payload &payloadFile, const char *pcszContents)
-{
-
-   file_pointer spfile;
-
-   spfile = get_file(payloadFile,
+   auto pfile = get_file(payloadFile,
                      ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_share_deny_write |
                      ::file::e_open_defer_create_directory);
 
-   if (spfile.is_null())
+   if (!pfile)
    {
 
-      return false;
+      return pfile;
 
    }
 
-   spfile->write(UTF8_BOM, STATIC_ASCII_STRING_LENGTH(UTF8_BOM));
+   pfile->write(UTF8_BOM, STATIC_ASCII_STRING_LENGTH(UTF8_BOM));
 
-   string strContents(pcszContents, strlen(pcszContents));
+   string strContents((const char *) block.get_data(), block.get_size());
 
    ::str::fix_eol(strContents);
 
-   spfile->write(strContents);
+   pfile->write(strContents);
 
    return true;
 
@@ -2056,9 +2059,9 @@ i32 file_context::cmp(const ::file::path &psz1, const ::file::path &psz2)
 //void file_context::dtf(const ::file::path & pszFile, ::file::patha & stra)
 //{
 //
-//   file_pointer spfile = get_file(pszFile, ::file::e_open_create | ::file::e_open_write | ::file::e_open_binary);
+//   file_pointer pfile = get_file(pszFile, ::file::e_open_create | ::file::e_open_write | ::file::e_open_binary);
 //
-//   if (spfile.is_null())
+//   if (pfile.is_null())
 //   {
 //
 //      __throw(::exception("failed"));
@@ -2071,7 +2074,7 @@ i32 file_context::cmp(const ::file::path &psz1, const ::file::path &psz2)
 //
 //   //MD5_CTX ctx;
 //
-//   write_gen_string(spfile, nullptr, strVersion);
+//   write_gen_string(pfile, nullptr, strVersion);
 //
 //   __pointer(::file::file) pfile2;
 //
@@ -2096,28 +2099,28 @@ i32 file_context::cmp(const ::file::path &psz1, const ::file::path &psz2)
 //      }
 //      else if (m_pcontext->m_papexcontext->dir().is(stra[i]))
 //         continue;
-//      write_n_number(spfile, nullptr, 1);
-//      iPos = spfile->get_position();
-//      write_gen_string(spfile, nullptr, strMd5);
+//      write_n_number(pfile, nullptr, 1);
+//      iPos = pfile->get_position();
+//      write_gen_string(pfile, nullptr, strMd5);
 //      MD5_Init(&ctx);
 //      string strRelative = stra[i].relative();
-//      write_gen_string(spfile, &ctx, strRelative);
+//      write_gen_string(pfile, &ctx, strRelative);
 //      if (pfile2->open(stra[i], ::file::e_open_read | ::file::e_open_binary).failed())
 //         __throw(::exception("failed"));
-//      write_n_number(spfile, &ctx, (i32)pfile2->get_size());
+//      write_n_number(pfile, &ctx, (i32)pfile2->get_size());
 //      while ((uRead = pfile2->read(buf, iBufSize)) > 0)
 //      {
-//         spfile->write(buf, uRead);
+//         pfile->write(buf, uRead);
 //         MD5_Update(&ctx, buf, (size_t)uRead);
 //      }
-//      spfile->seek(iPos, ::e_seek_set);
+//      pfile->seek(iPos, ::e_seek_set);
 //      strMd5 = __string(ctx);
-//      write_gen_string(spfile, nullptr, strMd5);
-//      spfile->seek_to_end();
+//      write_gen_string(pfile, nullptr, strMd5);
+//      pfile->seek_to_end();
 //
 //   }
 //
-//   write_n_number(spfile, nullptr, 2);
+//   write_n_number(pfile, nullptr, 2);
 //
 //}
 //
@@ -2127,12 +2130,12 @@ i32 file_context::cmp(const ::file::path &psz1, const ::file::path &psz2)
 //
 //   string strVersion;
 //
-//   file_pointer spfile = get_file(pszFile, ::file::e_open_read | ::file::e_open_binary);
+//   file_pointer pfile = get_file(pszFile, ::file::e_open_read | ::file::e_open_binary);
 //
-//   if (spfile.is_null())
+//   if (pfile.is_null())
 //      __throw(::exception("failed"));
 //
-//   read_gen_string(spfile, nullptr, strVersion);
+//   read_gen_string(pfile, nullptr, strVersion);
 //
 //   i64 n;
 //
@@ -2153,20 +2156,20 @@ i32 file_context::cmp(const ::file::path &psz1, const ::file::path &psz2)
 //   {
 //      while (true)
 //      {
-//         read_n_number(spfile, nullptr, n);
+//         read_n_number(pfile, nullptr, n);
 //         if (n == 2)
 //            break;
-//         read_gen_string(spfile, nullptr, strMd5);
+//         read_gen_string(pfile, nullptr, strMd5);
 //         MD5_Init(&ctx);
-//         read_gen_string(spfile, &ctx, strRelative);
+//         read_gen_string(pfile, &ctx, strRelative);
 //         ::file::path strPath = ::file::path(pszDir) / strRelative;
 //         m_pcontext->m_papexcontext->dir().mk(strPath.folder());
 //         if (pfile2->open(strPath, ::file::e_open_create | ::file::e_open_binary | ::file::e_open_write).failed())
 //            __throw(::exception("failed"));
-//         read_n_number(spfile, &ctx, iLen);
+//         read_n_number(pfile, &ctx, iLen);
 //         while (iLen > 0)
 //         {
-//            uRead = spfile->read(buf, (::u32)(minimum(iBufSize, iLen)));
+//            uRead = pfile->read(buf, (::u32)(minimum(iBufSize, iLen)));
 //            if (uRead == 0)
 //               break;
 //            pfile2->write(buf, uRead);
@@ -3026,15 +3029,15 @@ file_transport file_context::get_file(const ::payload &payloadFile, const ::file
 
          //      strPath = purl->get_object("matter://" + strPath).Mid(1);
 
-         //      spfile = App(papp).alloc(__type(::file::binary_file));
+         //      pfile = App(papp).alloc(__type(::file::binary_file));
 
-         //      ::extended::status = spfile->open(App(papp).dir().matter(strPath), nOpenFlags);
+         //      ::extended::status = pfile->open(App(papp).dir().matter(strPath), nOpenFlags);
 
          //   }
          //   else if (&get_session() != nullptr && psession->appptra().lookup(strApp, pappLookup))
          //   {
 
-         //      spfile = App(pappLookup).file().get_file("matter://" + strPath, nOpenFlags, &::extended::status);
+         //      pfile = App(pappLookup).file().get_file("matter://" + strPath, nOpenFlags, &::extended::status);
 
          //   }
          //   else
@@ -3044,7 +3047,7 @@ file_transport file_context::get_file(const ::payload &payloadFile, const ::file
 
          //      strPath = Sys(papp).get_matter_cache_path(strPath);
 
-         //      spfile = get_file(strPath, nOpenFlags, &::extended::status);
+         //      pfile = get_file(strPath, nOpenFlags, &::extended::status);
 
          //   }
 
@@ -3060,7 +3063,7 @@ file_transport file_context::get_file(const ::payload &payloadFile, const ::file
          //   /*            if((nOpenFlags & ::file::e_open_create) == 0 && !exists(strPath))
          //   {
          //   TRACE("::application::file does not exist!! : \"%s\"",strPath);
-         //   return spfile;
+         //   return pfile;
          //   }
          //   */
 
@@ -3601,7 +3604,7 @@ bool file_context::save_lines(const ::payload &payloadFile, string_array &stra)
 
    string str = stra.implode("\n");
 
-   put_contents_utf8(payloadFile, str);
+   put_utf8_text(payloadFile, str);
 
    return true;
 
@@ -3700,9 +3703,9 @@ bool file_context::touch(const ::file::path &path)
    if (!exists(path))
    {
 
-      char ch;
+      char ch = 0;
 
-      if (!put_contents(path, &ch, 0))
+      if (!put(path, { &ch, 0 }))
       {
 
          return false;
@@ -3714,47 +3717,6 @@ bool file_context::touch(const ::file::path &path)
    return true;
 
 }
-
-//string file_context::md5(const ::payload & payloadFile)
-//{
-//   return psystem->m_spfile->md5(payloadFile, get_application());
-//}
-
-//string file_context::nessie(const ::payload & payloadFile)
-//{
-//   return psystem->m_spfile->nessie(payloadFile, get_application());
-//}
-
-//
-//::file::path file_context::dropbox_info_network_payload()
-//{
-//
-//   return psystem->m_spfile->dropbox_info_network_payload(get_application());
-//
-//}
-
-//
-//::file::path file_context::onedrive_global_ini()
-//{
-//
-//   return psystem->m_spfile->onedrive_global_ini(get_application());
-//
-//}
-
-//
-//::file::path file_context::onedrive_cid_ini()
-//{
-//
-//   return psystem->m_spfile->onedrive_cid_ini(get_application());
-//
-//}
-
-//
-//} // namespace windows
-//
-//
-//
-
 
 
 ::e_status file_context::update_module_path()

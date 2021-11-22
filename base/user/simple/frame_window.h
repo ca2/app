@@ -102,8 +102,8 @@ public:
    virtual bool WindowDataSaveWindowRect() override;
    virtual bool WindowDataLoadWindowRect(bool bForceRestore = false, bool bInitialFramePosition = false) override;
 
-
-   virtual ::experience::frame * experience_get_frame();
+   using ::experience::frame_window::frame_experience;
+   virtual ::experience::frame * frame_experience();
 
    //virtual bool LoadFrame(const ::string & pszMatter, u32 dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, ::user::interaction * puiParent = nullptr, ::user::system * pusersystem = nullptr) override;
 

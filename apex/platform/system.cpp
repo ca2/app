@@ -4806,11 +4806,11 @@ pacmedir->create("/ca2core");
       if (strBrowser.has_char())
       {
 
-         m_pcontext->m_papexcontext->file().put_contents_utf8(m_psystem->m_pacmedir->system() / "browser.txt", strBrowser);
+         m_pcontext->m_papexcontext->file().put_utf8_text(m_psystem->m_pacmedir->system() / "browser.txt", strBrowser);
 
-         m_pcontext->m_papexcontext->file().put_contents_utf8(m_psystem->m_pacmedir->system() / "browser_path.txt", strBrowserPath);
+         m_pcontext->m_papexcontext->file().put_utf8_text(m_psystem->m_pacmedir->system() / "browser_path.txt", strBrowserPath);
 
-         m_pcontext->m_papexcontext->file().put_contents_utf8(m_psystem->m_pacmedir->system() / "browser_dir.txt", strBrowserDir);
+         m_pcontext->m_papexcontext->file().put_utf8_text(m_psystem->m_pacmedir->system() / "browser_dir.txt", strBrowserDir);
 
       }
 

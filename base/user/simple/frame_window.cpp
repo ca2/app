@@ -570,7 +570,7 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
 }
 
 
-::experience::frame * simple_frame_window::experience_get_frame()
+::experience::frame * simple_frame_window::frame_experience()
 {
 
    auto psession = get_session();
@@ -599,7 +599,7 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
          if(pschemaRef.is_set())
          {
 
-            auto pframe = frame_experience(pschemaRef->m_strExperience, pschemaRef->m_strFrameSchema);
+            auto pframe = ::experience::frame_window::frame_experience(pschemaRef->m_strExperience, pschemaRef->m_strFrameSchema);
 
             if(::is_set(pframe))
             {
@@ -618,7 +618,7 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
 
    }
 
-   auto pframe = frame_experience(m_varFrame["experience"], m_varFrame["schema"]);
+   auto pframe = ::experience::frame_window::frame_experience(m_varFrame["experience"], m_varFrame["schema"]);
 
    string strStyle;
    
@@ -661,7 +661,7 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
    try
    {
 
-      pexperienceframe = ::move_transfer(experience_get_frame());
+      pexperienceframe = ::move_transfer(frame_experience());
 
    }
    catch (const ::exception &)

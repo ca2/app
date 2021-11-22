@@ -810,7 +810,7 @@ void interprocess_intercommunication::defer_add_module(const ::string & strModul
 
    strModuleList = m_straModule.implode("\n");
 
-   m_pcontext->m_papexcontext->file().put_contents(pathModule,strModuleList);
+   m_pcontext->m_papexcontext->file().put_text(pathModule,strModuleList);
 
 #endif
 

@@ -60,14 +60,14 @@ namespace helloworld
    }
 
 
-   ::experience::frame * main_frame::experience_get_frame()
+   ::experience::frame * main_frame::frame_experience()
    {
 
 
 
-      //__pointer(::user::experience::main_frame::main_frame) pschema = papplication->experience()->experience_get_frame("experience_lite", "001");
+      //__pointer(::user::experience::main_frame::main_frame) pschema = papplication->experience()->frame_experience("experience_lite", "001");
 
-      auto pframe = papplication->experience()->experience_get_frame(nullptr, "013");
+      auto pframe = papplication->experience()->frame_experience(nullptr, "013");
 
       pframe->set_style("LightBlue");
 

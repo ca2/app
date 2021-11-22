@@ -63,10 +63,10 @@ namespace browser
    }
 
 
-   ::experience::frame * main_frame::experience_get_frame()
+   ::experience::frame * main_frame::frame_experience()
    {
 
-      auto pframe = papplication->experience()->experience_get_frame(nullptr, "013");
+      auto pframe = papplication->experience()->frame_experience(nullptr, "013");
 
       pframe->set_style("LightBlue");
 

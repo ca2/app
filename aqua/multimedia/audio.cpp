@@ -70,7 +70,7 @@ namespace aqua
 
       pathImplementation = m_pcontext->m_papexcontext->dir().config() / "config/system/text_to_speech.txt";
 
-      m_pcontext->m_papexcontext->file().put_contents(pathImplementation, strTtsImplementation);
+      m_pcontext->m_papexcontext->file().put_text(pathImplementation, strTtsImplementation);
 
       m_strTtsImplementation = m_pcontext->m_papexcontext->file().as_string(pathImplementation);
 

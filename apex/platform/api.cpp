@@ -101,7 +101,7 @@ void api::on_login_response()
 
    auto strNetworkPayload = payload.get_network_payload();
 
-   m_pcontext->m_papexcontext->file().put_contents(m_pathProfile, strNetworkPayload);
+   m_pcontext->m_papexcontext->file().put_text(m_pathProfile, strNetworkPayload);
 
    return ::success;
 

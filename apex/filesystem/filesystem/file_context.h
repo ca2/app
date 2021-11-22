@@ -179,16 +179,14 @@ public:
    //virtual ::e_status put_lines_utf8(const ::payload & payloadFile, const string_array & stra);
    
 
-   virtual bool put_contents(const ::payload & payloadFile, const void * pvoidContents, ::count count);
-   virtual bool put_contents(const ::payload & payloadFile, const char * pcszContents);
-
-   virtual bool put_contents(const ::payload & payloadFile, ::file::file * pfile);
-   virtual bool put_contents(const ::payload & payloadFile, memory & mem);
-   virtual bool put_contents_utf8(const ::payload & payloadFile, const char * pcszContents);
+   virtual ::e_status put(const ::payload & payloadFile, ::file::file * pfile);
+   virtual ::e_status put(const ::payload & payloadFile, const ::block & block);
+   virtual ::e_status put_text(const ::payload& payloadFile, const ::block& block);
+   virtual ::e_status put_utf8_text(const ::payload & payloadFile, const ::block& block);
 
 
-   virtual bool add_contents(const ::payload & payloadFile, const void * pvoidContents, ::count count);
-   virtual bool add_contents(const ::payload & payloadFile, const char * pcszContents);
+   virtual ::e_status add_contents(const ::payload & payloadFile, const void * pvoidContents, ::count count);
+   virtual ::e_status add_contents(const ::payload & payloadFile, const char * pcszContents);
 
 
    virtual bool is_read_only(const ::file::path & psz);

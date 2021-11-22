@@ -63,7 +63,7 @@ namespace console
 
       virtual void message_queue_message_handler(::message::message * pmessage) override;
 
-      ::experience::frame * experience_get_frame() override;
+      ::experience::frame * frame_experience() override;
       
       
    };

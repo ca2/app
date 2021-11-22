@@ -548,7 +548,7 @@ namespace crypto
 
          }
 
-         if (!m_pcontext->m_papexcontext->file().put_contents(payloadFile, memoryEncrypt))
+         if (!m_pcontext->m_papexcontext->file().put(payloadFile, memoryEncrypt))
          {
 
             return false;
@@ -753,7 +753,7 @@ namespace crypto
 
          generate_random_alphanumeric(str.get_string_buffer(iLength), iLength);
 
-         m_pcontext->m_papexcontext->file().put_contents(strPath, str);
+         m_pcontext->m_papexcontext->file().put(strPath, str);
 
          return str;
 

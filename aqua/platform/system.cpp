@@ -306,6 +306,8 @@ namespace aqua
 
             }
 
+            m_bAudio = true;
+
             return estatus;
 
          }

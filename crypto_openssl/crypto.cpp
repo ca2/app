@@ -1204,7 +1204,7 @@ namespace crypto_openssl
       char* pchData = nullptr;
       long count = BIO_get_mem_data(output, &pchData);
 
-      m_pcontext->m_papexcontext->file().put_contents(strDir / "META-INF/zigbert.rsa", pchData, count);
+      m_pcontext->m_papexcontext->file().put(strDir / "META-INF/zigbert.rsa", { pchData, count });
 
       BIO_free(output);
       PKCS7_free(pkcs7);

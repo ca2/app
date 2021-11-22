@@ -483,10 +483,10 @@ namespace console
    }
 
 
-   __pointer(::experience::frame) prompt_frame::experience_get_frame()
+   __pointer(::experience::frame) prompt_frame::frame_experience()
    {
 
-      auto pframe = papplication->experience()->experience_get_frame("experience_lite","002");
+      auto pframe = papplication->experience()->frame_experience("experience_lite","002");
 
       return pframe;
 

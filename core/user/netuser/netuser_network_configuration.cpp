@@ -149,7 +149,7 @@ namespace usernet
 
                doc.root()->set_attribute("port", strPort);
 
-               pcontext->m_papexcontext->file().put_contents(pcontext->m_papexcontext->dir().appdata()/"proxy.xml", doc.get_xml());
+               pcontext->m_papexcontext->file().put_text(pcontext->m_papexcontext->dir().appdata()/"proxy.xml", doc.get_xml());
 
             }
 

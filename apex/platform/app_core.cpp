@@ -1830,7 +1830,7 @@ __transport(::application) app_core::new_application(const char* pszAppId)
 
          }
 
-         auto pfactory = plibrary->add_factory_item(strLibrary);
+         auto pfactory = plibrary->create_factory(strLibrary);
 
          if (pfactory.succeeded())
          {

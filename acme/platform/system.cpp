@@ -789,7 +789,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
       if (!pfactory)
       {
 
-         FATAL("([a-z0-9_]+)_factory has failed (status=" << (const ::e_status &) pfactory << ")");
+         FATAL("node_factory has failed (status=" << (const ::e_status &) pfactory << ")");
 
          return pfactory;
 
@@ -974,7 +974,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       }
 
-      pfactory = plibrary->add_factory_item(strLibrary);
+      pfactory = plibrary->create_factory(strLibrary);
 
       return pfactory;
 

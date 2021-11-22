@@ -14,7 +14,7 @@ list(APPEND library_source
         draw2d.cpp
         draw2d.h
         _factory.cpp
-        factory_exchange.h
+
         font.cpp
         font.h
         framework.cpp

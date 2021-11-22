@@ -593,7 +593,7 @@ if (WIN32)
       #node/windows/base/_windows.h
       #node/windows/base/_windows_node.cpp
       #node/windows/base/_factory.cpp
-      #node/windows/base/factory_exchange.h
+      #node/windows/base/
       #node/windows/base/implementation.h
       #node/windows/base/print_job.cpp
       #node/windows/base/print_job.h
@@ -694,7 +694,7 @@ if (LINUX)
       #node/linux/error.cpp
            #node/linux/exception.cpp
       node/linux/_factory.cpp
-      node/linux/factory_exchange.h
+      node/linux/
            #node/linux/file.cpp
            #node/linux/file.h
            #node/linux/file_context.cpp
@@ -800,7 +800,7 @@ if (IOS)
       node/ios/dir_system.h
       node/ios/exception.cpp
       node/ios/_factory.cpp
-      node/ios/factory_exchange.h
+      node/ios/
       node/ios/file.cpp
       node/ios/file.h
       node/ios/file_context.cpp
@@ -882,7 +882,7 @@ if (ANDROID)
       node/android/error.cpp
       node/android/exception.cpp
       node/android/_factory.cpp
-      node/android/factory_exchange.h
+      node/android/
       node/android/file.cpp
       node/android/file.h
       node/android/file_context.cpp

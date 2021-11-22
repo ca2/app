@@ -9,7 +9,7 @@ list(APPEND database_sqlite3_source
         database.cpp
         database.h
         _factory.cpp
-        factory_exchange.h
+
         framework.cpp
         framework.h
 )

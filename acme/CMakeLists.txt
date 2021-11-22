@@ -723,7 +723,7 @@ list(APPEND library_source
    node/android/_android.h
    node/android/android1.h
    node/android/application.h
-   node/android/factory_exchange.h
+   node/android/
    node/android/file.h
    node/android/implementation.h
    node/android/internal.h
@@ -1360,7 +1360,7 @@ if (UWP)
 
    list(APPEND library_source
       node/universal_windows/exception.h
-      node/universal_windows/factory_exchange.h
+      node/universal_windows/
       node/universal_windows/file.h
       node/universal_windows/file_find.h
       node/universal_windows/native_buffer.h
@@ -1421,13 +1421,13 @@ if (WIN32)
       os/windows/user.cpp
       os/windows/util.cpp
       os/windows/windowing.cpp
-      #node/windows/base/factory_exchange.h
+      #node/windows/base/
       #node/windows/base/implementation.h
       #node/windows/base/print_job.h
       #node/windows/base/_windows.h
       #node/windows/console.h
       #node/windows/exception.h
-      #node/windows/factory_exchange.h
+      #node/windows/
       #node/windows/file.h
       #node/windows/file_find.h
       #node/windows/pipe.h
@@ -1568,7 +1568,7 @@ if (LINUX)
    list(APPEND library_source
       node/linux/application.h
       #node/linux/console.h
-      node/linux/factory_exchange.h
+      node/linux/
       #node/linux/file.h
       node/linux/internal.h
       node/linux/root_tools.h
@@ -1640,7 +1640,7 @@ if (MACOS)
 
    list(APPEND library_source
       #node/macos/application.h
-           #node/macos/factory_exchange.h
+           #node/macos/
            #node/macos/file.h
            #node/macos/stdio_file.h
            #node/macos/thread.h
@@ -1726,7 +1726,7 @@ if (IOS)
 
 
    list(APPEND library_source
-      node/ios/factory_exchange.h
+      node/ios/
       node/ios/file.h
       node/ios/implementation.h
       node/ios/internal.h
@@ -1920,7 +1920,7 @@ if (FREEBSD)
    list(APPEND library_source
       node/freebsd/application.h
       #node/freebsd/console.h
-      node/freebsd/factory_exchange.h
+      node/freebsd/
       #node/freebsd/file.h
       node/freebsd/internal.h
       node/freebsd/root_tools.h

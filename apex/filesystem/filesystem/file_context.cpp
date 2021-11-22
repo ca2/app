@@ -3703,7 +3703,7 @@ bool file_context::touch(const ::file::path &path)
    if (!exists(path))
    {
 
-      if (!put_memory(path, { nullptr, 0 }))
+      if (!put_memory(path, nullptr))
       {
 
          return false;

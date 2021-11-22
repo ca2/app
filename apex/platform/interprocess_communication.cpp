@@ -267,7 +267,7 @@ namespace interprocess_communication
       }
 
 
-      bool rx::create(const ::string & pszKey)
+      ::e_status rx::create(const ::string & strChannel)
       {
 
         return true;

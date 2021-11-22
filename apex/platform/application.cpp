@@ -2623,7 +2623,7 @@ string_array straSchema;
 straLocale = payload("locale");
 straSchema = payload("schema");
 
-::file::path pathExe = m_psystem->m_pacmefile->executable();
+::file::path pathExe = m_psystem->m_pacmefile->module();
 
 straLocale.insert_at(0, strSystemLocale);
 straSchema.insert_at(0, strSystemSchema);

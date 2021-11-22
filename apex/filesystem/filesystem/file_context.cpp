@@ -906,7 +906,7 @@ bool file_context::as_memory(const ::payload &payloadFile, memory_base &mem)
 
       ::str::fix_eol(strContents);
 
-      return put(payloadFile, strContents);
+      return put_memory(payloadFile, strContents);
 
    }
 

@@ -171,7 +171,7 @@ namespace interprocess_communication
 
 
 
-      bool tx::open(const ::string & pszKey, launcher * plauncher)
+      ::e_status tx::open(const ::string & strChannel, launcher * plauncher)
       {
 
          return true;
@@ -179,7 +179,7 @@ namespace interprocess_communication
       }
 
 
-      bool tx::close()
+      ::e_status tx::close()
       {
 
          //if (get_hwnd() == nullptr)
@@ -198,23 +198,22 @@ namespace interprocess_communication
       }
 
 
-      bool tx::send(const ::string & pszMessage, duration durationTimeout)
+      ::e_status tx::send(const ::string & pszMessage, const uration & durationTimeout)
       {
 
          if (!is_tx_ok())
          {
 
-            return false;
+            return error_failed;
 
          }
 
-
-         return true;
+         return ::success;
 
       }
 
 
-      bool tx::send(int message, void * pdata, int len, duration durationTimeout)
+      ::e_status tx::send(int message, void * pdata, int len, const duration & durationTimeout)
       {
 
          if (message == 0x80000000)

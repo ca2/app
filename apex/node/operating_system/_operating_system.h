@@ -30,6 +30,14 @@
 #include "apex/node/operating_system/linux/_linux.h"
 #include "apex/node/operating_system/linux/_user.h"
 
+#elif defined(FREEBSD)
+
+
+#include "apex/node/operating_system/ansi/_ansi.h"
+#include "apex/node/operating_system/posix/_posix.h"
+#include "apex/node/operating_system/freebsd/_freebsd.h"
+#include "apex/node/operating_system/freebsd/_user.h"
+
 #elif defined(_UWP)
 
 #include "apex/node/operating_system/ansi/_ansi.h"

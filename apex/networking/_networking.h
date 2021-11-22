@@ -4,7 +4,16 @@
 #include "apex/operating_system.h"
 
 
-#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+#if defined(FREEBSD)
+
+
+#include <sys/socket.h>
+
+
+#endif
+
+
+#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD)
 
 #include <netinet/in.h>
 

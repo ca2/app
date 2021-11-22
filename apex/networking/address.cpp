@@ -1,6 +1,11 @@
 #include "framework.h" 
 #include "apex/networking/sockets/_sockets.h"
 
+#if defined(FREEBSD)
+
+#include <netinet/in.h>
+
+#endif
 
 #if defined(__arm__)
 

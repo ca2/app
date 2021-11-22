@@ -14,7 +14,7 @@
 #include <unistd.h>
 #endif
 
-#ifdef __APPLE__
+#if defined(__APPLE__) || defined(FREEBSD)
 #include <netdb.h>
 #endif
 

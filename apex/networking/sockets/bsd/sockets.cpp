@@ -257,7 +257,7 @@ namespace sockets
 string ip_reverse(string str)
 {
 
-#if defined(_UWP) || defined(LINUX) || defined(ANDROID) || defined(__APPLE__)
+#if defined(_UWP) || defined(LINUX) || defined(ANDROID) || defined(__APPLE__) || defined(FREEBSD)
 
    return c_gethostbyname(str);
 

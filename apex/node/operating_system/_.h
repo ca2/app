@@ -32,6 +32,12 @@ CLASS_DECL_ACME const char* executable_get_app_id();
 #include "apex/node/operating_system/posix/_.h"
 #include "apex/node/operating_system/linux/_.h"
 
+#elif defined(FREEBSD)
+
+#include "apex/node/operating_system/ansi/_.h"
+#include "apex/node/operating_system/posix/_.h"
+#include "apex/node/operating_system/freebsd/_.h"
+
 #elif defined(_UWP)
 
 #include "apex/node/operating_system/ansi/_.h"

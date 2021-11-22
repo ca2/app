@@ -10,7 +10,7 @@
 #include "framework.h"
 #include "apex/networking/sockets/_sockets.h"
 
-#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD)
 
 #define TIMEVAL timeval
 

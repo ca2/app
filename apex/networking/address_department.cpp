@@ -11,10 +11,10 @@
 #endif
 
 
-#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD)
 #undef USE_MISC
 
-#if defined(__APPLE__)
+#if defined(__APPLE__) || defined(FREEBSD)
 #define  NI_MAXHOST  1025
 #define  NI_MAXSERV  32
 #include <sys/types.h>

@@ -1,6 +1,6 @@
 #include "framework.h"
-#include "_freebsd.h"
-#include "acme/node/operating_system/ansi/binreloc.h"
+#include "_linux.h"
+
 
 
 string get_sys_temp_path()
@@ -9,6 +9,7 @@ string get_sys_temp_path()
    return ::file::path(getenv("HOME")) / ".ca2" / "time";
 
 }
+
 
 
 bool __node_further_file_is_equal(const ::file::path &,  const ::file::path &)
@@ -70,7 +71,7 @@ bool __node_further_file_is_equal(const ::file::path &,  const ::file::path &)
 //
 
 
-// CLASS_DECL_ACME bool context::os_resolve_alias(::file::path & path, const char * psz, ::user::primitive * pinteraction, bool bNoUI, bool bNoMount)
+// CLASS_DECL_APEX bool context::os_resolve_alias(::file::path & path, const char * psz, ::user::primitive * pinteraction, bool bNoUI, bool bNoMount)
 // {
 
 //    return _os_resolve_alias(path, psz, bNoUI, bNoMount);
@@ -79,7 +80,7 @@ bool __node_further_file_is_equal(const ::file::path &,  const ::file::path &)
 
 
 
-CLASS_DECL_ACME bool _os_may_have_alias(const char * psz)
+CLASS_DECL_APEX bool _os_may_have_alias(const char * psz)
 {
 
    return true;
@@ -87,30 +88,32 @@ CLASS_DECL_ACME bool _os_may_have_alias(const char * psz)
 }
 
 
-namespace path
-{
-
-
-   ::file::path module()
-   {
-
-      // https://arstechnica.com/civis/viewtopic.php?t=433790
-
-      char exepath[PATH_MAX];
-
-      char temp[PATH_MAX];
-
-      ::snprintf(temp, sizeof(temp),"/proc/%d/file", ::getpid());
-
-      ::realpath(temp, exepath);
-      // end https://arstechnica.com/civis/viewtopic.php?t=433790
-
-      return exepath;
-
-   }
-
-
-} // namespace path
-
-
-
+//CLASS_DECL_APEX bool context::os_is_alias(const char * path)
+//{
+//
+//    if(is_null(path))
+//    {
+//
+//        return false;
+//
+//    }
+//
+//    struct stat st;
+//
+//    if(lstat(path, &st) == -1)
+//    {
+//
+//        return false;
+//
+//    }
+//
+//    if (S_ISLNK(st.st_mode))
+//    {
+//
+//        return true;
+//
+//    }
+//
+//    return false;
+//
+//}

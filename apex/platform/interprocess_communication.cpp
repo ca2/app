@@ -198,7 +198,7 @@ namespace interprocess_communication
       }
 
 
-      ::e_status tx::send(const ::string & pszMessage, const uration & durationTimeout)
+      ::e_status tx::send(const ::string & pszMessage, const duration & durationTimeout)
       {
 
          if (!is_tx_ok())

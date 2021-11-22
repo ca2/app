@@ -16,8 +16,8 @@
 #include <sys/ipc.h>
 #endif
 
-#if ! defined(__FreeBSD__) && ! defined(__OpenBSD__) && \
-                ! defined(__sgi) && ! defined(__APPLE__)
+//#if ! defined(__FreeBSD__) && ! defined(__OpenBSD__) &&
+#if  ! defined(__OpenBSD__) && ! defined(__sgi) && ! defined(__APPLE__)
 /* Some implementations already declare this union */
 
 union semun {                   /* Used in calls to semctl() */

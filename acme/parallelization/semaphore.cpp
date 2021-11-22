@@ -12,7 +12,7 @@
 #endif
 
 
-#if defined(LINUX) || defined(__APPLE__)
+#if defined(LINUX) || defined(__APPLE__) || defined(FREEBSD)
 #include <sys/ipc.h>
 #include <sys/sem.h>
 #include "acme/node/operating_system/ansi/_ansi.h"
@@ -137,6 +137,15 @@ semaphore::~semaphore()
 }
 
 
+#ifdef FREEBSD
+
+int
+_semtimedop(int semid, struct sembuf *array, size_t nops, struct
+   timespec *_timeout);
+
+
+#endif
+
 #if defined(ANDROID)
 
 synchronization_result semaphore::wait(const duration & durationTimeout)
@@ -156,7 +165,7 @@ synchronization_result semaphore::wait(const duration & durationTimeout)
 
 }
 
-#elif defined(LINUX) || defined(SOLARIS)
+#elif defined(LINUX) || defined(SOLARIS) || defined(FREEBSD)
 
 ::e_status semaphore::wait(const class ::wait & wait)
 {
@@ -180,7 +189,12 @@ synchronization_result semaphore::wait(const duration & durationTimeout)
 
       timespec += wait;
 
+#ifdef FREEBSD
+      iRet = _semtimedop(static_cast < i32 > (m_hsync), &sb, 1, &timespec);
+#else
       iRet = semtimedop(static_cast < i32 > (m_hsync), &sb, 1, &timespec);
+
+#endif
 
       if(iRet == EINTR || iRet == EAGAIN)
       {

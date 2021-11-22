@@ -71,13 +71,17 @@ i32 gdb_check()
 }
 */
 
-
-
 static void*
 test_trace(void* ignored)
 {
+#ifdef FREEBSD
+   // This is a guess
+   return (void *)(iptr)(int)ptrace(PT_TRACE_ME, 0, nullptr, 0);
+#else
    return (void*)ptrace(PTRACE_TRACEME, 0, nullptr, nullptr);
+#endif
 }
+
 
 i32
 gdb_check(void)

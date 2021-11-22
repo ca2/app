@@ -1870,7 +1870,85 @@ if (SOLARIS)
 endif ()
 
 
-if (LINUX OR APPLE OR SOLARIS)
+
+if (FREEBSD)
+   list(APPEND library_source
+      #node/freebsd/console.cpp
+      node/freebsd/dumpinit.cpp
+      node/freebsd/error.cpp
+      node/freebsd/exception.cpp
+      node/freebsd/_factory.cpp
+      #node/freebsd/file.cpp
+      node/freebsd/freebsd.cpp
+      #node/freebsd/node.cpp
+      #node/freebsd/node.h
+      node/freebsd/root_tools.cpp
+      #node/freebsd/shell.cpp
+      #node/freebsd/shell_freebsd.cpp
+      node/freebsd/system.cpp
+      #node/freebsd/stdio_file.cpp
+      node/freebsd/thread.cpp
+      node/freebsd/trace.cpp
+      node/freebsd/util.cpp
+      #os/freebsd/application_system_run.cpp
+      node/operating_system/freebsd/_.cpp
+      node/operating_system/freebsd/callstack.cpp
+      node/operating_system/freebsd/cross_win_file.cpp
+      node/operating_system/freebsd/cross_win_gdi.cpp
+      node/operating_system/freebsd/debug.cpp
+      node/operating_system/freebsd/exception_engine.cpp
+      node/operating_system/freebsd/file.cpp
+      node/operating_system/freebsd/file_lock.cpp
+      #os/freebsd/gdk.cpp
+      node/operating_system/freebsd/graphics.cpp
+      node/operating_system/freebsd/library.cpp
+      node/operating_system/freebsd/freebsd.cpp
+      node/operating_system/freebsd/freebsd.inl
+      #node/operating_system/freebsd/list_serial_ports.cpp
+      node/operating_system/freebsd/parallelization.cpp
+      node/operating_system/freebsd/node.cpp
+      node/operating_system/freebsd/os.cpp
+      node/operating_system/freebsd/process.cpp
+      node/operating_system/freebsd/process_pid.cpp
+      node/operating_system/freebsd/simple_app.cpp
+      node/operating_system/freebsd/time.cpp
+      node/operating_system/freebsd/user.cpp
+      node/operating_system/freebsd/win_base.cpp
+      )
+
+
+   list(APPEND library_source
+      node/freebsd/application.h
+      #node/freebsd/console.h
+      node/freebsd/factory_exchange.h
+      #node/freebsd/file.h
+      node/freebsd/internal.h
+      node/freebsd/root_tools.h
+      #node/freebsd/stdio_file.h
+      node/freebsd/thread.h
+      node/freebsd/_.h
+      node/freebsd/_freebsd.h
+      node/operating_system/freebsd/cross_win_file.h
+      node/operating_system/freebsd/cross_win_gdi.h
+      node/operating_system/freebsd/cross_win_gdi_internal.h
+      node/operating_system/freebsd/debug.h
+      node/operating_system/freebsd/exception_engine.h
+      node/operating_system/freebsd/file.h
+      #os/freebsd/gdk.h
+      node/operating_system/freebsd/freebsd_freebsd.h
+      node/operating_system/freebsd/process.h
+      node/operating_system/freebsd/user.h
+      node/operating_system/freebsd/user_private.h
+      node/operating_system/freebsd/_.h
+      node/operating_system/freebsd/_c.h
+      node/operating_system/freebsd/_freebsd.h
+      node/operating_system/freebsd/_user.h
+      )
+endif ()
+
+
+
+if (LINUX OR APPLE OR SOLARIS OR FREEBSD)
 
 
    list(APPEND library_source
@@ -1926,12 +2004,13 @@ if (MSVC)
 
 elseif(LINUX OR FREEBSD)
 
-
+#//target_compile_options\([A-Za-z0-9_)]+\s+PRIVATE\s+\$\{PKGCONFIG_CFLAGS\}\)
    pkg_check_modules(PKGCONFIG freetype2 libidn)
    target_compile_options(acme PRIVATE -fpermissive)
-   target_compile_options(acme PRIVATE ${PKGCONFIG_CFLAGS})
-   #target_link_options(acme PRIVATE -L . -Wl,-rpath .)
-   target_link_libraries(acme PRIVATE z dl idn pthread ${PKGCONFIG_LIBRARIES})
+      target_compile_options(acme PRIVATE ${PKGCONFIG_CFLAGS})
+   target_link_options(acme PRIVATE ${PKGCONFIG_LDFLAGS})
+   target_link_options(acme PRIVATE ${PKGCONFIG_LDFLAGS})
+   target_link_libraries(acme PRIVATE z dl idn pthread iconv  ${PKGCONFIG_LIBRARIES})
    target_link_options(acme PRIVATE -Wl,-z,defs)
    message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 
@@ -1957,14 +2036,11 @@ target_include_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 target_compile_definitions(acme PRIVATE _ACME_LIBRARY)
 
-
+if(LINUX)
 set(third_binaries "${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/third/binary/x64/basis/")
-
 add_custom_command(TARGET acme POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${third_binaries} ${EXECUTABLE_OUTPUT_PATH})
-
 set(storage_binaries "${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/binary/x64/basis/")
-
 add_custom_command(TARGET acme POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${storage_binaries} ${EXECUTABLE_OUTPUT_PATH})
-
+endif()
 
 

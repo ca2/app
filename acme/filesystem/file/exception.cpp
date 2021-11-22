@@ -317,7 +317,7 @@ namespace file
 #define ENOEXEC         8
 #define EBADF           9
 #define ECHILD          10
-#ifndef __APPLE__
+#if !defined(__APPLE__) && !defined(FREEBSD)
 #define EAGAIN          11
 #endif
 #define ENOMEM          12

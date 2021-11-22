@@ -992,8 +992,7 @@ class ::payload & payload::operator = (::u32 u)
 }
 
 
-#if !defined(LINUX) && !defined(MACOS) && !defined(ANDROID) && !defined(APPLE_IOS)
-
+#if !defined(LINUX) && !defined(MACOS) && !defined(ANDROID) && !defined(APPLE_IOS) && !defined(FREEBSD)
 
 class ::payload & payload::operator = (long l)
 {
@@ -2902,7 +2901,7 @@ bool & payload::as_bool()
    case e_type_f64:
       return (::i8)m_f64;
    case e_type_string:
-#if defined(LINUX) || defined(ANDROID)
+#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
       return (::i8)atof(m_str);
 #else
       return (::i8)_atof_l(m_str, ::acme::get_c_locale());
@@ -2944,7 +2943,7 @@ bool & payload::as_bool()
    case e_type_f64:
       return (::u8)m_f64;
    case e_type_string:
-#if defined(LINUX) || defined(ANDROID)
+#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
       return (::u8)atof(m_str);
 #else
       return (::u8)_atof_l(m_str, ::acme::get_c_locale());
@@ -3013,7 +3012,7 @@ bool & payload::as_bool()
    case e_type_f64:
       return (::i16)m_f64;
    case e_type_string:
-#if defined(LINUX) || defined(ANDROID)
+#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
       return (::i16)atof(m_str);
 #else
       return (::i16)_atof_l(m_str, ::acme::get_c_locale());
@@ -3083,7 +3082,7 @@ bool & payload::as_bool()
    case e_type_f64:
       return (::u16)m_f64;
    case e_type_string:
-#if defined(LINUX) || defined(ANDROID)
+#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
       return (::u16)atof(m_str);
 #else
       return (::u16)_atof_l(m_str, ::acme::get_c_locale());
@@ -3153,7 +3152,7 @@ bool & payload::as_bool()
    case e_type_f64:
       return (::f32) m_f64;
    case e_type_string:
-   #if defined(LINUX) || defined(ANDROID)
+   #if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
       return (::f32) atof(m_str);
    #else
       return (::f32) _atof_l(m_str, ::acme::get_c_locale());
@@ -3264,7 +3263,7 @@ bool & payload::as_bool()
    else if(m_etype == ::e_type_string)
    {
 
-#if defined(LINUX) || defined(ANDROID)
+#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
 
       f64 = atof(m_str);
 
@@ -5074,7 +5073,7 @@ bool payload::is_floating() const
 
       ::string str = string();
 
-#if defined(LINUX) || defined(ANDROID)
+#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
       if(is_scalar()
             && (fmod(atof(str), 1.0) == 0.0
                 && fabs(atof(str)) <= pow(2.0, 31.0)))
@@ -5204,7 +5203,7 @@ bool payload::is_double() const
       
       ::string str = string();
 
-#if defined(LINUX) || defined(ANDROID)
+#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
       if(is_scalar()
             && (fmod(atof(str), 1.0) == 0.0
                 && fabs(atof(str)) <= pow(2.0, 31.0)))
@@ -5324,7 +5323,7 @@ bool payload::is_integer() const
       
       ::string str = string();
 
-#if defined(LINUX) || defined(ANDROID)
+#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
       if(is_scalar()
             && (fmod(atof(str), 1.0) == 0.0
                 && fabs(atof(str)) <= pow(2.0, 31.0)))
@@ -5372,7 +5371,7 @@ bool payload::is_natural() const
       
       ::string str = string();
 
-#if defined(LINUX) || defined(ANDROID)
+#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
       if(is_scalar()
             && (fmod(atof(str), 1.0) == 0.0
                 && fabs(atof(str)) <= pow(2.0, 31.0)))
@@ -5860,7 +5859,7 @@ end:
    if(bFloat)
    {
 
-#if defined(LINUX) || defined(ANDROID)
+#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
 
       ::f64 f64 = atof(strNumber);
 

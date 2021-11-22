@@ -2678,7 +2678,7 @@ string & payload::as_string(const char * pszOnNull)
          return m_estatus;
       case e_type_enum_check:
          return m_echeck;
-      case e_type_enum_flag
+      case e_type_enum_flag:
          return m_eflag;
       default:
          return iDefault;

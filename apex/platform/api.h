@@ -25,7 +25,7 @@ public:
    ::file::path                     m_pathProfile;
    ::payload                        m_payloadProfile;
    bool                             m_bWaitingResponseFromUser;
-   __pointer(::api_client)    m_papiclient;
+   __pointer(::api_client)          m_papiclient;
    ::manual_reset_event             m_eventResponse;
 
 

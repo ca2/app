@@ -17,6 +17,16 @@ api_client::~api_client()
 }
 
 
+::e_status api_client::defer_api()
+{
+
+   throw interface_only_exception();
+
+   return error_interface_only;
+
+}
+
+
 ::e_status api_client::create_api(const ::string& strImplementation)
 {
 

@@ -15,6 +15,9 @@ public:
    ~api_client() override;
 
 
+   virtual ::e_status defer_api();
+
+
    virtual ::e_status create_api(const ::string& strImplementation);
 
 

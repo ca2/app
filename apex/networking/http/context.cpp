@@ -127,7 +127,7 @@ namespace http
 
       get(pmessage);
 
-      return set["get_estatus"].estatus();
+      return set["get_status"].estatus();
 
    }
 
@@ -1663,7 +1663,7 @@ namespace http
 
          }
 
-         set["get_status"] = (i64)estatus;
+         set["get_status"] = estatus;
 
          FORMATTED_INFORMATION("Total time ::http::apex::context::get(\"%s\") %d ms ", strUrl.Left(minimum(255, strUrl.get_length())).c_str(), tick1.elapsed().integral_second().m_i);
 

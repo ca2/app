@@ -10,12 +10,12 @@ namespace ios
    factory_exchange::factory_exchange()
    {
 
-      create_factory < file_set             >   (__type(::file::set));
-      create_factory < file_system                >   (__type(::file::system), 1);
-      create_factory < dir                        >   (__type(::file::system_dir), 1);
-      create_factory < port_forward               >   (__type(::net::port_forward), 1);
-      create_factory < crypto                      >   (__type(::crypto::crypto), 1);
-      create_factory < copydesk                   >   (__type(::user::copydesk), 1);
+      add_factory_item < file_set             >   (__type(::file::set));
+      add_factory_item < file_system                >   (__type(::file::system), 1);
+      add_factory_item < dir                        >   (__type(::file::system_dir), 1);
+      add_factory_item < port_forward               >   (__type(::net::port_forward), 1);
+      add_factory_item < crypto                      >   (__type(::crypto::crypto), 1);
+      add_factory_item < copydesk                   >   (__type(::user::copydesk), 1);
 
    }
 

@@ -1035,7 +1035,7 @@ namespace acme
    //}
 
 
-   __transport(::factory::factory) library::create_factory(const ::string & strLibrary)
+   __transport(::factory::factory) library::add_factory_item(const ::string & strLibrary)
    {
 
       auto pfnFactory = get < PFN_factory >(factory_name(strLibrary));

@@ -974,7 +974,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       }
 
-      pfactory = plibrary->create_factory(strLibrary);
+      pfactory = plibrary->add_factory_item(strLibrary);
 
       return pfactory;
 
@@ -1006,7 +1006,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       }
 
-      pfactory = plibrary->create_factory(strLibrary);
+      pfactory = plibrary->add_factory_item(strLibrary);
 
       if (!pfactory)
       {

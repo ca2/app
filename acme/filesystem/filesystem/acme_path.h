@@ -22,12 +22,13 @@ public:
 
    virtual  string from(string str);
 
-   //virtual ::file::path app_module();
-   //virtual ::file::path ca2_module();
+
 
    virtual ::file::path final(const char * path);
 
    virtual ::file::path _final(const char * path);
+
+
 
    virtual bool final_begins_eat_ci(string & str, const char * pcszPrefix);
 
@@ -35,14 +36,15 @@ public:
 
    virtual bool is_file_or_dir(const char * path, ::file::enum_type * petype);
 
-   //virtual bool is_link(const char * path);
-   
-   
+
+
    virtual ::e_status create_symbolic_link(const char * pszLink, const char * pszSource);
 
    virtual ::e_status is_symbolic_link(const char * pszLink);
 
    virtual ::file::path symbolic_link_destination(const char * pszLink);
+
+
 
    virtual bool has_custom_icon(const char * path);
    

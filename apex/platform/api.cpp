@@ -47,7 +47,18 @@ api::~api()
 
    ::payload payload;
 
-   payload.parse_network_payload(strNetworkPayload);
+   try
+   {
+
+      payload.parse_network_payload(strNetworkPayload);
+
+   }
+   catch (...)
+   {
+
+      return ::success;
+
+   }
 
    m_strToken = payload["token"];
 
@@ -93,7 +104,6 @@ void api::on_login_response()
 
 ::e_status api::save_profile()
 {
-
 
    ::payload payload;
 

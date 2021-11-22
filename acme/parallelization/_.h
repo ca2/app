@@ -36,6 +36,7 @@ CLASS_DECL_ACME ::u64 translate_processor_affinity(int iOrder);
 CLASS_DECL_ACME bool is_main_thread();
 
 
+#ifdef PARALLELIZATION_PTHREAD
 
 
 #if defined(ANDROID)
@@ -78,6 +79,7 @@ CLASS_DECL_ACME bool is_main_thread();
 
 #endif
 
+#endif
 
 
 class synchronization_object;

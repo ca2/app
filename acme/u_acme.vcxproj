@@ -2165,7 +2165,6 @@
     <ClCompile Include="platform\flags.cpp" />
     <ClCompile Include="platform\hyperlink.cpp" />
     <ClCompile Include="platform\implementable.cpp" />
-    <ClCompile Include="platform\layer.cpp" />
     <ClCompile Include="platform\library.cpp" />
     <ClCompile Include="platform\log.cpp" />
     <ClCompile Include="platform\logic.cpp" />

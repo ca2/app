@@ -649,9 +649,6 @@
     <ClCompile Include="platform\text.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="crypto\crypto_initializer.cpp">
-      <Filter>Source Files\crypto</Filter>
-    </ClCompile>
     <ClCompile Include="progress\integer.cpp">
       <Filter>Source Files\progress</Filter>
     </ClCompile>
@@ -810,6 +807,9 @@
     </ClCompile>
     <ClCompile Include="platform\api_client.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\initializer.cpp">
+      <Filter>Source Files\crypto</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -49,17 +49,12 @@
     <ClInclude Include="crypto.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="aaa__openssl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="_crypto_openssl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="u_crypto_openssl.def">
-      <Filter>Source Files</Filter>
-    </None>
+    <ClInclude Include="initializer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -80,10 +75,10 @@
     <ClCompile Include="_factory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="crypto_initializer.cpp">
+    <ClCompile Include="crypto.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="crypto.cpp">
+    <ClCompile Include="initializer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1432,9 +1432,6 @@
     <ClCompile Include="platform\main.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\layer.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="compress\compress.cpp">
       <Filter>Source Files\compress</Filter>
     </ClCompile>

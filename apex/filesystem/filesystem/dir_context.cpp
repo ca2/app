@@ -1827,6 +1827,25 @@ void dir_context::matter_ls(const ::file::path & path, ::file::listing & stra)
       }
 
    }
+   else if (psystem->m_pdirsystem->m_bMatterFromResource)
+   {
+
+   auto pfolder = m_pcontext->m_papexcontext->file().resource_folder();
+
+   string strPrefix(strDir);
+   strPrefix.begins_eat_ci("zipresource:");
+   strPrefix.trim("\\/");
+
+   stra.m_pathFinal = strPrefix;
+   stra.m_pathUser = strPrefix;
+
+   pfolder->perform_file_listing(stra);
+
+   for (auto& path : stra)
+   {
+      path = "zipresource://" + path;
+   }
+   }
    else
    {
 

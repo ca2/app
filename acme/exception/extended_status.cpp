@@ -94,7 +94,7 @@ namespace extended
     void status::set(::enum_status estatus)
     {
 
-       m_pexceptiona.release();
+       //m_pexceptiona.release();
 
        m_estatus = estatus;
 
@@ -105,6 +105,7 @@ namespace extended
     {
 
        add(estatus.m_estatus);
+
 
     }
 
@@ -154,40 +155,9 @@ namespace extended
 
           m_pexceptiona = __new(::array < ::exception >);
 
-          if (m_estatus != undefined)
-          {
-
-             add(m_estatus);
-
-          }
-
        }
 
        m_pexceptiona->add(e);
-
-       if (m_estatus == undefined)
-       {
-
-          if (::succeeded(e.m_estatus))
-          {
-
-             m_estatus = error_exception;
-
-          }
-          else
-          {
-
-             m_estatus = e.m_estatus;
-
-          }
-
-       }
-       else
-       {
-
-          m_estatus = error_multiple;
-
-       }
 
     }
 
@@ -201,42 +171,42 @@ namespace extended
        //}
 
 
-    bool status::get_exception(::exception& e, const ::e_status& estatus)
-    {
+    //bool status::get_exception(::exception& e, const ::e_status& estatus)
+    //{
 
-       if (m_estatus == estatus)
-       {
+    //   if (m_estatus == estatus)
+    //   {
 
-          e = ::exception(m_estatus);
+    //      e = ::exception(m_estatus);
 
-          return true;
+    //      return true;
 
-       }
+    //   }
 
-       if (!m_pexceptiona)
-       {
+    //   if (!m_pexceptiona)
+    //   {
 
-          return false;
+    //      return false;
 
-       }
+    //   }
 
-       for (auto& exception : *m_pexceptiona)
-       {
+    //   for (auto& exception : *m_pexceptiona)
+    //   {
 
-          if (exception.m_estatus == estatus)
-          {
+    //      if (exception.m_estatus == estatus)
+    //      {
 
-             e = exception;
+    //         e = exception;
 
-             return true;
+    //         return true;
 
-          }
+    //      }
 
-       }
+    //   }
 
-       return false;
+    //   return false;
 
-    }
+    //}
 
 
     ::e_status status::get_greatest_exception_on_range(enum_status estatusOpenStart, enum_status estatusOpenEnd) const

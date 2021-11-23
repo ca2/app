@@ -383,7 +383,24 @@ namespace folder_zip
 
       unz_file_info unzfileinfo;
 
-      while(true)
+      string strPrefix = listing.m_pathFinal;
+
+      strPrefix.trim("\\/");
+
+      if (strPrefix.has_char())
+      {
+
+         strPrefix += "/";
+
+      }
+
+      strPrefix.replace("\\", "/");
+
+      int err = unzGoToFirstFile(pf);
+
+
+
+      while (err == UNZ_OK)
       {
 
          char szTitle[_MAX_PATH];
@@ -400,23 +417,28 @@ namespace folder_zip
             
          string strTitle(szTitle);
 
-         if(listing.m_bRecursive || strTitle.find("/") < 0 || strTitle.find("/") == (strTitle.get_length() - 1))
+         if (strPrefix.is_empty() || strTitle.begins_eat_ci(strPrefix))
          {
 
-            listing.add(::file::path(strTitle));
+            if (listing.m_bRecursive || strTitle.find("/") < 0 || strTitle.find("/") == (strTitle.get_length() - 1))
+            {
+               
+               if (strTitle.has_char())
+               {
 
-            listing.last().m_iDir = ::str::ends(szTitle,"/") || ::str::ends(szTitle,"\\") || ::str::ends(szTitle,".zip");
+                  listing.add(::file::path(strPrefix) / ::file::path(strTitle));
 
-            listing.last().m_iSize = unzfileinfo.uncompressed_size;
+                  listing.last().m_iDir = ::str::ends(szTitle, "/") || ::str::ends(szTitle, "\\") || ::str::ends(szTitle, ".zip");
+
+                  listing.last().m_iSize = unzfileinfo.uncompressed_size;
+
+               }
+
+            }
 
          }
 
-         if(unzGoToNextFile(pf) != UNZ_OK)
-         {
-
-            break;
-
-         }
+         err = unzGoToNextFile(pf);
 
       }
 

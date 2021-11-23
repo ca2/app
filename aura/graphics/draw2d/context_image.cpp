@@ -882,6 +882,10 @@ void context_image::_task_load_image(::image * pimage, ::payload payload, bool b
    if (::is_null(psz))
    {
 
+      pimage->set_nok();
+
+      pimage->m_estatus = ::error_failed;
+
       return;
 
    }

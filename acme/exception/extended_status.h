@@ -64,7 +64,7 @@ namespace extended
 
       void add(const std::initializer_list < ::e_status     >& list);
 
-      bool get_exception(::exception& e, const ::e_status& estatus);
+      //bool get_exception(::exception& e, const ::e_status& estatus);
 
       bool get_exit_status(::e_status& estatus) const;
       ::e_status get_greatest_exception_on_range(enum_status estatusOpenStart, enum_status estatusOpenEnd) const;

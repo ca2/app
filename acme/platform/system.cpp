@@ -981,10 +981,14 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   __transport(::factory::factory)& system::factory(const ::string& strLibrary)
+   __transport(::factory::factory)& system::factory(const ::string& strLibraryRequest)
    {
 
       synchronous_lock synchronouslock(&m_mutexFactory);
+
+      string strLibrary;
+
+      strLibrary = library_filter(strLibraryRequest);
 
       auto& pfactory = m_mapFactory[strLibrary];
 

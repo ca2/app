@@ -141,21 +141,28 @@ namespace extended
       }
 
 
+      // set main status
       transport & operator =(const ::e_status & estatus)
       {
 
-         this->release();
+         m_estatus = estatus;
 
-         add(estatus);
-
-         if (succeeded())
+         if (failed())
          {
 
-            add(::error_null_result);
+            this->release();
 
          }
 
          return *this;
+
+      }
+
+
+      transport& operator =(const ::enum_status& estatus)
+      {
+
+         return this->operator = ((const ::e_status&) estatus);
 
       }
 
@@ -309,47 +316,49 @@ namespace extended
       ::e_status estatus() const
       {
 
-         if (m_pexceptiona.is_null() || m_pexceptiona->is_empty())
-         {
+         return m_estatus;
 
-            if (__pointer(T)::is_null())
-            {
+         //if (m_pexceptiona.is_null() || m_pexceptiona->is_empty())
+         //{
 
-               return error_null_result;
+         //   if (__pointer(T)::is_null())
+         //   {
 
-            }
-            else
-            {
+         //      return error_null_result;
 
-               return ::success;
+         //   }
+         //   else
+         //   {
 
-            }
+         //      return ::success;
 
-         }
-         else if (m_pexceptiona->get_size() == 1)
-         {
+         //   }
 
-            return m_pexceptiona->element_at(0).m_estatus;
+         //}
+         //else if (m_pexceptiona->get_size() == 1)
+         //{
 
-         }
-         else
-         {
+         //   return m_pexceptiona->element_at(0).m_estatus;
 
-            for (auto& e : *m_pexceptiona)
-            {
+         //}
+         //else
+         //{
 
-               if (::failed(e.m_estatus))
-               {
+         //   for (auto& e : *m_pexceptiona)
+         //   {
 
-                  return error_multiple;
+         //      if (::failed(e.m_estatus))
+         //      {
 
-               }
+         //         return error_multiple;
 
-            }
+         //      }
 
-            return success_multiple;
+         //   }
 
-         }
+         //   return success_multiple;
+
+         //}
 
       }
 

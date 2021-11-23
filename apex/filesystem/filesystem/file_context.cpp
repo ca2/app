@@ -932,33 +932,40 @@ bool file_context::as_memory(const ::payload &payloadFile, memory_base &mem)
 ::e_status file_context::put_memory(const ::payload &payloadFile, ::file::file *pfileSrc)
 {
 
-   file_pointer pfile;
-
-   pfile = get_file(payloadFile,
+   auto pfile = get_file(payloadFile,
                      ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_share_deny_write |
                      ::file::e_open_defer_create_directory);
 
-   if (pfile.is_null())
+   if (!pfile)
    {
 
-      return false;
+      return pfile;
 
    }
 
-   memory mem;
+   pfile->set_size(0);
 
-   mem.set_size(1024 * 1024 * 8);
-
-   memsize uRead;
-
-   while ((uRead = pfileSrc->read(mem.get_data(), mem.get_size())) > 0)
+   if (::is_set(pfileSrc))
    {
 
-      pfile->write(mem.get_data(), uRead);
+      memory mem;
+
+      auto remainingByteCount = pfileSrc->get_remaining_byte_count();
+
+      mem.set_size(minimum(remainingByteCount, 8_mb));
+
+      memsize uRead;
+
+      while ((uRead = pfileSrc->read(mem.get_data(), mem.get_size())) > 0)
+      {
+
+         pfile->write(mem.get_data(), uRead);
+
+      }
 
    }
 
-   return true;
+   return ::success;
 
 }
 
@@ -1202,10 +1209,19 @@ bool file_context::resource_is_file_or_dir(const char* path)
 
    strPath.replace("\\", "/");
 
+   strPath.trim_right("\\/");
+
    if (!pfolder->locate(strPath))
    {
 
-      return false;
+      strPath += "/";
+
+      if (!pfolder->locate(strPath))
+      {
+
+         return false;
+
+      }
 
    }
 

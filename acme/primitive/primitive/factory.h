@@ -256,6 +256,12 @@ namespace factory
 } // namespace factory
 
 
+using factory_pointer = __pointer(::factory::factory);
+
+
+using factory_transport = __transport(::factory::factory);
+
+
 namespace factory
 {
 

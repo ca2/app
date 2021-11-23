@@ -4,6 +4,67 @@
 //namespace exception
 //{
 
+//
+//class CLASS_DECL_ACME exception_base
+//{
+//public:
+//
+//
+//   ::e_status              m_estatus;
+//
+//   //enum_exception        m_eexception;
+//   bool                    m_bDumpBackTrace;
+//   __pointer(callstack)    m_pcallstack;
+//   bool                    m_bHandled;
+//   bool                    m_bContinue;
+//   string                  m_strMessage;
+//   string                  m_strException;
+//
+//   // A exception class is meant to be a small utility/tool class.
+//   // m_bLog -> too much managing (micro-managing and also big-managing)
+//   // from utility/tool small class of the Logging get_system()->
+//   // General-ever Log can be done by final handlers at Main Loop and crash handlers
+//   // Log can be supressed or translated at optional middle-stack handlers.
+//   // bool        m_bLog;
+//   string                  m_strLink;
+//   string                  m_strFile;
+//   int                     m_iLine;
+//   int                     m_iErrNo;
+//#ifdef WINDOWS
+//   HRESULT                 m_hresult;
+//   ::u32                   m_uLastError;
+//#endif
+//
+//
+//   static bool             s_bDoStackTrace;
+//
+//
+//   exception();
+//   exception(const ::e_status& estatus, const char* pszMessage = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void* caller_address = nullptr);
+//   virtual ~exception();
+//
+//
+//
+//   //virtual const char * what () const noexcept;
+//   static void exception_enable_stack_trace(bool bEnable);
+//
+//
+//   //virtual bool get_message(string & str, P::u32 pnHelpContext = nullptr);
+//   //virtual string get_message(P::u32 pnHelpContext = nullptr);
+//
+//   virtual string get_message() const;
+//
+//
+//   inline ::e_status estatus() const { return m_estatus; }
+//
+//
+//   void defer_dump_back_trace();
+//   void dump_back_trace();
+//
+//};
+
+
+
 
    class CLASS_DECL_ACME exception 
    {

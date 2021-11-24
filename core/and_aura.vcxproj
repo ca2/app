@@ -178,7 +178,7 @@
     <ClInclude Include="aura\node\android\android1.h" />
     <ClInclude Include="aura\node\android\android_application.h" />
     <ClInclude Include="aura\node\android\android_dir.h" />
-    <ClInclude Include="aura\node\android\android_factory_exchange.h" />
+    <ClInclude Include="aura\node\android\android_factory.h" />
     <ClInclude Include="aura\node\android\android_file.h" />
     <ClInclude Include="aura\node\android\android_file_system.h" />
     <ClInclude Include="aura\node\android\android_implementation.h" />

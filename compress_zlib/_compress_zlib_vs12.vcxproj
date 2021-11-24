@@ -717,7 +717,7 @@
     <ClInclude Include="draw2d_gdiplus_bitmap.h" />
     <ClInclude Include="draw2d_gdiplus_brush.h" />
     <ClInclude Include="draw2d_gdiplus_dib.h" />
-    <ClInclude Include="draw2d_gdiplus_factory_exchange.h" />
+    <ClInclude Include="draw2d_gdiplus_factory.h" />
     <ClInclude Include="draw2d_gdiplus_font.h" />
     <ClInclude Include="draw2d_gdiplus_graphics.h" />
     <ClInclude Include="draw2d_gdiplus_object.h" />
@@ -761,7 +761,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="draw2d_gdiplus_factory_exchange.cpp">
+    <ClCompile Include="draw2d_gdiplus_factory.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>

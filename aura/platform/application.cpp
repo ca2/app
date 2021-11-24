@@ -15,9 +15,9 @@ extern ::app_core * g_pappcore;
 extern "C"
 {
 
-   typedef void FN_factory_exchange(::factory::factory * pfactory);
+   typedef void FN_factory(::factory::factory * pfactory);
 
-   typedef FN_factory_exchange * PFN_factory_exchange;
+   typedef FN_factory * PFN_factory;
 
 }
 
@@ -8685,7 +8685,8 @@ namespace aura
             if(m_puserinteractionMain)
             {
                
-               m_puserinteractionMain->frame_toggle_restore();
+               m_puserinteractionMain->on_app_activated();
+               //m_puserinteractionMain->frame_toggle_restore();
                
             }
             

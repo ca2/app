@@ -26,7 +26,7 @@
     <ClInclude Include="draw2d_gdiplus_dib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="draw2d_gdiplus_factory_exchange.h">
+    <ClInclude Include="draw2d_gdiplus_factory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="draw2d_gdiplus_font.h">

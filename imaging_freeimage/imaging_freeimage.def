@@ -2,7 +2,7 @@ LIBRARY "imaging_freeimage"
 
 
 EXPORTS
-imaging_factory_exchange
+imaging_factory
 
 
 

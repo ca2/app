@@ -5,5 +5,5 @@ LIBRARY  "experience_core"
 
 
 EXPORTS
-experience_core_factory_exchange
+experience_core_factory
 

@@ -189,7 +189,7 @@
     <ClInclude Include="apex\node\metrowin\metrowin_application.h" />
     <ClInclude Include="apex\node\metrowin\metrowin_dir.h" />
     <ClInclude Include="apex\node\metrowin\metrowin_exception.h" />
-    <ClInclude Include="apex\node\metrowin\metrowin_factory_exchange.h" />
+    <ClInclude Include="apex\node\metrowin\metrowin_factory.h" />
     <ClInclude Include="apex\node\metrowin\metrowin_file.h" />
     <ClInclude Include="apex\node\metrowin\metrowin_file_find.h" />
     <ClInclude Include="apex\node\metrowin\metrowin_file_system.h" />
@@ -1900,7 +1900,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="apex\node\metrowin\metrowin_factory_exchange.cpp">
+    <ClCompile Include="apex\node\metrowin\metrowin_factory.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>

@@ -1108,7 +1108,7 @@
     </ClInclude>
     <ClInclude Include="axis\node\windows\windows_crypto.h" />
     <ClInclude Include="axis\node\windows\windows_axis_dir.h" />
-    <ClInclude Include="axis\node\windows\windows_factory_exchange.h" />
+    <ClInclude Include="axis\node\windows\windows_factory.h" />
     <ClInclude Include="axis\node\windows\aaa_want_to_remove_windows_file_set.h" />
     <ClInclude Include="axis\node\windows\windows_axis_file_system.h" />
     <ClInclude Include="axis\node\windows\windows_ip_enum.h" />
@@ -1389,7 +1389,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_factory_exchange.cpp">
+    <ClCompile Include="axis\node\windows\windows_factory.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>

@@ -1493,7 +1493,7 @@ breakFilter2:
 
       //destroy:
 
-      //   PFN_factory_exchange ([a-z0-9_]+)_factory = plibrary->get < PFN_factory_exchange >("([a-z0-9_]+)_factory");
+      //   PFN_factory ([a-z0-9_]+)_factory = plibrary->get < PFN_factory >("([a-z0-9_]+)_factory");
 
       //   if (([a-z0-9_]+)_factory == nullptr)
       //   {

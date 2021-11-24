@@ -1719,7 +1719,7 @@
     <ClInclude Include="apex\node\metrowin\metrowin_exception.h">
       <Filter>Header Files\apex\node\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="apex\node\metrowin\metrowin_factory_exchange.h">
+    <ClInclude Include="apex\node\metrowin\metrowin_factory.h">
       <Filter>Header Files\apex\node\metrowin</Filter>
     </ClInclude>
     <ClInclude Include="apex\node\metrowin\metrowin_file.h">
@@ -3205,7 +3205,7 @@
     <ClCompile Include="apex\node\metrowin\metrowin_error.cpp">
       <Filter>Source Files\apex\node\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="apex\node\metrowin\metrowin_factory_exchange.cpp">
+    <ClCompile Include="apex\node\metrowin\metrowin_factory.cpp">
       <Filter>Source Files\apex\node\metrowin</Filter>
     </ClCompile>
     <ClCompile Include="apex\node\metrowin\metrowin_file.cpp">

@@ -247,8 +247,10 @@ void ns_create_alias(const char * pszTarget, const char * pszSource);
          auto psystem = m_psystem;
 
          auto pacmedir = psystem->m_pacmedir;
+         
+         string strName =path.name();
 
-         ::file::path path2 = pacmedir->localconfig() / "monitor-0/desk/2desk" / path.name();
+         ::file::path path2 = pacmedir->localconfig() / "desk/monitor-0/2desk" / strName;
 
          if(m_psystem->m_pacmefile->exists(path2))
          {

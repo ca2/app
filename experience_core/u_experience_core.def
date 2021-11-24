@@ -4,4 +4,4 @@ LIBRARY      "experience_core"
 	;DESCRIPTION  'uinteraction Windows Dynamic Link Library'
 
 EXPORTS
-experience_core_factory_exchange
+experience_core_factory

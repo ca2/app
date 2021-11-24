@@ -187,7 +187,7 @@
     <ClCompile Include="aura\node\node.cpp" />
     <ClCompile Include="aura\node\windows\windows.cpp" />
     <ClCompile Include="aura\node\windows\windows_application.cpp" />
-    <ClCompile Include="aura\node\windows\windows_factory_exchange.cpp" />
+    <ClCompile Include="aura\node\windows\windows_factory.cpp" />
     <ClCompile Include="aura\node\windows\windows_file.cpp" />
     <ClCompile Include="aura\node\windows\windows_file_c.c" />
     <ClCompile Include="aura\node\windows\windows_file_find.cpp" />

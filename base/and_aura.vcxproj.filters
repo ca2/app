@@ -1878,7 +1878,7 @@
     <ClInclude Include="aura\node\android\android_application.h">
       <Filter>Header Files\aura\node\android</Filter>
     </ClInclude>
-    <ClInclude Include="aura\node\android\android_factory_exchange.h">
+    <ClInclude Include="aura\node\android\android_factory.h">
       <Filter>Header Files\aura\node\android</Filter>
     </ClInclude>
     <ClInclude Include="aura\node\android\android_file.h">

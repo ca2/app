@@ -12636,66 +12636,83 @@ interaction& interaction::operator =(const ::rectangle_i32& rectangle)
    }
 
 
+   ::e_status interaction::on_app_activated()
+   {
+      
+      auto estatus = frame_toggle_restore();
+      
+      if(!estatus)
+      {
+         
+         return estatus;
+         
+      }
+      
+      return estatus;
+      
+   }
+
+
    ::e_status interaction::frame_toggle_restore()
    {
       
-   bool bWindowVisible = is_window_visible();
-      
-   double dOccludedOpaqueRate = _001GetTopLeftWeightedOccludedOpaqueRate();
-      
-   bool bIconic = layout().is_iconic();
-
-   if (!bWindowVisible || dOccludedOpaqueRate > 0.025 || bIconic)
-   {
+      bool bWindowVisible = is_window_visible();
          
-      if(notify_icon())
-      {
+      double dOccludedOpaqueRate = _001GetTopLeftWeightedOccludedOpaqueRate();
+         
+      bool bIconic = layout().is_iconic();
 
-         set_tool_window(false);
+      if (!bWindowVisible || dOccludedOpaqueRate > 0.025 || bIconic)
+      {
             
-      }
+         if(notify_icon())
+         {
 
-      if (!is_window_screen_visible())
-      {
+            set_tool_window(false);
+               
+         }
 
-         frame_experience_restore();
+         if (!is_window_screen_visible())
+         {
+
+            frame_experience_restore();
+
+         }
+         else
+         {
+
+            order_top();
+
+            display(e_display_normal, e_activation_set_foreground);
+
+         }
 
       }
       else
       {
+            
+         if(notify_icon())
+         {
 
-         order_top();
+            set_tool_window();
+               
+            hide();
 
-         display(e_display_normal, e_activation_set_foreground);
+         }
+         else
+         {
+             
+            display(e_display_iconic);
+               
+         }
 
       }
 
-   }
-   else
-   {
+      set_need_redraw();
+
+      post_redraw();
          
-      if(notify_icon())
-      {
-
-         set_tool_window();
-            
-         hide();
-
-      }
-      else
-      {
-          
-         display(e_display_iconic);
-            
-      }
-
-   }
-
-   set_need_redraw();
-
-   post_redraw();
-      
-   return success;
+      return success;
       
    }
 

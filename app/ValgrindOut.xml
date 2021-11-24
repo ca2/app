@@ -423,15 +423,15 @@
       <obj>/xcore/time/x64/basis/libaura.so</obj>
       <fn>linux::aura::factory_exchange::factory_exchange(object*)</fn>
       <dir>/xcore/app/aura/node/linux</dir>
-      <file>linux_factory_exchange.cpp</file>
+      <file>linux_factory.cpp</file>
       <line>24</line>
     </frame>
     <frame>
       <ip>0x58DBD46</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>__node_aura_factory_exchange(object*)</fn>
+      <fn>__node_aura_factory(object*)</fn>
       <dir>/xcore/app/aura/node/linux</dir>
-      <file>linux_factory_exchange.cpp</file>
+      <file>linux_factory.cpp</file>
       <line>55</line>
     </frame>
   </stack>
@@ -819,15 +819,15 @@
       <obj>/xcore/time/x64/basis/libaxis.so</obj>
       <fn>linux::axis::factory_exchange::factory_exchange(object*)</fn>
       <dir>/xcore/app/axis/axis/node/linux</dir>
-      <file>linux_factory_exchange.cpp</file>
+      <file>linux_factory.cpp</file>
       <line>15</line>
     </frame>
     <frame>
       <ip>0xD9A6580</ip>
       <obj>/xcore/time/x64/basis/libaxis.so</obj>
-      <fn>__node_axis_factory_exchange(object*)</fn>
+      <fn>__node_axis_factory(object*)</fn>
       <dir>/xcore/app/axis/axis/node/linux</dir>
-      <file>linux_factory_exchange.cpp</file>
+      <file>linux_factory.cpp</file>
       <line>47</line>
     </frame>
   </stack>
@@ -1017,15 +1017,15 @@
       <obj>/xcore/time/x64/basis/libaxis.so</obj>
       <fn>linux::axis::factory_exchange::factory_exchange(object*)</fn>
       <dir>/xcore/app/axis/axis/node/linux</dir>
-      <file>linux_factory_exchange.cpp</file>
+      <file>linux_factory.cpp</file>
       <line>16</line>
     </frame>
     <frame>
       <ip>0xD9A6580</ip>
       <obj>/xcore/time/x64/basis/libaxis.so</obj>
-      <fn>__node_axis_factory_exchange(object*)</fn>
+      <fn>__node_axis_factory(object*)</fn>
       <dir>/xcore/app/axis/axis/node/linux</dir>
-      <file>linux_factory_exchange.cpp</file>
+      <file>linux_factory.cpp</file>
       <line>47</line>
     </frame>
   </stack>

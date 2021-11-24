@@ -584,7 +584,7 @@ namespace apex
 
 
 
-   //::e_status system::([a-z0-9_]+)_factory(const ::string & pszComponent, const ::string & pszImplementation, PFN_factory_exchange pfnFactoryExchange)
+   //::e_status system::([a-z0-9_]+)_factory(const ::string & pszComponent, const ::string & pszImplementation, PFN_factory pfnFactoryExchange)
    //{
 
    //   m_mapFactoryExchange[pszComponent][pszImplementation] = pfnFactoryExchange;
@@ -5581,6 +5581,17 @@ namespace apex
 
          }
 
+      }
+      else if(psubject->id() == id_app_activated)
+      {
+         
+         if(::is_set(m_papplicationMain))
+         {
+         
+            m_papplicationMain->handle(psubject, pcontext);
+            
+         }
+         
       }
 
 

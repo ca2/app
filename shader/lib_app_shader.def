@@ -4,5 +4,5 @@ LIBRARY  "lib_app_shader"
 ; For Win32 DLLs, only EXPORTs really required.
 
 EXPORTS
-;lib_app_shader_factory_exchange
+;lib_app_shader_factory
 

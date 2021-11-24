@@ -254,7 +254,7 @@
     <ClCompile Include="aura\node\windows\windows_application.cpp">
       <Filter>Source Files\aura\node\windows</Filter>
     </ClCompile>
-    <ClCompile Include="aura\node\windows\windows_factory_exchange.cpp">
+    <ClCompile Include="aura\node\windows\windows_factory.cpp">
       <Filter>Source Files\aura\node\windows</Filter>
     </ClCompile>
     <ClCompile Include="aura\node\windows\windows_file.cpp">

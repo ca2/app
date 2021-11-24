@@ -1,7 +1,7 @@
 LIBRARY "crypto_openssl"
 
 EXPORTS
-crypto_openssl_factory_exchange
+crypto_openssl_factory
 
 
 

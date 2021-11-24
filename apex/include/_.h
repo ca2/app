@@ -649,7 +649,7 @@ struct plane_system;
 #endif
 
 
-typedef void(*PFN_factory_exchange)(::factory::factory * pfactory);
+typedef void(*PFN_factory)(::factory::factory * pfactory);
 
 
 class object;

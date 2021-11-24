@@ -734,7 +734,7 @@
     </ClInclude>
     <ClInclude Include="axis\node\windows\windows_copydesk.h" />
     <ClInclude Include="axis\node\windows\windows_axis_dir.h" />
-    <ClInclude Include="axis\node\windows\windows_factory_exchange.h" />
+    <ClInclude Include="axis\node\windows\windows_factory.h" />
     <ClInclude Include="axis\node\windows\windows_axis_file_system.h" />
     <ClInclude Include="axis\node\windows\windows_port_forward.h" />
     <ClInclude Include="axis\node\windows\windows_printer.h" />
@@ -811,7 +811,7 @@
     </ClCompile>
     <ClCompile Include="axis\geoip\geoip_update.cpp">
     </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_factory_exchange.cpp">
+    <ClCompile Include="axis\node\windows\windows_factory.cpp">
     </ClCompile>
     <ClCompile Include="axis\node\windows\windows_port_forward.cpp">
     </ClCompile>

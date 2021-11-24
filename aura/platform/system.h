@@ -24,7 +24,7 @@ namespace aura
 
       //__composite(::aura::system)                        m_psystemParent;
 
-      // string_map < string_map < PFN_factory_exchange > > m_mapFactoryExchange;
+      // string_map < string_map < PFN_factory > > m_mapFactoryExchange;
 
 //      __composite(::aura::estamira)                      m_pestamira;
 
@@ -436,7 +436,7 @@ namespace aura
 
       //::e_status ([a-z0-9_]+)_factory(const ::string & pszComponent, const ::string & pszImplementation);
 
-      //::e_status ([a-z0-9_]+)_factory(const ::string & pszComponent, const ::string & pszImplementation, PFN_factory_exchange pfnFactoryExchange);
+      //::e_status ([a-z0-9_]+)_factory(const ::string & pszComponent, const ::string & pszImplementation, PFN_factory pfnFactoryExchange);
 
 
       //class ::aura::os                             &  os();

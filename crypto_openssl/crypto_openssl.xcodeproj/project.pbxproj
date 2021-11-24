@@ -16,7 +16,7 @@
 		9AC019AC2748A059006BEBCC /* hasher.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC019652748A057006BEBCC /* hasher.h */; };
 		9AC019AD2748A059006BEBCC /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC019682748A057006BEBCC /* _.cpp */; };
 		9AC019AE2748A059006BEBCC /* initializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC0196B2748A057006BEBCC /* initializer.h */; };
-		9AC019AF2748A059006BEBCC /* factory_exchange.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC0196C2748A057006BEBCC /* factory_exchange.cpp */; };
+		9AC019AF2748A059006BEBCC /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC0196C2748A057006BEBCC /* _factory.cpp */; };
 		9AC019B02748A059006BEBCC /* crypto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC0196E2748A057006BEBCC /* crypto.cpp */; };
 		9AC019B12748A059006BEBCC /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC019732748A057006BEBCC /* framework.h */; };
 		9AC019B22748A059006BEBCC /* rsa.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC019742748A057006BEBCC /* rsa.h */; };
@@ -84,7 +84,7 @@
 		9AC019652748A057006BEBCC /* hasher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hasher.h; sourceTree = "<group>"; };
 		9AC019682748A057006BEBCC /* _.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
 		9AC0196B2748A057006BEBCC /* initializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = initializer.h; sourceTree = "<group>"; };
-		9AC0196C2748A057006BEBCC /* factory_exchange.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = factory_exchange.cpp; sourceTree = "<group>"; };
+		9AC0196C2748A057006BEBCC /* _factory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _factory.cpp; sourceTree = "<group>"; };
 		9AC0196E2748A057006BEBCC /* crypto.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crypto.cpp; sourceTree = "<group>"; };
 		9AC019732748A057006BEBCC /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
 		9AC019742748A057006BEBCC /* rsa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rsa.h; sourceTree = "<group>"; };
@@ -137,7 +137,7 @@
 				9AC019442748A057006BEBCC /* _crypto_openssl.h */,
 				9AC0196E2748A057006BEBCC /* crypto.cpp */,
 				9AC019612748A057006BEBCC /* crypto.h */,
-				9AC0196C2748A057006BEBCC /* factory_exchange.cpp */,
+				9AC0196C2748A057006BEBCC /* _factory.cpp */,
 				9AC019582748A057006BEBCC /* framework.cpp */,
 				9AC019732748A057006BEBCC /* framework.h */,
 				9AC0194A2748A057006BEBCC /* hasher_algorithm.cpp */,
@@ -299,7 +299,7 @@
 				9AC0199C2748A059006BEBCC /* initializer.cpp in Sources */,
 				9AC019B02748A059006BEBCC /* crypto.cpp in Sources */,
 				9AC0199D2748A059006BEBCC /* hasher.cpp in Sources */,
-				9AC019AF2748A059006BEBCC /* factory_exchange.cpp in Sources */,
+				9AC019AF2748A059006BEBCC /* _factory.cpp in Sources */,
 				9AC019A92748A059006BEBCC /* framework.cpp in Sources */,
 				9AC0199E2748A059006BEBCC /* hasher_algorithm.cpp in Sources */,
 				9AC019AD2748A059006BEBCC /* _.cpp in Sources */,

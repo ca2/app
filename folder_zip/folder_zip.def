@@ -1,7 +1,7 @@
 LIBRARY "folder_zip"
 
 EXPORTS
-folder_zip_factory_exchange
+folder_zip_factory
 
 
 

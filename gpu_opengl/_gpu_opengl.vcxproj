@@ -945,7 +945,7 @@
     <ClInclude Include="draw2d_gdiplus_bitmap.h" />
     <ClInclude Include="draw2d_gdiplus_brush.h" />
     <ClInclude Include="draw2d_gdiplus_dib.h" />
-    <ClInclude Include="draw2d_gdiplus_factory_exchange.h" />
+    <ClInclude Include="draw2d_gdiplus_factory.h" />
     <ClInclude Include="draw2d_gdiplus_font.h" />
     <ClInclude Include="draw2d_gdiplus_graphics.h" />
     <ClInclude Include="draw2d_gdiplus_object.h" />

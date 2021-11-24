@@ -709,17 +709,17 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 //
 //      }
 //
-//      PFN_factory_exchange ([a-z0-9_]+)_factory = plibrary->get < PFN_factory_exchange >(strComponent + "_" + strImplementation + "_factory_exchange");
+//      PFN_factory ([a-z0-9_]+)_factory = plibrary->get < PFN_factory >(strComponent + "_" + strImplementation + "_factory");
 //
 //      if (([a-z0-9_]+)_factory == nullptr)
 //      {
 //
-//         ([a-z0-9_]+)_factory = plibrary->get < PFN_factory_exchange >(strComponent + "_factory_exchange");
+//         ([a-z0-9_]+)_factory = plibrary->get < PFN_factory >(strComponent + "_factory");
 //
 //         if (([a-z0-9_]+)_factory == nullptr)
 //         {
 //
-//            ([a-z0-9_]+)_factory = plibrary->get < PFN_factory_exchange >("factory_exchange");
+//            ([a-z0-9_]+)_factory = plibrary->get < PFN_factory >("factory_exchange");
 //
 //            if (([a-z0-9_]+)_factory == nullptr)
 //            {
@@ -1234,19 +1234,19 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 //
 //      }
 //
-//      string strFunctionName = strComponent + "_" + strImplementation + "_factory_exchange";
+//      string strFunctionName = strComponent + "_" + strImplementation + "_factory";
 //
-//      PFN_factory_exchange ([a-z0-9_]+)_factory = plibrary->get < PFN_factory_exchange >(strFunctionName);
+//      PFN_factory ([a-z0-9_]+)_factory = plibrary->get < PFN_factory >(strFunctionName);
 //
 //      if (([a-z0-9_]+)_factory == nullptr)
 //      {
 //
-//         ([a-z0-9_]+)_factory = plibrary->get < PFN_factory_exchange >(strComponent + "_factory_exchange");
+//         ([a-z0-9_]+)_factory = plibrary->get < PFN_factory >(strComponent + "_factory");
 //
 //         if (([a-z0-9_]+)_factory == nullptr)
 //         {
 //
-//            ([a-z0-9_]+)_factory = plibrary->get < PFN_factory_exchange >("factory_exchange");
+//            ([a-z0-9_]+)_factory = plibrary->get < PFN_factory >("factory_exchange");
 //
 //            if (([a-z0-9_]+)_factory == nullptr)
 //            {

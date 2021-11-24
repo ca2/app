@@ -1216,7 +1216,7 @@ CLASS_DECL_AURA dump_context & operator<<(dump_context & dumpcontext, const ::po
 
 
 
-//CLASS_DECL_AURA PFN_factory_exchange ([a-z0-9_]+)_factory(::factory::factory * pfactory);
+//CLASS_DECL_AURA PFN_factory ([a-z0-9_]+)_factory(::factory::factory * pfactory);
 
-//CLASS_DECL_AURA void ([a-z0-9_]+)_factory(PFN_factory_exchange pfnfactoryDraw2d);
+//CLASS_DECL_AURA void ([a-z0-9_]+)_factory(PFN_factory pfnfactoryDraw2d);
 

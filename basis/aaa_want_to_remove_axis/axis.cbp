@@ -155,7 +155,7 @@
 		<Unit filename="axis/node/android/android_axis_file_system.h" />
 		<Unit filename="axis/node/android/android_copydesk.h" />
 		<Unit filename="axis/node/android/android_crypto.h" />
-		<Unit filename="axis/node/android/android_factory_exchange.h" />
+		<Unit filename="axis/node/android/android_factory.h" />
 		<Unit filename="axis/node/android/android_ip_enum.h" />
 		<Unit filename="axis/node/android/android_port_forward.h" />
 		<Unit filename="axis/node/ansios/ansios.h" />
@@ -167,7 +167,7 @@
 		<Unit filename="axis/node/ios/ios_axis_file_system.h" />
 		<Unit filename="axis/node/ios/ios_copydesk.h" />
 		<Unit filename="axis/node/ios/ios_crypto.h" />
-		<Unit filename="axis/node/ios/ios_factory_exchange.h" />
+		<Unit filename="axis/node/ios/ios_factory.h" />
 		<Unit filename="axis/node/ios/ios_file_set.h" />
 		<Unit filename="axis/node/ios/ios_implementation.h" />
 		<Unit filename="axis/node/ios/ios_internal.h" />
@@ -190,14 +190,14 @@
 		<Unit filename="axis/node/linux/linux_axis_file_system.h" />
 		<Unit filename="axis/node/linux/linux_copydesk.h" />
 		<Unit filename="axis/node/linux/linux_crypto.h" />
-		<Unit filename="axis/node/linux/linux_factory_exchange.h" />
+		<Unit filename="axis/node/linux/linux_factory.h" />
 		<Unit filename="axis/node/linux/linux_ip_enum.h" />
 		<Unit filename="axis/node/linux/linux_port_forward.h" />
 		<Unit filename="axis/node/linux/main.cpp" />
 		<Unit filename="axis/node/linux/port_forward.cpp" />
 		<Unit filename="axis/node/linux/port_forward.h" />
 		<Unit filename="axis/node/linux/wanadel_linux_message_queue.h" />
-		<Unit filename="axis/node/macos/aaa_want_to_remove_macos_factory_exchange 2.h" />
+		<Unit filename="axis/node/macos/aaa_want_to_remove_macos_factory 2.h" />
 		<Unit filename="axis/node/macos/aaa_want_to_remove_macos_ip_enum.h" />
 		<Unit filename="axis/node/macos/macos 2.h" />
 		<Unit filename="axis/node/macos/macos.h" />
@@ -205,7 +205,7 @@
 		<Unit filename="axis/node/macos/macos_axis_file_system.h" />
 		<Unit filename="axis/node/macos/macos_copydesk.h" />
 		<Unit filename="axis/node/macos/macos_crypto.h" />
-		<Unit filename="axis/node/macos/macos_factory_exchange.h" />
+		<Unit filename="axis/node/macos/macos_factory.h" />
 		<Unit filename="axis/node/macos/macos_file_set.h" />
 		<Unit filename="axis/node/macos/macos_implementation.h" />
 		<Unit filename="axis/node/macos/macos_port_forward.h" />
@@ -216,7 +216,7 @@
 		<Unit filename="axis/node/metrowin/metrowin_axis_file_system.h" />
 		<Unit filename="axis/node/metrowin/metrowin_copydesk.h" />
 		<Unit filename="axis/node/metrowin/metrowin_crypto.h" />
-		<Unit filename="axis/node/metrowin/metrowin_factory_exchange.h" />
+		<Unit filename="axis/node/metrowin/metrowin_factory.h" />
 		<Unit filename="axis/node/metrowin/metrowin_internal.h" />
 		<Unit filename="axis/node/metrowin/metrowin_ip_enum.h" />
 		<Unit filename="axis/node/metrowin/metrowin_port_forward.h" />

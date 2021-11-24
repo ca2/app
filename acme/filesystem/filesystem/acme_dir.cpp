@@ -360,7 +360,7 @@ pacmedir->roaming();
 
 #elif defined(__APPLE__)
 
-   return m_psystem->m_pacmefile->executable()-3;
+   return m_psystem->m_pacmefile->module()-3;
 
 #elif defined(_UWP)
 

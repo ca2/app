@@ -1878,7 +1878,7 @@
     <ClInclude Include="apex\node\android\android_application.h">
       <Filter>Header Files\apex\node\android</Filter>
     </ClInclude>
-    <ClInclude Include="apex\node\android\android_factory_exchange.h">
+    <ClInclude Include="apex\node\android\android_factory.h">
       <Filter>Header Files\apex\node\android</Filter>
     </ClInclude>
     <ClInclude Include="apex\node\android\android_file.h">

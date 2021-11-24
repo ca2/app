@@ -187,7 +187,7 @@
     <ClCompile Include="apex\node\node.cpp" />
     <ClCompile Include="apex\node\windows\windows.cpp" />
     <ClCompile Include="apex\node\windows\windows_application.cpp" />
-    <ClCompile Include="apex\node\windows\windows_factory_exchange.cpp" />
+    <ClCompile Include="apex\node\windows\windows_factory.cpp" />
     <ClCompile Include="apex\node\windows\windows_file.cpp" />
     <ClCompile Include="apex\node\windows\windows_file_c.c" />
     <ClCompile Include="apex\node\windows\windows_file_find.cpp" />

@@ -26,7 +26,7 @@ namespace apex
       // apex commented
       //__composite(::apex::multimedia)                    m_pmultimedia;
 
-      string_map < string_map < PFN_factory_exchange > > m_mapFactoryExchange;
+      string_map < string_map < PFN_factory > > m_mapFactoryExchange;
 
       // __composite(::apex::estamira)                      m_pestamira;
 
@@ -428,7 +428,7 @@ namespace apex
 
       ::extended::transport < ::acme::library > ([a-z0-9_]+)_factory(const char * pszComponent, const char * pszImplementation);
 
-      ::e_status ([a-z0-9_]+)_factory(const char* pszComponent, const char * pszImplementation, PFN_factory_exchange pfnFactoryExchange);
+      ::e_status ([a-z0-9_]+)_factory(const char* pszComponent, const char * pszImplementation, PFN_factory pfnFactoryExchange);
 
       // apex commented
       //virtual void defer_audio();

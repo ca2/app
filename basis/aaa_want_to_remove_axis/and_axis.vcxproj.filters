@@ -698,7 +698,7 @@
     <ClInclude Include="axis\node\android\android.h">
       <Filter>Header Files\axis\node\android</Filter>
     </ClInclude>
-    <ClInclude Include="axis\node\android\android_factory_exchange.h">
+    <ClInclude Include="axis\node\android\android_factory.h">
       <Filter>Header Files\axis\node\android</Filter>
     </ClInclude>
     <ClInclude Include="axis\node\android\android_file_set.h">
@@ -1381,7 +1381,7 @@
     <ClCompile Include="filesystem\fs\fs_link.cpp">
       <Filter>Source Files\filesystem\fs</Filter>
     </ClCompile>
-    <ClCompile Include="axis\node\android\android_factory_exchange.cpp">
+    <ClCompile Include="axis\node\android\android_factory.cpp">
       <Filter>Source Files\axis\node\android</Filter>
     </ClCompile>
     <ClCompile Include="axis\node\android\android_file_set.cpp">

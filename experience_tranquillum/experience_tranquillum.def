@@ -4,4 +4,4 @@ LIBRARY      "experience_tranquillum"
 	;DESCRIPTION  'uinteraction Windows Dynamic Link Library'
 
 EXPORTS
-experience_tranquillum_factory_exchange
+experience_tranquillum_factory

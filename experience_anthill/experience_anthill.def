@@ -5,5 +5,5 @@ LIBRARY  "experience_anthill"
 
 
 EXPORTS
-experience_anthill_factory_exchange
+experience_anthill_factory
 

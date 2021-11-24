@@ -515,7 +515,7 @@
     <ClInclude Include="axis\node\windows\windows_crypto.h">
       <Filter>Header Files\axis\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_factory_exchange.h">
+    <ClInclude Include="axis\node\windows\windows_factory.h">
       <Filter>Header Files\axis\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="axis\node\windows\windows_ip_enum.h">
@@ -613,7 +613,7 @@
     <ClCompile Include="filesystem\fs\fs_link.cpp">
       <Filter>Source Files\filesystem\fs</Filter>
     </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_factory_exchange.cpp">
+    <ClCompile Include="axis\node\windows\windows_factory.cpp">
       <Filter>Source Files\axis\node\windows</Filter>
     </ClCompile>
     <ClCompile Include="axis\node\windows\windows_ip_enum.cpp">

@@ -694,6 +694,8 @@ namespace user
       
       virtual ::user::notify_icon * notify_icon();
       
+      virtual ::e_status on_app_activated();
+      
       virtual ::e_status frame_toggle_restore();
       
       virtual ::e_status display_previous_restore();

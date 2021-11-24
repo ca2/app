@@ -28,16 +28,16 @@ extern ::app_core * g_pappcore;
 //extern "C"
 //{
 //
-//   typedef void FN_factory_exchange(::factory::factory * pfactory);
+//   typedef void FN_factory(::factory::factory * pfactory);
 //
-//   typedef FN_factory_exchange * PFN_factory_exchange;
+//   typedef FN_factory * PFN_factory;
 //
 //}
 
-//PFN_factory_exchange g_pfnfactoryDraw2d = nullptr;
+//PFN_factory g_pfnfactoryDraw2d = nullptr;
 //
 //
-//PFN_factory_exchange ([a-z0-9_]+)_factory(::factory::factory * pfactory)
+//PFN_factory ([a-z0-9_]+)_factory(::factory::factory * pfactory)
 //{
 //
 //   return g_pfnfactoryDraw2d;
@@ -45,7 +45,7 @@ extern ::app_core * g_pappcore;
 //}
 
 //
-//void ([a-z0-9_]+)_factory(PFN_factory_exchange pfnfactoryDraw2d)
+//void ([a-z0-9_]+)_factory(PFN_factory pfnfactoryDraw2d)
 //{
 //
 //   g_pfnfactoryDraw2d = pfnfactoryDraw2d;
@@ -9700,7 +9700,7 @@ return papp;
 
 
 
-//typedef  void (* PFN_factory_exchange)();
+//typedef  void (* PFN_factory)();
 
 
 

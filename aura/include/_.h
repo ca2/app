@@ -2199,7 +2199,7 @@ namespace draw2d
 //
 //#endif
 //
-//typedef  void(*PFN_factory_exchange)();
+//typedef  void(*PFN_factory)();
 //
 //// #ifdef WINDOWS
 //// CLASS_DECL_AURA bool defer_co_initialize_ex(bool bMultiThread, bool bDisableOleDDE = false);

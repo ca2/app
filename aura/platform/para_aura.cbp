@@ -787,7 +787,7 @@
 		<Unit filename="aura/node/android/android1.h" />
 		<Unit filename="aura/node/android/android_application.h" />
 		<Unit filename="aura/node/android/android_dir.h" />
-		<Unit filename="aura/node/android/android_factory_exchange.h" />
+		<Unit filename="aura/node/android/android_factory.h" />
 		<Unit filename="aura/node/android/android_file.h" />
 		<Unit filename="aura/node/android/android_file_system.h" />
 		<Unit filename="aura/node/android/android_file_watcher.h" />
@@ -830,7 +830,7 @@
 		<Unit filename="aura/node/ios/ios.h" />
 		<Unit filename="aura/node/ios/ios_application.h" />
 		<Unit filename="aura/node/ios/ios_dir.h" />
-		<Unit filename="aura/node/ios/ios_factory_exchange.h" />
+		<Unit filename="aura/node/ios/ios_factory.h" />
 		<Unit filename="aura/node/ios/ios_file.h" />
 		<Unit filename="aura/node/ios/ios_file_system.h" />
 		<Unit filename="aura/node/ios/ios_file_watcher.h" />
@@ -933,7 +933,7 @@
 		<Unit filename="aura/node/metrowin/metrowin_directx_application.h" />
 		<Unit filename="aura/node/metrowin/metrowin_directx_interaction.h" />
 		<Unit filename="aura/node/metrowin/metrowin_exception.h" />
-		<Unit filename="aura/node/metrowin/metrowin_factory_exchange.h" />
+		<Unit filename="aura/node/metrowin/metrowin_factory.h" />
 		<Unit filename="aura/node/metrowin/metrowin_file.h" />
 		<Unit filename="aura/node/metrowin/metrowin_file_find.h" />
 		<Unit filename="aura/node/metrowin/metrowin_file_system.h" />

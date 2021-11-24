@@ -55,13 +55,10 @@
 		9A6A479F2660E8BB004ED97A /* _.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
 		9A8FCC372651A8BE00C0D8A1 /* app_shader_1through3.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = app_shader_1through3.cpp; sourceTree = "<group>"; };
 		9A8FCC3A2651A8BE00C0D8A1 /* render.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = render.cpp; sourceTree = "<group>"; };
-		9A8FCC532651A8BF00C0D8A1 /* aaa_want_to_remove_pane_view_update_hint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = aaa_want_to_remove_pane_view_update_hint.h; sourceTree = "<group>"; };
 		9A8FCC5D2651A8C000C0D8A1 /* framework.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
 		9A8FCC5E2651A8C000C0D8A1 /* main_window.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = main_window.h; sourceTree = "<group>"; };
 		9A8FCC5F2651A8C000C0D8A1 /* application.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = application.h; sourceTree = "<group>"; };
 		9A8FCC622651A8C000C0D8A1 /* app_shader_arcs.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = app_shader_arcs.cpp; sourceTree = "<group>"; };
-		9A8FCC642651A8C000C0D8A1 /* aaa_want_to_remove_app_shader_main_view.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = aaa_want_to_remove_app_shader_main_view.h; sourceTree = "<group>"; };
-		9A8FCCCA2651A8C100C0D8A1 /* _user.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _user.h; sourceTree = "<group>"; };
 		9A8FCCF12651A8C300C0D8A1 /* main_window.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main_window.cpp; sourceTree = "<group>"; };
 		9A8FCCF82651A8C400C0D8A1 /* framework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
 		9A8FCCFA2651A8C400C0D8A1 /* application.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = application.cpp; sourceTree = "<group>"; };
@@ -130,9 +127,6 @@
 			children = (
 				9A6A479F2660E8BB004ED97A /* _.cpp */,
 				9A8FCD2E2651A8C500C0D8A1 /* _.h */,
-				9A8FCCCA2651A8C100C0D8A1 /* _user.h */,
-				9A8FCC642651A8C000C0D8A1 /* aaa_want_to_remove_app_shader_main_view.h */,
-				9A8FCC532651A8BF00C0D8A1 /* aaa_want_to_remove_pane_view_update_hint.h */,
 				9A8FCC372651A8BE00C0D8A1 /* app_shader_1through3.cpp */,
 				9A8FCC622651A8C000C0D8A1 /* app_shader_arcs.cpp */,
 				9A8FCCFA2651A8C400C0D8A1 /* application.cpp */,

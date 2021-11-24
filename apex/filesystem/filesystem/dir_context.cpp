@@ -2809,9 +2809,8 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
          pathTxt = ::file::path(home) / "dropbox.txt";
 
       }
-
-#endif
       else
+#endif
       {
 
          pathTxt = m_pcontext->m_papexcontext->dir().home() / "dropbox.txt";

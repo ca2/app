@@ -27,10 +27,13 @@ namespace url
    department::department()
    {
 
+
    }
+
 
    department::~department()
    {
+
 
    }
 
@@ -41,9 +44,16 @@ namespace url
       string str(strParam);
 
       index iPos = str.find(":");
+
       if(iPos == -1)
+      {
+
          return "";
+
+      }
+
       return str.Mid(0, iPos);
+
    }
 
 

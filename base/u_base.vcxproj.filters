@@ -539,9 +539,6 @@
     <None Include="user\user\_impl.h">
       <Filter>Header Files\user\user</Filter>
     </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">

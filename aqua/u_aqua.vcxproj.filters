@@ -306,9 +306,4 @@
       <Filter>Header Files\inline</Filter>
     </ClInclude>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="w_aqua.def">
-      <Filter>Source Files</Filter>
-    </None>
-  </ItemGroup>
 </Project>

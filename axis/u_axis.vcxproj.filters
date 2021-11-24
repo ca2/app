@@ -774,9 +774,4 @@
       <Filter>Source Files\networking</Filter>
     </ClCompile>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="axis.def">
-      <Filter>Source Files</Filter>
-    </None>
-  </ItemGroup>
 </Project>

@@ -114,9 +114,4 @@
       <UniqueIdentifier>{539bf3f0-868e-4bed-976c-534d61caddec}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="u_experience_core.def">
-      <Filter>Source Files</Filter>
-    </None>
-  </ItemGroup>
 </Project>

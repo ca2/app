@@ -995,7 +995,8 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
       <AdditionalDependencies>dxgi.lib;Windowscodecs.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
@@ -1057,7 +1058,8 @@
     <Link>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
       <AdditionalDependencies>dxgi.lib;Windowscodecs.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>

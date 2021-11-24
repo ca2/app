@@ -421,7 +421,8 @@
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>sqlite.lib;WindowsApp.lib;;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
       <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
     </Link>
@@ -485,7 +486,8 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>sqlite.lib;WindowsApp.lib;;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
       <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
     </Link>

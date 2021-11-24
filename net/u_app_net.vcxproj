@@ -111,7 +111,6 @@
       <Project>{b3b6a9d8-7776-434e-8e3b-d2696632df39}</Project>
     </ProjectReference>
   </ItemGroup>
-  
   <PropertyGroup Label="Globals">
     <ProjectGuid>{3C40C5D6-4AA7-4E7D-8F7A-A9D61BF70929}</ProjectGuid>
     <Keyword>DynamicLibrary</Keyword>
@@ -408,7 +407,8 @@
     <Link>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time-universal_windows\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
@@ -470,7 +470,8 @@
     <Link>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-universal_windows\third\library\$(PlatformName)\$(Configuration)\;$(__archive)storage-universal_windows\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
       <Command>

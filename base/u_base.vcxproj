@@ -217,7 +217,6 @@
     <ClInclude Include="user\user\user.h" />
     <ClInclude Include="user\user\_.h" />
     <ClInclude Include="user\user\_const.h" />
-    
     <None Include="user\user\_impl.h" />
     <ClInclude Include="user\user\_user.h" />
     <ClInclude Include="user\_.h" />
@@ -633,7 +632,8 @@
       <SubSystem>Windows</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
     </Link>
@@ -710,7 +710,8 @@
       <SubSystem>Windows</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
     </Link>

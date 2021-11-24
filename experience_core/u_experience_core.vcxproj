@@ -140,7 +140,6 @@
       <Project>{0680a465-39a7-4e1b-8dc1-0607a3243ea2}</Project>
     </ProjectReference>
   </ItemGroup>
-  
   <PropertyGroup Label="Globals">
     <ProjectGuid>{B2D7833B-9B59-4826-BBDF-C270A2115E86}</ProjectGuid>
     <Keyword>DynamicLibrary</Keyword>
@@ -442,7 +441,8 @@
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
@@ -504,7 +504,8 @@
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-universal_windows\$(PlatformName)\$(Configuration)\library\;$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
       <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
     </Link>

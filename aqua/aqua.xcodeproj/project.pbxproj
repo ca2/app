@@ -475,14 +475,14 @@
 		9A28199A25242523009FA9CB /* audio */ = {
 			isa = PBXGroup;
 			children = (
-				9A28199B25242523009FA9CB /* sound_track_player.cpp */,
-				9A28199C25242523009FA9CB /* speaker.cpp */,
-				9A28199D25242523009FA9CB /* sound_track_player.h */,
-				9A28199E25242523009FA9CB /* audio_c.h */,
-				9A28199F25242523009FA9CB /* out.h */,
-				9A2819A025242523009FA9CB /* speaker.h */,
-				9A2819A125242523009FA9CB /* audio_wave_out.cpp */,
 				9A2819A225242523009FA9CB /* _.h */,
+				9A28199E25242523009FA9CB /* audio_c.h */,
+				9A2819A125242523009FA9CB /* audio_wave_out.cpp */,
+				9A28199F25242523009FA9CB /* out.h */,
+				9A28199B25242523009FA9CB /* sound_track_player.cpp */,
+				9A28199D25242523009FA9CB /* sound_track_player.h */,
+				9A28199C25242523009FA9CB /* speaker.cpp */,
+				9A2819A025242523009FA9CB /* speaker.h */,
 			);
 			path = audio;
 			sourceTree = "<group>";

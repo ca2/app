@@ -45,9 +45,7 @@ namespace folder_zip
       ::e_status open_for_writing(file_pointer pfile) override;
 
 
-      //void write_to_file(file_pointer  pfile, const widechar * pcsz);
-
-      virtual void add_file(const ::file::path& pszRelative, ::file::file* pfile);
+      void add_file(const ::file::path & pathRelative, ::file::file * pfile) override;
 
 
       ::file::listing& perform_file_listing(::file::listing& listing) override;

@@ -709,6 +709,14 @@
 		9A787DF5264CA9F2003DF8A0 /* command.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A787DEE264CA9F2003DF8A0 /* command.h */; };
 		9A787DF6264CA9F2003DF8A0 /* handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A787DEF264CA9F2003DF8A0 /* handler.cpp */; };
 		9A787DF7264CA9F2003DF8A0 /* handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A787DEF264CA9F2003DF8A0 /* handler.cpp */; };
+		9A81ECAA274EDFCA003F38EC /* api.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81ECA5274EDFCA003F38EC /* api.cpp */; };
+		9A81ECAB274EDFCA003F38EC /* api.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81ECA5274EDFCA003F38EC /* api.cpp */; };
+		9A81ECAC274EDFCA003F38EC /* api_client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81ECA7274EDFCA003F38EC /* api_client.cpp */; };
+		9A81ECAD274EDFCA003F38EC /* api_client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81ECA7274EDFCA003F38EC /* api_client.cpp */; };
+		9A81ECAE274EDFCA003F38EC /* api_client.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81ECA8274EDFCA003F38EC /* api_client.h */; };
+		9A81ECAF274EDFCA003F38EC /* api_client.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81ECA8274EDFCA003F38EC /* api_client.h */; };
+		9A81ECB0274EDFCA003F38EC /* api.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81ECA9274EDFCA003F38EC /* api.h */; };
+		9A81ECB1274EDFCA003F38EC /* api.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81ECA9274EDFCA003F38EC /* api.h */; };
 		9AAE6EAA251921CF00F10692 /* interprocess_call.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAE6EA2251921CC00F10692 /* interprocess_call.h */; };
 		9AAE6EAB251921CF00F10692 /* interprocess_communication.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AAE6EA3251921CC00F10692 /* interprocess_communication.cpp */; };
 		9AAE6EAC251921CF00F10692 /* interprocess_intercommunication.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAE6EA4251921CC00F10692 /* interprocess_intercommunication.h */; };
@@ -1958,6 +1966,10 @@
 		9A787DEC264CA9F2003DF8A0 /* command.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = command.cpp; sourceTree = "<group>"; };
 		9A787DEE264CA9F2003DF8A0 /* command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = command.h; sourceTree = "<group>"; };
 		9A787DEF264CA9F2003DF8A0 /* handler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = handler.cpp; sourceTree = "<group>"; };
+		9A81ECA5274EDFCA003F38EC /* api.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = api.cpp; sourceTree = "<group>"; };
+		9A81ECA7274EDFCA003F38EC /* api_client.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = api_client.cpp; sourceTree = "<group>"; };
+		9A81ECA8274EDFCA003F38EC /* api_client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = api_client.h; sourceTree = "<group>"; };
+		9A81ECA9274EDFCA003F38EC /* api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = api.h; sourceTree = "<group>"; };
 		9AAE6EA2251921CC00F10692 /* interprocess_call.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = interprocess_call.h; sourceTree = "<group>"; };
 		9AAE6EA3251921CC00F10692 /* interprocess_communication.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = interprocess_communication.cpp; sourceTree = "<group>"; };
 		9AAE6EA4251921CC00F10692 /* interprocess_intercommunication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = interprocess_intercommunication.h; sourceTree = "<group>"; };
@@ -2914,6 +2926,10 @@
 				9A23A28E26CE850300F98012 /* _application_service.cpp */,
 				9A68B63C2511444B008DABD2 /* apex_main_data.cpp */,
 				9A68B5F32511444B008DABD2 /* apex_main_struct.cpp */,
+				9A81ECA7274EDFCA003F38EC /* api_client.cpp */,
+				9A81ECA8274EDFCA003F38EC /* api_client.h */,
+				9A81ECA5274EDFCA003F38EC /* api.cpp */,
+				9A81ECA9274EDFCA003F38EC /* api.h */,
 				9A68B5C92511444B008DABD2 /* app_core.cpp */,
 				9A68B6352511444B008DABD2 /* app_launcher.cpp */,
 				9A68B5D92511444B008DABD2 /* application_array.cpp */,
@@ -3444,6 +3460,7 @@
 				9A23A18726CDFC3600F98012 /* exception_engine.h in Headers */,
 				9A68BC6E2511444E008DABD2 /* application.h in Headers */,
 				9A23A0B326CDFC3500F98012 /* exception_engine.h in Headers */,
+				9A81ECB0274EDFCA003F38EC /* api.h in Headers */,
 				9A4F4E1C25311DA400733584 /* hasher.h in Headers */,
 				9A239DD926CDF9AF00F98012 /* http_batch_buffer.h in Headers */,
 				9A239DAB26CDF9AE00F98012 /* context.h in Headers */,
@@ -3780,6 +3797,7 @@
 				9A68C18125114451008DABD2 /* policy_objc.h in Headers */,
 				9A787DF4264CA9F2003DF8A0 /* command.h in Headers */,
 				9A68BE292511444F008DABD2 /* user.h in Headers */,
+				9A81ECAE274EDFCA003F38EC /* api_client.h in Headers */,
 				9A68BDE52511444F008DABD2 /* net.h in Headers */,
 				9AAE6EAC251921CF00F10692 /* interprocess_intercommunication.h in Headers */,
 				9A68BDCF2511444F008DABD2 /* dir_system.h in Headers */,
@@ -3884,6 +3902,7 @@
 				9AD692CC251A754800C0EBD7 /* set.h in Headers */,
 				9AD692CE251A754800C0EBD7 /* message.h in Headers */,
 				9A787D86264C960F003DF8A0 /* service_handler.h in Headers */,
+				9A81ECB1274EDFCA003F38EC /* api.h in Headers */,
 				9AD692D4251A754800C0EBD7 /* application_consumer.h in Headers */,
 				9AD692D7251A754800C0EBD7 /* file_watcher.h in Headers */,
 				9AD692D8251A754800C0EBD7 /* _.h in Headers */,
@@ -3946,6 +3965,7 @@
 				9AD6934B251A754800C0EBD7 /* file_context.h in Headers */,
 				9AD6934E251A754800C0EBD7 /* macos.h in Headers */,
 				9AD6934F251A754800C0EBD7 /* simple_command.h in Headers */,
+				9A81ECAF274EDFCA003F38EC /* api_client.h in Headers */,
 				9AD69350251A754800C0EBD7 /* application_container.h in Headers */,
 				9AD69351251A754800C0EBD7 /* _.h in Headers */,
 				9AD69352251A754800C0EBD7 /* selection.h in Headers */,
@@ -4216,6 +4236,7 @@
 				9A787D8D264C960F003DF8A0 /* _.cpp in Sources */,
 				9A239DE826CDF9AF00F98012 /* tunnel.cpp in Sources */,
 				9A68BD0C2511444E008DABD2 /* application.cpp in Sources */,
+				9A81ECAC274EDFCA003F38EC /* api_client.cpp in Sources */,
 				9A239DB626CDF9AE00F98012 /* sctp_socket.cpp in Sources */,
 				9A787DF6264CA9F2003DF8A0 /* handler.cpp in Sources */,
 				9A23A06026CDFC3500F98012 /* graphics.cpp in Sources */,
@@ -4246,6 +4267,7 @@
 				9AC0192A27489AFE006BEBCC /* initializer.cpp in Sources */,
 				9A68BCAF2511444E008DABD2 /* app_core.cpp in Sources */,
 				9A23A06F26CDFC3500F98012 /* time.cpp in Sources */,
+				9A81ECAA274EDFCA003F38EC /* api.cpp in Sources */,
 				9A239DCB26CDF9AF00F98012 /* httpd_socket.cpp in Sources */,
 				9A68BD6D2511444F008DABD2 /* message.cpp in Sources */,
 				9AC01926274896EB006BEBCC /* not_dir.cpp in Sources */,
@@ -4528,6 +4550,7 @@
 				9AD69541251A754800C0EBD7 /* _.cpp in Sources */,
 				9AD69543251A754800C0EBD7 /* console_application.cpp in Sources */,
 				9AD69545251A754800C0EBD7 /* interprocess_task.cpp in Sources */,
+				9A81ECAD274EDFCA003F38EC /* api_client.cpp in Sources */,
 				9AD69546251A754800C0EBD7 /* context_glx.cpp in Sources */,
 				9AD69548251A754800C0EBD7 /* stringhelper.cpp in Sources */,
 				9ACC5DA0251A9698008528B1 /* file_system.cpp in Sources */,
@@ -4568,6 +4591,7 @@
 				9AD69598251A754800C0EBD7 /* debug.cpp in Sources */,
 				9AD69599251A754800C0EBD7 /* system.cpp in Sources */,
 				9AD6959B251A754800C0EBD7 /* application_menu.cpp in Sources */,
+				9A81ECAB274EDFCA003F38EC /* api.cpp in Sources */,
 				9AD6959D251A754800C0EBD7 /* receiver.cpp in Sources */,
 				9AD6959E251A754800C0EBD7 /* key.cpp in Sources */,
 				9AD695A4251A754800C0EBD7 /* command.cpp in Sources */,

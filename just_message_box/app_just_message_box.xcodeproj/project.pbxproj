@@ -154,6 +154,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9A48898F24EB48DE00119EC4 /* Build configuration list for PBXNativeTarget "app_just_message_box" */;
 			buildPhases = (
+				9A81F0AD274F42CE003F38EC /* ShellScript */,
 				9A48898224EB48DE00119EC4 /* Headers */,
 				9A48898324EB48DE00119EC4 /* Sources */,
 				9A48898424EB48DE00119EC4 /* Frameworks */,
@@ -229,6 +230,28 @@
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9A81F0AD274F42CE003F38EC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/deps.txt",
+				"$(SRCROOT)/matter.txt",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "$HOME/solution/basis/archive/tool-macos/bin/application_build_helper $SRCROOT\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9A48898324EB48DE00119EC4 /* Sources */ = {

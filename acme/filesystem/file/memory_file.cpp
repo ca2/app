@@ -130,6 +130,26 @@ void memory_file::write(const void * pdata, memsize nCount)
 }
 
 
+int memory_file::put_character_back(int iCharacter)
+{
+
+   if(m_position <= 0)
+   {
+
+      return -1;
+
+   }
+
+   m_position--;
+
+   m_pmemory.m_p->m_memory.m_pdata[m_position] = (byte) iCharacter;
+
+   return iCharacter;
+
+}
+
+
+
 void memory_file::write_from_hex(const void * pdata, memsize nCount)
 
 {

@@ -13,6 +13,8 @@ list(APPEND library_source
    hasher.h
    hasher_algorithm.cpp
    hasher_algorithm.h
+   initializer.cpp
+   initializer.h
    rsa.cpp
    rsa.h
    )

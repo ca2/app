@@ -79,7 +79,7 @@ namespace aqua
    }
 
 
-   __pointer(::text_to_speech::speaker) audio::create_text_to_speech_speaker(const ::string & strImplementation)
+   __transport(::text_to_speech::speaker) audio::create_text_to_speech_speaker(const ::string & strImplementation)
    {
 
       __UNREFERENCED_PARAMETER(strImplementation);

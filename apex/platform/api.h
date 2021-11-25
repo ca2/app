@@ -27,6 +27,8 @@ public:
    bool                             m_bWaitingResponseFromUser;
    __pointer(::api_client)          m_papiclient;
    ::manual_reset_event             m_eventResponse;
+   property_set                     m_setConfig;
+
 
 
    api();

@@ -131,3 +131,32 @@ api_client::~api_client()
    return estatus;
 
 }
+
+
+::e_status api_client::api_download(string strGet, const ::file::path& path, property_set& set)
+{
+
+   auto estatus = defer_api();
+
+   if (!estatus || !m_papi)
+   {
+
+      return estatus;
+
+   }
+
+   estatus = m_papi->api_download(strGet, path, set);
+
+   if (!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   return estatus;
+
+}
+
+
+

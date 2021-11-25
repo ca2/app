@@ -99,9 +99,4 @@
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="u_experience_tranquillum.def">
-      <Filter>Source Files</Filter>
-    </None>
-  </ItemGroup>
 </Project>

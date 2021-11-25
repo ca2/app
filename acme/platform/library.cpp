@@ -1049,7 +1049,7 @@ namespace acme
 
       }
 
-      auto pfactory = __new(::factory::factory);
+      auto pfactory = m_psystem->__create_new < ::factory::factory >();
 
       pfnFactory(pfactory);
 

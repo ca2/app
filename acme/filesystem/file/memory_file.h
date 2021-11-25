@@ -66,6 +66,7 @@ public:
    using ::file::file::write;
    virtual void write(const void * pdata, memsize nCount) override;
 
+   int put_character_back(int iCharacter) override;
 
    virtual void write_from_hex(const void * pdata,memsize nCount) override;
 

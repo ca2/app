@@ -1641,6 +1641,8 @@ pacmedir->create("/ca2core");
 
       }
 
+      pfactoryCrypto->merge_to_global_factory();
+
       estatus = pfactoryCrypto->__compose(this, m_pcrypto);
 
       if(!estatus)
@@ -4806,11 +4808,11 @@ pacmedir->create("/ca2core");
       if (strBrowser.has_char())
       {
 
-         m_pcontext->m_papexcontext->file().put_utf8_text(m_psystem->m_pacmedir->system() / "browser.txt", strBrowser);
+         m_pcontext->m_papexcontext->file().put_text_utf8(m_psystem->m_pacmedir->system() / "browser.txt", strBrowser);
 
-         m_pcontext->m_papexcontext->file().put_utf8_text(m_psystem->m_pacmedir->system() / "browser_path.txt", strBrowserPath);
+         m_pcontext->m_papexcontext->file().put_text_utf8(m_psystem->m_pacmedir->system() / "browser_path.txt", strBrowserPath);
 
-         m_pcontext->m_papexcontext->file().put_utf8_text(m_psystem->m_pacmedir->system() / "browser_dir.txt", strBrowserDir);
+         m_pcontext->m_papexcontext->file().put_text_utf8(m_psystem->m_pacmedir->system() / "browser_dir.txt", strBrowserDir);
 
       }
 

@@ -544,7 +544,7 @@ namespace introjection
 //      // strCmd = strFolder, "app\\time\\aura\\account\\app\\main\\front\\dynamic_source_cl.bat", false);
 //      //#endif
 //      pcontext->m_papexcontext->dir().mk(strCmd.folder());
-//      //pcontext->m_papexcontext->file().put_contents_utf8(strCmd, str);
+//      //pcontext->m_papexcontext->file().put_text_utf8(strCmd, str);
 //      pcontext->m_papexcontext->file().put_contents(strCmd,str);
 //      pcontext->m_papexcontext->dir().mk(m_strTime / "dynamic_source");
 //
@@ -1121,7 +1121,7 @@ pacmedir->create("/var/tmp/ca2/intermediate");
 
       str.trim();
 
-      pcontext->m_papexcontext->file().put_contents(strCmdCompile, str);
+      pcontext->m_papexcontext->file().put_text(strCmdCompile, str);
 
       process->create_child_process(str,true,m_pathProjectDir,::e_priority_highest);
 
@@ -1223,7 +1223,7 @@ auto tickStart = ::duration::now();
          if(str.has_char())
          {
 #ifndef MACOS
-            pcontext->m_papexcontext->file().put_contents_utf8(strClog,strLog);
+            pcontext->m_papexcontext->file().put_text_utf8(strClog,strLog);
 #endif
             plibrary->m_memfileError << "<pre>";
 
@@ -1280,9 +1280,9 @@ auto tickStart = ::duration::now();
          //         strTargetPath = pcontext->m_papexcontext->dir().install() /
          str.replace("%TARGET_PATH%",strTargetPath);
 
-         pcontext->m_papexcontext->file().put_contents(strCmdLink, str);
+         pcontext->m_papexcontext->file().put_text(strCmdLink, str);
          //strBuildCmd = lib->m_strBuildBat;
-         //pcontext->m_papexcontext->file().put_contents_utf8(strBuildCmd, str);
+         //pcontext->m_papexcontext->file().put_text_utf8(strBuildCmd, str);
 
          //pcontext->m_papexcontext->file().put_contents(strBuildCmd,str);
 
@@ -1418,7 +1418,7 @@ auto tickStart = ::duration::now();
 
 #ifndef MACOS
 
-               pcontext->m_papexcontext->file().put_contents_utf8(strLlog,strLog);
+               pcontext->m_papexcontext->file().put_text_utf8(strLlog,strLog);
 
 #endif
 

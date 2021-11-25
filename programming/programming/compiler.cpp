@@ -438,7 +438,7 @@ namespace programming
       //   // strCmd = strFolder, "app\\time-" PLATFORM_NAME"\\aura\\account\\app\\main\\front\\dynamic_source_cl.bat", false);
       //   //#endif
       //   m_pcontext->m_papexcontext->dir().mk(strCmd.folder());
-      //   //m_pcontext->m_papexcontext->file().put_contents_utf8(strCmd, str);
+      //   //m_pcontext->m_papexcontext->file().put_text_utf8(strCmd, str);
       //   m_pcontext->m_papexcontext->file().put_contents(strCmd, str);
       //   m_pcontext->m_papexcontext->dir().mk(m_strTime / "dynamic_source");
       //
@@ -624,8 +624,8 @@ namespace programming
       // strCmd = strFolder, "app\\_stage\\aura\\account\\app\\main\\front\\dynamic_source_cl.bat", false);
       //#endif
       m_pcontext->m_papexcontext->dir().mk(strCmd.folder());
-      //m_pcontext->m_papexcontext->file().put_contents_utf8(strCmd, str);
-      m_pcontext->m_papexcontext->file().put_contents(strCmd, str);
+      //m_pcontext->m_papexcontext->file().put_text_utf8(strCmd, str);
+      m_pcontext->m_papexcontext->file().put_text(strCmd, str);
       m_pcontext->m_papexcontext->dir().mk(m_strTime / "dynamic_source");
    }
 

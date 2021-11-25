@@ -842,7 +842,7 @@ namespace aura
 //   bool context::sys_set(string strPath, string strValue)
 //   {
 //
-//      return file().put_contents_utf8(m_psystem->m_pacmedir->config() / strPath, strValue);
+//      return file().put_text_utf8(m_psystem->m_pacmedir->config() / strPath, strValue);
 //
 //   }
 //

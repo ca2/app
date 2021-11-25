@@ -351,7 +351,7 @@ namespace dynamic_source
 
          m_psystem->m_pacmefile->copy(strStagePath, m_strScriptPath, true);
 
-         m_plibrary->open(strStagePath, true);
+         m_plibrary->open(strStagePath);
 
          if(m_plibrary->is_closed())
          {
@@ -426,7 +426,7 @@ namespace dynamic_source
       if(m_plibrary != nullptr && m_plibrary->is_opened())
       {
 
-         m_plibrary->m_bAutoUnload = true;
+         //m_plibrary->m_bAutoUnload = true;
 
          m_plibrary->close();
 

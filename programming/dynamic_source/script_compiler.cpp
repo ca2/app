@@ -733,7 +733,7 @@ pacmedir->create(pathDVP_Folder);
 #endif
       str.replace("%TARGET_PATH%",strTargetPath);
       //strBuildCmd = pscript->m_strBuildBat;
-      //m_pcontext->m_papexcontext->file().put_contents_utf8(strBuildCmd, str);
+      //m_pcontext->m_papexcontext->file().put_text_utf8(strBuildCmd, str);
 
       ///m_pcontext->m_papexcontext->file().put_contents(strBuildCmd,str);
 
@@ -747,7 +747,7 @@ pacmedir->create(pathDVP_Folder);
 
       string strCompiler = str;
 
-      m_pcontext->m_papexcontext->file().put_contents_utf8(pathCompiler, strCompiler);
+      m_pcontext->m_papexcontext->file().put_text_utf8(pathCompiler, strCompiler);
 
 #ifdef WINDOWS
       process->create_child_process(strCompiler,true,"C:\\netnode\\source\\app-core\\netnode_dynamic_source_script",::e_priority_highest);
@@ -807,7 +807,7 @@ pacmedir->create(pathDVP_Folder);
          if(str.has_char())
          {
 
-            m_pcontext->m_papexcontext->file().put_contents_utf8(strClog, strLog);
+            m_pcontext->m_papexcontext->file().put_text_utf8(strClog, strLog);
 
             ostreamError << "<pre>";
 
@@ -920,7 +920,7 @@ pacmedir->create(pathDVP_Folder);
          str.replace("%HMH_LCTVWILD_PDB_PATH%",strHmhLctvWildPdbPath);
 
          //strBuildCmd = pscript->m_strBuildBat;
-         //m_pcontext->m_papexcontext->file().put_contents_utf8(strBuildCmd, str);
+         //m_pcontext->m_papexcontext->file().put_text_utf8(strBuildCmd, str);
 
          //m_pcontext->m_papexcontext->file().put_contents(strBuildCmd,str);
 
@@ -937,7 +937,7 @@ pacmedir->create(pathDVP_Folder);
          strLinker.replace("\\", "/");
          strLinker.trim();
 
-         m_pcontext->m_papexcontext->file().put_contents_utf8(pathLinker, strLinker);
+         m_pcontext->m_papexcontext->file().put_text_utf8(pathLinker, strLinker);
 
          process->create_child_process(strLinker,true,nullptr,::e_priority_highest);
 
@@ -984,7 +984,7 @@ pacmedir->create(pathDVP_Folder);
             if(str.has_char())
             {
 
-               m_pcontext->m_papexcontext->file().put_contents_utf8(strLlog,strLog);
+               m_pcontext->m_papexcontext->file().put_text_utf8(strLlog,strLog);
                ostreamError << "Linking...\n";
                //ostreamError << "Linker Command File" << "\n";
                //ostreamError << pathLinker << "\n";
@@ -1265,8 +1265,8 @@ pacmedir->create(pathDVP_Folder);
 // \r\n \
 //      }\r\n\r\n\r\n\r\n\r\n";
 
-      //m_pcontext->m_papexcontext->file().put_contents_utf8(pscript->m_strCppPath, strDest);
-      m_pcontext->m_papexcontext->file().put_contents(pscript->m_strCppPath, strDest);
+      //m_pcontext->m_papexcontext->file().put_text_utf8(pscript->m_strCppPath, strDest);
+      m_pcontext->m_papexcontext->file().put_text(pscript->m_strCppPath, strDest);
 
    }
 
@@ -1630,7 +1630,7 @@ pacmedir->create(pathDVP_Folder);
             if(str.has_char())
             {
 
-               m_pcontext->m_papexcontext->file().put_contents_utf8(strClog,strLog);
+               m_pcontext->m_papexcontext->file().put_text_utf8(strClog,strLog);
 
                l.m_memfileError << "<pre>";
 
@@ -1711,7 +1711,7 @@ pacmedir->create(pathDVP_Folder);
 //      strCmd = m_pcontext->m_papexcontext->dir().install()/ m_strDynamicSourceStage / "front\\libl1.bat";
 //#endif
 
-      //m_pcontext->m_papexcontext->file().put_contents_utf8(strCmd, str);
+      //m_pcontext->m_papexcontext->file().put_text_utf8(strCmd, str);
       bool bTimeout = false;
 
       ::operating_system::process_pointer process(e_create, this);
@@ -1773,7 +1773,7 @@ auto tickStart = ::duration::now();
          if(str.has_char())
          {
 
-            m_pcontext->m_papexcontext->file().put_contents_utf8(strLlog,strLog);
+            m_pcontext->m_papexcontext->file().put_text_utf8(strLlog,strLog);
             l.m_memfileError << "Linking...\n";
             str.replace("\r\n","\n");
             l.m_memfileError << str;
@@ -1868,8 +1868,8 @@ auto tickStart = ::duration::now();
 
       strDest = strDest.Left(iPosId) + strId + strDest.Mid(iPosId);
 
-      //m_pcontext->m_papexcontext->file().put_contents_utf8(lpcszDest, strDest);
-      m_pcontext->m_papexcontext->file().put_contents(lpcszDest, strDest);
+      //m_pcontext->m_papexcontext->file().put_text_utf8(lpcszDest, strDest);
+      m_pcontext->m_papexcontext->file().put_text(lpcszDest, strDest);
 
 
    }
@@ -2587,7 +2587,7 @@ ch_else:
          }
       }
 
-      m_pcontext->m_papexcontext->file().put_contents(strCat, strBody);
+      m_pcontext->m_papexcontext->file().put_text(strCat, strBody);
 
       string strInclude = strCat;
       

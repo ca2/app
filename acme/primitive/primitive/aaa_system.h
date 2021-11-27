@@ -61,7 +61,10 @@ namespace apex
       __composite(::crypto::crypto)                      m_pcrypto;
       //__composite(class ::account::user_set)             m_puserset;
 
-      __composite_array(service_base)                    m_serviceptra;
+      //__composite_array(service_base)                    m_serviceptra;
+      
+      __composite_array(service)                         m_servicecompositea;
+
       __composite(class ::apex::log)                     m_ptrace;
 
       // apex commented
@@ -103,7 +106,7 @@ namespace apex
 
       __pointer(::mutex)                                 m_pmutexMatter;
 
-      bool                                               m_bGudoNetCache;
+      //bool                                               m_bGudoNetCache;
 
       __composite(::operating_system::department)                 m_pprocess;
 

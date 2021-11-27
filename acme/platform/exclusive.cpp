@@ -59,6 +59,8 @@ namespace acme
    exclusive::exclusive(::object * pobject, string strId ARG_SEC_ATTRS)
    {
 
+      initialize(pobject);
+
       m_strId = strId;
 
       ::file::path path;
@@ -67,7 +69,7 @@ namespace acme
 
       path /= strId;
 
-      create_directory_path(path.folder());
+      m_psystem->m_pacmedir->create(path.folder());
 
       m_iFile = open(path, O_WRONLY | O_CREAT, 0777);
 

@@ -45,7 +45,7 @@ public:
    virtual ::e_status append_wait(const char * pszFile, const block & block, const ::duration & duration);
    virtual ::e_status append(const char * pszFile, const block & block);
 
-   virtual bool exists(const char * path);
+   virtual ::e_status exists(const char * path);
 
    virtual ::e_status put_contents(const char * path, const char * contents, strsize len);
    virtual filesize get_size(const char * path);
@@ -139,6 +139,10 @@ public:
    //virtual bool file_append_wait(const ::string & strFile, const char * psz, strsize s, const ::duration & millisTimeout = ::duration::infinite());
 
    virtual ::e_status write(FILE * file, const void * pdata, memsize nCount, memsize * puiWritten);
+
+
+   virtual ::e_status _exists(const char * path);
+   virtual ::e_status _delete(const char * path);
 
 
 };

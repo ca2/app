@@ -716,14 +716,14 @@ void acme_dir::set_path_install_folder(const string & strPath)
 //}
 
 
-bool acme_dir::_is(const char * path1)
-{
-
-   throw ::interface_only_exception();
-
-   return false;
-
-}
+//bool acme_dir::_is(const char * path1)
+//{
+//
+//   throw ::interface_only_exception();
+//
+//   return false;
+//
+//}
 
 
 //::file::path acme_dir::base_module()
@@ -820,7 +820,23 @@ bool acme_dir::_is(const char * path1)
 
    }
 
-   auto estatus = _create_directory(pathParam);
+   auto estatus = m_pacmefile->exists(pathParam);
+
+   if(estatus)
+   {
+
+      estatus = m_pacmefile->delete_file(pathParam);
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+   }
+
+   estatus = _create_directory(pathParam);
 
    if (estatus == error_already_exists)
    {
@@ -864,6 +880,20 @@ bool acme_dir::_is(const char * path1)
    
 bool acme_dir::is(const char * path)
 {
+
+   if(::is_null(path))
+   {
+
+      return error_null_pointer;
+
+   }
+
+   if(*path == '\0')
+   {
+
+      return error_invalid_argument;
+
+   }
 
    return _is(path);
 

@@ -580,12 +580,33 @@ string acme_file::get_temporary_file_name(const char * lpszName, const char * ps
 }
 
 
-bool acme_file::exists(const char * path)
+::e_status acme_file::exists(const char * path)
 {
 
-   throw ::interface_only_exception();
+   if(::is_null(path))
+   {
 
-   return false;
+      return error_null_pointer;
+
+   }
+
+   if(*path == '\0')
+   {
+
+      return error_invalid_argument;
+
+   }
+
+   auto estatus = _exists(path);
+
+   if(!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   return estatus;
 
 }
 
@@ -714,12 +735,33 @@ bool acme_file::is_true(const char * path)
 }
 
 
-::e_status acme_file::delete_file(const char * pszFileName)
+::e_status acme_file::delete_file(const char * path)
 {
 
-   throw ::interface_only_exception();
+   if(::is_null(path))
+   {
 
-   return false;
+      return error_null_pointer;
+
+   }
+
+   if(*path == '\0')
+   {
+
+      return error_invalid_argument;
+
+   }
+
+   auto estatus = _delete(path);
+
+   if(!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   return estatus;
 
 }
 

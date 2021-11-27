@@ -58,6 +58,51 @@ acme_file::~acme_file()
 }
 
 
+
+bool acme_file::is_equal(const char* path1, const char* path2)
+{
+
+   auto mem1 = as_memory(path1);
+
+   auto mem2 = as_memory(path2);
+
+   return mem1 == mem2;
+
+}
+
+
+::e_status acme_file::overwrite_if_different(const char* pathTarget, const char* pathSource)
+{
+
+   if (!exists(pathSource))
+   {
+
+      return error_not_found;
+
+   }
+
+   if (exists(pathTarget) && is_equal(pathTarget, pathSource))
+   {
+
+      return ::success_none;
+
+   }
+
+   auto estatus = copy(pathTarget, pathSource, true);
+
+   if (!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   return estatus;
+
+}
+
+
+
 ::file::path acme_file::module()
 {
 

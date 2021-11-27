@@ -128,7 +128,7 @@ namespace acme
 
       virtual ::e_status reboot();
 
-      virtual ::e_status implement();
+      virtual ::e_status implement(__transport(::acme::node) & pnode, __transport(class ::system) & psystem);
 
 
       virtual void install_crash_dump_reporting(const string& strModuleNameWithTheExeExtension);

@@ -423,9 +423,4 @@
       <Filter>Source Files\node\windows</Filter>
     </ClCompile>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="aqua.def">
-      <Filter>Source Files</Filter>
-    </None>
-  </ItemGroup>
 </Project>

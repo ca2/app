@@ -76,9 +76,4 @@
       <Filter>Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="crypto_openssl.def">
-      <Filter>Source Files</Filter>
-    </None>
-  </ItemGroup>
 </Project>

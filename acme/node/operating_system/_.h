@@ -142,14 +142,14 @@ CLASS_DECL_ACME locale_t get_c_locale();
 
 CLASS_DECL_ACME enum_dialog_result message_box_for_console(const char* psz, const char* pszTitle, const ::enum_message_box& emessagebox);
 
-CLASS_DECL_ACME ::e_status is_directory(const char * path);
+//CLASS_DECL_ACME ::e_status is_directory(const char * path);
 
-CLASS_DECL_ACME ::e_status file_exists(const char * path);
+//CLASS_DECL_ACME ::e_status file_exists(const char * path);
 
-CLASS_DECL_ACME ::e_status create_directory_path(const char * path);
+//CLASS_DECL_ACME ::e_status create_directory_path(const char * path);
 
-CLASS_DECL_ACME ::e_status create_directory(const char * path);
+//CLASS_DECL_ACME ::e_status create_directory(const char * path);
 
-CLASS_DECL_ACME ::e_status file_delete(const char * path);
+//CLASS_DECL_ACME ::e_status file_delete(const char * path);
 
 

@@ -124,9 +124,7 @@ namespace windowing
             
             auto pobject = pmessage->m_union.m_pobject;
             
-            auto pmatter = pobject->m_pelement.m_p;
-            
-            pmessage = dynamic_cast < ::message::message * >(pmatter);
+            pmessage = dynamic_cast < ::message::message >(pobject.m_p);
 
             if (::is_null(pmessage))
             {

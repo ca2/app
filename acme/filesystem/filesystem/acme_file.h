@@ -24,6 +24,10 @@ public:
    virtual ::e_status clear_read_only(const char* path);
 
 
+   virtual bool is_equal(const char * path1, const char* path2);
+   virtual ::e_status overwrite_if_different(const char* pathTarget, const char * pathSource);
+
+
    // executable path
    virtual ::file::path module();
 

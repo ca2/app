@@ -253,7 +253,7 @@
     <ResourceCompile Include="main.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\_matter\hellomultiverse\_std\_std\main\icon.ico" />
+    <Image Include="icon.ico" />
     <Image Include="windows\main.ico" />
   </ItemGroup>
   <ItemGroup>

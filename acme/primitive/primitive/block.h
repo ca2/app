@@ -63,6 +63,26 @@ struct CLASS_DECL_ACME block :
    block & from_base64(const char * psz, strsize iSize) const;
    string to_base64() const;
 
+
+   int compare(const block& block) const
+   {
+
+      auto commonSize = minimum(get_size(), block.get_size());
+
+      int iCompare = memcmp(get_data(), block.get_data(), commonSize);
+
+      if (iCompare == 0)
+      {
+
+         return (int) (get_size() - block.get_size());
+
+      }
+
+      return iCompare;
+
+   }
+
+
    bool operator == (const block & block) const
    {
 

@@ -9,11 +9,11 @@
 
 
 #define DECLARE_FACTORY(library) \
-extern "C" void library ## _factory(::factory::factory* pfactory);
+__FACTORY_EXPORT void library ## _factory(::factory::factory* pfactory);
 
 
 #define SETUP_FACTORY(library) \
-static_setup      m_setup_ ## library{ &library ## _factory, #library}
+::static_setup m_setup_ ## library{ &library ## _factory, #library}
 
 
 //class node_data_exchange;

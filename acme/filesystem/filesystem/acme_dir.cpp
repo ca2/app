@@ -1013,4 +1013,39 @@ string acme_dir::get_current_directory()
 
 
 
+::e_status acme_dir::_is(const char * path)
+{
+
+   auto estatus = ::is_directory(path);
+
+   if(!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   return estatus;
+
+}
+
+
+
+::e_status acme_dir::_create_directory(const char * path)
+{
+
+   auto estatus = ::create_directory(path);
+
+   if(!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   return estatus;
+
+}
+
+
 

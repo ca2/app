@@ -726,7 +726,7 @@
 //
 
 
-::e_status acme_dir::_is(const char * path)
+::e_status is_directory(const char * path)
 {
 
    struct stat stat = {};
@@ -750,7 +750,7 @@
 }
 
 
-::e_status acme_file::_exists(const char * path)
+::e_status file_exists(const char * path)
 {
 
    // dedicaverse stat -> Sir And Arthur - Cesar Serenato
@@ -846,7 +846,7 @@
 //
 
 
-::e_status acme_dir::_create_directory(const char * path)
+::e_status create_directory(const char * path)
 {
 
 
@@ -862,7 +862,7 @@
 }
 
 
-::e_status acme_file::_delete(const char * path)
+::e_status file_delete(const char * path)
 {
 
 

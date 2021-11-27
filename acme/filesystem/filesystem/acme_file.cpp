@@ -1366,3 +1366,40 @@ string_array acme_file::lines(const char * path)
 
 
 
+
+
+::e_status acme_file::_exists(const char * path)
+{
+
+   auto estatus = ::file_exists(path);
+
+   if(!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   return estatus;
+
+}
+
+
+::e_status acme_file::_delete(const char * path)
+{
+
+
+   if (::unlink(path) == -1)
+   {
+
+      return errno_to_status(errno);
+
+   }
+
+   return ::success;
+
+}
+
+
+
+

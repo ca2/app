@@ -218,11 +218,11 @@ namespace aura
       ::factory::add_factory_item < ::draw2d::icon >();
 
     
-#ifdef WINDOWS_DESKTOP
-
-      m_uiWindowsTaskbarCreatedMessage = 0;
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//      m_uiWindowsTaskbarCreatedMessage = 0;
+//
+//#endif
 
       thread::s_bAllocReady = true;
 

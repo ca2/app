@@ -301,7 +301,7 @@ pacmedir->system() / "home/user/ca2/lock/mutex" / string(pstrName);
 
       path /= pstrName;
 
-      create_directory_path(path.folder());
+      m_psystem->m_pacmedir->create(path.folder());
 
       m_iFd = open(path, O_RDWR | O_CREAT, S_IRWXU);
 

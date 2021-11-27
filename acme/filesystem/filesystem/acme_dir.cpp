@@ -868,14 +868,14 @@ void acme_dir::set_path_install_folder(const string & strPath)
 }
 
 
-::e_status acme_dir::_create_directory(const char * pathParam)
-{
-
-   throw ::interface_only_exception();
-
-   return ::error_interface_only;
-
-}
+//::e_status acme_dir::_create_directory(const char * pathParam)
+//{
+//
+//   throw ::interface_only_exception();
+//
+//   return ::error_interface_only;
+//
+//}
 
    
 bool acme_dir::is(const char * path)

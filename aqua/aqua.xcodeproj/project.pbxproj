@@ -125,6 +125,8 @@
 		9A2E6259252588430001CC7E /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2E6252252588430001CC7E /* _.h */; };
 		9A2E625F252588C80001CC7E /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2E625D252588C80001CC7E /* _.h */; };
 		9A41243A266C3F3500C3FF0E /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A7864982650A3CF0034A0E1 /* libacme.dylib */; };
+		9A81F8CE2750744E003F38EC /* text_to_speech_client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F8CC2750744E003F38EC /* text_to_speech_client.cpp */; };
+		9A81F8CF2750744E003F38EC /* text_to_speech_client.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A81F8CD2750744E003F38EC /* text_to_speech_client.hpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -275,6 +277,8 @@
 		9A2E625C252588C80001CC7E /* audio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = audio.cpp; sourceTree = "<group>"; };
 		9A2E625D252588C80001CC7E /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A7864982650A3CF0034A0E1 /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A81F8CC2750744E003F38EC /* text_to_speech_client.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = text_to_speech_client.cpp; sourceTree = "<group>"; };
+		9A81F8CD2750744E003F38EC /* text_to_speech_client.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = text_to_speech_client.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -475,14 +479,16 @@
 		9A28199A25242523009FA9CB /* audio */ = {
 			isa = PBXGroup;
 			children = (
-				9A28199B25242523009FA9CB /* sound_track_player.cpp */,
-				9A28199C25242523009FA9CB /* speaker.cpp */,
-				9A28199D25242523009FA9CB /* sound_track_player.h */,
-				9A28199E25242523009FA9CB /* audio_c.h */,
-				9A28199F25242523009FA9CB /* out.h */,
-				9A2819A025242523009FA9CB /* speaker.h */,
-				9A2819A125242523009FA9CB /* audio_wave_out.cpp */,
 				9A2819A225242523009FA9CB /* _.h */,
+				9A28199E25242523009FA9CB /* audio_c.h */,
+				9A2819A125242523009FA9CB /* audio_wave_out.cpp */,
+				9A28199F25242523009FA9CB /* out.h */,
+				9A28199B25242523009FA9CB /* sound_track_player.cpp */,
+				9A28199D25242523009FA9CB /* sound_track_player.h */,
+				9A28199C25242523009FA9CB /* speaker.cpp */,
+				9A2819A025242523009FA9CB /* speaker.h */,
+				9A81F8CC2750744E003F38EC /* text_to_speech_client.cpp */,
+				9A81F8CD2750744E003F38EC /* text_to_speech_client.hpp */,
 			);
 			path = audio;
 			sourceTree = "<group>";
@@ -605,6 +611,7 @@
 				9A2819FF25242523009FA9CB /* _app_impl1.h in Headers */,
 				9A2819ED25242523009FA9CB /* linux.h in Headers */,
 				9A2E6257252588430001CC7E /* game.h in Headers */,
+				9A81F8CF2750744E003F38EC /* text_to_speech_client.hpp in Headers */,
 				9A2819BE25242523009FA9CB /* _impl.h in Headers */,
 				9A2819DA25242523009FA9CB /* entity.h in Headers */,
 				9A2819D025242523009FA9CB /* glue.h in Headers */,
@@ -764,6 +771,7 @@
 				9A2819E525242523009FA9CB /* importable.cpp in Sources */,
 				9A281A0625242524009FA9CB /* file_application.cpp in Sources */,
 				9A2819C025242523009FA9CB /* edit.cpp in Sources */,
+				9A81F8CE2750744E003F38EC /* text_to_speech_client.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

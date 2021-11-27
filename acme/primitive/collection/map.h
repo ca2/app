@@ -4,123 +4,6 @@
 #define new ACME_NEW
 
 
-//template < typename PAIR, const int DEFAULT_HASH_TABLE_SIZE = 17 >
-//class map_dynamic_hash_table
-//{
-//public:
-//
-//   typedef map_association < PAIR >  association;
-//
-//   association *           m_associationHashDefault[DEFAULT_HASH_TABLE_SIZE];
-//   association **          m_ppassociationHash;
-//   ::u32              m_nHashTableSize;
-//
-//   map_dynamic_hash_table()
-//   {
-//
-//      m_ppassociationHash = nullptr;
-//
-//      m_nHashTableSize = DEFAULT_HASH_TABLE_SIZE;
-//
-//   }
-//
-//
-//   ::u32 GetHashTableSize() const
-//   {
-//
-//      return m_nHashTableSize;
-//
-//   }
-//
-//
-//   void InitHashTable(::u32 nHashSize, bool bAllocNow = true)
-//   {
-//
-//      if(m_ppassociationHash != nullptr && m_ppassociationHash != m_associationHashDefault && m_nHashTableSize > DEFAULT_HASH_TABLE_SIZE)
-//      {
-//
-//         delete[] m_ppassociationHash;
-//
-//      }
-//
-//      m_ppassociationHash = nullptr;
-//
-//      if(bAllocNow)
-//      {
-//
-//         if (nHashSize <= DEFAULT_HASH_TABLE_SIZE)
-//         {
-//
-//            m_ppassociationHash = m_associationHashDefault;
-//
-//         }
-//         else
-//         {
-//
-//            m_ppassociationHash = new association *[nHashSize];
-//
-//            ENSURE(m_ppassociationHash != nullptr);
-//
-//         }
-//
-//         ::zero(m_ppassociationHash, sizeof(association*) * nHashSize);
-//
-//      }
-//
-//      m_nHashTableSize = nHashSize;
-//
-//   }
-//
-//   void erase_all()
-//   {
-//
-//      if(m_ppassociationHash != nullptr && m_ppassociationHash != m_associationHashDefault && m_nHashTableSize > DEFAULT_HASH_TABLE_SIZE)
-//      {
-//
-//         delete[] m_ppassociationHash;
-//
-//      }
-//
-//      m_ppassociationHash = nullptr;
-//
-//   }
-//
-//
-//};
-
-
-//template < int m_nHashTableSize, typename PAIR >
-//class map_fixed_hash_table
-//{
-//public:
-//
-//
-//   typedef map_association < PAIR > association;
-//
-//
-//   association *           m_ppassociationHash[m_nHashTableSize];
-//
-//   map_fixed_hash_table()
-//   {
-//      zero(m_ppassociationHash,sizeof(m_ppassociationHash));
-//   }
-//
-//
-//   ::u32 GetHashTableSize() const
-//   {
-//      return m_nHashTableSize;
-//   }
-//   void InitHashTable(::u32 hashSize,bool bAllocNow = true) {  }
-//
-//   void erase_all()
-//   {
-//      zero(m_ppassociationHash,sizeof(m_ppassociationHash));
-//   }
-//
-//};
-//
-
-
 template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
 class map :
    virtual public ::set < KEY, ARG_KEY, PAIR >
@@ -427,8 +310,12 @@ public:
    //advanced features for derived classes
    ::u32 GetHashTableSize() const
    {
+      
       return this->m_hashtable.GetHashTableSize();
+      
    }
+   
+   
    void InitHashTable(::u32 hashSize,bool bAllocNow = true);
 
 
@@ -701,13 +588,6 @@ typename map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::association* map < KEY, V
 
 }
 
-//template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
-//inline ::u32 map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::GetHashTableSize() const
-//{
-//
-//   return m_nHashTableSize;
-//
-//}
 
 /////////////////////////////////////////////////////////////////////////////
 // map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR > out-of-line functions
@@ -715,13 +595,10 @@ template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, t
 void map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::construct()
 {
 
-   //m_ppassociationHash     = nullptr;
-   //m_nHashTableSize  = 17;  // default size_i32
    this->m_nCount          = 0;
-//   this->m_passociationFree      = nullptr;
-//   m_pplex           = nullptr;
-   // m_nBlockSize      = nBlockSize;
+
    this->m_passociationHead      = nullptr;
+   
 }
 
 

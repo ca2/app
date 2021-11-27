@@ -121,7 +121,7 @@ namespace acme
          return estatus;
 
       }
-
+      
       initialize_memory_counter();
 
       return estatus;

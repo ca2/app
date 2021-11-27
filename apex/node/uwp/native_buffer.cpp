@@ -350,7 +350,6 @@ namespace universal_windows
       ASSERT(sizeof(HANDLE) == sizeof(uptr));
       ASSERT(::file::e_open_share_compat == 0);
 
-      // ::map read/write mode
       ASSERT((::file::e_open_read | ::file::e_open_write | ::file::e_open_read_write) == 3);
       ::u32 dwAccess = 0;
       switch(eopen & 3)
@@ -369,30 +368,6 @@ namespace universal_windows
          break;
       }
 
-      // ::map share mode
-      //::u32 dwShareMode = 0;
-      //switch(nOpenFlags & 0x70)    // ::map compatibility mode to exclusive
-      //{
-      //default:
-      //   ASSERT(false);  // invalid share mode?
-      //case ::file::e_open_share_compat:
-      //case ::file::e_open_share_exclusive:
-      //   dwShareMode = 0;
-      //   break;
-      //case ::file::e_open_share_deny_write:
-      //   dwShareMode = FILEative_buffer_SHARE_READ;
-      //   break;
-      //case ::file::e_open_share_deny_read:
-      //   dwShareMode = native_buffer_SHARE_WRITE;
-      //   break;
-      //case ::file::e_open_share_deny_none:
-      //   dwShareMode = native_buffer_SHARE_WRITE | native_buffer_SHARE_READ;
-      //   break;
-      //}
-
-      // Note: type_text and type_binary are used in derived classes only.
-
-      // ::map mode_no_inherit flag
       SECURITY_ATTRIBUTES sa;
       sa.nLength = sizeof(sa);
       sa.lpSecurityDescriptor = nullptr;

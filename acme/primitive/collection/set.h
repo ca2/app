@@ -9,12 +9,15 @@ class set_dynamic_hash_table
 {
 public:
 
+   
    typedef map_association < PAYLOAD >  association;
 
+   
    association *           m_associationHashDefault[DEFAULT_HASH_TABLE_SIZE];
    association **          m_ppassociationHash;
-   ::u32              m_nHashTableSize;
+   ::u32                   m_nHashTableSize;
 
+   
    set_dynamic_hash_table()
    {
 
@@ -35,6 +38,13 @@ public:
 
    void InitHashTable(::u32 nHashSize, bool bAllocNow = true)
    {
+
+      if(nHashSize <= 0)
+      {
+
+         throw "Hash table size must be greater than 0";
+
+      }
 
       if(m_ppassociationHash != nullptr && m_ppassociationHash != m_associationHashDefault && m_nHashTableSize > DEFAULT_HASH_TABLE_SIZE)
       {
@@ -70,6 +80,7 @@ public:
       m_nHashTableSize = nHashSize;
 
    }
+   
 
    void erase_all()
    {
@@ -100,25 +111,37 @@ public:
 
    association *           m_ppassociationHash[m_nHashTableSize];
 
+
    set_fixed_hash_table()
    {
+
+      ASSERT(m_nHashTableSize > 0);
+      
       zero(m_ppassociationHash,sizeof(m_ppassociationHash));
+      
    }
 
 
    ::u32 GetHashTableSize() const
    {
+      
       return m_nHashTableSize;
+      
    }
+   
+   
    void InitHashTable(::u32 hashSize,bool bAllocNow = true) {  }
+
 
    void erase_all()
    {
+
       zero(m_ppassociationHash,sizeof(m_ppassociationHash));
+
    }
 
-};
 
+};
 
 
 template < typename KEY, typename ARG_KEY, typename PAYLOAD >
@@ -442,8 +465,12 @@ public:
    //advanced features for derived classes
    ::u32 GetHashTableSize() const
    {
+      
       return m_hashtable.GetHashTableSize();
+      
    }
+   
+   
    void InitHashTable(::u32 hashSize,bool bAllocNow = true);
 
 
@@ -710,27 +737,15 @@ typename set < KEY, ARG_KEY, PAYLOAD >::association* set < KEY, ARG_KEY, PAYLOAD
 
 }
 
-//template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-//inline ::u32 set < KEY, ARG_KEY, PAYLOAD >::GetHashTableSize() const
-//{
-//
-//   return m_nHashTableSize;
-//
-//}
-
 /////////////////////////////////////////////////////////////////////////////
 // set < KEY, ARG_KEY, PAYLOAD > out-of-line functions
 template < typename KEY, typename ARG_KEY, typename PAYLOAD >
 void set < KEY, ARG_KEY, PAYLOAD >::construct()
 {
 
-   //m_ppassociationHash     = nullptr;
-   //m_nHashTableSize  = 17;  // default size_i32
    m_nCount          = 0;
-//   this->m_passociationFree      = nullptr;
-//   m_pplex           = nullptr;
-   // m_nBlockSize      = nBlockSize;
    this->m_passociationHead      = nullptr;
+
 }
 
 

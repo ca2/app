@@ -951,7 +951,7 @@ string context::http_get(const ::string & pszUrl)
 bool context::sys_set(string strPath, string strValue)
 {
 
-   return file().put_contents_utf8(         auto psystem = m_psystem;
+   return file().put_text_utf8(         auto psystem = m_psystem;
 
          auto pacmedir = psystem->m_pacmedir;
 

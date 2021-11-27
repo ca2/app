@@ -19,6 +19,9 @@ public:
    bool                                            m_bCoInitialize : 1;
    bool                                            m_bMessageThread : 1;
    bool                                            m_bTaskToolsForIncreasedFps : 1;
+#ifdef PARALLELIZATION_PTHREAD
+   bool                                            m_bJoinable : 1;
+#endif
 
    ::u64                                           m_uThreadAffinityMask;
 

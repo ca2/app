@@ -978,7 +978,7 @@ bool file_context::as_memory(const ::payload &payloadFile, memory_base &mem)
 //}
 
 
-::e_status file_context::put_utf8_text(const ::payload &payloadFile, const ::block & block)
+::e_status file_context::put_text_utf8(const ::payload &payloadFile, const ::block & block)
 {
 
    auto pfile = get_file(payloadFile,
@@ -3515,10 +3515,10 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
 //}
 //
 //
-//bool file_context::put_contents_utf8(const ::payload & payloadFile, const char * pcszContents)
+//bool file_context::put_text_utf8(const ::payload & payloadFile, const char * pcszContents)
 //{
 //
-//   return psystem->m_spfile->put_contents_utf8(payloadFile, pcszContents, get_application());
+//   return psystem->m_spfile->put_text_utf8(payloadFile, pcszContents, get_application());
 //
 //}
 
@@ -3620,7 +3620,7 @@ bool file_context::save_lines(const ::payload &payloadFile, string_array &stra)
 
    string str = stra.implode("\n");
 
-   put_utf8_text(payloadFile, str);
+   put_text_utf8(payloadFile, str);
 
    return true;
 

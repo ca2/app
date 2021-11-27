@@ -68,61 +68,8 @@ namespace sockets
       bool           m_bInitialized;
 
 
-      //class CLASS_DECL_APEX dns_cache_item :
-      //   virtual public ::object
-      //{
-      //public:
-
-
-      //   in_addr           m_ipaddr;
-      //   ::duration m_durationLastChecked;
-      //   bool              m_bOk;
-      //   bool              m_bTimeout;
-
-
-      //   dns_cache_item();
-      //   dns_cache_item(const dns_cache_item & item);
-
-
-      //   virtual ::stream & write(::stream & stream) const;
-      //   virtual ::stream & read(::stream & stream);
-
-      //   dns_cache_item & operator = (const dns_cache_item & item);
-
-      //};
-
-      //class CLASS_DECL_APEX reverse_cache_item:
-      //   virtual public ::matter
-      //{
-      //public:
-
-      //   ::net::address    m_address;
-      //   string            m_strReverse;
-      //   ::duration              m_durationLastChecked;
-      //   bool              m_bOk;
-      //   bool              m_bTimeout;
-      //   bool              m_bProcessing;
-
-
-      //   reverse_cache_item();
-      //   reverse_cache_item(const reverse_cache_item & item);
-
-      //   virtual ::stream & write(::stream & stream) const;
-      //   virtual ::stream & read(::stream & stream);
-
-      //   reverse_cache_item & operator = (const reverse_cache_item & item);
-
-      //};
-
-      //::mutex                                            m_mutexCache;
-      //::mutex                                            m_mutexReverseCache;
-      //string_map < dns_cache_item >                      m_mapCache;
-      //string_map < __pointer(reverse_cache_item) >       m_mapReverseCache;
-      //array < __pointer(reverse_cache_item) >            m_reversecacheaRequest;
-      //::task_pointer                                m_pthreadReverse;
-
       net();
-      virtual ~net();
+      ~net() override;
 
 
       virtual ::e_status initialize(::object * pobject) override;

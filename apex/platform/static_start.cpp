@@ -70,30 +70,8 @@ namespace apex
 
    ::mutex * g_pmutexChildren;
 
-   //string_map < __pointer(::acme::library) >* g_pmapLibrary;
-   //string_map < PFN_NEW_APEX_LIBRARY >* g_pmapNewAuraLibrary;
-
-
 #if !defined(WINDOWS)
 
-//void windows10_init();
-//#ifdef WINDOWS
-
-//
-//   void set_simple_output_debug_string_a();
-//
-//   void set_extended_output_debug_string_a();
-//
-//   void set_simple_output_debug_string_w();
-//
-//   void set_extended_output_debug_string_w();
-//
-//
-//   //#endif
-//
-//#else
-
-   //DWORD_PTR g_tlsindexLastError;
    char* g_pszDemangle;
    critical_section* g_pcsDemangle;
 
@@ -136,25 +114,6 @@ namespace apex
 
 
    array < matter* >* g_paAura;
-
-
-   //::map < ::id, const ::id&, ::id, const ::id& >* g_pmapRTL;
-
-//   plex_heap_alloc_array* g_pheap;
-
-//   critical_section* g_pmutexSystemHeap;
-
-//#if defined(WINDOWS)
-//
-//   _locale_t g_localeC;
-//
-//#else
-//
-//   locale_t g_localeC;
-//
-//#endif
-
-   //map < itask_t, itask_t, itask_t, itask_t > * g_pmapThreadOn;
 
 #ifdef WINDOWS
 
@@ -281,30 +240,6 @@ namespace apex
 
       g_paAura = nullptr;
 
-      //g_pmapRTL = nullptr;
-
-      //::map < void *, void *, ::application *, ::application * > * g_pmapAura;
-
-      //string_map < __pointer(::acme::library) > * g_pmapLibCall;
-
-      //g_pheap = nullptr;
-
-      //g_pmutexSystemHeap = nullptr;
-
-      //::mutex * g_pmutexThreadOn;
-
-//#if defined(WINDOWS)
-//
-//      g_localeC = 0;
-//
-//#else
-//
-//      g_localeC = 0;
-//
-//#endif
-
-      //map < itask_t, itask_t, itask_t, itask_t > * g_pmapThreadOn;
-
 #ifdef WINDOWS
 
       g_largeintegerFrequency = {};
@@ -386,24 +321,6 @@ namespace apex
 
       construct();
 
-      //__set_get_text(&__apex_get_text);
-
-      //g_pcsRefDbg = nullptr;
-
-
-//#if defined(WINDOWS)
-//
-//      g_localeC = _wcreate_locale(LC_ALL, L"C");
-//
-//#elif defined(__APPLE__)
-//
-//      g_localeC = newlocale(LC_ALL, "C", NULL);
-//
-//#else
-//
-//      g_localeC = newlocale(LC_ALL_MASK, "C", NULL);
-//
-//#endif
 
 #ifndef WINDOWS
 
@@ -412,64 +329,6 @@ namespace apex
 #endif
 
 
-
-//#ifdef WINDOWS
-//
-//#ifdef WINDOWS_DESKTOP
-//
-//      SetThreadLocale(65001);
-//
-//      ::SetConsoleOutputCP(65001);
-//
-//#endif
-//
-//      //::QueryPerformanceFrequency(&g_largeintegerFrequency);
-//
-//#elif defined(__APPLE__)
-//
-//      {
-//
-//         mach_timebase_info_data_t timebase;
-//
-//         mach_timebase_info(&timebase);
-//
-//         g_machtime_conversion_factor = (double)timebase.numer / (double)timebase.denom;
-//
-//      }
-//
-//#endif
-
-      //g_iFirstNano = get_nanos();
-
-      ////xxdebug_box("apex.dll base_static_start (0)", "box", e_message_box_ok);
-
-      //g_pexceptionengine = new ::PLATFORM_NAMESPACE::exception_engine();
-
-      //get_globals_mutex() = new ::mutex();
-
-      //g_pmutexChildren = new ::mutex();
-
-      //g_pcsGlobal = new critical_section();
-
-//#ifndef __MCRTDBG
-//    // at acme
-//      g_pheap = new plex_heap_alloc_array();
-//
-//#endif
-
-      //::apex::idpool::init();
-//
-//#ifdef ANDROID
-//
-//      g_pmutexOutputDebugStringA = new ::mutex();
-//
-//#endif
-
-//#if OBJECT_TYPE_COUNTER
-//
-//      g_pmapObjTypCtr = new map < const char*, const char*, ::i64, ::i64 >;
-//
-//#endif
 
 #ifdef BSD_STYLE_SOCKETS
 
@@ -484,23 +343,13 @@ namespace apex
 
 #endif
 
-      //g_pmutexThreadOn = new ::mutex();
-
-      //g_pmapThreadOn = new ::map < itask_t, itask_t, itask_t, itask_t >;
-
-      //g_pmutexSystemHeap = new critical_section();
-
 #if MEMDLEAK
 
       memdleak_init();
 
 #endif
 
-      //::factory::factory_init();
-
       g_paAura = new array < matter * >;
-
-      //g_pmapAura =new ::map < void *,void *, ::application *, ::application * >;
 
       g_pmutexUiDestroyed = new ::mutex();
 
@@ -514,16 +363,6 @@ namespace apex
 
 #endif // defined(LINUX) || defined(__APPLE__)
 
-      //g_pmapRTL = nullptr;
-
-      //psystem->g_mutexLibrary = new ::mutex;
-
-      //g_pmapLibrary = new string_map < __pointer(::acme::library) >();
-
-      //g_pmapNewAuraLibrary = new string_map < PFN_NEW_APEX_LIBRARY >();
-
-      // Only draw2d implementations needing "big" synch should init_draw2d_mutex();
-      // init_draw2d_mutex();
 
 #ifdef MACOS
 
@@ -536,8 +375,6 @@ namespace apex
       apex_auto_debug_teste();
 
 #endif
-
-      //g_pmapLibCall = new string_map < __pointer(::acme::library) >();
 
 #ifdef MEMORY_COUNTERS
 
@@ -727,16 +564,6 @@ namespace apex
          ::acme::del(g_paAura);
 
       }
-
-
-
-      //del(g_pmapLibCall);
-
-      //del(g_pmapLibrary);
-
-      //del(g_pmapNewAuraLibrary);
-
-      //del(psystem->g_mutexLibrary);
 
 #if OBJECT_TYPE_COUNTER
 

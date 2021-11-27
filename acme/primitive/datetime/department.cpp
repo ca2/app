@@ -1186,50 +1186,6 @@ namespace datetime
 } // namespace datetime
 
 
-//
-//CLASS_DECL_ACME stream & operator >> (stream & s, string_map < class ::datetime::department::time_zone > & m)
-//{
-//
-//   s.stream_map(m);
-//
-//   return s;
-//
-//}
-//
-//
-//CLASS_DECL_ACME stream & operator << (stream & s, string_map < class ::datetime::department::time_zone > & m)
-//{
-//
-//   s.stream_map(m);
-//
-//   return s;
-//
-//}
-//
-//
-//CLASS_DECL_ACME stream & operator >> (stream & s, int_ptr_map < class ::datetime::department::time_zone > & m)
-//{
-//
-//   s.stream_map(m);
-//
-//   return s;
-//
-//}
-//
-//
-//CLASS_DECL_ACME stream &operator << (stream & s, int_ptr_map < class ::datetime::department::time_zone > & m)
-//{
-//
-//   s.stream_map(m);
-//
-//   return s;
-//
-//}
-//
-
-
-
-
 #include "framework.h"
 #include <time.h>
 

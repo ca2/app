@@ -614,7 +614,7 @@ namespace os
       m_rectangleWindow = rectangleWindow;
 
 
-/*      if (m_pimage->is_set() && m_pimage->g() != nullptr)
+      if (m_pimage->is_set() && m_pimage->g() != nullptr)
       {
 
          ::rectangle_i32 rectangleClient = rectangleWindow;
@@ -625,21 +625,21 @@ namespace os
 
          rectangle = rectangleWindow;
 
-/*         m_pimage->g()->set_alpha_mode(draw2d::e_alpha_mode_set);
+         m_pimage->g()->set_alpha_mode(draw2d::e_alpha_mode_set);
 
-/*         m_pimage->g()->SetViewportOrg(0, 0);
+         m_pimage->g()->SetViewportOrg(0, 0);
 
-/*         m_pimage->g()->FillSolidRect(&rectangleClient, argb(255, 255, 255, 255));
+         m_pimage->g()->FillSolidRect(&rectangleClient, argb(255, 255, 255, 255));
 
-/*         draw(m_pimage->g());
+         draw(m_pimage->g());
 
          //m_pimage->map();
 
-/*         m_pimage->fill_channel(255, ::color::e_channel_alpha);
+         m_pimage->fill_channel(255, ::color::e_channel_alpha);
 
          //m_pimage->Fill(255, 184, 184, 177);
 
-/*         byte *dst = (byte*) m_pimage->get_data();
+         byte *dst = (byte*) m_pimage->get_data();
 
          i64 size = m_size.cx * m_size.cy;
 
@@ -692,7 +692,7 @@ namespace os
             dst += 4;
          }
 
-/*         m_xlib.update_window(m_window, (color32_t *)m_pimage->get_data(), &rectangle, m_pimage->m_iScan);
+         m_xlib.update_window(m_window, (color32_t *)m_pimage->get_data(), &rectangle, m_pimage->m_iScan);
 
       }
 
@@ -724,8 +724,8 @@ namespace os
       m_rectangle.top = m_point.y;
       m_rectangle.bottom = m_point.y + m_size.cy;
 
-/*      m_pimage = create_image({get_application()->create_new,  this});
-/*      m_pimage = create_image({m_size.cx,  m_size.cy});
+      m_pimage = create_image({get_application()->create_new,  this});
+      m_pimage = create_image({m_size.cx,  m_size.cy});
 
       m_xlib.create(m_window, cx, cy);
 

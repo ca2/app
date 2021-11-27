@@ -555,7 +555,7 @@ namespace ios
 //         return put_contents(payloadFile, mem.get_data(), (count) mem.get_size(), papp);
 //      }
 //
-//      bool file_system::put_contents_utf8(::payload payloadFile, const ::string & lpcszContents, ::aura::application *  papp)
+//      bool file_system::put_text_utf8(::payload payloadFile, const ::string & lpcszContents, ::aura::application *  papp)
 //      {
 //         file_pointer spfile;
 //         spfile = App(papp).file().get_file(payloadFile, ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_share_deny_none | ::file::e_open_defer_create_directory);

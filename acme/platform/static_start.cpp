@@ -173,34 +173,10 @@ namespace acme
 
 #endif
 
-   //CLASS_DECL_ACME critical_section* g_pcsFont = nullptr;
-
-   //CLASS_DECL_ACME string_map < int_to_string > * g_pmapFontFaceName = nullptr;
-
    ::mutex * g_pmutexChildren;
-   //::mutex * g_pmutexThreadWaitClose;
-
 
 #if !defined(WINDOWS)
 
-//void windows10_init();
-//#ifdef WINDOWS
-
-//
-//   void set_simple_output_debug_string_a();
-//
-//   void set_extended_output_debug_string_a();
-//
-//   void set_simple_output_debug_string_w();
-//
-//   void set_extended_output_debug_string_w();
-//
-//
-//   //#endif
-//
-//#else
-
-   //DWORD_PTR g_tlsindexLastError;
    char* g_pszDemangle;
    critical_section* g_pcsDemangle;
 
@@ -423,18 +399,6 @@ namespace acme
 
       g_paAura = nullptr;
 
-      //g_pmapRTL = nullptr;
-
-      //::map < void *, void *,::acme::application *, ::acme::application * > * g_pmapAura;
-
-      //string_map < __pointer(::acme::library) > * g_pmapLibCall;
-
-      ///g_pheap = nullptr;
-
-      //g_pmutexSystemHeap = nullptr;
-
-      //::mutex * g_pmutexThreadOn;
-
 #if defined(WINDOWS)
 
       g_localeC = 0;
@@ -444,8 +408,6 @@ namespace acme
       g_localeC = 0;
 
 #endif
-
-      //map < itask_t, itask_t, itask_t, itask_t > * g_pmapThreadOn;
 
 #ifdef WINDOWS
 
@@ -697,13 +659,6 @@ namespace acme
 
 #endif // defined(LINUX) || defined(__APPLE__)
 
-      //g_pmapRTL = nullptr;
-
-      //get_system()->g_mutexLibrary = new ::mutex;
-
-      //g_pmapLibrary = new string_map < __pointer(::acme::library) >();
-
-      //g_pmapNewAuraLibrary = new string_map < PFN_NEW_ACME_LIBRARY >();
 
 #ifdef LINUX
 
@@ -725,8 +680,6 @@ namespace acme
       acme_auto_debug_teste();
 
 #endif
-
-      //g_pmapLibCall = new string_map < __pointer(::acme::library) >();
 
 #ifdef MEMORY_COUNTERS
 
@@ -944,16 +897,6 @@ namespace acme
       {
 
       }
-
-      //del(g_pmapLibCall);
-
-      //del(g_pmapLibrary);
-
-      //del(g_pmapNewAuraLibrary);
-
-      //del(get_system()->g_mutexLibrary);
-
-      //trace_category_static_term();
 
 #if OBJECT_TYPE_COUNTER
 

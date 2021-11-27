@@ -31,6 +31,13 @@ task::task()
    m_bCoInitialize = false;
    m_bIsRunning = false;
    m_bIsPredicate = true;
+   
+#ifdef PARALLELIZATION_PTHREAD
+
+   m_bJoinable = false;
+   
+#endif
+   
    m_htask = null_hthread;
    m_itask = 0;
 
@@ -937,7 +944,12 @@ bool task::has_message() const
 
    }
 
-   pthread_attr_setdetachstate(&taskAttr, PTHREAD_CREATE_DETACHED); // Set task to detached state. No need for pthread_join
+   if(!m_bJoinable)
+   {
+      
+      pthread_attr_setdetachstate(&taskAttr, PTHREAD_CREATE_DETACHED); // Set task to detached state. No need for pthread_join
+      
+   }
 
    pthread_create(
       (pthread_t *) &m_htask,

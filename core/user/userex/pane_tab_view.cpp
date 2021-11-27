@@ -457,12 +457,13 @@ namespace userex
 
       auto psystem = m_psystem->m_paurasystem;
 
-      if(pimpactdata->m_id.is_text() && psystem->m_idmapCreateViewLibrary.lookup(pimpactdata->m_id,plibrary) && plibrary != nullptr)
-      {
-
-
-      }
-      else if (pimpactdata->m_id == "account")
+//      if(pimpactdata->m_id.is_text() && psystem->m_idmapCreateViewLibrary.lookup(pimpactdata->m_id,plibrary) && plibrary != nullptr)
+//      {
+//
+//
+//      }
+//      else
+         if (pimpactdata->m_id == "account")
       {
 
          __pointer(::account::impact) pview = create_view < ::account::impact >();

@@ -34,7 +34,7 @@ public:
 
 
    task();
-   virtual ~task();
+   ~task() override;
 
 
    virtual string get_tag() const;

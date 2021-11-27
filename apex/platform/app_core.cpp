@@ -15,12 +15,6 @@ CLASS_DECL_ACME bool is_verbose();
 CLASS_DECL_APEX int_bool os_init_windowing();
 CLASS_DECL_APEX void os_term_windowing();
 
-
-//extern string_map < __pointer(::acme::library) >* g_pmapLibrary ;
-//extern string_map < PFN_NEW_APEX_LIBRARY >* g_pmapNewAuraLibrary;
-//extern ::mutex * psystem->m_mutexLibrary;
-
-
 #ifdef RASPBIAN
 
 

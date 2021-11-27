@@ -72,10 +72,10 @@ namespace net
       string_map < dns_cache_item >                      m_mapCache;
       string_map < __pointer(reverse_cache_item) >       m_mapReverseCache;
       array < __pointer(reverse_cache_item) >            m_reversecacheaRequest;
-      ::task_pointer                                m_pthreadReverse;
+      ::task_pointer                                     m_pthreadReverse;
 
       address_department();
-      virtual ~address_department();
+      ~address_department() override;
 
 
       virtual ::e_status initialize(::object * pobject) override;

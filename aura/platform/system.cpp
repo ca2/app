@@ -165,15 +165,7 @@ namespace aura
 
       enable_trace_category(e_trace_category_prodevian, false);
     
-      m_pDraw2dFactoryExchange = nullptr;
-
       g_pmutexImage = new ::mutex();
-
-//#ifndef WINDOWS
-//
-//      exception_translator::attach();
-//
-//#endif
 
       m_bProdevianMouse = false;
 
@@ -213,7 +205,7 @@ namespace aura
  
       //([a-z0-9_]+)_factory(::factory_item::get_factory());
 
-      m_bGudoNetCache = true;
+      //m_bGudoNetCache = true;
 
       //m_purldepartment = nullptr;
 
@@ -222,20 +214,6 @@ namespace aura
 
 
       ::draw2d::static_initialize();
-
-      //estatus = __compose_new(m_pwindowmap);
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-  
-      m_pDraw2dFactoryExchange = nullptr;
-
-      //add_factory_item < ::user::control_descriptor >();
 
       ::factory::add_factory_item < ::draw2d::icon >();
 
@@ -1086,12 +1064,12 @@ namespace aura
       try
       {
 
-         auto& pfactoryDraw2d = draw2d_factory();
+         m_pfactoryDraw2d = draw2d_factory();
 
-         if (pfactoryDraw2d)
+         if (m_pfactoryDraw2d)
          {
 
-            pfactoryDraw2d->merge_to_global_factory();
+            m_pfactoryDraw2d->merge_to_global_factory();
 
          }
          else
@@ -1099,11 +1077,9 @@ namespace aura
 
             output_debug_string("ERROR: Failed to initialize draw2d library.");
 
-            estatus = (const ::extended::status &) pfactoryDraw2d;
+            estatus = (const ::extended::status &) m_pfactoryDraw2d;
 
          }
-
-         pfactoryDraw2d->merge_to_global_factory();
 
       }
       catch (...)
@@ -2116,16 +2092,16 @@ namespace aura
 
 
 
-      try
-      {
-
-         m_mapAppLibrary.erase_all();
-
-      }
-      catch (...)
-      {
-
-      }
+//      try
+//      {
+//
+//         m_mapAppLibrary.erase_all();
+//
+//      }
+//      catch (...)
+//      {
+//
+//      }
 
    }
 
@@ -4609,11 +4585,11 @@ namespace aura
 //      if (strBrowser.has_char())
 //      {
 //
-//         pcontext->m_papexcontext->file().put_contents_utf8(m_psystem->m_pacmedir->system() / "browser.txt", strBrowser);
+//         pcontext->m_papexcontext->file().put_text_utf8(m_psystem->m_pacmedir->system() / "browser.txt", strBrowser);
 //
-//         pcontext->m_papexcontext->file().put_contents_utf8(m_psystem->m_pacmedir->system() / "browser_path.txt", strBrowserPath);
+//         pcontext->m_papexcontext->file().put_text_utf8(m_psystem->m_pacmedir->system() / "browser_path.txt", strBrowserPath);
 //
-//         pcontext->m_papexcontext->file().put_contents_utf8(m_psystem->m_pacmedir->system() / "browser_dir.txt", strBrowserDir);
+//         pcontext->m_papexcontext->file().put_text_utf8(m_psystem->m_pacmedir->system() / "browser_dir.txt", strBrowserDir);
 //
 //      }
 //

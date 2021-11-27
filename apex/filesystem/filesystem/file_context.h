@@ -182,7 +182,7 @@ public:
    virtual ::e_status put_memory(const ::payload & payloadFile, ::file::file * pfile);
    virtual ::e_status put_memory(const ::payload & payloadFile, const ::block & block);
    virtual ::e_status put_text(const ::payload& payloadFile, const ::block& block);
-   virtual ::e_status put_utf8_text(const ::payload & payloadFile, const ::block& block);
+   virtual ::e_status put_text_utf8(const ::payload & payloadFile, const ::block& block);
 
 
    virtual ::e_status add_contents(const ::payload & payloadFile, const void * pvoidContents, ::count count);
@@ -359,7 +359,7 @@ public:
 
    //virtual bool copy?(const ::payload & payloadFile, const ::stream & stream);
    //virtual bool put_contents(const ::payload & payloadFile, memory & mem);
-   //virtual bool put_contents_utf8(const ::payload & payloadFile, const char * pcszContents);
+   //virtual bool put_text_utf8(const ::payload & payloadFile, const char * pcszContents);
 
 
    //virtual bool add_contents(const ::payload & payloadFile, const char * pcszContents);

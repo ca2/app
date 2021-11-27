@@ -109,7 +109,7 @@ static void init_keys(const char* passwd, u32 * pkeys, const uLongf * pcrc_32_ta
 #    define ZCR_SEED2 3141592654UL     /* use PI as default pattern */
 #  endif
 
-static i32 crypthead(
+inline i32 crypthead(
 const char *passwd,         /* password string */
 uchar *buf,         /* where to write header */
 i32 bufSize,
@@ -155,4 +155,8 @@ u32  crcForCrypting)
    return n;
 }
 
+
 #endif
+
+
+

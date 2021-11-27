@@ -1824,7 +1824,7 @@ namespace experience
 
          auto psystem = m_psystem->m_pbasesystem;
 
-         double dMargin = psystem->m_dpi * 0.75 * (1.0 - sqrt((double) rectangle.area() / (double) rectangleWorkspace.area()));
+         double dMargin = psystem->m_dDpi * 0.75 * (1.0 - sqrt((double) rectangle.area() / (double) rectangleWorkspace.area()));
 
          if (ZONEING_COMPARE::is_equal(rectangle.top, rectangleWorkspace.top, dMargin, !(edisplayPrevious & e_display_top)))
          {

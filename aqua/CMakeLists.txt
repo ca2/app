@@ -31,6 +31,8 @@ list(APPEND library_source
         multimedia/audio/out.h
         multimedia/audio/sound_track_player.cpp
         multimedia/audio/sound_track_player.h
+        multimedia/audio/text_to_speech_client.cpp
+        multimedia/audio/text_to_speech_client.h
         multimedia/audio/speaker.cpp
         multimedia/audio/speaker.h
         multimedia/_.h

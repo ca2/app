@@ -1806,9 +1806,6 @@
     <None Include="filesystem\_impl.h">
       <Filter>Header Files\filesystem</Filter>
     </None>
-    <None Include="apex.def">
-      <Filter>Source Files</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\..\archive\platform-windows\version.rc">

@@ -63,16 +63,14 @@ target_compile_definitions(app_message_box PRIVATE _APP_MESSAGE_BOX_LIBRARY)
 add_executable(_app_message_box _main.cpp)
 
 
-add_custom_command(
-   TARGET ${PROJECT_NAME}
-   POST_BUILD
+add_custom_command(OUTPUT ${PROJECT_BINARY_DIR}/_matter.zip.o
    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
    COMMAND ${APPLICATION_BUILD_HELPER} ${PROJECT_SOURCE_DIR}
    COMMAND ld -r -b binary -o ${PROJECT_BINARY_DIR}/_matter.zip.o _matter.zip
+   DEPENDS deps.txt matter.txt
 )
 
-list(APPEND executable_references ${PROJECT_BINARY_DIR}/_matter.zip.o)
-
+target_sources(_${PROJECT_NAME} PRIVATE ${PROJECT_BINARY_DIR}/_matter.zip.o)
 
 
 

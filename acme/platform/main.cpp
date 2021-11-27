@@ -98,9 +98,7 @@ CLASS_DECL_ACME void set_main_thread();
 
       auto pnode = psystem->node();
 
-      estatus = pnode->implement();
-
-      //estatusEnd = psystem->end();
+      estatus = pnode->implement(pnode, psystem);
 
    }
 

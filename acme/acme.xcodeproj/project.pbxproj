@@ -4738,14 +4738,6 @@
 		9A68A5352511442E008DABD2 /* platform */ = {
 			isa = PBXGroup;
 			children = (
-				9AC0190B27489445006BEBCC /* main.cpp */,
-				9AC0190D27489445006BEBCC /* options.cpp */,
-				9AC0190C27489445006BEBCC /* options.h */,
-				9AC0190E27489446006BEBCC /* set_app_id.h */,
-				9AC0190027489355006BEBCC /* implementable.cpp */,
-				9AC0190127489356006BEBCC /* implementable.h */,
-				9A5DCE1F271A3BCB00C2ED86 /* nanosecond_timer.cpp */,
-				9A5DCE20271A3BCB00C2ED86 /* nanosecond_timer.h */,
 				9A68A56E2511442F008DABD2 /* _.cpp */,
 				9A68A54D2511442E008DABD2 /* _features.h */,
 				9A68A5962511442F008DABD2 /* _generic_object_constructor_impl.h */,
@@ -4792,6 +4784,8 @@
 				9A68A55E2511442F008DABD2 /* flags.h */,
 				9A68A5592511442E008DABD2 /* hyperlink.cpp */,
 				9A68A57A2511442F008DABD2 /* hyperlink.h */,
+				9AC0190027489355006BEBCC /* implementable.cpp */,
+				9AC0190127489356006BEBCC /* implementable.h */,
 				9A68A5912511442F008DABD2 /* keep_true.h */,
 				9A68A55F2511442F008DABD2 /* keep.h */,
 				9A68A54B2511442E008DABD2 /* less.h */,
@@ -4803,6 +4797,7 @@
 				9A68A5752511442F008DABD2 /* logic.h */,
 				9A68A5632511442F008DABD2 /* lparam.cpp */,
 				9A68A5812511442F008DABD2 /* lparam.h */,
+				9AC0190B27489445006BEBCC /* main.cpp */,
 				9A68A5372511442E008DABD2 /* main.h */,
 				9A68A55A2511442E008DABD2 /* math.cpp */,
 				9A68A53C2511442E008DABD2 /* message_box.cpp */,
@@ -4810,6 +4805,8 @@
 				9A68A5472511442E008DABD2 /* muldiv32.h */,
 				9A68A5722511442F008DABD2 /* muldiv64.cpp */,
 				9A68A56D2511442F008DABD2 /* muldiv64.h */,
+				9A5DCE1F271A3BCB00C2ED86 /* nanosecond_timer.cpp */,
+				9A5DCE20271A3BCB00C2ED86 /* nanosecond_timer.h */,
 				9A68A5692511442F008DABD2 /* net.cpp */,
 				9A68A54C2511442E008DABD2 /* net.h */,
 				9A787B6E264BB118003DF8A0 /* node.cpp */,
@@ -4820,6 +4817,8 @@
 				9ADD64B726B5CB3500D11298 /* object_reference_count_debug.h */,
 				9ADD64B326B5CB3300D11298 /* object_type_counter.cpp */,
 				9ADD64B826B5CB3600D11298 /* object_type_counter.h */,
+				9AC0190D27489445006BEBCC /* options.cpp */,
+				9AC0190C27489445006BEBCC /* options.h */,
 				9A787BB2264BB14A003DF8A0 /* predicate_function_pointer.h */,
 				9A787BB3264BB14C003DF8A0 /* predicate_function.cpp */,
 				9A787BB4264BB153003DF8A0 /* predicate_holder.cpp */,
@@ -4839,6 +4838,7 @@
 				9A1625E226EFCA53003D9CB9 /* sequence.h */,
 				9A787BC5264BB164003DF8A0 /* serial.cpp */,
 				9A68A56A2511442F008DABD2 /* serial.h */,
+				9AC0190E27489446006BEBCC /* set_app_id.h */,
 				9A68A5872511442F008DABD2 /* simple_app.h */,
 				9ADD64B626B5CB3500D11298 /* simple_log.cpp */,
 				9ADD64B426B5CB3400D11298 /* simple_log.h */,
@@ -9425,7 +9425,6 @@
 					"$(inherited)",
 					"$(WorkspaceDir)/archive",
 					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library/$(ARCHS)/$(CONFIGURATION)",
-					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/third/library/$(ARCHS)/$(CONFIGURATION)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -9531,7 +9530,6 @@
 					"$(inherited)",
 					"$(WorkspaceDir)/archive",
 					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library/$(ARCHS)/$(CONFIGURATION)",
-					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/third/library/$(ARCHS)/$(CONFIGURATION)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;

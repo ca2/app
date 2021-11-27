@@ -1914,7 +1914,7 @@ void system_on_open_file(void * pSystem, const char * pszFile)
 }
 
 
-__pointer(class ::system) platform_create_system(const char* pszAppId)
+__transport(class ::system) platform_create_system(const char* pszAppId)
 {
 
    string strAppId(pszAppId);

@@ -261,7 +261,7 @@ namespace acme
    }
 
 
-   ::e_status node::implement()
+   ::e_status node::implement(__transport(::acme::node) & pnode, __transport(class ::system) & psystem)
    {
 
 //      auto psystem = m_psystem;

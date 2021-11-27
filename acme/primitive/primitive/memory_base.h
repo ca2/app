@@ -254,12 +254,12 @@ public:
    string to_base64(memsize iStart = 0, memsize size = -1);
    void from_base64(const char * psz, strsize nCount = -1);
 
-   inline void to_asc(string & str) { str.assign((const char *) get_data(), get_size()); }
-   inline string to_asc() { string str; to_asc(str); return str; }
+   inline void to_asc(string & str) const { str.assign((const char *) get_data(), get_size()); }
+   inline string to_asc() const { string str; to_asc(str); return str; }
    inline void from_asc(const string& str) { assign(str.c_str(), str.get_length()); }
 
-   bool operator == (const memory_base & s);
-   bool operator == (const struct block & block);
+   bool operator == (const memory_base & s) const;
+   bool operator == (const struct block & block) const ;
 
 
    memory_base & reverse();

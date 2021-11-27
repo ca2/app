@@ -857,7 +857,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       }
 
-      plibrary = plibraryfactory->create_library();
+      auto plibrary = plibraryfactory->create_library();
 
 #else
 
@@ -967,6 +967,23 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       if (!plibrary)
       {
+
+#ifdef CUBE
+
+         auto pfnFactory = ::static_setup::get_factory_function(strLibrary);
+
+         if (pfnFactory)
+         {
+
+            pfactory = m_psystem->__create_new < ::factory::factory >();
+
+            pfnFactory(pfactory);
+
+            return pfactory;
+
+         }
+
+#endif
 
          pfactory = (const ::extended::status&)plibrary;
 

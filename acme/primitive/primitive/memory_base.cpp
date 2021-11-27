@@ -993,9 +993,7 @@ bool memory_base::ends_ci(const ::string & str, strsize iCount) const
 //}
 
 
-
-
-bool memory_base::operator == (const memory_base & s)
+bool memory_base::operator == (const memory_base & s) const
 {
 
    bool b = false;
@@ -1013,7 +1011,7 @@ bool memory_base::operator == (const memory_base & s)
 
 }
 
-bool memory_base::operator == (const struct block & s)
+bool memory_base::operator == (const struct block & s) const
 {
 
    bool b = false;

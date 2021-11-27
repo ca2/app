@@ -331,7 +331,7 @@
     <ResourceCompile Include="main.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\_matter\hellomultiverse\_std\_std\main\icon.ico" />
+    <Image Include="icon.ico" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\archive\platform-windows\acme_windows\acme_windows.vcxproj">

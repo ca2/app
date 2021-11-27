@@ -824,12 +824,6 @@ public:
             if (p)
             {
 
-#ifdef _DEBUG
-
-               string strType = __type_name(p);
-
-#endif
-
                p.release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
             }

@@ -585,7 +585,6 @@
 		9A68AE7825114435008DABD2 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68A6732511442F008DABD2 /* _.cpp */; };
 		9A68AE7925114435008DABD2 /* property_set_papaya.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68A6742511442F008DABD2 /* property_set_papaya.cpp */; };
 		9A68AE7A25114435008DABD2 /* bit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68A6752511442F008DABD2 /* bit.cpp */; };
-		9A68AE7B25114435008DABD2 /* primitive_update.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A6762511442F008DABD2 /* primitive_update.h */; };
 		9A68AE7C25114435008DABD2 /* memory_container.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A6772511442F008DABD2 /* memory_container.h */; };
 		9A68AE7D25114435008DABD2 /* match.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A6782511442F008DABD2 /* match.h */; };
 		9A68AE7E25114435008DABD2 /* runnable.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A6792511442F008DABD2 /* runnable.h */; };
@@ -1181,8 +1180,6 @@
 		9A787C9D264C0371003DF8A0 /* work.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A787C97264C0370003DF8A0 /* work.cpp */; };
 		9A787C9E264C0371003DF8A0 /* work.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A787C98264C0370003DF8A0 /* work.h */; };
 		9A787C9F264C0371003DF8A0 /* work.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A787C98264C0370003DF8A0 /* work.h */; };
-		9A787CA0264C0371003DF8A0 /* system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A787C99264C0371003DF8A0 /* system.h */; };
-		9A787CA1264C0371003DF8A0 /* system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A787C99264C0371003DF8A0 /* system.h */; };
 		9A787CA5264C04A6003DF8A0 /* extended_status.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A787CA2264C04A6003DF8A0 /* extended_status.h */; };
 		9A787CA6264C04A6003DF8A0 /* extended_status.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A787CA2264C04A6003DF8A0 /* extended_status.h */; };
 		9A787CA7264C04A6003DF8A0 /* extended_status.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A787CA3264C04A6003DF8A0 /* extended_status.cpp */; };
@@ -1311,7 +1308,6 @@
 		9A892A4B26CD7571008D6412 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89285D26CD7570008D6412 /* _.h */; };
 		9A892A4C26CD7571008D6412 /* time.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89285E26CD7570008D6412 /* time.h */; };
 		9A892A4D26CD7571008D6412 /* time.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89285E26CD7570008D6412 /* time.h */; };
-		9A892A5226CD7571008D6412 /* xcb_hook.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89286226CD7570008D6412 /* xcb_hook.h */; };
 		9A892A5326CD7571008D6412 /* xcb_hook.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89286226CD7570008D6412 /* xcb_hook.h */; };
 		9A892A5426CD7571008D6412 /* _xcb.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89286326CD7570008D6412 /* _xcb.h */; };
 		9A892A5526CD7571008D6412 /* _xcb.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89286326CD7570008D6412 /* _xcb.h */; };
@@ -1646,35 +1642,23 @@
 		9A892C1526CD7573008D6412 /* argcargv.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89294A26CD7570008D6412 /* argcargv.h */; };
 		9A892C1A26CD7573008D6412 /* debug.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89294F26CD7570008D6412 /* debug.h */; };
 		9A892C1B26CD7573008D6412 /* debug.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89294F26CD7570008D6412 /* debug.h */; };
-		9A892C2626CD7573008D6412 /* cross_win_gdi.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89295526CD7570008D6412 /* cross_win_gdi.h */; };
 		9A892C2726CD7573008D6412 /* cross_win_gdi.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89295526CD7570008D6412 /* cross_win_gdi.h */; };
 		9A892C2C26CD7573008D6412 /* file.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89295826CD7570008D6412 /* file.h */; };
 		9A892C2D26CD7573008D6412 /* file.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89295826CD7570008D6412 /* file.h */; };
 		9A892C2E26CD7573008D6412 /* oswindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89295926CD7570008D6412 /* oswindow.h */; };
 		9A892C2F26CD7573008D6412 /* oswindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89295926CD7570008D6412 /* oswindow.h */; };
-		9A892C3226CD7573008D6412 /* _c.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89295B26CD7570008D6412 /* _c.h */; };
 		9A892C3326CD7573008D6412 /* _c.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89295B26CD7570008D6412 /* _c.h */; };
-		9A892C3626CD7573008D6412 /* _user.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89295D26CD7570008D6412 /* _user.h */; };
 		9A892C3726CD7573008D6412 /* _user.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89295D26CD7570008D6412 /* _user.h */; };
-		9A892C3826CD7573008D6412 /* osdisplay.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89295E26CD7570008D6412 /* osdisplay.h */; };
 		9A892C3926CD7573008D6412 /* osdisplay.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89295E26CD7570008D6412 /* osdisplay.h */; };
-		9A892C3A26CD7573008D6412 /* cross_win_gdi_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89295F26CD7570008D6412 /* cross_win_gdi_internal.h */; };
 		9A892C3B26CD7573008D6412 /* cross_win_gdi_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89295F26CD7570008D6412 /* cross_win_gdi_internal.h */; };
-		9A892C3E26CD7573008D6412 /* exception_engine.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89296126CD7570008D6412 /* exception_engine.h */; };
 		9A892C3F26CD7573008D6412 /* exception_engine.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89296126CD7570008D6412 /* exception_engine.h */; };
-		9A892C4E26CD7573008D6412 /* _linux.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89296926CD7570008D6412 /* _linux.h */; };
 		9A892C4F26CD7573008D6412 /* _linux.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89296926CD7570008D6412 /* _linux.h */; };
-		9A892C5026CD7573008D6412 /* user.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89296A26CD7570008D6412 /* user.h */; };
 		9A892C5126CD7573008D6412 /* user.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89296A26CD7570008D6412 /* user.h */; };
 		9A892C5426CD7573008D6412 /* process.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89296C26CD7570008D6412 /* process.h */; };
 		9A892C5526CD7573008D6412 /* process.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89296C26CD7570008D6412 /* process.h */; };
-		9A892C5A26CD7573008D6412 /* cross_win_file.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89296F26CD7570008D6412 /* cross_win_file.h */; };
 		9A892C5B26CD7573008D6412 /* cross_win_file.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89296F26CD7570008D6412 /* cross_win_file.h */; };
-		9A892C5C26CD7573008D6412 /* user_private.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89297026CD7570008D6412 /* user_private.h */; };
 		9A892C5D26CD7573008D6412 /* user_private.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89297026CD7570008D6412 /* user_private.h */; };
-		9A892C6026CD7573008D6412 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89297226CD7570008D6412 /* _.h */; };
 		9A892C6126CD7573008D6412 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89297226CD7570008D6412 /* _.h */; };
-		9A892C6226CD7573008D6412 /* linux_linux.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89297326CD7570008D6412 /* linux_linux.h */; };
 		9A892C6326CD7573008D6412 /* linux_linux.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89297326CD7570008D6412 /* linux_linux.h */; };
 		9A892C6426CD7573008D6412 /* user.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89297426CD7570008D6412 /* user.h */; };
 		9A892C6526CD7573008D6412 /* user.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89297426CD7570008D6412 /* user.h */; };
@@ -1682,45 +1666,26 @@
 		9A892C6726CD7573008D6412 /* os_windowing2.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89297526CD7570008D6412 /* os_windowing2.h */; };
 		9A892C6826CD7573008D6412 /* parallelization.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89297626CD7570008D6412 /* parallelization.h */; };
 		9A892C6926CD7573008D6412 /* parallelization.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89297626CD7570008D6412 /* parallelization.h */; };
-		9A892C6A26CD7573008D6412 /* _os_object.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89297826CD7570008D6412 /* _os_object.h */; };
 		9A892C6B26CD7573008D6412 /* _os_object.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89297826CD7570008D6412 /* _os_object.h */; };
-		9A892C6E26CD7573008D6412 /* _android.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89297A26CD7570008D6412 /* _android.h */; };
 		9A892C6F26CD7573008D6412 /* _android.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89297A26CD7570008D6412 /* _android.h */; };
-		9A892C7826CD7573008D6412 /* _os_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89297F26CD7570008D6412 /* _os_impl.h */; };
 		9A892C7926CD7573008D6412 /* _os_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89297F26CD7570008D6412 /* _os_impl.h */; };
-		9A892C7A26CD7573008D6412 /* _os_local.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89298026CD7570008D6412 /* _os_local.h */; };
 		9A892C7B26CD7573008D6412 /* _os_local.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89298026CD7570008D6412 /* _os_local.h */; };
-		9A892C7E26CD7573008D6412 /* internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89298226CD7570008D6412 /* internal.h */; };
 		9A892C7F26CD7573008D6412 /* internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89298226CD7570008D6412 /* internal.h */; };
-		9A892C8226CD7573008D6412 /* aaa_view_bitmap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89298426CD7570008D6412 /* aaa_view_bitmap.h */; };
 		9A892C8326CD7573008D6412 /* aaa_view_bitmap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89298426CD7570008D6412 /* aaa_view_bitmap.h */; };
-		9A892C8426CD7573008D6412 /* _os_remote.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89298526CD7570008D6412 /* _os_remote.h */; };
 		9A892C8526CD7573008D6412 /* _os_remote.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89298526CD7570008D6412 /* _os_remote.h */; };
-		9A892C8A26CD7573008D6412 /* cross_win_gdi.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89298826CD7570008D6412 /* cross_win_gdi.h */; };
 		9A892C8B26CD7573008D6412 /* cross_win_gdi.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89298826CD7570008D6412 /* cross_win_gdi.h */; };
-		9A892C8C26CD7573008D6412 /* aaa_vsnord_native_app_glue.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89298926CD7570008D6412 /* aaa_vsnord_native_app_glue.h */; };
 		9A892C8D26CD7573008D6412 /* aaa_vsnord_native_app_glue.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89298926CD7570008D6412 /* aaa_vsnord_native_app_glue.h */; };
-		9A892C8E26CD7573008D6412 /* file.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89298A26CD7570008D6412 /* file.h */; };
 		9A892C8F26CD7573008D6412 /* file.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89298A26CD7570008D6412 /* file.h */; };
-		9A892C9026CD7573008D6412 /* aaa_windowing.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89298B26CD7570008D6412 /* aaa_windowing.h */; };
 		9A892C9126CD7573008D6412 /* aaa_windowing.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89298B26CD7570008D6412 /* aaa_windowing.h */; };
 		9A892C9626CD7573008D6412 /* _c.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89298E26CD7570008D6412 /* _c.h */; };
 		9A892C9726CD7573008D6412 /* _c.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89298E26CD7570008D6412 /* _c.h */; };
-		9A892C9E26CD7573008D6412 /* _user.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89299226CD7570008D6412 /* _user.h */; };
 		9A892C9F26CD7573008D6412 /* _user.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89299226CD7570008D6412 /* _user.h */; };
-		9A892CA626CD7573008D6412 /* cross_win_gdi_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89299626CD7570008D6412 /* cross_win_gdi_internal.h */; };
 		9A892CA726CD7573008D6412 /* cross_win_gdi_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89299626CD7570008D6412 /* cross_win_gdi_internal.h */; };
-		9A892CA826CD7573008D6412 /* aaa_cairo_keep.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89299726CD7570008D6412 /* aaa_cairo_keep.h */; };
 		9A892CA926CD7573008D6412 /* aaa_cairo_keep.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89299726CD7570008D6412 /* aaa_cairo_keep.h */; };
-		9A892CAA26CD7573008D6412 /* aaa_window_android.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89299826CD7570008D6412 /* aaa_window_android.h */; };
 		9A892CAB26CD7573008D6412 /* aaa_window_android.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89299826CD7570008D6412 /* aaa_window_android.h */; };
-		9A892CAE26CD7573008D6412 /* exception_engine.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89299A26CD7570008D6412 /* exception_engine.h */; };
 		9A892CAF26CD7573008D6412 /* exception_engine.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A89299A26CD7570008D6412 /* exception_engine.h */; };
-		9A892CC226CD7573008D6412 /* process.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929A426CD7570008D6412 /* process.h */; };
 		9A892CC326CD7573008D6412 /* process.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929A426CD7570008D6412 /* process.h */; };
-		9A892CC826CD7574008D6412 /* aaa_want_to_remove_android_window_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929A726CD7570008D6412 /* aaa_want_to_remove_android_window_impl.h */; };
 		9A892CC926CD7574008D6412 /* aaa_want_to_remove_android_window_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929A726CD7570008D6412 /* aaa_want_to_remove_android_window_impl.h */; };
-		9A892CCA26CD7574008D6412 /* cross_win_file.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929A826CD7570008D6412 /* cross_win_file.h */; };
 		9A892CCB26CD7574008D6412 /* cross_win_file.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929A826CD7570008D6412 /* cross_win_file.h */; };
 		9A892CCC26CD7574008D6412 /* graphics.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929A926CD7570008D6412 /* graphics.h */; };
 		9A892CCD26CD7574008D6412 /* graphics.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929A926CD7570008D6412 /* graphics.h */; };
@@ -1732,13 +1697,9 @@
 		9A892CDB26CD7574008D6412 /* process.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929B026CD7570008D6412 /* process.h */; };
 		9A892CDC26CD7574008D6412 /* http.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8929B126CD7570008D6412 /* http.cpp */; };
 		9A892CDD26CD7574008D6412 /* http.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8929B126CD7570008D6412 /* http.cpp */; };
-		9A892CE226CD7574008D6412 /* _windows_common.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929B526CD7570008D6412 /* _windows_common.h */; };
 		9A892CE326CD7574008D6412 /* _windows_common.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929B526CD7570008D6412 /* _windows_common.h */; };
-		9A892CE626CD7574008D6412 /* api.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929B726CD7570008D6412 /* api.h */; };
 		9A892CE726CD7574008D6412 /* api.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929B726CD7570008D6412 /* api.h */; };
-		9A892CE826CD7574008D6412 /* parallelization.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929B826CD7570008D6412 /* parallelization.h */; };
 		9A892CE926CD7574008D6412 /* parallelization.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929B826CD7570008D6412 /* parallelization.h */; };
-		9A892CF026CD7574008D6412 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929BC26CD7570008D6412 /* _.h */; };
 		9A892CF126CD7574008D6412 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929BC26CD7570008D6412 /* _.h */; };
 		9A892CF226CD7574008D6412 /* winpr_input.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929BD26CD7570008D6412 /* winpr_input.h */; };
 		9A892CF326CD7574008D6412 /* winpr_input.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929BD26CD7570008D6412 /* winpr_input.h */; };
@@ -1752,49 +1713,29 @@
 		9A892D0326CD7574008D6412 /* _windows.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929C626CD7571008D6412 /* _windows.h */; };
 		9A892D0426CD7574008D6412 /* process.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929C726CD7571008D6412 /* process.h */; };
 		9A892D0526CD7574008D6412 /* process.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929C726CD7571008D6412 /* process.h */; };
-		9A892D0626CD7574008D6412 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929C826CD7571008D6412 /* _.h */; };
 		9A892D0726CD7574008D6412 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929C826CD7571008D6412 /* _.h */; };
-		9A892D0E26CD7574008D6412 /* solaris_user_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929CE26CD7571008D6412 /* solaris_user_impl.h */; };
 		9A892D0F26CD7574008D6412 /* solaris_user_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929CE26CD7571008D6412 /* solaris_user_impl.h */; };
-		9A892D1026CD7574008D6412 /* solaris_cross_win_file.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929CF26CD7571008D6412 /* solaris_cross_win_file.h */; };
 		9A892D1126CD7574008D6412 /* solaris_cross_win_file.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929CF26CD7571008D6412 /* solaris_cross_win_file.h */; };
-		9A892D1226CD7574008D6412 /* linux_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929D026CD7571008D6412 /* linux_internal.h */; };
 		9A892D1326CD7574008D6412 /* linux_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929D026CD7571008D6412 /* linux_internal.h */; };
-		9A892D1426CD7574008D6412 /* solaris_cairo_keep.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929D126CD7571008D6412 /* solaris_cairo_keep.h */; };
 		9A892D1526CD7574008D6412 /* solaris_cairo_keep.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929D126CD7571008D6412 /* solaris_cairo_keep.h */; };
-		9A892D1E26CD7574008D6412 /* solaris_window_xlib.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929D626CD7571008D6412 /* solaris_window_xlib.h */; };
 		9A892D1F26CD7574008D6412 /* solaris_window_xlib.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929D626CD7571008D6412 /* solaris_window_xlib.h */; };
 		9A892D2426CD7574008D6412 /* solaris.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929D926CD7571008D6412 /* solaris.h */; };
 		9A892D2526CD7574008D6412 /* solaris.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929D926CD7571008D6412 /* solaris.h */; };
-		9A892D2626CD7574008D6412 /* solaris_process.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929DA26CD7571008D6412 /* solaris_process.h */; };
 		9A892D2726CD7574008D6412 /* solaris_process.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929DA26CD7571008D6412 /* solaris_process.h */; };
-		9A892D2826CD7574008D6412 /* solaris_graphics.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929DB26CD7571008D6412 /* solaris_graphics.h */; };
 		9A892D2926CD7574008D6412 /* solaris_graphics.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929DB26CD7571008D6412 /* solaris_graphics.h */; };
-		9A892D2E26CD7574008D6412 /* solaris_cross_win_gdi.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929DE26CD7571008D6412 /* solaris_cross_win_gdi.h */; };
 		9A892D2F26CD7574008D6412 /* solaris_cross_win_gdi.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929DE26CD7571008D6412 /* solaris_cross_win_gdi.h */; };
-		9A892D3226CD7574008D6412 /* solaris_file_watcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929E026CD7571008D6412 /* solaris_file_watcher.h */; };
 		9A892D3326CD7574008D6412 /* solaris_file_watcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929E026CD7571008D6412 /* solaris_file_watcher.h */; };
-		9A892D3626CD7574008D6412 /* solaris_cross_win_gdi_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929E226CD7571008D6412 /* solaris_cross_win_gdi_internal.h */; };
 		9A892D3726CD7574008D6412 /* solaris_cross_win_gdi_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929E226CD7571008D6412 /* solaris_cross_win_gdi_internal.h */; };
-		9A892D3C26CD7574008D6412 /* solaris_simple_ui.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929E526CD7571008D6412 /* solaris_simple_ui.h */; };
 		9A892D3D26CD7574008D6412 /* solaris_simple_ui.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929E526CD7571008D6412 /* solaris_simple_ui.h */; };
-		9A892D3E26CD7574008D6412 /* solaris_http_lib.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929E626CD7571008D6412 /* solaris_http_lib.h */; };
 		9A892D3F26CD7574008D6412 /* solaris_http_lib.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929E626CD7571008D6412 /* solaris_http_lib.h */; };
-		9A892D4026CD7574008D6412 /* solaris_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929E726CD7571008D6412 /* solaris_internal.h */; };
 		9A892D4126CD7574008D6412 /* solaris_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929E726CD7571008D6412 /* solaris_internal.h */; };
-		9A892D4226CD7574008D6412 /* solaris_solaris.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929E826CD7571008D6412 /* solaris_solaris.h */; };
 		9A892D4326CD7574008D6412 /* solaris_solaris.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929E826CD7571008D6412 /* solaris_solaris.h */; };
-		9A892D4426CD7574008D6412 /* solaris_file.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929E926CD7571008D6412 /* solaris_file.h */; };
 		9A892D4526CD7574008D6412 /* solaris_file.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929E926CD7571008D6412 /* solaris_file.h */; };
-		9A892D4C26CD7574008D6412 /* solaris_http.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929ED26CD7571008D6412 /* solaris_http.h */; };
 		9A892D4D26CD7574008D6412 /* solaris_http.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929ED26CD7571008D6412 /* solaris_http.h */; };
-		9A892D4E26CD7574008D6412 /* solaris_debug.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929EE26CD7571008D6412 /* solaris_debug.h */; };
 		9A892D4F26CD7574008D6412 /* solaris_debug.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929EE26CD7571008D6412 /* solaris_debug.h */; };
-		9A892D5826CD7574008D6412 /* parallelization_winrt.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929F426CD7571008D6412 /* parallelization_winrt.h */; };
 		9A892D5926CD7574008D6412 /* parallelization_winrt.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929F426CD7571008D6412 /* parallelization_winrt.h */; };
 		9A892D5A26CD7574008D6412 /* aaa_want_to_remove_window_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929F526CD7571008D6412 /* aaa_want_to_remove_window_impl.h */; };
 		9A892D5B26CD7574008D6412 /* aaa_want_to_remove_window_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929F526CD7571008D6412 /* aaa_want_to_remove_window_impl.h */; };
-		9A892D5C26CD7574008D6412 /* file_winrt.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929F626CD7571008D6412 /* file_winrt.h */; };
 		9A892D5D26CD7574008D6412 /* file_winrt.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8929F626CD7571008D6412 /* file_winrt.h */; };
 		9A892D7226CD7574008D6412 /* simple_hold_handle.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A892A0126CD7571008D6412 /* simple_hold_handle.h */; };
 		9A892D7326CD7574008D6412 /* simple_hold_handle.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A892A0126CD7571008D6412 /* simple_hold_handle.h */; };
@@ -1802,27 +1743,18 @@
 		9A892D8126CD7574008D6412 /* exception_engine.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A892A0826CD7571008D6412 /* exception_engine.h */; };
 		9A892D8826CD7574008D6412 /* gdi_winrt.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A892A0C26CD7571008D6412 /* gdi_winrt.h */; };
 		9A892D8926CD7574008D6412 /* gdi_winrt.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A892A0C26CD7571008D6412 /* gdi_winrt.h */; };
-		9A892D8A26CD7574008D6412 /* aaa_oswindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A892A0D26CD7571008D6412 /* aaa_oswindow.h */; };
 		9A892D8B26CD7574008D6412 /* aaa_oswindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A892A0D26CD7571008D6412 /* aaa_oswindow.h */; };
-		9A892D8E26CD7574008D6412 /* sockets.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A892A0F26CD7571008D6412 /* sockets.h */; };
 		9A892D8F26CD7574008D6412 /* sockets.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A892A0F26CD7571008D6412 /* sockets.h */; };
-		9A892D9226CD7574008D6412 /* parallelization.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A892A1126CD7571008D6412 /* parallelization.h */; };
 		9A892D9326CD7574008D6412 /* parallelization.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A892A1126CD7571008D6412 /* parallelization.h */; };
-		9A892D9426CD7574008D6412 /* metrowin_metrowin.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A892A1226CD7571008D6412 /* metrowin_metrowin.h */; };
 		9A892D9526CD7574008D6412 /* metrowin_metrowin.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A892A1226CD7571008D6412 /* metrowin_metrowin.h */; };
-		9A892D9826CD7574008D6412 /* host_interaction.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A892A1426CD7571008D6412 /* host_interaction.h */; };
 		9A892D9926CD7574008D6412 /* host_interaction.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A892A1426CD7571008D6412 /* host_interaction.h */; };
 		9A892D9A26CD7574008D6412 /* process.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A892A1526CD7571008D6412 /* process.h */; };
 		9A892D9B26CD7574008D6412 /* process.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A892A1526CD7571008D6412 /* process.h */; };
-		9A892D9E26CD7574008D6412 /* _winrt.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A892A1726CD7571008D6412 /* _winrt.h */; };
 		9A892D9F26CD7574008D6412 /* _winrt.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A892A1726CD7571008D6412 /* _winrt.h */; };
-		9A892DA026CD7574008D6412 /* simple_ui.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A892A1826CD7571008D6412 /* simple_ui.h */; };
 		9A892DA126CD7574008D6412 /* simple_ui.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A892A1826CD7571008D6412 /* simple_ui.h */; };
-		9A892DA826CD7574008D6412 /* _uwp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A892A1C26CD7571008D6412 /* _uwp.h */; };
 		9A892DA926CD7574008D6412 /* _uwp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A892A1C26CD7571008D6412 /* _uwp.h */; };
 		9A892DB226CD7574008D6412 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A892A2126CD7571008D6412 /* _.h */; };
 		9A892DB326CD7574008D6412 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A892A2126CD7571008D6412 /* _.h */; };
-		9A892DB426CD7574008D6412 /* base_file.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A892A2226CD7571008D6412 /* base_file.h */; };
 		9A892DB526CD7574008D6412 /* base_file.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A892A2226CD7571008D6412 /* base_file.h */; };
 		9A892DB626CD7574008D6412 /* windowing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A892A2326CD7571008D6412 /* windowing.cpp */; };
 		9A892DB726CD7574008D6412 /* windowing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A892A2326CD7571008D6412 /* windowing.cpp */; };
@@ -1972,7 +1904,6 @@
 		9AC0191627489446006BEBCC /* set_app_id.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC0190E27489446006BEBCC /* set_app_id.h */; };
 		9AC01A2A2748B919006BEBCC /* universal_windows.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC01A262748B918006BEBCC /* universal_windows.h */; };
 		9AC01A2B2748B919006BEBCC /* universal_windows.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC01A262748B918006BEBCC /* universal_windows.h */; };
-		9AC01A2C2748B919006BEBCC /* linux.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC01A272748B918006BEBCC /* linux.h */; };
 		9AC01A2D2748B919006BEBCC /* linux.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC01A272748B918006BEBCC /* linux.h */; };
 		9AC01A2E2748B919006BEBCC /* windows.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC01A282748B918006BEBCC /* windows.h */; };
 		9AC01A2F2748B919006BEBCC /* windows.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC01A282748B918006BEBCC /* windows.h */; };
@@ -2438,7 +2369,6 @@
 		9AD69114251A753A00C0EBD7 /* property.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A6922511442F008DABD2 /* property.h */; };
 		9AD69115251A753A00C0EBD7 /* _trait_wd16_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A6F12511442F008DABD2 /* _trait_wd16_impl.h */; };
 		9AD69118251A753A00C0EBD7 /* display.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A56B2511442F008DABD2 /* display.h */; };
-		9AD6911B251A753A00C0EBD7 /* primitive_update.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A6762511442F008DABD2 /* primitive_update.h */; };
 		9AD6911C251A753A00C0EBD7 /* ip_enum.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68AAEE25114431008DABD2 /* ip_enum.h */; };
 		9AD6911E251A753A00C0EBD7 /* _c_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A7242511442F008DABD2 /* _c_impl.h */; };
 		9AD69121251A753A00C0EBD7 /* colorref_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAE6E8F251920CD00F10692 /* colorref_array.h */; };
@@ -3254,7 +3184,6 @@
 		9A68A6732511442F008DABD2 /* _.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
 		9A68A6742511442F008DABD2 /* property_set_papaya.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = property_set_papaya.cpp; sourceTree = "<group>"; };
 		9A68A6752511442F008DABD2 /* bit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bit.cpp; sourceTree = "<group>"; };
-		9A68A6762511442F008DABD2 /* primitive_update.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive_update.h; sourceTree = "<group>"; };
 		9A68A6772511442F008DABD2 /* memory_container.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = memory_container.h; sourceTree = "<group>"; };
 		9A68A6782511442F008DABD2 /* match.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = match.h; sourceTree = "<group>"; };
 		9A68A6792511442F008DABD2 /* runnable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = runnable.h; sourceTree = "<group>"; };
@@ -3754,7 +3683,6 @@
 		9A787C96264C0370003DF8A0 /* trait_predicate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = trait_predicate.h; sourceTree = "<group>"; };
 		9A787C97264C0370003DF8A0 /* work.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = work.cpp; sourceTree = "<group>"; };
 		9A787C98264C0370003DF8A0 /* work.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = work.h; sourceTree = "<group>"; };
-		9A787C99264C0371003DF8A0 /* system.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = system.h; sourceTree = "<group>"; };
 		9A787CA2264C04A6003DF8A0 /* extended_status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = extended_status.h; sourceTree = "<group>"; };
 		9A787CA3264C04A6003DF8A0 /* extended_status.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = extended_status.cpp; sourceTree = "<group>"; };
 		9A787CA4264C04A6003DF8A0 /* engine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = engine.cpp; sourceTree = "<group>"; };
@@ -4417,13 +4345,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AD199732511BA2400B4C44A /* libz.tbd in Frameworks */,
-				9AD199782511BA4D00B4C44A /* libiconv.tbd in Frameworks */,
-				9A78641226508CCF0034A0E1 /* libidn.dylib in Frameworks */,
 				9AD1997D2511BAA000B4C44A /* Cocoa.framework in Frameworks */,
 				9AD1997A2511BA7700B4C44A /* IOKit.framework in Frameworks */,
 				9AD199712511BA1400B4C44A /* CoreText.framework in Frameworks */,
 				9AD1996F2511BA0300B4C44A /* CoreGraphics.framework in Frameworks */,
+				9AD199732511BA2400B4C44A /* libz.tbd in Frameworks */,
+				9AD199782511BA4D00B4C44A /* libiconv.tbd in Frameworks */,
+				9A78641226508CCF0034A0E1 /* libidn.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5268,7 +5196,6 @@
 				9A786192264B9095003DF8A0 /* payload.h */,
 				9A68A6A12511442F008DABD2 /* pointer.h */,
 				9A68A6972511442F008DABD2 /* pointer2.h */,
-				9A68A6762511442F008DABD2 /* primitive_update.h */,
 				9A786185264B9092003DF8A0 /* property_object.cpp */,
 				9A78617F264B908E003DF8A0 /* property_object.h */,
 				9A68A6622511442F008DABD2 /* property_set_composite.cpp */,
@@ -5288,7 +5215,6 @@
 				9A68A6422511442F008DABD2 /* simple_object.h */,
 				9A68A6612511442F008DABD2 /* stick.h */,
 				9A68A6892511442F008DABD2 /* str.h */,
-				9A787C99264C0371003DF8A0 /* system.h */,
 				9A787C96264C0370003DF8A0 /* trait_predicate.h */,
 				9A68A6812511442F008DABD2 /* trait.h */,
 				9A68A6722511442F008DABD2 /* traits.cpp */,
@@ -6637,7 +6563,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AC01A2C2748B919006BEBCC /* linux.h in Headers */,
 				9A5F8DF127193D4D002CB2B8 /* _impl.h in Headers */,
 				9ADD64BD26B5CB3800D11298 /* message.h in Headers */,
 				9A68AEAC25114435008DABD2 /* factory.h in Headers */,
@@ -6645,7 +6570,6 @@
 				9A787DAD264C9742003DF8A0 /* status.h in Headers */,
 				9A68B40425114438008DABD2 /* _.h in Headers */,
 				9A68AE7025114435008DABD2 /* collection_file.h in Headers */,
-				9A892D1226CD7574008D6412 /* linux_internal.h in Headers */,
 				9A786212264B90B4003DF8A0 /* mkint_c.h in Headers */,
 				9A68AE3825114435008DABD2 /* _.h in Headers */,
 				9A68ADEC25114435008DABD2 /* stack.h in Headers */,
@@ -6653,7 +6577,6 @@
 				9A68AD9E25114434008DABD2 /* _platform.h in Headers */,
 				9A68ADC125114434008DABD2 /* _raw_array_impl2.h in Headers */,
 				9A787B62264BB0FD003DF8A0 /* library.h in Headers */,
-				9A892D2626CD7574008D6412 /* solaris_process.h in Headers */,
 				9A787D1A264C37D7003DF8A0 /* counter.h in Headers */,
 				9A15A6AC264B59EF0080670E /* synchronized_process.h in Headers */,
 				9A68AEDF25114435008DABD2 /* md5.h in Headers */,
@@ -6670,12 +6593,10 @@
 				9A15A6AA264B59EF0080670E /* critical_section.h in Headers */,
 				9A68AD4B25114434008DABD2 /* _impl.h in Headers */,
 				9A68AFC725114436008DABD2 /* _serializable_impl.h in Headers */,
-				9A892D4426CD7574008D6412 /* solaris_file.h in Headers */,
 				9A68B3E225114438008DABD2 /* exit.h in Headers */,
 				9A68AD8225114434008DABD2 /* logic.h in Headers */,
 				9A68AF0E25114435008DABD2 /* _c_str_impl.h in Headers */,
 				9A892B1026CD7572008D6412 /* exception_engine.h in Headers */,
-				9A892CE826CD7574008D6412 /* parallelization.h in Headers */,
 				9A68AEEA25114435008DABD2 /* _uhash.h in Headers */,
 				9A68AF1925114435008DABD2 /* _unicode_impl.h in Headers */,
 				9A5F8DED27193D4D002CB2B8 /* day.h in Headers */,
@@ -6693,7 +6614,6 @@
 				9A68AF9825114436008DABD2 /* transfer_file.h in Headers */,
 				9A68AE4C25114435008DABD2 /* _papaya.h in Headers */,
 				9A68ADA725114434008DABD2 /* bitset.h in Headers */,
-				9A892C6026CD7573008D6412 /* _.h in Headers */,
 				9A15A6E2264B59EF0080670E /* initial_single_lock.h in Headers */,
 				9A68AF7125114435008DABD2 /* primitive.h in Headers */,
 				9A220F66251A1993002B42B7 /* printf.h in Headers */,
@@ -6707,7 +6627,6 @@
 				9A15A6CC264B59EF0080670E /* zaa_update_task.h in Headers */,
 				9A7861A3264B9096003DF8A0 /* osdata_array.h in Headers */,
 				9A68AD5B25114434008DABD2 /* net.h in Headers */,
-				9A892D1E26CD7574008D6412 /* solaris_window_xlib.h in Headers */,
 				9A787BBA264BB154003DF8A0 /* predicate_function_pointer.h in Headers */,
 				9A68AE9025114435008DABD2 /* memory_base.h in Headers */,
 				9A892DD826CD9061008D6412 /* activate.h in Headers */,
@@ -6718,7 +6637,6 @@
 				9A68ADEF25114435008DABD2 /* pair.h in Headers */,
 				9A68AD3E25114434008DABD2 /* _c.h in Headers */,
 				9A68AFBA25114436008DABD2 /* text_stream.h in Headers */,
-				9A892C8E26CD7573008D6412 /* file.h in Headers */,
 				9A787DAF264C9742003DF8A0 /* translator.h in Headers */,
 				9A68B2BB25114437008DABD2 /* state.h in Headers */,
 				9A68AE1F25114435008DABD2 /* geometry.h in Headers */,
@@ -6735,7 +6653,6 @@
 				9ADD651926B5CF1300D11298 /* set1.h in Headers */,
 				9A892DF426CD9062008D6412 /* cursor.h in Headers */,
 				9AF8CDE1271A999000BF80B7 /* text.h in Headers */,
-				9A892C5A26CD7573008D6412 /* cross_win_file.h in Headers */,
 				9AC018E327489248006BEBCC /* folder.h in Headers */,
 				9A15A737264B6F2D0080670E /* tree_item.h in Headers */,
 				9A892BF426CD7573008D6412 /* oswindow_data.h in Headers */,
@@ -6775,7 +6692,6 @@
 				9A892C6626CD7573008D6412 /* os_windowing2.h in Headers */,
 				9A68AFD525114436008DABD2 /* _application.h in Headers */,
 				9A892D7226CD7574008D6412 /* simple_hold_handle.h in Headers */,
-				9A892C3626CD7573008D6412 /* _user.h in Headers */,
 				9A68AEE025114435008DABD2 /* _c.h in Headers */,
 				9A5DCE23271A3BCC00C2ED86 /* nanosecond_timer.h in Headers */,
 				9A68AFA625114436008DABD2 /* item_array.h in Headers */,
@@ -6794,7 +6710,6 @@
 				9A68AFB625114436008DABD2 /* string_file.h in Headers */,
 				9A787B94264BB13F003DF8A0 /* timer_item.h in Headers */,
 				9A787CBD264C04CC003DF8A0 /* text.h in Headers */,
-				9A892D1026CD7574008D6412 /* solaris_cross_win_file.h in Headers */,
 				9A15A56F264B0ECB0080670E /* micro_duration.h in Headers */,
 				9A892C0626CD7573008D6412 /* _.h in Headers */,
 				9A68ADF925114435008DABD2 /* address_array.h in Headers */,
@@ -6808,7 +6723,6 @@
 				9A15A6E0264B59EF0080670E /* mutex.h in Headers */,
 				9A68ACFD25114434008DABD2 /* memory.h in Headers */,
 				9A68AE1E25114435008DABD2 /* size_array.h in Headers */,
-				9A892D3226CD7574008D6412 /* solaris_file_watcher.h in Headers */,
 				9A68ADC625114434008DABD2 /* _sort_map_impl.h in Headers */,
 				9A786274264B90E7003DF8A0 /* shape_array.h in Headers */,
 				9A5F8DF727193D4D002CB2B8 /* nanosecond.h in Headers */,
@@ -6835,7 +6749,6 @@
 				9A68AD3C25114434008DABD2 /* _no_templates.h in Headers */,
 				9A786218264B90B4003DF8A0 /* number_integer.h in Headers */,
 				9A68AE6C25114435008DABD2 /* value.h in Headers */,
-				9A892C8C26CD7573008D6412 /* aaa_vsnord_native_app_glue.h in Headers */,
 				9A5F8E0127193D4E002CB2B8 /* microsecond.h in Headers */,
 				9A787BAE264BB13F003DF8A0 /* timer.h in Headers */,
 				9A68AE1325114435008DABD2 /* point.h in Headers */,
@@ -6846,9 +6759,6 @@
 				9A892C6426CD7573008D6412 /* user.h in Headers */,
 				9A892CF226CD7574008D6412 /* winpr_input.h in Headers */,
 				9A68AEF525114435008DABD2 /* _conv.h in Headers */,
-				9A892D8E26CD7574008D6412 /* sockets.h in Headers */,
-				9A787CA0264C0371003DF8A0 /* system.h in Headers */,
-				9A892CE626CD7574008D6412 /* api.h in Headers */,
 				9A7861B7264B9096003DF8A0 /* enumeration1.h in Headers */,
 				9A68AE8425114435008DABD2 /* _factory_impl.h in Headers */,
 				9A68B39625114438008DABD2 /* trap.h in Headers */,
@@ -6865,7 +6775,6 @@
 				9A892AAC26CD7571008D6412 /* macos.h in Headers */,
 				9A15A692264B59EE0080670E /* condition.h in Headers */,
 				9A68AE3925114435008DABD2 /* type.h in Headers */,
-				9A892C9026CD7573008D6412 /* aaa_windowing.h in Headers */,
 				9A15A694264B59EE0080670E /* event.h in Headers */,
 				9A68ADD525114434008DABD2 /* logic_array.h in Headers */,
 				9A68AD0525114434008DABD2 /* application.h in Headers */,
@@ -6881,7 +6790,6 @@
 				9A892BBE26CD7572008D6412 /* cross_win_gdi.h in Headers */,
 				9A68ADB625114434008DABD2 /* fifo_map.h in Headers */,
 				9A78631E264B930B003DF8A0 /* ewindowflag.h in Headers */,
-				9A892C9E26CD7573008D6412 /* _user.h in Headers */,
 				9A15A73F264B6F2D0080670E /* tree.h in Headers */,
 				9A68ADE125114435008DABD2 /* base_enum.h in Headers */,
 				9A68AE7C25114435008DABD2 /* memory_container.h in Headers */,
@@ -6914,7 +6822,6 @@
 				9A786252264B90B5003DF8A0 /* complex.h in Headers */,
 				9A892DDC26CD9061008D6412 /* future.h in Headers */,
 				9A68AF6C25114435008DABD2 /* _impl.h in Headers */,
-				9A892C8426CD7573008D6412 /* _os_remote.h in Headers */,
 				9A786320264B930B003DF8A0 /* os_theme_colors.h in Headers */,
 				9A68AD6325114434008DABD2 /* enum.h in Headers */,
 				9A15A738264B6F2D0080670E /* data.h in Headers */,
@@ -6956,7 +6863,6 @@
 				9A68ADBB25114434008DABD2 /* map.h in Headers */,
 				9A892ADA26CD7572008D6412 /* _.h in Headers */,
 				9A68AEAE25114435008DABD2 /* _.h in Headers */,
-				9A892D8A26CD7574008D6412 /* aaa_oswindow.h in Headers */,
 				9ADD650D26B5CF1300D11298 /* strdup_array.h in Headers */,
 				9A68ADF125114435008DABD2 /* _papaya_array.h in Headers */,
 				9A786324264B930B003DF8A0 /* os_colors.h in Headers */,
@@ -7002,7 +6908,6 @@
 				9A15A6F2264B59EF0080670E /* create_thread.h in Headers */,
 				9A68AEFE25114435008DABD2 /* _base.h in Headers */,
 				9A15A577264B0ECB0080670E /* department.h in Headers */,
-				9A892D9E26CD7574008D6412 /* _winrt.h in Headers */,
 				9A68AF1525114435008DABD2 /* tokenizer.h in Headers */,
 				9A892A9E26CD7571008D6412 /* file.h in Headers */,
 				9A68AD8625114434008DABD2 /* hyperlink.h in Headers */,
@@ -7025,11 +6930,9 @@
 				9A68AEE525114435008DABD2 /* binary.h in Headers */,
 				9A68AF1B25114435008DABD2 /* __c_wide_impl.h in Headers */,
 				9A68AFAC25114436008DABD2 /* circular_file.h in Headers */,
-				9A892D5826CD7574008D6412 /* parallelization_winrt.h in Headers */,
 				9A68AFC125114436008DABD2 /* dir.h in Headers */,
 				9A892B9A26CD7572008D6412 /* _operating_system.h in Headers */,
 				9A68AE1C25114435008DABD2 /* point_array.h in Headers */,
-				9A892CC826CD7574008D6412 /* aaa_want_to_remove_android_window_impl.h in Headers */,
 				9A68AF0A25114435008DABD2 /* bstring.h in Headers */,
 				9A78628C264B90E7003DF8A0 /* _collection.h in Headers */,
 				9A892AFA26CD7572008D6412 /* _pthread.h in Headers */,
@@ -7044,7 +6947,6 @@
 				9A68AE8725114435008DABD2 /* request_interface.h in Headers */,
 				9A5F8DFB27193D4D002CB2B8 /* minute.h in Headers */,
 				9A892A5826CD7571008D6412 /* console.h in Headers */,
-				9A892D4226CD7574008D6412 /* solaris_solaris.h in Headers */,
 				9A892BC026CD7572008D6412 /* _m.h in Headers */,
 				9A892E0026CD9062008D6412 /* check.h in Headers */,
 				9A78627C264B90E7003DF8A0 /* rectangle_array.h in Headers */,
@@ -7058,7 +6960,6 @@
 				9A68AFA325114436008DABD2 /* _var_stream_impl.h in Headers */,
 				9A68AD8D25114434008DABD2 /* lparam.h in Headers */,
 				9A5F8DF627193D4D002CB2B8 /* microsecond.h in Headers */,
-				9A892D9826CD7574008D6412 /* host_interaction.h in Headers */,
 				9A68B2C325114437008DABD2 /* serial.h in Headers */,
 				9A68B39B25114438008DABD2 /* engine.h in Headers */,
 				9A68B29B25114437008DABD2 /* _ios.h in Headers */,
@@ -7076,7 +6977,6 @@
 				9A68ADC825114434008DABD2 /* comparable_array.h in Headers */,
 				9A68B3B425114438008DABD2 /* call_stack.h in Headers */,
 				9A68AD3D25114434008DABD2 /* winrt.h in Headers */,
-				9A892CCA26CD7574008D6412 /* cross_win_file.h in Headers */,
 				9A15A69E264B59EE0080670E /* multiple_lock.h in Headers */,
 				9A892A6E26CD7571008D6412 /* mq_base.h in Headers */,
 				9A15A684264B59EE0080670E /* _impl.h in Headers */,
@@ -7085,7 +6985,6 @@
 				9A892AB026CD7571008D6412 /* exception_engine.h in Headers */,
 				9A7861CF264B9096003DF8A0 /* payload.h in Headers */,
 				9A787DBD264CA807003DF8A0 /* _.h in Headers */,
-				9A892D4E26CD7574008D6412 /* solaris_debug.h in Headers */,
 				9A787CCD264C04CD003DF8A0 /* international_locale_schema.h in Headers */,
 				9A787DC1264CA807003DF8A0 /* exit_status.h in Headers */,
 				9A68AE4925114435008DABD2 /* traits.h in Headers */,
@@ -7111,13 +7010,10 @@
 				9A68ADC925114434008DABD2 /* _collection_impl2.h in Headers */,
 				9A68ADC725114434008DABD2 /* strid_map.h in Headers */,
 				9A68AF4325114435008DABD2 /* string_file.h in Headers */,
-				9A892C4E26CD7573008D6412 /* _linux.h in Headers */,
 				9A5F8DEB27193D4D002CB2B8 /* nanosecond.h in Headers */,
 				9ADD656526B5DB7E00D11298 /* array_memory_allocate.h in Headers */,
 				9A68AF6625114435008DABD2 /* dimension.h in Headers */,
-				9A892D3626CD7574008D6412 /* solaris_cross_win_gdi_internal.h in Headers */,
 				9A68AF2925114435008DABD2 /* _c_trait_ansi.h in Headers */,
-				9A892DA026CD7574008D6412 /* simple_ui.h in Headers */,
 				9A7861C3264B9096003DF8A0 /* object.h in Headers */,
 				9A68AFE725114436008DABD2 /* _acid_app_impl.h in Headers */,
 				9A892A3626CD7571008D6412 /* ns_exception.h in Headers */,
@@ -7140,12 +7036,10 @@
 				9A68AD7E25114434008DABD2 /* constraint.h in Headers */,
 				9AB988AE2519B9720040B207 /* action_context.h in Headers */,
 				9A786244264B90B5003DF8A0 /* natural.h in Headers */,
-				9A892C7E26CD7573008D6412 /* internal.h in Headers */,
 				9A892B1826CD7572008D6412 /* pmutex_lock.h in Headers */,
 				9A78624A264B90B5003DF8A0 /* scalar_enum.h in Headers */,
 				9A68AF5625114435008DABD2 /* _c_trait_wd32_impl.h in Headers */,
 				9A892B3026CD7572008D6412 /* _2.h in Headers */,
-				9A892C3826CD7573008D6412 /* osdisplay.h in Headers */,
 				9A892B7226CD7572008D6412 /* parallelization.h in Headers */,
 				9A15A6F0264B59EF0080670E /* _thread_os_create_impl.h in Headers */,
 				9A68ADED25114435008DABD2 /* runnable_array.h in Headers */,
@@ -7153,7 +7047,6 @@
 				9A892BC626CD7572008D6412 /* _c.h in Headers */,
 				9A892AE226CD7572008D6412 /* text.h in Headers */,
 				9A68AD7D25114434008DABD2 /* common.h in Headers */,
-				9A892D4026CD7574008D6412 /* solaris_internal.h in Headers */,
 				9ADD651326B5CF1300D11298 /* _set_impl.h in Headers */,
 				9A5F8DFF27193D4D002CB2B8 /* duration.h in Headers */,
 				9A68AFBB25114436008DABD2 /* var_stream.h in Headers */,
@@ -7163,12 +7056,10 @@
 				9A68AE0925114435008DABD2 /* pointer_array_process.h in Headers */,
 				9AC0191527489446006BEBCC /* set_app_id.h in Headers */,
 				9A787B6F264BB118003DF8A0 /* department.h in Headers */,
-				9A892D2826CD7574008D6412 /* solaris_graphics.h in Headers */,
 				9A787BA0264BB13F003DF8A0 /* timer_callback.h in Headers */,
 				9A892D8826CD7574008D6412 /* gdi_winrt.h in Headers */,
 				9AEA1BB126794D5B006F4A68 /* color32.h in Headers */,
 				9A787CD1264C04CD003DF8A0 /* _.h in Headers */,
-				9A892C2626CD7573008D6412 /* cross_win_gdi.h in Headers */,
 				9A786208264B90B4003DF8A0 /* std_template.h in Headers */,
 				9A68AF1C25114435008DABD2 /* __c_wd16_impl.h in Headers */,
 				9AC018DC274888C8006BEBCC /* compress.h in Headers */,
@@ -7196,7 +7087,6 @@
 				9A68AD4725114434008DABD2 /* main.h in Headers */,
 				9A892BD026CD7573008D6412 /* _ios.h in Headers */,
 				9A68AE9425114435008DABD2 /* natural.h in Headers */,
-				9A892C3226CD7573008D6412 /* _c.h in Headers */,
 				9A68AD5725114434008DABD2 /* trace_category.h in Headers */,
 				9A68B39025114438008DABD2 /* framework_c.h in Headers */,
 				9A892CF626CD7574008D6412 /* microsecond_sleep.h in Headers */,
@@ -7209,12 +7099,10 @@
 				9A892B3E26CD7572008D6412 /* windows_defs.h in Headers */,
 				9A68AF4425114435008DABD2 /* stdstring.h in Headers */,
 				9A68AE5425114435008DABD2 /* map.h in Headers */,
-				9A892DA826CD7574008D6412 /* _uwp.h in Headers */,
 				9A68ACE225114434008DABD2 /* heap_item.h in Headers */,
 				9A68AD4225114434008DABD2 /* _include.h in Headers */,
 				9A15A6A8264B59EF0080670E /* thread_impl.h in Headers */,
 				9A892B3226CD7572008D6412 /* _cross.h in Headers */,
-				9A892C3E26CD7573008D6412 /* exception_engine.h in Headers */,
 				9A786226264B90B5003DF8A0 /* scalar.h in Headers */,
 				9A786222264B90B4003DF8A0 /* number_limits.h in Headers */,
 				9A787BAC264BB13F003DF8A0 /* timer_event.h in Headers */,
@@ -7227,7 +7115,6 @@
 				9A68AEFF25114435008DABD2 /* international2.h in Headers */,
 				9A68ADF325114435008DABD2 /* _papaya_map_impl.h in Headers */,
 				9A68AD9B25114434008DABD2 /* keep_true.h in Headers */,
-				9A892CE226CD7574008D6412 /* _windows_common.h in Headers */,
 				9A68AEAF25114435008DABD2 /* atomic.h in Headers */,
 				9A68B3F725114438008DABD2 /* _.h in Headers */,
 				9A68AEF825114435008DABD2 /* _c_trait.h in Headers */,
@@ -7239,11 +7126,8 @@
 				9ADD64D126B5CB3800D11298 /* log.h in Headers */,
 				9ADD653826B5CFE600D11298 /* _impl.h in Headers */,
 				9A68AE1625114435008DABD2 /* _rect_impl.h in Headers */,
-				9A892D5C26CD7574008D6412 /* file_winrt.h in Headers */,
 				9A68ADF825114435008DABD2 /* sort.h in Headers */,
-				9A892C6A26CD7573008D6412 /* _os_object.h in Headers */,
 				9A68AE0D25114435008DABD2 /* _impl.h in Headers */,
-				9A892CA626CD7573008D6412 /* cross_win_gdi_internal.h in Headers */,
 				9A892DE426CD9061008D6412 /* idpool.h in Headers */,
 				9A892C9626CD7573008D6412 /* _c.h in Headers */,
 				9A68AF5C25114435008DABD2 /* _c_trait_wide_impl.h in Headers */,
@@ -7258,9 +7142,7 @@
 				9A15A745264B6F2D0080670E /* _tree.h in Headers */,
 				9A68B39125114438008DABD2 /* callback.h in Headers */,
 				9A15A6A0264B59EF0080670E /* synchronized_routine.h in Headers */,
-				9A892D0626CD7574008D6412 /* _.h in Headers */,
 				9A68AE0C25114435008DABD2 /* size.h in Headers */,
-				9A892C3A26CD7573008D6412 /* cross_win_gdi_internal.h in Headers */,
 				9A5F8DEC27193D4D002CB2B8 /* hour.h in Headers */,
 				9AAE6E9F251920DB00F10692 /* _const_key.h in Headers */,
 				9A787CF6264C0740003DF8A0 /* _regular_expression.h in Headers */,
@@ -7271,7 +7153,6 @@
 				9A892B4826CD7572008D6412 /* windows_crt.h in Headers */,
 				9A5D737D2655A76100D5C39E /* ellipse.h in Headers */,
 				9A68AD5325114434008DABD2 /* restore.h in Headers */,
-				9A892C7A26CD7573008D6412 /* _os_local.h in Headers */,
 				9A68ADBF25114434008DABD2 /* string_to_string_map.h in Headers */,
 				9A68AF5225114435008DABD2 /* x_charcategory_names.h in Headers */,
 				9A787BD0264BB16A003DF8A0 /* routine.h in Headers */,
@@ -7279,14 +7160,11 @@
 				9A68AD7025114434008DABD2 /* cmp.h in Headers */,
 				9A892DE626CD9061008D6412 /* source.h in Headers */,
 				9A68AE8E25114435008DABD2 /* str.h in Headers */,
-				9A892C5C26CD7573008D6412 /* user_private.h in Headers */,
-				9A892D3C26CD7574008D6412 /* solaris_simple_ui.h in Headers */,
 				9A892A2826CD7571008D6412 /* main.h in Headers */,
 				9A4F4E0325311C8600733584 /* matter.h in Headers */,
 				9A892E7126CDD00D008D6412 /* acme_file.h in Headers */,
 				9A68AE3625114435008DABD2 /* filetime.h in Headers */,
 				9A68ADF625114435008DABD2 /* string_array_base.h in Headers */,
-				9A892D0E26CD7574008D6412 /* solaris_user_impl.h in Headers */,
 				9A786250264B90B5003DF8A0 /* mathematics.h in Headers */,
 				9A68AE9225114435008DABD2 /* interlocked_long_pulse.h in Headers */,
 				9A68ADC025114434008DABD2 /* decl.h in Headers */,
@@ -7310,19 +7188,16 @@
 				9A15A748264B6F2D0080670E /* _.h in Headers */,
 				9A787DB1264C9742003DF8A0 /* extended_transport.h in Headers */,
 				9A68AF5F25114435008DABD2 /* _.h in Headers */,
-				9A892D1426CD7574008D6412 /* solaris_cairo_keep.h in Headers */,
 				9A68AF4E25114435008DABD2 /* x_charcategory2.h in Headers */,
 				9A68AE4E25114435008DABD2 /* malloc.h in Headers */,
 				9A5F8E0527193D4E002CB2B8 /* minute.h in Headers */,
 				9A68AEFA25114435008DABD2 /* base64.h in Headers */,
-				9A892C7826CD7573008D6412 /* _os_impl.h in Headers */,
 				9A68ADE425114435008DABD2 /* sort_map.h in Headers */,
 				9A15A6D6264B59EF0080670E /* manual_reset_event.h in Headers */,
 				9A5F8E0627193D4E002CB2B8 /* second.h in Headers */,
 				9A15A698264B59EE0080670E /* data.h in Headers */,
 				9A787CDD264C06CE003DF8A0 /* acme_dir.h in Headers */,
 				9ADD653C26B5CFE600D11298 /* __unaligned_memory_allocate.h in Headers */,
-				9A892C6226CD7573008D6412 /* linux_linux.h in Headers */,
 				9A1625F026EFCC34003D9CB9 /* element.h in Headers */,
 				9A68AF0D25114435008DABD2 /* _trait.h in Headers */,
 				9A68ADB725114434008DABD2 /* _map_impl.h in Headers */,
@@ -7334,7 +7209,6 @@
 				9A786278264B90E7003DF8A0 /* lines.h in Headers */,
 				9A5DCE58271A75CE00C2ED86 /* file.h in Headers */,
 				9A892AEA26CD7572008D6412 /* file.h in Headers */,
-				9A892CAE26CD7573008D6412 /* exception_engine.h in Headers */,
 				9A68AF0925114435008DABD2 /* _base_impl.h in Headers */,
 				9AC018FB274892F2006BEBCC /* e_flag.h in Headers */,
 				9A16260526EFCD6A003D9CB9 /* install_mutex.h in Headers */,
@@ -7344,7 +7218,6 @@
 				9A892B4C26CD7572008D6412 /* aaa_windows.h in Headers */,
 				9A15A6EA264B59EF0080670E /* _types.h in Headers */,
 				9AC018F5274892F2006BEBCC /* tracer.h in Headers */,
-				9A892DB426CD7574008D6412 /* base_file.h in Headers */,
 				9A68AFD325114436008DABD2 /* console.h in Headers */,
 				9A68AFD025114436008DABD2 /* listing.h in Headers */,
 				9A78626E264B90E7003DF8A0 /* _f64.h in Headers */,
@@ -7365,7 +7238,6 @@
 				9A68ADB325114434008DABD2 /* comparable_eq_list.h in Headers */,
 				9A787C91264BE930003DF8A0 /* operating_system.h in Headers */,
 				9A892CCC26CD7574008D6412 /* graphics.h in Headers */,
-				9A892CF026CD7574008D6412 /* _.h in Headers */,
 				9A68AE0725114435008DABD2 /* set.h in Headers */,
 				9A892DF026CD9061008D6412 /* message.h in Headers */,
 				9A68AE2225114435008DABD2 /* time.h in Headers */,
@@ -7378,7 +7250,6 @@
 				9A787B98264BB13F003DF8A0 /* system.h in Headers */,
 				9A68AE0425114435008DABD2 /* _papaya_heap.h in Headers */,
 				9A7861CB264B9096003DF8A0 /* id_array.h in Headers */,
-				9A892CA826CD7573008D6412 /* aaa_cairo_keep.h in Headers */,
 				9A787BB8264BB154003DF8A0 /* predicate_holder.h in Headers */,
 				9A68ACDF25114434008DABD2 /* os_alloc.h in Headers */,
 				9A68AF0225114435008DABD2 /* _c_trait_wd32.h in Headers */,
@@ -7421,7 +7292,6 @@
 				9A68AE0625114435008DABD2 /* comparable_raw_array.h in Headers */,
 				9A892B5A26CD7572008D6412 /* windows_thread_impl.h in Headers */,
 				9A892B6026CD7572008D6412 /* parallelization2.h in Headers */,
-				9A892D9226CD7574008D6412 /* parallelization.h in Headers */,
 				9A68ADFB25114435008DABD2 /* back_insert_iterator.h in Headers */,
 				9ADD64CB26B5CB3800D11298 /* object_type_counter.h in Headers */,
 				9A892B4A26CD7572008D6412 /* windows_nt.h in Headers */,
@@ -7438,7 +7308,6 @@
 				9A892D8026CD7574008D6412 /* exception_engine.h in Headers */,
 				9A68AD6C25114434008DABD2 /* flags.h in Headers */,
 				9A68ADA525114434008DABD2 /* _array_impl2.h in Headers */,
-				9A892C8226CD7573008D6412 /* aaa_view_bitmap.h in Headers */,
 				9A78624C264B90B5003DF8A0 /* number_double.h in Headers */,
 				9A68AF4D25114435008DABD2 /* x_defines.h in Headers */,
 				9A68AE0225114435008DABD2 /* ptr_array.h in Headers */,
@@ -7450,9 +7319,7 @@
 				9A68ADC225114434008DABD2 /* _papaya_array2d_impl.h in Headers */,
 				9AAE6E9D251920DB00F10692 /* _const.h in Headers */,
 				9A892DDE26CD9061008D6412 /* status.h in Headers */,
-				9A892C5026CD7573008D6412 /* user.h in Headers */,
 				9ADD655826B5CFE700D11298 /* __plex_heap_impl.h in Headers */,
-				9A892D9426CD7574008D6412 /* metrowin_metrowin.h in Headers */,
 				9A892AC026CD7571008D6412 /* _macos.h in Headers */,
 				9A787CA5264C04A6003DF8A0 /* extended_status.h in Headers */,
 				9A892AEC26CD7572008D6412 /* binreloc.h in Headers */,
@@ -7460,12 +7327,10 @@
 				9A68AF3B25114435008DABD2 /* __c_ansi_impl.h in Headers */,
 				9A68AD6225114434008DABD2 /* acme_str_pool.h in Headers */,
 				9A786197264B9096003DF8A0 /* enumeration.h in Headers */,
-				9A892C8A26CD7573008D6412 /* cross_win_gdi.h in Headers */,
 				9AC01A2A2748B919006BEBCC /* universal_windows.h in Headers */,
 				9A68AF2425114435008DABD2 /* _conv_ansi.h in Headers */,
 				9A68AFDB25114436008DABD2 /* console_common.h in Headers */,
 				9A68AD5825114434008DABD2 /* definition.h in Headers */,
-				9A892D3E26CD7574008D6412 /* solaris_http_lib.h in Headers */,
 				9A2E644C25265D940001CC7E /* shape.h in Headers */,
 				9A68ADA625114434008DABD2 /* map_association.h in Headers */,
 				9ADD64C326B5CB3800D11298 /* simple_log.h in Headers */,
@@ -7481,7 +7346,6 @@
 				9A5F8DEF27193D4D002CB2B8 /* second.h in Headers */,
 				9A68AE5C25114435008DABD2 /* papaya.h in Headers */,
 				9A68AE8625114435008DABD2 /* trait.h in Headers */,
-				9A892D2E26CD7574008D6412 /* solaris_cross_win_gdi.h in Headers */,
 				9A5DCE67271A799D00C2ED86 /* handler.h in Headers */,
 				9A68AF1A25114435008DABD2 /* _unicode.h in Headers */,
 				9A68AD9125114434008DABD2 /* exclusive.h in Headers */,
@@ -7555,11 +7419,9 @@
 				9A68AF6525114435008DABD2 /* location.h in Headers */,
 				9A892AA026CD7571008D6412 /* aaa_windowing.h in Headers */,
 				9A68AE6325114435008DABD2 /* bit.h in Headers */,
-				9A892CC226CD7573008D6412 /* process.h in Headers */,
 				9A78624E264B90B5003DF8A0 /* static_numeric_info.h in Headers */,
 				9A68AD5425114434008DABD2 /* version.h in Headers */,
 				9A68AF7325114435008DABD2 /* _impl.h in Headers */,
-				9A892D4C26CD7574008D6412 /* solaris_http.h in Headers */,
 				9A68AFDA25114436008DABD2 /* __debug_box_set_impl.h in Headers */,
 				9A787CE3264C06CE003DF8A0 /* acme_path.h in Headers */,
 				9A5F8E0A27193E7D002CB2B8 /* _struct.h in Headers */,
@@ -7577,16 +7439,13 @@
 				9A68AD7925114434008DABD2 /* display.h in Headers */,
 				9A892BEE26CD7573008D6412 /* window_boot 2.h in Headers */,
 				9A892B6C26CD7572008D6412 /* windows_user.h in Headers */,
-				9A68AE7B25114435008DABD2 /* primitive_update.h in Headers */,
 				9A68B27E25114437008DABD2 /* ip_enum.h in Headers */,
 				9A68AF2325114435008DABD2 /* _c_impl.h in Headers */,
 				9A15A6F4264B59EF0080670E /* socket_event.h in Headers */,
 				9AAE6E96251920CE00F10692 /* colorref_array.h in Headers */,
-				9A892CAA26CD7573008D6412 /* aaa_window_android.h in Headers */,
 				9A892CDA26CD7574008D6412 /* process.h in Headers */,
 				9A68AE9B25114435008DABD2 /* _memory.h in Headers */,
 				9A892B9826CD7572008D6412 /* _user.h in Headers */,
-				9A892A5226CD7571008D6412 /* xcb_hook.h in Headers */,
 				9A68ADB025114434008DABD2 /* string_iterable.h in Headers */,
 				9A68ADF225114435008DABD2 /* bit_array.h in Headers */,
 				9AD40AB025281D3F0027B23E /* string_exchange.h in Headers */,
@@ -7603,7 +7462,6 @@
 				9A68AF2125114435008DABD2 /* __c_wd32_impl.h in Headers */,
 				9A15A6B0264B59EF0080670E /* common.h in Headers */,
 				9A15A67A264B59EE0080670E /* semaphore.h in Headers */,
-				9A892C6E26CD7573008D6412 /* _android.h in Headers */,
 				9A892E0426CD9062008D6412 /* button_state.h in Headers */,
 				9A68AFA425114436008DABD2 /* _papaya_impl.h in Headers */,
 				9A892DF226CD9062008D6412 /* simple_command.h in Headers */,
@@ -7870,7 +7728,6 @@
 				9AD68F0C251A753A00C0EBD7 /* _impl.h in Headers */,
 				9AD68F0D251A753A00C0EBD7 /* enum.h in Headers */,
 				9A892C8326CD7573008D6412 /* aaa_view_bitmap.h in Headers */,
-				9A787CA1264C0371003DF8A0 /* system.h in Headers */,
 				9A892D9926CD7574008D6412 /* host_interaction.h in Headers */,
 				9A892C5B26CD7573008D6412 /* cross_win_file.h in Headers */,
 				9AD68F0F251A753A00C0EBD7 /* api_rotate.h in Headers */,
@@ -8523,7 +8380,6 @@
 				9A16260626EFCD6A003D9CB9 /* install_mutex.h in Headers */,
 				9AD69115251A753A00C0EBD7 /* _trait_wd16_impl.h in Headers */,
 				9AD69118251A753A00C0EBD7 /* display.h in Headers */,
-				9AD6911B251A753A00C0EBD7 /* primitive_update.h in Headers */,
 				9AD6911C251A753A00C0EBD7 /* ip_enum.h in Headers */,
 				9AD6911E251A753A00C0EBD7 /* _c_impl.h in Headers */,
 				9A892C7F26CD7573008D6412 /* internal.h in Headers */,

@@ -16,200 +16,49 @@ namespace apex
    public:
 
 
-      ///__composite(::apex::node)                          m_papexnode;
-
-      //__composite(::apex::session)                       m_psessionMain;
-
-      // apex commented
-      //__composite(::apex::audio)                         m_paudio;
-
-      // apex commented
-      //__composite(::apex::multimedia)                    m_pmultimedia;
-
-      // __composite(::apex::estamira)                      m_pestamira;
-
-      //::type                                             m_typePaneTabView;
-#ifdef APPLE_IOS
-
-      plane_system *                                     m_pplanesystem;
-
-#endif
-
-#ifdef __DEBUG
-
       __composite(::dump_context)                        m_pdumpcontext;
-
-#endif // __DEBUG
 
       __composite(::sockets::sockets)                    m_psockets;
 
-      // apex commented
-      //::object *                                         m_pDraw2dFactoryExchange;
-      // apex commented
-      //__pointer(::draw2d::draw2d)                        m_pdraw2d;
-
-      ::file::path                                       m_pathConfig;
-      ::file::path                                       m_pathCa2Roaming;
-
-
-      ::mutex                                            m_mutexUserChildren;
-      //__composite(class imaging)                         m_pimaging;
-
       __composite(::crypto::crypto)                      m_pcrypto;
-      //__composite(class ::account::user_set)             m_puserset;
-
-      __composite_array(service)                         m_servicecompositea;
-
-      // apex commented
-      //__composite(math::math)                            m_pmath;
 
       ::apex::session::map                               m_sessionmap;
 
-      //__composite(::gpu::approach)                       m_pgpu;
-
-
-
-
-      // for lesser cooperative GUI applications
-      //bool                                               m_bProdevianMouse;
-
-      ::string_to_string                                 m_mapAppLibrary;
       __composite(class machine_event_central)           m_pmachineeventcentral;
-
-      float                                              m_dpi;
-
-      //void *                                           m_ftlibrary;
-
-      ::payload                                          m_varFile;
-//    ::payload                                          m_
 
       __pointer(::mutex)                                 m_pmutexUserAppData;
       __pointer(::mutex)                                 m_pmutexSystemAppData;
 
       __pointer(::mutex)                                 m_pmutexMatter;
 
-      bool                                               m_bGudoNetCache;
-
       __composite(::operating_system::department)        m_pprocess;
 
       __composite(::parallelization::threading)          m_pthreading;
-      ::e_display                                        m_edisplay;
       size_t                                             m_nSafetyPoolSize; // ideal size_i32
 
       bool                                               m_bFinalizeIfNoSessionSetting;
       bool                                               m_bFinalizeIfNoSession;
 
-
-
       __composite(::dir_system)                          m_pdirsystem;
       __composite(::file_system)                         m_pfilesystem;
-
-      string                                             m_strInstallVersion;
-      string                                             m_strInstallPlatform;
 
       ::duration                                         m_durationMainStart;
       ::duration                                         m_durationAfterApplicationFirstRequest;
 
-      //::mutex                                 m_spmutexOpenweatherCity;
-
-      //string_array                                       m_straCityLo;
-      //string_array                                       m_straCity;
-      //i64_array                                          m_iaIds;
-      //double_array                                       m_daLon;
-      //double_array                                       m_daLat;
-
-      //string_map < __pointer(openweather_city) >         m_mapCity;
-
-      string                                             m_strIosHome;
-      string                                             m_strIosTemp;
-
-//      __composite(::net::email_department)               m_pemaildepartment;
-
-      string_array                                            m_straCommandLineAccumul;
-      string_array                                            m_straCommandLineExtra;
-      ::duration                                               m_durationCommandLineLast;
+      string_array                                       m_straCommandLineAccumul;
+      string_array                                       m_straCommandLineExtra;
+      ::duration                                         m_durationCommandLineLast;
       int                                                m_iCommandLineDelay;
-      ::task_pointer                                m_pthreadCommandLine;
-
-
-      //__pointer(::trace::log)                            m_ptracelog;
-
+      
       bool                                               m_bSystemSynchronizedCursor;
       bool                                               m_bSystemSynchronizedScreen;
 
+      
+      //task_group_map                                   m_taskgroupmap;
+      //task_tool_map                                    m_tasktoolmap;
 
-
-
-      task_group_map                                   m_taskgroupmap;
-      task_tool_map                                    m_tasktoolmap;
-
-
-      //stridsp(type)                                      m_typemap;
-      //::string_to_string                               m_mapAppLibrary;
-      //string_to_int_to_string                            m_mapEnumToName;
-      //string_to_string_to_int                            m_mapNameToEnum;
-      //string_array                                       m_straCityLo;
-      //string_array                                       m_straCity;
-      //i64_array                                          m_iaIds;
-      //double_array                                       m_daLon;
-      //double_array                                       m_daLat;
-
-      //string_map < __pointer(::acme::library) >          m_mapLibrary;
-
-      //string_map < __pointer(openweather_city) >                   m_mapCity;
-
-
-      //system_heap(::object* pobject)
-      //{
-
-      //}
-
-
-      //index                                        m_iNewEdge;
-
-#ifdef WINDOWS_DESKTOP
-
-      ::u32                                         m_uiWindowsTaskbarCreatedMessage;
-
-#endif
-
-      ::mutex                                        m_mutex;
-      //__composite(::filehandler::handler)            m_pfilehandler;
-
-
-      ::mutex                                        m_mutexDelete;
-
-
-      //    class ::apex::stra                           m_stra;
-      //    class ::apex::service                        m_service;
-
-
-      // class ::apex::patch* m_ppatch;
-
-      //      __pointer(::apex::run_start_installer)              m_prunstartinstaller;
-
-            //__pointer(::apex::session::map)                     m_pbergedgemap;
-            //__pointer_array(::apex::session)                         m_planesessionptra;
 
       __composite(class ::apex::history)                m_phistory;
-
-      //      ::sockets::net                               m_net;
-      //      __pointer(::apex::filehandler::handler)  m_spfilehandler;
-
-
-      // certain instantiators like npca2plugin and iexca2plugin rely
-      // on the functionality of these variables cached information,
-      // to avoid multiple initialization.
-      //bool                                         m_bInitApplication;
-      //bool                                         m_bInitApplicationResult;
-      //bool                                         m_bProcessInitialize;
-      //bool                                         m_bProcessInitializeResult;
-
-      //strid_map < ::acme::library* >              m_idmapCreateViewLibrary;
-
-      //__pointer_array(::acme::library)                         m_libraryspa;
-
-
 
 
       system();
@@ -235,14 +84,8 @@ namespace apex
 
       void install_message_routing(::channel * pchannel) override;
 
-      //virtual void system_construct(int argc, char** argv, char** envp) override;
-      //virtual void system_construct(int argc, wchar_t** argv, wchar_t** envp) override;
-
       ::e_status system_construct(const class ::main & main) override;
 
-//#ifdef WINDOWS_DESKTOP
-//
-//      ::e_status system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char* pCmdLine, i32 nCmdShow);
 
 #ifdef WINDOWS_DESKTOP
 
@@ -1051,7 +894,7 @@ CLASS_DECL_APEX ::apex::system * create_apex_system();
 
 #define STRINGIFY(x) #x
 #define TOSTRING(x) STRINGIFY(x)
-#define SET_ENUM_TEXT(enum_value) psystem->set_enum_text(enum_value, TOSTRING(enum_value))
+//#define SET_ENUM_TEXT(enum_value) psystem->set_enum_text(enum_value, TOSTRING(enum_value))
 
 
 //

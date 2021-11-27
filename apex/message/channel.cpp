@@ -234,14 +234,14 @@ void channel::erase_all_routes()
 
       _synchronous_lock synchronouslock(channel_mutex());
 
-      if(m_bNewChannel)
-      {
+      // if(m_bNewChannel)
+      // {
 
-         m_dispatchermapNew = m_dispatchermap;
+      //    m_dispatchermapNew = m_dispatchermap;
 
-         m_bNewChannel = false;
+      //    m_bNewChannel = false;
 
-      }
+      // }
 
       m_dispatchermap.erase_all();
 
@@ -290,7 +290,7 @@ void channel::erase_all_routes()
 void channel::channel_common_construct()
 {
 
-   m_bNewChannel = true;
+   //m_bNewChannel = true;
 
 }
 
@@ -311,7 +311,7 @@ void channel::channel_common_construct()
 
    m_dispatchermap.erase_all();
 
-   m_dispatchermapNew.erase_all();
+///   m_dispatchermapNew.erase_all();
 
    for (auto& procedurea : m_routinemap.values())
    {

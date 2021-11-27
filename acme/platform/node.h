@@ -42,6 +42,7 @@ namespace acme
 
       };
 
+      htask_t                                m_htaskSystem;
       ::apex::node *                         m_papexnode;
       ::aura::node *                         m_pauranode;
 

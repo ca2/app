@@ -5,30 +5,16 @@
 //{
 
 
-   class CLASS_DECL_APEX application :
-      virtual public ::apex_main_struct,
-      virtual public ::apex::context,
-      // apex commented
-      //virtual public ::handler,
-      virtual public int_scalar_source,
-      //virtual public ::account::interactive
-      virtual public ::database::client,
-      virtual public ::application_exit
-      //,
-      //virtual public ::user::form_callback,
-//      virtual public ::user::impact_creator,
-//      virtual public ::filemanager::callback
-      //, virtual public ::user::document_manager_container
-   {
-   public:
+class CLASS_DECL_APEX application :
+virtual public ::apex_main_struct,
+virtual public ::apex::context,
+virtual public int_scalar_source,
+virtual public ::database::client,
+virtual public ::application_exit
+{
+public:
 
 
-      //::aqua::application* m_paquaapplication;
-      //::aura::application* m_pauraapplication;
-      //::axis::application* m_paxixapplication;
-      //::base::application* m_pbaseapplication;
-      //::bred::application* m_pbredapplication;
-      //::core::application* m_pcoreapplication;
 
 
       void* m_pnativeapp;
@@ -69,9 +55,9 @@
       __reference(::user::primitive)                  m_puiCurrent;
       bool                                            m_bContextTheme;
 
-#ifdef LINUX
+      #ifdef LINUX
       bool                                            m_bSnLauncheeSetup;
-#endif
+      #endif
       semaphore                                       m_semCompiler;
       // former ::application_interface // moved on 2015-05-23 Sammstag while listening to RocketBeansTV (a German channel?) at TwitchTV
       string_array                                    m_straActivationMessage;
@@ -89,7 +75,7 @@
       //bool                                            m_bAgreeExit;
       //bool                                            m_bAgreeExitOk;
       //bool                                            m_bFranceExit;
-      
+
 
       bool                                            m_bInterprocessIntercommunication;
       __composite(interprocess_intercommunication)    m_pinterprocessintercommunication;
@@ -131,12 +117,12 @@
 
       string                                          m_strHelpFilePath;
 
-//#ifdef WINDOWS
-//
-//      HGLOBAL                                         m_hDevMode;             // printer Dev Mode
-//      HGLOBAL                                         m_hDevNames;            // printer Device Names
-//
-//#endif
+      //#ifdef WINDOWS
+      //
+      //      HGLOBAL                                         m_hDevMode;             // printer Dev Mode
+      //      HGLOBAL                                         m_hDevNames;            // printer Device Names
+      //
+      //#endif
 
       u32                                             m_dwPromptContext;        // help action_context override for message box
       // LKG
@@ -150,10 +136,10 @@
 
       string                                          m_strProfileName;
 
-//#ifdef WINDOWS
-//      ATOM                                            m_atomApp;
-//      ATOM                                            m_atomSystemTopic;   // for DDE open
-//#endif
+      //#ifdef WINDOWS
+      //      ATOM                                            m_atomApp;
+      //      ATOM                                            m_atomSystemTopic;   // for DDE open
+      //#endif
 
       ::u32                                            m_nNumPreviewPages; // number of default printed pages
 
@@ -166,9 +152,6 @@
 
 
       string_array                                    m_straAppInterest;
-      //string_map < oswindow, oswindow >               m_mapAppInterest;
-
-      //
 
       __composite(::service_handler) m_pservicehanlder;
 
@@ -197,7 +180,7 @@
       //virtual bool app_data_set(const ::id & id, object & obj) override;
       //virtual bool app_data_get(const ::id & id, object & obj) override;
 
-//      virtual ::e_status     interactive_credentials(::account::credentials * pcredentials) override;
+      //      virtual ::e_status     interactive_credentials(::account::credentials * pcredentials) override;
 
       //virtual ::database::key calc_data_key() override;
 
@@ -439,7 +422,7 @@
       //virtual void release_children() override;
       //virtual void merge_command_line(::create * pcommand);
 
-//   virtual void merge(::handler * phandler);
+      //   virtual void merge(::handler * phandler);
 
       //virtual void record(::create * pcommand);
 
@@ -735,7 +718,7 @@
       //void request(::create * pcommand) override;
       //void on_create(::create * pcreate) override;
 
-//      virtual void dispatch_user_message(::user::message * pusermessage);
+      //      virtual void dispatch_user_message(::user::message * pusermessage);
 
       //virtual void throw_not_installed();
 
@@ -783,7 +766,7 @@
 
       //virtual ::user::interaction * main_window();
 
-//         virtual __pointer(::user::message) get_message_base(MESSAGE * pmsg) override;
+      //         virtual __pointer(::user::message) get_message_base(MESSAGE * pmsg) override;
 
 
       //virtual bool get_frame(__pointer(::user::interaction) & pinteraction);
@@ -819,11 +802,11 @@
 
 
 
-//      virtual ::account::user * get_user(::file::path pathUrl = nullptr, bool bFetch = false, bool bInteractive = true);
-//
-////      virtual ::account::user * interactive_get_user(::file::path pathUrl = nullptr);
-//
-//      virtual ::account::user * noninteractive_get_user(::file::path pathUrl = nullptr);
+      //      virtual ::account::user * get_user(::file::path pathUrl = nullptr, bool bFetch = false, bool bInteractive = true);
+      //
+      ////      virtual ::account::user * interactive_get_user(::file::path pathUrl = nullptr);
+      //
+      //      virtual ::account::user * noninteractive_get_user(::file::path pathUrl = nullptr);
 
       //virtual void on_initial_frame_position(::user::frame * pframe);
 
@@ -923,18 +906,18 @@
       virtual bool on_idle(::i32 lCount); // return true if more idle processing
       virtual void process_window_procedure_exception(const ::exception & e, ::message::message* pmessage) override;
 
-//      void EnableModelessEx(bool bEnable);
-////#ifdef WINDOWS
-////      HENHMETAFILE LoadEnhMetaFile(::u32 uResource);
-////#endif
-//      bool GetResourceData(::u32 nID, const ::string & lcszType, memory& storage);
+      //      void EnableModelessEx(bool bEnable);
+      ////#ifdef WINDOWS
+      ////      HENHMETAFILE LoadEnhMetaFile(::u32 uResource);
+      ////#endif
+      //      bool GetResourceData(::u32 nID, const ::string & lcszType, memory& storage);
 
-//#ifdef WINDOWS
-//      virtual bool OnMessageWindowMessage(MESSAGE * pmsg);
-//
-//#elif defined(LINUX)
-//      virtual bool OnX11WindowMessage(void* pev);
-//#endif
+      //#ifdef WINDOWS
+      //      virtual bool OnMessageWindowMessage(MESSAGE * pmsg);
+      //
+      //#elif defined(LINUX)
+      //      virtual bool OnX11WindowMessage(void* pev);
+      //#endif
 
       //bool CreateFileFromRawResource(::u32 nID, const ::string & lcszType, const ::string & pcszFilePath);
 
@@ -989,11 +972,11 @@
       //// call after all doc templates are registered
       //void UnregisterShellFileTypes();
 
-//
-//#ifdef WINDOWS
-//      // Printer DC Setup routine, 'struct tagPD' is a PRINTDLG structure.
-//      void SelectPrinter(HANDLE hDevNames, HANDLE hDevMode, bool bFreeOld = true);
-//#endif
+      //
+      //#ifdef WINDOWS
+      //      // Printer DC Setup routine, 'struct tagPD' is a PRINTDLG structure.
+      //      void SelectPrinter(HANDLE hDevNames, HANDLE hDevMode, bool bFreeOld = true);
+      //#endif
 
       // create a DC for the system default printer.
       //::draw2d::graphics* CreatePrinterDC();
@@ -1028,177 +1011,24 @@
       // Advanced: process async DDE request
       //virtual bool OnDDECommand(LPWSTR pszCommand);
 
-
-//#ifdef WINDOWS_DESKTOP
-//      // Advanced: Help support
-//      virtual void WinHelp(uptr dwData,::u32 nCmd = HELP_CONTEXT);
-//      virtual void HtmlHelp(uptr dwData,::u32 nCmd = 0x000F);
-//      virtual void WinHelpInternal(uptr dwData,::u32 nCmd = HELP_CONTEXT);
-//#endif
-
-      // Command Handlers
-      // map to the following for file new/open
       void _001OnFileNew();
       void on_file_open();
-
-      // map to the following to enable print setup
-      //void OnFilePrintSetup();
-
-      //// map to the following to enable help
-      //void OnContextHelp();   // shift-F1
-      //void OnHelp();          // F1 (uses current action_context)
-      //void OnHelpIndex();     // ID_HELP_INDEX
-      //void OnHelpFinder();    // ID_HELP_FINDER, ID_DEFAULT_HELP
-      //void OnHelpUsing();     // ID_HELP_USING
-
-      // Implementation
-
-      //void UpdatePrinterSelection(bool bForceDefaults);
-      //void SaveStdProfileSettings();  // save options to .INI file
-
-
-
-      //void DevModeChange(char * pDeviceName);
-
-
-      // Finds number of opened document items owned by templates
-      // registered with the doc manager.
-      //i32 get_open_document_count();
-
-      //virtual bool do_prompt_file_name(::payload& payloadFile, string strTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument) override;
-
-      //void EnableModeless(bool bEnable); // to disable OLE in-place dialogs
-
-
-      // helper for message boxes; can work when no application can be found
-      //static i32 ShowAppMessageBox(__pointer(application)pApp,const ::string & pszPrompt,::u32 nType,::u32 nIDPrompt);
-
-      //static void DoEnableModeless(bool bEnable); // to disable OLE in-place dialogs
-
-//#ifdef WINDOWS_DESKTOP
-//      // helpers for registration
-//      HKEY GetSectionKey(const ::string & pszSection);
-//
-//      HKEY GetAppRegistryKey();
-//#endif
-
-      //void OnAppExit();
-      //// psystem Policy Settings
-      //virtual bool LoadSysPolicies(); // Override to load policies other than the system policies that apex API loads.
-      //bool GetSysPolicyValue(u32 dwPolicyID, bool* pbValue); // returns the policy's setting in the out parameter
-      //bool _LoadSysPolicies() noexcept; // Implementation helper
-      //static const char gen_FileSection[];
-      //static const char gen_FileEntry[];
-      //static const char gen_PreviewSection[];
-      //static const char gen_PreviewEntry[];
-
-
-
-
-
-
 
 
       virtual bool does_launch_window_on_startup();
       virtual bool activate_app();
 
-      // Hooks for your initialization code
-      //virtual bool InitApplication() override;
-
-
-
-      //virtual ::e_status init_application() override;
-
-      //virtual ::e_status init_instance() override;
-
-
-//      virtual bool process_exception(const ::exception & e) override;
-
-
-
-
-
-      //virtual ::user::interaction* get_request_parent_ui(::user::interaction* pinteraction, ::create* pcreate);
-
-
-
-
-      //      virtual ::apex::file_system & file_system();
-      //virtual bool _001OnDDECommand(const ::string & pcsz) override;
-
-      //user virtual ::user::document* _001OpenDocumentFile(::payload payloadFile);
-      //virtual bool on_open_document_file(::payload payloadFile) override;
-      //DECLARE_MESSAGE_HANDLER(_001OnFileNew) override;
-
-
-      //virtual string get_version();
-
-
-      //virtual ::user::interaction * get_desktop_window();
-
-      //virtual ::e_status     run() override;
-
-      //::application * psystem;
-
-      //virtual bool set_keyboard_layout(const ::string & pszPath, const ::action_context& action_context) override;
-
-
-      //::experience::department* experience();
-
-
-      //virtual void on_change_theme() override;
-
-
-      //inline ::apex::theme* theme() { return m_ptheme.get(); }
-      //virtual string get_theme() override;
-
-
       virtual ::e_status initialize_contextualized_theme();
 
 
-
-
-      //virtual string dialog_box(const ::string & pszMatter, property_set& propertyset) override;
-
-      //virtual i32 track_popup_menu(const ::string & pszMatter, const ::point_i32& point, __pointer(::user::interaction) puie);
 
       virtual bool get_fs_size(string& strSize, const ::string & pszPath, bool& bPending);
       virtual bool get_fs_size(i64& i64Size, const ::string & pszPath, bool& bPending);
 
       virtual void set_title(const ::string & pszTitle);
 
-
-      //virtual bool _001CloseApplicationByUser(__pointer(::user::interaction) puserinteractionExcept);
-
-
-//#ifdef WINDOWS_DESKTOP
-//
-//      static BOOL CALLBACK GetAppsEnumWindowsProc(::windowing::window * pwindow, LPARAM lParam);
-//
-//#endif
-
       void update_app_interest();
       void ensure_app_interest();
-
-
-      //virtual oswindow get_ca2_app_wnd(const ::string & psz);
-
-
-      //virtual void request_create(::create * pcreate);
-
-      //      virtual void on_exclusive_instance_local_conflict();
-
-      //virtual i32 send_simple_command(const ::string & psz, void* osdataSender);
-      //virtual i32 send_simple_command(void* osdata, const ::string & psz, void* osdataSender);
-
-      //virtual ::apex::printer* get_printer(const ::string & pszDeviceName) override;
-
-
-      //void assert_valid() const override;
-      //virtual void dump(dump_context& dumpcontext) const override;
-
-
-
 
 
 
@@ -1211,123 +1041,21 @@
 
 
 
-
-      //////////////////////////////////////////////////////////////////////////////////////////////////
-      // psystem/psystem
-      //
-      //::user::document * place_hold(::user::interaction * pinteraction)  override;
-
-      /*
-      virtual ::count get_monitor_count();
-      virtual bool  get_monitor_rectangle(index i, RECTANGLE_I32 * prectangle);
-
-      virtual ::count get_desk_monitor_count();
-      virtual bool  get_desk_monitor_rect(index i, RECTANGLE_I32 * prectangle);
-
-      */
-      
-      
       virtual __pointer(::progress::real) show_progress(::user::interaction * puiParent, const ::string & strTitle, ::count iProgressCount);
 
-
-      //////////////////////////////////////////////////////////////////////////////////////////////////
-      // get_session()/get_session()
-      //
-      //         virtual __pointer(::bergedge::impact) get_view();
-      //       virtual __pointer(::bergedge::document) get_document();
-
-
-      //virtual ::e_status add_library(::acme::library * plibrary);
-
-      //virtual ::e_status initialize_userex();
       virtual ::e_status userfs_init1();
-      //virtual ::e_status initialize1_experience();
       virtual ::e_status userfs_process_init();
 
-      //virtual __pointer(::userex::userex) create_userex();
-      //virtual __pointer(::userfs::userfs) create_userfs();
-
-
-
-
-      //void assert_valid() const override;
-      //virtual void dump(dump_context & action_context) const;
-
-
-      //virtual void construct();
-      //virtual void construct(const ::string & pszId);
-
-
-      //virtual void _001OnFileNew();
-
-
-      //virtual void on_request(::create * pcreate);
-
-      //__pointer(::application) psystem;
-
-      //virtual __pointer(::application) assert_running(const ::string & pszAppdId);
 
 
 
 
 
-
-
-
-
-      // pointer < ::cubebase::application >::oattrib
-      // or any function needing it
-      application& operator = (const application& app)
-      {
-
-         __UNREFERENCED_PARAMETER(app);
-
-         // do nothing
-
-         return *this;
-
-      }
-
-      //virtual application_sleep(const ::duration & duration)
 
 
       virtual void data_on_after_change(::database::client* pclient, const ::database::key& id, const ::payload & payload, ::subject * psubject) override;
 
 
-      //user virtual ::user::document* open_document_file(::object* pobject, const ::string & pszFileName);
-
-
-
-      //virtual i32 GetVisibleTopLevelFrameCountExcept(::user::interaction * puserinteractionExcept);
-      //virtual i32 GetVisibleFrameCount();
-
-      //virtual void on_create_keyboard() override;
-
-      //virtual ::type user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
-
-      //virtual void set_form_impact_system(::user::impact_system * pdoctemplate,::user::impact_system * pdoctemplateChild,::user::impact_system * pdoctemplatePlaceHolder);
-
-      //user ::user::document* hold(__pointer(::user::interaction) pinteraction);
-
-      //virtual bool platform_open_by_file_extension(int iEdge,const ::string & pszPathName,application_bias * papplicationbias = nullptr);
-      //virtual bool platform_open_by_file_extension(int iEdge,::create * pcc);
-
-
-      //virtual void on_change_cur_sel(::user::tab* ptab);
-
-
-      //      virtual void interactive_credentials(::account::credentials * pcredentials) override;
-      //      virtual string get_cred(string & strUsername, string & strPassword, string strToken);
-      //      virtual void set_cred(string strToken, const ::string & pszUsername, const ::string & pszPassword) override;
-      //      virtual void set_cred_ok(string strToken, bool bOk) override;
-
-      //user virtual void erase_document_template(::user::impact_system* pimpactsystem);
-
-      //virtual bool _001OnAgreeExit() override;
-      //virtual void france_exit() override;
-
-      // apex commented
-      //virtual void prepare_form(id id, ::form_document* pdocument);
 
 
       virtual void report_error(const ::exception & e, int iMessageFlags, const ::string & pszTopic);
@@ -1338,10 +1066,6 @@
 
       virtual void on_song_added(const string& str);
 
-
-      // programming
-      //DECLARE_MESSAGE_HANDLER(on_application_signal);
-      //void on_request(::create* pcreate);
       string get_visual_studio_build();
 
 
@@ -1351,34 +1075,14 @@
 
       virtual string as_string(const ::payload & payload);
 
-#ifdef LINUX
+      #ifdef LINUX
 
       virtual string get_wm_class() const;
 
-#endif
+      #endif
 
 
-
-
-   };
-
-
-//} // namespace apex
-
-
-
-
-
-
-//
-//CLASS_DECL_APEX ::u32 c_cdecl application_thread_procedure(void * pvoid);
-//
-//typedef __pointer(::application) (*LPFN_instantiate_application)(__pointer(::application) pappParent, const ::string & pszId);
-//
-//extern CLASS_DECL_APEX LPFN_instantiate_application g_lpfn_instantiate_application;
-//
-//
-
+};
 
 
 

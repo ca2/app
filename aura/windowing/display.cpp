@@ -522,7 +522,7 @@ namespace windowing
 
       auto psystem = m_psystem->m_paurasystem;
 
-      double dMargin = psystem->m_paurasystem->m_dpi;
+      double dMargin = psystem->m_paurasystem->m_dDpi;
 
       if (ZONEING_COMPARE::is_equal(rectangle.top, rectangleWorkspace.top, dMargin, !(edisplayPrevious & e_display_top)))
       {

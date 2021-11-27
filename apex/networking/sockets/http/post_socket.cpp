@@ -171,30 +171,6 @@ namespace sockets
 
          }
 
-            // only fields, no files, add urlencoding
-            /*for (std::map<string,list<string> >::iterator it = m_fields.begin(); it != m_fields.end(); it++)
-            {
-               string name = (*it).first;
-               list<string>& ref = (*it).element2();
-               if (body.get_length())
-               {
-                  body += '&';
-               }
-               body += name + "=";
-               bool first = true;
-               for (list<string>::iterator it = ref.begin(); it != ref.end(); it++)
-               {
-                  string value = *it;
-                  if (!first)
-                  {
-                     body += "%0d%0a"; // CRLF
-                  }
-                  body += Utility::rfc1738_encode(value);
-                  first = false;
-               }
-            }*/
-
-         // build header, send body
          m_request.attr(__id(http_method)) = "POST";
 
          m_request.attr(__id(http_version)) = "HTTP/1.1";

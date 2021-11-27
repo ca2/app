@@ -11,8 +11,8 @@ public:
    __pointer(::channel)                            m_pchannel;
    id_array                                        m_idaHandledCommands;
    ::message::dispatcher_map                       m_dispatchermap;
-   ::message::dispatcher_map                       m_dispatchermapNew;
-   bool                                            m_bNewChannel;
+   //::message::dispatcher_map                       m_dispatchermapNew;
+   //bool                                            m_bNewChannel;
    ::routine_map                                   m_routinemap;
 
 

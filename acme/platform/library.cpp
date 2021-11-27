@@ -1061,36 +1061,6 @@ namespace acme
 } // namespace acme
 
 
-//string_map < __pointer(::acme::library) > * g_pmapLibCall = nullptr;
-
-
-//::acme::library * lib(const char * psz)
-//{
-//
-//   //if (psystem->m_mapLibCall == nullptr)
-//   //{
-//
-//   //   return nullptr;
-//
-//   //}
-//
-//   auto & plibrary = psystem->m_mapLibCall[psz];
-//
-//   if(!plibrary)
-//   {
-//      
-//      __own(psystem, m_mapLibCall[psz], __new(::acme::library));
-//
-//      plibrary->initialize(::get_task());
-//
-//      plibrary->open(psz);
-//
-//   }
-//
-//   return plibrary;
-//
-//}
-
 
 
 #if defined(LINUX)

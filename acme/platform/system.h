@@ -4,103 +4,71 @@
 class CLASS_DECL_ACME system :
    virtual public ::acme::context,
    virtual public ::main,
-   //virtual public ::manager,
-   virtual public ::task //,  virtual public ::logger
-   //, public layered < system >
+   virtual public ::task
 {
 public:
 
 
-   //::apex::system *              m_papexsystem;
-   //::aqua::system *              m_paquasystem;
-   //::aura::system *              m_paurasystem;
-   //::axis::system *              m_paxixsystem;
-   //::base::system *              m_pbasesystem;
-   //::bred::system *              m_pbredsystem;
-   //::core::system *              m_pcoresystem;
+   __transport(::factory::factory)                                   m_pfactoryFolder;
    
-   //bool                             m_bOnInitializeWindowObject;
-
-   __transport(::factory::factory)              m_pfactoryFolder;
-   
-   bool                                         m_bPostedInitialRequest;
+   bool                                                              m_bPostedInitialRequest;
 
 
-   __reference(::application)                   m_papplicationStartup;
-   __reference(::application)                   m_papplicationMain;
+   __reference(::application)                                        m_papplicationStartup;
+   __reference(::application)                                        m_papplicationMain;
 
-   __composite(::apex::system)                  m_psystemParent;
-
-   //__pointer(::trace::log)                      m_ptracelog;
-
-   
-
-   
-
+   __composite(::apex::system)                                       m_psystemParent;
 
 
    ::mutex                                                           m_mutexFactory;
    string_map < __transport(::factory::factory) >                    m_mapFactory;
-   //__pointer(string_map < __pointer(::factory::factory) > )                         m_pfactorysquare;
+
+
    ::mutex                                                           m_mutexComponentFactory;
    string_map < string_map < __transport(::factory::factory) > >     m_mapComponentFactory;
 
 
-   __pointer(string_map < __pointer(::regular_expression::context) >)          m_pmapRegularExpressionContext;
+   __pointer(string_map < __pointer(::regular_expression::context) >)                        m_pmapRegularExpressionContext;
 
 #ifdef MACOS
-   void* m_pmmos;
+   void *                                                            m_pmmos;
 #endif
 
-   ::mutex                                            m_mutexTask;
-   task_map                                           m_taskmap;
-   task_id_map                                        m_taskidmap;
-   ::mutex                                            m_mutexTaskOn;
-   map < itask_t, itask_t >                           m_mapTaskOn;
+   ::mutex                                                           m_mutexTask;
+   task_map                                                          m_taskmap;
+   task_id_map                                                       m_taskidmap;
+   ::mutex                                                           m_mutexTaskOn;
+   map < itask_t, itask_t >                                          m_mapTaskOn;
 
 
-   __composite(class ::datetime::department)          m_pdatetime;
+   __composite(class ::datetime::department)                         m_pdatetime;
 
 
-   //::mutex                                            m_mutexRawLibrary;
-   //::acme::library_map                                m_mapRawLibrary;
-   //string_map < PFN_NEW_LIBRARY >                     m_mapNewLibrary;
-   //::acme::library_map                                m_mapLibCall;
+   ::mutex                                                           m_mutexLibrary4;
+   ::acme::library_map                                               m_mapLibrary4;
 
-   ::mutex                                            m_mutexLibrary4;
-   ::acme::library_map                                m_mapLibrary4;
-   //::string_map < ::acme::library_map >               m_mapLibrarySquare;
+   string                                                            m_strOsUserTheme;
 
-
-   string                                             m_strOsUserTheme;
-   //__pointer(::acme::node)                         m_pnode;
+   ::duration                                                        m_durationFileListingCache;
+   //critical_section                                                  m_csEnumText;
+   //string_map < i64_map < string > >                                 m_mapEnumToText;
+   //string_map < string_map < i64 > >                                 m_mapTextToEnum;
 
 
-   ::duration                                           m_durationFileListingCache;
-   critical_section                                   m_csEnumText;
-   string_map < i64_map < string > >                  m_mapEnumToText;
-   string_map < string_map < i64 > >                  m_mapTextToEnum;
+   __composite(::url::department)                                    m_purldepartment;
+
+   __composite(class ::str::base64)                                  m_pbase64;
+
+   __composite(class ::xml::xml)                                     m_pxml;
+
+   __pointer(class ::acme::node)                                     m_pnode;
+   __composite(class ::acme_dir)                                     m_pacmedir;
+   __composite(class ::acme_file)                                    m_pacmefile;
+   __composite(class ::acme_path)                                    m_pacmepath;
+   __composite(geometry::geometry)                                   m_pgeometry;
 
 
-   //      __composite(::html::html)                          m_phtml;
-   __composite(::url::department)                     m_purldepartment;
-
-   __composite(class ::str::base64)                   m_pbase64;
-
-   __composite(class ::xml::xml)                      m_pxml;
-
-   __pointer(class ::acme::node)                      m_pnode;
-   __composite(class ::acme_dir)                      m_pacmedir;
-   __composite(class ::acme_file)                     m_pacmefile;
-   __composite(class ::acme_path)                     m_pacmepath;
-   //__pointer(::parallelization::cleanup_task)         m_pcleanuptask;
-   __composite(geometry::geometry)                    m_pgeometry;
-
-
-   __composite(::text::table)                         m_ptexttable;
-
-
-
+   __composite(::text::table)                                        m_ptexttable;
 
 
    system();
@@ -349,73 +317,73 @@ public:
    //virtual ::e_status on_initialize_window_object();
    //virtual ::e_status _on_initialize_window_object();
 
+//
+//   template < typename ENUM >
+//   inline void set_enum_text(ENUM e, const ::string &psz)
+//   {
+//
+//      critical_section_lock synchronouslock(&m_csEnumText);
+//
+//      m_mapEnumToText[typeid(e).name()][(i64)e] = psz;
+//
+//      m_mapTextToEnum[typeid(e).name()][psz] = (i64)e;
+//
+//   }
 
-   template < typename ENUM >
-   inline void set_enum_text(ENUM e, const ::string &psz)
-   {
+//
+//   template < typename ENUM >
+//   inline string enum_text(ENUM e)
+//   {
+//
+//      critical_section_lock synchronouslock(&m_csEnumText);
+//
+//      return m_mapEnumToText[typeid(e).name()][(i64)e];
+//
+//   }
 
-      critical_section_lock synchronouslock(&m_csEnumText);
+//
+//   template < class ENUM >
+//   inline ENUM text_enum(ENUM& e, const ::string &psz, ENUM eDefault = (ENUM)0)
+//   {
+//
+//      critical_section_lock lock(&m_csEnumText);
+//
+//      i64 iValue;
+//
+//      if (m_mapTextToEnum[typeid(e).name()].lookup(psz, iValue))
+//      {
+//
+//         e = (ENUM)iValue;
+//
+//      }
+//      else
+//      {
+//
+//         e = eDefault;
+//
+//      }
+//
+//      return e;
+//
+//   }
+//
+//
+//   template < class ENUM, ENUM edefault = 0>
+//   inline base_enum < ENUM, edefault >& text_enum(base_enum < ENUM, edefault >& b, const ::string &psz, ENUM eDefault = edefault)
+//   {
+//
+//      return b = text_enum(b.m_evalue, psz, eDefault);
+//
+//   }
 
-      m_mapEnumToText[typeid(e).name()][(i64)e] = psz;
-
-      m_mapTextToEnum[typeid(e).name()][psz] = (i64)e;
-
-   }
-
-
-   template < typename ENUM >
-   inline string enum_text(ENUM e)
-   {
-
-      critical_section_lock synchronouslock(&m_csEnumText);
-
-      return m_mapEnumToText[typeid(e).name()][(i64)e];
-
-   }
-
-
-   template < class ENUM >
-   inline ENUM text_enum(ENUM& e, const ::string &psz, ENUM eDefault = (ENUM)0)
-   {
-
-      critical_section_lock lock(&m_csEnumText);
-
-      i64 iValue;
-
-      if (m_mapTextToEnum[typeid(e).name()].lookup(psz, iValue))
-      {
-
-         e = (ENUM)iValue;
-
-      }
-      else
-      {
-
-         e = eDefault;
-
-      }
-
-      return e;
-
-   }
-
-
-   template < class ENUM, ENUM edefault = 0>
-   inline base_enum < ENUM, edefault >& text_enum(base_enum < ENUM, edefault >& b, const ::string &psz, ENUM eDefault = edefault)
-   {
-
-      return b = text_enum(b.m_evalue, psz, eDefault);
-
-   }
-
-
-   template < class ENUM, ENUM edefault = 0>
-   inline string enum_text(const base_enum < ENUM, edefault >& b)
-   {
-
-      return enum_text(b.m_evalue, (i64)(ENUM)b);
-
-   }
+//
+//   template < class ENUM, ENUM edefault = 0>
+//   inline string enum_text(const base_enum < ENUM, edefault >& b)
+//   {
+//
+//      return enum_text(b.m_evalue, (i64)(ENUM)b);
+//
+//   }
 
    template < typename PRED >
    inline ::count fork_count_end(::property_object* pobject, ::count iCount, PRED pred, index iStart, ::enum_priority epriority)
@@ -568,7 +536,5 @@ public:
 
 };
 
-
-//} // namespace acme
 
 

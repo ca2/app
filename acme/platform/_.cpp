@@ -11,15 +11,8 @@
 #endif
 
 
-//extern string_map < __pointer(::acme::library) >* g_pmapLibrary;
-
-//extern ::mutex * get_system()->m_mutexLibrary;
-
-
-//extern "C"
 CLASS_DECL_ACME int_bool defer_acme_init();
 
-//extern "C"
 CLASS_DECL_ACME int_bool defer_acme_term();
 
 
@@ -188,14 +181,6 @@ CLASS_DECL_ACME u32 g_tickStartTime = 0;
 //}
 
 
-//string_map < __pointer(::acme::library) >* g_pmapLibrary = nullptr;
-//string_map < PFN_NEW_ACME_LIBRARY >* g_pmapNewAuraLibrary = nullptr;
-
-
-//::mutex * get_system()->m_mutexLibrary = nullptr;
-
-
-
 CLASS_DECL_ACME int get_acme_init()
 {
 
@@ -203,102 +188,6 @@ CLASS_DECL_ACME int get_acme_init()
 
 }
 
-
-//extern "C"
-//CLASS_DECL_ACMEclass class ::system * acme_create_acme_system()
-//{
-//
-//   return new class ::system();
-//
-//}
-
-
-////extern "C"
-//CLASS_DECL_ACME int_bool defer_acme_init()
-//{
-//
-//   g_iAuraRefCount++;
-//
-//   if (g_iAuraRefCount > 1)
-//   {
-//
-//      return true;
-//
-//   }
-//
-//   if (!acme_init())
-//   {
-//
-//      return false;
-//
-//   }
-//
-//   s_pacmestrpool = new acme_str_pool();
-//
-//   ::user::init_windowing();
-//
-//   g_bAura = 1;
-//
-//   return true;
-//
-//}
-
-
-//extern "C"
-//CLASS_DECL_ACME int_bool defer_acme_term()
-//{
-//
-//   g_iAuraRefCount--;
-//
-//   if (g_iAuraRefCount >= 1)
-//   {
-//
-//      return true;
-//
-//   }
-//
-//   ::user::term_windowing();
-//
-//   g_bAura = 0;
-//
-//   ::acme::del(s_pacmestrpool);
-//
-//   acme_term();
-//
-//   return true;
-//
-//}
-
-
-
-
-
-
-
-// ::map < void*, void*, ::acme::application*, ::acme::application* >* g_pmapAura = nullptr;
-
-
-// void set_acme(void* p, ::acme::application* papp)
-// {
-
-//    g_pmapAura->set_at(p, papp);
-
-// }
-
-
-// ::acme::application* get_acme(void* p)
-// {
-
-//    return g_pmapAura->operator [](p);
-
-// }
-
-
-//CLASS_DECL_ACME LPFN_CREATE_SYSTEM g_pfn_create_system;
-
-//CLASS_DECL_ACME const char* g_pszCooperativeLevel;
-
-//CLASS_DECL_ACME int g_iDerivedApplication = 0;
 
 
 string get_debug_report_type_text(int iType)

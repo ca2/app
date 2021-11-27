@@ -106,7 +106,8 @@ namespace apex
 
       __pointer(::mutex)                                 m_pmutexMatter;
 
-      //bool                                               m_bGudoNetCache;
+      //bool
+      m_bGudoNetCache;
 
       __composite(::operating_system::department)                 m_pprocess;
 

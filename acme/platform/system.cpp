@@ -28,6 +28,12 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
    system::system()
    {
+      
+#ifdef PARALLELIZATION_PTHREAD
+#if defined(__APPLE__)
+   m_bJoinable = true;
+#endif
+#endif
 
       m_psystem = this;
 
@@ -217,7 +223,9 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    {
 
       ::acme::idpool::init(this);
-
+      
+      m_pnode->m_htaskSystem = m_htask;
+      
       //auto estatus = __defer_construct_new(m_pfactorysquare);
 
       //if (!estatus)
@@ -345,7 +353,9 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
    void system::TermSystem()
    {
-
+      
+      m_pfactoryFolder.release();
+      
       ::acme::idpool::term();
       
       m_pnode->node_quit();
@@ -367,7 +377,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       m_mapComponentFactory.clear();
 
-      //m_pnode->os_post_quit();
+      destroy();
 
    }
 

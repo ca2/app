@@ -20,13 +20,6 @@ namespace acme
    *
    g_pcsGlobal;
 
-//extern CLASS_DECL_ACME string_map < int_to_string > * g_pmapFontFaceName;
-
-//extern CLASS_DECL_ACME critical_section* g_pcsFont;
-
-//extern critical_section* g_pcsRefDbg;
-
-
 #if OBJECT_TYPE_COUNTER
 
    extern int g_iObjTypCtrInit;
@@ -34,27 +27,9 @@ namespace acme
 #endif
 
    extern ::mutex * g_pmutexChildren;
-   //extern ::mutex * g_pmutexThreadWaitClose;
-//extern string_map < __pointer(::acme::library) >* g_pmapLibrary;
-//extern string_map < PFN_NEW_ACME_LIBRARY >* g_pmapNewAuraLibrary;
-
-
-//#if !defined(WINDOWS)
-
-//void windows10_init();
+   
 #ifdef WINDOWS
 
-
-   // CLASS_DECL_ACME void set_simple_output_debug_string_a();
-
-   //    CLASS_DECL_ACME void set_extended_output_debug_string_a();
-
-   //    CLASS_DECL_ACME void set_simple_output_debug_string_w();
-
-   //    CLASS_DECL_ACME void set_extended_output_debug_string_w();
-
-
-      //#endif
 
 #else
 

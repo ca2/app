@@ -68,14 +68,8 @@ namespace sockets
    public:
 
 
-      string                           m_boundary;
-      //string_to_string                 m_mapFiles;
-      //::string_map < u64 >        m_mapContentLength;
-      //string_to_string                 m_mapContentType;
-      __pointer(multipart)                    m_pmultipart;
-      //bool                             m_bMultipart;
-      //static int                     m_boundary_count;
-      //static ::mutex                   m_boundary_mutex;
+      string                                 m_boundary;
+      __pointer(multipart)                   m_pmultipart;
 
 
       http_post_socket();

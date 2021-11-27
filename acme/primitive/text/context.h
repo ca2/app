@@ -74,7 +74,7 @@ namespace text
       
 
       table();
-      virtual ~table();
+      ~table() override;
 
 
       inline const locale * get_locale(const ::id & idLocale) const

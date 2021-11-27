@@ -13,17 +13,10 @@ namespace acme
    public:
 
 
-      //string_map < __transport(::factory::factory) >  m_mapFactory;
       string                                          m_strFolder;
       string                                          m_strName;
       void *                                          m_plibrary;
-      //__pointer(library)                              m_pca2library;
-      //string                                          m_strCa2Name;
-      //string                                          m_strRoot;
-      //::file::path                                    m_strPath;
       string                                          m_strMessage;
-      //bool                                            m_bAutoUnload;
-      //__pointer_array(library_object_allocator_base) m_allocatorptra;                     \
 
 
       library();

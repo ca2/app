@@ -3847,6 +3847,12 @@
     <ClCompile Include="filesystem\file\folder.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
+    <ClCompile Include="node\operating_system\windows\base_file.cpp">
+      <Filter>Source Files\node\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\windows_common\base_file.cpp">
+      <Filter>Source Files\node\operating_system\windows_common</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="primitive\string\aaa_want_to_remove_str.inl">

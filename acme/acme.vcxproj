@@ -1121,11 +1121,13 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
     <ClCompile Include="node\operating_system\parallelization.cpp" />
     <ClCompile Include="node\operating_system\time.cpp" />
     <ClCompile Include="node\operating_system\windowing.cpp" />
+    <ClCompile Include="node\operating_system\windows\base_file.cpp" />
     <ClCompile Include="node\operating_system\windows\library.cpp" />
     <ClCompile Include="node\operating_system\windows\parallelization.cpp" />
     <ClCompile Include="node\operating_system\windows\process.cpp" />
     <ClCompile Include="node\operating_system\windows\windows.cpp" />
     <ClCompile Include="node\operating_system\windows_common\api.cpp" />
+    <ClCompile Include="node\operating_system\windows_common\base_file.cpp" />
     <ClCompile Include="node\operating_system\windows_common\dll.cpp" />
     <ClCompile Include="node\operating_system\windows_common\parallelization.cpp" />
     <ClCompile Include="node\operating_system\windows_common\time.cpp" />

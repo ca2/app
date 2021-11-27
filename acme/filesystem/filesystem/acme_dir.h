@@ -96,7 +96,7 @@ public:
    //virtual ::file::path tool();
 
    virtual bool is(const char * path1);
-   virtual bool _is(const char * path1);
+   virtual ::e_status _is(const char * path1);
    // From acme/filesystem/file/dir.cpp by camilo 
    // From acme_posix/acme_dir.h
 // on 2021-08-09 03:20 BRT

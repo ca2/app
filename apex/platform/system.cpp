@@ -388,11 +388,11 @@ namespace apex
 
       }
 
-#ifdef WINDOWS_DESKTOP
-
-      m_uiWindowsTaskbarCreatedMessage = 0;
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//      m_uiWindowsTaskbarCreatedMessage = 0;
+//
+//#endif
 
       return estatus;
 
@@ -1213,16 +1213,16 @@ pacmedir->create("/ca2core");
 
       INFORMATION("start");
 
-#ifdef WINDOWS_DESKTOP
-
-      if (m_uiWindowsTaskbarCreatedMessage == 0)
-      {
-
-         m_uiWindowsTaskbarCreatedMessage = RegisterWindowMessageW(L"TaskbarCreated");
-
-      }
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//      if (m_uiWindowsTaskbarCreatedMessage == 0)
+//      {
+//
+//         m_uiWindowsTaskbarCreatedMessage = RegisterWindowMessageW(L"TaskbarCreated");
+//
+//      }
+//
+//#endif
 
       //::apex::profiler::initialize();
 

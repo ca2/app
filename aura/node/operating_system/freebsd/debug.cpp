@@ -84,7 +84,7 @@ i32 gdb_check()
 static void*
 test_trace(void* ignored)
 {
-   return (void*)ptrace(PT_TRACE_ME, 0, nullptr, 0);
+   return (void*)(iptr)(int) ptrace(PT_TRACE_ME, 0, nullptr, 0);
 }
 
 i32

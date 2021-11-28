@@ -19,6 +19,7 @@
 #include <sys/ptrace.h>
 #include <sys/wait.h>
 
+#include <sys/ptrace.h>
 
 i32 gdb_check();
 
@@ -83,7 +84,7 @@ i32 gdb_check()
 static void*
 test_trace(void* ignored)
 {
-   return (void*)ptrace(PTRACE_TRACEME, 0, nullptr, nullptr);
+   return (void*)ptrace(PTRACE_ME, 0, nullptr, nullptr);
 }
 
 i32

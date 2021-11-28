@@ -9971,7 +9971,7 @@ string application::get_version()
 }
 
 
-#ifdef LINUX
+#if defined(LINUX) || defined(FREEBSD)
 
 
 string application::get_wm_class() const

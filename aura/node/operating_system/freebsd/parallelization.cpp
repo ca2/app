@@ -115,7 +115,7 @@ int get_processor_count()
 
    int s, j;
 
-   cpu_set_t cpuset;
+   cpuset_t cpuset;
 
    pthread_t thread = pthread_self();
 

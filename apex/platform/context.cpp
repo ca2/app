@@ -63,7 +63,7 @@ namespace apex
       else
       {
 
-         strSpaIgnitionBaseUrl = string(get_server_ca2_cc()) + "api/spaignition";
+         strSpaIgnitionBaseUrl = string(strStoreBaseUrl) + "api/spaignition";
 
       }
 

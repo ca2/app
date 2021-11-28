@@ -534,18 +534,6 @@ namespace apex
    {
 
       
-#if !defined(ANDROID)
-
-      if (!m_papplicationMain->is_service() || m_papplicationMain->is_user_service())
-      {
-
-         m_pmutexUserAppData = __new(::mutex(this, false, "Local\\ca2.UserAppData"));
-         m_pmutexSystemAppData = __new(::mutex(this, false, "Local\\ca2.SystemAppData"));
-
-      }
-
-#endif
-
       ::factory::add_factory_item<::create>();
       ::factory::add_factory_item<command_line>();
       ::factory::add_factory_item<http::context>();
@@ -558,6 +546,20 @@ namespace apex
          return estatus;
 
       }
+
+
+#if !defined(ANDROID)
+
+      if (!m_papplicationStartup->is_service() || m_papplicationStartup->is_user_service())
+      {
+
+         m_pmutexUserAppData = __new(::mutex(this, false, "Local\\ca2.UserAppData"));
+         m_pmutexSystemAppData = __new(::mutex(this, false, "Local\\ca2.SystemAppData"));
+
+      }
+
+#endif
+
 
       // estatus = ([a-z0-9_]+)_factory("apex", PLATFORM_NAME);
 

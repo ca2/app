@@ -1,7 +1,9 @@
 #include "framework.h"
 #include "_freebsd.h"
 //#include "gnome_gnome.h"
+#define bitset freebsd_bitset
 #include <pthread_np.h>
+#undef bitset
 
 
 #ifdef PARALLELIZATION_PTHREAD
@@ -120,7 +122,7 @@ int get_processor_count()
 
    pthread_t thread = pthread_self();
 
-   s = pthread_getaffinity_np(thread, sizeof(cpu_set_t), &cpuset);
+   s = pthread_getaffinity_np(thread, sizeof(cpuset_t), &cpuset);
 
    if (s != 0)
    {

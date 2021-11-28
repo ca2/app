@@ -812,7 +812,7 @@ if (FREEBSD)
       #os/freebsd/launcher.cpp
       node/operating_system/freebsd/library.cpp
       #node/operating_system/freebsd/freebsd.inl
-      node/operating_system/freebsd/freebsd_freebsd.h
+      #node/operating_system/freebsd/freebsd_freebsd.h
       #os/freebsd/list_serial_ports.cpp
       #node/operating_system/freebsd/lock.cpp
       node/operating_system/freebsd/message_loop.cpp

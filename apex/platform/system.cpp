@@ -533,7 +533,6 @@ namespace apex
    ::e_status system::process_init()
    {
 
-      
 #if !defined(ANDROID)
 
       if (!m_papplicationMain->is_service() || m_papplicationMain->is_user_service())

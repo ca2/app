@@ -56,7 +56,7 @@ CLASS_DECL_ACME::u32 windows_get_file_attributes(const char* path)
 }
 
 
-::e_status acme_file::_delete(const char* path)
+::e_status delete_file(const char* path)
 {
 
    wstring wstrPath(path);
@@ -77,10 +77,8 @@ CLASS_DECL_ACME::u32 windows_get_file_attributes(const char* path)
 }
 
 
-::e_status acme_file::_exists(const char* path)
+::e_status file_exists(const char* path)
 {
-
-   //wstring wstr(path);
 
    auto attributes = windows_get_file_attributes(path);
 
@@ -101,4 +99,6 @@ CLASS_DECL_ACME::u32 windows_get_file_attributes(const char* path)
    return true;
 
 }
+
+
 

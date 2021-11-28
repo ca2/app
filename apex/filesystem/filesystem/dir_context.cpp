@@ -6,7 +6,7 @@
 #include "acme/filesystem/filesystem/acme_path.h"
 
 
-CLASS_DECL_ACME const char* get_server_ca2_cc();
+///CLASS_DECL_ACME const char* get_server_ca2_cc();
 
 
 namespace zip

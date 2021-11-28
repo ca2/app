@@ -7,7 +7,7 @@
 CLASS_DECL_ACME bool windows_get_alternate_path(wstring& wstr);
 
 
-::e_status acme_dir::_create_directory(const char* path)
+::e_status create_directory(const char* path)
 {
 
    wstring wstr;
@@ -53,7 +53,7 @@ CLASS_DECL_ACME bool windows_get_alternate_path(wstring& wstr);
 }
 
 
-bool acme_dir::_is(const char* path)
+::e_status is_directory(const char* path)
 {
 
    //#ifdef _UWP

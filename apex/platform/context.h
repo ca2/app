@@ -15,6 +15,8 @@ namespace apex
    public:
 
 
+      string                              m_strStoreServerBaseUrl;
+
       string_to_string                    m_mapCachedLatestBuild;
       __composite(::http::context)        m_phttp;
       __composite(::dir_context)          m_pdir;
@@ -49,6 +51,9 @@ namespace apex
       void add_create(::create* pcreate);
 
       create * get_create();
+
+
+      string get_store_server_base_url();
 
       bool contains(::create* pcreate) const;
 

@@ -6906,6 +6906,16 @@ namespace aura
 
       auto estatus = ::aqua::system::destroy();
 
+      return estatus;
+
+   }
+
+
+   void system::TermSystem()
+   {
+
+      ::aqua::system::TermSystem();
+
       if (m_pdraw2d)
       {
 
@@ -6915,10 +6925,9 @@ namespace aura
 
       }
 
-      return estatus;
+
 
    }
-
 
    //void system::on_initial_frame_position(::user::frame* pframe)
    //{

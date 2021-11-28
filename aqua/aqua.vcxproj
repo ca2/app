@@ -63,6 +63,7 @@
     <ClInclude Include="multimedia\audio\out.h" />
     <ClInclude Include="multimedia\audio\sound_track_player.h" />
     <ClInclude Include="multimedia\audio\speaker.h" />
+    <ClInclude Include="multimedia\audio\text_to_speech_client.h" />
     <ClInclude Include="multimedia\audio\_.h" />
     <ClInclude Include="multimedia\decoder.h" />
     <ClInclude Include="multimedia\decoder_plugin.h" />
@@ -127,6 +128,7 @@
     <ClCompile Include="multimedia\audio\audio_wave_out.cpp" />
     <ClCompile Include="multimedia\audio\sound_track_player.cpp" />
     <ClCompile Include="multimedia\audio\speaker.cpp" />
+    <ClCompile Include="multimedia\audio\text_to_speech_client.cpp" />
     <ClCompile Include="multimedia\decoder.cpp" />
     <ClCompile Include="multimedia\decoder_plugin.cpp" />
     <ClCompile Include="multimedia\exception.cpp" />

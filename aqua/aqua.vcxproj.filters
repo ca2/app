@@ -300,6 +300,9 @@
     <ClInclude Include="xml\xmlite.h">
       <Filter>Header Files\xml</Filter>
     </ClInclude>
+    <ClInclude Include="multimedia\audio\text_to_speech_client.h">
+      <Filter>Header Files\multimedia\audio</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -421,6 +424,9 @@
     </ClCompile>
     <ClCompile Include="node\windows\system.cpp">
       <Filter>Source Files\node\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="multimedia\audio\text_to_speech_client.cpp">
+      <Filter>Source Files\multimedia\audio</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

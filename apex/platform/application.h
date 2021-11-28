@@ -1075,7 +1075,7 @@ public:
 
       virtual string as_string(const ::payload & payload);
 
-      #ifdef LINUX
+      #if defined(LINUX) || defined(FREEBSD)
 
       virtual string get_wm_class() const;
 

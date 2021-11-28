@@ -2819,6 +2819,7 @@ __pointer(::service) application::create_service()
 ::e_status application::process_init()
 {
 
+
 //if(::get_global_application() == nullptr)
 //{
 

@@ -811,7 +811,7 @@ if (FREEBSD)
       node/operating_system/freebsd/language.cpp
       #os/freebsd/launcher.cpp
       node/operating_system/freebsd/library.cpp
-      node/operating_system/freebsd/freebsd.inl
+      #node/operating_system/freebsd/freebsd.inl
       node/operating_system/freebsd/freebsd_freebsd.h
       #os/freebsd/list_serial_ports.cpp
       #node/operating_system/freebsd/lock.cpp

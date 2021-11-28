@@ -57,13 +57,13 @@ namespace apex
       if (strConfiguration == "basis")
       {
 
-         strSpaIgnitionBaseUrl = ::file::path(strStoreBaseUrl) / + "api/spaignition";
+         strSpaIgnitionBaseUrl = ::file::path(strStoreBaseUrl) / "api/spaignition";
 
       }
       else
       {
 
-         strSpaIgnitionBaseUrl = string(get_server_ca2_cc()) + "api/spaignition";
+         strSpaIgnitionBaseUrl = ::file::path(strStoreBaseUrl) / "api/spaignition";
 
       }
 

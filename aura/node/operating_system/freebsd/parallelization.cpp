@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "_freebsd.h"
 //#include "gnome_gnome.h"
+#include <pthread_np.h>
 
 
 #ifdef PARALLELIZATION_PTHREAD

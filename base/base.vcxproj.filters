@@ -670,9 +670,6 @@
     <ClCompile Include="user\user\_.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="__matter_ca2.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\user.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -773,9 +770,6 @@
   <ItemGroup>
     <None Include="user\user\_impl.h">
       <Filter>Header Files\user\user</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

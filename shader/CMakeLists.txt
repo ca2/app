@@ -114,7 +114,6 @@ add_dependencies(_app_shader ${default_draw2d})
 add_dependencies(_app_shader ${default_imaging})
 add_dependencies(_app_shader ${default_write_text})
 add_dependencies(_app_shader ${app_common_dependencies})
-add_dependencies(_app_shader experience_core)
 add_dependencies(_app_shader gpu_opengl)
 
 

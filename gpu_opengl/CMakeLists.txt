@@ -60,7 +60,7 @@ list(APPEND library_references
         )
 
 
-if(LINUX)
+if(LINUX OR FREEBSD)
 
     list(APPEND library_references
        aura_posix

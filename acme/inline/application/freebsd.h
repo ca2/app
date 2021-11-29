@@ -32,9 +32,9 @@ int main(int argc, char * argv[], char * envp[])
 
    main.m_bConsole = false;
 
-   main._binary__matter_zip_start = _binary__matter_zip_start;
+   main.m_pchar_binary__matter_zip_start = _binary__matter_zip_start;
 
-   main._binary__matter_zip_end = _binary__matter_zip_end;
+   main.m_pchar_binary__matter_zip_end = _binary__matter_zip_end;
 
    auto estatus = __main(main);
 

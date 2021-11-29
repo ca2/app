@@ -23,8 +23,8 @@ struct CLASS_DECL_ACME PLAIN_MAIN
 
 #elif defined(LINUX) || defined(FREEBSD)
 
-   char * _binary__matter_zip_start = nullptr;
-   char * _binary__matter_zip_end = nullptr;
+   char * m_pchar_binary__matter_zip_start = nullptr;
+   char * m_pchar_binary__matter_zip_end = nullptr;
 
 #endif
 

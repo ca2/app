@@ -1109,7 +1109,7 @@ namespace acme
    //}
 
 
-   ::e_status node::open_folder(::file::path & pathFolder)
+   ::e_status node::browse_for_folder(::file::path & pathFolder)
    {
 
       throw ::interface_only_exception();
@@ -1119,7 +1119,7 @@ namespace acme
    }
 
 
-   ::e_status node::open_file(::file::path & path)
+   ::e_status node::browse_for_file(::file::path & path)
    {
 
       throw ::interface_only_exception();

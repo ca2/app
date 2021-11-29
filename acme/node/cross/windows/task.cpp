@@ -1,8 +1,8 @@
 #include "framework.h"
-#include "task.h"
-#ifdef LINUX
-#include "acme/node/operating_system/ansi/_pthread.h"
-#endif
+//#include "task.h"
+//#if defined(LINUX)
+//#include "acme/node/operating_system/ansi/_pthread.h"
+//#endif
 
 
 task::task()

@@ -516,6 +516,8 @@ namespace apex
       if (!estatus)
       {
 
+         output_debug_string("\nFailed to init2 the session (::apex::session or ::apex::session derived)");
+
          return estatus;
 
       }
@@ -524,6 +526,8 @@ namespace apex
 
       if (!estatus)
       {
+
+         output_debug_string("\nFailed to init() the session (::apex::session or ::apex::session derived)");
 
          return estatus;
 

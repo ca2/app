@@ -1089,26 +1089,6 @@ namespace acme
    }
 
 
-   //::e_status node::get_system_time(system_time_t * psystemtime)
-   //{
-
-   //   throw ::interface_only_exception();
-
-   //   return error_interface_only;
-
-   //}
-
-
-   //::e_status node::file_time_to_local_file_time(filetime_t *, filetime_t const*)
-   //{
-
-   //   throw ::interface_only_exception();
-
-   //   return error_interface_only;
-
-   //}
-
-
    ::e_status node::browse_for_folder(::file::path & pathFolder)
    {
 

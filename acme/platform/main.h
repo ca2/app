@@ -41,7 +41,7 @@ struct CLASS_DECL_ACME PLAIN_MAIN
    ::boolean                     m_bInitializeDataCentral;
 #ifdef WINDOWS_DESKTOP
    ::boolean                     m_bGdiplus;
-#elif defined(LINUX)
+#elif defined(LINUX) || defined(FREEBSD)
    ::boolean                     m_bGtkApp;
 #endif
    ::boolean                     m_bShowApplicationInformation;

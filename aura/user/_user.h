@@ -762,7 +762,7 @@ namespace user
 //#include "list_box.h"
 
 
-#ifdef LINUX
+#if defined(LINUX) || defined(FREEBSD)
 typedef struct _AppIndicator AppIndicator;
 #endif
 

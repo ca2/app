@@ -407,7 +407,7 @@ namespace user
 
 #include "document_manager.h"
 
-#ifdef LINUX
+#if defined(LINUX) || defined(FREEBSD)
 typedef struct _AppIndicator AppIndicator;
 #endif
 

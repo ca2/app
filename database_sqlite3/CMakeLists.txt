@@ -3,15 +3,14 @@ project(database_sqlite3 CXX)
 
 
 list(APPEND database_sqlite3_source
-        _.cpp
-        _.h
-        _database_sqlite3.h
-        database.cpp
-        database.h
-        _factory.cpp
-
-        framework.cpp
-        framework.h
+   _.cpp
+   _.h
+   _database_sqlite3.h
+   _factory.cpp
+   database.cpp
+   database.h
+   framework.cpp
+   framework.h
 )
 
 list(APPEND library_references
@@ -24,20 +23,27 @@ target_precompile_headers(database_sqlite3 PRIVATE framework.h)
 set_target_properties(database_sqlite3 PROPERTIES LINKER_LANGUAGE CXX)
 
 if (MSVC)
-    target_compile_options(database_sqlite3 PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-    target_link_options(database_sqlite3 PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-    target_link_options(database_sqlite3 PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/database_sqlite3.lib")
-    target_link_options(database_sqlite3 PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/database_sqlite3.def")
-    target_link_libraries(database_sqlite3 PRIVATE ${library_references})
-elseif(LINUX)
-    pkg_check_modules(PKGCONFIG sqlite3)
-    target_compile_options(database_sqlite3 PRIVATE -fpermissive)
-       target_compile_options(database_sqlite3 PRIVATE ${PKGCONFIG_CFLAGS})
+
+
+   target_compile_options(database_sqlite3 PRIVATE "/MD$<$<CONFIG:Debug>:d>")
+   target_link_options(database_sqlite3 PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+   target_link_options(database_sqlite3 PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/database_sqlite3.lib")
+   target_link_options(database_sqlite3 PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/database_sqlite3.def")
+   target_link_libraries(database_sqlite3 PRIVATE ${library_references})
+
+
+elseif(LINUX OR FREEBSD)
+
+
+   pkg_check_modules(PKGCONFIG sqlite3)
+   target_compile_options(database_sqlite3 PRIVATE -fpermissive)
+   target_compile_options(database_sqlite3 PRIVATE ${PKGCONFIG_CFLAGS})
    target_link_options(database_sqlite3 PRIVATE ${PKGCONFIG_LDFLAGS})
-    #target_link_options(database_sqlite3 PRIVATE -Wl,-rpath=$ORIGIN)
-    target_link_libraries(database_sqlite3 PRIVATE ${PKGCONFIG_LIBRARIES} ${library_references})
-    target_link_options(database_sqlite3 PRIVATE -Wl,-z,defs)
-    message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
+   target_link_libraries(database_sqlite3 PRIVATE ${PKGCONFIG_LIBRARIES} ${library_references})
+   target_link_options(database_sqlite3 PRIVATE -Wl,-z,defs)
+   message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
+
+
 endif()
 
 

@@ -89,7 +89,7 @@ if(LINUX OR FREEBSD)
 endif()
 
 
-add_dependencies(_app_app ${PROJECT_NAME}_matter)
+add_dependencies(_${PROJECT_NAME} ${PROJECT_NAME}_matter)
 
 
 if (MSVC)

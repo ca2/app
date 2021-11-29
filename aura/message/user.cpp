@@ -345,7 +345,7 @@ namespace message
 
       m_point    = __point(lparam);
 
-#ifdef LINUX
+#if defined(LINUX) || defined(FREEBSD)
 
       m_bTranslated = true;  // in root coordinates
 

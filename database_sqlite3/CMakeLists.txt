@@ -14,7 +14,11 @@ list(APPEND database_sqlite3_source
 )
 
 list(APPEND library_references
-   acme apex aqua aura axis)
+   acme
+   apex
+   aqua
+   aura
+   axis)
 
 add_library(database_sqlite3 SHARED ${database_sqlite3_source})
 
@@ -39,7 +43,7 @@ elseif(LINUX OR FREEBSD)
    target_compile_options(database_sqlite3 PRIVATE -fpermissive)
    target_compile_options(database_sqlite3 PRIVATE ${PKGCONFIG_CFLAGS})
    target_link_options(database_sqlite3 PRIVATE ${PKGCONFIG_LDFLAGS})
-   target_link_libraries(database_sqlite3 PRIVATE ${PKGCONFIG_LIBRARIES} ${library_references})
+   target_link_libraries(database_sqlite3 PRIVATE ${library_references})
    target_link_options(database_sqlite3 PRIVATE -Wl,-z,defs)
    message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 

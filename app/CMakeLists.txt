@@ -72,26 +72,24 @@ list(APPEND executable_references
    )
 
 
+add_custom_target(${PROJECT_NAME}_matter
+    COMMAND ${APPLICATION_BUILD_HELPER} ${PROJECT_SOURCE_DIR}
+    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+    DEPENDS deps.txt matter.txt
+    VERBATIM
+    )
+
+
 if(LINUX OR FREEBSD)
 
 
-    message(STATUS "APPLICATION_BUILD_HELPER is ${APPLICATION_BUILD_HELPER}")
-
-    message(STATUS "PROJECT_SOURCE_DIR is ${PROJECT_SOURCE_DIR}")
-
-    add_custom_target(${PROJECT_NAME}_matter
-       COMMAND ${APPLICATION_BUILD_HELPER} ${PROJECT_SOURCE_DIR}
-       WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
-       DEPENDS deps.txt matter.txt
-       VERBATIM
-    )
-
     list(APPEND executable_references ${PROJECT_SOURCE_DIR}/.link_object/_matter.zip.o)
+
 
 endif()
 
 
-
+add_dependencies(_app_app ${PROJECT_NAME}_matter)
 
 
 if (MSVC)
@@ -112,7 +110,6 @@ endif ()
 
 add_dependencies(_app_app ${app_common_dependencies})
 add_dependencies(_app_app ${default_draw2d})
-add_dependencies(_app_app ${PROJECT_NAME}_matter)
 add_dependencies(_app_app crypto_openssl)
 
 

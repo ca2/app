@@ -3,23 +3,22 @@ project(gpu_opengl CXX)
 
 
 list(APPEND library_source
-        _.cpp
-        _.h
-        buffer.cpp
-        buffer.h
-        context.cpp
-        context.h
-        _factory.cpp
-
-        framework.cpp
-        framework.h
-        image_opengl.cpp
-        opengl.cpp
-        opengl.h
-        program.cpp
-        program.h
-        shader.cpp
-        shader.h)
+    _.cpp
+    _.h
+    _factory.cpp
+    buffer.cpp
+    buffer.h
+    context.cpp
+    context.h
+    framework.cpp
+    framework.h
+    image_opengl.cpp
+    opengl.cpp
+    opengl.h
+    program.cpp
+    program.h
+    shader.cpp
+    shader.h)
 
 if(WIN32)
     list(APPEND library_source
@@ -88,13 +87,10 @@ if (MSVC)
 elseif(LINUX OR FREEBSD)
 
 
-    pkg_check_modules(PKGCONFIG glew)
+    pkg_check_modules(PKGCONFIG glew egl)
     target_compile_options(gpu_opengl PRIVATE -fpermissive)
     target_compile_options(gpu_opengl PRIVATE ${PKGCONFIG_CFLAGS})
     target_link_options(gpu_opengl PRIVATE ${PKGCONFIG_LDFLAGS})
-    target_link_libraries(gpu_opengl PRIVATE GL GLEW EGL GLU)
-    target_link_libraries(gpu_opengl PRIVATE ${PKGCONFIG_LIBRARIES})
-    target_link_libraries(gpu_opengl PRIVATE acme apex aqua aura)
     target_link_libraries(gpu_opengl PRIVATE ${library_references})
     target_link_libraries(gpu_opengl PRIVATE ${default_windowing})
     target_link_options(gpu_opengl PRIVATE -Wl,-z,defs)

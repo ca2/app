@@ -290,8 +290,6 @@ elseif(LINUX OR FREEBSD)
 
 
     target_compile_options(base PRIVATE -fpermissive)
-    #target_link_options(base PRIVATE -Wl,-rpath=$ORIGIN)
-    target_link_libraries(base PRIVATE ${PKGCONFIG_LIBRARIES})
     target_link_libraries(base PRIVATE acme apex aqua aura axis)
     target_link_options(base PRIVATE -Wl,-z,defs)
 

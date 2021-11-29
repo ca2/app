@@ -669,7 +669,7 @@ elseif(LINUX OR FREEBSD)
 
 
     target_compile_options(axis PRIVATE -fpermissive)
-    target_link_libraries(axis PRIVATE bz2 ${PKGCONFIG_LIBRARIES} ${library_references})
+    target_link_libraries(axis PRIVATE ${library_references})
     target_link_options(axis PRIVATE -Wl,-z,defs)
 
 

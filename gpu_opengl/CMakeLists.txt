@@ -30,7 +30,7 @@ if(WIN32)
 endif()
 
 
-if(LINUX)
+if(LINUX OR FREEBSD)
     list(APPEND library_source
             context_egl.cpp
             context_egl.h

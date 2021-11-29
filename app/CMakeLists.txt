@@ -53,9 +53,10 @@ add_dependencies(app_app ${default_draw2d})
 target_include_directories(app_app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 target_include_directories(app_app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
 target_include_directories(app_app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(app_app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 
-target_compile_definitions(app_app PRIVATE _APP_APP_LIBRARY)
+
 
 
 
@@ -74,17 +75,18 @@ list(APPEND executable_references
 if(LINUX OR FREEBSD)
 
 
+    message(STATUS "APPLICATION_BUILD_HELPER is ${APPLICATION_BUILD_HELPER}")
 
-    add_custom_command(
-       OUTPUT ${PROJECT_BINARY_DIR}/_matter.zip.o
-       WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+    message(STATUS "PROJECT_SOURCE_DIR is ${PROJECT_SOURCE_DIR}")
+
+    add_custom_target(${PROJECT_NAME}_matter
        COMMAND ${APPLICATION_BUILD_HELPER} ${PROJECT_SOURCE_DIR}
+       WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
        DEPENDS deps.txt matter.txt
+       VERBATIM
     )
 
-
-    list(APPEND executable_references ${PROJECT_BINARY_DIR}/_matter.zip.o)
-
+    list(APPEND executable_references ${PROJECT_SOURCE_DIR}/.link_object/_matter.zip.o)
 
 endif()
 
@@ -110,6 +112,7 @@ endif ()
 
 add_dependencies(_app_app ${app_common_dependencies})
 add_dependencies(_app_app ${default_draw2d})
+add_dependencies(_app_app ${PROJECT_NAME}_matter)
 
 
 target_include_directories(_app_app PRIVATE ${library_include_directories})

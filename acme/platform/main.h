@@ -21,7 +21,7 @@ struct CLASS_DECL_ACME PLAIN_MAIN
    hinstance         m_hinstancePrev = nullptr;
    int               m_nCmdShow = -1000;
 
-#elif defined(LINUX)
+#elif defined(LINUX) || defined(FREEBSD)
 
    char * _binary__matter_zip_start = nullptr;
    char * _binary__matter_zip_end = nullptr;

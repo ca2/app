@@ -37,7 +37,7 @@ if (MSVC)
     target_link_libraries(imaging_freeimage PRIVATE acme apex aqua aura freeimage)
 
 
-elseif(LINUX)
+elseif(LINUX OR FREEBSD)
 
 
     pkg_check_modules(PKGCONFIG librsvg-2.0 freeimage)

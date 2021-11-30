@@ -65,15 +65,24 @@ target_compile_definitions(app_just_message_box PRIVATE _app_just_message_box_LI
 
 add_executable(_app_just_message_box _main.cpp)
 
-
-add_custom_command(OUTPUT ${PROJECT_BINARY_DIR}/_matter.zip.o
-   WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+add_custom_target(${PROJECT_NAME}_matter
    COMMAND ${APPLICATION_BUILD_HELPER} ${PROJECT_SOURCE_DIR}
-   COMMAND ld -r -b binary -o ${PROJECT_BINARY_DIR}/_matter.zip.o _matter.zip
+   WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
    DEPENDS deps.txt matter.txt
-)
+   VERBATIM
+   )
 
-target_sources(_${PROJECT_NAME} PRIVATE ${PROJECT_BINARY_DIR}/_matter.zip.o)
+
+if(LINUX OR FREEBSD)
+
+
+   list(APPEND executable_references ${PROJECT_SOURCE_DIR}/.link_object/_matter.zip.o)
+
+
+endif()
+
+
+add_dependencies(_${PROJECT_NAME} ${PROJECT_NAME}_matter)
 
 
 

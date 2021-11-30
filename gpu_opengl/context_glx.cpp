@@ -20,6 +20,7 @@ namespace opengl
 
    }
 
+
    context_glx::context_glx()
    {
 

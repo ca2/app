@@ -764,6 +764,97 @@ if (LINUX)
 endif ()
 
 
+if (FREEBSD)
+
+   list(APPEND library_source
+      node/freebsd/_.h
+      node/freebsd/_freebsd.h
+      node/freebsd/application.cpp
+      node/freebsd/application.h
+      #node/freebsd/console.cpp
+      #node/freebsd/console.h
+      #node/freebsd/copydesk.cpp
+      #node/freebsd/copydesk.h
+      node/freebsd/_factory.cpp
+      node/freebsd/
+      #node/freebsd/interaction_impl.cpp
+      #node/freebsd/interaction_impl.h
+      node/freebsd/system.cpp
+      #os/gdk/aura_gdk.cpp
+      #os/gdk/aura_gdk.h
+      node/operating_system/freebsd/_.h
+      node/operating_system/freebsd/_c.h
+      node/operating_system/freebsd/_glib.h
+      node/operating_system/freebsd/_freebsd.h
+      node/operating_system/freebsd/_user.h
+      node/operating_system/freebsd/appindicator.cpp
+      node/operating_system/freebsd/appindicator.h
+      node/operating_system/freebsd/application_system_run.cpp
+      node/operating_system/freebsd/aura.cpp
+      node/operating_system/freebsd/bloat_pad.h
+      node/operating_system/freebsd/cross_win_file.cpp
+      node/operating_system/freebsd/cross_win_file.h
+      node/operating_system/freebsd/cross_win_gdi.cpp
+      node/operating_system/freebsd/cross_win_gdi.h
+      node/operating_system/freebsd/cross_win_gdi_internal.h
+      node/operating_system/freebsd/debug.cpp
+      node/operating_system/freebsd/debug.h
+      node/operating_system/freebsd/desktop_file.cpp
+      node/operating_system/freebsd/desktop_file.h
+      #os/freebsd/exception_engine.cpp
+      #os/freebsd/exception_engine.h
+      node/operating_system/freebsd/file.cpp
+      node/operating_system/freebsd/file.h
+      node/operating_system/freebsd/graphics.cpp
+      node/operating_system/freebsd/graphics.h
+      node/operating_system/freebsd/graphics2.h
+      node/operating_system/freebsd/language.cpp
+      #os/freebsd/launcher.cpp
+      node/operating_system/freebsd/library.cpp
+      #node/operating_system/freebsd/freebsd.inl
+      #node/operating_system/freebsd/freebsd_freebsd.h
+      #os/freebsd/list_serial_ports.cpp
+      #node/operating_system/freebsd/lock.cpp
+      node/operating_system/freebsd/message_loop.cpp
+      #os/freebsd/monitor.cpp
+      node/operating_system/freebsd/os.cpp
+      #os/freebsd/osdisplay.cpp
+      #os/freebsd/osdisplay.h
+      #os/freebsd/oswindow.cpp
+      #os/freebsd/oswindow.h
+      node/operating_system/freebsd/parallelization.cpp
+      #os/freebsd/process.cpp
+      #os/freebsd/process.h
+      #os/freebsd/process_pid.cpp
+      node/operating_system/freebsd/simple_app.cpp
+      node/operating_system/freebsd/time.cpp
+      node/operating_system/freebsd/user.cpp
+      node/operating_system/freebsd/user.h
+      node/operating_system/freebsd/user_private.h
+      node/operating_system/freebsd/win_base.cpp
+      node/operating_system/freebsd/window_cairo.h
+      #os/freebsd/window_xlib.cpp
+      #os/freebsd/window_xlib.h
+      node/operating_system/freebsd/windowing.cpp
+      #os/freebsd/windowing_x11.cpp
+      #os/freebsd/windowing_xcb.cpp
+      node/operating_system/freebsd/windowing.h
+      node/operating_system/freebsd/x11.h
+      #os/freebsd/xdisplay.cpp
+      #os/freebsd/xdisplay.h
+      #os/freebsd/xinerama.cpp
+      #os/x11/_x11.h
+      #os/x11/debug.cpp
+      #os/x11/x11_exception.h
+      #os/x11/x11_keyboard.cpp
+      #os/x11/x11_keyboard.h
+      #os/x11/x11_windowing.cpp
+      #os/x11/x11_xrender.cpp
+      ${windowing_source}
+      )
+endif ()
+
+
 if (LINUX OR APPLE OR SOLARIS)
    list(APPEND library_source
       node/posix/_posix.h

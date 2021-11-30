@@ -1,9 +1,9 @@
 #include "framework.h"
 #include "_.h"
 #include "context_glx.h"
-#include "platform-posix/aura_posix/_.h"
-#include "platform-posix/aura_posix/_aura_posix.h"
-#include "platform-posix/aura_posix/x11/display_lock.h"
+#include "aura_posix/_.h"
+#include "aura_posix/_aura_posix.h"
+#include "aura_posix/x11/display_lock.h"
 
 
 mutex * user_mutex();
@@ -19,6 +19,7 @@ namespace opengl
       return new context_glx();
 
    }
+
 
    context_glx::context_glx()
    {

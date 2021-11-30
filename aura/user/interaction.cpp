@@ -4188,7 +4188,7 @@ return "";
             pmessage = __new(::message::kill_keyboard_focus);
          }
          break;
-#if !defined(_UWP) && !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID)
+#if !defined(_UWP) && !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID) && !defined(FREEBSD)
          case ::message::PrototypeWindowPos:
          {
             pmessage = __new(::message::window_pos);

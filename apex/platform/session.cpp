@@ -400,6 +400,8 @@ namespace apex
       if (!estatus)
       {
 
+         WARNING("Failed at apex::session::init_thread after process_init");
+
          return estatus;
 
       }
@@ -408,6 +410,8 @@ namespace apex
 
       if (!estatus)
       {
+
+         WARNING("Failed at apex::session::init_thread after init_session");
 
          return estatus;
 
@@ -422,7 +426,6 @@ namespace apex
       //   __throw(::exception(estatus));
 
       //}
-
 
       INFORMATION(".1");
 
@@ -505,7 +508,7 @@ namespace apex
       if (!estatus)
       {
 
-         output_debug_string("\nFailed to init1 the session (::apex::session or ::apex::session derived)");
+         WARNING("Failed to init1 the session (::apex::session or ::apex::session derived)");
 
          return estatus;
 
@@ -516,6 +519,8 @@ namespace apex
       if (!estatus)
       {
 
+         WARNING("Failed to init2 the session (::apex::session or ::apex::session derived)");
+
          return estatus;
 
       }
@@ -524,6 +529,8 @@ namespace apex
 
       if (!estatus)
       {
+
+         WARNING("Failed to init() the session (::apex::session or ::apex::session derived)");
 
          return estatus;
 

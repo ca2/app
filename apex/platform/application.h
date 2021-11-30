@@ -55,7 +55,7 @@ public:
       __reference(::user::primitive)                  m_puiCurrent;
       bool                                            m_bContextTheme;
 
-      #ifdef LINUX
+      #if defined(LINUX) || defined(FREEBSD)
       bool                                            m_bSnLauncheeSetup;
       #endif
       semaphore                                       m_semCompiler;
@@ -1075,7 +1075,7 @@ public:
 
       virtual string as_string(const ::payload & payload);
 
-      #ifdef LINUX
+      #if defined(LINUX) || defined(FREEBSD)
 
       virtual string get_wm_class() const;
 

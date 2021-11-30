@@ -14,6 +14,12 @@
 #include "application/linux.h"
 
 
+#elif defined(FREEBSD)
+
+
+#include "application/freebsd.h"
+
+
 #elif defined(_UWP)
 
 #include "application/universal_windows.h"

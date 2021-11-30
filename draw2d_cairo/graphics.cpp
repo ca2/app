@@ -6239,7 +6239,7 @@ FT_Face graphics::ftface(const ::string & pszFontName, int iWeight, bool bItalic
       else
       {
 
-         FORMATTED_TRACE("Creating font : %s", pszFontName);
+         TRACE("Creating font : " << pszFontName);
 
       }
 

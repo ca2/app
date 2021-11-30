@@ -40,7 +40,7 @@
 #include <EGL/eglplatform.h>
 
 
-#elif defined(LINUX)
+#elif defined(LINUX) || defined(FREEBSD)
 
 
 // Enable function definitions in the GL headers below

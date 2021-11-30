@@ -58,16 +58,23 @@ set_target_properties(bred PROPERTIES LINKER_LANGUAGE CXX)
 
 
 if (MSVC)
+
+
     target_compile_options(bred PRIVATE "/MD$<$<CONFIG:Debug>:d>")
     target_link_options(bred PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
     target_link_options(bred PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/bred.lib")
     target_link_options(bred PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/bred.def")
     target_link_libraries(bred PRIVATE ${library_references})
-elseif(LINUX)
+
+
+elseif(LINUX OR FREEBSD)
+
+
     target_compile_options(bred PRIVATE -fpermissive)
-    #target_link_options(bred PRIVATE -Wl,-rpath=$ORIGIN)
     target_link_libraries(bred PRIVATE ${PKGCONFIG_LIBRARIES} ${library_references})
     target_link_options(bred PRIVATE -Wl,-z,defs)
+
+
 endif()
 
 

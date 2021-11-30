@@ -282,6 +282,8 @@ namespace axis
       if (!m_paccount->init_instance())
       {
 
+         WARNING("Failed to account::init_instance() the session (::axis::session or ::axis::session derived)");
+
          return false;
 
       }
@@ -301,6 +303,8 @@ namespace axis
 //
       if (!::aura::session::init_session())
       {
+
+         WARNING("Failed to init_session() the session (::axis::session or ::axis::session derived)");
 
          return false;
 

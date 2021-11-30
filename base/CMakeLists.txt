@@ -277,17 +277,23 @@ set_target_properties(base PROPERTIES LINKER_LANGUAGE CXX)
 
 
 if (MSVC)
+
+
     target_compile_options(base PRIVATE "/MD$<$<CONFIG:Debug>:d>")
     target_link_options(base PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
     target_link_options(base PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/base.lib")
     target_link_options(base PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/base.def")
     target_link_libraries(base PRIVATE acme apex aqua aura axis)
-elseif(LINUX)
+
+
+elseif(LINUX OR FREEBSD)
+
+
     target_compile_options(base PRIVATE -fpermissive)
-    #target_link_options(base PRIVATE -Wl,-rpath=$ORIGIN)
-    target_link_libraries(base PRIVATE ${PKGCONFIG_LIBRARIES})
     target_link_libraries(base PRIVATE acme apex aqua aura axis)
     target_link_options(base PRIVATE -Wl,-z,defs)
+
+
 endif()
 
 

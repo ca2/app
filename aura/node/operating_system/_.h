@@ -23,6 +23,12 @@
 #include "aura/node/operating_system/ansi/_.h"
 #include "aura/node/operating_system/linux/_.h"
 
+#elif defined(FREEBSD)
+
+#include "aura/node/operating_system/cairo/_.h"
+#include "aura/node/operating_system/ansi/_.h"
+#include "aura/node/operating_system/freebsd/_.h"
+
 #elif defined(_UWP)
 
 #include "aura/node/operating_system/ansi/_.h"

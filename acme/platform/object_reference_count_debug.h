@@ -4,15 +4,14 @@
 //
 //  Created by Camilo Sasuke Tsumanuma on 20/06/20.
 //
-
 #pragma once
+
 
 #define __FUNCTION_LINE_STRING__  string(__FUNCTION__) + (" (" STRINGFY(__LINE__) ")")
 
+
 class object_reference_count_debug;
 
-//#define STRINGFY(x, y) TOKENPASTE(x, y)
-//#define UNIQUE static void TOKENPASTE2(Unique_, __LINE__)(void) {}
 
 #if OBJECT_REFERENCE_COUNT_DEBUG
 //#define OBJECT_REFERENCE_COUNT_DEBUG_MAX_COUNT 256
@@ -37,10 +36,10 @@ class object_reference_count_debug;
 #define OBJECT_REFERENCE_COUNT_DEBUG_P_FUNCTION_LINE(pReferer) OBJECT_REFERENCE_COUNT_DEBUG_P_NOTE(pReferer, __FUNCTION_LINE_STRING__ )
 #define OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_NOTE(pReferer, note) , OBJECT_REFERENCE_COUNT_DEBUG_P_NOTE(pReferer, note)
 #define OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(pReferer) OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_NOTE(pReferer, __FUNCTION_LINE_STRING__ )
-#define __assign(target, ...) ___assign(target, __VA_ARGS__ )
-#define __note_assign(target, source, ... ) ___assign(target, source,  __VA_ARGS__ )
-#define __named_release(...) ___release( __VA_ARGS__ )
-#define __check_pending_releases(x) x->check_pending_releases()
+#define tracking_assign(target, ...) object_reference_count_debug_assign(target, __VA_ARGS__ )
+#define tracking_note_assign(target, source, ... ) object_reference_count_debug_assign(target, source,  __VA_ARGS__ )
+#define tracking_named_release(...) object_reference_count_debug_release( __VA_ARGS__ )
+#define tracking_check_pending_releases(x) x->object_reference_count_debug_check_pending_releases()
 #else
 #define OBJECT_REFERENCE_COUNT_DEBUG_ARGS
 #define OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS
@@ -62,9 +61,11 @@ class object_reference_count_debug;
 #define OBJECT_REFERENCE_COUNT_DEBUG_P_FUNCTION_LINE(pReferer)
 #define OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_NOTE(pReferer, note)
 #define OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(pReferer)
-#define __assign(target, source) target = source
-#define __note_assign(target, source, note) target = source
-#define __named_release(x) ::release(x)
-#define __check_pending_releases(x)
+#define tracking_assign(target, source) target = source
+#define tracking_note_assign(target, source, note) target = source
+#define tracking_named_release(x) ::release(x)
+#define tracking_check_pending_releases(x)
 #endif
+
+
 

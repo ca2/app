@@ -2002,6 +2002,13 @@ namespace user
 
       }
 
+      if(::is_null(m_pimpl))
+      {
+
+         return;
+
+      }
+
       m_pimpl->user_interaction_on_hide();
 
       // Remark, Kill focus should have been called if this window

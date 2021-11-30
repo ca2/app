@@ -3,20 +3,19 @@ project(imaging_freeimage CXX)
 
 
 list(APPEND library_source
-        _.cpp
-        _.h
-        context_image.cpp
-        context_image.h
-        _factory.cpp
-
-        file_procedure.cpp
-        file_procedure_ex1.cpp
-        fimemory.h
-        framework.cpp
-        framework.h
-        loading.cpp
-        loading_gif.cpp
-        saving.cpp)
+    _.cpp
+    _.h
+    _factory.cpp
+    context_image.cpp
+    context_image.h
+    file_procedure.cpp
+    file_procedure_ex1.cpp
+    fimemory.h
+    framework.cpp
+    framework.h
+    loading.cpp
+    loading_gif.cpp
+    saving.cpp)
 
 
 add_library(imaging_freeimage SHARED ${library_source} loading_svg.cpp)
@@ -40,10 +39,9 @@ if (MSVC)
 
 elseif(LINUX)
 
-    pkg_check_modules(PKGCONFIG librsvg-2.0 cairo)
+    pkg_check_modules(PKGCONFIG librsvg-2.0 freeimage)
 
     target_compile_options(imaging_freeimage PRIVATE -fpermissive ${PKGCONFIG_CFLAGS})
-    #target_link_options(imaging_freeimage PRIVATE -Wl,-rpath=$ORIGIN)
     target_link_libraries(imaging_freeimage PRIVATE freeimage ${PKGCONFIG_LIBRARIES})
     target_link_libraries(imaging_freeimage PRIVATE acme apex aqua aura)
     target_link_options(imaging_freeimage PRIVATE -Wl,-z,defs)

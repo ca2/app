@@ -2248,7 +2248,7 @@ inline ::payload operator + (::payload payload, const ::routine & routine)
 
 
 template < typename TYPE, typename T >
-void ___assign(__pointer(TYPE) & ptr, T * p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+void assign(__pointer(TYPE) & ptr, T * p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
    
    auto pold = ptr.m_p;

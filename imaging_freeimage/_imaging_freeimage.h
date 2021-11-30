@@ -1,7 +1,7 @@
 #pragma once
 
 
-#ifdef LINUX
+#if defined(LINUX) || defined(FREEBSD)
 
 #undef _WINDOWS_
 // apt install libfreeimage-dev

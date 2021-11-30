@@ -11,7 +11,7 @@ namespace dynamic_source
 
       m_pnetnodescriptmain = nullptr;
 
-      __note_assign(m_pmain, this, OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_NOTE("this is annotation"));
+      tracking_note_assign(m_pmain, this, OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_NOTE("this is annotation"));
 
    }
 

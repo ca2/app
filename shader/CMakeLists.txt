@@ -73,18 +73,19 @@ list(APPEND executable_references
    )
 
 
+
 add_custom_target(${PROJECT_NAME}_matter
-   COMMAND ${APPLICATION_BUILD_HELPER} ${PROJECT_SOURCE_DIR}
-   WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
-   DEPENDS deps.txt matter.txt
-   VERBATIM
-   )
+    COMMAND ${APPLICATION_BUILD_HELPER} ${PROJECT_SOURCE_DIR}
+    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+    DEPENDS deps.txt matter.txt
+    VERBATIM
+    )
 
 
 if(LINUX OR FREEBSD)
 
 
-   list(APPEND executable_references ${PROJECT_SOURCE_DIR}/.link_object/_matter.zip.o)
+    list(APPEND executable_references ${PROJECT_SOURCE_DIR}/.link_object/_matter.zip.o)
 
 
 endif()

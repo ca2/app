@@ -111,6 +111,7 @@ endif ()
 add_dependencies(_app_app ${app_common_dependencies})
 add_dependencies(_app_app ${default_draw2d})
 add_dependencies(_app_app crypto_openssl)
+add_dependencies(_app_app folder_zip)
 
 
 target_include_directories(_app_app PRIVATE ${library_include_directories})

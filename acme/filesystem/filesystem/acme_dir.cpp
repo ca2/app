@@ -878,7 +878,7 @@ void acme_dir::set_path_install_folder(const string & strPath)
 //}
 
    
-bool acme_dir::is(const char * path)
+::e_status acme_dir::is(const char * path)
 {
 
    if(::is_null(path))

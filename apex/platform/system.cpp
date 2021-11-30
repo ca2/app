@@ -4989,9 +4989,9 @@ namespace apex
 
       }
 
-      m_mapLibrary4.clear();
-      
       m_sessionmap.clear();
+
+      //m_mapLibrary4.clear();
 
       return ::success;
 

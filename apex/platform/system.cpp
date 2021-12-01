@@ -472,12 +472,44 @@ namespace apex
    void system::erase_session(index iEdge)
    {
 
+      auto psession = m_sessionmap[iEdge];
+
       m_sessionmap.erase_key(iEdge);
 
       if (m_sessionmap.is_empty() && m_bFinalizeIfNoSession)
       {
 
          set_finish();
+
+      }
+
+      if (psession)
+      {
+
+         duration duration;
+
+         duration.Now();
+
+         while (true)
+         {
+
+            if (psession->m_countReference <= 1)
+            {
+
+               break;
+
+            }
+
+            preempt(100_ms);
+
+            if (duration.elapsed() > 10_s)
+            {
+
+               break;
+
+            }
+
+         }
 
       }
 

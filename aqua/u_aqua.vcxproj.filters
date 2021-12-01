@@ -186,6 +186,9 @@
     <ClCompile Include="game\game.cpp">
       <Filter>Source Files\game</Filter>
     </ClCompile>
+    <ClCompile Include="multimedia\audio\text_to_speech_client.cpp">
+      <Filter>Source Files\multimedia\audio</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="platform\system.h">
@@ -304,6 +307,9 @@
     </ClInclude>
     <ClInclude Include="inline\__debug_box_clear_impl.h">
       <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="multimedia\audio\text_to_speech_client.h">
+      <Filter>Header Files\multimedia\audio</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

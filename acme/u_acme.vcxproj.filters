@@ -1444,6 +1444,9 @@
     <ClCompile Include="filesystem\file\transfer.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
+    <ClCompile Include="node\operating_system\windows_common\base_file.cpp">
+      <Filter>Source Files\node\operating_system\windows_common</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="astr.h">

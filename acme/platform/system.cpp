@@ -354,6 +354,8 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    void system::TermSystem()
    {
       
+      m_pmapRegularExpressionContext.release();
+      
       m_pfactoryFolder.release();
       
       ::acme::idpool::term();

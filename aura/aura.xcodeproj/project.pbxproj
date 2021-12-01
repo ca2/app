@@ -935,7 +935,7 @@
 		9A1E1D6C22F0AF69004243B8 /* graphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = graphics.h; sourceTree = "<group>"; };
 		9A1E1D6D22F0AF69004243B8 /* filters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filters.h; sourceTree = "<group>"; };
 		9A1E1D6E22F0AF69004243B8 /* device_context.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = device_context.cpp; sourceTree = "<group>"; };
-		9A20198A24772E9000A31CBF /* libios_aura.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_aura.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A20198A24772E9000A31CBF /* libios_aura.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libios_aura.a; path = "/Users/camilo/solution/basis/source/app/aura/build/Debug-iphoneos/libios_aura.a"; sourceTree = "<absolute>"; };
 		9A20198C24772E9000A31CBF /* ios_aura.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ios_aura.h; sourceTree = "<group>"; };
 		9A20198D24772E9000A31CBF /* ios_aura.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ios_aura.m; sourceTree = "<group>"; };
 		9A214B1824BEB0CA002C1331 /* RoundTextPosition.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = RoundTextPosition.mm; sourceTree = "<group>"; };
@@ -3381,7 +3381,6 @@
 				9A20198B24772E9000A31CBF /* ios_aura */,
 				9A4E846F1D1FD3A7008A419B /* Products */,
 				9A9799131DAC3C2B001CD6D9 /* Frameworks */,
-				9A20198A24772E9000A31CBF /* libios_aura.a */,
 			);
 			sourceTree = "<group>";
 		};

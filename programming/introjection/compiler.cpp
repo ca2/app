@@ -655,16 +655,16 @@ namespace introjection
       string strDCmd;
       string strPreLinkScript;
 
-      strCmd = ::file::path(strFilePath).folder() / "build_bot";
+      strCmd = ::file::path(pathFile).folder() / "build_bot";
 
       string strTargetPath;
-      string strSrcName = ::file::path(strFilePath).title();
+      string strSrcName = ::file::path(pathFile).title();
       string strLogName = ::file::path(strCmd).title();
       strTargetPath =  pcontext->m_papexcontext->dir().module() / "lib" + strSrcName;
       string strDsymPath = (pcontext->m_papexcontext->dir().module().folder(3)) /  "lib" + strSrcName;
       string strDdPath = pcontext->m_papexcontext->dir().module().folder(7);
       string strBuildFolderPath = pcontext->m_papexcontext->dir().module().folder(5);
-      string strSrcFolder = ::file::path(strFilePath).folder();
+      string strSrcFolder = ::file::path(pathFile).folder();
       string strFramework = m_strFramework;
       strClog = strCmd + "-osxc.txt";
       strLlog = strCmd + "-osxl.txt";
@@ -684,7 +684,7 @@ namespace introjection
          str2.replace("%BUILD_FOLDER%", strBuildFolderPath);
          str2.replace("%SRC_FOLDER%", strSrcFolder);
          str2.replace("%SRC_NAME%", strSrcName);
-         pcontext->m_papexcontext->file().put_contents(strLfl + "2.LinkFileList", str2);
+         pcontext->m_papexcontext->file().put_text(strLfl + "2.LinkFileList", str2);
 
       }
 
@@ -1153,7 +1153,7 @@ pacmedir->create("/var/tmp/ca2/intermediate");
          str2.replace("%SRC_FOLDER%", strSrcFolder);
          str2.replace("%SRC_NAME%", strSrcName);
          str2.replace("%LOG_NAME%", strLogName);
-         pcontext->m_papexcontext->file().put_contents(strCmd + "2", str2);
+         pcontext->m_papexcontext->file().put_text(strCmd + "2", str2);
 
          ::system(str2);
 
@@ -1319,7 +1319,7 @@ auto tickStart = ::duration::now();
             str2.replace("%SRC_FOLDER%", strSrcFolder);
             str2.replace("%SRC_NAME%", strSrcName);
             str2.replace("%LOG_NAME%", strLogName);
-            pcontext->m_papexcontext->file().put_contents(strPreLinkScript + "2", str2);
+            pcontext->m_papexcontext->file().put_text(strPreLinkScript + "2", str2);
 
             ::chmod(strPreLinkScript + "2", 0755);
 
@@ -1342,7 +1342,7 @@ auto tickStart = ::duration::now();
             str2.replace("%SRC_FOLDER%", strSrcFolder);
             str2.replace("%SRC_NAME%", strSrcName);
             str2.replace("%LOG_NAME%", strLogName);
-            pcontext->m_papexcontext->file().put_contents(strLCmd + "2", str2);
+            pcontext->m_papexcontext->file().put_text(strLCmd + "2", str2);
             //::system(strLCmd + "2");
             ::system(str2);
 
@@ -1357,7 +1357,7 @@ auto tickStart = ::duration::now();
                str2.replace("%SRC_FOLDER%", strSrcFolder);
                str2.replace("%SRC_NAME%", strSrcName);
                str2.replace("%LOG_NAME%", strLogName);
-               pcontext->m_papexcontext->file().put_contents(strDCmd + "2", str2);
+               pcontext->m_papexcontext->file().put_text(strDCmd + "2", str2);
                //              ::system(strDCmd + "2");
                ::system(str2);
             }

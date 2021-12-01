@@ -277,7 +277,6 @@ namespace acme
 //
 //      return estatus;
 
-
       auto estatus = system_main();
 
       if(!estatus)

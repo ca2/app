@@ -94,9 +94,4 @@
       <Filter>Source Files</Filter>
     </ResourceCompile>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="gpu_opengl.def">
-      <Filter>Source Files</Filter>
-    </None>
-  </ItemGroup>
 </Project>

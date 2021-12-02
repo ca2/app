@@ -2248,7 +2248,7 @@ inline ::payload operator + (::payload payload, const ::routine & routine)
 
 
 template < typename TYPE, typename T >
-void ___assign(__pointer(TYPE) & ptr, T * p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+void object_reference_count_debug_assign(__pointer(TYPE) & ptr, T * p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
    
    auto pold = ptr.m_p;
@@ -2257,22 +2257,22 @@ void ___assign(__pointer(TYPE) & ptr, T * p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P
 
    p->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
-   ___release(pold OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+   object_reference_count_debug_release(pold OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
 }
 
 
 template < typename TYPE >
-void ___release(__pointer(TYPE) & ptr OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+void object_reference_count_debug_release(__pointer(TYPE) & ptr OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
    
-   ___release(ptr.m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+   object_reference_count_debug_release(ptr.m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
 }
 
 
 template < typename TYPE >
-void ___release(TYPE * & p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+void object_reference_count_debug_release(TYPE * & p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
    release(p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);

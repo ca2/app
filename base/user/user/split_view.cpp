@@ -81,7 +81,7 @@ namespace user
          bOk = false;
 
          string strMessage;
-#if defined(__APPLE__) || defined(LINUX) || defined(ANDROID)
+#if defined(__APPLE__) || defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
          strMessage.format("split_view::on_create_impact failed to create views for split impact %s", typeid(this).name());
 #else
          strMessage.format("split_view::on_create_impact failed to create views for split impact %s", typeid(this).raw_name());

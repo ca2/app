@@ -51,6 +51,7 @@ namespace aura
       virtual ::e_status inline_init() override;
       virtual ::e_status inline_term() override;
 
+      virtual void TermSystem() override;
 
       virtual void on_finish_launching();
 

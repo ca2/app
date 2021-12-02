@@ -82,3 +82,14 @@
 ////typedef u64  filesize;
 ////typedef i64   filesize;
 //
+
+CLASS_DECL_ACME ::e_status is_directory(const char * path);
+
+CLASS_DECL_ACME ::e_status create_directory(const char * path);
+
+CLASS_DECL_ACME ::e_status file_exists(const char * path);
+
+CLASS_DECL_ACME ::e_status file_delete(const char * path);
+
+
+

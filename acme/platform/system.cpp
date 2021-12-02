@@ -354,6 +354,8 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    void system::TermSystem()
    {
       
+      m_pmapRegularExpressionContext.release();
+      
       m_pfactoryFolder.release();
       
       ::acme::idpool::term();
@@ -867,7 +869,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       }
 
-      plibrary = plibraryfactory->create_library();
+      auto plibrary = plibraryfactory->create_library();
 
 #else
 
@@ -977,6 +979,23 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       if (!plibrary)
       {
+
+#ifdef CUBE
+
+         auto pfnFactory = ::static_setup::get_factory_function(strLibrary);
+
+         if (pfnFactory)
+         {
+
+            pfactory = m_psystem->__create_new < ::factory::factory >();
+
+            pfnFactory(pfactory);
+
+            return pfactory;
+
+         }
+
+#endif
 
          pfactory = (const ::extended::status&)plibrary;
 
@@ -1914,7 +1933,7 @@ void system_on_open_file(void * pSystem, const char * pszFile)
 }
 
 
-__pointer(class ::system) platform_create_system(const char* pszAppId)
+__transport(class ::system) platform_create_system(const char* pszAppId)
 {
 
    string strAppId(pszAppId);

@@ -38,13 +38,13 @@
 
 
 template < typename TYPE, typename T >
-void ___assign(__pointer(TYPE) & ptr, T * p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+void assign(__pointer(TYPE) & ptr, T * p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 template < typename TYPE >
-void ___release(__pointer(TYPE) & ptr OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+void release(__pointer(TYPE) & ptr OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 template < typename TYPE >
-void ___release(TYPE *& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+void release(TYPE *& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 
 #endif

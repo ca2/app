@@ -128,7 +128,7 @@ namespace acme
 
       virtual ::e_status reboot();
 
-      virtual ::e_status implement();
+      virtual ::e_status implement(__transport(::acme::node) & pnode, __transport(class ::system) & psystem);
 
 
       virtual void install_crash_dump_reporting(const string& strModuleNameWithTheExeExtension);
@@ -282,9 +282,9 @@ namespace acme
 
       virtual void set_console_colors(::u32 dwScreenColors, ::u32 dwPopupColors, ::u32 dwWindowAlpha);
 
-      virtual ::e_status open_folder(const ::file::path & pathFolder);
-      virtual ::e_status open_file(const ::file::path & path);
 
+      virtual ::e_status browse_for_folder(::file::path & pathFolder);
+      virtual ::e_status browse_for_file(::file::path & path);
 
 
       virtual double get_time_zone();

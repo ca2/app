@@ -300,6 +300,9 @@
     <ClInclude Include="xml\xmlite.h">
       <Filter>Header Files\xml</Filter>
     </ClInclude>
+    <ClInclude Include="multimedia\audio\text_to_speech_client.h">
+      <Filter>Header Files\multimedia\audio</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -422,10 +425,8 @@
     <ClCompile Include="node\windows\system.cpp">
       <Filter>Source Files\node\windows</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="aqua.def">
-      <Filter>Source Files</Filter>
-    </None>
+    <ClCompile Include="multimedia\audio\text_to_speech_client.cpp">
+      <Filter>Source Files\multimedia\audio</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

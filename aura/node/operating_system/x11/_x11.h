@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "aura/node/operating_system/linux/_linux.h"
+#include "aura/operating_system.h"
 
 
 //typedef bool X11_PROCESS_EVENT(osdisplay_data * pdisplaydata, XEvent & e, XGenericEventCookie * cookie);

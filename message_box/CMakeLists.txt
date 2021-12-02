@@ -60,20 +60,8 @@ target_include_directories(app_message_box PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 target_compile_definitions(app_message_box PRIVATE _APP_MESSAGE_BOX_LIBRARY)
 
+
 add_executable(_app_message_box _main.cpp)
-
-
-add_custom_command(
-   TARGET ${PROJECT_NAME}
-   POST_BUILD
-   WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
-   COMMAND ${APPLICATION_BUILD_HELPER} ${PROJECT_SOURCE_DIR}
-   COMMAND ld -r -b binary -o ${PROJECT_BINARY_DIR}/_matter.zip.o _matter.zip
-)
-
-list(APPEND executable_references ${PROJECT_BINARY_DIR}/_matter.zip.o)
-
-
 
 
 list(APPEND executable_references
@@ -81,8 +69,29 @@ list(APPEND executable_references
    apex
    aqua
    aura
+   app_app
    app_message_box
    )
+
+
+add_custom_target(${PROJECT_NAME}_matter
+   COMMAND ${APPLICATION_BUILD_HELPER} ${PROJECT_SOURCE_DIR}
+   WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+   DEPENDS deps.txt matter.txt
+   VERBATIM
+   )
+
+
+if(LINUX OR FREEBSD)
+
+
+    list(APPEND executable_references ${PROJECT_SOURCE_DIR}/.link_object/_matter.zip.o)
+
+
+endif()
+
+
+add_dependencies(_app_app ${PROJECT_NAME}_matter)
 
 
 if (MSVC)

@@ -58,6 +58,51 @@ acme_file::~acme_file()
 }
 
 
+
+bool acme_file::is_equal(const char* path1, const char* path2)
+{
+
+   auto mem1 = as_memory(path1);
+
+   auto mem2 = as_memory(path2);
+
+   return mem1 == mem2;
+
+}
+
+
+::e_status acme_file::overwrite_if_different(const char* pathTarget, const char* pathSource)
+{
+
+   if (!exists(pathSource))
+   {
+
+      return error_not_found;
+
+   }
+
+   if (exists(pathTarget) && is_equal(pathTarget, pathSource))
+   {
+
+      return ::success_none;
+
+   }
+
+   auto estatus = copy(pathTarget, pathSource, true);
+
+   if (!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   return estatus;
+
+}
+
+
+
 ::file::path acme_file::module()
 {
 
@@ -535,12 +580,33 @@ string acme_file::get_temporary_file_name(const char * lpszName, const char * ps
 }
 
 
-bool acme_file::exists(const char * path)
+::e_status acme_file::exists(const char * path)
 {
 
-   throw ::interface_only_exception();
+   if(::is_null(path))
+   {
 
-   return false;
+      return error_null_pointer;
+
+   }
+
+   if(*path == '\0')
+   {
+
+      return error_invalid_argument;
+
+   }
+
+   auto estatus = _exists(path);
+
+   if(!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   return estatus;
 
 }
 
@@ -669,12 +735,33 @@ bool acme_file::is_true(const char * path)
 }
 
 
-::e_status acme_file::delete_file(const char * pszFileName)
+::e_status acme_file::delete_file(const char * path)
 {
 
-   throw ::interface_only_exception();
+   if(::is_null(path))
+   {
 
-   return false;
+      return error_null_pointer;
+
+   }
+
+   if(*path == '\0')
+   {
+
+      return error_invalid_argument;
+
+   }
+
+   auto estatus = _delete(path);
+
+   if(!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   return estatus;
 
 }
 
@@ -1276,6 +1363,43 @@ string_array acme_file::lines(const char * path)
    return ::success;
 
 }
+
+
+
+
+
+::e_status acme_file::_exists(const char * path)
+{
+
+   auto estatus = ::file_exists(path);
+
+   if(!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   return estatus;
+
+}
+
+
+::e_status acme_file::_delete(const char * path)
+{
+
+
+   if (::unlink(path) == -1)
+   {
+
+      return errno_to_status(errno);
+
+   }
+
+   return ::success;
+
+}
+
 
 
 

@@ -21,10 +21,10 @@ struct CLASS_DECL_ACME PLAIN_MAIN
    hinstance         m_hinstancePrev = nullptr;
    int               m_nCmdShow = -1000;
 
-#elif defined(LINUX)
+#elif defined(LINUX) || defined(FREEBSD)
 
-   char * _binary__matter_zip_start = nullptr;
-   char * _binary__matter_zip_end = nullptr;
+   char * m_pchar_binary__matter_zip_start = nullptr;
+   char * m_pchar_binary__matter_zip_end = nullptr;
 
 #endif
 
@@ -41,7 +41,7 @@ struct CLASS_DECL_ACME PLAIN_MAIN
    ::boolean                     m_bInitializeDataCentral;
 #ifdef WINDOWS_DESKTOP
    ::boolean                     m_bGdiplus;
-#elif defined(LINUX)
+#elif defined(LINUX) || defined(FREEBSD)
    ::boolean                     m_bGtkApp;
 #endif
    ::boolean                     m_bShowApplicationInformation;

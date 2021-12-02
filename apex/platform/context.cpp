@@ -6,7 +6,7 @@
 #include "acme/filesystem/filesystem/acme_path.h"
 
 
-CLASS_DECL_ACME const char* get_server_ca2_cc();
+//CLASS_DECL_ACME const char* get_server_ca2_cc();
 
 
 namespace apex
@@ -25,6 +25,7 @@ namespace apex
 
 
    }
+
 
    string context::get_latest_build_number(const char * pszConfiguration, const char * pszAppId)
    {
@@ -51,16 +52,18 @@ namespace apex
 
       string strSpaIgnitionBaseUrl;
 
+      string strStoreBaseUrl = get_store_server_base_url();;
+
       if (strConfiguration == "basis")
       {
 
-         strSpaIgnitionBaseUrl = string(get_server_ca2_cc()) + "api/spaignition";
+         strSpaIgnitionBaseUrl = ::file::path(strStoreBaseUrl) / "api/spaignition";
 
       }
       else
       {
 
-         strSpaIgnitionBaseUrl = string(get_server_ca2_cc()) + "api/spaignition";
+         strSpaIgnitionBaseUrl = ::file::path(strStoreBaseUrl) / "api/spaignition";
 
       }
 
@@ -1353,6 +1356,14 @@ namespace apex
       m_pcreate->m_bNew = false;
 
       return m_pcreate.get();
+
+   }
+
+
+   string context::get_store_server_base_url()
+   {
+
+      return m_strStoreServerBaseUrl;
 
    }
 

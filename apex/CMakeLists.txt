@@ -1407,8 +1407,6 @@ elseif(LINUX OR FREEBSD)
 endif ()
 
 
-
-
 target_include_directories(apex PRIVATE .)
 target_include_directories(apex PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 target_include_directories(apex PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)

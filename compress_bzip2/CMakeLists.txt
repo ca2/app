@@ -13,6 +13,10 @@ list(APPEND library_source
    _factory.cpp)
 
 
+list(APPEND library_references
+   acme
+   )
+
 
 if (MSVC)
     set(LIBCXX_TARGETING_MSVC ON)
@@ -27,19 +31,44 @@ target_precompile_headers(compress_bzip2 PRIVATE framework.h)
 
 set_target_properties(compress_bzip2 PROPERTIES LINKER_LANGUAGE CXX)
 
+
 if (MSVC)
-    target_compile_options(compress_bzip2 PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-    target_link_options(compress_bzip2 PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-    target_link_options(compress_bzip2 PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/compress_bzip2.lib")
-    target_link_options(compress_bzip2 PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/compress_bzip2.def")
-    target_link_libraries(compress_bzip2 PRIVATE acme apex aqua aura Gdiplus)
+
+
+   target_compile_options(compress_bzip2 PRIVATE "/MD$<$<CONFIG:Debug>:d>")
+   target_link_options(compress_bzip2 PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+   target_link_options(compress_bzip2 PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/compress_bzip2.lib")
+   target_link_options(compress_bzip2 PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/compress_bzip2.def")
+   target_link_libraries(compress_bzip2 PRIVATE acme apex aqua aura Gdiplus)
+
+
 elseif(LINUX)
-       target_compile_options(compress_bzip2 PRIVATE ${PKGCONFIG_CFLAGS})
+
+
+if(UBUNTU)
+
+
+   list(APPEND library_references
+      bz2)
+
+
+else()
+
+
+   pkg_check_modules(PKGCONFIG bzip2)
+   target_compile_options(compress_bzip2 PRIVATE ${PKGCONFIG_CFLAGS})
    target_link_options(compress_bzip2 PRIVATE ${PKGCONFIG_LDFLAGS})
-    #target_link_options(compress_bzip2 PRIVATE -Wl,-rpath=$ORIGIN)
-    target_link_libraries(compress_bzip2 PRIVATE ${PKGCONFIG_LIBRARIES})
-    target_link_options(compress_bzip2 PRIVATE -Wl,-z,defs)
-    message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
+   target_link_libraries(compress_bzip2 PRIVATE ${PKGCONFIG_LIBRARIES})
+
+
+endif()
+
+
+   target_link_libraries(compress_bzip2 PRIVATE ${library_references})
+   target_link_options(compress_bzip2 PRIVATE -Wl,-z,defs)
+   #message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
+
+
 endif()
 
 

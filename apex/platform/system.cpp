@@ -388,6 +388,12 @@ namespace apex
 
       }
 
+//#ifdef WINDOWS_DESKTOP
+//
+//      m_uiWindowsTaskbarCreatedMessage = 0;
+//
+//#endif
+
       return estatus;
 
    }
@@ -466,12 +472,44 @@ namespace apex
    void system::erase_session(index iEdge)
    {
 
+      auto psession = m_sessionmap[iEdge];
+
       m_sessionmap.erase_key(iEdge);
 
       if (m_sessionmap.is_empty() && m_bFinalizeIfNoSession)
       {
 
          set_finish();
+
+      }
+
+      if (psession)
+      {
+
+         duration duration;
+
+         duration.Now();
+
+         while (true)
+         {
+
+            if (psession->m_countReference <= 1)
+            {
+
+               break;
+
+            }
+
+            preempt(100_ms);
+
+            if (duration.elapsed() > 10_s)
+            {
+
+               break;
+
+            }
+
+         }
 
       }
 
@@ -527,6 +565,7 @@ namespace apex
    ::e_status system::process_init()
    {
 
+      
       ::factory::add_factory_item<::create>();
       ::factory::add_factory_item<command_line>();
       ::factory::add_factory_item<http::context>();
@@ -539,6 +578,20 @@ namespace apex
          return estatus;
 
       }
+
+
+#if !defined(ANDROID)
+
+      if (!m_papplicationStartup->is_service() || m_papplicationStartup->is_user_service())
+      {
+
+         m_pmutexUserAppData = __new(::mutex(this, false, "Local\\ca2.UserAppData"));
+         m_pmutexSystemAppData = __new(::mutex(this, false, "Local\\ca2.SystemAppData"));
+
+      }
+
+#endif
+
 
       // estatus = ([a-z0-9_]+)_factory("apex", PLATFORM_NAME);
 
@@ -1207,7 +1260,16 @@ pacmedir->create("/ca2core");
 
       INFORMATION("start");
 
-
+//#ifdef WINDOWS_DESKTOP
+//
+//      if (m_uiWindowsTaskbarCreatedMessage == 0)
+//      {
+//
+//         m_uiWindowsTaskbarCreatedMessage = RegisterWindowMessageW(L"TaskbarCreated");
+//
+//      }
+//
+//#endif
 
       //::apex::profiler::initialize();
 
@@ -4959,9 +5021,9 @@ namespace apex
 
       }
 
-      m_mapLibrary4.clear();
-      
       m_sessionmap.clear();
+
+      //m_mapLibrary4.clear();
 
       return ::success;
 

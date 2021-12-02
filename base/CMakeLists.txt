@@ -18,19 +18,19 @@ list(APPEND library_source
         include/objc.h
         include/objcpp.h
         include/winrt.h
-        inline/__debug_box_clear_impl.h
-        inline/__debug_box_set_impl.h
-        inline/_acid_app_impl.h
-        inline/_app_impl1.h
-        inline/_application.h
-        inline/_console_old.h
-        inline/_draw2d_impl.h
-        inline/_new_impl.h
-        inline/application.h
-        inline/application_common.h
-        inline/console.h
-        inline/console_common.h
-        inline/library.h
+        #inline/__debug_box_clear_impl.h
+        #inline/__debug_box_set_impl.h
+        #inline/_acid_app_impl.h
+        #inline/_app_impl1.h
+        #inline/_application.h
+        #inline/_console_old.h
+        #inline/_draw2d_impl.h
+        #inline/_new_impl.h
+        #inline/application.h
+        #inline/application_common.h
+        #inline/console.h
+        #inline/console_common.h
+        #inline/library.h
         platform/_features.h
         platform/_generic_object_constructor_impl.h
         platform/_impl.h
@@ -215,17 +215,17 @@ list(APPEND library_source
         version/version.h
         _.cpp
         _.h
-        __matter_ca2.cpp
+        #__matter_ca2.cpp
         _defer.h
-        aaa_want_to_move_xml.h
+        #$aaa_want_to_move_xml.h
         application.h
         astr.h
         callback.h
         console.h
-        context_glx.cpp
+        #context_glx.cpp
         framework.cpp
         framework.h
-        framework_c.h
+        #framework_c.h
         id.h
         library.h
         message.h
@@ -277,17 +277,23 @@ set_target_properties(base PROPERTIES LINKER_LANGUAGE CXX)
 
 
 if (MSVC)
+
+
     target_compile_options(base PRIVATE "/MD$<$<CONFIG:Debug>:d>")
     target_link_options(base PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
     target_link_options(base PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/base.lib")
     target_link_options(base PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/base.def")
     target_link_libraries(base PRIVATE acme apex aqua aura axis)
-elseif(LINUX)
+
+
+elseif(LINUX OR FREEBSD)
+
+
     target_compile_options(base PRIVATE -fpermissive)
-    #target_link_options(base PRIVATE -Wl,-rpath=$ORIGIN)
-    target_link_libraries(base PRIVATE ${PKGCONFIG_LIBRARIES})
     target_link_libraries(base PRIVATE acme apex aqua aura axis)
     target_link_options(base PRIVATE -Wl,-z,defs)
+
+
 endif()
 
 

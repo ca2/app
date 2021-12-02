@@ -3229,9 +3229,6 @@
     <ClCompile Include="platform\factory.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="__matter_ca2.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\filesystem\path_object.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
@@ -3846,6 +3843,12 @@
     </ClCompile>
     <ClCompile Include="filesystem\file\folder.cpp">
       <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\windows\base_file.cpp">
+      <Filter>Source Files\node\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\windows_common\base_file.cpp">
+      <Filter>Source Files\node\operating_system\windows_common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

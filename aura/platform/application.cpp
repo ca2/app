@@ -85,7 +85,7 @@ namespace aura
    {
 
       m_pauraapplication = this;
-#ifdef LINUX
+#if defined(LINUX) || defined(FREEBSD)
       m_bSnLauncheeSetup = false;
 #endif
 

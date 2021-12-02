@@ -716,14 +716,14 @@ void acme_dir::set_path_install_folder(const string & strPath)
 //}
 
 
-bool acme_dir::_is(const char * path1)
-{
-
-   throw ::interface_only_exception();
-
-   return false;
-
-}
+//bool acme_dir::_is(const char * path1)
+//{
+//
+//   throw ::interface_only_exception();
+//
+//   return false;
+//
+//}
 
 
 //::file::path acme_dir::base_module()
@@ -820,7 +820,23 @@ bool acme_dir::_is(const char * path1)
 
    }
 
-   auto estatus = _create_directory(pathParam);
+   auto estatus = m_pacmefile->exists(pathParam);
+
+   if(estatus)
+   {
+
+      estatus = m_pacmefile->delete_file(pathParam);
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+   }
+
+   estatus = _create_directory(pathParam);
 
    if (estatus == error_already_exists)
    {
@@ -852,18 +868,32 @@ bool acme_dir::_is(const char * path1)
 }
 
 
-::e_status acme_dir::_create_directory(const char * pathParam)
-{
-
-   throw ::interface_only_exception();
-
-   return ::error_interface_only;
-
-}
+//::e_status acme_dir::_create_directory(const char * pathParam)
+//{
+//
+//   throw ::interface_only_exception();
+//
+//   return ::error_interface_only;
+//
+//}
 
    
-bool acme_dir::is(const char * path)
+::e_status acme_dir::is(const char * path)
 {
+
+   if(::is_null(path))
+   {
+
+      return error_null_pointer;
+
+   }
+
+   if(*path == '\0')
+   {
+
+      return error_invalid_argument;
+
+   }
 
    return _is(path);
 
@@ -981,6 +1011,41 @@ string acme_dir::get_current_directory()
 //} // namespace dir
 
 
+
+
+::e_status acme_dir::_is(const char * path)
+{
+
+   auto estatus = ::is_directory(path);
+
+   if(!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   return estatus;
+
+}
+
+
+
+::e_status acme_dir::_create_directory(const char * path)
+{
+
+   auto estatus = ::create_directory(path);
+
+   if(!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   return estatus;
+
+}
 
 
 

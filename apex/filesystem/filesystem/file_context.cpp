@@ -1015,14 +1015,14 @@ void file_context::calculate_main_resource_memory()
 ::block file_context::get_main_resource_block()
 {
 
-#ifdef LINUX
+#if defined(LINUX) || defined(FREEBSD)
 
-   if(m_psystem->_binary__matter_zip_start && m_psystem->_binary__matter_zip_end)
+   if(m_psystem->m_pchar_binary__matter_zip_start && m_psystem->m_pchar_binary__matter_zip_end)
    {
 
       return {
-         m_psystem->_binary__matter_zip_start,
-         m_psystem->_binary__matter_zip_end - m_psystem->_binary__matter_zip_start
+         m_psystem->m_pchar_binary__matter_zip_start,
+         m_psystem->m_pchar_binary__matter_zip_end - m_psystem->m_pchar_binary__matter_zip_start
       };
 
    }

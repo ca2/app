@@ -654,6 +654,8 @@ set_target_properties(axis PROPERTIES LINKER_LANGUAGE CXX)
 
 
 if (MSVC)
+
+
     target_compile_options(axis PRIVATE "/MD$<$<CONFIG:Debug>:d>")
     target_link_options(axis PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
     target_link_options(axis PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/axis.lib")
@@ -661,11 +663,16 @@ if (MSVC)
     #target_link_libraries(axis PRIVATE acme apex aqua aura pcre bzip2 ws2_32 kernel32 user32 gdi32 winspool comdlg32 advapi32 shell32 ole32 oleaut32 uuid odbc32 odbccp32)
     #target_link_libraries(axis PRIVATE acme apex aqua aura bzip2 ws2_32 kernel32 user32 gdi32 winspool comdlg32 advapi32 shell32 ole32 oleaut32 uuid odbc32 odbccp32)
     target_link_libraries(axis PRIVATE ${library_references})
-elseif(LINUX)
+
+
+elseif(LINUX OR FREEBSD)
+
+
     target_compile_options(axis PRIVATE -fpermissive)
-    #target_link_options(axis PRIVATE -Wl,-rpath=$ORIGIN)
-    target_link_libraries(axis PRIVATE bz2 ${PKGCONFIG_LIBRARIES} ${library_references})
+    target_link_libraries(axis PRIVATE ${library_references})
     target_link_options(axis PRIVATE -Wl,-z,defs)
+
+
 endif()
 
 

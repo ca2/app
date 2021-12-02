@@ -350,12 +350,12 @@
       <ExceptionHandling>Async</ExceptionHandling>
       <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <CompileAsWinRT>false</CompileAsWinRT>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <OpenMPSupport>false</OpenMPSupport>
       <EnableModules>false</EnableModules>
       <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <Link>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
@@ -401,10 +401,11 @@
       <ExceptionHandling>Async</ExceptionHandling>
       <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <CompileAsWinRT>false</CompileAsWinRT>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <OpenMPSupport>false</OpenMPSupport>
+      <EnableModules>false</EnableModules>
+      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <Link>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
@@ -450,13 +451,13 @@
       <ExceptionHandling>Async</ExceptionHandling>
       <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <CompileAsWinRT>false</CompileAsWinRT>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <OpenMPSupport>false</OpenMPSupport>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <EnableModules>false</EnableModules>
       <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <Link>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
@@ -502,10 +503,11 @@
       <ExceptionHandling>Async</ExceptionHandling>
       <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <CompileAsWinRT>false</CompileAsWinRT>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <OpenMPSupport>false</OpenMPSupport>
+      <EnableModules>false</EnableModules>
+      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <Link>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
@@ -642,12 +644,12 @@
       <ExceptionHandling>Async</ExceptionHandling>
       <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <CompileAsWinRT>false</CompileAsWinRT>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <OpenMPSupport>false</OpenMPSupport>
       <EnableModules>false</EnableModules>
       <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <Link>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
@@ -693,10 +695,11 @@
       <ExceptionHandling>Async</ExceptionHandling>
       <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <CompileAsWinRT>false</CompileAsWinRT>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <OpenMPSupport>false</OpenMPSupport>
+      <EnableModules>false</EnableModules>
+      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <Link>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
@@ -757,6 +760,7 @@
     <ClInclude Include="multimedia\audio\out.h" />
     <ClInclude Include="multimedia\audio\sound_track_player.h" />
     <ClInclude Include="multimedia\audio\speaker.h" />
+    <ClInclude Include="multimedia\audio\text_to_speech_client.h" />
     <ClInclude Include="multimedia\audio\_.h" />
     <ClInclude Include="multimedia\decoder.h" />
     <ClInclude Include="multimedia\decoder_plugin.h" />
@@ -798,6 +802,7 @@
     <ClCompile Include="multimedia\audio\audio_wave_out.cpp" />
     <ClCompile Include="multimedia\audio\sound_track_player.cpp" />
     <ClCompile Include="multimedia\audio\speaker.cpp" />
+    <ClCompile Include="multimedia\audio\text_to_speech_client.cpp" />
     <ClCompile Include="multimedia\decoder.cpp" />
     <ClCompile Include="multimedia\decoder_plugin.cpp" />
     <ClCompile Include="multimedia\exception.cpp" />

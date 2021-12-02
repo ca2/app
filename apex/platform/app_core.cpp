@@ -1902,19 +1902,6 @@ __transport(::application) app_core::new_application(const char* pszAppId)
 
    }
 
-#if !defined(ANDROID)
-
-   auto psystem = get_system()->m_papexsystem;
-
-   if (!papp->is_service() || papp->is_user_service())
-   {
-
-      psystem->m_pmutexUserAppData = __new(::mutex(psystem, false, "Local\\ca2.UserAppData"));
-      psystem->m_pmutexSystemAppData = __new(::mutex(psystem, false, "Local\\ca2.SystemAppData"));
-
-   }
-
-#endif
 
    if (is_verbose())
    {

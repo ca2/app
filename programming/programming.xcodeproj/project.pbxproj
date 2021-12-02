@@ -12,9 +12,13 @@
 		07B65776190F3CA2002DAADE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65766190F3CA2002DAADE /* Foundation.framework */; };
 		07B65778190F3CA2002DAADE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65777190F3CA2002DAADE /* UIKit.framework */; };
 		07B6577B190F3CA2002DAADE /* libios_programming.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65764190F3CA2002DAADE /* libios_programming.dylib */; };
-		07B65781190F3CA2002DAADE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 07B6577F190F3CA2002DAADE /* InfoPlist.strings */; };
-		07B65783190F3CA2002DAADE /* math_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B65782190F3CA2002DAADE /* math_iosTests.m */; };
 		9A32568E271F8CE0004A4955 /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A32568B271F89FA004A4955 /* libaxis.dylib */; };
+		9A6B7CAE2757D86900DB33D9 /* library.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B7CAC2757D86800DB33D9 /* library.cpp */; };
+		9A6B7CAF2757D86900DB33D9 /* library.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A6B7CAD2757D86800DB33D9 /* library.h */; };
+		9A6B7CB52757D94900DB33D9 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A6B7CB12757D94900DB33D9 /* _.h */; };
+		9A6B7CB62757D94900DB33D9 /* compiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B7CB22757D94900DB33D9 /* compiler.cpp */; };
+		9A6B7CB72757D94900DB33D9 /* _programming.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A6B7CB32757D94900DB33D9 /* _programming.h */; };
+		9A6B7CB82757D94900DB33D9 /* compiler.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A6B7CB42757D94900DB33D9 /* compiler.h */; };
 		9A7EDCCD2670F06500BC7094 /* compiler.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7EDC932670F06500BC7094 /* compiler.h */; };
 		9A7EDCCE2670F06500BC7094 /* compiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7EDC942670F06500BC7094 /* compiler.cpp */; };
 		9A7EDCCF2670F06500BC7094 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7EDC952670F06500BC7094 /* _.h */; };
@@ -97,11 +101,14 @@
 		07B65773190F3CA2002DAADE /* math_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = math_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		07B65774190F3CA2002DAADE /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		07B65777190F3CA2002DAADE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		07B6577E190F3CA2002DAADE /* math_iosTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "math_iosTests-Info.plist"; sourceTree = "<group>"; };
-		07B65780190F3CA2002DAADE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		07B65782190F3CA2002DAADE /* math_iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = math_iosTests.m; sourceTree = "<group>"; };
 		9A325686271F89FA004A4955 /* axis.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axis.xcodeproj; path = ../axis/axis.xcodeproj; sourceTree = "<group>"; };
 		9A574B9816AAB906000CC4EF /* libprogramming.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libprogramming.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A6B7CAC2757D86800DB33D9 /* library.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = library.cpp; sourceTree = "<group>"; };
+		9A6B7CAD2757D86800DB33D9 /* library.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = library.h; sourceTree = "<group>"; };
+		9A6B7CB12757D94900DB33D9 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
+		9A6B7CB22757D94900DB33D9 /* compiler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = compiler.cpp; sourceTree = "<group>"; };
+		9A6B7CB32757D94900DB33D9 /* _programming.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _programming.h; sourceTree = "<group>"; };
+		9A6B7CB42757D94900DB33D9 /* compiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compiler.h; sourceTree = "<group>"; };
 		9A7EDC932670F06500BC7094 /* compiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compiler.h; sourceTree = "<group>"; };
 		9A7EDC942670F06500BC7094 /* compiler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = compiler.cpp; sourceTree = "<group>"; };
 		9A7EDC952670F06500BC7094 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
@@ -191,24 +198,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		07B6577C190F3CA2002DAADE /* math_iosTests */ = {
-			isa = PBXGroup;
-			children = (
-				07B65782190F3CA2002DAADE /* math_iosTests.m */,
-				07B6577D190F3CA2002DAADE /* Supporting Files */,
-			);
-			path = math_iosTests;
-			sourceTree = "<group>";
-		};
-		07B6577D190F3CA2002DAADE /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				07B6577E190F3CA2002DAADE /* math_iosTests-Info.plist */,
-				07B6577F190F3CA2002DAADE /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		9A325687271F89FA004A4955 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -222,7 +211,6 @@
 			children = (
 				9A325686271F89FA004A4955 /* axis.xcodeproj */,
 				9A7EDC912670F06500BC7094 /* programming */,
-				07B6577C190F3CA2002DAADE /* math_iosTests */,
 				07B65765190F3CA2002DAADE /* Frameworks */,
 				9A574B9916AAB906000CC4EF /* Products */,
 			);
@@ -256,6 +244,8 @@
 		9A7EDC922670F06500BC7094 /* introjection */ = {
 			isa = PBXGroup;
 			children = (
+				9A6B7CAC2757D86800DB33D9 /* library.cpp */,
+				9A6B7CAD2757D86800DB33D9 /* library.h */,
 				9A7EDC932670F06500BC7094 /* compiler.h */,
 				9A7EDC942670F06500BC7094 /* compiler.cpp */,
 				9A7EDC952670F06500BC7094 /* _.h */,
@@ -298,6 +288,10 @@
 		9A7EDCC12670F06500BC7094 /* programming */ = {
 			isa = PBXGroup;
 			children = (
+				9A6B7CB12757D94900DB33D9 /* _.h */,
+				9A6B7CB32757D94900DB33D9 /* _programming.h */,
+				9A6B7CB22757D94900DB33D9 /* compiler.cpp */,
+				9A6B7CB42757D94900DB33D9 /* compiler.h */,
 				9A7EDCC32670F06500BC7094 /* application.h */,
 			);
 			path = programming;
@@ -313,8 +307,12 @@
 				9A7EDCF22670F06500BC7094 /* _.h in Headers */,
 				9A7EDCE02670F06500BC7094 /* session.h in Headers */,
 				9A7EDCD12670F06500BC7094 /* _impl.h in Headers */,
+				9A6B7CB82757D94900DB33D9 /* compiler.h in Headers */,
+				9A6B7CB72757D94900DB33D9 /* _programming.h in Headers */,
 				9A7EDCD92670F06500BC7094 /* httpd_socket.h in Headers */,
+				9A6B7CB52757D94900DB33D9 /* _.h in Headers */,
 				9A7EDCE42670F06500BC7094 /* script_main.h in Headers */,
+				9A6B7CAF2757D86900DB33D9 /* library.h in Headers */,
 				9A7EDCF12670F06500BC7094 /* framework.h in Headers */,
 				9A7EDCCF2670F06500BC7094 /* _.h in Headers */,
 				9A7EDCD62670F06500BC7094 /* script_cache.h in Headers */,
@@ -444,7 +442,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07B65781190F3CA2002DAADE /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -462,7 +459,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07B65783190F3CA2002DAADE /* math_iosTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -474,9 +470,11 @@
 				9A7EDCE82670F06500BC7094 /* script_cache.cpp in Sources */,
 				9A7EDCD72670F06500BC7094 /* script.cpp in Sources */,
 				9A7EDCDC2670F06500BC7094 /* script_instance.cpp in Sources */,
+				9A6B7CAE2757D86900DB33D9 /* library.cpp in Sources */,
 				9A7EDCDE2670F06500BC7094 /* script_interface.cpp in Sources */,
 				9A7EDCD22670F06500BC7094 /* httpd_socket.cpp in Sources */,
 				9A7EDCDB2670F06500BC7094 /* exit_exception.cpp in Sources */,
+				9A6B7CB62757D94900DB33D9 /* compiler.cpp in Sources */,
 				9A7EDCEA2670F06500BC7094 /* framework.cpp in Sources */,
 				9A7EDCDF2670F06500BC7094 /* script_composite.cpp in Sources */,
 				9A7EDCE12670F06500BC7094 /* session.cpp in Sources */,
@@ -501,17 +499,6 @@
 			targetProxy = 9A32568C271F8A19004A4955 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		07B6577F190F3CA2002DAADE /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				07B65780190F3CA2002DAADE /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		07B65784190F3CA2002DAADE /* Debug */ = {
@@ -701,7 +688,6 @@
 					"$(inherited)",
 					"$(WorkspaceDir)/archive",
 					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library/$(ARCHS)/$(CONFIGURATION)",
-					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/third/library/$(ARCHS)/$(CONFIGURATION)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;

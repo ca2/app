@@ -61,7 +61,7 @@ public:
 
    __composite(class ::xml::xml)                                     m_pxml;
 
-   __pointer(class ::acme::node)                                     m_pnode;
+   __transport(class ::acme::node)                                   m_pnode;
    __composite(class ::acme_dir)                                     m_pacmedir;
    __composite(class ::acme_file)                                    m_pacmefile;
    __composite(class ::acme_path)                                    m_pacmepath;
@@ -90,7 +90,7 @@ public:
 #endif
 
 
-   inline ::acme::node* node() { return m_pnode; }
+   inline __transport(::acme::node) & node() { return m_pnode; }
 
    inline class ::str::base64* base64() { return m_pbase64; };
 

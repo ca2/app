@@ -73,54 +73,58 @@ list(APPEND executable_references
    )
 
 
-if(LINUX)
+
+add_custom_target(${PROJECT_NAME}_matter
+    COMMAND ${APPLICATION_BUILD_HELPER} ${PROJECT_SOURCE_DIR}
+    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+    DEPENDS deps.txt matter.txt
+    VERBATIM
+    )
 
 
-add_custom_command(
-   TARGET ${PROJECT_NAME}
-   POST_BUILD
-   WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
-   COMMAND ${APPLICATION_BUILD_HELPER} ${PROJECT_SOURCE_DIR}
-   COMMAND ld -r -b binary -o ${PROJECT_BINARY_DIR}/_matter.zip.o _matter.zip
-)
+if(LINUX OR FREEBSD)
 
 
-list(APPEND executable_references ${PROJECT_BINARY_DIR}/_matter.zip.o)
+    list(APPEND executable_references ${PROJECT_SOURCE_DIR}/.link_object/_matter.zip.o)
 
 
 endif()
 
 
+add_dependencies(_${PROJECT_NAME} ${PROJECT_NAME}_matter)
+
+
 if (MSVC)
+
 
    target_compile_options(_app_shader PRIVATE "/MD$<$<CONFIG:Debug>:d>")
    target_link_options(_app_shader PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
    target_link_options(_app_shader PRIVATE "/SUBSYSTEM:WINDOWS")
    target_link_libraries(_app_shader PRIVATE ${executable_references})
 
+
 elseif(LINUX OR FREEBSD)
 
+
    target_compile_options(_app_shader PRIVATE -fpermissive)
-   #target_link_options(_app_shader PRIVATE -Wl,-rpath=$ORIGIN)
    target_link_libraries(_app_shader PRIVATE ${executable_references})
    target_link_options(_app_shader PRIVATE -Wl,-z,defs)
+
 
 endif ()
 
 
+
 add_dependencies(_app_shader ${default_draw2d})
-add_dependencies(_app_shader ${default_imaging})
 add_dependencies(_app_shader ${default_write_text})
 add_dependencies(_app_shader ${app_common_dependencies})
-add_dependencies(_app_shader experience_core)
 add_dependencies(_app_shader gpu_opengl)
+
 
 
 target_include_directories(_app_shader PRIVATE ${library_include_directories})
 
 target_link_directories(_app_shader PRIVATE ${library_link_directories})
-
-target_link_libraries(_app_shader PRIVATE acme apex app_shader)
 
 set_target_properties(_app_shader PROPERTIES LINKER_LANGUAGE CXX)
 

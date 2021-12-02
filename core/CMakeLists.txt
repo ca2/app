@@ -1062,6 +1062,7 @@ set_target_properties(core PROPERTIES LINKER_LANGUAGE CXX)
 
 if (MSVC)
 
+
    target_compile_options(core PRIVATE "/MD$<$<CONFIG:Debug>:d>")
    target_compile_options(core PRIVATE "/bigobj")
    target_link_options(core PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
@@ -1069,13 +1070,15 @@ if (MSVC)
    target_link_options(core PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/core.def")
    target_link_libraries(core PRIVATE ${library_references})
 
+
 elseif(LINUX OR FREEBSD)
 
+
    target_compile_options(core PRIVATE -fpermissive)
-   #target_link_options(core PRIVATE -Wl,-rpath=$ORIGIN)
    target_link_libraries(core PRIVATE ${PKGCONFIG_LIBRARIES})
    target_link_libraries(core PRIVATE ${library_references})
    target_link_options(core PRIVATE -Wl,-z,defs)
+
 
 endif ()
 

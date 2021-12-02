@@ -2819,6 +2819,7 @@ __pointer(::service) application::create_service()
 ::e_status application::process_init()
 {
 
+
 //if(::get_global_application() == nullptr)
 //{
 
@@ -9970,7 +9971,7 @@ string application::get_version()
 }
 
 
-#ifdef LINUX
+#if defined(LINUX) || defined(FREEBSD)
 
 
 string application::get_wm_class() const

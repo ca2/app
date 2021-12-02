@@ -1,3 +1,4 @@
+// Added get_time_zone memberby camilo on 2021-12-02 14:23 BRT <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
 
@@ -693,6 +694,12 @@ namespace geo
       }
 
       return str;
+
+   }
+
+
+   ::datetime::department::time_zone department::get_time_zone(const string& strLat, const string& strLng)
+   {
 
    }
 

@@ -16,12 +16,6 @@ namespace aura
 
       ::type                                             m_typePaneTabView;
       
-#ifdef APPLE_IOS
-
-      plane_system *                                     m_pplanesystem;
-
-#endif
-
       __pointer(::windowing::window)                     m_pwindowMain;
 
 
@@ -40,17 +34,6 @@ namespace aura
 
       map < ::file::path, ::image_pointer >              m_mapImage;
 
-#ifdef WINDOWS_DESKTOP
-
-      enum_message                                 m_emessageWindowsTaskbarCreatedMessage;
-
-#endif
-
-#ifdef _UWP
-
-      __reference(::universal_windows::interaction_impl)            m_pimplMain;
-
-#endif
 
       system();
       ~system() override;

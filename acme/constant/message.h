@@ -4,6 +4,8 @@
 enum enum_message : ::i64
 {
 
+   e_message_undefined = -1,
+
    e_message_null = 0,
 
    e_message_create = 1,

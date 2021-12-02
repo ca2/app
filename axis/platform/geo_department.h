@@ -1,3 +1,4 @@
+// Added get_time_zone memberby camilo on 2021-12-02 14:23 BRT <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -29,7 +30,7 @@ namespace geo
 
 
       department();
-      virtual ~department();
+      ~department() override;
 
       virtual void defer_check_openweather_city_list();
 
@@ -48,6 +49,9 @@ namespace geo
       virtual string initial_country_time_zone(string strCountry);
       virtual string utc_offset_string(double dUTCOffset);
       virtual double time_zone(string str, string strCountryCode);
+
+
+      ::datetime::department::time_zone get_time_zone(const string & strLat, const string & strLng);
 
 
    };

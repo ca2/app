@@ -188,7 +188,7 @@ namespace apex
 
 #ifdef WINDOWS_DESKTOP
 
-      ::u32                                         m_uiWindowsTaskbarCreatedMessage;
+      ::u32                                         m_emessageWindowsTaskbarCreatedMessage;
 
 #endif
 

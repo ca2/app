@@ -2,6 +2,10 @@
 #pragma once
 
 
+#include "apex/platform/api.h"
+#include "apex/platform/api_client.h"
+
+
 namespace geo
 {
 
@@ -18,7 +22,23 @@ namespace geo
       bool                                            m_bInitialLocalityTimeZoneInit;
 
       ::mutex                                         m_mutexOpenweatherCity;
-      iptr_map < ::datetime::department::time_zone >  m_cityTimeZone;
+      
+      ::mutex                                                           m_mutexCityTimeZone;
+      iptr_map < ::datetime::department::time_zone >                    m_cityTimeZone;
+      bool                                                              m_bLoadedCityTimeZoneFromFile;
+      ::file::path                                                      m_pathCityTimeZoneFile;
+      task_pointer                                                      m_ptaskSaveCityTimeZone;
+      bool                                                              m_bCityTimeZoneModified;
+
+
+
+      ::mutex                                                           m_mutexLocalityTimeZone;
+      double_map < double_map < ::datetime::department::time_zone > >   m_localityTimeZone;
+      bool                                                              m_bLoadedLocalityTimeZoneFromFile;
+      ::file::path                                                      m_pathLocalityTimeZoneFile;
+      task_pointer                                                      m_ptaskSaveLocalityTimeZone;
+      bool                                                              m_bLocalityTimeZoneModified;
+
       //string_map < time_zone >      m_countryTimeZone;
 
       string_array                                       m_straCityLo;
@@ -32,6 +52,10 @@ namespace geo
 
       department();
       ~department() override;
+
+
+      ::e_status initialize(::object* pobject) override;
+
 
       virtual void defer_check_openweather_city_list();
 
@@ -52,8 +76,22 @@ namespace geo
       virtual double time_zone(string str, string strCountryCode);
 
 
-      ::datetime::department::time_zone get_time_zone(const string & strLat, const string & strLng);
+      virtual ::datetime::department::time_zone get_time_zone(openweather_city* pcity);
 
+      virtual ::datetime::department::time_zone _get_time_zone(openweather_city* pcity);
+
+      virtual ::datetime::department::time_zone get_time_zone(double dLat, double dLng);
+
+      virtual ::datetime::department::time_zone _get_time_zone(double dLat, double dLng);
+
+
+      virtual void set_city_time_zone_modified();
+
+      virtual void set_locality_time_zone_modified();
+
+      virtual void save_city_time_zone();
+
+      virtual void save_locality_time_zone();
 
    };
 

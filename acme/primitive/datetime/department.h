@@ -93,13 +93,28 @@ namespace datetime
 
       };
 
+
       class CLASS_DECL_ACME time_zone
       {
       public:
 
          string            m_strZone;
          double            m_dZone;
-         ::datetime::time  m_time; /// time when this time zone record was last updated
+         ::datetime::time  m_duration; /// time when this time zone record was last updated
+
+         time_zone()
+         {
+
+            m_dZone = -1000.0;
+
+         }
+
+         bool is_valid(const ::duration & durationTimeOut) const
+         {
+
+            return m_strZone.has_char() && m_dZone > -25.0 && m_dZone < 25.0 && m_duration.elapsed() < durationTimeOut;
+
+         }
 
       };
 
@@ -174,15 +189,7 @@ namespace datetime
    };
 
 
-
-
 } // namespace apex
-
-
-
-
-
-
 
 
 inline void __exchange(::stream & stream, class ::datetime::department::time_zone & t)
@@ -190,12 +197,9 @@ inline void __exchange(::stream & stream, class ::datetime::department::time_zon
 
    __TYPE_EXCHANGE(strZone);
    __TYPE_EXCHANGE(dZone);
-   __TYPE_EXCHANGE(time);
+   __TYPE_EXCHANGE(duration);
 
 }
-
-
-
 
 
 

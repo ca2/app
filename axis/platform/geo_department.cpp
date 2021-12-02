@@ -11,6 +11,12 @@ namespace geo
 
       m_bInitialLocalityTimeZoneInit = false;
 
+      m_bLoadedCityTimeZoneFromFile = false;
+      m_bLoadedLocalityTimeZoneFromFile = false;
+
+      m_bCityTimeZoneModified = false; 
+      m_bLocalityTimeZoneModified = false;
+
       m_strImplementation = "ca2";
       m_strProfileStore = "weather";
       m_strApiClientConfig = "camilothomas";
@@ -26,6 +32,27 @@ namespace geo
 
    }
 
+
+   ::e_status department::initialize(::object* pobject)
+   {
+
+      auto estatus = ::acme::department::initialize(pobject);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      m_pathCityTimeZoneFile = m_psystem->m_pacmedir->system() / "datetime_departament_cityTimeZone.bin";
+
+      m_pathLocalityTimeZoneFile = m_psystem->m_pacmedir->system() / "datetime_departament_LocalityTimeZone.bin";
+
+      return estatus;
+
+   }
+   
 
    void department::defer_check_openweather_city_list()
    {
@@ -558,156 +585,13 @@ namespace geo
    string department::initial_locality_time_zone(openweather_city* pcity, double& dZone)
    {
 
-      if (pcity == nullptr)
-      {
+      ::datetime::department::time_zone timezone;
 
-         dZone = 0.0;
+      timezone = get_time_zone(pcity);
 
-         return "utc";
+      dZone = timezone.m_dZone;
 
-      }
-
-      class ::datetime::department::time_zone timezone;
-
-      ::datetime::time_span spanTimeout(1, 0, 0, 0);
-
-      ::datetime::time now = ::datetime::time::now();
-
-      ::mutex m(pcity, false, "Global\\ca2_datetime_departament");
-
-      {
-
-         synchronous_lock synchronouslock(&m);
-
-         if (!m_bInitialLocalityTimeZoneInit)
-         {
-
-            m_bInitialLocalityTimeZoneInit = true;
-
-            {
-
-               ::file::path path = m_psystem->m_pacmedir->system() / "datetime_departament_cityTimeZone.bin";
-
-               auto pcontext = get_context();
-
-               auto file = pcontext->m_papexcontext->file().friendly_get_file(path, ::file::e_open_binary | ::file::e_open_read);
-
-               if (file.is_set())
-               {
-
-                  ::binary_stream reader(file);
-
-                  reader >> m_cityTimeZone;
-
-               }
-
-            }
-
-         }
-
-         if (m_cityTimeZone.lookup((iptr)pcity->m_iId, timezone) && (now - timezone.m_time) < spanTimeout
-            && timezone.m_strZone.has_char())
-         {
-
-            dZone = timezone.m_dZone;
-
-            return timezone.m_strZone;
-
-         }
-
-      }
-
-
-      property_set set;
-
-      string strLat = __string(pcity->m_dLat);
-
-      string strLng = __string(pcity->m_dLon);
-
-      string strUrl = "http://ca2.software/account/time_zone?lat=" + strLat + "&lng=" + strLng;
-
-      string str;
-
-      property_set set;
-
-      auto purl = m_psystem->url();
-
-      auto pcontext = m_pcontext;
-
-      ::string strResponse;
-
-      api_get(strResponse, strUrl, set);
-
-
-      auto pcontext = get_context();
-
-      string str = pcontext->m_papexcontext->http().get("http://api.timezonedb.com/?key=" + strKey + "&format=json&lat=" + strLat + "&lng=" + strLng, set);
-
-      if (str.has_char())
-      {
-
-         const char* pszJson = str;
-
-         ::payload v;
-
-         try
-         {
-
-            v.parse_network_payload(pszJson);
-
-            str = v["abbreviation"].string().lowered();
-
-            dZone = v["gmtOffset"].f64() / 3600.0;
-
-         }
-         catch (...)
-         {
-
-            str = "utc";
-
-            dZone = 0.0;
-
-         }
-
-      }
-      else
-      {
-
-         str = "utc";
-
-         dZone = 0.0;
-
-      }
-
-      timezone.m_strZone = str;
-
-      timezone.m_dZone = dZone;
-
-      timezone.m_time = now;
-
-      {
-
-         synchronous_lock synchronouslock(&m);
-
-         m_cityTimeZone[(iptr)pcity->m_iId] = timezone;
-
-         ::file::path path = m_psystem->m_pacmedir->system() / "datetime_departament_cityTimeZone.bin";
-
-         auto file = pcontext->m_papexcontext->file().get_writer(path);
-
-         ::binary_stream writer(file);
-
-         writer << m_cityTimeZone;
-
-      }
-
-      return str;
-
-   }
-
-
-   ::datetime::department::time_zone department::get_time_zone(const string& strLat, const string& strLng)
-   {
+      return timezone.m_strZone;
 
    }
 
@@ -1387,4 +1271,377 @@ namespace geo
    }
 
 
+   ::datetime::department::time_zone department::get_time_zone(openweather_city* pcity)
+   {
+
+      if (is_null(pcity))
+      {
+
+         return {};
+
+      }
+
+      int iOpenweatherCity = pcity->m_iId;
+
+      if (iOpenweatherCity < 0)
+      {
+
+         return {};
+
+      }
+
+      if (!m_bLoadedLocalityTimeZoneFromFile)
+      {
+
+         m_bLoadedLocalityTimeZoneFromFile = true;
+
+         ::file::path path = m_psystem->m_pacmedir->system() / "datetime_departament_LocalityTimeZone.bin";
+
+         try
+         {
+
+            auto file = m_pcontext->m_papexcontext->file().get_reader(path);
+
+            ::binary_stream reader(file);
+
+            synchronous_lock synchronouslock(&m_mutexCityTimeZone);
+
+            reader >> m_cityTimeZone;
+
+         }
+         catch (...)
+         {
+
+         }
+
+      }
+
+      try
+      {
+
+         synchronous_lock synchronouslock(&m_mutexCityTimeZone);
+
+         auto& timezone = m_cityTimeZone[iOpenweatherCity];
+
+         if (timezone.m_strZone.has_char())
+         {
+
+            return timezone;
+
+         }
+
+         synchronouslock.unlock();
+
+         timezone = _get_time_zone(pcity);
+
+         if (timezone.m_strZone.has_char())
+         {
+
+            set_locality_time_zone_modified();
+
+         }
+
+         return timezone;
+
+      }
+      catch (...)
+      {
+
+      }
+
+      return {};
+
+   }
+
+
+   ::datetime::department::time_zone department::_get_time_zone(openweather_city* pcity)
+   {
+
+      return get_time_zone(pcity->m_dLat, pcity->m_dLon);
+
+   }
+
+
+   ::datetime::department::time_zone department::get_time_zone(double dLat, double dLng)
+   {
+
+      if (!m_bLoadedLocalityTimeZoneFromFile)
+      {
+
+         m_bLoadedLocalityTimeZoneFromFile = true;
+
+         ::file::path path = m_pathLocalityTimeZoneFile;
+
+         try
+         {
+
+            auto file = m_pcontext->m_papexcontext->file().get_reader(path);
+
+            ::binary_stream reader(file);
+
+            synchronous_lock synchronouslock(&m_mutexLocalityTimeZone);
+
+            reader >> m_localityTimeZone;
+
+         }
+         catch (...)
+         {
+
+         }
+
+      }
+
+      dLat = ceil(dLat * 100.0) / 100.0;
+
+      dLng = ceil(dLng * 100.0) / 100.0;
+
+      try
+      {
+
+         synchronous_lock synchronouslock(&m_mutexCityTimeZone);
+
+         auto& timezone = m_localityTimeZone[dLat][dLng];
+
+         if (timezone.m_strZone.has_char())
+         {
+
+            return timezone;
+
+         }
+
+         synchronouslock.unlock();
+
+         timezone = _get_time_zone(dLat, dLng);
+
+         if (timezone.m_strZone.has_char())
+         {
+
+            set_locality_time_zone_modified();
+
+         }
+
+         return timezone;
+
+      }
+      catch (...)
+      {
+
+      }
+
+      return {};
+
+   }
+
+
+   ::datetime::department::time_zone department::_get_time_zone(double dLat, double dLng)
+   {
+
+      ::datetime::department::time_zone timezone;
+
+      property_set set;
+
+      string strLat;
+         
+      strLat.format("%0.2f", dLat);
+
+      string strLng;
+
+      strLng.format("%0.2f", dLng);
+
+      string strUrl = "http://ca2.software/account/time_zone?lat=" + strLat + "&lng=" + strLng;
+
+      try
+      {
+
+         ::payload payload;
+
+         property_set set;
+
+         auto estatus = api_get(payload, strUrl, set);
+
+         if (!estatus)
+         {
+
+            return timezone;
+
+         }
+
+         timezone.m_strZone = payload["abbreviation"].string().lowered();
+
+         timezone.m_dZone = payload["gmtOffset"].f64() / 3600.0;
+
+      }
+      catch (...)
+      {
+
+      }
+
+      timezone.m_duration.Now();
+
+      return timezone;
+
+   }
+
+
+   void department::set_city_time_zone_modified()
+   {
+
+      m_bCityTimeZoneModified = true;
+
+      if (!m_ptaskSaveCityTimeZone)
+      {
+
+         m_ptaskSaveCityTimeZone = fork([this]()
+            {
+
+               try
+               {
+
+                  while (m_ptaskSaveCityTimeZone->task_get_run())
+                  {
+
+                     preempt(1_s);
+
+                     if (m_bCityTimeZoneModified)
+                     {
+
+                        try
+                        {
+
+                           save_city_time_zone();
+
+                           m_bCityTimeZoneModified = false;
+
+                        }
+                        catch (...)
+                        {
+
+                        }
+
+                     }
+
+                  }
+
+               }
+               catch (...)
+               {
+
+               }
+
+               m_ptaskSaveCityTimeZone.release();
+
+            });
+
+      }
+
+   }
+
+
+   void department::set_locality_time_zone_modified()
+   {
+
+      m_bLocalityTimeZoneModified = true;
+
+      if (!m_ptaskSaveLocalityTimeZone)
+      {
+
+         m_ptaskSaveLocalityTimeZone = fork([this]()
+            {
+
+               try
+               {
+
+                  while (m_ptaskSaveLocalityTimeZone->task_get_run())
+                  {
+
+                     preempt(1_s);
+
+                     if (m_bLocalityTimeZoneModified)
+                     {
+
+                        try
+                        {
+
+                           save_locality_time_zone();
+
+                           m_bLocalityTimeZoneModified = false;
+
+                        }
+                        catch (...)
+                        {
+
+                        }
+
+                     }
+
+                  }
+
+               }
+               catch (...)
+               {
+
+               }
+
+               m_ptaskSaveLocalityTimeZone.release();
+
+            });
+
+      }
+
+   }
+
+
+   void department::save_city_time_zone()
+   {
+      
+      ::file::path path = m_pathLocalityTimeZoneFile;
+
+      try
+      {
+
+         auto file = m_pcontext->m_papexcontext->file().get_writer(path);
+
+         ::binary_stream writer(file);
+
+         synchronous_lock synchronouslock(&m_mutexCityTimeZone);
+
+         writer << m_cityTimeZone;
+
+      }
+      catch (...)
+      {
+
+      }
+
+   }
+
+
+   void department::save_locality_time_zone()
+   {
+
+      ::file::path path = m_pathLocalityTimeZoneFile;
+
+      try
+      {
+
+         auto file = m_pcontext->m_papexcontext->file().get_writer(path);
+
+         ::binary_stream writer(file);
+
+         synchronous_lock synchronouslock(&m_mutexLocalityTimeZone);
+
+         writer << m_cityTimeZone;
+
+      }
+      catch (...)
+      {
+
+      }
+
+   }
+
+
 } // namespace geo
+
+
+

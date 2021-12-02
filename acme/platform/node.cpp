@@ -44,6 +44,9 @@ namespace acme
       m_pNodeDesktopEnvironmentKDE = nullptr;
       m_pNodeDesktopEnvironmentXfce = nullptr;
 
+
+      m_pWindowingWin32Node = nullptr;
+
 #ifdef LINUX
 
       m_elinuxdistribution = e_linux_distribution_not_initialized;

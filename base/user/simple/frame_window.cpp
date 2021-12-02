@@ -190,14 +190,6 @@ void simple_frame_window::install_message_routing(::channel * pchannel)
    MESSAGE_LINK(e_message_activate, pchannel, this, &simple_frame_window::_001OnActivate);
    MESSAGE_LINK(e_message_update_notify_icon, pchannel, this, &simple_frame_window::_001OnUpdateNotifyIcon);
 
-#ifdef WINDOWS_DESKTOP
-
-   auto psystem = m_psystem->m_pbasesystem;
-
-   MESSAGE_LINK(psystem->m_emessageWindowsTaskbarCreatedMessage, pchannel, this, &simple_frame_window::_001OnTaskbarCreated);
-
-#endif
-
 }
 
 
@@ -1102,14 +1094,6 @@ void simple_frame_window::on_message_display_change(::message::message * pmessag
    pmessage->m_bRet = true;
 
    pusermessage->m_lresult = 0;
-
-}
-
-
-void simple_frame_window::_001OnTaskbarCreated(::message::message * pmessage)
-{
-
-   defer_create_notification_icon();
 
 }
 
@@ -3201,7 +3185,13 @@ void simple_frame_window::_001OnQueryEndSession(::message::message * pmessage)
 void simple_frame_window::handle(::subject * psubject, ::context * pcontext)
 {
 
-   if(psubject->user_interaction() == m_pnotifyicon)
+   if (psubject->m_id == e_subject_task_bar_created)
+   {
+
+      defer_create_notification_icon();
+
+   }
+   else if(psubject->user_interaction() == m_pnotifyicon)
    {
 
       if(psubject->m_id == ::e_subject_context_menu)

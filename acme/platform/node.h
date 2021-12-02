@@ -57,6 +57,7 @@ namespace acme
       ::PLATFORM_NAMESPACE::node *           m_pNode;
 
 
+      ::windowing_win32::node *              m_pWindowingWin32Node;
       ::windowing_universal_windows::node *  m_pWindowingUniversalWindowsNode;
 
 

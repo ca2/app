@@ -45,14 +45,25 @@ if (MSVC)
 elseif(LINUX)
 
 
-#   pkg_check_modules(PKGCONFIG libbz2)
- #  target_compile_options(compress_bzip2 PRIVATE ${PKGCONFIG_CFLAGS})
-  # target_link_options(compress_bzip2 PRIVATE ${PKGCONFIG_LDFLAGS})
-   #target_link_libraries(compress_bzip2 PRIVATE ${PKGCONFIG_LIBRARIES})
 if(UBUNTU)
+
+
    list(APPEND library_references
       bz2)
+
+
+else()
+
+
+   pkg_check_modules(PKGCONFIG bzip2)
+   target_compile_options(compress_bzip2 PRIVATE ${PKGCONFIG_CFLAGS})
+   target_link_options(compress_bzip2 PRIVATE ${PKGCONFIG_LDFLAGS})
+   target_link_libraries(compress_bzip2 PRIVATE ${PKGCONFIG_LIBRARIES})
+
+
 endif()
+
+
    target_link_libraries(compress_bzip2 PRIVATE ${library_references})
    target_link_options(compress_bzip2 PRIVATE -Wl,-z,defs)
    #message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})

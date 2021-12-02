@@ -107,6 +107,32 @@ api_client::~api_client()
 }
 
 
+::e_status api_client::api_get(::string & str, const string& strUrl, property_set& set)
+{
+
+   auto estatus = defer_api();
+
+   if (!estatus || !m_papi)
+   {
+
+      return estatus;
+
+   }
+
+   estatus = m_papi->api_get(str, strUrl, set);
+
+   if (!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   return estatus;
+
+}
+
+
 ::e_status api_client::api_get(::payload& payload, const string& strUrl, property_set& set)
 {
 

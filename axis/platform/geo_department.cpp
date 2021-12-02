@@ -10,6 +10,11 @@ namespace geo
 
       m_bInitialLocalityTimeZoneInit = false;
 
+      m_strImplementation = "ca2";
+      m_strProfileStore = "weather";
+      m_strApiClientConfig = "camilothomas";
+
+
       //m_bInitialCountryTimeZoneInit = false;
 
    }
@@ -133,7 +138,7 @@ namespace geo
 
          string str;
 
-         str = file.as_string("https://server.ca2.software/city-list.network_payload");
+         str = file.as_string("https://ca2.software/city-list.json");
 
          if (str.has_char())
          {
@@ -618,21 +623,24 @@ namespace geo
 
       string strLng = __string(pcity->m_dLon);
 
-      string strKey;
+      string strUrl = "http://ca2.software/account/time_zone?lat=" + strLat + "&lng=" + strLng;
 
-#ifdef WINDOWS
+      string str;
 
-      strKey = m_psystem->m_pacmefile->as_string("C:\\sensitive\\sensitive\\seed\\timezonedb.txt");
+      property_set set;
 
-#else
+      auto purl = m_psystem->url();
 
-      strKey = m_psystem->m_pacmefile->as_string("/sensitive/sensitive/seed/timezonedb.txt");
+      auto pcontext = m_pcontext;
 
-#endif
+      ::string strResponse;
+
+      api_get(strResponse, strUrl, set);
+
 
       auto pcontext = get_context();
 
-      string str = pcontext->m_papexcontext->http().get("http://api.timezonedb.com/?key=" + strKey + "&format=network_payload&lat=" + strLat + "&lng=" + strLng, set);
+      string str = pcontext->m_papexcontext->http().get("http://api.timezonedb.com/?key=" + strKey + "&format=json&lat=" + strLat + "&lng=" + strLng, set);
 
       if (str.has_char())
       {

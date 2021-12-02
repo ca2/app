@@ -48,13 +48,11 @@ public:
    virtual ::e_status api_login(const ::string & strConfig, const ::string & strProfile);
 
 
-   virtual ::e_status api_get(::string & strNetworkPayload, const ::string & strUrl, property_set& set);
+   virtual ::e_status api_get(::string & str, const ::string & strUrl, property_set& set);
 
    virtual ::e_status api_get(::payload & payload, const ::string & strUrl, property_set & set);
 
-
    virtual ::e_status api_download(string strGet, const ::file::path& path, property_set& set);
-
 
    virtual string api_token(bool bForce);
 

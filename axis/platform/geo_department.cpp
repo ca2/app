@@ -1290,23 +1290,28 @@ namespace geo
 
       }
 
-      if (!m_bLoadedLocalityTimeZoneFromFile)
+      if (!m_bLoadedCityTimeZoneFromFile)
       {
 
-         m_bLoadedLocalityTimeZoneFromFile = true;
+         m_bLoadedCityTimeZoneFromFile = true;
 
-         ::file::path path = m_psystem->m_pacmedir->system() / "datetime_departament_LocalityTimeZone.bin";
+         ::file::path path = m_pathCityTimeZoneFile;
 
          try
          {
 
-            auto file = m_pcontext->m_papexcontext->file().get_reader(path);
+            auto pfile = m_pcontext->m_papexcontext->file().get_reader(path);
 
-            ::binary_stream reader(file);
+            if (pfile)
+            {
 
-            synchronous_lock synchronouslock(&m_mutexCityTimeZone);
+               ::binary_stream reader(pfile);
 
-            reader >> m_cityTimeZone;
+               synchronous_lock synchronouslock(&m_mutexCityTimeZone);
+
+               reader >> m_cityTimeZone;
+
+            }
 
          }
          catch (...)
@@ -1375,13 +1380,18 @@ namespace geo
          try
          {
 
-            auto file = m_pcontext->m_papexcontext->file().get_reader(path);
+            auto pfile = m_pcontext->m_papexcontext->file().get_reader(path);
 
-            ::binary_stream reader(file);
+            if (pfile)
+            {
 
-            synchronous_lock synchronouslock(&m_mutexLocalityTimeZone);
+               ::binary_stream reader(pfile);
 
-            reader >> m_localityTimeZone;
+               synchronous_lock synchronouslock(&m_mutexLocalityTimeZone);
+
+               reader >> m_localityTimeZone;
+
+            }
 
          }
          catch (...)
@@ -1599,13 +1609,18 @@ namespace geo
       try
       {
 
-         auto file = m_pcontext->m_papexcontext->file().get_writer(path);
+         auto pfile = m_pcontext->m_papexcontext->file().get_writer(path);
 
-         ::binary_stream writer(file);
+         if (pfile)
+         {
 
-         synchronous_lock synchronouslock(&m_mutexCityTimeZone);
+            ::binary_stream writer(pfile);
 
-         writer << m_cityTimeZone;
+            synchronous_lock synchronouslock(&m_mutexCityTimeZone);
+
+            writer << m_cityTimeZone;
+
+         }
 
       }
       catch (...)
@@ -1624,13 +1639,18 @@ namespace geo
       try
       {
 
-         auto file = m_pcontext->m_papexcontext->file().get_writer(path);
+         auto pfile = m_pcontext->m_papexcontext->file().get_writer(path);
 
-         ::binary_stream writer(file);
+         if (pfile)
+         {
 
-         synchronous_lock synchronouslock(&m_mutexLocalityTimeZone);
+            ::binary_stream writer(pfile);
 
-         writer << m_cityTimeZone;
+            synchronous_lock synchronouslock(&m_mutexLocalityTimeZone);
+
+            writer << m_cityTimeZone;
+
+         }
 
       }
       catch (...)

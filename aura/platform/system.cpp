@@ -1736,10 +1736,10 @@ namespace aura
       //
       //#ifdef WINDOWS_DESKTOP
       //
-      //      if (m_uiWindowsTaskbarCreatedMessage == 0)
+      //      if (m_emessageWindowsTaskbarCreatedMessage == 0)
       //      {
       //
-      //         m_uiWindowsTaskbarCreatedMessage = RegisterWindowMessageW(L"TaskbarCreated");
+      //         m_emessageWindowsTaskbarCreatedMessage = RegisterWindowMessageW(L"TaskbarCreated");
       //
       //      }
       //
@@ -5438,7 +5438,7 @@ namespace aura
   //
   //#ifdef WINDOWS_DESKTOP
   //
-  //      m_uiWindowsTaskbarCreatedMessage = 0;
+  //      m_emessageWindowsTaskbarCreatedMessage = 0;
   //
   //#endif
   //
@@ -5640,10 +5640,10 @@ namespace aura
 //
 //#ifdef WINDOWS_DESKTOP
 //
-//      if (m_uiWindowsTaskbarCreatedMessage == 0)
+//      if (m_emessageWindowsTaskbarCreatedMessage == 0)
 //      {
 //
-//         m_uiWindowsTaskbarCreatedMessage = RegisterWindowMessageW(L"TaskbarCreated");
+//         m_emessageWindowsTaskbarCreatedMessage = RegisterWindowMessageW(L"TaskbarCreated");
 //
 //      }
 //

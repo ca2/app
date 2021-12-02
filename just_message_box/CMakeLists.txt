@@ -21,18 +21,25 @@ list(APPEND library_references
 
 
 
-add_executable(app_just_message_box ${library_source})
+add_library(app_just_message_box ${library_source})
+
 
 target_precompile_headers(app_just_message_box PRIVATE framework.h)
 
+
 set_target_properties(app_just_message_box PROPERTIES LINKER_LANGUAGE CXX)
 
+
 if (MSVC)
+
+
     target_compile_options(app_just_message_box PRIVATE "/MD$<$<CONFIG:Debug>:d>")
     target_link_options(app_just_message_box PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
     target_link_options(app_just_message_box PRIVATE "/SUBSYSTEM:WINDOWS")
     target_link_libraries(app_just_message_box PRIVATE acme apex aqua aura)
     add_dependencies(app_just_message_box draw2d_gdiplus)
+
+
 elseif(LINUX)
 
     #if(GNOME_DESKTOP)
@@ -47,6 +54,8 @@ elseif(LINUX)
     target_link_options(app_just_message_box PRIVATE -Wl,-z,defs)
     message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
     add_dependencies(app_just_message_box draw2d_cairo)
+
+
 endif()
 
 
@@ -63,7 +72,16 @@ target_include_directories(app_just_message_box PRIVATE ${CMAKE_CURRENT_SOURCE_D
 target_compile_definitions(app_just_message_box PRIVATE _app_just_message_box_LIBRARY)
 
 
-add_executable(_app_just_message_box _main.cpp)
+add_executable(_app_just_message_box _app_just_message_box.cpp)
+
+
+list(APPEND executable_references
+   acme
+   apex
+   aqua
+   aura
+   app_just_message_box
+   )
 
 
 add_custom_target(${PROJECT_NAME}_matter
@@ -86,20 +104,22 @@ endif()
 add_dependencies(_${PROJECT_NAME} ${PROJECT_NAME}_matter)
 
 
-
 if (MSVC)
+
 
     target_compile_options(_app_just_message_box PRIVATE "/MD$<$<CONFIG:Debug>:d>")
     target_link_options(_app_just_message_box PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
     target_link_options(_app_just_message_box PRIVATE "/SUBSYSTEM:WINDOWS")
-    target_link_libraries(_app_just_message_box PRIVATE ${app_core_hellomultiverse_references} app_core_hellomultiverse)
+    target_link_libraries(_app_just_message_box PRIVATE ${executable_references})
+
 
 elseif(LINUX OR FREEBSD)
 
+
     target_compile_options(_app_just_message_box PRIVATE -fpermissive)
-    #target_link_options(_app_just_message_box PRIVATE -Wl,-rpath=$ORIGIN)
-    target_link_libraries(_app_just_message_box PRIVATE ${app_core_hellomultiverse_references} app_core_hellomultiverse)
+    target_link_libraries(_app_just_message_box PRIVATE ${executable_references})
     target_link_options(_app_just_message_box PRIVATE -Wl,-z,defs)
+
 
 endif ()
 

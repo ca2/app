@@ -796,6 +796,106 @@ void replace_char(char * sz, char ch1, char ch2)
 }
 
 
+::duration acme_file::modification_time(const char* psz)
+{
+
+   throw ::interface_only_exception();
+
+   return {};
+
+
+}
+
+
+::e_status acme_file::set_modification_time(const char* psz, const ::duration& duration)
+{
+
+   throw ::interface_only_exception();
+
+   return error_interface_only;
+
+}
+
+//
+//::duration acme_file::modification_time(const char* psz)
+//{
+//
+//   throw interface_only_exception();
+//
+//   return error_interface_only;
+//
+//}
+
+
+::e_status acme_file::synchronize(const char* psz1, const char* psz2)
+{
+
+   auto time1 = modification_time(psz1);
+
+   auto time2 = modification_time(psz2);
+
+   auto bExists1 = exists(psz1);
+
+   auto bExists2 = exists(psz2);
+
+   if ((!bExists1 && bExists2) || ((bExists1 && bExists2) && (time1 < time2)))
+   {
+
+      auto estatus = copy(psz1, psz2, true);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      //estatus = set_modification_time(psz1, time2);
+
+      //if (!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
+
+      return estatus;
+
+   }
+   else if ((!bExists2 && bExists1) || ((bExists1 && bExists2) && (time2 < time1)))
+   {
+
+      auto estatus =  copy(psz2, psz1, true);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+//#if !defined(WINDOWS)
+//
+      //estatus = set_modification_time(psz2, time1);
+
+      //if (!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
+
+      //return estatus;
+
+   }
+
+   return ::success_none;
+
+}
+
+
 ::e_status acme_file::save_stra(const char * lpszName, const string_array & stra)
 {
 

@@ -84,6 +84,8 @@ public:
 
    virtual bool initialize_wallpaper_fileset(::file::set* pfileset, bool bAddSearch);
 
+   virtual ::e_status set_dark_mode(bool bDarkMode);
+
    virtual bool file_open(::file::path path, string strParams = "", string strFolder = "");
 
    virtual string get_default_browser();

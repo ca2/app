@@ -98,6 +98,12 @@ public:
    //virtual bool set_line(const char * pszPath, index iLine, const char * pszLine);
 
    virtual ::e_status copy(const char * pszDup, const char * pszSrc, bool bOverwrite);
+   
+
+   virtual ::duration modification_time(const char* psz);
+   virtual ::e_status set_modification_time(const char* psz, const ::duration & duration);
+   virtual ::e_status synchronize(const char * psz1, const char * psz2);
+
 
    virtual ::e_status save_stra(const char * lpszName, const string_array & stra);
    virtual ::e_status load_stra(const char * lpszName, string_array & stra, bool bAddEmpty = true);

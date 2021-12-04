@@ -536,6 +536,16 @@
    }
 
 
+   ::e_status os_context::set_dark_mode(bool bDarkMode)
+   {
+
+      throw interface_only_exception();
+
+      return error_interface_only;
+
+   }
+
+
    bool os_context::file_open(::file::path strSrc, string strParams, string strFolder)
    {
 

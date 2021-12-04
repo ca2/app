@@ -125,12 +125,32 @@ i32 networking_application::wait_get_current_port(const ::duration& duration)
 
 }
 
+
+::e_status networking_application::add_handler(const ::string& strPrefix, networking_application_handler* phandler)
+{
+
+   if (::is_null(phandler))
+   {
+
+      return ::error_failed;
+
+   }
+
+   auto& phandlerMapped = m_maphandler[strPrefix];
+
+   phandlerMapped = phandler;
+
+   return ::success;
+
+}
+
+
 ::e_status networking_application::on_html_response(::string & strHtml, const ::string& strUrl, const ::property_set& setPost)
 {
 
    string strRequestScript = m_psystem->url()->get_script(strUrl);
 
-   for (auto& assoc : m_mapnetworkingapplicationhandler)
+   for (auto& assoc : m_maphandler)
    {
 
       auto & strFolder = assoc.m_element1;

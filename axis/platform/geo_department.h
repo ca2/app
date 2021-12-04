@@ -6,12 +6,14 @@
 #include "apex/platform/api_client.h"
 
 
-class CLASS_DECL_ACME string_timeout
+class CLASS_DECL_AXIS string_timeout
 {
 public:
 
-   string            m_str;
-   ::datetime::time  m_duration; /// time when this network_payload was last updated
+
+   string               m_str;
+   ::datetime::time     m_duration; /// time when this network_payload was last updated
+
 
    bool is_valid(const ::duration& durationTimeOut) const
    {
@@ -20,9 +22,17 @@ public:
 
    }
 
+
 };
 
 
+inline void __exchange(::stream& stream, class ::string_timeout& t)
+{
+
+   __TYPE_EXCHANGE(str);
+   __TYPE_EXCHANGE(duration);
+
+}
 
 
 namespace geo

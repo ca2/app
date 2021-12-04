@@ -45,12 +45,10 @@ api::~api()
 
    auto strNetworkPayload = m_pcontext->m_papexcontext->file().as_string(m_pathProfile);
 
-   ::payload payload;
-
    try
    {
 
-      payload.parse_network_payload(strNetworkPayload);
+      m_setConfig.parse_network_payload(strNetworkPayload);
 
    }
    catch (...)
@@ -60,7 +58,7 @@ api::~api()
 
    }
 
-   m_strToken = payload["token"];
+   m_strToken = m_setConfig["token"];
 
    if (m_strToken.has_char())
    {
@@ -105,18 +103,15 @@ void api::on_login_response()
 ::e_status api::save_profile()
 {
 
-   ::payload payload;
+   m_setConfig["token"] = m_strToken;
 
-   payload["token"] = m_strToken;
-
-   auto strNetworkPayload = payload.get_network_payload();
+   auto strNetworkPayload = m_setConfig.get_network_payload();
 
    m_pcontext->m_papexcontext->file().put_text(m_pathProfile, strNetworkPayload);
 
    return ::success;
 
 }
-
 
 
 ::e_status api::api_login(const ::string & strConfig, const ::string & strProfile)

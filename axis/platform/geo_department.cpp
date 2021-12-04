@@ -1458,7 +1458,7 @@ namespace geo
 
       strLng.format("%0.2f", dLng);
 
-      string strUrl = "http://ca2.software/account/time_zone?lat=" + strLat + "&lng=" + strLng;
+      string strUrl = "https://camilothomas.com/account/time_zone";
 
       try
       {
@@ -1466,6 +1466,10 @@ namespace geo
          ::payload payload;
 
          property_set set;
+
+         set["post"]["lat"] = strLat;
+
+         set["post"]["lng"] = strLng;
 
          auto estatus = api_get(payload, strUrl, set);
 
@@ -1476,9 +1480,9 @@ namespace geo
 
          }
 
-         timezone.m_strZone = payload["abbreviation"].string().lowered();
+         timezone.m_strZone = payload["zone_name"];
 
-         timezone.m_dZone = payload["gmtOffset"].f64() / 3600.0;
+         timezone.m_dZone = payload["zone_offset"].f64();
 
       }
       catch (...)

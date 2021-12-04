@@ -1841,7 +1841,7 @@ auto tickStart = ::duration::now();
    /// @return see return values of client_socket::SimpleErrorCheck
    int client_socket::ChangeWorkingDirectory(const string& strDirectory)
    {
-      ASSERT(!strDirectory.empty());
+      ASSERT(strDirectory.has_char());
       reply Reply;
       if (!SendCommand(command::CWD(), { strDirectory }, Reply))
          return FTP_ERROR;
@@ -1856,7 +1856,7 @@ auto tickStart = ::duration::now();
    /// @return see return values of client_socket::SimpleErrorCheck
    int client_socket::MakeDirectory(const string& strDirectory)
    {
-      ASSERT(!strDirectory.empty());
+      ASSERT(strDirectory.has_char());
       reply Reply;
       if (!SendCommand(command::MKD(), { strDirectory } , Reply))
          return FTP_ERROR;
@@ -1873,7 +1873,7 @@ auto tickStart = ::duration::now();
    /// @return see return values of client_socket::SimpleErrorCheck
    int client_socket::SiteParameters(const string& strCmd)
    {
-      ASSERT(!strCmd.empty());
+      ASSERT(strCmd.has_char());
       reply Reply;
       if (!SendCommand(command::SITE(), { strCmd }, Reply))
          return FTP_ERROR;
@@ -1906,7 +1906,7 @@ auto tickStart = ::duration::now();
    /// @return see return values of client_socket::SimpleErrorCheck
    int client_socket::Delete(const string& strFile)
    {
-      ASSERT(!strFile.empty());
+      ASSERT(strFile.has_char());
       reply Reply;
       if (!SendCommand(command::DELE(), { strFile }, Reply))
          return FTP_ERROR;
@@ -1921,7 +1921,7 @@ auto tickStart = ::duration::now();
    /// @return see return values of client_socket::SimpleErrorCheck
    int client_socket::RemoveDirectory(const string& strDirectory)
    {
-      ASSERT(!strDirectory.empty());
+      ASSERT(strDirectory.has_char());
       reply Reply;
       if (!SendCommand(command::RMD(), { strDirectory } , Reply))
          return FTP_ERROR;
@@ -2116,7 +2116,7 @@ auto tickStart = ::duration::now();
             strModificationTime = strTemp;
       }
 
-      if (strModificationTime.empty())
+      if (strModificationTime.is_empty())
          return FTP_ERROR;
 
       return SimpleErrorCheck(Reply);

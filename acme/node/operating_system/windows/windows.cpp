@@ -270,7 +270,7 @@ found:
       wcscpy(wstrModuleFilePath, _wgetenv(L"PROGRAMFILES(X86)"));
 
 
-      if (wstrModuleFilePath.empty())
+      if (wstrModuleFilePath.is_empty())
       {
 
          SHGetSpecialFolderPathW(nullptr, wstrModuleFilePath, CSIDL_PROGRAM_FILES, false);

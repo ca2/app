@@ -70,8 +70,9 @@ namespace windowing
 
       const string srcText = fromText[srcValue];
 
-      if (!srcText.empty())
+      if (srcText.has_char())
       {
+
          string targetText;
 
          for (int i = 0; i < count; i++)

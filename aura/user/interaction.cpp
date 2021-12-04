@@ -13789,6 +13789,38 @@ order(zorderParam);
    {
 
       __pointer(::message::show_window) pshowwindow(pmessage);
+
+      if (!layout().design().is_screen_visible()
+         || layout().design().m_edisplay == e_display_iconic)
+      {
+
+         for (auto& pmenu : m_menua)
+         {
+
+            pmenu->hide();
+
+            pmenu->set_need_redraw();
+
+            pmenu->post_redraw();
+
+         }
+
+      }
+      else
+      {
+
+         for (auto& pmenu : m_menua)
+         {
+
+            pmenu->display();
+
+            pmenu->set_need_redraw();
+
+            pmenu->post_redraw();
+
+         }
+
+      }
       
 //      string strType = __type_name(this);
 //      

@@ -411,7 +411,17 @@ namespace user
 
       m_puserinteractionParent = puiParent;
 
+#if defined(WINDOWS_DESKTOP) || defined(LINUX) || defined(FREEBSD) || defined(MACOS)
+
+      auto pwindow = m_puserinteractionParent->get_wnd();
+
+      pwindow->m_menua.add(this);
+
+#else
+
       m_puserinteractionParent->m_menua.add(this);
+
+#endif
 
       m_pmenuitem->m_puserinteractionHost = m_puserinteractionParent;
 

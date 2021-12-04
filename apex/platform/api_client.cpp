@@ -21,7 +21,7 @@ api_client::~api_client()
 ::e_status api_client::defer_api()
 {
 
-   if (!m_papi)
+   if (!m_papi || !m_papi->m_bAuthenticated)
    {
 
       auto estatus = create_api();

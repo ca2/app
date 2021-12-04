@@ -54,7 +54,7 @@ namespace write_text
    }
 
 
-   void text_box::update(font_list * plist, int iBox, string strText)
+   void text_box::update(font_list* plist, int iBox, string strText)
    {
 
       if (!m_pimage)
@@ -96,9 +96,27 @@ namespace write_text
 
       auto uForegroundColor = plist->m_uaForegroundColor[iColorIndex][iBox];
 
+      if (uForegroundColor.is_transparent())
+      {
+      
+         INFORMATION("Color is transparent");
+
+      }
+
       m_pimage->g()->set_text_color(uForegroundColor);
 
       m_pimage->g()->text_out(plist->m_rectangleMargin.left, plist->m_rectangleMargin.top, strText);
+
+#if 1
+
+         string str;
+
+         str.format("item:ARGB(%d,%d,%d,%d):%d, %d, %s", uForegroundColor.alpha,  uForegroundColor.red, uForegroundColor.green, uForegroundColor.blue,
+            plist->m_rectangleMargin.left, plist->m_rectangleMargin.top, strText.c_str());
+         
+         INFORMATION(str);
+
+#endif
 
       m_bOk = true;
 

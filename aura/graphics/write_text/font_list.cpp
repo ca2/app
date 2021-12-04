@@ -7,6 +7,11 @@
 #define BOX_SEL 1
 #define BOX_HOVER 2
 
+template < primitive_rectangle RECTANGLE >
+ tracer & operator << (tracer&  tracer, const RECTANGLE& r)
+ {
+    return tracer << r.left << ","<<r.top << ","<<r.right<< "," << r.bottom;
+ }
 
 namespace write_text
 {
@@ -88,6 +93,10 @@ namespace write_text
    void font_list::_001OnDrawWide(::draw2d::graphics_pointer & pgraphics)
    {
 
+      INFORMATION("font_list::_001OnDrawWide 1");
+      INFORMATION("font_list::_001OnDrawWide 2");
+      INFORMATION("font_list::_001OnDrawWide 3");
+
       synchronous_lock synchronouslock(mutex());
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -100,6 +109,8 @@ namespace write_text
 
       if (!pfontlistdata)
       {
+
+         INFORMATION("!pfontlistdata");
 
          m_puserinteraction->set_need_layout();
 
@@ -128,6 +139,8 @@ namespace write_text
          if (!pitem)
          {
 
+            INFORMATION("!pitem (pfontlistdata->element_at(i))");
+
             continue;
 
          }
@@ -137,12 +150,28 @@ namespace write_text
          if (!pbox->is_layout_ok(this))
          {
 
+            INFORMATION("!pitem (pbox->is_layout_ok(this))");
+
             continue;
 
          }
 
          if (!pbox->m_rectangle.intersects(rectangleClient))
          {
+
+            if (pbox->m_rectangle.is_empty())
+            {
+
+               //INFORMATION("!pitem (pbox->m_rectangle.intersects(rectangleClient(EMPTY)))");
+
+            }
+            else if (rectangleClient.area() < 10'000)
+            {
+
+               //INFORMATION("!pitem (pbox->m_rectangle.intersects(rectangleClient(<10'000)))");
+
+            }
+
 
             continue;
 
@@ -158,6 +187,8 @@ namespace write_text
          image_source imagesource(pbox->m_pimage);
 
          auto rectangle = pbox->m_rectangle;
+
+         //INFORMATION("rect:" << rectangle);
 
          image_drawing_options imagedrawingoptions(rectangle);
 
@@ -1102,21 +1133,6 @@ namespace write_text
          if (pcounter->lock(30_s))
          {
 
-            //{
-
-            //   synchronous_lock synchronouslock(mutex());
-
-            //   if (pfontlistdata != m_pfontlistdata)
-            //   {
-
-            //      return;
-
-            //   }
-
-            //   set_modified(id_font_list_layout);
-
-            //}
-
             layout();
 
          }
@@ -1151,15 +1167,17 @@ namespace write_text
 
          m_size = sizeTotal;
 
-         //set_modified(id_font_list_total_size);
-
-         m_puserinteraction->set_need_layout();
-
-         m_puserinteraction->set_need_redraw();
-
-         m_puserinteraction->post_redraw();
-
       }
+
+      m_puserinteraction->set_need_layout();
+
+      m_puserinteraction->set_need_redraw();
+
+      m_puserinteraction->post_redraw();
+
+      INFORMATION("font_list::layout() FINISHED 1");
+      INFORMATION("font_list::layout() FINISHED 2");
+      INFORMATION("font_list::layout() FINISHED 3");
 
    }
 

@@ -119,6 +119,19 @@ namespace tranquillum
          if (econtroltype == ::user::e_control_type_tab)
          {
 
+            if (eelement == ::e_element_tab_layout_background)
+            {
+
+               return argb(255, 242, 250, 253);
+
+            }
+            else if (eelement == ::e_element_tab_client_background)
+            {
+
+               return argb(255, 255, 255, 255);
+
+            }
+
          }
          else if (econtroltype == ::user::e_control_type_button)
          {
@@ -586,7 +599,7 @@ namespace tranquillum
 
       rcTab = ptab->get_data()->m_rectangleTab;
 
-      if (ptab->get_data()->m_bNoClient)
+      if (!ptab->get_data()->m_bNoClient)
       {
 
          pgraphics->fill_rectangle(rcTab, argb(255, 255, 255, 255));
@@ -595,8 +608,6 @@ namespace tranquillum
       ::rectangle_i32 rcTape(rcTab);
 
       rcTape.top = rcTape.bottom - 8;
-
-      pgraphics->fill_rectangle(rcTape, argb(255, 192, 192, 192));
 
 
       ::rectangle_i32 rcTabs(rcTab);
@@ -622,6 +633,10 @@ namespace tranquillum
       crbk = ptab->get_color(pstyle, ::e_element_tab_client_background);
 
       pgraphics->fill_rectangle(rcClient, crbk);
+
+      pgraphics->fill_rectangle(rcTape, argb(255, 192, 192, 192));
+
+
 
       ::index iTab = -1;
 

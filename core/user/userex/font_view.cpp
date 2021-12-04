@@ -216,7 +216,7 @@ namespace userex
 
       }
 
-      if (!m_pimpact->m_pfontlist->set_sel_by_name(str))
+      if (!m_pimpact->set_sel_by_name(str))
       {
 
          return false;

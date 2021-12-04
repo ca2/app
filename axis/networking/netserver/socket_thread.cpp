@@ -9,9 +9,19 @@ namespace netserver
    socket_thread_base::socket_thread_base()
    {
 
-      m_iPort = 80;
-      m_iSsl = -1;
       m_strIp = "0.0.0.0";
+      m_iPortMaximum = -1;
+
+
+      m_iPortMinimum = 10000;
+      m_iPortMaximum = 19999;
+
+
+      m_iCurrentPort = m_iPortMinimum;
+
+
+      m_iConnectPort = -1;
+
 
    }
 
@@ -33,8 +43,7 @@ namespace netserver
 
       m_plistensocket->m_bDetach = true;
 
-      if (m_plistensocket->m_strCat.has_char() &&
-            (m_iSsl > 0 || (m_iSsl < 0 && (m_iPort == 443 || ::str::ends(__string(m_iPort), "443")))))
+      if (m_plistensocket->m_strCat.has_char())
       {
 
          m_plistensocket->EnableSSL();
@@ -65,12 +74,12 @@ namespace netserver
    ::e_status socket_thread_base::run()
    {
 
-      if (m_strIp.is_empty() || m_iPort <= 0)
+      if (m_strIp.is_empty() && m_iPortMaximum >= m_iPortMinimum)
       {
 
          string strMessage;
 
-         strMessage.format("Invalid address \"%s\" or invalid port %d", m_strIp.c_str(), m_iPort);
+         strMessage.format("Invalid address \"%s\" or invalid port range", m_strIp.c_str());
 
          TRACE(strMessage);
 
@@ -96,36 +105,56 @@ namespace netserver
 
             initialize_listen_socket();
 
-            while (::task_get_run())
+            m_iConnectPort = -1;
+
+            while (::task_get_run() && m_iPortMaximum >= m_iPortMinimum)
             {
 
-               int iError = m_plistensocket->Bind(m_strIp, (port_t)m_iPort);
-
-               if(iError != 0)
+               for (m_iCurrentPort = m_iPortMinimum; ::task_get_run() && m_iCurrentPort <= m_iPortMaximum; m_iCurrentPort++)
                {
 
-                  string strMessage;
+                  int iError = m_plistensocket->Bind(m_strIp, (port_t)m_iCurrentPort);
 
-                  strMessage.format("\n\netserver::socket_thread_base::run Couldn't bind to address %s:%d!!\n\n", m_strIp.c_str(), m_iPort);
+                  if (iError != 0)
+                  {
 
-                  TRACE(strMessage);
+                     if (m_iCurrentPort < m_iPortMaximum)
+                     {
 
-                  sleep(5000_ms);
+                        preempt(300_ms);
 
-                  continue;
+                        continue;
+
+                     }
+
+                     string strMessage;
+
+                     strMessage.format("\n\netserver::socket_thread_base::run Couldn't bind to address %s!!\n\n", m_strIp.c_str());
+
+                     TRACE(strMessage);
+
+                     break;
+
+                  }
+
+                  m_iConnectPort = m_iCurrentPort;
+
+                  m_plistensocket->set_maximum_time(0);
+
+                  m_psockethandler->add2(m_plistensocket);
+
+                  while (m_psockethandler->get_count() > 0 && task_get_run())
+                  {
+
+                     m_psockethandler->select(1, 0);
+
+                  }
+
+                  m_iConnectPort = -1;
 
                }
 
-               m_plistensocket->set_maximum_time(0);
-
-               m_psockethandler->add2(m_plistensocket);
-
-               while (m_psockethandler->get_count() > 0 && task_get_run())
-               {
-
-                  m_psockethandler->select(1, 0);
-
-               }
+               sleep(5000_ms);
 
             }
 

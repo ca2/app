@@ -13,8 +13,11 @@ namespace netserver
 
 
       string                                       m_strIp;
-      i32                                          m_iPort;
       int                                          m_iSsl;
+      i32                                          m_iCurrentPort;
+      i32                                          m_iPortMinimum;
+      i32                                          m_iPortMaximum;
+      i32                                          m_iConnectPort;
 
       SOCKET                                       m_hsocket;
       string                                       m_strCat;

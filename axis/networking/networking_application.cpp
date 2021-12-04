@@ -7,8 +7,6 @@
 networking_application::networking_application()
 {
 
-   m_iPort = 10009;
-
 }
 
 
@@ -49,8 +47,7 @@ networking_application::~networking_application()
    }
 
    m_psocketthread->m_strIp = "127.0.0.1";
-   m_psocketthread->m_iPort = m_iPort;
-
+   
    auto pfolder = m_psystem->m_papexsystem->file().resource_folder();
 
    if (pfolder)
@@ -101,39 +98,59 @@ networking_application::~networking_application()
 }
 
 
+i32 networking_application::get_current_port()
+{
+
+   return m_psocketthread->m_iConnectPort;
+
+}
+
+
+
+i32 networking_application::wait_get_current_port(const ::duration& duration)
+{
+
+   ::duration durationStart;
+
+   durationStart.Now();
+
+   while (get_current_port() < 0 && durationStart.elapsed() < duration)
+   {
+
+      preempt(300_ms);
+
+   }
+
+   return get_current_port();
+
+}
+
 ::e_status networking_application::on_html_response(::string & strHtml, const ::string& strUrl, const ::property_set& setPost)
 {
 
    string strRequestScript = m_psystem->url()->get_script(strUrl);
 
-   for (auto& assoc : m_mapnetworkingapplicationhandlera)
+   for (auto& assoc : m_mapnetworkingapplicationhandler)
    {
 
       auto & strFolder = assoc.m_element1;
 
-      auto & handlera = assoc.m_element2;
+      auto & phandler = assoc.m_element2;
 
-      if (strFolder.has_char())
+      if (strFolder.has_char() && phandler)
       {
 
-         for (auto& phandler : handlera)
+         string strScript = "/" + strFolder;
+
+         if (strRequestScript == strScript)
          {
 
-            string strScript = "/" + strFolder;
+            auto estatus = phandler->on_html_response(strHtml, strUrl, setPost);
 
-            string strScriptPrefix = strScript + "/";
-
-            if (strRequestScript == strScript || strRequestScript.begins(strScriptPrefix))
+            if (estatus.succeeded())
             {
 
-               auto estatus = phandler->on_html_response(strHtml, strUrl, setPost);
-
-               if (estatus.succeeded())
-               {
-
-                  return estatus;
-
-               }
+               return estatus;
 
             }
 

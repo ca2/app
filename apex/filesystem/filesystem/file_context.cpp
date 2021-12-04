@@ -1297,7 +1297,11 @@ bool file_context::resource_is_file_or_dir(const char* path)
 
          auto pacmefile = psystem->m_pacmefile;
 
-         if (!pacmefile->copy(varTarget.get_file_path(), varSource.get_file_path(), !bFailIfExists))
+         auto pathTarget = psystem->defer_process_path(varTarget.get_file_path());
+
+         auto pathSource = psystem->defer_process_path(varSource.get_file_path());
+
+         if (!pacmefile->copy(pathTarget, pathSource, !bFailIfExists))
          {
 
             return ::error_failed;

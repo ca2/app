@@ -6,6 +6,25 @@
 #include "apex/platform/api_client.h"
 
 
+class CLASS_DECL_ACME string_timeout
+{
+public:
+
+   string            m_str;
+   ::datetime::time  m_duration; /// time when this network_payload was last updated
+
+   bool is_valid(const ::duration& durationTimeOut) const
+   {
+
+      return m_duration.elapsed() < durationTimeOut;
+
+   }
+
+};
+
+
+
+
 namespace geo
 {
 
@@ -38,6 +57,15 @@ namespace geo
       ::file::path                                                      m_pathLocalityTimeZoneFile;
       task_pointer                                                      m_ptaskSaveLocalityTimeZone;
       bool                                                              m_bLocalityTimeZoneModified;
+
+
+      ::mutex                                                           m_mutexCityWeather;
+      index_map < string_timeout >                                      m_cityWeather;
+      bool                                                              m_bLoadedCityWeatherFromFile;
+      ::file::path                                                      m_pathCityWeatherFile;
+      task_pointer                                                      m_ptaskSaveCityWeather;
+      bool                                                              m_bCityWeatherModified;
+
 
       //string_map < time_zone >      m_countryTimeZone;
 
@@ -84,14 +112,21 @@ namespace geo
 
       virtual ::datetime::department::time_zone _get_time_zone(double dLat, double dLng);
 
+      virtual string get_weather(openweather_city* pcity);
+
+      virtual string _get_weather(openweather_city* pcity);
 
       virtual void set_city_time_zone_modified();
 
       virtual void set_locality_time_zone_modified();
 
+      virtual void set_city_weather_modified();
+
       virtual void save_city_time_zone();
 
       virtual void save_locality_time_zone();
+
+      virtual void save_city_weather();
 
    };
 

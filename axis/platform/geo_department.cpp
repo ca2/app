@@ -1323,7 +1323,7 @@ namespace geo
 
          auto& timezone = m_cityTimeZone[iOpenweatherCity];
 
-         if (timezone.m_strZone.has_char())
+         if (timezone.is_valid(1_day))
          {
 
             return timezone;
@@ -1402,7 +1402,7 @@ namespace geo
 
          auto& timezone = m_localityTimeZone[dLat][dLng];
 
-         if (timezone.m_strZone.has_char())
+         if (timezone.is_valid(1_day))
          {
 
             return timezone;
@@ -1419,6 +1419,8 @@ namespace geo
             set_locality_time_zone_modified();
 
          }
+
+         timezone.m_duration.Now();
 
          return timezone;
 
@@ -1476,9 +1478,130 @@ namespace geo
 
       }
 
-      timezone.m_duration.Now();
-
       return timezone;
+
+   }
+
+
+   string department::get_weather(openweather_city* pcity)
+   {
+
+      if (!m_bLoadedCityWeatherFromFile)
+      {
+
+         m_bLoadedCityWeatherFromFile = true;
+
+         ::file::path path = m_pathCityWeatherFile;
+
+         try
+         {
+
+            auto file = m_pcontext->m_papexcontext->file().get_reader(path);
+
+            ::binary_stream reader(file);
+
+            synchronous_lock synchronouslock(&m_mutexCityWeather);
+
+            reader >> m_cityWeather;
+
+         }
+         catch (...)
+         {
+
+         }
+
+      }
+
+      if (::is_null(pcity))
+      {
+
+         return "";
+
+      }
+
+      if (pcity->m_iId < 0)
+      {
+
+         return "";
+
+      }
+
+      try
+      {
+
+         synchronous_lock synchronouslock(&m_mutexCityTimeZone);
+
+         auto& stringtimeout = m_cityWeather[pcity->m_iId];
+
+         if (stringtimeout.is_valid(1_min))
+         {
+
+            return stringtimeout.m_str;
+
+         }
+
+         synchronouslock.unlock();
+
+         stringtimeout.m_str = _get_weather(pcity);
+
+         if (stringtimeout.m_str.has_char())
+         {
+
+            set_locality_time_zone_modified();
+
+         }
+
+         stringtimeout.m_duration.Now();
+
+         return stringtimeout.m_str;
+
+      }
+      catch (...)
+      {
+
+      }
+
+      return {};
+
+   }
+
+
+   string department::_get_weather(openweather_city * pcity)
+   {
+
+      property_set set;
+
+      string strId = __string(pcity->m_iId);
+
+      string strUrl = "http://ca2.software/account/weather";
+
+      try
+      {
+
+         string strNetworkPayload;
+
+         property_set set;
+
+         set["city_id"] = strId;
+
+         auto estatus = api_get(strNetworkPayload, strUrl, set);
+
+         if (!estatus)
+         {
+
+            return strNetworkPayload;
+
+         }
+
+         return strNetworkPayload;
+
+      }
+      catch (...)
+      {
+
+      }
+
+      return "";
 
    }
 
@@ -1591,6 +1714,60 @@ namespace geo
    }
 
 
+   void department::set_city_weather_modified()
+   {
+
+      m_bCityWeatherModified = true;
+
+      if (!m_ptaskSaveCityWeather)
+      {
+
+         m_ptaskSaveCityWeather = fork([this]()
+            {
+
+               try
+               {
+
+                  while (m_ptaskSaveCityWeather->task_get_run())
+                  {
+
+                     preempt(1_s);
+
+                     if (m_bCityWeatherModified)
+                     {
+
+                        try
+                        {
+
+                           save_city_weather();
+
+                           m_bCityWeatherModified = false;
+
+                        }
+                        catch (...)
+                        {
+
+                        }
+
+                     }
+
+                  }
+
+               }
+               catch (...)
+               {
+
+               }
+
+               m_ptaskSaveCityWeather.release();
+
+            });
+
+      }
+
+   }
+
+
    void department::save_city_time_zone()
    {
       
@@ -1631,6 +1808,31 @@ namespace geo
          synchronous_lock synchronouslock(&m_mutexLocalityTimeZone);
 
          writer << m_cityTimeZone;
+
+      }
+      catch (...)
+      {
+
+      }
+
+   }
+
+
+   void department::save_city_weather()
+   {
+
+      ::file::path path = m_pathCityWeatherFile;
+
+      try
+      {
+
+         auto file = m_pcontext->m_papexcontext->file().get_writer(path);
+
+         ::binary_stream writer(file);
+
+         synchronous_lock synchronouslock(&m_mutexCityWeather);
+
+         writer << m_cityWeather;
 
       }
       catch (...)

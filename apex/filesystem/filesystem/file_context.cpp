@@ -1477,6 +1477,12 @@ bool file_context::resource_is_file_or_dir(const char* path)
 }
 
 
+//::extended::status file_context::update_to_newer(::payload varTarget, ::payload varSource)
+//{
+//
+//
+//}
+
 ::extended::status file_context::move(const ::file::path &pszNew, const ::file::path &psz)
 {
 

@@ -287,29 +287,6 @@ namespace user
 
       }
 
-      if (m_pfontlist->m_strFontFamily.has_char()
-         && m_pfontlist->m_iSel < 0 
-         &&
-         (m_pfontlist->is_updating()
-         || m_pfontlist->m_iSelUpdateId != m_pfontlist->m_pfontenumeration->m_iUpdateId))
-      {
-
-         if (set_sel_by_name(m_pfontlist->m_strFontFamily))
-         {
-
-            ensure_sel_visible();
-
-         }
-
-      }
-
-      if (m_bEnsureVisible)
-      {
-
-         __on_draw_ensure_sel_visible();
-
-      }
-
       synchronous_lock synchronouslock(m_pfontlist->mutex());
 
       //m_pgraphics = pgraphics;
@@ -430,6 +407,29 @@ namespace user
       }
 
       rectangleFontList.bottom -= iScrollBarWidth;
+
+      if (m_pfontlist->m_strFontFamily.has_char()
+         && m_pfontlist->m_iSel < 0
+         &&
+         (m_pfontlist->is_updating()
+         || m_pfontlist->m_iSelUpdateId != m_pfontlist->m_pfontenumeration->m_iUpdateId))
+      {
+
+         if (set_sel_by_name(m_pfontlist->m_strFontFamily))
+         {
+
+            ensure_sel_visible();
+
+         }
+
+      }
+
+      if (m_bEnsureVisible)
+      {
+
+         __on_draw_ensure_sel_visible();
+
+      }
 
       m_pfontlist->set_client_rectangle(rectangleFontList);
 

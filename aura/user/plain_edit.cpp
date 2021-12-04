@@ -6687,14 +6687,14 @@ finished_update:
    void plain_edit::on_before_change_text()
    {
 
-      if (get_ime_composition().has_char())
-      {
+      //if (get_ime_composition().has_char())
+      //{
 
-         clear_ime_composition();
+      //   clear_ime_composition();
 
-         edit_undo();
+      //   edit_undo();
 
-      }
+      //}
 
    }
 

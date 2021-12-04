@@ -380,7 +380,7 @@ public:
 
    inline static string_base empty_string() { return string_base(); }
 
-   inline bool empty() const noexcept  { return this->is_empty(); }
+   inline void empty() { Empty(); }
 
    inline bool has_char() const noexcept { return !this->is_empty(); }
 

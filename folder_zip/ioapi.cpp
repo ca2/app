@@ -74,7 +74,7 @@ extern "C" voidpf ZCALLBACK fopen_file_func (voidpf opaque, const char * filenam
 
 
    if ((filename!=nullptr) && (mode_fopen != nullptr))
-#if defined(__APPLE__) || defined(LINUX) || defined(ANDROID) || defined(SOLARIS)
+#if defined(__APPLE__) || defined(LINUX) || defined(ANDROID) || defined(SOLARIS) || defined(FREEBSD)
    {
       file = fopen(filename, mode_fopen);
       if(file == nullptr)

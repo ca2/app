@@ -43,10 +43,9 @@ elseif(FREEBSD)
     pkg_check_modules(PKGCONFIG librsvg-2.0 freeimage)
     target_compile_options(imaging_freeimage PRIVATE -fpermissive ${PKGCONFIG_CFLAGS})
     target_link_options(imaging_freeimage PRIVATE ${PKGCONFIG_LDFLAGS})
+    target_link_libraries(imaging_freeimage PRIVATE ${PKGCONFIG_LIBRARIES})
     target_link_libraries(imaging_freeimage PRIVATE acme apex aqua aura)
     target_link_options(imaging_freeimage PRIVATE -Wl,-z,defs)
-    message("imaging_freeimage: PKGCONFIG_LDFLAGS is ${PKGCONFIG_LDFLAGS}")
-
 
 elseif(LINUX)
 
@@ -56,7 +55,6 @@ elseif(LINUX)
     target_link_options(imaging_freeimage PRIVATE ${PKGCONFIG_LDFLAGS})
     target_link_libraries(imaging_freeimage PRIVATE freeimage acme apex aqua aura)
     target_link_options(imaging_freeimage PRIVATE -Wl,-z,defs)
-    message("imaging_freeimage: PKGCONFIG_LDFLAGS is ${PKGCONFIG_LDFLAGS}")
 
 
 endif()

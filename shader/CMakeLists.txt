@@ -74,24 +74,27 @@ list(APPEND executable_references
 
 
 
-add_custom_target(${PROJECT_NAME}_matter
-    COMMAND ${APPLICATION_BUILD_HELPER} ${PROJECT_SOURCE_DIR}
-    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
-    DEPENDS deps.txt matter.txt
-    VERBATIM
-    )
-
-
 if(LINUX OR FREEBSD)
 
+   add_custom_command(
+      COMMAND ${APPLICATION_BUILD_HELPER} ${PROJECT_SOURCE_DIR}
+      COMMAND ${CMAKE_COMMAND} -E touch ${CMAKE_BINARY_DIR}/matter_zip.generated_for_unix_shit_maydein
+      OUTPUT ${CMAKE_BINARY_DIR}/matter_zip.generated_for_unix_shit_maydein
+      WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+      BYPRODUCTS ${PROJECT_SOURCE_DIR}/.link_object/_matter.zip.o 
+      DEPENDS deps.txt matter.txt
+      VERBATIM
+      )
 
-    list(APPEND executable_references ${PROJECT_SOURCE_DIR}/.link_object/_matter.zip.o)
+   add_custom_target(${PROJECT_NAME}_matter
+      DEPENDS ${CMAKE_BINARY_DIR}/matter_zip.generated_for_unix_shit_maydein
+   )
 
+   list(APPEND executable_references ${PROJECT_SOURCE_DIR}/.link_object/_matter.zip.o)
+
+   add_dependencies(_${PROJECT_NAME} ${PROJECT_NAME}_matter)
 
 endif()
-
-
-add_dependencies(_${PROJECT_NAME} ${PROJECT_NAME}_matter)
 
 
 if (MSVC)
@@ -118,6 +121,8 @@ endif ()
 add_dependencies(_app_shader ${default_draw2d})
 add_dependencies(_app_shader ${default_write_text})
 add_dependencies(_app_shader ${app_common_dependencies})
+add_dependencies(_app_shader crypto_openssl)
+add_dependencies(_app_shader folder_zip)
 add_dependencies(_app_shader gpu_opengl)
 
 

@@ -71,7 +71,7 @@ elseif(LINUX OR FREEBSD)
 
 
     target_compile_options(bred PRIVATE -fpermissive)
-    target_link_libraries(bred PRIVATE ${PKGCONFIG_LIBRARIES} ${library_references})
+    target_link_libraries(bred PRIVATE ${library_references})
     target_link_options(bred PRIVATE -Wl,-z,defs)
 
 

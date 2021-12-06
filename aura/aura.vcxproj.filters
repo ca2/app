@@ -1653,9 +1653,6 @@
     <None Include="graphics\_impl.h">
       <Filter>Header Files\graphics</Filter>
     </None>
-    <None Include="aura.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="user\notify_icon_mm_bridge.mm">
       <Filter>Header Files\user</Filter>
     </None>

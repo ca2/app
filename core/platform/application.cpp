@@ -128,6 +128,19 @@ namespace core
 
       string strOptionsHtml;
 
+      if (m_bEnableAutoStartOption)
+      {
+
+         strOptionsHtml += "<br/>";
+         strOptionsHtml += "<br/>";
+         strOptionsHtml += "<input type=\"checkbox\" id=\"user_auto_start_checkbox\" />";
+         strOptionsHtml += "&nbsp;Enable Auto Start";
+         strOptionsHtml += "<br/>";
+         strOptionsHtml += "<br/>";
+
+
+      }
+
       strOptionsHtml += m_psystem->m_pnode->m_pauranode->system_options_html();
 
       strOptionsHtml += "</body>";

@@ -2184,9 +2184,6 @@
     <None Include="user\rich_text\_impl.h">
       <Filter>Header Files\user\rich_text</Filter>
     </None>
-    <None Include="core.def">
-      <Filter>Source Files</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\..\archive\platform-windows\version.rc">

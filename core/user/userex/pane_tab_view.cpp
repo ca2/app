@@ -288,9 +288,11 @@ namespace userex
 
             }
 
-            ::user::impact * pview = m_pdocumentMenu->get_view(0);
+            auto pformview = m_pdocumentMenu->get_typed_view < ::user::form_view>();
 
-            pview->set_need_load_form_data();
+            pformview->get_form()->add_handler(get_application());
+
+            pformview->set_need_load_form_data();
 
          }
 

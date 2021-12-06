@@ -301,7 +301,7 @@ namespace acme
    html_border_right_color = "border-right-color";
    html_border_bottom_color = "border-bottom-color";
 
-   system_startup_checkbox = "system_startup_checkbox";
+   user_auto_start_checkbox = "user_auto_start_checkbox";
 
    thread = "thread";
 

@@ -896,8 +896,8 @@ public:
 };
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR = allocator::nodef < TYPE >, enum_type t_etypePayload = e_type_element >
-inline TYPE& operator%(::index nIndex, const array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & a)
+template < primitive_integral INTEGRAL, class TYPE, class ARG_TYPE, class ALLOCATOR = allocator::nodef < TYPE >, enum_type t_etypePayload = e_type_element >
+inline TYPE& operator%(INTEGRAL nIndex, const array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & a)
 {
 
    return (TYPE &) (a % nIndex);

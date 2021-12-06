@@ -273,7 +273,7 @@ namespace acme
       ::id html_border_right_color;
       ::id html_border_bottom_color;
 
-      ::id system_startup_checkbox;
+      ::id user_auto_start_checkbox;
 
       ::id thread;
 

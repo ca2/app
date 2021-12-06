@@ -34,10 +34,10 @@ public:
 
    virtual ::e_status link_open(const string & strUrl, const string & strProfile);
 
-   virtual bool local_machine_set_run(const ::string & strKey, const ::string & strCommand, bool bSet);
-   virtual bool local_machine_set_run_once(const ::string & strKey, const ::string & strCommand, bool bSet);
-   virtual bool current_user_set_run(const ::string & strKey, const ::string & strCommand, bool bSet);
-   virtual bool current_user_set_run_once(const ::string & strKey, const ::string & strCommand, bool bSet);
+   virtual bool local_machine_set_run(const ::string & strKey, const ::string & strCommand, const ::string& strArguments, bool bSet);
+   virtual bool local_machine_set_run_once(const ::string & strKey, const ::string & strCommand, const ::string& strArguments, bool bSet);
+   virtual bool current_user_set_run(const ::string & strKey, const ::string & strCommand, const ::string & strArguments, bool bSet);
+   virtual bool current_user_set_run_once(const ::string & strKey, const ::string & strCommand, const ::string& strArguments, bool bSet);
 
    virtual bool defer_register_ca2_plugin_for_mozilla();
 
@@ -96,7 +96,7 @@ public:
 
    virtual bool add_default_program(string_array & straExtension, string_array & straMimeType);
 
-   virtual bool register_user_auto_start(string strId, string strCommand, bool bRegister);
+   virtual bool register_user_auto_start(const string & strId, const string & strCommand, const string & strArguments, bool bRegister);
 
    virtual bool is_user_auto_start(string strId);
 

@@ -123,7 +123,7 @@
    }
 
 
-   bool os_context::local_machine_set_run(const ::string & pszKey, const ::string & pszCommand, bool bSet)
+   bool os_context::local_machine_set_run(const ::string & pszKey, const ::string & pszCommand, const ::string& pszArguments, bool bSet)
    {
 
       __UNREFERENCED_PARAMETER(pszKey);
@@ -133,7 +133,8 @@
 
    }
 
-   bool os_context::local_machine_set_run_once(const ::string & pszKey, const ::string & pszCommand, bool bSet)
+
+   bool os_context::local_machine_set_run_once(const ::string & pszKey, const ::string & pszCommand, const ::string& pszArguments, bool bSet)
    {
 
       __UNREFERENCED_PARAMETER(pszKey);
@@ -143,7 +144,8 @@
 
    }
 
-   bool os_context::current_user_set_run(const ::string & pszKey, const ::string & pszCommand, bool bSet)
+   
+   bool os_context::current_user_set_run(const ::string & pszKey, const ::string & pszCommand, const ::string& pszArguments, bool bSet)
    {
 
       __UNREFERENCED_PARAMETER(pszKey);
@@ -153,7 +155,8 @@
 
    }
 
-   bool os_context::current_user_set_run_once(const ::string & pszKey, const ::string & pszCommand, bool bSet)
+   
+   bool os_context::current_user_set_run_once(const ::string & pszKey, const ::string & pszCommand, const ::string& pszArguments, bool bSet)
    {
 
       __UNREFERENCED_PARAMETER(pszKey);
@@ -606,7 +609,7 @@
    }
 
 
-   bool os_context::register_user_auto_start(string strId, string strCommand, bool bRegister)
+   bool os_context::register_user_auto_start(const string & strId, const string & strCommand, const string & strArguments, bool bRegister)
    {
 
       return false;

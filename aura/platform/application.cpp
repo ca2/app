@@ -8696,7 +8696,7 @@ namespace aura
 
             auto puserinteraction = psubject->m_puserelement->cast<::user::interaction>();
 
-            if (puserinteraction->m_id == __id(system_startup_checkbox))
+            if (puserinteraction->m_id == __id(user_auto_start_checkbox))
             {
 
                try
@@ -8711,6 +8711,15 @@ namespace aura
                      pcheck->_001SetCheck(
                         os_context()->is_user_auto_start(get_executable_appid()),
                         ::e_source_initialize);
+
+                     auto puserinteractionCheck = pcheck->cast <::user::interaction>();
+
+                     if (puserinteractionCheck)
+                     {
+
+                        puserinteractionCheck->add_handler(this);
+
+                     }
 
                   }
                }
@@ -8727,7 +8736,7 @@ namespace aura
 
             auto puserinteraction = psubject->user_interaction();
 
-            if (puserinteraction->m_id == __id(system_startup_checkbox)
+            if (puserinteraction->m_id == __id(user_auto_start_checkbox)
                && psubject->m_actioncontext.is_user_source())
             {
 
@@ -8742,6 +8751,7 @@ namespace aura
                      os_context()->register_user_auto_start(
                         get_executable_appid(),
                         get_executable_path(),
+                        ": auto_start=1",
                         pcheck->echeck() == ::check_checked);
 
                   }

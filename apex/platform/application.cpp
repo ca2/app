@@ -113,6 +113,7 @@ CLASS_DECL_APEX int ui_open_url(const ::string & psz);
 application::application()
 {
 
+   m_bEnableAutoStartOption = false;
    //m_bProcessingApplicationExitRequest = false;
    m_papexapplication = this;
    ::object::m_pcontext = this;

@@ -76,7 +76,7 @@ public:
       //bool                                            m_bAgreeExitOk;
       //bool                                            m_bFranceExit;
 
-
+      bool                                            m_bEnableAutoStartOption;
       bool                                            m_bInterprocessIntercommunication;
       __composite(interprocess_intercommunication)    m_pinterprocessintercommunication;
       //__composite(service)                            m_pservice;

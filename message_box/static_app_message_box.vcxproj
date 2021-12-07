@@ -299,17 +299,8 @@
     <ProjectReference Include="..\..\app\aura\aura.vcxproj">
       <Project>{e000ffaf-392f-4e32-bf51-fd7ed638991f}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\app\axis\axis.vcxproj">
-      <Project>{a2cbd4ed-ed0f-482b-9b16-f48f21c32835}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\app\base\base.vcxproj">
-      <Project>{a216abd4-26c4-4746-96b3-9d30ed28cf92}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\app\experience_core\experience_core.vcxproj">
-      <Project>{e2d7833b-9b59-4826-bbdf-c270a2115e86}</Project>
-    </ProjectReference>
-    <ProjectReference Include="simple_application.vcxproj">
-      <Project>{4eeb9763-3caf-4436-8654-a583351353e2}</Project>
+    <ProjectReference Include="app_message_box.vcxproj">
+      <Project>{411803c3-293c-411d-8058-93280fa90eab}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

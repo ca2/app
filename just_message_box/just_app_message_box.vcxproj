@@ -39,7 +39,7 @@
     <RootNamespace>app</RootNamespace>
     <Keyword>Win32Proj</Keyword>
     <ProjectName>app_just_message_box</ProjectName>
-    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">
@@ -49,7 +49,7 @@
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <UseOfAtl>false</UseOfAtl>
     <PlatformToolset>v143</PlatformToolset>
@@ -62,7 +62,7 @@
     <WholeProgramOptimization>true</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <UseOfAtl>false</UseOfAtl>
     <PlatformToolset>v143</PlatformToolset>
@@ -75,7 +75,7 @@
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <UseOfAtl>false</UseOfAtl>
     <PlatformToolset>v143</PlatformToolset>
@@ -88,7 +88,7 @@
     <WholeProgramOptimization>true</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <UseOfAtl>false</UseOfAtl>
     <PlatformToolset>v143</PlatformToolset>
@@ -288,7 +288,7 @@
       <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-windows/include;$(__archive)third-windows/third/include;$(__archive)third-windows/third/include/include;$(SolutionDir)../../../archive/platform-windows/_include;$(SolutionDir)../../../archive/platform-windows;$(SolutionDir)../../../archive/platform-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>CUBE;_APP_MESSAGE_BOX_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_APP_MESSAGE_BOX_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Async</ExceptionHandling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -487,7 +487,7 @@
       <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
       <Optimization>MaxSpeed</Optimization>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-windows/include;$(__archive)third-windows/third/include;$(__archive)third-windows/third/include/include;$(SolutionDir)../../../archive/platform-windows/_include;$(SolutionDir)../../../archive/platform-windows;$(SolutionDir)../../../archive/platform-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>CUBE;_APP_MESSAGE_BOX_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_APP_MESSAGE_BOX_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <ExceptionHandling>Async</ExceptionHandling>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -686,7 +686,7 @@
       <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-windows/include;$(__archive)third-windows/third/include;$(__archive)third-windows/third/include/include;$(SolutionDir)../../../archive/platform-windows/_include;$(SolutionDir)../../../archive/platform-windows;$(SolutionDir)../../../archive/platform-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>CUBE;_APP_MESSAGE_BOX_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_APP_MESSAGE_BOX_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Async</ExceptionHandling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -873,7 +873,7 @@
       <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
       <Optimization>MaxSpeed</Optimization>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-windows/include;$(__archive)third-windows/third/include;$(__archive)third-windows/third/include/include;$(SolutionDir)../../../archive/platform-windows/_include;$(SolutionDir)../../../archive/platform-windows;$(SolutionDir)../../../archive/platform-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>CUBE;_APP_MESSAGE_BOX_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_APP_MESSAGE_BOX_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <ExceptionHandling>Async</ExceptionHandling>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>

@@ -518,7 +518,7 @@
       <EnableFiberSafeOptimizations>false</EnableFiberSafeOptimizations>
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
       <UseFullPaths>true</UseFullPaths>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <OpenMPSupport>false</OpenMPSupport>
       <EnableModules>false</EnableModules>
       <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -885,7 +885,7 @@
       </SDLCheck>
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
       <UseFullPaths>true</UseFullPaths>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <OpenMPSupport>false</OpenMPSupport>
       <EnableModules>false</EnableModules>
       <WholeProgramOptimization>true</WholeProgramOptimization>

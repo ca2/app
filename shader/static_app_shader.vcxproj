@@ -108,7 +108,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>zlib.lib;sqlite.lib;libcrypto.lib;libssl.lib;ws2_32.lib;Secur32.lib;SetupAPI.lib;Credui.lib;Dbghelp.lib;Msimg32.lib;Dwmapi.lib;Dxva2.lib;Imm32.lib;Gdiplus.lib;Crypt32.lib;Shlwapi.lib;Normaliz.lib;windowscodecs.lib;gdiplus.lib;winmm.lib;version.lib;vfw32.lib;opengl32.lib;glu32.lib;Psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zlib.lib;sqlite.lib;libcrypto.lib;libssl.lib;glu32.lib;glew32.lib;opengl32.lib;ws2_32.lib;Secur32.lib;SetupAPI.lib;Credui.lib;Dbghelp.lib;Msimg32.lib;Dwmapi.lib;Dxva2.lib;Imm32.lib;Gdiplus.lib;Crypt32.lib;Shlwapi.lib;Normaliz.lib;windowscodecs.lib;gdiplus.lib;winmm.lib;version.lib;vfw32.lib;opengl32.lib;glu32.lib;Psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PreBuildEvent>
@@ -149,7 +149,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>zlib.lib;sqlite.lib;libcrypto.lib;libssl.lib;pcre.lib;ws2_32.lib;Secur32.lib;SetupAPI.lib;Credui.lib;Dbghelp.lib;Msimg32.lib;Dwmapi.lib;Dxva2.lib;Imm32.lib;Gdiplus.lib;Crypt32.lib;Shlwapi.lib;Normaliz.lib;windowscodecs.lib;gdiplus.lib;winmm.lib;version.lib;vfw32.lib;opengl32.lib;glu32.lib;Psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zlib.lib;sqlite.lib;libcrypto.lib;libssl.lib;glu32.lib;glew32.lib;opengl32.lib;ws2_32.lib;Secur32.lib;SetupAPI.lib;Credui.lib;Dbghelp.lib;Msimg32.lib;Dwmapi.lib;Dxva2.lib;Imm32.lib;Gdiplus.lib;Crypt32.lib;Shlwapi.lib;Normaliz.lib;windowscodecs.lib;gdiplus.lib;winmm.lib;version.lib;vfw32.lib;opengl32.lib;glu32.lib;Psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PreBuildEvent>
@@ -183,7 +183,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>zlib.lib;sqlite.lib;libcrypto.lib;libssl.lib;ws2_32.lib;Secur32.lib;SetupAPI.lib;Credui.lib;Dbghelp.lib;Msimg32.lib;Dwmapi.lib;Dxva2.lib;Imm32.lib;Gdiplus.lib;Crypt32.lib;Shlwapi.lib;Normaliz.lib;windowscodecs.lib;gdiplus.lib;winmm.lib;version.lib;vfw32.lib;opengl32.lib;glu32.lib;Psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zlib.lib;sqlite.lib;libcrypto.lib;libssl.lib;glu32.lib;glew32.lib;opengl32.lib;ws2_32.lib;Secur32.lib;SetupAPI.lib;Credui.lib;Dbghelp.lib;Msimg32.lib;Dwmapi.lib;Dxva2.lib;Imm32.lib;Gdiplus.lib;Crypt32.lib;Shlwapi.lib;Normaliz.lib;windowscodecs.lib;gdiplus.lib;winmm.lib;version.lib;vfw32.lib;opengl32.lib;glu32.lib;Psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PreBuildEvent>
@@ -224,7 +224,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>zlib.lib;sqlite.lib;libcrypto.lib;libssl.lib;pcre.lib;ws2_32.lib;Secur32.lib;SetupAPI.lib;Credui.lib;Dbghelp.lib;Msimg32.lib;Dwmapi.lib;Dxva2.lib;Imm32.lib;Gdiplus.lib;Crypt32.lib;Shlwapi.lib;Normaliz.lib;windowscodecs.lib;gdiplus.lib;winmm.lib;version.lib;vfw32.lib;opengl32.lib;glu32.lib;Psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zlib.lib;sqlite.lib;libcrypto.lib;libssl.lib;glu32.lib;glew32.lib;opengl32.lib;ws2_32.lib;Secur32.lib;SetupAPI.lib;Credui.lib;Dbghelp.lib;Msimg32.lib;Dwmapi.lib;Dxva2.lib;Imm32.lib;Gdiplus.lib;Crypt32.lib;Shlwapi.lib;Normaliz.lib;windowscodecs.lib;gdiplus.lib;winmm.lib;version.lib;vfw32.lib;opengl32.lib;glu32.lib;Psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PreBuildEvent>
@@ -299,17 +299,14 @@
     <ProjectReference Include="..\..\app\aura\aura.vcxproj">
       <Project>{e000ffaf-392f-4e32-bf51-fd7ed638991f}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\app\axis\axis.vcxproj">
-      <Project>{a2cbd4ed-ed0f-482b-9b16-f48f21c32835}</Project>
+    <ProjectReference Include="..\crypto_openssl\crypto_openssl.vcxproj">
+      <Project>{d08014e6-e329-41cf-81b5-957c290a4aa8}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\app\base\base.vcxproj">
-      <Project>{a216abd4-26c4-4746-96b3-9d30ed28cf92}</Project>
+    <ProjectReference Include="..\gpu_opengl\gpu_opengl.vcxproj">
+      <Project>{b7225cb5-b394-444b-8fff-02acd10175ce}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\app\experience_core\experience_core.vcxproj">
-      <Project>{e2d7833b-9b59-4826-bbdf-c270a2115e86}</Project>
-    </ProjectReference>
-    <ProjectReference Include="simple_application.vcxproj">
-      <Project>{4eeb9763-3caf-4436-8654-a583351353e2}</Project>
+    <ProjectReference Include="app_shader.vcxproj">
+      <Project>{1b31139b-7cd2-44d7-9765-6e438ae15d9f}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

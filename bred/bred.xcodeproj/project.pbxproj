@@ -77,7 +77,7 @@
 		9AEA17B1275FF905006437A3 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = "$(WorkspaceDir)/time-$(PLATFORM_MODIFIER)/$(ARCHS)/$(CONFIGURATION)";
+			dstPath = "$(WorkspaceDir)/time-$(PLATFORM_MODIFIER)/output";
 			dstSubfolderSpec = 0;
 			files = (
 				9AEA17B2275FF917006437A3 /* libbred.dylib in CopyFiles */,

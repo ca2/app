@@ -682,7 +682,7 @@
 		9AEA17B3275FF926006437A3 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = "$(WorkspaceDir)/time-$(PLATFORM_MODIFIER)/$(ARCHS)/$(CONFIGURATION)";
+			dstPath = "$(WorkspaceDir)/time-$(PLATFORM_MODIFIER)/output";
 			dstSubfolderSpec = 0;
 			files = (
 				9AEA17B4275FF936006437A3 /* libcore.dylib in CopyFiles */,

@@ -127,6 +127,7 @@
 		9A41243A266C3F3500C3FF0E /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A7864982650A3CF0034A0E1 /* libacme.dylib */; };
 		9A81F8CE2750744E003F38EC /* text_to_speech_client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F8CC2750744E003F38EC /* text_to_speech_client.cpp */; };
 		9A81F8CF2750744E003F38EC /* text_to_speech_client.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A81F8CD2750744E003F38EC /* text_to_speech_client.hpp */; };
+		9AEA17A6275FF890006437A3 /* libaqua.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A2818FE25242488009FA9CB /* libaqua.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -152,6 +153,19 @@
 			remoteInfo = apex;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9AEA17A4275FF874006437A3 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(WorkspaceDir)/time-$(PLATFORM_MODIFIER)/$(ARCHS)/$(CONFIGURATION)";
+			dstSubfolderSpec = 0;
+			files = (
+				9AEA17A6275FF890006437A3 /* libaqua.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		9A2818FE25242488009FA9CB /* libaqua.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaqua.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -662,6 +676,7 @@
 				9A2818FA25242488009FA9CB /* Headers */,
 				9A2818FB25242488009FA9CB /* Sources */,
 				9A2818FC25242488009FA9CB /* Frameworks */,
+				9AEA17A4275FF874006437A3 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -861,7 +876,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library/$(CONFIGURATION)",
+					"\"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library/$(ARCHS)/$(CONFIGURATION)\"",
+					"\"$(WorkspaceDir)/time-$(PLATFORM_MODIFIER)/$(ARCHS)/$(CONFIGURATION)\"",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -967,7 +983,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library/$(CONFIGURATION)",
+					"\"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library/$(ARCHS)/$(CONFIGURATION)\"",
+					"\"$(WorkspaceDir)/time-$(PLATFORM_MODIFIER)/$(ARCHS)/$(CONFIGURATION)\"",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;

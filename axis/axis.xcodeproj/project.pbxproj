@@ -270,6 +270,7 @@
 		9AE64952252A638900BED5B8 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE63EB1252A5BD200BED5B8 /* libaura.dylib */; };
 		9AE64955252A63D100BED5B8 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE64954252A63D100BED5B8 /* libbz2.tbd */; };
 		9AE64963252A641500BED5B8 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE64962252A641500BED5B8 /* libsqlite3.tbd */; };
+		9AEA17AE275FF8D7006437A3 /* libaxis.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AE63E9B252A5B7800BED5B8 /* libaxis.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -279,13 +280,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 9A98A6151771D67E000AE16E;
 			remoteInfo = aura;
-		};
-		9AE63EB2252A5BD200BED5B8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9AE63EAA252A5BD200BED5B8 /* aura.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9A20198A24772E9000A31CBF;
-			remoteInfo = ios_aura;
 		};
 		9AE63EB4252A5BD200BED5B8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -301,7 +295,27 @@
 			remoteGlobalIDString = 9A98A6031771D67E000AE16E;
 			remoteInfo = aura;
 		};
+		9AEA17AC275FF8C4006437A3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AE63EAA252A5BD200BED5B8 /* aura.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AEA1773275FF4F2006437A3;
+			remoteInfo = ios_aura;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9AEA17A9275FF8C4006437A3 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(WorkspaceDir)/time-$(PLATFORM_MODIFIER)/$(ARCHS)/$(CONFIGURATION)";
+			dstSubfolderSpec = 0;
+			files = (
+				9AEA17AE275FF8D7006437A3 /* libaxis.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		9A00E5EB26614F9400517464 /* database_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = database_impl.h; sourceTree = "<group>"; };
@@ -770,7 +784,7 @@
 			isa = PBXGroup;
 			children = (
 				9AE63EB1252A5BD200BED5B8 /* libaura.dylib */,
-				9AE63EB3252A5BD200BED5B8 /* libios_aura.a */,
+				9AEA17AD275FF8C4006437A3 /* libios_aura.a */,
 				9AE63EB5252A5BD200BED5B8 /* aura_iosTests.xctest */,
 			);
 			name = Products;
@@ -1314,6 +1328,7 @@
 				9AE63E97252A5B7800BED5B8 /* Headers */,
 				9AE63E98252A5B7800BED5B8 /* Sources */,
 				9AE63E99252A5B7800BED5B8 /* Frameworks */,
+				9AEA17A9275FF8C4006437A3 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1371,18 +1386,18 @@
 			remoteRef = 9AE63EB0252A5BD200BED5B8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9AE63EB3252A5BD200BED5B8 /* libios_aura.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libios_aura.a;
-			remoteRef = 9AE63EB2252A5BD200BED5B8 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		9AE63EB5252A5BD200BED5B8 /* aura_iosTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = aura_iosTests.xctest;
 			remoteRef = 9AE63EB4252A5BD200BED5B8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9AEA17AD275FF8C4006437A3 /* libios_aura.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libios_aura.a;
+			remoteRef = 9AEA17AC275FF8C4006437A3 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1567,7 +1582,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library/$(CONFIGURATION)",
+					"\"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library/$(ARCHS)/$(CONFIGURATION)\"",
+					"\"$(WorkspaceDir)/time-$(PLATFORM_MODIFIER)/$(ARCHS)/$(CONFIGURATION)\"",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -1672,7 +1688,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library/$(CONFIGURATION)",
+					"\"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library/$(ARCHS)/$(CONFIGURATION)\"",
+					"\"$(WorkspaceDir)/time-$(PLATFORM_MODIFIER)/$(ARCHS)/$(CONFIGURATION)\"",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;

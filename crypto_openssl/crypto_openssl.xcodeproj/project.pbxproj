@@ -26,6 +26,7 @@
 		9AC019BF2748A059006BEBCC /* hasher_algorithm.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC0198D2748A058006BEBCC /* hasher_algorithm.h */; };
 		9AC019C02748A059006BEBCC /* rsa.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC0198E2748A059006BEBCC /* rsa.cpp */; };
 		9AC019C12748A059006BEBCC /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC0198F2748A059006BEBCC /* _.h */; };
+		9AEA18BB276008C4006437A3 /* libcrypto_openssl.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AC019342748A002006BEBCC /* libcrypto_openssl.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,19 @@
 			remoteInfo = ios_apex;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9AEA18B927600899006437A3 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(WorkspaceDir)/time-$(PLATFORM_MODIFIER)/$(ARCHS)/$(CONFIGURATION)";
+			dstSubfolderSpec = 0;
+			files = (
+				9AEA18BB276008C4006437A3 /* libcrypto_openssl.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		9A81FBDD27516603003F38EC /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -450,6 +464,7 @@
 				9AC019302748A002006BEBCC /* Headers */,
 				9AC019312748A002006BEBCC /* Sources */,
 				9AC019322748A002006BEBCC /* Frameworks */,
+				9AEA18B927600899006437A3 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -603,7 +618,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library/$(CONFIGURATION)",
+					"\"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library/$(ARCHS)/$(CONFIGURATION)\"",
+					"\"$(WorkspaceDir)/time-$(PLATFORM_MODIFIER)/$(ARCHS)/$(CONFIGURATION)\"",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -695,7 +711,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library/$(CONFIGURATION)",
+					"\"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library/$(ARCHS)/$(CONFIGURATION)\"",
+					"\"$(WorkspaceDir)/time-$(PLATFORM_MODIFIER)/$(ARCHS)/$(CONFIGURATION)\"",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;

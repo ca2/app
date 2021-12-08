@@ -863,6 +863,7 @@
 		9AE6379226700C1A005F3412 /* drawer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE6378B26700C19005F3412 /* drawer.cpp */; };
 		9AE6379326700C1A005F3412 /* text_out_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE6378C26700C19005F3412 /* text_out_array.h */; };
 		9AE6379426700C1A005F3412 /* drawer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE6378D26700C19005F3412 /* drawer.h */; };
+		9AEA17A8275FF8B3006437A3 /* libaura.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A98A6151771D67E000AE16E /* libaura.dylib */; };
 		9AEA1C6226797612006F4A68 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEA1C6126797612006F4A68 /* libacme.dylib */; };
 		9AEA1C6426797612006F4A68 /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEA1C6326797612006F4A68 /* libapex.dylib */; };
 		9AF13603249DDCB8009410E0 /* _posix.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF135F9249DDCB7009410E0 /* _posix.h */; };
@@ -905,6 +906,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9AEA17A7275FF89E006437A3 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(WorkspaceDir)/time-$(PLATFORM_MODIFIER)/$(ARCHS)/$(CONFIGURATION)";
+			dstSubfolderSpec = 0;
+			files = (
+				9AEA17A8275FF8B3006437A3 /* libaura.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -935,7 +946,6 @@
 		9A1E1D6C22F0AF69004243B8 /* graphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = graphics.h; sourceTree = "<group>"; };
 		9A1E1D6D22F0AF69004243B8 /* filters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filters.h; sourceTree = "<group>"; };
 		9A1E1D6E22F0AF69004243B8 /* device_context.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = device_context.cpp; sourceTree = "<group>"; };
-		9A20198A24772E9000A31CBF /* libios_aura.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libios_aura.a; path = "/Users/camilo/solution/basis/source/app/aura/build/Debug-iphoneos/libios_aura.a"; sourceTree = "<absolute>"; };
 		9A20198C24772E9000A31CBF /* ios_aura.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ios_aura.h; sourceTree = "<group>"; };
 		9A20198D24772E9000A31CBF /* ios_aura.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ios_aura.m; sourceTree = "<group>"; };
 		9A214B1824BEB0CA002C1331 /* RoundTextPosition.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = RoundTextPosition.mm; sourceTree = "<group>"; };
@@ -1914,6 +1924,7 @@
 		9AE6378B26700C19005F3412 /* drawer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = drawer.cpp; sourceTree = "<group>"; };
 		9AE6378C26700C19005F3412 /* text_out_array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = text_out_array.h; sourceTree = "<group>"; };
 		9AE6378D26700C19005F3412 /* drawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = drawer.h; sourceTree = "<group>"; };
+		9AEA1773275FF4F2006437A3 /* libios_aura.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_aura.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AEA1C6126797612006F4A68 /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AEA1C6326797612006F4A68 /* libapex.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AEF8E84251AD91900E967EF /* mm.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = mm.mm; sourceTree = "<group>"; };
@@ -3381,6 +3392,7 @@
 				9A20198B24772E9000A31CBF /* ios_aura */,
 				9A4E846F1D1FD3A7008A419B /* Products */,
 				9A9799131DAC3C2B001CD6D9 /* Frameworks */,
+				9AEA1773275FF4F2006437A3 /* libios_aura.a */,
 			);
 			sourceTree = "<group>";
 		};
@@ -3944,7 +3956,7 @@
 			);
 			name = ios_aura;
 			productName = ios_aura;
-			productReference = 9A20198A24772E9000A31CBF /* libios_aura.a */;
+			productReference = 9AEA1773275FF4F2006437A3 /* libios_aura.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		9A98A6031771D67E000AE16E /* aura */ = {
@@ -3954,6 +3966,7 @@
 				9A98A60C1771D67E000AE16E /* Headers */,
 				9A98A6041771D67E000AE16E /* Sources */,
 				9A98A6071771D67E000AE16E /* Frameworks */,
+				9AEA17A7275FF89E006437A3 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -4622,7 +4635,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library/$(CONFIGURATION)",
+					"\"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library/$(ARCHS)/$(CONFIGURATION)\"",
+					"\"$(WorkspaceDir)/time-$(PLATFORM_MODIFIER)/$(ARCHS)/$(CONFIGURATION)\"",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
@@ -4704,7 +4718,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library/$(CONFIGURATION)",
+					"\"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library/$(ARCHS)/$(CONFIGURATION)\"",
+					"\"$(WorkspaceDir)/time-$(PLATFORM_MODIFIER)/$(ARCHS)/$(CONFIGURATION)\"",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_LDFLAGS = "-all_load";

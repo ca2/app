@@ -974,7 +974,6 @@
 		9ADD656B26B5E58900D11298 /* application_exit.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ADD656826B5E58800D11298 /* application_exit.h */; };
 		9ADD656C26B5E58900D11298 /* application_exit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ADD656926B5E58800D11298 /* application_exit.cpp */; };
 		9ADD656D26B5E58900D11298 /* application_exit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ADD656926B5E58800D11298 /* application_exit.cpp */; };
-		9AEA17A3275FF866006437A3 /* libapex.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A68A446251143F8008DABD2 /* libapex.dylib */; };
 		9AF8CDC6271A8FD400BF80B7 /* _impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF8CDB2271A8FD300BF80B7 /* _impl.h */; };
 		9AF8CDC7271A8FD400BF80B7 /* source.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AF8CDB3271A8FD300BF80B7 /* source.cpp */; };
 		9AF8CDC8271A8FD400BF80B7 /* process.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AF8CDB4271A8FD300BF80B7 /* process.cpp */; };
@@ -1025,19 +1024,6 @@
 			remoteInfo = ios_acme;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		9AEA17A0275FF841006437A3 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(WorkspaceDir)/time-$(PLATFORM_MODIFIER)/output";
-			dstSubfolderSpec = 0;
-			files = (
-				9AEA17A3275FF866006437A3 /* libapex.dylib in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		9A21998E2760FFE2001E14CC /* libssl.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.3.dylib; path = "../../../archive/storage-macos/library/libssl.3.dylib"; sourceTree = "<group>"; };
@@ -3988,7 +3974,6 @@
 				9A68A442251143F8008DABD2 /* Headers */,
 				9A68A443251143F8008DABD2 /* Sources */,
 				9A68A444251143F8008DABD2 /* Frameworks */,
-				9AEA17A0275FF841006437A3 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -4500,7 +4485,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
-				CLANG_ANALYZER_DEADCODE_DEADSTORES = YES;
 				CLANG_ANALYZER_GCD = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_MEMORY_MANAGEMENT = YES;
@@ -4541,8 +4525,6 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				EXCLUDED_ARCHS = "";
-				EXECUTABLE_EXTENSION = dylib;
-				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
@@ -4579,7 +4561,6 @@
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = NO;
-				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				STRIP_INSTALLED_PRODUCT = NO;
@@ -4617,7 +4598,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
-				CLANG_ANALYZER_DEADCODE_DEADSTORES = YES;
 				CLANG_ANALYZER_GCD = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_MEMORY_MANAGEMENT = YES;
@@ -4659,8 +4639,6 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				EXCLUDED_ARCHS = "";
-				EXECUTABLE_EXTENSION = dylib;
-				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -4694,7 +4672,6 @@
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = NO;
-				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				STRIP_INSTALLED_PRODUCT = NO;

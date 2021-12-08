@@ -2649,7 +2649,6 @@
 		9ADD656526B5DB7E00D11298 /* array_memory_allocate.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ADD656226B5DB7E00D11298 /* array_memory_allocate.h */; };
 		9ADD656626B5DB7E00D11298 /* array_memory_allocate.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ADD656226B5DB7E00D11298 /* array_memory_allocate.h */; };
 		9AEA1714275FE7AA006437A3 /* exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68AAFC25114431008DABD2 /* exception.cpp */; };
-		9AEA171D275FED74006437A3 /* libacme.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A68A41425114352008DABD2 /* libacme.dylib */; };
 		9AEA1BAF26794D5B006F4A68 /* _system_color.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEA1BAB26794D59006F4A68 /* _system_color.h */; };
 		9AEA1BB026794D5B006F4A68 /* _system_color.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEA1BAB26794D59006F4A68 /* _system_color.h */; };
 		9AEA1BB126794D5B006F4A68 /* color32.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEA1BAD26794D5A006F4A68 /* color32.h */; };
@@ -2693,19 +2692,6 @@
 			remoteInfo = idn;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		9AEA171B275FECE7006437A3 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(WorkspaceDir)/time-$(PLATFORM_MODIFIER)/output";
-			dstSubfolderSpec = 0;
-			files = (
-				9AEA171D275FED74006437A3 /* libacme.dylib in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		9A15A549264B0EC70080670E /* millis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = millis.h; sourceTree = "<group>"; };
@@ -8445,7 +8431,6 @@
 				9A68A41025114352008DABD2 /* Headers */,
 				9A68A41125114352008DABD2 /* Sources */,
 				9A68A41225114352008DABD2 /* Frameworks */,
-				9AEA171B275FECE7006437A3 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -9388,7 +9373,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
-				CLANG_ANALYZER_DEADCODE_DEADSTORES = YES;
 				CLANG_ANALYZER_GCD = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_MEMORY_MANAGEMENT = YES;
@@ -9459,12 +9443,11 @@
 					"$(WorkspaceDir)/time-$(PLATFORM_MODIFIER)/output",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = NO;
+				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				STRIP_INSTALLED_PRODUCT = NO;
 				SYSTEM_HEADER_SEARCH_PATHS = (
@@ -9501,7 +9484,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
-				CLANG_ANALYZER_DEADCODE_DEADSTORES = YES;
 				CLANG_ANALYZER_GCD = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_MEMORY_MANAGEMENT = YES;
@@ -9571,11 +9553,10 @@
 					"$(WorkspaceDir)/time-$(PLATFORM_MODIFIER)/output",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = NO;
+				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				STRIP_INSTALLED_PRODUCT = NO;
 				SYSTEM_HEADER_SEARCH_PATHS = (

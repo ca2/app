@@ -851,7 +851,6 @@
 		9AE6379226700C1A005F3412 /* drawer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE6378B26700C19005F3412 /* drawer.cpp */; };
 		9AE6379326700C1A005F3412 /* text_out_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE6378C26700C19005F3412 /* text_out_array.h */; };
 		9AE6379426700C1A005F3412 /* drawer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE6378D26700C19005F3412 /* drawer.h */; };
-		9AEA17A8275FF8B3006437A3 /* libaura.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A98A6151771D67E000AE16E /* libaura.dylib */; };
 		9AEA1C6226797612006F4A68 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEA1C6126797612006F4A68 /* libacme.dylib */; };
 		9AEA1C6426797612006F4A68 /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEA1C6326797612006F4A68 /* libapex.dylib */; };
 		9AF13603249DDCB8009410E0 /* _posix.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF135F9249DDCB7009410E0 /* _posix.h */; };
@@ -891,16 +890,6 @@
 			dstSubfolderSpec = 16;
 			files = (
 				9A20198F24772E9000A31CBF /* ios_aura.h in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9AEA17A7275FF89E006437A3 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(WorkspaceDir)/time-$(PLATFORM_MODIFIER)/output";
-			dstSubfolderSpec = 0;
-			files = (
-				9AEA17A8275FF8B3006437A3 /* libaura.dylib in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3939,7 +3928,6 @@
 				9A98A60C1771D67E000AE16E /* Headers */,
 				9A98A6041771D67E000AE16E /* Sources */,
 				9A98A6071771D67E000AE16E /* Frameworks */,
-				9AEA17A7275FF89E006437A3 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -4549,7 +4537,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
-				CLANG_ANALYZER_DEADCODE_DEADSTORES = YES;
 				CLANG_ANALYZER_GCD = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_MEMORY_MANAGEMENT = YES;
@@ -4584,15 +4571,12 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
-				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				EXCLUDED_ARCHS = "";
-				EXECUTABLE_EXTENSION = dylib;
-				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
@@ -4645,7 +4629,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
-				CLANG_ANALYZER_DEADCODE_DEADSTORES = YES;
 				CLANG_ANALYZER_GCD = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_MEMORY_MANAGEMENT = YES;
@@ -4680,7 +4663,6 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
-				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
@@ -4688,8 +4670,6 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				EXCLUDED_ARCHS = "";
-				EXECUTABLE_EXTENSION = dylib;
-				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_NO_COMMON_BLOCKS = YES;

@@ -37,7 +37,7 @@ void window_copy(RECTANGLE_I32 * lprect, const NSRect & rectangleSource);
 #endif
 
 
-#include "graphics.h"
+//#include "graphics.h"
 #include "ns_exception.h"
 #include "time.h"
 //

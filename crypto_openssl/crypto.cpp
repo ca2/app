@@ -1440,7 +1440,7 @@ namespace crypto_openssl
 
 #if OPENSSL_VERSION_NUMBER >= 0x30000000
 
-      auto & pkey = popensslrsa->m_pkey;
+      //auto & pkey = popensslrsa->m_pkey;
 
       throw todo;
 

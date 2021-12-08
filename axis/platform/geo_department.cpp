@@ -1282,7 +1282,7 @@ namespace geo
 
       }
 
-      int iOpenweatherCity = pcity->m_iId;
+      auto iOpenweatherCity = pcity->m_iId;
 
       if (iOpenweatherCity < 0)
       {

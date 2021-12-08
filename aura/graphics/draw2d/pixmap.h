@@ -18,9 +18,10 @@ struct pixmap
 
 
 #ifndef __cplusplus
-   struct image_header        m_header;
+   struct image_header           m_header;
 #endif
 
+   i32                           m_iRedLower;
    i32                           m_iScan;
    ::color32_t *                 m_pcolorref1;
    ::point_i32                   m_point;
@@ -33,114 +34,116 @@ struct pixmap
 
 #ifdef __cplusplus
 
-      pixmap()
+   pixmap()
+   {
+
+      m_iRedLower = 1;
+      m_iScan = 0;
+      m_pcolorref1 = nullptr;
+      m_pcolorrefRaw = nullptr;
+      m_bMapped = false;
+      m_bReduced = false;
+      m_bTrans = false;
+      
+   }
+
+
+   void clear()
+   {
+
+      reset();
+
+      m_iScan = 0;
+      m_pcolorref1 = nullptr;
+      m_pcolorrefRaw = nullptr;
+
+   }
+
+
+   void init(const ::size_i32 & size, ::color32_t * pcolorref, i32 iScan)
+   {
+
+      m_size = size;
+
+      m_sizeRaw = size;
+
+      m_pcolorrefRaw = pcolorref;
+
+      m_iScan = iScan;
+
+      m_point.Null();
+
+      map();
+
+   }
+
+
+
+   int scan_size() const { return m_iScan; }
+
+   inline ::color32_t * colorref() { return m_pcolorref1; }
+   inline ::color32_t * colorref() const { return m_pcolorref1; }
+
+   inline operator pixmap * () { return this; }
+   inline operator const pixmap * () const { return this; }
+
+
+   inline bool is_ok() const { return ::is_set(this) && area() > 0; }
+
+   inline ::rectangle_i32 rectangle() const { return ::rectangle_i32(m_point, m_size); }
+
+   inline ::rectangle_i32 rectangle(const ::point_i32 & point) const { return ::rectangle_i32(point, m_size); }
+
+   inline ::point_i32 top_left() const noexcept { return m_point; }
+   inline ::point_i32 origin() const noexcept { return top_left(); }
+   inline concrete < ::size_i32 > size() const noexcept { return m_size; }
+   inline int width() const noexcept { return m_size.cx; }
+   inline int height() const noexcept { return m_size.cy; }
+   inline int area() const noexcept { return m_size.area(); }
+   inline int scan_area() const noexcept { return height() * scan_size(); }
+
+
+   inline ::color::color get_pixel(int x, int y) const;
+   inline ::color::color get_pixel(const ::point_i32 & point) const { return get_pixel(point.x, point.y); }
+
+   inline pixmap & operator =(const pixmap & pixmap);
+   inline pixmap & operator =(const ::rectangle_i32 & rectangle) { map(rectangle);  return *this; }
+
+
+
+   void map(const ::rectangle_i32 & rectangle)
+   {
+
+      m_point = rectangle.origin();
+
+      m_size = rectangle.size();
+
+      map();
+
+   }
+
+   void map() const
+   {
+
+      if (::is_set(m_pcolorrefRaw))
       {
 
-         m_iScan = 0;
-         m_pcolorref1 = nullptr;
-         m_pcolorrefRaw = nullptr;
-         m_bMapped = false;
-         m_bReduced = false;
-         m_bTrans = false;
-      }
-
-
-      void clear()
-      {
-
-         reset();
-
-         m_iScan = 0;
-         m_pcolorref1 = nullptr;
-         m_pcolorrefRaw = nullptr;
-
-      }
-
-
-      void init(const ::size_i32 & size, ::color32_t * pcolorref, i32 iScan)
-      {
-
-         m_size = size;
-
-         m_sizeRaw = size;
-
-         m_pcolorrefRaw = pcolorref;
-
-         m_iScan = iScan;
-
-         m_point.Null();
-
-         map();
-
-      }
-
-
-
-      int scan_size() const { return m_iScan; }
-
-      inline ::color32_t * colorref() { return m_pcolorref1; }
-      inline ::color32_t * colorref() const { return m_pcolorref1; }
-
-      inline operator pixmap * () { return this; }
-      inline operator const pixmap * () const { return this; }
-
-
-      inline bool is_ok() const { return ::is_set(this) && area() > 0; }
-
-      inline ::rectangle_i32 rectangle() const { return ::rectangle_i32(m_point, m_size); }
-
-      inline ::rectangle_i32 rectangle(const ::point_i32 & point) const { return ::rectangle_i32(point, m_size); }
-
-      inline ::point_i32 top_left() const noexcept { return m_point; }
-      inline ::point_i32 origin() const noexcept { return top_left(); }
-      inline concrete < ::size_i32 > size() const noexcept { return m_size; }
-      inline int width() const noexcept { return m_size.cx; }
-      inline int height() const noexcept { return m_size.cy; }
-      inline int area() const noexcept { return m_size.area(); }
-      inline int scan_area() const noexcept { return height() * scan_size(); }
-
-
-      inline ::color::color get_pixel(int x, int y) const;
-      inline ::color::color get_pixel(const ::point_i32 & point) const { return get_pixel(point.x, point.y); }
-
-      inline pixmap & operator =(const pixmap & pixmap);
-      inline pixmap & operator =(const ::rectangle_i32 & rectangle) { map(rectangle);  return *this; }
-
-
-
-      void map(const ::rectangle_i32 & rectangle)
-      {
-
-         m_point = rectangle.origin();
-
-         m_size = rectangle.size();
-
-         map();
-
-      }
-
-      void map() const
-      {
-
-         if (::is_set(m_pcolorrefRaw))
-         {
-
-            ((pixmap *)this)->m_pcolorref1 = m_pcolorrefRaw + (m_point.x + m_iScan * m_point.y);
-
-         }
-
-      }
-
-      void unmap()
-      {
-
-         m_pcolorref1 = m_pcolorrefRaw;
-         m_size = m_sizeRaw;
+         ((pixmap *)this)->m_pcolorref1 = m_pcolorrefRaw + (m_point.x + m_iScan * m_point.y);
 
       }
 
+   }
 
-   };
+   void unmap()
+   {
+
+      m_pcolorref1 = m_pcolorrefRaw;
+      m_size = m_sizeRaw;
+
+   }
+
+
+};
 
 
 

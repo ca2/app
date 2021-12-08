@@ -459,11 +459,11 @@ namespace crypto_openssl
 
 #elif OPENSSL_VERSION_NUMBER >= 0x30000000
 
-      auto iInSize = (i32)in.get_size();
+      //auto iInSize = (i32)in.get_size();
 
-      auto pInData = (const uchar*)(const char*)in.get_data();
+      //auto pInData = (const uchar*)(const char*)in.get_data();
 
-      auto pOutData = out.get_data();
+      //auto pOutData = out.get_data();
 
       auto pctx = EVP_PKEY_CTX_new(m_pkey, nullptr);
 

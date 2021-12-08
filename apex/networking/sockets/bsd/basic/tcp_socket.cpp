@@ -2553,7 +2553,7 @@ namespace sockets
       ::X509 *cert = nullptr;
       ::X509_name_st *subject = nullptr;
 
-      cert = SSL_get_peer_certificate(m_psslcontext->m_ssl);
+      cert = SSL_get1_peer_certificate(m_psslcontext->m_ssl);
       bool ok = false;
       if(cert != nullptr && strlen(common_name) > 0)
       {

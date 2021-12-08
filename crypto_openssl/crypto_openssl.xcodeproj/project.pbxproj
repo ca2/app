@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		9A81FBE227518CAF003F38EC /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A81FBE127518CAF003F38EC /* libacme.dylib */; };
 		9A81FBE327518CB9003F38EC /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC019E22748A7D4006BEBCC /* libapex.dylib */; };
-		9A81FC4D27518D4C003F38EC /* libcrypto.1.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A81FC4C27518D10003F38EC /* libcrypto.1.1.dylib */; };
+		9A81FC4D27518D4C003F38EC /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A81FC4C27518D10003F38EC /* libcrypto.dylib */; };
 		9AC019992748A059006BEBCC /* _crypto_openssl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC019442748A057006BEBCC /* _crypto_openssl.h */; };
 		9AC0199C2748A059006BEBCC /* initializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC019472748A057006BEBCC /* initializer.cpp */; };
 		9AC0199D2748A059006BEBCC /* hasher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC019492748A057006BEBCC /* hasher.cpp */; };
@@ -79,7 +79,7 @@
 		9A81FC0027518CE6003F38EC /* libmp3lame.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libmp3lame.dylib; sourceTree = "<group>"; };
 		9A81FC0127518CE6003F38EC /* libx264.164.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libx264.164.dylib; sourceTree = "<group>"; };
 		9A81FC0227518CE6003F38EC /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libssl.dylib; sourceTree = "<group>"; };
-		9A81FC0327518CE6003F38EC /* libssl.1.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libssl.1.1.dylib; sourceTree = "<group>"; };
+		9A81FC0327518CE6003F38EC /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libssl.dylib; sourceTree = "<group>"; };
 		9A81FC0427518CE6003F38EC /* libx264.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libx264.dylib; sourceTree = "<group>"; };
 		9A81FC0527518CE6003F38EC /* libmp3lame.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libmp3lame.0.dylib; sourceTree = "<group>"; };
 		9A81FC0627518CE6003F38EC /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libfreetype.6.dylib; sourceTree = "<group>"; };
@@ -94,7 +94,7 @@
 		9A81FC0F27518CE6003F38EC /* libpostproc.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libpostproc.dylib; sourceTree = "<group>"; };
 		9A81FC1027518CE6003F38EC /* libavfilter.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libavfilter.dylib; sourceTree = "<group>"; };
 		9A81FC1127518CE6003F38EC /* libfdk-aac.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libfdk-aac.2.dylib"; sourceTree = "<group>"; };
-		9A81FC1227518CE6003F38EC /* libcrypto.1.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libcrypto.1.1.dylib; sourceTree = "<group>"; };
+		9A81FC1227518CE6003F38EC /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libcrypto.dylib; sourceTree = "<group>"; };
 		9A81FC1427518CE6003F38EC /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libfreetype.a; sourceTree = "<group>"; };
 		9A81FC1527518CE6003F38EC /* libavutil.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libavutil.a; sourceTree = "<group>"; };
 		9A81FC1627518CE6003F38EC /* libavfilter.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libavfilter.a; sourceTree = "<group>"; };
@@ -115,7 +115,7 @@
 		9A81FC2627518CE6003F38EC /* libfdk-aac.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libfdk-aac.dylib"; sourceTree = "<group>"; };
 		9A81FC2727518CE6003F38EC /* libmp3lame.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libmp3lame.dylib; sourceTree = "<group>"; };
 		9A81FC2827518CE6003F38EC /* libx264.164.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libx264.164.dylib; sourceTree = "<group>"; };
-		9A81FC2927518CE6003F38EC /* libssl.1.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libssl.1.1.dylib; sourceTree = "<group>"; };
+		9A81FC2927518CE6003F38EC /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libssl.dylib; sourceTree = "<group>"; };
 		9A81FC2A27518CE6003F38EC /* libx264.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libx264.dylib; sourceTree = "<group>"; };
 		9A81FC2B27518CE6003F38EC /* libmp3lame.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libmp3lame.0.dylib; sourceTree = "<group>"; };
 		9A81FC2C27518CE6003F38EC /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libfreetype.6.dylib; sourceTree = "<group>"; };
@@ -129,13 +129,13 @@
 		9A81FC3427518CE6003F38EC /* libpostproc.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libpostproc.dylib; sourceTree = "<group>"; };
 		9A81FC3527518CE6003F38EC /* libavfilter.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libavfilter.dylib; sourceTree = "<group>"; };
 		9A81FC3627518CE6003F38EC /* libfdk-aac.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libfdk-aac.2.dylib"; sourceTree = "<group>"; };
-		9A81FC3727518CE6003F38EC /* libcrypto.1.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libcrypto.1.1.dylib; sourceTree = "<group>"; };
+		9A81FC3727518CE6003F38EC /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libcrypto.dylib; sourceTree = "<group>"; };
 		9A81FC3927518D10003F38EC /* libswscale.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libswscale.dylib; sourceTree = "<group>"; };
 		9A81FC3A27518D10003F38EC /* libfreetype.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libfreetype.dylib; sourceTree = "<group>"; };
 		9A81FC3B27518D10003F38EC /* libfdk-aac.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libfdk-aac.dylib"; sourceTree = "<group>"; };
 		9A81FC3C27518D10003F38EC /* libmp3lame.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libmp3lame.dylib; sourceTree = "<group>"; };
 		9A81FC3D27518D10003F38EC /* libx264.164.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libx264.164.dylib; sourceTree = "<group>"; };
-		9A81FC3E27518D10003F38EC /* libssl.1.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libssl.1.1.dylib; sourceTree = "<group>"; };
+		9A81FC3E27518D10003F38EC /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libssl.dylib; sourceTree = "<group>"; };
 		9A81FC3F27518D10003F38EC /* libx264.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libx264.dylib; sourceTree = "<group>"; };
 		9A81FC4027518D10003F38EC /* libmp3lame.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libmp3lame.0.dylib; sourceTree = "<group>"; };
 		9A81FC4127518D10003F38EC /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libfreetype.6.dylib; sourceTree = "<group>"; };
@@ -149,7 +149,7 @@
 		9A81FC4927518D10003F38EC /* libpostproc.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libpostproc.dylib; sourceTree = "<group>"; };
 		9A81FC4A27518D10003F38EC /* libavfilter.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libavfilter.dylib; sourceTree = "<group>"; };
 		9A81FC4B27518D10003F38EC /* libfdk-aac.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libfdk-aac.2.dylib"; sourceTree = "<group>"; };
-		9A81FC4C27518D10003F38EC /* libcrypto.1.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libcrypto.1.1.dylib; sourceTree = "<group>"; };
+		9A81FC4C27518D10003F38EC /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libcrypto.dylib; sourceTree = "<group>"; };
 		9AC019342748A002006BEBCC /* libcrypto_openssl.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libcrypto_openssl.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC019442748A057006BEBCC /* _crypto_openssl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _crypto_openssl.h; sourceTree = "<group>"; };
 		9AC019472748A057006BEBCC /* initializer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = initializer.cpp; sourceTree = "<group>"; };
@@ -167,7 +167,7 @@
 		9AC0198D2748A058006BEBCC /* hasher_algorithm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hasher_algorithm.h; sourceTree = "<group>"; };
 		9AC0198E2748A059006BEBCC /* rsa.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rsa.cpp; sourceTree = "<group>"; };
 		9AC0198F2748A059006BEBCC /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
-		9AC019CC2748A73F006BEBCC /* libcrypto.1.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.1.1.dylib; path = "../../../archive/storage-macos/library/x86_64/Debug/libcrypto.1.1.dylib"; sourceTree = "<group>"; };
+		9AC019CC2748A73F006BEBCC /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = "../../../archive/storage-macos/library/x86_64/Debug/libcrypto.dylib"; sourceTree = "<group>"; };
 		9AC019DC2748A7D4006BEBCC /* apex.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = apex.xcodeproj; path = ../apex/apex.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -176,7 +176,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A81FC4D27518D4C003F38EC /* libcrypto.1.1.dylib in Frameworks */,
+				9A81FC4D27518D4C003F38EC /* libcrypto.dylib in Frameworks */,
 				9A81FBE327518CB9003F38EC /* libapex.dylib in Frameworks */,
 				9A81FBE227518CAF003F38EC /* libacme.dylib in Frameworks */,
 			);
@@ -263,7 +263,7 @@
 				9A81FC0027518CE6003F38EC /* libmp3lame.dylib */,
 				9A81FC0127518CE6003F38EC /* libx264.164.dylib */,
 				9A81FC0227518CE6003F38EC /* libssl.dylib */,
-				9A81FC0327518CE6003F38EC /* libssl.1.1.dylib */,
+				9A81FC0327518CE6003F38EC /* libssl.dylib */,
 				9A81FC0427518CE6003F38EC /* libx264.dylib */,
 				9A81FC0527518CE6003F38EC /* libmp3lame.0.dylib */,
 				9A81FC0627518CE6003F38EC /* libfreetype.6.dylib */,
@@ -278,7 +278,7 @@
 				9A81FC0F27518CE6003F38EC /* libpostproc.dylib */,
 				9A81FC1027518CE6003F38EC /* libavfilter.dylib */,
 				9A81FC1127518CE6003F38EC /* libfdk-aac.2.dylib */,
-				9A81FC1227518CE6003F38EC /* libcrypto.1.1.dylib */,
+				9A81FC1227518CE6003F38EC /* libcrypto.dylib */,
 			);
 			path = Release;
 			sourceTree = "<group>";
@@ -313,7 +313,7 @@
 				9A81FC2627518CE6003F38EC /* libfdk-aac.dylib */,
 				9A81FC2727518CE6003F38EC /* libmp3lame.dylib */,
 				9A81FC2827518CE6003F38EC /* libx264.164.dylib */,
-				9A81FC2927518CE6003F38EC /* libssl.1.1.dylib */,
+				9A81FC2927518CE6003F38EC /* libssl.dylib */,
 				9A81FC2A27518CE6003F38EC /* libx264.dylib */,
 				9A81FC2B27518CE6003F38EC /* libmp3lame.0.dylib */,
 				9A81FC2C27518CE6003F38EC /* libfreetype.6.dylib */,
@@ -327,7 +327,7 @@
 				9A81FC3427518CE6003F38EC /* libpostproc.dylib */,
 				9A81FC3527518CE6003F38EC /* libavfilter.dylib */,
 				9A81FC3627518CE6003F38EC /* libfdk-aac.2.dylib */,
-				9A81FC3727518CE6003F38EC /* libcrypto.1.1.dylib */,
+				9A81FC3727518CE6003F38EC /* libcrypto.dylib */,
 			);
 			path = Debug;
 			sourceTree = "<group>";
@@ -340,7 +340,7 @@
 				9A81FC3B27518D10003F38EC /* libfdk-aac.dylib */,
 				9A81FC3C27518D10003F38EC /* libmp3lame.dylib */,
 				9A81FC3D27518D10003F38EC /* libx264.164.dylib */,
-				9A81FC3E27518D10003F38EC /* libssl.1.1.dylib */,
+				9A81FC3E27518D10003F38EC /* libssl.dylib */,
 				9A81FC3F27518D10003F38EC /* libx264.dylib */,
 				9A81FC4027518D10003F38EC /* libmp3lame.0.dylib */,
 				9A81FC4127518D10003F38EC /* libfreetype.6.dylib */,
@@ -354,7 +354,7 @@
 				9A81FC4927518D10003F38EC /* libpostproc.dylib */,
 				9A81FC4A27518D10003F38EC /* libavfilter.dylib */,
 				9A81FC4B27518D10003F38EC /* libfdk-aac.2.dylib */,
-				9A81FC4C27518D10003F38EC /* libcrypto.1.1.dylib */,
+				9A81FC4C27518D10003F38EC /* libcrypto.dylib */,
 			);
 			name = Debug;
 			path = "../../../archive/storage-macos/library/x86_64/Debug";
@@ -408,7 +408,7 @@
 				9A81FBE427518CE5003F38EC /* library */,
 				9A81FBE127518CAF003F38EC /* libacme.dylib */,
 				9A81FBDD27516603003F38EC /* libacme.dylib */,
-				9AC019CC2748A73F006BEBCC /* libcrypto.1.1.dylib */,
+				9AC019CC2748A73F006BEBCC /* libcrypto.dylib */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -603,7 +603,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library/$(ARCHS)/$(CONFIGURATION)",
+					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library/$(CONFIGURATION)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -695,7 +695,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library/$(ARCHS)/$(CONFIGURATION)",
+					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library/$(CONFIGURATION)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;

@@ -2,9 +2,14 @@
 #include "third/nanosvg/nanosvg.h"
 #include "third/nanosvg/nanosvgrast.h"
 
+
+void nsvg_rasterizer_set_output_format(NSVGrasterizer * prasterizer, int iRedLower);
+
+
 double get_default_screen_dpi();
 
-bool nanosvg(::image * pimage, NSVGimage * psvgimage)
+
+bool nanosvg(::image * pimage, NSVGimage * psvgimage, int iRedLower)
 {
 
    NSVGrasterizer * rast = nsvgCreateRasterizer();
@@ -17,6 +22,8 @@ bool nanosvg(::image * pimage, NSVGimage * psvgimage)
       return false;
 
    }
+
+   nsvg_rasterizer_set_output_format(rast, iRedLower);
 
    int w = (int)pimage->width();
 
@@ -102,7 +109,7 @@ bool image::nanosvg(char * pszXml, double dDpi)
 
       map();
 
-      ::nanosvg(this, psvgimage);
+      ::nanosvg(this, psvgimage, m_iRedLower);
 
       unmap();
 
@@ -150,7 +157,7 @@ bool image::create_nanosvg(char * pszXml, double dDpi)
 
          map();
 
-         ::nanosvg(this, psvgimage);
+         ::nanosvg(this, psvgimage, m_iRedLower);
 
          unmap();
 

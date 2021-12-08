@@ -11,9 +11,10 @@ struct image_header
 #endif
 {
 
+
    e_image_type               m_etype;
-   ::color::color                  m_cr;
-   ::size_i32                     m_size;
+   ::color::color             m_cr;
+   ::size_i32                 m_size;
 
 
 #ifdef __cplusplus

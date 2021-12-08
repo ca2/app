@@ -669,8 +669,8 @@
 		9AC01926274896EB006BEBCC /* not_dir.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC01922274896EA006BEBCC /* not_dir.cpp */; };
 		9AC0192927489AFE006BEBCC /* initializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC0192727489AFE006BEBCC /* initializer.h */; };
 		9AC0192A27489AFE006BEBCC /* initializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC0192827489AFE006BEBCC /* initializer.cpp */; };
-		9AC019E92748A9A7006BEBCC /* libcrypto.1.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC019E82748A9A7006BEBCC /* libcrypto.1.1.dylib */; };
-		9AC019EB2748A9B9006BEBCC /* libssl.1.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC019EA2748A9B8006BEBCC /* libssl.1.1.dylib */; };
+		9AC019E92748A9A7006BEBCC /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC019E82748A9A7006BEBCC /* libcrypto.dylib */; };
+		9AC019EB2748A9B9006BEBCC /* libssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC019EA2748A9B8006BEBCC /* libssl.dylib */; };
 		9AC2CB4426533B3800CC8096 /* primitive.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC2CB4026533B3800CC8096 /* primitive.h */; };
 		9AC2CB4526533B3800CC8096 /* primitive.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC2CB4026533B3800CC8096 /* primitive.h */; };
 		9AC2CB4626533B3800CC8096 /* primitive.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC2CB4226533B3800CC8096 /* primitive.cpp */; };
@@ -1922,8 +1922,8 @@
 		9AC01922274896EA006BEBCC /* not_dir.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = not_dir.cpp; sourceTree = "<group>"; };
 		9AC0192727489AFE006BEBCC /* initializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = initializer.h; sourceTree = "<group>"; };
 		9AC0192827489AFE006BEBCC /* initializer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = initializer.cpp; sourceTree = "<group>"; };
-		9AC019E82748A9A7006BEBCC /* libcrypto.1.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.1.1.dylib; path = "../../../archive/storage-macos/library/x86_64/Debug/libcrypto.1.1.dylib"; sourceTree = "<group>"; };
-		9AC019EA2748A9B8006BEBCC /* libssl.1.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.1.1.dylib; path = "../../../archive/storage-macos/library/x86_64/Debug/libssl.1.1.dylib"; sourceTree = "<group>"; };
+		9AC019E82748A9A7006BEBCC /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = "../../../archive/storage-macos/library/x86_64/Debug/libcrypto.dylib"; sourceTree = "<group>"; };
+		9AC019EA2748A9B8006BEBCC /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.dylib; path = "../../../archive/storage-macos/library/x86_64/Debug/libssl.dylib"; sourceTree = "<group>"; };
 		9AC2CB4026533B3800CC8096 /* primitive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive.h; sourceTree = "<group>"; };
 		9AC2CB4226533B3800CC8096 /* primitive.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = primitive.cpp; sourceTree = "<group>"; };
 		9AC2CB4326533B3800CC8096 /* notify_icon_bridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = notify_icon_bridge.h; sourceTree = "<group>"; };
@@ -1972,8 +1972,8 @@
 				9AD199A92512797800B4C44A /* CoreText.framework in Frameworks */,
 				9AD199A72512795100B4C44A /* CoreGraphics.framework in Frameworks */,
 				9AD199AD251279BC00B4C44A /* libz.tbd in Frameworks */,
-				9AC019E92748A9A7006BEBCC /* libcrypto.1.1.dylib in Frameworks */,
-				9AC019EB2748A9B9006BEBCC /* libssl.1.1.dylib in Frameworks */,
+				9AC019E92748A9A7006BEBCC /* libcrypto.dylib in Frameworks */,
+				9AC019EB2748A9B9006BEBCC /* libssl.dylib in Frameworks */,
 				9AD199A1251278DA00B4C44A /* libacme.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3311,8 +3311,8 @@
 		9AD199A0251278DA00B4C44A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9AC019E82748A9A7006BEBCC /* libcrypto.1.1.dylib */,
-				9AC019EA2748A9B8006BEBCC /* libssl.1.1.dylib */,
+				9AC019E82748A9A7006BEBCC /* libcrypto.dylib */,
+				9AC019EA2748A9B8006BEBCC /* libssl.dylib */,
 				9AD199AC251279BC00B4C44A /* libz.tbd */,
 				9AD199C825127AB500B4C44A /* Security.framework */,
 				9AD199C625127A4900B4C44A /* IOKit.framework */,
@@ -4557,7 +4557,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library/$(ARCHS)/$(CONFIGURATION)",
+					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library/$(CONFIGURATION)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
@@ -4658,7 +4658,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library/$(ARCHS)/$(CONFIGURATION)",
+					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library/$(CONFIGURATION)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_LDFLAGS = "-all_load";

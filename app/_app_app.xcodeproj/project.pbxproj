@@ -26,8 +26,8 @@
 		9A23A77626CECDC600F98012 /* libidn.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A23A74D26CECCA700F98012 /* libidn.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A23A77826CECDC700F98012 /* libnode_macos.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AC2D18026542E2F00CC8096 /* libnode_macos.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A23A77A26CECDC700F98012 /* libwindowing_macos.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A23A75926CECDC500F98012 /* libwindowing_macos.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		9A23A77D26CECDE300F98012 /* libcrypto.1.1.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9ADD664326B6030000D11298 /* libcrypto.1.1.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		9A23A77E26CECDE500F98012 /* libssl.1.1.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9ADD664226B6030000D11298 /* libssl.1.1.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9A23A77D26CECDE300F98012 /* libcrypto.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9ADD664326B6030000D11298 /* libcrypto.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9A23A77E26CECDE500F98012 /* libssl.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9ADD664226B6030000D11298 /* libssl.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A6B69362757A18F00DB33D9 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6B69352757A18F00DB33D9 /* libaura.dylib */; };
 		9A6B69372757A1AC00DB33D9 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6B69352757A18F00DB33D9 /* libaura.dylib */; };
 		9A6B69382757A1AC00DB33D9 /* libaura.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A6B69352757A18F00DB33D9 /* libaura.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -132,9 +132,9 @@
 				9A23A76626CECDC600F98012 /* libapex_posix.dylib in Embed Libraries */,
 				9A6B69382757A1AC00DB33D9 /* libaura.dylib in Embed Libraries */,
 				9A23A76E26CECDC600F98012 /* libaura_apple.dylib in Embed Libraries */,
-				9A23A77D26CECDE300F98012 /* libcrypto.1.1.dylib in Embed Libraries */,
+				9A23A77D26CECDE300F98012 /* libcrypto.dylib in Embed Libraries */,
 				9A23A77826CECDC700F98012 /* libnode_macos.dylib in Embed Libraries */,
-				9A23A77E26CECDE500F98012 /* libssl.1.1.dylib in Embed Libraries */,
+				9A23A77E26CECDE500F98012 /* libssl.dylib in Embed Libraries */,
 				9A23A76426CECDC500F98012 /* libapex_macos.dylib in Embed Libraries */,
 				9A23A76826CECDC600F98012 /* libapp_app.dylib in Embed Libraries */,
 				9A23A76026CECDC500F98012 /* libapex.dylib in Embed Libraries */,
@@ -174,8 +174,8 @@
 		9AC2D05E26540D5200CC8096 /* draw2d_quartz2d.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = draw2d_quartz2d.xcodeproj; path = "../../../archive/platform-apple/draw2d_quartz2d/draw2d_quartz2d.xcodeproj"; sourceTree = "<group>"; };
 		9AC2D17B26542E2E00CC8096 /* node_macos.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = node_macos.xcodeproj; path = "../../../archive/platform-macos/node_macos/node_macos.xcodeproj"; sourceTree = "<group>"; };
 		9AC2D1F226543C3F00CC8096 /* _mm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _mm.h; sourceTree = "<group>"; };
-		9ADD664226B6030000D11298 /* libssl.1.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.1.1.dylib; path = "../../../archive/storage-macos/library/x86_64/Debug/libssl.1.1.dylib"; sourceTree = "<group>"; };
-		9ADD664326B6030000D11298 /* libcrypto.1.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.1.1.dylib; path = "../../../archive/storage-macos/library/x86_64/Debug/libcrypto.1.1.dylib"; sourceTree = "<group>"; };
+		9ADD664226B6030000D11298 /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.dylib; path = "../../../archive/storage-macos/library/x86_64/Debug/libssl.dylib"; sourceTree = "<group>"; };
+		9ADD664326B6030000D11298 /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = "../../../archive/storage-macos/library/x86_64/Debug/libcrypto.dylib"; sourceTree = "<group>"; };
 		9AE5CC8E22CBECAE00EDEAD1 /* en.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = en.lproj; sourceTree = "<group>"; };
 		9AF73B0026D19AC90041CBEC /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = "../../../../../Library/Developer/Xcode/DerivedData/mac-app-bfibjfomolbhpadlfuhwdlfwobim/Build/Products/Debug/libaura.dylib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -299,8 +299,8 @@
 				9A46D35926785265000B22D0 /* libacme.dylib */,
 				9A46D35B26785265000B22D0 /* libapex.dylib */,
 				9AF73B0026D19AC90041CBEC /* libaura.dylib */,
-				9ADD664326B6030000D11298 /* libcrypto.1.1.dylib */,
-				9ADD664226B6030000D11298 /* libssl.1.1.dylib */,
+				9ADD664326B6030000D11298 /* libcrypto.dylib */,
+				9ADD664226B6030000D11298 /* libssl.dylib */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -533,6 +533,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = x86_64;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++2a";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -582,7 +583,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library/$(ARCHS)/$(CONFIGURATION)",
+					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library/$(CONFIGURATION)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -600,6 +601,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = x86_64;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++2a";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -643,11 +645,12 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library/$(ARCHS)/$(CONFIGURATION)",
+					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library/$(CONFIGURATION)",
 					"$(WorkspaceDir)/archive",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				PLATFORM_MODIFIER = macos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SYSTEM_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/archive $(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/include $(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include/include $(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include $(WorkspaceDir)/source/third/include $(WorkspaceDir)/source/app";

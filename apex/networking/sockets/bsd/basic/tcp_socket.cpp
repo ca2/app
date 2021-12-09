@@ -2444,6 +2444,7 @@ namespace sockets
 
 #ifdef _WIN32
 
+
    void tcp_socket::OnException()
    {
 
@@ -2509,34 +2510,46 @@ namespace sockets
 
       SetCloseAndDelete();
    }
+
+
 #endif // _WIN32
 
 
    i32 tcp_socket::Protocol()
    {
+
       return IPPROTO_TCP;
+
    }
 
 
    void tcp_socket::SetTransferLimit(memsize sz)
    {
+
       m_transfer_limit = sz;
+
    }
 
 
    void tcp_socket::OnTransferLimit()
    {
+
    }
+
 
    string tcp_socket::get_url()
    {
+
       return m_strUrl;
+
    }
 
 
    string tcp_socket::get_short_description()
    {
+
       return get_url();
+
    }
 
 
@@ -2551,29 +2564,52 @@ namespace sockets
       }
 
       ::X509 *cert = nullptr;
+
       ::X509_name_st *subject = nullptr;
 
+#if OPENSSL_VERSION_NUMBER >= 0x30000000L
+
       cert = SSL_get1_peer_certificate(m_psslcontext->m_ssl);
+
+#else
+
+      cert = SSL_get_peer_certificate(m_psslcontext->m_ssl);
+
+#endif
+
       bool ok = false;
+
       if(cert != nullptr && strlen(common_name) > 0)
       {
+
          char data[256];
+
          if((subject = X509_get_subject_name(cert)) != nullptr && X509_NAME_get_text_by_NID(subject,NID_commonName,data,256) > 0)
          {
+
             data[255] = 0;
+
             if(ansi_count_compare_ci(data,common_name,255) == 0)
             {
+
                ok = true;
+
             }
             else
             {
+
                string str = data;
+
                if(::str::begins_eat(str,"*."))
                {
+
                   string strCommon = common_name;
+
                   if(strCommon == str)
                   {
+
                      ok = true;
+
                   }
                   else
                   {
@@ -2582,36 +2618,49 @@ namespace sockets
 
                      if(iFind >= 0)
                      {
+
                         if(str == strCommon.Mid(iFind + 1))
                         {
+
                            ok = true;
+
                         }
+
                      }
 
                   }
 
-
                }
+
             }
+
          }
+
          if (!ok)
          {
 
             int i;
+
             int san_names_nb = -1;
+
             STACK_OF(GENERAL_NAME) *san_names = nullptr;
+
             // Try to extract the names within the SAN extension from the certificate
             san_names = (STACK_OF(GENERAL_NAME) *) X509_get_ext_d2i((X509 *)cert, NID_subject_alt_name, nullptr, nullptr);
+
             if (san_names == nullptr)
             {
+
             }
             else
             {
+
                san_names_nb = sk_GENERAL_NAME_num(san_names);
 
                // Check each name within the extension
                for (i = 0; i < san_names_nb; i++)
                {
+
                   const GENERAL_NAME *current_name = sk_GENERAL_NAME_value(san_names, i);
 
                   if (current_name->type == GEN_DNS)
@@ -2619,27 +2668,40 @@ namespace sockets
                      // Current name is a DNS name, let's check it
 
 #if (defined(LINUX)) && (OPENSSL_API_COMPAT < 0x10100000L)
+
                      string strDnsName((const char *)ASN1_STRING_data(current_name->d.dNSName), ASN1_STRING_length(current_name->d.dNSName));
+
 #else
+
                      string strDnsName((const char *)ASN1_STRING_get0_data(current_name->d.dNSName), ASN1_STRING_length(current_name->d.dNSName));
+
 #endif
 
                      if(strDnsName.compare_ci(common_name) == 0)
                      {
+
                         ok = true;
+
                         break;
 
                      }
                      else
                      {
+
                         string str = strDnsName;
+
                         if (::str::begins_eat(str, "*."))
                         {
+
                            string strCommon = common_name;
+
                            if (strCommon == str)
                            {
+
                               ok = true;
+
                               break;
+
                            }
                            else
                            {
@@ -2647,34 +2709,49 @@ namespace sockets
                               strsize iFind = strCommon.find('.');
 
                               if (iFind >= 0)
+
                               {
                                  if (str == strCommon.Mid(iFind + 1))
                                  {
+
                                     ok = true;
+
                                     break;
+
                                  }
+
                               }
 
                            }
 
-
                         }
+
                      }
+
                   }
+
                }
+
                sk_GENERAL_NAME_pop_free(san_names, GENERAL_NAME_free);
+
             }
+
          }
+
       }
 
       if(cert)
       {
+
          X509_free(cert);
+
       }
 
       if(ok)
       {
+
          return SSL_get_verify_result(m_psslcontext->m_ssl);
+
       }
 
       return X509_V_ERR_APPLICATION_VERIFICATION;
@@ -2704,6 +2781,7 @@ namespace sockets
       return m_iConnectPort;
 
    }
+
 
    void tcp_socket::InitializeContextTLSClientMethod()
    {

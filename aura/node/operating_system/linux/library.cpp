@@ -105,14 +105,6 @@ CLASS_DECL_AURA void * __node_library_open(const ::string & pszPath, string & st
 
       int iError = errno;
 
-      const char * psz = strerror(iError);
-
-      if(psz != nullptr)
-      {
-
-         strMessage += psz;
-
-      }
 
       char *errstr;
 
@@ -124,6 +116,16 @@ CLASS_DECL_AURA void * __node_library_open(const ::string & pszPath, string & st
          strMessage += errstr;
 
       }
+
+      const char * psz = strerror(iError);
+
+      if(psz != nullptr)
+      {
+
+         strMessage += psz;
+
+      }
+
 
    }
    else

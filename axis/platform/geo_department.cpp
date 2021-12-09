@@ -1689,6 +1689,13 @@ namespace geo
                try
                {
 
+                  while(!m_ptaskSaveLocalityTimeZone)
+                  {
+
+                     preempt(1_s);
+
+                  }
+
                   while (m_ptaskSaveLocalityTimeZone->task_get_run())
                   {
 

@@ -704,12 +704,7 @@
 		9ACC5DA9251A9699008528B1 /* thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B9F82511444C008DABD2 /* thread.cpp */; };
 		9ACC5DAA251A9699008528B1 /* trace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68BA0E2511444C008DABD2 /* trace.cpp */; };
 		9ACC5DAB251A9699008528B1 /* util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B9F92511444C008DABD2 /* util.cpp */; };
-		9AD199A72512795100B4C44A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AD199A62512795100B4C44A /* CoreGraphics.framework */; };
-		9AD199A92512797800B4C44A /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AD199A82512797800B4C44A /* CoreText.framework */; };
-		9AD199AB251279A000B4C44A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AD199AA251279A000B4C44A /* Cocoa.framework */; };
-		9AD199AD251279BC00B4C44A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AD199AC251279BC00B4C44A /* libz.tbd */; };
-		9AD199C725127A4A00B4C44A /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AD199C625127A4900B4C44A /* IOKit.framework */; };
-		9AD199C925127AB500B4C44A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AD199C825127AB500B4C44A /* Security.framework */; };
+		9AD199A1251278DA00B4C44A /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A68C18D251145CA008DABD2 /* libacme.dylib */; };
 		9AD19ADC2512D76200B4C44A /* macos.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD19ADB2512D76200B4C44A /* macos.h */; };
 		9AD692C1251A754800C0EBD7 /* fs.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B72B2511444B008DABD2 /* fs.h */; };
 		9AD692C2251A754800C0EBD7 /* aaa_round_window.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B9FC2511444C008DABD2 /* aaa_round_window.h */; };
@@ -979,7 +974,6 @@
 		9ADD656B26B5E58900D11298 /* application_exit.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ADD656826B5E58800D11298 /* application_exit.h */; };
 		9ADD656C26B5E58900D11298 /* application_exit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ADD656926B5E58800D11298 /* application_exit.cpp */; };
 		9ADD656D26B5E58900D11298 /* application_exit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ADD656926B5E58800D11298 /* application_exit.cpp */; };
-		9AEA17A3275FF866006437A3 /* libapex.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A68A446251143F8008DABD2 /* libapex.dylib */; };
 		9AF8CDC6271A8FD400BF80B7 /* _impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF8CDB2271A8FD300BF80B7 /* _impl.h */; };
 		9AF8CDC7271A8FD400BF80B7 /* source.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AF8CDB3271A8FD300BF80B7 /* source.cpp */; };
 		9AF8CDC8271A8FD400BF80B7 /* process.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AF8CDB4271A8FD300BF80B7 /* process.cpp */; };
@@ -1001,13 +995,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		9A21B2D82761282C001E14CC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A68C188251145CA008DABD2 /* acme.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9A21B2CF276127C3001E14CC;
-			remoteInfo = acme;
-		};
 		9A68C18C251145CA008DABD2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A68C188251145CA008DABD2 /* acme.xcodeproj */;
@@ -1036,27 +1023,7 @@
 			remoteGlobalIDString = 9AD692B6251A753A00C0EBD7;
 			remoteInfo = ios_acme;
 		};
-		9AEA172E275FF332006437A3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9AEA1728275FF332006437A3 /* aqua.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9A2818FE25242488009FA9CB;
-			remoteInfo = aqua;
-		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		9AEA17A0275FF841006437A3 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(WorkspaceDir)/time-$(PLATFORM_MODIFIER)/output";
-			dstSubfolderSpec = 0;
-			files = (
-				9AEA17A3275FF866006437A3 /* libapex.dylib in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		9A21998E2760FFE2001E14CC /* libssl.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.3.dylib; path = "../../../archive/storage-macos/library/libssl.3.dylib"; sourceTree = "<group>"; };
@@ -1968,7 +1935,6 @@
 		9AD695C2251A754800C0EBD7 /* libios_apex.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_apex.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9ADD656826B5E58800D11298 /* application_exit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = application_exit.h; sourceTree = "<group>"; };
 		9ADD656926B5E58800D11298 /* application_exit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = application_exit.cpp; sourceTree = "<group>"; };
-		9AEA1728275FF332006437A3 /* aqua.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aqua.xcodeproj; path = ../aqua/aqua.xcodeproj; sourceTree = "<group>"; };
 		9AF8CDB2271A8FD300BF80B7 /* _impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _impl.h; sourceTree = "<group>"; };
 		9AF8CDB3271A8FD300BF80B7 /* source.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = source.cpp; sourceTree = "<group>"; };
 		9AF8CDB4271A8FD300BF80B7 /* process.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = process.cpp; sourceTree = "<group>"; };
@@ -1994,14 +1960,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AD199C925127AB500B4C44A /* Security.framework in Frameworks */,
 				9A2199912760FFE3001E14CC /* libcrypto.3.dylib in Frameworks */,
-				9AD199C725127A4A00B4C44A /* IOKit.framework in Frameworks */,
 				9A2199902760FFE3001E14CC /* libssl.3.dylib in Frameworks */,
-				9AD199AB251279A000B4C44A /* Cocoa.framework in Frameworks */,
-				9AD199A92512797800B4C44A /* CoreText.framework in Frameworks */,
-				9AD199A72512795100B4C44A /* CoreGraphics.framework in Frameworks */,
-				9AD199AD251279BC00B4C44A /* libz.tbd in Frameworks */,
+				9AD199A1251278DA00B4C44A /* libacme.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2728,7 +2689,6 @@
 		9A68A43D251143F8008DABD2 = {
 			isa = PBXGroup;
 			children = (
-				9AEA1728275FF332006437A3 /* aqua.xcodeproj */,
 				9A68C188251145CA008DABD2 /* acme.xcodeproj */,
 				9A68B4062511444A008DABD2 /* apex */,
 				9A68A447251143F8008DABD2 /* Products */,
@@ -3295,7 +3255,6 @@
 			children = (
 				9A68C18D251145CA008DABD2 /* libacme.dylib */,
 				9AD695C5251A754800C0EBD7 /* libios_acme.a */,
-				9A21B2D92761282C001E14CC /* acme.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -3350,14 +3309,6 @@
 				9AD199A62512795100B4C44A /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		9AEA1729275FF332006437A3 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9AEA172F275FF332006437A3 /* libaqua.dylib */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		9AF8CDB0271A8FD300BF80B7 /* subject */ = {
@@ -4023,7 +3974,6 @@
 				9A68A442251143F8008DABD2 /* Headers */,
 				9A68A443251143F8008DABD2 /* Sources */,
 				9A68A444251143F8008DABD2 /* Frameworks */,
-				9AEA17A0275FF841006437A3 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -4084,10 +4034,6 @@
 					ProductGroup = 9A68C189251145CA008DABD2 /* Products */;
 					ProjectRef = 9A68C188251145CA008DABD2 /* acme.xcodeproj */;
 				},
-				{
-					ProductGroup = 9AEA1729275FF332006437A3 /* Products */;
-					ProjectRef = 9AEA1728275FF332006437A3 /* aqua.xcodeproj */;
-				},
 			);
 			projectRoot = "";
 			targets = (
@@ -4098,13 +4044,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		9A21B2D92761282C001E14CC /* acme.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = acme.framework;
-			remoteRef = 9A21B2D82761282C001E14CC /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		9A68C18D251145CA008DABD2 /* libacme.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
@@ -4117,13 +4056,6 @@
 			fileType = "compiled.mach-o.dylib";
 			path = libios_acme.a;
 			remoteRef = 9AD695C4251A754800C0EBD7 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9AEA172F275FF332006437A3 /* libaqua.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libaqua.dylib;
-			remoteRef = 9AEA172E275FF332006437A3 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -4553,10 +4485,17 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ANALYZER_GCD = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_MEMORY_MANAGEMENT = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_STATIC_ANALYZER_MODE = deep;
+				CLANG_STATIC_ANALYZER_MODE_ON_ANALYZE_ACTION = deep;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = NO;
 				CLANG_WARN_COMMA = YES;
@@ -4585,8 +4524,7 @@
 				DEPLOYMENT_POSTPROCESSING = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				EXECUTABLE_EXTENSION = dylib;
-				EXECUTABLE_PREFIX = lib;
+				EXCLUDED_ARCHS = "";
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
@@ -4612,14 +4550,17 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(WorkspaceDir)/archive",
 					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library",
 					"$(WorkspaceDir)/time-$(PLATFORM_MODIFIER)/output",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
+				RUN_CLANG_STATIC_ANALYZER = NO;
 				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				STRIP_INSTALLED_PRODUCT = NO;
@@ -4657,10 +4598,17 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ANALYZER_GCD = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_MEMORY_MANAGEMENT = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_STATIC_ANALYZER_MODE = deep;
+				CLANG_STATIC_ANALYZER_MODE_ON_ANALYZE_ACTION = deep;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = NO;
 				CLANG_WARN_COMMA = YES;
@@ -4684,16 +4632,17 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
+				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				EXECUTABLE_EXTENSION = dylib;
-				EXECUTABLE_PREFIX = lib;
+				EXCLUDED_ARCHS = "";
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = framework.h;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
@@ -4713,15 +4662,19 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(WorkspaceDir)/archive",
 					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library",
 					"$(WorkspaceDir)/time-$(PLATFORM_MODIFIER)/output",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
+				RUN_CLANG_STATIC_ANALYZER = NO;
 				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
+				STRIP_INSTALLED_PRODUCT = NO;
 				SYSTEM_HEADER_SEARCH_PATHS = (
 					"$(WorkspaceDir)/archive",
 					"$(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/include",
@@ -4755,6 +4708,8 @@
 		9A68A450251143F8008DABD2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				EXECUTABLE_EXTENSION = dylib;
+				EXECUTABLE_PREFIX = lib;
 				PLATFORM_MODIFIER = macos;
 				SDKROOT = macosx;
 			};
@@ -4763,6 +4718,8 @@
 		9A68A451251143F8008DABD2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				EXECUTABLE_EXTENSION = dylib;
+				EXECUTABLE_PREFIX = lib;
 				PLATFORM_MODIFIER = macos;
 				SDKROOT = macosx;
 			};

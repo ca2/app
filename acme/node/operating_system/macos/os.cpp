@@ -74,14 +74,14 @@ CLASS_DECL_ACME bool _istlead(i32 ch)
 //
 //}
 
-
-
-void _openURL(const char * psz);
-
-
-void openURL(const ::string & str)
-{
-   
-   _openURL(str);
-   
-}
+//
+//
+//void _openURL(const char * psz);
+//
+//
+//void openURL(const ::string & str)
+//{
+//   
+//   _openURL(str);
+//   
+//}

@@ -270,7 +270,6 @@
 		9AE64952252A638900BED5B8 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE63EB1252A5BD200BED5B8 /* libaura.dylib */; };
 		9AE64955252A63D100BED5B8 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE64954252A63D100BED5B8 /* libbz2.tbd */; };
 		9AE64963252A641500BED5B8 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE64962252A641500BED5B8 /* libsqlite3.tbd */; };
-		9AEA17AE275FF8D7006437A3 /* libaxis.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AE63E9B252A5B7800BED5B8 /* libaxis.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -303,19 +302,6 @@
 			remoteInfo = ios_aura;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		9AEA17A9275FF8C4006437A3 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(WorkspaceDir)/time-$(PLATFORM_MODIFIER)/output";
-			dstSubfolderSpec = 0;
-			files = (
-				9AEA17AE275FF8D7006437A3 /* libaxis.dylib in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		9A00E5EB26614F9400517464 /* database_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = database_impl.h; sourceTree = "<group>"; };
@@ -1328,7 +1314,6 @@
 				9AE63E97252A5B7800BED5B8 /* Headers */,
 				9AE63E98252A5B7800BED5B8 /* Sources */,
 				9AE63E99252A5B7800BED5B8 /* Frameworks */,
-				9AEA17A9275FF8C4006437A3 /* CopyFiles */,
 			);
 			buildRules = (
 			);

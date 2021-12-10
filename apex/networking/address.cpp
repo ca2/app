@@ -51,7 +51,7 @@ namespace net
 
       m_iLen = -1;
 
-      ADDR_STRUCT_SET_FAMILY(u.s, family);
+      u.s.set_family(family);
 
       u.s.m_port = htons(port);
 
@@ -99,7 +99,7 @@ namespace net
       {
          m_iLen = -1;
 
-         ADDR_STRUCT_SET_FAMILY(u.s, AF_UNSPEC);
+         u.s.set_family(AF_UNSPEC);
 
       }
 
@@ -113,7 +113,7 @@ namespace net
 
       m_iLen = -1;
       
-      ADDR_STRUCT_SET_FAMILY(u.s, AF_INET6);
+      u.s.set_family(AF_INET6);
 
       u.s.m_port = htons(port);
 
@@ -134,7 +134,7 @@ namespace net
       if (sa.sin6_family != AF_INET6)
       {
 
-         ADDR_STRUCT_SET_FAMILY(u.s, AF_UNSPEC);
+         u.s.set_family(AF_UNSPEC);
 
       }
       else
@@ -160,7 +160,7 @@ namespace net
 
       m_iLen = -1;
 
-      ADDR_STRUCT_SET_FAMILY(u.s, AF_INET);
+      u.s.set_family(AF_INET);
 
       u.s.m_port = htons(port);
 
@@ -182,10 +182,10 @@ namespace net
 
       m_iLen = -1;
 
-      if (u.s.ADDR_STRUCT_FAMILY != AF_INET)
+      if (u.s.get_family() != AF_INET)
       {
 
-         ADDR_STRUCT_SET_FAMILY(u.s, AF_UNSPEC);
+         u.s.set_family(AF_UNSPEC);
 
       }
       else
@@ -513,7 +513,7 @@ namespace net
          if (paddressdepartment->convert(u.m_addr6.sin6_addr, strAddress))
          {
 
-            u.s.ADDR_STRUCT_FAMILY = AF_INET6;
+            u.s.set_family(AF_INET6);
 
          }
 
@@ -524,7 +524,7 @@ namespace net
          if (paddressdepartment->convert(u.m_addr.sin_addr, strAddress))
          {
 
-            u.s.ADDR_STRUCT_FAMILY = AF_INET;
+            u.s.set_family(AF_INET);
 
          }
 
@@ -578,7 +578,7 @@ namespace net
    i32 address::sa_len() const
    {
 
-      int iFamilyLen = family_len(u.s.m_family);
+      int iFamilyLen = u.s.get_family_len();
 
       if (m_iLen <= 0)
       {

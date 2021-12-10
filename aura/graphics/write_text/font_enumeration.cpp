@@ -50,12 +50,12 @@ namespace write_text
          check_need_update(psubject);
 
       }
-      else if (psubject->id() == id_os_font_change)
+      else if (psubject->id() == id_operating_system_font_list_change)
       {
 
          __pointer(::aura::system) psystem = m_psystem;
 
-         psystem->signal(id_os_font_change);
+         psystem->signal(id_operating_system_font_list_change);
 
          update();
 

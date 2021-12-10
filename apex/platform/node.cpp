@@ -321,16 +321,36 @@ namespace apex
    }
 
 
-   void node::on_user_color()
+   void node::on_operating_system_user_theme_change()
    {
 
       auto psystem = m_psystem->m_papexsystem;
 
-      psystem->signal(id_user_color);
+      psystem->signal(id_operating_system_user_theme_change);
 
    }
 
-   
+
+   void node::on_operating_system_user_color_change()
+   {
+
+      auto psystem = m_psystem->m_papexsystem;
+
+      psystem->signal(id_operating_system_user_color_change);
+
+   }
+
+
+   void node::on_operating_system_font_list_change()
+   {
+
+      auto psystem = m_psystem->m_papexsystem;
+
+      psystem->signal(id_operating_system_font_list_change);
+
+   }
+
+
    void node::os_menu_item_enable(void * pitem, bool bEnable)
    {
 

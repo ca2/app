@@ -678,7 +678,21 @@ namespace acme
    }
 
 
-   void node::on_user_color()
+   void node::on_operating_system_user_theme_change()
+   {
+
+
+   }
+
+
+   void node::on_operating_system_user_color_change()
+   {
+
+
+   }
+
+
+   void node::on_operating_system_font_list_change()
    {
 
 
@@ -740,9 +754,7 @@ namespace acme
 
       m_bDarkMode = m_dLuminance < 0.5;
 
-      on_user_color();
-
-
+      //on_os_user_color();
 
    }
 
@@ -834,10 +846,12 @@ namespace acme
    }
 
 
-   bool node::os_set_user_theme(const ::string & strUserTheme)
+   ::e_status node::os_set_user_theme(const ::string & strUserTheme)
    {
 
-      return false;
+      throw interface_only_exception();
+
+      return error_interface_only;
 
    }
 

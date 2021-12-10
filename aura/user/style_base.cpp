@@ -36,7 +36,7 @@ namespace user
 
       auto psystem = m_psystem->m_paurasystem;
 
-      auto psignal = psystem->get_signal(id_user_color);
+      auto psignal = psystem->get_signal(id_operating_system_user_color_change);
 
       psignal->add_handler(this);
 
@@ -71,7 +71,7 @@ namespace user
    void style_base::handle(::subject * psubject, ::context * pcontext)
    {
 
-      if (psubject->m_id == id_user_color)
+      if (psubject->m_id == id_operating_system_user_color_change)
       {
 
          on_user_color();

@@ -65,7 +65,13 @@ namespace apex
       virtual ::e_status start_node() override;
 
 
-      void on_user_color() override;
+      void on_operating_system_user_theme_change() override;
+
+
+      void on_operating_system_user_color_change() override;
+
+
+      void on_operating_system_font_list_change() override;
 
 
       virtual ::e_status shell_create_link(::file::path pathObj, ::file::path pathLnk, string strDesc, ::file::path pathIco = "", int iIcon = -1);

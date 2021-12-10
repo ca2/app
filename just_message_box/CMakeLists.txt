@@ -88,8 +88,8 @@ if(LINUX OR FREEBSD)
 
    add_custom_command(
       COMMAND ${APPLICATION_BUILD_HELPER} ${PROJECT_SOURCE_DIR}
-      COMMAND ${CMAKE_COMMAND} -E touch ${CMAKE_BINARY_DIR}/matter_zip.generated_for_unix_shit_maydein
-      OUTPUT ${CMAKE_BINARY_DIR}/matter_zip.generated_for_unix_shit_maydein
+      COMMAND ${CMAKE_COMMAND} -E touch ${CMAKE_BINARY_DIR}/matter.timestamp
+      OUTPUT ${CMAKE_BINARY_DIR}/matter.timestamp
       WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
       BYPRODUCTS ${PROJECT_SOURCE_DIR}/.link_object/_matter.zip.o 
       DEPENDS deps.txt matter.txt
@@ -97,7 +97,7 @@ if(LINUX OR FREEBSD)
       )
 
    add_custom_target(${PROJECT_NAME}_matter
-      DEPENDS ${CMAKE_BINARY_DIR}/matter_zip.generated_for_unix_shit_maydein
+      DEPENDS ${CMAKE_BINARY_DIR}/matter.timestamp
    )
 
    list(APPEND executable_references ${PROJECT_SOURCE_DIR}/.link_object/_matter.zip.o)

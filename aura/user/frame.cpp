@@ -458,7 +458,7 @@ namespace user
          on_user_style_change();
 
       }
-      else if (psubject->m_id == id_user_color)
+      else if (psubject->m_id == id_operating_system_user_color_change)
       {
 
          set_need_redraw();

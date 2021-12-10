@@ -1286,7 +1286,7 @@ pacmedir->create("/ca2core");
 //
 //#ifdef LINUX
 //
-//      ::user::g_defer_init();
+//      ::user::aaa_g_defer_init();
 //
 //#endif // LINUX
 
@@ -4933,7 +4933,7 @@ namespace apex
          }
          
       }
-      else if (psubject->id() == id_os_user_theme)
+      else if (psubject->id() == id_operating_system_user_theme_change)
       {
 
          auto pnode = node();

@@ -370,3 +370,21 @@ extern "C"
 
 
 
+
+
+void safe_free(void * pfree)
+{
+
+   if(pfree == nullptr)
+   {
+
+      return;
+
+   }
+
+   ::free(pfree);
+
+}
+
+
+

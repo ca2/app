@@ -1085,7 +1085,7 @@ namespace linux
 
             char * pszError = strError.get_string_buffer(iBufferSize);
 
-            int iBool = gdk_launch_uri(strUri, pszError, iBufferSize);
+            int iBool = aaa_gdk_launch_uri(strUri, pszError, iBufferSize);
 
             strError.release_string_buffer();
 

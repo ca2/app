@@ -209,11 +209,15 @@ namespace acme
 
       virtual void fetch_user_color();
 
-      virtual void on_user_color();
+      virtual void on_operating_system_user_theme_change();
+
+      virtual void on_operating_system_user_color_change();
+
+      virtual void on_operating_system_font_list_change();
 
       virtual string os_get_user_theme();
 
-      virtual bool os_set_user_theme(const ::string & strUserTheme);
+      virtual ::e_status os_set_user_theme(const ::string & strUserTheme);
 
       virtual void os_process_user_theme(string strTheme);
 

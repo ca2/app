@@ -80,8 +80,8 @@ namespace user
    {
 
       if (psubject->m_id == id_user_style_change 
-         || psubject->m_id == id_os_user_theme
-         || psubject->m_id == id_user_color)
+         || psubject->m_id == id_operating_system_user_theme_change
+         || psubject->m_id == id_operating_system_user_color_change)
       {
 
          m_iUpdate++;

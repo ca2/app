@@ -604,11 +604,11 @@ namespace write_text
 
       auto psystem = m_psystem->m_papexsystem;
 
-      auto psignal = psystem->get_signal(id_user_color);
+      auto psignal = psystem->get_signal(id_operating_system_user_color_change);
 
       psignal->add_handler(this);
 
-      call(id_user_color);
+      call(id_operating_system_user_color_change);
 
       return estatus;
 
@@ -670,7 +670,7 @@ namespace write_text
          m_puserinteraction->post_redraw();
 
       }
-      else if (eid == id_user_color)
+      else if (eid == id_operating_system_user_color_change)
       {
 
          auto psystem = m_psystem;

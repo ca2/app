@@ -6467,7 +6467,7 @@ namespace aura
          draw2d()->write_text()->handle_font_enumeration(psubject);
 
       }
-      else if (psubject->m_id == id_user_color)
+      else if (psubject->m_id == id_operating_system_user_color_change)
       {
 
 
@@ -6476,14 +6476,6 @@ namespace aura
       ::aqua::system::handle(psubject, pcontext);
 
    }
-
-
-   //void system::handle(::subject * psubject, ::context * pcontext)
-   //{
-
-   //   ::aqua::system::handle(psubject, pcontext);
-
-   //}
 
 
    ::e_status system::initialize_estamira()

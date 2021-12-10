@@ -7,7 +7,7 @@
 off_t tell64(int fd);
 
 
-::e_status os_defer_init_gtk();
+//::e_status aaa_os_defer_init_gtk();
 
 
 //#include "gdk.h"

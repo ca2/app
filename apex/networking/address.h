@@ -30,8 +30,80 @@ namespace net
          {
 
 
-            u16 m_family;
+#ifdef FREEBSD
+
+            u8 m_len;
+            u8 m_u8Family;
+
+
+#else // !FREEBSD
+
+            u16 m_u16Family;
+
+#endif // !FREEBSD
+
             u16 m_port;
+
+#ifdef FREEBSD
+
+
+            void set_family(int family, int len)
+            {
+
+               m_len = len;
+
+               m_u8Family = family;
+
+            }
+
+
+            void set_family(int family)
+            {
+
+               set_family(family, family_len(family));
+
+            }
+
+            u8 get_family() const
+            {
+
+               return m_u8Family;
+
+            }
+
+            i32 get_family_len() const
+            {
+
+               return m_len;
+
+            }
+
+
+#else // !FREEBSD
+
+      void set_family(int family)
+      {
+
+         m_u16Family = family;
+
+      }
+
+      u16 get_family() const
+      {
+
+         return m_u16Family;
+
+      }
+
+
+      i32 get_family_len() const
+      {
+
+         return family_len(m_u16Family);
+
+      }
+
+#endif // !FREEBSD
 
          } s;
 
@@ -136,7 +208,7 @@ namespace net
 
 #if defined(BSD_STYLE_SOCKETS)
 
-      return u.s.m_family;
+      return u.s.get_family();
 
 #elif defined(WINRT_SOCKETS)
 
@@ -176,7 +248,7 @@ namespace net
 
 #if defined(BSD_STYLE_SOCKETS)
 
-      return u.s.m_family == AF_INET;
+      return get_family() == AF_INET;
 
 #elif defined(WINRT_SOCKETS)
 
@@ -198,7 +270,7 @@ namespace net
 
 #if defined(BSD_STYLE_SOCKETS)
 
-      return u.s.m_family == AF_INET6;
+      return get_family() == AF_INET6;
 
 #elif defined(WINRT_SOCKETS)
 

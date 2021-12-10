@@ -876,12 +876,30 @@ namespace net
    i32 family_len(i32 family)
    {
 
-      if(family == AF_INET)
+      if (family == AF_INET)
+      {
+
          return sizeof(sockaddr_in);
+
+      }
       else if (family == AF_INET6)
+      {
+
          return sizeof(sockaddr_in6);
-      else
+
+      }
+      else if (family == AF_UNSPEC)
+      {
+
          return 0;
+
+      }
+      else
+      {
+       
+         throw not_implemented_exception();
+
+      }
 
    }
 

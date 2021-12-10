@@ -50,20 +50,29 @@ namespace user
    void style_base::on_user_color()
    {
 
+
+      //if (is_different(m_bDarkMode, bDarkMode))
+      {
+
+         //m_bDarkMode = bDarkMode;
+
+         psystem->m_papexsystem->signal(id_user_style_change);
+
+      }
+
+   }
+
+
+   bool style_base::is_dark_mode() const
+   {
+
       auto psystem = m_psystem;
 
       auto pnode = psystem->node();
 
       auto bDarkMode = pnode->dark_mode();
 
-      if (is_different(m_bDarkMode, bDarkMode))
-      {
-
-         m_bDarkMode = bDarkMode;
-
-         psystem->m_papexsystem->signal(id_user_style_change);
-
-      }
+      return bDarkMode;
 
    }
 

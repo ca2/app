@@ -11,7 +11,7 @@ namespace user
    public:
 
 
-      bool        m_bDarkMode;
+      //bool        m_bDarkMode;
 
 
       style_base();
@@ -34,7 +34,7 @@ namespace user
 
       virtual void on_user_color();
 
-      bool is_dark_mode() const { return m_bDarkMode; }
+      virtual bool is_dark_mode() const;
 
 
       virtual bool _001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics,::user::frame * pframe);

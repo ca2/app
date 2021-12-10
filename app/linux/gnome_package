@@ -15,8 +15,11 @@ add_item()
 }
 
 
-add_item app_app
+add_item _$PACKAGE_NAME
+add_item lib$PACKAGE_NAME.so
+add_item libcrypto_openssl.so
 add_item libdraw2d_cairo.so
+add_item libfolder_zip.so
 
 
 cd $BASE_DIR

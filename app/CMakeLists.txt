@@ -90,7 +90,7 @@ if(LINUX OR FREEBSD)
 
    list(APPEND executable_references ${PROJECT_SOURCE_DIR}/.link_object/_matter.zip.o)
 
-   add_dependencies(_${PROJECT_NAME} ${PROJECT_NAME}_matter)
+   add_dependencies(${PROJECT_NAME} ${PROJECT_NAME}_matter)
 
 endif()
 

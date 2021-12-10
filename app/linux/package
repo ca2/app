@@ -15,7 +15,7 @@ add_item()
 
 }
 
-add_item app_app
+add_item _$PACKAGE_NAME
 add_item libacme.so
 add_item libacme_linux.so
 add_item libacme_posix.so
@@ -26,6 +26,8 @@ add_item libaqua.so
 add_item libaura.so
 add_item libaura_linux.so
 add_item libaura_posix.so
+add_item libcrypto_openssl.so
 add_item libdraw2d_cairo.so
+add_item libfolder_zip.so
 add_item libwindowing_x11.so
 add_item libnode_linux.so

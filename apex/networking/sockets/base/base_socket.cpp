@@ -2377,7 +2377,18 @@ namespace sockets
       
       m_timeConnectionStart = time(nullptr);
 
+      set_connection_last_activity();
+
    }
+
+
+   void base_socket::set_connection_last_activity()
+   {
+
+      m_timeConnectionLastActivity = time(nullptr);
+
+   }
+
 
 
    void base_socket::set_maximum_connection_time(time_t second)
@@ -2439,7 +2450,7 @@ namespace sockets
       else
       {
 
-         auto tElapsed = tnow - m_timeStart;
+         auto tElapsed = tnow - m_timeConnectionLastActivity;
 
          if (tElapsed > m_timeMaximum)
          {

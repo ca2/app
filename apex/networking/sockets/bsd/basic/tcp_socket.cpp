@@ -890,6 +890,9 @@ namespace sockets
    void tcp_socket::on_read(const void * buf, memsize n)
    {
 
+
+      set_connection_last_activity();
+
       // unbuffered
       if(n > 0)
       {
@@ -1063,6 +1066,7 @@ namespace sockets
 
       int n = 0;
 
+
 #ifdef HAVE_OPENSSL
 
       if(IsSSL())
@@ -1105,6 +1109,7 @@ namespace sockets
             INFORMATION("SSL_write() returns 0: " << errnr << ", " << errbuf);
             //__throw(io_exception(errbuf));
          }
+
       }
       else
 #endif // HAVE_OPENSSL
@@ -1164,6 +1169,7 @@ namespace sockets
          {
             GetTrafficMonitor() -> write(buf,n);
          }
+         set_connection_last_activity();
       }
       return (i32)n;
    }

@@ -76,6 +76,7 @@ namespace sockets
       bool                    m_bCloseAndDelete; ///< close and delete flag
       base_socket *           m_psocketParent; ///< Pointer to listen_socket class, valid for incoming sockets
       time_t                  m_timeConnectionStart; ///< Set by SetTimeout
+      time_t                  m_timeConnectionLastActivity; ///< Set by SetTimeout
       time_t                  m_timeConnectionMaximum; ///< Defined by SetTimeout
       time_t                  m_timeStart; ///< Set by SetTimeout
       time_t                  m_timeMaximum; ///< Defined by SetTimeout
@@ -268,6 +269,8 @@ namespace sockets
 
       /** enable timeout control. 0=disable timeout check. */
       virtual void set_connection_start_time();
+
+      virtual void set_connection_last_activity();
 
       virtual void set_maximum_connection_time(time_t second);
 

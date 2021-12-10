@@ -222,10 +222,6 @@ namespace sockets
 
       //}
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 2c82b9a079b43c5d4cdd2c10b8684a5312062bb3
       auto psockaddr = ad.sa();
 
       auto sockaddr_len = ad.sa_len();

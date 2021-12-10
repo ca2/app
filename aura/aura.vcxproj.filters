@@ -99,9 +99,6 @@
     <Filter Include="Header Files\game">
       <UniqueIdentifier>{f0606386-9495-46ce-9b74-b91bd4e7cc54}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\game">
-      <UniqueIdentifier>{f65206ec-dbbc-4b74-a23c-3b5bf23d50a4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\user\windows_tsf">
       <UniqueIdentifier>{ee768bd0-29dd-4369-b2ac-4e13ee5bb847}</UniqueIdentifier>
     </Filter>
@@ -170,6 +167,9 @@
     </Filter>
     <Filter Include="Source Files\node\operating_system\android">
       <UniqueIdentifier>{282b6d12-bfe0-4e11-852e-30865588f7e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gpu\game">
+      <UniqueIdentifier>{f65206ec-dbbc-4b74-a23c-3b5bf23d50a4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1295,10 +1295,10 @@
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="game\estamira.cpp">
-      <Filter>Source Files\game</Filter>
+      <Filter>Source Files\gpu\game</Filter>
     </ClCompile>
     <ClCompile Include="game\game.cpp">
-      <Filter>Source Files\game</Filter>
+      <Filter>Source Files\gpu\game</Filter>
     </ClCompile>
     <ClCompile Include="user\_.cpp">
       <Filter>Source Files\user</Filter>

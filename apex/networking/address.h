@@ -30,7 +30,23 @@ namespace net
          {
 
 
-            u16 m_family;
+#ifdef FREEBSD
+
+            u8 m_len;
+            u8 m_u8Family;
+
+#define ADDR_STRUCT_SET_FAMILY(s, family) s.m_u8family = family; s.m_len = family_len(family)
+#define ADDR_STRUCT_GET_FAMILY(s) (s.m_u8Family)
+
+#else
+
+            u16 m_u16family;
+
+#define ADDR_STRUCT_SET_FAMILY(s, family) s.m_u16family = family
+#define ADDR_STRUCT_GET_FAMILY(s) (s.m_u16family)
+
+#endif
+
             u16 m_port;
 
          } s;
@@ -136,7 +152,7 @@ namespace net
 
 #if defined(BSD_STYLE_SOCKETS)
 
-      return u.s.m_family;
+      return ADDR_STRUCT_GET_FAMILY(u.s);
 
 #elif defined(WINRT_SOCKETS)
 
@@ -176,7 +192,7 @@ namespace net
 
 #if defined(BSD_STYLE_SOCKETS)
 
-      return u.s.m_family == AF_INET;
+      return get_family() == AF_INET;
 
 #elif defined(WINRT_SOCKETS)
 
@@ -198,7 +214,7 @@ namespace net
 
 #if defined(BSD_STYLE_SOCKETS)
 
-      return u.s.m_family == AF_INET6;
+      return get_family() == AF_INET6;
 
 #elif defined(WINRT_SOCKETS)
 

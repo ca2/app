@@ -46,10 +46,15 @@ namespace net
    {
 
 #ifdef BSD_STYLE_SOCKETS
+
       ::zero(this, sizeof(u.m_sa));
+
       m_iLen = -1;
-      u.s.m_family = family;
+
+      ADDR_STRUCT_SET_FAMILY(u.s, family);
+
       u.s.m_port = htons(port);
+
 #endif
 
 //#ifdef _UWP
@@ -93,7 +98,9 @@ namespace net
       else
       {
          m_iLen = -1;
-         u.s.m_family = AF_UNSPEC;
+
+         ADDR_STRUCT_SET_FAMILY(u.s, AF_UNSPEC);
+
       }
 
    }
@@ -104,43 +111,43 @@ namespace net
 
       ::zero(this, sizeof(u.m_sa));
 
-      //#ifdef _UWP
-      //
-      //      m_posdata = new os_data();
-      //
-      //#endif
       m_iLen = -1;
-      u.s.m_family = AF_INET6;
+      
+      ADDR_STRUCT_SET_FAMILY(u.s, AF_INET6);
+
       u.s.m_port = htons(port);
+
       u.m_addr6.sin6_addr = a;
+
       sync_os_address();
+
       sync_os_service();
 
    }
 
+
    address::address(const sockaddr_in6& sa, int iLen)
    {
-
-      //#ifdef _UWP
-      //
-      //      m_posdata = new os_data();
-      //
-      //#endif
 
       ::zero(this, sizeof(u.m_sa));
 
       if (sa.sin6_family != AF_INET6)
       {
-         u.s.m_family = AF_UNSPEC;
+
+         ADDR_STRUCT_SET_FAMILY(u.s, AF_UNSPEC);
+
       }
       else
       {
+
          m_iLen = iLen <= 0 ? sizeof(sockaddr_in6) : iLen;
 
          ::memcpy_dup(&u.m_addr6, &sa, m_iLen);
 
          sync_os_address();
+
          sync_os_service();
+
       }
 
    }
@@ -151,46 +158,50 @@ namespace net
 
       ::zero(this, sizeof(u.m_sa));
 
-      //#ifdef _UWP
-      //
-      //      m_posdata = new os_data();
-      //
-      //#endif
       m_iLen = -1;
-      u.s.m_family = AF_INET;
+
+      ADDR_STRUCT_SET_FAMILY(u.s, AF_INET);
+
       u.s.m_port = htons(port);
+
       u.m_addr.sin_addr = a;
+
       sync_os_address();
+
       sync_os_service();
 
    }
+
 
    address::address(const sockaddr_in& sa)
    {
 
       ::zero(this, sizeof(u.m_sa));
+
       u.m_addr = sa;
 
-      //#ifdef _UWP
-      //
-      //      m_posdata = new os_data();
-      //
-      //#endif
       m_iLen = -1;
-      if (u.s.m_family != AF_INET)
+
+      if (u.s.ADDR_STRUCT_FAMILY != AF_INET)
       {
-         u.s.m_family = AF_UNSPEC;
+
+         ADDR_STRUCT_SET_FAMILY(u.s, AF_UNSPEC);
+
       }
       else
       {
+
          sync_os_address();
+
          sync_os_service();
+
       }
 
    }
 
 
 #endif
+
 
    address::address(const string & host, port_t port)
    {
@@ -502,7 +513,7 @@ namespace net
          if (paddressdepartment->convert(u.m_addr6.sin6_addr, strAddress))
          {
 
-            u.s.m_family = AF_INET6;
+            u.s.ADDR_STRUCT_FAMILY = AF_INET6;
 
          }
 
@@ -513,7 +524,7 @@ namespace net
          if (paddressdepartment->convert(u.m_addr.sin_addr, strAddress))
          {
 
-            u.s.m_family = AF_INET;
+            u.s.ADDR_STRUCT_FAMILY = AF_INET;
 
          }
 
@@ -542,10 +553,18 @@ namespace net
 
 #if defined(BSD_STYLE_SOCKETS)
 
-      if (u.s.m_family == AF_INET)
+      if (is_ipv4())
+      {
+
          ::to_string(str, u.m_addr);
-      else if (u.s.m_family == AF_INET6)
+
+      }
+      else if (is_ipv6())
+      {
+
          ::to_string(str, u.m_addr6);
+
+      }
          
 #endif
 
@@ -562,9 +581,17 @@ namespace net
       int iFamilyLen = family_len(u.s.m_family);
 
       if (m_iLen <= 0)
+      {
+
          return iFamilyLen;
+
+      }
       else
+      {
+
          return m_iLen;
+
+      }
 
    }
 

@@ -134,22 +134,24 @@ int get_proc_cpuinfo_core_count()
 ::duration os_get_system_update_poll_time(const ::id & id)
 {
 
-   if(id == id_user_color)
+   if(id == id_operating_system_user_theme_change)
    {
 
       // On Gnome you can?
       // ... hook to the gtk-theme-name property change event of GTK Settings default object
+      //return 300_ms;
+
       //return 300_ms;
       return e_zero;
 
    }
-   else if(id == id_os_user_theme)
+   else if(id == id_operating_system_user_color_change)
    {
+
       // On Gnome you can?
       // ... hook to the gtk-theme-name property change event of GTK Settings default object
       //return 300_ms;
 
-      //return 300_ms;
       return e_zero;
 
    }
@@ -157,6 +159,7 @@ int get_proc_cpuinfo_core_count()
    return e_zero;
 
 }
+
 
 //
 //void debug_break()

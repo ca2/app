@@ -222,7 +222,11 @@ namespace sockets
 
       //}
 
-      if (bind(s, ad.sa(), ad.sa_len()) == -1)
+      auto psockaddr = ad.sa();
+
+      auto sockaddr_len = ad.sa_len();
+
+      if (bind(s, psockaddr, sockaddr_len) == -1)
       {
 
          FATAL("bind() failed for port " << __string(ad.get_service_number()) << ", " << Errno << ", " << bsd_socket_error(Errno));

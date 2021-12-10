@@ -9,7 +9,7 @@ namespace user
    style_base::style_base()
    {
 
-      m_bDarkMode = true;
+      //m_bDarkMode = true;
 
    }
 
@@ -55,6 +55,8 @@ namespace user
       {
 
          //m_bDarkMode = bDarkMode;
+
+         auto psystem = m_psystem;
 
          psystem->m_papexsystem->signal(id_user_style_change);
 

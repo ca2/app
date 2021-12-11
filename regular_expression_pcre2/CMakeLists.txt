@@ -8,7 +8,6 @@ list(APPEND regular_expression_pcre2_source
    context.cpp
    context.h
    _factory.cpp
-
    framework.cpp
    framework.h
    regular_expression.cpp
@@ -33,15 +32,19 @@ if (MSVC)
     target_link_options(regular_expression_pcre2 PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/regular_expression_pcre2.lib")
     target_link_options(regular_expression_pcre2 PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/regular_expression_pcre2.def")
     target_link_libraries(regular_expression_pcre2 PRIVATE ${library_references})
-elseif(LINUX)
-    pkg_check_modules(PKGCONFIG libpcre2-8)
+
+elseif(LINUX OR FREEBSD)
+
+
+   pkg_check_modules(PKGCONFIG libpcre2-8)
     target_compile_options(regular_expression_pcre2 PRIVATE -fpermissive)
-       target_compile_options(regular_expression_pcre2 PRIVATE ${PKGCONFIG_CFLAGS})
-   target_link_options(regular_expression_pcre2 PRIVATE ${PKGCONFIG_LDFLAGS})
-    #target_link_options(regular_expression_pcre2 PRIVATE -Wl,-rpath=$ORIGIN)
-    target_link_libraries(regular_expression_pcre2 PRIVATE ${PKGCONFIG_LIBRARIES} ${library_references})
+    target_compile_options(regular_expression_pcre2 PRIVATE ${PKGCONFIG_CFLAGS})
+    target_link_options(regular_expression_pcre2 PRIVATE ${PKGCONFIG_LDFLAGS})
+    target_link_libraries(regular_expression_pcre2 PRIVATE ${library_references})
+    target_link_libraries(regular_expression_pcre2 PRIVATE ${PKGCONFIG_LIBRARIES})
     target_link_options(regular_expression_pcre2 PRIVATE -Wl,-z,defs)
-    message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
+
+
 endif()
 
 

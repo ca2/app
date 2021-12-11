@@ -839,7 +839,7 @@ CLASS_DECL_ACME int throw_assert_exception(const char *pszFileName, int iLineNum
 #endif
 
 
-#if defined(WINDOWS) || defined(LINUX) || defined(__i386__)
+#if defined(WINDOWS) || defined(LINUX) || defined(__i386__) || defined(FREEBSD)
 
 
 #define IMAGE_A_BYTE_INDEX 3

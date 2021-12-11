@@ -37,7 +37,11 @@ struct pixmap
    pixmap()
    {
 
+#if defined(FREEBSD)
+      m_iRedLower = 0;
+#else
       m_iRedLower = 1;
+#endif
       m_iScan = 0;
       m_pcolorref1 = nullptr;
       m_pcolorrefRaw = nullptr;

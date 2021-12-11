@@ -1351,6 +1351,10 @@ namespace user
 
                      plain_edit_on_delete(pgraphics);
 
+                     set_need_redraw();
+
+                     post_redraw();
+
                   });
 
             }
@@ -4644,10 +4648,13 @@ finished_update:
                         MacroRecord(psetsel);
                         MacroRecord(__new(plain_text_file_command()));
                         MacroEnd();
-                        //                     bUpdate = true;
+
                      }
+
                   }
+
                }
+
             }
             else if (pkey->m_ekey == ::user::e_key_delete)
             {

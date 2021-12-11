@@ -158,7 +158,7 @@ namespace file
 
       virtual void handle_action(action * paction);
 
-      virtual ::e_status step();
+      ::e_status step() override;
 
 
       void _addAll();

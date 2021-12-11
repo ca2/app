@@ -147,7 +147,7 @@ namespace file
       
 
       watch();
-      virtual ~watch();
+      ~watch() override;
 
 
       virtual bool open(const ::file::path & pathFolder, bool bRecursive);
@@ -156,9 +156,16 @@ namespace file
       virtual void add_listener(listener * plistener);
       virtual void erase_listener(listener * plistener);
 
-      virtual void handle_action(action * psubject);
+      virtual void handle_action(action * paction);
 
       virtual ::e_status step();
+
+
+      void _addAll();
+      void _addFile(const char * name, bool imitEvents = true);
+      void _removeFile(const char * name, bool imitEvents = true);
+      void _rescan();
+
 
 
    };
@@ -182,9 +189,10 @@ namespace file
       watch_id             m_idLast;
 
       bool                 m_bCreateWatchThread;
-      
+
+
       watcher();
-      virtual ~watcher();
+      ~watcher() override;
 
 
       template < typename PRED >

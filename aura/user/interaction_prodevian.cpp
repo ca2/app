@@ -848,16 +848,16 @@ namespace user
 
       bool bWindowsApplyVisual = true;
 
-      auto & edisplayOutput = m_pimpl->m_puserinteraction->layout().output().m_edisplay;
+      auto & edisplayOutput = m_puserinteraction->layout().output().m_edisplay;
 
-      auto & edisplayDesign = m_pimpl->m_puserinteraction->layout().design().m_edisplay;
+      auto & edisplayDesign = m_puserinteraction->layout().design().m_edisplay;
+
       if (edisplayOutput != edisplayDesign)
       {
 
-         m_pimpl->m_puserinteraction->post_message(e_message_show_window);
+         m_puserinteraction->post_message(e_message_show_window);
 
       }
-
 
       if (m_bUpdateScreen && (bWindowsApplyVisual || !bStartWindowVisual))
       {

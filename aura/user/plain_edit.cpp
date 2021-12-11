@@ -4676,6 +4676,10 @@ finished_update:
 
                      });
 
+                  set_need_redraw();
+
+                  post_redraw();
+
                }
 
                return;

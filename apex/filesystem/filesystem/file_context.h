@@ -51,6 +51,9 @@ public:
    virtual void trash_that_is_not_trash(::file::patha & patha);
 
 
+   virtual __transport(::handle::ini) get_ini(const ::payload& payloadFile);
+
+
    virtual bool get_status(const ::file::path & path, ::file::file_status & status);
    virtual ::extended::status set_status(const ::file::path & path, const ::file::file_status & status);
 

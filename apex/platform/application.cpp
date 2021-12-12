@@ -611,24 +611,13 @@ return pathFolder;
 ::handle::ini application::get_ini()
 {
 
-::handle::ini ini;
+   auto pathFolder = get_app_localconfig_folder();
 
-auto pathFolder = get_app_localconfig_folder();
+   auto pathIni = pathFolder / "this.ini";
 
-auto preader = m_pcontext->m_papexcontext->file().get_reader(pathFolder / "this.ini");
+   auto ini = m_pcontext->m_papexcontext->file().get_ini(pathIni);
 
-if (preader)
-{
-
-string str;
-
-preader->full_read_string(str);
-
-ini.parse_ini(str);
-
-}
-
-return ini;
+   return ini;
 
 }
 

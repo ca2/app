@@ -1737,7 +1737,20 @@ bool file_context::resource_is_file_or_dir(const char* path)
 }
 
 
-void file_context::trash_that_is_not_trash(::file::patha &stra)
+void file_context::trash_that_is_not_trash(const ::file::path &psz)
+{
+
+   ::file::path strDir = m_pcontext->m_papexcontext->dir().trash_that_is_not_trash(psz);
+
+   m_pcontext->m_papexcontext->dir().mk(strDir);
+
+   move(strDir / psz.name(), psz);
+
+}
+
+
+
+void file_context::trash_that_is_not_trash(::file::patha& stra)
 {
 
    if (stra.get_size() <= 0)
@@ -1761,14 +1774,34 @@ void file_context::trash_that_is_not_trash(::file::patha &stra)
 }
 
 
-void file_context::trash_that_is_not_trash(const ::file::path &psz)
+__transport(::handle::ini) file_context::get_ini(const ::payload& payloadFile)
 {
 
-   ::file::path strDir = m_pcontext->m_papexcontext->dir().trash_that_is_not_trash(psz);
+   auto preader = m_pcontext->m_papexcontext->file().get_reader(payloadFile);
 
-   m_pcontext->m_papexcontext->dir().mk(strDir);
+   if (!preader)
+   {
 
-   move(strDir / psz.name(), psz);
+      return preader;
+
+   }
+
+   string str;
+
+   preader->full_read_string(str);
+
+   auto pini = __create_new < handle::ini >();
+
+   if (!pini)
+   {
+
+      return pini;
+
+   }
+
+   pini->parse_ini(str);
+
+   return ::move(pini);
 
 }
 

@@ -27,6 +27,10 @@ dir_system::~dir_system()
 
    }
 
+   auto psystem = m_psystem;
+
+   m_pathModule = psystem->m_pacmedir->module();
+
    return true;
 
 }

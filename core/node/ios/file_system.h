@@ -13,7 +13,7 @@ namespace ios
 
       ::file::path            m_strUserFolder;
       ::file::path            m_pathModule;
-      ::file::path            m_pathCa2Module;
+      //::file::path            m_pathCa2Module;
       
 
       file_system();

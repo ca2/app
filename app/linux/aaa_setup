@@ -4,9 +4,6 @@
 PACKAGE_NAME=app_app
 
 
-CA2_FRAMEWORK_LEVEL="aura"
-
-
 BASE_DIR=$HOME/solution/basis/time-linux/x64/basis
 
 

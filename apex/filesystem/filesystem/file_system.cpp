@@ -26,6 +26,10 @@ file_system::~file_system()
       
    }
 
+   ::file::path pathAppModule = m_psystem->m_pacmefile->module();
+
+   m_pathModule = pathAppModule;
+
    return estatus;
 
 }

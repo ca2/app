@@ -51,7 +51,7 @@ namespace apex
       //__pointer(::draw2d::draw2d)                        m_pdraw2d;
 
       ::file::path                                       m_pathConfig;
-      ::file::path                                       m_pathCa2Roaming;
+      //::file::path                                       m_pathCa2Roaming;
 
 
       ::mutex                                            m_mutexUserChildren;

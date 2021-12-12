@@ -7,7 +7,7 @@ class CLASS_DECL_APEX dir_system :
 public:
 
 
-   ::file::path                  m_pathCa2;
+   //::file::path                  m_pathCa2;
    ::file::path                  m_pathLocalAppMatterFolder;
    ::file::path                  m_pathLocalAppMatterCacheFolder;
 
@@ -19,7 +19,7 @@ public:
    string                        m_strApiCc;
 
    ::file::path                  m_pathCa2Config;
-   ::file::path                  m_pathCa2Module;
+   //::file::path                  m_pathCa2Module;
    ::file::path                  m_pathModule;
    ::file::path                  m_pathHome;
    ::file::path                  m_pathInstall;

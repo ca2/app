@@ -1,33 +1,29 @@
 #!/bin/bash
 
-./setup
-PACKAGE_NAME=app_app
+. ./setup
 
 
-BASE_DIR=$HOME/solution/basis/time-linux/x64/basis
+. add_common_dependencies
 
 
 add_item()
 {
 
    cd $BASE_DIR
-   zip "$PACKAGE_NAME.zip" "$1"
+   zip "gnome/$PACKAGE_NAME.zip" "$1"
 
 }
 
+
 add_item _$PACKAGE_NAME
-add_item libacme.so
-add_item libacme_linux.so
-add_item libacme_posix.so
-add_item libapex.so
-add_item libapex_linux.so
-add_item libapex_posix.so
-add_item libaqua.so
-add_item libaura.so
-add_item libaura_linux.so
-add_item libaura_posix.so
+add_item lib$PACKAGE_NAME.so
 add_item libcrypto_openssl.so
 add_item libdraw2d_cairo.so
 add_item libfolder_zip.so
-add_item libwindowing_x11.so
-add_item libnode_linux.so
+
+
+cd $BASE_DIR
+cp "gnome/$PACKAGE_NAME.zip" /store/$DISTRO_NAME/$DESKTOP_ENVIRONMENT_NAME/
+
+
+

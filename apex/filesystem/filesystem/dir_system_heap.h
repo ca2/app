@@ -52,8 +52,8 @@ namespace file
          is_dir_map         m_isdirmap;
 
 
-         ::file::path         m_strCa2;
-         ::file::path         m_pathCa2Module;
+         //::file::path         m_strCa2;
+         //::file::path         m_pathCa2Module;
          ::file::path         m_pathModule;
          ::file::path         m_pathProfile;
          ::file::path         m_pathUser;

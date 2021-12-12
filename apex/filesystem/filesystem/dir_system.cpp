@@ -27,8 +27,6 @@ dir_system::~dir_system()
 
    }
 
-   m_pathInstall = m_psystem->m_pacmedir->install();
-
    return true;
 
 }
@@ -37,14 +35,32 @@ dir_system::~dir_system()
 ::e_status dir_system::init_system()
 {
 
-   if (!update_module_path())
-   {
-
-      return ::error_failed;
-
-   }
+//   if (!update_module_path())
+//   {
+//
+//      return ::error_failed;
+//
+//   }
+//
+   m_pathInstall = m_psystem->m_pacmedir->install();
 
    auto psystem = get_system()->m_papexsystem;
+
+   auto pfile = psystem->m_pfilesystem;
+
+   auto pathModule = pfile->m_pathModule;
+
+   ::file::path pathModuleFolder = pathModule.folder();
+
+   m_pathModule = pathModuleFolder;
+
+//   auto pathCa2Module = pfile->m_pathCa2Module;
+//
+//   ::file::path pathCa2ModuleFolder = pathCa2Module.folder();
+//
+//   m_pathCa2Module = pathCa2ModuleFolder;
+
+   //auto psystem = get_system()->m_papexsystem;
 
    auto pacmedir = psystem->m_pacmedir;
 
@@ -156,30 +172,30 @@ dir_system::~dir_system()
 }
 
 
-bool dir_system::update_module_path()
-{
-
-   //auto & context = Context;
-
-   auto psystem = get_system()->m_papexsystem;
-
-   auto pfile = psystem->m_pfilesystem;
-
-   auto pathModule = pfile->m_pathModule;
-
-   ::file::path pathModuleFolder = pathModule.folder();
-
-   m_pathModule = pathModuleFolder;
-
-   auto pathCa2Module = pfile->m_pathCa2Module;
-
-   ::file::path pathCa2ModuleFolder = pathCa2Module.folder();
-
-   m_pathCa2Module = pathCa2ModuleFolder;
-
-   return true;
-
-}
+//bool dir_system::update_module_path()
+//{
+//
+//   //auto & context = Context;
+//
+//   auto psystem = get_system()->m_papexsystem;
+//
+//   auto pfile = psystem->m_pfilesystem;
+//
+//   auto pathModule = pfile->m_pathModule;
+//
+//   ::file::path pathModuleFolder = pathModule.folder();
+//
+//   m_pathModule = pathModuleFolder;
+//
+//   auto pathCa2Module = pfile->m_pathCa2Module;
+//
+//   ::file::path pathCa2ModuleFolder = pathCa2Module.folder();
+//
+//   m_pathCa2Module = pathCa2ModuleFolder;
+//
+//   return true;
+//
+//}
 
 
 //::string dir_system::dir_root()

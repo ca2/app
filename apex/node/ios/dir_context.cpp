@@ -460,12 +460,12 @@ pacmedir->is(stra[i]))
    }
 
 
-   ::file::path dir_context::ca2module()
-   {
-
-      return ::apex::get_system()->m_pdirsystem->m_pathCa2Module;
-
-   }
+//   ::file::path dir_context::ca2module()
+//   {
+//
+//      return ::apex::get_system()->m_pdirsystem->m_pathCa2Module;
+//
+//   }
 
 
    ::file::path dir_context::time_square(const ::string & strPrefix,const ::string & strSuffix)

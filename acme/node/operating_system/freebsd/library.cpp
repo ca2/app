@@ -93,10 +93,18 @@ CLASS_DECL_ACME void * __node_library_open(const char * pszPath, string & strMes
    }
 
    if(ansi_find_string(strPath, ".") == nullptr)
+   {
+
       strPath += ".so";
 
+   }
+
    if(strstr((const char *) strPath, "/") == nullptr && !ansi_begins(strPath, "lib"))
+   {
+
       strPath = "lib" + strPath;
+
+   }
 
    void * plibrary = dlopen(strPath, RTLD_GLOBAL | RTLD_LAZY | RTLD_NODELETE);
 

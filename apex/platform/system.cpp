@@ -2534,7 +2534,7 @@ pacmedir->create("/ca2core");
 
             auto plauncher = __create < ::apex::shell_launcher >();
             
-            plauncher->setup(nullptr, nullptr, m_pcontext->m_papexcontext->dir().ca2module() / strApp, strParameters, nullptr, e_display_normal);
+            plauncher->setup(nullptr, nullptr, m_pcontext->m_papexcontext->dir().module() / strApp, strParameters, nullptr, e_display_normal);
 
             plauncher->launch();
 
@@ -2568,7 +2568,7 @@ pacmedir->create("/ca2core");
 
             auto plauncher = __create < ::apex::shell_launcher >();
             
-            plauncher->setup(nullptr, nullptr, m_pcontext->m_papexcontext->dir().ca2module() / strApp, strParameters, nullptr, e_display_normal);
+            plauncher->setup(nullptr, nullptr, m_pcontext->m_papexcontext->dir().module() / strApp, strParameters, nullptr, e_display_normal);
 
             plauncher->launch();
 

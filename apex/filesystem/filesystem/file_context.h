@@ -24,7 +24,7 @@ public:
    virtual ::e_status init_context();
 
    
-   virtual ::e_status update_module_path();
+   //virtual ::e_status update_module_path();
 
 
    virtual void calculate_main_resource_memory();
@@ -73,7 +73,7 @@ public:
 
    virtual ::file::path module();
 
-   virtual ::file::path ca2module();
+   //virtual ::file::path ca2module();
 
    
    ::file::path time(const ::file::path & pathBasePath, i32 iDepth = 0, const ::string & strPrefix = nullptr, const ::string & strSuffix = nullptr, bool bTryDelete = false);

@@ -51,7 +51,7 @@ namespace android
 
       m_pathModule = m_psystem->m_pacmepath->app_module();
 
-      m_pathCa2Module = m_pathModule;
+      //m_pathCa2Module = m_pathModule;
 
       return true;
 

@@ -38,7 +38,7 @@ public:
 
 
 
-   virtual bool update_module_path();
+   //virtual bool update_module_path();
 
    //virtual ::string dir_root();
 

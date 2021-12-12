@@ -188,7 +188,7 @@ namespace acme
 
       }
 
-      INFORMATION("acme::library::open success");
+      INFORMATION("acme::library::open success : " << m_strMessage);
 
       if (m_strName.has_char())
       {
@@ -446,6 +446,8 @@ namespace acme
 
                if (m_plibrary != nullptr)
                {
+
+                  INFORMATION("Closing library : " << m_strName);
 
                   bOk = ::__node_library_close(m_plibrary);
 

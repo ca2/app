@@ -273,14 +273,14 @@ bool file_context::is_file_or_dir(const ::file::path &path, ::payload *pvarQuery
 }
 
 
-::file::path file_context::ca2module()
-{
-
-   auto psystem = get_system()->m_papexsystem;
-
-   return psystem->m_pfilesystem->m_pathCa2Module;
-
-}
+//::file::path file_context::ca2module()
+//{
+//
+//   auto psystem = get_system()->m_papexsystem;
+//
+//   return psystem->m_pfilesystem->m_pathCa2Module;
+//
+//}
 
 
 ::file::path file_context::time_square(const string &pszPrefix, const string &pszSuffix)
@@ -2409,17 +2409,17 @@ bool file_context::get_last_write_time(filetime_t *pfiletime, const string &strF
 ::e_status file_context::init_system()
 {
 
-   auto psystem = get_system()->m_papexsystem;
-
-   auto estatus = psystem->m_pfilesystem->update_module_path();
-
-   if (!estatus)
-   {
-
-      return estatus;
-
-   }
-
+//   auto psystem = get_system()->m_papexsystem;
+//
+//   auto estatus = psystem->m_pfilesystem->update_module_path();
+//
+//   if (!estatus)
+//   {
+//
+//      return estatus;
+//
+//   }
+//
    return ::success;
 
 }
@@ -3743,24 +3743,24 @@ bool file_context::touch(const ::file::path &path)
 }
 
 
-::e_status file_context::update_module_path()
-{
-
-   auto psystem = get_system()->m_papexsystem;
-
-   auto estatus = psystem->m_pfilesystem->update_module_path();
-
-   if (!estatus)
-   {
-
-      return estatus;
-
-   }
-
-   return estatus;
-
-
-}
+//::e_status file_context::update_module_path()
+//{
+//
+//   auto psystem = get_system()->m_papexsystem;
+//
+//   auto estatus = psystem->m_pfilesystem->update_module_path();
+//
+//   if (!estatus)
+//   {
+//
+//      return estatus;
+//
+//   }
+//
+//   return estatus;
+//
+//
+//}
 
 
 

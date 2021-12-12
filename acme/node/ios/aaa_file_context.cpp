@@ -68,7 +68,7 @@ namespace ios
 
       m_pfilesystem->m_pathModule = apple_app_module_path();
 
-      m_pfilesystem->m_pathCa2Module = m_pdirsystem->m_pathModule;
+      //m_pfilesystem->m_pathCa2Module = m_pdirsystem->m_pathModule;
 
       return ::success;
 

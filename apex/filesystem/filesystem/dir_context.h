@@ -92,7 +92,7 @@
       virtual ::file::path home();
 
       virtual ::file::path module();
-      virtual ::file::path ca2module();
+      //virtual ::file::path ca2module();
       virtual ::file::path time_square();
       virtual ::file::path time_log(const ::string & strId);
 

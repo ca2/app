@@ -1642,16 +1642,16 @@ bool dir_context::name_is(const ::file::path & strPath)
 }
 
 
-::file::path dir_context::ca2module()
-{
-
-   synchronous_lock synchronouslock(mutex());
-
-   auto psystem = get_system()->m_papexsystem;
-
-   return psystem->m_pdirsystem->m_pathCa2Module;
-
-}
+//::file::path dir_context::ca2module()
+//{
+//
+//   synchronous_lock synchronouslock(mutex());
+//
+//   auto psystem = get_system()->m_papexsystem;
+//
+//   return psystem->m_pdirsystem->m_pathCa2Module;
+//
+//}
 
 
 ::file::path dir_context::time_square()

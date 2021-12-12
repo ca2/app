@@ -1063,7 +1063,7 @@ namespace acme
 
 
 
-#if defined(LINUX)
+#if defined(LINUX) || defined(FREEBSD)
 
 ::file::path libfilename(const ::string & str)
 {

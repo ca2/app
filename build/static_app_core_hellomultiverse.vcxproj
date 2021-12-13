@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="cube_basis|Win32">
+      <Configuration>cube_basis</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="cube_basis|x64">
+      <Configuration>cube_basis</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="cube_stage|Win32">
+      <Configuration>cube_stage</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="cube_stage|x64">
+      <Configuration>cube_stage</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{B3C2FC2F-00B5-4B57-BA6A-5BAE18CE8761}</ProjectGuid>
+    <RootNamespace>appcorehellomultiverse</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\..\archive\platform-windows\Common.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\..\archive\platform-windows\Common.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\..\archive\platform-windows\Common.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\..\archive\platform-windows\Common.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>CUBE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <CompileAsManaged>false</CompileAsManaged>
+      <CompileAsWinRT>false</CompileAsWinRT>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>zlib.lib;sqlite.lib;libcrypto.lib;libssl.lib;ws2_32.lib;Secur32.lib;SetupAPI.lib;Credui.lib;Dbghelp.lib;Msimg32.lib;Dwmapi.lib;Dxva2.lib;Imm32.lib;Gdiplus.lib;Crypt32.lib;Shlwapi.lib;Normaliz.lib;windowscodecs.lib;gdiplus.lib;winmm.lib;version.lib;vfw32.lib;opengl32.lib;glu32.lib;Psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>false</SDLCheck>
+      <PreprocessorDefinitions>CUBE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <CompileAsManaged>false</CompileAsManaged>
+      <CompileAsWinRT>false</CompileAsWinRT>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>zlib.lib;sqlite.lib;libcrypto.lib;libssl.lib;pcre.lib;ws2_32.lib;Secur32.lib;SetupAPI.lib;Credui.lib;Dbghelp.lib;Msimg32.lib;Dwmapi.lib;Dxva2.lib;Imm32.lib;Gdiplus.lib;Crypt32.lib;Shlwapi.lib;Normaliz.lib;windowscodecs.lib;gdiplus.lib;winmm.lib;version.lib;vfw32.lib;opengl32.lib;glu32.lib;Psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>CUBE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <CompileAsManaged>false</CompileAsManaged>
+      <CompileAsWinRT>false</CompileAsWinRT>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>zlib.lib;sqlite.lib;libcrypto.lib;libssl.lib;ws2_32.lib;Secur32.lib;SetupAPI.lib;Credui.lib;Dbghelp.lib;Msimg32.lib;Dwmapi.lib;Dxva2.lib;Imm32.lib;Gdiplus.lib;Crypt32.lib;Shlwapi.lib;Normaliz.lib;windowscodecs.lib;gdiplus.lib;winmm.lib;version.lib;vfw32.lib;opengl32.lib;glu32.lib;Psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>false</SDLCheck>
+      <PreprocessorDefinitions>CUBE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <CompileAsManaged>false</CompileAsManaged>
+      <CompileAsWinRT>false</CompileAsWinRT>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>zlib.lib;sqlite.lib;libcrypto.lib;libssl.lib;pcre.lib;ws2_32.lib;Secur32.lib;SetupAPI.lib;Credui.lib;Dbghelp.lib;Msimg32.lib;Dwmapi.lib;Dxva2.lib;Imm32.lib;Gdiplus.lib;Crypt32.lib;Shlwapi.lib;Normaliz.lib;windowscodecs.lib;gdiplus.lib;winmm.lib;version.lib;vfw32.lib;opengl32.lib;glu32.lib;Psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\..\..\archive\platform-windows\version.rc" />
+    <ResourceCompile Include="main.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon.ico" />
+    <Image Include="windows\main.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\archive\platform-windows\acme_windows\acme_windows.vcxproj">
+      <Project>{cc8e8200-00a9-414e-9829-7ca3f1091add}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\archive\platform-windows\apex_windows\apex_windows.vcxproj">
+      <Project>{c598e718-55ae-4d6e-81e0-53450fc3a649}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\archive\platform-windows\aura_windows\aura_windows.vcxproj">
+      <Project>{94c3715a-7fbf-4455-917b-20cb7f40c58c}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\archive\platform-windows\draw2d_gdiplus\draw2d_gdiplus.vcxproj">
+      <Project>{9a5fbfb1-76e6-4f7e-933a-328c1eec95af}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\archive\platform-windows\node_windows\node_windows.vcxproj">
+      <Project>{c1ccdf2e-9f27-45d3-b67a-b2eeb1754e72}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\archive\platform-windows\windowing_win32\windowing_win32.vcxproj">
+      <Project>{77d5757e-2923-40f8-9cc0-a07fa5bcc236}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\archive\platform-windows\write_text_win32\write_text_win32.vcxproj">
+      <Project>{d6b5b8f3-a524-4e73-8343-c3d5d558ade3}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\archive\platform-windows_common\acme_windows_common\acme_windows_common.vcxproj">
+      <Project>{eb9dc9c0-0573-4da0-8700-4dbb371773f1}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\archive\platform-windows_common\apex_windows_common\apex_windows_common.vcxproj">
+      <Project>{a094e038-d195-4400-82ce-44a7edf91b78}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\archive\platform-windows_common\aura_windows_common\aura_windows_common.vcxproj">
+      <Project>{99f5abf0-7377-4cc7-b016-4ca7b365b9f1}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\archive\platform-windows_common\imaging_wic\imaging_wic.vcxproj">
+      <Project>{d79c7ddb-a727-4b91-803e-41c4431693d6}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\app\acme\acme.vcxproj">
+      <Project>{638b242f-0f21-41c3-9f66-724660046133}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\app\apex\apex.vcxproj">
+      <Project>{e000ffaf-392f-4e32-bf51-777ca238991f}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\app\aqua\aqua.vcxproj">
+      <Project>{1b06fe5f-f783-41a1-ac68-0e02880dbbac}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\app\aura\aura.vcxproj">
+      <Project>{e000ffaf-392f-4e32-bf51-fd7ed638991f}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\app\axis\axis.vcxproj">
+      <Project>{a2cbd4ed-ed0f-482b-9b16-f48f21c32835}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\app\base\base.vcxproj">
+      <Project>{a216abd4-26c4-4746-96b3-9d30ed28cf92}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\app\bred\bred.vcxproj">
+      <Project>{dfbf067f-aff9-4bd6-a5e1-72af984d1476}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\app\core\core.vcxproj">
+      <Project>{29c1eb5b-060e-4021-ae12-d1bcfb1b1359}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\app\database_sqlite3\database_sqlite3.vcxproj">
+      <Project>{f85061d8-22dc-4a8b-85ea-76d330be52cc}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\app\experience_core\experience_core.vcxproj">
+      <Project>{e2d7833b-9b59-4826-bbdf-c270a2115e86}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\app\regular_expression_pcre2\regular_expression_pcre2.vcxproj">
+      <Project>{dba80336-2e72-4dce-8ab3-c362f3b19106}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\gcom\gcom.vcxproj">
+      <Project>{f30bd15a-0eb5-4fa6-88d3-3b4604a41b4e}</Project>
+    </ProjectReference>
+    <ProjectReference Include="hellomultiverse.vcxproj">
+      <Project>{c7afcefa-3079-4b23-8f97-4543bb980265}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="_app_core_hellomultiverse.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

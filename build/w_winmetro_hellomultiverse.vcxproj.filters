@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="universal_windows\_.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="uwp_app_core_hellomultiverse_TemporaryKey.pfx">
+      <Filter>UWP</Filter>
+    </None>
+    <None Include="C:\__archive\storage-universal_windows\third\binary\Win32\basis\bzip2.dll">
+      <Filter>Library\Win32\basis</Filter>
+    </None>
+    <None Include="C:\__archive\storage-universal_windows\binary\Win32\basis\libeay32.dll">
+      <Filter>Library\Win32\basis</Filter>
+    </None>
+    <None Include="C:\__archive\storage-universal_windows\third\binary\Win32\basis\pcre.dll">
+      <Filter>Library\Win32\basis</Filter>
+    </None>
+    <None Include="C:\__archive\storage-universal_windows\third\binary\Win32\basis\sqlite.dll">
+      <Filter>Library\Win32\basis</Filter>
+    </None>
+    <None Include="C:\__archive\storage-universal_windows\binary\Win32\basis\ssleay32.dll">
+      <Filter>Library\Win32\basis</Filter>
+    </None>
+    <None Include="C:\__archive\storage-universal_windows\third\binary\Win32\basis\zlib.dll">
+      <Filter>Library\Win32\basis</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Assets">
+      <UniqueIdentifier>{41aed0f6-4196-4410-8ab3-2b4ec11310c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library">
+      <UniqueIdentifier>{624cb0d2-6b04-482a-a215-9329f0fcf23e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{6910b6b9-acac-4f39-ae1a-736361469a43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\Win32">
+      <UniqueIdentifier>{32d54d5c-a93a-45a1-96a6-7bbf1e6df214}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\Win32\basis">
+      <UniqueIdentifier>{638dea19-f170-4935-b103-1ce0f1728e1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UWP">
+      <UniqueIdentifier>{505be0c3-4167-4a15-8ec8-dcd1ca3afcb5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package10.appxmanifest">
+      <Filter>UWP</Filter>
+    </AppxManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\Square24.scale-100.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Square44.scale-100.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Square50.scale-100.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Square71.scale-100.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Square150.scale-100.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Square310.scale-100.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Wide310x150.scale-100.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Wide620x300.scale-100.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Wide620x300.scale-200.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Square24.scale-200.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Square44.scale-200.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Square50.scale-200.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Square71.scale-200.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Square150.scale-200.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Square310.scale-200.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Wide310x150.scale-200.png">
+      <Filter>Assets</Filter>
+    </Image>
+  </ItemGroup>
+</Project>

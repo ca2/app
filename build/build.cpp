@@ -4,7 +4,7 @@
 #include "framework.h"
 
 
-namespace app_core_build
+namespace app_build
 {
 
 

@@ -55,6 +55,9 @@ namespace dynamic_source
    }
 
 
+#ifdef _DEBUG
+
+
    i64 session::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
    {
 
@@ -68,6 +71,9 @@ namespace dynamic_source
       return object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
    }
+
+
+#endif
 
 
 } // namespace dynamic_source

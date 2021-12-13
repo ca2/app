@@ -80,7 +80,7 @@ if(LINUX OR FREEBSD)
       OUTPUT ${CMAKE_BINARY_DIR}/matter.timestamp
       WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
       BYPRODUCTS ${PROJECT_SOURCE_DIR}/.link_object/_matter.zip.o 
-      DEPENDS deps.txt matter.txt
+      DEPENDS deps.txt matter.txt _console_application_build_helper
       VERBATIM
       )
 

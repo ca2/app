@@ -9,7 +9,7 @@ namespace linux
 
 
 
-   class CLASS_DECL_APP_CORE_BUILD build :
+   class CLASS_DECL_APP_BUILD build :
       virtual public ::app_build::build
    {
    public:

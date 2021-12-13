@@ -608,16 +608,16 @@ return pathFolder;
 }
 
 
-::handle::ini application::get_ini()
+__transport(::handle::ini) application::get_ini()
 {
 
    auto pathFolder = get_app_localconfig_folder();
 
    auto pathIni = pathFolder / "this.ini";
 
-   auto ini = m_pcontext->m_papexcontext->file().get_ini(pathIni);
+   auto pini = m_pcontext->m_papexcontext->file().get_ini(pathIni);
 
-   return ini;
+   return pini;
 
 }
 

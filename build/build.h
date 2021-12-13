@@ -9,7 +9,7 @@ namespace app_build
 
 
 
-   class CLASS_DECL_APP_CORE_BUILD build :
+   class CLASS_DECL_APP_BUILD build :
       virtual public ::thread
    {
    public:

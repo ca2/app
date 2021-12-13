@@ -7,23 +7,23 @@
 #include <sys/stat.h>
 
 
-namespace app_core_build
+namespace linux
 {
 
 
-   app_build::app_build()
+   build::build()
    {
 
    }
 
 
-   app_build::~app_build()
+   build::~build()
    {
 
    }
 
 
-   ::e_status app_build::prepare_build()
+   ::e_status build::prepare_build()
    {
 
       auto pini = m_pcontext->m_papexcontext->file().get_ini("/etc/os-release");
@@ -37,14 +37,10 @@ namespace app_core_build
    }
 
 
-   ::e_status app_build::do_build()
+   ::e_status build::do_build()
    {
 
       bool bTimeout = false;
-
-      //::parallelization::set_priority(::e_priority_highest);
-
-      //process->prop("inherit") = false;
 
       ::file::path pathBaseDir = m_psystem->m_pacmedir->home();
 
@@ -57,7 +53,6 @@ namespace app_core_build
       {
 
          string strConfigure = "cmake configure " + pathBaseDir + "/solution/basis";
-
 
          m_psystem->m_pacmefile->put_contents("/home/camilo/configure_build.sh", strConfigure);
 
@@ -78,13 +73,10 @@ namespace app_core_build
          run_command("/usr/bin/bash -c /home/camilo/cmake_build.sh");
 
       }
-      //m_straLine.add(strCompiler);
-
 
       return ::success;
 
    }
-
 
 
 } // namespace app_core_build

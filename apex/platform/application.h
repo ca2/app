@@ -369,7 +369,7 @@ public:
 
 
       virtual ::file::path get_app_localconfig_folder();
-      virtual ::handle::ini get_ini();
+      virtual __transport(::handle::ini) get_ini();
 
 
       virtual bool app_data_set(const ::id & id, stream & os);

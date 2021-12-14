@@ -69,7 +69,7 @@ namespace hellobase
 
       string str;
 
-/*      if(pview->m_prender->m_pimageImage->load_image(payloadFile))
+      if(pview->m_prender->m_pimageImage->load_image(payloadFile))
       {
 
          get_typed_view < impact >()->m_strImage = payloadFile["url"];

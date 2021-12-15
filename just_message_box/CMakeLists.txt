@@ -88,16 +88,16 @@ if(LINUX OR FREEBSD)
 
    add_custom_command(
       COMMAND ${APPLICATION_BUILD_HELPER} ${PROJECT_SOURCE_DIR}
-      COMMAND ${CMAKE_COMMAND} -E touch ${CMAKE_BINARY_DIR}/matter.timestamp
-      OUTPUT ${CMAKE_BINARY_DIR}/matter.timestamp
+      COMMAND ${CMAKE_COMMAND} -E touch ${PROJECT_BINARY_DIR}/matter.timestamp
+      OUTPUT ${PROJECT_BINARY_DIR}/matter.timestamp
       WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
       BYPRODUCTS ${PROJECT_SOURCE_DIR}/.link_object/_matter.zip.o 
-      DEPENDS deps.txt matter.txt _console_application_build_helper
+      DEPENDS application_matter.txt deps.txt matter.txt _console_application_build_helper
       VERBATIM
       )
 
    add_custom_target(${PROJECT_NAME}_matter
-      DEPENDS ${CMAKE_BINARY_DIR}/matter.timestamp
+      DEPENDS ${PROJECT_BINARY_DIR}/matter.timestamp
    )
 
    list(APPEND executable_references ${PROJECT_SOURCE_DIR}/.link_object/_matter.zip.o)

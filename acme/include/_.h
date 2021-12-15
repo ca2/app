@@ -2464,20 +2464,8 @@ namespace acme
    inline void del(T *&p)
    {
 
-      //Thank you Fiora a Eterna!!
-
-      //Fiora Aeterna? ?@FioraAeterna 20m20 minutes ago
-
-      //   maybe it's cynical but I'm starting to think the real reason so many newer games have constant autosaves is because they crash all the time
-      //   Details
-
-      // BRT 2015-02-18 19:08
-      // catch all (...) here in acme::del ... but should erase try catch from all underlying calls (frees, memory_frees, memory_debug_frees).
-
       try
       {
-
-         //Thank you Dunno_Aye for the is_null!!
 
          if (!is_null(p))
          {

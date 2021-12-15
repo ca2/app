@@ -85,10 +85,13 @@ namespace HEAP_NAMESPACE
    critical_section* g_pmutexSystemHeap = nullptr;
 
 
+#undef new
+
+
    void initialize()
    {
 
-      g_pheap = new plex_heap_alloc_array();
+      g_pheap = new plex_heap_alloc_array;
 
    }
 
@@ -99,6 +102,7 @@ namespace HEAP_NAMESPACE
       ::acme::del(g_pheap);
 
    }
+
 
 } // namespace HEAP_NAMESPACE
 

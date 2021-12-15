@@ -736,6 +736,37 @@ namespace sockets
    }
 
 
+   bool http_base_socket::read_text_file_for_linux(const ::payload& payloadFile)
+   {
+
+      ::memory memory;
+
+      string str;
+
+      string_array stra;
+
+      m_pcontext->m_papexcontext->file().get_lines(stra, payloadFile);
+
+      str = stra.implode("\n");
+
+      memory.assign(str.c_str(), str.length());
+
+      dump_memory(memory);
+
+      return true;
+
+   }
+
+
+   bool http_base_socket::dump_memory(const ::block& block)
+   {
+
+      response().file()->write(block);
+
+      return true;
+
+   }
+
 
 } // namespace sockets
 

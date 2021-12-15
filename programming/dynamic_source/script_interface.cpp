@@ -213,6 +213,29 @@ namespace dynamic_source
    }
 
 
+   string script_interface::get_auth_email()
+   {
+
+      return get_session_payload("auth_email");
+
+   }
+
+
+   void script_interface::set_auth_email(const string& strEmail)
+   {
+
+      set_session_payload("auth_email", strEmail);
+
+   }
+
+
+   void script_interface::auth(const string& strAuth)
+   {
+
+      exit(401);
+
+   }
+
    void script_interface::current_url(string& strUrl)
    {
 

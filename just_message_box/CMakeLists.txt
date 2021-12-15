@@ -72,7 +72,7 @@ target_include_directories(app_just_message_box PRIVATE ${CMAKE_CURRENT_SOURCE_D
 target_compile_definitions(app_just_message_box PRIVATE _app_just_message_box_LIBRARY)
 
 
-add_executable(_app_just_message_box _app_just_message_box.cpp)
+add_executable(_${PROJECT_NAME} _${PROJECT_NAME}_${UNDERSCORE_PLATFORM}.cpp)
 
 
 list(APPEND executable_references
@@ -91,7 +91,7 @@ if(LINUX OR FREEBSD)
       COMMAND ${CMAKE_COMMAND} -E touch ${PROJECT_BINARY_DIR}/matter.timestamp
       OUTPUT ${PROJECT_BINARY_DIR}/matter.timestamp
       WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
-      BYPRODUCTS ${PROJECT_SOURCE_DIR}/.link_object/_matter.zip.o 
+      BYPRODUCTS ${PROJECT_SOURCE_DIR}/.link_object/_matter.zip.o
       DEPENDS application_matter.txt deps.txt matter.txt _console_application_build_helper
       VERBATIM
       )

@@ -1,4 +1,4 @@
-draw2d_gdiplus
-node_windows
-windowing_win32
+default_draw2d
+default_node
+default_windowing
 crypto_openssl

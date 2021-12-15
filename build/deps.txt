@@ -1,9 +1,9 @@
 
 
-node_windows
-draw2d_gdiplus
-write_text_win32
-imaging_wic
+default_node
+default_draw2d
+default_write_text
+default_imaging
 experience_core
 
 database_sqlite3

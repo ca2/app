@@ -61,7 +61,7 @@ target_include_directories(app_message_box PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 target_compile_definitions(app_message_box PRIVATE _APP_MESSAGE_BOX_LIBRARY)
 
 
-add_executable(_app_message_box _main.cpp)
+add_executable(_${PROJECT_NAME} _${PROJECT_NAME}_${UNDERSCORE_PLATFORM}.cpp)
 
 
 list(APPEND executable_references

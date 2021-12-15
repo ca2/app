@@ -75,11 +75,11 @@ namespace sockets
       bool                    m_bDelete; ///< Delete by handler flag
       bool                    m_bCloseAndDelete; ///< close and delete flag
       base_socket *           m_psocketParent; ///< Pointer to listen_socket class, valid for incoming sockets
-      time_t                  m_timeConnectionStart; ///< Set by SetTimeout
-      time_t                  m_timeConnectionLastActivity; ///< Set by SetTimeout
-      time_t                  m_timeConnectionMaximum; ///< Defined by SetTimeout
-      time_t                  m_timeStart; ///< Set by SetTimeout
-      time_t                  m_timeMaximum; ///< Defined by SetTimeout
+      ::duration              m_durationConnectionStart; ///< Set by SetTimeout
+      ::duration              m_durationConnectionLastActivity; ///< Set by SetTimeout
+      ::duration              m_durationConnectionMaximum; ///< Defined by SetTimeout
+      ::duration              m_durationStart; ///< Set by SetTimeout
+      ::duration              m_durationMaximum; ///< Defined by SetTimeout
       bool                    m_bNonBlocking;
       //    unsigned long           m_flags; ///< boolean flags, replacing old 'bool' members
 
@@ -116,8 +116,8 @@ namespace sockets
       char                    m_c; ///< First char in CRLF or LFCR sequence
       string                  m_line; ///< Current line in line protocol mode
 
-      ::e_status                    m_estatus;
-      ::duration m_durationStart;
+      ::e_status              m_estatus;
+      //::duration              m_durationStart;
 
 #if !defined(BSD_STYLE_SOCKETS)
       bool                    m_bErrorWriting;
@@ -272,11 +272,11 @@ namespace sockets
 
       virtual void set_connection_last_activity();
 
-      virtual void set_maximum_connection_time(time_t second);
+      virtual void set_maximum_connection_time(const ::duration & duration);
 
       virtual void set_start_time();
 
-      virtual void set_maximum_time(time_t second);
+      virtual void set_maximum_time(const ::duration& duration);
 
       /** Check timeout. \return true if time limit reached */
       bool has_timed_out();

@@ -139,7 +139,7 @@ namespace netserver
 
                   m_iConnectPort = m_iCurrentPort;
 
-                  m_plistensocket->set_maximum_time(0);
+                  m_plistensocket->set_maximum_time(0_s);
 
                   m_psockethandler->add2(m_plistensocket);
 

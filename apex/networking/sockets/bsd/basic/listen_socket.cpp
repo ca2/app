@@ -315,6 +315,9 @@ namespace sockets
 
       tmp->initialize(this);
 
+      tmp->set_start_time();
+
+
       auto psystem = get_system()->m_papexsystem;
 
       auto lId = psystem->sockets().m_lListenSocket++;
@@ -372,7 +375,6 @@ namespace sockets
          tmp->prepare_for_detach();
 
       }
-      tmp->set_start_time();
 //      auto passociation = m_psockethandler->new_association(tmp);
 
       //socket_handler()->move(passociation);

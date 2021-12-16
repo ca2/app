@@ -72,9 +72,12 @@ endif()
 endif()
 
 
-target_include_directories(compress_bzip2 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
-target_include_directories(compress_bzip2 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
-target_include_directories(compress_bzip2 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
+
+
+target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
 target_compile_definitions(compress_bzip2 PRIVATE _COMPRESS_BZIP2_LIBRARY)

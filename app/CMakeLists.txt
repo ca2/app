@@ -50,17 +50,20 @@ add_dependencies(app_app ${default_node})
 add_dependencies(app_app ${default_draw2d})
 
 
-target_include_directories(app_app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
-target_include_directories(app_app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
+
+
+target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
 target_include_directories(app_app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
-target_include_directories(app_app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 
 
 
 
 
-add_executable(_${PROJECT_NAME} _${PROJECT_NAME}_${UNDERSCORE_PLATFORM}.cpp)
+add_executable(_${PROJECT_NAME} platform/${SLASHED_PLATFORM}/_${PROJECT_NAME}.cpp)
 
 
 list(APPEND executable_references

@@ -48,9 +48,12 @@ elseif(LINUX OR FREEBSD)
 endif()
 
 
-target_include_directories(regular_expression_pcre2 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
-target_include_directories(regular_expression_pcre2 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
-target_include_directories(regular_expression_pcre2 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
+
+
+target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
 target_compile_definitions(regular_expression_pcre2 PRIVATE _REGULAR_EXPRESSION_PCRE2_LIBRARY)

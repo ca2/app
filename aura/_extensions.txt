@@ -1,1 +1,3 @@
 default_node
+crypto_openssl
+folder_zip

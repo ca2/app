@@ -400,6 +400,15 @@ namespace aura
 
       auto psystem = m_psystem->m_papexsystem;
 
+      if (psystem->payload("exit_on_application_call_request").is_true())
+      {
+
+         exit(0);
+
+         return;
+
+      }
+
       auto purl = psystem->url();
 
       if (pcreate->m_ecommand == ::command_protocol)

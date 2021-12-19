@@ -1,0 +1,3 @@
+default_aura_platform1
+default_aura_platform2
+default_aura_platform3

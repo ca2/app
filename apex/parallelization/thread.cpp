@@ -428,7 +428,7 @@ void thread::term_thread()
 
    __set_thread_off();
 
-   m_psystem->m_papexsystem->m_papexnode->thread_finalize(this);
+   //m_psystem->m_papexsystem->m_papexnode->thread_finalize(this);
 
    ::e_status estatus = m_result.m_estatus;
 

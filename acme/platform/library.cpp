@@ -447,7 +447,7 @@ namespace acme
                if (m_plibrary != nullptr)
                {
 
-                  INFORMATION("Closing library : " << m_strName);
+                  output_debug_string("Closing library : " + m_strName);
 
                   bOk = ::__node_library_close(m_plibrary);
 

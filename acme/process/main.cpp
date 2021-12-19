@@ -990,6 +990,20 @@ string transform_to_c_arg(const char* psz)
 }
 
 
+string transform_to_quoted_value(const char* psz)
+{
+
+   string str(psz);
+
+   str.replace("\\", "\\\\");
+
+   str.replace("\"", "\\\"");
+
+   return "\"" + str + "\"";
+
+}
+
+
 string merge_colon_args(const array < string_array >& str2a)
 {
 
@@ -1010,7 +1024,9 @@ string merge_colon_args(const array < string_array >& str2a)
          if (strCommandLine.is_empty())
          {
 
-            strCommandLine = transform_to_c_arg(stra[0]);
+            string strArg = stra[0];
+
+            strCommandLine = transform_to_quoted_value(strArg);
 
          }
 
@@ -1031,7 +1047,11 @@ string merge_colon_args(const array < string_array >& str2a)
          if (i < iFindColon)
          {
 
-            straBeforeColon.add(str);
+            string strArg = str;
+
+            string strQuotedValue = transform_to_quoted_value(strArg);
+
+            straBeforeColon.add(strQuotedValue);
 
          }
          else if (i > iFindColon)

@@ -54,9 +54,17 @@ acme_file::~acme_file()
 
    return error_interface_only;
 
-
 }
 
+
+::e_status acme_file::set_file_normal(const char* path)
+{
+
+   throw interface_only_exception();
+
+   return error_interface_only;
+
+}
 
 
 bool acme_file::is_equal(const char* path1, const char* path2)

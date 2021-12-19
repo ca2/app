@@ -98,6 +98,8 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       trace_category_static_term();
 
+      m_mapLibrary4.clear();
+
    }
 
 
@@ -116,7 +118,6 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
       return estatus;
 
    }
-
 
 
    ::e_status system::main()
@@ -380,6 +381,8 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
       m_mapComponentFactory.clear();
 
       destroy();
+
+      //m_mapLibrary4.clear();
 
    }
 

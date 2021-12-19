@@ -99,3 +99,57 @@ i32 get_current_process_maximum_affinity()
 
 }
 
+
+bool set_process_priority(::enum_priority epriority)
+{
+
+   return (::SetPriorityClass(::GetCurrentProcess(), get_os_priority_class(epriority)) != 0);
+
+
+}
+
+
+CLASS_DECL_ACME ::e_status command_system(int & iExitCode, const char* psz, const ::duration& durationTimeout)
+{
+
+   string str(psz);
+
+   wstring wstr;
+
+   wstr = str;
+
+   STARTUPINFO info = { sizeof(info) };
+
+   PROCESS_INFORMATION processInfo;
+
+   if (!CreateProcessW(nullptr, wstr, NULL, NULL, TRUE, CREATE_NO_WINDOW, NULL, NULL, &info, &processInfo))
+   {
+
+      DWORD dwLastError = ::GetLastError();
+
+      auto estatus = last_error_to_status(dwLastError);
+
+      return estatus;
+
+   }
+
+   DWORD dwTimeout = durationTimeout.is_infinite() ? INFINITE : durationTimeout.integral_millisecond().m_i;
+   
+   WaitForSingleObject(processInfo.hProcess, dwTimeout);
+
+   DWORD dwExitCode = 0;
+
+   if (GetExitCodeProcess(processInfo.hProcess, &dwExitCode))
+   {
+
+      iExitCode = dwExitCode;
+
+   }
+
+   CloseHandle(processInfo.hProcess);
+
+   CloseHandle(processInfo.hThread);
+
+   return ::success;
+
+}

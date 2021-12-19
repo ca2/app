@@ -152,4 +152,7 @@ CLASS_DECL_ACME enum_dialog_result message_box_for_console(const char* psz, cons
 
 //CLASS_DECL_ACME ::e_status file_delete(const char * path);
 
+CLASS_DECL_ACME ::e_status command_system(int & iExitCode, const char* psz, const ::duration & durationTimeout = ::duration::infinite());
+
+
 

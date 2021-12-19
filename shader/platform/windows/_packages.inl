@@ -1,0 +1,7 @@
+app/shader
+draw2d_gdiplus
+gpu_opengl
+node_windows
+windowing_win32
+write_text_win32
+crypto_openssl

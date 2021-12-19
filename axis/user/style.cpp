@@ -842,7 +842,7 @@ namespace axis
 
       }
 
-      return ::color::color();
+      return error_not_found;
 
    }
 

@@ -14,5 +14,7 @@ platform-windows/apex_windows
 platform-windows_common/apex_windows_common
 platform-windows/aura_windows
 platform-windows_common/aura_windows_common
+app/crypto_openssl
+app/folder_zip
 platform-windows/windowing_win32
 platform-windows/write_text_win32

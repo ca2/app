@@ -14,6 +14,8 @@ platform-windows/aura_windows
 platform-windows_common/aura_windows_common
 platform-windows/node_windows
 platform-windows/windowing_win32
+app/crypto_openssl
+app/folder_zip
 platform-windows/draw2d_gdiplus
 app/gpu_opengl
 platform-windows/write_text_win32

@@ -109,8 +109,10 @@ bool set_process_priority(::enum_priority epriority)
 }
 
 
-CLASS_DECL_ACME ::e_status command_system(int & iExitCode, const char* psz, const ::duration& durationTimeout)
+CLASS_DECL_ACME::e_status command_system(string& strOutput, string& strError, int& iExitCode, const char* psz, const ::duration& durationTimeout)
 {
+
+   strOutput.Empty();
 
    string str(psz);
 
@@ -118,12 +120,119 @@ CLASS_DECL_ACME ::e_status command_system(int & iExitCode, const char* psz, cons
 
    wstr = str;
 
-   STARTUPINFO info = { sizeof(info) };
+   STARTUPINFO si = { sizeof(si) };
+   PROCESS_INFORMATION pi = {};
+   SECURITY_ATTRIBUTES saAttr;
 
-   PROCESS_INFORMATION processInfo;
+   ZeroMemory(&saAttr, sizeof(saAttr));
 
-   if (!CreateProcessW(nullptr, wstr, NULL, NULL, TRUE, CREATE_NO_WINDOW, NULL, NULL, &info, &processInfo))
+   saAttr.nLength = sizeof(SECURITY_ATTRIBUTES);
+   saAttr.bInheritHandle = TRUE;
+   saAttr.lpSecurityDescriptor = NULL;
+
+   HANDLE hOutRd;
+   HANDLE hOutWr;
+
+   // Create a pipe for the child process's STDOUT. 
+
+   if (!CreatePipe(&hOutRd, &hOutWr, &saAttr, 0))
    {
+
+      // log error
+      DWORD dwLastError = GetLastError();
+
+      auto estatus = last_error_to_status(dwLastError);
+
+      return estatus;
+
+   }
+
+   // Ensure the read handle to the pipe for STDOUT is not inherited.
+   if (!SetHandleInformation(hOutRd, HANDLE_FLAG_INHERIT, 0))
+   {
+
+      ::CloseHandle(hOutRd);
+      ::CloseHandle(hOutWr);
+
+      // log error
+      DWORD dwLastError = GetLastError();
+
+      auto estatus = last_error_to_status(dwLastError);
+
+      return estatus;
+
+   }
+
+   HANDLE hErrRd;
+   HANDLE hErrWr;
+
+   // Create a pipe for the child process's STDOUT. 
+
+   if (!CreatePipe(&hErrRd, &hErrWr, &saAttr, 0))
+   {
+
+      ::CloseHandle(hOutRd);
+      ::CloseHandle(hOutWr);
+
+      // log error
+      DWORD dwLastError = GetLastError();
+
+      auto estatus = last_error_to_status(dwLastError);
+
+      return estatus;
+
+   }
+
+
+   // Ensure the read handle to the pipe for STDOUT is not inherited.
+   if (!SetHandleInformation(hErrRd, HANDLE_FLAG_INHERIT, 0))
+   {
+
+      ::CloseHandle(hOutRd);
+      ::CloseHandle(hOutWr);
+      ::CloseHandle(hErrRd);
+      ::CloseHandle(hErrWr);
+
+      // log error
+      DWORD dwLastError = GetLastError();
+
+      auto estatus = last_error_to_status(dwLastError);
+
+      return estatus;
+
+   }
+
+   {
+   
+      DWORD dwState = PIPE_NOWAIT;
+
+      SetNamedPipeHandleState(hOutRd, &dwState, nullptr, nullptr);
+
+   }
+
+   {
+
+      DWORD dwState = PIPE_NOWAIT;
+
+      SetNamedPipeHandleState(hErrRd, &dwState, nullptr, nullptr);
+
+   }
+
+   ZeroMemory(&si, sizeof(si));
+   si.cb = sizeof(si);
+   si.hStdError = hOutWr;
+   si.hStdOutput = hErrWr;
+   si.dwFlags |= STARTF_USESTDHANDLES;
+
+   ZeroMemory(&pi, sizeof(pi));
+
+   if (!CreateProcessW(nullptr, wstr, NULL, NULL, TRUE, CREATE_NO_WINDOW, NULL, NULL, &si, &pi))
+   {
+
+      ::CloseHandle(hOutRd);
+      ::CloseHandle(hOutWr);
+      ::CloseHandle(hErrRd);
+      ::CloseHandle(hErrWr);
 
       DWORD dwLastError = ::GetLastError();
 
@@ -133,22 +242,104 @@ CLASS_DECL_ACME ::e_status command_system(int & iExitCode, const char* psz, cons
 
    }
 
-   DWORD dwTimeout = durationTimeout.is_infinite() ? INFINITE : durationTimeout.integral_millisecond().m_i;
-   
-   WaitForSingleObject(processInfo.hProcess, dwTimeout);
+   ::duration durationStart;
 
+   durationStart.Now();
+
+   while (true)
+   {
+
+      auto result = WaitForSingleObject(pi.hProcess, 100);
+
+      char sz[256];
+
+      while (true)
+      {
+
+         DWORD dwRead = 0;
+
+         if (!ReadFile(hOutRd, sz, 256, &dwRead, nullptr))
+         {
+
+            break;
+
+         }
+
+         string strMessage(sz, dwRead);
+
+         //printf("%s", strMessage.c_str());
+
+         strOutput += strMessage;
+
+         if (dwRead == 0)
+         {
+
+            break;
+
+         }
+
+      };
+
+      while (true)
+      {
+
+         DWORD dwRead = 0;
+
+         if (!ReadFile(hErrRd, sz, 256, &dwRead, nullptr))
+         {
+
+            break;
+
+         }
+
+         string strMessage(sz, dwRead);
+
+//         fprintf(stderr, "%s", strMessage.c_str());
+
+         strError += strMessage;
+
+         if (dwRead == 0)
+         {
+
+            break;
+
+         }
+
+      };
+
+      if (result == WAIT_OBJECT_0)
+      {
+
+         break;
+
+      }
+
+      if (!durationTimeout.is_infinite() && durationStart.elapsed() > durationTimeout)
+      {
+
+         break;
+
+      }
+
+   }
+   
    DWORD dwExitCode = 0;
 
-   if (GetExitCodeProcess(processInfo.hProcess, &dwExitCode))
+   if (GetExitCodeProcess(pi.hProcess, &dwExitCode))
    {
 
       iExitCode = dwExitCode;
 
    }
 
-   CloseHandle(processInfo.hProcess);
+   ::CloseHandle(hOutRd);
+   ::CloseHandle(hOutWr);
+   ::CloseHandle(hErrRd);
+   ::CloseHandle(hErrWr);
 
-   CloseHandle(processInfo.hThread);
+   CloseHandle(pi.hProcess);
+   CloseHandle(pi.hThread);
+
 
    return ::success;
 

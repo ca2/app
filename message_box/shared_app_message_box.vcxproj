@@ -342,24 +342,6 @@
     <Image Include="icon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\archive\platform-windows\acme_windows\acme_windows.vcxproj">
-      <Project>{cc8e8200-00a9-414e-9829-7ca3f1091add}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\archive\platform-windows\apex_windows\apex_windows.vcxproj">
-      <Project>{c598e718-55ae-4d6e-81e0-53450fc3a649}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\archive\platform-windows\aura_windows\aura_windows.vcxproj">
-      <Project>{94c3715a-7fbf-4455-917b-20cb7f40c58c}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\archive\platform-windows_common\acme_windows_common\acme_windows_common.vcxproj">
-      <Project>{eb9dc9c0-0573-4da0-8700-4dbb371773f1}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\archive\platform-windows_common\apex_windows_common\apex_windows_common.vcxproj">
-      <Project>{a094e038-d195-4400-82ce-44a7edf91b78}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\archive\platform-windows_common\aura_windows_common\aura_windows_common.vcxproj">
-      <Project>{99f5abf0-7377-4cc7-b016-4ca7b365b9f1}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\..\app\acme\acme.vcxproj">
       <Project>{638b242f-0f21-41c3-9f66-724660046133}</Project>
     </ProjectReference>

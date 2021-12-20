@@ -3,5 +3,5 @@ app/gpu_opengl
 default_node
 default_windowing
 default_write_text
-third/crypto_openssl
+app/crypto_openssl
 

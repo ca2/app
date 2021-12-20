@@ -3,4 +3,4 @@ app/gpu_opengl
 platform-windows/node_windows
 platform-windows/windowing_win32
 platform-windows/write_text_win32
-third/crypto_openssl
+app/crypto_openssl

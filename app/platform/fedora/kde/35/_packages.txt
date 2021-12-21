@@ -4,6 +4,7 @@ app/aqua
 app/apex
 app/acme
 platform-linux/node_linux
+platform-linux/desktop_environment_kde
 app/crypto_openssl
 app/folder_zip
 app/draw2d_cairo

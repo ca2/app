@@ -1,0 +1,13 @@
+app/app_build
+platform-linux/node_linux
+app/draw2d_cairo
+platform-posix/write_text_pango
+app/imaging_freeimage
+app/experience_core
+app/database_sqlite3
+app/aqua
+app/apex
+app/acme
+third/sqlite
+app/regular_expression_pcre2
+third/pcre

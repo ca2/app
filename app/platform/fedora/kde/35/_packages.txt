@@ -3,8 +3,16 @@ app/aura
 app/aqua
 app/apex
 app/acme
+platform-linux/acme_linux
+platform-posix/acme_posix
+platform-linux/apex_linux
+platform-posix/apex_posix
+platform-linux/aura_linux
+platform-posix/aura_posix
 platform-linux/node_linux
 platform-linux/desktop_environment_kde
+platform-posix/node_kde
+platform-posix/windowing_xcb
 app/crypto_openssl
 app/folder_zip
 app/draw2d_cairo

@@ -8,6 +8,10 @@ app/database_sqlite3
 app/aqua
 app/apex
 app/acme
+platform-linux/acme_linux
+platform-posix/acme_posix
+platform-linux/apex_linux
+platform-posix/apex_posix
 third/sqlite
 app/regular_expression_pcre2
 third/pcre

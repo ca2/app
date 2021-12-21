@@ -37,6 +37,8 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       m_psystem = this;
 
+      m_etracelevel = e_trace_level_error;
+
       trace_category_static_init(this);
 
       ::factory::add_factory_item < simple_log, logger >();
@@ -1652,6 +1654,44 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
    ::e_status system::system_construct(const ::main & main)
    {
+
+      enum_trace_level etracelevel;
+
+      if(is_debugger_attached())
+      {
+
+         etracelevel = e_trace_level_information;
+
+      }
+      else
+      {
+
+         etracelevel = e_trace_level_warning;
+
+      }
+
+      if(etracelevel > e_trace_level_information)
+      {
+
+         for (int i = 0; i < main.m_argc; i++)
+         {
+
+            string strArg = main.m_argv[i];
+
+            if (strArg == "verbose")
+            {
+
+               etracelevel = e_trace_level_information;
+
+               break;
+
+            }
+
+         }
+
+      }
+
+      m_etracelevel = etracelevel;
 
       auto estatus = ::main::system_construct(main);
 

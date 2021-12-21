@@ -217,24 +217,29 @@ simple_log::~simple_log()
 void simple_log::print(enum_trace_level etracelevel, enum_trace_category etracecategory, const char * pszFunction, const char * pszFile, int iLine, const char * psz)
 {
 
-   string str;
-
-   if (m_bReallySimple)
+   if(etracelevel >= m_psystem->m_etracelevel)
    {
 
-      str = psz;
+      string str;
 
-      str += "\n";
+      if (m_bReallySimple)
+      {
+
+         str = psz;
+
+         str += "\n";
+
+      }
+      else
+      {
+
+         str.format("%c %s %d %s\n", trace_level_char(etracelevel), pszFunction, iLine, psz);
+
+      }
+
+      ::output_debug_string(str);
 
    }
-   else
-   {
-
-      str.format("%c %s %d %s\n", trace_level_char(etracelevel), pszFunction, iLine, psz);
-
-   }
-
-   ::output_debug_string(str);
 
 }
 

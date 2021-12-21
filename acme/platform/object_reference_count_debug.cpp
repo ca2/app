@@ -111,12 +111,12 @@ void matter::add_ref_history(matter* p, const char* pszObjRefDbg)
          else if (strType.contains_ci("session"))
          {
 
-            if (m_pobjrefdbg->m_iStep == 39)
-            {
-
-               output_debug_string("session");
-
-            }
+//            if (m_pobjrefdbg->m_iStep == 39)
+//            {
+//
+//               output_debug_string("session");
+//
+//            }
 
          }
 

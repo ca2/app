@@ -2847,9 +2847,17 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 
 ::file::path dir_context::onedrive()
 {
+
    ::file::path pathIni = m_pcontext->m_papexcontext->file().onedrive_cid_ini();
 
    string strIni = m_pcontext->m_papexcontext->file().as_string(pathIni);
+
+   if(strIni.is_empty())
+   {
+
+      return "";
+
+   }
 
    ::property_set set;
 

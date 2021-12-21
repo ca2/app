@@ -1,0 +1,15 @@
+app/app_shader
+app/aura
+app/aqua
+app/apex
+app/acme
+third/zlib
+third/libcrypto
+third/libssl
+platform-linux/node_linux
+app/crypto_openssl
+app/folder_zip
+app/draw2d_cairo
+app/gpu_opengl
+platform-posix/windowing_xcb
+platform-posix/write_text_pango

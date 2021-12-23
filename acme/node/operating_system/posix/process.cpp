@@ -107,12 +107,21 @@ CLASS_DECL_ACME::e_status command_system(string& strOutput, string& strError, in
 
       {
 
-         r = waitpid(pid, &status, 0);
+         r = waitpid(pid, &status, WNOHANG);
 
          int iError = errno;
 
-         if(r != -1 || iError != EINTR)
+         if(r != -1)
          {
+
+            break;
+
+         }
+
+         if(WIFEXITED(status))
+         {
+
+            iExitCode = WEXITSTATUS(status);
 
             break;
 

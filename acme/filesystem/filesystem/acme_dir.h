@@ -162,7 +162,9 @@ public:
 
          //} // namespace dir
 
-            virtual string get_current_directory();
+   virtual status < string > get_current();
+   virtual ::e_status change_current(const char * psz);
+   virtual ::e_status change_to_home();
 
 
 

@@ -125,12 +125,21 @@ CLASS_DECL_ACME::e_status command_system(string& strOutput, string& strError, in
 
       {
 
+         status = 0;
+
          r = waitpid(pid, &status, WNOHANG);
 
-         int iError = errno;
-
-         if(r != -1)
+         if(r == -1)
          {
+
+            int iError = errno;
+
+            if(iError == ECHILD)
+            {
+
+               // No child with specified pid
+
+            }
 
             break;
 

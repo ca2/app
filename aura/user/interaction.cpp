@@ -17128,36 +17128,36 @@ order(zorderParam);
 
       __pointer(::user::interaction) pinteraction = puserinteraction->get_child_by_id(m_idControl);
 
-      //__pointer(control) pcontrolex = (pinteraction.m_p);
-
-      if (pinteraction)
-      {
-
-         if (bOn)
-         {
-
-            if (puserinteraction->is_window_enabled() && !pinteraction->IsControlCommandEnabled())
-            {
-
-               pinteraction->EnableControlCommand(true);
-
-            }
-
-         }
-         else
-         {
-
-            if (pinteraction->IsControlCommandEnabled())
-            {
-
-               pinteraction->EnableControlCommand(false);
-
-            }
-
-         }
-
-      }
-      else
+//      //__pointer(control) pcontrolex = (pinteraction.m_p);
+//
+//      if (pinteraction)
+//      {
+//
+//         if (bOn)
+//         {
+//
+//            if (puserinteraction->is_window_enabled() && !pinteraction->IsControlCommandEnabled())
+//            {
+//
+//               pinteraction->EnableControlCommand(true);
+//
+//            }
+//
+//         }
+//         else
+//         {
+//
+//            if (pinteraction->IsControlCommandEnabled())
+//            {
+//
+//               pinteraction->EnableControlCommand(false);
+//
+//            }
+//
+//         }
+//
+//      }
+//      else
       {
 
          if (pinteraction != nullptr)

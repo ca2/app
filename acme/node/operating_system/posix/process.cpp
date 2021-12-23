@@ -23,7 +23,7 @@
 #include <wordexp.h>
 #include <fcntl.h>
 
-CLASS_DECL_ACME::e_status command_system(string& strOutput, string& strError, int& iExitCode, const char* psz, const ::duration& durationTimeout)
+CLASS_DECL_ACME::e_status command_system(string& strOutput, string& strError, int& iExitCode, const char* psz, enum_command_system ecommandsystem, const ::duration& durationTimeout)
 {
    int stdout_fds[2];
    pipe(stdout_fds);
@@ -86,7 +86,16 @@ CLASS_DECL_ACME::e_status command_system(string& strOutput, string& strError, in
          if (r > 0)
          {
 
-            strOutput += string(buffer, r);
+            string strMessage(buffer, r);
+
+            strOutput += strMessage;
+
+            if(ecommandsystem & e_command_system_inline_log)
+            {
+
+               printf("%s", strMessage.c_str());
+
+            }
 
          }
 
@@ -99,7 +108,16 @@ CLASS_DECL_ACME::e_status command_system(string& strOutput, string& strError, in
          if (r > 0)
          {
 
-            strError += string(buffer, r);
+            string strMessage(buffer, r);
+
+            strError += strMessage;
+
+            if(ecommandsystem & e_command_system_inline_log)
+            {
+
+               fprintf(stderr, "%s", strMessage.c_str());
+
+            }
 
          }
 

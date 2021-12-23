@@ -152,7 +152,17 @@ CLASS_DECL_ACME enum_dialog_result message_box_for_console(const char* psz, cons
 
 //CLASS_DECL_ACME ::e_status file_delete(const char * path);
 
-CLASS_DECL_ACME ::e_status command_system(string & strOutput, string & strError, int & iExitCode, const char* psz, const ::duration & durationTimeout = ::duration::infinite());
+
+enum enum_command_system
+{
+
+   e_command_system_none = 0,
+   e_command_system_inline_log = 1,
+
+};
+
+
+CLASS_DECL_ACME ::e_status command_system(string & strOutput, string & strError, int & iExitCode, const char* psz, enum_command_system ecommandsystem = e_command_system_none, const ::duration & durationTimeout = ::duration::infinite());
 
 
 

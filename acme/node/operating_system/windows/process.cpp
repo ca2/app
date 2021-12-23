@@ -109,7 +109,7 @@ bool set_process_priority(::enum_priority epriority)
 }
 
 
-CLASS_DECL_ACME::e_status command_system(string& strOutput, string& strError, int& iExitCode, const char* psz, const ::duration& durationTimeout)
+CLASS_DECL_ACME::e_status command_system(string& strOutput, string& strError, int& iExitCode, const char* psz, enum_command_system ecommandsystem, ::duration& durationTimeout)
 {
 
    strOutput.Empty();
@@ -267,7 +267,12 @@ CLASS_DECL_ACME::e_status command_system(string& strOutput, string& strError, in
 
          string strMessage(sz, dwRead);
 
-         //printf("%s", strMessage.c_str());
+         if(ecommandsystem & e_command_system_inline_log)
+         {
+
+            printf("%s", strMessage.c_str());
+
+         }
 
          strOutput += strMessage;
 
@@ -294,7 +299,12 @@ CLASS_DECL_ACME::e_status command_system(string& strOutput, string& strError, in
 
          string strMessage(sz, dwRead);
 
-//         fprintf(stderr, "%s", strMessage.c_str());
+         if(ecommandsystem & e_command_system_inline_log)
+         {
+
+            fprintf(stderr, "%s", strMessage.c_str());
+
+         }
 
          strError += strMessage;
 

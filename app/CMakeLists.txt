@@ -83,7 +83,7 @@ if(LINUX OR FREEBSD)
       OUTPUT ${PROJECT_BINARY_DIR}/matter.timestamp
       WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
       BYPRODUCTS ${PROJECT_SOURCE_DIR}/.link_object/_matter.zip.o
-      DEPENDS application_matter.txt deps.txt matter.txt _console_application_build_helper
+      DEPENDS application_matter.txt matter.txt _console_application_build_helper
       VERBATIM
       )
 

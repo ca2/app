@@ -13,9 +13,6 @@
 // }
 
 
-
-
-
 #include <sys/wait.h>
 #include <unistd.h>
 #include <string>
@@ -23,30 +20,58 @@
 #include <wordexp.h>
 #include <fcntl.h>
 
+
 CLASS_DECL_ACME::e_status command_system(string& strOutput, string& strError, int& iExitCode, const char* psz, enum_command_system ecommandsystem, const ::duration& durationTimeout)
 {
-   int stdout_fds[2];
-   pipe(stdout_fds);
 
-   int stderr_fds[2];
-   pipe(stderr_fds);
+   ::e_status estatus = success;
 
-   fcntl( stdout_fds[0], F_SETFL, fcntl(stdout_fds[0], F_GETFL) | O_NONBLOCK);
-   fcntl( stderr_fds[0], F_SETFL, fcntl(stderr_fds[0], F_GETFL) | O_NONBLOCK);
+   int stdout_fds[2] = {};
+
+   int iError = pipe(stdout_fds);
+
+   if(iError != 0)
+   {
+
+      int iErrNo = errno;
+
+      estatus = errno_to_status(iErrNo);
+
+      return estatus;
+
+   }
+
+   int stderr_fds[2] = {};
+
+   iError = pipe(stderr_fds);
+
+   if(iError != 0)
+   {
+
+      int iErrNo = errno;
+
+      estatus = errno_to_status(iErrNo);
+
+      return estatus;
+
+   }
 
    string strCommandLine(psz);
 
    const pid_t pid = fork();
-   if (!pid) {
-      close(stdout_fds[0]);
-      dup2(stdout_fds[1], 1);
-      close(stdout_fds[1]);
 
+   if (!pid)
+   {
+
+      while((dup2(stdout_fds[1], STDOUT_FILENO) == -1) && (errno==EINTR)){}
+      while((dup2(stderr_fds[1], STDERR_FILENO) == -1) && (errno==EINTR)){}
+
+      close(stdout_fds[0]);
+      close(stdout_fds[1]);
       close(stderr_fds[0]);
-      dup2(stderr_fds[1], 2);
       close(stderr_fds[1]);
 
-      wordexp_t  we{};
+      wordexp_t we{};
 
       wordexp(strCommandLine, &we, 0);
 
@@ -54,21 +79,21 @@ CLASS_DECL_ACME::e_status command_system(string& strOutput, string& strError, in
 
       memcpy(argv, we.we_wordv, we.we_wordc * sizeof(char*));
 
-      int iExitCode = execvp(argv[0], &argv[0]);
+      int iChildExitCode = execvp(argv[0], &argv[0]);
 
       delete []argv;
 
       wordfree(&we);
 
-      exit(iExitCode);
+      exit(iChildExitCode);
 
    }
 
    close(stdout_fds[1]);
+   close(stderr_fds[1]);
 
-
-   int r, status;
-
+   fcntl( stdout_fds[0], F_SETFL, fcntl(stdout_fds[0], F_GETFL) | O_NONBLOCK);
+   fcntl( stderr_fds[0], F_SETFL, fcntl(stderr_fds[0], F_GETFL) | O_NONBLOCK);
 
    const int buf_size = 4096;
 
@@ -81,12 +106,12 @@ CLASS_DECL_ACME::e_status command_system(string& strOutput, string& strError, in
 
       {
 
-         const ssize_t r = read(stdout_fds[0], buffer, buf_size);
+         const ssize_t iOutRead = read(stdout_fds[0], buffer, buf_size);
 
-         if (r > 0)
+         if (iOutRead > 0)
          {
 
-            string strMessage(buffer, r);
+            string strMessage(buffer, iOutRead);
 
             strOutput += strMessage;
 
@@ -103,12 +128,12 @@ CLASS_DECL_ACME::e_status command_system(string& strOutput, string& strError, in
 
       {
 
-         const ssize_t r = read(stderr_fds[0], buffer, buf_size);
+         const ssize_t iErrRead = read(stderr_fds[0], buffer, buf_size);
 
-         if (r > 0)
+         if (iErrRead > 0)
          {
 
-            string strMessage(buffer, r);
+            string strMessage(buffer, iErrRead);
 
             strError += strMessage;
 
@@ -125,16 +150,16 @@ CLASS_DECL_ACME::e_status command_system(string& strOutput, string& strError, in
 
       {
 
-         status = 0;
+         int status = 0;
 
-         r = waitpid(pid, &status, WNOHANG);
+         int iWaitPid = waitpid(pid, &status, WNOHANG);
 
-         if(r == -1)
+         if(iWaitPid == -1)
          {
 
-            int iError = errno;
+            int iErrorNo = errno;
 
-            if(iError == ECHILD)
+            if(iErrorNo == ECHILD)
             {
 
                // No child with specified pid
@@ -144,26 +169,31 @@ CLASS_DECL_ACME::e_status command_system(string& strOutput, string& strError, in
             break;
 
          }
-
-         if(WIFEXITED(status))
+         else if(iWaitPid == pid)
          {
 
-            iExitCode = WEXITSTATUS(status);
+            if (WIFEXITED(status))
+            {
 
-            break;
+               iExitCode = WEXITSTATUS(status);
+
+               break;
+
+            }
 
          }
 
       }
 
-   };
+   }
 
    close(stdout_fds[0]);
-
-   close(stderr_fds[1]);
 
    close(stderr_fds[0]);
 
    return ::success;
 
 }
+
+
+

@@ -1381,6 +1381,8 @@ void xfplayer_view_line::embossed_text_out(::draw2d::graphics_pointer & pgraphic
 
       ::draw2d::pen_pointer ppen;
 
+      ppen.create(this);
+
       ppen->create_solid(iWidth * 2, crOutline);
 
       pgraphics->set(ppen);

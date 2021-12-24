@@ -36,6 +36,7 @@ public:
    
    e_status() { m_estatus = ::undefined; }
    e_status(::enum_status estatus): m_estatus(estatus){}
+   e_status(const ::e_status & estatus): m_estatus(estatus.m_estatus){}
    e_status(bool b) : m_estatus(b ? success : error_failed){}
    e_status(i32 i) : m_estatus((::enum_status) i) {}
    e_status(i64 i) : m_estatus((::enum_status) i) {}

@@ -40,7 +40,7 @@ namespace folder_zip
 
       ::file_transport get_file(const char* pszFile = nullptr) override;
 
-      ::e_status extract_all(const char* pszTargetDir, const char* pszSourceDir, ::file::patha* ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat) override;
+      ::e_status extract_all(const char* pszTargetDir, ::file::patha* ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat) override;
 
       ::e_status open_for_writing(file_pointer pfile) override;
 

@@ -1629,6 +1629,8 @@ namespace http
          else if (iStatusCode >= 300 && iStatusCode <= 399)
          {
 
+            string strRedirectUrl = psession->inheader("location");
+
             if (psession != nullptr)
             {
 
@@ -1758,7 +1760,7 @@ namespace http
 
 
 
-   bool context::http_get(__pointer(::sockets::http_client_socket) & psocket, const char * pszUrl, property_set & set)
+   bool context::http_get(__pointer(::sockets::http_client_socket) & psocket, const char * pszUrl1, property_set & set)
    {
 
       //auto ptask = ::get_task();
@@ -1773,9 +1775,6 @@ namespace http
 
       //TRACE("");
       //TRACE("");
-      INFORMATION("------------------------------------------------------");
-      INFORMATION("Start: " << iHttpGetSerial << pszUrl);
-
       set["http_get_serial"] = iHttpGetSerial;
 
       auto tickStart = ::duration::now();
@@ -1803,20 +1802,53 @@ namespace http
          iTryCount = 2;
 
       }
+      INFORMATION("------------------------------------------------------");
 
+      string strUrl;
+
+      strUrl = pszUrl1;
+
+      string strRedirect;
 //#ifdef BSD_STYLE_SOCKETS
       retry :
 //#endif
+      if (iTry > 0)
+      {
+
+         if (strRedirect.has_char())
+         {
+
+            INFORMATION("Redirect: " << iHttpGetSerial << strRedirect);
+
+            strUrl = strRedirect;
+
+            strRedirect.Empty();
+
+         }
+         else
+         {
+
+            INFORMATION("Redirect: " << iHttpGetSerial << strUrl);
+
+         }
+
+      }
+      else
+      {
+
+         INFORMATION("Start: " << iHttpGetSerial << strUrl);
+
+      }
 
       iTry++;
 
       auto tickTimeProfile1 = ::duration::now();
 
-      string strServer = purl->get_root(pszUrl);
+      string strServer = purl->get_root(strUrl);
 
-      string strProtocol = purl->get_protocol(pszUrl);
+      string strProtocol = purl->get_protocol(strUrl);
 
-      string strObject = purl->get_object(pszUrl);
+      string strObject = purl->get_object(strUrl);
 
       __pointer(::application) papp = set["app"].cast < ::application >();
 
@@ -1847,8 +1879,6 @@ namespace http
          strVersion = "HTTP/1.1";
 
       }
-
-      string strUrl(pszUrl);
 
 //      bool bSessionAccount = !set.is_true("raw_http") && ::is_set(get_session()) && ::is_set(psession->account());
 
@@ -2438,7 +2468,7 @@ namespace http
 
          string strLocation;
          
-         strLocation = psocket->outheader("locationd");
+         strLocation = psocket->outheader("location");
 
          if (set.has_property("redirect_location"))
          {
@@ -2451,18 +2481,25 @@ namespace http
          else if (strLocation.has_char())
          {
 
+
             if (strLocation.find_ci("http://") == 0 || strLocation.find_ci("https://") == 0)
             {
 
-               return http_get(psocket, strLocation, set);
+               strRedirect = strLocation;
+
+               goto retry;
+
+            //   return http_get(psocket, strLocation, set);
 
             }
             else
             {
 
-               strLocation = purl->get_protocol(pszUrl) + purl->get_server(pszUrl) + purl->get_object(strLocation);
+               ::file::path pathBase = purl->get_protocol(strUrl) + purl->get_server(strUrl);
 
-               return http_get(psocket, strLocation, set);
+               strLocation = pathBase / strLocation;
+
+               goto retry;
 
             }
 

@@ -150,7 +150,7 @@ namespace sockets
 //
 //#endif
 
-      INFORMATION("SSLInitializer::SSLInitializer .1");
+      //INFORMATION("SSLInitializer::SSLInitializer .1");
 
 #if OPENSSL_API_COMPAT < 0x10100000L
 
@@ -165,7 +165,7 @@ namespace sockets
 
 #endif
 
-      INFORMATION("SSLInitializer::SSLInitializer .2");
+      //INFORMATION("SSLInitializer::SSLInitializer .2");
 
 
       //ENGINE_load_openssl();

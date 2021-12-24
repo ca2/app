@@ -72,6 +72,9 @@ namespace dynamic_source
       virtual ::payload get_session_payload(const ::id & id);
       virtual ::id session_id(const ::id & id = nullptr);
 
+      virtual string get_auth_email();
+      virtual void set_auth_email(const string & strEmail);
+      virtual void auth(const string& strAuth);
       
       ::payload call_run();
 

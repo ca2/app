@@ -71,6 +71,9 @@ public:
    __composite(::text::table)                                        m_ptexttable;
 
 
+   enum_trace_level                                                  m_etracelevel;
+
+
    system();
    ~system() override;
 

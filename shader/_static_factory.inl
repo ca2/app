@@ -1,8 +1,8 @@
 #define DO_FACTORY(do) \
-do(draw2d_gdiplus); \
+do(default_draw2d); \
 do(gpu_opengl); \
-do(node_windows); \
-do(windowing_win32); \
-do(write_text_win32); \
+do(default_node); \
+do(default_windowing); \
+do(default_write_text); \
 do(crypto_openssl);
 

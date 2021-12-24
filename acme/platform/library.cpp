@@ -168,7 +168,7 @@ namespace acme
          if(m_plibrary == nullptr)
          {
 
-            ERROR("acme::library::open");
+            ERROR("acme::library::open error: " << pszPath);
 
             return false;
 
@@ -447,7 +447,12 @@ namespace acme
                if (m_plibrary != nullptr)
                {
 
-                  INFORMATION("Closing library : " << m_strName);
+                  if(m_psystem->m_etracelevel <= e_trace_level_information)
+                  {
+
+                     output_debug_string("Closing library : " + m_strName + "\n");
+
+                  }
 
                   bOk = ::__node_library_close(m_plibrary);
 

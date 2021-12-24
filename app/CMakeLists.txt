@@ -50,17 +50,20 @@ add_dependencies(app_app ${default_node})
 add_dependencies(app_app ${default_draw2d})
 
 
-target_include_directories(app_app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
-target_include_directories(app_app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
+
+
+target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
 target_include_directories(app_app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
-target_include_directories(app_app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 
 
 
 
 
-add_executable(_app_app _app_app.cpp)
+add_executable(_${PROJECT_NAME} platform/${SLASHED_PLATFORM}/_${PROJECT_NAME}.cpp)
 
 
 list(APPEND executable_references
@@ -76,16 +79,16 @@ if(LINUX OR FREEBSD)
 
    add_custom_command(
       COMMAND ${APPLICATION_BUILD_HELPER} ${PROJECT_SOURCE_DIR}
-      COMMAND ${CMAKE_COMMAND} -E touch ${CMAKE_BINARY_DIR}/matter.timestamp
-      OUTPUT ${CMAKE_BINARY_DIR}/matter.timestamp
+      COMMAND ${CMAKE_COMMAND} -E touch ${PROJECT_BINARY_DIR}/matter.timestamp
+      OUTPUT ${PROJECT_BINARY_DIR}/matter.timestamp
       WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
-      BYPRODUCTS ${PROJECT_SOURCE_DIR}/.link_object/_matter.zip.o 
-      DEPENDS deps.txt matter.txt _console_application_build_helper
+      BYPRODUCTS ${PROJECT_SOURCE_DIR}/.link_object/_matter.zip.o
+      DEPENDS application_matter.txt deps.txt matter.txt _console_application_build_helper
       VERBATIM
       )
 
    add_custom_target(${PROJECT_NAME}_matter
-      DEPENDS ${CMAKE_BINARY_DIR}/matter.timestamp
+      DEPENDS ${PROJECT_BINARY_DIR}/matter.timestamp
    )
 
    list(APPEND executable_references ${PROJECT_SOURCE_DIR}/.link_object/_matter.zip.o)

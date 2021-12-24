@@ -715,6 +715,7 @@ namespace sockets
                //}
                else if (n > 0 && n <= nBufSize)
                {
+                  set_connection_last_activity();
                   return n;
                }
                else
@@ -788,6 +789,7 @@ namespace sockets
          }
          else if(n > 0 && n <= nBufSize)
          {
+            set_connection_last_activity();
             return n;
          }
          else

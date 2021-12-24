@@ -995,16 +995,6 @@ int acme_dir::make_path(const char * psz)
 //
 //}
 
-string acme_dir::get_current_directory()
-{
-
-
-
-   throw ::interface_only_exception();
-
-   return "";
-
-}
 //virtual::file::path base_module();
 
 
@@ -1035,6 +1025,45 @@ string acme_dir::get_current_directory()
 {
 
    auto estatus = ::create_directory(path);
+
+   if(!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   return estatus;
+
+}
+
+
+status < string > acme_dir::get_current()
+{
+
+   throw ::interface_only_exception();
+
+   return error_interface_only;
+
+}
+
+
+::e_status acme_dir::change_current(const char * psz)
+{
+
+   throw ::interface_only_exception();
+
+   return error_interface_only;
+
+}
+
+
+::e_status acme_dir::change_to_home()
+{
+
+   ::file::path pathHome = home();
+
+   auto estatus = change_current(pathHome);
 
    if(!estatus)
    {

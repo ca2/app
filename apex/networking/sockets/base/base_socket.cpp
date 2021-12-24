@@ -106,8 +106,8 @@ namespace sockets
       m_pcallback    = nullptr;
       m_bEnablePool  = true;
 
-      m_timeConnectionMaximum = 30;
-      m_timeMaximum = 30;
+      m_durationConnectionMaximum = 30_s;
+      m_durationMaximum = 30_s;
 
    }
 
@@ -2375,7 +2375,7 @@ namespace sockets
    void base_socket::set_connection_start_time()
    {
       
-      m_timeConnectionStart = time(nullptr);
+      m_durationConnectionStart.Now();
 
       set_connection_last_activity();
 
@@ -2385,16 +2385,16 @@ namespace sockets
    void base_socket::set_connection_last_activity()
    {
 
-      m_timeConnectionLastActivity = time(nullptr);
+      m_durationConnectionLastActivity.Now();
 
    }
 
 
 
-   void base_socket::set_maximum_connection_time(time_t second)
+   void base_socket::set_maximum_connection_time(const ::duration& duration)
    {
 
-      m_timeConnectionMaximum = second;
+      m_durationConnectionMaximum = duration;
 
    }
 
@@ -2402,15 +2402,17 @@ namespace sockets
    void base_socket::set_start_time()
    {
 
-      m_timeStart = time(nullptr);
+      m_durationStart.Now();
+
+      set_connection_last_activity();
 
    }
 
 
-   void base_socket::set_maximum_time(time_t second)
+   void base_socket::set_maximum_time(const ::duration& duration)
    {
 
-      m_timeMaximum = second;
+      m_durationMaximum = duration;
 
    }
 
@@ -2432,27 +2434,30 @@ namespace sockets
    bool base_socket::has_timed_out()
    {
 
-      time_t tnow = ::time(nullptr);
-
       if (is_connecting())
       {
 
-         auto tElapsed = tnow - m_timeConnectionStart;
-
-         if (tElapsed > m_timeConnectionMaximum)
+         if (m_durationConnectionMaximum > 0_s)
          {
 
-            return true;
+            auto tElapsed = m_durationConnectionStart.elapsed();
+
+            if (tElapsed > m_durationConnectionMaximum)
+            {
+
+               return true;
+
+            }
 
          }
 
       }
-      else
+      else if(m_durationMaximum > 0_s)
       {
 
-         auto tElapsed = tnow - m_timeConnectionLastActivity;
+         auto tElapsed = m_durationConnectionLastActivity.elapsed();
 
-         if (tElapsed > m_timeMaximum)
+         if (tElapsed > m_durationMaximum)
          {
 
             return true;

@@ -1,0 +1,4 @@
+platform-windows/draw2d_gdiplus
+platform-windows/node_windows
+platform-windows/windowing_win32
+platform-windows/write_text_win32

@@ -104,9 +104,12 @@ endif()
 
 
 
-target_include_directories(gpu_opengl PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
-target_include_directories(gpu_opengl PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
-target_include_directories(gpu_opengl PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
+
+
+target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
 target_compile_definitions(gpu_opengl PRIVATE _GPU_OPENGL_LIBRARY)

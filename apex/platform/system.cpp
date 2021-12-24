@@ -217,37 +217,8 @@ namespace apex
 
       }
 
-      string_to_string map;
-
-      {
-
-         map["ab"] = "1";
-
-         string str1 = map["ab"];
-
-         auto cstr = str1.c_str();
-
-         INFORMATION(cstr);
-
-      }
-
-      {
-
-         map["abc"] = "2";
-
-         string str2 = map["abc"];
-         
-         INFORMATION(str2);
-
-      }
 
       set_callstack_mask({ get_callstack_mask(), callstack_fork_global});
-
-#ifdef UNIT_TEST
-
-      unit_test_primitive_var_apex_block();
-
-#endif
 
 #if !defined(_UWP) && !defined(ANDROID)
 
@@ -1004,7 +975,7 @@ pacmedir->create("/ca2core");
 
       }
 
-      INFORMATION("apex::session::process_init .3");
+      ///INFORMATION("apex::session::process_init .3");
 
       estatus = m_pfilesystem->init_system();
 
@@ -1258,7 +1229,7 @@ pacmedir->create("/ca2core");
 
       //}
 
-      INFORMATION("start");
+      //INFORMATION("start");
 
 //#ifdef WINDOWS_DESKTOP
 //
@@ -1290,7 +1261,7 @@ pacmedir->create("/ca2core");
 //
 //#endif // LINUX
 
-      INFORMATION("success");
+      //INFORMATION("success");
 
 //      return true;
 
@@ -5092,7 +5063,16 @@ namespace apex
    ::e_status system::system_construct(const ::main & main)
    {
 
-      auto estatus = apex_main_data::system_construct(main);
+      auto estatus = ::system::system_construct(main);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = apex_main_data::system_construct(main);
 
       if (!estatus)
       {

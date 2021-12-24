@@ -547,9 +547,9 @@ namespace folder_zip
    ::e_status folder::extract(memory& m, const char* pszFile)
    {
 
-      throw interface_only_exception();
+      auto pfile = get_file(pszFile);
 
-      return ::error_interface_only;
+      return pfile->full_read(m);
 
    }
 
@@ -562,12 +562,36 @@ namespace folder_zip
    }
 
 
-   ::e_status folder::extract_all(const char* pszTargetDir, const char* pszSourceDir, ::file::patha* ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat)
+   ::e_status folder::extract_all(const char* pszTargetDir, ::file::patha* ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat)
    {
 
-      throw interface_only_exception();
+      ::file::listing listing;
 
-      return ::error_interface_only;
+      perform_file_listing(listing);
+
+      ::file::path pathTargetFolder;
+
+      pathTargetFolder = pszTargetDir;
+
+      for (auto & path : listing)
+      {
+
+         ::memory memory;
+
+         auto preader = extract(memory, path);
+
+         if (memory.has_data())
+         {
+
+            auto pathTarget = pathTargetFolder / path;
+
+            m_psystem->m_pacmefile->put_block(pathTarget, memory);
+
+         }
+
+      }
+
+      return true;
 
    }
 

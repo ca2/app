@@ -93,7 +93,27 @@ void file_beg_contents_raw(const char * path, const char * psz)
 
       fseek(f, lEnd - lRemain - lLen, SEEK_SET);
 
-      fread(buf, 1, minimum(lRemain, lSize), f);
+      auto iToReadCount = minimum(lRemain, lSize);
+
+      auto iReadCount = fread(buf, 1, iToReadCount, f);
+
+      if(iReadCount < iToReadCount)
+      {
+
+         int iFileError = ferror(f);
+
+         if(iFileError != 0)
+         {
+
+
+
+         }
+
+         int iFileEOF = feof(f);
+
+
+
+      }
 
       fseek(f, lEnd - lRemain, SEEK_SET);
 

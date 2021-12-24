@@ -248,7 +248,7 @@ namespace sockets
       if (psocket->is_connecting())
       {
 
-         if (psocket->m_timeConnectionMaximum > 0)
+         if (psocket->m_durationConnectionMaximum > 0_s)
          {
 
             socketlist_add(psocket->GetSocket(), e_list_timeout);
@@ -259,7 +259,7 @@ namespace sockets
       else
       {
 
-         if (psocket->m_timeMaximum > 0)
+         if (psocket->m_durationMaximum > 0_s)
          {
 
             socketlist_add(psocket->GetSocket(), e_list_timeout);
@@ -292,7 +292,7 @@ namespace sockets
       if (passociation->m_psocket->is_connecting())
       {
 
-         if (passociation->m_psocket->m_timeConnectionMaximum > 0)
+         if (passociation->m_psocket->m_durationConnectionMaximum > 0)
          {
 
             socketlist_add(passociation->m_psocket->GetSocket(), e_list_timeout);
@@ -303,7 +303,7 @@ namespace sockets
       else
       {
 
-         if (passociation->m_psocket->m_timeMaximum > 0)
+         if (passociation->m_psocket->m_durationMaximum > 0_s)
          {
 
             socketlist_add(passociation->m_psocket->GetSocket(), e_list_timeout);

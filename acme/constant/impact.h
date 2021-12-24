@@ -84,6 +84,7 @@ enum e_impact : ::i64
    impact_launcher,
    impact_description,
    impact_rich_edit,
+   impact_update,
 
 
    impact_base = 100'000,

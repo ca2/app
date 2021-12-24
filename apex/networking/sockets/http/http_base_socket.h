@@ -78,6 +78,12 @@ namespace sockets
       virtual bool read_file(const ::file::path& pcszParam, pointer_array < int_array >* prangea = nullptr, const char* pszContentType = nullptr);
 
 
+      virtual bool read_text_file_for_linux(const ::payload & payloadFile);
+
+
+      virtual bool dump_memory(const ::block & block);
+
+
    };
 
 

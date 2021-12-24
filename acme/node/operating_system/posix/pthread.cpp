@@ -662,9 +662,13 @@ using htask_t = void *;
 
 #else
 
-      auto pthread = pthread_self();
+   auto pthread = pthread_self();
 
-      int error = pthread_setname_np(pthread, pszTaskName);
+   string strName(pszTaskName);
+
+   thread_name_abbreviate(strName, 15);
+
+   int error = pthread_setname_np(pthread, strName);
 
 #endif
    

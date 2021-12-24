@@ -505,6 +505,21 @@ namespace file
 }
 
 
+::e_status failed_errno_to_status(int iErrorNumber)
+{
+
+   if(iErrorNumber == 0)
+   {
+
+      return error_some_error_has_occurred;
+
+   }
+
+   return errno_to_status(iErrorNumber);
+
+
+}
+
 void set_last_errno_status()
 {
 

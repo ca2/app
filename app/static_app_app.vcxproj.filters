@@ -42,7 +42,7 @@
     <None Include="_matter.zip" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="_app_app.cpp">
+    <ClCompile Include="platform/windows/_app_app.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

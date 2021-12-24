@@ -10,13 +10,9 @@ void dump_context::write(float f)
 
    _gcvt_s(szBuffer, 32, f, FLT_DIG);
 
-#elif defined(ANDROID) || defined(FREEBSD)
-
-   sprintf(szBuffer, "%.6f", f);
-
 #else
 
-   gcvt(f, FLT_DIG, szBuffer);
+   snprintf(szBuffer, sizeof(szBuffer), "%.6f", f);
 
 #endif
 

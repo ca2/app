@@ -152,7 +152,7 @@ namespace aura
          if(m_plibrary == nullptr)
          {
 
-            ERROR("acme::library::open");
+            ERROR("acme::library::open error: " << pszPath);
 
             return false;
 

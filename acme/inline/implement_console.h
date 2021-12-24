@@ -39,6 +39,8 @@ int main(int argc, platform_char ** argv, platform_char ** envp)
 
    main.m_pfnImplement = &::implement;
 
+   main.m_bConsole = true;
+
    auto estatus = __main(main);
 
    int iStatus = estatus.error_status();

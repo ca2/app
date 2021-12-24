@@ -54,9 +54,17 @@ acme_file::~acme_file()
 
    return error_interface_only;
 
-
 }
 
+
+::e_status acme_file::set_file_normal(const char* path)
+{
+
+   throw interface_only_exception();
+
+   return error_interface_only;
+
+}
 
 
 bool acme_file::is_equal(const char* path1, const char* path2)
@@ -175,17 +183,17 @@ file_transport acme_file::stdio_open(const char * path, const char * attrs, int 
 }
 
 
-memory acme_file::as_memory(const char * path, strsize iReadAtMostByteCount)
+status < memory > acme_file::as_memory(const char * path, strsize iReadAtMostByteCount)
 {
 
    throw ::interface_only_exception();
 
-   return ::memory();
+   return error_interface_only;
 
 }
 
 
-string acme_file::as_string(const char * path, strsize iReadAtMostByteCount)
+status < string > acme_file::as_string(const char * path, strsize iReadAtMostByteCount)
 {
 
    string str;
@@ -199,7 +207,7 @@ string acme_file::as_string(const char * path, strsize iReadAtMostByteCount)
    if(!estatus)
    {
 
-      return "";
+      return estatus;
 
    }
 
@@ -247,7 +255,7 @@ string acme_file::as_string(const char * path, strsize iReadAtMostByteCount)
 }
 
 
-memsize acme_file::as_memory(const char * path, void * p, memsize s)
+holding_status < memsize > acme_file::as_memory(const char * path, void * p, memsize s)
 {
 
    stdio_file file;
@@ -257,7 +265,7 @@ memsize acme_file::as_memory(const char * path, void * p, memsize s)
    if(!estatus)
    {
 
-      return 0;
+      return estatus;
 
    }
 
@@ -344,7 +352,7 @@ memsize acme_file::as_memory(const char * path, void * p, memsize s)
 }
 
 
-string acme_file::get_temporary_file_name(const char * lpszName, const char * pszExtension)
+status < string > acme_file::get_temporary_file_name(const char * lpszName, const char * pszExtension)
 {
 
 #ifdef WINDOWS
@@ -405,7 +413,7 @@ string acme_file::get_temporary_file_name(const char * lpszName, const char * ps
 
    }
 
-   return "";
+   return string();
 
 }
 
@@ -631,17 +639,17 @@ string acme_file::get_temporary_file_name(const char * lpszName, const char * ps
 }
 
 
-filesize acme_file::get_size(const char * path)
+holding_status < filesize > acme_file::get_size(const char * path)
 {
 
    throw ::interface_only_exception();
 
-   return -1;
+   return error_interface_only;
 
 }
 
 
-filesize acme_file::get_size(FILE * pfile)
+holding_status < filesize > acme_file::get_size(FILE * pfile)
 {
 
    return get_size_fd(fileno(pfile));
@@ -649,12 +657,12 @@ filesize acme_file::get_size(FILE * pfile)
 }
 
 
-filesize acme_file::get_size_fd(int iFile)
+holding_status < filesize > acme_file::get_size_fd(int iFile)
 {
 
    throw ::interface_only_exception();
 
-   return -1;
+   return error_interface_only;
 
 }
 
@@ -669,12 +677,12 @@ filesize acme_file::get_size_fd(int iFile)
 }
 
 
-bool acme_file::is_true(const char * path)
+::e_status acme_file::is_true(const char * path)
 {
 
    throw ::interface_only_exception();
 
-   return false;
+   return error_interface_only;
 
 }
 
@@ -955,12 +963,28 @@ void replace_char(char * sz, char ch1, char ch2)
 ::e_status acme_file::as_block(block & block, const char * path)
 {
 
-   return as_memory(path, block.get_data(), block.get_size()) == block.get_size();
+   auto size = as_memory(path, block.get_data(), block.get_size());
+
+   if(!size)
+   {
+
+      return size.estatus();
+
+   }
+
+   if(size.holding() != block.get_size())
+   {
+
+      return error_wrong_type;
+
+   }
+
+   return ::success;
 
 }
 
 
-string acme_file::first_line(const char * path)
+status < string > acme_file::first_line(const char * path)
 {
 
    return line(path, 0);
@@ -968,7 +992,7 @@ string acme_file::first_line(const char * path)
 }
 
 
-string acme_file::line(const char * path, index iLine)
+status < string > acme_file::line(const char * path, index iLine)
 {
 
    string str;
@@ -988,7 +1012,7 @@ string acme_file::line(const char * path, index iLine)
 
       trace_last_error();
 
-      return "";
+      return error_io;
 
    }
 
@@ -1043,19 +1067,19 @@ string acme_file::line(const char * path, index iLine)
 }
 
 
-string_array acme_file::lines(const char * path)
+status < string_array > acme_file::lines(const char * path)
 {
-
-   string_array straLines;
 
    auto pfile = open(path, ::file::e_open_read);
 
    if (!pfile)
    {
 
-      return straLines;
+      return pfile.m_estatus;
 
    }
+
+   string_array straLines;
 
    string strLine;
 

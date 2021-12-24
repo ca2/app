@@ -1789,10 +1789,12 @@ namespace user
 
             }
 
-            ::image_pointer pimage;
-
             if (m_pedit->m_ppictureimpl != nullptr && m_pedit->m_ppictureimpl->m_bGlowDropShadow)
             {
+
+               ::image_pointer pimage;
+
+               pimage.create(this);
 
                pimage->create(m_pedit->m_ppictureimpl->m_rectangleDrawing.size());
 

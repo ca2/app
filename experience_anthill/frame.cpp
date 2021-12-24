@@ -13,7 +13,7 @@ namespace experience
             frame::frame()
             {
                
-               m_colorActiveCaptionTextBk = 0;
+               m_colorActiveCaptionTextBk = ::color::transparent;
                //m_rectangleControlBoxMarginNormal = nullp();
 
                m_rectangleMarginNormal.set(5, 5, 5, 5);

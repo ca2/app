@@ -23,7 +23,7 @@ public:
    {
 
    }
-   
+
 
    status(const TYPE&& _, const ::e_status& estatus = ::success) :
       TYPE(::move(_)),

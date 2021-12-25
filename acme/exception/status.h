@@ -23,6 +23,7 @@ public:
    {
 
    }
+   
 
    status(const TYPE&& _, const ::e_status& estatus = ::success) :
       TYPE(::move(_)),
@@ -30,6 +31,7 @@ public:
    {
 
    }
+
 
    status(const ::e_status& estatus)
    {
@@ -72,6 +74,7 @@ public:
 
    }
 
+
    bool operator !() const { return !is_ok(); }
 
    operator int() const { return is_ok() != false; }
@@ -82,27 +85,9 @@ public:
 
    [[nodiscard]] bool is_ok() const { return ::succeeded(m_estatus); }
 
-   status & operator = (const TYPE & t)
-   {
 
-      m_estatus = ::success;
+   using TYPE::operator =;
 
-      TYPE::operator = (t);
-
-      return *this;
-
-   }
-
-   status & operator = (TYPE && t)
-   {
-
-      m_estatus = ::success;
-
-      TYPE::operator = (::move(t));
-
-      return *this;
-
-   }
 
    status & operator = (enum_status estatus)
    {
@@ -121,6 +106,7 @@ public:
       return *this;
 
    }
+
 
 };
 

@@ -5,11 +5,6 @@
 
 void ns_app_run();
 
-//void ns_app_terminate();
-
-
-
-
 
 CLASS_DECL_ACME bool __node_acme_pre_init()
 {

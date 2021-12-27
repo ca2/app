@@ -1848,6 +1848,8 @@
 		9A892E7626CDD00D008D6412 /* acme_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A892E6F26CDD00D008D6412 /* acme_file.cpp */; };
 		9A892E7726CDD00D008D6412 /* file_path.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A892E7026CDD00D008D6412 /* file_path.h */; };
 		9A892E7826CDD00D008D6412 /* file_path.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A892E7026CDD00D008D6412 /* file_path.h */; };
+		9AA7A87A277A07C00003A012 /* _c.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AA7A878277A07BF0003A012 /* _c.h */; };
+		9AA7A87B277A07C00003A012 /* _c.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AA7A878277A07BF0003A012 /* _c.h */; };
 		9AAE6E91251920CE00F10692 /* _const.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAE6E8A251920CD00F10692 /* _const.h */; };
 		9AAE6E92251920CE00F10692 /* color.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAE6E8B251920CD00F10692 /* color.h */; };
 		9AAE6E93251920CE00F10692 /* color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AAE6E8C251920CD00F10692 /* color.cpp */; };
@@ -4229,6 +4231,7 @@
 		9A892E6E26CDD00D008D6412 /* file_path.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = file_path.cpp; sourceTree = "<group>"; };
 		9A892E6F26CDD00D008D6412 /* acme_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = acme_file.cpp; sourceTree = "<group>"; };
 		9A892E7026CDD00D008D6412 /* file_path.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file_path.h; sourceTree = "<group>"; };
+		9AA7A878277A07BF0003A012 /* _c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _c.h; sourceTree = "<group>"; };
 		9AAE6E8A251920CD00F10692 /* _const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _const.h; sourceTree = "<group>"; };
 		9AAE6E8B251920CD00F10692 /* color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = color.h; sourceTree = "<group>"; };
 		9AAE6E8C251920CD00F10692 /* color.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = color.cpp; sourceTree = "<group>"; };
@@ -5857,6 +5860,8 @@
 				9A8929B226CD7570008D6412 /* windows_common */,
 				9A89285F26CD7570008D6412 /* xcb */,
 				9A89294826CD7570008D6412 /* _.cpp */,
+				9A892A2526CD7571008D6412 /* _.h */,
+				9AA7A878277A07BF0003A012 /* _c.h */,
 				9A8929BE26CD7570008D6412 /* argcargv.cpp */,
 				9A89294526CD7570008D6412 /* chronometer.cpp */,
 				9A8928AE26CD7570008D6412 /* console.cpp */,
@@ -5868,7 +5873,6 @@
 				9A892A2326CD7571008D6412 /* windowing.cpp */,
 				9A89287726CD7570008D6412 /* winpr_keycode.cpp */,
 				9A8928AF26CD7570008D6412 /* winpr_scancode.cpp */,
-				9A892A2526CD7571008D6412 /* _.h */,
 				9A89290D26CD7570008D6412 /* _aaa_c.h */,
 				9A8928AA26CD7570008D6412 /* _application.h */,
 				9A89294726CD7570008D6412 /* _const_console.h */,
@@ -6717,6 +6721,7 @@
 				9ADD64CD26B5CB3800D11298 /* object_reference_count_debug_impl.h in Headers */,
 				9A892B7026CD7572008D6412 /* _include.h in Headers */,
 				9A7861C1264B9096003DF8A0 /* bits.h in Headers */,
+				9AA7A87A277A07C00003A012 /* _c.h in Headers */,
 				9A892D5A26CD7574008D6412 /* aaa_want_to_remove_window_impl.h in Headers */,
 				9A68AF9325114436008DABD2 /* memory_file.h in Headers */,
 				9A68AE4725114435008DABD2 /* simple_object.h in Headers */,
@@ -8277,6 +8282,7 @@
 				9A787BAD264BB13F003DF8A0 /* timer_event.h in Headers */,
 				9A892C8B26CD7573008D6412 /* cross_win_gdi.h in Headers */,
 				9AD690BD251A753A00C0EBD7 /* from_integer.h in Headers */,
+				9AA7A87B277A07C00003A012 /* _c.h in Headers */,
 				9A892B4126CD7572008D6412 /* windows_time.h in Headers */,
 				9AD690BE251A753A00C0EBD7 /* _.h in Headers */,
 				9AD690BF251A753A00C0EBD7 /* composite.h in Headers */,

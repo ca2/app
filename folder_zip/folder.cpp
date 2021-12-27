@@ -578,7 +578,9 @@ namespace folder_zip
 
          ::memory memory;
 
-         auto preader = extract(memory, path);
+         //auto preader = extract(memory, path);
+         
+         extract(memory, path);
 
          if (memory.has_data())
          {

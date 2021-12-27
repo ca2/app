@@ -1,7 +1,9 @@
 
 
 #include <sys/ptrace.h>
+#define wait darwin_wait
 #include <sys/wait.h>
+#undef wait
 
 
 #include <sys/stat.h>

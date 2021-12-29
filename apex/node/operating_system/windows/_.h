@@ -7,19 +7,7 @@
 #include "windowing.h"
 
 
-inline HWND __hwnd(oswindow oswindow)
-{
+#include "_c.h"
 
-   return (HWND)oswindow;
-
-}
-
-
-inline oswindow __oswindow(HWND hwnd)
-{
-
-   return (oswindow)hwnd;
-
-}
 
 

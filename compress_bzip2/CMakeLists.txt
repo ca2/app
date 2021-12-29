@@ -45,13 +45,13 @@ if (MSVC)
 elseif(LINUX)
 
 
-if(DEFINED UBUNTU)
+if(DEFINED UBUNTU OR DEFINED DEBIAN)
 
 
    list(APPEND library_references
       bz2)
 
-   message("including bz2 \"manually\" at ubuntu")
+   message("including bz2 \"manually\" at ubuntu/debian")
 
 
 else()

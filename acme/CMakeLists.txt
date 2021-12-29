@@ -1968,7 +1968,7 @@ if (LINUX OR APPLE OR SOLARIS OR FREEBSD)
       node/posix/_posix.h
       )
 
-
+   #set_source_files_properties(node/operating_system/posix/process.cpp PROPERTIES SKIP_PRECOMPILE_HEADERS ON)
 endif ()
 
 

@@ -1,8 +1,7 @@
 //
 // Created by camilo on 2020-11-19. <3Thomas Boregaard SørensenCamilo SasukeThomas Boregaard Sørensen!! DOMAS_16-09-0.1989
 //
-
-
+#include "framework.h"
 // CLASS_DECL_ACME string xxxget_environment_variable(const char * pszEnvironmentVariable)
 // {
 
@@ -11,17 +10,13 @@
 //    return str;
 
 // }
-
-
 #include <sys/wait.h>
 #include <unistd.h>
-#include <string>
-#include <vector>
 #include <wordexp.h>
 #include <fcntl.h>
 
 
-CLASS_DECL_ACME::e_status command_system(string& strOutput, string& strError, int& iExitCode, const char* psz, enum_command_system ecommandsystem, const ::duration& durationTimeout)
+::e_status command_system(string& strOutput, string& strError, int& iExitCode, const char* psz, enum_command_system ecommandsystem, const ::duration& durationTimeout)
 {
 
    ::e_status estatus = success;
@@ -71,6 +66,9 @@ CLASS_DECL_ACME::e_status command_system(string& strOutput, string& strError, in
       close(stderr_fds[0]);
       close(stderr_fds[1]);
 
+
+      //sleep(20);
+
       wordexp_t we{};
 
       wordexp(strCommandLine, &we, 0);
@@ -79,13 +77,22 @@ CLASS_DECL_ACME::e_status command_system(string& strOutput, string& strError, in
 
       memcpy(argv, we.we_wordv, we.we_wordc * sizeof(char*));
 
+      int iErrNo = 0;
+
       int iChildExitCode = execvp(argv[0], &argv[0]);
+
+      if(iChildExitCode == -1)
+      {
+
+         iErrNo = errno;
+
+      }
 
       delete []argv;
 
       wordfree(&we);
 
-      exit(iChildExitCode);
+      _exit(iErrNo);
 
    }
 
@@ -99,8 +106,50 @@ CLASS_DECL_ACME::e_status command_system(string& strOutput, string& strError, in
 
    char buffer[buf_size];
 
+   char chExitCode = 0;
+
    while(true)
    {
+
+      {
+
+         int status = 0;
+
+         int iWaitPid = waitpid(pid, &status, WNOHANG | WUNTRACED | WCONTINUED);
+
+         if(iWaitPid == -1)
+         {
+
+            int iErrorNo = errno;
+
+            if(iErrorNo != ECHILD)
+            {
+
+               break;
+               // No child with specified pid
+
+            }
+
+
+         }
+         else if(iWaitPid == pid)
+         {
+
+            if (WIFEXITED(status))
+            {
+
+               chExitCode = WEXITSTATUS(status);
+
+               iExitCode = chExitCode;
+
+               break;
+
+            }
+
+         }
+
+      }
+
 
       preempt(100_ms);
 
@@ -148,48 +197,21 @@ CLASS_DECL_ACME::e_status command_system(string& strOutput, string& strError, in
 
       }
 
-      {
-
-         int status = 0;
-
-         int iWaitPid = waitpid(pid, &status, WNOHANG);
-
-         if(iWaitPid == -1)
-         {
-
-            int iErrorNo = errno;
-
-            if(iErrorNo == ECHILD)
-            {
-
-               // No child with specified pid
-
-            }
-
-            break;
-
-         }
-         else if(iWaitPid == pid)
-         {
-
-            if (WIFEXITED(status))
-            {
-
-               iExitCode = WEXITSTATUS(status);
-
-               break;
-
-            }
-
-         }
-
-      }
 
    }
 
    close(stdout_fds[0]);
 
    close(stderr_fds[0]);
+
+   if(iExitCode != 0)
+   {
+
+      auto estatus = failed_errno_to_status(iExitCode);
+
+      return estatus;
+
+   }
 
    return ::success;
 

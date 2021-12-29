@@ -169,3 +169,7 @@ CLASS_DECL_ACME ::e_status command_system(string & strOutput, string & strError,
 
 
 
+#include "_c.h"
+
+
+

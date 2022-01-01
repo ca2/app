@@ -1,5 +1,10 @@
 #include "framework.h"
-
+#include "path.h"
+#include "aura/graphics/write_text/_.h"
+#include "acme/primitive/geometry2d/_collection.h"
+#include "acme/primitive/geometry2d/_shape.h"
+#include "aura/graphics/write_text/_shape.h"
+#include "acme/primitive/geometry2d/_defer.h"
 
 
 point_f64 arc_point(double dAngle, size_f64 sizeRadius)

@@ -1,4 +1,11 @@
 #include "framework.h"
+#include "imaging.h"
+#include "image_list.h"
+#include "graphics.h"
+#include "fastblur.h"
+#include "context_image.h"
+#include "brush.h"
+#include "draw2d.h"
 
 
 #ifdef WINDOWS_DESKTOP

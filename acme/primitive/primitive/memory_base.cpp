@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "acme/operating_system.h"
+#include "acme/primitive/string/base64.h"
 
 #ifdef WINDOWS
 #include <Shcore.h>

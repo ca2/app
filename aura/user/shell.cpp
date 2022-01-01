@@ -6,6 +6,13 @@
 //#include "acme/compress/gz.h"
 #include "acme/primitive/primitive/atomic.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/acme_path.h"
+#include "aura/graphics/draw2d/image_list.h"
+#include "aura/graphics/draw2d/context_image.h"
+#include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/icon.h"
+
 
 #if defined(RASPBIAN)
 #define PLATFORM_NAMESPACE linux

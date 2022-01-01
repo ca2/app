@@ -2,6 +2,8 @@
 #include <math.h>
 #include "acme/constant/id.h"
 #include "aura/graphics/user/close_icon.h"
+#include "aura/graphics/draw2d/_draw2d.h"
+#include "aura/graphics/draw2d/save_image.h"
 
 
 namespace app_shader

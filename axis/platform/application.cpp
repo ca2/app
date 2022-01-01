@@ -2,6 +2,7 @@
 #include "axis/user/_user.h"
 #include "aura/id.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_file.h"
 
 
 namespace axis

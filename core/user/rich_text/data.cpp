@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "core/user/rich_text/_rich_text.h"
+#include "aura/graphics/draw2d/_draw2d.h"
 
 
 namespace user

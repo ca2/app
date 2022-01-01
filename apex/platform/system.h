@@ -869,7 +869,7 @@ namespace apex
    };
 
 
-   CLASS_DECL_APEX ::mutex * get_image_mutex();
+   //CLASS_DECL_APEX ::mutex * get_image_mutex();
 
 } // namespace apex
 

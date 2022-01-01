@@ -5,14 +5,29 @@
 //para
 
 
+#include "pixmap.h"
+
+
+#include "bitmap.h"
+
+
+#include "graphics.h"
+
+
+#include "image_extension.h"
+
+
+#include "image_dynamic.h"
+
+
 class CLASS_DECL_AURA image_meta :
    public ::pixmap
 {
 public:
 
 
-   ::draw2d::bitmap_pointer         m_pbitmap;
-   ::draw2d::graphics_pointer       m_pgraphics;
+   __pointer(::draw2d::bitmap)      m_pbitmap;
+   __pointer(::draw2d::graphics)    m_pgraphics;
    double                           m_dSpeed;
    double                           m_dIsotropicRate;
    ::size_i32                       m_sizeAlloc;
@@ -42,18 +57,21 @@ public:
       m_emipmap = ::draw2d::mipmap_none;
       m_iFrame = 0;
       m_bCreateHelperMaps = false;
+      m_pbitmap = nullptr;
+      m_pgraphics = nullptr;
 
    }
 
 
-   ~image_meta()
-   {
-
-   }
+   ~image_meta();
 
 
-   inline __pointer(::image_frame_array) frames();
+   //inline __pointer(::image_frame_array) frames();
 
+
+
+
+   inline image_frame_array * frames() { return m_pextension ? m_pextension->m_pframea : nullptr; }
 
 };
 

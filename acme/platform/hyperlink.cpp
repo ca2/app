@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "acme/id.h"
+#include "hyperlink.h"
 
 
 hyperlink::hyperlink()

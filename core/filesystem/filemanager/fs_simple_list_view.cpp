@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "aura/graphics/draw2d/image_list.h"
+#include "acme/platform/timer.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
 #endif

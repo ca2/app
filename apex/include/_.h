@@ -935,7 +935,7 @@ namespace windowing
 
 //#include "apex/user/check.h"
 //#include "apex/user/text.h"
-#include "apex/user/primitive.h"
+//#include "apex/user/primitive.h"
 
 
 #include "apex/parallelization/thread.h"
@@ -1034,7 +1034,7 @@ namespace zip
 
 #include "apex/process/process.h"
 
-#include "apex/filesystem/filesystem/file_watcher.h"
+#include "apex/filesystem/filesystem/file_listener.h"
 
 #include "apex/platform/os_context.h"
 
@@ -1125,7 +1125,7 @@ namespace user
 
 #include "apex/user/menu_shared_command.h"
 
-#include "apex/message/command.h"
+//#include "apex/message/command.h"
 
 #include "apex/message/_.h"
 
@@ -1214,18 +1214,6 @@ namespace xml
 
 #define return_(y, x) {y = x; return;}
 
-//
-//extern "C"
-//{
-//
-//
-//   i32 _c_lock_is_active(const char * lpszName);
-//   i32 _c_lock(const char * lpszName,void ** pdata);
-//   i32 _c_unlock(void ** pdata);
-//
-//
-//}
-
 
 #include "apex/platform/simple_app.h"
 
@@ -1240,8 +1228,6 @@ namespace mathematics
 } // namespace mathematics
 
 
-//#include "apex/platform/error.h"
-
 
 #include "apex/compress/_.h"
 
@@ -1249,7 +1235,7 @@ namespace mathematics
 #include "apex/platform/application_consumer.h"
 
 
-#include "apex/platform/async.h"
+//#include "apex/platform/async.h"
 
 
 #include "apex/constant/idpool.h"
@@ -1261,7 +1247,7 @@ namespace mathematics
 #include "apex/platform/message_box.h"
 
 
-#include "apex/platform/console_application.h"
+//#include "apex/platform/console_application.h"
 
 
 #include "apex/platform/application.h"
@@ -1282,11 +1268,6 @@ namespace mathematics
 #endif
 
 
-//#include "apex/platform/_system_smart_pointer_impl.h"
-//#include "apex/platform/_system_object_impl.h"
-//#include "apex/platform/_system_id_impl.h"
-//#include "apex/platform/_system_var_impl.h"
-
 
 #include "apex/filesystem/_impl.h"
 
@@ -1294,16 +1275,11 @@ namespace mathematics
 #include "apex/filesystem/file/_.h"
 
 
-//#include "apex/networking/_impl.h"
-
-
 #include "apex/filesystem/filesystem/_impl.h"
 
 
 #include "apex/database/_impl.h"
 
-
-//#include "apex/node/operating_system/_impl.h"
 
 
 

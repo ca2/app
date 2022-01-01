@@ -241,6 +241,12 @@ namespace user
 
 #include "interaction_scaler.h"
 
+namespace user
+   {
+   class interaction_draw2d;
+
+
+   }
 
 #include "interaction.h"
 

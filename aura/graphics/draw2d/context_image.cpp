@@ -1,4 +1,9 @@
 #include "framework.h"
+#include "context_image.h"
+#include "draw2d.h"
+#include "icon.h"
+#include "image_frame_array.h"
+#include "save_image.h"
 
 
 
@@ -130,9 +135,7 @@ context_image::~context_image()
    if (loadoptions.cache)
    {
 
-      __pointer(::aura::system) psystem = m_psystem;
-
-      pimage = psystem->matter_cache_image(this, strMatter);
+      pimage = matter_cache_image(strMatter);
 
       if (::is_ok(pimage))
       {
@@ -174,9 +177,7 @@ context_image::~context_image()
    if (loadoptions.cache)
    {
 
-      auto psystem = get_system()->m_paurasystem;
-
-      pimage = psystem->get_cache_image(this, payloadFile);
+      pimage = get_cache_image(payloadFile);
 
       if (::is_ok(pimage))
       {
@@ -225,9 +226,7 @@ context_image::~context_image()
    if (loadoptions.cache)
    {
 
-      auto psystem = get_system()->m_paurasystem;
-
-      pimage = psystem->matter_cache_image(this, strMatter);
+      pimage = matter_cache_image(strMatter);
 
       if (::is_ok(pimage))
       {
@@ -990,4 +989,95 @@ void context_image::_os_load_image(::image * pimage, memory & memory)
 }
 
 
+::image_pointer context_image::matter_cache_image(const ::string & strMatter)
+{
 
+   string str(strMatter);
+
+   if (!str.begins_ci("matter://"))
+   {
+
+      str = "matter://" + str;
+
+   }
+
+   return get_cache_image(str);
+
+}
+
+
+::image_pointer context_image::get_cache_image(const ::payload & payloadFile)
+{
+
+   ::file::path path = payloadFile.get_file_path();
+
+   if (path.is_empty())
+   {
+
+      return nullptr;
+
+   }
+
+   path = m_pcontext->defer_process_path(path);
+
+   if (path.is_empty())
+   {
+
+      return nullptr;
+
+   }
+
+   synchronous_lock synchronouslock(::aura::get_image_mutex());
+
+   auto & pimage = m_psystem->m_paurasystem->m_mapImage[path];
+
+   if (!pimage)
+   {
+
+      __construct(pimage);
+
+      pimage->set_nok();
+
+   }
+
+   return pimage;
+
+}
+
+
+//::image_pointer context_image::get_image(::object * pobject, const ::payload & payloadFile, const ::image::load_options & loadoptions)
+//{
+//
+//   auto pimage = get_cache_image(pobject, payloadFile);
+//
+//   if (!::is_ok(pimage))
+//   {
+//
+//      auto pcontext = m_pcontext->m_pauracontext;
+//
+//      auto pcontextimage = pcontext->context_image();
+//
+//      pcontextimage->_load_image(pimage, payloadFile, loadoptions);
+//
+//   }
+//
+//   return pimage;
+//
+//}
+//
+//
+//::image_pointer context_image::matter_image(::object * pobject, const ::string & strMatter, const ::image::load_options & loadoptions)
+//{
+//
+//   string str(strMatter);
+//
+//   if (!str.begins_ci("matter://"))
+//   {
+//
+//      str = "matter://" + str;
+//
+//   }
+//
+//   return get_image(pobject, str, loadoptions);
+//
+//}

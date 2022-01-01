@@ -17,6 +17,8 @@
 //
 //
 #include "framework.h"
+#include "file_watcher.h"
+
 
 
 namespace file

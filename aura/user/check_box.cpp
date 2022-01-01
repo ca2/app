@@ -1,6 +1,10 @@
 #include "framework.h"
 #include "aura/user/_user.h"
 #include "acme/constant/timer.h"
+#include "acme/platform/timer.h"
+#include "aura/platform/draw_context2.h"
+#include "interaction_draw2d.h"
+#include "acme/primitive/mathematics/mathematics.h"
 
 
 void scroll_x(RECTANGLE_I32 * prectangle, double dRateX, const ::rectangle_i32 & rectangle)
@@ -144,7 +148,7 @@ namespace user
 
       ::aura::draw_context drawcontext;
 
-      drawcontext.m_pdrawcontextNext = m_pdrawcontext;
+      drawcontext.m_pdrawcontextNext = get_draw2d()->m_pdrawcontext;
 
       drawcontext.m_bListItemHover = hover_item().is_set();
 

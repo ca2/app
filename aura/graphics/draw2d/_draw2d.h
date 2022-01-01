@@ -1,9 +1,9 @@
 #pragma once
 
-
-DECLARE_ENUMERATION(e_dock, enum_dock);
-DECLARE_ENUMERATION(e_border, enum_border);
-DECLARE_ENUMERATION(e_grip, enum_grip);
+//
+//DECLARE_ENUMERATION(e_dock, enum_dock);
+//DECLARE_ENUMERATION(e_border, enum_border);
+//DECLARE_ENUMERATION(e_grip, enum_grip);
 
 
 class image_frame_array;
@@ -89,21 +89,6 @@ class image_array;
 
 
 
-class CLASS_DECL_AURA save_image :
-   virtual public ::matter
-{
-public:
-
-
-   ::draw2d::e_format      m_eformat;
-   int                     m_iQuality;
-   int                     m_iDpi;
-
-
-   save_image();
-
-
-};
 
 
 namespace draw2d
@@ -174,7 +159,7 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image * pm_p, i32 dx, i32 dy, void *
 #include "brush.h"
 #include "palette.h"
 #include "region.h"
-#include "igui.h"
+#include "item.h"
 
 
 #include "aura/graphics/write_text/_.h"

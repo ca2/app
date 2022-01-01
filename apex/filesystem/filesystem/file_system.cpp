@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/filesystem/filesystem/acme_file.h"
 
 
 file_system::file_system()

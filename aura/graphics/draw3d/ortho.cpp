@@ -1,6 +1,9 @@
 #include "framework.h"
 #include "ortho.h"
 #include <math.h>
+#include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/pen.h"
+#include "aura/graphics/draw2d/image.h"
 
 
 namespace draw3d

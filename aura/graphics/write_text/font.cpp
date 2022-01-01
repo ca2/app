@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "font.h"
+#include "aura/graphics/draw2d/graphics.h"
 
 
 namespace write_text

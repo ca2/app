@@ -4,15 +4,10 @@
 #include "acme/constant/simple_command.h"
 #include "apex/message/simple_command.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
-
-
-//#ifdef MACOS
-//
-//__pointer(menu_shared) create_menu_shared(const string_array & straParent, const string_array & straMenu, const string_array & straId);
-//
-//void ns_create_main_menu(menu_shared * pmenushared);
-//
-//#endif
+#include "aura/graphics/draw2d/context_image.h"
+#include "aura/graphics/draw2d/_draw2d.h"
+#include "aura/graphics/graphics/_.h"
+#include "aura/graphics/graphics/_graphics.h"
 
 
 namespace user

@@ -91,27 +91,7 @@ inline stream & operator >> (stream & stream, type & type)
 }
 
 
-inline bool get_memory::get_base64(const ::string & str)
-{
-
-   if (::is_set(m_pmemory))
-   {
-
-      m_pmemory->from_base64(str);
-
-      return true;
-
-   }
-   else
-   {
-
-      ::str::base64 base64;
-
-      return base64.decode(m_block, str);
-
-   }
-
-}
+// bool get_memory::get_base64(const ::string & str)
 
 
 //template < typename PRED >
@@ -2348,36 +2328,6 @@ inline ::apex::session * object::get_session() const
 }
 
 
-
-
-
-
-
-//inline ::task_pointer object::opt_fork(const ::routine& routine)
-//{
-//
-//   auto ptask = ::get_task();
-//
-//   synchronous_lock synchronouslock(ptask->mutex());
-//
-//   if (ptask && ptask->m_bIsPredicate)
-//   {
-//
-//      routine();
-//
-//      return ptask;
-//
-//   }
-//
-//   return launch(routine);
-//
-//}
-//
-//
-//
-
-
-
 template < typename TYPE >
 inline __transport(TYPE) object::__create()
 {
@@ -2426,27 +2376,6 @@ inline __transport(TYPE) object::__create()
 
 
 
-//   auto p = ::move(__create<BASE_TYPE>());
-//
-//   if (p)
-//   {
-//
-//      auto estatus = p->initialize(this);
-//
-//      if (!estatus)
-//      {
-//
-//         return estatus;
-//
-//      }
-//
-//   }
-//
-//   return ::move(p);
-//
-//}
-//
-//
 template < typename TYPE >
 inline __transport(TYPE) object::__id_create(const ::id& id)
 {

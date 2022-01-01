@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "image_source.h"
+
+
 using hcursor = void *;
 
 
@@ -44,8 +47,8 @@ namespace draw2d
 
       //static bool reset(::user::interaction * pinteraction, ::aura::session * psession);
 
-      inline ::draw2d::graphics * g() const { return m_pimage->g(); }
-      inline ::draw2d::graphics * g(const ::size_f64 & sizeHint) { return m_pimage->g(sizeHint); }
+      ::draw2d::graphics * g() const;
+      ::draw2d::graphics * g(const ::size_f64 & sizeHint);
 
       
       ::image_pointer image_source_image(const concrete < ::size_i32 > & concreteSize) override;

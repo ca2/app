@@ -4,6 +4,10 @@
 #include "aura/_.h" // psystem->ftlibrary()
 
 #include "aura/operating_system.h"
+#include "aura/graphics/draw2d/_draw2d.h"
+#include "acme/primitive/geometry2d/_impl.h"
+
+
 #define TOY_FONT_SELECTION 0
 
 

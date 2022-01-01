@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "api.h"
+#include "graphics.h"
 
 
 namespace draw2d

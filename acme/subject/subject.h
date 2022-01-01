@@ -42,21 +42,7 @@ public:
    //bool                                   m_bRet;
 
 
-   subject(const ::id & id = e_type_null) :
-      ::material_object(id),
-      ::property_object(id),
-      ::object(id)
-   {
-
-      m_bOk = true;
-      m_bRet = false;
-      m_puserelement = nullptr;
-      m_ptab = nullptr;
-      m_esubject = e_subject_handle;
-      m_bRet = false;
-
-   }
-
+   subject(const ::id & id = e_type_null);
    ~subject() override;
 
 

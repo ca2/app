@@ -2,6 +2,9 @@
 #pragma once
 
 
+#include "aura/graphics/draw2d/graphics_extension.h"
+
+
 namespace user
 {
 

@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/primitive/mathematics/mathematics.h"
 #ifdef WINDOWS_DESKTOP
 #include "acme_windows/_.h"
 #include "acme_windows/_acme_windows.h"

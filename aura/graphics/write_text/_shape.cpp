@@ -2,7 +2,10 @@
 // Created by camilo on 30/12/2021 19:05 BRT <3ThomasBorregaardSorensen!!
 //
 #include "framework.h"
-#include "shape.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
+#include "_shape.h"
+#include "font.h"
+#include "acme/primitive/geometry2d/_defer.h"
 
 
 template < >

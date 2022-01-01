@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "aura/user/_user.h"
 #include "progress.h"
+#include "aura/graphics/draw2d/graphics.h"
 
 
 namespace user

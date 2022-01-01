@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "apex/message.h"
+#include "apex/message/command.h"
 
 
 __pointer(::mutex) channel::s_pmutexChannel;

@@ -4,6 +4,7 @@
 #include "_tree.h"
 #include "acme/constant/timer.h"
 #include "aura/message.h"
+#include "aura/graphics/draw2d/_draw2d.h"
 
 
 namespace user

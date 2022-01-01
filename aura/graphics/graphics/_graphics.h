@@ -4,7 +4,15 @@
 #pragma once
 
 
-#include "buffer.h"
 
+#include "graphics.h"
+
+
+#include "aura/graphics/draw2d/image.h"
+
+
+#include "buffer.h"
+#include "double_buffer.h"
+#include "bitmap_source_buffer.h"
 
 

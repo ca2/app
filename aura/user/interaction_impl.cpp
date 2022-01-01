@@ -7,6 +7,10 @@
 #include "interaction_prodevian.h"
 #include "aura/node/_node.h"
 #include "acme/node/operating_system/_user.h"
+#include "aura/graphics/graphics/_.h"
+#include "aura/graphics/graphics/_graphics.h"
+#include "aura/graphics/draw2d/image.h"
+#include "aura/graphics/draw2d/graphics.h"
 //#ifdef _UWP
 //#include "aura/node/operating_system/windows_common/draw2d_direct2d_global.h"
 //#endif

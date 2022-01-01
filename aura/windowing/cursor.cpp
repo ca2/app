@@ -1,6 +1,10 @@
 // created by Camilo <3CamiloSasukeThomasBorregaardSoerensen  - Honoring Thomas Borregaard S�rensen MY ONLY LORD
 // recreated by Camilo 2021-02-01 20:19
 #include "framework.h"
+#include "aura/graphics/draw2d/image.h"
+#include "aura/graphics/draw2d/cursor.h"
+#include "cursor.h"
+
 
 
 namespace windowing

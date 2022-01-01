@@ -1,5 +1,6 @@
 #include "framework.h" // previously aura/user/user.h
 #include "aura/user/_user.h"
+#include "aura/graphics/draw2d/graphics.h"
 
 
 namespace aura

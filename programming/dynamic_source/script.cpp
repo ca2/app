@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "_.h"
+#include "acme/filesystem/filesystem/acme_file.h"
 
 
 #if defined(LINUX) || defined(APPLEOS)

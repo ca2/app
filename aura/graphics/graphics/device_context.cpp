@@ -1,6 +1,9 @@
 #include "framework.h"
 #include "aura/user/_user.h"
+#include "_.h"
+#include "_graphics.h"
 #include "device_context.h"
+#include "aura/graphics/draw2d/graphics.h"
 
 
 namespace graphics

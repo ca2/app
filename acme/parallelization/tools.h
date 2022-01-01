@@ -132,6 +132,72 @@ public:
 
    void select_tool(task_tool* ptool);
 
+   template < typename PRED >
+   inline ::count fork_count_end(::property_object* pobject, ::count iCount, PRED pred, index iStart)
+   {
+
+      if (iCount <= 0)
+      {
+
+         return -1;
+
+      }
+
+      //auto psystem = ::apex::get_system();
+
+      synchronous_lock slGroup(m_psystem->mutex());
+
+      ///   auto ptool = ::apex::get_system()->task_tool(op_fork_count);
+
+      if (get_count() <= 1)
+      {
+
+         for (index i = iStart; i < iCount; i++)
+         {
+
+            pred(i);
+
+         }
+
+         return 1;
+
+      }
+
+      if (!prepare(::e_task_op_fork_count, iCount - iStart))
+      {
+
+         return -1;
+
+      }
+
+      synchronization_array ptra;
+
+      ::count iScan = maximum(1, minimum(iCount - iStart, task_count()));
+
+      for (index iOrder = 0; iOrder < iScan; iOrder++)
+      {
+
+         __pointer(predicate_holder_base) pusermessage = __new(forking_count_predicate < PRED >(pobject, iOrder, iOrder + iStart, iScan, iCount, pred));
+
+         if (!add_predicate(pusermessage))
+         {
+
+            return -1;
+
+         }
+
+      }
+
+      if (!this->operator()())
+      {
+
+         return -1;
+
+      }
+
+      return iScan;
+
+   }
 
 
 };

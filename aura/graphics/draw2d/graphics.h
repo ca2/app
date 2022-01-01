@@ -1,17 +1,43 @@
 #pragma once
 
 
+#include "aura/platform/draw_context2.h"
+
+
+#include "image_drawer.h"
+
+
+#include "image_source.h"
+
+
+#include "aura/graphics/write_text/_.h"
+
+
+#include "aura/graphics/write_text/drawer.h"
+
+
+#include "region.h"
+
+
+#include "bitmap.h"
+
+
+#include "matrix.h"
+
+
 using hdc = void *;
 
 
 struct NSVGimage;
+class shape_array;
+
 
 namespace draw2d
 {
 
 
    class graphics;
-
+   class palette;
 
    //template < typename GRAPHICS_SOURCE_POINTER >
    //concept graphics_source_pointer = requires(const ::image_drawing & imagedrawing, const ::size_f64 & sizeHint)
@@ -1219,4 +1245,3 @@ CLASS_DECL_AURA dump_context & operator<<(dump_context & dumpcontext, const ::po
 //CLASS_DECL_AURA PFN_factory ([a-z0-9_]+)_factory(::factory::factory * pfactory);
 
 //CLASS_DECL_AURA void ([a-z0-9_]+)_factory(PFN_factory pfnfactoryDraw2d);
-

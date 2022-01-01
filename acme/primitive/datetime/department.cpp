@@ -4,6 +4,7 @@
 //#ifdef ANDROID
 //#include <sys/time.h>
 //#endif
+#include "acme/primitive/text/context.h"
 
 
 

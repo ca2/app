@@ -1,4 +1,7 @@
 #include "framework.h"
+#include "image_frame.h"
+#include "image_frame_array.h"
+#include "image.h"
 
 
 image_frame::image_frame()
@@ -12,11 +15,6 @@ image_frame::~image_frame()
 
 
 }
-
-
-
-
-
 
 
 void image_frame::gif_set_disposal(int iDisposal)

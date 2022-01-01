@@ -12,16 +12,16 @@
 
 #undef new
 
-
-struct myfx_CTLCOLOR
-{
-   
-   ::oswindow     m_oswindow;
-   hdc            m_hdc;
-   ::u32          m_nCtlType;
-
-
-};
+//
+//struct myfx_CTLCOLOR
+//{
+//
+//   ::oswindow     m_oswindow;
+//   hdc            m_hdc;
+//   ::u32          m_nCtlType;
+//
+//
+//};
 
 
 namespace message

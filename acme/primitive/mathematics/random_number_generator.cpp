@@ -1,6 +1,6 @@
 #include "framework.h"
 #include <time.h>
-
+#include "random_number_generator.h"
 
 // defines for the random number generator
 #define TWIST_LEN       (m_uinta.get_count())

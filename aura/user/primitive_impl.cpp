@@ -4,6 +4,7 @@
 #include "interaction_thread.h"
 #include "call_message_handler_task.h"
 #include "acme/node/operating_system/_user.h"
+#include "acme/platform/timer_array.h"
 
 
 namespace user

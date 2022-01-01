@@ -4,8 +4,14 @@
 #pragma once
 
 
+#include "acme/primitive/geometry2d/shape.h"
+
+
 #include "text_out.h"
 #include "draw_text.h"
+
+#include "bounding_rect.h"
+#include "contains.h"
 
 
 namespace write_text

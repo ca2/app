@@ -3,6 +3,9 @@
 #include "acme/id.h"
 #include "apex/platform/app_core.h"
 #include "acme/platform/static_setup.h"
+#include "apex/message/command.h"
+#include "acme/primitive/text/context.h"
+#include "apex/user/primitive.h"
 
 
 #if defined(APPLE_IOS) || defined(_UWP) || defined(ANDROID)

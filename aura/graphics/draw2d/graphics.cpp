@@ -1,6 +1,14 @@
 #include "framework.h"
 #include "aura/user/_user.h"
 #include "aura/platform/static_start.h"
+#include "image_array.h"
+#include "graphics.h"
+#include "image.h"
+#include "brush.h"
+#include "pen.h"
+#include "path.h"
+#include "image_drawing.h"
+#include "context_image.h"
 //#include <math.h>
 
 #define IMAGE_OK(pimpl) (::is_set(pimpl) && pimpl->area() > 0)

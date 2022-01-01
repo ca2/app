@@ -1,8 +1,22 @@
 //
-// Created by camilo on 30/12/2021.
+// Created by camilo on 2021-12-30 09:21 BRT <3ThomasBorregaardSørensen!!
 //
+#pragma once
 
-#ifndef BASIS_SYSTEM_IMPL_H
-#define BASIS_SYSTEM_IMPL_H
 
-#endif //BASIS_SYSTEM_IMPL_H
+#include "library.h"
+
+
+class system_impl
+{
+public:
+
+
+   ::mutex                                                           m_mutexLibrary4;
+   ::acme::library_map                                               m_mapLibrary4;
+
+
+};
+
+
+

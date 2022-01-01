@@ -1,5 +1,6 @@
 // Created by camilo on 2021-11-15 15:39 BRT <3ThomasBorregaardS�rensen!!
 #include "framework.h"
+#include "acme/filesystem/filesystem/acme_dir.h"
 #ifdef WINDOWS_DESKTOP
 #include "acme_windows/_.h"
 #include "acme_windows/_acme_windows.h"

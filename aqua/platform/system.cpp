@@ -4,12 +4,8 @@
 //#include "core/user/user/_user.h"
 //#endif
 #include "aqua/const/idpool.h"
-
-
-
-
-//CLASS_DECL_APEX const char* multimedia_get_library_name();
-
+#include "acme/parallelization/pool.h"
+#include "acme/platform/system_impl.h"
 
 
 namespace aqua
@@ -199,7 +195,7 @@ namespace aqua
 
       }
 
-      synchronous_lock synchronouslock(&m_mutexLibrary4);
+      synchronous_lock synchronouslock(&m_psystemimpl->m_mutexLibrary4);
 
       try
       {

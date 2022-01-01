@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "axis/user/_user.h"
 #include "simple_ui_draw.h"
+#include "aura/graphics/draw2d/_draw2d.h"
 
 
 namespace simple_ui

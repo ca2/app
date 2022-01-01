@@ -3,6 +3,9 @@
 #include "framework.h"
 #include "aura/user/_user.h"
 #include "_windowing.h"
+#include "acme/primitive/geometry2d/_.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
+#include "acme/primitive/geometry2d/_impl.h"
 
 
 namespace windowing

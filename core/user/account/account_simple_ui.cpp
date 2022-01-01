@@ -1,6 +1,8 @@
 #include "framework.h"
 #include "core/user/account/_account.h"
 #include "acme/constant/timer.h"
+#include "acme/platform/timer.h"
+#include "acme/platform/hyperlink.h"
 
 
 namespace account

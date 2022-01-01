@@ -5,6 +5,12 @@
 namespace write_text
 {
 
+
+   class text_out;
+   class text_out_array;
+   class text_metric;
+
+
    class CLASS_DECL_AURA drawer :
       virtual public ::object
    {

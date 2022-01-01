@@ -1,6 +1,9 @@
 #include "framework.h"
+#include "acme/primitive/string/base64.h"
 #include "initializer.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/primitive/mathematics/mathematics.h"
+#include "acme/primitive/string/base64.h"
 
 
 namespace crypto

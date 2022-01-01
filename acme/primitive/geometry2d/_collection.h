@@ -52,30 +52,12 @@ inline uptr uptr_hash(const ::rectangle_i32& rectangle)
 }
 
 
-using lines = lines_f64;
-using polygon = polygon_f64;
-
-
-using lines_shape = _shape < ::lines, e_shape_lines >;
-using polygon_shape = _shape < ::polygon, e_shape_polygon >;
+template < >
+CLASS_DECL_ACME __pointer(___shape) __create_shape(const ::lines & lines);
 
 
 template < >
-inline __pointer(___shape) __create_shape(const ::lines & lines)
-{
-
-   return __new(lines_shape(lines));
-
-}
-
-
-template < >
-inline __pointer(___shape) __create_shape(const ::polygon & polygon)
-{
-
-   return __new(polygon_shape(polygon));
-
-}
+CLASS_DECL_ACME __pointer(___shape) __create_shape(const ::polygon & polygon);
 
 
 #include "_collection_bounding_rect.h"

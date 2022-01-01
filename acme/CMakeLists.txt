@@ -874,7 +874,7 @@ list(APPEND library_source
    parallelization/condition.h
    parallelization/create_thread.h
    parallelization/critical_section.h
-   parallelization/data.h
+   #parallelization/data.h
    parallelization/event.h
    parallelization/initial_single_lock.h
    parallelization/manual_reset_event.h
@@ -963,7 +963,7 @@ list(APPEND library_source
    platform/sequence.h
    platform/serial.h
    #platform/serial_impl.h
-   platform/simple_app.h
+   #platform/simple_app.h
    platform/simple_log.cpp
    platform/simple_log.h
    #platform/sprintf.h
@@ -972,6 +972,7 @@ list(APPEND library_source
    platform/status.h
    platform/string_exchange.h
    platform/system.h
+   platform/system_impl.h
    platform/text.h
    platform/timeout.h
    platform/timer.h
@@ -1204,7 +1205,7 @@ list(APPEND library_source
    primitive/primitive/property_set.h
    primitive/primitive/property_set_papaya.h
    primitive/primitive/request_interface.h
-   primitive/primitive/request_signal.h
+   #primitive/primitive/request_signal.h
    primitive/primitive/runnable.h
    primitive/primitive/shared_memory.h
    primitive/primitive/simple_object.h
@@ -1983,7 +1984,7 @@ if (LINUX)
 endif ()
 
 
-add_library(acme SHARED ${library_source})
+add_library(acme SHARED ${library_source} primitive/geometry2d/_shape.h primitive/geometry2d/_shape.cpp)
 
 
 target_precompile_headers(acme PRIVATE framework.h)

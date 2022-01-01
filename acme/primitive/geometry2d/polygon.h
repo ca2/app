@@ -527,3 +527,6 @@ using polygon_i32 = polygon_base < point_i32 >;
 using polygon_i64 = polygon_base < point_i64 >;
 using polygon_f32 = polygon_base < point_f32 >;
 using polygon_f64 = polygon_base < point_f64 >;
+
+
+using polygon = polygon_f64;

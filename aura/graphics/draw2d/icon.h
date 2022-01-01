@@ -1,6 +1,12 @@
 #pragma once
 
+
+#include "image_source.h"
+
+
 using hicon = void *;
+
+class size_image;
 
 namespace draw2d
 {
@@ -19,7 +25,7 @@ namespace draw2d
 
 
       __pointer(::windowing::icon)              m_pwindowingicon;
-      __pointer(size_image)                     m_pimagemap;
+      size_image *                              m_pimagemap;
       array < concrete < ::size_i32 > >         m_sizea;
       // Sizes of Readily Available Icons in Increasing Sorting Order
       bool                                      m_bAutoDelete;

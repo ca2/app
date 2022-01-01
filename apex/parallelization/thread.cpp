@@ -4,6 +4,9 @@
 #include "acme/update.h"
 #include "acme/parallelization/message_queue.h"
 #include "apex/platform/node.h"
+#include "apex/user/primitive.h"
+#include "acme/parallelization/tools.h"
+#include "acme/parallelization/pool.h"
 
 
 //HANDLE duplicate_handle(HANDLE h);

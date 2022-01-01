@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "acme/constant/timer.h"
+#include "timer.h"
 
 
 timer::timer()

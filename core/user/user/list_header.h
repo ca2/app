@@ -1,5 +1,10 @@
 #pragma once
 
+
+#include "aura/graphics/draw2d/image.h"
+//#include "aura/graphics/draw2d/i.h"
+
+
 #ifndef HDS_HORZ
 // begin_r_commctrl
 

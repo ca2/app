@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/primitive/string/base64.h"
 #include "axis/networking/_networking.h"
 
 

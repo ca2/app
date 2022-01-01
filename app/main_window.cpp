@@ -1,5 +1,8 @@
 #include "framework.h"
 #include "aura/graphics/user/close_button.h"
+#include "aura/graphics/draw2d/_draw2d.h"
+#include "acme/primitive/mathematics/mathematics.h"
+
 
 #define STEPPY_DEBUG 0
 

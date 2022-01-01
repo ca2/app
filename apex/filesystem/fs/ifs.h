@@ -24,7 +24,7 @@ public:
    };
 
 
-   file_path_map < dir_listing >    m_map;
+   string_map < dir_listing >    m_map;
 
 
    //file_path_map < u32 >    m_mapdirTimeout;

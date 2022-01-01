@@ -1,5 +1,8 @@
 #include "framework.h"
 #include "_.h"
+#include "apex//filesystem/filesystem/file_watcher.h"
+#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/primitive/text/context.h"
 #ifdef WINDOWS_DESKTOP
 #include "acme_windows/_.h"
 #include "acme_windows/_acme_windows.h"

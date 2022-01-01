@@ -2,6 +2,7 @@
 #include "_linux.h"
 #include "_user.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_file.h"
 
 
 namespace linux

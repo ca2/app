@@ -1,5 +1,7 @@
 #include "framework.h"
 #include "aura/user/_user.h"
+#include "_.h"
+#include "_graphics.h"
 
 
 namespace graphics

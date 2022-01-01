@@ -1,21 +1,7 @@
 #pragma once
 
 
-namespace acme
-{
-
-
-   namespace international
-   {
-
-
-      class locale_schema;
-
-
-   } // namespace international
-
-
-} // namespace acme
+#include "acme/primitive/text/international_locale_schema.h"
 
 
 namespace text

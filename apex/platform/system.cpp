@@ -16,6 +16,12 @@
 #include "acme/filesystem/filesystem/acme_dir.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/parallelization/install_mutex.h"
+#include "acme/primitive/text/context.h"
+#include "apex/message/command.h"
+#include "acme/primitive/geometry2d/geometry.h"
+#include "acme/platform/hyperlink.h"
+#include "acme/platform/system_impl.h"
+#include "acme/primitive/string/base64.h"
 
 
 //extern ::apex::system* g_papexsystem;
@@ -4980,7 +4986,7 @@ namespace apex
 
 #endif
 
-      for (auto& plibrary : m_mapLibrary4.values())
+      for (auto& plibrary : m_psystemimpl->m_mapLibrary4.values())
       {
 
          if (plibrary)

@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "core/user/simple/_simple.h"
+#include "aura/graphics/draw2d/_draw2d.h"
 
 
 #define TIMER_HOVER 321654

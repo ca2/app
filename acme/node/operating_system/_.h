@@ -162,7 +162,14 @@ enum enum_command_system
 };
 
 
+#include "acme/primitive/duration/_.h"
+
+
 CLASS_DECL_ACME ::e_status command_system(string & strOutput, string & strError, int & iExitCode, const char* psz, enum_command_system ecommandsystem = e_command_system_none, const ::duration & durationTimeout = ::duration::infinite());
+
+
+
+#include "_c.h"
 
 
 

@@ -1827,15 +1827,15 @@ retry_license:
       else
       {
 
-#ifdef WINDOWS_DESKTOP
+// #ifdef WINDOWS_DESKTOP
 
-         auto psystem = get_system()->m_paurasystem;
+//          auto psystem = get_system()->m_paurasystem;
 
-         string strModuleName = psystem->file().module();
+//          string strModuleName = psystem->file().module();
 
-         m_psystem->m_pnode->install_crash_dump_reporting(strModuleName);
+//          m_psystem->m_pnode->install_crash_dump_reporting(strModuleName);
 
-#endif
+// #endif
 
       }
       return true;

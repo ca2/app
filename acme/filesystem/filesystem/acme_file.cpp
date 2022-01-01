@@ -364,9 +364,13 @@ status < string > acme_file::get_temporary_file_name(const char * lpszName, cons
    if (dwRetVal > sizeof(pPathBuffer) || (dwRetVal == 0))
    {
 
+      DWORD dwLastError = ::GetLastError();
+
       debug_print("GetTempPath failed (%d)\n", ::GetLastError());
 
-      return "";
+      auto estatus = last_error_to_status(dwLastError);
+
+      return estatus;
 
    }
 

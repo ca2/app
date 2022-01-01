@@ -2542,11 +2542,11 @@ return estatus;
 else
 {
 
-#ifdef WINDOWS_DESKTOP
+// #ifdef WINDOWS_DESKTOP
 
-m_psystem->m_pnode->install_crash_dump_reporting(m_pcontext->m_papexcontext->file().module().name());
+// m_psystem->m_pnode->install_crash_dump_reporting(m_pcontext->m_papexcontext->file().module().name());
 
-#endif
+// #endif
 
 }
 

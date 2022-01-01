@@ -62,7 +62,7 @@ namespace file
    public:
 
 
-   __pointer_array(watch)     m_watchptra;
+   comparable_array < watch * >     m_watchptra;
 
 
    listener();

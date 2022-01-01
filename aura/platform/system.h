@@ -32,7 +32,7 @@ namespace aura
       bool                                               m_bProdevianMouse;
 
 
-      string_map < ::image_pointer >                     m_mapImage;
+      string_map < __reference(image) >                  m_mapImage;
 
 
 

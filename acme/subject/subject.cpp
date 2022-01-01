@@ -14,7 +14,7 @@ subject::subject(const ::id & id) :
 
    m_bOk = true;
    m_bRet = false;
-   m_puserelement = nullptr;
+   //m_puserelement = nullptr;
    m_ptab = nullptr;
    m_esubject = e_subject_handle;
    m_bRet = false;

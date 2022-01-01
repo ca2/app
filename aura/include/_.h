@@ -975,6 +975,8 @@ class imaging;
 
 
 class image;
+
+
 namespace draw2d
 {
 

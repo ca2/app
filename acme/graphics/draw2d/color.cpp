@@ -957,16 +957,7 @@ namespace color
    ::color::color & color::operator = (enum_color ecolor)
    {
 
-      set_rgb(pure_color(ecolor));
-
-      if(alpha < 0)
-      {
-
-         alpha = 255;
-
-      }
-
-      return *this;
+      return operator=(pure_color(ecolor));
 
    }
 

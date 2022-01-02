@@ -126,7 +126,7 @@ namespace experience
 namespace user
 {
 
-   class CLASS_DECL_AURA calc_size
+   class calc_size
    {
    public:
 
@@ -241,12 +241,6 @@ namespace user
 
 #include "interaction_scaler.h"
 
-namespace user
-   {
-   class interaction_draw2d;
-
-
-   }
 
 #include "interaction.h"
 

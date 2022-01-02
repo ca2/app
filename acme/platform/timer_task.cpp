@@ -67,7 +67,7 @@ i64 timer_task::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
    if (m_ptimera)
    {
 
-      m_ptimera->m_map[uiTimer] = this;
+      __refer(m_ptimera->m_map[uiTimer], this);
 
    }
 

@@ -22,7 +22,7 @@
 //#include "aura/os/windows_common/draw2d_direct2d_global.h"
 //#endif
 #include "aura/graphics/draw2d/_draw2d.h"
-#include "acme/platform/system_impl.h"
+//#include "acme/platform/system_impl.h"
 
 int GetMainScreenRect(RECTANGLE_I32 * lprect);
 
@@ -1142,7 +1142,7 @@ namespace aura
 
       auto psystem = get_system();
 
-      synchronous_lock synchronouslock(&m_psystemimpl->m_mutexLibrary4);
+      synchronous_lock synchronouslock(&m_mutexLibrary4);
 
       estatus = __construct(m_pdraw2d);
 

@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "acme/platform/static_setup.h"
-#include "system_impl.h"
-
+//#include "system_impl.h"
+#include "library.h"
 
 //typedef  void(*PFN_create_factory)();
 
@@ -128,7 +128,7 @@ namespace acme
 
       auto psystem = get_system();
 
-      synchronous_lock synchronouslock(&psystem->m_psystemimpl->m_mutexLibrary4);
+      synchronous_lock synchronouslock(&psystem->m_mutexLibrary4);
 
       m_strMessage.Empty();
 
@@ -194,7 +194,7 @@ namespace acme
       if (m_strName.has_char())
       {
 
-         m_psystem->m_psystemimpl->m_mapLibrary4[m_strName] = this;
+         m_psystem->m_mapLibrary4[m_strName] = this;
 
       }
 
@@ -430,7 +430,7 @@ namespace acme
 
       auto psystem = get_system();
 
-      synchronous_lock synchronouslock(&psystem->m_psystemimpl->m_mutexLibrary4);
+      synchronous_lock synchronouslock(&psystem->m_mutexLibrary4);
 
       try
       {
@@ -846,7 +846,7 @@ namespace acme
 
       auto psystem = get_system();
 
-      synchronous_lock synchronouslock(&psystem->m_psystemimpl->m_mutexLibrary4);
+      synchronous_lock synchronouslock(&psystem->m_mutexLibrary4);
 
       return __node_library_raw_get(m_plibrary,pszEntryName);
 

@@ -2,7 +2,6 @@
 #include "acme/id.h"
 #include "acme/platform/context.h"
 #include "context.h"
-#include "international_locale_schema.h"
 
 namespace text
 {

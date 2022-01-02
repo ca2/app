@@ -4,6 +4,7 @@
 #include "icon.h"
 #include "image_frame_array.h"
 #include "save_image.h"
+#include "image.h"
 
 
 
@@ -1034,13 +1035,13 @@ void context_image::_os_load_image(::image * pimage, memory & memory)
    if (!pimage)
    {
 
-      __construct(pimage);
+      __refer(pimage, __create_new <image>());
 
       pimage->set_nok();
 
    }
 
-   return pimage;
+   return pimage.get();
 
 }
 

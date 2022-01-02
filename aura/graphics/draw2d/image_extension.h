@@ -12,8 +12,8 @@ public:
 
 
    ::image_pointer                     m_pimage;
-   image_frame_array *                 m_pframea;
-   image_map *                         m_pmap;
+   __pointer(image_frame_array)        m_pframea;
+   __pointer(image_map)                m_pmap;
    double                              m_dSpeed;
 
 

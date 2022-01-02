@@ -10,7 +10,7 @@
 #include "apex/message/simple_command.h"
 #include "interaction_thread.h"
 #include "acme/node/operating_system/_user.h"
-#include "interaction_draw2d.h"
+//#include "interaction_draw2d.h"
 #include "acme/platform/hyperlink.h"
 #include "acme/platform/timer.h"
 #include "acme/platform/timer_array.h"
@@ -61,7 +61,7 @@ namespace user
    void interaction::user_interaction_common_construct()
    {
 
-      m_pinteractiondraw2d = nullptr;
+      //m_pinteractiondraw2d = nullptr;
 
       m_uUserInteractionFlags = 0;
 
@@ -306,20 +306,20 @@ namespace user
    }
 
 
-   interaction_draw2d * interaction::get_draw2d()
-   {
+   //interaction_draw2d * interaction::get_draw2d()
+   //{
 
-      if(::is_null(m_pinteractiondraw2d))
-      {
+   //   if(::is_null(m_pinteractiondraw2d))
+   //   {
 
 
-         m_pinteractiondraw2d = new interaction_draw2d();
+   //      m_pinteractiondraw2d = new interaction_draw2d();
 
-      }
+   //   }
 
-      return m_pinteractiondraw2d;
+   //   return m_pinteractiondraw2d;
 
-   }
+   //}
 
 
    ::windowing::window *interaction::window() const
@@ -2903,9 +2903,9 @@ namespace user
 
          synchronous_lock synchronouslock(mutex());
 
-         auto pinteractiondraw2d = get_draw2d();
+         //auto pinteractiondraw2d = get_draw2d();
 
-         if(!pinteractiondraw2d->m_pshapeaClip)
+         if(!m_pshapeaClip)
          {
 
             synchronouslock.unlock();
@@ -2939,7 +2939,7 @@ namespace user
 
             synchronouslock.lock();
 
-            pinteractiondraw2d->m_pshapeaClip = pshapeaClip;
+            m_pshapeaClip = pshapeaClip;
 
          }
 
@@ -2947,7 +2947,7 @@ namespace user
 
          pgraphics->m_pointAddShapeTranslate = m_pointScroll;
 
-         pgraphics->add_shapes(*pinteractiondraw2d->m_pshapeaClip);
+         pgraphics->add_shapes(*m_pshapeaClip);
 
       }
       catch (...)
@@ -4431,9 +4431,7 @@ return "";
    void interaction::on_message_subject(::message::message* pmessage)
    {
 
-      __pointer(::subject) psubject;
-      
-      __move(psubject, pmessage->m_lparam);
+      __pointer(::subject) psubject(pmessage->m_lparam);
 
       if(!psubject)
       { 
@@ -7362,12 +7360,12 @@ void interaction::destroy_window()
 
    // ownership
 
-   if(m_pinteractiondraw2d)
-   {
-      m_pinteractiondraw2d->m_pshapeaClip && m_pinteractiondraw2d->m_pshapeaClip->destroy();
-      m_pinteractiondraw2d->m_pdrawcontext && m_pinteractiondraw2d->m_pdrawcontext->destroy();
+   //if(m_pinteractiondraw2d)
+   //{
+      m_pshapeaClip && m_pshapeaClip->destroy();
+      m_pdrawcontext && m_pdrawcontext->destroy();
 
-   }
+   //}
    m_pusersystem && m_pusersystem->destroy();
    m_playout && m_playout->destroy();
    m_pdragmove && m_pdragmove->destroy();
@@ -7391,10 +7389,10 @@ void interaction::destroy_window()
    m_menua.destroy_all();
 
    // ownership
-   if(m_pinteractiondraw2d)
+   //if(m_pinteractiondraw2d)
    {
-      m_pinteractiondraw2d->m_pshapeaClip.release();
-      m_pinteractiondraw2d->m_pdrawcontext.release();
+      m_pshapeaClip.release();
+      m_pdrawcontext.release();
 
    }
       m_pusersystem.release();
@@ -8314,10 +8312,10 @@ bool interaction::design_layout(::draw2d::graphics_pointer & pgraphics)
 
    }
 
-   if(m_pinteractiondraw2d)
+   //if(m_pinteractiondraw2d)
    {
 
-      m_pinteractiondraw2d->m_pshapeaClip.release();
+      m_pshapeaClip.release();
 
    }
 
@@ -8963,13 +8961,13 @@ void interaction::on_layout(::draw2d::graphics_pointer & pgraphics)
 
    on_change_view_size(pgraphics);
 
-   if(m_pinteractiondraw2d)
+   //if(m_pinteractiondraw2d)
    {
 
-      m_pinteractiondraw2d->m_pathFocusRect1.release();
-      m_pinteractiondraw2d->m_pathFocusRect2.release();
-      m_pinteractiondraw2d->m_pathFocusRect3.release();
-      m_pinteractiondraw2d->m_pathFocusRect4.release();
+      m_pathFocusRect1.release();
+      m_pathFocusRect2.release();
+      m_pathFocusRect3.release();
+      m_pathFocusRect4.release();
 
    }
 
@@ -9062,10 +9060,10 @@ void interaction::on_visual_applied()
 void interaction::on_reposition()
 {
 
-   if(m_pinteractiondraw2d)
+   //if(m_pinteractiondraw2d)
    {
 
-      m_pinteractiondraw2d->m_pshapeaClip.release();
+      m_pshapeaClip.release();
 
    }
 
@@ -17081,7 +17079,7 @@ order(zorderParam);
 
       auto puser = psession->user();
 
-      if (m_pinteractiondraw2d && m_pinteractiondraw2d->m_pdrawcontext != nullptr)
+      if (m_pdrawcontext != nullptr)
       {
 
          ::user::e_state estate = e_state_none;
@@ -17103,14 +17101,14 @@ order(zorderParam);
 
          }
 
-         if (m_pinteractiondraw2d->m_pdrawcontext->is_control_hover())
+         if (m_pdrawcontext->is_control_hover())
          {
 
             estate |= e_state_hover;
 
          }
 
-         if (m_pinteractiondraw2d->m_pdrawcontext->is_control_selected())
+         if (m_pdrawcontext->is_control_selected())
          {
 
             estate |= e_state_selected;

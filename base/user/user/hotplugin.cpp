@@ -122,7 +122,7 @@ namespace hotplugin
 
       pgraphics->draw_rectangle(rectangleBar, ppen);
 
-      ::write_text::font_pointer f(e_create, pgraphics);
+      ::write_text::font_pointer f(e_create, pgraphics.m_p);
 
       f->create_pixel_font("Calibri", 18.0);
 

@@ -593,7 +593,7 @@ namespace apex
    void session::on_message_erase_application(::message::message* pmessage)
    {
 
-      auto papplication = pmessage->m_lparam.move <::application>();
+      __pointer(::application) papplication(pmessage->m_lparam);
 
       erase_application(papplication);
 

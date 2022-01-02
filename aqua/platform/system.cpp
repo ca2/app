@@ -5,7 +5,7 @@
 //#endif
 #include "aqua/const/idpool.h"
 #include "acme/parallelization/pool.h"
-#include "acme/platform/system_impl.h"
+//#include "acme/platform/system_impl.h"
 
 
 namespace aqua
@@ -195,7 +195,7 @@ namespace aqua
 
       }
 
-      synchronous_lock synchronouslock(&m_psystemimpl->m_mutexLibrary4);
+      synchronous_lock synchronouslock(&m_mutexLibrary4);
 
       try
       {

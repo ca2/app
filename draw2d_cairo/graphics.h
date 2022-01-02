@@ -365,12 +365,12 @@ namespace draw2d_cairo
       bool get_text_extent(size_f64 & size_f64, const char * lpszString, strsize nCount, strsize iIndex) override;
       bool get_text_extent(size_f64 & size_f64, const char * lpszString, strsize nCount) override;
       bool get_text_extent(size_f64 & size_f64, const ::string & str) override;
-      size_f64 GetOutputTextExtent(const char * lpszString, strsize nCount) override;
-      size_f64 GetOutputTextExtent(const ::string & str) override;
+      //size_f64 GetOutputTextExtent(const char * lpszString, strsize nCount) override;
+      //size_f64 GetOutputTextExtent(const ::string & str) override;
       //size_f64 GetTabbedTextExtent(const ::string & lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions) override;
       //size_f64 GetTabbedTextExtent(const ::string & str, count nTabPositions, int * lpnTabStopPositions) override;
-      size_f64 GetOutputTabbedTextExtent(const ::string & lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions) override;
-      size_f64 GetOutputTabbedTextExtent(const ::string & str, count nTabPositions, int * lpnTabStopPositions) override;
+      //size_f64 GetOutputTabbedTextExtent(const ::string & lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions) override;
+      //size_f64 GetOutputTabbedTextExtent(const ::string & str, count nTabPositions, int * lpnTabStopPositions) override;
       //virtual bool GrayString(::draw2d::brush* pBrush, bool (CALLBACK* lpfnOutput)(HDC, LPARAM, i32), LPARAM lpData, i32 nCount, double x, double y, double nWidth, double nHeight) override;
       ::u32 GetTextAlign() override;
       ::u32 SetTextAlign(::u32 nFlags) override;

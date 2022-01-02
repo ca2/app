@@ -127,11 +127,11 @@ i32                 cy)
 
    //ExtTextOut(hDC, x+cx, y+cy, nullptr, &rectangleText, psz, cb, nullptr);
 
-   pgraphics->ExtTextOut(x + cx,y + cy,0,nullptr,pcsz,(int)cb,nullptr);
+   pgraphics->text_out(x + cx,y + cy,string(pcsz,cb));
 
    //pgraphics->SetBkMode(TRANSPARENT);
    //pgraphics->set_text_color(crText);
-   if(!pgraphics->ExtTextOut(x,y,0,nullptr,pcsz,(int)cb,nullptr))
+   if(!pgraphics->text_out(x,y, string(pcsz, cb)))
 
    {
       //      FORMATTED_TRACE("Failed to ExtTextOut, get_last_error() -->%d\n", get_last_error());

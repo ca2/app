@@ -10,11 +10,6 @@
    {
    public:
 
-
-      routine() {}
-      ~routine() {}
-
-
       using ::function_pointer::function_pointer;
 
       inline ::e_status operator()() const;

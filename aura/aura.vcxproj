@@ -884,6 +884,8 @@
     <ClCompile Include="graphics\draw2d\device_lock.cpp" />
     <ClCompile Include="graphics\draw2d\image_drawer.cpp" />
     <ClCompile Include="graphics\draw2d\image_drawing.cpp" />
+    <ClCompile Include="graphics\draw2d\image_meta.cpp" />
+    <ClCompile Include="graphics\draw2d\image_source.cpp" />
     <ClCompile Include="graphics\draw2d\load_image.cpp" />
     <ClCompile Include="graphics\draw2d\lock.cpp" />
     <ClCompile Include="graphics\draw2d\nano_svg.cpp">
@@ -1271,6 +1273,7 @@
     <ClInclude Include="user\control_descriptor.h" />
     <ClInclude Include="user\copydesk.h" />
     <ClInclude Include="user\aaa_create.h" />
+    <ClInclude Include="user\aaa_interaction_draw2d.h" />
     <ClInclude Include="user\interaction_scaler.h" />
     <ClInclude Include="user\menu_command.h" />
     <ClInclude Include="user\message.h" />

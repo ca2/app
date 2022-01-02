@@ -1926,36 +1926,22 @@ inline auto &__typed_defer_new(__pointer(T) &p)
 //}
 
 
-
-template<typename TYPE1, typename TYPE2>
-inline void __dynamic_cast(TYPE1 *&ptype1, const TYPE2 *ptype2)
+template < typename TYPE >
+inline void __dynamic_cast(TYPE*& ptarget, const TYPE* psource)
 {
 
-   ptype1 = dynamic_cast <TYPE2 *> (ptype2);
+   ptarget = (TYPE *) psource;
 
 }
 
 
-template<typename TYPE1, typename TYPE2>
-inline void __dynamic_cast(__pointer(TYPE1) &ptype1, const TYPE2 *ptype2)
+template<typename TARGET, typename SOURCE>
+inline void __dynamic_cast(TARGET*& ptarget, const SOURCE* psource)
 {
 
-   ptype1 = ptype2;
+   ptarget = dynamic_cast <TARGET*> ((SOURCE *) psource);
 
 }
-
-
-template<typename TYPE1, typename TYPE2>
-inline void __dynamic_cast(__pointer(TYPE1) &ptype1, const __pointer(TYPE2) &ptype2)
-{
-
-   ptype1 = ptype2;
-
-}
-
-
-template<typename TYPE1, typename TYPE2>
-inline void __dynamic_cast(TYPE1 *&ptype1, const __pointer(TYPE2) &ptype2);
 
 
 template<typename T>
@@ -3447,7 +3433,7 @@ using matter_array = __pointer_array(::matter); // Please use just for keeping n
 
 using task_array = __pointer_array(::task); // Please use just for keeping non-member-based references.
 
-using object_addra = __address_array(::matter); // Please use just for keeping non-member-based references.
+//using object_addra = __address_array(::matter); // Please use just for keeping non-member-based references.
 
 class object_meta;
 
@@ -4344,7 +4330,7 @@ namespace geometry
 class compress;
 class uncompress;
 
-class system_impl;
+//class system_impl;
 
 
 namespace str
@@ -4360,10 +4346,15 @@ namespace acme
 
    class library;
 
+
+   using library_map = string_map < __transport(::acme::library) >;
+
 } // namespace acme
 
 class task_group;
 class task_tool;
+
+
 
 
 #include "acme/platform/system.h"

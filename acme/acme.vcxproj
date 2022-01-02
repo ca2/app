@@ -1245,6 +1245,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
     <ClCompile Include="primitive\duration\duration\second.cpp" />
     <ClCompile Include="primitive\geometry2d\rectangle.cpp" />
     <ClCompile Include="primitive\geometry2d\shape.cpp" />
+    <ClCompile Include="primitive\geometry2d\_shape.cpp" />
     <ClCompile Include="primitive\mathematics\binary_operation.cpp" />
     <ClCompile Include="primitive\mathematics\cvt.cpp" />
     <ClCompile Include="primitive\mathematics\cvt_g.cpp" />

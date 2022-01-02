@@ -212,6 +212,15 @@ namespace user
       string                                    m_strStyle;
       property_set                              m_setStyle;
 
+
+      __pointer(shape_array)                    m_pshapeaClip;
+      __pointer(::aura::draw_context)           m_pdrawcontext;
+
+      ::draw2d::path_pointer                    m_pathFocusRect1;
+      ::draw2d::path_pointer                    m_pathFocusRect2;
+      ::draw2d::path_pointer                    m_pathFocusRect3;
+      ::draw2d::path_pointer                    m_pathFocusRect4;
+
       //bool                                    m_bOnSetFinish;
 
       //class draw_select
@@ -314,7 +323,7 @@ namespace user
 
 
 
-      interaction_draw2d *                         m_pinteractiondraw2d;
+      //interaction_draw2d *                         m_pinteractiondraw2d;
 
       /// The menu_item this user_interaction (window)
       /// represents (this window is a button [a menu button],
@@ -382,7 +391,7 @@ namespace user
       void enable_drag_move();
 
 
-      virtual interaction_draw2d * get_draw2d();
+      //virtual interaction_draw2d * get_draw2d();
 
 
       virtual ::windowing::window * window() const;

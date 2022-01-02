@@ -922,11 +922,11 @@ inline bool succeeded(const ::property & property)
 
 
 template < class T >
-template < typename TYPE >
-inline __pointer(T) & ___pointer < T >::create(::object * pobject)
+template < typename OBJECT >
+inline __pointer(T) & ___pointer < T >::create(OBJECT * pobject)
 {
 
-  auto p = pobject->__create < TYPE >();
+  auto p = pobject->__create < T >();
 
   return operator =(p);
 
@@ -934,8 +934,8 @@ inline __pointer(T) & ___pointer < T >::create(::object * pobject)
 
 
 template < class T >
-template < typename TYPE >
-inline __pointer(T) & ___pointer < T >::create(::object * pobject, bool bCreate)
+template < typename OBJECT >
+inline __pointer(T) & ___pointer < T >::create(OBJECT * pobject, bool bCreate)
 {
 
   if (bCreate)
@@ -1472,7 +1472,7 @@ inline __pointer(T) & ___pointer < T >::create(::object * pobject, bool bCreate)
 //
 //
 template < typename T >
-inline __pointer(T) move_transfer(T * p) { return ::___pointer < T >(e_move_transfer, p); }
+inline __pointer(T) move_transfer(T* p) { return { e_move_transfer, p }; }
 
 
 template < typename TYPE >
@@ -1526,14 +1526,14 @@ TYPE & operator -=(TYPE & o, enum_object eobject)
 //
 
 template < typename T >
-template < typename TYPE >
-inline __pointer(T) & ___pointer<T> ::defer_create(::object * pobject)
+template < typename OBJECT >
+inline __pointer(T) & ___pointer<T> ::defer_create(OBJECT * pobject)
 {
 
    if (is_null())
    {
 
-      operator=(pobject->__create < TYPE >());
+      operator=(pobject->__create < T >());
 
    }
 
@@ -2350,9 +2350,9 @@ inline __transport(TYPE) object::__create()
 
    }
 
-   __pointer(TYPE) p;
+   TYPE * p;
 
-   __dynamic_cast(p, ptypeNew);
+   __dynamic_cast(p, ptypeNew.m_p);
 
    if (!p)
    {
@@ -2400,7 +2400,7 @@ inline __transport(TYPE) object::__id_create(const ::id& id)
    
    __pointer(TYPE) p;
    
-   __dynamic_cast(p, ptypeNew);
+   p = ptypeNew;
    
    if (!p)
    {
@@ -2820,8 +2820,10 @@ inline ::e_status object::__construct(__pointer(TYPE) & p)
       return ::error_no_memory;
    
    }
+
+   p.release();
    
-   __dynamic_cast(p, ptypeNew);
+   p = ptypeNew;
    
    if (!p)
    {
@@ -2868,7 +2870,7 @@ inline ::e_status object::__id_construct(__pointer(TYPE)& p, const ::id& id)
 
    }
 
-   __dynamic_cast(p, ptypeNew);
+   p = ptypeNew;
 
    if (!p)
    {
@@ -3843,44 +3845,44 @@ inline id::id(const ::lparam & lparam)
 }
 
 
+//template < class T >
+//inline ___pointer < T > & __move(___pointer < T > & p, lparam & lparam)
+//{
+//
+//   ___pointer < T > pelement(lparam);
+//
+//   if (::is_null(pelement))
+//   {
+//
+//      ::release(pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_NOTE(nullptr, "pointer::pointer(LPARAM)"));
+//
+//   }
+//
+//   return pelement;
+//
+//}
+
+
+//template < class T >
+//template < typename OBJECT >
+//inline ___pointer < T > ::___pointer(enum_create, OBJECT * p) :
+//   m_p(nullptr),
+//   m_pelement(nullptr)
+//{
+//
+//   operator=(p->__create < T >());
+//
+//}
+
+
 template < class T >
-inline ___pointer < T > & __move(___pointer < T > & p, lparam & lparam)
-{
-
-   auto pelement = (::element *)lparam.m_lparam;
-
-   p.m_p = dynamic_cast <T *> (pelement);
-
-   if (::is_null(p))
-   {
-
-      ::release(pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_NOTE(nullptr, "pointer::pointer(LPARAM)"));
-
-   }
-
-   return p;
-
-}
-
-
-template < class T >
-inline ___pointer < T > ::___pointer(enum_create, ::object * p) :
-   m_p(nullptr)
-{
-
-   operator=(p->__create < T >());
-
-}
-
-
-template < class T >
-template < typename __TEMPLATE_TYPE__ >
-::count pointer_array < T > ::set_size_create(::object * pobject, ::count nNewSize, ::count nGrowBy, __TEMPLATE_TYPE__)
+template < typename OBJECT >
+::count pointer_array < T > ::set_size_create(OBJECT * pobject, ::count nNewSize, ::count nGrowBy)
 {
 
    ::index i = this->get_size();
 
-   comparable_array < ___pointer < T >, const T * > ::set_size(nNewSize);
+   comparable_array < ___pointer < T > > ::set_size(nNewSize);
 
    ::count c = this->get_size();
 

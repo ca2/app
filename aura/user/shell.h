@@ -89,8 +89,8 @@ namespace user
 
    protected:
 
-      ::i32_map < __pointer(::image_list) >                                m_pil; // int is the size_i32
-      ::i32_map < __pointer(::image_list) >                                m_pilHover; // int is the size;
+      ::i32_map < __reference(::image_list) >                                m_pil; // int is the size_i32
+      ::i32_map < __reference(::image_list) >                                m_pilHover; // int is the size;
       map < ::user::interaction *, ::string_array >                             m_mapInterest;
 
 

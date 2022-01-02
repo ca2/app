@@ -2,7 +2,7 @@
 #include "base/user/simple/_simple.h"
 #include "aura/graphics/draw2d/_draw2d.h"
 #include "acme/platform/timer.h"
-#include "aura/user/interaction_draw2d.h"
+//#include "aura/user/interaction_draw2d.h"
 
 
 simple_scroll_bar::simple_scroll_bar()
@@ -1241,12 +1241,12 @@ void simple_scroll_bar::_001OnClip(::draw2d::graphics_pointer & pgraphics)
 
       //}
 
-      auto pinteractiondraw2d = get_draw2d();
+      //auto pinteractiondraw2d = get_draw2d();
       
-      if(pinteractiondraw2d && !pinteractiondraw2d->m_pshapeaClip)
+      if(!m_pshapeaClip)
       {
          
-         __construct_new(pinteractiondraw2d->m_pshapeaClip);
+         __construct_new(m_pshapeaClip);
 
          ::user::interaction * pinteraction = this;
 
@@ -1274,9 +1274,9 @@ void simple_scroll_bar::_001OnClip(::draw2d::graphics_pointer & pgraphics)
 
             screen_to_client(rectangleFocus);
             
-            pinteractiondraw2d->m_pshapeaClip->add_item(__new(rectangle_shape(rectangleFocus)));
+            m_pshapeaClip->add_item(__new(rectangle_shape(rectangleFocus)));
 
-            pinteractiondraw2d->m_pshapeaClip->add_item(__new(intersect_clip_shape()));
+            m_pshapeaClip->add_item(__new(intersect_clip_shape()));
 
             i++;
 
@@ -1290,7 +1290,7 @@ void simple_scroll_bar::_001OnClip(::draw2d::graphics_pointer & pgraphics)
 
       pgraphics->m_pointAddShapeTranslate.Null();
 
-      pgraphics->add_shapes(*pinteractiondraw2d->m_pshapeaClip);
+      pgraphics->add_shapes(*m_pshapeaClip);
 
    }
    catch (...)

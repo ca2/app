@@ -11,7 +11,6 @@ namespace draw2d
    icon::icon()
    {
 
-      m_pimagemap = nullptr;
       m_bAutoDelete = true;
 
    }
@@ -49,8 +48,6 @@ namespace draw2d
          }
 
       }
-
-      ::release(m_pimagemap);
 
    }
 
@@ -161,7 +158,7 @@ namespace draw2d
       if(::is_null(m_pimagemap))
       {
 
-         m_pimagemap = new size_image();
+         m_pimagemap = m_psystem->__create_new < size_image >();
 
       }
 

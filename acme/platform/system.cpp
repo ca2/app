@@ -9,7 +9,8 @@
 #include "simple_log.h"
 #include "acme/filesystem/file/transfer.h"
 #include "acme/compress/_.h"
-#include "system_impl.h"
+//#include "system_impl.h"
+#include "library.h"
 
 //__namespace_object_factory(class ::system, ::static_setup::flag_system)
 
@@ -87,7 +88,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       }
 
-      m_psystemimpl = new system_impl;
+      //m_psystemimpl = new system_impl;
 
       //set_os_data(LAYERED_ACME, this);
 
@@ -106,9 +107,9 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       trace_category_static_term();
 
-      m_psystemimpl->m_mapLibrary4.clear();
+      m_mapLibrary4.clear();
 
-      ::acme::del(m_psystemimpl);
+      //::acme::del(m_psystemimpl);
 
    }
 
@@ -925,11 +926,11 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       }
 
-      synchronous_lock synchronouslock(&m_psystemimpl->m_mutexLibrary4);
+      synchronous_lock synchronouslock(&m_mutexLibrary4);
 
       string strLibrary = library_filter(str);
 
-      auto& plibrary = m_psystemimpl->m_mapLibrary4[strLibrary];
+      auto& plibrary = m_mapLibrary4[strLibrary];
 
       if (plibrary.is_initialized())
       {

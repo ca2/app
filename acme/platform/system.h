@@ -9,7 +9,7 @@ class CLASS_DECL_ACME system :
 public:
 
 
-   system_impl *                                                     m_psystemimpl;
+   //__pointer(system_impl) *                                                     m_psystemimpl;
 
    __transport(::factory::factory)                                   m_pfactoryFolder;
    
@@ -20,6 +20,9 @@ public:
    __reference(::application)                                        m_papplicationMain;
 
    __composite(::apex::system)                                       m_psystemParent;
+
+   ::mutex                                                           m_mutexLibrary4;
+   ::acme::library_map                                               m_mapLibrary4;
 
 
    ::mutex                                                           m_mutexFactory;

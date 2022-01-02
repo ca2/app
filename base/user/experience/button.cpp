@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "base/user/experience/_experience.h"
 #include "aura/graphics/draw2d/_draw2d.h"
-#include "aura/user/interaction_draw2d.h"
+#include "acme/primitive/geometry2d/_defer.h"
 
 
 namespace experience
@@ -89,12 +89,12 @@ namespace experience
 
          }
 
-         auto pinteractiondraw2d = get_draw2d();
+         //auto pinteractiondraw2d = get_draw2d();
          
-         if(pinteractiondraw2d && !pinteractiondraw2d->m_pshapeaClip)
+         if(!m_pshapeaClip)
          {
 
-            __construct_new(pinteractiondraw2d->m_pshapeaClip);
+            __construct_new(m_pshapeaClip);
             
             ::user::interaction * pinteraction = this;
 
@@ -111,9 +111,9 @@ namespace experience
 
                host_to_client(rectangleFocus);
 
-               pinteractiondraw2d->m_pshapeaClip->add_item(__new(rectangle_shape(rectangleFocus)));
+               m_pshapeaClip->add_item(__new(rectangle_shape(rectangleFocus)));
                
-               pinteractiondraw2d->m_pshapeaClip->add_item(__new(intersect_clip_shape));
+               m_pshapeaClip->add_item(__new(intersect_clip_shape));
 
                i++;
 
@@ -125,7 +125,7 @@ namespace experience
          
          pgraphics->reset_clip();
          
-         pgraphics->add_shapes(*pinteractiondraw2d->m_pshapeaClip);
+         pgraphics->add_shapes(*m_pshapeaClip);
 
       }
       catch (...)

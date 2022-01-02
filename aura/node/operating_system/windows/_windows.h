@@ -14,7 +14,7 @@
 CLASS_DECL_AURA bool get_gui_thread_info(PGUITHREADINFO pinfo);
 #endif
 
-hcursor windows_create_cursor(::windowing::window * pwindow, const image * pimage, int xHotSpot, int yHotSpot);
+//hcursor windows_create_cursor(::windowing::window * pwindow, const image * pimage, int xHotSpot, int yHotSpot);
 
 
 

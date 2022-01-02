@@ -779,7 +779,7 @@ class ptr_array;
 
 using object_ptra = __pointer_array(::matter); // Please use just for keeping non-member-based references.
 
-using object_addra = __address_array(::matter); // Please use just for keeping non-member-based references.
+///using object_addra = __address_array(::matter); // Please use just for keeping non-member-based references.
 
 class object_meta;
 

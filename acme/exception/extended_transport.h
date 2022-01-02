@@ -19,8 +19,8 @@ namespace extended
 
       }
 
-
-      transport(T * p) :
+      template < typename T2 >
+      transport(T2 * p) :
          ___pointer<T>(p)
       {
 
@@ -36,15 +36,18 @@ namespace extended
 
       template < typename TYPE >
       transport(const __pointer(TYPE) & p) :
-         ___pointer<T>(p)
+         ___pointer<T>(p),
+         ::extended::status(::is_null(this->m_p) ? error_null_result : ::success)
       {
 
-         if (this->is_null())
-         {
+      }
 
-            add(::error_null_result);
 
-         }
+      template < typename TYPE >
+      transport(__pointer(TYPE)&& p) :
+         ___pointer<T>(::move(p)),
+         ::extended::status(::is_null(this->m_p) ? error_null_result : ::success)
+      {
 
       }
 
@@ -233,8 +236,8 @@ namespace extended
 
       }
 
-
-      transport & operator =(const T * p)
+      template < typename T2 >
+      transport & operator =(T2 * p)
       {
 
          __pointer(T)::operator =(p);

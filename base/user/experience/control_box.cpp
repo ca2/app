@@ -3,7 +3,7 @@
 #include "acme/constant/timer.h"
 #include "aura/graphics/draw2d/_draw2d.h"
 #include "acme/platform/timer.h"
-#include "aura/user/interaction_draw2d.h"
+//#include "aura/user/interaction_draw2d.h"
 
 
 namespace experience
@@ -1183,12 +1183,12 @@ namespace experience
 
          }
 
-         auto pinterationdraw2d = get_draw2d();
+         //auto pinterationdraw2d = get_draw2d();
          
-         if(pinterationdraw2d && !pinterationdraw2d->m_pshapeaClip)
+         if(!m_pshapeaClip)
          {
             
-            __construct_new(pinterationdraw2d->m_pshapeaClip);
+            __construct_new(m_pshapeaClip);
 
             ::user::interaction * pinteraction = this;
 
@@ -1201,9 +1201,9 @@ namespace experience
 
                screen_to_client(rectangleFocus);
 
-               pinterationdraw2d->m_pshapeaClip->add_item(__new(rectangle_shape(rectangleFocus)));
+               m_pshapeaClip->add_item(__new(rectangle_shape(rectangleFocus)));
 
-               pinterationdraw2d->m_pshapeaClip->add_item(__new(intersect_clip_shape));
+               m_pshapeaClip->add_item(__new(intersect_clip_shape));
 
                pinteraction = pinteraction->get_parent();
                
@@ -1213,7 +1213,7 @@ namespace experience
          
          pgraphics->reset_clip();
 
-         pgraphics->add_shapes(*pinterationdraw2d->m_pshapeaClip);
+         pgraphics->add_shapes(*m_pshapeaClip);
 
       }
       catch (...)

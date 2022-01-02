@@ -58,7 +58,7 @@ public:
       m_iFrame = 0;
       m_bCreateHelperMaps = false;
       m_pbitmap = nullptr;
-      m_pgraphics = nullptr;
+      //m_pgraphics = nullptr;
 
    }
 

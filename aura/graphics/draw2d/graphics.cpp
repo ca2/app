@@ -255,9 +255,7 @@ namespace draw2d
    }
 
 
-
-
-   bool graphics::CreateDC(const ::string & pszDriverName,  const ::string & pszDeviceName, const ::string & pszOutput, const void * pInitData)
+   bool graphics::create_device_context(const ::string & pszDriverName,  const ::string & pszDeviceName, const ::string & pszOutput, const void * pInitData)
    {
 
       __UNREFERENCED_PARAMETER(pszDriverName);
@@ -267,16 +265,13 @@ namespace draw2d
       __UNREFERENCED_PARAMETER(pszOutput);
 
       __UNREFERENCED_PARAMETER(pInitData);
-
-
 
       return false;
 
    }
 
 
-   bool graphics::CreateIC(const ::string & pszDriverName,  const ::string & pszDeviceName, const ::string & pszOutput, const void * pInitData)
-
+   bool graphics::create_information_context(const ::string & pszDriverName,  const ::string & pszDeviceName, const ::string & pszOutput, const void * pInitData)
    {
 
       __UNREFERENCED_PARAMETER(pszDriverName);
@@ -286,8 +281,6 @@ namespace draw2d
       __UNREFERENCED_PARAMETER(pszOutput);
 
       __UNREFERENCED_PARAMETER(pInitData);
-
-
 
       return false;
 
@@ -1648,116 +1641,116 @@ namespace draw2d
    }
 
 
-   bool graphics::ExtTextOut(double x, double y, ::u32 nOptions, const ::rectangle_f64 & rectangle, const ::string & pszString, strsize nCount, i32 * pDxWidths)
-   {
+   //bool graphics::ExtTextOut(double x, double y, ::u32 nOptions, const ::rectangle_f64 & rectangle, const ::string & pszString, strsize nCount, i32 * pDxWidths)
+   //{
 
-      __UNREFERENCED_PARAMETER(x);
-      __UNREFERENCED_PARAMETER(y);
-      __UNREFERENCED_PARAMETER(nOptions);
-      __UNREFERENCED_PARAMETER(rectangle);
-      __UNREFERENCED_PARAMETER(pszString);
-      __UNREFERENCED_PARAMETER(nCount);
-      __UNREFERENCED_PARAMETER(pDxWidths);
+   //   __UNREFERENCED_PARAMETER(x);
+   //   __UNREFERENCED_PARAMETER(y);
+   //   __UNREFERENCED_PARAMETER(nOptions);
+   //   __UNREFERENCED_PARAMETER(rectangle);
+   //   __UNREFERENCED_PARAMETER(pszString);
+   //   __UNREFERENCED_PARAMETER(nCount);
+   //   __UNREFERENCED_PARAMETER(pDxWidths);
 
-      return false;
+   //   return false;
 
-   }
-
-
-   bool graphics::ExtTextOut(double x, double y, ::u32 nOptions, const ::rectangle_f64 & rectangle, const ::string & str, i32 * pDxWidths)
-   {
-
-      __UNREFERENCED_PARAMETER(x);
-      __UNREFERENCED_PARAMETER(y);
-      __UNREFERENCED_PARAMETER(nOptions);
-      __UNREFERENCED_PARAMETER(rectangle);
-      __UNREFERENCED_PARAMETER(str);
-      __UNREFERENCED_PARAMETER(pDxWidths);
-
-      return false;
-
-   }
+   //}
 
 
-   size_f64 graphics::TabbedTextOut(double x, double y, const ::string & pszString, strsize nCount, count nTabPositions, i32 * pnTabStopPositions, int nTabOrigin)
-   {
+   //bool graphics::ExtTextOut(double x, double y, ::u32 nOptions, const ::rectangle_f64 & rectangle, const ::string & str, i32 * pDxWidths)
+   //{
 
-      __UNREFERENCED_PARAMETER(x);
-      __UNREFERENCED_PARAMETER(y);
-      __UNREFERENCED_PARAMETER(pszString);
-      __UNREFERENCED_PARAMETER(nCount);
-      __UNREFERENCED_PARAMETER(nTabPositions);
-      __UNREFERENCED_PARAMETER(pnTabStopPositions);
-      __UNREFERENCED_PARAMETER(nTabOrigin);
+   //   __UNREFERENCED_PARAMETER(x);
+   //   __UNREFERENCED_PARAMETER(y);
+   //   __UNREFERENCED_PARAMETER(nOptions);
+   //   __UNREFERENCED_PARAMETER(rectangle);
+   //   __UNREFERENCED_PARAMETER(str);
+   //   __UNREFERENCED_PARAMETER(pDxWidths);
 
-      return size_f64(0, 0);
+   //   return false;
 
-   }
-
-
-   size_f64 graphics::TabbedTextOut(double x, double y, const ::string & str, count nTabPositions, i32 * pnTabStopPositions, int nTabOrigin)
-   {
-
-      __UNREFERENCED_PARAMETER(x);
-      __UNREFERENCED_PARAMETER(y);
-      __UNREFERENCED_PARAMETER(str);
-      __UNREFERENCED_PARAMETER(nTabPositions);
-      __UNREFERENCED_PARAMETER(pnTabStopPositions);
-      __UNREFERENCED_PARAMETER(nTabOrigin);
-
-      return size_f64(0, 0);
-
-   }
+   //}
 
 
-   size_f64 graphics::GetTabbedTextExtent(const char * pszString, strsize nCount, count nTabPositions, i32 * pnTabStopPositions)
-   {
+   //size_f64 graphics::TabbedTextOut(double x, double y, const ::string & pszString, strsize nCount, count nTabPositions, i32 * pnTabStopPositions, int nTabOrigin)
+   //{
 
-      __UNREFERENCED_PARAMETER(pszString);
-      __UNREFERENCED_PARAMETER(nCount);
-      __UNREFERENCED_PARAMETER(nTabPositions);
-      __UNREFERENCED_PARAMETER(pnTabStopPositions);
+   //   __UNREFERENCED_PARAMETER(x);
+   //   __UNREFERENCED_PARAMETER(y);
+   //   __UNREFERENCED_PARAMETER(pszString);
+   //   __UNREFERENCED_PARAMETER(nCount);
+   //   __UNREFERENCED_PARAMETER(nTabPositions);
+   //   __UNREFERENCED_PARAMETER(pnTabStopPositions);
+   //   __UNREFERENCED_PARAMETER(nTabOrigin);
 
-      return size_f64(0, 0);
+   //   return size_f64(0, 0);
 
-   }
-
-
-   size_f64 graphics::GetTabbedTextExtent(const ::string & str, count nTabPositions, i32 * pnTabStopPositions)
-   {
-
-      __UNREFERENCED_PARAMETER(str);
-      __UNREFERENCED_PARAMETER(nTabPositions);
-      __UNREFERENCED_PARAMETER(pnTabStopPositions);
-
-      return size_f64(0, 0);
-
-   }
+   //}
 
 
-   size_f64 graphics::GetOutputTabbedTextExtent(const ::string & pszString, strsize nCount, count nTabPositions, i32 * pnTabStopPositions)
-   {
+   //size_f64 graphics::TabbedTextOut(double x, double y, const ::string & str, count nTabPositions, i32 * pnTabStopPositions, int nTabOrigin)
+   //{
 
-      __UNREFERENCED_PARAMETER(pszString);
-      __UNREFERENCED_PARAMETER(nCount);
-      __UNREFERENCED_PARAMETER(nTabPositions);
-      __UNREFERENCED_PARAMETER(pnTabStopPositions);
+   //   __UNREFERENCED_PARAMETER(x);
+   //   __UNREFERENCED_PARAMETER(y);
+   //   __UNREFERENCED_PARAMETER(str);
+   //   __UNREFERENCED_PARAMETER(nTabPositions);
+   //   __UNREFERENCED_PARAMETER(pnTabStopPositions);
+   //   __UNREFERENCED_PARAMETER(nTabOrigin);
 
-      return size_f64(0, 0);
+   //   return size_f64(0, 0);
 
-   }
+   //}
 
 
-   size_f64 graphics::GetOutputTabbedTextExtent(const ::string & str, count nTabPositions, i32 * pnTabStopPositions)
-   {
+   //size_f64 graphics::GetTabbedTextExtent(const char * pszString, strsize nCount, count nTabPositions, i32 * pnTabStopPositions)
+   //{
 
-      __UNREFERENCED_PARAMETER(str);
-      __UNREFERENCED_PARAMETER(nTabPositions);
-      __UNREFERENCED_PARAMETER(pnTabStopPositions);
+   //   __UNREFERENCED_PARAMETER(pszString);
+   //   __UNREFERENCED_PARAMETER(nCount);
+   //   __UNREFERENCED_PARAMETER(nTabPositions);
+   //   __UNREFERENCED_PARAMETER(pnTabStopPositions);
 
-      return size_f64(0, 0);
+   //   return size_f64(0, 0);
 
-   }
+   //}
+
+
+   //size_f64 graphics::GetTabbedTextExtent(const ::string & str, count nTabPositions, i32 * pnTabStopPositions)
+   //{
+
+   //   __UNREFERENCED_PARAMETER(str);
+   //   __UNREFERENCED_PARAMETER(nTabPositions);
+   //   __UNREFERENCED_PARAMETER(pnTabStopPositions);
+
+   //   return size_f64(0, 0);
+
+   //}
+
+
+   //size_f64 graphics::GetOutputTabbedTextExtent(const ::string & pszString, strsize nCount, count nTabPositions, i32 * pnTabStopPositions)
+   //{
+
+   //   __UNREFERENCED_PARAMETER(pszString);
+   //   __UNREFERENCED_PARAMETER(nCount);
+   //   __UNREFERENCED_PARAMETER(nTabPositions);
+   //   __UNREFERENCED_PARAMETER(pnTabStopPositions);
+
+   //   return size_f64(0, 0);
+
+   //}
+
+
+   //size_f64 graphics::GetOutputTabbedTextExtent(const ::string & str, count nTabPositions, i32 * pnTabStopPositions)
+   //{
+
+   //   __UNREFERENCED_PARAMETER(str);
+   //   __UNREFERENCED_PARAMETER(nTabPositions);
+   //   __UNREFERENCED_PARAMETER(pnTabStopPositions);
+
+   //   return size_f64(0, 0);
+
+   //}
 
 
    ::u32 graphics::GetTextAlign()
@@ -1768,25 +1761,25 @@ namespace draw2d
    }
 
 
-   i32 graphics::GetTextFace(count nCount, char * pszFacename)
-   {
+   //i32 graphics::GetTextFace(count nCount, char * pszFacename)
+   //{
 
-      __UNREFERENCED_PARAMETER(nCount);
-      __UNREFERENCED_PARAMETER(pszFacename);
+   //   __UNREFERENCED_PARAMETER(nCount);
+   //   __UNREFERENCED_PARAMETER(pszFacename);
 
-      return -1;
+   //   return -1;
 
-   }
+   //}
 
 
-   i32 graphics::GetTextFace(string & rString)
-   {
-   
-      __UNREFERENCED_PARAMETER(rString);
+   //i32 graphics::GetTextFace(string & rString)
+   //{
+   //
+   //   __UNREFERENCED_PARAMETER(rString);
 
-      return -1;
+   //   return -1;
 
-   }
+   //}
 
 
    ::e_status graphics::get_text_metrics(::write_text::text_metric * pMetrics)
@@ -2536,18 +2529,18 @@ namespace draw2d
    }
 
 
-   i32 graphics::StartDoc(const ::string & pszDocName)
+   //i32 graphics::StartDoc(const ::string & pszDocName)
 
-   {
+   //{
 
-      __UNREFERENCED_PARAMETER(pszDocName);
-
-
+   //   __UNREFERENCED_PARAMETER(pszDocName);
 
 
-      return -1;
 
-   }
+
+   //   return -1;
+
+   //}
 
 
    i32 graphics::SaveDC()
@@ -3574,25 +3567,25 @@ namespace draw2d
    }
 
 
-   size_f64 graphics::GetOutputTextExtent(const char * pszString, strsize nCount)
-   {
+   //size_f64 graphics::GetOutputTextExtent(const char * pszString, strsize nCount)
+   //{
 
-      __UNREFERENCED_PARAMETER(pszString);
-      __UNREFERENCED_PARAMETER(nCount);
+   //   __UNREFERENCED_PARAMETER(pszString);
+   //   __UNREFERENCED_PARAMETER(nCount);
 
-      return size_f64(0, 0);
+   //   return size_f64(0, 0);
 
-   }
+   //}
 
 
-   size_f64 graphics::GetOutputTextExtent(const ::string & str)
-   {
+   //size_f64 graphics::GetOutputTextExtent(const ::string & str)
+   //{
 
-      __UNREFERENCED_PARAMETER(str);
+   //   __UNREFERENCED_PARAMETER(str);
 
-      return size_f64(0, 0);
+   //   return size_f64(0, 0);
 
-   }
+   //}
 
 
    bool graphics::draw_text(const ::string & str, const rectangle_f64 & rectangleParam, const ::e_align & ealign, const ::e_draw_text & edrawtext)

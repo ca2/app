@@ -962,6 +962,13 @@ namespace windowing_win32
 } // namespace windowing_universal_windows
 
 
+namespace aura
+{
+
+   class draw_context;
+
+} // namespace aura
+
 class color_filter;
 
 
@@ -970,6 +977,7 @@ class image_drawer;
 class image_drawing;
 class image_drawing_options;
 
+class shape_array;
 
 class imaging;
 
@@ -986,6 +994,9 @@ namespace draw2d
    class brush;
    class pen;
    class item;
+   class path;
+
+   using path_pointer = __pointer(path);
 
 } // namespace draw2d
 

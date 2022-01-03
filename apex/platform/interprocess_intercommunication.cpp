@@ -9,8 +9,6 @@
 interprocess_intercommunication::interprocess_intercommunication() 
 {
 
-   m_iTaskSeed = 0;
-
    m_id = "::interprocess_intercommunication";
 
    defer_create_mutex();
@@ -486,7 +484,7 @@ void interprocess_intercommunication::on_interprocess_receive(::interprocess_com
 __pointer(interprocess_task) interprocess_intercommunication::create_task(interprocess_call * pcall, const ::id & idPid)
 {
 
-   auto pobjectTask = __new(interprocess_task(pcall, idPid, atomic_increment(&m_iTaskSeed)));
+   auto pobjectTask = __new(interprocess_task(pcall, idPid, m_iTaskSeed++));
 
    synchronous_lock synchronouslock(mutex());
 

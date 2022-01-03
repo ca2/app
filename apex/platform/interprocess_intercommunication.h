@@ -86,7 +86,7 @@
 
 
 
-      ::i64                                                       m_iTaskSeed;
+      interlocked_i64                                             m_iTaskSeed;
       string                                                      m_strApp;
       ::id                                                        m_idApp;
       string_map < __pointer(::interprocess_communication::tx) >  m_txmap;

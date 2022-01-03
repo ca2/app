@@ -62,8 +62,17 @@ public:
    string                        m_strAppId;
 
 
-
    virtual ::e_status system_construct(const main& main);
+
+   inline ::count _get_argc() const { return m_argc; }
+
+   string _get_argv(int iArg) const;
+
+   inline ::count get_argument_count1() const { return _get_argc() - 1; }
+
+   string get_executable() const;
+
+   string get_argument1(int iArgument) const;
 
 
 };

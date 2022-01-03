@@ -5,11 +5,8 @@
 byte OriginalBytes[5] = {0};
 
 
-
 CLASS_DECL_ACME int is_debugger_attached()
 {
-
-   //return false;
 
    return __node_is_debugger_attached() != false;
 

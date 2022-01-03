@@ -62,6 +62,50 @@
 }
 
 
+string main::_get_argv(int iArgument) const
+{
+
+   if (iArgument < 0 || iArgument >= _get_argc())
+   {
+
+      return "";
+
+   }
+
+   if (m_wargv && m_wargv[iArgument])
+   {
+
+      return m_wargv[iArgument];
+
+   }
+   else if (m_argv && m_argv[iArgument])
+   {
+
+      return m_argv[iArgument];
+
+   }
+
+   return "";
+
+}
+
+
+string main::get_executable() const
+{
+
+   return _get_argv(0);
+
+}
+
+
+string main::get_argument1(int iArgument) const
+{
+
+   return _get_argv(iArgument + 1);
+
+}
+
+
 CLASS_DECL_ACME void set_main_thread();
 
 

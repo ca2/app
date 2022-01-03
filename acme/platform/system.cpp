@@ -1682,10 +1682,10 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
       if(etracelevel > e_trace_level_information)
       {
 
-         for (int i = 0; i < main.m_argc; i++)
+         for (int i = 0; i < main.get_argument_count1(); i++)
          {
 
-            string strArg = main.m_argv[i];
+            string strArg = main.get_argument1(i);
 
             if (strArg == "verbose")
             {

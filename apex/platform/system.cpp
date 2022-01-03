@@ -1026,31 +1026,20 @@ pacmedir->create("/ca2core");
 
       {
 
-         string_array straCmds;
+         string strExecutable = get_executable();
 
-         for (int i = 0; i < m_argc; i++)
+         string_array straArguments;
+
+         for (int i = 0; i < get_argument_count1(); i++)
          {
 
-            if (m_argv && m_argv[i])
-            {
+            string strArgument = get_argument1(i);
 
-               char* thisCmd = m_argv[i];
-
-               straCmds.add(thisCmd);
-
-            }
-            else if (m_wargv && m_wargv[i])
-            {
-
-               wchar_t* thisCmd = m_wargv[i];
-
-               straCmds.add(thisCmd);
-
-            }
+            straArguments.add(strArgument);
 
          }
 
-         string strCmd = straCmds.implode("\n");
+         string strCmd = strExecutable + " " + straArguments.implode("\n");
 
          string strAppId = m_strAppId;
 

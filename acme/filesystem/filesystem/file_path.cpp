@@ -734,6 +734,44 @@ bool file_path_is_absolute(const char * psz)
 }
 
 
+bool file_path_is_dots(const char * psz)
+{
+
+   if(is_null(psz))
+   {
+
+      return false;
+
+   }
+
+   if (psz[0] == '.')
+   {
+            
+      if (psz[1] == '\0')
+      {
+               
+         return true;
+               
+      }
+      else if(psz[1] == '.')
+      {
+               
+         if (psz[2] == '\0')
+         {
+                  
+            return true;
+                  
+         }
+
+      }
+
+   }
+
+   return false;
+
+}
+
+
 bool file_path_is_equal(const char * psz1, const char * psz2)
 {
 

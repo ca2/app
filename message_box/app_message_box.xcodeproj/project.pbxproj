@@ -299,7 +299,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/deps.txt",
+				"$(SRCROOT)/application_matter.txt",
 				"$(SRCROOT)/matter.txt",
 			);
 			outputFileListPaths = (
@@ -308,7 +308,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "$HOME/solution/basis/archive/tool-macos/bin/application_build_helper $SRCROOT\n";
+			shellScript = "$HOME/bin/application_build_helper $SRCROOT\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

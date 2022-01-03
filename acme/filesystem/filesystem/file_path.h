@@ -25,6 +25,9 @@ CLASS_DECL_ACME string file_path_title(const char * path);
 CLASS_DECL_ACME bool file_path_is_relative(const char * psz);
 CLASS_DECL_ACME bool file_path_is_absolute(const char * psz);
 
+
+CLASS_DECL_ACME bool file_path_is_dots(const char * psz);
+
 CLASS_DECL_ACME bool file_path_is_equal(const char * pszPath1, const char * pszPath2);
 
 CLASS_DECL_ACME string url_dir_name_for_relative(const char * pszPath);

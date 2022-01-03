@@ -26,7 +26,6 @@
 		9A21A7252761074D001E14CC /* libwindowing_macos.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A21A7082761074B001E14CC /* libwindowing_macos.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A21A7272761074E001E14CC /* libapex_posix.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A21A7092761074B001E14CC /* libapex_posix.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A21A7292761074E001E14CC /* libapex_apple.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A21A70A2761074B001E14CC /* libapex_apple.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		9A21A72A2761074E001E14CC /* libidn.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A21A70B2761074B001E14CC /* libidn.dylib */; };
 		9A21A72B2761074E001E14CC /* libidn.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A21A70B2761074B001E14CC /* libidn.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A21A72F2761074E001E14CC /* libacme_posix.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A21A70D2761074C001E14CC /* libacme_posix.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A21A7332761074F001E14CC /* libacme_apple.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A21A70F2761074C001E14CC /* libacme_apple.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -189,7 +188,6 @@
 				9A1CF4FF276161CB00802DB8 /* libapex.dylib in Frameworks */,
 				9AC01A452748BC47006BEBCC /* libapp_app.dylib in Frameworks */,
 				9A1CF4FD276161C900802DB8 /* libacme.dylib in Frameworks */,
-				9A21A72A2761074E001E14CC /* libidn.dylib in Frameworks */,
 				9A1CF501276161CB00802DB8 /* libaqua.dylib in Frameworks */,
 				9A1CF503276161CB00802DB8 /* libaura.dylib in Frameworks */,
 			);

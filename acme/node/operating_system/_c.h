@@ -91,7 +91,7 @@ CLASS_DECL_ACME bool is_verbose();
 //template < typename PRED >
 //inline bool predicate_Sleep(int iTime, PRED pred);
 
-CLASS_DECL_ACME void press_any_key_to_exit(const char* psz);
+//CLASS_DECL_ACME void press_any_key_to_exit(const char* psz);
 
 //void adapt_font_name(string & str);
 

@@ -30,7 +30,7 @@ namespace graphics
 
       virtual bool update_buffer(const ::size_i32 & size, int iStride = -1) override;
       virtual void destroy_buffer() override;
-      inline ::size_i32 buffer_size() { return m_pimageBuffer->get_size(); }
+      virtual ::size_i32 buffer_size();
 
 
       virtual bool update_window(::image * pimage) override;

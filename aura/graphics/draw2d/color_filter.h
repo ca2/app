@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "color_matrix.h"
+
+
 class CLASS_DECL_AURA color_filter
 {
 protected:

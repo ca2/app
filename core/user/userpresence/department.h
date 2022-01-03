@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "acme/platform/timer_array.h"
+
+
 namespace userpresence
 {
 

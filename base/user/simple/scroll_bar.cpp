@@ -1,6 +1,8 @@
 #include "framework.h"
 #include "base/user/simple/_simple.h"
-//#include "acme/node/operating_system/cross.h"
+#include "aura/graphics/draw2d/_draw2d.h"
+#include "acme/platform/timer.h"
+//#include "aura/user/interaction_draw2d.h"
 
 
 simple_scroll_bar::simple_scroll_bar()
@@ -1238,6 +1240,8 @@ void simple_scroll_bar::_001OnClip(::draw2d::graphics_pointer & pgraphics)
       //   bFirst = false;
 
       //}
+
+      //auto pinteractiondraw2d = get_draw2d();
       
       if(!m_pshapeaClip)
       {

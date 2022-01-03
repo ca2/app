@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "acme/operating_system.h"
 #include <time.h>
+#include "acme/platform/nanosecond_timer.h"
 
 
 //CLASS_DECL_ACME void sleep(const ::duration& duration)

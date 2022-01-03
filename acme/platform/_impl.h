@@ -333,10 +333,11 @@ inline __pointer(T) clone(const __pointer(T) & t)
 
 
 template < typename T >
-inline __pointer(T) & ___pointer < T >::clone(::matter * pobject)
+template < typename T2 >
+inline __pointer(T) & ___pointer < T >::clone(T2 * p)
 {
 
-   if (::is_null(pobject))
+   if (::is_null(p))
    {
 
       release();
@@ -345,7 +346,7 @@ inline __pointer(T) & ___pointer < T >::clone(::matter * pobject)
 
    }
 
-   return operator = (pobject->clone());
+   return operator = (p->clone());
 
 }
 

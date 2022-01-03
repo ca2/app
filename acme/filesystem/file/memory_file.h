@@ -133,7 +133,6 @@ public:
 
          ::memcpy_dup(pdata, &m_pmemory.m_p->m_memory.m_pdata[m_position], (size_t)nCount);
 
-
       }
 
       m_position += nCount;
@@ -146,7 +145,11 @@ public:
    {
 
       if (nCount <= 0)
+      {
+
          return;
+
+      }
 
       memsize iEndPosition = m_position + nCount;
 
@@ -171,9 +174,7 @@ public:
 
       //ASSERT(__is_valid_address(&(pb)[m_position], (uptr)nCount, true));
 
-
       ::memcpy_dup(&(pb)[m_position], pdata, (size_t)nCount);
-
 
       m_position = (memsize)iEndPosition;
 

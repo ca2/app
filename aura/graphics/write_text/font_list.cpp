@@ -2,6 +2,8 @@
 #include "aura/user/_user.h"
 
 #include <math.h>
+#include "font_list.h"
+#include "aura/graphics/draw2d/_draw2d.h"
 
 #define BOX 0
 #define BOX_SEL 1

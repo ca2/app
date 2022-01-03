@@ -16,10 +16,13 @@
 #include "aura/gpu/gpu/_.h"
 #include "aura/const/idpool.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_file.h"
 //#ifdef _UWP
 //#include "aura/node/universal_windows/directx_application.h"
 //#include "aura/os/windows_common/draw2d_direct2d_global.h"
 //#endif
+#include "aura/graphics/draw2d/_draw2d.h"
+//#include "acme/platform/system_impl.h"
 
 int GetMainScreenRect(RECTANGLE_I32 * lprect);
 
@@ -3818,91 +3821,6 @@ namespace aura
 //      return iMainWorkspace;
 //
 //   }
-
-   ::image_pointer system::matter_cache_image(::object * pobject, const ::string & strMatter)
-   {
-
-      string str(strMatter);
-
-      if (!str.begins_ci("matter://"))
-      {
-
-         str = "matter://" + str;
-
-      }
-
-      return get_cache_image(pobject, str);
-
-   }
-
-
-
-   ::image_pointer system::get_cache_image(::object * pobject, const ::payload & payloadFile)
-   {
-
-      ::file::path path = payloadFile.get_file_path();
-
-      if (path.is_empty())
-      {
-
-         return nullptr;
-
-      }
-
-      synchronous_lock synchronouslock(get_image_mutex());
-
-      auto & pimage = m_mapImage[path];
-
-      if (!pimage)
-      {
-
-         __construct(pimage);
-
-         pimage->set_nok();
-
-      }
-
-      return pimage;
-
-   }
-
-
-   ::image_pointer system::get_image(::object * pobject, const ::payload & payloadFile, const ::image::load_options & loadoptions)
-   {
-
-      auto pimage = get_cache_image(pobject, payloadFile);
-
-      if (!::is_ok(pimage))
-      {
-
-         auto pcontext = m_pcontext->m_pauracontext;
-
-         auto pcontextimage = pcontext->context_image();
-
-         pcontextimage->_load_image(pimage, payloadFile, loadoptions);
-
-      }
-
-      return pimage;
-
-   }
-
-
-   ::image_pointer system::matter_image(::object * pobject, const ::string & strMatter, const ::image::load_options & loadoptions)
-   {
-
-      string str(strMatter);
-
-      if (!str.begins_ci("matter://"))
-      {
-
-         str = "matter://" + str;
-
-      }
-
-      return get_image(pobject, str, loadoptions);
-
-   }
 
 
    void system::on_initial_frame_position(::user::frame * pframe)

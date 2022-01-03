@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "acme/platform/static_setup.h"
-
+//#include "system_impl.h"
+#include "library.h"
 
 //typedef  void(*PFN_create_factory)();
 

@@ -1,5 +1,7 @@
-// Created by camilo on 2021-06-08 03:00 BRT <3ThomasBorregaardSørensen__!!
+// Created by camilo on 2021-06-08 03:00 BRT <3ThomasBorregaardSï¿½rensen__!!
 #include "framework.h"
+#include "text_out.h"
+#include "draw_text.h"
 
 
 namespace write_text

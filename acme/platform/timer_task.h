@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "timer.h"
+#include "timer_array.h"
+
+
 class CLASS_DECL_ACME timer_task :
    virtual public timer,
    virtual public task

@@ -3,6 +3,7 @@
 #include "aura/update.h"
 #include "aqua/xml.h"
 #include "menu_view.h"
+#include "aura/graphics/draw2d/_draw2d.h"
 
 
 namespace user

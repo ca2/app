@@ -123,7 +123,7 @@ namespace acme
 
 
    
-   using library_map = string_map < __transport(::acme::library) >;
+   
 
 
 } // namespace acme

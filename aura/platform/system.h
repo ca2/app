@@ -25,14 +25,15 @@ namespace aura
       double                                             m_dDpi;
 
       ::mutex                                            m_mutexUserChildren;
-      __composite(class imaging)                         m_pimaging;
+      __composite(class ::imaging)                       m_pimaging;
 
       __composite(::gpu::approach)                       m_pgpu;
 
       bool                                               m_bProdevianMouse;
 
 
-      map < ::file::path, ::image_pointer >              m_mapImage;
+      string_map < __reference(image) >                  m_mapImage;
+
 
 
       system();
@@ -342,11 +343,6 @@ namespace aura
 
       //virtual ::e_status initialize_sockets();
 
-      ::image_pointer get_cache_image(::object * pobject, const ::payload & payloadFile);
-      ::image_pointer matter_cache_image(::object * pobject, const ::string & strMatter);
-
-      ::image_pointer get_image(::object * pobject, const ::payload & payloadFile, const ::image::load_options & loadoptions = ::image::load_options());
-      ::image_pointer matter_image(::object * pobject, const ::string & strMatter, const ::image::load_options & loadoptions = ::image::load_options());
 
       //virtual bool on_get_thread_name(string& strThreadName) override;
 

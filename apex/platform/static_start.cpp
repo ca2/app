@@ -4,6 +4,7 @@
 #include "apex/networking/sockets/_sockets.h"
 #include "apex/platform/app_core.h"
 #include "apex/astr.h"
+#include "acme/exception/engine.h"
 //#include "apex/os/_os.h"
 
 

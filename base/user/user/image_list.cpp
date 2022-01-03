@@ -2,6 +2,7 @@
 #include "base/user/user/_user.h"
 #include "aura/update.h"
 #include "image_list.h"
+#include "aura/graphics/draw2d/_draw2d.h"
 
 
 namespace user

@@ -2,6 +2,8 @@
 #include "core/user/user/_user.h"
 //#include "acme/node/operating_system/cross/windows/_windows.h"
 #include "acme/constant/timer.h"
+#include "acme/platform/timer.h"
+#include "aura/graphics/draw2d/_draw2d.h"
 
 
 #define DBLCLKMS 500

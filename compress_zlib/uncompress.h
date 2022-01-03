@@ -46,6 +46,10 @@
 #pragma once
 
 
+#include "acme/filesystem/file/transfer.h"
+#include "acme/compress/uncompress.h"
+
+
 namespace compress_zlib
 {
 

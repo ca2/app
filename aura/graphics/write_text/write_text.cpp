@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "write_text.h"
+#include "fonts.h"
 
 
 namespace write_text

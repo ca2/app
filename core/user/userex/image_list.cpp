@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "aura/graphics/draw2d/context_image.h"
+#include "aura/graphics/draw2d/_draw2d.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
 #endif

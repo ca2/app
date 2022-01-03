@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "timer_task.h"
+
+
 class CLASS_DECL_ACME timer_event:
    virtual public timer_task
 {

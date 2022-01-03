@@ -46,6 +46,10 @@ i32  aLen=plain.Length;    // Length is length of unzipped data.
 #pragma once
 
 
+#include "acme/filesystem/file/transfer.h"
+#include "acme/compress/uncompress.h"
+
+
 namespace compress_bzip2
 {
 

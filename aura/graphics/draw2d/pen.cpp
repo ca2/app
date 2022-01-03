@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "pen.h"
+#include "brush.h"
 
 
 namespace draw2d

@@ -1,6 +1,7 @@
 #include "framework.h"
-
-
+#include "icon.h"
+#include "image_map.h"
+#include "image.h"
 
 
 namespace draw2d
@@ -13,13 +14,6 @@ namespace draw2d
       m_bAutoDelete = true;
 
    }
-
-
-
-
-
-
-
 
 
    icon::~icon()
@@ -161,7 +155,12 @@ namespace draw2d
 
       bool bExists;
 
-      m_psystem->__defer_construct_new(m_pimagemap);
+      if(::is_null(m_pimagemap))
+      {
+
+         m_pimagemap = m_psystem->__create_new < size_image >();
+
+      }
 
       auto & pimage = m_pimagemap->get(size, bExists);
 

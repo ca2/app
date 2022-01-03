@@ -1,5 +1,10 @@
 // Created by camilo on 2021-06-08 02:30 BRT <3ThomasBorregaardS�rensen__!!
 #include "framework.h"
+#include "drawer.h"
+#include "text_out.h"
+#include "text_out_array.h"
+#include "text_metric.h"
+#include "font.h"
 
 
 namespace write_text

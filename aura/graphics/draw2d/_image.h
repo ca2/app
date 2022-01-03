@@ -18,7 +18,20 @@ namespace draw2d
 {
 
 
-    inline ::color::color get_pixel(const ::color32_t * pcolorref, int iScan, int iHeight, int x, int y);
+   inline ::color::color get_pixel(const ::color32_t * pdata, int iScan, int iHeight, int x, int y)
+   {
+
+#ifdef __APPLE__
+
+      return ((::color32_t *)&((u8 *)pdata)[iScan * (iHeight - y - 1)])[x];
+
+#else
+
+      return ((::color32_t *)&((u8 *)pdata)[iScan * y])[x];
+
+#endif
+
+   }
 
 
 } // namespace draw2d
@@ -370,3 +383,35 @@ CLASS_DECL_AURA e_rotate_flip exif_orientation_rotate_flip(int orientation);
 //};
 //
 //
+
+
+
+inline void copy_colorref(::color32_t * pcolorrefDst, const ::size_i32 & size, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc)
+{
+
+   return copy_colorref(pcolorrefDst, size.cx, size.cy, iStrideDst, pcolorrefSrc, iStrideSrc);
+
+}
+
+
+inline CLASS_DECL_AURA void copy_colorref(::color32_t * pcolorrefDst, const ::point_i32 & point, const ::size_i32 & size, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc)
+{
+
+   byte * pDst = (byte *) pcolorrefDst;
+
+   return copy_colorref((::color32_t *) pDst + point.x * sizeof(::color32_t) + point.y * iStrideDst, size.cx, size.cy, iStrideDst, pcolorrefSrc, iStrideSrc);
+
+}
+
+
+inline CLASS_DECL_AURA void copy_colorref(::color32_t* pcolorrefDst, const ::rectangle_i32 & rectangle, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc)
+{
+
+   return copy_colorref(pcolorrefDst, rectangle.top_left(), rectangle.size(), iStrideDst, pcolorrefSrc, iStrideSrc);
+
+}
+
+
+
+
+

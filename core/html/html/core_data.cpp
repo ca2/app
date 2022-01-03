@@ -1,5 +1,7 @@
 #include "framework.h"
 #include "core/id.h"
+#include "aura/graphics/draw2d/context_image.h"
+#include "acme/platform/hyperlink.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "_html.h"
 #endif
@@ -571,9 +573,7 @@ namespace html
 
       string strUrl = process_url(pszUrl);
 
-      auto psystem = get_system()->m_pcoresystem;
-
-      auto pimage = psystem->get_image(this, strUrl);
+      auto pimage = m_pcontext->context_image()->get_image(strUrl);
 
       return pimage;
 

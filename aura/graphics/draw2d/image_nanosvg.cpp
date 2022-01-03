@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "third/nanosvg/nanosvg.h"
 #include "third/nanosvg/nanosvgrast.h"
+#include "image.h"
 
 
 void nsvg_rasterizer_set_output_format(NSVGrasterizer * prasterizer, int iRedLower);

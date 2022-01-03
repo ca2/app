@@ -2,6 +2,11 @@
 #pragma once
 
 
+
+#include "acme/user/check.h"
+#include "acme/user/text.h"
+
+
 namespace message
 {
 

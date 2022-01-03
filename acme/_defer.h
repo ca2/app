@@ -60,14 +60,14 @@ inline __pointer(T) & ___pointer < T >::defer_assign_to(T2 * & p)
 
 
 template < class T >
-template < typename T2 >
-inline __pointer(T) & ___pointer < T >::defer_create_new(::object * pobject)
+template < typename OBJECT >
+inline __pointer(T) & ___pointer < T >::defer_create_new(OBJECT * pobject)
 {
 
    if (is_null())
    {
 
-      create_new < T2 >(pobject);
+      create_new < T >(pobject);
 
    }
 
@@ -77,11 +77,11 @@ inline __pointer(T) & ___pointer < T >::defer_create_new(::object * pobject)
 
 
 template < class T >
-template < typename T2 >
-inline __pointer(T) & ___pointer < T >::create_new(::object * pobject)
+template < typename OBJECT >
+inline __pointer(T) & ___pointer < T >::create_new(OBJECT * pobject)
 {
 
-   auto p = __new(T2);
+   auto p = __new(T);
 
    if (p)
    {
@@ -144,5 +144,5 @@ namespace papaya
 } // namespace papaya
 
 
-#include "acme/primitive/geometry2d/_defer.h"
+//#include "acme/primitive/geometry2d/_defer.h"
 

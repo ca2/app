@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "aura/graphics/draw2d/icon.h"
+
+
 namespace user
 {
 

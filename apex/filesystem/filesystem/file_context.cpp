@@ -6,6 +6,7 @@
 #include "acme/filesystem/filesystem/acme_dir.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
+#include "acme/primitive/string/base64.h"
 
 
 #ifdef WINDOWS_DESKTOP

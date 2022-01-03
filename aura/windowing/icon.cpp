@@ -2,6 +2,7 @@
 // recreated by Camilo 2021-01-28 16:38
 #include "framework.h"
 #include "_windowing.h"
+#include "aura/graphics/draw2d/image.h"
 
 
 namespace windowing

@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "base/user/user/_user.h"
 #include "aqua/xml.h"
+#include "aura/graphics/draw2d/context_image.h"
 
 
 namespace user

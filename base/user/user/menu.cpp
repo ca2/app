@@ -5,6 +5,9 @@
 #include "acme/constant/timer.h"
 #include "aura/astr.h"
 #include "aura/user/menu_command.h"
+#include "aura/graphics/draw2d/_draw2d.h"
+#include "acme/platform/timer.h"
+
 
 #define SWP_NOSIZE          0x0001
 #define SWP_NOMOVE          0x0002

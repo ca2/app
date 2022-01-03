@@ -130,7 +130,7 @@ else()
 endif()
 
 
-add_library(aqua SHARED ${library_source})
+add_library(aqua SHARED ${library_source} xml/_geometry2d_impl.h)
 
 target_precompile_headers(aqua PRIVATE framework.h)
 

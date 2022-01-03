@@ -1,5 +1,6 @@
 #include "framework.h"
 #include <math.h>
+#include "aura/graphics/draw2d/_draw2d.h"
 
 
 CLASS_DECL_AURA color32_t dk_red(); // <3 tbs

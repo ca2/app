@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/platform/library.h"
 #include <dlfcn.h>
 #include <link.h>
 

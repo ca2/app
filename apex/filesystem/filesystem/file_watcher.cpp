@@ -17,6 +17,8 @@
 //
 //
 #include "framework.h"
+#include "file_watcher.h"
+
 
 
 namespace file
@@ -134,7 +136,7 @@ namespace file
       try
       {
 
-         for (auto & pwatch : m_watchptra.ptra())
+         for (auto & pwatch : m_watchptra)
          {
 
             try

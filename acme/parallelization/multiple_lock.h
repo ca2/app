@@ -1,6 +1,8 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/bits.h"
+
 
 class CLASS_DECL_ACME multiple_lock
 {

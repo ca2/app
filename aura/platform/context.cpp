@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "aura/user/_user.h"
+#include "aura/graphics/draw2d/context_image.h"
 
 
 namespace aura

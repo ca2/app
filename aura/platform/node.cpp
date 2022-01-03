@@ -81,7 +81,7 @@ namespace aura
    }
 
 
-   ::image_pointer node::get_file_image_by_type_identifier(int iSize, const char * pszTypeIdentifier)
+   ::image * node::get_file_image_by_type_identifier(int iSize, const char * pszTypeIdentifier)
    {
       
       throw ::interface_only_exception();
@@ -91,7 +91,7 @@ namespace aura
    }
 
 
-   ::image_pointer node::get_file_image(int iSize, const char * pszPath)
+   ::image * node::get_file_image(int iSize, const char * pszPath)
    {
       
       throw ::interface_only_exception();

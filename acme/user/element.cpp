@@ -4,7 +4,9 @@
 #include "acme/constant/simple_command.h"
 //#include "apex/message/simple_command.h"
 //#include "aura/message/timer.h"
-
+#include "check.h"
+#include "text.h"
+#include "element.h"
 
 namespace user
 {

@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "aura/graphics/draw2d/icon.h"
+#include "apex/filesystem/filesystem/file_watcher.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
 #endif

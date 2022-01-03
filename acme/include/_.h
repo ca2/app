@@ -1105,7 +1105,7 @@ CLASS_DECL_ACME ::enum_priority get_os_class_scheduling_priority(i32 iCa2Priorit
 
 
 //#include "acme/primitive/datetime/mktime.h"
-#include "acme/primitive/api/api.h"
+//#include "acme/primitive/api/api.h"
 
 
 
@@ -1734,7 +1734,7 @@ class synchronization_object;
 //#include "acme/exception/_const.h"
 
 
-#include "acme/primitive/primitive/bits.h"
+//#include "acme/primitive/primitive/bits.h"
 
 #include "acme/primitive/mathematics/_.h"
 
@@ -1926,36 +1926,22 @@ inline auto &__typed_defer_new(__pointer(T) &p)
 //}
 
 
-
-template<typename TYPE1, typename TYPE2>
-inline void __dynamic_cast(TYPE1 *&ptype1, const TYPE2 *ptype2)
+template < typename TYPE >
+inline void __dynamic_cast(TYPE*& ptarget, const TYPE* psource)
 {
 
-   ptype1 = dynamic_cast <TYPE2 *> (ptype2);
+   ptarget = (TYPE *) psource;
 
 }
 
 
-template<typename TYPE1, typename TYPE2>
-inline void __dynamic_cast(__pointer(TYPE1) &ptype1, const TYPE2 *ptype2)
+template<typename TARGET, typename SOURCE>
+inline void __dynamic_cast(TARGET*& ptarget, const SOURCE* psource)
 {
 
-   ptype1 = ptype2;
+   ptarget = dynamic_cast <TARGET*> ((SOURCE *) psource);
 
 }
-
-
-template<typename TYPE1, typename TYPE2>
-inline void __dynamic_cast(__pointer(TYPE1) &ptype1, const __pointer(TYPE2) &ptype2)
-{
-
-   ptype1 = ptype2;
-
-}
-
-
-template<typename TYPE1, typename TYPE2>
-inline void __dynamic_cast(TYPE1 *&ptype1, const __pointer(TYPE2) &ptype2);
 
 
 template<typename T>
@@ -2495,15 +2481,6 @@ namespace acme
    inline void adel(T *&p)
    {
 
-      //Thank you Fiora a Eterna!!
-
-      //Fiora Aeterna? ?@FioraAeterna 20m20 minutes ago
-
-      //   maybe it's cynical but I'm starting to think the real reason so many newer games have constant autosaves is because they crash all the time
-      //   Details
-
-      // BRT 2015-02-18 19:08
-      // catch all (...) here in acme::del ... but should erase try catch from all underlying calls (frees, memory_frees, memory_debug_frees).
 
       try
       {
@@ -2532,17 +2509,6 @@ namespace acme
 
       //Thank you Mummi!!
 
-      //Nice late afternoon coffee of ever!!
-
-      //Thank you Fiora a Eterna!!
-
-      //Fiora Aeterna? ?@FioraAeterna some minutes ago
-
-      //   maybe it's cynical but I'm starting to think the real reason so many newer games have constant autosaves is because they crash all the time
-      //   Details
-
-      // BRT 2016-11-23 19:08
-      // catch all (...) here in acme::del ... but should erase try catch from all underlying calls (frees, memory_frees, memory_debug_frees).
 
       try
       {
@@ -2572,18 +2538,6 @@ namespace acme
    {
 
       //Thank you Mummi!!
-
-      //Nice late afternoon coffee of ever!!
-
-      //Thank you Fiora a Eterna!!
-
-      //Fiora Aeterna? ?@FioraAeterna some minutes ago
-
-      //   maybe it's cynical but I'm starting to think the real reason so many newer games have constant autosaves is because they crash all the time
-      //   Details
-
-      // BRT 2016-11-23 19:08
-      // catch all (...) here in acme::del ... but should erase try catch from all underlying calls (frees, memory_frees, memory_debug_frees).
 
       try
       {
@@ -3216,6 +3170,7 @@ CLASS_DECL_ACME ::e_status _003CountStatus(::count countSuccess, ::count countFa
 
 
 
+
 namespace file
 {
 
@@ -3367,7 +3322,7 @@ class CLASS_DECL_ACME integral_byte { public: integral_byte(memsize memsize = 1)
 #include "acme/constant/idpool.h"
 
 
-#include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/primitive/geometry2d/_geometry2d.h"
 
 
 
@@ -3478,7 +3433,7 @@ using matter_array = __pointer_array(::matter); // Please use just for keeping n
 
 using task_array = __pointer_array(::task); // Please use just for keeping non-member-based references.
 
-using object_addra = __address_array(::matter); // Please use just for keeping non-member-based references.
+//using object_addra = __address_array(::matter); // Please use just for keeping non-member-based references.
 
 class object_meta;
 
@@ -3645,6 +3600,9 @@ CLASS_DECL_ACME void add_release_on_end(::matter * pmatter);
 
 
 
+DECLARE_ENUMERATION(e_dock, enum_dock);
+DECLARE_ENUMERATION(e_border, enum_border);
+DECLARE_ENUMERATION(e_grip, enum_grip);
 
 
 namespace draw2d
@@ -3657,6 +3615,8 @@ namespace draw2d
 
 
 } // namespace draw2d
+
+
 
 
 #define OPTIONAL_BASE_BODY                                                          \
@@ -3700,9 +3660,9 @@ class context_image;
 #include "acme/platform/context.h"
 
 
-#include "acme/parallelization/pool.h"
+//#include "acme/parallelization/pool.h"
 
-#include "acme/primitive/geometry2d/_collection.h"
+//#include "acme/primitive/geometry2d/_collection.h"
 
 //#include "acme/primitive/geometry3d/_.h"
 
@@ -3715,7 +3675,7 @@ class message_box;
 
 #include "acme/platform/class.h"
 
-#include "acme/primitive/comparison/md5.h"
+//#include "acme/primitive/comparison/md5.h"
 
 #include "acme/primitive/primitive/request_interface.h"
 
@@ -3781,7 +3741,7 @@ inline bool is_font_sel(::id id) { return is_impact_group(id.i64(), FONTSEL_IMPA
 
 
 #include "acme/primitive/string/composite.h"
-#include "acme/primitive/string/base64.h"
+//#include "acme/primitive/string/base64.h"
 
 #include "acme/primitive/collection/composite_array.h"
 
@@ -3834,9 +3794,9 @@ inline auto &__typed(__composite(POINTER_TYPE) *pp) { return *pp->operator POINT
 #include "acme/filesystem/file/text_stream.h"
 
 
-#include "acme/filesystem/filesystem/acme_dir.h"
-#include "acme/filesystem/filesystem/acme_file.h"
-#include "acme/filesystem/filesystem/acme_path.h"
+//#include "acme/filesystem/filesystem/acme_dir.h"
+//#include "acme/filesystem/filesystem/acme_file.h"
+//#include "acme/filesystem/filesystem/acme_path.h"
 
 
 #include "acme/exception/_dump_context.h"
@@ -3914,6 +3874,14 @@ using lresult = iptr;
 #include "acme/primitive/primitive/id_space.h"
 
 
+namespace mathematics
+{
+
+   class mathematics;
+
+} // namespace mathematics
+
+
 #include "acme/primitive/mathematics/scalar_enum.h"
 
 
@@ -3934,112 +3902,8 @@ using lresult = iptr;
 
 
 
-//namespace acme
-//{
-//
-//#if defined _UWP && defined(__cplusplus_winrt)
-//
-//   interface class system_window
-//      {
-//
-//         virtual ::winrt::Windows::Foundation::Rect get_window_rect() = 0;
-//         virtual ::winrt::Windows::Foundation::Point get_cursor_position() = 0;
-//
-//
-//
-//      };
-//
-//   //CLASS_DECL_ACME bool get_window_rect(system_window ^ pwindow, RECTANGLE_F64 * prectangle);
-//
-//   //CLASS_DECL_ACME bool get_window_rect(system_window ^ pwindow, RECTANGLE_I32 * prectangle);
-//
-//
-//#endif
-//
-//
-//   class session;
-//
-//} // namespace acme
-
-
-//
-//#if defined _UWP
-//
-//
-//namespace universal_windows
-//{
-//
-//
-//   ref class directx_framework_view;
-//
-//
-//} // namespace universal_windows
-//
-//
-//#endif
-
-//namespace account
-//{
-//
-//
-//   //class interactive;
-//   //class credentials;
-//   //class department;
-//   //class user;
-//   //class product;
-//   //class storage;
-//
-//
-//} // namespace account
-
-
-
-//#include "acme/account/_.h"
-
-
 #include "acme/node/operating_system/_.h"
 
-
-#if defined(LINUX)
-
-//#include "acme/node/operating_system/ansi/_.h"
-
-
-#elif defined(_UWP)
-//
-//#include "acme/node/operating_system/_UWP/_UWP.h"
-//#include "acme/node/operating_system/_UWP/_UWP_user_impl.h"
-//
-#elif defined(MACOS)
-//
-//#include "acme/node/operating_system/ansi/ansios.h"
-//#include "acme/node/operating_system/macos/macos.h"
-//
-#elif defined(ANDROID)
-//
-//#include "acme/node/operating_system/ansi/ansios.h"
-//#include "acme/node/operating_system/android/android.h"
-//
-#elif defined(WINDOWS_DESKTOP)
-//
-//#include "acme/node/operating_system/windows/windows.h"
-//
-#elif defined(APPLE_IOS)
-//
-//#include "acme/node/operating_system/ansi/ansios.h"
-//#include "acme/node/operating_system/ios/ios.h"
-////#include "acme/node/operating_system/ios/ios_windowing.h"
-//
-#elif defined(SOLARIS)
-//
-//#include "acme/node/operating_system/ansi/ansios.h"
-//#include "acme/node/operating_system/solaris/solaris_user_impl.h"
-//
-#else
-//
-//#error "not implemented!!"
-//
-#endif
 
 
 CLASS_DECL_ACME string get_status_message(::e_status estatus);
@@ -4056,7 +3920,7 @@ CLASS_DECL_ACME string get_status_message(::e_status estatus);
 #include "acme/primitive/mathematics/objects.h"
 
 
-#include "acme/primitive/collection/file_path_map.h"
+//#include "acme/primitive/collection/file_path_map.h"
 
 
 //#include "acme/primitive/primitive/edit.h"
@@ -4065,14 +3929,24 @@ CLASS_DECL_ACME string get_status_message(::e_status estatus);
 class mq_base;
 
 
+namespace acme
+{
+
+
+   class timer_array;
+
+
+} // namespace acme
+
+
 
 #include "acme/platform/timer_callback.h"
-#include "acme/platform/timer_item.h"
-#include "acme/platform/timer_array.h"
-#include "acme/platform/nanosecond_timer.h"
-#include "acme/platform/timer.h"
-#include "acme/platform/timer_task.h"
-#include "acme/platform/timer_event.h"
+//#include "acme/platform/timer_item.h"
+//#include "acme/platform/timer_array.h"
+//#include "acme/platform/nanosecond_timer.h"
+//#include "acme/platform/timer.h"
+//#include "acme/platform/timer_task.h"
+//#include "acme/platform/timer_event.h"
 
 #include "acme/parallelization/thread_impl.h"
 #include "acme/platform/routine_array.h"
@@ -4090,13 +3964,13 @@ class mq_base;
 
 #include "acme/primitive/primitive/memory_base.h"
 #include "acme/primitive/primitive/memory.h"
-#include "acme/primitive/primitive/shared_memory.h"
-#include "acme/primitive/primitive/virtual_memory.h"
+//#include "acme/primitive/primitive/shared_memory.h"
+//#include "acme/primitive/primitive/virtual_memory.h"
 #include "acme/primitive/primitive/memory_container.h"
 
 
 #include "acme/filesystem/file/memory_file.h"
-#include "acme/filesystem/file/circular_file.h"
+//#include "acme/filesystem/file/circular_file.h"
 
 
 
@@ -4109,47 +3983,9 @@ class mq_base;
 
 
 
-//#if defined(_UWP)
-//
-//#include "app/acme/os/_UWP/_UWP_sockets.h"
-//
-//#endif
-
-
-
-
-
-
-
-//#include "acme/graphics/_.h"
-
-
-
-#include "acme/primitive/mathematics/random_number_generator.h"
-
-
-#include "acme/primitive/geometry2d/geometry.h"
-
 
 CLASS_DECL_ACME string get_exe_path();
 
-
-//#include "acme/net/_.h"
-
-//#include "acme/platform/launcher.h"
-
-//#include "acme/platform/interprocess_communication.h"
-
-//#include "acme/platform/app_launcher.h"
-
-
-class zip_context;
-//namespace zip
-//{
-//
-//   class util;
-//
-//} // namespace zip
 
 
 namespace file
@@ -4159,37 +3995,17 @@ namespace file
 
 } // namespace file
 
-//#include "acme/filesystem/filesystem/file_system.h"
-//
-//#include "acme/filesystem/filesystem/dir_system.h"
-//
-//#include "acme/filesystem/filesystem/file_context.h"
-//
-//#include "acme/filesystem/filesystem/dir_context.h"
-//
+
 #include "acme/filesystem/filesystem/listing.h"
-
-//#include "acme/filesystem/file/set.h"
-
-//#include "acme/primitive/primitive/application_bias.h"
-
-//#include "acme/primitive/primitive/command.h"
-
-
-#include "acme/exception/engine.h"
 
 
 #include "acme/platform/fixed_alloc_impl.h"
-//#include "acme/primitive/primitive/command_line.h"
-//#include "acme/user/create.h"
-//#include "acme/primitive/primitive/create.h"
-#include "acme/primitive/primitive/request_signal.h"
 
 
 #include "acme/platform/net.h"
 
 
-#include "acme/filesystem/file/buffered_file.h"
+//#include "acme/filesystem/file/buffered_file.h"
 
 
 #include "acme/platform/department.h"
@@ -4213,26 +4029,26 @@ struct lib_main_int
 #include "acme/networking/_.h"
 
 
-#include "acme/primitive/text/context.h"
+//#include "acme/primitive/text/context.h"
 
 
 //#include "acme/primitive/datetime/_.h"
 
 
-#include "acme/primitive/text/international_locale_schema.h"
+//#include "acme/primitive/text/international_locale_schema.h"
 
 
 //#include "acme/platform/cregexp.h"
 //#include "acme/platform/cregexp_util.h"
 
 
-class CLASS_DECL_ACME ptra :
-        virtual public __pointer_array(matter)
-{
-public:
-
-
-};
+//class CLASS_DECL_ACME ptra :
+//        virtual public __pointer_array(matter)
+//{
+//public:
+//
+//
+//};
 
 //
 //template < typename KEY, typename VALUE, typename ARG_VALUE = typename argument_of < VALUE >::type, class PAIR = pair<__pointer(KEY), VALUE, __pointer(KEY), ARG_VALUE> >
@@ -4244,19 +4060,19 @@ public:
 //template < typename KEY, typename VALUE, class PAIR = pair< KEY, __pointer(VALUE), KEY, __pointer(VALUE)> >
 //using map_to_pointer = map < KEY, KEY, __pointer(VALUE), __pointer(VALUE), PAIR >;
 
-using matter_to_matter = map < __pointer(matter), __pointer(matter) >;
-using matter_to_ptra = map < __pointer(matter), ptra > ;
+//using matter_to_matter = map < __pointer(matter), __pointer(matter) >;
+//using matter_to_ptra = map < __pointer(matter), ptra > ;
 
 
-namespace zip
-{
-
-
-   class util;
-
-
-} // namespace zip
-
+//namespace zip
+//{
+//
+//
+//   class util;
+//
+//
+//} // namespace zip
+//
 
 #include "acme/node/operating_system/text.h"
 
@@ -4287,13 +4103,13 @@ void set_osremote(os_remote * posremote);
 
 
 
-#include "acme/platform/exclusive.h"
+//#include "acme/platform/exclusive.h"
 
 
 #include "acme/process/_.h"
 
 
-#include "acme/platform/hyperlink.h"
+//#include "acme/platform/hyperlink.h"
 
 
 class ftpfs;
@@ -4331,7 +4147,7 @@ namespace xml
 #define new ACME_NEW
 
 
-#include "acme/node/operating_system/chronometer.h"
+//#include "acme/node/operating_system/chronometer.h"
 
 
 #include "acme/platform/number.h"
@@ -4346,71 +4162,16 @@ i32 CLASS_DECL_ACME WideCharToMultiByte2(::u32 CodePage, ::u32 dwFlags, const wi
                                          int_bool *pUsedDefaultChar);
 
 
-#include "acme/parallelization/data.h"
-
-
-//#include "acme/platform/shell_launcher.h"
-
-
-//#include "acme/platform/async.h"
-
-
-//#include "acme/platform/message_queue.h"
-
-
 #include "acme/primitive/text/international.h"
 
-
-//#include "acme/platform/static_start.h"
 
 
 
 #define return_(y, x) {y = x; return;}
 
 
-//extern "C"
-//{
-//
-//
-//i32 _c_lock_is_active(const char *lpszName);
-//i32 _c_lock(const char *lpszName, void **pdata);
-//i32 _c_unlock(void **pdata);
-//
-//
-//}
-
-//
-//CLASS_DECL_ACME string _ca_get_file_name(const char *psz, bool bCreate = false, i32 *pfd = nullptr);
-
-//CLASS_DECL_ACME string get_last_error_message(u32 dwError);
-
-
-#include "acme/platform/simple_app.h"
-
 
 #include "acme/primitive/primitive/osdata_array.h"
-
-
-//typedef void CALL_UPDATE(const ::id & id, const ::payload & payload);
-//using PFN_CALL_UPDATE = CALL_UPDATE *;
-
-//typedef void SET_MODIFIED(const ::id& id);
-//using PFN_SET_MODIFIED = SET_MODIFIED*;
-
-
-//CLASS_DECL_ACME void set_system_update(PFN_CALL_UPDATE pfnCallUpdate);
-//CLASS_DECL_ACME void system_update(const ::id & id, const ::payload & payload = ::e_type_new);
-
-
-
-//CLASS_DECL_ACME void set_system_set_modified(PFN_SET_MODIFIED pfnSetModified);
-//CLASS_DECL_ACME void system_set_modified(const ::id& id);
-
-
-
-
-
-//#include "app/acme/node/node.h"
 
 
 namespace mathematics
@@ -4438,180 +4199,6 @@ namespace _std
 }
 
 
-//namespace file
-//{
-//
-//
-//   class text_stream_string_file;
-//
-//} // namespace file
-
-//using text_stream = ::text_stream_string_file;
-
-
-
-/*
-namespace std
-{
-
-   using string = ::string;
-   using wstring = ::wstring;
-
-   template < class KEY,class VALUE >
-   using map = ::map < KEY,const KEY &,VALUE,const VALUE & >;
-
-   template < typename TYPE >
-   using list = ::list< TYPE >;
-
-   template < typename TYPE >
-   using vector = ::array< TYPE >;
-
-   template < typename TYPE >
-   using set = ::set< TYPE >;
-
-   using ostream = stream;
-   using ofstream = ::file::file_stream;
-
-   using istream = stream;
-   using ifstream = ::file::file_stream;
-
-   using stream = stream;
-   using fstream = ::file::file_stream;
-
-   using iostream = stream;
-   using iofstream = ::file::file_stream;
-
-   using stringstream = ::text_stream_string_file;
-   using ostringstream = ::text_stream_string_file;
-
-   template < typename T >
-   using numeric_limits = ::numeric_info < T >;
-
-   //      template <class T> void sort(T & t1,T & t2)
-   //    {
-   //     __sort < T >(t1,t2);
-   //}
-
-   template < class iterator >
-   void sort(iterator & a, iterator & b)
-   {
-      ::sort::quick_sort_iter(a, b);
-   }
-
-
-   template < typename T >
-   using stack = ::stack < T >;
-
-
-   using filebuf = ::file::stdio_file;
-
-   //using ios_base = stream_base;
-
-   // replace ::file:: => ::file::
-
-
-   using runtime_error = ::runtime_error;
-
-   using stdio_file = ::file::file;
-
-
-   template < typename T >
-   T abs(T t)
-   {
-      if(t < ::numeric_info< T >::null())
-         return -t;
-      else
-         return t;
-   }
-
-
-   using streamsize = filesize;
-   using streampos = filesize;
-   using streamoff = filesize;
-
-   using setw = ::file::set_width;
-
-#if !defined(WINDOWS_DESKTOP) && !defined(__APPLE__) && !defined(_UWP)
-
-   using bad_alloc = ::memory_exception;
-
-#endif
-
-   template < typename T >
-   using complex = ::math::complex < T >;
-
-
-   template <class T> const T& minimum(const T& a,const T& b)
-   {
-      return !(a > b) ? a : b;
-   }
-   template <class T> const T& maximum(const T& a,const T& b)
-   {
-      return !(a < b) ? a : b;
-   }
-
-   template <class RandomAccessIterator>
-   void make_heap(RandomAccessIterator first,RandomAccessIterator last)
-   {
-      ::papaya::make_heap(first,last);
-   }
-
-   template <class RandomAccessIterator,class Compare>
-   void make_heap(RandomAccessIterator first,RandomAccessIterator last,Compare comp)
-   {
-      ::papaya::make_heap(first,last,comp);
-   }
-
-   template <class RandomAccessIterator,class Compare>
-   void pop_heap(RandomAccessIterator first,RandomAccessIterator last)
-   {
-      ::papaya::pop_heap(first,last);
-   }
-
-   template <class RandomAccessIterator,class Compare>
-   void pop_heap(RandomAccessIterator first,RandomAccessIterator last,Compare comp)
-   {
-      ::papaya::pop_heap(first,last,comp);
-   }
-
-   template <class RandomAccessIterator,class Compare>
-   void push_heap(RandomAccessIterator first,RandomAccessIterator last)
-   {
-      ::papaya::push_heap(first,last);
-   }
-
-   template <class RandomAccessIterator,class Compare>
-   void push_heap(RandomAccessIterator first,RandomAccessIterator last,Compare comp)
-   {
-      ::papaya::push_heap(first,last,comp);
-   }
-
-   template <class RandomAccessIterator>
-   void sort_heap(RandomAccessIterator first,RandomAccessIterator last)
-   {
-      ::papaya::sort_heap(first,last);
-   }
-
-   template <class RandomAccessIterator,class Compare>
-   void sort_heap(RandomAccessIterator first,RandomAccessIterator last,Compare comp)
-   {
-      ::papaya::sort_heap(first,last,comp);
-   }
-
-
-
-#if !defined(__APPLE__)
-
-   template <class T> void __swap(T& a, T& b)
-   {
-      _std::__swap(a, b);
-   }
-
-#endif
-
-
-}*/
-
 
 template<typename T>
 inline string &to_network_payload(string &str, const T &value, bool bNewLine)
@@ -4626,9 +4213,6 @@ inline string &to_network_payload(string &str, const T &value, bool bNewLine)
 CLASS_DECL_ACME string get_last_error_string();
 
 
-//CLASS_DECL_ACME void set_acme(void * p,::acme::application * papp);
-//
-//CLASS_DECL_ACME ::acme::application * get_acme(void * p);
 
 
 #include "acme/platform/error.h"
@@ -4637,22 +4221,11 @@ CLASS_DECL_ACME string get_last_error_string();
 #include "acme/primitive/primitive/_.h"
 
 
-#include "acme/primitive/mathematics/mathematics.h"
-
-
-//#include "acme/scripting/javascript/javascript.h"
-
-
-#include "acme/filesystem/file/transfer.h"
-
-
-#include "acme/compress/_.h"
-
 
 #if !defined(_UWP)
 
 
-#include "acme/platform/serial.h"
+#include "acme/platform/serial_shared.h"
 
 
 #endif
@@ -4691,7 +4264,7 @@ class wcsdup_array;
 #include "acme/parallelization/fork.h"
 
 
-#include "acme/parallelization/tools.h"
+//#include "acme/parallelization/tools.h"
 
 
 #include "acme/platform/main.h"
@@ -4712,7 +4285,7 @@ CLASS_DECL_ACME string factory_name(const ::string& strLibrary);
 CLASS_DECL_ACME string library_filter(const ::string& str);
 
 
-#include "acme/platform/library.h"
+//#include "acme/platform/library.h"
 
 
 #include "acme/parallelization/cleanup_task.h"
@@ -4746,20 +4319,47 @@ DECLARE_ENUMERATION(e_element, enum_element);
 #include "acme/subject/subject.h"
 
 
-#include "acme/user/check.h"
-#include "acme/user/text.h"
+
+namespace geometry
+{
+
+   class geometry;
+
+} // namespace geometry
+
+class compress;
+class uncompress;
+
+//class system_impl;
 
 
-#include "acme/user/element.h"
+namespace str
+{
+
+   class base64;
+
+} // namespace str
+
+
+namespace acme
+{
+
+   class library;
+
+
+   using library_map = string_map < __transport(::acme::library) >;
+
+} // namespace acme
+
+class task_group;
+class task_tool;
+
+
 
 
 #include "acme/platform/system.h"
 
 
-//#include "acme/platform/console_application.h"
-
-
-//#include "acme/platform/application.h"
 
 
 #include "acme/primitive/primitive/_defer.h"
@@ -4772,14 +4372,6 @@ DECLARE_ENUMERATION(e_element, enum_element);
 #include "acme/platform/_impl.h"
 
 
-//#include "acme/primitive/collection/_collection_impl.h"
-
-
-//#ifndef WINDOWS_DESKTOP
-//
-//#include "acme/node/operating_system/cross/windows/windows_thread_impl.h"
-//
-//#endif
 
 
 #include "acme/primitive/collection/_papaya_impl.h"
@@ -4801,13 +4393,6 @@ DECLARE_ENUMERATION(e_element, enum_element);
 #include "acme/primitive/collection/_fifo_map_impl.h"
 
 #include "acme/primitive/collection/_papaya_array2d_impl.h"
-
-
-
-//#include "acme/platform/_system_smart_pointer_impl.h"
-//#include "acme/platform/_system_object_impl.h"
-//#include "acme/platform/_system_id_impl.h"
-//#include "acme/platform/_system_var_impl.h"
 
 
 
@@ -4839,7 +4424,7 @@ DECLARE_ENUMERATION(e_element, enum_element);
 #include "acme/primitive/datetime/_impl.h"
 
 
-#include "acme/primitive/geometry2d/_impl.h"
+//#include "acme/primitive/geometry2d/_impl.h"
 
 
 #include "acme/filesystem/_impl.h"
@@ -4856,22 +4441,7 @@ DECLARE_ENUMERATION(e_element, enum_element);
 
 
 
-//#include "acme/net/_impl.h"
-
-
-//#include "acme/graphics/draw2d/_impl.h"
-
-
-//#include "acme/exception/_.inl"
-
-
-//#include "acme/graphics/draw2d/_image_impl.h"
-
-
 #include "acme/primitive/string/_str_impl.h"
-
-
-//#include "acme/graphics/_impl.h"
 
 
 #include "acme/filesystem/file/_serializable_impl.h"
@@ -4889,19 +4459,8 @@ DECLARE_ENUMERATION(e_element, enum_element);
 #include "acme/filesystem/file/_text_stream_impl.h"
 
 
-//#include "acme/net/_impl.h"
-
 
 #include "acme/filesystem/filesystem/_impl.h"
-
-
-//#include "acme/database/_impl.h"
-
-
-//#include "acme/node/operating_system/_impl.h"
-
-
-//#include "acme/primitive/subject/_impl.h"
 
 
 #include "acme/primitive/primitive/_id_impl.h"

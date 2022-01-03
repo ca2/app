@@ -1,6 +1,11 @@
 #include "framework.h"
 #include "aura/user/_user.h"
 #include "acme/constant/timer.h"
+#include "acme/platform/timer.h"
+#include "aura/platform/draw_context2.h"
+//#include "interaction_draw2d.h"
+#include "acme/primitive/mathematics/mathematics.h"
+#include "aura/graphics/draw2d/_draw2d.h"
 
 
 void scroll_x(RECTANGLE_I32 * prectangle, double dRateX, const ::rectangle_i32 & rectangle)

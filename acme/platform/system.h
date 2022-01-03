@@ -9,6 +9,8 @@ class CLASS_DECL_ACME system :
 public:
 
 
+   //__pointer(system_impl) *                                                     m_psystemimpl;
+
    __transport(::factory::factory)                                   m_pfactoryFolder;
    
    bool                                                              m_bPostedInitialRequest;
@@ -18,6 +20,9 @@ public:
    __reference(::application)                                        m_papplicationMain;
 
    __composite(::apex::system)                                       m_psystemParent;
+
+   ::mutex                                                           m_mutexLibrary4;
+   ::acme::library_map                                               m_mapLibrary4;
 
 
    ::mutex                                                           m_mutexFactory;
@@ -44,8 +49,6 @@ public:
    __composite(class ::datetime::department)                         m_pdatetime;
 
 
-   ::mutex                                                           m_mutexLibrary4;
-   ::acme::library_map                                               m_mapLibrary4;
 
    string                                                            m_strOsUserTheme;
 
@@ -388,75 +391,6 @@ public:
 //
 //   }
 
-   template < typename PRED >
-   inline ::count fork_count_end(::property_object* pobject, ::count iCount, PRED pred, index iStart, ::enum_priority epriority)
-   {
-
-      if (iCount <= 0)
-      {
-
-         return -1;
-
-      }
-
-      //auto psystem = ::apex::get_system();
-
-      auto pgroup = task_group(epriority);
-
-      synchronous_lock slGroup(mutex());
-
-      ///   auto ptool = ::apex::get_system()->task_tool(op_fork_count);
-
-      if (pgroup == nullptr || pgroup->get_count() <= 1)
-      {
-
-         for (index i = iStart; i < iCount; i++)
-         {
-
-            pred(i);
-
-         }
-
-         return 1;
-
-      }
-
-      if (!pgroup->prepare(::e_task_op_fork_count, iCount - iStart))
-      {
-
-         return -1;
-
-      }
-
-      synchronization_array ptra;
-
-      ::count iScan = maximum(1, minimum(iCount - iStart, pgroup->task_count()));
-
-      for (index iOrder = 0; iOrder < iScan; iOrder++)
-      {
-
-         __pointer(predicate_holder_base) pusermessage = __new(forking_count_predicate < PRED >(pobject, iOrder, iOrder + iStart, iScan, iCount, pred));
-
-         if (!pgroup->add_predicate(pusermessage))
-         {
-
-            return -1;
-
-         }
-
-      }
-
-      if (!(*pgroup)())
-      {
-
-         return -1;
-
-      }
-
-      return iScan;
-
-   }
-
 
    ::task_group* task_group(::enum_priority epriority = ::e_priority_none);
 
@@ -526,8 +460,8 @@ public:
    //}
 
 
-   __transport(::compress) create_compress(const char* pszImplementation);
-   __transport(::uncompress) create_uncompress(const char* pszImplementation);
+   ::e_status new_compress(::compress ** ppcompress, const char* pszImplementation);
+   ::e_status new_uncompress(::uncompress ** ppuncompress, const char* pszImplementation);
 
 
    virtual ::e_status compress(::file::file* pfileOut, ::file::file* pfileIn, const char* pszImplementation);

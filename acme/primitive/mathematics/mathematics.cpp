@@ -8,7 +8,8 @@
 #ifdef WINDOWS
 #include <wincrypt.h>
 #endif
-
+#include "mathematics.h"
+#include "random_number_generator.h"
 
 namespace mathematics
 {

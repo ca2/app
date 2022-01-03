@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "buffered_file.h"
 
 
 namespace file

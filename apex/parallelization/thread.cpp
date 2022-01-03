@@ -4,6 +4,9 @@
 #include "acme/update.h"
 #include "acme/parallelization/message_queue.h"
 #include "apex/platform/node.h"
+#include "apex/user/primitive.h"
+#include "acme/parallelization/tools.h"
+#include "acme/parallelization/pool.h"
 
 
 //HANDLE duplicate_handle(HANDLE h);
@@ -4304,9 +4307,7 @@ void thread::message_handler(::message::message * pmessage)
          if (message.wParam == e_system_message_create)
          {
 
-            __pointer(::create) pcreate;
-            
-            __move(pcreate, message.lParam);
+            __pointer(::create) pcreate(message.lParam);
 
             if (pcreate.is_set())
             {
@@ -4335,9 +4336,7 @@ void thread::message_handler(::message::message * pmessage)
          else if (message.wParam == e_system_message_meta)
          {
 
-            __pointer(::send_thread_message) pmessage;
-
-            __move(pmessage, message.lParam);
+            __pointer(::send_thread_message) pmessage(message.lParam);
 
             m_message = pmessage->m_message;
 

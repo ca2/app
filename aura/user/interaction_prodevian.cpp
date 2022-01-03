@@ -5,6 +5,7 @@
 #include "interaction_thread.h"
 #include "acme/parallelization/message_queue.h"
 #include "acme/node/operating_system/_user.h"
+#include "aura/graphics/draw2d/graphics.h"
 
 
 #ifdef PARALLELIZATION_PTHREAD

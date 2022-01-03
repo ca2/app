@@ -3,6 +3,9 @@
 #include "acme/id.h"
 #include "apex/platform/app_core.h"
 #include "acme/platform/static_setup.h"
+#include "apex/message/command.h"
+#include "acme/primitive/text/context.h"
+#include "apex/user/primitive.h"
 
 
 #if defined(APPLE_IOS) || defined(_UWP) || defined(ANDROID)
@@ -590,7 +593,7 @@ namespace apex
    void session::on_message_erase_application(::message::message* pmessage)
    {
 
-      auto papplication = pmessage->m_lparam.move <::application>();
+      __pointer(::application) papplication(pmessage->m_lparam);
 
       erase_application(papplication);
 

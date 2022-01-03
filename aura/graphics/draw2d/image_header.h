@@ -75,6 +75,21 @@ struct image_header
 };
 
 
+template < >
+inline uptr uptr_hash<const ::image_header&>(const ::image_header& key)
+{
+   ::u32 u = (::u32)key.m_etype;
+   if (key.m_etype == ::image_type_plain_color)
+   {
+      u |= key.m_cr;
+   }
+   u |= key.m_size.cx << 16;
+   u |= key.m_size.cy << 24;
+   return u;
+}
+
+
+
 #pragma pack(pop, image_header)
 
 

@@ -1,4 +1,7 @@
 #include "framework.h"
+#include "aura/graphics/draw2d/context_image.h"
+#include "image_array.h"
+#include "image_drawing.h"
 
 
 image_array::image_array()

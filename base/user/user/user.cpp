@@ -5,6 +5,7 @@
 #include "simple_view.h"
 #include "acme/platform/static_setup.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
+#include "aura/graphics/draw2d/_draw2d.h"
 
 
 namespace base

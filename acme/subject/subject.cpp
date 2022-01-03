@@ -1,12 +1,25 @@
 // Injected in acme (camilo) from apex(thomas) by camilo on ThomasMonth19-2021 12:27 BRT
 #include "framework.h"
 #include "acme/platform/object_reference_count_debug.h"
+#include "acme/user/check.h"
+#include "acme/user/text.h"
+#include "acme/user/element.h"
 
 
-//namespace subject
-//{
-//
+subject::subject(const ::id & id) :
+   ::material_object(id),
+   ::property_object(id),
+   ::object(id)
+{
 
+   m_bOk = true;
+   m_bRet = false;
+   //m_puserelement = nullptr;
+   m_ptab = nullptr;
+   m_esubject = e_subject_handle;
+   m_bRet = false;
+
+}
 
 
 subject::~subject()

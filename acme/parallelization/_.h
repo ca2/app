@@ -238,7 +238,7 @@ class _synchronous_lock;
 //#include "retry_single_lock.h"
 #include "initial_single_lock.h"
 #include "synchronous_lock.h"
-#include "multiple_lock.h"
+//#include "multiple_lock.h"
 //#include "retry_multi_lock.h"
 
 //#include "synch_index_ptr_array.h"

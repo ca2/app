@@ -1303,9 +1303,18 @@ public:
 
    //virtual element* get_taskpool_container() override;
 
+   
 
 };
 
+
+template < typename INTERMEDIATE, typename RELEASEE >
+inline void release(INTERMEDIATE*, RELEASEE* & p)
+{ 
+   
+   ::release(p); 
+
+}
 
 #define __make_identifier(PART1, PART2) PART1 ## PART2
 

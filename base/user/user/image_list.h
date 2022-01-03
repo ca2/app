@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "acme/platform/timer_array.h"
+#include "aura/graphics/draw2d/image_array.h"
+
+
 namespace user
 {
 

@@ -7,9 +7,13 @@
 #include "acme/platform/static_start_internal.h"
 #include "acme/platform/static_setup.h"
 #include "simple_log.h"
-
+#include "acme/filesystem/file/transfer.h"
+#include "acme/compress/_.h"
+//#include "system_impl.h"
+#include "library.h"
 
 //__namespace_object_factory(class ::system, ::static_setup::flag_system)
+
 
 
 CLASS_DECL_ACME void trace_category_static_init(class ::system* psystem);
@@ -28,7 +32,8 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
    system::system()
    {
-      
+
+
 #ifdef PARALLELIZATION_PTHREAD
 #if defined(__APPLE__)
    m_bJoinable = true;
@@ -83,6 +88,8 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       }
 
+      //m_psystemimpl = new system_impl;
+
       //set_os_data(LAYERED_ACME, this);
 
    }
@@ -101,6 +108,8 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
       trace_category_static_term();
 
       m_mapLibrary4.clear();
+
+      //::acme::del(m_psystemimpl);
 
    }
 
@@ -1673,10 +1682,10 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
       if(etracelevel > e_trace_level_information)
       {
 
-         for (int i = 0; i < main.m_argc; i++)
+         for (int i = 0; i < main.get_argument_count1(); i++)
          {
 
-            string strArg = main.m_argv[i];
+            string strArg = main.get_argument1(i);
 
             if (strArg == "verbose")
             {
@@ -1791,7 +1800,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   __transport(::compress) system::create_compress(const char* pszImplementation)
+   ::e_status system::new_compress(::compress ** ppcompress, const char* pszImplementation)
    {
 
       auto pcompress = create < ::compress >("compress", pszImplementation);
@@ -1803,12 +1812,16 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       }
 
-      return pcompress;
+      *ppcompress = pcompress;
+
+      pcompress->increment_reference_count();
+
+      return ::success;
 
    }
 
 
-   __transport(::uncompress) system::create_uncompress(const char* pszImplementation)
+   ::e_status system::new_uncompress(::uncompress ** ppuncompress, const char* pszImplementation)
    {
 
       auto puncompress = create < ::uncompress >("compress", pszImplementation);
@@ -1820,6 +1833,10 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       }
 
+      *ppuncompress = puncompress;
+
+      puncompress->increment_reference_count();
+
       return puncompress;
 
    }
@@ -1827,16 +1844,18 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    ::e_status system::compress(::file::file* pfileOut, ::file::file* pfileIn, const char* pszImplementation)
    {
 
-      auto pcompress = create_compress(pszImplementation);
+      __pointer(::compress) pcompress;
 
-      if (!pcompress)
+      auto estatus = new_compress(&pcompress.m_p, pszImplementation);
+
+      if (!estatus)
       {
 
-         return pcompress;
+         return estatus;
 
       }
 
-      auto estatus = pcompress->transfer(pfileOut, pfileIn);
+      estatus = pcompress->transfer(pfileOut, pfileIn);
 
       if (!estatus)
       {
@@ -1853,16 +1872,18 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    ::e_status system::uncompress(::file::file* pfileOut, ::file::file* pfileIn, const char* pszImplementation)
    {
 
-      auto puncompress = create_uncompress(pszImplementation);
+      __pointer(::uncompress) puncompress;
 
-      if (!puncompress)
+      auto estatus = new_uncompress(&puncompress.m_p, pszImplementation);
+
+      if (!estatus)
       {
 
-         return puncompress;
+         return estatus;
 
       }
 
-      auto estatus = puncompress->transfer(pfileOut, pfileIn);
+      estatus = puncompress->transfer(pfileOut, pfileIn);
 
       if (!estatus)
       {

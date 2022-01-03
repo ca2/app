@@ -1,4 +1,11 @@
 #include "framework.h"
+#include "lock.h"
+#include "save_image.h"
+#include "graphics.h"
+#include "image.h"
+#include "brush.h"
+#include "draw2d.h"
+#include "task_tool.h"
 
 
 namespace aura

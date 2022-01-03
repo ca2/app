@@ -286,3 +286,17 @@ namespace write_text
 
 
 
+enum enum_draw_text
+{
+
+   e_draw_text_none,
+   e_draw_text_no_prefix,
+   e_draw_text_word_break,
+   e_draw_text_path_ellipsis,
+   e_draw_text_end_ellipsis,
+   e_draw_text_single_line,
+   e_draw_text_expand_tabs,
+
+};
+
+

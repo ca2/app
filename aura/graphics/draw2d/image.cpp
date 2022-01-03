@@ -4,6 +4,15 @@
 //////////////////////////////////////////////////////////////////////
 #include "framework.h"
 #include "aura/operating_system.h"
+#include "image.h"
+#include "graphics.h"
+#include "acme/primitive/mathematics/mathematics.h"
+#include "image_frame_array.h"
+#include "image_drawing.h"
+#include "task_tool.h"
+#include "save_image.h"
+#include "context_image.h"
+
 
 double get_default_screen_dpi()
 {
@@ -12,6 +21,7 @@ double get_default_screen_dpi()
    return 96.0;
 
 }
+
 
 #ifdef WINDOWS
 #include <wincodec.h>

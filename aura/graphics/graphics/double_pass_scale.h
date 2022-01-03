@@ -4,6 +4,7 @@
 #include <math.h>
 
 #include "filters.h"
+#include "aura/graphics/draw2d/_image.h"
 
 typedef struct
 {
@@ -499,4 +500,6 @@ Scale (
 }
 
 
+
 #endif //   _2_PASS_SCALE_H_
+

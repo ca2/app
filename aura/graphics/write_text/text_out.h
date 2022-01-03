@@ -1,6 +1,10 @@
 #pragma once
 
 
+
+#include "text.h"
+
+
 namespace write_text
 {
 

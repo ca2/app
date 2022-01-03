@@ -1,21 +1,7 @@
 #pragma once
 
 
-namespace acme
-{
-
-
-   namespace international
-   {
-
-
-      class locale_schema;
-
-
-   } // namespace international
-
-
-} // namespace acme
+#include "acme/primitive/text/international_locale_schema.h"
 
 
 namespace text
@@ -25,8 +11,8 @@ namespace text
    class context;
 
 
-   class CLASS_DECL_ACME schema :
-      public strid_map < string >
+   class schema :
+      public id_map < string >
    {
    public:
 
@@ -40,7 +26,7 @@ namespace text
    };
 
    class CLASS_DECL_ACME locale :
-      public strid_map < schema >
+      public id_map < schema >
    {
    public:
 
@@ -68,9 +54,9 @@ namespace text
    public:
 
 
-      schema *                     m_pschemaEn;
-      schema *                     m_pschemaStd;
-      strid_map < locale >         m_map;
+      schema *                      m_pschemaEn;
+      schema *                      m_pschemaStd;
+      id_map < locale >             m_map;
       
 
       table();

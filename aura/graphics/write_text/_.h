@@ -16,21 +16,6 @@ namespace write_text
 } // namespace write_text
 
 
-enum enum_draw_text
-{
-
-   e_draw_text_none,
-   e_draw_text_no_prefix,
-   e_draw_text_word_break,
-   e_draw_text_path_ellipsis,
-   e_draw_text_end_ellipsis,
-   e_draw_text_single_line,
-   e_draw_text_expand_tabs,
-
-};
-
-
-DECLARE_ENUMERATION(e_draw_text, enum_draw_text);
 
 
 #include "text.h"
@@ -42,33 +27,14 @@ DECLARE_ENUMERATION(e_draw_text, enum_draw_text);
 #include "draw_text.h"
 
 
-namespace write_text
-{
-
-
-   using text_out_shape = _shape < text_out, e_shape_text_out >;
-   using draw_text_shape = _shape < draw_text, e_shape_draw_text >;
-
-
-} // namespace write_text
+#include "acme/primitive/geometry2d/_geometry2d.h"
 
 
 template < >
-inline __pointer(___shape) __create_shape(const ::write_text::text_out& textout)
-{
-
-   return __new(::write_text::text_out_shape(textout));
-
-}
-
+CLASS_DECL_AURA __pointer(___shape) __create_shape(const ::write_text::text_out& textout);
 
 template < >
-inline __pointer(___shape) __create_shape(const ::write_text::draw_text& drawtext)
-{
-
-   return __new(::write_text::draw_text_shape(drawtext));
-
-}
+CLASS_DECL_AURA __pointer(___shape) __create_shape(const ::write_text::draw_text& drawtext);
 
 
 #include "bounding_rect.h"

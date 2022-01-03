@@ -4,6 +4,11 @@
 #pragma once
 
 
+#include "color_filter.h"
+#include "image_source.h"
+#include "image.h"
+
+
 enum enum_placement
 {
 

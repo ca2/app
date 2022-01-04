@@ -608,6 +608,10 @@
 		9AAD46B1249EA25300B23B86 /* host_interaction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AAD46AD249E9FA000B23B86 /* host_interaction.cpp */; };
 		9AAD4727249EC7F600B23B86 /* application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAD4726249EC7F600B23B86 /* application.h */; };
 		9AAD4729249EC81E00B23B86 /* library.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAD4728249EC81D00B23B86 /* library.h */; };
+		9AB3DCC5278360390025099F /* image_source.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AB3DCC1278360380025099F /* image_source.cpp */; };
+		9AB3DCC6278360390025099F /* image_meta.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AB3DCC2278360380025099F /* image_meta.cpp */; };
+		9AB3DCC7278360390025099F /* item.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AB3DCC3278360390025099F /* item.h */; };
+		9AB3DCC8278360390025099F /* save_image.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AB3DCC4278360390025099F /* save_image.h */; };
 		9AC2CCC326533BB700CC8096 /* context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC2CCBE26533BB600CC8096 /* context.cpp */; };
 		9AC2CCC426533BB700CC8096 /* message_queue.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC2CCBF26533BB600CC8096 /* message_queue.h */; };
 		9AC2CCC526533BB700CC8096 /* context.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC2CCC026533BB600CC8096 /* context.h */; };
@@ -1555,6 +1559,10 @@
 		9AAD46AE249E9FA000B23B86 /* host_interaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = host_interaction.h; sourceTree = "<group>"; };
 		9AAD4726249EC7F600B23B86 /* application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = application.h; sourceTree = "<group>"; };
 		9AAD4728249EC81D00B23B86 /* library.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = library.h; sourceTree = "<group>"; };
+		9AB3DCC1278360380025099F /* image_source.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = image_source.cpp; sourceTree = "<group>"; };
+		9AB3DCC2278360380025099F /* image_meta.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = image_meta.cpp; sourceTree = "<group>"; };
+		9AB3DCC3278360390025099F /* item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = item.h; sourceTree = "<group>"; };
+		9AB3DCC4278360390025099F /* save_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = save_image.h; sourceTree = "<group>"; };
 		9AC2CCBE26533BB600CC8096 /* context.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = context.cpp; sourceTree = "<group>"; };
 		9AC2CCBF26533BB600CC8096 /* message_queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = message_queue.h; sourceTree = "<group>"; };
 		9AC2CCC026533BB600CC8096 /* context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = context.h; sourceTree = "<group>"; };
@@ -2591,6 +2599,10 @@
 		9A2A52FA1F1FEDFD001AB0F8 /* draw2d */ = {
 			isa = PBXGroup;
 			children = (
+				9AB3DCC2278360380025099F /* image_meta.cpp */,
+				9AB3DCC1278360380025099F /* image_source.cpp */,
+				9AB3DCC3278360390025099F /* item.h */,
+				9AB3DCC4278360390025099F /* save_image.h */,
 				9A3764112409BEFA002D15D3 /* _.cpp */,
 				9A37646C2409BF0B002D15D3 /* _.h */,
 				9A3764612409BF06002D15D3 /* _image_impl.h */,
@@ -3110,6 +3122,7 @@
 				9A37648E2409BF0C002D15D3 /* glyph.h in Headers */,
 				9AD116F324F5147800177261 /* plain_edit.h in Headers */,
 				9A23A6AF26CE988400F98012 /* solaris_solaris.h in Headers */,
+				9AB3DCC7278360390025099F /* item.h in Headers */,
 				9A23A6A926CE988400F98012 /* solaris_cross_win_gdi_internal.h in Headers */,
 				9AC2CECF2653455600CC8096 /* event.h in Headers */,
 				9AD1173824F5147900177261 /* frame.h in Headers */,
@@ -3473,6 +3486,7 @@
 				9AC2CCC726533BB700CC8096 /* node.h in Headers */,
 				9AD116EB24F5147800177261 /* style_base.h in Headers */,
 				9A23A6AE26CE988400F98012 /* solaris_internal.h in Headers */,
+				9AB3DCC8278360390025099F /* save_image.h in Headers */,
 				9A23A58B26CE988300F98012 /* window_boot.h in Headers */,
 				9A23A67F26CE988300F98012 /* implementation.h in Headers */,
 				9A3764842409BF0C002D15D3 /* palette.h in Headers */,
@@ -3815,6 +3829,7 @@
 				9A37649A2409BF0C002D15D3 /* icon.cpp in Sources */,
 				9A3764D92409BF0C002D15D3 /* graphics.cpp in Sources */,
 				9A8B635F24CBCD3C00A93185 /* program.cpp in Sources */,
+				9AB3DCC6278360390025099F /* image_meta.cpp in Sources */,
 				9A3764B02409BF0C002D15D3 /* bitmap.cpp in Sources */,
 				9AD1173124F5147900177261 /* scroll.cpp in Sources */,
 				9AC2CE9E2653452D00CC8096 /* image_drawer.cpp in Sources */,
@@ -3917,6 +3932,7 @@
 				9A3764E42409BF10002D15D3 /* ortho.cpp in Sources */,
 				9A46D33526784C8D000B22D0 /* close_icon.h in Sources */,
 				9AC2CEA12653452D00CC8096 /* color_filter.cpp in Sources */,
+				9AB3DCC5278360390025099F /* image_source.cpp in Sources */,
 				9AF13609249DDCB8009410E0 /* application.cpp in Sources */,
 				9A23A4EB26CE988200F98012 /* ns_exception.cpp in Sources */,
 				9A23A50C26CE988200F98012 /* file.mm in Sources */,

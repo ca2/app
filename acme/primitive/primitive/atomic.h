@@ -177,7 +177,7 @@ inline i32 atomic_add32(i32* pi, i32 i)
 
 #else
    
-   inline i64 atomic_subtract(i64* pi, i64 i)
+   inline i64 atomic_subtract64(i64* pi, i64 i)
    {
 
 #if defined(RASPBIAN) && defined(OS32BIT)
@@ -202,7 +202,7 @@ inline i32 atomic_add32(i32* pi, i32 i)
 
 #else
 
-inline i32 atomic_subtract(i32* pi, i32 i)
+inline i32 atomic_subtract32(i32* pi, i32 i)
 {
 
 #if defined(RASPBIAN) && defined(OS32BIT)

@@ -43,43 +43,43 @@ class pointer_array;
 #define __pointer(TYPE) ::___pointer < TYPE >
 #define __pointer_array(TYPE) ::pointer_array < TYPE >
 
-
-template < typename TYPE >
-class ___address 
-{
-public:
-
-
-   TYPE* m_p;
-
-   ___address() : m_p(nullptr) {}
-   ~___address() { if (::is_set(m_p)) throw error_wrong_state; }
-
-   TYPE* get() { return m_p; }
-   TYPE* get() const { return m_p; }
-
-   operator TYPE* () const { return m_p; }
-   operator TYPE* () { return m_p; }
-
-   TYPE* operator ->() const { return m_p; }
-   TYPE* operator ->() { return m_p; }
-
-   bool is_null() const { return ::is_null(m_p); }
-   bool is_set() const { return ::is_set(m_p); }
-   bool operator !() const { return is_null(); }
-
-   template < typename OBJECT >
-   __pointer(OBJECT) cast() const;
-
-
-   template < typename INTERMEDIATE >
-   void release(INTERMEDIATE* p) { ::release(p, m_p); }
-
-
-   template < typename ADDRESS >
-   ___address & operator = (ADDRESS & p) { p->increment_reference_count(); release(p); m_p = p; return *this; }
-
-};
+//
+//template < typename TYPE >
+//class ___address 
+//{
+//public:
+//
+//
+//   TYPE* m_p;
+//
+//   ___address() : m_p(nullptr) {}
+//   ~___address() { if (::is_set(m_p)) throw error_wrong_state; }
+//
+//   TYPE* get() { return m_p; }
+//   TYPE* get() const { return m_p; }
+//
+//   operator TYPE* () const { return m_p; }
+//   operator TYPE* () { return m_p; }
+//
+//   TYPE* operator ->() const { return m_p; }
+//   TYPE* operator ->() { return m_p; }
+//
+//   bool is_null() const { return ::is_null(m_p); }
+//   bool is_set() const { return ::is_set(m_p); }
+//   bool operator !() const { return is_null(); }
+//
+//   template < typename OBJECT >
+//   __pointer(OBJECT) cast() const;
+//
+//
+//   template < typename INTERMEDIATE >
+//   void release(INTERMEDIATE* p) { ::release(p, m_p); }
+//
+//
+//   template < typename ADDRESS >
+//   ___address & operator = (ADDRESS & p) { p->increment_reference_count(); release(p); m_p = p; return *this; }
+//
+//};
 
 
 #define __throw(...) throw_exception(__VA_ARGS__)

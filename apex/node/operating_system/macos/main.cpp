@@ -15,6 +15,8 @@
 // //
 #include "framework.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/acme_path.h"
 // #include <assert.h>
 // #include <stdbool.h>
 // #include <sys/types.h>

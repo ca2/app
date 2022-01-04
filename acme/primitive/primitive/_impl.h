@@ -926,7 +926,7 @@ template < typename OBJECT >
 inline __pointer(T) & ___pointer < T >::create(OBJECT * pobject)
 {
 
-  auto p = pobject->__create < T >();
+  auto p = pobject->template __create < T >();
 
   return operator =(p);
 
@@ -1533,7 +1533,7 @@ inline __pointer(T) & ___pointer<T> ::defer_create(OBJECT * pobject)
    if (is_null())
    {
 
-      operator=(pobject->__create < T >());
+      operator=(pobject->template __create < T >());
 
    }
 

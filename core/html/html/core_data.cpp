@@ -575,7 +575,7 @@ namespace html
 
       auto pimage = m_pcontext->context_image()->get_image(strUrl);
 
-      return pimage;
+      return ::move(pimage);
 
    }
 

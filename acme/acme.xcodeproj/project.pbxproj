@@ -1861,6 +1861,12 @@
 		9AAE6E9E251920DB00F10692 /* os_colors.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AAE6E9A251920DB00F10692 /* os_colors.cpp */; };
 		9AAE6E9F251920DB00F10692 /* _const_key.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAE6E9B251920DB00F10692 /* _const_key.h */; };
 		9AAE6EA0251920DB00F10692 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAE6E9C251920DB00F10692 /* _.h */; };
+		9AB3DCCB278375370025099F /* _geometry2d.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AB3DCC9278375370025099F /* _geometry2d.h */; };
+		9AB3DCCC278375380025099F /* _geometry2d.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AB3DCC9278375370025099F /* _geometry2d.h */; };
+		9AB3DCCF2783755B0025099F /* _shape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AB3DCCD2783755A0025099F /* _shape.cpp */; };
+		9AB3DCD02783755B0025099F /* _shape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AB3DCCD2783755A0025099F /* _shape.cpp */; };
+		9AB3DCD12783755B0025099F /* _shape.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AB3DCCE2783755B0025099F /* _shape.h */; };
+		9AB3DCD22783755B0025099F /* _shape.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AB3DCCE2783755B0025099F /* _shape.h */; };
 		9AB988AE2519B9720040B207 /* action_context.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AB988AD2519B9720040B207 /* action_context.h */; };
 		9AC018D6274888C8006BEBCC /* uncompress.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC018D2274888C7006BEBCC /* uncompress.cpp */; };
 		9AC018D7274888C8006BEBCC /* uncompress.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC018D2274888C7006BEBCC /* uncompress.cpp */; };
@@ -4243,6 +4249,9 @@
 		9AAE6E9A251920DB00F10692 /* os_colors.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = os_colors.cpp; sourceTree = "<group>"; };
 		9AAE6E9B251920DB00F10692 /* _const_key.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _const_key.h; sourceTree = "<group>"; };
 		9AAE6E9C251920DB00F10692 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
+		9AB3DCC9278375370025099F /* _geometry2d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _geometry2d.h; sourceTree = "<group>"; };
+		9AB3DCCD2783755A0025099F /* _shape.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _shape.cpp; sourceTree = "<group>"; };
+		9AB3DCCE2783755B0025099F /* _shape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _shape.h; sourceTree = "<group>"; };
 		9AB988AD2519B9720040B207 /* action_context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = action_context.h; sourceTree = "<group>"; };
 		9AC018D2274888C7006BEBCC /* uncompress.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = uncompress.cpp; sourceTree = "<group>"; };
 		9AC018D3274888C7006BEBCC /* uncompress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uncompress.h; sourceTree = "<group>"; };
@@ -5027,6 +5036,9 @@
 		9A68A6042511442F008DABD2 /* geometry2d */ = {
 			isa = PBXGroup;
 			children = (
+				9AB3DCCD2783755A0025099F /* _shape.cpp */,
+				9AB3DCCE2783755B0025099F /* _shape.h */,
+				9AB3DCC9278375370025099F /* _geometry2d.h */,
 				9A68A6102511442F008DABD2 /* _.cpp */,
 				9A68A61A2511442F008DABD2 /* _.h */,
 				9A786260264B90E4003DF8A0 /* _collection_bounding_rect.h */,
@@ -6791,6 +6803,7 @@
 				9A68AEE325114435008DABD2 /* sign.h in Headers */,
 				9A68AE6225114435008DABD2 /* virtual_memory.h in Headers */,
 				9A892B8226CD7572008D6412 /* windows_guid_def.h in Headers */,
+				9AB3DCD12783755B0025099F /* _shape.h in Headers */,
 				9A892BF026CD7573008D6412 /* windowing.h in Headers */,
 				9A5F8DFD27193D4D002CB2B8 /* _.h in Headers */,
 				9A68B29225114437008DABD2 /* factory_exchange.h in Headers */,
@@ -7291,6 +7304,7 @@
 				9A68AD9625114434008DABD2 /* profiler.h in Headers */,
 				9A68AFB125114436008DABD2 /* memory_map.h in Headers */,
 				9A5F8E0827193D4E002CB2B8 /* _.h in Headers */,
+				9AB3DCCB278375370025099F /* _geometry2d.h in Headers */,
 				9A7861A9264B9096003DF8A0 /* interlocked_count.h in Headers */,
 				9A892B7C26CD7572008D6412 /* windows_ntstatus.h in Headers */,
 				9A68AEF625114435008DABD2 /* _c_trait_impl.h in Headers */,
@@ -7881,6 +7895,7 @@
 				9A787CC6264C04CD003DF8A0 /* context.h in Headers */,
 				9A892CF126CD7574008D6412 /* _.h in Headers */,
 				9ADD651426B5CF1300D11298 /* _set_impl.h in Headers */,
+				9AB3DCCC278375380025099F /* _geometry2d.h in Headers */,
 				9A892D4526CD7574008D6412 /* solaris_file.h in Headers */,
 				9A892B3F26CD7572008D6412 /* windows_defs.h in Headers */,
 				9AD68F78251A753A00C0EBD7 /* runnable.h in Headers */,
@@ -8343,6 +8358,7 @@
 				9AD690E8251A753A00C0EBD7 /* ___serialization_draft.h in Headers */,
 				9AD690E9251A753A00C0EBD7 /* _c_bridge.h in Headers */,
 				9ADD654526B5CFE700D11298 /* property_memory_allocate.h in Headers */,
+				9AB3DCD22783755B0025099F /* _shape.h in Headers */,
 				9A892E0126CD9062008D6412 /* check.h in Headers */,
 				9A892B2F26CD7572008D6412 /* _.h in Headers */,
 				9AD690EB251A753A00C0EBD7 /* _defer.h in Headers */,
@@ -8543,6 +8559,7 @@
 				9A892DFA26CD9062008D6412 /* idpool.cpp in Sources */,
 				9A68AE6525114435008DABD2 /* command.cpp in Sources */,
 				9A787B90264BB13F003DF8A0 /* timer_callback.cpp in Sources */,
+				9AB3DCCF2783755B0025099F /* _shape.cpp in Sources */,
 				9A68ADDE25114434008DABD2 /* string_array_base.cpp in Sources */,
 				9A15A6CE264B59EF0080670E /* synchronized_process.cpp in Sources */,
 				9A892AEE26CD7572008D6412 /* memory.cpp in Sources */,
@@ -9160,6 +9177,7 @@
 				9A892DFB26CD9062008D6412 /* idpool.cpp in Sources */,
 				9AD691F2251A753A00C0EBD7 /* mktime.cpp in Sources */,
 				9A787BD3264BB16A003DF8A0 /* serial.cpp in Sources */,
+				9AB3DCD02783755B0025099F /* _shape.cpp in Sources */,
 				9ACC5D90251A967E008528B1 /* ios.cpp in Sources */,
 				9A892BC526CD7572008D6412 /* mm_graphics.mm in Sources */,
 				9AD691F5251A753A00C0EBD7 /* dup.cpp in Sources */,

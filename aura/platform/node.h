@@ -55,9 +55,9 @@ namespace aura
 //#endif
 
 
-      virtual ::image * get_file_image_by_type_identifier(int iSize, const char * pszTypeIdentifier);
+      virtual ::image_pointer get_file_image_by_type_identifier(int iSize, const char * pszTypeIdentifier);
 
-      virtual ::image * get_file_image(int iSize, const char * pszPath);
+      virtual ::image_pointer get_file_image(int iSize, const char * pszPath);
       
       virtual void defer_dock_application(bool bDock);
 

@@ -16,7 +16,6 @@
 		9A64C1202660BC5C0074030F /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A64C11F2660BC5C0074030F /* libapex.dylib */; };
 		9A64C1222660BCC10074030F /* libaqua.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A64C1212660BCC10074030F /* libaqua.dylib */; };
 		9AC01D7E2748C548006BEBCC /* libapp_app.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC01A4E2748C210006BEBCC /* libapp_app.dylib */; };
-		9AC01D7F2748C548006BEBCC /* libapp_app.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AC01A4E2748C210006BEBCC /* libapp_app.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,20 +62,6 @@
 			remoteInfo = app_app;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		9AC01D802748C548006BEBCC /* Embed Libraries */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				9AC01D7F2748C548006BEBCC /* libapp_app.dylib in Embed Libraries */,
-			);
-			name = "Embed Libraries";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		9A48898624EB48DE00119EC4 /* libapp_message_box.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libapp_message_box.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -204,7 +189,6 @@
 				9A48898224EB48DE00119EC4 /* Headers */,
 				9A48898324EB48DE00119EC4 /* Sources */,
 				9A48898424EB48DE00119EC4 /* Frameworks */,
-				9AC01D802748C548006BEBCC /* Embed Libraries */,
 			);
 			buildRules = (
 			);

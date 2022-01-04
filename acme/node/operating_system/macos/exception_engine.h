@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "acme/exception/engine.h"
+
+
 namespace macos
 {
 

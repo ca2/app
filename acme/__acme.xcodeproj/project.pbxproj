@@ -7,12 +7,55 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9A8C4E122783D18D000C8587 /* __acme.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8C4E112783D18D000C8587 /* __acme.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9A8C4E252783D28D000C8587 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8C4E1F2783D21A000C8587 /* libacme.dylib */; };
+		9A8C4E262783D28E000C8587 /* libacme.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A8C4E1F2783D21A000C8587 /* libacme.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9A8C4E292783D293000C8587 /* libidn.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8C4E282783D293000C8587 /* libidn.dylib */; };
+		9A8C4E2A2783D293000C8587 /* libidn.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A8C4E282783D293000C8587 /* libidn.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9A8C4E1E2783D21A000C8587 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A8C4E182783D21A000C8587 /* acme.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A68A41425114352008DABD2;
+			remoteInfo = acme;
+		};
+		9A8C4E202783D21A000C8587 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A8C4E182783D21A000C8587 /* acme.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AD692B6251A753A00C0EBD7;
+			remoteInfo = ios_acme;
+		};
+		9A8C4E222783D24D000C8587 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A8C4E182783D21A000C8587 /* acme.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A68A41325114352008DABD2;
+			remoteInfo = acme;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9A8C4E272783D28E000C8587 /* Embed Libraries */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				9A8C4E2A2783D293000C8587 /* libidn.dylib in Embed Libraries */,
+				9A8C4E262783D28E000C8587 /* libacme.dylib in Embed Libraries */,
+			);
+			name = "Embed Libraries";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		9A8C4E0E2783D18D000C8587 /* __acme.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = __acme.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A8C4E112783D18D000C8587 /* __acme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = __acme.h; sourceTree = "<group>"; };
+		9A8C4E182783D21A000C8587 /* acme.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = acme.xcodeproj; sourceTree = "<group>"; };
+		9A8C4E282783D293000C8587 /* libidn.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libidn.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -20,6 +63,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A8C4E292783D293000C8587 /* libidn.dylib in Frameworks */,
+				9A8C4E252783D28D000C8587 /* libacme.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -29,8 +74,10 @@
 		9A8C4E042783D18D000C8587 = {
 			isa = PBXGroup;
 			children = (
+				9A8C4E182783D21A000C8587 /* acme.xcodeproj */,
 				9A8C4E102783D18D000C8587 /* __acme */,
 				9A8C4E0F2783D18D000C8587 /* Products */,
+				9A8C4E242783D28D000C8587 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -45,9 +92,25 @@
 		9A8C4E102783D18D000C8587 /* __acme */ = {
 			isa = PBXGroup;
 			children = (
-				9A8C4E112783D18D000C8587 /* __acme.h */,
 			);
 			path = __acme;
+			sourceTree = "<group>";
+		};
+		9A8C4E192783D21A000C8587 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A8C4E1F2783D21A000C8587 /* libacme.dylib */,
+				9A8C4E212783D21A000C8587 /* libios_acme.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9A8C4E242783D28D000C8587 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9A8C4E282783D293000C8587 /* libidn.dylib */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -57,7 +120,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A8C4E122783D18D000C8587 /* __acme.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,10 +134,12 @@
 				9A8C4E0A2783D18D000C8587 /* Sources */,
 				9A8C4E0B2783D18D000C8587 /* Frameworks */,
 				9A8C4E0C2783D18D000C8587 /* Resources */,
+				9A8C4E272783D28E000C8587 /* Embed Libraries */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				9A8C4E232783D24D000C8587 /* PBXTargetDependency */,
 			);
 			name = __acme;
 			productName = __acme;
@@ -107,12 +171,35 @@
 			mainGroup = 9A8C4E042783D18D000C8587;
 			productRefGroup = 9A8C4E0F2783D18D000C8587 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 9A8C4E192783D21A000C8587 /* Products */;
+					ProjectRef = 9A8C4E182783D21A000C8587 /* acme.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				9A8C4E0D2783D18D000C8587 /* __acme */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		9A8C4E1F2783D21A000C8587 /* libacme.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libacme.dylib;
+			remoteRef = 9A8C4E1E2783D21A000C8587 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A8C4E212783D21A000C8587 /* libios_acme.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libios_acme.a;
+			remoteRef = 9A8C4E202783D21A000C8587 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		9A8C4E0C2783D18D000C8587 /* Resources */ = {
@@ -133,6 +220,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9A8C4E232783D24D000C8587 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = acme;
+			targetProxy = 9A8C4E222783D24D000C8587 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		9A8C4E132783D18D000C8587 /* Debug */ = {
@@ -271,6 +366,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ca2.--acme";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -298,6 +394,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ca2.--acme";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";

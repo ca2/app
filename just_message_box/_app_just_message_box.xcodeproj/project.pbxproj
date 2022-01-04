@@ -18,8 +18,8 @@
 		9A8FCA8A2651A7FE00C0D8A1 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A8FCA852651A7FE00C0D8A1 /* MainMenu.xib */; };
 		9A8FCA8B2651A7FE00C0D8A1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A8FCA872651A7FE00C0D8A1 /* Images.xcassets */; };
 		9A8FCA8C2651A7FE00C0D8A1 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8FCA882651A7FE00C0D8A1 /* main.cpp */; };
-		9ADD664C26B6226400D11298 /* libssl.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9ADD664A26B6226400D11298 /* libssl.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		9ADD664D26B6226400D11298 /* libcrypto.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9ADD664B26B6226400D11298 /* libcrypto.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9ADD664C26B6226400D11298 /* libssl.3.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9ADD664A26B6226400D11298 /* libssl.3.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9ADD664D26B6226400D11298 /* libcrypto.3.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9ADD664B26B6226400D11298 /* libcrypto.3.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9ADD664E26B6227F00D11298 /* libacme.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AC396FF25195DEB0036B92A /* libacme.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9ADD665026B6228100D11298 /* libapex.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AC3970125195DEB0036B92A /* libapex.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9ADD665126B6228400D11298 /* libapp_just_message_box_app.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A46D2E12678453B000B22D0 /* libapp_just_message_box_app.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -122,8 +122,8 @@
 			files = (
 				9A6A480B26611214004ED97A /* libwrite_text_quartz2d.dylib in Embed Libraries */,
 				9A6A480826611214004ED97A /* libnode_macos.dylib in Embed Libraries */,
-				9ADD664C26B6226400D11298 /* libssl.dylib in Embed Libraries */,
-				9ADD664D26B6226400D11298 /* libcrypto.dylib in Embed Libraries */,
+				9ADD664C26B6226400D11298 /* libssl.3.dylib in Embed Libraries */,
+				9ADD664D26B6226400D11298 /* libcrypto.3.dylib in Embed Libraries */,
 				9A6A480526611203004ED97A /* libwindowing_macos.dylib in Embed Libraries */,
 				9A6A480326611202004ED97A /* libdraw2d_quartz2d.dylib in Embed Libraries */,
 			);
@@ -150,8 +150,8 @@
 		070B8EFD1B6E53FA00D26137 /* Hello Multiverse!!Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Hello Multiverse!!Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		070B8F021B6E53FA00D26137 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		070B8F031B6E53FA00D26137 /* Hello_Multiverse__Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Hello_Multiverse__Tests.m; sourceTree = "<group>"; };
-		9A39BAE424EB25CA003C070E /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.dylib; path = ../../time/macos/libssl.dylib; sourceTree = "<group>"; };
-		9A39BAE524EB25CA003C070E /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = ../../time/macos/libcrypto.dylib; sourceTree = "<group>"; };
+		9A39BAE424EB25CA003C070E /* libssl.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.3.dylib; path = ../../time/macos/libssl.3.dylib; sourceTree = "<group>"; };
+		9A39BAE524EB25CA003C070E /* libcrypto.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.3.dylib; path = ../../time/macos/libcrypto.3.dylib; sourceTree = "<group>"; };
 		9A39BAE924EB25CA003C070E /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = ../../time/macos/libaura.dylib; sourceTree = "<group>"; };
 		9A39BB1724EB2D04003C070E /* libapp_app.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libapp_app.dylib; path = ../../time/macos/libapp_app.dylib; sourceTree = "<group>"; };
 		9A6A47D826611133004ED97A /* app_just_message_box.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = app_just_message_box.xcodeproj; sourceTree = "<group>"; };
@@ -171,8 +171,8 @@
 		9AC3970125195DEB0036B92A /* libapex.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC3971125195E580036B92A /* libacme.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libacme.dylib; path = ../../time/build/product/Debug/libacme.dylib; sourceTree = "<group>"; };
 		9AC3971225195E580036B92A /* libapex.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libapex.dylib; path = ../../time/build/product/Debug/libapex.dylib; sourceTree = "<group>"; };
-		9ADD664A26B6226400D11298 /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.dylib; path = "../../../archive/storage-macos/library/x86_64/Debug/libssl.dylib"; sourceTree = "<group>"; };
-		9ADD664B26B6226400D11298 /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = "../../../archive/storage-macos/library/x86_64/Debug/libcrypto.dylib"; sourceTree = "<group>"; };
+		9ADD664A26B6226400D11298 /* libssl.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.3.dylib; path = "../../../archive/storage-macos/library/libssl.3.dylib"; sourceTree = "<group>"; };
+		9ADD664B26B6226400D11298 /* libcrypto.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.3.dylib; path = "../../../archive/storage-macos/library/libcrypto.3.dylib"; sourceTree = "<group>"; };
 		9AE5CC8E22CBECAE00EDEAD1 /* en.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = en.lproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -249,8 +249,8 @@
 				9AC3971225195E580036B92A /* libapex.dylib */,
 				9A39BB1724EB2D04003C070E /* libapp_app.dylib */,
 				9A39BAE924EB25CA003C070E /* libaura.dylib */,
-				9A39BAE524EB25CA003C070E /* libcrypto.dylib */,
-				9A39BAE424EB25CA003C070E /* libssl.dylib */,
+				9A39BAE524EB25CA003C070E /* libcrypto.3.dylib */,
+				9A39BAE424EB25CA003C070E /* libssl.3.dylib */,
 			);
 			name = Library;
 			sourceTree = "<group>";
@@ -315,8 +315,8 @@
 				9A6A47F226611202004ED97A /* libwindowing_macos.dylib */,
 				9AC396FF25195DEB0036B92A /* libacme.dylib */,
 				9AC3970125195DEB0036B92A /* libapex.dylib */,
-				9ADD664B26B6226400D11298 /* libcrypto.dylib */,
-				9ADD664A26B6226400D11298 /* libssl.dylib */,
+				9ADD664B26B6226400D11298 /* libcrypto.3.dylib */,
+				9ADD664A26B6226400D11298 /* libssl.3.dylib */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

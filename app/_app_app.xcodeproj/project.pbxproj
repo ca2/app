@@ -32,9 +32,10 @@
 		9A21A734276107DD001E14CC /* libcrypto.3.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A21A6CB2761068B001E14CC /* libcrypto.3.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A21A735276107E0001E14CC /* libssl.3.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A21A6CC2761068B001E14CC /* libssl.3.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A23A76826CECDC600F98012 /* libapp_app.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A46D31D2678453B000B22D0 /* libapp_app.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9A8C5B392783E73C000C8587 /* _app_app.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8C5AFE2783E73B000C8587 /* _app_app.cpp */; };
+		9A8C817D2783F8D9000C8587 /* _matter.zip in Resources */ = {isa = PBXBuildFile; fileRef = 9A8C817C2783F8D9000C8587 /* _matter.zip */; };
 		9AC01A452748BC47006BEBCC /* libapp_app.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A46D31D2678453B000B22D0 /* libapp_app.dylib */; };
 		9AE5CC8F22CBECAE00EDEAD1 /* en.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 9AE5CC8E22CBECAE00EDEAD1 /* en.lproj */; };
-		9AEA1BCD2760255F006437A3 /* _app_app.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEA1A9A27602559006437A3 /* _app_app.cpp */; };
 		9AEA1C682760261D006437A3 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AEA1C632760261D006437A3 /* MainMenu.xib */; };
 		9AEA1C692760261D006437A3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AEA1C652760261D006437A3 /* Images.xcassets */; };
 /* End PBXBuildFile section */
@@ -173,8 +174,15 @@
 		9A21A70D2761074C001E14CC /* libacme_posix.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libacme_posix.dylib; path = "../../../time-macos/output/libacme_posix.dylib"; sourceTree = "<group>"; };
 		9A21A70F2761074C001E14CC /* libacme_apple.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libacme_apple.dylib; path = "../../../time-macos/output/libacme_apple.dylib"; sourceTree = "<group>"; };
 		9A7ECB0F2651A5B900D5BA45 /* app_app.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = app_app.xcodeproj; sourceTree = "<group>"; };
+		9A8C5AFC2783E73B000C8587 /* _main.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _main.inl; sourceTree = "<group>"; };
+		9A8C5AFD2783E73B000C8587 /* _dependencies.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _dependencies.txt; sourceTree = "<group>"; };
+		9A8C5AFE2783E73B000C8587 /* _app_app.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _app_app.cpp; sourceTree = "<group>"; };
+		9A8C5AFF2783E73B000C8587 /* _packages.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _packages.txt; sourceTree = "<group>"; };
+		9A8C5B002783E73C000C8587 /* _extensions.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _extensions.txt; sourceTree = "<group>"; };
+		9A8C5B012783E73C000C8587 /* _static_factory.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _static_factory.inl; sourceTree = "<group>"; };
+		9A8C5B022783E73C000C8587 /* _references.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _references.txt; sourceTree = "<group>"; };
+		9A8C817C2783F8D9000C8587 /* _matter.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = _matter.zip; sourceTree = "<group>"; };
 		9AE5CC8E22CBECAE00EDEAD1 /* en.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = en.lproj; sourceTree = "<group>"; };
-		9AEA1A9A27602559006437A3 /* _app_app.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _app_app.cpp; sourceTree = "<group>"; };
 		9AEA1C642760261D006437A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		9AEA1C652760261D006437A3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9AEA1C672760261D006437A3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -267,6 +275,28 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		9A8C5AFA2783E73B000C8587 /* platform */ = {
+			isa = PBXGroup;
+			children = (
+				9A8C5AFB2783E73B000C8587 /* macos */,
+			);
+			path = platform;
+			sourceTree = "<group>";
+		};
+		9A8C5AFB2783E73B000C8587 /* macos */ = {
+			isa = PBXGroup;
+			children = (
+				9A8C5AFC2783E73B000C8587 /* _main.inl */,
+				9A8C5AFD2783E73B000C8587 /* _dependencies.txt */,
+				9A8C5AFE2783E73B000C8587 /* _app_app.cpp */,
+				9A8C5AFF2783E73B000C8587 /* _packages.txt */,
+				9A8C5B002783E73C000C8587 /* _extensions.txt */,
+				9A8C5B012783E73C000C8587 /* _static_factory.inl */,
+				9A8C5B022783E73C000C8587 /* _references.txt */,
+			);
+			path = macos;
+			sourceTree = "<group>";
+		};
 		9ADF1D2922C16DBB00456537 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -305,8 +335,9 @@
 		9AEA19E527602557006437A3 /* app */ = {
 			isa = PBXGroup;
 			children = (
+				9A8C817C2783F8D9000C8587 /* _matter.zip */,
+				9A8C5AFA2783E73B000C8587 /* platform */,
 				9AEA1C612760261D006437A3 /* macos */,
-				9AEA1A9A27602559006437A3 /* _app_app.cpp */,
 			);
 			name = app;
 			sourceTree = "<group>";
@@ -465,6 +496,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AEA1C692760261D006437A3 /* Images.xcassets in Resources */,
+				9A8C817D2783F8D9000C8587 /* _matter.zip in Resources */,
 				9AE5CC8F22CBECAE00EDEAD1 /* en.lproj in Resources */,
 				9AEA1C682760261D006437A3 /* MainMenu.xib in Resources */,
 			);
@@ -484,7 +516,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AEA1BCD2760255F006437A3 /* _app_app.cpp in Sources */,
+				9A8C5B392783E73C000C8587 /* _app_app.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

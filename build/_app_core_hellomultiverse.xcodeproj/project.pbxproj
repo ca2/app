@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		070B8F041B6E53FA00D26137 /* Hello_Multiverse__Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 070B8F031B6E53FA00D26137 /* Hello_Multiverse__Tests.m */; };
 		07C6AA1C1CA4F16B00B4E555 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07C6AA191CA4F16B00B4E555 /* Images.xcassets */; };
-		9A23A8A626CF500100F98012 /* libssl.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A23A8A426CF500100F98012 /* libssl.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		9A23A8A826CF507D00F98012 /* libcrypto.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A23A8A526CF500100F98012 /* libcrypto.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9A23A8A626CF500100F98012 /* libssl.3.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A23A8A426CF500100F98012 /* libssl.3.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9A23A8A826CF507D00F98012 /* libcrypto.3.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A23A8A526CF500100F98012 /* libcrypto.3.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A65437A2666A8ED00F8A254 /* libapp_core_hellomultiverse.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A417BC626669276001FB663 /* libapp_core_hellomultiverse.dylib */; };
 		9A65438B2666AFE500F8A254 /* libregular_expression_pcre2.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A6543872666AFA400F8A254 /* libregular_expression_pcre2.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AC02382274918E8006BEBCC /* _app_core_hellomultiverse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC02381274918CA006BEBCC /* _app_core_hellomultiverse.cpp */; };
@@ -248,8 +248,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 6;
 			files = (
-				9A23A8A626CF500100F98012 /* libssl.dylib in Embed Libraries */,
-				9A23A8A826CF507D00F98012 /* libcrypto.dylib in Embed Libraries */,
+				9A23A8A626CF500100F98012 /* libssl.3.dylib in Embed Libraries */,
+				9A23A8A826CF507D00F98012 /* libcrypto.3.dylib in Embed Libraries */,
 				9AEA1E2826797F7A006F4A68 /* libacme.dylib in Embed Libraries */,
 				9AD0CB83272B9D7200468A67 /* libpcre.dylib in Embed Libraries */,
 				9AEA1E2C26797F7A006F4A68 /* libacme_macos.dylib in Embed Libraries */,
@@ -293,8 +293,8 @@
 		070B8F031B6E53FA00D26137 /* Hello_Multiverse__Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Hello_Multiverse__Tests.m; sourceTree = "<group>"; };
 		07C6AA191CA4F16B00B4E555 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = macos/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		07C6AA1A1CA4F16B00B4E555 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = macos/Info.plist; sourceTree = SOURCE_ROOT; };
-		9A23A8A426CF500100F98012 /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.dylib; path = "../../../archive/storage-macos/library/x86_64/Debug/libssl.dylib"; sourceTree = "<group>"; };
-		9A23A8A526CF500100F98012 /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = "../../../archive/storage-macos/library/x86_64/Debug/libcrypto.dylib"; sourceTree = "<group>"; };
+		9A23A8A426CF500100F98012 /* libssl.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.3.dylib; path = "../../../archive/storage-macos/library/libssl.3.dylib"; sourceTree = "<group>"; };
+		9A23A8A526CF500100F98012 /* libcrypto.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.3.dylib; path = "../../../archive/storage-macos/library/libcrypto.3.dylib"; sourceTree = "<group>"; };
 		9A417BBC26669275001FB663 /* app_core_build.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = app_core_build.xcodeproj; sourceTree = "<group>"; };
 		9A6542792666962A00F8A254 /* imaging_coreimage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = imaging_coreimage.xcodeproj; path = "../../../archive/platform-apple/imaging_coreimage/imaging_coreimage.xcodeproj"; sourceTree = "<group>"; };
 		9A6542BB2666962D00F8A254 /* database_sqlite3.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = database_sqlite3.xcodeproj; path = ../../app/database_sqlite3/database_sqlite3.xcodeproj; sourceTree = "<group>"; };
@@ -508,8 +508,8 @@
 				9AEA1E3026797FB1006F4A68 /* libapex_apple.dylib */,
 				9AEA1E3126797FB1006F4A68 /* libapex_macos.dylib */,
 				9AEA1E3226797FB1006F4A68 /* libapex_posix.dylib */,
-				9A23A8A526CF500100F98012 /* libcrypto.dylib */,
-				9A23A8A426CF500100F98012 /* libssl.dylib */,
+				9A23A8A526CF500100F98012 /* libcrypto.3.dylib */,
+				9A23A8A426CF500100F98012 /* libssl.3.dylib */,
 				9AEA1E3326797FB1006F4A68 /* libaqua.dylib */,
 				9AEA1E3426797FB1006F4A68 /* libaura.dylib */,
 				9AEA1E3526797FB1006F4A68 /* libaura_apple.dylib */,

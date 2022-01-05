@@ -159,6 +159,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9A4889BF24EB494600119EC4 /* Build configuration list for PBXNativeTarget "app_shader" */;
 			buildPhases = (
+				9A4E960F278511C700B74C76 /* ShellScript */,
 				9A4889B224EB494600119EC4 /* Headers */,
 				9A4889B324EB494600119EC4 /* Sources */,
 				9A4889B424EB494600119EC4 /* Frameworks */,

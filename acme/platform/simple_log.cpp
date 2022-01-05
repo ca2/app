@@ -217,6 +217,13 @@ simple_log::~simple_log()
 void simple_log::print(enum_trace_level etracelevel, enum_trace_category etracecategory, const char * pszFunction, const char * pszFile, int iLine, const char * psz)
 {
 
+   if (!m_bLog)
+   {
+
+      return;
+
+   }
+
    if(etracelevel >= m_psystem->m_etracelevel)
    {
 

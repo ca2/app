@@ -1,5 +1,8 @@
 // Created by camilo on 2021-07-17 23:30 BRT <3ThomasBorregaardS�rensen!!
 #include "framework.h"
+#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_file.h"
+
 
 //
 //namespace trace
@@ -36,6 +39,32 @@
          return estatus;
 
       }
+
+      ::file::path pathHome;
+
+#ifdef WINDOWS
+
+      pathHome = getenv("USERPROFILE");
+
+#else
+
+      pathHome = getenv("HOME");
+
+#endif
+
+      if (file_exists(pathHome / "log.txt"))
+      {
+
+         m_bLog = true;
+
+      }
+
+      //if (m_psystem->m_pacmefile->is_true(m_psystem->m_pacmedir->system() / "log.txt"))
+      //{
+
+      //   m_bLog = true;
+
+      //}
 
       return estatus;
 

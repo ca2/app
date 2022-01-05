@@ -72,6 +72,13 @@
 			remoteGlobalIDString = 9A4889B524EB494600119EC4;
 			remoteInfo = app_shader;
 		};
+		9A4E96D52785447200B74C76 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A4E96A3278537A900B74C76 /* folder_zip.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AC09A2C274DFC67008B042E;
+			remoteInfo = folder_zip;
+		};
 		9A6A475E2660E531004ED97A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9AC2D0F626540F9700CC8096 /* node_macos.xcodeproj */;
@@ -477,6 +484,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9A4E96D62785447200B74C76 /* PBXTargetDependency */,
 				9A4E96D4278542B100B74C76 /* PBXTargetDependency */,
 				9A8C4DFD2783BF25000C8587 /* PBXTargetDependency */,
 				9A8C4DFB2783BF07000C8587 /* PBXTargetDependency */,
@@ -699,6 +707,11 @@
 			isa = PBXTargetDependency;
 			name = app_shader;
 			targetProxy = 9A4E96D3278542B100B74C76 /* PBXContainerItemProxy */;
+		};
+		9A4E96D62785447200B74C76 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = folder_zip;
+			targetProxy = 9A4E96D52785447200B74C76 /* PBXContainerItemProxy */;
 		};
 		9A6A47642660E578004ED97A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

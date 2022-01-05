@@ -73,6 +73,20 @@
 			remoteGlobalIDString = 9AC2D16E26542E1000CC8096;
 			remoteInfo = node_macos;
 		};
+		9A4E96BF27853D4200B74C76 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A4E96BB27853D4200B74C76 /* folder_zip.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AC09A2D274DFC67008B042E;
+			remoteInfo = folder_zip;
+		};
+		9A4E96C927853D6300B74C76 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A4E96BB27853D4200B74C76 /* folder_zip.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AC09A2C274DFC67008B042E;
+			remoteInfo = folder_zip;
+		};
 		9A64C13F2660BCE20074030F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9AC2D0B426540F6700CC8096 /* node_macos.xcodeproj */;
@@ -187,6 +201,7 @@
 		9A46D39326785B84000B22D0 /* libidn.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libidn.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A46D39426785B84000B22D0 /* libwindowing_macos.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libwindowing_macos.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A4E96B3278538E500B74C76 /* libfolder_zip.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libfolder_zip.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A4E96BB27853D4200B74C76 /* folder_zip.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = folder_zip.xcodeproj; path = ../folder_zip/folder_zip.xcodeproj; sourceTree = "<group>"; };
 		9A64C1CB2660C7890074030F /* write_text_quartz2d.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = write_text_quartz2d.xcodeproj; path = "../../../archive/platform-apple/write_text_quartz2d/write_text_quartz2d.xcodeproj"; sourceTree = "<group>"; };
 		9A8C5B692783E76C000C8587 /* _main.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _main.inl; sourceTree = "<group>"; };
 		9A8C5B6A2783E76C000C8587 /* _app_message_box.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _app_message_box.cpp; sourceTree = "<group>"; };
@@ -240,6 +255,7 @@
 				9A46D36726785A9C000B22D0 /* app_message_box.xcodeproj */,
 				9AC01D672748C46A006BEBCC /* crypto_openssl.xcodeproj */,
 				9AC2D07C26540D6B00CC8096 /* draw2d_quartz2d.xcodeproj */,
+				9A4E96BB27853D4200B74C76 /* folder_zip.xcodeproj */,
 				9AC2D0B426540F6700CC8096 /* node_macos.xcodeproj */,
 				9A64C1CB2660C7890074030F /* write_text_quartz2d.xcodeproj */,
 				9AB3DCD32783849D0025099F /* message_box */,
@@ -288,6 +304,14 @@
 			isa = PBXGroup;
 			children = (
 				9A46D36D26785A9C000B22D0 /* libapp_message_box.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9A4E96BC27853D4200B74C76 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A4E96C027853D4200B74C76 /* libfolder_zip.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -416,6 +440,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9A4E96CA27853D6300B74C76 /* PBXTargetDependency */,
 				9AB3DE7D278385AD0025099F /* PBXTargetDependency */,
 				9AC01D792748C492006BEBCC /* PBXTargetDependency */,
 				9A46D37126785AC3000B22D0 /* PBXTargetDependency */,
@@ -490,6 +515,10 @@
 					ProjectRef = 9AC2D07C26540D6B00CC8096 /* draw2d_quartz2d.xcodeproj */;
 				},
 				{
+					ProductGroup = 9A4E96BC27853D4200B74C76 /* Products */;
+					ProjectRef = 9A4E96BB27853D4200B74C76 /* folder_zip.xcodeproj */;
+				},
+				{
 					ProductGroup = 9AC2D0B526540F6700CC8096 /* Products */;
 					ProjectRef = 9AC2D0B426540F6700CC8096 /* node_macos.xcodeproj */;
 				},
@@ -512,6 +541,13 @@
 			fileType = "compiled.mach-o.dylib";
 			path = libapp_message_box.dylib;
 			remoteRef = 9A46D36C26785A9C000B22D0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A4E96C027853D4200B74C76 /* libfolder_zip.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libfolder_zip.dylib;
+			remoteRef = 9A4E96BF27853D4200B74C76 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		9A64C1402660BCE20074030F /* libnode_macos.dylib */ = {
@@ -606,6 +642,11 @@
 			isa = PBXTargetDependency;
 			name = node_macos;
 			targetProxy = 9A46D37226785AC3000B22D0 /* PBXContainerItemProxy */;
+		};
+		9A4E96CA27853D6300B74C76 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = folder_zip;
+			targetProxy = 9A4E96C927853D6300B74C76 /* PBXContainerItemProxy */;
 		};
 		9A64C1D42660C7EB0074030F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

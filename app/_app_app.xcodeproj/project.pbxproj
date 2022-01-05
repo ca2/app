@@ -126,6 +126,20 @@
 			remoteGlobalIDString = 9A48898624EB48DE00119EC4;
 			remoteInfo = app_app;
 		};
+		9A4E96C527853D4B00B74C76 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A4E96C127853D4B00B74C76 /* folder_zip.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AC09A2D274DFC67008B042E;
+			remoteInfo = folder_zip;
+		};
+		9A4E96C727853D5600B74C76 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A4E96C127853D4B00B74C76 /* folder_zip.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AC09A2C274DFC67008B042E;
+			remoteInfo = folder_zip;
+		};
 		9AEA1C6C2760269F006437A3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A7ECB0F2651A5B900D5BA45 /* app_app.xcodeproj */;
@@ -212,6 +226,7 @@
 		9A4E9678278532DC00B74C76 /* libidn.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libidn.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A4E9679278532DC00B74C76 /* libwindowing_macos.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libwindowing_macos.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A4E96B827853AB400B74C76 /* libfolder_zip.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libfolder_zip.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A4E96C127853D4B00B74C76 /* folder_zip.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = folder_zip.xcodeproj; path = ../folder_zip/folder_zip.xcodeproj; sourceTree = "<group>"; };
 		9A7ECB0F2651A5B900D5BA45 /* app_app.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = app_app.xcodeproj; sourceTree = "<group>"; };
 		9A8C5AFC2783E73B000C8587 /* _main.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _main.inl; sourceTree = "<group>"; };
 		9A8C5AFD2783E73B000C8587 /* _dependencies.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _dependencies.txt; sourceTree = "<group>"; };
@@ -275,6 +290,7 @@
 				9A7ECB0F2651A5B900D5BA45 /* app_app.xcodeproj */,
 				9A1CF4BB2761556D00802DB8 /* crypto_openssl.xcodeproj */,
 				9A1CF4C72761556E00802DB8 /* draw2d_quartz2d.xcodeproj */,
+				9A4E96C127853D4B00B74C76 /* folder_zip.xcodeproj */,
 				9A1CF4C12761556D00802DB8 /* node_macos.xcodeproj */,
 				9AEA19E527602557006437A3 /* app */,
 				070B8EEB1B6E53F900D26137 /* Products */,
@@ -329,6 +345,14 @@
 			isa = PBXGroup;
 			children = (
 				9A46D31D2678453B000B22D0 /* libapp_app.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9A4E96C227853D4B00B74C76 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A4E96C627853D4B00B74C76 /* libfolder_zip.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -439,6 +463,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9A4E96C827853D5600B74C76 /* PBXTargetDependency */,
 				9A1CF4EA27615B0100802DB8 /* PBXTargetDependency */,
 				9A1CF4E827615AEB00802DB8 /* PBXTargetDependency */,
 				9A1CF4E627615ACE00802DB8 /* PBXTargetDependency */,
@@ -512,6 +537,10 @@
 					ProjectRef = 9A1CF4C72761556E00802DB8 /* draw2d_quartz2d.xcodeproj */;
 				},
 				{
+					ProductGroup = 9A4E96C227853D4B00B74C76 /* Products */;
+					ProjectRef = 9A4E96C127853D4B00B74C76 /* folder_zip.xcodeproj */;
+				},
+				{
 					ProductGroup = 9A1CF4C22761556D00802DB8 /* Products */;
 					ProjectRef = 9A1CF4C12761556D00802DB8 /* node_macos.xcodeproj */;
 				},
@@ -558,6 +587,13 @@
 			fileType = "compiled.mach-o.dylib";
 			path = libapp_app.dylib;
 			remoteRef = 9A46D31C2678453B000B22D0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A4E96C627853D4B00B74C76 /* libfolder_zip.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libfolder_zip.dylib;
+			remoteRef = 9A4E96C527853D4B00B74C76 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -621,6 +657,11 @@
 			isa = PBXTargetDependency;
 			name = node_macos;
 			targetProxy = 9A1CF4E927615B0100802DB8 /* PBXContainerItemProxy */;
+		};
+		9A4E96C827853D5600B74C76 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = folder_zip;
+			targetProxy = 9A4E96C727853D5600B74C76 /* PBXContainerItemProxy */;
 		};
 		9AEA1C6D2760269F006437A3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

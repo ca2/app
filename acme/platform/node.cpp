@@ -754,7 +754,7 @@ namespace acme
 
       m_bDarkMode = m_dLuminance < 0.5;
 
-      //on_os_user_color();
+      on_operating_system_user_color_change();
 
    }
 

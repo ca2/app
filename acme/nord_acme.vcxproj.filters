@@ -4768,9 +4768,6 @@
     <None Include="acme\message\message.inl">
       <Filter>Header Files\acme\message</Filter>
     </None>
-    <None Include="acme.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="primitive\primitive.inl">
       <Filter>Header Files\primitive</Filter>
     </None>

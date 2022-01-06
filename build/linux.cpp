@@ -5,7 +5,8 @@
 #include "framework.h"
 
 #include <sys/stat.h>
-
+#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_file.h"
 
 namespace linux
 {

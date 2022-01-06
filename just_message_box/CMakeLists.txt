@@ -88,25 +88,25 @@ list(APPEND executable_references
 
 
 if(LINUX OR FREEBSD)
-
-   add_custom_command(
-      COMMAND ${APPLICATION_BUILD_HELPER} ${PROJECT_SOURCE_DIR}
-      COMMAND ${CMAKE_COMMAND} -E touch ${PROJECT_BINARY_DIR}/matter.timestamp
-      OUTPUT ${PROJECT_BINARY_DIR}/matter.timestamp
-      WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
-      BYPRODUCTS ${PROJECT_SOURCE_DIR}/.link_object/_matter.zip.o
-      DEPENDS application_matter.txt matter.txt _console_application_build_helper
-      VERBATIM
-      )
-
-   add_custom_target(${PROJECT_NAME}_matter
-      DEPENDS ${PROJECT_BINARY_DIR}/matter.timestamp
-   )
-
-   list(APPEND executable_references ${PROJECT_SOURCE_DIR}/.link_object/_matter.zip.o)
-
-   add_dependencies(${PROJECT_NAME} ${PROJECT_NAME}_matter)
-
+#
+#   add_custom_command(
+#      COMMAND ${APPLICATION_BUILD_HELPER} ${PROJECT_SOURCE_DIR}
+#      COMMAND ${CMAKE_COMMAND} -E touch ${PROJECT_BINARY_DIR}/matter.timestamp
+#      OUTPUT ${PROJECT_BINARY_DIR}/matter.timestamp
+#      WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+#      BYPRODUCTS ${PROJECT_SOURCE_DIR}/.link_object/_matter.zip.o
+#      DEPENDS application_matter.txt matter.txt _console_application_build_helper
+#      VERBATIM
+#      )
+#
+#   add_custom_target(${PROJECT_NAME}_matter
+#      DEPENDS ${PROJECT_BINARY_DIR}/matter.timestamp
+#   )
+#
+list(APPEND executable_references ${PROJECT_SOURCE_DIR}/.link_object/_matter.zip.o)
+#
+#   add_dependencies(${PROJECT_NAME} ${PROJECT_NAME}_matter)
+#
 endif()
 
 

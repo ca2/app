@@ -335,6 +335,8 @@ list(APPEND library_source
    primitive/duration/integral/_.h
    primitive/duration/floating/_.h
    primitive/geometry2d/_.cpp
+   primitive/geometry2d/_shape.cpp
+   primitive/geometry2d/_shape.h
    primitive/geometry2d/geometry.cpp
    primitive/geometry2d/point.cpp
    primitive/geometry2d/rectangle.cpp
@@ -972,7 +974,7 @@ list(APPEND library_source
    platform/status.h
    platform/string_exchange.h
    platform/system.h
-   platform/system_impl.h
+   #platform/system_impl.h
    platform/text.h
    platform/timeout.h
    platform/timer.h
@@ -1069,7 +1071,7 @@ list(APPEND library_source
    primitive/collection/string_map.h
    primitive/collection/string_to_string_map.h
    primitive/collection/stringl.h
-   primitive/collection/template.h
+   #primitive/collection/template.h
    primitive/collection/unique_array.h
    primitive/collection/payload_array.h
    primitive/comparison/_.h
@@ -1984,7 +1986,7 @@ if (LINUX)
 endif ()
 
 
-add_library(acme SHARED ${library_source} primitive/geometry2d/_shape.h primitive/geometry2d/_shape.cpp)
+add_library(acme SHARED ${library_source})
 
 
 target_precompile_headers(acme PRIVATE framework.h)

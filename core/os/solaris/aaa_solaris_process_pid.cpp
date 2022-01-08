@@ -25,9 +25,12 @@ i32 get_process_pid(const ::string & procNameParam)
             // Read contents of virtual /proc/{pid}/cmdline file
             vsstring cmdPath = vsstring("/proc/") + dirp->d_name + "/cmdline";
             FILE * cmdFile = fopen(cmdPath, "rb");
-            vsstring cmdLine;
-            fgets(cmdLine.alloc(1024 * 256), 1024 * 256, cmdFile);
-            if(cmdLine.has_char())
+
+            string cmdLine;
+
+            auto estatus = fgets_string(cmdLine, cmdFile, 1024 * 256);
+
+            if(estatus && cmdLine.has_char())
             {
                // Keep first cmdline item which contains the program path
                strsize pos = cmdLine.find('\0');

@@ -13,7 +13,7 @@ namespace axis
    }
 
 
-   ::e_status application::initialize(::object * pobject)
+   void application::initialize(::object * pobject)
    {
 
       auto estatus = aura::application::initialize(pobject);
@@ -291,7 +291,7 @@ namespace axis
    }
 
 
-   ::e_status application::verb()
+   void application::verb()
    {
 
       return true;
@@ -323,7 +323,7 @@ namespace axis
    }
 
 
-   ::e_status     application::main()
+   void     application::main()
    {
 
       return ::aura::application::main();
@@ -331,7 +331,7 @@ namespace axis
    }
 
 
-   ::e_status     application::on_run()
+   void     application::on_run()
    {
 
       try
@@ -433,7 +433,7 @@ resume_on_exception:
    }
 
 
-   ::e_status application::init_application()
+   void application::init_application()
    {
 
       return ::aura::application::init_application();
@@ -441,7 +441,7 @@ resume_on_exception:
    }
 
 
-   ::e_status application::application_pre_run()
+   void application::application_pre_run()
    {
 
       return ::aura::application::application_pre_run();
@@ -514,7 +514,7 @@ resume_on_exception:
    }
 
 
-   ::e_status application::os_native_bergedge_start()
+   void application::os_native_bergedge_start()
    {
 
       if (!::aura::application::os_native_bergedge_start())
@@ -537,7 +537,7 @@ resume_on_exception:
    }
 
 
-   ::e_status     application::run()
+   void     application::run()
    {
 
       return ::aura::application::run();
@@ -566,7 +566,7 @@ resume_on_exception:
    //}
 
 
-   ::e_status application::process_init()
+   void application::process_init()
    {
 
       add_factory_item < ::database::field_array >();
@@ -612,7 +612,7 @@ resume_on_exception:
    }
 
 
-   ::e_status application::init_instance()
+   void application::init_instance()
    {
 
       //if (m_bAxisInitializeInstance)
@@ -697,7 +697,7 @@ resume_on_exception:
    }
 
 
-   ::e_status application::init1()
+   void application::init1()
    {
 
       //if (m_bAxisInitialize1)
@@ -736,7 +736,7 @@ resume_on_exception:
    }
 
 
-   ::e_status application::init2()
+   void application::init2()
    {
 
       if(!::aura::application::init2())
@@ -747,7 +747,7 @@ resume_on_exception:
    }
 
 
-   ::e_status application::init3()
+   void application::init3()
    {
 
       if(!::aura::application::init3())
@@ -762,7 +762,7 @@ resume_on_exception:
    }
 
 
-   ::e_status application::init()
+   void application::init()
    {
 
       //if (m_bAxisInitialize)
@@ -1552,7 +1552,7 @@ pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition"
    }
 
 
-//   ::e_status     application::interactive_credentials(::account::credentials * pcredentials)
+//   void     application::interactive_credentials(::account::credentials * pcredentials)
 //   {
 //
 //      return ::aura::applciation::interactive_credentials(pcredentials);

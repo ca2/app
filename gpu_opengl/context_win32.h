@@ -23,11 +23,11 @@ namespace opengl
 
 
 
-      virtual ::e_status _create_offscreen_buffer(const ::size_i32& size) override;
-      virtual ::e_status resize_offscreen_buffer(const ::size_i32& size) override;
-      virtual ::e_status destroy_offscreen_buffer() override;
+      virtual void _create_offscreen_buffer(const ::size_i32& size) override;
+      virtual void resize_offscreen_buffer(const ::size_i32& size) override;
+      virtual void destroy_offscreen_buffer() override;
 
-      virtual ::e_status make_current() override;
+      virtual void make_current() override;
 
 
       virtual string get_shader_version_text() override;

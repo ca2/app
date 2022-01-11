@@ -155,12 +155,12 @@ namespace user
       virtual ::user::document * get_active_document();
 
 
-      ::e_status add_control_bar(::user::control_bar * pcontrolbar) override;
-      ::e_status erase_control_bar(::user::control_bar * pcontrolbar) override;
+      void add_control_bar(::user::control_bar * pcontrolbar) override;
+      void erase_control_bar(::user::control_bar * pcontrolbar) override;
 
 
-      ::e_status show_control_bar(::user::control_bar * pcontrolbar) override;
-      ::e_status hide_control_bar(::user::control_bar * pcontrolbar) override;
+      void show_control_bar(::user::control_bar * pcontrolbar) override;
+      void hide_control_bar(::user::control_bar * pcontrolbar) override;
 
 
       virtual __transport(toolbar) get_toolbar(const ::id & idToolBar, bool bCreate = true, const ::string & strToolbar = nullptr, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP, const ::type & type = "user::toolbar");
@@ -171,7 +171,7 @@ namespace user
       //   template < class TOOLBAR >
       // bool load_toolbar(id idToolBar, const ::string & pszToolBar,u32 dwCtrlStyle = TBSTYLE_FLAT,u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
       template < class TOOLBAR >
-      ::e_status load_toolbar(const ::id & idToolbar, const ::string & strToolbar = nullptr, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP);
+      void load_toolbar(const ::id & idToolbar, const ::string & strToolbar = nullptr, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP);
 
 
       //   virtual bool load_toolbar(id idToolBar, const ::string & pszToolBar, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP) override
@@ -179,7 +179,7 @@ namespace user
       //      return load_toolbar < ::user::toolbar >(idToolBar, pszToolBar, dwCtrlStyle, uStyle);
       //   }
 
-//      virtual ::e_status load_toolbar(const ::id & idToolbar, const ::string & strToolBar = nullptr, u32 dwCtrlStyle = TBSTYLE_FLAT,u32 uStyle = CBRS_ALIGN_TOP);
+//      virtual void load_toolbar(const ::id & idToolbar, const ::string & strToolBar = nullptr, u32 dwCtrlStyle = TBSTYLE_FLAT,u32 uStyle = CBRS_ALIGN_TOP);
 //      {
 //
 //         return load_toolbar < ::user::toolbar >(idToolbar, strToolBar, dwCtrlStyle, uStyle);

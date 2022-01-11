@@ -49,7 +49,7 @@ namespace sockets
    }
 
 
-   ::e_status http_socket::on_initialize_object()
+   void http_socket::on_initialize_object()
    {
 
       auto estatus = tcp_socket::on_initialize_object();

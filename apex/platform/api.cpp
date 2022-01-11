@@ -20,7 +20,7 @@ api::~api()
 }
 
 
-::e_status api::initialize_api(::object* pobject, const ::file::path & pathProfile)
+void api::initialize_api(::object* pobject, const ::file::path & pathProfile)
 {
 
    auto estatus = ::object::initialize(pobject);
@@ -41,7 +41,7 @@ api::~api()
 }
 
 
-::e_status api::load_profile()
+void api::load_profile()
 {
 
    auto strNetworkPayload = m_pcontext->m_papexcontext->file().as_string(m_pathProfile);
@@ -101,7 +101,7 @@ void api::on_login_response()
 }
 
 
-::e_status api::save_profile()
+void api::save_profile()
 {
 
    m_setConfig["token"] = m_strToken;
@@ -115,7 +115,7 @@ void api::on_login_response()
 }
 
 
-::e_status api::api_login(const ::string & strConfig, const ::string & strProfile)
+void api::api_login(const ::string & strConfig, const ::string & strProfile)
 {
 
    m_strConfig = strConfig;
@@ -131,7 +131,7 @@ void api::on_login_response()
 }
 
 
-::e_status api::api_get(string& strNetworkPayload, const string& strUrl, property_set& set)
+void api::api_get(string& strNetworkPayload, const string& strUrl, property_set& set)
 {
 
    throw interface_only_exception();
@@ -141,7 +141,7 @@ void api::on_login_response()
 }
 
 
-::e_status api::api_get(::payload& payload, const string & strUrl, property_set& set)
+void api::api_get(::payload& payload, const string & strUrl, property_set& set)
 {
 
    string strNetworkPayload;
@@ -162,7 +162,7 @@ void api::on_login_response()
 }
 
 
-::e_status api::api_download(string strGet, const ::file::path& path, property_set& set)
+void api::api_download(string strGet, const ::file::path& path, property_set& set)
 {
 
    throw interface_only_exception();

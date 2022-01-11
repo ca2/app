@@ -67,10 +67,10 @@ namespace compress_zlib
       ~compress() override;
 
 
-      ::e_status set_level(int iLevel) override;
+      void set_level(int iLevel) override;
 
 
-      ::e_status transfer(::file::file* pfileOut, ::file::file* pfileIn) override;
+      void transfer(::file::file* pfileOut, ::file::file* pfileIn) override;
 
 
       ::u32 crc32(::u32 uCrc, const ::block& block) override;

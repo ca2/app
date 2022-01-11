@@ -16,7 +16,7 @@ namespace html
    }
 
 
-   ::e_status style_sheet::initialize(::object * pobject)
+   void style_sheet::initialize(::object * pobject)
    {
 
       auto estatus = ::object::initialize(pobject);

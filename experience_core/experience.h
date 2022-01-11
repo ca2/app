@@ -22,7 +22,7 @@
             virtual ~experience();
 
 
-            virtual ::e_status initialize(::object * pobject) override;
+            virtual void initialize(::object * pobject) override;
 
 
             virtual void update() override;

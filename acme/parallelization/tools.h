@@ -39,16 +39,16 @@ public:
    tool_task();
 
 
-   virtual ::e_status initialize_tool_task(::task_group* pgroup);
+   virtual void initialize_tool_task(::task_group* pgroup);
 
 
-   virtual ::e_status run() override;
+   virtual void run() override;
 
 
    bool set_predicate(::predicate_holder_base * ppred);
 
    void reset();
-   ::e_status set_ready_to_start();
+   void set_ready_to_start();
 
 
 };
@@ -68,7 +68,7 @@ public:
    virtual ~task_tool_item();
 
 
-   virtual ::e_status     run() override;
+   virtual void     run() override;
 
 
 };
@@ -122,10 +122,10 @@ public:
    ::count get_span() const { return m_cSpan; }
    bool nok() const { return is_empty(); };
 
-   ::e_status prepare(::enum_task_op eop, ::count cIteration = 0);
-   virtual ::e_status set_ready_to_start();
-   ::e_status wait() override;
-   virtual ::e_status process();
+   void prepare(::enum_task_op eop, ::count cIteration = 0);
+   virtual void set_ready_to_start();
+   void wait() override;
+   virtual void process();
 
    bool add_predicate(::predicate_holder_base * ppred);
 

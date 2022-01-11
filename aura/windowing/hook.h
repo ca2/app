@@ -18,9 +18,9 @@ namespace windowing
 
       virtual bool process_event(display * pdisplay, event * pevent);
 
-      virtual ::e_status do_hook();
+      virtual void do_hook();
 
-      virtual ::e_status unhook();
+      virtual void unhook();
 
       virtual void on_idle(display * pdisplay);
 

@@ -31,8 +31,8 @@ handler_manager::~handler_manager()
 }
 
 
-//::e_status handler_manager::initialize_handler_manager(::object * pobject, const string & strThreadName, bool bSingleThread, int iAliveCount)
-::e_status handler_manager::initialize_handler_manager(::object * pobject, const string & strThreadName, int iAliveCount)
+//void handler_manager::initialize_handler_manager(::object * pobject, const string & strThreadName, bool bSingleThread, int iAliveCount)
+void handler_manager::initialize_handler_manager(::object * pobject, const string & strThreadName, int iAliveCount)
 {
 
    auto estatus = initialize(pobject);
@@ -56,7 +56,7 @@ handler_manager::~handler_manager()
 }
 
 
-::e_status handler_manager::handle(const ::routine & routine, bool bSync)
+void handler_manager::handle(const ::routine & routine, bool bSync)
 {
 
    if (bSync)
@@ -75,7 +75,7 @@ handler_manager::~handler_manager()
 }
 
 
-::e_status handler_manager::handler_sync(const ::routine & routine)
+void handler_manager::handler_sync(const ::routine & routine)
 {
 
    if (m_bUseDedicatedThread)
@@ -103,7 +103,7 @@ handler_manager::~handler_manager()
 }
 
 
-::e_status handler_manager::destroy_composites()
+void handler_manager::destroy_composites()
 {
 
    auto estatus = ::object::destroy_composites();
@@ -135,7 +135,7 @@ bool handler_manager::is_branch_current() const
 }
 
 
-::e_status handler_manager::handler_branch(const ::routine & routine)
+void handler_manager::handler_branch(const ::routine & routine)
 {
 
    {

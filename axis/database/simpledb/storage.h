@@ -31,7 +31,7 @@ namespace simpledb
       ~storage();
 
 
-      virtual ::e_status initialize_simpledb_storage(server * pserver);
+      virtual void initialize_simpledb_storage(server * pserver);
 
 
    };

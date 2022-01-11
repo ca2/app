@@ -167,7 +167,7 @@ void* load_lib(const ::string & l)
 }
 
 
-::e_status os_application_system_run(::aura::system* psystem);
+void os_application_system_run(::aura::system* psystem);
 
 
 
@@ -187,7 +187,7 @@ void android_aura_main()
 
    psystem->system_construct(plocal, e_display_default);
 
-   ::e_status estatus = psystem->os_application_system_run();
+   void estatus = psystem->os_application_system_run();
    
    if (!estatus)
    {

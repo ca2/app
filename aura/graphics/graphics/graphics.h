@@ -32,8 +32,8 @@ namespace graphics
       ~graphics() override;
 
 
-      virtual ::e_status initialize_graphics_graphics(::user::interaction_impl * pimpl);
-      ::e_status destroy() override;
+      virtual void initialize_graphics_graphics(::user::interaction_impl * pimpl);
+      void destroy() override;
 
       virtual void destroy_buffer();
 
@@ -56,9 +56,9 @@ namespace graphics
 
       virtual bool ipc_copy(const pixmap* ppixmap);
 
-      virtual ::e_status set_bitmap_source(const string& strBitmapSource);
+      virtual void set_bitmap_source(const string& strBitmapSource);
 
-      virtual ::e_status clear_bitmap_source();
+      virtual void clear_bitmap_source();
 
       virtual string get_bitmap_source() const;
 

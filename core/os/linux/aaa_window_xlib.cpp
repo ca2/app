@@ -27,7 +27,7 @@ namespace xlib
    }
 
 
-   ::e_status buffer::initialize_graphics_graphics(::user::interaction_impl * pimpl)
+   void buffer::initialize_graphics_graphics(::user::interaction_impl * pimpl)
    {
 
       auto estatus = double_buffer::initialize_graphics_graphics(pimpl);
@@ -52,7 +52,7 @@ namespace xlib
    }
 
 
-   ::e_status buffer::destroy()
+   void buffer::destroy()
    {
 
       synchronous_lock synchronouslock(mutex());

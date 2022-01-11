@@ -49,7 +49,7 @@ namespace compress_bzip2
    }
 
 
-   ::e_status compress::initialize(::object* pobject)
+   void compress::initialize(::object* pobject)
    {
 
       auto estatus = ::object::initialize(pobject);
@@ -66,7 +66,7 @@ namespace compress_bzip2
    }
 
 
-   ::e_status compress::set_bzip2_parameters(int iBlockSize, int iVerbosity, int iWorkFactor)
+   void compress::set_bzip2_parameters(int iBlockSize, int iVerbosity, int iWorkFactor)
    {
 
       m_iBlockSize = iBlockSize;
@@ -78,7 +78,7 @@ namespace compress_bzip2
    }
 
 
-   ::e_status compress::transfer(::file::file* pfileBzFileCompressed, ::file::file* pfileUncompressed)
+   void compress::transfer(::file::file* pfileBzFileCompressed, ::file::file* pfileUncompressed)
    {
 
       memory                     memory;

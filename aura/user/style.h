@@ -63,7 +63,7 @@ namespace user
       //inline auto node() const { return m_pnode; }
 
 
-      ::e_status initialize(::object * pobject) override;
+      void initialize(::object * pobject) override;
 
 
       void default_style_construct();
@@ -76,7 +76,7 @@ namespace user
 
       void handle(::subject * psubject, ::context * pcontext) override;
 
-      virtual ::e_status initialize_style();
+      virtual void initialize_style();
 
       //virtual ::user::plain_edit_internal * get_plain_edit_internal();
 

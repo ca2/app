@@ -20,7 +20,7 @@ namespace operating_system
    }
 
 
-   ::e_status department::initialize(::object * pobject)
+   void department::initialize(::object * pobject)
    {
 
       auto estatus = ::acme::department::initialize(pobject);
@@ -170,7 +170,7 @@ namespace operating_system
    }
 
 
-   ::e_status department::process_thread::run()
+   void department::process_thread::run()
    {
 
       if(m_bElevated)
@@ -291,7 +291,7 @@ namespace operating_system
 
       m_pprocess->synch_elevated(m_strCmdLine,e_display_none,m_durationTimeout,m_pbPotentialTimeout);
 
-      m_result.add((::e_status    ) m_pprocess->m_exitstatus.m_iExitCode);
+      m_result.add((void    ) m_pprocess->m_exitstatus.m_iExitCode);
 
       if(m_pexitstatus != nullptr)
       {
@@ -359,7 +359,7 @@ namespace operating_system
    }
 
 
-   ::e_status department::process_processor::process(const ::string & strCmdLine,const duration & dur,bool * pbPotentialTimeout,string * pstrRead,bool bElevated)
+   void department::process_processor::process(const ::string & strCmdLine,const duration & dur,bool * pbPotentialTimeout,string * pstrRead,bool bElevated)
    {
 
       m_pbPotentialTimeout = pbPotentialTimeout;

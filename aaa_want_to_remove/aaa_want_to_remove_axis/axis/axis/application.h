@@ -46,7 +46,7 @@ namespace axis
       virtual ~application();
 
 
-      virtual ::e_status     initialize(::object * pobject) override;
+      virtual void     initialize(::object * pobject) override;
 
 
       void assert_valid() const override;
@@ -59,7 +59,7 @@ namespace axis
       //virtual bool app_data_set(const ::id & id, object & obj) override;
       //virtual bool app_data_get(const ::id & id, object & obj) override;
 
-//      virtual ::e_status     interactive_credentials(::account::credentials * pcredentials) override;
+//      virtual void     interactive_credentials(::account::credentials * pcredentials) override;
 
       virtual string calc_data_key() override;
 
@@ -81,32 +81,32 @@ namespace axis
       virtual ::database::server * dataserver();
 
 
-      virtual ::e_status verb() override;
+      virtual void verb() override;
 
 
       virtual bool Ex2OnAppInstall() override;
       virtual bool Ex2OnAppUninstall() override;
 
-      virtual ::e_status init_application() override;
+      virtual void init_application() override;
 
-      virtual ::e_status init1() override;
-      virtual ::e_status init2() override;
-      virtual ::e_status init3() override;
-
-
-      virtual ::e_status init() override;
+      virtual void init1() override;
+      virtual void init2() override;
+      virtual void init3() override;
 
 
-      virtual ::e_status init_instance() override;
+      virtual void init() override;
 
 
-      virtual ::e_status     run() override;
-      virtual ::e_status     main() override;
-      virtual ::e_status     on_run() override;
+      virtual void init_instance() override;
 
-      virtual ::e_status application_pre_run() override;
+
+      virtual void     run() override;
+      virtual void     main() override;
+      virtual void     on_run() override;
+
+      virtual void application_pre_run() override;
       //virtual bool initial_check_directrix() override;
-      virtual ::e_status os_native_bergedge_start() override;
+      virtual void os_native_bergedge_start() override;
 
 
 
@@ -188,7 +188,7 @@ namespace axis
 
 
 
-      virtual ::e_status process_init() override;
+      virtual void process_init() override;
 
 
 

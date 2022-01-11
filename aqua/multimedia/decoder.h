@@ -23,11 +23,11 @@ namespace multimedia
       ~decoder() override;
 
 
-      virtual ::e_status      multimedia_open(::file::file * pfile);
-      virtual ::e_status      multimedia_close();
+      virtual void      multimedia_open(::file::file * pfile);
+      virtual void      multimedia_close();
 
-      virtual ::e_status      impl_multimedia_open(::file::file * payloadFile);
-      virtual ::e_status      impl_multimedia_close();
+      virtual void      impl_multimedia_open(::file::file * payloadFile);
+      virtual void      impl_multimedia_close();
 
 
       virtual string          multimedia_get_origin_path();

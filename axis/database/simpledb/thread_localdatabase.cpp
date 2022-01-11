@@ -21,7 +21,7 @@ namespace simpledb
    }
 
 
-   ::e_status thread_localdatabase::run()
+   void thread_localdatabase::run()
    {
 
       auto pstorage = m_pstorage;

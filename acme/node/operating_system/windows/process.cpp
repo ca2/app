@@ -109,7 +109,7 @@ bool set_process_priority(::enum_priority epriority)
 }
 
 
-CLASS_DECL_ACME ::e_status command_system(string& strOutput, string& strError, int& iExitCode, const char* psz, enum_command_system ecommandsystem, const ::duration& durationTimeout)
+CLASS_DECL_ACME void command_system(string& strOutput, string& strError, int& iExitCode, const char* psz, enum_command_system ecommandsystem, const ::duration& durationTimeout)
 {
 
    strOutput.Empty();

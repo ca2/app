@@ -676,7 +676,7 @@ bool mutex::already_exists()
 #if !defined(WINDOWS)
 
 
-::e_status mutex::_wait(const class ::wait & wait)
+void mutex::_wait(const class ::wait & wait)
 {
 
    if(wait.is_infinite())
@@ -1331,7 +1331,7 @@ bool mutex::lock(const class ::wait & wait)
 }
 
 
-::e_status mutex::_wait()
+void mutex::_wait()
 {
 
    if (!lock())

@@ -89,7 +89,7 @@ dump_context::~dump_context()
 }
 
 
-//::e_status dump_context::destroy()
+//void dump_context::destroy()
 //{
 //
 //   auto estatus = text_stream::destroy();

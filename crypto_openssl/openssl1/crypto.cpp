@@ -944,7 +944,7 @@ namespace crypto
    }
 
 
-   ::e_status     crypto::file_get(::payload payloadFile, string& str, const char* pszSalt, ::application* papp)
+   void     crypto::file_get(::payload payloadFile, string& str, const char* pszSalt, ::application* papp)
    {
 
       memory memoryEncrypt;

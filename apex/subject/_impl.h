@@ -15,7 +15,7 @@
 //
 //
 //   template < typename RESULT >
-//   void process < RESULT > ::set_result(const RESULT &  result, const ::e_status & estatus)
+//   void process < RESULT > ::set_result(const RESULT &  result, const void & estatus)
 //   {
 //
 //      critical_section_lock lock(get_process_critical_section());
@@ -28,7 +28,7 @@
 //
 //
 //   template < typename RESULT >
-//   void process < RESULT > ::set_status(const ::e_status & estatus)
+//   void process < RESULT > ::set_status(const void & estatus)
 //   {
 //
 //      critical_section_lock lock(get_process_critical_section());

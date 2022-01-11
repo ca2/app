@@ -15,7 +15,7 @@ namespace aura
       ~sound_track_player() override;
 
 
-      virtual ::e_status defer_start(::wave::e_purpose epurpose);
+      virtual void defer_start(::wave::e_purpose epurpose);
 
       virtual __pointer(::object) sound_plugin(const ::string &, bool bForceCreate = false, bool bLoop = false);
 

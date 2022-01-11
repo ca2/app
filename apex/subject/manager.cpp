@@ -336,7 +336,7 @@ void manager::on_property_changed(property * pproperty, const ::action_context &
 //   }
 
 
-::e_status manager::destroy_signal_handling()
+void manager::destroy_signal_handling()
 {
 
    m_psignalmap.release();

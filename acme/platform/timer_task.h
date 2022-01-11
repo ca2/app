@@ -61,9 +61,9 @@ public:
    void impl_term();
 
 
-   virtual ::e_status initialize_timer(::object * pobject, ::acme::timer_array * ptimera, uptr uiTimer = 0, PFN_TIMER pfnTimer = nullptr, void* pvoidData = nullptr, class synchronization_object* pmutex = nullptr);
+   virtual void initialize_timer(::object * pobject, ::acme::timer_array * ptimera, uptr uiTimer = 0, PFN_TIMER pfnTimer = nullptr, void* pvoidData = nullptr, class synchronization_object* pmutex = nullptr);
 
-   ::e_status run() override;
+   void run() override;
 
 
    bool start(const class ::wait & wait, bool bPeriodic);
@@ -71,9 +71,9 @@ public:
 
    virtual bool on_timer();
 
-   //virtual ::e_status destroy() override;
+   //virtual void destroy() override;
 
-   ::e_status destroy() override;
+   void destroy() override;
 
    //bool impl_start();
    //bool impl_restart();

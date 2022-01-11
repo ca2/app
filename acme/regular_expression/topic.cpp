@@ -68,7 +68,7 @@ namespace regular_expression
    }
 
 
-   ::e_status topic::create(const ::string & str)
+   void topic::create(const ::string & str)
    {
 
       return ::success;

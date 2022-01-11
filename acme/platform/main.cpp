@@ -46,7 +46,7 @@
 //}
 
 
-::e_status main::system_construct(const main& main)
+void main::system_construct(const main& main)
 {
 
    *((PLAIN_MAIN*)this) = (const PLAIN_MAIN&)main;
@@ -109,14 +109,14 @@ string main::get_argument1(int iArgument) const
 CLASS_DECL_ACME void set_main_thread();
 
 
-::e_status __main(main& main)
+void __main(main& main)
 {
 
    set_main_thread();
 
-   ::e_status estatus = error_failed;
+   void estatus = error_failed;
 
-   ::e_status estatusEnd = error_failed;
+   void estatusEnd = error_failed;
 
    auto psystem = platform_create_system(main.m_strAppId);
 

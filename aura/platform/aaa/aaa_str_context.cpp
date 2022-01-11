@@ -188,7 +188,7 @@
 //   }
 //
 //
-//   ::e_status str::initialize(::object * pobject)
+//   void str::initialize(::object * pobject)
 //   {
 //
 //      auto estatus = ::object::initialize(pobject);

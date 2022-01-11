@@ -17,16 +17,16 @@ namespace draw2d_cairo
       virtual ~draw2d();
 
 
-      virtual ::e_status initialize(::object * pobject) override;
+      virtual void initialize(::object * pobject) override;
 
-      virtual ::e_status process_init() override;
+      virtual void process_init() override;
 
-      virtual ::e_status init() override;
-      virtual ::e_status init1() override;
+      virtual void init() override;
+      virtual void init1() override;
 
-      virtual ::e_status term() override;
+      virtual void term() override;
 
-      virtual ::e_status destroy() override;
+      virtual void destroy() override;
 
 
    };

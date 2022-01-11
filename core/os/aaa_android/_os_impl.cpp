@@ -167,7 +167,7 @@ void* load_lib(const ::string & l)
 }
 
 
-//::e_status os_application_system_run(::aura::system* psystem);
+//void os_application_system_run(::aura::system* psystem);
 
 
 int SetMainScreenRect(LPCRECT32 lpcrect);
@@ -185,7 +185,7 @@ void android_aura_main()
 
    psystem->system_construct(plocal, e_display_default);
 
-   ::e_status estatus = os_application_system_run(psystem);
+   void estatus = os_application_system_run(psystem);
    
    if (!estatus)
    {

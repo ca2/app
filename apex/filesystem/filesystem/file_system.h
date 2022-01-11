@@ -15,11 +15,11 @@ public:
    ~file_system() override;
 
 
-   virtual ::e_status initialize(::object * pobject) override;
+   virtual void initialize(::object * pobject) override;
 
-   virtual ::e_status init_system();
+   virtual void init_system();
 
-   //virtual ::e_status update_module_path();
+   //virtual void update_module_path();
 
 
    //virtual ::file::path get_last_run_application_path_file(string strAppId);

@@ -111,11 +111,11 @@ namespace user
          //thread(shell * pshell);
          //~thread() override;
 
-//         ::e_status init_tashread() override;
+//         void init_tashread() override;
 
-         ::e_status run() override;
+         void run() override;
 
-         ::e_status destroy() override;
+         void destroy() override;
 
 
       //};
@@ -158,7 +158,7 @@ namespace user
       ~shell() override;
 
 
-      ::e_status initialize(::object * pobject) override;
+      void initialize(::object * pobject) override;
       virtual void do_initialize();
 
 
@@ -242,7 +242,7 @@ namespace user
       virtual void set_icon(int iIndex, const ::file::path & pathIcon);
 
 
-      //::e_status destroy() override;
+      //void destroy() override;
 
 
    };

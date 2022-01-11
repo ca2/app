@@ -5425,7 +5425,7 @@ namespace user
    }
 
 
-   ::e_status mesh::set_current_item(const ::item & item, const ::action_context & context)
+   void mesh::set_current_item(const ::item & item, const ::action_context & context)
    {
 
       m_rangeSelection.clear();

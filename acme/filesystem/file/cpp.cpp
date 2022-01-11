@@ -10,7 +10,7 @@ namespace file
 } // namespace file
 
 
-::e_status fgets_string(string & str, FILE * pfile, memsize iBufferSize)
+void fgets_string(string & str, FILE * pfile, memsize iBufferSize)
 {
 
    if(::is_null(pfile))

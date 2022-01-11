@@ -87,7 +87,7 @@ CLASS_DECL_ACME void precision_wait(const ::duration & duration)
 //}
 //
 //
-////::e_status system_time_to_time(time_t* ptime, const system_time_t* psystemtime, i32 nDST)
+////void system_time_to_time(time_t* ptime, const system_time_t* psystemtime, i32 nDST)
 ////{
 ////
 ////   struct tm tm;

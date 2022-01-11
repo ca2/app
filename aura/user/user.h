@@ -57,11 +57,11 @@ namespace user
       ~user() override;
 
 
-      virtual ::e_status initialize(::object * pobject) override;
+      virtual void initialize(::object * pobject) override;
 
 
-      virtual ::e_status on_initialize_window_object();
-      virtual ::e_status _on_initialize_window_object();
+      virtual void on_initialize_window_object();
+      virtual void _on_initialize_window_object();
 
 
       inline ::windowing::windowing * windowing() { return m_pwindowing; }
@@ -84,30 +84,30 @@ namespace user
 
       virtual ::user::interaction * get_active_window(::thread * pthread);
 
-      virtual ::e_status set_active_window(::user::interaction *);
+      virtual void set_active_window(::user::interaction *);
 
       
       virtual ::user::interaction * get_foreground_window();
-      virtual ::e_status set_foreground_window(::user::interaction *);
+      virtual void set_foreground_window(::user::interaction *);
 
 
       virtual ::user::style* user_style();
 
       //::user::style * get_user_style();
 
-      //virtual ::e_status create_user_shell();
+      //virtual void create_user_shell();
 
 
 
-      virtual ::e_status init1() override;
-      virtual ::e_status init2() override;
-      virtual ::e_status init() override;
+      virtual void init1() override;
+      virtual void init2() override;
+      virtual void init() override;
 
 
-      ::e_status destroy() override;
+      void destroy() override;
 
 
-      virtual ::e_status create_windowing();
+      virtual void create_windowing();
 
 
 
@@ -117,7 +117,7 @@ namespace user
       inline ::type get_html_document_type() { return m_typeHtmlDocument; }
       inline ::type get_html_view_type() { return m_typeHtmlView; }
 
-      virtual ::e_status create_user_shell();
+      virtual void create_user_shell();
 
       virtual ::user::primitive * get_mouse_focus_LButtonDown();
       virtual void set_mouse_focus_LButtonDown(::user::primitive * pmousefocus);
@@ -129,7 +129,7 @@ namespace user
 
       virtual void SendMessageToWindows(const ::id & id, wparam wParam, lparam lParam);
 
-      virtual ::e_status term() override;
+      virtual void term() override;
 
       virtual ::type controltype_to_typeinfo(::user::enum_control_type econtroltype);
 

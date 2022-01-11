@@ -193,7 +193,7 @@ namespace serial
       virtual ~serial ();
 
 
-      virtual ::e_status initialize_serial(
+      virtual void initialize_serial(
          const string &port = "",
          u32 baudrate = 9600,
          struct timeout timeout = nullptr,

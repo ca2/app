@@ -37,7 +37,7 @@ namespace opengl
    }
 
 
-   ::e_status context_egl::_create_offscreen_buffer(const ::size_i32 & size)
+   void context_egl::_create_offscreen_buffer(const ::size_i32 & size)
    {
 
       auto psystem = m_psystem->m_paurasystem;
@@ -172,7 +172,7 @@ namespace opengl
    }
 
 
-   ::e_status context_egl::make_current()
+   void context_egl::make_current()
    {
 
       bool bMakeCurrentOk = eglMakeCurrent(
@@ -195,7 +195,7 @@ namespace opengl
    }
 
 
-   ::e_status context_egl::resize_offscreen_buffer(const ::size_i32& size)
+   void context_egl::resize_offscreen_buffer(const ::size_i32& size)
    {
 
       auto estatus = ::gpu::context::resize_offscreen_buffer(size);
@@ -235,10 +235,10 @@ namespace opengl
    }
 
 
-   ::e_status context_egl::destroy_offscreen_buffer()
+   void context_egl::destroy_offscreen_buffer()
    {
 
-      ::e_status estatus = error_failed;
+      void estatus = error_failed;
 
       return estatus;
 

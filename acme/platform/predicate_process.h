@@ -25,7 +25,7 @@
 //   }
 //
 //
-//   virtual ::e_status run() override
+//   virtual void run() override
 //   {
 //
 //      throw ::interface_only_exception();

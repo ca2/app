@@ -18,7 +18,7 @@ public:
    //method(const ::method & method) : matter_pointer(method) { }
 
 
-   //inline ::e_status operator()() const;
+   //inline void operator()() const;
 
    void handle(::subject * psubject, ::context * pcontext) override
    {

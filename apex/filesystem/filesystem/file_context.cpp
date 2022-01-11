@@ -54,7 +54,7 @@ file_context::~file_context()
 }
 
 
-::e_status file_context::initialize(::object * pobject)
+void file_context::initialize(::object * pobject)
 {
 
    auto estatus = ::object::initialize(pobject);
@@ -675,7 +675,7 @@ bool file_context::as_memory(const ::payload &payloadFile, memory_base &mem)
 }
 
 
-::e_status file_context::put_lines(const ::payload &payloadFile, const string_array &stra, const plain_text_file_options & options)
+void file_context::put_lines(const ::payload &payloadFile, const string_array &stra, const plain_text_file_options & options)
 {
 
    try
@@ -712,7 +712,7 @@ bool file_context::as_memory(const ::payload &payloadFile, memory_base &mem)
 }
 
 
-//::e_status file_context::put_lines_utf8(const ::payload &payloadFile, const string_array &stra)
+//void file_context::put_lines_utf8(const ::payload &payloadFile, const string_array &stra)
 //{
 //
 //   try
@@ -764,7 +764,7 @@ bool file_context::as_memory(const ::payload &payloadFile, memory_base &mem)
 //}
 
 
-::e_status file_context::get_lines(string_array &stra, const ::payload &payloadFile, bool bAddEmpty)
+void file_context::get_lines(string_array &stra, const ::payload &payloadFile, bool bAddEmpty)
 {
 
    try
@@ -806,7 +806,7 @@ bool file_context::as_memory(const ::payload &payloadFile, memory_base &mem)
 }
 
 
-::e_status file_context::put_memory(const ::payload &payloadFile, const block & block)
+void file_context::put_memory(const ::payload &payloadFile, const block & block)
 {
 
    file_transport pfile;
@@ -855,7 +855,7 @@ bool file_context::as_memory(const ::payload &payloadFile, memory_base &mem)
 }
 
 
-::e_status file_context::add_contents(const ::payload &payloadFile, const void *pvoidContents, ::count count)
+void file_context::add_contents(const ::payload &payloadFile, const void *pvoidContents, ::count count)
 {
 
    file_pointer pfile;
@@ -891,7 +891,7 @@ bool file_context::as_memory(const ::payload &payloadFile, memory_base &mem)
 }
 
 
-::e_status file_context::put_text(const ::payload& payloadFile, const ::block & block)
+void file_context::put_text(const ::payload& payloadFile, const ::block & block)
 {
 
    if (block.get_data() == nullptr || block.get_size() <= 0)
@@ -914,7 +914,7 @@ bool file_context::as_memory(const ::payload &payloadFile, memory_base &mem)
 }
 
 
-::e_status file_context::add_contents(const ::payload &payloadFile, const char *pcszContents)
+void file_context::add_contents(const ::payload &payloadFile, const char *pcszContents)
 {
 
    if (pcszContents != nullptr)
@@ -930,7 +930,7 @@ bool file_context::as_memory(const ::payload &payloadFile, memory_base &mem)
 }
 
 
-::e_status file_context::put_memory(const ::payload &payloadFile, ::file::file *pfileSrc)
+void file_context::put_memory(const ::payload &payloadFile, ::file::file *pfileSrc)
 {
 
    auto pfile = get_file(payloadFile,
@@ -979,7 +979,7 @@ bool file_context::as_memory(const ::payload &payloadFile, memory_base &mem)
 //}
 
 
-::e_status file_context::put_text_utf8(const ::payload &payloadFile, const ::block & block)
+void file_context::put_text_utf8(const ::payload &payloadFile, const ::block & block)
 {
 
    auto pfile = get_file(payloadFile,
@@ -2440,7 +2440,7 @@ bool file_context::get_last_write_time(filetime_t *pfiletime, const string &strF
 }
 
 
-::e_status file_context::init_system()
+void file_context::init_system()
 {
 
 //   auto psystem = get_system()->m_papexsystem;
@@ -2459,7 +2459,7 @@ bool file_context::get_last_write_time(filetime_t *pfiletime, const string &strF
 }
 
 
-::e_status file_context::init_context()
+void file_context::init_context()
 {
 
    return ::success;
@@ -2901,7 +2901,7 @@ file_transport file_context::http_get_file(const ::payload &payloadFile, const :
 
 }
 
-::file_transport file_context::shared_reader(const ::payload &payloadFile, const ::file::e_open &eopenFlags)
+::file_pointer file_context::shared_reader(const ::payload &payloadFile, const ::file::e_open &eopenFlags)
 {
 
    return get_reader(payloadFile, eopenFlags | ::file::e_open_share_deny_none);
@@ -2909,10 +2909,10 @@ file_transport file_context::http_get_file(const ::payload &payloadFile, const :
 }
 
 
-::file_transport file_context::get_reader(const ::payload &payloadFile, const ::file::e_open &eopenFlags)
+::file_pointer file_context::get_reader(const ::payload &payloadFile, const ::file::e_open &eopenFlags)
 {
 
-   ::file_transport preader;
+   ::file_pointer preader;
 
    if (payloadFile.m_etype == ::e_type_element)
    {
@@ -2933,10 +2933,10 @@ file_transport file_context::http_get_file(const ::payload &payloadFile, const :
 }
 
 
-::file_transport file_context::get_writer(const ::payload &payloadFile, const ::file::e_open &eopenFlags)
+::file_pointer file_context::get_writer(const ::payload &payloadFile, const ::file::e_open &eopenFlags)
 {
 
-   ::file_transport pwriter;
+   ::file_pointer pwriter;
 
    if (payloadFile.m_etype == ::e_type_element)
    {
@@ -3600,7 +3600,7 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
 
 //
 //
-//::file_transport file_context::get_file(const ::payload & payloadFile, ::u32 nOpenFlags)
+//::file_pointer file_context::get_file(const ::payload & payloadFile, ::u32 nOpenFlags)
 //{
 //
 //   return m_pcontext->m_papexcontext->file().get_file(get_application(), payloadFile, nOpenFlags);
@@ -3777,7 +3777,7 @@ bool file_context::touch(const ::file::path &path)
 }
 
 
-//::e_status file_context::update_module_path()
+//void file_context::update_module_path()
 //{
 //
 //   auto psystem = get_system()->m_papexsystem;

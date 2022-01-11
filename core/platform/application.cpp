@@ -34,7 +34,7 @@ namespace core
    }
 
 
-   ::e_status application::initialize(::object * pobject)
+   void application::initialize(::object * pobject)
    {
 
       auto estatus = ::base::application::initialize(pobject);

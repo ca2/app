@@ -34,7 +34,7 @@ namespace xml
    }
 
 
-   ::e_status xml::init1()
+   void xml::init1()
    {
 
       //if(papplication->is_system())
@@ -75,7 +75,7 @@ namespace xml
    }
 
 
-   ::e_status xml::init()
+   void xml::init()
    {
 
       if (!::acme::department::init())

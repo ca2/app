@@ -25,10 +25,10 @@ namespace user
    }
 
 
-   ::e_status language_map::initialize(::object * pobject)
+   void language_map::initialize(::object * pobject)
    {
 
-      ::e_status estatus = ::object::initialize(pobject);
+      void estatus = ::object::initialize(pobject);
 
       if (!estatus)
       {
@@ -68,7 +68,7 @@ namespace user
 
          auto & planguage = m_languagemap[strLanguageCode];
 
-         ::e_status estatus = ::success;
+         void estatus = ::success;
 
          if (planguage.is_null())
          {
@@ -220,7 +220,7 @@ namespace user
 
       auto & planguage = m_languagemap[strLang];
 
-      ::e_status estatus = ::success;
+      void estatus = ::success;
 
       if (planguage.is_null())
       {

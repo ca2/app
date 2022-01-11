@@ -31,7 +31,7 @@ namespace regular_expression_pcre2
    }
 
 
-   ::e_status regular_expression::create(const string& str)
+   void regular_expression::create(const string& str)
    {
 
       m_str = str;

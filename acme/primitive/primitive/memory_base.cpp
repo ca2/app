@@ -1997,7 +1997,7 @@ byte* memory_base::find_line_prefix(const ::block& blockPrefix, ::index iStart)
 }
 
 
-::e_status memory_base::patch_line_suffix(const ::block& blockPrefix, const block& blockSuffix, ::index iStart )
+void memory_base::patch_line_suffix(const ::block& blockPrefix, const block& blockSuffix, ::index iStart )
 {
 
    iStart = find_line_prefix_index(blockPrefix, iStart);

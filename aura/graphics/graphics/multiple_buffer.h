@@ -44,7 +44,7 @@ namespace graphics
       virtual ~multiple_buffer();
 
 
-      virtual ::e_status initialize_graphics_graphics(::user::interaction_impl * pimpl) override;
+      virtual void initialize_graphics_graphics(::user::interaction_impl * pimpl) override;
 
 
       virtual bool buffer_lock_round_swap_key_buffers() override;

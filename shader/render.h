@@ -37,16 +37,16 @@ namespace app_shader
       virtual ~render();
 
 
-      virtual ::e_status initialize(::object * pobject) override;
+      virtual void initialize(::object * pobject) override;
 
 #ifdef _DEBUG
       virtual int64_t increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
       virtual int64_t decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
 #endif
 
-      virtual ::e_status update_shader();
+      virtual void update_shader();
       virtual void defer_update_shader();
-      virtual ::e_status _update_shader();
+      virtual void _update_shader();
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
 

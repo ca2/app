@@ -47,7 +47,7 @@ namespace sockets
       http_get_socket(const string & host,port_t port,const string & url);
       virtual ~http_get_socket();
 
-      virtual ::e_status step() override;
+      virtual void step() override;
 
 
    };

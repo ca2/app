@@ -27,7 +27,7 @@ namespace app_net
    }
 
 
-   ::e_status application::init_instance()
+   void application::init_instance()
    {
 
       if (!::aura::application::init_instance())

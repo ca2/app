@@ -19,12 +19,12 @@ context_image();
    ~context_image() override;
 
 
-   ::e_status initialize(::object * pobject) override;
+   void initialize(::object * pobject) override;
 
 
-   //virtual ::e_status set_finish_composites(::property_object* pcontextobjectRootFinishingInitiator) override;
+   //virtual void set_finish_composites(::property_object* pcontextobjectRootFinishingInitiator) override;
 
-   ::e_status destroy_composites() override;
+   void destroy_composites() override;
 
 
    virtual ::icon_transport get_icon(const ::payload & payloadFile, const ::image::load_options & loadoptions = ::image::load_options());
@@ -40,27 +40,27 @@ context_image();
    //virtual ::icon_transport load_icon(const ::payload & payloadFile);
 
 
-   virtual ::e_status _get_icon(::draw2d::icon * picon, const ::payload & payloadFile);
+   virtual void _get_icon(::draw2d::icon * picon, const ::payload & payloadFile);
 
 
-   virtual ::e_status _load_icon(::draw2d::icon * picon, const ::payload & payloadFile);
+   virtual void _load_icon(::draw2d::icon * picon, const ::payload & payloadFile);
 
 
-   virtual ::e_status _get_image(image * pimage, const ::payload & payloadFile, const ::image::load_options & options = ::image::load_options());
-   virtual ::e_status _matter_image(image * pimage, const ::string & strMatter, const ::image::load_options & options = ::image::load_options());
+   virtual void _get_image(image * pimage, const ::payload & payloadFile, const ::image::load_options & options = ::image::load_options());
+   virtual void _matter_image(image * pimage, const ::string & strMatter, const ::image::load_options & options = ::image::load_options());
 
 
-   virtual ::e_status _load_image(image * pimage, const ::payload & payloadFile, const ::image::load_options & options = ::image::load_options());
-   virtual ::e_status _load_matter_image(image * pimage, const string & pszMatter, const ::image::load_options & loadoptions = ::image::load_options());
-   virtual ::e_status _load_matter_icon(image * pimage, string_array & straMatter, string strIcon);
-   virtual ::e_status _load_thumbnail(image * pimage, const ::payload & payloadFile, int w, int h);
-   virtual ::e_status _load_thumbnail(image * pimage, const ::payload & payloadFile);
-   virtual ::e_status _load_dib(image * pimage, const ::file::path & pathDib);
+   virtual void _load_image(image * pimage, const ::payload & payloadFile, const ::image::load_options & options = ::image::load_options());
+   virtual void _load_matter_image(image * pimage, const string & pszMatter, const ::image::load_options & loadoptions = ::image::load_options());
+   virtual void _load_matter_icon(image * pimage, string_array & straMatter, string strIcon);
+   virtual void _load_thumbnail(image * pimage, const ::payload & payloadFile, int w, int h);
+   virtual void _load_thumbnail(image * pimage, const ::payload & payloadFile);
+   virtual void _load_dib(image * pimage, const ::file::path & pathDib);
 
 
-   virtual ::e_status save_image(const ::payload & payloadFile, const image * pimage, const ::save_image * psaveimage = nullptr);
-   virtual ::e_status save_image(memory & memory, const image * pimage, const ::save_image * psaveimage = nullptr);
-   virtual ::e_status save_dib(const ::file::path & path, const image * pimage);
+   virtual void save_image(const ::payload & payloadFile, const image * pimage, const ::save_image * psaveimage = nullptr);
+   virtual void save_image(memory & memory, const image * pimage, const ::save_image * psaveimage = nullptr);
+   virtual void save_dib(const ::file::path & path, const image * pimage);
 
    
    
@@ -68,13 +68,13 @@ context_image();
 
 
    virtual ::image_transport _load_image_from_file(const ::payload & payloadFile, const ::payload & varOptions);
-   virtual ::e_status _save_to_file(const ::payload & payloadFile, const image * pimage, const ::payload & varOptions);
+   virtual void _save_to_file(const ::payload & payloadFile, const image * pimage, const ::payload & varOptions);
    
-   virtual ::e_status _load_image(::image* pimage, __pointer(image_frame_array)& pframea, memory & memory);
+   virtual void _load_image(::image* pimage, __pointer(image_frame_array)& pframea, memory & memory);
    
    virtual bool _load_multi_frame_image(::image* pimage, memory & memory);
 
-   virtual ::e_status load_svg(::image* pimage, memory & memory);
+   virtual void load_svg(::image* pimage, memory & memory);
 
 #ifdef _UWP
    virtual bool _desk_to_image(::image* pimage);

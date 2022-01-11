@@ -112,7 +112,7 @@ namespace aura
    }
 
 
-   ::e_status session::on_initialize_object()
+   void session::on_initialize_object()
    {
 
       auto estatus = ::aqua::session::on_initialize_object();
@@ -147,7 +147,7 @@ namespace aura
    }
 
 
-   ::e_status session::initialize(::object * pobject)
+   void session::initialize(::object * pobject)
    {
 
       auto estatus = ::aqua::session::initialize(pobject);
@@ -182,7 +182,7 @@ namespace aura
    }
 
 
-   //::e_status session::_on_initialize_window_object()
+   //void session::_on_initialize_window_object()
    //{
 
    //   auto estatus = ::aqua::session::_on_initialize_window_object();
@@ -242,7 +242,7 @@ namespace aura
    }
 
 
-   ::e_status session::process_init()
+   void session::process_init()
    {
 
       INFORMATION("aura::session::process_init");
@@ -1572,7 +1572,7 @@ namespace aura
    //}
 
 
-   ::e_status session::destroy()
+   void session::destroy()
    {
 
       return ::aqua::session::destroy();
@@ -1724,7 +1724,7 @@ namespace aura
    }
 
 
-   ::e_status session::init1()
+   void session::init1()
    {
 
       auto estatus = ::apex::session::init1();
@@ -1879,7 +1879,7 @@ namespace aura
    }
 
 
-   ::e_status session::defer_initialize_host_window(const RECTANGLE_I32 * lpcrect)
+   void session::defer_initialize_host_window(const RECTANGLE_I32 * lpcrect)
    {
 
       return ::success;
@@ -1967,10 +1967,10 @@ namespace aura
    }
 
 
-   ::e_status session::init2()
+   void session::init2()
    {
 
-      ::e_status estatus = ::apex::session::init2();
+      void estatus = ::apex::session::init2();
 
       if (!estatus)
       {
@@ -2009,10 +2009,10 @@ namespace aura
    }
 
 
-   ::e_status session::init()
+   void session::init()
    {
 
-      ::e_status estatus = ::apex::session::init();
+      void estatus = ::apex::session::init();
 
 
       //__pointer(::fs::set) pfsset = m_pfsdata;
@@ -2063,7 +2063,7 @@ namespace aura
    }
 
 
-   //::e_status session::ui_init()
+   //void session::ui_init()
    //{
 
    //   if (!m_bUiInit)
@@ -2183,7 +2183,7 @@ namespace aura
 
 
 
-   //::e_status session::initialize(::object * pobject)
+   //void session::initialize(::object * pobject)
    //{
 
    //   auto estatus = ::aura::session::initialize(pobject);
@@ -2423,7 +2423,7 @@ namespace aura
    }
 
 
-   ::e_status     session::main()
+   void     session::main()
    {
 
       auto estatus = ::aqua::session::main();
@@ -2659,7 +2659,7 @@ namespace aura
    //}
 
 
-   //::e_status session::destroy()
+   //void session::destroy()
    //{
 
    //   auto estatus = ::apex::session::destroy();

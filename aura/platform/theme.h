@@ -60,10 +60,10 @@ namespace aura
       virtual ~theme();
 
 
-      virtual ::e_status initialize(::object * pobject) override;
+      virtual void initialize(::object * pobject) override;
 
 
-      virtual ::e_status initialize_contextualized_theme();
+      virtual void initialize_contextualized_theme();
       virtual void on_change_weather_state();
 
 

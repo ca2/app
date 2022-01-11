@@ -21,7 +21,7 @@ namespace sockets
    }
 
 
-   ::e_status sockets::initialize(::object * pobject)
+   void sockets::initialize(::object * pobject)
    {
 
       auto estatus = ::acme::department::initialize(pobject);
@@ -116,7 +116,7 @@ namespace sockets
    //}
 
 
-   ::e_status sockets::destroy()
+   void sockets::destroy()
    {
 
       //bool bOk = true;

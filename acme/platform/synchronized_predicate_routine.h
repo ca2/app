@@ -21,7 +21,7 @@ namespace promise
       virtual ~synchronization() {}
 
 //
-//      virtual ::e_status run() override
+//      virtual void run() override
 //      {
 //
 //         m_predicate();
@@ -34,7 +34,7 @@ namespace promise
 //
 
 
-//      virtual ::e_status run() override
+//      virtual void run() override
 //      {
 //
 //         m_evWriting.SetEvent();

@@ -17,7 +17,7 @@ networking_application::~networking_application()
 }
 
 
-::e_status networking_application::initialize(::object* pobject)
+void networking_application::initialize(::object* pobject)
 {
 
    auto estatus = ::object::initialize(pobject);
@@ -34,7 +34,7 @@ networking_application::~networking_application()
 }
 
 
-::e_status networking_application::create_networking_application()
+void networking_application::create_networking_application()
 {
 
    auto estatus = __compose(m_psocketthread, __new(::netserver::socket_thread < networking_application_socket >()));
@@ -126,7 +126,7 @@ i32 networking_application::wait_get_current_port(const ::duration& duration)
 }
 
 
-::e_status networking_application::add_handler(const ::string& strPrefix, networking_application_handler* phandler)
+void networking_application::add_handler(const ::string& strPrefix, networking_application_handler* phandler)
 {
 
    if (::is_null(phandler))
@@ -145,7 +145,7 @@ i32 networking_application::wait_get_current_port(const ::duration& duration)
 }
 
 
-::e_status networking_application::on_html_response(::string & strHtml, const ::string& strUrl, const ::property_set& setPost)
+void networking_application::on_html_response(::string & strHtml, const ::string& strUrl, const ::property_set& setPost)
 {
 
    string strRequestScript = m_psystem->url()->get_script(strUrl);

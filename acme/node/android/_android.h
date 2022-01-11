@@ -1,7 +1,7 @@
 #pragma once
 
 
-CLASS_DECL_ACME::e_status os_shell_initialize();
+CLASS_DECL_ACMEvoid os_shell_initialize();
 
 
 //#include "acme/node/ansios/ansios.h"
@@ -58,7 +58,7 @@ int_bool GetMessage(
 i32 CLASS_DECL_ACME __android_main(i32 argc, char* argv[]);
 
 
-CLASS_DECL_ACME void vfxThrowFileException(::matter* pobject, const ::e_status& estatus, ::i32 lOsError, const char* lpszFileName = nullptr);
+CLASS_DECL_ACME void vfxThrowFileException(::matter* pobject, const void& estatus, ::i32 lOsError, const char* lpszFileName = nullptr);
 
 
 #include "internal.h"

@@ -227,7 +227,7 @@ CLASS_DECL_ACME void debug_print(const char* pszFormat, ...)
 //
 
 
-::e_status _003CountStatus(::count countSuccess, ::count countFailed)
+void _003CountStatus(::count countSuccess, ::count countFailed)
 {
 
    ::count countTotal = countFailed + countSuccess;
@@ -273,7 +273,7 @@ CLASS_DECL_ACME void debug_print(const char* pszFormat, ...)
 }
 
 
-string get_status_message(::e_status estatus)
+string get_status_message(void estatus)
 {
    
    if(estatus == ::success)

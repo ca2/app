@@ -108,7 +108,7 @@
    }
 
 
-   ::e_status os_context::link_open(const string & strUrl, const string & strProfile)
+   void os_context::link_open(const string & strUrl, const string & strProfile)
    {
 
       if (!file_open(strUrl))
@@ -256,7 +256,7 @@
    }
 
 
-   ::e_status os_context::enable_service()
+   void os_context::enable_service()
    {
 
 
@@ -269,7 +269,7 @@
    }
 
 
-   ::e_status os_context::disable_service()
+   void os_context::disable_service()
    {
 
 
@@ -282,7 +282,7 @@
    }
 
 
-   ::e_status os_context::start_service()
+   void os_context::start_service()
    {
 
 
@@ -295,7 +295,7 @@
    }
 
 
-   ::e_status os_context::stop_service()
+   void os_context::stop_service()
    {
 
 
@@ -539,7 +539,7 @@
    }
 
 
-   ::e_status os_context::set_dark_mode(bool bDarkMode)
+   void os_context::set_dark_mode(bool bDarkMode)
    {
 
       throw interface_only_exception();
@@ -701,7 +701,7 @@
    }
 
 
-::e_status os_context::broadcast_environment_variable_change()
+void os_context::broadcast_environment_variable_change()
 {
 
    return ::success_none;

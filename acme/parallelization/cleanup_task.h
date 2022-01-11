@@ -18,7 +18,7 @@
 //
 //      void add(matter* pmatter);
 //
-//      virtual ::e_status run();
+//      virtual void run();
 //
 //   };
 //

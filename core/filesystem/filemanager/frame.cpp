@@ -30,7 +30,7 @@ namespace filemanager
    }
 
 
-   ::e_status frame::on_create_bars()
+   void frame::on_create_bars()
    {
 
       return simple_frame_window::on_create_bars();

@@ -73,7 +73,7 @@ namespace filemanager
    }
 
 
-   ::e_status data::initialize_filemanager_data(::object * pobject)
+   void data::initialize_filemanager_data(::object * pobject)
    {
 
       auto estatus = ::data::data::initialize(pobject);
@@ -349,7 +349,7 @@ namespace filemanager
    }
 
 
-   ::e_status data::set_last_browse_path(::object * pobject, const ::file::path& path)
+   void data::set_last_browse_path(::object * pobject, const ::file::path& path)
    {
 
       string strPath(path);

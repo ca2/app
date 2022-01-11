@@ -24,7 +24,7 @@ namespace filemanager
       virtual ~file_properties_form();
 
       
-      ::e_status initialize(::object * pobject) override;
+      void initialize(::object * pobject) override;
 
 
       __pointer(::user::interaction) open(__pointer(::user::interaction) puieParent, ::file::item_array & itema);

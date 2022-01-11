@@ -43,7 +43,7 @@ namespace sockets
 
       bool init1();
 
-      ::e_status     destroy() override;
+      void     destroy() override;
 
 
    };

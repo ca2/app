@@ -138,7 +138,7 @@ namespace core
 
 
 
-      virtual ::e_status destroy() override;
+      virtual void destroy() override;
 
 
       //virtual __pointer(::user::menu_interaction) create_menu_button(::user::style* pstyle, ::user::menu_item* pitem) override;
@@ -147,9 +147,9 @@ namespace core
       // ::user::shell* shell();
       
       
-      virtual ::e_status init1() override;
-      virtual ::e_status init2() override;
-      virtual ::e_status init() override;
+      virtual void init1() override;
+      virtual void init2() override;
+      virtual void init() override;
 
 
       virtual __pointer(::extended::sequence < ::conversation >) dialog_box(::object * pobject, const ::string & pszMatter, property_set & propertyset);
@@ -157,7 +157,7 @@ namespace core
 
       virtual __pointer(::extended::sequence < ::conversation >) ui_message_box(::object * pobject, ::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok);
       virtual __pointer(::extended::sequence < ::conversation >) ui_message_box_timeout(::object * pobject, ::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok);
-      //virtual ::e_status ui_message_box_timeout(::object* pobject, ::user::primitive* puiOwner, ::payload payload, ::duration durationTimeout, ::u32 fuStyle = e_message_box_ok, ::aura::application* papp = nullptr, const function_arg& functionargResult = function_arg());
+      //virtual void ui_message_box_timeout(::object* pobject, ::user::primitive* puiOwner, ::payload payload, ::duration durationTimeout, ::u32 fuStyle = e_message_box_ok, ::aura::application* papp = nullptr, const function_arg& functionargResult = function_arg());
 
       virtual void on_file_manager_open(::filemanager::data* pdata, ::file::item_array& itema);
 
@@ -175,7 +175,7 @@ namespace core
 
       virtual void AddToRecentFileList(const ::string & pszPathName);
 
-      virtual ::e_status initialize_html();
+      virtual void initialize_html();
 
 
       virtual void route_command(::message::command * pcommand, bool bRouteToKeyDescendant);
@@ -197,7 +197,7 @@ namespace core
       virtual void will_use_view_hint(::id idView);
 
 
-      virtual ::e_status term_instance() override;
+      virtual void term_instance() override;
 
 
       void LoadStdProfileSettings(::u32 nMaxMRU = 10);
@@ -229,19 +229,19 @@ namespace core
 
 
 
-      virtual ::e_status     initialize(::object * pobject) override;
+      virtual void     initialize(::object * pobject) override;
 
 
       virtual bool do_prompt_file_name(::payload& payloadFile, string strTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
 
 
-      virtual ::e_status initialize_userex();
+      virtual void initialize_userex();
 
-      virtual ::e_status userfs_init1();
-      virtual ::e_status userfs_process_init();
+      virtual void userfs_init1();
+      virtual void userfs_process_init();
 
 
-      //virtual ::e_status create_html();
+      //virtual void create_html();
 
       //virtual __pointer(::userex::userex) create_userex();
       //virtual __pointer(::userfs::userfs) create_userfs();
@@ -263,15 +263,15 @@ namespace core
 
       ////void construct(::object * pobject, int iPhase) override;
 
-      //virtual ::e_status process_init();
+      //virtual void process_init();
 
-      //virtual ::e_status init1();
+      //virtual void init1();
 
-      //virtual ::e_status init2();
+      //virtual void init2();
 
-      //virtual ::e_status init_session();
+      //virtual void init_session();
 
-      //virtual ::e_status init();
+      //virtual void init();
 
       //virtual void term();
 
@@ -307,7 +307,7 @@ namespace core
 
       //virtual void defer_initialize_user_presence();
 
-      ////virtual ::e_status     interactive_credentials(::account::credentials * pcredentials) override;
+      ////virtual void     interactive_credentials(::account::credentials * pcredentials) override;
 
       //virtual bool on_create_frame_window();
 
@@ -327,7 +327,7 @@ namespace core
       //virtual string get_locale_schema_dir() override;
 
 
-      ////virtual ::e_status     initialize(::object * pobject) override;
+      ////virtual void     initialize(::object * pobject) override;
 
 
       //virtual ::user::interaction * get_session_window();
@@ -337,17 +337,17 @@ namespace core
 
       ////virtual bool is_session() const override;
 
-      //virtual ::e_status init_thread() override;
+      //virtual void init_thread() override;
 
-      ////virtual ::e_status process_init();
+      ////virtual void process_init();
 
-      ////virtual ::e_status init1();
+      ////virtual void init1();
 
-      ////virtual ::e_status init2();
+      ////virtual void init2();
 
-      ////virtual ::e_status init_session();
+      ////virtual void init_session();
 
-      ////virtual ::e_status init();
+      ////virtual void init();
 
       ////virtual void term();
       //virtual void term2();
@@ -497,16 +497,16 @@ namespace core
 
 
 
-      ////virtual ::e_status initialize(::object * pobject) override;
+      ////virtual void initialize(::object * pobject) override;
 
       //virtual void install_message_routing(::channel* pchannel) override;
 
-      ////virtual ::e_status userex_process_init();
-      ////virtual ::e_status userex_init1();
-      ////virtual ::e_status init2() override;
+      ////virtual void userex_process_init();
+      ////virtual void userex_init1();
+      ////virtual void init2() override;
       ////virtual bool init3() override;
       ////virtual bool initialize_filemanager();
-      /////virtual ::e_status init_session() override;
+      /////virtual void init_session() override;
       ////virtual void add_document_template(::user::impact_system * ptemplate);
 
       ////virtual void term_session() override;
@@ -532,7 +532,7 @@ namespace core
 
       //bool InitializeLocalDataCentral();
 
-      ////virtual ::e_status bergedge_start() override;
+      ////virtual void bergedge_start() override;
 
       //void _001OnFileNew();
 
@@ -559,7 +559,7 @@ namespace core
       //virtual void on_frame_window_drop_files(::user::interaction* pinteraction, ::file::patha& patha);
 
 
-      //virtual ::e_status do_request(::create* pcreate) override;
+      //virtual void do_request(::create* pcreate) override;
 
       //virtual ::user::interaction* get_request_parent_ui(::user::interaction* pinteraction, ::create* pcreate);
 
@@ -586,17 +586,17 @@ namespace core
       //inline ::userex::userex* userex() { return m_puserex; }
 
 
-      ////virtual ::e_status process_init() override;
+      ////virtual void process_init() override;
 
-      ////virtual ::e_status init1() override;
+      ////virtual void init1() override;
 
-      ////virtual ::e_status init() override;
+      ////virtual void init() override;
 
-      ////virtual ::e_status os_native_bergedge_start() override;
+      ////virtual void os_native_bergedge_start() override;
 
-      //virtual ::e_status     main() override;
+      //virtual void     main() override;
 
-      //virtual ::e_status defer_initialize_host_window(const RECTANGLE_I32 * lprect = nullptr);
+      //virtual void defer_initialize_host_window(const RECTANGLE_I32 * lprect = nullptr);
 
       ////virtual service_base * allocate_new_service() override;
 
@@ -650,16 +650,16 @@ namespace core
       ////virtual __pointer(::user::impact)                      get_view();
 
 
-      ////virtual ::e_status     initialize(::object * pobject) override;
+      ////virtual void     initialize(::object * pobject) override;
 
 
       ////virtual void frame_pre_translate_message(::message::message* pmessage) override;
 
-      ////virtual ::e_status process_init() override;
+      ////virtual void process_init() override;
 
-      ////virtual ::e_status init1() override;
+      ////virtual void init1() override;
 
-      ////virtual ::e_status init() override;
+      ////virtual void init() override;
 
       ////virtual void term_session() override;
 
@@ -690,9 +690,9 @@ namespace core
       //::user::style * get_user_style();
 
 
-      //virtual ::e_status init1() override;
-      //virtual ::e_status init2() override;
-      //virtual ::e_status init() override;
+      //virtual void init1() override;
+      //virtual void init2() override;
+      //virtual void init() override;
 
 
 
@@ -706,7 +706,7 @@ namespace core
 
       //virtual void SendMessageToWindows(const ::id & id, WPARAM wParam, LPARAM lParam);
 
-      virtual ::e_status term() override;
+      virtual void term() override;
 
       virtual ::type controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
 

@@ -46,7 +46,7 @@ public:
    bool                                               m_bDedicated;
    bool                                               m_bPreferLessGraphicsParallelization;
    bool                                               m_bThreadToolsForIncreasedFps;
-   ::e_status                                         m_estatus;
+   void                                         m_estatus;
    user_interaction_ptr_array *                       m_puiptraThread;
    ::mutex *                                          m_pmutexThreadUiPtra;
    single_lock *                                      m_pslUser;
@@ -139,14 +139,14 @@ public:
    message_queue* _get_message_queue();
 
    int_bool peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg);
-   ::e_status get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
+   void get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
    int_bool post_message(oswindow oswindow, const ::id & id, wparam wParam, lparam lParam);
 
    user_interaction_ptr_array & uiptra();
 
 
-   ::e_status destroy() override;
-   //virtual ::e_status set_finish_composites(::property_object* ppropertyobjectFinish) override;
+   void destroy() override;
+   //virtual void set_finish_composites(::property_object* ppropertyobjectFinish) override;
 
 
    //void update_task_ready_to_quit() override;
@@ -163,7 +163,7 @@ public:
    virtual bool is_running() const override;
 
 
-//   virtual ::e_status branch(
+//   virtual void branch(
 //      ::matter * pmatter,
 //      ::enum_priority epriority = e_priority_normal,
 //      u32 nStackSize = 0,
@@ -273,8 +273,8 @@ public:
    //}
 
 
-   //virtual ::e_status post_routine(const ::routine& routine) override;
-   //virtual ::e_status send_routine(const ::routine & routine, const ::duration & durationTimeout = ::duration::infinite());
+   //virtual void post_routine(const ::routine& routine) override;
+   //virtual void send_routine(const ::routine & routine, const ::duration & durationTimeout = ::duration::infinite());
 
 
    DECLARE_MESSAGE_HANDLER(on_message_branch);
@@ -295,7 +295,7 @@ public:
    virtual void app_pre_translate_message(::message::message * pmessage);
    virtual void session_pre_translate_message(::message::message * pmessage);
    virtual void system_pre_translate_message(::message::message * pmessage);
-   virtual ::e_status thread_loop(); // low level thread loop
+   virtual void thread_loop(); // low level thread loop
    virtual bool thread_step();     // low level step
    virtual bool pump_message();     // low level message pump
    virtual bool pump_runnable();
@@ -303,23 +303,23 @@ public:
    virtual bool get_message();     // low level message pump
    virtual bool raw_pump_message();     // low level message pump
    bool defer_pump_message() override;     // deferred message pump
-   virtual ::e_status process_message(::message::message * pmessage);
-   ///virtual ::e_status process_base_message(::message::message * pmessage);
-   virtual ::e_status process_thread_message(::message::message * pmessage);
+   virtual void process_message(::message::message * pmessage);
+   ///virtual void process_base_message(::message::message * pmessage);
+   virtual void process_thread_message(::message::message * pmessage);
    // apex commented
    //virtual void process_window_message(::user::message * pusermessage);
-   virtual ::e_status process_message();     // route message
-   virtual ::e_status raw_process_message();     // route message
+   virtual void process_message();     // route message
+   virtual void raw_process_message();     // route message
    // virtual bool on_idle(::i32 lCount); // return true if more idle processing
-   virtual ::e_status on_thread_on_idle(::thread * pthread, ::i32 lCount);
+   virtual void on_thread_on_idle(::thread * pthread, ::i32 lCount);
    virtual bool is_idle_message(::message::message * pmessage);  // checks for special messages
    virtual bool is_idle_message();  // checks for special messages
 
-   virtual ::e_status init_thread();
-   //virtual ::e_status on_pre_run_task();
+   virtual void init_thread();
+   //virtual void on_pre_run_task();
 
-   virtual ::e_status run() override;
-   virtual ::e_status main() override;
+   virtual void run() override;
+   virtual void main() override;
 
    virtual void on_pos_run_thread();
    virtual void term_thread();
@@ -357,7 +357,7 @@ public:
 
 
 
-   virtual ::e_status verb();
+   virtual void verb();
 
 
    ::task_pointer calc_parent();
@@ -380,12 +380,12 @@ public:
 
    virtual bool task_get_run() const override;
    //virtual bool set_run();
-   //virtual ::e_status destroy() override;
+   //virtual void destroy() override;
    //virtual bool is_set_finish() const;
    //virtual void finish() override;
    virtual void kick_idle() override;
    virtual void post_quit() override;
-   //virtual ::e_status on_finish() override;
+   //virtual void on_finish() override;
 
 
    virtual bool post_quit_message(int nExitCode);
@@ -416,24 +416,24 @@ public:
    //virtual void delete_this();
 
    /// thread implementation
-   virtual ::e_status on_thread_init();
-   virtual ::e_status on_thread_term();
-   //virtual ::e_status     on_thread_end();
+   virtual void on_thread_init();
+   virtual void on_thread_term();
+   //virtual void     on_thread_end();
    //virtual void thread_delete();
    operator htask_t() const;
 
 
-   virtual ::e_status initialize(::object * pobject) override;
+   virtual void initialize(::object * pobject) override;
 
 
-   //virtual ::e_status run() override;
+   //virtual void run() override;
 
 
-   virtual ::e_status osthread_init() override;
-   virtual ::e_status __thread_init() override;
-   //virtual ::e_status __thread_main() override;
-   virtual ::e_status __thread_term() override;
-   virtual ::e_status osthread_term() override;
+   virtual void osthread_init() override;
+   virtual void __thread_init() override;
+   //virtual void __thread_main() override;
+   virtual void __thread_term() override;
+   virtual void osthread_term() override;
 
 
    virtual e_status begin_thread(
@@ -445,20 +445,20 @@ public:
    using task::branch;
    using object::branch;
 
-   virtual ::e_status branch(
+   virtual void branch(
    ::enum_priority epriority = ::e_priority_normal,
    ::u32 nStackSize = 0,
    u32 uiCreateFlags = 0 ARG_SEC_ATTRS_DEF) override;
 
 
-   virtual ::e_status begin_synch(
+   virtual void begin_synch(
    ::enum_priority epriority = ::e_priority_normal,
    ::u32 nStackSize = 0,
    u32 uiCreateFlags = 0 ARG_SEC_ATTRS_DEF);
 
 
-   virtual ::e_status inline_init();
-   virtual ::e_status inline_term();
+   virtual void inline_init();
+   virtual void inline_term();
 
 
 
@@ -468,7 +468,7 @@ public:
 
    virtual void do_request(::create * pcreate) override;
 
-   virtual ::e_status get_result_status();
+   virtual void get_result_status();
 
    virtual void delete_this() override;
 
@@ -478,10 +478,10 @@ protected:
 
    virtual void __priority_and_affinity();
    virtual void __os_initialize();
-//   virtual ::e_status __os_thread_start();
+//   virtual void __os_thread_start();
    virtual void __set_thread_on();
    virtual void __os_finalize();
-  // virtual ::e_status __os_thread_end();
+  // virtual void __os_thread_end();
 
    // last called function for the thread lifetime.
    // after its call, the thread object must considered invalid/destroyed
@@ -572,7 +572,7 @@ CLASS_DECL_APEX bool app_sleep(::application * papplication, const class ::wait 
 
 
 template < typename PRED >
-inline ::e_status while_predicateicate_Sleep(int iTime, PRED pred)
+inline void while_predicateicate_Sleep(int iTime, PRED pred)
 {
 
    iTime += 99;

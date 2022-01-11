@@ -116,7 +116,7 @@ namespace file
    }
 
 
-   ::e_status watch::step()
+   void watch::step()
    {
 
       return ::success;
@@ -293,7 +293,7 @@ namespace file
 
 
 
-   ::e_status watcher::run()
+   void watcher::run()
    {
       
       while (task_get_run())
@@ -337,7 +337,7 @@ namespace file
    }
 
 
-   ::e_status watcher::step()
+   void watcher::step()
    {
 
 restart:

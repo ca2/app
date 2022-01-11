@@ -83,7 +83,7 @@ bool context::is_system() const
 }
 
 
-::e_status context::initialize_context()
+void context::initialize_context()
 {
 
    auto estatus = __compose(m_phttp);
@@ -1073,7 +1073,7 @@ void context::add_matter_locator(::aura::application * papp)
 
 
 
-::e_status context::_load_from_file(::matter* pobject, const ::payload& payloadFile, const ::payload& varOptions)
+void context::_load_from_file(::matter* pobject, const ::payload& payloadFile, const ::payload& varOptions)
 {
 
    binary_stream reader(pcontext->m_papexcontext->file().get_reader(payloadFile));
@@ -1085,7 +1085,7 @@ void context::add_matter_locator(::aura::application * papp)
 }
 
 
-::e_status context::_save_to_file(const ::payload& payloadFile, const ::payload& varOptions, const ::matter * pobject)
+void context::_save_to_file(const ::payload& payloadFile, const ::payload& varOptions, const ::matter * pobject)
 {
 
    binary_stream writer(pcontext->m_papexcontext->file().get_writer(payloadFile));
@@ -1097,7 +1097,7 @@ void context::add_matter_locator(::aura::application * papp)
 }
 
 
-::e_status context::destroy()
+void context::destroy()
 {
 
    ::object::destroy();

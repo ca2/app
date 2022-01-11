@@ -71,7 +71,7 @@ namespace netserver
    }
 
 
-   ::e_status socket_thread_base::run()
+   void socket_thread_base::run()
    {
 
       if (m_strIp.is_empty() && m_iPortMaximum >= m_iPortMinimum)

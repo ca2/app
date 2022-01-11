@@ -100,7 +100,7 @@ namespace helloaxis
       string get_helloaura() { synchronous_lock slText(m_pmutexText);  string str(m_strHelloAxis.c_str()); return str; }
 
 
-      virtual ::e_status     run() override;
+      virtual void     run() override;
 
       virtual bool initialize_render(string strId) override;
 

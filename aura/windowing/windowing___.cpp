@@ -80,7 +80,7 @@
 //
 //CLASS_DECL_ACME void x11_message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::future & process);
 //
-////::e_status os_message_box(::windowing::window * pwindow, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::future future)
+////void os_message_box(::windowing::window * pwindow, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::future future)
 ////{
 ////
 ////   x11_message_box(pszMessage, pszTitle, emessagebox, future);
@@ -285,13 +285,13 @@
 //}
 //
 //
-//::e_status initialize_x11();
+//void initialize_x11();
 //
 //bool g_bInitializeX11 = false;
 //
-//::e_status g_estatusInitializeX11 = ::error_not_initialized;
+//void g_estatusInitializeX11 = ::error_not_initialized;
 //
-//::e_status defer_initialize_x11()
+//void defer_initialize_x11()
 //{
 //
 //   if(!g_bInitializeX11)
@@ -311,7 +311,7 @@
 //i32 _c_XErrorHandler(Display * display, XErrorEvent * perrorevent);
 //
 //
-//::e_status initialize_x11()
+//void initialize_x11()
 //{
 //
 //   if(!XInitThreads())

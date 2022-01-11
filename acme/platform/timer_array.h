@@ -31,7 +31,7 @@ namespace acme
       bool erase_timer(::timer * ptimer) override;
 
 
-      ::e_status destroy() override;
+      void destroy() override;
       virtual void delete_all_timers();
 
       bool on_timer(::timer * ptimer) override;

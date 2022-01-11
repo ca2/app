@@ -86,7 +86,7 @@
 ////   
 ////   //::matter *        m_pobjectHandler;
 ////   ::i64             m_iTrait;
-////   ::e_status         m_estatus;
+////   void         m_estatus;
 ////   //::u64                                     m_uTrait;
 ////   //__pointer(::matter)                    m_preference;
 ////   //__pointer(::matter)               m_pobjectTaskTransport;

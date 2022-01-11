@@ -91,7 +91,7 @@ class single_lock;
 class multi_lock;
 
 
-CLASS_DECL_ACME ::e_status __call(const ::routine & routine);
+CLASS_DECL_ACME void __call(const ::routine & routine);
 
 
 //namespace parallelization
@@ -143,8 +143,8 @@ CLASS_DECL_ACME ::e_status __call(const ::routine & routine);
 
 
 
-CLASS_DECL_ACME ::e_status task_set_name(const char * psz);
-//CLASS_DECL_ACME ::e_status task_set_name(htask_t htask, const char* pszName);
+CLASS_DECL_ACME void task_set_name(const char * psz);
+//CLASS_DECL_ACME void task_set_name(htask_t htask, const char* pszName);
 
 
 CLASS_DECL_ACME string task_get_name();
@@ -152,7 +152,7 @@ CLASS_DECL_ACME string task_get_name(htask_t htask);
 
 
 
-typedef ::e_status     (*__THREADPROC)(void *);
+typedef void     (*__THREADPROC)(void *);
 
 
 

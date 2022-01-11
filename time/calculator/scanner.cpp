@@ -782,7 +782,7 @@ namespace datetime
    }
 
 
-   ::e_status scanner::initialize_datetime_scanner(::text::context* ptextcontext)
+   void scanner::initialize_datetime_scanner(::text::context* ptextcontext)
    {
 
       auto estatus = ::object::initialize(ptextcontext);

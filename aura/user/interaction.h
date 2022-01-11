@@ -458,16 +458,16 @@ namespace user
       //virtual void task_on_term(::task* pthread) override;
 
 
-      //virtual ::e_status main_async(const ::routine & routine, enum_priority epriority = e_priority_normal);
+      //virtual void main_async(const ::routine & routine, enum_priority epriority = e_priority_normal);
 
 
       //virtual void enumerate_composite(matter_array& a) override;
 
       virtual bool is_user_thread() const;
 
-      virtual ::e_status interaction_send(const ::routine & routine);
+      virtual void interaction_send(const ::routine & routine);
 
-      virtual ::e_status interaction_post(const ::routine & routine) override;
+      virtual void interaction_post(const ::routine & routine) override;
 
 
       inline void auto_prodevian_on_show() { m_ewindowflag |= e_window_flag_auto_prodevian_on_show; }
@@ -593,7 +593,7 @@ namespace user
 
       interaction * get_tooltip();
 
-      ::e_status set_tool_window(bool bSet = true) override;
+      void set_tool_window(bool bSet = true) override;
 
       virtual double get_rotate();
       ::user::form * get_form() override;
@@ -615,7 +615,7 @@ namespace user
       void on_set_finish() override;
 
 
-      ::e_status destroy() override;
+      void destroy() override;
       void delete_this() override;
 
 
@@ -691,15 +691,15 @@ namespace user
       virtual void sketch_prepare_window_restore(edisplay edisplay) override;
       virtual void sketch_prepare_window_dock(edisplay edisplay) override;
 
-      virtual ::e_status frame_experience_restore();
+      virtual void frame_experience_restore();
       
       virtual ::user::notify_icon * notify_icon();
       
-      virtual ::e_status on_app_activated();
+      virtual void on_app_activated();
       
-      virtual ::e_status frame_toggle_restore();
+      virtual void frame_toggle_restore();
       
-      virtual ::e_status display_previous_restore();
+      virtual void display_previous_restore();
 
       virtual void get_client_rect(RECTANGLE_I32* lprect, enum_layout elayout = e_layout_design) const;
       inline ::rectangle_i32 get_client_rect(enum_layout elayout = e_layout_design) const { return layout().state(elayout).client_rect(); }
@@ -751,10 +751,10 @@ namespace user
       virtual ::windowing::cursor * get_mouse_cursor() override;
 
 
-      //virtual ::e_status set_cursor(enum_cursor ecursor) override;
+      //virtual void set_cursor(enum_cursor ecursor) override;
 
 
-      virtual ::e_status set_mouse_cursor(::windowing::cursor * pcursor) override;
+      virtual void set_mouse_cursor(::windowing::cursor * pcursor) override;
 
 
       //virtual ::point_i32 get_cursor_position() const override;
@@ -763,7 +763,7 @@ namespace user
       virtual bool is_left_button_pressed() const;
 
 
-      virtual ::e_status set_current_item(const ::item & item, const ::action_context & action_context);
+      virtual void set_current_item(const ::item & item, const ::action_context & action_context);
       virtual ::item current_item();
 
 
@@ -779,7 +779,7 @@ namespace user
       //virtual ::i32 set_window_long(i32 nIndex, ::i32 lValue) override;
 
       //virtual iptr get_window_long_ptr(i32 nIndex) const override;
-      //virtual ::e_status set_window_long_ptr(i32 nIndex, iptr lValue) override;
+      //virtual void set_window_long_ptr(i32 nIndex, iptr lValue) override;
 
       virtual bool on_before_set_parent(::user::primitive * pinterface);
       virtual bool on_set_parent(::user::primitive * pinterface);
@@ -1009,8 +1009,8 @@ namespace user
       /// ::user::control_descriptor.
       //virtual bool create_interaction(class ::user::control_descriptor * pdescriptor);
 
-      virtual ::e_status create_host() override;
-      virtual ::e_status create_child(::user::interaction * pparent) override;
+      virtual void create_host() override;
+      virtual void create_child(::user::interaction * pparent) override;
 
       // virtual bool create_interaction(const ::string & pszClassName, const ::string & pszWindowName, u32 uStyle, ::user::interaction * puiParent, ::create * pcreate = nullptr) override;
 
@@ -1028,19 +1028,19 @@ namespace user
 
       virtual void destroy_window() override;
 
-      //virtual ::e_status on_finish() override;
+      //virtual void on_finish() override;
 
-      //virtual ::e_status set_finish_composites(::property_object* pcontextobjectFinish) override;
+      //virtual void set_finish_composites(::property_object* pcontextobjectFinish) override;
 
    
 
-      ::e_status destroy_composites() override;
+      void destroy_composites() override;
 
-      //::e_status destroy() override;
+      //void destroy() override;
 
       void notify_on_destroy(::property_object* pcontextobjectFinish) override;
 
-      //virtual ::e_status destroy() override;
+      //virtual void destroy() override;
 
 
 //#ifdef WINDOWS
@@ -1151,10 +1151,10 @@ namespace user
       virtual bool set_mouse_capture();
 
       virtual bool has_keyboard_focus() const;
-      ::e_status set_keyboard_focus() override;
+      void set_keyboard_focus() override;
 
-      virtual ::e_status set_foreground_window();
-      virtual ::e_status set_active_window();
+      virtual void set_foreground_window();
+      virtual void set_active_window();
 
       virtual bool is_window_enabled() const;
       inline bool is_this_window_enabled() const { return m_ewindowflag.is(e_window_flag_enable); }
@@ -1205,14 +1205,14 @@ namespace user
 
       virtual void defer_set_icon();
 
-      virtual ::e_status set_windowing_icon(::windowing::icon* picon);
+      virtual void set_windowing_icon(::windowing::icon* picon);
 
       virtual ::windowing::icon* get_windowing_icon();
       virtual ::draw2d::icon* get_draw_icon();
 
 
 
-      //virtual ::e_status set_cursor(::windowing::cursor* pcursor);
+      //virtual void set_cursor(::windowing::cursor* pcursor);
 
       virtual ::graphics::graphics* get_window_graphics() override;
 
@@ -1397,8 +1397,8 @@ namespace user
 
       virtual ::user::interaction* get_focusable_descendant() const override;
 
-      virtual ::e_status show_control_bar(::user::control_bar * pcontrolbar);
-      virtual ::e_status hide_control_bar(::user::control_bar * pcontrolbar);
+      virtual void show_control_bar(::user::control_bar * pcontrolbar);
+      virtual void hide_control_bar(::user::control_bar * pcontrolbar);
 
       void RepositionBars(::u32 nIDFirst = 0, ::u32 nIDLast = 0xffff, ::id idLeftOver = FIRST_PANE, ::u32 nFlag = reposDefault, RECTANGLE_I32* prectParam = nullptr, const ::rectangle_i32& rectangleClient = nullptr, bool bStretch = true) override;
 
@@ -1496,7 +1496,7 @@ namespace user
 #endif
 
       //// <3ThomasBorregaardS�rensen__!! (I need to suck you, and take care of you, both front and back and middle but it ought to be unexplored by else...)
-      ::e_status handle_command(const ::id& id) override;
+      void handle_command(const ::id& id) override;
 
       virtual bool has_command_handler(::message::command* pcommand) override;
 
@@ -1595,8 +1595,8 @@ namespace user
       virtual ::size_f64 get_total_size();
       virtual void on_change_view_size(::draw2d::graphics_pointer & pgraphics);
       virtual ::size_f64 get_page_size();
-      virtual ::e_status set_total_size(const ::size_f64& size);
-      virtual ::e_status set_page_size(const ::size_f64& size);
+      virtual void set_total_size(const ::size_f64& size);
+      virtual void set_page_size(const ::size_f64& size);
       virtual ::point_i32 get_parent_accumulated_scroll(enum_layout elayout = e_layout_design) const;
       virtual ::point_i32 get_parent_viewport_offset() const;
       virtual ::point_i32 get_ascendant_viewport_offset() const;
@@ -1667,12 +1667,12 @@ namespace user
       virtual enum_input_type preferred_input_type() const;
 
       //virtual ::user::primitive * get_keyboard_focus();
-      //virtual ::e_status set_keyboard_focus(::user::primitive* pprimitive);
-      //virtual ::e_status erase_keyboard_focus(::user::primitive * pprimitive);
+      //virtual void set_keyboard_focus(::user::primitive* pprimitive);
+      //virtual void erase_keyboard_focus(::user::primitive * pprimitive);
 
-      //virtual ::e_status set_keyboard_focus() override;
-      //virtual ::e_status erase_keyboard_focus() override;
-      //virtual ::e_status clear_keyboard_focus() override;
+      //virtual void set_keyboard_focus() override;
+      //virtual void erase_keyboard_focus() override;
+      //virtual void clear_keyboard_focus() override;
 
 
       virtual bool is_descendant_of(const ::user::primitive * puiAscendantCandidate, bool bIncludeSelf) const override;
@@ -1729,8 +1729,8 @@ namespace user
       virtual void _001OnDeiconify(edisplay edisplay);
 
 
-      virtual ::e_status is_edit_delete_enabled();
-      virtual ::e_status on_edit_delete(const ::action_context& action_context);
+      virtual void is_edit_delete_enabled();
+      virtual void on_edit_delete(const ::action_context& action_context);
 
 
       virtual bool on_click(const ::item & item);
@@ -1753,8 +1753,8 @@ namespace user
       virtual bool has_pending_redraw_flags() override;
 
 
-      virtual ::e_status set_bitmap_source(const string & strBitmapFileTitle) override;
-      virtual ::e_status clear_bitmap_source() override;
+      virtual void set_bitmap_source(const string & strBitmapFileTitle) override;
+      virtual void clear_bitmap_source() override;
 
 
       //void install_click_default_mouse_handling(::channel* pchannel);
@@ -1889,19 +1889,19 @@ namespace user
       //virtual bool set(e_font efont = font_default);
 
 
-      virtual ::e_status show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd) override;
-      virtual ::e_status hide_software_keyboard(::user::primitive * pprimitive) override;
+      virtual void show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd) override;
+      virtual void hide_software_keyboard(::user::primitive * pprimitive) override;
 
 
       virtual void set_stock_icon(enum_stock_icon eicon);
       virtual enum_stock_icon get_stock_icon();
 
 
-      virtual ::e_status post_routine(const ::routine & routine) override;
-      virtual ::e_status prodevian_post_routine(const ::routine & routine);
+      virtual void post_routine(const ::routine & routine) override;
+      virtual void prodevian_post_routine(const ::routine & routine);
 
 
-      virtual ::e_status send_routine(const ::routine & routine) override;
+      virtual void send_routine(const ::routine & routine) override;
 
 
    /*   template < typename PRED >

@@ -6539,7 +6539,7 @@ finished_update:
    }
 
 
-   ::e_status plain_edit::is_edit_delete_enabled()
+   void plain_edit::is_edit_delete_enabled()
    {
 
       string str;
@@ -6558,7 +6558,7 @@ finished_update:
    }
 
 
-   ::e_status plain_edit::on_edit_delete(const ::action_context & actioncontext)
+   void plain_edit::on_edit_delete(const ::action_context & actioncontext)
    {
 
       ::draw2d::graphics_pointer pgraphics;

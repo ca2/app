@@ -535,7 +535,7 @@ namespace draw2d_cairo
    }
 
 
-   ::e_status region::destroy_os_data()
+   void region::destroy_os_data()
    {
 
       if (m_psurface != nullptr)
@@ -564,7 +564,7 @@ namespace draw2d_cairo
    }
 
 
-   ::e_status region::destroy()
+   void region::destroy()
    {
 
       auto estatus = ::draw2d::region::destroy();

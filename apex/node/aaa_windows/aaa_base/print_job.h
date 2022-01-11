@@ -15,7 +15,7 @@ namespace windows
       virtual ~print_job();
 
 
-      virtual ::e_status     run() override;
+      virtual void     run() override;
 
 
    };

@@ -28,7 +28,7 @@ namespace multimedia
       ~decoder_plugin() override;
 
 
-      virtual ::e_status Load(const ::string & strTitle);
+      virtual void Load(const ::string & strTitle);
       virtual __transport(::multimedia::decoder) NewDecoder();
 
       virtual string GetPluginTitle();

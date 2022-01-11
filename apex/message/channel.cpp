@@ -296,7 +296,7 @@ void channel::channel_common_construct()
 }
 
 
-::e_status channel::destroy()
+void channel::destroy()
 {
 
    if (m_pchannel && m_pchannel != this)
@@ -552,7 +552,7 @@ void channel::on_command(::message::command * pcommand)
 //}
 
 
-::e_status channel::id_notify(const ::id & id, ::matter * pmatter)
+void channel::id_notify(const ::id & id, ::matter * pmatter)
 {
 
     auto & routinea = m_routinemap[id];

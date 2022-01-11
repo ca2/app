@@ -81,7 +81,7 @@
 //   }
 //
 //
-//   ::e_status context_thread::destroy()
+//   void context_thread::destroy()
 //   {
 //
 //      ::thread::destroy();

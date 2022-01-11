@@ -257,17 +257,17 @@ namespace base
 //
       void common_construct();
 //
-      virtual ::e_status initialize(::object * pobject) override;
+      virtual void initialize(::object * pobject) override;
 
       virtual void on_add_session(::apex::session * papexsession) override;
 //
-//      virtual ::e_status init();
-//      //virtual ::e_status init_instance() override;
+//      virtual void init();
+//      //virtual void init_instance() override;
 //      //virtual void term_instance() override;
-//      virtual ::e_status inline_init() override;
-//      virtual ::e_status inline_term() override;
+//      virtual void inline_init() override;
+//      virtual void inline_term() override;
 //
-//      virtual ::e_status init_system();
+//      virtual void init_system();
 //      virtual void term_system();
 //
 //      virtual void term();
@@ -281,7 +281,7 @@ namespace base
 //
 //      inline ::gpu::approach* get_gpu() { if (!m_pgpu) create_gpu(); return m_pgpu.get(); };
 //      inline ::gpu::approach* gpu() { return m_pgpu.get(); };
-//      virtual ::e_status create_gpu();
+//      virtual void create_gpu();
 //
 //      ::task_group * task_group(::enum_priority epriority = ::e_priority_none);
 //
@@ -308,16 +308,16 @@ namespace base
 //      //virtual i32 install_start(const ::string & pszCommandLine, const ::string & pszBuild) override;
 //      //virtual i32 install_progress_app_add_up(int iAddUp = 1) override;
 //
-//      virtual ::e_status process_init();
+//      virtual void process_init();
 //
-//      virtual ::e_status init1();
+//      virtual void init1();
 //
-//      virtual ::e_status init2();
+//      virtual void init2();
 //
-//      virtual ::e_status defer_xml();
+//      virtual void defer_xml();
 //
 //
-//      virtual ::e_status verb() override; // ambigous inheritance from ::aura::system/::axis::application
+//      virtual void verb() override; // ambigous inheritance from ::aura::system/::axis::application
 //
 //
 //      virtual bool is_system() const override;
@@ -326,7 +326,7 @@ namespace base
 //      virtual string crypto_md5_text(const ::string & str);
 //
 //
-//      //virtual ::e_status create_html();
+//      //virtual void create_html();
 //
 //      //virtual __pointer(::aura::session) on_create_session() override;
 //
@@ -389,7 +389,7 @@ namespace base
 //      virtual string get_locale_schema_dir() override;
 //
 //
-//      //virtual ::e_status     initialize_system(::object * pobject, app_core * pappcore);
+//      //virtual void     initialize_system(::object * pobject, app_core * pappcore);
 //
 //
 //      //__pointer(::thread_tools) create_thread_tools(::enum_task_tool etool);
@@ -531,7 +531,7 @@ namespace base
 //      bool on_application_menu_action(const ::string & pszCommand);
 //
 //
-//      virtual ::e_status initialize_sockets();
+//      virtual void initialize_sockets();
 //
 //      ::image_pointer get_cache_image(::object * pobject, const ::payload & payloadFile);
 //      ::image_pointer matter_cache_image(::object * pobject, const ::string & strMatter);
@@ -555,30 +555,30 @@ namespace base
 //
 //
 //
-//      //virtual ::e_status init_system();
+//      //virtual void init_system();
 //
-//      //virtual ::e_status process_init();
+//      //virtual void process_init();
 //
-//      virtual ::e_status init_draw2d();
+//      virtual void init_draw2d();
 //      virtual bool ([a-z0-9_]+)_factory(::factory::factory * pfactory);
 //      virtual string draw2d_get_default_library_name();
 //
 //      virtual bool ([a-z0-9_]+)_factory(::factory::factory * pfactory);
 //      virtual string imaging_get_default_library_name();
 //
-//      virtual ::e_status init_thread() override;
+//      virtual void init_thread() override;
 //      virtual void term_thread() override;
 //
 //
-//      virtual ::e_status thread_loop() override;
+//      virtual void thread_loop() override;
 //
-//      //virtual ::e_status init();
+//      //virtual void init();
 //
-//      //virtual ::e_status init1();
+//      //virtual void init1();
 //
-//      //virtual ::e_status init2();
+//      //virtual void init2();
 //
-//      virtual ::e_status initial_check_directrix();
+//      virtual void initial_check_directrix();
 //
 //      //virtual void term_system();
 //
@@ -619,7 +619,7 @@ namespace base
 //
 //
 //
-//      virtual ::e_status initialize_log(const ::string & pszId);
+//      virtual void initialize_log(const ::string & pszId);
 //
 //
 //      virtual void appa_load_string_table();
@@ -657,7 +657,7 @@ namespace base
 //
 //      virtual void install_progress_add_up(int iAddUp = 1);
 //
-//      virtual ::e_status create_session(index iEdge = 0);
+//      virtual void create_session(index iEdge = 0);
 //
 //      virtual __transport(::aura::session) on_create_session(index iEdge);
 //
@@ -695,7 +695,7 @@ namespace base
 //
 //
 //
-//      virtual ::e_status do_request(::create * pcreate) override;
+//      virtual void do_request(::create * pcreate) override;
 //
 //      virtual void defer_check_openweather_city_list();
 //
@@ -787,22 +787,22 @@ namespace base
 //
 //      void defer_create_firefox_profile(::file::path pathFirefox, string strProfileName, ::file::path pathProfile);
 //
-//      ::e_status     firefox(string strUrl, string strBrowser, string strProfile, string strParam);
-//      ::e_status     get_firefox_installation_info(string & strPathToExe, string & strInstallDirectory);
+//      void     firefox(string strUrl, string strBrowser, string strProfile, string strParam);
+//      void     get_firefox_installation_info(string & strPathToExe, string & strInstallDirectory);
 //
 //
 //
-//      //virtual ::e_status  initialize_system(::object* pobject, app_core* pappcore) override;
+//      //virtual void  initialize_system(::object* pobject, app_core* pappcore) override;
 //
 //      virtual void discard_to_factory(__pointer(object) pca);
 //
 //      //virtual bool is_system() const override;
 //
-//      //virtual ::e_status process_init() override;
+//      //virtual void process_init() override;
 //
-//      //virtual ::e_status init2() override;
+//      //virtual void init2() override;
 //
-//      //virtual ::e_status init_system() override;
+//      //virtual void init_system() override;
 //
 //      //virtual void term() override;
 //
@@ -810,16 +810,16 @@ namespace base
 //
 //
 //      //virtual i32 main();
-//      ///virtual ::e_status InitApplication() override;
+//      ///virtual void InitApplication() override;
 //
-//      //virtual ::e_status init() override;
-//      //virtual ::e_status init1() override;
-//      //virtual ::e_status init3() override;
+//      //virtual void init() override;
+//      //virtual void init1() override;
+//      //virtual void init3() override;
 //
-//      //virtual ::e_status bergedge_start() override;
+//      //virtual void bergedge_start() override;
 //
 //
-//      //virtual ::e_status initialize_rich_text();
+//      //virtual void initialize_rich_text();
 //
 //
 //      //virtual index get_new_bergedge(application_bias * pbiasCreation = nullptr);
@@ -833,7 +833,7 @@ namespace base
 //      DECLARE_MESSAGE_HANDLER(on_application_signal);
 //
 //
-//      ::e_status set_history(::aura::history* phistory);
+//      void set_history(::aura::history* phistory);
 //
 //
 //      //__pointer(::acme::library) on_get_library(const ::string & pszLibrary) override;
@@ -904,13 +904,13 @@ namespace base
 //
 //      virtual string get_host_location_url();
 //
-//      virtual ::e_status add_view_library(::acme::library* plibrary);
+//      virtual void add_view_library(::acme::library* plibrary);
 //
 //      //virtual void get_cursor_position(POINT_I32 * ppoint);
 //
 //
 //
-//      //virtual ::e_status do_request(::create* pcommand) override;
+//      //virtual void do_request(::create* pcommand) override;
 //
 //
 //#ifdef _DEBUG
@@ -928,7 +928,7 @@ namespace base
 //      void dump(dump_context& action_context) const override;
 //
 //
-//      virtual ::e_status     main() override;
+//      virtual void     main() override;
 //      //virtual void hist_hist(const ::string & psz) override;
 //
 //
@@ -951,10 +951,10 @@ namespace base
 //      //virtual ~system();
 //
 //
-//      ///virtual ::e_status initialize_system(::object* pobject, app_core* pappcore) override;
+//      ///virtual void initialize_system(::object* pobject, app_core* pappcore) override;
 //
 //
-//      //virtual ::e_status process_init() override;
+//      //virtual void process_init() override;
 //      //virtual void term_system() override;
 //
 //      //virtual __pointer(::aura::session) on_create_session() override;

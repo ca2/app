@@ -25,7 +25,7 @@
 ////{
 ////
 //
-////   ::e_status system::os_application_system_run()
+////   void system::os_application_system_run()
 ////   {
 ////
 ////
@@ -51,10 +51,10 @@
 
 
 
-//::e_status app_core::system_start()
+//void app_core::system_start()
 //{
 //
-//   ::e_status estatus = system_pre_run();
+//   void estatus = system_pre_run();
 //
 //   if (!estatus)
 //   {
@@ -97,7 +97,7 @@ namespace aura
 {
 
 
-   // ::e_status system::system_main()
+   // void system::system_main()
    // {
 
    //    auto estatus = ::apex::system::system_main();
@@ -113,7 +113,7 @@ namespace aura
 
    // }
 
-//    ::e_status system::on_start_system()
+//    void system::on_start_system()
 //    {
 
 // //      auto estatus = ([a-z0-9_]+)_factory("windowing", "x11");
@@ -153,7 +153,7 @@ namespace aura
 // //      }
 // //
 
-//       //   ::e_status estatus = psystem->begin_synch();
+//       //   void estatus = psystem->begin_synch();
 //       //
 //       //   if(!estatus)
 //       //   {
@@ -296,7 +296,7 @@ namespace aura
 //    }
 
 
-//   ::e_status system::message_box(const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, const future & process)
+//   void system::message_box(const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, const future & process)
 //   {
 //
 //      auto psession = get_session();
@@ -330,7 +330,7 @@ namespace aura
 //   }
 
 
-//   ::e_status system::message_box_timeout(const ::string & pszMessage, const ::string & pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, const future & process)
+//   void system::message_box_timeout(const ::string & pszMessage, const ::string & pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, const future & process)
 //   {
 //
 //      auto psession = get_session();

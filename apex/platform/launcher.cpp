@@ -3,7 +3,7 @@
 #include "launcher.h"
 
 
-::e_status launcher::start()
+void launcher::start()
 {
 
    throw ::interface_only_exception();

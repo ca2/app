@@ -59,7 +59,7 @@ namespace introjection
    }
 
 
-   ::e_status compiler::initialize_introjection_compiler(::object * pobject, const ::string& pszRepos, const ::string& pszApp, const ::string& pszProjectName)
+   void compiler::initialize_introjection_compiler(::object * pobject, const ::string& pszRepos, const ::string& pszApp, const ::string& pszProjectName)
    {
 
       auto estatus = initialize_programming_compiler(pobject);

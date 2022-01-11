@@ -23,7 +23,7 @@ namespace dynamic_source
       ~script() override;
 
 
-      ::e_status on_initialize_object() override;
+      void on_initialize_object() override;
 
 
       virtual __pointer(::dynamic_source::script_instance) create_instance() = 0;

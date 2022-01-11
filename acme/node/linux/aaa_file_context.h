@@ -19,14 +19,14 @@ namespace linux
       virtual ~file_context();
 
 
-      virtual ::e_status initialize(::matter * pobject) override;
+      virtual void initialize(::matter * pobject) override;
 
 
-      virtual ::e_status init_system() override;
-      virtual ::e_status init_context() override;
+      virtual void init_system() override;
+      virtual void init_context() override;
 
 
-      virtual ::file_transport get_file(const ::payload & payloadFile, const ::file::e_open & eopen) override;
+      virtual ::file_pointer get_file(const ::payload & payloadFile, const ::file::e_open & eopen) override;
 
 
       virtual bool is_link(string strPath) override;

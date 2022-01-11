@@ -36,7 +36,7 @@ namespace filemanager
    }
 
 
-   ::e_status folder_list_data::on_initialize_object()
+   void folder_list_data::on_initialize_object()
    {
 
       auto estatus = ::user::list_data::on_initialize_object();

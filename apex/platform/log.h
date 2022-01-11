@@ -45,12 +45,12 @@ namespace apex
       //void print(const char * psz, ...) override;
 
 
-      ::e_status initialize_log(enum_trace_level etracelevelMin, const ::id & id) override;
+      void initialize_log(enum_trace_level etracelevelMin, const ::id & id) override;
 
       //virtual bool initialize(id id);
-      ::e_status destroy() override;
+      void destroy() override;
 
-      ::e_status process_init() override;
+      void process_init() override;
 
       //virtual void __tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFileName, i32 iLine, const char * psz) const override;
 

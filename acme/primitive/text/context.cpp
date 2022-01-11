@@ -186,7 +186,7 @@ namespace text
    }
 
 
-   ::e_status table::initialize(::object * pobject)
+   void table::initialize(::object * pobject)
    {
 
       auto estatus = ::object::initialize(pobject);

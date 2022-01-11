@@ -47,7 +47,7 @@ RunBeforeMain go;
 //
 //   psystem->system_construct(stra);
 //
-//   ::e_status estatus = psystem->start();
+//   void estatus = psystem->start();
 //
 //   ::i32 iErrorStatus = estatus.error_status();
 //

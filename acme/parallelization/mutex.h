@@ -65,9 +65,9 @@ public:
 
    virtual bool lock(const class ::wait & wait) override;
 
-   virtual ::e_status _wait() override;
+   virtual void _wait() override;
 
-   virtual ::e_status _wait(const class ::wait & wait) override;
+   virtual void _wait(const class ::wait & wait) override;
 
 #endif
 

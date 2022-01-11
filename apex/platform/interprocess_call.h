@@ -40,7 +40,7 @@ public:
 
    __pointer(synchronization_array) synca();
 
-   ::e_status wait();
+   void wait();
 
    void announce();
 

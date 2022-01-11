@@ -122,13 +122,13 @@ namespace sockets
       virtual ~net();
 
 
-      virtual ::e_status initialize(::object * pobject) override;
+      virtual void initialize(::object * pobject) override;
 
       virtual bool gudo_set();
 
       virtual bool gudo_get();
 
-      ::e_status destroy() override;
+      void destroy() override;
 
       /*
       * Encode string per RFC1738 URL encoding rules

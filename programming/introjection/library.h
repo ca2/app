@@ -1,4 +1,4 @@
-// From compiler.h by camilo on 2021-11-15 15:43 BRT <3ThomasBorregaardSørensen!!
+// From compiler.h by camilo on 2021-11-15 15:43 BRT <3ThomasBorregaardSï¿½rensen!!
 #pragma once
 
 
@@ -22,7 +22,7 @@ namespace introjection
       library();
       virtual ~library();
 
-      virtual ::e_status initialize(::object* pobject) override;
+      virtual void initialize(::object* pobject) override;
 
 
    };

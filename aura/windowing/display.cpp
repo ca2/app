@@ -37,7 +37,7 @@ namespace windowing
 
 
    
-   ::e_status display::initialize_display(::windowing::windowing * pwindowing)
+   void display::initialize_display(::windowing::windowing * pwindowing)
    {
 
       auto estatus = initialize(pwindowing);
@@ -90,7 +90,7 @@ namespace windowing
    }
 
 
-   ::e_status display::open()
+   void display::open()
    {
 
       return ::success;

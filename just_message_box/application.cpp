@@ -28,7 +28,7 @@ namespace app_just_message_box
    }
 
 
-   ::e_status application::init_instance()
+   void application::init_instance()
    {
 
       if (!::aura::application::init_instance())

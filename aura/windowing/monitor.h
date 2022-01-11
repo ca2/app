@@ -22,14 +22,14 @@ namespace windowing
       virtual ~monitor();
 
 
-      virtual ::e_status update_cache();
+      virtual void update_cache();
 
       virtual ::u32 get_monitor_color_temperature();
       virtual bool adjust_monitor( ::u32 dwTemperature, double dBrightness, double dwGamma);
 
 
-      virtual ::e_status get_monitor_rectangle(::RECTANGLE_I32 * prectangle);
-      virtual ::e_status get_workspace_rectangle(::RECTANGLE_I32 * prectangle);
+      virtual void get_monitor_rectangle(::RECTANGLE_I32 * prectangle);
+      virtual void get_workspace_rectangle(::RECTANGLE_I32 * prectangle);
 
 
    };

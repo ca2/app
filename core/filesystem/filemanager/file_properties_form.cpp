@@ -20,7 +20,7 @@ namespace filemanager
    }
 
 
-   ::e_status file_properties_form::initialize(::object * pobject)
+   void file_properties_form::initialize(::object * pobject)
    {
 
       auto estatus = ::user::impact_host::initialize(pobject);

@@ -41,7 +41,7 @@ namespace aqua
    }
 
 
-   ::e_status system::initialize(::object * pobject)
+   void system::initialize(::object * pobject)
    {
 
       auto estatus = ::apex::system::initialize(pobject);
@@ -79,7 +79,7 @@ namespace aqua
 
    }
 
-   //::e_status system::initialize_rich_text()
+   //void system::initialize_rich_text()
    //{
 
    //   if (!__rich_text_initialize())
@@ -135,7 +135,7 @@ namespace aqua
    }
 
 
-   ::e_status system::create_audio()
+   void system::create_audio()
    {
 
       auto & pfactory = factory("audio");
@@ -185,7 +185,7 @@ namespace aqua
    }
 
 
-   ::e_status system::defer_multimedia()
+   void system::defer_multimedia()
    {
 
       if (m_pmultimedia)
@@ -284,7 +284,7 @@ namespace aqua
    }
 
 
-   ::e_status system::defer_audio()
+   void system::defer_audio()
    {
 
       if(m_bAudio.undefined() || m_bAudio.is_true())

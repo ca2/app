@@ -45,7 +45,7 @@ namespace crypto_openssl
    **/
    //http://stackoverflow.com/questions/10366950/openssl-using-evp-vs-algorithm-api-for-symmetric-crypto
 
-   ::e_status crypto::encrypt(memory& storageEncrypt, const memory& storageDecrypt, const memory& memKeyData)
+   void crypto::encrypt(memory& storageEncrypt, const memory& storageDecrypt, const memory& memKeyData)
    {
 
       memory memSha1(this);
@@ -305,7 +305,7 @@ namespace crypto_openssl
    }
 
 
-   ::e_status crypto::decrypt(memory& storageDecrypt, const memory& storageEncrypt, const memory& memKeyData)
+   void crypto::decrypt(memory& storageDecrypt, const memory& storageEncrypt, const memory& memKeyData)
    {
 
       memory memSha1;
@@ -860,7 +860,7 @@ namespace crypto_openssl
    //}
 
 
-   //::e_status     crypto::file_get(::payload payloadFile, string& str, const char* pszSalt, ::application* papp)
+   //void     crypto::file_get(::payload payloadFile, string& str, const char* pszSalt, ::application* papp)
    //{
 
    //   memory memoryEncrypt;
@@ -1495,7 +1495,7 @@ namespace crypto_openssl
    }
 
 
-   ::e_status crypto::defer_initialize()
+   void crypto::defer_initialize()
    {
 
       auto estatus = __defer_compose(m_pinitializer);

@@ -18,7 +18,7 @@
 //
 //   future_predicate(const TYPE & t, PRED pred) : m_result(t), m_predicate(pred) { }
 //
-//   virtual ::e_status     run() override
+//   virtual void     run() override
 //   {
 //
 //      return m_predicate(m_result);

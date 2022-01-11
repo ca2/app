@@ -32,7 +32,7 @@ public:
    virtual ::payload connection_settings_get_auto_detect();
    virtual ::payload connection_settings_get_auto_config_url();
 
-   virtual ::e_status link_open(const string & strUrl, const string & strProfile);
+   virtual void link_open(const string & strUrl, const string & strProfile);
 
    virtual bool local_machine_set_run(const ::string & strKey, const ::string & strCommand, const ::string& strArguments, bool bSet);
    virtual bool local_machine_set_run_once(const ::string & strKey, const ::string & strCommand, const ::string& strArguments, bool bSet);
@@ -55,13 +55,13 @@ public:
    virtual bool native_modern_web_browser(const ::string & str);
 
 
-   virtual ::e_status enable_service();
+   virtual void enable_service();
 
-   virtual ::e_status disable_service();
+   virtual void disable_service();
 
-   virtual ::e_status start_service();
+   virtual void start_service();
 
-   virtual ::e_status stop_service();
+   virtual void stop_service();
 
    virtual bool enable_service(const ::string & strServiceName, const ::string & strDisplayName, const ::string & strCommand, const ::string & strUser = "", const ::string & strPass = "");
 
@@ -84,7 +84,7 @@ public:
 
    virtual bool initialize_wallpaper_fileset(::file::set* pfileset, bool bAddSearch);
 
-   virtual ::e_status set_dark_mode(bool bDarkMode);
+   virtual void set_dark_mode(bool bDarkMode);
 
    virtual bool file_open(::file::path path, string strParams = "", string strFolder = "");
 
@@ -134,7 +134,7 @@ public:
 
    //virtual void enum_draw2d_fonts(::write_text::font_enumeration_item_array& itema);
 
-   virtual ::e_status broadcast_environment_variable_change();
+   virtual void broadcast_environment_variable_change();
 
 
 };

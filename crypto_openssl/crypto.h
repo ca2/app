@@ -26,14 +26,14 @@ namespace crypto_openssl
       ~crypto() override;
 
       
-      ::e_status defer_initialize() override;
+      void defer_initialize() override;
 
 
       //virtual __pointer(hasher) create_hasher(enum_hash ehash);
 
 
-      ::e_status encrypt(memory& storageEncrypt, const memory& storageDecrypt, const memory& storageKey) override;
-      ::e_status decrypt(memory& storageDecrypt, const memory& storageEncrypt, const memory& storageKey) override;
+      void encrypt(memory& storageEncrypt, const memory& storageDecrypt, const memory& storageKey) override;
+      void decrypt(memory& storageDecrypt, const memory& storageEncrypt, const memory& storageKey) override;
 
 
       //virtual bool encrypt(memory & storageEncrypt, const memory & storageDecrypt, const char * pszSalt);
@@ -80,7 +80,7 @@ namespace crypto_openssl
       void hmac(void * result,const string & memMessage,const string & key) override;
 
       //virtual bool file_set(::payload payloadFile,const char * pszData,const char * pszSalt, ::application * papp);
-      //virtual ::e_status     file_get(::payload payloadFile,string & str,const char * pszSalt, ::application * papp);
+      //virtual void     file_get(::payload payloadFile,string & str,const char * pszSalt, ::application * papp);
 
       // get a new salt - 8 hexadecimal characters long
       // current PHP installations should not exceed 8 characters

@@ -44,7 +44,7 @@ namespace sockets
    }
 
 
-   ::e_status sockets::initialize(::object * pobject)
+   void sockets::initialize(::object * pobject)
    {
 
       auto estatus = sockets_base::initialize(pobject);
@@ -106,7 +106,7 @@ namespace sockets
    }
 
 
-   ::e_status sockets::destroy()
+   void sockets::destroy()
    {
 
       sockets_base::destroy();

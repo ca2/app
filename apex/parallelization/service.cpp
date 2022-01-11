@@ -30,7 +30,7 @@ void service::set_arguments(int argc, wchar_t** argv)
 }
 
 
-::e_status service::start_service()
+void service::start_service()
 {
 
    return error_failed;
@@ -38,7 +38,7 @@ void service::set_arguments(int argc, wchar_t** argv)
 }
 
 
-::e_status service::stop_service()
+void service::stop_service()
 {
 
    return ::success;
@@ -104,12 +104,12 @@ void service::set_arguments(int argc, wchar_t** argv)
 //}
 //
 //
-//::e_status service::run()
+//void service::run()
 //{
 //
 //   m_bStopping = false;
 //
-//   ::e_status estatus = ::error_failed;
+//   void estatus = ::error_failed;
 //
 //   estatus = osthread_init();
 //
@@ -137,7 +137,7 @@ void service::set_arguments(int argc, wchar_t** argv)
 //}
 //
 //
-//::e_status service::service_main()
+//void service::service_main()
 //{
 //
 //   return ::success;

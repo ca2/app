@@ -42,12 +42,12 @@ namespace interprocess_communication
 
 
 
-      virtual ::e_status open(const ::string & strChannel, ::launcher * plauncher = nullptr);
-      virtual ::e_status close();
+      virtual void open(const ::string & strChannel, ::launcher * plauncher = nullptr);
+      virtual void close();
 
 
-      virtual ::e_status send(const ::string & strMessage, const duration & durationTimeout);
-      virtual ::e_status send(int message,void * pdata,int len, const duration & durationTimeout);
+      virtual void send(const ::string & strMessage, const duration & durationTimeout);
+      virtual void send(int message,void * pdata,int len, const duration & durationTimeout);
 
 
       virtual bool is_tx_ok();
@@ -122,11 +122,11 @@ namespace interprocess_communication
       ~rx() override;
 
       
-      ::e_status on_initialize_object() override;
+      void on_initialize_object() override;
 
 
-      virtual ::e_status create(const ::string & strChannel);
-      ::e_status destroy() override;
+      virtual void create(const ::string & strChannel);
+      void destroy() override;
 
 
       virtual void on_interprocess_receive(::string && strMessage);

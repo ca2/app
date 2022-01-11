@@ -109,7 +109,7 @@ namespace user
 		virtual ~text_composition_composite();
 
 
-		virtual ::e_status initialize_text_composition_client(::channel * pchannel, ::user::interaction * puserinteraction);
+		virtual void initialize_text_composition_client(::channel * pchannel, ::user::interaction * puserinteraction);
 
 
 

@@ -18,7 +18,7 @@ namespace user
       ~style_base() override;
 
 
-      ::e_status on_initialize_object() override; 
+      void on_initialize_object() override; 
 
 
       void handle(::subject * psubject, ::context * pcontext) override;

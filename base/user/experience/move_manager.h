@@ -26,7 +26,7 @@ namespace experience
       virtual ~move_manager();
 
 
-      virtual ::e_status initialize_move_manager(::experience::frame_window* pframewindow);
+      virtual void initialize_move_manager(::experience::frame_window* pframewindow);
 
 
       bool on_message_left_button_down(::message::mouse * pmouse);

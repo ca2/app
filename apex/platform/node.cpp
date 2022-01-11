@@ -46,7 +46,7 @@ namespace apex
 #endif
 
 
-   ::e_status node::on_initialize_object()
+   void node::on_initialize_object()
    {
 
       auto estatus = ::acme::node::on_initialize_object();
@@ -65,7 +65,7 @@ namespace apex
    }
 
 
-   ::e_status node::main()
+   void node::main()
    {
    
       auto psystem = m_psystem;
@@ -154,7 +154,7 @@ namespace apex
    }
 
 
-   ::e_status node::shell_create_link(::file::path pathObj, ::file::path pathLnk, string strDesc, ::file::path pathIco, int iIcon)
+   void node::shell_create_link(::file::path pathObj, ::file::path pathLnk, string strDesc, ::file::path pathIco, int iIcon)
    {
 
       return ::error_interface_only;
@@ -162,7 +162,7 @@ namespace apex
    }
 
 
-   // ::e_status node::parallelization_initialize()
+   // void node::parallelization_initialize()
    // {
 
    //    return ::error_interface_only;
@@ -170,7 +170,7 @@ namespace apex
    // }
 
 
-   // ::e_status node::parallelization_finalize()
+   // void node::parallelization_finalize()
    // {
 
    //    return ::error_interface_only;
@@ -178,7 +178,7 @@ namespace apex
    // }
 
 
-   ::e_status node::thread_initialize(::thread * pthread)
+   void node::thread_initialize(::thread * pthread)
    {
 
       return ::success;
@@ -186,7 +186,7 @@ namespace apex
    }
 
 
-   //::e_status node::thread_finalize(::thread * pthread)
+   //void node::thread_finalize(::thread * pthread)
    //{
 
    //   return ::success;
@@ -194,7 +194,7 @@ namespace apex
    //}
 
 
-   // ::e_status node::node_thread_initialize(::thread * pthread)
+   // void node::node_thread_initialize(::thread * pthread)
    // {
 
    //    return ::error_interface_only;
@@ -202,7 +202,7 @@ namespace apex
    // }
 
 
-   // ::e_status node::node_thread_finalize(::thread * pthread)
+   // void node::node_thread_finalize(::thread * pthread)
    // {
 
    //    return ::error_interface_only;
@@ -218,7 +218,7 @@ namespace apex
    }
 
 
-   ::e_status node::_001InitializeShellOpen()
+   void node::_001InitializeShellOpen()
    {
 
       __throw(::error_interface_only);
@@ -234,7 +234,7 @@ namespace apex
    }
 
 
-   ::e_status node::get_firefox_installation_info(string & strPathToExe, string & strInstallDirectory)
+   void node::get_firefox_installation_info(string & strPathToExe, string & strInstallDirectory)
    {
 
       throw ::interface_only_exception();
@@ -272,7 +272,7 @@ namespace apex
 //   }
 
 
-   ::e_status node::defer_create_main_menu(const string_array & straParent, const string_array & straMenu, const string_array & straId)
+   void node::defer_create_main_menu(const string_array & straParent, const string_array & straMenu, const string_array & straId)
    {
       
       return error_interface_only;
@@ -301,7 +301,7 @@ namespace apex
    }
 
 
-   ::e_status node::start_node()
+   void node::start_node()
    {
 
       auto psystem = get_system()->m_papexsystem;

@@ -20,7 +20,7 @@ namespace draw2d_gdiplus
    }
 
 
-   ::e_status printer::initialize(::object * pobject)
+   void printer::initialize(::object * pobject)
    {
 
       auto estatus = ::aura::printer::initialize(pobject);
@@ -101,7 +101,7 @@ namespace draw2d_gdiplus
       close();
    }
 
-   ::e_status printer::document_properties::initialize_document_properties(::draw2d_gdiplus::printer * pprinter, DEVMODE * pdevmode)
+   void printer::document_properties::initialize_document_properties(::draw2d_gdiplus::printer * pprinter, DEVMODE * pdevmode)
    {
       __UNREFERENCED_PARAMETER(pdevmode);
       if (m_pdevmode != nullptr)

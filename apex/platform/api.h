@@ -35,24 +35,24 @@ public:
    ~api() override;
 
    
-   virtual ::e_status initialize_api(::object* pobject, const ::file::path & pathProfile);
+   virtual void initialize_api(::object* pobject, const ::file::path & pathProfile);
 
 
-   virtual ::e_status load_profile();
-   virtual ::e_status save_profile();
+   virtual void load_profile();
+   virtual void save_profile();
 
 
    virtual void on_login_response();
 
 
-   virtual ::e_status api_login(const ::string & strConfig, const ::string & strProfile);
+   virtual void api_login(const ::string & strConfig, const ::string & strProfile);
 
 
-   virtual ::e_status api_get(::string & str, const ::string & strUrl, property_set& set);
+   virtual void api_get(::string & str, const ::string & strUrl, property_set& set);
 
-   virtual ::e_status api_get(::payload & payload, const ::string & strUrl, property_set & set);
+   virtual void api_get(::payload & payload, const ::string & strUrl, property_set & set);
 
-   virtual ::e_status api_download(string strGet, const ::file::path& path, property_set& set);
+   virtual void api_download(string strGet, const ::file::path& path, property_set& set);
 
    virtual string api_token(bool bForce);
 

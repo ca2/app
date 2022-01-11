@@ -24,7 +24,7 @@ namespace graphics
    }
 
 
-   ::e_status bitmap_source_buffer::initialize_graphics_graphics(::user::interaction_impl* pimpl)
+   void bitmap_source_buffer::initialize_graphics_graphics(::user::interaction_impl* pimpl)
    {
 
       auto estatus = graphics::initialize_graphics_graphics(pimpl);
@@ -68,7 +68,7 @@ namespace graphics
    }
 
 
-   ::e_status bitmap_source_buffer::set_bitmap_source(const ::string &strBitmapSource)
+   void bitmap_source_buffer::set_bitmap_source(const ::string &strBitmapSource)
    {
 
       if (m_strBitmapSource == strBitmapSource)
@@ -123,7 +123,7 @@ namespace graphics
    }
 
 
-   ::e_status bitmap_source_buffer::clear_bitmap_source()
+   void bitmap_source_buffer::clear_bitmap_source()
    {
 
       m_strBitmapSource.Empty();

@@ -111,7 +111,7 @@ namespace draw2d
       virtual void max_bounding_box_combine(RECTANGLE_F64 * prectangle, ::draw2d::graphics * pgraphics = nullptr);
 
       
-      virtual ::e_status destroy() override;
+      virtual void destroy() override;
 
 
       region & operator = (const ::draw2d::region & regionSrc);

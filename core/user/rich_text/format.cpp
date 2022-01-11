@@ -71,7 +71,7 @@ namespace user
       }
 
 
-      ::e_status format::initialize_user_rich_text_format(__pointer_array(format)* pcontainer)
+      void format::initialize_user_rich_text_format(__pointer_array(format)* pcontainer)
       {
 
          m_pcontainer = pcontainer;

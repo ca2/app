@@ -19,9 +19,9 @@ namespace ios
       virtual ~dir_context();
       
       
-      virtual ::e_status initialize(::object * pobject) override;
+      virtual void initialize(::object * pobject) override;
       //virtual void update_module_path();
-      virtual ::e_status init_context() override;
+      virtual void init_context() override;
 
       
       // rls fetchs should set a meaningful m_iRelative value at each returned path

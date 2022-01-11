@@ -44,7 +44,7 @@ namespace crypto_openssl
       ~hasher_algorithm() override;
 
 
-      ::e_status initialize_hasher_algorithm(enum_hash ehash) override;
+      void initialize_hasher_algorithm(enum_hash ehash) override;
 
 
       virtual enum_hash ehash() const override
@@ -55,7 +55,7 @@ namespace crypto_openssl
       }
 
 
-      virtual ::e_status hash(memory& memoryHash, const block& block) override;
+      virtual void hash(memory& memoryHash, const block& block) override;
 
 
       virtual __transport(::crypto::hasher) create_hasher() override;

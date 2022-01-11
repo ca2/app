@@ -21,7 +21,7 @@ public:
 
    inline class ::synchronization_object * get_mutex();
 
-   virtual ::e_status destroy() override;
+   virtual void destroy() override;
 
    virtual void delete_this() override;
 
@@ -81,11 +81,11 @@ public:
    void _001OnUpdate(::message::message * pmessage);
 
 
-   virtual ::e_status     request_file(::payload payloadFile);
-   virtual ::e_status     request_file(::payload payloadFile, ::payload varQuery);
-   virtual ::e_status     request(arguments arguments);
+   virtual void     request_file(::payload payloadFile);
+   virtual void     request_file(::payload payloadFile, ::payload varQuery);
+   virtual void     request(arguments arguments);
 
-   virtual ::e_status     do_request(::create * pcreate);
+   virtual void     do_request(::create * pcreate);
 
 
    virtual void children_add(::matter * pobjectChild);
@@ -106,7 +106,7 @@ public:
    virtual void set_finish();
    virtual void wait_quit(duration duration);
 
-   virtual ::e_status     call_request(::create * pcreate);
+   virtual void     call_request(::create * pcreate);
    virtual void on_request(::create * pcreate);
 
 
@@ -165,9 +165,9 @@ public:
 
    //}
 
-   virtual ::e_status     call() override;
+   virtual void     call() override;
 
-   virtual ::e_status     run() override;
+   virtual void     run() override;
 
    template < typename PRED >
    inline ::thread * defer_fork(const char * pszTag, PRED pred);

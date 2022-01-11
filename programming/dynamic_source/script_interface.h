@@ -34,13 +34,13 @@ namespace dynamic_source
 
       virtual const char* debug_note() const override;
 
-      virtual ::e_status initialize(::object * pobject) override;
-      virtual ::e_status init1();
+      virtual void initialize(::object * pobject) override;
+      virtual void init1();
 
-      //::e_status destroy() override;
+      //void destroy() override;
 
-      ::e_status destroy() override;
-      virtual ::e_status     run() override;
+      void destroy() override;
+      virtual void     run() override;
 
 
       virtual void dinit();
@@ -59,8 +59,8 @@ namespace dynamic_source
       virtual ::file::file * file();
 
 
-      virtual ::e_status on_initialize();
-      //virtual ::e_status initialize_dynamic_source_script_interface(script_interface * pinterfaceMain, script_interface * pinterfaceParent, httpd_socket * pdssocket, script_manager * pmanager);
+      virtual void on_initialize();
+      //virtual void initialize_dynamic_source_script_interface(script_interface * pinterfaceMain, script_interface * pinterfaceParent, httpd_socket * pdssocket, script_manager * pmanager);
 
       script_main * main() { return m_pmain; }
       script_interface * parent() { return m_pinstanceParent2; }

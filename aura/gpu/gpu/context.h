@@ -51,31 +51,31 @@ namespace gpu
       virtual ~context();
 
 
-      virtual ::e_status lock_context();
-      virtual ::e_status unlock_context();
+      virtual void lock_context();
+      virtual void unlock_context();
 
-      virtual ::e_status initialize(::object * pobject) override;
+      virtual void initialize(::object * pobject) override;
 
       virtual string _001GetIntroProjection();
       virtual string _001GetIntroFragment();
 
-      virtual ::e_status draw();
-      virtual ::e_status start();
-      virtual ::e_status render();
+      virtual void draw();
+      virtual void start();
+      virtual void render();
 
-      virtual ::e_status create_offscreen_buffer(const ::size_i32& size);
-      virtual ::e_status _create_offscreen_buffer(const ::size_i32& size);
+      virtual void create_offscreen_buffer(const ::size_i32& size);
+      virtual void _create_offscreen_buffer(const ::size_i32& size);
 
-      virtual ::e_status resize_offscreen_buffer(const ::size_i32& size);
-      virtual ::e_status destroy_offscreen_buffer();
+      virtual void resize_offscreen_buffer(const ::size_i32& size);
+      virtual void destroy_offscreen_buffer();
       
-      virtual ::e_status prepare_for_gpu_read();
+      virtual void prepare_for_gpu_read();
 
       virtual void translate_shader(string & str);
 
       virtual void _translate_shader(string_array& stra);
 
-      virtual ::e_status make_current();
+      virtual void make_current();
 
       virtual string load_fragment(const ::string & pszPath, enum_shader_source & eshadersource);
 
@@ -89,7 +89,7 @@ namespace gpu
    public:
       
       context *   m_pcontext;
-      ::e_status   m_estatus;
+      void   m_estatus;
       
       context_lock(context * pcontext):
          m_pcontext(pcontext)

@@ -10,7 +10,7 @@ namespace acme
    namespace android
    {
 
-::e_status node::create_process(const char * _cmd_line, i32 * pprocessId, int * piErrorCode)
+void node::create_process(const char * _cmd_line, i32 * pprocessId, int * piErrorCode)
 {
 
    char *   exec_path_name = nullptr;

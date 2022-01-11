@@ -19,7 +19,7 @@ acme_dir::~acme_dir()
 }
 
 
-::e_status acme_dir::initialize(::object * pobject)
+void acme_dir::initialize(::object * pobject)
 {
 
    auto estatus = ::matter::initialize(pobject);
@@ -736,7 +736,7 @@ void acme_dir::set_path_install_folder(const string & strPath)
 //}
 
 
-::e_status acme_dir::create(const char * path)
+void acme_dir::create(const char * path)
 {
 
    return _create(path);
@@ -744,7 +744,7 @@ void acme_dir::set_path_install_folder(const string & strPath)
 }
 
 
-::e_status acme_dir::_create(const char * pathParam)
+void acme_dir::_create(const char * pathParam)
 {
 
    if (is(pathParam))
@@ -810,7 +810,7 @@ void acme_dir::set_path_install_folder(const string & strPath)
 }
 
 
-::e_status acme_dir::create_directory(const char * pathParam)
+void acme_dir::create_directory(const char * pathParam)
 {
 
    if (is(pathParam))
@@ -868,7 +868,7 @@ void acme_dir::set_path_install_folder(const string & strPath)
 }
 
 
-//::e_status acme_dir::_create_directory(const char * pathParam)
+//void acme_dir::_create_directory(const char * pathParam)
 //{
 //
 //   throw ::interface_only_exception();
@@ -878,7 +878,7 @@ void acme_dir::set_path_install_folder(const string & strPath)
 //}
 
    
-::e_status acme_dir::is(const char * path)
+void acme_dir::is(const char * path)
 {
 
    if(::is_null(path))
@@ -1003,7 +1003,7 @@ int acme_dir::make_path(const char * psz)
 
 
 
-::e_status acme_dir::_is(const char * path)
+void acme_dir::_is(const char * path)
 {
 
    auto estatus = ::is_directory(path);
@@ -1021,7 +1021,7 @@ int acme_dir::make_path(const char * psz)
 
 
 
-::e_status acme_dir::_create_directory(const char * path)
+void acme_dir::_create_directory(const char * path)
 {
 
    auto estatus = ::create_directory(path);
@@ -1048,7 +1048,7 @@ status < string > acme_dir::get_current()
 }
 
 
-::e_status acme_dir::change_current(const char * psz)
+void acme_dir::change_current(const char * psz)
 {
 
    throw ::interface_only_exception();
@@ -1058,7 +1058,7 @@ status < string > acme_dir::get_current()
 }
 
 
-::e_status acme_dir::change_to_home()
+void acme_dir::change_to_home()
 {
 
    ::file::path pathHome = home();

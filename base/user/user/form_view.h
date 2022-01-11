@@ -32,9 +32,9 @@ namespace user
 
       virtual void handle(::subject * psubject, ::context * pcontext) override;
 
-      virtual ::e_status open_document(const ::payload & payloadFile) override;
+      virtual void open_document(const ::payload & payloadFile) override;
       
-      virtual ::e_status open_html(const ::string & str) override;
+      virtual void open_html(const ::string & str) override;
 
       virtual bool Navigate(const ::string & pszUrl);
 

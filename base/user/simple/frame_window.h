@@ -36,7 +36,7 @@ public:
    ~simple_frame_window() override;
 
 
-   virtual ::e_status initialize(::object * pobject) override;
+   virtual void initialize(::object * pobject) override;
    
    
    ::user::notify_icon * notify_icon() override;
@@ -59,7 +59,7 @@ public:
    bool keyboard_focus_is_focusable() const override;
 
    virtual bool create_bars();
-   ::e_status on_create_bars() override;
+   void on_create_bars() override;
 
    void on_visual_applied() override;
 
@@ -89,7 +89,7 @@ public:
    virtual void show_control_bars(const ::e_display & edisplay = e_display_normal, bool bLeaveFullScreenBarsOnHide = false);
 
    virtual bool _001OnBeforeAppearance() override;
-   virtual ::e_status initialize_frame_window_experience() override;
+   virtual void initialize_frame_window_experience() override;
 
 
    virtual void _001OnAfterAppearance() override;
@@ -137,7 +137,7 @@ public:
    virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
 
 
-   //::e_status command_handler(const ::id & id) override;
+   //void command_handler(const ::id & id) override;
 
 
    virtual bool _001CanEnterScreenSaver() override;

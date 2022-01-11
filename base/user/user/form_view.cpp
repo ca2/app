@@ -84,7 +84,7 @@ namespace user
    }
 
 
-   ::e_status form_view::open_document(const ::payload & payloadFile)
+   void form_view::open_document(const ::payload & payloadFile)
    {
 
       auto psystem = m_psystem->m_pbasesystem;
@@ -198,14 +198,14 @@ namespace user
    }
 
 
-   ::e_status form_view::open_html(const ::string & str)
+   void form_view::open_html(const ::string & str)
    {
 
       synchronous_lock synchronouslock(mutex());
 
       auto pformOld = m_pform;
 
-      ::e_status     estatus = error_failed;
+      void     estatus = error_failed;
 
       //__pointer(::user::form_view) pformChild = create_view(psession->userex()->get_html_view_type());
       //

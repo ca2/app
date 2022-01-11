@@ -10,7 +10,7 @@
 //{
 //
 //   
-//   enum ::e_status    
+//   enum void    
 //   {
 //      
 //   

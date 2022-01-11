@@ -18,7 +18,7 @@ namespace geometry
    }
 
 
-   //::e_status geometry::initialize(::object * pobject)
+   //void geometry::initialize(::object * pobject)
    //{
 
    //   auto estatus = ::matter::initialize(pobject);
@@ -35,7 +35,7 @@ namespace geometry
    //}
 
 
-   ::e_status geometry::destroy()
+   void geometry::destroy()
    {
 
       ::matter::destroy();

@@ -30,7 +30,7 @@ namespace app_shader
    }
 
 
-   ::e_status application::init_instance()
+   void application::init_instance()
    {
 
       set_local_data();

@@ -41,7 +41,7 @@ namespace user
          ~format() override;
 
 
-         virtual ::e_status initialize_user_rich_text_format(__pointer_array(format)* pcontainer);
+         virtual void initialize_user_rich_text_format(__pointer_array(format)* pcontainer);
 
          virtual void exchange(::stream & stream) override;
 

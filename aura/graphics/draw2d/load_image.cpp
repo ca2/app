@@ -19,7 +19,7 @@ load_image::~load_image()
 }
 
 
-::e_status load_image::run()
+void load_image::run()
 {
 
    ::image * pimage = m_pimage;

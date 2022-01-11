@@ -90,7 +90,7 @@ namespace filemanager
       bool is_topic();
 
 
-      virtual ::e_status initialize_filemanager_data(::object * pobject);
+      virtual void initialize_filemanager_data(::object * pobject);
 
       
       bool open(::application * pappOnBehalfOf = nullptr, ::file::path path = "", const ::action_context & action_context = ::e_source_system);
@@ -108,7 +108,7 @@ namespace filemanager
 
       virtual ::id get_local_machine_id();
       virtual string get_last_browse_path(::object * pobject, const ::string & pszDefault = nullptr);
-      virtual ::e_status set_last_browse_path(::object * pobject, const ::file::path & path);
+      virtual void set_last_browse_path(::object * pobject, const ::file::path & path);
 
 
    };

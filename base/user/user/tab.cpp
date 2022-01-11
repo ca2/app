@@ -57,7 +57,7 @@ namespace user
    }
 
    
-   ::e_status tab::on_initialize_object()
+   void tab::on_initialize_object()
    {
 
       auto estatus = ::user::interaction::on_initialize_object();

@@ -12,7 +12,7 @@ create::create()
 
 
 
-::e_status create::initialize_create(arguments arguments) 
+void create::initialize_create(arguments arguments) 
 {
 
    create_common_construct(::e_type_empty_argument, nullptr);
@@ -69,7 +69,7 @@ create::create()
 }
 
 
-::e_status create::initialize_create(string strAppId, ::payload payloadFile, const ::payload & varOptions, ::user::primitive * puiParent, ewindowflag ewindowflag, ::id id)
+void create::initialize_create(string strAppId, ::payload payloadFile, const ::payload & varOptions, ::user::primitive * puiParent, ewindowflag ewindowflag, ::id id)
 {
 
    m_ewindowflag = ewindowflag;
@@ -148,10 +148,10 @@ void create::create_common_construct(const ::payload & varOptions, ::user::primi
 }
 
 
-::e_status create::finish_initialization()
+void create::finish_initialization()
 {
 
-   ::e_status estatus = ::success;
+   void estatus = ::success;
 
    if(!m_pcommandline)
    {

@@ -45,10 +45,10 @@ namespace user
          ~data() override;
 
 
-         ::e_status initialize_data(::data::data_container_base * pdocument) override;
+         void initialize_data(::data::data_container_base * pdocument) override;
 
 
-         virtual ::e_status __initialize(__pointer(::user::rich_text::format) & pformat);
+         virtual void __initialize(__pointer(::user::rich_text::format) & pformat);
 
 
          virtual ::rectangle_f64 get_drawing_rect();

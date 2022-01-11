@@ -12,8 +12,8 @@ public:
 
    virtual bool process_event(Display * pdisplay, xcb_generic_event_t * pevent, XGenericEventCookie * cookie);
 
-   ::e_status hook();
-   ::e_status unhook();
+   void hook();
+   void unhook();
 
    virtual void on_idle(Display * pdisplay);
 

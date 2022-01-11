@@ -20,7 +20,7 @@ namespace experience
          virtual ~frame_013();
 
 
-         ::e_status destroy() override;
+         void destroy() override;
 
 
       };

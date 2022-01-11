@@ -37,7 +37,7 @@ namespace draw2d
       
 
 
-      virtual ::e_status destroy() override;
+      virtual void destroy() override;
 
       //::windowing::cursor * get_cursor(::user::interaction * pinteraction);
 

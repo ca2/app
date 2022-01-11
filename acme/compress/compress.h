@@ -12,10 +12,10 @@ public:
    ~compress() override;
 
 
-   virtual ::e_status set_level(int iLevel);
+   virtual void set_level(int iLevel);
 
 
-   ::e_status transfer(::file::file * pfileOut, ::file::file * pfileIn) override;
+   void transfer(::file::file * pfileOut, ::file::file * pfileIn) override;
 
 
    virtual ::u32 crc32(::u32 uCrc, const ::block& block);

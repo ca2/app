@@ -25,13 +25,13 @@ namespace acme
       void assert_valid() const override;
       void dump(dump_context &) const override;
 
-      ::e_status     initialize_matter(::matter * pmatter) override;
-      //virtual ::e_status     initialize_library(::matter* pmatter, int iDesmabi, const char * pszRoot = nullptr, const char * pszName = nullptr, const char * pszFolder = nullptr);
-      //virtual ::e_status initialize_library(::matter* pmatter, const char* pszName = nullptr, const char* pszFolder = nullptr);
+      void     initialize_matter(::matter * pmatter) override;
+      //virtual void     initialize_library(::matter* pmatter, int iDesmabi, const char * pszRoot = nullptr, const char * pszName = nullptr, const char * pszFolder = nullptr);
+      //virtual void initialize_library(::matter* pmatter, const char* pszName = nullptr, const char* pszFolder = nullptr);
 
-      //virtual ::e_status open(const char * pszPath,bool bAutoClose = true,bool bCa2Path = false);
+      //virtual void open(const char * pszPath,bool bAutoClose = true,bool bCa2Path = false);
 
-      virtual ::e_status open(const char* pszPath);
+      virtual void open(const char* pszPath);
 
       //virtual bool open_library(string strTitle = "");
 
@@ -109,7 +109,7 @@ namespace acme
 
       //virtual void _load_factory(__transport(::factory::factory) & pfactory, const ::string& strComponent);
 
-      //virtual ::e_status factory_exchange(const ::string & strName = nullptr, ::factory::factory * pfactory = nullptr);
+      //virtual void factory_exchange(const ::string & strName = nullptr, ::factory::factory * pfactory = nullptr);
       virtual __transport(::factory::factory) create_factory(const ::string& strLibrary);
 
 

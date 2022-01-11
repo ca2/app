@@ -52,7 +52,7 @@ namespace message
    }
 
 
-   ::e_status command::handle(::channel * pcommandtarget)
+   void command::handle(::channel * pcommandtarget)
    {
 
       if (!m_commandtargetptraHandle.add_unique(pcommandtarget))

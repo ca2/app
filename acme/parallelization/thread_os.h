@@ -135,18 +135,18 @@ CLASS_DECL_ACME bool task_get_run();
 
 #ifdef WINDOWS
 
-inline ::e_status wait(synchronization_object * psync,const duration & duration = duration::infinite())
+inline void wait(synchronization_object * psync,const duration & duration = duration::infinite())
 {
    return psync->wait(duration);
 }
 
-::e_status wait(i32 numberOfItems, synchronization_object * psync, const duration & duration = duration::infinite(),bool waitForAll = false);
+void wait(i32 numberOfItems, synchronization_object * psync, const duration & duration = duration::infinite(),bool waitForAll = false);
 
 #else
 
-::e_status wait(synchronization_object * psynchronizationobject,const duration & duration = duration::infinite());
+void wait(synchronization_object * psynchronizationobject,const duration & duration = duration::infinite());
 
-::e_status wait(size_t numberOfItems, synchronization_object ** psynchronizationobject, const duration& duration = duration::infinite(),bool waitForAll = false);
+void wait(size_t numberOfItems, synchronization_object ** psynchronizationobject, const duration& duration = duration::infinite(),bool waitForAll = false);
 
 #endif
 

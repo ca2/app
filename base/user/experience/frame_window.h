@@ -71,15 +71,15 @@ namespace experience
       bool sketch_on_display() override;
 
 
-      ::e_status display_previous_restore() override;
+      void display_previous_restore() override;
 
       void display_system_minimize() override;
 
-      virtual ::e_status initialize_frame_window_experience();
+      virtual void initialize_frame_window_experience();
 
       void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
-      ::e_status frame_experience_restore() override;
+      void frame_experience_restore() override;
 
       virtual void on_start_layout_experience(enum_layout_experience elayoutexperience) override;
       virtual void on_end_layout_experience(enum_layout_experience elayoutexperience) override;

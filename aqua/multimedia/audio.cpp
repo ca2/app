@@ -56,7 +56,7 @@ namespace aqua
    }
 
 
-   ::e_status audio::text_to_speech_implementation(const ::string & strTtsImplementation)
+   void audio::text_to_speech_implementation(const ::string & strTtsImplementation)
    {
 
       if (!m_bTtsOptionInitialized)
@@ -151,7 +151,7 @@ namespace aqua
    }
 
 
-   ::e_status audio::defer_initialize_audio_playback(::wave::e_purpose epurpose)
+   void audio::defer_initialize_audio_playback(::wave::e_purpose epurpose)
    {
 
       return error_interface_only;

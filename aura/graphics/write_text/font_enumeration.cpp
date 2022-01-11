@@ -27,7 +27,7 @@ namespace write_text
    }
 
 
-   ::e_status font_enumeration::initialize(::object * pobject)
+   void font_enumeration::initialize(::object * pobject)
    {
 
       auto estatus = ::object::initialize(pobject);
@@ -219,7 +219,7 @@ namespace write_text
    }
 
 
-   ::e_status font_enumeration::update()
+   void font_enumeration::update()
    {
 
       m_bUpdating = true;
@@ -267,7 +267,7 @@ namespace write_text
    }
 
 
-   ::e_status font_enumeration::enumerate_fonts()
+   void font_enumeration::enumerate_fonts()
    {
 
       on_enumerate_fonts();
@@ -281,7 +281,7 @@ namespace write_text
    }
 
 
-   ::e_status font_enumeration::sort_fonts()
+   void font_enumeration::sort_fonts()
    {
 
       ::sort::array::predicate_sort(*m_pfontenumerationitema, [&](auto& a, auto& b)
@@ -296,7 +296,7 @@ namespace write_text
    }
 
 
-   ::e_status font_enumeration::on_enumerate_fonts()
+   void font_enumeration::on_enumerate_fonts()
    {
 
       throw ::interface_only_exception();

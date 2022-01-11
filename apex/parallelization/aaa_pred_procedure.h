@@ -6,7 +6,7 @@
 ////CLASS_DECL_ACME void main_branch(::element * pelementTask, enum_priority epriority);
 //
 //
-//::e_status run_task(::element * pelementTask);
+//void run_task(::element * pelementTask);
 //
 //
 

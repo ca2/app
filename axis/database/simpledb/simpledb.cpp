@@ -26,7 +26,7 @@ namespace simpledb
 
 
 
-   ::e_status simpledb::initialize_simpledb(::simpledb::server * pserver)
+   void simpledb::initialize_simpledb(::simpledb::server * pserver)
    {
 
       auto estatus = ::object::initialize(pserver);

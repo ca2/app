@@ -22,24 +22,24 @@ public:
    ~handler_manager() override;
 
 
-   virtual ::e_status initialize_handler_manager(::object * pobjectContext, const ::string & strThreadName, int iAliveCount = -1);
+   virtual void initialize_handler_manager(::object * pobjectContext, const ::string & strThreadName, int iAliveCount = -1);
    
 
    virtual void on_start_loop();
 
 
-   //virtual ::e_status set_finish_composites(::property_object * pcontextobjectFinish) override;
-   ::e_status destroy_composites() override;
+   //virtual void set_finish_composites(::property_object * pcontextobjectFinish) override;
+   void destroy_composites() override;
 
 
    bool is_branch_current() const override;
 
 
-   ::e_status handler_sync(const ::routine & routine);
-   ::e_status handler_branch(const ::routine & routine);
+   void handler_sync(const ::routine & routine);
+   void handler_branch(const ::routine & routine);
    
 
-   ::e_status handle(const ::routine & routine, bool bSync);
+   void handle(const ::routine & routine, bool bSync);
 
 
    ::routine pick_new_task();

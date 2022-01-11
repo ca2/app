@@ -41,7 +41,7 @@ namespace opengl
    }
 
 
-   ::e_status context_cgl::_create_offscreen_buffer(const ::size_i32 & size)
+   void context_cgl::_create_offscreen_buffer(const ::size_i32 & size)
    {
 
       auto pgpu = psystem->get_gpu();
@@ -143,7 +143,7 @@ namespace opengl
          
       }
 
-      ::e_status estatus = make_current();
+      void estatus = make_current();
 
       if(!estatus)
       {
@@ -166,7 +166,7 @@ namespace opengl
    }
 
 
-   ::e_status context_cgl::make_current()
+   void context_cgl::make_current()
    {
 
       CGLError error = CGLSetCurrentContext(m_context);
@@ -187,7 +187,7 @@ namespace opengl
    }
 
 
-   ::e_status context_cgl::destroy_offscreen_buffer()
+   void context_cgl::destroy_offscreen_buffer()
    {
 
       CGLError error = CGLSetCurrentContext(m_contextOld);

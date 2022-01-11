@@ -294,7 +294,7 @@ namespace android
 
          m_puserinteraction->display(e_display_full_screen);
 
-         //::e_status estatus = __compose(m_pgraphics);
+         //void estatus = __compose(m_pgraphics);
 
          //if (!estatus)
          //{
@@ -325,7 +325,7 @@ namespace android
 
          }
 
-         ::e_status estatusLast = get_last_status();
+         void estatusLast = get_last_status();
 
          //string strLastError = FormatMessageFromSystem(dwLastError);
 
@@ -1937,7 +1937,7 @@ namespace android
    //   }
 
 
-   //   static ::e_status     c_cdecl s_print_window(LPVOID pvoid)
+   //   static void     c_cdecl s_print_window(LPVOID pvoid)
    //   {
    //      print_window * pprintwindow = (print_window *)pvoid;
    //      try
@@ -4770,7 +4770,7 @@ namespace android
    }
    
 
-   ::e_status interaction_impl::show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd)
+   void interaction_impl::show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd)
    {
 
       auto plocal = g_poslocal;
@@ -4784,7 +4784,7 @@ namespace android
    }
 
 
-   ::e_status interaction_impl::hide_software_keyboard(::user::primitive * pprimitive)
+   void interaction_impl::hide_software_keyboard(::user::primitive * pprimitive)
    {
 
       if (!::is_null(pprimitive) && pprimitive != m_pprimitiveSoftwareKeyboard)

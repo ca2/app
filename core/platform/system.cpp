@@ -40,7 +40,7 @@ namespace core
    }
 
 
-   ::e_status system::initialize(::object * pobject)
+   void system::initialize(::object * pobject)
    {
 
       auto estatus = ::base::system::initialize(pobject);
@@ -79,7 +79,7 @@ namespace core
    }
 
 
-   ::e_status system::initialize_rich_text()
+   void system::initialize_rich_text()
    {
 
       if (!__rich_text_initialize())

@@ -20,7 +20,7 @@ namespace filehandler
 
       void construct();
 
-      virtual ::e_status init_instance() override;
+      virtual void init_instance() override;
       virtual void term_instance() override;
 
 

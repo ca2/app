@@ -12,7 +12,7 @@
 
 thread_int_ptr < ::u32 > g_dwLastError;
 
-CLASS_DECL_CORE ::e_status get_last_status()
+CLASS_DECL_CORE void get_last_status()
 {
 
    ::duration g_tickLastError;

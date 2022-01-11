@@ -37,9 +37,9 @@ namespace draw2d_opengl
 
       using ::image::create;
 
-      virtual ::e_status create(const ::size_i32& size, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1, bool bPreserve = false) override;
+      virtual void create(const ::size_i32& size, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1, bool bPreserve = false) override;
 
-      virtual ::e_status create(::draw2d::graphics* pgraphics);
+      virtual void create(::draw2d::graphics* pgraphics);
 
       bool destroy();
 

@@ -264,7 +264,7 @@ namespace experience
    }
 
 
-//   ::e_status frame_window::frame_toggle_restore()
+//   void frame_window::frame_toggle_restore()
 //   {
 //
 //      if(m_pimpl2 && m_pimpl2->m_pwindow)
@@ -519,16 +519,16 @@ namespace experience
    }
 
 
-   ::e_status frame_window::initialize_frame_window_experience()
+   void frame_window::initialize_frame_window_experience()
    {
 
-      ::e_status estatusDockManager = error_failed;
+      void estatusDockManager = error_failed;
 
-      ::e_status estatusMoveManager = error_failed;
+      void estatusMoveManager = error_failed;
 
-      ::e_status estatusSizeManager = error_failed;
+      void estatusSizeManager = error_failed;
 
-      ::e_status estatusMenuManager = error_failed;
+      void estatusMenuManager = error_failed;
 
       if (m_pdockmanager == nullptr)
       {
@@ -927,7 +927,7 @@ namespace experience
    }
 
 
-   ::e_status frame_window::display_previous_restore()
+   void frame_window::display_previous_restore()
    {
 
       if(::is_screen_visible(m_windowrectangle.m_edisplayPrevious))
@@ -2235,7 +2235,7 @@ namespace experience
    }
 
 
-   ::e_status frame_window::frame_experience_restore()
+   void frame_window::frame_experience_restore()
    {
 
       calculate_broad_and_compact_restore();

@@ -18,7 +18,7 @@ html_data::~html_data()
 }
 
 
-::e_status html_data::initialize_html_data(::html_data * phtmldata)
+void html_data::initialize_html_data(::html_data * phtmldata)
 {
 
    auto estatus = ::form_data::initialize(phtmldata);
@@ -78,7 +78,7 @@ void html_data::delete_contents()
 }
 
 
-::e_status html_data::destroy()
+void html_data::destroy()
 {
 
    auto estatus = m_pcoredata->destroy();
@@ -231,7 +231,7 @@ bool html_data::open_document(const ::payload & payloadFile)
 }
 
 
-::e_status     html_data::open_html(const ::string & str)
+void     html_data::open_html(const ::string & str)
 {
 
    return m_pcoredata->open_html(str);

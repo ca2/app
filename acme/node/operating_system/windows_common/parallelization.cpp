@@ -273,7 +273,7 @@ CLASS_DECL_ACME int get_processor_count()
 }
 
 
-::e_status task_set_name(const char* pszThreadName)
+void task_set_name(const char* pszThreadName)
 {
 
    return task_set_name((htask_t) ::GetCurrentThread(), pszThreadName);

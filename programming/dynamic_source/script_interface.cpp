@@ -33,7 +33,7 @@ namespace dynamic_source
    }
 
 
-   ::e_status script_interface::initialize(::object * pobject)
+   void script_interface::initialize(::object * pobject)
    {
 
       auto estatus = ::html::file::initialize(pobject);
@@ -64,17 +64,17 @@ namespace dynamic_source
    }
 
 
-   ::e_status script_interface::init1()
+   void script_interface::init1()
    {
 
-      ::e_status estatus = ::success_none;
+      void estatus = ::success_none;
 
       return estatus;
 
    }
 
 
-   //::e_status script_interface::destroy()
+   //void script_interface::destroy()
    //{
 
    //   auto estatus = ::html::file::destroy();
@@ -87,7 +87,7 @@ namespace dynamic_source
 
    //}
 
-   ::e_status script_interface::destroy()
+   void script_interface::destroy()
    {
 
       auto estatus = ::html::file::destroy();
@@ -102,7 +102,7 @@ namespace dynamic_source
    }
 
 
-   ::e_status     script_interface::run()
+   void     script_interface::run()
    {
 
       return ::success;
@@ -153,7 +153,7 @@ namespace dynamic_source
    }
 
 
-   ::e_status script_interface::on_initialize()
+   void script_interface::on_initialize()
    {
 
       return ::success;
@@ -161,7 +161,7 @@ namespace dynamic_source
    }
 
 
-   //::e_status script_interface::initialize_dynamic_source_script_interface(script_interface * pinterfaceMain, script_interface * pinterfaceParent, httpd_socket * pdssocket, script_manager * pmanager)
+   //void script_interface::initialize_dynamic_source_script_interface(script_interface * pinterfaceMain, script_interface * pinterfaceParent, httpd_socket * pdssocket, script_manager * pmanager)
    //{
 
    //   auto estatus = initialize(pinterfaceMain);

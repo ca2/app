@@ -22,7 +22,7 @@ namespace experience
             virtual void update() override;
 
 
-            virtual ::e_status initialize(::object * pobject) override;
+            virtual void initialize(::object * pobject) override;
 
             virtual void get_frame_list(string_array & stra) override;
 

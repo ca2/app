@@ -24,10 +24,10 @@ namespace account
       virtual ~storage_client();
       
       
-      virtual ::e_status initialize_account_storage_client(storage * pstorage);
+      virtual void initialize_account_storage_client(storage * pstorage);
 
       
-      virtual ::e_status get(string strKey, string & strValue);
+      virtual void get(string strKey, string & strValue);
       virtual bool set(string strKey, string strValue);
 
       

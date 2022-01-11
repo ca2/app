@@ -44,7 +44,7 @@ namespace draw2d_cairo
       virtual ~graphics();
 
 
-      virtual ::e_status initialize(::object * pobject) override;
+      virtual void initialize(::object * pobject) override;
 
       virtual void * detach() override;
 
@@ -93,11 +93,11 @@ namespace draw2d_cairo
       // Type-safe selection helpers
    public:
       virtual ::draw2d::object* set_stock_object(i32 nIndex) override;
-      //virtual ::e_status set(::draw2d::pen* ppen) override;
-      //virtual ::e_status set(::draw2d::brush* pbrush) override;
-      //virtual ::e_status set(::write_text::font* pfont) override;
-      virtual ::e_status set(::draw2d::bitmap* pbitmap) override;
-      virtual ::e_status set(::draw2d::region* pregion) override;       // special return for regions
+      //virtual void set(::draw2d::pen* ppen) override;
+      //virtual void set(::draw2d::brush* pbrush) override;
+      //virtual void set(::write_text::font* pfont) override;
+      virtual void set(::draw2d::bitmap* pbitmap) override;
+      virtual void set(::draw2d::region* pregion) override;       // special return for regions
       //::draw2d_cairo::object* SelectObject(::draw2d_cairo::object* pObject);
       // ::draw2d_cairo::object* provided so compiler doesn't use SelectObject(HGDIOBJ)
 
@@ -204,20 +204,20 @@ namespace draw2d_cairo
 
       bool fill_contains(const point_f64 & point) override;
 
-      virtual ::e_status reset_clip() override;
+      virtual void reset_clip() override;
 
       // Maybe used by some 2d Graphics backends as group of helper
       // methods working together for some purpose
       // (initially created for clipping).
       // It should be an aid when the 2d graphics backend supports
       // "inline" paths.
-      virtual ::e_status _intersect_clip() override;
-      //virtual ::e_status _add_shape(const ::rectangle_f64 & rectangle_f64) override;
-      virtual ::e_status _add_shape(const ::rectangle_f64 & rectangle_f64) override;
-      //virtual ::e_status _add_shape(const ::ellipse & ellipse) override;
-      virtual ::e_status _add_shape(const ::ellipse & ellipse) override;
-      //virtual ::e_status _add_shape(const ::polygon_i32 & polygon_i32) override;
-      virtual ::e_status _add_shape(const ::polygon_f64 & polygon_i32) override;
+      virtual void _intersect_clip() override;
+      //virtual void _add_shape(const ::rectangle_f64 & rectangle_f64) override;
+      virtual void _add_shape(const ::rectangle_f64 & rectangle_f64) override;
+      //virtual void _add_shape(const ::ellipse & ellipse) override;
+      virtual void _add_shape(const ::ellipse & ellipse) override;
+      //virtual void _add_shape(const ::polygon_i32 & polygon_i32) override;
+      virtual void _add_shape(const ::polygon_f64 & polygon_i32) override;
 
       // Line-Output Functions
       point_f64 current_position() override;
@@ -337,7 +337,7 @@ namespace draw2d_cairo
       // Text Functions
       //virtual bool text_out(double x, double y, const ::string & lpszString, strsize nCount) override;
       //virtual bool text_out(double x, double y, const ::string & str) override;
-      virtual ::e_status TextOutRaw(double x, double y, const block & block) override;
+      virtual void TextOutRaw(double x, double y, const block & block) override;
       ///virtual bool text_out(double x, double y, const ::string & str) override;
       //virtual bool ExtTextOut(double x, double y, ::u32 nOptions, const ::rectangle_f64 & rectangle_f64, const ::string & lpszString, strsize nCount, int * lpDxWidths) override;
       //virtual bool ExtTextOut(double x, double y, ::u32 nOptions, const ::rectangle_f64 & rectangle_f64, const ::string & str, int * lpDxWidths) override;
@@ -376,7 +376,7 @@ namespace draw2d_cairo
       ::u32 SetTextAlign(::u32 nFlags) override;
       //i32 GetTextFace(count nCount, char * lpszFacename) override;
       //i32 GetTextFace(string & rString) override;
-      ::e_status get_text_metrics(::write_text::text_metric * lpMetrics) override;
+      void get_text_metrics(::write_text::text_metric * lpMetrics) override;
       bool get_output_text_metrics(::write_text::text_metric * lpMetrics) override;
 //      i32 SetTextJustification(i32 nBreakExtra, i32 nBreakCount) override;
 //      i32 GetTextCharacterExtra() override;
@@ -503,7 +503,7 @@ namespace draw2d_cairo
 
       virtual bool attach(void * pdata) override;
 
-      virtual ::e_status clear_current_point() override;
+      virtual void clear_current_point() override;
       //xxx      virtual Gdiplus::FillMode gdiplus_get_fill_mode();
 
       bool blur(bool bExpand, double dRadius, const ::rectangle_f64 & rectangle_f64) override;

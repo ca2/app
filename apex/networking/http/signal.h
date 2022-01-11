@@ -13,7 +13,7 @@ namespace http
 
 
       //memory                           m_memoryRet;
-      ::e_status                        m_estatusRet;
+      void                        m_estatusRet;
 
       string                           m_strUrl;
       property_set                     m_setPost;

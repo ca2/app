@@ -23,7 +23,7 @@
 //   }
 //   
 //   
-//   virtual ::e_status     run(::trait & trait) override
+//   virtual void     run(::trait & trait) override
 //   {
 //      
 //      return m_predicate(trait);

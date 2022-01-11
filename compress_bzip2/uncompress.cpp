@@ -21,7 +21,7 @@ namespace compress_bzip2
    }
 
 
-   ::e_status uncompress::initialize(::object* pobject)
+   void uncompress::initialize(::object* pobject)
    {
 
       auto estatus = ::object::initialize(pobject);
@@ -39,7 +39,7 @@ namespace compress_bzip2
 
 
 
-   ::e_status uncompress::transfer(::file::file* pfileOut, ::file::file* pfileIn)
+   void uncompress::transfer(::file::file* pfileOut, ::file::file* pfileIn)
    {
 
       bool done = false;

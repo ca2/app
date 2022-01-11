@@ -4,7 +4,7 @@
 #include "acme/primitive/datetime/_string.h"
 
 
-::e_status mkgmtime_from_filetime(time_t & time, const ::filetime_t & filetime);
+void mkgmtime_from_filetime(time_t & time, const ::filetime_t & filetime);
 
 
 namespace datetime

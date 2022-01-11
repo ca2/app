@@ -16,7 +16,7 @@ ftpnet::~ftpnet()
 }
 
 
-::e_status ftpnet::initialize(::object * pobject)
+void ftpnet::initialize(::object * pobject)
 {
 
    auto estatus = ::object::initialize(pobject);

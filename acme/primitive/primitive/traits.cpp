@@ -65,7 +65,7 @@
 //   if (!m_pestatusa)
 //   {
 //
-//      m_pestatusa = __new(array<::e_status>);
+//      m_pestatusa = __new(array<void>);
 //
 //   }
 //

@@ -53,7 +53,7 @@ namespace user
       ~tab_data() override;
 
       
-      ::e_status initialize(::object * pobject) override;
+      void initialize(::object * pobject) override;
 
 
       virtual tab_pane * get_tab_by_id(id id);

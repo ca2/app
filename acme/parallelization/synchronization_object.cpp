@@ -115,7 +115,7 @@ bool synchronization_object::_lock(const class ::wait & wait)
 }
 
 
-::e_status synchronization_object::_wait()
+void synchronization_object::_wait()
 {
 
    return _wait(::duration::infinite());
@@ -123,7 +123,7 @@ bool synchronization_object::_lock(const class ::wait & wait)
 }
 
 
-::e_status synchronization_object::wait()
+void synchronization_object::wait()
 {
 
    auto ptask = ::get_task();
@@ -161,7 +161,7 @@ bool synchronization_object::_lock(const class ::wait & wait)
 }
 
 
-::e_status synchronization_object::wait(const class ::wait & wait)
+void synchronization_object::wait(const class ::wait & wait)
 {
    
    if (wait < 200_ms)
@@ -187,7 +187,7 @@ bool synchronization_object::_lock(const class ::wait & wait)
 
    }
 
-   ::e_status estatus = error_wait_timeout;
+   void estatus = error_wait_timeout;
 
    if (wait.is_infinite())
    {
@@ -260,7 +260,7 @@ bool synchronization_object::unlock(::i32 /* lCount */, ::i32 * /* pPrevCount=nu
 }
 
 
-::e_status synchronization_object::_wait(const class ::wait & wait)
+void synchronization_object::_wait(const class ::wait & wait)
 {
 
 #ifdef WINDOWS

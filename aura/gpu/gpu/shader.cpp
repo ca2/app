@@ -40,7 +40,7 @@ namespace gpu
 
 
 
-   ::e_status shader::create_shader(const ::string & pszVertex, const ::string & pszFragment, const ::string & pszGeometry)
+   void shader::create_shader(const ::string & pszVertex, const ::string & pszFragment, const ::string & pszGeometry)
    {
 
 
@@ -131,20 +131,20 @@ namespace gpu
    }
 
 
-   //::e_status shader::shader_compile_errors(GLuint shader, GLenum type, string & strSummary)
+   //void shader::shader_compile_errors(GLuint shader, GLenum type, string & strSummary)
    //{
 
-   //   ::e_status estatus = ::success;
+   //   void estatus = ::success;
 
    //   return estatus;
 
    //}
 
 
-   //::e_status shader::program_compile_errors(GLuint program, string & strSummary)
+   //void shader::program_compile_errors(GLuint program, string & strSummary)
    //{
 
-   //   ::e_status estatus = ::success;
+   //   void estatus = ::success;
 
 
    //   return estatus;

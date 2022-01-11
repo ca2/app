@@ -51,7 +51,7 @@
 
 
 
-//CLASS_DECL_ACME ::e_status __realize(::matter * pmatter, const ::future & process)
+//CLASS_DECL_ACME void __realize(::matter * pmatter, const ::future & process)
 //{
 //
 //   process(pmatter->realize());

@@ -192,9 +192,9 @@ namespace acme
       void construct();
 
 
-      ::e_status init();
+      void init();
 
-      ::e_status term();
+      void term();
 
 
       //void init_windowing();

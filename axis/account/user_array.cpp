@@ -23,7 +23,7 @@ namespace account
    }
 
 
-   ::e_status user_array::initialize_user_array(department* pdepartment)
+   void user_array::initialize_user_array(department* pdepartment)
    {
 
       auto estatus = ::object::initialize(pdepartment);

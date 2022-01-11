@@ -216,7 +216,7 @@ public:
    }
 
 
-   payload(const ::e_status & estatus)
+   payload(const ::e_status3 & estatus)
    {
       m_etype = e_type_new;
       operator = (estatus.m_estatus);
@@ -608,7 +608,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 
    payload & operator |= (enumeration < ::file::enum_flag > eflag);
 
-   payload& operator = (const ::e_status & estatus)
+   payload& operator = (const ::e_status3 & estatus)
    {
       return operator =(estatus.m_estatus);
    }
@@ -987,9 +987,9 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    void _001Add(const ::string_array & stra);
 
 
-   ::extended::status run();
+   void run();
 
-   ::extended::status operator()() { return run(); }
+   void operator()() { return run(); }
 
    void receive_response(const payload & payload);
 
@@ -1237,7 +1237,7 @@ CLASS_DECL_ACME void var_skip_network_payload(const char *& pszJson, const char 
 
 
 // returns 0.0 for unknown conversions?
-//inline payload::operator ::e_status() const
+//inline payload::operator void() const
 //{
 //
 //   return estatus();

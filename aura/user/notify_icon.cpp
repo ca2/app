@@ -21,7 +21,7 @@ namespace user
    }
 
 
-   ::e_status notify_icon::create_notify_icon(const ::id & id, ::user::interaction * pinteractionNotify, ::windowing::icon * picon)
+   void notify_icon::create_notify_icon(const ::id & id, ::user::interaction * pinteractionNotify, ::windowing::icon * picon)
    {
       
       throw ::interface_only_exception();
@@ -31,7 +31,7 @@ namespace user
    }
 
 
-   ::e_status notify_icon::destroy_notify_icon()
+   void notify_icon::destroy_notify_icon()
    {
 
       return ::success;
@@ -39,7 +39,7 @@ namespace user
    }
 
 
-   ::e_status notify_icon::modify_icon(::windowing::icon * picon)
+   void notify_icon::modify_icon(::windowing::icon * picon)
    {
 
       if(!m_bCreated)
@@ -56,7 +56,7 @@ namespace user
    }
 
 
-   ::e_status notify_icon::add_hidden_window(::user::interaction * puserinteraction)
+   void notify_icon::add_hidden_window(::user::interaction * puserinteraction)
    {
 
       m_userinteractionaHidden.add_unique(puserinteraction);
@@ -66,7 +66,7 @@ namespace user
    }
 
 
-   ::e_status notify_icon::step()
+   void notify_icon::step()
    {
 
       return ::success;

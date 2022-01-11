@@ -35,8 +35,8 @@ namespace universal_windows
       virtual ~copydesk();
 
 
-      virtual ::e_status initialize(::object * pobject) override;
-      virtual ::e_status destroy() override;
+      virtual void initialize(::object * pobject) override;
+      virtual void destroy() override;
 
       virtual bool _set_filea(const ::file::patha & stra, e_op eop) override;
       virtual bool _get_filea(::file::patha & stra, e_op & eop) override;

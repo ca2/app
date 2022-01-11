@@ -132,7 +132,7 @@ namespace sockets
    }
 
 
-   ::e_status SSLInitializer::initialize(::object* pobject)
+   void SSLInitializer::initialize(::object* pobject)
    {
 
       auto estatus = ::object::initialize(pobject);

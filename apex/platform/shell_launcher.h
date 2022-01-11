@@ -27,7 +27,7 @@ namespace apex
       ::e_display          m_edisplay;
       ::e_activation       m_eactivation;
       duration             m_durationTimeout;
-      ::e_status           m_estatus;
+      void           m_estatus;
 
 
    protected:
@@ -42,13 +42,13 @@ namespace apex
       shell_launcher();
       virtual ~shell_launcher();
 
-      virtual ::e_status setup(duration durationTimeout = ::minute());
-      virtual ::e_status setup(oswindow oswindow, const char * pszOperation, const char * pszFile, const char * pszParameters, const char * pszDirectory, ::e_display edisplay, duration durationTimeout = ::minute());
+      virtual void setup(duration durationTimeout = ::minute());
+      virtual void setup(oswindow oswindow, const char * pszOperation, const char * pszFile, const char * pszParameters, const char * pszDirectory, ::e_display edisplay, duration durationTimeout = ::minute());
 
-      virtual ::e_status launch();
+      virtual void launch();
 
 
-      inline ::e_status status() const {return m_estatus;}
+      inline void status() const {return m_estatus;}
 
 
    };

@@ -20,7 +20,7 @@ namespace windowing
    }
 
 
-   ::e_status monitor::update_cache()
+   void monitor::update_cache()
    {
 
       return ::success_none;
@@ -44,7 +44,7 @@ namespace windowing
    }
 
 
-   ::e_status monitor::get_monitor_rectangle(::RECTANGLE_I32 * prectangle)
+   void monitor::get_monitor_rectangle(::RECTANGLE_I32 * prectangle)
    {
 
       __copy(prectangle, m_rectangle);
@@ -54,7 +54,7 @@ namespace windowing
    }
 
 
-   ::e_status monitor::get_workspace_rectangle(::RECTANGLE_I32 * prectangle)
+   void monitor::get_workspace_rectangle(::RECTANGLE_I32 * prectangle)
    {
 
       __copy(prectangle, m_rectangleWorkspace);

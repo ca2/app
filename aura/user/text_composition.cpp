@@ -100,7 +100,7 @@ namespace user
 	}
 
 
-	::e_status text_composition_composite::initialize_text_composition_client(::channel* pchannel, ::user::interaction * puserinteraction)
+	void text_composition_composite::initialize_text_composition_client(::channel* pchannel, ::user::interaction * puserinteraction)
 	{
 
 		auto estatus = puserinteraction->__construct(m_ptextcompositionclient);

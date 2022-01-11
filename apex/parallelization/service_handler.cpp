@@ -12,9 +12,9 @@ service_handler::service_handler()
 service_handler:: ~service_handler()
 {
 }
-   //virtual ::e_status start_service();
+   //virtual void start_service();
 
-   //virtual ::e_status stop_service();
+   //virtual void stop_service();
 
 service* service_handler::get_service()
 {
@@ -22,9 +22,9 @@ service* service_handler::get_service()
    return m_pservice;
 
 }
-   //virtual ::e_status install_service();
+   //virtual void install_service();
 
-   ::e_status service_handler::defer_service()
+   void service_handler::defer_service()
    {
 
       if (m_pservice)
@@ -70,7 +70,7 @@ service* service_handler::get_service()
    }
 
    
-   //::e_status service_handler::enable_service()
+   //void service_handler::enable_service()
    //{
 
    //   throw ::interface_only_exception();
@@ -80,7 +80,7 @@ service* service_handler::get_service()
    //}
 
 
-   //::e_status service_handler::disable_service()
+   //void service_handler::disable_service()
    //{
 
    //   throw ::interface_only_exception();
@@ -91,7 +91,7 @@ service* service_handler::get_service()
 
 
 
-   ::e_status service_handler::start_service()
+   void service_handler::start_service()
    {
 
       throw ::interface_only_exception();
@@ -101,7 +101,7 @@ service* service_handler::get_service()
    }
 
 
-   ::e_status service_handler::stop_service()
+   void service_handler::stop_service()
    {
 
       throw ::interface_only_exception();

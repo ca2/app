@@ -21,7 +21,7 @@ namespace database
    }
 
 
-   ::e_status     database_impl::connect(const ::string & name, const ::string & host, const ::string & port, const ::string & user, const ::string & pass, const ::string & sckt, u64 uConnectionFlags)
+   void     database_impl::connect(const ::string & name, const ::string & host, const ::string & port, const ::string & user, const ::string & pass, const ::string & sckt, u64 uConnectionFlags)
    {
 
       m_strHost = host;
@@ -43,7 +43,7 @@ namespace database
    }
 
 
-   ::e_status    database_impl::reset()
+   void    database_impl::reset()
    {
 
       return ::success;
@@ -51,7 +51,7 @@ namespace database
    }
 
 
-   ::e_status    database_impl::create()
+   void    database_impl::create()
    {
 
       return ::success;
@@ -59,7 +59,7 @@ namespace database
    }
 
 
-   ::e_status   database_impl::drop()
+   void   database_impl::drop()
    {
 
       return ::success;
@@ -123,7 +123,7 @@ namespace database
    }
 
 
-   ::e_status     database_impl::init()
+   void     database_impl::init()
    {
 
       return ::success;
@@ -131,7 +131,7 @@ namespace database
    }
 
 
-   ::e_status     database_impl::set_error_code(int iErrorCode)
+   void     database_impl::set_error_code(int iErrorCode)
    {
 
       m_iLastError = iErrorCode;

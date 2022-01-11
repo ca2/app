@@ -17,7 +17,7 @@ compress::~compress()
 }
 
 
-::e_status compress::set_level(int iLevel)
+void compress::set_level(int iLevel)
 {
 
    throw interface_only_exception();
@@ -27,7 +27,7 @@ compress::~compress()
 }
 
 
-::e_status compress::transfer(::file::file* pfileOut, ::file::file* pfileIn)
+void compress::transfer(::file::file* pfileOut, ::file::file* pfileIn)
 {
 
    throw interface_only_exception();

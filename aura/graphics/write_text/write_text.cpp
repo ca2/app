@@ -49,7 +49,7 @@ namespace write_text
    }
 
 
-   ::e_status write_text::term()
+   void write_text::term()
    {
 
       try
@@ -75,7 +75,7 @@ namespace write_text
    }
 
 
-   ::e_status write_text::destroy()
+   void write_text::destroy()
    {
 
       m_pfonts.release();
@@ -87,7 +87,7 @@ namespace write_text
    }
 
 
-   ::e_status write_text::handle_font_enumeration(::subject* psubject)
+   void write_text::handle_font_enumeration(::subject* psubject)
    {
 
       __pointer(::subject) psubjectHold(psubject);

@@ -4985,7 +4985,7 @@ namespace draw2d_opengl
    }
 
 
-   ::e_status graphics::set(::draw2d::region* pregion)
+   void graphics::set(::draw2d::region* pregion)
    {
 
       return ::success;
@@ -4993,7 +4993,7 @@ namespace draw2d_opengl
    }
 
 
-   ::e_status graphics::set(::draw2d::pen * ppen)
+   void graphics::set(::draw2d::pen * ppen)
    {
 
       //glLineWidth(ppen->m_dWidth);
@@ -5006,7 +5006,7 @@ namespace draw2d_opengl
 
 
 
-   ::e_status graphics::set(::draw2d::brush * pbrush)
+   void graphics::set(::draw2d::brush * pbrush)
    {
 
       ::opengl::color::color(pbrush->m_color);
@@ -5017,7 +5017,7 @@ namespace draw2d_opengl
 
 
 
-   ::e_status graphics::set(::write_text::font * pfont)
+   void graphics::set(::write_text::font * pfont)
    {
 
       if (::is_null(pfont))
@@ -5034,7 +5034,7 @@ namespace draw2d_opengl
    }
 
 
-   ::e_status graphics::set(::draw2d::bitmap* pbitmap)
+   void graphics::set(::draw2d::bitmap* pbitmap)
    {
 
       return ::success;

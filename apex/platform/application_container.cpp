@@ -67,7 +67,7 @@ void application_container::erase_application(::application * papp)
 }
 
 
-//::e_status application_container::request_exit_application()
+//void application_container::request_exit_application()
 //{
 //
 //   if (m_bProcessingApplicationExitRequest)
@@ -102,7 +102,7 @@ void application_container::erase_application(::application * papp)
 //}
 
 
-::e_status application_container::exit_application()
+void application_container::exit_application()
 {
 
    auto applicationa = m_applicationa;
@@ -273,7 +273,7 @@ __pointer(::application) application_container::instantiate_application(const ch
 
    INFORMATION("apex::application::instantiate_application");
 
-   ::e_status estatus = ::success;
+   void estatus = ::success;
 
    __pointer(::application) papp;
 

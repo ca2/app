@@ -39,7 +39,7 @@ namespace base
       inline ::base::system* get_system() const { return m_psystem ? m_psystem->m_pbasesystem : nullptr; }
 
 
-      virtual ::e_status initialize(::object * pobject) override;
+      virtual void initialize(::object * pobject) override;
 
 
 
@@ -48,16 +48,16 @@ namespace base
 
       //::user::style * get_user_style();
 
-      //virtual ::e_status create_user_shell();
+      //virtual void create_user_shell();
 
       inline ::user::menu_central* menu() { return m_pmenucentral; }
 
       inline ::experience::department* experience() { return m_pexperience; }
 
 
-      virtual ::e_status init1() override;
-      virtual ::e_status init2() override;
-      virtual ::e_status init() override;
+      virtual void init1() override;
+      virtual void init2() override;
+      virtual void init() override;
 
   
       inline ::type get_html_document_type() { return m_typeHtmlDocument; }
@@ -72,13 +72,13 @@ namespace base
       virtual void set_mouse_focus_RButtonDown(::user::primitive * pmousefocus) override;
 
 
-      virtual ::e_status initialize1_experience();
+      virtual void initialize1_experience();
 
-      virtual ::e_status destroy() override;
+      virtual void destroy() override;
 
       virtual void SendMessageToWindows(const ::id & id, wparam wParam, lparam lParam) override;
 
-      virtual ::e_status term() override;
+      virtual void term() override;
 
       virtual ::type controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
 

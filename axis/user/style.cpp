@@ -35,7 +35,7 @@ namespace axis
    }
 
 
-   ::e_status style::initialize_style()
+   void style::initialize_style()
    {
 
       return ::success;

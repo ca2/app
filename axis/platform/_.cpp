@@ -506,7 +506,7 @@ CLASS_DECL_AXIS u32 g_tickStartTime = 0;
 //
 //
 //
-//CLASS_DECL_AXIS ::e_status load_factory_library(string strLibrary)
+//CLASS_DECL_AXIS void load_factory_library(string strLibrary)
 //{
 //
 //

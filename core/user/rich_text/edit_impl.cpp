@@ -27,7 +27,7 @@ namespace user
       }
 
 
-      ::e_status edit_impl::initialize_edit_impl(document * pdocument)
+      void edit_impl::initialize_edit_impl(document * pdocument)
       {
 
          auto estatus = ::user::rich_text::edit::initialize(pdocument);

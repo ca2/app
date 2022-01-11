@@ -96,7 +96,7 @@ namespace sockets
    }
 
 
-   ::e_status resolv_socket::initialize(::object * pobject)
+   void resolv_socket::initialize(::object * pobject)
    {
 
       auto estatus = tcp_socket::initialize(pobject);
@@ -131,7 +131,7 @@ namespace sockets
    }
 
 
-   ::e_status resolv_socket::destroy()
+   void resolv_socket::destroy()
    {
 
       m_psystem.release();

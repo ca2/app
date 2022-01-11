@@ -20,7 +20,7 @@ context::~context()
 }
 
 
-::e_status context::start_task()
+void context::start_task()
 {
 
    return ::success_none;

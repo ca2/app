@@ -27,7 +27,7 @@ namespace account
       virtual ~main_window();
 
 
-      virtual ::e_status initialize_simple_ui(::account::credentials * pcredentials);
+      virtual void initialize_simple_ui(::account::credentials * pcredentials);
 
 
       virtual string get_cred(const ::rectangle_i32 & rectangle, string & strUsername, string & strPassword, string strToken, string strTitle);

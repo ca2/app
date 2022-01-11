@@ -805,7 +805,7 @@ pacmedir->create(lpszFileName.folder());
    //}
 
 
-   //::e_status WinFileException::ErrnoToException(int nErrno)
+   //void WinFileException::ErrnoToException(int nErrno)
    //{
    //   switch(nErrno)
    //   {
@@ -831,7 +831,7 @@ pacmedir->create(lpszFileName.folder());
    //   }
    //}
 
-   //::e_status WinFileException::OsErrorToException(::i32 lOsErr)
+   //void WinFileException::OsErrorToException(::i32 lOsErr)
    //{
    //   // NT Error codes
    //   switch ((::u32)lOsErr)

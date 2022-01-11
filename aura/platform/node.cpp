@@ -28,7 +28,7 @@ namespace aura
    }
 
 
-   ::e_status node::on_initialize_object()
+   void node::on_initialize_object()
    {
 
       auto estatus = ::apex::node::on_initialize_object();

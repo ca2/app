@@ -80,7 +80,7 @@ namespace sockets
    }
 
 
-   ::e_status http_put_socket::step()
+   void http_put_socket::step()
    {
 
       if(m_file.is_set())

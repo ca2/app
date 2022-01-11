@@ -8,12 +8,12 @@
 
 //#elif defined(_UWP)
 
-//::e_status _os_message_box(const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, ::future future);
+//void _os_message_box(const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, ::future future);
 
 //#else
 
 //#ifdef _UWP
-//::e_status _os_message_box(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const ::future & process);
+//void _os_message_box(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const ::future & process);
 //#else
 //int _os_message_box(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox);
 //#endif
@@ -85,7 +85,7 @@ namespace acme
 //#ifdef _UWP
 //
 //
-//::e_status os_message_box(const char * pszText, const char * pszTitle, const ::e_message_box & emessagebox, const ::future & process)
+//void os_message_box(const char * pszText, const char * pszTitle, const ::e_message_box & emessagebox, const ::future & process)
 //{
 //
 //   return _os_message_box(pszText, pszTitle, emessagebox, process);
@@ -96,7 +96,7 @@ namespace acme
 //#else
 //
 //
-////::e_status os_message_box(const char * pszText, const char * pszTitle, const ::e_message_box & emessagebox, const ::future & process)
+////void os_message_box(const char * pszText, const char * pszTitle, const ::e_message_box & emessagebox, const ::future & process)
 ////{
 ////
 ////   auto posmessagebox = __new(::acme::os_message_box(pszText, pszTitle, emessagebox));

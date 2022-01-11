@@ -13,7 +13,7 @@ xcb_hook::xcb_hook()
 __pointer_array(xcb_hook) g_xcbhooka;
 
 
-::e_status xcb_hook::hook()
+void xcb_hook::hook()
 {
 
    synchronous_lock synchronouslock(x11_mutex());
@@ -25,7 +25,7 @@ __pointer_array(xcb_hook) g_xcbhooka;
 }
 
 
-::e_status xcb_hook::unhook()
+void xcb_hook::unhook()
 {
 
    synchronous_lock synchronouslock(x11_mutex());

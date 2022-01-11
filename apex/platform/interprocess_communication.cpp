@@ -171,7 +171,7 @@ namespace interprocess_communication
 
 
 
-      ::e_status tx::open(const ::string & strChannel, launcher * plauncher)
+      void tx::open(const ::string & strChannel, launcher * plauncher)
       {
 
          return true;
@@ -179,7 +179,7 @@ namespace interprocess_communication
       }
 
 
-      ::e_status tx::close()
+      void tx::close()
       {
 
          //if (get_hwnd() == nullptr)
@@ -198,7 +198,7 @@ namespace interprocess_communication
       }
 
 
-      ::e_status tx::send(const ::string & pszMessage, const duration & durationTimeout)
+      void tx::send(const ::string & pszMessage, const duration & durationTimeout)
       {
 
          if (!is_tx_ok())
@@ -213,7 +213,7 @@ namespace interprocess_communication
       }
 
 
-      ::e_status tx::send(int message, void * pdata, int len, const duration & durationTimeout)
+      void tx::send(int message, void * pdata, int len, const duration & durationTimeout)
       {
 
          if (message == 0x80000000)
@@ -252,7 +252,7 @@ namespace interprocess_communication
       }
 
 
-      ::e_status rx::on_initialize_object()
+      void rx::on_initialize_object()
       {
 
          fork([this]()
@@ -267,7 +267,7 @@ namespace interprocess_communication
       }
 
 
-      ::e_status rx::create(const ::string & strChannel)
+      void rx::create(const ::string & strChannel)
       {
 
         return true;
@@ -275,7 +275,7 @@ namespace interprocess_communication
       }
 
 
-      ::e_status rx::destroy()
+      void rx::destroy()
       {
 
          auto estatus = base::destroy();

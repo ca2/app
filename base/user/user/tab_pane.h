@@ -40,7 +40,7 @@ namespace user
       ~tab_pane() override;
 
 
-      virtual ::e_status initialize_tab_pane(tab* ptab);
+      virtual void initialize_tab_pane(tab* ptab);
 
 
       tab_pane & operator = (const tab_pane & tab_pane);

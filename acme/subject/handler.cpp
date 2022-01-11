@@ -7,7 +7,7 @@
 #include "framework.h"
 
 
-CLASS_DECL_ACME ::e_status __call(handler * phandler, const ::id & id, i64 iData, ::matter * pmatter)
+CLASS_DECL_ACME void __call(handler * phandler, const ::id & id, i64 iData, ::matter * pmatter)
 {
 
    ::subject subject(id);
@@ -40,7 +40,7 @@ CLASS_DECL_ACME ::e_status __call(handler * phandler, const ::id & id, i64 iData
 }
 
 
-::e_status handler::call(enum_message emessage, i64 iData, ::matter * pmatter)
+void handler::call(enum_message emessage, i64 iData, ::matter * pmatter)
 {
 
    return __call(this, emessage, iData, pmatter);
@@ -48,7 +48,7 @@ CLASS_DECL_ACME ::e_status __call(handler * phandler, const ::id & id, i64 iData
 }
 
 
-::e_status handler::call(enum_id eid, i64 iData, ::matter * pmatter)
+void handler::call(enum_id eid, i64 iData, ::matter * pmatter)
 {
 
    return __call(this, eid, iData, pmatter);

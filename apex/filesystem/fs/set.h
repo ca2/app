@@ -39,7 +39,7 @@ namespace fs
 
       virtual bool is_zero_latency(const ::file::path & psz)override;
 
-      virtual ::e_status destroy() override;
+      virtual void destroy() override;
 
 
    };

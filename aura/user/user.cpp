@@ -47,7 +47,7 @@ namespace user
    }
 
 
-   ::e_status user::initialize(::object * pobject)
+   void user::initialize(::object * pobject)
    {
 
       auto estatus = ::acme::department::initialize(pobject);
@@ -75,7 +75,7 @@ namespace user
    }
 
 
-   ::e_status user::on_initialize_window_object()
+   void user::on_initialize_window_object()
    {
 
       if (m_bOnInitializeWindowObject)
@@ -101,7 +101,7 @@ namespace user
    }
 
 
-   ::e_status user::_on_initialize_window_object()
+   void user::_on_initialize_window_object()
    {
 
       auto estatus = __construct_new(m_puserstyle);
@@ -285,7 +285,7 @@ namespace user
    }
 
 
-   ::e_status user::set_active_window(::user::interaction * puserinteraction)
+   void user::set_active_window(::user::interaction * puserinteraction)
    {
 
       ::windowing::window * pwindow = nullptr;
@@ -346,7 +346,7 @@ namespace user
    }
 
 
-   ::e_status user::set_foreground_window(::user::interaction * puserinteraction)
+   void user::set_foreground_window(::user::interaction * puserinteraction)
    {
 
       ::windowing::window * pwindow = nullptr;
@@ -380,7 +380,7 @@ namespace user
    }
 
 
-   ::e_status user::init1()
+   void user::init1()
    {
 
       ::factory::add_factory_item <::user::button >();
@@ -413,7 +413,7 @@ namespace user
    }
 
 
-   ::e_status user::init()
+   void user::init()
    {
 
       if (!::acme::department::init())
@@ -491,7 +491,7 @@ namespace user
    }
 
 
-   ::e_status user::init2()
+   void user::init2()
    {
 
       auto estatus = ::acme::department::init2();
@@ -517,7 +517,7 @@ namespace user
    }
 
 
-   ::e_status user::destroy()
+   void user::destroy()
    {
 
       auto estatus = ::acme::department::destroy();
@@ -534,7 +534,7 @@ namespace user
    }
 
 
-   ::e_status user::term()
+   void user::term()
    {
 
 
@@ -581,10 +581,10 @@ namespace user
    }
 
 
-   ::e_status user::create_user_shell()
+   void user::create_user_shell()
    {
 
-      ::e_status estatus = ::success;
+      void estatus = ::success;
 
       if (!m_pshell)
       {
@@ -758,7 +758,7 @@ namespace user
    }
 
 
-   //::e_status user::close_all_documents(bool bEndSession)
+   //void user::close_all_documents(bool bEndSession)
    //{
 
    //   return ::error_interface_only;
@@ -1108,7 +1108,7 @@ namespace aura
    }
 
 
-   //::e_status system::_on_initialize_window_object()
+   //void system::_on_initialize_window_object()
    //{
 
    //   auto estatus = ::aqua::system::_on_initialize_window_object();
@@ -1388,10 +1388,10 @@ namespace user
    }
 
 
-   ::e_status user::create_windowing()
+   void user::create_windowing()
    {
 
-      ::e_status estatus = ::success;
+      void estatus = ::success;
 
       estatus = __compose(m_pwindowing);
 

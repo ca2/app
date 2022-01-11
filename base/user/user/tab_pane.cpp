@@ -38,7 +38,7 @@ namespace user
 
 
 
-   ::e_status tab_pane::initialize_tab_pane(class tab* ptab)
+   void tab_pane::initialize_tab_pane(class tab* ptab)
    {
 
       auto estatus = ::matter::initialize_matter(ptab);

@@ -81,7 +81,7 @@ task_group::~task_group()
 }
 
 
-::e_status task_group::prepare(::enum_task_op etaskop, ::count cIteration)
+void task_group::prepare(::enum_task_op etaskop, ::count cIteration)
 {
 
    synchronous_lock synchronouslock(mutex());
@@ -157,7 +157,7 @@ bool task_group::add_predicate(::predicate_holder_base * ppred)
 }
 
 
-::e_status task_group::set_ready_to_start()
+void task_group::set_ready_to_start()
 {
 
    synchronous_lock synchronouslock(mutex());
@@ -202,7 +202,7 @@ bool task_group::add_predicate(::predicate_holder_base * ppred)
 }
 
 
-::e_status task_group::wait()
+void task_group::wait()
 {
 
    //synchronous_lock synchronouslock(mutex());
@@ -223,7 +223,7 @@ bool task_group::add_predicate(::predicate_holder_base * ppred)
 }
 
 
-::e_status task_group::process()
+void task_group::process()
 {
 
    set_ready_to_start();
@@ -270,7 +270,7 @@ tool_task::tool_task()
 }
 
 
-::e_status tool_task::initialize_tool_task(::task_group* pgroup)
+void tool_task::initialize_tool_task(::task_group* pgroup)
 {
 
    //auto estatus = initialize(pgroup);
@@ -318,7 +318,7 @@ bool tool_task::set_predicate(::predicate_holder_base * ppred)
 }
 
 
-::e_status tool_task::run()
+void tool_task::run()
 {
 
    try
@@ -376,7 +376,7 @@ void tool_task::reset()
 }
 
 
-::e_status tool_task::set_ready_to_start()
+void tool_task::set_ready_to_start()
 {
 
    m_pevStart->SetEvent();
@@ -414,7 +414,7 @@ task_tool_item::~task_tool_item()
 }
 
 
-::e_status task_tool_item::run()
+void task_tool_item::run()
 {
 
    return ::success;

@@ -29,10 +29,10 @@ namespace dynamic_source
 
 #endif
 
-      ::e_status initialize(::object * pobject) override;
+      void initialize(::object * pobject) override;
 
 
-      ::e_status destroy() override;
+      void destroy() override;
 
       virtual bool main_initialize();
       virtual bool main_finalize();

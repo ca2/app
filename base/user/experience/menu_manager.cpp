@@ -20,7 +20,7 @@ namespace experience
    }
 
 
-   ::e_status menu_manager::initialize_menu_manager(frame_window* pframewindow)
+   void menu_manager::initialize_menu_manager(frame_window* pframewindow)
    {
 
       auto estatus = ::object::initialize(pframewindow);

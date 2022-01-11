@@ -55,7 +55,7 @@ namespace folder_zip
 
 
 
-   ::e_status folder::initialize(::object* pobject)
+   void folder::initialize(::object* pobject)
    {
 
       auto estatus = ::object::initialize(pobject);
@@ -72,7 +72,7 @@ namespace folder_zip
    }
 
 
-   ::e_status folder::open_for_writing(file_pointer pfile)
+   void folder::open_for_writing(file_pointer pfile)
    {
 
       //m_filea.erase_all();
@@ -137,7 +137,7 @@ namespace folder_zip
    }
 
 
-   ::e_status folder::open_for_reading(::file_pointer pfile, int iBufferLevel)
+   void folder::open_for_reading(::file_pointer pfile, int iBufferLevel)
    {
 
       auto unzfile = unzOpen2("pad", (zlib_filefunc_def*)&g_filefunctiondefinitions, pfile.m_p);
@@ -510,7 +510,7 @@ namespace folder_zip
    }
 
 
-   ::file_transport folder::get_file(const char* pszFile)
+   ::file_pointer folder::get_file(const char* pszFile)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -544,7 +544,7 @@ namespace folder_zip
    }
 
 
-   ::e_status folder::extract(memory& m, const char* pszFile)
+   void folder::extract(memory& m, const char* pszFile)
    {
 
       auto pfile = get_file(pszFile);
@@ -562,7 +562,7 @@ namespace folder_zip
    }
 
 
-   ::e_status folder::extract_all(const char* pszTargetDir, ::file::patha* ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat)
+   void folder::extract_all(const char* pszTargetDir, ::file::patha* ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat)
    {
 
       ::file::listing listing;
@@ -620,7 +620,7 @@ namespace folder_zip
 
 
 
-   //::e_status file_container::open_for_writing(file_pointer pfile)
+   //void file_container::open_for_writing(file_pointer pfile)
    //{
 
    //   m_zipfile = zipOpen2("pad", APPEND_STATUS_CREATE, nullptr, (zlib_filefunc_def*)pfile->m_pvoidFileFuncDef);

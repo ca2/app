@@ -18,7 +18,7 @@ api_client::~api_client()
 
 
 
-::e_status api_client::defer_api()
+void api_client::defer_api()
 {
 
    if (!m_papi || !m_papi->m_bAuthenticated)
@@ -66,7 +66,7 @@ api_client::~api_client()
 }
 
 
-::e_status api_client::create_api()
+void api_client::create_api()
 {
 
    return create_api(m_strImplementation);
@@ -74,7 +74,7 @@ api_client::~api_client()
 }
 
 
-::e_status api_client::create_api(const ::string& strImplementation)
+void api_client::create_api(const ::string& strImplementation)
 {
 
    if (!m_papi)
@@ -107,7 +107,7 @@ api_client::~api_client()
 }
 
 
-::e_status api_client::api_get(::string & str, const string& strUrl, property_set& set)
+void api_client::api_get(::string & str, const string& strUrl, property_set& set)
 {
 
    auto estatus = defer_api();
@@ -133,7 +133,7 @@ api_client::~api_client()
 }
 
 
-::e_status api_client::api_get(::payload& payload, const string& strUrl, property_set& set)
+void api_client::api_get(::payload& payload, const string& strUrl, property_set& set)
 {
 
    auto estatus = defer_api();
@@ -159,7 +159,7 @@ api_client::~api_client()
 }
 
 
-::e_status api_client::api_download(string strGet, const ::file::path& path, property_set& set)
+void api_client::api_download(string strGet, const ::file::path& path, property_set& set)
 {
 
    auto estatus = defer_api();

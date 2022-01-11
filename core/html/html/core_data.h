@@ -217,7 +217,7 @@ namespace html
       ~core_data() override;
 
 
-      ::e_status initialize_html_data(html_data * pdata) override;
+      void initialize_html_data(html_data * pdata) override;
 
 
       virtual string process_url(const ::string & pszUrl);
@@ -228,7 +228,7 @@ namespace html
       bool open_document(const ::payload & payloadFile) override;
 
 
-      ::e_status     open_html(const ::string & str) override;
+      void     open_html(const ::string & str) override;
 
 
       bool open_link(const ::string & pszPath) override;
@@ -262,7 +262,7 @@ namespace html
       ::html::element* get_element_by_id(id id);
 
       void delete_contents();
-      ::e_status destroy() override;
+      void destroy() override;
       void delete_implementation();
 
       virtual bool contains(__pointer(::user::interaction) pinteraction) override;

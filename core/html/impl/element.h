@@ -42,7 +42,7 @@ namespace html
          virtual ~element();
 
 
-         virtual ::e_status initialize_html_impl_elemental(::html_data * pdata);
+         virtual void initialize_html_impl_elemental(::html_data * pdata);
 
 
          virtual void delete_implementation(html_data * pdocument);

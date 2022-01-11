@@ -59,7 +59,7 @@ namespace axis
       //virtual bool prepare_menu_button(::draw2d::graphics_pointer& pgraphics, ::user::menu_item * pitem) override;
 
 
-      virtual ::e_status initialize_style() override;
+      virtual void initialize_style() override;
 
 
       virtual bool _001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics,::user::frame * pframe) override;

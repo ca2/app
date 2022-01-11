@@ -18,9 +18,9 @@ namespace dynamic_source
       ~script_composite() override;
 
 
-      virtual ::e_status initialize(::object * pobject) override;
+      virtual void initialize(::object * pobject) override;
 
-      virtual ::e_status destroy() override;
+      virtual void destroy() override;
 
 
    };

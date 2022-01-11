@@ -30,7 +30,7 @@ namespace experience
       virtual ~dock_manager();
 
 
-      virtual ::e_status initialize_dock_manager(::experience::frame_window* pframewindow);
+      virtual void initialize_dock_manager(::experience::frame_window* pframewindow);
 
 
       DECLARE_MESSAGE_HANDLER(dock_button_on_message_left_button_down);

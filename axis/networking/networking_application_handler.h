@@ -13,7 +13,7 @@ public:
    ~networking_application_handler() override;
 
 
-   virtual ::e_status on_html_response(::string & strHtml, const ::string& strUrl, const ::property_set& setPost);
+   virtual void on_html_response(::string & strHtml, const ::string& strUrl, const ::property_set& setPost);
 
 
 };

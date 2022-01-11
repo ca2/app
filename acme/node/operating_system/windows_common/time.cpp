@@ -75,7 +75,7 @@ int gettimeofday(struct timeval * tp, void * tz)
 }
 
 
-::e_status get_system_time(system_time_t* psystemtime)
+void get_system_time(system_time_t* psystemtime)
 {
 
    ::GetSystemTime((LPSYSTEMTIME)psystemtime);
@@ -88,7 +88,7 @@ int gettimeofday(struct timeval * tp, void * tz)
 
 
 
-::e_status system_time_to_time(time_t* ptime, const system_time_t* psystemtime, i32 nDST)
+void system_time_to_time(time_t* ptime, const system_time_t* psystemtime, i32 nDST)
 {
 
    struct tm tm;
@@ -102,7 +102,7 @@ int gettimeofday(struct timeval * tp, void * tz)
 }
 
 
-::e_status system_time_to_file_time(filetime_t* pfiletime, const system_time_t* psystemtime)
+void system_time_to_file_time(filetime_t* pfiletime, const system_time_t* psystemtime)
 {
 
    if (!SystemTimeToFileTime((const SYSTEMTIME*)psystemtime, (FILETIME*)pfiletime))
@@ -117,7 +117,7 @@ int gettimeofday(struct timeval * tp, void * tz)
 }
 
 
-::e_status time_to_system_time(system_time_t* psystemtime, const time_t* ptime)
+void time_to_system_time(system_time_t* psystemtime, const time_t* ptime)
 {
    
    struct tm tm;
@@ -131,7 +131,7 @@ int gettimeofday(struct timeval * tp, void * tz)
 }
 
 
-::e_status time_to_file_time(filetime_t* pfiletime, const time_t* ptime)
+void time_to_file_time(filetime_t* pfiletime, const time_t* ptime)
 {
 
    system_time_t systemtime;
@@ -173,7 +173,7 @@ int gettimeofday(struct timeval * tp, void * tz)
 
 
 
-CLASS_DECL_ACME ::e_status file_time_to_system_time(system_time_t * psystemtime, const filetime_t * pfiletime)
+CLASS_DECL_ACME void file_time_to_system_time(system_time_t * psystemtime, const filetime_t * pfiletime)
 {
 
    if (!FileTimeToSystemTime((FILETIME *)pfiletime, (SYSTEMTIME *)psystemtime))
@@ -192,7 +192,7 @@ CLASS_DECL_ACME ::e_status file_time_to_system_time(system_time_t * psystemtime,
 
 //
 //
-//::e_status file_time_to_system_time(system_time_t * psystemtime, const filetime_t * pfiletime)
+//void file_time_to_system_time(system_time_t * psystemtime, const filetime_t * pfiletime)
 //{
 //
 //   if (!FileTimeToSystemTime((FILETIME *)pfiletime, (SYSTEMTIME *)psystemtime))

@@ -18,9 +18,9 @@ namespace sockets
       sockets_base();
       virtual ~sockets_base();
 
-      virtual ::e_status initialize(::object * pobject) override;
+      virtual void initialize(::object * pobject) override;
 
-      virtual ::e_status destroy() override;
+      virtual void destroy() override;
 
 
    };

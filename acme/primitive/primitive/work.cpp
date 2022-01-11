@@ -14,7 +14,7 @@ work::~work()
 }
 
 
-::e_status work::start_work()
+void work::start_work()
 {
 
    return ::success_none;

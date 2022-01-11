@@ -31,9 +31,9 @@ namespace filemanager
 
       double get_progress_rate();
 
-      virtual ::e_status step() override;
+      virtual void step() override;
 
-      virtual ::e_status     run() override;
+      virtual void     run() override;
 
 
    };

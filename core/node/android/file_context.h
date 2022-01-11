@@ -20,10 +20,10 @@ namespace android
       virtual ~file_context();
 
 
-      virtual ::e_status initialize(::object * pobject) override;
+      virtual void initialize(::object * pobject) override;
 
 
-      virtual ::e_status update_module_path() override;
+      virtual void update_module_path() override;
 
 
    };

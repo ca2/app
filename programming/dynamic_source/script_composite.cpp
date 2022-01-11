@@ -18,7 +18,7 @@ namespace dynamic_source
    }
 
 
-   ::e_status script_composite::initialize(::object * pobject)
+   void script_composite::initialize(::object * pobject)
    {
 
       auto estatus = script_interface::initialize(pobject);
@@ -35,7 +35,7 @@ namespace dynamic_source
    }
 
 
-   ::e_status script_composite::destroy()
+   void script_composite::destroy()
    {
 
       auto estatus = script_interface::destroy();

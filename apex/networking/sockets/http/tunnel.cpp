@@ -163,7 +163,7 @@ namespace sockets
    }
 
 
-   ::e_status http_tunnel::step()
+   void http_tunnel::step()
    {
 
       string str;

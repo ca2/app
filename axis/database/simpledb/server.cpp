@@ -20,7 +20,7 @@ namespace simpledb
    }
 
 
-   ::e_status server::initialize_simpledb_server(::object * pobject, const ::string & pszDatabase)
+   void server::initialize_simpledb_server(::object * pobject, const ::string & pszDatabase)
    {
 
       auto estatus = ::database::server::initialize(pobject);
@@ -231,7 +231,7 @@ namespace simpledb
    }
 
 
-   ::e_status server::destroy()
+   void server::destroy()
    {
 
       m_bWorking = false;

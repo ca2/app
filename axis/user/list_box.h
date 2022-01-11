@@ -100,7 +100,7 @@ namespace user
       virtual bool on_set_owner(::user::primitive * pprimitive) override;
 
 
-      ::e_status set_current_item(const ::item & item, const ::action_context & context) override;
+      void set_current_item(const ::item & item, const ::action_context & context) override;
       virtual void set_current_item_by_data(uptr u, const ::action_context& action_context);
       virtual void set_current_item_by_string_value(const string& strValue, const ::action_context& action_context);
       virtual string get_current_item_string_value();

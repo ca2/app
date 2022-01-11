@@ -98,7 +98,7 @@ namespace core
    }
 
 
-   ::e_status user::initialize(::object * pobject)
+   void user::initialize(::object * pobject)
    {
 
       auto estatus = ::base::user::initialize(pobject);
@@ -115,7 +115,7 @@ namespace core
    }
 
 
-   ::e_status user::init1()
+   void user::init1()
    {
 
       ::factory::add_factory_item < ::user::picture::picture_impl >();
@@ -177,7 +177,7 @@ namespace core
    }
 
 
-   ::e_status user::init()
+   void user::init()
    {
 
       if (!::base::user::init())
@@ -426,7 +426,7 @@ namespace core
    }
 
 
-   ::e_status user::init2()
+   void user::init2()
    {
 
       if (!::acme::department::init2())
@@ -441,7 +441,7 @@ namespace core
    }
 
 
-   ::e_status user::destroy()
+   void user::destroy()
    {
 
       try
@@ -480,7 +480,7 @@ namespace core
 
 
 
-   ::e_status user::term()
+   void user::term()
    {
 
       return ::success;
@@ -991,7 +991,7 @@ namespace core
    }
 
 
-   ::e_status user::term_instance()
+   void user::term_instance()
    {
 
       return ::success;
@@ -1825,7 +1825,7 @@ namespace core
 {
 
 
-   ::e_status user::initialize_userex()
+   void user::initialize_userex()
    {
 
       ////if (is_system())
@@ -2078,7 +2078,7 @@ namespace core
    }
 
 
-   //::e_status application::message_box(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, ::u32 uFlags, ::function_arg function)
+   //void application::message_box(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, ::u32 uFlags, ::function_arg function)
    //{
 
    //   auto estatus = ui_message_box(puiOwner->get_safe_handle(), pszMessage, pszTitle, fuStyle, functionarg);

@@ -18,13 +18,13 @@ namespace ios
       file_context();
       virtual ~file_context();
 
-      virtual ::e_status initialize(::object * pobject) override;
+      virtual void initialize(::object * pobject) override;
       
-      virtual ::e_status update_module_path() override;
+      virtual void update_module_path() override;
 
       virtual ::payload length(const ::file::path & path, ::payload * pvarQuery) override;
       
-      virtual ::file_transport get_file(const ::payload & payloadFile, const ::file::e_open & eopen) override;
+      virtual ::file_pointer get_file(const ::payload & payloadFile, const ::file::e_open & eopen) override;
 
 
    };

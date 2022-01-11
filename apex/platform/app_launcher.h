@@ -20,13 +20,13 @@ namespace apex
 
       app_launcher();
 
-      virtual ::e_status initialize_app_launcher(::object * pobject, string strPlatform, string strApp);
+      virtual void initialize_app_launcher(::object * pobject, string strPlatform, string strApp);
 
       virtual string get_executable_path();
 
       virtual string get_params();
 
-      virtual ::e_status run();
+      virtual void run();
 
    };
 

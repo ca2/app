@@ -24,7 +24,7 @@ namespace crypto
    }
 
 
-   ::e_status crypto::defer_initialize()
+   void crypto::defer_initialize()
    {
 
       auto estatus = __defer_compose(m_pinitializer);
@@ -119,7 +119,7 @@ namespace crypto
 
 
 
-      ::e_status crypto::decrypt(memory& storageDecrypt, const memory& storageEncrypt, const char* pszSalt)
+      void crypto::decrypt(memory& storageDecrypt, const memory& storageEncrypt, const char* pszSalt)
       {
 
          // default implementation - OS may implement its own HOME/UserDir encryption
@@ -153,7 +153,7 @@ namespace crypto
       }
 
       
-      ::e_status crypto::encrypt(memory& storageEncrypt, const memory& storageDecrypt, const char* pszSalt)
+      void crypto::encrypt(memory& storageEncrypt, const memory& storageDecrypt, const char* pszSalt)
       {
 
          // default implementation - OS may implement its own HOME/UserDir encryption
@@ -403,7 +403,7 @@ namespace crypto
       }
 
 
-      ::e_status crypto::hash(memory& memOut, const block& block, enum_hash ehash)
+      void crypto::hash(memory& memOut, const block& block, enum_hash ehash)
       {
 
          auto palgorithm = create_hasher_algorithm(ehash);
@@ -429,7 +429,7 @@ namespace crypto
       }
 
 
-      ::e_status crypto::md5(memory& memMd5, const block& block)
+      void crypto::md5(memory& memMd5, const block& block)
       {
 
          auto estatus = hash(memMd5, block, e_hash_md5);
@@ -460,7 +460,7 @@ namespace crypto
       }
 
 
-      ::e_status crypto::sha1(memory& memSha1, const block& block)
+      void crypto::sha1(memory& memSha1, const block& block)
       {
 
          auto estatus = hash(memSha1, block, e_hash_sha1);
@@ -522,7 +522,7 @@ namespace crypto
       }
 
 
-      ::e_status crypto::nessie(memory& memNessie, const block& block)
+      void crypto::nessie(memory& memNessie, const block& block)
       {
 
          auto estatus = hash(memNessie, block, e_hash_nessie);
@@ -563,7 +563,7 @@ namespace crypto
       }
 
 
-      ::e_status     crypto::file_get(::payload payloadFile, string& str, const char* pszSalt, ::application* papp)
+      void     crypto::file_get(::payload payloadFile, string& str, const char* pszSalt, ::application* papp)
       {
 
          memory memoryEncrypt;
@@ -587,7 +587,7 @@ namespace crypto
       }
 
 
-      ::e_status crypto::encrypt(memory& storageEncrypt, const char* pszDecrypt, const char* pszSalt)
+      void crypto::encrypt(memory& storageEncrypt, const char* pszDecrypt, const char* pszSalt)
       {
 
          memory memoryDecrypt;
@@ -599,7 +599,7 @@ namespace crypto
       }
 
 
-      ::e_status crypto::decrypt(string& strDecrypt, const memory& storageEncrypt, const char* pszSalt)
+      void crypto::decrypt(string& strDecrypt, const memory& storageEncrypt, const char* pszSalt)
       {
 
          memory memoryDecrypt;

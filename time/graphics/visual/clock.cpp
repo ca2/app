@@ -23,7 +23,7 @@ namespace datetime
 
    }
 
-   ::e_status graphics::initialize(::object * pobject)
+   void graphics::initialize(::object * pobject)
    {
 
       return ::success;

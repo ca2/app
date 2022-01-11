@@ -35,7 +35,7 @@
 //   }
 //
 //
-////   ::e_status system::inline_init()
+////   void system::inline_init()
 ////   {
 ////
 ////      auto estatus = process_init();
@@ -52,7 +52,7 @@
 ////   }
 //
 //
-//   ::e_status system::inline_term()
+//   void system::inline_term()
 //   {
 //
 //      return ::success;
@@ -60,7 +60,7 @@
 //   }
 //
 ////
-////   ::e_status system::on_start_system()
+////   void system::on_start_system()
 ////   {
 ////
 ////      return ::success;
@@ -68,7 +68,7 @@
 ////   }
 ////
 //
-//   ::e_status system::on_end()
+//   void system::on_end()
 //   {
 //
 //      return ::success;
@@ -85,7 +85,7 @@
 //
 //
 //
-////   ::e_status system::on_start_system()
+////   void system::on_start_system()
 ////   {
 ////
 ////      return ::success;
@@ -110,7 +110,7 @@
 
 
 //
-//   ::e_status system::end()
+//   void system::end()
 //   {
 //
 //      //auto estatus = create_os_node();

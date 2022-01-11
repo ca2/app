@@ -13,7 +13,7 @@ CLASS_DECL_ACME void set_avoid_bad_status_exception(bool bSet);
 
 #include "interface_only.h"
 
-CLASS_DECL_ACME string estatus_to_string(::e_status estatus);
+CLASS_DECL_ACME string estatus_to_string(::e_status3 estatus);
 
 //#include "base.h"
 
@@ -39,15 +39,15 @@ namespace win
 }
 
 
-CLASS_DECL_ACME ::e_status errno_to_status(i32 nErrno);
+CLASS_DECL_ACME void errno_to_status(i32 nErrno);
 
-CLASS_DECL_ACME ::e_status failed_errno_to_status(i32 nErrno);
+CLASS_DECL_ACME void failed_errno_to_status(i32 nErrno);
 
 
 #ifdef WINDOWS
 
 
-CLASS_DECL_ACME ::e_status last_error_to_status(DWORD dwLastError);
+CLASS_DECL_ACME void last_error_to_status(DWORD dwLastError);
 
 
 #endif

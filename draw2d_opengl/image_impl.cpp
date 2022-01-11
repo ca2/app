@@ -49,7 +49,7 @@ namespace draw2d_opengl
 
 
 
-   ::e_status image::create(const ::size_i32& size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
+   void image::create(const ::size_i32& size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
    {
 
       if(m_pbitmap.is_set()
@@ -145,7 +145,7 @@ namespace draw2d_opengl
    }
 
 
-   ::e_status image::create(::draw2d::graphics * pgraphics)
+   void image::create(::draw2d::graphics * pgraphics)
    {
 
       ::draw2d::bitmap * pbitmap = (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->get_current_bitmap();

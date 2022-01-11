@@ -60,7 +60,7 @@ namespace html
 
    }
 
-   ::e_status core_data::initialize_html_data(html_data * pdata)
+   void core_data::initialize_html_data(html_data * pdata)
    {
 
       auto estatus = ::html_data::initialize_html_data(pdata);
@@ -208,7 +208,7 @@ namespace html
    }
 
 
-   ::e_status core_data::destroy()
+   void core_data::destroy()
    {
 
       m_focusptra.erase_all();
@@ -836,7 +836,7 @@ namespace html
    }
    
    
-   ::e_status     core_data::open_html(const ::string & strParam)
+   void     core_data::open_html(const ::string & strParam)
    {
       
       string str(strParam);

@@ -1607,7 +1607,7 @@ i64 oswindow_id(oswindow w)
 }
 
 
-CLASS_DECL_AURA::e_status _android_os_message_box(const ::string & pText, const ::string & lpCaption, const ::e_message_box & emessagebox)
+CLASS_DECL_AURAvoid _android_os_message_box(const ::string & pText, const ::string & lpCaption, const ::e_message_box & emessagebox)
 {
 
    while (::oslocal()->m_iMessageBoxResult > 0)
@@ -1716,7 +1716,7 @@ CLASS_DECL_AURA::e_status _android_os_message_box(const ::string & pText, const 
 }
 
 
-CLASS_DECL_AURA ::e_status android_os_message_box(const ::string & pText, const ::string & lpCaption, const ::e_message_box & emessageboxParam, const ::future & processParam)
+CLASS_DECL_AURA void android_os_message_box(const ::string & pText, const ::string & lpCaption, const ::e_message_box & emessageboxParam, const ::future & processParam)
 {
 
    string strText(pText);

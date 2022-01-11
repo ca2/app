@@ -14,7 +14,7 @@ public:
    virtual ~machine_event();
 
 
-   virtual ::e_status initialize(::object * pobject) override;
+   virtual void initialize(::object * pobject) override;
 
    bool read(machine_event_data * pdata);
    bool write(machine_event_data * pdata);

@@ -130,7 +130,7 @@ namespace axis
    }
 
 
-   ::e_status system::initialize(::object * pobject)
+   void system::initialize(::object * pobject)
    {
 
       auto estatus = ::aura::system::initialize(pobject);
@@ -180,7 +180,7 @@ namespace axis
    }
 
 
-   ::e_status system::process_init()
+   void system::process_init()
    {
 
       auto estatus = ::aura::system::process_init();
@@ -224,7 +224,7 @@ namespace axis
 //} // namespace axis
 //
 
-   ::e_status system::init()
+   void system::init()
    {
 
       auto estatus = ::aura::system::init();
@@ -241,7 +241,7 @@ namespace axis
    }
 
 
-   ::e_status system::init1()
+   void system::init1()
    {
 
       auto estatus = ::aura::system::init1();
@@ -258,7 +258,7 @@ namespace axis
    }
 
 
-   ::e_status system::post_creation_requests()
+   void system::post_creation_requests()
    {
 
       auto estatus = ::aura::system::post_creation_requests();
@@ -275,10 +275,10 @@ namespace axis
    }
 
 
-   ::e_status system::inline_init()
+   void system::inline_init()
    {
 
-      ::e_status estatus = ::aura::system::inline_init();
+      void estatus = ::aura::system::inline_init();
 
       if (!estatus)
       {
@@ -292,10 +292,10 @@ namespace axis
    }
 
 
-   ::e_status system::inline_term()
+   void system::inline_term()
    {
 
-      ::e_status estatus = ::aura::system::inline_term();
+      void estatus = ::aura::system::inline_term();
 
       //if (!estatus)
       //{
@@ -311,7 +311,7 @@ namespace axis
    }
 
 
-   ::e_status system::init_system()
+   void system::init_system()
    {
 
       auto estatus = aura::system::init_system();
@@ -508,7 +508,7 @@ namespace axis
 
 
 
-   ::e_status system::verb()
+   void system::verb()
    {
 
       return ::aura::system::verb();
@@ -524,7 +524,7 @@ namespace axis
 
 
 
-   ::e_status system::init2()
+   void system::init2()
    {
 
       auto estatus = ::aura::system::init2();

@@ -10,11 +10,11 @@
 auto estatus ## __LINE__ = (xxx); if(::failed(estatus ## __LINE__) && !task_flag().is_set(id_thread_prevent_bad_status_exception)) throw estatus ## __LINE__;
 
 // class estatus :
-//    public cflag < ::e_status    >
+//    public cflag < void    >
 // {
 // public:
 
-//    using cflag <::e_status    >::cflag;
+//    using cflag <void    >::cflag;
 
 //    operator bool() { return ::succeeded(m_i); }
 

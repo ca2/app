@@ -28,21 +28,21 @@ namespace aqua
       void common_construct();
 
 
-      virtual ::e_status initialize(::object * pobject) override;
+      virtual void initialize(::object * pobject) override;
 
 
       virtual void on_add_session(::apex::session* papexsession) override;
 
-      //virtual ::e_status initialize_rich_text();
+      //virtual void initialize_rich_text();
 
       ::xml::xml* _xml() override;
 
 
-      virtual ::e_status create_audio();
+      virtual void create_audio();
 
-      virtual ::e_status defer_audio() override;
+      virtual void defer_audio() override;
 
-      virtual ::e_status defer_multimedia();
+      virtual void defer_multimedia();
 
       virtual ::aqua::multimedia* defer_get_multimedia();
 

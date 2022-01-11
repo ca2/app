@@ -16,7 +16,7 @@ namespace app_just_message_box
       ~application() override;
 
 
-      ::e_status init_instance() override;
+      void init_instance() override;
       void term_application() override;
 
 

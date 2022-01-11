@@ -19,7 +19,7 @@ namespace net
    }
 
 
-   ::e_status email::initialize(::object * pobject)
+   void email::initialize(::object * pobject)
    {
 
       auto estatus = ::object::initialize(pobject);

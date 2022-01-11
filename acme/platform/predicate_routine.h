@@ -32,7 +32,7 @@
 //   }
 //
 //
-//   virtual ::e_status run() override
+//   virtual void run() override
 //   {
 //
 //      m_predicate();
@@ -75,12 +75,12 @@ public:
    //method(const ::method & method) : matter_pointer(method) { }
 
 
-   //inline ::e_status operator()() const;
+   //inline void operator()() const;
 
    DURATION timeout() const override { return m_durationTimeout; }
 
 
-   virtual ::e_status run() override
+   virtual void run() override
    {
 
       m_predicate();
@@ -119,7 +119,7 @@ template < typename PRED >
 }
 
 
-::e_status run_task(::matter * pobjectTask);
+void run_task(::matter * pobjectTask);
 
 
 class processor

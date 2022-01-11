@@ -106,7 +106,7 @@ namespace base
    }
 
 
-   ::e_status system::initialize(::object * pobject)
+   void system::initialize(::object * pobject)
    {
 
       auto estatus = ::axis::system::initialize(pobject);

@@ -15,7 +15,7 @@ namespace user
 
 
       virtual __pointer(::extended::sequence < ::conversation >) show(::user::interaction * puserinteraction, const string & strMessage, const string & strTitle, const ::e_message_box & emessagebox);
-      virtual ::e_status add_button(const ::string & strTitle, enum_dialog_result edialogresult) = 0;
+      virtual void add_button(const ::string & strTitle, enum_dialog_result edialogresult) = 0;
 
 
    };
@@ -101,7 +101,7 @@ namespace user
 
       // message_box_interface
       __pointer(::extended::sequence < ::conversation >) show(::user::interaction * puserinteraction, const string & strMessage, const string & strTitle, const ::e_message_box & emessagebox) override;
-      ::e_status add_button(const ::string & strTitle, enum_dialog_result edialogresult) override;
+      void add_button(const ::string & strTitle, enum_dialog_result edialogresult) override;
 
 
 
@@ -199,7 +199,7 @@ namespace user
 //} // namespace user
 //
 //
-////CLASS_DECL_AURA ::e_status os_message_box(const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const future & process = ::future());
+////CLASS_DECL_AURA void os_message_box(const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const future & process = ::future());
 //
 //
 //

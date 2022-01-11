@@ -23,7 +23,7 @@ namespace experience
    }
 
 
-   ::e_status move_manager::initialize_move_manager(::experience::frame_window* pframewindow)
+   void move_manager::initialize_move_manager(::experience::frame_window* pframewindow)
    {
 
       auto estatus = ::object::initialize(pframewindow);

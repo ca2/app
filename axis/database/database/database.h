@@ -34,14 +34,14 @@ namespace database
       virtual bool isActive() = 0;
 
 
-      virtual ::e_status     init() = 0;
+      virtual void     init() = 0;
       virtual e_connection connection_status() = 0;
-      virtual ::e_status     set_error_code(int iErrorCode) = 0;
+      virtual void     set_error_code(int iErrorCode) = 0;
       virtual string get_error_message() = 0;
       virtual void * get_handle() = 0;
 
 
-      virtual ::e_status     connect(
+      virtual void     connect(
       const ::string & name,
       const ::string & host = nullptr,
       const ::string & port = nullptr,
@@ -50,12 +50,12 @@ namespace database
       const ::string & sckt = nullptr,
       u64 uConnectionFlags = 0) = 0;
 
-      virtual ::e_status     _connect() = 0;
+      virtual void     _connect() = 0;
 
       virtual void disconnect();
-      virtual ::e_status     reset() = 0;
-      virtual ::e_status     create() = 0;
-      virtual ::e_status     drop() = 0;
+      virtual void     reset() = 0;
+      virtual void     create() = 0;
+      virtual void     drop() = 0;
 
       //virtual string escape(const ::string & psz);
 
@@ -108,8 +108,8 @@ namespace database
 
       virtual ::payload get_insert_id() = 0;
 
-      virtual ::e_status set_id_blob(string strKey, ::block block);
-      virtual ::e_status get_id_blob(string strKey, ::get_memory getmemory);
+      virtual void set_id_blob(string strKey, ::block block);
+      virtual void get_id_blob(string strKey, ::get_memory getmemory);
 
 
 

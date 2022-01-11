@@ -22,7 +22,7 @@ public:
    ::payload                                                   m_varArgs;
    ::payload                                                   m_varOptions;
    string                                                      m_strExtra;
-   ::e_status                                                  m_estatus;
+   void                                                  m_estatus;
 
    bool                                                        m_bMakeVisible;
    bool                                                        m_bTransparentBackground;
@@ -42,8 +42,8 @@ public:
 
 
    
-   virtual ::e_status initialize_create(arguments arguments);
-   virtual ::e_status initialize_create(string strAppId, ::payload payloadFile, const ::payload& varOptions = __visible(true), ::user::primitive* puiParent = nullptr, ewindowflag eflag = e_window_flag_none, ::id = ::id());
+   virtual void initialize_create(arguments arguments);
+   virtual void initialize_create(string strAppId, ::payload payloadFile, const ::payload& varOptions = __visible(true), ::user::primitive* puiParent = nullptr, ewindowflag eflag = e_window_flag_none, ::id = ::id());
 
 
    void create_common_construct(const ::payload & varOptions, ::user::primitive * puiParent);
@@ -51,7 +51,7 @@ public:
 
    ::application* create_get_application(::application* pappFallback = nullptr);
 
-   ::e_status finish_initialization();
+   void finish_initialization();
 
    virtual string get_description();
    virtual void set_description(string strDescription);

@@ -912,7 +912,7 @@ namespace sockets
    }
 
 
-   ::e_status     base_socket::socket_thread::initialize_socket_thread(base_socket * psocket)
+   void     base_socket::socket_thread::initialize_socket_thread(base_socket * psocket)
    {
 
       auto estatus = initialize(psocket);
@@ -966,7 +966,7 @@ namespace sockets
    }
 
 
-   ::e_status     base_socket::socket_thread::run()
+   void     base_socket::socket_thread::run()
    {
 
       socket_handler & h = *m_phandler;
@@ -2533,7 +2533,7 @@ namespace sockets
    }
 
 
-   ::e_status     base_socket::run()
+   void     base_socket::run()
    {
 
       return ::success;

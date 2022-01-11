@@ -19,7 +19,7 @@ namespace app_app
       ~application() override;
 
 
-      virtual ::e_status init_instance() override;
+      virtual void init_instance() override;
       virtual void term_application() override;
 
       virtual void on_request(::create * pcreate) override;

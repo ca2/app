@@ -24,7 +24,7 @@ namespace experience
          }
 
 
-         ::e_status experience::initialize(::object * pobject)
+         void experience::initialize(::object * pobject)
          {
 
             auto estatus = ::experience::experience::initialize(pobject);

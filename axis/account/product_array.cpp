@@ -20,7 +20,7 @@ namespace account
    }
 
 
-   ::e_status product_array::initialize_product_array(department* pdepartment)
+   void product_array::initialize_product_array(department* pdepartment)
    {
 
       auto estatus = ::object::initialize(pdepartment);

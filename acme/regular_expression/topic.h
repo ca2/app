@@ -25,7 +25,7 @@ namespace regular_expression
       virtual ~topic();
 
 
-      virtual ::e_status create(const ::string & strExpression);
+      virtual void create(const ::string & strExpression);
 
 
       virtual ::count get_count() const;

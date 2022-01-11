@@ -21,8 +21,8 @@ namespace draw2d_cairo
 
 
       virtual bool create(::draw2d::graphics * pgraphics);
-      ::e_status destroy() override;
-      ::e_status destroy_os_data() override;
+      void destroy() override;
+      void destroy_os_data() override;
 
 
       bool mask_fill(cairo_t * pdc);

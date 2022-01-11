@@ -59,7 +59,7 @@
 //   //   /// Updates the watcher. Must be called often.
 //   //   bool select();
 //
-//   //   virtual ::e_status     run() override;
+//   //   virtual void     run() override;
 //
 //   //   /// Handles the action
 //   //   virtual void handle_action(action * psubject);
@@ -126,7 +126,7 @@
 //
 //      virtual bool step() override;
 //
-//      virtual ::e_status     run() override;
+//      virtual void     run() override;
 //
 //
 //   };

@@ -91,7 +91,7 @@ namespace sockets
       //void SetMultipart();
 
       /** http put client implemented in OnConnect */
-      virtual ::e_status step() override;
+      virtual void step() override;
 
       property_set m_fields;
       void DoMultipartPost();

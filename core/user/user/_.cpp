@@ -3,10 +3,10 @@
 
 
 //
-//CLASS_DECL_CORE::e_status message_box(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+//CLASS_DECL_COREvoid message_box(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
 //{
 //
-//   ::e_status estatus = ::error_failed;
+//   void estatus = ::error_failed;
 //
 //   auto psystem = ::get_context_system();
 //

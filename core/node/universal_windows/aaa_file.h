@@ -90,8 +90,8 @@ namespace universal_windows
    //namespace WinFileException
    //{
 
-   //   ::e_status OsErrorToException(::i32 lOsError);
-   //   ::e_status ErrnoToException(int nErrno);
+   //   void OsErrorToException(::i32 lOsError);
+   //   void ErrnoToException(int nErrno);
    //   void ThrowOsError(::object * pobject, ::i32 lOsError, const ::string & lpszFileName = nullptr);
    //   void ThrowErrno(::object * pobject, int nErrno, const ::string & lpszFileName = nullptr);
 

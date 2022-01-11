@@ -726,7 +726,7 @@
 //
 
 
-::e_status is_directory(const char * path)
+void is_directory(const char * path)
 {
 
    struct stat stat = {};
@@ -750,7 +750,7 @@
 }
 
 
-::e_status file_exists(const char * path)
+void file_exists(const char * path)
 {
 
    // dedicaverse stat -> Sir And Arthur - Cesar Serenato
@@ -776,7 +776,7 @@
 }
 
 
-//::e_status create_directory_path(const char * pathParam)
+//void create_directory_path(const char * pathParam)
 //{
 //
 //   if (is_directory(pathParam))
@@ -846,7 +846,7 @@
 //
 
 
-::e_status create_directory(const char * path)
+void create_directory(const char * path)
 {
 
 
@@ -862,7 +862,7 @@
 }
 
 
-::e_status file_delete(const char * path)
+void file_delete(const char * path)
 {
 
 

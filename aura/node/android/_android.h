@@ -1,7 +1,7 @@
 #pragma once
 
 
-CLASS_DECL_AURA::e_status os_shell_initialize();
+CLASS_DECL_AURAvoid os_shell_initialize();
 
 
 //#include "aura/node/ansios/ansios.h"
@@ -58,7 +58,7 @@ int_bool GetMessage(
 i32 CLASS_DECL_AURA __android_main(i32 argc, char* argv[]);
 
 
-CLASS_DECL_AURA void vfxThrowFileException(::object* pobject, const ::e_status& estatus, ::i32 lOsError, const ::string & lpszFileName = nullptr);
+CLASS_DECL_AURA void vfxThrowFileException(::object* pobject, const void& estatus, ::i32 lOsError, const ::string & lpszFileName = nullptr);
 
 
 #include "internal.h"

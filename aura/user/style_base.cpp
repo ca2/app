@@ -22,7 +22,7 @@ namespace user
 
 
 
-   ::e_status style_base::on_initialize_object()
+   void style_base::on_initialize_object()
    {
 
       auto estatus = ::manager::on_initialize_object();

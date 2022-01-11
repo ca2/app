@@ -31,7 +31,7 @@ namespace aqua
 
 
       virtual string text_to_speech_implementation();
-      virtual ::e_status text_to_speech_implementation(const ::string & strImplementation);
+      virtual void text_to_speech_implementation(const ::string & strImplementation);
 
       virtual __transport(::text_to_speech::speaker) create_text_to_speech_speaker(const ::string& strImplementation = nullptr);
 
@@ -52,7 +52,7 @@ namespace aqua
       virtual LPWAVEOUT waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback);
 
 
-      virtual ::e_status defer_initialize_audio_playback(::wave::e_purpose epurpose = ::wave::purpose_playground);
+      virtual void defer_initialize_audio_playback(::wave::e_purpose epurpose = ::wave::purpose_playground);
 
 
    };

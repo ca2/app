@@ -27,7 +27,7 @@ namespace core
    }
 
 
-   ::e_status session::initialize(::object * pobject)
+   void session::initialize(::object * pobject)
    {
 
       auto estatus = ::base::session::initialize(pobject);

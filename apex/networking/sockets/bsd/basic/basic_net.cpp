@@ -49,7 +49,7 @@ namespace sockets
    }
 
 
-   ::e_status     net::initialize(::object * pobject)
+   void     net::initialize(::object * pobject)
    {
 
       if(m_bInitialized)
@@ -96,7 +96,7 @@ namespace sockets
    }
 
 
-   ::e_status net::destroy()
+   void net::destroy()
    {
 
       ::object::destroy();

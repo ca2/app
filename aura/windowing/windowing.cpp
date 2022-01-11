@@ -34,7 +34,7 @@ namespace windowing
    }
 
 
-   ::e_status windowing::initialize_windowing(::user::user * puser)
+   void windowing::initialize_windowing(::user::user * puser)
    {
 
       //auto estatus = initialize(puser);
@@ -86,7 +86,7 @@ namespace windowing
    }
 
 
-   ::e_status windowing::destroy()
+   void windowing::destroy()
    {
 
       m_pcursormanager.release();
@@ -98,7 +98,7 @@ namespace windowing
    }
 
 
-   //::e_status windowing::destroy()
+   //void windowing::destroy()
    //{
 
    //   auto estatus = ::acme::department::destroy();
@@ -115,7 +115,7 @@ namespace windowing
    //}
 
 
-   ::e_status windowing::start()
+   void windowing::start()
    {
 
       return ::success;
@@ -163,7 +163,7 @@ namespace windowing
    }
 
 
-   ::e_status windowing::set_cursor_set_from_matter(const ::file::path & pathDir)
+   void windowing::set_cursor_set_from_matter(const ::file::path & pathDir)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -202,7 +202,7 @@ namespace windowing
    }
 
 
-   ::e_status windowing::set_cursor_position(const ::point_i32 & point)
+   void windowing::set_cursor_position(const ::point_i32 & point)
    {
 
       throw ::interface_only_exception();
@@ -278,7 +278,7 @@ namespace windowing
    }
 
 
-   ::e_status windowing::clear_active_window(::thread *, ::windowing::window *)
+   void windowing::clear_active_window(::thread *, ::windowing::window *)
    {
 
       throw ::interface_only_exception();
@@ -314,7 +314,7 @@ namespace windowing
    }
 
 
-//    ::e_status windowing::defer_initialize_x11()
+//    void windowing::defer_initialize_x11()
 //   {
 //
 //       return ::success;
@@ -428,7 +428,7 @@ namespace windowing
 //   }
 
    
-   ::e_status windowing::release_mouse_capture()
+   void windowing::release_mouse_capture()
    {
 
       return error_interface_only;
@@ -448,7 +448,7 @@ namespace windowing
    //}
 
    //
-   ::e_status windowing::term1()
+   void windowing::term1()
    {
 
       return ::success;
@@ -464,7 +464,7 @@ namespace windowing
    }
 
 
-   ::e_status windowing::term2()
+   void windowing::term2()
    {
 
       return ::success;
@@ -516,7 +516,7 @@ namespace windowing
    }
 
 
-   ::e_status windowing::erase_window(::windowing::window * pwindow)
+   void windowing::erase_window(::windowing::window * pwindow)
    {
 
       //if (!m_windowmap.erase_key(pwindow->get_os_data()))
@@ -531,7 +531,7 @@ namespace windowing
    }
 
 
-//   ::e_status windowing::hook(class hook *phook)
+//   void windowing::hook(class hook *phook)
 //   {
 //
 //      throw ::interface_only_exception();
@@ -542,7 +542,7 @@ namespace windowing
 //   }
 //
 //
-//   ::e_status windowing::unhook(class hook * phook)
+//   void windowing::unhook(class hook * phook)
 //   {
 //
 //      throw ::interface_only_exception();
@@ -597,7 +597,7 @@ namespace windowing
    }
 
 
-   ::e_status windowing::load_cursor(::windowing::cursor * pcursor, ::file::path path, bool bSync, bool bCache)
+   void windowing::load_cursor(::windowing::cursor * pcursor, ::file::path path, bool bSync, bool bCache)
    {
 
       if (::is_null(pcursor))
@@ -647,7 +647,7 @@ namespace windowing
    }
 
 
-   ::e_status windowing::lock_set_foreground_window(bool bLock)
+   void windowing::lock_set_foreground_window(bool bLock)
    {
 
       return error_not_implemented;
@@ -655,7 +655,7 @@ namespace windowing
    }
 
 
-   ::e_status windowing::windowing_send(const ::routine & routine)
+   void windowing::windowing_send(const ::routine & routine)
    {
 
       auto estatus = __send_routine(this, &windowing::windowing_post, routine);
@@ -672,7 +672,7 @@ namespace windowing
    }
 
 
-   ::e_status windowing::windowing_post(const ::routine & routine)
+   void windowing::windowing_post(const ::routine & routine)
    {
 
       throw ::interface_only_exception();
@@ -780,7 +780,7 @@ namespace windowing
 #endif
 
 
-   ::e_status windowing::register_extended_event_listener(::matter * pdata, bool bMouse, bool bKeyboard)
+   void windowing::register_extended_event_listener(::matter * pdata, bool bMouse, bool bKeyboard)
    {
 
       throw ::interface_only_exception();

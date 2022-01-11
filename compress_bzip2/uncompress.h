@@ -65,10 +65,10 @@ namespace compress_bzip2
       ~uncompress() override;
 
 
-      ::e_status initialize(::object* pobject) override;
+      void initialize(::object* pobject) override;
 
 
-      ::e_status transfer(::file::file* pfileOut, ::file::file* pfileIn) override;
+      void transfer(::file::file* pfileOut, ::file::file* pfileIn) override;
 
 
    };

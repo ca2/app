@@ -1253,7 +1253,7 @@ namespace user
    }
 
 
-   ::e_status form_control::open_document(const ::payload & payloadFile)
+   void form_control::open_document(const ::payload & payloadFile)
    {
 
       return true;
@@ -1261,7 +1261,7 @@ namespace user
    }
 
 
-   ::e_status     form_control::open_html(const ::string & str)
+   void     form_control::open_html(const ::string & str)
    {
 
       return error_not_implemented;

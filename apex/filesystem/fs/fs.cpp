@@ -18,7 +18,7 @@ namespace fs
    }
 
 
-   ::e_status fs::initialize(::object * pobject)
+   void fs::initialize(::object * pobject)
    {
 
       auto estatus = ::acme::department::initialize(pobject);

@@ -827,7 +827,7 @@ namespace experience
    }
 
 
-   ::e_status control_box::set_control_box_button_id(enum_button ebutton, id id)
+   void control_box::set_control_box_button_id(enum_button ebutton, id id)
    {
 
       auto estatus = __defer_construct_new(m_itemmap[ebutton]);

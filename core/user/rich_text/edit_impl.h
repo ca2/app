@@ -32,7 +32,7 @@ namespace user
          ~edit_impl() override;
 
 
-         virtual ::e_status initialize_edit_impl(document * pdocument);
+         virtual void initialize_edit_impl(document * pdocument);
 
 
          virtual void on_after_change(::enum_subject esubject) override;

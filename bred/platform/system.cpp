@@ -34,7 +34,7 @@ namespace bred
    }
 
 
-   ::e_status system::initialize(::object * pobject)
+   void system::initialize(::object * pobject)
    {
 
       auto estatus = ::apex::system::initialize(pobject);
@@ -72,7 +72,7 @@ namespace bred
       papexsession->m_pbredsystem = this;
 
    }
-   //::e_status system::initialize_rich_text()
+   //void system::initialize_rich_text()
    //{
 
    //   if (!__rich_text_initialize())

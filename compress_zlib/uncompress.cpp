@@ -21,7 +21,7 @@ namespace compress_zlib
    }
 
 
-   ::e_status uncompress::transfer(::file::file* pfileUncompressed, ::file::file* pfileGzFileCompressed)
+   void uncompress::transfer(::file::file* pfileUncompressed, ::file::file* pfileGzFileCompressed)
    {
 
       i32 status;

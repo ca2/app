@@ -26,7 +26,7 @@ namespace programming
    }
 
 
-   ::e_status compiler::initialize_programming_compiler(::object* pobject)
+   void compiler::initialize_programming_compiler(::object* pobject)
    {
 
       auto estatus = ::object::initialize(pobject);
@@ -198,7 +198,7 @@ namespace programming
          }
 
       }
-      catch (const ::e_status& estatus)
+      catch (const void& estatus)
       {
 
          output_debug_string("failed to setup visual studio environment " + __string((::i64)estatus.m_estatus));

@@ -145,7 +145,7 @@ namespace draw2d
    }
 
 
-   ::e_status object::destroy_os_data()
+   void object::destroy_os_data()
    {
 
       return ::success;
@@ -161,7 +161,7 @@ namespace draw2d
    }
 
 
-   ::e_status object::destroy()
+   void object::destroy()
    {
 
       destroy_os_data();

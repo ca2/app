@@ -167,7 +167,7 @@ void* load_lib(const char* l)
 }
 
 
-//::e_status os_application_system_run(class ::system* psystem);
+//void os_application_system_run(class ::system* psystem);
 
 
 int SetMainScreenRect(LPCRECT32 lpcrect);
@@ -185,7 +185,7 @@ int SetMainScreenRect(LPCRECT32 lpcrect);
 //
 //   psystem->system_construct(plocal, e_display_default);
 //
-//   ::e_status estatus = psystem->os_application_system_run();
+//   void estatus = psystem->os_application_system_run();
 //   
 //   if (!estatus)
 //   {

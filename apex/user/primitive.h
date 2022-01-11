@@ -72,9 +72,9 @@ namespace user
 
       void install_message_routing(::channel * pchannel) override;
 
-      virtual ::e_status show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd);
+      virtual void show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd);
 
-      virtual ::e_status hide_software_keyboard(::user::primitive * pprimitive);
+      virtual void hide_software_keyboard(::user::primitive * pprimitive);
 
       void UpdateWindow() override;
       
@@ -96,9 +96,9 @@ namespace user
 
       virtual ::windowing::cursor * get_mouse_cursor();
 
-      //virtual ::e_status set_cursor(enum_cursor ecursor);
+      //virtual void set_cursor(enum_cursor ecursor);
 
-      virtual ::e_status set_mouse_cursor(::windowing::cursor * pcursor);
+      virtual void set_mouse_cursor(::windowing::cursor * pcursor);
 
       //virtual ::point_i32 get_cursor_position() const;
 
@@ -108,7 +108,7 @@ namespace user
       //virtual ::i32 set_window_long(i32 nIndex,::i32 lValue);
 
       //virtual iptr get_window_long_ptr(i32 nIndex) const;
-      //virtual ::e_status set_window_long_ptr(i32 nIndex, iptr lValue);
+      //virtual void set_window_long_ptr(i32 nIndex, iptr lValue);
 
       ::user::interaction * first_child() override;
       ::user::interaction * last_child() override;
@@ -214,12 +214,12 @@ namespace user
       string get_class_name() override;
 
       
-      ::e_status create_interaction(::user::interaction * puserinteractionParent, const ::id & id = nullptr) override;
+      void create_interaction(::user::interaction * puserinteractionParent, const ::id & id = nullptr) override;
 
 
-      ::e_status create_host() override;
-      ::e_status create_child(::user::interaction * puserinteractionParent) override;
-      ::e_status create_control(::user::interaction * puserinteractionParent, const ::id & id) override;
+      void create_host() override;
+      void create_child(::user::interaction * puserinteractionParent) override;
+      void create_control(::user::interaction * puserinteractionParent, const ::id & id) override;
 
       //virtual bool create_window_ex(__pointer(::user::system) pcs, ::user::interaction * puiParent, const ::id & id);
       //virtual void CalcWindowRect(RECTANGLE_I32 * pClientRect,::u32 nAdjustType = adjustBorder);
@@ -248,7 +248,7 @@ namespace user
       bool GetUpdateRect(RECTANGLE_I32 * prectangle,bool bErase = false) override;
 
 
-      ::e_status interaction_post(const ::routine & routine) override;
+      void interaction_post(const ::routine & routine) override;
 
 
       virtual lresult send(::message::message * pmessage);
@@ -310,7 +310,7 @@ namespace user
 
 
 
-      //virtual ::e_status set_foreground_window();
+      //virtual void set_foreground_window();
 
       
 
@@ -388,7 +388,7 @@ namespace user
 
 //#endif
 
-      ::e_status set_tool_window(bool bSet = true) override;
+      void set_tool_window(bool bSet = true) override;
 
       
       ::user::interaction * get_next_window(bool bIgnoreChildren = false, const ::user::interaction * puiInteractionStop = nullptr) const override;
@@ -453,7 +453,7 @@ namespace user
       virtual enum_type get_window_type() override;
 
 
-      virtual ::e_status add_child_handler(::matter * pmatter, const ::id & idChild, bool bPriority = false) override;
+      virtual void add_child_handler(::matter * pmatter, const ::id & idChild, bool bPriority = false) override;
 
 
       virtual void on_simple_command(::message::simple_command * psimplecommand);
@@ -529,8 +529,8 @@ namespace user
       bool has_pending_graphical_update() override;
       void on_after_graphical_update() override;
 
-      ::e_status set_bitmap_source(const string & strBitmapSource) override;
-      ::e_status clear_bitmap_source() override;
+      void set_bitmap_source(const string & strBitmapSource) override;
+      void clear_bitmap_source() override;
 
 
       virtual bool WfiOnStartDock();
@@ -602,9 +602,9 @@ namespace user
       bool keyboard_focus_OnChildKillFocus() override;
       ::user::element * keyboard_get_next_focusable(::user::element * pfocus = nullptr, bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false) override;
       //virtual primitive * get_keyboard_focus() const;
-      ::e_status set_keyboard_focus() override;
-      ::e_status erase_keyboard_focus() override;
-      ::e_status clear_keyboard_focus() override;
+      void set_keyboard_focus() override;
+      void erase_keyboard_focus() override;
+      void clear_keyboard_focus() override;
       ::user::element * get_keyboard_focus() override;
       ::user::element * keyboard_set_focus_next(bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false) override;
       //virtual bool has_keyboard_focus();

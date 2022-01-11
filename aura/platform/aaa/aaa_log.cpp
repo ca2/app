@@ -84,7 +84,7 @@ pacmedir->system() / "trace.txt";
    }
 
 
-   ::e_status log::initialize_aura_log(enum_trace_level etracelevelMin, const ::id & id)
+   void log::initialize_aura_log(enum_trace_level etracelevelMin, const ::id & id)
    {
 
       auto estatus = __compose_new(m_ptrace);
@@ -645,7 +645,7 @@ skip_further_possible_recursive_impossible_logging_in_file:
    }
 
 
-   //::e_status log::initialize_aura_log(enum_trace_level etracelevelMin, const ::string & pszId)
+   //void log::initialize_aura_log(enum_trace_level etracelevelMin, const ::string & pszId)
    //{
 
    //   //if (!initialize(id(pszId)))
@@ -714,14 +714,14 @@ skip_further_possible_recursive_impossible_logging_in_file:
    }
 
 
-   //::e_status log::initialize(e_traceid id)
+   //void log::initialize(e_traceid id)
    //{
 
 
    //}
 
 
-   ::e_status log::destroy()
+   void log::destroy()
    {
 
       synchronous_lock synchronouslock(mutex());

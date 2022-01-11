@@ -80,7 +80,7 @@ namespace text
       }
 
 
-      virtual ::e_status initialize(::object * pobject) override;
+      virtual void initialize(::object * pobject) override;
 
 
       inline auto& operator[](const ::id& id) { return m_map[id]; }

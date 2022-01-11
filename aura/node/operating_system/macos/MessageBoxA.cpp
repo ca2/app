@@ -168,7 +168,7 @@
 //CLASS_DECL_AURA string message_box_result_to_string(int iResult);
 //
 //
-//::e_status os_message_box(oswindow window, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::future future)
+//void os_message_box(oswindow window, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::future future)
 //{
 //   
 //   int iResult = _os_message_box(window, pszMessage, pszTitle, emessagebox);

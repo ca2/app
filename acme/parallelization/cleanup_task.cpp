@@ -27,7 +27,7 @@
 //   }
 //
 //
-//   ::e_status cleanup_task::run()
+//   void cleanup_task::run()
 //   {
 //
 //      while (task_get_run())

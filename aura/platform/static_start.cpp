@@ -934,7 +934,7 @@ namespace aura
 
 
 
-   ::e_status aura::init()
+   void aura::init()
    {
 
       //::aura::static_start::init();
@@ -961,7 +961,7 @@ namespace aura
    }
 
 
-   ::e_status aura::term()
+   void aura::term()
    {
 
       //::parallelization::wait_threads(1_min);
@@ -1050,10 +1050,10 @@ namespace aura
 //}
 
 
-//thread_int_ptr < ::e_status    > t_estatus;
+//thread_int_ptr < void    > t_estatus;
 
 
-//CLASS_DECL_AURA void set_last_status(const ::e_status & estatus)
+//CLASS_DECL_AURA void set_last_status(const void & estatus)
 //{
 //
 //   ::get_task()->m_estatus = estatus;
@@ -1061,7 +1061,7 @@ namespace aura
 //}
 
 
-//CLASS_DECL_AURA ::e_status  get_last_status()
+//CLASS_DECL_AURA void  get_last_status()
 //{
 //
 //   return ::get_task()->m_estatus;

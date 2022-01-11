@@ -17,14 +17,14 @@ public:
    ~file_context() override;
 
    
-   ::e_status initialize(::object * pobject) override;
+   void initialize(::object * pobject) override;
 
 
-   virtual ::e_status init_system();
-   virtual ::e_status init_context();
+   virtual void init_system();
+   virtual void init_context();
 
    
-   //virtual ::e_status update_module_path();
+   //virtual void update_module_path();
 
 
    virtual void calculate_main_resource_memory();
@@ -109,7 +109,7 @@ public:
 
 
    template < typename TYPE >
-   inline ::e_status binary_get(const ::payload & payloadFile, TYPE & t)
+   inline void binary_get(const ::payload & payloadFile, TYPE & t)
    {
 
       auto preader = get_reader(payloadFile);
@@ -133,7 +133,7 @@ public:
 
 
    template < typename TYPE >
-   inline ::e_status binary_set(const ::payload & payloadFile, const TYPE & t)
+   inline void binary_set(const ::payload & payloadFile, const TYPE & t)
    {
 
       auto pwriter = get_writer(payloadFile);
@@ -177,19 +177,19 @@ public:
    }
 
 
-   virtual ::e_status get_lines(string_array & stra, const ::payload & payloadFile, bool bAddEmpty = true);
-   virtual ::e_status put_lines(const ::payload& payloadFile, const string_array& stra, const plain_text_file_options& options = {});
-   //virtual ::e_status put_lines_utf8(const ::payload & payloadFile, const string_array & stra);
+   virtual void get_lines(string_array & stra, const ::payload & payloadFile, bool bAddEmpty = true);
+   virtual void put_lines(const ::payload& payloadFile, const string_array& stra, const plain_text_file_options& options = {});
+   //virtual void put_lines_utf8(const ::payload & payloadFile, const string_array & stra);
    
 
-   virtual ::e_status put_memory(const ::payload & payloadFile, ::file::file * pfile);
-   virtual ::e_status put_memory(const ::payload & payloadFile, const ::block & block);
-   virtual ::e_status put_text(const ::payload& payloadFile, const ::block& block);
-   virtual ::e_status put_text_utf8(const ::payload & payloadFile, const ::block& block);
+   virtual void put_memory(const ::payload & payloadFile, ::file::file * pfile);
+   virtual void put_memory(const ::payload & payloadFile, const ::block & block);
+   virtual void put_text(const ::payload& payloadFile, const ::block& block);
+   virtual void put_text_utf8(const ::payload & payloadFile, const ::block& block);
 
 
-   virtual ::e_status add_contents(const ::payload & payloadFile, const void * pvoidContents, ::count count);
-   virtual ::e_status add_contents(const ::payload & payloadFile, const char * pcszContents);
+   virtual void add_contents(const ::payload & payloadFile, const void * pvoidContents, ::count count);
+   virtual void add_contents(const ::payload & payloadFile, const char * pcszContents);
 
 
    virtual bool is_read_only(const ::file::path & psz);
@@ -235,21 +235,21 @@ public:
    //virtual void write_gen_string(::file::file * pfile, void * pmd5ctx, string & str);
    //virtual void read_gen_string(::file::file * pfile, void * pmd5ctx, string & str);
 
-   virtual ::file_transport file_get_file(::file::path path, const ::file::e_open & eopen);
+   virtual ::file_pointer file_get_file(::file::path path, const ::file::e_open & eopen);
 
-   virtual ::file_transport data_get_file(string strData, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
+   virtual ::file_pointer data_get_file(string strData, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
 
    virtual ::folder_transport get_folder(::file::file * pfile, const char * pszImplementation, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
 
-   virtual ::file_transport http_get_file(const ::payload & payloadFile, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
+   virtual ::file_pointer http_get_file(const ::payload & payloadFile, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
 
-   virtual ::file_transport get_file(const ::payload & payloadFile, const ::file::e_open & eopen) override;
+   virtual ::file_pointer get_file(const ::payload & payloadFile, const ::file::e_open & eopen) override;
 
-   virtual ::file_transport get_reader(const ::payload & payloadFile, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
+   virtual ::file_pointer get_reader(const ::payload & payloadFile, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
 
-   virtual ::file_transport shared_reader(const ::payload & payloadFile, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
+   virtual ::file_pointer shared_reader(const ::payload & payloadFile, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
 
-   virtual ::file_transport get_writer(const ::payload & payloadFile, const ::file::e_open & eopen = ::file::e_open_write | ::file::e_open_create | ::file::e_open_no_truncate | ::file::e_open_defer_create_directory | ::file::e_open_binary);
+   virtual ::file_pointer get_writer(const ::payload & payloadFile, const ::file::e_open & eopen = ::file::e_open_write | ::file::e_open_create | ::file::e_open_no_truncate | ::file::e_open_defer_create_directory | ::file::e_open_binary);
 
    virtual bool post_output(::file::path pathOut, ::file::path pathDownloading);
 
@@ -295,7 +295,7 @@ public:
 
 
    template < class OBJECT >
-   ::e_status put(const ::payload & payloadFile, OBJECT & a)
+   void put(const ::payload & payloadFile, OBJECT & a)
    {
 
       auto writer = get_writer(payloadFile);
@@ -314,7 +314,7 @@ public:
    }
 
 
-   ::e_status set(const ::payload & payloadFile, const ::memory_base & memory)
+   void set(const ::payload & payloadFile, const ::memory_base & memory)
    {
 
       auto writer = get_writer(payloadFile);
@@ -327,7 +327,7 @@ public:
 
 
    template < class OBJECT >
-   ::e_status as(OBJECT & a, const ::payload & payloadFile)
+   void as(OBJECT & a, const ::payload & payloadFile)
    {
 
       auto reader = get_reader(payloadFile);
@@ -371,7 +371,7 @@ public:
    string sys_temp(const char * lpszName, const char * pszExtension);
 
 
-   //virtual ::file_transport get_file(const ::payload & payloadFile, ::u32 nOpenFlags);
+   //virtual ::file_pointer get_file(const ::payload & payloadFile, ::u32 nOpenFlags);
 
 
    //virtual bool is_read_only(const ::file::path & psz);

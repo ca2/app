@@ -154,7 +154,7 @@ namespace aura
    }
 
 
-   ::e_status system::initialize(::object * pobject)
+   void system::initialize(::object * pobject)
    {
 
       auto estatus = ::aqua::system::initialize(pobject);
@@ -282,7 +282,7 @@ namespace aura
    }
 
 
-//   ::e_status system::run_system()
+//   void system::run_system()
 //   {
 //
 //      auto estatus = ::apex::system::run_system();
@@ -506,7 +506,7 @@ namespace aura
    //}
 
    
-   ::e_status system::system_main()
+   void system::system_main()
    {
 
       auto estatus = ::aqua::system::system_main();
@@ -539,7 +539,7 @@ namespace aura
    }
 
 
-   ::e_status system::on_start_system()
+   void system::on_start_system()
    {
 
       auto estatus = ::aqua::system::on_start_system();
@@ -637,7 +637,7 @@ namespace aura
    }
 
 
-   ::e_status system::process_init()
+   void system::process_init()
    {
 
       auto estatus = ::apex::system::process_init();
@@ -1061,10 +1061,10 @@ namespace aura
 //   }
 
 
-   ::e_status system::initialize_draw2d()
+   void system::initialize_draw2d()
    {
 
-      ::e_status estatus = ::success;
+      void estatus = ::success;
 
       try
       {
@@ -1251,7 +1251,7 @@ namespace aura
 
       }
 
-      ::e_status estatus;
+      void estatus;
 
       if (strLibrary.has_char())
       {
@@ -1396,7 +1396,7 @@ namespace aura
 
       }
 
-      ::e_status estatus = ::error_failed;
+      void estatus = ::error_failed;
 
       if (strLibrary.has_char())
       {
@@ -1518,7 +1518,7 @@ namespace aura
    }
 
 
-   ::e_status system::init_thread()
+   void system::init_thread()
    {
 
       
@@ -1564,7 +1564,7 @@ namespace aura
    }
 
 
-   ::e_status system::init()
+   void system::init()
    {
 
       m_durationHeartBeat.Now();
@@ -1609,7 +1609,7 @@ namespace aura
    }
 
 
-   ::e_status system::init1()
+   void system::init1()
    {
 //
 //#ifdef _DEBUG
@@ -1767,7 +1767,7 @@ namespace aura
    }
 
 
-   //::e_status system::post_creation_requests()
+   //void system::post_creation_requests()
    //{
 
    //   //while(auto pcreate = get_command()->get_create())
@@ -1783,10 +1783,10 @@ namespace aura
    //}
 
 
-   ::e_status system::inline_init()
+   void system::inline_init()
    {
 
-      ::e_status estatus = ::aqua::system::inline_init();
+      void estatus = ::aqua::system::inline_init();
 
       if (!estatus)
       {
@@ -1800,10 +1800,10 @@ namespace aura
    }
 
 
-   ::e_status system::inline_term()
+   void system::inline_term()
    {
 
-      ::e_status estatus = ::aqua::system::inline_term();
+      void estatus = ::aqua::system::inline_term();
 
       if (!estatus)
       {
@@ -1827,7 +1827,7 @@ namespace aura
    }
 
 
-   ::e_status system::system_prep()
+   void system::system_prep()
    {
 
       auto estatus = ::aqua::system::system_prep();
@@ -1952,7 +1952,7 @@ namespace aura
    }
 
 
-   ::e_status system::thread_loop()
+   void system::thread_loop()
    {
 
 //#ifdef LINUX
@@ -2404,7 +2404,7 @@ namespace aura
    //}
 
 
-   //::e_status system::initialize_log(const ::string & pszId)
+   //void system::initialize_log(const ::string & pszId)
    //{
 
    //   if (m_ptrace)
@@ -2709,7 +2709,7 @@ namespace aura
    //}
 
 
-   //::e_status system::create_session(index iEdge)
+   //void system::create_session(index iEdge)
    //{
 
    //   if (session(iEdge))
@@ -3074,7 +3074,7 @@ namespace aura
 //   }
 
 
-   //::e_status system::do_request(::create * pcreate)
+   //void system::do_request(::create * pcreate)
    //{
 
    //   if (pcreate->m_ecommand == ::command_check_exit)
@@ -3878,7 +3878,7 @@ namespace aura
    }*/
 
 
-//   ::e_status system::browser(string strUrl, string strBrowser, string strProfile, string strTarget)
+//   void system::browser(string strUrl, string strBrowser, string strProfile, string strTarget)
 //   {
 //
 //       auto estatus = os().link_open(strUrl);
@@ -4401,7 +4401,7 @@ namespace aura
 //   }
 
 
-//   ::e_status system::get_firefox_installation_info(string & strPathToExe, string & strInstallDirectory)
+//   void system::get_firefox_installation_info(string & strPathToExe, string & strInstallDirectory)
 //   {
 //
 //#ifdef WINDOWS_DESKTOP
@@ -4422,7 +4422,7 @@ namespace aura
 //         key.get("Install Directory", strInstallDirectory);
 //
 //      }
-//      catch (const ::e_status & estatus)
+//      catch (const void & estatus)
 //      {
 //
 //         return estatus;
@@ -4440,7 +4440,7 @@ namespace aura
 //   }
 //
 //
-//   ::e_status system::firefox(string strUrl, string strBrowser, string strProfile, string strParam)
+//   void system::firefox(string strUrl, string strBrowser, string strProfile, string strParam)
 //   {
 //
 //#ifdef _UWP
@@ -4626,7 +4626,7 @@ namespace aura
 
 
 //#ifdef _OPENGL
-   ::e_status system::create_gpu()
+   void system::create_gpu()
    {
 
       if (m_pgpu)
@@ -4796,7 +4796,7 @@ namespace aura
 
 
 
-   ::e_status system::verb() // ambigous inheritance from ::aura::system/::axis::application
+   void system::verb() // ambigous inheritance from ::aura::system/::axis::application
    {
 
       return ::thread::verb();
@@ -4805,7 +4805,7 @@ namespace aura
 
 
 
-   //::e_status system::init_system()
+   //void system::init_system()
    //{
 
    //   if (!::aura::system::init_system())
@@ -5238,7 +5238,7 @@ namespace aura
      //}
 
 
-  //   ::e_status system::initialize_system(::object* pobject, app_core* pappcore)
+  //   void system::initialize_system(::object* pobject, app_core* pappcore)
   //   {
   //
   //      auto estatus = ::aura::system::initialize_system(pobject, pappcore);
@@ -5391,7 +5391,7 @@ namespace aura
    //}
 
 
-   //::e_status system::defer_xml()
+   //void system::defer_xml()
    //{
 
    //   if (m_pxml)
@@ -5434,7 +5434,7 @@ namespace aura
 
 
 
-   ::e_status system::init2()
+   void system::init2()
    {
 
       auto estatus = ::apex::system::init2();
@@ -5474,7 +5474,7 @@ namespace aura
    }
 
 
-   ::e_status system::initialize_context()
+   void system::initialize_context()
    {
 
       if (m_bDraw2d)
@@ -5542,7 +5542,7 @@ namespace aura
    //}
 
 //
-//   ::e_status system::process_init()
+//   void system::process_init()
 //   {
 //
 //      //if (m_bProcessInitialize)
@@ -5615,7 +5615,7 @@ namespace aura
 //   }
 
 
-   //::e_status system::init()
+   //void system::init()
    //{
    //   //
    //   //#ifndef __APPLE__
@@ -5639,7 +5639,7 @@ namespace aura
    //}
 
 
-//   ::e_status system::init1()
+//   void system::init1()
 //   {
 //
 //      m_pfilehandler = __new(::filehandler::handler(this));
@@ -5743,7 +5743,7 @@ namespace aura
    }
 
 
-   //::e_status system::init3()
+   //void system::init3()
    //{
 
    //   //if(!::aura::application::init3())
@@ -5763,7 +5763,7 @@ namespace aura
    //}
 
 
-   //::e_status system::init_system()
+   //void system::init_system()
    //{
 
    //   if (!::aura::system::init_system())
@@ -5797,7 +5797,7 @@ namespace aura
    //}
 
 
-   //::e_status system::bergedge_start()
+   //void system::bergedge_start()
    //{
 
    //   return true;
@@ -5908,7 +5908,7 @@ namespace aura
    //}
 
 
-   //::e_status system::set_history(::apex::history* phistory)
+   //void system::set_history(::apex::history* phistory)
    //{
 
    //   auto estatus = __compose(m_phistory, phistory);
@@ -6163,7 +6163,7 @@ namespace aura
    }
 
 
-   //::e_status system::add_view_library(::acme::library* plibrary)
+   //void system::add_view_library(::acme::library* plibrary)
    //{
 
    //   m_libraryspa.add(plibrary);
@@ -6256,7 +6256,7 @@ namespace aura
 //#endif
 
 
-   //::e_status     system::do_request(::create* pcreate)
+   //void     system::do_request(::create* pcreate)
    //{
 
    //   return aura::system::do_request(pcreate);
@@ -6280,7 +6280,7 @@ namespace aura
    }
 
 
-   ::e_status     system::main()
+   void     system::main()
    {
 
       return ::aqua::system::main();
@@ -6315,7 +6315,7 @@ namespace aura
 
 
 //
-//   ::e_status system::initialize_system(::object* pobject, ::app_core* pappcore)
+//   void system::initialize_system(::object* pobject, ::app_core* pappcore)
 //   {
 //
 //      auto estatus = ::aura::system::initialize_system(pobject, pappcore);
@@ -6398,7 +6398,7 @@ namespace aura
    }
 
 
-   ::e_status system::initialize_estamira()
+   void system::initialize_estamira()
    {
 
       if (m_pestamira)
@@ -6733,7 +6733,7 @@ namespace aura
    //}
 
 
-//   ::e_status system::main_user_async(const ::routine & routine, ::enum_priority epriority)
+//   void system::main_user_async(const ::routine & routine, ::enum_priority epriority)
 //   {
 //
 //#ifdef _UWP
@@ -6813,7 +6813,7 @@ namespace aura
    //}
 
 
-   ::e_status system::destroy()
+   void system::destroy()
    {
 
       auto estatus = ::aqua::system::destroy();

@@ -28,7 +28,7 @@
    }
 
 
-   ::e_status log::initialize(::object* pobject)
+   void log::initialize(::object* pobject)
    {
 
       auto estatus = ::logger::initialize(pobject);
@@ -71,7 +71,7 @@
    }
 
 
-   ::e_status log::initialize_log(enum_trace_level etracelevelMin, const ::id& id)
+   void log::initialize_log(enum_trace_level etracelevelMin, const ::id& id)
    {
 
       return ::success;
@@ -101,7 +101,7 @@
    //}
 
 
-   ::e_status log::process_init()
+   void log::process_init()
    {
 
       return ::success;

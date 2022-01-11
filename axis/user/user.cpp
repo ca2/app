@@ -20,7 +20,7 @@ namespace axis
 
    }
 
-   ::e_status user::init()
+   void user::init()
    {
 
       if (!::user::user::init())
@@ -41,7 +41,7 @@ namespace axis
    }
 
    
-   ::e_status user::term()
+   void user::term()
    {
 
       return ::success;

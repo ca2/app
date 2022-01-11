@@ -68,7 +68,7 @@ namespace windowing
    }
 
 
-   ::e_status window::on_initialize_object()
+   void window::on_initialize_object()
    {
 
       auto estatus = ::channel::on_initialize_object();
@@ -151,7 +151,7 @@ namespace windowing
    }
 
 
-   ::e_status window::create_window(::user::interaction_impl * pimpl)
+   void window::create_window(::user::interaction_impl * pimpl)
    {
 
       __UNREFERENCED_PARAMETER(pimpl);
@@ -231,7 +231,7 @@ namespace windowing
    }
 
 
-   ::e_status window::set_mouse_capture()
+   void window::set_mouse_capture()
    {
 
       throw ::interface_only_exception();
@@ -241,7 +241,7 @@ namespace windowing
    }
 
 
-   //::e_status window::get_capture()
+   //void window::get_capture()
    //{
 
    //   throw ::interface_only_exception();
@@ -252,7 +252,7 @@ namespace windowing
 
 
 
-   //::e_status window::set_capture()
+   //void window::set_capture()
    //{
 
    //   throw ::interface_only_exception();
@@ -262,7 +262,7 @@ namespace windowing
    //}
 
 
-   ::e_status window::destroy_window()
+   void window::destroy_window()
    {
 
       throw ::interface_only_exception();
@@ -272,7 +272,7 @@ namespace windowing
    }
 
 
-   ::e_status window::on_destroy()
+   void window::on_destroy()
    {
 
       try
@@ -626,7 +626,7 @@ namespace windowing
 
 
    // the foreground interaction_impl applies only to top-level windows (frame windows)
-   ::e_status window::set_foreground_window()
+   void window::set_foreground_window()
    {
 
       throw ::interface_only_exception();
@@ -730,7 +730,7 @@ namespace windowing
    }
 
 
-   ::e_status window::set_parent(::windowing::window * pwindowNewParent) 
+   void window::set_parent(::windowing::window * pwindowNewParent) 
    {
 
       throw ::interface_only_exception();
@@ -760,7 +760,7 @@ namespace windowing
    }
 
 
-   ::e_status window::set_owner(::windowing::window * pwindowNewOwner)
+   void window::set_owner(::windowing::window * pwindowNewOwner)
    {
 
       throw ::interface_only_exception();
@@ -838,7 +838,7 @@ namespace windowing
    }
 
 
-   ::e_status window::set_icon(::windowing::icon * picon)
+   void window::set_icon(::windowing::icon * picon)
    {
 
       m_picon = picon;
@@ -860,7 +860,7 @@ namespace windowing
    }
 
 
-   ::e_status window::set_mouse_cursor(::windowing::cursor * pcursor)
+   void window::set_mouse_cursor(::windowing::cursor * pcursor)
    {
 
       throw ::interface_only_exception();
@@ -878,7 +878,7 @@ namespace windowing
    }
 
 
-   ::e_status window::set_tool_window(bool bSet)
+   void window::set_tool_window(bool bSet)
    {
 
       throw ::interface_only_exception();
@@ -1027,7 +1027,7 @@ namespace windowing
    }
 
 
-   ::e_status window::show_window(const ::e_display &edisplay, const ::e_activation &eactivation)
+   void window::show_window(const ::e_display &edisplay, const ::e_activation &eactivation)
    {
 
       windowing_output_debug_string("\n::window::show_window 1");
@@ -1037,7 +1037,7 @@ namespace windowing
    }
 
 
-   ::e_status window::full_screen(const ::rectangle_i32 &rectangle)
+   void window::full_screen(const ::rectangle_i32 &rectangle)
    {
 
       return ::success_none;
@@ -1045,7 +1045,7 @@ namespace windowing
    }
 
 
-   ::e_status window::exit_iconify()
+   void window::exit_iconify()
    {
 
       return ::success_none;
@@ -1053,7 +1053,7 @@ namespace windowing
    }
 
 
-   ::e_status window::exit_full_screen()
+   void window::exit_full_screen()
    {
 
       return ::success_none;
@@ -1061,7 +1061,7 @@ namespace windowing
    }
 
 
-   ::e_status window::exit_zoomed()
+   void window::exit_zoomed()
    {
 
       return ::success_none;
@@ -1069,7 +1069,7 @@ namespace windowing
    }
 
 
-   ::e_status window::set_keyboard_focus()
+   void window::set_keyboard_focus()
    {
 
       throw ::interface_only_exception();
@@ -1079,7 +1079,7 @@ namespace windowing
    }
 
 
-   ::e_status window::set_active_window()
+   void window::set_active_window()
    {
 
       throw ::interface_only_exception();
@@ -1089,7 +1089,7 @@ namespace windowing
    }
 
 
-   ::e_status window::bring_to_front()
+   void window::bring_to_front()
    {
 
       throw ::interface_only_exception();
@@ -1250,7 +1250,7 @@ namespace windowing
       
    }
 
-   ::e_status window::frame_toggle_restore()
+   void window::frame_toggle_restore()
    {
     
       auto estatus= m_pimpl->m_puserinteraction->frame_toggle_restore();
@@ -1267,7 +1267,7 @@ namespace windowing
    }
 
 
-   ::e_status window::window_send(const ::routine & routine)
+   void window::window_send(const ::routine & routine)
    {
 
       auto estatus = __send_routine(this, &window::window_post, routine);
@@ -1284,7 +1284,7 @@ namespace windowing
    }
 
 
-   ::e_status window::window_post(const ::routine & routine)
+   void window::window_post(const ::routine & routine)
    {
 
       auto pimpl = m_pimpl;

@@ -30,7 +30,7 @@ namespace filemanager
       inline ::core::session* get_session() const;
 
 
-      virtual ::e_status initialize_filemanager_component(::object * pobject);
+      virtual void initialize_filemanager_component(::object * pobject);
 
       virtual void filemanager_finalize();
 

@@ -30,14 +30,14 @@ namespace user
       inline ::user::user * user() const { return get_session() ? get_session()->user() : nullptr; }
 
 
-      virtual ::e_status initialize(::object * pobject) override;
+      virtual void initialize(::object * pobject) override;
 
       void install_message_routing(::channel * pchannel) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
 
-      ::e_status set_form_callback(::user::form_callback* pcallback);
-      ::e_status set_parent_form(::user::form* pform);
+      void set_form_callback(::user::form_callback* pcallback);
+      void set_parent_form(::user::form* pform);
 
 
       virtual ::user::form_callback* get_form_callback();
@@ -54,9 +54,9 @@ namespace user
       //virtual __pointer(control_descriptor) new_form_control();
 
 
-      virtual ::e_status open_html(const ::string& str);
+      virtual void open_html(const ::string& str);
 
-      virtual ::e_status open_document(const ::payload& payloadFile);
+      virtual void open_document(const ::payload& payloadFile);
 
       virtual void soft_reload();
 

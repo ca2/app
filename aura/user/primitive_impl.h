@@ -79,7 +79,7 @@ namespace user
       virtual void on_reposition() override;
       virtual void on_show_window() override;
 
-      virtual ::e_status destroy() override;
+      virtual void destroy() override;
 
       virtual void window_show_change_visibility(::e_display edisplay, ::e_activation eactivation);
 
@@ -146,7 +146,7 @@ namespace user
       //virtual ::i32 set_window_long(i32 nIndex,::i32 lValue) override;
 
       //virtual iptr get_window_long_ptr(i32 nIndex) const override;
-      //virtual ::e_status set_window_long_ptr(i32 nIndex, iptr lValue) override;
+      //virtual void set_window_long_ptr(i32 nIndex, iptr lValue) override;
 
       virtual id GetDlgCtrlId() const override;
       virtual id SetDlgCtrlId(::id id) override;
@@ -247,12 +247,12 @@ namespace user
 
 
       ::user::element * get_keyboard_focus() override;
-      virtual ::e_status set_keyboard_focus(::user::primitive * pprimitive);
-      virtual ::e_status erase_keyboard_focus(::user::primitive * pprimitive);
-      virtual ::e_status clear_keyboard_focus() override;
-      virtual ::e_status impl_set_keyboard_focus(::user::primitive * pprimitive);
-      virtual ::e_status impl_erase_keyboard_focus(::user::primitive * pprimitive);
-      virtual ::e_status impl_clear_keyboard_focus();
+      virtual void set_keyboard_focus(::user::primitive * pprimitive);
+      virtual void erase_keyboard_focus(::user::primitive * pprimitive);
+      virtual void clear_keyboard_focus() override;
+      virtual void impl_set_keyboard_focus(::user::primitive * pprimitive);
+      virtual void impl_erase_keyboard_focus(::user::primitive * pprimitive);
+      virtual void impl_clear_keyboard_focus();
 
 
       virtual bool post_message(const ::id & id, wparam wparam = 0, lparam lparam = 0) override;
@@ -272,8 +272,8 @@ namespace user
       virtual void redraw_erase(::object * point_i32);
       virtual bool has_redraw();
 
-      virtual ::e_status show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd) override;
-      virtual ::e_status hide_software_keyboard(::user::primitive * pprimitive) override;
+      virtual void show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd) override;
+      virtual void hide_software_keyboard(::user::primitive * pprimitive) override;
 
       virtual void user_interaction_on_hide();
 

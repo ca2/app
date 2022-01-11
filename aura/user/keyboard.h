@@ -26,7 +26,7 @@ namespace user
 
       //virtual class keyboard_layout & on_layout();
 
-      virtual ::e_status initialize(::object * pobject) override;
+      virtual void initialize(::object * pobject) override;
       
       
       virtual ::user::enum_key wparam_to_userkey(wparam wparam);
@@ -51,9 +51,9 @@ namespace user
 
       virtual bool load_os_layout(const ::file::path & pszPath);
 
-      virtual ::e_status show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd);
+      virtual void show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd);
 
-      virtual ::e_status hide_software_keyboard(::user::primitive * pprimitive);
+      virtual void hide_software_keyboard(::user::primitive * pprimitive);
 
 
    };

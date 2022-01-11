@@ -21,15 +21,15 @@ namespace sockets
       ~socket_thread() override;
 
 
-      virtual ::e_status move(socket_map::association * passociation, socket_map * psocketmap = nullptr);
+      virtual void move(socket_map::association * passociation, socket_map * psocketmap = nullptr);
 
-      //virtual ::e_status init_thread() override;
+      //virtual void init_thread() override;
 
       //virtual void term_thread() override;
 
       base_socket* get_socket() const;
 
-      ::e_status run() override;
+      void run() override;
 
 #ifdef _DEBUG
 

@@ -22,7 +22,7 @@ namespace apex
       virtual ~assert_running_task();
 
 
-      virtual ::e_status     run() override;
+      virtual void     run() override;
 
 
    };

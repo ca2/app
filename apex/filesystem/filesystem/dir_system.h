@@ -32,9 +32,9 @@ public:
    virtual ~dir_system();
 
 
-   virtual ::e_status initialize(::object * pobject) override;
+   virtual void initialize(::object * pobject) override;
 
-   virtual ::e_status init_system();
+   virtual void init_system();
 
 
 

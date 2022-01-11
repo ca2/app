@@ -22,7 +22,7 @@ m_bStdout = false;
    }
 
 
-   ::e_status build::prepare_build()
+   void build::prepare_build()
    {
 
       return ::success;
@@ -30,7 +30,7 @@ m_bStdout = false;
    }
 
 
-   ::e_status build::do_build()
+   void build::do_build()
    {
 
       return ::success;
@@ -38,7 +38,7 @@ m_bStdout = false;
    }
 
 
-   ::e_status build::run()
+   void build::run()
    {
 
       auto estatus = prepare_build();
@@ -93,7 +93,7 @@ m_bStdout = false;
    }
 
 
-   ::e_status build::run_command(const ::string & strCommand)
+   void build::run_command(const ::string & strCommand)
    {
 
       bool bTimeout = false;

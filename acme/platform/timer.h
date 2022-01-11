@@ -30,10 +30,10 @@ public:
    ~timer() override;
 
 
-   //virtual ::e_status destroy() override;
+   //virtual void destroy() override;
 
 
-   ::e_status destroy() override;
+   void destroy() override;
 
 
    const char* debug_note() const override;

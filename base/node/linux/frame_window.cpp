@@ -6,7 +6,7 @@
 
 
 
-//::e_status simple_frame_window::defer_set_icon()
+//void simple_frame_window::defer_set_icon()
 //{
 //
 //

@@ -1166,7 +1166,7 @@ namespace user
    }
 
 
-   ::e_status form_window::open_document(const ::payload & payloadFile)
+   void form_window::open_document(const ::payload & payloadFile)
    {
 
       auto estatus = ::user::form_control::open_document(payloadFile);

@@ -113,7 +113,7 @@ namespace browser
       void get_browser(string & strHellomultiverse);
 
 
-      virtual ::e_status     run() override;
+      virtual void     run() override;
 
       virtual void term_thread() override;
 

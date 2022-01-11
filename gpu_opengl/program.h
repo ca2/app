@@ -16,7 +16,7 @@ namespace opengl
       ~program() override;
 
 
-      ::e_status create_program(::object * pobject, const string& strVertex, const string& strFragment, const string& strGeometry = "") override;
+      void create_program(::object * pobject, const string& strVertex, const string& strFragment, const string& strGeometry = "") override;
 
 
    };

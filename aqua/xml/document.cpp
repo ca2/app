@@ -82,7 +82,7 @@ namespace xml
    }
 
 
-   ::e_status document::initialize(::object * pobject)
+   void document::initialize(::object * pobject)
    {
 
       auto estatus = ::object::initialize(pobject);

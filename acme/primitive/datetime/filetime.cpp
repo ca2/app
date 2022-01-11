@@ -184,7 +184,7 @@ CLASS_DECL_ACME bool file_modified_timeout(const char * path, int iSeconds)
 //
 //
 //
-//   ::e_status node::is_valid_filetime(const filetime_t * pfiletime)
+//   void node::is_valid_filetime(const filetime_t * pfiletime)
 //   {
 //
 //      ::filetime localtime;
@@ -215,7 +215,7 @@ CLASS_DECL_ACME bool file_modified_timeout(const char * path, int iSeconds)
 //   }
 //
 //
-//   ::e_status node::file_time_to_time(time_t * ptime, const filetime_t * pfiletime, i32 nDST)
+//   void node::file_time_to_time(time_t * ptime, const filetime_t * pfiletime, i32 nDST)
 //   {
 //
 //      system_time_t systemtime;

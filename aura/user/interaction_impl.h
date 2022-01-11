@@ -181,11 +181,11 @@ namespace user
       virtual bool post(::message::message* pusermessage) override;
 
 
-      virtual ::e_status set_bitmap_source(const string& strBitmapSource) override;
-      virtual ::e_status clear_bitmap_source() override;
+      virtual void set_bitmap_source(const string& strBitmapSource) override;
+      virtual void clear_bitmap_source() override;
 
 
-      virtual ::e_status update_graphics_resources();
+      virtual void update_graphics_resources();
 
 
 
@@ -196,19 +196,19 @@ namespace user
 
 
 
-      virtual ::e_status set_tool_window(bool bSet) override;
+      virtual void set_tool_window(bool bSet) override;
 
 
       bool create_host(::user::interaction * pinteraction) override;
 
       virtual ::color::color screen_pixel(int x, int y) const;
-      virtual ::e_status interaction_post(const ::routine & routine) override;
+      virtual void interaction_post(const ::routine & routine) override;
 
       // call these from window
-      //virtual ::e_status set_keyboard_focus();
-      //virtual ::e_status set_capture();
-      //virtual ::e_status set_active_window();
-      //virtual ::e_status set_foreground_window();
+      //virtual void set_keyboard_focus();
+      //virtual void set_capture();
+      //virtual void set_active_window();
+      //virtual void set_foreground_window();
 
       virtual void on_final_set_keyboard_focus(::message::set_keyboard_focus * psetkeyboardfocus);
       virtual void on_final_kill_keyboard_focus(::message::kill_keyboard_focus * pkillkeyboardfocus);
@@ -240,7 +240,7 @@ namespace user
       //virtual bool ModifyStyleEx(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0) override;
 
 
-      virtual ::e_status set_icon(::windowing::icon* picon);
+      virtual void set_icon(::windowing::icon* picon);
       virtual __pointer(::windowing::icon) get_icon() const;
 
 
@@ -277,7 +277,7 @@ namespace user
       //bool attach(::windowing::window * pwindow_New) override;
       //oswindow detach() override;
 
-      virtual ::e_status destroy() override;
+      virtual void destroy() override;
 
       void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
@@ -340,7 +340,7 @@ namespace user
 
       //virtual bool create_host();
 
-      virtual ::e_status native_create_host();
+      virtual void native_create_host();
 
 
       virtual bool destroy_impl_only() override;
@@ -470,9 +470,9 @@ namespace user
 
       //virtual ::point_i32 get_cursor_position() const override;
 
-      virtual ::e_status set_mouse_cursor(::windowing::cursor * pcursor) override;
+      virtual void set_mouse_cursor(::windowing::cursor * pcursor) override;
 
-      //virtual ::e_status set_cursor(enum_cursor ecursor) override;
+      //virtual void set_cursor(enum_cursor ecursor) override;
 
       virtual bool DrawCaption(::draw2d::graphics_pointer & pgraphics,const rectangle_i32 & prc,::u32 uFlags);
 
@@ -713,7 +713,7 @@ namespace user
       bool is_composite() override;
 
 
-      virtual ::e_status set_finish(::object * pobject);
+      virtual void set_finish(::object * pobject);
 
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
@@ -723,12 +723,12 @@ namespace user
       virtual void on_configuration_change(::user::primitive * pprimitiveSource) override;
 
       ::user::element * get_keyboard_focus() override;
-      //virtual ::e_status set_keyboard_focus(::user::primitive * pprimitive) override;
-      //virtual ::e_status erase_keyboard_focus(::user::primitive * pprimitive) override;
-      //virtual ::e_status clear_keyboard_focus() override;
-      //virtual ::e_status impl_set_keyboard_focus(::user::primitive * pprimitive) override;
-      //virtual ::e_status impl_erase_keyboard_focus(::user::primitive * pprimitive) override;
-      //virtual ::e_status impl_clear_keyboard_focus() override;
+      //virtual void set_keyboard_focus(::user::primitive * pprimitive) override;
+      //virtual void erase_keyboard_focus(::user::primitive * pprimitive) override;
+      //virtual void clear_keyboard_focus() override;
+      //virtual void impl_set_keyboard_focus(::user::primitive * pprimitive) override;
+      //virtual void impl_erase_keyboard_focus(::user::primitive * pprimitive) override;
+      //virtual void impl_clear_keyboard_focus() override;
 
       virtual void redraw_add(::object * point_i32) override;
       virtual void redraw_erase(::object * point_i32) override;
@@ -764,9 +764,9 @@ namespace user
 
       virtual void user_interaction_on_hide() override;
 
-      virtual ::e_status show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd) override;
+      virtual void show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd) override;
 
-      virtual ::e_status hide_software_keyboard(::user::primitive * pprimitive) override;
+      virtual void hide_software_keyboard(::user::primitive * pprimitive) override;
 
 
       // Occlusion and Translucency

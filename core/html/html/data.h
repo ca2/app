@@ -17,7 +17,7 @@ public:
    ~html_data() override;
 
 
-   virtual ::e_status initialize_html_data(::html_data * phtmldata);
+   virtual void initialize_html_data(::html_data * phtmldata);
 
 
    i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
@@ -25,7 +25,7 @@ public:
 
 
    virtual bool open_document(const ::payload & payloadFile);
-   virtual ::e_status     open_html(const ::string & str);
+   virtual void     open_html(const ::string & str);
 
 
    virtual bool open_link(const ::string & pszPath);
@@ -59,7 +59,7 @@ public:
    ::html::element* get_element_by_id(id id);
 
    void delete_contents();
-   ::e_status destroy() override;
+   void destroy() override;
    void delete_implementation();
 
    virtual bool contains(__pointer(::user::interaction) pinteraction);

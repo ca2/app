@@ -770,7 +770,7 @@ namespace primitive
 
 
 
-typedef ::e_status THREAD_ROUTINE(thread_parameter parameter);
+typedef void THREAD_ROUTINE(thread_parameter parameter);
 
 class sticker;
 
@@ -1149,7 +1149,7 @@ namespace user
 //CLASS_DECL_APEX bool set_last_run_application_path(string strAppId);
 
 
-//CLASS_DECL_APEX ::e_status load_factory_library(string strLibrary);
+//CLASS_DECL_APEX void load_factory_library(string strLibrary);
 
 
 class node_data_exchange;

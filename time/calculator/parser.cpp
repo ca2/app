@@ -20,7 +20,7 @@ namespace datetime
    }
 
 
-   ::e_status parser::initialize_datetime_parse(::text::context* ptextcontext)
+   void parser::initialize_datetime_parse(::text::context* ptextcontext)
    {
 
       auto estatus = ::object::initialize(ptextcontext);

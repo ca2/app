@@ -67,7 +67,7 @@ namespace user
 #endif
 
 
-      virtual ::e_status     initialize_user_thread(interaction_impl * pimpl);
+      virtual void     initialize_user_thread(interaction_impl * pimpl);
 
 
 #ifdef ENABLE_TEXT_SERVICES_FRAMEWORK
@@ -81,7 +81,7 @@ namespace user
 #endif
 
 
-      virtual ::e_status init_thread() override;
+      virtual void init_thread() override;
       virtual void term_thread() override;
 
 
@@ -93,30 +93,30 @@ namespace user
 
       virtual bool pump_runnable() override;
 
-      virtual ::e_status process_message() override;
+      virtual void process_message() override;
 
-      virtual ::e_status process_message(::message::message * pmessage) override;
+      virtual void process_message(::message::message * pmessage) override;
 
-      virtual ::e_status process_user_message(::message::message * pmessage);
+      virtual void process_user_message(::message::message * pmessage);
 
-      ::e_status run() override;
+      void run() override;
 
-      ::e_status destroy() override;
+      void destroy() override;
 
-      ::e_status set_finish() override;
+      void set_finish() override;
 
-      //::e_status destroy() override;
+      //void destroy() override;
 
       bool task_get_run() const override;
 
       virtual void enumerate_composite(matter_array& a);
 
-      //virtual ::e_status set_finish_composites(::property_object * pcontextobjectFinish) override;
-      ::e_status destroy_composites() override;
+      //virtual void set_finish_composites(::property_object * pcontextobjectFinish) override;
+      void destroy_composites() override;
 
       void start_window_visual();
 
-      virtual ::e_status task_caller_on_init() override;
+      virtual void task_caller_on_init() override;
 
 
    };

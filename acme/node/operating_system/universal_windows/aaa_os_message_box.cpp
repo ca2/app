@@ -178,7 +178,7 @@ internal:
    message_box_callback(::message_box_w * pmessageboxw);
 
 
-   ::e_status show(String ^ text, String ^ caption, const ::e_message_box & emessagebox, const ::future & process);
+   void show(String ^ text, String ^ caption, const ::e_message_box & emessagebox, const ::future & process);
 
 
    void CommandInvokedHandler(IUICommand^ cmd);
@@ -197,7 +197,7 @@ public:
    virtual ~message_box_w();
 
 
-   ::e_status show(const ::string & strText, const ::string & strCaption, const ::e_message_box & emessagebox, const ::future & process);
+   void show(const ::string & strText, const ::string & strCaption, const ::e_message_box & emessagebox, const ::future & process);
 
 
 };
@@ -218,7 +218,7 @@ message_box_callback::message_box_callback(::message_box_w * pmessageboxw)
    messagedialog->Commands->Append(ref new UICommand(text,ref new UICommandInvokedHandler(this, &::message_box_callback::CommandInvokedHandler),id));
 
 
-::e_status message_box_callback::show(String ^ text,String ^ caption, const ::e_message_box & emessagebox, const ::future & process)
+void message_box_callback::show(String ^ text,String ^ caption, const ::e_message_box & emessagebox, const ::future & process)
 {
 
    if (!is_core_window_once_visible())
@@ -309,7 +309,7 @@ message_box_callback::message_box_callback(::message_box_w * pmessageboxw)
 //virtual ~message_box_w();
 
 
-::e_status message_box_w::show(const ::string & strText, const ::string & strCaption, const ::e_message_box & emessagebox, const ::future & process)
+void message_box_w::show(const ::string & strText, const ::string & strCaption, const ::e_message_box & emessagebox, const ::future & process)
 {
 
    wstring wstrMessage(strText);
@@ -325,7 +325,7 @@ message_box_callback::message_box_callback(::message_box_w * pmessageboxw)
 }
 
 
-::e_status _os_message_box(const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, const ::future & process)
+void _os_message_box(const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, const ::future & process)
 {
 
    auto pmessagebox = __new(message_box_w);

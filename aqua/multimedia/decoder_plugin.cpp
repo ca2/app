@@ -47,7 +47,7 @@ namespace multimedia
    }
 
 
-   ::e_status decoder_plugin::Load(const ::string & strTitle)
+   void decoder_plugin::Load(const ::string & strTitle)
    {
 
 //#ifdef APPLE_IOS
@@ -72,7 +72,7 @@ namespace multimedia
       if (!m_pfactory)
       {
 
-         ::e_status estatus = m_pfactory;
+         void estatus = m_pfactory;
 
          INFORMATION("LoadLibrary failed to open library " << strTitle << estatus << __string(estatus));
 

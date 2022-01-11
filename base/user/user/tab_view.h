@@ -83,7 +83,7 @@ namespace user
 
       virtual void create_impact_menu(::user::impact_data * pimpactdata);
 
-      ::e_status prepare_impact_menu(::user::menu * pmenu);
+      void prepare_impact_menu(::user::menu * pmenu);
 
       void _001OnShowTab(::user::tab * ptab) override;
 

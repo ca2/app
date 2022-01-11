@@ -327,7 +327,7 @@ namespace str
    }
 
 
-   //::e_status base64::initialize(::object * pobject)
+   //void base64::initialize(::object * pobject)
    //{
 
    //   auto estatus = ::matter::initialize(pobject);

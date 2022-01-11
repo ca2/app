@@ -111,8 +111,8 @@ namespace linux
 //   {
 //
 //
-//      ::e_status os_error_to_exception(::i32 lOsError);
-////      ::e_status PASCAL ErrnoToException(i32 nErrno);
+//      void os_error_to_exception(::i32 lOsError);
+////      void PASCAL ErrnoToException(i32 nErrno);
 //      void throw_os_error(::i32 lOsError, const ::string & pszFileName = nullptr);
 
 //      //void PASCAL ThrowErrno(__pointer(::aura::application) papp, i32 nErrno, const ::string & pszFileName = nullptr);

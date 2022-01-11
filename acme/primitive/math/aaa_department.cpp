@@ -281,7 +281,7 @@ namespace mathematics
 
    }
 
-   ::e_status math::initialize(::object * pobject)
+   void math::initialize(::object * pobject)
    {
 
       auto estatus = ::acme::department::initialize(pobject);
@@ -307,7 +307,7 @@ namespace mathematics
    }
 
 
-   ::e_status math::destroy()
+   void math::destroy()
    {
 
       ::acme::department::destroy();

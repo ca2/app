@@ -39,12 +39,12 @@ namespace windowing
 
       __pointer(cursor) get_cursor(enum_cursor ecursor);
       __pointer(cursor) set_cursor_file(enum_cursor ecursor, const ::file::path & path, bool bFromCache);
-      ::e_status set_cursor_set_from_matter(const ::file::path & pszMatter);
-      ::e_status set_cursor_set_from_dir(const ::file::path & pszDir, bool bFromCache = true);
-      ::e_status set_cursor_set_system_default();
+      void set_cursor_set_from_matter(const ::file::path & pszMatter);
+      void set_cursor_set_from_dir(const ::file::path & pszDir, bool bFromCache = true);
+      void set_cursor_set_system_default();
 
 
-      virtual ::e_status destroy() override;
+      virtual void destroy() override;
 
 
    };
@@ -94,7 +94,7 @@ namespace windowing
 //      ::count set_cursor_set_system_default();
 //
 //
-//      virtual ::e_status destroy() override;
+//      virtual void destroy() override;
 //
 //
 //   };

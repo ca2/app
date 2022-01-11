@@ -792,7 +792,7 @@ bool CLASS_DECL_APEX vfxFullPath(wstring & wstrFullPath, const wstring & wstrPat
 }
 
 //
-//void CLASS_DECL_APEX vfxThrowFileException(::object * pobject, const ::e_status & estatus, ::i32 lOsError, const char * lpszFileName /* == nullptr */)
+//void CLASS_DECL_APEX vfxThrowFileException(::object * pobject, const void & estatus, ::i32 lOsError, const char * lpszFileName /* == nullptr */)
 //{
 //
 //   __throw(::file::exception(ecause, lOsError, lpszFileName));
@@ -803,7 +803,7 @@ bool CLASS_DECL_APEX vfxFullPath(wstring & wstrFullPath, const wstring & wstrPat
 namespace android
 {
 
-   ::e_status PASCAL file_errno_to_exception(i32 nErrno)
+   void PASCAL file_errno_to_exception(i32 nErrno)
    {
       switch(nErrno)
       {

@@ -76,7 +76,7 @@ namespace user
       ~tab() override;
 
 
-      ::e_status on_initialize_object() override;
+      void on_initialize_object() override;
 
 
       void install_message_routing(::channel * pchannel) override;

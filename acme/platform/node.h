@@ -96,8 +96,8 @@ namespace acme
       virtual ::string get_file_type_identifier(const char * path);
 
 
-      virtual ::e_status call_async(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid = nullptr);
-      virtual ::e_status call_sync(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set);
+      virtual void call_async(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid = nullptr);
+      virtual void call_sync(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set);
 
 
 //#ifdef LINUX
@@ -106,7 +106,7 @@ namespace acme
 //
 //#endif
 
-      virtual ::e_status initialize(::object * pobject) override;
+      virtual void initialize(::object * pobject) override;
       
       
       virtual string audio_get_default_library_name();
@@ -115,21 +115,21 @@ namespace acme
       virtual string veriwell_multimedia_music_midi_get_default_library_name();
 
 
-      virtual ::e_status _launch_macos_app(const ::string & pszAppFolder);
+      virtual void _launch_macos_app(const ::string & pszAppFolder);
   
-      virtual ::e_status _launch_macos_app_args(const ::string & pszAppFolder, const ::string & pszArgs);
+      virtual void _launch_macos_app_args(const ::string & pszAppFolder, const ::string & pszArgs);
 
-      ::e_status on_initialize_object() override;
+      void on_initialize_object() override;
 
       virtual void initialize_memory_counter();
 
-      virtual ::e_status system_main();
+      virtual void system_main();
 
-      virtual ::e_status _will_finish_launching();
+      virtual void _will_finish_launching();
 
-      virtual ::e_status reboot();
+      virtual void reboot();
 
-      virtual ::e_status implement(__transport(::acme::node) & pnode, __transport(class ::system) & psystem);
+      virtual void implement(__transport(::acme::node) & pnode, __transport(class ::system) & psystem);
 
 
       virtual void install_crash_dump_reporting(const string& strModuleNameWithTheExeExtension);
@@ -137,7 +137,7 @@ namespace acme
 
 #ifdef WINDOWS_DESKTOP
 
-      virtual ::e_status register_dll(const ::file::path& pathDll);
+      virtual void register_dll(const ::file::path& pathDll);
 
 #endif
 
@@ -163,17 +163,17 @@ namespace acme
 
       virtual ::file::path get_last_run_application_path_file(const ::string & strAppId);
       virtual ::file::path get_last_run_application_path(const ::string & strAppId);
-      virtual ::e_status  set_last_run_application_path(const string& strAppId);
+      virtual void  set_last_run_application_path(const string& strAppId);
 
-      virtual ::e_status is_keyboard_hook_enabled(::user::interaction * puserinteractionEnablePrompt);
+      virtual void is_keyboard_hook_enabled(::user::interaction * puserinteractionEnablePrompt);
 
-      virtual ::e_status install_keyboard_hook(::matter * pmatterListener);
-      virtual ::e_status uninstall_keyboard_hook(::matter * pmatterListener);
+      virtual void install_keyboard_hook(::matter * pmatterListener);
+      virtual void uninstall_keyboard_hook(::matter * pmatterListener);
       
-      virtual ::e_status is_mouse_hook_enabled(::user::interaction * puserinteractionEnablePrompt);
+      virtual void is_mouse_hook_enabled(::user::interaction * puserinteractionEnablePrompt);
 
-      virtual ::e_status install_mouse_hook(::matter * pmatterListener);
-      virtual ::e_status uninstall_mouse_hook(::matter * pmatterListener);
+      virtual void install_mouse_hook(::matter * pmatterListener);
+      virtual void uninstall_mouse_hook(::matter * pmatterListener);
 
 
       virtual ::file::path _module_path();
@@ -183,15 +183,15 @@ namespace acme
 
       //virtual ::file::path memory_counter_base_path();
 
-      virtual ::e_status datetime_to_filetime(::filetime_t* pfiletime, const ::datetime::time& time);
+      virtual void datetime_to_filetime(::filetime_t* pfiletime, const ::datetime::time& time);
 
 
 
       virtual int node_init_check(int * pi, char *** ppz);
 
-      virtual ::e_status start_node();
+      virtual void start_node();
 
-      virtual ::e_status install_sigchld_handler();
+      virtual void install_sigchld_handler();
 
       virtual ::color::color get_system_color(enum_system_color esystemcolor);
 
@@ -217,7 +217,7 @@ namespace acme
 
       virtual string os_get_user_theme();
 
-      virtual ::e_status os_set_user_theme(const ::string & strUserTheme);
+      virtual void os_set_user_theme(const ::string & strUserTheme);
 
       virtual void os_process_user_theme(string strTheme);
 
@@ -241,9 +241,9 @@ namespace acme
 
       }
 
-      virtual ::e_status node_post(const ::routine & routine);
+      virtual void node_post(const ::routine & routine);
 
-      virtual ::e_status node_send(const ::routine & routine);
+      virtual void node_send(const ::routine & routine);
 
 //      template < typename PRED >
 //      void user_fork(PRED pred)
@@ -288,8 +288,8 @@ namespace acme
       virtual void set_console_colors(::u32 dwScreenColors, ::u32 dwPopupColors, ::u32 dwWindowAlpha);
 
 
-      virtual ::e_status browse_for_folder(::file::path & pathFolder);
-      virtual ::e_status browse_for_file(::file::path & path);
+      virtual void browse_for_folder(::file::path & pathFolder);
+      virtual void browse_for_file(::file::path & path);
 
 
       virtual double get_time_zone();
@@ -313,7 +313,7 @@ namespace acme
 
       inline enum_linux_distribution get_linux_distribution() const;
 
-      virtual ::e_status calculate_linux_distribution();
+      virtual void calculate_linux_distribution();
 
 #endif
 
@@ -325,11 +325,11 @@ namespace acme
 #endif
       
       
-      virtual ::e_status launch_app(const ::string & psz, const char ** argv, int iFlags);
+      virtual void launch_app(const ::string & psz, const char ** argv, int iFlags);
 
-      virtual ::e_status create_process(const ::string & pszCommandLine, u32 * pprocessID);
+      virtual void create_process(const ::string & pszCommandLine, u32 * pprocessID);
 
-      virtual ::e_status run_silent(const ::string & strFunct, const ::string & strstrParams);
+      virtual void run_silent(const ::string & strFunct, const ::string & strstrParams);
 
       virtual bool process_modules(string_array& stra, u32 processID);
 
@@ -357,7 +357,7 @@ namespace acme
 
       virtual string expand_environment_variables(const string & str);
 
-      virtual ::e_status set_environment_variable(const ::string& pszEnvironmentVariable, const ::string& pszValue);
+      virtual void set_environment_variable(const ::string& pszEnvironmentVariable, const ::string& pszValue);
 
 #ifndef _UWP
 
@@ -371,13 +371,13 @@ namespace acme
 
       virtual bool get_application_exclusivity_security_attributes(memory & memory);
 
-      virtual ::e_status register_spa_file_type(const ::string & strAppIdHandler);
+      virtual void register_spa_file_type(const ::string & strAppIdHandler);
 
       virtual bool low_is_app_app_admin_running(string strPlatform, string strConfiguration);
       virtual void defer_start_program_files_app_app_admin(string strPlatform, string strConfiguration);
-      virtual ::e_status start_program_files_app_app_admin(string strPlatform, string strConfiguration);
+      virtual void start_program_files_app_app_admin(string strPlatform, string strConfiguration);
 
-      virtual ::e_status get_folder_path_from_user(::file::path & pathFolder);
+      virtual void get_folder_path_from_user(::file::path & pathFolder);
 
 
       //virtual ::string expand_environment_variables(const ::string & str);
@@ -386,15 +386,15 @@ namespace acme
 
 
 
-      virtual ::e_status launch_application(::matter * pobject, const ::string & strAppId, const ::string & strParams, int iBitCount);
+      virtual void launch_application(::matter * pobject, const ::string & strAppId, const ::string & strParams, int iBitCount);
 
 
 
-      virtual ::e_status shell_execute_async(const char * pszFile, const char * pszParams);
-      virtual ::e_status shell_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout = minute());
+      virtual void shell_execute_async(const char * pszFile, const char * pszParams);
+      virtual void shell_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout = minute());
 
-      virtual ::e_status root_execute_async(const char * pszFile, const char * pszParams);
-      virtual ::e_status root_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout = minute());
+      virtual void root_execute_async(const char * pszFile, const char * pszParams);
+      virtual void root_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout = minute());
 
 
       //::file::path command_find_path(const ::string & pszCommand);
@@ -405,7 +405,7 @@ namespace acme
       //
       //virtual ::user::enum_desktop get_edesktop();
 
-      virtual ::e_status on_start_system();
+      virtual void on_start_system();
 
 
    };

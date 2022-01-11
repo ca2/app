@@ -16,7 +16,7 @@ dir_system::~dir_system()
 }
 
 
-::e_status dir_system::initialize(::object * pobject)
+void dir_system::initialize(::object * pobject)
 {
 
    auto estatus = ::object::initialize(pobject);
@@ -37,7 +37,7 @@ dir_system::~dir_system()
 }
 
 
-::e_status dir_system::init_system()
+void dir_system::init_system()
 {
 
 //   if (!update_module_path())

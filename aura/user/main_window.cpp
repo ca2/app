@@ -48,7 +48,7 @@ namespace user
    }
 
 
-   ::e_status main_window::create_main_window()
+   void main_window::create_main_window()
    {
 
       ::rectangle_i32 rectangleWindow;

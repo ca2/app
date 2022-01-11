@@ -22,7 +22,7 @@ namespace sockets
    }
 
 
-   ::e_status sockets_base::initialize(::object * pobject)
+   void sockets_base::initialize(::object * pobject)
    {
 
       auto estatus = object::initialize(pobject);
@@ -39,7 +39,7 @@ namespace sockets
    }
 
 
-   ::e_status sockets_base::destroy()
+   void sockets_base::destroy()
    {
 
       ::object::destroy();

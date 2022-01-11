@@ -20,7 +20,7 @@ namespace filemanager
       void dump(dump_context & dumpcontext) const override;
 
 
-      ::e_status on_initialize_object() override;
+      void on_initialize_object() override;
 
       using ::database::client::set_data_key_modifier;
 

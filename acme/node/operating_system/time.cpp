@@ -142,7 +142,7 @@ void copy(struct tm* ptmUTC, const system_time_t* psystemtimeUTC)
 }
 
 
-::e_status get_system_time_as_file_time(filetime_t* pfiletime)
+void get_system_time_as_file_time(filetime_t* pfiletime)
 {
 
    system_time_t systemtime;
@@ -170,7 +170,7 @@ void copy(struct tm* ptmUTC, const system_time_t* psystemtimeUTC)
 }
 
 
-//::e_status file_time_to_system_time(system_time_t* psystemtime, const filetime_t* pfiletime)
+//void file_time_to_system_time(system_time_t* psystemtime, const filetime_t* pfiletime)
 //{
 //
 //   if (!FileTimeToSystemTime((const FILETIME*)pfiletime, (SYSTEMTIME*)psystemtime))
@@ -185,7 +185,7 @@ void copy(struct tm* ptmUTC, const system_time_t* psystemtimeUTC)
 //}
 //
 //
-//::e_status file_time_to_local_file_time(filetime_t* pfiletimeLocal, const filetime_t* pfiletime)
+//void file_time_to_local_file_time(filetime_t* pfiletimeLocal, const filetime_t* pfiletime)
 //{
 //
 //   if (!FileTimeToLocalFileTime((const FILETIME*)pfiletime, (FILETIME*)pfiletimeLocal))
@@ -200,7 +200,7 @@ void copy(struct tm* ptmUTC, const system_time_t* psystemtimeUTC)
 //}
 //
 //
-//::e_status is_valid_filetime(const filetime_t* pfiletime)
+//void is_valid_filetime(const filetime_t* pfiletime)
 //{
 //
 //   SYSTEMTIME systemtime{};
@@ -217,7 +217,7 @@ void copy(struct tm* ptmUTC, const system_time_t* psystemtimeUTC)
 //}
 
 
-::e_status file_time_to_time(time_t* ptime, const filetime_t* pfiletime, i32 nDST)
+void file_time_to_time(time_t* ptime, const filetime_t* pfiletime, i32 nDST)
 {
 
    system_time_t systemtime{};
@@ -264,7 +264,7 @@ filetime get_filetime_now()
 }
 
 
-::e_status system_time_to_tm(tm * ptm, const system_time_t * psystemtime)
+void system_time_to_tm(tm * ptm, const system_time_t * psystemtime)
 {
 
    ptm->tm_hour   = psystemtime->wHour;
@@ -279,7 +279,7 @@ filetime get_filetime_now()
 }
 
 
-::e_status tm_to_system_time(system_time_t * psystemtime, const tm * ptm)
+void tm_to_system_time(system_time_t * psystemtime, const tm * ptm)
 {
 
    psystemtime->wHour      = ptm->tm_hour    ;

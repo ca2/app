@@ -151,7 +151,7 @@ namespace user
       }
 
 
-      ::e_status shell::initialize(::object * pobject)
+      void shell::initialize(::object * pobject)
       {
 
          if (m_bInitialized)
@@ -216,7 +216,7 @@ namespace user
       }
 
 
-      ::e_status shell::thread::init_thread()
+      void shell::thread::init_thread()
       {
 
          m_bSimpleMessageLoop = false;
@@ -698,7 +698,7 @@ namespace user
       }
 
 
-      ::e_status shell::thread::run()
+      void shell::thread::run()
       {
 
          while(task_get_run())
@@ -900,7 +900,7 @@ namespace user
    }
 
 
-   ::e_status shell::thread::finish(::property_object * pobject)
+   void shell::thread::finish(::property_object * pobject)
    {
 
       return ::thread::finish(pobject);
@@ -908,7 +908,7 @@ namespace user
    }
 
 
-   ::e_status shell::finish(::property_object * pobject)
+   void shell::finish(::property_object * pobject)
    {
 
       ::object::finish(pobject);

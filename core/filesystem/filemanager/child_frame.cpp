@@ -34,7 +34,7 @@ namespace filemanager
    }
 
 
-   ::e_status child_frame::on_create_bars()
+   void child_frame::on_create_bars()
    {
 
       return ::simple_frame_window::on_create_bars();

@@ -35,9 +35,9 @@
 
 #define INT_SUCCESS_STATUS(iStatusRange) ((int)(iStatusRange))
 
-#define FAILURE_STATUS(iStatusRange) ((::e_status    )INT_FAILURE_STATUS(iStatusRange))
+#define FAILURE_STATUS(iStatusRange) ((::e_status3    )INT_FAILURE_STATUS(iStatusRange))
 
-#define SUCCESS_STATUS(iStatusRange) ((::e_status    )INT_SUCCESS_STATUS(iStatusRange))
+#define SUCCESS_STATUS(iStatusRange) ((::e_status3    )INT_SUCCESS_STATUS(iStatusRange))
 
 #define PRIestatus PRIi64
 

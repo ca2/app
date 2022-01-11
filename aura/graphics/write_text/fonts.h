@@ -22,10 +22,10 @@ namespace write_text
       ~fonts() override;
 
 
-      ::e_status initialize(::object* pobject) override;
+      void initialize(::object* pobject) override;
 
 
-      virtual ::e_status enumerate_fonts();
+      virtual void enumerate_fonts();
 
 
       virtual font_enumeration* enumeration();

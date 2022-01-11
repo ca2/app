@@ -16,7 +16,7 @@ uncompress::~uncompress()
 }
 
 
-::e_status uncompress::transfer(::file::file* pfileOut, ::file::file* pfileIn)
+void uncompress::transfer(::file::file* pfileOut, ::file::file* pfileIn)
 {
 
    throw interface_only_exception();

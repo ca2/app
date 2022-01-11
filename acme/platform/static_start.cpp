@@ -1044,7 +1044,7 @@ namespace acme
 
 
 
-   ::e_status static_start::init()
+   void static_start::init()
    {
 
       //::acme::static_start::init();
@@ -1083,7 +1083,7 @@ namespace acme
    }
 
 
-   ::e_status static_start::term()
+   void static_start::term()
    {
 
       //::parallelization::wait_threads(1_min);
@@ -1229,10 +1229,10 @@ CLASS_DECL_ACME ::color::color dk_red() // <3 tbs
 }
 
 
-thread_local  ::e_status t_estatus;
+thread_local  void t_estatus;
 
 
-CLASS_DECL_ACME void set_last_status(const ::e_status & estatus)
+CLASS_DECL_ACME void set_last_status(const void & estatus)
 {
 
    t_estatus = estatus;
@@ -1240,7 +1240,7 @@ CLASS_DECL_ACME void set_last_status(const ::e_status & estatus)
 }
 
 
-CLASS_DECL_ACME ::e_status get_last_status()
+CLASS_DECL_ACME void get_last_status()
 {
 
    return t_estatus;

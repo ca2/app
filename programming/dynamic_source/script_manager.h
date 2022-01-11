@@ -141,10 +141,10 @@ namespace dynamic_source
       ~script_manager() override;
 
       
-      virtual ::e_status initialize(::object * pobject) override;
+      virtual void initialize(::object * pobject) override;
 
 
-      virtual ::e_status init1();
+      virtual void init1();
 
 
       virtual bool include_matches_file_exists(const ::string & strPath);

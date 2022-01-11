@@ -66,7 +66,7 @@ public:
    void common_construct();
 
 
-   virtual ::e_status initialize_command_line(const string& strCommandLine);
+   virtual void initialize_command_line(const string& strCommandLine);
 
 
    //command_line & operator = (const command_line & commandline);

@@ -23,7 +23,7 @@
 //      virtual ~promise();
 //
 //
-//      virtual ::e_status on_task() override;
+//      virtual void on_task() override;
 //
 //
 //   };

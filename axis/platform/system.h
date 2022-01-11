@@ -33,31 +33,31 @@ namespace axis
 
       void common_construct();
 
-      virtual ::e_status initialize(::object * pobject) override;
+      virtual void initialize(::object * pobject) override;
 
       virtual void on_add_session(::apex::session * papexsession) override;
 
-      virtual ::e_status init() override;
-      virtual ::e_status inline_init() override;
-      virtual ::e_status inline_term() override;
+      virtual void init() override;
+      virtual void inline_init() override;
+      virtual void inline_term() override;
 
-      virtual ::e_status init_system() override;
+      virtual void init_system() override;
       virtual void term_system() override;
 
       virtual void term() override;
 
 
 
-      virtual ::e_status process_init() override;
+      virtual void process_init() override;
 
-      virtual ::e_status init1() override;
+      virtual void init1() override;
 
-      virtual ::e_status init2() override;
+      virtual void init2() override;
 
-      // virtual ::e_status defer_xml();
+      // virtual void defer_xml();
 
 
-      virtual ::e_status verb() override; // ambigous inheritance from ::aura::system/::axis::application
+      virtual void verb() override; // ambigous inheritance from ::aura::system/::axis::application
 
 
 
@@ -79,15 +79,15 @@ namespace axis
       //virtual __pointer(regex_context) create_regular_expression_context(const ::string & pszStyle, int iCount) override;
 
 
-      //virtual ::e_status thread_loop() override;
+      //virtual void thread_loop() override;
 
-      //virtual ::e_status init();
+      //virtual void init();
 
-      //virtual ::e_status init1();
+      //virtual void init1();
 
-      //virtual ::e_status init2();
+      //virtual void init2();
 
-      virtual ::e_status post_creation_requests() override;
+      virtual void post_creation_requests() override;
 
       //virtual void term_system();
 
@@ -102,9 +102,9 @@ namespace axis
 
       virtual void process_term() override;
 
-      virtual ::e_status create_html();
+      virtual void create_html();
 
-      virtual ::e_status defer_create_html();
+      virtual void defer_create_html();
 
 
       void assert_valid() const override;

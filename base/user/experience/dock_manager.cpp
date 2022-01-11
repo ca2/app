@@ -23,7 +23,7 @@ namespace experience
    }
 
 
-   ::e_status dock_manager::initialize_dock_manager(::experience::frame_window* pframewindow)
+   void dock_manager::initialize_dock_manager(::experience::frame_window* pframewindow)
    {
 
       auto estatus = channel::initialize(pframewindow);

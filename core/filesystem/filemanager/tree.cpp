@@ -55,7 +55,7 @@ namespace filemanager
 #endif
 
 
-   ::e_status tree::initialize_filemanager_tree(document * pdocument)
+   void tree::initialize_filemanager_tree(document * pdocument)
    {
 
       auto estatus = initialize_view(pdocument);

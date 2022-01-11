@@ -158,7 +158,7 @@ public:
       ~application() override;
 
 
-      virtual ::e_status initialize(::object * pobject) override;
+      virtual void initialize(::object * pobject) override;
 
 
       void assert_valid() const override;
@@ -178,7 +178,7 @@ public:
       //virtual bool app_data_set(const ::id & id, object & obj) override;
       //virtual bool app_data_get(const ::id & id, object & obj) override;
 
-      //      virtual ::e_status     interactive_credentials(::account::credentials * pcredentials) override;
+      //      virtual void     interactive_credentials(::account::credentials * pcredentials) override;
 
       //virtual ::database::key calc_data_key() override;
 
@@ -210,34 +210,34 @@ public:
       virtual ::database::server * dataserver();
 
 
-      virtual ::e_status verb() override;
+      virtual void verb() override;
 
 
       virtual bool Ex2OnAppInstall();
       virtual bool Ex2OnAppUninstall();
 
-      virtual ::e_status init_application();
+      virtual void init_application();
 
-      virtual ::e_status init1();
-      virtual ::e_status init2();
-      virtual ::e_status init3();
-
-
-      virtual ::e_status init();
+      virtual void init1();
+      virtual void init2();
+      virtual void init3();
 
 
-      virtual ::e_status init_instance();
+      virtual void init();
 
 
-      virtual ::e_status     run() override;
-      //virtual ::e_status     main() override;
-      virtual ::e_status     on_run();
+      virtual void init_instance();
 
-      ::e_status destroy() override;
 
-      virtual ::e_status application_pre_run();
+      virtual void     run() override;
+      //virtual void     main() override;
+      virtual void     on_run();
+
+      void destroy() override;
+
+      virtual void application_pre_run();
       //virtual bool initial_check_directrix() override;
-      virtual ::e_status os_native_bergedge_start();
+      virtual void os_native_bergedge_start();
 
 
       virtual bool on_application_menu_action(const ::string & pszCommand);
@@ -258,11 +258,11 @@ public:
       virtual bool do_uninstall();
 
 
-      virtual ::e_status on_install();
-      virtual ::e_status on_uninstall();
+      virtual void on_install();
+      virtual void on_uninstall();
 
-      virtual ::e_status enable_service();
-      virtual ::e_status disable_service();
+      virtual void enable_service();
+      virtual void disable_service();
 
 
 
@@ -272,10 +272,10 @@ public:
 
       //virtual void SetCurrentHandles() override;
 
-      //virtual ::e_status france_exit();
+      //virtual void france_exit();
 
 
-      virtual ::e_status process_exception(const ::exception & e) override;
+      virtual void process_exception(const ::exception & e) override;
 
 
       //virtual __pointer(::application) assert_running(const ::string & pszAppId) override;
@@ -339,7 +339,7 @@ public:
 
 
 
-      virtual ::e_status process_init();
+      virtual void process_init();
 
 
 
@@ -350,8 +350,8 @@ public:
       //virtual ::user::interaction * user_interaction_from_oswindow(::windowing::window * pwindow);
 
 
-      virtual ::e_status hotplugin_host_starter_start_sync(const ::string & pszCommandLine, ::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
-      virtual ::e_status hotplugin_host_host_starter_start_sync(const ::string & pszCommandLine, ::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
+      virtual void hotplugin_host_starter_start_sync(const ::string & pszCommandLine, ::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
+      virtual void hotplugin_host_host_starter_start_sync(const ::string & pszCommandLine, ::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
 
 
       virtual bool is_local_data() override;
@@ -395,7 +395,7 @@ public:
       virtual ::file::path local_application_home_path();
 
 
-      //virtual ::e_status destroy() override;
+      //virtual void destroy() override;
 
 
       //virtual void release_parents() override;
@@ -431,16 +431,16 @@ public:
       //// os_* functions generally
       //// reserves a lot of surprises from each
       //// operating system specific behavior
-      //virtual ::e_status os_message_box(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual void os_message_box(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 
 
-      //virtual ::e_status ui_message_box(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
-      //virtual ::e_status ui_message_box_timeout(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::duration& durationTimeOut = duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual void ui_message_box(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual void ui_message_box_timeout(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::duration& durationTimeOut = duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 
 
       //using ::apex::context::message_box;
-      //virtual ::e_status message_box(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
-      //virtual ::e_status message_box_timeout(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::duration& durationTimeOut = duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual void message_box(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual void message_box_timeout(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::duration& durationTimeOut = duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 
 
       virtual void on_file_new();
@@ -476,10 +476,10 @@ public:
 
       //virtual void process_message_filter(i32 code,::message::message * pmessage) override;
 
-      virtual ::e_status on_thread_on_idle(::thread * pthread,::i32 lCount) override;
+      virtual void on_thread_on_idle(::thread * pthread,::i32 lCount) override;
 
 
-      virtual ::e_status app_set(string strPath, string strValue);
+      virtual void app_set(string strPath, string strValue);
       virtual string app_get(string strPath, string strDefault = "");
 
 
@@ -495,42 +495,42 @@ public:
 
       virtual __pointer(::interprocess_intercommunication) create_interprocess_intercommunication();
 
-      //virtual ::e_status process_init();
+      //virtual void process_init();
       virtual void process_term();
 
-      //virtual ::e_status impl_process_init();
-      //virtual ::e_status impl_init1();
-      //virtual ::e_status impl_init2();
-      //virtual ::e_status impl_init3();
+      //virtual void impl_process_init();
+      //virtual void impl_init1();
+      //virtual void impl_init2();
+      //virtual void impl_init3();
 
       //virtual void impl_process_term();
       //virtual void impl_term1();
       //virtual void impl_term2();
       //virtual void impl_term3();
 
-      //virtual ::e_status init1();
-      //virtual ::e_status init2();
-      //virtual ::e_status init3();
+      //virtual void init1();
+      //virtual void init2();
+      //virtual void init3();
 
       virtual void term1();
       virtual void term2();
       virtual void term3();
 
-      virtual ::e_status init_thread() override;
-      //virtual ::e_status init_application();
+      virtual void init_thread() override;
+      //virtual void init_application();
       //virtual void term_application();
       virtual void term_thread() override;
 
-      //virtual ::e_status init_instance() override;
+      //virtual void init_instance() override;
       virtual void term_instance();
 
-      //virtual ::e_status init();
+      //virtual void init();
       //virtual void term();
 
-      virtual ::e_status notify_process_init();
-      virtual ::e_status notify_init1();
-      virtual ::e_status notify_init2();
-      virtual ::e_status notify_init3();
+      virtual void notify_process_init();
+      virtual void notify_init1();
+      virtual void notify_init2();
+      virtual void notify_init3();
 
       virtual void notify_term3();
       virtual void notify_term2();
@@ -541,15 +541,15 @@ public:
       // virtual bool is_unstalling();
 
       //virtual string get_version();
-      //virtual ::e_status     run() override;
-      //virtual ::e_status     main() override;
-      //virtual ::e_status     on_run();
+      //virtual void     run() override;
+      //virtual void     main() override;
+      //virtual void     on_run();
 
-      virtual ::e_status on_before_launching();
-      //virtual ::e_status os_native_bergedge_start();
+      virtual void on_before_launching();
+      //virtual void os_native_bergedge_start();
 
-      virtual ::e_status pre_run();
-      //virtual ::e_status application_pre_run();
+      virtual void pre_run();
+      //virtual void application_pre_run();
 
       virtual void on_pos_run_thread() override;
       virtual void pos_run();
@@ -573,14 +573,14 @@ public:
 
       virtual bool _001OnDDECommand(const ::string & pcsz);
 
-      virtual ::e_status _001InitializeShellOpen();
+      virtual void _001InitializeShellOpen();
       virtual void _001OnFileNew(::message::message * pmessage);
 
 
 
-      virtual ::e_status get_temp_file_name_template(string & str,const ::string & lpszName,const ::string & pszExtension,const ::string & pszTemplate);
+      virtual void get_temp_file_name_template(string & str,const ::string & lpszName,const ::string & pszExtension,const ::string & pszTemplate);
 
-      virtual ::e_status get_temp_file_name(string & str,const ::string & lpszName,const ::string & pszExtension);
+      virtual void get_temp_file_name(string & str,const ::string & lpszName,const ::string & pszExtension);
 
       inline ::service_handler* service_handler() const { return m_pservicehanlder; }
 
@@ -592,19 +592,19 @@ public:
 
       /// return true if this instance might continue execution
       /// bHandled true if some action was done in response to this new additional instance creation
-      virtual ::e_status on_exclusive_instance_conflict(bool & bHandled, EExclusiveInstance eexclusive, string strId);
+      virtual void on_exclusive_instance_conflict(bool & bHandled, EExclusiveInstance eexclusive, string strId);
 
       /// return true if this instance might continue execution
       /// bHandled true if some action was done in response to this new additional instance creation
-      virtual ::e_status on_exclusive_instance_local_conflict(bool & bHandled);
+      virtual void on_exclusive_instance_local_conflict(bool & bHandled);
 
             /// return true if this instance might continue execution
       /// bHandled true if some action was done in response to this new additional instance creation
-      virtual ::e_status on_exclusive_instance_local_conflict_id(bool & bHandled, string strId);
+      virtual void on_exclusive_instance_local_conflict_id(bool & bHandled, string strId);
 
       /// return true if the external additional instance might continue execution
       /// bHandled true if some action was done in response to the external new additional instance creation
-      virtual ::e_status on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine);
+      virtual void on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine);
 
       virtual void on_new_instance(string strModule, const ::id & idPid);
 
@@ -695,9 +695,9 @@ public:
       //virtual bool _001OnAgreeExit();
 
 
-      //virtual ::e_status request_exit_application();
-      //virtual ::e_status can_exit_application();
-      ::e_status exit_application() override;
+      //virtual void request_exit_application();
+      //virtual void can_exit_application();
+      void exit_application() override;
 
 
       //virtual void _001FranceExit();
@@ -829,24 +829,24 @@ public:
       virtual void HideApplication();
 
 
-      //virtual ::e_status initialize(::object * pobject) override;
+      //virtual void initialize(::object * pobject) override;
 
-      //virtual ::e_status process_init() override;
+      //virtual void process_init() override;
 
-      //virtual ::e_status init1() override; // first initialization
-      //virtual ::e_status init2() override; // second initialization
-      //virtual ::e_status init3() override; // third initialization and so on...
+      //virtual void init1() override; // first initialization
+      //virtual void init2() override; // second initialization
+      //virtual void init3() override; // third initialization and so on...
 
-      //virtual ::e_status init() override; // last initialization
+      //virtual void init() override; // last initialization
 
-      //virtual ::e_status bergedge_start();
-      //virtual ::e_status os_native_bergedge_start() override;
+      //virtual void bergedge_start();
+      //virtual void os_native_bergedge_start() override;
 
       //virtual void term_application() override;
 
       //virtual void term() override;
 
-      //virtual ::e_status     main() override;
+      //virtual void     main() override;
 
       //virtual ::application * get_application() const override;
 
@@ -1015,7 +1015,7 @@ public:
       virtual bool does_launch_window_on_startup();
       virtual bool activate_app();
 
-      virtual ::e_status initialize_contextualized_theme();
+      virtual void initialize_contextualized_theme();
 
 
 
@@ -1040,8 +1040,8 @@ public:
 
       virtual __pointer(::progress::real) show_progress(::user::interaction * puiParent, const ::string & strTitle, ::count iProgressCount);
 
-      virtual ::e_status userfs_init1();
-      virtual ::e_status userfs_process_init();
+      virtual void userfs_init1();
+      virtual void userfs_process_init();
 
 
 
@@ -1058,7 +1058,7 @@ public:
       virtual void report_error(const ::exception & e, int iMessageFlags, const ::string & pszTopic);
 
 
-      virtual ::e_status create_impact_system();
+      virtual void create_impact_system();
 
 
       virtual void on_song_added(const string& str);

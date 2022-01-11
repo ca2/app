@@ -38,94 +38,94 @@
 
 //
 //// template < typename OBJECT, typename BASE_TYPE >
-//// inline ::e_status __compose(OBJECT && pobject, __composite(BASE_TYPE) & pownership);
+//// inline void __compose(OBJECT && pobject, __composite(BASE_TYPE) & pownership);
 //
 //// template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
-//// inline ::e_status __compose(OBJECT && pobject, __composite(BASE_TYPE) & pownership, const SOURCE * psource);
+//// inline void __compose(OBJECT && pobject, __composite(BASE_TYPE) & pownership, const SOURCE * psource);
 //
 //// template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
-//// inline ::e_status __compose(OBJECT && pobject, __composite(BASE_TYPE) & pownership, const __pointer(SOURCE) & psource);
+//// inline void __compose(OBJECT && pobject, __composite(BASE_TYPE) & pownership, const __pointer(SOURCE) & psource);
 //
 //// template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
-//// inline ::e_status __compose(OBJECT && pobject, __composite(BASE_TYPE) & pownership, const ::member < SOURCE > & psource);
+//// inline void __compose(OBJECT && pobject, __composite(BASE_TYPE) & pownership, const ::member < SOURCE > & psource);
 //
 //// template < typename OBJECT, typename BASE_TYPE >
-//// inline ::e_status __id_compose(OBJECT && pobject, __composite(BASE_TYPE) & pownership, const ::id & id);
+//// inline void __id_compose(OBJECT && pobject, __composite(BASE_TYPE) & pownership, const ::id & id);
 //
 //// template < typename OBJECT, typename BASE_TYPE >
-//// inline ::e_status __id_compose(OBJECT && pobject, __composite(BASE_TYPE) & pownership, const ::type & type);
+//// inline void __id_compose(OBJECT && pobject, __composite(BASE_TYPE) & pownership, const ::type & type);
 //
 //// template < typename OBJECT, typename TYPE >
-//// inline ::e_status __raw_compose_new(OBJECT && pobject, __composite(TYPE) & pownership);
+//// inline void __raw_compose_new(OBJECT && pobject, __composite(TYPE) & pownership);
 //
 //// template < typename OBJECT, typename TYPE >
-//// inline ::e_status __compose_new(OBJECT && pobject, __composite(TYPE) & pownership);
+//// inline void __compose_new(OBJECT && pobject, __composite(TYPE) & pownership);
 //
 //// template < typename OBJECT, typename BASE_TYPE >
-//// inline ::e_status __defer_compose(OBJECT && pobject, __composite(BASE_TYPE) & pownership);
+//// inline void __defer_compose(OBJECT && pobject, __composite(BASE_TYPE) & pownership);
 //
 //// template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
-//// inline ::e_status __defer_compose(OBJECT && pobject, __composite(BASE_TYPE) & pownership, const SOURCE * psource);
+//// inline void __defer_compose(OBJECT && pobject, __composite(BASE_TYPE) & pownership, const SOURCE * psource);
 //
 //// template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
-//// inline ::e_status __defer_compose(OBJECT && pobject, __composite(BASE_TYPE) & pownership, const __pointer(SOURCE) & psource);
+//// inline void __defer_compose(OBJECT && pobject, __composite(BASE_TYPE) & pownership, const __pointer(SOURCE) & psource);
 //
 //// template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
-//// inline ::e_status __defer_compose(OBJECT && pobject, __composite(BASE_TYPE) & pownership, const ::member < SOURCE > & psource);
+//// inline void __defer_compose(OBJECT && pobject, __composite(BASE_TYPE) & pownership, const ::member < SOURCE > & psource);
 //
 //// template < typename OBJECT, typename BASE_TYPE >
-//// inline ::e_status __defer_id_compose(OBJECT && pobject, __composite(BASE_TYPE) & pownership, const ::id & id);
+//// inline void __defer_id_compose(OBJECT && pobject, __composite(BASE_TYPE) & pownership, const ::id & id);
 //
 //// //template < typename OBJECT, typename BASE_TYPE >
-//// //inline ::e_status __defer_id_compose(OBJECT && pobject, __composite(BASE_TYPE) & pownership, const ::type & type);
+//// //inline void __defer_id_compose(OBJECT && pobject, __composite(BASE_TYPE) & pownership, const ::type & type);
 //
 //// template < typename OBJECT, typename BASE_TYPE >
-//// inline ::e_status __defer_compose_new(OBJECT && pobject, __composite(BASE_TYPE) & pownership);
+//// inline void __defer_compose_new(OBJECT && pobject, __composite(BASE_TYPE) & pownership);
 //
 //// template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
-//// inline ::e_status __refer(OBJECT && pobject, __reference(BASE_TYPE) & pcomposite, const SOURCE * psource);
+//// inline void __refer(OBJECT && pobject, __reference(BASE_TYPE) & pcomposite, const SOURCE * psource);
 //
 //// template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
-//// inline ::e_status __refer(OBJECT && pobject, __reference(BASE_TYPE) & pcomposite, const __pointer(SOURCE) & psource);
+//// inline void __refer(OBJECT && pobject, __reference(BASE_TYPE) & pcomposite, const __pointer(SOURCE) & psource);
 //
 //// template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
-//// inline ::e_status __refer(OBJECT && pobject, __reference(BASE_TYPE) & pcomposite, const ::member < SOURCE > & psource);
+//// inline void __refer(OBJECT && pobject, __reference(BASE_TYPE) & pcomposite, const ::member < SOURCE > & psource);
 //
 //// template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
-//// inline ::e_status __defer_refer(OBJECT && pobject, __reference(BASE_TYPE) & pcomposite, const SOURCE * psource);
+//// inline void __defer_refer(OBJECT && pobject, __reference(BASE_TYPE) & pcomposite, const SOURCE * psource);
 //
 //// template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
-//// inline ::e_status __defer_refer(OBJECT && pobject, __reference(BASE_TYPE) & pcomposite, const __pointer(SOURCE) & psource);
+//// inline void __defer_refer(OBJECT && pobject, __reference(BASE_TYPE) & pcomposite, const __pointer(SOURCE) & psource);
 //
 //// template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
-//// inline ::e_status __defer_refer(OBJECT && pobject, __reference(BASE_TYPE) & pcomposite, const ::member < SOURCE > & psource);
+//// inline void __defer_refer(OBJECT && pobject, __reference(BASE_TYPE) & pcomposite, const ::member < SOURCE > & psource);
 //
 //// template < typename OBJECT, typename BASE_TYPE >
-//// inline ::e_status __id_compose(OBJECT && pobject, __reference(BASE_TYPE) & pcomposite, const ::id & id);
+//// inline void __id_compose(OBJECT && pobject, __reference(BASE_TYPE) & pcomposite, const ::id & id);
 //
 ////template < typename OBJECT, typename BASE_TYPE >
-////inline ::e_status __id_compose(OBJECT && pobject, __reference(BASE_TYPE) & pcomposite, const ::type & type);
+////inline void __id_compose(OBJECT && pobject, __reference(BASE_TYPE) & pcomposite, const ::type & type);
 //
 //// template < typename OBJECT, typename BASE_TYPE >
-//// inline ::e_status __compose_new(OBJECT && pobject, __reference(BASE_TYPE) & pcomposite);
+//// inline void __compose_new(OBJECT && pobject, __reference(BASE_TYPE) & pcomposite);
 //
 //template < typename BASE_TYPE >
-//inline ::e_status __construct(__pointer(BASE_TYPE) & pusermessage);
+//inline void __construct(__pointer(BASE_TYPE) & pusermessage);
 //
 //template < typename BASE_TYPE >
-//inline ::e_status __defer_construct(__pointer(BASE_TYPE) & pusermessage);
+//inline void __defer_construct(__pointer(BASE_TYPE) & pusermessage);
 //
 //template < typename BASE_TYPE >
-//inline ::e_status __id_construct(__pointer(BASE_TYPE) & pusermessage, const ::id & id);
+//inline void __id_construct(__pointer(BASE_TYPE) & pusermessage, const ::id & id);
 //
 //template < typename BASE_TYPE >
-//inline ::e_status __defer_id_construct(__pointer(BASE_TYPE) & pusermessage, const ::id & id);
+//inline void __defer_id_construct(__pointer(BASE_TYPE) & pusermessage, const ::id & id);
 //
 //template < typename TYPE >
-//inline ::e_status __construct_new(__pointer(TYPE) & ptype);
+//inline void __construct_new(__pointer(TYPE) & ptype);
 //
 //template < typename TYPE >
-//inline ::e_status __defer_construct_new(__pointer(TYPE) & ptype);
+//inline void __defer_construct_new(__pointer(TYPE) & ptype);
 //
 //
 //

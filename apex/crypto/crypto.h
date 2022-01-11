@@ -26,21 +26,21 @@ namespace crypto
       ~crypto() override;
 
       
-      virtual ::e_status defer_initialize();
+      virtual void defer_initialize();
 
 
       virtual __transport(hasher_algorithm) create_hasher_algorithm(enum_hash ehash);
       virtual __transport(hasher) create_hasher(enum_hash ehash);
 
 
-      virtual ::e_status encrypt(memory& storageEncrypt, const memory& storageDecrypt, const memory& storageKey) = 0;
-      virtual ::e_status decrypt(memory& storageDecrypt, const memory& storageEncrypt, const memory& storageKey) = 0;
+      virtual void encrypt(memory& storageEncrypt, const memory& storageDecrypt, const memory& storageKey) = 0;
+      virtual void decrypt(memory& storageDecrypt, const memory& storageEncrypt, const memory& storageKey) = 0;
 
  
-      virtual ::e_status encrypt(memory & storageEncrypt, const memory & storageDecrypt, const char * pszSalt);
-      virtual ::e_status decrypt(memory & storageDecrypt, const memory & storageEncrypt, const char * pszSalt);
-      virtual ::e_status encrypt(memory & storageEncrypt, const char * pszDecrypt, const char * pszSalt);
-      virtual ::e_status decrypt(string & strDecrypt, const memory & storageEncrypt, const char * pszSalt);
+      virtual void encrypt(memory & storageEncrypt, const memory & storageDecrypt, const char * pszSalt);
+      virtual void decrypt(memory & storageDecrypt, const memory & storageEncrypt, const char * pszSalt);
+      virtual void encrypt(memory & storageEncrypt, const char * pszDecrypt, const char * pszSalt);
+      virtual void decrypt(string & strDecrypt, const memory & storageEncrypt, const char * pszSalt);
 
 
       virtual i32 key(memory & storage);
@@ -67,20 +67,20 @@ namespace crypto
 
       virtual int get_hash_digest_length(enum_hash) const = 0;
 
-      virtual ::e_status hash(memory& memOut, const block & blockIn, enum_hash ehash);
+      virtual void hash(memory& memOut, const block & blockIn, enum_hash ehash);
 
 
-      virtual ::e_status md5(memory & memMd5, const block& block);
-      virtual ::e_status sha1(memory & memSha1, const block& block);
-      virtual ::e_status sha256(memory & memSha256, const block& block);
-      virtual ::e_status nessie(memory & memNessie, const block& block);
+      virtual void md5(memory & memMd5, const block& block);
+      virtual void sha1(memory & memSha1, const block& block);
+      virtual void sha256(memory & memSha256, const block& block);
+      virtual void nessie(memory & memNessie, const block& block);
 
       // result is 20-byte digest
       virtual void hmac(void * result,const memory & memMessage,const memory & key) = 0;
       virtual void hmac(void * result,const string & memMessage,const string & key) = 0;
 
       virtual bool file_set(::payload payloadFile,const char * pszData,const char * pszSalt, ::application * papp);
-      virtual ::e_status     file_get(::payload payloadFile,string & str,const char * pszSalt, ::application * papp);
+      virtual void     file_get(::payload payloadFile,string & str,const char * pszSalt, ::application * papp);
 
       // get a new salt - 8 hexadecimal characters long
       // current PHP installations should not exceed 8 characters

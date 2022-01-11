@@ -96,7 +96,7 @@ simple_frame_window::~simple_frame_window()
 }
 
 
-::e_status simple_frame_window::initialize(::object * pobject)
+void simple_frame_window::initialize(::object * pobject)
 {
 
    auto estatus = ::experience::frame_window::initialize(pobject);
@@ -635,7 +635,7 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
 }
 
 
-::e_status simple_frame_window::initialize_frame_window_experience()
+void simple_frame_window::initialize_frame_window_experience()
 {
 
    if (m_pframe.is_set())
@@ -3829,7 +3829,7 @@ bool simple_frame_window::create_bars()
 }
 
 
-::e_status simple_frame_window::on_create_bars()
+void simple_frame_window::on_create_bars()
 {
 
    if(!m_bDefaultCreateToolbar)
@@ -3899,7 +3899,7 @@ void simple_frame_window::_001OnTimer(::timer * ptimer)
 //}
 
 
-//::e_status simple_frame_window::command_handler(const ::id & id)
+//void simple_frame_window::command_handler(const ::id & id)
 //{
 //
 //   if(id == "notify_icon_topic")

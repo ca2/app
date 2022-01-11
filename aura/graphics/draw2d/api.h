@@ -15,9 +15,9 @@ namespace draw2d
       ~api() override;
 
 
-      ::e_status initialize(::object * pobject) override;
+      void initialize(::object * pobject) override;
 
-      ::e_status destroy() override;
+      void destroy() override;
 
 
       void draw_and_fill_beziers(

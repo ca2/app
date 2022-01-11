@@ -52,7 +52,7 @@ namespace sockets
       virtual ~http_socket();
 
 
-      virtual ::e_status on_initialize_object() override;
+      virtual void on_initialize_object() override;
 
 
       virtual void OnEndChunk();

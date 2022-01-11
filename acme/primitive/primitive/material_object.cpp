@@ -37,7 +37,7 @@ material_object::~material_object()
 
 
 // <3TBS_!! handle -> command_handler <3TBS_(I need to suck you)!!
-::e_status material_object::handle_command(const ::id & id)
+void material_object::handle_command(const ::id & id)
 {
    
    return ::success_none;
@@ -53,7 +53,7 @@ bool material_object::is_branch_current() const
 }
 
 
-::e_status material_object::post_routine(const ::routine & routine)
+void material_object::post_routine(const ::routine & routine)
 {
 
    throw ::interface_only_exception();
@@ -63,7 +63,7 @@ bool material_object::is_branch_current() const
 }
 
 
-::e_status material_object::send_routine(const ::routine & routine)
+void material_object::send_routine(const ::routine & routine)
 {
 
    return __send_routine(this, &material_object::post_routine, routine);

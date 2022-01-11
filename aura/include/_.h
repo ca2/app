@@ -197,7 +197,7 @@ CLASS_DECL_AURA void aura_ref();
 //CLASS_DECL_AURA void throw_todo(void);
 //
 //
-////CLASS_DECL_AURA void set_last_status(const ::e_status & estatus);
+////CLASS_DECL_AURA void set_last_status(const void & estatus);
 ////CLASS_DECL_AURA void windowing_output_debug_string(const ::string & pszDebugString);
 ////CLASS_DECL_AURA void c_function_call(void * p);
 ////extern CLASS_DECL_AURA int g_bAura;
@@ -850,9 +850,9 @@ CLASS_DECL_AURA void aura_ref();
 ////CLASS_DECL_AURA i32 aura_run_system(::aura::system* psystem);
 //
 //
-////CLASS_DECL_AURA ::e_status aura_run_system_init(::aura::system * psystem);
-////CLASS_DECL_AURA ::e_status aura_run_system_proc(::aura::system * psystem);
-////CLASS_DECL_AURA ::e_status aura_run_system_term(::aura::system * psystem);
+////CLASS_DECL_AURA void aura_run_system_init(::aura::system * psystem);
+////CLASS_DECL_AURA void aura_run_system_proc(::aura::system * psystem);
+////CLASS_DECL_AURA void aura_run_system_term(::aura::system * psystem);
 //
 //
 //template < typename VAR >
@@ -2679,7 +2679,7 @@ CLASS_DECL_AURA bool __node_aura_pos_term();
 //using echeck = ::enumeration < enum_check >;
 //
 //
-//typedef ::e_status THREAD_PROCEDURE(thread_parameter parameter);
+//typedef void THREAD_PROCEDURE(thread_parameter parameter);
 //
 //
 //inline bool succeeded(const ::payload & payload);

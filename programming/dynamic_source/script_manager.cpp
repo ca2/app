@@ -106,7 +106,7 @@ namespace dynamic_source
    }
 
 
-   ::e_status script_manager::initialize(::object * pobject)
+   void script_manager::initialize(::object * pobject)
    {
 
       //auto estatus = ::user::message_window_listener::initialize(pobject);
@@ -166,7 +166,7 @@ namespace dynamic_source
    }
 
 
-   ::e_status script_manager::init1()
+   void script_manager::init1()
    {
 
       if(m_bCompiler)

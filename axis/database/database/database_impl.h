@@ -51,13 +51,13 @@ namespace database
       bool isActive() override { return m_bActive; }
 
 
-      ::e_status     init() override;
+      void     init() override;
       e_connection connection_status() override { return m_econnection; }
-      ::e_status     set_error_code(int iErrorCode) override;
+      void     set_error_code(int iErrorCode) override;
       string get_error_message() override;
       void* get_handle() override = 0;
 
-      ::e_status     connect(
+      void     connect(
          const ::string & name,
          const ::string & host = nullptr,
          const ::string & port = nullptr,
@@ -66,12 +66,12 @@ namespace database
          const ::string & sckt = nullptr,
          u64 uConnectionFlags = 0) override;
 
-      ::e_status     _connect()  override= 0;
+      void     _connect()  override= 0;
 
       void disconnect() override;
-      ::e_status     reset() override;
-      ::e_status     create() override;
-      ::e_status     drop() override;
+      void     reset() override;
+      void     create() override;
+      void     drop() override;
 
       //virtual string escape(const ::string & psz);
 

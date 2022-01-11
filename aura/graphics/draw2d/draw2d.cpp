@@ -48,7 +48,7 @@ namespace draw2d
    }
 
 
-   ::e_status draw2d::initialize(::object * pobject)
+   void draw2d::initialize(::object * pobject)
    {
 
       auto estatus = ::acme::department::initialize(pobject);
@@ -86,7 +86,7 @@ namespace draw2d
 
 
 
-   ::e_status draw2d::init1()
+   void draw2d::init1()
    {
 
       if (!::acme::department::init1())
@@ -115,7 +115,7 @@ namespace draw2d
    }
 
 
-   ::e_status draw2d::process_init()
+   void draw2d::process_init()
    {
 
       if (!::acme::department::process_init())
@@ -139,7 +139,7 @@ namespace draw2d
    }
 
 
-   ::e_status draw2d::init()
+   void draw2d::init()
    {
 
       if (!::acme::department::init())
@@ -201,7 +201,7 @@ namespace draw2d
    }
 
 
-   ::e_status draw2d::term()
+   void draw2d::term()
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -231,7 +231,7 @@ namespace draw2d
    }
 
 
-   ::e_status draw2d::destroy()
+   void draw2d::destroy()
    {
 
       m_papi.release();
@@ -343,7 +343,7 @@ namespace draw2d
 
 
    // should not call axis class implementation because draw2d::draw2d is inside a n-furcation of user::draw2d
-   ::e_status draw2d::term_instance()
+   void draw2d::term_instance()
    {
 
       try
@@ -1052,7 +1052,7 @@ breakFilter2:
 //
 //      __pointer(ttf_util) putil;
 //
-//      ::e_status estatus = __construct_new(putil);
+//      void estatus = __construct_new(putil);
 //
 //      if (pdoc->load(strSystemFonts))
 //      {
@@ -1291,10 +1291,10 @@ breakFilter2:
 //   }
 
 
-   ::e_status draw2d::initialize_write_text()
+   void draw2d::initialize_write_text()
    {
 
-      ::e_status estatus = ::success;
+      void estatus = ::success;
 
       try
       {
@@ -1394,7 +1394,7 @@ breakFilter2:
 
       }
 
-      ::e_status estatus;
+      void estatus;
 
       if (strLibrary.has_char())
       {
@@ -1536,7 +1536,7 @@ breakFilter2:
    }
 
 
-   ::e_status draw2d::lock_device()
+   void draw2d::lock_device()
    {
 
       return ::success;
@@ -1544,7 +1544,7 @@ breakFilter2:
    }
 
 
-   ::e_status draw2d::unlock_device()
+   void draw2d::unlock_device()
    {
 
       return ::success;

@@ -16,7 +16,7 @@ namespace user
       virtual ~menu_button();
 
 
-      virtual ::e_status initialize_menu_interaction(menu_item* pitem) override;
+      virtual void initialize_menu_interaction(menu_item* pitem) override;
 
 
       void install_message_routing(::channel * pchannel) override;

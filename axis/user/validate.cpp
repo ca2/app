@@ -19,7 +19,7 @@ namespace user
    }
 
 
-   ::e_status validate::Validate(string& strParam, ::user::interaction * pinteraction)
+   void validate::Validate(string& strParam, ::user::interaction * pinteraction)
    {
 
       switch (pinteraction->get_data_type())

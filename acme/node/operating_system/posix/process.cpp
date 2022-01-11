@@ -16,10 +16,10 @@
 #include <fcntl.h>
 
 
-::e_status command_system(string& strOutput, string& strError, int& iExitCode, const char* psz, enum_command_system ecommandsystem, const ::duration& durationTimeout)
+void command_system(string& strOutput, string& strError, int& iExitCode, const char* psz, enum_command_system ecommandsystem, const ::duration& durationTimeout)
 {
 
-   ::e_status estatus = success;
+   void estatus = success;
 
    int stdout_fds[2] = {};
 

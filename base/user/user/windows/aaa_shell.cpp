@@ -1056,7 +1056,7 @@ pacmedir->is(strPath))
       //}
 
 
-      ::e_status windows::initialize(::object * pobject)
+      void windows::initialize(::object * pobject)
       {
 
          if (m_bInitialized)

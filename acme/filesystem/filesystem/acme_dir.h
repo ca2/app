@@ -27,7 +27,7 @@ public:
    ~acme_dir() override;
 
 
-   ::e_status initialize(::object * pobject) override;
+   void initialize(::object * pobject) override;
 
    
    //virtual ::file::path module_folder();
@@ -95,8 +95,8 @@ public:
    virtual ::file::path user_appdata_local();
    //virtual ::file::path tool();
 
-   virtual ::e_status is(const char * path1);
-   virtual ::e_status _is(const char * path1);
+   virtual void is(const char * path1);
+   virtual void _is(const char * path1);
    // From acme/filesystem/file/dir.cpp by camilo 
    // From acme_posix/acme_dir.h
 // on 2021-08-09 03:20 BRT
@@ -121,10 +121,10 @@ public:
 
          //virtual ::file::path base_module();
 
-         virtual ::e_status create(const char * path);
-         virtual ::e_status _create(const char * path);
-         virtual ::e_status create_directory(const char * path);
-         virtual ::e_status _create_directory(const char * path);
+         virtual void create(const char * path);
+         virtual void _create(const char * path);
+         virtual void create_directory(const char * path);
+         virtual void _create_directory(const char * path);
 
 
          virtual void rls(::file::patha & stra, const char * psz);
@@ -162,9 +162,9 @@ public:
 
          //} // namespace dir
 
-   virtual status < string > get_current();
-   virtual ::e_status change_current(const char * psz);
-   virtual ::e_status change_to_home();
+   virtual string get_current();
+   virtual void change_current(const char * psz);
+   virtual void change_to_home();
 
 
 

@@ -901,7 +901,7 @@ namespace std
 //
 //
 //
-//inline stream & operator << (stream & s, ::file_transport & pfile)
+//inline stream & operator << (stream & s, ::file_pointer & pfile)
 //{
 //
 //   operator << (s, pfile.m_p);

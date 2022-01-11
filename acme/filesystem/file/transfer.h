@@ -8,7 +8,7 @@ class CLASS_DECL_ACME file_transfer :
 public:
 
 
-   virtual ::e_status transfer(::file::file* pfileOut, ::file::file* pfileIn);
+   virtual void transfer(::file::file* pfileOut, ::file::file* pfileIn);
 
 
 };

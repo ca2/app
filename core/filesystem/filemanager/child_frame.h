@@ -24,7 +24,7 @@ namespace filemanager
 
       virtual ::file::item_array get_selected_items();
 
-      ::e_status on_create_bars() override;
+      void on_create_bars() override;
       bool DestroyBars();
       void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 

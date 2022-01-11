@@ -50,18 +50,18 @@ namespace universal_windows
       virtual bool file_association_get_shell_open_command(const char * pszExtension, string & strExtensionNamingClass, string & strCommand, string & strParam) override;
 
 
-      ::e_status link_open(string strUrl) override;
+      void link_open(string strUrl) override;
 
       virtual bool native_full_web_browser(const char * pcsz)  override;
       virtual bool native_modern_web_browser(const char * pcsz)  override;
       virtual bool file_open(::file::path path, string strParams, string strFolder) override;
 
 
-      virtual ::e_status create_service() override;
-      virtual ::e_status erase_service() override;
+      virtual void create_service() override;
+      virtual void erase_service() override;
 
-      virtual ::e_status start_service() override;
-      virtual ::e_status stop_service() override;
+      virtual void start_service() override;
+      virtual void stop_service() override;
 
       virtual bool resolve_link(string & strTarget, string & strFolder, string & strParams, const ::string & strSource, ::user::primitive * puiMessageParentOptional = nullptr);
 

@@ -40,7 +40,7 @@ namespace app_core_build
    }
 
 
-   ::e_status application::init_instance()
+   void application::init_instance()
    {
 
 
@@ -191,7 +191,7 @@ namespace app_core_build
    }
 
 
-   ::e_status application::set_finish()
+   void application::set_finish()
    {
 
       return ::thread::set_finish();

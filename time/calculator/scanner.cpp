@@ -2,6 +2,8 @@
  * This code can be freely copied and modified.
  */
 #include  "framework.h"
+#include  "acme/primitive/text/context.h"
+
 
 namespace datetime
 {

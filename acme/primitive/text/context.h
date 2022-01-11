@@ -135,7 +135,7 @@ namespace text
 
 
       context();
-      virtual ~context();
+      ~context() override;
 
 
       virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)

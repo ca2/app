@@ -15,10 +15,10 @@ namespace datetime
       public:
 
 
-         ::write_text::font    m_pfont;
-         ::write_text::font    m_pfontHour;
-         ::write_text::font    m_pfontMinute;
-         ::write_text::font    m_pfontSpin;
+         ::write_text::font_pointer    m_pfont;
+         ::write_text::font_pointer    m_pfontHour;
+         ::write_text::font_pointer    m_pfontMinute;
+         ::write_text::font_pointer    m_pfontSpin;
 
 
          graphics();

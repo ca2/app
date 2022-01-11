@@ -2,6 +2,7 @@
 #include "aura/operating_system.h"
 #include "aura/user/_user.h"
 #include "acme/node/operating_system/_user.h"
+#include "aura/graphics/draw2d/graphics.h"
 
 
 namespace user

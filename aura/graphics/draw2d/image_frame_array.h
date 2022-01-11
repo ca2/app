@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "image.h"
+#include "image_frame.h"
+
+
 class CLASS_DECL_AURA image_frame_array :
    virtual public __pointer_array(::image_frame)
 {

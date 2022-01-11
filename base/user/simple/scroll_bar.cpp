@@ -1,6 +1,8 @@
 #include "framework.h"
 #include "base/user/simple/_simple.h"
-//#include "acme/node/operating_system/cross.h"
+#include "aura/graphics/draw2d/_draw2d.h"
+#include "acme/platform/timer.h"
+//#include "aura/user/interaction_draw2d.h"
 
 
 simple_scroll_bar::simple_scroll_bar()
@@ -1009,9 +1011,9 @@ void simple_scroll_bar::on_message_create(::message::message * pmessage)
 {
 
    m_ppenDraw.create(this);
-      m_pbrushDraw.create(this);
-      m_pregionA.create(this); // região da primeira seta
-      m_pregionB.create(this); // região da segunda seta
+   m_pbrushDraw.create(this);
+   m_pregionA.create(this); // região da primeira seta
+   m_pregionB.create(this); // região da segunda seta
 
 
 
@@ -1238,6 +1240,8 @@ void simple_scroll_bar::_001OnClip(::draw2d::graphics_pointer & pgraphics)
       //   bFirst = false;
 
       //}
+
+      //auto pinteractiondraw2d = get_draw2d();
       
       if(!m_pshapeaClip)
       {
@@ -1344,6 +1348,8 @@ void simple_scroll_bar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraphics)
 {
 
+   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
    auto pstyle = get_style(pgraphics);
 
    auto crBackground = get_color(pstyle, ::e_element_background);
@@ -1382,7 +1388,9 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    get_window_rect(rectangleWindow);
 
-   m_pbrushDraw->create_solid(scrollbar_color_strong(pstyle, ::e_element_scrollbar_rect));
+   auto colorRectStrong = scrollbar_color_strong(pstyle, ::e_element_scrollbar_rect);
+
+   m_pbrushDraw->create_solid(colorRectStrong);
 
    pgraphics->set(m_pbrushDraw);
 

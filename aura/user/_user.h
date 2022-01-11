@@ -126,7 +126,7 @@ namespace experience
 namespace user
 {
 
-   class CLASS_DECL_AURA calc_size
+   class calc_size
    {
    public:
 

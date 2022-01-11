@@ -27,7 +27,7 @@ void interprocess_task::do_task(const string& strObject, const string& strMember
 
    string strVara = m_pcall->m_pinterprocessintercommunication->str_from_va(payloada);
 
-   m_iTask = atomic_increment(&m_pcall->m_pinterprocessintercommunication->m_iTaskSeed);
+   m_iTask = m_pcall->m_pinterprocessintercommunication->m_iTaskSeed++;
 
    string strSource;
 

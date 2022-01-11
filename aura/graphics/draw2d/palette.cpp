@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "palette.h"
 
 
 namespace draw2d

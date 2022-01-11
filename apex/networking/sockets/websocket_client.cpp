@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "apex/id.h"
 #include "apex/networking/sockets/_sockets.h"
+#include "acme/primitive/string/base64.h"
 
 
 #ifdef PARALLELIZATION_PTHREAD

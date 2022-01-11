@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.17)
+cmake_minimum_required(VERSION 3.16)
 project(compress_bzip2 CXX)
 
 
@@ -45,11 +45,13 @@ if (MSVC)
 elseif(LINUX)
 
 
-if(UBUNTU)
+if(DEFINED UBUNTU OR DEFINED DEBIAN)
 
 
    list(APPEND library_references
       bz2)
+
+   message("including bz2 \"manually\" at ubuntu/debian")
 
 
 else()
@@ -72,9 +74,12 @@ endif()
 endif()
 
 
-target_include_directories(compress_bzip2 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
-target_include_directories(compress_bzip2 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
-target_include_directories(compress_bzip2 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
+
+
+target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
 target_compile_definitions(compress_bzip2 PRIVATE _COMPRESS_BZIP2_LIBRARY)

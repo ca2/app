@@ -781,31 +781,15 @@ namespace serial
    //   }
    };
 
-   /*!
-    * Structure that describes a serial device.
-    */
-   struct port_info
-   {
 
-      /*! Address of the serial port (this can be passed to the constructor of serial). */
-      string port;
-
-      /*! Human readable description of serial device if available. */
-      string description;
-
-      /*! Hardware ID (e.g. VID:PID of USB serial devices) or "n/a" if not available. */
-      string hardware_id;
-
-   };
-
-   /* Lists the serial ports available on the system
-    *
-    * Returns a vector of available serial ports, each represented
-    * by a serial::port_info data structure:
-    *
-    * \return vector of serial::port_info.
-    */
-   CLASS_DECL_ACME array<port_info>  list_ports();
+//   /* Lists the serial ports available on the system
+//    *
+//    * Returns a vector of available serial ports, each represented
+//    * by a serial::port_info data structure:
+//    *
+//    * \return vector of serial::port_info.
+//    */
+//   CLASS_DECL_ACME array<port_info>  list_ports();
 
 
 

@@ -3,6 +3,9 @@
 #include "acme/id.h"
 #include "apex/platform/app_core.h"
 #include "acme/platform/static_setup.h"
+#include "apex/message/command.h"
+#include "acme/primitive/text/context.h"
+#include "apex/user/primitive.h"
 
 
 #if defined(APPLE_IOS) || defined(_UWP) || defined(ANDROID)
@@ -93,7 +96,12 @@ namespace apex
    session::~session()
    {
 
-      output_debug_string("apex::session::~session()");
+      if(m_psystem->m_etracelevel >= e_trace_level_information)
+      {
+
+         output_debug_string("apex::session::~session()\n");
+
+      }
 
    }
 
@@ -427,7 +435,7 @@ namespace apex
 
       //}
 
-      INFORMATION(".1");
+      //INFORMATION(".1");
 
       return true;
 
@@ -469,7 +477,7 @@ namespace apex
    ::e_status session::process_init()
    {
 
-      INFORMATION("apex::session::process_init");
+      //INFORMATION("apex::session::process_init");
 
       //auto estatus = ::apex::context::initialize_context();
 
@@ -485,15 +493,15 @@ namespace apex
       if (!estatus)
       {
 
-         INFORMATION("acme::str_context Failed to Allocate!!");
+         WARNING("acme::str_context Failed to Allocate!!");
 
          return estatus;
 
       }
 
-      INFORMATION("acme::str_context Succeeded to Allocate!!");
+      //INFORMATION("acme::str_context Succeeded to Allocate!!");
 
-      INFORMATION("apex::session::process_init success");
+      //INFORMATION("apex::session::process_init success");
 
       return ::success;
 
@@ -585,7 +593,7 @@ namespace apex
    void session::on_message_erase_application(::message::message* pmessage)
    {
 
-      auto papplication = pmessage->m_lparam.move <::application>();
+      __pointer(::application) papplication(pmessage->m_lparam);
 
       erase_application(papplication);
 
@@ -1310,7 +1318,7 @@ ret:
 
       }
 
-      INFORMATION(".2");
+      //INFORMATION(".2");
 
 
       return true;
@@ -1331,7 +1339,7 @@ ret:
 
       ::e_status estatus;
 
-      INFORMATION("apex::session::init2 .1");
+      //INFORMATION("apex::session::init2 .1");
 
       auto psystem = get_system()->m_papexsystem;
 

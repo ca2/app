@@ -5,6 +5,8 @@
 // radius will approximate a gaussian blur quite well.
 //
 #include "framework.h"
+#include "fastblur.h"
+#include "image.h"
 
 
 inline void kernelPosition(int boxBlur,unsigned& std,int& dLeft,int& dRight)

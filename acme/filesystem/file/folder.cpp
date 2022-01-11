@@ -100,7 +100,7 @@ bool folder::is_compressed(const char* pszFileName)
 }
 
 
-::e_status folder::extract_all(const char* pszTargetDir, const char* pszSourceDir, ::file::patha* ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat)
+::e_status folder::extract_all(const char* pszTargetDir, ::file::patha* ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat)
 {
 
    throw interface_only_exception();

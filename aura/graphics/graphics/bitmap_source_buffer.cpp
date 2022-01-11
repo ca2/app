@@ -1,6 +1,8 @@
 #include "framework.h"
 #include "aura/user/_user.h"
-#include "bitmap_source_buffer.h"
+#include "_.h"
+#include "_graphics.h"
+
 
 
 namespace graphics

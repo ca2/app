@@ -1,6 +1,12 @@
 #pragma once
 
+
+#include "image_source.h"
+
+
 using hicon = void *;
+
+class size_image;
 
 namespace draw2d
 {

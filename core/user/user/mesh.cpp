@@ -2,6 +2,8 @@
 #include "core/user/user/_user.h"
 //#include "acme/node/operating_system/cross/windows/_windows.h"
 #include "acme/constant/timer.h"
+#include "acme/platform/timer.h"
+#include "aura/graphics/draw2d/_draw2d.h"
 
 
 #define DBLCLKMS 500
@@ -5502,18 +5504,27 @@ namespace user
 
    ::count mesh::_001GetGroupItemCount(index iGroup)
    {
+
       __UNREFERENCED_PARAMETER(iGroup);
+
       return -1;
+
    }
+
 
    i32 mesh::_001GetGroupHeight(index iGroup)
    {
+
       i32 iMeshHeight = (i32)(_001GetGroupItemCount(iGroup) * m_dItemHeight);
+
       return maximum(m_iGroupMinHeight,iMeshHeight);
+
    }
+
 
    mesh_item::mesh_item(mesh * pmesh)
    {
+
       m_plistitem       = nullptr;
       m_pmesh           = pmesh;
       m_iGroup          = -1;
@@ -5525,7 +5536,7 @@ namespace user
       m_iListItem       = -1;
       m_colorText              = __indexed_color(-1);
       m_colorTextBackground    = argb(255, 0, 0, 0);
-      m_colorItemBackground = 0;
+      m_colorItemBackground = ::color::transparent;
       m_iState          = -1;
       m_iImage          = -1;
       m_bOk             = false;

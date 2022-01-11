@@ -1789,25 +1789,25 @@ bool graphics::_stretch_raw(const ::rectangle_f64 & rectangleTarget, ::image * p
 //}
 
 
-size_f64 graphics::GetOutputTabbedTextExtent(const ::string & lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions)
-{
-
-    throw interface_only_exception();
-
-    return ::size_f64(0, 0);
-
-}
-
-
-size_f64 graphics::GetOutputTabbedTextExtent(const ::string & str, count nTabPositions, int * lpnTabStopPositions)
-{
-
-    throw interface_only_exception();
-
-    return ::size_f64(0, 0);
-
-}
-
+//size_f64 graphics::GetOutputTabbedTextExtent(const ::string & lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions)
+//{
+//
+//    throw interface_only_exception();
+//
+//    return ::size_f64(0, 0);
+//
+//}
+//
+//
+//size_f64 graphics::GetOutputTabbedTextExtent(const ::string & str, count nTabPositions, int * lpnTabStopPositions)
+//{
+//
+//    throw interface_only_exception();
+//
+//    return ::size_f64(0, 0);
+//
+//}
+//
 
 //bool graphics::GrayString(::draw2d::brush* pBrush, bool (CALLBACK* lpfnOutput)(HDC, LPARAM, i32), LPARAM lpData, i32 nCount, double x, double y, double nWidth, double nHeight)
 //{
@@ -3980,24 +3980,24 @@ size_f64 graphics::get_text_extent(const block & block)
 }
 
 
-size_f64 graphics::GetOutputTextExtent(const char * lpszString, strsize nCount)
-{
-
-    throw interface_only_exception();
-
-    return ::size_f64(0, 0);
-
-}
-
-
-size_f64 graphics::GetOutputTextExtent(const ::string & str)
-{
-
-    throw interface_only_exception();
-
-    return ::size_f64(0, 0);
-
-}
+//size_f64 graphics::GetOutputTextExtent(const char * lpszString, strsize nCount)
+//{
+//
+//    throw interface_only_exception();
+//
+//    return ::size_f64(0, 0);
+//
+//}
+//
+//
+//size_f64 graphics::GetOutputTextExtent(const ::string & str)
+//{
+//
+//    throw interface_only_exception();
+//
+//    return ::size_f64(0, 0);
+//
+//}
 
 
 bool graphics::get_text_extent(size_f64 & size, const char * lpszString, strsize nCount, strsize iIndex)

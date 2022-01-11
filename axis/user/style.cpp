@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "axis/user/_user.h"
+#include "aura/graphics/draw2d/_draw2d.h"
 
 
 namespace axis
@@ -842,7 +843,7 @@ namespace axis
 
       }
 
-      return ::color::color();
+      return error_not_found;
 
    }
 

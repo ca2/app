@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.17)
+cmake_minimum_required(VERSION 3.16)
 project(draw2d_cairo CXX)
 
 
@@ -66,9 +66,12 @@ elseif(LINUX OR FREEBSD)
 endif()
 
 
-target_include_directories(draw2d_cairo PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
-target_include_directories(draw2d_cairo PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
-target_include_directories(draw2d_cairo PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
+
+
+target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
 target_compile_definitions(draw2d_cairo PRIVATE _DRAW2D_CAIRO_LIBRARY)

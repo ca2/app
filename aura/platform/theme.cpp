@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
+#include "apex/filesystem/filesystem/file_watcher.h"
 
 
 namespace aura

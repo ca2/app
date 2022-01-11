@@ -1,5 +1,7 @@
 #include "framework.h"
-//#include "draw2d_object.h"
+#include "bitmap.h"
+#include "graphics.h"
+#include "pixmap.h"
 //#include "draw2d_bitmap.h"
 
 

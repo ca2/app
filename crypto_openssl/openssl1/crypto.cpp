@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/primitive/string/base64.h"
 #include "_openssl.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
 

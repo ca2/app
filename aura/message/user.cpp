@@ -12,16 +12,16 @@
 
 #undef new
 
-
-struct myfx_CTLCOLOR
-{
-   
-   ::oswindow     m_oswindow;
-   hdc            m_hdc;
-   ::u32          m_nCtlType;
-
-
-};
+//
+//struct myfx_CTLCOLOR
+//{
+//
+//   ::oswindow     m_oswindow;
+//   hdc            m_hdc;
+//   ::u32          m_nCtlType;
+//
+//
+//};
 
 
 namespace message
@@ -495,7 +495,9 @@ namespace message
    void scroll::set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam)
    {
 
-      m_pscrollbar = lparam.move < ::user::primitive >();
+      __pointer(::user::primitive) pprimitive(lparam);
+
+      m_pscrollbar = pprimitive;
 
       ::user::message::set(oswindow, pwindow, id, wparam, lparam);
 

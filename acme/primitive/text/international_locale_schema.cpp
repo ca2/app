@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "acme/id.h"
+#include "international_locale_schema.h"
 
 
 namespace text

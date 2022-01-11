@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "acme/operating_system.h"
-
+#include "nanosecond_timer.h"
 
 #ifdef LINUX
 

@@ -30,7 +30,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #pragma once
 
 
-
+#include "acme/filesystem/file/circular_file.h"
 
 #define TCP_BUFSIZE_READ (16400)
 #define TCP_OUTPUT_CAPACITY 1024000

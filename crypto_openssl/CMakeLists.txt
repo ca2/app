@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.17)
+cmake_minimum_required(VERSION 3.16)
 project(crypto_openssl CXX)
 
 
@@ -54,9 +54,12 @@ elseif(LINUX)
 endif()
 
 
-target_include_directories(crypto_openssl PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
-target_include_directories(crypto_openssl PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
-target_include_directories(crypto_openssl PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
+
+
+target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
 target_compile_definitions(crypto_openssl PRIVATE _COMPRESS_BZIP2_LIBRARY)

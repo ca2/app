@@ -203,8 +203,8 @@
 		9A15A5B8264B54730080670E /* acme_apple.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = acme_apple.xcodeproj; path = "../../../archive/platform-apple/acme_apple/acme_apple.xcodeproj"; sourceTree = "<group>"; };
 		9A15A5C1264B54860080670E /* apex_apple.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = apex_apple.xcodeproj; path = "../../../archive/platform-apple/apex_apple/apex_apple.xcodeproj"; sourceTree = "<group>"; };
 		9A2E620E252584B70001CC7E /* aqua.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aqua.xcodeproj; path = ../aqua/aqua.xcodeproj; sourceTree = "<group>"; };
-		9A63CF3925296BC600AE9064 /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = "../../../archive/storage-macos/library/Debug/libcrypto.dylib"; sourceTree = "<group>"; };
-		9A63CF3A25296BC600AE9064 /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.dylib; path = "../../../archive/storage-macos/library/Debug/libssl.dylib"; sourceTree = "<group>"; };
+		9A63CF3925296BC600AE9064 /* libcrypto.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.3.dylib; path = "../../../archive/storage-macos/library/Debug/libcrypto.3.dylib"; sourceTree = "<group>"; };
+		9A63CF3A25296BC600AE9064 /* libssl.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.3.dylib; path = "../../../archive/storage-macos/library/Debug/libssl.3.dylib"; sourceTree = "<group>"; };
 		9A68A3DB2511428E008DABD2 /* acme.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = acme.xcodeproj; path = ../acme/acme.xcodeproj; sourceTree = "<group>"; };
 		9A68A3E72511429E008DABD2 /* apex.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = apex.xcodeproj; path = ../apex/apex.xcodeproj; sourceTree = "<group>"; };
 		9AD199AE251279FC00B4C44A /* idn.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = idn.xcodeproj; path = ../../third/idn/idn.xcodeproj; sourceTree = "<group>"; };
@@ -218,8 +218,8 @@
 		070B8EE11B6E53F900D26137 = {
 			isa = PBXGroup;
 			children = (
-				9A63CF3925296BC600AE9064 /* libcrypto.dylib */,
-				9A63CF3A25296BC600AE9064 /* libssl.dylib */,
+				9A63CF3925296BC600AE9064 /* libcrypto.3.dylib */,
+				9A63CF3A25296BC600AE9064 /* libssl.3.dylib */,
 				9A68A3DB2511428E008DABD2 /* acme.xcodeproj */,
 				9A0C1650264A288800B5CC33 /* acme_posix.xcodeproj */,
 				9A15A5B8264B54730080670E /* acme_apple.xcodeproj */,

@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "base/user/user/_user.h"
 #include "simple_view.h"
+#include "aura/graphics/draw2d/_draw2d.h"
 
 
 namespace user

@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "aura/graphics/draw2d/_draw2d.h"
 
 
 namespace experience
@@ -12,7 +13,7 @@ namespace experience
       frame::frame()
       {
 
-         m_colorActiveCaptionTextBk = 0;
+         m_colorActiveCaptionTextBk = ::color::transparent;
 
          m_rectangleMarginNormal.set(1, 1, 1, 1);
 

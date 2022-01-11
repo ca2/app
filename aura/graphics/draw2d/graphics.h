@@ -1,17 +1,43 @@
 #pragma once
 
 
+#include "aura/platform/draw_context2.h"
+
+
+#include "image_drawer.h"
+
+
+#include "image_source.h"
+
+
+#include "aura/graphics/write_text/_.h"
+
+
+#include "aura/graphics/write_text/drawer.h"
+
+
+#include "region.h"
+
+
+#include "bitmap.h"
+
+
+#include "matrix.h"
+
+
 using hdc = void *;
 
 
 struct NSVGimage;
+class shape_array;
+
 
 namespace draw2d
 {
 
 
    class graphics;
-
+   class palette;
 
    //template < typename GRAPHICS_SOURCE_POINTER >
    //concept graphics_source_pointer = requires(const ::image_drawing & imagedrawing, const ::size_f64 & sizeHint)
@@ -228,9 +254,9 @@ virtual bool fill_contains(const point_f64 & point);
       virtual u32 SetLayout(u32 dwLayout);
 
       // Constructors
-      virtual bool CreateDC(const ::string & pszDriverName, const ::string & pszDeviceName, const ::string & pszOutput, const void * lpInitData);
+      virtual bool create_device_context(const ::string & pszDriverName, const ::string & pszDeviceName, const ::string & pszOutput, const void * lpInitData);
 
-      virtual bool CreateIC(const ::string & pszDriverName, const ::string & pszDeviceName, const ::string & pszOutput, const void * lpInitData);
+      virtual bool create_information_context(const ::string & pszDriverName, const ::string & pszDeviceName, const ::string & pszOutput, const void * lpInitData);
 
       virtual bool create_memory_graphics();
       virtual bool CreateCompatibleDC(::draw2d::graphics * pgraphics);
@@ -782,13 +808,13 @@ virtual bool fill_contains(const point_f64 & point);
       }
 
       virtual bool text_out(double x, double y, const block & str);
-      virtual bool ExtTextOut(double x, double y, ::u32 nOptions, const ::rectangle_f64 & rectangle, const ::string & pszString, strsize nCount, i32 * lpDxWidths);
+      //virtual bool ExtTextOut(double x, double y, ::u32 nOptions, const ::rectangle_f64 & rectangle, const ::string & pszString, strsize nCount, i32 * lpDxWidths);
 
-      virtual bool ExtTextOut(double x, double y, ::u32 nOptions, const ::rectangle_f64 & rectangle, const ::string & str, i32 * lpDxWidths);
+      //virtual bool ExtTextOut(double x, double y, ::u32 nOptions, const ::rectangle_f64 & rectangle, const ::string & str, i32 * lpDxWidths);
 
-      virtual ::size_f64 TabbedTextOut(double x, double y, const ::string & pszString, strsize nCount, count nTabPositions, i32 * lpnTabStopPositions, i32 nTabOrigin);
+      //virtual ::size_f64 TabbedTextOut(double x, double y, const ::string & pszString, strsize nCount, count nTabPositions, i32 * lpnTabStopPositions, i32 nTabOrigin);
 
-      virtual ::size_f64 TabbedTextOut(double x, double y, const ::string & str, count nTabPositions, i32 * pnTabStopPositions, i32 nTabOrigin);
+      //virtual ::size_f64 TabbedTextOut(double x, double y, const ::string & str, count nTabPositions, i32 * pnTabStopPositions, i32 nTabOrigin);
 
 
       ::e_status TextOutRaw(double x, double y, const block & block) override;
@@ -832,24 +858,24 @@ virtual bool fill_contains(const point_f64 & point);
       virtual bool get_text_extent(::size_f64 & size, const char * pszString, strsize nCount);
 
       virtual bool get_text_extent(::size_f64 & size, const ::string & str);
-      virtual ::size_f64 GetOutputTextExtent(const char * pszString, strsize nCount);
+      //virtual ::size_f64 GetOutputTextExtent(const char * pszString, strsize nCount);
 
-      virtual ::size_f64 GetOutputTextExtent(const ::string & str);
-      virtual ::size_f64 GetTabbedTextExtent(const char * pszString, strsize nCount, count nTabPositions, i32 * lpnTabStopPositions);
+      //virtual ::size_f64 GetOutputTextExtent(const ::string & str);
+      //virtual ::size_f64 GetTabbedTextExtent(const char * pszString, strsize nCount, count nTabPositions, i32 * lpnTabStopPositions);
 
-      virtual ::size_f64 GetTabbedTextExtent(const ::string & str, count nTabPositions, i32 * pnTabStopPositions);
+      //virtual ::size_f64 GetTabbedTextExtent(const ::string & str, count nTabPositions, i32 * pnTabStopPositions);
 
-      virtual ::size_f64 GetOutputTabbedTextExtent(const ::string & pszString, strsize nCount, count nTabPositions, i32 * lpnTabStopPositions);
+      //virtual ::size_f64 GetOutputTabbedTextExtent(const ::string & pszString, strsize nCount, count nTabPositions, i32 * lpnTabStopPositions);
 
-      virtual ::size_f64 GetOutputTabbedTextExtent(const ::string & str, count nTabPositions, i32 * pnTabStopPositions);
+      //virtual ::size_f64 GetOutputTabbedTextExtent(const ::string & str, count nTabPositions, i32 * pnTabStopPositions);
 
       //virtual bool GrayString(::draw2d::brush* pBrush, bool (CALLBACK* pfnOutput)(HDC, lparam, i32), lparam lpData, i32 nCount, double x, double y, i32 nWidth, i32 nHeight);
 
       virtual ::u32 GetTextAlign();
       virtual ::u32 SetTextAlign(::u32 nFlags);
-      virtual i32 GetTextFace(count nCount, char * pszFacename);
+      //virtual i32 GetTextFace(count nCount, char * pszFacename);
 
-      virtual i32 GetTextFace(string & rString);
+      //virtual i32 GetTextFace(string & rString);
 
       using ::write_text::drawer::get_text_metrics;
       ::e_status get_text_metrics(::write_text::text_metric * pmetrics) override;
@@ -948,7 +974,7 @@ virtual bool fill_contains(const point_f64 & point);
 
 
       // Escape helpers
-      virtual i32 StartDoc(const ::string & pszDocName);  // old Win3.0 version
+      //virtual i32 StartDoc(const ::string & pszDocName);  // old Win3.0 version
 
 
 //#ifdef WINDOWS_DESKTOP
@@ -1219,4 +1245,3 @@ CLASS_DECL_AURA dump_context & operator<<(dump_context & dumpcontext, const ::po
 //CLASS_DECL_AURA PFN_factory ([a-z0-9_]+)_factory(::factory::factory * pfactory);
 
 //CLASS_DECL_AURA void ([a-z0-9_]+)_factory(PFN_factory pfnfactoryDraw2d);
-

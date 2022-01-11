@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "_data.h"
+#include "acme/filesystem/file/buffered_file.h"
 
 
 #define MAX_STOP (::numeric_info < filesize >::get_maximum_value())

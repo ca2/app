@@ -1,24 +1,8 @@
 #include "framework.h"
 #include "aura/operating_system.h"
 #include "aura/user/_user.h"
-//#ifndef WINDOWS
-//#include "acme/node/operating_system/cross/windows/_windows.h"
-//#endif
-
-
-int_bool delete_hcursor(hcursor hcursor);
-
-
-//hcursor CreateAlphaCursor(oswindow window, const ::image * pimage, int xHotSpot, int yHotSpot);
-
-
-#ifdef MACOS
-
-using hcursor = void *; // NSCursor
-
-void set_cursor_image(void * pimage, int xHotSpot, int yHotSpot);
-
-#endif
+#include "cursor.h"
+#include "image.h"
 
 
 namespace draw2d
@@ -95,7 +79,23 @@ namespace draw2d
    }
 
 
-   ::image_pointer cursor::image_source_image(const concrete < ::size_i32 > & concreteSize) 
+   ::draw2d::graphics *cursor::g() const
+   {
+
+      return m_pimage->g();
+
+   }
+
+
+   ::draw2d::graphics *cursor::g(const ::size_f64 & sizeHint)
+   {
+
+      return m_pimage->g(sizeHint);
+
+   }
+
+
+   ::image_pointer cursor::image_source_image(const concrete < ::size_i32 > & concreteSize)
    {
       
       return m_pimage->get_image(concreteSize); 

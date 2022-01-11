@@ -4,6 +4,7 @@
 #include "app_launcher.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
+#include "acme/filesystem/filesystem/acme_dir.h"
 
 
 namespace apex

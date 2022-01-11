@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "glyph.h"
+
+
 namespace draw2d
 {
 

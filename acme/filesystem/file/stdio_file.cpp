@@ -1,7 +1,8 @@
 #include "framework.h"
 #include "acme/operating_system.h"
 #include <stdio.h>
-
+#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_file.h"
 
 
 stdio_file::stdio_file()

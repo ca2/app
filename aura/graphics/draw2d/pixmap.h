@@ -1,6 +1,12 @@
 #pragma once
 
 
+#include "_image.h"
+
+
+#include "image_header.h"
+
+
 #define __sizeof(TYPE) ((memsize)sizeof(TYPE))
 
 
@@ -107,7 +113,14 @@ struct pixmap
    inline int scan_area() const noexcept { return height() * scan_size(); }
 
 
-   inline ::color::color get_pixel(int x, int y) const;
+   inline ::color::color get_pixel(int x, int y) const
+   {
+
+      return ::draw2d::get_pixel(colorref(), scan_size(), height(), x, y);
+
+   }
+
+
    inline ::color::color get_pixel(const ::point_i32 & point) const { return get_pixel(point.x, point.y); }
 
    inline pixmap & operator =(const pixmap & pixmap);

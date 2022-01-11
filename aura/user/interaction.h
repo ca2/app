@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "apex/message/command.h"
+
+
 namespace user
 {
 
@@ -209,6 +212,15 @@ namespace user
       string                                    m_strStyle;
       property_set                              m_setStyle;
 
+
+      __pointer(shape_array)                    m_pshapeaClip;
+      __pointer(::aura::draw_context)           m_pdrawcontext;
+
+      ::draw2d::path_pointer                    m_pathFocusRect1;
+      ::draw2d::path_pointer                    m_pathFocusRect2;
+      ::draw2d::path_pointer                    m_pathFocusRect3;
+      ::draw2d::path_pointer                    m_pathFocusRect4;
+
       //bool                                    m_bOnSetFinish;
 
       //class draw_select
@@ -311,11 +323,7 @@ namespace user
 
 
 
-      ::draw2d::path_pointer                       m_pathFocusRect1;
-      ::draw2d::path_pointer                       m_pathFocusRect2;
-      ::draw2d::path_pointer                       m_pathFocusRect3;
-      ::draw2d::path_pointer                       m_pathFocusRect4;
-
+      //interaction_draw2d *                         m_pinteractiondraw2d;
 
       /// The menu_item this user_interaction (window)
       /// represents (this window is a button [a menu button],
@@ -335,10 +343,8 @@ namespace user
       // ownership
       __pointer(::user::system)                    m_pusersystem;
       __pointer(::user::interaction_layout)        m_playout;
-      __pointer(shape_array)                       m_pshapeaClip;
       __pointer(drag_move)                         m_pdragmove;
       __pointer(graphics_call_array)               m_pgraphicscalla;
-      __pointer(::aura::draw_context)              m_pdrawcontext;
       __pointer(::user::interaction)               m_puserinteractionCustomWindowProc;
       __pointer(::user::interaction)               m_puiLabel;
       __pointer_array(::item)                m_useritema;
@@ -384,6 +390,8 @@ namespace user
 
       void enable_drag_move();
 
+
+      //virtual interaction_draw2d * get_draw2d();
 
 
       virtual ::windowing::window * window() const;
@@ -539,16 +547,9 @@ namespace user
 
       virtual ::user::style* get_style() const;
 
-      inline ::user::style* get_style(::draw2d::graphics_pointer& pgraphics) const
-      {
+      virtual ::user::style * get_style(::draw2d::graphics_pointer& pgraphics) const;
 
-         return pgraphics ? get_style(pgraphics->m_puserstyle) : get_style();
-
-      }
-
-      
       __pointer(::message::message) get_message(const ::id & id, wparam wparam, lparam lparam) override;
-
 
       inline ::user::style * get_style(::user::style * pstyle) const
       {
@@ -2050,9 +2051,6 @@ namespace user
 
 
    };
-
-
-
 
 
    class control_cmd_ui : public ::message::command

@@ -16,6 +16,12 @@
 #include "acme/filesystem/filesystem/acme_dir.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/parallelization/install_mutex.h"
+#include "acme/primitive/text/context.h"
+#include "apex/message/command.h"
+#include "acme/primitive/geometry2d/geometry.h"
+#include "acme/platform/hyperlink.h"
+//#include "acme/platform/system_impl.h"
+#include "acme/primitive/string/base64.h"
 
 
 //extern ::apex::system* g_papexsystem;
@@ -217,37 +223,8 @@ namespace apex
 
       }
 
-      string_to_string map;
-
-      {
-
-         map["ab"] = "1";
-
-         string str1 = map["ab"];
-
-         auto cstr = str1.c_str();
-
-         INFORMATION(cstr);
-
-      }
-
-      {
-
-         map["abc"] = "2";
-
-         string str2 = map["abc"];
-         
-         INFORMATION(str2);
-
-      }
 
       set_callstack_mask({ get_callstack_mask(), callstack_fork_global});
-
-#ifdef UNIT_TEST
-
-      unit_test_primitive_var_apex_block();
-
-#endif
 
 #if !defined(_UWP) && !defined(ANDROID)
 
@@ -1004,7 +981,7 @@ pacmedir->create("/ca2core");
 
       }
 
-      INFORMATION("apex::session::process_init .3");
+      ///INFORMATION("apex::session::process_init .3");
 
       estatus = m_pfilesystem->init_system();
 
@@ -1049,31 +1026,20 @@ pacmedir->create("/ca2core");
 
       {
 
-         string_array straCmds;
+         string strExecutable = get_executable();
 
-         for (int i = 0; i < m_argc; i++)
+         string_array straArguments;
+
+         for (int i = 0; i < get_argument_count1(); i++)
          {
 
-            if (m_argv && m_argv[i])
-            {
+            string strArgument = get_argument1(i);
 
-               char* thisCmd = m_argv[i];
-
-               straCmds.add(thisCmd);
-
-            }
-            else if (m_wargv && m_wargv[i])
-            {
-
-               wchar_t* thisCmd = m_wargv[i];
-
-               straCmds.add(thisCmd);
-
-            }
+            straArguments.add(strArgument);
 
          }
 
-         string strCmd = straCmds.implode("\n");
+         string strCmd = strExecutable + " " + straArguments.implode("\n");
 
          string strAppId = m_strAppId;
 
@@ -1258,7 +1224,7 @@ pacmedir->create("/ca2core");
 
       //}
 
-      INFORMATION("start");
+      //INFORMATION("start");
 
 //#ifdef WINDOWS_DESKTOP
 //
@@ -1290,7 +1256,7 @@ pacmedir->create("/ca2core");
 //
 //#endif // LINUX
 
-      INFORMATION("success");
+      //INFORMATION("success");
 
 //      return true;
 
@@ -5092,7 +5058,16 @@ namespace apex
    ::e_status system::system_construct(const ::main & main)
    {
 
-      auto estatus = apex_main_data::system_construct(main);
+      auto estatus = ::system::system_construct(main);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = apex_main_data::system_construct(main);
 
       if (!estatus)
       {

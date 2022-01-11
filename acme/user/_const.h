@@ -224,7 +224,8 @@ namespace user
       e_control_type_system_menu_popup,
       e_control_type_system_menu_button,
       e_control_type_system_menu_close,
-      e_control_type_form
+      e_control_type_form,
+      e_control_type_scroll_bar,
 
    };
 

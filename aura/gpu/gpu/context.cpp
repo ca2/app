@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "_.h"
 #include "_gpu.h"
+#include "aura/graphics/draw2d/_draw2d.h"
 
 
 namespace gpu

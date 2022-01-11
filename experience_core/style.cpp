@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "base/user/simple/scroll_bar.h"
 #include "base/user/user/tab_pane.h"
+#include "aura/graphics/draw2d/_draw2d.h"
 
 
 // pgraphics->get_text_extent("->:<-"); // oh no!! omg!! The size_i32 is the size_i32 of the alien!!

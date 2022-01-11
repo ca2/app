@@ -1,5 +1,8 @@
 #include "framework.h"
 #include "core/user/user/_user.h"
+#include "aura/graphics/draw2d/context_image.h"
+#include "aura/graphics/draw2d/_draw2d.h"
+#include "acme/platform/hyperlink.h"
 
 
 const i32 xfplayer_view_line::AlignLeft = 1;
@@ -1380,6 +1383,8 @@ void xfplayer_view_line::embossed_text_out(::draw2d::graphics_pointer & pgraphic
       pgraphics->end_path();
 
       ::draw2d::pen_pointer ppen;
+
+      ppen.create(this);
 
       ppen->create_solid(iWidth * 2, crOutline);
 

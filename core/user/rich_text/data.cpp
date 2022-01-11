@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "core/user/rich_text/_rich_text.h"
+#include "aura/graphics/draw2d/_draw2d.h"
 
 
 namespace user
@@ -1789,10 +1790,12 @@ namespace user
 
             }
 
-            ::image_pointer pimage;
-
             if (m_pedit->m_ppictureimpl != nullptr && m_pedit->m_ppictureimpl->m_bGlowDropShadow)
             {
+
+               ::image_pointer pimage;
+
+               pimage.create(this);
 
                pimage->create(m_pedit->m_ppictureimpl->m_rectangleDrawing.size());
 

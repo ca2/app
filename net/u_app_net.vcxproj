@@ -416,7 +416,7 @@
       </Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>$(__toolsbin)application_build_helper $(ProjectDir)</Command>
+      <Command>%USERPROFILE%/bin/application_build_helper $(ProjectDir)</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">
@@ -448,7 +448,7 @@
       </Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>$(__toolsbin)application_build_helper $(ProjectDir)</Command>
+      <Command>%USERPROFILE%/bin/application_build_helper $(ProjectDir)</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
@@ -478,7 +478,7 @@
       </Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>$(__toolsbin)application_build_helper $(ProjectDir)</Command>
+      <Command>%USERPROFILE%/bin/application_build_helper $(ProjectDir)</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">
@@ -509,7 +509,7 @@
       </Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>$(__toolsbin)application_build_helper $(ProjectDir)</Command>
+      <Command>%USERPROFILE%/bin/application_build_helper $(ProjectDir)</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|arm'">
@@ -563,7 +563,7 @@
       </Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>$(__toolsbin)application_build_helper $(ProjectDir)</Command>
+      <Command>%USERPROFILE%/bin/application_build_helper $(ProjectDir)</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|arm'">
@@ -595,7 +595,7 @@
       </Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>$(__toolsbin)application_build_helper $(ProjectDir)</Command>
+      <Command>%USERPROFILE%/bin/application_build_helper $(ProjectDir)</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM64'">
@@ -627,7 +627,7 @@
       </Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>$(__toolsbin)application_build_helper $(ProjectDir)</Command>
+      <Command>%USERPROFILE%/bin/application_build_helper $(ProjectDir)</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|ARM64'">
@@ -659,7 +659,7 @@
       </Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>$(__toolsbin)application_build_helper $(ProjectDir)</Command>
+      <Command>%USERPROFILE%/bin/application_build_helper $(ProjectDir)</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|arm'">
@@ -688,7 +688,7 @@
       </Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>$(__toolsbin)application_build_helper $(ProjectDir)</Command>
+      <Command>%USERPROFILE%/bin/application_build_helper $(ProjectDir)</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|arm'">
@@ -719,7 +719,7 @@
       </Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>$(__toolsbin)application_build_helper $(ProjectDir)</Command>
+      <Command>%USERPROFILE%/bin/application_build_helper $(ProjectDir)</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM64'">
@@ -748,7 +748,7 @@
       </Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>$(__toolsbin)application_build_helper $(ProjectDir)</Command>
+      <Command>%USERPROFILE%/bin/application_build_helper $(ProjectDir)</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|ARM64'">
@@ -779,7 +779,7 @@
       </Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>$(__toolsbin)application_build_helper $(ProjectDir)</Command>
+      <Command>%USERPROFILE%/bin/application_build_helper $(ProjectDir)</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
@@ -811,7 +811,7 @@
       </Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>$(__toolsbin)application_build_helper $(ProjectDir)</Command>
+      <Command>%USERPROFILE%/bin/application_build_helper $(ProjectDir)</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">
@@ -843,7 +843,7 @@
       </Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>$(__toolsbin)application_build_helper $(ProjectDir)</Command>
+      <Command>%USERPROFILE%/bin/application_build_helper $(ProjectDir)</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
@@ -872,7 +872,7 @@
       </Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>$(__toolsbin)application_build_helper $(ProjectDir)</Command>
+      <Command>%USERPROFILE%/bin/application_build_helper $(ProjectDir)</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">
@@ -903,7 +903,7 @@
       </Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>$(__toolsbin)application_build_helper $(ProjectDir)</Command>
+      <Command>%USERPROFILE%/bin/application_build_helper $(ProjectDir)</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

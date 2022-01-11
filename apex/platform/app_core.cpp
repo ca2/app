@@ -1736,7 +1736,7 @@ __transport(::application) app_core::new_application(const char* pszAppId)
 
       __pointer(::application) papexApplication = pelementApp;
 
-      papp.reset(papexApplication OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
+      papp.reset(papexApplication.m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
 
       if (papp)
       {
@@ -1880,39 +1880,39 @@ __transport(::application) app_core::new_application(const char* pszAppId)
 
 #endif // WINDOWS_DESKTOP
 
-   if (is_verbose())
-   {
-
-      ::output_debug_string("\n\n\n|(3)----");
-      ::output_debug_string("| app : " + strAppId + "\n");
-      ::output_debug_string("|\n");
-      ::output_debug_string("|\n");
-      ::output_debug_string("|----");
-
-   }
-
-   if (is_verbose())
-   {
-
-      ::output_debug_string("\n\n\n|(2)----");
-      ::output_debug_string("| app : " + strAppId + "\n");
-      ::output_debug_string("|\n");
-      ::output_debug_string("|\n");
-      ::output_debug_string("|----");
-
-   }
-
-
-   if (is_verbose())
-   {
-
-      ::output_debug_string("\n\n\n|(1)----");
-      ::output_debug_string("| app : " + strAppId + "\n");
-      ::output_debug_string("|\n");
-      ::output_debug_string("|\n");
-      ::output_debug_string("|----");
-
-   }
+//   if (is_verbose())
+//   {
+//
+//      ::output_debug_string("\n\n\n|(3)----");
+//      ::output_debug_string("| app : " + strAppId + "\n");
+//      ::output_debug_string("|\n");
+//      ::output_debug_string("|\n");
+//      ::output_debug_string("|----");
+//
+//   }
+//
+//   if (is_verbose())
+//   {
+//
+//      ::output_debug_string("\n\n\n|(2)----");
+//      ::output_debug_string("| app : " + strAppId + "\n");
+//      ::output_debug_string("|\n");
+//      ::output_debug_string("|\n");
+//      ::output_debug_string("|----");
+//
+//   }
+//
+//
+//   if (is_verbose())
+//   {
+//
+//      ::output_debug_string("\n\n\n|(1)----");
+//      ::output_debug_string("| app : " + strAppId + "\n");
+//      ::output_debug_string("|\n");
+//      ::output_debug_string("|\n");
+//      ::output_debug_string("|----");
+//
+//   }
 
    papp->m_strAppId = strAppId;
 

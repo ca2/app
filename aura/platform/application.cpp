@@ -6,8 +6,10 @@
 #include "acme/primitive/text/context.h"
 //#include "apex/compress/zip/context.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/platform/node.h"
-
+#include "aura/graphics/draw2d/_draw2d.h"
+#include "acme/primitive/string/base64.h"
 
 extern ::app_core * g_pappcore;
 
@@ -399,6 +401,15 @@ namespace aura
    {
 
       auto psystem = m_psystem->m_papexsystem;
+
+      if (psystem->payload("exit_on_application_call_request").is_true())
+      {
+
+         exit(0);
+
+         return;
+
+      }
 
       auto purl = psystem->url();
 
@@ -1818,15 +1829,15 @@ retry_license:
       else
       {
 
-#ifdef WINDOWS_DESKTOP
+// #ifdef WINDOWS_DESKTOP
 
-         auto psystem = get_system()->m_paurasystem;
+//          auto psystem = get_system()->m_paurasystem;
 
-         string strModuleName = psystem->file().module();
+//          string strModuleName = psystem->file().module();
 
-         m_psystem->m_pnode->install_crash_dump_reporting(strModuleName);
+//          m_psystem->m_pnode->install_crash_dump_reporting(strModuleName);
 
-#endif
+// #endif
 
       }
       return true;

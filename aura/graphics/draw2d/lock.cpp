@@ -1,7 +1,7 @@
 // Extracted from device_lock, Changed and Organized by camilo on 2021-09-04 05:46 BRT <3ThomasBS__!!
 #include "framework.h"
 #include "aura/operating_system.h"
-
+#include "lock.h"
 
 
 namespace draw2d

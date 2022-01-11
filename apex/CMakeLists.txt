@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.17)
+cmake_minimum_required(VERSION 3.16)
 project(apex CXX)
 
 
@@ -1380,7 +1380,7 @@ else ()
 endif ()
 
 
-add_library(apex SHARED ${apex_source})
+add_library(apex SHARED ${apex_source} filesystem/filesystem/file_listener.h)
 
 target_precompile_headers(apex PRIVATE framework.h)
 
@@ -1408,9 +1408,12 @@ endif ()
 
 
 target_include_directories(apex PRIVATE .)
-target_include_directories(apex PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
-target_include_directories(apex PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
-target_include_directories(apex PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
+
+
+target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
 target_compile_definitions(apex PRIVATE _APEX_LIBRARY)

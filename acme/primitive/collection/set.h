@@ -417,7 +417,7 @@ public:
    association * find_association(ARG_KEY key) const;
 
    //add a new (key) association
-   association * set_at(ARG_KEY key);
+   inline association * set_at(ARG_KEY key);
 
    //add a new (key, value) association
    virtual void set_payload(const PAYLOAD& payload)

@@ -72,18 +72,6 @@ public:
 
 
 
-   template < typename T >
-   __pointer(T) move()
-   {
-
-      auto p = ___pointer < T > ( e_move_transfer, (::element*)m_lparam );
-
-      m_lparam = 0;
-
-      return p;
-
-   }
-
 
    template < typename T >
    T raw_cast() const
@@ -135,11 +123,11 @@ public:
 
 
 template < class T >
-   inline bool operator ==(lparam l, const ___pointer < T > & pointer) { return ((T *) l) == pointer.m_p; }
+   inline bool operator ==(lparam l, const ___pointer < T > & pointer) { return ((::element *) l.m_lparam) == pointer.m_pelement; }
 
 
 template < class T >
-   inline bool operator !=(lparam l, const ___pointer < T > & pointer) { return ((T *) l) != pointer.m_p; }
+   inline bool operator !=(lparam l, const ___pointer < T > & pointer) { return ((::element *) l.m_lparam) != pointer.m_pelement; }
 
 
 

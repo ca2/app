@@ -4,11 +4,8 @@
 #include "aura/update.h"
 #include "aqua/xml.h"
 #include "acme/id.h"
-
-
-//#ifdef WINDOWS_DESKTOP
-//#include <dde.h>
-//#endif
+#include "acme/parallelization/pool.h"
+#include "aura/graphics/draw2d/_draw2d.h"
 
 
 #define TEST 0

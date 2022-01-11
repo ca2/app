@@ -1,6 +1,16 @@
 #pragma once
 
 
+namespace write_text
+{
+
+   class text_out_array;
+
+}
+
+
+
+
 namespace user
 {
 
@@ -36,7 +46,7 @@ namespace user
       index                               m_iClick;
       enum_stock_icon                     m_estockicon;
 
-      ::write_text::text_out_array        m_textouta;
+      ::write_text::text_out_array *      m_ptextouta;
 
       ::rectangle_i32                     m_rectangleCheckBox;
       string                              m_strLink;

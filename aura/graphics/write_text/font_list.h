@@ -1,9 +1,14 @@
 #pragma once
 
 
+#include "font_enumeration.h"
+
+
+#include "font_list_data.h"
+
+
 namespace write_text
 {
-
 
 
 

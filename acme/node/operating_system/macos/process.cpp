@@ -7,6 +7,7 @@
 //
 #include "framework.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_file.h"
 
 #include <stdio.h>
 #include <signal.h>

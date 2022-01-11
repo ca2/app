@@ -2,6 +2,7 @@
 #include "aura/operating_system.h"
 #include "base/user/user/_user.h"
 #include "aura/node/operating_system/_user.h"
+#include "aura/graphics/draw2d/_draw2d.h"
 
 
 #define WM_SETMESSAGESTRING 0x0362  // wParam = nIDS (or 0),

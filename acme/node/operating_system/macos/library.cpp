@@ -7,7 +7,14 @@
 #elif !defined(_OS_WINDOWS_)
 #include <link.h>
 #endif
+
+
 string apple_app_module_folder();
+
+
+void * __node_library_open(const char * pszPath, string & strMessage);
+
+
 void * __node_library_touch(const char * pszPath, string & strMessage)
 {
 

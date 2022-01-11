@@ -186,12 +186,12 @@ namespace apex
    }
 
 
-   ::e_status node::thread_finalize(::thread * pthread)
-   {
+   //::e_status node::thread_finalize(::thread * pthread)
+   //{
 
-      return ::success;
+   //   return ::success;
 
-   }
+   //}
 
 
    // ::e_status node::node_thread_initialize(::thread * pthread)

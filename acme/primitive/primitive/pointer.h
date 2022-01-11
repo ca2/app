@@ -23,15 +23,16 @@ public:
 
    using RAW_POINTER = TYPE *;
 
-   T * m_p;
+   T *            m_p;
+   ::element *    m_pelement;
 
 
    inline ___pointer();
    inline ___pointer(std::nullptr_t);
-   //inline explicit ___pointer(const lparam & lparam);
+   inline ___pointer(lparam& lparam);
 
-   inline ___pointer(const ___pointer & t);
-   inline ___pointer(___pointer && t);
+   ___pointer(const ___pointer & t);
+   ___pointer(___pointer && t);
    //inline ___pointer(const ::trait & trait);
 
 
@@ -41,30 +42,30 @@ public:
 
    //}
 
-
-   inline ___pointer(enum_create_new, ::object * pobject) :
-      m_p(new T)
+   template < typename OBJECT >
+   inline ___pointer(enum_create_new, OBJECT * pobject) :
+      m_p(new T),
+      m_pelement(m_p)
    {
 
       m_p->initialize(pobject);
 
    }
 
-   //template < TEMPLATE_TYPE >
-   //inline ___pointer(enum_create, TEMPLATE_ARG) :
-   //   m_p(nullptr)
-   //{
-
-   //   create();
-
-   //}
-
-   inline ___pointer(enum_create, ::object * p);
-
-   inline ___pointer(enum_move_transfer, T * p) : m_p(p) {}
 
    template < typename OBJECT >
-   inline ___pointer(enum_move_transfer, OBJECT * p);
+   inline ___pointer(enum_create, OBJECT * pobject) :
+      m_p(nullptr),
+      m_pelement(nullptr)
+   {
+
+      create(pobject);
+
+   }
+
+
+   template < typename T2 >
+   inline ___pointer(enum_move_transfer, T2* p);
 
    template < class T2 >
    inline ___pointer(const T2 * p)
@@ -75,16 +76,26 @@ public:
 
          m_p = nullptr;
 
+         m_pelement = nullptr;
+
          return;
 
       }
 
       m_p = dynamic_cast <T *> ((T2 *)p);
 
-      if (m_p)
+      if (::is_set(m_p))
       {
 
          ::increment_reference_count(m_p);
+
+         m_pelement = m_p;
+
+      }
+      else
+      {
+
+         m_pelement = nullptr;
 
       }
 
@@ -100,6 +111,8 @@ public:
 
          m_p = nullptr;
 
+         m_pelement = nullptr;
+
          return;
 
       }
@@ -110,6 +123,8 @@ public:
       {
 
          ::increment_reference_count(m_p);
+
+         m_pelement = m_p;
 
       }
 
@@ -131,21 +146,25 @@ public:
 
    }
 
+   //template < typename T2 >
+   //inline ___pointer(const T2 * p);
 
-   inline ___pointer(const T * p);
-
-   inline ___pointer(const void * p) : ___pointer(e_move_transfer, (T *)p) {}
+   //inline ___pointer(const void * p) : ___pointer(e_move_transfer, (T *)p) {}
 
    template < class T2 >
-   inline ___pointer(const ___pointer < T2 > & t2) :
-      m_p(nullptr)
+   inline ___pointer(const ___pointer < T2 >& t2)
    {
 
-      auto p2 = (T2 *) t2.m_p;
+      m_p = dynamic_cast <T*>(t2.m_p);
 
-      auto p = dynamic_cast <T *>(p2);
+      m_pelement = m_p;
 
-      operator = (p);
+      if (::is_set(m_p))
+      {
+
+         m_p->increment_reference_count();
+
+      }
 
    }
 
@@ -157,12 +176,16 @@ public:
       if (::is_set(t.m_p))
       {
 
-         m_p = dynamic_cast <T *>(t.m_p);
+         __dynamic_cast(m_p, t.m_p);
+
+         m_pelement = t.m_pelement;
 
          if (::is_set(m_p))
          {
 
             t.m_p = nullptr;
+
+            t.m_pelement = nullptr;
 
          }
 
@@ -171,6 +194,8 @@ public:
       {
 
          m_p = nullptr;
+
+         m_pelement = nullptr;
 
       }
 
@@ -201,28 +226,36 @@ public:
    inline bool is_null() const;
    inline bool is_set() const;
 
-   inline ___pointer & operator = (const ___pointer & t);
-   inline ___pointer & operator = (___pointer && t);
+   ___pointer & operator = (const ___pointer & t);
+   ___pointer & operator = (___pointer && t);
 
    template < typename VAR >
    inline ___pointer & operator = (const payload_type < VAR > & payload);
 
 
+   //inline ___pointer& operator = (T * p)
+   //{
+
+   //   return reset((T *) p);
+
+   //}
+
+
    template < class T2 >
-   inline ___pointer & operator = (const T2 * p)
+   inline ___pointer & operator = (T2 * p)
    {
 
-      return operator = (dynamic_cast <T *> ((T2 *) p));
+      return reset(p);
 
    }
 
+   //template < typename T2 >
+   //inline ___pointer & operator = (const T2 * p)
+   //{
 
-   inline ___pointer & operator = (const T * p)
-   {
+   //   return reset((T *) p);
 
-      return reset((T *) p);
-
-   }
+   //}
 
 
    template < class T2 >
@@ -246,7 +279,7 @@ public:
    inline ___pointer & operator = (const ___pointer < T2 > & t)
    {
 
-      return operator = (dynamic_cast <T *> (t.m_p));
+      return operator = (t.m_p);
 
    }
 
@@ -262,10 +295,14 @@ public:
 
          m_p = dynamic_cast <T *>(t.m_p);
 
+         m_pelement = t.m_pelement;
+
          if (::is_set(m_p))
          {
 
             t.m_p = nullptr;
+
+            t.m_pelement = nullptr;
 
          }
 
@@ -274,6 +311,8 @@ public:
       {
 
          m_p = nullptr;
+
+         m_pelement = nullptr;
 
       }
 
@@ -362,6 +401,8 @@ public:
 
       m_p = new TYPE(*pobject);
 
+      m_pelement = m_p;
+
       pcontainer->erase(pOld);
 
       pcontainer->add(m_p);
@@ -383,8 +424,8 @@ public:
 
    }
 
-
-   inline ___pointer & reset(T * ptr OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   template < typename T2 >
+   inline ___pointer & reset(T2 * ptr OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
    inline bool operator ==(std::nullptr_t) const { return is_null(); }
 
@@ -408,11 +449,11 @@ public:
    //template < typename TYPE = T >
    //inline __pointer(T) & create_new();
 
-   template < typename TYPE = T >
-   inline __pointer(T) & defer_create_new(::object * pobject);
+   template < typename OBJECT >
+   inline __pointer(T) & defer_create_new(OBJECT * pobject);
 
-   template < typename TYPE = T >
-   inline __pointer(T) & create_new(::object * pobject);
+   template < typename OBJECT >
+   inline __pointer(T) & create_new(OBJECT * pobject);
 
    //template < TEMPLATE_TYPE >
    //inline __pointer(T) & defer_create(TEMPLATE_ARG);
@@ -420,16 +461,17 @@ public:
    //template < TEMPLATE_TYPE >
    //inline __pointer(T) & create(TEMPLATE_ARG);
 
-   template < typename TYPE = T >
-   inline __pointer(T) & defer_create(::object * pobject);
+   template < typename OBJECT >
+   inline __pointer(T) & defer_create(OBJECT * pobject);
 
-   template < typename TYPE = T >
-   inline __pointer(T) & create(::object * pobject);
+   template < typename OBJECT >
+   inline __pointer(T) & create(OBJECT * pobject);
 
-   template < typename TYPE = T >
-   inline __pointer(T) & create(::object * pobject, bool bCreate);
+   template < typename OBJECT >
+   inline __pointer(T) & create(OBJECT * pobject, bool bCreate);
 
-   inline __pointer(T) & clone(::matter * pobject);
+   template < typename T2 >
+   inline __pointer(T) & clone(T2 * p);
 
 
 
@@ -536,7 +578,7 @@ inline bool __not_found(const __pointer(T) & p) { return p.is_null(); }
 
 
 template < typename T >
-inline __pointer(T) __move_transfer(T * p) { return ::___pointer < T >(e_move_transfer, p); }
+inline __pointer(T) __move_transfer(T* p) { return { e_move_transfer, p }; }
 
 
 template < typename TYPE >
@@ -599,8 +641,8 @@ inline __pointer(TYPE) & defer_clone(__pointer(TYPE) & p)
 
 
 
-template < class T >
-inline ___pointer < T > & __move(___pointer < T > & p, ::lparam & lparam);
+//template < class T >
+//inline ___pointer < T > & __move(___pointer < T > & p, ::lparam & lparam);
 
 
 

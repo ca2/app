@@ -6,6 +6,7 @@
 #include "acme/filesystem/filesystem/acme_dir.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
+#include "acme/primitive/string/base64.h"
 
 
 #ifdef WINDOWS_DESKTOP
@@ -3033,7 +3034,7 @@ file_transport file_context::get_file(const ::payload &payloadFile, const ::file
       if (path.is_empty())
       {
 
-         INFORMATION("::file::file_context::get_file file with empty name!!");
+         //INFORMATION("::file::file_context::get_file file with empty name!!");
 
          return ::error_file_not_found;
 

@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "glyph.h"
 
 
 namespace draw2d

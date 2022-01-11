@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "aura/platform/draw_context2.h"
+
+
 namespace user
 {
 

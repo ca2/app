@@ -14,11 +14,12 @@
 #include "acme/filesystem/filesystem/acme_path.h"
 #include "acme/platform/node.h"
 #include "acme/parallelization/install_mutex.h"
-
+#include "acme/primitive/text/context.h"
 
 //#include "apex/node/_node.h"
 #include "node.h"
 //#include "apex/os/_os.h"
+#include "application_impl.h"
 
 
 
@@ -119,105 +120,118 @@ application::application()
    ::object::m_pcontext = this;
    m_pcontext = this;
 
-//set_layer(LAYERED_APEX, this);
+   //set_layer(LAYERED_APEX, this);
 
 
-#ifdef LINUX
-m_bSnLauncheeSetup = false;
-#endif
+   #ifdef LINUX
+   m_bSnLauncheeSetup = false;
+   #endif
 
-//m_pappParent = nullptr;
-m_bMessageThread = true;
-m_bSimpleMessageLoop = false;
-m_ethreadcontextClose = e_thread_context_none;
+   //m_pappParent = nullptr;
+   m_bMessageThread = true;
+   m_bSimpleMessageLoop = false;
+   m_ethreadcontextClose = e_thread_context_none;
 
-//m_puiMainContainer = nullptr;
+   //m_puiMainContainer = nullptr;
 
-m_bRequiresInstallation = false;
-m_bReadStringTable = true;
+   m_bRequiresInstallation = false;
+   m_bReadStringTable = true;
 
-//m_puiCurrent = nullptr;
+   //m_puiCurrent = nullptr;
 
-//m_bInitializeDataCentral = true;
+   //m_bInitializeDataCentral = true;
 
-m_bInitializeDataCentral = false;
+   m_bInitializeDataCentral = false;
 
-m_bContextTheme = false;
+   m_bContextTheme = false;
 
-m_bAttendedFirstRequest = false;
+   m_bAttendedFirstRequest = false;
 
-m_strLocale = "_std";
-m_strSchema = "_std";
-
-
-// default value for acid apps
-// (but any acid app can have installer, just machine this flag to true in the derived application class constructor).
-m_bAppHasInstallerProtected = true;
-m_bAppHasInstallerChangedProtected = false;
-
-m_strHttpUserAgentToken = "ca2";
-m_strHttpUserAgentVersion = "1.0";
-
-//m_http.set_app(this);
-
-m_eexclusiveinstance = ExclusiveInstanceNone;
-
-//m_pevAppBeg = nullptr;
-//m_pevAppEnd = nullptr;
-
-//m_bAgreeExit = true;
-//m_bAgreeExitOk = true;
-//m_bFranceExit = true;
-
-m_bLicense = false;
-
-m_bInterprocessIntercommunication = false;
-
-//m_pimaging = nullptr;
+   m_strLocale = "_std";
+   m_strSchema = "_std";
 
 
-//m_phandler = __new(::handler(this));
+   // default value for acid apps
+   // (but any acid app can have installer, just machine this flag to true in the derived application class constructor).
+   m_bAppHasInstallerProtected = true;
+   m_bAppHasInstallerChangedProtected = false;
+
+   m_strHttpUserAgentToken = "ca2";
+   m_strHttpUserAgentVersion = "1.0";
+
+   //m_http.set_app(this);
+
+   m_eexclusiveinstance = ExclusiveInstanceNone;
+
+   //m_pevAppBeg = nullptr;
+   //m_pevAppEnd = nullptr;
+
+   //m_bAgreeExit = true;
+   //m_bAgreeExitOk = true;
+   //m_bFranceExit = true;
+
+   m_bLicense = false;
+
+   m_bInterprocessIntercommunication = false;
+
+   //m_pimaging = nullptr;
 
 
-//m_bAuraProcessInitialize = false;
-//m_bAuraProcessInitializeResult = false;
+   //m_phandler = __new(::handler(this));
 
-//m_bAuraInitialize1 = false;
-//m_bAuraInitialize1Result = false;
 
-//m_bAuraInitialize = false;
-//m_bAuraInitializeResult = false;
+   //m_bAuraProcessInitialize = false;
+   //m_bAuraProcessInitializeResult = false;
 
-//m_bAuraInitializeInstance = false;
-//m_bAuraInitializeInstanceResult = false;
+   //m_bAuraInitialize1 = false;
+   //m_bAuraInitialize1Result = false;
 
-//add_factory_item < ::user::user >();
-//add_factory_item < ::userfs::userfs >();
+   //m_bAuraInitialize = false;
+   //m_bAuraInitializeResult = false;
 
-//m_pmainpane = nullptr;
+   //m_bAuraInitializeInstance = false;
+   //m_bAuraInitializeInstanceResult = false;
 
-//m_ppaneviewMain = nullptr;
+   //add_factory_item < ::user::user >();
+   //add_factory_item < ::userfs::userfs >();
 
-// almost always forgotten, assumed, as exception, responsability of application to add first ref on constructor.
-//::increment_reference_count(this);
+   //m_pmainpane = nullptr;
 
-srand((u32) get_integral_nanosecond().m_i);
+   //m_ppaneviewMain = nullptr;
 
-m_bService = false;
+   // almost always forgotten, assumed, as exception, responsability of application to add first ref on constructor.
+   //::increment_reference_count(this);
 
-m_iResourceId = 8001;
+   srand((u32) get_integral_nanosecond().m_i);
 
-::acme::profiler::initialize();
+   m_bService = false;
 
-//m_pdocmanager = nullptr;
+   m_iResourceId = 8001;
 
-m_eexclusiveinstance = ExclusiveInstanceNone;
-m_strLocale = "_std";
-m_strSchema = "_std";
+   ::acme::profiler::initialize();
 
-//m_durationGcomBackgroundUpdate = 30_s;
+   //m_pdocmanager = nullptr;
+
+   m_eexclusiveinstance = ExclusiveInstanceNone;
+   m_strLocale = "_std";
+   m_strSchema = "_std";
+
+   //m_durationGcomBackgroundUpdate = 30_s;
+
+   m_papplicationimpl = new application_impl;
+
 
 }
+
+
+
+application::~application()
+{
+
+   acme::del(m_papplicationimpl);
+
+}
+
 
 
 ::e_status application::initialize(::object * pobject)
@@ -232,6 +246,7 @@ return estatus;
 
 }
 
+m_papplicationimpl->initialize(this);
 ///initialize(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
 
 //set_context_app(this);
@@ -266,11 +281,6 @@ return estatus;
 
 }
 
-
-application::~application()
-{
-
-}
 
 
 
@@ -2542,11 +2552,11 @@ return estatus;
 else
 {
 
-#ifdef WINDOWS_DESKTOP
+// #ifdef WINDOWS_DESKTOP
 
-m_psystem->m_pnode->install_crash_dump_reporting(m_pcontext->m_papexcontext->file().module().name());
+// m_psystem->m_pnode->install_crash_dump_reporting(m_pcontext->m_papexcontext->file().module().name());
 
-#endif
+// #endif
 
 }
 
@@ -3518,7 +3528,7 @@ void application::term_application()
 }
 
 
-__pointer(::acme::exclusive) application::get_exclusive(string strId ARG_SEC_ATTRS)
+__pointer(::acme::exclusive) application_impl::get_exclusive(string strId ARG_SEC_ATTRS)
 {
 
    auto & pexclusive = m_mapExclusive[strId];
@@ -3540,7 +3550,7 @@ __pointer(::acme::exclusive) application::get_exclusive(string strId ARG_SEC_ATT
 bool application::exclusive_fails(string strId ARG_SEC_ATTRS)
 {
 
-   auto pexclusive = get_exclusive(strId ADD_PARAM_SEC_ATTRS);
+   auto pexclusive = m_papplicationimpl->get_exclusive(strId ADD_PARAM_SEC_ATTRS);
 
    if(!pexclusive)
    {
@@ -3707,9 +3717,9 @@ return true;
 bool application::release_exclusive()
 {
 
-m_mapExclusive.erase_all();
+   m_papplicationimpl->m_mapExclusive.erase_all();
 
-return true;
+   return true;
 
 }
 

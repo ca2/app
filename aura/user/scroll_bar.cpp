@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "aura/user/_user.h"
-
+#include "aura/platform/draw_context2.h"
+#include "aura/graphics/draw2d/graphics.h"
 
 namespace user
 {
@@ -16,6 +17,8 @@ namespace user
       m_scrollinfo.nMax    = 100;
       m_scrollinfo.nPage   = 10;
       m_scrollinfo.nPos    = 0;
+
+      m_econtroltype = e_control_type_scroll_bar;
 
    }
 
@@ -208,9 +211,6 @@ namespace user
       try
       {
          
-         //return;
-         
-         
          ::rectangle_i32 rectangleClip;
 
          ::aura::draw_context * pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
@@ -277,15 +277,7 @@ namespace user
    }
 
 
-
-
 } // namespace user
-
-
-
-
-
-
 
 
 

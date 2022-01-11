@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "object.h"
+
+
 namespace draw2d
 {
 

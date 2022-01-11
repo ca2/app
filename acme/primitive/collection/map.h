@@ -261,7 +261,17 @@ public:
    association * find_association(ARG_KEY key) const;
 
    //add a new (key, value) association
-   association * set_at(ARG_KEY key, ARG_VALUE newValue);
+   association * set_at(ARG_KEY key, ARG_VALUE newValue)
+   {
+
+      association* passociation = get_association(key);
+
+      passociation->element2() = newValue;
+
+      return passociation;
+
+   }
+
 
    //add a new (key, value) association
    virtual void set_payload(const PAIR & pair) override
@@ -299,8 +309,8 @@ public:
    //iterating all (key, value) pairs
 //   POSITION get_start_position() const;
 
-   const association * get_start() const;
-   association * get_start();
+   inline const association * get_start() const;
+   inline association * get_start();
 
    void get_next(association * & rNextPosition, KEY& rKey, VALUE& rValue) const;
 
@@ -553,17 +563,8 @@ inline bool map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::empty() const
 }
 
 
-template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
-inline typename map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::association * map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::set_at(ARG_KEY key,ARG_VALUE newValue)
-{
-
-   association * passociation = get_association(key);
-
-   passociation->element2() = newValue;
-
-   return passociation;
-
-}
+//template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
+//typename map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::association * map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::set_at(ARG_KEY key,ARG_VALUE newValue)
 
 
 //template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
@@ -573,7 +574,7 @@ inline typename map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::association * map 
 //}
 
 template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
-const typename map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::association* map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::get_start() const
+inline const typename map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::association* map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::get_start() const
 {
 
    return this->m_passociationHead;

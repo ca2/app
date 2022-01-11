@@ -10,6 +10,9 @@
 #endif
 #endif
 #include "acme/constant/timer.h"
+#include "acme/primitive/string/base64.h"
+#include "aura/graphics/draw2d/_draw2d.h"
+#include "acme/platform/timer.h"
 //#include "_tree.h"
 
 //extern CLASS_DECL_AURA thread_int_ptr < DWORD_PTR > t_time1;

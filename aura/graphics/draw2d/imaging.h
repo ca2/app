@@ -12,6 +12,9 @@
 class image_list;
 
 
+#include "image_array.h"
+
+
 class CLASS_DECL_AURA imaging :
    virtual public ::acme::department
 {

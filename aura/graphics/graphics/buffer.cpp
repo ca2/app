@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "aura/user/_user.h"
-#include "aura/graphics/graphics/buffer.h"
+#include "_.h"
+#include "_graphics.h"
 
 
 namespace graphics
@@ -70,6 +71,13 @@ namespace graphics
 
    }
 
+
+   ::size_i32 buffer::buffer_size()
+   {
+
+      return m_pimageBuffer->get_size();
+
+   }
 
 
    bool buffer::update_buffer(const ::size_i32 & size, int iScan)

@@ -1,6 +1,8 @@
 #pragma once
 
 
+#include "image_header.h"
+
 
 class image_map :
    virtual public map < enum_image, ::image_pointer >
@@ -43,71 +45,10 @@ public:
    }
 
 
-   inline ::image * operator[](const image_header & key)
-   {
-
-      while (get_count() > m_iLimitCount)
-      {
-
-         erase_bigger();
-
-      }
-
-      auto & pimage = image_descriptor_map_base::operator [](key);
-
-      if (pimage->is_null())
-      {
-
-         m_psystem->__construct(pimage);
-         
-         pimage->create(key.m_size);
-
-      }
-
-      return pimage;
-
-   }
+   ::image * operator[](const image_header & key);
 
 
-   void erase_bigger()
-   {
-
-      image_header keyFind;
-
-      u64 uAreaMax = 0;
-
-      auto passociation = get_start();
-
-      while (passociation != nullptr)
-      {
-
-         if (!passociation->element2()->is_shared() && passociation->element2()->area() > uAreaMax)
-         {
-
-            uAreaMax = passociation->element2()->area();
-
-            keyFind = passociation->element1();
-
-         }
-
-         passociation = passociation->m_pnext;
-
-      }
-
-      if (uAreaMax > 0)
-      {
-
-         erase_key(keyFind);
-
-      }
-      else
-      {
-
-         erase_key(get_start()->element1());
-
-      }
-
-   }
+   void erase_bigger();
 
 };
 

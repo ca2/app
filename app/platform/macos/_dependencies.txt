@@ -1,0 +1,3 @@
+platform-apple/draw2d_quartz2d
+platform-macos/node_macos
+app/crypto_openssl

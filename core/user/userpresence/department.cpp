@@ -1,5 +1,7 @@
 #include "framework.h"
 #include "_.h"
+#include "aura/graphics/draw2d/_draw2d.h"
+#include "acme/platform/timer.h"
 
 
 void debug_pointer_defer_new()

@@ -4,6 +4,8 @@
 #include "acme/constant/timer.h"
 #include "aqua/xml.h"
 #include "tab_pane.h"
+#include "aura/graphics/draw2d/_draw2d.h"
+#include "acme/platform/timer.h"
 
 
 //extern CLASS_DECL_BASE thread_int_ptr < DWORD_PTR > t_time1;

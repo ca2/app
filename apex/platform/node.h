@@ -81,7 +81,7 @@ namespace apex
       //virtual ::e_status parallelization_finalize();
 
       virtual ::e_status thread_initialize(::thread* pthread);
-      virtual ::e_status thread_finalize(::thread* pthread);
+      //virtual ::e_status thread_finalize(::thread* pthread);
 
       // virtual ::e_status node_thread_initialize(::thread* pthread);
       // virtual ::e_status node_thread_finalize(::thread* pthread);

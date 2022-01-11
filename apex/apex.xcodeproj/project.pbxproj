@@ -654,6 +654,7 @@
 		9A81ECAF274EDFCA003F38EC /* api_client.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81ECA8274EDFCA003F38EC /* api_client.h */; };
 		9A81ECB0274EDFCA003F38EC /* api.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81ECA9274EDFCA003F38EC /* api.h */; };
 		9A81ECB1274EDFCA003F38EC /* api.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81ECA9274EDFCA003F38EC /* api.h */; };
+		9AA7A877277A064C0003A012 /* _c.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AA7A875277A06420003A012 /* _c.h */; };
 		9AAE6EAA251921CF00F10692 /* interprocess_call.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAE6EA2251921CC00F10692 /* interprocess_call.h */; };
 		9AAE6EAB251921CF00F10692 /* interprocess_communication.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AAE6EA3251921CC00F10692 /* interprocess_communication.cpp */; };
 		9AAE6EAC251921CF00F10692 /* interprocess_intercommunication.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAE6EA4251921CC00F10692 /* interprocess_intercommunication.h */; };
@@ -1247,7 +1248,6 @@
 		9A239EC226CDFC3400F98012 /* _application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _application.h; sourceTree = "<group>"; };
 		9A239EC326CDFC3400F98012 /* cross.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cross.h; sourceTree = "<group>"; };
 		9A239EC426CDFC3400F98012 /* text.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = text.h; sourceTree = "<group>"; };
-		9A239EC526CDFC3400F98012 /* aaa_winpr_keycode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_winpr_keycode.cpp; sourceTree = "<group>"; };
 		9A239EC626CDFC3400F98012 /* file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file.h; sourceTree = "<group>"; };
 		9A239EC826CDFC3400F98012 /* aaa_file_raw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_file_raw.cpp; sourceTree = "<group>"; };
 		9A239EC926CDFC3400F98012 /* aaa_file_c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aaa_file_c.h; sourceTree = "<group>"; };
@@ -1275,7 +1275,6 @@
 		9A239EE026CDFC3400F98012 /* cross.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cross.h; sourceTree = "<group>"; };
 		9A239F0B26CDFC3400F98012 /* windows_thread_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = windows_thread_impl.h; sourceTree = "<group>"; };
 		9A239F0C26CDFC3400F98012 /* windows_thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = windows_thread.h; sourceTree = "<group>"; };
-		9A239F1026CDFC3400F98012 /* aaa_argcargv.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_argcargv.cpp; sourceTree = "<group>"; };
 		9A239F1126CDFC3400F98012 /* _application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _application.cpp; sourceTree = "<group>"; };
 		9A239F1226CDFC3400F98012 /* _operating_system.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _operating_system.h; sourceTree = "<group>"; };
 		9A239F1326CDFC3400F98012 /* operating_system.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = operating_system.h; sourceTree = "<group>"; };
@@ -1502,7 +1501,6 @@
 		9A23A02226CDFC3500F98012 /* solaris_win_base.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = solaris_win_base.cpp; sourceTree = "<group>"; };
 		9A23A02326CDFC3500F98012 /* solaris_cross_win_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = solaris_cross_win_file.cpp; sourceTree = "<group>"; };
 		9A23A02426CDFC3500F98012 /* solaris_http_lib.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = solaris_http_lib.cpp; sourceTree = "<group>"; };
-		9A23A02526CDFC3500F98012 /* aaa_winpr_scancode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_winpr_scancode.cpp; sourceTree = "<group>"; };
 		9A23A02726CDFC3500F98012 /* simple_shell_launcher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = simple_shell_launcher.cpp; sourceTree = "<group>"; };
 		9A23A02826CDFC3500F98012 /* apex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = apex.cpp; sourceTree = "<group>"; };
 		9A23A02926CDFC3500F98012 /* application_system_run.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = application_system_run.cpp; sourceTree = "<group>"; };
@@ -1901,6 +1899,7 @@
 		9A81ECA7274EDFCA003F38EC /* api_client.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = api_client.cpp; sourceTree = "<group>"; };
 		9A81ECA8274EDFCA003F38EC /* api_client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = api_client.h; sourceTree = "<group>"; };
 		9A81ECA9274EDFCA003F38EC /* api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = api.h; sourceTree = "<group>"; };
+		9AA7A875277A06420003A012 /* _c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _c.h; sourceTree = "<group>"; };
 		9AAE6EA2251921CC00F10692 /* interprocess_call.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = interprocess_call.h; sourceTree = "<group>"; };
 		9AAE6EA3251921CC00F10692 /* interprocess_communication.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = interprocess_communication.cpp; sourceTree = "<group>"; };
 		9AAE6EA4251921CC00F10692 /* interprocess_intercommunication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = interprocess_intercommunication.h; sourceTree = "<group>"; };
@@ -2210,9 +2209,6 @@
 				9A239FD626CDFC3500F98012 /* windows */,
 				9A239FCF26CDFC3500F98012 /* windows_common */,
 				9A239F1126CDFC3400F98012 /* _application.cpp */,
-				9A239F1026CDFC3400F98012 /* aaa_argcargv.cpp */,
-				9A239EC526CDFC3400F98012 /* aaa_winpr_keycode.cpp */,
-				9A23A02526CDFC3500F98012 /* aaa_winpr_scancode.cpp */,
 				9A239FCC26CDFC3500F98012 /* debug.cpp */,
 				9A239F4F26CDFC3400F98012 /* file.cpp */,
 				9A239FCE26CDFC3500F98012 /* http.cpp */,
@@ -2220,6 +2216,7 @@
 				9A239F5126CDFC3400F98012 /* operating_system.cpp */,
 				9A239E9026CDFC3400F98012 /* thread.cpp */,
 				9A23A05726CDFC3500F98012 /* _.h */,
+				9AA7A875277A06420003A012 /* _c.h */,
 				9A239EC226CDFC3400F98012 /* _application.h */,
 				9A239E8E26CDFC3400F98012 /* _impl.h */,
 				9A239F1226CDFC3400F98012 /* _operating_system.h */,
@@ -3552,6 +3549,7 @@
 				9A68BB4D2511444D008DABD2 /* server.h in Headers */,
 				9A68BB3C2511444D008DABD2 /* _impl.h in Headers */,
 				9A239DD626CDF9AF00F98012 /* _sockets.h in Headers */,
+				9AA7A877277A064C0003A012 /* _c.h in Headers */,
 				9A68BE052511444F008DABD2 /* _new_impl.h in Headers */,
 				9A239DBD26CDF9AE00F98012 /* socket_handler.h in Headers */,
 				9A68BD6A2511444F008DABD2 /* _impl.h in Headers */,

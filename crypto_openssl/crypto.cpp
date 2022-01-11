@@ -11,6 +11,7 @@
 #include <openssl/err.h>
 #include <openssl/whrlpool.h>
 #include <openssl/pem.h>
+#include "acme/filesystem/filesystem/acme_file.h"
 
 
 namespace crypto_openssl

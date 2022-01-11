@@ -10,6 +10,13 @@
 #include "apex/message/simple_command.h"
 #include "interaction_thread.h"
 #include "acme/node/operating_system/_user.h"
+//#include "interaction_draw2d.h"
+#include "acme/platform/hyperlink.h"
+#include "acme/platform/timer.h"
+#include "acme/platform/timer_array.h"
+#include "aura/graphics/draw2d/_draw2d.h"
+#include "aura/graphics/graphics/_.h"
+#include "aura/graphics/graphics/_graphics.h"
 
 
 #define MOUSE_MIDDLE_BUTTON_MESSAGE_HANDLING_DEBUG 0
@@ -53,6 +60,8 @@ namespace user
 
    void interaction::user_interaction_common_construct()
    {
+
+      //m_pinteractiondraw2d = nullptr;
 
       m_uUserInteractionFlags = 0;
 
@@ -193,7 +202,7 @@ namespace user
 
       // Control Member Variables BEGIN
       m_puiLabel = nullptr;
-      m_pdrawcontext = nullptr;
+      //m_pdrawcontext = nullptr;
       //      m_pdescriptor = nullptr;
       m_bControlExCommandEnabled = true;
       m_pform = nullptr;
@@ -295,6 +304,22 @@ namespace user
       __construct_new(m_pdragmove);
 
    }
+
+
+   //interaction_draw2d * interaction::get_draw2d()
+   //{
+
+   //   if(::is_null(m_pinteractiondraw2d))
+   //   {
+
+
+   //      m_pinteractiondraw2d = new interaction_draw2d();
+
+   //   }
+
+   //   return m_pinteractiondraw2d;
+
+   //}
 
 
    ::windowing::window *interaction::window() const
@@ -631,6 +656,15 @@ namespace user
       return pstyleSession;
 
    }
+
+
+   ::user::style* interaction::get_style(::draw2d::graphics_pointer& pgraphics) const
+   {
+
+      return pgraphics ? get_style(pgraphics->m_puserstyle) : get_style();
+
+   }
+
 
 
    void interaction::on_tsf_activate(bool bActivate)
@@ -2869,6 +2903,8 @@ namespace user
 
          synchronous_lock synchronouslock(mutex());
 
+         //auto pinteractiondraw2d = get_draw2d();
+
          if(!m_pshapeaClip)
          {
 
@@ -4395,9 +4431,7 @@ return "";
    void interaction::on_message_subject(::message::message* pmessage)
    {
 
-      __pointer(::subject) psubject;
-      
-      __move(psubject, pmessage->m_lparam);
+      __pointer(::subject) psubject(pmessage->m_lparam);
 
       if(!psubject)
       { 
@@ -7325,12 +7359,17 @@ void interaction::destroy_window()
    }
 
    // ownership
+
+   //if(m_pinteractiondraw2d)
+   //{
+      m_pshapeaClip && m_pshapeaClip->destroy();
+      m_pdrawcontext && m_pdrawcontext->destroy();
+
+   //}
    m_pusersystem && m_pusersystem->destroy();
    m_playout && m_playout->destroy();
-   m_pshapeaClip && m_pshapeaClip->destroy();
    m_pdragmove && m_pdragmove->destroy();
    m_pgraphicscalla && m_pgraphicscalla->destroy();
-   m_pdrawcontext && m_pdrawcontext->destroy();
    m_puserinteractionCustomWindowProc && m_puserinteractionCustomWindowProc->destroy();
    m_puiLabel && m_puiLabel->destroy();
    m_useritema.destroy_all();
@@ -7350,12 +7389,16 @@ void interaction::destroy_window()
    m_menua.destroy_all();
 
    // ownership
-   m_pusersystem.release();
+   //if(m_pinteractiondraw2d)
+   {
+      m_pshapeaClip.release();
+      m_pdrawcontext.release();
+
+   }
+      m_pusersystem.release();
    m_playout.release();
-   m_pshapeaClip.release();
    m_pdragmove.release();
    m_pgraphicscalla.release();
-   m_pdrawcontext.release();
    m_puserinteractionCustomWindowProc.release();
    m_puiLabel.release();
    m_useritema.erase_all();
@@ -8269,7 +8312,12 @@ bool interaction::design_layout(::draw2d::graphics_pointer & pgraphics)
 
    }
 
-   m_pshapeaClip.release();
+   //if(m_pinteractiondraw2d)
+   {
+
+      m_pshapeaClip.release();
+
+   }
 
    if (!pgraphics)
    {
@@ -8913,10 +8961,15 @@ void interaction::on_layout(::draw2d::graphics_pointer & pgraphics)
 
    on_change_view_size(pgraphics);
 
-   m_pathFocusRect1.release();
-   m_pathFocusRect2.release();
-   m_pathFocusRect3.release();
-   m_pathFocusRect4.release();
+   //if(m_pinteractiondraw2d)
+   {
+
+      m_pathFocusRect1.release();
+      m_pathFocusRect2.release();
+      m_pathFocusRect3.release();
+      m_pathFocusRect4.release();
+
+   }
 
    {
 
@@ -9007,7 +9060,12 @@ void interaction::on_visual_applied()
 void interaction::on_reposition()
 {
 
-   m_pshapeaClip.release();
+   //if(m_pinteractiondraw2d)
+   {
+
+      m_pshapeaClip.release();
+
+   }
 
    layout_tooltip();
 
@@ -17128,36 +17186,36 @@ order(zorderParam);
 
       __pointer(::user::interaction) pinteraction = puserinteraction->get_child_by_id(m_idControl);
 
-      //__pointer(control) pcontrolex = (pinteraction.m_p);
-
-      if (pinteraction)
-      {
-
-         if (bOn)
-         {
-
-            if (puserinteraction->is_window_enabled() && !pinteraction->IsControlCommandEnabled())
-            {
-
-               pinteraction->EnableControlCommand(true);
-
-            }
-
-         }
-         else
-         {
-
-            if (pinteraction->IsControlCommandEnabled())
-            {
-
-               pinteraction->EnableControlCommand(false);
-
-            }
-
-         }
-
-      }
-      else
+//      //__pointer(control) pcontrolex = (pinteraction.m_p);
+//
+//      if (pinteraction)
+//      {
+//
+//         if (bOn)
+//         {
+//
+//            if (puserinteraction->is_window_enabled() && !pinteraction->IsControlCommandEnabled())
+//            {
+//
+//               pinteraction->EnableControlCommand(true);
+//
+//            }
+//
+//         }
+//         else
+//         {
+//
+//            if (pinteraction->IsControlCommandEnabled())
+//            {
+//
+//               pinteraction->EnableControlCommand(false);
+//
+//            }
+//
+//         }
+//
+//      }
+//      else
       {
 
          if (pinteraction != nullptr)

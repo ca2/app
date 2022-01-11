@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "aura/graphics/draw2d/_draw2d.h"
 //#include "aura/operating_system.h"
 #include "core/user/simple/_simple.h"
 

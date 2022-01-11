@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.17)
+cmake_minimum_required(VERSION 3.16)
 project(aqua CXX)
 
 
@@ -130,7 +130,7 @@ else()
 endif()
 
 
-add_library(aqua SHARED ${library_source})
+add_library(aqua SHARED ${library_source} xml/_geometry2d_impl.h)
 
 target_precompile_headers(aqua PRIVATE framework.h)
 
@@ -152,9 +152,12 @@ elseif(LINUX)
 endif()
 
 
-target_include_directories(aqua PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
-target_include_directories(aqua PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
-target_include_directories(aqua PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
+
+
+target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
 target_compile_definitions(aqua PRIVATE _AQUA_LIBRARY)

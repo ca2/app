@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "font_enumeration.h"
+
+
 namespace write_text
 {
 

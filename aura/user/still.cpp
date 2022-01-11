@@ -1,5 +1,11 @@
 #include "framework.h"
 #include "aura/user/_user.h"
+#include "aura/graphics/write_text/text_out_array.h"
+#include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/pen.h"
+#include "aura/graphics/draw2d/brush.h"
+#include "aura/graphics/draw2d/draw2d.h"
+#include "aura/graphics/draw2d/context_image.h"
 
 
 namespace user
@@ -9,6 +15,7 @@ namespace user
    still::still()
    {
 
+      m_ptextouta = nullptr;
       m_estockicon = e_stock_icon_none;
       m_estyle = style_none;
       m_iClick = 0;
@@ -21,6 +28,9 @@ namespace user
 
    still::~still()
    {
+
+
+      ::release(m_ptextouta);
 
    }
 
@@ -97,7 +107,7 @@ namespace user
 
             pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-            pgraphics->draw(m_textouta);
+            pgraphics->draw(*m_ptextouta);
 
             //pgraphics->draw_text(strText, rectangleClient, ealign, edrawtext);
 
@@ -524,11 +534,18 @@ namespace user
 
       ::enum_text_wrap etextwrap = m_etextwrap;
 
-      m_textouta.text_outa().erase_all();
+      if(::is_null(m_ptextouta))
+      {
+
+         m_ptextouta = new write_text::text_out_array;
+
+      }
+
+      m_ptextouta->text_outa().erase_all();
 
       auto pfont = get_font(pstyle, ::e_element_none);
 
-      pgraphics->create_simple_multiline_layout(m_textouta, strText, rectangleClient, pfont, ealign, etextwrap);
+      pgraphics->create_simple_multiline_layout(*m_ptextouta, strText, rectangleClient, pfont, ealign, etextwrap);
 
    }
 
@@ -981,7 +998,7 @@ namespace user
    void still::on_hit_test(::item& item)
    {
 
-      auto iItem = m_textouta.hit_test(item.m_pointClient);
+      auto iItem = m_ptextouta->hit_test(item.m_pointClient);
 
       if(iItem >= 0)
       {

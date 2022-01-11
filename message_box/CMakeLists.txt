@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.17)
+cmake_minimum_required(VERSION 3.16)
 project(app_message_box CXX)
 
 
@@ -53,15 +53,18 @@ endif()
 
 
 
-target_include_directories(app_message_box PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
-target_include_directories(app_message_box PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
-target_include_directories(app_message_box PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
+
+
+target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
 target_compile_definitions(app_message_box PRIVATE _APP_MESSAGE_BOX_LIBRARY)
 
 
-add_executable(_app_message_box _main.cpp)
+add_executable(_${PROJECT_NAME} platform/${SLASHED_PLATFORM}/_${PROJECT_NAME}.cpp)
 
 
 list(APPEND executable_references
@@ -82,7 +85,7 @@ if(LINUX OR FREEBSD)
        OUTPUT ${PROJECT_BINARY_DIR}/matter.timestamp
        WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
        BYPRODUCTS ${PROJECT_SOURCE_DIR}/.link_object/_matter.zip.o
-       DEPENDS application_matter.txt deps.txt matter.txt _console_application_build_helper
+       DEPENDS application_matter.txt matter.txt _console_application_build_helper
        VERBATIM
     )
 

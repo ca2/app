@@ -938,8 +938,79 @@ CLASS_DECL_AURA void aura_ref();
 //#include "aura/graphics/draw2d/_const.h"
 
 
+namespace PLATFORM_NAMESPACE
+{
+
+   class buffer;
+
+} // namespace PLATFORM_NAMESPACE
+
+
+namespace windowing_universal_windows
+{
+
+   class buffer;
+
+} // namespace windowing_universal_windows
+
+
+namespace windowing_win32
+{
+
+   class buffer;
+
+} // namespace windowing_universal_windows
+
+
+namespace aura
+{
+
+   class draw_context;
+
+} // namespace aura
+
+class color_filter;
+
+
+class image_frame_array;
+class image_drawer;
+class image_drawing;
+class image_drawing_options;
+
+class shape_array;
+
+class imaging;
+
+
 class image;
-namespace draw2d { class icon; }
+
+
+namespace draw2d
+{
+
+   class icon;
+   class graphics;
+   class bitmap;
+   class brush;
+   class pen;
+   class item;
+   class path;
+
+   using path_pointer = __pointer(path);
+
+} // namespace draw2d
+
+
+namespace write_text
+{
+
+
+   class text_out;
+   class draw_text;
+
+
+} // namespace write_text
+
 //
 using image_pointer = __pointer(::image);
 using icon_pointer = __pointer(::draw2d::icon);
@@ -953,7 +1024,7 @@ using icon_transport = __transport(::draw2d::icon);
 using image_pointer_array = __pointer_array(::image);
 
 
-#include "aura/graphics/draw2d/_draw2d.h"
+//#include "aura/graphics/draw2d/_draw2d.h"
 
 
 //
@@ -2768,9 +2839,28 @@ namespace draw2d
 
 #include "aura/platform/context.h"
 
+
+namespace draw2d
+{
+
+   class printer;
+   class draw2d;
+
+} // namespace draw2d
+
+
 #include "aura/platform/application.h"
 
 #include "aura/filesystem/filemanager/item_action.h"
+
+
+namespace write_text
+{
+
+   class font_list;
+
+} // namespace write_text
+
 
 #include "aura/platform/session.h"
 
@@ -2778,13 +2868,13 @@ namespace draw2d
 
 #include "aura/platform/system.h"
 
-#include "aura/graphics/graphics/graphics.h"
+//#include "aura/graphics/graphics/graphics.h"
 
-#include "aura/graphics/draw2d/_impl.h"
+//#include "aura/graphics/draw2d/_impl.h"
 
-#include "aura/graphics/draw2d/_image_impl.h"
+//#include "aura/graphics/draw2d/_image_impl.h"
 
-#include "aura/graphics/_impl.h"
+//#include "aura/graphics/_impl.h"
 
 #include "aura/node/operating_system/_impl.h"
 

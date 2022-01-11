@@ -1,6 +1,11 @@
 #pragma once
 
 
+#include "apex/message/command.h"
+#include "acme/user/check.h"
+#include "acme/user/text.h"
+
+
 namespace user
 {
 

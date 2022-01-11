@@ -20,7 +20,7 @@ public:
       void* m_pnativeapp;
 
 
-
+      class application_impl *                        m_papplicationimpl;
 
       // 2020-01-25: removing from ::apex::system, placing here (at ::context)
       // 2020-07-23: now at ::application
@@ -88,8 +88,6 @@ public:
       enum_thread_context                             m_ethreadcontextClose;
 
       EExclusiveInstance                              m_eexclusiveinstance;
-
-      string_map < __composite(::acme::exclusive) >   m_mapExclusive;
 
       bool                                            m_bService;
 
@@ -411,7 +409,6 @@ public:
       virtual string get_theme();
 
 
-      virtual __pointer(::acme::exclusive) get_exclusive(string str ARG_SEC_ATTRS_DEF);
       virtual bool exclusive_fails(string str ARG_SEC_ATTRS_DEF);
 
 

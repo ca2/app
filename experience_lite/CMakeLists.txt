@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.17)
+cmake_minimum_required(VERSION 3.16)
 project(experience_lite CXX)
 
 
@@ -74,9 +74,12 @@ endif()
 
 
 
-target_include_directories(experience_lite PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
-target_include_directories(experience_lite PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
-target_include_directories(experience_lite PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
+
+
+target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
 target_compile_definitions(experience_lite PRIVATE _APP_EXPERIENCE_LITE_LIBRARY)

@@ -3,6 +3,7 @@
 #include "apex/networking/sockets/_sockets.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/primitive/string/base64.h"
 
 
 namespace sockets

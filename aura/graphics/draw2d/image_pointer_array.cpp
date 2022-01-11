@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "image_frame_array.h"
 
 
 image_frame_array::image_frame_array()

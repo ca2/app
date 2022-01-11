@@ -1,7 +1,9 @@
 #include "framework.h"
 #include "core/user/user/_user.h"
+#include "acme/platform/timer.h"
 #include "acme/constant/timer.h"
 #include "acme/primitive/collection/sort.h"
+#include "aura/graphics/draw2d/_draw2d.h"
 
 
 #define DBLCLKMS 500_ms
@@ -670,9 +672,9 @@ namespace user
 
       pdrawitem->m_colorText = get_color(pstyle, ::e_element_item_text);
 
-      pdrawitem->m_colorTextBackground = 0;
+      pdrawitem->m_colorTextBackground = ::color::transparent;
 
-      pdrawitem->m_colorItemBackground = 0;
+      pdrawitem->m_colorItemBackground = ::color::transparent;
 
       pdrawitem->update_item_color();
 
@@ -7321,7 +7323,7 @@ namespace user
       m_iListItem = -1;
       m_colorText = __indexed_color(-1);
       m_colorTextBackground = argb(255, 0, 0, 0);
-      m_colorItemBackground = 0;
+      m_colorItemBackground = ::color::transparent;
       m_iState = -1;
       m_iImage = -1;
       m_bOk = false;

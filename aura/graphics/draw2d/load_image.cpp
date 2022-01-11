@@ -1,5 +1,7 @@
 // Created by camilo on 2021-08-24 23:41 <3ThomasBS_!!
 #include "framework.h"
+#include "load_image.h"
+#include "context_image.h"
 
 
 load_image::load_image(context_image * pcontextimage) :

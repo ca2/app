@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "acme/operating_system.h"
+#include "acme/filesystem/filesystem/acme_dir.h"
 
 
 #ifdef MACOS

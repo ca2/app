@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.17)
+cmake_minimum_required(VERSION 3.16)
 project(aura CXX)
 
 
@@ -80,7 +80,6 @@ list(APPEND library_source
    graphics/draw2d/graphics_extension.h
    graphics/draw2d/icon.cpp
    graphics/draw2d/icon.h
-   graphics/draw2d/igui.h
    graphics/draw2d/image.cpp
    graphics/draw2d/image.h
    graphics/draw2d/image_array.cpp
@@ -104,13 +103,17 @@ list(APPEND library_source
    graphics/draw2d/image_map.cpp
    graphics/draw2d/image_map.h
    graphics/draw2d/image_map_ex1.h
+   graphics/draw2d/image_meta.cpp
    graphics/draw2d/image_meta.h
    graphics/draw2d/image_nanosvg.cpp
    graphics/draw2d/image_object.cpp
    graphics/draw2d/image_palette.h
    graphics/draw2d/image_pointer_array.cpp
+   graphics/draw2d/image_source.cpp
+   graphics/draw2d/image_source.h
    graphics/draw2d/imaging.cpp
    graphics/draw2d/imaging.h
+   graphics/draw2d/item.h
    graphics/draw2d/keep.cpp
    graphics/draw2d/keep.h
    graphics/draw2d/load_gif_frame.cpp
@@ -133,6 +136,7 @@ list(APPEND library_source
    graphics/draw2d/printer.h
    graphics/draw2d/region.cpp
    graphics/draw2d/region.h
+   graphics/draw2d/save_image.h
    graphics/draw2d/task_tool.cpp
    graphics/draw2d/task_tool.h
    #graphics/draw2d/ttf_util.cpp
@@ -173,6 +177,8 @@ list(APPEND library_source
    graphics/user/close_icon.cpp
    graphics/user/close_icon.h
    graphics/write_text/_.h
+   graphics/write_text/_shape.h
+   graphics/write_text/_shape.cpp
    graphics/write_text/bounding_rect.h
    graphics/write_text/contains.h
    graphics/write_text/drawer.cpp
@@ -189,6 +195,7 @@ list(APPEND library_source
    graphics/write_text/text.h
    graphics/write_text/text_box.cpp
    graphics/write_text/text_box.h
+   graphics/write_text/text_metric.h
    graphics/write_text/text_out.cpp
    graphics/write_text/text_out.h
    graphics/write_text/text_out_array.cpp
@@ -332,6 +339,7 @@ list(APPEND library_source
    user/interaction.h
    user/interaction_child.cpp
    user/interaction_child.h
+   #user/interaction_draw2d.h
    user/interaction_impl.cpp
    user/interaction_impl.h
    user/interaction_layout.cpp

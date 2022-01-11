@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "tools.h"
+#include "pool.h"
 
 
 task_pool::task_pool()

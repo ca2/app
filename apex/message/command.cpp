@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "apex/message/command.h"
 
 
 namespace message

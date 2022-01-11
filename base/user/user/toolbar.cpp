@@ -6,6 +6,7 @@
 //#include "acme/node/operating_system/cross.h"
 #include "aura/node/operating_system/_user.h"
 #include "toolbar.h"
+#include "aura/graphics/draw2d/_draw2d.h"
 
 #define CLR_TO_RGBQUAD(clr)     (rgb(::blue(clr), ::green(clr), ::red(clr)))
 

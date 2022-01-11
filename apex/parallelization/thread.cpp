@@ -4,6 +4,9 @@
 #include "acme/update.h"
 #include "acme/parallelization/message_queue.h"
 #include "apex/platform/node.h"
+#include "apex/user/primitive.h"
+#include "acme/parallelization/tools.h"
+#include "acme/parallelization/pool.h"
 
 
 //HANDLE duplicate_handle(HANDLE h);
@@ -428,7 +431,7 @@ void thread::term_thread()
 
    __set_thread_off();
 
-   m_psystem->m_papexsystem->m_papexnode->thread_finalize(this);
+   //m_psystem->m_papexsystem->m_papexnode->thread_finalize(this);
 
    ::e_status estatus = m_result.m_estatus;
 
@@ -555,19 +558,19 @@ bool thread::thread_step()
 
          string strType = __type_name(this);
 
-         if (strType.contains_ci("session"))
-         {
-
-            auto bShouldRun = task_get_run();
-
-            if (!bShouldRun)
-            {
-
-               output_debug_string("session_shouldn't_run?");
-
-            }
-
-         }
+//         if (strType.contains_ci("session"))
+//         {
+//
+//            auto bShouldRun = task_get_run();
+//
+//            if (!bShouldRun)
+//            {
+//
+//               output_debug_string("session_shouldn't_run?");
+//
+//            }
+//
+//         }
 
          break;
 
@@ -579,21 +582,21 @@ bool thread::thread_step()
          if(!thread_step())
          {
 
-            string strType = __type_name(this);
-
-            if (strType.contains_ci("session"))
-            {
-
-               auto bShouldRun = task_get_run();
-
-               if (!bShouldRun)
-               {
-
-                  output_debug_string("session_shouldn't_run?");
-
-               }
-
-            }
+//            string strType = __type_name(this);
+//
+//            if (strType.contains_ci("session"))
+//            {
+//
+//               auto bShouldRun = task_get_run();
+//
+//               if (!bShouldRun)
+//               {
+//
+//                  output_debug_string("session_shouldn't_run?");
+//
+//               }
+//
+//            }
 
             break;
 
@@ -663,34 +666,34 @@ bool thread::thread_step()
 
    ASSERT_VALID(this);
 
-   INFORMATION("thread::run");
+   //INFORMATION("thread::run");
 
-   string strType = __type_name(this);
-
-   if (strType.contains("session"))
-   {
-
-      output_debug_string("session");
-
-   }
-   else if(strType.contains("wave_player"))
-   {
-
-      output_debug_string("xxthread::run from wave_player");
-
-   }
-   else if(strType.ends_ci("out"))
-   {
-
-      output_debug_string("xxthread::run from out");
-
-   }
-   else if(strType.contains("output_thread"))
-   {
-
-      output_debug_string("xxthread::run from output_thread");
-
-   }
+//   string strType = __type_name(this);
+//
+//   if (strType.contains("session"))
+//   {
+//
+//      output_debug_string("session");
+//
+//   }
+//   else if(strType.contains("wave_player"))
+//   {
+//
+//      output_debug_string("xxthread::run from wave_player");
+//
+//   }
+//   else if(strType.ends_ci("out"))
+//   {
+//
+//      output_debug_string("xxthread::run from out");
+//
+//   }
+//   else if(strType.contains("output_thread"))
+//   {
+//
+//      output_debug_string("xxthread::run from output_thread");
+//
+//   }
 
    if (m_pelement && m_pelement != this)
    {
@@ -708,47 +711,47 @@ bool thread::thread_step()
 
       INFORMATION("running thread with simple message loop");
 
-      if(strType.contains("wave_player"))
-      {
-
-         output_debug_string("xxm_bSimpleMessageLoop xxthread::run from wave_player");
-
-      }
-      else if(strType.ends_ci("out"))
-      {
-
-         output_debug_string("xxm_bSimpleMessageLoop xxthread::run from out");
-
-      }
-      else if(strType.contains("output_thread"))
-      {
-
-         output_debug_string("xxm_bSimpleMessageLoop xxthread::run from output_thread");
-
-      }
+//      if(strType.contains("wave_player"))
+//      {
+//
+//         output_debug_string("xxm_bSimpleMessageLoop xxthread::run from wave_player");
+//
+//      }
+//      else if(strType.ends_ci("out"))
+//      {
+//
+//         output_debug_string("xxm_bSimpleMessageLoop xxthread::run from out");
+//
+//      }
+//      else if(strType.contains("output_thread"))
+//      {
+//
+//         output_debug_string("xxm_bSimpleMessageLoop xxthread::run from output_thread");
+//
+//      }
 
    }
 
    auto estatus = thread_loop();
 
-   if(strType.contains("wave_player"))
-   {
-
-      output_debug_string("ending xxthread::run from wave_player");
-
-   }
-   else if(strType.ends_ci("out"))
-   {
-
-      output_debug_string("ending xxthread::run from out");
-
-   }
-   else if(strType.contains("output_thread"))
-   {
-
-      output_debug_string("ending xxthread::run from output_thread");
-
-   }
+//   if(strType.contains("wave_player"))
+//   {
+//
+//      output_debug_string("ending xxthread::run from wave_player");
+//
+//   }
+//   else if(strType.ends_ci("out"))
+//   {
+//
+//      output_debug_string("ending xxthread::run from out");
+//
+//   }
+//   else if(strType.contains("output_thread"))
+//   {
+//
+//      output_debug_string("ending xxthread::run from output_thread");
+//
+//   }
 
 
 
@@ -2685,11 +2688,11 @@ void thread::__os_initialize()
 
    }
 
-#ifndef WINDOWS
-
-   INFORMATION("init_thread : " << __type_name(this));
-
-#endif
+//#ifndef WINDOWS
+//
+//   INFORMATION("init_thread : " << __type_name(this));
+//
+//#endif
 
    //m_psystem->m_papexsystem->m_papexnode->node_thread_initialize(this);
 
@@ -4304,9 +4307,7 @@ void thread::message_handler(::message::message * pmessage)
          if (message.wParam == e_system_message_create)
          {
 
-            __pointer(::create) pcreate;
-            
-            __move(pcreate, message.lParam);
+            __pointer(::create) pcreate(message.lParam);
 
             if (pcreate.is_set())
             {
@@ -4335,9 +4336,7 @@ void thread::message_handler(::message::message * pmessage)
          else if (message.wParam == e_system_message_meta)
          {
 
-            __pointer(::send_thread_message) pmessage;
-
-            __move(pmessage, message.lParam);
+            __pointer(::send_thread_message) pmessage(message.lParam);
 
             m_message = pmessage->m_message;
 

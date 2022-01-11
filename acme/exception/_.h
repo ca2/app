@@ -39,7 +39,9 @@ namespace win
 }
 
 
-CLASS_DECL_ACME::e_status errno_to_status(i32 nErrno);
+CLASS_DECL_ACME ::e_status errno_to_status(i32 nErrno);
+
+CLASS_DECL_ACME ::e_status failed_errno_to_status(i32 nErrno);
 
 
 #ifdef WINDOWS

@@ -3,11 +3,11 @@
 
 template < class T >
 class pointer_array :
-   public pointer_array_process < comparable_array < ___pointer < T >, const T * >, T >
+   public pointer_array_process < comparable_array < ___pointer < T > >, T >
 {
 public:
 
-   using BASE_ARRAY = pointer_array_process < comparable_array < ___pointer < T >, const T * >, T >;
+   using BASE_ARRAY = pointer_array_process < comparable_array < ___pointer < T > >, T >;
 
    using ARRAY_BASE = typename BASE_ARRAY::ARRAY_BASE;
 
@@ -15,12 +15,12 @@ public:
    //using ref_iterator = typename ARRAY_BASE::ref_iterator;
    ///using ref_iterator_range = typename ARRAY_BASE::ref_iterator_range;
 
-   using comparable_array < ___pointer < T >, const T * >::operator &=;
-   using comparable_array < ___pointer < T >, const T * >::operator -=;
-   using comparable_array < ___pointer < T >, const T * >::operator |=;
-   using comparable_array < ___pointer < T >, const T * >::operator -;
-//   using comparable_array < ___pointer < T >, const T * >::operator ==;
-//   using comparable_array < ___pointer < T >, const T * >::operator !=;
+   using comparable_array < ___pointer < T > >::operator &=;
+   using comparable_array < ___pointer < T > >::operator -=;
+   using comparable_array < ___pointer < T > >::operator |=;
+   using comparable_array < ___pointer < T > >::operator -;
+//   using comparable_array < ___pointer < T > >::operator ==;
+//   using comparable_array < ___pointer < T > >::operator !=;
 
    pointer_array()
    {
@@ -85,7 +85,7 @@ public:
    __pointer(T) & add_new(OBJECT * pobject)
    {
 
-      __pointer(T) & p = comparable_array < ___pointer < T >, const T* >::add_new();
+      __pointer(T) & p = comparable_array < ___pointer < T > >::add_new();
 
       pobject->__construct(p);
 
@@ -97,12 +97,12 @@ public:
    ::count set_size(::count nNewSize, ::count nGrowBy = -1)
    {
 
-      return comparable_array < ___pointer < T >, const T* > :: set_size(nNewSize);
+      return comparable_array < ___pointer < T > > :: set_size(nNewSize);
 
    }
 
-   template < TEMPLATE_TYPE >
-   ::count set_size_create(::object * pobject, ::count nNewSize, ::count nGrowBy = -1, TEMPLATE_ARG);
+   template < typename OBJECT >
+   ::count set_size_create(OBJECT * pobject, ::count nNewSize, ::count nGrowBy = -1);
 
 
    template < class DERIVED >
@@ -155,7 +155,7 @@ public:
 
       this->allocate(nIndex + 1);
 
-      this->last().reset(p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+      this->last().reset(p.m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
       return nIndex;
 
@@ -542,7 +542,7 @@ public:
    const ___pointer < T > & sp_at(::index nIndex) const
    {
 
-      return this->comparable_array < ___pointer < T >, const T* >::element_at(nIndex);
+      return this->comparable_array < ___pointer < T > >::element_at(nIndex);
 
    }
 
@@ -550,7 +550,7 @@ public:
    ___pointer < T > & sp_at(::index nIndex)
    {
 
-      return this->comparable_array < ___pointer < T >, const T* >::element_at(nIndex);
+      return this->comparable_array < ___pointer < T > >::element_at(nIndex);
 
    }
 
@@ -589,7 +589,7 @@ public:
    T * get_first_pointer(::index n = 0) const
    {
 
-      return this->is_empty() ? nullptr : this->comparable_array < ___pointer < T >, const T* >::first(n);
+      return this->is_empty() ? nullptr : this->comparable_array < ___pointer < T > >::first(n);
 
    }
 
@@ -597,9 +597,9 @@ public:
    __pointer(T) pop_first(::index n = 0)
    {
 
-      auto p = ::move(this->comparable_array < ___pointer < T >, const T* >::first(n));
+      auto p = ::move(this->comparable_array < ___pointer < T > >::first(n));
       
-      this->comparable_array < ___pointer < T >, const T* >::erase_at(n);
+      this->comparable_array < ___pointer < T > >::erase_at(n);
       
       return p;
 
@@ -609,7 +609,7 @@ public:
    ___pointer < T > & first_pointer(::index n = 0)
    {
 
-      return this->comparable_array < ___pointer < T >, const T * >::first(n);
+      return this->comparable_array < ___pointer < T > >::first(n);
 
    }
 
@@ -640,7 +640,7 @@ public:
    T * get_last_pointer(::index n = -1) const
    {
 
-      return this->is_empty() ? nullptr : this->comparable_array < ___pointer < T >, const T * >::last(n);
+      return this->is_empty() ? nullptr : this->comparable_array < ___pointer < T > >::last(n);
 
    }
 
@@ -648,7 +648,7 @@ public:
    ___pointer < T > & last_pointer(::index n = -1)
    {
 
-      return this->comparable_array < ___pointer < T >, const T * >::last(n);
+      return this->comparable_array < ___pointer < T > >::last(n);
 
    }
 
@@ -836,7 +836,7 @@ public:
 
       }
 
-      return comparable_array < ___pointer < T >, const T* >::erase_all();
+      return comparable_array < ___pointer < T > >::erase_all();
 
    }
 
@@ -903,7 +903,7 @@ public:
    inline pointer_array & operator = (pointer_array && a)
    {
 
-      comparable_array < ___pointer < T >, const T* >::operator = (::move(a));
+      comparable_array < ___pointer < T > >::operator = (::move(a));
 
       return *this;
 

@@ -1,4 +1,7 @@
 #include "framework.h"
+#include "_.h"
+#include "_graphics.h"
+#include "aura/graphics/draw2d/image.h"
 
 
 namespace graphics

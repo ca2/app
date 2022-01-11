@@ -2,6 +2,17 @@
 
 //CLASS_DECL_ACME void throw_resource_exception(const char * psz);
 
+template < class T >
+inline ___pointer < T >::___pointer(lparam& lparam)
+{
+
+   m_pelement = (::element*)(::iptr)lparam.m_lparam;
+   m_p = dynamic_cast <T*>(m_pelement);
+   lparam.m_lparam = 0;
+
+}
+
+
 // ::ca::null_class back link to operational system oswindow.h
 //
 //
@@ -12,7 +23,8 @@
 // Curitiba, inha-metro-win-ubuntu-mountain-lion-macos 4 de novembro de 2012
 template < class T >
 inline ___pointer < T > ::___pointer() :
-   m_p(nullptr)
+   m_p(nullptr),
+   m_pelement(nullptr)
 {
 
 }
@@ -20,14 +32,15 @@ inline ___pointer < T > ::___pointer() :
 
 template < class T >
 inline ___pointer < T > ::___pointer(std::nullptr_t) :
-   m_p(nullptr)
+   m_p(nullptr),
+   m_pelement(nullptr)
 {
 
 }
 
 template < class T >
-template < typename OBJECT >
-inline ___pointer < T > ::___pointer(enum_move_transfer, OBJECT * p)
+template < typename T2 >
+inline ___pointer < T > ::___pointer(enum_move_transfer, T2 * p)
 {
 
    if(::is_set(p))
@@ -35,10 +48,16 @@ inline ___pointer < T > ::___pointer(enum_move_transfer, OBJECT * p)
 
       m_p = dynamic_cast < T * > (p);
 
+      m_pelement = m_p;
+
       if(::is_null(m_p))
       {
 
          ::release(p);
+
+         m_p = nullptr;
+
+         m_pelement = nullptr;
 
          throw ::resource_exception("OBJECT * p is not of type T (pointer < T >).");
 
@@ -50,6 +69,8 @@ inline ___pointer < T > ::___pointer(enum_move_transfer, OBJECT * p)
 
       m_p = nullptr;
 
+      m_pelement = nullptr;
+
    }
 
 }
@@ -57,33 +78,43 @@ inline ___pointer < T > ::___pointer(enum_move_transfer, OBJECT * p)
 
 template < class T >
 inline ___pointer < T > ::___pointer(const ___pointer & t) :
-   m_p(nullptr)
+   m_p(t.m_p),
+   m_pelement(t.m_pelement)
 {
 
-   operator = (t);
+   if (::is_set(m_p))
+   {
+
+      m_pelement->increment_reference_count();
+
+   }
 
 }
 
 
 template < class T >
-inline ___pointer < T > ::___pointer(___pointer && t)
+inline ___pointer < T > ::___pointer(___pointer && t) :
+m_p(t.m_p),
+m_pelement(t.m_pelement)
 {
 
-   m_p      = t.m_p;
+   t.m_p = nullptr;
 
-   t.m_p    = nullptr;
+   t.m_pelement = nullptr;
 
 }
 
 
-template < class T >
-inline ___pointer < T > ::___pointer(const T * p) :
-   m_p((T *) p)
-{
-
-   ::increment_reference_count(m_p);
-
-}
+//template < class T >
+//template < typename T2 >
+//inline ___pointer < T > ::___pointer(const T2 * p) :
+//   m_p((T *) p),
+//   m_pelement(m_p)
+//{
+//
+//   ::increment_reference_count(m_p);
+//
+//}
 
 
 
@@ -185,35 +216,93 @@ inline bool ___pointer < T > ::is_set() const
 
 }
 
+//
+//template < class T >
+//inline void __dynamic_cast(T*& ptarget, T* psource)
+//{
+//
+//   ptarget = psource;
+//
+//}
+//
+//
+//template < class T , typename T2 >
+//inline void __dynamic_cast(T * & ptarget, T2 * psource)
+//{
+//
+//   ptarget = dynamic_cast < T2 * >(psource);
+//
+//}
+
 
 template < class T >
-inline ___pointer < T > & ___pointer < T > ::reset (T * pNew OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+T* __dynamic_cast(const T* p)
 {
 
-   if(m_p != pNew)
+   return (T*)p;
+
+}
+
+template < class T, typename T2 >
+T * __dynamic_cast(const T2 * p)
+{
+   return dynamic_cast <T*>((T2*)p);
+}
+
+
+
+
+
+template < class T >
+template < typename T2 >
+inline ___pointer < T > & ___pointer < T > ::reset (T2 * pNew OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+{
+
+   if (::is_null(pNew))
    {
 
-      auto pOld = m_p;
+      m_pelement = nullptr;
 
-      if(::is_set(pNew))
+      ::release(m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+
+   }
+   else
+   {
+
+      T* p;
+      
+      __dynamic_cast(p, pNew);
+
+      if (m_p != p)
       {
 
-         pNew->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+         auto pOld = m_p;
 
-         m_p = pNew;
+         if (::is_set(p))
+         {
 
-      }
-      else
-      {
+            p->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
-         m_p = nullptr;
+            m_p = p;
 
-      }
+            m_pelement = p;
 
-      if(::is_set(pOld))
-      {
+         }
+         else
+         {
 
-         ::release(pOld OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+            m_p = nullptr;
+
+            m_pelement = nullptr;
+
+         }
+
+         if (::is_set(pOld))
+         {
+
+            ::release(pOld OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+
+         }
 
       }
 
@@ -227,8 +316,26 @@ inline ___pointer < T > & ___pointer < T > ::reset (T * pNew OBJECT_REFERENCE_CO
 template < class T >
 inline ___pointer < T > & ___pointer < T > ::operator = (const ___pointer  & t)
 {
+   if (this != &t)
+   {
 
-   return operator = (t.m_p);
+      auto pold = m_pelement;
+
+      m_p = t.m_p;
+
+      m_pelement = t.m_pelement;
+
+      if (::is_set(m_p))
+      {
+
+         m_pelement->increment_reference_count();
+
+      }
+
+      ::release(pold REF_DBG_COMMA_POINTER);
+
+   }
+   return *this;
 
 }
 
@@ -240,11 +347,15 @@ inline ___pointer < T > & ___pointer < T > ::operator = (___pointer && t)
    if(&t != this)
    {
 
-      auto pOld = m_p;
+      auto pOld         = m_pelement;
 
-      m_p      = t.m_p;
+      m_p           = t.m_p;
 
-      t.m_p    = nullptr;
+      m_pelement        = t.m_pelement;
+
+      t.m_p         = nullptr;
+
+      t.m_pelement      = nullptr;
 
       ::release(pOld REF_DBG_COMMA_POINTER);
 
@@ -259,11 +370,13 @@ template < class T >
 inline T * ___pointer < T > ::detach()
 {
 
-   auto pointer = m_p;
+   auto p = m_p;
 
    m_p = nullptr;
 
-   return pointer;
+   m_pelement = nullptr;
+
+   return p;
 
 }
 
@@ -273,8 +386,10 @@ inline T * ___pointer < T > ::detach()
 template < class T >
 inline i64 ___pointer <T>::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 {
+   
+   m_p = nullptr;
 
-   return ::release(m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+   return ::release(m_pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
 }
 

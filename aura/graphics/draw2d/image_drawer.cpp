@@ -2,6 +2,8 @@
 // This is how things starts happening, promise of Life, in a virgin Temple...
 // to be or not to be, or will it be or won't, that is the question....
 #include "framework.h"
+#include "image_drawer.h"
+#include "image_drawing.h"
 
 
 bool image_drawer::draw(const image_drawing & imagedrawing)

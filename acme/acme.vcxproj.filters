@@ -3712,9 +3712,6 @@
     <ClCompile Include="node\operating_system\windows\parallelization.cpp">
       <Filter>Source Files\node\operating_system\windows</Filter>
     </ClCompile>
-    <ClCompile Include="node\operating_system\windows\process.cpp">
-      <Filter>Source Files\node\operating_system\windows</Filter>
-    </ClCompile>
     <ClCompile Include="node\operating_system\windows\windows.cpp">
       <Filter>Source Files\node\operating_system\windows</Filter>
     </ClCompile>
@@ -3849,6 +3846,12 @@
     </ClCompile>
     <ClCompile Include="node\operating_system\windows_common\base_file.cpp">
       <Filter>Source Files\node\operating_system\windows_common</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\windows\process.cpp">
+      <Filter>Source Files\node\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\geometry2d\_shape.cpp">
+      <Filter>Source Files\primitive\geometry2d</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

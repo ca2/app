@@ -1,23 +1,22 @@
 #pragma once
 
 
-template < primitive_integral INTEGRAL >
-class counter :
+class counter64 :
    public manual_reset_event
 {
 public:
 
 
-   interlocked < INTEGRAL >      m_interlocked;
+   interlocked_i64      m_interlocked;
 
 
-   counter(INTEGRAL lCount) : m_interlocked(lCount) {}
+   counter64(::i64 lCount) : m_interlocked(lCount) {}
 
 
-   INTEGRAL operator ++()
+   ::i64 operator ++()
    {
 
-      INTEGRAL i = --m_interlocked;
+      ::i64 i = --m_interlocked;
 
       if (i <= 0)
       {
@@ -31,10 +30,53 @@ public:
    }
 
 
-   INTEGRAL operator ++(int)
+   ::i64 operator ++(int)
    {
 
-      INTEGRAL i = m_interlocked;
+      ::i64 i = m_interlocked;
+
+      ++(*this);
+
+      return i;
+
+   }
+
+};
+
+
+class counter32 :
+   public manual_reset_event
+{
+public:
+
+
+   interlocked_i32      m_interlocked;
+
+
+   counter32(::i32 lCount) : m_interlocked(lCount) {}
+
+
+   ::i32 operator ++()
+   {
+
+      ::i32 i = --m_interlocked;
+
+      if (i <= 0)
+      {
+
+         SetEvent();
+
+      }
+
+      return i;
+
+   }
+
+
+   ::i32 operator ++(int)
+   {
+
+      ::i32 i = m_interlocked;
 
       ++(*this);
 

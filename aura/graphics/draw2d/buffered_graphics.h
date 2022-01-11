@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "aura/graphics/draw2d/bitmap.h"
+
+
 namespace draw2d
 {
 

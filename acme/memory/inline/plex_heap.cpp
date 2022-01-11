@@ -846,7 +846,7 @@ void plex_heap::FreeDataChain()     // free this one and links
 
    plex_heap * pheap = this;
 
-   while (pheap != NULL)
+   while (::is_set(pheap))
    {
 
       byte * pbytes = (byte *) pheap;

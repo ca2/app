@@ -2,6 +2,11 @@
 #pragma once
 
 
+#include "acme/user/check.h"
+#include "acme/user/text.h"
+#include "acme/user/element.h"
+
+
 namespace user
 {
 

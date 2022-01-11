@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "font.h"
+
+
 namespace write_text
 {
 

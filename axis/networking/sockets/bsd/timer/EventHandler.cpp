@@ -290,7 +290,7 @@ namespace sockets
 
          m_ptcpsocket = __new(tcp_socket());
          m_ptcpsocket -> SetDeleteByHandler();
-         m_ptcpsocket -> set_maximum_connection_time(5);
+         m_ptcpsocket -> set_maximum_connection_time(5_s);
          m_ptcpsocket -> SetRetryClientConnect(-1);
 #ifdef ENABLE_RECONNECT
          m_ptcpsocket -> SetReconnect(true);

@@ -1,6 +1,11 @@
 #pragma once
 
 
+#include "aura/graphics/draw2d/image.h"
+
+
+class save_image;
+
 
 class CLASS_DECL_AURA context_image :
    virtual public ::object
@@ -8,7 +13,9 @@ class CLASS_DECL_AURA context_image :
 public:
 
 
-   context_image();
+
+
+context_image();
    ~context_image() override;
 
 
@@ -88,7 +95,19 @@ public:
    virtual ::image_pointer create_image(const ::size_i32 & size, ::enum_flag eflagFlag = DEFAULT_CREATE_IMAGE_FLAG);
 
 
+   ::image_pointer get_cache_image(const ::payload & payloadFile);
+   ::image_pointer matter_cache_image(const ::string & strMatter);
+
+   //::image_pointer get_image(const ::payload & payloadFile, const ::image::load_options & loadoptions = ::image::load_options());
+   //::image_pointer matter_image(const ::string & strMatter, const ::image::load_options & loadoptions = ::image::load_options());
+
+
 };
+
+
+
+
+
 
 
 

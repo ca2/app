@@ -1,6 +1,13 @@
 #pragma once
 
 
+#include "image_meta.h"
+
+#include "image_drawer.h"
+
+#include "image_source.h"
+
+
 /// <summary>
 /// image * -> image_source_pointer concept
 /// </summary>
@@ -83,7 +90,7 @@ public:
    virtual bool on_exif_orientation();
    virtual void fast_copy(::color32_t * pcolor32FullImage);
 
-   inline ::size_i32 get_size() const;
+   //inline ::size_i32 get_size() const;
 
    ::size_i32 get_image_drawer_size() const override;
 
@@ -96,16 +103,16 @@ public:
    concrete < ::size_i32 > image_source_size() const override;
    using image_meta::size;
    
-   inline ::rectangle_i32 rectangle(const ::point_i32 & point = nullptr);
-   inline ::rectangle_i32 rectangle(const ::point_i32 & point = nullptr) const;
+   //inline ::rectangle_i32 rectangle(const ::point_i32 & point = nullptr);
+   //inline ::rectangle_i32 rectangle(const ::point_i32 & point = nullptr) const;
 
 
-   inline ::u64 area() const;
-   inline ::i32 width() const;
-   inline ::i32 height() const;
+   //inline ::u64 area() const;
+   //inline ::i32 width() const;
+   //inline ::i32 height() const;
 
 
-   inline int scan_size() const;
+   //inline int scan_size() const;
 
 
    virtual bool rate_rgb(int iMul, int iDiv);
@@ -406,77 +413,402 @@ public:
    ::element * clone() const override;
 
 
-   inline int line(int line);
+   //inline int line(int line);
 
    
-   virtual ::draw2d::graphics * g() const; // { return get_graphics(); }
+   //virtual ::draw2d::graphics * g() const; // { return get_graphics(); }
    inline ::draw2d::graphics * g(const ::size_f64 & sizeHint) { return g(); }
    inline ::size_f64 origin() const { return ::size_f64(); }
    
-   inline ::color::color pixel(int x, int y) const;
+   //inline ::color::color pixel(int x, int y) const;
 
    
-   inline bool is_set() const;
+   //inline bool is_set() const;
 
 
-   inline bool is_null() const;
+   //inline bool is_null() const;
 
 
-   inline bool is_empty() const;
+   //inline bool is_empty() const;
 
 
-   inline ::color32_t * get_data();
+   //inline ::color32_t * get_data();
 
 
-   inline const ::color32_t * get_data() const;
+   //inline const ::color32_t * get_data() const;
 
 
-   inline ::color32_t * colorref();
+   //inline ::color32_t * colorref();
 
 
-   inline const ::color32_t* colorref() const;
+   //inline const ::color32_t* colorref() const;
 
 
-   inline operator ::color32_t* ();
+   //inline operator ::color32_t* ();
 
 
-   inline operator const ::color32_t* () const;
+   //inline operator const ::color32_t* () const;
 
 
-   inline ::pixmap * pixmap();
+   //inline ::pixmap * pixmap();
 
 
-   inline const ::pixmap * pixmap() const;
+   //inline const ::pixmap * pixmap() const;
 
 
-   inline operator ::pixmap *();
+   //inline operator ::pixmap *();
 
    
-   inline operator const ::pixmap *() const;
+   //inline operator const ::pixmap *() const;
 
 
-   inline ::image_extension * extension();
+   //::image_extension * extension();
 
 
    ::image_extension * get_extension();
 
 
-   inline const ::image_extension * extension() const;
+   //inline const ::image_extension * extension() const;
 
 
-   inline operator ::image_extension * ();
+   //inline operator ::image_extension * ();
 
 
-   inline operator const ::image_extension * () const;
+   //inline operator const ::image_extension * () const;
 
 
-   inline ::image & operator = (const ::image & image);
-   inline bool operator == (const ::image & image) const;
-   inline bool operator != (const ::image & image) const;
+
+   inline u64 area() const
+   {
+
+      if (::is_null(this))
+      {
+
+         return 0;
+
+      }
+
+      return m_size.area();
+
+   }
+
+
+   inline int scan_size() const
+   {
+
+      if (::is_null(this))
+      {
+
+         return 0;
+
+      }
+
+      return m_iScan;
+
+   }
+
+
+   inline int width() const
+   {
+
+      if (::is_null(this))
+      {
+
+         return 0;
+
+      }
+
+      return m_size.cx;
+
+   }
+
+
+   inline int height() const
+   {
+
+      if (::is_null(this))
+      {
+
+         return 0;
+
+      }
+
+      return m_size.cy;
+
+   }
+
+
+
+
+   inline bool is_null() const
+   {
+
+      return ::is_null(this) || m_size.area() <= 0;
+
+   }
+
+
+   inline bool is_set() const
+   {
+
+      return !is_null();
+
+   }
+
+
+   inline bool is_empty() const
+   {
+
+      return is_null();
+
+   }
+
+
+   inline ::draw2d::graphics* g() const
+   {
+
+      return get_graphics();
+
+   }
+
+
+   inline ::color32_t * colorref()
+   {
+
+      return m_pcolorref1;
+
+   }
+
+
+   inline const ::color32_t * colorref() const
+   {
+
+      return m_pcolorref1;
+
+   }
+
+
+   inline operator ::color32_t * ()
+   {
+
+      return colorref();
+
+   }
+
+
+   inline operator const ::color32_t * () const
+   {
+
+      return colorref();
+
+   }
+
+
+   inline ::pixmap * pixmap()
+   {
+
+      return this;
+
+   }
+
+
+   inline const ::pixmap * pixmap() const
+   {
+
+      return this;
+
+   }
+
+
+   inline operator ::pixmap* ()
+   {
+
+      return this;
+
+   }
+
+
+   inline operator const ::pixmap* () const
+   {
+
+      return this;
+
+   }
+
+
+   inline ::image_extension * extension()
+   {
+
+      return m_pextension;
+
+   }
+
+
+   inline const ::image_extension * extension() const
+   {
+
+      return m_pextension;
+
+   }
+
+
+   inline operator image_extension* ()
+   {
+
+      return m_pextension;
+
+   }
+
+
+   inline operator const image_extension* () const
+   {
+
+      return m_pextension;
+
+   }
+
+
+   inline ::color32_t * get_data()
+   {
+
+      return m_pcolorref1;
+
+   }
+
+
+   const ::color32_t * get_data() const
+   {
+
+      map();
+
+      return colorref();
+
+   }
+
+
+   //inline ::image & operator = (const ::image & image);
+   //inline bool operator == (const ::image & image) const;
+   //inline bool operator != (const ::image & image) const;
 
 
    virtual bool _draw_blend(const image_drawing & imagedrawing) override;
    virtual bool _draw_raw(const image_drawing & imagedrawing) override;
+
+
+
+
+
+
+
+   inline image& operator = (const image& image)
+   {
+
+      copy_from((::image*) & image);
+
+      return *this;
+
+   }
+
+
+//inline image * image::frame(iptr i) const
+//{
+//
+//   auto frames = this->frames();
+//
+//   if (::is_null(frames) || frames->is_empty())
+//   {
+//
+//      if (i == 0)
+//      {
+//
+//         return m_pimpl;
+//
+//      }
+//
+//      return nullptr;
+//
+//   }
+//
+//   auto pointer = frames->ptr_at(i);
+//
+//   return ::is_null(pointer) ? nullptr : pointer->m_pimpl;
+//
+//}
+//
+
+   inline bool operator == (const image& image) const
+   {
+
+      return m_pcolorrefRaw == image.m_pcolorrefRaw;
+
+   }
+
+
+   inline bool operator != (const image& image) const
+   {
+
+      return !operator ==(image);
+
+   }
+
+
+   inline int line(int line)
+   {
+
+#if defined(__APPLE__)
+
+      return height() - line - 1;
+
+#else
+
+      return line;
+
+#endif
+
+   }
+
+
+//inline ::size_i32 image::size() const
+//{
+//
+//   return m_size;
+//
+//}
+
+
+   inline ::rectangle_i32 rectangle(const ::point_i32& point = nullptr)
+   {
+
+      return ::rectangle_i32(point, get_size() - point);
+
+   }
+
+
+   inline ::rectangle_i32 rectangle(const ::point_i32& point = nullptr) const
+   {
+
+      return ::rectangle_i32(point, get_size() - point);
+
+   }
+
+
+   inline ::color::color pixel(int x, int y) const
+   {
+
+      if (::is_null(this) || x < 0 || y < 0 || x>= m_size.cx || y >= m_size.cy)
+      {
+
+         return 0;
+
+      }
+
+      return ::draw2d::get_pixel(colorref(), scan_size(), width(), x, y);
+
+   }
+
+
+   inline ::size_i32 get_size() const { return size(); }
+
 
 
 };
@@ -553,3 +885,9 @@ inline bool not_ok(const ::image * pimage)
    return !is_ok(pimage);
 
 }
+
+
+#include "_image_impl.h"
+
+
+

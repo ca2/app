@@ -157,8 +157,8 @@ namespace draw2d
 } // namespace draw2d
 
 
-PFUNCTION_FACTORY_EXCHANGE g_pfnfactoryexchangeDraw2d = nullptr;
-PFUNCTION_FACTORY_EXCHANGE g_pfnfactoryexchangeImaging = nullptr;
+//PFUNCTION_FACTORY_EXCHANGE g_pfnfactoryexchangeDraw2d = nullptr;
+//PFUNCTION_FACTORY_EXCHANGE g_pfnfactoryexchangeImaging = nullptr;
 
 
 

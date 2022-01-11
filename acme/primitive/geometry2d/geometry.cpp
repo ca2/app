@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "geometry.h"
 
 
 namespace geometry

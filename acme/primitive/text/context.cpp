@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "acme/id.h"
 #include "acme/platform/context.h"
-
+#include "context.h"
 
 namespace text
 {

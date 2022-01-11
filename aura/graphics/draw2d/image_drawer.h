@@ -4,6 +4,9 @@
 #pragma once
 
 
+//#include "image_drawing.h"
+
+
 class CLASS_DECL_AURA image_drawer :
    virtual public ::matter
 {

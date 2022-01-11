@@ -451,9 +451,7 @@
       <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
     </Link>
-    <PreBuildEvent>
-      <Command>%USERPROFILE%/bin/application_build_helper $(ProjectDir)</Command>
-    </PreBuildEvent>
+
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">
     <ClCompile>
@@ -483,9 +481,7 @@
       <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
     </Link>
-    <PreBuildEvent>
-      <Command>%USERPROFILE%/bin/application_build_helper $(ProjectDir)</Command>
-    </PreBuildEvent>
+
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
     <ClCompile>
@@ -514,9 +510,7 @@
       <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
     </Link>
-    <PreBuildEvent>
-      <Command>%USERPROFILE%/bin/application_build_helper $(ProjectDir)</Command>
-    </PreBuildEvent>
+
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">
     <ClCompile>
@@ -543,9 +537,7 @@
       </ModuleDefinitionFile>
       <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
-    <PreBuildEvent>
-      <Command>%USERPROFILE%/bin/application_build_helper $(ProjectDir)</Command>
-    </PreBuildEvent>
+
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|arm'">
     <ClCompile>
@@ -598,9 +590,7 @@
       <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
     </Link>
-    <PreBuildEvent>
-      <Command>%USERPROFILE%/bin/application_build_helper $(ProjectDir)</Command>
-    </PreBuildEvent>
+
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|arm'">
     <ClCompile>
@@ -629,9 +619,7 @@
       <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
     </Link>
-    <PreBuildEvent>
-      <Command>%USERPROFILE%/bin/application_build_helper $(ProjectDir)</Command>
-    </PreBuildEvent>
+
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM64'">
     <ClCompile>
@@ -713,9 +701,7 @@
       <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
     </Link>
-    <PreBuildEvent>
-      <Command>%USERPROFILE%/bin/application_build_helper $(ProjectDir)</Command>
-    </PreBuildEvent>
+
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM64'">
     <ClCompile>
@@ -768,9 +754,7 @@
       </ModuleDefinitionFile>
       <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
-    <PreBuildEvent>
-      <Command>%USERPROFILE%/bin/application_build_helper $(ProjectDir)</Command>
-    </PreBuildEvent>
+
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|ARM64'">
     <ClCompile>
@@ -827,9 +811,7 @@
       <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
     </Link>
-    <PreBuildEvent>
-      <Command>%USERPROFILE%/bin/application_build_helper $(ProjectDir)</Command>
-    </PreBuildEvent>
+
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">
     <ClCompile>
@@ -859,9 +841,7 @@
       <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
     </Link>
-    <PreBuildEvent>
-      <Command>%USERPROFILE%/bin/application_build_helper $(ProjectDir)</Command>
-    </PreBuildEvent>
+
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
     <ClCompile>
@@ -890,9 +870,7 @@
       <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
     </Link>
-    <PreBuildEvent>
-      <Command>%USERPROFILE%/bin/application_build_helper $(ProjectDir)</Command>
-    </PreBuildEvent>
+
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">
     <ClCompile>
@@ -919,9 +897,7 @@
       </ModuleDefinitionFile>
       <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
-    <PreBuildEvent>
-      <Command>%USERPROFILE%/bin/application_build_helper $(ProjectDir)</Command>
-    </PreBuildEvent>
+
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

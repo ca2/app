@@ -116,7 +116,7 @@ public:
       ::memory * m_pmemory;
       ::file::path_object * m_ppath;
       ::element * m_pelementRoutine;
-      ::i64                      m_all[2];
+      ::i64                      m_all[3];
       ::string                     m_str;
 
    };

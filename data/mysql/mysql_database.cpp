@@ -55,7 +55,7 @@ namespace mysql
    }
 
 
-   ::e_status database::initialize(::object * pobject)
+   void database::initialize(::object * pobject)
    {
 
       auto estatus = ::database::database::initialize(pobject);
@@ -72,7 +72,7 @@ namespace mysql
    }
 
 
-   ::e_status database::destroy()
+   void database::destroy()
    {
 
       close_mysql_database();
@@ -100,7 +100,7 @@ namespace mysql
    }
 
 
-   ::e_status database::_connect()
+   void database::_connect()
    {
 
       /* initialize connection handler */

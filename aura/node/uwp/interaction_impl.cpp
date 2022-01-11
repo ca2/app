@@ -887,7 +887,7 @@ namespace universal_windows
    }
 
 
-   ::e_status interaction_impl::main_async(const ::routine & routine, enum_priority epriority)
+   void interaction_impl::main_async(const ::routine & routine, enum_priority epriority)
    {
 
       ::winrt::Windows::UI::Core::CoreDispatcher ^ pdispatcher;
@@ -2375,7 +2375,7 @@ return true;
    //   }
 
 
-   //    ::e_status     c_cdecl print_window(LPVOID pvoid)
+   //    void     c_cdecl print_window(LPVOID pvoid)
    //   {
    //      __throw(todo(::get_application()));
 
@@ -6101,7 +6101,7 @@ namespace universal_windows
    }
 
 
-   ::e_status interaction_impl::update_graphics_resources()
+   void interaction_impl::update_graphics_resources()
    {
 
       return ::user::interaction_impl::update_graphics_resources();
@@ -6239,7 +6239,7 @@ namespace universal_windows
    }
 
 
-   ::e_status interaction_impl::show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd)
+   void interaction_impl::show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd)
    {
 
       m_pframeworkview->SetText(str, iBeg, iEnd);
@@ -6249,7 +6249,7 @@ namespace universal_windows
    }
 
 
-   ::e_status interaction_impl::hide_software_keyboard(::user::primitive * pprimitive)
+   void interaction_impl::hide_software_keyboard(::user::primitive * pprimitive)
    {
 
       //m_pframeworkview->SetText(str, iBeg, iEnd);

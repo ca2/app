@@ -44,9 +44,9 @@ namespace sockets
 
       class ::sockets::net                         & net();
 
-      virtual ::e_status initialize(::object * pobject) override;
+      virtual void initialize(::object * pobject) override;
 
-      virtual ::e_status destroy() override;
+      virtual void destroy() override;
 
       virtual string get_http_post_boundary();
 

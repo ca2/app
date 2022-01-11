@@ -108,7 +108,7 @@
    }
 
 
-   ::e_status     os_context::link_open(string strUrl)
+   void     os_context::link_open(string strUrl)
    {
 
       if (!file_open(strUrl))
@@ -253,7 +253,7 @@
    }
 
 
-   ::e_status os_context::create_service()
+   void os_context::create_service()
    {
 
 
@@ -266,7 +266,7 @@
    }
 
 
-   ::e_status os_context::erase_service()
+   void os_context::erase_service()
    {
 
 
@@ -279,7 +279,7 @@
    }
 
 
-   ::e_status os_context::start_service()
+   void os_context::start_service()
    {
 
 
@@ -292,7 +292,7 @@
    }
 
 
-   ::e_status os_context::stop_service()
+   void os_context::stop_service()
    {
 
 

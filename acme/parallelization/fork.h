@@ -43,7 +43,7 @@ public:
    }
 
 
-   ::e_status run() override
+   void run() override
    {
 
       m_predicate();
@@ -412,7 +412,7 @@ public:
 
    }
 
-   virtual ::e_status     run() override
+   virtual void     run() override
    {
 
       for (m_index.m_i = m_index.m_iIndex; m_index.m_i < m_index.m_cCount; m_index.m_i += m_index.m_iScan)
@@ -489,7 +489,7 @@ public:
 
    }
 
-   virtual ::e_status     run() override
+   virtual void     run() override
    {
 
       try
@@ -646,7 +646,7 @@ template < typename PRED, typename PRED_END >
 //
 //   }
 //
-//   ::e_status run()
+//   void run()
 //   {
 //
 //      for (; m_iIndex < m_iCount; m_iIndex += m_iScan)

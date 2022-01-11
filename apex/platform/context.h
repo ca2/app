@@ -59,12 +59,12 @@ namespace apex
 
       string command_line_text() const;
 
-      virtual ::e_status destroy() override;
+      virtual void destroy() override;
 
       //virtual ::task_pool* taskpool() override;
 
 
-      virtual ::e_status initialize_context() override;
+      virtual void initialize_context() override;
 
 
       void clear_cache();
@@ -152,24 +152,24 @@ namespace apex
       //virtual ::icon_transport load_icon(const ::payload & payloadFile);
 
 
-      //virtual ::e_status _get_image(image * pimage, const ::payload & payloadFile, bool bSync = true);
-      //virtual ::e_status _matter_image(image * pimage, const ::string & strMatter, bool bSync = true);
+      //virtual void _get_image(image * pimage, const ::payload & payloadFile, bool bSync = true);
+      //virtual void _matter_image(image * pimage, const ::string & strMatter, bool bSync = true);
 
 
-      //virtual ::e_status _load_image(image * pimage, const ::payload & payloadFile, bool bSync = true, bool bCreateHelperMaps = false);
-      //virtual ::e_status _load_matter_image(image * pimage, const string & pszMatter, bool bSync = true, bool bCreateHelperMaps = false);
-      //virtual ::e_status _load_matter_icon(image * pimage, string_array & straMatter, string strIcon);
-      //virtual ::e_status _load_thumbnail(image * pimage, const ::payload & payloadFile, int w, int h);
-      //virtual ::e_status _load_thumbnail(image * pimage, const ::payload & payloadFile);
-      //virtual ::e_status _load_dib(image * pimage, const ::file::path & pathDib);
+      //virtual void _load_image(image * pimage, const ::payload & payloadFile, bool bSync = true, bool bCreateHelperMaps = false);
+      //virtual void _load_matter_image(image * pimage, const string & pszMatter, bool bSync = true, bool bCreateHelperMaps = false);
+      //virtual void _load_matter_icon(image * pimage, string_array & straMatter, string strIcon);
+      //virtual void _load_thumbnail(image * pimage, const ::payload & payloadFile, int w, int h);
+      //virtual void _load_thumbnail(image * pimage, const ::payload & payloadFile);
+      //virtual void _load_dib(image * pimage, const ::file::path & pathDib);
 
 
-      //virtual ::e_status save_image(const ::payload & payloadFile, const image * pimage, ::save_image * psaveimage = nullptr);
-      //virtual ::e_status save_dib(const ::file::path & path, const image * pimage);
+      //virtual void save_image(const ::payload & payloadFile, const image * pimage, ::save_image * psaveimage = nullptr);
+      //virtual void save_dib(const ::file::path & path, const image * pimage);
 
 
       //virtual ::image_transport _load_image_from_file(const ::payload & payloadFile, const ::payload & varOptions);
-      //virtual ::e_status _save_to_file(const ::payload & payloadFile, const image * pimage, const ::payload & varOptions);
+      //virtual void _save_to_file(const ::payload & payloadFile, const image * pimage, const ::payload & varOptions);
 
 
       virtual string matter_locator(string strApp);
@@ -181,17 +181,17 @@ namespace apex
       virtual void add_matter_locator(::application* papp);
 
 
-      virtual ::e_status _load_from_file(::matter* pobject, const ::payload& payloadFile, const ::payload& varOptions);
-      virtual ::e_status _save_to_file(const ::payload& payloadFile, const ::payload& varOptions, const ::matter* pobject);
+      virtual void _load_from_file(::matter* pobject, const ::payload& payloadFile, const ::payload& varOptions);
+      virtual void _save_to_file(const ::payload& payloadFile, const ::payload& varOptions, const ::matter* pobject);
 
 
-      inline ::e_status load_from_file(::matter* pobject, const ::payload& payloadFile, const ::payload* pvarOptions);
-      inline ::e_status load_from_file(::matter* pobject, const ::payload& payloadFile);
-      inline ::e_status save_to_file(const ::payload& payloadFile, const ::payload* pvarOptions, const ::matter* pobject);
-      inline ::e_status save_to_file(const ::payload& payloadFile, const ::matter* pobject);
+      inline void load_from_file(::matter* pobject, const ::payload& payloadFile, const ::payload* pvarOptions);
+      inline void load_from_file(::matter* pobject, const ::payload& payloadFile);
+      inline void save_to_file(const ::payload& payloadFile, const ::payload* pvarOptions, const ::matter* pobject);
+      inline void save_to_file(const ::payload& payloadFile, const ::matter* pobject);
 
 
-      //virtual ::e_status destroy() override;
+      //virtual void destroy() override;
 
       file_transport get_file(const ::payload& payloadFile, const ::file::e_open& eopen) override;
 

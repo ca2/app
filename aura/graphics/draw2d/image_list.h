@@ -98,7 +98,7 @@ public:
 
    virtual void copy_from(const image_list * plist);
 
-   virtual ::e_status get_image_info(i32 nImage, info * pinfo) const;
+   virtual void get_image_info(i32 nImage, info * pinfo) const;
 
    virtual void erase_all();
 

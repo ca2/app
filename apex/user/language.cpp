@@ -33,10 +33,10 @@ namespace user
    }
 
 
-   ::e_status language::initialize(::object * pobject)
+   void language::initialize(::object * pobject)
    {
 
-      ::e_status estatus = ::object::initialize(pobject);
+      void estatus = ::object::initialize(pobject);
 
       if (!estatus)
       {

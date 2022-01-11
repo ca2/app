@@ -18,10 +18,10 @@ namespace android
       dir_context();
       virtual ~dir_context();
 
-      virtual ::e_status initialize(::object * pobject) override;
+      virtual void initialize(::object * pobject) override;
 
-      virtual ::e_status init_system() override;
-      virtual ::e_status init_context() override;
+      virtual void init_system() override;
+      virtual void init_context() override;
 
       virtual ::file::listing & ls(::file::listing & listing) override;
       virtual ::file::listing & root_ones(::file::listing & listing) override;

@@ -16,7 +16,7 @@ ___launch::~___launch()
 }
 
 
-CLASS_DECL_ACME ::e_status __launch(
+CLASS_DECL_ACME void __launch(
    matter* pmatter,
    ::enum_priority epriority,
    u32 nStackSize,
@@ -90,7 +90,7 @@ void* ___launch::s_os_thread_proc(void* p)
 #endif
 
 
-::e_status ___launch::fork(::enum_priority epriority, ::u32 nStackSize, u32 uiCreateFlags, itask_t* pithread, htask_t* phthread)
+void ___launch::fork(::enum_priority epriority, ::u32 nStackSize, u32 uiCreateFlags, itask_t* pithread, htask_t* phthread)
 {
 
    htask_t htask = null_hthread;
@@ -154,7 +154,7 @@ void* ___launch::s_os_thread_proc(void* p)
 }
 
 
-//::e_status ___launch::__thread_procedure()
+//void ___launch::__thread_procedure()
 //{
 //
 //   try

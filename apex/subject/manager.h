@@ -43,7 +43,7 @@ public:
    virtual void on_property_changed(property * pproperty, const ::action_context & actioncontext) override;
 
 
-   virtual ::e_status destroy_signal_handling();
+   virtual void destroy_signal_handling();
 
 
    virtual void erase_signal_handler(::matter *pmatter);

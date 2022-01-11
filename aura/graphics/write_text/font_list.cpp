@@ -592,7 +592,7 @@ namespace write_text
    }
 
 
-   ::e_status font_list::initialize(::object * pobject)
+   void font_list::initialize(::object * pobject)
    {
 
       auto estatus = ::object::initialize(pobject);

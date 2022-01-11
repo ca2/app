@@ -2,7 +2,7 @@
 #include "framework.h"
 
 
-::e_status source::add_handler(::matter * pmatter, bool bPriority)
+void source::add_handler(::matter * pmatter, bool bPriority)
 {
 
    auto estatus = __defer_construct_new(m_phandlera);
@@ -32,7 +32,7 @@
 }
 
 
-//::e_status source::add_handler(::matter * pmatter, const ::id & idChild, bool bPriority)
+//void source::add_handler(::matter * pmatter, const ::id & idChild, bool bPriority)
 //{
 //
 //   if (::is_null(pmatter))

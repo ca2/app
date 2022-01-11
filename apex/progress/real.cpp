@@ -79,7 +79,7 @@ namespace progress
    }
 
 
-   ::e_status real::step()
+   void real::step()
    {
 
       ASSERT(m_iStep + 1 <= m_iStepCount);

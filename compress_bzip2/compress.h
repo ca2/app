@@ -69,13 +69,13 @@ namespace compress_bzip2
       ~compress() override;
 
 
-      ::e_status initialize(::object* pobject) override;
+      void initialize(::object* pobject) override;
 
 
-      ::e_status set_bzip2_parameters(int iBlockSize, int iVerbosity, int iWorkFactor);
+      void set_bzip2_parameters(int iBlockSize, int iVerbosity, int iWorkFactor);
 
 
-      ::e_status transfer(::file::file* pfileOut, ::file::file* pfileIn) override;
+      void transfer(::file::file* pfileOut, ::file::file* pfileIn) override;
 
 
    };

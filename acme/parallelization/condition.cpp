@@ -159,7 +159,7 @@ bool condition::pulse()
 }
 
 
-::e_status condition::wait()
+void condition::wait()
 {
 
 
@@ -209,7 +209,7 @@ bool condition::pulse()
 ///  \brief		waits for an condition for a specified time
 ///  \lparam		duration time period to wait for an condition
 ///  \return	waiting action result as WaitResult
-::e_status condition::wait(const class ::wait & wait)
+void condition::wait(const class ::wait & wait)
 {
 
 #ifdef WINDOWS

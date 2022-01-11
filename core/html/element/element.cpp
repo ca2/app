@@ -94,7 +94,7 @@ namespace html
    }
 
 
-   ::e_status element::initialize_html_element(html_data * phtmldata)
+   void element::initialize_html_element(html_data * phtmldata)
    {
 
       if (m_pparent != nullptr && m_idTagName.is_empty())
@@ -164,7 +164,7 @@ namespace html
 
       }
       
-      ::e_status estatus = ::success;
+      void estatus = ::success;
 
       if (m_etag == tag_initial)
       {
@@ -1404,7 +1404,7 @@ namespace html
    }
 
 
-   ::e_status element::initialize_html_elemental(html_data * phtmldata, element * pparent)
+   void element::initialize_html_elemental(html_data * phtmldata, element * pparent)
    {
 
       auto estatus = ::user::primitive::initialize(phtmldata);

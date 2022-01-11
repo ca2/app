@@ -88,7 +88,7 @@ multiple_lock::~multiple_lock()
 }
 
 
-::e_status multiple_lock::lock(const duration & duration, bool bWaitForAll, u32 dwWakeMask)
+void multiple_lock::lock(const duration & duration, bool bWaitForAll, u32 dwWakeMask)
 {
 
    if (m_synchronizationa.has_no_synchronization_object())
@@ -122,7 +122,7 @@ multiple_lock::~multiple_lock()
    if(iSignaled < 0)
    {
 
-      ::e_status estatus = ::get_last_status();
+      void estatus = ::get_last_status();
 
       // TRACELASTERROR();
 

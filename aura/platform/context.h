@@ -18,7 +18,7 @@ namespace aura
       ~context() override;
 
 
-      virtual ::e_status initialize_context() override;
+      virtual void initialize_context() override;
 
 
 

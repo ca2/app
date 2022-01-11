@@ -12,7 +12,7 @@ CLASS_DECL_AURA bool node_save_image(comptr < IStream > pstream, const ::image *
 CLASS_DECL_AURA bool node_save_image(::winrt::Windows::Storage::Streams::IRandomAccessStream ^ stream, const ::image * pimage, ::save_image * psaveimage);
 #endif
 
-::e_status     imaging::save_image(memory & mem, const ::image * pimage, ::save_image * psaveimage)
+void     imaging::save_image(memory & mem, const ::image * pimage, ::save_image * psaveimage)
 {
 
    if (::is_null(pimage))

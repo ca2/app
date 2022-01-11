@@ -8,9 +8,9 @@ class CLASS_DECL_ACME acme_file :
 public:
 
 
-   ::PLATFORM_NAMESPACE::acme_file *   m_pplatformfile;
-   acme_dir *                          m_pacmedir;
-   acme_path *                         m_pacmepath;
+   ::PLATFORM_NAMESPACE::acme_file* m_pplatformfile;
+   acme_dir* m_pacmedir;
+   acme_path* m_pacmepath;
 
    ::file::path                        m_pathExecutable;
 
@@ -19,44 +19,46 @@ public:
    ~acme_file() override;
 
 
-   virtual ::e_status ensure_exists(const char* path);
-   virtual ::e_status touch(const char* path);
-   virtual ::e_status clear_read_only(const char* path);
-
-   
-   virtual ::e_status set_file_normal(const char* path);
+   virtual void ensure_exists(const char* path);
+   virtual void touch(const char* path);
+   virtual void clear_read_only(const char* path);
 
 
-   virtual bool is_equal(const char * path1, const char* path2);
-   virtual ::e_status overwrite_if_different(const char* pathTarget, const char * pathSource);
+   virtual void set_file_normal(const char* path);
+
+
+   virtual bool is_equal(const char* path1, const char* path2);
+   virtual void overwrite_if_different(const char* pathTarget, const char* pathSource);
 
 
    // executable path
    virtual ::file::path module();
 
 
-   virtual file_transport open(const ::file::path & path, const ::file::e_open & eopen);
-   virtual file_transport stdio_open(const char * path, const char * attrs, int iShare);
+   virtual file_transport open(const ::file::path& path, const ::file::e_open& eopen);
+   virtual file_transport stdio_open(const char* path, const char* attrs, int iShare);
 
-   virtual status < memory > as_memory(const char * path, strsize iReadAtMostByteCount = -1);
-   virtual holding_status < memsize > as_memory(const char * path, void * p, memsize s);
+   virtual memory as_memory(const char* path, strsize iReadAtMostByteCount = -1);
+
+
+   virtual memsize as_memory(const char * path, void * p, memsize s);
    virtual status < string > as_string(const char * path, strsize iReadAtMostByteCount = -1);
 
 
    //virtual string get_temp_name(const char * lpszName, const char * pszExtension);
-   virtual ::e_status write_memory_to_file(FILE * file, const void * pdata, memsize nCount, memsize * puiWritten);
-   virtual ::e_status append_wait(const char * pszFile, const block & block, const ::duration & duration);
-   virtual ::e_status append(const char * pszFile, const block & block);
+   virtual void write_memory_to_file(FILE * file, const void * pdata, memsize nCount, memsize * puiWritten);
+   virtual void append_wait(const char * pszFile, const block & block, const ::duration & duration);
+   virtual void append(const char * pszFile, const block & block);
 
-   virtual ::e_status exists(const char * path);
+   virtual void exists(const char * path);
 
-   virtual ::e_status put_contents(const char * path, const char * contents, strsize len);
+   virtual void put_contents(const char * path, const char * contents, strsize len);
    virtual holding_status < filesize > get_size(const char * path);
    virtual holding_status < filesize > get_size(FILE * pfile);
    virtual holding_status < filesize > get_size_fd(int iFile);
 
 
-   virtual ::e_status clear_application_data();
+   virtual void clear_application_data();
 
 
 
@@ -86,42 +88,42 @@ public:
 
    //virtual filesize FILE_get_size(FILE * fp);
 
-   virtual ::e_status is_true(const char * path);
+   virtual void is_true(const char * path);
 
 
-   virtual ::e_status set_size(const char * lpszName, filesize iSize);
-   virtual ::e_status set_size(int iFileDescriptor, filesize iSize);
-   virtual ::e_status set_size(FILE * pfile, filesize iSize);
+   virtual void set_size(const char * lpszName, filesize iSize);
+   virtual void set_size(int iFileDescriptor, filesize iSize);
+   virtual void set_size(FILE * pfile, filesize iSize);
 
 
-   virtual ::e_status move(const char * pszNewName, const char * pszOldName);
+   virtual void move(const char * pszNewName, const char * pszOldName);
 
-   virtual ::e_status delete_file(const char * pszFileName);
+   virtual void delete_file(const char * pszFileName);
 
    //virtual bool set_line(const char * pszPath, index iLine, const char * pszLine);
 
-   virtual ::e_status copy(const char * pszDup, const char * pszSrc, bool bOverwrite);
+   virtual void copy(const char * pszDup, const char * pszSrc, bool bOverwrite);
    
 
    virtual ::duration modification_time(const char* psz);
-   virtual ::e_status set_modification_time(const char* psz, const ::duration & duration);
-   virtual ::e_status synchronize(const char * psz1, const char * psz2);
+   virtual void set_modification_time(const char* psz, const ::duration & duration);
+   virtual void synchronize(const char * psz1, const char * psz2);
 
 
-   virtual ::e_status save_stra(const char * lpszName, const string_array & stra);
-   virtual ::e_status load_stra(const char * lpszName, string_array & stra, bool bAddEmpty = true);
+   virtual void save_stra(const char * lpszName, const string_array & stra);
+   virtual void load_stra(const char * lpszName, string_array & stra, bool bAddEmpty = true);
 
 
-   virtual ::e_status put_contents(const char * path, const memory_base & memory);
-   virtual ::e_status put_contents(const char * path, const char * contents);
-   virtual ::e_status as_memory(memory_base & memory, const char * path, memsize iReadAtMostByteCount = -1);
+   virtual void put_contents(const char * path, const memory_base & memory);
+   virtual void put_contents(const char * path, const char * contents);
+   virtual void as_memory(memory_base & memory, const char * path, memsize iReadAtMostByteCount = -1);
    //virtual memsize as_memory(const char * path, void * p, memsize s);
 
 
-   virtual ::e_status put_block(const char * path, const block & block);
+   virtual void put_block(const char * path, const block & block);
 
 
-   virtual ::e_status as_block(block & block, const char * path);
+   virtual void as_block(block & block, const char * path);
 
    // acme/filesystem/file.h
    // partial excerpt of...
@@ -132,26 +134,26 @@ public:
    virtual status < string > first_line(const char * path);
    virtual status < string > line(const char * path, index iLine);
    virtual status < string_array > lines(const char * path);
-   virtual ::e_status set_line(const char * path, index iLine, const char * pszLine);
+   virtual void set_line(const char * path, index iLine, const char * pszLine);
    //virtual string file_extension_dup(const char * path);
    virtual status < string > get_temporary_file_name(const char * lpszName, const char * pszExtension);
 
-   virtual ::e_status get_temporary_file_name_template(char * szRet, strsize iBufferSize, const char * lpszName, const char * pszExtension, const char * pszTemplate);
+   virtual void get_temporary_file_name_template(char * szRet, strsize iBufferSize, const char * lpszName, const char * pszExtension, const char * pszTemplate);
 
    //virtual string file_final_extension_dup(const char * path);
    //virtual string url_dir_name_for_relative(const char * pszPath);
    //virtual string solve_relative(const ::string & str, bool * pbUrl = nullptr);
    //virtual bool solve_relative_inline(string & str, bool & bUrl, bool & bOnlyNativeFileSep, strsize * iaSlash, int * piSlashCount); // returns true if original string had trailing slash
    //virtual string defer_solve_relative(const char * pszRelative, const char * pszCurrent);
-   virtual ::e_status append(const ::string & strFile, const block & block);
-   virtual ::e_status append_wait(const ::string & strFile, const block & block, const ::duration & duration = ::duration::infinite());
+   virtual void append(const ::string & strFile, const block & block);
+   virtual void append_wait(const ::string & strFile, const block & block, const ::duration & duration = ::duration::infinite());
    //virtual bool file_append_wait(const ::string & strFile, const char * psz, strsize s, const ::duration & millisTimeout = ::duration::infinite());
 
-   virtual ::e_status write(FILE * file, const void * pdata, memsize nCount, memsize * puiWritten);
+   virtual void write(FILE * file, const void * pdata, memsize nCount, memsize * puiWritten);
 
 
-   virtual ::e_status _exists(const char * path);
-   virtual ::e_status _delete(const char * path);
+   virtual void _exists(const char * path);
+   virtual void _delete(const char * path);
 
 
 };

@@ -19,7 +19,7 @@ namespace file
    }
 
 
-   ::e_status set::on_initialize_object()
+   void set::on_initialize_object()
    {
 
       auto estatus = ::object::on_initialize_object();

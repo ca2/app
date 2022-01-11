@@ -14,7 +14,7 @@ namespace base
    }
 
 
-   ::e_status application::initialize(::object * pobject)
+   void application::initialize(::object * pobject)
    {
 
       auto estatus = ::axis::application::initialize(pobject);
@@ -84,7 +84,7 @@ namespace base
    }
 
 
-   ::e_status application::create_impact_system()
+   void application::create_impact_system()
    {
 
       return ::success;

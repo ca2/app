@@ -18,7 +18,7 @@ folder::~folder()
 }
 
 
-::e_status folder::initialize(::object* pobject)
+void folder::initialize(::object* pobject)
 {
 
    auto estatus = ::object::initialize(pobject);
@@ -45,7 +45,7 @@ bool folder::is_reading() const
 }
 
 
-::e_status folder::open_for_reading(file_pointer pfile, int iBufferLevel)
+void folder::open_for_reading(file_pointer pfile, int iBufferLevel)
 {
 
    throw interface_only_exception();
@@ -64,7 +64,7 @@ bool folder::locate(const char* pszFileName)
 
 }
 
-::file_transport folder::get_file(const char * pszFile)
+::file_pointer folder::get_file(const char * pszFile)
 {
 
    throw interface_only_exception();
@@ -82,7 +82,7 @@ bool folder::has_sub_folder(const char* pszFileName)
 }
 
 
-::e_status folder::extract(memory& m, const char* pszFile)
+void folder::extract(memory& m, const char* pszFile)
 {
 
    throw interface_only_exception();
@@ -100,7 +100,7 @@ bool folder::is_compressed(const char* pszFileName)
 }
 
 
-::e_status folder::extract_all(const char* pszTargetDir, ::file::patha* ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat)
+void folder::extract_all(const char* pszTargetDir, ::file::patha* ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat)
 {
 
    throw interface_only_exception();
@@ -132,7 +132,7 @@ bool folder::is_compressed(const char* pszFileName)
 
 
 
-::e_status folder::open_for_writing(file_pointer pfile)
+void folder::open_for_writing(file_pointer pfile)
 {
 
    throw interface_only_exception();

@@ -71,7 +71,7 @@ namespace file
 
       }
 
-      listing & operator = (const ::e_status & estatus) { m_statusresult.set_error(estatus); return *this; }
+      listing & operator = (const void & estatus) { m_statusresult.set_error(estatus); return *this; }
 
 
       void operator()(const ::file::path& path)

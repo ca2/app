@@ -90,7 +90,7 @@ filesize string_file::get_position() const
 }
 
 
-::e_status string_file::destroy()
+void string_file::destroy()
 {
 
    auto estatus = ::file::file::destroy();

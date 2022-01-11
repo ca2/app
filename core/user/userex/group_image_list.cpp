@@ -240,7 +240,7 @@ namespace userex
    }
 
 
-   ::e_status group_image_list_view::set_current_item(const ::item & item, const ::action_context & context)
+   void group_image_list_view::set_current_item(const ::item & item, const ::action_context & context)
    {
 
       auto estatus = ::user::impact::set_current_item(item, context);

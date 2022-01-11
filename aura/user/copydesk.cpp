@@ -25,7 +25,7 @@ namespace user
    }
 
 
-   ::e_status copydesk::initialize_copydesk(::windowing::window * pwindow)
+   void copydesk::initialize_copydesk(::windowing::window * pwindow)
    {
 
       auto estatus = ::object::initialize(pwindow);
@@ -54,7 +54,7 @@ namespace user
    }
 
 
-   ::e_status copydesk::destroy()
+   void copydesk::destroy()
    {
 
       auto estatus = ::object::destroy();
@@ -64,7 +64,7 @@ namespace user
    }
 
 
-   ::e_status copydesk::string_to_filea(::file::patha  * ppatha, const ::string & str)
+   void copydesk::string_to_filea(::file::patha  * ppatha, const ::string & str)
    {
 
       string_array stra;
@@ -142,7 +142,7 @@ namespace user
    }
 
 
-   ::e_status copydesk::get_filea(::file::patha & patha, e_op & eop)
+   void copydesk::get_filea(::file::patha & patha, e_op & eop)
    {
 
       auto estatus = _get_filea(patha, eop);
@@ -177,7 +177,7 @@ namespace user
    }
 
 
-   ::e_status copydesk::set_filea(const ::file::patha & patha, e_op eop)
+   void copydesk::set_filea(const ::file::patha & patha, e_op eop)
    {
 
       return _set_filea(patha, eop);
@@ -185,7 +185,7 @@ namespace user
    }
 
 
-   ::e_status copydesk::set_plain_text(const ::string & str, bool bForceSetIfEmpty)
+   void copydesk::set_plain_text(const ::string & str, bool bForceSetIfEmpty)
    {
 
       if(str.is_empty() && !bForceSetIfEmpty)
@@ -200,7 +200,7 @@ namespace user
    }
 
 
-   ::e_status copydesk::get_plain_text(string & str, enum_flag eflag)
+   void copydesk::get_plain_text(string & str, enum_flag eflag)
    {
 
       if (!(eflag & flag_prevent_data_blob) && _has_image())
@@ -390,7 +390,7 @@ namespace user
    }
 
 
-   ::e_status copydesk::desk_to_image(::image_pointer & pimage)
+   void copydesk::desk_to_image(::image_pointer & pimage)
    {
 
       if (_has_image())
@@ -511,7 +511,7 @@ namespace user
    }
 
 
-   ::e_status copydesk::image_to_desk(const ::image * pimage)
+   void copydesk::image_to_desk(const ::image * pimage)
    {
 
       return _image_to_desk(pimage);
@@ -551,7 +551,7 @@ namespace user
    }
 
 
-   ::e_status copydesk::_get_filea(::file::patha & stra, e_op & eop)
+   void copydesk::_get_filea(::file::patha & stra, e_op & eop)
    {
 
       __UNREFERENCED_PARAMETER(stra);
@@ -563,7 +563,7 @@ namespace user
    }
 
 
-   ::e_status copydesk::_set_filea(const ::file::patha & patha, e_op eop)
+   void copydesk::_set_filea(const ::file::patha & patha, e_op eop)
    {
 
       __UNREFERENCED_PARAMETER(patha);
@@ -575,7 +575,7 @@ namespace user
    }
 
 
-   ::e_status copydesk::_set_plain_text(const ::string & str)
+   void copydesk::_set_plain_text(const ::string & str)
    {
 
       __UNREFERENCED_PARAMETER(str);
@@ -587,7 +587,7 @@ namespace user
    }
 
 
-   ::e_status copydesk::_get_plain_text(string & str)
+   void copydesk::_get_plain_text(string & str)
    {
 
       throw ::interface_only_exception();
@@ -607,7 +607,7 @@ namespace user
    }
 
 
-   ::e_status copydesk::_desk_to_image(::image * pimage)
+   void copydesk::_desk_to_image(::image * pimage)
    {
 
       __UNREFERENCED_PARAMETER(pimage);
@@ -619,7 +619,7 @@ namespace user
    }
 
 
-   ::e_status copydesk::_image_to_desk(const ::image * pimage)
+   void copydesk::_image_to_desk(const ::image * pimage)
    {
 
       __UNREFERENCED_PARAMETER(pimage);

@@ -589,7 +589,7 @@ namespace android
 
    }
 
-   ::e_status os_context::create_service()
+   void os_context::create_service()
    {
 
       //throw interface_only_exception();
@@ -599,21 +599,21 @@ namespace android
    }
 
 
-   ::e_status os_context::erase_service()
+   void os_context::erase_service()
    {
 //      throw interface_only_exception();
       return error_failed;
 
    }
 
-   ::e_status os_context::start_service()
+   void os_context::start_service()
    {
       //throw interface_only_exception();
       return error_failed;
 
    }
 
-   ::e_status os_context::stop_service()
+   void os_context::stop_service()
    {
       throw interface_only_exception();
       return error_failed;
@@ -670,7 +670,7 @@ namespace android
 
       __pointer(ttf_util) putil;
 
-      ::e_status estatus = __construct_new(putil);
+      void estatus = __construct_new(putil);
 
       if (pdoc->load(strSystemFonts))
       {

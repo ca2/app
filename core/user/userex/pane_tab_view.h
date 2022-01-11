@@ -112,7 +112,7 @@ public:
    }
 
 
-   ::e_status initialize(::object* pobject) override
+   void initialize(::object* pobject) override
    {
 
       auto estatus = BASE1::initialize(pobject);

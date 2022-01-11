@@ -1278,7 +1278,7 @@ namespace user
    }
 
 
-   ::e_status list_box::set_current_item(const ::item & item, const ::action_context & context)
+   void list_box::set_current_item(const ::item & item, const ::action_context & context)
    {
 
       if(m_pcombo)

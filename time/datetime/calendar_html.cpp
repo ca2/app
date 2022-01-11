@@ -32,7 +32,7 @@ namespace datetime
 
 
 
-   ::e_status visual::initialize(::object * pobject)
+   void visual::initialize(::object * pobject)
    {
 
       auto estatus = ::datetime::calendar::calendar::initialize(pobject);

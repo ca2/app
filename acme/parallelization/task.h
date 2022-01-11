@@ -51,10 +51,10 @@ public:
    ~task() override;
 
 
-   ::e_status on_initialize_object() override;
+   void on_initialize_object() override;
 
    
-   virtual ::e_status on_pre_run_task();
+   virtual void on_pre_run_task();
 
 
    string get_tag() const override;
@@ -89,20 +89,20 @@ public:
    //virtual void add_notify(::matter* pmatter);
    //virtual void erase_notify(::matter* pmatter);
 
-   ::e_status post_routine(const ::routine& routine) override;
+   void post_routine(const ::routine& routine) override;
    
 
-   virtual ::e_status run_posted_routines();
+   virtual void run_posted_routines();
 
-   virtual ::e_status task_caller_on_init();
+   virtual void task_caller_on_init();
 
    virtual bool on_get_task_name(string & strThreadName);
 
 
    virtual void init_task();
    virtual void term_task();
-   //virtual ::e_status do_task() override;
-   //virtual ::e_status on_task() override;
+   //virtual void do_task() override;
+   //virtual void on_task() override;
 
    virtual bool do_events();
    virtual bool defer_pump_message();
@@ -111,7 +111,7 @@ public:
    virtual bool has_message() const;
 
 
-   virtual ::e_status branch(
+   virtual void branch(
       ::enum_priority epriority = e_priority_normal,
       u32 nStackSize = 0,
       u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
@@ -156,11 +156,11 @@ public:
 
    virtual bool kick_thread();
 
-   virtual ::e_status main();
+   virtual void main();
 
-   ::e_status run() override;
+   void run() override;
 
-   virtual ::e_status stop_task();
+   virtual void stop_task();
 
 
    //virtual bool task_set_name(const char* pszThreadName);

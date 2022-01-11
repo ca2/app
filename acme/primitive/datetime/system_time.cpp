@@ -9,7 +9,7 @@
 //{
 //
 //
-//   ::e_status node::system_time_to_time(time_t * ptime, const system_time_t * psystemtime, i32 nDST)
+//   void node::system_time_to_time(time_t * ptime, const system_time_t * psystemtime, i32 nDST)
 //   {
 //
 //      return error_interface_only;
@@ -17,7 +17,7 @@
 //   }
 //
 //
-//   ::e_status node::time_to_system_time(system_time_t * psystemtime, const time_t * ptime)
+//   void node::time_to_system_time(system_time_t * psystemtime, const time_t * ptime)
 //   {
 //
 //      return error_interface_only;

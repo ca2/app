@@ -56,7 +56,7 @@ CLASS_DECL_ACME::u32 windows_get_file_attributes(const char* path)
 }
 
 
-::e_status delete_file(const char* path)
+void delete_file(const char* path)
 {
 
    wstring wstrPath(path);
@@ -77,7 +77,7 @@ CLASS_DECL_ACME::u32 windows_get_file_attributes(const char* path)
 }
 
 
-::e_status file_exists(const char* path)
+void file_exists(const char* path)
 {
 
    auto attributes = windows_get_file_attributes(path);
@@ -102,7 +102,7 @@ CLASS_DECL_ACME::u32 windows_get_file_attributes(const char* path)
 
 
 
-::e_status is_directory(const char* path)
+void is_directory(const char* path)
 {
 
    //#ifdef _UWP
@@ -232,7 +232,7 @@ CLASS_DECL_ACME::u32 windows_get_file_attributes(const char* path)
 
 
 
-::e_status create_directory(const char* path)
+void create_directory(const char* path)
 {
 
    wstring wstr;

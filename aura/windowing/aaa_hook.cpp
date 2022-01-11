@@ -17,7 +17,7 @@ namespace windowing
    __pointer_array(hook) g_x11hooka;
 
 
-   ::e_status hook::do_hook()
+   void hook::do_hook()
    {
 
 
@@ -37,7 +37,7 @@ namespace windowing
    }
 
 
-   ::e_status hook::unhook()
+   void hook::unhook()
    {
 
       auto pwindowing = ::aura::get_system()->windowing();

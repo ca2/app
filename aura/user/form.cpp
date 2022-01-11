@@ -46,7 +46,7 @@ namespace user
    //}
 
 
-   ::e_status form::open_html(const ::string& str)
+   void form::open_html(const ::string& str)
    {
 
       return ::error_interface_only;
@@ -54,7 +54,7 @@ namespace user
    }
 
 
-   ::e_status form::open_document(const ::payload& payloadFile)
+   void form::open_document(const ::payload& payloadFile)
    {
 
       return ::error_interface_only;
@@ -84,7 +84,7 @@ namespace user
 //   }
 
 
-   ::e_status form::initialize(::object * pobject)
+   void form::initialize(::object * pobject)
    {
 
       auto estatus = ::user::interaction::initialize(pobject);
@@ -124,7 +124,7 @@ namespace user
 
 
 
-   ::e_status form::set_form_callback(::user::form_callback* pcallback)
+   void form::set_form_callback(::user::form_callback* pcallback)
    {
 
       auto estatus = __refer(m_pcallback, pcallback);
@@ -141,7 +141,7 @@ namespace user
    }
 
 
-   ::e_status form::set_parent_form(::user::form* pform)
+   void form::set_parent_form(::user::form* pform)
    {
 
       auto estatus = __refer(m_pformParent, pform);

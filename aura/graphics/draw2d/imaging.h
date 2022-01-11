@@ -30,7 +30,7 @@ public:
    ~imaging() override;
 
 
-   virtual ::e_status initialize(::object * pobject) override;
+   virtual void initialize(::object * pobject) override;
 
 
    virtual void pixelate_24CC(byte * pbDest, i32 xDest, i32 yDest, i32 wDest, i32 cx, i32 cy, byte * pbSrc, i32 xSrc, i32 ySrc, i32 wSrc, i32 iSize);
@@ -125,7 +125,7 @@ public:
       bool clip_color_blend(::draw2d::graphics * pgraphics, const ::rectangle_i32 & rectangle, ::color32_t color32, byte alpha, ::draw2d::region * prgnClip);
    */
 
-   ::e_status trait(::image * pimage, ::i64 iTrait);
+   void trait(::image * pimage, ::i64 iTrait);
 
    static bool CreateBitmap(
    ::draw2d::graphics * pgraphics,
@@ -273,7 +273,7 @@ public:
    virtual bool ColorInvert(::draw2d::graphics * pgraphics, i32 x, i32 y, i32 cx, i32 cy);
 
 
-   //inline ::e_status load_image(::image_pointer & pimage, ::memory_pointer pmemory)
+   //inline void load_image(::image_pointer & pimage, ::memory_pointer pmemory)
    //{ 
 
    //   auto estatus = __construct(pimage);
@@ -289,7 +289,7 @@ public:
    //
    //}
 
-   //inline ::e_status load_image(::image_pointer & pimage, __pointer(image_frame_array) & pframea, ::memory_pointer pmemory)
+   //inline void load_image(::image_pointer & pimage, __pointer(image_frame_array) & pframea, ::memory_pointer pmemory)
    //{
 
    //   auto estatus = __construct(pimage);

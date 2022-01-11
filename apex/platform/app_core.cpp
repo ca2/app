@@ -158,7 +158,7 @@ app_core::~app_core()
 }
 
 
-bool app_core::on_result(const ::e_status & estatus)
+bool app_core::on_result(const void & estatus)
 {
 
    if (estatus == ::success)
@@ -188,7 +188,7 @@ bool app_core::on_result(const ::e_status & estatus)
 }
 
 
-::e_status app_core::system_prep()
+void app_core::system_prep()
 {
 
 // prelude::defer_call_construct(this);
@@ -248,7 +248,7 @@ extern "C"
 CLASS_DECL_APEX void set_debug_pointer(void * p);
 
 
-::e_status app_core::system_init()
+void app_core::system_init()
 {
 
    /// string test (NEW STRING 2019-11-26)
@@ -1583,12 +1583,12 @@ typedef FN_GET_STRING * PFN_GET_STRING;
 #elif !defined(ANDROID)
 
 
-::e_status app_core::system_proc()
+void app_core::system_proc()
 {
 
    return ::error_failed;
 
-   //::e_status estatus = system_proc();
+   //void estatus = system_proc();
 
    //if(estatus.succeeded())
    //{
@@ -1605,10 +1605,10 @@ typedef FN_GET_STRING * PFN_GET_STRING;
 #endif
 
 
-//::e_status app_core::system_call()
+//void app_core::system_call()
 //{
 //
-//   ::e_status estatus = error_failed;
+//   void estatus = error_failed;
 //
 //   try
 //   {
@@ -1684,7 +1684,7 @@ bool app_core::has_apex_application_factory() const
 //::u32 app_core::system_main()
 //{
 //
-//   ::e_status estatus = psystem->__thread_procedure();
+//   void estatus = psystem->__thread_procedure();
 //
 //   return estatus;
 //
@@ -1838,7 +1838,7 @@ __transport(::application) app_core::new_application(const char* pszAppId)
 
             }
 
-            ::e_status estatus;
+            void estatus;
 
             //         if(papp)
             //         {
@@ -1928,7 +1928,7 @@ __transport(::application) app_core::new_application(const char* pszAppId)
 }
 
 
-::e_status app_core::initialize_application(::application *papplication, ::object * pobject)
+void app_core::initialize_application(::application *papplication, ::object * pobject)
 {
 
    auto estatus = papplication->initialize(pobject);

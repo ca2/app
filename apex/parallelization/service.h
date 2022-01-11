@@ -39,17 +39,17 @@ public:
 
    //virtual bool get_run_service();
 
-   //virtual ::e_status run();
+   //virtual void run();
 
-   //virtual ::e_status service_main();
+   //virtual void service_main();
 
    void set_arguments(int argc, char** argv);
 
    void set_arguments(int argc, wchar_t** argv);
 
-   virtual ::e_status start_service();
+   virtual void start_service();
 
-   virtual ::e_status stop_service();
+   virtual void stop_service();
 
    virtual ::enum_service_status get_service_status();
 

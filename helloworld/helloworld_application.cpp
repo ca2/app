@@ -51,7 +51,7 @@ namespace helloworld
    }
 
 
-   ::e_status application::init_instance()
+   void application::init_instance()
    {
 
       ::aura::session * pcoression = get_application()->m_psession;

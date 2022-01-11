@@ -4,7 +4,7 @@
 #include "application_common.h"
 
 
-int console_end(class ::system * psystem, ::e_status estatus)
+int console_end(class ::system * psystem, void estatus)
 {
 
    int iStatus = (int)estatus;

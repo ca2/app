@@ -14,7 +14,7 @@ namespace acme
    namespace ios
    {
 
-::e_status node::create_process(const char * _cmd_line, int * pprocessId)
+void node::create_process(const char * _cmd_line, int * pprocessId)
 {
    char *   exec_path_name;
    char *	cmd_line;

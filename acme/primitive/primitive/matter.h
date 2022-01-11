@@ -76,10 +76,10 @@ public:
 #endif
 
 
-   ::e_status initialize_matter(::matter* pmatter) override;
+   void initialize_matter(::matter* pmatter) override;
 
 
-   virtual ::e_status on_initialize_object();
+   virtual void on_initialize_object();
 
    inline bool has_error() const {return m_uError != 0;}
 
@@ -96,7 +96,7 @@ public:
    void set_mutex(synchronization_object* psync);
    void defer_create_mutex();
 
-   //::e_status branch();
+   //void branch();
 
 
    inline class ::system* get_system() const { return (class ::system *) m_psystem; }
@@ -121,35 +121,35 @@ public:
    virtual void kick_idle();
 
 
-   virtual ::e_status set_finish();
-   //::e_status destroy() override;
+   virtual void set_finish();
+   //void destroy() override;
 
    virtual void on_set_finish();
 
 
 
 
-   //virtual ::e_status do_task();
-   //virtual ::e_status on_task();
+   //virtual void do_task();
+   //virtual void on_task();
 
 
-   virtual ::e_status osthread_init();
-   virtual ::e_status __thread_init();
-   virtual ::e_status __thread_main();
-   virtual ::e_status __thread_term();
-   virtual ::e_status osthread_term();
+   virtual void osthread_init();
+   virtual void __thread_init();
+   virtual void __thread_main();
+   virtual void __thread_term();
+   virtual void osthread_term();
 
 
-//   virtual ::e_status add_composite(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-//   virtual ::e_status add_reference(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//   virtual void add_composite(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//   virtual void add_reference(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 //
 //
-//   virtual ::e_status release_composite2(::element * pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-//   virtual ::e_status finalize_composite(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-//   virtual ::e_status release_reference(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//   virtual void release_composite2(::element * pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//   virtual void finalize_composite(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//   virtual void release_reference(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 
-   //virtual ::e_status set_generic_object_name(const char* pszName);
+   //virtual void set_generic_object_name(const char* pszName);
 
 
 
@@ -197,15 +197,15 @@ public:
    //inline void unset_destroying() { unset(e_element_destroying); }
 
 
-   //virtual ::e_status on_finish();
-   //virtual ::e_status set_finish(::property_object * pcontextobjectFinish);
-   //virtual ::e_status set_finish();
+   //virtual void on_finish();
+   //virtual void set_finish(::property_object * pcontextobjectFinish);
+   //virtual void set_finish();
 
 
    // returns success when object is ready to have destroy called
    // returns error_pending if any child or ascendant is still active
-   //virtual ::e_status finish(::property_object * pcontextobjectFinish = nullptr);
-   virtual ::e_status destroy_composites();
+   //virtual void finish(::property_object * pcontextobjectFinish = nullptr);
+   virtual void destroy_composites();
 
 
    virtual void post_quit();

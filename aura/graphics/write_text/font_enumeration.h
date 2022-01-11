@@ -24,7 +24,7 @@ namespace write_text
       virtual ~font_enumeration();
 
 
-      virtual ::e_status initialize(::object * pobject) override;
+      virtual void initialize(::object * pobject) override;
 
 
       //void signal(::signal * psignal) override;
@@ -33,16 +33,16 @@ namespace write_text
 
       virtual void check_need_update(::subject * psubject);
       //virtual bool update(::subject * psubject);
-      virtual ::e_status update();
+      virtual void update();
 
 
-      virtual ::e_status enumerate_fonts();
+      virtual void enumerate_fonts();
 
    protected:
-      virtual ::e_status sort_fonts();
+      virtual void sort_fonts();
 
 
-      virtual ::e_status on_enumerate_fonts();
+      virtual void on_enumerate_fonts();
 
    public:
 

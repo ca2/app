@@ -10,11 +10,11 @@
 auto estatus ## __LINE__ = (xxx); if(::failed(estatus ## __LINE__) && !avoid_bad_status_exception()) throw estatus ## __LINE__;
 
 // class estatus :
-//    public enumeration < ::e_status    >
+//    public enumeration < void    >
 // {
 // public:
 
-//    using enumeration <::e_status    >::enumeration;
+//    using enumeration <void    >::enumeration;
 
 //    operator bool() { return ::succeeded(m_i); }
 

@@ -36,7 +36,7 @@ namespace aura
       ~node() override;
 
 
-      virtual ::e_status on_initialize_object() override;
+      virtual void on_initialize_object() override;
 
       virtual void dpi_os_initialize();
 

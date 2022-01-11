@@ -15,7 +15,7 @@ public:
    virtual ~exit_exception();
 
 
-   virtual ::e_status finish(::property_object* pcontextobjectFinish = nullptr);
+   virtual void finish(::property_object* pcontextobjectFinish = nullptr);
 
 
 };

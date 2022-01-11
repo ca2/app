@@ -28,7 +28,7 @@ command_line::~command_line()
 }
 
 
-::e_status command_line::initialize_command_line(const string& strCommandLine)
+void command_line::initialize_command_line(const string& strCommandLine)
 {
 
    common_construct();

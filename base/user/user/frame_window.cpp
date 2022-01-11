@@ -1613,7 +1613,7 @@ namespace user
    }
 
 
-   ::e_status frame_window::show_control_bar(::user::control_bar * pcontrolbar)
+   void frame_window::show_control_bar(::user::control_bar * pcontrolbar)
    {
 
       if(!is_child(pcontrolbar))
@@ -1644,7 +1644,7 @@ namespace user
    }
 
 
-   ::e_status frame_window::hide_control_bar(::user::control_bar * pcontrolbar)
+   void frame_window::hide_control_bar(::user::control_bar * pcontrolbar)
    {
 
       if(!is_child(pcontrolbar))
@@ -2414,7 +2414,7 @@ namespace user
    }
 
 
-//   ::e_status frame_window::load_toolbar(const ::id & idToolbar, const ::string & strToolbar, u32 dwCtrlStyle, u32 uStyle)
+//   void frame_window::load_toolbar(const ::id & idToolbar, const ::string & strToolbar, u32 dwCtrlStyle, u32 uStyle)
 //   {
 //
 //      throw ::interface_only_exception();
@@ -2648,7 +2648,7 @@ namespace user
    }
 
 
-   ::e_status frame_window::add_control_bar(::user::control_bar *pcontrolbar)
+   void frame_window::add_control_bar(::user::control_bar *pcontrolbar)
    {
 
       m_controlbara.add_unique(pcontrolbar);
@@ -2658,7 +2658,7 @@ namespace user
    }
 
 
-   ::e_status frame_window::erase_control_bar(::user::control_bar * pcontrolbar)
+   void frame_window::erase_control_bar(::user::control_bar * pcontrolbar)
    {
 
       m_controlbara.erase(pcontrolbar);

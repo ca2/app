@@ -18,7 +18,7 @@ namespace android
    }
 
 
-   ::e_status file_context::initialize(::object * pobject)
+   void file_context::initialize(::object * pobject)
    {
 
       auto estatus = ::file_context::initialize(pobject);
@@ -53,7 +53,7 @@ namespace android
    }
 
 
-   ::e_status file_context::update_module_path()
+   void file_context::update_module_path()
    {
 
       auto estatus = ::file_context::update_module_path();

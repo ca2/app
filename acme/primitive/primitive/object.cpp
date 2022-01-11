@@ -89,7 +89,7 @@ string object::get_string() const
 }
 
 
-::e_status object::add_composite(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+void object::add_composite(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
    _synchronous_lock synchronouslock(mutex());
@@ -114,7 +114,7 @@ string object::get_string() const
 }
 
 
-::e_status object::add_reference(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+void object::add_reference(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
    _synchronous_lock synchronouslock(mutex());
@@ -142,7 +142,7 @@ string object::get_string() const
 }
 
 
-//::e_status object::release_composite2(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//void object::release_composite2(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 //{
 //
 //   if (::is_null(pelement))
@@ -171,7 +171,7 @@ string object::get_string() const
 //}
 //
 //
-//::e_status object::finalize_composite(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//void object::finalize_composite(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 //{
 //
 //   if (::is_null(pelement))
@@ -213,7 +213,7 @@ string object::get_string() const
 //}
 //
 //
-//::e_status object::release_reference(::element* pelement  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//void object::release_reference(::element* pelement  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 //{
 //
 //   if (::is_null(pelement))
@@ -403,10 +403,10 @@ void object::dev_log(string strMessage)
 //
 
 
-::e_status object::call_routine2(const ::routine & routine)
+void object::call_routine2(const ::routine & routine)
 {
 
-   ::e_status estatus = ::success;
+   void estatus = ::success;
 
    try
    {
@@ -555,7 +555,7 @@ void object::dev_log(string strMessage)
 //}
 //
 //
-//::e_status object::initialize(::object* pobject)
+//void object::initialize(::object* pobject)
 //{
 //
 //   auto estatus = ::property_object::initialize(pobject);
@@ -695,7 +695,7 @@ void object::defer_update_object_id()
 
 
 
-//::e_status object::enable_application_events(bool bEnable)
+//void object::enable_application_events(bool bEnable)
 //{
 //
 //   if (::is_null(get_application()))
@@ -717,7 +717,7 @@ void object::defer_update_object_id()
 //}
 
 
-//::e_status     object::request_file(const ::payload& payloadFile)
+//void     object::request_file(const ::payload& payloadFile)
 //{
 //
 //   return request_file(payloadFile, e_type_new);
@@ -725,7 +725,7 @@ void object::defer_update_object_id()
 //}
 
 
-//::e_status object::request_file(const ::payload& payloadFile, ::payload varQuery)
+//void object::request_file(const ::payload& payloadFile, ::payload varQuery)
 //{
 //
 //   auto pcommandline = __create_new< command_line >();
@@ -739,7 +739,7 @@ void object::defer_update_object_id()
 //}
 
 
-//::e_status object::request(arguments arguments)
+//void object::request(arguments arguments)
 //{
 //
 //   __pointer(::create) pcreate;
@@ -777,7 +777,7 @@ void object::do_request(::create* pcreate)
 }
 
 
-//::e_status object::message_box(const ::payload & payload)
+//void object::message_box(const ::payload & payload)
 //{
 //
 //   __pointer(::user::primitive) pinteraction = this;
@@ -877,7 +877,7 @@ void object::system(const ::string & strProjectName)
 }
 
 
-::e_status     object::run()
+void     object::run()
 {
 
    return ::success;
@@ -885,7 +885,7 @@ void object::system(const ::string & strProjectName)
 }
 
 
-//::e_status object::operator()()
+//void object::operator()()
 //{
 //
 //   return ::object::operator()();
@@ -893,7 +893,7 @@ void object::system(const ::string & strProjectName)
 //}
 
 
-//::e_status object::on_finish()
+//void object::on_finish()
 //{
 //
 //   m_bDestroying = true;
@@ -923,7 +923,7 @@ void object::system(const ::string & strProjectName)
 //}
 
 
-//::e_status object::set_finish()
+//void object::set_finish()
 //{
 //
 //// if "this" gets invalid while a member functions of "this" object
@@ -947,7 +947,7 @@ void object::system(const ::string & strProjectName)
 
 
 //
-//::e_status object::destroy()
+//void object::destroy()
 //{
 //
 //   //if (m_pmeta)
@@ -1395,7 +1395,7 @@ bool object::check_tasks_finished()
 
 
 
-//::e_status object::finish()
+//void object::finish()
 //{
 //
 //
@@ -1407,7 +1407,7 @@ bool object::check_tasks_finished()
 //
 
 
-::e_status object::destroy_tasks()
+void object::destroy_tasks()
 {
 
    set_finish();
@@ -1424,7 +1424,7 @@ bool object::check_tasks_finished()
 }
 
 
-::e_status object::destroy()
+void object::destroy()
 {
 
    auto estatus = destroy_tasks();
@@ -1442,7 +1442,7 @@ bool object::check_tasks_finished()
 }
 
 
-::e_status object::on_destroy()
+void object::on_destroy()
 {
 
    return ::success;
@@ -1450,7 +1450,7 @@ bool object::check_tasks_finished()
 }
 
 
-::e_status object::set_finish()
+void object::set_finish()
 {
 
    property_object::set_finish();
@@ -1473,10 +1473,10 @@ void object::delete_this()
 }
 
 
-::e_status object::destroy_composites()
+void object::destroy_composites()
 {
 
-   ::e_status estatus = ::success;
+   void estatus = ::success;
 
    string strTypeName = __type_name(this);
 
@@ -1505,10 +1505,10 @@ void object::delete_this()
 }
 
 
-::e_status object::release_references()
+void object::release_references()
 {
 
-   ::e_status estatus = ::success;
+   void estatus = ::success;
 
    string strTypeName = __type_name(this);
 
@@ -1651,7 +1651,7 @@ bool object::__is_child_task(::object * pobjectTask) const
 // So a flag/timer/message that indicates that things should be destroyed/closed/finalized
 // should be enough (which triggers the full finalization that would end up calling
 // the "final" destroy).
-//::e_status object::finish(::property_object* pcontextobjectFinish)
+//void object::finish(::property_object* pcontextobjectFinish)
 //{
 //
 //   if (!pcontextobjectFinish)
@@ -1831,7 +1831,7 @@ __transport(task) object::branch(::enum_priority epriority, ::u32 nStackSize, ::
 }
 
 
-::e_status object::handle_exception(const ::exception& e)
+void object::handle_exception(const ::exception& e)
 {
 
    if (::is_exit_exception_status(e.estatus()))
@@ -1846,7 +1846,7 @@ __transport(task) object::branch(::enum_priority epriority, ::u32 nStackSize, ::
 }
 
 
-::e_status object::top_handle_exception(const ::exception& e)
+void object::top_handle_exception(const ::exception& e)
 {
 
    if (::is_exit_exception_status(e.estatus()))
@@ -1863,7 +1863,7 @@ __transport(task) object::branch(::enum_priority epriority, ::u32 nStackSize, ::
 }
 
 
-//void object::process_exit_status(const ::e_status& estatus)
+//void object::process_exit_status(const void& estatus)
 //{
 //
 //   if (estatus == error_exit_system)
@@ -1894,7 +1894,7 @@ __transport(task) object::branch(::enum_priority epriority, ::u32 nStackSize, ::
 //}
 
 
-::e_status object::process_exception(const ::exception& e)
+void object::process_exception(const ::exception& e)
 {
 
    if (e.m_bHandled)
@@ -2010,7 +2010,7 @@ void object::task_erase(::task* ptask)
 
 // returns false if something like "should exit thread/application/session/system"
 // returns true normally.
-::e_status object::sleep(const ::duration& duration)
+void object::sleep(const ::duration& duration)
 {
 
    auto ptask = ::get_task();
@@ -2289,7 +2289,7 @@ void object::install_message_routing(::channel* pchannel)
 //}
 
 
-//::e_status object::add_update_notification(const ::id & id, bool bCreate)
+//void object::add_update_notification(const ::id & id, bool bCreate)
 //{
 //
 //   auto pproperty = fetch_property(id, bCreate);
@@ -2306,7 +2306,7 @@ void object::install_message_routing(::channel* pchannel)
 //}
 
 
-//::e_status object::add_update_notification(const ::id & id, ::object * pobject)
+//void object::add_update_notification(const ::id & id, ::object * pobject)
 //{
 //
 //   if (::is_null(pobject))
@@ -2365,7 +2365,7 @@ void object::install_message_routing(::channel* pchannel)
 //}
 
 
-::file_transport object::get_file(const ::payload& payloadFile, const ::file::e_open& eopen)
+::file_pointer object::get_file(const ::payload& payloadFile, const ::file::e_open& eopen)
 {
 
    return m_pcontext->get_file(payloadFile, eopen);
@@ -2428,7 +2428,7 @@ struct context_object_test_struct :
 //}
 
 
-bool __no_continue(::e_status estatus)
+bool __no_continue(void estatus)
 {
 
    return false;
@@ -2436,7 +2436,7 @@ bool __no_continue(::e_status estatus)
 }
 
 
-::e_status call_sync(const ::routine_array& methoda)
+void call_sync(const ::routine_array& methoda)
 {
 
    try
@@ -2541,10 +2541,10 @@ string object::get_text(const ::payload& payload, const ::id& id)
 //}
 
 
-//::e_status object::message_box_timeout(const ::string & pszMessage, const ::string & pszTitle, const ::duration& durationTimeout, const ::e_message_box & emessagebox, const ::future & process)
+//void object::message_box_timeout(const ::string & pszMessage, const ::string & pszTitle, const ::duration& durationTimeout, const ::e_message_box & emessagebox, const ::future & process)
 //{
 //
-//   ::e_status estatus = error_failed;
+//   void estatus = error_failed;
 //
 //   //if (::is_null(get_session()) || ::is_null(get_session()->userex()))
 //   //{
@@ -2698,7 +2698,7 @@ element* object::get_taskpool_container()
 //}
 //
 //
-//void object::process_exit_status(const ::e_status& estatus)
+//void object::process_exit_status(const void& estatus)
 //{
 //
 //
@@ -2761,7 +2761,7 @@ element* object::get_taskpool_container()
 //}
 
 //
-//::e_status object::sleep(const ::duration& duration)
+//void object::sleep(const ::duration& duration)
 //{
 //
 //   return ::success;
@@ -2773,7 +2773,7 @@ element* object::get_taskpool_container()
 //void save_to(const ::payload& payloadFile, BASE_TYPE* pobject);
 
 
-::e_status object::initialize(::object* pobject)
+void object::initialize(::object* pobject)
 {
    
    auto estatus = ::success;
@@ -2882,7 +2882,7 @@ element* object::get_taskpool_container()
 }
 
 
-//::e_status object::on_initialize_object()
+//void object::on_initialize_object()
 //{
 //
 //   return ::success;
@@ -2890,7 +2890,7 @@ element* object::get_taskpool_container()
 //}
 
 
-//::e_status object::destroy()
+//void object::destroy()
 //{
 //
 //
@@ -2990,7 +2990,7 @@ element* object::get_taskpool_container()
 
    //inline void defer_set_object(::object * pobject);
 
-::e_status object::operator()()
+void object::operator()()
 {
 
    return run();
@@ -3047,107 +3047,107 @@ element* object::get_taskpool_container()
 //template < typename TYPE >
 //inline __transport(TYPE) __create_new();
 
-//inline ::e_status __compose(__composite(::image) & pimage);
+//inline void __compose(__composite(::image) & pimage);
 
-//inline ::e_status __compose(__composite(::image) & pimage, ::image * pimageSource);
+//inline void __compose(__composite(::image) & pimage, ::image * pimageSource);
 
-//inline ::e_status __defer_compose(__composite(::image) & pimage) { return !pimage ? __compose(pimage) : ::e_status(::success); }
+//inline void __defer_compose(__composite(::image) & pimage) { return !pimage ? __compose(pimage) : void(::success); }
 
 // for composition (ownership)
 
 //template < typename BASE_TYPE >
-//inline ::e_status __compose(__composite(BASE_TYPE)& pusermessage);
+//inline void __compose(__composite(BASE_TYPE)& pusermessage);
 
 //template < typename BASE_TYPE, typename SOURCE >
-//inline ::e_status __compose(__composite(BASE_TYPE)& pusermessage, const SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//inline void __compose(__composite(BASE_TYPE)& pusermessage, const SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 //template < typename BASE_TYPE, typename SOURCE >
-//inline ::e_status __compose(__composite(BASE_TYPE)& pusermessage, const __pointer(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//inline void __compose(__composite(BASE_TYPE)& pusermessage, const __pointer(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 //template < typename BASE_TYPE >
-//inline ::e_status __id_compose(__composite(BASE_TYPE)& pusermessage, const ::id& id);
+//inline void __id_compose(__composite(BASE_TYPE)& pusermessage, const ::id& id);
 
 //template < typename BASE_TYPE >
-//inline ::e_status __raw_compose(__composite(BASE_TYPE)& pusermessage);
+//inline void __raw_compose(__composite(BASE_TYPE)& pusermessage);
 
 //template < typename BASE_TYPE, typename SOURCE >
-//inline ::e_status __raw_compose(__composite(BASE_TYPE)& pusermessage, const SOURCE* psource);
+//inline void __raw_compose(__composite(BASE_TYPE)& pusermessage, const SOURCE* psource);
 
 //template < typename BASE_TYPE, typename SOURCE >
-//inline ::e_status __raw_compose(__composite(BASE_TYPE)& pusermessage, const __pointer(SOURCE)& psource);
+//inline void __raw_compose(__composite(BASE_TYPE)& pusermessage, const __pointer(SOURCE)& psource);
 
 //template < typename TYPE >
-//inline ::e_status __raw_compose_new(__composite(TYPE)& ptype);
+//inline void __raw_compose_new(__composite(TYPE)& ptype);
 
 //template < typename TYPE >
-//inline ::e_status __compose_new(__composite(TYPE)& ptype);
+//inline void __compose_new(__composite(TYPE)& ptype);
 
 
 
 
 //template < typename BASE_TYPE >
-//inline ::e_status __defer_compose(__composite(BASE_TYPE)& pusermessage) { return !pusermessage ? __compose(pusermessage) : ::e_status(::success); }
+//inline void __defer_compose(__composite(BASE_TYPE)& pusermessage) { return !pusermessage ? __compose(pusermessage) : void(::success); }
 
 //template < typename BASE_TYPE >
-//inline ::e_status __defer_id_compose(__composite(BASE_TYPE)& pusermessage, const ::id& id) { return !pusermessage ? __id_compose(pusermessage) : ::e_status(::success); }
+//inline void __defer_id_compose(__composite(BASE_TYPE)& pusermessage, const ::id& id) { return !pusermessage ? __id_compose(pusermessage) : void(::success); }
 
 //template < typename TYPE >
-//inline ::e_status __defer_raw_compose_new(__composite(TYPE)& ptype) { return !ptype ? __raw_compose_new(ptype) : ::e_status(::success); }
+//inline void __defer_raw_compose_new(__composite(TYPE)& ptype) { return !ptype ? __raw_compose_new(ptype) : void(::success); }
 
 //template < typename TYPE >
-//inline ::e_status __defer_compose_new(__composite(TYPE)& ptype) { return !ptype ? __compose_new(ptype) : ::e_status(::success); }
+//inline void __defer_compose_new(__composite(TYPE)& ptype) { return !ptype ? __compose_new(ptype) : void(::success); }
 
 
 
 
 //template < typename BASE_TYPE >
-//inline ::e_status __construct(__pointer(BASE_TYPE)& pusermessage);
+//inline void __construct(__pointer(BASE_TYPE)& pusermessage);
 
 //template < typename BASE_TYPE >
-//inline ::e_status __id_construct(__pointer(BASE_TYPE)& pusermessage, const ::id& id);
+//inline void __id_construct(__pointer(BASE_TYPE)& pusermessage, const ::id& id);
 
 //template < typename TYPE >
-//inline ::e_status __construct_new(__pointer(TYPE)& pusermessage);
+//inline void __construct_new(__pointer(TYPE)& pusermessage);
 
 //template < typename BASE_TYPE >
-//inline ::e_status __release(__composite(BASE_TYPE)& pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//inline void __release(__composite(BASE_TYPE)& pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 //template < typename BASE_TYPE >
-//inline ::e_status __release(__reference(BASE_TYPE)& preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//inline void __release(__reference(BASE_TYPE)& preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 //template < typename SOURCE >
-//inline ::e_status release_reference(__pointer(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//inline void release_reference(__pointer(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 
-// ::e_status add_composite(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
-// ::e_status add_reference(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
+// void add_composite(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
+// void add_reference(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
 
 
-// ::e_status release_composite2(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
-// ::e_status finalize_composite(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
-// ::e_status release_reference(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
+// void release_composite2(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
+// void finalize_composite(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
+// void release_reference(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
 
 
 //template < typename BASE_TYPE >
-//inline ::e_status add_composite(__composite(BASE_TYPE)& pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//inline void add_composite(__composite(BASE_TYPE)& pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 //template < typename BASE_TYPE, typename SOURCE >
-//inline ::e_status __refer(__reference(BASE_TYPE)& preference, const SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//inline void __refer(__reference(BASE_TYPE)& preference, const SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 //template < typename BASE_TYPE, typename SOURCE >
-//inline ::e_status __refer(__reference(BASE_TYPE)& preference, const __pointer(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//inline void __refer(__reference(BASE_TYPE)& preference, const __pointer(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 //template < typename BASE_TYPE, typename SOURCE >
-//inline ::e_status __refer(__reference(BASE_TYPE)& preference, const ::primitive::member < SOURCE >& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//inline void __refer(__reference(BASE_TYPE)& preference, const ::primitive::member < SOURCE >& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 //template < typename SOURCE >
-//inline ::e_status add_reference(SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//inline void add_reference(SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 //template < typename SOURCE >
-//inline ::e_status add_reference(__pointer(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//inline void add_reference(__pointer(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 //template < typename SOURCE >
-//inline ::e_status add_reference(__reference(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//inline void add_reference(__reference(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 //void object::delete_this()
 //{
@@ -3166,21 +3166,21 @@ element* object::get_taskpool_container()
 //
 //}
 //
-//::e_status object::enable_application_events(bool bEnable)
+//void object::enable_application_events(bool bEnable)
 //{
 //
 //   return ::success;
 //
 //}
 
-//::e_status object::handle_exception(const ::exception& e)
+//void object::handle_exception(const ::exception& e)
 //{
 //
 //   return ::success;
 //
 //}
 //
-//::e_status object::top_handle_exception(const ::exception& e)
+//void object::top_handle_exception(const ::exception& e)
 //{
 //
 //   return ::success;
@@ -3188,7 +3188,7 @@ element* object::get_taskpool_container()
 //}
 
 
-//::e_status object::process_exception(const ::exception& e)
+//void object::process_exception(const ::exception& e)
 //{
 //
 //   return ::success;
@@ -3276,21 +3276,21 @@ element* object::get_taskpool_container()
 //}
 
 
-//::e_status object::finish(::property_object* pcontextobjectFinish)
+//void object::finish(::property_object* pcontextobjectFinish)
 //{
 //
 //   return ::success;
 //
 //}
 
-//::e_status object::set_finish(::property_object* pcontextobjectFinish)
+//void object::set_finish(::property_object* pcontextobjectFinish)
 //{
 //
 //   return ::success;
 //
 //}
 
-//::e_status object::set_finish_composites(::property_object* pcontextobjectFinish)
+//void object::set_finish_composites(::property_object* pcontextobjectFinish)
 //{
 //
 //   return ::success;
@@ -3340,7 +3340,7 @@ element* object::get_taskpool_container()
 //}
 
 
-//::e_status object::request_file(const ::payload& payloadFile)
+//void object::request_file(const ::payload& payloadFile)
 //{
 //
 //   return ::success;
@@ -3348,7 +3348,7 @@ element* object::get_taskpool_container()
 //}
 
 
-//::e_status object::request_file(const ::payload& payloadFile, ::payload varQuery)
+//void object::request_file(const ::payload& payloadFile, ::payload varQuery)
 //{
 //
 //   return ::success;
@@ -3356,7 +3356,7 @@ element* object::get_taskpool_container()
 //}
 
 
-//::e_status object::request(arguments arguments)
+//void object::request(arguments arguments)
 //{
 //
 //   return ::success;
@@ -3364,7 +3364,7 @@ element* object::get_taskpool_container()
 //}
 
 
-//::e_status object::do_request(::create* pcreate)
+//void object::do_request(::create* pcreate)
 //{
 //
 //   return ::success;
@@ -3385,15 +3385,15 @@ element* object::get_taskpool_container()
 //}
 
 
-// ::e_status message_box_timeout(const char * pszMessage, const char * pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future());
+// void message_box_timeout(const char * pszMessage, const char * pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future());
 //{
 
 //   return message_box_timeout(nullptr, pszMessage, pszTitle, durationTimeout, emessagebox, process);
 
 //}
 
-// ::e_status message_box(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future());
-// ::e_status message_box_timeout(::user::primitive* puserinteractionOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::duration& durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future());
+// void message_box(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future());
+// void message_box_timeout(::user::primitive* puserinteractionOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::duration& durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future());
 
 //void object::release_references()
 //{
@@ -3434,7 +3434,7 @@ element* object::get_taskpool_container()
 //
 //}
 //
-//::e_status object::call_request(::create* pcreate)
+//void object::call_request(::create* pcreate)
 //{
 //
 //   return ::success;
@@ -3455,7 +3455,7 @@ element* object::get_taskpool_container()
 // ::user::document* create_subdocument(::user::impact_data* pimpactdata);
 
 //
-//::e_status object::run()
+//void object::run()
 //{
 //
 //   return ::success;
@@ -3558,7 +3558,7 @@ bool object::IsSerializable() const
    }*/
 
 
-   //inline ::e_status object::defer_fork(::thread_pointer& pthread, const ::routine& routine);
+   //inline void object::defer_fork(::thread_pointer& pthread, const ::routine& routine);
 
 
    //template < typename THREAD >
@@ -3638,28 +3638,28 @@ bool object::IsSerializable() const
 //    void ns_main_async(dispatch_block_t block);
 //#endif
 
-   //inline ::file_transport get_reader(const ::payload& payloadFile, const ::file::e_open & eopen = ::file::e_open());
-   //inline ::file_transport get_writer(const ::payload& payloadFile, const ::file::e_open & eopen = ::file::e_open());
+   //inline ::file_pointer get_reader(const ::payload& payloadFile, const ::file::e_open & eopen = ::file::e_open());
+   //inline ::file_pointer get_writer(const ::payload& payloadFile, const ::file::e_open & eopen = ::file::e_open());
 
 
    // void to_string(string & str) const 
 
 
-//::file_transport object::get_file(const ::payload& payloadFile, const ::file::e_open& eopen)
+//::file_pointer object::get_file(const ::payload& payloadFile, const ::file::e_open& eopen)
 //{
 //
 //   return nullptr;
 //
 //}
 
-//inline ::file_transport get_reader(const ::payload& payloadFile, const ::file::e_open& eopen = ::file::e_open_binary);
-//inline ::file_transport get_writer(const ::payload& payloadFile, const ::file::e_open& eopen = ::file::e_open_binary | ::file::e_open_defer_create_directory | ::file::e_open_create);
+//inline ::file_pointer get_reader(const ::payload& payloadFile, const ::file::e_open& eopen = ::file::e_open_binary);
+//inline ::file_pointer get_writer(const ::payload& payloadFile, const ::file::e_open& eopen = ::file::e_open_binary | ::file::e_open_defer_create_directory | ::file::e_open_create);
 
 
 
-//::e_status add_update_notification(property * pproperty);
-//::e_status add_update_notification(const ::id & id, bool bCreate = true);
-//::e_status property_notify(const ::id & id, ::matter * pmatter);
+//void add_update_notification(property * pproperty);
+//void add_update_notification(const ::id & id, bool bCreate = true);
+//void property_notify(const ::id & id, ::matter * pmatter);
 
 
 //   inline void format_topic_text(const char * psz, ...)
@@ -3684,7 +3684,7 @@ bool object::IsSerializable() const
 
 
    //template < typename TYPE >
-   //auto member_fork(::e_status (TYPE:: * pfn)(), ::enum_priority epriority = ::e_priority_normal)
+   //auto member_fork(void (TYPE:: * pfn)(), ::enum_priority epriority = ::e_priority_normal)
    //{
 
    //   TYPE * ptype = dynamic_cast <TYPE *>(this);
@@ -3709,10 +3709,10 @@ bool object::IsSerializable() const
 
 
    //template < typename TYPE >
-   //::e_status __construct(::thread_pointer& p, void (TYPE::* pfn)(), enum_priority epriority);
+   //void __construct(::thread_pointer& p, void (TYPE::* pfn)(), enum_priority epriority);
 
    //template < typename TYPE >
-   //::e_status __construct_below_normal(::thread_pointer& p, void (TYPE::* pfn)());
+   //void __construct_below_normal(::thread_pointer& p, void (TYPE::* pfn)());
 
 
    //template < typename TYPE >

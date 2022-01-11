@@ -40,7 +40,7 @@ namespace datetime
    }
 
 
-   ::e_status department::initialize(::object * pobject)
+   void department::initialize(::object * pobject)
    {
     
       auto estatus = ::acme::department::initialize(pobject);
@@ -77,7 +77,7 @@ namespace datetime
    }
 
 
-   ::e_status department::international::initialize(::object * pobject)
+   void department::international::initialize(::object * pobject)
    {
 
       auto estatus = ::object::initialize(pobject);
@@ -94,7 +94,7 @@ namespace datetime
    }
 
 
-   ::e_status department::str::initialize(::object * pobject)
+   void department::str::initialize(::object * pobject)
    {
 
       auto estatus = ::object::initialize(pobject);
@@ -111,7 +111,7 @@ namespace datetime
    }
 
 
-   ::e_status department::destroy()
+   void department::destroy()
    {
 
       m_pinternational.release();

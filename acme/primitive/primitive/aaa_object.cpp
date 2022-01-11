@@ -10,7 +10,7 @@ namespace exception
 {
 
    
-   void finish(::e_status estatusExit, const ::object* pobject)
+   void finish(void estatusExit, const ::object* pobject)
    {
 
 
@@ -130,7 +130,7 @@ void object::to_string(const class string_exchange & str) const
 }
 
 
-::e_status object::add_composite(::matter* pmatter OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+void object::add_composite(::matter* pmatter OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
    synchronous_lock synchronouslock(mutex());
@@ -153,7 +153,7 @@ void object::to_string(const class string_exchange & str) const
 }
 
 
-::e_status object::add_reference(::matter* pmatter OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+void object::add_reference(::matter* pmatter OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
    synchronous_lock synchronouslock(mutex());
@@ -179,7 +179,7 @@ void object::to_string(const class string_exchange & str) const
 }
 
 
-::e_status object::release_composite2(::matter * pmatter OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+void object::release_composite2(::matter * pmatter OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
    if (::is_null(pmatter))
@@ -208,7 +208,7 @@ void object::to_string(const class string_exchange & str) const
 }
 
 
-::e_status object::finalize_composite(::matter* pmatter OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+void object::finalize_composite(::matter* pmatter OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
    if (::is_null(pmatter))
@@ -250,7 +250,7 @@ void object::to_string(const class string_exchange & str) const
 }
 
 
-::e_status object::release_reference(::matter* pmatter  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+void object::release_reference(::matter* pmatter  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
    if (::is_null(pmatter))
@@ -506,7 +506,7 @@ void object::set_topic_text(const ::string & strTopicText)
 }
 
 
-::e_status object::initialize(::object * pobject)
+void object::initialize(::object * pobject)
 {
 
    auto estatus = ::manager::initialize(pobject);
@@ -645,7 +645,7 @@ void object::defer_update_object_id()
 
 
 
-::e_status object::enable_application_events(bool bEnable)
+void object::enable_application_events(bool bEnable)
 {
 
    if(::is_null(get_application()))
@@ -667,7 +667,7 @@ void object::defer_update_object_id()
 }
 
 
-::e_status     object::request_file(const ::payload & payloadFile)
+void     object::request_file(const ::payload & payloadFile)
 {
 
    return request_file(payloadFile, e_type_new);
@@ -675,7 +675,7 @@ void object::defer_update_object_id()
 }
 
 
-::e_status     object::request_file(const ::payload& payloadFile,::payload varQuery)
+void     object::request_file(const ::payload& payloadFile,::payload varQuery)
 {
 
    auto pcommandline = __create_new< command_line >();
@@ -689,7 +689,7 @@ void object::defer_update_object_id()
 }
 
 
-::e_status     object::request(arguments arguments)
+void     object::request(arguments arguments)
 {
 
    __pointer(::create) pcreate;
@@ -717,7 +717,7 @@ void object::defer_update_object_id()
 }
 
 
-::e_status     object::do_request(::create * pcreate)
+void     object::do_request(::create * pcreate)
 {
 
    on_request(pcreate);
@@ -727,7 +727,7 @@ void object::defer_update_object_id()
 }
 
 
-//::e_status object::message_box(const ::payload & payload)
+//void object::message_box(const ::payload & payload)
 //{
 //
 //   __pointer(::user::primitive) pinteraction = this;
@@ -751,7 +751,7 @@ void object::defer_update_object_id()
 //}
 
 
-::e_status     object::call_request(::create * pcreate)
+void     object::call_request(::create * pcreate)
 {
 
    on_request(pcreate);
@@ -818,7 +818,7 @@ void object::system(const char * pszProjectName)
 }
 
 
-::e_status     object::run()
+void     object::run()
 {
 
    return ::success;
@@ -826,7 +826,7 @@ void object::system(const char * pszProjectName)
 }
 
 
-::e_status object::operator()()
+void object::operator()()
 {
 
    return ::object::operator()();
@@ -840,7 +840,7 @@ void object::on_finalize()
 }
 
 
-::e_status object::destroy()
+void object::destroy()
 {
 
    //if (m_pmeta)
@@ -984,10 +984,10 @@ void object::copy_from(const object & o)
 }
 
 
-::e_status object::set_finish_composites(::property_object * pcontextobjectFinish)
+void object::set_finish_composites(::property_object * pcontextobjectFinish)
 {
 
-   ::e_status estatus = ::success;
+   void estatus = ::success;
 
    synchronous_lock synchronouslock(mutex());
 
@@ -1101,7 +1101,7 @@ void object::copy_from(const object & o)
 }
 
 
-::e_status object::set_finish(::property_object * pcontextobjectFinish)
+void object::set_finish(::property_object * pcontextobjectFinish)
 {
 
    __pointer(::object) pobjectHold = this;
@@ -1462,7 +1462,7 @@ bool object::__is_child_task(::task * ptask) const
 // So a flag/timer/message that indicates that things should be destroyed/closed/finalized
 // should be enough (which triggers the full finalization that would end up calling
 // the "final" destroy).
-::e_status object::finish(::property_object * pcontextobjectFinish)
+void object::finish(::property_object * pcontextobjectFinish)
 {
 
    if (!pcontextobjectFinish)
@@ -1589,7 +1589,7 @@ void object::multiple_fork(const ::routine_array & procedurea)
 }
 
 
-::e_status object::handle_exception(const ::exception & e)
+void object::handle_exception(const ::exception & e)
 {
 
    if(::is_exit_exception_status(e.estatus()))
@@ -1604,7 +1604,7 @@ void object::multiple_fork(const ::routine_array & procedurea)
 }
 
 
-::e_status object::top_handle_exception(const ::exception & e)
+void object::top_handle_exception(const ::exception & e)
 {
 
    if(::is_exit_exception_status(e.estatus()))
@@ -1621,7 +1621,7 @@ void object::multiple_fork(const ::routine_array & procedurea)
 }
 
 
-void object::process_exit_status(const ::e_status& estatus)
+void object::process_exit_status(const void& estatus)
 {
 
    if (estatus == error_exit_system)
@@ -1652,7 +1652,7 @@ void object::process_exit_status(const ::e_status& estatus)
 }
 
 
-::e_status object::process_exception(const ::exception & e)
+void object::process_exception(const ::exception & e)
 {
 
    if (e.m_bHandled)
@@ -1768,7 +1768,7 @@ void object::task_erase(::task* ptask)
 
 // returns false if something like "should exit thread/application/session/system"
 // returns true normally.
-::e_status object::sleep(const ::duration& duration)
+void object::sleep(const ::duration& duration)
 {
 
    auto ptask = ::get_task();
@@ -2042,7 +2042,7 @@ __pointer(::matter) object::running(const char * pszTag) const
 }
 
 
-//::e_status object::add_update_notification(const ::id & id, bool bCreate)
+//void object::add_update_notification(const ::id & id, bool bCreate)
 //{
 //
 //   auto pproperty = fetch_property(id, bCreate);
@@ -2059,7 +2059,7 @@ __pointer(::matter) object::running(const char * pszTag) const
 //}
 
 
-//::e_status object::add_update_notification(const ::id & id, ::object * pobject)
+//void object::add_update_notification(const ::id & id, ::object * pobject)
 //{
 //
 //   if (::is_null(pobject))
@@ -2111,7 +2111,7 @@ pacmedir->localconfig()));
 //}
 
 
-::file_transport object::get_file(const ::payload & payloadFile, const ::file::e_open & eopen)
+::file_pointer object::get_file(const ::payload & payloadFile, const ::file::e_open & eopen)
 {
 
    return pcontext->m_papexcontext->file().get_file(payloadFile, eopen);
@@ -2173,7 +2173,7 @@ CLASS_DECL_APEX void object_on_add_composite(const matter * pusermessage)
 }
 
 
-bool __no_continue(::e_status estatus)
+bool __no_continue(void estatus)
 {
 
    return false;
@@ -2181,7 +2181,7 @@ bool __no_continue(::e_status estatus)
 }
 
 
-::e_status call_sync(const ::routine_array & methoda)
+void call_sync(const ::routine_array & methoda)
 {
 
    try
@@ -2333,10 +2333,10 @@ __pointer(::extended::future < ::conversation >) object::message_box(const char*
 }
 
 
-//::e_status object::message_box_timeout(const char* pszMessage, const char* pszTitle, const ::duration& durationTimeout, const ::e_message_box & emessagebox, const ::future & process)
+//void object::message_box_timeout(const char* pszMessage, const char* pszTitle, const ::duration& durationTimeout, const ::e_message_box & emessagebox, const ::future & process)
 //{
 //
-//   ::e_status estatus = error_failed;
+//   void estatus = error_failed;
 //
 //   //if (::is_null(get_session()) || ::is_null(get_session()->userex()))
 //   //{

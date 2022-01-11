@@ -287,7 +287,7 @@ namespace android
 
          m_puserinteraction->display(e_display_full_screen);
 
-         //::e_status estatus = __compose(m_pgraphics);
+         //void estatus = __compose(m_pgraphics);
 
          //if (!estatus)
          //{
@@ -1920,7 +1920,7 @@ namespace android
    //   }
 
 
-   //   static ::e_status     c_cdecl s_print_window(LPVOID pvoid)
+   //   static void     c_cdecl s_print_window(LPVOID pvoid)
    //   {
    //      print_window * pprintwindow = (print_window *)pvoid;
    //      try

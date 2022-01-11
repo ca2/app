@@ -34,7 +34,7 @@ namespace fs
    }
 
 
-   ::e_status set::destroy()
+   void set::destroy()
    {
 
       for (auto& pdata : m_spafsdata)

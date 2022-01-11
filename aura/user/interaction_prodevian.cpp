@@ -93,7 +93,7 @@ namespace user
 #endif
 
 
-   ::e_status prodevian::defer_create_prodevian()
+   void prodevian::defer_create_prodevian()
    {
 
       //__refer(m_pprodevian, m_pimpl->m_pprodevian);
@@ -129,7 +129,7 @@ namespace user
    }
 
 
-   ::e_status prodevian::initialize_prodevian(interaction_impl * pimpl)
+   void prodevian::initialize_prodevian(interaction_impl * pimpl)
    {
 
       auto estatus = initialize(pimpl);
@@ -189,7 +189,7 @@ namespace user
    }
 
    
-   //::e_status prodevian::do_task()
+   //void prodevian::do_task()
    //{
 
    //   return ::thread::do_task();
@@ -197,7 +197,7 @@ namespace user
    //}
 
 
-   ::e_status prodevian::run()
+   void prodevian::run()
    {
 
       //m_pimpl->m_puserinteraction->task_add(this);
@@ -360,7 +360,7 @@ namespace user
    }
 
 
-   ::e_status prodevian::destroy()
+   void prodevian::destroy()
    {
 
       m_evUpdateScreen.SetEvent();
@@ -1401,7 +1401,7 @@ namespace user
    }
 
 
-   ::e_status interaction::prodevian_post_routine(const ::routine & routine)
+   void interaction::prodevian_post_routine(const ::routine & routine)
    {
 
       if (!is_graphical())

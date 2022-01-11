@@ -66,7 +66,7 @@ dir_context::~dir_context()
 }
 
 
-::e_status dir_context::initialize(::object * pobject)
+void dir_context::initialize(::object * pobject)
 {
 
    auto estatus = ::object::initialize(pobject);
@@ -83,7 +83,7 @@ dir_context::~dir_context()
 }
 
 
-::e_status dir_context::init_system()
+void dir_context::init_system()
 {
 
    return ::success;
@@ -92,7 +92,7 @@ dir_context::~dir_context()
 
 
 
-::e_status dir_context::init_context()
+void dir_context::init_context()
 {
 
    return ::success;

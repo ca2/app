@@ -29,9 +29,9 @@ public:
 
    virtual ::matter * source_channel() override;
 
-   virtual ::file_transport get_file(const ::payload& payloadFile, const ::file::e_open & eopen);
-   virtual ::file_transport get_reader(const ::payload& payloadFile, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
-   virtual ::file_transport get_writer(const ::payload& payloadFile, const ::file::e_open & eopen = ::file::e_open_write | ::file::e_open_binary | ::file::e_open_defer_create_directory | ::file::e_open_no_truncate | ::file::e_open_create);
+   virtual ::file_pointer get_file(const ::payload& payloadFile, const ::file::e_open & eopen);
+   virtual ::file_pointer get_reader(const ::payload& payloadFile, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
+   virtual ::file_pointer get_writer(const ::payload& payloadFile, const ::file::e_open & eopen = ::file::e_open_write | ::file::e_open_binary | ::file::e_open_defer_create_directory | ::file::e_open_no_truncate | ::file::e_open_create);
 
 
    inline bool is_ok() const
@@ -124,9 +124,9 @@ public:
 
    virtual ::matter * parent_property_set_holder() const;
 
-   ::e_status add_update_notification(property * pproperty);
-   ::e_status add_update_notification(const ::id & id, bool bCreate = true);
-   ::e_status add_update_notification(const ::id & id, ::matter * pobject);
+   void add_update_notification(property * pproperty);
+   void add_update_notification(const ::id & id, bool bCreate = true);
+   void add_update_notification(const ::id & id, ::matter * pobject);
 
 
    inline ::papaya::topic topic(const ::id & id);

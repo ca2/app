@@ -24,7 +24,7 @@ namespace apex
    }
 
    
-   ::e_status apex::shell_create_link(::file::path pathObj, ::file::path pathLnk, string strDesc, ::file::path pathIco, int iIcon)
+   void apex::shell_create_link(::file::path pathObj, ::file::path pathLnk, string strDesc, ::file::path pathIco, int iIcon)
    {
 
       return ::error_interface_only;
@@ -32,7 +32,7 @@ namespace apex
    }
 
 
-   // ::e_status apex::parallelization_initialize()
+   // void apex::parallelization_initialize()
    // {
 
    //    return ::error_interface_only;
@@ -40,7 +40,7 @@ namespace apex
    // }
    
    
-   // ::e_status apex::parallelization_finalize()
+   // void apex::parallelization_finalize()
    // {
 
    //    return ::error_interface_only;
@@ -48,7 +48,7 @@ namespace apex
    // }
 
 
-   ::e_status apex::thread_initialize(::thread* pthread)
+   void apex::thread_initialize(::thread* pthread)
    {
 
       return ::error_interface_only;
@@ -56,7 +56,7 @@ namespace apex
    }
 
 
-   ::e_status apex::thread_finalize(::thread* pthread)
+   void apex::thread_finalize(::thread* pthread)
    {
 
       return ::error_interface_only;
@@ -64,7 +64,7 @@ namespace apex
    }
 
 
-   // ::e_status apex::node_thread_initialize(::thread* pthread)
+   // void apex::node_thread_initialize(::thread* pthread)
    // {
 
    //    return ::error_interface_only;
@@ -72,7 +72,7 @@ namespace apex
    // }
 
 
-   // ::e_status apex::node_thread_finalize(::thread* pthread)
+   // void apex::node_thread_finalize(::thread* pthread)
    // {
 
    //    return ::error_interface_only;
@@ -88,7 +88,7 @@ namespace apex
    }
 
 
-   ::e_status apex::_001InitializeShellOpen()
+   void apex::_001InitializeShellOpen()
    {
 
       __throw(::error_interface_only);
@@ -104,7 +104,7 @@ namespace apex
 //   }
 
 
-   ::e_status apex::get_firefox_installation_info(string& strPathToExe, string& strInstallDirectory)
+   void apex::get_firefox_installation_info(string& strPathToExe, string& strInstallDirectory)
    {
 
       throw ::interface_only_exception();

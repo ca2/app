@@ -32,7 +32,7 @@ namespace filemanager
          }
 
 
-         ::e_status tree::initialize(::object * pobject)
+         void tree::initialize(::object * pobject)
          {
 
             auto estatus = ::user::tree_data::initialize(pobject);

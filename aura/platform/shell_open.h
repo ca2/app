@@ -10,10 +10,10 @@ public:
    shell_open();
    virtual ~shell_open();
 
-   virtual ::e_status initialize(::object * pobject) override;
+   virtual void initialize(::object * pobject) override;
 
 
-   virtual ::e_status initialize_shell_open();
+   virtual void initialize_shell_open();
 
 
 };

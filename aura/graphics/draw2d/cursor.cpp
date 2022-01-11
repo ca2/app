@@ -24,7 +24,7 @@ namespace draw2d
    }
 
 
-   ::e_status cursor::destroy()
+   void cursor::destroy()
    {
 
       m_pimage.release();

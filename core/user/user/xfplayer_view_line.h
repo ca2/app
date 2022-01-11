@@ -100,7 +100,7 @@ public:
    //xfplayer_view_line(const xfplayer_view_line & line);
    ~xfplayer_view_line() override;
 
-   virtual ::e_status initialize_xfplayer_view_line(xfplayer_view_linea * pContainer);
+   virtual void initialize_xfplayer_view_line(xfplayer_view_linea * pContainer);
 
    void set_blend(double d);
    ::write_text::font * GetFont();

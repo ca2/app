@@ -40,7 +40,7 @@ namespace compress_zlib
    }
 
 
-   ::e_status compress::set_level(int iLevel)
+   void compress::set_level(int iLevel)
    {
 
       m_iLevel = iLevel;
@@ -50,7 +50,7 @@ namespace compress_zlib
    }
 
 
-   ::e_status compress::transfer(::file::file* pfileOut, ::file::file* pfileIn)
+   void compress::transfer(::file::file* pfileOut, ::file::file* pfileIn)
    {
 
       int iLevel = m_iLevel;

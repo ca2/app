@@ -51,7 +51,7 @@ namespace account
    }
 
 
-   ::e_status user::initialize(::object * pobject)
+   void user::initialize(::object * pobject)
    {
 
       auto estatus = ::object::initialize(pobject);
@@ -259,7 +259,7 @@ namespace account
    }
 
 
-   ::e_status  user::do_logon(::file::path pathUrl, bool bInteractive)
+   void  user::do_logon(::file::path pathUrl, bool bInteractive)
    {
 
       m_timeAuthenticationRequest = ::datetime::time::now();

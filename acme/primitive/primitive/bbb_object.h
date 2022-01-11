@@ -66,10 +66,10 @@ public:
 
 
 
-   virtual void process_exit_status(const ::e_status& estatus);
+   virtual void process_exit_status(const void& estatus);
 
    //inline ::object* this const { return this; }
-   //virtual ::e_status set_object(::object* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   //virtual void set_object(::object* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
 
    //inline ::application* application() { return m_papplication; }
 
@@ -106,14 +106,14 @@ public:
    virtual void task_erase(::task* ptask) override;
 
 
-   virtual ::e_status sleep(const ::duration& duration);
+   virtual void sleep(const ::duration& duration);
 
 
    template < typename BASE_TYPE >
    void save_to(const ::payload& payloadFile, BASE_TYPE* pobject);
 
-   virtual ::e_status initialize(::object * pobject) override;
-   virtual ::e_status destroy() override;
+   virtual void initialize(::object * pobject) override;
+   virtual void destroy() override;
 
    inline const char* topic_text();
 
@@ -167,7 +167,7 @@ public:
 
    //inline void defer_set_object(::object * pobject);
 
-   virtual ::e_status operator()() override;
+   virtual void operator()() override;
 
 
    inline i64 get_ref_count()
@@ -209,106 +209,106 @@ public:
    //template < typename TYPE >
    //inline __transport(TYPE) __create_new();
 
-   //inline ::e_status __compose(__composite(::image) & pimage);
+   //inline void __compose(__composite(::image) & pimage);
 
-   //inline ::e_status __compose(__composite(::image) & pimage, ::image * pimageSource);
+   //inline void __compose(__composite(::image) & pimage, ::image * pimageSource);
 
-   //inline ::e_status __defer_compose(__composite(::image) & pimage) { return !pimage ? __compose(pimage) : ::e_status(::success); }
+   //inline void __defer_compose(__composite(::image) & pimage) { return !pimage ? __compose(pimage) : void(::success); }
 
    // for composition (ownership)
 
    template < typename BASE_TYPE >
-   inline ::e_status __compose(__composite(BASE_TYPE)& pusermessage);
+   inline void __compose(__composite(BASE_TYPE)& pusermessage);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline ::e_status __compose(__composite(BASE_TYPE)& pusermessage, const SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   inline void __compose(__composite(BASE_TYPE)& pusermessage, const SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline ::e_status __compose(__composite(BASE_TYPE)& pusermessage, const __pointer(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   inline void __compose(__composite(BASE_TYPE)& pusermessage, const __pointer(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
    template < typename BASE_TYPE >
-   inline ::e_status __id_compose(__composite(BASE_TYPE)& pusermessage, const ::id& id);
+   inline void __id_compose(__composite(BASE_TYPE)& pusermessage, const ::id& id);
 
    template < typename BASE_TYPE >
-   inline ::e_status __raw_compose(__composite(BASE_TYPE)& pusermessage);
+   inline void __raw_compose(__composite(BASE_TYPE)& pusermessage);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline ::e_status __raw_compose(__composite(BASE_TYPE)& pusermessage, const SOURCE* psource);
+   inline void __raw_compose(__composite(BASE_TYPE)& pusermessage, const SOURCE* psource);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline ::e_status __raw_compose(__composite(BASE_TYPE)& pusermessage, const __pointer(SOURCE)& psource);
+   inline void __raw_compose(__composite(BASE_TYPE)& pusermessage, const __pointer(SOURCE)& psource);
 
    template < typename TYPE >
-   inline ::e_status __raw_compose_new(__composite(TYPE)& ptype);
+   inline void __raw_compose_new(__composite(TYPE)& ptype);
 
    template < typename TYPE >
-   inline ::e_status __compose_new(__composite(TYPE)& ptype);
+   inline void __compose_new(__composite(TYPE)& ptype);
 
 
 
 
    template < typename BASE_TYPE >
-   inline ::e_status __defer_compose(__composite(BASE_TYPE)& pusermessage) { return !pusermessage ? __compose(pusermessage) : ::e_status(::success); }
+   inline void __defer_compose(__composite(BASE_TYPE)& pusermessage) { return !pusermessage ? __compose(pusermessage) : void(::success); }
 
    template < typename BASE_TYPE >
-   inline ::e_status __defer_id_compose(__composite(BASE_TYPE)& pusermessage, const ::id& id) { return !pusermessage ? __id_compose(pusermessage) : ::e_status(::success); }
+   inline void __defer_id_compose(__composite(BASE_TYPE)& pusermessage, const ::id& id) { return !pusermessage ? __id_compose(pusermessage) : void(::success); }
 
    template < typename TYPE >
-   inline ::e_status __defer_raw_compose_new(__composite(TYPE)& ptype) { return !ptype ? __raw_compose_new(ptype) : ::e_status(::success); }
+   inline void __defer_raw_compose_new(__composite(TYPE)& ptype) { return !ptype ? __raw_compose_new(ptype) : void(::success); }
 
    template < typename TYPE >
-   inline ::e_status __defer_compose_new(__composite(TYPE)& ptype) { return !ptype ? __compose_new(ptype) : ::e_status(::success); }
+   inline void __defer_compose_new(__composite(TYPE)& ptype) { return !ptype ? __compose_new(ptype) : void(::success); }
 
 
 
    //template < typename BASE_TYPE >
-   //inline ::e_status __construct(__pointer(BASE_TYPE)& pusermessage);
+   //inline void __construct(__pointer(BASE_TYPE)& pusermessage);
 
    //template < typename BASE_TYPE >
-   //inline ::e_status __id_construct(__pointer(BASE_TYPE)& pusermessage, const ::id& id);
+   //inline void __id_construct(__pointer(BASE_TYPE)& pusermessage, const ::id& id);
 
    //template < typename TYPE >
-   //inline ::e_status __construct_new(__pointer(TYPE)& pusermessage);
+   //inline void __construct_new(__pointer(TYPE)& pusermessage);
 
    template < typename BASE_TYPE >
-   inline ::e_status __release(__composite(BASE_TYPE)& pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   inline void __release(__composite(BASE_TYPE)& pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
    template < typename BASE_TYPE >
-   inline ::e_status __release(__reference(BASE_TYPE)& preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   inline void __release(__reference(BASE_TYPE)& preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
    template < typename SOURCE >
-   inline ::e_status __release(__pointer(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   inline void __release(__pointer(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 
-   virtual ::e_status add_composite(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
-   virtual ::e_status add_reference(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   virtual void add_composite(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   virtual void add_reference(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
 
 
-   virtual ::e_status release_composite2(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
-   virtual ::e_status finalize_composite(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
-   virtual ::e_status release_reference(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   virtual void release_composite2(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   virtual void finalize_composite(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   virtual void release_reference(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
 
 
    template < typename BASE_TYPE >
-   inline ::e_status add_composite(__composite(BASE_TYPE)& pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   inline void add_composite(__composite(BASE_TYPE)& pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline ::e_status __refer(__reference(BASE_TYPE)& preference, const SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   inline void __refer(__reference(BASE_TYPE)& preference, const SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline ::e_status __refer(__reference(BASE_TYPE)& preference, const __pointer(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   inline void __refer(__reference(BASE_TYPE)& preference, const __pointer(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline ::e_status __refer(__reference(BASE_TYPE)& preference, const ::primitive::member < SOURCE >& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   inline void __refer(__reference(BASE_TYPE)& preference, const ::primitive::member < SOURCE >& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
    template < typename SOURCE >
-   inline ::e_status add_reference(SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   inline void add_reference(SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
    template < typename SOURCE >
-   inline ::e_status add_reference(__pointer(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   inline void add_reference(__pointer(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
    template < typename SOURCE >
-   inline ::e_status add_reference(__reference(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   inline void add_reference(__reference(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
    virtual void delete_this() override;
 
@@ -316,13 +316,13 @@ public:
 
    static void system(const char* pszProjectName);
 
-   virtual ::e_status enable_application_events(bool bEnable = true);
+   virtual void enable_application_events(bool bEnable = true);
 
-   virtual ::e_status handle_exception(const ::exception& e);
+   virtual void handle_exception(const ::exception& e);
 
-   virtual ::e_status top_handle_exception(const ::exception& e);
+   virtual void top_handle_exception(const ::exception& e);
 
-   virtual ::e_status process_exception(const ::exception& e);
+   virtual void process_exception(const ::exception& e);
 
 
    ::object* parent_property_set_holder() const override;
@@ -336,9 +336,9 @@ public:
    virtual bool is_running() const;
    virtual void child_post_quit(const char* pszTag);
    virtual void child_post_quit_and_wait(const char* pszTag, const duration& duration);
-   virtual ::e_status finish(::property_object* pcontextobjectFinish = nullptr) override;
-   virtual ::e_status set_finish(::property_object* pcontextobjectFinish) override;
-   virtual ::e_status set_finish_composites(::property_object* pcontextobjectFinish) override;
+   virtual void finish(::property_object* pcontextobjectFinish = nullptr) override;
+   virtual void set_finish(::property_object* pcontextobjectFinish) override;
+   virtual void set_finish_composites(::property_object* pcontextobjectFinish) override;
    virtual void on_finish() override;
 
 
@@ -352,13 +352,13 @@ public:
 
    void _001OnUpdate(::message::message* pmessage);
 
-   virtual ::e_status request_file(const ::payload& payloadFile);
+   virtual void request_file(const ::payload& payloadFile);
 
-   virtual ::e_status request_file(const ::payload& payloadFile, ::payload varQuery);
+   virtual void request_file(const ::payload& payloadFile, ::payload varQuery);
 
-   virtual ::e_status request(arguments arguments);
+   virtual void request(arguments arguments);
 
-   virtual ::e_status do_request(::create* pcreate);
+   virtual void do_request(::create* pcreate);
 
    virtual __pointer(::extended::future < ::conversation >)  message_box(const char* pszMessage, const char* pszTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok);
    //{
@@ -368,15 +368,15 @@ public:
    //}
 
 
-   //virtual ::e_status message_box_timeout(const char * pszMessage, const char * pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future());
+   //virtual void message_box_timeout(const char * pszMessage, const char * pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future());
    //{
 
    //   return message_box_timeout(nullptr, pszMessage, pszTitle, durationTimeout, emessagebox, process);
 
    //}
 
-   //virtual ::e_status message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future());
-   //virtual ::e_status message_box_timeout(::user::primitive* puserinteractionOwner, const char* pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future());
+   //virtual void message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future());
+   //virtual void message_box_timeout(::user::primitive* puserinteractionOwner, const char* pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future());
 
    virtual void release_references();
 
@@ -390,7 +390,7 @@ public:
 
    virtual void on_finalize();
 
-   virtual ::e_status call_request(::create* pcreate);
+   virtual void call_request(::create* pcreate);
 
    //// former user::server
    //virtual ::user::document* open_new_document(::application* pappOnBehalfOf);
@@ -401,7 +401,7 @@ public:
    //virtual ::user::document* create_subdocument(::user::impact_data* pimpactdata);
 
 
-   virtual ::e_status run() override;
+   virtual void run() override;
 
    virtual string lstr(const ::id& id, string strDefault = "");
 
@@ -466,7 +466,7 @@ public:
    }
 
 
-   inline ::e_status defer_fork(::thread_pointer& pthread, const ::routine& routine);
+   inline void defer_fork(::thread_pointer& pthread, const ::routine& routine);
 
 
    //template < typename THREAD >
@@ -545,22 +545,22 @@ public:
 //   virtual void ns_main_async(dispatch_block_t block);
 //#endif
 
-   //inline ::file_transport get_reader(const ::payload& payloadFile, const ::file::e_open & eopen = ::file::e_open());
-   //inline ::file_transport get_writer(const ::payload& payloadFile, const ::file::e_open & eopen = ::file::e_open());
+   //inline ::file_pointer get_reader(const ::payload& payloadFile, const ::file::e_open & eopen = ::file::e_open());
+   //inline ::file_pointer get_writer(const ::payload& payloadFile, const ::file::e_open & eopen = ::file::e_open());
 
 
    //virtual void to_string(string & str) const override;
 
 
-   virtual ::file_transport get_file(const ::payload& payloadFile, const ::file::e_open& eopen);
-   inline ::file_transport get_reader(const ::payload& payloadFile, const ::file::e_open& eopen = ::file::e_open_binary);
-   inline ::file_transport get_writer(const ::payload& payloadFile, const ::file::e_open& eopen = ::file::e_open_binary | ::file::e_open_defer_create_directory | ::file::e_open_create);
+   virtual ::file_pointer get_file(const ::payload& payloadFile, const ::file::e_open& eopen);
+   inline ::file_pointer get_reader(const ::payload& payloadFile, const ::file::e_open& eopen = ::file::e_open_binary);
+   inline ::file_pointer get_writer(const ::payload& payloadFile, const ::file::e_open& eopen = ::file::e_open_binary | ::file::e_open_defer_create_directory | ::file::e_open_create);
 
 
 
-   //::e_status add_update_notification(property * pproperty);
-   //::e_status add_update_notification(const ::id & id, bool bCreate = true);
-   //::e_status property_notify(const ::id & id, ::matter * pmatter);
+   //void add_update_notification(property * pproperty);
+   //void add_update_notification(const ::id & id, bool bCreate = true);
+   //void property_notify(const ::id & id, ::matter * pmatter);
 
 
 //   inline void format_topic_text(const char * psz, ...)
@@ -585,7 +585,7 @@ public:
 
 
    //template < typename TYPE >
-   //auto member_fork(::e_status (TYPE:: * pfn)(), ::enum_priority epriority = ::e_priority_normal)
+   //auto member_fork(void (TYPE:: * pfn)(), ::enum_priority epriority = ::e_priority_normal)
    //{
 
    //   TYPE * ptype = dynamic_cast <TYPE *>(this);
@@ -610,10 +610,10 @@ public:
 
 
    //template < typename TYPE >
-   //::e_status __construct(::thread_pointer& p, void (TYPE::* pfn)(), enum_priority epriority);
+   //void __construct(::thread_pointer& p, void (TYPE::* pfn)(), enum_priority epriority);
 
    template < typename TYPE >
-   ::e_status __construct_below_normal(::thread_pointer& p, void (TYPE::* pfn)());
+   void __construct_below_normal(::thread_pointer& p, void (TYPE::* pfn)());
 
 
    template < typename TYPE >
@@ -657,7 +657,7 @@ do                                                                   \
 
 
 
-CLASS_DECL_APEX::e_status call_sync(const ::routine_array& routinea);
+CLASS_DECL_APEXvoid call_sync(const ::routine_array& routinea);
 
 
 

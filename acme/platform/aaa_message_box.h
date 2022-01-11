@@ -19,7 +19,7 @@
 //   virtual ~message_box();
 //
 //
-//   //::e_status show(::matter* pobject);
+//   //void show(::matter* pobject);
 //
 //
 //};
@@ -63,7 +63,7 @@
 //}
 //
 //
-////CLASS_DECL_ACME ::e_status os_message_box(const char* pszText, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future());
+////CLASS_DECL_ACME void os_message_box(const char* pszText, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future());
 //
 //
 

@@ -53,7 +53,7 @@
 //}
 //
 //
-////::e_status message_box::show(::matter* pobject)
+////void message_box::show(::matter* pobject)
 ////{
 ////
 ////   //if (::is_null(pobject))
@@ -68,7 +68,7 @@
 ////}
 //
 //
-//CLASS_DECL_ACME ::e_status message_box(::windowing::window * pwindow, const char* pszText, const char* pszTitle, const ::e_message_box & emessagebox, const ::future & process)
+//CLASS_DECL_ACME void message_box(::windowing::window * pwindow, const char* pszText, const char* pszTitle, const ::e_message_box & emessagebox, const ::future & process)
 //{
 //
 //   __throw(todo("message_box"));

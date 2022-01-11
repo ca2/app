@@ -662,7 +662,7 @@ void image_list::copy_from(const ::image_list * plist)
 }
 
 
-::e_status image_list::get_image_info(i32 nImage, info * pinfo) const
+void image_list::get_image_info(i32 nImage, info * pinfo) const
 {
 
    try

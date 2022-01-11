@@ -1066,7 +1066,7 @@ pacmedir->is(strPath))
    //}
 
 
-   ::e_status shell::initialize(::object * pobject)
+   void shell::initialize(::object * pobject)
    {
 
       if (m_bInitialized)
@@ -1361,7 +1361,7 @@ pacmedir->is(strPath))
    }
 
 
-   ::e_status shell::finish(::property_object * pobject)
+   void shell::finish(::property_object * pobject)
    {
 
       return ::user::shell::finish(pobject);
@@ -1376,10 +1376,10 @@ namespace core
 {
 
 
-   ::e_status user::create_user_shell()
+   void user::create_user_shell()
    {
 
-      ::e_status estatus = ::success;
+      void estatus = ::success;
 
       if (!m_pshell)
       {

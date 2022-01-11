@@ -78,7 +78,7 @@ namespace user
    }
 
 
-   ::e_status form_list_view::initialize(::object * pobject)
+   void form_list_view::initialize(::object * pobject)
    {
 
       auto estatus = ::user::form_list::initialize(pobject);

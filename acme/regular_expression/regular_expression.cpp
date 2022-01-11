@@ -24,7 +24,7 @@ namespace regular_expression
    }
 
 
-   ::e_status regular_expression::create(const string& str)
+   void regular_expression::create(const string& str)
    {
 
       m_str = str;

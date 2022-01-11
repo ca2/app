@@ -17,7 +17,7 @@ namespace aura
    const char * psz_empty_app_id = "";
 
 
-   ::e_status     library::initialize(::object * pobject)
+   void     library::initialize(::object * pobject)
    {
 
       auto estatus = ::object::initialize(pobject);
@@ -31,7 +31,7 @@ namespace aura
    }
 
 
-   ::e_status library::initialize_aura_library(::object * pobject,int iDesambig, const ::string & pszRoot, const ::string & pszName, const ::string & pszFolder)
+   void library::initialize_aura_library(::object * pobject,int iDesambig, const ::string & pszRoot, const ::string & pszName, const ::string & pszFolder)
    {
 
       auto estatus = initialize(pobject);

@@ -17,7 +17,7 @@ namespace bred
       void common_construct();
 
 
-      virtual ::e_status initialize(::object * pobject) override;
+      virtual void initialize(::object * pobject) override;
 
 
       virtual void on_instantiate_application(::application* papp) override;

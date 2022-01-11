@@ -56,7 +56,7 @@ void release(TYPE *& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 //#include "acme/platform/update.h"
 
 
-//CLASS_DECL_ACME ::e_status __fork(
+//CLASS_DECL_ACME void __fork(
 //   matter* pmatter,
 //   ::enum_priority epriority = e_priority_normal,
 //   u32 nStackSize = 0,
@@ -142,6 +142,6 @@ inline stream & operator << (stream & s, const memory_base & mem);
 inline stream & operator >> (stream & s, memory_base & mem);
 
 
-CLASS_DECL_ACME string __string(const ::e_status & estatus);
+CLASS_DECL_ACME string __string(const void & estatus);
 
 CLASS_DECL_ACME void to_string(string & str, const e_status & estatus);

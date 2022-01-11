@@ -22,10 +22,10 @@ public:
    ~networking_application() override;
 
 
-   ::e_status initialize(::object* pobject) override;
+   void initialize(::object* pobject) override;
 
 
-   ::e_status create_networking_application();
+   void create_networking_application();
 
    
    virtual i32 get_current_port();
@@ -34,10 +34,10 @@ public:
    virtual i32 wait_get_current_port(const ::duration & duration);
 
 
-   virtual ::e_status add_handler(const ::string& strPrefix, networking_application_handler* phandler);
+   virtual void add_handler(const ::string& strPrefix, networking_application_handler* phandler);
 
 
-   ::e_status on_html_response(::string & strHtml, const ::string& strUrl, const ::property_set& setPost) override;
+   void on_html_response(::string & strHtml, const ::string& strUrl, const ::property_set& setPost) override;
 
 
 };

@@ -23,7 +23,7 @@ namespace userfs
    }
 
 
-   ::e_status document::initialize(::object * pobject)
+   void document::initialize(::object * pobject)
    {
 
       auto estatus = ::user::document::initialize(pobject);

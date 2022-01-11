@@ -7207,7 +7207,7 @@ namespace user
    }
 
 
-   ::e_status list::set_current_item(const ::item & item, const ::action_context & context)
+   void list::set_current_item(const ::item & item, const ::action_context & context)
    {
 
       auto iCurrentSelection = m_rangeSelection.get_current_item();

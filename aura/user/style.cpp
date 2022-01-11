@@ -46,7 +46,7 @@ namespace user
    }
 
 
-   ::e_status style::initialize(::object * pobject)
+   void style::initialize(::object * pobject)
    {
 
       auto estatus = style_base::initialize(pobject);
@@ -95,7 +95,7 @@ namespace user
    }
 
 
-   ::e_status style::initialize_style()
+   void style::initialize_style()
    {
 
       return ::success;

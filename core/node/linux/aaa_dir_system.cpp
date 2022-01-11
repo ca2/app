@@ -23,7 +23,7 @@ namespace linux
    }
 
 
-   ::e_status dir_system::initialize(::object * pobject)
+   void dir_system::initialize(::object * pobject)
    {
 
       auto estatus = ::dir_system::initialize(pobject);

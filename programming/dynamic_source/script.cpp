@@ -37,7 +37,7 @@ namespace dynamic_source
 
 
 
-   ::e_status script::on_initialize_object()
+   void script::on_initialize_object()
    {
 
       auto estatus = ::object::on_initialize_object();

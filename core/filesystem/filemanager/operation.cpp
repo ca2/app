@@ -231,7 +231,7 @@ namespace filemanager
    }
 
 
-   ::e_status operation::start()
+   void operation::start()
    {
       switch(m_eoperation)
       {
@@ -292,7 +292,7 @@ namespace filemanager
    }
 
    
-   ::e_status operation::step()
+   void operation::step()
    {
 
       auto pcontext = get_context();
@@ -484,7 +484,7 @@ namespace filemanager
    }
 
 
-   ::e_status operation::initialize(::object * pobject)
+   void operation::initialize(::object * pobject)
    {
 
       auto estatus = ::object::initialize(pobject);

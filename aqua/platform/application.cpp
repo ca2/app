@@ -27,7 +27,7 @@ namespace aqua
    }
 
 
-   ::e_status application::initialize(::object * pobject)
+   void application::initialize(::object * pobject)
    {
 
       auto estatus = ::application::initialize(pobject);
@@ -44,7 +44,7 @@ namespace aqua
    }
 
 
-   ::e_status application::exit_application()
+   void application::exit_application()
    {
 
       if (get_system()->m_pmultimedia)

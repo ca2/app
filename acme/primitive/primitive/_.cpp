@@ -101,7 +101,7 @@ void __assert_valid_object(const ::matter * pOb, const char * pszFileName, i32 n
 //
 
 //
-//CLASS_DECL_ACME string __string(const ::e_status & estatus)
+//CLASS_DECL_ACME string __string(const void & estatus)
 //{
 //
 //   return __string((::i64)estatus.m_estatus);
@@ -110,7 +110,7 @@ void __assert_valid_object(const ::matter * pOb, const char * pszFileName, i32 n
 
 
 
-CLASS_DECL_ACME ::e_status __call(::matter * pmatter)
+CLASS_DECL_ACME void __call(::matter * pmatter)
 {
    
    auto estatus = pmatter->run();

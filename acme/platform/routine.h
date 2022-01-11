@@ -12,7 +12,7 @@
 
       using ::function_pointer::function_pointer;
 
-      inline ::e_status operator()() const;
+      inline void operator()() const;
 
       inline bool should_run_async() const;
 

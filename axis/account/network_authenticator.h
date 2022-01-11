@@ -26,22 +26,22 @@ namespace account
       virtual ~network_authenticator();
 
 
-      virtual ::e_status  pre_authenticate(credentials * pcredentials) override;
+      virtual void  pre_authenticate(credentials * pcredentials) override;
 
-      virtual ::e_status  authenticate(credentials * pcredentials) override;
-
-
+      virtual void  authenticate(credentials * pcredentials) override;
 
 
-      virtual ::e_status  network_authentication(credentials * pcredentials);
 
 
-      //virtual ::e_status  get_server(credentials * pcredentials);
+      virtual void  network_authentication(credentials * pcredentials);
 
 
-      //virtual ::e_status  _get_server(credentials * pcredentials);
-      virtual ::e_status  get_account_server(credentials * pcredentials);
-      virtual ::e_status  _get_account_server(credentials * pcredentials);
+      //virtual void  get_server(credentials * pcredentials);
+
+
+      //virtual void  _get_server(credentials * pcredentials);
+      virtual void  get_account_server(credentials * pcredentials);
+      virtual void  _get_account_server(credentials * pcredentials);
 
 
    };

@@ -1,5 +1,7 @@
 #include "framework.h"
-
+#include "acme/primitive/mathematics/mathematics.h"
+#include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/pen.h"
 
 
 namespace datetime
@@ -21,7 +23,7 @@ namespace datetime
 
    }
 
-   ::e_status graphics::initialize(::object * pobject)
+   void graphics::initialize(::object * pobject)
    {
 
       return ::success;

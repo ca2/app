@@ -138,7 +138,7 @@ namespace user
    }
 
 
-   ::e_status menu::destroy()
+   void menu::destroy()
    {
 
       set_finish();
@@ -1612,7 +1612,7 @@ namespace user
 
 
    // <3ThomasBorregaardS�rensen__!! (I need to suck you, back, middle, front)
-   ::e_status menu::handle_command(const ::id& id)
+   void menu::handle_command(const ::id& id)
    {
 
       if (m_pmaterialCommandHandler)

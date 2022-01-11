@@ -39,10 +39,10 @@ namespace apex
 #endif
 
 
-      virtual ::e_status on_initialize_object() override;
+      virtual void on_initialize_object() override;
       
       
-      virtual ::e_status main();
+      virtual void main();
 
 
       virtual ::string system_options_html();
@@ -50,7 +50,7 @@ namespace apex
       virtual ::string system_options_main_body();
       
       
-      virtual ::e_status defer_create_main_menu(const string_array & straParent, const string_array & straMenu, const string_array & straId);
+      virtual void defer_create_main_menu(const string_array & straParent, const string_array & straMenu, const string_array & straId);
       
 
       virtual void set_application_menu(application_menu * pmenu, ::application * papplication);
@@ -62,7 +62,7 @@ namespace apex
       virtual void defer_notify_startup_complete();
 
 
-      virtual ::e_status start_node() override;
+      virtual void start_node() override;
 
 
       void on_operating_system_user_theme_change() override;
@@ -74,21 +74,21 @@ namespace apex
       void on_operating_system_font_list_change() override;
 
 
-      virtual ::e_status shell_create_link(::file::path pathObj, ::file::path pathLnk, string strDesc, ::file::path pathIco = "", int iIcon = -1);
+      virtual void shell_create_link(::file::path pathObj, ::file::path pathLnk, string strDesc, ::file::path pathIco = "", int iIcon = -1);
 
 
-      //virtual ::e_status parallelization_initialize();
-      //virtual ::e_status parallelization_finalize();
+      //virtual void parallelization_initialize();
+      //virtual void parallelization_finalize();
 
-      virtual ::e_status thread_initialize(::thread* pthread);
-      //virtual ::e_status thread_finalize(::thread* pthread);
+      virtual void thread_initialize(::thread* pthread);
+      //virtual void thread_finalize(::thread* pthread);
 
-      // virtual ::e_status node_thread_initialize(::thread* pthread);
-      // virtual ::e_status node_thread_finalize(::thread* pthread);
+      // virtual void node_thread_initialize(::thread* pthread);
+      // virtual void node_thread_finalize(::thread* pthread);
 
       virtual string get_version();
 
-      virtual ::e_status _001InitializeShellOpen();
+      virtual void _001InitializeShellOpen();
 
 
       virtual void show_wait_cursor(bool bShow = true);
@@ -96,7 +96,7 @@ namespace apex
 
       //void on_dark_mode_change() override;
 
-      virtual ::e_status get_firefox_installation_info(string& strPathToExe, string& strInstallDirectory);
+      virtual void get_firefox_installation_info(string& strPathToExe, string& strInstallDirectory);
 
 
 

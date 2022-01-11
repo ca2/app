@@ -71,7 +71,7 @@ namespace sockets
    }
 
 
-   ::e_status socket_thread::move(socket_map::association * passociation, socket_map * psocketmap)
+   void socket_thread::move(socket_map::association * passociation, socket_map * psocketmap)
    {
 
       auto estatus = initialize(passociation->m_psocket);
@@ -110,7 +110,7 @@ namespace sockets
    }
 
 
-   //::e_status socket_thread::init_thread()
+   //void socket_thread::init_thread()
    //{
 
    //   if (!::thread::init_thread())
@@ -177,7 +177,7 @@ namespace sockets
 
    }
 
-   ::e_status socket_thread::run()
+   void socket_thread::run()
    {
 
       //if (phandler.get() != m_psocket->m_psockethandler.get())

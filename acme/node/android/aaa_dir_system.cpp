@@ -18,7 +18,7 @@ namespace android
    }
 
 
-   ::e_status dir_system::initialize(::matter * pobject)
+   void dir_system::initialize(::matter * pobject)
    {
 
       auto estatus = ::dir_system::initialize(pobject);

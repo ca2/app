@@ -38,7 +38,7 @@ namespace user
       inline ::base::user* user() const { return get_session() ? get_session()->user() : nullptr; }
 
 
-      virtual ::e_status set_notify_user_interaction(::user::interaction* puserinteractionNotify);
+      virtual void set_notify_user_interaction(::user::interaction* puserinteractionNotify);
 
 
 
@@ -84,7 +84,7 @@ namespace user
 
       __pointer(::user::interaction) create_view(const ::type & type, ::user::document * pdocument = nullptr, ::user::interaction * puserinteractionParent = nullptr, const ::id & id = ::id(), ::user::interaction * pviewLast = nullptr, ::user::impact_data * pdata = nullptr);
 
-      virtual ::e_status initialize_view(::user::document * pdocument);
+      virtual void initialize_view(::user::document * pdocument);
 
       template < class VIEW >
       __pointer(VIEW) create_view(::user::document * pdocument = nullptr, ::user::interaction * puserinteractionParent = nullptr, const ::id & id = ::id(),::user::interaction * pviewLast = nullptr, ::user::impact_data * pimpactdata = nullptr);
@@ -241,7 +241,7 @@ namespace user
       inline ::base::user* user() const { return get_session() ? get_session()->user() : nullptr; }
 
 
-      virtual ::e_status initialize(::object * pobject) override
+      virtual void initialize(::object * pobject) override
       {
 
          auto estatus = ::user::impact::initialize(pobject);

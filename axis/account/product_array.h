@@ -19,7 +19,7 @@ namespace account
       virtual ~product_array();
 
 
-      virtual ::e_status initialize_product_array(department* pdepartment);
+      virtual void initialize_product_array(department* pdepartment);
       
       virtual product * get_product(string strAppId, bool bFetch = false, bool bInteractive = true);
 //      virtual product * interactive_get_product(string strAppId);

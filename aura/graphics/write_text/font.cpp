@@ -850,7 +850,7 @@ namespace write_text
 //
 //   }
 
-   ::e_status font::destroy()
+   void font::destroy()
    {
 
       for (auto & text : m_mapText.values())

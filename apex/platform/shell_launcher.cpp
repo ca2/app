@@ -22,7 +22,7 @@ namespace apex
    }
 
 
-   ::e_status shell_launcher::launch()
+   void shell_launcher::launch()
    {
 
       throw ::interface_only_exception();
@@ -41,7 +41,7 @@ namespace apex
 
 
 
-   ::e_status shell_launcher::setup(duration durationTimeout)
+   void shell_launcher::setup(duration durationTimeout)
    {
 
       m_iMode = 1;
@@ -51,7 +51,7 @@ namespace apex
    }
 
 
-   ::e_status shell_launcher::setup(oswindow oswindow, const char * pszOperation, const char * pszFile, const char * pszParameters, const char * pszDirectory, ::e_display edisplay, duration durationTimeout)
+   void shell_launcher::setup(oswindow oswindow, const char * pszOperation, const char * pszFile, const char * pszParameters, const char * pszDirectory, ::e_display edisplay, duration durationTimeout)
    {
 
       m_iMode = 0;

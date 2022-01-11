@@ -19,7 +19,7 @@ machine_event_central::~machine_event_central()
 }
 
 
-::e_status machine_event_central::initialize(::object * pobject)
+void machine_event_central::initialize(::object * pobject)
 {
 
    if (m_bInitialized)
@@ -56,7 +56,7 @@ machine_event_central::~machine_event_central()
 }
 
 
-::e_status     machine_event_central::run()
+void     machine_event_central::run()
 {
 
    // todo (camilo) instead of sleeping, wait for change messages pooling in the machine event data file.

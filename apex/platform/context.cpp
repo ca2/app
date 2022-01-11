@@ -124,7 +124,7 @@ namespace apex
    }
 
 
-   ::e_status context::initialize_context()
+   void context::initialize_context()
    {
 
       auto estatus = __compose(m_phttp);
@@ -1131,7 +1131,7 @@ namespace apex
 
 
 
-   ::e_status context::_load_from_file(::matter* pobject, const ::payload& payloadFile, const ::payload& varOptions)
+   void context::_load_from_file(::matter* pobject, const ::payload& payloadFile, const ::payload& varOptions)
    {
 
       binary_stream reader(m_pcontext->m_papexcontext->file().get_reader(payloadFile));
@@ -1143,7 +1143,7 @@ namespace apex
    }
 
 
-   ::e_status context::_save_to_file(const ::payload& payloadFile, const ::payload& varOptions, const ::matter * pobject)
+   void context::_save_to_file(const ::payload& payloadFile, const ::payload& varOptions, const ::matter * pobject)
    {
 
       binary_stream writer(m_pcontext->m_papexcontext->file().get_writer(payloadFile));
@@ -1155,7 +1155,7 @@ namespace apex
    }
 
 
-//   ::e_status context::destroy()
+//   void context::destroy()
 //   {
 //
 //      auto estatus = ::object::destroy();
@@ -1240,7 +1240,7 @@ namespace apex
    }
 
 
-   ::e_status context::destroy()
+   void context::destroy()
    {
 
       ::thread::destroy();

@@ -70,7 +70,7 @@ namespace http
       ~context();
 
 
-      ::e_status on_initialize_object() override;
+      void on_initialize_object() override;
 
 
       void http_system_destruct();
@@ -142,10 +142,10 @@ namespace http
       virtual ::payload length(const char * pszUrl, ::payload * pvarQuery, property_set & set);
 
       //virtual string get(const char * pszUrl, property_set & set);
-      virtual ::e_status _get(const char * pszUrl, property_set & set);
+      virtual void _get(const char * pszUrl, property_set & set);
 
-      virtual ::e_status get(string & str, const char * pszUrl, property_set & set);
-      virtual ::e_status get(memory_base * pmemory, const char * pszUrl, property_set & set);
+      virtual void get(string & str, const char * pszUrl, property_set & set);
+      virtual void get(memory_base * pmemory, const char * pszUrl, property_set & set);
 
       //virtual bool request(const char * pszRequest, const char * pszUrl, property_set & set);
 

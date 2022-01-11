@@ -53,7 +53,7 @@ i64 signal::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 
 
 
-//::e_status signal::step()
+//void signal::step()
 //{
 //
 //   auto ptask = ::get_task();
@@ -80,7 +80,7 @@ i64 signal::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 //}
 
 
-::e_status signal::run()
+void signal::run()
 {
 
    while (true)
@@ -181,7 +181,7 @@ void signal::notify()
 }
 
 
-::e_status signal::start_task()
+void signal::start_task()
 {
 
    return ::success_none;

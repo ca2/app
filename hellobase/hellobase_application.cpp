@@ -36,7 +36,7 @@ namespace hellobase
    }
 
 
-   ::e_status application::init_instance()
+   void application::init_instance()
    {
 
       add_factory_item <::hellobase::document >();

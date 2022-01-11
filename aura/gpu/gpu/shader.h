@@ -26,7 +26,7 @@ namespace gpu
       virtual ~shader();
 
       
-      virtual ::e_status create_shader(const ::string & pszVertex, const ::string & pszFragment, const ::string & pszGeometry = nullptr);
+      virtual void create_shader(const ::string & pszVertex, const ::string & pszFragment, const ::string & pszGeometry = nullptr);
 
       virtual void use();
 
@@ -51,9 +51,9 @@ namespace gpu
 
       //virtual shader * create_shader(const ::string & pszVertex, enum_shader eshader);
 
-      //static ::e_status shader_compile_errors(GLuint shader, enum_shader eshader, string & strSummary);
+      //static void shader_compile_errors(GLuint shader, enum_shader eshader, string & strSummary);
 
-      //static ::e_status program_compile_errors(GLuint program, string & strSummary);
+      //static void program_compile_errors(GLuint program, string & strSummary);
 
 
    };

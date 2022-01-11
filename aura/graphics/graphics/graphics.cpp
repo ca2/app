@@ -32,7 +32,7 @@ namespace graphics
    }
 
 
-   ::e_status graphics::initialize_graphics_graphics(::user::interaction_impl * pimpl)
+   void graphics::initialize_graphics_graphics(::user::interaction_impl * pimpl)
    {
 
       auto estatus = object::initialize(pimpl);
@@ -53,7 +53,7 @@ namespace graphics
    }
 
 
-   ::e_status graphics::destroy()
+   void graphics::destroy()
    {
 
       destroy_buffer();
@@ -160,7 +160,7 @@ namespace graphics
    }
 
 
-   ::e_status graphics::set_bitmap_source(const string& strBitmapSource)
+   void graphics::set_bitmap_source(const string& strBitmapSource)
    {
 
       return error_interface_only;
@@ -168,7 +168,7 @@ namespace graphics
    }
 
 
-   ::e_status graphics::clear_bitmap_source()
+   void graphics::clear_bitmap_source()
    {
 
       return error_interface_only;

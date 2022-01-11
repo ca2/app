@@ -35,7 +35,7 @@ namespace userpresence
    }
 
 
-   ::e_status department::initialize(::object * pobject)
+   void department::initialize(::object * pobject)
    {
 
       auto estatus = ::acme::department::initialize(pobject);
@@ -59,7 +59,7 @@ namespace userpresence
    }
 
 
-   ::e_status department::destroy()
+   void department::destroy()
    {
 
       defer_finalize_user_presence();

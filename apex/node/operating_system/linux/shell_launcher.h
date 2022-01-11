@@ -27,13 +27,13 @@ virtual public ::apex::shell_launcher
    shell_launcher();
    virtual ~shell_launcher();
 
-   //virtual ::e_status setup(duration durationTimeout = ::one_minute());
-   //virtual ::e_status setup(oswindow oswindow, const char * pszOperation, const char * pszFile, const char * pszParameters, const char * pszDirectory, ::e_display edisplay, duration durationTimeout = ::one_minute());
+   //virtual void setup(duration durationTimeout = ::one_minute());
+   //virtual void setup(oswindow oswindow, const char * pszOperation, const char * pszFile, const char * pszParameters, const char * pszDirectory, ::e_display edisplay, duration durationTimeout = ::one_minute());
 
-   virtual ::e_status launch();
+   virtual void launch();
 
 
-   //inline ::e_status status() const {return m_estatus;}
+   //inline void status() const {return m_estatus;}
 
 
 };

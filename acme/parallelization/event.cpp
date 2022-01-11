@@ -426,7 +426,7 @@ bool event::ResetEvent()
 }
 
 
-::e_status event::_wait ()
+void event::_wait ()
 {
 
    //__throw(todo("thread"));
@@ -557,10 +557,10 @@ bool event::ResetEvent()
 }
 
 
-::e_status event::_wait (const class ::wait & wait)
+void event::_wait (const class ::wait & wait)
 {
 
-   ::e_status estatus;
+   void estatus;
 
    //__throw(todo("thread"));
    //if(durationTimeout > 1_s && m_eobject & e_object_alertable_wait)

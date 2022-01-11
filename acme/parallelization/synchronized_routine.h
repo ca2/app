@@ -34,13 +34,13 @@
 //      routine                          m_routine;
 //      __pointer(manual_reset_event)    m_peventCompletion;
 //      ::duration                       m_duration;
-//      ::e_status                       m_estatus;
+//      void                       m_estatus;
 //
 //
 //      virtual ~sync_routine() {}
 //
 //
-//      inline virtual ::e_status operator()() override
+//      inline virtual void operator()() override
 //      {
 //
 //         m_estatus = m_routine();

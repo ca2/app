@@ -9,7 +9,7 @@ namespace acme
    public:
 
       
-      ::e_status m_estatus;
+      void m_estatus;
       //__pointer(class ::system) m_psystem;
 
    //   void create_system()
@@ -64,7 +64,7 @@ namespace acme
       void init()
       {
 
-         //m_estatus = (::e_status) m_psystem->inline_init();
+         //m_estatus = (void) m_psystem->inline_init();
 
          m_estatus = ::success;
 

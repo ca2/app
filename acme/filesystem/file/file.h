@@ -137,14 +137,14 @@ namespace file
       virtual ::file::path get_file_path() const;
       virtual void set_file_path(const ::file::path & path);
 
-      virtual ::extended::status open(const ::file::path& pszFileName, const ::file::e_open & eopen);
-      inline ::extended::status open_for_reading(const ::file::path& pszFileName, const ::file::e_open & eopen =
+      virtual void open(const ::file::path& pszFileName, const ::file::e_open & eopen);
+      inline void open_for_reading(const ::file::path& pszFileName, const ::file::e_open & eopen =
          ::file::e_open_binary)
       {
          return open(pszFileName, eopen | ::file::e_open_read);
 
       }
-      virtual ::extended::status open_for_writing(const ::file::path& pszFileName, const ::file::e_open & eopen =
+      virtual void open_for_writing(const ::file::path& pszFileName, const ::file::e_open & eopen =
          ::file::e_open_binary | ::file::e_open_defer_create_directory)
       {
          return open(pszFileName, eopen | ::file::e_open_write);

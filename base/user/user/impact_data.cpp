@@ -42,7 +42,7 @@ namespace user
 
 
    /*::user::interaction* get_place_holder() const;
-   ::e_status set_place_holder(::user::place_holder* pdocument);
+   void set_place_holder(::user::place_holder* pdocument);
 
    ::user::interaction* get_user_interaction() const;
 
@@ -78,7 +78,7 @@ namespace user
    }
 
 
-   ::e_status impact_data::set_user_interaction(::user::interaction* pdocument);
+   void impact_data::set_user_interaction(::user::interaction* pdocument);
    {
 
       auto estatus = __refer(m_pdocument, pdocument);
@@ -103,7 +103,7 @@ namespace user
    }
 
 
-   ::e_status impact_data::set_document(::user::document* pdocument)
+   void impact_data::set_document(::user::document* pdocument)
    {
 
       auto estatus = __refer(m_pdocument, pdocument);

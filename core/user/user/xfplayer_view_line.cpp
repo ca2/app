@@ -39,7 +39,7 @@ xfplayer_view_line::xfplayer_view_line()
 }
 
 
-::e_status xfplayer_view_line::initialize_xfplayer_view_line(xfplayer_view_linea * pContainer)
+void xfplayer_view_line::initialize_xfplayer_view_line(xfplayer_view_linea * pContainer)
 {
 
    auto estatus = initialize(pContainer);

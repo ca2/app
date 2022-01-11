@@ -87,10 +87,10 @@ CLASS_DECL_APEX i32 ca2_main();
 
 
 
-//::e_status app_core::system_start()
+//void app_core::system_start()
 //{
 //
-//   ::e_status estatus = system_pre_run();
+//   void estatus = system_pre_run();
 //
 //   if (!estatus)
 //   {
@@ -130,7 +130,7 @@ namespace apex
 {
 
 
-   // ::e_status system::system_main()
+   // void system::system_main()
    // {
 
    //    auto estatus = class ::system::system_main();

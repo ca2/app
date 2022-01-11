@@ -29,7 +29,7 @@ message_queue * get_message_queue(itask_t idthread, bool bCreate);
 //CLASS_DECL_ACME::enum_priority process_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
 
 
-::e_status MsgWaitForMultipleObjectsEx(::u32 dwSize, HSYNC * synca, ::u32 tickTimeout, ::u32 dwWakeMask, ::u32 dwFlags)
+void MsgWaitForMultipleObjectsEx(::u32 dwSize, HSYNC * synca, ::u32 tickTimeout, ::u32 dwWakeMask, ::u32 dwFlags)
 {
 
    ::duration start;
@@ -170,7 +170,7 @@ message_queue * get_message_queue(itask_t idthread, bool bCreate);
 }
 
 
-::e_status MsgWaitForMultipleObjects(::u32 dwSize, HSYNC * synca, int_bool bWaitForAll, ::u32 tickTimeout, ::u32 dwWakeMask)
+void MsgWaitForMultipleObjects(::u32 dwSize, HSYNC * synca, int_bool bWaitForAll, ::u32 tickTimeout, ::u32 dwWakeMask)
 {
 
    return MsgWaitForMultipleObjectsEx(dwSize, synca, tickTimeout, dwWakeMask, (bWaitForAll ? MWMO_WAITALL : 0));
@@ -178,7 +178,7 @@ message_queue * get_message_queue(itask_t idthread, bool bCreate);
 }
 
 
-::e_status WaitForMultipleObjectsEx(::u32 dwSize, HSYNC * synca, int_bool bWaitForAll, ::u32 tickTimeout, int_bool bAlertable)
+void WaitForMultipleObjectsEx(::u32 dwSize, HSYNC * synca, int_bool bWaitForAll, ::u32 tickTimeout, int_bool bAlertable)
 {
 
    return MsgWaitForMultipleObjectsEx(dwSize, synca, tickTimeout, 0, (bWaitForAll ? MWMO_WAITALL : 0) | (bAlertable ? MWMO_ALERTABLE : 0));
@@ -186,7 +186,7 @@ message_queue * get_message_queue(itask_t idthread, bool bCreate);
 }
 
 
-::e_status WaitForMultipleObjects(::u32 dwSize, HSYNC * synca, int_bool bWaitForAll, ::u32 tickTimeout)
+void WaitForMultipleObjects(::u32 dwSize, HSYNC * synca, int_bool bWaitForAll, ::u32 tickTimeout)
 {
 
    return WaitForMultipleObjectsEx(dwSize, synca, bWaitForAll, tickTimeout, false);
@@ -194,7 +194,7 @@ message_queue * get_message_queue(itask_t idthread, bool bCreate);
 }
 
 
-::e_status WaitForSingleObjectEx(HSYNC hsync, ::u32 tickTimeout, int_bool bAlertable)
+void WaitForSingleObjectEx(HSYNC hsync, ::u32 tickTimeout, int_bool bAlertable)
 {
 
    return WaitForMultipleObjectsEx(1, &hsync, true, tickTimeout, bAlertable);
@@ -202,7 +202,7 @@ message_queue * get_message_queue(itask_t idthread, bool bCreate);
 }
 
 
-::e_status WaitForSingleObject(HSYNC hsync, ::u32 tickTimeout)
+void WaitForSingleObject(HSYNC hsync, ::u32 tickTimeout)
 {
 
    return WaitForSingleObjectEx(hsync, tickTimeout, false);
@@ -632,7 +632,7 @@ using htask_t = void *;
 //int   imp_stubs_pthread_setname_np(pthread_t,const char*);
 
 //
-//::e_status task_set_name(htask_t htask, const char * pszTaskName)
+//void task_set_name(htask_t htask, const char * pszTaskName)
 //{
 //
 //   int error = imp_stubs_pthread_setname_np((pthread_t)htask, pszTaskName);
@@ -649,7 +649,7 @@ using htask_t = void *;
 //}
 //
 
-::e_status task_set_name(const char * pszTaskName)
+void task_set_name(const char * pszTaskName)
 {
 
    //auto pthread = pthread_self();

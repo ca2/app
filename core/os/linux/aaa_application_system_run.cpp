@@ -77,10 +77,10 @@ void sn_start_context()
 
 
 
-//::e_status app_core::system_start()
+//void app_core::system_start()
 //{
 //
-//   ::e_status estatus = system_pre_run();
+//   void estatus = system_pre_run();
 //
 //   if (!estatus)
 //   {
@@ -113,10 +113,10 @@ void sn_start_context()
 //}
 
 
-//::e_status os_application_system_run(::aura::system * psystem)
+//void os_application_system_run(::aura::system * psystem)
 //{
 //
-////   ::e_status estatus = psystem->begin_synch();
+////   void estatus = psystem->begin_synch();
 ////
 ////   if(!estatus)
 ////   {

@@ -22,7 +22,7 @@ namespace regular_expression_pcre2
       topic();
       virtual ~topic();
 
-      ::e_status create(const ::string & str) override;
+      void create(const ::string & str) override;
 
 
       ::count get_count() const override;

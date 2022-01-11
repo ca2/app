@@ -31,7 +31,7 @@
 //
 //   psystem->system_construct(argc, argv);
 //
-//   ::e_status estatus = (::e_status) psystem->inline_init();
+//   void estatus = (void) psystem->inline_init();
 //
 //   if (::succeeded(estatus))
 //   {
@@ -60,7 +60,7 @@ class console
 public:
 
    
-   ::e_status m_estatus;
+   void m_estatus;
    __pointer(::apex::system) m_psystem;
 
    
@@ -116,7 +116,7 @@ public:
    void init()
    {
 
-      m_estatus = (::e_status) m_psystem->inline_init();
+      m_estatus = (void) m_psystem->inline_init();
 
    }
 

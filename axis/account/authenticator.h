@@ -19,9 +19,9 @@ namespace account
       authenticator();
       virtual ~authenticator();
       
-      virtual ::e_status  pre_authenticate(credentials * pcredentials);
+      virtual void  pre_authenticate(credentials * pcredentials);
       
-      virtual ::e_status  authenticate(credentials * pcredentials);
+      virtual void  authenticate(credentials * pcredentials);
       
 
    };

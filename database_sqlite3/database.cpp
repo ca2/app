@@ -68,7 +68,7 @@ namespace sqlite
    }
 
 
-   ::e_status database::set_error_code(i32 iErrorCode)
+   void database::set_error_code(i32 iErrorCode)
    {
 
       switch (iErrorCode)
@@ -256,7 +256,7 @@ namespace sqlite
    }
 
 
-   ::e_status database::init()
+   void database::init()
    {
 
       return ::success;
@@ -287,7 +287,7 @@ namespace sqlite
 
    }
 
-   ::e_status database::connect(
+   void database::connect(
       const ::string & name,
       const ::string & host,
       const ::string & port,
@@ -335,7 +335,7 @@ namespace sqlite
    }
 
 
-   ::e_status database::reset()
+   void database::reset()
    {
 
       return error_failed;
@@ -359,7 +359,7 @@ namespace sqlite
    }
 
 
-   ::e_status database::_connect()
+   void database::_connect()
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -458,7 +458,7 @@ namespace sqlite
    }
 
 
-   ::e_status database::create()
+   void database::create()
    {
 
       return _connect();
@@ -475,7 +475,7 @@ namespace sqlite
    }
 
 
-   ::e_status database::drop()
+   void database::drop()
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -701,7 +701,7 @@ namespace sqlite
    }
 
 
-   ::e_status database::set_id_blob(string strKey, ::block block)
+   void database::set_id_blob(string strKey, ::block block)
    {
 
       try
@@ -795,7 +795,7 @@ namespace sqlite
    }
 
 
-   ::e_status database::get_id_blob(string strKey, get_memory getmemory)
+   void database::get_id_blob(string strKey, get_memory getmemory)
    {
       
       if (m_pstmtSelect == nullptr)

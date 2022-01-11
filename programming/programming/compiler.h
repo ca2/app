@@ -1,4 +1,4 @@
-// Created by camilo on 2021-11-15 15:39 BRT <3ThomasBorregaardSørensen!!
+// Created by camilo on 2021-11-15 15:39 BRT <3ThomasBorregaardSï¿½rensen!!
 #pragma once
 
 
@@ -49,7 +49,7 @@ namespace programming
       ~compiler() override;
 
 
-      virtual ::e_status initialize_programming_compiler(::object* pobject);
+      virtual void initialize_programming_compiler(::object* pobject);
 
       virtual void prepare_compile_and_link_environment();
 

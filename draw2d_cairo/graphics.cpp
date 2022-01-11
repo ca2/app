@@ -221,7 +221,7 @@ graphics::~graphics()
 //}
 
 
-   ::e_status graphics::initialize(::object * pobject)
+   void graphics::initialize(::object * pobject)
    {
 
       auto estatus = ::draw2d::graphics::initialize(pobject);
@@ -332,7 +332,7 @@ bool graphics::fill_contains(const point_f64 & point)
 }
 
 
-::e_status graphics::reset_clip()
+void graphics::reset_clip()
 {
 
    cairo_reset_clip(m_pdc);
@@ -342,7 +342,7 @@ bool graphics::fill_contains(const point_f64 & point)
 }
 
 
-::e_status graphics::_intersect_clip()
+void graphics::_intersect_clip()
 {
 
    cairo_clip(m_pdc);
@@ -352,7 +352,7 @@ bool graphics::fill_contains(const point_f64 & point)
 }
 
 
-::e_status graphics::_add_shape(const ::rectangle_f64 & rectangle)
+void graphics::_add_shape(const ::rectangle_f64 & rectangle)
 {
 
    cairo_rectangle(m_pdc, rectangle.left + m_pointAddShapeTranslate.x, rectangle.top + m_pointAddShapeTranslate.y, rectangle.width(), rectangle.height());
@@ -362,7 +362,7 @@ bool graphics::fill_contains(const point_f64 & point)
 }
 
 
-::e_status graphics::_add_shape(const ::ellipse & ellipse)
+void graphics::_add_shape(const ::ellipse & ellipse)
 {
 
    cairo_keep keep(m_pdc);
@@ -380,7 +380,7 @@ bool graphics::fill_contains(const point_f64 & point)
 }
 
 
-::e_status graphics::_add_shape(const ::polygon_f64 & polygon_i32)
+void graphics::_add_shape(const ::polygon_f64 & polygon_i32)
 {
 
     if (polygon_i32.is_empty())
@@ -468,7 +468,7 @@ point_f64 graphics::SetBrushOrg(const ::point_f64 & point)
 //}
 
 
-::e_status graphics::set(::draw2d::bitmap* pbitmap)
+void graphics::set(::draw2d::bitmap* pbitmap)
 {
 
     _synchronous_lock ml(cairo_mutex());
@@ -1849,7 +1849,7 @@ bool graphics::_stretch_raw(const ::rectangle_f64 & rectangleTarget, ::image * p
 //}
 
 
-::e_status graphics::get_text_metrics(::write_text::text_metric * lpMetrics)
+void graphics::get_text_metrics(::write_text::text_metric * lpMetrics)
 {
 
    _synchronous_lock ml(cairo_mutex());
@@ -3106,7 +3106,7 @@ bool graphics::RestoreDC(i32 nSavedDC)
 }
 
 
-//::e_status graphics::set(::draw2d::pen* ppen)
+//void graphics::set(::draw2d::pen* ppen)
 //{
 //
 //   m_ppen = ppen;
@@ -3116,7 +3116,7 @@ bool graphics::RestoreDC(i32 nSavedDC)
 //}
 
 
-//::e_status graphics::set(::draw2d::brush* pbrush)
+//void graphics::set(::draw2d::brush* pbrush)
 //{
 //
 //    m_pbrush = pbrush;
@@ -3126,7 +3126,7 @@ bool graphics::RestoreDC(i32 nSavedDC)
 //}
 
 
-//::e_status graphics::set(::write_text::font* pfont)
+//void graphics::set(::write_text::font* pfont)
 //{
 //
 //    if (!::draw2d::graphics::set(pfont))
@@ -3141,7 +3141,7 @@ bool graphics::RestoreDC(i32 nSavedDC)
 //}
 
 
-::e_status graphics::set(::draw2d::region* pregion)
+void graphics::set(::draw2d::region* pregion)
 {
 
     throw interface_only_exception();
@@ -4322,7 +4322,7 @@ bool graphics::fill_rectangle(const ::rectangle_f64 & rectangle, const ::color::
 //}
 
 
-::e_status graphics::TextOutRaw(double x, double y, const block & block)
+void graphics::TextOutRaw(double x, double y, const block & block)
 {
 
     _synchronous_lock ml(cairo_mutex());
@@ -4469,7 +4469,7 @@ bool graphics::set_text_rendering_hint(::write_text::enum_rendering etextrenderi
 }
 
 
-::e_status graphics::clear_current_point()
+void graphics::clear_current_point()
 {
 
    cairo_new_sub_path(m_pdc);
@@ -5859,7 +5859,7 @@ bool graphics::flush()
 ////
 ////   __pointer(ttf_util) putil;
 ////
-////   ::e_status estatus = __construct_new(putil);
+////   void estatus = __construct_new(putil);
 ////
 ////   for (auto& path : listing)
 ////   {

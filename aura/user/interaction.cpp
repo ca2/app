@@ -810,7 +810,7 @@ namespace user
    }
 
 
-   ::e_status interaction::set_tool_window(bool bSet)
+   void interaction::set_tool_window(bool bSet)
    {
 
       if (is_null(m_pimpl))
@@ -2747,7 +2747,7 @@ namespace user
    }
 
 
-   ::e_status interaction::set_windowing_icon(::windowing::icon * picon)
+   void interaction::set_windowing_icon(::windowing::icon * picon)
    {
 
       if(::is_null(m_pimpl2))
@@ -4499,7 +4499,7 @@ return "";
    }
 
    
-   ::e_status interaction::interaction_post(const ::routine & routine)
+   void interaction::interaction_post(const ::routine & routine)
    {
 
       auto puserinteractionHost = get_host_window();
@@ -4550,7 +4550,7 @@ return "";
    }
 
 
-   ::e_status interaction::interaction_send(const ::routine & routine)
+   void interaction::interaction_send(const ::routine & routine)
    {
 
       auto estatus = __send_routine(this, &interaction::interaction_post, routine);
@@ -6038,7 +6038,7 @@ oswindow interaction::unsubclass_window()
 //}
 
 
-::e_status interaction::create_host()
+void interaction::create_host()
 {
 
       if (is_window())
@@ -6176,7 +6176,7 @@ oswindow interaction::unsubclass_window()
 }
 
 
-::e_status interaction::create_child(::user::interaction * puserinteractionParent)
+void interaction::create_child(::user::interaction * puserinteractionParent)
 {
 
       if (is_window())
@@ -6186,7 +6186,7 @@ oswindow interaction::unsubclass_window()
 
       }
 
-      ::e_status estatus = error_exception;
+      void estatus = error_exception;
 
       try
       {
@@ -6489,7 +6489,7 @@ bool interaction::_is_window() const
 //}
 
 
-//::e_status interaction::set_window_long_ptr(i32 nIndex, iptr lValue)
+//void interaction::set_window_long_ptr(i32 nIndex, iptr lValue)
 //{
 
 //   if (m_pimpl == nullptr)
@@ -7177,7 +7177,7 @@ strsize interaction::get_window_text_length()
 //}
 
 
-//::e_status interaction::on_finish()
+//void interaction::on_finish()
 //{
 
 //   if (m_ewindowflag & e_window_flag_is_window)
@@ -7205,7 +7205,7 @@ strsize interaction::get_window_text_length()
 
 
 
-::e_status interaction::destroy_composites()
+void interaction::destroy_composites()
 {
 
    auto estatus = ::object::destroy_composites();
@@ -7216,7 +7216,7 @@ strsize interaction::get_window_text_length()
 
 
 
-//::e_status interaction::set_finish_composites(::property_object* pcontextobjectFinish)
+//void interaction::set_finish_composites(::property_object* pcontextobjectFinish)
 //{
 
 //   bool bStillFinishing = false;
@@ -7277,7 +7277,7 @@ strsize interaction::get_window_text_length()
 //}
 
 
-//::e_status interaction::on_finish()
+//void interaction::on_finish()
 //{
 
 //   auto estatus = destroy();
@@ -7346,7 +7346,7 @@ void interaction::destroy_window()
 }
 
 
-::e_status interaction::destroy()
+void interaction::destroy()
 {
 
    ::user::primitive::destroy();
@@ -7532,7 +7532,7 @@ bool interaction::is_ready_to_quit() const
 //}
 
 
-::e_status interaction::show_control_bar(::user::control_bar * pcontrolbar)
+void interaction::show_control_bar(::user::control_bar * pcontrolbar)
 {
 
    throw interface_only_exception();
@@ -7542,7 +7542,7 @@ bool interaction::is_ready_to_quit() const
 }
 
 
-::e_status interaction::hide_control_bar(::user::control_bar * pcontrolbar)
+void interaction::hide_control_bar(::user::control_bar * pcontrolbar)
 {
 
    throw interface_only_exception();
@@ -9799,7 +9799,7 @@ bool interaction::has_keyboard_focus() const
 }
 
 
-::e_status interaction::set_keyboard_focus()
+void interaction::set_keyboard_focus()
 {
 
    auto pwindowThis = get_window();
@@ -9909,7 +9909,7 @@ bool interaction::has_mouse_capture() const
 }
 
    
-::e_status interaction::set_foreground_window()
+void interaction::set_foreground_window()
 {
 
    auto phost = get_host_window();
@@ -9944,7 +9944,7 @@ bool interaction::has_mouse_capture() const
 }
    
    
-::e_status interaction::set_active_window()
+void interaction::set_active_window()
 {
 
    auto phost = get_host_window();
@@ -11081,7 +11081,7 @@ double interaction::get_output_fps()
 }
 
 
-::e_status interaction::set_mouse_cursor(::windowing::cursor * pcursor)
+void interaction::set_mouse_cursor(::windowing::cursor * pcursor)
 {
 
    //if (!m_pimpl)
@@ -11107,7 +11107,7 @@ double interaction::get_output_fps()
 }
 
 
-//::e_status interaction::set_mouse_cursor(::windowing::cursor * pcursor)
+//void interaction::set_mouse_cursor(::windowing::cursor * pcursor)
 //{
 
 //   if (!m_pimpl2)
@@ -12119,7 +12119,7 @@ bool interaction::is_selected(::data::item * pitem)
 
 
 //// <3ThomasBorregaardS�rensen__!!
-::e_status interaction::handle_command(const ::id & id)
+void interaction::handle_command(const ::id & id)
 {
 
    if (m_pmaterialCommandHandler)
@@ -12685,7 +12685,7 @@ interaction& interaction::operator =(const ::rectangle_i32& rectangle)
    }
 
    
-   ::e_status interaction::frame_experience_restore()
+   void interaction::frame_experience_restore()
    {
    
    return ::error_interface_only;
@@ -12701,7 +12701,7 @@ interaction& interaction::operator =(const ::rectangle_i32& rectangle)
    }
 
 
-   ::e_status interaction::on_app_activated()
+   void interaction::on_app_activated()
    {
       
       auto estatus = frame_toggle_restore();
@@ -12718,7 +12718,7 @@ interaction& interaction::operator =(const ::rectangle_i32& rectangle)
    }
 
 
-   ::e_status interaction::frame_toggle_restore()
+   void interaction::frame_toggle_restore()
    {
       
       bool bWindowVisible = is_window_visible();
@@ -12782,7 +12782,7 @@ interaction& interaction::operator =(const ::rectangle_i32& rectangle)
    }
 
 
-   ::e_status interaction::display_previous_restore()
+   void interaction::display_previous_restore()
    {
    
    return error_interface_only;
@@ -13703,7 +13703,7 @@ order(zorderParam);
 
    }
 
-   ::e_status interaction::set_total_size(const ::size_f64& size)
+   void interaction::set_total_size(const ::size_f64& size)
    {
 
       return ::error_interface_only;
@@ -13711,7 +13711,7 @@ order(zorderParam);
    }
 
 
-   ::e_status interaction::set_page_size(const ::size_f64& size)
+   void interaction::set_page_size(const ::size_f64& size)
    {
 
       return ::error_interface_only;
@@ -14174,7 +14174,7 @@ order(zorderParam);
    //}
 
 
-   //::e_status interaction::set_keyboard_focus(::user::primitive * pprimitive)
+   //void interaction::set_keyboard_focus(::user::primitive * pprimitive)
    //{
 
    //   auto puserinteractionHost = get_host_window();
@@ -14195,7 +14195,7 @@ order(zorderParam);
    //}
 
 
-   //::e_status interaction::erase_keyboard_focus(::user::primitive * pprimitive)
+   //void interaction::erase_keyboard_focus(::user::primitive * pprimitive)
    //{
 
    //   auto puserinteractionHost = get_host_window();
@@ -14216,7 +14216,7 @@ order(zorderParam);
    //}
 
 
-   //::e_status interaction::set_keyboard_focus()
+   //void interaction::set_keyboard_focus()
    //{
 
    //   return set_keyboard_focus(this);
@@ -14224,7 +14224,7 @@ order(zorderParam);
    //}
 
 
-   //::e_status interaction::erase_keyboard_focus()
+   //void interaction::erase_keyboard_focus()
    //{
 
    //   return erase_keyboard_focus(this);
@@ -14232,7 +14232,7 @@ order(zorderParam);
    //}
 
 
-   //::e_status interaction::clear_keyboard_focus()
+   //void interaction::clear_keyboard_focus()
    //{
 
    //   auto puserinteractionHost = get_host_window();
@@ -14357,7 +14357,7 @@ order(zorderParam);
    }
 
 
-   ::e_status interaction::set_current_item(const ::item & item, const ::action_context & context)
+   void interaction::set_current_item(const ::item & item, const ::action_context & context)
    {
 
       if (m_itemCurrent == item)
@@ -14951,7 +14951,7 @@ order(zorderParam);
    }
 
 
-   ::e_status interaction::is_edit_delete_enabled()
+   void interaction::is_edit_delete_enabled()
    {
 
       return ::success_none;
@@ -14959,7 +14959,7 @@ order(zorderParam);
    }
 
 
-   ::e_status interaction::on_edit_delete(const ::action_context& actioncontext)
+   void interaction::on_edit_delete(const ::action_context& actioncontext)
    {
 
       return ::success_none;
@@ -15134,7 +15134,7 @@ order(zorderParam);
    }
 
 
-   ::e_status interaction::set_bitmap_source(const string & strBitmapSource)
+   void interaction::set_bitmap_source(const string & strBitmapSource)
    {
 
       if (!m_pimpl)
@@ -15158,7 +15158,7 @@ order(zorderParam);
    }
 
 
-   ::e_status interaction::clear_bitmap_source()
+   void interaction::clear_bitmap_source()
    {
 
       if (!m_pimpl)
@@ -15244,7 +15244,7 @@ order(zorderParam);
    }
 
 
-   ::e_status interaction::show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd)
+   void interaction::show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd)
    {
 
       if (get_host_window() == this)
@@ -15279,7 +15279,7 @@ order(zorderParam);
    }
 
 
-   ::e_status interaction::hide_software_keyboard(::user::primitive * pprimitive)
+   void interaction::hide_software_keyboard(::user::primitive * pprimitive)
    {
 
       if (get_host_window() == this)
@@ -15314,7 +15314,7 @@ order(zorderParam);
    }
 
 
-   ::e_status interaction::post_routine(const ::routine & routine)
+   void interaction::post_routine(const ::routine & routine)
    {
 
       if (!::is_set(m_pthreadUserInteraction))
@@ -15392,7 +15392,7 @@ order(zorderParam);
 #endif
 
 
-   ::e_status interaction::send_routine(const ::routine & routine)
+   void interaction::send_routine(const ::routine & routine)
    {
 
       ::thread * pthread = get_wnd() == nullptr ? (::thread *) nullptr : get_wnd()->m_pthreadUserInteraction;
@@ -16880,7 +16880,7 @@ order(zorderParam);
    }
 
 
-   //::e_status interaction::destroy()
+   //void interaction::destroy()
    //{
 
    //   start_destroying_window();

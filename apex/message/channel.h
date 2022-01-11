@@ -28,7 +28,7 @@ public:
 
    static inline ::mutex * channel_mutex() { return s_pmutexChannel; }
 
-   virtual ::e_status destroy() override;
+   virtual void destroy() override;
 
    virtual void erase_handler(::matter * pmatter);
 
@@ -58,7 +58,7 @@ public:
    virtual __pointer(::message::message) get_message(const ::id& id, wparam wparam, lparam lparam);
 
 
-   ::e_status id_notify(const ::id & id, ::matter * pmatter);
+   void id_notify(const ::id & id, ::matter * pmatter);
 
 
    //template < class T >

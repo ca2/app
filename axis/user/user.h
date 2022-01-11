@@ -15,8 +15,8 @@ namespace axis
       ~user() override;
 
 
-      ::e_status init() override;
-      ::e_status term() override;
+      void init() override;
+      void term() override;
 
 
       //::user::style* user_style() override;

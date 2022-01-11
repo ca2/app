@@ -51,7 +51,7 @@ namespace acme
       inline ::context_image* context_image() { return m_pcontextimage; }
 
 
-      virtual ::e_status initialize_context();
+      virtual void initialize_context();
 
       virtual void translate_text_data(::text::data * ptextdata);
       virtual ::text::text __text(const ::id& id) override;
@@ -60,7 +60,7 @@ namespace acme
       virtual ::payload file_payload(const ::payload & payloadFile);
 
 
-      ::file_transport get_file(const ::payload& payloadFile, const ::file::e_open& eopen) override;
+      ::file_pointer get_file(const ::payload& payloadFile, const ::file::e_open& eopen) override;
 
 
       virtual ::file::path defer_process_path(::file::path path);

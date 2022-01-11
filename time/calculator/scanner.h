@@ -51,7 +51,7 @@ namespace datetime
       ~scanner() override;
 
 
-      virtual ::e_status initialize_datetime_scanner(::text::context* ptextcontext);
+      virtual void initialize_datetime_scanner(::text::context* ptextcontext);
 
 
       void initialize_scanner(const ::string & strInput);

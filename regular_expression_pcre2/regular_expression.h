@@ -20,7 +20,7 @@ namespace regular_expression_pcre2
       virtual ~regular_expression();
 
 
-      ::e_status create(const string& str) override;
+      void create(const string& str) override;
 
 
       __pointer(::regular_expression::topic) create_topic(const ::string & str) override;

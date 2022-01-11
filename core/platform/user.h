@@ -160,7 +160,7 @@
 //      virtual ~application();
 //
 //
-//      virtual ::e_status initialize(::object * pobject) override;
+//      virtual void initialize(::object * pobject) override;
 //
 //
 //      void assert_valid() const override;
@@ -176,7 +176,7 @@
 //      //virtual bool app_data_set(const ::id & id, object & obj) override;
 //      //virtual bool app_data_get(const ::id & id, object & obj) override;
 //
-////      virtual ::e_status     interactive_credentials(::account::credentials * pcredentials) override;
+////      virtual void     interactive_credentials(::account::credentials * pcredentials) override;
 //
 //      virtual ::database::key calc_data_key() override;
 //
@@ -201,32 +201,32 @@
 //      virtual ::database::server * dataserver();
 //
 //
-//      virtual ::e_status verb() override;
+//      virtual void verb() override;
 //
 //
 //      virtual bool Ex2OnAppInstall();
 //      virtual bool Ex2OnAppUninstall();
 //
-//      virtual ::e_status init_application();
+//      virtual void init_application();
 //
-//      virtual ::e_status init1();
-//      virtual ::e_status init2();
-//      virtual ::e_status init3();
-//
-//
-//      virtual ::e_status init();
+//      virtual void init1();
+//      virtual void init2();
+//      virtual void init3();
 //
 //
-//      virtual ::e_status init_instance();
+//      virtual void init();
 //
 //
-//      virtual ::e_status     run() override;
-//      virtual ::e_status     main() override;
-//      virtual ::e_status     on_run();
+//      virtual void init_instance();
 //
-//      virtual ::e_status application_pre_run();
+//
+//      virtual void     run() override;
+//      virtual void     main() override;
+//      virtual void     on_run();
+//
+//      virtual void application_pre_run();
 //      //virtual bool initial_check_directrix() override;
-//      virtual ::e_status os_native_bergedge_start();
+//      virtual void os_native_bergedge_start();
 //
 //
 //
@@ -308,7 +308,7 @@
 //
 //
 //
-//      virtual ::e_status process_init();
+//      virtual void process_init();
 //
 //
 //
@@ -375,7 +375,7 @@
 //      //virtual string get_locale_schema_dir();
 //
 //
-//      //virtual ::e_status initialize(::object * pobject) override;
+//      //virtual void initialize(::object * pobject) override;
 //
 //
 //      application_menu & applicationmenu();
@@ -417,7 +417,7 @@
 //      virtual ::file::path local_application_home_path();
 //
 //
-//      virtual ::e_status destroy() override;
+//      virtual void destroy() override;
 //
 //
 //      //virtual void release_parents() override;
@@ -454,16 +454,16 @@
 //      //// os_* functions generally
 //      //// reserves a lot of surprises from each
 //      //// operating system specific behavior
-//      //virtual ::e_status os_message_box(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+//      //virtual void os_message_box(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 //
 //
-//      //virtual ::e_status ui_message_box(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
-//      //virtual ::e_status ui_message_box_timeout(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::duration& durationTimeOut = duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+//      //virtual void ui_message_box(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+//      //virtual void ui_message_box_timeout(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::duration& durationTimeOut = duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 //
 //
 //      //using ::aura::context_thread::message_box;
-//      //virtual ::e_status message_box(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
-//      //virtual ::e_status message_box_timeout(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::duration& durationTimeOut = duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+//      //virtual void message_box(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+//      //virtual void message_box_timeout(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::duration& durationTimeOut = duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 //
 //      
 //      virtual void on_file_new();
@@ -522,42 +522,42 @@
 //
 //      virtual __pointer(::interprocess_intercommunication) create_interprocess_intercommunication();
 //
-//      //virtual ::e_status process_init();
+//      //virtual void process_init();
 //      virtual void process_term();
 //
-//      //virtual ::e_status impl_process_init();
-//      //virtual ::e_status impl_init1();
-//      //virtual ::e_status impl_init2();
-//      //virtual ::e_status impl_init3();
+//      //virtual void impl_process_init();
+//      //virtual void impl_init1();
+//      //virtual void impl_init2();
+//      //virtual void impl_init3();
 //
 //      //virtual void impl_process_term();
 //      //virtual void impl_term1();
 //      //virtual void impl_term2();
 //      //virtual void impl_term3();
 //
-//      //virtual ::e_status init1();
-//      //virtual ::e_status init2();
-//      //virtual ::e_status init3();
+//      //virtual void init1();
+//      //virtual void init2();
+//      //virtual void init3();
 //
 //      virtual void term1();
 //      virtual void term2();
 //      virtual void term3();
 //
-//      virtual ::e_status init_thread() override;
-//      //virtual ::e_status init_application();
+//      virtual void init_thread() override;
+//      //virtual void init_application();
 //      //virtual void term_application();
 //      virtual void term_thread() override;
 //
-//      //virtual ::e_status init_instance() override;
+//      //virtual void init_instance() override;
 //      virtual void term_instance();
 //
-//      //virtual ::e_status init();
+//      //virtual void init();
 //      //virtual void term();
 //
-//      virtual ::e_status ca_process_init();
-//      virtual ::e_status ca_init1();
-//      virtual ::e_status ca_init2();
-//      virtual ::e_status ca_init3();
+//      virtual void ca_process_init();
+//      virtual void ca_init1();
+//      virtual void ca_init2();
+//      virtual void ca_init3();
 //
 //      virtual void ca_term3();
 //      virtual void ca_term2();
@@ -568,15 +568,15 @@
 //      // virtual bool is_unstalling();
 //
 //      //virtual string get_version();
-//      //virtual ::e_status     run() override;
-//      //virtual ::e_status     main() override;
-//      //virtual ::e_status     on_run();
+//      //virtual void     run() override;
+//      //virtual void     main() override;
+//      //virtual void     on_run();
 //
-//      virtual ::e_status initial_check_directrix();
-//      //virtual ::e_status os_native_bergedge_start();
+//      virtual void initial_check_directrix();
+//      //virtual void os_native_bergedge_start();
 //
-//      virtual ::e_status pre_run();
-//      //virtual ::e_status application_pre_run();
+//      virtual void pre_run();
+//      //virtual void application_pre_run();
 //
 //      virtual void on_pos_run_thread() override;
 //      virtual void pos_run();
@@ -683,8 +683,8 @@
 //
 //      //virtual bool assert_user_logged_in();
 //
-//      virtual ::e_status     do_request(::create * pcreate) override;
-//      virtual ::e_status     call_request(::create * pcreate) override;
+//      virtual void     do_request(::create * pcreate) override;
+//      virtual void     call_request(::create * pcreate) override;
 //
 //
 //      virtual void process_message(::user::message * base) override;
@@ -856,24 +856,24 @@
 //      virtual void HideApplication();
 //
 //      
-//      //virtual ::e_status initialize(::object * pobject) override;
+//      //virtual void initialize(::object * pobject) override;
 //
-//      //virtual ::e_status process_init() override;
+//      //virtual void process_init() override;
 //
-//      //virtual ::e_status init1() override; // first initialization
-//      //virtual ::e_status init2() override; // second initialization
-//      //virtual ::e_status init3() override; // third initialization and so on...
+//      //virtual void init1() override; // first initialization
+//      //virtual void init2() override; // second initialization
+//      //virtual void init3() override; // third initialization and so on...
 //
-//      //virtual ::e_status init() override; // last initialization
+//      //virtual void init() override; // last initialization
 //
-//      //virtual ::e_status bergedge_start();
-//      //virtual ::e_status os_native_bergedge_start() override;
+//      //virtual void bergedge_start();
+//      //virtual void os_native_bergedge_start() override;
 //
 //      //virtual void term_application() override;
 //
 //      //virtual void term() override;
 //
-//      //virtual ::e_status     main() override;
+//      //virtual void     main() override;
 //
 //      //virtual ::aura::application * get_application() const override;
 //
@@ -1117,9 +1117,9 @@
 //
 //
 //
-//      //virtual ::e_status init_application() override;
+//      //virtual void init_application() override;
 //
-//      //virtual ::e_status init_instance() override;
+//      //virtual void init_instance() override;
 //
 //
 ////      virtual bool process_exception(const ::exception & e) override;
@@ -1146,7 +1146,7 @@
 //
 //      virtual ::user::interaction * get_desktop_window();
 //
-//      //virtual ::e_status     run() override;
+//      //virtual void     run() override;
 //
 //      //::aura::application * get_context_system();
 //
@@ -1163,7 +1163,7 @@
 //      //virtual string get_theme() override;
 //
 //
-//      virtual ::e_status initialize_contextualized_theme();
+//      virtual void initialize_contextualized_theme();
 //
 //
 //
@@ -1244,12 +1244,12 @@
 //      //       virtual __pointer(::bergedge::document) get_document();
 //
 //
-//      //virtual ::e_status add_library(::acme::library * plibrary);
+//      //virtual void add_library(::acme::library * plibrary);
 //
-//      virtual ::e_status initialize_userex();
-//      virtual ::e_status userfs_init1();
-//      virtual ::e_status initialize1_experience();
-//      virtual ::e_status userfs_process_init();
+//      virtual void initialize_userex();
+//      virtual void userfs_init1();
+//      virtual void initialize1_experience();
+//      virtual void userfs_process_init();
 //
 //      //virtual __pointer(::userex::userex) create_userex();
 //      //virtual __pointer(::userfs::userfs) create_userfs();
@@ -1347,18 +1347,18 @@
 //      //virtual ~application();
 //
 //
-//      //virtual ::e_status     initialize(::object * pobject) override;
+//      //virtual void     initialize(::object * pobject) override;
 //
 //
 //      //void install_message_routing(::channel * pchannel) override;
 //
 //      //virtual void handle(::subject * psubject, ::context * pcontext) override;
 //
-//      //virtual ::e_status process_init() override;
+//      //virtual void process_init() override;
 //
-//      //virtual ::e_status init_instance() override;
+//      //virtual void init_instance() override;
 //
-//      virtual ::e_status     create_impact_system();
+//      virtual void     create_impact_system();
 //
 //      //virtual ::type user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
 //      //virtual ::type control_type_from_id(const ::id& id, ::user::enum_control_type& econtroltype) override;

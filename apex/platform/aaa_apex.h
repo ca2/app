@@ -23,26 +23,26 @@ namespace apex
       virtaul ~apex();
 
 
-      virtual ::e_status shell_create_link(::file::path pathObj, ::file::path pathLnk, string strDesc, ::file::path pathIco="", int iIcon=-1);
+      virtual void shell_create_link(::file::path pathObj, ::file::path pathLnk, string strDesc, ::file::path pathIco="", int iIcon=-1);
 
 
-      //virtual ::e_status parallelization_initialize();
-      //virtual ::e_status parallelization_finalize();
+      //virtual void parallelization_initialize();
+      //virtual void parallelization_finalize();
 
-      virtual ::e_status thread_initialize(::thread * pthread);
-      virtual ::e_status thread_finalize(::thread* pthread);
+      virtual void thread_initialize(::thread * pthread);
+      virtual void thread_finalize(::thread* pthread);
 
-      // virtual ::e_status node_thread_initialize(::thread* pthread);
-      // virtual ::e_status node_thread_finalize(::thread* pthread);
+      // virtual void node_thread_initialize(::thread* pthread);
+      // virtual void node_thread_finalize(::thread* pthread);
 
       virtual string get_version();
       
-      virtual ::e_status _001InitializeShellOpen();
+      virtual void _001InitializeShellOpen();
 
 
       //virtual void show_wait_cursor(bool bShow = true);
 
-      virtual ::e_status get_firefox_installation_info(string& strPathToExe, string& strInstallDirectory);
+      virtual void get_firefox_installation_info(string& strPathToExe, string& strInstallDirectory);
 
       virtual string multimedia_audio_get_default_library_name();
       virtual string multimedia_audio_mixer_get_default_library_name();

@@ -23,7 +23,7 @@ namespace acme
    // not contain advanced initialization as the
    // papp application pointer may be incompletely
    // initialized specially its virtual functions.
-   ::e_status department::initialize(::object * pobject)
+   void department::initialize(::object * pobject)
    {
 
       auto estatus = ::object::initialize(pobject);
@@ -40,7 +40,7 @@ namespace acme
    }
 
 
-   ::e_status department::call_member(::i64 iId)
+   void department::call_member(::i64 iId)
    {
 
       switch (iId)
@@ -83,7 +83,7 @@ namespace acme
    //}
 
 
-   ::e_status department::process_init()
+   void department::process_init()
    {
 
       return ::success;
@@ -91,7 +91,7 @@ namespace acme
    }
 
 
-   ::e_status department::init()
+   void department::init()
    {
 
       return ::success;
@@ -99,7 +99,7 @@ namespace acme
    }
 
 
-   ::e_status department::init1()
+   void department::init1()
    {
 
       return ::success;
@@ -107,7 +107,7 @@ namespace acme
    }
 
 
-   ::e_status department::init2()
+   void department::init2()
    {
 
       return ::success;
@@ -115,22 +115,14 @@ namespace acme
    }
 
 
-   ::e_status department::init3()
+   void department::init3()
    {
 
       return ::success;
 
    }
 
-   ::e_status department::init_instance()
-   {
-
-      return ::success;
-
-   }
-
-
-   ::e_status department::term_instance()
+   void department::init_instance()
    {
 
       return ::success;
@@ -138,7 +130,7 @@ namespace acme
    }
 
 
-   ::e_status department::term()
+   void department::term_instance()
    {
 
       return ::success;
@@ -146,7 +138,7 @@ namespace acme
    }
 
 
-   ::e_status department::term3()
+   void department::term()
    {
 
       return ::success;
@@ -154,7 +146,7 @@ namespace acme
    }
 
 
-   ::e_status department::term2()
+   void department::term3()
    {
 
       return ::success;
@@ -162,7 +154,15 @@ namespace acme
    }
 
 
-   ::e_status department::term1()
+   void department::term2()
+   {
+
+      return ::success;
+
+   }
+
+
+   void department::term1()
    {
 
       return ::success;

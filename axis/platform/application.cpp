@@ -26,7 +26,7 @@ namespace axis
    }
 
 
-   ::e_status     application::initialize(::object * pobject)
+   void     application::initialize(::object * pobject)
    {
 
       auto estatus = ::aura::application::initialize(pobject);
@@ -264,7 +264,7 @@ namespace axis
 
 
 
-//   ::e_status     application::main()
+//   void     application::main()
 //   {
 //
 //      INFORMATION("aura::application::main");
@@ -308,7 +308,7 @@ namespace axis
 //   }
 //
 
-   ::e_status application::init_instance()
+   void application::init_instance()
    {
 
       auto estatus = ::aura::application::init_instance();
@@ -600,7 +600,7 @@ namespace axis
    }
 
 
-   ::e_status application::application_pre_run()
+   void application::application_pre_run()
    {
 
       auto estatus = ::aura::application::application_pre_run();
@@ -635,7 +635,7 @@ namespace axis
 
 
 
-   ::e_status application::os_native_bergedge_start()
+   void application::os_native_bergedge_start()
    {
 
       return ::aura::application::os_native_bergedge_start();
@@ -643,7 +643,7 @@ namespace axis
    }
 
 
-   ::e_status     application::run()
+   void     application::run()
    {
 
       return ::aura::application::run();
@@ -663,7 +663,7 @@ namespace axis
 
 
 
-   ::e_status application::process_init()
+   void application::process_init()
    {
 
       auto estatus = ::aura::application::process_init();
@@ -948,7 +948,7 @@ namespace axis
    }
 
 
-//   ::e_status application::init_application()
+//   void application::init_application()
 //   {
 //
 //      //if (m_bAuraInitializeInstance)
@@ -1050,10 +1050,10 @@ namespace axis
 
 
 
-   ::e_status application::init1()
+   void application::init1()
    {
 
-      ::e_status estatus = ::aura::application::init1();
+      void estatus = ::aura::application::init1();
 
       if (!estatus)
       {
@@ -1247,7 +1247,7 @@ namespace axis
 
    }
 
-   ::e_status application::init2()
+   void application::init2()
    {
 
       //if (!impl_init2())
@@ -1298,7 +1298,7 @@ namespace axis
 
    }
 
-   ::e_status application::init3()
+   void application::init3()
    {
 
       string strFolder = m_strAppName;
@@ -1679,7 +1679,7 @@ namespace axis
    }
 
 
-   ::e_status application::create_networking_application()
+   void application::create_networking_application()
    {
 
       auto estatus = __defer_construct(m_pnetworkingapplication);
@@ -1705,7 +1705,7 @@ namespace axis
    }
 
 
-   ::e_status application::on_html_response(string & strHtml, const ::string& strUrl, const ::property_set& setPost)
+   void application::on_html_response(string & strHtml, const ::string& strUrl, const ::property_set& setPost)
    {
 
       auto estatus = networking_application()->on_html_response(strHtml, strUrl, setPost);
@@ -1715,7 +1715,7 @@ namespace axis
    }
 
 
-   ::e_status application::verb()
+   void application::verb()
    {
 
       return true;
@@ -1723,7 +1723,7 @@ namespace axis
    }
 
 
-   ::e_status application::on_run()
+   void application::on_run()
    {
 
       //try
@@ -1826,7 +1826,7 @@ namespace axis
 
 
 
-   //::e_status application::application_pre_run()
+   //void application::application_pre_run()
    //{
 
    //   return ::aura::application::application_pre_run();
@@ -1899,7 +1899,7 @@ namespace axis
    //}
 
 
-   //::e_status application::os_native_bergedge_start()
+   //void application::os_native_bergedge_start()
    //{
 
    //   if (!::aura::application::os_native_bergedge_start())
@@ -1922,7 +1922,7 @@ namespace axis
    //}
 
 
-   //::e_status     application::run()
+   //void     application::run()
    //{
 
    //   return ::aura::application::run();
@@ -1961,7 +1961,7 @@ namespace axis
 
 
 
-   //::e_status application::init1()
+   //void application::init1()
    //{
 
    //   //if (m_bAxisInitialize1)
@@ -2000,7 +2000,7 @@ namespace axis
    //}
 
 
-   //::e_status application::init2()
+   //void application::init2()
    //{
 
    //   if (!::aura::application::init2())
@@ -2011,7 +2011,7 @@ namespace axis
    //}
 
 
-   //::e_status application::init3()
+   //void application::init3()
    //{
 
    //   if (!::aura::application::init3())
@@ -2028,7 +2028,7 @@ namespace axis
 //
 
 
-   ::e_status application::init()
+   void application::init()
    {
 
       auto estatus = ::aura::application::init();

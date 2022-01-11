@@ -542,7 +542,7 @@ pacmedir->is(stra[i]))
 //   }
 
 
-   ::e_status dir_context::initialize(::matter * pobject)
+   void dir_context::initialize(::matter * pobject)
    {
 
       auto estatus = ::dir_context::initialize(pobject);
@@ -623,7 +623,7 @@ pacmedir->is(stra[i]))
 
    }
 
-   ::e_status dir_context::init_context()
+   void dir_context::init_context()
    {
 
       xml::document doc;

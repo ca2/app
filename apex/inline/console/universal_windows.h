@@ -10,7 +10,7 @@
 //public:
 //
 //
-//   ::e_status                       m_estatus;
+//   void                       m_estatus;
 //
 //
 //   void create_system()
@@ -98,7 +98,7 @@
 //   void init()
 //   {
 //
-//      m_estatus = (::e_status) m_psystem->inline_init();
+//      m_estatus = (void) m_psystem->inline_init();
 //
 //      auto papp = m_psystem->m_papexsystem->m_papplicationStartup;
 //

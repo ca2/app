@@ -15,7 +15,7 @@ namespace opengl
       virtual ~shader();
 
       
-      virtual ::e_status create_shader(const ::string & pszVertex, const ::string & pszFragment, const ::string & pszGeometry = nullptr) override;
+      virtual void create_shader(const ::string & pszVertex, const ::string & pszFragment, const ::string & pszGeometry = nullptr) override;
 
       virtual void use() override;
 
@@ -45,9 +45,9 @@ namespace opengl
 
       unsigned int create_shader(const ::string & pszVertex, GLenum type);
 
-      virtual ::e_status shader_compile_errors(GLuint shader, GLenum type, string & strSummary);
+      virtual void shader_compile_errors(GLuint shader, GLenum type, string & strSummary);
 
-      virtual ::e_status program_compile_errors(GLuint program, string & strSummary);
+      virtual void program_compile_errors(GLuint program, string & strSummary);
 
 
    };

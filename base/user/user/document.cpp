@@ -113,7 +113,7 @@ namespace user
    }
 
    
-   ::e_status document::destroy_composites()
+   void document::destroy_composites()
    {
 
       bool bStillFinishing = false;
@@ -1728,7 +1728,7 @@ namespace user
    // ::user::impact operations
 
 
-   ::e_status document::add_view(::user::impact * pview)
+   void document::add_view(::user::impact * pview)
    {
 
       single_lock synchronouslock(mutex(), true);
@@ -1758,7 +1758,7 @@ namespace user
    }
 
 
-   ::e_status document::erase_view(::user::impact * pview)
+   void document::erase_view(::user::impact * pview)
    {
 
       synchronous_lock synchronouslock(mutex());

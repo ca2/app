@@ -16,7 +16,7 @@ namespace apex
    }
 
 
-   ::e_status savings::initialize(::object * pobject)
+   void savings::initialize(::object * pobject)
    {
 
       auto estatus = ::object::initialize(pobject);

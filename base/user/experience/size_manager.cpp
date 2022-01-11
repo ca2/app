@@ -25,7 +25,7 @@ namespace experience
    }
 
 
-   ::e_status size_manager::initialize_size_manager(::experience::frame_window* pframewindow)
+   void size_manager::initialize_size_manager(::experience::frame_window* pframewindow)
    {
 
       auto estatus = ::object::initialize(pframewindow);

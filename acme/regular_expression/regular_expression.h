@@ -27,7 +27,7 @@ namespace regular_expression
       virtual ~regular_expression();
 
 
-      virtual ::e_status create(const string& str);
+      virtual void create(const string& str);
 
       //virtual ::count calculate_range_count();
 

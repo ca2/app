@@ -186,7 +186,7 @@ namespace imaging_freeimage
    }
 
 
-   ::e_status context_image::save_image(memory & memory, const ::image * pimage, const ::save_image * psaveimage)
+   void context_image::save_image(memory & memory, const ::image * pimage, const ::save_image * psaveimage)
    {
 
       if (::is_null(pimage))

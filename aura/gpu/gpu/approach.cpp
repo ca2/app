@@ -19,10 +19,10 @@ namespace gpu
    }
 
 
-   ::e_status approach::initialize(::object * pobject)
+   void approach::initialize(::object * pobject)
    {
 
-      ::e_status estatus = ::object::initialize(pobject);
+      void estatus = ::object::initialize(pobject);
 
       if (!estatus)
       {
@@ -44,7 +44,7 @@ namespace gpu
    }
 
 
-   ::e_status approach::defer_init_glew()
+   void approach::defer_init_glew()
    {
 
       return ::success;

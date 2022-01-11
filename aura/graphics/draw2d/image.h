@@ -216,7 +216,7 @@ public:
    virtual bool opacity(double dRate);
 
 
-   virtual ::e_status SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy);
+   virtual void SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy);
    virtual bool RadialFill(byte a, byte rectangle, byte g, byte b, i32 x, i32 y, i32 iRadius);
    virtual bool RadialFill(
    byte a1, byte r1, byte g1, byte b1, // center colors
@@ -240,23 +240,23 @@ public:
 
    virtual bool create_thumbnail(const ::string & pszPath);
 
-   virtual ::e_status create_ex(const ::size_i32 & size, ::color32_t * pcolorref, int iScan, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, int iGoodStride = -1, bool bPreserve = false);
-   virtual ::e_status create(::draw2d::graphics* pgraphics);
-   virtual ::e_status create(const ::size_i32 & size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, int iGoodStride = -1, bool bPreserve = false);
+   virtual void create_ex(const ::size_i32 & size, ::color32_t * pcolorref, int iScan, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, int iGoodStride = -1, bool bPreserve = false);
+   virtual void create(::draw2d::graphics* pgraphics);
+   virtual void create(const ::size_i32 & size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, int iGoodStride = -1, bool bPreserve = false);
    using ::object::initialize;
-   virtual ::e_status initialize(const ::size_i32 & size, ::color32_t * pcolorref, int iScan, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG);
-   inline ::e_status preserve(const ::size_i32 & size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, int iGoodStride = -1)
+   virtual void initialize(const ::size_i32 & size, ::color32_t * pcolorref, int iScan, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG);
+   inline void preserve(const ::size_i32 & size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, int iGoodStride = -1)
    {
 
       return create(size, eflagCreate, iGoodStride, true);
 
    }
-   //virtual ::e_status     create(i32 iWidth, i32 iHeight, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1, bool bPreserve = false);
+   //virtual void     create(i32 iWidth, i32 iHeight, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1, bool bPreserve = false);
 
 
    virtual bool host(const ::pixmap * ppixmap);
    virtual bool on_host_read_pixels(const ::pixmap * ppixmap);
-   ::e_status destroy() override;
+   void destroy() override;
    //virtual bool detach(::image * pimage);
 
    // realization is semantically const
@@ -389,12 +389,12 @@ public:
    virtual bool invert_rgb();
 
 
-   //virtual ::e_status     create_image(int cx, int cy, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1);
-   //virtual ::e_status     create_image(const ::size_i32 & size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1);
+   //virtual void     create_image(int cx, int cy, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1);
+   //virtual void     create_image(const ::size_i32 & size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1);
 
 
 
-   virtual ::e_status transform(enum_image eimage);
+   virtual void transform(enum_image eimage);
 
 
    double pi() const;
@@ -836,29 +836,29 @@ public:
 //}
 //
 //// template < typename COMPOSER >
-//// ::e_status __compose(COMPOSER && pcomposer, __ & pimage);
+//// void __compose(COMPOSER && pcomposer, __ & pimage);
 // //
 // template < typename COMPOSER >
-// inline ::e_status __compose(COMPOSER && pcomposer, __composite(::image) & pimage, ::image * pimageSource);
-// //
-// //
-// template < typename COMPOSER >
-// inline ::e_status __compose(COMPOSER && pcomposer, __composite(::image) & pimage, const ::size_i32 & size, ::enum_flag eflagCreate = OK, int iGoodStride = -1, bool bPreserve = false);
+// inline void __compose(COMPOSER && pcomposer, __composite(::image) & pimage, ::image * pimageSource);
 // //
 // //
 // template < typename COMPOSER >
-// inline ::e_status __preserve(COMPOSER && pcomposer, __composite(::image) & pimage, const ::size_i32 & size, ::enum_flag eflagCreate = OK, int iGoodStride = -1);
+// inline void __compose(COMPOSER && pcomposer, __composite(::image) & pimage, const ::size_i32 & size, ::enum_flag eflagCreate = OK, int iGoodStride = -1, bool bPreserve = false);
+// //
+// //
+// template < typename COMPOSER >
+// inline void __preserve(COMPOSER && pcomposer, __composite(::image) & pimage, const ::size_i32 & size, ::enum_flag eflagCreate = OK, int iGoodStride = -1);
 // //
 //
-//::e_status __construct(::image_pointer & pimage);
+//void __construct(::image_pointer & pimage);
 
-inline ::e_status __construct(::image_pointer & pimage, ::image * pimageSource);
+inline void __construct(::image_pointer & pimage, ::image * pimageSource);
 //
 //
-inline ::e_status __construct(::image_pointer & pimage, const ::size_i32 & size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, int iGoodStride = -1, bool bPreserve = false);
+inline void __construct(::image_pointer & pimage, const ::size_i32 & size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, int iGoodStride = -1, bool bPreserve = false);
 //
 //
-inline ::e_status __preserve(::image_pointer & pimage, const ::size_i32 & size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, int iGoodStride = -1);
+inline void __preserve(::image_pointer & pimage, const ::size_i32 & size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, int iGoodStride = -1);
 //
 //
 //

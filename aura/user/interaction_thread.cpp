@@ -64,7 +64,7 @@ namespace user
    }
 
 
-   ::e_status thread::initialize_user_thread(interaction_impl * pimpl)
+   void thread::initialize_user_thread(interaction_impl * pimpl)
    {
 
       auto estatus = initialize(pimpl);
@@ -171,7 +171,7 @@ namespace user
 
 #endif
 
-   ::e_status thread::task_caller_on_init()
+   void thread::task_caller_on_init()
    {
 
       //if (!m_bCreateNativeWindowOnInteractionThread)
@@ -200,7 +200,7 @@ namespace user
    }
 
 
-   ::e_status thread::init_thread()
+   void thread::init_thread()
    {
 
       auto estatus = ::thread::init_thread();
@@ -510,7 +510,7 @@ namespace user
    }
 
 
-   ::e_status thread::process_message()
+   void thread::process_message()
    {
 
       try
@@ -663,7 +663,7 @@ namespace user
 
 
 
-   ::e_status thread::process_message(::message::message * pmessage)
+   void thread::process_message(::message::message * pmessage)
    {
 
       if(pmessage->m_oswindow)
@@ -682,7 +682,7 @@ namespace user
    }
 
 
-   ::e_status thread::process_user_message(::message::message * pmessage)
+   void thread::process_user_message(::message::message * pmessage)
    {
 
       __pointer(::user::message) pusermessage(pmessage);
@@ -764,7 +764,7 @@ namespace user
    }
 
 
-   ::e_status thread::destroy_composites()
+   void thread::destroy_composites()
    {
 
       auto estatus = ::channel::destroy_composites();
@@ -781,7 +781,7 @@ namespace user
    }
 
 
-   //::e_status thread::set_finish_composites(::property_object * pcontextobjectFinish)
+   //void thread::set_finish_composites(::property_object * pcontextobjectFinish)
    //{
 
    //   auto estatus = channel::set_finish_composites(pcontextobjectFinish);
@@ -830,7 +830,7 @@ namespace user
    //}
 
 
-   ::e_status thread::run()
+   void thread::run()
    {
 
       ASSERT_VALID(this);
@@ -1092,7 +1092,7 @@ namespace user
    }
 
 
-   //::e_status thread::destroy()
+   //void thread::destroy()
    //{
 
    //   return ::thread::destroy();
@@ -1100,7 +1100,7 @@ namespace user
    //}
 
 
-   ::e_status thread::destroy()
+   void thread::destroy()
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -1143,7 +1143,7 @@ namespace user
    }
 
 
-   ::e_status thread::set_finish()
+   void thread::set_finish()
    {
 
       return ::thread::set_finish();

@@ -62,7 +62,7 @@ i64 element::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 #endif
 
 
-::e_status element::call_member(::i64 iId)
+void element::call_member(::i64 iId)
 {
 
    return ::success_none;
@@ -70,7 +70,7 @@ i64 element::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 }
 
 
-//::e_status element::handle(enum_message emessage, i64 iData, ::element * pelement)
+//void element::handle(enum_message emessage, i64 iData, ::element * pelement)
 //{
 //
 //   return ::success;
@@ -101,10 +101,10 @@ DURATION element::timeout() const
 }
 
 
-::e_status element::operator()()
+void element::operator()()
 {
 
-   ::e_status estatus;
+   void estatus;
 
    try
    {
@@ -137,7 +137,7 @@ void element::operator()(const ::payload & payload)
 }
 
 
-::e_status element::run()
+void element::run()
 {
 
    while(true)
@@ -159,7 +159,7 @@ void element::operator()(const ::payload & payload)
 }
 
 
-::e_status element::step()
+void element::step()
 {
 
    return ::error_failed;
@@ -175,7 +175,7 @@ void element::operator()(const ::payload & payload)
 }
 
 
-::e_status element::set_generic_object_name(const char* pszName)
+void element::set_generic_object_name(const char* pszName)
 {
 
    return ::success_none;
@@ -183,7 +183,7 @@ void element::operator()(const ::payload & payload)
 }
 
 
-::e_status element::set_application_id(const char* pszApplicationId)
+void element::set_application_id(const char* pszApplicationId)
 {
 
    return error_none;
@@ -191,7 +191,7 @@ void element::operator()(const ::payload & payload)
 }
 
 
-::e_status element::set_library_name(const char* pszLibraryName)
+void element::set_library_name(const char* pszLibraryName)
 {
 
    return error_none;
@@ -199,7 +199,7 @@ void element::operator()(const ::payload & payload)
 }
 
 
-::e_status element::wait()
+void element::wait()
 {
 
    return error_failed;
@@ -207,7 +207,7 @@ void element::operator()(const ::payload & payload)
 }
 
 
-::e_status element::wait(const ::duration & duration)
+void element::wait(const ::duration & duration)
 {
 
    return error_failed;
@@ -215,7 +215,7 @@ void element::operator()(const ::payload & payload)
 }
 
 
-::e_status element::add_composite(::element * pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+void element::add_composite(::element * pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
    //__throw(error_not_implemented);
@@ -229,7 +229,7 @@ void element::operator()(const ::payload & payload)
 }
 
 
-::e_status element::add_reference(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+void element::add_reference(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
    return ::success_none;
@@ -237,7 +237,7 @@ void element::operator()(const ::payload & payload)
 }
 
 
-::e_status element::release_composite2(::element * pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+void element::release_composite2(::element * pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
    return ::success_none;
@@ -245,7 +245,7 @@ void element::operator()(const ::payload & payload)
 }
 
 
-::e_status element::finalize_composite(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+void element::finalize_composite(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
    return ::success_none;
@@ -253,7 +253,7 @@ void element::operator()(const ::payload & payload)
 }
 
 
-::e_status element::release_reference(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+void element::release_reference(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
    return ::success_none;
@@ -294,7 +294,7 @@ void element::operator()(const ::payload & payload)
 }
 
 
-::e_status element::initialize(::object* pobject)
+void element::initialize(::object* pobject)
 {
 
    auto estatus = initialize_matter(pobject);
@@ -305,7 +305,7 @@ void element::operator()(const ::payload & payload)
 
 
 
-::e_status element::initialize_matter(::matter* pmatter)
+void element::initialize_matter(::matter* pmatter)
 {
 
    return ::success;
@@ -368,8 +368,8 @@ stream& element::read(stream& s)
 }
 
 
-//::e_status matter::finish(::property_object * pcontextobjectFinish)
-::e_status element::destroy()
+//void matter::finish(::property_object * pcontextobjectFinish)
+void element::destroy()
 {
 
    //auto estatus = set_finish();

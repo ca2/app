@@ -20,7 +20,7 @@ public:
 
    virtual string get_params() { return ""; }
 
-   virtual ::e_status start();
+   virtual void start();
 
 };
 

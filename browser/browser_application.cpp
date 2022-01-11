@@ -41,7 +41,7 @@ namespace browser
    }
 
 
-   ::e_status application::init_instance()
+   void application::init_instance()
    {
 
 

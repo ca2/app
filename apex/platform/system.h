@@ -80,23 +80,23 @@ namespace apex
 #endif
 
 
-      ::e_status initialize(::object * pobject) override;
+      void initialize(::object * pobject) override;
 
       void install_message_routing(::channel * pchannel) override;
 
-      ::e_status system_construct(const class ::main & main) override;
+      void system_construct(const class ::main & main) override;
 
 
 #ifdef WINDOWS_DESKTOP
 
 #elif defined(_UWP)
 
-      ::e_status system_construct(const ::string_array & stra);
+      void system_construct(const ::string_array & stra);
 
 #else
 
-      ::e_status system_construct(const ::string & pszCommandLine, const ::e_display& edisplay = ::e_display_none);
-      ::e_status system_construct(os_local* poslocal, const ::e_display& edisplay = ::e_display_none);
+      void system_construct(const ::string & pszCommandLine, const ::e_display& edisplay = ::e_display_none);
+      void system_construct(os_local* poslocal, const ::e_display& edisplay = ::e_display_none);
 
 #endif
 
@@ -104,22 +104,22 @@ namespace apex
       virtual ::application* get_main_application() override;
 
 
-      virtual ::e_status init();
-      //virtual ::e_status init_instance() override;
+      virtual void init();
+      //virtual void init_instance() override;
       //virtual void term_instance() override;
-      virtual ::e_status inline_init() override;
-      virtual ::e_status inline_term() override;
+      virtual void inline_init() override;
+      virtual void inline_term() override;
 
-      //::e_status on_pre_run_task() override;
+      //void on_pre_run_task() override;
 
-      virtual ::e_status init_system() override;
+      virtual void init_system() override;
       virtual void term_system();
 
-      virtual ::e_status on_system_construct() override;
+      virtual void on_system_construct() override;
 
-      virtual ::e_status on_start_system() override;
+      virtual void on_start_system() override;
 
-      virtual ::e_status system_main() override;
+      virtual void system_main() override;
 
       virtual void term();
 
@@ -151,7 +151,7 @@ namespace apex
       virtual bool task_get_run() const override;
 
 
-      virtual ::e_status create_os_node() override;
+      virtual void create_os_node() override;
 
 
       //::thread * get_task(itask_t itask);
@@ -163,7 +163,7 @@ namespace apex
 
       //inline ::gpu::approach* get_gpu() { if (!m_pgpu) create_gpu(); return m_pgpu.get(); };
       //inline ::gpu::approach* gpu() { return m_pgpu.get(); };
-      //virtual ::e_status create_gpu();
+      //virtual void create_gpu();
 
 
       //::task_group * task_group(::enum_priority epriority = ::e_priority_none);
@@ -199,21 +199,21 @@ namespace apex
 
       virtual __transport(::factory::factory) & node_factory() override;
 
-      virtual ::e_status process_init() override;
+      virtual void process_init() override;
 
-      virtual ::e_status init1() override;
+      virtual void init1() override;
 
-      virtual ::e_status init2();
+      virtual void init2();
 
-      virtual ::e_status post_initial_request() override;
+      virtual void post_initial_request() override;
 
-      virtual ::e_status initialize_context() override;
+      virtual void initialize_context() override;
 
-      //virtual ::e_status defer_xml();
+      //virtual void defer_xml();
 
       virtual __pointer(::data::node) load_xml(const ::string & pszXml);
 
-      virtual ::e_status verb() override; // ambigous inheritance from ::apex::system/::axis::application
+      virtual void verb() override; // ambigous inheritance from ::apex::system/::axis::application
 
 
       virtual bool is_system() const override;
@@ -222,9 +222,9 @@ namespace apex
       virtual string crypto_md5_text(const ::string & str);
 
 
-      //virtual ::e_status start() override;
+      //virtual void start() override;
 
-      //virtual ::e_status create_html();
+      //virtual void create_html();
 
       //virtual __pointer(::apex::session) on_create_session() override;
 
@@ -237,10 +237,10 @@ namespace apex
       //virtual i32 exit_instance();
       //virtual bool destroy();
 
-      virtual ::e_status destroy() override;
+      virtual void destroy() override;
 
 
-      virtual void process_exit_status(::object* pobject, const ::e_status& estatus);
+      virtual void process_exit_status(::object* pobject, const void& estatus);
 
 
       //virtual bool verb();
@@ -288,7 +288,7 @@ namespace apex
       virtual string get_locale_schema_dir() override;
 
 
-      //virtual ::e_status     initialize_system(::object * pobject, app_core * pappcore);
+      //virtual void     initialize_system(::object * pobject, app_core * pappcore);
 
 
       //__pointer(::thread_tools) create_thread_tools(::enum_task_tool etool);
@@ -299,7 +299,7 @@ namespace apex
       //class ::user::window_map                     &  window_map();
 
 
-      //::e_status ([a-z0-9_]+)_factory(const ::string & pszComponent, const ::string & pszImplementation, ::fac);
+      //void ([a-z0-9_]+)_factory(const ::string & pszComponent, const ::string & pszImplementation, ::fac);
 
       // apex commented
       //virtual void defer_audio();
@@ -378,8 +378,8 @@ namespace apex
       }
 
 
-      virtual ::e_status browser(string strUrl, string strBrowser, string strProfile, string strTarget);
-      virtual ::e_status open_profile_link(string strUrl, string strProfile, string strTarget) override;
+      virtual void browser(string strUrl, string strBrowser, string strProfile, string strTarget);
+      virtual void open_profile_link(string strUrl, string strProfile, string strTarget) override;
 
 
       virtual void __set_thread_on() override;
@@ -419,7 +419,7 @@ namespace apex
       //bool on_application_menu_action(const ::string & pszCommand);
 
 
-      virtual ::e_status initialize_sockets();
+      virtual void initialize_sockets();
 
 
       virtual bool on_get_task_name(string& strTaskName) override;
@@ -439,33 +439,33 @@ namespace apex
 
 
 
-      //virtual ::e_status init_system();
+      //virtual void init_system();
 
-      //virtual ::e_status process_init();
+      //virtual void process_init();
 
-      //virtual ::e_status init_draw2d();
-      //virtual ::e_status ([a-z0-9_]+)_factory(::factory::factory * pfactory);
+      //virtual void init_draw2d();
+      //virtual void ([a-z0-9_]+)_factory(::factory::factory * pfactory);
       //virtual string draw2d_get_default_library_name();
 
       //virtual bool ([a-z0-9_]+)_factory(::factory::factory * pfactory);
       //virtual string imaging_get_default_library_name();
 
-      virtual ::e_status init_thread() override;
+      virtual void init_thread() override;
       virtual void term_thread() override;
 
 
       //virtual void post_to_all_threads(const ::id& id, wparam wparam, lparam lparam);
 
 
-      virtual ::e_status thread_loop() override;
+      virtual void thread_loop() override;
 
-      //virtual ::e_status init();
+      //virtual void init();
 
-      //virtual ::e_status init1();
+      //virtual void init1();
 
-      //virtual ::e_status init2();
+      //virtual void init2();
 
-      virtual ::e_status post_creation_requests();
+      virtual void post_creation_requests();
 
       //virtual void term_system();
 
@@ -498,7 +498,7 @@ namespace apex
 
 
 
-      virtual ::e_status initialize_log(const ::string & pszId);
+      virtual void initialize_log(const ::string & pszId);
 
 
       virtual void appa_load_string_table();
@@ -536,7 +536,7 @@ namespace apex
 
       virtual void install_progress_add_up(int iAddUp = 1);
 
-      virtual ::e_status create_session(index iEdge = 0);
+      virtual void create_session(index iEdge = 0);
 
       virtual __transport(::apex::session) on_create_session(index iEdge);
 
@@ -585,7 +585,7 @@ namespace apex
 
       virtual bool on_open_file(::payload payloadFile, string strExtra);
       
-      ::e_status on_open_file(const ::string & pszFile) override;
+      void on_open_file(const ::string & pszFile) override;
 
       // apex commented
       //virtual LPWAVEOUT waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback);
@@ -643,22 +643,22 @@ namespace apex
 
       void defer_create_firefox_profile(::file::path pathFirefox, string strProfileName, ::file::path pathProfile);
 
-      ::e_status     firefox(string strUrl, string strBrowser, string strProfile, string strParam);
-      //::e_status     get_firefox_installation_info(string & strPathToExe, string & strInstallDirectory);
+      void     firefox(string strUrl, string strBrowser, string strProfile, string strParam);
+      //void     get_firefox_installation_info(string & strPathToExe, string & strInstallDirectory);
 
 
 
-      //virtual ::e_status  initialize_system(::object* pobject, app_core* pappcore) override;
+      //virtual void  initialize_system(::object* pobject, app_core* pappcore) override;
 
       virtual void discard_to_factory(__pointer(object) pca);
 
       //virtual bool is_system() const override;
 
-      //virtual ::e_status process_init() override;
+      //virtual void process_init() override;
 
-      //virtual ::e_status init2() override;
+      //virtual void init2() override;
 
-      //virtual ::e_status init_system() override;
+      //virtual void init_system() override;
 
       //virtual void term() override;
 
@@ -666,16 +666,16 @@ namespace apex
 
 
       //virtual i32 main();
-      ///virtual ::e_status InitApplication() override;
+      ///virtual void InitApplication() override;
 
-      //virtual ::e_status init() override;
-      //virtual ::e_status init1() override;
-      //virtual ::e_status init3() override;
+      //virtual void init() override;
+      //virtual void init1() override;
+      //virtual void init3() override;
 
-      //virtual ::e_status bergedge_start() override;
+      //virtual void bergedge_start() override;
 
 
-      //virtual ::e_status initialize_rich_text();
+      //virtual void initialize_rich_text();
 
 
       //virtual index get_new_bergedge(application_bias * pbiasCreation = nullptr);
@@ -689,7 +689,7 @@ namespace apex
       DECLARE_MESSAGE_HANDLER(on_application_signal);
 
 
-      ::e_status set_history(::apex::history* phistory);
+      void set_history(::apex::history* phistory);
 
 
       //__pointer(::acme::library) on_get_library(const ::string & pszLibrary) override;
@@ -728,7 +728,7 @@ namespace apex
 
 #ifdef LINUX
 
-      //virtual ::e_status defer_initialize_x11();
+      //virtual void defer_initialize_x11();
       //virtual bool sn_start_context();
 
 #endif
@@ -767,13 +767,13 @@ namespace apex
 
       virtual string get_host_location_url();
 
-      //virtual ::e_status add_view_library(::acme::library* plibrary);
+      //virtual void add_view_library(::acme::library* plibrary);
 
       //virtual void get_cursor_position(POINT_I32 * ppoint);
 
       virtual bool is_thread() const override;
 
-      //virtual ::e_status do_request(::create* pcommand) override;
+      //virtual void do_request(::create* pcommand) override;
 
 
 
@@ -781,7 +781,7 @@ namespace apex
       void dump(dump_context& action_context) const override;
 
 
-      ::e_status     main() override;
+      void     main() override;
       //virtual void hist_hist(const ::string & psz) override;
 
 
@@ -806,10 +806,10 @@ namespace apex
       //virtual ~system();
 
 
-      ///virtual ::e_status initialize_system(::object* pobject, app_core* pappcore) override;
+      ///virtual void initialize_system(::object* pobject, app_core* pappcore) override;
 
 
-      //virtual ::e_status process_init() override;
+      //virtual void process_init() override;
       //virtual void term_system() override;
 
       //virtual __pointer(::apex::session) on_create_session() override;
@@ -857,13 +857,13 @@ namespace apex
 
       virtual void application_main(int argc, char *argv[], const ::string & pszCommandLine);
 
-      virtual int console_end(::e_status estatus);
+      virtual int console_end(void estatus);
 
 
       //virtual __pointer(::extended::future < ::conversation >) message_box(::user::interaction * puserinteraction, const ::string & pszText, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
 
 
-      virtual ::e_status get_public_internet_domain_extension_list(string_array& stra) override;
+      virtual void get_public_internet_domain_extension_list(string_array& stra) override;
 
 
    };

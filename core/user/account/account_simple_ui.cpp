@@ -37,7 +37,7 @@ namespace account
    }
 
 
-   ::e_status main_window::initialize_simple_ui(::account::credentials * pcredentials)
+   void main_window::initialize_simple_ui(::account::credentials * pcredentials)
    {
 
       auto estatus = initialize(pcredentials);

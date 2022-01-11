@@ -38,7 +38,7 @@ namespace database
 
    }
 
-   //::e_status     database::connect(const ::string & name, const ::string & host, const ::string & port, const ::string & user, const ::string & pass, const ::string & sckt, u64 uConnectionFlags)
+   //void     database::connect(const ::string & name, const ::string & host, const ::string & port, const ::string & user, const ::string & pass, const ::string & sckt, u64 uConnectionFlags)
    //{
 
 
@@ -94,7 +94,7 @@ namespace database
    //}
 
 
-   //::e_status     database::init()
+   //void     database::init()
    //{
 
    //   return ::success;
@@ -102,7 +102,7 @@ namespace database
    //}
 
 
-   //::e_status     database::set_error_code(int iErrorCode)
+   //void     database::set_error_code(int iErrorCode)
    //{
 
    //   m_iLastError = iErrorCode;
@@ -510,7 +510,7 @@ namespace database
    //}
 
 
-   ::e_status database::set_id_blob(string strKey, ::block block)
+   void database::set_id_blob(string strKey, ::block block)
    {
 
       return ::error_failed;
@@ -518,7 +518,7 @@ namespace database
    }
 
 
-   ::e_status database::get_id_blob(string strKey, ::get_memory getmemory)
+   void database::get_id_blob(string strKey, ::get_memory getmemory)
    {
 
       return ::error_failed;

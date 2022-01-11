@@ -25,7 +25,7 @@ namespace html
    }
 
 
-   ::e_status html::initialize(::object * pobject)
+   void html::initialize(::object * pobject)
    {
 
       auto estatus = ::acme::department::initialize(pobject);
@@ -381,7 +381,7 @@ namespace html
    }
 
 
-   //::e_status html::initialize(::object * pobject)
+   //void html::initialize(::object * pobject)
    //{
 
 
@@ -809,10 +809,10 @@ namespace axis
 {
 
 
-   ::e_status system::defer_create_html()
+   void system::defer_create_html()
    {
 
-      ::e_status estatus = ::success;
+      void estatus = ::success;
 
       if (!m_phtml)
       {
@@ -826,7 +826,7 @@ namespace axis
    }
 
 
-   ::e_status system::create_html()
+   void system::create_html()
    {
 
       auto estatus = __compose_new(m_phtml);

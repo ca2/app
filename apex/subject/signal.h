@@ -27,7 +27,7 @@ public:
 #endif
 
 
-   virtual ::e_status run() override;
+   virtual void run() override;
 
 
    virtual void notify();
@@ -72,7 +72,7 @@ public:
 
    void subject_common_construct();
 
-   virtual ::e_status start_task();
+   virtual void start_task();
 
    virtual bool is_up_to_date(const ::context * pcontext) const;
 

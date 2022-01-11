@@ -34,12 +34,12 @@
 //
 //      virtual void SetCurrentHandles();
 //
-//      virtual ::e_status     do_request(create * pcreate) override;
+//      virtual void     do_request(create * pcreate) override;
 //
-//      virtual ::e_status process_init();
-//      virtual ::e_status init1();
-//      virtual ::e_status init2();
-//      virtual ::e_status init3();
+//      virtual void process_init();
+//      virtual void init1();
+//      virtual void init2();
+//      virtual void init3();
 //      virtual void term_instance() override;
 //
 //

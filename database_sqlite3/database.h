@@ -37,15 +37,15 @@ namespace sqlite
       //virtual __pointer(::database::dataset) dataset() override;
       ::database::e_connection connection_status() override;
 
-      ::e_status set_error_code(i32 iErrorCode) override;
+      void set_error_code(i32 iErrorCode) override;
 
       void * get_handle() override;
       string get_error_message() override;
 
-      ::e_status _connect() override;
+      void _connect() override;
       void disconnect() override;
-      ::e_status create() override;
-      ::e_status drop() override;
+      void create() override;
+      void drop() override;
 
 
       string escape(const ::string & psz) override;
@@ -55,11 +55,11 @@ namespace sqlite
       bool isActive() override;
 
 
-      ::e_status init() override;
+      void init() override;
 
       string add_error_message(const ::string& strErrorMessage) override;
 
-      ::e_status connect(
+      void connect(
          const ::string & name,
          const ::string & host = nullptr,
          const ::string & port = nullptr,
@@ -69,7 +69,7 @@ namespace sqlite
          u64 uConnectionFlags = 0) override;
 
 
-      ::e_status reset() override;
+      void reset() override;
 
       //virtual string escape(const ::string & psz);
 
@@ -107,8 +107,8 @@ namespace sqlite
       string query_error(const ::string& pszPrefix = nullptr) override;
 
 
-      virtual ::e_status set_id_blob(string strKey, ::block block) override;
-      virtual ::e_status get_id_blob(string strKey, ::get_memory getmemory) override;
+      virtual void set_id_blob(string strKey, ::block block) override;
+      virtual void get_id_blob(string strKey, ::get_memory getmemory) override;
 
 
 

@@ -94,7 +94,7 @@ namespace user
       }
 
 
-      ::e_status data::initialize_data(::data::data_container_base * pdocument)
+      void data::initialize_data(::data::data_container_base * pdocument)
       {
 
          auto estatus = ::data::data::initialize_data(pdocument);
@@ -2100,7 +2100,7 @@ namespace user
       }
 
 
-      ::e_status data::__initialize(__pointer(::user::rich_text::format) & pformat)
+      void data::__initialize(__pointer(::user::rich_text::format) & pformat)
       {
 
          __defer_construct(pformat);

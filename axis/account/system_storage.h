@@ -24,12 +24,12 @@ namespace account
       virtual ~system_storage();
       
 
-      virtual ::e_status initialize_system_storage(department* pdepartment);
+      virtual void initialize_system_storage(department* pdepartment);
       
       virtual ::file::path path_prefix(string strToken);
       
       
-      virtual ::e_status     get(string strKey, string strToken, string & strValue) override;
+      virtual void     get(string strKey, string strToken, string & strValue) override;
       virtual bool set(string strKey, string strToken, string strValue) override;
       
       

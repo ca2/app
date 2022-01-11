@@ -19,7 +19,7 @@ namespace account
       virtual ~user_array();
 
 
-      virtual ::e_status initialize_user_array(department* pdepartment);
+      virtual void initialize_user_array(department* pdepartment);
 
 
       virtual __pointer(user) allocate_user();

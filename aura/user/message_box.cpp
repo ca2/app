@@ -73,7 +73,7 @@ namespace user
    }
 
 
-   ::e_status default_message_box::add_button(const ::string & strTitle, enum_dialog_result edialogresult)
+   void default_message_box::add_button(const ::string & strTitle, enum_dialog_result edialogresult)
    {
 
       m_buttona.add(__new(::user::button(strTitle, edialogresult)));

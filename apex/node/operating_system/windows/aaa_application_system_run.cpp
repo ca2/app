@@ -6,7 +6,7 @@ namespace apex
 {
 
 
-   //::e_status system::start()
+   //void system::start()
    //{
 
    //   auto estatus = class ::system::start();

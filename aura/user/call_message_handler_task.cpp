@@ -24,7 +24,7 @@ namespace user
    }
 
 
-   ::e_status call_message_handler_task::run()
+   void call_message_handler_task::run()
    {
 
       m_pinteraction->call_message_handler(m_id, m_wparam, m_lparam);

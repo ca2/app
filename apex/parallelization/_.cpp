@@ -25,7 +25,7 @@ namespace parallelization
    }
 
 
-   CLASS_DECL_APEX ::e_status destroy()
+   CLASS_DECL_APEX void destroy()
    {
 
       __node_term_multithreading();
@@ -589,10 +589,10 @@ namespace apex
 
 
 
-   //CLASS_DECL_APEX ::e_status call(const ::method & method)
+   //CLASS_DECL_APEX void call(const ::method & method)
    //{
    //
-   //   ::e_status estatus;
+   //   void estatus;
    //
    //   try
    //   {
@@ -838,10 +838,10 @@ namespace apex
 
    //
    //
-   //::e_status     run_runnable(::matter* pobjectTask)
+   //void     run_runnable(::matter* pobjectTask)
    //{
    //
-   //   ::e_status     estatus = error_exception;
+   //   void     estatus = error_exception;
    //
    //   try
    //   {
@@ -894,7 +894,7 @@ namespace apex
 
 
 
-::e_status thread_ptra::destroy()
+void thread_ptra::destroy()
 {
 
    try

@@ -20,10 +20,10 @@ namespace opengl
    }
 
 
-   //::e_status context::initialize(::object * pobject)
+   //void context::initialize(::object * pobject)
    //{
 
-   //   ::e_status estatus = ::object::initialize(pobject);
+   //   void estatus = ::object::initialize(pobject);
 
    //   if (!estatus)
    //   {
@@ -37,7 +37,7 @@ namespace opengl
    //}
 
 
-   ::e_status context::draw()
+   void context::draw()
    {
 
       if (m_VAO != 0)
@@ -94,7 +94,7 @@ namespace opengl
    }
 
 
-   ::e_status context::start()
+   void context::start()
    {
 
       glClearColor(0.2f, 0.3f, 0.3f, 0.3f);
@@ -122,7 +122,7 @@ namespace opengl
    }
 
 
-   ::e_status context::render()
+   void context::render()
    {
 
 //#ifdef __APPLE__
@@ -142,7 +142,7 @@ namespace opengl
    }
 
 
-   //::e_status context::create_offscreen_buffer(const ::size_i32& size)
+   //void context::create_offscreen_buffer(const ::size_i32& size)
    //{
 
    //   auto pgpu = psystem->get_gpu();
@@ -154,7 +154,7 @@ namespace opengl
 
    //   }
 
-   //   ::e_status estatus = __construct(m_pbuffer);
+   //   void estatus = __construct(m_pbuffer);
 
    //   if (!estatus)
    //   {
@@ -186,7 +186,7 @@ namespace opengl
    //}
 
 
-   //::e_status context::_create_offscreen_buffer(const ::size_i32& size)
+   //void context::_create_offscreen_buffer(const ::size_i32& size)
    //{
 
    //   return ::success_none;
@@ -194,7 +194,7 @@ namespace opengl
    //}
 
 
-   //::e_status context::resize_offscreen_buffer(const ::size_i32& size)
+   //void context::resize_offscreen_buffer(const ::size_i32& size)
    //{
 
    //   return ::success_none;
@@ -203,7 +203,7 @@ namespace opengl
 
 
 
-   //::e_status context::make_current()
+   //void context::make_current()
    //{
 
    //   return ::success_none;
@@ -211,7 +211,7 @@ namespace opengl
    //}
 
 
-   //::e_status context::destroy_offscreen_buffer()
+   //void context::destroy_offscreen_buffer()
    //{
 
    //   return ::success_none;

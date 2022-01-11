@@ -92,7 +92,7 @@ namespace geo
       ~department() override;
 
 
-      ::e_status initialize(::object* pobject) override;
+      void initialize(::object* pobject) override;
 
 
       virtual void defer_check_openweather_city_list();

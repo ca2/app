@@ -19,13 +19,13 @@ namespace account
       __pointer(user)                                  m_puser;
       interactive *                             m_pinteractive;
       bool                                      m_bInteractive;
-      ::e_status                                   m_estatusHttp;
+      void                                   m_estatusHttp;
       string                                    m_strTitle;
       ::rectangle_i32                                    m_rectangleDialog;
       string                                    m_strPassword;
       string                                    m_strPasshash;
       strsize                                   m_iPasswordOriginalLength;
-      ::e_status                                      m_estatus;
+      void                                      m_estatus;
       //bool                                      m_bInteractive;
 
       string                                    m_strResponse;
@@ -50,32 +50,32 @@ namespace account
       credentials();
       virtual ~credentials();
 
-      virtual ::e_status initialize_account_credentials(user * puser, storage * pstorage);
-      virtual ::e_status initialize_account_credentials(const credentials & credentials);
+      virtual void initialize_account_credentials(user * puser, storage * pstorage);
+      virtual void initialize_account_credentials(const credentials & credentials);
 
       virtual bool is_ok();
-      virtual ::e_status  get_credentials();
+      virtual void  get_credentials();
 
-      virtual ::e_status  interactive_credentials();
+      virtual void  interactive_credentials();
 
 
       /// input
       /// m_strToken
-      virtual ::e_status  load_from_storage(::count cTry = 8);
+      virtual void  load_from_storage(::count cTry = 8);
 
       /// input
       /// m_strToken
       /// m_strUsername
       /// m_strPassword
-      virtual ::e_status save_to_storage();
+      virtual void save_to_storage();
 
       /// input
       /// m_strToken
       /// eresult
-      virtual void save_status_to_storage(const ::e_status & estatus);
+      virtual void save_status_to_storage(const void & estatus);
 
 
-      //virtual ::e_status  authenticate();
+      //virtual void  authenticate();
 
 
       virtual void get_mod(string_array & straHash,string_array & straSource);

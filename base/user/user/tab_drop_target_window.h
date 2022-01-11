@@ -20,7 +20,7 @@ namespace user
       virtual ~tab_drop_target_window();
 
 
-      virtual ::e_status initialize_tab_drop_target_window(::user::tab* ptab, index iTab);
+      virtual void initialize_tab_drop_target_window(::user::tab* ptab, index iTab);
 
       //virtual bool get_translucency(::user::enum_translucency & etranslucency, ::enum_element eelement, style_context * pcontext) override;
 

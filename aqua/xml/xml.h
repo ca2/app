@@ -21,9 +21,9 @@ namespace xml
       xml();
       virtual ~xml();
 
-      virtual ::e_status init1();
+      virtual void init1();
 
-      virtual ::e_status init();
+      virtual void init();
 
       virtual __pointer(::xml::document) create_document(); 
 

@@ -11,11 +11,11 @@ namespace crypto
    public:
 
 
-      virtual ::e_status initialize_hasher_algorithm(enum_hash ehash) = 0;
+      virtual void initialize_hasher_algorithm(enum_hash ehash) = 0;
 
       virtual enum_hash ehash() const = 0;
 
-      virtual ::e_status hash(memory & memoryHash, const block & block) = 0;
+      virtual void hash(memory & memoryHash, const block & block) = 0;
 
       virtual __transport(::crypto::hasher) create_hasher() = 0;
 

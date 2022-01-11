@@ -37,7 +37,7 @@ namespace hi5
       }
 
 
-      ::e_status authorization::initialize_twitter_authorization(::object* pobject, const ::string & pszAuthorizationUrl, const ::string & pszForm, bool bAuth, bool bInteractive)
+      void authorization::initialize_twitter_authorization(::object* pobject, const ::string & pszAuthorizationUrl, const ::string & pszForm, bool bAuth, bool bInteractive)
       {
 
          auto estatus = ::object::initialize(pobject);

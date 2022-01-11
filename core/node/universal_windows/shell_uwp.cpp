@@ -430,10 +430,10 @@ namespace core
 {
 
 
-   ::e_status user::create_user_shell()
+   void user::create_user_shell()
    {
 
-      ::e_status estatus = ::success;
+      void estatus = ::success;
 
       if (!m_pshell)
       {

@@ -8,7 +8,7 @@ public:
 
 
    ::id                                m_id;
-   ::e_status                          m_estatus;
+   ::e_status3                         m_estatus;
 
 
    material_object() { }
@@ -35,7 +35,7 @@ public:
    
    
    //// <3TBS_!! handle -> command_handler <3TBS_(I need to suck you)!!
-   virtual ::e_status handle_command(const ::id & id);
+   virtual void handle_command(const ::id & id);
 
 
 
@@ -49,17 +49,17 @@ public:
    virtual bool is_branch_current() const;
 
 
-   virtual ::e_status post_routine(const ::routine & routine);
+   virtual void post_routine(const ::routine & routine);
 
 
-   virtual ::e_status send_routine(const ::routine & routine);
+   virtual void send_routine(const ::routine & routine);
 
 
    template < typename POSTING_OBJECT, typename POSTING_METHOD, typename OBJECT_POINTER, typename OBJECT_METHOD, typename PAYLOAD_REFERENCE >
-   ::e_status __send_payload(POSTING_OBJECT pposting, POSTING_METHOD posting_method, OBJECT_POINTER pobject, OBJECT_METHOD objectmethod, PAYLOAD_REFERENCE & payload);
+   void __send_payload(POSTING_OBJECT pposting, POSTING_METHOD posting_method, OBJECT_POINTER pobject, OBJECT_METHOD objectmethod, PAYLOAD_REFERENCE & payload);
 
    template < typename POSTING_OBJECT, typename POSTING_METHOD >
-   ::e_status __send_routine(POSTING_OBJECT pposting, POSTING_METHOD posting_method, const ::routine & routine);
+   void __send_routine(POSTING_OBJECT pposting, POSTING_METHOD posting_method, const ::routine & routine);
 
 
 };

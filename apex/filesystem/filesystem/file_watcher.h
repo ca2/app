@@ -93,7 +93,7 @@ namespace file
 
       virtual void handle_action(action * paction);
 
-      ::e_status step() override;
+      void step() override;
 
 
       void _addAll();
@@ -144,9 +144,9 @@ namespace file
 
       virtual void erase_watch(watch_id watch_id);
 
-      virtual ::e_status run() override;
+      virtual void run() override;
 
-      virtual ::e_status step() override;
+      virtual void step() override;
 
 
    };//end file_watcher

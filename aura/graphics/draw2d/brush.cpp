@@ -42,7 +42,7 @@ namespace draw2d
 //#endif
 
 
-   ::e_status brush::destroy()
+   void brush::destroy()
    {
 
       if (m_pimage)

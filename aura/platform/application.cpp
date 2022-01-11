@@ -184,7 +184,7 @@ namespace aura
    }
 
 
-   ::e_status application::initialize(::object * pobject)
+   void application::initialize(::object * pobject)
    {
 
       auto estatus = ::application::initialize(pobject);
@@ -278,7 +278,7 @@ namespace aura
    }
 */
 
-   ::e_status application::destroy()
+   void application::destroy()
    {
 
       auto estatus = ::application::destroy();
@@ -596,7 +596,7 @@ namespace aura
    }
 
 
-   //::e_status application::os_message_box(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::os_message_box(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   return ::os_message_box(puiOwner->get_safe_handle(), pszMessage, pszTitle, emessagebox, callback);
@@ -604,7 +604,7 @@ namespace aura
    //}
 
 
-   //::e_status application::ui_message_box(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::ui_message_box(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   if (!Session || !psession->userex())
@@ -619,7 +619,7 @@ namespace aura
    //}
 
 
-   //::e_status application::ui_message_box_timeout(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::duration& durationTimeout, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::ui_message_box_timeout(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::duration& durationTimeout, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   if (!Session || !psession->userex())
@@ -634,7 +634,7 @@ namespace aura
    //}
 
 
-   //::e_status application::message_box(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::message_box(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   auto estatus = ui_message_box(puiOwner, pszMessage, pszTitle, emessagebox, callback);
@@ -651,7 +651,7 @@ namespace aura
    //}
 
 
-   //::e_status application::message_box_timeout(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::message_box_timeout(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   auto estatus = ui_message_box_timeout(puiOwner, pszMessage, pszTitle, durationTimeout, emessagebox, callback);
@@ -668,7 +668,7 @@ namespace aura
    //}
 
 
-   //::e_status application::message_box(const ::payload & payload)
+   //void application::message_box(const ::payload & payload)
    //{
 
    //   __pointer(::user::primitive) puiOwner;
@@ -1267,7 +1267,7 @@ namespace aura
    //}
 
 
-   //::e_status application::init_thread()
+   //void application::init_thread()
    //{
 
    //   try
@@ -1335,7 +1335,7 @@ namespace aura
    //}
 
 
-//   ::e_status application::pre_run()
+//   void application::pre_run()
 //   {
 //
 //      INFORMATION("aura::application::pre_run");
@@ -1419,10 +1419,10 @@ namespace aura
 //   }
 
 
-//   ::e_status application::on_run()
+//   void application::on_run()
 //   {
 //
-//      ::e_status     estatus = ::success;
+//      void     estatus = ::success;
 //
 //      try
 //      {
@@ -1575,7 +1575,7 @@ namespace aura
    }
 
 
-   ::e_status application::init_instance()
+   void application::init_instance()
    {
 
       auto estatus = ::application::init_instance();
@@ -1602,7 +1602,7 @@ namespace aura
 
    }
 
-   //::e_status application::notify_init3()
+   //void application::notify_init3()
    //{
 
    //   ::message::application message(::message::application_init3);
@@ -1614,7 +1614,7 @@ namespace aura
    //}
 
 
-   ::e_status application::_001InitializeShellOpen()
+   void application::_001InitializeShellOpen()
    {
 
       //ASSERT(m_atomApp == nullptr && m_atomSystemTopic == nullptr); // do once
@@ -1736,7 +1736,7 @@ namespace aura
    }
 
 
-   ::e_status application::on_before_launching()
+   void application::on_before_launching()
    {
 
       auto psession = get_session();
@@ -1808,7 +1808,7 @@ retry_license:
    }
 
 
-   ::e_status application::on_install()
+   void application::on_install()
    {
 
       if (is_service())
@@ -1845,7 +1845,7 @@ retry_license:
    }
 
 
-   ::e_status application::on_uninstall()
+   void application::on_uninstall()
    {
 
       //bool bOk = axis::application::on_uninstall();
@@ -1871,7 +1871,7 @@ retry_license:
    }
 
 
-   ::e_status application::process_init()
+   void application::process_init()
    {
 
       auto estatus = ::application::process_init();
@@ -1906,7 +1906,7 @@ retry_license:
    //}
 
 
-//   ::e_status application::init_application()
+//   void application::init_application()
 //   {
 //
 //      auto estatus = ::application::init_application();
@@ -2028,10 +2028,10 @@ retry_license:
    //}
 
 
-   ::e_status application::init1()
+   void application::init1()
    {
 
-      ::e_status estatus = ::application::init1();
+      void estatus = ::application::init1();
 
       if (!estatus)
       {
@@ -2114,7 +2114,7 @@ retry_license:
 
    }
 
-   ::e_status application::init2()
+   void application::init2()
    {
 
       //if (!impl_init2())
@@ -2164,7 +2164,7 @@ retry_license:
 
    }
 
-   ::e_status application::init3()
+   void application::init3()
    {
 
       string strFolder = m_strAppName;
@@ -2305,7 +2305,7 @@ retry_license:
 
 
 
-//   ::e_status application::notify_init2()
+//   void application::notify_init2()
 //   {
 //
 //      ::message::application message(::message::application_init2);
@@ -2374,7 +2374,7 @@ retry_license:
    //}
 
 //
-//   ::e_status application::check_exclusive(bool & bHandled)
+//   void application::check_exclusive(bool & bHandled)
 //   {
 //
 //#ifdef _UWP
@@ -2557,7 +2557,7 @@ retry_license:
 //   }
 //
 //
-//   ::e_status application::release_exclusive()
+//   void application::release_exclusive()
 //   {
 //
 //      m_mapExclusive.erase_all();
@@ -4763,7 +4763,7 @@ retry_license:
    }
 
 
-   ::e_status application::verb()
+   void application::verb()
    {
 
       return true;
@@ -4795,7 +4795,7 @@ retry_license:
    //}
 
 
-   //::e_status     application::main()
+   //void     application::main()
    //{
 
    //   return ::aura::application::main();
@@ -4803,7 +4803,7 @@ retry_license:
    //}
 
 
-   //::e_status application::on_run()
+   //void application::on_run()
    //{
 
    //   //try
@@ -4905,7 +4905,7 @@ retry_license:
    //}
 
 
-   //::e_status application::init_application()
+   //void application::init_application()
    //{
 
    //   return ::aura::application::init_application();
@@ -4913,7 +4913,7 @@ retry_license:
    //}
 
 
-   //::e_status application::application_pre_run()
+   //void application::application_pre_run()
    //{
 
    //   return ::aura::application::application_pre_run();
@@ -4986,7 +4986,7 @@ retry_license:
    //}
 
 
-   //::e_status application::os_native_bergedge_start()
+   //void application::os_native_bergedge_start()
    //{
 
    //   if (!::aura::application::os_native_bergedge_start())
@@ -5009,7 +5009,7 @@ retry_license:
    //}
 
 
-   //::e_status     application::run()
+   //void     application::run()
    //{
 
    //   return ::aura::application::run();
@@ -5040,7 +5040,7 @@ retry_license:
 
 
 
-   ::e_status application::init()
+   void application::init()
    {
 
       auto estatus = ::application::init();
@@ -5446,14 +5446,14 @@ retry_license:
    }
 
 
-   //::e_status application::userfs_init1()
+   //void application::userfs_init1()
    //{
 
    //   return error_not_implemented;
 
    //}
 
-   //::e_status application::userfs_process_init()
+   //void application::userfs_process_init()
    //{
 
    //   return error_not_implemented;
@@ -5693,7 +5693,7 @@ retry_license:
 
 
 
-   //   ::e_status     application::interactive_credentials(::account::credentials * pcredentials)
+   //   void     application::interactive_credentials(::account::credentials * pcredentials)
    //   {
    //
    //      return ::aura::applciation::interactive_credentials(pcredentials);
@@ -5871,7 +5871,7 @@ namespace aura
    //}
 
 
-   //::e_status application::initialize(::object * pobject)
+   //void application::initialize(::object * pobject)
    //{
 
    //   auto estatus = ::aura::application::initialize(pobject);
@@ -6085,7 +6085,7 @@ namespace aura
 
 
 
-  /* ::e_status     application::run()
+  /* void     application::run()
    {
 
       return ::aura::application::run();
@@ -7875,7 +7875,7 @@ namespace aura
    //}
 
 
-   //::e_status application::bergedge_start()
+   //void application::bergedge_start()
    //{
 
    //   string strId = m_strId;
@@ -8566,7 +8566,7 @@ namespace aura
    }
 
 
-   ::e_status application::initialize_contextualized_theme()
+   void application::initialize_contextualized_theme()
    {
 
       auto estatus = __compose_new(m_ptheme);
@@ -8659,7 +8659,7 @@ namespace aura
    //}
 
 
-   //::e_status application::initialize(::object * pobject)
+   //void application::initialize(::object * pobject)
    //{
 
    //   auto estatus = ::aura::application::initialize(pobject);
@@ -8785,7 +8785,7 @@ namespace aura
       }
 
 
-   //::e_status application::process_init()
+   //void application::process_init()
    //{
 
    //   if (::aura::application::process_init())
@@ -8800,7 +8800,7 @@ namespace aura
    //}
 
 
-   //::e_status application::init_instance()
+   //void application::init_instance()
    //{
 
    //   if (!::aura::application::init_instance())
@@ -8824,7 +8824,7 @@ namespace aura
    //}
 
 
-   ::e_status     application::create_impact_system()
+   void     application::create_impact_system()
    {
 
       return ::success;
@@ -8967,7 +8967,7 @@ namespace aura
    //}
 
 
-   ::e_status application::on_thread_on_idle(::thread* pthread, ::i32 lCount)
+   void application::on_thread_on_idle(::thread* pthread, ::i32 lCount)
    {
 
      if (lCount <= 0)

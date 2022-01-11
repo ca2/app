@@ -44,7 +44,7 @@ imaging::~imaging()
 }
 
 
-::e_status imaging::initialize(::object * pobject)
+void imaging::initialize(::object * pobject)
 {
 
    auto estatus = ::object::initialize(pobject);
@@ -2009,7 +2009,7 @@ bool imaging::clip_color_blend(::draw2d::graphics * pgraphics,const ::point_i32 
 }
 
 
-::e_status imaging::trait(::image * pimage, ::i64 iTrait)
+void imaging::trait(::image * pimage, ::i64 iTrait)
 {
 
    return pimage->transform((enum_image)iTrait);
@@ -6976,7 +6976,7 @@ void imaging::AlphaTextOut(::draw2d::graphics *pgraphics,i32 left,i32 top, const
 
 //#ifndef __APPLE__
 //
-// ::e_status imaging::_load_image(::context_image * pobject, ::image * pimageParam, const ::payload & payloadFile, bool bSync, bool bCreateHelperMaps)
+// void imaging::_load_image(::context_image * pobject, ::image * pimageParam, const ::payload & payloadFile, bool bSync, bool bCreateHelperMaps)
 // {
 //
 //   return ::error_failed;
@@ -6984,7 +6984,7 @@ void imaging::AlphaTextOut(::draw2d::graphics *pgraphics,i32 left,i32 top, const
 // }
 //
 //
-// ::e_status imaging::_load_image(::image * pimage, __pointer(image_frame_array) & pframea, ::memory_pointer pmemory)
+// void imaging::_load_image(::image * pimage, __pointer(image_frame_array) & pframea, ::memory_pointer pmemory)
 // {
 //
 //    return ::error_failed;
@@ -6992,7 +6992,7 @@ void imaging::AlphaTextOut(::draw2d::graphics *pgraphics,i32 left,i32 top, const
 // }
 //
 //
-// ::e_status imaging::save_image(memory & memory, const ::image * pimage, ::save_image * psaveimage)
+// void imaging::save_image(memory & memory, const ::image * pimage, ::save_image * psaveimage)
 // {
 //
 //    return ::error_failed;
@@ -7084,7 +7084,7 @@ void imaging::free_work_image(::image * pimage)
 }
 
 
-::e_status context_image::load_svg(::image * pimage, memory & memory)
+void context_image::load_svg(::image * pimage, memory & memory)
 {
 
    const char * psz = (const char *)memory.get_data();

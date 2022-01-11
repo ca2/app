@@ -401,14 +401,36 @@ namespace sockets
 
       }
 
-      string strOrigin;
+      string strReferer;
       
-      strOrigin = inheader("origin");
+      strReferer = inheader("referer");
 
-      if (strOrigin.ends_ci("/ca2.software") && strOrigin.ends_ci(".ca2.software"))
+      string strServer = m_psystem->url()->get_server(strReferer);
+
+      string_array straAllowedOrigin;
+
+      straAllowedOrigin.add("ca2.software");
+      straAllowedOrigin.add("camilothomas.com");
+
+      bool bAllowedOrigin = false;
+
+      for (auto& strAllowedOrigin : straAllowedOrigin)
       {
 
-         //string strOrigin = "*.ca2.software";
+         if (strServer.ends_ci("." + strAllowedOrigin) || strServer.compare_ci(strAllowedOrigin) == 0)
+         {
+
+            bAllowedOrigin = true;
+            break;
+
+         }
+
+      }
+
+      if (bAllowedOrigin)
+      {
+
+         string strOrigin = strServer;
 
          if (strExtension == "ttf")
          {

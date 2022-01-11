@@ -18,7 +18,7 @@ public:
 
    }
 
-   virtual ::e_status add_event_handler(::event_handler * phandler, bool bPriority = false);
+   virtual void add_event_handler(::event_handler * phandler, bool bPriority = false);
 
    virtual void route_event(::event * pevent);
 

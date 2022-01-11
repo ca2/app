@@ -104,7 +104,7 @@ namespace hotplugin
    }
 
 
-   ::e_status plugin::destroy()
+   void plugin::destroy()
    {
 
       ::user::interaction::destroy();

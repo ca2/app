@@ -557,7 +557,7 @@ namespace user
    //}
 
 
-   //::e_status interaction_child::set_window_long_ptr(i32 nIndex, iptr lValue)
+   //void interaction_child::set_window_long_ptr(i32 nIndex, iptr lValue)
    //{
 
    //   auto & l = m_longptr[nIndex];

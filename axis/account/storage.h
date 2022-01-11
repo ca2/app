@@ -17,7 +17,7 @@ namespace account
    public:
       
       
-      virtual ::e_status     get(string strKey, string strToken, string & strValue) = 0;
+      virtual void     get(string strKey, string strToken, string & strValue) = 0;
       
       virtual bool set(string strKey, string strToken, string strValue) = 0;
       

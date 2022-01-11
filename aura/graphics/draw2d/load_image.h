@@ -17,7 +17,7 @@ public:
    ~load_image() override;
 
 
-   ::e_status run() override;
+   void run() override;
 
 
 };

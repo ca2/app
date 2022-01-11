@@ -8,14 +8,14 @@ namespace aura
 {
 
    
-   ::e_status system::message_box(const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, const future & process)
+   void system::message_box(const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, const future & process)
    {
 
       return os_message_box(pszMessage, pszTitle, emessagebox, process);
 
    }
 
-   ::e_status system::message_box_timeout(const ::string & pszMessage, const ::string & pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, const future & process)
+   void system::message_box_timeout(const ::string & pszMessage, const ::string & pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, const future & process)
    {
 
       return os_message_box(pszMessage, pszTitle, emessagebox, process);
@@ -23,7 +23,7 @@ namespace aura
    }
 
 
-   ::e_status system::os_application_system_run()
+   void system::os_application_system_run()
    {
 
       //auto estatus = begin_synch();

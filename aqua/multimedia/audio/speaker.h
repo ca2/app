@@ -18,13 +18,13 @@ namespace text_to_speech
       ~speaker() override;
 
 
-      virtual ::e_status speak(const ::string & strText);
+      virtual void speak(const ::string & strText);
 
-      virtual ::e_status speak(const ::string & strLang, const ::string & strText, bool bSynch = false);
+      virtual void speak(const ::string & strLang, const ::string & strText, bool bSynch = false);
 
-      virtual ::e_status speak(const ::string & strAttributes, const ::string & strLang, const ::string & strText, bool bSynch = false);
+      virtual void speak(const ::string & strAttributes, const ::string & strLang, const ::string & strText, bool bSynch = false);
 
-      virtual ::e_status stop(string strLang);
+      virtual void stop(string strLang);
 
       virtual bool is_speaking(string strLang);
 

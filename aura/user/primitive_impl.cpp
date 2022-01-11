@@ -144,7 +144,7 @@ namespace user
    }
 
 
-   ::e_status primitive_impl::destroy()
+   void primitive_impl::destroy()
    {
 
       ::user::primitive::destroy();
@@ -310,7 +310,7 @@ namespace user
    }
 
 
-   //::e_status primitive_impl::main_async(const promise::routine & routine, enum_priority epriority)
+   //void primitive_impl::main_async(const promise::routine & routine, enum_priority epriority)
    //{
 
    //   if (!m_puserinteraction)
@@ -570,7 +570,7 @@ namespace user
 //   }
 //
 //
-//   ::e_status primitive_impl::set_window_long_ptr(i32 nIndex, iptr lValue)
+//   void primitive_impl::set_window_long_ptr(i32 nIndex, iptr lValue)
 //   {
 //
 ////      if (nIndex == GWL_STYLE)
@@ -1375,7 +1375,7 @@ namespace user
    }
 
 
-   ::e_status primitive_impl::set_keyboard_focus(::user::primitive * pprimitive)
+   void primitive_impl::set_keyboard_focus(::user::primitive * pprimitive)
    {
 
       __UNREFERENCED_PARAMETER(pprimitive);
@@ -1385,7 +1385,7 @@ namespace user
    }
 
 
-   ::e_status primitive_impl::erase_keyboard_focus(::user::primitive * pprimitive)
+   void primitive_impl::erase_keyboard_focus(::user::primitive * pprimitive)
    {
 
       __UNREFERENCED_PARAMETER(pprimitive);
@@ -1395,7 +1395,7 @@ namespace user
    }
 
 
-   ::e_status primitive_impl::clear_keyboard_focus()
+   void primitive_impl::clear_keyboard_focus()
    {
 
       return ::error_failed;
@@ -1403,7 +1403,7 @@ namespace user
    }
 
 
-   ::e_status primitive_impl::impl_set_keyboard_focus(::user::primitive * pprimitive)
+   void primitive_impl::impl_set_keyboard_focus(::user::primitive * pprimitive)
    {
 
       return ::error_failed;
@@ -1411,7 +1411,7 @@ namespace user
    }
 
 
-   ::e_status primitive_impl::impl_erase_keyboard_focus(::user::primitive * pprimitive)
+   void primitive_impl::impl_erase_keyboard_focus(::user::primitive * pprimitive)
    {
 
       return ::error_failed;
@@ -1419,7 +1419,7 @@ namespace user
    }
 
 
-   ::e_status primitive_impl::impl_clear_keyboard_focus()
+   void primitive_impl::impl_clear_keyboard_focus()
    {
 
       return ::error_failed;
@@ -1773,7 +1773,7 @@ namespace user
    }
 
 
-   ::e_status primitive_impl::show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd)
+   void primitive_impl::show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd)
    {
 
       return error_interface_only;
@@ -1781,7 +1781,7 @@ namespace user
    }
 
 
-   ::e_status primitive_impl::hide_software_keyboard(::user::primitive * pprimitive)
+   void primitive_impl::hide_software_keyboard(::user::primitive * pprimitive)
    {
 
       return error_interface_only;

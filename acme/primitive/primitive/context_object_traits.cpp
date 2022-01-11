@@ -1,10 +1,10 @@
 #include "framework.h"
 
 
-//::e_status matter::call(::trait & trait)
+//void matter::call(::trait & trait)
 //{
 //
-//   ::e_status estatus = error_failed;
+//   void estatus = error_failed;
 //
 //   try
 //   {
@@ -30,7 +30,7 @@
 //}
 //
 //
-//::e_status matter::run(::trait &)
+//void matter::run(::trait &)
 //{
 //
 //   return ::success;

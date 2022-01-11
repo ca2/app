@@ -26,8 +26,8 @@ struct CLASS_DECL_ACME matter :
    virtual ~matter() { }
 
 
-   virtual ::e_status     initialize(::matter * pobject) override;
-   virtual ::e_status     destroy() override;
+   virtual void     initialize(::matter * pobject) override;
+   virtual void     destroy() override;
 
 
    virtual void defer_create_mutex();
@@ -67,9 +67,9 @@ struct CLASS_DECL_ACME matter :
 
 
 
-   virtual ::e_status     call() override;
+   virtual void     call() override;
 
-   virtual ::e_status     call(::trait & trait) override;
+   virtual void     call(::trait & trait) override;
 
 
    inline bool is_storing() const { return m_eobject & object_storing; }
@@ -142,7 +142,7 @@ struct CLASS_DECL_ACME matter :
 
    //virtual stream & call_read(const ::stream & stream) { return read((::stream &)(stream)); }
 
-   //::e_status destroy() override;
+   //void destroy() override;
 
    //virtual void call();
 
@@ -219,76 +219,76 @@ struct CLASS_DECL_ACME matter :
    inline ::image_pointer matter_image(const ::string & strMatter, bool bCache = true, bool bSync = false);
 
 
-   ::e_status     create(::image_pointer & pimage);
-   ::e_status     compose(__composite(::image) & pimage);
+   void     create(::image_pointer & pimage);
+   void     compose(__composite(::image) & pimage);
 
-   ::e_status     create(::image_pointer & pimage, const ::size & size, ::u64 u64Create = OK, int iGoodStride = -1, bool bPreserve = false);
-   ::e_status     compose(__composite(::image) & pimage, const ::size & size, ::u64 u64Create = OK, int iGoodStride = -1, bool bPreserve = false);
+   void     create(::image_pointer & pimage, const ::size & size, ::u64 u64Create = OK, int iGoodStride = -1, bool bPreserve = false);
+   void     compose(__composite(::image) & pimage, const ::size & size, ::u64 u64Create = OK, int iGoodStride = -1, bool bPreserve = false);
 
 
    template < typename TYPE, typename PRED >
-   inline ::e_status     predicate_create(__pointer(TYPE) & p, PRED predNew);
+   inline void     predicate_create(__pointer(TYPE) & p, PRED predNew);
 
-   inline ::e_status     preserve_resize(::image_pointer & pimage, const ::size & size, ::u64 u64Create = OK, int iGoodStride = -1)
+   inline void     preserve_resize(::image_pointer & pimage, const ::size & size, ::u64 u64Create = OK, int iGoodStride = -1)
    {
       return create(pimage, size, uidCreate, iGoodStride, true);
    }
 
 
-   inline ::e_status     preserve_compose(__composite(::image) & pimage, const ::size & size, ::u64 u64Create = OK, int iGoodStride = -1)
+   inline void     preserve_compose(__composite(::image) & pimage, const ::size & size, ::u64 u64Create = OK, int iGoodStride = -1)
    {
       return compose(pimage, size, uidCreate, iGoodStride, true);
    }
 
    template < typename TYPE, typename PRED >
-   inline ::e_status     predicate_compose(__composite(TYPE) & p, PRED predNew);
+   inline void     predicate_compose(__composite(TYPE) & p, PRED predNew);
 
    template < typename TYPE >
-   inline ::e_status     compose(__composite(TYPE) & p);
+   inline void     compose(__composite(TYPE) & p);
 
    template < typename TYPE >
-   inline ::e_status     compose(__composite(TYPE) & p, const ::id & id);
+   inline void     compose(__composite(TYPE) & p, const ::id & id);
 
    template < typename TYPE >
-   inline ::e_status     compose_new(__composite(TYPE) & p);
+   inline void     compose_new(__composite(TYPE) & p);
 
 
    //template < typename TYPE, typename PRED >
-   //inline ::e_status     predicate_create(__pointer(TYPE) & p, PRED predNew);
+   //inline void     predicate_create(__pointer(TYPE) & p, PRED predNew);
 
    template < typename TYPE >
-   inline ::e_status     create(__pointer(TYPE) & p);
+   inline void     create(__pointer(TYPE) & p);
 
    template < typename TYPE >
-   inline ::e_status     create(__pointer(TYPE) & p, const ::id & id);
+   inline void     create(__pointer(TYPE) & p, const ::id & id);
 
    //template < typename TYPE >
-   //inline ::e_status     create_new(__pointer(TYPE) & p);
+   //inline void     create_new(__pointer(TYPE) & p);
 
    //template < typename TYPE, typename PRED >
-   //inline ::e_status     predicate_create(TYPE *& p, PRED predNew);
+   //inline void     predicate_create(TYPE *& p, PRED predNew);
 
    //template < typename TYPE >
-   //inline ::e_status     realize(TYPE *& p);
+   //inline void     realize(TYPE *& p);
 
    //template < typename TYPE >
-   //inline ::e_status     realize(TYPE *& p, const ::id & id);
+   //inline void     realize(TYPE *& p, const ::id & id);
 
    //template < typename TYPE >
-   //inline ::e_status     compose(TYPE *& p);
+   //inline void     compose(TYPE *& p);
 
    template < typename TYPE >
-   inline ::e_status     _compose(__composite(TYPE) & p);
+   inline void     _compose(__composite(TYPE) & p);
 
    //template < typename TYPE >
-   //inline ::e_status     destroy(TYPE * & p);
+   //inline void     destroy(TYPE * & p);
 
    using matter::release;
 
    template < typename TYPE >
-   inline ::e_status     release(__composite(TYPE) & p);
+   inline void     release(__composite(TYPE) & p);
 
    template < typename TYPE >
-   inline ::e_status     release(__pointer(TYPE) & p);
+   inline void     release(__pointer(TYPE) & p);
 
 };

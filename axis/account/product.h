@@ -18,8 +18,8 @@ namespace account
       
       ::datetime::time     m_timeRequest;
       string               m_strAppId;
-      ::e_status                 m_estatus;
-      ::e_status                 m_estatusLicensing;
+      void                 m_estatus;
+      void                 m_estatusLicensing;
       ::datetime::time     m_timeValid;
       //bool                 m_bInteractive;
       string               m_strGateway;

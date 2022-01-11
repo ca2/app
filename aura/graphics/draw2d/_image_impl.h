@@ -38,7 +38,7 @@
 //}
 //
 //
-//inline ::e_status object::__compose(__composite(::image) & pimage)
+//inline void object::__compose(__composite(::image) & pimage)
 //{
 //
 //   return __compose < ::image >(pimage);
@@ -46,7 +46,7 @@
 //}
 //
 //
-//inline ::e_status object::__compose(__composite(::image) & pimage, ::image * pimageSource)
+//inline void object::__compose(__composite(::image) & pimage, ::image * pimageSource)
 //{
 //
 //   if (pimageSource)
@@ -61,7 +61,7 @@
 //}
 
 
-//inline ::e_status object::__compose(__composite(::image) & pimage, const ::size_i32 & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
+//inline void object::__compose(__composite(::image) & pimage, const ::size_i32 & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
 //{
 //
 //   __compose(pimage);
@@ -78,7 +78,7 @@
 //}
 
 
-//inline ::e_status object::__internal_preserve_ownership(__composite(::image) & pimage, const ::size_i32 & size, ::eobject eobjectCreate, int iGoodStride)
+//inline void object::__internal_preserve_ownership(__composite(::image) & pimage, const ::size_i32 & size, ::eobject eobjectCreate, int iGoodStride)
 //{
 //
 //   return __compose(pimage, size, uidCreate, iGoodStride, true);
@@ -86,7 +86,7 @@
 //}
 
 
-//inline ::e_status object::__construct(::image_pointer & pimage)
+//inline void object::__construct(::image_pointer & pimage)
 //{
 //
 //   m_estatus = ::success;
@@ -117,7 +117,7 @@
 //
 
 //template < typename IMAGE_SOURCE >
-//inline ::e_status object::__construct(::image_pointer & pimage, IMAGE_SOURCE pimageSource)
+//inline void object::__construct(::image_pointer & pimage, IMAGE_SOURCE pimageSource)
 //{
 //
 //   m_estatus = __construct(pimage);
@@ -139,7 +139,7 @@
 //}
 
 
-//inline ::e_status object::__construct(::image_pointer & pimage, const ::size_i32 & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
+//inline void object::__construct(::image_pointer & pimage, const ::size_i32 & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
 //{
 //
 //   // DIFFERENT __construct behaviour (for image)
@@ -164,7 +164,7 @@
 //}
 
 
-//inline ::e_status object::__preserve(::image_pointer & pimage, const ::size_i32 & size, ::eobject eobjectCreate, int iGoodStride)
+//inline void object::__preserve(::image_pointer & pimage, const ::size_i32 & size, ::eobject eobjectCreate, int iGoodStride)
 //{
 //
 //   return __construct(pimage, size, eobjectCreate, iGoodStride, true);
@@ -228,7 +228,7 @@
 
 
 // template < typename COMPOSER >
-// inline ::e_status __compose(COMPOSER && pcomposer, __composite(::image) & pimage)
+// inline void __compose(COMPOSER && pcomposer, __composite(::image) & pimage)
 // {
 
 //    //if (((uptr)&pimage) < (uptr)pcomposer || ((uptr)&pimage) >= ((uptr)pcomposer) + sizeof(COMPOSER))
@@ -244,7 +244,7 @@
 
 
 // template < typename COMPOSER >
-// inline ::e_status __compose(COMPOSER && pcomposer, __composite(::image) & pimage, ::image * pimageSource)
+// inline void __compose(COMPOSER && pcomposer, __composite(::image) & pimage, ::image * pimageSource)
 // {
 
 //    return pcomposer->__compose(pimage, pimageSource);
@@ -254,7 +254,7 @@
 
 
 // template < typename COMPOSER >
-// inline ::e_status __compose(COMPOSER && pcomposer, __composite(::image) & pimage, const ::size_i32 & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
+// inline void __compose(COMPOSER && pcomposer, __composite(::image) & pimage, const ::size_i32 & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
 // {
 
 //    auto estatus = __compose(pcomposer, pimage);
@@ -279,7 +279,7 @@
 
 
 // template < typename COMPOSER >
-// inline ::e_status __preserve(COMPOSER && pcomposer, __composite(::image) & pimage, const ::size_i32 & size, ::eobject eobjectCreate, int iGoodStride)
+// inline void __preserve(COMPOSER && pcomposer, __composite(::image) & pimage, const ::size_i32 & size, ::eobject eobjectCreate, int iGoodStride)
 // {
 
 //    //if (((uptr)&pimage) < (uptr)pcomposer || ((uptr)&pimage) >= ((uptr)pcomposer) + sizeof(COMPOSER))
@@ -294,7 +294,7 @@
 // }
 
 
-//inline ::e_status __construct(::image_pointer & pimage)
+//inline void __construct(::image_pointer & pimage)
 //{
 //
 //   if (!pimage)
@@ -309,7 +309,7 @@
 //}
 
 //
-//inline ::e_status __construct(::image_pointer & pimage, ::image * pimageSource)
+//inline void __construct(::image_pointer & pimage, ::image * pimageSource)
 //{
 //
 //   auto estatus = __construct(pimage);
@@ -343,7 +343,7 @@
 //}
 
 //
-//inline ::e_status __construct(::image_pointer & pimage, const ::size_i32 & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
+//inline void __construct(::image_pointer & pimage, const ::size_i32 & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
 //{
 //
 //   auto estatus = __construct(pimage);
@@ -367,7 +367,7 @@
 //}
 //
 //
-//inline ::e_status __preserve_construct(::image_pointer & pimage, const ::size_i32 & size, ::eobject eobjectCreate, int iGoodStride)
+//inline void __preserve_construct(::image_pointer & pimage, const ::size_i32 & size, ::eobject eobjectCreate, int iGoodStride)
 //{
 //
 //   return __construct(pimage, size, eobjectCreate, iGoodStride, true);

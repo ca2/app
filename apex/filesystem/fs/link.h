@@ -22,7 +22,7 @@ namespace fs
       link();
       virtual ~link();
 
-      virtual ::e_status initialize(::object * pobject) override;
+      virtual void initialize(::object * pobject) override;
 
       virtual ::file::listing & ls(::file::listing & listing) override;
 

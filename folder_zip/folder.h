@@ -25,24 +25,24 @@ namespace folder_zip
       ~folder() override;
 
 
-      ::e_status initialize(::object* pobject) override;
+      void initialize(::object* pobject) override;
 
 
-      ::e_status open_for_reading(file_pointer pfile, int iBufferLevel = 2) override;
+      void open_for_reading(file_pointer pfile, int iBufferLevel = 2) override;
 
       bool locate(const char* pszFileName) override;
 
       bool has_sub_folder(const char* pszDir = nullptr) override;
 
-      ::e_status extract(memory& m, const char* pszFile = nullptr) override;
+      void extract(memory& m, const char* pszFile = nullptr) override;
 
       bool is_compressed(const char* pszItem = nullptr) override;
 
-      ::file_transport get_file(const char* pszFile = nullptr) override;
+      ::file_pointer get_file(const char* pszFile = nullptr) override;
 
-      ::e_status extract_all(const char* pszTargetDir, ::file::patha* ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat) override;
+      void extract_all(const char* pszTargetDir, ::file::patha* ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat) override;
 
-      ::e_status open_for_writing(file_pointer pfile) override;
+      void open_for_writing(file_pointer pfile) override;
 
 
       void add_file(const ::file::path & pathRelative, ::file::file * pfile) override;

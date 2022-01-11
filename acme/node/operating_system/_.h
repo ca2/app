@@ -142,15 +142,15 @@ CLASS_DECL_ACME locale_t get_c_locale();
 
 CLASS_DECL_ACME enum_dialog_result message_box_for_console(const char* psz, const char* pszTitle, const ::enum_message_box& emessagebox);
 
-//CLASS_DECL_ACME ::e_status is_directory(const char * path);
+//CLASS_DECL_ACME void is_directory(const char * path);
 
-//CLASS_DECL_ACME ::e_status file_exists(const char * path);
+//CLASS_DECL_ACME void file_exists(const char * path);
 
-//CLASS_DECL_ACME ::e_status create_directory_path(const char * path);
+//CLASS_DECL_ACME void create_directory_path(const char * path);
 
-//CLASS_DECL_ACME ::e_status create_directory(const char * path);
+//CLASS_DECL_ACME void create_directory(const char * path);
 
-//CLASS_DECL_ACME ::e_status file_delete(const char * path);
+//CLASS_DECL_ACME void file_delete(const char * path);
 
 
 enum enum_command_system
@@ -165,7 +165,7 @@ enum enum_command_system
 #include "acme/primitive/duration/_.h"
 
 
-CLASS_DECL_ACME ::e_status command_system(string & strOutput, string & strError, int & iExitCode, const char* psz, enum_command_system ecommandsystem = e_command_system_none, const ::duration & durationTimeout = ::duration::infinite());
+CLASS_DECL_ACME void command_system(string & strOutput, string & strError, int & iExitCode, const char* psz, enum_command_system ecommandsystem = e_command_system_none, const ::duration & durationTimeout = ::duration::infinite());
 
 
 

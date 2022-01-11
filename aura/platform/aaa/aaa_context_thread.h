@@ -37,7 +37,7 @@ namespace aura
 
       string command_line_text() const;
 
-      virtual ::e_status destroy() override;
+      virtual void destroy() override;
 
 
    };

@@ -46,7 +46,7 @@ namespace windowing
    }
 
 
-   ::e_status cursor_manager::destroy()
+   void cursor_manager::destroy()
    {
 
       for (auto & pcursor : m_cursormap.values())
@@ -250,7 +250,7 @@ namespace windowing
    }
    
    
-   ::e_status cursor_manager::set_cursor_set_from_matter(const ::file::path & pathMatter)
+   void cursor_manager::set_cursor_set_from_matter(const ::file::path & pathMatter)
    {
 
       // "arrow.png" is a troll/bait for getting the right path of the cursor file, then the directory where found
@@ -266,7 +266,7 @@ namespace windowing
    }
 
 
-   ::e_status cursor_manager::set_cursor_set_from_dir(const ::file::path & pathDir, bool bFromCache)
+   void cursor_manager::set_cursor_set_from_dir(const ::file::path & pathDir, bool bFromCache)
    {
 
       ::count countSuccess = 0;
@@ -490,7 +490,7 @@ namespace windowing
    }
 
 
-   ::e_status cursor_manager::set_cursor_set_system_default()
+   void cursor_manager::set_cursor_set_system_default()
    {
 
 

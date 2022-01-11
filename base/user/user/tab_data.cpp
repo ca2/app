@@ -26,7 +26,7 @@ namespace user
    }
 
 
-   ::e_status tab_data::initialize(::object * pobject)
+   void tab_data::initialize(::object * pobject)
    {
 
       auto estatus = ::data::data::initialize(pobject);

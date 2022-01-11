@@ -546,7 +546,7 @@ namespace user
    }
 
    
-   ::e_status interaction_impl::native_create_host()
+   void interaction_impl::native_create_host()
    {
 
       auto pwindowMain = m_psystem->m_paurasystem->m_pwindowMain;
@@ -3123,7 +3123,7 @@ namespace user
    //}
 
 
-   ::e_status interaction_impl::set_mouse_cursor(::windowing::cursor * pcursor)
+   void interaction_impl::set_mouse_cursor(::windowing::cursor * pcursor)
    {
 
       if (::is_null(m_pwindow))
@@ -3155,7 +3155,7 @@ namespace user
    }
 
 
-   //::e_status interaction_impl::set_mouse_cursor(enum_cursor ecursor)
+   //void interaction_impl::set_mouse_cursor(enum_cursor ecursor)
    //{
 
    //   auto psession = get_session();
@@ -4326,7 +4326,7 @@ namespace user
    }
 
 
-   ::e_status interaction_impl::set_bitmap_source(const string& strBitmapSource)
+   void interaction_impl::set_bitmap_source(const string& strBitmapSource)
    {
 
       m_strBitmapSource = strBitmapSource;
@@ -4343,7 +4343,7 @@ namespace user
    }
 
 
-   ::e_status interaction_impl::clear_bitmap_source()
+   void interaction_impl::clear_bitmap_source()
    {
 
       m_strBitmapSource.Empty();
@@ -4360,7 +4360,7 @@ namespace user
    }
 
 
-   ::e_status interaction_impl::update_graphics_resources()
+   void interaction_impl::update_graphics_resources()
    {
 
       single_lock synchronouslock(mutex());
@@ -4391,7 +4391,7 @@ namespace user
    }
 
 
-   ::e_status interaction_impl::interaction_post(const ::routine & routine)
+   void interaction_impl::interaction_post(const ::routine & routine)
    {
 
       auto puserinteraction = m_puserinteraction;
@@ -4580,7 +4580,7 @@ namespace user
    }
 
 
-   ::e_status interaction_impl::set_finish(::object * pcontextobjectFinish)
+   void interaction_impl::set_finish(::object * pcontextobjectFinish)
    {
 
       if(!is_destroying())
@@ -4708,7 +4708,7 @@ namespace user
    //}
 
 
-   ::e_status interaction_impl::destroy()
+   void interaction_impl::destroy()
    {
 
       return ::user::primitive::destroy();
@@ -4851,7 +4851,7 @@ namespace user
    }
 
 
-   //::e_status interaction_impl::impl_set_keyboard_focus(::user::primitive * pprimitiveFocusNew)
+   //void interaction_impl::impl_set_keyboard_focus(::user::primitive * pprimitiveFocusNew)
    //{
 
    //   ::user::primitive * pprimitiveFocusOld = m_pprimitiveFocus;
@@ -4920,7 +4920,7 @@ namespace user
    //}
 
 
-   //::e_status interaction_impl::impl_erase_keyboard_focus(::user::primitive * pprimitiveFocusRemove)
+   //void interaction_impl::impl_erase_keyboard_focus(::user::primitive * pprimitiveFocusRemove)
    //{
 
    //   if (::is_null(pprimitiveFocusRemove))
@@ -4969,7 +4969,7 @@ namespace user
    //}
 
 
-   //::e_status interaction_impl::impl_clear_keyboard_focus()
+   //void interaction_impl::impl_clear_keyboard_focus()
    //{
 
    //   ::user::primitive * pprimitiveFocusKillFocus = m_pprimitiveFocus;
@@ -5004,7 +5004,7 @@ namespace user
    //}
 
 
-   //::e_status interaction_impl::set_keyboard_focus(::user::primitive * pprimitive)
+   //void interaction_impl::set_keyboard_focus(::user::primitive * pprimitive)
    //{
 
    //   if(::is_null(pprimitive))
@@ -5039,7 +5039,7 @@ namespace user
    //}
 
 
-   //::e_status interaction_impl::erase_keyboard_focus(::user::primitive * pprimitive)
+   //void interaction_impl::erase_keyboard_focus(::user::primitive * pprimitive)
    //{
 
    //   if (pprimitive == nullptr)
@@ -5083,7 +5083,7 @@ namespace user
    //}
 
 
-   //::e_status interaction_impl::clear_keyboard_focus()
+   //void interaction_impl::clear_keyboard_focus()
    //{
 
    //   auto puserinteraction = m_puserinteraction;
@@ -6006,7 +6006,7 @@ namespace user
    }
 
 
-   ::e_status interaction_impl::show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd)
+   void interaction_impl::show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd)
    {
 
       return error_interface_only;
@@ -6014,7 +6014,7 @@ namespace user
    }
 
 
-   ::e_status interaction_impl::hide_software_keyboard(::user::primitive * pprimitive)
+   void interaction_impl::hide_software_keyboard(::user::primitive * pprimitive)
    {
 
       return error_interface_only;
@@ -6422,7 +6422,7 @@ namespace user
    }
 
    
-   ::e_status interaction_impl::set_icon(::windowing::icon*)
+   void interaction_impl::set_icon(::windowing::icon*)
    {
 
       return ::success;
@@ -6438,7 +6438,7 @@ namespace user
    }
 
 
-   ::e_status interaction_impl::set_tool_window(bool bSet)
+   void interaction_impl::set_tool_window(bool bSet)
    {
 
       return m_pwindow->set_tool_window(bSet);

@@ -32,7 +32,7 @@ void dump(dump_context & dumpcontext) const override                            
 }                                                                                      \
                                                                                        \
                                                                                        \
-::e_status on_initialize_object() override                                             \
+void on_initialize_object() override                                             \
 {                                                                                      \
                                                                                        \
    m_papplication = m_pcontext ? m_pcontext->m_papexapplication : nullptr;             \
@@ -127,7 +127,7 @@ public:
    }
 
 
-   ::e_status initialize(::object* pobject) override
+   void initialize(::object* pobject) override
    {
 
       auto estatus = BASE1::initialize(pobject);

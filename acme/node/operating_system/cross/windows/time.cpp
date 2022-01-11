@@ -1138,7 +1138,7 @@ CLASS_DECL_ACME void GetSystemTime(system_time_t * systime)
 
 
 
-   ::e_status get_system_time(system_time_t * psystemtime)
+   void get_system_time(system_time_t * psystemtime)
    {
 
       GetSystemTime(psystemtime);
@@ -1156,7 +1156,7 @@ CLASS_DECL_ACME void GetSystemTime(system_time_t * systime)
    }
 
 
-   ::e_status system_time_to_time(time_t * ptime, const system_time_t * psystemtime, i32 nDST)
+   void system_time_to_time(time_t * ptime, const system_time_t * psystemtime, i32 nDST)
    {
 
       struct tm tm;
@@ -1177,7 +1177,7 @@ CLASS_DECL_ACME void GetSystemTime(system_time_t * systime)
    }
 
 
-//   ::e_status node::system_time_to_tm(tm * ptm, const system_time_t * psystemtime)
+//   void node::system_time_to_tm(tm * ptm, const system_time_t * psystemtime)
 //   {
 //
 //      ptm->tm_hour   = psystemtime->wHour;
@@ -1192,7 +1192,7 @@ CLASS_DECL_ACME void GetSystemTime(system_time_t * systime)
 //   }
 
 
-//   ::e_status node::tm_to_system_time(system_time_t * psystemtime, const tm * ptm)
+//   void node::tm_to_system_time(system_time_t * psystemtime, const tm * ptm)
 //   {
 //
 //      psystemtime->wHour      = ptm->tm_hour    ;
@@ -1207,7 +1207,7 @@ CLASS_DECL_ACME void GetSystemTime(system_time_t * systime)
 //   }
 
 
-   ::e_status time_to_system_time(system_time_t * psystemtime, const time_t * ptime)
+   void time_to_system_time(system_time_t * psystemtime, const time_t * ptime)
    {
 
       struct tm tm;
@@ -1230,7 +1230,7 @@ CLASS_DECL_ACME void GetSystemTime(system_time_t * systime)
    }
 
 
-   ::e_status system_time_to_file_time(filetime_t * pfiletime, const system_time_t * psystemtime)
+   void system_time_to_file_time(filetime_t * pfiletime, const system_time_t * psystemtime)
    {
 
       if(!SystemTimeToFileTime(psystemtime, pfiletime))
@@ -1245,7 +1245,7 @@ CLASS_DECL_ACME void GetSystemTime(system_time_t * systime)
    }
 
 
-   ::e_status file_time_to_system_time(system_time_t * psystemtime, const filetime_t * pfiletime)
+   void file_time_to_system_time(system_time_t * psystemtime, const filetime_t * pfiletime)
    {
 
       if(!FileTimeToSystemTime(pfiletime, psystemtime))
@@ -1260,7 +1260,7 @@ CLASS_DECL_ACME void GetSystemTime(system_time_t * systime)
    }
 
 
-   ::e_status file_time_to_local_file_time(filetime_t * pfiletimeLocal, const filetime_t * pfiletime)
+   void file_time_to_local_file_time(filetime_t * pfiletimeLocal, const filetime_t * pfiletime)
    {
 
       if(!FileTimeToLocalFileTime(pfiletime, pfiletimeLocal))

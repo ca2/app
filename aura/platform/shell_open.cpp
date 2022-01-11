@@ -15,7 +15,7 @@ shell_open::~shell_open()
 }
 
 
-::e_status shell_open::initialize(::object * pobject)
+void shell_open::initialize(::object * pobject)
 {
 
    auto estatus = ::object::initialize(pobject);
@@ -32,7 +32,7 @@ shell_open::~shell_open()
 }
 
 
-::e_status shell_open::initialize_shell_open()
+void shell_open::initialize_shell_open()
 {
 
    return ::success;

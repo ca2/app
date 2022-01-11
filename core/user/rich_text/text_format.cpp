@@ -10,7 +10,7 @@ namespace user
    {
 
 
-      ::e_status     text_format::text_format_load(data * pdata, ::file::file * pfileIn)
+      void     text_format::text_format_load(data * pdata, ::file::file * pfileIn)
       {
 
          return error_not_implemented;
@@ -18,7 +18,7 @@ namespace user
       }
 
 
-      ::e_status     text_format::text_format_save(::file::file * pfileOut, data * pdata)
+      void     text_format::text_format_save(::file::file * pfileOut, data * pdata)
       {
 
          return error_not_implemented;

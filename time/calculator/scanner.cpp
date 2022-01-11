@@ -2,6 +2,8 @@
  * This code can be freely copied and modified.
  */
 #include  "framework.h"
+#include  "acme/primitive/text/context.h"
+
 
 namespace datetime
 {
@@ -780,7 +782,7 @@ namespace datetime
    }
 
 
-   ::e_status scanner::initialize_datetime_scanner(::text::context* ptextcontext)
+   void scanner::initialize_datetime_scanner(::text::context* ptextcontext)
    {
 
       auto estatus = ::object::initialize(ptextcontext);

@@ -182,7 +182,7 @@ namespace user
 
             auto& result = psystem->m_result;
 
-            ::e_status estatus;
+            void estatus;
 
             if(!result.get_exit_status(estatus))
             {

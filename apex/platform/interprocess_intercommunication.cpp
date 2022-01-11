@@ -24,7 +24,7 @@ interprocess_intercommunication::~interprocess_intercommunication()
 }
 
 
-::e_status interprocess_intercommunication::initialize_interprocess_communication(::object * pobject, const ::string & strApp)
+void interprocess_intercommunication::initialize_interprocess_communication(::object * pobject, const ::string & strApp)
 {
 
    auto estatus = ::object::initialize(pobject);
@@ -91,7 +91,7 @@ interprocess_intercommunication::~interprocess_intercommunication()
 }
 
 
-::e_status interprocess_intercommunication::destroy()
+void interprocess_intercommunication::destroy()
 {
 
    ::object::destroy();

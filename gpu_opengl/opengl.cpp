@@ -65,10 +65,10 @@ namespace opengl
 #endif // WINDOWS_DESKTOP
 
 
-   ::e_status opengl::initialize(::object * pobject)
+   void opengl::initialize(::object * pobject)
    {
 
-      ::e_status estatus = ::object::initialize(pobject);
+      void estatus = ::object::initialize(pobject);
 
       if (!estatus)
       {
@@ -148,7 +148,7 @@ namespace opengl
    }
 
 
-   ::e_status opengl::defer_init_glew()
+   void opengl::defer_init_glew()
    {
 
       if (!m_bGlewInit)

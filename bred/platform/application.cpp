@@ -24,7 +24,7 @@ namespace bred
    }
 
 
-   ::e_status application::initialize(::object * pobject)
+   void application::initialize(::object * pobject)
    {
 
       auto estatus = ::application::initialize(pobject);

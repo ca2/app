@@ -108,7 +108,7 @@ namespace universal_windows
 
    }
 
-   ::e_status copydesk::initialize(::object * pobject)
+   void copydesk::initialize(::object * pobject)
    {
 
       auto estatus = ::user::copydesk::initialize(pobject);
@@ -134,7 +134,7 @@ namespace universal_windows
    }
 
 
-   ::e_status copydesk::destroy()
+   void copydesk::destroy()
    {
 
       ::user::copydesk::destroy();

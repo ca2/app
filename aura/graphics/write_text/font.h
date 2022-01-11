@@ -103,7 +103,7 @@ namespace write_text
       bool bStrikeOut = false,
       double dWidth = 1.0);
 
-      ::e_status destroy() override;
+      void destroy() override;
 
       font & operator = (const font & font);
 

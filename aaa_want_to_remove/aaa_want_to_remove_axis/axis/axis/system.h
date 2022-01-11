@@ -15,13 +15,13 @@ namespace axis
       virtual ~system();
 
 
-      virtual ::e_status  initialize_system(::object * pobject, app_core * pappcore) override;
+      virtual void  initialize_system(::object * pobject, app_core * pappcore) override;
 
-      virtual ::e_status init() override;
-      //virtual ::e_status init_instance() override;
+      virtual void init() override;
+      //virtual void init_instance() override;
       //virtual void term_instance() override;
 
-      virtual ::e_status init_system() override;
+      virtual void init_system() override;
       virtual void term_system() override;
 
       virtual void term() override;
@@ -50,14 +50,14 @@ namespace axis
       //virtual i32 install_start(const ::string & pszCommandLine, const ::string & pszBuild) override;
       //virtual i32 install_progress_app_add_up(int iAddUp = 1) override;
 
-      virtual ::e_status process_init() override;
+      virtual void process_init() override;
 
-      virtual ::e_status init1() override;
+      virtual void init1() override;
 
-      virtual ::e_status init2() override;
+      virtual void init2() override;
 
 
-      virtual ::e_status verb() override; // ambigous inheritance from ::aura::system/::axis::application
+      virtual void verb() override; // ambigous inheritance from ::aura::system/::axis::application
 
 
       virtual bool is_system() const override;
@@ -66,7 +66,7 @@ namespace axis
       virtual string crypto_md5_text(const ::string & str) override;
 
 
-      virtual ::e_status create_html();
+      virtual void create_html();
 
       //virtual __pointer(::aura::session) on_create_session() override;
 

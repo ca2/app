@@ -116,7 +116,7 @@ namespace sockets
       char                    m_c; ///< First char in CRLF or LFCR sequence
       string                  m_line; ///< Current line in line protocol mode
 
-      ::e_status              m_estatus;
+      void              m_estatus;
       //::duration              m_durationStart;
 
 #if !defined(BSD_STYLE_SOCKETS)
@@ -171,7 +171,7 @@ namespace sockets
       virtual ~base_socket();
 
 
-      virtual ::e_status initialize_socket(base_socket_handler* phandler);
+      virtual void initialize_socket(base_socket_handler* phandler);
 
 
       /** base_socket class instantiation method. Used when a "non-standard" constructor
@@ -722,8 +722,8 @@ namespace sockets
       //@}
 
 
-      virtual ::e_status run() override;
-      virtual ::e_status step() override;
+      virtual void run() override;
+      virtual void step() override;
 
       //virtual void __tracef(object * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * pszFormat, ...);
       //virtual void __tracef(object * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, e_log elog, const ::string & strContext, i32 err, const ::string & strMessage);

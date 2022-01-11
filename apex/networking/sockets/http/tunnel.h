@@ -54,7 +54,7 @@ namespace sockets
 
       void OnLine(const ::string & strParam) override;
 
-      virtual ::e_status step() override;
+      virtual void step() override;
 
       virtual void OnFirst() override;
       virtual void OnHeader(id idKey, const string &) override;

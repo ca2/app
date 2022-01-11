@@ -295,8 +295,15 @@ pacmedir->create(lpszFileName.folder());
       }
 
       // Win32s will not return an error all the time (usually DISK_FULL)
-      if (nWritten < (::u32) nCount)
+      if (nWritten != (::u32) nCount)
       {
+
+         if (nWritten < (::u32)nCount)
+         {
+
+            ERROR("file::status nWritten < nCount is disk full?");
+
+         }
 
          ::file::throw_status(error_disk_full, -1, m_path);
 
@@ -798,7 +805,7 @@ pacmedir->create(lpszFileName.folder());
    //}
 
 
-   //::e_status WinFileException::ErrnoToException(int nErrno)
+   //void WinFileException::ErrnoToException(int nErrno)
    //{
    //   switch(nErrno)
    //   {
@@ -824,7 +831,7 @@ pacmedir->create(lpszFileName.folder());
    //   }
    //}
 
-   //::e_status WinFileException::OsErrorToException(::i32 lOsErr)
+   //void WinFileException::OsErrorToException(::i32 lOsErr)
    //{
    //   // NT Error codes
    //   switch ((::u32)lOsErr)

@@ -18,7 +18,7 @@ namespace user
       virtual ~menu_interaction();
 
       
-      virtual ::e_status initialize_menu_interaction(menu_item* pmenuitem);
+      virtual void initialize_menu_interaction(menu_item* pmenuitem);
 
 
       inline ::base::session* get_session() const;

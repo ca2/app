@@ -31,7 +31,7 @@ public:
    virtual __pointer(::application) start_application(const char * pszAppId, ::create * pcreate, const ::string & strLocale, const ::string & strSchema);
 
 
-   virtual ::e_status exit_application();
+   virtual void exit_application();
 
 
    application_array & applicationa();

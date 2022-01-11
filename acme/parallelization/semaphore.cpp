@@ -167,7 +167,7 @@ synchronization_result semaphore::wait(const duration & durationTimeout)
 
 #elif defined(LINUX) || defined(SOLARIS) || defined(FREEBSD)
 
-::e_status semaphore::wait(const class ::wait & wait)
+void semaphore::wait(const class ::wait & wait)
 {
 
    int iRet = 0;
@@ -254,7 +254,7 @@ synchronization_result semaphore::wait(const duration & durationTimeout)
 //}
 
 
-::e_status semaphore::wait(const class ::wait & wait)
+void semaphore::wait(const class ::wait & wait)
 {
 
 //   struct sigaction alarm;

@@ -58,7 +58,7 @@ namespace ftp
    }
 
    
-   ::e_status file_status::initialize(::object * pobject)
+   void file_status::initialize(::object * pobject)
    {
 
       auto estatus = ::object::initialize(pobject);

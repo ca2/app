@@ -53,7 +53,7 @@ namespace database
    }
 
 
-   ::e_status composite::connect(const ::string & name, const ::string & host, const ::string & port, const ::string & user, const ::string & pass, const ::string & sckt, u64 uConnectionFlags)
+   void composite::connect(const ::string & name, const ::string & host, const ::string & port, const ::string & user, const ::string & pass, const ::string & sckt, u64 uConnectionFlags)
    {
 
       return m_pdatabase->connect(name, host, port, user, pass, sckt, uConnectionFlags);
@@ -62,7 +62,7 @@ namespace database
 
 
 
-   ::e_status   composite::_connect()
+   void   composite::_connect()
    {
 
       return m_pdatabase->_connect();
@@ -77,7 +77,7 @@ namespace database
    }
 
 
-   ::e_status   composite::reset()
+   void   composite::reset()
    {
 
       return m_pdatabase->reset();
@@ -85,7 +85,7 @@ namespace database
    }
 
 
-   ::e_status   composite::create()
+   void   composite::create()
    {
 
       return m_pdatabase->create();
@@ -93,7 +93,7 @@ namespace database
    }
 
 
-   ::e_status   composite::drop()
+   void   composite::drop()
    {
 
       return m_pdatabase->drop();
@@ -150,7 +150,7 @@ namespace database
    }
 
 
-   ::e_status     composite::init()
+   void     composite::init()
    {
 
       return m_pdatabase->init();
@@ -166,7 +166,7 @@ namespace database
    }
 
 
-   ::e_status     composite::set_error_code(int iErrorCode)
+   void     composite::set_error_code(int iErrorCode)
    {
 
       return m_pdatabase->set_error_code(iErrorCode);

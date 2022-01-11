@@ -19,7 +19,7 @@ public:
 
    }
 
-   virtual ::e_status add_handler(::matter * pmatter, bool bPriority = false);
+   virtual void add_handler(::matter * pmatter, bool bPriority = false);
 
    void route(::subject * psubject, ::context * pcontext = nullptr);
 

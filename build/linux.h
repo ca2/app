@@ -24,9 +24,9 @@ namespace linux
       ~build() override;
 
 
-      ::e_status prepare_build() override;
+      void prepare_build() override;
 
-      ::e_status do_build() override;
+      void do_build() override;
 
 
    };

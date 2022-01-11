@@ -232,7 +232,7 @@ namespace browser
    }
 
 
-   ::e_status     render::run()
+   void     render::run()
    {
 
       ::parallelization::set_priority(::e_priority_below_normal);

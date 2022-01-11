@@ -15,18 +15,18 @@ namespace aura
       virtual ~department();
 
 
-      virtual ::e_status initialize(::object * pobject);
+      virtual void initialize(::object * pobject);
 
 
       virtual void connect_to_application_signal();
 
-      virtual ::e_status process_init();
+      virtual void process_init();
 
-      virtual ::e_status init();
-      virtual ::e_status init1();
-      virtual ::e_status init2();
-      virtual ::e_status init3();
-      virtual ::e_status init_instance();
+      virtual void init();
+      virtual void init1();
+      virtual void init2();
+      virtual void init3();
+      virtual void init_instance();
 
       virtual void term_instance();
       virtual void term3();

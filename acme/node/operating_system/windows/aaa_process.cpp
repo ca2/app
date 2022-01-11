@@ -263,7 +263,7 @@ bool root_execute_sync(const char * pszFile, const char * pszParams, ::duration 
 }
 
 
-::e_status call_async(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, bool bPrivileged, unsigned int *puiPid)
+void call_async(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, bool bPrivileged, unsigned int *puiPid)
 {
 
    SHELLEXECUTEINFOW info = {};
@@ -322,7 +322,7 @@ bool root_execute_sync(const char * pszFile, const char * pszParams, ::duration 
 }
 
 
-::e_status call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
+void call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
 {
 
    SHELLEXECUTEINFOW infoa;

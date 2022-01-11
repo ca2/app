@@ -49,13 +49,13 @@ namespace database
       virtual bool isActive() { return m_bActive; }
 
 
-      virtual ::e_status     init();
+      virtual void     init();
       virtual e_connection connection_status() { return m_econnection; }
-      virtual ::e_status     set_error_code(int iErrorCode);
+      virtual void     set_error_code(int iErrorCode);
       virtual string get_error_message();
       virtual void * get_handle() = 0;
 
-      virtual ::e_status     connect(
+      virtual void     connect(
       const char * name,
       const char * host = nullptr,
       const char * port = nullptr,
@@ -64,12 +64,12 @@ namespace database
       const char * sckt = nullptr,
       u64 uConnectionFlags = 0);
 
-      virtual ::e_status     _connect() = 0;
+      virtual void     _connect() = 0;
 
       virtual void disconnect() { m_bActive = false; }
-      virtual ::e_status     reset() { return ::success; }
-      virtual ::e_status     create() { return ::success; }
-      virtual ::e_status     drop() { return ::success; }
+      virtual void     reset() { return ::success; }
+      virtual void     create() { return ::success; }
+      virtual void     drop() { return ::success; }
 
       //virtual string escape(const char * psz);
 

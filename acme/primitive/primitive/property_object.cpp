@@ -19,7 +19,7 @@ property_object::~property_object()
 //}
 
 
-//::e_status     property_object::initialize(::object * pobject)
+//void     property_object::initialize(::object * pobject)
 //{
 //
 //   set_object(pobject);
@@ -29,7 +29,7 @@ property_object::~property_object()
 //}
 
 
-::e_status property_object::destroy()
+void property_object::destroy()
 {
 
    auto estatus = ::material_object::destroy();
@@ -67,7 +67,7 @@ void property_object::notify_on_destroy(::property_object * pcontextobjectFinish
 }
 
 
-::e_status property_object::run()
+void property_object::run()
 {
 
    return ::success;
@@ -228,10 +228,10 @@ bool property_object::is_alive()
 }
 
 
-::e_status property_object::operator()()
+void property_object::operator()()
 {
 
-   ::e_status estatus;
+   void estatus;
 
    try
    {
@@ -251,7 +251,7 @@ bool property_object::is_alive()
 }
 
 
-//::e_status property_object::call(::trait & trait)
+//void property_object::call(::trait & trait)
 //{
 //
 //   //auto estatus = ::property_object::call(trait);
@@ -306,7 +306,7 @@ void property_object::exchange(::stream & stream)
 }
 
 
-::e_status property_object::handle_exception(const ::exception& e)
+void property_object::handle_exception(const ::exception& e)
 {
 
    return ::success;
@@ -389,7 +389,7 @@ routine_array * property_object::routine_array(const ::id & id, bool bCreate)
 }
 
 
-::e_status property_object::add_routine(const ::id & id, const ::routine & routine)
+void property_object::add_routine(const ::id & id, const ::routine & routine)
 {
 
    if (!routine)

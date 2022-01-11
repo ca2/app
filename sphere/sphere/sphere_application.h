@@ -42,7 +42,7 @@ namespace sphere
       application(::object * pobject);
       virtual ~application();
 
-      virtual ::e_status init_instance() override;
+      virtual void init_instance() override;
       virtual void term_instance() override;
 
       virtual void _001OnFileNew();
@@ -56,7 +56,7 @@ namespace sphere
       virtual bool on_install() override;
       virtual bool on_uninstall() override;
 
-      virtual ::e_status     run() override;
+      virtual void     run() override;
 
       virtual void on_request(::create * pcreate) override;
 
@@ -70,7 +70,7 @@ namespace sphere
 
       __pointer(::aura::application) get_context_system();
 
-//      virtual ::e_status init_instance() override;
+//      virtual void init_instance() override;
       virtual bool init1() override;
       virtual bool init() override;
 
@@ -113,7 +113,7 @@ namespace sphere
 
       virtual bool os_native_bergedge_start() override;
 
-      virtual ::e_status     main() override;
+      virtual void     main() override;
 
 //      virtual bool on_uninstall() override;
 

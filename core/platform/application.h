@@ -23,11 +23,11 @@ namespace core
 
 
 
-      virtual ::e_status initialize(::object * pobject) override;
+      virtual void initialize(::object * pobject) override;
       __pointer(::progress::real) show_progress(::user::interaction* puiParent, const ::string & pszTitle, ::count iProgressCount) override;
 
 
-      //virtual ::e_status prepare_impact_menu(::user::menu * pmenu);
+      //virtual void prepare_impact_menu(::user::menu * pmenu);
 
 
       virtual string prepare_impact_options();

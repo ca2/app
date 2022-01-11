@@ -15,7 +15,7 @@ bool text_stream::is_stream_null()
 }
 
 
-::e_status text_stream::destroy()
+void text_stream::destroy()
 {
 
    m_p.release();

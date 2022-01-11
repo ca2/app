@@ -28,7 +28,7 @@ namespace graphics
    }
 
 
-   ::e_status multiple_buffer::initialize_graphics_graphics(::user::interaction_impl * pimpl)
+   void multiple_buffer::initialize_graphics_graphics(::user::interaction_impl * pimpl)
    {
 
       auto estatus = graphics::initialize_graphics_graphics(pimpl);

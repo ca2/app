@@ -20,9 +20,9 @@ namespace universal_windows
       virtual ~dir_context();
 
 
-      virtual ::e_status initialize(::object * pobject) override;
+      virtual void initialize(::object * pobject) override;
 
-      virtual ::e_status init_system() override;
+      virtual void init_system() override;
 
       //virtual bool update_module_path();
 

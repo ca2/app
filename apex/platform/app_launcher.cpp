@@ -18,7 +18,7 @@ namespace apex
    }
 
 
-   ::e_status app_launcher::initialize_app_launcher(::object * pobject, string strPlatform, string strApp)
+   void app_launcher::initialize_app_launcher(::object * pobject, string strPlatform, string strApp)
    {
 
       auto estatus = ::object::initialize(pobject);
@@ -110,7 +110,7 @@ namespace apex
    }
 
 
-   ::e_status app_launcher::run()
+   void app_launcher::run()
    {
 
 #ifdef _UWP

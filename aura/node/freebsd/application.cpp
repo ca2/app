@@ -48,7 +48,7 @@ namespace aura
 //   }
 //
 
-//    ::e_status application::_001InitializeShellOpen()
+//    void application::_001InitializeShellOpen()
 //    {
 // // xxx       ASSERT(m_atomApp == nullptr && m_atomSystemTopic == nullptr); // do once
 

@@ -220,7 +220,7 @@ namespace aura
    }
 
 
-   ::e_status timer_array::destroy()
+   void timer_array::destroy()
    {
 
       m_bOk = false;

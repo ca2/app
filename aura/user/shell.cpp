@@ -146,7 +146,7 @@ namespace user
    }
 
 
-   ::e_status shell::initialize(::object * pobject)
+   void shell::initialize(::object * pobject)
    {
 
       if (m_bInitialized)
@@ -1621,7 +1621,7 @@ namespace user
    }
       
 
-   ::e_status shell::run()
+   void shell::run()
    {
 
       auto_pointer < _get_file_image_ > pgetfileimage(new_get_file_image());
@@ -2073,7 +2073,7 @@ namespace user
    //}
 
 
-   //::e_status shell::thread::destroy()
+   //void shell::thread::destroy()
    //{
 
    //   return ::thread::destroy();
@@ -2081,7 +2081,7 @@ namespace user
    //}
 
 
-   ::e_status shell::destroy()
+   void shell::destroy()
    {
 
       ::task::destroy();

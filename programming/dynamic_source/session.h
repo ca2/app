@@ -30,7 +30,7 @@ namespace dynamic_source
 #endif
 
       
-      virtual ::e_status initialize_dynamic_source_session(const string& strId, ::dynamic_source::script_manager* pmanager);
+      virtual void initialize_dynamic_source_session(const string& strId, ::dynamic_source::script_manager* pmanager);
 
 
    };

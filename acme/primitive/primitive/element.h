@@ -55,27 +55,27 @@ public:
    //void post_process(::subject * psubject, ::context * pcontext) override;
 
    // <3TBS_!! handle -> call_member <3TBS_!!
-   virtual ::e_status call_member(::i64 i64);
+   virtual void call_member(::i64 i64);
    // <3ThomasBS_!! handle -> handle <3ThomasBS_!!
-   //::e_status handle(const  emessage, i64 iData = 0, ::matter * pmatter = nullptr) override;
+   //void handle(const  emessage, i64 iData = 0, ::matter * pmatter = nullptr) override;
    void handle(::subject * psubject, ::context * pcontext) override;
    void handle(::message::message * pmessage) override;
 
 
-   virtual ::e_status operator()();
+   virtual void operator()();
    virtual void operator()(::message::message * pmessage);
    virtual void operator()(const ::payload & payload);
-   virtual ::e_status run();
-   virtual ::e_status step();
+   virtual void run();
+   virtual void step();
    virtual ::payload realize();
 
-   virtual ::e_status set_generic_object_name(const char* pszName);
-   virtual ::e_status set_library_name(const char* pszLibraryName);
+   virtual void set_generic_object_name(const char* pszName);
+   virtual void set_library_name(const char* pszLibraryName);
    // if this is an application/or nano application
-   virtual ::e_status set_application_id(const char* pszApplicationId);
+   virtual void set_application_id(const char* pszApplicationId);
 
-   virtual ::e_status wait();
-   virtual ::e_status wait(const ::duration & duration);
+   virtual void wait();
+   virtual void wait(const ::duration & duration);
 
 
    [[nodiscard]] virtual DURATION timeout() const;
@@ -87,10 +87,10 @@ public:
    virtual ::task_pool * taskpool();
 
 
-   virtual ::e_status initialize(::object* pobject);
+   virtual void initialize(::object* pobject);
 
 
-   virtual ::e_status initialize_matter(::matter* pmatter);
+   virtual void initialize_matter(::matter* pmatter);
 
 
    [[nodiscard]] inline bool has(enum_flag eflag) const { return (m_eflagElement & eflag) == eflag; }
@@ -160,16 +160,16 @@ public:
    virtual stream& read(::stream& stream);
 
 
-   virtual ::e_status add_composite(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-   virtual ::e_status add_reference(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   virtual void add_composite(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   virtual void add_reference(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 
-   virtual ::e_status release_composite2(::element * pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-   virtual ::e_status finalize_composite(::element * pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-   virtual ::e_status release_reference(::element * pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   virtual void release_composite2(::element * pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   virtual void finalize_composite(::element * pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   virtual void release_reference(::element * pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 
-   virtual ::e_status destroy();
+   virtual void destroy();
 
 
 };

@@ -211,8 +211,8 @@ namespace aura
       void construct();
 
 
-      ::e_status init();
-      ::e_status term();
+      void init();
+      void term();
 
 
       //void init_windowing();

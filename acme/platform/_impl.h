@@ -722,7 +722,7 @@ sequence < RESULT, TRANSPORT > ::sequence()
 
 
 //template < typename RESULT >
-//void future < RESULT > ::set_object(const RESULT& result, const ::e_status& estatus)
+//void future < RESULT > ::set_object(const RESULT& result, const void& estatus)
 //{
 //
 //   critical_section_lock lock(get_sequence_critical_section());
@@ -754,7 +754,7 @@ sequence < RESULT, TRANSPORT > ::sequence()
 
 
 template < typename RESULT, typename TRANSPORT >
-void sequence < RESULT, TRANSPORT > ::set_status(const ::e_status& estatus)
+void sequence < RESULT, TRANSPORT > ::set_status(const void& estatus)
 {
 
    critical_section_lock lock(get_sequence_critical_section());
@@ -795,8 +795,8 @@ void sequence < RESULT, TRANSPORT > ::set_status(const ::e_status& estatus)
 }
 
 
-template < typename OBJECT, typename TRANSPORT >
-TRANSPORT & sequence < OBJECT, TRANSPORT > ::get_object(const ::duration& duration)
+template < typename OBJECT /*, typename TRANSPORT */ >
+OBJECT & sequence < OBJECT /* TRANSPORT */ > ::get_object(const ::duration& duration)
 {
 
    critical_section_lock lock(get_sequence_critical_section());
@@ -830,7 +830,7 @@ TRANSPORT & sequence < OBJECT, TRANSPORT > ::get_object(const ::duration& durati
 
 
 template < typename OBJECT, typename TRANSPORT >
-::e_status sequence < OBJECT, TRANSPORT > ::wait(const ::duration& duration)
+void sequence < OBJECT, TRANSPORT > ::wait(const ::duration& duration)
 {
 
    critical_section_lock lock(get_sequence_critical_section());

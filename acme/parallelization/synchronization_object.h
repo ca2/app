@@ -32,12 +32,12 @@ public:
    virtual bool _lock();
    virtual bool _lock(const class ::wait & wait);
 
-   virtual ::e_status _wait();
-   virtual ::e_status _wait(const class ::wait & wait);
+   virtual void _wait();
+   virtual void _wait(const class ::wait & wait);
 
    
-   ::e_status wait() override;
-   virtual ::e_status wait(const class ::wait & wait);
+   void wait() override;
+   virtual void wait(const class ::wait & wait);
 
 
    virtual bool is_locked() const;

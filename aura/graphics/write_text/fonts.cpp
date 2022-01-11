@@ -26,7 +26,7 @@ namespace write_text
    }
 
 
-   ::e_status fonts::initialize(::object* pobject)
+   void fonts::initialize(::object* pobject)
    {
 
       auto estatus = ::acme::department::initialize(pobject);
@@ -60,7 +60,7 @@ namespace write_text
    }
 
    
-   ::e_status fonts::enumerate_fonts()
+   void fonts::enumerate_fonts()
    {
 
       synchronous_lock syncronouslock(mutex());

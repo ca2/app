@@ -22,7 +22,7 @@ namespace acme
    }
 
 
-   ::e_status acme::initialize_matter(::matter * pmatter)
+   void acme::initialize_matter(::matter * pmatter)
    {
 
       auto estatus = ::matter::initialize_matter(pmatter);
@@ -73,7 +73,7 @@ namespace acme
 
    }
 
-   ::e_status acme::datetime_to_filetime(::filetime_t* pfiletime, const ::datetime::time& time)
+   void acme::datetime_to_filetime(::filetime_t* pfiletime, const ::datetime::time& time)
    {
 
       return error_interface_only;

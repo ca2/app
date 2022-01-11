@@ -80,9 +80,9 @@ CLASS_DECL_APEX void __trace_message(const char * lpszPrefix, MESSAGE * lpmsg);
 i32 CLASS_DECL_APEX __ios_main(i32 argc, char * argv[]);
 
 
-//CLASS_DECL_APEX void vfxThrowFileException(::object * pobject, const ::e_status & estatus, ::i32 lOsError, const char * lpszFileName = nullptr);
+//CLASS_DECL_APEX void vfxThrowFileException(::object * pobject, const void & estatus, ::i32 lOsError, const char * lpszFileName = nullptr);
 //
-//CLASS_DECL_APEX ::file::exception * get_FileException(::object * pobject, const ::e_status & estatus, ::i32 lOsError, const char * lpszFileName = nullptr);
+//CLASS_DECL_APEX ::file::exception * get_FileException(::object * pobject, const void & estatus, ::i32 lOsError, const char * lpszFileName = nullptr);
 
 
 

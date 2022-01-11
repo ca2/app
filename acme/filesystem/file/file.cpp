@@ -1040,7 +1040,7 @@ namespace file
    static const memsize kBlockSize = ((u32)1 << 31);
 
 
-   ::e_status read(::file::file * pfileIn, void * data, memsize * sizeRead)
+   void read(::file::file * pfileIn, void * data, memsize * sizeRead)
    {
 
       memsize size = *sizeRead;
@@ -1054,7 +1054,7 @@ namespace file
 
          memsize processedSizeLoc;
 
-         ::e_status estatus = ::success;
+         void estatus = ::success;
 
          try
          {
@@ -1333,10 +1333,10 @@ namespace file
    */
 
 
-    ::e_status write(file * pwriter, const void * data, memsize size)
+    void write(file * pwriter, const void * data, memsize size)
     {
 
-        ::e_status estatus = ::success;
+        void estatus = ::success;
 
         try
         {

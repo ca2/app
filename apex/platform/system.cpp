@@ -185,7 +185,7 @@ namespace apex
 #endif
 
 
-   ::e_status system::initialize(::object * pobject)
+   void system::initialize(::object * pobject)
    {
 
       auto estatus = ::apex::context::initialize(pobject);
@@ -539,7 +539,7 @@ namespace apex
    }
 
 
-   ::e_status system::process_init()
+   void system::process_init()
    {
 
       
@@ -606,7 +606,7 @@ namespace apex
    }
 
 
-   ::e_status system::init1()
+   void system::init1()
    {
 
       auto estatus = ::system::init1();
@@ -1317,10 +1317,10 @@ pacmedir->create("/ca2core");
    }
 
 
-   ::e_status system::init2()
+   void system::init2()
    {
 
-      ::e_status estatus = create_session();
+      void estatus = create_session();
 
       if (!estatus)
       {
@@ -1400,7 +1400,7 @@ pacmedir->create("/ca2core");
    }
 
 
-   ::e_status system::initialize_context()
+   void system::initialize_context()
    {
 
       auto estatus = ::apex::context::initialize_context();
@@ -1417,7 +1417,7 @@ pacmedir->create("/ca2core");
    }
 
 
-   ::e_status system::on_system_construct()
+   void system::on_system_construct()
    {
 
       //auto estatus = create_os_node();
@@ -1441,7 +1441,7 @@ pacmedir->create("/ca2core");
    }
 
 
-   ::e_status system::on_start_system()
+   void system::on_start_system()
    {
 
       auto estatus = ::system::on_start_system();
@@ -1458,12 +1458,12 @@ pacmedir->create("/ca2core");
    }
 
 
-//   ::e_status system::start()
+//   void system::start()
 //   {
 //
 //      auto pnode = Node;
 //
-//      ::e_status estatus = error_exception;
+//      void estatus = error_exception;
 //
 //      if(pnode)
 //      {
@@ -1519,7 +1519,7 @@ pacmedir->create("/ca2core");
 //   }
 //
 
-   ::e_status system::init_thread()
+   void system::init_thread()
    {
 
       //auto estatus = ([a-z0-9_]+)_factory();
@@ -1598,7 +1598,7 @@ pacmedir->create("/ca2core");
    }
 
 
-   ::e_status system::init()
+   void system::init()
    {
 
       return true;
@@ -1608,7 +1608,7 @@ pacmedir->create("/ca2core");
 
 
 
-   ::e_status system::post_creation_requests()
+   void system::post_creation_requests()
    {
 
       //while(auto pcreate = get_command()->get_create())
@@ -1624,7 +1624,7 @@ pacmedir->create("/ca2core");
    }
 
 
-   ::e_status system::post_initial_request()
+   void system::post_initial_request()
    {
 
       //auto papp = m_papplicationMain;
@@ -1674,7 +1674,7 @@ pacmedir->create("/ca2core");
    }
 
 
-   ::e_status system::inline_init()
+   void system::inline_init()
    {
 
       auto estatus = ::system::inline_init();
@@ -1700,10 +1700,10 @@ pacmedir->create("/ca2core");
    }
 
 
-   ::e_status system::inline_term()
+   void system::inline_term()
    {
 
-      ::e_status estatus = ::apex::context::inline_term();
+      void estatus = ::apex::context::inline_term();
 
       if (!estatus)
       {
@@ -1754,7 +1754,7 @@ pacmedir->create("/ca2core");
    }
 
 
-   ::e_status system::init_system()
+   void system::init_system()
    {
 
       auto estatus = ::system::init_system();
@@ -1858,7 +1858,7 @@ pacmedir->create("/ca2core");
    }
 
 
-   ::e_status system::thread_loop()
+   void system::thread_loop()
    {
 
       return thread::thread_loop();
@@ -1988,10 +1988,10 @@ pacmedir->create("/ca2core");
    }
 
 
-   ::e_status system::create_os_node()
+   void system::create_os_node()
    {
 
-      ::e_status estatus = ::success;
+      void estatus = ::success;
 
       estatus = ::system::create_os_node();
 
@@ -2314,7 +2314,7 @@ pacmedir->create("/ca2core");
    }
 
 
-   ::e_status system::initialize_log(const ::string & pszId)
+   void system::initialize_log(const ::string & pszId)
    {
 
       //if (m_ptracelog)
@@ -2613,7 +2613,7 @@ pacmedir->create("/ca2core");
    }
 
 
-   ::e_status system::create_session(index iEdge)
+   void system::create_session(index iEdge)
    {
 
       if (session(iEdge))
@@ -3263,7 +3263,7 @@ pacmedir->create("/ca2core");
    }
 
 
-   ::e_status system::on_open_file(const ::string & pszFile)
+   void system::on_open_file(const ::string & pszFile)
    {
       
       defer_accumulate_on_open_file({pszFile}, "");
@@ -3570,7 +3570,7 @@ pacmedir->create("/ca2core");
    }
 
 
-::e_status system::browser(string strUrl, string strBrowser, string strProfile, string strTarget)
+void system::browser(string strUrl, string strBrowser, string strProfile, string strTarget)
    {
 
        m_pcontext->m_papexcontext->os_context()->link_open(strUrl, strProfile);
@@ -4101,7 +4101,7 @@ pacmedir->create("/ca2core");
 
 
 
-   ::e_status system::firefox(string strUrl, string strBrowser, string strProfile, string strParam)
+   void system::firefox(string strUrl, string strBrowser, string strProfile, string strParam)
    {
 
 #ifdef _UWP
@@ -4280,7 +4280,7 @@ pacmedir->create("/ca2core");
    //}
 
 
-   ::e_status system::open_profile_link(string strUrl, string strProfile, string strTarget)
+   void system::open_profile_link(string strUrl, string strProfile, string strTarget)
    {
 
       fork([this, strUrl, strProfile, strTarget]()
@@ -4295,7 +4295,7 @@ pacmedir->create("/ca2core");
    }
 
 
-   ::e_status system::verb() // ambigous inheritance from ::apex::system/::axis::application
+   void system::verb() // ambigous inheritance from ::apex::system/::axis::application
    {
 
       return ::thread::verb();
@@ -4434,7 +4434,7 @@ namespace apex
 #ifdef LINUX
 
 
-//   ::e_status system::defer_initialize_x11()
+//   void system::defer_initialize_x11()
 //   {
 //
 //      return class ::system::defer_initialize_x11();
@@ -4461,7 +4461,7 @@ namespace apex
    }
 
 
-   ::e_status system::set_history(::apex::history* phistory)
+   void system::set_history(::apex::history* phistory)
    {
 
       auto estatus = __compose(m_phistory, phistory);
@@ -4723,7 +4723,7 @@ namespace apex
    }
 
 
-   //::e_status system::add_view_library(::acme::library* plibrary)
+   //void system::add_view_library(::acme::library* plibrary)
    //{
 
    //   m_libraryspa.add(plibrary);
@@ -4810,7 +4810,7 @@ namespace apex
    }
 
 
-   ::e_status system::main()
+   void system::main()
    {
 
       auto estatus = ::thread::main();
@@ -4962,7 +4962,7 @@ namespace apex
    }
 
 
-   ::e_status system::destroy()
+   void system::destroy()
    {
 
       ::app_core::destroy();
@@ -4996,7 +4996,7 @@ namespace apex
    }
 
 
-   void system::process_exit_status(::object* pobject, const ::e_status& estatus)
+   void system::process_exit_status(::object* pobject, const void& estatus)
    {
 
       if (estatus == error_exit_session)
@@ -5021,7 +5021,7 @@ namespace apex
    }
 
 
-   int system::console_end(::e_status estatus)
+   int system::console_end(void estatus)
    {
 
       int iStatus = (int)estatus;
@@ -5055,7 +5055,7 @@ namespace apex
    }
 
 
-   ::e_status system::system_construct(const ::main & main)
+   void system::system_construct(const ::main & main)
    {
 
       auto estatus = ::system::system_construct(main);
@@ -5101,7 +5101,7 @@ namespace apex
 //#ifdef WINDOWS_DESKTOP
 //
 //   
-//   ::e_status system::system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char* pCmdLine, i32 nCmdShow)
+//   void system::system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char* pCmdLine, i32 nCmdShow)
 //   {
 //
 //      return apex_main_data::system_construct(hinstanceThis, hPrevInstance, pCmdLine, nCmdShow);
@@ -5112,7 +5112,7 @@ namespace apex
 //#elif defined(_UWP)
 //
 //   
-//   ::e_status system::system_construct(const ::string_array & stra)
+//   void system::system_construct(const ::string_array & stra)
 //   {
 //
 //      return ::success;
@@ -5123,7 +5123,7 @@ namespace apex
 //#else
 //
 //
-//   ::e_status system::system_construct(const ::string & pszCommandLine, const ::e_display& edisplay)
+//   void system::system_construct(const ::string & pszCommandLine, const ::e_display& edisplay)
 //   {
 //
 //      return ::success;
@@ -5131,7 +5131,7 @@ namespace apex
 //   }
 //
 //
-//   ::e_status system::system_construct(os_local* poslocal, const ::e_display& edisplay)
+//   void system::system_construct(os_local* poslocal, const ::e_display& edisplay)
 //   {
 //
 //      return ::success;
@@ -5207,7 +5207,7 @@ namespace apex
    // https://github.com/umpirsky/tld-list/blob/master/data/en/tld.txt
    
 
-   ::e_status system::get_public_internet_domain_extension_list(string_array& stra)
+   void system::get_public_internet_domain_extension_list(string_array& stra)
    {
 
       auto estatus = ::system::get_public_internet_domain_extension_list(stra);
@@ -5217,7 +5217,7 @@ namespace apex
    }
 
 
-   ::e_status system::system_main()
+   void system::system_main()
    {
 
       auto estatus = ::system::system_main();

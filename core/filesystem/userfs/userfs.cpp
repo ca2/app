@@ -22,7 +22,7 @@ namespace userfs
    }
 
    
-   ::e_status userfs::initialize(::object * pobject)
+   void userfs::initialize(::object * pobject)
    {
 
       auto estatus = ::acme::department::initialize(pobject);
@@ -52,7 +52,7 @@ namespace userfs
    }
 
 
-   ::e_status userfs::init1()
+   void userfs::init1()
    {
 
       return ::success;
@@ -78,7 +78,7 @@ namespace core
    //}
 
 
-   ::e_status user::userfs_process_init()
+   void user::userfs_process_init()
    {
 
       INFORMATION("start");
@@ -109,7 +109,7 @@ namespace core
    }
 
 
-   ::e_status user::userfs_init1()
+   void user::userfs_init1()
    {
 
       INFORMATION("start");

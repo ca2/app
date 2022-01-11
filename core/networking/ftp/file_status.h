@@ -72,7 +72,7 @@ namespace ftp
       virtual ~file_status();
 
 
-      virtual ::e_status     initialize(::object * pobject) override;
+      virtual void     initialize(::object * pobject) override;
 
 
       file_status& operator=(const file_status& rhs);

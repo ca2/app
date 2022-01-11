@@ -118,7 +118,7 @@ namespace user
    }
 
 
-   ::e_status frame::add_menu_item(const ::string & strPath, const ::string & strText, const ::string & strId)
+   void frame::add_menu_item(const ::string & strPath, const ::string & strText, const ::string & strId)
    {
 
       m_straMenuParent.add(strPath);
@@ -146,7 +146,7 @@ namespace user
 //   }
 
 
-   ::e_status frame::add_control_bar(::user::control_bar * pcontrolbar)
+   void frame::add_control_bar(::user::control_bar * pcontrolbar)
    {
 
       throw interface_only_exception();
@@ -156,7 +156,7 @@ namespace user
    }
 
 
-   ::e_status frame::erase_control_bar(::user::control_bar * pcontrolbar)
+   void frame::erase_control_bar(::user::control_bar * pcontrolbar)
    {
 
       throw interface_only_exception();
@@ -166,7 +166,7 @@ namespace user
    }
 
 
-   ::e_status frame::show_control_bar(::user::control_bar * pcontrolbar)
+   void frame::show_control_bar(::user::control_bar * pcontrolbar)
    {
 
       throw interface_only_exception();
@@ -176,7 +176,7 @@ namespace user
    }
 
 
-   ::e_status frame::hide_control_bar(::user::control_bar * pcontrolbar)
+   void frame::hide_control_bar(::user::control_bar * pcontrolbar)
    {
 
       throw interface_only_exception();
@@ -194,7 +194,7 @@ namespace user
 //   }
 
 
-   ::e_status frame::on_create_bars()
+   void frame::on_create_bars()
    {
 
       return ::success;
@@ -472,7 +472,7 @@ namespace user
    }
 
 
-   ::e_status frame::display_previous_restore()
+   void frame::display_previous_restore()
    {
 
       return ::success;

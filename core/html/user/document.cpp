@@ -66,7 +66,7 @@ void html_document::dump(dump_context & dumpcontext) const
 
 
 
-//::e_status html_document::create_html_data()
+//void html_document::create_html_data()
 //{
 //
 //   auto estatus = __compose_new(m_phtmldata);

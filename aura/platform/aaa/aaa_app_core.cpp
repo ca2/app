@@ -141,7 +141,7 @@ app_core::~app_core()
 }
 
 
-bool app_core::on_result(const ::e_status & estatus)
+bool app_core::on_result(const void & estatus)
 {
 
    if (estatus == ::success)
@@ -171,7 +171,7 @@ bool app_core::on_result(const ::e_status & estatus)
 }
 
 
-::e_status app_core::system_prep()
+void app_core::system_prep()
 {
 
 // prelude::defer_call_construct(this);
@@ -230,7 +230,7 @@ extern ::file::path * g_ppathInstallFolder;
 CLASS_DECL_AURA void set_debug_pointer(void * p);
 
 
-::e_status app_core::system_init()
+void app_core::system_init()
 {
 
    /// string test (NEW STRING 2019-11-26)
@@ -1621,12 +1621,12 @@ string merge_colon_args(const array < string_array > & str2a)
 #elif !defined(ANDROID)
 
 
-::e_status app_core::system_proc()
+void app_core::system_proc()
 {
 
    return ::error_failed;
 
-   //::e_status estatus = system_proc();
+   //void estatus = system_proc();
 
    //if(estatus.succeeded())
    //{
@@ -1643,10 +1643,10 @@ string merge_colon_args(const array < string_array > & str2a)
 #endif
 
 
-//::e_status app_core::system_call()
+//void app_core::system_call()
 //{
 //
-//   ::e_status estatus = error_failed;
+//   void estatus = error_failed;
 //
 //   try
 //   {
@@ -1690,7 +1690,7 @@ bool app_core::has_aura_application_factory() const
 }
 
 
-//::e_status app_core::system_pre_run()
+//void app_core::system_pre_run()
 //{
 //
 //   if (m_pmainstruct && m_pmainstruct->m_bConsole)
@@ -1709,10 +1709,10 @@ bool app_core::has_aura_application_factory() const
 //#if !defined(LINUX)
 //
 //
-//::e_status app_core::system_start()
+//void app_core::system_start()
 //{
 //
-//   ::e_status estatus = system_pre_run();
+//   void estatus = system_pre_run();
 //
 //   if (!estatus)
 //   {
@@ -1776,7 +1776,7 @@ bool app_core::has_aura_application_factory() const
 //::u32 app_core::system_main()
 //{
 //
-//   ::e_status estatus = ::aura::get_system()->__thread_procedure();
+//   void estatus = ::aura::get_system()->__thread_procedure();
 //
 //   return estatus;
 //

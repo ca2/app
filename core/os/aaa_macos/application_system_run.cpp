@@ -88,10 +88,10 @@
 //}
 
 
-::e_status os_application_system_run(::aura::system * psystem)
+void os_application_system_run(::aura::system * psystem)
 {
 
-   ::e_status estatus = psystem->begin_synch();
+   void estatus = psystem->begin_synch();
    
    if(!estatus)
    {

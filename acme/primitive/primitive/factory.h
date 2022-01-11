@@ -158,7 +158,7 @@ namespace factory
       //}
 
       template < typename BASE_TYPE >
-      inline ::e_status __construct(__pointer(BASE_TYPE)& p)
+      inline void __construct(__pointer(BASE_TYPE)& p)
       {
 
          auto pNew = this->create <BASE_TYPE>();
@@ -185,10 +185,10 @@ namespace factory
 
 
       template < typename BASE_TYPE >
-      inline ::e_status __defer_construct(__pointer(BASE_TYPE)& p)
+      inline void __defer_construct(__pointer(BASE_TYPE)& p)
       {
 
-         ::e_status estatus = ::success_not_constructed;
+         void estatus = ::success_not_constructed;
 
          if (!p)
          {
@@ -202,10 +202,10 @@ namespace factory
 
 
       template < typename BASE_TYPE >
-      inline ::e_status __compose(::object * pobjectComposer, __composite(BASE_TYPE)& pcomposite);
+      inline void __compose(::object * pobjectComposer, __composite(BASE_TYPE)& pcomposite);
 
       template < typename BASE_TYPE >
-      inline ::e_status __raw_compose(::object* pobjectComposer, __composite(BASE_TYPE)& pusermessage);
+      inline void __raw_compose(::object* pobjectComposer, __composite(BASE_TYPE)& pusermessage);
 
 
       virtual __transport(::element) create(const ::string & strType);

@@ -51,11 +51,11 @@
 //
 //i32 CLASS_DECL_CORE __linux_main(i32 argc, char * argv[]);
 //
-//CLASS_DECL_CORE void vfxThrowFileException(::object * pobject, const ::e_status & estatus, ::i32 lOsError, const ::string & pszFileName = nullptr);
+//CLASS_DECL_CORE void vfxThrowFileException(::object * pobject, const void & estatus, ::i32 lOsError, const ::string & pszFileName = nullptr);
 //
 //#include "internal.h"
 //
-//CLASS_DECL_CORE ::e_status os_shell_initialize();
+//CLASS_DECL_CORE void os_shell_initialize();
 //
 //CLASS_DECL_CORE MESSAGE * __get_current_message();
 //

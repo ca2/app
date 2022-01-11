@@ -70,19 +70,19 @@ namespace windowing
       inline ::aura::system* get_system() const;
 
 
-      virtual ::e_status initialize_windowing(::user::user * puser);
+      virtual void initialize_windowing(::user::user * puser);
 
       virtual void defer_term_ui();
 
 
       virtual void finalize_windowing();
 
-      //virtual ::e_status destroy() override;
+      //virtual void destroy() override;
 
-      ::e_status destroy() override;
+      void destroy() override;
 
 
-      virtual ::e_status start();
+      virtual void start();
 
       virtual void windowing_main();
 
@@ -90,10 +90,10 @@ namespace windowing
       
 
       __pointer(cursor) get_cursor(enum_cursor ecursor);
-      virtual ::e_status set_cursor_set_from_matter(const ::file::path & pathDir);
+      virtual void set_cursor_set_from_matter(const ::file::path & pathDir);
 
       
-      virtual ::e_status set_cursor_position(const ::point_i32 & point);
+      virtual void set_cursor_position(const ::point_i32 & point);
 
 
 
@@ -107,17 +107,17 @@ namespace windowing
 
       virtual ::windowing::window * get_active_window(::thread * pthread);
 
-      virtual ::e_status clear_active_window(::thread * pthread, ::windowing::window * pwindow);
+      virtual void clear_active_window(::thread * pthread, ::windowing::window * pwindow);
 
       virtual ::windowing::window * get_keyboard_focus(::thread * pthread);
 
       virtual ::windowing::window * get_mouse_capture(::thread * pthread);
 
-      virtual ::e_status release_mouse_capture();
+      virtual void release_mouse_capture();
 
-      ::e_status term1() override;
+      void term1() override;
 
-      ::e_status term2() override;
+      void term2() override;
 
       virtual ::windowing::display * display();
 
@@ -151,7 +151,7 @@ namespace windowing
 
       virtual class window * new_window(::user::interaction_impl * pimpl);
 
-      virtual ::e_status erase_window(::windowing::window * pwindow);
+      virtual void erase_window(::windowing::window * pwindow);
 
       bool route_message(::user::message * pusermessage);
 
@@ -169,18 +169,18 @@ namespace windowing
 
       virtual bool is_window(oswindow oswindow);
 
-      virtual ::e_status load_cursor(::windowing::cursor * pcursor, ::file::path path, bool bSync, bool bCache = true);
+      virtual void load_cursor(::windowing::cursor * pcursor, ::file::path path, bool bSync, bool bCache = true);
 
       virtual void set(::message::key * pkey, oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam);
       virtual void set(::message::mouse * pmouse, oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam);
 
       virtual void initialize_keyboard(::windowing::keyboard * pkeyboard);
 
-      virtual ::e_status lock_set_foreground_window(bool bLock = true);
+      virtual void lock_set_foreground_window(bool bLock = true);
 
 
-      virtual ::e_status windowing_send(const ::routine & routine);
-      virtual ::e_status windowing_post(const ::routine & routine);
+      virtual void windowing_send(const ::routine & routine);
+      virtual void windowing_post(const ::routine & routine);
 
 
       virtual void _main_loop();
@@ -205,7 +205,7 @@ namespace windowing
 
 
       template < typename OBJECT_POINTER, typename OBJECT_METHOD, typename PAYLOAD_POINTER >
-      ::e_status windowing_send(OBJECT_POINTER pobject, OBJECT_METHOD object_method, PAYLOAD_POINTER ppayload)
+      void windowing_send(OBJECT_POINTER pobject, OBJECT_METHOD object_method, PAYLOAD_POINTER ppayload)
       {
 
          return ::material_object::__send_payload(this, &windowing::windowing_post, pobject, object_method, ppayload);
@@ -213,7 +213,7 @@ namespace windowing
       }
 
 
-      virtual ::e_status register_extended_event_listener(::matter * pdata, bool bMouse, bool bKeyboard);
+      virtual void register_extended_event_listener(::matter * pdata, bool bMouse, bool bKeyboard);
 
 
 #ifdef WINDOWS_DESKTOP

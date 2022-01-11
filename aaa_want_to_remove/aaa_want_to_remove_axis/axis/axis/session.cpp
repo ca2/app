@@ -13,7 +13,7 @@ namespace axis
    }
 
 
-   ::e_status session::initialize(::object * pobject)
+   void session::initialize(::object * pobject)
    {
 
       auto estatus = ::aura::session::initialize(pobject);
@@ -85,7 +85,7 @@ namespace axis
    }
 
 
-   ::e_status session::process_init()
+   void session::process_init()
    {
 
       INFORMATION("axis::session::process_init");
@@ -170,7 +170,7 @@ namespace axis
    }
 
 
-   ::e_status session::init1()
+   void session::init1()
    {
 
       auto estatus = __compose_new(m_pfs);
@@ -254,7 +254,7 @@ namespace axis
    }
 
 
-   ::e_status session::init2()
+   void session::init2()
    {
 
       if(!::aura::session::init2())
@@ -276,7 +276,7 @@ namespace axis
    }
 
 
-   ::e_status session::init_session()
+   void session::init_session()
    {
 
       if (!m_paccount->init_instance())
@@ -322,7 +322,7 @@ namespace axis
    }
 
 
-   ::e_status session::init()
+   void session::init()
    {
 
       if (!::aura::session::init())

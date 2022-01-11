@@ -24,7 +24,7 @@ namespace linux
    }
 
 
-   ::e_status build::prepare_build()
+   void build::prepare_build()
    {
 
       auto pini = m_pcontext->m_papexcontext->file().get_ini("/etc/os-release");
@@ -38,7 +38,7 @@ namespace linux
    }
 
 
-   ::e_status build::do_build()
+   void build::do_build()
    {
 
       bool bTimeout = false;

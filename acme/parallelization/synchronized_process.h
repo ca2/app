@@ -41,7 +41,7 @@ public:
    }
 
    
-   ::e_status wait(const ::duration& duration = duration::infinite()) override
+   void wait(const ::duration& duration = duration::infinite()) override
    {
 
       return m_peventCompletion->wait(duration);

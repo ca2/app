@@ -59,7 +59,7 @@ public:
    virtual ~ftpfs();
 
 
-   virtual ::e_status initialize_ftpfs(::object * pobject, const ::string & pszRoot);
+   virtual void initialize_ftpfs(::object * pobject, const ::string & pszRoot);
 
 
    virtual bool has_subdir(const ::file::path & pszPath) override;

@@ -146,13 +146,13 @@ namespace user
       void handle(::subject * psubject, ::context * pcontext) override;
 
 
-      ::e_status display_previous_restore() override;
+      void display_previous_restore() override;
       void display_system_minimize() override;
 
 
       virtual ::color::color get_border_main_body_color();
 
-      ::e_status add_menu_item(const ::string & strPath, const ::string & strText, const ::string & strId);
+      void add_menu_item(const ::string & strPath, const ::string & strText, const ::string & strId);
 
 
       virtual ::user::tool_window * tool_window(enum_tool etool, bool bCreate = false);
@@ -160,18 +160,18 @@ namespace user
 
       //virtual ::user::toolbar * get_toolbar(const ::id & idToolBar);
 
-      virtual ::e_status add_control_bar(::user::control_bar * pcontrolbar);
-      virtual ::e_status erase_control_bar(::user::control_bar * pcontrolbar);
+      virtual void add_control_bar(::user::control_bar * pcontrolbar);
+      virtual void erase_control_bar(::user::control_bar * pcontrolbar);
 
 
-      ::e_status show_control_bar(::user::control_bar * pcontrolbar) override;
-      ::e_status hide_control_bar(::user::control_bar * pcontrolbar) override;
+      void show_control_bar(::user::control_bar * pcontrolbar) override;
+      void hide_control_bar(::user::control_bar * pcontrolbar) override;
 
 
       //virtual __transport(toolbar) create_toolbar(const ::id & idToolbar, const ::string & strToolbar = nullptr, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP, const ::type & type = "user::toolbar");
 
 
-      virtual ::e_status on_create_bars();
+      virtual void on_create_bars();
 
 
 

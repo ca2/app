@@ -23,17 +23,17 @@ namespace app_build
       ~build() override;
 
 
-      virtual ::e_status prepare_build();
+      virtual void prepare_build();
 
-      virtual ::e_status do_build();
+      virtual void do_build();
 
-      ::e_status run() override;
+      void run() override;
 
 
       void write_log(const ::string &str);
 
 
-      ::e_status run_command(const ::string & strCommand);
+      void run_command(const ::string & strCommand);
 
 
    };

@@ -26,7 +26,7 @@ inline bool failed(::i64 i)
 }
 
 
-class CLASS_DECL_ACME e_status
+class CLASS_DECL_ACME e_status3
 {
 public:
    
@@ -34,12 +34,12 @@ public:
    ::enum_status        m_estatus;
    
    
-   e_status() { m_estatus = ::undefined; }
-   e_status(::enum_status estatus): m_estatus(estatus){}
-   e_status(const ::e_status & estatus): m_estatus(estatus.m_estatus){}
-   e_status(bool b) : m_estatus(b ? success : error_failed){}
-   e_status(i32 i) : m_estatus((::enum_status) i) {}
-   e_status(i64 i) : m_estatus((::enum_status) i) {}
+   e_status3() { m_estatus = ::undefined; }
+   e_status3(::enum_status estatus): m_estatus(estatus){}
+   e_status3(const ::e_status3 & estatus): m_estatus(estatus.m_estatus){}
+   e_status3(bool b) : m_estatus(b ? success : error_failed){}
+   e_status3(i32 i) : m_estatus((::enum_status) i) {}
+   e_status3(i64 i) : m_estatus((::enum_status) i) {}
    
    operator ::enum_status () const { return m_estatus; }
 
@@ -69,15 +69,15 @@ public:
 
    int exit_code() const;
 
-   e_status & operator =(enum_status estatus) { m_estatus = estatus; return *this; }
-   e_status & operator =(const e_status & estatus) { m_estatus = (enum_status) estatus; return *this; }
-   e_status & operator =(bool b) { m_estatus = b ? success : error_failed; return *this; }
+   e_status3& operator =(enum_status estatus) { m_estatus = estatus; return *this; }
+   e_status3& operator =(const e_status3 & estatus) { m_estatus = (enum_status) estatus; return *this; }
+   e_status3& operator =(bool b) { m_estatus = b ? success : error_failed; return *this; }
 
    bool operator ==(enum_status estatus) const { return m_estatus == estatus; }
-   bool operator ==(const e_status& estatus) const { return m_estatus == estatus; }
-   bool operator <(const e_status& estatus) const { return m_estatus < (enum_status) estatus; }
+   bool operator ==(const e_status3& estatus) const { return m_estatus == estatus; }
+   bool operator <(const e_status3& estatus) const { return m_estatus < (enum_status) estatus; }
    bool operator <(const enum_status& estatus) const { return m_estatus < estatus; }
-   bool operator >(const e_status& estatus) const { return m_estatus > (enum_status) estatus; }
+   bool operator >(const e_status3& estatus) const { return m_estatus > (enum_status) estatus; }
    bool operator >(const enum_status& estatus) const { return m_estatus > estatus; }
 
    
@@ -86,7 +86,7 @@ public:
 
 
 
-inline bool succeeded(const ::e_status & estatus)
+inline bool succeeded(const ::e_status3& estatus)
 {
 
    return succeeded((::i64)estatus.m_estatus);
@@ -94,14 +94,14 @@ inline bool succeeded(const ::e_status & estatus)
 }
 
 
-inline bool failed(const ::e_status & estatus)
+inline bool failed(const ::e_status3 & estatus)
 {
 
    return !succeeded(estatus);
 
 }
 
-inline bool succeeded(const ::e_status & estatus, int iRange)
+inline bool succeeded(const ::e_status3 & estatus, int iRange)
 {
 
    return (::i64)estatus.m_estatus >= (::i64)SUCCESS_STATUS(iRange).m_estatus
@@ -110,7 +110,7 @@ inline bool succeeded(const ::e_status & estatus, int iRange)
 }
 
 
-inline bool failed(const ::e_status & estatus, int iRange)
+inline bool failed(const ::e_status3 & estatus, int iRange)
 {
 
    return (::i64)estatus.m_estatus >= (::i64)FAILURE_STATUS(iRange).m_estatus
@@ -119,7 +119,7 @@ inline bool failed(const ::e_status & estatus, int iRange)
 }
 
 
-inline void defer_failed(::e_status & estatus, int iRange)
+inline void defer_failed(::e_status3 & estatus, int iRange)
 {
 
    if (!::failed(estatus))
@@ -132,7 +132,7 @@ inline void defer_failed(::e_status & estatus, int iRange)
 }
 
 
-inline void defer_failed(::e_status & estatus, ::e_status     estatusDeferred)
+inline void defer_failed(::e_status3 & estatus, ::e_status3     estatusDeferred)
 {
 
    if (!::failed(estatus))
@@ -145,24 +145,24 @@ inline void defer_failed(::e_status & estatus, ::e_status     estatusDeferred)
 }
 
 
-inline bool status_io_succeeded(const ::e_status & estatus) { return ::succeeded(estatus, STATUS_RANGE_IO); }
+inline bool status_io_succeeded(const ::e_status3& estatus) { return ::succeeded(estatus, STATUS_RANGE_IO); }
 
-inline bool status_io_failed(const ::e_status & estatus) { return ::failed(estatus, STATUS_RANGE_IO); }
-
-
-inline void defer_authentication_failure(::e_status & estatus) { ::defer_failed(estatus, STATUS_RANGE_AUTHENTICATION); }
+inline bool status_io_failed(const ::e_status3& estatus) { return ::failed(estatus, STATUS_RANGE_IO); }
 
 
-CLASS_DECL_ACME ::e_status worst(enum_status e1, enum_status e2);
-inline ::e_status worst(e_status e1, enum_status e2) { return worst((enum_status)e1, (enum_status)e2); }
-inline ::e_status worst(enum_status e1, e_status e2) { return worst((enum_status)e1, (enum_status)e2); }
-inline ::e_status worst(e_status e1, e_status e2) { return worst((enum_status)e1, (enum_status)e2); }
+inline void defer_authentication_failure(::e_status3& estatus) { ::defer_failed(estatus, STATUS_RANGE_AUTHENTICATION); }
 
 
-CLASS_DECL_ACME::e_status operator & (enum_status e1, enum_status e2);
-inline ::e_status operator & (e_status e1, enum_status e2) { return( (enum_status)e1) &((enum_status)e2); }
-inline ::e_status operator & (enum_status e1, e_status e2) { return((enum_status)e1) & ((enum_status)e2); }
-inline ::e_status operator & (e_status e1, e_status e2) { return((enum_status)e1) & ((enum_status)e2); }
+CLASS_DECL_ACME ::e_status3 worst(enum_status e1, enum_status e2);
+inline ::e_status3 worst(e_status3 e1, enum_status e2) { return worst((enum_status)e1, (enum_status)e2); }
+inline ::e_status3 worst(enum_status e1, e_status3 e2) { return worst((enum_status)e1, (enum_status)e2); }
+inline ::e_status3 worst(e_status3 e1, e_status3 e2) { return worst((enum_status)e1, (enum_status)e2); }
+
+
+CLASS_DECL_ACME::e_status3 operator & (enum_status e1, enum_status e2);
+inline ::e_status3 operator & (e_status3 e1, enum_status e2) { return( (enum_status)e1) &((enum_status)e2); }
+inline ::e_status3 operator & (enum_status e1, e_status3 e2) { return((enum_status)e1) & ((enum_status)e2); }
+inline ::e_status3 operator & (e_status3 e1, e_status3 e2) { return((enum_status)e1) & ((enum_status)e2); }
 
 
 

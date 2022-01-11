@@ -23,7 +23,7 @@
             }
 
 
-            ::e_status frame_013::destroy()
+            void frame_013::destroy()
             {
 
                auto estatus = frame_008::destroy();

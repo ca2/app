@@ -118,9 +118,9 @@ public:
 
    //inline class ::trace::log& log() { return *m_ptracelog; }
 
-   virtual ::e_status defer_audio();
+   virtual void defer_audio();
 
-   virtual ::e_status init1();
+   virtual void init1();
 
    //virtual logger & log() { return *m_plogger; }
 
@@ -132,7 +132,7 @@ public:
    virtual void erase_from_any_hook(::matter * pmatter);
 
 
-   virtual ::e_status create_os_node();
+   virtual void create_os_node();
 
    virtual string os_get_user_theme();
 
@@ -184,7 +184,7 @@ public:
 
    //virtual void defer_calc_os_user_theme();
 
-   void process_exit_status(::object* pobject, const ::e_status& estatus);
+   void process_exit_status(::object* pobject, const void& estatus);
 
 
    virtual ::application* get_main_application();
@@ -193,7 +193,7 @@ public:
    virtual __transport(::factory::factory) & folder_factory();
 
 
-   ::e_status system_construct(const ::main & main) override;
+   void system_construct(const ::main & main) override;
 
    //using main::operator =;
    
@@ -205,19 +205,19 @@ public:
 
 #ifdef WINDOWS_DESKTOP
 
-   ::e_status system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char* pCmdLine, i32 nCmdShow);
+   void system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char* pCmdLine, i32 nCmdShow);
 
 #elif defined(_UWP)
 
-   ::e_status system_construct(const ::string_array & stra);
+   void system_construct(const ::string_array & stra);
 
 #elif defined(ANDROID)
 
-   ::e_status system_construct(os_local* poslocal, const ::e_display& edisplay = ::e_display_none);
+   void system_construct(os_local* poslocal, const ::e_display& edisplay = ::e_display_none);
 
 #else
 
-   ::e_status system_construct(const char * pszCommandLine, const ::e_display& edisplay = ::e_display_none);
+   void system_construct(const char * pszCommandLine, const ::e_display& edisplay = ::e_display_none);
 
 #endif
 
@@ -225,40 +225,40 @@ public:
    virtual __transport(::factory::factory)& node_factory();
 
 
-   virtual ::e_status inline_init();
-   virtual ::e_status inline_term();
+   virtual void inline_init();
+   virtual void inline_term();
 
 
-   virtual ::e_status process_init();
+   virtual void process_init();
 
 
-   virtual ::e_status call_init_system();
+   virtual void call_init_system();
 
 
-   virtual ::e_status init_system();
+   virtual void init_system();
 
 
-   virtual ::e_status on_start_system();
+   virtual void on_start_system();
 
 
-   virtual ::e_status post_initial_request();
+   virtual void post_initial_request();
 
 
-   virtual ::e_status system_main();
+   virtual void system_main();
 
 
-   ::e_status on_pre_run_task() override;
+   void on_pre_run_task() override;
 
 
-   ::e_status main() override;
+   void main() override;
 
 
 
 
-   virtual ::e_status end();
+   virtual void end();
 
 
-   virtual ::e_status on_end();
+   virtual void on_end();
 
    //using ::manager::on_subject;
    //virtual void on_subject(::subject * psubject) override;
@@ -267,7 +267,7 @@ public:
 
    virtual ::acme::library* on_get_library(const ::string &pszLibrary);
 
-   //virtual ::e_status set_factory_global(const ::string &pszComponent, const ::string &pszImplementation);
+   //virtual void set_factory_global(const ::string &pszComponent, const ::string &pszImplementation);
 
    //virtual __pointer(::acme::library) open_component_library(const ::string &pszComponent, const ::string &pszImplementation);
 
@@ -287,17 +287,17 @@ public:
    virtual __transport(::factory::factory) & factory(const ::string& strComponent, const ::string& strImplementation);
 
 
-   virtual ::e_status open_profile_link(string strUrl, string strProfile, string strTarget);
-   virtual ::e_status open_link(string strUrl, string strProfile, string strTarget);
-   virtual ::e_status open_url(string strUrl, string strProfile, string strTarget);
+   virtual void open_profile_link(string strUrl, string strProfile, string strTarget);
+   virtual void open_link(string strUrl, string strProfile, string strTarget);
+   virtual void open_url(string strUrl, string strProfile, string strTarget);
 
 
    //void __tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz) const override;
 
 
-   //virtual ::e_status main_user_async(const ::routine & routine, ::enum_priority epriority = e_priority_normal);
+   //virtual void main_user_async(const ::routine & routine, ::enum_priority epriority = e_priority_normal);
 
-   //virtual ::e_status main_user_sync(const ::routine & routine, const ::duration & duration = one_minute(), enum_priority epriority = e_priority_normal);
+   //virtual void main_user_sync(const ::routine & routine, const ::duration & duration = one_minute(), enum_priority epriority = e_priority_normal);
 
 
    ::task* get_task(itask_t itask);
@@ -312,7 +312,7 @@ public:
 
 #ifdef LINUX
 
-   //!!!      virtual ::e_status defer_initialize_x11();
+   //!!!      virtual void defer_initialize_x11();
 
 #endif
 
@@ -320,8 +320,8 @@ public:
    //__pointer(::extended::sequence < ::conversation >) message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
 
 
-   //virtual ::e_status on_initialize_window_object();
-   //virtual ::e_status _on_initialize_window_object();
+   //virtual void on_initialize_window_object();
+   //virtual void _on_initialize_window_object();
 
 //
 //   template < typename ENUM >
@@ -423,15 +423,15 @@ public:
    virtual __transport(::regular_expression::context) get_pcre_context();
    //virtual int system::pcre_add_tokens(string_array& stra, const string& strTopic, const string& strRegexp, int nCount)
 
-   virtual ::e_status get_public_internet_domain_extension_list(string_array& stra);
+   virtual void get_public_internet_domain_extension_list(string_array& stra);
 
    virtual void system_id_update(::i64 iUpdate, ::i64 iPayload);
 
-   virtual ::e_status node_will_finish_launching();
+   virtual void node_will_finish_launching();
    
-   virtual ::e_status on_open_untitled_file();
+   virtual void on_open_untitled_file();
    
-   virtual ::e_status on_open_file(const ::string &pszFile);
+   virtual void on_open_file(const ::string &pszFile);
 
    //template < typename BASE_TYPE >
    //__transport(BASE_TYPE) create(const char * pszComponent, const char* pszImplementation)
@@ -460,12 +460,12 @@ public:
    //}
 
 
-   ::e_status new_compress(::compress ** ppcompress, const char* pszImplementation);
-   ::e_status new_uncompress(::uncompress ** ppuncompress, const char* pszImplementation);
+   void new_compress(::compress ** ppcompress, const char* pszImplementation);
+   void new_uncompress(::uncompress ** ppuncompress, const char* pszImplementation);
 
 
-   virtual ::e_status compress(::file::file* pfileOut, ::file::file* pfileIn, const char* pszImplementation);
-   virtual ::e_status uncompress(::file::file* pfileOut, ::file::file* pfileIn, const char* pszImplementation);
+   virtual void compress(::file::file* pfileOut, ::file::file* pfileIn, const char* pszImplementation);
+   virtual void uncompress(::file::file* pfileOut, ::file::file* pfileIn, const char* pszImplementation);
 
    
    virtual bool fast_is_decompressable_folder(const ::file::path & path);

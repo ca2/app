@@ -114,7 +114,7 @@ namespace user
 
       virtual bool create_menu(const string_array & straCommand, const string_array & straCommandTitle);
 
-      ::e_status destroy() override;
+      void destroy() override;
 
       virtual bool add_menu(::xml::node * pnode);
 
@@ -136,7 +136,7 @@ namespace user
       void route_command(::message::command* pcommand, bool bRouteToKeyDescendant) override;
 
       //// <3ThomasBorregaardS�rensen__!!
-      ::e_status handle_command(const ::id& id) override;
+      void handle_command(const ::id& id) override;
 
 
    };

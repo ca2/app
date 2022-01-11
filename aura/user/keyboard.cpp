@@ -39,7 +39,7 @@ namespace user
    }
 
 
-   ::e_status keyboard::initialize(::object * pobject)
+   void keyboard::initialize(::object * pobject)
    {
 
       auto estatus = ::object::initialize(pobject);
@@ -715,7 +715,7 @@ namespace user
 //   }
 
 
-   ::e_status keyboard::show_software_keyboard(::user::primitive* pprimitive, string str, strsize iBeg, strsize iEnd)
+   void keyboard::show_software_keyboard(::user::primitive* pprimitive, string str, strsize iBeg, strsize iEnd)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -751,7 +751,7 @@ namespace user
    }
 
 
-   ::e_status keyboard::hide_software_keyboard(::user::primitive * pprimitive)
+   void keyboard::hide_software_keyboard(::user::primitive * pprimitive)
    {
 
       if (!::is_null(pprimitive) && pprimitive != m_pprimitiveSoftwareKeyboard)

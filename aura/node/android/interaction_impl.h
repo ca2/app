@@ -101,8 +101,8 @@ namespace android
 
       virtual void edit_on_kill_focus(::user::interaction* pinteraction) override;
 
-      virtual ::e_status show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd) override;
-      virtual ::e_status hide_software_keyboard(::user::primitive * pprimitive) override;
+      virtual void show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd) override;
+      virtual void hide_software_keyboard(::user::primitive * pprimitive) override;
 
       using ::user::interaction_impl::get_child_by_id;
       void get_child_by_id(id id,oswindow* poswindow_) const;

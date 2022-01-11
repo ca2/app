@@ -27,14 +27,14 @@ namespace extended
     }
 
     
-    status::status(const ::e_status& estatus) : 
+    status::status(const void& estatus) : 
        m_estatus(estatus) 
     { 
     
     }
 
     
-    status::status(const std::initializer_list < ::e_status >& list) :
+    status::status(const std::initializer_list < void >& list) :
        m_estatus(undefined)
     {
     
@@ -83,7 +83,7 @@ namespace extended
     }
 
 
-    void status::set(const ::e_status& estatus)
+    void status::set(const void& estatus)
     { 
        
        set(estatus.m_estatus); 
@@ -101,7 +101,7 @@ namespace extended
     }
 
 
-    void status::add(const ::e_status & estatus)
+    void status::add(const void & estatus)
     {
 
        add(estatus.m_estatus);
@@ -171,7 +171,7 @@ namespace extended
        //}
 
 
-    //bool status::get_exception(::exception& e, const ::e_status& estatus)
+    //bool status::get_exception(::exception& e, const void& estatus)
     //{
 
     //   if (m_estatus == estatus)
@@ -209,10 +209,10 @@ namespace extended
     //}
 
 
-    ::e_status status::get_greatest_exception_on_range(enum_status estatusOpenStart, enum_status estatusOpenEnd) const
+    void status::get_greatest_exception_on_range(enum_status estatusOpenStart, enum_status estatusOpenEnd) const
     {
 
-       ::e_status estatus = ::error_not_found;
+       void estatus = ::error_not_found;
 
        if (m_pexceptiona)
        {
@@ -243,7 +243,7 @@ namespace extended
     }
 
 
-    bool status::has(const ::e_status& estatus) const
+    bool status::has(const void& estatus) const
     {
 
        if (m_estatus == estatus)
@@ -288,7 +288,7 @@ namespace extended
     //}
 
 
-    void status::add(const std::initializer_list < ::e_status     >& list)
+    void status::add(const std::initializer_list < void     >& list)
     {
 
        for (auto& e : list)
@@ -314,7 +314,7 @@ namespace extended
     }
 
     
-    bool status::get_exit_status(::e_status& estatus) const
+    bool status::get_exit_status(void& estatus) const
     {
 
        auto estatusExit = get_greatest_exception_on_range(error_exit_start, error_exit_end);
@@ -356,7 +356,7 @@ namespace extended
 
     }
 
-    void status::set_error(const ::e_status& estatus)
+    void status::set_error(const void& estatus)
     {
 
        set(estatus);

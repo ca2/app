@@ -86,7 +86,7 @@ namespace user
 
 
       //virtual iptr get_window_long_ptr(i32 nIndex) const override;
-      //virtual ::e_status set_window_long_ptr(i32 nIndex, iptr lValue) override;
+      //virtual void set_window_long_ptr(i32 nIndex, iptr lValue) override;
 
       virtual bool is_this_visible(enum_layout elayout) override;
 

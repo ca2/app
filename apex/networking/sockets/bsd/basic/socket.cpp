@@ -50,7 +50,7 @@ namespace sockets
    }
 
 
-   //::e_status socket::initialize_socket(base_socket_handler* phandler)
+   //void socket::initialize_socket(base_socket_handler* phandler)
    //{
 
 

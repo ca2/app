@@ -318,7 +318,7 @@ void timer::term_thread()
 
 }
 
-//::e_status timer::destroy()
+//void timer::destroy()
 //{
 //
 //
@@ -560,7 +560,7 @@ bool timer::impl_restart()
 
 }
 
-::e_status timer::run()
+void timer::run()
 {
 
    while (task_sleep(::duration((::i64) m_dwMillis)))

@@ -4,7 +4,7 @@
 
 
 
-::e_status file_transfer::transfer(::file::file* pfileOut, ::file::file* pfileIn)
+void file_transfer::transfer(::file::file* pfileOut, ::file::file* pfileIn)
 {
 
    throw interface_only_exception();

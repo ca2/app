@@ -52,7 +52,7 @@ namespace apex
    }
 
 
-   ::e_status log::initialize_log(enum_trace_level etracelevelMin, const ::id & id)
+   void log::initialize_log(enum_trace_level etracelevelMin, const ::id & id)
    {
 
       auto estatus = __compose_new(m_ptrace);
@@ -642,7 +642,7 @@ namespace apex
    //}
 
 
-   //::e_status log::initialize_apex_log(enum_trace_level etracelevelMin, const char * pszId)
+   //void log::initialize_apex_log(enum_trace_level etracelevelMin, const char * pszId)
    //{
 
    //   //if (!initialize(id(pszId)))
@@ -657,7 +657,7 @@ namespace apex
    //}
 
 
-   ::e_status log::process_init()
+   void log::process_init()
    {
 
       auto psystem = get_system()->m_papexsystem;
@@ -713,14 +713,14 @@ namespace apex
    }
 
 
-   //::e_status log::initialize(e_traceid id)
+   //void log::initialize(e_traceid id)
    //{
 
 
    //}
 
 
-   ::e_status log::destroy()
+   void log::destroy()
    {
 
       synchronous_lock synchronouslock(mutex());

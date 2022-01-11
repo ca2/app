@@ -62,7 +62,7 @@ public:
    string                        m_strAppId;
 
 
-   virtual ::e_status system_construct(const main& main);
+   virtual void system_construct(const main& main);
 
    inline ::count _get_argc() const { return m_argc; }
 
@@ -78,7 +78,7 @@ public:
 };
 
 
-CLASS_DECL_ACME ::e_status __main(main & main);
+CLASS_DECL_ACME void __main(main & main);
 
 
 namespace acme

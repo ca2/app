@@ -20,7 +20,7 @@ namespace android
    }
 
 
-   ::e_status dir_context::initialize(::object * pobject)
+   void dir_context::initialize(::object * pobject)
    {
 
       auto estatus = ::dir_context::initialize(pobject);
@@ -984,7 +984,7 @@ namespace android
    }
 
 
-   ::e_status dir_context::init_system()
+   void dir_context::init_system()
    {
 
       auto estatus = ::dir_context::init_system();
@@ -1085,7 +1085,7 @@ pacmedir->system() / "temp");
    }
 
 
-   ::e_status dir_context::init_context()
+   void dir_context::init_context()
    {
 
       auto estatus = ::dir_context::init_context();

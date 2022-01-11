@@ -80,11 +80,11 @@ namespace user
 #endif
 
 
-      virtual ::e_status defer_create_prodevian();
+      virtual void defer_create_prodevian();
 
 
 
-      virtual ::e_status initialize_prodevian(interaction_impl * pimpl);
+      virtual void initialize_prodevian(interaction_impl * pimpl);
 
 
       bool prodevian_reset(::user::interaction * pinteraction);
@@ -113,11 +113,11 @@ namespace user
 
       virtual void term_thread() override;
 
-      virtual ::e_status destroy() override;
+      virtual void destroy() override;
 
-      virtual ::e_status run() override;
+      virtual void run() override;
 
-      //virtual ::e_status do_task() override;
+      //virtual void do_task() override;
 
 
    };

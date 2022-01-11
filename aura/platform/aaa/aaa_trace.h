@@ -302,7 +302,7 @@ namespace aura
          trace();
          virtual ~trace();
 
-         //virtual ::e_status initialize(::object* pobject) override;
+         //virtual void initialize(::object* pobject) override;
 
          category * operator[](e_trace_category ecategory)
          {

@@ -26,7 +26,7 @@ namespace apex
    }
 
 
-   ::e_status     assert_running_task::run()
+   void     assert_running_task::run()
    {
 
       while(task_get_run())

@@ -22,7 +22,7 @@ namespace file
       ~set() override;
 
 
-      ::e_status on_initialize_object() override;
+      void on_initialize_object() override;
 
 
       // reference

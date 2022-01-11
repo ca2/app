@@ -51,10 +51,10 @@ namespace html
       virtual ~element();
 
 
-      virtual ::e_status initialize_html_elemental(html_data * pdata, element * pparent = nullptr);
+      virtual void initialize_html_elemental(html_data * pdata, element * pparent = nullptr);
 
 
-      virtual ::e_status initialize_html_element(html_data* phtmldata);
+      virtual void initialize_html_element(html_data* phtmldata);
 
 
 

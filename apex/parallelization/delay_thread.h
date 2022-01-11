@@ -19,7 +19,7 @@
 //   }
 //
 //
-//   ::e_status run()
+//   void run()
 //   {
 //
 //      while (true)

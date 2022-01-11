@@ -78,7 +78,7 @@ namespace axis
    }
 
 
-   ::e_status session::initialize(::object * pobject)
+   void session::initialize(::object * pobject)
    {
 
       auto estatus = ::thread::initialize(pobject);
@@ -136,7 +136,7 @@ namespace axis
    }
 
 
-   ::e_status session::process_init()
+   void session::process_init()
    {
 
       INFORMATION("axis::session::process_init");
@@ -642,7 +642,7 @@ namespace axis
 
 
 
-   ::e_status session::init1()
+   void session::init1()
    {
 
       auto estatus = ::aura::session::init1();
@@ -662,10 +662,10 @@ namespace axis
 
 
 
-   ::e_status session::init2()
+   void session::init2()
    {
 
-      ::e_status estatus = ::aura::session::init2();
+      void estatus = ::aura::session::init2();
 
       if(!estatus)
       {
@@ -688,10 +688,10 @@ namespace axis
    }
 
 
-   ::e_status session::init()
+   void session::init()
    {
 
-      ::e_status estatus = ::aura::session::init();
+      void estatus = ::aura::session::init();
 
       if (!estatus)
       {
@@ -753,7 +753,7 @@ namespace axis
 
 
 
-   //::e_status session::initialize(::object * pobject)
+   //void session::initialize(::object * pobject)
    //{
 
    //   auto estatus = ::aura::session::initialize(pobject);
@@ -782,7 +782,7 @@ namespace axis
    }
 
 
-   //::e_status session::process_init()
+   //void session::process_init()
    //{
 
    //   /*if(!::aura::application::process_init())
@@ -816,7 +816,7 @@ namespace axis
    //}
 
 
-   //::e_status session::init1()
+   //void session::init1()
    //{
 
    //   //if (!::aura::application::init1())
@@ -892,7 +892,7 @@ namespace axis
    //}
 
 
-   //::e_status session::init()
+   //void session::init()
    //{
 
    //   //if (!::aura::application::init())
@@ -916,7 +916,7 @@ namespace axis
    //}
 
 
-   //::e_status session::init2()
+   //void session::init2()
    //{
 
    //   //if (!::aura::application::init2())
@@ -939,7 +939,7 @@ namespace axis
 
 
 
-   //::e_status session::init_session()
+   //void session::init_session()
    //{
 
    //   //if (!::aura::application::init_application())
@@ -1079,7 +1079,7 @@ namespace axis
    //}
 
 
-   //::e_status session::bergedge_start()
+   //void session::bergedge_start()
    //{
 
    //   return true;

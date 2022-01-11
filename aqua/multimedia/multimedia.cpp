@@ -25,7 +25,7 @@ namespace aqua
    }
 
 
-   ::e_status multimedia::initialize_multimedia(::object * pobject)
+   void multimedia::initialize_multimedia(::object * pobject)
    {
 
       auto estatus = initialize(pobject);
@@ -84,7 +84,7 @@ namespace aqua
    }
 
 
-   ::e_status multimedia::exit_application()
+   void multimedia::exit_application()
    {
 
       return ::success;
@@ -109,7 +109,7 @@ namespace aqua
    }
 
 
-   ::e_status multimedia::get_file_information(::file::file* pfile, ::multimedia::information& information)
+   void multimedia::get_file_information(::file::file* pfile, ::multimedia::information& information)
    {
 
       return ::error_failed;

@@ -69,16 +69,16 @@ namespace draw2d
       ~draw2d() override;
 
 
-      virtual ::e_status initialize(::object * pobject) override;
+      virtual void initialize(::object * pobject) override;
 
-      virtual ::e_status process_init() override;
+      virtual void process_init() override;
 
-      virtual ::e_status init() override;
-      virtual ::e_status init1() override;
+      virtual void init() override;
+      virtual void init1() override;
 
-      virtual ::e_status term() override;
+      virtual void term() override;
 
-      virtual ::e_status destroy() override;
+      virtual void destroy() override;
 
 
       __pointer(save_image) new_save_image(const ::payload& payloadFile, const ::payload& varOptions);
@@ -101,11 +101,11 @@ namespace draw2d
       e_format file_extension_to_format(const ::payload & payloadFile);
       e_format text_to_format(string str);
       
-      virtual ::e_status initialize_write_text();
+      virtual void initialize_write_text();
       virtual __transport(::factory::factory) & write_text_factory();
 
 
-      virtual ::e_status term_instance() override;
+      virtual void term_instance() override;
 
 
       virtual string write_text_get_default_library_name();
@@ -247,8 +247,8 @@ namespace draw2d
       //virtual void enum_draw2d_fonts(::write_text::font_enumeration_item_array& itema);
 
 
-      virtual ::e_status lock_device();
-      virtual ::e_status unlock_device();
+      virtual void lock_device();
+      virtual void unlock_device();
 
 
 

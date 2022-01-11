@@ -20,7 +20,7 @@ namespace database
    }
 
 
-   ::e_status server::initialize(::object * pobject)
+   void server::initialize(::object * pobject)
    {
 
       auto estatus = ::object::initialize(pobject);

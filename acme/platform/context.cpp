@@ -54,7 +54,7 @@ namespace acme
    }
 
 
-   ::e_status context::initialize_context()
+   void context::initialize_context()
    {
 
       return ::success;

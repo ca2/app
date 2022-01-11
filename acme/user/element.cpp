@@ -40,7 +40,7 @@ namespace user
    //}
 
 
-   ::e_status element::show_software_keyboard(::user::element * pprimitive, string str, strsize iBeg, strsize iEnd)
+   void element::show_software_keyboard(::user::element * pprimitive, string str, strsize iBeg, strsize iEnd)
    {
 
       return error_interface_only;
@@ -48,7 +48,7 @@ namespace user
    }
 
 
-   ::e_status element::hide_software_keyboard(::user::element * pprimitive)
+   void element::hide_software_keyboard(::user::element * pprimitive)
    {
 
       return error_interface_only;
@@ -800,7 +800,7 @@ namespace user
    //}
 
 
-   //::e_status element::message_box(const ::payload& varParam)
+   //void element::message_box(const ::payload& varParam)
    //{
 
    //   ::payload payload;
@@ -1048,7 +1048,7 @@ namespace user
    }
 
 
-   ::e_status element::interaction_post(const ::routine & routine)
+   void element::interaction_post(const ::routine & routine)
    {
 
       throw ::interface_only_exception();
@@ -1251,7 +1251,7 @@ namespace user
    }
 
 
-   ::e_status element::create_child(::user::interaction * puserinteractionParent)
+   void element::create_child(::user::interaction * puserinteractionParent)
    {
 
       throw ::interface_only_exception();
@@ -1261,7 +1261,7 @@ namespace user
    }
 
    
-   ::e_status element::create_control(::user::interaction * puserinteractionParent, const ::id & id)
+   void element::create_control(::user::interaction * puserinteractionParent, const ::id & id)
    {
 
       m_id = id;
@@ -1298,7 +1298,7 @@ namespace user
    //}
 
 
-   ::e_status element::create_interaction(::user::interaction * puserinteractionParent, const ::id & id)
+   void element::create_interaction(::user::interaction * puserinteractionParent, const ::id & id)
    {
 
       if (!id.is_empty())
@@ -1308,7 +1308,7 @@ namespace user
 
       }
 
-      ::e_status estatus;
+      void estatus;
 
       if (!puserinteractionParent)
       {
@@ -1336,7 +1336,7 @@ namespace user
 
 
    //bool element::create_window_ex(__pointer(::user::system) pcs, ::user::interaction * puiParent, const ::id & id)
-   ::e_status element::create_host()
+   void element::create_host()
    {
 
       throw ::interface_only_exception();
@@ -1530,7 +1530,7 @@ namespace user
    //}
 
 
-   //::e_status element::set_window_long_ptr(i32 nIndex, iptr lValue)
+   //void element::set_window_long_ptr(i32 nIndex, iptr lValue)
    //{
 
    //   throw ::interface_only_exception();
@@ -2691,7 +2691,7 @@ namespace user
    //}
 
 
-   //::e_status element::set_mouse_cursor(::windowing::cursor * pcursor)
+   //void element::set_mouse_cursor(::windowing::cursor * pcursor)
    //{
 
    //   return success_none;
@@ -2699,7 +2699,7 @@ namespace user
    //}
 
 
-   //::e_status element::set_cursor(::windowing::/*cursor * pcursor)
+   //void element::set_cursor(::windowing::/*cursor * pcursor)
    //{
 
    //   throw ::interface_only_exception();
@@ -2996,7 +2996,7 @@ namespace user
    //}
 
 
-   ::e_status element::set_tool_window(bool bSet)
+   void element::set_tool_window(bool bSet)
    {
 
       __UNREFERENCED_PARAMETER(bSet);
@@ -3486,7 +3486,7 @@ namespace user
    }
 
 
-   ::e_status element::set_bitmap_source(const string & strBitmapSource)
+   void element::set_bitmap_source(const string & strBitmapSource)
    {
 
       return error_interface_only;
@@ -3494,7 +3494,7 @@ namespace user
    }
 
 
-   ::e_status element::clear_bitmap_source()
+   void element::clear_bitmap_source()
    {
 
       return error_interface_only;
@@ -3551,7 +3551,7 @@ namespace user
    }
 
 
-   ::e_status element::add_child_handler(::matter * pmatter, const ::id & idChild, bool bPriority)
+   void element::add_child_handler(::matter * pmatter, const ::id & idChild, bool bPriority)
    {
 
       throw ::interface_only_exception();
@@ -4228,7 +4228,7 @@ namespace user
    }
 
 
-   ::e_status element::set_keyboard_focus()
+   void element::set_keyboard_focus()
    {
 
       return ::error_interface_only;
@@ -4236,7 +4236,7 @@ namespace user
    }
 
 
-   ::e_status element::erase_keyboard_focus()
+   void element::erase_keyboard_focus()
    {
 
       return ::error_interface_only;
@@ -4244,7 +4244,7 @@ namespace user
    }
 
 
-   ::e_status element::clear_keyboard_focus()
+   void element::clear_keyboard_focus()
    {
 
       return ::error_interface_only;
@@ -4523,7 +4523,7 @@ namespace user
    }
 
 
-   //::e_status element::set_icon(::windowing::icon * picon)
+   //void element::set_icon(::windowing::icon * picon)
    //{
 
    //   return false;

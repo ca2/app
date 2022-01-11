@@ -52,7 +52,7 @@ namespace draw2d
    }
 
 
-   ::e_status icon::initialize(::object * pobject)
+   void icon::initialize(::object * pobject)
    {
 
       auto estatus = ::matter::initialize(pobject);
@@ -69,7 +69,7 @@ namespace draw2d
    }
 
 
-   ::e_status icon::initialize_with_windowing_icon(::windowing::icon * pwindowingicon)
+   void icon::initialize_with_windowing_icon(::windowing::icon * pwindowingicon)
    {
 
       m_pwindowingicon = pwindowingicon;

@@ -112,7 +112,7 @@ __pointer(synchronization_array) interprocess_call::synca()
 }
 
 
-::e_status interprocess_call::wait()
+void interprocess_call::wait()
 {
 
    auto psynca = synca();

@@ -55,7 +55,7 @@ namespace sockets
 
       virtual void InitSSLClient() override;
 
-      ::e_status step() override;
+      void step() override;
 
       void OnLine(const string &) override;
 

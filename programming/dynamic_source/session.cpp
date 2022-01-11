@@ -28,7 +28,7 @@ namespace dynamic_source
    }
 
 
-   ::e_status session::initialize_dynamic_source_session(const string& strSessid, ::dynamic_source::script_manager* pmanager)
+   void session::initialize_dynamic_source_session(const string& strSessid, ::dynamic_source::script_manager* pmanager)
    {
 
       auto estatus = ::object::initialize(pmanager);

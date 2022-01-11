@@ -17,7 +17,7 @@ public:
    virtual ~html_form();
 
    
-   virtual ::e_status initialize(::object * pobject) override;
+   virtual void initialize(::object * pobject) override;
 
 
    virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
@@ -32,8 +32,8 @@ public:
 
    virtual string get_path() override;
 
-   virtual ::e_status open_document(const ::payload & payloadFile) override;
-   virtual ::e_status open_html(const ::string & str) override;
+   virtual void open_document(const ::payload & payloadFile) override;
+   virtual void open_html(const ::string & str) override;
 
 
    ::html_data * get_html_data();
@@ -41,7 +41,7 @@ public:
    //::html_document * get_document();
 
 
-   virtual ::e_status create_html_data();
+   virtual void create_html_data();
 
 
    DECLARE_MESSAGE_HANDLER(on_message_create);

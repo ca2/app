@@ -214,7 +214,7 @@ namespace user
    }
 
 
-   ::e_status impact::initialize_view(::user::document * pdocument)
+   void impact::initialize_view(::user::document * pdocument)
    {
 
       auto estatus = ::user::box::initialize(pdocument);
@@ -674,7 +674,7 @@ namespace user
    }
 
 
-   ::e_status impact::set_notify_user_interaction(::user::interaction* puserinteractionNotify)
+   void impact::set_notify_user_interaction(::user::interaction* puserinteractionNotify)
    {
 
       m_puserinteractionImpactNotify = puserinteractionNotify;
@@ -818,7 +818,7 @@ namespace user
 
       __pointer(::user::interaction) pinteraction;
 
-      ::e_status estatus = ::success;
+      void estatus = ::success;
 
       if (pusersystem->m_puserprimitiveNew != nullptr)
       {

@@ -27,7 +27,7 @@ html_form::~html_form()
 }
 
 
-::e_status html_form::initialize(::object * pobject)
+void html_form::initialize(::object * pobject)
 {
 
    auto estatus = ::user::form_view::initialize(pobject);
@@ -490,7 +490,7 @@ void html_form::set_need_load_form_data()
 }
 
 
-::e_status html_form::open_document(const ::payload & payloadFile)
+void html_form::open_document(const ::payload & payloadFile)
 {
 
    auto path = payloadFile.get_file_path();
@@ -541,7 +541,7 @@ void html_form::set_need_load_form_data()
 }
 
 
-::e_status html_form::open_html(const ::string & str)
+void html_form::open_html(const ::string & str)
 {
 
    auto phtmldata = get_html_data();
@@ -636,7 +636,7 @@ void html_form::_001SetText(const ::string & str, const ::action_context & conte
 }
 
 
-::e_status html_form::create_html_data()
+void html_form::create_html_data()
 {
 
    auto estatus = __construct_new(m_phtmldata);

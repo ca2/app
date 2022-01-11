@@ -752,7 +752,7 @@ CLASS_DECL_CORE void vfxGetModuleShortFileName(HINSTANCE hInst, string& strShort
 }
 
 
-//void CLASS_DECL_CORE vfxThrowFileException(::object * pobject, ::e_status cause, ::i32 lOsError, const ::string & lpszFileName /* == nullptr */)
+//void CLASS_DECL_CORE vfxThrowFileException(::object * pobject, void cause, ::i32 lOsError, const ::string & lpszFileName /* == nullptr */)
 //{
 //
 //   __throw(::file::exception(cause, lOsError, lpszFileName));
@@ -760,7 +760,7 @@ CLASS_DECL_CORE void vfxGetModuleShortFileName(HINSTANCE hInst, string& strShort
 //}
 //
 //
-//::file::exception * CLASS_DECL_CORE get_FileException(::object * pobject, ::e_status cause, ::i32 lOsError, const ::string & lpszFileName /* == nullptr */)
+//::file::exception * CLASS_DECL_CORE get_FileException(::object * pobject, void cause, ::i32 lOsError, const ::string & lpszFileName /* == nullptr */)
 //{
 //
 //   return __new(::file::exception(cause, lOsError, lpszFileName));
@@ -775,7 +775,7 @@ CLASS_DECL_CORE void vfxGetModuleShortFileName(HINSTANCE hInst, string& strShort
 //   namespace file_exception
 //   {
 //
-//      ::e_status ErrnoToException(i32 nErrno)
+//      void ErrnoToException(i32 nErrno)
 //      {
 //         switch(nErrno)
 //         {

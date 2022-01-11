@@ -407,7 +407,7 @@ namespace draw2d_cairo
    }
 
 
-   ::e_status bitmap::destroy_os_data()
+   void bitmap::destroy_os_data()
    {
 
       synchronous_lock ml(cairo_mutex());
@@ -428,7 +428,7 @@ namespace draw2d_cairo
    }
 
 
-   ::e_status bitmap::destroy()
+   void bitmap::destroy()
    {
 
       destroy_os_data();

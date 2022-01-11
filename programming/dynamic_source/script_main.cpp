@@ -45,7 +45,7 @@ namespace dynamic_source
 #endif
 
 
-   ::e_status script_main::initialize(::object * pobject)
+   void script_main::initialize(::object * pobject)
    {
 
       auto estatus = ::html::file::initialize(pobject);
@@ -62,7 +62,7 @@ namespace dynamic_source
    }
 
 
-   ::e_status script_main::destroy()
+   void script_main::destroy()
    {
          
       auto estatus = script_interface::destroy();

@@ -62,7 +62,7 @@ int main(int argc, platform_char ** argv, platform_char ** envp)
 //
 //#endif
 
-//   ::e_status estatus = ::success;
+//   void estatus = ::success;
 //
 //   //process_set_args(argc, argv);
 //

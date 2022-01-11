@@ -17,7 +17,7 @@
 
 
 
-::e_status fgets_string(string & str, FILE * pfile, memsize iBufferSize = 1024);
+void fgets_string(string & str, FILE * pfile, memsize iBufferSize = 1024);
 
 
 

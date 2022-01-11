@@ -286,7 +286,7 @@ public:
 
    byte * find_line_prefix(const ::block& blockPrefix, ::index iStart = 0);
    ::index find_line_prefix_index(const ::block& blockPrefix, ::index iStart = 0);
-   ::e_status patch_line_suffix(const ::block & blockPrefix, const block& blockSuffix, ::index iStart = 0);
+   void patch_line_suffix(const ::block & blockPrefix, const block& blockSuffix, ::index iStart = 0);
 
 
 #if defined(_UWP) && defined(__cplusplus_winrt)

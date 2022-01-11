@@ -309,8 +309,8 @@ namespace user
       //DECLARE_MESSAGE_HANDLER(_001OnEditDelete);
 
       
-      ::e_status is_edit_delete_enabled() override;
-      ::e_status on_edit_delete(const ::action_context & actioncontext) override;
+      void is_edit_delete_enabled() override;
+      void on_edit_delete(const ::action_context & actioncontext) override;
 
 
       virtual DECLARE_MESSAGE_HANDLER(_009OnChar);

@@ -180,7 +180,7 @@
 //      class completion_callback;
 //
 //
-//      typedef void (completion_callback :: *LPFN_COMPLETION_CALLBACK)(task < T > & task, const ::e_status & estatus);
+//      typedef void (completion_callback :: *LPFN_COMPLETION_CALLBACK)(task < T > & task, const void & estatus);
 //
 //
 //      T *                              m_presult;
@@ -212,7 +212,7 @@
 //
 //
 //      template < class COMPLETION_CALLBACK >
-//      void set_completion_callback(COMPLETION_CALLBACK * pobject, void (COMPLETION_CALLBACK :: *pfncompletioncallback)(task < T > & task, const ::e_status & estatus))
+//      void set_completion_callback(COMPLETION_CALLBACK * pobject, void (COMPLETION_CALLBACK :: *pfncompletioncallback)(task < T > & task, const void & estatus))
 //      {
 //
 //         m_pcompletioncallback      = static_cast < completion_callback * > (pobject);
@@ -230,7 +230,7 @@
 //
 //      }
 //
-//      ::e_status  defer_call_completion(const ::e_status & estatus)
+//      void  defer_call_completion(const void & estatus)
 //      {
 //
 //         m_estatus = estatus;
@@ -247,7 +247,7 @@
 //
 //      }
 //
-//      virtual ::e_status  run() override
+//      virtual void  run() override
 //      {
 //
 //         return defer_call_completion(e_state_complete);

@@ -53,7 +53,7 @@ namespace net
    }
 
 
-   ::e_status     address_department::initialize(::object * pobject)
+   void     address_department::initialize(::object * pobject)
    {
 
       if (m_bInitialized)
@@ -100,7 +100,7 @@ namespace net
    }
 
 
-   ::e_status address_department::destroy()
+   void address_department::destroy()
    {
 
       ::object::destroy();

@@ -15,7 +15,7 @@ file_system::~file_system()
 }
 
 
-::e_status file_system::initialize(::object * pobject)
+void file_system::initialize(::object * pobject)
 {
    
    auto estatus = ::object::initialize(pobject);
@@ -36,7 +36,7 @@ file_system::~file_system()
 }
 
 
-::e_status file_system::init_system()
+void file_system::init_system()
 {
    
 //   auto estatus = update_module_path();
@@ -55,7 +55,7 @@ file_system::~file_system()
 }
 
 
-//::e_status file_system::update_module_path()
+//void file_system::update_module_path()
 //{
 //
 //   return ::success;

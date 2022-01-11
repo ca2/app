@@ -16,7 +16,7 @@ networking_application_handler::~networking_application_handler()
 }
 
 
-::e_status networking_application_handler::on_html_response(string & strHtml, const ::string& strUrl, const ::property_set& setPost)
+void networking_application_handler::on_html_response(string & strHtml, const ::string& strUrl, const ::property_set& setPost)
 {
 
    auto psystem = m_psystem;

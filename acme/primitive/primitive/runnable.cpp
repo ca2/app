@@ -8,7 +8,7 @@
 //}
 //
 //
-//::e_status     ::matter::call()
+//void     ::matter::call()
 //{
 //
 //   auto estatus = ::matter::call();
@@ -20,7 +20,7 @@
 //}
 //
 //
-//::e_status     ::matter::call(::trait & trait)
+//void     ::matter::call(::trait & trait)
 //{
 //
 //   auto estatus = ::matter::call(trait);

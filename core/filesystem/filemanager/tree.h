@@ -65,7 +65,7 @@ namespace filemanager
       inline ::core::system* get_system() const { return m_psystem ? m_psystem->m_pcoresystem : nullptr; }
 
 
-      virtual ::e_status initialize_filemanager_tree(document * pdocument);
+      virtual void initialize_filemanager_tree(document * pdocument);
 
 
       void assert_valid() const override;

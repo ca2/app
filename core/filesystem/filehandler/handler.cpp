@@ -18,7 +18,7 @@ namespace filehandler
    }
 
 
-   ::e_status handler::initialize(::object * pobject)
+   void handler::initialize(::object * pobject)
    {
 
       auto estatus = ::object::initialize(pobject);

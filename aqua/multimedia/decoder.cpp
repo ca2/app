@@ -47,7 +47,7 @@ namespace multimedia
    //}
 
 
-   ::e_status decoder::multimedia_open(::file::file * pfile)
+   void decoder::multimedia_open(::file::file * pfile)
    {
 
       return ::success;
@@ -55,7 +55,7 @@ namespace multimedia
    }
 
 
-   ::e_status decoder::multimedia_close()
+   void decoder::multimedia_close()
    {
 
       return ::success;
@@ -63,7 +63,7 @@ namespace multimedia
    }
 
 
-   ::e_status decoder::impl_multimedia_open(::file::file * pfile)
+   void decoder::impl_multimedia_open(::file::file * pfile)
    {
 
       return ::error_failed;
@@ -71,7 +71,7 @@ namespace multimedia
    }
 
 
-   ::e_status decoder::impl_multimedia_close()
+   void decoder::impl_multimedia_close()
    {
 
       m_pathOrigin.Empty();

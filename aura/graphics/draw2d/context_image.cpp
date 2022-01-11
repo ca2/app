@@ -22,7 +22,7 @@ context_image::~context_image()
 }
 
 
-::e_status context_image::initialize(::object * pobject)
+void context_image::initialize(::object * pobject)
 {
 
    auto estatus = ::object::initialize(pobject);
@@ -39,7 +39,7 @@ context_image::~context_image()
 }
 
 
-::e_status context_image::destroy_composites()
+void context_image::destroy_composites()
 {
 
    return ::object::destroy_composites();
@@ -58,7 +58,7 @@ context_image::~context_image()
 }
 
 
-::e_status context_image::_save_to_file(const ::payload & payloadFile, const image * pimage, const ::payload & varOptions)
+void context_image::_save_to_file(const ::payload & payloadFile, const image * pimage, const ::payload & varOptions)
 {
 
    auto psystem = m_psystem->m_paurasystem;
@@ -373,7 +373,7 @@ context_image::~context_image()
 }
 
 
-::e_status context_image::_get_icon(::draw2d::icon * picon, const ::payload & payloadFile)
+void context_image::_get_icon(::draw2d::icon * picon, const ::payload & payloadFile)
 {
 
    return _load_icon(picon, payloadFile);
@@ -381,7 +381,7 @@ context_image::~context_image()
 }
 
 
-::e_status context_image::_load_icon(::draw2d::icon * picon, const ::payload & payloadFile)
+void context_image::_load_icon(::draw2d::icon * picon, const ::payload & payloadFile)
 {
 
    auto pwindowingicon = __create < ::windowing::icon >();
@@ -403,7 +403,7 @@ context_image::~context_image()
 
 
 
-::e_status context_image::_get_image(image * pimage, const ::payload & payloadFile, const ::image::load_options & loadoptions)
+void context_image::_get_image(image * pimage, const ::payload & payloadFile, const ::image::load_options & loadoptions)
 {
 
    return _load_image(pimage, payloadFile, loadoptions);
@@ -411,7 +411,7 @@ context_image::~context_image()
 }
 
 
-::e_status context_image::_matter_image(image * pimage, const ::string & strMatter, const ::image::load_options & loadoptions)
+void context_image::_matter_image(image * pimage, const ::string & strMatter, const ::image::load_options & loadoptions)
 {
 
    if (loadoptions.sync)
@@ -435,7 +435,7 @@ context_image::~context_image()
 }
 
 
-::e_status context_image::_load_image(image * pimage, const ::payload & payloadFile, const ::image::load_options & loadoptions)
+void context_image::_load_image(image * pimage, const ::payload & payloadFile, const ::image::load_options & loadoptions)
 {
    
    return ::success;
@@ -443,7 +443,7 @@ context_image::~context_image()
 }
 
 
-::e_status context_image::_load_matter_image(image * pimage, const ::string & strMatter, const ::image::load_options & loadoptions)
+void context_image::_load_matter_image(image * pimage, const ::string & strMatter, const ::image::load_options & loadoptions)
 {
 
    auto pcontext = get_context();
@@ -464,7 +464,7 @@ context_image::~context_image()
 }
 
 
-::e_status context_image::_load_matter_icon(image * pimage, string_array & straMatter, string strIcon)
+void context_image::_load_matter_icon(image * pimage, string_array & straMatter, string strIcon)
 {
 
    ::file::path path;
@@ -494,7 +494,7 @@ context_image::~context_image()
 }
 
 
-::e_status context_image::_load_thumbnail(image * pimage, const ::payload & payloadFile, int w, int h)
+void context_image::_load_thumbnail(image * pimage, const ::payload & payloadFile, int w, int h)
 {
 
    try
@@ -535,7 +535,7 @@ context_image::~context_image()
 }
 
 
-::e_status context_image::_load_thumbnail(image * pimage, const ::payload & payloadFile)
+void context_image::_load_thumbnail(image * pimage, const ::payload & payloadFile)
 {
 
    ::file::path path = payloadFile.get_file_path();
@@ -556,7 +556,7 @@ context_image::~context_image()
 }
 
 
-::e_status context_image::_load_dib(image * pimage, const ::file::path & pathDib)
+void context_image::_load_dib(image * pimage, const ::file::path & pathDib)
 {
 
    try
@@ -605,7 +605,7 @@ context_image::~context_image()
 }
 
 
-::e_status context_image::save_image(const ::payload & payloadFile, const image * pimage, const ::save_image * psaveimage)
+void context_image::save_image(const ::payload & payloadFile, const image * pimage, const ::save_image * psaveimage)
 {
    
    memory mem;
@@ -624,7 +624,7 @@ context_image::~context_image()
 }
 
 
-::e_status context_image::save_image(::memory & memory, const image * pimage, const ::save_image * psaveimage)
+void context_image::save_image(::memory & memory, const image * pimage, const ::save_image * psaveimage)
 {
 
    auto pfile = create_memory_file(memory);
@@ -643,7 +643,7 @@ context_image::~context_image()
 }
 
 
-::e_status context_image::save_dib(const ::file::path & pathDib, const image * pimage)
+void context_image::save_dib(const ::file::path & pathDib, const image * pimage)
 {
 
    try
@@ -677,7 +677,7 @@ context_image::~context_image()
 
 
 
-::e_status context_image::_load_image(::image* pimage, __pointer(image_frame_array)& pframea, ::memory & memory)
+void context_image::_load_image(::image* pimage, __pointer(image_frame_array)& pframea, ::memory & memory)
 {
 
    return ::success;

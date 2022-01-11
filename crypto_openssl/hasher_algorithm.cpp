@@ -24,7 +24,7 @@ namespace crypto_openssl
    }
 
 
-   ::e_status hasher_algorithm::initialize_hasher_algorithm(enum_hash ehash)
+   void hasher_algorithm::initialize_hasher_algorithm(enum_hash ehash)
    {
 
       m_ehash = ehash;
@@ -36,7 +36,7 @@ namespace crypto_openssl
    }
 
 
-   ::e_status hasher_algorithm::hash(memory& memoryHash, const block& block)
+   void hasher_algorithm::hash(memory& memoryHash, const block& block)
    {
 
 #if OPENSSL_VERSION_NUMBER >= 0x30000000

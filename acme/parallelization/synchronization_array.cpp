@@ -182,7 +182,7 @@ void synchronization_array::erase(index index)
 }
 
 
-::e_status synchronization_array::wait()
+void synchronization_array::wait()
 {
 
    return wait(duration::infinite());
@@ -190,7 +190,7 @@ void synchronization_array::erase(index index)
 }
 
 
-::e_status synchronization_array::wait(const class ::wait & wait, bool bWaitForAll, ::u32 uWakeMask)
+void synchronization_array::wait(const class ::wait & wait, bool bWaitForAll, ::u32 uWakeMask)
 {
 
    if (is_empty())
@@ -241,7 +241,7 @@ void synchronization_array::erase(index index)
 
    bool FoundExternal=false;
 
-   ::e_status estatus;
+   void estatus;
 
 //   ::duration durationWaitNow;
 
@@ -302,7 +302,7 @@ void synchronization_array::erase(index index)
 }
 
 
-::e_status synchronization_array::contains(const ::e_status & result) const
+void synchronization_array::contains(const void & result) const
 {
 
    __throw(todo);

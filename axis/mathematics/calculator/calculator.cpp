@@ -17,7 +17,7 @@ namespace calculator
    }
 
 
-   ::e_status calculator::initialize(::object * pobject)
+   void calculator::initialize(::object * pobject)
    {
 
       auto estatus = ::acme::department::initialize(pobject);

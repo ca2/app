@@ -5,7 +5,7 @@ namespace multimedia
 {
 
 
-   exception::exception(e_exception eexception, const ::e_status & estatus, const char * pszMessage) :
+   exception::exception(e_exception eexception, const void & estatus, const char * pszMessage) :
       ::exception(estatus, pszMessage)
    {
 
@@ -15,7 +15,7 @@ namespace multimedia
    }
 
 
-   //::exception(e_exception eexception, const ::e_status & estatus, ::e_status     estatusSecond, const char * pszMessage) :
+   //::exception(e_exception eexception, const void & estatus, void     estatusSecond, const char * pszMessage) :
    //   ::exception(pszMessage, estatus)
    //{
 
@@ -77,10 +77,10 @@ namespace multimedia
    }
 
 
-   //   ::e_status     ::e_status     smfrc
+   //   void     void     smfrc
    //   {
    //
-   //      ::e_status     rc = ::multimedia::result_midi_error;
+   //      void     rc = ::multimedia::result_midi_error;
    //
    //      switch(smfrc)
    //      {

@@ -13,20 +13,20 @@ public:
 
    service_handler();
    virtual ~service_handler();
-   //virtual ::e_status start_service();
+   //virtual void start_service();
 
-   //virtual ::e_status stop_service();
+   //virtual void stop_service();
 
    service* get_service();
-   //virtual ::e_status install_service();
+   //virtual void install_service();
 
-   virtual ::e_status defer_service();
+   virtual void defer_service();
 
-   //virtual ::e_status enable_service();
-   //virtual ::e_status disable_service();
+   //virtual void enable_service();
+   //virtual void disable_service();
 
-   virtual ::e_status start_service();
-   virtual ::e_status stop_service();
+   virtual void start_service();
+   virtual void stop_service();
 
 
 };

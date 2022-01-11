@@ -30,7 +30,7 @@ namespace sockets
    }
 
 
-   ::e_status net::initialize(::object * pobject)
+   void net::initialize(::object * pobject)
    {
 
       auto estatus = ::object::initialize(pobject);
@@ -47,7 +47,7 @@ namespace sockets
    }
 
 
-   //::e_status net::initialize(::object * pobject)
+   //void net::initialize(::object * pobject)
    //{
 
    //   return ::success;
@@ -71,7 +71,7 @@ namespace sockets
    }
 
 
-   ::e_status net::destroy()
+   void net::destroy()
    {
 
       //return true;

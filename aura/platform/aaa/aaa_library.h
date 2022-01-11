@@ -27,8 +27,8 @@ namespace aura
       library() {}
       virtual ~library();
 
-      virtual ::e_status     initialize(::object * pobject);
-      virtual ::e_status     initialize_aura_library(::object * pobject, int iDesmabi, const ::string & pszRoot = nullptr, const ::string & pszName = nullptr, const ::string & pszFolder = nullptr);
+      virtual void     initialize(::object * pobject);
+      virtual void     initialize_aura_library(::object * pobject, int iDesmabi, const ::string & pszRoot = nullptr, const ::string & pszName = nullptr, const ::string & pszFolder = nullptr);
 
       virtual bool open(const ::string & pszPath,bool bAutoClose = true,bool bCa2Path = false);
 

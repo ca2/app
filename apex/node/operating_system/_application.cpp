@@ -31,7 +31,7 @@ PFN_NEW_MATTER get_application_factory()
 const char * g_pszMainAppId = nullptr;
 
 
-CLASS_DECL_APEX ::e_status set_main_app_id(const char * pszAppId)
+CLASS_DECL_APEX void set_main_app_id(const char * pszAppId)
 {
 
    g_pszMainAppId = pszAppId;

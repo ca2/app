@@ -18,7 +18,7 @@ namespace fs
    }
 
 
-   ::e_status link::initialize(::object * pobject) 
+   void link::initialize(::object * pobject) 
    {
 
       auto estatus = ::fs::native::initialize(pobject);

@@ -19,7 +19,7 @@ namespace universal_windows
    }
 
 
-   ::e_status dir_context::initialize(::matter* pobject)
+   void dir_context::initialize(::matter* pobject)
    {
 
       auto estatus = ::dir_context::initialize(pobject);
@@ -40,7 +40,7 @@ namespace universal_windows
    }
 
 
-   ::e_status dir_context::init_system()
+   void dir_context::init_system()
    {
 
       auto estatus = ::dir_context::init_system();

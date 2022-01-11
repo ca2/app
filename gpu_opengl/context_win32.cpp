@@ -31,7 +31,7 @@ namespace opengl
 
 
 
-   ::e_status context_win32::_create_offscreen_buffer(const ::size_i32& size)
+   void context_win32::_create_offscreen_buffer(const ::size_i32& size)
    {
 
       auto psystem = get_system()->m_paurasystem;
@@ -177,7 +177,7 @@ namespace opengl
 
       }
 
-      ::e_status estatus = popengl->defer_init_glew();
+      void estatus = popengl->defer_init_glew();
 
       if (!estatus)
       {
@@ -198,7 +198,7 @@ namespace opengl
    }
 
 
-   ::e_status context_win32::resize_offscreen_buffer(const ::size_i32& size)
+   void context_win32::resize_offscreen_buffer(const ::size_i32& size)
    {
 
       if (!m_pbuffer)
@@ -241,10 +241,10 @@ namespace opengl
    }
 
 
-   ::e_status context_win32::make_current()
+   void context_win32::make_current()
    {
 
-      ::e_status estatus = ::success;
+      void estatus = ::success;
 
       bool bMakeCurrentOk = wglMakeCurrent(m_hdc, m_hrc);
 
@@ -264,10 +264,10 @@ namespace opengl
    }
 
 
-   ::e_status context_win32::destroy_offscreen_buffer()
+   void context_win32::destroy_offscreen_buffer()
    {
 
-      ::e_status estatus = ::success;
+      void estatus = ::success;
 
       if (m_hrc == NULL && m_hdc == NULL && m_hwnd == NULL)
       {

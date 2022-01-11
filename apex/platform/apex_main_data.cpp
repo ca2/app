@@ -37,7 +37,7 @@ apex_main_data::~apex_main_data()
 }
 
 
-::e_status apex_main_data::system_construct(const ::main & main)
+void apex_main_data::system_construct(const ::main & main)
 {
 
    auto estatus = ::main::system_construct(main);
@@ -89,7 +89,7 @@ apex_main_data::~apex_main_data()
 }
 
 
-//::e_status apex_main_data::system_construct(int argc, char** argv, char ** envp)
+//void apex_main_data::system_construct(int argc, char** argv, char ** envp)
 //{
 //
 //   auto estatus = acme_main_data::system_construct(argc, argv, envp);
@@ -131,7 +131,7 @@ apex_main_data::~apex_main_data()
 //}
 //
 //
-//::e_status apex_main_data::system_construct(int argc, wchar_t** argv, wchar_t ** envp)
+//void apex_main_data::system_construct(int argc, wchar_t** argv, wchar_t ** envp)
 //{
 //
 //   auto estatus = acme_main_data::system_construct(argc, argv, envp);
@@ -184,7 +184,7 @@ e_status apex_main_data::on_system_construct()
 #ifdef WINDOWS_DESKTOP
 
 
-//::e_status apex_main_data::system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char * pCmdLine, i32 nCmdShow)
+//void apex_main_data::system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char * pCmdLine, i32 nCmdShow)
 //{
 //
 //   auto estatus = acme_main_data::system_construct(pCmdLine);
@@ -222,7 +222,7 @@ e_status apex_main_data::on_system_construct()
 #elif defined(_UWP)
 
 
-::e_status apex_main_data::system_construct(const ::string_array & straParam)
+void apex_main_data::system_construct(const ::string_array & straParam)
 {
 
    //m_poslocal = nullptr;
@@ -253,7 +253,7 @@ e_status apex_main_data::on_system_construct()
 #else
 
 
-::e_status apex_main_data::system_construct(const char * pszCommandLine, const ::e_display & edisplay)
+void apex_main_data::system_construct(const char * pszCommandLine, const ::e_display & edisplay)
 {
 
    m_strCommandLine = pszCommandLine;
@@ -278,7 +278,7 @@ e_status apex_main_data::on_system_construct()
 }
 
 
-::e_status apex_main_data::system_construct(os_local * poslocal, const ::e_display & edisplay)
+void apex_main_data::system_construct(os_local * poslocal, const ::e_display & edisplay)
 {
 
 #ifdef ANDROID

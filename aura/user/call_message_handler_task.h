@@ -22,7 +22,7 @@ namespace user
       virtual ~call_message_handler_task();
 
 
-      virtual ::e_status run();
+      virtual void run();
 
 
    };

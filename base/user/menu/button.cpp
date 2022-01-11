@@ -28,7 +28,7 @@ namespace user
    }
 
 
-   ::e_status menu_button::initialize_menu_interaction(menu_item* pitem)
+   void menu_button::initialize_menu_interaction(menu_item* pitem)
    {
 
       auto estatus = button::initialize(pitem);

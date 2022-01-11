@@ -38,10 +38,10 @@ namespace draw2d
 
 
       virtual void defer_update(::draw2d::graphics * pgraphics, ::i8 i) const;
-      virtual ::e_status destroy_os_data();
+      virtual void destroy_os_data();
 
       virtual bool create(::draw2d::graphics * pgraphics, i8 iCreate);
-      ::e_status destroy() override;
+      void destroy() override;
 
       inline void set_modified() { m_bUpdated2 = false; }
 

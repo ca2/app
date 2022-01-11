@@ -234,7 +234,7 @@ application::~application()
 
 
 
-::e_status application::initialize(::object * pobject)
+void application::initialize(::object * pobject)
 {
 
 auto estatus = ::thread::initialize(pobject);
@@ -344,7 +344,7 @@ pnode->set_application_menu(m_papplicationmenu, this);
 }
 
 
-::e_status application::destroy()
+void application::destroy()
 {
 
    __unbind(this, m_puserlanguagemap OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
@@ -860,7 +860,7 @@ pcreate->m_pcommandline->m_eventReady.SetEvent();
 }
 
 
-//::e_status application::os_message_box(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+//void application::os_message_box(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
 //{
 
 //   return ::os_message_box(puiOwner->get_safe_handle(), pszMessage, pszTitle, emessagebox, callback);
@@ -868,7 +868,7 @@ pcreate->m_pcommandline->m_eventReady.SetEvent();
 //}
 
 
-//::e_status application::ui_message_box(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+//void application::ui_message_box(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
 //{
 
 //   if (!get_session() || !psession->userex())
@@ -883,7 +883,7 @@ pcreate->m_pcommandline->m_eventReady.SetEvent();
 //}
 
 
-//::e_status application::ui_message_box_timeout(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::duration& durationTimeout, const ::e_message_box & emessagebox, ::callback callback)
+//void application::ui_message_box_timeout(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::duration& durationTimeout, const ::e_message_box & emessagebox, ::callback callback)
 //{
 
 //   if (!get_session() || !psession->userex())
@@ -898,7 +898,7 @@ pcreate->m_pcommandline->m_eventReady.SetEvent();
 //}
 
 
-//::e_status application::message_box(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+//void application::message_box(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
 //{
 
 //   auto estatus = ui_message_box(puiOwner, pszMessage, pszTitle, emessagebox, callback);
@@ -915,7 +915,7 @@ pcreate->m_pcommandline->m_eventReady.SetEvent();
 //}
 
 
-//::e_status application::message_box_timeout(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, ::callback callback)
+//void application::message_box_timeout(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, ::callback callback)
 //{
 
 //   auto estatus = ui_message_box_timeout(puiOwner, pszMessage, pszTitle, durationTimeout, emessagebox, callback);
@@ -932,7 +932,7 @@ pcreate->m_pcommandline->m_eventReady.SetEvent();
 //}
 
 
-//::e_status application::message_box(const ::payload & payload)
+//void application::message_box(const ::payload & payload)
 //{
 
 //   __pointer(::user::primitive) puiOwner;
@@ -1233,7 +1233,7 @@ void application::_001CloseApplication()
 
 
 
-::e_status application::get_temp_file_name_template(string & strRet, const ::string & lpszName, const ::string & pszExtension, const ::string & pszTemplate)
+void application::get_temp_file_name_template(string & strRet, const ::string & lpszName, const ::string & pszExtension, const ::string & pszTemplate)
 {
 
 __throw(error_not_implemented);
@@ -1243,7 +1243,7 @@ return false;
 }
 
 
-::e_status application::get_temp_file_name(string & strRet, const ::string & lpszName, const ::string & pszExtension)
+void application::get_temp_file_name(string & strRet, const ::string & lpszName, const ::string & pszExtension)
 {
 
 return get_temp_file_name_template(strRet, lpszName, pszExtension, nullptr);
@@ -1251,7 +1251,7 @@ return get_temp_file_name_template(strRet, lpszName, pszExtension, nullptr);
 }
 
 
-::e_status application::exit_application()
+void application::exit_application()
 {
 
    try_close_application();
@@ -1261,7 +1261,7 @@ return get_temp_file_name_template(strRet, lpszName, pszExtension, nullptr);
 }
 
 
-::e_status application::process_exception(const ::exception & e)
+void application::process_exception(const ::exception & e)
 {
 
    return ::thread::process_exception(e);
@@ -1290,7 +1290,7 @@ return get_temp_file_name_template(strRet, lpszName, pszExtension, nullptr);
 //}
 
 
-//   ::e_status     application::main()
+//   void     application::main()
 //   {
 //
 //
@@ -1338,7 +1338,7 @@ return get_temp_file_name_template(strRet, lpszName, pszExtension, nullptr);
 //   }
 
 
-::e_status application::init_thread()
+void application::init_thread()
 {
 
    try
@@ -1395,7 +1395,7 @@ void application::term_thread()
 }
 
 
-::e_status application::pre_run()
+void application::pre_run()
 {
 
    INFORMATION("apex::application::pre_run");
@@ -1481,10 +1481,10 @@ void application::term_thread()
 }
 
 
-//   ::e_status application::on_run()
+//   void application::on_run()
 //   {
 //
-//      ::e_status     estatus = ::success;
+//      void     estatus = ::success;
 //
 //      try
 //      {
@@ -1696,7 +1696,7 @@ INFORMATION("apex::application::pos_run exception.4");
 }
 
 
-::e_status application::init_instance()
+void application::init_instance()
 {
 
 //xxdebug_box("check_exclusive", "check_exclusive", e_message_box_icon_information);
@@ -2151,7 +2151,7 @@ void application::term_instance()
 //}
 
 
-::e_status application::application_pre_run()
+void application::application_pre_run()
 {
 //
 //INFORMATION("apex::application::application_pre_run");
@@ -2218,7 +2218,7 @@ m_durationHeartBeat.Now();
 
 m_durationHeartBeat.Now();
 
-::e_status estatus = ::success;
+void estatus = ::success;
 
 try
 {
@@ -2452,7 +2452,7 @@ bool application::do_install()
 }
 
 
-::e_status application::on_before_launching()
+void application::on_before_launching()
 {
 
    string strLicense = get_license_id();
@@ -2532,7 +2532,7 @@ return true;
 }
 
 
-::e_status application::on_install()
+void application::on_install()
 {
 
 if (is_service())
@@ -2565,7 +2565,7 @@ return ::success;
 }
 
 
-::e_status application::on_uninstall()
+void application::on_uninstall()
 {
 
 //bool bOk = axis::application::on_uninstall();
@@ -2700,7 +2700,7 @@ return true;
 }
 
 
-::e_status application::os_native_bergedge_start()
+void application::os_native_bergedge_start()
 {
 
 return true;
@@ -2716,7 +2716,7 @@ return false;
 }
 
 
-::e_status     application::run()
+void     application::run()
 {
 
 //if (is_system())
@@ -2777,7 +2777,7 @@ __pointer(::service) application::create_service()
 
 
 
-//::e_status application::os_create_service()
+//void application::os_create_service()
 //{
 
 //   return m_pcontext->m_papexcontext->os().create_service();
@@ -2785,7 +2785,7 @@ __pointer(::service) application::create_service()
 //}
 
 
-//::e_status application::os_erase_service()
+//void application::os_erase_service()
 //{
 
 //   return m_pcontext->m_papexcontext->os().erase_service();
@@ -2793,7 +2793,7 @@ __pointer(::service) application::create_service()
 //}
 
 
-//::e_status application::os_start_service()
+//void application::os_start_service()
 //{
 
 //   return m_pcontext->m_papexcontext->os().start_service();
@@ -2801,7 +2801,7 @@ __pointer(::service) application::create_service()
 //}
 
 
-//::e_status application::os_stop_service()
+//void application::os_stop_service()
 //{
 
 //   return m_pcontext->m_papexcontext->os().stop_service();
@@ -2816,7 +2816,7 @@ __pointer(::service) application::create_service()
 
 //}
 
-::e_status application::process_init()
+void application::process_init()
 {
 
 
@@ -3054,7 +3054,7 @@ catch(...)
 }
 
 
-::e_status application::init_application()
+void application::init_application()
 {
 
 auto psystem = get_system()->m_papexsystem;
@@ -3165,7 +3165,7 @@ return nullptr;
 }
 
 
-::e_status application::init1()
+void application::init1()
 {
 
    auto estatus = initialize_context();
@@ -3332,7 +3332,7 @@ catch(...)
 
 }
 
-::e_status application::init2()
+void application::init2()
 {
 
 //if (!impl_init2())
@@ -3382,7 +3382,7 @@ catch(...)
 
 }
 
-::e_status application::init3()
+void application::init3()
 {
 
 string strFolder = m_strAppName;
@@ -3724,7 +3724,7 @@ bool application::release_exclusive()
 }
 
 
-::e_status application::notify_process_init()
+void application::notify_process_init()
 {
 
 ::message::application message(::message::application_process_init);
@@ -3736,7 +3736,7 @@ return true;
 }
 
 
-::e_status application::notify_init1()
+void application::notify_init1()
 {
 
 ::message::application message(::message::application_init1);
@@ -3748,7 +3748,7 @@ return message.m_bOk;
 }
 
 
-::e_status application::notify_init2()
+void application::notify_init2()
 {
 
 ::message::application message(::message::application_init2);
@@ -3758,7 +3758,7 @@ route_message(&message);
 return message.m_bOk;
 
 }
-::e_status application::notify_init3()
+void application::notify_init3()
 {
 
 ::message::application message(::message::application_init3);
@@ -3865,7 +3865,7 @@ return psystem->get_global_id_mutex_name(get_mutex_name_gen(), get_global_mutex_
 
 
 
-::e_status application::on_exclusive_instance_conflict(bool & bHandled, EExclusiveInstance eexclusive, string strId)
+void application::on_exclusive_instance_conflict(bool & bHandled, EExclusiveInstance eexclusive, string strId)
 {
 
 if (eexclusive == ExclusiveInstanceLocal)
@@ -3886,7 +3886,7 @@ return false;
 }
 
 
-::e_status application::on_exclusive_instance_local_conflict(bool & bHandled)
+void application::on_exclusive_instance_local_conflict(bool & bHandled)
 {
 
 bool bContinue = false;
@@ -3949,7 +3949,7 @@ return bContinue;
 }
 
 
-::e_status application::on_exclusive_instance_local_conflict_id(bool & bHandled, string strId)
+void application::on_exclusive_instance_local_conflict_id(bool & bHandled, string strId)
 {
 
 bool bContinue = false;
@@ -4002,7 +4002,7 @@ return bContinue;
 }
 
 
-::e_status application::on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine)
+void application::on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine)
 {
 
 auto pcommandline = __create_new < command_line >();
@@ -4509,7 +4509,7 @@ return !is_session() && !is_system();
 //}
 
 
-//::e_status application::france_exit()
+//void application::france_exit()
 //{
 //
 //   HideApplication();
@@ -4717,7 +4717,7 @@ return m_strAppId;
 }
 
 
-::e_status application::app_set(string strPath, string strValue)
+void application::app_set(string strPath, string strValue)
 {
 
 return m_pcontext->m_papexcontext->sys_set(::file::path(m_strAppName) / strPath, strValue);
@@ -5708,7 +5708,7 @@ return nullptr;
 }
 
 
-::e_status application::verb()
+void application::verb()
 {
 
    return true;
@@ -5777,7 +5777,7 @@ set_finish();
 //}
 
 
-//::e_status     application::main()
+//void     application::main()
 //{
 
 //   return ::application::main();
@@ -5785,7 +5785,7 @@ set_finish();
 //}
 
 
-::e_status application::on_run()
+void application::on_run()
 {
 
 //try
@@ -5886,7 +5886,7 @@ try
 }
 
 
-//::e_status application::destroy()
+//void application::destroy()
 //{
 //
 //   auto estatus = ::apex::context::destroy();
@@ -5903,7 +5903,7 @@ try
 //}
 
 
-//::e_status application::init_application()
+//void application::init_application()
 //{
 
 //   return ::application::init_application();
@@ -5911,7 +5911,7 @@ try
 //}
 
 
-//::e_status application::application_pre_run()
+//void application::application_pre_run()
 //{
 
 //   return ::application::application_pre_run();
@@ -5984,7 +5984,7 @@ try
 //}
 
 
-//::e_status application::os_native_bergedge_start()
+//void application::os_native_bergedge_start()
 //{
 
 //   if (!::application::os_native_bergedge_start())
@@ -6007,7 +6007,7 @@ try
 //}
 
 
-//::e_status     application::run()
+//void     application::run()
 //{
 
 //   return ::application::run();
@@ -6036,7 +6036,7 @@ try
 //}
 
 
-//::e_status application::process_init()
+//void application::process_init()
 //{
 
 //   add_factory_item < ::database::field_array >();
@@ -6082,7 +6082,7 @@ try
 //}
 
 
-//::e_status application::init_instance()
+//void application::init_instance()
 //{
 
 //   //if (m_bAxisInitializeInstance)
@@ -6169,7 +6169,7 @@ try
 
 
 
-//::e_status application::init1()
+//void application::init1()
 //{
 
 //   //if (m_bAxisInitialize1)
@@ -6208,7 +6208,7 @@ try
 //}
 
 
-//::e_status application::init2()
+//void application::init2()
 //{
 
 //   if (!::application::init2())
@@ -6219,7 +6219,7 @@ try
 //}
 
 
-//::e_status application::init3()
+//void application::init3()
 //{
 
 //   if (!::application::init3())
@@ -6236,7 +6236,7 @@ try
 //
 
 
-::e_status application::init()
+void application::init()
 {
 
 m_durationHeartBeat.Now();
@@ -6789,14 +6789,14 @@ __pointer(::progress::real) application::show_progress(::user::interaction * pui
 }
 
 
-::e_status application::userfs_init1()
+void application::userfs_init1()
 {
 
 return error_not_implemented;
 
 }
 
-::e_status application::userfs_process_init()
+void application::userfs_process_init()
 {
 
 return error_not_implemented;
@@ -6909,7 +6909,7 @@ return m_strAppId;
 //}
 
 
-::e_status application::hotplugin_host_starter_start_sync(const ::string & pszCommandLine, ::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
+void application::hotplugin_host_starter_start_sync(const ::string & pszCommandLine, ::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
 {
 
 {
@@ -6959,7 +6959,7 @@ return hotplugin_host_host_starter_start_sync(pszCommandLine, get_application(),
 }
 
 
-::e_status application::hotplugin_host_host_starter_start_sync(const ::string & pszCommandLine, ::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
+void application::hotplugin_host_host_starter_start_sync(const ::string & pszCommandLine, ::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
 {
 
 return -1;
@@ -7038,7 +7038,7 @@ return -1;
 
 
 
-//   ::e_status     application::interactive_credentials(::account::credentials * pcredentials)
+//   void     application::interactive_credentials(::account::credentials * pcredentials)
 //   {
 //
 //      return ::apex::applciation::interactive_credentials(pcredentials);
@@ -7206,7 +7206,7 @@ return m_datakey.m_bLocalData;
 //}
 
 
-//::e_status application::initialize(::object * pobject)
+//void application::initialize(::object * pobject)
 //{
 
 //   auto estatus = ::application::initialize(pobject);
@@ -7370,7 +7370,7 @@ return m_datakey.m_bLocalData;
 
 
 
-/* ::e_status     application::run()
+/* void     application::run()
 {
 
 return ::application::run();
@@ -9159,7 +9159,7 @@ pmessage->m_bRet = true;
 //}
 
 
-//::e_status application::bergedge_start()
+//void application::bergedge_start()
 //{
 
 //   string strId = m_strId;
@@ -9757,7 +9757,7 @@ string application::get_theme()
 }
 
 
-::e_status application::initialize_contextualized_theme()
+void application::initialize_contextualized_theme()
 {
 
    return ::success;
@@ -9778,7 +9778,7 @@ void application::_001OnSwitchContextTheme(::message::message* pmessage)
 }
 
 
-::e_status     application::create_impact_system()
+void     application::create_impact_system()
 {
 
    return ::success;
@@ -9793,7 +9793,7 @@ void application::process_message_filter(i32 code, ::message::message* pmessage)
 }
 
 
-::e_status application::on_thread_on_idle(::thread* pthread, ::i32 lCount)
+void application::on_thread_on_idle(::thread* pthread, ::i32 lCount)
 {
 
    __throw(todo, "interaction");
@@ -9959,7 +9959,7 @@ string application::get_version()
 }
 
 
-::e_status application::_001InitializeShellOpen()
+void application::_001InitializeShellOpen()
 {
 
    auto psystem = m_psystem->m_papexsystem;

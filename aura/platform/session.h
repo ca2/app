@@ -42,7 +42,7 @@ namespace aura
       ~session() override;
 
 
-      ::e_status on_initialize_object() override;
+      void on_initialize_object() override;
 
 
 #if defined(WINDOWS)
@@ -63,13 +63,13 @@ namespace aura
 
       inline ::aura::system* get_system() const;
 
-      //virtual ::e_status finish(::property_object * pcontextobjectFinish = nullptr) override;
-      ::e_status destroy() override;
+      //virtual void finish(::property_object * pcontextobjectFinish = nullptr) override;
+      void destroy() override;
 
-      virtual ::e_status initialize(::object * pobject) override;
+      virtual void initialize(::object * pobject) override;
 
 
-      //::e_status _on_initialize_window_object() override;
+      //void _on_initialize_window_object() override;
 
       //inline ::userpresence::department & userpresence() { return *m_puserpresence; }
 
@@ -77,15 +77,15 @@ namespace aura
 
       //void construct(::object * pobject, int iPhase) override;
 
-      virtual ::e_status process_init() override;
+      virtual void process_init() override;
 
-      virtual ::e_status init1() override;
+      virtual void init1() override;
 
-      virtual ::e_status init2() override;
+      virtual void init2() override;
 
-      //virtual ::e_status init_session() override;
+      //virtual void init_session() override;
 
-      virtual ::e_status init() override;
+      virtual void init() override;
 
       virtual void term() override;
 
@@ -118,7 +118,7 @@ namespace aura
 
       //virtual void defer_initialize_user_presence();
 
-      //virtual ::e_status     interactive_credentials(::account::credentials * pcredentials) override;
+      //virtual void     interactive_credentials(::account::credentials * pcredentials) override;
 
       virtual bool on_create_frame_window();
 
@@ -146,7 +146,7 @@ namespace aura
       virtual string get_locale_schema_dir() override;
 
 
-      //virtual ::e_status     initialize(::object * pobject) override;
+      //virtual void     initialize(::object * pobject) override;
 
 
       //virtual ::user::interaction * get_session_window() override;
@@ -156,17 +156,17 @@ namespace aura
 
       //virtual bool is_session() const override;
 
-      //virtual ::e_status init_thread() override;
+      //virtual void init_thread() override;
 
-      //virtual ::e_status process_init();
+      //virtual void process_init();
 
-      //virtual ::e_status init1();
+      //virtual void init1();
 
-      //virtual ::e_status init2();
+      //virtual void init2();
 
-      //virtual ::e_status init_session();
+      //virtual void init_session();
 
-      //virtual ::e_status init();
+      //virtual void init();
 
       //virtual void term();
       virtual void term2() override;
@@ -269,23 +269,23 @@ namespace aura
 
 
 
-      //virtual ::e_status initialize(::object * pobject) override;
+      //virtual void initialize(::object * pobject) override;
 
       virtual void install_message_routing(::channel* pchannel) override;
 
-      //virtual ::e_status userex_process_init();
-      //virtual ::e_status userex_init1();
-      //virtual ::e_status init2() override;
+      //virtual void userex_process_init();
+      //virtual void userex_init1();
+      //virtual void init2() override;
       //virtual bool init3() override;
       //virtual bool initialize_filemanager();
-      ///virtual ::e_status init_session() override;
+      ///virtual void init_session() override;
       //virtual void add_document_template(::user::impact_system * ptemplate);
 
       //virtual void term_session() override;
       //virtual void term3() override;
       //virtual bool finalize_filemanager();
 
-      //virtual ::e_status destroy() override;
+      //virtual void destroy() override;
 
       //template < typename VIEW >
       //__pointer(::user::document)   create_form(__pointer(::user::interaction) puserinteractionParent = nullptr, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
@@ -302,7 +302,7 @@ namespace aura
 
       virtual bool InitializeLocalDataCentral() override;
 
-      //virtual ::e_status bergedge_start() override;
+      //virtual void bergedge_start() override;
 
       void _001OnFileNew();
 
@@ -356,17 +356,17 @@ namespace aura
       //inline ::userex::userex* userex() { return m_puserex; }
 
 
-      //virtual ::e_status process_init() override;
+      //virtual void process_init() override;
 
-      //virtual ::e_status init1() override;
+      //virtual void init1() override;
 
-      //virtual ::e_status init() override;
+      //virtual void init() override;
 
-      //virtual ::e_status os_native_bergedge_start() override;
+      //virtual void os_native_bergedge_start() override;
 
-      virtual ::e_status     main() override;
+      virtual void     main() override;
 
-      virtual ::e_status defer_initialize_host_window(const RECTANGLE_I32 * lprect = nullptr) override;
+      virtual void defer_initialize_host_window(const RECTANGLE_I32 * lprect = nullptr) override;
 
       //virtual service_base * allocate_new_service() override;
 

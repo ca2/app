@@ -509,7 +509,7 @@ template < typename T >
 concept a_enum = std::is_enum < T >::value;
 
 template < typename T >
-concept primitive_integral = std::is_integral < T >::value || std::is_enum < T >::value || std::same_as < T, ::e_status >;
+concept primitive_integral = std::is_integral < T >::value || std::is_enum < T >::value || std::same_as < T, ::e_status2 >;
 
 template < typename T >
 concept primitive_integer = std::is_integral < T >::value;
@@ -677,7 +677,7 @@ inline bool __is_zero(const NON_POINTER & t);
 
 
 
-CLASS_DECL_ACME void set_last_status(const ::e_status &estatus);
+CLASS_DECL_ACME void set_last_status(const ::e_status3 &estatus);
 
 CLASS_DECL_ACME void windowing_output_debug_string(const char *pszDebugString);
 
@@ -1058,7 +1058,7 @@ CLASS_DECL_ACME void ansi_get_errno(i32 *perrno);
 CLASS_DECL_ACME void ansi_unlink(const char *psz);
 
 
-CLASS_DECL_ACME ::e_status get_last_status();
+CLASS_DECL_ACME ::e_status3 get_last_status();
 
 
 
@@ -1720,9 +1720,9 @@ class synchronization_object;
 //CLASS_DECL_ACME i32 acme_run_system(class ::system* psystem);
 
 
-//CLASS_DECL_ACME ::e_status acme_run_system_init(class ::system * psystem);
-//CLASS_DECL_ACME ::e_status acme_run_system_proc(class ::system * psystem);
-//CLASS_DECL_ACME ::e_status acme_run_system_term(class ::system * psystem);
+//CLASS_DECL_ACME ::e_status2 acme_run_system_init(class ::system * psystem);
+//CLASS_DECL_ACME ::e_status2 acme_run_system_proc(class ::system * psystem);
+//CLASS_DECL_ACME ::e_status2 acme_run_system_term(class ::system * psystem);
 
 
 #include "acme/primitive/primitive/payload_type.h"
@@ -2819,7 +2819,7 @@ namespace text
 #define __unbind(holder, ...) (holder)->__release((holder)-> __VA_ARGS__ )
 
 
-//CLASS_DECL_ACME ::e_status __realize(::matter * pmatter, const ::future & process);
+//CLASS_DECL_ACME ::e_status2 __realize(::matter * pmatter, const ::future & process);
 
 
 // C-includes
@@ -3164,7 +3164,7 @@ class memory_base;
 #include "acme/exception/status.h"
 
 
-CLASS_DECL_ACME ::e_status _003CountStatus(::count countSuccess, ::count countFailed);
+CLASS_DECL_ACME ::e_status3 _003CountStatus(::count countSuccess, ::count countFailed);
 
 #include "acme/constant/filesystem.h"
 
@@ -3353,7 +3353,7 @@ using ecommand = ::enumeration<enum_command>;
 using echeck = ::enumeration<enum_check>;
 
 
-typedef ::e_status THREAD_ROUTINE(thread_parameter parameter);
+typedef void THREAD_ROUTINE(thread_parameter parameter);
 
 
 inline bool succeeded(const ::payload & payload);
@@ -3621,7 +3621,7 @@ namespace draw2d
 
 #define OPTIONAL_BASE_BODY                                                          \
 public:                                                                             \
-   ::e_status on_initialize_object() override { return ::success; }         \
+   void on_initialize_object() override {}         \
    void assert_valid() const override {}                                    \
    void dump(dump_context&) const override {}                               \
    void handle(::subject*,::context*) override {}    \
@@ -3906,7 +3906,7 @@ namespace mathematics
 
 
 
-CLASS_DECL_ACME string get_status_message(::e_status estatus);
+CLASS_DECL_ACME string get_status_message(::e_status2 estatus);
 
 
 #include "acme/platform/flags.h"

@@ -28,7 +28,7 @@ namespace datetime
       }
 
 
-      ::e_status calendar::initialize(::object * pobject)
+      void calendar::initialize(::object * pobject)
       {
 
          auto estatus = ::object::initialize(pobject);

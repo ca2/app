@@ -21,7 +21,7 @@ namespace ios
    }
 
 
-   ::e_status file_context::initialize(::matter * pobject)
+   void file_context::initialize(::matter * pobject)
    {
       
       auto estatus = ::file_context::initialize(pobject);
@@ -63,7 +63,7 @@ namespace ios
    }
 
 
-   ::e_status file_context::update_module_path()
+   void file_context::update_module_path()
    {
 
       m_pfilesystem->m_pathModule = apple_app_module_path();
@@ -75,10 +75,10 @@ namespace ios
    }
 
 
-   ::file_transport file_context::get_file(const ::payload & payloadFile, const ::file::e_open & eopen)
+   ::file_pointer file_context::get_file(const ::payload & payloadFile, const ::file::e_open & eopen)
    {
 
-      ::file_transport pfileresult;
+      ::file_pointer pfileresult;
 
       pfileresult = ::file_context::get_file(payloadFile, eopen);
 

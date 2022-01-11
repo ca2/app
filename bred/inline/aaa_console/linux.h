@@ -13,7 +13,7 @@
 //    public:
 
 
-//       ::e_status m_estatus;
+//       void m_estatus;
 //       __pointer(::aura::system) m_psystem;
 
 //       void create_system()
@@ -64,7 +64,7 @@
 //       void init()
 //       {
 
-//          m_estatus = (::e_status) m_psystem->inline_init();
+//          m_estatus = (void) m_psystem->inline_init();
 
 //       }
 

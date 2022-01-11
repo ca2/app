@@ -1,4 +1,4 @@
-// Created on 2021-07-08 13:18 BRT <3ThomasBorregaardSørensen!!
+// Created on 2021-07-08 13:18 BRT <3ThomasBorregaardSï¿½rensen!!
 #include "framework.h"
 
 
@@ -18,7 +18,7 @@ application_exit::~application_exit()
 }
 
 
-::e_status application_exit::request_exit_application()
+void application_exit::request_exit_application()
 {
 
    if (m_bProcessingApplicationExitRequest)
@@ -55,7 +55,7 @@ application_exit::~application_exit()
 }
 
 
-::e_status application_exit::can_exit_application()
+void application_exit::can_exit_application()
 {
 
    return ::success;
@@ -63,7 +63,7 @@ application_exit::~application_exit()
 }
 
 
-::e_status application_exit::exit_application()
+void application_exit::exit_application()
 {
 
    destroy();

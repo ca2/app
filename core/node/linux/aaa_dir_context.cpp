@@ -81,7 +81,7 @@ namespace linux
    }
 
 
-   ::e_status dir_context::initialize(::object * pobject)
+   void dir_context::initialize(::object * pobject)
    {
 
       auto estatus = ::object::initialize(pobject);
@@ -102,7 +102,7 @@ namespace linux
    }
 
 
-   ::e_status dir_context::init_system()
+   void dir_context::init_system()
    {
 
       if(!::dir_context::init_system())
@@ -194,7 +194,7 @@ namespace linux
    }
 
 
-   ::e_status dir_context::init_context()
+   void dir_context::init_context()
    {
 
       auto estatus = ::dir_context::init_context();
@@ -577,7 +577,7 @@ pacmedir->is(path))
 
                }
 
-               ::e_status estatus = ::success;
+               void estatus = ::success;
 
                if(::dir::mkdir(stra[i]))
                {

@@ -16,7 +16,7 @@ namespace filemanager
    }
 
 
-   ::e_status operation_thread::step()
+   void operation_thread::step()
    {
 
       if (m_bStep)
@@ -166,7 +166,7 @@ namespace filemanager
    }
 
 
-   ::e_status     operation_thread::run()
+   void     operation_thread::run()
    {
 
       i32 iStepSetCount = 100;

@@ -106,10 +106,10 @@ void simple_debug_print(const char* psz)
 #endif
 
 //
-//thread_local ::e_status t_estatusLast = ::success;
+//thread_local void t_estatusLast = ::success;
 //
 //
-//CLASS_DECL_ACME ::e_status get_last_status()
+//CLASS_DECL_ACME void get_last_status()
 //{
 //
 //    return t_estatusLast;
@@ -117,7 +117,7 @@ void simple_debug_print(const char* psz)
 //}
 //
 //
-//CLASS_DECL_ACME void set_last_error(::e_status estatus)
+//CLASS_DECL_ACME void set_last_error(void estatus)
 //{
 //
 //    t_estatusLast = estatus;

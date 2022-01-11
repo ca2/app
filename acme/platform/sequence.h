@@ -1,78 +1,78 @@
 #pragma once
 
 
-template < typename OBJECT, typename TRANSPORT = transport < OBJECT > >
-class sequence :
+template < typename OBJECT /*, typename TRANSPORT = transport < OBJECT > */ >
+class transport :
    virtual public ::matter
 {
 public:
 
 
-   class function :
+   class route :
       virtual public matter
    {
    public:
 
 
-      virtual void process(sequence & sequence) {}
+      virtual void transport(class transport & transport) {}
 
 
    };
 
 
-   template < typename PREDICATE >
-   class function_predicate :
-      virtual public function
+   template < typename OPERATION >
+   class route_operation :
+      virtual public route
    {
    public:
 
 
-      PREDICATE   m_predicate;
+      OPERATION   m_operation;
 
 
-      function_predicate(PREDICATE predicate) :
-         m_predicate(predicate)
+      route_operation(OPERATION operation) :
+         m_operation(operation)
       {
 
       }
 
 
-      virtual void process(sequence & sequence) override
+      virtual void process(class transport& transport) override
       {
 
-         m_predicate(sequence);
+         m_operation(transport);
 
       }
 
    };
 
 
-   TRANSPORT                              m_transport;
+   __pointer(::object)                    m_pobject;
    __pointer(manual_reset_event)          m_pevent;
-   __pointer_array(function)              m_functiona;
+   __pointer_array(route)                 m_routea;
 
    
-   sequence();
+   transport();
 
 
-   ///void set_object(const OBJECT & result, const ::e_status & estatus = ::success);
-   void set_status(const ::e_status & estatus = ::success);
+   ///void set_object(const OBJECT & result, const void & estatus = ::success);
+   void set_status(const ::e_status3 & estatus = ::success);
 
 
-   TRANSPORT & get_object(const ::duration & duration = ::duration::infinite());
+   OBJECT & get_object(const ::duration & duration = ::duration::infinite());
 
 
-   ::e_status wait(const ::duration& duration = ::duration::infinite());
+   void wait(const ::duration& duration = ::duration::infinite());
 
 
-   template < typename PREDICATE >
-   sequence & then(PREDICATE predicate);
+   template < typename OPERATION >
+   transport & then(OPERATION predicate);
 
-   template < typename PREDICATE >
-   sequence & then(const ::duration& duration, PREDICATE predicate);
+   template < typename OPERATION >
+   transport& then(const ::duration& duration, OPERATION predicate);
 
-   auto operator ->() { return m_transport.operator ->(); }
-   auto operator ->() const { return m_transport.operator ->(); }
+   auto operator ->() { return m_pobject.operator ->(); }
+   auto operator ->() const { return m_pobject.operator ->(); }
 
 };
 
@@ -84,17 +84,17 @@ CLASS_DECL_ACME void initialize_sequence_critical_section();
 CLASS_DECL_ACME void finalize_sequence_critical_section();
 
 
-template < typename OBJECT, typename TRANSPORT = ::transport < OBJECT >, typename SEQUENCE = ::sequence < OBJECT, TRANSPORT > >
+template < typename OBJECT /*, typename TRANSPORT = ::transport < OBJECT >, typename SEQUENCE = ::sequence < OBJECT, TRANSPORT >*/ >
 class asynchronous :
    virtual public matter
 {
 public:
 
 
-   __pointer(SEQUENCE)          m_pfuture;
+   __pointer(OBJECT)          m_pobject;
 
 
-   SEQUENCE * sequence();
+   //OBJECT * ();
 
 
 };

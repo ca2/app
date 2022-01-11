@@ -42,8 +42,8 @@ namespace sockets
       resolv_socket(base_socket *parent, in6_addr&);
       ~resolv_socket();
 
-      virtual ::e_status initialize(::object * pobject) override;
-      virtual ::e_status destroy() override;
+      virtual void initialize(::object * pobject) override;
+      virtual void destroy() override;
 
       void OnAccept() override { m_bServer = true; }
       void OnLine(const string & line) override;

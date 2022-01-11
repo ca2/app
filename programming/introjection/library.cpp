@@ -1,4 +1,4 @@
-// From compiler.cpp by camilo on 2021-11-15 15:44 BRT <3ThomasBorregaardSørensen!!
+// From compiler.cpp by camilo on 2021-11-15 15:44 BRT <3ThomasBorregaardSï¿½rensen!!
 #include "framework.h"
 #ifdef WINDOWS_DESKTOP
 #include "acme_windows/_.h"
@@ -30,7 +30,7 @@ namespace introjection
    }
 
 
-   ::e_status library::initialize(::object* pobject)
+   void library::initialize(::object* pobject)
    {
 
       auto estatus = ::object::initialize(pobject);

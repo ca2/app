@@ -22,7 +22,7 @@
 //}
 
 //
-//::e_status function::operator()()
+//void function::operator()()
 //{
 //
 //   auto estatus = (*m_pmatterFunction)();
@@ -41,7 +41,7 @@
 //
 
 //
-//::e_status sync_function::operator()()
+//void sync_function::operator()()
 //{
 //
 //   auto estatus = (*m_pmatterFunction)();

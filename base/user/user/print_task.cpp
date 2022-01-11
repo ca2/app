@@ -19,7 +19,7 @@ namespace user
    }
 
 
-   ::e_status print_task::initialize(::object * pobject)
+   void print_task::initialize(::object * pobject)
    {
 
       auto estatus = ::task::initialize(pobject);
@@ -42,7 +42,7 @@ namespace user
    }
 
 
-   ::e_status     print_task::run()
+   void     print_task::run()
    {
 
       return error_interface_only;

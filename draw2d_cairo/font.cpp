@@ -68,7 +68,7 @@ namespace draw2d_cairo
    }
 
 
-   ::e_status font::destroy_os_data()
+   void font::destroy_os_data()
    {
 
 //#if defined(USE_PANGO)
@@ -112,7 +112,7 @@ namespace draw2d_cairo
    }
 
 
-   ::e_status font::destroy()
+   void font::destroy()
    {
 
       synchronous_lock ml(cairo_mutex());

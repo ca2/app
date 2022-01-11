@@ -177,7 +177,7 @@ bool image::defer_realize(::draw2d::graphics* pgraphics) const
 }
 
 
-::e_status image::create_ex(const ::size_i32 & size, ::color32_t * pcolorref, int iScan, ::enum_flag eflagCreate, int iGoodStride, bool bPreserve)
+void image::create_ex(const ::size_i32 & size, ::color32_t * pcolorref, int iScan, ::enum_flag eflagCreate, int iGoodStride, bool bPreserve)
 {
 
    throw interface_only_exception();
@@ -187,7 +187,7 @@ bool image::defer_realize(::draw2d::graphics* pgraphics) const
 }
 
 
-::e_status image::create(const ::size_i32& size, ::enum_flag eflagCreate, int iGoodStride, bool bPreserve)
+void image::create(const ::size_i32& size, ::enum_flag eflagCreate, int iGoodStride, bool bPreserve)
 {
 
    return create_ex(size, nullptr, 0, eflagCreate, iGoodStride, bPreserve);
@@ -195,7 +195,7 @@ bool image::defer_realize(::draw2d::graphics* pgraphics) const
 }
 
 
-::e_status image::initialize(const ::size_i32 & size, ::color32_t * pcolorref, int iScan, ::enum_flag eflagCreate)
+void image::initialize(const ::size_i32 & size, ::color32_t * pcolorref, int iScan, ::enum_flag eflagCreate)
 {
 
    return create_ex(size, pcolorref, iScan, eflagCreate);
@@ -203,7 +203,7 @@ bool image::defer_realize(::draw2d::graphics* pgraphics) const
 }
 
 
-//::e_status image::initialize(const ::size_i32 & size, ::color32_t * pcolorref, int iScan, ::eobject eobjectCreate)
+//void image::initialize(const ::size_i32 & size, ::color32_t * pcolorref, int iScan, ::eobject eobjectCreate)
 //{
 //
 //   throw interface_only_exception();
@@ -213,7 +213,7 @@ bool image::defer_realize(::draw2d::graphics* pgraphics) const
 //}
 
 
-//::e_status     image::create(i32 width, i32 height, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
+//void     image::create(i32 width, i32 height, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
 //{
 //
 //   return create(::size_i32(width, height), uidCreateImage);
@@ -249,7 +249,7 @@ bool image::dc_select(bool bSelect)
 }
 
 
-::e_status image::create(::draw2d::graphics* pgraphics)
+void image::create(::draw2d::graphics* pgraphics)
 {
 
    ::draw2d::bitmap& bitmap = *pgraphics->get_current_bitmap();
@@ -414,7 +414,7 @@ bool image::create_isotropic(double_array& daRate, ::enum_priority epriority)
 //}
 
 
-::e_status image::destroy()
+void image::destroy()
 {
 
    m_sizeRaw.cx = 0;
@@ -5165,7 +5165,7 @@ bool image::RadialFill(
 
 
 
-::e_status image::SetIconMask(::draw2d::icon* picon, i32 cx, i32 cy)
+void image::SetIconMask(::draw2d::icon* picon, i32 cx, i32 cy)
 {
 
    //      __throw(todo);
@@ -9505,7 +9505,7 @@ stream& image::read(::stream& stream)
 }
 
 
-//::e_status image::create_image()
+//void image::create_image()
 //{
 //
 //   if(::is_null(this))
@@ -9520,7 +9520,7 @@ stream& image::read(::stream& stream)
 //}
 
 
-//::e_status     image::create(int cx, int cy, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
+//void     image::create(int cx, int cy, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
 //{
 //
 //   if(!create(cx, cy, uidCreateImage, iGoodStride, bPreserve))
@@ -9535,7 +9535,7 @@ stream& image::read(::stream& stream)
 //}
 
 
-//::e_status     image::create(const ::size_i32 & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
+//void     image::create(const ::size_i32 & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
 //{
 //
 //   if(!create(size, uidCreateImage))
@@ -9571,7 +9571,7 @@ http://www.sparkhound.com/blog/detect-image-file-types-through-byte-arrays
 
 
 
-::e_status image::transform(enum_image eimage)
+void image::transform(enum_image eimage)
 {
 
    if (eimage == image_grayscale)

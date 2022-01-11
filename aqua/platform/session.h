@@ -17,7 +17,7 @@ namespace aqua
       void common_construct();
 
 
-      ::e_status initialize(::object * pobject) override;
+      void initialize(::object * pobject) override;
 
       void on_instantiate_application(::application* papp) override;
 

@@ -59,11 +59,11 @@ int_bool mq_get_message(MESSAGE * pMsg, oswindow hWnd, ::u32 wMsgFilterMin, ::u3
 
 i32 CLASS_DECL_ACME __linux_main(i32 argc, char * argv[]);
 
-CLASS_DECL_ACME void vfxThrowFileException(::matter * pobject, const ::e_status & estatus, ::i32 lOsError, const char * pszFileName = nullptr);
+CLASS_DECL_ACME void vfxThrowFileException(::matter * pobject, const void & estatus, ::i32 lOsError, const char * pszFileName = nullptr);
 
 #include "internal.h"
 
-CLASS_DECL_ACME ::e_status os_shell_initialize();
+CLASS_DECL_ACME void os_shell_initialize();
 
 CLASS_DECL_ACME MESSAGE * __get_current_message();
 

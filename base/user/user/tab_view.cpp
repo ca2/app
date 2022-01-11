@@ -739,7 +739,7 @@ namespace user
    }
 
 
-   ::e_status tab_view::prepare_impact_menu(::user::menu * pmenu)
+   void tab_view::prepare_impact_menu(::user::menu * pmenu)
    {
 
       if (pmenu->load_xml_menu("matter://impact.menu"))
@@ -1103,7 +1103,7 @@ namespace user
    }
 
 
-   ::e_status tab_drop_target_window::initialize_tab_drop_target_window(::user::tab* ptab, index iTab)
+   void tab_drop_target_window::initialize_tab_drop_target_window(::user::tab* ptab, index iTab)
    {
 
       auto estatus = ::user::interaction::initialize(ptab);

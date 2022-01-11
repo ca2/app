@@ -29,7 +29,7 @@ namespace user
    }
 
 
-   ::e_status box::initialize(::object * pobject)
+   void box::initialize(::object * pobject)
    {
 
       auto estatus = interaction::initialize(pobject);

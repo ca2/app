@@ -249,7 +249,7 @@ namespace aura
    }
 
 
-   ::e_status interprocess_communication::initialize(::object * pobject)
+   void interprocess_communication::initialize(::object * pobject)
    {
 
       auto estatus = ::object::initialize(pobject);
@@ -306,7 +306,7 @@ namespace aura
    }
 
 
-   ::e_status interprocess_communication::destroy()
+   void interprocess_communication::destroy()
    {
 
       ::object::destroy();

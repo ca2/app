@@ -31,7 +31,7 @@ namespace user
       virtual ~language();
 
 
-      virtual ::e_status initialize(::object * pobject) override;
+      virtual void initialize(::object * pobject) override;
 
 
       virtual bool defer_load_resource_pofile(bool bOnlyHeader = false);

@@ -18,7 +18,7 @@ public:
    }
 
    
-   virtual ::e_status run() { return ::success; }
+   virtual void run() {}
 
 
 };
@@ -41,7 +41,7 @@ public:
    }
 
    
-   virtual ::e_status run() override
+   virtual void run() override
    {
 
       m_predicate();

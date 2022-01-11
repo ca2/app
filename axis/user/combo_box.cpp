@@ -826,7 +826,7 @@ namespace user
    }
 
 
-   ::e_status combo_box::set_current_item(const ::item & item, const ::action_context & actioncontext)
+   void combo_box::set_current_item(const ::item & item, const ::action_context & actioncontext)
    {
 
       auto estatus = ::user::plain_edit::set_current_item(item, actioncontext);

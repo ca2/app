@@ -91,7 +91,7 @@ namespace universal_windows
 
       virtual void handle(::subject * psubject, ::context * pcontext) override;
 
-      virtual ::e_status main_async(const ::routine & routine, enum_priority epriority = e_priority_normal);
+      virtual void main_async(const ::routine & routine, enum_priority epriority = e_priority_normal);
 
       void _002OnDraw(::image * pimage);
 
@@ -139,7 +139,7 @@ namespace universal_windows
       virtual bool is_composite() override;
 
 
-      virtual ::e_status update_graphics_resources() override;
+      virtual void update_graphics_resources() override;
 
       // for child windows, views, panes etc
       //virtual bool create_window(::user::interaction * pinteraction, const ::string & lpszClassName, const ::string & lpszWindowName,u32 dwStyle,const RECTANGLE_I32 & rectangle,::user::interaction * pParentWnd,id id, ::create * pcreate = nullptr) override;
@@ -691,9 +691,9 @@ namespace universal_windows
 
       virtual bool _is_window() const override;
 
-      virtual ::e_status show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd) override;
+      virtual void show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd) override;
 
-      virtual ::e_status hide_software_keyboard(::user::primitive * pprimitive) override;
+      virtual void hide_software_keyboard(::user::primitive * pprimitive) override;
 
       virtual void edit_on_set_focus(::user::interaction* pinteraction) override;
 

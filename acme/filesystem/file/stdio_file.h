@@ -25,8 +25,8 @@ public:
    ::file::path get_file_path() const override;
 
 
-   ::extended::status open(const ::file::path & path, const ::file::e_open & eopen) override;
-   virtual ::e_status open(const ::file::path & path, const ::string & strAttributes, int iShare);
+   void open(const ::file::path & path, const ::file::e_open & eopen) override;
+   virtual void open(const ::file::path & path, const ::string & strAttributes, int iShare);
 
 
    filesize translate(filesize offset, ::enum_seek eseek) override;

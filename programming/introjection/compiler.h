@@ -59,7 +59,7 @@ namespace introjection
       compiler();
       ~compiler() override;
 
-      virtual ::e_status initialize_introjection_compiler(::object * pobject, const ::string& pszRepos, const ::string& pszApp, const ::string& pszProjectName);
+      virtual void initialize_introjection_compiler(::object * pobject, const ::string& pszRepos, const ::string& pszApp, const ::string& pszProjectName);
 
       //void initialize_compiler();
       //void prepare1(const ::string & lpcszSource, const ::string & lpcszDest);

@@ -7,7 +7,7 @@ namespace acme
 {
 
 
-   ::e_status system::os_application_system_run()
+   void system::os_application_system_run()
    {
 
       return ::success;

@@ -324,7 +324,7 @@ public:
    }
 
 
-   ::e_status call_member(enum_id eid, ::index iStart, ::count inCountLastOut)
+   void call_member(enum_id eid, ::index iStart, ::count inCountLastOut)
    {
 
       this->prepare_first_in_count_last_out(iStart, inCountLastOut);
@@ -909,10 +909,10 @@ public:
 
    }
 
-   ::e_status destroy_all()
+   void destroy_all()
    {
 
-      ::e_status estatus = ::success;
+      void estatus = ::success;
 
       for (auto& p : *this)
       {

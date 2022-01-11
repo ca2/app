@@ -266,7 +266,7 @@ namespace draw2d
    }
 
 
-   ::e_status api::initialize(::object * pobject)
+   void api::initialize(::object * pobject)
    {
 
       auto estatus = ::object::initialize(pobject);
@@ -283,7 +283,7 @@ namespace draw2d
    }
 
 
-   ::e_status api::destroy()
+   void api::destroy()
    {
 
       auto estatus = ::object::destroy();

@@ -114,7 +114,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   ::e_status system::on_pre_run_task()
+   void system::on_pre_run_task()
    {
 
       auto estatus = on_start_system();
@@ -131,7 +131,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   ::e_status system::main()
+   void system::main()
    {
 
       auto estatus = process_init();
@@ -175,7 +175,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
    
-   ::e_status system::create_os_node()
+   void system::create_os_node()
    {
 
       if(m_pnode)
@@ -231,7 +231,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   ::e_status system::process_init()
+   void system::process_init()
    {
 
       ::acme::idpool::init(this);
@@ -335,7 +335,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   //   ::e_status system::start()
+   //   void system::start()
    //   {
    //
    ////      auto estatus = create_os_node();
@@ -430,7 +430,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   ::e_status system::open_profile_link(string strUrl, string strProfile, string strTarget)
+   void system::open_profile_link(string strUrl, string strProfile, string strTarget)
    {
 
       return error_interface_only;
@@ -438,7 +438,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   ::e_status system::open_link(string strUrl, string strProfile, string strTarget)
+   void system::open_link(string strUrl, string strProfile, string strTarget)
    {
 
       return open_profile_link(strUrl, strProfile, strTarget);
@@ -446,7 +446,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   ::e_status system::open_url(string strUrl, string strProfile, string strTarget)
+   void system::open_url(string strUrl, string strProfile, string strTarget)
    {
 
       return ::error_interface_only;
@@ -471,7 +471,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    //}
 
 
-   //   ::e_status system::main_user_async(const ::routine & routine, ::enum_priority epriority)
+   //   void system::main_user_async(const ::routine & routine, ::enum_priority epriority)
    //   {
    //
    //      return ::error_interface_only;
@@ -479,7 +479,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    //   }
    //
    //
-   //   ::e_status system::main_user_sync(const ::routine & routine, const ::duration & duration, enum_priority epriority)
+   //   void system::main_user_sync(const ::routine & routine, const ::duration & duration, enum_priority epriority)
    //   {
    //
    //      auto proutine = ___sync_routine(routine);
@@ -585,7 +585,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    //}
 
 
-   //::e_status system::on_initialize_window_object()
+   //void system::on_initialize_window_object()
    //{
 
    //   if (m_bOnInitializeWindowObject)
@@ -611,10 +611,10 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    //}
 
 
-   //::e_status system::_on_initialize_window_object()
+   //void system::_on_initialize_window_object()
    //{
 
-   //   ::e_status estatus = ::success;
+   //   void estatus = ::success;
    // 
    //   m_pnode->_os_calc_user_dark_mode();
 
@@ -769,7 +769,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 //   }
 
 
-   ::e_status system::inline_init()
+   void system::inline_init()
    {
 
       auto estatus = init_system();
@@ -786,7 +786,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   ::e_status system::call_init_system()
+   void system::call_init_system()
    {
 
       auto estatus = init_system();
@@ -805,7 +805,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   ::e_status system::init_system()
+   void system::init_system()
    {
 
       set_current_handles();
@@ -815,7 +815,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
       if (!pfactory)
       {
 
-         FATAL("node_factory has failed (status=" << (const ::e_status &) pfactory << ")");
+         FATAL("node_factory has failed (status=" << (const void &) pfactory << ")");
 
          return pfactory;
 
@@ -846,7 +846,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   ::e_status system::defer_audio()
+   void system::defer_audio()
    {
 
       return error_interface_only;
@@ -854,7 +854,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   ::e_status system::init1()
+   void system::init1()
    {
 
       return ::success;
@@ -1402,7 +1402,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    //   }
 
    
-   ::e_status system::get_public_internet_domain_extension_list(string_array& stra)
+   void system::get_public_internet_domain_extension_list(string_array& stra)
    {
 
    //         ::file::path pathPublicDomainExtensionList = "https://server.ca2.software/public_internet_domain_extension_list.txt";
@@ -1464,7 +1464,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   void system::process_exit_status(::object* pobject, const ::e_status& estatus)
+   void system::process_exit_status(::object* pobject, const void& estatus)
    {
 
       if (estatus == error_exit_system)
@@ -1477,7 +1477,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   ::e_status system::on_start_system()
+   void system::on_start_system()
    {
 
       auto estatus = m_pnode->on_start_system();
@@ -1494,7 +1494,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   ::e_status system::post_initial_request()
+   void system::post_initial_request()
    {
 
       return ::success;
@@ -1502,7 +1502,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   ::e_status system::system_main()
+   void system::system_main()
    {
 
       auto estatus = init_system();
@@ -1555,7 +1555,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    //}
 
    //
-   //   ::e_status system::inline_init()
+   //   void system::inline_init()
    //   {
    //
    //      auto estatus = process_init();
@@ -1572,7 +1572,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    //   }
    //
    //
-   ::e_status system::inline_term()
+   void system::inline_term()
    {
 
       return ::success;
@@ -1580,7 +1580,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   //   ::e_status system::on_start_system()
+   //   void system::on_start_system()
    //   {
    //
    //      return ::success;
@@ -1588,7 +1588,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    //   }
    //
    //
-   ::e_status system::on_end()
+   void system::on_end()
    {
 
       TermSystem();
@@ -1597,7 +1597,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
    }
 
-   ::e_status system::end()
+   void system::end()
    {
 
       auto estatus = on_end();
@@ -1661,7 +1661,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   ::e_status system::system_construct(const ::main & main)
+   void system::system_construct(const ::main & main)
    {
 
       enum_trace_level etracelevel;
@@ -1761,7 +1761,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   ::e_status system::node_will_finish_launching()
+   void system::node_will_finish_launching()
    {
 
       auto pnode = node();
@@ -1773,7 +1773,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   ::e_status system::on_open_untitled_file()
+   void system::on_open_untitled_file()
    {
       
       if(!m_bPostedInitialRequest)
@@ -1790,7 +1790,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   ::e_status system::on_open_file(const ::string & pszFile)
+   void system::on_open_file(const ::string & pszFile)
    {
       
       throw ::interface_only_exception();
@@ -1800,7 +1800,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   ::e_status system::new_compress(::compress ** ppcompress, const char* pszImplementation)
+   void system::new_compress(::compress ** ppcompress, const char* pszImplementation)
    {
 
       auto pcompress = create < ::compress >("compress", pszImplementation);
@@ -1821,7 +1821,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   ::e_status system::new_uncompress(::uncompress ** ppuncompress, const char* pszImplementation)
+   void system::new_uncompress(::uncompress ** ppuncompress, const char* pszImplementation)
    {
 
       auto puncompress = create < ::uncompress >("compress", pszImplementation);
@@ -1841,7 +1841,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
    }
 
-   ::e_status system::compress(::file::file* pfileOut, ::file::file* pfileIn, const char* pszImplementation)
+   void system::compress(::file::file* pfileOut, ::file::file* pfileIn, const char* pszImplementation)
    {
 
       __pointer(::compress) pcompress;
@@ -1869,7 +1869,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   ::e_status system::uncompress(::file::file* pfileOut, ::file::file* pfileIn, const char* pszImplementation)
+   void system::uncompress(::file::file* pfileOut, ::file::file* pfileIn, const char* pszImplementation)
    {
 
       __pointer(::uncompress) puncompress;

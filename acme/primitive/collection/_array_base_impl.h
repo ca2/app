@@ -172,7 +172,7 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::free_extra()
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
-::e_status array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::destroy()
+void array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::destroy()
 {
 
    auto estatus = ::matter::destroy();

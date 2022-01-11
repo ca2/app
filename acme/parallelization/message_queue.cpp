@@ -104,7 +104,7 @@ void message_queue::kick_idle()
 }
 
 
-::e_status message_queue::get_message(MESSAGE * pmessage, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, const ::duration & duration)
+void message_queue::get_message(MESSAGE * pmessage, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, const ::duration & duration)
 {
 
    if (wMsgFilterMax == 0)

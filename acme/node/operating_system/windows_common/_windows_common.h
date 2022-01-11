@@ -5,7 +5,7 @@
 #include "acme/constant/parallelization.h"
 
 
-inline ::e_status windows_wait_result_to_status(int iResult)
+inline void windows_wait_result_to_status(int iResult)
 {
 
    if (iResult >= WAIT_ABANDONED_0 && iResult < (WAIT_ABANDONED_0 + MAXIMUM_WAIT_OBJECTS))

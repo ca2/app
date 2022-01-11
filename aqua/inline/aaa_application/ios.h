@@ -37,7 +37,7 @@ int main(int argc, char * argv[])
 
          //return aura_run_system(psystem);
          
-     ::e_status estatus=    os_application_system_run(psystem);
+     void estatus=    os_application_system_run(psystem);
    
    ::i32 iErrorStatus = estatus.error_status();
    

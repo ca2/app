@@ -31,7 +31,7 @@ namespace account
    }
 
 
-   ::e_status dialog::initialize_account_dialog(::account::credentials * pcredentials)
+   void dialog::initialize_account_dialog(::account::credentials * pcredentials)
    {
 
       auto estatus = initialize(pcredentials);

@@ -45,7 +45,7 @@ timer::~timer()
 }
 
 
-::e_status timer::destroy()
+void timer::destroy()
 {
 
    m_ptimercallback.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);

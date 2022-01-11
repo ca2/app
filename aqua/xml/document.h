@@ -29,7 +29,7 @@ namespace xml
       ~document() override;
 
 
-      ::e_status initialize(::object * pobject) override;
+      void initialize(::object * pobject) override;
       
 
       inline void ensure_root()

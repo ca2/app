@@ -124,7 +124,7 @@ namespace user
 
       //::count get_count();
       //::item current_item() override;
-      ::e_status set_current_item(const ::item & item, const ::action_context & actioncontext) override;
+      void set_current_item(const ::item & item, const ::action_context & actioncontext) override;
 
 
       virtual string get_current_item_string_value();

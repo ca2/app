@@ -27,7 +27,7 @@ namespace account
    }
    
 
-   ::e_status system_storage::initialize_system_storage(department* pdepartment)
+   void system_storage::initialize_system_storage(department* pdepartment)
    {
 
       auto estatus = storage::initialize(pdepartment);
@@ -69,7 +69,7 @@ namespace account
    }
    
    
-   ::e_status     system_storage::get(string strKey, string strToken, string & strValue)
+   void     system_storage::get(string strKey, string strToken, string & strValue)
    {
       
       ::file::path path;

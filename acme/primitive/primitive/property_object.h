@@ -17,7 +17,7 @@ class CLASS_DECL_ACME property_object :
 public:
 
 
-   ::e_status                                      m_estatus;
+   ::e_status3                                     m_estatus;
    __pointer(::id_map < ::routine_array >)         m_pmapPropertyRoutine;
    __pointer(::i64_array)                          m_pia;
    __pointer(property_set)                         m_ppropertyset;
@@ -37,20 +37,20 @@ public:
 
 
 
-   ::e_status destroy() override;
+   void destroy() override;
 
 
    virtual void notify_on_destroy(::property_object * pcontextobjectFinish) override;
 
 
-   //::e_status destroy() override;
+   //void destroy() override;
 
 
-   //virtual ::e_status on_finish() override;
+   //virtual void on_finish() override;
    
 
    template < typename TYPE >
-   inline ::e_status __construct_new(__pointer(TYPE)& pusermessage);
+   inline void __construct_new(__pointer(TYPE)& pusermessage);
 
 
    virtual void keep_alive();
@@ -58,12 +58,12 @@ public:
    virtual bool is_alive();
 
 
-   virtual ::e_status operator()() override;
+   virtual void operator()() override;
 
 
 
 
-   virtual ::e_status run() override;
+   virtual void run() override;
 
 
    virtual ::object * source_channel();
@@ -73,7 +73,7 @@ public:
    virtual void exchange(::stream & stream) override;
 
 
-   virtual ::e_status handle_exception(const ::exception& e);
+   virtual void handle_exception(const ::exception& e);
 
 
    virtual void add_exception(const ::exception & e);
@@ -108,7 +108,7 @@ public:
 //#endif
 
 
-   ::e_status add_routine(const ::id& id, const ::routine& routine);
+   void add_routine(const ::id& id, const ::routine& routine);
 
 
 
@@ -138,7 +138,9 @@ public:
 
    inline property * find_property(const ::id & id) const;
 
-   ::extended::status run_property(const ::id& id);
+   //::extended::status run_property(const ::id& id);
+
+   void run_property(const ::id& id);
 
    inline ::payload attribute(const ::id & id);
    ::property * find_attribute(const ::id & id);

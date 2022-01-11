@@ -25,7 +25,7 @@ namespace bred
    }
 
 
-   ::e_status session::initialize(::object * pobject)
+   void session::initialize(::object * pobject)
    {
 
       auto estatus = ::apex::session::initialize(pobject);

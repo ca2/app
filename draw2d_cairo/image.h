@@ -35,9 +35,9 @@ namespace draw2d_cairo
 
       bool dc_select(bool bSelect = true) override;
 
-      virtual ::e_status create(const ::size_i32 & size, ::enum_flag eflagCreate = OK_IMAGE, int iGoodStride = -1, bool bPreserve = false) override;
-      virtual ::e_status create(::draw2d::graphics * pgraphics) override;
-      virtual ::e_status destroy() override;
+      virtual void create(const ::size_i32 & size, ::enum_flag eflagCreate = OK_IMAGE, int iGoodStride = -1, bool bPreserve = false) override;
+      virtual void create(::draw2d::graphics * pgraphics) override;
+      virtual void destroy() override;
 
 
       virtual bool on_host_read_pixels(const ::pixmap * ppixmap) override;
@@ -45,7 +45,7 @@ namespace draw2d_cairo
       virtual bool _draw_raw(const ::rectangle_i32 & rectangle, ::image * pimage, const ::point_i32 & point = ::point_i32()) override;
 
       //bool to(::draw2d::graphics * pgraphics, const ::point_i32 & point, const ::size_i32 & size, const ::point_i32 & pointSrc) override;
-      virtual ::e_status SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy) override;
+      virtual void SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy) override;
 
 
       virtual ::stream & write(::stream & stream) const override;

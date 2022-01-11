@@ -38,9 +38,9 @@ public:
 
 
 
-   virtual ::e_status create_symbolic_link(const char * pszLink, const char * pszSource);
+   virtual void create_symbolic_link(const char * pszLink, const char * pszSource);
 
-   virtual ::e_status is_symbolic_link(const char * pszLink);
+   virtual void is_symbolic_link(const char * pszLink);
 
    virtual ::file::path symbolic_link_destination(const char * pszLink);
 

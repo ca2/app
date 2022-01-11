@@ -33,7 +33,7 @@ namespace user
          virtual ~windows();
 
 
-         virtual ::e_status initialize(::object * pobject) override;
+         virtual void initialize(::object * pobject) override;
 
 
          virtual i32 impl_get_file_image(oswindow oswindow, const image_key & key) override;

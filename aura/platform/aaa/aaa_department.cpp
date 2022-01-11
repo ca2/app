@@ -21,7 +21,7 @@ namespace aura
    // not contain advanced initialization as the
    // papp application pointer may be incompletely
    // initialized specially its virtual functions.
-   ::e_status department::initialize(::object * pobject)
+   void department::initialize(::object * pobject)
    {
 
       auto estatus = ::object::initialize(pobject);
@@ -46,7 +46,7 @@ namespace aura
    }
 
 
-   ::e_status department::process_init()
+   void department::process_init()
    {
 
       return ::success;
@@ -54,7 +54,7 @@ namespace aura
    }
 
 
-   ::e_status department::init()
+   void department::init()
    {
 
       return ::success;
@@ -62,7 +62,7 @@ namespace aura
    }
 
 
-   ::e_status department::init1()
+   void department::init1()
    {
 
       return ::success;
@@ -70,7 +70,7 @@ namespace aura
    }
 
 
-   ::e_status department::init2()
+   void department::init2()
    {
 
       return ::success;
@@ -78,14 +78,14 @@ namespace aura
    }
 
 
-   ::e_status department::init3()
+   void department::init3()
    {
 
       return ::success;
 
    }
 
-   ::e_status department::init_instance()
+   void department::init_instance()
    {
 
       return ::success;

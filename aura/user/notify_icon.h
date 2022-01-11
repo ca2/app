@@ -31,17 +31,17 @@ namespace user
       ~notify_icon() override;
 
 
-      virtual ::e_status add_hidden_window(::user::interaction * puserinteraction);
+      virtual void add_hidden_window(::user::interaction * puserinteraction);
 
-      virtual ::e_status destroy_notify_icon();
+      virtual void destroy_notify_icon();
 
-      virtual ::e_status modify_icon(::windowing::icon * picon);
+      virtual void modify_icon(::windowing::icon * picon);
 
-      //virtual ::e_status create_notify_icon(::u32 id, notify_icon_listener * plistener, ::windowing::icon * picon);
+      //virtual void create_notify_icon(::u32 id, notify_icon_listener * plistener, ::windowing::icon * picon);
 
-      virtual ::e_status create_notify_icon(const ::id & id, ::user::interaction * puserinteractionNotify, ::windowing::icon * picon);
+      virtual void create_notify_icon(const ::id & id, ::user::interaction * puserinteractionNotify, ::windowing::icon * picon);
 
-      ::e_status step() override;
+      void step() override;
 
 
       void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;

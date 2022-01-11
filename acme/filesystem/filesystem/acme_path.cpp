@@ -189,7 +189,7 @@ bool acme_path::is_file_or_dir(const char * path, ::file::enum_type * petype)
 }
 
 
-::e_status acme_path::create_symbolic_link(const char * pszLink, const char * pszSource)
+void acme_path::create_symbolic_link(const char * pszLink, const char * pszSource)
 {
    
    throw ::interface_only_exception();
@@ -199,7 +199,7 @@ bool acme_path::is_file_or_dir(const char * path, ::file::enum_type * petype)
 }
 
 
-::e_status acme_path::is_symbolic_link(const char * pszLink)
+void acme_path::is_symbolic_link(const char * pszLink)
 {
    
    throw ::interface_only_exception();

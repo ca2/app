@@ -77,7 +77,7 @@ bool ns_set_thread_name(const char * psz);
 char * ns_get_thread_name();
 
 
-::e_status task_set_name(const char * psz)
+void task_set_name(const char * psz)
 {
    
    return ns_set_thread_name(psz);

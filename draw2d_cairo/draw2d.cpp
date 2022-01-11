@@ -40,7 +40,7 @@ namespace draw2d_cairo
    }
 
 
-   ::e_status draw2d::initialize(::object * pobject)
+   void draw2d::initialize(::object * pobject)
    {
 
       auto estatus = ::draw2d::draw2d::initialize(pobject);
@@ -58,7 +58,7 @@ namespace draw2d_cairo
 
 
 
-   ::e_status draw2d::init1()
+   void draw2d::init1()
    {
 
       if (!::draw2d::draw2d::init1())
@@ -73,7 +73,7 @@ namespace draw2d_cairo
    }
 
 
-   ::e_status draw2d::process_init()
+   void draw2d::process_init()
    {
 
       if (!::draw2d::draw2d::process_init())
@@ -97,7 +97,7 @@ namespace draw2d_cairo
    }
 
 
-   ::e_status draw2d::init()
+   void draw2d::init()
    {
 
       if (!::draw2d::draw2d::init())
@@ -159,7 +159,7 @@ namespace draw2d_cairo
 //   }
 //
 
-   ::e_status draw2d::term()
+   void draw2d::term()
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -191,7 +191,7 @@ namespace draw2d_cairo
    }
 
 
-   ::e_status draw2d::destroy()
+   void draw2d::destroy()
    {
 
       m_papi.release();
@@ -914,7 +914,7 @@ namespace draw2d_cairo
 //
 //      __pointer(ttf_util) putil;
 //
-//      ::e_status estatus = __construct_new(putil);
+//      void estatus = __construct_new(putil);
 //
 //      if (pdoc->load(strSystemFonts))
 //      {
@@ -1153,10 +1153,10 @@ namespace draw2d_cairo
 //   }
 
 
-//   ::e_status draw2d::initialize_write_text()
+//   void draw2d::initialize_write_text()
 //   {
 //
-//      ::e_status estatus = ::success;
+//      void estatus = ::success;
 //
 //      try
 //      {
@@ -1224,7 +1224,7 @@ namespace draw2d_cairo
 //   }
 
 
-//   ::e_status draw2d::([a-z0-9_]+)_factory(::factory::factory * pfactory)
+//   void draw2d::([a-z0-9_]+)_factory(::factory::factory * pfactory)
 //   {
 //
 //      string strLibrary;
@@ -1249,7 +1249,7 @@ namespace draw2d_cairo
 //
 //      }
 //
-//      ::e_status estatus;
+//      void estatus;
 //
 //      if (strLibrary.has_char())
 //      {

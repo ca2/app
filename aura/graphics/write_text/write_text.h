@@ -27,11 +27,11 @@ namespace write_text
       class fonts * fonts();
 
 
-      virtual ::e_status destroy() override;
-      virtual ::e_status term() override;
+      virtual void destroy() override;
+      virtual void term() override;
 
 
-      virtual ::e_status handle_font_enumeration(::subject* psubject);
+      virtual void handle_font_enumeration(::subject* psubject);
 
       
       virtual font_pointer point_font(const ::string & pszFontName, double dFontSize, int iFontWeight = e_font_weight_normal);

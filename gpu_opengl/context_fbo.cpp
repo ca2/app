@@ -44,7 +44,7 @@ namespace opengl
    }
 
 
-   ::e_status context_fbo::_create_offscreen_buffer(const ::size_i32 & size)
+   void context_fbo::_create_offscreen_buffer(const ::size_i32 & size)
    {
 
       auto pgpu = m_psystem->m_paurasystem->get_gpu();
@@ -161,7 +161,7 @@ namespace opengl
          
       }
       
-      ::e_status estatus = make_current();
+      void estatus = make_current();
 
       if(!estatus)
       {
@@ -200,7 +200,7 @@ namespace opengl
    }
 
 
-   ::e_status context_fbo::lock_context()
+   void context_fbo::lock_context()
    {
       
       if(!m_context)
@@ -224,7 +224,7 @@ namespace opengl
    }
 
 
-   ::e_status context_fbo::unlock_context()
+   void context_fbo::unlock_context()
    {
       
       if(!m_context)
@@ -248,7 +248,7 @@ namespace opengl
    }
 
 
-   ::e_status context_fbo::make_current()
+   void context_fbo::make_current()
    {
 
       CGLError error = CGLSetCurrentContext(m_context);
@@ -269,7 +269,7 @@ namespace opengl
    }
 
 
-   ::e_status context_fbo::destroy_offscreen_buffer()
+   void context_fbo::destroy_offscreen_buffer()
    {
 
       make_current();
@@ -331,10 +331,10 @@ namespace opengl
    }
 
 
-   ::e_status context_fbo::render()
+   void context_fbo::render()
    {
       
-      ::e_status estatus = context::render();
+      void estatus = context::render();
       
       if(!estatus)
       {
@@ -348,17 +348,17 @@ namespace opengl
    }
 
 
-   ::e_status context_fbo::start()
+   void context_fbo::start()
    {
       
-      ::e_status estatus = context::start();
+      void estatus = context::start();
       
       return estatus;
    
    }
 
 
-   ::e_status context_fbo::resize_offscreen_buffer(const ::size_i32& size)
+   void context_fbo::resize_offscreen_buffer(const ::size_i32& size)
    {
       
       auto estatus = context::resize_offscreen_buffer(size);
@@ -379,7 +379,7 @@ namespace opengl
    }
 
 
-   ::e_status context_fbo::prepare_for_gpu_read()
+   void context_fbo::prepare_for_gpu_read()
    {
    
       return ::success;

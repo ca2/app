@@ -18,7 +18,7 @@ namespace acme
    }
 
 
-   ::e_status library::initialize_matter(::matter * pmatter)
+   void library::initialize_matter(::matter * pmatter)
    {
 
       auto estatus = ::matter::initialize_matter(pmatter);
@@ -32,7 +32,7 @@ namespace acme
    }
 
 
-   //::e_status library::initialize_library(::matter * pmatter,int iDesambig,const char * pszRoot, const char * pszName, const char * pszFolder)
+   //void library::initialize_library(::matter * pmatter,int iDesambig,const char * pszRoot, const char * pszName, const char * pszFolder)
    //{
 
    //   auto estatus = initialize_matter(pmatter);
@@ -122,8 +122,8 @@ namespace acme
    }
 
 
-   //::e_status library::open(const char * pszPath,bool bAutoClose,bool bCa2Path)
-   ::e_status library::open(const char* pszPath)
+   //void library::open(const char * pszPath,bool bAutoClose,bool bCa2Path)
+   void library::open(const char* pszPath)
    {
 
       auto psystem = get_system();

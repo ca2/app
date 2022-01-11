@@ -221,7 +221,7 @@ bool task::on_get_task_name(string & strTaskName)
 }
 
 
-::e_status task::task_caller_on_init()
+void task::task_caller_on_init()
 {
 
    return ::success;
@@ -307,7 +307,7 @@ void task::term_task()
 }
 
 
-::e_status task::do_task()
+void task::do_task()
 {
 
    init_task();
@@ -321,10 +321,10 @@ void task::term_task()
 }
 
 
-::e_status task::on_task()
+void task::on_task()
 {
 
-   ::e_status estatus = ::success;
+   void estatus = ::success;
 
    while (!m_bSetFinish)
    {
@@ -363,7 +363,7 @@ void task::term_task()
 }
 
 
-::e_status task::start(
+void task::start(
    ::matter* pmatter,
    ::enum_priority epriority,
    u32 nStackSize,
@@ -379,7 +379,7 @@ void task::term_task()
 }
 
 
-::e_status task::begin_task(
+void task::begin_task(
    ::enum_priority epriority,
    u32 nStackSize,
    u32 uCreateFlags)

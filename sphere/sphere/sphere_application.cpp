@@ -36,7 +36,7 @@ namespace sphere
    }
 
 
-   ::e_status application::init_instance()
+   void application::init_instance()
    {
 
       if (!::aura::application::init_instance())
@@ -125,7 +125,7 @@ namespace sphere
    }
 
 
-   //::e_status application::init_instance()
+   //void application::init_instance()
    //{
 
 
@@ -438,7 +438,7 @@ namespace sphere
    }
 
 
-   ::e_status     application::run()
+   void     application::run()
    {
 
       return ::aura::application::run();
@@ -893,7 +893,7 @@ namespace sphere
    }
 
 
-   ::e_status     application::main()
+   void     application::main()
    {
 
       return ::aura::application::main();

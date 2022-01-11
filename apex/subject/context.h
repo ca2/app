@@ -20,7 +20,7 @@
       virtual ~context();
 
 
-      virtual ::e_status start_task();
+      virtual void start_task();
 
 
       virtual bool is_up_to_date(const ::subject * phandler) const;

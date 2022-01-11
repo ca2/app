@@ -80,7 +80,7 @@ namespace text
       }
 
 
-      virtual ::e_status initialize(::object * pobject) override;
+      virtual void initialize(::object * pobject) override;
 
 
       inline auto& operator[](const ::id& id) { return m_map[id]; }
@@ -135,7 +135,7 @@ namespace text
 
 
       context();
-      virtual ~context();
+      ~context() override;
 
 
       virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)

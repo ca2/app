@@ -32,16 +32,16 @@
 //   }
 //
 //
-//   ::e_status system_construct(main_arguments & mainarguments);
+//   void system_construct(main_arguments & mainarguments);
 //
 //
-//   //::e_status system_construct(int argc, char** argv, char** envp);
+//   //void system_construct(int argc, char** argv, char** envp);
 //  
 //
-//   //::e_status system_construct(int argc, wchar_t** argv, wchar_t** envp);
+//   //void system_construct(int argc, wchar_t** argv, wchar_t** envp);
 //
 //
-//   //::e_status system_construct(const char * pszCommandLine);
+//   //void system_construct(const char * pszCommandLine);
 //
 //
 //};

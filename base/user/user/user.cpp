@@ -26,7 +26,7 @@ namespace base
    }
 
 
-   ::e_status user::initialize(::object * pobject)
+   void user::initialize(::object * pobject)
    {
 
       auto estatus = ::axis::user::initialize(pobject);
@@ -54,7 +54,7 @@ namespace base
    }
 
 
-   ::e_status user::init1()
+   void user::init1()
    {
 
 
@@ -92,7 +92,7 @@ namespace base
    }
 
 
-   ::e_status user::init()
+   void user::init()
    {
 
       if (!::axis::user::init())
@@ -195,7 +195,7 @@ namespace base
    }
 
 
-   ::e_status user::init2()
+   void user::init2()
    {
 
       if (!::acme::department::init2())
@@ -210,7 +210,7 @@ namespace base
    }
 
 
-   ::e_status user::term()
+   void user::term()
    {
 
 
@@ -248,7 +248,7 @@ namespace base
    }
 
 
-   ::e_status user::destroy()
+   void user::destroy()
    {
 
       for (auto& style : m_mapUserStyle.values())

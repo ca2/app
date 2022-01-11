@@ -92,7 +92,7 @@ stdio_file::~stdio_file()
 }
 
 
-::e_status stdio_file::open(const ::file::path & path, const ::string & strAttributes, int iShare)
+void stdio_file::open(const ::file::path & path, const ::string & strAttributes, int iShare)
 {
 
 #ifdef WINDOWS

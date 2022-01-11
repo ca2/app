@@ -39,7 +39,7 @@ namespace datetime
          international();
 
 
-         virtual ::e_status initialize(::object * pobject) override;
+         virtual void initialize(::object * pobject) override;
 
 
          void parse_str(const string & str, property_set & set);
@@ -86,7 +86,7 @@ namespace datetime
          
          str();
 
-         virtual ::e_status initialize(::object * pobject) override;
+         virtual void initialize(::object * pobject) override;
          
          string get_date_time(const ::time_shift& timeshift = ::time_shift::none());
 
@@ -130,8 +130,8 @@ namespace datetime
       department();
 
 
-      virtual ::e_status initialize(::object * pobject) override;
-      ::e_status destroy() override;
+      virtual void initialize(::object * pobject) override;
+      void destroy() override;
 
 
       i64 get_timestamp(i32 year, i32 month, i32 day);

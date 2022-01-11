@@ -27,7 +27,7 @@ hyperlink::~hyperlink()
 //}
 //
 
-::e_status hyperlink::run()
+void hyperlink::run()
 {
 
    if (m_bProfile)

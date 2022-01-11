@@ -42,7 +42,7 @@ namespace windowing
       void user_common_construct();
 
 
-      ::e_status on_initialize_object() override;
+      void on_initialize_object() override;
 
 
       void assert_valid() const override;
@@ -57,16 +57,16 @@ namespace windowing
       void install_message_routing(::channel * pchannel) override;
 
 
-      virtual ::e_status create_window(::user::interaction_impl * pimpl);
+      virtual void create_window(::user::interaction_impl * pimpl);
 
 
-      virtual ::e_status set_keyboard_focus();
+      virtual void set_keyboard_focus();
 
-      virtual ::e_status set_mouse_capture();
+      virtual void set_mouse_capture();
 
-      virtual ::e_status set_active_window();
+      virtual void set_active_window();
 
-      virtual ::e_status bring_to_front();
+      virtual void bring_to_front();
 
 
       virtual void graphics_lock();
@@ -89,19 +89,19 @@ namespace windowing
       inline ::windowing::windowing * windowing() const { return m_pwindowing.m_p; }
 
 
-      virtual ::e_status exit_iconify();
+      virtual void exit_iconify();
 
-      virtual ::e_status full_screen(const::rectangle_i32 & rectangle = nullptr);
+      virtual void full_screen(const::rectangle_i32 & rectangle = nullptr);
 
-      virtual ::e_status exit_full_screen();
+      virtual void exit_full_screen();
 
-      virtual ::e_status exit_zoomed();
+      virtual void exit_zoomed();
 
-      virtual ::e_status destroy_window();
+      virtual void destroy_window();
 
-      ::e_status on_destroy() override;
+      void on_destroy() override;
 
-      virtual ::e_status show_window(const ::e_display & edisplay, const ::e_activation & eactivation);
+      virtual void show_window(const ::e_display & edisplay, const ::e_activation & eactivation);
 
       virtual void set_user_interaction(::user::interaction *pinteraction);
 
@@ -112,12 +112,12 @@ namespace windowing
       
       virtual ::windowing::window * get_parent() const;
       virtual oswindow get_parent_oswindow() const;
-      virtual ::e_status set_parent(::windowing::window * pwindowNewParent);
+      virtual void set_parent(::windowing::window * pwindowNewParent);
 
       
       virtual ::windowing::window * get_owner() const;
       virtual oswindow get_owner_oswindow() const;
-      virtual ::e_status set_owner(::windowing::window * pwindowNewOwner);
+      virtual void set_owner(::windowing::window * pwindowNewOwner);
 
 
       virtual bool is_iconic();
@@ -209,7 +209,7 @@ namespace windowing
       virtual ::user::interaction * SetActiveWindow();
 
       // the foreground interaction_impl applies only to top-level windows (frame windows)
-      virtual ::e_status set_foreground_window();
+      virtual void set_foreground_window();
       virtual ::user::interaction * get_foreground_window();
 
       virtual bool is_active_window() const;
@@ -235,17 +235,17 @@ namespace windowing
       virtual __transport(::windowing::icon) load_icon(const ::payload& payloadFile);
 
 
-      virtual ::e_status set_icon(::windowing::icon * picon);
+      virtual void set_icon(::windowing::icon * picon);
       virtual __pointer(::windowing::icon) get_icon() const;
 
 
-      virtual ::e_status set_mouse_cursor(::windowing::cursor * pcursor);
+      virtual void set_mouse_cursor(::windowing::cursor * pcursor);
 
 
       virtual ::point_i32 get_mouse_cursor_position();
 
 
-      virtual ::e_status set_tool_window(bool bSet);
+      virtual void set_tool_window(bool bSet);
 
 
       void set_viewport_org(::draw2d::graphics_pointer & pgraphics);
@@ -289,10 +289,10 @@ namespace windowing
       virtual void update_screen();
       virtual void window_show();
       
-      virtual ::e_status frame_toggle_restore();
+      virtual void frame_toggle_restore();
 
-      virtual ::e_status window_send(const ::routine & routine);
-      virtual ::e_status window_post(const ::routine & routine);
+      virtual void window_send(const ::routine & routine);
+      virtual void window_post(const ::routine & routine);
 
       bool is_branch_current() const override;
 

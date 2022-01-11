@@ -24,7 +24,7 @@ namespace aqua
       ~multimedia() override;
 
 
-      virtual ::e_status initialize_multimedia(::object * pobject);
+      virtual void initialize_multimedia(::object * pobject);
 
       virtual void on_song_added(const string& strId);
 
@@ -34,14 +34,14 @@ namespace aqua
 
       virtual __pointer(::user::controller) defer_create_view(::object* pobject, const ::string & strView, ::user::interaction* puiParent, ewindowflag ewindowflag = e_window_flag_none, const ::id& id = nullptr);
 
-      virtual ::e_status exit_application();
+      virtual void exit_application();
 
       virtual void on_command(::message::command* pcommand);
 
       string_array detect_language(const string& str);
 
 
-      virtual ::e_status get_file_information(::file::file* pfile, ::multimedia::information& information);
+      virtual void get_file_information(::file::file* pfile, ::multimedia::information& information);
 
 //#ifdef WINDOWS
 //    ::windows::media_foundation * mediafoundation();

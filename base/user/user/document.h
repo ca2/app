@@ -53,7 +53,7 @@ namespace user
 
       ::user::interaction_array get_top_level_windows();
 
-      ::e_status destroy_composites() override;
+      void destroy_composites() override;
 
       virtual bool contains(::user::interaction* pinteraction) const;
 
@@ -83,8 +83,8 @@ namespace user
       virtual bool is_new_document();
 
       // Operations
-      ::e_status add_view(::user::impact * pview);
-      ::e_status erase_view(::user::impact * pview);
+      void add_view(::user::impact * pview);
+      void erase_view(::user::impact * pview);
       virtual ::count get_view_count() const;
       virtual __pointer(::user::impact) get_view(index index = 0) const;
 
@@ -280,9 +280,9 @@ namespace user
       virtual void on_close_document();
       virtual void pre_close_document();
       virtual void close_document();
-      virtual void report_load_exception(const ::payload & payloadFile, ::file_transport presult, const ::string & pszDefault);
-      virtual void report_save_exception(const ::payload & payloadFile, ::file_transport presult, const ::string & pszDefault);
-      virtual void report_save_load_exception(const ::payload & payloadFile, ::file_transport presult, bool bSave, const ::string & pszDefault);
+      virtual void report_load_exception(const ::payload & payloadFile, ::file_pointer presult, const ::string & pszDefault);
+      virtual void report_save_exception(const ::payload & payloadFile, ::file_pointer presult, const ::string & pszDefault);
+      virtual void report_save_load_exception(const ::payload & payloadFile, ::file_pointer presult, bool bSave, const ::string & pszDefault);
 
 
       // advanced overridables, closing down frame/doc, etc.

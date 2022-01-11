@@ -112,8 +112,8 @@ namespace draw2d
       void dump(dump_context & dumpcontext) const override;
       
       
-      ::e_status destroy() override;
-      virtual ::e_status destroy_os_data();
+      void destroy() override;
+      virtual void destroy_os_data();
       
       
 
@@ -205,7 +205,7 @@ virtual bool fill_contains(const point_f64 & point);
       virtual void thread_select();
 
 
-      virtual ::e_status clear_current_point();
+      virtual void clear_current_point();
 
 
       virtual bool attach(void * pdata);
@@ -291,10 +291,10 @@ virtual bool fill_contains(const point_f64 & point);
 
 
       using ::write_text::drawer::set;
-      virtual ::e_status set(::draw2d::region* pregion);
-      virtual ::e_status set(::draw2d::pen* ppen);
-      virtual ::e_status set(::draw2d::brush* pbrush);
-      virtual ::e_status set(::draw2d::bitmap* pbitmap);
+      virtual void set(::draw2d::region* pregion);
+      virtual void set(::draw2d::pen* ppen);
+      virtual void set(::draw2d::brush* pbrush);
+      virtual void set(::draw2d::bitmap* pbitmap);
       virtual ::draw2d::object* set_stock_object(i32 nIndex);
 
 
@@ -428,29 +428,29 @@ virtual bool fill_contains(const point_f64 & point);
       
 
       
-      virtual ::e_status add_shapes(const shape_array & shapea);
-      virtual ::e_status reset_clip();
-      virtual ::e_status intersect_clip(const ::rectangle_f64& rectangle_f64);
-      virtual ::e_status intersect_clip(const ::ellipse& ellipse);
-      virtual ::e_status intersect_clip(const ::polygon& polygon_i32);
+      virtual void add_shapes(const shape_array & shapea);
+      virtual void reset_clip();
+      virtual void intersect_clip(const ::rectangle_f64& rectangle_f64);
+      virtual void intersect_clip(const ::ellipse& ellipse);
+      virtual void intersect_clip(const ::polygon& polygon_i32);
 
       // Maybe used by some 2d Graphics backends as group of helper
       // methods working together for some purpose
       // (initially created for clipping).
       // It should be an aid when the 2d graphics backend supports
       // "inline" paths.
-      virtual ::e_status _intersect_clip();
-      virtual ::e_status _add_shape(___shape* pshape);
-      virtual ::e_status _add_shape(const ::rectangle & rectangle);
-      virtual ::e_status _add_shape(const ::ellipse & ellipse);
-      virtual ::e_status _add_shape(const ::polygon & polygon);
+      virtual void _intersect_clip();
+      virtual void _add_shape(___shape* pshape);
+      virtual void _add_shape(const ::rectangle & rectangle);
+      virtual void _add_shape(const ::ellipse & ellipse);
+      virtual void _add_shape(const ::polygon & polygon);
 
       
 
       
-      //virtual ::e_status IntersectClipregion(::draw2d::region * pregion);
-      //virtual ::e_status IntersectClipRect(double x1, double y1, double x2, double y2);
-      //virtual ::e_status IntersectClipRect(const ::rectangle_f64 & rectangle);
+      //virtual void IntersectClipregion(::draw2d::region * pregion);
+      //virtual void IntersectClipRect(double x1, double y1, double x2, double y2);
+      //virtual void IntersectClipRect(const ::rectangle_f64 & rectangle);
       //virtual i32 ExcludeClipRect(double x1, double y1, double x2, double y2);
       //virtual i32 ExcludeClipRect(const ::rectangle_f64 & rectangle);
       //virtual i32 ExcludeUpdateRgn(::user::interaction_impl * pwindow);
@@ -817,7 +817,7 @@ virtual bool fill_contains(const point_f64 & point);
       //virtual ::size_f64 TabbedTextOut(double x, double y, const ::string & str, count nTabPositions, i32 * pnTabStopPositions, i32 nTabOrigin);
 
 
-      ::e_status TextOutRaw(double x, double y, const block & block) override;
+      void TextOutRaw(double x, double y, const block & block) override;
 
       virtual bool TextOutAlphaBlend(double x, double y, const block & block);
 
@@ -878,7 +878,7 @@ virtual bool fill_contains(const point_f64 & point);
       //virtual i32 GetTextFace(string & rString);
 
       using ::write_text::drawer::get_text_metrics;
-      ::e_status get_text_metrics(::write_text::text_metric * pmetrics) override;
+      void get_text_metrics(::write_text::text_metric * pmetrics) override;
       virtual bool get_output_text_metrics(::write_text::text_metric * pMetrics);
 
 

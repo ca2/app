@@ -40,8 +40,8 @@ namespace sockets
       class ::sockets::net& net();
 
 
-      virtual ::e_status initialize(::object * pobject) override;
-      virtual ::e_status destroy() override;
+      virtual void initialize(::object * pobject) override;
+      virtual void destroy() override;
 
 //      virtual void http_config_proxy(const char * pszUrl, http_tunnel * psocket);
 

@@ -2443,7 +2443,7 @@ namespace linux
 //      }
 //
 //
-//      virtual ::e_status     run() override
+//      virtual void     run() override
 //      {
 //
 //         try

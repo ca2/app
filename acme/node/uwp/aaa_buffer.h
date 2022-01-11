@@ -43,7 +43,7 @@ namespace universal_windows
       virtual ~buffer();
 
 
-      virtual ::e_status initialize_graphics_graphics(::user::interaction_impl* pimpl) override;
+      virtual void initialize_graphics_graphics(::user::interaction_impl* pimpl) override;
 
 
       virtual bool create_buffer(const ::size& size, int iStride = -1);

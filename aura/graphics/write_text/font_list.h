@@ -72,7 +72,7 @@ namespace write_text
       ~font_list() override;
 
 
-      ::e_status initialize(::object * pobject) override;
+      void initialize(::object * pobject) override;
 
       //virtual void on_subject(::subject * psubject) override;
 

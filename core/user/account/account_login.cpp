@@ -86,7 +86,7 @@ namespace account
    }
 
 
-   ::e_status login::initialize(::object * pobject)
+   void login::initialize(::object * pobject)
    {
 
       auto estatus = ::user::interaction::initialize(pobject);

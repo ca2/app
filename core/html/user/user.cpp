@@ -11,7 +11,7 @@ namespace core
 {
 
 
-   ::e_status user::initialize_html()
+   void user::initialize_html()
    {
 
 

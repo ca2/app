@@ -93,7 +93,7 @@ namespace acme
    }
 
 
-   ::e_status node::call_async(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid)
+   void node::call_async(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid)
    {
 
       throw ::interface_only_exception();
@@ -103,7 +103,7 @@ namespace acme
    }
 
 
-   ::e_status node::call_sync(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
+   void node::call_sync(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
    {
 
       throw ::interface_only_exception();
@@ -113,7 +113,7 @@ namespace acme
    }
   
 
-   ::e_status node::initialize(::object * pobject)
+   void node::initialize(::object * pobject)
    {
 
       auto estatus = ::object::initialize(pobject);
@@ -140,7 +140,7 @@ namespace acme
    }
 
 
-   ::e_status node::_launch_macos_app(const ::string & pszAppFolder)
+   void node::_launch_macos_app(const ::string & pszAppFolder)
    {
       
       throw ::interface_only_exception();
@@ -150,7 +150,7 @@ namespace acme
    }
 
 
-   ::e_status node::_launch_macos_app_args(const ::string & pszAppFolder, const ::string & pszArgs)
+   void node::_launch_macos_app_args(const ::string & pszAppFolder, const ::string & pszArgs)
    {
       
       throw ::interface_only_exception();
@@ -161,7 +161,7 @@ namespace acme
 
 
 
-   ::e_status node::on_initialize_object()
+   void node::on_initialize_object()
    {
 
       auto estatus = ::object::on_initialize_object();
@@ -221,7 +221,7 @@ namespace acme
    }
 
 
-   ::e_status node::system_main()
+   void node::system_main()
    {
 
       auto estatus = m_psystem->main();
@@ -238,7 +238,7 @@ namespace acme
    }
 
 
-   //::e_status node::defer_()
+   //void node::defer_()
    //{
    //   
    //   return ::success;
@@ -246,7 +246,7 @@ namespace acme
    //}
 
 
-   ::e_status node::_will_finish_launching()
+   void node::_will_finish_launching()
    {
    
       return ::success;
@@ -254,7 +254,7 @@ namespace acme
    }
 
 
-   ::e_status node::reboot()
+   void node::reboot()
    {
 
       throw ::interface_only_exception();
@@ -264,7 +264,7 @@ namespace acme
    }
 
 
-   ::e_status node::implement(__transport(::acme::node) & pnode, __transport(class ::system) & psystem)
+   void node::implement(__transport(::acme::node) & pnode, __transport(class ::system) & psystem)
    {
 
 //      auto psystem = m_psystem;
@@ -312,7 +312,7 @@ namespace acme
    }
 
 
-   ::e_status node::calculate_linux_distribution()
+   void node::calculate_linux_distribution()
    {
 
       return ::success;
@@ -342,7 +342,7 @@ namespace acme
 #ifdef WINDOWS_DESKTOP
 
 
-   ::e_status node::register_dll(const ::file::path& pathDll)
+   void node::register_dll(const ::file::path& pathDll)
    {
 
       throw ::interface_only_exception();
@@ -560,7 +560,7 @@ namespace acme
    }
 
 
-   ::e_status node::set_last_run_application_path(const ::string & strAppId)
+   void node::set_last_run_application_path(const ::string & strAppId)
    {
 
       ::file::path path = m_psystem->m_pacmefile->module();
@@ -572,7 +572,7 @@ namespace acme
    }
 
 
-   ::e_status node::is_keyboard_hook_enabled(::user::interaction * puserinteractionEnablePrompt)
+   void node::is_keyboard_hook_enabled(::user::interaction * puserinteractionEnablePrompt)
    {
    
       return ::success;
@@ -580,7 +580,7 @@ namespace acme
    }
 
 
-   ::e_status node::install_keyboard_hook(::matter * pmatterListener)
+   void node::install_keyboard_hook(::matter * pmatterListener)
    {
 
       return ::success;
@@ -588,7 +588,7 @@ namespace acme
    }
 
 
-   ::e_status node::uninstall_keyboard_hook(::matter * pmatterListener)
+   void node::uninstall_keyboard_hook(::matter * pmatterListener)
    {
 
       return ::success;
@@ -596,7 +596,7 @@ namespace acme
    }
 
 
-   ::e_status node::install_mouse_hook(::matter * pmatterListener)
+   void node::install_mouse_hook(::matter * pmatterListener)
    {
 
       return ::success;
@@ -604,7 +604,7 @@ namespace acme
    }
 
    
-   ::e_status node::is_mouse_hook_enabled(::user::interaction * puserinteractionEnablePrompt)
+   void node::is_mouse_hook_enabled(::user::interaction * puserinteractionEnablePrompt)
    {
 
       return ::success;
@@ -612,7 +612,7 @@ namespace acme
    }
 
 
-   ::e_status node::uninstall_mouse_hook(::matter * pmatterListener)
+   void node::uninstall_mouse_hook(::matter * pmatterListener)
    {
 
       return ::success;
@@ -620,7 +620,7 @@ namespace acme
    }
 
 
-   ::e_status node::datetime_to_filetime(::filetime_t* pfiletime, const ::datetime::time& time)
+   void node::datetime_to_filetime(::filetime_t* pfiletime, const ::datetime::time& time)
    {
 
       return error_interface_only;
@@ -635,7 +635,7 @@ namespace acme
    }
 
 
-   ::e_status node::start_node()
+   void node::start_node()
    {
 
       return ::success;
@@ -705,7 +705,7 @@ namespace acme
    //}
 
 
-   //::e_status node::set_user_dark_mode(bool bSet)
+   //void node::set_user_dark_mode(bool bSet)
    //{
 
    //   if (::is_different(m_bUserDarkMode, bSet))
@@ -846,7 +846,7 @@ namespace acme
    }
 
 
-   ::e_status node::os_set_user_theme(const ::string & strUserTheme)
+   void node::os_set_user_theme(const ::string & strUserTheme)
    {
 
       throw interface_only_exception();
@@ -920,7 +920,7 @@ namespace acme
    }
 
 
-   ::e_status node::node_post(const ::routine & routine)
+   void node::node_post(const ::routine & routine)
    {
 
       throw ::interface_only_exception();
@@ -930,7 +930,7 @@ namespace acme
    }
 
 
-   ::e_status node::node_send(const ::routine & routine)
+   void node::node_send(const ::routine & routine)
    {
 
       auto estatus = __send_routine(this, &node::node_post, routine);
@@ -1105,7 +1105,7 @@ namespace acme
    }
 
 
-   ::e_status node::browse_for_folder(::file::path & pathFolder)
+   void node::browse_for_folder(::file::path & pathFolder)
    {
 
       throw ::interface_only_exception();
@@ -1115,7 +1115,7 @@ namespace acme
    }
 
 
-   ::e_status node::browse_for_file(::file::path & path)
+   void node::browse_for_file(::file::path & path)
    {
 
       throw ::interface_only_exception();
@@ -1124,7 +1124,7 @@ namespace acme
 
    }
 
-//::e_status node::get_system_time_as_file_time(filetime_t * pfiletime)
+//void node::get_system_time_as_file_time(filetime_t * pfiletime)
    //{
 
    //   return ::error_interface_only;
@@ -1132,7 +1132,7 @@ namespace acme
    //}
 
 
-   //::e_status node::file_time_to_system_time(system_time_t * psystemtime, const filetime_t * pfiletime)
+   //void node::file_time_to_system_time(system_time_t * psystemtime, const filetime_t * pfiletime)
    //{
 
    //   return ::error_interface_only;
@@ -1140,7 +1140,7 @@ namespace acme
    //}
 
 
-   //::e_status node::system_time_to_time(time_t * ptime, const system_time_t * psystemtime, i32 nDST)
+   //void node::system_time_to_time(time_t * ptime, const system_time_t * psystemtime, i32 nDST)
    //{
 
    //   return error_interface_only;
@@ -1148,7 +1148,7 @@ namespace acme
    //}
 
 
-   //::e_status node::system_time_to_file_time(filetime_t * pfiletime, const system_time_t * psystemtime)
+   //void node::system_time_to_file_time(filetime_t * pfiletime, const system_time_t * psystemtime)
    //{
 
    //   return error_interface_only;
@@ -1156,7 +1156,7 @@ namespace acme
    //}
 
 
-   //::e_status node::time_to_system_time(system_time_t * psystem_time, const time_t * ptime)
+   //void node::time_to_system_time(system_time_t * psystem_time, const time_t * ptime)
    //{
 
    //   return error_interface_only;
@@ -1164,7 +1164,7 @@ namespace acme
    //}
 
 
-   //::e_status node::time_to_file_time(filetime_t * pfiletime, const time_t * ptime)
+   //void node::time_to_file_time(filetime_t * pfiletime, const time_t * ptime)
    //{
 
    //   return error_interface_only;
@@ -1196,7 +1196,7 @@ namespace acme
    }
 
 
-   ::e_status node::install_sigchld_handler()
+   void node::install_sigchld_handler()
    {
 
       return ::success;
@@ -1286,7 +1286,7 @@ namespace acme
 //#endif
 
 
-   ::e_status node::launch_app(const ::string & psz, const char ** argv, int iFlags)
+   void node::launch_app(const ::string & psz, const char ** argv, int iFlags)
    {
       
       throw ::interface_only_exception();
@@ -1297,7 +1297,7 @@ namespace acme
 
 
 
-   ::e_status node::create_process(const ::string & pszCommandLine, u32 * pprocessID)
+   void node::create_process(const ::string & pszCommandLine, u32 * pprocessID)
    {
 
       throw ::interface_only_exception();
@@ -1307,7 +1307,7 @@ namespace acme
    }
 
 
-   ::e_status node::run_silent(const ::string & strFunct, const ::string & strstrParams)
+   void node::run_silent(const ::string & strFunct, const ::string & strstrParams)
    {
 
       throw ::interface_only_exception();
@@ -1460,7 +1460,7 @@ namespace acme
    }
 
 
-   ::e_status node::set_environment_variable(const ::string& pszEnvironmentVariable, const ::string& pszValue)
+   void node::set_environment_variable(const ::string& pszEnvironmentVariable, const ::string& pszValue)
    {
 
       return error_interface_only;
@@ -1497,7 +1497,7 @@ namespace acme
    }
 
 
-   ::e_status node::register_spa_file_type(const ::string & strAppIdHandler)
+   void node::register_spa_file_type(const ::string & strAppIdHandler)
    {
       
       throw ::interface_only_exception();
@@ -1532,7 +1532,7 @@ namespace acme
    }
 
 
-   ::e_status node::start_program_files_app_app_admin(string strPlatform, string strConfiguration)
+   void node::start_program_files_app_app_admin(string strPlatform, string strConfiguration)
    {
 
       return error_failed;
@@ -1540,7 +1540,7 @@ namespace acme
    }
 
 
-   ::e_status node::get_folder_path_from_user(::file::path & pathFolder)
+   void node::get_folder_path_from_user(::file::path & pathFolder)
    {
 
       throw ::interface_only_exception();
@@ -1597,7 +1597,7 @@ namespace acme
    }
 
 
-   ::e_status node::launch_application(::matter * pobject, const ::string & strAppId, const ::string & strParams, int iBitCount)
+   void node::launch_application(::matter * pobject, const ::string & strAppId, const ::string & strParams, int iBitCount)
    {
 
       throw ::interface_only_exception();
@@ -1607,7 +1607,7 @@ namespace acme
    }
 
 
-   ::e_status node::shell_execute_async(const char * pszFile, const char * pszParams)
+   void node::shell_execute_async(const char * pszFile, const char * pszParams)
    {
 
       throw ::interface_only_exception();
@@ -1617,7 +1617,7 @@ namespace acme
    }
 
 
-   ::e_status node::shell_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout)
+   void node::shell_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout)
    {
 
       throw ::interface_only_exception();
@@ -1627,7 +1627,7 @@ namespace acme
    }
 
 
-   ::e_status node::root_execute_async(const char * pszFile, const char * pszParams)
+   void node::root_execute_async(const char * pszFile, const char * pszParams)
    {
 
       throw ::interface_only_exception();
@@ -1637,7 +1637,7 @@ namespace acme
    }
 
 
-   ::e_status node::root_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout)
+   void node::root_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout)
    {
 
       throw ::interface_only_exception();
@@ -1647,7 +1647,7 @@ namespace acme
    }
 
 
-   ::e_status node::on_start_system()
+   void node::on_start_system()
    {
 
       return ::success;

@@ -18,7 +18,7 @@
 //   }
 //
 //
-//   ::e_status cursor_set::destroy()
+//   void cursor_set::destroy()
 //   {
 //
 //      for (auto& pcursor : m_cursormap.values())

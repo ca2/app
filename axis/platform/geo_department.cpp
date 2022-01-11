@@ -34,7 +34,7 @@ namespace geo
    }
 
 
-   ::e_status department::initialize(::object* pobject)
+   void department::initialize(::object* pobject)
    {
 
       auto estatus = ::acme::department::initialize(pobject);

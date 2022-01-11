@@ -162,7 +162,7 @@ namespace filemanager
    }
 
 
-   ::e_status component::initialize_filemanager_component(::object * pobject)
+   void component::initialize_filemanager_component(::object * pobject)
    {
 
       auto estatus = ::object::initialize(pobject);

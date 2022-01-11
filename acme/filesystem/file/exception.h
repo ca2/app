@@ -18,14 +18,14 @@ namespace file
    //   ::file::e_open        m_eopen;
 
 
-   exception(const ::e_status & estatus = error_file, ::u32 uLastError = -1, int iErrNo = -1, const ::file::path & path = nullptr, const ::file::e_open & eopen = e_null);
+   exception(const void & estatus = error_file, ::u32 uLastError = -1, int iErrNo = -1, const ::file::path & path = nullptr, const ::file::e_open & eopen = e_null);
 
 //      virtual ~exception();
 //
 //      virtual void dump(dump_context &) const;
 //
 //
-//      virtual ::e_status     get_status();
+//      virtual void     get_status();
 //      virtual ::i32 get_os_error();
 //      virtual string get_file_path();
 //
@@ -39,13 +39,13 @@ namespace file
    //using exception_pointer = __pointer(exception);
 
 
-   CLASS_DECL_ACME bool should_ignore_file_exception_callstack(const ::e_status & estatus);
+   CLASS_DECL_ACME bool should_ignore_file_exception_callstack(const void & estatus);
 
-   CLASS_DECL_ACME void throw_exception(const ::e_status& estatus, ::i32 lOsError, int iErrNo, const ::file::path& path, const ::file::e_open & eopen);
+   CLASS_DECL_ACME void throw_exception(const void& estatus, ::i32 lOsError, int iErrNo, const ::file::path& path, const ::file::e_open & eopen);
 
-   CLASS_DECL_ACME void throw_status(const ::e_status& estatus, ::i32 lOsError, const ::file::path& path = nullptr);
+   CLASS_DECL_ACME void throw_status(const void& estatus, ::i32 lOsError, const ::file::path& path = nullptr);
 
-   CLASS_DECL_ACME void throw_stdio_exception(const ::e_status& estatus, ::i32 lDOSError, const ::file::path& path);
+   CLASS_DECL_ACME void throw_stdio_exception(const void& estatus, ::i32 lDOSError, const ::file::path& path);
 
 //#ifdef WINDOWS
 //
@@ -57,7 +57,7 @@ namespace file
 
    CLASS_DECL_ACME int dos_to_os_error(int lDosErr);
 
-   const char* status_message(const ::e_status& estatus);
+   const char* status_message(const void& estatus);
 
 
 } // namespace file

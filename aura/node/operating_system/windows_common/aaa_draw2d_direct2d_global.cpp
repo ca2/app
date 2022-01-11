@@ -146,7 +146,7 @@ namespace draw2d_direct2d
    }
 
 
-   ::e_status plugin::initialize(::object * pobject)
+   void plugin::initialize(::object * pobject)
    {
 
       // This flag adds support for surfaces with a different color channel ordering

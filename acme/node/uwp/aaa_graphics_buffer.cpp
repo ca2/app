@@ -36,10 +36,10 @@ namespace universal_windows
    }
 
 
-   ::e_status buffer::initialize_graphics_graphics(::user::interaction_impl* pimpl)
+   void buffer::initialize_graphics_graphics(::user::interaction_impl* pimpl)
    {
 
-      ::e_status estatus = ::graphics::bitmap_source_buffer::initialize_graphics_graphics(pimpl);
+      void estatus = ::graphics::bitmap_source_buffer::initialize_graphics_graphics(pimpl);
 
       if (!estatus)
       {

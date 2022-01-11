@@ -11,7 +11,7 @@ public:
    ~dump_context() override;
 
 
-   //virtual ::e_status destroy() override;
+   //virtual void destroy() override;
 
 
    i32 GetDepth() const;      // 0 => this matter, 1 => children objects

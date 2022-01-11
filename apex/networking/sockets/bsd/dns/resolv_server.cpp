@@ -13,7 +13,7 @@ namespace sockets
    }
 
 
-   ::e_status     resolv_server::initialize_resolv_server(::object * pobjectParent, port_t port)
+   void     resolv_server::initialize_resolv_server(::object * pobjectParent, port_t port)
    {
 
       auto estatus = initialize(pobjectParent);

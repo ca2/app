@@ -2769,7 +2769,7 @@ bool wm_add_erase_list_raw(oswindow w, Atom atomList, Atom atomFlag, bool bSet)
 
 
 //
-//::e_status x11_hook::hook()
+//void x11_hook::hook()
 //{
 //
 //   synchronous_lock synchronouslock(x11_mutex());
@@ -2780,7 +2780,7 @@ bool wm_add_erase_list_raw(oswindow w, Atom atomList, Atom atomFlag, bool bSet)
 //
 //}
 //
-//::e_status x11_hook::unhook()
+//void x11_hook::unhook()
 //{
 //
 //   synchronous_lock synchronouslock(x11_mutex());

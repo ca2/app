@@ -26,19 +26,19 @@ namespace windowing
       ~cursor() override;
 
 
-      virtual ::e_status set_cursor(enum_cursor ecursor);
+      virtual void set_cursor(enum_cursor ecursor);
 
-//      virtual ::e_status load_system_default_cursor_hint();
+//      virtual void load_system_default_cursor_hint();
 
-      virtual ::e_status set_image(const ::image * pimage, ::i32 xHotspot, ::i32 yHotspot);
+      virtual void set_image(const ::image * pimage, ::i32 xHotspot, ::i32 yHotspot);
 
-      virtual ::e_status set_file_path(const ::file::path & path);
+      virtual void set_file_path(const ::file::path & path);
 
       virtual ::file::path get_file_path() const;
 
-      virtual ::e_status _create_os_cursor();
+      virtual void _create_os_cursor();
       
-      //virtual ::e_status set_cursor_file(const ::file::path& pathParam, bool bFromCache);
+      //virtual void set_cursor_file(const ::file::path& pathParam, bool bFromCache);
 
 
    };

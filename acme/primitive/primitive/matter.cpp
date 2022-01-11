@@ -45,7 +45,7 @@ void matter::dump(dump_context & dumpcontext) const
 }
 
 
-::e_status matter::initialize_matter(::matter* pmatter)
+void matter::initialize_matter(::matter* pmatter)
 {
 
    m_psystem = pmatter->m_psystem;
@@ -55,7 +55,7 @@ void matter::dump(dump_context & dumpcontext) const
 }
 
 
-::e_status matter::on_initialize_object()
+void matter::on_initialize_object()
 {
 
    return ::success;
@@ -64,7 +64,7 @@ void matter::dump(dump_context & dumpcontext) const
 
 
 
-//::e_status matter::set_object(::object* pobject)
+//void matter::set_object(::object* pobject)
 //{
 //
 //   return ::success;
@@ -72,7 +72,7 @@ void matter::dump(dump_context & dumpcontext) const
 //}
 
 
-//::e_status matter::on_finish()
+//void matter::on_finish()
 //{
 //
 //   auto estatus = destroy();
@@ -82,8 +82,8 @@ void matter::dump(dump_context & dumpcontext) const
 //}
 
 
-//::e_status matter::set_finish_composites(::property_object * pcontextobjectFinish)
-::e_status matter::destroy_composites()
+//void matter::set_finish_composites(::property_object * pcontextobjectFinish)
+void matter::destroy_composites()
 {
 
    return ::success;
@@ -94,7 +94,7 @@ void matter::dump(dump_context & dumpcontext) const
 
 
 
-//::e_status matter::set_finish(::property_object * pcontextobjectFinish)
+//void matter::set_finish(::property_object * pcontextobjectFinish)
 //{
 //
 //   set_finish_bit();
@@ -114,7 +114,7 @@ void matter::post_quit()
 }
 
 
-::e_status matter::set_finish()
+void matter::set_finish()
 {
 
    set_finishing();
@@ -137,7 +137,7 @@ void matter::post_quit()
 }
 
 
-//::e_status matter::destroy()
+//void matter::destroy()
 //{
 //
 //   return ::success;
@@ -202,7 +202,7 @@ void matter::set_mutex(synchronization_object* psync)
 //}
 
 
-//::e_status matter::branch()
+//void matter::branch()
 //{
 //
 ////   if (has(e_object_synchronous))
@@ -243,7 +243,7 @@ void matter::defer_create_mutex()
 }
 
 
-//::e_status matter::run()
+//void matter::run()
 //{
 //
 //   return ::success;
@@ -251,7 +251,7 @@ void matter::defer_create_mutex()
 //}
 
 
-//::e_status matter::on_task()
+//void matter::on_task()
 //{
 //
 //   return run();
@@ -750,10 +750,10 @@ void matter::trace_log_fatal(const char * psz, ...)
 
 
 
-::e_status matter::__thread_main()
+void matter::__thread_main()
 {
 
-   ::e_status estatus = operator()();
+   void estatus = operator()();
 
    return estatus;
 
@@ -762,16 +762,16 @@ void matter::trace_log_fatal(const char * psz, ...)
 
 
 
-//::e_status matter::__thread_procedure()
+//void matter::__thread_procedure()
 //{
 //
 //   ::u32 u = -1;
 //
-//   ::e_status estatus = error_failed;
+//   void estatus = error_failed;
 //
-//   ::e_status estatusOs = error_failed;
+//   void estatusOs = error_failed;
 //
-//   ::e_status estatusStart = error_failed;
+//   void estatusStart = error_failed;
 //
 //   {
 //
@@ -829,7 +829,7 @@ void matter::trace_log_fatal(const char * psz, ...)
 //}
 
 
-::e_status matter::osthread_init()
+void matter::osthread_init()
 {
 
    return ::success;
@@ -837,7 +837,7 @@ void matter::trace_log_fatal(const char * psz, ...)
 }
 
 
-::e_status matter::__thread_init()
+void matter::__thread_init()
 {
 
    return ::success;
@@ -845,7 +845,7 @@ void matter::trace_log_fatal(const char * psz, ...)
 }
 
 
-::e_status matter::__thread_term()
+void matter::__thread_term()
 {
 
    return ::success;
@@ -853,7 +853,7 @@ void matter::trace_log_fatal(const char * psz, ...)
 }
 
 
-::e_status matter::osthread_term()
+void matter::osthread_term()
 {
 
    return ::success;
@@ -908,7 +908,7 @@ void matter::trace_log_fatal(const char * psz, ...)
 
 
 
-CLASS_DECL_ACME ::e_status __call(const ::routine & routine)
+CLASS_DECL_ACME void __call(const ::routine & routine)
 {
 
    return routine();

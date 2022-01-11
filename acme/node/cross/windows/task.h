@@ -61,24 +61,24 @@ public:
    virtual void erase_notify(::matter* pmatter);
 
 
-   virtual ::e_status task_caller_on_init();
+   virtual void task_caller_on_init();
 
    virtual bool on_get_thread_name(string & strThreadName);
 
 
    virtual void init_task();
    virtual void term_task();
-   virtual ::e_status do_task() override;
-   virtual ::e_status on_task() override;
+   virtual void do_task() override;
+   virtual void on_task() override;
 
 
-   virtual ::e_status begin_task(
+   virtual void begin_task(
       ::enum_priority epriority = e_priority_normal,
       u32 nStackSize = 0,
       u32 dwCreateFlags = 0);
 
 
-   virtual ::e_status start(
+   virtual void start(
       ::matter* pmatter,
       ::enum_priority epriority = e_priority_normal,
       u32 nStackSize = 0,

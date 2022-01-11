@@ -5,7 +5,7 @@
 #include "aura/node/universal_windows/directx_framework_view.h"
 
 
-CLASS_DECL_CORE ::e_status os_application_system_run(::aura::system * psystem)
+CLASS_DECL_CORE void os_application_system_run(::aura::system * psystem)
 {
 
    //auto estatus = psystem->begin_synch();

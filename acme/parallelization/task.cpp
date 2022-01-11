@@ -52,7 +52,7 @@ task::~task()
 
 
 
-::e_status task::on_initialize_object()
+void task::on_initialize_object()
 {
 
    auto estatus = ::object::on_initialize_object();
@@ -243,7 +243,7 @@ bool task::kick_thread()
 }
 
 
-::e_status task::on_pre_run_task()
+void task::on_pre_run_task()
 {
 
    return ::success;
@@ -251,7 +251,7 @@ bool task::kick_thread()
 }
 
 
-::e_status task::main()
+void task::main()
 {
 
    if(defer_implement(m_psystem))
@@ -297,7 +297,7 @@ bool task::kick_thread()
 }
 
 
-::e_status task::run()
+void task::run()
 {
 
    auto estatus = run_posted_routines();
@@ -322,7 +322,7 @@ bool task::kick_thread()
 }
 
 
-::e_status task::stop_task()
+void task::stop_task()
 {
 
    auto estatus = check_tasks_finished();
@@ -471,7 +471,7 @@ void task::unregister_task()
 }
 
 
-::e_status task::post_routine(const ::routine& routine)
+void task::post_routine(const ::routine& routine)
 {
 
    if (!routine)
@@ -493,7 +493,7 @@ void task::unregister_task()
 
 
 
-::e_status task::run_posted_routines()
+void task::run_posted_routines()
 {
 
    synchronous_lock synchronouslock(mutex());
@@ -574,7 +574,7 @@ bool task::on_get_task_name(string & strTaskName)
 }
 
 
-::e_status task::task_caller_on_init()
+void task::task_caller_on_init()
 {
 
    return ::success;
@@ -660,7 +660,7 @@ void task::term_task()
 }
 
 
-//::e_status task::do_task()
+//void task::do_task()
 //{
 //
 //   init_task();
@@ -674,10 +674,10 @@ void task::term_task()
 //}
 //
 //
-//::e_status task::on_task()
+//void task::on_task()
 //{
 //
-//   //::e_status estatus = ::success;
+//   //void estatus = ::success;
 //
 //   //while (!m_bSetFinish)
 //   //{
@@ -746,7 +746,7 @@ bool task::has_message() const
 }
 
 
-//::e_status task::branch(
+//void task::branch(
 //   ::element* pelement,
 //   ::enum_priority epriority,
 //   u32 nStackSize,
@@ -762,7 +762,7 @@ bool task::has_message() const
 //}
 
 
-::e_status task::branch(::enum_priority epriority, u32 nStackSize, u32 uCreateFlags ARG_SEC_ATTRS)
+void task::branch(::enum_priority epriority, u32 nStackSize, u32 uCreateFlags ARG_SEC_ATTRS)
 {
 
    if (m_id.is_empty())
@@ -998,7 +998,7 @@ bool task::task_sleep(const class ::wait & wait)
 
 }
 
-//::e_status task::branch(::element * pelement, ::enum_priority epriority, ::u32 nStackSize, u32 uCreateFlags ARG_SEC_ATTRS)
+//void task::branch(::element * pelement, ::enum_priority epriority, ::u32 nStackSize, u32 uCreateFlags ARG_SEC_ATTRS)
 //{
 //
 //   auto ptask = __new(task);

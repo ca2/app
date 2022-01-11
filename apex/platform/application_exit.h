@@ -1,4 +1,4 @@
-// Created on 2021-07-08 13:18 BRT <3ThomasBorregaardSørensen!!
+// Created on 2021-07-08 13:18 BRT <3ThomasBorregaardSï¿½rensen!!
 #pragma once
 
 
@@ -16,9 +16,9 @@ public:
    ~application_exit() override;
 
 
-   virtual ::e_status request_exit_application();
-   virtual ::e_status can_exit_application();
-   virtual ::e_status exit_application();
+   virtual void request_exit_application();
+   virtual void can_exit_application();
+   virtual void exit_application();
 
 
 };

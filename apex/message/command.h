@@ -64,7 +64,7 @@ namespace message
       bool is_command()const { return m_id.is_command(); }
       bool is_command_probe() const { return m_id.is_command_probe(); }
 
-      ::e_status handle(::channel * pcommandtarget);
+      void handle(::channel * pcommandtarget);
       bool is_handled(::channel * pcommandtarget);
 
 

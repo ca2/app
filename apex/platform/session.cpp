@@ -106,7 +106,7 @@ namespace apex
    }
 
 
-   ::e_status session::initialize(::object * pobject)
+   void session::initialize(::object * pobject)
    {
 
       auto estatus = ::thread::initialize(pobject);
@@ -162,7 +162,7 @@ namespace apex
    }
 
 
-   //::e_status session::on_initialize_window_object()
+   //void session::on_initialize_window_object()
    //{
 
    //   if (m_bOnInitializeWindowObject)
@@ -188,7 +188,7 @@ namespace apex
    //}
 
 
-   //::e_status session::_on_initialize_window_object()
+   //void session::_on_initialize_window_object()
    //{
 
    //   return ::success;
@@ -219,7 +219,7 @@ namespace apex
    }
 
 
-   //::e_status session::ui_init()
+   //void session::ui_init()
    //{
 
    //   return ::success;
@@ -400,7 +400,7 @@ namespace apex
    //}
 
 
-   ::e_status session::init_thread()
+   void session::init_thread()
    {
 
       auto estatus = process_init();
@@ -474,7 +474,7 @@ namespace apex
    }
 
 
-   ::e_status session::process_init()
+   void session::process_init()
    {
 
       //INFORMATION("apex::session::process_init");
@@ -508,7 +508,7 @@ namespace apex
    }
 
 
-   ::e_status session::init_session()
+   void session::init_session()
    {
 
       auto estatus = init1();
@@ -1186,7 +1186,7 @@ ret:
    }
 
 
-   ::e_status session::init1()
+   void session::init1()
    {
 
       auto estatus = initialize_context();
@@ -1326,7 +1326,7 @@ ret:
    }
 
 
-   ::e_status session::defer_initialize_host_window(const RECTANGLE_I32 * lpcrect)
+   void session::defer_initialize_host_window(const RECTANGLE_I32 * lpcrect)
    {
 
       return ::success;
@@ -1334,10 +1334,10 @@ ret:
    }
 
 
-   ::e_status session::init2()
+   void session::init2()
    {
 
-      ::e_status estatus;
+      void estatus;
 
       //INFORMATION("apex::session::init2 .1");
 
@@ -1392,10 +1392,10 @@ ret:
    }
 
 
-   ::e_status session::init()
+   void session::init()
    {
 
-      ::e_status estatus = ::success;
+      void estatus = ::success;
 
       __pointer(::fs::set) pfsset = m_pfsdata;
 
@@ -1525,7 +1525,7 @@ namespace apex
 
 
 
-   //::e_status session::initialize(::object * pobject)
+   //void session::initialize(::object * pobject)
    //{
 
    //   auto estatus = ::apex::session::initialize(pobject);
@@ -1840,7 +1840,7 @@ namespace apex
       //}
 
 
-      //::e_status session::os_native_bergedge_start()
+      //void session::os_native_bergedge_start()
       //{
 
       //   if (!::application::os_native_bergedge_start())
@@ -1876,7 +1876,7 @@ namespace apex
    //}
 
 
-   ::e_status     session::main()
+   void     session::main()
    {
 
       //return ::apex::session::main();
@@ -2207,7 +2207,7 @@ namespace apex
 
 
 
-   ::e_status session::destroy()
+   void session::destroy()
    {
 
       ::application_container::m_applicationa.erase_all();

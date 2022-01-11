@@ -64,7 +64,7 @@ namespace compress_zlib
       ~uncompress() override;
 
 
-      ::e_status transfer(::file::file* pfileOut, ::file::file* pfileIn) override;
+      void transfer(::file::file* pfileOut, ::file::file* pfileIn) override;
 
 
    };

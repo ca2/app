@@ -33,7 +33,7 @@ namespace html
       }
 
 
-      ::e_status element::initialize_html_impl_elemental(::html_data * pdata)
+      void element::initialize_html_impl_elemental(::html_data * pdata)
       {
 
          auto estatus = initialize(pdata);

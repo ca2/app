@@ -24,7 +24,7 @@ class CLASS_DECL_ACME manual_reset_event :
 public:
 
 
-   ::e_status m_estatus;
+   ::e_status3 m_estatus;
    // DECLARE_REUSABLE(manual_reset_event);
 
 

@@ -1501,7 +1501,7 @@ retry_get_prompt:
    }
 
 
-   void plugin::on_login_result(const ::e_status & estatus, const ::string & pszResponse)
+   void plugin::on_login_result(const void & estatus, const ::string & pszResponse)
    {
 
       if(eresult == ::account::result_auth)

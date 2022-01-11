@@ -65,12 +65,12 @@ namespace dynamic_source
       ~script_compiler() override;
 
 
-      virtual ::e_status initialize_dynamic_source_script_compiler(script_manager * pscriptmanager);
+      virtual void initialize_dynamic_source_script_compiler(script_manager * pscriptmanager);
       //void prepare_compile_and_link_environment();
 
       void run_persistent();
 
-      virtual ::e_status init1();
+      virtual void init1();
 
       bool defer_run_persistent(const ::string &psz);
 

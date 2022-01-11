@@ -16,10 +16,10 @@
 //}
 //
 //
-//::e_status sync_task::call()
+//void sync_task::call()
 //{
 //
-//   ::e_status estatus;
+//   void estatus;
 //
 //   try
 //   {

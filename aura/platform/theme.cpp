@@ -22,7 +22,7 @@ namespace aura
    }
 
 
-   ::e_status theme::initialize(::object * pobject)
+   void theme::initialize(::object * pobject)
    {
 
       auto estatus = ::object::initialize(pobject);
@@ -405,7 +405,7 @@ namespace aura
    }
 
 
-   ::e_status theme::initialize_contextualized_theme()
+   void theme::initialize_contextualized_theme()
    {
 
       auto & dark = m_mapColors["dark"];

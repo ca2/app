@@ -169,7 +169,7 @@ public:
    void impl_term();
 
    //#ifdef LINUX
-   virtual ::e_status run() override;
+   virtual void run() override;
 
    //#endif
 
@@ -196,7 +196,7 @@ public:
    //virtual void __destroy() override;
 
 
-   // virtual ::e_status destroy() override;
+   // virtual void destroy() override;
 
 
 };

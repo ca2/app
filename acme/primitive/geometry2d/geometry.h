@@ -27,8 +27,8 @@ namespace geometry
       virtual ~geometry();
 
 
-      //virtual ::e_status initialize(::object * pobject) override;
-      ::e_status destroy() override;
+      //virtual void initialize(::object * pobject) override;
+      void destroy() override;
 
 
       double rotate_y(double x, double y, double phi);

@@ -40,8 +40,8 @@ namespace simpledb
       virtual bool create_server_dataset();
 
 
-      virtual ::e_status initialize_simpledb_server(::object * pobject, const ::string & pszDatabase);
-      virtual ::e_status destroy() override;
+      virtual void initialize_simpledb_server(::object * pobject, const ::string & pszDatabase);
+      virtual void destroy() override;
 
 
       virtual bool initialize_user(::database::database * pdatabaseUser, const ::string & pszUser);

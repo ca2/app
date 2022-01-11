@@ -25,7 +25,7 @@ namespace serial
    }
    
    
-   ::e_status serial::initialize_serial(const string& port, u32 baudrate, struct timeout timeout,
+   void serial::initialize_serial(const string& port, u32 baudrate, struct timeout timeout,
       enum_byte_size ebytesize, enum_parity eparity, enum_stop_bit estopbit,
       enum_flow_control eflowcontrol)
       //:
@@ -706,7 +706,7 @@ namespace serial
 
 
 //
-//   ::e_status serial::initialize_serial(const string & port, u32 baudrate, timeout timeout,
+//   void serial::initialize_serial(const string & port, u32 baudrate, timeout timeout,
 //                                        enum_byte_size ebytesize, enum_parity eparity, enum_stop_bit estopbit,
 //                                        enum_flow_control eflowcontrol)
 //   {

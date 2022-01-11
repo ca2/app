@@ -19,22 +19,22 @@ public:
    ~api_client() override;
 
 
-   virtual ::e_status defer_api();
+   virtual void defer_api();
 
 
-   virtual ::e_status create_api();
+   virtual void create_api();
 
 
-   virtual ::e_status create_api(const ::string& strImplementation);
+   virtual void create_api(const ::string& strImplementation);
 
 
-   virtual ::e_status api_get(::string & str, const string& strUrl, property_set& set);
+   virtual void api_get(::string & str, const string& strUrl, property_set& set);
 
 
-   virtual ::e_status api_get(::payload & payload, const string& strUrl, property_set& set);
+   virtual void api_get(::payload & payload, const string& strUrl, property_set& set);
 
 
-   virtual ::e_status api_download(string strGet, const ::file::path& path, property_set& set);
+   virtual void api_download(string strGet, const ::file::path& path, property_set& set);
 
 
 

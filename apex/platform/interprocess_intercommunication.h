@@ -107,9 +107,9 @@
       ~interprocess_intercommunication() override;
 
 
-      virtual ::e_status initialize_interprocess_communication(::object * pobject, const ::string & strApp);
+      virtual void initialize_interprocess_communication(::object * pobject, const ::string & strApp);
 
-      ::e_status destroy() override;
+      void destroy() override;
 
       virtual void defer_add_module(const ::string & strModule, const ::id & idPid);
 

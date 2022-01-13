@@ -111,7 +111,7 @@ inline void CopyElements(TYPE* pDest, const TYPE* pSrc, ::count nCount)
 //
 //
 //   template < class APP >
-//   __transport(::acme::application) single_application_library < APP > ::get_new_application(::matter * pobject, const char * pszAppId)
+//   __pointer(::acme::application) single_application_library < APP > ::get_new_application(::matter * pobject, const char * pszAppId)
 //   {
 //
 //      if(!contains_app(pszAppId))
@@ -710,8 +710,8 @@ inline i64 ref_count(c_derived * pca)
 #ifndef __cplusplus_winrt
 
 
-template < typename RESULT, typename TRANSPORT >
-sequence < RESULT, TRANSPORT > ::sequence()
+template < typename TYPE >
+sequence < TYPE > ::sequence()
 {
 
    //m_ptask = ::get_task();
@@ -721,18 +721,18 @@ sequence < RESULT, TRANSPORT > ::sequence()
 }
 
 
-//template < typename RESULT >
-//void future < RESULT > ::set_object(const RESULT& result, const void& estatus)
+//template < typename TYPE >
+//void future < RESULT > ::set_object(const RESULT& result, const ::e_status3 & estatus)
 //{
 //
 //   critical_section_lock lock(get_sequence_critical_section());
 //
-//   if (m_transport.m_estatus == error_not_initialized)
+//   if (m_p.m_estatus == error_not_initialized)
 //   {
 //
-//      m_transport.m_estatus = estatus;
+//      m_p.m_estatus = estatus;
 //
-//      m_transport.m_result = result;
+//      m_p.m_result = result;
 //
 //      if (m_pevent)
 //      {
@@ -753,13 +753,13 @@ sequence < RESULT, TRANSPORT > ::sequence()
 //}
 
 
-template < typename RESULT, typename TRANSPORT >
-void sequence < RESULT, TRANSPORT > ::set_status(const void& estatus)
+template < typename TYPE >
+void sequence < TYPE > ::set_status(const ::e_status3& estatus)
 {
 
    critical_section_lock lock(get_sequence_critical_section());
 
-   m_transport.m_estatus = estatus;
+   m_p.m_estatus = estatus;
 
    if (m_pevent)
    {
@@ -777,10 +777,10 @@ void sequence < RESULT, TRANSPORT > ::set_status(const void& estatus)
 
          critical_section_lock lock(get_sequence_critical_section());
 
-         while(m_functiona.has_element())
+         while(m_stepa.has_element())
          {
 
-            auto pfunction = m_functiona.pop_first();
+            auto pfunction = m_stepa.pop_first();
 
             lock.unlock();
 
@@ -795,13 +795,13 @@ void sequence < RESULT, TRANSPORT > ::set_status(const void& estatus)
 }
 
 
-template < typename OBJECT /*, typename TRANSPORT */ >
-OBJECT & sequence < OBJECT /* TRANSPORT */ > ::get_object(const ::duration& duration)
+template < typename TYPE >
+TYPE & sequence < TYPE > ::topic(const ::duration& duration)
 {
 
    critical_section_lock lock(get_sequence_critical_section());
 
-   if (m_transport.m_estatus == error_not_initialized)
+   if (m_p.m_estatus == error_not_initialized)
    {
 
       m_pevent = new manual_reset_event();
@@ -811,10 +811,10 @@ OBJECT & sequence < OBJECT /* TRANSPORT */ > ::get_object(const ::duration& dura
 
          lock.lock();
 
-         if (m_transport.m_estatus == error_not_initialized)
+         if (m_p.m_estatus == error_not_initialized)
          {
 
-            m_transport.m_estatus = error_timeout;
+            m_p.m_estatus = error_timeout;
 
          }
 
@@ -824,21 +824,21 @@ OBJECT & sequence < OBJECT /* TRANSPORT */ > ::get_object(const ::duration& dura
 
    }
 
-   return m_transport;
+   return m_p;
 
 }
 
 
-template < typename OBJECT, typename TRANSPORT >
-void sequence < OBJECT, TRANSPORT > ::wait(const ::duration& duration)
+template < typename TYPE >
+void sequence < TYPE > ::wait(const ::duration& duration)
 {
 
    critical_section_lock lock(get_sequence_critical_section());
 
-   if (m_transport.m_estatus == error_not_initialized)
+   if (m_p.m_estatus == error_not_initialized)
    {
 
-      m_pevent = new manual_reset_event();
+      m_pevent = __new(manual_reset_event);
 
       lock.unlock();
 
@@ -847,10 +847,10 @@ void sequence < OBJECT, TRANSPORT > ::wait(const ::duration& duration)
 
          lock.lock();
 
-         if (m_transport.m_estatus == error_not_initialized)
+         if (m_p.m_estatus == error_not_initialized)
          {
 
-            m_transport.m_estatus = error_timeout;
+            m_p.m_estatus = error_timeout;
 
          }
 
@@ -860,22 +860,22 @@ void sequence < OBJECT, TRANSPORT > ::wait(const ::duration& duration)
 
    }
 
-   return m_transport.m_estatus;
+   return m_p.m_estatus;
 
 }
 
 
-template < typename OBJECT, typename TRANSPORT >
-template < typename PREDICATE >
-sequence < OBJECT, TRANSPORT > & sequence < OBJECT, TRANSPORT > ::then(PREDICATE predicate)
+template < typename TYPE >
+template < typename OPERATION >
+sequence < TYPE > & sequence < TYPE > ::then(OPERATION operation)
 {
 
    critical_section_lock lock(get_sequence_critical_section());
 
-   if (m_transport.m_estatus == error_not_initialized)
+   if (m_p.m_estatus == error_not_initialized)
    {
 
-      m_functiona.add(__new(function_predicate < PREDICATE >(predicate)));
+      m_stepa.add(__new(step_operation < OPERATION >(operation)));
 
    }
    else
@@ -883,7 +883,7 @@ sequence < OBJECT, TRANSPORT > & sequence < OBJECT, TRANSPORT > ::then(PREDICATE
 
       lock.unlock();
 
-      predicate(*this);
+      operation(*this);
 
    }
    
@@ -892,17 +892,17 @@ sequence < OBJECT, TRANSPORT > & sequence < OBJECT, TRANSPORT > ::then(PREDICATE
 }
 
 
-template < typename OBJECT, typename TRANSPORT >
-template < typename PREDICATE >
-sequence < OBJECT, TRANSPORT > & sequence < OBJECT, TRANSPORT > ::then(const ::duration& duration, PREDICATE predicate)
+template < typename TYPE >
+template < typename OPERATION >
+sequence < TYPE > & sequence < TYPE > ::then(const ::duration& duration, OPERATION operation)
 {
 
    critical_section_lock lock(get_sequence_critical_section());
 
-   if (m_transport.m_estatus == error_not_initialized)
+   if (m_p.m_estatus == error_not_initialized)
    {
 
-      m_functiona.add(__new(function_predicate < PREDICATE >(predicate)));
+      m_stepa.add(__new(step_operation < OPERATION >(operation)));
 
       m_pevent = new manual_reset_event();
 
@@ -913,19 +913,19 @@ sequence < OBJECT, TRANSPORT > & sequence < OBJECT, TRANSPORT > ::then(const ::d
 
          lock.lock();
 
-         if (m_transport.m_estatus == error_not_initialized)
+         if (m_p.m_estatus == error_not_initialized)
          {
 
-            m_transport.m_estatus = error_timeout;
+            m_p.m_estatus = error_timeout;
 
          }
 
          lock.unlock();
 
-         if (m_transport.m_estatus == error_timeout)
+         if (m_p.m_estatus == error_timeout)
          {
 
-            predicate(this);
+            operation(*this);
 
          }
 
@@ -937,7 +937,7 @@ sequence < OBJECT, TRANSPORT > & sequence < OBJECT, TRANSPORT > ::then(const ::d
 
       lock.unlock();
 
-      predicate(this);
+      operation(*this);
 
    }
 
@@ -947,30 +947,30 @@ sequence < OBJECT, TRANSPORT > & sequence < OBJECT, TRANSPORT > ::then(const ::d
 
 
 
-template < typename OBJECT, typename TRANSPORT , typename SEQUENCE >
-SEQUENCE * asynchronous < OBJECT, TRANSPORT, SEQUENCE >::sequence()
-{
-
-   if (!m_pfuture)
-   {
-
-      m_psystem->__construct_new(m_pfuture);
-       
-      m_pfuture->m_psystem = m_psystem;
-
-      m_pfuture->m_transport = this;
-
-   }
-
-   return m_pfuture;
-
-}
+//template < typename OBJECT, typename TRANSPORT , typename SEQUENCE >
+//SEQUENCE * asynchronous < OBJECT, TRANSPORT, SEQUENCE >::sequence()
+//{
+//
+//   if (!m_pfuture)
+//   {
+//
+//      m_psystem->__construct_new(m_pfuture);
+//       
+//      m_pfuture->m_psystem = m_psystem;
+//
+//      m_pfuture->m_p = this;
+//
+//   }
+//
+//   return m_pfuture;
+//
+//}
 
 
 
 
 //template < typename TYPE >
-//inline __transport(TYPE) property_object::__create_new()
+//inline __pointer(TYPE) property_object::__create_new()
 //{
 //
 //   auto p = __new(TYPE);

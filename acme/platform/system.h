@@ -11,7 +11,7 @@ public:
 
    //__pointer(system_impl) *                                                     m_psystemimpl;
 
-   __transport(::factory::factory)                                   m_pfactoryFolder;
+   __pointer(::factory::factory)                                   m_pfactoryFolder;
    
    bool                                                              m_bPostedInitialRequest;
 
@@ -26,11 +26,12 @@ public:
 
 
    ::mutex                                                           m_mutexFactory;
-   string_map < __transport(::factory::factory) >                    m_mapFactory;
+   //string_map < __pointer(::factory::factory) >                  m_mapFactory;
+   string_map < __pointer(::factory::factory) >                      m_mapFactory;
 
 
    ::mutex                                                           m_mutexComponentFactory;
-   string_map < string_map < __transport(::factory::factory) > >     m_mapComponentFactory;
+   string_map < string_map < __pointer(::factory::factory) > >       m_mapComponentFactory;
 
 
    __pointer(string_map < __pointer(::regular_expression::context) >)                        m_pmapRegularExpressionContext;
@@ -64,7 +65,7 @@ public:
 
    __composite(class ::xml::xml)                                     m_pxml;
 
-   __transport(class ::acme::node)                                   m_pnode;
+   __pointer(class ::acme::node)                                   m_pnode;
    __composite(class ::acme_dir)                                     m_pacmedir;
    __composite(class ::acme_file)                                    m_pacmefile;
    __composite(class ::acme_path)                                    m_pacmepath;
@@ -96,7 +97,7 @@ public:
 #endif
 
 
-   inline __transport(::acme::node) & node() { return m_pnode; }
+   inline __pointer(::acme::node) & node() { return m_pnode; }
 
    inline class ::str::base64* base64() { return m_pbase64; };
 
@@ -138,7 +139,7 @@ public:
 
 
    template < typename BASE_TYPE >
-   __transport(BASE_TYPE) create(const ::string& strComponent, const ::string& strImplementation)
+   __pointer(BASE_TYPE) create(const ::string& strComponent, const ::string& strImplementation)
    {
 
       auto & pfactory = this->factory(strComponent, strImplementation);
@@ -146,7 +147,7 @@ public:
       if (!pfactory)
       {
 
-         return (const ::extended::status &) pfactory;
+         throw_status(error_resource);
 
       }
 
@@ -184,13 +185,13 @@ public:
 
    //virtual void defer_calc_os_user_theme();
 
-   void process_exit_status(::object* pobject, const void& estatus);
+   void process_exit_status(::object* pobject, const ::e_status3& estatus);
 
 
    virtual ::application* get_main_application();
 
 
-   virtual __transport(::factory::factory) & folder_factory();
+   virtual __pointer(::factory::factory) & folder_factory();
 
 
    void system_construct(const ::main & main) override;
@@ -222,7 +223,7 @@ public:
 #endif
 
 
-   virtual __transport(::factory::factory)& node_factory();
+   virtual __pointer(::factory::factory)& node_factory();
 
 
    virtual void inline_init();
@@ -271,20 +272,20 @@ public:
 
    //virtual __pointer(::acme::library) open_component_library(const ::string &pszComponent, const ::string &pszImplementation);
 
-   virtual __transport(::acme::library) create_library(const ::string& strLibrary);
+   virtual __pointer(::acme::library) create_library(const ::string& strLibrary);
 
-   virtual __transport(::acme::library)& library(const ::string& str);
+   virtual __pointer(::acme::library)& library(const ::string& str);
 
-   //virtual __transport(::acme::library)& library(const ::string& strComponent, const ::string& strImplementation);
-
-
-   virtual __transport(::factory::factory)& factory(const ::string& strLibrary);
+   //virtual __pointer(::acme::library)& library(const ::string& strComponent, const ::string& strImplementation);
 
 
-   //virtual __transport(::acme::library) & library(const ::string &strComponent, const ::string &strImplementation);
+   virtual __pointer(::factory::factory)& factory(const ::string& strLibrary);
 
 
-   virtual __transport(::factory::factory) & factory(const ::string& strComponent, const ::string& strImplementation);
+   //virtual __pointer(::acme::library) & library(const ::string &strComponent, const ::string &strImplementation);
+
+
+   virtual __pointer(::factory::factory) & factory(const ::string& strComponent, const ::string& strImplementation);
 
 
    virtual void open_profile_link(string strUrl, string strProfile, string strTarget);
@@ -417,10 +418,10 @@ public:
 
    virtual ::regular_expression_pointer create_regular_expression(const ::string &pszStyle, const string& str);
    //virtual __pointer(::regular_expression::context) create_regular_expression_context(const ::string &pszStyle, int iCount);
-   virtual __transport(::regular_expression::context) get_regular_expression_context(const ::string &pszStyle);
+   virtual __pointer(::regular_expression::context) get_regular_expression_context(const ::string &pszStyle);
 
    virtual ::regular_expression_pointer create_pcre(const string& str);
-   virtual __transport(::regular_expression::context) get_pcre_context();
+   virtual __pointer(::regular_expression::context) get_pcre_context();
    //virtual int system::pcre_add_tokens(string_array& stra, const string& strTopic, const string& strRegexp, int nCount)
 
    virtual void get_public_internet_domain_extension_list(string_array& stra);
@@ -434,7 +435,7 @@ public:
    virtual void on_open_file(const ::string &pszFile);
 
    //template < typename BASE_TYPE >
-   //__transport(BASE_TYPE) create(const char * pszComponent, const char* pszImplementation)
+   //__pointer(BASE_TYPE) create(const char * pszComponent, const char* pszImplementation)
    //{
 
    //   auto plibrary = ([a-z0-9_]+)_factory(pszComponent, pszImplementation);

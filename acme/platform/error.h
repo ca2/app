@@ -1,8 +1,8 @@
 #pragma once
 
 
-CLASS_DECL_ACME void get_last_status();
-CLASS_DECL_ACME void set_last_status(const void & estatus);
+CLASS_DECL_ACME ::e_status3 get_last_status();
+CLASS_DECL_ACME void set_last_status(const ::e_status3 & estatus);
 
 
 /// Class with static functions to get information about an error.

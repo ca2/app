@@ -33,9 +33,8 @@ namespace serial
    {
 //      set_timeout(timeout);
 
+      throw_status(error_no_factory);
 
-
-      return ::error_failed;
    }
 
 

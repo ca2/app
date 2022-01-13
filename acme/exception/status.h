@@ -19,7 +19,7 @@
 //   status() { m_estatus = error_not_initialized; }
 //
 //
-//   status(const TYPE & _, const void& estatus = ::success) :
+//   status(const TYPE & _, const ::e_status3 & estatus = ::success) :
 //      TYPE(_),
 //      m_estatus(estatus)
 //   {
@@ -27,7 +27,7 @@
 //   }
 //
 //
-//   status(const TYPE&& _, const void& estatus = ::success) :
+//   status(const TYPE&& _, const ::e_status3 & estatus = ::success) :
 //      TYPE(::move(_)),
 //      m_estatus(estatus)
 //   {
@@ -35,7 +35,7 @@
 //   }
 //
 //
-//   status(const void& estatus)
+//   status(const ::e_status3 & estatus)
 //   {
 //
 //      if (estatus == error_not_initialized)
@@ -83,7 +83,7 @@
 //
 //   operator void() const { return m_estatus; }
 //
-//   [[nodiscard]] void estatus() const { return m_estatus; }
+//   [[nodiscard]] ::e_status3 estatus() const { return m_estatus; }
 //
 //   [[nodiscard]] bool is_ok() const { return ::succeeded(m_estatus); }
 //
@@ -141,21 +141,21 @@
 //   holding_status() { m_estatus = error_not_initialized; }
 //
 //
-//   holding_status(const HOLDING & _, const void& estatus = ::success) :
+//   holding_status(const HOLDING & _, const ::e_status3 & estatus = ::success) :
 //      m_holding(_),
 //      m_estatus(estatus)
 //   {
 //
 //   }
 //
-//   holding_status(const HOLDING&& _, const void& estatus = ::success) :
+//   holding_status(const HOLDING&& _, const ::e_status3 & estatus = ::success) :
 //      m_holding(::move(_)),
 //      m_estatus(estatus)
 //   {
 //
 //   }
 //
-//   holding_status(const void& estatus)
+//   holding_status(const ::e_status3 & estatus)
 //   {
 //
 //      if (estatus == error_not_initialized)
@@ -203,7 +203,7 @@
 //
 //   operator int() const { return is_ok() != false; }
 //
-//   void estatus() const { return m_estatus; }
+//   ::e_status3 estatus() const { return m_estatus; }
 //
 //   operator HOLDING() const { return m_holding; }
 //

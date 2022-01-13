@@ -74,12 +74,12 @@ namespace aqua
 
       m_strTtsImplementation = m_pcontext->m_papexcontext->file().as_string(pathImplementation);
 
-      return ::success;
+      //return ::success;
 
    }
 
 
-   __transport(::text_to_speech::speaker) audio::create_text_to_speech_speaker(const ::string & strImplementation)
+   __pointer(::text_to_speech::speaker) audio::create_text_to_speech_speaker(const ::string & strImplementation)
    {
 
       __UNREFERENCED_PARAMETER(strImplementation);
@@ -154,7 +154,7 @@ namespace aqua
    void audio::defer_initialize_audio_playback(::wave::e_purpose epurpose)
    {
 
-      return error_interface_only;
+      throw ::interface_only_exception();
 
    }
 

@@ -36,7 +36,7 @@ CLASS_DECL_APEX void set_main_app_id(const char * pszAppId)
 
    g_pszMainAppId = pszAppId;
 
-   return ::success;
+   //return ::success;
 
 }
 

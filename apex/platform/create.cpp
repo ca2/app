@@ -29,23 +29,26 @@ void create::initialize_create(arguments arguments)
       else if(arg.get_type() == e_type_string)
       {
 
-         auto estatus = __construct(m_pcommandline);
-
-         if (!estatus)
-         {
-
-            return estatus;
-
-         }
+         //auto estatus = 
          
-         estatus = m_pcommandline->initialize_command_line(arg.string());
+         __construct(m_pcommandline);
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            return estatus;
+         //   return estatus;
 
-         }
+         //}
+         
+         // estatus = 
+         m_pcommandline->initialize_command_line(arg.string());
+
+         //if (!estatus)
+         //{
+
+         //   return estatus;
+
+         //}
 
       }
       else if(auto pcommandline = arg.cast<command_line>())
@@ -85,20 +88,21 @@ void create::initialize_create(string strAppId, ::payload payloadFile, const ::p
 
    }
 
-   auto estatus = finish_initialization();
+   //auto estatus = 
+   finish_initialization();
 
-   if (!estatus)
-   {
-      
-      return estatus;
+   //if (!estatus)
+   //{
+   //   
+   //   return estatus;
 
-   }
+   //}
    
    m_pcommandline->m_varFile = payloadFile;
 
    m_puserprimitiveParent = puiParent;
 
-   return estatus;
+   ///return estatus;
 
 }
 
@@ -151,19 +155,21 @@ void create::create_common_construct(const ::payload & varOptions, ::user::primi
 void create::finish_initialization()
 {
 
-   void estatus = ::success;
+   ::e_status3 estatus = ::success;
 
    if(!m_pcommandline)
    {
 
-      estatus = __construct(m_pcommandline);
+      //estatus = 
+      
+      __construct(m_pcommandline);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
    }
 
@@ -179,7 +185,7 @@ void create::finish_initialization()
 
    }
 
-   return estatus;
+   //return estatus;
 
 }
 

@@ -121,16 +121,18 @@ namespace sockets
    void base_socket::initialize_socket(base_socket_handler* phandler)
    {
 
-      auto estatus = ::object::initialize(phandler);
+      //auto estatus = ::object::initialize(phandler);
 
-      if (!estatus)
-      {
+      ::object::initialize(phandler);
 
-         return estatus;
+      //if (!estatus)
+      //{
 
-      }
+      //   return estatus;
 
-      return estatus;
+      //}
+
+      //return estatus;
 
 
    }
@@ -2645,15 +2647,17 @@ namespace sockets
    void     base_socket::run()
    {
 
-      return ::success;
+      //return ::success;
 
    }
 
 
-   void base_socket::step()
+   bool base_socket::step()
    {
 
-      return ::e_status_no_work;
+      //return ::e_status_no_work;
+
+      return false;
 
    }
 

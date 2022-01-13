@@ -33,7 +33,7 @@ void service::set_arguments(int argc, wchar_t** argv)
 void service::start_service()
 {
 
-   return error_failed;
+   //return error_failed;
 
 }
 
@@ -41,9 +41,10 @@ void service::start_service()
 void service::stop_service()
 {
 
-   return ::success;
+   //return ::success;
 
 }
+
 
 ::enum_service_status service::get_service_status()
 {
@@ -109,7 +110,7 @@ void service::stop_service()
 //
 //   m_bStopping = false;
 //
-//   void estatus = ::error_failed;
+//   ::e_status3 estatus = ::error_failed;
 //
 //   estatus = osthread_init();
 //

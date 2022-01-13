@@ -25,27 +25,31 @@ void machine_event_central::initialize(::object * pobject)
    if (m_bInitialized)
    {
 
-      return ::success;
+      return;
 
    }
 
-   auto estatus = ::object::initialize(pobject);
+   //auto estatus = 
+   
+   ::object::initialize(pobject);
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
-   estatus = __construct_new(m_pmachineevent);
+   //estatus = 
+   
+   __construct_new(m_pmachineevent);
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
    // todo (camilo) instead of sleeping (at machine_event_central::run) , wait for machine messages pooling in the machine event data file.
 
@@ -59,7 +63,7 @@ void machine_event_central::initialize(::object * pobject)
 
    m_bInitialized = true;
 
-   return m_bInitialized;
+   //return m_bInitialized;
 
 }
 
@@ -88,7 +92,7 @@ void machine_event_central::run()
 
    }
 
-   return ::success;
+   //return ::success;
 
 }
 

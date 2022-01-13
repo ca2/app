@@ -22,16 +22,18 @@ namespace net
    void email::initialize(::object * pobject)
    {
 
-      auto estatus = ::object::initialize(pobject);
+      //auto estatus = ::object::initialize(pobject);
 
-      if (!estatus)
-      {
+      ::object::initialize(pobject);
 
-         return estatus;
+      //if (!estatus)
+      //{
 
-      }
+      //   return estatus;
 
-      return estatus;
+      //}
+
+      //return estatus;
 
    }
 

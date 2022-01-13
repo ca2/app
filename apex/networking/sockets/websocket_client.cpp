@@ -531,7 +531,7 @@ namespace sockets
    }
 
 
-   void websocket_client::step()
+   bool websocket_client::step()
    {
 
       if (!m_bWebSocket)

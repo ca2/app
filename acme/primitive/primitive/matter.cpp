@@ -50,7 +50,7 @@ void matter::initialize_matter(::matter* pmatter)
 
    m_psystem = pmatter->m_psystem;
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -58,7 +58,7 @@ void matter::initialize_matter(::matter* pmatter)
 void matter::on_initialize_object()
 {
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -86,7 +86,7 @@ void matter::on_initialize_object()
 void matter::destroy_composites()
 {
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -132,7 +132,7 @@ void matter::set_finish()
 
    }
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -753,9 +753,11 @@ void matter::trace_log_fatal(const char * psz, ...)
 void matter::__thread_main()
 {
 
-   void estatus = operator()();
+   //::e_status3 estatus = operator()();
 
-   return estatus;
+   operator()();
+
+   //return estatus;
 
 }
 
@@ -767,11 +769,11 @@ void matter::__thread_main()
 //
 //   ::u32 u = -1;
 //
-//   void estatus = error_failed;
+//   ::e_status3 estatus = error_failed;
 //
-//   void estatusOs = error_failed;
+//   ::e_status3 estatusOs = error_failed;
 //
-//   void estatusStart = error_failed;
+//   ::e_status3 estatusStart = error_failed;
 //
 //   {
 //
@@ -832,7 +834,7 @@ void matter::__thread_main()
 void matter::osthread_init()
 {
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -840,7 +842,7 @@ void matter::osthread_init()
 void matter::__thread_init()
 {
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -848,7 +850,7 @@ void matter::__thread_init()
 void matter::__thread_term()
 {
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -856,7 +858,7 @@ void matter::__thread_term()
 void matter::osthread_term()
 {
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -911,7 +913,9 @@ void matter::osthread_term()
 CLASS_DECL_ACME void __call(const ::routine & routine)
 {
 
-   return routine();
+   //return routine();
+
+   routine();
 
 }
 

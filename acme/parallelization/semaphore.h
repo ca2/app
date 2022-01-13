@@ -29,8 +29,8 @@ public:
    void wait(const class ::wait & wait) override;
 #endif
 
-   bool unlock() override;
-   bool unlock(::i32 lCount, ::i32 * prevCount = nullptr) override;
+   void unlock() override;
+   void unlock(::i32 lCount, ::i32 * prevCount = nullptr) override;
 
 
 };

@@ -1049,22 +1049,24 @@ namespace acme
 
       //::acme::static_start::init();
 
-      if (!__node_acme_pre_init())
-      {
+      //if (!__node_acme_pre_init())
+      __node_acme_pre_init();
+      //{
 
-         return ::error_failed;
+      //   throw_status(error_failed);
 
-      }
+      //}
 
       // acme commented for apex
       //::parallelization::init_multithreading();
 
-      if (!__node_acme_pos_init())
-      {
+      //if (!__node_acme_pos_init())
+      __node_acme_pos_init();
+      //{
 
-         return ::error_failed;
+      //   throw_status(error_failed);
 
-      }
+      //}
 
 //#ifdef WINDOWS
 //
@@ -1078,7 +1080,7 @@ namespace acme
 
       //([a-z0-9_]+)_factory(::factory_item::get_factory());
 
-      return true;
+      //return true;
 
    }
 
@@ -1121,7 +1123,7 @@ namespace acme
 
       //return true;
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -1229,10 +1231,10 @@ CLASS_DECL_ACME ::color::color dk_red() // <3 tbs
 }
 
 
-thread_local  void t_estatus;
+thread_local ::e_status3 t_estatus;
 
 
-CLASS_DECL_ACME void set_last_status(const void & estatus)
+CLASS_DECL_ACME void set_last_status(const ::e_status3 & estatus)
 {
 
    t_estatus = estatus;
@@ -1240,7 +1242,7 @@ CLASS_DECL_ACME void set_last_status(const void & estatus)
 }
 
 
-CLASS_DECL_ACME void get_last_status()
+CLASS_DECL_ACME ::e_status3 get_last_status()
 {
 
    return t_estatus;

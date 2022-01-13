@@ -65,7 +65,7 @@ i64 element::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 void element::call_member(::i64 iId)
 {
 
-   return ::success_none;
+   //return ::success_none;
 
 }
 
@@ -104,22 +104,22 @@ DURATION element::timeout() const
 void element::operator()()
 {
 
-   void estatus;
+   ::e_status3 estatus;
 
-   try
-   {
+   //try
+   //{
 
-      estatus = run();
+      /*estatus =*/ run();
 
-   }
-   catch (...)
-   {
+   //}
+   //catch (...)
+   //{
 
-      estatus = ::error_exception;
+   //   estatus = ::error_exception;
 
-   }
+   //}
 
-   return estatus;
+   //return estatus;
 
 }
 
@@ -143,26 +143,27 @@ void element::run()
    while(true)
    {
 
-      auto estatus = step();
+      /*auto estatus =*/ step();
 
-      if(!estatus)
-      {
+      //if(!estatus)
+      //{
 
-         break;
+      //   break;
 
-      }
+      //}
 
    }
 
-   return ::success;
+   //return ::success;
 
 }
 
 
-void element::step()
+bool element::step()
 {
 
-   return ::error_failed;
+   //return ::error_failed;
+   return false;
 
 }
 
@@ -170,6 +171,7 @@ void element::step()
 ::payload element::realize()
 {
 
+   //return ::success;
    return ::success;
 
 }
@@ -178,7 +180,7 @@ void element::step()
 void element::set_generic_object_name(const char* pszName)
 {
 
-   return ::success_none;
+   //return ::success_none;
 
 }
 
@@ -186,7 +188,7 @@ void element::set_generic_object_name(const char* pszName)
 void element::set_application_id(const char* pszApplicationId)
 {
 
-   return error_none;
+   //return error_none;
 
 }
 
@@ -194,7 +196,7 @@ void element::set_application_id(const char* pszApplicationId)
 void element::set_library_name(const char* pszLibraryName)
 {
 
-   return error_none;
+   //return error_none;
 
 }
 
@@ -202,15 +204,17 @@ void element::set_library_name(const char* pszLibraryName)
 void element::wait()
 {
 
-   return error_failed;
+   //return error_failed;
 
 }
 
 
-void element::wait(const ::duration & duration)
+bool element::wait(const ::duration & duration)
 {
 
-   return error_failed;
+   //return error_failed;
+
+   return true;
 
 }
 
@@ -222,7 +226,7 @@ void element::add_composite(::element * pelement OBJECT_REFERENCE_COUNT_DEBUG_CO
 
    pelement->increment_reference_count();
 
-   return ::success;
+   //return ::success;
 
    //return ::error_not_implemented;
 
@@ -232,7 +236,7 @@ void element::add_composite(::element * pelement OBJECT_REFERENCE_COUNT_DEBUG_CO
 void element::add_reference(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
-   return ::success_none;
+   //return ::success_none;
 
 }
 
@@ -240,7 +244,7 @@ void element::add_reference(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG_COM
 void element::release_composite2(::element * pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
-   return ::success_none;
+   //return ::success_none;
 
 }
 
@@ -248,7 +252,7 @@ void element::release_composite2(::element * pelement OBJECT_REFERENCE_COUNT_DEB
 void element::finalize_composite(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
-   return ::success_none;
+   //return ::success_none;
 
 }
 
@@ -256,7 +260,7 @@ void element::finalize_composite(::element* pelement OBJECT_REFERENCE_COUNT_DEBU
 void element::release_reference(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
-   return ::success_none;
+   //return ::success_none;
 
 }
 
@@ -297,9 +301,9 @@ void element::release_reference(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG
 void element::initialize(::object* pobject)
 {
 
-   auto estatus = initialize_matter(pobject);
+   /*auto estatus = */ initialize_matter(pobject);
 
-   return estatus;
+   //return estatus;
 
 }
 
@@ -308,7 +312,7 @@ void element::initialize(::object* pobject)
 void element::initialize_matter(::matter* pmatter)
 {
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -396,7 +400,7 @@ void element::destroy()
 
    //return estatus;
 
-   return ::success;
+   //return ::success;
 
 
 }

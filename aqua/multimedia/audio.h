@@ -33,7 +33,7 @@ namespace aqua
       virtual string text_to_speech_implementation();
       virtual void text_to_speech_implementation(const ::string & strImplementation);
 
-      virtual __transport(::text_to_speech::speaker) create_text_to_speech_speaker(const ::string& strImplementation = nullptr);
+      virtual __pointer(::text_to_speech::speaker) create_text_to_speech_speaker(const ::string& strImplementation = nullptr);
 
 
       virtual void speak(const ::string & strText);

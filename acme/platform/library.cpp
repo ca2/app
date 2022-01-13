@@ -21,13 +21,13 @@ namespace acme
    void library::initialize_matter(::matter * pmatter)
    {
 
-      auto estatus = ::matter::initialize_matter(pmatter);
+      ::matter::initialize_matter(pmatter);
 
       m_plibrary = nullptr;
 
       //m_bAutoUnload = false;
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -150,8 +150,8 @@ namespace acme
 
       //}
 
-      try
-      {
+      //try
+      //{
 
          //if(bCa2Path)
          //{
@@ -171,7 +171,9 @@ namespace acme
 
             ERROR("acme::library::open error: " << pszPath);
 
-            return false;
+            throw_status(error_resource);
+
+            //return false;
 
          }
 
@@ -179,15 +181,15 @@ namespace acme
 
          m_strName = ::file::path(pszPath).title();
 
-      }
-      catch(...)
-      {
+      //}
+      //catch(...)
+      //{
 
          //ERROR("acme::library::open Failed to open library " << ( bCa2Path ? " (ca2 path)" : "") << " with errors " << m_strMessage);
 
-         return false;
+         //return false;
 
-      }
+      //}
 
       INFORMATION("acme::library::open success : " << m_strMessage);
 
@@ -198,7 +200,7 @@ namespace acme
 
       }
 
-      return true;
+      //return true;
 
    }
 
@@ -606,7 +608,7 @@ namespace acme
 //   }
 
 
-   //__transport(::object) library::new_application(const ::string & strAppId)
+   //__pointer(::object) library::new_application(const ::string & strAppId)
    //{
 
    //   auto psystem = get_system();
@@ -919,7 +921,7 @@ namespace acme
    //}
 
    
-   //__transport(::factory::factory)& library::factory(const ::string& strComponent, const ::string& strImplementation)
+   //__pointer(::factory::factory)& library::factory(const ::string& strComponent, const ::string& strImplementation)
    //{
 
    //   if (strComponent.is_empty() || strImplementation.is_empty())
@@ -948,7 +950,7 @@ namespace acme
    //}
 
 
-   //__transport(::factory::factory) & library::factory(const ::string& strLibrary)
+   //__pointer(::factory::factory) & library::factory(const ::string& strLibrary)
    //{
 
    //   if (strLibrary.is_empty())
@@ -974,7 +976,7 @@ namespace acme
    //}
 
 
-   //void library::_load_factory(__transport(::factory::factory) & pfactory, const ::string & strComponent)
+   //void library::_load_factory(__pointer(::factory::factory) & pfactory, const ::string & strComponent)
    //{
 
    //   if (strComponent.is_empty())
@@ -1043,7 +1045,7 @@ namespace acme
    //}
 
 
-   __transport(::factory::factory) library::create_factory(const ::string & strLibrary)
+   __pointer(::factory::factory) library::create_factory(const ::string & strLibrary)
    {
 
       string strFactory = factory_name(strLibrary);
@@ -1053,7 +1055,7 @@ namespace acme
       if (::is_null(pfnFactory))
       {
 
-         return error_function_entry_not_found;
+         throw_status(error_function_entry_not_found);
 
       }
 

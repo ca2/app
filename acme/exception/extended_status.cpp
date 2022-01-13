@@ -13,192 +13,258 @@ namespace extended
 
 
 
-    status::status() :
-       m_estatus(undefined) 
-    { 
-    
-    }
+    //status::status() :
+    //   m_estatus(undefined) 
+    //{ 
+    //
+    //}
 
-    
-    status::status(::enum_status estatus) : 
-       m_estatus(estatus) 
-    { 
-    
-    }
+    //
+    //status::status(::enum_status estatus) : 
+    //   m_estatus(estatus) 
+    //{ 
+    //
+    //}
 
-    
-    status::status(const void& estatus) : 
-       m_estatus(estatus) 
-    { 
-    
-    }
+    //
+    //status::status(const ::e_status3 & estatus) : 
+    //   m_estatus(estatus) 
+    //{ 
+    //
+    //}
 
-    
-    status::status(const std::initializer_list < void >& list) :
-       m_estatus(undefined)
-    {
-    
-       add(list);
+    //
+    //status::status(const std::initializer_list < void >& list) :
+    //   m_estatus(undefined)
+    //{
+    //
+    //   add(list);
 
-    }
-
-
-    status::status(const status& status) :
-       m_estatus(status.m_estatus),
-       m_pexceptiona(status.m_pexceptiona)
-    {
-
-    }
+    //}
 
 
-    status::status(status&& status) :
-       m_estatus(status.m_estatus),
-       m_pexceptiona(move(status.m_pexceptiona))
-    {
+    //status::status(const status& status) :
+    //   m_estatus(status.m_estatus),
+    //   m_pexceptiona(status.m_pexceptiona)
+    //{
 
-    }
-
-
-    status::status(const ::exception& e) :
-       m_estatus(undefined) 
-    { 
-       
-       add(e); 
-    
-    }
+    //}
 
 
-    status::status(const std::initializer_list < ::exception >& list) :
-       m_estatus(undefined)
-    { 
-       
-       add(list); 
+    //status::status(status&& status) :
+    //   m_estatus(status.m_estatus),
+    //   m_pexceptiona(move(status.m_pexceptiona))
+    //{
 
-    }
-
-
-    status::~status() 
-    {
-    
-    }
+    //}
 
 
-    void status::set(const void& estatus)
-    { 
-       
-       set(estatus.m_estatus); 
-    
-    }
+    //status::status(const ::exception& e) :
+    //   m_estatus(undefined) 
+    //{ 
+    //   
+    //   add(e); 
+    //
+    //}
 
 
-    void status::set(::enum_status estatus)
-    {
+    //status::status(const std::initializer_list < ::exception >& list) :
+    //   m_estatus(undefined)
+    //{ 
+    //   
+    //   add(list); 
 
-       //m_pexceptiona.release();
-
-       m_estatus = estatus;
-
-    }
-
-
-    void status::add(const void & estatus)
-    {
-
-       add(estatus.m_estatus);
+    //}
 
 
-    }
+    //status::~status() 
+    //{
+    //
+    //}
 
 
-    void status::add(::enum_status estatus)
-    {
-
-        if (m_estatus == undefined)
-        {
-
-            m_estatus = estatus;
-
-        }
-        else
-        {
-
-            add(::exception(estatus,nullptr, g_iSkipCallStack));
-
-        }
-
-    }
+    //void status::set(const ::e_status3 & estatus)
+    //{ 
+    //   
+    //   set(estatus.m_estatus); 
+    //
+    //}
 
 
-    void status::set_skip_callstack(i32 iSkip)
-    {
+    //void status::set(::enum_status estatus)
+    //{
 
-        g_iSkipCallStack = iSkip;
+    //   //m_pexceptiona.release();
 
-    }
+    //   m_estatus = estatus;
 
-
-    i32 status::get_skip_callstack()
-    {
-
-        return g_iSkipCallStack;
-
-    }
+    //}
 
 
+    //void status::add(const ::e_status3 & estatus)
+    //{
+
+    //   add(estatus.m_estatus);
 
 
-    void status::add(const ::exception& e)
-    {
+    //}
 
-       if (m_pexceptiona.is_null())
-       {
 
-          m_pexceptiona = __new(::array < ::exception >);
+    //void status::add(::enum_status estatus)
+    //{
 
-       }
+    //    if (m_estatus == undefined)
+    //    {
 
-       m_pexceptiona->add(e);
+    //        m_estatus = estatus;
 
-    }
+    //    }
+    //    else
+    //    {
+
+    //        add(::exception(estatus,nullptr, g_iSkipCallStack));
+
+    //    }
+
+    //}
+
+
+    //void status::set_skip_callstack(i32 iSkip)
+    //{
+
+    //    g_iSkipCallStack = iSkip;
+
+    //}
+
+
+    //i32 status::get_skip_callstack()
+    //{
+
+    //    return g_iSkipCallStack;
+
+    //}
 
 
 
-       //void status::add(::enum_status estatus)
-       //{
 
-       //   add(::exception(estatus));
+    //void status::add(const ::exception& e)
+    //{
 
-       //}
+    //   if (m_pexceptiona.is_null())
+    //   {
+
+    //      m_pexceptiona = __new(::array < ::exception >);
+
+    //   }
+
+    //   m_pexceptiona->add(e);
+
+    //}
 
 
-    //bool status::get_exception(::exception& e, const void& estatus)
+
+    //   //void status::add(::enum_status estatus)
+    //   //{
+
+    //   //   add(::exception(estatus));
+
+    //   //}
+
+
+    ////bool status::get_exception(::exception& e, const ::e_status3 & estatus)
+    ////{
+
+    ////   if (m_estatus == estatus)
+    ////   {
+
+    ////      e = ::exception(m_estatus);
+
+    ////      return true;
+
+    ////   }
+
+    ////   if (!m_pexceptiona)
+    ////   {
+
+    ////      return false;
+
+    ////   }
+
+    ////   for (auto& exception : *m_pexceptiona)
+    ////   {
+
+    ////      if (exception.m_estatus == estatus)
+    ////      {
+
+    ////         e = exception;
+
+    ////         return true;
+
+    ////      }
+
+    ////   }
+
+    ////   return false;
+
+    ////}
+
+
+    //void status::get_greatest_exception_on_range(enum_status estatusOpenStart, enum_status estatusOpenEnd) const
+    //{
+
+    //   ::e_status3 estatus = ::error_not_found;
+
+    //   if (m_pexceptiona)
+    //   {
+
+    //      for (auto& exception : *m_pexceptiona)
+    //      {
+
+    //         if (exception.m_estatus > estatusOpenStart
+    //            && exception.m_estatus < estatusOpenEnd)
+    //         {
+
+    //            if (estatus == error_not_found ||
+    //               estatus > exception.m_estatus)
+    //            {
+
+    //               estatus = exception.m_estatus;
+
+    //            }
+
+    //         }
+
+    //      }
+
+    //   }
+
+    //   return estatus;
+
+    //}
+
+
+    //bool status::has(const ::e_status3 & estatus) const
     //{
 
     //   if (m_estatus == estatus)
     //   {
 
-    //      e = ::exception(m_estatus);
-
     //      return true;
 
     //   }
 
-    //   if (!m_pexceptiona)
+    //   if (m_pexceptiona.is_set())
     //   {
 
-    //      return false;
-
-    //   }
-
-    //   for (auto& exception : *m_pexceptiona)
-    //   {
-
-    //      if (exception.m_estatus == estatus)
+    //      for (auto& exception : *m_pexceptiona)
     //      {
 
-    //         e = exception;
+    //         if (exception.m_estatus == estatus)
+    //         {
 
-    //         return true;
+    //            return true;
+
+    //         }
 
     //      }
 
@@ -209,70 +275,30 @@ namespace extended
     //}
 
 
-    void status::get_greatest_exception_on_range(enum_status estatusOpenStart, enum_status estatusOpenEnd) const
-    {
+    ////void status::add(const std::initializer_list < ::exception >& list)
+    ////{
 
-       void estatus = ::error_not_found;
+    ////   for (auto& e : list)
+    ////   {
 
-       if (m_pexceptiona)
-       {
+    ////      add(e);
 
-          for (auto& exception : *m_pexceptiona)
-          {
+    ////   }
 
-             if (exception.m_estatus > estatusOpenStart
-                && exception.m_estatus < estatusOpenEnd)
-             {
-
-                if (estatus == error_not_found ||
-                   estatus > exception.m_estatus)
-                {
-
-                   estatus = exception.m_estatus;
-
-                }
-
-             }
-
-          }
-
-       }
-
-       return estatus;
-
-    }
+    ////}
 
 
-    bool status::has(const void& estatus) const
-    {
+    //void status::add(const std::initializer_list < void     >& list)
+    //{
 
-       if (m_estatus == estatus)
-       {
+    //   for (auto& e : list)
+    //   {
 
-          return true;
+    //      add(e);
 
-       }
+    //   }
 
-       if (m_pexceptiona.is_set())
-       {
-
-          for (auto& exception : *m_pexceptiona)
-          {
-
-             if (exception.m_estatus == estatus)
-             {
-
-                return true;
-
-             }
-
-          }
-
-       }
-
-       return false;
-
-    }
+    //}
 
 
     //void status::add(const std::initializer_list < ::exception >& list)
@@ -287,88 +313,62 @@ namespace extended
 
     //}
 
+    //
+    //bool status::get_exit_status(void& estatus) const
+    //{
 
-    void status::add(const std::initializer_list < void     >& list)
-    {
+    //   auto estatusExit = get_greatest_exception_on_range(error_exit_start, error_exit_end);
 
-       for (auto& e : list)
-       {
+    //   if(estatusExit == error_not_found)
+    //   {
 
-          add(e);
+    //      return false;
 
-       }
+    //   }
 
-    }
+    //   estatus = estatusExit;
 
+    //   return true;
 
-    void status::add(const std::initializer_list < ::exception >& list)
-    {
-
-       for (auto& e : list)
-       {
-
-          add(e);
-
-       }
-
-    }
-
-    
-    bool status::get_exit_status(void& estatus) const
-    {
-
-       auto estatusExit = get_greatest_exception_on_range(error_exit_start, error_exit_end);
-
-       if(estatusExit == error_not_found)
-       {
-
-          return false;
-
-       }
-
-       estatus = estatusExit;
-
-       return true;
-
-    }
+    //}
 
 
-    void status::add(const status& status)
-    {
+    //void status::add(const status& status)
+    //{
 
-       if (status.m_pexceptiona.is_set() && status.m_pexceptiona->has_elements())
-       {
+    //   if (status.m_pexceptiona.is_set() && status.m_pexceptiona->has_elements())
+    //   {
 
-          for (auto& pexception : *status.m_pexceptiona)
-          {
+    //      for (auto& pexception : *status.m_pexceptiona)
+    //      {
 
-             add(pexception);
+    //         add(pexception);
 
-          }
+    //      }
 
-       }
-       else if (status.m_estatus != undefined)
-       {
+    //   }
+    //   else if (status.m_estatus != undefined)
+    //   {
 
-          add(status.m_estatus);
+    //      add(status.m_estatus);
 
-       }
+    //   }
 
-    }
+    //}
 
-    void status::set_error(const void& estatus)
-    {
+    //void status::set_error(const ::e_status3 & estatus)
+    //{
 
-       set(estatus);
+    //   set(estatus);
 
-       if (succeeded())
-       {
+    //   if (succeeded())
+    //   {
 
-          m_estatus = error_status;
+    //      m_estatus = error_status;
 
-       }
+    //   }
 
-    }
+    //}
 
 } // namespace status
 

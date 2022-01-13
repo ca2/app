@@ -206,7 +206,7 @@ namespace user
       //virtual ::stream & read(::stream & stream) override;
 
       template < typename DATA >
-      __transport(DATA) __create_data()
+      __pointer(DATA) __create_data()
       {
 
          auto pdata = __create_new<DATA>();
@@ -385,7 +385,7 @@ namespace user
 
       virtual ::id get_toolbar_id();
 
-      virtual __transport(toolbar) get_toolbar(::user::frame_window * pframe, bool bCreate = true);
+      virtual __pointer(toolbar) get_toolbar(::user::frame_window * pframe, bool bCreate = true);
 
 
    };

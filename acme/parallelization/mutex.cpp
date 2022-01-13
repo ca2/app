@@ -1349,12 +1349,21 @@ void mutex::_wait()
 #endif
 
 
-bool mutex::unlock()
+void mutex::unlock()
 {
 
 #ifdef WINDOWS
 
-   return ::ReleaseMutex(m_hsync) != false;
+   if (!::ReleaseMutex(m_hsync))
+   {
+
+      auto last_error = GetLastError();
+
+      auto estatus = failed_errno_to_status(last_error);
+
+      throw_status(estatus);
+
+   }
 
 #else
 

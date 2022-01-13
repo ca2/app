@@ -23,14 +23,14 @@ namespace database
    void server::initialize(::object * pobject)
    {
 
-      auto estatus = ::object::initialize(pobject);
+      /*auto estatus = */ ::object::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       if (m_pcontext->m_papexcontext->is_system() || m_pcontext->m_papexcontext->is_session())
       {
@@ -45,7 +45,7 @@ namespace database
 
       }
 
-      return estatus;
+      //return estatus;
 
    }
 

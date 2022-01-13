@@ -136,7 +136,7 @@
 //
 //   psystem->system_construct(argc, argv);
 //
-//   void estatus = (void) psystem->inline_init();
+//   ::e_status3 estatus = (void) psystem->inline_init();
 //
 //   if (::succeeded(estatus))
 //   {

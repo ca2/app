@@ -27,12 +27,12 @@ bool timer_event::wait(const class ::wait & wait)
 }
 
 
-bool timer_event::on_timer()
+void timer_event::on_timer()
 {
 
    m_manualresetevent.SetEvent();
 
-   return true;
+   //return true;
 
 }
 

@@ -72,7 +72,7 @@ i64 object::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
 //}
 //
 
-void object::process_exit_status(const void& estatus)
+void object::process_exit_status(const ::e_status3 & estatus)
 {
 
 
@@ -381,20 +381,20 @@ void object::process_exit_status(const void& estatus)
 
    // void to_string(const string_exchange & str) const 
 
-   //::image_transport create_image();
-   //::image_transport create_image(const ::size_i32 & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
+   //::image_pointer create_image();
+   //::image_pointer create_image(const ::size_i32 & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
 
-   //::image_transport get_image(const ::payload & payloadFile, bool bCache = true, bool bSync = true);
-   //::image_transport matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true);
-
-   //template < typename BASE_TYPE >
-   //inline __transport(BASE_TYPE) __create();
+   //::image_pointer get_image(const ::payload & payloadFile, bool bCache = true, bool bSync = true);
+   //::image_pointer matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true);
 
    //template < typename BASE_TYPE >
-   //inline __transport(BASE_TYPE) __id_create(const ::id& id);
+   //inline __pointer(BASE_TYPE) __create();
+
+   //template < typename BASE_TYPE >
+   //inline __pointer(BASE_TYPE) __id_create(const ::id& id);
 
    //template < typename TYPE >
-   //inline __transport(TYPE) __create_new();
+   //inline __pointer(TYPE) __create_new();
 
    //inline void __compose(__composite(::image) & pimage);
 
@@ -830,14 +830,14 @@ void object::delete_this()
 
 
    //template < typename PRED >
-   //::image_transport get_image(const ::payload & payloadFile, ::u64 uTrait, PRED pred);
+   //::image_pointer get_image(const ::payload & payloadFile, ::u64 uTrait, PRED pred);
 
-   // ::image_transport load_image(const ::payload & payloadFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
-   // ::image_transport load_matter_image(const char * pszMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
-   // ::image_transport load_matter_icon(string_array & straMatter, string strIcon);
-   // ::image_transport load_thumbnail(const ::payload & payloadFile, int w, int h);
-   // ::image_transport load_thumbnail(const char * pszPath);
-   // ::image_transport load_dib(const ::file::path & pathDib);
+   // ::image_pointer load_image(const ::payload & payloadFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
+   // ::image_pointer load_matter_image(const char * pszMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
+   // ::image_pointer load_matter_icon(string_array & straMatter, string strIcon);
+   // ::image_pointer load_thumbnail(const ::payload & payloadFile, int w, int h);
+   // ::image_pointer load_thumbnail(const char * pszPath);
+   // ::image_pointer load_dib(const ::file::path & pathDib);
 
 
 

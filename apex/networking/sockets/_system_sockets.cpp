@@ -9,23 +9,25 @@ namespace apex
    void system::initialize_sockets()
    {
 
-      void estatus = ::success_none;
+      ::e_status3 estatus = ::success_none;
 
       if (!m_psockets)
       {
 
-         estatus = __compose_new(m_psockets);
+         //estatus = __compose_new(m_psockets);
 
-         if (!estatus)
-         {
+         __compose_new(m_psockets);
 
-            return estatus;
+         //if (!estatus)
+         //{
 
-         }
+         //   return estatus;
+
+         //}
 
       }
 
-      return estatus;
+      //return estatus;
 
    }
 

@@ -12,7 +12,7 @@ interprocess_call::interprocess_call(interprocess_intercommunication* pipi, cons
 
    initialize(pipi);
 
-   m_duration = minute();
+   //m_duration = minute();
 
 }
 
@@ -39,12 +39,12 @@ void interprocess_call::add_args(const payload_array& payloada)
 }
 
 
-void interprocess_call::set_timeout(const duration& duration)
-{
-
-   m_duration = duration;
-
-}
+//void interprocess_call::set_timeout(const duration& duration)
+//{
+//
+//   m_duration = duration;
+//
+//}
 
 
 void interprocess_call::set_auto_launch(bool bSet)
@@ -111,15 +111,21 @@ __pointer(synchronization_array) interprocess_call::synca()
 
 }
 
-
 void interprocess_call::wait()
+{
+   _wait(::duration::infinite());
+
+}
+
+
+bool interprocess_call::_wait(const class ::wait & wait)
 {
 
    auto psynca = synca();
 
    synchronous_lock synchronouslock(psynca);
 
-   return synchronouslock.wait(m_duration);
+   return synchronouslock.wait(wait);
 
 }
 

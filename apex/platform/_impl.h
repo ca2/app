@@ -6,7 +6,7 @@
 //
 //
 //   template < class APP >
-//   __transport(::matter) single_application_library < APP > ::new_application(const char * pszAppId)
+//   __pointer(::matter) single_application_library < APP > ::new_application(const char * pszAppId)
 //   {
 //
 //      if(!contains_app(pszAppId))

@@ -58,7 +58,7 @@ namespace fs
       
       ::fs::data::destroy();
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -202,7 +202,9 @@ namespace fs
 
       }
 
-      return listing = ::error_failed;
+      //return listing = ::error_failed;
+
+      return listing;
 
    }
 
@@ -226,7 +228,9 @@ namespace fs
 
       }
 
-      return listing = ::error_failed;
+      //return listing = ::error_failed;
+
+      return listing;
 
    }
 
@@ -357,7 +361,7 @@ namespace fs
    }
 
 
-   file_transport set::get_file(const ::file::path & path, const ::file::e_open & eopen)
+   file_pointer set::get_file(const ::file::path & path, const ::file::e_open & eopen)
    {
 
       ::fs::data * pdata = path_data(path);

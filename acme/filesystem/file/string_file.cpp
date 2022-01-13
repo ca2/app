@@ -93,13 +93,13 @@ filesize string_file::get_position() const
 void string_file::destroy()
 {
 
-   auto estatus = ::file::file::destroy();
+   /*auto estatus = */ ::file::file::destroy();
 
    m_str.Empty();
 
    m_iPos = 0;
 
-   return estatus;
+   //return estatus;
 
 }
 

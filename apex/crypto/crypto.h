@@ -29,8 +29,8 @@ namespace crypto
       virtual void defer_initialize();
 
 
-      virtual __transport(hasher_algorithm) create_hasher_algorithm(enum_hash ehash);
-      virtual __transport(hasher) create_hasher(enum_hash ehash);
+      virtual __pointer(hasher_algorithm) create_hasher_algorithm(enum_hash ehash);
+      virtual __pointer(hasher) create_hasher(enum_hash ehash);
 
 
       virtual void encrypt(memory& storageEncrypt, const memory& storageDecrypt, const memory& storageKey) = 0;
@@ -46,8 +46,8 @@ namespace crypto
       virtual i32 key(memory & storage);
 
       virtual string strkey();
-      virtual i32 encrypt(string & str,const char * psz,const char * pszKey);
-      virtual i32 decrypt(string & str,const char * psz,const char * pszKey);
+      virtual void encrypt(string & str,const char * psz,const char * pszKey);
+      virtual void decrypt(string & str,const char * psz,const char * pszKey);
 
 
       virtual int get_md5_digest_length() const;
@@ -79,8 +79,8 @@ namespace crypto
       virtual void hmac(void * result,const memory & memMessage,const memory & key) = 0;
       virtual void hmac(void * result,const string & memMessage,const string & key) = 0;
 
-      virtual bool file_set(::payload payloadFile,const char * pszData,const char * pszSalt, ::application * papp);
-      virtual void     file_get(::payload payloadFile,string & str,const char * pszSalt, ::application * papp);
+      virtual void file_set(::payload payloadFile,const char * pszData,const char * pszSalt, ::application * papp);
+      virtual void file_get(::payload payloadFile,string & str,const char * pszSalt, ::application * papp);
 
       // get a new salt - 8 hexadecimal characters long
       // current PHP installations should not exceed 8 characters

@@ -16,20 +16,22 @@ namespace sockets
    void     resolv_server::initialize_resolv_server(::object * pobjectParent, port_t port)
    {
 
-      auto estatus = initialize(pobjectParent);
+      //auto estatus = initialize(pobjectParent);
 
-      if (!estatus)
-      {
+      initialize(pobjectParent);
 
-         return estatus;
+      //if (!estatus)
+      //{
 
-      }
+      //   return estatus;
+
+      //}
 
       m_port = port;
 
       branch();
 
-      return estatus;
+      //return estatus;
 
    }
 

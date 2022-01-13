@@ -127,32 +127,35 @@ namespace apex
    void context::initialize_context()
    {
 
-      auto estatus = __compose(m_phttp);
+      //auto estatus =
+      
+      __compose(m_phttp);
 
-      if(!estatus)
-      {
+      //if(!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = __compose(m_pfile);
+      /*estatus = */ __compose(m_pfile);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = __compose(m_pdir);
+      //estatus =
+         __compose(m_pdir);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       m_papexsystem = m_psystem->m_papexsystem;
       m_paurasystem = m_psystem->m_paurasystem;
@@ -176,56 +179,61 @@ namespace apex
 
          //}
 
-         estatus = m_pfile->init_system();
+         //estatus = 
+         m_pfile->init_system();
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            return estatus;
+         //   return estatus;
 
-         }
+         //}
 
-         estatus = m_pdir->init_system();
+         //estatus = 
+         m_pdir->init_system();
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            return estatus;
+         //   return estatus;
 
-         }
+         //}
 
       }
 
-      estatus = m_pfile->init_context();
+      //estatus = 
+      m_pfile->init_context();
 
-      if(!estatus)
+      //if(!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
+
+      //estatus = 
+      m_pfile->init_context();
+
+      //if(!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
+
+      //estatus = 
+      __compose(m_poscontext);
+
+  /*    if (!estatus)
       {
 
          return estatus;
 
-      }
-
-      estatus = m_pfile->init_context();
-
-      if(!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      estatus = __compose(m_poscontext);
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
+      }*/
 
       on_update_matter_locator();
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -636,7 +644,7 @@ namespace apex
             else if (etype == ::file::e_type_folder)
             {
 
-               dir().mk(pathCache);
+               dir().create(pathCache);
 
             }
 
@@ -693,7 +701,7 @@ namespace apex
                   if (!retry([&]()
                      {
 
-                        return dir().mk(pathCache);
+                        return dir().create(pathCache);
 
                      }))
                   {
@@ -807,7 +815,8 @@ namespace apex
 
    }
 
-   ::file::listing & context::perform_file_listing(::file::listing & listing)
+   
+   bool context::perform_file_listing(::file::listing & listing)
    {
 
       return dir().ls(listing);
@@ -815,7 +824,7 @@ namespace apex
    }
 
 
-   ::file::listing & context::perform_file_relative_name_listing(::file::listing & listing)
+   bool context::perform_file_relative_name_listing(::file::listing & listing)
    {
 
       return dir().ls_relative_name(listing);
@@ -1002,22 +1011,24 @@ namespace apex
 
       string strResponse;
 
-      if (!http().get(strResponse, pszUrl, set))
-      {
+      http().get(strResponse, pszUrl, set);
 
-         return "";
+      //if (!http().get(strResponse, pszUrl, set))
+      //{
 
-      }
+      //   return "";
+
+      //}
 
       return strResponse;
 
    }
 
 
-   bool context::sys_set(string strPath, string strValue)
+   void context::sys_set(string strPath, string strValue)
    {
 
-      return file().put_text_utf8(m_psystem->m_pacmedir->config() / strPath, strValue);
+      file().put_text_utf8(m_psystem->m_pacmedir->config() / strPath, strValue);
 
    }
 
@@ -1138,7 +1149,7 @@ namespace apex
 
       read(reader);
 
-      return reader.m_estatus;
+      ///return reader.m_estatus;
 
    }
 
@@ -1150,7 +1161,7 @@ namespace apex
 
       write(writer);
 
-      return writer.m_estatus;
+      ///return writer.m_estatus;
 
    }
 
@@ -1165,7 +1176,7 @@ namespace apex
 //   }
 
 
-   file_transport context::get_file(const ::payload& payloadFile, const ::file::e_open& eopen)
+   file_pointer context::get_file(const ::payload& payloadFile, const ::file::e_open& eopen)
    {
 
       auto pfile = m_papexcontext->file().get_file(payloadFile, eopen);
@@ -1247,7 +1258,7 @@ namespace apex
 
       ::acme::context::destroy();
 
-      return success;
+      //return success;
 
    }
 

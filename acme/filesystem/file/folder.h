@@ -45,8 +45,8 @@ public:
    virtual void extract_all(const char* pszTargetDir, ::file::patha* ppatha = nullptr, string_array* pstraFilter = nullptr, bool_array* pbaBeginsFilterEat = nullptr);
 
 
-   ::file::listing& perform_file_listing(::file::listing& listing) override;
-   ::file::listing& perform_file_relative_name_listing(::file::listing& listing) override;
+   bool perform_file_listing(::file::listing& listing) override;
+   bool perform_file_relative_name_listing(::file::listing& listing) override;
 
 
    virtual void open_for_writing(file_pointer pfile);

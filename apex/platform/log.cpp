@@ -55,14 +55,14 @@ namespace apex
    void log::initialize_log(enum_trace_level etracelevelMin, const ::id & id)
    {
 
-      auto estatus = __compose_new(m_ptrace);
+      /*auto estatus = */ __compose_new(m_ptrace);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       m_bLog               = true;
 
@@ -139,7 +139,7 @@ namespace apex
       if (m_bInitialized)
       {
 
-         return false;
+         return;
 
       }
 
@@ -217,7 +217,7 @@ namespace apex
 //      return true;
 
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -689,7 +689,7 @@ namespace apex
 
       }
 
-      return true;
+      //return true;
 
    }
 
@@ -743,7 +743,7 @@ namespace apex
 
       }
 
-      return ::success;
+      //return ::success;
 
    }
 

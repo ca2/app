@@ -144,7 +144,7 @@ CLASS_DECL_ACME void set_last_error(::u32 dw)
 }
 
 
-void last_error_to_status(DWORD dwError)
+::e_status3 last_error_to_status(DWORD dwError)
 {
 
    // NT Error codes
@@ -289,7 +289,7 @@ void last_error_to_status(DWORD dwError)
    case ERROR_INVALID_ORDINAL:
       return ::error_invalid_file;
    case ERROR_ALREADY_EXISTS:
-      return ::error_file_access_denied;
+      return ::error_already_exists;
    case ERROR_INVALID_EXE_SIGNATURE:
       return ::error_invalid_file;
    case ERROR_BAD_EXE_FORMAT:

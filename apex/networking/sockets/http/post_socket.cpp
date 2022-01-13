@@ -95,7 +95,7 @@ namespace sockets
    }
 
 
-   void http_post_socket::step()
+   bool http_post_socket::step()
    {
 
       if (m_pmultipart != nullptr)

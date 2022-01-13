@@ -113,7 +113,7 @@ public:
    //virtual void enumerate_composite(element_array& a);
    //virtual void enumerate_reference(element_array& a);
 
-   //virtual void process_exit_status(const void& estatus);
+   //virtual void process_exit_status(const ::e_status3 & estatus);
 
    //inline ::object* this const { return this; }
    //virtual void set_object(::object* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
@@ -144,7 +144,7 @@ public:
       if (::is_null(m_pmapPropertyRoutine))
       {
 
-         return error_not_found;
+         throw_status(error_not_found);
 
       }
 
@@ -153,7 +153,7 @@ public:
       if (::is_null(proutinea))
       {
 
-         return error_not_found;
+         throw_status(error_not_found);
 
       }
 
@@ -163,9 +163,6 @@ public:
          (proutinerunner->*routine_runner_method)(routine);
 
       }
-
-      return ::success;
-
 
    }
 
@@ -341,20 +338,20 @@ public:
 
    //virtual void to_string(const string_exchange & str) const override;
 
-   //::image_transport create_image();
-   //::image_transport create_image(const ::size_i32 & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
+   //::image_pointer create_image();
+   //::image_pointer create_image(const ::size_i32 & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
 
-   //::image_transport get_image(const ::payload & payloadFile, bool bCache = true, bool bSync = true);
-   //::image_transport matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true);
-
-   template < typename BASE_TYPE >
-   inline __transport(BASE_TYPE) __create();
+   //::image_pointer get_image(const ::payload & payloadFile, bool bCache = true, bool bSync = true);
+   //::image_pointer matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true);
 
    template < typename BASE_TYPE >
-   inline __transport(BASE_TYPE) __id_create(const ::id& id);
+   inline __pointer(BASE_TYPE) __create();
+
+   template < typename BASE_TYPE >
+   inline __pointer(BASE_TYPE) __id_create(const ::id& id);
 
    template < typename TYPE >
-   inline __transport(TYPE) __create_new();
+   inline __pointer(TYPE) __create_new();
 
 
    template < typename BASE_TYPE >
@@ -508,14 +505,14 @@ public:
    //virtual string __get_text(string str);
 
    //template < typename PRED >
-   //::image_transport get_image(const ::payload & payloadFile, ::u64 uTrait, PRED pred);
+   //::image_pointer get_image(const ::payload & payloadFile, ::u64 uTrait, PRED pred);
 
-   //virtual ::image_transport load_image(const ::payload & payloadFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
-   //virtual ::image_transport load_matter_image(const char * pszMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
-   //virtual ::image_transport load_matter_icon(string_array & straMatter, string strIcon);
-   //virtual ::image_transport load_thumbnail(const ::payload & payloadFile, int w, int h);
-   //virtual ::image_transport load_thumbnail(const char * pszPath);
-   //virtual ::image_transport load_dib(const ::file::path & pathDib);
+   //virtual ::image_pointer load_image(const ::payload & payloadFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
+   //virtual ::image_pointer load_matter_image(const char * pszMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
+   //virtual ::image_pointer load_matter_icon(string_array & straMatter, string strIcon);
+   //virtual ::image_pointer load_thumbnail(const ::payload & payloadFile, int w, int h);
+   //virtual ::image_pointer load_thumbnail(const char * pszPath);
+   //virtual ::image_pointer load_dib(const ::file::path & pathDib);
 
 
 
@@ -590,7 +587,7 @@ public:
 
 
    template < typename PREDICATE >
-   inline __transport(task) fork(PREDICATE predicate,
+   inline __pointer(task) fork(PREDICATE predicate,
       ::enum_priority epriority = e_priority_normal,
       ::u32 nStackSize = 0,
       ::u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
@@ -611,7 +608,7 @@ public:
    //inline auto new_predicateicate_thread(PRED pred);
 
    template < typename TYPE >
-   inline __transport(task) branch_task(void (TYPE::* pfnMemberProcedure)(),
+   inline __pointer(task) branch_task(void (TYPE::* pfnMemberProcedure)(),
       ::enum_priority epriority = e_priority_normal,
       ::u32 nStackSize = 0,
       ::u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF)
@@ -633,7 +630,7 @@ public:
    }
 
 
-   __transport(::task) branch_task(element* pelement,
+   __pointer(::task) branch_task(element* pelement,
       ::enum_priority epriority = e_priority_normal,
       ::u32 nStackSize = 0,
       ::u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
@@ -644,7 +641,7 @@ public:
 
    //using property_object::branch;
 
-   __transport(::task) branch(
+   __pointer(::task) branch(
       ::enum_priority epriority = ::e_priority_normal,
       ::u32 nStackSize = 0,
       u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
@@ -769,7 +766,7 @@ public:
 
 
 
-   //virtual void process_exit_status(const void& estatus);
+   //virtual void process_exit_status(const ::e_status3 & estatus);
 
    //inline ::object* this const { return this; }
    //virtual void set_object(::object* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
@@ -1089,14 +1086,14 @@ public:
    //virtual string __get_text(string str);
 
    //template < typename PRED >
-   //::image_transport get_image(const ::payload & payloadFile, ::u64 uTrait, PRED pred);
+   //::image_pointer get_image(const ::payload & payloadFile, ::u64 uTrait, PRED pred);
 
-   //virtual ::image_transport load_image(const ::payload & payloadFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
-   //virtual ::image_transport load_matter_image(const char * pszMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
-   //virtual ::image_transport load_matter_icon(string_array & straMatter, string strIcon);
-   //virtual ::image_transport load_thumbnail(const ::payload & payloadFile, int w, int h);
-   //virtual ::image_transport load_thumbnail(const char * pszPath);
-   //virtual ::image_transport load_dib(const ::file::path & pathDib);
+   //virtual ::image_pointer load_image(const ::payload & payloadFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
+   //virtual ::image_pointer load_matter_image(const char * pszMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
+   //virtual ::image_pointer load_matter_icon(string_array & straMatter, string strIcon);
+   //virtual ::image_pointer load_thumbnail(const ::payload & payloadFile, int w, int h);
+   //virtual ::image_pointer load_thumbnail(const char * pszPath);
+   //virtual ::image_pointer load_dib(const ::file::path & pathDib);
 
 
 

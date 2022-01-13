@@ -185,18 +185,18 @@ void synchronization_array::erase(index index)
 void synchronization_array::wait()
 {
 
-   return wait(duration::infinite());
+   wait(duration::infinite());
 
 }
 
 
-void synchronization_array::wait(const class ::wait & wait, bool bWaitForAll, ::u32 uWakeMask)
+::index synchronization_array::wait(const class ::wait & wait, bool bWaitForAll, ::u32 uWakeMask)
 {
 
    if (is_empty())
    {
 
-      return error_failed;
+      throw_status(error_failed);
 
    }
 
@@ -226,7 +226,16 @@ void synchronization_array::wait(const class ::wait & wait, bool bWaitForAll, ::
 
    }
 
-   return windows_wait_result_to_status(windowsWaitResult);
+   auto estatus = windows_wait_result_to_status(windowsWaitResult);
+
+   if (failed(estatus))
+   {
+
+      throw_status(estatus);
+
+   }
+
+   return (::index) (estatus.m_estatus - signaled_base);
    
 #else
 
@@ -241,7 +250,7 @@ void synchronization_array::wait(const class ::wait & wait, bool bWaitForAll, ::
 
    bool FoundExternal=false;
 
-   void estatus;
+   ::e_status3 estatus;
 
 //   ::duration durationWaitNow;
 
@@ -295,14 +304,14 @@ void synchronization_array::wait(const class ::wait & wait, bool bWaitForAll, ::
 //   }
 //   while (result == e_synchronization_result_timed_out);
 
-   return estatus;
+   //return estatus;
 
 #endif
 
 }
 
 
-void synchronization_array::contains(const void & result) const
+void synchronization_array::contains(const ::e_status3 & result) const
 {
 
    __throw(todo);
@@ -326,7 +335,7 @@ void synchronization_array::contains(const void & result) const
 
    //return synchronization_result( e_synchronization_result_error );
 
-   return error_failed;
+   //return error_failed;
 
 }
 

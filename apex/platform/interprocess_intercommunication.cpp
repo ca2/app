@@ -27,14 +27,14 @@ interprocess_intercommunication::~interprocess_intercommunication()
 void interprocess_intercommunication::initialize_interprocess_communication(::object * pobject, const ::string & strApp)
 {
 
-   auto estatus = ::object::initialize(pobject);
+   ::object::initialize(pobject);
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
    m_strApp = strApp;
 
@@ -52,14 +52,14 @@ void interprocess_intercommunication::initialize_interprocess_communication(::ob
 
    call_routines_with_id(CREATE_ROUTINE);
 
-   estatus = __construct(m_prx);
+   /*estatus = */ __construct(m_prx);
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
    int iPid = m_pcontext->m_papexcontext->os_context()->get_pid();
 
@@ -79,14 +79,15 @@ void interprocess_intercommunication::initialize_interprocess_communication(::ob
 
    string strKey = key(m_strApp, iPid);
 
-   if (!m_prx->create(strKey))
-   {
+   //if (!m_prx->create(strKey))
+   m_prx->create(strKey);
+   //{
 
-      __throw(error_resource);
+   //   __throw(error_resource);
 
-   }
+   //}
 
-   return estatus;
+   //return estatus;
 
 }
 
@@ -103,7 +104,7 @@ void interprocess_intercommunication::destroy()
 
    }
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -205,7 +206,7 @@ started:
 
    }
 
-   return m_txmap[strKey]->open(key(strApp,idPid));
+   m_txmap[strKey]->open(key(strApp,idPid));
 
 }
 
@@ -231,7 +232,8 @@ bool interprocess_intercommunication::connect(const ::string & strApp, const ::i
    else
    {
 
-      return m_txmap[strKey]->open(key(strApp, idPid));
+      //return 
+      m_txmap[strKey]->open(key(strApp, idPid));
 
    }
 
@@ -472,7 +474,7 @@ void interprocess_intercommunication::on_interprocess_receive(::interprocess_com
 
       pcall->add_arg(varRet);
 
-      pcall->set_timeout(1_minute);
+      //pcall->set_timeout(1_minute);
 
       pcall->post(strAppPid);
 
@@ -554,11 +556,13 @@ void interprocess_intercommunication::on_interprocess_call(::payload & payload, 
 
          auto papplication = get_application();
 
-         payload["continue"] = papplication->on_additional_local_instance(
+          papplication->on_additional_local_instance(
             payload["handled"].as_bool(),
             strModule, 
             payloada[1].i32(), 
             strCommandLine);
+
+          payload["continue"] = true;
 
       }
       else if (strMember == "on_new_instance")

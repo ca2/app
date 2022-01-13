@@ -16,11 +16,11 @@ public:
 
 
    void _wait() override;
-   void _wait(const class ::wait& wait) override;
+   bool _wait(const class ::wait& wait) override;
    void wait() override;
-   void wait(const class ::wait& wait) override;
-   bool unlock() override;
-   bool unlock(::i32 lCount, ::i32 * lPrevCount = nullptr) override;
+   bool wait(const class ::wait& wait) override;
+   void unlock() override;
+   void unlock(::i32 lCount, ::i32 * lPrevCount = nullptr) override;
    bool is_locked() const override;
 
 
@@ -44,9 +44,9 @@ public:
 
    void _wait();
    void _wait(const duration & duration);
-   bool unlock();
-   bool unlock(::i32 lCount, ::i32 * lPrevCount = nullptr);
-   bool IsLocked();
+   void unlock();
+   void unlock(::i32 lCount, ::i32 * lPrevCount = nullptr);
+   bool is_locked();
 
 
 };

@@ -43,7 +43,7 @@ public:
    //bool lock(const ::wait & wait = wait::infinite()) override;
 
    using synchronization_object::unlock;
-   bool unlock() override;
+   void unlock() override;
 
    //virtual HSYNC hsync() const;
 
@@ -61,8 +61,8 @@ public:
 
    ///  \brief		waits for an event for a specified time
    ///  \lparam		duration time period to wait for an event
-   ///  \return	waiting action result as WaitResult
-   void _wait (const class ::wait & wait) override;
+   ///  \return	true if acquired lock, false timeout, exception on error
+   bool _wait (const class ::wait & wait) override;
 
    bool is_signaled() const;
 

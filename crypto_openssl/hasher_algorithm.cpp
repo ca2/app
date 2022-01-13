@@ -31,7 +31,12 @@ namespace crypto_openssl
 
       m_pmd = __evp_md(ehash);
 
-      return ::is_set(m_pmd) ? ::success : ::error_failed;
+      if (!::is_set(m_pmd))
+      {
+       
+         throw_status(error_resource);
+
+      }
 
    }
 
@@ -72,7 +77,7 @@ namespace crypto_openssl
 
       memoryHash.set_size(digest_size);
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -95,7 +100,7 @@ namespace crypto_openssl
    //}
 
 
-   __transport(::crypto::hasher) hasher_algorithm::create_hasher()
+   __pointer(::crypto::hasher) hasher_algorithm::create_hasher()
    {
 
       return __new(::crypto_openssl::hasher(this));

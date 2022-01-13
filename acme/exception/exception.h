@@ -40,7 +40,7 @@
 //
 //
 //   exception();
-//   exception(const void& estatus, const char* pszMessage = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void* caller_address = nullptr);
+//   exception(const ::e_status3 & estatus, const char* pszMessage = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void* caller_address = nullptr);
 //   virtual ~exception();
 //
 //
@@ -55,7 +55,7 @@
 //   virtual string get_message() const;
 //
 //
-//   inline void estatus() const { return m_estatus; }
+//   inline ::e_status3 estatus() const { return m_estatus; }
 //
 //
 //   void defer_dump_back_trace();
@@ -189,7 +189,7 @@ public:
 //public:
 //
 //
-//   status_exception(const void & estatus, const char * pszStatus = nullptr) :
+//   status_exception(const ::e_status3 & estatus, const char * pszStatus = nullptr) :
 //      ::exception(pszStatus, estatus)
 //   {
 //

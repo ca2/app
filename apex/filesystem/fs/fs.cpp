@@ -21,14 +21,16 @@ namespace fs
    void fs::initialize(::object * pobject)
    {
 
-      auto estatus = ::acme::department::initialize(pobject);
+      //auto estatus = 
+      
+      ::acme::department::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 //
 //      if(get_application()->is_system())
 //      {
@@ -41,7 +43,7 @@ namespace fs
 //
 //      }
 
-      return estatus;
+//      return estatus;
 
    }
  

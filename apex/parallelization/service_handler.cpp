@@ -30,7 +30,7 @@ service* service_handler::get_service()
       if (m_pservice)
       {
 
-         return ::success;
+         return;
 
       }
 
@@ -41,31 +41,32 @@ service* service_handler::get_service()
       if (!pservice)
       {
 
-         return error_failed;
+         throw_status(error_resource);
 
       }
 
-      auto estatus = pservice->initialize(papplication);
+      //auto estatus = pservice->initialize(papplication);
+      pservice->initialize(papplication);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       m_pservice = pservice;
 
       if (!m_pservice)
       {
 
-         return false;
+         throw_status(error_resource);
 
       }
 
       //psystem->m_serviceptra.add(m_pservice);
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -75,7 +76,7 @@ service* service_handler::get_service()
 
    //   throw ::interface_only_exception();
 
-   //   return error_interface_only;
+   //   throw ::interface_only_exception();
 
    //}
 
@@ -85,7 +86,7 @@ service* service_handler::get_service()
 
    //   throw ::interface_only_exception();
 
-   //   return error_interface_only;
+   //   throw ::interface_only_exception();
 
    //}
 
@@ -96,7 +97,7 @@ service* service_handler::get_service()
 
       throw ::interface_only_exception();
 
-      return error_interface_only;
+      throw ::interface_only_exception();
 
    }
 
@@ -106,7 +107,7 @@ service* service_handler::get_service()
 
       throw ::interface_only_exception();
 
-      return error_interface_only;
+      throw ::interface_only_exception();
 
    }
 

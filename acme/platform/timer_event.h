@@ -20,7 +20,7 @@ public:
    virtual bool wait(const class ::wait & wait);
 
 
-   virtual bool on_timer() override;
+   virtual void on_timer() override;
 
 
 };

@@ -4,7 +4,7 @@
 //void matter::call(::trait & trait)
 //{
 //
-//   void estatus = error_failed;
+//   ::e_status3 estatus = error_failed;
 //
 //   try
 //   {

@@ -17,8 +17,8 @@ public:
 
    message_array           m_messagea;
    manual_reset_event      m_eventNewMessage;
-   itask_t               m_itask;
-   bool                    m_bKickIdle;
+   itask_t                 m_itask;
+   //bool                    m_bKickIdle;
    bool                    m_bQuit;
 
 
@@ -26,12 +26,12 @@ public:
    ~message_queue() override;
 
 
-   int_bool peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg);
-   void get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, const ::duration & duration = ::duration::infinite());
-   int_bool post_message(oswindow oswindow, const ::id & id, wparam wparam, lparam lparam);
-   int_bool post_message(const MESSAGE & message);
+   bool peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg);
+   bool get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, const ::duration & duration = ::duration::infinite());
+   void post_message(oswindow oswindow, const ::id & id, wparam wparam, lparam lparam);
+   void post_message(const MESSAGE & message);
 
-   void kick_idle() override;
+   //void kick_idle() override;
    
 
 };

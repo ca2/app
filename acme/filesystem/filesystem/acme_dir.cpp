@@ -22,21 +22,11 @@ acme_dir::~acme_dir()
 void acme_dir::initialize(::object * pobject)
 {
 
-   auto estatus = ::matter::initialize(pobject);
-
-   if (!estatus)
-   {
-
-      return estatus;
-
-   }
+   ::matter::initialize(pobject);
 
    m_pathInstallFolder = default_install();
 
    m_pathModuleFolder = dir_ca2_module();
-
-   return estatus;
-
 
 }
 
@@ -736,21 +726,21 @@ void acme_dir::set_path_install_folder(const string & strPath)
 //}
 
 
-void acme_dir::create(const char * path)
-{
+//void acme_dir::create(const char * path)
+//{
+//
+//   return _create(path);
+//
+//}
 
-   return _create(path);
 
-}
-
-
-void acme_dir::_create(const char * pathParam)
+void acme_dir::create(const char * pathParam)
 {
 
    if (is(pathParam))
    {
 
-      return ::success_none;
+      return;
 
    }
 
@@ -776,6 +766,8 @@ void acme_dir::_create(const char * pathParam)
       if (is(strDir))
       {
 
+         i++;
+
          break;
 
       }
@@ -785,7 +777,7 @@ void acme_dir::_create(const char * pathParam)
    if (i < 0)
    {
 
-      return true;
+      return;
 
    }
 
@@ -794,76 +786,33 @@ void acme_dir::_create(const char * pathParam)
 
       string strDir = stra[i];
 
-      auto estatus = create_directory(strDir);
-
-      if(!estatus)
-      {
-
-         return estatus;
-
-      }
+      _create2(strDir);
 
    }
-
-   return ::success;
 
 }
 
 
-void acme_dir::create_directory(const char * pathParam)
+void acme_dir::_create2(const char * pathParam)
 {
 
    if (is(pathParam))
    {
 
-      return ::success_none;
+      return;
 
    }
 
-   auto estatus = m_pacmefile->exists(pathParam);
+   auto bExists = m_pacmefile->exists(pathParam);
 
-   if(estatus)
+   if(bExists)
    {
 
-      estatus = m_pacmefile->delete_file(pathParam);
-
-      if(!estatus)
-      {
-
-         return estatus;
-
-      }
+      m_pacmefile->delete_file(pathParam);
 
    }
 
-   estatus = _create_directory(pathParam);
-
-   if (estatus == error_already_exists)
-   {
-
-      try
-      {
-
-         estatus = m_pacmefile->delete_file(pathParam);
-
-      }
-      catch (...)
-      {
-
-      }
-
-      estatus = _create_directory(pathParam);
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
-   }
-
-   return ::success;
+   __create(pathParam);
 
 }
 
@@ -873,25 +822,25 @@ void acme_dir::create_directory(const char * pathParam)
 //
 //   throw ::interface_only_exception();
 //
-//   return ::error_interface_only;
+//   throw ::interface_only_exception();
 //
 //}
 
    
-void acme_dir::is(const char * path)
+bool acme_dir::is(const char * path)
 {
 
    if(::is_null(path))
    {
 
-      return error_null_pointer;
+      throw_status(error_null_pointer);
 
    }
 
    if(*path == '\0')
    {
 
-      return error_invalid_argument;
+      throw_status(error_invalid_argument);
 
    }
 
@@ -1001,49 +950,49 @@ int acme_dir::make_path(const char * psz)
 //} // namespace dir
 
 
-
-
-void acme_dir::_is(const char * path)
+bool acme_dir::_is(const char * path)
 {
 
-   auto estatus = ::is_directory(path);
+   bool bIsDirectory = ::is_directory(path);
 
-   if(!estatus)
-   {
-
-      return estatus;
-
-   }
-
-   return estatus;
+   return bIsDirectory;
 
 }
 
 
-
-void acme_dir::_create_directory(const char * path)
+void acme_dir::__create(const char * path)
 {
 
-   auto estatus = ::create_directory(path);
+   ::create_directory(path);
 
-   if(!estatus)
-   {
+   /*auto estatus =*/ 
 
-      return estatus;
+   //if(!estatus)
+   //{
 
-   }
+   //   return estatus;
 
-   return estatus;
+   //}
+
+   //return estatus;
 
 }
 
 
-status < string > acme_dir::get_current()
+void acme_dir::erase(const char* path)
+{
+
+   ::erase_directory(path);
+
+}
+
+
+string acme_dir::get_current()
 {
 
    throw ::interface_only_exception();
 
-   return error_interface_only;
+   //throw ::interface_only_exception();
 
 }
 
@@ -1053,7 +1002,7 @@ void acme_dir::change_current(const char * psz)
 
    throw ::interface_only_exception();
 
-   return error_interface_only;
+   //throw ::interface_only_exception();
 
 }
 
@@ -1063,16 +1012,18 @@ void acme_dir::change_to_home()
 
    ::file::path pathHome = home();
 
-   auto estatus = change_current(pathHome);
+   //auto estatus = change_current(pathHome);
 
-   if(!estatus)
-   {
+   change_current(pathHome);
 
-      return estatus;
+   //if(!estatus)
+   //{
 
-   }
+   //   return estatus;
 
-   return estatus;
+   //}
+
+   //return estatus;
 
 }
 

@@ -227,7 +227,7 @@ CLASS_DECL_ACME void debug_print(const char* pszFormat, ...)
 //
 
 
-void _003CountStatus(::count countSuccess, ::count countFailed)
+::e_status3 _003CountStatus(::count countSuccess, ::count countFailed)
 {
 
    ::count countTotal = countFailed + countSuccess;
@@ -269,11 +269,10 @@ void _003CountStatus(::count countSuccess, ::count countFailed)
 
    }
 
-
 }
 
 
-string get_status_message(void estatus)
+string get_status_message(::e_status3 estatus)
 {
    
    if(estatus == ::success)
@@ -325,6 +324,18 @@ string __string(const ::enum_status & estatus)
    {
 
       str += "error_no_factory";
+
+   }
+   else if (estatus == error_file_not_found)
+   {
+
+      str += "error_file_not_found";
+
+   }
+   else if (estatus == error_bad_path)
+   {
+
+      str += "error_bad_path";
 
    }
    else if(failed(estatus))

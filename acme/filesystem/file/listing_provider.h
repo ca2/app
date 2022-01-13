@@ -14,8 +14,8 @@ namespace file
    public:
 
 
-      virtual ::file::listing& perform_file_listing(::file::listing& listing) = 0;
-      virtual ::file::listing& perform_file_relative_name_listing(::file::listing& listing) = 0;
+      virtual bool perform_file_listing(::file::listing& listing) = 0;
+      virtual bool perform_file_relative_name_listing(::file::listing& listing) = 0;
 
 
    };

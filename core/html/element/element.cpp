@@ -164,7 +164,7 @@ namespace html
 
       }
       
-      void estatus = ::success;
+      ::e_status3 estatus = ::success;
 
       if (m_etag == tag_initial)
       {

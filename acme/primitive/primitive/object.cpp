@@ -99,7 +99,7 @@ void object::add_composite(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG_COMM
    if (!m_pcompositea->add_unique(pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS))
    {
 
-      return success_none;
+      throw_status(success_none);
 
 //#ifdef _DEBUG
 //
@@ -109,7 +109,7 @@ void object::add_composite(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG_COMM
 
    }
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -137,7 +137,7 @@ void object::add_reference(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG_COMM
 
    }
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -406,22 +406,23 @@ void object::dev_log(string strMessage)
 void object::call_routine2(const ::routine & routine)
 {
 
-   void estatus = ::success;
+   //::e_status3 estatus = ::success;
 
-   try
-   {
+   /*try
+   {*/
 
-      estatus = routine();
+      /*estatus =*/ 
+   routine();
 
-   }
-   catch (...)
-   {
+   //}
+   //catch (...)
+   //{
 
-      estatus = error_exception;
+   //   estatus = error_exception;
 
-   }
+   //}
 
-   return estatus;
+   //return estatus;
 
 
 }
@@ -880,7 +881,7 @@ void object::system(const ::string & strProjectName)
 void     object::run()
 {
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -1419,7 +1420,7 @@ void object::destroy_tasks()
 //
 //   }
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -1427,17 +1428,17 @@ void object::destroy_tasks()
 void object::destroy()
 {
 
-   auto estatus = destroy_tasks();
+   /*auto estatus = */ destroy_tasks();
 
-   estatus = on_destroy();
+   /*estatus = */ on_destroy();
 
-   estatus = destroy_composites();
+   /*estatus = */ destroy_composites();
 
-   estatus = release_references();
+   /*estatus = */ release_references();
 
-   estatus = property_object::destroy();
+   /*estatus = */ property_object::destroy();
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -1445,7 +1446,7 @@ void object::destroy()
 void object::on_destroy()
 {
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -1457,7 +1458,7 @@ void object::set_finish()
 
    kick_idle();
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -1476,7 +1477,7 @@ void object::delete_this()
 void object::destroy_composites()
 {
 
-   void estatus = ::success;
+   ::e_status3 estatus = ::success;
 
    string strTypeName = __type_name(this);
 
@@ -1490,7 +1491,7 @@ void object::destroy_composites()
 
          synchronouslock.unlock();
 
-         auto estatusItem = pelement->destroy();
+         pelement->destroy();
 
          synchronouslock.lock();
 
@@ -1500,7 +1501,7 @@ void object::destroy_composites()
 
    }
 
-   return estatus;
+   //return estatus;
 
 }
 
@@ -1508,7 +1509,7 @@ void object::destroy_composites()
 void object::release_references()
 {
 
-   void estatus = ::success;
+   ::e_status3 estatus = ::success;
 
    string strTypeName = __type_name(this);
 
@@ -1521,7 +1522,7 @@ void object::release_references()
 
    }
 
-   return estatus;
+   //return estatus;
 
 }
 
@@ -1784,13 +1785,13 @@ void object::branch_each(const ::routine_array& routinea)
 }
 
 
-__transport(task) object::branch_task(element * pelement, ::enum_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
+__pointer(task) object::branch_task(element * pelement, ::enum_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
 {
 
    if (::is_null(pelement))
    {
 
-      return error_failed;
+      throw_status(error_failed);
 
    }
 
@@ -1799,7 +1800,7 @@ __transport(task) object::branch_task(element * pelement, ::enum_priority eprior
    if (!ptask)
    {
 
-      return error_failed;
+      throw_status(error_failed);
 
    }
 
@@ -1807,21 +1808,21 @@ __transport(task) object::branch_task(element * pelement, ::enum_priority eprior
 
    ptask->m_id = typeid(*pelement).name();
 
-   auto estatus = ptask->branch(epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
+   /*auto estatus =*/ ptask->branch(epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
    return ptask;
 
 }
 
 
-__transport(task) object::branch(::enum_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
+__pointer(task) object::branch(::enum_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
 {
 
    auto ptask = branch_task(this, epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
@@ -1841,7 +1842,7 @@ void object::handle_exception(const ::exception& e)
 
    }
 
-   return true;
+   //return true;
 
 }
 
@@ -1854,16 +1855,16 @@ void object::top_handle_exception(const ::exception& e)
 
       m_psystem->process_exit_status(this, e.estatus());
 
-      return false;
+      //return false;
 
    }
 
-   return true;
+   //return true;
 
 }
 
 
-//void object::process_exit_status(const void& estatus)
+//void object::process_exit_status(const ::e_status3 & estatus)
 //{
 //
 //   if (estatus == error_exit_system)
@@ -1903,13 +1904,15 @@ void object::process_exception(const ::exception& e)
       if (!e.m_bContinue)
       {
 
-         return false;
+         throw e;
+
+         //return false;
 
       }
 
    }
 
-   return true;
+   //return true;
 
 }
 
@@ -2044,7 +2047,7 @@ void object::sleep(const ::duration& duration)
          if (m_psystem && m_psystem->is_finishing())
          {
 
-            return error_exit_system;
+            throw_status(error_exit_system);
 
          }
 
@@ -2069,7 +2072,8 @@ void object::sleep(const ::duration& duration)
 
             pevent.release();
 
-            return ::task_get_run();
+            return;
+            //return ::task_get_run();
 
          }
 
@@ -2098,7 +2102,7 @@ void object::sleep(const ::duration& duration)
       if (m_psystem && m_psystem->is_finishing())
       {
 
-         return error_exit_system;
+         throw_status(error_exit_system);
 
       }
 
@@ -2121,7 +2125,7 @@ void object::sleep(const ::duration& duration)
 
    }
 
-   return ::success;
+   // return ::success;
 
 }
 
@@ -2428,7 +2432,7 @@ struct context_object_test_struct :
 //}
 
 
-bool __no_continue(void estatus)
+bool __no_continue(::e_status3 estatus)
 {
 
    return false;
@@ -2445,36 +2449,36 @@ void call_sync(const ::routine_array& methoda)
       for (auto& method : methoda)
       {
 
-         try
-         {
+         //try
+         //{
 
-            auto estatus = method();
+            /*auto estatus =*/ method();
 
-            if (__no_continue(estatus))
-            {
+            //if (__no_continue(estatus))
+            //{
 
-               return estatus;
+            //   return estatus;
 
-            }
+            //}
 
-         }
-         catch (const ::exception& e)
-         {
+         //}
+         //catch (const ::exception& e)
+         //{
 
-            if (__no_continue(e.m_estatus))
-            {
+         //   if (__no_continue(e.m_estatus))
+         //   {
 
-               return e.m_estatus;
+         //      return e.m_estatus;
 
-            }
+         //   }
 
-         }
-         catch (...)
-         {
+         //}
+         //catch (...)
+         //{
 
-            //break;
+         //   //break;
 
-         }
+         //}
 
       }
    }
@@ -2483,7 +2487,7 @@ void call_sync(const ::routine_array& methoda)
 
    }
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -2544,7 +2548,7 @@ string object::get_text(const ::payload& payload, const ::id& id)
 //void object::message_box_timeout(const ::string & pszMessage, const ::string & pszTitle, const ::duration& durationTimeout, const ::e_message_box & emessagebox, const ::future & process)
 //{
 //
-//   void estatus = error_failed;
+//   ::e_status3 estatus = error_failed;
 //
 //   //if (::is_null(get_session()) || ::is_null(get_session()->userex()))
 //   //{
@@ -2698,7 +2702,7 @@ element* object::get_taskpool_container()
 //}
 //
 //
-//void object::process_exit_status(const void& estatus)
+//void object::process_exit_status(const ::e_status3 & estatus)
 //{
 //
 //
@@ -2823,14 +2827,14 @@ void object::initialize(::object* pobject)
 
    }
 
-   estatus = on_initialize_object();
+   /*estatus =*/ on_initialize_object();
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
    //if (!m_papplication)
    //{
@@ -2877,7 +2881,7 @@ void object::initialize(::object* pobject)
 
    //}
 
-   return estatus;
+   //return estatus;
 
 }
 
@@ -3032,20 +3036,20 @@ void object::operator()()
 
 // void to_string(const string_exchange & str) const 
 
-//::image_transport create_image();
-//::image_transport create_image(const ::size_i32 & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
+//::image_pointer create_image();
+//::image_pointer create_image(const ::size_i32 & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
 
-//::image_transport get_image(const ::payload & payloadFile, bool bCache = true, bool bSync = true);
-//::image_transport matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true);
-
-//template < typename BASE_TYPE >
-//inline __transport(BASE_TYPE) __create();
+//::image_pointer get_image(const ::payload & payloadFile, bool bCache = true, bool bSync = true);
+//::image_pointer matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true);
 
 //template < typename BASE_TYPE >
-//inline __transport(BASE_TYPE) __id_create(const ::id& id);
+//inline __pointer(BASE_TYPE) __create();
+
+//template < typename BASE_TYPE >
+//inline __pointer(BASE_TYPE) __id_create(const ::id& id);
 
 //template < typename TYPE >
-//inline __transport(TYPE) __create_new();
+//inline __pointer(TYPE) __create_new();
 
 //inline void __compose(__composite(::image) & pimage);
 
@@ -3481,14 +3485,14 @@ void object::operator()()
 
 
 //template < typename PRED >
-//::image_transport get_image(const ::payload & payloadFile, ::u64 uTrait, PRED pred);
+//::image_pointer get_image(const ::payload & payloadFile, ::u64 uTrait, PRED pred);
 
-// ::image_transport load_image(const ::payload & payloadFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
-// ::image_transport load_matter_image(const char * pszMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
-// ::image_transport load_matter_icon(string_array & straMatter, string strIcon);
-// ::image_transport load_thumbnail(const ::payload & payloadFile, int w, int h);
-// ::image_transport load_thumbnail(const char * pszPath);
-// ::image_transport load_dib(const ::file::path & pathDib);
+// ::image_pointer load_image(const ::payload & payloadFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
+// ::image_pointer load_matter_image(const char * pszMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
+// ::image_pointer load_matter_icon(string_array & straMatter, string strIcon);
+// ::image_pointer load_thumbnail(const ::payload & payloadFile, int w, int h);
+// ::image_pointer load_thumbnail(const char * pszPath);
+// ::image_pointer load_dib(const ::file::path & pathDib);
 
 
 

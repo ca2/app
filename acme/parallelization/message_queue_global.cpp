@@ -166,7 +166,7 @@ CLASS_DECL_ACME void mq_clear(itask_t idthread)
 }
 
 
-int_bool mq_post_thread_message(itask_t idthread, const ::id & id, wparam wparam, lparam lparam)
+void mq_post_thread_message(itask_t idthread, const ::id & id, wparam wparam, lparam lparam)
 {
 
    if (id.m_etype != ::id::e_type_message)
@@ -181,11 +181,11 @@ int_bool mq_post_thread_message(itask_t idthread, const ::id & id, wparam wparam
    if (::is_null(pmq))
    {
 
-      return false;
+      return;
 
    }
 
-   return pmq->post_message(nullptr, id.m_emessage, wparam, lparam);
+   pmq->post_message(nullptr, id.m_emessage, wparam, lparam);
 
 }
 

@@ -20,9 +20,9 @@ void text_stream::destroy()
 
    m_p.release();
 
-   auto estatus = stream::destroy();
+   /* auto estatus = */ stream::destroy();
 
-   return estatus;
+   /* return estatus; */
 
 }
 

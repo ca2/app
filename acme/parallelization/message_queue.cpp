@@ -27,7 +27,7 @@ message_queue::message_queue()
 
    m_bQuit = false;
 
-   m_bKickIdle = false;
+   //m_bKickIdle = false;
 
    defer_create_mutex();
 
@@ -40,13 +40,14 @@ message_queue::~message_queue()
 }
 
 
-int_bool message_queue::post_message(oswindow oswindow, const ::id & id, wparam wparam, lparam lparam)
+void message_queue::post_message(oswindow oswindow, const ::id & id, wparam wparam, lparam lparam)
 {
 
    if (m_bQuit)
    {
 
-      return false;
+      return;
+      //return false;
 
    }
 
@@ -59,18 +60,20 @@ int_bool message_queue::post_message(oswindow oswindow, const ::id & id, wparam 
    message.pt.x = 0x80000000;
    message.pt.y = 0x80000000;
 
-   return post_message(message);
+   /* return */ post_message(message);
 
 }
 
 
-int_bool message_queue::post_message(const MESSAGE & message)
+void message_queue::post_message(const MESSAGE & message)
 {
 
    if(m_bQuit)
    {
 
-      return false;
+      //return false;
+
+      return;
 
    }
 
@@ -87,24 +90,24 @@ int_bool message_queue::post_message(const MESSAGE & message)
 
    m_eventNewMessage.set_event();
 
-   return true;
+   //return true;
 
 }
 
 
-void message_queue::kick_idle()
-{
+//void message_queue::kick_idle()
+//{
+//
+//   _synchronous_lock synchronouslock(mutex());
+//
+//   m_bKickIdle = true;
+//
+//   m_eventNewMessage.set_event();
+//
+//}
 
-   _synchronous_lock synchronouslock(mutex());
 
-   m_bKickIdle = true;
-
-   m_eventNewMessage.set_event();
-
-}
-
-
-void message_queue::get_message(MESSAGE * pmessage, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, const ::duration & duration)
+bool message_queue::get_message(MESSAGE * pmessage, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, const ::duration & duration)
 {
 
    if (wMsgFilterMax == 0)
@@ -136,7 +139,7 @@ void message_queue::get_message(MESSAGE * pmessage, oswindow oswindow, ::u32 wMs
             // 2021-07-22 15:03 BRT quit message would be last message and empty message queue?
             m_messagea.erase_all();
 
-            return status_quit;
+            return false;
 
          }
 
@@ -149,9 +152,9 @@ void message_queue::get_message(MESSAGE * pmessage, oswindow oswindow, ::u32 wMs
 
             m_messagea.erase_at(i);
 
-            m_bKickIdle = false;
+            //m_bKickIdle = false;
 
-            return ::success;
+            return true;
 
          }
 
@@ -159,25 +162,25 @@ void message_queue::get_message(MESSAGE * pmessage, oswindow oswindow, ::u32 wMs
 
       }
 
-      if (m_bKickIdle)
-      {
+      //if (m_bKickIdle)
+      //{
 
-         m_bKickIdle = false;
+      //   m_bKickIdle = false;
 
-         return status_kick_idle;
+      //   return status_kick_idle;
 
-      }
+      //}
 
       {
 
          synchronouslock.unlock();
 
-         if(!m_eventNewMessage.wait(duration).succeeded())
-         {
+         m_eventNewMessage.wait(duration);
+         //{
 
-            return error_wait_timeout;
+         //   return error_wait_timeout;
 
-         }
+         //}
 
          synchronouslock.lock();
 
@@ -191,7 +194,7 @@ void message_queue::get_message(MESSAGE * pmessage, oswindow oswindow, ::u32 wMs
 }
 
 
-int_bool message_queue::peek_message(MESSAGE * pMsg, oswindow oswindow,::u32 wMsgFilterMin,::u32 wMsgFilterMax,::u32 wRemoveMsg)
+bool message_queue::peek_message(MESSAGE * pMsg, oswindow oswindow,::u32 wMsgFilterMin,::u32 wMsgFilterMax,::u32 wRemoveMsg)
 {
 
    if(wMsgFilterMax == 0)

@@ -29,7 +29,7 @@ namespace regular_expression
 
       m_str = str;
 
-      return ::success;
+      //return ::success;
 
    }
 

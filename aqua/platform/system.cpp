@@ -44,16 +44,18 @@ namespace aqua
    void system::initialize(::object * pobject)
    {
 
-      auto estatus = ::apex::system::initialize(pobject);
+      //auto estatus = 
+      
+      ::apex::system::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -103,32 +105,37 @@ namespace aqua
 
       }
 
-      auto estatus = __compose_new(m_pxml);
+      //auto estatus = 
+      
+      __compose_new(m_pxml);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return m_pxml;
+      //   return m_pxml;
 
-      }
+      //}
 
-      estatus = m_pxml->init1();
+      //estatus =
+      
+      m_pxml->init1();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return m_pxml;
+      //   return m_pxml;
 
-      }
+      //}
 
-      estatus = m_pxml->init();
+      //estatus = 
+      m_pxml->init();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return m_pxml;
+      //   return m_pxml;
 
-      }
+      //}
 
       return m_pxml;
 
@@ -140,32 +147,34 @@ namespace aqua
 
       auto & pfactory = factory("audio");
 
-      if (!pfactory)
-      {
+      //if (!pfactory)
+      //{
 
-         return pfactory;
+      //   return pfactory;
 
-      }
+      //}
 
-      auto estatus = pfactory->__compose(this, m_paudio);
+      //auto estatus = 
+      pfactory->__compose(this, m_paudio);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = m_paudio->init3();
+      ///estatus = 
+      m_paudio->init3();
 
-      if(!estatus)
-      {
+      //if(!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -191,7 +200,7 @@ namespace aqua
       if (m_pmultimedia)
       {
 
-         return success;
+         return;
 
       }
 
@@ -207,21 +216,25 @@ namespace aqua
 
             auto pelement = psetup->create_element();
 
-            if (!pelement)
-            {
+            //if (!pelement)
+            //{
 
-               return error_no_factory;
+            //   throw_status()
 
-            }
+            //   //return error_no_factory;
 
-            auto estatus = __compose(m_pmultimedia, pelement);
+            //}
 
-            if (!estatus)
-            {
+            //auto estatus = 
+            
+            __compose(m_pmultimedia, pelement);
 
-               return estatus;
+            //if (!estatus)
+            //{
 
-            }
+            //   return estatus;
+
+            //}
 
          }
 
@@ -229,20 +242,22 @@ namespace aqua
       catch (...)
       {
 
-         return error_exception;
+         throw_status(error_exception);
 
       }
 
-      auto estatus = m_pmultimedia->initialize_multimedia(this);
+      ///auto estatus = 
+      
+      m_pmultimedia->initialize_multimedia(this);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
       
 
       //string strName;
@@ -293,24 +308,26 @@ namespace aqua
          if (!m_paudio)
          {
 
-            auto estatus = create_audio();
+            //auto estatus =
+            
+            create_audio();
 
-            if (!estatus)
-            {
+            //if (!estatus)
+            //{
 
-               return estatus;
+            //   return estatus;
 
-            }
+            //}
 
             m_bAudio = true;
 
-            return estatus;
+            //return estatus;
 
          }
 
       }
 
-      return ::success_none;
+      //return ::success_none;
 
    }
 

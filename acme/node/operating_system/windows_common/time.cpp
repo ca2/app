@@ -80,7 +80,7 @@ void get_system_time(system_time_t* psystemtime)
 
    ::GetSystemTime((LPSYSTEMTIME)psystemtime);
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -97,7 +97,7 @@ void system_time_to_time(time_t* ptime, const system_time_t* psystemtime, i32 nD
 
    *ptime = make_utc_time(&tm);
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -108,11 +108,11 @@ void system_time_to_file_time(filetime_t* pfiletime, const system_time_t* psyste
    if (!SystemTimeToFileTime((const SYSTEMTIME*)psystemtime, (FILETIME*)pfiletime))
    {
 
-      return error_failed;
+      throw_status(error_failed);
 
    }
 
-   return success;
+   //return success;
 
 }
 
@@ -126,7 +126,7 @@ void time_to_system_time(system_time_t* psystemtime, const time_t* ptime)
 
    __copy(psystemtime, tm);
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -136,25 +136,25 @@ void time_to_file_time(filetime_t* pfiletime, const time_t* ptime)
 
    system_time_t systemtime;
 
-   auto estatus = time_to_system_time(&systemtime, ptime);
+   /*auto estatus = */ time_to_system_time(&systemtime, ptime);
 
-   if(!estatus)
-   {
+   //if(!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
-   estatus = system_time_to_file_time(pfiletime, &systemtime);
+   /* estatus = */ system_time_to_file_time(pfiletime, &systemtime);
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
-   return estatus;
+   //return estatus;
 
 }
 
@@ -176,14 +176,14 @@ void time_to_file_time(filetime_t* pfiletime, const time_t* ptime)
 CLASS_DECL_ACME void file_time_to_system_time(system_time_t * psystemtime, const filetime_t * pfiletime)
 {
 
-   if (!FileTimeToSystemTime((FILETIME *)pfiletime, (SYSTEMTIME *)psystemtime))
-   {
+   FileTimeToSystemTime((FILETIME*)pfiletime, (SYSTEMTIME*)psystemtime);
+   //{
 
-      return error_failed;
+   //   return error_failed;
 
-   }
+   //}
 
-   return ::success;
+   //return ::success;
 
 }
 

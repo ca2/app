@@ -68,7 +68,7 @@ bool ::exception::s_bDoStackTrace = true;
 //{
 //
 
-//   ::exception(const void & estatus, i32 iSkip, void * caller_address) :
+//   ::exception(const ::e_status3 & estatus, i32 iSkip, void * caller_address) :
 //      exception(nullptr, estatus, iSkip, caller_address)
 //   {
 //
@@ -82,7 +82,7 @@ bool ::exception::s_bDoStackTrace = true;
 
    }
 
-   exception::exception(const void& estatus, const char * pszMessage, i32 iSkip, void * caller_address)
+   exception::exception(const ::e_status3 & estatus, const char * pszMessage, i32 iSkip, void * caller_address)
    {
 
 #if !defined(__SANITIZE_ADDRESS__)
@@ -129,7 +129,7 @@ bool ::exception::s_bDoStackTrace = true;
 
       m_bContinue = true;
       
-      m_strMessage = pszMessage;
+      m_strMessage.format("%s (%d:%s)", pszMessage, estatus.m_estatus, __string(estatus).c_str());
          
    }
 
@@ -421,7 +421,7 @@ void __cdecl __clearerr_s(FILE *stream)
 
 
 
-const char* status_message(const void& estatus)
+const char* status_message(const ::e_status3 & estatus)
 {
 
    auto psz = ::file::status_message(estatus);
@@ -477,7 +477,7 @@ CLASS_DECL_ACME void set_avoid_bad_status_exception(bool bSet)
 }
 
 
-string estatus_to_string(void estatus)
+string estatus_to_string(::e_status3 estatus)
 {
 
    if (::succeeded(estatus))
@@ -496,7 +496,7 @@ string estatus_to_string(void estatus)
 }
 
 
-CLASS_DECL_ACME void throw_exception(const void & estatus, const char * pszMessage, i32 iSkip, void * caller_address)
+CLASS_DECL_ACME void throw_exception(const ::e_status3 & estatus, const char * pszMessage, i32 iSkip, void * caller_address)
 {
 
    throw ::exception(estatus, pszMessage, iSkip, caller_address);

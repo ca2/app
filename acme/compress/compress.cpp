@@ -20,9 +20,7 @@ compress::~compress()
 void compress::set_level(int iLevel)
 {
 
-   throw interface_only_exception();
-
-   return error_interface_only;
+   throw ::interface_only_exception();
 
 }
 
@@ -30,9 +28,7 @@ void compress::set_level(int iLevel)
 void compress::transfer(::file::file* pfileOut, ::file::file* pfileIn)
 {
 
-   throw interface_only_exception();
-
-   return error_interface_only;
+   throw ::interface_only_exception();
 
 }
 

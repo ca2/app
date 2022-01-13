@@ -41,10 +41,10 @@ namespace text_to_speech
    }
 
 
-   __transport(::text_to_speech::speaker) client::speaker()
+   __pointer(::text_to_speech::speaker) client::speaker()
    {
    
-      if(!m_ptexttospeechspeaker.is_initialized())
+      if(!m_ptexttospeechspeaker)
       {
          
          initialize_tts_speaker();

@@ -687,7 +687,7 @@ namespace apex
 
       virtual void create_session(index iEdge = 0);
 
-      virtual __transport(::apex::session) on_create_session(index iEdge);
+      virtual __pointer(::apex::session) on_create_session(index iEdge);
 
       virtual ::apex::session * session(index iEdge = 0);
 
@@ -1008,7 +1008,7 @@ namespace apex
 
       virtual void application_main(int argc, char *argv[], const char * pszCommandLine);
 
-      virtual int console_end(void estatus);
+      virtual int console_end(::e_status3 estatus);
 
 
       virtual __pointer(::extended::future < ::conversation >) message_box(const char* pszText, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;

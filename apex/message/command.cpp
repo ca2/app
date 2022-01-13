@@ -58,11 +58,11 @@ namespace message
       if (!m_commandtargetptraHandle.add_unique(pcommandtarget))
       {
 
-         return error_already_added;
+         throw_status(error_already_added);
 
       }
 
-      return success;
+      //return success;
 
    }
 

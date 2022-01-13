@@ -27,7 +27,7 @@ public:
 
    synchronization_array();
    synchronization_array(const ::synchronization_array & array);
-   virtual ~synchronization_array();
+   ~synchronization_array() override;
 
 
    void	clear();
@@ -48,7 +48,7 @@ public:
 
    virtual void wait();
 
-   virtual void wait(const class ::wait & wait, bool waitForAll = true, ::u32 uWaitMask = 0);
+   virtual ::index wait(const class ::wait & wait, bool waitForAll = true, ::u32 uWaitMask = 0);
 
    virtual void contains(const ::e_status3 & result) const;
 

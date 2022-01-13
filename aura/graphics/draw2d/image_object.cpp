@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-//::image_transport con::get_image(const ::payload & payloadFile, bool bCache, bool bSync)
+//::image_pointer con::get_image(const ::payload & payloadFile, bool bCache, bool bSync)
 //{
 //
 //   return pcontext->m_papexcontext->load_image(payloadFile, bCache, bSync);
@@ -9,7 +9,7 @@
 //}
 //
 //
-//::image_transport object::matter_image(const ::string & strMatter, bool bCache, bool bSync)
+//::image_pointer object::matter_image(const ::string & strMatter, bool bCache, bool bSync)
 //{
 //
 //   return psystem->matter_image(this, strMatter, bCache, bSync);
@@ -17,7 +17,7 @@
 //}
 //
 //
-//::image_transport object::load_image(const ::payload & payloadFile, bool bSync, bool bFromCache, bool bCreateHelperMaps)
+//::image_pointer object::load_image(const ::payload & payloadFile, bool bSync, bool bFromCache, bool bCreateHelperMaps)
 //{
 //
 //   {
@@ -58,7 +58,7 @@
 //}
 //
 //
-//::image_transport object::load_matter_image(const ::string & pszMatter, bool bSync, bool bCache, bool bCreateHelperMaps)
+//::image_pointer object::load_matter_image(const ::string & pszMatter, bool bSync, bool bCache, bool bCreateHelperMaps)
 //{
 //
 //   ::image_pointer pimage;
@@ -86,10 +86,10 @@
 //}
 //
 //
-//image_transport object::load_matter_icon(string_array & straMatter, string strIcon)
+//image_pointer object::load_matter_icon(string_array & straMatter, string strIcon)
 //{
 //
-//   ::image_transport pimage = create_image();
+//   ::image_pointer pimage = create_image();
 //
 //   if (!pimage)
 //   {
@@ -112,7 +112,7 @@
 //}
 //
 //
-//::image_transport object::load_thumbnail(const ::payload & payloadFile, int w, int h)
+//::image_pointer object::load_thumbnail(const ::payload & payloadFile, int w, int h)
 //{
 //
 //   auto pimage = create_image();
@@ -138,7 +138,7 @@
 //}
 //
 //
-//::image_transport object::load_thumbnail(const ::string & pszPath)
+//::image_pointer object::load_thumbnail(const ::string & pszPath)
 //{
 //
 //   auto pimage = create_image();
@@ -164,7 +164,7 @@
 //}
 //
 //
-//::image_transport object::load_dib(const ::file::path & pathDib)
+//::image_pointer object::load_dib(const ::file::path & pathDib)
 //{
 //
 //   auto pimage = create_image();

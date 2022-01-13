@@ -5,6 +5,7 @@
 #include "acme/filesystem/filesystem/acme_file.h"
 
 
+
 stdio_file::stdio_file()
 {
 
@@ -27,7 +28,7 @@ stdio_file::~stdio_file()
 }
 
 
-::extended::status stdio_file::open(const ::file::path & path, const ::file::e_open & eopen)
+void stdio_file::open(const ::file::path & path, const ::file::e_open & eopen)
 {
 
    string str;
@@ -78,22 +79,26 @@ stdio_file::~stdio_file()
 
    int iShare = _SH_DENYNO;
 
-   auto estatus = open(path, str, iShare);
+   open(path, str, iShare);
 
-   if (!estatus)
-   {
+   //throw_status(
 
-      return estatus;
+   //if (!estatus)
+   //{
 
-   }
+   //   return estatus;
 
-   return ::success;
+   //}
+
+   //return ::success;
 
 }
 
 
 void stdio_file::open(const ::file::path & path, const ::string & strAttributes, int iShare)
 {
+
+   m_path = path;
 
 #ifdef WINDOWS
 
@@ -109,20 +114,30 @@ void stdio_file::open(const ::file::path & path, const ::string & strAttributes,
 
 #endif
 
-   int iErrNo = errno;
-
-   auto estatus = errno_to_status(iErrNo);
-
-   if(!m_pfile)
+   if (!m_pfile)
    {
 
-      return estatus;
+      int iErrNo = errno;
+
+      auto estatus = errno_to_status(iErrNo);
+
+      if (!estatus)
+      {
+
+         if (m_eflag & flag_no_exception_if_not_found && estatus == error_file_not_found)
+         {
+
+            m_eflag |= flag_file_not_found;
+
+            return;
+
+         }
+
+         throw_status(estatus, string("Error with file: ") + path);
+
+      }
 
    }
-
-   m_path = path;
-
-   return ::success;
 
 }
 
@@ -364,7 +379,7 @@ string stdio_file::get_location() const
 }
 
 
-//CLASS_DECL_ACME file_transport create_stdio_file(const ::file::path & path, const ::string & strAttributes, int iShare)
+//CLASS_DECL_ACME file_pointer create_stdio_file(const ::file::path & path, const ::string & strAttributes, int iShare)
 //{
 //
 //   auto pfile = __new(stdio_file);

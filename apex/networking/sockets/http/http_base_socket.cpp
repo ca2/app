@@ -503,12 +503,14 @@ namespace sockets
 
             auto preader = m_pcontext->m_papexcontext->file().get_reader(pcsz);
 
-            if (!m_psystem->uncompress(response().file(), preader, "zlib"))
-            {
+            //if (!m_psystem->uncompress(response().file(), preader, "zlib"))
+
+            m_psystem->uncompress(response().file(), preader, "zlib");
+            //{
 
                response().file()->from_begin(preader);
 
-            }
+            //}
 
          }
          else

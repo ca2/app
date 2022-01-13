@@ -161,7 +161,7 @@ namespace opengl
          
       }
       
-      void estatus = make_current();
+      ::e_status3 estatus = make_current();
 
       if(!estatus)
       {
@@ -334,7 +334,7 @@ namespace opengl
    void context_fbo::render()
    {
       
-      void estatus = context::render();
+      ::e_status3 estatus = context::render();
       
       if(!estatus)
       {
@@ -351,7 +351,7 @@ namespace opengl
    void context_fbo::start()
    {
       
-      void estatus = context::start();
+      ::e_status3 estatus = context::start();
       
       return estatus;
    

@@ -21,25 +21,28 @@ namespace fs
    void link::initialize(::object * pobject) 
    {
 
-      auto estatus = ::fs::native::initialize(pobject);
+      //auto estatus =
+      ::fs::native::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = __construct_new(m_plisting);
+      //estatus = 
+      
+      __construct_new(m_plisting);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 

@@ -55,16 +55,16 @@ task::~task()
 void task::on_initialize_object()
 {
 
-   auto estatus = ::object::on_initialize_object();
+   /*auto estatus =*/ ::object::on_initialize_object();
 
-   if(!estatus)
-   {
+   //if(!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -148,12 +148,13 @@ bool task::task_set_name(const char* pszTaskName)
    
    if(::get_current_ithread() == m_itask)
    {
-      if (!::task_set_name(pszTaskName))
-      {
-         
-         return false;
-         
-      }
+      
+      ::task_set_name(pszTaskName);
+      //{
+      //   
+      //   return false;
+      //   
+      //}
    }
 
 
@@ -235,10 +236,10 @@ void task::update_task_ready_to_quit()
 }
 
 
-bool task::kick_thread()
+void task::kick_thread()
 {
 
-   return false;
+   // return false;
 
 }
 
@@ -246,7 +247,7 @@ bool task::kick_thread()
 void task::on_pre_run_task()
 {
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -257,7 +258,9 @@ void task::main()
    if(defer_implement(m_psystem))
    {
 
-      return m_psystem->m_estatus;
+      //return m_psystem->m_estatus;
+
+      return;
 
    }
 
@@ -266,33 +269,35 @@ void task::main()
 
       run_posted_routines();
 
-      auto estatus = m_pelement->run();
+      /* auto estatus = */ m_pelement->run();
 
       run_posted_routines();
 
-      return estatus;
+      //return estatus;
 
    }
 
-   auto estatus = on_pre_run_task();
+   /*auto estatus =*/ on_pre_run_task();
 
-   if (!estatus)
+   //if (!estatus)
+   //{
+
+   //   return estatus;
+
+   //}
+
+   //estatus = run();
+
+   run();
+
+  /* if (!estatus)
    {
 
       return estatus;
 
    }
 
-   estatus = run();
-
-   if (!estatus)
-   {
-
-      return estatus;
-
-   }
-
-   return estatus;
+   return estatus;*/
 
 }
 
@@ -300,24 +305,26 @@ void task::main()
 void task::run()
 {
 
-   auto estatus = run_posted_routines();
+   /*auto estatus =*/ run_posted_routines();
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
    if (defer_implement(m_psystem))
    {
 
-      return m_psystem->m_estatus;
+      //return m_psystem->m_estatus;
+
+      return;
 
 
    }
 
-   return estatus;
+   //return estatus;
 
 }
 
@@ -331,7 +338,7 @@ void task::stop_task()
 
    __throw(todo);
 
-   return estatus;
+   //return estatus;
 
 }
 
@@ -477,7 +484,7 @@ void task::post_routine(const ::routine& routine)
    if (!routine)
    {
 
-      return false;
+      return;
 
    }
 
@@ -487,7 +494,7 @@ void task::post_routine(const ::routine& routine)
 
    kick_idle();
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -508,18 +515,18 @@ void task::run_posted_routines()
 
          synchronouslock.unlock();
 
-         auto estatus = routine();
+         /*auto estatus =*/ routine();
 
          synchronouslock.lock();
 
       } while (m_routinea.has_element());
 
 
-      return ::success;
+      //return ::success;
 
    }
 
-   return ::success_none;
+   //return ::success_none;
 
 }
 
@@ -577,7 +584,7 @@ bool task::on_get_task_name(string & strTaskName)
 void task::task_caller_on_init()
 {
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -677,7 +684,7 @@ void task::term_task()
 //void task::on_task()
 //{
 //
-//   //void estatus = ::success;
+//   //::e_status3 estatus = ::success;
 //
 //   //while (!m_bSetFinish)
 //   //{
@@ -788,7 +795,7 @@ void task::branch(::enum_priority epriority, u32 nStackSize, u32 uCreateFlags AR
 
       __throw(error_invalid_argument);
 
-      return ::error_failed;
+      ///return ::error_failed;
 
    }
 
@@ -851,14 +858,14 @@ void task::branch(::enum_priority epriority, u32 nStackSize, u32 uCreateFlags AR
 
 #endif
 
-   auto estatus = task_caller_on_init();
+   /*auto estatus =*/ task_caller_on_init();
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
    //if (m_pobjectParent && m_bIsPredicate)
    //{
@@ -964,11 +971,13 @@ void task::branch(::enum_priority epriority, u32 nStackSize, u32 uCreateFlags AR
 
       m_bIsRunning = false;
 
-      return ::error_failed;
+      throw_status(error_wrong_state);
+
+      //return ::error_failed;
 
    }
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -1157,12 +1166,7 @@ CLASS_DECL_ACME bool __task_sleep(::task* ptask, synchronization_object* psync)
       while (ptask->task_get_run())
       {
 
-         if (psync->wait(100_ms).succeeded())
-         {
-
-            break;
-
-         }
+         psync->wait(100_ms);
 
       }
 

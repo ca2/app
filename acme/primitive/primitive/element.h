@@ -66,7 +66,7 @@ public:
    virtual void operator()(::message::message * pmessage);
    virtual void operator()(const ::payload & payload);
    virtual void run();
-   virtual void step();
+   virtual bool step();
    virtual ::payload realize();
 
    virtual void set_generic_object_name(const char* pszName);
@@ -75,7 +75,7 @@ public:
    virtual void set_application_id(const char* pszApplicationId);
 
    virtual void wait();
-   virtual void wait(const ::duration & duration);
+   virtual bool wait(const ::duration & duration);
 
 
    [[nodiscard]] virtual DURATION timeout() const;

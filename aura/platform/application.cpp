@@ -2031,7 +2031,7 @@ retry_license:
    void application::init1()
    {
 
-      void estatus = ::application::init1();
+      ::e_status3 estatus = ::application::init1();
 
       if (!estatus)
       {
@@ -9233,7 +9233,7 @@ namespace aura
    }
 
 
-//   icon_transport application::load_icon(const ::payload& payloadFile)
+//   icon_pointer application::load_icon(const ::payload& payloadFile)
 //   {
 //
 //#ifdef WINDOWS_DESKTOP

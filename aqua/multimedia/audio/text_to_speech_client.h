@@ -18,7 +18,7 @@ namespace text_to_speech
    public:
 
       
-      __transport(::text_to_speech::speaker)         m_ptexttospeechspeaker;
+      __pointer(::text_to_speech::speaker)         m_ptexttospeechspeaker;
       
       
       client();
@@ -28,7 +28,7 @@ namespace text_to_speech
       virtual void initialize_tts_speaker();
       
       
-      virtual __transport(::text_to_speech::speaker) speaker();
+      virtual __pointer(::text_to_speech::speaker) speaker();
       
 
    };

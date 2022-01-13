@@ -92,7 +92,7 @@ namespace crypto_openssl
 
       #endif
 
-         return false;
+         throw_status(error_failed);
 
       }
 
@@ -113,7 +113,7 @@ namespace crypto_openssl
 
 #endif
 
-         return false;
+         throw_status(error_failed);
 
       }
 
@@ -131,7 +131,7 @@ namespace crypto_openssl
 
 #endif
 
-      return true;
+      return;
 
 
 #elif defined(_UWP)
@@ -499,7 +499,7 @@ namespace crypto_openssl
       if (iShaLen <= 0)
       {
 
-         return false;
+         throw_status(error_failed);
 
       }
 
@@ -518,7 +518,7 @@ namespace crypto_openssl
 
          EVP_CIPHER_CTX_free(pctx);
 
-         return false;
+         throw_status(error_failed);
 
       }
 
@@ -531,7 +531,7 @@ namespace crypto_openssl
 
          EVP_CIPHER_CTX_free(pctx);
 
-         return false;
+         throw_status(error_failed);
 
       }
 
@@ -541,7 +541,7 @@ namespace crypto_openssl
 
       EVP_CIPHER_CTX_free(pctx);
 
-      return true;
+      return;
 
 #endif
 
@@ -1498,16 +1498,17 @@ namespace crypto_openssl
    void crypto::defer_initialize()
    {
 
-      auto estatus = __defer_compose(m_pinitializer);
+      //auto estatus = 
+      __defer_compose(m_pinitializer);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 

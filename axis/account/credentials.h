@@ -72,7 +72,7 @@ namespace account
       /// input
       /// m_strToken
       /// eresult
-      virtual void save_status_to_storage(const void & estatus);
+      virtual void save_status_to_storage(const ::e_status3 & estatus);
 
 
       //virtual void  authenticate();

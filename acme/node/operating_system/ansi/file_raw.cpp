@@ -171,7 +171,7 @@ u64 file_length_raw(const char * path)
 //   if (pfile == nullptr)
 //   {
 //
-//      void estatus = ::get_last_status();
+//      ::e_status3 estatus = ::get_last_status();
 //
 //      return "";
 //

@@ -39,15 +39,15 @@ namespace win
 }
 
 
-CLASS_DECL_ACME void errno_to_status(i32 nErrno);
+CLASS_DECL_ACME ::e_status3 errno_to_status(i32 nErrno);
 
-CLASS_DECL_ACME void failed_errno_to_status(i32 nErrno);
+CLASS_DECL_ACME ::e_status3 failed_errno_to_status(i32 nErrno);
 
 
 #ifdef WINDOWS
 
 
-CLASS_DECL_ACME void last_error_to_status(DWORD dwLastError);
+CLASS_DECL_ACME ::e_status3 last_error_to_status(DWORD dwLastError);
 
 
 #endif

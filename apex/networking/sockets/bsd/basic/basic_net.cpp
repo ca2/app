@@ -52,17 +52,23 @@ namespace sockets
    void     net::initialize(::object * pobject)
    {
 
-      if(m_bInitialized)
-         return true;
-
-      auto estatus = ::object::initialize(pobject);
-
-      if (!estatus)
+      if (m_bInitialized)
       {
 
-         return estatus;
+         return;
 
       }
+
+      //auto estatus = ::object::initialize(pobject);
+
+      ::object::initialize(pobject);
+
+      //if (!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
 
       m_bInitialized = true;
 
@@ -76,24 +82,24 @@ namespace sockets
       }
 
 
-      return estatus;
+      //return estatus;
 
    }
 
 
-   bool net::gudo_set()
-   {
-
-      if(!m_bInitialized)
-         return false;
-
-//      m_mapCache.gudo_set();
-
-      //    m_mapReverseCache.gudo_set();
-
-      return true;
-
-   }
+//   bool net::gudo_set()
+//   {
+//
+//      if(!m_bInitialized)
+//         return false;
+//
+////      m_mapCache.gudo_set();
+//
+//      //    m_mapReverseCache.gudo_set();
+//
+//      return true;
+//
+//   }
 
 
    void net::destroy()
@@ -108,7 +114,7 @@ namespace sockets
 
       }
 
-      return ::success;
+      //return ::success;
 
    }
 

@@ -49,18 +49,20 @@ namespace apex
    void node::on_initialize_object()
    {
 
-      auto estatus = ::acme::node::on_initialize_object();
+      //auto estatus =
+      
+      ::acme::node::on_initialize_object();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       m_psystem->m_papexnode = this;
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -70,16 +72,18 @@ namespace apex
    
       auto psystem = m_psystem;
       
-      auto estatus = psystem->main();
+      //auto estatus = 
       
-      if(!estatus)
-      {
-       
-         return estatus;
-         
-      }
+      psystem->main();
       
-      return estatus;
+      //if(!estatus)
+      //{
+      // 
+      //   return estatus;
+      //   
+      //}
+      //
+      //return estatus;
       
    }
 
@@ -157,7 +161,7 @@ namespace apex
    void node::shell_create_link(::file::path pathObj, ::file::path pathLnk, string strDesc, ::file::path pathIco, int iIcon)
    {
 
-      return ::error_interface_only;
+      throw ::interface_only_exception();
 
    }
 
@@ -165,7 +169,7 @@ namespace apex
    // void node::parallelization_initialize()
    // {
 
-   //    return ::error_interface_only;
+   //    throw ::interface_only_exception();
 
    // }
 
@@ -173,7 +177,7 @@ namespace apex
    // void node::parallelization_finalize()
    // {
 
-   //    return ::error_interface_only;
+   //    throw ::interface_only_exception();
 
    // }
 
@@ -181,7 +185,7 @@ namespace apex
    void node::thread_initialize(::thread * pthread)
    {
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -197,7 +201,7 @@ namespace apex
    // void node::node_thread_initialize(::thread * pthread)
    // {
 
-   //    return ::error_interface_only;
+   //    throw ::interface_only_exception();
 
    // }
 
@@ -205,7 +209,7 @@ namespace apex
    // void node::node_thread_finalize(::thread * pthread)
    // {
 
-   //    return ::error_interface_only;
+   //    throw ::interface_only_exception();
 
    // }
 
@@ -223,7 +227,7 @@ namespace apex
 
       __throw(::error_interface_only);
 
-      return error_interface_only;
+      throw ::interface_only_exception();
 
    }
 
@@ -239,7 +243,7 @@ namespace apex
 
       throw ::interface_only_exception();
 
-      return error_interface_only;
+      throw ::interface_only_exception();
 
    }
 
@@ -275,7 +279,7 @@ namespace apex
    void node::defer_create_main_menu(const string_array & straParent, const string_array & straMenu, const string_array & straId)
    {
       
-      return error_interface_only;
+      throw ::interface_only_exception();
       
    }
 
@@ -306,16 +310,17 @@ namespace apex
 
       auto psystem = get_system()->m_papexsystem;
 
-      auto estatus = psystem->on_start_system();
+      //auto estatus = 
+      psystem->on_start_system();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
 
    }

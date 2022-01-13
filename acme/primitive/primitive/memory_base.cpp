@@ -2005,7 +2005,7 @@ void memory_base::patch_line_suffix(const ::block& blockPrefix, const block& blo
    if (iStart < 0)
    {
 
-      return error_not_found;
+      throw_status(error_not_found);
 
    }
 
@@ -2058,7 +2058,7 @@ void memory_base::patch_line_suffix(const ::block& blockPrefix, const block& blo
 
    }
 
-   return ::success;
+   //return ::success;
 
 }
 

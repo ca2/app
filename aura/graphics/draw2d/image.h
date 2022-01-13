@@ -828,7 +828,7 @@ public:
 ////
 //
 //
-//inline ::image_transport __create_image()
+//inline ::image_pointer __create_image()
 //{
 //
 //   return ::__create<::image>();

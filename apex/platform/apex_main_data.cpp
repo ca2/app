@@ -40,14 +40,16 @@ apex_main_data::~apex_main_data()
 void apex_main_data::system_construct(const ::main & main)
 {
 
-   auto estatus = ::main::system_construct(main);
+   //auto estatus = 
+   
+   ::main::system_construct(main);
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
    m_iPathInstallFolderExeArg = -1;
 
@@ -75,16 +77,17 @@ void apex_main_data::system_construct(const ::main & main)
 
 #endif
 
-   estatus = on_system_construct();
+   //estatus = 
+   on_system_construct();
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
-   return estatus;
+   //return estatus;
 
 }
 
@@ -173,10 +176,10 @@ void apex_main_data::system_construct(const ::main & main)
 //}
 
 
-e_status apex_main_data::on_system_construct()
+void apex_main_data::on_system_construct()
 {
 
-   return success;
+   //return success;
 
 }
 

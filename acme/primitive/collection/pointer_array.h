@@ -329,35 +329,22 @@ public:
 
       this->prepare_first_in_count_last_out(iStart, inCountLastOut);
 
-      ::count cFailed = 0;
+      //::count cFailed = 0;
 
-      ::count cSucceeded = 0;
+      //::count cSucceeded = 0;
 
       for (index i = iStart; i <= inCountLastOut; i++)
       {
 
          auto p = this->element_at(i);
 
-         auto estatus = p->call_member(eid);
-
-         if(!estatus)
-         {
-
-            cFailed++;
-
-         }
-         else
-         {
-
-            cSucceeded++;
-
-         }
+         p->call_member(eid);
 
       }
 
-      auto estatus = _003CountStatus(cSucceeded, cFailed);
+      //auto estatus = _003CountStatus(cSucceeded, cFailed);
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -912,23 +899,12 @@ public:
    void destroy_all()
    {
 
-      void estatus = ::success;
-
       for (auto& p : *this)
       {
 
-         auto estatusItem = p->destroy();
-
-         if (!estatusItem)
-         {
-
-            estatus = estatusItem;
-
-         }
+         p->destroy();
 
       }
-
-      return estatus;
 
    }
 

@@ -333,8 +333,7 @@ found:
 }
 
 
-
-bool __node_acme_pre_init()
+void __node_acme_pre_init()
 {
 
    //xxdebug_box("__node_acme_pre_init","box",e_message_box_ok);
@@ -392,14 +391,12 @@ bool __node_acme_pre_init()
 
 
 
-   return true;
+   //return true;
 
 }
 
 
-
-
-bool __node_acme_pos_init()
+void __node_acme_pos_init()
 {
 
    //_set_purecall_handler(_ca2_purecall);
@@ -411,21 +408,22 @@ bool __node_acme_pos_init()
 
 
 
-   return true;
+   //return true;
 
 }
 
 
-bool __node_acme_pre_term()
+void __node_acme_pre_term()
 {
 
 
 
-   return true;
+   //return true;
 
 }
 
-bool __node_acme_pos_term()
+
+void __node_acme_pos_term()
 {
 
 
@@ -471,7 +469,7 @@ bool __node_acme_pos_term()
    WSACleanup();
 
 
-   return true;
+   //return true;
 
 }
 

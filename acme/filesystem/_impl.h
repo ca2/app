@@ -886,7 +886,7 @@ namespace file
       m_pathFinal = listing.m_pathFinal;
       m_straPattern = listing.m_straPattern;
       m_straIgnoreName = listing.m_straIgnoreName;
-      m_statusresult = listing.m_statusresult;
+      //m_statusresult = listing.m_statusresult;
       m_straTitle = listing.m_straTitle;
 
       return *this;

@@ -237,14 +237,16 @@ application::~application()
 void application::initialize(::object * pobject)
 {
 
-auto estatus = ::thread::initialize(pobject);
+//auto estatus = ::thread::initialize(pobject);
 
-if (!estatus)
-{
+   ::thread::initialize(pobject);
 
-return estatus;
-
-}
+//if (!estatus)
+//{
+//
+//return estatus;
+//
+//}
 
 m_papplicationimpl->initialize(this);
 ///initialize(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
@@ -277,7 +279,7 @@ m_strBuild = "(unknown build version)";
 
 }
 
-return estatus;
+//return estatus;
 
 }
 
@@ -349,9 +351,10 @@ void application::destroy()
 
    __unbind(this, m_puserlanguagemap OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
 
-   auto estatus = ::apex::context::destroy();
+   //auto estatus = 
+   ::apex::context::destroy();
 
-   return estatus;
+   //return estatus;
 
 }
 
@@ -618,7 +621,7 @@ return pathFolder;
 }
 
 
-__transport(::handle::ini) application::get_ini()
+__pointer(::handle::ini) application::get_ini()
 {
 
    auto pathFolder = get_app_localconfig_folder();
@@ -1238,7 +1241,7 @@ void application::get_temp_file_name_template(string & strRet, const ::string & 
 
 __throw(error_not_implemented);
 
-return false;
+///return false;
 
 }
 
@@ -1256,7 +1259,7 @@ void application::exit_application()
 
    try_close_application();
 
-   return ::success;
+   ///return ::success;
 
 }
 
@@ -1344,12 +1347,12 @@ void application::init_thread()
    try
    {
 
-      if (!pre_run())
-      {
+      pre_run();
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
    }
    catch (const ::exception & e)
@@ -1357,17 +1360,17 @@ void application::init_thread()
 
       handle_exception(e);
 
-      return false;
+///      return false;
 
    }
    catch (...)
    {
 
-      return false;
+//      return false;
 
    }
 
-   return true;
+   //return true;
 
 }
 
@@ -1405,14 +1408,15 @@ void application::pre_run()
 
       m_durationHeartBeat.Now();
 
-      if(!application_pre_run())
-      {
+      application_pre_run();
 
-         m_bReady = true;
+      //{
 
-         return false;
+      //   m_bReady = true;
 
-      }
+      //   return false;
+
+      //}
 
       //    if(!check_install())
       //    {
@@ -1436,31 +1440,32 @@ void application::pre_run()
 
       //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", e_message_box_icon_information);
 
-      auto estatus = on_before_launching();
+      //auto estatus = 
+      on_before_launching();
 
-      if(!estatus)
-      {
+      //if(!estatus)
+      //{
 
-         m_bReady = true;
+      //   m_bReady = true;
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       m_durationHeartBeat.Now();
 
-      if (!os_native_bergedge_start())
-      {
+      os_native_bergedge_start();
+      //{
 
-         m_bReady = true;
+      //   m_bReady = true;
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
       INFORMATION("apex::application::pre_run success");
 
-      return true;
+      //return true;
 
    }
    catch (const ::exception & e)
@@ -1476,7 +1481,7 @@ void application::pre_run()
 
    }
 
-   return false;
+   //return false;
 
 }
 
@@ -1704,32 +1709,36 @@ void application::init_instance()
 if (m_bInterprocessIntercommunication)
 {
 
-try
-{
-
+//try
+//{
+//
 __raw_compose(m_pinterprocessintercommunication, create_interprocess_intercommunication() OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_NOTE("::application::init_instance"));
 
-}
-catch (...)
-{
+//}
+//catch (...)
+//{
+//
+//}
 
-}
+//if (!m_pinterprocessintercommunication)
+//{
+//
+//   throw_status()
+//
+////return ::error_failed;
+//
+//}
 
-if (!m_pinterprocessintercommunication)
-{
+//auto estatus = 
 
-return ::error_failed;
+m_pinterprocessintercommunication->initialize_interprocess_communication(this, m_strAppId);
 
-}
-
-auto estatus = m_pinterprocessintercommunication->initialize_interprocess_communication(this, m_strAppId);
-
-if (!estatus)
-{
-
-return estatus;
-
-}
+//if (!estatus)
+//{
+//
+//return estatus;
+//
+//}
 
 }
 
@@ -1838,14 +1847,15 @@ m_pinterprocessintercommunication->on_new_instance(
 
 INFORMATION("axis::application::init_instance success");
 
-auto estatus = create_impact_system();
+//auto estatus = 
+create_impact_system();
 
-if (failed(estatus))
-{
-
-return false;
-
-}
+//if (failed(estatus))
+//{
+//
+//return false;
+//
+//}
 
 
 if (!is_system() && !is_session())
@@ -2132,7 +2142,7 @@ auto psystem = get_system()->m_papexsystem;
 psystem->appa_load_string_table();
 
 }
-return true;
+//return true;
 
 }
 
@@ -2218,19 +2228,21 @@ m_durationHeartBeat.Now();
 
 m_durationHeartBeat.Now();
 
-void estatus = ::success;
+//::e_status3 estatus = ::success;
 
 try
 {
 
-estatus = process_init();
+//estatus = 
+   
+   process_init();
 
-if(!estatus)
-{
-
-return false;
-
-}
+//if(!estatus)
+//{
+//
+//return false;
+//
+//}
 
 }
 catch (::exit_exception * pe)
@@ -2244,13 +2256,13 @@ catch (const ::exception * pe)
 
 ::acme::del(pe);
 
-return false;
+//return false;
 
 }
 catch (...)
 {
 
-return false;
+//return false;
 
 }
 
@@ -2265,12 +2277,13 @@ m_durationHeartBeat.Now();
 try
 {
 
-if (!init_application())
-{
-
-return false;
-
-}
+//if (!init_application())
+   init_application();
+//{
+//
+//return false;
+//
+//}
 
 }
 catch (const ::exception & e)
@@ -2278,13 +2291,13 @@ catch (const ::exception & e)
 
 handle_exception(e);
 
-return false;
+//return false;
 
 }
 catch (...)
 {
 
-return false;
+//return false;
 
 }
 
@@ -2303,7 +2316,7 @@ if (psystem->is_true("uninstall"))
 
    do_uninstall();
 
-   return false;
+   //return false;
 
 }
 else if (psystem->is_true("install"))
@@ -2311,18 +2324,20 @@ else if (psystem->is_true("install"))
 
    do_install();
 
-   return false;
+   //return false;
 
 }
 
 }
 
-if (!init_instance())
-{
+init_instance();
 
-return false;
-
-}
+//if (!init_instance())
+//{
+//
+////return false;
+//
+//}
 
 on_update_matter_locator();
 
@@ -2333,22 +2348,22 @@ catch (const ::exit_exception & exception)
 __rethrow(exception);
 
 }
-catch(const ::exception & e)
-{
-
-m_result.add(e);
-
-return m_result.estatus();
-
-}
+//catch(const ::exception & e)
+//{
+//
+////m_result.add(e);
+//
+////return m_result.estatus();
+//
+//}
 catch (...)
 {
 
-return false;
+//return false;
 
 }
 
-return true;
+//return true;
 
 }
 
@@ -2422,21 +2437,22 @@ catch (...)
 
 
 
-bool application::do_install()
+void application::do_install()
 {
 
    auto psystem = get_system()->m_papexsystem;
 
-   if (!on_install())
-   {
+   //if (!on_install())
+   on_install();
+   //{
 
-      ::output_debug_string("Failed at on_install : " + m_strAppId + "\n\n");
+   //   ::output_debug_string("Failed at on_install : " + m_strAppId + "\n\n");
 
-      psystem->m_result.add(error_failed);
+   //   psystem->m_result.add(error_failed);
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
    string strBuild = m_strBuild;
 
@@ -2447,7 +2463,7 @@ bool application::do_install()
    system_add_app_install(strAppId, strBuild);
 
 
-   return true;
+   //return true;
 
 }
 
@@ -2470,12 +2486,13 @@ void application::on_before_launching()
    && strLicense.has_char())
    {
 
-      if (!assert_user_logged_in())
-      {
+      assert_user_logged_in();
+      //if (!assert_user_logged_in())
+      //{
 
-         return false;
+      //   //return false;
 
-      }
+      //}
 
       // call application's is_licensed function
       // because if delay is needed for authentication -
@@ -2501,7 +2518,7 @@ void application::on_before_launching()
 
          }
 
-         return false;
+         //return false;
 
       }
 
@@ -2509,25 +2526,27 @@ void application::on_before_launching()
 
    INFORMATION("initial_check_directrix : ok ("<< __type_name(this) <<")"<< m_strAppId);
 
-   return true;
+   //return true;
 
 }
 
 
 
-bool application::do_uninstall()
+void application::do_uninstall()
 {
 
-if (!on_uninstall())
-{
+   on_uninstall();
 
-return false;
-
-//         psystem->install().erase_spa_start(m_strAppId);
-
-}
-
-return true;
+//if (!on_uninstall())
+//{
+//
+//return false;
+//
+////         psystem->install().erase_spa_start(m_strAppId);
+//
+//}
+//
+//return true;
 
 }
 
@@ -2538,15 +2557,16 @@ void application::on_install()
 if (is_service())
 {
 
-auto estatus = enable_service();
+//auto estatus = enable_service();
+   enable_service();
 
-if (!estatus)
-{
-
-return estatus;
-
-}
-return estatus;
+//if (!estatus)
+//{
+//
+//return estatus;
+//
+//}
+//return estatus;
 
 }
 else
@@ -2560,7 +2580,7 @@ else
 
 }
 
-return ::success;
+//return ::success;
 
 }
 
@@ -2576,20 +2596,21 @@ bool bOk = true;
 if (is_service())
 {
 
-auto estatus = disable_service();
+//auto estatus = 
+   disable_service();
 
-if(!estatus)
-{
-
-return estatus;
+//if(!estatus)
+//{
+//
+//return estatus;
+//
+//}
+//
+//return estatus;
 
 }
 
-return estatus;
-
-}
-
-return bOk;
+//return bOk;
 
 }
 
@@ -2703,7 +2724,7 @@ return true;
 void application::os_native_bergedge_start()
 {
 
-return true;
+//return true;
 
 }
 
@@ -2905,14 +2926,16 @@ if (::get_task() == nullptr)
 
 }
 
-if (!notify_process_init())
-{
+notify_process_init();
 
-FATAL("apex::application::process_init .1");
-
-return false;
-
-}
+//if (!notify_process_init())
+//{
+//
+//FATAL("apex::application::process_init .1");
+//
+//return false;
+//
+//}
 
 //if (!impl_process_init())
 //{
@@ -2967,20 +2990,22 @@ INFORMATION("axis::application::process_init success");
 
 //return true;
 
-auto estatus = userfs_process_init();
+//auto estatus =
 
-if(!estatus && estatus != error_not_implemented)
-{
+userfs_process_init();
 
-ERROR(".2");
-
-return false;
-
-}
+//if()
+//{
+//
+//ERROR(".2");
+//
+//return false;
+//
+//}
 
 INFORMATION("success");
 
-return true;
+//return true;
 
 }
 
@@ -3063,14 +3088,16 @@ INFORMATION("apex::application::init_application");
 
 m_durationHeartBeat.Now();
 
-if (!init1())
-{
+init1();
 
-//dappy(__type_name(this) + " : init1 failure : " + __string(m_iErrorCode));
-
-return false;
-
-}
+//if (!init1())
+//{
+//
+////dappy(__type_name(this) + " : init1 failure : " + __string(m_iErrorCode));
+//
+//return false;
+//
+//}
 
 psystem->install_progress_add_up(); // 2
 
@@ -3078,14 +3105,16 @@ psystem->install_progress_add_up(); // 2
 
 m_durationHeartBeat.Now();
 
-if (!init2())
-{
+init2();
 
-//dappy(__type_name(this) + " : init2 failure : " + __string(m_iErrorCode));
-
-return false;
-
-}
+//if (!init2())
+//{
+//
+////dappy(__type_name(this) + " : init2 failure : " + __string(m_iErrorCode));
+//
+//return false;
+//
+//}
 
 psystem->install_progress_add_up(); // 3
 
@@ -3093,14 +3122,16 @@ psystem->install_progress_add_up(); // 3
 
 m_durationHeartBeat.Now();
 
-if (!init3())
-{
+init3();
 
-//dappy(__type_name(this) + " : init3 failure : " + __string(m_iErrorCode));
-
-return false;
-
-}
+//if (!init3())
+//{
+//
+////dappy(__type_name(this) + " : init3 failure : " + __string(m_iErrorCode));
+//
+//return false;
+//
+//}
 
 psystem->install_progress_add_up(); // 4
 
@@ -3110,38 +3141,38 @@ m_durationHeartBeat.Now();
 
 //dappy(__type_name(this) + " : init3 ok : " + __string(m_iErrorCode));
 
-try
-{
+//try
+//{
 
-if (!init())
-{
+   init();
+//{
+//
+////dappy(__type_name(this) + " : initialize failure : " + __string(m_iErrorCode));
+//
+//return false;
+//
+//}
+//
+//}
+//catch (const ::string & psz)
+//{
+//
+//if (!strcmp(psz, "You have not logged in! Exiting!"))
+//{
+//
+//return false;
+//
+//}
+//
+//return false;
 
-//dappy(__type_name(this) + " : initialize failure : " + __string(m_iErrorCode));
-
-return false;
-
-}
-
-}
-catch (const ::string & psz)
-{
-
-if (!strcmp(psz, "You have not logged in! Exiting!"))
-{
-
-return false;
-
-}
-
-return false;
-
-}
+//}
 
 psystem->install_progress_add_up(); // 5
 
 //      m_bAuraInitializeInstanceResult = true;
 
-return true;
+//return true;
 
 }
 
@@ -3168,25 +3199,27 @@ return nullptr;
 void application::init1()
 {
 
-   auto estatus = initialize_context();
+   //auto estatus = 
+   initialize_context();
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
    auto psystem = get_system()->m_papexsystem;
 
-   estatus = __own(this, m_puserlanguagemap, __new(::user::language_map) OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_NOTE("::application::init1") );
+   //estatus = 
+   __own(this, m_puserlanguagemap, __new(::user::language_map) OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_NOTE("::application::init1") );
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
    if (psystem)
    {
@@ -3216,12 +3249,13 @@ void application::init1()
 
    m_durationHeartBeat.Now();
 
-   if (!notify_init1())
-   {
+   notify_init1();
+   //if (!notify_init1())
+   /*{
 
       return ::error_failed;
 
-   }
+   }*/
 
    if (psystem->m_bLocalization)
    {
@@ -3287,20 +3321,21 @@ void application::init1()
 
    }
 
-   if (!initialize_contextualized_theme())
-   {
+   //if (!initialize_contextualized_theme())
+   initialize_contextualized_theme();
+   //{
 
-      FATAL("Failed to initialize_contextualized_theme");
+   //   FATAL("Failed to initialize_contextualized_theme");
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
    INFORMATION("start");
 
    m_durationHeartBeat.Now();
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -3342,18 +3377,21 @@ void application::init2()
 
 //}
 
-if (!notify_init2())
-{
+   notify_init2();
 
-return false;
+//if (!notify_init2())
+//{
+//
+//return false;
+//
+//}
+
+
+
+//return true;
 
 }
 
-
-
-return true;
-
-}
 
 void application::term2()
 {
@@ -3400,14 +3438,16 @@ m_strRelativeFolder = strFolder;
 
 //}
 
-if (!notify_init3())
-{
+notify_init3();
 
-return false;
-
-}
-
-return true;
+//if (!notify_init3())
+//{
+//
+//return false;
+//
+//}
+//
+//return true;
 
 }
 
@@ -3598,12 +3638,12 @@ bool application::check_exclusive(bool & bHandled)
       try
       {
 
-         if(!on_exclusive_instance_conflict(bHandled, ExclusiveInstanceGlobal, ""))
-         {
+         on_exclusive_instance_conflict(bHandled, ExclusiveInstanceGlobal, "");
+         //{
 
-            return false;
+         //   return false;
 
-         }
+         //}
 
       }
       catch(...)
@@ -3628,12 +3668,7 @@ bool application::check_exclusive(bool & bHandled)
          try
          {
 
-            if(!on_exclusive_instance_conflict(bHandled, ExclusiveInstanceGlobalId, get_global_mutex_id()))
-            {
-
-               return false;
-
-            }
+            on_exclusive_instance_conflict(bHandled, ExclusiveInstanceGlobalId, get_global_mutex_id());
 
          }
          catch(...)
@@ -3657,12 +3692,7 @@ bool application::check_exclusive(bool & bHandled)
 
          INFORMATION("A instance of the application:<br><br>-" << m_strAppName << "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this new instance.");
 
-         if(!on_exclusive_instance_conflict(bHandled, ExclusiveInstanceLocal, ""))
-         {
-
-            return false;
-
-         }
+         on_exclusive_instance_conflict(bHandled, ExclusiveInstanceLocal, "");
 
       }
       catch (...)
@@ -3688,12 +3718,13 @@ bool application::check_exclusive(bool & bHandled)
          // Should in some way activate the other instance
          INFORMATION("A instance of the application:<br><br> - " << m_strAppName << " with the id \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::count with the same id.<br><br>Exiting this new instance.");
 
-         if(!on_exclusive_instance_conflict(bHandled, ExclusiveInstanceLocalId, get_local_mutex_id()))
-         {
+         on_exclusive_instance_conflict(bHandled, ExclusiveInstanceLocalId, get_local_mutex_id());
+         //if(!)
+         //{
 
-            return false;
+         //   return false;
 
-         }
+         //}
 
       }
       catch (...)
@@ -3731,7 +3762,7 @@ void application::notify_process_init()
 
 route_message(&message);
 
-return true;
+//return true;
 
 }
 
@@ -3743,7 +3774,7 @@ void application::notify_init1()
 
 route_message(&message);
 
-return message.m_bOk;
+//return message.m_bOk;
 
 }
 
@@ -3755,9 +3786,11 @@ void application::notify_init2()
 
 route_message(&message);
 
-return message.m_bOk;
+//return message.m_bOk;
 
 }
+
+
 void application::notify_init3()
 {
 
@@ -3765,7 +3798,7 @@ void application::notify_init3()
 
 route_message(&message);
 
-return message.m_bOk;
+//return message.m_bOk;
 
 }
 
@@ -3881,7 +3914,7 @@ return on_exclusive_instance_local_conflict_id(bHandled, strId);
 
 }
 
-return false;
+//return false;
 
 }
 
@@ -3944,7 +3977,7 @@ catch (...)
 
 }
 
-return bContinue;
+//return bContinue;
 
 }
 
@@ -3997,7 +4030,7 @@ catch (...)
 
 }
 
-return bContinue;
+//return bContinue;
 
 }
 
@@ -4013,7 +4046,7 @@ process_command_line(pcommandline);
 
 bHandled = true;
 
-return false;
+//return false;
 
 }
 
@@ -4766,23 +4799,25 @@ synchronous_lock synchronouslock(mutex());
 }
 
 
-bool application::register_application_as_spa_file_type_handler()
+void application::register_application_as_spa_file_type_handler()
 {
 
    auto psystem = m_psystem;
 
    auto pnode = psystem->node();
 
-   auto bOk= pnode->register_spa_file_type(m_strAppId);
+   //auto bOk= 
+   
+   pnode->register_spa_file_type(m_strAppId);
 
-   if (!bOk)
-   {
+   //if (!bOk)
+   //{
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
-   return true;
+   //return true;
 
 }
 
@@ -5059,10 +5094,12 @@ return "core";
 //}
 
 
-bool application::post_message(const ::id & id, wparam wparam, lparam lparam )
+void application::post_message(const ::id & id, wparam wparam, lparam lparam )
 {
 
-return ::thread::post_message(id, wparam, lparam);
+//return ::thread::post_message(id, wparam, lparam);
+
+   ::thread::post_message(id, wparam, lparam);
 
 }
 
@@ -5450,12 +5487,14 @@ bool application::start_application(bool bSynch, ::create * pcreate)
 if (bSynch)
 {
 
-if (!begin_synch())
-{
+   begin_synch();
 
-return false;
-
-}
+//if (!begin_synch())
+//{
+//
+//return false;
+//
+//}
 
 }
 else
@@ -5711,7 +5750,7 @@ return nullptr;
 void application::verb()
 {
 
-   return true;
+   //return true;
 
 }
 
@@ -5807,8 +5846,8 @@ install_message_routing(ptask);
 
 m_bReady = true;
 
-try
-{
+//try
+//{
 
    string strType = __type_name(this);
 
@@ -5833,30 +5872,34 @@ try
 //
 //}
 
-   resume_on_exception:
+   //resume_on_exception:
 
    try
    {
 
-      m_estatus = run();
+      //m_estatus = run();
+
+      run();
 
    }
    catch (const ::exception & e)
    {
 
-      if (handle_exception(e))
-      {
+      handle_exception(e);
 
-         goto resume_on_exception;
+      //if (handle_exception(e))
+      //{
 
-      }
+      //   goto resume_on_exception;
 
-      m_estatus = e.m_estatus;
+      //}
 
-      }
+      //m_estatus = e.m_estatus;
+
+      //}
 
    }
-   catch (const ::exception &)
+   catch (...)
    {
 
    }
@@ -5877,11 +5920,11 @@ try
    catch (...)
    {
 
-      m_result.add(error_failed);
+   //   // m_result.add(error_failed);
    
    }
 
-   return m_estatus;
+   //return m_estatus;
 
 }
 
@@ -6245,24 +6288,26 @@ if (has_property("install"))
 {
 
 // apex level app install
-if (!Ex2OnAppInstall())
-{
-
-return false;
-
-}
+   Ex2OnAppInstall();
+//if (!)
+//{
+//
+////return false;
+//
+//}
 
 }
 else if (has_property("uninstall"))
 {
 
+   Ex2OnAppUninstall();
 // apex level app uninstall
-if (!Ex2OnAppUninstall())
-{
-
-return false;
-
-}
+//if (!Ex2OnAppUninstall())
+//{
+//
+//return false;
+//
+//}
 
 }
 else
@@ -6317,7 +6362,7 @@ application_menu_update();
 
 INFORMATION("success");
 
-return true;
+//return true;
 
 }
 
@@ -6792,14 +6837,15 @@ __pointer(::progress::real) application::show_progress(::user::interaction * pui
 void application::userfs_init1()
 {
 
-return error_not_implemented;
+//return error_not_implemented;
 
 }
+
 
 void application::userfs_process_init()
 {
 
-return error_not_implemented;
+//return error_not_implemented;
 
 }
 
@@ -6921,7 +6967,7 @@ if (pmutex->already_exists())
 
 //            output_error_message("Could not launch spa installer. It is already running.", e_message_box_ok);
 
-return -35;
+  // return -35;
 
 }
 
@@ -6962,7 +7008,7 @@ return hotplugin_host_host_starter_start_sync(pszCommandLine, get_application(),
 void application::hotplugin_host_host_starter_start_sync(const ::string & pszCommandLine, ::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
 {
 
-return -1;
+///return -1;
 
 }
 
@@ -9760,7 +9806,7 @@ string application::get_theme()
 void application::initialize_contextualized_theme()
 {
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -9781,7 +9827,7 @@ void application::_001OnSwitchContextTheme(::message::message* pmessage)
 void     application::create_impact_system()
 {
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -9798,7 +9844,7 @@ void application::on_thread_on_idle(::thread* pthread, ::i32 lCount)
 
    __throw(todo, "interaction");
 
-   return ::error_failed;
+   //return ::error_failed;
 
 }
 

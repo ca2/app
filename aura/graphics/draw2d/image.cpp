@@ -182,7 +182,7 @@ void image::create_ex(const ::size_i32 & size, ::color32_t * pcolorref, int iSca
 
    throw interface_only_exception();
 
-   return error_interface_only;
+   throw ::interface_only_exception();
 
 }
 
@@ -208,7 +208,7 @@ void image::initialize(const ::size_i32 & size, ::color32_t * pcolorref, int iSc
 //
 //   throw interface_only_exception();
 //
-//   return error_interface_only;
+//   throw ::interface_only_exception();
 //
 //}
 

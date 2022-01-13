@@ -24,44 +24,66 @@ void api_client::defer_api()
    if (!m_papi || !m_papi->m_bAuthenticated)
    {
 
-      auto estatus = create_api();
+      //auto estatus = 
+      
+      create_api();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       ::file::path pathProfile;
 
       pathProfile = m_pcontext->m_papexcontext->dir().appdata() / "api" / m_strImplementation / (m_strProfileStore + ".network_payload");
 
-      estatus = m_papi->initialize_api(this, pathProfile);
+      //estatus = 
 
-      if (!estatus)
+      try
+      {
+         m_papi->initialize_api(this, pathProfile);
+
+      }
+      catch (...)
       {
 
          m_papi.release();
 
-         return false;
+         throw_status(error_failed);
 
       }
 
-      estatus = m_papi->api_login(m_strApiClientConfig, m_strBrowserProfile);
+      //if (!estatus)
+      //{
 
-      if (!estatus && estatus != success_scheduled)
+      //   m_papi.release();
+
+      //   return false;
+
+      //}
+
+      //estatus = m_papi->api_login(m_strApiClientConfig, m_strBrowserProfile);
+
+      try
+      {
+
+         m_papi->api_login(m_strApiClientConfig, m_strBrowserProfile);
+
+      }
+      catch (...)
       {
 
          m_papi.release();
 
-         return false;
+         return;
 
       }
 
    }
 
-   return true;
+   //return true;
 
 }
 
@@ -85,7 +107,7 @@ void api_client::create_api(const ::string& strImplementation)
       if (!pfactory)
       {
 
-         return pfactory;
+         throw_status(error_resource);
 
       }
 
@@ -94,7 +116,7 @@ void api_client::create_api(const ::string& strImplementation)
       if (!m_papi)
       {
 
-         return false;
+         throw_status(error_resource);
 
       }
 
@@ -102,7 +124,7 @@ void api_client::create_api(const ::string& strImplementation)
 
    }
 
-   return success;
+   //return success;
 
 }
 
@@ -110,25 +132,28 @@ void api_client::create_api(const ::string& strImplementation)
 void api_client::api_get(::string & str, const string& strUrl, property_set& set)
 {
 
-   auto estatus = defer_api();
+   //auto estatus = 
+      defer_api();
 
-   if (!estatus || !m_papi)
+   if (!m_papi)
    {
 
-      return estatus;
+      throw_status(error_resource);
 
    }
 
-   estatus = m_papi->api_get(str, strUrl, set);
+   //estatus = 
+   
+   m_papi->api_get(str, strUrl, set);
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
-   return estatus;
+   //return estatus;
 
 }
 
@@ -136,25 +161,26 @@ void api_client::api_get(::string & str, const string& strUrl, property_set& set
 void api_client::api_get(::payload& payload, const string& strUrl, property_set& set)
 {
 
-   auto estatus = defer_api();
+   //auto estatus =
+   defer_api();
 
-   if (!estatus || !m_papi)
+   if (!m_papi)
    {
 
-      return estatus;
+      throw_status(error_resource);
 
    }
 
-   estatus = m_papi->api_get(payload, strUrl, set);
+   m_papi->api_get(payload, strUrl, set);
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
-   return estatus;
+   //return estatus;
 
 }
 
@@ -162,25 +188,28 @@ void api_client::api_get(::payload& payload, const string& strUrl, property_set&
 void api_client::api_download(string strGet, const ::file::path& path, property_set& set)
 {
 
-   auto estatus = defer_api();
+   //auto estatus =
+   
+   defer_api();
 
-   if (!estatus || !m_papi)
+   if (!m_papi)
    {
 
-      return estatus;
+      throw_status(error_resource);
 
    }
 
-   estatus = m_papi->api_download(strGet, path, set);
+   //estatus = 
+   m_papi->api_download(strGet, path, set);
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
-   return estatus;
+   //return estatus;
 
 }
 

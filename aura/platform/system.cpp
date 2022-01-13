@@ -580,7 +580,7 @@ namespace aura
    //}
 
 
-   __transport(::factory::factory) & system::node_factory()
+   __pointer(::factory::factory) & system::node_factory()
    {
 
       auto & pfactory = factory("node", PLATFORM_NAME);
@@ -1064,7 +1064,7 @@ namespace aura
    void system::initialize_draw2d()
    {
 
-      void estatus = ::success;
+      ::e_status3 estatus = ::success;
 
       try
       {
@@ -1226,7 +1226,7 @@ namespace aura
    }
 
 
-   __transport(::factory::factory) & system::draw2d_factory()
+   __pointer(::factory::factory) & system::draw2d_factory()
    {
 
       string strLibrary;
@@ -1251,7 +1251,7 @@ namespace aura
 
       }
 
-      void estatus;
+      ::e_status3 estatus;
 
       if (strLibrary.has_char())
       {
@@ -1366,7 +1366,7 @@ namespace aura
    }
 
 
-   __transport(::factory::factory) & system::imaging_factory()
+   __pointer(::factory::factory) & system::imaging_factory()
    {
 
 
@@ -1396,7 +1396,7 @@ namespace aura
 
       }
 
-      void estatus = ::error_failed;
+      ::e_status3 estatus = ::error_failed;
 
       if (strLibrary.has_char())
       {
@@ -1786,7 +1786,7 @@ namespace aura
    void system::inline_init()
    {
 
-      void estatus = ::aqua::system::inline_init();
+      ::e_status3 estatus = ::aqua::system::inline_init();
 
       if (!estatus)
       {
@@ -1803,7 +1803,7 @@ namespace aura
    void system::inline_term()
    {
 
-      void estatus = ::aqua::system::inline_term();
+      ::e_status3 estatus = ::aqua::system::inline_term();
 
       if (!estatus)
       {
@@ -2735,7 +2735,7 @@ namespace aura
    //}
 
 
-   //__transport(::apex::session) system::on_create_session(index iEdge)
+   //__pointer(::apex::session) system::on_create_session(index iEdge)
    //{
 
    //   return ::aqua::system::on_create_session(iEdge);
@@ -4422,7 +4422,7 @@ namespace aura
 //         key.get("Install Directory", strInstallDirectory);
 //
 //      }
-//      catch (const void & estatus)
+//      catch (const ::e_status3 & estatus)
 //      {
 //
 //         return estatus;
@@ -6744,7 +6744,7 @@ namespace aura
 //
 //      __throw(error_not_implemented);
 //
-//      return ::error_interface_only;
+//      throw ::interface_only_exception();
 //
 //#endif
 //

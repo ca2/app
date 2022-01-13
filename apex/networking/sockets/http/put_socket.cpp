@@ -80,7 +80,7 @@ namespace sockets
    }
 
 
-   void http_put_socket::step()
+   bool http_put_socket::step()
    {
 
       if(m_file.is_set())

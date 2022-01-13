@@ -194,7 +194,7 @@ void acme_path::create_symbolic_link(const char * pszLink, const char * pszSourc
    
    throw ::interface_only_exception();
    
-   return error_interface_only;
+   //throw ::interface_only_exception();
    
 }
 
@@ -204,7 +204,7 @@ void acme_path::is_symbolic_link(const char * pszLink)
    
    throw ::interface_only_exception();
    
-   return error_interface_only;
+   //throw ::interface_only_exception();
    
 }
 

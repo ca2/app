@@ -1858,23 +1858,23 @@ namespace write_text
 
 } // namespace write_text
 
+//
+//namespace extended
+//{
+//
+//
+//   template < typename OBJECT >
+//   class transport;
+//
+//
+//} // namespace extended
+//
 
-namespace extended
-{
-
-
-   template < typename OBJECT >
-   class transport;
-
-
-} // namespace extended
-
-
-#define __transport(T) ::extended::transport < T >
+//#define __pointer(T) ::extended::transport < T >
 
 
 // From apex by camilo 2021-11-01 13:41 BRT <3ThomasBorregaardS�rensen!!
-CLASS_DECL_ACME __transport(class ::system) platform_create_system(const char * pszAppId);
+CLASS_DECL_ACME __pointer(class ::system) platform_create_system(const char * pszAppId);
 
 
 
@@ -2725,13 +2725,13 @@ using argument = payload;
 using arguments = payload_array;
 
 
-CLASS_DECL_ACME bool __node_acme_pre_init();
+CLASS_DECL_ACME void __node_acme_pre_init();
 
-CLASS_DECL_ACME bool __node_acme_pos_init();
+CLASS_DECL_ACME void __node_acme_pos_init();
 
-CLASS_DECL_ACME bool __node_acme_pre_term();
+CLASS_DECL_ACME void __node_acme_pre_term();
 
-CLASS_DECL_ACME bool __node_acme_pos_term();
+CLASS_DECL_ACME void __node_acme_pos_term();
 
 
 #define BAD_WCHAR ((widechar)(-1))
@@ -2990,13 +2990,13 @@ class memory_file;
 
 using file_pointer = __pointer(::file::file);
 
-using file_transport = __transport(::file::file);
+using file_pointer = __pointer(::file::file);
 
-using memory_file_transport = __transport(::memory_file);
+using memory_file_pointer = __pointer(::memory_file);
 
 using folder_pointer = __pointer(::folder);
 
-using folder_transport = __transport(::folder);
+using folder_pointer = __pointer(::folder);
 
 class stream;
 
@@ -3164,7 +3164,10 @@ class memory_base;
 #include "acme/exception/status.h"
 
 
-CLASS_DECL_ACME ::e_status3 _003CountStatus(::count countSuccess, ::count countFailed);
+inline void throw_status(const ::e_status3& estatus, const char * pszMessage = nullptr);
+
+
+//CLASS_DECL_ACME ::e_status3 _003CountStatus(::count countSuccess, ::count countFailed);
 
 #include "acme/constant/filesystem.h"
 
@@ -3554,7 +3557,7 @@ CLASS_DECL_ACME task_bitset& task_flag();
 
 
 
-#include "acme/exception/extended_transport.h"
+//#include "acme/exception/extended_pointer.h"
 
 
 #include "acme/user/conversation.h"
@@ -3906,7 +3909,7 @@ namespace mathematics
 
 
 
-CLASS_DECL_ACME string get_status_message(::e_status2 estatus);
+CLASS_DECL_ACME string get_status_message(::e_status3 estatus);
 
 
 #include "acme/platform/flags.h"
@@ -4347,7 +4350,7 @@ namespace acme
    class library;
 
 
-   using library_map = string_map < __transport(::acme::library) >;
+   using library_map = string_map < __pointer(::acme::library) >;
 
 } // namespace acme
 
@@ -4476,5 +4479,8 @@ class task_tool;
 
 
 #include "acme/memory/_impl.h"
+
+
+#include "acme/exception/_impl.h"
 
 

@@ -31,7 +31,7 @@ void acme_file::ensure_exists(const char* path)
 
    throw interface_only_exception();
 
-   return error_interface_only;
+   //throw ::interface_only_exception();
 
 }
 
@@ -41,7 +41,7 @@ void acme_file::touch(const char* path)
 
    throw interface_only_exception();
 
-   return error_interface_only;
+   //throw ::interface_only_exception();
 
 
 }
@@ -52,7 +52,7 @@ void acme_file::clear_read_only(const char* path)
 
    throw interface_only_exception();
 
-   return error_interface_only;
+   //throw ::interface_only_exception();
 
 }
 
@@ -62,7 +62,7 @@ void acme_file::set_file_normal(const char* path)
 
    throw interface_only_exception();
 
-   return error_interface_only;
+   //throw ::interface_only_exception();
 
 }
 
@@ -85,27 +85,18 @@ void acme_file::overwrite_if_different(const char* pathTarget, const char* pathS
    if (!exists(pathSource))
    {
 
-      return error_not_found;
+      throw_status(error_not_found);
 
    }
 
    if (exists(pathTarget) && is_equal(pathTarget, pathSource))
    {
 
-      return ::success_none;
+      return;
 
    }
 
-   auto estatus = copy(pathTarget, pathSource, true);
-
-   if (!estatus)
-   {
-
-      return estatus;
-
-   }
-
-   return estatus;
+   copy(pathTarget, pathSource, true);
 
 }
 
@@ -131,7 +122,7 @@ void acme_file::overwrite_if_different(const char* pathTarget, const char* pathS
 
 
 
-file_transport acme_file::open(const ::file::path & path, const ::file::e_open & eopen)
+file_pointer acme_file::open(const ::file::path & path, const ::file::e_open & eopen)
 {
 
    auto pfile = m_psystem->__create_new < ::file::file >();
@@ -143,21 +134,14 @@ file_transport acme_file::open(const ::file::path & path, const ::file::e_open &
 
    }
 
-   auto estatus = pfile->open(path, eopen);
-
-   if(!estatus)
-   {
-
-      return estatus;
-
-   }
+   pfile->open(path, eopen);
 
    return pfile;
 
 }
 
 
-file_transport acme_file::stdio_open(const char * path, const char * attrs, int iShare)
+file_pointer acme_file::stdio_open(const char * path, const char * attrs, int iShare)
 {
 
    auto pfile = m_psystem->__create_new < ::stdio_file >();
@@ -169,47 +153,50 @@ file_transport acme_file::stdio_open(const char * path, const char * attrs, int 
 
    }
 
-   auto estatus = pfile->open(path, attrs, iShare);
-
-   if (!estatus)
-   {
-
-      return estatus;
-
-   }
+   pfile->open(path, attrs, iShare);
 
    return pfile;
 
 }
 
 
-status < memory > acme_file::as_memory(const char * path, strsize iReadAtMostByteCount)
+memory acme_file::as_memory(const char * path, strsize iReadAtMostByteCount)
 {
 
    throw ::interface_only_exception();
 
-   return error_interface_only;
+   //throw ::interface_only_exception();
 
 }
 
 
-status < string > acme_file::as_string(const char * path, strsize iReadAtMostByteCount)
+string acme_file::as_string(const char * path, strsize iReadAtMostByteCount, bool bNoExceptionIfNotFound)
 {
-
-   string str;
-
-   wstring wstr(path);
 
    auto pfile = m_psystem->__create_new < stdio_file >();
 
-   auto estatus = pfile->open(path, "r", _SH_DENYNO);
-
-   if(!estatus)
+   if (bNoExceptionIfNotFound)
    {
 
-      return estatus;
+      pfile->m_eflag |= stdio_file::flag_no_exception_if_not_found;
 
    }
+
+   pfile->open(path, "r", _SH_DENYNO);
+
+   if (bNoExceptionIfNotFound)
+   {
+
+      if (pfile->m_eflag & stdio_file::flag_file_not_found)
+      {
+
+         return {};
+
+      }
+
+   }
+
+   string str;
 
    auto uSize = pfile->get_size();
    
@@ -255,19 +242,12 @@ status < string > acme_file::as_string(const char * path, strsize iReadAtMostByt
 }
 
 
-holding_status < memsize > acme_file::as_memory(const char * path, void * p, memsize s)
+memsize acme_file::as_memory(const char * path, void * p, memsize s)
 {
 
    stdio_file file;
 
-   auto estatus = file.open(path, "r", _SH_DENYNO);
-
-   if(!estatus)
-   {
-
-      return estatus;
-
-   }
+   file.open(path, "r", _SH_DENYNO);
 
    auto iReadAtMostByteCount = s;
 
@@ -303,14 +283,7 @@ void acme_file::as_memory(memory_base & memory, const char * path, memsize iRead
 
    stdio_file file;
 
-   auto estatus = file.open(path, "r", _SH_DENYNO);
-
-   if (!estatus)
-   {
-
-      return estatus;
-
-   }
+   file.open(path, "r", _SH_DENYNO);
 
    auto iSize = file.get_size();
 
@@ -319,7 +292,7 @@ void acme_file::as_memory(memory_base & memory, const char * path, memsize iRead
 
       memory.set_size(0);
 
-      return success;
+      return;
 
    }
 
@@ -347,12 +320,12 @@ void acme_file::as_memory(memory_base & memory, const char * path, memsize iRead
 
    memory.set_size((memsize) dwReadTotal);
 
-   return ::success;
+   //return ::success;
 
 }
 
 
-status < string > acme_file::get_temporary_file_name(const char * lpszName, const char * pszExtension)
+string acme_file::get_temporary_file_name(const char * lpszName, const char * pszExtension)
 {
 
 #ifdef WINDOWS
@@ -370,7 +343,7 @@ status < string > acme_file::get_temporary_file_name(const char * lpszName, cons
 
       auto estatus = last_error_to_status(dwLastError);
 
-      return estatus;
+      throw_status(estatus);
 
    }
 
@@ -400,20 +373,11 @@ status < string > acme_file::get_temporary_file_name(const char * lpszName, cons
       if (this->exists(path))
       {
 
-         if (this->delete_file(path))
-         {
-
-            return ::move(path);
-
-         }
+         this->delete_file(path);
 
       }
-      else
-      {
 
-         return ::move(path);
-
-      }
+      return ::move(path);
 
    }
 
@@ -455,7 +419,7 @@ void acme_file::write_memory_to_file(FILE * file, const void * pdata, memsize nC
 
          }
 
-         return false;
+         throw_status(error_io);
 
       }
 
@@ -482,11 +446,11 @@ void acme_file::write_memory_to_file(FILE * file, const void * pdata, memsize nC
    if (uiWrittenTotal != nCount)
    {
 
-      return error_failed;
+      throw_status(error_failed);
 
    }
 
-   return ::success;
+   // return ::success;
 
 #else
 
@@ -522,19 +486,13 @@ void acme_file::append_wait(const char * strFile, const block & block, const ::d
 
    auto pacmedir = m_pacmedir;
 
-   auto estatus = pacmedir->create(::file_path_folder(strFile));
+   pacmedir->create(::file_path_folder(strFile));
 
-   if (!estatus)
-   {
-
-      return estatus;
-
-   }
 
    if (!pacmedir->is(::file_path_folder(strFile)))
    {
 
-      return error_path_not_found;
+      throw_status(error_path_not_found);
 
    }
 
@@ -567,7 +525,7 @@ void acme_file::append_wait(const char * strFile, const block & block, const ::d
       if (millisStart.elapsed() > duration)
       {
 
-         return false;
+         throw_status(error_timeout);
 
       }
 
@@ -579,7 +537,7 @@ void acme_file::append_wait(const char * strFile, const block & block, const ::d
 
    fclose(pfile);
 
-   return success;
+   //return success;
 
 }
 
@@ -587,38 +545,38 @@ void acme_file::append_wait(const char * strFile, const block & block, const ::d
 void acme_file::append(const char * strFile, const block & block)
 {
 
-   return acme_file::append_wait(strFile, block, 0_s);
+   acme_file::append_wait(strFile, block, 0_s);
 
 }
 
 
-void acme_file::exists(const char * path)
+bool acme_file::exists(const char * path)
 {
 
    if(::is_null(path))
    {
 
-      return error_null_pointer;
+      throw_status(error_null_pointer);
 
    }
 
    if(*path == '\0')
    {
 
-      return error_invalid_argument;
+      throw_status(error_invalid_argument);
 
    }
 
-   auto estatus = _exists(path);
+   auto bExists = _exists(path);
 
-   if(!estatus)
+   if(!bExists)
    {
 
-      return estatus;
+      return false;
 
    }
 
-   return estatus;
+   return true;
 
 }
 
@@ -628,7 +586,7 @@ void acme_file::put_contents(const char * path, const char * contents, strsize l
 
    throw ::interface_only_exception();
 
-   return error_interface_only;
+   //throw ::interface_only_exception();
 
 }
 
@@ -638,22 +596,22 @@ void acme_file::get_temporary_file_name_template(char * szRet, strsize iBufferSi
 
    throw ::interface_only_exception();
 
-   return error_interface_only;
+   //throw ::interface_only_exception();
 
 }
 
 
-holding_status < filesize > acme_file::get_size(const char * path)
+filesize acme_file::get_size(const char * path)
 {
 
    throw ::interface_only_exception();
 
-   return error_interface_only;
+   throw ::interface_only_exception();
 
 }
 
 
-holding_status < filesize > acme_file::get_size(FILE * pfile)
+filesize acme_file::get_size(FILE * pfile)
 {
 
    return get_size_fd(fileno(pfile));
@@ -661,12 +619,12 @@ holding_status < filesize > acme_file::get_size(FILE * pfile)
 }
 
 
-holding_status < filesize > acme_file::get_size_fd(int iFile)
+filesize acme_file::get_size_fd(int iFile)
 {
 
    throw ::interface_only_exception();
 
-   return error_interface_only;
+   throw ::interface_only_exception();
 
 }
 
@@ -676,17 +634,17 @@ void acme_file::clear_application_data()
 
    throw ::interface_only_exception();
 
-   return -1;
+   //return -1;
 
 }
 
 
-void acme_file::is_true(const char * path)
+bool acme_file::is_true(const char * path)
 {
 
    throw ::interface_only_exception();
 
-   return error_interface_only;
+   //throw ::interface_only_exception();
 
 }
 
@@ -696,7 +654,7 @@ void acme_file::set_size(const char * lpszName, filesize size)
 
    throw ::interface_only_exception();
 
-   return success;
+   //return success;
 
 }
 
@@ -706,7 +664,7 @@ void acme_file::set_size(int iFileDescriptor, filesize size)
 
    throw ::interface_only_exception();
 
-   return false;
+   //return false;
 
 }
 
@@ -716,7 +674,7 @@ void acme_file::set_size(FILE * pfile, filesize size)
 
    throw ::interface_only_exception();
 
-   return false;
+   //return false;
 
 }
 
@@ -724,25 +682,9 @@ void acme_file::set_size(FILE * pfile, filesize size)
 void acme_file::move(const char * pszNewName, const char * pszOldName)
 {
 
-   auto bOk = copy(pszNewName, pszOldName, true);
+   copy(pszNewName, pszOldName, true);
 
-   if(!bOk)
-   {
-
-      return false;
-
-   }
-
-   bool bOkDelete = delete_file(pszOldName);
-
-   if(!bOk)
-   {
-
-      output_debug_string("failed to delete file \"" + string(pszOldName) + "\"");
-
-   }
-
-   return bOk;
+   delete_file(pszOldName);
 
 }
 
@@ -753,27 +695,27 @@ void acme_file::delete_file(const char * path)
    if(::is_null(path))
    {
 
-      return error_null_pointer;
+      throw_status(error_null_pointer);
 
    }
 
    if(*path == '\0')
    {
 
-      return error_invalid_argument;
+      throw_status(error_invalid_argument);
 
    }
 
-   auto estatus = _delete(path);
+    _delete(path);
 
-   if(!estatus)
-   {
+   //if(!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
-   return estatus;
+   //return estatus;
 
 }
 
@@ -803,7 +745,7 @@ void acme_file::copy(const char * pszDup, const char * pszSrc, bool bOverwrite)
 
    throw ::interface_only_exception();
 
-   return error_interface_only;
+   //throw ::interface_only_exception();
 
 }
 
@@ -824,7 +766,7 @@ void acme_file::set_modification_time(const char* psz, const ::duration& duratio
 
    throw ::interface_only_exception();
 
-   return error_interface_only;
+   //throw ::interface_only_exception();
 
 }
 
@@ -834,7 +776,7 @@ void acme_file::set_modification_time(const char* psz, const ::duration& duratio
 //
 //   throw interface_only_exception();
 //
-//   return error_interface_only;
+//   throw ::interface_only_exception();
 //
 //}
 
@@ -853,14 +795,14 @@ void acme_file::synchronize(const char* psz1, const char* psz2)
    if ((!bExists1 && bExists2) || ((bExists1 && bExists2) && (time1 < time2)))
    {
 
-      auto estatus = copy(psz1, psz2, true);
+      copy(psz1, psz2, true);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       //estatus = set_modification_time(psz1, time2);
 
@@ -871,22 +813,16 @@ void acme_file::synchronize(const char* psz1, const char* psz2)
 
       //}
 
-      return estatus;
+      return ;
 
    }
    else if ((!bExists2 && bExists1) || ((bExists1 && bExists2) && (time2 < time1)))
    {
 
-      auto estatus =  copy(psz2, psz1, true);
+       copy(psz2, psz1, true);
 
-      if (!estatus)
-      {
 
-         return estatus;
-
-      }
-
-      return estatus;
+      return;
 
 //#if !defined(WINDOWS)
 //
@@ -903,7 +839,7 @@ void acme_file::synchronize(const char* psz1, const char* psz2)
 
    }
 
-   return ::success_none;
+   //return ::success_none;
 
 }
 
@@ -913,7 +849,7 @@ void acme_file::save_stra(const char * lpszName, const string_array & stra)
 
    throw ::interface_only_exception();
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -923,7 +859,7 @@ void acme_file::load_stra(const char * lpszName, string_array & stra, bool bAddE
 
    throw ::interface_only_exception();
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -933,7 +869,7 @@ void acme_file::put_contents(const char * path, const memory_base & memory)
 
    throw ::interface_only_exception();
 
-   return false;
+   //return false;
 
 }
 
@@ -941,24 +877,16 @@ void acme_file::put_contents(const char * path, const memory_base & memory)
 void acme_file::put_contents(const char * path, const char * contents)
 {
 
-   auto estatus = put_contents(path, contents, ::str::string_safe_length(contents));
+   put_contents(path, contents, ::str::string_safe_length(contents));
 
-   if (!estatus)
-   {
-
-      return estatus;
-
-   }
-
-   return estatus;
-
+  
 }
 
 
 void acme_file::put_block(const char * path, const block & block)
 {
 
-   return put_contents(path, (const char *) block.get_data(), block.get_size());
+   put_contents(path, (const char *) block.get_data(), block.get_size());
 
 }
 
@@ -969,26 +897,17 @@ void acme_file::as_block(block & block, const char * path)
 
    auto size = as_memory(path, block.get_data(), block.get_size());
 
-   if(!size)
+   if(size != block.get_size())
    {
 
-      return size.estatus();
+      throw_status(error_wrong_type);
 
    }
-
-   if(size.holding() != block.get_size())
-   {
-
-      return error_wrong_type;
-
-   }
-
-   return ::success;
 
 }
 
 
-status < string > acme_file::first_line(const char * path)
+string acme_file::first_line(const char * path)
 {
 
    return line(path, 0);
@@ -996,7 +915,7 @@ status < string > acme_file::first_line(const char * path)
 }
 
 
-status < string > acme_file::line(const char * path, index iLine)
+string acme_file::line(const char * path, index iLine)
 {
 
    string str;
@@ -1016,7 +935,7 @@ status < string > acme_file::line(const char * path, index iLine)
 
       trace_last_error();
 
-      return error_io;
+      throw_status(error_io);
 
    }
 
@@ -1071,7 +990,7 @@ status < string > acme_file::line(const char * path, index iLine)
 }
 
 
-status < string_array > acme_file::lines(const char * path)
+string_array acme_file::lines(const char * path)
 {
 
    auto pfile = open(path, ::file::e_open_read);
@@ -1079,7 +998,7 @@ status < string_array > acme_file::lines(const char * path)
    if (!pfile)
    {
 
-      return pfile.m_estatus;
+      throw_status(error_io);
 
    }
 
@@ -1105,7 +1024,7 @@ void acme_file::set_line(const char * pszPath, index iLine, const char * pszLine
    if (iLine < 0)
    {
 
-      return error_index_out_of_bounds;
+      throw_status(error_index_out_of_bounds);
 
    }
 
@@ -1113,25 +1032,18 @@ void acme_file::set_line(const char * pszPath, index iLine, const char * pszLine
 
    ::file::path path(pszPath);
 
-   auto estatus = m_pacmedir->create(path.folder());
-
-   if (!estatus)
-   {
-
-      return estatus;
-
-   }
+   m_pacmedir->create(path.folder());
 
    auto pfile = open(path, ::file::e_open_read_write | ::file::e_open_create | ::file::e_open_no_truncate);
 
-   if (!pfile)
-   {
+   //if (!pfile)
+   //{
 
-      trace_last_error();
+   //   trace_last_error();
 
-      return pfile;
+   //   return pfile;
 
-   }
+   //}
 
    int iChar;
 
@@ -1222,12 +1134,12 @@ void acme_file::set_line(const char * pszPath, index iLine, const char * pszLine
                | ::file::e_open_defer_create_directory
                | ::file::e_open_create);
 
-         if (!pfile2)
-         {
+         //if (!pfile2)
+         //{
 
-            return pfile2;
+         //   return pfile2;
 
-         }
+         //}
 
          if (iPosStart > 0)
          {
@@ -1265,18 +1177,18 @@ void acme_file::set_line(const char * pszPath, index iLine, const char * pszLine
 
       }
 
-      if (!copy(path, pathTime.c_str(), true))
-      {
+      copy(path, pathTime.c_str(), true);
+      //{
 
-         return error_failed;
+      //   return error_failed;
 
-      }
+      //}
 
       delete_file(pathTime);
 
    }
 
-   return true;
+///   return true;
 
 }
 
@@ -1379,7 +1291,15 @@ void acme_file::write(FILE * file, const void * pdata, memsize nCount, memsize *
 
          }
 
-         return false;
+         if (dw < dwWrite)
+         {
+            // is_disk_full?
+            throw_status(error_disk_full);
+
+         }
+
+         throw_status(error_io);
+         //return false;
 
       }
 
@@ -1403,7 +1323,7 @@ void acme_file::write(FILE * file, const void * pdata, memsize nCount, memsize *
 
    }
 
-   return uiWrittenTotal == nCount;
+   //return uiWrittenTotal == nCount;
 
 #else
 
@@ -1443,7 +1363,7 @@ void acme_file::append_wait(const ::string & strFile, const block & block, const
    if (!m_pacmedir->is(::file_path_folder(strFile)))
    {
 
-      return false;
+      throw_status(false);
 
    }
 
@@ -1476,7 +1396,7 @@ void acme_file::append_wait(const ::string & strFile, const block & block, const
       if (millisStart.elapsed() > duration)
       {
 
-         return false;
+         throw_status(error_timeout);
 
       }
 
@@ -1488,27 +1408,27 @@ void acme_file::append_wait(const ::string & strFile, const block & block, const
 
    fclose(pfile);
 
-   return ::success;
+   //return ::success;
 
 }
 
 
-
-
-
-void acme_file::_exists(const char * path)
+bool acme_file::_exists(const char * path)
 {
 
-   auto estatus = ::file_exists(path);
+   bool bOk = ::file_exists(path);
 
-   if(!estatus)
-   {
 
-      return estatus;
+   return bOk;
 
-   }
+   //if(!estatus)
+   //{
 
-   return estatus;
+   //   return estatus;
+
+   //}
+
+   //return estatus;
 
 }
 
@@ -1516,17 +1436,15 @@ void acme_file::_exists(const char * path)
 void acme_file::_delete(const char * path)
 {
 
-
    if (::unlink(path) == -1)
    {
 
-      return errno_to_status(errno);
+      throw_status(errno_to_status(errno));
 
    }
 
-   return ::success;
-
 }
+
 
 
 

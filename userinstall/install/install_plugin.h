@@ -95,7 +95,7 @@ namespace install
 
       virtual void on_prepare_memory();
 
-      virtual void on_login_result(const void & estatus, const ::string & pszResponse);
+      virtual void on_login_result(const ::e_status3 & estatus, const ::string & pszResponse);
 
       DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
       

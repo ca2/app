@@ -51,7 +51,7 @@ namespace message
       index                         m_iParam;
       bool                          m_bRet;
       unsigned int                  m_uiMessageFlags;
-      void                    m_estatus;
+      e_status3                     m_estatus;
       ::action_context              m_actioncontext;
       ::point_i32                   m_pointMessage;
 

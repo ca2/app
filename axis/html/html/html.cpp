@@ -812,7 +812,7 @@ namespace axis
    void system::defer_create_html()
    {
 
-      void estatus = ::success;
+      ::e_status3 estatus = ::success;
 
       if (!m_phtml)
       {

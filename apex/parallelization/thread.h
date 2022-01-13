@@ -46,7 +46,7 @@ public:
    bool                                               m_bDedicated;
    bool                                               m_bPreferLessGraphicsParallelization;
    bool                                               m_bThreadToolsForIncreasedFps;
-   void                                         m_estatus;
+   ::e_status3                                        m_estatus;
    user_interaction_ptr_array *                       m_puiptraThread;
    ::mutex *                                          m_pmutexThreadUiPtra;
    single_lock *                                      m_pslUser;
@@ -62,9 +62,9 @@ public:
    enum_id                                            m_idContextReference;
 
    bool                                               m_bAuraMessageQueue;
-   ::duration                                           m_durationHeartBeat;
+   ::duration                                         m_durationHeartBeat;
    bool                                               m_bReady;
-   ::extended::status                                 m_result;
+   //::e_status3                                        m_estatus;
    __pointer(::user::primitive)                       m_puserprimitiveMain;           // Main interaction_impl (usually same psystem->m_puiMain)
    __pointer(::user::primitive)                       m_puserprimitiveActive;         // Active Main interaction_impl (may not be m_puiMain)
    bool                                               m_bSimpleMessageLoop;
@@ -138,9 +138,9 @@ public:
    inline message_queue* get_message_queue() { return m_pmessagequeue ? m_pmessagequeue : _get_message_queue(); }
    message_queue* _get_message_queue();
 
-   int_bool peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg);
+   bool peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg);
    void get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
-   int_bool post_message(oswindow oswindow, const ::id & id, wparam wParam, lparam lParam);
+   void post_message(oswindow oswindow, const ::id & id, wparam wParam, lparam lParam);
 
    user_interaction_ptr_array & uiptra();
 
@@ -228,21 +228,21 @@ public:
    //inline bool command_value_is_true(const ::id& id) const;
 
 
-   virtual bool post_message(const ::id & id, wparam wParam = 0, lparam lParam = 0);
+   virtual void post_message(const ::id & id, wparam wParam = 0, lparam lParam = 0);
 
-   virtual bool send_message(const ::id & id, wparam wParam = 0, lparam lParam = 0, const ::duration & durationTimeout = ::duration::infinite());
+   virtual void send_message(const ::id & id, wparam wParam = 0, lparam lParam = 0, const ::duration & durationTimeout = ::duration::infinite());
 
-   virtual bool post_element(const ::id & id, wparam wParam, ::element * pelement);
+   virtual void post_element(const ::id & id, wparam wParam, ::element * pelement);
 
-   virtual bool send_element(const ::id & id, wparam wParam, ::element * pelement, const ::duration & durationTimeout = ::duration::infinite());
+   virtual void send_element(const ::id & id, wparam wParam, ::element * pelement, const ::duration & durationTimeout = ::duration::infinite());
 
 
    template < typename PREDICATE >
-   bool post_predicate(PREDICATE predicate)
+   void post_predicate(PREDICATE predicate)
    {
 
 
-      return post_routine(__routine(predicate));
+      post_routine(__routine(predicate));
 
 
    }
@@ -395,7 +395,7 @@ public:
    virtual void task_erase(::task * ptask) override;
    //virtual void wait_quit(::duration durationTimeout) override;
 
-   bool kick_thread() override;
+   void kick_thread() override;
 
    //virtual void defer_add_thread_run_wait(synchronization_array & soa);
 
@@ -436,7 +436,7 @@ public:
    virtual void osthread_term() override;
 
 
-   virtual e_status begin_thread(
+   virtual void begin_thread(
    bool bSynchInitialization = false,
    ::enum_priority epriority = ::e_priority_normal,
    ::u32 nStackSize = 0,
@@ -468,7 +468,7 @@ public:
 
    virtual void do_request(::create * pcreate) override;
 
-   virtual void get_result_status();
+   virtual ::e_status3 get_result_status();
 
    virtual void delete_this() override;
 
@@ -587,20 +587,15 @@ inline void while_predicateicate_Sleep(int iTime, PRED pred)
       if (!pred())
       {
 
-         return  ::signaled_base;
+         return;
 
       }
 
-      if (!::task_get_run())
-      {
-
-         return ::abandoned_base;
-
-      }
+      preempt();
 
    }
 
-   return ::error_wait_timeout;
+   throw_status(error_timeout);
 
 }
 

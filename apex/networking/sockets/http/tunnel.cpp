@@ -163,7 +163,7 @@ namespace sockets
    }
 
 
-   void http_tunnel::step()
+   bool http_tunnel::step()
    {
 
       string str;

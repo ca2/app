@@ -13,12 +13,14 @@ bool predicate_retry(const ::duration & durationStep, const ::duration & duratio
       try
       {
 
-         if (predicate())
-         {
+         //if (predicate())
 
-            return true;
+         predicate();
+         //{
 
-         }
+         //   return true;
+
+         //}
 
       }
       catch (...)

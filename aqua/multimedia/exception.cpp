@@ -5,7 +5,7 @@ namespace multimedia
 {
 
 
-   exception::exception(e_exception eexception, const void & estatus, const char * pszMessage) :
+   exception::exception(e_exception eexception, const ::e_status3 & estatus, const char * pszMessage) :
       ::exception(estatus, pszMessage)
    {
 
@@ -15,7 +15,7 @@ namespace multimedia
    }
 
 
-   //::exception(e_exception eexception, const void & estatus, void     estatusSecond, const char * pszMessage) :
+   //::exception(e_exception eexception, const ::e_status3 & estatus, void     estatusSecond, const char * pszMessage) :
    //   ::exception(pszMessage, estatus)
    //{
 

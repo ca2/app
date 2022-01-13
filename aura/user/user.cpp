@@ -584,7 +584,7 @@ namespace user
    void user::create_user_shell()
    {
 
-      void estatus = ::success;
+      ::e_status3 estatus = ::success;
 
       if (!m_pshell)
       {
@@ -761,7 +761,7 @@ namespace user
    //void user::close_all_documents(bool bEndSession)
    //{
 
-   //   return ::error_interface_only;
+   //   throw ::interface_only_exception();
 
    //}
 
@@ -1391,7 +1391,7 @@ namespace user
    void user::create_windowing()
    {
 
-      void estatus = ::success;
+      ::e_status3 estatus = ::success;
 
       estatus = __compose(m_pwindowing);
 

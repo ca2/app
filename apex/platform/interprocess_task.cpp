@@ -37,17 +37,25 @@ void interprocess_task::do_task(const string& strObject, const string& strMember
 
    string str = "call " + __string(m_iTask) + strSource + strObject + "." + strMember + ": " + strVara;
 
-   bool bSendOk = txc.send(str, m_pcall->m_duration);
+   try
+   {
 
-   if (!bSendOk)
+      //txc.send(str, m_pcall->m_duration);
+      txc.send(str, 1_min);
+
+   }
+   catch (...)
    {
 
       m_var = false;
 
       m_pevReady->set_event();
 
+      return;
+
    }
-   else if (strMember.begins_ci("reply."))
+
+   if (strMember.begins_ci("reply."))
    {
 
       m_var = true;

@@ -30,32 +30,32 @@
       ::file::watcher & watcher();
 
 
-      virtual ::file::listing & ls(::file::listing & listing);
-      virtual ::file::listing & ls_relative_name(::file::listing & listing);
+      virtual bool ls(::file::listing & listing);
+      virtual bool ls_relative_name(::file::listing & listing);
 
-      virtual ::file::listing& rls(::file::listing& listing);
-      virtual ::file::listing& rls_relative_name(::file::listing& listing);
+      virtual bool rls(::file::listing& listing);
+      virtual bool rls_relative_name(::file::listing& listing);
 
-      virtual ::file::listing& ls_pattern(::file::listing& listing, const ::file::path& path, const string_array& straPattern);
-      virtual ::file::listing& ls_file_pattern(::file::listing& listing, const ::file::path& path, const string_array& straPattern);
-      virtual ::file::listing& rls_pattern(::file::listing& listing, const ::file::path& path, const string_array & straPattern);
-      virtual ::file::listing& rls_file_pattern(::file::listing& listing, const ::file::path& path, const string_array & straPattern);
+      virtual bool ls_pattern(::file::listing& listing, const ::file::path& path, const string_array& straPattern);
+      virtual bool ls_file_pattern(::file::listing& listing, const ::file::path& path, const string_array& straPattern);
+      virtual bool rls_pattern(::file::listing& listing, const ::file::path& path, const string_array & straPattern);
+      virtual bool rls_file_pattern(::file::listing& listing, const ::file::path& path, const string_array & straPattern);
 
-      virtual ::file::listing& ls_file(::file::listing& listing);
-      virtual ::file::listing& ls_dir(::file::listing& listing);
+      virtual bool ls_file(::file::listing& listing);
+      virtual bool ls_dir(::file::listing& listing);
 
-      virtual ::file::listing& rls_file(::file::listing& listing);
-      virtual ::file::listing& rls_dir(::file::listing& listing);
+      virtual bool rls_file(::file::listing& listing);
+      virtual bool rls_dir(::file::listing& listing);
 
-      inline ::file::listing& ls(::file::listing& listing, const ::file::path& path) { listing(path); return ls(listing); }
+      inline bool ls(::file::listing& listing, const ::file::path& path) { listing(path); return ls(listing); }
 
-      inline ::file::listing& rls(::file::listing& listing, const ::file::path& path) { listing(path); return rls(listing); }
+      inline bool rls(::file::listing& listing, const ::file::path& path) { listing(path); return rls(listing); }
 
-      inline ::file::listing& ls_file(::file::listing& listing, const ::file::path & path) { listing(path); return ls_file(listing); }
-      inline ::file::listing& ls_dir(::file::listing& listing, const ::file::path& path) { listing(path); return ls_dir(listing); }
+      inline bool ls_file(::file::listing& listing, const ::file::path & path) { listing(path); return ls_file(listing); }
+      inline bool ls_dir(::file::listing& listing, const ::file::path& path) { listing(path); return ls_dir(listing); }
 
-      inline ::file::listing& rls_file(::file::listing& listing, const ::file::path& path) { listing(path); return rls_file(listing); }
-      inline ::file::listing& rls_dir(::file::listing& listing, const ::file::path& path) { listing(path); return rls_dir(listing); }
+      inline bool rls_file(::file::listing& listing, const ::file::path& path) { listing(path); return rls_file(listing); }
+      inline bool rls_dir(::file::listing& listing, const ::file::path& path) { listing(path); return rls_dir(listing); }
 
 
       virtual bool  is(const ::file::path & pcsz);
@@ -75,9 +75,9 @@
       virtual bool  is_inside_time(const ::file::path & pcsz);
 
       virtual ::file::listing & root_ones(::file::listing & listing);
-      virtual bool  mk(const ::file::path & pcsz);
+      virtual void  create(const ::file::path & pcsz);
 
-      virtual bool  rm(const ::file::path & psz, bool bRecursive = true);
+      virtual void  erase(const ::file::path & psz, bool bRecursive = true);
 
       virtual bool has_subdir(const ::file::path & psz);
 
@@ -108,8 +108,8 @@
 
       virtual ::file::path appmatter(string strApp, ::file::path pathRel);
 
-      virtual void matter_ls(const ::file::path & str, ::file::listing & stra);
-      virtual void matter_ls_file(const ::file::path & str, ::file::listing& stra);
+      virtual bool matter_ls(const ::file::path & str, ::file::listing & stra);
+      virtual bool matter_ls_file(const ::file::path & str, ::file::listing& stra);
 
       virtual ::file::path commonappdata(const char * pszAppId, const char * pszBuild = nullptr, const char * pszPlatform = nullptr, const char * pszConfiguration = nullptr);
       virtual ::file::path commonappdata_locale_schema(const char * pszAppId, const char * pszBuild = nullptr, const char * pszPlatform = nullptr, const char * pszConfiguration = nullptr, const char * pszLocale = nullptr, const char * pszSchema = nullptr);

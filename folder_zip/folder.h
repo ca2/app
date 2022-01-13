@@ -48,8 +48,8 @@ namespace folder_zip
       void add_file(const ::file::path & pathRelative, ::file::file * pfile) override;
 
 
-      ::file::listing& perform_file_listing(::file::listing& listing) override;
-      ::file::listing& perform_file_relative_name_listing(::file::listing& listing) override;
+      bool perform_file_listing(::file::listing& listing) override;
+      bool perform_file_relative_name_listing(::file::listing& listing) override;
 
 
 

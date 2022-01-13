@@ -35,7 +35,7 @@ void command_line::initialize_command_line(const string& strCommandLine)
 
    _001ParseCommandFork(strCommandLine);
 
-   return ::success;
+   //return ::success;
 
 }
 

@@ -4,7 +4,7 @@
 #include "acme/primitive/comparison/equals.h"
 
 
-inline bool __enum_is_failed(const void & e)
+inline bool __enum_is_failed(const ::e_status3 & e)
 {
 
    return ::failed(e);
@@ -95,7 +95,7 @@ inline stream & operator >> (stream & stream, type & type)
 
 
 //template < typename PRED >
-//inline ::image_transport matter::get_image(const ::payload & payloadFile, ::u64 uTrait, PRED pred)
+//inline ::image_pointer matter::get_image(const ::payload & payloadFile, ::u64 uTrait, PRED pred)
 //{
 //
 //   return get_system()->get_image(this, payloadFile, uTrait, pred);
@@ -840,7 +840,7 @@ inline bool succeeded(const ::property & property)
 
 //
 //template < typename BASE_TYPE >
-//inline __transport(BASE_TYPE) matter::__create()
+//inline __pointer(BASE_TYPE) matter::__create()
 //{
 //
 //   auto p = ::__create<BASE_TYPE>();
@@ -865,7 +865,7 @@ inline bool succeeded(const ::property & property)
 //
 //
 //template < typename BASE_TYPE >
-//inline __transport(BASE_TYPE) matter::__id_create(const ::id & id)
+//inline __pointer(BASE_TYPE) matter::__id_create(const ::id & id)
 //{
 //
 //   auto p = ::__id_create<BASE_TYPE>(id);
@@ -890,7 +890,7 @@ inline bool succeeded(const ::property & property)
 //
 //
 //template < typename TYPE >
-//inline __transport(TYPE) matter::__create_new()
+//inline __pointer(TYPE) matter::__create_new()
 //{
 //
 //   ASSERT(::is_set(this));
@@ -2329,7 +2329,7 @@ inline ::apex::session * object::get_session() const
 
 
 template < typename TYPE >
-inline __transport(TYPE) object::__create()
+inline __pointer(TYPE) object::__create()
 {
 
    auto & pfactory = ::factory::get_factory_item < TYPE >();
@@ -2337,7 +2337,7 @@ inline __transport(TYPE) object::__create()
    if (!pfactory)
    {
 
-      return ::error_not_implemented;
+      throw_status(::error_not_implemented);
 
    }
 
@@ -2346,7 +2346,7 @@ inline __transport(TYPE) object::__create()
    if (!ptypeNew)
    {
 
-      return ::error_no_memory;
+      throw_status(::error_no_memory);
 
    }
 
@@ -2357,18 +2357,12 @@ inline __transport(TYPE) object::__create()
    if (!p)
    {
 
-      return ::error_wrong_type;
+      throw_status(::error_wrong_type);
 
    }
 
-   auto estatus = p->initialize(this);
+   p->initialize(this);
 
-   if (!estatus)
-   {
-
-      return estatus;
-
-   }
 
    return p;
 
@@ -2377,7 +2371,7 @@ inline __transport(TYPE) object::__create()
 
 
 template < typename TYPE >
-inline __transport(TYPE) object::__id_create(const ::id& id)
+inline __pointer(TYPE) object::__id_create(const ::id& id)
 {
 
    auto pfactory = ::factory::get_factory_item(id);
@@ -2385,7 +2379,7 @@ inline __transport(TYPE) object::__id_create(const ::id& id)
    if (!pfactory)
    {
    
-      return error_no_factory;
+      throw_status(error_no_factory);
    
    }
    
@@ -2394,7 +2388,7 @@ inline __transport(TYPE) object::__id_create(const ::id& id)
    if (!ptypeNew)
    {
    
-      return error_no_memory;
+      throw_status(error_no_memory);
    
    }
    
@@ -2405,20 +2399,22 @@ inline __transport(TYPE) object::__id_create(const ::id& id)
    if (!p)
    {
    
-      return error_wrong_type;
+      throw_status(error_wrong_type);
    
    }
    
    p->set(e_flag_factory);
    
-   auto estatus = p->initialize(this);
+   //auto estatus = p->initialize(this);
 
-   if (!estatus)
-   {
+   p->initialize(this);
 
-      return estatus;
+   //if (!estatus)
+   //{
 
-   }
+   //   return estatus;
+
+   //}
 
    return ::move(p);
 
@@ -2426,7 +2422,7 @@ inline __transport(TYPE) object::__id_create(const ::id& id)
 
 
 template < typename TYPE >
-inline __transport(TYPE) object::__create_new()
+inline __pointer(TYPE) object::__create_new()
 {
 
    ASSERT(::is_set(this));
@@ -2436,14 +2432,14 @@ inline __transport(TYPE) object::__create_new()
    if (p)
    {
 
-      auto estatus = p->initialize(this);
+      p->initialize(this);
       
-      if(!estatus)
-      {
-         
-         return estatus;
-         
-      }
+      //if(!estatus)
+      //{
+      //   
+      //   return estatus;
+      //   
+      //}
 
    }
 
@@ -2464,7 +2460,7 @@ inline void object::__compose(__composite(BASE_TYPE)& pcomposite)
       if (!pfactory)
       {
 
-         return ::error_no_factory;
+         throw_status(error_no_factory);
 
       }
 
@@ -2473,7 +2469,7 @@ inline void object::__compose(__composite(BASE_TYPE)& pcomposite)
       if (!pelement)
       {
 
-         return ::error_no_memory;
+         throw_status(error_no_memory);
 
       }
 
@@ -2482,31 +2478,31 @@ inline void object::__compose(__composite(BASE_TYPE)& pcomposite)
       if (!pcomposite)
       {
 
-         return error_wrong_type;
+         throw_status(error_wrong_type);
 
       }
 
-      auto estatus = pcomposite->initialize(this);
+      /*auto estatus = */ pcomposite->initialize(this);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = add_composite(pcomposite);
+      /*estatus = */ add_composite(pcomposite);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
    }
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -2523,7 +2519,7 @@ inline void object::__raw_compose(__composite(BASE_TYPE)& pusermessage)
       if (!pfactory)
       {
 
-         return ::error_no_factory;
+         throw_status(::error_no_factory);
 
       }
 
@@ -2532,7 +2528,7 @@ inline void object::__raw_compose(__composite(BASE_TYPE)& pusermessage)
       if (!pelement)
       {
 
-         return ::error_no_memory;
+         throw_status(::error_no_memory);
 
       }
 
@@ -2541,22 +2537,22 @@ inline void object::__raw_compose(__composite(BASE_TYPE)& pusermessage)
       if (!pusermessage)
       {
 
-         return error_wrong_type;
+         throw_status(error_wrong_type);
 
       }
 
-      auto estatus = add_composite(pusermessage);
+      /*auto estatus = */ add_composite(pusermessage);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
    }
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -2570,22 +2566,23 @@ inline void object::__compose(__composite(BASE_TYPE)& pcomposite, const SOURCE* 
    if (!pcomposite)
    {
 
-      return error_wrong_type;
+      throw_status(error_wrong_type);
 
    }
 
-   auto estatus = pcomposite->initialize(this);
+   //auto estatus = pcomposite->initialize(this);
+    pcomposite->initialize(this);
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
-   m_estatus = add_composite(pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+    add_composite(pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
-   return m_estatus;
+   //return m_estatus;
 
 }
 
@@ -2598,13 +2595,13 @@ inline void object::__raw_compose(__composite(BASE_TYPE)& pusermessage, const SO
    if (!pusermessage)
    {
 
-      return error_wrong_type;
+      throw_status(error_wrong_type);
 
    }
 
-   m_estatus = add_composite(pusermessage);
+   /*m_estatus = */ add_composite(pusermessage);
 
-   return m_estatus;
+   //return m_estatus;
 
 }
 
@@ -2613,7 +2610,7 @@ template < typename BASE_TYPE, typename SOURCE >
 inline void object::__compose(__composite(BASE_TYPE)& pusermessage, const __pointer(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
-   return __compose(pusermessage, psource.get() OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+   /* return */ __compose(pusermessage, psource.get() OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
 }
 
@@ -2622,7 +2619,7 @@ template < typename BASE_TYPE, typename SOURCE >
 inline void object::__raw_compose(__composite(BASE_TYPE)& pusermessage, const __pointer(SOURCE)& psource)
 {
 
-   return __raw_compose(pusermessage, psource.get());
+   /*return*/ __raw_compose(pusermessage, psource.get());
 
 }
 
@@ -2636,7 +2633,7 @@ inline void object::__id_compose(__composite(BASE_TYPE)& pusermessage, const ::i
    if (!pfactory)
    {
 
-      return ::error_no_factory;
+      throw_status(::error_no_factory);
 
    }
 
@@ -2645,7 +2642,7 @@ inline void object::__id_compose(__composite(BASE_TYPE)& pusermessage, const ::i
    if (!ptypeNew)
    {
 
-      return ::error_no_memory;
+      throw_status(::error_no_memory);
 
    }
 
@@ -2654,29 +2651,29 @@ inline void object::__id_compose(__composite(BASE_TYPE)& pusermessage, const ::i
    if (!pusermessage)
    {
 
-      return ::error_wrong_type;
+      throw_status(::error_wrong_type);
 
    }
 
-   auto estatus = pusermessage->initialize(this);
+   /*auto estatus =*/ pusermessage->initialize(this);
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
-   estatus = add_composite(pusermessage);
+   /* estatus = */ add_composite(pusermessage);
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
-   return estatus;
+   //return estatus;
 
 }
 
@@ -2690,24 +2687,24 @@ inline void object::__raw_compose_new(__composite(TYPE)& p)
    if (!ptypeNew)
    {
 
-      return ::error_no_memory;
+      throw_status(::error_no_memory);
 
    }
 
    p = ptypeNew;
 
-   auto estatus = add_composite(p);
+   /*auto estatus = */ add_composite(p);
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      p.clear_member();
+   //   p.clear_member();
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
-   return estatus;
+   //return estatus;
 
 }
 
@@ -2721,33 +2718,33 @@ inline void object::__compose_new(__composite(TYPE)& p)
    if (!ptypeNew)
    {
 
-      return ::error_no_memory;
+      throw_status(::error_no_memory);
 
    }
 
-   auto estatus = ptypeNew->initialize(this);
+   /*auto estatus = */ ptypeNew->initialize(this);
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
    p = ptypeNew;
 
-   estatus = add_composite(p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(this));
+   /*estatus = */ add_composite(p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(this));
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      p.clear_member();
+      //p.clear_member();
 
-      return estatus;
+//      return estatus;
 
-   }
+//   }
 
-   return estatus;
+//   return estatus;
 
 }
 
@@ -2756,23 +2753,12 @@ template < typename TYPE >
 inline void object::__defer_construct(__pointer(TYPE)& p)
 {
 
-   if (::is_set(p))
+   if (::is_null(p))
    {
 
-      return ::success_none;
+      __construct(p);
 
    }
-
-   auto estatus = __construct(p);
-
-   if (!estatus)
-   {
-
-      return estatus;
-
-   }
-
-   return estatus;
 
 }
 
@@ -2781,16 +2767,12 @@ template < typename TYPE >
 inline void object::__defer_construct_new(__pointer(TYPE)& p)
 {
 
-   void estatus = ::success_none;
-
    if(::is_null(p))
    {
 
-      estatus = __construct_new(p);
+      __construct_new(p);
 
    }
-
-   return estatus;
 
 }
 
@@ -2806,7 +2788,7 @@ inline void object::__construct(__pointer(TYPE) & p)
 
       ERROR("object::__construct has failed to find factory_item for type \"" <<  __type_name < TYPE >() << "\"");
 
-      return ::error_not_implemented;
+      throw_status(::error_not_implemented);
 
    }
    
@@ -2817,7 +2799,7 @@ inline void object::__construct(__pointer(TYPE) & p)
 
       ERROR("object::__construct no memory to allocate implementation of type \"" + __type_name < TYPE >() + "\"");
 
-      return ::error_no_memory;
+      throw_status(::error_no_memory);
    
    }
 
@@ -2830,20 +2812,11 @@ inline void object::__construct(__pointer(TYPE) & p)
 
       ERROR("object::__construct object("<< __type_name(ptypeNew) << ") is not of type \"" + __type_name < TYPE >() + "\"");
 
-      return ::error_wrong_type;
+      throw_status(::error_wrong_type);
    
    }
    
-   auto estatus = p->initialize(this);
-
-   if(!estatus)
-   {
-   
-      return estatus;
-   
-   }
-
-   return estatus;
+   p->initialize(this);
 
 }
 
@@ -2857,7 +2830,7 @@ inline void object::__id_construct(__pointer(TYPE)& p, const ::id& id)
    if (!pfactory)
    {
 
-      return error_no_factory;
+      throw_status(error_no_factory);
 
    }
 
@@ -2904,20 +2877,12 @@ inline void object::__construct_new(__pointer(TYPE)& p)
    if (!p)
    {
 
-      return error_no_memory;
+      throw_status(error_no_memory);
 
    }
 
-   auto estatus = p->initialize(this);
+   p->initialize(this);
 
-   if(!estatus)
-   {
-
-      return estatus;
-
-   }
-
-   return estatus;
 
 }
 
@@ -2926,7 +2891,7 @@ template < typename BASE_TYPE >
 inline void object::__release(__composite(BASE_TYPE)& pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
-   if (pcomposite)
+   if (::is_set(pcomposite))
    {
 
       //synchronous_lock synchronouslock(mutex());
@@ -2945,7 +2910,7 @@ inline void object::__release(__composite(BASE_TYPE)& pcomposite OBJECT_REFERENC
 
    }
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -2954,7 +2919,7 @@ template < typename BASE_TYPE >
 inline void object::__release(__reference(BASE_TYPE)& preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
-   if (preference)
+   if (::is_set(preference))
    {
 
       //synchronous_lock synchronouslock(mutex());
@@ -2981,7 +2946,7 @@ inline void object::__release(__reference(BASE_TYPE)& preference OBJECT_REFERENC
 
    }
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -2990,7 +2955,7 @@ template < typename SOURCE >
 inline void object::__release(__pointer(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
-   return release_reference(psource.m_p);
+   release_reference(psource.m_p);
 
 }
 
@@ -3011,7 +2976,7 @@ template < typename BASE_TYPE, typename SOURCE >
 inline void object::__refer(__reference(BASE_TYPE)& preference, const __pointer(SOURCE)& psource  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
-   return __refer(preference, psource.get()  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+   __refer(preference, psource.get()  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
 }
 
@@ -3020,7 +2985,7 @@ template < typename BASE_TYPE, typename SOURCE >
 inline void object::__refer(__reference(BASE_TYPE)& preference, const ::primitive::member < SOURCE >& pmember OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
-   return __refer(preference, pmember.get()  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+   __refer(preference, pmember.get()  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
 }
 
@@ -3034,11 +2999,11 @@ inline void object::__refer(__reference(BASE_TYPE)& preference, const SOURCE* ps
    if (!preference)
    {
 
-      return error_wrong_type;
+      throw_status(error_wrong_type);
 
    }
 
-   return add_reference(preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+   add_reference(preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
 }
 
@@ -3047,7 +3012,7 @@ template < typename SOURCE >
 inline void object::add_reference(__pointer(SOURCE)& psource  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
-   return add_reference(psource.get() OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+   add_reference(psource.get() OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
 }
 
@@ -3056,7 +3021,7 @@ template < typename SOURCE >
 inline void object::add_reference(__reference(SOURCE)& preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
-   return add_reference(preference.get() OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+   add_reference(preference.get() OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
 }
 
@@ -3070,11 +3035,11 @@ inline void object::add_reference(SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_C
    if (::is_null(pelement))
    {
 
-      return error_wrong_type;
+      throw_status(error_wrong_type);
 
    }
 
-   return add_reference(pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+   add_reference(pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
 }
 
@@ -3456,14 +3421,7 @@ inline void add_routine(::routine_array& routinea, PRED pred)
 inline void object::defer_branch(::task_pointer& ptask, const ::routine& routine)
 {
 
-   auto estatus = __defer_construct(ptask);
-
-   if (!estatus)
-   {
-
-      return estatus;
-
-   }
+   __defer_construct(ptask);
 
    ptask->m_pelement = routine;
 
@@ -3486,7 +3444,7 @@ inline ::task_pointer object::predicate_run(bool bSync, PRED pred)
 
 
 template < typename PREDICATE >
-inline __transport(task) object::fork(PREDICATE predicate, ::enum_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
+inline __pointer(task) object::fork(PREDICATE predicate, ::enum_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
 {
 
    auto proutine = __routine(predicate);
@@ -3494,7 +3452,7 @@ inline __transport(task) object::fork(PREDICATE predicate, ::enum_priority eprio
    if(!proutine)
    {
 
-      return error_failed;
+      throw_status(error_failed);
 
    }
 
@@ -3668,7 +3626,14 @@ void material_object::__send_routine(POSTING_OBJECT pposting, POSTING_METHOD pos
                                 try
                                 {
 
-                                   psignalization->m_estatus = routine();
+                                    routine();
+                                    psignalization->m_estatus = ::success;
+
+                                }
+                                catch (const ::exception& exception)
+                                {
+
+                                   psignalization->m_estatus = exception.m_estatus;
 
                                 }
                                 catch(...)
@@ -3690,14 +3655,15 @@ void material_object::__send_routine(POSTING_OBJECT pposting, POSTING_METHOD pos
 
    (pposting->*posting_method)(proutine);
 
-   if (psignalization->m_evReady.wait(proutine->timeout()).failed())
-   {
+   //if (psignalization->m_evReady.wait(proutine->timeout()).failed())
+   psignalization->m_evReady.wait(proutine->timeout());
+   //{
 
-      return error_timeout;
+   //   throw_status(error_timeout);
 
-   }
+   //}
 
-   return psignalization->m_estatus;
+   //return psignalization->m_estatus;
 
 }
 

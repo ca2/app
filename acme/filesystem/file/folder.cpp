@@ -21,16 +21,16 @@ folder::~folder()
 void folder::initialize(::object* pobject)
 {
 
-   auto estatus = ::object::initialize(pobject);
+   /* auto estatus = */ ::object::initialize(pobject);
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
-   return estatus;
+   //return estatus;
 
 }
 
@@ -40,7 +40,7 @@ bool folder::is_reading() const
 
    throw interface_only_exception();
 
-   return false;
+   //return false;
 
 }
 
@@ -50,7 +50,7 @@ void folder::open_for_reading(file_pointer pfile, int iBufferLevel)
 
    throw interface_only_exception();
 
-   return ::error_interface_only;
+   //throw ::interface_only_exception();
 
 }
 
@@ -60,9 +60,10 @@ bool folder::locate(const char* pszFileName)
 
    throw interface_only_exception();
 
-   return false;
+//   return false;
 
 }
+
 
 ::file_pointer folder::get_file(const char * pszFile)
 {
@@ -87,7 +88,7 @@ void folder::extract(memory& m, const char* pszFile)
 
    throw interface_only_exception();
 
-   return ::error_interface_only;
+   //throw ::interface_only_exception();
 
 }
 
@@ -105,31 +106,29 @@ void folder::extract_all(const char* pszTargetDir, ::file::patha* ppatha, string
 
    throw interface_only_exception();
 
-   return ::error_interface_only;
+   //throw ::interface_only_exception();
 
 }
 
 
-::file::listing& folder::perform_file_listing(::file::listing& listing)
+bool folder::perform_file_listing(::file::listing& listing)
 {
 
    throw interface_only_exception();
 
-   return listing;
+   return false;
 
 }
 
 
-
-::file::listing& folder::perform_file_relative_name_listing(::file::listing& listing)
+bool folder::perform_file_relative_name_listing(::file::listing& listing)
 {
 
    throw interface_only_exception();
 
-   return listing;
+   return false;
 
 }
-
 
 
 void folder::open_for_writing(file_pointer pfile)
@@ -137,7 +136,7 @@ void folder::open_for_writing(file_pointer pfile)
 
    throw interface_only_exception();
 
-   return ::error_interface_only;
+   //throw ::interface_only_exception();
 
 }
 

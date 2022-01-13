@@ -25,7 +25,7 @@ namespace multimedia
       e_exception          m_eexception;
 
 
-      exception(e_exception eexception = exception_undefined, const void & estatus = error_exception, const char * pszMessage = nullptr);
+      exception(e_exception eexception = exception_undefined, const ::e_status3 & estatus = error_exception, const char * pszMessage = nullptr);
       virtual ~exception();
 
 

@@ -34,7 +34,7 @@ namespace file
       ::file::path            m_pathFinal;
       string_array            m_straPattern;
       string_array            m_straIgnoreName;
-      ::extended::status        m_statusresult;
+      //::e_status3             m_estatus;
       string_array            m_straTitle;
 
 
@@ -43,35 +43,38 @@ namespace file
       ~listing() override;
 
       
-      bool succeeded() const
-      {
+      //bool succeeded() const
+      //{
 
-         return m_statusresult.succeeded();
+      //   return m_estatus.succeeded();
 
-      }
+      //}
 
-      bool failed() const
-      {
+      //bool failed() const
+      //{
 
-         return m_statusresult.failed();
+      //   return m_estatus.failed();
 
-      }
+      //}
 
-      operator bool() const
-      {
+      //operator bool() const
+      //{
 
-         return m_statusresult.succeeded();
+      //   return m_estatus.succeeded();
 
-      }
+      //}
 
-      bool operator !() const
-      {
+      //bool operator !() const
+      //{
 
-         return m_statusresult.failed();
+      //   return m_estatus.failed();
 
-      }
+      //}
 
-      listing & operator = (const void & estatus) { m_statusresult.set_error(estatus); return *this; }
+      //listing & operator = (const ::e_status3 & estatus) { m_estatus.set_error(estatus); return *this; }
+
+
+      //listing& operator = (const ::e_status3 & estatus) { return *this; }
 
 
       void operator()(const ::file::path& path)
@@ -108,7 +111,8 @@ namespace file
       }
 
 
-      void clear_results() { m_straTitle.erase_all(); m_statusresult.clear(); erase_all(); }
+      //void clear_results() { m_straTitle.erase_all(); m_estatus.clear(); erase_all(); }
+      void clear_results() { m_straTitle.erase_all(); erase_all(); }
 
 
       string title(index i);

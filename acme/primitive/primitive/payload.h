@@ -178,14 +178,14 @@ public:
       operator = (p.m_p);
    }
 
-   template < class T >
-   payload(const ::extended::transport<T> & resultpointer)
-   {
-      m_etype = e_type_new;
+   //template < class T >
+   //payload(const __pointer(T)& resultpointer)
+   //{
+   //   m_etype = e_type_new;
 
-      operator = (resultpointer);
+   //   operator = (resultpointer);
 
-   }
+   //}
 
    template < typename BLOCK_TYPE >
    payload(const ::memory_template < BLOCK_TYPE > & memorytemplate)
@@ -695,24 +695,24 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 
    }
 
-   template < class T >
-   payload & operator = (const ::extended::transport < T > & resultpointer)
-   {
+   //template < class T >
+   //payload & operator = (const __pointer(T) & resultpointer)
+   //{
 
-      if (!resultpointer)
-      {
-         
-         return operator=(resultpointer.m_estatus);
+   //   if (!resultpointer)
+   //   {
+   //      
+   //      return operator=(resultpointer.m_estatus);
 
-      }
-      else
-      {
-         
-         return operator = (resultpointer.m_p);
+   //   }
+   //   else
+   //   {
+   //      
+   //      return operator = (resultpointer.m_p);
 
-      }
+   //   }
 
-   }
+   //}
 
    template < an_object T >
    payload & operator = (const T & t)

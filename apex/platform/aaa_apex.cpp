@@ -27,7 +27,7 @@ namespace apex
    void apex::shell_create_link(::file::path pathObj, ::file::path pathLnk, string strDesc, ::file::path pathIco, int iIcon)
    {
 
-      return ::error_interface_only;
+      throw ::interface_only_exception();
 
    }
 
@@ -35,7 +35,7 @@ namespace apex
    // void apex::parallelization_initialize()
    // {
 
-   //    return ::error_interface_only;
+   //    throw ::interface_only_exception();
 
    // }
    
@@ -43,7 +43,7 @@ namespace apex
    // void apex::parallelization_finalize()
    // {
 
-   //    return ::error_interface_only;
+   //    throw ::interface_only_exception();
 
    // }
 
@@ -51,7 +51,7 @@ namespace apex
    void apex::thread_initialize(::thread* pthread)
    {
 
-      return ::error_interface_only;
+      throw ::interface_only_exception();
 
    }
 
@@ -59,7 +59,7 @@ namespace apex
    void apex::thread_finalize(::thread* pthread)
    {
 
-      return ::error_interface_only;
+      throw ::interface_only_exception();
 
    }
 
@@ -67,7 +67,7 @@ namespace apex
    // void apex::node_thread_initialize(::thread* pthread)
    // {
 
-   //    return ::error_interface_only;
+   //    throw ::interface_only_exception();
 
    // }
 
@@ -75,7 +75,7 @@ namespace apex
    // void apex::node_thread_finalize(::thread* pthread)
    // {
 
-   //    return ::error_interface_only;
+   //    throw ::interface_only_exception();
 
    // }
 
@@ -93,7 +93,7 @@ namespace apex
 
       __throw(::error_interface_only);
 
-      return error_interface_only;
+      throw ::interface_only_exception();
 
    }
 
@@ -109,7 +109,7 @@ namespace apex
 
       throw ::interface_only_exception();
 
-      return error_interface_only;
+      throw ::interface_only_exception();
 
     }
 

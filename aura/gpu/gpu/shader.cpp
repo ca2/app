@@ -134,7 +134,7 @@ namespace gpu
    //void shader::shader_compile_errors(GLuint shader, GLenum type, string & strSummary)
    //{
 
-   //   void estatus = ::success;
+   //   ::e_status3 estatus = ::success;
 
    //   return estatus;
 
@@ -144,7 +144,7 @@ namespace gpu
    //void shader::program_compile_errors(GLuint program, string & strSummary)
    //{
 
-   //   void estatus = ::success;
+   //   ::e_status3 estatus = ::success;
 
 
    //   return estatus;

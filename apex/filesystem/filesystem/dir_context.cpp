@@ -3,6 +3,7 @@
 //#include "apex/compress/zip/_.h"
 #include "acme/id.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
 
 
@@ -69,16 +70,16 @@ dir_context::~dir_context()
 void dir_context::initialize(::object * pobject)
 {
 
-   auto estatus = ::object::initialize(pobject);
+   /*auto estatus = */ ::object::initialize(pobject);
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
-   return estatus;
+   //return estatus;
 
 }
 
@@ -86,7 +87,7 @@ void dir_context::initialize(::object * pobject)
 void dir_context::init_system()
 {
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -95,7 +96,7 @@ void dir_context::init_system()
 void dir_context::init_context()
 {
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -388,220 +389,180 @@ inline bool myspace(char ch)
 }
 
 
-::file::listing & dir_context::ls(::file::listing & l)
+bool dir_context::ls(::file::listing & listing)
 {
 
-   l.m_pathFinal = m_pcontext->m_papexcontext->defer_process_path(l.m_pathUser);
+   listing.m_pathFinal = m_pcontext->m_papexcontext->defer_process_path(listing.m_pathUser);
 
-   if (l.m_pathFinal.begins_ci("matter://"))
+   if (listing.m_pathFinal.begins_ci("matter://"))
    {
 
-      ::str::begins_eat_ci(l.m_pathFinal, "matter://");
+      ::str::begins_eat_ci(listing.m_pathFinal, "matter://");
 
-      matter_ls(l.m_pathFinal, l);
+      if (matter_ls(listing.m_pathFinal, listing))
+      {
 
-      return l;
+         return true;
+
+      }
 
    }
 
-   if (l.m_bRecursive)
+   if (listing.m_bRecursive)
    {
 
-      if (l.m_eextract != extract_none && task_flag().is_set(e_task_flag_compress_is_dir) && (icmp(l.m_pathFinal.final_extension(), "zip") == 0 || l.m_pathFinal.find_ci("zip:") >= 0))
+      return false;
+
+   }
+
+   if (::str::begins_ci(listing.m_pathFinal, "http://") || ::str::begins_ci(listing.m_pathFinal, "https://"))
+   {
+
+      property_set set;
+
+      string str =m_pcontext->m_papexcontext->http().get(listing.m_pathFinal, set);
+
+      listing.add_tokens(str, "\n", false);
+
+      return true;
+
+   }
+   else if (task_flag().is_set(e_task_flag_compress_is_dir) && (::str::ends_ci(listing.m_pathFinal, ".zip") || ::str::find_file_extension("zip:", listing.m_pathFinal) >= 0))
+   {
+
+      auto & pfactory = m_psystem->folder_factory();
+
+      if (!pfactory)
       {
 
-         //__throw(::exception("should implement recursive zip"));
-
-         //m_pziputil->ls(papp,l);
-
-         l = ::error_failed;
+         throw_status(error_no_factory);
 
       }
       else
       {
 
-         l = ::error_failed;
+         auto pfolder = pfactory->create < ::folder >();
 
-
-      }
-
-
-   }
-   else
-   {
-
-      if (::str::begins_ci(l.m_pathFinal, "http://") || ::str::begins_ci(l.m_pathFinal, "https://"))
-      {
-
-         property_set set;
-
-         string str =m_pcontext->m_papexcontext->http().get(l.m_pathFinal, set);
-
-         l.add_tokens(str, "\n", false);
-
-      }
-      else if (task_flag().is_set(e_task_flag_compress_is_dir) && (::str::ends_ci(l.m_pathFinal, ".zip") || ::str::find_file_extension("zip:", l.m_pathFinal) >= 0))
-      {
-
-         auto & pfactory = m_psystem->folder_factory();
-
-         if (!pfactory)
+         if (!pfolder)
          {
 
-            l = ::error_failed;
+            throw_status(error_no_factory);
 
          }
          else
          {
 
-            auto pfolder = pfactory->create < ::folder >();
+            file_pointer pfile;
 
-            if (!pfolder)
             {
 
-               l = ::error_failed;
+               compress_not_dir notdir;
 
-            }
-            else
-            {
+               pfolder->perform_file_listing(listing);
 
-               file_transport pfile;
+               return true;
 
-               {
+               //   pfile = 
 
-                  compress_not_dir notdir;
+               //pfilecontainer->open_for_reading()
 
-                  pfolder->perform_file_listing(l);
+               //zip_context zip(this);
 
-                  //   pfile = 
-
-                  //pfilecontainer->open_for_reading()
-
-                  //zip_context zip(this);
-
-                  //zip.ls(l);
-
-               }
+               //zip.ls(listing);
 
             }
 
          }
 
       }
-      else
-      {
-
-         l = ::error_failed;
-
-      }
 
    }
 
-   return l;
+   return false;
 
 }
 
-::file::listing & dir_context::ls_relative_name(::file::listing & l)
+
+bool dir_context::ls_relative_name(::file::listing & listing)
 {
 
-   if (l.m_bRecursive)
+   if (listing.m_bRecursive)
    {
 
-      if (l.m_eextract != extract_none && ::task_flag().is_set(e_task_flag_compress_is_dir) && (icmp(l.m_pathUser.final_extension(), "zip") == 0 || l.m_pathUser.find_ci("zip:") >= 0))
+      return false;
+
+   }
+
+   if (::str::begins_ci(listing.m_pathUser, "http://") || ::str::begins_ci(listing.m_pathUser, "https://"))
+   {
+
+      property_set set;
+
+      string str = m_pcontext->m_papexcontext->http().get(listing.m_pathUser, set);
+
+      listing.add_tokens(str, "\n", false);
+
+      return true;
+
+   }
+   else if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str::ends_ci(listing.m_pathUser, ".zip") || ::str::find_file_extension("zip:", listing.m_pathUser) >= 0))
+   {
+
+      auto & pfactory = m_psystem->folder_factory();
+
+      if (!pfactory)
       {
 
-         //__throw(::exception("should implement recursive zip"));
-
-         //m_pziputil->ls(papp,l);
-
-         l = ::error_failed;
+         throw_status(error_no_factory);
 
       }
       else
       {
 
-         l = ::error_failed;
+         auto pfolder = pfactory->create < ::folder >();
 
-      }
-
-   }
-   else
-   {
-
-      if (::str::begins_ci(l.m_pathUser, "http://") || ::str::begins_ci(l.m_pathUser, "https://"))
-      {
-
-         property_set set;
-
-         string str = m_pcontext->m_papexcontext->http().get(l.m_pathUser, set);
-
-         l.add_tokens(str, "\n", false);
-
-      }
-      else if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str::ends_ci(l.m_pathUser, ".zip") || ::str::find_file_extension("zip:", l.m_pathUser) >= 0))
-      {
-
-         auto & pfactory = m_psystem->folder_factory();
-
-         if (!pfactory)
+         if (!pfolder)
          {
 
-            l = ::error_failed;
+            throw_status(error_no_factory);
 
          }
          else
          {
 
-            auto pfolder = pfactory->create < ::folder >();
+            file_pointer pfile;
 
-            if (!pfolder)
             {
 
-               l = ::error_failed;
+               compress_not_dir notdir;
 
-            }
-            else
-            {
+               pfolder->perform_file_relative_name_listing(listing);
 
-               file_transport pfile;
+               return true;
 
-               {
+               //   pfile = 
 
-                  compress_not_dir notdir;
+               //pfilecontainer->open_for_reading()
 
-                  pfolder->perform_file_relative_name_listing(l);
+               //zip_context zip(this);
 
-                  //   pfile = 
-
-                  //pfilecontainer->open_for_reading()
-
-                  //zip_context zip(this);
-
-                  //zip.ls(l);
-
-               }
+               //zip.ls(listing);
 
             }
 
          }
 
-
       }
-      else
-      {
 
-         l = ::error_failed;
-
-      }
 
    }
 
-   return l;
+   return false;
 
 }
 
 
-::file::listing& dir_context::rls(::file::listing& listing)
+bool dir_context::rls(::file::listing& listing)
 {
 
    listing.m_bRecursive = true;
@@ -615,7 +576,7 @@ inline bool myspace(char ch)
 }
 
 
-::file::listing& dir_context::rls_relative_name(::file::listing& listing)
+bool dir_context::rls_relative_name(::file::listing& listing)
 {
 
    listing.m_bRecursive = true;
@@ -629,7 +590,7 @@ inline bool myspace(char ch)
 }
 
 
-::file::listing& dir_context::ls_pattern(::file::listing& listing, const ::file::path& path, const string_array& straPattern)
+bool dir_context::ls_pattern(::file::listing& listing, const ::file::path& path, const string_array& straPattern)
 {
 
    listing.m_pathUser = path;
@@ -647,7 +608,7 @@ inline bool myspace(char ch)
 }
 
 
-::file::listing& dir_context::ls_file_pattern(::file::listing& listing, const ::file::path& path, const string_array& straPattern)
+bool dir_context::ls_file_pattern(::file::listing& listing, const ::file::path& path, const string_array& straPattern)
 {
 
    listing.m_pathUser = path;
@@ -665,7 +626,7 @@ inline bool myspace(char ch)
 }
 
 
-::file::listing& dir_context::rls_pattern(::file::listing& listing, const ::file::path& path, const string_array& straPattern)
+bool dir_context::rls_pattern(::file::listing& listing, const ::file::path& path, const string_array& straPattern)
 {
 
    listing.m_pathUser = path;
@@ -683,7 +644,7 @@ inline bool myspace(char ch)
 }
 
 
-::file::listing& dir_context::rls_file_pattern(::file::listing& listing, const ::file::path& path, const string_array& straPattern)
+bool dir_context::rls_file_pattern(::file::listing& listing, const ::file::path& path, const string_array& straPattern)
 {
 
    listing.m_pathUser = path;
@@ -701,7 +662,7 @@ inline bool myspace(char ch)
 }
 
 
-::file::listing& dir_context::ls_file(::file::listing& listing)
+bool dir_context::ls_file(::file::listing& listing)
 {
 
    listing.m_bRecursive = false;
@@ -717,7 +678,7 @@ inline bool myspace(char ch)
 }
 
 
-::file::listing& dir_context::ls_dir(::file::listing& listing)
+bool dir_context::ls_dir(::file::listing& listing)
 {
 
    listing.m_bRecursive = false;
@@ -733,7 +694,7 @@ inline bool myspace(char ch)
 }
 
 
-::file::listing& dir_context::rls_file(::file::listing& listing)
+bool dir_context::rls_file(::file::listing& listing)
 {
 
    listing.m_bRecursive = true;
@@ -749,7 +710,7 @@ inline bool myspace(char ch)
 }
 
 
-::file::listing& dir_context::rls_dir(::file::listing& listing)
+bool dir_context::rls_dir(::file::listing& listing)
 {
 
    listing.m_bRecursive = true;
@@ -790,14 +751,14 @@ bool dir_context::is_cached(bool & bIs, const ::file::path & path)
 
       ::file::path pathTarget;
 
-      if (m_pcontext->m_papexcontext->file().resolve_link(pathTarget, path))
-      {
+      m_pcontext->m_papexcontext->file().resolve_link(pathTarget, path);
+      //{
 
          bIs = is(pathTarget);
 
          return true;
 
-      }
+      //}
 
 #ifdef WINDOWS_DESKTOP
    }
@@ -871,7 +832,7 @@ bool dir_context::is_cached(bool & bIs, const ::file::path & path)
          else
          {
 
-            file_transport pfile;
+            file_pointer pfile;
 
             {
 
@@ -885,7 +846,7 @@ bool dir_context::is_cached(bool & bIs, const ::file::path & path)
 
                //zip_context zip(this);
 
-               //zip.ls(l);
+               //zip.ls(listing);
 
             }
 
@@ -1041,7 +1002,7 @@ bool dir_context::is_impl(const ::file::path & path)
          else
          {
 
-            file_transport pfile;
+            file_pointer pfile;
 
             {
 
@@ -1055,7 +1016,7 @@ bool dir_context::is_impl(const ::file::path & path)
 
                //zip_context zip(this);
 
-               //zip.ls(l);
+               //zip.ls(listing);
 
             }
 
@@ -1113,7 +1074,7 @@ bool dir_context::name_is(const ::file::path & strPath)
          else
          {
 
-            file_transport pfile;
+            file_pointer pfile;
 
             {
 
@@ -1127,7 +1088,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 
                //zip_context zip(this);
 
-               //zip.ls(l);
+               //zip.ls(listing);
 
             }
 
@@ -1147,6 +1108,8 @@ bool dir_context::name_is(const ::file::path & strPath)
 
 
 }
+
+
 
 
 //      dir_context::is_dir_map::is_dir_map()
@@ -1674,29 +1637,48 @@ bool dir_context::name_is(const ::file::path & strPath)
 }
 
 
-bool dir_context::mk(const ::file::path & path)
+void dir_context::create(const ::file::path & path)
 {
 
-   __UNREFERENCED_PARAMETER(path);
-
-   throw interface_only_exception("this is an interface");
-
-   return false;
+   m_psystem->m_pacmedir->create(path);
 
 }
 
 
-bool dir_context::rm(const ::file::path & path, bool bRecursive)
+void dir_context::erase(const ::file::path& path, bool bRecursive)
 {
 
-   __UNREFERENCED_PARAMETER(path);
-   __UNREFERENCED_PARAMETER(bRecursive);
+   if (bRecursive)
+   {
 
-   throw interface_only_exception("this is an interface");
+      ::file::listing patha;
 
-   return false;
+      ls(patha, path);
+
+      for (auto& pathItem : patha)
+      {
+
+         if (is(pathItem))
+         {
+
+            erase(pathItem, true);
+
+         }
+         else
+         {
+
+            m_psystem->m_pacmefile->delete_file(pathItem);
+
+         }
+
+      }
+
+   }
+
+   m_psystem->m_pacmedir->erase(path);
 
 }
+
 
 
 ::file::path dir_context::locale_schema_matter(const ::string & strLocale, const ::string & strSchema, const ::file::path & pathRoot, const ::file::path & pathDomain)
@@ -1719,7 +1701,7 @@ bool dir_context::rm(const ::file::path & path, bool bRecursive)
 }
 
 
-void dir_context::matter_ls(const ::file::path & path, ::file::listing & stra)
+bool dir_context::matter_ls(const ::file::path & path, ::file::listing & stra)
 {
 
    auto psystem = get_system()->m_papexsystem;
@@ -1855,10 +1837,12 @@ void dir_context::matter_ls(const ::file::path & path, ::file::listing & stra)
 
    }
 
+   return true;
+
 }
 
 
-void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & stra)
+bool dir_context::matter_ls_file(const ::file::path & str, ::file::listing & stra)
 {
 
    ::file::path strDir = matter(str, true);
@@ -1924,6 +1908,8 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
       m_pcontext->m_papexcontext->dir().ls(stra, strDir);
 
    }
+
+   return true;
 
 }
 

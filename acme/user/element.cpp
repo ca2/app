@@ -43,7 +43,7 @@ namespace user
    void element::show_software_keyboard(::user::element * pprimitive, string str, strsize iBeg, strsize iEnd)
    {
 
-      return error_interface_only;
+      //throw ::interface_only_exception();
 
    }
 
@@ -51,7 +51,7 @@ namespace user
    void element::hide_software_keyboard(::user::element * pprimitive)
    {
 
-      return error_interface_only;
+      //throw ::interface_only_exception();
 
 
    }
@@ -1051,9 +1051,9 @@ namespace user
    void element::interaction_post(const ::routine & routine)
    {
 
-      throw ::interface_only_exception();
+      //throw ::interface_only_exception();
 
-      return error_interface_only;
+      throw ::interface_only_exception();
 
    }
 
@@ -1254,9 +1254,11 @@ namespace user
    void element::create_child(::user::interaction * puserinteractionParent)
    {
 
+      //throw ::interface_only_exception();
+
       throw ::interface_only_exception();
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -1266,16 +1268,16 @@ namespace user
 
       m_id = id;
 
-      auto estatus = create_child(puserinteractionParent);
+      /*auto estatus =*/ create_child(puserinteractionParent);
 
-      if(!estatus)
-      {
+      //if(!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      ///return estatus;
 
    }
 
@@ -1308,29 +1310,31 @@ namespace user
 
       }
 
-      void estatus;
+      ::e_status3 estatus;
 
       if (!puserinteractionParent)
       {
 
-         estatus = create_host();
+         //estatus = create_host();
+
+         create_host();
 
       }
       else
       {
 
-         estatus = create_child(puserinteractionParent);
+         create_child(puserinteractionParent);
 
       }
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -1339,9 +1343,11 @@ namespace user
    void element::create_host()
    {
 
-      throw ::interface_only_exception();
+      //throw ::interface_only_exception();
 
-      return ::error_no_interface;
+      //return ::error_no_interface;
+
+      throw ::interface_only_exception();
 
    }
 
@@ -1535,7 +1541,7 @@ namespace user
 
    //   throw ::interface_only_exception();
 
-   //   return ::error_interface_only;
+   //   throw ::interface_only_exception();
 
    //}
 
@@ -1555,8 +1561,6 @@ namespace user
 
       throw ::interface_only_exception();
 
-      return nullptr;
-
    }
 
 
@@ -1564,8 +1568,6 @@ namespace user
    {
 
       throw ::interface_only_exception();
-
-      return nullptr;
 
    }
 
@@ -3003,7 +3005,7 @@ namespace user
 
       throw ::interface_only_exception();
 
-      return error_not_implemented;
+      //return error_not_implemented;
 
    }
 
@@ -3489,7 +3491,7 @@ namespace user
    void element::set_bitmap_source(const string & strBitmapSource)
    {
 
-      return error_interface_only;
+      throw ::interface_only_exception();
 
    }
 
@@ -3497,7 +3499,7 @@ namespace user
    void element::clear_bitmap_source()
    {
 
-      return error_interface_only;
+      throw ::interface_only_exception();
 
    }
 
@@ -3556,7 +3558,7 @@ namespace user
 
       throw ::interface_only_exception();
 
-      return error_interface_only;
+      throw ::interface_only_exception();
 
       //auto pchild = get_primitive_by_id(idChild);
 
@@ -4231,7 +4233,7 @@ namespace user
    void element::set_keyboard_focus()
    {
 
-      return ::error_interface_only;
+      throw ::interface_only_exception();
 
    }
 
@@ -4239,7 +4241,7 @@ namespace user
    void element::erase_keyboard_focus()
    {
 
-      return ::error_interface_only;
+      throw ::interface_only_exception();
 
    }
 
@@ -4247,7 +4249,7 @@ namespace user
    void element::clear_keyboard_focus()
    {
 
-      return ::error_interface_only;
+      throw ::interface_only_exception();
 
    }
 

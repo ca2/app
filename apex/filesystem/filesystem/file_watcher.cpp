@@ -116,10 +116,12 @@ namespace file
    }
 
 
-   void watch::step()
+   bool watch::step()
    {
 
-      return ::success;
+      //return ::success;
+
+      return true;
 
    }
 
@@ -230,14 +232,14 @@ namespace file
 
             if (m_htask == nullptr)
             {
-               auto estatus = begin_thread();
+               /*auto estatus = */ begin_thread();
 
-               if (!estatus)
+             /*  if (!estatus)
                {
 
                   return estatus;
 
-               }
+               }*/
 
             }
 
@@ -310,7 +312,7 @@ namespace file
 
       }
       
-      return ::success;
+      //return ::success;
 
    }
 
@@ -337,7 +339,7 @@ namespace file
    }
 
 
-   void watcher::step()
+   bool watcher::step()
    {
 
 restart:

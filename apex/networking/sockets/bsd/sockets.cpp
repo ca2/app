@@ -47,14 +47,16 @@ namespace sockets
    void sockets::initialize(::object * pobject)
    {
 
-      auto estatus = sockets_base::initialize(pobject);
+      //auto estatus = sockets_base::initialize(pobject);
 
-      if (!estatus)
-      {
+      sockets_base::initialize(pobject);
 
-         return estatus;
+      //if (!estatus)
+      //{
 
-      }
+      //   return estatus;
+
+      //}
 
       auto paddressdepartment = pobject->__create_new<class ::net::address_department>();
 
@@ -66,23 +68,28 @@ namespace sockets
 
       m_psslinit = __create_new<::sockets::SSLInitializer>();
 
-      estatus = __construct_new(m_pnet);
+      //estatus = __construct_new(m_pnet);
 
-      if (!estatus || !m_pnet)
+      __construct_new(m_pnet);
+
+      if (!m_pnet)
       {
 
-         m_iErrorCode = -1986;
+         m_iErrorCode = -1;
 
-         return error_failed;
+         //return error_failed;
+
+         return;
 
       }
 
-      if (!m_pnet->initialize(this))
-      {
+      //if (!m_pnet->initialize(this))
+      m_pnet->initialize(this);
+      /*{
 
          return error_failed;
 
-      }
+      }*/
 
       //if (!::acme::department::initialize())
       //{
@@ -91,17 +98,25 @@ namespace sockets
 
       //}
 
-
-#ifdef WINDOWS
-      __construct(m_pportforward);
-#endif
+//      try
+//      {
+//
+//#ifdef WINDOWS
+//         __construct(m_pportforward);
+//#endif
+//
+//      }
+//      catch (...)
+//      {
+//
+//      }
 
 
       //m_pajpaxissocketinit = new AjpBaseSocket::Initializer;
 
       m_countHttpPostBoundary = 0;
 
-      return ::success;
+      // return ::success;
 
    }
 
@@ -116,23 +131,25 @@ namespace sockets
       if (m_pnet)
       {
 
-         try
-         {
+         //try
+         //{
 
-            if (!m_pnet->gudo_set())
-            {
+         //   //if (!m_pnet->gudo_set())
 
-               m_iErrorCode = -87;
+         //   //m_pnet->gudo_set()
+         //   //{
 
-            }
+         //   //   m_iErrorCode = -87;
 
-         }
-         catch (...)
-         {
+         //   //}
 
-            m_iErrorCode = -87;
+         //}
+         //catch (...)
+         //{
 
-         }
+         //   m_iErrorCode = -87;
+
+         //}
 
       }
 
@@ -202,7 +219,7 @@ namespace sockets
 
       ///::acme::del(m_pajpaxissocketinit);
 
-      return ::success;
+      //return ::success;
 
    }
 

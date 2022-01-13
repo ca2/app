@@ -454,7 +454,7 @@ void event::_wait ()
       if(iResult == WAIT_OBJECT_0)
       {
 
-         return signaled_base;
+         throw_status(signaled_base);
 
       }
       else if (iResult == WAIT_TIMEOUT)
@@ -463,7 +463,7 @@ void event::_wait ()
          if (!task_get_run())
          {
 
-            return abandoned_base;
+            throw_status(abandoned_base);
 
          }
 
@@ -471,7 +471,7 @@ void event::_wait ()
       else
       {
 
-         return error_failed;
+         throw_status(error_failed);
 
       }
 
@@ -552,15 +552,15 @@ void event::_wait ()
 
    //}
 
-   return signaled_base;
+   //return signaled_base;
 
 }
 
 
-void event::_wait (const class ::wait & wait)
+bool event::_wait (const class ::wait & wait)
 {
 
-   void estatus;
+   ::e_status3 estatus;
 
    //__throw(todo("thread"));
    //if(durationTimeout > 1_s && m_eobject & e_object_alertable_wait)
@@ -585,6 +585,27 @@ void event::_wait (const class ::wait & wait)
    DWORD dwResult = ::WaitForSingleObjectEx(hsync, wait, false);
 
    estatus = windows_wait_result_to_status(dwResult);
+
+   if (estatus == error_timeout)
+   {
+
+      return false;
+
+   }
+   else if (estatus == signaled_base)
+   {
+
+      return true;
+
+   }
+   else
+   {
+
+      throw_status(estatus);
+
+      return false;
+
+   }
 
 #elif defined(ANDROID)
 
@@ -818,7 +839,7 @@ void event::_wait (const class ::wait & wait)
 
    //}
 
-   return estatus;
+   //return estatus;
 
 }
 
@@ -1024,10 +1045,10 @@ bool event::is_signaled() const
 //}
 
 
-bool event::unlock()
+void event::unlock()
 {
 
-   return true;
+   //return true;
 
 }
 

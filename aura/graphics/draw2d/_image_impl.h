@@ -2,7 +2,7 @@
 
 
 
-//inline ::image_transport object::create_image()
+//inline ::image_pointer object::create_image()
 //{
 //
 //   return __create < ::image >();
@@ -10,7 +10,7 @@
 //}
 //
 //
-//inline ::image_transport object::create_image(const ::size_i32 & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
+//inline ::image_pointer object::create_image(const ::size_i32 & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
 //{
 //
 //   ::image_pointer pimage;
@@ -200,7 +200,7 @@
 //}
 
 
-// inline ::image_transport __create_image(::object * pobject)
+// inline ::image_pointer __create_image(::object * pobject)
 // {
 
 //    auto ptype = __create_new_image();

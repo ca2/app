@@ -66,10 +66,10 @@ public:
    void run() override;
 
 
-   bool start(const class ::wait & wait, bool bPeriodic);
+   void start(const class ::wait & wait, bool bPeriodic);
 
 
-   virtual bool on_timer();
+   virtual void on_timer();
 
    //virtual void destroy() override;
 

@@ -712,7 +712,7 @@ namespace apex
 
       //g_pfn_create_system = &apex_create_apex_system;
 
-      return true;
+      //return true;
 
    }
 
@@ -751,7 +751,7 @@ namespace apex
 
       //return true;
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -817,7 +817,7 @@ namespace apex
 //thread_int_ptr < void    > t_estatus;
 
 
-//CLASS_DECL_APEX void set_last_status(const void & estatus)
+//CLASS_DECL_APEX void set_last_status(const ::e_status3 & estatus)
 //{
 //
 //   ::get_task()->m_estatus = estatus;

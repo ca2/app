@@ -17,7 +17,7 @@ public:
 
 
    virtual void request_exit_application();
-   virtual void can_exit_application();
+   virtual bool can_exit_application();
    virtual void exit_application();
 
 

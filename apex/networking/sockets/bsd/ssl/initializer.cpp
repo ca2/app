@@ -135,14 +135,16 @@ namespace sockets
    void SSLInitializer::initialize(::object* pobject)
    {
 
-      auto estatus = ::object::initialize(pobject);
+      //auto estatus = ::object::initialize(pobject);
 
-      if (!estatus)
-      {
+      ::object::initialize(pobject);
 
-         return estatus;
+      //if (!estatus)
+      //{
 
-      }
+      //   return estatus;
+
+      //}
 
       //#if defined(_UWP)
 //
@@ -184,7 +186,7 @@ namespace sockets
       //ENGINE_load_cryptodev();
       //ENGINE_load_builtin_engines();
 
-      return ::success;
+      //return ::success;
 
    }
 

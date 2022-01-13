@@ -2345,9 +2345,6 @@
     <ClInclude Include="node\operating_system\windows\process.h">
       <Filter>Header Files\node\operating_system\windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\operating_system\windows\_windows.h">
-      <Filter>Header Files\node\operating_system\windows</Filter>
-    </ClInclude>
     <ClInclude Include="node\operating_system\windows\_.h">
       <Filter>Header Files\node\operating_system\windows</Filter>
     </ClInclude>
@@ -2737,6 +2734,9 @@
     </ClInclude>
     <ClInclude Include="filesystem\file\folder.h">
       <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\windows\_windows.h">
+      <Filter>Header Files\node\operating_system\windows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -3852,6 +3852,9 @@
     </ClCompile>
     <ClCompile Include="primitive\geometry2d\_shape.cpp">
       <Filter>Source Files\primitive\geometry2d</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\string.cpp">
+      <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

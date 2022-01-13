@@ -36,7 +36,7 @@ namespace parallelization
 
       //::acme::del(s_pcs2);
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -592,7 +592,7 @@ namespace apex
    //CLASS_DECL_APEX void call(const ::method & method)
    //{
    //
-   //   void estatus;
+   //   ::e_status3 estatus;
    //
    //   try
    //   {
@@ -934,7 +934,7 @@ void thread_ptra::destroy()
    }
 
 
-   return ::success;
+   //return ::success;
 
 }
 

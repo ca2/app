@@ -70,7 +70,7 @@ namespace user
    ::u32                                           m_nIdleFlags;          // set of bit flags for idle processing
 
       ::user::impact *                                m_pviewMain;
-      id_map < __transport(::user::toolbar) >      m_mapToolbar;
+      id_map < __pointer(::user::toolbar) >      m_mapToolbar;
 
 
 
@@ -163,10 +163,10 @@ namespace user
       void hide_control_bar(::user::control_bar * pcontrolbar) override;
 
 
-      virtual __transport(toolbar) get_toolbar(const ::id & idToolBar, bool bCreate = true, const ::string & strToolbar = nullptr, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP, const ::type & type = "user::toolbar");
+      virtual __pointer(toolbar) get_toolbar(const ::id & idToolBar, bool bCreate = true, const ::string & strToolbar = nullptr, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP, const ::type & type = "user::toolbar");
 
 
-      virtual __transport(toolbar) create_toolbar(const ::id & idToolbar, const ::string & strToolbar = nullptr, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP, const ::type & type = "user::toolbar") ;
+      virtual __pointer(toolbar) create_toolbar(const ::id & idToolbar, const ::string & strToolbar = nullptr, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP, const ::type & type = "user::toolbar") ;
 
       //   template < class TOOLBAR >
       // bool load_toolbar(id idToolBar, const ::string & pszToolBar,u32 dwCtrlStyle = TBSTYLE_FLAT,u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);

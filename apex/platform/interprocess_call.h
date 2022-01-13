@@ -9,7 +9,6 @@ public:
 
    __pointer(interprocess_intercommunication)                m_pinterprocessintercommunication;
    string                        m_strApp;
-   ::duration                    m_duration;
    id_array                      m_iaExclude;
    bool                          m_bAutoLaunch;
 
@@ -29,7 +28,7 @@ public:
 
    void add_arg(const ::payload & payload);
    void add_args(const payload_array& payloada);
-   void set_timeout(const duration& duration);
+   //void set_timeout(const duration& duration);
    void set_auto_launch(bool bSet = true);
 
    bool is_auto_launch() const;
@@ -41,6 +40,7 @@ public:
    __pointer(synchronization_array) synca();
 
    void wait();
+   bool _wait(const class ::wait & wait);
 
    void announce();
 

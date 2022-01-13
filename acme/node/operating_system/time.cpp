@@ -147,25 +147,27 @@ void get_system_time_as_file_time(filetime_t* pfiletime)
 
    system_time_t systemtime;
 
-   auto estatus = get_system_time(&systemtime);
+   //auto estatus = get_system_time(&systemtime);
 
-   if (!estatus)
-   {
+   get_system_time(&systemtime);
 
-      return estatus;
+   //if (!estatus)
+   //{
 
-   }
+   //   return estatus;
 
-   estatus = system_time_to_file_time(pfiletime, &systemtime);
+   //}
 
-   if (!estatus)
-   {
+   /*estatus = */ system_time_to_file_time(pfiletime, &systemtime);
 
-      return estatus;
+   //if (!estatus)
+   //{
 
-   }
+   //   return estatus;
 
-   return estatus;
+   //}
+
+   //return estatus;
 
 }
 
@@ -222,25 +224,25 @@ void file_time_to_time(time_t* ptime, const filetime_t* pfiletime, i32 nDST)
 
    system_time_t systemtime{};
 
-   auto estatus = file_time_to_system_time(&systemtime, pfiletime);
+   /*auto estatus = */ file_time_to_system_time(&systemtime, pfiletime);
 
-   if(!estatus)
-   {
+   //if(!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
-   estatus = system_time_to_time(ptime, &systemtime);
+   /* estatus = */ system_time_to_time(ptime, &systemtime);
 
-   if(!estatus)
-   {
+   //if(!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
-   return estatus;
+   //return estatus;
 
 }
 
@@ -250,14 +252,14 @@ filetime get_filetime_now()
 
    filetime_t filetime=0;
 
-   auto estatus = get_system_time_as_file_time(&filetime);
+   /*auto estatus = */ get_system_time_as_file_time(&filetime);
 
-   if(!estatus)
-   {
+   //if(!estatus)
+   //{
 
-      return 0;
+   //   return 0;
 
-   }
+   //}
 
    return filetime;
 
@@ -274,7 +276,7 @@ void system_time_to_tm(tm * ptm, const system_time_t * psystemtime)
    ptm->tm_mday   = psystemtime->wDay;
    ptm->tm_year   = psystemtime->wYear;
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -289,7 +291,7 @@ void tm_to_system_time(system_time_t * psystemtime, const tm * ptm)
    psystemtime->wDay       = ptm->tm_mday    ;
    psystemtime->wYear      = ptm->tm_year    ;
 
-   return ::success;
+   //return ::success;
 
 }
 

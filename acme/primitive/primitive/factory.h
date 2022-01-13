@@ -144,7 +144,7 @@ namespace factory
       inline __pointer(::factory::factory_item_base < BASE_TYPE >) add_factory_item();
 
       template < typename BASE_TYPE >
-      inline __transport(BASE_TYPE) create();
+      inline __pointer(BASE_TYPE) create();
 
       void merge(const ::factory::factory* pfactory);
 
@@ -166,7 +166,7 @@ namespace factory
          if (!pNew)
          {
 
-            return error_no_factory;
+            throw_status(error_no_factory);
 
          }
 
@@ -175,11 +175,11 @@ namespace factory
          if (!p)
          {
 
-            return error_no_interface;
+            throw_status(error_no_interface);
 
          }
 
-         return ::success;
+         //return ::success;
 
       }
 
@@ -188,15 +188,16 @@ namespace factory
       inline void __defer_construct(__pointer(BASE_TYPE)& p)
       {
 
-         void estatus = ::success_not_constructed;
+         //::e_status3 estatus = ::success_not_constructed;
 
-         if (!p)
+         if (::is_null(p))
          {
 
-            estatus = this->__construct(p);
+            /*estatus =*/ this->__construct(p);
+
          }
 
-         return estatus;
+         ///return estatus;
 
       }
 
@@ -208,7 +209,7 @@ namespace factory
       inline void __raw_compose(::object* pobjectComposer, __composite(BASE_TYPE)& pusermessage);
 
 
-      virtual __transport(::element) create(const ::string & strType);
+      virtual __pointer(::element) create(const ::string & strType);
 
 
       virtual bool has_type(const ::string & strType) const;
@@ -259,7 +260,7 @@ namespace factory
 using factory_pointer = __pointer(::factory::factory);
 
 
-using factory_transport = __transport(::factory::factory);
+using factory_pointer = __pointer(::factory::factory);
 
 
 namespace factory

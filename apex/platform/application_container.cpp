@@ -113,12 +113,12 @@ void application_container::exit_application()
       try
       {
 
-         auto estatus = papp->can_exit_application();
+         auto bCanExit = papp->can_exit_application();
 
-         if(!estatus)
+         if(!bCanExit)
          {
 
-            return estatus;
+            return;
 
          }
 
@@ -206,7 +206,7 @@ void application_container::exit_application()
 
    destroy();
 
-   return ::success;
+   ///return ::success;
 
 }
 
@@ -273,7 +273,7 @@ __pointer(::application) application_container::instantiate_application(const ch
 
    INFORMATION("apex::application::instantiate_application");
 
-   void estatus = ::success;
+   ::e_status3 estatus = ::success;
 
    __pointer(::application) papp;
 
@@ -325,7 +325,7 @@ __pointer(::application) application_container::instantiate_application(const ch
 
          papp = psystem->new_application(strAppId);
 
-         estatus = ::g_pappcore->initialize_application(papp, this);
+         ::g_pappcore->initialize_application(papp, this);
 
       }
 
@@ -579,12 +579,13 @@ __pointer(::application) application_container::start_application(const char * p
    catch (const ::exception & e)
    {
 
-      if (handle_exception(e))
-      {
+      
+      handle_exception(e);
+      //{
 
-         papp = nullptr;
+      //   papp = nullptr;
 
-      }
+      //}
 
    }
    catch(...)

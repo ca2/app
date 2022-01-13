@@ -21,13 +21,6 @@ template < >
 CLASS_DECL_ACME string __string(const ::enum_status & estatus);
 
 
-template < >
-inline string __string(const void & estatus)
-{
-
-   return __string(estatus.m_estatus);
-
-}
 
 
 template < typename T >

@@ -67,7 +67,7 @@ namespace dynamic_source
    void script_interface::init1()
    {
 
-      void estatus = ::success_none;
+      ::e_status3 estatus = ::success_none;
 
       return estatus;
 

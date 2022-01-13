@@ -27,7 +27,7 @@ namespace apex
 
       throw ::interface_only_exception();
 
-      return error_interface_only;
+      throw ::interface_only_exception();
 
    }
 
@@ -46,7 +46,7 @@ namespace apex
 
       m_iMode = 1;
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -62,7 +62,7 @@ namespace apex
       m_strDirectory = pszDirectory;
       m_edisplay = edisplay;
 
-      return ::success;
+      //return ::success;
 
    }
 

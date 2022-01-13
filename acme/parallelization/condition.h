@@ -36,7 +36,7 @@ public:
    //virtual bool lock(const class ::wait & wait);
 
    using synchronization_object::unlock;
-   virtual bool unlock() override;
+   virtual void unlock() override;
 
    virtual void * get_os_data() const;
 
@@ -57,7 +57,7 @@ public:
    ///  \brief		waits for an event for a specified time
    ///  \lparam		duration time period to wait for an event
    ///  \return	waiting action result as WaitResult
-   void wait (const class ::wait & wait) override;
+   bool wait (const class ::wait & wait) override;
 
    bool is_signaled() const;
 

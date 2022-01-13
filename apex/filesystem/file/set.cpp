@@ -22,20 +22,21 @@ namespace file
    void set::on_initialize_object()
    {
 
-      auto estatus = ::object::on_initialize_object();
+      //auto estatus = ::object::on_initialize_object();
+      ::object::on_initialize_object();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       m_ppathaSearch.create_new(this);
       
       m_pbaRecursive.create_new(this);
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -227,15 +228,15 @@ namespace file
    }
 
 
-   bool set::initialize_os_wallpaper(bool bAddSearch)
+   void set::initialize_os_wallpaper(bool bAddSearch)
    {
 
-      if (!m_pcontext->m_papexcontext->os_context()->initialize_wallpaper_fileset(this, bAddSearch))
-      {
+      m_pcontext->m_papexcontext->os_context()->initialize_wallpaper_fileset(this, bAddSearch);
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
       refresh();
 
@@ -262,7 +263,7 @@ namespace file
 
       }
 
-      return true;
+      //return true;
 
    }
 

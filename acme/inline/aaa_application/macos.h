@@ -33,7 +33,7 @@
 
 //    psystem->system_construct(argc, argv);
 
-//    void estatus = os_application_system_run(psystem);
+//    ::e_status3 estatus = os_application_system_run(psystem);
 
 //    ::i32 iErrorStatus = estatus.error_status();
 

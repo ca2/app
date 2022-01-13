@@ -72,7 +72,7 @@ namespace aura
 
 
       // impl
-      virtual __transport(::aura::application) get_new_application(::object * pobject, const ::string & pszAppId);
+      virtual __pointer(::aura::application) get_new_application(::object * pobject, const ::string & pszAppId);
       virtual void get_app_list(string_array & stra);
 
 
@@ -131,7 +131,7 @@ namespace aura
       }
 
       // impl
-      virtual __transport(::aura::application) get_new_application(::object * pobject, const ::string & pszAppId) override;
+      virtual __pointer(::aura::application) get_new_application(::object * pobject, const ::string & pszAppId) override;
 
 
       virtual void get_extension_list(string_array & stra) override;

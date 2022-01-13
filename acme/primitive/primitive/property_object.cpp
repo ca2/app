@@ -32,7 +32,7 @@ property_object::~property_object()
 void property_object::destroy()
 {
 
-   auto estatus = ::material_object::destroy();
+   /*auto estatus =*/ ::material_object::destroy();
 
    m_pmapPropertyRoutine.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
@@ -40,7 +40,7 @@ void property_object::destroy()
 
    m_ppropertyset.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -70,7 +70,7 @@ void property_object::notify_on_destroy(::property_object * pcontextobjectFinish
 void property_object::run()
 {
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -231,22 +231,22 @@ bool property_object::is_alive()
 void property_object::operator()()
 {
 
-   void estatus;
+   ::e_status3 estatus;
 
-   try
-   {
+   //try
+   //{
 
-      estatus = run();
+   run();
 
-   }
-   catch (...)
-   {
+   //}
+   //catch (...)
+   //{
 
-      estatus = ::error_exception;
+   //   estatus = ::error_exception;
 
-   }
+   //}
 
-   return estatus;
+   //return estatus;
 
 }
 
@@ -309,7 +309,7 @@ void property_object::exchange(::stream & stream)
 void property_object::handle_exception(const ::exception& e)
 {
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -395,7 +395,7 @@ void property_object::add_routine(const ::id & id, const ::routine & routine)
    if (!routine)
    {
 
-      return error_invalid_argument;
+      throw_status(error_invalid_argument);
 
    }
 
@@ -404,13 +404,13 @@ void property_object::add_routine(const ::id & id, const ::routine & routine)
    if (!proutinea)
    {
 
-      return error_resource;
+      throw_status(error_resource);
 
    }
    
    proutinea->add(routine);
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -700,7 +700,7 @@ string property_object::get_text(const ::payload & payload, const ::id & id)
 }
 
 
-::extended::status property_object::run_property(const ::id& id)
+void property_object::run_property(const ::id& id)
 {
 
    auto pproperty = find_property(id);
@@ -708,11 +708,11 @@ string property_object::get_text(const ::payload & payload, const ::id & id)
    if (!pproperty)
    {
 
-      return error_not_found;
+      throw_status(error_not_found);
 
    }
 
-   return pproperty->run();
+   pproperty->run();
 
 }
 

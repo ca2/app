@@ -322,7 +322,7 @@ namespace account
    }
 
 
-   void credentials::save_status_to_storage(const void & estatus)
+   void credentials::save_status_to_storage(const ::e_status3 & estatus)
    {
 
       string strStatus = __string((i64)estatus.m_estatus);

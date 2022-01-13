@@ -50,9 +50,9 @@ void timer::destroy()
 
    m_ptimercallback.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
-   auto estatus = ::matter::destroy();
+   /*auto estatus =*/ ::matter::destroy();
 
-   return estatus;
+   //return estatus;
 
 }
 

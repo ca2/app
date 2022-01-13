@@ -702,7 +702,7 @@ CLASS_DECL_EXPORT BOOL wf_pre_connect(freerdp* instance)
 //	rdpChannels* channels;
 //	rdpSettings* settings;
 //	BOOL async_input;
-//	BOOL async_transport;
+//	BOOL async_pointer;
 //	HANDLE input_thread;
 //
 //	instance = (freerdp*) lpParam;
@@ -716,7 +716,7 @@ CLASS_DECL_EXPORT BOOL wf_pre_connect(freerdp* instance)
 //	settings = instance->context->settings;
 //
 //	async_input = settings->AsyncInput;
-//	async_transport = settings->AsyncTransport;
+//	async_pointer = settings->AsyncTransport;
 //
 //	if (async_input)
 //	{
@@ -739,7 +739,7 @@ CLASS_DECL_EXPORT BOOL wf_pre_connect(freerdp* instance)
 //			wf_event_focus_in(wfc);
 //		}
 //
-//		if (!async_transport)
+//		if (!async_pointer)
 //		{
 //			::u32 tmp = freerdp_get_event_handles(context, &handles[nCount], 64 - nCount);
 //
@@ -758,7 +758,7 @@ CLASS_DECL_EXPORT BOOL wf_pre_connect(freerdp* instance)
 //			break;
 //		}
 //
-//		if (!async_transport)
+//		if (!async_pointer)
 //		{
 //			if (!freerdp_check_event_handles(context))
 //			{

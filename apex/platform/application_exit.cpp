@@ -24,7 +24,7 @@ void application_exit::request_exit_application()
    if (m_bProcessingApplicationExitRequest)
    {
 
-      return ::success_scheduled;
+      return;
 
    }
 
@@ -50,15 +50,15 @@ void application_exit::request_exit_application()
 
       }));
 
-   return ::success;
+   //return ::success;
 
 }
 
 
-void application_exit::can_exit_application()
+bool application_exit::can_exit_application()
 {
 
-   return ::success;
+   return true;
 
 }
 
@@ -68,6 +68,6 @@ void application_exit::exit_application()
 
    destroy();
 
-   return ::success;
+   //return ::success;
 
 }

@@ -6186,7 +6186,7 @@ void interaction::create_child(::user::interaction * puserinteractionParent)
 
       }
 
-      void estatus = error_exception;
+      ::e_status3 estatus = error_exception;
 
       try
       {
@@ -7537,7 +7537,7 @@ void interaction::show_control_bar(::user::control_bar * pcontrolbar)
 
    throw interface_only_exception();
 
-   return error_interface_only;
+   throw ::interface_only_exception();
 
 }
 
@@ -7547,7 +7547,7 @@ void interaction::hide_control_bar(::user::control_bar * pcontrolbar)
 
    throw interface_only_exception();
 
-   return error_interface_only;
+   throw ::interface_only_exception();
 
 }
 
@@ -9485,7 +9485,7 @@ void interaction::EndModalLoop(id idResult)
    if (::extended::asynchronous < ::conversation >::m_pfuture)
    {
 
-      ::extended::asynchronous < ::conversation >::sequence()->m_transport->m_idResult = idResult;
+      ::extended::asynchronous < ::conversation >::sequence()->m_pointer->m_idResult = idResult;
        
       ::extended::asynchronous < ::conversation >::sequence()->set_status(::success);
 
@@ -12688,7 +12688,7 @@ interaction& interaction::operator =(const ::rectangle_i32& rectangle)
    void interaction::frame_experience_restore()
    {
    
-   return ::error_interface_only;
+   throw ::interface_only_exception();
       
    }
 
@@ -12785,7 +12785,7 @@ interaction& interaction::operator =(const ::rectangle_i32& rectangle)
    void interaction::display_previous_restore()
    {
    
-   return error_interface_only;
+   throw ::interface_only_exception();
    
    }
 
@@ -13706,7 +13706,7 @@ order(zorderParam);
    void interaction::set_total_size(const ::size_f64& size)
    {
 
-      return ::error_interface_only;
+      throw ::interface_only_exception();
 
    }
 
@@ -13714,7 +13714,7 @@ order(zorderParam);
    void interaction::set_page_size(const ::size_f64& size)
    {
 
-      return ::error_interface_only;
+      throw ::interface_only_exception();
 
    }
 

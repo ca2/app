@@ -30,10 +30,7 @@ namespace file
       ::file::path get_file_path() const override;
       void set_file_path(const ::file::path & path) override;
 
-
-
-      ::extended::status open(const ::file::path & path, const ::file::e_open & eopen) override;
-
+      void open(const ::file::path & path, const ::file::e_open & eopen) override;
 
       filesize translate(filesize offset, ::enum_seek eseek) override;
       void set_size(filesize dwNewLen) override;

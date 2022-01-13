@@ -68,16 +68,16 @@ void delete_file(const char* path)
 
       auto estatus = last_error_to_status(dwLastError);
 
-      return estatus;
+      throw_status(estatus);
 
    }
 
-   return ::success;
+   //return ::success;
 
 }
 
 
-void file_exists(const char* path)
+bool file_exists(const char* path)
 {
 
    auto attributes = windows_get_file_attributes(path);
@@ -101,8 +101,7 @@ void file_exists(const char* path)
 }
 
 
-
-void is_directory(const char* path)
+bool is_directory(const char* path)
 {
 
    //#ifdef _UWP
@@ -253,13 +252,19 @@ void create_directory(const char* path)
    if (!::CreateDirectoryW(wstr, nullptr))
    {
 
+      auto lastError = ::GetLastError();
+
       if (windows_get_alternate_path(wstr))
       {
 
          if (!::CreateDirectoryW(wstr, nullptr))
          {
 
-            return error_failed;
+            auto lastError = ::GetLastError();
+
+            auto estatus = last_error_to_status(lastError);
+
+            throw_status(estatus);
 
          }
 
@@ -267,13 +272,52 @@ void create_directory(const char* path)
       else
       {
 
-         return error_failed;
+         auto estatus = last_error_to_status(lastError);
+
+         throw_status(estatus);
+
 
       }
 
    }
 
-   return true;
+   //return true;
+
+}
+
+
+
+
+void erase_directory(const char* path)
+{
+
+   
+
+   wstring wstr;
+
+   if (file_path_is_absolute(path))
+   {
+
+      wstr = L"\\\\?\\" + wstring(path);
+
+   }
+   else
+   {
+
+      wstr = path;
+
+   }
+
+   if (!::RemoveDirectoryW(wstr))
+   {
+
+      auto lastError = ::GetLastError();
+
+      auto estatus = last_error_to_status(lastError);
+
+      throw_status(estatus);
+
+   }
 
 }
 

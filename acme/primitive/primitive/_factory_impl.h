@@ -600,7 +600,7 @@ namespace factory
 //inline void __defer_construct(__pointer(BASE_TYPE) & pusermessage)
 //{
 //
-//   void estatus = ::success_none;
+//   ::e_status3 estatus = ::success_none;
 //
 //   if(!pusermessage)
 //   {
@@ -734,7 +734,7 @@ namespace factory
 
 
    template < typename BASE_TYPE >
-   inline __transport(BASE_TYPE) factory::create()
+   inline __pointer(BASE_TYPE) factory::create()
    {
 
       auto pfactoryinterface = get_factory_item < BASE_TYPE >();
@@ -742,7 +742,7 @@ namespace factory
       if (!pfactoryinterface)
       {
 
-         return error_no_factory;
+         throw_status(error_no_factory);
 
       }
 
@@ -775,34 +775,35 @@ namespace factory
 
          auto& pfactoryitem = get_factory_item < BASE_TYPE >();
 
-         if (!pfactoryitem)
-         {
+         //if (!pfactoryitem)
+         //{
 
-            return ::error_no_factory;
+         //   return ::error_no_factory;
 
-         }
+         //}
 
          auto pelement = ::move(pfactoryitem->create_element());
 
-         if (!pelement)
-         {
+         //if (!pelement)
+         //{
 
-            return ::error_no_memory;
+         //   return ::error_no_memory;
 
-         }
+         //}
 
-         auto estatus = pobjectComposer->__compose(pcomposite, pelement);
+         //auto estatus = 
+         pobjectComposer->__compose(pcomposite, pelement);
 
-         if (!pcomposite)
-         {
+         //if (!pcomposite)
+         //{
 
-            return estatus;
+         //   return estatus;
 
-         }
+         //}
 
       }
 
-      return ::success;
+      //return ::success;
 
    }
 

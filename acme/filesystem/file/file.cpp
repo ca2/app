@@ -99,28 +99,30 @@ namespace file
    //}
 
 
-   ::extended::status file::open(const ::file::path & path, const ::file::e_open & eopen)
+   void file::open(const ::file::path & path, const ::file::e_open & eopen)
    {
 
       auto pfile = __create <::file::file>();
 
-      if (!pfile)
+      if (::is_null(pfile))
       {
 
-         return ::move(pfile);
+         ::move(pfile);
 
       }
 
-      auto estatus = pfile->open(path, eopen);
+/*      auto estatus =*/
+      
+      pfile->open(path, eopen);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return ::move(pfile);
+      /* return */ ::move(pfile);
 
    }
 
@@ -1054,7 +1056,7 @@ namespace file
 
          memsize processedSizeLoc;
 
-         void estatus = ::success;
+         ::e_status3 estatus = ::success;
 
          try
          {
@@ -1084,13 +1086,15 @@ namespace file
          if (processedSizeLoc == 0)
          {
 
-            return ::success;
+            //return ::success;
+
+            return;
 
          }
 
       }
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -1336,7 +1340,7 @@ namespace file
     void write(file * pwriter, const void * data, memsize size)
     {
 
-        void estatus = ::success;
+        //::e_status3 estatus = ::success;
 
         try
         {
@@ -1347,18 +1351,18 @@ namespace file
         catch(...)
         {
 
-            estatus = error_failed;
+            //estatus = error_failed;
 
         }
 
-        if(!estatus)
-        {
+        //if(!estatus)
+        //{
 
-            return estatus;
+        //    return estatus;
 
-        }
+        //}
 
-        return estatus;
+        //return estatus;
 
     }
 

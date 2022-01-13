@@ -23,19 +23,19 @@ machine_event::~machine_event()
 
 void machine_event::initialize(::object * pobject)
 {
+//   auto estatus = 
+   ::matter::initialize_matter(pobject);
 
-   auto estatus = ::matter::initialize_matter(pobject);
+   //if (!estatus)
+   //{
 
-   if (!estatus)
-   {
+   //   return estatus;
 
-      return estatus;
-
-   }
+   //}
 
    m_bInitialized = true;
 
-   return true;
+   //return true;
 
 }
 

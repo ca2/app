@@ -52,20 +52,22 @@ namespace sockets
    void http_socket::on_initialize_object()
    {
 
-      auto estatus = tcp_socket::on_initialize_object();
+      //auto estatus = tcp_socket::on_initialize_object();
 
-      if (!estatus)
-      {
+      tcp_socket::on_initialize_object();
 
-         return estatus;
+      //if (!estatus)
+      //{
 
-      }
+      //   return estatus;
+
+      //}
 
       m_request.m_psystem = m_psystem;
 
       m_response.m_psystem = m_psystem;
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -516,6 +518,7 @@ namespace sockets
 
    void http_socket::SendResponseBody()
    {
+
       if (response().m_strFile.has_char())
       {
 
@@ -525,23 +528,25 @@ namespace sockets
 
          file_pointer spfile(e_create, this);
 
-         try
-         {
+         //try
+         //{
 
-            if (spfile->open(strFile, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_none).failed())
-            {
+         spfile->open(strFile, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_none);
 
-               __throw(::error_io, "http_socket::SendResponseBody(1) file=" + strFile + "\n");
+         //   if (spfile->open(strFile, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_none).failed())
+         //   {
 
-            }
+         //      __throw(::error_io, "http_socket::SendResponseBody(1) file=" + strFile + "\n");
 
-         }
-         catch (...)
-         {
+         //   }
 
-            __throw(::error_io, "http_socket::SendResponseBody(2) file=" + strFile + "\n");
+         //}
+         //catch (...)
+         //{
 
-         }
+         //   __throw(::error_io, "http_socket::SendResponseBody(2) file=" + strFile + "\n");
+
+         //}
 
          __transfer_to_writer(*this, spfile);
 

@@ -99,21 +99,23 @@ namespace sockets
    void resolv_socket::initialize(::object * pobject)
    {
 
-      auto estatus = tcp_socket::initialize(pobject);
+      //auto estatus = tcp_socket::initialize(pobject);
 
-      if (!estatus)
-      {
+      tcp_socket::initialize(pobject);
 
-         return estatus;
+      //if (!estatus)
+      //{
 
-      }
+      //   return estatus;
+
+      //}
 
       m_psystem = get_system();
 
       if (!m_psystem)
       {
 
-         return error_failed;
+         throw_status(error_resource);
 
       }
 
@@ -122,11 +124,11 @@ namespace sockets
       if (!m_paddressdepartment)
       {
 
-         return error_failed;
+         throw_status(error_failed);
 
       }
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -138,7 +140,7 @@ namespace sockets
 
       m_paddressdepartment.release();
 
-      return ::success;
+      //return ::success;
 
    }
 

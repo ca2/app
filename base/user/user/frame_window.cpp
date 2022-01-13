@@ -1658,12 +1658,12 @@ namespace user
 
       RepositionBars();
 
-      return error_interface_only;
+      throw ::interface_only_exception();
 
    }
 
 
-   __transport(toolbar) frame_window::get_toolbar(const ::id & idToolbar, bool bCreate, const ::string & strToolbarParam, u32 dwCtrlStyle, u32 uStyle, const ::type & type)
+   __pointer(toolbar) frame_window::get_toolbar(const ::id & idToolbar, bool bCreate, const ::string & strToolbarParam, u32 dwCtrlStyle, u32 uStyle, const ::type & type)
    {
 
       auto & toolbartransport = m_mapToolbar[idToolbar];
@@ -1687,7 +1687,7 @@ namespace user
    }
 
 
-   __transport(toolbar) frame_window::create_toolbar(const ::id & idToolbar, const ::string & strToolbarParam, u32 dwCtrlStyle, u32 uStyle, const ::type & type)
+   __pointer(toolbar) frame_window::create_toolbar(const ::id & idToolbar, const ::string & strToolbarParam, u32 dwCtrlStyle, u32 uStyle, const ::type & type)
    {
 
       auto toolbartransport = __id_create < toolbar >(type);

@@ -25,6 +25,7 @@ public:
 
    T *            m_p;
    ::element *    m_pelement;
+   ::e_status3    m_estatus;
 
 
    inline ___pointer();

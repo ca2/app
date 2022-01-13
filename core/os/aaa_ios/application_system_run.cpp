@@ -21,7 +21,7 @@
 void os_application_system_run(::aura::system * psystem)
 {
 
-   void estatus = psystem->begin_synch();
+   ::e_status3 estatus = psystem->begin_synch();
    
    if(!estatus)
    {

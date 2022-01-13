@@ -39,7 +39,7 @@ public:
 
 
 
-//   __transport(task) branch(
+//   __pointer(task) branch(
 //      ::matter* pmatter,
 //      ::enum_priority epriority = e_priority_normal,
 //      u32 nStackSize = 0,

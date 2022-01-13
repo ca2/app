@@ -88,10 +88,14 @@ namespace interprocess_communication
    bool interprocess_communication::ensure_tx(const ::string & pszMessage, duration durationTimeout)
    {
 
-      if(!m_ptx->send(pszMessage, durationTimeout))
+      try
       {
 
-         restart_apex_ipc();
+         m_ptx->send(pszMessage, durationTimeout);
+
+      }
+      catch (...)
+      {
 
          return false;
 
@@ -118,12 +122,23 @@ namespace interprocess_communication
          }
 
       }
-      else if(!m_ptx->send(message, pdata, len, durationTimeout))
+      else
       {
 
-         restart_apex_ipc();
+         try
+         {
 
-         return false;
+            m_ptx->send(message, pdata, len, durationTimeout);
+
+         }
+         catch (...)
+         {
+
+            restart_apex_ipc();
+
+            return false;
+
+         }
 
       }
 
@@ -174,7 +189,7 @@ namespace interprocess_communication
       void tx::open(const ::string & strChannel, launcher * plauncher)
       {
 
-         return true;
+         //return true;
 
       }
 
@@ -193,7 +208,7 @@ namespace interprocess_communication
 
          m_strBaseChannel = "";
 
-         return true;
+         //return true;
 
       }
 
@@ -204,11 +219,11 @@ namespace interprocess_communication
          if (!is_tx_ok())
          {
 
-            return error_failed;
+            return;
 
          }
 
-         return ::success;
+         //return ::success;
 
       }
 
@@ -219,19 +234,23 @@ namespace interprocess_communication
          if (message == 0x80000000)
          {
 
-            return false;
+            //return false;
+
+            return;
 
          }
 
          if (!is_tx_ok())
          {
 
-            return false;
+            //return false;
+
+            return;
 
          }
 
 
-         return true;
+         //return true;
 
       }
 
@@ -262,7 +281,7 @@ namespace interprocess_communication
 
             });
 
-         return ::success;
+         //return ::success;
 
       }
 
@@ -270,7 +289,7 @@ namespace interprocess_communication
       void rx::create(const ::string & strChannel)
       {
 
-        return true;
+        //return true;
 
       }
 
@@ -278,9 +297,10 @@ namespace interprocess_communication
       void rx::destroy()
       {
 
-         auto estatus = base::destroy();
+         //auto estatus = 
+            base::destroy();
 
-         return estatus;
+         //return estatus;
 
       }
 
@@ -427,7 +447,7 @@ namespace interprocess_communication
          while (ptask->task_get_run())
          {
 
-            if (m_evDispatchItemNew.wait(1_s).succeeded())
+            if (m_evDispatchItemNew.wait(1_s))
             {
 
                singlelock.lock();
@@ -561,19 +581,9 @@ namespace interprocess_communication
 
          string strChannelTx = m_strChannel + "-b";
 
-         if (!m_prx->create(strChannelRx.c_str()))
-         {
+         m_prx->create(strChannelRx.c_str());
 
-            return false;
-
-         }
-
-         if (!m_ptx->open(strChannelTx.c_str(), plauncher))
-         {
-
-            return false;
-
-         }
+         m_ptx->open(strChannelTx.c_str(), plauncher);
 
          return true;
 
@@ -591,19 +601,9 @@ namespace interprocess_communication
 
          string strChannelTx = m_strChannel + "-a";
 
-         if (!m_prx->create(strChannelRx.c_str()))
-         {
+         m_prx->create(strChannelRx.c_str());
 
-            return false;
-
-         }
-
-         if (!m_ptx->open(strChannelTx.c_str(), plauncher))
-         {
-
-            return false;
-
-         }
+         m_ptx->open(strChannelTx.c_str(), plauncher);
 
          return true;
 

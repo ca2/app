@@ -24,14 +24,14 @@ bool os_history::hist(const char * psz)
 
    }
    
-   auto estatus = plauncher->setup((oswindow) nullptr, "open", psz, "", "", e_display_normal);
+    plauncher->setup((oswindow) nullptr, "open", psz, "", "", e_display_normal);
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
    plauncher->launch();
 

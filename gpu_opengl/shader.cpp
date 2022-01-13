@@ -78,7 +78,7 @@ namespace opengl
 
       //string strSummary;
 
-      void estatus = shader_compile_errors(uShader, type, m_strError);
+      ::e_status3 estatus = shader_compile_errors(uShader, type, m_strError);
 
       if (!estatus)
       {
@@ -139,7 +139,7 @@ namespace opengl
 
       string strSummary;
 
-      void estatus = program_compile_errors(m_uId, strSummary);
+      ::e_status3 estatus = program_compile_errors(m_uId, strSummary);
 
       if(estatus.succeeded())
       {
@@ -304,7 +304,7 @@ namespace opengl
    void shader::shader_compile_errors(GLuint shader, GLenum type, string & strSummary)
    {
 
-      void estatus = ::success;
+      ::e_status3 estatus = ::success;
 
       GLint success = 0;
 
@@ -343,7 +343,7 @@ namespace opengl
    void shader::program_compile_errors(GLuint program, string & strSummary)
    {
 
-      void estatus = ::success;
+      ::e_status3 estatus = ::success;
 
       GLint success;
 

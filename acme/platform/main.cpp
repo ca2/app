@@ -57,7 +57,7 @@ void main::system_construct(const main& main)
 
    m_pfnImplement = main.m_pfnImplement;
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -114,39 +114,39 @@ void __main(main& main)
 
    set_main_thread();
 
-   void estatus = error_failed;
+   ::e_status3 estatus = error_failed;
 
-   void estatusEnd = error_failed;
+   ::e_status3 estatusEnd = error_failed;
 
    auto psystem = platform_create_system(main.m_strAppId);
 
-   estatus = psystem->system_construct(main);
+   /*estatus =*/ psystem->system_construct(main);
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
-   estatus = psystem->call_init_system();
+   /*estatus = */ psystem->call_init_system();
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
    {
 
       auto pnode = psystem->node();
 
-      estatus = pnode->implement(pnode, psystem);
+      /*estatus =*/ pnode->implement(pnode, psystem);
 
    }
 
-   return estatus;
+   //return estatus;
 
 }
 

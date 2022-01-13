@@ -20,7 +20,7 @@ namespace multimedia
 
       string                           m_strNewDecoder;
       string                           m_strTitle;
-      factory_transport                m_pfactory;
+      factory_pointer                m_pfactory;
       //LPFN_MULTIMEDIA_NEW_DECODER      m_lpfnNewDecoder;
 
 
@@ -29,7 +29,7 @@ namespace multimedia
 
 
       virtual void Load(const ::string & strTitle);
-      virtual __transport(::multimedia::decoder) NewDecoder();
+      virtual __pointer(::multimedia::decoder) NewDecoder();
 
       virtual string GetPluginTitle();
 

@@ -23,14 +23,15 @@ namespace operating_system
    void department::initialize(::object * pobject)
    {
 
-      auto estatus = ::acme::department::initialize(pobject);
+      //auto estatus = 
+      ::acme::department::initialize(pobject);
 
-      if(!estatus)
-      {
+      //if(!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
 #ifndef WINDOWS
 
@@ -42,7 +43,7 @@ namespace operating_system
 
 #endif
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -101,9 +102,10 @@ namespace operating_system
 
       auto pnode = psystem->node();
 
-      auto estatus = pnode->call_async(strBin,pszEnd,pszDir,edisplay, false);
+      //auto estatus =
+      pnode->call_async(strBin,pszEnd,pszDir,edisplay, false);
 
-      return ::succeeded(estatus);
+      //return ::succeeded(estatus);
 
 #else
 
@@ -186,7 +188,7 @@ namespace operating_system
 
       }
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -211,7 +213,7 @@ namespace operating_system
 
          }
 
-         m_result.add(error_failed);
+         //m_result.add(error_failed);
 
          return;
 
@@ -291,7 +293,7 @@ namespace operating_system
 
       m_pprocess->synch_elevated(m_strCmdLine,e_display_none,m_durationTimeout,m_pbPotentialTimeout);
 
-      m_result.add((void    ) m_pprocess->m_exitstatus.m_iExitCode);
+      ///m_result.add((void    ) m_pprocess->m_exitstatus.m_iExitCode);
 
       if(m_pexitstatus != nullptr)
       {
@@ -404,7 +406,7 @@ namespace operating_system
    //
    //      }
 
-      return ::success;
+      //return ::success;
 
    }
 

@@ -327,7 +327,7 @@ void channel::destroy()
 
    ::object::destroy();
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -559,7 +559,7 @@ void channel::id_notify(const ::id & id, ::matter * pmatter)
 
     routinea.add(pmatter); // pmatter is notified with id
 
-    return ::success;
+    //return ::success;
 
 }
 

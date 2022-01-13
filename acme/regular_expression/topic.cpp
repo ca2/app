@@ -71,7 +71,7 @@ namespace regular_expression
    void topic::create(const ::string & str)
    {
 
-      return ::success;
+      //return ::success;
 
    }
 

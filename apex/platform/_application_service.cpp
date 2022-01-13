@@ -4,54 +4,63 @@
 #include "apex/parallelization/service_handler.h"
 
 
-e_status application::enable_service()
+void application::enable_service()
 {
 
-   auto estatus = m_psystem->m_papexsystem->os_context()->enable_service();
+   //auto estatus = m_psystem->m_papexsystem->os_context()->enable_service();
 
-   if (!estatus)
-   {
+   m_psystem->m_papexsystem->os_context()->enable_service();
 
-      return estatus;
+   //if (!estatus)
+   //{
 
-   }
+   //   return estatus;
 
-   estatus = service_handler()->start_service();
+   //}
 
-   if (!estatus)
-   {
+   //estatus = service_handler()->start_service();
 
-      return estatus;
+   service_handler()->start_service();
 
-   }
+   //if (!estatus)
+   //{
 
-   return estatus;
+   //   return estatus;
+
+   //}
+
+   //return estatus;
 
 }
 
 
-e_status application::disable_service()
+//e_status application::disable_service()
+void application::disable_service()
 {
 
-   auto estatus = service_handler()->stop_service();
+   //auto estatus = 
+   
+   service_handler()->stop_service();
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
-   estatus = os_context()->disable_service();
+   //estatus = 
+   
+   os_context()->disable_service();
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
-   return estatus;
+   //return estatus;
 
 }
 

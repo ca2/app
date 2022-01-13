@@ -23,20 +23,22 @@ api::~api()
 void api::initialize_api(::object* pobject, const ::file::path & pathProfile)
 {
 
-   auto estatus = ::object::initialize(pobject);
+   //auto estatus =
+   
+   ::object::initialize(pobject);
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
    m_pathProfile = pathProfile;
 
    load_profile();
 
-   return estatus;
+   //return estatus;
 
 }
 
@@ -55,7 +57,7 @@ void api::load_profile()
    catch (...)
    {
 
-      return ::success;
+      return;
 
    }
 
@@ -68,7 +70,7 @@ void api::load_profile()
 
    }
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -110,7 +112,7 @@ void api::save_profile()
 
    m_pcontext->m_papexcontext->file().put_text(m_pathProfile, strNetworkPayload);
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -122,12 +124,12 @@ void api::api_login(const ::string & strConfig, const ::string & strProfile)
 
    m_strProfile = strProfile;
 
-   auto estatus = save_profile();
+   save_profile();
 
    m_bAuthenticated = true;
 
-   return ::success;
-
+   //return ::success;
+   //
 }
 
 
@@ -136,7 +138,7 @@ void api::api_get(string& strNetworkPayload, const string& strUrl, property_set&
 
    throw interface_only_exception();
 
-   return error_interface_only;
+   throw ::interface_only_exception();
 
 }
 
@@ -146,18 +148,19 @@ void api::api_get(::payload& payload, const string & strUrl, property_set& set)
 
    string strNetworkPayload;
 
-   auto estatus = api_get(strNetworkPayload, strUrl, set);
+   //auto estatus = 
+      api_get(strNetworkPayload, strUrl, set);
 
-   if(!estatus)
-   {
+   //if(!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
    payload.parse_network_payload(strNetworkPayload);
 
-   return estatus;
+   //return estatus;
 
 }
 
@@ -167,7 +170,7 @@ void api::api_download(string strGet, const ::file::path& path, property_set& se
 
    throw interface_only_exception();
 
-   return ::error_interface_only;
+   throw ::interface_only_exception();
 
 }
 

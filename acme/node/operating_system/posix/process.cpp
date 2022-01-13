@@ -19,7 +19,7 @@
 void command_system(string& strOutput, string& strError, int& iExitCode, const char* psz, enum_command_system ecommandsystem, const ::duration& durationTimeout)
 {
 
-   void estatus = success;
+   ::e_status3 estatus = success;
 
    int stdout_fds[2] = {};
 

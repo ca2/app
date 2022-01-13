@@ -289,25 +289,25 @@ namespace mathematics
    void mathematics::initialize(::object * pobject)
    {
 
-      auto estatus = ::matter::initialize(pobject);
+      /*auto estatus =*/ ::matter::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       m_posdata = m_psystem->__create_new < math_os_data>();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -317,7 +317,7 @@ namespace mathematics
 
       //::acme::department::destroy();
 
-      return ::success;
+      //return ::success;
 
    }
 

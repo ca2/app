@@ -27,59 +27,94 @@
    }
 
 
-   bool os_context::shutdown(bool bIfPowerOff)
+   void os_context::shutdown(bool bIfPowerOff)
    {
+      
       __UNREFERENCED_PARAMETER(bIfPowerOff);
+
       throw interface_only_exception("this is an interface");
-      return false;
+
+      //return false;
+
    }
 
-   bool os_context::reboot()
+
+   void os_context::reboot()
    {
+      
       throw interface_only_exception("this is an interface");
-      return false;
+      
+      //return false;
+
    }
+
 
    void os_context::terminate_processes_by_title(const ::string & lpszName)
    {
+      
       __UNREFERENCED_PARAMETER(lpszName);
+
       throw interface_only_exception("this is an interface");
+
    }
 
-   bool os_context::get_pid_by_path(const ::string & lpszName, u32 & dwPid)
+
+   bool os_context::path_pid(u32& dwPid, const ::string & lpszName)
    {
+
       __UNREFERENCED_PARAMETER(lpszName);
       __UNREFERENCED_PARAMETER(dwPid);
+
       throw interface_only_exception("this is an interface");
+
       return false;
+
    }
 
-   bool os_context::get_pid_by_title(const ::string & lpszName, u32 & dwPid)
+
+   bool os_context::title_pid(u32& dwPid, const ::string & lpszName)
    {
+
       __UNREFERENCED_PARAMETER(lpszName);
       __UNREFERENCED_PARAMETER(dwPid);
+      
       throw interface_only_exception("this is an interface");
       return false;
+
    }
+
 
    int os_context::get_pid()
    {
+      
       throw interface_only_exception("this is an interface");
+
       return -1;
+
    }
 
+   
    ::file::path os_context::get_process_path(u32 dwPid)
    {
+      
       __UNREFERENCED_PARAMETER(dwPid);
+
       throw interface_only_exception("this is an interface");
+
       return "";
+
    }
 
+   
    void os_context::get_all_processes(u32_array & dwa )
    {
+
       __UNREFERENCED_PARAMETER(dwa);
+
       throw interface_only_exception("this is an interface");
+
    }
+
 
 //#ifdef WINDOWS
 //
@@ -90,6 +125,7 @@
 //   }
 //
 //#endif
+
 
 
    ::payload os_context::connection_settings_get_auto_detect()
@@ -111,102 +147,105 @@
    void os_context::link_open(const string & strUrl, const string & strProfile)
    {
 
-      if (!file_open(strUrl))
-      {
+      file_open(strUrl);
+      //{
 
-         return error_failed;
+      //   return error_failed;
 
-      }
+      //}
 
-      return success;
+      //return success;
 
    }
 
 
-   bool os_context::local_machine_set_run(const ::string & pszKey, const ::string & pszCommand, const ::string& pszArguments, bool bSet)
+   void os_context::local_machine_set_run(const ::string & pszKey, const ::string & pszCommand, const ::string& pszArguments, bool bSet)
    {
 
       __UNREFERENCED_PARAMETER(pszKey);
       __UNREFERENCED_PARAMETER(pszCommand);
 
-      return false;
+      //return false;
 
    }
 
 
-   bool os_context::local_machine_set_run_once(const ::string & pszKey, const ::string & pszCommand, const ::string& pszArguments, bool bSet)
+   void os_context::local_machine_set_run_once(const ::string & pszKey, const ::string & pszCommand, const ::string& pszArguments, bool bSet)
    {
 
       __UNREFERENCED_PARAMETER(pszKey);
       __UNREFERENCED_PARAMETER(pszCommand);
 
-      return false;
+      //return false;
 
    }
 
    
-   bool os_context::current_user_set_run(const ::string & pszKey, const ::string & pszCommand, const ::string& pszArguments, bool bSet)
+   void os_context::current_user_set_run(const ::string & pszKey, const ::string & pszCommand, const ::string& pszArguments, bool bSet)
    {
 
       __UNREFERENCED_PARAMETER(pszKey);
       __UNREFERENCED_PARAMETER(pszCommand);
 
-      return false;
+      //return false;
 
    }
 
    
-   bool os_context::current_user_set_run_once(const ::string & pszKey, const ::string & pszCommand, const ::string& pszArguments, bool bSet)
+   void os_context::current_user_set_run_once(const ::string & pszKey, const ::string & pszCommand, const ::string& pszArguments, bool bSet)
    {
 
       __UNREFERENCED_PARAMETER(pszKey);
       __UNREFERENCED_PARAMETER(pszCommand);
 
-      return false;
+      //return false;
 
    }
 
-   bool os_context::defer_register_ca2_plugin_for_mozilla()
+
+   void os_context::defer_register_ca2_plugin_for_mozilla()
    {
 
-      return false;
+      //return false;
 
    }
 
-   bool os_context::file_extension_get_open_with_list_keys(string_array & straKey, const ::string & pszExtension)
+   
+   void os_context::file_extension_get_open_with_list_keys(string_array & straKey, const ::string & pszExtension)
    {
 
       __UNREFERENCED_PARAMETER(straKey);
       __UNREFERENCED_PARAMETER(pszExtension);
 
-      return false;
+      //return false;
 
    }
 
-   bool os_context::file_extension_get_open_with_list_commands(string_array & straCommand, const ::string & pszExtension)
+
+   void os_context::file_extension_get_open_with_list_commands(string_array & straCommand, const ::string & pszExtension)
    {
 
       __UNREFERENCED_PARAMETER(straCommand);
       __UNREFERENCED_PARAMETER(pszExtension);
 
-      return false;
+      //return false;
 
    }
 
 
-   bool os_context::file_association_set_default_icon(const ::string & pszExtension, const ::string & pszExtensionNamingClass, const ::string & pszIconPath)
+   void os_context::file_association_set_default_icon(const ::string & pszExtension, const ::string & pszExtensionNamingClass, const ::string & pszIconPath)
    {
 
       __UNREFERENCED_PARAMETER(pszExtension);
       __UNREFERENCED_PARAMETER(pszExtensionNamingClass);
       __UNREFERENCED_PARAMETER(pszIconPath);
 
-      return false;
+      //return false;
 
    }
 
 
-   bool os_context::file_association_set_shell_open_command(const ::string & pszExtension, const ::string & pszExtensionNamingClass,  const ::string & pszCommand, const ::string & pszParam)
+   void os_context::file_association_set_shell_open_command(const ::string & pszExtension, const ::string & pszExtensionNamingClass,  const ::string & pszCommand, const ::string & pszParam)
    {
 
       __UNREFERENCED_PARAMETER(pszExtension);
@@ -214,12 +253,12 @@
       __UNREFERENCED_PARAMETER(pszCommand);
       __UNREFERENCED_PARAMETER(pszParam);
 
-      return false;
+      //return false;
 
    }
 
 
-   bool os_context::file_association_get_shell_open_command(const ::string & pszExtension, string & strExtensionNamingClass, string & strCommand, string & strParam)
+   void os_context::file_association_get_shell_open_command(const ::string & pszExtension, string & strExtensionNamingClass, string & strCommand, string & strParam)
    {
 
       __UNREFERENCED_PARAMETER(pszExtension);
@@ -227,30 +266,30 @@
       __UNREFERENCED_PARAMETER(strCommand);
       __UNREFERENCED_PARAMETER(strParam);
 
-      return false;
+      //return false;
 
    }
 
 
    /// Windows (IE), macOS (Safari), Linux (Firefox, oder...)
    /// Remark: it is not default browser (necessarily)
-   bool os_context::native_full_web_browser(const ::string & pcsz)
+   void os_context::native_full_web_browser(const ::string & pcsz)
 
    {
 
       __throw(error_not_implemented);
 
-      return false;
+      //return false;
 
    }
 
    /// Windows (Edge), fallback to native_full_web_browser
    /// Remark: it is not default browser (necessarily)
-   bool os_context::native_modern_web_browser(const ::string & pcsz)
+   void os_context::native_modern_web_browser(const ::string & pcsz)
 
    {
 
-      return native_full_web_browser(pcsz);
+      native_full_web_browser(pcsz);
 
 
    }
@@ -263,7 +302,7 @@
       throw interface_only_exception();
 
 
-      return false;
+      //return false;
 
 
    }
@@ -276,7 +315,7 @@
       throw interface_only_exception();
 
 
-      return false;
+      //return false;
 
 
    }
@@ -289,7 +328,7 @@
       throw interface_only_exception();
 
 
-      return false;
+      //return false;
 
 
    }
@@ -302,59 +341,47 @@
       throw interface_only_exception();
 
 
-      return false;
+      //return false;
 
 
    }
 
 
-   bool os_context::enable_service(const ::string & strServiceName,const ::string & strDisplayName,const ::string & strCommand,const ::string & strUser,const ::string & strPass)
+   void os_context::enable_service(const ::string & strServiceName,const ::string & strDisplayName,const ::string & strCommand,const ::string & strUser,const ::string & strPass)
    {
 
 
       throw interface_only_exception();
 
 
-      return false;
-
-
    }
 
 
-   bool os_context::disable_service(const ::string & strServiceName)
+   void os_context::disable_service(const ::string & strServiceName)
    {
 
 
       throw interface_only_exception();
 
 
-      return false;
-
-
    }
 
 
-   bool os_context::start_service(const ::string & strServiceName)
+   void os_context::start_service(const ::string & strServiceName)
    {
 
 
       throw interface_only_exception();
 
 
-      return false;
-
-
    }
 
 
-   bool os_context::stop_service(const ::string & strServiceName)
+   void os_context::stop_service(const ::string & strServiceName)
    {
 
 
       throw interface_only_exception();
-
-
-      return false;
 
 
    }
@@ -506,7 +533,7 @@
    }
 
 
-   bool os_context::initialize_wallpaper_fileset(::file::set* pfileset, bool bAddSearch)
+   void os_context::initialize_wallpaper_fileset(::file::set* pfileset, bool bAddSearch)
    {
 
       ::string_array stra;
@@ -534,7 +561,7 @@
 
       }
 
-      return true;
+      //return true;
 
    }
 
@@ -544,15 +571,15 @@
 
       throw interface_only_exception();
 
-      return error_interface_only;
+      throw ::interface_only_exception();
 
    }
 
 
-   bool os_context::file_open(::file::path strSrc, string strParams, string strFolder)
+   void os_context::file_open(::file::path strSrc, string strParams, string strFolder)
    {
 
-      return false;
+      //return false;
 
    }
 
@@ -566,53 +593,55 @@
 
       string strParam;
 
-      if (!get_default_browser(strId, path, strParam))
-      {
+      get_default_browser(strId, path, strParam);
 
-         return "";
+      //if (!)
+      //{
 
-      }
+      //   return "";
+
+      //}
 
       return strId;
 
    }
 
 
-   bool os_context::get_default_browser(string & strId, ::file::path & path, string & strParam)
+   void os_context::get_default_browser(string & strId, ::file::path & path, string & strParam)
    {
 
       __UNREFERENCED_PARAMETER(strId);
       __UNREFERENCED_PARAMETER(path);
       __UNREFERENCED_PARAMETER(strParam);
 
-      return false;
+      //return false;
 
    }
 
 
-   bool os_context::set_default_browser()
+   void os_context::set_default_browser()
    {
 
-      return false;
+      //return false;
 
    }
 
 
-   bool os_context::add_default_program(string_array & straExtension, string_array & straMimeType)
+   void os_context::add_default_program(string_array & straExtension, string_array & straMimeType)
    {
 
       __UNREFERENCED_PARAMETER(straExtension);
       __UNREFERENCED_PARAMETER(straMimeType);
 
-      return false;
+      //return false;
 
    }
 
 
-   bool os_context::register_user_auto_start(const string & strId, const string & strCommand, const string & strArguments, bool bRegister)
+   void os_context::register_user_auto_start(const string & strId, const string & strCommand, const string & strArguments, bool bRegister)
    {
 
-      return false;
+      //return false;
 
    }
 
@@ -641,41 +670,42 @@
    }
 
 
-   bool os_context::browse_file_open(property_set & set)
+   void os_context::browse_file_open(property_set & set)
    {
 
       throw ::interface_only_exception();
 
-      return false;
+      //return false;
 
    }
 
 
-   bool os_context::browse_file_save(property_set & set)
+   void os_context::browse_file_save(property_set & set)
    {
 
       throw ::interface_only_exception();
 
-      return false;
+      //return false;
 
    }
 
 
-   bool os_context::browse_folder(property_set & set)
+   void os_context::browse_folder(property_set & set)
    {
 
       throw ::interface_only_exception();
 
-      return false;
+      //return false;
 
    }
 
-   bool os_context::browse_file_or_folder(property_set & set)
+   
+   void os_context::browse_file_or_folder(property_set & set)
    {
 
       throw ::interface_only_exception();
 
-      return false;
+      //return false;
 
    }
 
@@ -704,7 +734,7 @@
 void os_context::broadcast_environment_variable_change()
 {
 
-   return ::success_none;
+   //return ::success_none;
 
 }
 

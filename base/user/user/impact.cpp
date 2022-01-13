@@ -818,7 +818,7 @@ namespace user
 
       __pointer(::user::interaction) pinteraction;
 
-      void estatus = ::success;
+      ::e_status3 estatus = ::success;
 
       if (pusersystem->m_puserprimitiveNew != nullptr)
       {

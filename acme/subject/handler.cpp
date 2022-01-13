@@ -28,14 +28,14 @@ CLASS_DECL_ACME void __call(handler * phandler, const ::id & id, i64 iData, ::ma
 
    phandler->handle(&subject, nullptr);
 
-   if (!subject.m_estatus)
-   {
+   //if (!subject.m_estatus)
+   //{
 
-      return subject.m_estatus;
+   //   //return subject.m_estatus;
 
-   }
+   //}
 
-   return subject.m_estatus;
+   //return subject.m_estatus;
 
 }
 

@@ -112,7 +112,7 @@ void task_group::prepare(::enum_task_op etaskop, ::count cIteration)
 
    m_cSpan = maximum(1, cIteration / get_count());
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -165,7 +165,9 @@ void task_group::set_ready_to_start()
    if (m_cCount <= 0)
    {
 
-      return false;
+      //return false;
+
+      return;
 
    }
 
@@ -178,26 +180,26 @@ void task_group::set_ready_to_start()
    for (index i = 0; i < m_cCount; i++)
    {
 
-      auto estatusTask = m_taska[i]->set_ready_to_start();
+      /*auto estatusTask = */ m_taska[i]->set_ready_to_start();
 
-      if(estatusTask.succeeded())
-      {
+      //if(estatusTask.succeeded())
+      //{
 
-         cSuccess++;
+      //   cSuccess++;
 
-      }
-      else
-      {
+      //}
+      //else
+      //{
 
-         cFailed++;
+      //   cFailed++;
 
-      }
+      //}
 
    }
 
-   auto estatus = _003CountStatus(cSuccess, cFailed);
+   //auto estatus = _003CountStatus(cSuccess, cFailed);
 
-   return true;
+   //return true;
 
 }
 
@@ -218,7 +220,7 @@ void task_group::wait()
 
    //synchronouslock.unlock();
 
-   return m_synchronizationa.wait(5_s).succeeded();
+   /*return*/ m_synchronizationa.wait(5_s); //.succeeded();
 
 }
 
@@ -228,16 +230,16 @@ void task_group::process()
 
    set_ready_to_start();
 
-   auto estatus = wait();
+   /*auto estatus = */ wait();
 
-   if(!estatus)
-   {
+   //if(!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
-   return estatus;
+   //return estatus;
 
 }
 
@@ -290,7 +292,7 @@ void tool_task::initialize_tool_task(::task_group* pgroup)
 
    //return estatus;
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -321,47 +323,49 @@ bool tool_task::set_predicate(::predicate_holder_base * ppred)
 void tool_task::run()
 {
 
-   try
+   //try
+   //{
+
+   while (task_get_run())
    {
 
-      while (task_get_run())
+      //if (!m_pevStart->wait(300_ms).succeeded())
+      m_pevStart->wait(300_ms);
+      //if()
+      //{
+
+      //   continue;
+
+      //}
+
+      m_pevStart->ResetEvent();
+
+      if (m_pgroup->m_etaskop == ::e_task_op_predicate || m_pgroup->m_etaskop == ::e_task_op_fork_count)
       {
 
-         if (!m_pevStart->wait(300_ms).succeeded())
-         {
+         m_ppred->run();
 
-            continue;
+      }
+      else if (m_pgroup->m_etaskop == ::e_task_op_tool)
+      {
 
-         }
-
-         m_pevStart->ResetEvent();
-
-         if (m_pgroup->m_etaskop == ::e_task_op_predicate || m_pgroup->m_etaskop == ::e_task_op_fork_count)
-         {
-
-            m_ppred->run();
-
-         }
-         else if (m_pgroup->m_etaskop == ::e_task_op_tool)
-         {
-
-            m_pitem->run();
-
-         }
-
-         m_pevReady->SetEvent();
+         m_pitem->run();
 
       }
 
-   }
-   catch (...)
-   {
+      m_pevReady->SetEvent();
 
    }
+
+//}
+//catch (...)
+//{
+//
+//}
 
    m_pevReady->SetEvent();
 
-   return ::success;
+   ///return ::success;
 
 }
 
@@ -381,7 +385,7 @@ void tool_task::set_ready_to_start()
 
    m_pevStart->SetEvent();
 
-   return ::success;
+//   return ::success;
 
 }
 
@@ -417,7 +421,7 @@ task_tool_item::~task_tool_item()
 void task_tool_item::run()
 {
 
-   return ::success;
+   //return ::success;
 
 }
 

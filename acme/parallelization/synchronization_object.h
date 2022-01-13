@@ -26,24 +26,24 @@ public:
    ~synchronization_object() override;
 
 
-   virtual bool lock();
-   virtual bool lock(const class ::wait & wait);
+   virtual void lock();
+   virtual void lock(const class ::wait & wait);
 
-   virtual bool _lock();
-   virtual bool _lock(const class ::wait & wait);
+   virtual void _lock();
+   virtual void _lock(const class ::wait & wait);
 
    virtual void _wait();
-   virtual void _wait(const class ::wait & wait);
+   virtual bool _wait(const class ::wait & wait);
 
    
    void wait() override;
-   virtual void wait(const class ::wait & wait);
+   virtual bool wait(const class ::wait & wait);
 
 
    virtual bool is_locked() const;
 
-   virtual bool unlock();
-   virtual bool unlock(::i32 /* lCount */, ::i32 * /* pPrevCount=nullptr */);
+   virtual void unlock();
+   virtual void unlock(::i32 /* lCount */, ::i32 * /* pPrevCount=nullptr */);
 
 
    virtual void init_wait();

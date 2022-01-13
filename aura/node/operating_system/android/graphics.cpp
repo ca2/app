@@ -84,7 +84,7 @@ namespace draw2d
 
       __pointer(ttf_util) putil;
 
-      void estatus = __construct_new(putil);
+      ::e_status3 estatus = __construct_new(putil);
 
       const char * pszSystemFonts = strSystemFonts;
 

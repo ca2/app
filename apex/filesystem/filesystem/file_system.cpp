@@ -18,20 +18,20 @@ file_system::~file_system()
 void file_system::initialize(::object * pobject)
 {
    
-   auto estatus = ::object::initialize(pobject);
+   /*auto estatus = */ ::object::initialize(pobject);
    
-   if(!estatus)
-   {
-      
-      return estatus;
-      
-   }
+   //if(!estatus)
+   //{
+   //   
+   //   return estatus;
+   //   
+   //}
 
    ::file::path pathModule = m_psystem->m_pacmefile->module();
 
    m_pathModule = pathModule;
 
-   return estatus;
+   //return estatus;
 
 }
 
@@ -50,7 +50,7 @@ void file_system::init_system()
 //
    //return estatus;
 
-   return ::success;
+   //return ::success;
 
 }
 

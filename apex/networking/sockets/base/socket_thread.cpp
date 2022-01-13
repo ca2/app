@@ -74,14 +74,16 @@ namespace sockets
    void socket_thread::move(socket_map::association * passociation, socket_map * psocketmap)
    {
 
-      auto estatus = initialize(passociation->m_psocket);
+      //auto estatus = initialize(passociation->m_psocket);
 
-      if (!estatus)
-      {
+      initialize(passociation->m_psocket);
 
-         return estatus;
+      //if (!estatus)
+      //{
 
-      }
+      //   return estatus;
+
+      //}
 
       m_psockethandler = ::move(__create_new < socket_handler > ());
 
@@ -97,7 +99,7 @@ namespace sockets
 
       branch();
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -228,7 +230,7 @@ namespace sockets
 
       destroy();
 
-      return ::success;
+      //return ::success;
 
    }
 

@@ -87,6 +87,8 @@ CLASS_DECL_ACME bool is_directory(const char * path);
 
 CLASS_DECL_ACME void create_directory(const char * path);
 
+CLASS_DECL_ACME void erase_directory(const char* path);
+
 CLASS_DECL_ACME bool file_exists(const char * path);
 
 CLASS_DECL_ACME void file_delete(const char * path);

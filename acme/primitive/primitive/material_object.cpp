@@ -7,7 +7,7 @@ material_object::~material_object()
 }
 
 
-//__transport(task) material_object::branch(
+//__pointer(task) material_object::branch(
 //   ::matter* pmatter,
 //   ::enum_priority epriority,
 //   u32 nStackSize,
@@ -40,7 +40,7 @@ material_object::~material_object()
 void material_object::handle_command(const ::id & id)
 {
    
-   return ::success_none;
+   //return ::success_none;
    
 }
 
@@ -56,9 +56,11 @@ bool material_object::is_branch_current() const
 void material_object::post_routine(const ::routine & routine)
 {
 
-   throw ::interface_only_exception();
+//   th__row ::interface_only_exception();
 
-   return error_interface_only;
+   //throw ::interface_only_exception();
+
+   throw ::interface_only_exception();
 
 }
 

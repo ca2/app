@@ -44,21 +44,24 @@ namespace xml
 
       //}
 
-      if (!::acme::department::init1())
-      {
+      ::acme::department::init1();
 
-         return ::error_failed;
+      //if (!::acme::department::init1())
+      //{
 
-      }
+      //   return ::error_failed;
 
-      auto estatus = __construct_new(m_pentities);
+      //}
 
-      if (!estatus)
-      {
+      //auto estatus = 
+      __construct_new(m_pentities);
 
-         return estatus;
+      //if (!estatus)
+      //{
 
-      }
+      //   return estatus;
+
+      //}
 
       m_pentities->add_entity('&', "&amp;");
       m_pentities->add_entity('\"', "&quot;");
@@ -70,7 +73,7 @@ namespace xml
 
       m_pparseinfoDefault  = __new(parse_info(m_pentities));
 
-      return true;
+      //return true;
 
    }
 
@@ -78,14 +81,16 @@ namespace xml
    void xml::init()
    {
 
-      if (!::acme::department::init())
-      {
+      ::acme::department::init();
 
-         return false;
+      //if (!)
+      //{
 
-      }
+      //   return false;
 
-      return true;
+      //}
+
+      //return true;
 
    }
 
@@ -116,61 +121,58 @@ namespace xml
    }
 
 
+   // get XML from the property considering it a node
+   string xml::from(const property* pprop, ::xml::disp_option* opt /*= &optDefault*/)
+   {
 
-      // get XML from the property considering it a node
-      string xml::from(const property* pprop, ::xml::disp_option* opt /*= &optDefault*/)
+      return from(*pprop, opt);
+
+   }
+
+
+   // get XML from the property considering it XML attributes part of a node
+   string xml::from(const property& prop, ::xml::disp_option* opt /*= &optDefault*/)
+   {
+      //   ::text_stream ostring;
+      //   //ostring << (const char *)m_strName << "='" << (const char *)m_strValue << "' ";
+
+      //   ostring << (const char *)m_strName << L"=" << (char)opt->m_chQuote
+      //      << (const char *)(opt->reference_value&&opt->m_pentities?opt->m_pentities->entity_to_ref(m_strValue):m_strValue)
+      //      << (char)opt->m_chQuote << L" ";
+      //   return ostring.str();
+
+      if (opt == nullptr)
       {
 
-         return from(*pprop, opt);
+         opt = get_system()->xml()->m_poptionDefault;
 
       }
 
+      string str;
 
-      // get XML from the property considering it XML attributes part of a node
-      string xml::from(const property& prop, ::xml::disp_option* opt /*= &optDefault*/)
-      {
-         //   ::text_stream ostring;
-         //   //ostring << (const char *)m_strName << "='" << (const char *)m_strValue << "' ";
+      str = prop.name();
+      str += "=";
+      str += opt->m_chQuote;
+      string strValue;
+      if (opt->m_bReferenceValue && opt->m_pentities)
+         strValue = opt->m_pentities->entity_to_ref(prop.string());
+      else
+         strValue = prop.string();
 
-         //   ostring << (const char *)m_strName << L"=" << (char)opt->m_chQuote
-         //      << (const char *)(opt->reference_value&&opt->m_pentities?opt->m_pentities->entity_to_ref(m_strValue):m_strValue)
-         //      << (char)opt->m_chQuote << L" ";
-         //   return ostring.str();
+      strValue.replace("\\", "\\\\"); // should be first
+      strValue.replace("\n", "\\n");
+      strValue.replace("\t", "\\t");
+      strValue.replace("\r", "\\r");
+      strValue.replace("'", "\\'");
+      strValue.replace("\"", "\\\"");
 
-         if (opt == nullptr)
-         {
+      str += strValue;
+      str += opt->m_chQuote;
+      str += " ";
 
-            opt = get_system()->xml()->m_poptionDefault;
+      return str;
 
-         }
-
-         string str;
-
-         str = prop.name();
-         str += "=";
-         str += opt->m_chQuote;
-         string strValue;
-         if (opt->m_bReferenceValue && opt->m_pentities)
-            strValue = opt->m_pentities->entity_to_ref(prop.string());
-         else
-            strValue = prop.string();
-
-         strValue.replace("\\", "\\\\"); // should be first
-         strValue.replace("\n", "\\n");
-         strValue.replace("\t", "\\t");
-         strValue.replace("\r", "\\r");
-         strValue.replace("'", "\\'");
-         strValue.replace("\"", "\\\"");
-
-         str += strValue;
-         str += opt->m_chQuote;
-         str += " ";
-
-         return str;
-
-      }
-
-
+   }
 
 
 } //namespace xml

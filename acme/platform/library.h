@@ -75,7 +75,7 @@ namespace acme
       //virtual string get_root();
 
 
-      //virtual __transport(::object) new_application(const ::string & strAppId);
+      //virtual __pointer(::object) new_application(const ::string & strAppId);
       //virtual void get_app_list(string_array & stra);
 
       
@@ -103,14 +103,14 @@ namespace acme
 
       //virtual bool add_factory_item();
 
-      //virtual __transport(::factory::factory) & factory(const ::string & strComponent, const ::string & strImplementation);
+      //virtual __pointer(::factory::factory) & factory(const ::string & strComponent, const ::string & strImplementation);
 
-      //virtual __transport(::factory::factory) & factory(const ::string & strLibrary);
+      //virtual __pointer(::factory::factory) & factory(const ::string & strLibrary);
 
-      //virtual void _load_factory(__transport(::factory::factory) & pfactory, const ::string& strComponent);
+      //virtual void _load_factory(__pointer(::factory::factory) & pfactory, const ::string& strComponent);
 
       //virtual void factory_exchange(const ::string & strName = nullptr, ::factory::factory * pfactory = nullptr);
-      virtual __transport(::factory::factory) create_factory(const ::string& strLibrary);
+      virtual __pointer(::factory::factory) create_factory(const ::string& strLibrary);
 
 
    };

@@ -254,8 +254,8 @@ public:
       //virtual bool InitApplication();
 
 
-      virtual bool do_install();
-      virtual bool do_uninstall();
+      virtual void do_install();
+      virtual void do_uninstall();
 
 
       virtual void on_install();
@@ -367,7 +367,7 @@ public:
 
 
       virtual ::file::path get_app_localconfig_folder();
-      virtual __transport(::handle::ini) get_ini();
+      virtual __pointer(::handle::ini) get_ini();
 
 
       virtual bool app_data_set(const ::id & id, stream & os);
@@ -750,7 +750,7 @@ public:
 
       virtual void install_trace(const ::string & str);
       virtual void install_trace(double dRate);
-      virtual bool register_application_as_spa_file_type_handler();
+      virtual void register_application_as_spa_file_type_handler();
 
       //virtual bool low_is_app_app_admin_running(string strPlatform, string strConfiguration);
       //virtual void defer_start_program_files_app_app_admin(string strPlatform, string strConfiguration);
@@ -788,7 +788,7 @@ public:
       // user virtual ::user::document * place_hold(::user::interaction * pinteraction);
 
 
-      virtual bool post_message(const ::id & id, wparam wParam = 0, lparam lParam = 0) override;
+      virtual void post_message(const ::id & id, wparam wParam = 0, lparam lParam = 0) override;
 
 
       //virtual ::draw2d::icon * set_icon(object * pobject, ::draw2d::icon * picon, bool bBigIcon);

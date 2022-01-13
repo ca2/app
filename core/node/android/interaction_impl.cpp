@@ -287,7 +287,7 @@ namespace android
 
          m_puserinteraction->display(e_display_full_screen);
 
-         //void estatus = __compose(m_pgraphics);
+         //::e_status3 estatus = __compose(m_pgraphics);
 
          //if (!estatus)
          //{

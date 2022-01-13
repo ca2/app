@@ -53,21 +53,21 @@ namespace data
    void data::initialize_data(::data::data_container_base * pdatacontainerbase)
    {
 
-      auto estatus = ::object::initialize(pdatacontainerbase);
+      /*auto estatus = */::object::initialize(pdatacontainerbase);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       m_pdatacontainerbase = pdatacontainerbase;
 
       if (!m_pdatacontainerbase)
       {
 
-         return ::error_failed;
+         throw_status(::error_failed);
 
       }
 
@@ -75,7 +75,7 @@ namespace data
 
       call_routines_with_id(CREATE_ROUTINE);
 
-      return ::success;
+      //return ::success;
 
    }
 

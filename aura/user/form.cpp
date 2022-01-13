@@ -49,7 +49,7 @@ namespace user
    void form::open_html(const ::string& str)
    {
 
-      return ::error_interface_only;
+      throw ::interface_only_exception();
 
    }
 
@@ -57,7 +57,7 @@ namespace user
    void form::open_document(const ::payload& payloadFile)
    {
 
-      return ::error_interface_only;
+      throw ::interface_only_exception();
 
    }
 

@@ -7429,7 +7429,8 @@ IMPL_VAR_ENUM(check);
 #undef IMPL_VAR_ENUM
 
 
-::extended::status payload::run()
+//::extended::status payload::run()
+void payload::run()
 {
 
    if (get_type() == e_type_payload_pointer)
@@ -7453,22 +7454,22 @@ IMPL_VAR_ENUM(check);
    else if (get_type() == e_type_payload_array)
    {
 
-      ::extended::status result;
+      //::extended::status result;
 
       for (auto & varFunction : payloada())
       {
 
-         result.add(varFunction());
+         varFunction();
 
       }
 
-      return result;
+      //return result;
 
    }
    else
    {
 
-      return error_wrong_type;
+      throw_status(error_wrong_type);
 
    }
 

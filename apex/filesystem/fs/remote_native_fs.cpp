@@ -314,19 +314,20 @@ namespace fs
    }
 
 
-   file_transport remote_native::get_file(const ::file::path & path, const ::file::e_open & eopen)
+   file_pointer remote_native::get_file(const ::file::path & path, const ::file::e_open & eopen)
    {
 
       file_pointer pfile = __new(remote_native_file(path));
 
-      auto result = pfile->open(path, eopen);
+      //auto result =
+      pfile->open(path, eopen);
 
-      if(!result)
-      {
+      //if(!result)
+      //{
 
-         return result;
+      //   return result;
 
-      }
+      //}
 
       return pfile;
 

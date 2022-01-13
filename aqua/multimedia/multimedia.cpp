@@ -28,14 +28,15 @@ namespace aqua
    void multimedia::initialize_multimedia(::object * pobject)
    {
 
-      auto estatus = initialize(pobject);
+      //auto estatus = 
+      initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
 //#ifdef WINDOWS
 //
@@ -50,7 +51,7 @@ namespace aqua
 //
 //#endif
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -87,7 +88,7 @@ namespace aqua
    void multimedia::exit_application()
    {
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -112,7 +113,7 @@ namespace aqua
    void multimedia::get_file_information(::file::file* pfile, ::multimedia::information& information)
    {
 
-      return ::error_failed;
+      //return ::error_failed;
 
    }
 

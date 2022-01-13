@@ -83,11 +83,13 @@ namespace http
 
       set["get_memory"] = pmemory;
 
-      auto estatus = _get(pszUrl, process_set(set, pszUrl));
+      //auto estatus = _get(pszUrl, process_set(set, pszUrl));
+
+      _get(pszUrl, process_set(set, pszUrl));
 
       set.erase_by_name("get_memory");
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -127,7 +129,7 @@ namespace http
 
       get(pmessage);
 
-      return set["get_status"].estatus();
+      //return set["get_status"].estatus();
 
    }
 
@@ -137,14 +139,16 @@ namespace http
 
       set["get_response"] = ""; // create get_response field
 
-      auto estatus = _get(pszUrl, set);
+      //auto estatus = _get(pszUrl, set);
 
-      if (!estatus)
-      {
+      _get(pszUrl, set);
 
-         return estatus;
+      //if (!estatus)
+      //{
 
-      }
+      //   return estatus;
+
+      //}
 
       return set["get_response"].string();
 
@@ -160,7 +164,7 @@ namespace http
 
       str = set["get_response"].string();
 
-      return set["get_status"].estatus();
+      //return set["get_status"].estatus();
 
    }
 
@@ -507,20 +511,22 @@ namespace http
    void context::on_initialize_object()
    {
 
-      auto estatus = ::object::on_initialize_object();
+      //auto estatus = ::object::on_initialize_object();
 
-      if (!estatus)
-      {
+      ::object::on_initialize_object();
 
-         return estatus;
+      //if (!estatus)
+      //{
 
-      }
+      //   return estatus;
+
+      //}
 
       m_setHttp["max_http_post"] = 5 * 1024 * 1024; // 5MB;
 
       payload("dw") = ::duration::now();
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -1612,7 +1618,7 @@ namespace http
 
          }
 
-         void     estatus;
+         ::e_status3 estatus;
 
          if (::failed(psession->m_estatus))
          {
@@ -2358,7 +2364,7 @@ namespace http
 
       set[__id(cookie)] = strCookie;
 
-      void estatus = error_failed;
+      ::e_status3 estatus = error_failed;
 
       i32 iStatusCode;
 
@@ -2664,7 +2670,7 @@ namespace http
       if (!http_get(psocket, pmessageMessage->m_strUrl, set))
       {
 
-         pmessageMessage->m_estatusRet = (void) set["get_status"].i64();
+         pmessageMessage->m_estatusRet = (::e_status3) set["get_status"].i64();
 
          pmessageMessage->m_bRet = false;
 
@@ -2672,7 +2678,7 @@ namespace http
 
       }
 
-      pmessageMessage->m_estatusRet = (void) set["get_status"].i64();
+      pmessageMessage->m_estatusRet = (::e_status3) set["get_status"].i64();
 
       pmessageMessage->m_setHeaders = psocket->outheaders();
 

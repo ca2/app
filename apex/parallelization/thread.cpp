@@ -433,9 +433,9 @@ void thread::osthread_term()
 
    //m_psystem->m_papexsystem->m_papexnode->thread_finalize(this);
 
-   void estatus = m_result.m_estatus;
+   //::e_status3 estatus = m_result.m_estatus;
 
-   return estatus;
+   //return estatus;
 
 }
 
@@ -629,14 +629,14 @@ void thread::thread_loop()
       catch (const ::exception & e)
       {
 
-         if (!handle_exception(e))
-         {
+         handle_exception(e);
+         //{
 
-            output_debug_string("exception occurred (2.1)");
+         //   output_debug_string("exception occurred (2.1)");
 
-            break;
+         //   break;
 
-         }
+         //}
 
       }
       catch (...)
@@ -650,7 +650,7 @@ void thread::thread_loop()
 
    }
 
-   return m_estatus;
+   //return m_estatus;
 
 }
 
@@ -732,7 +732,9 @@ void thread::run()
 
    }
 
-   auto estatus = thread_loop();
+   //auto estatus = thread_loop();
+
+   thread_loop();
 
 //   if(strType.contains("wave_player"))
 //   {
@@ -761,7 +763,7 @@ void thread::run()
 
 
 
-   return m_estatus;
+   //return m_estatus;
 
 }
 
@@ -769,12 +771,7 @@ void thread::run()
 bool thread::pump_runnable()
 {
 
-   if (run_posted_routines() == success_none)
-   {
-
-      return false;
-
-   }
+   run_posted_routines();
 
    return true;
 
@@ -940,9 +937,11 @@ bool thread::pump_message()
    try
    {
 
-      auto estatus = get_message(&m_message, nullptr, 0, 0);
+      //auto estatus = get_message(&m_message, nullptr, 0, 0);
 
-      if(estatus == status_quit)
+      get_message(&m_message, nullptr, 0, 0);
+
+      if(m_message.m_id == e_message_quit)
       {
 
          string strType = __type_name(this);
@@ -978,12 +977,6 @@ bool thread::pump_message()
          return false;
 
       }
-      else if (estatus == status_kick_idle)
-      {
-
-         //output_debug_string("status_kick_idle");
-
-      }
       else
       {
 
@@ -1011,12 +1004,7 @@ bool thread::pump_message()
 
       }
 
-      if (handle_exception(e))
-      {
-
-         return true;
-
-      }
+      handle_exception(e);
 
       //// get_application() may be it self, it is ok...
       //if (get_application()->final_handle_exception(e))
@@ -1044,23 +1032,11 @@ bool thread::get_message()
 
    MESSAGE message = {};
 
-   int iResult = get_message(&message, NULL, 0, 0);
+   //int iResult = get_message(&message, NULL, 0, 0);
 
-   if(iResult == -1)
-   {
+   get_message(&message, NULL, 0, 0);
 
-#ifdef WINDOWS_DESKTOP
-
-      auto dwError = ::GetLastError();
-
-      INFORMATION("ERROR thread::get_message GetMessage " << dwError);
-
-#endif
-
-      return true;
-
-   }
-   else if(iResult == 0)
+   if(m_message.m_id == e_message_quit)
    {
 
       return false;
@@ -1140,13 +1116,13 @@ bool thread::raw_pump_message()
    }
    catch (const ::exception & e)
    {
+      handle_exception(e);
+      ////if (handle_exception(e))
+      //{
 
-      if (handle_exception(e))
-      {
+      //   return true;
 
-         return true;
-
-      }
+      //}
 
       //// get_application() may be it self, it is ok...
       //if (get_application()->final_handle_exception(e))
@@ -1185,22 +1161,24 @@ void thread::process_thread_message(::message::message * pmessage)
 
       message_handler(pmessage);
 
-      return ::success;
+      //return ::success;
 
    }
    catch (const ::exception & e)
    {
 
-      if (!handle_exception(e))
-      {
+      handle_exception(e);
 
-         post_quit_message(-1);
+      //if (!handle_exception(e))
+      //{
 
-         pmessage->m_lresult = -1;
+      //   post_quit_message(-1);
 
-      }
+      //   pmessage->m_lresult = -1;
 
-      return e.m_estatus;
+      //}
+
+      //return e.m_estatus;
 
    }
    catch (...)
@@ -1210,7 +1188,7 @@ void thread::process_thread_message(::message::message * pmessage)
 
    }
 
-   return ::error_exception;
+   //return ::error_exception;
 
 }
 
@@ -1292,7 +1270,7 @@ bool thread::defer_pump_message()
 void thread::on_thread_on_idle(thread *pimpl, ::i32 lCount)
 {
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -1721,18 +1699,20 @@ void thread::destroy()
    if(pobject)
    {
 
-      auto estatus = pobject->release_composite2(this);
+      //auto estatus = pobject->release_composite2(this);
 
-      if(!estatus)
-      {
+      pobject->release_composite2(this);
 
-         output_debug_string("release_composite2 failed");
+      //if(!estatus)
+      //{
 
-      }
+      //   output_debug_string("release_composite2 failed");
+
+      //}
 
    }
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -1848,14 +1828,16 @@ u32 __thread_entry(void * p);
 void thread::initialize(::object * pobject)
 {
 
-   auto estatus = ::channel::initialize(pobject);
+   //auto estatus = ::channel::initialize(pobject);
 
-   if (!estatus)
-   {
+   ::channel::initialize(pobject);
 
-      return estatus;
+   //if (!estatus)
+   //{
 
-   }
+   //   return estatus;
+
+   //}
 
    //if (::is_set(pobject))
    //{
@@ -1873,7 +1855,7 @@ void thread::initialize(::object * pobject)
 
    thread_common_construct();
 
-   return estatus;
+   //return estatus;
 
 }
 
@@ -1883,80 +1865,102 @@ void thread::main()
 
    ::u32 u = -1;
 
-   void estatus = error_failed;
+   ::e_status3 estatus = error_failed;
 
-   void estatusOs = error_failed;
+   ::e_status3 estatusOs = error_failed;
 
-   void estatusStart = error_failed;
+   ::e_status3 estatusStart = error_failed;
 
+   try
    {
 
-      estatusOs = osthread_init();
+      //estatusOs = osthread_init();
 
-      if (::succeeded(estatusOs))
-      {
-
-         estatusStart = __thread_init();
-
-      }
-
-   }
-
-   if (::succeeded(estatusStart))
-   {
-
-      if (m_peventStarted.is_set())
-      {
-
-         m_peventStarted->set_event();
-
-         m_peventStarted.release();
-
-      }
-
-      if (defer_implement(m_psystem))
-      {
-
-         estatus = m_psystem->m_estatus;
-
-      }
-      else
-      {
-
-         estatus = run();
-
-      }
-
-      m_bThreadClosed = true;
+      osthread_init();
 
       try
       {
 
-         if (m_peventReady)
+         //if (::succeeded(estatusOs))
+
+         __thread_init();
+         //estatusStart = __thread_init();
+
+      //}
+
+   //}
+
+   //if (::succeeded(estatusStart))
+   //{
+
+         if (m_peventStarted.is_set())
          {
 
-            m_peventReady->SetEvent();
+            m_peventStarted->set_event();
+
+            m_peventStarted.release();
+
+         }
+
+         if (defer_implement(m_psystem))
+         {
+
+            estatus = m_psystem->m_estatus;
+
+         }
+         else
+         {
+
+            //estatus = run();
+
+            run();
+
+         }
+
+         m_bThreadClosed = true;
+
+         try
+         {
+
+            if (m_peventReady)
+            {
+
+               m_peventReady->SetEvent();
+
+            }
+
+         }
+         catch (...)
+         {
 
          }
 
       }
-      catch (...)
+      catch (const ::exception & exception)
       {
+
+         ERROR("thread::main : " << exception.m_strMessage);
+
+      }
+
+      if (::succeeded(estatusOs))
+      {
+
+         destroy_tasks();
+
+         __thread_term();
+
+         osthread_term();
 
       }
 
    }
-
-   if (::succeeded(estatusOs))
+   catch (...)
    {
 
-      destroy_tasks();
-
-      __thread_term();
-
-      osthread_term();
 
    }
+
 
 //#if OBJECT_REFERENCE_COUNT_DEBUG
 //
@@ -1984,7 +1988,7 @@ void thread::main()
 
    m_bIsRunning = false;
 
-   return estatus;
+   //return estatus;
 
 }
 
@@ -2078,7 +2082,7 @@ void thread::init_thread()
 
    }
 
-   return true;
+   //return true;
 
 }
 
@@ -2355,7 +2359,7 @@ size_t engine_symbol(char * sz, int n, DWORD_PTR * pdisplacement, DWORD_PTR dwAd
 //}
 
 
-e_status thread::begin_thread(bool bSynchInitialization, ::enum_priority epriority, ::u32 nStackSize, u32 uiCreateFlags ARG_SEC_ATTRS)
+void thread::begin_thread(bool bSynchInitialization, ::enum_priority epriority, ::u32 nStackSize, u32 uiCreateFlags ARG_SEC_ATTRS)
 {
 
    unset_finishing();
@@ -2437,7 +2441,9 @@ e_status thread::begin_thread(bool bSynchInitialization, ::enum_priority epriori
 
    }
 
-   auto estatus = branch(epriority, nStackSize, uiCreateFlags);
+   //auto estatus = branch(epriority, nStackSize, uiCreateFlags);
+
+   branch(epriority, nStackSize, uiCreateFlags);
 
    if(m_htask == 0)
    {
@@ -2451,7 +2457,7 @@ e_status thread::begin_thread(bool bSynchInitialization, ::enum_priority epriori
 
       decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
-      return estatus;
+      throw_status(error_resource);
 
    }
 
@@ -2471,27 +2477,20 @@ e_status thread::begin_thread(bool bSynchInitialization, ::enum_priority epriori
 
       m_peventInitialization->wait();
 
-      void estatus = get_result_status();
+      ::e_status3 estatus = get_result_status();
 
       if (failed(estatus))
       {
 
-         void estatusExit;
+         ::e_status3 estatusExit = m_estatus;
 
-         if(m_result.get_exit_status(estatusExit))
-         {
-
-            __rethrow(estatusExit);
-
-         }
-
-         return estatus;
+         throw_status(estatusExit);
 
       }
 
    }
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -2500,16 +2499,18 @@ e_status thread::begin_thread(bool bSynchInitialization, ::enum_priority epriori
 void thread::branch(::enum_priority epriority, ::u32 nStackSize, u32 uiCreateFlags ARG_SEC_ATTRS)
 {
 
-   auto estatus = task::branch(epriority, nStackSize, uiCreateFlags ADD_PARAM_SEC_ATTRS);
+   //auto estatus = task::branch(epriority, nStackSize, uiCreateFlags ADD_PARAM_SEC_ATTRS);
 
-   if(!estatus)
-   {
+   task::branch(epriority, nStackSize, uiCreateFlags ADD_PARAM_SEC_ATTRS);
 
-      return estatus;
+   //if(!estatus)
+   //{
 
-   }
+   //   return estatus;
 
-   return estatus;
+   //}
+
+   //return estatus;
 
 }
 
@@ -2517,16 +2518,18 @@ void thread::branch(::enum_priority epriority, ::u32 nStackSize, u32 uiCreateFla
 void thread::begin_synch(::enum_priority epriority, ::u32 nStackSize, u32 uiCreateFlags ARG_SEC_ATTRS)
 {
 
-   auto estatus = begin_thread(true, epriority, nStackSize, uiCreateFlags ADD_PARAM_SEC_ATTRS);
+   //auto estatus = begin_thread(true, epriority, nStackSize, uiCreateFlags ADD_PARAM_SEC_ATTRS);
 
-   if(!estatus)
-   {
+   begin_thread(true, epriority, nStackSize, uiCreateFlags ADD_PARAM_SEC_ATTRS);
 
-      return estatus;
+   //if(!estatus)
+   //{
 
-   }
+   //   return estatus;
 
-   return estatus;
+   //}
+
+   //return estatus;
 
 }
 
@@ -2536,16 +2539,17 @@ void thread::inline_init()
 
    set_current_handles();
 
-   void estatus = __thread_init();
+   //::e_status3 estatus = 
+   __thread_init();
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
-   return estatus;
+   //return estatus;
 
 }
 
@@ -2553,22 +2557,24 @@ void thread::inline_init()
 void thread::inline_term()
 {
 
-   void estatus = ::error_none;
+   //::e_status3 estatus = ::error_none;
 
-   try
-   {
+   //try
+   //{
 
-      estatus = __thread_term();
+      //estatus = __thread_term();
 
-   }
-   catch (...)
-   {
+   __thread_term();
 
-      estatus = ::error_exception;
+   //}
+   //catch (...)
+   //{
 
-   }
+   //   estatus = ::error_exception;
 
-   return estatus;
+   //}
+
+   //return estatus;
 
 }
 
@@ -2801,39 +2807,39 @@ void thread::osthread_init()
 
    }
 
-   try
-   {
+   //try
+   //{
 
       __os_initialize();
 
-   }
-   catch (const ::exception & e)
-   {
+   //}
+   //catch (const ::exception & e)
+   //{
 
-      m_estatus = e.m_estatus;
+   //   m_estatus = e.m_estatus;
 
-      if (succeeded(m_estatus))
-      {
+   //   if (succeeded(m_estatus))
+   //   {
 
-         m_estatus = error_failed;
+   //      m_estatus = error_failed;
 
-      }
+   //   }
 
-      m_result.add(e);
+   //   m_result.add(e);
 
-      top_handle_exception(e);
+   //   top_handle_exception(e);
 
-   }
-   catch (...)
-   {
+   //}
+   //catch (...)
+   //{
 
-      m_estatus = error_failed;
+   //   m_estatus = error_failed;
 
-      m_result.add(error_failed);
+   //   m_result.add(error_failed);
 
-   }
+   //}
 
-   return m_estatus;
+   //return m_estatus;
 
 }
 
@@ -3016,15 +3022,15 @@ namespace apex
 //}
 
 
-bool thread::post_element(const ::id & id, wparam wparam, ::element * pelement)
+void thread::post_element(const ::id & id, wparam wparam, ::element * pelement)
 {
 
-   return post_message(id, wparam, pelement);
+   post_message(id, wparam, pelement);
 
 }
 
 
-bool thread::post_message(const ::id & id, wparam wparam, lparam lparam)
+void thread::post_message(const ::id & id, wparam wparam, lparam lparam)
 {
 
    if (id == e_message_close)
@@ -3099,11 +3105,13 @@ bool thread::post_message(const ::id & id, wparam wparam, lparam lparam)
       if (!bOk)
       {
 
-         TRACELASTERROR();
+         auto estatus = ::get_last_status();
+
+         throw_status(estatus);
 
       }
 
-      return bOk;
+      //return bOk;
 
    }
 
@@ -3114,55 +3122,55 @@ bool thread::post_message(const ::id & id, wparam wparam, lparam lparam)
    if(!pmessagequeue)
    {
 
-      return false;
+      return;
 
    }
 
-   return pmessagequeue->post_message(nullptr, id, wparam, lparam);
+   pmessagequeue->post_message(nullptr, id, wparam, lparam);
 
 }
 
 
-bool thread::send_element(const ::id & id, wparam wparam, ::element * pelement, const ::duration & duration)
+void thread::send_element(const ::id & id, wparam wparam, ::element * pelement, const ::duration & duration)
 {
 
    if (!id.is_message())
    {
 
-      __throw(error_invalid_argument);
+      throw_status(error_invalid_argument);
 
    }
 
    if(m_bThreadClosed)
    {
 
-      return false;
+      throw_status(error_wrong_state);
 
    }
 
-   if (id == e_message_quit)
-   {
+   //if (id == e_message_quit)
+   //{
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
    if (m_htask == (htask_t)nullptr || !task_get_run())
    {
 
 
-      return false;
+      throw_status(error_wrong_state);
 
    }
 
    send_message(id, wparam, pelement, duration);
 
-   return true;
+   //return true;
 
 }
 
 
-bool thread::send_message(const ::id & id, wparam wparam, lparam lparam, const ::duration & duration)
+void thread::send_message(const ::id & id, wparam wparam, lparam lparam, const ::duration & duration)
 {
 
    if (!id.is_message())
@@ -3175,18 +3183,18 @@ bool thread::send_message(const ::id & id, wparam wparam, lparam lparam, const :
    if(m_bThreadClosed)
    {
 
-      return false;
+      throw_status(error_wrong_state);
 
    }
 
-   if (id == e_message_quit)
-   {
+   //if (id == e_message_quit)
+   //{
 
-      ///wait(durWaitStep);
+   //   ///wait(durWaitStep);
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
    auto pmessage = __new(::send_thread_message(this));
 
@@ -3200,7 +3208,7 @@ bool thread::send_message(const ::id & id, wparam wparam, lparam lparam, const :
 
    pmessage->m_ev.wait(duration);
 
-   return true;
+   //return true;
 
 }
 
@@ -3270,7 +3278,9 @@ bool thread::send_message(const ::id & id, wparam wparam, lparam lparam, const :
 void thread::__thread_init()
 {
 
-   m_estatus = on_thread_init();
+   //m_estatus =
+   
+   on_thread_init();
 
    if (m_peventInitialization)
    {
@@ -3279,9 +3289,9 @@ void thread::__thread_init()
 
    }
    
-   m_result = m_estatus;
+   //m_result = m_estatus;
 
-   return m_estatus;
+   //return m_estatus;
 
 }
 
@@ -3293,73 +3303,10 @@ void thread::on_thread_init()
 
    install_message_routing(this);
 
-   void estatus = ::success;
-
-   try
-   {
-
-      estatus = init_thread();
+   init_thread();
       
-      if(!estatus)
-      {
+   on_pre_run_task();
 
-         if (m_peventStarted)
-         {
-
-            m_peventStarted.release();
-
-         }
-
-         return estatus;
-
-      }
-
-   }
-   catch (const ::exception & e)
-   {
-
-      handle_exception(e);
-
-      return e.m_estatus;
-
-   }
-   catch(...)
-   {
-
-      return error_exception;
-
-   }
-
-   try
-   {
-
-      estatus = on_pre_run_task();
-      
-      if(!estatus)
-      {
-
-         return estatus;
-
-      }
-
-   }
-   catch (const ::exception & e)
-   {
-
-      handle_exception(e);
-
-      return e.m_estatus;
-
-   }
-   catch (...)
-   {
-
-      return error_exception;
-
-   }
-
-   return estatus;
-   
 }
 
 
@@ -3388,7 +3335,7 @@ void thread::on_thread_init()
 //   }
 //
 //   // first -- check for simple worker thread
-//   void estatus = ::success;
+//   ::e_status3 estatus = ::success;
 //
 //   // else check for thread with message loop
 //   ASSERT_VALID(this);
@@ -3498,21 +3445,22 @@ message_queue* thread::_get_message_queue()
 
    }
 
-   auto estatus = __compose(m_pmessagequeue, pmq);
+   //auto estatus =
+   __compose(m_pmessagequeue, pmq);
 
-   if (!estatus)
+   /*if (!estatus)
    {
 
       return nullptr;
 
-   }
+   }*/
 
    return m_pmessagequeue;
 
 }
 
 
-int_bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg)
+bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg)
 {
 
    if (m_pmessagequeue)
@@ -3769,7 +3717,7 @@ int_bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilte
 //void thread::update_task_ready_to_quit()
 //{
 //
-//   void estatus = ::success;
+//   ::e_status3 estatus = ::success;
 //
 //   synchronous_lock synchronouslock(mutex());
 //
@@ -3856,16 +3804,16 @@ void thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
    if (m_bAuraMessageQueue)
    {
 
-      auto estatus = get_message_queue()->get_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax);
+      get_message_queue()->get_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax);
 
-      if(estatus == status_quit)
+      if(pMsg->m_id==e_message_quit)
       {
 
-         return estatus;
+         return;
 
       }
 
-      return estatus;
+      return;
 
    }
 
@@ -3882,7 +3830,7 @@ void thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
          if (!bQuit)
          {
 
-            return true;
+            return;
 
          }
 
@@ -3992,7 +3940,7 @@ void thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
             else
             {
 
-               return true;
+               return;
 
             }
 
@@ -4040,12 +3988,12 @@ void thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
 
 #endif
 
-   return status_quit;
+   //return status_quit;
 
 }
 
 
-int_bool thread::post_message(oswindow oswindow, const ::id & id, wparam wparam, lparam lparam)
+void thread::post_message(oswindow oswindow, const ::id & id, wparam wparam, lparam lparam)
 {
 
    if (!id.is_message())
@@ -4058,7 +4006,7 @@ int_bool thread::post_message(oswindow oswindow, const ::id & id, wparam wparam,
    if(m_bThreadClosed)
    {
 
-      return false;
+      __throw(error_wrong_state);
 
    }
 
@@ -4070,7 +4018,7 @@ int_bool thread::post_message(oswindow oswindow, const ::id & id, wparam wparam,
       if (::PostMessage(__hwnd(oswindow), id.u32(), wparam, lparam))
       {
 
-         return true;
+         return;
 
       }
 
@@ -4078,7 +4026,9 @@ int_bool thread::post_message(oswindow oswindow, const ::id & id, wparam wparam,
 
 #endif
 
-   return get_message_queue()->post_message(oswindow, id, wparam, lparam);
+   //return get_message_queue()->post_message(oswindow, id, wparam, lparam);
+
+   get_message_queue()->post_message(oswindow, id, wparam, lparam);
 
 }
 
@@ -4140,7 +4090,8 @@ void thread::on_thread_term()
    catch (...)
    {
 
-      m_result.add(error_failed);
+      //m_result.add(error_failed);
+      m_estatus = error_exception;
 
    }
 
@@ -4153,11 +4104,12 @@ void thread::on_thread_term()
    catch (...)
    {
 
-      m_result.add(error_failed);
+      //m_result.add(error_failed);
+      m_estatus = error_exception;
 
    }
 
-   return ::error_failed;
+   //return ::error_failed;
 
 }
 
@@ -4274,7 +4226,7 @@ void thread::process_message()
 
          ::DispatchMessage(&msg);
 
-         return true;
+         return;
 
       }
 
@@ -4350,7 +4302,7 @@ void thread::process_message()
 
          }
 
-         return true;
+         return;
 
       }
 
@@ -4364,7 +4316,7 @@ void thread::process_message()
       if(message.m_id == WM_KICKIDLE)
       {
 
-         return true;
+         return;
 
       }
 
@@ -4390,18 +4342,19 @@ void thread::process_message()
 
       }
 
-      return true;
+      return;
 
    }
    catch (const ::exception & e)
    {
 
-      if (handle_exception(e))
-      {
+      //if (handle_exception(e))
+      handle_exception(e);
+      //{
 
-         return true;
+      //   return true;
 
-      }
+      //}
 
    }
    catch(...)
@@ -4409,7 +4362,7 @@ void thread::process_message()
 
    }
 
-   return false;
+   //return false;
 
 }
 
@@ -4441,18 +4394,19 @@ void thread::raw_process_message()
 
       }
 
-      return true;
+      return;
 
    }
    catch (const ::exception & e)
    {
 
-      if (handle_exception(e))
-      {
+      //if (handle_exception(e))
+      handle_exception(e);
+      //{
 
-         return true;
+      //   return true;
 
-      }
+      //}
 
    }
    catch (...)
@@ -4460,7 +4414,7 @@ void thread::raw_process_message()
 
    }
 
-   return false;
+   //return false;
 
 }
 
@@ -4476,7 +4430,7 @@ bool thread::set_thread_priority(::enum_priority epriority)
    if (!bOk)
    {
 
-      void estatus = ::get_last_status();
+      ::e_status3 estatus = ::get_last_status();
 
       output_debug_string("thread::SetThreadPriority LastError = " + __string(estatus));
 
@@ -4607,24 +4561,26 @@ bool thread::do_events()
 /// \author tst Camilo Sasuke Tsumanuma
 ///
 
-bool thread::kick_thread()
+void thread::kick_thread()
 {
 
-   if(m_bThreadClosed)
-   {
+   //if(m_bThreadClosed)
+   //{
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
-   if (!post_message(e_message_null))
-   {
+   post_message(e_message_null);
 
-      return false;
+   //if (!post_message(e_message_null))
+   //{
 
-   }
+   //   return false;
 
-   return true;
+   //}
+
+   //return true;
 
 }
 
@@ -4632,7 +4588,7 @@ bool thread::kick_thread()
 void thread::verb()
 {
 
-   return success;
+   //return success;
 
 }
 
@@ -4757,12 +4713,14 @@ bool thread::pump_sleep(const class ::wait & wait, synchronization_object * psyn
 
          synchronous_lock synchronouslock(psync);
 
-         if (synchronouslock.wait(waitNow).succeeded())
-         {
+         synchronouslock.wait(waitNow);
 
-            break;
+         //if (synchronouslock.wait(waitNow).succeeded())
+         //{
 
-         }
+         //   break;
+
+         //}
 
       }
       else
@@ -4774,17 +4732,18 @@ bool thread::pump_sleep(const class ::wait & wait, synchronization_object * psyn
 
    }
 
-   return ::task_get_run();
+   ::preempt();
+   return true;
 
 }
 
 
-
-
-void thread::get_result_status()
+::e_status3 thread::get_result_status()
 {
 
-   return m_result.estatus();
+   //return m_result.estatus();
+
+   return m_estatus;
 
 }
 
@@ -4889,7 +4848,7 @@ bool thread::is_running() const
 }
 
 
-//__transport(::task) thread::branch(
+//__pointer(::task) thread::branch(
 //   ::matter * pmatter,
 //   ::enum_priority epriority,
 //   u32 nStackSize,

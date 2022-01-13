@@ -102,7 +102,7 @@ namespace draw2d
       e_format text_to_format(string str);
       
       virtual void initialize_write_text();
-      virtual __transport(::factory::factory) & write_text_factory();
+      virtual __pointer(::factory::factory) & write_text_factory();
 
 
       virtual void term_instance() override;

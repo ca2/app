@@ -577,7 +577,7 @@ pacmedir->is(path))
 
                }
 
-               void estatus = ::success;
+               ::e_status3 estatus = ::success;
 
                if(::dir::mkdir(stra[i]))
                {

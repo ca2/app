@@ -50,30 +50,32 @@ namespace acme
 
       bool bOk = true;
 
-      try
-      {
+      //try
+      //{
 
-         if(!ptimer->start(::duration(millisEllapse),bPeriodic))
-         {
+         ptimer->start(::duration(millisEllapse), bPeriodic);
 
-            bOk = false;
+         //if(!)
+         //{
 
-         }
+         //   bOk = false;
 
-      }
-      catch(...)
-      {
+         //}
 
-         bOk = false;
+      //}
+      //catch(...)
+      //{
 
-      }
+        // bOk = false;
 
-      if(!bOk)
-      {
+      //}
 
-         delete_timer(uEvent);
+      //if(!bOk)
+      //{
 
-      }
+      //   delete_timer(uEvent);
+
+      //}
 
       return bOk;
 
@@ -217,7 +219,7 @@ namespace acme
 
       ::timer_callback::destroy();
 
-      return ::success;
+      //return ::success;
 
    }
 

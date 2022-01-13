@@ -659,7 +659,7 @@ namespace base
 //
 //      virtual void create_session(index iEdge = 0);
 //
-//      virtual __transport(::aura::session) on_create_session(index iEdge);
+//      virtual __pointer(::aura::session) on_create_session(index iEdge);
 //
 //      virtual ::aura::session * session(index iEdge = 0);
 //

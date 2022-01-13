@@ -77,7 +77,7 @@
 //      }
 //
 //
-//      transport(const void & estatus) :
+//      transport(const ::e_status3 & estatus) :
 //         status(estatus)
 //      {
 //
@@ -145,7 +145,7 @@
 //
 //
 //      // set main status
-//      transport & operator =(const void & estatus)
+//      transport & operator =(const ::e_status3 & estatus)
 //      {
 //
 //         m_estatus = estatus;
@@ -316,7 +316,7 @@
 //      }
 //
 //
-//      void estatus() const
+//      ::e_status3 estatus() const
 //      {
 //
 //         return m_estatus;

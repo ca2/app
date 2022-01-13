@@ -117,16 +117,16 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    void system::on_pre_run_task()
    {
 
-      auto estatus = on_start_system();
+      /*auto estatus =*/ on_start_system();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -134,27 +134,28 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    void system::main()
    {
 
-      auto estatus = process_init();
+      /*auto estatus = */ process_init();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = run();
+      /*estatus =*/
+      run();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       end();
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -181,38 +182,42 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
       if(m_pnode)
       {
 
-         return ::success;
+         //return ::success;
+
+         return;
 
       }
 
-      auto estatus = __construct(m_pnode);
+      //auto estatus = __construct(m_pnode);
+      __construct(m_pnode);
 
-      if(!estatus)
-      {
+      //if(!estatus)
+      //{
 
-         FATAL("Failed to construct node " << estatus);
+      //   FATAL("Failed to construct node " << estatus);
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = m_pnode->initialize_matter(this);
+      //estatus = m_pnode->initialize_matter(this);
+      m_pnode->initialize_matter(this);
 
-      if(!estatus)
-      {
+      //if(!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       //::acme::g_pengine;
 
-      return estatus;
+      //return estatus;
 
    }
 
 
-   __transport(::factory::factory) & system::node_factory()
+   __pointer(::factory::factory) & system::node_factory()
    {
 
       auto & pfactory = factory("acme", PLATFORM_NAME);
@@ -265,36 +270,42 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       //}
 
-      auto estatus = __raw_compose(m_pacmedir);
+      //auto estatus = __raw_compose(m_pacmedir);
 
-      if (!estatus)
+      __raw_compose(m_pacmedir);
+
+      /*if (!estatus)
       {
 
          return estatus;
 
-      }
+      }*/
 
    //      m_pacmedir = pacmedir;
 
    //    m_pacmedir->increment_reference_count();
 
-      estatus = __raw_compose(m_pacmefile);
+      //estatus = __raw_compose(m_pacmefile);
 
-      if (!estatus)
-      {
+      __raw_compose(m_pacmefile);
 
-         return estatus;
+      //if (!estatus)
+      //{
 
-      }
+      //   return estatus;
 
-      estatus = __raw_compose(m_pacmepath);
+      //}
 
-      if (!estatus)
-      {
+      //estatus = __raw_compose(m_pacmepath);
 
-         return estatus;
+      __raw_compose(m_pacmepath);
 
-      }
+      //if (!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
 
       m_pacmedir->m_pacmefile = m_pacmefile;
       m_pacmedir->m_pacmepath = m_pacmepath;
@@ -303,34 +314,40 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
       m_pacmepath->m_pacmedir = m_pacmedir;
       m_pacmepath->m_pacmefile = m_pacmefile;
 
-      estatus = m_pacmefile->initialize(this);
+      //estatus = m_pacmefile->initialize(this);
 
-      if (!estatus)
-      {
+      m_pacmefile->initialize(this);
 
-         return estatus;
+      //if (!estatus)
+      //{
 
-      }
+      //   return estatus;
 
-      estatus = m_pacmepath->initialize(this);
+      //}
 
-      if (!estatus)
-      {
+      //estatus = m_pacmepath->initialize(this);
 
-         return estatus;
+      m_pacmepath->initialize(this);
 
-      }
+      //if (!estatus)
+      //{
 
-      estatus = m_pacmedir->initialize(this);
+      //   return estatus;
 
-      if (!estatus)
-      {
+      //}
 
-         return estatus;
+      //estatus = m_pacmedir->initialize(this);
 
-      }
+      m_pacmedir->initialize(this);
 
-      return estatus;
+      //if (!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
+
+      //return estatus;
 
    }
 
@@ -433,7 +450,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    void system::open_profile_link(string strUrl, string strProfile, string strTarget)
    {
 
-      return error_interface_only;
+      throw ::interface_only_exception();
 
    }
 
@@ -441,7 +458,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    void system::open_link(string strUrl, string strProfile, string strTarget)
    {
 
-      return open_profile_link(strUrl, strProfile, strTarget);
+      open_profile_link(strUrl, strProfile, strTarget);
 
    }
 
@@ -449,7 +466,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    void system::open_url(string strUrl, string strProfile, string strTarget)
    {
 
-      return ::error_interface_only;
+      throw_status(::error_interface_only);
 
    }
 
@@ -474,7 +491,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    //   void system::main_user_async(const ::routine & routine, ::enum_priority epriority)
    //   {
    //
-   //      return ::error_interface_only;
+   //      throw ::interface_only_exception();
    //
    //   }
    //
@@ -614,7 +631,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    //void system::_on_initialize_window_object()
    //{
 
-   //   void estatus = ::success;
+   //   ::e_status3 estatus = ::success;
    // 
    //   m_pnode->_os_calc_user_dark_mode();
 
@@ -772,16 +789,18 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    void system::inline_init()
    {
 
-      auto estatus = init_system();
+      //auto estatus = init_system();
 
-      if (!estatus)
-      {
+      init_system();
 
-         return estatus;
+      //if (!estatus)
+      //{
 
-      }
+      //   return estatus;
 
-      return estatus;
+      //}
+
+      //return estatus;
 
    }
 
@@ -789,18 +808,20 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    void system::call_init_system()
    {
 
-      auto estatus = init_system();
+      //auto estatus = init_system();
 
-      if(!estatus)
-      {
+      init_system();
 
-         FATAL("system init_system has failed " << estatus);
+      //if(!estatus)
+      //{
 
-         return estatus;
+      //   FATAL("system init_system has failed " << estatus);
 
-      }
+      //   return estatus;
 
-      return estatus;
+      //}
+
+      //return estatus;
 
    }
 
@@ -815,22 +836,23 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
       if (!pfactory)
       {
 
-         FATAL("node_factory has failed (status=" << (const void &) pfactory << ")");
+         //FATAL("node_factory has failed (status=" << (const void &) pfactory << ")");
 
-         return pfactory;
-
-      }
-
-      auto estatus = create_os_node();
-
-      if (!estatus)
-      {
-
-         FATAL("create_os_node has failed " << estatus);
-
-         return estatus;
+         throw_status(error_resource);
 
       }
+
+      //auto estatus = create_os_node();
+      create_os_node();
+
+      //if (!estatus)
+      //{
+
+      //   FATAL("create_os_node has failed " << estatus);
+
+      //   return estatus;
+
+      //}
 
       //estatus = process_init();
 
@@ -841,7 +863,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       //}
 
-      return success;
+      //return success;
 
    }
 
@@ -849,7 +871,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    void system::defer_audio()
    {
 
-      return error_interface_only;
+      throw ::interface_only_exception(); 
 
    }
 
@@ -857,7 +879,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    void system::init1()
    {
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -869,7 +891,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   __transport(::acme::library) system::create_library(const ::string& strLibrary)
+   __pointer(::acme::library) system::create_library(const ::string& strLibrary)
    {
 
 #ifdef CUBE
@@ -891,19 +913,22 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       plibrary->initialize_matter(this);
 
-      auto estatus = plibrary->open(strLibrary);
+      //auto estatus = plibrary->open(strLibrary);
 
-      if (!estatus)
-      {
 
-         return estatus;
+      plibrary->open(strLibrary);
 
-      }
+      //if (!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
 
       if (!plibrary->is_opened())
       {
 
-         return error_failed;
+         throw_status(error_failed);
 
       }
 
@@ -914,7 +939,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   __transport(::acme::library)& system::library(const ::string& str)
+   __pointer(::acme::library)& system::library(const ::string& str)
    {
 
       // Ex. "audio" (library)
@@ -922,7 +947,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
       if (str.is_empty())
       {
 
-         throw error_invalid_argument;
+         throw_status(error_invalid_argument);
 
       }
 
@@ -932,7 +957,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       auto& plibrary = m_mapLibrary4[strLibrary];
 
-      if (plibrary.is_initialized())
+      if (plibrary)
       {
 
          return plibrary;
@@ -946,7 +971,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
    
-   //__transport(::acme::library)& system::library(const ::string& strComponent, const ::string& strImplementationParam)
+   //__pointer(::acme::library)& system::library(const ::string& strComponent, const ::string& strImplementationParam)
    //{
 
    //   string strImplementation(strImplementationParam);
@@ -971,14 +996,14 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    //}
 
 
-   __transport(::factory::factory)& system::factory(const ::string& strComponent, const ::string& strImplementation)
+   __pointer(::factory::factory)& system::factory(const ::string& strComponent, const ::string& strImplementation)
    {
 
       synchronous_lock synchronouslock(&m_mutexComponentFactory);
 
       auto& pfactory = m_mapComponentFactory[strComponent][implementation_name(strComponent, strImplementation)];
 
-      if (pfactory.is_initialized())
+      if (pfactory)
       {
 
          return pfactory;
@@ -1011,9 +1036,8 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
 #endif
 
-         pfactory = (const ::extended::status&)plibrary;
-
-         return pfactory;
+         //pfactory = (const ::extended::status&)plibrary;
+         throw_status(error_resource);
 
       }
 
@@ -1024,7 +1048,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   __transport(::factory::factory)& system::factory(const ::string& strLibraryRequest)
+   __pointer(::factory::factory)& system::factory(const ::string& strLibraryRequest)
    {
 
       synchronous_lock synchronouslock(&m_mutexFactory);
@@ -1035,7 +1059,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       auto& pfactory = m_mapFactory[strLibrary];
 
-      if (pfactory.is_initialized())
+      if (pfactory)
       {
 
          return pfactory;
@@ -1047,9 +1071,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
       if (!plibrary)
       {
 
-         pfactory = (const ::extended::status&)plibrary;
-
-         return pfactory;
+         throw_status(error_resource);
 
       }
 
@@ -1067,7 +1089,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   //__transport(::acme::library) & system::library(const ::string & strComponent, const ::string & strImplementation)
+   //__pointer(::acme::library) & system::library(const ::string & strComponent, const ::string & strImplementation)
    //{
 
    //   // Ex. "draw2d" (Component) and implementation: either "draw2dcairo", "cairo", "draw2d_cairo"
@@ -1348,7 +1370,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   __transport(::regular_expression::context) system::get_regular_expression_context(const ::string & pszStyle)
+   __pointer(::regular_expression::context) system::get_regular_expression_context(const ::string & pszStyle)
    {
 
       __defer_construct_new(m_pmapRegularExpressionContext);
@@ -1363,7 +1385,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
          if(!pfactory)
          {
 
-            return (const ::extended::status &) pfactory;
+            throw_status(error_resource);
 
          }
 
@@ -1384,7 +1406,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   __transport(::regular_expression::context) system::get_pcre_context()
+   __pointer(::regular_expression::context) system::get_pcre_context()
    {
 
       return get_regular_expression_context("pcre2");
@@ -1459,12 +1481,12 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       }
 
-      return ::success;
+      //return ::success;
 
    }
 
 
-   void system::process_exit_status(::object* pobject, const void& estatus)
+   void system::process_exit_status(::object* pobject, const ::e_status3 & estatus)
    {
 
       if (estatus == error_exit_system)
@@ -1480,16 +1502,16 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    void system::on_start_system()
    {
 
-      auto estatus = m_pnode->on_start_system();
+      /*auto estatus =*/ m_pnode->on_start_system();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -1497,7 +1519,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    void system::post_initial_request()
    {
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -1505,25 +1527,25 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    void system::system_main()
    {
 
-      auto estatus = init_system();
+      /*auto estatus = */ init_system();
 
-      if(!estatus)
-      {
+      //if(!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = m_pnode->system_main();
+      /*estatus = */ m_pnode->system_main();
 
-      if(!estatus)
-      {
+      //if(!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -1575,7 +1597,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    void system::inline_term()
    {
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -1593,32 +1615,32 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       TermSystem();
 
-      return ::success;
+      //return ::success;
 
    }
 
    void system::end()
    {
 
-      auto estatus = on_end();
+      /*auto estatus = */ on_end();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = inline_term();
+      /*estatus = */ inline_term();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -1635,10 +1657,10 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   __transport(::factory::factory) & system::folder_factory()
+   __pointer(::factory::factory) & system::folder_factory()
    {
 
-      if (m_pfactoryFolder.is_initialized())
+      if (m_pfactoryFolder)
       {
 
          return m_pfactoryFolder;
@@ -1702,16 +1724,16 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       m_etracelevel = etracelevel;
 
-      auto estatus = ::main::system_construct(main);
+      /*auto estatus = */ ::main::system_construct(main);
 
-      if (!estatus)
+    /*  if (!estatus)
       {
 
          return estatus;
 
       }
 
-      return estatus;
+      return estatus;*/
 
    }
 
@@ -1768,7 +1790,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
       
       pnode->_will_finish_launching();
       
-      return ::success;
+      //return ::success;
       
    }
 
@@ -1785,7 +1807,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
       
 //      throw ::interface_only_exception();
    
-      return error_interface_only;
+      throw ::interface_only_exception();
    
    }
 
@@ -1794,8 +1816,6 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    {
       
       throw ::interface_only_exception();
-   
-      return error_interface_only;
       
    }
 
@@ -1808,7 +1828,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
       if (!pcompress)
       {
 
-         return pcompress;
+         throw_status(error_resource);
 
       }
 
@@ -1816,7 +1836,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       pcompress->increment_reference_count();
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -1829,7 +1849,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
       if (!puncompress)
       {
 
-         return puncompress;
+         throw_status(error_resource);
 
       }
 
@@ -1837,7 +1857,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       puncompress->increment_reference_count();
 
-      return puncompress;
+      //return puncompress;
 
    }
 
@@ -1846,25 +1866,25 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       __pointer(::compress) pcompress;
 
-      auto estatus = new_compress(&pcompress.m_p, pszImplementation);
+      /*auto estatus =*/ new_compress(&pcompress.m_p, pszImplementation);
 
-      if (!estatus)
+    /*  if (!estatus)
       {
 
          return estatus;
 
-      }
+      }*/
 
-      estatus = pcompress->transfer(pfileOut, pfileIn);
+      /*estatus = */ pcompress->transfer(pfileOut, pfileIn);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -1874,25 +1894,25 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       __pointer(::uncompress) puncompress;
 
-      auto estatus = new_uncompress(&puncompress.m_p, pszImplementation);
+      /*auto estatus = */ new_uncompress(&puncompress.m_p, pszImplementation);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = puncompress->transfer(pfileOut, pfileIn);
+      /*estatus =*/ puncompress->transfer(pfileOut, pfileIn);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -1997,7 +2017,7 @@ void system_on_open_file(void * pSystem, const char * pszFile)
 }
 
 
-__transport(class ::system) platform_create_system(const char* pszAppId)
+__pointer(class ::system) platform_create_system(const char* pszAppId)
 {
 
    string strAppId(pszAppId);

@@ -5,13 +5,13 @@
 #include "acme/constant/parallelization.h"
 
 
-inline void windows_wait_result_to_status(int iResult)
+inline ::e_status3 windows_wait_result_to_status(int iResult)
 {
 
    if (iResult >= WAIT_ABANDONED_0 && iResult < (WAIT_ABANDONED_0 + MAXIMUM_WAIT_OBJECTS))
    {
 
-      return (e_status)((::i64)abandoned_base + (iResult - WAIT_ABANDONED_0));
+      return (::e_status3)((::i64)abandoned_base + (iResult - WAIT_ABANDONED_0));
 
    }
    else if (iResult == WAIT_IO_COMPLETION)
@@ -35,7 +35,7 @@ inline void windows_wait_result_to_status(int iResult)
    else if (iResult >= WAIT_OBJECT_0 && iResult < (WAIT_OBJECT_0 + MAXIMUM_WAIT_OBJECTS))
    {
 
-      return (e_status)((::i64)signaled_base + (iResult - WAIT_OBJECT_0));
+      return (::e_status3)((::i64)signaled_base + (iResult - WAIT_OBJECT_0));
 
    }
    else

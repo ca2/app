@@ -82,6 +82,9 @@ CLASS_DECL_ACME htask_t get_current_hthread();
 CLASS_DECL_ACME bool task_get_run();
 
 
+inline void preempt();
+
+
 //CLASS_DECL_ACME void __node_init_multithreading();
 //CLASS_DECL_ACME void __node_term_multithreading();
 
@@ -135,7 +138,7 @@ CLASS_DECL_ACME bool task_get_run();
 
 #ifdef WINDOWS
 
-inline void wait(synchronization_object * psync,const duration & duration = duration::infinite())
+inline bool wait(synchronization_object * psync,const duration & duration = duration::infinite())
 {
    return psync->wait(duration);
 }

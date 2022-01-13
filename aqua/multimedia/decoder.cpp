@@ -50,7 +50,7 @@ namespace multimedia
    void decoder::multimedia_open(::file::file * pfile)
    {
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -58,7 +58,7 @@ namespace multimedia
    void decoder::multimedia_close()
    {
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -66,7 +66,7 @@ namespace multimedia
    void decoder::impl_multimedia_open(::file::file * pfile)
    {
 
-      return ::error_failed;
+      //return ::error_failed;
 
    }
 
@@ -76,7 +76,7 @@ namespace multimedia
 
       m_pathOrigin.Empty();
 
-      return ::success;
+      //return ::success;
 
    }
 

@@ -257,7 +257,7 @@ namespace fs
    }
 
 
-   file_transport native::get_file(const ::file::path & path, const ::file::e_open & eopen)
+   file_pointer native::get_file(const ::file::path & path, const ::file::e_open & eopen)
    {
 
       file_pointer pfile;
@@ -275,14 +275,15 @@ namespace fs
 
 //      }
 
-      auto result = pfile->open(path, eopen);
+      //auto result =
+         pfile->open(path, eopen);
 
-      if(!result)
-      {
+      //if(!result)
+      //{
 
-         return result;
+      //   return result;
 
-      }
+      //}
 
       return pfile;
 

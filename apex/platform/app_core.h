@@ -56,7 +56,7 @@ public:
    //::apex::system *                    m_psystem;
    //__pointer(apex_main_data)        m_pmaindata;
    __pointer(::acme::library)       m_plibrary;
-   void                        m_estatusa[APP_CORE_MAXIMUM_STATUS_COUNT];
+   ::e_status3                      m_estatusa[APP_CORE_MAXIMUM_STATUS_COUNT];
    int                              m_iStatusCount;
    int                              m_iTotalStatusCount;
 
@@ -65,7 +65,7 @@ public:
    app_core();
    ~app_core();
 
-   bool on_result(const void & estatus);
+   bool on_result(const ::e_status3 & estatus);
 
    //static ::u32 WINAPI MAIN(void * pvoid);
 
@@ -91,12 +91,12 @@ public:
 
    void system_end();
 
-   __transport(::application) new_application();
-   __transport(::application) new_application(const char* pszAppId);
+   __pointer(::application) new_application();
+   __pointer(::application) new_application(const char* pszAppId);
 
 
-//   __transport(::application) get_new_application(::object* pobject);
-//   __transport(::application) get_new_application(::object* pobject, const char* pszAppId);
+//   __pointer(::application) get_new_application(::object* pobject);
+//   __pointer(::application) get_new_application(::object* pobject, const char* pszAppId);
 
    virtual void initialize_application(::application * papplication, ::object* pobject);
 

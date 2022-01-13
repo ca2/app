@@ -85,23 +85,27 @@ namespace xml
    void document::initialize(::object * pobject)
    {
 
-      auto estatus = ::object::initialize(pobject);
+      //auto estatus = 
+      
+      ::object::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = node::initialize_matter(pobject);
+      //estatus = 
+      
+      node::initialize_matter(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       if (m_pnodeRoot)
       {
@@ -110,9 +114,10 @@ namespace xml
 
       }
 
-      return estatus;
+      //return estatus;
 
    }
+
 
    void document::create_root()
    {

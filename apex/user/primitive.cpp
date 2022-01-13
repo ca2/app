@@ -42,7 +42,7 @@ namespace user
    void primitive::show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd)
    {
 
-      return error_interface_only;
+      throw ::interface_only_exception();
 
    }
 
@@ -50,7 +50,7 @@ namespace user
    void primitive::hide_software_keyboard(::user::primitive * pprimitive)
    {
 
-      return error_interface_only;
+      throw ::interface_only_exception();
 
 
    }
@@ -1052,7 +1052,7 @@ namespace user
 
       throw ::interface_only_exception();
 
-      return error_interface_only;
+      throw ::interface_only_exception();
 
    }
 
@@ -1255,7 +1255,7 @@ namespace user
 
       throw ::interface_only_exception();
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -1265,16 +1265,18 @@ namespace user
 
       m_id = id;
 
-      auto estatus = create_child(puserinteractionParent);
+      //auto estatus =
+      
+      create_child(puserinteractionParent);
 
-      if(!estatus)
-      {
+      //if(!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -1307,29 +1309,31 @@ namespace user
 
       }
 
-      void estatus;
+      //::e_status3 estatus;
 
       if (!puserinteractionParent)
       {
 
-         estatus = create_host();
+         //estatus =
+         create_host();
 
       }
       else
       {
 
-         estatus = create_child(puserinteractionParent);
+         //estatus = 
+         create_child(puserinteractionParent);
 
       }
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -1340,7 +1344,7 @@ namespace user
 
       throw ::interface_only_exception();
 
-      return ::error_no_interface;
+      //return ::error_no_interface;
 
    }
 
@@ -1534,7 +1538,7 @@ namespace user
 
    //   throw ::interface_only_exception();
 
-   //   return ::error_interface_only;
+   //   throw ::interface_only_exception();
 
    //}
 
@@ -2730,7 +2734,7 @@ namespace user
    void primitive::set_mouse_cursor(::windowing::cursor * pcursor)
    {
 
-      return success_none;
+      //return success_none;
 
    }
 
@@ -3039,7 +3043,7 @@ namespace user
 
       throw ::interface_only_exception();
 
-      return error_not_implemented;
+      //return error_not_implemented;
 
    }
 
@@ -3525,16 +3529,18 @@ namespace user
    void primitive::set_bitmap_source(const string & strBitmapSource)
    {
 
-      auto estatus = ::user::element::set_bitmap_source(strBitmapSource);
+      //auto estatus = 
+      
+      ::user::element::set_bitmap_source(strBitmapSource);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -3542,16 +3548,18 @@ namespace user
    void primitive::clear_bitmap_source()
    {
 
-      auto estatus = ::user::element::clear_bitmap_source();
+      //auto estatus = 
+      
+      ::user::element::clear_bitmap_source();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -3668,20 +3676,21 @@ namespace user
       if (::is_null(pchild))
       {
 
-         return error_not_found;
+         throw_status(error_not_found);
 
       }
 
-      auto estatus = pchild->m_puserprimitive->add_handler(pmatter, bPriority);
+      //auto estatus = 
+      pchild->m_puserprimitive->add_handler(pmatter, bPriority);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -3886,12 +3895,14 @@ namespace user
       catch (const ::exception & e)
       {
 
-         if (::get_task()->handle_exception(e))
-         {
+         handle_exception(e);
 
-            return false;
+         //if (::get_task()->handle_exception(e))
+         //{
 
-         }
+         //   return false;
+
+         //}
 
       }
       catch (...)
@@ -4361,7 +4372,7 @@ namespace user
    void primitive::set_keyboard_focus()
    {
 
-      return ::error_interface_only;
+      throw ::interface_only_exception();
 
    }
 
@@ -4369,7 +4380,7 @@ namespace user
    void primitive::erase_keyboard_focus()
    {
 
-      return ::error_interface_only;
+      throw ::interface_only_exception();
 
    }
 
@@ -4377,7 +4388,7 @@ namespace user
    void primitive::clear_keyboard_focus()
    {
 
-      return ::error_interface_only;
+      throw ::interface_only_exception();
 
    }
 

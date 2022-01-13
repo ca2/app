@@ -51,10 +51,13 @@ namespace file
    }
 
 
-   ::extended::status reference::open(const ::file::path & path, const ::file::e_open & eopen)
+   //::extended::status
+      
+   void reference::open(const ::file::path & path, const ::file::e_open & eopen)
    {
 
-      return m_pfile->open(path, eopen);
+      /* return */
+      m_pfile->open(path, eopen);
 
    }
 

@@ -85,7 +85,7 @@ namespace sockets
    }
 
 
-   void http_session::step()
+   bool http_session::step()
    {
 
       inheader(__id(connection)) = "Keep-Alive";

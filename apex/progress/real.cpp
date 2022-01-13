@@ -79,7 +79,7 @@ namespace progress
    }
 
 
-   void real::step()
+   bool real::step()
    {
 
       ASSERT(m_iStep + 1 <= m_iStepCount);
@@ -95,7 +95,7 @@ namespace progress
 
       redraw();
 
-      return ::success;
+      return true;
 
    }
 

@@ -30,16 +30,18 @@ namespace aqua
    void application::initialize(::object * pobject)
    {
 
-      auto estatus = ::application::initialize(pobject);
+      //auto estatus = 
+      
+      ::application::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -50,27 +52,31 @@ namespace aqua
       if (get_system()->m_pmultimedia)
       {
 
-         auto estatus = get_system()->m_pmultimedia->exit_application();
+         //auto estatus = 
+         
+         get_system()->m_pmultimedia->exit_application();
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            return estatus;
+         //   return estatus;
 
-         }
-
-      }
-
-      auto estatus = ::application::exit_application();
-
-      if (!estatus)
-      {
-
-         return estatus;
+         //}
 
       }
 
-      return estatus;
+      //auto estatus = 
+      
+      ::application::exit_application();
+
+      //if (!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
+
+      //return estatus;
 
    }
 

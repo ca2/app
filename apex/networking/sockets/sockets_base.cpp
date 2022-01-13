@@ -25,16 +25,18 @@ namespace sockets
    void sockets_base::initialize(::object * pobject)
    {
 
-      auto estatus = object::initialize(pobject);
+      //auto estatus = object::initialize(pobject);
 
-      if (!estatus)
-      {
+      object::initialize(pobject);
 
-         return estatus;
+      //if (!estatus)
+      //{
 
-      }
+      //   return estatus;
 
-      return ::success;
+      //}
+
+      //return ::success;
 
    }
 
@@ -44,7 +46,7 @@ namespace sockets
 
       ::object::destroy();
 
-      return ::success;
+      //return ::success;
 
    }
 

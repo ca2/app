@@ -116,7 +116,7 @@ bool ifs::has_subdir(const ::file::path & path)
 
       dir.m_durationLast.now();
 
-      listing = ::error_failed;
+      throw_status(error_failed);
 
       return listing;
 
@@ -327,19 +327,21 @@ bool ifs::file_move(const ::file::path & pszDst,const ::file::path & pszSrc)
 }
 
 
-file_transport ifs::get_file(const ::file::path & path, const ::file::e_open & eopen)
+file_pointer ifs::get_file(const ::file::path & path, const ::file::e_open & eopen)
 {
 
    auto pfile = __new(ifs_file( path));
 
-   auto result = pfile->open(path, eopen);
+   //auto result =
+   
+   pfile->open(path, eopen);
 
-   if(!result)
-   {
+   //if(!result)
+   //{
 
-      return result;
+   //   return result;
 
-   }
+   //}
 
    return pfile;
 

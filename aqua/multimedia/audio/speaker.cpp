@@ -25,7 +25,7 @@ namespace text_to_speech
       if (m_pspeakerFallback.is_null())
       {
 
-         return false;
+         return;
 
       }
 
@@ -40,7 +40,9 @@ namespace text_to_speech
       if (m_pspeakerFallback.is_null())
       {
 
-         return false;
+         //return false;
+
+         return;
 
       }
 
@@ -55,7 +57,8 @@ namespace text_to_speech
       if (m_pspeakerFallback.is_null())
       {
 
-         return false;
+         //return false;
+         return;
 
       }
 
@@ -70,7 +73,8 @@ namespace text_to_speech
       if (m_pspeakerFallback.is_null())
       {
 
-         return false;
+         //return false;
+         return;
 
       }
 
@@ -89,7 +93,9 @@ namespace text_to_speech
 
       }
 
-      return m_pspeakerFallback->speak(strLang);
+      m_pspeakerFallback->speak(strLang);
+
+      return true;
 
    }
 

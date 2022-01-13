@@ -5,14 +5,15 @@
 void source::add_handler(::matter * pmatter, bool bPriority)
 {
 
-   auto estatus = __defer_construct_new(m_phandlera);
+   //auto estatus = 
+   __defer_construct_new(m_phandlera);
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
    if (bPriority)
    {
@@ -27,7 +28,7 @@ void source::add_handler(::matter * pmatter, bool bPriority)
 
    }
 
-   return estatus;
+   //return estatus;
 
 }
 

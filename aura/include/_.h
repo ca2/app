@@ -197,7 +197,7 @@ CLASS_DECL_AURA void aura_ref();
 //CLASS_DECL_AURA void throw_todo(void);
 //
 //
-////CLASS_DECL_AURA void set_last_status(const void & estatus);
+////CLASS_DECL_AURA void set_last_status(const ::e_status3 & estatus);
 ////CLASS_DECL_AURA void windowing_output_debug_string(const ::string & pszDebugString);
 ////CLASS_DECL_AURA void c_function_call(void * p);
 ////extern CLASS_DECL_AURA int g_bAura;
@@ -1016,8 +1016,8 @@ using image_pointer = __pointer(::image);
 using icon_pointer = __pointer(::draw2d::icon);
 //
 //
-using image_transport = __transport(::image);
-using icon_transport = __transport(::draw2d::icon);
+using image_pointer = __pointer(::image);
+using icon_pointer = __pointer(::draw2d::icon);
 //
 //
 //class command_line;
@@ -1140,7 +1140,7 @@ using image_pointer_array = __pointer_array(::image);
 //template < typename T >
 //class ::extended::transport;
 //
-//#define __transport(T) ::extended::transport < T >
+//#define __pointer(T) ::extended::transport < T >
 //
 //template < typename TYPE >
 //inline auto & __typed(TYPE & t) { return t; }
@@ -2508,7 +2508,7 @@ CLASS_DECL_AURA bool __node_aura_pos_term();
 //
 //using file_pointer = __pointer(::file::file);
 //
-//using file_transport = __transport(::file::file);
+//using file_pointer = __pointer(::file::file);
 //
 //class stream;
 //class binary_stream;

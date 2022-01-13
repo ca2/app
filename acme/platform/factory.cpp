@@ -50,7 +50,7 @@ namespace factory
 
 
 
-   __transport(::element) factory::create(const ::string & strType)
+   __pointer(::element) factory::create(const ::string & strType)
    {
 
       //auto psystem = get_system();
@@ -85,12 +85,12 @@ namespace factory
 
       auto pfactoryinterface = get_factory_item(strType);
 
-      if (!pfactoryinterface)
-      {
+      //if (!pfactoryinterface)
+      //{
 
-         return error_no_factory;
+      //   return error_no_factory;
 
-      }
+      //}
 
       return pfactoryinterface->create_element();
 

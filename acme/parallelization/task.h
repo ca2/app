@@ -154,7 +154,7 @@ public:
 
    virtual void update_task_ready_to_quit();
 
-   virtual bool kick_thread();
+   virtual void kick_thread();
 
    virtual void main();
 

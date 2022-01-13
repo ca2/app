@@ -41,11 +41,9 @@ int main(int argc, platform_char ** argv, platform_char ** envp)
 
    main.m_bConsole = true;
 
-   auto estatus = __main(main);
+   __main(main);
 
-   int iStatus = estatus.error_status();
-
-   return iStatus;
+   return main.m_iExitCode;
 
 
 //   process_set_args(argc, argv);
@@ -62,7 +60,7 @@ int main(int argc, platform_char ** argv, platform_char ** envp)
 //
 //#endif
 
-//   void estatus = ::success;
+//   ::e_status3 estatus = ::success;
 //
 //   //process_set_args(argc, argv);
 //

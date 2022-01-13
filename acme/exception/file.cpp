@@ -2,7 +2,7 @@
 #include "framework.h"
 
 
-file_exception::file_exception(void estatus, int iOsError, const string& strPath) : 
+file_exception::file_exception(::e_status3 estatus, int iOsError, const string& strPath) : 
    m_iOsError(iOsError),
    m_strPath(strPath),
    ::exception(estatus)

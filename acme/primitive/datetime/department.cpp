@@ -43,36 +43,36 @@ namespace datetime
    void department::initialize(::object * pobject)
    {
     
-      auto estatus = ::acme::department::initialize(pobject);
+      /*auto estatus = */ ::acme::department::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
          
-      estatus = __construct_new(m_pinternational);
+      /*estatus = */ __construct_new(m_pinternational);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = __construct_new(m_pstr);
+      /*estatus = */ __construct_new(m_pstr);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       m_pstr->m_pdatetime = this;
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -80,16 +80,16 @@ namespace datetime
    void department::international::initialize(::object * pobject)
    {
 
-      auto estatus = ::object::initialize(pobject);
+      /*auto estatus = */ ::object::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -97,16 +97,16 @@ namespace datetime
    void department::str::initialize(::object * pobject)
    {
 
-      auto estatus = ::object::initialize(pobject);
+      /* auto estatus = */ ::object::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -120,7 +120,7 @@ namespace datetime
 
       ::acme::department::destroy();
 
-      return ::success;
+      //return ::success;
 
    }
 

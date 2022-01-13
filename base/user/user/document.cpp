@@ -341,7 +341,7 @@ namespace user
    }
 
 
-   __transport(toolbar) document::get_toolbar(::user::frame_window * pframewindow, bool bCreate)
+   __pointer(toolbar) document::get_toolbar(::user::frame_window * pframewindow, bool bCreate)
    {
 
       auto toolbartransport = pframewindow->get_toolbar(get_toolbar_id(), bCreate);
@@ -1184,7 +1184,7 @@ namespace user
    }
 
 
-   void document::report_load_exception(const ::payload & payloadFile, file_transport presult, const ::string & pszDefault)
+   void document::report_load_exception(const ::payload & payloadFile, file_pointer presult, const ::string & pszDefault)
    {
 
       report_save_load_exception(payloadFile, presult, false, pszDefault);
@@ -1192,7 +1192,7 @@ namespace user
    }
 
 
-   void document::report_save_exception(const ::payload & payloadFile, file_transport presult, const ::string & pszDefault)
+   void document::report_save_exception(const ::payload & payloadFile, file_pointer presult, const ::string & pszDefault)
    {
 
       report_save_load_exception(payloadFile, presult, true, pszDefault);
@@ -1200,7 +1200,7 @@ namespace user
    }
 
 
-   void document::report_save_load_exception(const ::payload & payloadFile, file_transport presult, bool bSave, const ::string & pszDefault)
+   void document::report_save_load_exception(const ::payload & payloadFile, file_pointer presult, bool bSave, const ::string & pszDefault)
    {
 
       try

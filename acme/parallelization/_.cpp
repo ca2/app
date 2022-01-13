@@ -400,22 +400,24 @@ namespace parallelization
 CLASS_DECL_ACME void call(const ::routine & routine)
 {
 
-   void estatus;
+   //::e_status3 estatus;
 
-   try
-   {
+   //try
+   //{
 
-      estatus = routine();
+      /*estatus =*/
 
-   }
-   catch (...)
-   {
+         routine();
 
-      estatus = ::error_exception;
+   //}
+   //catch (...)
+   //{
 
-   }
+   //   estatus = ::error_exception;
 
-   return estatus;
+   //}
+
+   //return estatus;
 
 }
 
@@ -644,29 +646,31 @@ void thread_name_abbreviate(string & strName, int len)
 void run_runnable(::matter * pmatter)
 {
 
-   void     estatus = error_exception;
+   //void     estatus = error_exception;
 
-   try
-   {
+   //try
+   //{
 
-      try
-      {
+   //   try
+   //   {
 
-         estatus = pmatter->operator()();
+         //estatus = pmatter->operator()();
 
-      }
-      catch (...)
-      {
+         pmatter->operator()();
 
-      }
+   //   }
+   //   catch (...)
+   //   {
 
-   }
-   catch (...)
-   {
+   //   }
 
-   }
+   //}
+   //catch (...)
+   //{
 
-   return estatus;
+   //}
+
+   //return estatus;
 
 }
 
@@ -674,20 +678,22 @@ void run_runnable(::matter * pmatter)
 void run_routine(const ::routine & routine)
 {
 
-   void estatus = error_exception;
+   //::e_status3 estatus = error_exception;
 
-   try
-   {
+   //try
+   //{
 
-      estatus = routine();
+      //estatus = routine();
 
-   }
-   catch (...)
-   {
+   routine();
 
-   }
+   //}
+   //catch (...)
+   //{
 
-   return estatus;
+   //}
+
+   //return estatus;
 
 }
 

@@ -25,14 +25,15 @@ namespace xml
    void data::edit(::xml::edit * pedit)
    {
 
-      auto estatus = validate_edit(pedit);
+      //auto estatus = 
+      validate_edit(pedit);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         __throw(estatus);
+      //   __throw(estatus);
 
-      }
+      //}
 
       __pointer(::xml::node) pnode;
 
@@ -98,15 +99,13 @@ namespace xml
          pedit->m_iEdit = iEdit;
       }
 
-
-
    }
 
    
    void data::validate_edit(::xml::edit* pedit)
    {
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -125,7 +124,6 @@ namespace xml
       return ::xml::document::read(stream);
 
    }
-
 
 
 } // namespace aura

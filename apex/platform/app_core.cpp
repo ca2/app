@@ -158,7 +158,7 @@ app_core::~app_core()
 }
 
 
-bool app_core::on_result(const void & estatus)
+bool app_core::on_result(const ::e_status3 & estatus)
 {
 
    if (estatus == ::success)
@@ -234,13 +234,13 @@ void app_core::system_prep()
 
   // os_init_windowing();
 
-   return true;
+   //return true;
 
 }
 
 
-extern "C"
-::apex::system * apex_create_apex_system();
+//extern "C"
+//::apex::system * apex_create_apex_system();
 
 
 //CLASS_DECL_ACME void set_path_install_folder(const char * pszPath);
@@ -506,9 +506,11 @@ void app_core::system_init()
    if (!psystem)
    {
 
-      on_result(error_failed);
+      return;
 
-      return false;
+      //on_result(error_failed);
+
+      //return false;
 
    }
 
@@ -535,7 +537,7 @@ void app_core::system_init()
 
    //::apex::g_bOutputDebugString = m_psystem->m_pacmefile->exists(pathOutputDebugString)||  m_psystem->m_pacmefile->exists(pathGlobalOutputDebugString);
 
-   return true;
+   //return true;
 
 }
 
@@ -1586,9 +1588,9 @@ typedef FN_GET_STRING * PFN_GET_STRING;
 void app_core::system_proc()
 {
 
-   return ::error_failed;
+   //return ::error_failed;
 
-   //void estatus = system_proc();
+   //::e_status3 estatus = system_proc();
 
    //if(estatus.succeeded())
    //{
@@ -1608,7 +1610,7 @@ void app_core::system_proc()
 //void app_core::system_call()
 //{
 //
-//   void estatus = error_failed;
+//   ::e_status3 estatus = error_failed;
 //
 //   try
 //   {
@@ -1684,7 +1686,7 @@ bool app_core::has_apex_application_factory() const
 //::u32 app_core::system_main()
 //{
 //
-//   void estatus = psystem->__thread_procedure();
+//   ::e_status3 estatus = psystem->__thread_procedure();
 //
 //   return estatus;
 //
@@ -1694,7 +1696,7 @@ bool app_core::has_apex_application_factory() const
 #endif
 
 
-__transport(::application) app_core::new_application()
+__pointer(::application) app_core::new_application()
 {
 
    if (!m_pfnnewmatterApplication)
@@ -1720,7 +1722,7 @@ __transport(::application) app_core::new_application()
 }
 
 
-__transport(::application) app_core::new_application(const char* pszAppId)
+__pointer(::application) app_core::new_application(const char* pszAppId)
 {
 
    __pointer(::application) papp;
@@ -1826,7 +1828,7 @@ __transport(::application) app_core::new_application(const char* pszAppId)
 
          auto pfactory = plibrary->create_factory(strLibrary);
 
-         if (pfactory.succeeded())
+         if (pfactory)
          {
 
             papp = pfactory->create < ::application >();
@@ -1838,7 +1840,7 @@ __transport(::application) app_core::new_application(const char* pszAppId)
 
             }
 
-            void estatus;
+            ::e_status3 estatus;
 
             //         if(papp)
             //         {
@@ -1931,16 +1933,18 @@ __transport(::application) app_core::new_application(const char* pszAppId)
 void app_core::initialize_application(::application *papplication, ::object * pobject)
 {
 
-   auto estatus = papplication->initialize(pobject);
+   //auto estatus = 
+   
+   papplication->initialize(pobject);
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
-   return ::success;
+   //return ::success;
 
 }
 

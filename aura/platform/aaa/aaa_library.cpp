@@ -564,7 +564,7 @@ namespace aura
    }
 
 
-   __transport(::aura::application) library::get_new_application(::object * pobject, const ::string & pszAppId)
+   __pointer(::aura::application) library::get_new_application(::object * pobject, const ::string & pszAppId)
    {
 
       synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);

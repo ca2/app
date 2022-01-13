@@ -144,7 +144,7 @@ namespace fs
    ::file::listing & data::root_ones(::file::listing & listing)
    {
 
-      return listing = ::error_failed;
+      return listing;
 
    }
 
@@ -193,7 +193,7 @@ namespace fs
    //}
 
 
-   file_transport data::get_file(const ::file::path & payloadFile, const ::file::e_open & eopen)
+   file_pointer data::get_file(const ::file::path & payloadFile, const ::file::e_open & eopen)
    {
 
       __UNREFERENCED_PARAMETER(payloadFile);
@@ -265,7 +265,7 @@ namespace fs
    }
 
 
-   ::file::listing & data::perform_file_listing(::file::listing & listing)
+   bool data::perform_file_listing(::file::listing & listing)
    {
 
       return ls(listing);
@@ -273,7 +273,7 @@ namespace fs
    }
 
 
-   ::file::listing & data::perform_file_relative_name_listing(::file::listing & listing)
+   bool data::perform_file_relative_name_listing(::file::listing & listing)
    {
 
       return ls_relative_name(listing);

@@ -324,7 +324,7 @@ void task::do_task()
 void task::on_task()
 {
 
-   void estatus = ::success;
+   ::e_status3 estatus = ::success;
 
    while (!m_bSetFinish)
    {

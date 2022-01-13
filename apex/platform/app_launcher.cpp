@@ -21,20 +21,22 @@ namespace apex
    void app_launcher::initialize_app_launcher(::object * pobject, string strPlatform, string strApp)
    {
 
-      auto estatus = ::object::initialize(pobject);
+      //auto estatus = ::object::initialize(pobject);
 
-      if (!estatus)
-      {
+      ::object::initialize(pobject);
 
-         return estatus;
+      //if (!estatus)
+      //{
 
-      }
+      //   return estatus;
+
+      //}
 
       m_strPlatform = strPlatform;
 
       m_strApp = strApp;
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -136,10 +138,13 @@ namespace apex
 
       wstring wstrCmdLine = L"\"" + wstrApp + L"\"" + wstrParams;
 
-      if(::CreateProcessW( (unichar *) wstrApp.c_str(), (unichar *) wstrCmdLine.c_str(),
-                          nullptr,nullptr,false,0,nullptr,wstrDir,
-                          &si,&pi))
-         return true;
+      if (::CreateProcessW((unichar*)wstrApp.c_str(), (unichar*)wstrCmdLine.c_str(),
+         nullptr, nullptr, false, 0, nullptr, wstrDir,
+         &si, &pi))
+      {
+         return;
+
+      }
 
 #elif defined(MACOS)
 
@@ -212,7 +217,7 @@ namespace apex
 
 #endif
 
-      return false;
+      //return false;
 
    }
 

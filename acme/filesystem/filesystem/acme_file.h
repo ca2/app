@@ -35,14 +35,14 @@ public:
    virtual ::file::path module();
 
 
-   virtual file_transport open(const ::file::path& path, const ::file::e_open& eopen);
-   virtual file_transport stdio_open(const char* path, const char* attrs, int iShare);
+   virtual file_pointer open(const ::file::path& path, const ::file::e_open& eopen);
+   virtual file_pointer stdio_open(const char* path, const char* attrs, int iShare);
 
    virtual memory as_memory(const char* path, strsize iReadAtMostByteCount = -1);
 
 
    virtual memsize as_memory(const char * path, void * p, memsize s);
-   virtual status < string > as_string(const char * path, strsize iReadAtMostByteCount = -1);
+   virtual string as_string(const char * path, strsize iReadAtMostByteCount = -1, bool bNoExceptionIfNotFound = true);
 
 
    //virtual string get_temp_name(const char * lpszName, const char * pszExtension);
@@ -50,12 +50,12 @@ public:
    virtual void append_wait(const char * pszFile, const block & block, const ::duration & duration);
    virtual void append(const char * pszFile, const block & block);
 
-   virtual void exists(const char * path);
+   virtual bool exists(const char * path);
 
    virtual void put_contents(const char * path, const char * contents, strsize len);
-   virtual holding_status < filesize > get_size(const char * path);
-   virtual holding_status < filesize > get_size(FILE * pfile);
-   virtual holding_status < filesize > get_size_fd(int iFile);
+   virtual filesize get_size(const char * path);
+   virtual filesize get_size(FILE * pfile);
+   virtual filesize get_size_fd(int iFile);
 
 
    virtual void clear_application_data();
@@ -88,7 +88,7 @@ public:
 
    //virtual filesize FILE_get_size(FILE * fp);
 
-   virtual void is_true(const char * path);
+   virtual bool is_true(const char * path);
 
 
    virtual void set_size(const char * lpszName, filesize iSize);
@@ -131,12 +131,12 @@ public:
 
 
    //virtual string_array file_as_lines(const char * path, strsize iReadAtMostByteCount = -1);
-   virtual status < string > first_line(const char * path);
-   virtual status < string > line(const char * path, index iLine);
-   virtual status < string_array > lines(const char * path);
+   virtual string first_line(const char * path);
+   virtual string line(const char * path, index iLine);
+   virtual string_array lines(const char * path);
    virtual void set_line(const char * path, index iLine, const char * pszLine);
    //virtual string file_extension_dup(const char * path);
-   virtual status < string > get_temporary_file_name(const char * lpszName, const char * pszExtension);
+   virtual string get_temporary_file_name(const char * lpszName, const char * pszExtension);
 
    virtual void get_temporary_file_name_template(char * szRet, strsize iBufferSize, const char * lpszName, const char * pszExtension, const char * pszTemplate);
 
@@ -152,7 +152,7 @@ public:
    virtual void write(FILE * file, const void * pdata, memsize nCount, memsize * puiWritten);
 
 
-   virtual void _exists(const char * path);
+   virtual bool _exists(const char * path);
    virtual void _delete(const char * path);
 
 

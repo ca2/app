@@ -109,14 +109,15 @@ namespace apex
    void session::initialize(::object * pobject)
    {
 
-      auto estatus = ::thread::initialize(pobject);
+      //auto estatus = 
+      ::thread::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       m_bIfs                           = true;
 
@@ -147,7 +148,7 @@ namespace apex
 
       m_papplicationCurrent                    = nullptr;
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -403,27 +404,31 @@ namespace apex
    void session::init_thread()
    {
 
-      auto estatus = process_init();
+      //auto estatus =
+      
+      process_init();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         WARNING("Failed at apex::session::init_thread after process_init");
+      //   WARNING("Failed at apex::session::init_thread after process_init");
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = init_session();
+      //estatus = 
+      
+      init_session();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         WARNING("Failed at apex::session::init_thread after init_session");
+      //   WARNING("Failed at apex::session::init_thread after init_session");
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       // // now there is attempt here
       //estatus = defer_initialize_host_window();
@@ -437,9 +442,9 @@ namespace apex
 
       //INFORMATION(".1");
 
-      return true;
+      //return true;
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -488,22 +493,23 @@ namespace apex
 
       //}
 
-      auto estatus = __compose_new(m_ptextcontext);
+      //auto estatus =
+      __compose_new(m_ptextcontext);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         WARNING("acme::str_context Failed to Allocate!!");
+      //   WARNING("acme::str_context Failed to Allocate!!");
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       //INFORMATION("acme::str_context Succeeded to Allocate!!");
 
       //INFORMATION("apex::session::process_init success");
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -511,40 +517,42 @@ namespace apex
    void session::init_session()
    {
 
-      auto estatus = init1();
+      //auto estatus = 
+      init1();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         WARNING("Failed to init1 the session (::apex::session or ::apex::session derived)");
+      //   WARNING("Failed to init1 the session (::apex::session or ::apex::session derived)");
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = init2();
+      //estatus = 
+      init2();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         WARNING("Failed to init2 the session (::apex::session or ::apex::session derived)");
+      //   WARNING("Failed to init2 the session (::apex::session or ::apex::session derived)");
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = init();
+      init();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         WARNING("Failed to init() the session (::apex::session or ::apex::session derived)");
+      //   WARNING("Failed to init() the session (::apex::session or ::apex::session derived)");
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return ::success;
+//      return ::success;
 
    }
 
@@ -1189,27 +1197,29 @@ ret:
    void session::init1()
    {
 
-      auto estatus = initialize_context();
+      //auto estatus = 
+      initialize_context();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = __compose_new(m_pfs);
+      //estatus = 
+      __compose_new(m_pfs);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         output_debug_string("\nFailed to __compose_new(m_pfs)");
+      //   output_debug_string("\nFailed to __compose_new(m_pfs)");
 
-         m_result.add(estatus);
+      //   m_result.add(estatus);
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
       // __throw(todo("interaction"));
       //if (psystem->m_bUser)
@@ -1242,32 +1252,34 @@ ret:
       if (!m_pifs)
       {
 
-         estatus = __compose(m_pifs, __new(ifs("")));
+         //estatus = 
+         __compose(m_pifs, __new(ifs("")));
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            m_result.add(estatus);
+         //   m_result.add(estatus);
 
-            INFORMATION("Failed to create ifs");
+         //   INFORMATION("Failed to create ifs");
 
-         }
+         //}
 
       }
 
       if (!m_premotefs)
       {
 
-         estatus = __compose(m_premotefs, __new(::fs::remote_native("")));
+         //estatus = 
+         __compose(m_premotefs, __new(::fs::remote_native("")));
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            m_result.add(estatus);
+         //   m_result.add(estatus);
 
-            INFORMATION("Failed to create remotefs");
+         //   INFORMATION("Failed to create remotefs");
 
-         }
+         //}
 
       }
 
@@ -1304,16 +1316,17 @@ ret:
 
          pset->m_spafsdata.add(__create_new < ::fs::native>().m_p);
 
-         estatus = __compose(m_pfsdata, pset);
+         //estatus = 
+         __compose(m_pfsdata, pset);
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            m_result.add(estatus);
+         //   m_result.add(estatus);
 
-            INFORMATION("Failed to create fsdata");
+         //   INFORMATION("Failed to create fsdata");
 
-         }
+         //}
 
 
       }
@@ -1321,7 +1334,7 @@ ret:
       //INFORMATION(".2");
 
 
-      return true;
+      //return true;
 
    }
 
@@ -1329,7 +1342,7 @@ ret:
    void session::defer_initialize_host_window(const RECTANGLE_I32 * lpcrect)
    {
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -1337,7 +1350,7 @@ ret:
    void session::init2()
    {
 
-      void estatus;
+      ::e_status3 estatus;
 
       //INFORMATION("apex::session::init2 .1");
 
@@ -1383,11 +1396,11 @@ ret:
 
          output_debug_string("Could not initialize Local data central");
 
-         return false;
+         //return false;
 
       }
 
-      return true;
+      //return true;
 
    }
 
@@ -1395,7 +1408,7 @@ ret:
    void session::init()
    {
 
-      void estatus = ::success;
+      ::e_status3 estatus = ::success;
 
       __pointer(::fs::set) pfsset = m_pfsdata;
 
@@ -1426,7 +1439,7 @@ ret:
 
       }
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -1443,7 +1456,7 @@ ret:
       catch (...)
       {
 
-         m_result.add(error_failed);
+         //m_result.add(error_failed);
 
       }
 
@@ -2214,7 +2227,7 @@ namespace apex
 
       ::apex::context::destroy();
 
-      return success;
+      //return success;
 
    }
 

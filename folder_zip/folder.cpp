@@ -58,16 +58,17 @@ namespace folder_zip
    void folder::initialize(::object* pobject)
    {
 
-      auto estatus = ::object::initialize(pobject);
+      //auto estatus =
+      ::object::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -123,16 +124,16 @@ namespace folder_zip
 
       auto zipfile = zipOpen2("pad", APPEND_STATUS_CREATE, nullptr, (zlib_filefunc_def *)&g_filefunctiondefinitions, pfile.m_p);
 
-      if(!zipfile)
-      {
+      //if(!zipfile)
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
       m_zipfile = zipfile;
 
-      return true;
+//      return true;
 
    }
 
@@ -142,18 +143,18 @@ namespace folder_zip
 
       auto unzfile = unzOpen2("pad", (zlib_filefunc_def*)&g_filefunctiondefinitions, pfile.m_p);
 
-      if (!unzfile)
-      {
+      //if (!unzfile)
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
       m_pfile = pfile;
 
       m_unzfile = unzfile;
 
-      return true;
+      //return true;
    }
 
 
@@ -361,7 +362,7 @@ namespace folder_zip
    }
 
 
-   ::file::listing & folder::perform_file_listing(::file::listing & listing)
+   bool folder::perform_file_listing(::file::listing & listing)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -371,9 +372,9 @@ namespace folder_zip
       if (pf == nullptr)
       {
 
-         listing = error_failed;
+         throw_status(error_failed);
 
-         return listing;
+         //return listing;
 
       }
 
@@ -447,7 +448,7 @@ namespace folder_zip
    }
 
 
-   ::file::listing & folder::perform_file_relative_name_listing(::file::listing & listing)
+   bool folder::perform_file_relative_name_listing(::file::listing & listing)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -457,9 +458,11 @@ namespace folder_zip
       if (pf == nullptr)
       {
 
-         listing = error_failed;
+         //listing = error_failed;
 
-         return listing;
+         //return listing;
+
+         throw_status(error_failed);
 
       }
 
@@ -549,7 +552,7 @@ namespace folder_zip
 
       auto pfile = get_file(pszFile);
 
-      return pfile->full_read(m);
+      pfile->full_read(m);
 
    }
 
@@ -593,7 +596,7 @@ namespace folder_zip
 
       }
 
-      return true;
+      //return true;
 
    }
 

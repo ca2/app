@@ -82,7 +82,7 @@ namespace sockets
    }
 
 
-   void http_get_socket::step()
+   bool http_get_socket::step()
    {
 
       if (inattr("minimal_headers").is_false())

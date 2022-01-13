@@ -141,13 +141,18 @@ namespace file
       inline void open_for_reading(const ::file::path& pszFileName, const ::file::e_open & eopen =
          ::file::e_open_binary)
       {
-         return open(pszFileName, eopen | ::file::e_open_read);
+        open(pszFileName, eopen | ::file::e_open_read); 
+
+         //open(psz)
 
       }
+      
       virtual void open_for_writing(const ::file::path& pszFileName, const ::file::e_open & eopen =
          ::file::e_open_binary | ::file::e_open_defer_create_directory)
       {
-         return open(pszFileName, eopen | ::file::e_open_write);
+         /*return open(pszFileName, eopen | ::file::e_open_write)*/;
+
+         open(pszFileName, eopen);
 
       }
 

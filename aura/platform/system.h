@@ -19,7 +19,7 @@ namespace aura
       __pointer(::windowing::window)                     m_pwindowMain;
 
 
-      ::factory_transport                                m_pfactoryDraw2d;
+      ::factory_pointer                                m_pfactoryDraw2d;
       __pointer(::draw2d::draw2d)                        m_pdraw2d;
 
       double                                             m_dDpi;
@@ -112,7 +112,7 @@ namespace aura
       //virtual i32 install_start(const ::string & pszCommandLine, const ::string & pszBuild) override;
       //virtual i32 install_progress_app_add_up(int iAddUp = 1) override;
 
-      virtual __transport(::factory::factory) & node_factory() override;
+      virtual __pointer(::factory::factory) & node_factory() override;
 
       virtual void process_init() override;
 
@@ -365,10 +365,10 @@ namespace aura
 
       virtual void initialize_draw2d();
       //virtual void initialize_write_text();
-      virtual __transport(::factory::factory) & draw2d_factory();
+      virtual __pointer(::factory::factory) & draw2d_factory();
       virtual string draw2d_get_default_library_name();
 
-      virtual __transport(::factory::factory)& imaging_factory();
+      virtual __pointer(::factory::factory)& imaging_factory();
       virtual string imaging_get_default_library_name();
 
       virtual void init_thread() override;
@@ -465,7 +465,7 @@ namespace aura
 
       //virtual void create_session(index iEdge = 0) override;
 
-      /*virtual __transport(::apex::session) on_create_session(index iEdge) override;
+      /*virtual __pointer(::apex::session) on_create_session(index iEdge) override;
 
       virtual ::apex::session * session(index iEdge = 0) override;*/
 

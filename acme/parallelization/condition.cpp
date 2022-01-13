@@ -201,7 +201,7 @@ void condition::wait()
 
 #endif
 
-   return signaled_base;
+   //return signaled_base;
 
 }
 
@@ -209,21 +209,15 @@ void condition::wait()
 ///  \brief		waits for an condition for a specified time
 ///  \lparam		duration time period to wait for an condition
 ///  \return	waiting action result as WaitResult
-void condition::wait(const class ::wait & wait)
+bool condition::wait(const class ::wait & wait)
 {
 
 #ifdef WINDOWS
 
-   if (SleepConditionVariableCS(
+   if (!SleepConditionVariableCS(
       &(CONDITION_VARIABLE &)m_conditionvariable,
       &(CRITICAL_SECTION &)m_criticalsection,
       wait))
-   {
-
-      return signaled_base;
-
-   }
-   else
    {
 
       DWORD dwLastError = ::GetLastError();
@@ -231,13 +225,19 @@ void condition::wait(const class ::wait & wait)
       if (dwLastError == ERROR_TIMEOUT)
       {
 
-         return error_wait_timeout;
+         return false;
 
       }
 
-      return error_failed;
+      auto estatus = last_error_to_status(dwLastError);
+
+      throw_status(estatus);
+
+      return false;
 
    }
+
+   return true;
 
 #elif defined(ANDROID)
 
@@ -453,9 +453,14 @@ bool condition::ResetEvent()
    return true;
 }
 
-bool condition::unlock()
+
+void condition::unlock()
 {
-   return ResetEvent();
+
+   //return ResetEvent();
+
+   ResetEvent();
+
 }
 
 

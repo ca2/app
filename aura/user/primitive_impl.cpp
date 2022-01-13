@@ -1776,7 +1776,7 @@ namespace user
    void primitive_impl::show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd)
    {
 
-      return error_interface_only;
+      throw ::interface_only_exception();
 
    }
 
@@ -1784,7 +1784,7 @@ namespace user
    void primitive_impl::hide_software_keyboard(::user::primitive * pprimitive)
    {
 
-      return error_interface_only;
+      throw ::interface_only_exception();
 
    }
 

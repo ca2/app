@@ -90,7 +90,7 @@ CLASS_DECL_APEX i32 ca2_main();
 //void app_core::system_start()
 //{
 //
-//   void estatus = system_pre_run();
+//   ::e_status3 estatus = system_pre_run();
 //
 //   if (!estatus)
 //   {

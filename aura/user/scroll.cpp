@@ -1143,7 +1143,7 @@ namespace user
    void scroll_base::set_page_size(const ::size_f64& size)
    {
 
-      return ::error_interface_only;
+      throw ::interface_only_exception();
 
    }
 

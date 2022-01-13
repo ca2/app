@@ -198,4 +198,19 @@ void async_predicate(void (* pfnBranch )(::matter * pobjectTask, enum_priority),
 inline class ::wait wait::now() { return get_integral_millisecond(); }
 
 
+inline void preempt()
+{
+
+   if (!::task_get_run())
+   {
+
+      auto ptask = ::get_task();
+
+      throw ::exit_exception(ptask);
+
+   }
+
+}
+
+
 

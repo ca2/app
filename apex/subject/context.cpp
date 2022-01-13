@@ -23,7 +23,7 @@ context::~context()
 void context::start_task()
 {
 
-   return ::success_none;
+   //return ::success_none;
 
 }
 

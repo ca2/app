@@ -58,7 +58,7 @@ int_bool GetMessage(
 i32 CLASS_DECL_APEX __android_main(i32 argc, char* argv[]);
 
 
-CLASS_DECL_APEX void vfxThrowFileException(::object* pobject, const void& estatus, ::i32 lOsError, const char* lpszFileName = nullptr);
+CLASS_DECL_APEX void vfxThrowFileException(::object* pobject, const ::e_status3 & estatus, ::i32 lOsError, const char* lpszFileName = nullptr);
 
 
 #include "internal.h"

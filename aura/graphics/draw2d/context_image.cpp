@@ -47,7 +47,7 @@ void context_image::destroy_composites()
 }
 
 
-::image_transport context_image::_load_image_from_file(const ::payload & payloadFile, const ::payload & varOptions)
+::image_pointer context_image::_load_image_from_file(const ::payload & payloadFile, const ::payload & varOptions)
 {
 
    return load_image(
@@ -72,7 +72,7 @@ void context_image::_save_to_file(const ::payload & payloadFile, const image * p
 }
 
 
-::icon_transport context_image::get_icon(const ::payload & payloadFile, const ::image::load_options & loadoptions)
+::icon_pointer context_image::get_icon(const ::payload & payloadFile, const ::image::load_options & loadoptions)
 {
 
    icon_pointer picon;
@@ -100,7 +100,7 @@ void context_image::_save_to_file(const ::payload & payloadFile, const image * p
 }
 
 
-::image_transport context_image::get_image(const ::payload & payloadFile, const ::image::load_options & loadoptions)
+::image_pointer context_image::get_image(const ::payload & payloadFile, const ::image::load_options & loadoptions)
 {
 
    image_pointer pimage;
@@ -128,7 +128,7 @@ void context_image::_save_to_file(const ::payload & payloadFile, const image * p
 }
 
 
-::image_transport context_image::matter_image(const ::string & strMatter, const ::image::load_options & loadoptions)
+::image_pointer context_image::matter_image(const ::string & strMatter, const ::image::load_options & loadoptions)
 {
 
    image_pointer pimage;
@@ -170,7 +170,7 @@ void context_image::_save_to_file(const ::payload & payloadFile, const image * p
 }
 
 
-::image_transport context_image::load_image(const ::payload & payloadFile, const ::image::load_options & loadoptions)
+::image_pointer context_image::load_image(const ::payload & payloadFile, const ::image::load_options & loadoptions)
 {
 
    image_pointer pimage;
@@ -219,7 +219,7 @@ void context_image::_save_to_file(const ::payload & payloadFile, const image * p
 }
 
 
-::image_transport context_image::load_matter_image(const ::string & strMatter, const ::image::load_options & loadoptions)
+::image_pointer context_image::load_matter_image(const ::string & strMatter, const ::image::load_options & loadoptions)
 {
 
    image_pointer pimage;
@@ -261,7 +261,7 @@ void context_image::_save_to_file(const ::payload & payloadFile, const image * p
 }
 
 
-::image_transport context_image::load_matter_icon(string_array & straMatter, string strIcon)
+::image_pointer context_image::load_matter_icon(string_array & straMatter, string strIcon)
 {
 
    image_pointer pimage;
@@ -289,7 +289,7 @@ void context_image::_save_to_file(const ::payload & payloadFile, const image * p
 }
 
 
-::image_transport context_image::load_thumbnail(const ::payload & payloadFile, int w, int h)
+::image_pointer context_image::load_thumbnail(const ::payload & payloadFile, int w, int h)
 {
 
    image_pointer pimage;
@@ -317,7 +317,7 @@ void context_image::_save_to_file(const ::payload & payloadFile, const image * p
 }
 
 
-::image_transport context_image::load_thumbnail(const ::string & strPath)
+::image_pointer context_image::load_thumbnail(const ::string & strPath)
 {
 
    image_pointer pimage;
@@ -345,7 +345,7 @@ void context_image::_save_to_file(const ::payload & payloadFile, const image * p
 }
 
 
-::image_transport context_image::load_dib(const ::file::path & pathDib)
+::image_pointer context_image::load_dib(const ::file::path & pathDib)
 {
 
    image_pointer pimage;

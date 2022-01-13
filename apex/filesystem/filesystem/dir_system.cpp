@@ -19,20 +19,20 @@ dir_system::~dir_system()
 void dir_system::initialize(::object * pobject)
 {
 
-   auto estatus = ::object::initialize(pobject);
+   /*auto estatus = */ ::object::initialize(pobject);
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
    auto psystem = m_psystem;
 
    m_pathModule = psystem->m_pacmedir->module();
 
-   return true;
+   //return true;
 
 }
 
@@ -172,7 +172,7 @@ void dir_system::init_system()
 
 
 
-   return ::success;
+   //return ::success;
 
 }
 

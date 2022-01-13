@@ -23,9 +23,9 @@ public:
 
 
    void lock(const duration & tickTimeout = duration::infinite(), bool bWaitForAll = true, u32 dwWakeMask = 0);
-   bool unlock();
-   bool unlock(::i32 lCount, ::i32 * lPrevCount = nullptr);
-   bool IsLocked(index dwItem);
+   void unlock();
+   void unlock(::i32 lCount, ::i32 * lPrevCount = nullptr);
+   bool is_locked(index dwItem);
 
 
 };

@@ -57,16 +57,22 @@ namespace net
    {
 
       if (m_bInitialized)
-         return true;
-
-      auto estatus = ::object::initialize(pobject);
-
-      if (!estatus)
       {
 
-         return estatus;
+         return;
 
       }
+
+      //auto estatus = ::object::initialize(pobject);
+
+      ::object::initialize(pobject);
+
+      //if (!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
 
       m_bInitialized = true;
 
@@ -80,7 +86,7 @@ namespace net
       }
 
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -112,7 +118,7 @@ namespace net
 
       }
 
-      return ::success;
+      //return ::success;
 
    }
 

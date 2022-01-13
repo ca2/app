@@ -197,7 +197,7 @@ namespace apex
 
       //virtual ::layered * get_layered_window(oswindow oswindow);
 
-      virtual __transport(::factory::factory) & node_factory() override;
+      virtual __pointer(::factory::factory) & node_factory() override;
 
       virtual void process_init() override;
 
@@ -240,7 +240,7 @@ namespace apex
       virtual void destroy() override;
 
 
-      virtual void process_exit_status(::object* pobject, const void& estatus);
+      virtual void process_exit_status(::object* pobject, const ::e_status3 & estatus);
 
 
       //virtual bool verb();
@@ -427,7 +427,7 @@ namespace apex
       //virtual ::acme::library * get_library(const ::string & pszLibrary, bool bOpenCa2 = false);
 
       
-      //virtual __transport(::acme::library) get_library(const ::string& str);
+      //virtual __pointer(::acme::library) get_library(const ::string& str);
 
 
       virtual ::u32 os_post_to_all_threads(const ::id & id,wparam wparam = 0,lparam lparam = 0);
@@ -538,7 +538,7 @@ namespace apex
 
       virtual void create_session(index iEdge = 0);
 
-      virtual __transport(::apex::session) on_create_session(index iEdge);
+      virtual __pointer(::apex::session) on_create_session(index iEdge);
 
       virtual ::apex::session * session(index iEdge = 0);
 
@@ -616,7 +616,7 @@ namespace apex
       virtual void on_extra(string str);
 
       virtual string standalone_setting(string str);
-      virtual bool set_standalone_setting(string str, string strSetting);
+      virtual void set_standalone_setting(string str, string strSetting);
 
 
       //virtual void on_event(::u64 u, ::object * pobject) override;
@@ -634,8 +634,8 @@ namespace apex
 
 
       virtual string get_user_language();
-      virtual bool set_user_language(::application * papp, index iSel);
-      virtual bool set_user_language(::application * papp, string strLang);
+      virtual void set_user_language(::application * papp, index iSel);
+      virtual void set_user_language(::application * papp, string strLang);
 
       void chromium(string strUrl, string strBrowser, string strId, ::file::path path, string strProfile, string strParam);
 
@@ -857,7 +857,7 @@ namespace apex
 
       virtual void application_main(int argc, char *argv[], const ::string & pszCommandLine);
 
-      virtual int console_end(void estatus);
+      virtual int console_end(::e_status3 estatus);
 
 
       //virtual __pointer(::extended::future < ::conversation >) message_box(::user::interaction * puserinteraction, const ::string & pszText, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;

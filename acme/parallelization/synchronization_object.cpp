@@ -83,34 +83,38 @@ synchronization_object::~synchronization_object()
 }
 
 
-bool synchronization_object::lock()
+void synchronization_object::lock()
 {
 
-   return wait().succeeded();
+   /*return*/ wait();
+   
+   //.succeeded();
 
 }
 
 
-bool synchronization_object::lock(const class ::wait & wait)
+void synchronization_object::lock(const class ::wait & wait)
 {
 
-   return this->wait(wait).succeeded();
+   /* return */ this->wait(wait);
+   
+   //.succeeded();
 
 }
 
 
-bool synchronization_object::_lock()
+void synchronization_object::_lock()
 {
 
-   return _wait().succeeded();
+   /* return */ _wait(); // .succeeded();
 
 }
 
 
-bool synchronization_object::_lock(const class ::wait & wait)
+void synchronization_object::_lock(const class ::wait & wait)
 {
 
-   return this->_wait(wait).succeeded();
+   /* return */ this->_wait(wait); /*.succeeded();*/
 
 }
 
@@ -118,7 +122,7 @@ bool synchronization_object::_lock(const class ::wait & wait)
 void synchronization_object::_wait()
 {
 
-   return _wait(::duration::infinite());
+   /* return */ _wait(::duration::infinite());
 
 }
 
@@ -145,23 +149,20 @@ void synchronization_object::wait()
    while (ptask->task_get_run())
    {
 
-      auto estatus = _wait(100_ms);
-
-      if (!estatus.wait_timeout())
+      if (_wait(100_ms))
       {
 
-         return estatus;
+         return;
 
       }
 
-   }
 
-   return abandoned_base;
+   }
 
 }
 
 
-void synchronization_object::wait(const class ::wait & wait)
+bool synchronization_object::wait(const class ::wait & wait)
 {
    
    if (wait < 200_ms)
@@ -187,17 +188,24 @@ void synchronization_object::wait(const class ::wait & wait)
 
    }
 
-   void estatus = error_wait_timeout;
-
    if (wait.is_infinite())
    {
 
-      do
+      while(true)
       {
 
-         estatus = _wait(100_ms);
+         bool bOk = _wait(100_ms);
 
-      } while (estatus.wait_timeout() && ptask->task_get_run());
+         if (bOk)
+         {
+
+            return true;
+
+         }
+
+         preempt();
+
+      }
 
    }
    else
@@ -205,7 +213,7 @@ void synchronization_object::wait(const class ::wait & wait)
 
       auto waitStart = ::wait::now();
 
-      do
+      while(true)
       {
 
          auto waitNow = minimum(wait - waitStart.elapsed(), 100_ms);
@@ -213,17 +221,24 @@ void synchronization_object::wait(const class ::wait & wait)
          if (waitNow <= 0_ms)
          {
 
-            break;
+            return false;
 
          }
 
-         estatus = _wait(waitNow);
+         bool bOk = _wait(waitNow);
 
-      } while (estatus.wait_timeout() && ptask->task_get_run());
+         if (bOk)
+         {
+
+            return true;
+
+         }
+
+         preempt();
+
+      } 
 
    }
-
-   return estatus;
 
 }
 
@@ -244,39 +259,62 @@ void synchronization_object::wait(const class ::wait & wait)
 //}
 
 
-bool synchronization_object::unlock()
+void synchronization_object::unlock()
 {
 
-   return false;
+   ///return false;
 
 }
 
 
-bool synchronization_object::unlock(::i32 /* lCount */, ::i32 * /* pPrevCount=nullptr */)
+void synchronization_object::unlock(::i32 /* lCount */, ::i32 * /* pPrevCount=nullptr */)
 {
 
-   return false;
+   //return false;
 
 }
 
 
-void synchronization_object::_wait(const class ::wait & wait)
+bool synchronization_object::_wait(const class ::wait & wait)
 {
 
 #ifdef WINDOWS
 
-   if (m_hsync)
+   if (!m_hsync)
    {
 
-      auto windowsWaitResult = ::WaitForSingleObjectEx(m_hsync, wait, false);
+      return true;
 
-      return windows_wait_result_to_status(windowsWaitResult);
+   }
+
+   auto windowsWaitResult = ::WaitForSingleObjectEx(m_hsync, wait, false);
+
+   auto estatus = windows_wait_result_to_status(windowsWaitResult);
+
+   if (estatus == error_timeout)
+   {
+
+      return false;
+
+   }
+   else if (estatus == signaled_base)
+   {
+
+      return true;
+
+   }
+   else
+   {
+
+      throw_status(estatus);
+
+      return false;
 
    }
 
 #endif
 
-   return error_failed;
+//   return error_failed;
 
 }
 
@@ -392,7 +430,20 @@ bool synchronization_object::is_locked() const
 
    single_lock synchronouslock(const_cast <synchronization_object *> (this));
 
-   bool bWasLocked = !synchronouslock.lock(duration::zero());
+   bool bWasLocked = false;
+   
+   try
+   {
+      
+      synchronouslock.lock(duration::zero());
+
+   }
+   catch (...)
+   {
+
+      bWasLocked = true;
+
+   }
 
    if (!bWasLocked)
    {

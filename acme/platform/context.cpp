@@ -57,7 +57,7 @@ namespace acme
    void context::initialize_context()
    {
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -109,30 +109,16 @@ namespace acme
    }
 
 
-   file_transport context::get_file(const ::payload& payloadFile, const ::file::e_open& eopen)
+   file_pointer context::get_file(const ::payload& payloadFile, const ::file::e_open& eopen)
    {
 
-      __pointer(::file::file) pfile;
+      ::file_pointer pfile;
 
-      auto estatus = __construct(pfile);
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
+      __construct(pfile);
 
       auto path = payloadFile.get_file_path();
       
-      estatus = pfile->open(path, eopen);
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
+      pfile->open(path, eopen);
 
       return pfile;
 

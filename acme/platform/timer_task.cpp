@@ -50,15 +50,15 @@ i64 timer_task::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 void timer_task::initialize_timer(::object * pobject, ::acme::timer_array * ptimera, uptr uiTimer, PFN_TIMER pfnTimer, void* pvoidData, class synchronization_object* pmutex)
 {
 
-   auto estatus = ::task::initialize(pobject);
+   /*auto estatus = */ ::task::initialize(pobject);
 
-   if(!estatus)
-   {
+   //if(!estatus)
+   //{
 
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
    m_bRunning = false;
 
@@ -79,12 +79,12 @@ void timer_task::initialize_timer(::object * pobject, ::acme::timer_array * ptim
 
    m_pvoidData = pvoidData;
 
-   return ::success;
+   //return ::success;
 
 }
 
 
-bool timer_task::start(const class ::wait & wait, bool bPeriodic)
+void timer_task::start(const class ::wait & wait, bool bPeriodic)
 {
 
    synchronous_lock synchronouslock(mutex());
@@ -92,7 +92,7 @@ bool timer_task::start(const class ::wait & wait, bool bPeriodic)
    if (::is_set(m_ptimercallback) && !m_ptimercallback->e_timer_is_ok())
    {
 
-      return false;
+      return;
 
    }
 
@@ -102,8 +102,8 @@ bool timer_task::start(const class ::wait & wait, bool bPeriodic)
 
    m_wait = wait;
 
-   try
-   {
+   //try
+   //{
 
       m_bRunning = true;
 
@@ -150,31 +150,33 @@ bool timer_task::start(const class ::wait & wait, bool bPeriodic)
 
       m_id = m_strDebugNote;
 
-      if (!branch())
-      {
+      branch();
 
-         return false;
+      ///if (!branch())
+      //{
 
-      }
+        // return false;
+
+      //}
 
 
 
-   }
-   catch (...)
-   {
+   //}
+   //catch (...)
+   //{
 
       m_bRunning = false;
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
-   return true;
+   //return true;
 
 }
 
 
-bool timer_task::on_timer()
+void timer_task::on_timer()
 {
 
    m_bRet = false;
@@ -184,18 +186,21 @@ bool timer_task::on_timer()
 
       m_pfnTimer(this);
 
-      return true;
+      return;
+      //return true;
 
    }
 
    if (m_ptimercallback != nullptr)
    {
 
-      return m_ptimercallback->on_timer(this);
+      m_ptimercallback->on_timer(this);
+
+      return;
 
    }
 
-   return true;
+   //return true;
 
 }
 
@@ -271,7 +276,7 @@ void timer_task::run()
 
    }
 
-   return m_estatus;
+   //return m_estatus;
 
 }
 
@@ -308,7 +313,7 @@ void timer_task::destroy()
 
    ::task::destroy();
 
-   return ::success;
+   //return ::success;
 
 }
 

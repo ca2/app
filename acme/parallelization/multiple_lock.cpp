@@ -94,11 +94,12 @@ void multiple_lock::lock(const duration & duration, bool bWaitForAll, u32 dwWake
    if (m_synchronizationa.has_no_synchronization_object())
    {
 
-      return error_failed;
+      return;
 
    }
 
-   auto estatus = m_synchronizationa.wait(duration, bWaitForAll, dwWakeMask);
+   //auto estatus = m_synchronizationa.wait(duration, bWaitForAll, dwWakeMask);
+   auto iSignaled = m_synchronizationa.wait(duration, bWaitForAll, dwWakeMask);
 
 
 
@@ -117,12 +118,12 @@ void multiple_lock::lock(const duration & duration, bool bWaitForAll, u32 dwWake
 
    //::i32 iUpperBound = WAIT_OBJECT_0 + (::i32) m_synchronizationa.synchronization_object_count();
 
-   auto iSignaled = estatus.signaled_index();
+   //auto iSignaled = estatus.signaled_index();
 
    if(iSignaled < 0)
    {
 
-      void estatus = ::get_last_status();
+      ::e_status3 estatus = ::get_last_status();
 
       // TRACELASTERROR();
 
@@ -150,12 +151,12 @@ void multiple_lock::lock(const duration & duration, bool bWaitForAll, u32 dwWake
 
    }
 
-   return estatus;
+   //return estatus;
 
 }
 
 
-bool multiple_lock::unlock()
+void multiple_lock::unlock()
 {
 
    for (index i=0; i < m_synchronizationa.synchronization_object_count(); i++)
@@ -164,18 +165,20 @@ bool multiple_lock::unlock()
       if (m_bitsLocked.is_set(i) && m_synchronizationa.m_synchronizationa[i])
       {
 
-         m_bitsLocked.set(i, !m_synchronizationa.m_synchronizationa[i]->unlock());
+         m_synchronizationa.m_synchronizationa[i]->unlock();
+
+         m_bitsLocked.set(i, false);
 
       }
 
    }
 
-   return true;
+   //return true;
 
 }
 
 
-bool multiple_lock::unlock(::i32 lCount, ::i32 * pPrevCount /* =nullptr */)
+void multiple_lock::unlock(::i32 lCount, ::i32 * pPrevCount /* =nullptr */)
 {
 
    bool bGotOne = false;
@@ -193,7 +196,8 @@ bool multiple_lock::unlock(::i32 lCount, ::i32 * pPrevCount /* =nullptr */)
 
             bGotOne = true;
 
-            if (m_synchronizationa.m_synchronizationa[i]->unlock(lCount, pPrevCount))
+            //if (m_synchronizationa.m_synchronizationa[i]->unlock(lCount, pPrevCount))
+            m_synchronizationa.m_synchronizationa[i]->unlock(lCount, pPrevCount);
             {
 
                m_bitsLocked.unset(i);
@@ -206,15 +210,15 @@ bool multiple_lock::unlock(::i32 lCount, ::i32 * pPrevCount /* =nullptr */)
 
    }
 
-   return bGotOne;
+   //return bGotOne;
 
 }
 
 
-bool multiple_lock::IsLocked(index dwObject)
+bool multiple_lock::is_locked(index dwObject)
 {
 
-   ASSERT(dwObject < m_synchronizationa.size());
+   //ASSERT(dwObject < m_synchronizationa.size());
 
    return m_bitsLocked[dwObject];
 

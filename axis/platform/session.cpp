@@ -665,7 +665,7 @@ namespace axis
    void session::init2()
    {
 
-      void estatus = ::aura::session::init2();
+      ::e_status3 estatus = ::aura::session::init2();
 
       if(!estatus)
       {
@@ -691,7 +691,7 @@ namespace axis
    void session::init()
    {
 
-      void estatus = ::aura::session::init();
+      ::e_status3 estatus = ::aura::session::init();
 
       if (!estatus)
       {

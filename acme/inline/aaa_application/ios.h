@@ -37,7 +37,7 @@ int main(int argc, char * argv[])
 
          //return acme_run_system(psystem);
          
-     void estatus=    os_application_system_run(psystem);
+     ::e_status3 estatus=    os_application_system_run(psystem);
    
    ::i32 iErrorStatus = estatus.error_status();
    

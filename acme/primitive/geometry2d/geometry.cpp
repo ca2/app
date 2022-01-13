@@ -40,7 +40,7 @@ namespace geometry
 
       ::matter::destroy();
 
-      return ::success;
+      //return ::success;
 
    }
 

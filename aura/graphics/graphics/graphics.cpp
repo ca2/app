@@ -163,7 +163,7 @@ namespace graphics
    void graphics::set_bitmap_source(const string& strBitmapSource)
    {
 
-      return error_interface_only;
+      throw ::interface_only_exception();
 
    }
 
@@ -171,7 +171,7 @@ namespace graphics
    void graphics::clear_bitmap_source()
    {
 
-      return error_interface_only;
+      throw ::interface_only_exception();
 
    }
 

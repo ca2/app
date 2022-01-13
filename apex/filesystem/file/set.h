@@ -44,7 +44,7 @@ namespace file
       virtual string get_next_file(const char * psz);
 
 
-      virtual bool initialize_os_wallpaper(bool bAddSearch);
+      virtual void initialize_os_wallpaper(bool bAddSearch);
 
 
    };

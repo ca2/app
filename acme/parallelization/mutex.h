@@ -72,7 +72,7 @@ public:
 #endif
 
    using synchronization_object::unlock;
-   virtual bool unlock() override;
+   virtual void unlock() override;
 
 
    bool already_exists();

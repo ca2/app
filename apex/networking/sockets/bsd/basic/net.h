@@ -75,7 +75,7 @@ namespace sockets
       virtual void initialize(::object * pobject) override;
       virtual void destroy() override;
 
-      virtual bool gudo_set();
+      //virtual bool gudo_set();
 
 
       /*

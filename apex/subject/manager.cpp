@@ -341,7 +341,9 @@ void manager::destroy_signal_handling()
 
    m_psignalmap.release();
 
-   return ::success;
+   
+
+   //return ::success;
 
 }
 

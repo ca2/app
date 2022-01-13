@@ -16,21 +16,21 @@ void fgets_string(string & str, FILE * pfile, memsize iBufferSize)
    if(::is_null(pfile))
    {
 
-      return error_null_pointer;
+      throw_status(error_null_pointer);
 
    }
 
    if(iBufferSize <= 0)
    {
 
-      return error_invalid_argument;
+      throw_status(error_invalid_argument);
 
    }
 
    if(feof(pfile))
    {
 
-      return ::success_end_of_file;
+      throw_status(::success_end_of_file);
 
    }
 
@@ -39,7 +39,7 @@ void fgets_string(string & str, FILE * pfile, memsize iBufferSize)
    if(::is_null(pszBuffer))
    {
 
-      return error_resource;
+      throw_status(error_resource);
 
    }
 
@@ -55,7 +55,7 @@ void fgets_string(string & str, FILE * pfile, memsize iBufferSize)
       if(feof(pfile))
       {
 
-         return ::success_end_of_file;
+         throw_status(::success_end_of_file);
 
       }
 
@@ -63,13 +63,13 @@ void fgets_string(string & str, FILE * pfile, memsize iBufferSize)
 
       auto estatus = failed_errno_to_status(iErrNo);
 
-      return estatus;
+      throw_status(estatus);
 
    }
 
    str.release_string_buffer();
 
-   return ::success;
+   ///return ::success;
 
 }
 

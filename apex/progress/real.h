@@ -30,7 +30,7 @@ namespace progress
       virtual void format_status(const char * pszFormat);
 
       virtual void redraw();
-      void step() override;
+      bool step() override;
 
       virtual void close_progress();
 

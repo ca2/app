@@ -31,14 +31,7 @@
    void log::initialize(::object* pobject)
    {
 
-      auto estatus = ::logger::initialize(pobject);
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
+      ::logger::initialize(pobject);
 
       ::file::path pathHome;
 
@@ -66,7 +59,7 @@
 
       //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -74,7 +67,7 @@
    void log::initialize_log(enum_trace_level etracelevelMin, const ::id& id)
    {
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -104,7 +97,7 @@
    void log::process_init()
    {
 
-      return ::success;
+      //return ::success;
 
    }
 

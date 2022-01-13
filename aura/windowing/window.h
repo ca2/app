@@ -232,7 +232,7 @@ namespace windowing
       virtual void DragAcceptFiles(bool bAccept = true);
 
 
-      virtual __transport(::windowing::icon) load_icon(const ::payload& payloadFile);
+      virtual __pointer(::windowing::icon) load_icon(const ::payload& payloadFile);
 
 
       virtual void set_icon(::windowing::icon * picon);

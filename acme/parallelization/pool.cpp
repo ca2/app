@@ -25,14 +25,16 @@ __composite(::task) task_pool::defer_branch(const ::id& id, const ::routine & ro
 
    auto & ptask = task(id);
 
-   auto estatus = __defer_compose_new(ptask);
+   //auto estatus = __defer_compose_new(ptask);
 
-   if (!estatus)
-   {
+   __defer_compose_new(ptask);
 
-      return ptask;
+   //if (!estatus)
+   //{
 
-   }
+   //   return ptask;
+
+   //}
 
    if (ptask->m_bIsRunning)
    {

@@ -175,7 +175,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_ety
 void array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::destroy()
 {
 
-   auto estatus = ::matter::destroy();
+   ::matter::destroy();
 
    if(m_pData != nullptr)
    {
@@ -189,8 +189,6 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::destroy()
       m_nMaxSize  = 0;
 
    }
-
-   return estatus;
 
 }
 

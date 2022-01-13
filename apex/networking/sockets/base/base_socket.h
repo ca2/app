@@ -116,7 +116,7 @@ namespace sockets
       char                    m_c; ///< First char in CRLF or LFCR sequence
       string                  m_line; ///< Current line in line protocol mode
 
-      void              m_estatus;
+      ::e_status3             m_estatus;
       //::duration              m_durationStart;
 
 #if !defined(BSD_STYLE_SOCKETS)
@@ -723,7 +723,7 @@ namespace sockets
 
 
       virtual void run() override;
-      virtual void step() override;
+      virtual bool step() override;
 
       //virtual void __tracef(object * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * pszFormat, ...);
       //virtual void __tracef(object * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, e_log elog, const ::string & strContext, i32 err, const ::string & strMessage);

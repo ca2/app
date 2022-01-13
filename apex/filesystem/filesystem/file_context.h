@@ -34,31 +34,31 @@ public:
 
    
    virtual ::folder* resource_folder();
-   virtual ::memory_file_transport create_resource_file(const char * path);
+   virtual ::memory_file_pointer create_resource_file(const char * path);
    virtual ::memory get_resource_memory(const char* path);
    virtual bool resource_is_file_or_dir(const char* path);
 
 
-   virtual ::extended::status copy(::payload varTarget, ::payload varSource, bool bFailIfExists = false, e_extract eextract = extract_first);
-   virtual ::extended::status move(const ::file::path & pathNew, const ::file::path & path);
-   virtual ::extended::status del(const ::file::path & path);
+   virtual void copy(::payload varTarget, ::payload varSource, bool bFailIfExists = false, e_extract eextract = extract_first);
+   virtual void move(const ::file::path & pathNew, const ::file::path & path);
+   virtual void del(const ::file::path & path);
    virtual ::file::path duplicate(const ::file::path & path);
    virtual ::file::path paste(const ::file::path & pathLocation, const ::file::path & path);
-   virtual ::extended::status rename(const ::file::path & pathNew, const ::file::path & path);
+   virtual void rename(const ::file::path & pathNew, const ::file::path & path);
 
 
    virtual void trash_that_is_not_trash(const ::file::path & path);
    virtual void trash_that_is_not_trash(::file::patha & patha);
 
 
-   virtual __transport(::handle::ini) get_ini(const ::payload& payloadFile);
+   virtual __pointer(::handle::ini) get_ini(const ::payload& payloadFile);
 
 
-   virtual bool get_status(const ::file::path & path, ::file::file_status & status);
-   virtual ::extended::status set_status(const ::file::path & path, const ::file::file_status & status);
+   virtual void get_status(const ::file::path & path, ::file::file_status & status);
+   virtual void set_status(const ::file::path & path, const ::file::file_status & status);
 
 
-   virtual ::extended::status replace(const ::file::path & pszContext, const string & pszFind, const string & pszReplace);
+   virtual void replace(const ::file::path & pszContext, const string & pszFind, const string & pszReplace);
 
 
    virtual bool is_file_or_dir(const ::file::path & path, ::payload * pvarQuery, ::file::enum_type * petype);
@@ -194,7 +194,7 @@ public:
 
    virtual bool is_read_only(const ::file::path & psz);
 
-   virtual file_transport resource_get_file(const ::file::path & path);
+   virtual file_pointer resource_get_file(const ::file::path & path);
 
    virtual ::file::path sys_temp(const ::file::path & lpszName, const char * pszExtension);
    virtual ::file::path sys_temp_unique(const ::file::path & lpszName);
@@ -215,11 +215,11 @@ public:
    //virtual string nessie(::file::file * pfile);
    virtual string nessie(const ::payload & payloadFile);
 
-   virtual bool resolve_link(::file::path & pathTarget, const ::string & strSource, string * pstrDirectory = nullptr, string * pstrParams = nullptr);
+   virtual void resolve_link(::file::path & pathTarget, const ::string & strSource, string * pstrDirectory = nullptr, string * pstrParams = nullptr);
 
    virtual bool is_link(string strPath);
 
-   virtual bool get_last_write_time(filetime_t * pfiletime, const ::string & strFilename);
+   virtual void get_last_write_time(filetime_t * pfiletime, const ::string & strFilename);
 
    //virtual void dtf(const ::file::path & pszFile, const ::file::path & pszDir);
 
@@ -239,7 +239,7 @@ public:
 
    virtual ::file_pointer data_get_file(string strData, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
 
-   virtual ::folder_transport get_folder(::file::file * pfile, const char * pszImplementation, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
+   virtual ::folder_pointer get_folder(::file::file * pfile, const char * pszImplementation, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
 
    virtual ::file_pointer http_get_file(const ::payload & payloadFile, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
 
@@ -251,12 +251,14 @@ public:
 
    virtual ::file_pointer get_writer(const ::payload & payloadFile, const ::file::e_open & eopen = ::file::e_open_write | ::file::e_open_create | ::file::e_open_no_truncate | ::file::e_open_defer_create_directory | ::file::e_open_binary);
 
-   virtual bool post_output(::file::path pathOut, ::file::path pathDownloading);
+   virtual void post_output(const ::file::path & pathOut, const ::file::path & pathDownloading);
 
    template < typename T >
    bool output(::file::file * pfileOut, T * p, bool (T:: * pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn);
 
-   virtual bool transfer(::file::file * pfileOut, ::file::file * pfileIn);
+   //virtual bool transfer(::file::file * pfileOut, ::file::file * pfileIn);
+
+   virtual void transfer(::file::file* pfileOut, ::file::file* pfileIn);
 
    virtual ::file::path dropbox_info_network_payload();
 
@@ -321,7 +323,7 @@ public:
 
       writer->write(memory.get_data(), memory.get_size());
 
-      return writer.m_estatus;
+      //return writer.m_estatus;
 
    }
 
@@ -392,7 +394,7 @@ public:
 
 
    // get a file and if there are exceptions, should show end user friendly messages
-   virtual ::extended::transport < ::file::file > friendly_get_file(const ::payload & payloadFile, const ::file::e_open & eopen);
+   virtual ::file_pointer friendly_get_file(const ::payload & payloadFile, const ::file::e_open & eopen);
 
 
    //void dtf(const ::file::path & pszFile, const ::file::path & pszDir);
@@ -400,8 +402,8 @@ public:
    //void ftd(const ::file::path & pszDir, const ::file::path & pszFile);
 
 
-   virtual bool crypto_set(const ::payload & payloadFile, const char * pszData, const char * pszSalt);
-   virtual bool crypto_get(const ::payload & payloadFile, string & str, const char * pszSalt);
+   virtual void crypto_set(const ::payload & payloadFile, const char * pszData, const char * pszSalt);
+   virtual void crypto_get(const ::payload & payloadFile, string & str, const char * pszSalt);
 
 
    template < typename TYPE >
@@ -421,12 +423,12 @@ public:
    }
 
 
-   virtual bool save_lines(const ::payload & payloadFile, string_array & stra);
-   virtual bool load_lines(string_array & stra, const ::payload & payloadFile);
+   virtual void save_lines(const ::payload & payloadFile, string_array & stra);
+   virtual void load_lines(string_array & stra, const ::payload & payloadFile);
 
 
 
-   virtual bool touch(const ::file::path & path);
+   virtual void touch(const ::file::path & path);
 
    //virtual string md5(const ::payload & payloadFile);
 

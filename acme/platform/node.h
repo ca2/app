@@ -129,7 +129,7 @@ namespace acme
 
       virtual void reboot();
 
-      virtual void implement(__transport(::acme::node) & pnode, __transport(class ::system) & psystem);
+      virtual void implement(__pointer(::acme::node) & pnode, __pointer(class ::system) & psystem);
 
 
       virtual void install_crash_dump_reporting(const string& strModuleNameWithTheExeExtension);
@@ -154,7 +154,7 @@ namespace acme
 
 
       virtual bool is_application_installed(const ::file::path& pathExe, string strAppId, string& strBuild, const ::string & pszPlatform, const ::string & pszConfiguration, const ::string & pszLocale, const ::string & pszSchema);
-      virtual bool set_application_installed(const ::file::path& pathExe, string strAppId, const ::string & pszBuild, const ::string & pszPlatform, const ::string & pszConfiguration, const ::string & pszLocale, const ::string & pszSchema);
+      virtual void set_application_installed(const ::file::path& pathExe, string strAppId, const ::string & pszBuild, const ::string & pszPlatform, const ::string & pszConfiguration, const ::string & pszLocale, const ::string & pszSchema);
 
 
       virtual ::file::path application_installer_folder(const ::file::path& pathExe, string strAppId, const ::string & pszPlatform, const ::string & pszConfiguration, const ::string & pszLocale, const ::string & pszSchema);

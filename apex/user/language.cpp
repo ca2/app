@@ -36,17 +36,19 @@ namespace user
    void language::initialize(::object * pobject)
    {
 
-      void estatus = ::object::initialize(pobject);
+      //::e_status3 estatus = 
+      
+      ::object::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
 
-      return estatus;
+      //return estatus;
 
    }
 

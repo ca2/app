@@ -10,7 +10,7 @@ namespace exception
 {
 
    
-   void finish(void estatusExit, const ::object* pobject)
+   void finish(::e_status3 estatusExit, const ::object* pobject)
    {
 
 
@@ -987,7 +987,7 @@ void object::copy_from(const object & o)
 void object::set_finish_composites(::property_object * pcontextobjectFinish)
 {
 
-   void estatus = ::success;
+   ::e_status3 estatus = ::success;
 
    synchronous_lock synchronouslock(mutex());
 
@@ -1621,7 +1621,7 @@ void object::top_handle_exception(const ::exception & e)
 }
 
 
-void object::process_exit_status(const void& estatus)
+void object::process_exit_status(const ::e_status3 & estatus)
 {
 
    if (estatus == error_exit_system)
@@ -2173,7 +2173,7 @@ CLASS_DECL_APEX void object_on_add_composite(const matter * pusermessage)
 }
 
 
-bool __no_continue(void estatus)
+bool __no_continue(::e_status3 estatus)
 {
 
    return false;
@@ -2336,7 +2336,7 @@ __pointer(::extended::future < ::conversation >) object::message_box(const char*
 //void object::message_box_timeout(const char* pszMessage, const char* pszTitle, const ::duration& durationTimeout, const ::e_message_box & emessagebox, const ::future & process)
 //{
 //
-//   void estatus = error_failed;
+//   ::e_status3 estatus = error_failed;
 //
 //   //if (::is_null(get_session()) || ::is_null(get_session()->userex()))
 //   //{

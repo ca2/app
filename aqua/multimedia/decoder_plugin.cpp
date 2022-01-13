@@ -17,7 +17,7 @@ namespace multimedia
    }
 
 
-   __transport(decoder) decoder_plugin::NewDecoder()
+   __pointer(decoder) decoder_plugin::NewDecoder()
    {
 
       auto pdecoder = m_pfactory->create < ::multimedia::decoder >();
@@ -33,14 +33,16 @@ namespace multimedia
 
       pdecoder->m_pplugin = this;
 
-      auto estatus = pdecoder->initialize(this);
+      //auto estatus =
+      
+      pdecoder->initialize(this);
 
-      if(!estatus)
+ /*     if(!estatus)
       {
 
          return estatus;
 
-      }
+      }*/
 
       return pdecoder;
 
@@ -69,16 +71,16 @@ namespace multimedia
 
       m_pfactory = psystem->factory(strTitle);
 
-      if (!m_pfactory)
-      {
+      //if (!m_pfactory)
+      //{
 
-         void estatus = m_pfactory;
+      //   ::e_status3 estatus = m_pfactory;
 
-         INFORMATION("LoadLibrary failed to open library " << strTitle << estatus << __string(estatus));
+      //   INFORMATION("LoadLibrary failed to open library " << strTitle << estatus << __string(estatus));
 
-         return m_pfactory;
+      //   return m_pfactory;
 
-      }
+      //}
 //
 //      string strTitle = ::file::path(pszTitle).title();
 //
@@ -122,7 +124,7 @@ namespace multimedia
 
       m_strTitle = strTitle;
 
-      return ::success;
+      //return ::success;
 
    }
 

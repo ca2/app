@@ -27,31 +27,31 @@ namespace crypto
    void crypto::defer_initialize()
    {
 
-      auto estatus = __defer_compose(m_pinitializer);
+      /*auto estatus = */ __defer_compose(m_pinitializer);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
 
-   __transport(hasher_algorithm) crypto::create_hasher_algorithm(enum_hash ehash)
+   __pointer(hasher_algorithm) crypto::create_hasher_algorithm(enum_hash ehash)
    {
 
-      auto estatus = defer_initialize();
+      /*auto estatus = */ defer_initialize();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       auto palgorithm = __create < ::crypto::hasher_algorithm >();
 
@@ -62,21 +62,21 @@ namespace crypto
 
       }
 
-      estatus = palgorithm->initialize_hasher_algorithm(ehash);
+      /*estatus =*/ palgorithm->initialize_hasher_algorithm(ehash);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       return palgorithm;
 
    }
 
 
-   __transport(hasher) crypto::create_hasher(enum_hash ehash)
+   __pointer(hasher) crypto::create_hasher(enum_hash ehash)
    {
 
       auto palgorithm = create_hasher_algorithm(ehash);
@@ -129,7 +129,7 @@ namespace crypto
          if (str.is_empty())
          {
           
-            return error_failed;
+            throw_status(error_failed);
 
          }
 
@@ -139,16 +139,7 @@ namespace crypto
 
          key.from_string(str);
 
-         auto estatus = decrypt(storageDecrypt, storageEncrypt, key);
-
-         if (!estatus)
-         {
-
-            return estatus;
-
-         }
-
-         return estatus;
+         decrypt(storageDecrypt, storageEncrypt, key);
 
       }
 
@@ -163,7 +154,7 @@ namespace crypto
          if (str.is_empty())
          {
 
-            return error_failed;
+            throw_status(error_failed);
 
          }
 
@@ -173,16 +164,16 @@ namespace crypto
 
          key.from_string(str);
 
-         auto estatus = encrypt(storageEncrypt, storageDecrypt, key);
+         /*auto estatus = */ encrypt(storageEncrypt, storageDecrypt, key);
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            return estatus;
+         //   return estatus;
 
-         }
+         //}
 
-         return estatus;
+         //return estatus;
 
 
       }
@@ -223,16 +214,24 @@ namespace crypto
       }
 
 
-      i32 crypto::encrypt(string& strEncrypt, const char* pszDecrypt, const char* pszKey)
+      void crypto::encrypt(string& strEncrypt, const char* pszDecrypt, const char* pszKey)
       {
+         
          memory storageDecrypt;
+
          memory storageEncrypt;
+
          memory storageKey;
+
          if (pszDecrypt == nullptr || strlen(pszDecrypt) == 0)
          {
+
             strEncrypt = "";
-            return 0;
+
+            return;
+
          }
+
          storageDecrypt.from_string(pszDecrypt);
 
          auto psystem = m_psystem;
@@ -241,16 +240,16 @@ namespace crypto
 
          pbase64->decode(storageKey, pszKey);
 
-         i32 cipherlen = encrypt(storageEncrypt, storageDecrypt, storageKey);
+         /* i32 cipherlen = */ encrypt(storageEncrypt, storageDecrypt, storageKey);
 
          strEncrypt = pbase64->encode(storageEncrypt);
 
-         return cipherlen;
+         //return cipherlen;
 
       }
 
 
-      i32 crypto::decrypt(string& strDecrypt, const char* pszEncrypt, const char* pszKey)
+      void crypto::decrypt(string& strDecrypt, const char* pszEncrypt, const char* pszKey)
       {
 
          memory storageEncrypt;
@@ -267,11 +266,11 @@ namespace crypto
 
          pbase64->decode(storageKey, pszKey);
 
-         i32 plainlen = decrypt(storageDecrypt, storageEncrypt, storageKey);
+         /*i32 plainlen =*/ decrypt(storageDecrypt, storageEncrypt, storageKey);
 
          strDecrypt = storageDecrypt.get_string();
 
-         return plainlen;
+         //return plainlen;
 
       }
 
@@ -411,20 +410,20 @@ namespace crypto
          if (!palgorithm)
          {
 
-            return palgorithm;
+            throw_status(error_resource);
 
          }
 
-         auto estatus = palgorithm->hash(memOut, block);
+         /*auto estatus =*/ palgorithm->hash(memOut, block);
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            return estatus;
+         //   return estatus;
 
-         }
+         //}
 
-         return estatus;
+         //return estatus;
 
       }
 
@@ -432,14 +431,14 @@ namespace crypto
       void crypto::md5(memory& memMd5, const block& block)
       {
 
-         auto estatus = hash(memMd5, block, e_hash_md5);
+         /*auto estatus = */ hash(memMd5, block, e_hash_md5);
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            return estatus;
+         //   return estatus;
 
-         }
+         //}
 
          //#ifdef HAVE_OPENSSL
          //
@@ -455,7 +454,7 @@ namespace crypto
          //
          //#endif
 
-         return estatus;
+         //return estatus;
 
       }
 
@@ -463,14 +462,14 @@ namespace crypto
       void crypto::sha1(memory& memSha1, const block& block)
       {
 
-         auto estatus = hash(memSha1, block, e_hash_sha1);
+         /*auto estatus = */ hash(memSha1, block, e_hash_sha1);
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            return estatus;
+         //   return estatus;
 
-         }
+         //}
 
          //#ifdef HAVE_OPENSSL
          //
@@ -486,22 +485,22 @@ namespace crypto
          //
          //#endif
 
-         return estatus;
+         //return estatus;
 
       }
 
 
-      e_status crypto::sha256(memory& memSha256, const block& block)
+      void crypto::sha256(memory& memSha256, const block& block)
       {
 
-         auto estatus = hash(memSha256, block, e_hash_sha256);
+         /*auto estatus =*/ hash(memSha256, block, e_hash_sha256);
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            return estatus;
+         //   return estatus;
 
-         }
+         //}
 
          //#ifdef HAVE_OPENSSL
          //
@@ -517,7 +516,7 @@ namespace crypto
          //
          //#endif
 
-         return estatus;
+         //return estatus;
 
       }
 
@@ -525,65 +524,55 @@ namespace crypto
       void crypto::nessie(memory& memNessie, const block& block)
       {
 
-         auto estatus = hash(memNessie, block, e_hash_nessie);
+         /*auto estatus = */ hash(memNessie, block, e_hash_nessie);
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            return estatus;
+         //   return estatus;
 
-         }
+         //}
 
-         return estatus;
+         //return estatus;
 
       }
 
 
-      bool crypto::file_set(::payload payloadFile, const char* pszData, const char* pszSalt, ::application* papp)
+      void crypto::file_set(::payload payloadFile, const char* pszData, const char* pszSalt, ::application* papp)
       {
 
          memory memoryEncrypt;
 
-         if (!encrypt(memoryEncrypt, pszData, pszSalt))
-         {
+         encrypt(memoryEncrypt, pszData, pszSalt);
 
-            return false;
-
-         }
-
-         if (!m_pcontext->m_papexcontext->file().put_memory(payloadFile, memoryEncrypt))
-         {
-
-            return false;
-
-         }
-
-         return true;
+         m_pcontext->m_papexcontext->file().put_memory(payloadFile, memoryEncrypt);
 
       }
 
 
-      void     crypto::file_get(::payload payloadFile, string& str, const char* pszSalt, ::application* papp)
+      void crypto::file_get(::payload payloadFile, string& str, const char* pszSalt, ::application* papp)
       {
 
          memory memoryEncrypt;
 
          if (!m_pcontext->m_papexcontext->file().exists(payloadFile))
          {
+            
             str.Empty();
-            return success_not_found;
+
+            return;
+
          }
 
          if (!m_pcontext->m_papexcontext->file().as_memory(payloadFile, memoryEncrypt))
          {
-            return error_file;
+
+            throw_status(error_failed);
+
          }
-         if (!decrypt(str, memoryEncrypt, pszSalt))
-         {
-            str.Empty();
-            return error_decryption;
-         }
-         return ::success;
+
+         decrypt(str, memoryEncrypt, pszSalt);
+
       }
 
 
@@ -594,7 +583,7 @@ namespace crypto
 
          memoryDecrypt.from_asc(pszDecrypt);
 
-         return encrypt(storageEncrypt, memoryDecrypt, pszSalt);
+         encrypt(storageEncrypt, memoryDecrypt, pszSalt);
 
       }
 
@@ -604,16 +593,9 @@ namespace crypto
 
          memory memoryDecrypt;
 
-         if (!decrypt(memoryDecrypt, storageEncrypt, pszSalt))
-         {
-
-            return false;
-
-         }
+         decrypt(memoryDecrypt, storageEncrypt, pszSalt);
 
          memoryDecrypt.to_asc(strDecrypt);
-
-         return true;
 
       }
 

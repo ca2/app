@@ -688,7 +688,7 @@
    }
 
 
-   ::icon_transport os_context::load_icon(const ::payload & payloadFile)
+   ::icon_pointer os_context::load_icon(const ::payload & payloadFile)
    {
 
 

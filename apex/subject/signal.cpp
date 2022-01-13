@@ -120,7 +120,7 @@ void signal::run()
 
    }
 
-   return ::success;
+   //return ::success;
 
 }
 
@@ -184,7 +184,7 @@ void signal::notify()
 void signal::start_task()
 {
 
-   return ::success_none;
+   //return ::success_none;
 
 }
 

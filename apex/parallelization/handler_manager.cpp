@@ -35,14 +35,15 @@ handler_manager::~handler_manager()
 void handler_manager::initialize_handler_manager(::object * pobject, const string & strThreadName, int iAliveCount)
 {
 
-   auto estatus = initialize(pobject);
+   //auto estatus = initialize(pobject);
+   initialize(pobject);
 
-   if (!estatus)
+   /*if (!estatus)
    {
 
       return estatus;
 
-   }
+   }*/
 
    m_strThreadName = strThreadName;
    //m_bSingleThread = bSingleThread;
@@ -51,7 +52,7 @@ void handler_manager::initialize_handler_manager(::object * pobject, const strin
    m_iAlive = 0;
    m_bUseDedicatedThread = false;
 
-   return estatus;
+   //return estatus;
 
 }
 
@@ -81,16 +82,18 @@ void handler_manager::handler_sync(const ::routine & routine)
    if (m_bUseDedicatedThread)
    {
 
-      auto estatus = __send_routine(this, &handler_manager::handler_branch, routine);
+      //auto estatus = __send_routine(this, &handler_manager::handler_branch, routine);
 
-      if(!estatus)
-      {
+      __send_routine(this, &handler_manager::handler_branch, routine);
 
-         return estatus;
+      //if(!estatus)
+      //{
 
-      }
+      //   return estatus;
 
-      return estatus;
+      //}
+
+      //return estatus;
 
    }
    else
@@ -106,16 +109,18 @@ void handler_manager::handler_sync(const ::routine & routine)
 void handler_manager::destroy_composites()
 {
 
-   auto estatus = ::object::destroy_composites();
+   //auto estatus = ::object::destroy_composites();
 
-   if (!estatus)
-   {
+   ::object::destroy_composites();
 
-      return estatus;
+   //if (!estatus)
+   //{
 
-   }
+   //   return estatus;
 
-   return estatus;
+   //}
+
+   //return estatus;
 
 }
 
@@ -164,7 +169,7 @@ void handler_manager::handler_branch(const ::routine & routine)
       
    }
 
-   return ::success;
+   //return ::success;
 
 }
 

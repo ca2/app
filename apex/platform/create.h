@@ -22,7 +22,7 @@ public:
    ::payload                                                   m_varArgs;
    ::payload                                                   m_varOptions;
    string                                                      m_strExtra;
-   void                                                  m_estatus;
+   ::e_status3                                                 m_estatus;
 
    bool                                                        m_bMakeVisible;
    bool                                                        m_bTransparentBackground;

@@ -198,7 +198,7 @@ namespace programming
          }
 
       }
-      catch (const void& estatus)
+      catch (const ::e_status3 & estatus)
       {
 
          output_debug_string("failed to setup visual studio environment " + __string((::i64)estatus.m_estatus));

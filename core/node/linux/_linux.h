@@ -51,7 +51,7 @@
 //
 //i32 CLASS_DECL_CORE __linux_main(i32 argc, char * argv[]);
 //
-//CLASS_DECL_CORE void vfxThrowFileException(::object * pobject, const void & estatus, ::i32 lOsError, const ::string & pszFileName = nullptr);
+//CLASS_DECL_CORE void vfxThrowFileException(::object * pobject, const ::e_status3 & estatus, ::i32 lOsError, const ::string & pszFileName = nullptr);
 //
 //#include "internal.h"
 //

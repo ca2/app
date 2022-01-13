@@ -26,16 +26,7 @@ namespace acme
    void department::initialize(::object * pobject)
    {
 
-      auto estatus = ::object::initialize(pobject);
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      return estatus;
+      ::object::initialize(pobject);
 
    }
 
@@ -71,7 +62,7 @@ namespace acme
 
       }
 
-      return error_not_found;
+      throw_status(error_not_found);
 
    }
 
@@ -86,7 +77,7 @@ namespace acme
    void department::process_init()
    {
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -94,7 +85,7 @@ namespace acme
    void department::init()
    {
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -102,7 +93,7 @@ namespace acme
    void department::init1()
    {
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -110,7 +101,7 @@ namespace acme
    void department::init2()
    {
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -118,14 +109,14 @@ namespace acme
    void department::init3()
    {
 
-      return ::success;
+      //return ::success;
 
    }
 
    void department::init_instance()
    {
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -133,7 +124,7 @@ namespace acme
    void department::term_instance()
    {
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -141,7 +132,7 @@ namespace acme
    void department::term()
    {
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -149,7 +140,7 @@ namespace acme
    void department::term3()
    {
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -157,7 +148,7 @@ namespace acme
    void department::term2()
    {
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -165,7 +156,7 @@ namespace acme
    void department::term1()
    {
 
-      return ::success;
+      //return ::success;
 
    }
 

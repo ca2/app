@@ -337,12 +337,12 @@ void semaphore::wait(const class ::wait & wait)
 
 
 
-bool semaphore::unlock(::i32 lCount, ::i32 * pPrevCount)
+void semaphore::unlock(::i32 lCount, ::i32 * pPrevCount)
 {
 
 #ifdef WINDOWS
 
-   return ::ReleaseSemaphore(m_hsync, lCount, (LPLONG) pPrevCount) != false;
+   /*return */ ::ReleaseSemaphore(m_hsync, lCount, (LPLONG)pPrevCount) /*  != false */;
 
 #elif defined(ANDROID)
 
@@ -428,10 +428,11 @@ bool semaphore::unlock(::i32 lCount, ::i32 * pPrevCount)
 
 }
 
-bool semaphore::unlock()
+
+void semaphore::unlock()
 {
 
-   return unlock(1, nullptr);
+   /*return*/ unlock(1, nullptr);
 
 }
 

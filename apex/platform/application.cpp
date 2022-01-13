@@ -2228,7 +2228,7 @@ m_durationHeartBeat.Now();
 
 m_durationHeartBeat.Now();
 
-//::e_status3 estatus = ::success;
+//::e_status estatus = ::success;
 
 try
 {

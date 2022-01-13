@@ -38,7 +38,7 @@ single_lock::~single_lock()
 void single_lock::_wait()
 {
 
-   //::e_status3 estatus(signaled_base);
+   //::e_status estatus(signaled_base);
 
    if (m_bAcquired)
    {
@@ -80,7 +80,7 @@ void single_lock::_wait()
 bool single_lock::_wait(const class ::wait& wait)
 {
 
-   //::e_status3 estatus(signaled_base);
+   //::e_status estatus(signaled_base);
 
    if (m_bAcquired)
    {
@@ -133,7 +133,7 @@ bool single_lock::_wait(const class ::wait& wait)
 void single_lock::wait()
 {
 
-   //::e_status3 estatus(signaled_base);
+   //::e_status estatus(signaled_base);
 
    if(m_bAcquired)
    {
@@ -174,7 +174,7 @@ void single_lock::wait()
 bool single_lock::wait(const class ::wait & wait)
 {
 
-   //::e_status3 estatus(signaled_base);
+   //::e_status estatus(signaled_base);
 
    if(m_bAcquired)
    {
@@ -320,7 +320,7 @@ _single_lock::~_single_lock()
 void _single_lock::_wait()
 {
 
-   //::e_status3 estatus(signaled_base);
+   //::e_status estatus(signaled_base);
 
    if (m_bAcquired)
    {
@@ -365,7 +365,7 @@ void _single_lock::_wait()
 void _single_lock::_wait(const duration & durationTimeOut)
 {
 
-   //::e_status3 estatus(signaled_base);
+   //::e_status estatus(signaled_base);
 
    if (m_bAcquired)
    {

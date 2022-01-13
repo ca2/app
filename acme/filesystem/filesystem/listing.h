@@ -34,7 +34,7 @@ namespace file
       ::file::path            m_pathFinal;
       string_array            m_straPattern;
       string_array            m_straIgnoreName;
-      //::e_status3             m_estatus;
+      //::e_status             m_estatus;
       string_array            m_straTitle;
 
 
@@ -71,10 +71,10 @@ namespace file
 
       //}
 
-      //listing & operator = (const ::e_status3 & estatus) { m_estatus.set_error(estatus); return *this; }
+      //listing & operator = (const ::e_status & estatus) { m_estatus.set_error(estatus); return *this; }
 
 
-      //listing& operator = (const ::e_status3 & estatus) { return *this; }
+      //listing& operator = (const ::e_status & estatus) { return *this; }
 
 
       void operator()(const ::file::path& path)

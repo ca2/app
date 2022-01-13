@@ -185,7 +185,7 @@ int SetMainScreenRect(LPCRECT32 lpcrect);
 //
 //   psystem->system_construct(plocal, e_display_default);
 //
-//   ::e_status3 estatus = psystem->os_application_system_run();
+//   ::e_status estatus = psystem->os_application_system_run();
 //   
 //   if (!estatus)
 //   {

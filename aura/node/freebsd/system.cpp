@@ -54,7 +54,7 @@
 //void app_core::system_start()
 //{
 //
-//   ::e_status3 estatus = system_pre_run();
+//   ::e_status estatus = system_pre_run();
 //
 //   if (!estatus)
 //   {
@@ -153,7 +153,7 @@ namespace aura
 // //      }
 // //
 
-//       //   ::e_status3 estatus = psystem->begin_synch();
+//       //   ::e_status estatus = psystem->begin_synch();
 //       //
 //       //   if(!estatus)
 //       //   {

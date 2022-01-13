@@ -185,7 +185,7 @@ public:
 
    //virtual void defer_calc_os_user_theme();
 
-   void process_exit_status(::object* pobject, const ::e_status3& estatus);
+   void process_exit_status(::object* pobject, const ::e_status& estatus);
 
 
    virtual ::application* get_main_application();

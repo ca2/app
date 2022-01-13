@@ -6186,7 +6186,7 @@ void interaction::create_child(::user::interaction * puserinteractionParent)
 
       }
 
-      ::e_status3 estatus = error_exception;
+      ::e_status estatus = error_exception;
 
       try
       {

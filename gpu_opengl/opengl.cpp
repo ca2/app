@@ -68,7 +68,7 @@ namespace opengl
    void opengl::initialize(::object * pobject)
    {
 
-      ::e_status3 estatus = ::object::initialize(pobject);
+      ::e_status estatus = ::object::initialize(pobject);
 
       if (!estatus)
       {

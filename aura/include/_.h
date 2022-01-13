@@ -197,7 +197,7 @@ CLASS_DECL_AURA void aura_ref();
 //CLASS_DECL_AURA void throw_todo(void);
 //
 //
-////CLASS_DECL_AURA void set_last_status(const ::e_status3 & estatus);
+////CLASS_DECL_AURA void set_last_status(const ::e_status & estatus);
 ////CLASS_DECL_AURA void windowing_output_debug_string(const ::string & pszDebugString);
 ////CLASS_DECL_AURA void c_function_call(void * p);
 ////extern CLASS_DECL_AURA int g_bAura;

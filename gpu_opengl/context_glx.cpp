@@ -146,7 +146,7 @@ namespace opengl
 
       }
 
-      ::e_status3 estatus = make_current();
+      ::e_status estatus = make_current();
 
       if(!estatus)
       {
@@ -173,7 +173,7 @@ namespace opengl
    void context_glx::make_current()
    {
 
-      ::e_status3 estatus = ::success;
+      ::e_status estatus = ::success;
 
       synchronous_lock synchronouslock(user_mutex());
 
@@ -267,7 +267,7 @@ namespace opengl
    void context_glx::destroy_offscreen_buffer()
    {
 
-      ::e_status3 estatus = error_failed;
+      ::e_status estatus = error_failed;
 
       return estatus;
 

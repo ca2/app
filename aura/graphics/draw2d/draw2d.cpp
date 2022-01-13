@@ -1052,7 +1052,7 @@ breakFilter2:
 //
 //      __pointer(ttf_util) putil;
 //
-//      ::e_status3 estatus = __construct_new(putil);
+//      ::e_status estatus = __construct_new(putil);
 //
 //      if (pdoc->load(strSystemFonts))
 //      {
@@ -1294,7 +1294,7 @@ breakFilter2:
    void draw2d::initialize_write_text()
    {
 
-      ::e_status3 estatus = ::success;
+      ::e_status estatus = ::success;
 
       try
       {
@@ -1394,7 +1394,7 @@ breakFilter2:
 
       }
 
-      ::e_status3 estatus;
+      ::e_status estatus;
 
       if (strLibrary.has_char())
       {

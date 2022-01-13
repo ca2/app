@@ -433,7 +433,7 @@ void thread::osthread_term()
 
    //m_psystem->m_papexsystem->m_papexnode->thread_finalize(this);
 
-   //::e_status3 estatus = m_result.m_estatus;
+   //::e_status estatus = m_result.m_estatus;
 
    //return estatus;
 
@@ -1865,11 +1865,11 @@ void thread::main()
 
    ::u32 u = -1;
 
-   ::e_status3 estatus = error_failed;
+   ::e_status estatus = error_failed;
 
-   ::e_status3 estatusOs = error_failed;
+   ::e_status estatusOs = error_failed;
 
-   ::e_status3 estatusStart = error_failed;
+   ::e_status estatusStart = error_failed;
 
    try
    {
@@ -2477,12 +2477,12 @@ void thread::begin_thread(bool bSynchInitialization, ::enum_priority epriority, 
 
       m_peventInitialization->wait();
 
-      ::e_status3 estatus = get_result_status();
+      ::e_status estatus = get_result_status();
 
       if (failed(estatus))
       {
 
-         ::e_status3 estatusExit = m_estatus;
+         ::e_status estatusExit = m_estatus;
 
          throw_status(estatusExit);
 
@@ -2539,7 +2539,7 @@ void thread::inline_init()
 
    set_current_handles();
 
-   //::e_status3 estatus = 
+   //::e_status estatus = 
    __thread_init();
 
    //if (!estatus)
@@ -2557,7 +2557,7 @@ void thread::inline_init()
 void thread::inline_term()
 {
 
-   //::e_status3 estatus = ::error_none;
+   //::e_status estatus = ::error_none;
 
    //try
    //{
@@ -3335,7 +3335,7 @@ void thread::on_thread_init()
 //   }
 //
 //   // first -- check for simple worker thread
-//   ::e_status3 estatus = ::success;
+//   ::e_status estatus = ::success;
 //
 //   // else check for thread with message loop
 //   ASSERT_VALID(this);
@@ -3717,7 +3717,7 @@ bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin
 //void thread::update_task_ready_to_quit()
 //{
 //
-//   ::e_status3 estatus = ::success;
+//   ::e_status estatus = ::success;
 //
 //   synchronous_lock synchronouslock(mutex());
 //
@@ -4430,7 +4430,7 @@ bool thread::set_thread_priority(::enum_priority epriority)
    if (!bOk)
    {
 
-      ::e_status3 estatus = ::get_last_status();
+      ::e_status estatus = ::get_last_status();
 
       output_debug_string("thread::SetThreadPriority LastError = " + __string(estatus));
 
@@ -4738,7 +4738,7 @@ bool thread::pump_sleep(const class ::wait & wait, synchronization_object * psyn
 }
 
 
-::e_status3 thread::get_result_status()
+::e_status thread::get_result_status()
 {
 
    //return m_result.estatus();

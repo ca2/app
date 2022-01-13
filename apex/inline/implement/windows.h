@@ -35,7 +35,7 @@
 ////   return iStatus;
 ////
 ////
-//////   ::e_status3 estatus = ::success;
+//////   ::e_status estatus = ::success;
 //////
 //////   string strAppId;
 //////

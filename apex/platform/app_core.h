@@ -56,7 +56,7 @@ public:
    //::apex::system *                    m_psystem;
    //__pointer(apex_main_data)        m_pmaindata;
    __pointer(::acme::library)       m_plibrary;
-   ::e_status3                      m_estatusa[APP_CORE_MAXIMUM_STATUS_COUNT];
+   ::e_status                      m_estatusa[APP_CORE_MAXIMUM_STATUS_COUNT];
    int                              m_iStatusCount;
    int                              m_iTotalStatusCount;
 
@@ -65,7 +65,7 @@ public:
    app_core();
    ~app_core();
 
-   bool on_result(const ::e_status3 & estatus);
+   bool on_result(const ::e_status & estatus);
 
    //static ::u32 WINAPI MAIN(void * pvoid);
 

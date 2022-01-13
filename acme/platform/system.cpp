@@ -631,7 +631,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    //void system::_on_initialize_window_object()
    //{
 
-   //   ::e_status3 estatus = ::success;
+   //   ::e_status estatus = ::success;
    // 
    //   m_pnode->_os_calc_user_dark_mode();
 
@@ -1486,7 +1486,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   void system::process_exit_status(::object* pobject, const ::e_status3 & estatus)
+   void system::process_exit_status(::object* pobject, const ::e_status & estatus)
    {
 
       if (estatus == error_exit_system)

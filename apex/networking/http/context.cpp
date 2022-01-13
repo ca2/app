@@ -1618,7 +1618,7 @@ namespace http
 
          }
 
-         ::e_status3 estatus;
+         ::e_status estatus;
 
          if (::failed(psession->m_estatus))
          {
@@ -2364,7 +2364,7 @@ namespace http
 
       set[__id(cookie)] = strCookie;
 
-      ::e_status3 estatus = error_failed;
+      ::e_status estatus = error_failed;
 
       i32 iStatusCode;
 
@@ -2670,7 +2670,7 @@ namespace http
       if (!http_get(psocket, pmessageMessage->m_strUrl, set))
       {
 
-         pmessageMessage->m_estatusRet = (::e_status3) set["get_status"].i64();
+         pmessageMessage->m_estatusRet = (::e_status) set["get_status"].i64();
 
          pmessageMessage->m_bRet = false;
 
@@ -2678,7 +2678,7 @@ namespace http
 
       }
 
-      pmessageMessage->m_estatusRet = (::e_status3) set["get_status"].i64();
+      pmessageMessage->m_estatusRet = (::e_status) set["get_status"].i64();
 
       pmessageMessage->m_setHeaders = psocket->outheaders();
 

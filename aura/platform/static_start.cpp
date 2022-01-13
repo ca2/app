@@ -1053,7 +1053,7 @@ namespace aura
 //thread_int_ptr < void    > t_estatus;
 
 
-//CLASS_DECL_AURA void set_last_status(const ::e_status3 & estatus)
+//CLASS_DECL_AURA void set_last_status(const ::e_status & estatus)
 //{
 //
 //   ::get_task()->m_estatus = estatus;

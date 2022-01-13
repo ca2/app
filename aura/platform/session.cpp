@@ -1970,7 +1970,7 @@ namespace aura
    void session::init2()
    {
 
-      ::e_status3 estatus = ::apex::session::init2();
+      ::e_status estatus = ::apex::session::init2();
 
       if (!estatus)
       {
@@ -2012,7 +2012,7 @@ namespace aura
    void session::init()
    {
 
-      ::e_status3 estatus = ::apex::session::init();
+      ::e_status estatus = ::apex::session::init();
 
 
       //__pointer(::fs::set) pfsset = m_pfsdata;

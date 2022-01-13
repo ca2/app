@@ -600,7 +600,7 @@ namespace factory
 //inline void __defer_construct(__pointer(BASE_TYPE) & pusermessage)
 //{
 //
-//   ::e_status3 estatus = ::success_none;
+//   ::e_status estatus = ::success_none;
 //
 //   if(!pusermessage)
 //   {

@@ -80,7 +80,7 @@ void sn_start_context()
 //void app_core::system_start()
 //{
 //
-//   ::e_status3 estatus = system_pre_run();
+//   ::e_status estatus = system_pre_run();
 //
 //   if (!estatus)
 //   {
@@ -116,7 +116,7 @@ void sn_start_context()
 //void os_application_system_run(::aura::system * psystem)
 //{
 //
-////   ::e_status3 estatus = psystem->begin_synch();
+////   ::e_status estatus = psystem->begin_synch();
 ////
 ////   if(!estatus)
 ////   {

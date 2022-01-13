@@ -177,7 +177,7 @@ namespace opengl
 
       }
 
-      ::e_status3 estatus = popengl->defer_init_glew();
+      ::e_status estatus = popengl->defer_init_glew();
 
       if (!estatus)
       {
@@ -244,7 +244,7 @@ namespace opengl
    void context_win32::make_current()
    {
 
-      ::e_status3 estatus = ::success;
+      ::e_status estatus = ::success;
 
       bool bMakeCurrentOk = wglMakeCurrent(m_hdc, m_hrc);
 
@@ -267,7 +267,7 @@ namespace opengl
    void context_win32::destroy_offscreen_buffer()
    {
 
-      ::e_status3 estatus = ::success;
+      ::e_status estatus = ::success;
 
       if (m_hrc == NULL && m_hdc == NULL && m_hwnd == NULL)
       {

@@ -2,7 +2,7 @@
 #include "framework.h"
 
 //
-//CLASS_DECL_ACME string __string(const ::e_status3& estatus)
+//CLASS_DECL_ACME string __string(const ::e_status& estatus)
 //{
 //
 //   return __string(estatus.m_estatus);

@@ -406,7 +406,7 @@ void object::dev_log(string strMessage)
 void object::call_routine2(const ::routine & routine)
 {
 
-   //::e_status3 estatus = ::success;
+   //::e_status estatus = ::success;
 
    /*try
    {*/
@@ -1477,7 +1477,7 @@ void object::delete_this()
 void object::destroy_composites()
 {
 
-   ::e_status3 estatus = ::success;
+   ::e_status estatus = ::success;
 
    string strTypeName = __type_name(this);
 
@@ -1509,7 +1509,7 @@ void object::destroy_composites()
 void object::release_references()
 {
 
-   ::e_status3 estatus = ::success;
+   ::e_status estatus = ::success;
 
    string strTypeName = __type_name(this);
 
@@ -1864,7 +1864,7 @@ void object::top_handle_exception(const ::exception& e)
 }
 
 
-//void object::process_exit_status(const ::e_status3 & estatus)
+//void object::process_exit_status(const ::e_status & estatus)
 //{
 //
 //   if (estatus == error_exit_system)
@@ -2432,7 +2432,7 @@ struct context_object_test_struct :
 //}
 
 
-bool __no_continue(::e_status3 estatus)
+bool __no_continue(::e_status estatus)
 {
 
    return false;
@@ -2548,7 +2548,7 @@ string object::get_text(const ::payload& payload, const ::id& id)
 //void object::message_box_timeout(const ::string & pszMessage, const ::string & pszTitle, const ::duration& durationTimeout, const ::e_message_box & emessagebox, const ::future & process)
 //{
 //
-//   ::e_status3 estatus = error_failed;
+//   ::e_status estatus = error_failed;
 //
 //   //if (::is_null(get_session()) || ::is_null(get_session()->userex()))
 //   //{
@@ -2702,7 +2702,7 @@ element* object::get_taskpool_container()
 //}
 //
 //
-//void object::process_exit_status(const ::e_status3 & estatus)
+//void object::process_exit_status(const ::e_status & estatus)
 //{
 //
 //

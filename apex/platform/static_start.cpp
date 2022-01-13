@@ -817,7 +817,7 @@ namespace apex
 //thread_int_ptr < void    > t_estatus;
 
 
-//CLASS_DECL_APEX void set_last_status(const ::e_status3 & estatus)
+//CLASS_DECL_APEX void set_last_status(const ::e_status & estatus)
 //{
 //
 //   ::get_task()->m_estatus = estatus;

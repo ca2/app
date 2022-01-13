@@ -11,8 +11,9 @@ namespace user
    class CLASS_DECL_AURA interaction :
       virtual public ::user::primitive,
       virtual public ::aura::drawable,
-      virtual public ::timer_callback,
-      virtual public ::conversation
+      virtual public ::timer_callback
+      //,
+      //virtual public ::conversation
    {
    public:
 

@@ -169,7 +169,7 @@ namespace async
       class completion_callback;
 
 
-      typedef void (completion_callback :: *LPFN_COMPLETION_CALLBACK)(task < T > & task, const ::e_status3 & estatus);
+      typedef void (completion_callback :: *LPFN_COMPLETION_CALLBACK)(task < T > & task, const ::e_status & estatus);
 
 
       T *                              m_presult;
@@ -200,7 +200,7 @@ namespace async
 
 
       template < class COMPLETION_CALLBACK >
-      void set_completion_callback(COMPLETION_CALLBACK * pobject, void (COMPLETION_CALLBACK :: *pfncompletioncallback)(task < T > & task, const ::e_status3 & estatus))
+      void set_completion_callback(COMPLETION_CALLBACK * pobject, void (COMPLETION_CALLBACK :: *pfncompletioncallback)(task < T > & task, const ::e_status & estatus))
       {
 
          m_pcompletioncallback      = static_cast < completion_callback * > (pobject);
@@ -218,7 +218,7 @@ namespace async
 
       }
 
-      void  defer_call_completion(const ::e_status3 & estatus)
+      void  defer_call_completion(const ::e_status & estatus)
       {
 
          m_estatus = estatus;

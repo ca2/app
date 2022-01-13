@@ -231,7 +231,7 @@ bool property_object::is_alive()
 void property_object::operator()()
 {
 
-   ::e_status3 estatus;
+   ::e_status estatus;
 
    //try
    //{

@@ -1342,7 +1342,7 @@ pacmedir->create("/ca2core");
    void system::init2()
    {
 
-      //::e_status3 estatus = 
+      //::e_status estatus = 
       create_session();
 
       //if (!estatus)
@@ -1494,7 +1494,7 @@ pacmedir->create("/ca2core");
 //
 //      auto pnode = Node;
 //
-//      ::e_status3 estatus = error_exception;
+//      ::e_status estatus = error_exception;
 //
 //      if(pnode)
 //      {
@@ -1740,7 +1740,7 @@ pacmedir->create("/ca2core");
    void system::inline_term()
    {
 
-      //::e_status3 estatus =
+      //::e_status estatus =
       ::apex::context::inline_term();
 
       //if (!estatus)
@@ -2030,7 +2030,7 @@ pacmedir->create("/ca2core");
    void system::create_os_node()
    {
 
-      //::e_status3 estatus = ::success;
+      //::e_status estatus = ::success;
 
       //estatus = 
       
@@ -5044,7 +5044,7 @@ namespace apex
    }
 
 
-   void system::process_exit_status(::object* pobject, const ::e_status3 & estatus)
+   void system::process_exit_status(::object* pobject, const ::e_status & estatus)
    {
 
       if (estatus == error_exit_session)
@@ -5069,7 +5069,7 @@ namespace apex
    }
 
 
-   int system::console_end(::e_status3 estatus)
+   int system::console_end(::e_status estatus)
    {
 
       int iStatus = (int)estatus;

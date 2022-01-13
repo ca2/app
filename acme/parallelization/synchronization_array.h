@@ -50,7 +50,7 @@ public:
 
    virtual ::index wait(const class ::wait & wait, bool waitForAll = true, ::u32 uWaitMask = 0);
 
-   virtual void contains(const ::e_status3 & result) const;
+   virtual void contains(const ::e_status & result) const;
 
    synchronization_array & operator = (const synchronization_array & synca);
 

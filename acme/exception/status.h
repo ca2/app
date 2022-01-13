@@ -5,114 +5,114 @@
 #pragma ide diagnostic ignored "google-explicit-constructor"
 #endif
 
-//
-//template < typename TYPE >
-//class status :
-//   public TYPE
-//{
-//public:
-//
-//
-//   void              m_estatus;
-//
-//
-//   status() { m_estatus = error_not_initialized; }
-//
-//
-//   status(const TYPE & _, const ::e_status3 & estatus = ::success) :
-//      TYPE(_),
-//      m_estatus(estatus)
-//   {
-//
-//   }
-//
-//
-//   status(const TYPE&& _, const ::e_status3 & estatus = ::success) :
-//      TYPE(::move(_)),
-//      m_estatus(estatus)
-//   {
-//
-//   }
-//
-//
-//   status(const ::e_status3 & estatus)
-//   {
-//
-//      if (estatus == error_not_initialized)
-//      {
-//
-//         m_estatus = ::error_failed;
-//
-//      }
-//      else
-//      {
-//
-//         m_estatus = estatus;
-//
-//      }
-//
-//   }
-//
-//
-//   status(::enum_status estatus)
-//   {
-//
-//      if (estatus == error_not_initialized)
-//      {
-//
-//         estatus = ::error_failed;
-//
-//      }
-//
-//      m_estatus = estatus;
-//
-//   }
-//
-//
-//   status(nullptr_t)
-//   {
-//
-//      m_estatus = error_null_result;
-//
-//   }
-//
-//
-//   bool operator !() const { return !is_ok(); }
-//
-//   operator int() const { return is_ok() != false; }
-//
-//   operator void() const { return m_estatus; }
-//
-//   [[nodiscard]] ::e_status3 estatus() const { return m_estatus; }
-//
-//   [[nodiscard]] bool is_ok() const { return ::succeeded(m_estatus); }
-//
-//
-//   using TYPE::operator =;
-//
-//
-//   status & operator = (enum_status estatus)
-//   {
-//
-//      m_estatus = estatus;
-//
-//      return *this;
-//
-//   }
-//
-//   status & operator = (const e_status & estatus)
-//   {
-//
-//      m_estatus = estatus;
-//
-//      return *this;
-//
-//   }
-//
-//
-//};
-//
-//
+
+template < typename TYPE >
+class status :
+   public TYPE
+{
+public:
+
+
+   ::e_status              m_estatus;
+
+
+   status() { m_estatus = error_not_initialized; }
+
+
+   status(const TYPE & _, const ::e_status & estatus = ::success) :
+      TYPE(_),
+      m_estatus(estatus)
+   {
+
+   }
+
+
+   status(const TYPE&& _, const ::e_status & estatus = ::success) :
+      TYPE(::move(_)),
+      m_estatus(estatus)
+   {
+
+   }
+
+
+   status(const ::e_status & estatus)
+   {
+
+      if (estatus == error_not_initialized)
+      {
+
+         m_estatus = ::error_failed;
+
+      }
+      else
+      {
+
+         m_estatus = estatus;
+
+      }
+
+   }
+
+
+   status(::enum_status estatus)
+   {
+
+      if (estatus == error_not_initialized)
+      {
+
+         estatus = ::error_failed;
+
+      }
+
+      m_estatus = estatus;
+
+   }
+
+
+   status(nullptr_t)
+   {
+
+      m_estatus = error_null_result;
+
+   }
+
+
+   bool operator !() const { return !is_ok(); }
+
+   operator int() const { return is_ok() != false; }
+
+   operator void() const { return m_estatus; }
+
+   [[nodiscard]] ::e_status estatus() const { return m_estatus; }
+
+   [[nodiscard]] bool is_ok() const { return ::succeeded(m_estatus); }
+
+
+   using TYPE::operator =;
+
+
+   status & operator = (enum_status estatus)
+   {
+
+      m_estatus = estatus;
+
+      return *this;
+
+   }
+
+   status & operator = (const e_status & estatus)
+   {
+
+      m_estatus = estatus;
+
+      return *this;
+
+   }
+
+
+};
+
+
 //template < typename OBJECT >
 //class transport :
 //   public status < __pointer (OBJECT) >
@@ -125,9 +125,9 @@
 //
 //
 //};
-//
-//
-//
+
+
+
 //template < typename HOLDING >
 //class holding_status
 //{
@@ -141,21 +141,21 @@
 //   holding_status() { m_estatus = error_not_initialized; }
 //
 //
-//   holding_status(const HOLDING & _, const ::e_status3 & estatus = ::success) :
+//   holding_status(const HOLDING & _, const ::e_status & estatus = ::success) :
 //      m_holding(_),
 //      m_estatus(estatus)
 //   {
 //
 //   }
 //
-//   holding_status(const HOLDING&& _, const ::e_status3 & estatus = ::success) :
+//   holding_status(const HOLDING&& _, const ::e_status & estatus = ::success) :
 //      m_holding(::move(_)),
 //      m_estatus(estatus)
 //   {
 //
 //   }
 //
-//   holding_status(const ::e_status3 & estatus)
+//   holding_status(const ::e_status & estatus)
 //   {
 //
 //      if (estatus == error_not_initialized)
@@ -203,7 +203,7 @@
 //
 //   operator int() const { return is_ok() != false; }
 //
-//   ::e_status3 estatus() const { return m_estatus; }
+//   ::e_status estatus() const { return m_estatus; }
 //
 //   operator HOLDING() const { return m_holding; }
 //

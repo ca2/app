@@ -1053,7 +1053,7 @@ namespace axis
    void application::init1()
    {
 
-      ::e_status3 estatus = ::aura::application::init1();
+      ::e_status estatus = ::aura::application::init1();
 
       if (!estatus)
       {

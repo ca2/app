@@ -1350,7 +1350,7 @@ ret:
    void session::init2()
    {
 
-      ::e_status3 estatus;
+      ::e_status estatus;
 
       //INFORMATION("apex::session::init2 .1");
 
@@ -1408,7 +1408,7 @@ ret:
    void session::init()
    {
 
-      ::e_status3 estatus = ::success;
+      ::e_status estatus = ::success;
 
       __pointer(::fs::set) pfsset = m_pfsdata;
 

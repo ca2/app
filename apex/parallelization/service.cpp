@@ -110,7 +110,7 @@ void service::stop_service()
 //
 //   m_bStopping = false;
 //
-//   ::e_status3 estatus = ::error_failed;
+//   ::e_status estatus = ::error_failed;
 //
 //   estatus = osthread_init();
 //

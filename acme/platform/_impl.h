@@ -722,7 +722,7 @@ sequence < TYPE > ::sequence()
 
 
 //template < typename TYPE >
-//void future < RESULT > ::set_object(const RESULT& result, const ::e_status3 & estatus)
+//void future < RESULT > ::set_object(const RESULT& result, const ::e_status & estatus)
 //{
 //
 //   critical_section_lock lock(get_sequence_critical_section());
@@ -754,7 +754,7 @@ sequence < TYPE > ::sequence()
 
 
 template < typename TYPE >
-void sequence < TYPE > ::set_status(const ::e_status3& estatus)
+void sequence < TYPE > ::set_status(const ::e_status& estatus)
 {
 
    critical_section_lock lock(get_sequence_critical_section());

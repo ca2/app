@@ -16,7 +16,7 @@
 
 //    psystem->set_current_handles();
 
-//    ::e_status3 estatus = psystem->__thread_procedure();
+//    ::e_status estatus = psystem->__thread_procedure();
 
 //    ::i32 iErrorStatus = estatus.error_status();
 

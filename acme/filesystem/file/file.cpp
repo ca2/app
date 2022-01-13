@@ -1056,7 +1056,7 @@ namespace file
 
          memsize processedSizeLoc;
 
-         ::e_status3 estatus = ::success;
+         ::e_status estatus = ::success;
 
          try
          {
@@ -1340,7 +1340,7 @@ namespace file
     void write(file * pwriter, const void * data, memsize size)
     {
 
-        //::e_status3 estatus = ::success;
+        //::e_status estatus = ::success;
 
         try
         {

@@ -2031,7 +2031,7 @@ retry_license:
    void application::init1()
    {
 
-      ::e_status3 estatus = ::application::init1();
+      ::e_status estatus = ::application::init1();
 
       if (!estatus)
       {
@@ -4156,10 +4156,10 @@ retry_license:
    //}
 
 
-   bool application::post_message(const ::id & id, wparam wparam, lparam lparam )
+   void application::post_message(const ::id & id, wparam wparam, lparam lparam )
    {
 
-      return ::thread::post_message(id, wparam, lparam);
+      ::thread::post_message(id, wparam, lparam);
 
    }
 

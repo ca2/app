@@ -185,7 +185,7 @@ void android_aura_main()
 
    psystem->system_construct(plocal, e_display_default);
 
-   ::e_status3 estatus = os_application_system_run(psystem);
+   ::e_status estatus = os_application_system_run(psystem);
    
    if (!estatus)
    {

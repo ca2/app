@@ -80,9 +80,9 @@ CLASS_DECL_AURA void __trace_message(const char * pszPrefix, MESSAGE * lpmsg);
 i32 CLASS_DECL_AURA __ios_main(i32 argc, char * argv[]);
 
 
-CLASS_DECL_AURA void vfxThrowFileException(::object * pobject, const ::e_status3 & estatus, ::i32 lOsError, const ::string & lpszFileName = nullptr);
+CLASS_DECL_AURA void vfxThrowFileException(::object * pobject, const ::e_status & estatus, ::i32 lOsError, const ::string & lpszFileName = nullptr);
 
-CLASS_DECL_AURA ::file::exception * get_FileException(::object * pobject, const ::e_status3 & estatus, ::i32 lOsError, const ::string & lpszFileName = nullptr);
+CLASS_DECL_AURA ::file::exception * get_FileException(::object * pobject, const ::e_status & estatus, ::i32 lOsError, const ::string & lpszFileName = nullptr);
 
 
 

@@ -117,7 +117,7 @@ void simple_debug_print(const char* psz)
 //}
 //
 //
-//CLASS_DECL_ACME void set_last_error(::e_status3 estatus)
+//CLASS_DECL_ACME void set_last_error(::e_status estatus)
 //{
 //
 //    t_estatusLast = estatus;

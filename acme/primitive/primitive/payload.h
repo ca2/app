@@ -216,7 +216,7 @@ public:
    }
 
 
-   payload(const ::e_status3 & estatus)
+   payload(const ::e_status & estatus)
    {
       m_etype = e_type_new;
       operator = (estatus.m_estatus);
@@ -608,7 +608,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 
    payload & operator |= (enumeration < ::file::enum_flag > eflag);
 
-   payload& operator = (const ::e_status3 & estatus)
+   payload& operator = (const ::e_status & estatus)
    {
       return operator =(estatus.m_estatus);
    }

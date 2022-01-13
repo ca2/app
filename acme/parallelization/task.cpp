@@ -684,7 +684,7 @@ void task::term_task()
 //void task::on_task()
 //{
 //
-//   //::e_status3 estatus = ::success;
+//   //::e_status estatus = ::success;
 //
 //   //while (!m_bSetFinish)
 //   //{

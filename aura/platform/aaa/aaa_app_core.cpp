@@ -141,7 +141,7 @@ app_core::~app_core()
 }
 
 
-bool app_core::on_result(const ::e_status3 & estatus)
+bool app_core::on_result(const ::e_status & estatus)
 {
 
    if (estatus == ::success)
@@ -1626,7 +1626,7 @@ void app_core::system_proc()
 
    return ::error_failed;
 
-   //::e_status3 estatus = system_proc();
+   //::e_status estatus = system_proc();
 
    //if(estatus.succeeded())
    //{
@@ -1646,7 +1646,7 @@ void app_core::system_proc()
 //void app_core::system_call()
 //{
 //
-//   ::e_status3 estatus = error_failed;
+//   ::e_status estatus = error_failed;
 //
 //   try
 //   {
@@ -1712,7 +1712,7 @@ bool app_core::has_aura_application_factory() const
 //void app_core::system_start()
 //{
 //
-//   ::e_status3 estatus = system_pre_run();
+//   ::e_status estatus = system_pre_run();
 //
 //   if (!estatus)
 //   {
@@ -1776,7 +1776,7 @@ bool app_core::has_aura_application_factory() const
 //::u32 app_core::system_main()
 //{
 //
-//   ::e_status3 estatus = ::aura::get_system()->__thread_procedure();
+//   ::e_status estatus = ::aura::get_system()->__thread_procedure();
 //
 //   return estatus;
 //

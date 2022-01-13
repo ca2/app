@@ -294,7 +294,7 @@ namespace android
 
          m_puserinteraction->display(e_display_full_screen);
 
-         //::e_status3 estatus = __compose(m_pgraphics);
+         //::e_status estatus = __compose(m_pgraphics);
 
          //if (!estatus)
          //{
@@ -325,7 +325,7 @@ namespace android
 
          }
 
-         ::e_status3 estatusLast = get_last_status();
+         ::e_status estatusLast = get_last_status();
 
          //string strLastError = FormatMessageFromSystem(dwLastError);
 

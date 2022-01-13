@@ -101,7 +101,7 @@ synchronization_result multi_lock::lock(const duration & duration, bool bWaitFor
    if(iResult == WAIT_FAILED)
    {
 
-      ::e_status3 estatus = ::get_last_status();
+      ::e_status estatus = ::get_last_status();
 
       // TRACELASTERROR();
 

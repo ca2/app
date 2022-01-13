@@ -8,7 +8,7 @@ public:
 
 
    ::id                                m_id;
-   ::e_status3                         m_estatus;
+   ::e_status                         m_estatus;
 
 
    material_object() { }

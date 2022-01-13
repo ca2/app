@@ -27,7 +27,7 @@ namespace extended
     //}
 
     //
-    //status::status(const ::e_status3 & estatus) : 
+    //status::status(const ::e_status & estatus) : 
     //   m_estatus(estatus) 
     //{ 
     //
@@ -83,7 +83,7 @@ namespace extended
     //}
 
 
-    //void status::set(const ::e_status3 & estatus)
+    //void status::set(const ::e_status & estatus)
     //{ 
     //   
     //   set(estatus.m_estatus); 
@@ -101,7 +101,7 @@ namespace extended
     //}
 
 
-    //void status::add(const ::e_status3 & estatus)
+    //void status::add(const ::e_status & estatus)
     //{
 
     //   add(estatus.m_estatus);
@@ -171,7 +171,7 @@ namespace extended
     //   //}
 
 
-    ////bool status::get_exception(::exception& e, const ::e_status3 & estatus)
+    ////bool status::get_exception(::exception& e, const ::e_status & estatus)
     ////{
 
     ////   if (m_estatus == estatus)
@@ -212,7 +212,7 @@ namespace extended
     //void status::get_greatest_exception_on_range(enum_status estatusOpenStart, enum_status estatusOpenEnd) const
     //{
 
-    //   ::e_status3 estatus = ::error_not_found;
+    //   ::e_status estatus = ::error_not_found;
 
     //   if (m_pexceptiona)
     //   {
@@ -243,7 +243,7 @@ namespace extended
     //}
 
 
-    //bool status::has(const ::e_status3 & estatus) const
+    //bool status::has(const ::e_status & estatus) const
     //{
 
     //   if (m_estatus == estatus)
@@ -356,7 +356,7 @@ namespace extended
 
     //}
 
-    //void status::set_error(const ::e_status3 & estatus)
+    //void status::set_error(const ::e_status & estatus)
     //{
 
     //   set(estatus);

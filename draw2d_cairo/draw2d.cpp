@@ -914,7 +914,7 @@ namespace draw2d_cairo
 //
 //      __pointer(ttf_util) putil;
 //
-//      ::e_status3 estatus = __construct_new(putil);
+//      ::e_status estatus = __construct_new(putil);
 //
 //      if (pdoc->load(strSystemFonts))
 //      {
@@ -1156,7 +1156,7 @@ namespace draw2d_cairo
 //   void draw2d::initialize_write_text()
 //   {
 //
-//      ::e_status3 estatus = ::success;
+//      ::e_status estatus = ::success;
 //
 //      try
 //      {
@@ -1249,7 +1249,7 @@ namespace draw2d_cairo
 //
 //      }
 //
-//      ::e_status3 estatus;
+//      ::e_status estatus;
 //
 //      if (strLibrary.has_char())
 //      {

@@ -522,13 +522,13 @@ namespace experience
    void frame_window::initialize_frame_window_experience()
    {
 
-      ::e_status3 estatusDockManager = error_failed;
+      ::e_status estatusDockManager = error_failed;
 
-      ::e_status3 estatusMoveManager = error_failed;
+      ::e_status estatusMoveManager = error_failed;
 
-      ::e_status3 estatusSizeManager = error_failed;
+      ::e_status estatusSizeManager = error_failed;
 
-      ::e_status3 estatusMenuManager = error_failed;
+      ::e_status estatusMenuManager = error_failed;
 
       if (m_pdockmanager == nullptr)
       {

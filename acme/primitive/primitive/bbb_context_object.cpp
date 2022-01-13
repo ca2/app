@@ -72,7 +72,7 @@ i64 object::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
 //}
 //
 
-void object::process_exit_status(const ::e_status3 & estatus)
+void object::process_exit_status(const ::e_status & estatus)
 {
 
 

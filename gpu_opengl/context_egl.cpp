@@ -238,7 +238,7 @@ namespace opengl
    void context_egl::destroy_offscreen_buffer()
    {
 
-      ::e_status3 estatus = error_failed;
+      ::e_status estatus = error_failed;
 
       return estatus;
 

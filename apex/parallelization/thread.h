@@ -46,7 +46,7 @@ public:
    bool                                               m_bDedicated;
    bool                                               m_bPreferLessGraphicsParallelization;
    bool                                               m_bThreadToolsForIncreasedFps;
-   ::e_status3                                        m_estatus;
+   ::e_status                                        m_estatus;
    user_interaction_ptr_array *                       m_puiptraThread;
    ::mutex *                                          m_pmutexThreadUiPtra;
    single_lock *                                      m_pslUser;
@@ -64,7 +64,7 @@ public:
    bool                                               m_bAuraMessageQueue;
    ::duration                                         m_durationHeartBeat;
    bool                                               m_bReady;
-   //::e_status3                                        m_estatus;
+   //::e_status                                        m_estatus;
    __pointer(::user::primitive)                       m_puserprimitiveMain;           // Main interaction_impl (usually same psystem->m_puiMain)
    __pointer(::user::primitive)                       m_puserprimitiveActive;         // Active Main interaction_impl (may not be m_puiMain)
    bool                                               m_bSimpleMessageLoop;
@@ -468,7 +468,7 @@ public:
 
    virtual void do_request(::create * pcreate) override;
 
-   virtual ::e_status3 get_result_status();
+   virtual ::e_status get_result_status();
 
    virtual void delete_this() override;
 

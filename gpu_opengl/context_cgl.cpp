@@ -143,7 +143,7 @@ namespace opengl
          
       }
 
-      ::e_status3 estatus = make_current();
+      ::e_status estatus = make_current();
 
       if(!estatus)
       {

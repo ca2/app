@@ -5,7 +5,7 @@
 //CLASS_DECL_AURA __ message_box(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox)
 //{
 //
-//   ::e_status3 estatus = ::error_failed;
+//   ::e_status estatus = ::error_failed;
 //
 //   auto psystem = ::aura::get_system();
 //

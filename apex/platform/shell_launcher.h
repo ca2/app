@@ -27,7 +27,7 @@ namespace apex
       ::e_display          m_edisplay;
       ::e_activation       m_eactivation;
       duration             m_durationTimeout;
-      ::e_status3          m_estatus;
+      ::e_status          m_estatus;
 
 
    protected:
@@ -48,7 +48,7 @@ namespace apex
       virtual void launch();
 
 
-      inline ::e_status3 status() const {return m_estatus;}
+      inline ::e_status status() const {return m_estatus;}
 
 
    };

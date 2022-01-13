@@ -101,7 +101,7 @@ void __assert_valid_object(const ::matter * pOb, const char * pszFileName, i32 n
 //
 
 //
-//CLASS_DECL_ACME string __string(const ::e_status3 & estatus)
+//CLASS_DECL_ACME string __string(const ::e_status & estatus)
 //{
 //
 //   return __string((::i64)estatus.m_estatus);

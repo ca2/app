@@ -188,7 +188,7 @@ namespace factory
       inline void __defer_construct(__pointer(BASE_TYPE)& p)
       {
 
-         //::e_status3 estatus = ::success_not_constructed;
+         //::e_status estatus = ::success_not_constructed;
 
          if (::is_null(p))
          {

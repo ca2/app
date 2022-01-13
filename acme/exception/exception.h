@@ -40,7 +40,7 @@
 //
 //
 //   exception();
-//   exception(const ::e_status3 & estatus, const char* pszMessage = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void* caller_address = nullptr);
+//   exception(const ::e_status & estatus, const char* pszMessage = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void* caller_address = nullptr);
 //   virtual ~exception();
 //
 //
@@ -55,7 +55,7 @@
 //   virtual string get_message() const;
 //
 //
-//   inline ::e_status3 estatus() const { return m_estatus; }
+//   inline ::e_status estatus() const { return m_estatus; }
 //
 //
 //   void defer_dump_back_trace();
@@ -71,7 +71,7 @@
    public:
 
 
-      ::e_status3             m_estatus;
+      ::e_status             m_estatus;
 
       //enum_exception        m_eexception;
       bool                    m_bDumpBackTrace;
@@ -101,7 +101,7 @@
 
 
       exception();
-      exception(const ::e_status3 & estatus, const char * pszMessage = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr);
+      exception(const ::e_status & estatus, const char * pszMessage = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr);
       virtual ~exception();
 
 
@@ -116,7 +116,7 @@
       virtual string get_message() const;
       
       
-      inline ::e_status3 estatus() const { return m_estatus; }
+      inline ::e_status estatus() const { return m_estatus; }
 
 
       void defer_dump_back_trace();
@@ -189,7 +189,7 @@ public:
 //public:
 //
 //
-//   status_exception(const ::e_status3 & estatus, const char * pszStatus = nullptr) :
+//   status_exception(const ::e_status & estatus, const char * pszStatus = nullptr) :
 //      ::exception(pszStatus, estatus)
 //   {
 //
@@ -310,7 +310,7 @@ public:
    
    int m_iErrNo;
 
-   error_number(::e_status3 estatus, int iError, const char * pszMessage = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr ) :
+   error_number(::e_status estatus, int iError, const char * pszMessage = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr ) :
    ::exception(
                           estatus, pszMessage, iSkip, caller_address),
    m_iErrNo(iError)

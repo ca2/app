@@ -677,7 +677,7 @@ inline bool __is_zero(const NON_POINTER & t);
 
 
 
-CLASS_DECL_ACME void set_last_status(const ::e_status3 &estatus);
+CLASS_DECL_ACME void set_last_status(const ::e_status &estatus);
 
 CLASS_DECL_ACME void windowing_output_debug_string(const char *pszDebugString);
 
@@ -1058,7 +1058,7 @@ CLASS_DECL_ACME void ansi_get_errno(i32 *perrno);
 CLASS_DECL_ACME void ansi_unlink(const char *psz);
 
 
-CLASS_DECL_ACME ::e_status3 get_last_status();
+CLASS_DECL_ACME ::e_status get_last_status();
 
 
 
@@ -3164,10 +3164,10 @@ class memory_base;
 #include "acme/exception/status.h"
 
 
-inline void throw_status(const ::e_status3& estatus, const char * pszMessage = nullptr);
+inline void throw_status(const ::e_status& estatus, const char * pszMessage = nullptr);
 
 
-//CLASS_DECL_ACME ::e_status3 _003CountStatus(::count countSuccess, ::count countFailed);
+//CLASS_DECL_ACME ::e_status _003CountStatus(::count countSuccess, ::count countFailed);
 
 #include "acme/constant/filesystem.h"
 
@@ -3909,7 +3909,7 @@ namespace mathematics
 
 
 
-CLASS_DECL_ACME string get_status_message(::e_status3 estatus);
+CLASS_DECL_ACME string get_status_message(::e_status estatus);
 
 
 #include "acme/platform/flags.h"

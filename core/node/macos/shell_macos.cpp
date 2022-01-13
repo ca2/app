@@ -415,7 +415,7 @@
 //   void user::create_user_shell()
 //   {
 //
-//      ::e_status3 estatus = ::success;
+//      ::e_status estatus = ::success;
 //
 //      if (!m_pshell)
 //      {

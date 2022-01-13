@@ -123,7 +123,7 @@ void multiple_lock::lock(const duration & duration, bool bWaitForAll, u32 dwWake
    if(iSignaled < 0)
    {
 
-      ::e_status3 estatus = ::get_last_status();
+      ::e_status estatus = ::get_last_status();
 
       // TRACELASTERROR();
 

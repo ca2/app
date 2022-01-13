@@ -250,7 +250,7 @@ void synchronization_array::wait()
 
    bool FoundExternal=false;
 
-   ::e_status3 estatus;
+   ::e_status estatus;
 
 //   ::duration durationWaitNow;
 
@@ -311,7 +311,7 @@ void synchronization_array::wait()
 }
 
 
-void synchronization_array::contains(const ::e_status3 & result) const
+void synchronization_array::contains(const ::e_status & result) const
 {
 
    __throw(todo);

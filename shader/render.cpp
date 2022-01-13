@@ -170,7 +170,7 @@ namespace app_shader
    void render::_update_shader()
    {
 
-      ::e_status3 estatus = ::success_none;
+      ::e_status estatus = ::success_none;
 
       if(m_strProjection.is_empty())
       {

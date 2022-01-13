@@ -74,7 +74,7 @@ namespace multimedia
       //if (!m_pfactory)
       //{
 
-      //   ::e_status3 estatus = m_pfactory;
+      //   ::e_status estatus = m_pfactory;
 
       //   INFORMATION("LoadLibrary failed to open library " << strTitle << estatus << __string(estatus));
 

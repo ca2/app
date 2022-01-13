@@ -22,7 +22,7 @@ inline payload::payload(enum_type etype)
 }
 
 
-//inline payload::payload(const ::e_status3 & estatus)
+//inline payload::payload(const ::e_status & estatus)
 //{
 //
 //   set_type(type_enum_status);

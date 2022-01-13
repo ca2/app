@@ -1,7 +1,7 @@
 #pragma once
 
 
-CLASS_DECL_ACME const char * status_message(const ::e_status3 & estatus);
+CLASS_DECL_ACME const char * status_message(const ::e_status & estatus);
 
 //
 //namespace extended
@@ -30,13 +30,13 @@ CLASS_DECL_ACME const char * status_message(const ::e_status3 & estatus);
 //      ///   to fill and spend resources creating exception data that would be
 //      ///   rarely queried.
 //
-//      ::e_status3                      m_estatus;
+//      ::e_status                      m_estatus;
 //      __pointer(::exception_array)     m_pexceptiona;
 //
 //
 //      status();
 //      status(::enum_status estatus) ;
-//      status(const ::e_status3 & estatus);
+//      status(const ::e_status & estatus);
 //      status(const std::initializer_list < void >& list);
 //      status(const status& status);
 //      status(status&& status);
@@ -48,11 +48,11 @@ CLASS_DECL_ACME const char * status_message(const ::e_status3 & estatus);
 //      static void set_skip_callstack(i32 iStack);
 //      static i32 get_skip_callstack();
 //
-//      void set(const ::e_status3 & estatus);
+//      void set(const ::e_status & estatus);
 //
 //      void set(::enum_status estatus);
 //
-//      void add(const ::e_status3 & estatus);
+//      void add(const ::e_status & estatus);
 //
 //      void add(::enum_status estatus);
 //
@@ -64,18 +64,18 @@ CLASS_DECL_ACME const char * status_message(const ::e_status3 & estatus);
 //
 //      void add(const std::initializer_list < void     >& list);
 //
-//      //bool get_exception(::exception& e, const ::e_status3 & estatus);
+//      //bool get_exception(::exception& e, const ::e_status & estatus);
 //
 //      bool get_exit_status(void& estatus) const;
 //      void get_greatest_exception_on_range(enum_status estatusOpenStart, enum_status estatusOpenEnd) const;
 //
-//      bool has(const ::e_status3 & estatus) const;
+//      bool has(const ::e_status & estatus) const;
 //      
 //
-//      static string get_error_text(const ::e_status3 & estatus);
+//      static string get_error_text(const ::e_status & estatus);
 //
 //      
-//      ::e_status3 estatus() const
+//      ::e_status estatus() const
 //      {
 //
 //         return m_estatus == undefined ? void(::success) : m_estatus;
@@ -89,7 +89,7 @@ CLASS_DECL_ACME const char * status_message(const ::e_status3 & estatus);
 //
 //      bool operator !() const { return failed(); }
 //
-//      status & operator =(const ::e_status3 & estatus)
+//      status & operator =(const ::e_status & estatus)
 //      {
 //
 //         set(estatus);
@@ -132,7 +132,7 @@ CLASS_DECL_ACME const char * status_message(const ::e_status3 & estatus);
 //
 //      void add(const status& status);
 //
-//      void set_error(const ::e_status3 & estatus);
+//      void set_error(const ::e_status & estatus);
 //
 //
 //   };

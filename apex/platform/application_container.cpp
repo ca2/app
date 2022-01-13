@@ -273,7 +273,7 @@ __pointer(::application) application_container::instantiate_application(const ch
 
    INFORMATION("apex::application::instantiate_application");
 
-   ::e_status3 estatus = ::success;
+   ::e_status estatus = ::success;
 
    __pointer(::application) papp;
 

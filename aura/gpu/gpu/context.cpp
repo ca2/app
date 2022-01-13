@@ -25,7 +25,7 @@ namespace gpu
    void context::initialize(::object * pobject)
    {
 
-      ::e_status3 estatus = ::object::initialize(pobject);
+      ::e_status estatus = ::object::initialize(pobject);
 
       if (!estatus)
       {
@@ -148,7 +148,7 @@ namespace gpu
 
       }
 
-      ::e_status3 estatus = __construct(m_pbuffer);
+      ::e_status estatus = __construct(m_pbuffer);
 
       if (!estatus)
       {

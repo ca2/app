@@ -144,7 +144,7 @@ CLASS_DECL_ACME void set_last_error(::u32 dw)
 }
 
 
-::e_status3 last_error_to_status(DWORD dwError)
+::e_status last_error_to_status(DWORD dwError)
 {
 
    // NT Error codes

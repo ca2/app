@@ -114,9 +114,9 @@ void __main(main& main)
 
    set_main_thread();
 
-   ::e_status3 estatus = error_failed;
+   ::e_status estatus = error_failed;
 
-   ::e_status3 estatusEnd = error_failed;
+   ::e_status estatusEnd = error_failed;
 
    auto psystem = platform_create_system(main.m_strAppId);
 

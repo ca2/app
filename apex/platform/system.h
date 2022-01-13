@@ -240,7 +240,7 @@ namespace apex
       virtual void destroy() override;
 
 
-      virtual void process_exit_status(::object* pobject, const ::e_status3 & estatus);
+      virtual void process_exit_status(::object* pobject, const ::e_status & estatus);
 
 
       //virtual bool verb();
@@ -857,7 +857,7 @@ namespace apex
 
       virtual void application_main(int argc, char *argv[], const ::string & pszCommandLine);
 
-      virtual int console_end(::e_status3 estatus);
+      virtual int console_end(::e_status estatus);
 
 
       //virtual __pointer(::extended::future < ::conversation >) message_box(::user::interaction * puserinteraction, const ::string & pszText, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;

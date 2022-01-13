@@ -2,7 +2,7 @@
 #pragma once
 
 
-inline void throw_status(const ::e_status3& estatus, const char * pszMessage)
+inline void throw_status(const ::e_status& estatus, const char * pszMessage)
 {
 
    throw ::exception::exception(estatus, pszMessage);

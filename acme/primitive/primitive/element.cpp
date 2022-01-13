@@ -104,7 +104,7 @@ DURATION element::timeout() const
 void element::operator()()
 {
 
-   ::e_status3 estatus;
+   ::e_status estatus;
 
    //try
    //{

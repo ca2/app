@@ -245,8 +245,8 @@ namespace aura
       //virtual bool InitApplication();
 
 
-      virtual bool do_install() override;
-      virtual bool do_uninstall() override;
+      virtual void do_install() override;
+      virtual void do_uninstall() override;
 
 
       virtual void on_install() override;
@@ -818,7 +818,7 @@ namespace aura
       // user virtual ::user::document * place_hold(::user::interaction * pinteraction);
 
 
-      virtual bool post_message(const ::id & id, wparam wparam = 0, lparam lparam = 0) override;
+      virtual void post_message(const ::id & id, wparam wparam = 0, lparam lparam = 0) override;
 
 
       //virtual ::draw2d::icon * set_icon(object * pobject, ::draw2d::icon * picon, bool bBigIcon);

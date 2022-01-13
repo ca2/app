@@ -9,7 +9,7 @@ namespace apex
    void system::initialize_sockets()
    {
 
-      ::e_status3 estatus = ::success_none;
+      ::e_status estatus = ::success_none;
 
       if (!m_psockets)
       {

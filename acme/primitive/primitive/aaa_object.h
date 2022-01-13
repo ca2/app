@@ -67,7 +67,7 @@ public:
 
 
 
-   virtual void process_exit_status(const ::e_status3 & estatus);
+   virtual void process_exit_status(const ::e_status & estatus);
 
    //inline ::object* this const { return this; }
    //virtual void set_object(::object* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
@@ -654,7 +654,7 @@ public:
 
 
 
-   virtual void process_exit_status(const ::e_status3 & estatus);
+   virtual void process_exit_status(const ::e_status & estatus);
 
    //inline ::object* this const { return this; }
    //virtual void set_object(::object* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;

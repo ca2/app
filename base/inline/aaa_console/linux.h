@@ -31,7 +31,7 @@ int main(int argc, char* argv[])
 
    psystem->system_construct(argc, argv);
 
-   ::e_status3 estatus = (void) psystem->inline_init();
+   ::e_status estatus = (void) psystem->inline_init();
 
    if (::succeeded(estatus))
    {

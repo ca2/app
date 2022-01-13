@@ -12,7 +12,7 @@ CLASS_DECL_ACME void to_string(string & str, const e_status3 & estatus)
 }
 
 
-CLASS_DECL_ACME string __string(const ::e_status3 & estatus)
+CLASS_DECL_ACME string __string(const ::e_status & estatus)
 {
 
     return __string(estatus.m_estatus);
@@ -53,17 +53,17 @@ int e_status3::exit_code() const
 }
 
 
-CLASS_DECL_ACME ::e_status3 worst(enum_status e1, enum_status e2)
+CLASS_DECL_ACME ::e_status worst(enum_status e1, enum_status e2)
 {
 
    // heuristic/simple/easy implementation
 
-   return (::e_status3)minimum((::i64)e1, (::i64)e2);
+   return (::e_status)minimum((::i64)e1, (::i64)e2);
 
 }
 
 
-CLASS_DECL_ACME ::e_status3 operator & (enum_status e1, enum_status e2)
+CLASS_DECL_ACME ::e_status operator & (enum_status e1, enum_status e2)
 {
 
    return worst(e1, e2);

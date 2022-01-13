@@ -55,8 +55,8 @@ public:
    sequence();
 
 
-   ///void set_object(const TYPE & result, const ::e_status3 & estatus = ::success);
-   void set_status(const ::e_status3 & estatus = ::success);
+   ///void set_object(const TYPE & result, const ::e_status & estatus = ::success);
+   void set_status(const ::e_status & estatus = ::success);
 
 
    TYPE & topic(const ::duration & duration = ::duration::infinite());

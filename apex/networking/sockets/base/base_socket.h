@@ -116,7 +116,7 @@ namespace sockets
       char                    m_c; ///< First char in CRLF or LFCR sequence
       string                  m_line; ///< Current line in line protocol mode
 
-      ::e_status3             m_estatus;
+      ::e_status             m_estatus;
       //::duration              m_durationStart;
 
 #if !defined(BSD_STYLE_SOCKETS)

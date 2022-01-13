@@ -4,7 +4,7 @@
 #include "acme/primitive/comparison/equals.h"
 
 
-inline bool __enum_is_failed(const ::e_status3 & e)
+inline bool __enum_is_failed(const ::e_status & e)
 {
 
    return ::failed(e);

@@ -1309,7 +1309,7 @@ namespace user
 
       }
 
-      //::e_status3 estatus;
+      //::e_status estatus;
 
       if (!puserinteractionParent)
       {

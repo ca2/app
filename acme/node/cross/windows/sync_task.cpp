@@ -19,7 +19,7 @@
 //void sync_task::call()
 //{
 //
-//   ::e_status3 estatus;
+//   ::e_status estatus;
 //
 //   try
 //   {

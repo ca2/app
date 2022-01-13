@@ -278,7 +278,7 @@ namespace axis
    void system::inline_init()
    {
 
-      ::e_status3 estatus = ::aura::system::inline_init();
+      ::e_status estatus = ::aura::system::inline_init();
 
       if (!estatus)
       {
@@ -295,7 +295,7 @@ namespace axis
    void system::inline_term()
    {
 
-      ::e_status3 estatus = ::aura::system::inline_term();
+      ::e_status estatus = ::aura::system::inline_term();
 
       //if (!estatus)
       //{

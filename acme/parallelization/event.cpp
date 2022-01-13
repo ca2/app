@@ -560,7 +560,7 @@ void event::_wait ()
 bool event::_wait (const class ::wait & wait)
 {
 
-   ::e_status3 estatus;
+   ::e_status estatus;
 
    //__throw(todo("thread"));
    //if(durationTimeout > 1_s && m_eobject & e_object_alertable_wait)

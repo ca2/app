@@ -1064,7 +1064,7 @@ namespace aura
    void system::initialize_draw2d()
    {
 
-      ::e_status3 estatus = ::success;
+      ::e_status estatus = ::success;
 
       try
       {
@@ -1251,7 +1251,7 @@ namespace aura
 
       }
 
-      ::e_status3 estatus;
+      ::e_status estatus;
 
       if (strLibrary.has_char())
       {
@@ -1396,7 +1396,7 @@ namespace aura
 
       }
 
-      ::e_status3 estatus = ::error_failed;
+      ::e_status estatus = ::error_failed;
 
       if (strLibrary.has_char())
       {
@@ -1786,7 +1786,7 @@ namespace aura
    void system::inline_init()
    {
 
-      ::e_status3 estatus = ::aqua::system::inline_init();
+      ::e_status estatus = ::aqua::system::inline_init();
 
       if (!estatus)
       {
@@ -1803,7 +1803,7 @@ namespace aura
    void system::inline_term()
    {
 
-      ::e_status3 estatus = ::aqua::system::inline_term();
+      ::e_status estatus = ::aqua::system::inline_term();
 
       if (!estatus)
       {
@@ -4422,7 +4422,7 @@ namespace aura
 //         key.get("Install Directory", strInstallDirectory);
 //
 //      }
-//      catch (const ::e_status3 & estatus)
+//      catch (const ::e_status & estatus)
 //      {
 //
 //         return estatus;

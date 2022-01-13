@@ -155,7 +155,7 @@ void create::create_common_construct(const ::payload & varOptions, ::user::primi
 void create::finish_initialization()
 {
 
-   ::e_status3 estatus = ::success;
+   ::e_status estatus = ::success;
 
    if(!m_pcommandline)
    {

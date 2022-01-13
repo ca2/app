@@ -753,7 +753,7 @@ void matter::trace_log_fatal(const char * psz, ...)
 void matter::__thread_main()
 {
 
-   //::e_status3 estatus = operator()();
+   //::e_status estatus = operator()();
 
    operator()();
 
@@ -769,11 +769,11 @@ void matter::__thread_main()
 //
 //   ::u32 u = -1;
 //
-//   ::e_status3 estatus = error_failed;
+//   ::e_status estatus = error_failed;
 //
-//   ::e_status3 estatusOs = error_failed;
+//   ::e_status estatusOs = error_failed;
 //
-//   ::e_status3 estatusStart = error_failed;
+//   ::e_status estatusStart = error_failed;
 //
 //   {
 //

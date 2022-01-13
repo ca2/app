@@ -1231,10 +1231,10 @@ CLASS_DECL_ACME ::color::color dk_red() // <3 tbs
 }
 
 
-thread_local ::e_status3 t_estatus;
+thread_local ::e_status t_estatus;
 
 
-CLASS_DECL_ACME void set_last_status(const ::e_status3 & estatus)
+CLASS_DECL_ACME void set_last_status(const ::e_status & estatus)
 {
 
    t_estatus = estatus;
@@ -1242,7 +1242,7 @@ CLASS_DECL_ACME void set_last_status(const ::e_status3 & estatus)
 }
 
 
-CLASS_DECL_ACME ::e_status3 get_last_status()
+CLASS_DECL_ACME ::e_status get_last_status()
 {
 
    return t_estatus;

@@ -103,7 +103,7 @@ namespace user
 
       void destroy() override;
 
-      ::e_status set_finish() override;
+      void set_finish() override;
 
       //void destroy() override;
 

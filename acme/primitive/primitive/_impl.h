@@ -2842,34 +2842,36 @@ inline void object::__id_construct(__pointer(TYPE)& p, const ::id& id)
 
    auto ptypeNew = pfactory->create_element();
 
-   if (!ptypeNew)
-   {
+   //if (!ptypeNew)
+   //{
 
-      return error_no_memory;
+   //   return error_no_memory;
 
-   }
+   //}
 
    p = ptypeNew;
 
    if (!p)
    {
 
-      return error_wrong_type;
+      throw_status(error_wrong_type);
 
    }
 
    p->set(e_flag_factory);
 
-   auto estatus = p->initialize(this);
+   //auto estatus = 
+   
+   p->initialize(this);
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
-   return estatus;
+   //return estatus;
 
 }
 

@@ -180,16 +180,16 @@ namespace user
          if (!pFrame)
          {
 
-            auto& result = psystem->m_result;
+            //auto& result = psystem->m_estatus;
 
-            ::e_status estatus;
+            //::e_status estatus;
 
-            if(!result.get_exit_status(estatus))
-            {
+            //if(!result.get_exit_status(estatus))
+            //{
 
-               output_error_message("Failed to create Document");
+            //   output_error_message("Failed to create Document");
 
-            }
+            //}
 
             return;
 

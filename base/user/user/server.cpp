@@ -34,25 +34,27 @@ namespace user
       if (pcreate == nullptr)
       {
 
-         auto estatus = __construct_new(pcreate);
+         //auto estatus = 
+         
+         __construct_new(pcreate);
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            __throw(estatus);
+         //   __throw(estatus);
 
-         }
+         //}
 
          auto papplication = get_application();
 
          pcreate->initialize_create(papplication->m_strAppId, ::e_type_empty, true);
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            __throw(estatus);
+         //   __throw(estatus);
 
-         }
+         //}
 
       }
 

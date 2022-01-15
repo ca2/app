@@ -1154,10 +1154,10 @@ namespace user
    }
 
 
-   ::e_status thread::set_finish()
+   void thread::set_finish()
    {
 
-      return ::thread::set_finish();
+      ::thread::set_finish();
 
    }
 

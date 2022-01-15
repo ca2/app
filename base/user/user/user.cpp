@@ -29,27 +29,31 @@ namespace base
    void user::initialize(::object * pobject)
    {
 
-      auto estatus = ::axis::user::initialize(pobject);
+      //auto estatus = 
+      
+      ::axis::user::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = ::user::document_manager_container::initialize(pobject);
+      //estatus = 
+      
+      ::user::document_manager_container::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
 
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -73,21 +77,25 @@ namespace base
 
       //}
 
-      if (!::axis::user::init1())
-      {
+      ::axis::user::init1();
 
-         return false;
+      //if (!::axis::user::init1())
+      //{
 
-      }
+      //   return false;
 
-      if (!initialize1_experience())
-      {
+      //}
 
-         return false;
+      initialize1_experience();
 
-      }
+      //if (!initialize1_experience())
+      //{
 
-      return true;
+      //   return false;
+
+      //}
+
+      //return true;
 
    }
 
@@ -95,12 +103,14 @@ namespace base
    void user::init()
    {
 
-      if (!::axis::user::init())
-      {
+      ::axis::user::init();
 
-         return false;
+      //if (!::axis::user::init())
+      //{
 
-      }
+      //   return false;
+
+      //}
 
       ::factory::add_factory_item <::simple_scroll_bar, ::user::scroll_bar>();
 
@@ -120,14 +130,16 @@ namespace base
       ::factory::add_factory_item < ::user::split_view  >();
 
 
-      auto estatus = __compose_new(m_pmenucentral);
+      //auto estatus = 
+      
+      __compose_new(m_pmenucentral);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       //auto estatus = create_user_shell();
 
@@ -190,7 +202,7 @@ namespace base
 
       debug_print("user::initialize bHasUninstall %c", bHasUninstall);
 
-      return true;
+      //return true;
 
    }
 
@@ -198,14 +210,15 @@ namespace base
    void user::init2()
    {
 
-      if (!::acme::department::init2())
-      {
+      ::acme::department::init2();
+      //if (!::acme::department::init2())
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
-      return true;
+      //return true;
 
    }
 
@@ -243,7 +256,7 @@ namespace base
 
       }
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -260,9 +273,11 @@ namespace base
 
       m_mapUserStyle.erase_all();
 
-      auto estatus = ::axis::user::destroy();
+      //auto estatus = 
+      
+      ::axis::user::destroy();
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -454,16 +469,18 @@ namespace base
 
       auto pinteraction = __new(::user::interaction);
 
-      if(pinteraction->create_child(puiParent))
-      {
+      pinteraction->create_child(puiParent);
+
+      //if(pinteraction->create_child(puiParent))
+      //{
 
          return pinteraction;
 
-      }
+      //}
 
-      pinteraction.release();
+      //pinteraction.release();
 
-      return nullptr;
+      //return nullptr;
 
    }
 

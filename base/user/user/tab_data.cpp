@@ -29,14 +29,16 @@ namespace user
    void tab_data::initialize(::object * pobject)
    {
 
-      auto estatus = ::data::data::initialize(pobject);
+      //auto estatus = 
+      
+      ::data::data::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       m_ppen.create(this);
          //m_pbrushTextHover(e_create),
@@ -60,7 +62,7 @@ namespace user
       //m_ppenBorder->create_solid(1.0, argb(163, 90, 90, 80));
 
 
-      return estatus;
+      //return estatus;
 
    }
 

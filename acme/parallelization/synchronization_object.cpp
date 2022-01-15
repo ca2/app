@@ -292,7 +292,7 @@ bool synchronization_object::_wait(const class ::wait & wait)
 
    auto estatus = windows_wait_result_to_status(windowsWaitResult);
 
-   if (estatus == error_timeout)
+   if (estatus == error_wait_timeout)
    {
 
       return false;

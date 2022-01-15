@@ -713,7 +713,7 @@ namespace user
       bool is_composite() override;
 
 
-      virtual ::e_status set_finish(::object * pobject);
+      virtual void set_finish(::object * pobject);
 
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;

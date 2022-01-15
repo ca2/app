@@ -282,12 +282,14 @@ namespace user
 
          }
 
-         if (!pinteraction->create_control(pmenu, pitem->m_id))
-         {
+         pinteraction->create_control(pmenu, pitem->m_id);
 
-            return false;
+         //if (!pinteraction->create_control(pmenu, pitem->m_id))
+         //{
 
-         }
+         //   return false;
+
+         //}
 
          pinteraction->m_pmenuitem = pitem;
 

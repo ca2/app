@@ -46,7 +46,7 @@ namespace user
 
       virtual bool _001GetItemText(string & str, index iItem);
 
-      virtual bool update_data(bool bSaveAndValidate) override;
+      virtual void update_data(bool bSaveAndValidate) override;
 
 
 #ifdef _DEBUG

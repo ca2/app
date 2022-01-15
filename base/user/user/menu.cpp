@@ -200,7 +200,7 @@ namespace user
 
       m_pmenuitem.release();
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -472,12 +472,14 @@ namespace user
          //auto pusersystem = __new(::user::system (iStyleEx, nullptr, nullptr, 0, nullptr, pcreate));
 
          //if (!create_window_ex(pusersystem, puiParent))
-         if (!create_host())
-         {
+         //if (!create_host())
 
-            return false;
+         create_host();
+         //{
 
-         }
+         //   return false;
+
+         //}
 
 #endif
 
@@ -512,12 +514,13 @@ namespace user
             m_pitemClose->m_puserinteraction = pinteraction;
 
             //if (!m_pitemClose->m_puserinteraction->create_interaction(this, "close_menu"))
-            if (!m_pitemClose->m_puserinteraction->create_child(this))
-            {
+            //if (!m_pitemClose->m_puserinteraction->create_child(this))
+            m_pitemClose->m_puserinteraction->create_child(this);
+            //{
 
-               return false;
+            //   return false;
 
-            }
+            //}
 
          }
 
@@ -1569,14 +1572,15 @@ namespace user
 
       }
 
-      auto estatus = pinteraction->initialize(this);
+      //auto estatus = 
+      pinteraction->initialize(this);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return nullptr;
+      //   return nullptr;
 
-      }
+      //}
 
       pinteraction->m_pmaterialCommandHandler = this;
       
@@ -1620,20 +1624,22 @@ namespace user
 
          defer_close();
 
-         auto estatus = m_pmaterialCommandHandler->handle_command(id);
+         //auto estatus = 
+         
+         m_pmaterialCommandHandler->handle_command(id);
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            return estatus;
+         //   return estatus;
 
-         }
+         //}
 
-         return estatus;
+         //return estatus;
 
       }
 
-      return ::error_failed;
+      //return ::error_failed;
 
    }
 

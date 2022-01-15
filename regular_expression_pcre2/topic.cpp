@@ -50,13 +50,13 @@ namespace regular_expression_pcre2
 
          m_cMatchCount = -1;
 
-         return error_failed;
+         throw_status(error_failed);
 
       }
 
       m_cMatchCount = pcre2_get_ovector_count(m_pmatchdata);
 
-      return ::success;
+      //return ::success;
 
    }
 

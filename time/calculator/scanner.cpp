@@ -785,18 +785,20 @@ namespace datetime
    void scanner::initialize_datetime_scanner(::text::context* ptextcontext)
    {
 
-      auto estatus = ::object::initialize(ptextcontext);
+      //auto estatus = 
+      
+      ::object::initialize(ptextcontext);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       m_ptextcontext = ptextcontext;
 
-      return estatus;
+      //return estatus;
 
    }
 

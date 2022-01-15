@@ -23,18 +23,20 @@ namespace dynamic_source
    void script_cache::initialize_script_cache(script_manager* pscriptmanager)
    {
 
-      auto estatus = ::object::initialize(pscriptmanager);
+      //auto estatus = 
+      
+      ::object::initialize(pscriptmanager);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       m_pmanager = pscriptmanager;
 
-      return estatus;
+      //return estatus;
 
    }
 

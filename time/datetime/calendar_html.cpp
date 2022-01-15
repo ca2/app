@@ -35,16 +35,18 @@ namespace datetime
    void visual::initialize(::object * pobject)
    {
 
-      auto estatus = ::datetime::calendar::calendar::initialize(pobject);
+      //auto estatus = 
+      
+      ::datetime::calendar::calendar::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 

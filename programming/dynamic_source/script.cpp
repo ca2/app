@@ -40,20 +40,22 @@ namespace dynamic_source
    void script::on_initialize_object()
    {
 
-      auto estatus = ::object::on_initialize_object();
+      //auto estatus = 
+      
+      ::object::on_initialize_object();
 
-      if(!estatus)
-      {
+      //if(!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       m_pfileError.create_new(this);
 
       m_streamError.m_p = m_pfileError;
 
-      return estatus;
+      //return estatus;
 
    }
 

@@ -48,14 +48,16 @@ namespace regular_expression_pcre2
 
       pregularexpression->m_pcontext = this;
 
-      auto estatus = pregularexpression->create(str);
+      //auto estatus = 
+      
+      pregularexpression->create(str);
 
-      if(!estatus)
-      {
+      //if(!estatus)
+      //{
 
-         return nullptr;
+      //   return nullptr;
 
-      }
+      //}
 
       return pregularexpression;
 

@@ -31,27 +31,31 @@ namespace dynamic_source
    void session::initialize_dynamic_source_session(const string& strSessid, ::dynamic_source::script_manager* pmanager)
    {
 
-      auto estatus = ::object::initialize(pmanager);
+      //auto estatus = 
+      
+      ::object::initialize(pmanager);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
       
       m_strSessid = strSessid;
 
-      estatus = __refer(m_pmanager, pmanager);
+      //estatus = 
+      
+      __refer(m_pmanager, pmanager);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 

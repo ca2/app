@@ -47,7 +47,7 @@ namespace regular_expression_pcre2
       if (m_pcode == nullptr)
       {
 
-         return error_failed;
+         throw_status(error_failed);
 
       }
 
@@ -68,7 +68,7 @@ namespace regular_expression_pcre2
 
       }
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -81,14 +81,16 @@ namespace regular_expression_pcre2
 
       ptopic->m_pregularexpression = this;
 
-      auto estatus = ptopic->create(str);
+      //auto estatus = 
+      
+      ptopic->create(str);
 
-      if(!estatus)
-      {
+      //if(!estatus)
+      //{
 
-         return nullptr;
+      //   return nullptr;
 
-      }
+      //}
 
       return ptopic;
 

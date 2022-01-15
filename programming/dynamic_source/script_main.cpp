@@ -48,16 +48,18 @@ namespace dynamic_source
    void script_main::initialize(::object * pobject)
    {
 
-      auto estatus = ::html::file::initialize(pobject);
+      //auto estatus = 
+      
+      ::html::file::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -65,12 +67,14 @@ namespace dynamic_source
    void script_main::destroy()
    {
          
-      auto estatus = script_interface::destroy();
+      //auto estatus = 
+      
+      script_interface::destroy();
 
       m_psocket2.release();
       m_pmanager2.release();
 
-      return estatus;
+      //return estatus;
 
    }
 

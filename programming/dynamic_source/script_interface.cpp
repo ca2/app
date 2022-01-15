@@ -36,14 +36,16 @@ namespace dynamic_source
    void script_interface::initialize(::object * pobject)
    {
 
-      auto estatus = ::html::file::initialize(pobject);
+      //auto estatus = 
+      
+      ::html::file::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       __pointer(script_interface) pinterface = pobject;
 
@@ -59,7 +61,7 @@ namespace dynamic_source
 
       }
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -67,9 +69,9 @@ namespace dynamic_source
    void script_interface::init1()
    {
 
-      ::e_status estatus = ::success_none;
+      //::e_status estatus = ::success_none;
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -90,13 +92,15 @@ namespace dynamic_source
    void script_interface::destroy()
    {
 
-      auto estatus = ::html::file::destroy();
+      //auto estatus = 
+      
+      ::html::file::destroy();
 
       m_pmain.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
       m_pinstanceParent2.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
       m_pscript2.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
-      return estatus;
+      //return estatus;
 
 
    }
@@ -105,7 +109,7 @@ namespace dynamic_source
    void     script_interface::run()
    {
 
-      return ::success;
+      //return ::success;
 
    }
 

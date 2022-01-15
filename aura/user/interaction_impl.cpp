@@ -4606,7 +4606,7 @@ namespace user
    }
 
 
-   ::e_status interaction_impl::set_finish(::object * pcontextobjectFinish)
+   void interaction_impl::set_finish(::object * pcontextobjectFinish)
    {
 
       if(!is_destroying())
@@ -4629,7 +4629,9 @@ namespace user
 
       }
 
-      return ::user::primitive_impl::set_finish();
+      //return 
+      
+      ::user::primitive_impl::set_finish();
 
    }
 

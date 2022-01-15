@@ -23,34 +23,40 @@ namespace datetime
    void parser::initialize_datetime_parse(::text::context* ptextcontext)
    {
 
-      auto estatus = ::object::initialize(ptextcontext);
+      //auto estatus = 
+      
+      ::object::initialize(ptextcontext);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = __construct_new(m_pscanner);
+      //estatus = 
+      
+      __construct_new(m_pscanner);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = m_pscanner->initialize_datetime_scanner(ptextcontext);
+      //estatus = 
+      
+      m_pscanner->initialize_datetime_scanner(ptextcontext);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 

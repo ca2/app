@@ -28,16 +28,18 @@ namespace bred
    void session::initialize(::object * pobject)
    {
 
-      auto estatus = ::apex::session::initialize(pobject);
+      //auto estatus = 
+      
+      ::apex::session::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 

@@ -37,16 +37,18 @@ namespace bred
    void system::initialize(::object * pobject)
    {
 
-      auto estatus = ::apex::system::initialize(pobject);
+      //auto estatus =
+      
+      ::apex::system::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 

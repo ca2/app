@@ -20,14 +20,16 @@ namespace experience
       void experience::initialize(::object * pobject)
       {
 
-         auto estatus = ::experience::experience::initialize(pobject);
+         //auto estatus = 
+         
+         ::experience::experience::initialize(pobject);
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            return estatus;
+         //   return estatus;
 
-         }
+         //}
 
 #if !defined(CUBE)
          fork([this]()
@@ -44,7 +46,7 @@ namespace experience
             });
 #endif
 
-         return ::success;
+         //return ::success;
 
       }
 

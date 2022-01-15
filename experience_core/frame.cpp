@@ -114,7 +114,7 @@ namespace experience
 
          point -= pointInflate;
 
-         bool b;
+         //bool b;
 
          {
 
@@ -128,11 +128,15 @@ namespace experience
 
             image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            b = pimage2->g()->draw(imagedrawing);
+            //b = 
+            
+            pimage2->g()->draw(imagedrawing);
 
          }
 
-         b = imaging.blur(pimage2, 2);
+         //b = 
+         
+         imaging.blur(pimage2, 2);
 
          {
 

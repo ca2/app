@@ -94,7 +94,7 @@ namespace user
       virtual void query_full_size(::draw2d::graphics_pointer& pgraphics, ::SIZE_I32 * psize) override;
 
 
-      virtual bool update_data(bool bSaveAndValidate) override;
+      virtual void update_data(bool bSaveAndValidate) override;
 
       virtual void set_font_list_type(::write_text::font_list::enum_type etype);
 

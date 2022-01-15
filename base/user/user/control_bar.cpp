@@ -241,7 +241,7 @@ namespace user
    {
       KillTimer(ID_TIMER_WAIT);
       KillTimer(ID_TIMER_CHECK);
-      VERIFY(SetTimer(nEvent,duration,nullptr));
+      SetTimer(nEvent,duration,nullptr);
    }
 
    void control_bar::_001OnTimer(::timer * ptimer)
@@ -476,10 +476,11 @@ namespace user
    }
 
 
-   bool control_bar::start_destroying_window()
+   void control_bar::start_destroying_window()
    {
 
-      return ::user::interaction::start_destroying_window();
+      //return 
+      ::user::interaction::start_destroying_window();
 
    }
 

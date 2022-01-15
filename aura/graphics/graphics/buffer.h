@@ -19,7 +19,7 @@ namespace graphics
 
 
       buffer();
-      virtual ~buffer();
+      ~buffer() override;
 
 
       virtual synchronization_object * get_draw_lock() override;

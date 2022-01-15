@@ -26,23 +26,25 @@ namespace account
    void storage_client::initialize_account_storage_client(storage * pstorage)
    {
 
-      auto estatus = ::object::initialize(pstorage);
+      //auto estatus = 
+      
+      ::object::initialize(pstorage);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       m_pstorage = pstorage;
 
-      return ::success;
+      //return ::success;
 
    }
 
 
-   void     storage_client::get(string strKey, string & strValue)
+   bool storage_client::get(string strKey, string & strValue)
    {
       
       if(m_strToken.is_empty())
@@ -52,7 +54,7 @@ namespace account
          
          ASSERT(false);
          
-         return error_failed;
+         return false;
          
       }
 
@@ -61,7 +63,7 @@ namespace account
    }
    
    
-   bool storage_client::set(string strKey, string strValue)
+   void storage_client::set(string strKey, string strValue)
    {
       
       if(m_strToken.is_empty())
@@ -71,11 +73,11 @@ namespace account
          
          //ASSERT(false);
          
-         return false;
+         return;
          
       }
       
-      return m_pstorage->set(strKey, m_strToken, strValue);
+      m_pstorage->set(strKey, m_strToken, strValue);
       
    }
 

@@ -47,7 +47,7 @@ namespace opengl
 
          FORMATTED_TRACE("last-error code: %d\n", GetLastError());
 
-         return ::error_failed;
+         throw_status(error_failed);
 
       }
 
@@ -81,7 +81,7 @@ namespace opengl
 
          FORMATTED_TRACE("last-error code: %d\n", GetLastError());
 
-         return ::error_failed;
+         throw_status(error_failed);
 
       }
 
@@ -100,7 +100,7 @@ namespace opengl
 
          FORMATTED_TRACE("last-error code: %d\n", GetLastError());
 
-         return ::error_failed;
+         throw_status(error_failed);
 
       }
 
@@ -128,7 +128,7 @@ namespace opengl
 
          ReleaseDC(window, hdc);
 
-         return ::error_failed;
+         throw_status(error_failed);
 
       }
 
@@ -143,7 +143,7 @@ namespace opengl
 
          ReleaseDC(window, hdc);
 
-         return ::error_failed;
+         throw_status(error_failed);
 
       }
 
@@ -158,7 +158,7 @@ namespace opengl
 
          ReleaseDC(window, hdc);
 
-         return ::error_failed;
+         throw_status(error_failed);
 
       }
 
@@ -173,27 +173,29 @@ namespace opengl
          
          ReleaseDC(window, hdc);
 
-         return false;
+         throw_status(error_failed);
 
       }
 
-      ::e_status estatus = popengl->defer_init_glew();
+      //::e_status estatus = 
+      
+      popengl->defer_init_glew();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         ReleaseDC(window, hdc);
+      //   ReleaseDC(window, hdc);
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       m_hwnd = window;
       m_hdc = hdc;
       m_hrc = hglrc;
       m_size = size;
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -236,7 +238,7 @@ namespace opengl
       //glMatrixMode(GL_MODELVIEW);
       //glutPostRedisplay();
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -255,11 +257,11 @@ namespace opengl
 
          FORMATTED_TRACE("last-error code: %d\n", GetLastError());
 
-         estatus = error_failed;
+         throw_status(error_failed);
 
       }
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -272,7 +274,7 @@ namespace opengl
       if (m_hrc == NULL && m_hdc == NULL && m_hwnd == NULL)
       {
 
-         return true;
+         return;
 
       }
 
@@ -285,7 +287,7 @@ namespace opengl
       m_hwnd = NULL;
       m_hdc = NULL;
 
-      return estatus;
+      //return estatus;
 
    }
 

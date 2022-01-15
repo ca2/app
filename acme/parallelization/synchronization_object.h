@@ -27,10 +27,10 @@ public:
 
 
    virtual void lock();
-   virtual void lock(const class ::wait & wait);
+   virtual bool lock(const class ::wait & wait);
 
    virtual void _lock();
-   virtual void _lock(const class ::wait & wait);
+   virtual bool _lock(const class ::wait & wait);
 
    virtual void _wait();
    virtual bool _wait(const class ::wait & wait);

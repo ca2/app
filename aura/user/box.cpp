@@ -32,14 +32,16 @@ namespace user
    void box::initialize(::object * pobject)
    {
 
-      auto estatus = interaction::initialize(pobject);
+      //auto estatus = 
+      
+      interaction::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       if (m_id.is_empty())
       {
@@ -50,7 +52,7 @@ namespace user
 
       m_databasekey.m_strDataKey = m_id;
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -202,7 +204,7 @@ namespace user
    }
 
 
-   bool box::WindowDataSaveWindowRect()
+   void box::WindowDataSaveWindowRect()
    {
 
       bool bSave = false;
@@ -213,17 +215,19 @@ namespace user
          if (layout().sketch().display() == ::e_display_none)
          {
 
-            return false;
+            return;
 
          }
 
          defer_update_display();
 
-         bSave = SaveWindowRect_(m_databasekey + window_data_key_modifier());
+         //bSave = 
+         
+         SaveWindowRect_(m_databasekey + window_data_key_modifier());
 
       }
 
-      return bSave;
+      //return bSave;
 
    }
 
@@ -269,7 +273,9 @@ namespace user
 
          auto pwindowing = puser->windowing();
 
-         bool bRestore = good_restore(nullptr, nullptr, true, e_activation_default, e_zorder_top, initial_restore_display()) >= 0;
+         ::index iDisplay = good_restore(nullptr, nullptr, true, e_activation_default, e_zorder_top, initial_restore_display());
+
+         bool bRestore = iDisplay >= 0;
 
          if (!bRestore)
          {
@@ -297,10 +303,12 @@ namespace user
 
          return false;
 
+         //return;
+
       }
 
-      try
-      {
+      //try
+      //{
 
          window_rectangle windowrectangle;
 
@@ -391,37 +399,37 @@ namespace user
 
          return true;
 
-      }
-      catch (const ::exception & pe)
-      {
+      //}
+      //catch (const ::exception & pe)
+      //{
 
-         handle_exception(pe);
+      //   handle_exception(pe);
 
-      }
-      catch (...)
-      {
+      //}
+      //catch (...)
+      //{
 
-      }
+      //}
 
-      return false;
+      //return false;
 
    }
 
 
-   bool box::SaveWindowRect_(const ::database::key & key)
+   void box::SaveWindowRect_(const ::database::key & key)
    {
 
       if (!(m_ewindowflag & e_window_flag_auto_store_window_rect))
       {
 
-         return false;
+         return;
 
       }
 
       if (layout().sketch().display() == ::e_display_none)
       {
 
-         return false;
+         return;
 
       }
 
@@ -494,16 +502,16 @@ namespace user
 
       __pointer(::aura::application) papplication = get_application();
 
-      if (!papplication->data_set(key, windowrect))
-      {
+      papplication->data_set(key, windowrect);
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
       m_windowrectangleStore = windowrect;
 
-      return true;
+      //return true;
 
    }
 

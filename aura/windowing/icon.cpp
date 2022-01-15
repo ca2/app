@@ -35,7 +35,7 @@ namespace windowing
 
       m_strTrayIconName = strTrayIconName;
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -65,14 +65,16 @@ namespace windowing
 
       string strPath = pcontext->m_papexcontext->dir().matter(strMatter);
 
-      if (!load_file(strPath))
-      {
+      load_file(strPath);
 
-         return ::error_io;
+      //if (!load_file(strPath))
+      //{
 
-      }
+      //   return ::error_io;
 
-      return ::success;
+      //}
+
+      //return ::success;
 
    }
 
@@ -82,7 +84,7 @@ namespace windowing
 
         m_strTrayIconName = strTrayIconName;
 
-        return ::success;
+        //return ::success;
 
    }
 

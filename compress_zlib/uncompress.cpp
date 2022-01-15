@@ -53,7 +53,7 @@ namespace compress_zlib
       if (inflateInit2(&zstream, 16 + MAX_WBITS) != Z_OK)
       {
 
-         return false;
+         throw_status(error_failed);
 
       }
 
@@ -99,11 +99,15 @@ namespace compress_zlib
       if (inflateEnd(&zstream) != Z_OK)
       {
 
-         return true;
+         //return true;
+
+         return;
 
       }
 
-      return true;
+      //return true;
+
+      return;
 
    }
 

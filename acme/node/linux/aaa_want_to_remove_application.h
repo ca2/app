@@ -17,7 +17,7 @@
 //
 //
 //      application(::matter * pobject);
-//      virtual ~application();
+//      ~application() override;
 //
 //      virtual HINSTANCE GetHinstance();
 //      bool _001OnDDECommand(const char * pcsz);

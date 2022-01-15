@@ -20,28 +20,19 @@ namespace account
    public:
 
 
-
-
       network_authenticator();
-      virtual ~network_authenticator();
+      ~network_authenticator() override;
 
 
-      virtual void  pre_authenticate(credentials * pcredentials) override;
+      void pre_authenticate(credentials * pcredentials) override;
 
-      virtual void  authenticate(credentials * pcredentials) override;
+      void authenticate(credentials * pcredentials) override;
 
-
-
-
-      virtual void  network_authentication(credentials * pcredentials);
+      virtual void network_authentication(credentials * pcredentials);
 
 
-      //virtual void  get_server(credentials * pcredentials);
-
-
-      //virtual void  _get_server(credentials * pcredentials);
-      virtual void  get_account_server(credentials * pcredentials);
-      virtual void  _get_account_server(credentials * pcredentials);
+      virtual void get_account_server(credentials * pcredentials);
+      virtual void _get_account_server(credentials * pcredentials);
 
 
    };

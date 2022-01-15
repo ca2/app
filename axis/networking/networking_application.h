@@ -37,7 +37,7 @@ public:
    virtual void add_handler(const ::string& strPrefix, networking_application_handler* phandler);
 
 
-   void on_html_response(::string & strHtml, const ::string& strUrl, const ::property_set& setPost) override;
+   ::e_status on_html_response(::string & strHtml, const ::string& strUrl, const ::property_set& setPost) override;
 
 
 };

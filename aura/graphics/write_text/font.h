@@ -122,9 +122,9 @@ namespace write_text
 
       virtual double get_pixel_font_height(::draw2d::graphics * pgraphics);
 
-      virtual bool get_text_metric(::draw2d::graphics * pgraphics, text_metric & tm);
+      virtual void get_text_metric(::draw2d::graphics * pgraphics, text_metric & tm);
 
-      virtual bool _get_text_metric(::draw2d::graphics * pgraphics, text_metric & tm);
+      virtual void _get_text_metric(::draw2d::graphics * pgraphics, text_metric & tm);
 
       virtual double get_ascent(::draw2d::graphics * pgraphics);
 

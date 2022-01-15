@@ -40,11 +40,11 @@ namespace user
       //enum AdjustType { adjustBorder = 0,adjustOutside = 1 };
       //virtual void CalcWindowRect(RECTANGLE_I32 * pClientRect,::u32 nAdjustType = adjustBorder) override;
 
-      bool start_window_visual() override;
+      void start_window_visual() override;
 
       //virtual bool is_active() const override;
 
-      bool start_destroying_window() override;
+      void start_destroying_window() override;
 
       void destroy_window() override;
 
@@ -77,7 +77,7 @@ namespace user
       //virtual bool create_interaction(::user::interaction * pinteraction, ::u32 uExStyle, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::primitive * puiParent, ::create * pcreate = nullptr) override;
 
       
-      bool create_child(::user::interaction * pinteraction, ::user::primitive * pprimitiveParent) override;
+      void create_child(::user::interaction * pinteraction, ::user::primitive * pprimitiveParent) override;
 
 
       //virtual bool create_window_ex(::user::interaction * pinteraction, __pointer(::user::system) pcs, ::user::primitive * puiParent, id id) override;
@@ -105,9 +105,9 @@ namespace user
 
       //virtual bool post_message(const ::id & id,wparam wparam,lparam lparam) override;
 
-      virtual void set_viewport_org(::draw2d::graphics_pointer & pgraphics) override;
+      void set_viewport_org(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual bool RedrawWindow(const ::rectangle_i32& rectangleUpdate,::draw2d::region* prgnUpdate,::u32 flags) override;
+      void RedrawWindow(const ::rectangle_i32& rectangleUpdate,::draw2d::region* prgnUpdate,::u32 flags) override;
 
       ::user::primitive * set_owner(::user::primitive * pinteraction) override;
       virtual ::user::interaction * get_owner() const override;

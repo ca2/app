@@ -169,9 +169,13 @@ namespace acme
          if(m_plibrary == nullptr)
          {
 
-            ERROR("acme::library::open error: " << pszPath);
+            string strMessage;
 
-            throw_status(error_resource);
+            strMessage.format("acme::library::open error: %s", pszPath);
+
+            ERROR(strMessage);
+
+            throw_status(error_resource, strMessage);
 
             //return false;
 

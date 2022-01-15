@@ -24,32 +24,36 @@ namespace aura
    void context::initialize_context()
    {
 
-      auto estatus = ::apex::context::initialize_context();
+      //auto estatus =
+      
+      ::apex::context::initialize_context();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       if (m_psystem->m_papexsystem && m_psystem->m_papexsystem->m_bImaging)
       {
 
-         estatus = __compose(m_pcontextimage);
+         //estatus = 
+         
+         __compose(m_pcontextimage);
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
             WARNING("No contextimage!!");
 
-            return estatus;
+            //return estatus;
 
-         }
+         //}
 
       }
 
-      return ::success;
+      //return ::success;
 
    }
 

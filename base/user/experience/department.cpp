@@ -261,37 +261,41 @@ namespace base
 
       INFORMATION("start");
 
-      auto estatus = __compose_new(m_pexperience);
+      //auto estatus = 
+      
+      __compose_new(m_pexperience);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         //m_result.add(estatus);
+      //   //m_result.add(estatus);
 
-         ERROR(".1");
+      //   ERROR(".1");
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       //m_pexperience->construct(this);
 
-      estatus = m_pexperience->init();
+      //estatus = 
+      
+      m_pexperience->init();
 
-      if(!estatus)
-      {
+      //if(!estatus)
+      //{
 
-         //m_result.add(estatus);
+      //   //m_result.add(estatus);
 
-         ERROR(".2");
+      //   ERROR(".2");
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       INFORMATION("ok");
 
-      return ::success;
+      //return ::success;
 
    }
 

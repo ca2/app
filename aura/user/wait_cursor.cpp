@@ -6,14 +6,16 @@
 wait_cursor::wait_cursor(::object * pobject)
 {
 
-   auto estatus = initialize(pobject);
+   //auto estatus =
+   
+   initialize(pobject);
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      __throw(estatus);
+   //   __throw(estatus);
 
-   }
+   //}
 
    auto pnode = m_psystem->m_pauranode;
 

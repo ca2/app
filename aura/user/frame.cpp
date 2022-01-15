@@ -125,7 +125,7 @@ namespace user
       m_straMenuName.add(strText);
       m_straMenuId.add(strId);
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -197,7 +197,7 @@ namespace user
    void frame::on_create_bars()
    {
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -271,23 +271,27 @@ namespace user
 
       }
 
-      auto estatus = __compose(m_pdrawicon);
+      ///auto estatus = 
+      
+      __compose(m_pdrawicon);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return nullptr;
+      //   return nullptr;
 
-      }
+      //}
 
-      estatus = m_pdrawicon->initialize_with_windowing_icon(pwindowingicon);
+      //estatus =
+      
+      m_pdrawicon->initialize_with_windowing_icon(pwindowingicon);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return nullptr;
+      //   return nullptr;
 
-      }
+      //}
 
       return m_pdrawicon;
 
@@ -475,7 +479,7 @@ namespace user
    void frame::display_previous_restore()
    {
 
-      return ::success;
+      //return ::success;
 
    }
 

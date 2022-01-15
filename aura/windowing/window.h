@@ -142,8 +142,6 @@ namespace windowing
       virtual void activate_top_parent();
 
 
-
-
       void message_handler(::message::message* pusermessage) override;
 
 

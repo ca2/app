@@ -6,13 +6,13 @@ namespace database
 
 
    template < typename TYPE >
-   inline bool client::binary_set(const key & key, const TYPE & t)
+   inline void client::binary_set(const key & key, const TYPE & t)
    {
 
       if (!::is_set(m_pdataserver))
       {
 
-         return false;
+         throw_status(error_null_pointer);
 
       }
 
@@ -20,21 +20,21 @@ namespace database
 
       stream << t;
 
-      if (stream.fail())
-      {
+      //if (stream.fail())
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
+      m_pdataserver->_data_server_save(this, key, stream->memory());
+      //if (!m_pdataserver->_data_server_save(this, key, stream->memory()))
+      //{
 
-      if (!m_pdataserver->_data_server_save(this, key, stream->memory()))
-      {
+      //   return false;
 
-         return false;
+      //}
 
-      }
-
-      return true;
+      //return true;
 
    }
 
@@ -46,27 +46,32 @@ namespace database
       if (::is_null(m_pdataserver))
       {
 
-         return false;
+         throw_status(error_null_pointer);
 
       }
 
       memory_stream stream;
-
       if (!m_pdataserver->_data_server_load(this, key, stream->memory()))
       {
 
          return false;
 
       }
+      ////if (!m_pdataserver->_data_server_load(this, key, stream->memory()))
+      //{
+
+      //   return false;
+
+      //}
 
       stream >> t;
 
-      if (stream.fail())
-      {
+      //if (stream.fail())
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
       return true;
 

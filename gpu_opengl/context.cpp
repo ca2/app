@@ -43,7 +43,8 @@ namespace opengl
       if (m_VAO != 0)
       {
 
-         return ::success;
+         //return ::success;
+         return;
 
       }
       //glGenBuffers(1, &VAO);
@@ -90,7 +91,7 @@ namespace opengl
       //glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
       //glEnableVertexAttribArray(1);
 
-      return ::success;
+      //return ::success;
    }
 
 
@@ -117,7 +118,7 @@ namespace opengl
       //int vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
       //glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -137,7 +138,7 @@ namespace opengl
 
       glDrawArrays(GL_TRIANGLES, 0, 6);
 
-      return ::success;
+      //return ::success;
 
    }
 

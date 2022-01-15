@@ -28,18 +28,20 @@ namespace experience
    void size_manager::initialize_size_manager(::experience::frame_window* pframewindow)
    {
 
-      auto estatus = ::object::initialize(pframewindow);
+      //auto estatus = 
+      
+      ::object::initialize(pframewindow);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       m_pframewindow = pframewindow;
 
-      return estatus;
+      //return estatus;
 
    }
 

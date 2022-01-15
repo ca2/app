@@ -14,7 +14,7 @@ namespace user
    public:
 
 
-      virtual __pointer(::extended::sequence < ::conversation >) show(::user::interaction * puserinteraction, const string & strMessage, const string & strTitle, const ::e_message_box & emessagebox);
+      virtual __pointer(::sequence < ::conversation >) show(::user::interaction * puserinteraction, const string & strMessage, const string & strTitle, const ::e_message_box & emessagebox);
       virtual void add_button(const ::string & strTitle, enum_dialog_result edialogresult) = 0;
 
 
@@ -100,7 +100,7 @@ namespace user
 
 
       // message_box_interface
-      __pointer(::extended::sequence < ::conversation >) show(::user::interaction * puserinteraction, const string & strMessage, const string & strTitle, const ::e_message_box & emessagebox) override;
+      __pointer(::sequence < ::conversation >) show(::user::interaction * puserinteraction, const string & strMessage, const string & strTitle, const ::e_message_box & emessagebox) override;
       void add_button(const ::string & strTitle, enum_dialog_result edialogresult) override;
 
 

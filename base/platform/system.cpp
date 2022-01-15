@@ -109,18 +109,20 @@ namespace base
    void system::initialize(::object * pobject)
    {
 
-      auto estatus = ::axis::system::initialize(pobject);
+      //auto estatus = 
+      
+      ::axis::system::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       base_factory(::factory::get_factory());
 
-      return estatus;
+      //return estatus;
 
    }
 

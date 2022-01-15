@@ -30,7 +30,7 @@ namespace user
       void _001OnTimer(::timer * ptimer) override;
 
 
-      bool create_message_queue(const ::string & lpszName) override;
+      void create_message_queue(const ::string & lpszName) override;
 
 
       ::user::interaction * get_host_window() const override;
@@ -39,7 +39,7 @@ namespace user
 
       ::user::form * get_parent_form() override;
 
-      bool enable_window(bool bEnable = true) override;
+      void enable_window(bool bEnable = true) override;
 
       void PreSubClassWindow() override;
 
@@ -61,10 +61,10 @@ namespace user
       enum_control_type get_control_type() const override;
 
 
-      bool add_prodevian(::matter * pmatter) override;
-      bool erase_prodevian(::matter * pmatter) override;
+      void add_prodevian(::matter * pmatter) override;
+      void erase_prodevian(::matter * pmatter) override;
 
-      bool display(::e_display edisplay = e_display_default, ::e_activation eactivation = e_activation_default) override;
+      void display(::e_display edisplay = e_display_default, ::e_activation eactivation = e_activation_default) override;
 
 
       string get_title() override;
@@ -134,7 +134,7 @@ namespace user
 
       //virtual void _task_transparent_mouse_event();
 
-      bool CheckAutoCenter() override;
+      //void CheckAutoCenter() override;
 
       void track_mouse_hover() override;
       void track_mouse_leave() override;
@@ -150,7 +150,7 @@ namespace user
 
 
       // Dialog data support
-      bool update_data(bool bSaveAndValidate = true) override;
+      void update_data(bool bSaveAndValidate = true) override;
 
 
       //virtual ::user::primitive * get_keyboard_focus();
@@ -208,7 +208,7 @@ namespace user
 
 
 
-      bool subclass_window(oswindow posdata) override;
+      void subclass_window(oswindow posdata) override;
       oswindow unsubclass_window() override;
 
       string get_class_name() override;
@@ -228,7 +228,7 @@ namespace user
       //virtual bool IsTopParentActive();
       void ActivateTopParent() override;
 
-      bool start_destroying_window() override;
+      void start_destroying_window() override;
 
       void destroy_window() override;
 
@@ -252,7 +252,7 @@ namespace user
 
 
       virtual lresult send(::message::message * pmessage);
-      virtual bool post(::message::message * pmessage);
+      virtual void post(::message::message * pmessage);
 
       lresult send_message(const ::id & id, wparam wparam = 0, lparam lparam = 0, const ::point_i32& point = nullptr) override;
 
@@ -266,9 +266,9 @@ namespace user
 
 #endif
 
-      bool post_message(const ::id & id, wparam wparam = 0,lparam lparam = 0)override;
+      void post_message(const ::id & id, wparam wparam = 0,lparam lparam = 0)override;
 
-      bool post_simple_command(const enum_simple_command & ecommand,lparam lParam = 0) override;
+      void post_simple_command(const enum_simple_command & ecommand,lparam lParam = 0) override;
 
       //virtual bool user_post(const ::id& id, wparam wparam = 0, lparam lparam = 0);
 
@@ -279,8 +279,8 @@ namespace user
       //virtual void SetWindowDisplayChanged();
 
       // timer Functions
-      bool SetTimer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer, bool bPeriodic = true, void* pdata = nullptr) override;
-      bool KillTimer(uptr uEvent)override;
+      void SetTimer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer, bool bPeriodic = true, void* pdata = nullptr) override;
+      void KillTimer(uptr uEvent)override;
 
 
 
@@ -574,7 +574,7 @@ namespace user
       void set_need_load_form_data() override;
       void set_need_save_form_data() override;
       void post_redraw(bool bAscendants = true) override;
-      bool hide() override;
+      void hide() override;
 
       // keyboard focus
       //virtual bool on_keyboard_focus(::user::primitive * pfocus);

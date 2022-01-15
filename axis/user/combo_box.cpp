@@ -829,14 +829,14 @@ namespace user
    void combo_box::set_current_item(const ::item & item, const ::action_context & actioncontext)
    {
 
-      auto estatus = ::user::plain_edit::set_current_item(item, actioncontext);
-
-      if(estatus == ::success_none)
+      if (m_itemCurrent == item)
       {
 
-         return estatus;
+         return;
 
       }
+      
+      ::user::plain_edit::set_current_item(item, actioncontext);
 
       if(m_plistbox)
       {
@@ -848,7 +848,9 @@ namespace user
       if (!is_window())
       {
 
-         return ::success;
+         //return ::success;
+
+         return;
 
       }
 
@@ -858,7 +860,7 @@ namespace user
 
       _001SetText(strItem, actioncontext);
 
-      return ::success;
+      //return ::success;
 
    }
 

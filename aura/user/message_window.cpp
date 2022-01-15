@@ -23,7 +23,7 @@ namespace user
    }
 
 
-   bool message_window::create_message_window(const ::string & pszName,::user::message_window_listener * plistener)
+   void message_window::create_message_window(const ::string & pszName,::user::message_window_listener * plistener)
    {
 
       m_plistener = plistener;
@@ -32,12 +32,14 @@ namespace user
 
       m_strWindowText = pszName;
 
-      if (!create_host())
-      {
+      create_host();
 
-         return false;
+      //if (!create_host())
+      //{
 
-      }
+      //   return false;
+
+      //}
 
       if (m_plistener)
       {
@@ -46,7 +48,7 @@ namespace user
 
       }
 
-      return true;
+      //return true;
 
 
 
@@ -91,24 +93,26 @@ namespace user
    }
 
 
-   bool message_window::message_window_set_timer(uptr uId, const ::duration & duration)
+   void message_window::message_window_set_timer(uptr uId, const ::duration & duration)
    {
 
-      return SetTimer(uId, duration, nullptr) != false;
+      SetTimer(uId, duration, nullptr);
 
    }
 
-   bool message_window::message_window_del_timer(uptr uId)
+
+   void message_window::message_window_del_timer(uptr uId)
    {
 
-      return KillTimer(uId) != false;
+      KillTimer(uId);
 
    }
 
-   bool message_window::message_window_post_message(const ::id & id,wparam wparam,lparam lparam)
+
+   void message_window::message_window_post_message(const ::id & id,wparam wparam,lparam lparam)
    {
 
-      return post_message(id, wparam, lparam);
+      post_message(id, wparam, lparam);
 
    }
 
@@ -121,10 +125,10 @@ namespace user
    }
 
 
-   bool message_window::message_window_destroy()
+   void message_window::message_window_destroy()
    {
 
-      return start_destroying_window() != false;
+      start_destroying_window();
 
    }
 

@@ -87,16 +87,18 @@ namespace user
    void form::initialize(::object * pobject)
    {
 
-      auto estatus = ::user::interaction::initialize(pobject);
+      //auto estatus =
+      
+      ::user::interaction::initialize(pobject);
 
-      if (!estatus)
+      /*if (!estatus)
       {
 
          return estatus;
 
       }
 
-      return estatus;
+      return estatus;*/
 
    }
 
@@ -127,16 +129,18 @@ namespace user
    void form::set_form_callback(::user::form_callback* pcallback)
    {
 
-      auto estatus = __refer(m_pcallback, pcallback);
+      //auto estatus = 
+      
+      __refer(m_pcallback, pcallback);
 
-      if (!estatus)
+ /*     if (!estatus)
       {
 
          return estatus;
 
       }
 
-      return estatus;
+      return estatus;*/
 
    }
 
@@ -144,16 +148,17 @@ namespace user
    void form::set_parent_form(::user::form* pform)
    {
 
-      auto estatus = __refer(m_pformParent, pform);
+      //auto estatus =
+      __refer(m_pformParent, pform);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 

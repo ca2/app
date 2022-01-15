@@ -24,16 +24,17 @@ namespace compress_bzip2
    void uncompress::initialize(::object* pobject)
    {
 
-      auto estatus = ::object::initialize(pobject);
+      //auto estatus = 
+      ::object::initialize(pobject);
 
-      if (!estatus)
+    /*  if (!estatus)
       {
 
          return estatus;
 
       }
 
-      return estatus;
+      return estatus;*/
 
    }
 
@@ -64,7 +65,7 @@ namespace compress_bzip2
       if (BZ2_bzDecompressInit(&zstream, 0, 0) != BZ_OK)
       {
          
-         return error_failed;
+         throw_status(error_failed);
 
       }
 
@@ -123,7 +124,12 @@ namespace compress_bzip2
 
       }
 
-      return done ? ::success : error_failed;
+      if (!done)
+      {
+
+         throw_status(error_failed);
+
+      }
 
    }
 

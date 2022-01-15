@@ -38,7 +38,7 @@ namespace axis
    void style::initialize_style()
    {
 
-      return ::success;
+      //return ::success;
 
    }
 

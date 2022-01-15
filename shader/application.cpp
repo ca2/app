@@ -37,14 +37,16 @@ namespace app_shader
 
       ::factory::add_factory_item <::app_shader::main_window >();
 
-      if (!::aura::application::init_instance())
-      {
+      ::aura::application::init_instance();
 
-         return false;
+      //if (!)
+      //{
 
-      }
+      //   return false;
 
-      return true;
+      //}
+
+      //return true;
 
    }
 

@@ -193,13 +193,13 @@ inline void __exchange(STREAM & s, map < KEY, ARG_KEY, VALUE, ARG_VALUE, PAIR > 
 
          s << pair.element1();
 
-         if (s.fail())
-            break;
+         //if (s.fail())
+           // break;
 
          s << pair.element2();
 
-         if (s.fail())
-            break;
+         //if (s.fail())
+           // break;
 
       }
 
@@ -218,11 +218,11 @@ inline void __exchange(STREAM & s, map < KEY, ARG_KEY, VALUE, ARG_VALUE, PAIR > 
          typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, PAIR >::BASE_KEY element1;
          //typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, PAIR >::BASE_VALUE element2;
          s >> element1;
-         if (s.fail())
-            break;
+         //if (s.fail())
+           // break;
          s >> m[element1];
-         if (s.fail())
-            break;
+         //if (s.fail())
+           // break;
          //m.set_at(element1, element2);
       }
 
@@ -248,7 +248,7 @@ inline stream & operator <<(stream & s, const __pointer_array(TYPE) & a)
       if (matter.is_null())
       {
 
-         s.set_fail_bit();
+         throw_status(error_io);
 
          return s;
 
@@ -256,12 +256,12 @@ inline stream & operator <<(stream & s, const __pointer_array(TYPE) & a)
 
       __save_object(s, matter);
 
-      if (s.fail())
-      {
+      //if (s.fail())
+      //{
 
-         s.set_fail_bit();
+      //   s.set_fail_bit();
 
-      }
+      //}
 
    }
 
@@ -281,31 +281,27 @@ inline stream & operator >>(stream & s, __pointer_array(TYPE) & a)
    if (c < 0)
    {
 
-      s.set_fail_bit();
+      throw_status(error_io);
 
    }
-   else
+
+   index i = 0;
+
+   for (; i < c; i++)
    {
 
-      index i = 0;
+      auto pmatter = __load_object < TYPE >(s);
 
-      for (; i < c; i++)
+      if (!pmatter)
       {
 
-         auto pmatter = __load_object < TYPE >(s);
+         throw_status(error_io);
 
-         if (s.fail() || !pmatter)
-         {
-
-            s.set_fail_bit();
-
-            break;
-
-         }
-
-         a.add(pmatter);
+         break;
 
       }
+
+      a.add(pmatter);
 
    }
 
@@ -528,7 +524,9 @@ __pointer(BASE_TYPE) __load_object(stream & stream)
    if (strText.is_empty())
    {
 
-      stream.setstate(::file::failbit);
+      //stream.setstate(::file::failbit);
+
+      throw_status(error_io);
 
       return nullptr;
 
@@ -548,7 +546,7 @@ __pointer(BASE_TYPE) __load_object(stream & stream)
    if (!p)
    {
 
-      stream.setstate(::file::failbit);
+      throw_status(error_io);
 
       return nullptr;
 
@@ -682,24 +680,24 @@ inline void __exchange_save_array(::stream & stream, ARRAY & array)
 
    stream.exchange(e_property_count, c);
 
-   if (stream.fail())
-   {
+   //if (stream.fail())
+   //{
 
-      return;
+   //   return;
 
-   }
+   //}
 
    for (index i = 0; i < c; i++)
    {
 
       stream.stream_exchange(i, __typed(array.element_at(i)));
 
-      if (stream.fail())
-      {
+      //if (stream.fail())
+      //{
 
-         return;
+      //   return;
 
-      }
+      //}
 
    }
 
@@ -714,12 +712,12 @@ inline void __exchange_load_array(::stream & stream, ARRAY & array)
 
    stream.exchange(e_property_count, c);
 
-   if (stream.fail())
-   {
+   //if (stream.fail())
+   //{
 
-      return;
+   //   return;
 
-   }
+   //}
 
    array.set_size(c);
 
@@ -730,14 +728,14 @@ inline void __exchange_load_array(::stream & stream, ARRAY & array)
 
       stream.stream_exchange(i, t);
 
-      if (stream.fail())
-      {
+      //if (stream.fail())
+      //{
 
-         array.set_size(i);
+      //   array.set_size(i);
 
-         return;
+      //   return;
 
-      }
+      //}
 
    }
 
@@ -1153,7 +1151,7 @@ void var_stream::write_only(TYPE & t)
   if (is_loading())
   {
 
-     set_fail_bit();
+     throw_status(error_io);
 
   }
   else

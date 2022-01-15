@@ -43,7 +43,7 @@ namespace axis
 
 
       application();
-      virtual ~application();
+      ~application() override;
 
 
       virtual void     initialize(::object * pobject) override;

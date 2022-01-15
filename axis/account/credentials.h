@@ -16,17 +16,17 @@ namespace account
    public:
 
 
-      __pointer(user)                                  m_puser;
+      __pointer(user)                           m_puser;
       interactive *                             m_pinteractive;
       bool                                      m_bInteractive;
-      void                                   m_estatusHttp;
+      ::e_status                                m_estatusHttp;
       string                                    m_strTitle;
-      ::rectangle_i32                                    m_rectangleDialog;
+      ::rectangle_i32                           m_rectangleDialog;
       string                                    m_strPassword;
       string                                    m_strPasshash;
       strsize                                   m_iPasswordOriginalLength;
-      void                                      m_estatus;
-      //bool                                      m_bInteractive;
+      ::e_status                                m_estatus;
+      //bool                                    m_bInteractive;
 
       string                                    m_strResponse;
 
@@ -48,20 +48,20 @@ namespace account
       //credentials(user * puser, storage * pstorage);
       //credentials(const credentials & credentials);
       credentials();
-      virtual ~credentials();
+      ~credentials() override;
 
       virtual void initialize_account_credentials(user * puser, storage * pstorage);
       virtual void initialize_account_credentials(const credentials & credentials);
 
       virtual bool is_ok();
-      virtual void  get_credentials();
+      virtual void get_credentials();
 
-      virtual void  interactive_credentials();
+      virtual void interactive_credentials();
 
 
       /// input
       /// m_strToken
-      virtual void  load_from_storage(::count cTry = 8);
+      virtual ::e_status load_from_storage(::count cTry = 8);
 
       /// input
       /// m_strToken

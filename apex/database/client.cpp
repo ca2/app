@@ -141,13 +141,13 @@ namespace database
    //}
 
 
-   bool client::_data_set(const key & key, const ::payload & payload, ::subject * psubject)
+   void client::_data_set(const key & key, const ::payload & payload, ::subject * psubject)
    {
 
       if(::is_null(m_pdataserver))
       {
 
-         return false;
+         throw_status(error_null_pointer);
 
       }
 
@@ -155,18 +155,18 @@ namespace database
 
       os << payload;
 
-      return m_pdataserver->_data_server_save(this, key, os->memory(), psubject);
+      m_pdataserver->_data_server_save(this, key, os->memory(), psubject);
 
    }
 
 
-   bool client::_data_set(const selection & selection, const ::payload & payload, ::subject * psubject)
+   void client::_data_set(const selection & selection, const ::payload & payload, ::subject * psubject)
    {
 
       if (::is_null(m_pdataserver))
       {
 
-         return false;
+         throw_status(error_null_pointer);
 
       }
 
@@ -183,16 +183,16 @@ namespace database
 
          auto & item = selection.get_item(iItem);
 
-         if (!m_pdataserver->_data_server_save(this, item.m_datakey, os->memory(), psubject))
-         {
+         m_pdataserver->_data_server_save(this, item.m_datakey, os->memory(), psubject);
+         //{
 
-            bOk = false;
+         //   bOk = false;
 
-         }
+         //}
 
       }
 
-      return bOk;
+      //return bOk;
 
    }
 
@@ -230,12 +230,12 @@ namespace database
 
             is >> payload;
 
-            if (is.fail())
-            {
+            //if (is.fail())
+            //{
 
-               return false;
+            //   return false;
 
-            }
+            //}
 
          }
 
@@ -254,12 +254,15 @@ namespace database
       if(m_pdataserver != nullptr)
       {
 
-         if (!m_pdataserver->data_pulse_change(this, key, psubject))
-         {
 
-            return false;
+         m_pdataserver->data_pulse_change(this, key, psubject);
 
-         }
+         //if (!m_pdataserver->data_pulse_change(this, key, psubject))
+         //{
+
+         //   return false;
+
+         //}
 
          return true;
 
@@ -415,10 +418,10 @@ namespace database
    }
 
 
-   bool client::data_on_before_change(client* pclient, const key& id, ::payload& payload, ::subject * psubject)
+   void client::data_on_before_change(client* pclient, const key& id, ::payload& payload, ::subject * psubject)
    {
 
-      return true;
+      //return true;
 
    }
 

@@ -19,7 +19,7 @@ namespace hellobase
 
 
       application(::object * pobject);
-      virtual ~application();
+      ~application() override;
 
       virtual string preferred_experience() override;
       virtual void init_instance() override;

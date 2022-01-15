@@ -22,16 +22,7 @@ namespace gpu
    void approach::initialize(::object * pobject)
    {
 
-      ::e_status estatus = ::object::initialize(pobject);
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      return estatus;
+      ::object::initialize(pobject);
 
    }
 
@@ -47,7 +38,7 @@ namespace gpu
    void approach::defer_init_glew()
    {
 
-      return ::success;
+      //return ::success;
 
    }
 

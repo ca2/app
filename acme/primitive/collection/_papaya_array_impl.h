@@ -19,11 +19,11 @@ namespace papaya
 
          s >> c;
 
-         if (!s.fail())
-         {
+         //if (!s.fail())
+         /*{
 
             try
-            {
+            {*/
 
                for (::index i = 0; i < c; i++)
                {
@@ -36,31 +36,31 @@ namespace papaya
 
                   cSerialized++;
 
-                  if (s.fail())
-                  {
+                  //if (s.fail())
+                  //{
 
-                     break;
+                  //   break;
 
-                  }
+                  //}
 
                }
 
-            }
-            catch (...)
-            {
+            //}
+            //catch (...)
+            //{
 
-               s.set_fail_bit();
+            //   //s.set_fail_bit();
 
-            }
+            //}
 
-            if (s.fail())
+            //if (s.fail())
             {
 
                a.set_size(cSerialized);
 
             }
 
-         }
+         //}
 
       }
 
@@ -73,12 +73,12 @@ namespace papaya
 
          stream.exchange(::id(), c);
 
-         if (stream.fail())
-         {
+         //if (stream.fail())
+         //{
 
-            return stream;
+         //   return stream;
 
-         }
+         //}
 
          for (index i = 0; i < c; i++)
          {
@@ -94,12 +94,12 @@ namespace papaya
 
             pitem->exchange(stream);
 
-            if (stream.fail())
-            {
+            //if (stream.fail())
+            //{
 
-               break;
+            //   break;
 
-            }
+            //}
 
          }
 
@@ -116,12 +116,12 @@ namespace papaya
 
          stream.exchange(::id(), c);
 
-         if (stream.fail())
-         {
+         //if (stream.fail())
+         //{
 
-            return stream;
+         //   return stream;
 
-         }
+         //}
 
          for(index i = 0; i < c; i++)
          {
@@ -139,12 +139,12 @@ namespace papaya
 
             pitem->exchange(stream);
 
-            if (stream.fail())
-            {
+            //if (stream.fail())
+            //{
 
-               break;
+            //   break;
 
-            }
+            //}
 
          }
 
@@ -161,12 +161,12 @@ namespace papaya
 
          stream << c;
 
-         if (stream.fail())
-         {
+         //if (stream.fail())
+         //{
 
-            return stream;
+         //   return stream;
 
-         }
+         //}
 
          for (auto & item : a)
          {
@@ -279,12 +279,12 @@ namespace papaya
 
          stream >> c;
 
-         if (stream.fail())
-         {
+         //if (stream.fail())
+         //{
 
-            return stream;
+         //   return stream;
 
-         }
+         //}
 
          while (c > 0)
          {
@@ -293,12 +293,12 @@ namespace papaya
 
             stream >> *p;
 
-            if (stream.fail())
+  /*          if (stream.fail())
             {
 
                break;
 
-            }
+            }*/
 
             a.add(p);
 

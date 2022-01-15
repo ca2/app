@@ -17,25 +17,29 @@ namespace base
    void application::initialize(::object * pobject)
    {
 
-      auto estatus = ::axis::application::initialize(pobject);
+      //auto estatus = 
+      
+      ::axis::application::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = ::user::document_manager_container::initialize(pobject);
+      //estatus =
+      
+      ::user::document_manager_container::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -87,7 +91,7 @@ namespace base
    void application::create_impact_system()
    {
 
-      return ::success;
+      //return ::success;
 
    }
 

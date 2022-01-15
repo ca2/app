@@ -30,7 +30,7 @@
 //      
 //      
 //      application(::object * pobject);
-//      virtual ~application();
+//      ~application() override;
 //      
 //      virtual HINSTANCE GetHinstance();
 //      bool _001OnDDECommand(const ::string & pcsz);

@@ -35,20 +35,22 @@ namespace simpledb
    void storage::initialize_simpledb_storage(server * pserver)
    {
 
-      auto estatus = ::object::initialize(pserver);
+      //auto estatus = 
+      
+      ::object::initialize(pserver);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       m_pserver = pserver;
 
       m_strUser = pserver->m_strUser;
 
-      return estatus;
+      //return estatus;
 
    }
 

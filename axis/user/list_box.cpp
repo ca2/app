@@ -1244,14 +1244,15 @@ namespace user
 
             place(::rectangle_i32(rectangleList).inflate(m_iBorder));
 
-            if (!create_interaction(i >= 0 ? nullptr : m_pcombo->get_parent()))
-            {
+            create_interaction(i >= 0 ? nullptr : m_pcombo->get_parent());
+            //if (!)
+            //{
 
-               m_pcombo->m_plistbox.release();
+            //   m_pcombo->m_plistbox.release();
 
-               __throw(error_resource);
+            //   __throw(error_resource);
 
-            }
+            //}
 
             set_owner(m_pcombo);
 
@@ -1284,31 +1285,35 @@ namespace user
       if(m_pcombo)
       {
 
-         auto estatus = m_pcombo->set_current_item(item, context);
+         //auto estatus = 
+         
+         m_pcombo->set_current_item(item, context);
 
-         if(!estatus)
-         {
+         //if(!estatus)
+         //{
 
-            return estatus;
+         //   return estatus;
 
-         }
+         //}
 
-         return estatus;
+         //return estatus;
 
       }
       else
       {
 
-         auto estatus = ::user::scroll_base::set_current_item(item, context);
+         //auto estatus =
+         
+         ::user::scroll_base::set_current_item(item, context);
 
-         if(!estatus)
-         {
+         //if(!estatus)
+         //{
 
-            return estatus;
+         //   return estatus;
 
-         }
+         //}
 
-         return estatus;
+         //return estatus;
 
       }
 

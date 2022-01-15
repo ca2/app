@@ -133,27 +133,31 @@ namespace axis
    void system::initialize(::object * pobject)
    {
 
-      auto estatus = ::aura::system::initialize(pobject);
+      //auto estatus = 
+      
+      ::aura::system::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = __compose_new(m_pemaildepartment);
+      //estatus = 
+      
+      __compose_new(m_pemaildepartment);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       axis_factory(::factory::get_factory());
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -183,14 +187,16 @@ namespace axis
    void system::process_init()
    {
 
-      auto estatus = ::aura::system::process_init();
+      //auto estatus = 
+      
+      ::aura::system::process_init();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       //auto & factorymapsquare = *m_pfactorysquare;
 
@@ -214,7 +220,7 @@ namespace axis
 
       ::factory::add_factory_item < ::database::field >();
 
-      return true;
+      //return true;
 
    }
 
@@ -227,16 +233,18 @@ namespace axis
    void system::init()
    {
 
-      auto estatus = ::aura::system::init();
+      //auto estatus =
+      
+      ::aura::system::init();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -244,16 +252,18 @@ namespace axis
    void system::init1()
    {
 
-      auto estatus = ::aura::system::init1();
+      //auto estatus = 
+      
+      ::aura::system::init1();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -261,16 +271,18 @@ namespace axis
    void system::post_creation_requests()
    {
 
-      auto estatus = ::aura::system::post_creation_requests();
+      //auto estatus =
+      
+      ::aura::system::post_creation_requests();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -278,16 +290,18 @@ namespace axis
    void system::inline_init()
    {
 
-      ::e_status estatus = ::aura::system::inline_init();
+      //::e_status estatus = 
+      
+      ::aura::system::inline_init();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -295,7 +309,9 @@ namespace axis
    void system::inline_term()
    {
 
-      ::e_status estatus = ::aura::system::inline_term();
+      //::e_status estatus =
+      
+      ::aura::system::inline_term();
 
       //if (!estatus)
       //{
@@ -306,7 +322,7 @@ namespace axis
 
       //m_pfactorysquare.release();
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -314,16 +330,18 @@ namespace axis
    void system::init_system()
    {
 
-      auto estatus = aura::system::init_system();
+      //auto estatus =
+      
+      aura::system::init_system();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -527,17 +545,19 @@ namespace axis
    void system::init2()
    {
 
-      auto estatus = ::aura::system::init2();
+      //auto estatus = 
+      
+      ::aura::system::init2();
 
-      if(!estatus)
-      {
-       
-         return estatus;
+      //if(!estatus)
+      //{
+      // 
+      //   return estatus;
 
-      }
+      //}
 
 
-      return estatus;
+      //return estatus;
 
    }
 

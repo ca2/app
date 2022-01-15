@@ -3165,6 +3165,8 @@ class memory_base;
 
 
 inline void throw_status(const ::e_status& estatus, const char * pszMessage = nullptr);
+inline void throw_status(const ::enum_status& estatus, const char* pszMessage = nullptr);
+
 
 
 //CLASS_DECL_ACME ::e_status _003CountStatus(::count countSuccess, ::count countFailed);

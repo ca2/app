@@ -178,57 +178,57 @@ struct CLASS_DECL_ACME stream_meta
 
 
 
-   bool bad() const
-   {
-      return (m_iostate & ::file::badbit) != 0;
-   }
+   //bool bad() const
+   //{
+   //   return (m_iostate & ::file::badbit) != 0;
+   //}
 
-   bool fail() const
-   {
-      return ((int)m_iostate & ((int) ::file::badbit | (int) ::file::failbit)) != 0;
-   }
+   //bool fail() const
+   //{
+   //   return ((int)m_iostate & ((int) ::file::badbit | (int) ::file::failbit)) != 0;
+   //}
 
-   bool eof() const
-   {
-      return (m_iostate & ::file::eofbit) != 0;
-   }
+   //bool eof() const
+   //{
+   //   return (m_iostate & ::file::eofbit) != 0;
+   //}
 
-   bool good() const
-   {
-      return m_iostate == ::file::goodbit;
-   }
+   //bool good() const
+   //{
+   //   return m_iostate == ::file::goodbit;
+   //}
 
-   void setstate(int state)
-   {
-      clear((::file::e_iostate) (rdstate() | state));
-   }
+   //void setstate(int state)
+   //{
+   //   clear((::file::e_iostate) (rdstate() | state));
+   //}
 
-   void set_fail_bit()
-   {
-      setstate(::file::failbit);
-   }
+   //void set_fail_bit()
+   //{
+   //   setstate(::file::failbit);
+   //}
 
-   void clear(int state = ::file::goodbit)
-   {
-      m_iostate = (::file::e_iostate) state;
-   }
-
-
-
-   ::file::e_iostate rdstate() const
-   {
-
-      return m_iostate;
-
-   }
+   //void clear(int state = ::file::goodbit)
+   //{
+   //   m_iostate = (::file::e_iostate) state;
+   //}
 
 
-   bool operator ! ()
-   {
 
-      return fail();
+   //::file::e_iostate rdstate() const
+   //{
 
-   }
+   //   return m_iostate;
+
+   //}
+
+
+   //bool operator ! ()
+   //{
+
+   //   return fail();
+
+   //}
 
    filesize precision() const;
 
@@ -422,10 +422,20 @@ public:
 
       read(uRead);
 
-      if (!fail())
+      if (uRead < 255)
       {
 
-         if (uRead < 255)
+         u = uRead;
+
+      }
+      else
+      {
+
+         ::u16 uRead;
+
+         read(uRead);
+
+         if (uRead < 65535)
          {
 
             u = uRead;
@@ -434,27 +444,7 @@ public:
          else
          {
 
-            ::u16 uRead;
-
-            read(uRead);
-
-            if (!fail())
-            {
-
-               if (uRead < 65535)
-               {
-
-                  u = uRead;
-
-               }
-               else
-               {
-
-                  read(u);
-
-               }
-
-            }
+            read(u);
 
          }
 

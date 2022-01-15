@@ -52,7 +52,7 @@ namespace draw2d
 
       }
 
-      return ::success;
+      //return ::success;
 
    }
 

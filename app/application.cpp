@@ -33,14 +33,16 @@ namespace app_app
    void application::init_instance()
    {
 
-      if (!::aura::application::init_instance())
-      {
+      ::aura::application::init_instance();
 
-         return false;
+      //if (!::aura::application::init_instance())
+      //{
 
-      }
+      //   return false;
 
-      return true;
+      //}
+
+      //return true;
 
    }
 

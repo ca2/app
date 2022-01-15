@@ -939,24 +939,30 @@ namespace aura
 
       //::aura::static_start::init();
 
-      if (!__node_aura_pre_init())
-      {
+      __node_aura_pre_init();
 
-         return ::error_failed;
+      //if (!__node_aura_pre_init())
+      //{
 
-      }
+      //   //return ::error_failed;
+
+      //   return false;
+
+      //}
 
       ::parallelization::initialize();
 
-      if (!__node_aura_pos_init())
-      {
+      __node_aura_pos_init();
 
-         return ::error_failed;
+      //if (!__node_aura_pos_init())
+      //{
 
-      }
+      //   return ::error_failed;
+
+      //}
 
 
-      return true;
+      //return true;
 
    }
 
@@ -987,7 +993,7 @@ namespace aura
 
       //return true;
 
-      return ::success;
+      //return ::success;
 
    }
 

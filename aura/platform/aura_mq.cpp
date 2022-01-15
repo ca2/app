@@ -2,7 +2,7 @@
 #include "aura/user/_user.h"
 
 
-CLASS_DECL_AURA int_bool message_queue_post(::windowing::window * pwindow, const ::id & id, wparam wparam, lparam lparam)
+CLASS_DECL_AURA void message_queue_post(::windowing::window * pwindow, const ::id & id, wparam wparam, lparam lparam)
 {
 
    //auto psession = get_session();
@@ -18,7 +18,7 @@ CLASS_DECL_AURA int_bool message_queue_post(::windowing::window * pwindow, const
    if (pinteraction == nullptr)
    {
 
-      return false;
+      throw_status(error_wrong_state);
 
    }
 
@@ -27,24 +27,26 @@ CLASS_DECL_AURA int_bool message_queue_post(::windowing::window * pwindow, const
    if (!pmq)
    {
 
-      return false;
+      throw_status(error_wrong_state);
 
    }
 
-   if (!pmq->post_message(pwindow->get_oswindow(), id, wparam, lparam))
-   {
+   //if (!
+   
+   pmq->post_message(pwindow->get_oswindow(), id, wparam, lparam);
+   //{
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
-   return true;
+   //return true;
 
 }
 
 
 
-CLASS_DECL_AURA int_bool mq_erase_window_from_all_queues(::windowing::window * pwindow)
+CLASS_DECL_AURA void mq_erase_window_from_all_queues(::windowing::window * pwindow)
 {
 
    //auto psession = get_session();
@@ -60,14 +62,14 @@ CLASS_DECL_AURA int_bool mq_erase_window_from_all_queues(::windowing::window * p
    if(pinteraction == nullptr)
    {
 
-      return false;
+      throw_status(error_wrong_state);
 
    }
 
    if(pinteraction->get_application() == nullptr)
    {
 
-      return false;
+      throw_status(error_wrong_state);
 
    }
 
@@ -78,7 +80,7 @@ CLASS_DECL_AURA int_bool mq_erase_window_from_all_queues(::windowing::window * p
    if(pmq == nullptr)
    {
 
-      return false;
+      throw_status(error_wrong_state);
 
    }
 
@@ -91,7 +93,7 @@ CLASS_DECL_AURA int_bool mq_erase_window_from_all_queues(::windowing::window * p
 
    });
 
-   return true;
+   //return true;
 
 }
 

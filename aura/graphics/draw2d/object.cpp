@@ -11,6 +11,9 @@ namespace draw2d
    object::object()
    {
 
+      //m_estatus = success;
+      //m_estatusLast = success;
+
       set_modified();
 
    }
@@ -133,12 +136,12 @@ namespace draw2d
 
          }
 
-         if (pthis->create(pgraphics, i))
-         {
+         pthis->create(pgraphics, i);
+         //{
 
             pthis->set_updated();
 
-         }
+         //}
 
       }
 
@@ -148,15 +151,15 @@ namespace draw2d
    void object::destroy_os_data()
    {
 
-      return ::success;
+      //return true;
 
    }
 
 
-   bool object::create(::draw2d::graphics * pgraphics, i8 iCreate)
+   void object::create(::draw2d::graphics * pgraphics, i8 iCreate)
    {
 
-      return true;
+      //return true;
 
    }
 
@@ -166,7 +169,7 @@ namespace draw2d
 
       destroy_os_data();
 
-      return ::success;
+      //return ::success;
 
    }
 

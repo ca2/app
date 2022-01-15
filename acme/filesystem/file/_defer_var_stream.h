@@ -65,24 +65,24 @@ inline void __exchange_save_array(::var_stream& stream, ARRAY& array)
 
    stream.stream_exchange(e_property_count, c);
 
-   if (stream.fail())
-   {
+   //if (stream.fail())
+   //{
 
-      return;
+   //   return;
 
-   }
+   //}
 
    for (index i = 0; i < c; i++)
    {
 
       stream.stream_exchange(i, __typed(array.element_at(i)));
 
-      if (stream.fail())
-      {
+      //if (stream.fail())
+      //{
 
-         return;
+      //   return;
 
-      }
+      //}
 
    }
 
@@ -97,12 +97,12 @@ inline void __exchange_load_array(::var_stream& stream, ARRAY& array)
 
    stream.stream_exchange(e_property_count, c);
 
-   if (stream.fail())
-   {
+   //if (stream.fail())
+   //{
 
-      return;
+   //   return;
 
-   }
+   //}
 
    array.set_size(c);
 
@@ -113,14 +113,14 @@ inline void __exchange_load_array(::var_stream& stream, ARRAY& array)
 
       stream.stream_exchange(i, t);
 
-      if (stream.fail())
-      {
+      //if (stream.fail())
+      //{
 
-         array.set_size(i);
+      //   array.set_size(i);
 
-         return;
+      //   return;
 
-      }
+      //}
 
    }
 

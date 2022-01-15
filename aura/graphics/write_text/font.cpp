@@ -860,12 +860,12 @@ namespace write_text
 
       }
 
-      return ::success;
+      //return ::success;
 
    }
 
 
-   bool font::get_text_metric(::draw2d::graphics * pgraphics, text_metric & tm)
+   void font::get_text_metric(::draw2d::graphics * pgraphics, text_metric & tm)
    {
 
       if (is_modified())
@@ -880,34 +880,39 @@ namespace write_text
       if (!m_bTextMetric)
       {
 
-         m_bTextMetric = _get_text_metric(pgraphics, m_textmetric);
+         _get_text_metric(pgraphics, m_textmetric);
+
+         m_bTextMetric = true;
 
       }
 
-      if (!m_bTextMetric)
-      {
+      //if (!m_bTextMetric)
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
       tm = m_textmetric;
 
-      return true;
+      //return true;
 
    }
+
 
    double font::get_ascent(::draw2d::graphics * pgraphics)
    {
 
       text_metric tm;
 
-      if (!get_text_metric(pgraphics, tm))
-      {
+      get_text_metric(pgraphics, tm);
 
-         return false;
+      //if (!get_text_metric(pgraphics, tm))
+      //{
 
-      }
+      //   return false;
+
+      //}
 
       return tm.m_dAscent;
 
@@ -919,12 +924,14 @@ namespace write_text
 
       text_metric tm;
 
-      if (!get_text_metric(pgraphics, tm))
-      {
+      get_text_metric(pgraphics, tm);
 
-         return false;
+      //if (!get_text_metric(pgraphics, tm))
+      //{
 
-      }
+      //   return false;
+
+      //}
 
       return tm.m_dHeight;
 
@@ -936,12 +943,14 @@ namespace write_text
 
       text_metric tm;
 
-      if (!get_text_metric(pgraphics, tm))
-      {
+      get_text_metric(pgraphics, tm);
 
-         return false;
+      //if (!get_text_metric(pgraphics, tm))
+      //{
 
-      }
+      //   return false;
+
+      //}
 
       return tm.m_dInternalLeading + tm.m_dExternalLeading;
 
@@ -953,31 +962,34 @@ namespace write_text
 
       text_metric tm;
 
-      if (!get_text_metric(pgraphics, tm))
-      {
+      get_text_metric(pgraphics, tm);
 
-         return false;
+      ////if (!)
+      //{
 
-      }
+      //   return false;
+
+      //}
 
       return tm.m_dDescent;
 
    }
 
 
-   bool font::_get_text_metric(::draw2d::graphics * pgraphics, text_metric & tm)
+   void font::_get_text_metric(::draw2d::graphics * pgraphics, text_metric & tm)
    {
 
       if (::is_null(pgraphics))
       {
 
-         return false;
+         throw_status(error_null_pointer);
 
       }
 
       pgraphics->set(this);
 
-      return pgraphics->get_text_metrics(&tm);
+      //return
+      pgraphics->get_text_metrics(&tm);
 
    }
 

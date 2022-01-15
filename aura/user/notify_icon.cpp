@@ -34,7 +34,7 @@ namespace user
    void notify_icon::destroy_notify_icon()
    {
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -45,7 +45,9 @@ namespace user
       if(!m_bCreated)
       {
 
-         return error_failed;
+         //return error_failed;
+
+         throw_status(error_exception);
 
       }
 
@@ -61,15 +63,17 @@ namespace user
 
       m_userinteractionaHidden.add_unique(puserinteraction);
 
-      return ::success;
+      //return ::success;
 
    }
 
 
-   void notify_icon::step()
+   bool notify_icon::step()
    {
 
-      return ::success;
+      //return ::success;
+
+      return true;
 
    }
 

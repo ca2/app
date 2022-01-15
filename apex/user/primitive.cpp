@@ -288,12 +288,12 @@ namespace user
    }
 
 
-   bool primitive::enable_window(bool bEnable)
+   void primitive::enable_window(bool bEnable)
    {
 
       __UNREFERENCED_PARAMETER(bEnable);
 
-      return false;
+      //return false;
 
    }
 
@@ -749,18 +749,18 @@ namespace user
    //}
 
 
-   bool primitive::add_prodevian(::matter * pmatter)
+   void primitive::add_prodevian(::matter * pmatter)
    {
 
-      return false;
+      //return false;
 
    }
 
 
-   bool primitive::erase_prodevian(::matter * pmatter)
+   void primitive::erase_prodevian(::matter * pmatter)
    {
 
-      return false;
+      //return false;
 
    }
 
@@ -1070,12 +1070,12 @@ namespace user
    // pmessage object should be allocated with new in
    // base or derived object and will be delete after
    // handling
-   bool primitive::post(::message::message * pmessage)
+   void primitive::post(::message::message * pmessage)
    {
 
       throw ::interface_only_exception();
 
-      return false;
+      //return false;
 
    }
 
@@ -1230,12 +1230,12 @@ namespace user
    }
 
 
-   bool primitive::subclass_window(oswindow posdata)
+   void primitive::subclass_window(oswindow posdata)
    {
 
       throw ::interface_only_exception();
 
-      return false;
+      //return false;
 
    }
 
@@ -1856,12 +1856,12 @@ namespace user
    //}
 
 
-   bool primitive::start_destroying_window()
+   void primitive::start_destroying_window()
    {
 
       throw ::interface_only_exception();
 
-      return false;
+      //return false;
 
    }
 
@@ -2126,14 +2126,14 @@ namespace user
    //}
 
 
-   bool primitive::CheckAutoCenter()
-   {
+   //void primitive::CheckAutoCenter()
+   //{
 
-      throw ::interface_only_exception();
+   //   throw ::interface_only_exception();
 
-      return false;
+   //   //return false;
 
-   }
+   //}
 
 
    void primitive::CenterWindow(::user::interaction * pAlternateOwner)
@@ -2155,6 +2155,8 @@ namespace user
    {
 
       throw ::interface_only_exception();
+
+      //return false;
 
    }
 
@@ -2445,12 +2447,12 @@ namespace user
    }
 
 
-   bool primitive::post_message(const ::id & id,wparam wparam,lparam lparam)
+   void primitive::post_message(const ::id & id,wparam wparam,lparam lparam)
    {
 
       throw ::interface_only_exception();
 
-      return false;
+      //return false;
 
    }
 
@@ -2465,22 +2467,22 @@ namespace user
    //}
 
 
-   bool primitive::SetTimer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer, bool bPeriodic, void* pdata)
+   void primitive::SetTimer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer, bool bPeriodic, void* pdata)
    {
 
       throw ::interface_only_exception();
 
-      return false;
+      //return false;
 
    }
 
 
-   bool primitive::KillTimer(uptr uEvent)
+   void primitive::KillTimer(uptr uEvent)
    {
 
       throw ::interface_only_exception();
 
-      return false;
+      //return false;
 
    }
 
@@ -2685,12 +2687,12 @@ namespace user
    //}
 
 
-   bool primitive::create_message_queue(const ::string & lpszName)
+   void primitive::create_message_queue(const ::string & lpszName)
    {
 
       throw ::interface_only_exception();
 
-      return false;
+      //return false;
 
    }
 
@@ -3082,12 +3084,12 @@ namespace user
    }
 
 
-   bool primitive::update_data(bool bSaveAndValidate)
+   void primitive::update_data(bool bSaveAndValidate)
    {
 
       throw ::interface_only_exception();
 
-      return false;
+      //return false;
 
    }
 
@@ -3658,12 +3660,12 @@ namespace user
 {
 
 
-   bool primitive::post_simple_command(const enum_simple_command & ecommand, lparam lparam)
+   void primitive::post_simple_command(const enum_simple_command & ecommand, lparam lparam)
    {
 
       post_message(e_message_simple_command, (wparam)ecommand, lparam);
 
-      return true;
+      //return true;
 
    }
 
@@ -3876,7 +3878,12 @@ namespace user
 
                message_handler(pmessage);
 
-               return true;
+               if (pmessage->m_bRet)
+               {
+
+                  return true;
+
+               }
 
             }
 
@@ -3890,6 +3897,13 @@ namespace user
       {
 
          message_handler(pmessage);
+
+         if (pmessage->m_bRet)
+         {
+
+            return true;
+
+         }
 
       }
       catch (const ::exception & e)
@@ -3913,6 +3927,7 @@ namespace user
       if (!pmessage->m_bRet)
       {
 
+         //return;
          return false;
 
       }
@@ -4388,7 +4403,7 @@ namespace user
    void primitive::clear_keyboard_focus()
    {
 
-      throw ::interface_only_exception();
+      //throw ::interface_only_exception();
 
    }
 
@@ -4534,10 +4549,10 @@ namespace user
    }
 
 
-   bool primitive::hide()
+   void primitive::hide()
    {
 
-      return false;
+      //return false;
 
    }
 
@@ -4670,10 +4685,10 @@ namespace user
    //}
 
 
-   bool primitive::display(::e_display edisplay, ::e_activation eactivation)
+   void primitive::display(::e_display edisplay, ::e_activation eactivation)
    {
 
-      return true;
+      //return true;
 
    }
 

@@ -343,13 +343,9 @@ void channel::destroy()
 void channel::message_handler(::message::message * pmessage)
 {
 
+   //return false;
 
 }
-
-
-
-
-
 
 
 void channel::_001SendCommand(::message::command * pcommand)

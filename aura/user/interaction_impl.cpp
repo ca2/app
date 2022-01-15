@@ -210,7 +210,7 @@ namespace user
    }
 
 
-   //bool interaction_impl::window_move(i32 x, i32 y)
+   //void interaction_impl::window_move(i32 x, i32 y)
    //{
 
    //   auto & stateRequest = m_puserinteraction->request_state();
@@ -317,7 +317,7 @@ namespace user
    }
 
 
-   bool interaction_impl::create_message_queue(::user::interaction * pinteraction, const ::string & lpszName)
+   void interaction_impl::create_message_queue(::user::interaction * pinteraction, const ::string & lpszName)
    {
 
       if(_is_window())
@@ -335,22 +335,22 @@ namespace user
 
          pinteraction->m_bMessageWindow = true;
 
-         if(!create_host(pinteraction))
-         {
+         create_host(pinteraction);
+         //{
 
-            return false;
+         //   return false;
 
-         }
+         //}
 
       }
 
-      return true;
+      //return true;
 
    }
 
 
 
-   //bool interaction_impl::create_native_window(::user::native_window_initialize* pinitialize)
+   //void interaction_impl::create_native_window(::user::native_window_initialize* pinitialize)
    //{
 
    //   __UNREFERENCED_PARAMETER(pinitialize);
@@ -363,14 +363,14 @@ namespace user
 //#ifdef WINDOWS_DESKTOP
 //
 //
-//   bool interaction_impl::GetWindowInfo(PWINDOWINFO pwi) const
+//   void interaction_impl::GetWindowInfo(PWINDOWINFO pwi) const
 //   {
 //      __UNREFERENCED_PARAMETER(pwi);
 //      throw ::interface_only_exception();
 //      return false;
 //   }
 //
-//   bool interaction_impl::GetScrollBarInfo(::i32 idObject,PSCROLLBARINFO psbi) const
+//   void interaction_impl::GetScrollBarInfo(::i32 idObject,PSCROLLBARINFO psbi) const
 //   {
 //      __UNREFERENCED_PARAMETER(idObject);
 //      __UNREFERENCED_PARAMETER(psbi);
@@ -378,7 +378,7 @@ namespace user
 //      return false;
 //   }
 //
-//   bool interaction_impl::GetTitleBarInfo(PTITLEBARINFO pti) const
+//   void interaction_impl::GetTitleBarInfo(PTITLEBARINFO pti) const
 //   {
 //      __UNREFERENCED_PARAMETER(pti);
 //      throw ::interface_only_exception();
@@ -402,7 +402,7 @@ namespace user
    }
 
 
-   //bool interaction_impl::AnimateWindow(::duration ::duration,u32 dwFlags)
+   //void interaction_impl::AnimateWindow(::duration ::duration,u32 dwFlags)
    //{
    //   __UNREFERENCED_PARAMETER(::duration);
    //   __UNREFERENCED_PARAMETER(dwFlags);
@@ -410,16 +410,16 @@ namespace user
    //   return false;
    //}
 
-   bool interaction_impl::FlashWindowEx(u32 dwFlags,::u32 uCount,::duration tickTimeout)
-   {
-      __UNREFERENCED_PARAMETER(dwFlags);
-      __UNREFERENCED_PARAMETER(uCount);
-      __UNREFERENCED_PARAMETER(tickTimeout);
-      throw ::interface_only_exception();
-      return false;
-   }
+   //void interaction_impl::FlashWindowEx(u32 dwFlags,::u32 uCount,::duration tickTimeout)
+   //{
+   //   __UNREFERENCED_PARAMETER(dwFlags);
+   //   __UNREFERENCED_PARAMETER(uCount);
+   //   __UNREFERENCED_PARAMETER(tickTimeout);
+   //   throw ::interface_only_exception();
+   //   return false;
+   //}
 
-   //bool interaction_impl::SetLayeredWindowAttributes(::color::color crKey,byte bAlpha,u32 dwFlags)
+   //void interaction_impl::SetLayeredWindowAttributes(::color::color crKey,byte bAlpha,u32 dwFlags)
    //{
    //   __UNREFERENCED_PARAMETER(crKey);
    //   __UNREFERENCED_PARAMETER(bAlpha);
@@ -428,7 +428,7 @@ namespace user
    //   return false;
    //}
 
-   //bool interaction_impl::UpdateLayeredWindow(::draw2d::graphics * pDCDst,POINT_I32 * pptDst,SIZE_I32 * psize,
+   //void interaction_impl::UpdateLayeredWindow(::draw2d::graphics * pDCDst,POINT_I32 * pptDst,SIZE_I32 * psize,
    //      ::draw2d::graphics * pDCSrc,POINT_I32 * pptSrc,::color::color crKey,BLENDFUNCTION * pblend,u32 dwFlags)
    //{
    //   __UNREFERENCED_PARAMETER(pDCDst);
@@ -444,24 +444,24 @@ namespace user
    //   return false;
    //}
 
-   bool interaction_impl::GetLayeredWindowAttributes(::color::color * pcrKey,byte * pbAlpha,u32 * pdwFlags) const
-   {
-      __UNREFERENCED_PARAMETER(pcrKey);
-      __UNREFERENCED_PARAMETER(pbAlpha);
-      __UNREFERENCED_PARAMETER(pdwFlags);
-      throw ::interface_only_exception();
+   //void interaction_impl::GetLayeredWindowAttributes(::color::color * pcrKey,byte * pbAlpha,u32 * pdwFlags) const
+   //{
+   //   __UNREFERENCED_PARAMETER(pcrKey);
+   //   __UNREFERENCED_PARAMETER(pbAlpha);
+   //   __UNREFERENCED_PARAMETER(pdwFlags);
+   //   throw ::interface_only_exception();
 
-      return false;
-   }
+   //   return false;
+   //}
 
-   bool interaction_impl::PrintWindow(::draw2d::graphics_pointer & pgraphics,::u32 nFlags) const
-   {
-      __UNREFERENCED_PARAMETER(pgraphics);
-      __UNREFERENCED_PARAMETER(nFlags);
-      throw ::interface_only_exception();
+   //void interaction_impl::PrintWindow(::draw2d::graphics_pointer & pgraphics,::u32 nFlags) const
+   //{
+   //   __UNREFERENCED_PARAMETER(pgraphics);
+   //   __UNREFERENCED_PARAMETER(nFlags);
+   //   throw ::interface_only_exception();
 
-      return false;
-   }
+   //   return false;
+   //}
 
 #endif
 
@@ -504,7 +504,7 @@ namespace user
    }
 
 
-   //bool interaction_impl::create_host(::user::interaction * pinteraction, ::user::primitive * pprimitiveParent)
+   //void interaction_impl::create_host(::user::interaction * pinteraction, ::user::primitive * pprimitiveParent)
    //{
 
    //   //if (!pparent)
@@ -564,14 +564,16 @@ namespace user
       else
       {
 
-         auto estatus = __construct(m_pwindow);
+         //auto estatus = 
+         
+         __construct(m_pwindow);
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            return estatus;
+         //   return estatus;
 
-         }
+         //}
 
          if (!m_psystem->m_paurasystem->m_pwindowMain)
          {
@@ -582,21 +584,23 @@ namespace user
 
       }
 
-      auto estatus = m_pwindow->create_window(this);
+      //auto estatus =
+      
+      m_pwindow->create_window(this);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return true;
+      //return true;
 
    }
 
 
-   bool interaction_impl::create_host(::user::interaction * puserinteraction)
+   void interaction_impl::create_host(::user::interaction * puserinteraction)
    {
 
       m_puserinteraction = puserinteraction;
@@ -726,18 +730,19 @@ namespace user
       if (bNewOwnThread)
       {
 
-         if (!m_puserthread->begin_synch())
-         {
+         //if (!m_puserthread->begin_synch())
+         m_puserthread->begin_synch();
+         //{
 
-            __release(m_pprodevian);
+         //   __release(m_pprodevian);
 
-            __release(m_puserthread);
+         //   __release(m_puserthread);
 
-            m_puserinteraction->__release(m_puserinteraction->m_pthreadUserInteraction);
+         //   m_puserinteraction->__release(m_puserinteraction->m_pthreadUserInteraction);
 
-            return false;
+         //   return false;
 
-         }
+         //}
 
 //         psynca->add(peventStartedUser);
 //
@@ -839,12 +844,14 @@ namespace user
 
          //}
 
-         if (!native_create_host())
-         {
+         native_create_host();
 
-            return false;
+         ////if (!native_create_host())
+         //{
 
-         }
+         //   return false;
+
+         //}
 
       }
 
@@ -865,7 +872,7 @@ namespace user
 
       //}
 
-      return true;
+      //return true;
 
    }
 
@@ -887,13 +894,13 @@ namespace user
    }
 
 
-   //bool interaction_impl::native_create_window()
+   //void interaction_impl::native_create_window()
    //{
    //   return false;
    //}
 
 
-//   bool interaction_impl::create_host(::user::interaction * puserinteraction)
+//   void interaction_impl::create_host(::user::interaction * puserinteraction)
 //   {
 //
 //      m_puserinteraction = puserinteraction;
@@ -1214,7 +1221,7 @@ namespace user
    //}
 
 
-   bool interaction_impl::add_prodevian(::matter * pmatter)
+   void interaction_impl::add_prodevian(::matter * pmatter)
    {
 
       _synchronous_lock synchronouslock(mutex());
@@ -1230,12 +1237,12 @@ namespace user
 
       }
 
-      return true;
+      //return true;
 
    }
 
 
-   bool interaction_impl::erase_prodevian(::matter * pmatter)
+   void interaction_impl::erase_prodevian(::matter * pmatter)
    {
 
       _synchronous_lock synchronouslock(mutex());
@@ -1251,25 +1258,25 @@ namespace user
 
       }
 
-      return true;
+      //return true;
 
    }
 
 
-   bool interaction_impl::mouse_hover_add(::user::interaction * pinterface)
+   void interaction_impl::mouse_hover_add(::user::interaction * pinterface)
    {
 
       if (pinterface == nullptr)
       {
 
-         return false;
+         return;
 
       }
 
       if (pinterface->m_pimpl->m_bDestroyImplOnly)
       {
 
-         return false;
+         return;
 
       }
 
@@ -1292,7 +1299,7 @@ namespace user
 
       }
 
-      return true;
+      //return true;
 
    }
 
@@ -1425,7 +1432,7 @@ namespace user
 
       _synchronous_lock synchronouslock(mutex());
 
-      return m_userinteractionaMouseHover.erase(pinterface) > 0;
+      return m_userinteractionaMouseHover.erase(pinterface) >= 0;
 
    }
 
@@ -1583,7 +1590,7 @@ namespace user
    }
 
 
-   bool interaction_impl::destroy_impl_only()
+   void interaction_impl::destroy_impl_only()
    {
 
       if (!m_bDestroyImplOnly)
@@ -1612,7 +1619,7 @@ namespace user
 
          message_queue_post(pwindow, e_message_destroy_window, 0, 0);
 
-         return true;
+         //return true;
 
       }
       else if(m_bUserElementOk)
@@ -1628,26 +1635,28 @@ namespace user
          m_bUserElementOk = false;
 
          //return ::DestroyWindow((HWND)get_handle());
-         return false;
+         //return false;
 
       }
       else
       {
 
-         return false;
+         //return false;
 
       }
 
    }
 
 
-   bool interaction_impl::start_destroying_window()
+   void interaction_impl::start_destroying_window()
    {
 
       if (is_destroying())
       {
 
-         return true;
+         //return true;
+
+         return;
 
       }
 
@@ -1669,13 +1678,14 @@ namespace user
 
          }
 
-         return true;
+         return;
 
       }
 
-      bool bResult = ::user::primitive::start_destroying_window();
+      //bool bResult = 
+      ::user::primitive::start_destroying_window();
 
-      return bResult;
+      //return bResult;
 
    }
 
@@ -1748,7 +1758,7 @@ namespace user
 //#ifdef WINDOWS_DESKTOP
 //
 //
-//   bool interaction_impl::GetWindowPlacement(WINDOWPLACEMENT* puserinteractionpl)
+//   void interaction_impl::GetWindowPlacement(WINDOWPLACEMENT* puserinteractionpl)
 //
 //   {
 //
@@ -1762,7 +1772,7 @@ namespace user
 //   }
 //
 //
-//   bool interaction_impl::SetWindowPlacement(const WINDOWPLACEMENT* puserinteractionpl)
+//   void interaction_impl::SetWindowPlacement(const WINDOWPLACEMENT* puserinteractionpl)
 //   {
 //
 //      __UNREFERENCED_PARAMETER(puserinteractionpl);
@@ -2098,7 +2108,7 @@ namespace user
 //#ifdef WINDOWS_DESKTOP
 //
 //
-//   bool interaction_impl::SetScrollInfo(i32 nBar,LPSCROLLINFO pScrollInfo,bool bRedraw)
+//   void interaction_impl::SetScrollInfo(i32 nBar,LPSCROLLINFO pScrollInfo,bool bRedraw)
 //
 //   {
 //
@@ -2113,7 +2123,7 @@ namespace user
 //   }
 //
 //
-//   bool interaction_impl::GetScrollInfo(i32 nBar,LPSCROLLINFO pScrollInfo,::u32 nMask)
+//   void interaction_impl::GetScrollInfo(i32 nBar,LPSCROLLINFO pScrollInfo,::u32 nMask)
 //
 //   {
 //
@@ -2129,13 +2139,17 @@ namespace user
 //
 //#endif
 
-   i32 interaction_impl::GetScrollLimit(i32 nBar)
-   {
-      __UNREFERENCED_PARAMETER(nBar);
-      throw ::interface_only_exception();
 
-      return 0;
-   }
+   //i32 interaction_impl::GetScrollLimit(i32 nBar)
+   //{
+   //   
+   //   __UNREFERENCED_PARAMETER(nBar);
+   //   
+   //   throw ::interface_only_exception();
+
+   //   return 0;
+
+   //}
 
 
    //void interaction_impl::ScrollWindow(i32 xAmount,i32 yAmount, const RECTANGLE_I32 * pcrect, const RECTANGLE_I32 * pcrectClip)
@@ -2167,8 +2181,10 @@ namespace user
 
    bool interaction_impl::HandleFloatingSysCommand(::u32 nID,lparam lParam)
    {
+
       __UNREFERENCED_PARAMETER(nID);
       __UNREFERENCED_PARAMETER(lParam);
+
       throw ::interface_only_exception();
 
       return false;
@@ -2242,7 +2258,7 @@ namespace user
 //   }
 //
 //#ifdef WINDOWS_DESKTOP
-//   bool interaction_impl::OnHelpInfo(HELPINFO* /*pHelpInfo*/)
+//   void interaction_impl::OnHelpInfo(HELPINFO* /*pHelpInfo*/)
 //   {
 //      throw ::interface_only_exception();
 //   }
@@ -2315,14 +2331,14 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // 'dialog data' support
 
-   bool interaction_impl::update_data(bool bSaveAndValidate)
+   void interaction_impl::update_data(bool bSaveAndValidate)
    {
 
       __UNREFERENCED_PARAMETER(bSaveAndValidate);
 
       throw ::interface_only_exception();
 
-      return false;
+      //return false;
 
    }
 
@@ -2339,18 +2355,18 @@ namespace user
    }
 
 
-   bool interaction_impl::CheckAutoCenter()
-   {
-      throw ::interface_only_exception();
+   //void interaction_impl::CheckAutoCenter()
+   //{
+   //   throw ::interface_only_exception();
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 //   /////////////////////////////////////////////////////////////////////////////
 //   // Dialog initialization support
 //
-//   bool interaction_impl::ExecuteDlgInit(const ::string & pszResourceName)
+//   void interaction_impl::ExecuteDlgInit(const ::string & pszResourceName)
 //
 //   {
 //      __UNREFERENCED_PARAMETER(pszResourceName);
@@ -2361,7 +2377,7 @@ namespace user
 //
 //   }
 
-//   bool interaction_impl::ExecuteDlgInit(LPVOID pResource)
+//   void interaction_impl::ExecuteDlgInit(LPVOID pResource)
 //
 //   {
 //      __UNREFERENCED_PARAMETER(pResource);
@@ -2383,7 +2399,7 @@ namespace user
 
 
 
-   //bool interaction_impl::subclass_window(::windowing::window * pwindow)
+   //void interaction_impl::subclass_window(::windowing::window * pwindow)
    //{
    //   __UNREFERENCED_PARAMETER(oswindow);
    //   throw ::interface_only_exception();
@@ -2392,7 +2408,7 @@ namespace user
 
    //}
 
-   //bool interaction_impl::SubclassDlgItem(::u32 nID,::user::interaction_impl * pParent)
+   //void interaction_impl::SubclassDlgItem(::u32 nID,::user::interaction_impl * pParent)
    //{
    //   __UNREFERENCED_PARAMETER(nID);
    //   __UNREFERENCED_PARAMETER(pParent);
@@ -2408,7 +2424,7 @@ namespace user
    //   return nullptr;
    //}
 
-   //bool interaction_impl::IsChild(::user::interaction * pinteraction) const
+   //void interaction_impl::IsChild(::user::interaction * pinteraction) const
    //{
    //   __UNREFERENCED_PARAMETER(pinteraction);
    //   throw ::interface_only_exception();
@@ -2475,7 +2491,7 @@ namespace user
    // }
 
 
-   //bool interaction_impl::layout().is_iconic()
+   //void interaction_impl::layout().is_iconic()
    //{
 
    //   //throw ::interface_only_exception();
@@ -2485,7 +2501,7 @@ namespace user
    //}
 
 
-   //bool interaction_impl::IsZoomed()
+   //void interaction_impl::IsZoomed()
    //{
 
    //   throw ::interface_only_exception();
@@ -2551,7 +2567,7 @@ namespace user
 //   }
 
 
-   //bool interaction_impl::ReleaseCapture()
+   //void interaction_impl::ReleaseCapture()
    //{
 
    //   auto psession = get_session();
@@ -2582,7 +2598,7 @@ namespace user
    //}
 
 
-   //bool interaction_impl::SetCapture(::user::interaction * pinteraction)
+   //void interaction_impl::SetCapture(::user::interaction * pinteraction)
    //{
 
    //   if (pinteraction == nullptr)
@@ -2612,22 +2628,22 @@ namespace user
    //}
 
 
-   // interaction_impl
-   /* interaction_impl::operator oswindow() const
-   { return this == nullptr ? nullptr : get_handle(); }*/
-   bool interaction_impl::operator==(const interaction_impl& wnd) const
-   {
-      __UNREFERENCED_PARAMETER(wnd);
-      throw ::interface_only_exception();
-      return false;
-   }
+   //// interaction_impl
+   ///* interaction_impl::operator oswindow() const
+   //{ return this == nullptr ? nullptr : get_handle(); }*/
+   //void interaction_impl::operator==(const interaction_impl& wnd) const
+   //{
+   //   __UNREFERENCED_PARAMETER(wnd);
+   //   throw ::interface_only_exception();
+   //   return false;
+   //}
 
-   bool interaction_impl::operator!=(const interaction_impl& wnd) const
-   {
-      __UNREFERENCED_PARAMETER(wnd);
-      throw ::interface_only_exception();
-      return false;
-   }
+   //void interaction_impl::operator!=(const interaction_impl& wnd) const
+   //{
+   //   __UNREFERENCED_PARAMETER(wnd);
+   //   throw ::interface_only_exception();
+   //   return false;
+   //}
 
 
    //u32 interaction_impl::GetStyle() const
@@ -2646,7 +2662,7 @@ namespace user
    //}
 
 
-   //bool interaction_impl::ModifyStyle(u32 dwRemove, u32 dwAdd, ::u32 nFlags)
+   //void interaction_impl::ModifyStyle(u32 dwRemove, u32 dwAdd, ::u32 nFlags)
    //{
 
    //   if (!_is_window())
@@ -2669,7 +2685,7 @@ namespace user
    //}
 
 
-   //bool interaction_impl::ModifyStyleEx(u32 dwRemove,u32 dwAdd,::u32 nFlags)
+   //void interaction_impl::ModifyStyleEx(u32 dwRemove,u32 dwAdd,::u32 nFlags)
    //{
 
    //   if (!_is_window())
@@ -2760,20 +2776,22 @@ namespace user
 //#endif
 
 
-   bool interaction_impl::post_message(const ::id & id,wparam wParam,lparam lParam)
+   void interaction_impl::post_message(const ::id & id,wparam wParam,lparam lParam)
    {
 
       if(!m_puserinteraction)
       {
 
-         return false;
+         //return false;
+
+         throw_status(error_wrong_state);
 
       }
 
       if(!m_puserinteraction->m_pthreadUserInteraction)
       {
 
-         return false;
+         throw_status(error_wrong_state);
 
       }
 
@@ -2782,7 +2800,7 @@ namespace user
       if(!pwindow)
       {
 
-         return false;
+         throw_status(error_wrong_state);
 
       }
 
@@ -2791,7 +2809,7 @@ namespace user
       if(!oswindow)
       {
 
-         return false;
+         throw_status(error_wrong_state);
 
       }
 
@@ -2814,23 +2832,24 @@ namespace user
       if(::is_null(pmessagequeue))
       {
          
-         return false;
+         throw_status(error_wrong_state);
          
       }
 
-      auto estatus = pmessagequeue->post_message(message);
+      //auto estatus = 
+      pmessagequeue->post_message(message);
 
-      return estatus;
+      //return estatus;
 
    }
 
 
-   bool interaction_impl::DragDetect(const ::point_i32 & point) const
-   {
-      __UNREFERENCED_PARAMETER(point);
-      throw ::interface_only_exception();
-      return false;
-   }
+   //void interaction_impl::DragDetect(const ::point_i32 & point) const
+   //{
+   //   __UNREFERENCED_PARAMETER(point);
+   //   throw ::interface_only_exception();
+   //   return false;
+   //}
 
 
    void interaction_impl::set_window_text(const ::string & pszString)
@@ -2946,25 +2965,25 @@ namespace user
       throw ::interface_only_exception();
    }
 
-   bool interaction_impl::GetUpdateRect(RECTANGLE_I32 * prectangle,bool bErase)
+   //void interaction_impl::GetUpdateRect(RECTANGLE_I32 * prectangle,bool bErase)
 
-   {
-      __UNREFERENCED_PARAMETER(prectangle);
+   //{
+   //   __UNREFERENCED_PARAMETER(prectangle);
 
-      __UNREFERENCED_PARAMETER(bErase);
-      throw ::interface_only_exception();
+   //   __UNREFERENCED_PARAMETER(bErase);
+   //   throw ::interface_only_exception();
 
-      return false;
-   }
+   //   return false;
+   //}
 
-   i32 interaction_impl::GetUpdateRgn(::draw2d::region* pRgn,bool bErase)
-   {
-      __UNREFERENCED_PARAMETER(pRgn);
-      __UNREFERENCED_PARAMETER(bErase);
-      throw ::interface_only_exception();
+   //i32 interaction_impl::GetUpdateRgn(::draw2d::region* pRgn,bool bErase)
+   //{
+   //   __UNREFERENCED_PARAMETER(pRgn);
+   //   __UNREFERENCED_PARAMETER(bErase);
+   //   throw ::interface_only_exception();
 
-      return 0;
-   }
+   //   return 0;
+   //}
 
 
    void interaction_impl::Invalidate(bool bErase)
@@ -3016,7 +3035,7 @@ namespace user
    }
 
 
-   //bool interaction_impl::_is_window_visible()
+   //void interaction_impl::_is_window_visible()
    //{
 
    //   throw ::interface_only_exception();
@@ -3043,12 +3062,12 @@ namespace user
       return nullptr;
    }*/
 
-   bool interaction_impl::LockWindowUpdate()
+   void interaction_impl::LockWindowUpdate()
    {
 
       throw ::interface_only_exception();
 
-      return false;
+      //return false;
 
    }
 
@@ -3082,28 +3101,28 @@ namespace user
    }
 
 
-   bool interaction_impl::RedrawWindow(const ::rectangle_i32 & rectangleUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
+   void interaction_impl::RedrawWindow(const ::rectangle_i32 & rectangleUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
    {
 
       m_puserinteraction->set_need_redraw();
 
-      return true;
+      //return true;
 
    }
 
 
-   bool interaction_impl::EnableScrollBar(i32 nSBFlags,::u32 nArrowFlags)
-   {
+   //void interaction_impl::EnableScrollBar(i32 nSBFlags,::u32 nArrowFlags)
+   //{
 
-      __UNREFERENCED_PARAMETER(nSBFlags);
+   //   __UNREFERENCED_PARAMETER(nSBFlags);
 
-      __UNREFERENCED_PARAMETER(nArrowFlags);
+   //   __UNREFERENCED_PARAMETER(nArrowFlags);
 
-      throw ::interface_only_exception();
+   //   throw ::interface_only_exception();
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
    //::point_i32 interaction_impl::get_cursor_position() const
@@ -3129,20 +3148,24 @@ namespace user
       if (::is_null(m_pwindow))
       {
 
-         return ::error_failed;
+         //return ::error_failed;
+
+         return;
 
       }
 
-      auto estatus = m_pwindow->set_mouse_cursor(pcursor);
+      //auto estatus = 
+      
+      m_pwindow->set_mouse_cursor(pcursor);
 
-      if(!estatus)
-      {
+      //if(!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -3175,21 +3198,21 @@ namespace user
    //}
 
 
-   bool interaction_impl::DrawCaption(::draw2d::graphics_pointer & pgraphics,const rectangle_i32 & prc,::u32 uFlags)
-   {
+   //void interaction_impl::DrawCaption(::draw2d::graphics_pointer & pgraphics,const rectangle_i32 & prc,::u32 uFlags)
+   //{
 
-      __UNREFERENCED_PARAMETER(pgraphics);
-      __UNREFERENCED_PARAMETER(prc);
-      __UNREFERENCED_PARAMETER(uFlags);
+   //   __UNREFERENCED_PARAMETER(pgraphics);
+   //   __UNREFERENCED_PARAMETER(prc);
+   //   __UNREFERENCED_PARAMETER(uFlags);
 
-      throw ::interface_only_exception();
+   //   throw ::interface_only_exception();
 
-      return false;
+   //   //return false;
 
-   }
+   //}
 
 
-   //bool interaction_impl::is_window_enabled() const
+   //void interaction_impl::is_window_enabled() const
    //{
 
    //   return m_puserinteraction->m_ewindowflag & e_window_flag_enable;
@@ -3197,12 +3220,12 @@ namespace user
    //}
 
 
-   bool interaction_impl::enable_window(bool bEnable)
+   void interaction_impl::enable_window(bool bEnable)
    {
 
       m_puserinteraction->m_ewindowflag.set(e_window_flag_enable, bEnable);
 
-      return true;
+      //return true;
 
    }
 
@@ -3227,7 +3250,7 @@ namespace user
    //}
 
 
-   //bool interaction_impl::SetFocus()
+   //void interaction_impl::SetFocus()
    //{
 
    //   return false;
@@ -3275,7 +3298,7 @@ namespace user
    //   return 0;
    //}
 
-   //bool interaction_impl::DlgDirSelect(char * pString,i32 nSize,i32 nIDListBox)
+   //void interaction_impl::DlgDirSelect(char * pString,i32 nSize,i32 nIDListBox)
 
    //{
    //   __UNREFERENCED_PARAMETER(pString);
@@ -3287,7 +3310,7 @@ namespace user
    //   return false;
    //}
 
-   //bool interaction_impl::DlgDirSelectComboBox(char * pString,i32 nSize,i32 nIDComboBox)
+   //void interaction_impl::DlgDirSelectComboBox(char * pString,i32 nSize,i32 nIDComboBox)
 
    //{
    //   __UNREFERENCED_PARAMETER(pString);
@@ -3481,19 +3504,19 @@ namespace user
    }
 
 
-   bool interaction_impl::FlashWindow(bool bInvert)
-   {
+   //void interaction_impl::FlashWindow(bool bInvert)
+   //{
 
-      __UNREFERENCED_PARAMETER(bInvert);
+   //   __UNREFERENCED_PARAMETER(bInvert);
 
-      throw ::interface_only_exception();
+   //   throw ::interface_only_exception();
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
-   //bool interaction_impl::ChangeClipboardChain(::windowing::window * pwindow_Next)
+   //void interaction_impl::ChangeClipboardChain(::windowing::window * pwindow_Next)
    //{
 
    //   __UNREFERENCED_PARAMETER(oswindow_Next);
@@ -3515,7 +3538,7 @@ namespace user
    //}
 
 
-   //bool interaction_impl::OpenClipboard()
+   //void interaction_impl::OpenClipboard()
    //{
 
    //   throw ::interface_only_exception();
@@ -3568,7 +3591,7 @@ namespace user
    }
 
 
-   //bool interaction_impl::SetForegroundWindow()
+   //void interaction_impl::SetForegroundWindow()
    //{
 
    //   throw ::interface_only_exception();
@@ -3578,7 +3601,7 @@ namespace user
    //}
 
 
-   //bool interaction_impl::SendNotifyMessage(::u32 message,wparam wParam,lparam lParam)
+   //void interaction_impl::SendNotifyMessage(::u32 message,wparam wParam,lparam lParam)
    //{
 
    //   __UNREFERENCED_PARAMETER(message);
@@ -3614,26 +3637,26 @@ namespace user
    }
 
 
-   bool interaction_impl::SetWindowContextHelpId(u32 dwContextHelpId)
-   {
+   //void interaction_impl::SetWindowContextHelpId(u32 dwContextHelpId)
+   //{
 
-      __UNREFERENCED_PARAMETER(dwContextHelpId);
+   //   __UNREFERENCED_PARAMETER(dwContextHelpId);
 
-      throw ::interface_only_exception();
+   //   throw ::interface_only_exception();
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
-   u32 interaction_impl::GetWindowContextHelpId() const
-   {
+   //u32 interaction_impl::GetWindowContextHelpId() const
+   //{
 
-      throw ::interface_only_exception();
+   //   throw ::interface_only_exception();
 
-      return -1;
+   //   return -1;
 
-   }
+   //}
 
 
    void interaction_impl::on_message_create(::message::message * pmessage)
@@ -3881,7 +3904,7 @@ namespace user
    //}
 
 
-   //bool interaction_impl::OpenIcon()
+   //void interaction_impl::OpenIcon()
    //{
 
    //   throw ::interface_only_exception();
@@ -3904,7 +3927,7 @@ namespace user
    //}
 
 
-   //bool interaction_impl::_EnableToolTips(bool bEnable,::u32 nFlag)
+   //void interaction_impl::_EnableToolTips(bool bEnable,::u32 nFlag)
    //{
 
    //   __UNREFERENCED_PARAMETER(bEnable);
@@ -4190,7 +4213,7 @@ namespace user
    //}
 
 
-   bool interaction_impl::start_window_visual()
+   void interaction_impl::start_window_visual()
    {
 
       if (m_puserthread)
@@ -4206,7 +4229,7 @@ namespace user
 
       }
 
-      return true;
+      //return true;
 
    }
 
@@ -4268,7 +4291,7 @@ namespace user
    }
 
 
-   //bool interaction_impl::create_host(::user::interaction * pinteraction)
+   //void interaction_impl::create_host(::user::interaction * pinteraction)
    //{
 
    //   return ;
@@ -4322,7 +4345,6 @@ namespace user
 
       }
 
-
    }
 
 
@@ -4338,7 +4360,7 @@ namespace user
 
       }
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -4355,7 +4377,7 @@ namespace user
 
       }
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -4368,14 +4390,16 @@ namespace user
       if (m_pgraphics.is_null())
       {
 
-         auto estatus = __raw_compose(m_pgraphics);
+         //auto estatus =
+         
+         __raw_compose(m_pgraphics);
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            return estatus;
+         //   return estatus;
 
-         }
+         //}
 
          if (m_pgraphics)
          {
@@ -4386,7 +4410,7 @@ namespace user
 
       }
 
-      return m_pgraphics.is_set() ? ::success : ::error_failed;
+      //m_pgraphics.is_set() ? ::success : ::error_failed;
 
    }
 
@@ -4399,7 +4423,9 @@ namespace user
       if (::is_null(puserinteraction))
       {
 
-         return error_failed;
+         //return error_failed;
+
+         throw_status(error_wrong_state);
 
       }
 
@@ -4408,16 +4434,16 @@ namespace user
       if (::is_null(puserthread))
       {
 
-         return error_failed;
+         throw_status(error_wrong_state);
 
       }
 
-      return puserthread->post_routine(routine);
+      puserthread->post_routine(routine);
 
    }
 
    
-//   bool interaction_impl::pre_message_handler(bool & bKeyMessage, ::message::message * pmessage)
+//   void interaction_impl::pre_message_handler(bool & bKeyMessage, ::message::message * pmessage)
 //   {
 //
 //      ::u32 message = pmessage->m_id.umessage();
@@ -4580,7 +4606,7 @@ namespace user
    }
 
 
-   void interaction_impl::set_finish(::object * pcontextobjectFinish)
+   ::e_status interaction_impl::set_finish(::object * pcontextobjectFinish)
    {
 
       if(!is_destroying())
@@ -4649,12 +4675,12 @@ namespace user
    }
 
 
-   bool interaction_impl::prodevian_update_screen()
+   void interaction_impl::prodevian_update_screen()
    {
 
       _001UpdateScreen();
 
-      return true;
+      //return true;
 
    }
 
@@ -4685,7 +4711,7 @@ namespace user
    //}
 
 
-   //bool interaction_impl::attach(::windowing::window * pwindowNew)
+   //void interaction_impl::attach(::windowing::window * pwindowNew)
    //{
 
    //   ASSERT(get_handle() == nullptr);
@@ -5120,7 +5146,7 @@ namespace user
    //}
 
 
-   bool interaction_impl::post(::message::message * pmessage)
+   void interaction_impl::post(::message::message * pmessage)
    {
 
       //if (m_puserthread)
@@ -5144,9 +5170,11 @@ namespace user
       //}));
 
 
-      return m_puserinteraction->post(pmessage);
+      //return 
+      
+      m_puserinteraction->post(pmessage);
 
-      return true;
+      //return true;
 
    }
 
@@ -5622,10 +5650,10 @@ namespace user
    }
 
 
-   bool interaction_impl::ShowWindow(const ::e_display & edisplay)
+   void interaction_impl::ShowWindow(const ::e_display & edisplay)
    {
 
-      return false;
+      //return false;
 
 
    }
@@ -6425,7 +6453,7 @@ namespace user
    void interaction_impl::set_icon(::windowing::icon*)
    {
 
-      return ::success;
+      //return ::success;
 
    }
 

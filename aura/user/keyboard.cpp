@@ -42,14 +42,16 @@ namespace user
    void keyboard::initialize(::object * pobject)
    {
 
-      auto estatus = ::object::initialize(pobject);
+      // auto estatus =
+      
+      ::object::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       auto psystem = m_psystem->m_paurasystem;
 
@@ -157,7 +159,7 @@ namespace user
 //      SET_ENUM_TEXT(e_key_f11);
 //      SET_ENUM_TEXT(e_key_f12);
 
-      return ::success;
+      //return ::success;
 
 //      string strFile;
 //
@@ -746,7 +748,7 @@ namespace user
 
          });
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -757,7 +759,9 @@ namespace user
       if (!::is_null(pprimitive) && pprimitive != m_pprimitiveSoftwareKeyboard)
       {
 
-         return error_invalid_argument;
+         //return error_invalid_argument;
+
+         throw_status(error_invalid_argument);
 
       }
 
@@ -787,7 +791,7 @@ namespace user
 
          });
 
-      return ::success;
+      //return ::success;
 
    }
 

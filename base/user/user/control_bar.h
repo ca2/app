@@ -236,7 +236,7 @@ namespace user
 
 
       virtual bool IsDockBar();
-      virtual bool start_destroying_window() override;
+      virtual void start_destroying_window() override;
       virtual void OnBarStyleChange(u32 dwOldStyle, u32 dwNewStyle);
 
 

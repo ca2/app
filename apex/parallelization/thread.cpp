@@ -773,7 +773,7 @@ bool thread::pump_runnable()
 
    run_posted_routines();
 
-   return true;
+   return false;
 
    //_synchronous_lock synchronouslock(mutex());
 
@@ -1145,7 +1145,7 @@ bool thread::raw_pump_message()
 }
 
 
-void thread::process_message(::message::message * pmessage)
+bool thread::process_message(::message::message * pmessage)
 {
 
    return process_thread_message(pmessage);
@@ -1153,7 +1153,7 @@ void thread::process_message(::message::message * pmessage)
 }
 
 
-void thread::process_thread_message(::message::message * pmessage)
+bool thread::process_thread_message(::message::message * pmessage)
 {
 
    try
@@ -1161,7 +1161,7 @@ void thread::process_thread_message(::message::message * pmessage)
 
       message_handler(pmessage);
 
-      //return ::success;
+      return true;
 
    }
    catch (const ::exception & e)
@@ -1189,6 +1189,9 @@ void thread::process_thread_message(::message::message * pmessage)
    }
 
    //return ::error_exception;
+
+
+   return false;
 
 }
 
@@ -1865,11 +1868,11 @@ void thread::main()
 
    ::u32 u = -1;
 
-   ::e_status estatus = error_failed;
+   //::e_status estatus = error_failed;
 
-   ::e_status estatusOs = error_failed;
+   //::e_status estatusOs = error_failed;
 
-   ::e_status estatusStart = error_failed;
+   //::e_status estatusStart = error_failed;
 
    try
    {
@@ -1905,7 +1908,7 @@ void thread::main()
          if (defer_implement(m_psystem))
          {
 
-            estatus = m_psystem->m_estatus;
+            //estatus = m_psystem->m_estatus;
 
          }
          else
@@ -1943,16 +1946,12 @@ void thread::main()
 
       }
 
-      if (::succeeded(estatusOs))
-      {
-
          destroy_tasks();
 
          __thread_term();
 
          osthread_term();
 
-      }
 
    }
    catch (...)
@@ -3111,7 +3110,7 @@ void thread::post_message(const ::id & id, wparam wparam, lparam lparam)
 
       }
 
-      //return bOk;
+      return;
 
    }
 
@@ -4202,10 +4201,12 @@ void thread::message_handler(::message::message * pmessage)
 
    route_message(pmessage);
 
+   //return false;
+
 }
 
 
-void thread::process_message()
+bool thread::process_message()
 {
 
    try
@@ -4226,7 +4227,7 @@ void thread::process_message()
 
          ::DispatchMessage(&msg);
 
-         return;
+         return true;
 
       }
 
@@ -4266,6 +4267,8 @@ void thread::process_message()
 
                call_request(pcreate);
 
+               return false;
+
             }
 
          }
@@ -4302,7 +4305,7 @@ void thread::process_message()
 
          }
 
-         return;
+         return true;
 
       }
 
@@ -4316,7 +4319,7 @@ void thread::process_message()
       if(message.m_id == WM_KICKIDLE)
       {
 
-         return;
+         return true;
 
       }
 
@@ -4342,7 +4345,7 @@ void thread::process_message()
 
       }
 
-      return;
+      return true;
 
    }
    catch (const ::exception & e)
@@ -4362,7 +4365,7 @@ void thread::process_message()
 
    }
 
-   //return false;
+   return false;
 
 }
 
@@ -4377,7 +4380,7 @@ void thread::process_message()
 //}
 
 
-void thread::raw_process_message()
+bool thread::raw_process_message()
 {
 
    try
@@ -4394,7 +4397,7 @@ void thread::raw_process_message()
 
       }
 
-      return;
+      return true;
 
    }
    catch (const ::exception & e)
@@ -4414,7 +4417,7 @@ void thread::raw_process_message()
 
    }
 
-   //return false;
+   return false;
 
 }
 

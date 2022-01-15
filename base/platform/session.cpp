@@ -26,14 +26,16 @@ namespace base
    void session::initialize(::object * pobject)
    {
 
-      auto estatus = ::axis::session::initialize(pobject);
+      //auto estatus = 
+      
+      ::axis::session::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       m_puiLastLButtonDown             = nullptr;
 
@@ -47,7 +49,7 @@ namespace base
 
       m_puiMouseMoveCapture = nullptr;
 
-      return estatus;
+      //return estatus;
 
    }
 

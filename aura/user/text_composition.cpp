@@ -103,20 +103,22 @@ namespace user
 	void text_composition_composite::initialize_text_composition_client(::channel* pchannel, ::user::interaction * puserinteraction)
 	{
 
-		auto estatus = puserinteraction->__construct(m_ptextcompositionclient);
+		//auto estatus =
+		
+		puserinteraction->__construct(m_ptextcompositionclient);
 
-		if (!estatus)
-		{
+		//if (!estatus)
+		//{
 
-			return estatus;
+		//	return estatus;
 
-		}
+		//}
 
 		//m_ptextcompositionclient->m_ptextcompositionclient = this;
 
 		m_ptextcompositionclient->initialize_text_composition_client(pchannel, puserinteraction);
 
-		return estatus;
+		//return estatus;
 
 	}
 

@@ -53,6 +53,12 @@ public:
 
    
    sequence();
+   ~sequence()
+   {
+
+
+
+   }
 
 
    ///void set_object(const TYPE & result, const ::e_status & estatus = ::success);
@@ -62,7 +68,7 @@ public:
    TYPE & topic(const ::duration & duration = ::duration::infinite());
 
 
-   void wait(const ::duration& duration = ::duration::infinite());
+   bool wait(const ::duration& duration = ::duration::infinite()) override;
 
 
    template < typename OPERATION >

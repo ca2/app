@@ -18,16 +18,18 @@ shell_open::~shell_open()
 void shell_open::initialize(::object * pobject)
 {
 
-   auto estatus = ::object::initialize(pobject);
+   //auto estatus = 
+   
+   ::object::initialize(pobject);
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
-   return estatus;
+   //return estatus;
 
 }
 
@@ -35,7 +37,7 @@ void shell_open::initialize(::object * pobject)
 void shell_open::initialize_shell_open()
 {
 
-   return ::success;
+   //return ::success;
 
 }
 

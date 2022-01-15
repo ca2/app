@@ -25,7 +25,7 @@ namespace user
       switch (pinteraction->get_data_type())
       {
       case e_control_data_type_string:
-         return true;
+         return;
       case e_control_data_type_natural:
       {
          string str = strParam;
@@ -39,15 +39,15 @@ namespace user
             }
             else
             {
-               return false;
+               throw_status(error_failed);
             }
 
          }
-         return true;
+         //return true;
       }
       break;
-      default:
-         return true;
+      default:;
+         //return true;
       }
    }
 

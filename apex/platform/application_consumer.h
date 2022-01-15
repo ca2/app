@@ -37,15 +37,15 @@ void on_initialize_object() override                                            
                                                                                        \
    m_papplication = m_pcontext ? m_pcontext->m_papexapplication : nullptr;             \
                                                                                        \
-   auto estatus1 = BASE1::on_initialize_object();                                      \
+   BASE1::on_initialize_object();                                      \
+                                                                       \
+   BASE2::on_initialize_object();                                      \
+                                                                       \
+   BASE3::on_initialize_object();                                      \
+                                                                       \
+   BASE4::on_initialize_object();                                      \
                                                                                        \
-   auto estatus2 = BASE2::on_initialize_object();                                      \
-                                                                                       \
-   auto estatus3 = BASE3::on_initialize_object();                                      \
-                                                                                       \
-   auto estatus4 = BASE4::on_initialize_object();                                      \
-                                                                                       \
-   return ::is_set(m_papplication) && estatus1 && estatus2 && estatus3 && estatus4;    \
+       \
                                                                                        \
 }                                                                                      \
                                                                                        \

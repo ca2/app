@@ -2291,14 +2291,14 @@ namespace draw2d
 //
 //
 //
-CLASS_DECL_AURA bool aura_init();
-CLASS_DECL_AURA bool aura_term();
+CLASS_DECL_AURA void aura_init();
+CLASS_DECL_AURA void aura_term();
 //
-CLASS_DECL_AURA bool __node_aura_pre_init();
-CLASS_DECL_AURA bool __node_aura_pos_init();
+CLASS_DECL_AURA void __node_aura_pre_init();
+CLASS_DECL_AURA void __node_aura_pos_init();
 //
-CLASS_DECL_AURA bool __node_aura_pre_term();
-CLASS_DECL_AURA bool __node_aura_pos_term();
+CLASS_DECL_AURA void __node_aura_pre_term();
+CLASS_DECL_AURA void __node_aura_pos_term();
 //
 //
 ////extern "C" CLASS_DECL_AURA PFN_NEW_AURA_LIBRARY get_get_new_aura_library(const ::string & psz);

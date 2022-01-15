@@ -1361,7 +1361,7 @@ void mutex::unlock()
 
       auto estatus = failed_errno_to_status(last_error);
 
-      throw_status(estatus);
+      //throw_status(estatus);
 
    }
 

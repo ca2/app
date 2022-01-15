@@ -71,14 +71,16 @@ namespace windowing
    void window::on_initialize_object()
    {
 
-      auto estatus = ::channel::on_initialize_object();
+      //auto estatus = 
+      
+      ::channel::on_initialize_object();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       auto psession = get_session();
 
@@ -86,7 +88,7 @@ namespace windowing
 
       puser->on_initialize_window_object();
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -213,14 +215,16 @@ namespace windowing
          if (m_pcopydesk)
          {
 
-            auto estatus = m_pcopydesk->initialize_copydesk(this);
+            //auto estatus = 
+            
+            m_pcopydesk->initialize_copydesk(this);
 
-            if (!estatus)
-            {
+            //if (!estatus)
+            //{
 
-               __release(m_pcopydesk);
+            //   __release(m_pcopydesk);
 
-            }
+            //}
 
          }
 
@@ -293,7 +297,7 @@ namespace windowing
 
       }
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -631,7 +635,7 @@ namespace windowing
 
       throw ::interface_only_exception();
 
-      return false;
+      //return false;
 
    }
 
@@ -824,14 +828,16 @@ namespace windowing
 
       }
 
-      auto estatus = picon->load_file(payloadFile);
+      //auto estatus = 
+      
+      picon->load_file(payloadFile);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       return picon;
 
@@ -843,7 +849,7 @@ namespace windowing
 
       m_picon = picon;
 
-      return ::success;
+      //return ::success;
 
    }
     
@@ -1032,7 +1038,7 @@ namespace windowing
 
       windowing_output_debug_string("\n::window::show_window 1");
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -1040,7 +1046,7 @@ namespace windowing
    void window::full_screen(const ::rectangle_i32 &rectangle)
    {
 
-      return ::success_none;
+      //return ::success_none;
 
    }
 
@@ -1048,7 +1054,7 @@ namespace windowing
    void window::exit_iconify()
    {
 
-      return ::success_none;
+      //return ::success_none;
 
    }
 
@@ -1056,7 +1062,7 @@ namespace windowing
    void window::exit_full_screen()
    {
 
-      return ::success_none;
+      //return ::success_none;
 
    }
 
@@ -1064,7 +1070,7 @@ namespace windowing
    void window::exit_zoomed()
    {
 
-      return ::success_none;
+      //return ::success_none;
 
    }
 
@@ -1253,16 +1259,18 @@ namespace windowing
    void window::frame_toggle_restore()
    {
     
-      auto estatus= m_pimpl->m_puserinteraction->frame_toggle_restore();
+      //auto estatus= 
+      
+      m_pimpl->m_puserinteraction->frame_toggle_restore();
     
-      if(!estatus)
-      {
-       
-         return estatus;
+      //if(!estatus)
+      //{
+      // 
+      //   return estatus;
     
-      }
+      //}
 
-      return estatus;
+      //return estatus;
     
    }
 
@@ -1270,16 +1278,18 @@ namespace windowing
    void window::window_send(const ::routine & routine)
    {
 
-      auto estatus = __send_routine(this, &window::window_post, routine);
+      //auto estatus = 
+      
+      __send_routine(this, &window::window_post, routine);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 

@@ -19,7 +19,7 @@ namespace draw2d
    }
 
 
-   bool graphics_extension::text_out(::draw2d::graphics_pointer & pgraphics, i32 x, i32 y, const ::string & pcsz, strsize iCount, size_i32 & s)
+   void graphics_extension::text_out(::draw2d::graphics_pointer & pgraphics, i32 x, i32 y, const ::string & pcsz, strsize iCount, size_i32 & s)
    {
 
       s = pgraphics->get_text_extent(string(pcsz,iCount));

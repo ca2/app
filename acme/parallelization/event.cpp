@@ -586,7 +586,7 @@ bool event::_wait (const class ::wait & wait)
 
    estatus = windows_wait_result_to_status(dwResult);
 
-   if (estatus == error_timeout)
+   if (estatus == error_wait_timeout)
    {
 
       return false;

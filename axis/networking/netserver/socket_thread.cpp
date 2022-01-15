@@ -83,7 +83,7 @@ namespace netserver
 
          TRACE(strMessage);
 
-         return error_invalid_argument;
+         throw_status(error_invalid_argument);
 
       }
 
@@ -170,7 +170,7 @@ namespace netserver
 
       m_plistensocket.release();
 
-      return ::success;
+      //return ::success;
 
    }
 

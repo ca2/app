@@ -41,7 +41,7 @@ namespace user
 
       virtual void create_notify_icon(const ::id & id, ::user::interaction * puserinteractionNotify, ::windowing::icon * picon);
 
-      void step() override;
+      bool step() override;
 
 
       void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;

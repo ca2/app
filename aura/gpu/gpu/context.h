@@ -48,7 +48,7 @@ namespace gpu
 
 
       context();
-      virtual ~context();
+      ~context() override;
 
 
       virtual void lock_context();
@@ -88,17 +88,31 @@ namespace gpu
    {
    public:
       
-      context *   m_pcontext;
-      void   m_estatus;
+      context *      m_pcontext;
+      ::e_status     m_estatus;
       
       context_lock(context * pcontext):
+         m_estatus(error_failed),
          m_pcontext(pcontext)
       {
          
          if(m_pcontext)
          {
-         
-            m_estatus = m_pcontext->lock_context();
+
+            try
+            {
+
+               m_pcontext->lock_context();
+
+               m_estatus = success;
+
+            }
+            catch (const ::exception& exception)
+            {
+
+               m_estatus = exception.m_estatus;
+
+            }
             
          }
          

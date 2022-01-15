@@ -572,10 +572,10 @@ bool file_context::try_create_file(const ::file::path &path, bool bTryDelete)
 }
 
 
-::payload file_context::as_network_payload(const ::payload &payloadFile)
+::payload file_context::as_network_payload(const ::payload &payloadFile, bool bNoExceptionOnFail)
 {
 
-   string str = as_string(payloadFile);
+   string str = as_string(payloadFile, bNoExceptionOnFail);
 
    str.trim();
 
@@ -618,12 +618,12 @@ bool file_context::try_create_file(const ::file::path &path, bool bTryDelete)
 }
 
 
-string file_context::as_string(const ::payload &payloadFile)
+string file_context::as_string(const ::payload &payloadFile, bool bNoExceptionOnFail)
 {
 
    memory memory;
 
-   if (!as_memory(payloadFile, memory))
+   if (!as_memory(payloadFile, memory, bNoExceptionOnFail))
    {
 
       return "";
@@ -635,15 +635,35 @@ string file_context::as_string(const ::payload &payloadFile)
 }
 
 
-bool file_context::as_memory(const ::payload &payloadFile, memory_base &mem)
+bool file_context::as_memory(const ::payload &payloadFile, memory_base &mem, bool bNoExceptionOnFail)
 {
 
-   auto pfile = get_file(payloadFile, ::file::e_open_share_deny_none | ::file::e_open_read | ::file::e_open_binary);
+   file_pointer pfile;
 
-   if (!pfile)
+   try
    {
 
-      return false;
+      pfile = get_file(payloadFile, ::file::e_open_share_deny_none | ::file::e_open_read | ::file::e_open_binary);
+
+      if (!pfile)
+      {
+
+         return false;
+
+      }
+
+   }
+   catch (const ::exception & exception)
+   {
+
+      if (bNoExceptionOnFail)
+      {
+
+         return false;
+
+      }
+
+      throw exception;
 
    }
 
@@ -759,15 +779,35 @@ void file_context::put_lines(const ::payload &payloadFile, const string_array &s
 //}
 
 
-void file_context::get_lines(string_array &stra, const ::payload &payloadFile, bool bAddEmpty)
+void file_context::get_lines(string_array &stra, const ::payload &payloadFile, bool bAddEmpty, bool bNoExceptionIfFailToOpen)
 {
 
-   auto pfile = get_file(payloadFile, ::file::e_open_text | ::file::e_open_read);
+   file_pointer pfile;
 
-   if (!pfile)
+   try
    {
 
-      throw_status(error_io);
+      pfile = get_file(payloadFile, ::file::e_open_text | ::file::e_open_read);
+
+      if (!pfile)
+      {
+
+         throw_status(error_io);
+
+      }
+
+   }
+   catch (const ::exception& exception)
+   {
+
+      if (bNoExceptionIfFailToOpen)
+      {
+
+         return;
+
+      }
+
+      throw exception;
 
    }
 

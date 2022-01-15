@@ -33,10 +33,10 @@ namespace account
       
       
       department();
-      virtual ~department();
+      ~department() override;
 
 
-      virtual void initialize(::object * pobject) override;
+      void initialize(::object * pobject) override;
 
 
       class __pointer(class authenticator) authenticator();

@@ -23,14 +23,16 @@ namespace simpledb
    void server::initialize_simpledb_server(::object * pobject, const ::string & pszDatabase)
    {
 
-      auto estatus = ::database::server::initialize(pobject);
+      //auto estatus =
+      
+      ::database::server::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       m_bRemote = !m_pcontext->m_papexcontext->is_local_data();
 
@@ -43,32 +45,36 @@ namespace simpledb
 
       ::file::path pathDatabase(pszDatabase);
 
-      if (!m_pcontext->m_papexcontext->dir().mk(pathDatabase.folder()))
-      {
+      //if (!
+      m_pcontext->m_papexcontext->dir().create(pathDatabase.folder());
 
-         return false;
+      //{
 
-      }
+      //   //return false;
+
+      //   throw_status(error_failed);
+
+      //}
 
       auto & pfactoryDatabase = m_psystem->factory("database", "sqlite3");
 
-      if(!pfactoryDatabase)
-      {
-         
-         WARNING("Failed to load database_sqlite3");
+      //if(!pfactoryDatabase)
+      //{
+      //   
+      //   WARNING("Failed to load database_sqlite3");
 
-         return pfactoryDatabase;
+      //   return pfactoryDatabase;
 
-      }
+      //}
 
-      estatus = pfactoryDatabase->__construct(m_pdatabaseLocal);
+      pfactoryDatabase->__construct(m_pdatabaseLocal);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
       synchronous_lock synchronouslock(m_pdatabaseLocal->mutex());
 
@@ -83,66 +89,77 @@ namespace simpledb
 
       //m_pdatabaseLocal = pdatabase;
 
-      estatus = m_pdatabaseLocal->initialize(this);
+      m_pdatabaseLocal->initialize(this);
 
-      if (!estatus)
+ /*     if (!estatus)
       {
 
          return ::error_failed;
 
-      }
+      }*/
 
-      estatus = m_pdatabaseLocal->connect(pszDatabase);
+      //estatus = 
+      
+      m_pdatabaseLocal->connect(pszDatabase);
 
-      if (!estatus)
+ /*     if (!estatus)
       {
 
          return ::error_failed;
 
-      }
+      }*/
 
-      estatus = __compose_new(m_psimpledb);
+      //estatus =
+      
+      __compose_new(m_psimpledb);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return ::error_failed;
+      //   return ::error_failed;
 
-      }
+      //}
 
-      estatus = m_psimpledb->initialize_simpledb(this);
+      //estatus = 
+      
+      m_psimpledb->initialize_simpledb(this);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return ::error_failed;
+      //   return ::error_failed;
 
-      }
+      //}
+      
+      create_server_dataset();
+      //if (!)
+      //{
 
-      if (!create_server_dataset())
-      {
+      //   return ::error_failed;
 
-         return ::error_failed;
+      //}
 
-      }
+      //estatus = 
+      
+      __compose_new(m_pstorage);
 
-      estatus = __compose_new(m_pstorage);
+      //if (!estatus)
+      //{
 
-      if (!estatus)
-      {
+      //   return ::error_failed;
 
-         return ::error_failed;
+      //}
 
-      }
+      //estatus = 
+      
+      m_pstorage->initialize_simpledb_storage(this);
 
-      estatus = m_pstorage->initialize_simpledb_storage(this);
+      //if (!estatus)
+      //{
 
-      if (!estatus)
-      {
+      //   return ::error_failed;
 
-         return ::error_failed;
-
-      }
+      //}
 
       //m_pstorage = __new(storage(this));
 
@@ -150,18 +167,18 @@ namespace simpledb
 
       m_strDatabase = pszDatabase;
 
-      return ::success;
+      // return ::success;
 
    }
 
 
-   bool server::initialize_user(::database::database * pdatabaseUser, const ::string & pszUser)
+   void server::initialize_user(::database::database * pdatabaseUser, const ::string & pszUser)
    {
 
       if (::is_null(pdatabaseUser))
       {
 
-         return false;
+         throw_status(error_null_pointer);
 
       }
 
@@ -171,33 +188,37 @@ namespace simpledb
 
       m_strUser = pszUser;
 
-      auto estatus = __compose_new(m_psimpledb);
+      //auto estatus = 
+      
+      __compose_new(m_psimpledb);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
-      estatus = m_psimpledb->initialize_simpledb(this);
+      //estatus = 
+      
+      m_psimpledb->initialize_simpledb(this);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
       m_bWorking = true;
 
-      return true;
+      //return true;
 
    }
 
 
 
-   bool server::create_server_dataset()
+   void server::create_server_dataset()
    {
 
       auto pdatabase = m_pdatabaseLocal;
@@ -226,7 +247,7 @@ namespace simpledb
 
       }
 
-      return true;
+      //return true;
 
    }
 
@@ -245,9 +266,11 @@ namespace simpledb
 
       m_pdatabaseLocal.release();
 
-      auto estatus = ::database::server::destroy();
+      //auto estatus = 
+      
+      ::database::server::destroy();
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -288,7 +311,7 @@ namespace simpledb
    }
 
 
-   bool server::_data_server_save(::database::client * pclient, const ::database::key & id, block block, ::subject * psubject)
+   void server::_data_server_save(::database::client * pclient, const ::database::key & id, block block, ::subject * psubject)
    {
 
       ::database::key key;
@@ -304,14 +327,14 @@ namespace simpledb
 
       }
 
-      if (!m_psimpledb->save(key, block))
-      {
+      m_psimpledb->save(key, block);
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
-      return true;
+      //return true;
 
    }
 

@@ -40,14 +40,16 @@ namespace windowing
    void display::initialize_display(::windowing::windowing * pwindowing)
    {
 
-      auto estatus = initialize(pwindowing);
+      //auto estatus =
+      
+      initialize(pwindowing);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       auto psystem = m_psystem->m_paurasystem;
 
@@ -60,7 +62,7 @@ namespace windowing
 
       m_pwindowing = pwindowing;
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -93,7 +95,7 @@ namespace windowing
    void display::open()
    {
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -232,9 +234,13 @@ namespace windowing
 
       }
 
-      auto bOk = pmonitor->get_monitor_rectangle(prectangle);
+      //auto bOk = 
+      
+      pmonitor->get_monitor_rectangle(prectangle);
 
-      return bOk;
+      //return bOk;
+
+      return true;
 
    }
 
@@ -309,9 +315,13 @@ namespace windowing
 
       }
 
-      auto bOk = pmonitor->get_workspace_rectangle(prectangle);
+      //auto bOk = 
+      
+      pmonitor->get_workspace_rectangle(prectangle);
 
-      return bOk;
+      //return bOk;
+
+      return true;
 
    }
 

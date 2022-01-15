@@ -28,14 +28,14 @@ namespace acme
 
       virtual bool set_timer(::object * pobject, uptr uEvent, ::duration millisEllapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void * pvoidData = nullptr);
 
-      bool erase_timer(::timer * ptimer) override;
+      void erase_timer(::timer * ptimer) override;
 
 
       void destroy() override;
       virtual void delete_all_timers();
 
-      bool on_timer(::timer * ptimer) override;
-      virtual void _001OnTimer(::timer * ptimer);
+      void on_timer(::timer * ptimer) override;
+      void _001OnTimer(::timer * ptimer);
 
       virtual bool e_timer_is_ok() override;
 

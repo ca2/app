@@ -27,43 +27,49 @@ namespace graphics
    void bitmap_source_buffer::initialize_graphics_graphics(::user::interaction_impl* pimpl)
    {
 
-      auto estatus = graphics::initialize_graphics_graphics(pimpl);
+      //auto estatus =
+      
+      graphics::initialize_graphics_graphics(pimpl);
 
-      if (!estatus)
+      /*if (!estatus)
       {
 
          return estatus;
 
-      }
+      }*/
 
       if (pimpl->m_strBitmapSource.has_char())
       {
 
 
-         estatus = __construct(m_pmemorymap);
+         //estatus =
+         
+         __construct(m_pmemorymap);
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            ::output_debug_string("no memory map for the graphics buffer");
-            //return estatus;
+         //   ::output_debug_string("no memory map for the graphics buffer");
+         //   //return estatus;
 
-            estatus = ::success;
+         //   estatus = ::success;
 
-         }
+         //}
 
-         estatus = set_bitmap_source(pimpl->m_strBitmapSource);
+         //estatus = 
+         
+         set_bitmap_source(pimpl->m_strBitmapSource);
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            return estatus;
+         //   return estatus;
 
-         }
+         //}
 
       }
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -74,7 +80,7 @@ namespace graphics
       if (m_strBitmapSource == strBitmapSource)
       {
 
-         return true;
+         return;
 
       }
 
@@ -100,25 +106,29 @@ namespace graphics
 
       path = pathFolder / "bitmap-source" / strBitmapSource;
 
-      auto estatus = __construct(m_pmemorymap);
+      //auto estatus = 
+      
+      __construct(m_pmemorymap);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = m_pmemorymap->open_path(path, false, true, true, 128_mb);
+      //estatus = 
+      
+      m_pmemorymap->open_path(path, false, true, true, 128_mb);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -139,9 +149,10 @@ namespace graphics
 
       m_pmutexBitmapSource.release();
       
-      return ::success;
+      //return ::success;
 
    }
+
 
    string bitmap_source_buffer::get_bitmap_source() const
    {

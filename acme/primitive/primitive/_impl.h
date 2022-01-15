@@ -703,7 +703,7 @@ inline ___pointer < T >  & ___pointer < T >::operator = (const payload_type < VA
 
       stream >> strText;
 
-      if (!stream.fail())
+      //if (!stream.fail())
       {
 
          if (strText.is_empty() || strText.begins_eat_ci("factoryless://"))
@@ -725,7 +725,9 @@ inline ___pointer < T >  & ___pointer < T >::operator = (const payload_type < VA
 
                   ::output_debug_string("POINTER: defer_new failed (1.1)");
 
-                  stream.set_fail_bit();
+                  //stream.set_fail_bit();
+
+                  throw_status(error_io);
 
                }
                else if(__type_name(m_p) != strText)
@@ -733,7 +735,9 @@ inline ___pointer < T >  & ___pointer < T >::operator = (const payload_type < VA
 
                   ::output_debug_string("POINTER: allocated matter type is different from streamed matter type (1.2)");
 
-                  stream.set_fail_bit();
+                  //stream.set_fail_bit();
+
+                  throw_status(error_io);
 
                }
 
@@ -767,7 +771,9 @@ inline ___pointer < T >  & ___pointer < T >::operator = (const payload_type < VA
 
                   ::output_debug_string("POINTER: allocated matter type is different from streamed matter type (2.2)");
 
-                  stream.set_fail_bit();
+                  //stream.set_fail_bit();
+
+                  throw_status(error_io);
 
                }
                else
@@ -781,7 +787,7 @@ inline ___pointer < T >  & ___pointer < T >::operator = (const payload_type < VA
 
          }
 
-         if (!stream.fail())
+         //if (!stream.fail())
          {
 
             m_p->read(stream);

@@ -25,16 +25,17 @@ namespace gpu
    void context::initialize(::object * pobject)
    {
 
-      ::e_status estatus = ::object::initialize(pobject);
+      //::e_status estatus = 
+      ::object::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -45,7 +46,8 @@ namespace gpu
       if (m_VAO != 0)
       {
 
-         return ::success;
+         //return ::success;
+         return;
 
       }
       //glGenBuffers(1, &VAO);
@@ -81,14 +83,14 @@ namespace gpu
       ////glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
       ////glEnableVertexAttribArray(1);
 
-      return ::success;
+      //return ::success;
    }
 
 
    void context::prepare_for_gpu_read()
    {
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -117,7 +119,7 @@ namespace gpu
       ////int vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
       ////glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -129,7 +131,7 @@ namespace gpu
 
       //glDrawArrays(GL_TRIANGLES, 0, 6);
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -144,38 +146,31 @@ namespace gpu
       if (::is_null(pgpu))
       {
 
-         return ::error_failed;
+         throw_status(error_null_pointer);
 
       }
 
-      ::e_status estatus = __construct(m_pbuffer);
-
-      if (!estatus)
-      {
-
-         return false;
-
-      }
+      __construct(m_pbuffer);
 
       m_pbuffer->m_pimage = m_pcontext->context_image()->create_image(size);
 
       if (!::is_ok(m_pbuffer->m_pimage))
       {
 
-         return false;
+         throw_status(error_resource);
 
       }
 
-      estatus = _create_offscreen_buffer(size);
+      _create_offscreen_buffer(size);
 
-      if(!estatus)
-      {
+      //if(!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return ::success_none;
+      //return ::success_none;
 
    }
 
@@ -183,7 +178,7 @@ namespace gpu
    void context::_create_offscreen_buffer(const ::size_i32& size)
    {
 
-      return ::success_none;
+      //return ::success_none;
 
    }
 
@@ -200,7 +195,7 @@ namespace gpu
 
       m_pbuffer->m_pimage->create(size);
 
-      return ::success_none;
+      //return ::success_none;
 
    }
 
@@ -208,7 +203,7 @@ namespace gpu
    void context::lock_context()
    {
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -216,7 +211,7 @@ namespace gpu
    void context::unlock_context()
    {
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -224,7 +219,7 @@ namespace gpu
    void context::make_current()
    {
 
-      return ::success_none;
+      //return ::success_none;
 
    }
 
@@ -232,7 +227,7 @@ namespace gpu
    void context::destroy_offscreen_buffer()
    {
 
-      return ::success_none;
+      //return ::success_none;
 
    }
 

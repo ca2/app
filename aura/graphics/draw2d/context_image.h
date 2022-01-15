@@ -72,7 +72,7 @@ context_image();
    
    virtual void _load_image(::image* pimage, __pointer(image_frame_array)& pframea, memory & memory);
    
-   virtual bool _load_multi_frame_image(::image* pimage, memory & memory);
+   virtual void _load_multi_frame_image(::image* pimage, memory & memory);
 
    virtual void load_svg(::image* pimage, memory & memory);
 

@@ -92,7 +92,7 @@ namespace user
       virtual void _001OnTimer(::timer * ptimer);
 
 
-      virtual bool create_message_queue(const ::string & lpszName);
+      virtual void create_message_queue(const ::string & lpszName);
 
 
       //virtual void set_config_fps(double dConfigFps);
@@ -109,7 +109,7 @@ namespace user
 
       virtual ::user::form * get_parent_form();
 
-      virtual bool enable_window(bool bEnable = true);
+      virtual void enable_window(bool bEnable = true);
 
       virtual void PreSubClassWindow();
 
@@ -129,10 +129,10 @@ namespace user
       virtual enum_control_type get_control_type() const;
 
 
-      virtual bool add_prodevian(::matter * pmatter);
-      virtual bool erase_prodevian(::matter * pmatter);
+      virtual void add_prodevian(::matter * pmatter);
+      virtual void erase_prodevian(::matter * pmatter);
 
-      virtual bool display(::e_display edisplay = e_display_default, ::e_activation eactivation = e_activation_default);
+      virtual void display(::e_display edisplay = e_display_default, ::e_activation eactivation = e_activation_default);
 
 
       virtual string get_title();
@@ -197,7 +197,7 @@ namespace user
 
       //virtual void _task_transparent_mouse_event();
 
-      virtual bool CheckAutoCenter();
+      virtual void CheckAutoCenter();
 
       virtual void track_mouse_hover();
       virtual void track_mouse_leave();
@@ -213,7 +213,7 @@ namespace user
 
 
       // Dialog data support
-      virtual bool update_data(bool bSaveAndValidate = true);
+      virtual void update_data(bool bSaveAndValidate = true);
 
 
       //virtual ::user::element * get_keyboard_focus();
@@ -262,7 +262,7 @@ namespace user
 
 
 
-      virtual bool subclass_window(oswindow posdata);
+      virtual void subclass_window(oswindow posdata);
       virtual oswindow unsubclass_window();
 
       virtual string get_class_name();
@@ -275,21 +275,21 @@ namespace user
       virtual void create_child(::user::interaction * puserinteractionParent);
       virtual void create_control(::user::interaction * puserinteractionParent, const ::id & id);
 
-      //virtual bool create_window_ex(__pointer(::user::system) pcs, ::user::interaction * puiParent, const ::id & id);
+      //virtual void create_window_ex(__pointer(::user::system) pcs, ::user::interaction * puiParent, const ::id & id);
       //virtual void CalcWindowRect(RECTANGLE_I32 * pClientRect,::u32 nAdjustType = adjustBorder);
 
 
       //virtual bool IsTopParentActive();
       virtual void ActivateTopParent();
 
-      virtual bool start_destroying_window();
+      virtual void start_destroying_window();
 
       virtual void destroy_window();
 
 
 //#ifdef WINDOWS
 
-  //    virtual bool RedrawWindow(const ::rectangle_i32& rectangleUpdate = nullptr, ::draw2d::region * prgnUpdate = nullptr, ::u32 flags = RDW_INVALIDATE | RDW_ERASE);
+  //    virtual void RedrawWindow(const ::rectangle_i32& rectangleUpdate = nullptr, ::draw2d::region * prgnUpdate = nullptr, ::u32 flags = RDW_INVALIDATE | RDW_ERASE);
 
 //#else
 
@@ -320,9 +320,9 @@ namespace user
 
 #endif
 
-      virtual bool post_message(const ::id & id, wparam wparam = 0,lparam lparam = 0);
+      virtual void post_message(const ::id & id, wparam wparam = 0,lparam lparam = 0);
 
-      virtual bool post_simple_command(const enum_simple_command & ecommand,lparam lParam = 0);
+      virtual void post_simple_command(const enum_simple_command & ecommand,lparam lParam = 0);
 
       //virtual bool ModifyStyle(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0);
       //virtual bool ModifyStyleEx(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0);
@@ -331,8 +331,8 @@ namespace user
       //virtual void SetWindowDisplayChanged();
 
       // timer Functions
-      virtual bool SetTimer(uptr uEvent, const ::duration & millisElapse, PFN_TIMER pfnTimer, bool bPeriodic = true, void* pdata = nullptr);
-      virtual bool KillTimer(uptr uEvent);
+      virtual void SetTimer(uptr uEvent, const ::duration & millisElapse, PFN_TIMER pfnTimer, bool bPeriodic = true, void* pdata = nullptr);
+      virtual void KillTimer(uptr uEvent);
 
 
 
@@ -603,7 +603,7 @@ namespace user
       virtual void set_need_load_form_data();
       virtual void set_need_save_form_data();
       virtual void post_redraw(bool bAscendants = true);
-      virtual bool hide();
+      virtual void hide();
 
       // keyboard focus
       //virtual bool on_keyboard_focus(::user::element * pfocus);

@@ -84,7 +84,7 @@ bool nanosvg(::image * pimage, NSVGimage * psvgimage, int iRedLower)
 }
 
 
-bool image::nanosvg(char * pszXml, double dDpi)
+void image::nanosvg(char * pszXml, double dDpi)
 {
 
    if (dDpi <= 0.0)
@@ -101,7 +101,7 @@ bool image::nanosvg(char * pszXml, double dDpi)
    if (::is_null(psvgimage))
    {
 
-      return false;
+      throw_status(error_null_pointer);
 
    }
 
@@ -114,7 +114,7 @@ bool image::nanosvg(char * pszXml, double dDpi)
 
       unmap();
 
-      return true;
+      //return true;
 
    }
    catch (...)
@@ -124,12 +124,12 @@ bool image::nanosvg(char * pszXml, double dDpi)
 
    nsvgDelete(psvgimage);
 
-   return false;
+   //return false;
 
 }
 
 
-bool image::create_nanosvg(char * pszXml, double dDpi)
+void image::create_nanosvg(char * pszXml, double dDpi)
 {
 
    NSVGimage * psvgimage;
@@ -146,23 +146,20 @@ bool image::create_nanosvg(char * pszXml, double dDpi)
    if (::is_null(psvgimage))
    {
 
-      return false;
+      throw_status(error_null_pointer);
 
    }
 
    try
    {
 
-      if (create({ (int)psvgimage->width, (int)psvgimage->height }))
-      {
+      create({ (int)psvgimage->width, (int)psvgimage->height });
 
-         map();
+      map();
 
-         ::nanosvg(this, psvgimage, m_iRedLower);
+      ::nanosvg(this, psvgimage, m_iRedLower);
 
-         unmap();
-
-      }
+      unmap();
 
    }
    catch (...)
@@ -172,7 +169,7 @@ bool image::create_nanosvg(char * pszXml, double dDpi)
 
    nsvgDelete(psvgimage);
 
-   return true;
+   //return true;
 
 }
 

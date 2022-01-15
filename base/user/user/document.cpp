@@ -116,7 +116,7 @@ namespace user
    void document::destroy_composites()
    {
 
-      bool bStillFinishing = false;
+      //bool bStillFinishing = false;
 
       auto uia = get_top_level_windows();
 
@@ -125,18 +125,20 @@ namespace user
 
          auto estatus = pui->set_finish();
 
-         if (estatus == ::error_pending)
+   /*      if (estatus == ::error_pending)
          {
 
             bStillFinishing = true;
 
-         }
+         }*/
 
       }
 
-      auto estatus = ::user::controller::destroy_composites();
+      //auto estatus = 
+      
+      ::user::controller::destroy_composites();
 
-      if (estatus == ::error_pending)
+      /*if (estatus == ::error_pending)
       {
 
          bStillFinishing = true;
@@ -150,7 +152,7 @@ namespace user
 
       }
 
-      return ::success;
+      return ::success;*/
 
    }
 

@@ -78,14 +78,16 @@ namespace opengl
 
       //string strSummary;
 
-      ::e_status estatus = shader_compile_errors(uShader, type, m_strError);
+      //::e_status estatus =
+      
+      shader_compile_errors(uShader, type, m_strError);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return 0;
+      //   return 0;
 
-      }
+      //}
       m_strError.Empty();
 
       return uShader;
@@ -139,14 +141,16 @@ namespace opengl
 
       string strSummary;
 
-      ::e_status estatus = program_compile_errors(m_uId, strSummary);
+      ///::e_status estatus =
+      
+      program_compile_errors(m_uId, strSummary);
 
-      if(estatus.succeeded())
-      {
+      //if(estatus.succeeded())
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       // delete the shaders
       // they're linked into our program
@@ -166,7 +170,7 @@ namespace opengl
       
 #endif
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -304,7 +308,7 @@ namespace opengl
    void shader::shader_compile_errors(GLuint shader, GLenum type, string & strSummary)
    {
 
-      ::e_status estatus = ::success;
+      //::e_status estatus = ::success;
 
       GLint success = 0;
 
@@ -329,13 +333,13 @@ namespace opengl
 
          strSummary.format("FORMATTED_ERROR::SHADER_COMPILATION_ERROR of type: %s \n %s \n -- --------------------------------------------------- -- \n", psz, pszLog);
 
-         estatus = ::error_failed;
+         throw_status(error_failed);
 
       }
 
       INFORMATION(strSummary);
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -364,13 +368,13 @@ namespace opengl
 
          strSummary.format("FORMATTED_ERROR::PROGRAM_LINKING_ERROR : \n %s \n -- --------------------------------------------------- -- \n", infoLog);
 
-         estatus = ::error_failed;
+         throw_status(error_failed);
 
       }
 
       INFORMATION(strSummary);
 
-      return estatus;
+      //return estatus;
 
    }
 

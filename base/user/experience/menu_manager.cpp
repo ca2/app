@@ -23,18 +23,20 @@ namespace experience
    void menu_manager::initialize_menu_manager(frame_window* pframewindow)
    {
 
-      auto estatus = ::object::initialize(pframewindow);
+      //auto estatus = 
+      
+      ::object::initialize(pframewindow);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       m_pframewindow = pframewindow;
 
-      return estatus;
+      //return estatus;
 
    }
 

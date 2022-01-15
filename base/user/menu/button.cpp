@@ -31,18 +31,20 @@ namespace user
    void menu_button::initialize_menu_interaction(menu_item* pitem)
    {
 
-      auto estatus = button::initialize(pitem);
+      //auto estatus = 
+      
+      button::initialize(pitem);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       m_pmenuitem = pitem;
 
-      return estatus;
+      //return estatus;
 
    }
 

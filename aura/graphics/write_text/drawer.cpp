@@ -37,7 +37,9 @@ namespace write_text
       if (::is_null(pfont))
       {
 
-         return ::error_failed;
+         throw_status(error_null_pointer);
+
+         //return ::error_failed;
 
       }
 
@@ -47,10 +49,9 @@ namespace write_text
 
       m_pfont = pfont;
 
-      return ::success;
+      //return ::success;
 
    }
-
 
 
    void drawer::draw(const ::write_text::text_out* ptextout)
@@ -63,16 +64,17 @@ namespace write_text
 
       }
 
-      bool bOk = TextOutRaw(ptextout->m_point.x, ptextout->m_point.y, ptextout->m_strText);
+      //bool bOk = 
+      TextOutRaw(ptextout->m_point.x, ptextout->m_point.y, ptextout->m_strText);
 
-      if (!bOk)
-      {
+      //if (!bOk)
+      //{
 
-         return error_failed;
+      //   return error_failed;
 
-      }
+      //}
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -86,7 +88,7 @@ namespace write_text
 
       }
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -137,7 +139,9 @@ namespace write_text
       if (etextwrap == e_text_wrap_none)
       {
 
-         return ::success;
+         //return ::success;
+
+         return;
 
       }
 
@@ -150,7 +154,7 @@ namespace write_text
 
       }
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -358,7 +362,7 @@ namespace write_text
 
       }
 
-      return ::success;
+      //return ::success;
 
    }
 

@@ -46,14 +46,16 @@ namespace windowing
 
       //}
 
-      auto estatus = __refer(m_puser, puser);
+      //auto estatus = 
+      
+      __refer(m_puser, puser);
 
-      if(!estatus)
-      {
+      //if(!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       m_ecursorDefault = e_cursor_arrow;
 
@@ -61,7 +63,7 @@ namespace windowing
 
       m_bDrawCursor = false;
 
-      return ::success;
+//      return ::success;
 
    }
 
@@ -91,9 +93,11 @@ namespace windowing
 
       m_pcursormanager.release();
 
-      auto estatus = ::acme::department::destroy();
+      //auto estatus = 
+      
+      ::acme::department::destroy();
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -118,7 +122,7 @@ namespace windowing
    void windowing::start()
    {
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -145,14 +149,16 @@ namespace windowing
       if (m_pcursormanager.is_null())
       {
 
-         auto estatus = __construct_new(m_pcursormanager);
+         //auto estatus = 
+         
+         __construct_new(m_pcursormanager);
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            return nullptr;
+         //   return nullptr;
 
-         }
+         //}
 
          //m_pcursormanager->set_cursor_set_system_default();
 
@@ -171,7 +177,8 @@ namespace windowing
       if (m_bSettingCursorMatter)
       {
 
-         return error_already_working_on_it;
+         //return error_already_working_on_it;
+         return;
 
       }
 
@@ -179,25 +186,29 @@ namespace windowing
 
       synchronouslock.unlock();
 
-      auto estatus = __construct(m_pcursormanager);
+      //auto estatus = 
+      
+      __construct(m_pcursormanager);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = m_pcursormanager->set_cursor_set_from_matter(pathDir);
+      //estatus = 
+      
+      m_pcursormanager->set_cursor_set_from_matter(pathDir);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -451,7 +462,7 @@ namespace windowing
    void windowing::term1()
    {
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -467,7 +478,7 @@ namespace windowing
    void windowing::term2()
    {
 
-      return ::success;
+      //return ::success;
 
    }
    //bool windowing::set_window_icon(window *pwindow, const ::file::path &path)
@@ -526,7 +537,7 @@ namespace windowing
 
       //}
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -603,7 +614,9 @@ namespace windowing
       if (::is_null(pcursor))
       {
 
-         return ::error_invalid_argument;
+         //return ::error_invalid_argument;
+
+         throw_status(error_invalid_argument);
 
       }
 
@@ -612,13 +625,15 @@ namespace windowing
       if (!::str::ends_eat_ci(str, ".png"))
       {
 
-         return false;
+         //return false;
+
+         return;
 
       }
 
       ////pcursor->m_pimage = pcontextimage->load_image(path, bFromCache, bSync);
 
-      return true;
+      //return true;
 
    }
 
@@ -650,7 +665,7 @@ namespace windowing
    void windowing::lock_set_foreground_window(bool bLock)
    {
 
-      return error_not_implemented;
+      //return error_not_implemented;
     
    }
 
@@ -658,16 +673,18 @@ namespace windowing
    void windowing::windowing_send(const ::routine & routine)
    {
 
-      auto estatus = __send_routine(this, &windowing::windowing_post, routine);
+      //auto estatus = 
+      
+      __send_routine(this, &windowing::windowing_post, routine);
 
-      if(!estatus)
-      {
+      //if(!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -697,14 +714,16 @@ namespace windowing
       if (!m_pkeyboard)
       {
 
-         auto estatus = __compose(m_pkeyboard);
+         //auto estatus = 
+         
+         __compose(m_pkeyboard);
 
-         if (!m_pkeyboard)
-         {
+         //if (!m_pkeyboard)
+         //{
 
-            __throw(error_exception, "Could not create keyboard");
+         //   __throw(error_exception, "Could not create keyboard");
 
-         }
+         //}
 
 
          //

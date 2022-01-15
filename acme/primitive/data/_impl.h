@@ -52,12 +52,12 @@ inline stream & operator >>(stream & s, ::data::tree & tree)
 
       s >> iLevel;
 
-      if (s.fail())
-      {
+      //if (s.fail())
+      //{
 
-         break;
+      //   break;
 
-      }
+      //}
 
       if (iLevel < 0)
       {

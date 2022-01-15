@@ -14,7 +14,7 @@ namespace helloaxis
 
 
       application(::object * pobject);
-      virtual ~application();
+      ~application() override;
 
       virtual void init_instance() override;
       virtual i32  exit_application() override;

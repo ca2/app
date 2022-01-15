@@ -23,7 +23,7 @@ namespace windowing
    void monitor::update_cache()
    {
 
-      return ::success_none;
+      //return ::success_none;
 
    }
 
@@ -49,7 +49,7 @@ namespace windowing
 
       __copy(prectangle, m_rectangle);
 
-      return true;
+//      return true;
 
    }
 
@@ -59,7 +59,7 @@ namespace windowing
 
       __copy(prectangle, m_rectangleWorkspace);
 
-      return true;
+//      return true;
 
    }
 

@@ -29,16 +29,18 @@ namespace write_text
    void fonts::initialize(::object* pobject)
    {
 
-      auto estatus = ::acme::department::initialize(pobject);
+      //auto estatus = 
+      
+      ::acme::department::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return true;
+      //return true;
 
    }
 
@@ -67,12 +69,12 @@ namespace write_text
 
       auto pfontenumeration = __create < ::write_text::font_enumeration >();
 
-      if (!pfontenumeration.m_estatus)
-      {
+      //if (!pfontenumeration.m_estatus)
+      //{
 
-         return pfontenumeration.m_estatus;
+      //   return pfontenumeration.m_estatus;
 
-      }
+      //}
 
       if (!m_pfontenumeration)
       {
@@ -92,7 +94,7 @@ namespace write_text
 
       });
 
-      return ::success;
+      //return ::success;
 
    }
 

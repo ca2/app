@@ -25,19 +25,19 @@ namespace file
          //istream >> count;
          istream.read(count);
 
-         if (istream.fail())
+         /*if (istream.fail())
          {
             return;
-         }
+         }*/
 
          a.allocate(count);
          for (index index = 0; index < count; index++)
          {
             istream >> a.element_at(index);
-            if (istream.fail())
-            {
-               return;
-            }
+            //if (istream.fail())
+            //{
+            //   return;
+            //}
          }
          a.on_after_read();
       }
@@ -66,19 +66,19 @@ namespace file
          //istream >> count;
          istream.read(count);
 
-         if (istream.fail())
-         {
-            return;
-         }
+         //if (istream.fail())
+         //{
+         //   return;
+         //}
 
          a.allocate(count);
          for (index index = 0; index < count; index++)
          {
             istream >> *a.element_at(index);
-            if (istream.fail())
-            {
-               return;
-            }
+            //if (istream.fail())
+            //{
+            //   return;
+            //}
          }
          a.on_after_read();
       }
@@ -119,12 +119,12 @@ namespace file
 
          istream.read(count);
 
-         if (istream.fail())
-         {
+         //if (istream.fail())
+         //{
 
-            return;
+         //   return;
 
-         }
+         //}
 
          typename type_map::BASE_KEY key;
 
@@ -135,21 +135,21 @@ namespace file
 
             istream >> key;
 
-            if (istream.fail())
-            {
+            //if (istream.fail())
+            //{
 
-               return;
+            //   return;
 
-            }
+            //}
 
             istream >> value;
 
-            if (istream.fail())
-            {
+            //if (istream.fail())
+            //{
 
-               return;
+            //   return;
 
-            }
+            //}
 
             m.set_at(key, value);
 

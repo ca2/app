@@ -115,23 +115,27 @@ namespace aura
    void session::on_initialize_object()
    {
 
-      auto estatus = ::aqua::session::on_initialize_object();
+      //auto estatus = 
+      
+      ::aqua::session::on_initialize_object();
 
-      if(!estatus)
-      {
+      //if(!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = ::aura::context::on_initialize_object();
+      //estatus = 
+      
+      ::aura::context::on_initialize_object();
 
-      if(!estatus)
-      {
+      //if(!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       //estatus = ::user::style_base::on_initialize_object();
 
@@ -142,7 +146,7 @@ namespace aura
 
       //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -150,14 +154,16 @@ namespace aura
    void session::initialize(::object * pobject)
    {
 
-      auto estatus = ::aqua::session::initialize(pobject);
+      //auto estatus = 
+      
+      ::aqua::session::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       m_pauracontext = this;
 
@@ -177,7 +183,7 @@ namespace aura
 
       m_puiMouseMoveCapture = nullptr;
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -247,14 +253,16 @@ namespace aura
 
       INFORMATION("aura::session::process_init");
 
-      auto estatus = ::apex::session::process_init();
+      //auto estatus = 
+      
+      ::apex::session::process_init();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
 
       //estatus = __compose_new(m_ptextcontext);
@@ -281,7 +289,7 @@ namespace aura
 
       INFORMATION("aura::session::process_init success");
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -1727,14 +1735,16 @@ namespace aura
    void session::init1()
    {
 
-      auto estatus = ::apex::session::init1();
+      //auto estatus = 
+      
+      ::apex::session::init1();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       //auto estatus = __compose_new(m_pfs);
 
@@ -1838,43 +1848,49 @@ namespace aura
          //if (!estatus)
          //{
 
-         estatus = __compose(m_puser);
+         //estatus =
+         
+         __compose(m_puser);
 
          //}
 
-         if (!estatus || !m_puser)
+         if (!m_puser)
          {
 
             output_debug_string("\nFailed to __compose_new(m_puser)");
 
             ERROR(".4");
 
-            return false;
+            return;
 
          }
 
          INFORMATION("end");
 
-         if (!m_puser->init1())
-         {
+         m_puser->init1();
 
-            return false;
+         //if (!m_puser->init1())
+         //{
 
-         }
+         //   return false;
 
-         if (!m_puser->init2())
-         {
+         //}
 
-            return false;
+         m_puser->init2();
 
-         }
+         //if (!m_puser->init2())
+         //{
+
+         //   return false;
+
+         //}
 
 
       }
 
      
 
-      return true;
+      //return true;
 
    }
 
@@ -1882,7 +1898,7 @@ namespace aura
    void session::defer_initialize_host_window(const RECTANGLE_I32 * lpcrect)
    {
 
-      return ::success;
+      //return ::success;
 
 //#if !defined(APPLE_IOS) && !defined(_UWP) && !defined(ANDROID)
 //
@@ -1970,14 +1986,16 @@ namespace aura
    void session::init2()
    {
 
-      ::e_status estatus = ::apex::session::init2();
+      //::e_status estatus = 
+      
+      ::apex::session::init2();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       INFORMATION("aura::session::init2 .1");
 
@@ -2002,9 +2020,11 @@ namespace aura
 
       }*/
 
-      estatus = __compose_new(m_psavings);
+      //estatus = 
+      
+      __compose_new(m_psavings);
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -2012,7 +2032,9 @@ namespace aura
    void session::init()
    {
 
-      ::e_status estatus = ::apex::session::init();
+      //::e_status estatus =
+      
+      ::apex::session::init();
 
 
       //__pointer(::fs::set) pfsset = m_pfsdata;
@@ -2047,18 +2069,20 @@ namespace aura
       if (m_puser)
       {
 
-         estatus = m_puser->init();
+         //estatus =
+         
+         m_puser->init();
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            return estatus;
+         //   return estatus;
 
-         }
+         //}
 
       }
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -2426,16 +2450,18 @@ namespace aura
    void     session::main()
    {
 
-      auto estatus = ::aqua::session::main();
+      //auto estatus =
+      
+      ::aqua::session::main();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 

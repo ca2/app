@@ -20,16 +20,18 @@ namespace calculator
    void calculator::initialize(::object * pobject)
    {
 
-      auto estatus = ::acme::department::initialize(pobject);
+      //auto estatus = 
+      
+      ::acme::department::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 

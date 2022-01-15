@@ -30,16 +30,17 @@ namespace write_text
    void font_enumeration::initialize(::object * pobject)
    {
 
-      auto estatus = ::object::initialize(pobject);
+      //auto estatus = 
+      ::object::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -234,27 +235,31 @@ namespace write_text
 
       auto pdraw2d = psystem->draw2d();
 
-      auto estatus = enumerate_fonts();
+      //auto estatus = 
+      
+      enumerate_fonts();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         output_debug_string("write_text::font_enumeration Failed to enumerate fonts");
+      //   output_debug_string("write_text::font_enumeration Failed to enumerate fonts");
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = sort_fonts();
+      //estatus =
+      
+      sort_fonts();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         output_debug_string("write_text::font_enumeration Failed to sort fonts");
+      //   output_debug_string("write_text::font_enumeration Failed to sort fonts");
 
-         //return estatus;
+      //   //return estatus;
 
-      }
+      //}
 
       m_pfontenumerationitema = pitema;
 
@@ -262,7 +267,7 @@ namespace write_text
 
       m_bUpdating = false;
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -276,7 +281,7 @@ namespace write_text
 
       m_eventReady.SetEvent();
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -291,7 +296,7 @@ namespace write_text
 
       });
 
-      return ::success;
+      //return ::success;
 
    }
 

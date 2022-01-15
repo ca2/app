@@ -58,9 +58,11 @@ namespace windowing
 
       m_cursormap.erase_all();
 
-      auto estatus = ::matter::destroy();
+      //auto estatus = 
+      
+      ::matter::destroy();
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -485,7 +487,7 @@ namespace windowing
 
       load_hotspot(pathDir);
 
-      return _003CountStatus(countFailed, countSuccess);
+      //return _003CountStatus(countFailed, countSuccess);
 
    }
 
@@ -586,7 +588,7 @@ namespace windowing
       //   count++;
       //}
 
-      return _003CountStatus(countFailed, countSuccess);
+      //return _003CountStatus(countFailed, countSuccess);
 
    }
 

@@ -165,20 +165,20 @@ namespace draw2d
    }
 
 
-   bool fastblur::initialize(i32 cx,i32 cy,i32 radius)
+   void fastblur::initialize(i32 cx,i32 cy,i32 radius)
    {
 
       if (cx <= 0 || cy <= 0 || radius <= 0)
       {
 
-         return false;
+         throw_status(error_invalid_argument);
 
       }
 
       if (m_size == ::size_i32(cx, cy) && m_iRadius == radius)
       {
 
-         return true;
+         return;
 
       }
 
@@ -289,12 +289,12 @@ namespace draw2d
 
 
 
-      return true;
+      //return true;
 
    }
 
 
-   bool fastblur::initialize(size_i32 sz,i32 iRadius)
+   void fastblur::initialize(size_i32 sz,i32 iRadius)
    {
 
       return initialize(sz.cx,sz.cy,iRadius);
@@ -302,7 +302,7 @@ namespace draw2d
    }
 
 
-   bool fastblur::blur(::image * pimage, i32 iRadius, const ::rectangle_i32 & rectangle)
+   void fastblur::blur(::image * pimage, i32 iRadius, const ::rectangle_i32 & rectangle)
    {
 
       pixmap_lock lock(pimage, rectangle);
@@ -312,7 +312,7 @@ namespace draw2d
    }
 
 
-   bool fastblur::blur(::image * pimage, int iRadius)
+   void fastblur::blur(::image * pimage, int iRadius)
    {
 
       int cx = pimage->width();
@@ -329,16 +329,17 @@ namespace draw2d
       if (cx <= 0 || cy <= 0 || iRadius <= 0)
       {
 
-         return false;
+         throw_status(error_wrong_state);
 
       }
 
-      if (!initialize(cx, cy, iRadius))
-      {
+      //if (!)
+      initialize(cx, cy, iRadius);
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
       pimage->map();
 
@@ -599,10 +600,10 @@ auto tickC1 = ::duration::now();
       for(index i = 0; i < cCount; i++)
 #endif
       {
-         try
-         {
+         //try
+         //{
 
-            b = do_fastblur(
+            do_fastblur(
                 (u32*)pimage->colorref(),
                 m_size.cx,
                 m_size.cy,
@@ -612,11 +613,11 @@ auto tickC1 = ::duration::now();
                 pimage->scan_size(),
                 cx,cy,bottomup);
 
-         }
-         catch(...)
-         {
+         //}
+         //catch(...)
+         //{
 
-         }
+         //}
 
       }
 
@@ -648,7 +649,7 @@ auto tick2 = ::duration::now();
 
 #endif
 
-      return b;
+      //return b;
 
    }
 
@@ -831,7 +832,7 @@ auto tick2 = ::duration::now();
    }
 
 
-   bool fastblur::do_fastblur(u32 * pdata,i32 w,i32 h,i32 radius,u32 * prgba,u8 * dv,i32 stride,int cx,int cy,int bottomup)
+   void fastblur::do_fastblur(u32 * pdata,i32 w,i32 h,i32 radius,u32 * prgba,u8 * dv,i32 stride,int cx,int cy,int bottomup)
    {
 
       //int stride = 4 * cx;
@@ -1277,7 +1278,7 @@ auto tick2 = ::duration::now();
    }
 
 
-   bool fastblur::do_boxblur(vector4 * pimage,i32 w,i32 h,i32 radius,u32 * prgba,u8 * dv,i32 stride,int cx,int cy,int bottomup)
+   void fastblur::do_boxblur(vector4 * pimage,i32 w,i32 h,i32 radius,u32 * prgba,u8 * dv,i32 stride,int cx,int cy,int bottomup)
    {
 
       int dxLeft = 0;
@@ -1329,7 +1330,7 @@ auto tick2 = ::duration::now();
 
    }
 
-   bool fastblur::do_stackblur(vector4 * pimage,i32 w,i32 h,i32 radius,u32 * prgba,u8 * dv,i32 stride,int cx,int cy,int bottomup)
+   void fastblur::do_stackblur(vector4 * pimage,i32 w,i32 h,i32 radius,u32 * prgba,u8 * dv,i32 stride,int cx,int cy,int bottomup)
    {
 
       stackblur(pimage,w,h,radius, stride);
@@ -1343,13 +1344,13 @@ auto tick2 = ::duration::now();
 
 
 
-   bool fastblur::do_fastblur(u32 * pdata,i32 w,i32 h,i32 radius,u32 * prgba,u8 * dv,i32 stride,int cx,int cy,int bottomup)
+   void fastblur::do_fastblur(u32 * pdata,i32 w,i32 h,i32 radius,u32 * prgba,u8 * dv,i32 stride,int cx,int cy,int bottomup)
    {
 
       if(radius <= 0)
       {
 
-         return false;
+         throw_status(error_wrong_state);
 
       }
 
@@ -1577,16 +1578,16 @@ auto tick2 = ::duration::now();
 
       }
 
-      return true;
+      //return true;
 
    }
 
 #endif // VECTOR3_SSE
 
-   bool fastblur::do_fastblur(u32 * pix,i32 w,i32 h,i32 radius,u8 * rectangle,u8 * g,u8 * b,u8 * a,u8 * dv,i32 stride,i32 * vmin,i32 * vmax,int cx,int cy,int bottomup)
+   void fastblur::do_fastblur(u32 * pix,i32 w,i32 h,i32 radius,u8 * rectangle,u8 * g,u8 * b,u8 * a,u8 * dv,i32 stride,i32 * vmin,i32 * vmax,int cx,int cy,int bottomup)
    {
 
-      return false;
+      throw_status(error_wrong_state);
 
       /*
 

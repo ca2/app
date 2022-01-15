@@ -25,14 +25,16 @@ namespace aura
    void theme::initialize(::object * pobject)
    {
 
-      auto estatus = ::object::initialize(pobject);
+      //auto estatus = 
+      
+      ::object::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       //estatus = __compose_new(m_prunnerChangeWeatherState);
 
@@ -43,7 +45,7 @@ namespace aura
 
       //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -477,7 +479,7 @@ namespace aura
       
       on_change_theme();
 
-      return ::success;
+      //return ::success;
 
    }
 

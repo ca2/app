@@ -144,7 +144,7 @@ public:
       if (::is_null(m_pmapPropertyRoutine))
       {
 
-         throw_status(error_not_found);
+         return;
 
       }
 
@@ -536,14 +536,16 @@ public:
 
       }
 
-      auto estatus = __defer_compose_new(ptask);
+      //auto estatus = 
+      
+      __defer_compose_new(ptask);
 
-      if(!estatus)
-      {
+      //if(!estatus)
+      //{
 
-         return ptask;
+      //   return ptask;
 
-      }
+      //}
 
       ptask->m_pelement = routine;
 

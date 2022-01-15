@@ -178,7 +178,7 @@ namespace user
 
       virtual ::user::interaction_impl * get_user_interaction_impl() override;
 
-      virtual bool post(::message::message* pusermessage) override;
+      virtual void post(::message::message* pusermessage) override;
 
 
       virtual void set_bitmap_source(const string& strBitmapSource) override;
@@ -199,7 +199,7 @@ namespace user
       virtual void set_tool_window(bool bSet) override;
 
 
-      bool create_host(::user::interaction * pinteraction) override;
+      void create_host(::user::interaction * pinteraction) override;
 
       virtual ::color::color screen_pixel(int x, int y) const;
       virtual void interaction_post(const ::routine & routine) override;
@@ -219,7 +219,7 @@ namespace user
 
       virtual bool clear_pending_focus();
 
-      virtual bool create_message_queue(::user::interaction * pinteraction, const ::string & lpszName) override;
+      void create_message_queue(::user::interaction * pinteraction, const ::string & lpszName) override;
 
       //virtual bool create_native_window(::user::native_window_initialize * pinitialize) override;
       //virtual void set_destroying();
@@ -231,8 +231,8 @@ namespace user
       virtual void prio_install_message_routing(::channel * pchannel) override;
       virtual void last_install_message_routing(::channel * pchannel) override;
 
-      bool operator==(const interaction_impl& wnd) const;
-      bool operator!=(const interaction_impl& wnd) const;
+      //bool operator==(const interaction_impl& wnd) const;
+      //bool operator!=(const interaction_impl& wnd) const;
 
       //virtual u32 GetStyle() const override;
       //virtual u32 GetExStyle() const override;
@@ -244,8 +244,8 @@ namespace user
       virtual __pointer(::windowing::icon) get_icon() const;
 
 
-      virtual bool mouse_hover_add(::user::interaction * pinterface) override;
-      virtual bool mouse_hover_erase(::user::interaction * pinterface) override;
+      void mouse_hover_add(::user::interaction * pinterface) override;
+      bool mouse_hover_erase(::user::interaction * pinterface) override;
 
 
       void _task_transparent_mouse_event() override;
@@ -259,8 +259,8 @@ namespace user
       //virtual void mouse_hover_step(const __status < ::point_i32 > & statusPointCursor);
 
 
-      virtual bool add_prodevian(::matter * pmatter) override;
-      virtual bool erase_prodevian(::matter * pmatter) override;
+      void add_prodevian(::matter * pmatter) override;
+      void erase_prodevian(::matter * pmatter) override;
       inline bool has_prodevian() const noexcept { return m_matteraProdevian.has_element(); }
 
       virtual void prodevian_stop() override;
@@ -343,9 +343,9 @@ namespace user
       virtual void native_create_host();
 
 
-      virtual bool destroy_impl_only() override;
-      virtual bool start_destroying_window() override;
-      virtual void destroy_window() override;
+      void destroy_impl_only() override;
+      void start_destroying_window() override;
+      void destroy_window() override;
 
       // special pre-creation and interaction_impl rectangle_i32 adjustment hooks
       virtual bool pre_create_window(::user::system * pusersystem);
@@ -375,14 +375,14 @@ namespace user
 //#endif
 
 
-      virtual bool post_message(const ::id & id,wparam wParam = 0,lparam lParam = 0) override;
+      void post_message(const ::id & id,wparam wParam = 0,lparam lParam = 0) override;
 
 
       //virtual bool SendNotifyMessage(::u32 message,wparam wParam,lparam lParam);
 
       //virtual bool SendChildNotifyLastMsg(lresult* pResult = nullptr);
 
-      virtual bool DragDetect(const ::point_i32 & point) const;
+      //virtual bool DragDetect(const ::point_i32 & point) const;
 
 
 
@@ -424,9 +424,9 @@ namespace user
 
       virtual void UpdateWindow() override;
       virtual void SetRedraw(bool bRedraw = true) override;
-      virtual bool GetUpdateRect(RECTANGLE_I32 * prectangle,bool bErase = false) override;
+      //virtual bool GetUpdateRect(RECTANGLE_I32 * prectangle,bool bErase = false) override;
 
-      i32 GetUpdateRgn(::draw2d::region* pRgn,bool bErase = false) override;
+      //i32 GetUpdateRgn(::draw2d::region* pRgn,bool bErase = false) override;
       virtual void Invalidate(bool bErase = true) override;
       void InvalidateRect(const ::rectangle_i32 & rectangle,bool bErase = true) override;
 
@@ -439,12 +439,12 @@ namespace user
       void ShowOwnedPopups(bool bShow = true) override;
 
       //virtual __pointer(::draw2d::graphics) GetDCEx(::draw2d::region* prgnClip,u32 flags);
-      virtual bool LockWindowUpdate();
+      virtual void LockWindowUpdate();
       virtual void UnlockWindowUpdate();
 
-      virtual bool prodevian_update_screen() override;
+      void prodevian_update_screen() override;
 
-      virtual void prodevian_redraw(bool bUpdateBuffer) override;
+      void prodevian_redraw(bool bUpdateBuffer) override;
 
 //#ifdef WINDOWS
 //
@@ -452,7 +452,7 @@ namespace user
 //
 //#else
 
-      virtual bool RedrawWindow(const ::rectangle_i32 & rectangleUpdate = nullptr, ::draw2d::region* prgnUpdate = nullptr,::u32 flags = 0) override;
+      void RedrawWindow(const ::rectangle_i32 & rectangleUpdate = nullptr, ::draw2d::region* prgnUpdate = nullptr,::u32 flags = 0) override;
 
 //#endif
 
@@ -463,7 +463,7 @@ namespace user
 //
 //#else
 
-      virtual bool EnableScrollBar(i32 nSBFlags,::u32 nArrowFlags = 3);
+      //virtual void EnableScrollBar(i32 nSBFlags,::u32 nArrowFlags = 3);
 
 //#endif
 
@@ -474,7 +474,7 @@ namespace user
 
       //virtual void set_cursor(enum_cursor ecursor) override;
 
-      virtual bool DrawCaption(::draw2d::graphics_pointer & pgraphics,const rectangle_i32 & prc,::u32 uFlags);
+      //virtual bool DrawCaption(::draw2d::graphics_pointer & pgraphics,const rectangle_i32 & prc,::u32 uFlags);
 
 
 //#if(WINVER >= 0x0500)
@@ -484,11 +484,11 @@ namespace user
 //#endif
 
 
-#if(_WIN32_WINNT >= 0x0501)
-
-      virtual bool PrintWindow(::draw2d::graphics_pointer & pgraphics,::u32 nFlags) const;
-
-#endif
+//#if(_WIN32_WINNT >= 0x0501)
+//
+//      virtual bool PrintWindow(::draw2d::graphics_pointer & pgraphics,::u32 nFlags) const;
+//
+//#endif
 
 
 //#if(_WIN32_WINNT >= 0x0500)
@@ -498,16 +498,16 @@ namespace user
 //
 //#endif   // _WIN32_WINNT >= 0x0500
 
-#if(_WIN32_WINNT >= 0x0501)
-
-      virtual bool GetLayeredWindowAttributes(::color::color *pcrKey,byte *pbAlpha,u32 *pdwFlags) const;
-
-#endif   // _WIN32_WINNT >= 0x0501
-
+//#if(_WIN32_WINNT >= 0x0501)
+//
+//      virtual bool GetLayeredWindowAttributes(::color::color *pcrKey,byte *pbAlpha,u32 *pdwFlags) const;
+//
+//#endif   // _WIN32_WINNT >= 0x0501
+//
 
 
       //virtual bool is_window_enabled() const override;
-      virtual bool enable_window(bool bEnable = true) override;
+      void enable_window(bool bEnable = true) override;
 
 
       
@@ -563,7 +563,7 @@ namespace user
 //#endif
 
 
-      virtual i32 GetScrollLimit(i32 nBar);
+      //virtual i32 GetScrollLimit(i32 nBar);
 
 //#if (WINVER >= 0x0500) && defined(WINDOWS_DESKTOP)
 //
@@ -586,16 +586,16 @@ namespace user
 
       virtual ::user::interaction * GetLastActivePopup() override;
 
-      bool FlashWindow(bool bInvert);
+      //bool FlashWindow(bool bInvert);
 
       //virtual i32 message_box(const ::string & pszText, const ::string & pszCaption = nullptr,::u32 nType = e_message_box_ok);
 
 
-#if(WINVER >= 0x0500)
-
-      virtual bool FlashWindowEx(u32 dwFlags,::u32  uCount,::duration tickTimeout);
-
-#endif   // WINVER >= 0x0500
+//#if(WINVER >= 0x0500)
+//
+//      // virtual bool FlashWindowEx(u32 dwFlags, ::u32  uCount, ::duration tickTimeout);
+//
+//#endif   // WINVER >= 0x0500
 
       //virtual bool ChangeClipboardChain(::windowing::window * pwindow_Next);
       //virtual oswindow SetClipboardViewer();
@@ -606,15 +606,15 @@ namespace user
 
       virtual void DragAcceptFiles(bool bAccept = true);
 
-      virtual bool SetWindowContextHelpId(u32 dwContextHelpId);
-      virtual u32 GetWindowContextHelpId() const;
+      //virtual bool SetWindowContextHelpId(u32 dwContextHelpId);
+      //virtual u32 GetWindowContextHelpId() const;
 
 
-      virtual bool update_data(bool bSaveAndValidate = true) override;
+      void update_data(bool bSaveAndValidate = true) override;
 
 
-      virtual void UpdateDialogControls(channel* pTarget,bool bDisableIfNoHndler);
-      virtual void CenterWindow(::user::interaction * pAlternateOwner = nullptr) override;
+      void UpdateDialogControls(channel* pTarget,bool bDisableIfNoHndler);
+      void CenterWindow(::user::interaction * pAlternateOwner = nullptr) override;
 
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
@@ -649,7 +649,7 @@ namespace user
       virtual void post_non_client_destroy() override;
       virtual bool OnChildNotify(::message::message * pusermessage) override;
       virtual bool ReflectChildNotify(::message::message * pusermessage);
-      virtual bool CheckAutoCenter() override;
+      //virtual void CheckAutoCenter() override;
 
 
       virtual bool HandleFloatingSysCommand(::u32 nID,lparam lParam);
@@ -690,7 +690,7 @@ namespace user
       virtual void _001UpdateWindow() override;
 
 
-      virtual bool start_window_visual() override;
+      virtual void start_window_visual() override;
       //virtual void sketch_to_design(::draw2d::graphics_pointer& pgraphics, bool & bUpdateBuffer, bool & bUpdateWindow) override;
       virtual void _001UpdateBuffer();
       virtual void _001UpdateScreen();
@@ -713,7 +713,7 @@ namespace user
       bool is_composite() override;
 
 
-      virtual void set_finish(::object * pobject);
+      virtual ::e_status set_finish(::object * pobject);
 
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
@@ -746,7 +746,7 @@ namespace user
       virtual void window_show_change_visibility(::e_display edisplay, ::e_activation eactivation) override;
 
 
-      virtual bool ShowWindow(const ::e_display & edisplay);
+      virtual void ShowWindow(const ::e_display & edisplay);
 
       //virtual bool check_need_layout() override;
 //virtual void clear_need_layout() override;

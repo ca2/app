@@ -36,14 +36,16 @@ namespace graphics
       if (m_spgraphics->get_os_data() == nullptr)
       {
 
-         bool bOk = m_spgraphics->CreateWindowDC(m_pimpl->get_oswindow());
+         //bool bOk = 
+         
+         m_spgraphics->CreateWindowDC(m_pimpl->get_oswindow());
 
-         if (!bOk)
-         {
+         //if (!bOk)
+         //{
 
-            throw ::exception(error_failed, "failed to reference");
+         //   throw ::exception(error_failed, "failed to reference");
 
-         }
+         //}
 
       }
 

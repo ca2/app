@@ -82,8 +82,8 @@ namespace user
 
       void install_message_routing(::channel * pchannel) override;
       virtual void _001InitializeFormPreData();
-      virtual void handle(::subject * psubject, ::context * pcontext) override;
-      virtual bool update_data(bool bSaveAndValidate) override;
+      void handle(::subject * psubject, ::context * pcontext) override;
+      void update_data(bool bSaveAndValidate) override;
       virtual void _001Update(::user::interaction * pinteraction);
       virtual void _001UpdateCheckBox(::user::interaction * pinteraction);
       virtual void _001UpdateComboBox(::user::interaction * pinteraction);

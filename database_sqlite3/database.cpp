@@ -140,7 +140,7 @@ namespace sqlite
             m_strError = "Undefined SQLite m_strError";
       }
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -259,7 +259,7 @@ namespace sqlite
    void database::init()
    {
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -305,16 +305,18 @@ namespace sqlite
       m_strSckt = sckt;
       m_uConnectionFlags = uConnectionFlags;
 
-      auto estatus = _connect();
+      //auto estatus = 
+      
+      _connect();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -337,8 +339,6 @@ namespace sqlite
 
    void database::reset()
    {
-
-      return error_failed;
 
    }
 
@@ -405,11 +405,11 @@ namespace sqlite
 
          m_bActive = true;
 
-         return ::success;
+         return;
 
       }
 
-      return error_failed;
+      throw_status(error_failed);
 
    }
 
@@ -485,7 +485,7 @@ namespace sqlite
       if (isActive())
       {
 
-         return error_failed;
+         throw_status(error_failed);
 
       }
 
@@ -500,11 +500,11 @@ namespace sqlite
       catch (...)
       {
 
-         return error_failed;
+         throw_status(error_failed);
 
       }
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -737,7 +737,7 @@ namespace sqlite
 
                   m_pstmtReplace = nullptr;
 
-                  return ::error_failed;
+                  throw_status(error_failed);
 
                }
 
@@ -763,7 +763,7 @@ namespace sqlite
 
                TRACE("failure to bind text");
 
-               return error_failed;
+               throw_status(error_failed);
 
             }
 
@@ -774,7 +774,7 @@ namespace sqlite
 
                TRACE("failure to bind blob");
 
-               return ::error_failed;
+               throw_status(error_failed);
 
             }
 
@@ -786,11 +786,11 @@ namespace sqlite
       catch (...)
       {
 
-         return ::error_failed;
+         throw_status(error_failed);
 
       }
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -816,7 +816,7 @@ namespace sqlite
 
             m_pstmtSelect = nullptr;
 
-            return error_failed;
+            throw_status(error_failed);
 
          }
 
@@ -837,7 +837,7 @@ namespace sqlite
 
             m_pstmtSelect = nullptr;
 
-            return false;
+            throw_status(error_failed);
 
          }
 
@@ -850,7 +850,7 @@ namespace sqlite
       if (res != SQLITE_OK)
       {
 
-         return false;
+         throw_status(error_failed);
 
       }
 
@@ -872,7 +872,7 @@ namespace sqlite
 
          //return payload.get_string();
 
-         return error_failed;
+         throw_status(error_failed);
 
       }
 
@@ -883,11 +883,11 @@ namespace sqlite
       if (!getmemory.get(psz, iLen))
       {
 
-         return error_failed;
+         throw_status(error_failed);
 
       }
 
-      return success;
+      //return success;
 
    }
 

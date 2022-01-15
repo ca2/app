@@ -156,16 +156,18 @@ namespace user
       if (pcreate->m_bRet)
          return;
 
-      auto estatus = __compose_new(m_pxmldoc);
+      //auto estatus = 
+      
+      __compose_new(m_pxmldoc);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         pcreate->failed("Failed to create new xml document for menu impact");
+      //   pcreate->failed("Failed to create new xml document for menu impact");
 
-         return;
+      //   return;
 
-      }
+      //}
 
       //set_topic_text("menu_view> ");
 

@@ -20,7 +20,7 @@ public:
 
 
    application();
-   virtual ~application();
+   ~application() override;
 
 
    void application_boot();

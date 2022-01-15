@@ -49,14 +49,16 @@ namespace user
    void style::initialize(::object * pobject)
    {
 
-      auto estatus = style_base::initialize(pobject);
+      //auto estatus = 
+      
+      style_base::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       auto psystem = get_system()->m_paurasystem;
 
@@ -73,7 +75,7 @@ namespace user
          
       }
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -98,7 +100,7 @@ namespace user
    void style::initialize_style()
    {
 
-      return ::success;
+      //return ::success;
 
    }
 

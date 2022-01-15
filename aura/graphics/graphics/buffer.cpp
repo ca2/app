@@ -83,7 +83,13 @@ namespace graphics
    bool buffer::update_buffer(const ::size_i32 & size, int iScan)
    {
 
-      if (!m_pimageBuffer->create(size))
+      try
+      {
+
+         m_pimageBuffer->create(size);
+
+      }
+      catch (...)
       {
 
          return false;
@@ -91,6 +97,15 @@ namespace graphics
       }
 
       return true;
+
+      //if (!m_pimageBuffer->create(size))
+      //{
+
+      //   return false;
+
+      //}
+
+      //return true;
 
    }
 
@@ -136,12 +151,14 @@ namespace graphics
 
          }
 
-         if (!update_buffer(sizeWindow))
-         {
+         update_buffer(sizeWindow);
 
-            return nullptr;
+         //if (!)
+         //{
 
-         }
+         //   return nullptr;
+
+         //}
 
          if (!m_pimpl->m_puserinteraction)
          {

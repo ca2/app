@@ -25,35 +25,28 @@ namespace account
    }
 
 
-   void     network_authenticator::pre_authenticate(credentials * pcredentials)
+   void network_authenticator::pre_authenticate(credentials * pcredentials)
    {
 
       pcredentials->m_puser->m_strAccountServer.Empty();
 
-      void     estatus = get_account_server(pcredentials);
-
-      if(::failed(estatus))
-      {
-
-         return estatus;
-
-      }
+      get_account_server(pcredentials);
 
       if(pcredentials->m_puser->m_strSessId.is_empty())
       {
 
-         return error_pre_authentication_missing_sessid;
+         throw_status(error_pre_authentication_missing_sessid);
 
       }
 
       if(pcredentials->m_puser->m_strAccountServer.is_empty())
       {
 
-         return error_pre_authentication_missing_account_server;
+         throw_status(error_pre_authentication_missing_account_server);
 
       }
 
-      return success_pre_authenticated;
+      //return success_pre_authenticated;
 
    }
 
@@ -61,14 +54,7 @@ namespace account
    void  network_authenticator::authenticate(credentials * pcredentials)
    {
 
-      void     estatus = network_authentication(pcredentials);
-
-      if(estatus != ::success)
-      {
-
-         return estatus;
-
-      }
+      network_authentication(pcredentials);
 
       __throw(todo, "xml->network_payload");
 
@@ -160,12 +146,12 @@ namespace account
 
       //}
 
-      return estatus;
+      //return estatus;
 
    }
 
 
-   void     network_authenticator::network_authentication(credentials * pcredentials)
+   void network_authenticator::network_authentication(credentials * pcredentials)
    {
 
       auto puser = pcredentials->m_puser;
@@ -177,7 +163,7 @@ namespace account
 
          TRACE("Host is missing. Has pre_login been called and succeeded?");
 
-         return error_authentication_missing_host;
+         throw_status(error_authentication_missing_host);
 
       }
 
@@ -194,14 +180,14 @@ namespace account
       if(strSessId.is_empty())
       {
 
-         return error_pre_authentication_missing_sessid;
+         throw_status(error_pre_authentication_missing_sessid);
 
       }
 
       if(strRsa.is_empty())
       {
 
-         return error_pre_authentication_invalid;
+         throw_status(error_pre_authentication_invalid);
 
       }
 
@@ -272,47 +258,34 @@ namespace account
 
       pcredentials->m_strResponse = strResponse;
 
-      pcredentials->m_estatusHttp = (void    ) set["get_status"].i64();
+      pcredentials->m_estatusHttp = set["get_status"].estatus();
 
       INFORMATION("login_task::NetLogin Total time pcontext->m_papexcontext->http().get(\""<<strAuthUrl<<"\") : " << integral_millisecond(tickTimeProfile1.elapsed()));
 
       INFORMATION("NetLogin: Authentication Millis = " << tickAuthBeg.elapsed().integral_millisecond());
 
-      return ::success;
+      //return ::success;
 
    }
 
 
-   void     network_authenticator::get_account_server(credentials * pcredentials)
+   void network_authenticator::get_account_server(credentials * pcredentials)
    {
 
-      void     estatus = error_failed;
-
-      for(index iTry = 0; iTry < 2; iTry++)
+      for (index iTry = 0; iTry < 2; iTry++)
       {
 
-         estatus = _get_account_server(pcredentials);
-
-         if(::succeeded(estatus))
-         {
-
-            return estatus;
-
-         }
+         _get_account_server(pcredentials);
 
       }
 
-      return estatus;
-
    }
 
 
-   void     network_authenticator::_get_account_server(credentials * pcredentials)
+   void network_authenticator::_get_account_server(credentials * pcredentials)
    {
 
       auto puser = pcredentials->m_puser;
-
-      //auto pinteractive = pcredentials->m_pinteractive;
 
       auto psystem = m_psystem;
 
@@ -334,44 +307,36 @@ namespace account
 
       i32 iRetry = 2;
 
-      try
+      
+      ::duration tickStart = ::duration::now();
+
+      ::property_set set;
+
+      set["timeout"] = 30'000;
+
+      set["try"] = iRetry <= 1 ? 2 : 1;
+
+      set["raw_http"] = true;
+
+      strNode = pcontext->m_papexcontext->http().get(strGetFontopus, set);
+
+      if(::failed(set["get_status"]))
       {
 
-         ::duration tickStart = ::duration::now();
-
-         ::property_set set;
-
-         set["timeout"] = 30'000;
-
-         set["try"] = iRetry <= 1 ? 2 : 1;
-
-         set["raw_http"] = true;
-
-         strNode = pcontext->m_papexcontext->http().get(strGetFontopus, set);
-
-         if(::failed(set["get_status"]))
-         {
-
-            return set["get_status"].estatus();
-
-         }
-
-         ::duration tickEnd = ::duration::now();
-
-         INFORMATION(set["http_get_serial"].get_string() << "> get_account_login HTTP GET time = " << (tickEnd - tickStart).integral_millisecond());
+         throw_status(set["get_status"].estatus());
 
       }
-      catch(...)
-      {
 
-      }
+      ::duration tickEnd = ::duration::now();
+
+      INFORMATION(set["http_get_serial"].get_string() << "> get_account_login HTTP GET time = " << (tickEnd - tickStart).integral_millisecond());
 
       strNode.trim();
 
       if(strNode.is_empty())
       {
 
-         return error_failed;
+         throw_status(error_failed);
 
       }
 
@@ -451,7 +416,7 @@ namespace account
 
       ////m_mapFontopusServer.set_at(strHost, strFontopusServer);
 
-      return ::success;
+      //return ::success;
 
    }
 

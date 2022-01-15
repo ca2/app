@@ -30,14 +30,15 @@ namespace app_shader
    void render::initialize(::object * pobject)
    {
 
-      auto estatus = ::object::initialize(pobject);
+      //auto estatus = 
+      ::object::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       //initialize_application_consumer();
 
@@ -54,7 +55,7 @@ namespace app_shader
 
       }
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -145,7 +146,7 @@ namespace app_shader
 
       m_bUpdateShader = true;
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -199,7 +200,9 @@ namespace app_shader
       if (!m_pprogram)
       {
 
-         estatus = __construct(m_pprogram);
+         //estatus = 
+         
+         __construct(m_pprogram);
 
       }
 
@@ -210,7 +213,8 @@ namespace app_shader
       if (::succeeded(estatus))
       {
 
-         estatus = m_pprogram->create_program(this, strProjection, strFragment);
+         //estatus = 
+         m_pprogram->create_program(this, strProjection, strFragment);
 
       }
 
@@ -238,7 +242,7 @@ namespace app_shader
 
       m_durationStart.Now();
 
-      return ::success;
+      //return ::success;
 
    }
 

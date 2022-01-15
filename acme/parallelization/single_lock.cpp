@@ -28,7 +28,12 @@ single_lock::single_lock(synchronization_object * psync, bool bInitialLock)
 single_lock::~single_lock()
 {
 
-   unlock();
+   if (m_bAcquired)
+   {
+
+      unlock();
+
+   }
 
    ::release(m_psync);
 

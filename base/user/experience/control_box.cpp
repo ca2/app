@@ -683,11 +683,11 @@ namespace experience
 
       // }
 
-      if (!pbutton->is_window() && !pbutton->create_child(this))
+      if (!pbutton->is_window())
       {
-
-         return false;
-
+         
+         pbutton->create_child(this);
+      
       }
 
       return true;
@@ -830,20 +830,22 @@ namespace experience
    void control_box::set_control_box_button_id(enum_button ebutton, id id)
    {
 
-      auto estatus = __defer_construct_new(m_itemmap[ebutton]);
+      //auto estatus =
+      
+      __defer_construct_new(m_itemmap[ebutton]);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       m_itemmap[ebutton]->m_id = id;
 
       m_idmap[id] = ebutton;
 
-      return estatus;
+      //return estatus;
 
    }
 

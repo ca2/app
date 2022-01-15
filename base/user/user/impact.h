@@ -244,25 +244,29 @@ namespace user
       virtual void initialize(::object * pobject) override
       {
 
-         auto estatus = ::user::impact::initialize(pobject);
+         //auto estatus = 
+         
+         ::user::impact::initialize(pobject);
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            return estatus;
+         //   return estatus;
 
-         }
+         //}
 
-         estatus = VIEW::initialize(pobject);
+         //estatus = 
+         
+         VIEW::initialize(pobject);
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            return estatus;
+         //   return estatus;
 
-         }
+         //}
 
-         return estatus;
+         //return estatus;
 
       }
 

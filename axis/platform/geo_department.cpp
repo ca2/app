@@ -37,20 +37,22 @@ namespace geo
    void department::initialize(::object* pobject)
    {
 
-      auto estatus = ::acme::department::initialize(pobject);
+      //auto estatus =
+      
+      ::acme::department::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       m_pathCityTimeZoneFile = m_psystem->m_pacmedir->system() / "datetime_departament_cityTimeZone.bin";
 
       m_pathLocalityTimeZoneFile = m_psystem->m_pacmedir->system() / "datetime_departament_LocalityTimeZone.bin";
 
-      return estatus;
+      //return estatus;
 
    }
    
@@ -1474,14 +1476,16 @@ namespace geo
 
          set["post"]["lng"] = strLng;
 
-         auto estatus = api_get(payload, strUrl, set);
+         //auto estatus = 
+         
+         api_get(payload, strUrl, set);
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            return timezone;
+         //   return timezone;
 
-         }
+         //}
 
          timezone.m_strZone = payload["zone_name"];
 
@@ -1599,14 +1603,16 @@ namespace geo
 
          set["city_id"] = strId;
 
-         auto estatus = api_get(strNetworkPayload, strUrl, set);
+         //auto estatus = 
+         
+         api_get(strNetworkPayload, strUrl, set);
 
-         if (!estatus)
+  /*       if (!estatus)
          {
 
             return strNetworkPayload;
 
-         }
+         }*/
 
          return strNetworkPayload;
 

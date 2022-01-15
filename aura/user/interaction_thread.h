@@ -93,17 +93,17 @@ namespace user
 
       virtual bool pump_runnable() override;
 
-      virtual void process_message() override;
+      virtual bool process_message() override;
 
-      virtual void process_message(::message::message * pmessage) override;
+      virtual bool process_message(::message::message * pmessage) override;
 
-      virtual void process_user_message(::message::message * pmessage);
+      virtual bool process_user_message(::message::message * pmessage);
 
       void run() override;
 
       void destroy() override;
 
-      void set_finish() override;
+      ::e_status set_finish() override;
 
       //void destroy() override;
 

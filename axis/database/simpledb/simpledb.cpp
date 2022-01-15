@@ -24,23 +24,23 @@ namespace simpledb
    }
 
 
-
-
    void simpledb::initialize_simpledb(::simpledb::server * pserver)
    {
 
-      auto estatus = ::object::initialize(pserver);
+      //auto estatus = 
+      
+      ::object::initialize(pserver);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       set_data_server(pserver);
 
-      return estatus;
+//      return estatus;
 
    }
 
@@ -58,7 +58,7 @@ namespace simpledb
       if (::is_null(pserver) || pserver->m_pstorage.is_null())
       {
 
-         return false;
+         throw_status(error_failed);
 
       }
 
@@ -67,7 +67,7 @@ namespace simpledb
       if (!pstorage)
       {
 
-         return false;
+         throw_status(error_failed);
 
       }
 
@@ -90,7 +90,7 @@ namespace simpledb
       if (::is_null(pserver))
       {
 
-         return false;
+         throw_status(error_failed);
 
       }
 
@@ -112,7 +112,7 @@ namespace simpledb
 
          }
 
-         return false;
+         throw_status(error_failed);
 
       }
 
@@ -122,7 +122,7 @@ namespace simpledb
       if (pstorage.is_null())
       {
 
-         return false;
+         throw_status(error_failed);
 
       }
 
@@ -153,7 +153,8 @@ namespace simpledb
       //retry_statement:
 
          // LOCAL (sqlite)
-         auto estatus = pdatabase->get_id_blob(strKey, getmemory);
+         //auto estatus = 
+         pdatabase->get_id_blob(strKey, getmemory);
 
          {
 
@@ -281,7 +282,7 @@ namespace simpledb
    }
 
 
-   bool simpledb::save(const ::database::key & key, block block)
+   void simpledb::save(const ::database::key & key, block block)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -291,7 +292,7 @@ namespace simpledb
       if (::is_null(pserver))
       {
 
-         return false;
+         throw_status(error_failed);
 
       }
 
@@ -312,7 +313,9 @@ namespace simpledb
 
          TRACE(strSql);
 
-         return pdatabase->exec(strSql);
+         pdatabase->exec(strSql);
+
+         return;
 
       }
 
@@ -321,7 +324,7 @@ namespace simpledb
       if (::is_null(pstorage))
       {
 
-         return false;
+         throw_status(error_failed);
 
       }
 
@@ -335,7 +338,7 @@ namespace simpledb
          if (pserver->get_local_database().is_null())
          {
 
-            return false;
+            throw_status(error_failed);
 
          }
 
@@ -359,7 +362,7 @@ namespace simpledb
             if (pitem->element2().m_memory == block)
             {
 
-               return true;
+               return;
 
             }
 
@@ -392,7 +395,7 @@ namespace simpledb
 
          pstorage->m_map.set_at(strKey, stritem);
 
-         return true;
+         return;
 
       }
       else
@@ -421,7 +424,7 @@ namespace simpledb
 
          pstorage->m_map.set_at(strKey, stritem);
 
-         return true;
+         return;
 
       }
 

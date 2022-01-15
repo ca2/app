@@ -105,14 +105,16 @@ namespace user
          {
 
 
-            if (!branch())
-            {
+            branch();
 
-               //__release(m_pprodevian);
+            //if (!branch())
+            //{
 
-               return error_failed;
+            //   //__release(m_pprodevian);
 
-            }
+            //   return error_failed;
+
+            //}
 
          }
          else
@@ -124,7 +126,7 @@ namespace user
 
       }
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -132,14 +134,16 @@ namespace user
    void prodevian::initialize_prodevian(interaction_impl * pimpl)
    {
 
-      auto estatus = initialize(pimpl);
+      //auto estatus = 
+      
+      initialize(pimpl);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       m_routineUpdateScreen = __routine([this]()
          {
@@ -184,7 +188,7 @@ namespace user
 
       }
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -295,7 +299,7 @@ namespace user
 
       }
 
-      return m_estatus;
+      //return m_estatus;
 
    }
 
@@ -371,9 +375,11 @@ namespace user
 
       m_synchronizationa.clear();
 
-      auto estatus = ::thread::destroy();
+      //auto estatus = 
+      
+      ::thread::destroy();
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -448,7 +454,9 @@ namespace user
 
             m_puserinteraction->m_ewindowflag -= e_window_flag_redraw_in_queue;
 
-            if (!get_message(&m_message, NULL, 0, 0))
+            get_message(&m_message, NULL, 0, 0);
+
+            if(m_message.m_id == e_message_quit)
             {
 
                CATEGORY_INFORMATION(prodevian, "Prodevian has quit!! " << strType);
@@ -1407,20 +1415,22 @@ namespace user
       if (!is_graphical())
       {
 
-         return error_wrong_state;
+         throw_status(error_wrong_state);
 
       }
 
-      auto estatus = m_pimpl2->m_pprodevian->post_routine(routine);
+      //auto estatus = 
+      
+      m_pimpl2->m_pprodevian->post_routine(routine);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 

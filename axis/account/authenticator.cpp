@@ -23,18 +23,18 @@ namespace account
    }
 
 
-   void     authenticator::pre_authenticate(credentials * pcredentials)
+   void authenticator::pre_authenticate(credentials * pcredentials)
    {
 
-      return error_pre_authentication;
-
+      throw_status(error_pre_authentication);
+      
    }
 
 
-   void  authenticator::authenticate(credentials * pcredentials)
+   void authenticator::authenticate(credentials * pcredentials)
    {
 
-      return error_authentication_none;
+      throw_status(error_authentication_none);
 
    }
 

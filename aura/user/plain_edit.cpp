@@ -854,16 +854,18 @@ namespace user
 
 #ifndef _UWP
 
-      auto estatus = initialize_text_composition_client(this, this);
+      //auto estatus =
+      
+      initialize_text_composition_client(this, this);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         pcreate->failed("plain_edit::initialize_text_composition_client failed.");
+      //   pcreate->failed("plain_edit::initialize_text_composition_client failed.");
 
-         return;
+      //   return;
 
-      }
+      //}
 
 #endif
 
@@ -6539,7 +6541,7 @@ finished_update:
    }
 
 
-   void plain_edit::is_edit_delete_enabled()
+   ::e_status plain_edit::is_edit_delete_enabled()
    {
 
       string str;
@@ -6558,7 +6560,7 @@ finished_update:
    }
 
 
-   void plain_edit::on_edit_delete(const ::action_context & actioncontext)
+   bool plain_edit::on_edit_delete(const ::action_context & actioncontext)
    {
 
       ::draw2d::graphics_pointer pgraphics;
@@ -6570,7 +6572,7 @@ finished_update:
 
       }
 
-      return ::success;
+      return true;
 
    }
 

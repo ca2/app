@@ -6,36 +6,31 @@
 #include "image_drawing.h"
 
 
-bool image_drawer::draw(const image_drawing & imagedrawing)
+void image_drawer::draw(const image_drawing & imagedrawing)
 {
 
    if (::is_null(imagedrawing.m_pimagesource))
    {
 
-      return false;
+      return;
 
    }
 
-   if (_draw_blend(imagedrawing))
+   if (has_blender())
    {
 
-      return true;
+      _draw_blend(imagedrawing);
+
+      return;
 
    }
 
-   if (_draw_raw(imagedrawing))
-   {
-
-      return true;
-
-   }
-
-   return false;
+   _draw_raw(imagedrawing);
 
 }
 
 
-//bool image_drawer::_draw_raw(const ::rectangle_f64 & rectangleTarget, const ::image_drawing & imagedrawing, const ::rectangle_f64 & rectangleSource)
+//void image_drawer::_draw_raw(const ::rectangle_f64 & rectangleTarget, const ::image_drawing & imagedrawing, const ::rectangle_f64 & rectangleSource)
 //{
 //
 //   if (rectangleTarget.size() == rectangleSource.size())
@@ -56,7 +51,7 @@ bool image_drawer::draw(const image_drawing & imagedrawing)
 //}
 //
 //
-//bool image_drawer::_draw_raw(const ::rectangle_f64 & rectangleTarget, const ::image_drawing & imagedrawing, const ::point_f64 & pointSrc)
+//void image_drawer::_draw_raw(const ::rectangle_f64 & rectangleTarget, const ::image_drawing & imagedrawing, const ::point_f64 & pointSrc)
 //{
 //
 //   return false;
@@ -64,7 +59,7 @@ bool image_drawer::draw(const image_drawing & imagedrawing)
 //}
 //
 //
-//bool image_drawer::_stretch_raw(const ::rectangle_f64 & rectangleTarget, const ::image_drawing & imagedrawing, const ::rectangle_f64 & rectangleSource)
+//void image_drawer::_stretch_raw(const ::rectangle_f64 & rectangleTarget, const ::image_drawing & imagedrawing, const ::rectangle_f64 & rectangleSource)
 //{
 //
 //   return false;
@@ -72,7 +67,7 @@ bool image_drawer::draw(const image_drawing & imagedrawing)
 //}
 //
 //
-//bool image_drawer::_draw_blend(const ::rectangle_f64 & rectangleTarget, const ::image_drawing & imagedrawing, const ::rectangle_f64 & pointSrc)
+//void image_drawer::_draw_blend(const ::rectangle_f64 & rectangleTarget, const ::image_drawing & imagedrawing, const ::rectangle_f64 & pointSrc)
 //{
 //
 //   return false;
@@ -82,7 +77,15 @@ bool image_drawer::draw(const image_drawing & imagedrawing)
 //
 
 
-bool image_drawer::_draw_raw(const image_drawing & imagedrawing)
+bool image_drawer::has_blender() const
+{
+
+   return false;
+
+}
+
+
+void image_drawer::_draw_raw(const image_drawing & imagedrawing)
 {
 
    auto rectangleSource = imagedrawing.source_rectangle();
@@ -94,33 +97,25 @@ bool image_drawer::_draw_raw(const image_drawing & imagedrawing)
    if (rectangleSource.size() == rectangleTarget.size())
    {
 
-      return _draw_raw(rectangleTarget, pimage, imagedrawing, rectangleSource.top_left());
+      _draw_raw(rectangleTarget, pimage, imagedrawing, rectangleSource.top_left());
 
-   }
-   else
-   {
-
-      return _stretch_raw(rectangleTarget, pimage, imagedrawing, rectangleSource);
+      return;
 
    }
 
-   return false;
+   _stretch_raw(rectangleTarget, pimage, imagedrawing, rectangleSource);
 
 }
 
 
-bool image_drawer::_draw_raw(const ::rectangle_f64 & rectangleTarget, image * pimage, const image_drawing_options & imagedrawingoptions, const ::point_f64 & pointSrc)
+void image_drawer::_draw_raw(const ::rectangle_f64 & rectangleTarget, image * pimage, const image_drawing_options & imagedrawingoptions, const ::point_f64 & pointSrc)
 {
-
-   return false;
 
 }
 
 
-bool image_drawer::_stretch_raw(const ::rectangle_f64 & rectangleTarget, image * pimage, const image_drawing_options & imagedrawingoptions, const ::rectangle_f64 & rectangleSource)
+void image_drawer::_stretch_raw(const ::rectangle_f64 & rectangleTarget, image * pimage, const image_drawing_options & imagedrawingoptions, const ::rectangle_f64 & rectangleSource)
 {
-
-   return false;
 
 }
 

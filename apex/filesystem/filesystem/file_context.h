@@ -127,7 +127,7 @@ public:
 
       stream.exchange(::id::e_type_null, t);
 
-      return stream.fail() ? ::error_failed : ::success;
+      //return stream.fail() ? ::error_failed : ::success;
 
    }
 
@@ -151,7 +151,7 @@ public:
 
       stream.exchange(::id::e_type_null, t);
 
-      return stream.fail() ? ::error_failed : ::success;
+      //return stream.fail() ? ::error_failed : ::success;
 
    }
 
@@ -160,24 +160,24 @@ public:
    virtual bool try_create_file(const ::file::path & path, bool bTryDelete);
 
 
-   virtual ::payload as_network_payload(const ::payload & payloadFile);
-   virtual string as_string(const ::payload & payloadFile);
-   virtual bool as_memory(const ::payload & payloadFile, memory_base & mem);
+   virtual ::payload as_network_payload(const ::payload & payloadFile, bool bNoExceptionOnFail = true);
+   virtual string as_string(const ::payload & payloadFile, bool bNoExceptionOnFail = true);
+   virtual bool as_memory(const ::payload & payloadFile, memory_base & mem, bool bNoExceptionOnFail = true);
 
 
-   inline string_array lines(const ::payload & payloadFile, bool bAddEmpty = true)
+   inline string_array lines(const ::payload & payloadFile, bool bAddEmpty = true, bool bNoExceptionOnFail = true)
    {
 
        string_array straLines;
 
-       get_lines(straLines, payloadFile, bAddEmpty);
+       get_lines(straLines, payloadFile, bAddEmpty, bNoExceptionOnFail);
 
        return ::move(straLines);
 
    }
 
 
-   virtual void get_lines(string_array & stra, const ::payload & payloadFile, bool bAddEmpty = true);
+   virtual void get_lines(string_array & stra, const ::payload & payloadFile, bool bAddEmpty = true, bool bNoExceptionOnFail = true);
    virtual void put_lines(const ::payload& payloadFile, const string_array& stra, const plain_text_file_options& options = {});
    //virtual void put_lines_utf8(const ::payload & payloadFile, const string_array & stra);
    
@@ -351,7 +351,7 @@ public:
 
       __exchange_array(a, s);
 
-      return !s.fail();
+      //return !s.fail();
 
    }
 

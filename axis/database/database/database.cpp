@@ -513,15 +513,11 @@ namespace database
    void database::set_id_blob(string strKey, ::block block)
    {
 
-      return ::error_failed;
-
    }
 
 
    void database::get_id_blob(string strKey, ::get_memory getmemory)
    {
-
-      return ::error_failed;
 
    }
 

@@ -23,12 +23,13 @@ namespace axis
    void user::init()
    {
 
-      if (!::user::user::init())
-      {
+      ::user::user::init();
+      //if (!::user::user::init())
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
       ::factory::add_factory_item <::user::still >();
       ::factory::add_factory_item < ::user::button >();
@@ -36,7 +37,7 @@ namespace axis
       ::factory::add_factory_item <::user::list_box >();
       ::factory::add_factory_item <::user::combo_box >();
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -44,7 +45,7 @@ namespace axis
    void user::term()
    {
 
-      return ::success;
+      //return ::success;
 
    }
 

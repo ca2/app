@@ -93,12 +93,12 @@ bool image_list::create(i32 cx, i32 cy, ::u32 nFlags, i32 nInitial, i32 nGrow)
 }
 
 
-bool image_list::realize(::draw2d::graphics * pgraphics) const
+void image_list::realize(::draw2d::graphics * pgraphics) const
 {
 
    synchronous_lock synchronouslock(mutex());
 
-   return m_pimage->realize(pgraphics);
+   m_pimage->realize(pgraphics);
 
 }
 
@@ -128,43 +128,31 @@ i32 image_list::get_image_count() const
 }
 
 
-bool image_list::draw(::draw2d::graphics* pgraphics, i32 iImage, const ::point_f64 & point, i32 iFlag)
+void image_list::draw(::draw2d::graphics* pgraphics, i32 iImage, const ::point_f64 & point, i32 iFlag)
 {
 
    synchronous_lock synchronouslock(mutex());
 
-   try
-   {
+   __UNREFERENCED_PARAMETER(iFlag);
 
-      __UNREFERENCED_PARAMETER(iFlag);
+   point_f64 pointSource((double)(iImage * m_size.cx), 0.);
 
-      point_f64 pointSource((double)(iImage * m_size.cx), 0.);
+   rectangle_f64 rectangleSource(pointSource, m_size);
 
-      rectangle_f64 rectangleSource(pointSource, m_size);
+   image_source imagesource(m_pimage, rectangleSource);
 
-      image_source imagesource(m_pimage, rectangleSource);
+   rectangle_f64 rectangleTarget(point, m_size);
 
-      rectangle_f64 rectangleTarget(point, m_size);
+   image_drawing_options imagedrawingoptions(rectangleTarget);
 
-      image_drawing_options imagedrawingoptions(rectangleTarget);
+   image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-      image_drawing imagedrawing(imagedrawingoptions, imagesource);
-
-      return pgraphics->draw(imagedrawing);
-
-   }
-   catch(...)
-   {
-
-
-   }
-
-   return true;
+   pgraphics->draw(imagedrawing);
 
 }
 
 
-bool image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_f64 & point, i32 iFlag, const ::opacity & opacity)
+void image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_f64 & point, i32 iFlag, const ::opacity & opacity)
 {
 
    synchronous_lock synchronouslock(mutex());
@@ -192,24 +180,22 @@ bool image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_
 
    imagedrawing.opacity(opacity);
 
-   return pgraphics->draw(imagedrawing);
+   pgraphics->draw(imagedrawing);
 
 }
 
 
-bool image_list::color_blend(image_list* pimagelistSource, const ::color::color& color, const ::opacity & opacity)
+void image_list::color_blend(image_list* pimagelistSource, const ::color::color& color, const ::opacity & opacity)
 {
 
    copy_from(pimagelistSource);
 
    m_pimage->g()->fill_rectangle(m_pimage->rectangle(), color & opacity);
 
-   return true;
-
 }
 
 
-bool image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_f64 & point, ::size_f64 sz, const ::point_f64 & pointOffsetParam, i32 iFlag)
+void image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_f64 & point, ::size_f64 sz, const ::point_f64 & pointOffsetParam, i32 iFlag)
 {
 
    ::point_f64 pointOffset(pointOffsetParam);
@@ -217,7 +203,7 @@ bool image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_
    if(iImage < 0)
    {
 
-      return false;
+      return;
 
    }
 
@@ -226,7 +212,7 @@ bool image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_
    if(iImage >= get_image_count())
    {
 
-      return false;
+      return;
 
    }
 
@@ -249,7 +235,7 @@ bool image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_
 
    image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-   return pgraphics->draw(imagedrawing);
+   pgraphics->draw(imagedrawing);
 
 }
 
@@ -665,57 +651,51 @@ void image_list::copy_from(const ::image_list * plist)
 void image_list::get_image_info(i32 nImage, info * pinfo) const
 {
 
-   try
+   ASSERT(pinfo != nullptr);
+
+   if(nImage < 0 || nImage >= get_image_count())
    {
 
-      ASSERT(pinfo != nullptr);
-
-      if(nImage < 0 || nImage >= get_image_count())
-      {
-
-         return error_index_out_of_bounds;
-
-      }
-
-      if(::is_null(m_pimage))
-      {
-
-         return error_null_pointer;
-
-      }
-
-      if (!m_pimage->is_ok())
-      {
-
-         return error_null_pointer;
-
-      }
-
-      pinfo->m_rectangle.left       = nImage * m_size.cx;
-      pinfo->m_rectangle.right      = pinfo->m_rectangle.left + m_size.cx;
-      pinfo->m_rectangle.top        = 0;
-      pinfo->m_rectangle.bottom     = m_size.cy;
-
-      pinfo->m_pimage               = m_pimage;
-
-      //auto estatus = ((image_list*)this)->__construct(pinfo->m_pimage);
-
-      //pinfo->m_pimage->copy_from(m_pimage);
-
-      return ::success;
-
-   }
-   catch(...)
-   {
+      throw_status(error_index_out_of_bounds);
 
    }
 
-   return error_exception;
+   if(::is_null(m_pimage))
+   {
+
+      throw_status(error_null_pointer);
+
+   }
+
+   if (!m_pimage->is_ok())
+   {
+
+      throw_status(error_null_pointer);
+
+   }
+
+   pinfo->m_rectangle.left       = nImage * m_size.cx;
+   pinfo->m_rectangle.right      = pinfo->m_rectangle.left + m_size.cx;
+   pinfo->m_rectangle.top        = 0;
+   pinfo->m_rectangle.bottom     = m_size.cy;
+
+   pinfo->m_pimage               = m_pimage;
+
+   //auto estatus = ((image_list*)this)->__construct(pinfo->m_pimage);
+
+   //pinfo->m_pimage->copy_from(m_pimage);
+
+   //return ::success;
 
 }
 
 
 void image_list::erase_all()
 {
+
    m_iSize = 0;
+
 }
+
+
+

@@ -16,7 +16,7 @@ namespace app_net
 
 
       application();
-      virtual ~application();
+      ~application() override;
 
       virtual void init_instance() override;
       virtual void term_application() override;

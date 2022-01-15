@@ -37,17 +37,17 @@ namespace user
    }
 
 
-   bool primitive_impl::create_message_queue(::user::interaction * pinteraction, const ::string & lpszName)
+   void primitive_impl::create_message_queue(::user::interaction * pinteraction, const ::string & lpszName)
    {
 
       throw ::interface_only_exception();
 
-      return true;
+      //return true;
 
    }
 
 
-   //bool primitive_impl::create_interaction(::user::interaction * pinteraction, ::user::primitive * pparent)
+   //void primitive_impl::create_interaction(::user::interaction * pinteraction, ::user::primitive * pparent)
    //{
 
    //   throw ::interface_only_exception();
@@ -57,7 +57,7 @@ namespace user
    //}
 
 
-   //bool primitive_impl::create_interaction(::user::interaction * pinteraction, ::user::primitive * puiParent)
+   //void primitive_impl::create_interaction(::user::interaction * pinteraction, ::user::primitive * puiParent)
 
    //{
 
@@ -68,7 +68,7 @@ namespace user
    //}
 
 
-   //bool primitive_impl::create_window_ex(::user::interaction * pinteraction, __pointer(::user::system) pcs, ::user::primitive * puiParent, id id)
+   //void primitive_impl::create_window_ex(::user::interaction * pinteraction, __pointer(::user::system) pcs, ::user::primitive * puiParent, id id)
    //{
 
    //   throw ::interface_only_exception();
@@ -78,7 +78,7 @@ namespace user
    //}
 
 
-   //bool primitive_impl::create_interaction(::user::interaction * pinteraction, ::user::primitive * pparent)
+   //void primitive_impl::create_interaction(::user::interaction * pinteraction, ::user::primitive * pparent)
    //{
 
    //   throw ::interface_only_exception();
@@ -149,9 +149,10 @@ namespace user
 
       ::user::primitive::destroy();
 
-      auto estatus = m_puserinteraction.release();
+      //auto estatus = 
+      m_puserinteraction.release();
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -164,10 +165,10 @@ namespace user
    //}
 
 
-   bool primitive_impl::prodevian_update_screen()
+   void primitive_impl::prodevian_update_screen()
    {
 
-      return true;
+      //return true;
 
    }
 
@@ -302,10 +303,10 @@ namespace user
    }
 
 
-   bool primitive_impl::window_move(i32 x, i32 y)
+   void primitive_impl::window_move(i32 x, i32 y)
    {
 
-      return true;
+      //return true;
 
    }
 
@@ -468,13 +469,15 @@ namespace user
    }
 
 
-   bool primitive_impl::RedrawWindow(const ::rectangle_i32 & rectangleUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
+   void primitive_impl::RedrawWindow(const ::rectangle_i32 & rectangleUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
    {
 
       if (!m_puserinteraction)
       {
 
-         return false;
+         //return false;
+
+         return;
 
       }
 
@@ -499,7 +502,7 @@ namespace user
    //}
 
 
-   //bool primitive_impl::ModifyStyle(u32 dwRemove, u32 dwAdd, ::u32 nFlags)
+   //void primitive_impl::ModifyStyle(u32 dwRemove, u32 dwAdd, ::u32 nFlags)
    //{
 
    //   ::i32 l = GetStyle();
@@ -517,7 +520,7 @@ namespace user
    //}
 
 
-   //bool primitive_impl::ModifyStyleEx(u32 dwRemove, u32 dwAdd, ::u32 nFlags)
+   //void primitive_impl::ModifyStyleEx(u32 dwRemove, u32 dwAdd, ::u32 nFlags)
    //{
 
    //   set_window_long(GWL_EXSTYLE, (GetExStyle() | dwAdd) & ~dwRemove);
@@ -1086,7 +1089,7 @@ namespace user
    }
 
 
-   //bool primitive_impl::set_capture(::user::interaction * pinteraction)
+   //void primitive_impl::set_capture(::user::interaction * pinteraction)
    //{
 
    //   return get_host_window()->set_capture(pinteraction);
@@ -1111,7 +1114,7 @@ namespace user
    //}
 
 
-   //bool primitive_impl::set_keyboard_focus(::user::interaction * pinteraction)
+   //void primitive_impl::set_keyboard_focus(::user::interaction * pinteraction)
    //{
 
    //   return get_host_window()->set_keyboard_focus(pinteraction);
@@ -1136,17 +1139,17 @@ namespace user
    //}
 
 
-   bool primitive_impl::get_rect_normal(RECTANGLE_I32 * prectangle)
+   void primitive_impl::get_rect_normal(RECTANGLE_I32 * prectangle)
    {
 
       *prectangle = m_puserinteraction->screen_rect();
 
-      return true;
+      //return true;
 
    }
 
 
-   bool primitive_impl::SetTimer(uptr uEvent, const ::duration & millisEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void* pdata)
+   void primitive_impl::SetTimer(uptr uEvent, const ::duration & millisEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void* pdata)
    {
 
       if (millisEllapse < 500_ms)
@@ -1171,22 +1174,22 @@ namespace user
 
       }
 
-      return m_ptimerarray->create_timer(this, uEvent, millisEllapse, pfnTimer, bPeriodic, pdata);
+      m_ptimerarray->create_timer(this, uEvent, millisEllapse, pfnTimer, bPeriodic, pdata);
 
    }
 
 
-   bool primitive_impl::KillTimer(uptr uEvent)
+   void primitive_impl::KillTimer(uptr uEvent)
    {
 
       if (m_ptimerarray.is_null())
       {
 
-         return true;
+         return;
 
       }
 
-      return m_ptimerarray->delete_timer(uEvent);
+      m_ptimerarray->delete_timer(uEvent);
 
    }
 
@@ -1219,7 +1222,7 @@ namespace user
 
    //}
 
-   bool primitive_impl::destroy_impl_only()
+   void primitive_impl::destroy_impl_only()
    {
 
       auto pinteraction = m_puserinteraction;
@@ -1255,22 +1258,22 @@ namespace user
 
       m_puserinteraction = nullptr;
 
-      bool bOk = start_destroying_window();
+      start_destroying_window();
 
       //FORMATTED_TRACE("destroy_impl_only DestroyWindow %d", bOk != false);
 
-      return bOk;
+      //return bOk;
 
    }
 
 
-   bool primitive_impl::start_destroying_window()
+   void primitive_impl::start_destroying_window()
    {
 
       if (!m_bUserElementOk)
       {
 
-         return true;
+         return;
 
       }
 
@@ -1279,7 +1282,7 @@ namespace user
       if (m_puserinteraction == nullptr && !m_bDestroyImplOnly)
       {
 
-         return false;
+         return;
 
       }
 
@@ -1314,12 +1317,12 @@ namespace user
 
       }
 
-      return true;
+      //return true;
 
    }
 
 
-   bool primitive_impl::mouse_hover_add(::user::interaction * pinterface)
+   void primitive_impl::mouse_hover_add(::user::interaction * pinterface)
    {
 
       ::user::interaction * pinteraction = get_host_window();
@@ -1327,20 +1330,24 @@ namespace user
       if (!pinteraction)
       {
 
-         return false;
+         //return false;
+
+         return;
 
       }
 
-      auto bOk = pinteraction->mouse_hover_add(pinterface);
+      //auto bOk = 
+      
+      pinteraction->mouse_hover_add(pinterface);
 
-      if (!bOk)
-      {
+      //if (!bOk)
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
-      return true;
+      //return true;
 
    }
 
@@ -1364,6 +1371,7 @@ namespace user
 
    void primitive_impl::register_drop_target()
    {
+
    }
 
 
@@ -1380,7 +1388,7 @@ namespace user
 
       __UNREFERENCED_PARAMETER(pprimitive);
 
-      return ::error_failed;
+      //return ::error_failed;
 
    }
 
@@ -1390,7 +1398,7 @@ namespace user
 
       __UNREFERENCED_PARAMETER(pprimitive);
 
-      return ::error_failed;
+      //return ::error_failed;
 
    }
 
@@ -1398,7 +1406,7 @@ namespace user
    void primitive_impl::clear_keyboard_focus()
    {
 
-      return ::error_failed;
+      //return ::error_failed;
 
    }
 
@@ -1406,7 +1414,7 @@ namespace user
    void primitive_impl::impl_set_keyboard_focus(::user::primitive * pprimitive)
    {
 
-      return ::error_failed;
+      //return ::error_failed;
 
    }
 
@@ -1414,7 +1422,7 @@ namespace user
    void primitive_impl::impl_erase_keyboard_focus(::user::primitive * pprimitive)
    {
 
-      return ::error_failed;
+      //return ::error_failed;
 
    }
 
@@ -1422,24 +1430,24 @@ namespace user
    void primitive_impl::impl_clear_keyboard_focus()
    {
 
-      return ::error_failed;
+      //return ::error_failed;
 
    }
 
 
-   bool primitive_impl::post_message(const ::id & id, wparam wparam, lparam lparam)
+   void primitive_impl::post_message(const ::id & id, wparam wparam, lparam lparam)
    {
 
       if (::is_null(m_puserinteraction))
       {
 
-         return false;
+         throw_status(error_wrong_state);
 
       }
 
       m_puserinteraction->post_routine(__new(call_message_handler_task(m_puserinteraction, id, wparam, lparam)));
 
-      return true;
+      //return true;
 
    }
 
@@ -1508,7 +1516,6 @@ namespace user
       }
 
    }
-
 
 
    void primitive_impl::on_message_show_window(::message::message * pmessage)
@@ -1643,12 +1650,21 @@ namespace user
    void primitive_impl::queue_message_handler(::message::message * pmessage)
    {
 
-      return m_puserinteraction->message_handler(pmessage);
+      m_puserinteraction->message_handler(pmessage);
+
+      //if (pmessage->m_bRet)
+      //{
+
+      //   return true;
+
+      //}
+
+      //return false;
 
    }
 
 
-   //bool primitive_impl::has_keyboard_focus() const
+   //void primitive_impl::has_keyboard_focus() const
    //{
 
    //   if (m_puserinteraction == nullptr)
@@ -1695,7 +1711,7 @@ namespace user
    //}
 
 
-   //bool primitive_impl::is_active()
+   //void primitive_impl::is_active()
    //{
 
    //   if (m_puserinteraction == nullptr)
@@ -1710,23 +1726,23 @@ namespace user
    //}
 
 
-   bool primitive_impl::create_host(::user::interaction * puserinteraction)
+   void primitive_impl::create_host(::user::interaction * puserinteraction)
    {
 
-      return false;
+      //return false;
 
    }
 
 
-   bool primitive_impl::create_child(::user::interaction * puserinteraction, ::user::primitive * puserprimitiveParent)
+   void primitive_impl::create_child(::user::interaction * puserinteraction, ::user::primitive * puserprimitiveParent)
    {
 
-      return false;
+      //return false;
 
    }
 
 
-   //bool primitive_impl::is_this_enabled() const
+   //void primitive_impl::is_this_enabled() const
    //{
 
    //   if (!m_puserinteraction)
@@ -1753,22 +1769,22 @@ namespace user
    }
 
 
-   bool primitive_impl::start_window_visual()
+   void primitive_impl::start_window_visual()
    {
 
-      return true;
+      //return true;
 
    }
 
 
-   bool primitive_impl::enable_window(bool bEnable)
+   void primitive_impl::enable_window(bool bEnable)
    {
 
-      bool bWasDisabled = !(m_puserinteraction->m_ewindowflag & e_window_flag_enable);
+      //bool bWasDisabled = !(m_puserinteraction->m_ewindowflag & e_window_flag_enable);
 
       m_puserinteraction->m_ewindowflag.set(e_window_flag_enable, bEnable);
 
-      return bWasDisabled;
+      //return bWasDisabled;
 
    }
 

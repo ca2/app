@@ -47,16 +47,18 @@ imaging::~imaging()
 void imaging::initialize(::object * pobject)
 {
 
-   auto estatus = ::object::initialize(pobject);
+   //auto estatus =
+   
+   ::object::initialize(pobject);
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
-   return estatus;
+   //return estatus;
 
 }
 
@@ -131,11 +133,11 @@ i32                 cy)
 
    //pgraphics->SetBkMode(TRANSPARENT);
    //pgraphics->set_text_color(crText);
-   if(!pgraphics->text_out(x,y, string(pcsz, cb)))
-
-   {
-      //      FORMATTED_TRACE("Failed to ExtTextOut, get_last_error() -->%d\n", get_last_error());
-   }
+   //if(!pgraphics->text_out(x,y, string(pcsz, cb)))
+   pgraphics->text_out(x, y, string(pcsz, cb));
+   //{
+   //   //      FORMATTED_TRACE("Failed to ExtTextOut, get_last_error() -->%d\n", get_last_error());
+   //}
 
    /* restore the DC
    */
@@ -229,7 +231,7 @@ i32                 cy)
 //
 //}
 
-//bool imaging::GrayVRCP(
+//void imaging::GrayVRCP(
 //   ::draw2d::graphics * pgraphics,
 //   i32 x,
 //   i32 y,
@@ -250,7 +252,7 @@ i32                 cy)
 //
 //}
 //
-//bool imaging::GrayVRCP(
+//void imaging::GrayVRCP(
 //   ::draw2d::graphics * pgraphics,
 //   ::draw2d::bitmap * pitmap,
 
@@ -299,7 +301,7 @@ return pil;
 }
 
 
-bool imaging::CreateHueImageList(
+void imaging::CreateHueImageList(
 ::draw2d::graphics * pgraphics,
 __pointer(::image_list) pilGray,
 __pointer(::image_list) pilParam,
@@ -337,14 +339,14 @@ return true;
 
 
 
-bool imaging::change_hue(image_list * pilHue, image_list * pil, const ::color::color& crHue,double dCompress)
+void imaging::change_hue(image_list * pilHue, image_list * pil, const ::color::color& crHue,double dCompress)
 {
 
    pilHue->copy_from(pil);
 
    HueVRCP(pilHue->m_pimage,crHue,dCompress);
 
-   return true;
+   //return true;
 
 }
 
@@ -352,7 +354,7 @@ bool imaging::change_hue(image_list * pilHue, image_list * pil, const ::color::c
 
 
 //
-//bool imaging::color_blend(::image * pimage, const ::color::color& color32, byte bAlpha)
+//void imaging::color_blend(::image * pimage, const ::color::color& color32, byte bAlpha)
 //{
 //
 //   try
@@ -417,7 +419,7 @@ return pil;
 */
 
 
-//bool imaging::GrayVRCP(
+//void imaging::GrayVRCP(
 //   ::draw2d::graphics * pgraphics,
 //   ::draw2d::bitmap * pitmap,
 
@@ -911,7 +913,7 @@ return pil;
 //
 //}
 
-//bool imaging::GetDeviceContext24BitsCC(
+//void imaging::GetDeviceContext24BitsCC(
 //   ::draw2d::graphics *pgraphics,
 //   BITMAP & bm,
 //   BITMAPINFO & bmi,
@@ -1044,7 +1046,7 @@ return pil;
 //   }
 //}
 
-/*bool imaging::GetDeviceContext24BitsAllCC(
+/*void imaging::GetDeviceContext24BitsAllCC(
 ::draw2d::graphics *pgraphics,
 BITMAP & bm,
 BITMAPINFO & bmi,
@@ -1524,7 +1526,7 @@ byte bAlpha)
 
 
 
-bool imaging::BitmapDivBlend(
+void imaging::BitmapDivBlend(
    ::draw2d::graphics * pdcDst, // destination device
    const ::point_i32 & pointDst,
    const ::size_i32 & size,
@@ -1535,23 +1537,26 @@ bool imaging::BitmapDivBlend(
 
    ::image_pointer pimage;
 
-   auto estatus = __construct(pimage);
+   //auto estatus = 
+   __construct(pimage);
 
-   if (!estatus)
+   /*if (!estatus)
    {
 
       return false;
 
-   }
+   }*/
 
-   estatus = pimage->create(size);
+   //estatus = 
+   
+   pimage->create(size);
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
    {
 
@@ -1577,14 +1582,14 @@ bool imaging::BitmapDivBlend(
 
       image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-      return pdcDst->draw(imagedrawing);
+      pdcDst->draw(imagedrawing);
 
    }
 
 }
 
 
-//bool imaging::bitmap_blend(
+//void imaging::bitmap_blend(
 //::draw2d::graphics * pdcDst, // destination device
 //const ::point_i32 & pointDst,
 //const ::size_i32 & size,
@@ -1598,7 +1603,7 @@ bool imaging::BitmapDivBlend(
 //}
 //
 //
-//bool imaging::bitmap_blend(::draw2d::graphics * pdcDst,
+//void imaging::bitmap_blend(::draw2d::graphics * pdcDst,
 //                           const ::point_i32 & pointDst,
 //                           const ::size_i32 & size,
 //                           ::image * pimage,
@@ -1611,18 +1616,20 @@ bool imaging::BitmapDivBlend(
 //}
 //
 
-bool imaging::ColorInvert(::draw2d::graphics * pgraphics,i32 x,i32 y,i32 cx,i32 cy)
+void imaging::ColorInvert(::draw2d::graphics * pgraphics,i32 x,i32 y,i32 cx,i32 cy)
 {
 
 
    if (cx <= 0 || cy <= 0)
    {
 
-      return true;
+      //return true;
+
+      throw_status(error_failed);
 
    }
 
-   return false;
+   //return false;
 
    //    single_lock synchronouslock(&m_csMem, true);
 
@@ -1901,7 +1908,7 @@ bool imaging::ColorInvert(::draw2d::graphics * pgraphics,i32 x,i32 y,i32 cx,i32 
    return true;*/
 }
 
-/*bool imaging::allocate(i32 iSize)
+/*void imaging::allocate(i32 iSize)
 {
 if(iSize > m_iSize)
 {
@@ -1985,7 +1992,7 @@ return true;
 
 
 
-bool imaging::clip_color_blend(::draw2d::graphics * pgraphics, const rectangle_i32 & rectangleParam, ::color32_t color32, byte alpha)
+void imaging::clip_color_blend(::draw2d::graphics * pgraphics, const rectangle_i32 & rectangleParam, ::color32_t color32, byte alpha)
 {
 
    ::rectangle_i32 rectangle(rectangleParam);
@@ -1999,12 +2006,12 @@ bool imaging::clip_color_blend(::draw2d::graphics * pgraphics, const rectangle_i
 }
 
 
-bool imaging::clip_color_blend(::draw2d::graphics * pgraphics,const ::point_i32 & point,const ::size_i32 & size,::color32_t color32,byte bA)
+void imaging::clip_color_blend(::draw2d::graphics * pgraphics,const ::point_i32 & point,const ::size_i32 & size,::color32_t color32,byte bA)
 {
 
    pgraphics->fill_rectangle(rectangle_i32(size), argb(bA,colorref_get_r_value(color32),colorref_get_g_value(color32),colorref_get_b_value(color32)));
 
-   return true;
+   //return true;
 
 }
 
@@ -2017,7 +2024,7 @@ void imaging::trait(::image * pimage, ::i64 iTrait)
 }
 
 
-//bool imaging::color_blend(::draw2d::graphics * pgraphics, const ::rectangle_i64 & rectangle, ::color32_t color32, byte alpha)
+//void imaging::color_blend(::draw2d::graphics * pgraphics, const ::rectangle_i64 & rectangle, ::color32_t color32, byte alpha)
 //{
 //
 //   return color_blend(pgraphics,(const ::rectangle_i32 &)rectangle,color32,alpha);
@@ -2025,7 +2032,7 @@ void imaging::trait(::image * pimage, ::i64 iTrait)
 //}
 
 
-//bool imaging::color_blend(::draw2d::graphics * pgraphics, const ::rectangle_i32 & rectangle, ::color32_t color32, byte alpha)
+//void imaging::color_blend(::draw2d::graphics * pgraphics, const ::rectangle_i32 & rectangle, ::color32_t color32, byte alpha)
 //{
 //
 //   return color_blend(pgraphics, rectangle.origin(), rectangle.size(), color32, alpha);
@@ -2033,7 +2040,7 @@ void imaging::trait(::image * pimage, ::i64 iTrait)
 //}
 
 
-//bool imaging::color_blend(::draw2d::graphics * pgraphics,i32 x,i32 y,i32 cx,i32 cy,::color32_t color32,byte bA)
+//void imaging::color_blend(::draw2d::graphics * pgraphics,i32 x,i32 y,i32 cx,i32 cy,::color32_t color32,byte bA)
 //{
 //
 //   return color_blend(pgraphics,point_i32(x,y),size_i32(cx,cy),color32,bA);
@@ -2041,7 +2048,7 @@ void imaging::trait(::image * pimage, ::i64 iTrait)
 //}
 
 
-//bool imaging::color_blend(::draw2d::graphics * pgraphics,const ::point_i32 & point,const ::size_i32 & size,::color32_t color32,byte bA)
+//void imaging::color_blend(::draw2d::graphics * pgraphics,const ::point_i32 & point,const ::size_i32 & size,::color32_t color32,byte bA)
 //{
 //
 //   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -2053,151 +2060,154 @@ void imaging::trait(::image * pimage, ::i64 iTrait)
 //}
 
 
-bool imaging::CreateBitmap(::draw2d::graphics * pgraphics, ::draw2d::graphics * pdcScreen, ::draw2d::bitmap * pbitmap, ::draw2d::bitmap * pbitmapOld, i32 cx, i32 cy)
-{
-   
-   i32 cxout = cx;
+//void imaging::CreateBitmap(::draw2d::graphics * pgraphics, ::draw2d::graphics * pdcScreen, ::draw2d::bitmap * pbitmap, ::draw2d::bitmap * pbitmapOld, i32 cx, i32 cy)
+//{
+//   
+//   i32 cxout = cx;
+//
+//   i32 cyout = cy;
+//
+//   pgraphics->set(pbitmapOld);
+//
+//   bool bCreate = true;
+//
+//   if(pbitmap->get_os_data() != nullptr)
+//   {
+//
+//      const ::size_i32 & size = pbitmap->get_size();
+//
+//      if(size.cx >= cx && size.cy >= cy)
+//      {
+//
+//         bCreate = false;
+//
+//      }
+//
+//   }
+//
+//   if(bCreate)
+//   {
+//
+//      if(!pbitmap->CreateCompatibleBitmap(pdcScreen,cxout,cyout))
+//      {
+//
+//         //return false;
+//
+//      }
+//
+//   }
+//
+//   //if(!pgraphics->set(pbitmap))
+//   pgraphics->set(pbitmap);
+//   //{
+//
+//   //   if(!pbitmap->CreateCompatibleBitmap(pdcScreen, cxout, cyout))
+//   //   {
+//
+//   //      return false;
+//
+//   //   }
+//
+//   //   if(!pgraphics->set(pbitmap))
+//   //   {
+//
+//   //      return false;
+//
+//   //   }
+//
+//   //}
+//
+//   if(bCreate)
+//   {
+//
+//      pgraphics->fill_rectangle(rectangle_i32(0,0,cxout,cyout), 0);
+//
+//   }
+//
+//   return true;
+//
+//}
+//
+//
+//void imaging::CreateBitmap(::draw2d::graphics *pgraphics,::draw2d::bitmap * pitmapOld,::draw2d::bitmap *pitmap,i32 cx,i32 cy)
+//{
+//
+//   i32 cxout = cx;
+//
+//   i32 cyout = cy;
+//
+//   pgraphics->set(pitmapOld);
+//
+//   bool bCreate = true;
+//
+//   if(pitmap->get_os_data())
+//   {
+//
+//      const ::size_i32 & size = pitmap->get_size();
+//
+//      if(size.cx >= cx && size.cy >= cy)
+//      {
+//
+//         bCreate = false;
+//
+//      }
+//
+//   }
+//
+//   if(bCreate)
+//   {
+//
+//      if(!pitmap->CreateCompatibleBitmap(pgraphics,cxout,cyout))
+//      {
+//
+//         return false;
+//
+//      }
+//
+//   }
+//
+//   //if(!pgraphics->set(pitmap))
+//
+//   pgraphics->set(pitmap);
+//   //{
+//
+//   //   if(!pitmap->CreateCompatibleBitmap(pgraphics,cxout,cyout))
+//   //   {
+//
+//   //      return false;
+//
+//   //   }
+//
+//   //   if(!pgraphics->set(pitmap))
+//   //   {
+//
+//   //      return false;
+//
+//   //   }
+//
+//   //}
+//
+//   if(bCreate)
+//   {
+//
+//      ::color::color color(255, 196, 255);
+//
+//      pgraphics->fill_rectangle(rectangle_i32(0,0,cxout,cyout), color);
+//
+//   }
+//
+//   return true;
+//
+//}
 
-   i32 cyout = cy;
 
-   pgraphics->set(pbitmapOld);
-
-   bool bCreate = true;
-
-   if(pbitmap->get_os_data() != nullptr)
-   {
-
-      const ::size_i32 & size = pbitmap->get_size();
-
-      if(size.cx >= cx && size.cy >= cy)
-      {
-
-         bCreate = false;
-
-      }
-
-   }
-
-   if(bCreate)
-   {
-
-      if(!pbitmap->CreateCompatibleBitmap(pdcScreen,cxout,cyout))
-      {
-
-         return false;
-
-      }
-
-   }
-
-   if(!pgraphics->set(pbitmap))
-   {
-
-      if(!pbitmap->CreateCompatibleBitmap(pdcScreen, cxout, cyout))
-      {
-
-         return false;
-
-      }
-
-      if(!pgraphics->set(pbitmap))
-      {
-
-         return false;
-
-      }
-
-   }
-
-   if(bCreate)
-   {
-
-      pgraphics->fill_rectangle(rectangle_i32(0,0,cxout,cyout), 0);
-
-   }
-
-   return true;
-
-}
-
-
-bool imaging::CreateBitmap(::draw2d::graphics *pgraphics,::draw2d::bitmap * pitmapOld,::draw2d::bitmap *pitmap,i32 cx,i32 cy)
-{
-
-   i32 cxout = cx;
-
-   i32 cyout = cy;
-
-   pgraphics->set(pitmapOld);
-
-   bool bCreate = true;
-
-   if(pitmap->get_os_data())
-   {
-
-      const ::size_i32 & size = pitmap->get_size();
-
-      if(size.cx >= cx && size.cy >= cy)
-      {
-
-         bCreate = false;
-
-      }
-
-   }
-
-   if(bCreate)
-   {
-
-      if(!pitmap->CreateCompatibleBitmap(pgraphics,cxout,cyout))
-      {
-
-         return false;
-
-      }
-
-   }
-
-   if(!pgraphics->set(pitmap))
-   {
-
-      if(!pitmap->CreateCompatibleBitmap(pgraphics,cxout,cyout))
-      {
-
-         return false;
-
-      }
-
-      if(!pgraphics->set(pitmap))
-      {
-
-         return false;
-
-      }
-
-   }
-
-   if(bCreate)
-   {
-
-      ::color::color color(255, 196, 255);
-
-      pgraphics->fill_rectangle(rectangle_i32(0,0,cxout,cyout), color);
-
-   }
-
-   return true;
-
-}
-
-
-bool imaging::blur(::image * pimage, i32 iRadius)
+void imaging::blur(::image * pimage, i32 iRadius)
 {
 
    if (!pimage->is_ok())
    {
 
-      return false;
+      throw_status(error_invalid_argument);
 
    }
 
@@ -2205,25 +2215,25 @@ bool imaging::blur(::image * pimage, i32 iRadius)
 
    f.blur(pimage, iRadius);
 
-   return true;
+   //return true;
 
 }
 
 
-bool imaging::blur(::image * pimage, rectangle_i32 rectangle, i32 iRadius)
+void imaging::blur(::image * pimage, rectangle_i32 rectangle, i32 iRadius)
 {
 
    if (!pimage->is_ok())
    {
 
-      return false;
+      throw_status(error_invalid_argument);
 
    }
 
    ::draw2d::fastblur fastblur;
 
-   if (!fastblur.initialize(rectangle.size(), abs(iRadius)))
-      return false;
+   fastblur.initialize(rectangle.size(), abs(iRadius));
+      //return false;
 
    {
 
@@ -2233,7 +2243,7 @@ bool imaging::blur(::image * pimage, rectangle_i32 rectangle, i32 iRadius)
 
    }
 
-   return true;
+   //return true;
 
 }
 
@@ -2917,13 +2927,13 @@ void imaging::blur_32CC_r2(::image * pimageDst, ::image * pimageSrc)
 }
 
 
-bool imaging::channel_gray_blur(::draw2d::graphics *pdcDst,const ::point_i32 & pointDst,const ::size_i32 & size,::draw2d::graphics * pdcSrc,const ::point_i32 & pointSrc,i32 iChannel,i32 iRadius)
+void imaging::channel_gray_blur(::draw2d::graphics *pdcDst,const ::point_i32 & pointDst,const ::size_i32 & size,::draw2d::graphics * pdcSrc,const ::point_i32 & pointSrc,i32 iChannel,i32 iRadius)
 {
 
    if (size.cx <= 0 || size.cy <= 0)
    {
 
-      return true;
+      throw_status(error_wrong_state);
 
    }
 
@@ -2932,7 +2942,7 @@ bool imaging::channel_gray_blur(::draw2d::graphics *pdcDst,const ::point_i32 & p
    if (!pimageDst)
    {
 
-      return false;
+      throw_status(error_wrong_state);
 
    }
 
@@ -2941,7 +2951,7 @@ bool imaging::channel_gray_blur(::draw2d::graphics *pdcDst,const ::point_i32 & p
    if (!pimageSrc)
    {
 
-      return false;
+      throw_status(error_wrong_state);
 
    }
 
@@ -2955,19 +2965,22 @@ bool imaging::channel_gray_blur(::draw2d::graphics *pdcDst,const ::point_i32 & p
 
    image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-   if (!pdcSrc->draw(imagedrawing))
-   {
+   //if (!pdcSrc->draw(imagedrawing))
+   pdcSrc->draw(imagedrawing);
+   //{
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
-   if(!channel_gray_blur_32CC(
-         pimageDst,
-         pimageSrc,
-         iChannel,
-         iRadius))
-      return false;
+   //if(!
+   
+   channel_gray_blur_32CC(
+      pimageDst,
+      pimageSrc,
+      iChannel,
+      iRadius);
+//      return false;
 
    {
 
@@ -2979,27 +2992,28 @@ bool imaging::channel_gray_blur(::draw2d::graphics *pdcDst,const ::point_i32 & p
 
       image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-      if (!pdcDst->draw(imagedrawing))
-      {
+      //if (!pdcDst->draw(imagedrawing))
+      pdcDst->draw(imagedrawing);
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
    }
 
-   return true;
+   //return true;
 
 }
 
 
-bool imaging::channel_alpha_gray_blur(::draw2d::graphics * pdcDst, const ::point_i32 & pointDst, const ::size_i32 & size, ::draw2d::graphics * pdcSrc, const ::point_i32 & pointSrc, i32 iChannel, i32 iRadius)
+void imaging::channel_alpha_gray_blur(::draw2d::graphics * pdcDst, const ::point_i32 & pointDst, const ::size_i32 & size, ::draw2d::graphics * pdcSrc, const ::point_i32 & pointSrc, i32 iChannel, i32 iRadius)
 {
 
    if (size.area() <= 0)
    {
 
-      return true;
+      throw_status(error_wrong_state);
 
    }
 
@@ -3008,7 +3022,7 @@ bool imaging::channel_alpha_gray_blur(::draw2d::graphics * pdcDst, const ::point
    if (!pimageDst)
    {
 
-      return false;
+      throw_status(error_wrong_state);
 
    }
 
@@ -3017,7 +3031,7 @@ bool imaging::channel_alpha_gray_blur(::draw2d::graphics * pdcDst, const ::point
    if (!pimageSrc)
    {
 
-      return false;
+      throw_status(error_wrong_state);
 
    }
 
@@ -3033,21 +3047,21 @@ bool imaging::channel_alpha_gray_blur(::draw2d::graphics * pdcDst, const ::point
 
       image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-      if (!pimageSrc->g()->draw(imagedrawing))
-      {
+      pimageSrc->g()->draw(imagedrawing);
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
    }
 
-   if (!channel_alpha_gray_blur_32CC(
+   /*if (!*/channel_alpha_gray_blur_32CC(
       pimageDst,
       pimageSrc,
       iChannel,
-      iRadius))
-      return false;
+      iRadius)/*)
+      return false*/;
 
    {
 
@@ -3059,33 +3073,33 @@ bool imaging::channel_alpha_gray_blur(::draw2d::graphics * pdcDst, const ::point
 
       image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-      if (!pdcDst->draw(imagedrawing))
+      /*if (!*/pdcDst->draw(imagedrawing);/*
       {
 
-         return false;
+         return false*/;
 
-      }
+      /*}*/
 
    }
 
-   return true;
+   /*return true;*/
 
 }
 
 
-bool imaging::channel_gray_blur_32CC(::image * pimageDst, ::image * pimageSrc,
+void imaging::channel_gray_blur_32CC(::image * pimageDst, ::image * pimageSrc,
                                      i32 iChannel,i32 iRadius)
 {
 
    if(iRadius <= 0)
-      return true;
+      throw_status(error_wrong_state);
 
    i32 cx = pimageDst->width();
    i32 cy = pimageDst->height();
 
    if(cx != pimageSrc->width()
          || cy != pimageSrc->height())
-      return false;
+      throw_status(error_wrong_state);
 
    byte * pDst = (byte *)pimageDst->get_data();
 
@@ -3361,23 +3375,24 @@ bool imaging::channel_gray_blur_32CC(::image * pimageDst, ::image * pimageSrc,
 
    }
 
-   return true;
+   //return true;
 
 }
 
-bool imaging::channel_alpha_gray_blur_32CC(::image * pimageDst, ::image * pimageSrc,
+
+void imaging::channel_alpha_gray_blur_32CC(::image * pimageDst, ::image * pimageSrc,
       i32 iChannel,i32 iRadius)
 {
 
    if(iRadius <= 0)
-      return true;
+      throw_status(error_wrong_state);
 
    i32 cx = pimageDst->width();
    i32 cy = pimageDst->height();
 
    if(cx != pimageSrc->width()
          || cy != pimageSrc->height())
-      return false;
+      throw_status(error_wrong_state);
 
    pimageDst->map();
 
@@ -3663,11 +3678,12 @@ bool imaging::channel_alpha_gray_blur_32CC(::image * pimageDst, ::image * pimage
 
    }
 
-   return true;
+   //return true;
 
 }
 
-bool imaging::channel_gray_blur(
+
+void imaging::channel_gray_blur(
 ::draw2d::graphics * pdcDst,
 const ::point_i32 & pointDst,
 const ::size_i32 & size,
@@ -3681,7 +3697,7 @@ byte * pFilter)
    if (size.cx <= 0 || size.cy <= 0)
    {
 
-      return true;
+      throw_status(error_wrong_state);
 
    }
 
@@ -3690,7 +3706,7 @@ byte * pFilter)
    if (!pimageDst)
    {
 
-      return false;
+      throw_status(error_wrong_state);
 
    }
 
@@ -3699,7 +3715,7 @@ byte * pFilter)
    if (!pimageSrc)
    {
 
-      return false;
+      throw_status(error_wrong_state);
 
    }
 
@@ -3713,27 +3729,27 @@ byte * pFilter)
 
       image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-      if (!pdcSrc->draw(imagedrawing))
+      /*if (!*/pdcSrc->draw(imagedrawing);/*)
       {
 
-         return false;
+         throw_status(error_wrong_state);
 
-      }
+      }*/
 
    }
 
-   if (!channel_gray_blur_32CC(
-         pimageDst,
-         pimageSrc,
-         iChannel,
-         sizeFilter.cx,
-         sizeFilter.cy,
-         pFilter))
-   {
+   channel_gray_blur_32CC(
+      pimageDst,
+      pimageSrc,
+      iChannel,
+      sizeFilter.cx,
+      sizeFilter.cy,
+      pFilter);
+   /*{
 
       return false;
 
-   }
+   }*/
 
 
    {
@@ -3746,21 +3762,21 @@ byte * pFilter)
 
       image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-      if (!pdcDst->draw(imagedrawing))
-      {
+      pdcDst->draw(imagedrawing);
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
    }
 
-   return true;
+   //return true;
 
 }
 
 
-bool imaging::channel_gray_blur_32CC(::image * pimageDst, ::image * pimageSrc,
+void imaging::channel_gray_blur_32CC(::image * pimageDst, ::image * pimageSrc,
                                      i32 iChannel,
                                      i32 iFilterWidth,
                                      i32 iFilterHeight,
@@ -3774,7 +3790,7 @@ bool imaging::channel_gray_blur_32CC(::image * pimageDst, ::image * pimageSrc,
 
    if(cx != pimageSrc->width()
          || cy != pimageSrc->height())
-      return false;
+      throw_status(error_wrong_state);
 
    byte * pDst = (byte *)pimageDst->get_data();
 
@@ -4122,13 +4138,13 @@ bool imaging::channel_gray_blur_32CC(::image * pimageDst, ::image * pimageSrc,
 
    delete[]pFilter;
 
-   return true;
+   //return true;
 
 }
 
 
 
-//bool imaging::color_blend(::draw2d::graphics * pgraphics,const ::rectangle_i32 & rectangle,::draw2d::graphics * pdcColorAlpha,const ::point_i32 & pointAlpha, ::image * pimageWork)
+//void imaging::color_blend(::draw2d::graphics * pgraphics,const ::rectangle_i32 & rectangle,::draw2d::graphics * pdcColorAlpha,const ::point_i32 & pointAlpha, ::image * pimageWork)
 //{
 //
 //   return pgraphics->stretch(rectangle, pdcColorAlpha, ::rectangle_f64(pointAlpha, rectangle.size()));
@@ -4136,7 +4152,7 @@ bool imaging::channel_gray_blur_32CC(::image * pimageDst, ::image * pimageSrc,
 //}
 
 
-bool imaging::true_blend(::draw2d::graphics * pgraphics,const ::rectangle_i32 & rectangle,::draw2d::graphics * pdcColorAlpha,const ::point_i32 & pointAlpha, ::image * pimageWork, ::image * pimageWork2, ::image * pimageWork3)
+void imaging::true_blend(::draw2d::graphics * pgraphics,const ::rectangle_i32 & rectangle,::draw2d::graphics * pdcColorAlpha,const ::point_i32 & pointAlpha, ::image * pimageWork, ::image * pimageWork2, ::image * pimageWork3)
 {
 
    image_source imagesource(pdcColorAlpha, { pointAlpha, rectangle.size() } );
@@ -4152,7 +4168,7 @@ bool imaging::true_blend(::draw2d::graphics * pgraphics,const ::rectangle_i32 & 
 // COLOR_DEST = SRC_ALPHA * COLOR_SRC  + (1 - SRC_ALPHA) * COLOR_DST
 
 /*
-bool imaging::color_blend(::draw2d::graphics * pgraphics, const ::point_i32 & point, const ::size_i32 & size, ::draw2d::graphics * pdcColorAlpha, const ::point_i32 & pointAlpha, ::image * pimageWork, ::image * pimageWork2)
+void imaging::color_blend(::draw2d::graphics * pgraphics, const ::point_i32 & point, const ::size_i32 & size, ::draw2d::graphics * pdcColorAlpha, const ::point_i32 & pointAlpha, ::image * pimageWork, ::image * pimageWork2)
 {
 
 
@@ -4164,7 +4180,7 @@ bool imaging::color_blend(::draw2d::graphics * pgraphics, const ::point_i32 & po
 */
 
 
-//bool imaging::color_blend(::draw2d::graphics * pgraphics, const ::point_i32 & pointParam,const ::size_i32 & size,::draw2d::graphics * pdcColorAlpha,const ::point_i32 & pointAlphaParam,double dBlend)
+//void imaging::color_blend(::draw2d::graphics * pgraphics, const ::point_i32 & pointParam,const ::size_i32 & size,::draw2d::graphics * pdcColorAlpha,const ::point_i32 & pointAlphaParam,double dBlend)
 //{
 //
 //   ::point_i32 point(pointParam);
@@ -4215,7 +4231,7 @@ bool imaging::color_blend(::draw2d::graphics * pgraphics, const ::point_i32 & po
 //}
 //
 //
-//bool imaging::color_blend(::draw2d::graphics * pgraphics,const rectangle_i32 & rectangleParam,::draw2d::graphics * pdcColorAlpha,const ::point_i32 & pointAlpha,double dBlend)
+//void imaging::color_blend(::draw2d::graphics * pgraphics,const rectangle_i32 & rectangleParam,::draw2d::graphics * pdcColorAlpha,const ::point_i32 & pointAlpha,double dBlend)
 //{
 //
 //   ::rectangle_i32 rectangle(rectangleParam);
@@ -4317,7 +4333,7 @@ i32 w3)
 
 
 
-//bool imaging::alpha_spread_R2(::draw2d::graphics *pdcDst,const ::point_i32 & pointDst,const ::size_i32 & size,::draw2d::graphics * pdcSrc,const ::point_i32 & pointSrc,byte bMin)
+//void imaging::alpha_spread_R2(::draw2d::graphics *pdcDst,const ::point_i32 & pointDst,const ::size_i32 & size,::draw2d::graphics * pdcSrc,const ::point_i32 & pointSrc,byte bMin)
 //{
 //   if(size.cx <= 0 || size.cy <= 0)
 //      return true;
@@ -4491,7 +4507,7 @@ i32 w3)
 //}
 
 
-//bool imaging::alpha_spread(::draw2d::graphics *pdcDst,const ::point_i32 & pointDst,const ::size_i32 & size,::draw2d::graphics * pdcSrc,const ::point_i32 & pointSrc,byte bMin,i32 iRadius)
+//void imaging::alpha_spread(::draw2d::graphics *pdcDst,const ::point_i32 & pointDst,const ::size_i32 & size,::draw2d::graphics * pdcSrc,const ::point_i32 & pointSrc,byte bMin,i32 iRadius)
 //{
 //
 //   if(size.cx <= 0 || size.cy <= 0)
@@ -4855,7 +4871,7 @@ void imaging::alpha_spread_R2_24CC(byte * pDst,i32 xDest,i32 yDest,i32 wDest,i32
 
 
 
-bool imaging::channel_spread(
+void imaging::channel_spread(
 ::draw2d::graphics *pdcDst,
 const ::point_i32 & pointDst,
 const ::size_i32 & size,
@@ -4877,7 +4893,7 @@ i32 iChannel,i32 iRadius)
 }
 
 
-bool imaging::channel_spread_set_color(
+void imaging::channel_spread_set_color(
 ::draw2d::graphics *pdcDst,
 const ::point_i32 & pointDst,
 const ::size_i32 & size,
@@ -4887,26 +4903,12 @@ i32 iChannel,i32 iRadius,
 ::color32_t color32)
 {
 
-   if(size.is_empty())
-      return true;
+   if (size.is_empty())
+      throw_status(error_invalid_argument);
 
    ::image_pointer pimageDst = m_pcontext->context_image()->create_image(size);
 
-   if (!pimageDst)
-   {
-
-      return false;
-
-   }
-
    ::image_pointer pimageSrc = m_pcontext->context_image()->create_image(size);
-
-   if (!pimageSrc)
-   {
-
-      return false;
-
-   }
 
    pimageSrc->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
@@ -4920,12 +4922,13 @@ i32 iChannel,i32 iRadius,
 
       image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-      if (!pimageSrc->g()->draw(imagedrawing))
-      {
+      //if (!)
+      pimageSrc->g()->draw(imagedrawing);
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
    }
 
@@ -4933,16 +4936,16 @@ i32 iChannel,i32 iRadius,
 
    auto pdraw2d = psystem->draw2d();
 
-   if (!pdraw2d->channel_spread__32CC(
-         pimageDst,
-         pimageSrc,
-         iChannel,
-         iRadius, color32))
-   {
+   /*if (!*/pdraw2d->channel_spread__32CC(
+      pimageDst,
+      pimageSrc,
+      iChannel,
+      iRadius, color32);
+   //{
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
    {
 
@@ -4954,21 +4957,22 @@ i32 iChannel,i32 iRadius,
 
       image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-      if (!pdcDst->draw(imagedrawing))
-      {
+      pdcDst->draw(imagedrawing);
+      //if (!)
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
    }
 
-   return true;
+   //return true;
 
 }
 
 
-bool imaging::spread(
+void imaging::spread(
 ::draw2d::graphics *pdcDst,
 const ::point_i32 & pointDst,
 const ::size_i32 & size,
@@ -4989,7 +4993,7 @@ i32 iRadius)
 }
 
 
-bool imaging::spread_set_color(
+void imaging::spread_set_color(
 ::draw2d::graphics *pdcDst,
 const ::point_i32 & pointDst,
 const ::size_i32 & size,
@@ -4999,26 +5003,12 @@ i32 iRadius,
 ::color32_t color32)
 {
 
-   if(size.is_empty())
-      return true;
+   if (size.is_empty())
+      throw_status(error_invalid_argument);
 
    ::image_pointer pimageDst = m_pcontext->context_image()->create_image(size);
 
-   if (!pimageDst)
-   {
-
-      return false;
-
-   }
-
    ::image_pointer pimageSrc = m_pcontext->context_image()->create_image(size);
-
-   if (!pimageSrc)
-   {
-
-      return false;
-
-   }
 
    pimageSrc->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
@@ -5032,24 +5022,26 @@ i32 iRadius,
 
       image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-      if (!pimageSrc->g()->draw(imagedrawing))
-      {
+      pimageSrc->g()->draw(imagedrawing);
+      //if (!pimageSrc->g()->draw(imagedrawing))
+      //{
 
-         return false;
+      //   return false;
 
-      }
-
-   }
-
-   if (!spread__32CC(
-         pimageDst,
-         pimageSrc,
-         iRadius, color32))
-   {
-
-      return false;
+      //}
 
    }
+
+   //if (!
+   spread__32CC(
+      pimageDst,
+      pimageSrc,
+      iRadius, color32);
+   //{
+
+   //   return false;
+
+   //}
 
    {
 
@@ -5061,27 +5053,27 @@ i32 iRadius,
 
       image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-      if (!pdcDst->draw(imagedrawing))
-      {
+      pdcDst->draw(imagedrawing);
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
    }
 
-   return true;
+   //return true;
 
 }
 
 
-bool imaging::spread__32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius, const ::color::color& colorSpreadSetColor)
+void imaging::spread__32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius, const ::color::color& colorSpreadSetColor)
 {
 
    if (iRadius <= 1)
    {
 
-      return false;
+      throw_status(error_invalid_argument);
 
    }
 
@@ -5124,12 +5116,12 @@ bool imaging::spread__32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius,
 
    pimageSrc->map();
 
-   if(!pimageDst || !pimageSrc)
-   {
+   //if(!pimageDst || !pimageSrc)
+   //{
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
    i32 iRadius2 = iRadius * iRadius;
    i32 r2;
@@ -5195,7 +5187,7 @@ bool imaging::spread__32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius,
    if (cx != pimageSrc->width() || cy != pimageSrc->height())
    {
 
-      return false;
+      throw_status(error_invalid_argument);
 
    }
 
@@ -5514,7 +5506,7 @@ breakFilter2:
       y2++;
    }
 
-   return true;
+   //return true;
 }
 
 
@@ -5581,7 +5573,7 @@ breakFilter2:
 
 
 
-//bool imaging::pixelate(::draw2d::graphics *pdcDst,i32 xDest,i32 yDest,i32 cx,i32 cy,::draw2d::graphics * pdcSrc,i32 xSrc,i32 ySrc,i32 iSize)
+//void imaging::pixelate(::draw2d::graphics *pdcDst,i32 xDest,i32 yDest,i32 cx,i32 cy,::draw2d::graphics * pdcSrc,i32 xSrc,i32 ySrc,i32 iSize)
 //{
 //
 //   /*::draw2d::graphics_pointer & imageA.get_graphics()  = pthreadsafedata->m_dcA;
@@ -6177,7 +6169,7 @@ i32      iSize)
 }
 
 
-//bool imaging::alpha_pixelate(
+//void imaging::alpha_pixelate(
 //   ::draw2d::graphics *pdcDst,
 //   i32 xDest,
 //   i32 yDest,
@@ -6852,19 +6844,19 @@ i32 iAlpha)
 
 
 // dCompress de 0 a 1
-bool imaging::HueVRCP(::image * pimage,::color::color crHue,double dCompress)
+void imaging::HueVRCP(::image * pimage,::color::color crHue,double dCompress)
 {
 
    pimage->map();
 
-   if(pimage->get_data() == nullptr)
+   /*if(pimage->get_data() == nullptr)
    {
 
       pimage->unmap();
 
       return false;
 
-   }
+   }*/
 
    ::color::color cra[256];
 
@@ -6910,19 +6902,19 @@ bool imaging::HueVRCP(::image * pimage,::color::color crHue,double dCompress)
 
    pimage->unmap();
 
-   return true;
+   //return true;
 
 }
 
 //// platform implementation may use this imaging-"routing" to manipulate the image/clipboard
-//bool imaging::_desk_to_image(::image* pimage)
+//void imaging::_desk_to_image(::image* pimage)
 //{
 //
 //   return false;
 //
 //}
 //// platform implementation may use this imaging-"routing" to manipulate the image/clipboard
-//bool imaging::_desk_has_image()
+//void imaging::_desk_has_image()
 //{
 //
 //   return false;
@@ -6930,7 +6922,7 @@ bool imaging::HueVRCP(::image * pimage,::color::color crHue,double dCompress)
 //}
 
 //// platform implementation may use this imaging-"routing" to manipulate the image/clipboard
-//bool imaging::_image_to_desk(const ::image* pimage)
+//void imaging::_image_to_desk(const ::image* pimage)
 //{
 //
 //   return false;
@@ -7094,7 +7086,9 @@ void context_image::load_svg(::image * pimage, memory & memory)
    if (::is_null(psz))
    {
 
-      return pimage->m_estatus;
+      //return pimage->m_estatus;
+
+      throw_status(error_null_pointer);
 
    }
 
@@ -7103,26 +7097,23 @@ void context_image::load_svg(::image * pimage, memory & memory)
 
       char * pszXml = memory.c_str();
 
-      if (pimage->create_nanosvg(pszXml))
-      {
+      pimage->create_nanosvg(pszXml);
 
-         pimage->mult_alpha_fast();
+      pimage->mult_alpha_fast();
 
-         pimage->on_load_image();
+      pimage->on_load_image();
 
-         pimage->set_ok();
+      pimage->set_ok();
 
-         //pimage->notify(OK);
+      //pimage->notify(OK);
 
-         pimage->m_estatus = ::success;
+      pimage->m_estatus = ::success;
 
-         return pimage->m_estatus;
-
-      }
+      //return pimage->m_estatus;
 
    }
 
-   return ::error_failed;
+   //return ::error_failed;
 
 }
 

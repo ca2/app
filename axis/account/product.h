@@ -18,15 +18,15 @@ namespace account
       
       ::datetime::time     m_timeRequest;
       string               m_strAppId;
-      void                 m_estatus;
-      void                 m_estatusLicensing;
+      ::e_status           m_estatus;
+      ::e_status           m_estatusLicensing;
       ::datetime::time     m_timeValid;
       //bool                 m_bInteractive;
       string               m_strGateway;
       
       
       product();
-      virtual ~product();
+      ~product() override;
       
       
       virtual void license(string strAppId, bool bInteractive);

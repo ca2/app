@@ -31,9 +31,11 @@ namespace draw2d
 
       m_pimageCursor.release();
 
-      auto estatus = ::matter::destroy();
+      //auto estatus =
+      
+      ::matter::destroy();
 
-      return estatus;
+      //return estatus;
 
    }
 

@@ -109,8 +109,7 @@ void interprocess_intercommunication::destroy()
 }
 
 
-
-bool interprocess_intercommunication::start(const ::string & strApp)
+void interprocess_intercommunication::start(const ::string & strApp)
 {
 
    synchronous_lock sl1(mutex());
@@ -133,7 +132,7 @@ bool interprocess_intercommunication::start(const ::string & strApp)
    if(idaPid.get_count() > 0)
    {
 
-      return true;
+      return;
 
    }
 
@@ -187,7 +186,7 @@ bool interprocess_intercommunication::start(const ::string & strApp)
 
          }
 
-         return false;
+         throw_status(error_failed);
 
       }
 
@@ -211,7 +210,7 @@ started:
 }
 
 
-bool interprocess_intercommunication::connect(const ::string & strApp, const ::id & idPid)
+void interprocess_intercommunication::connect(const ::string & strApp, const ::id & idPid)
 {
 
    string strKey = strApp + ":" + __string(idPid);
@@ -226,16 +225,11 @@ bool interprocess_intercommunication::connect(const ::string & strApp, const ::i
    if(m_txmap[strKey]->is_tx_ok())
    {
 
-      return true;
+      return;
 
    }
-   else
-   {
 
-      //return 
-      m_txmap[strKey]->open(key(strApp, idPid));
-
-   }
+   m_txmap[strKey]->open(key(strApp, idPid));
 
 }
 

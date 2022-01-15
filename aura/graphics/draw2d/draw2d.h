@@ -110,7 +110,7 @@ namespace draw2d
 
       virtual string write_text_get_default_library_name();
 
-      virtual bool embossed_text_out(
+      virtual void embossed_text_out(
       ::draw2d::graphics_pointer & pgraphics,
       const ::rectangle_i32 & rectangle,
       string strText,
@@ -129,7 +129,7 @@ namespace draw2d
 
 
       template < typename PRED >
-      bool emboss_predicate(
+      void emboss_predicate(
          ::draw2d::graphics_pointer & pgraphics,
          const ::rectangle_i32 & rectangle,
          PRED pred,
@@ -175,23 +175,27 @@ namespace draw2d
 
             ::image_pointer pimage;
 
-            auto estatus = __construct(pimage);
+            //auto estatus =
+            
+            __construct(pimage);
 
-            if (!estatus)
-            {
+            //if (!estatus)
+            //{
 
-               return false;
+            //   return false;
 
-            }
+            //}
 
-            estatus = pimage->create(size);
+            //estatus = 
+            
+            pimage->create(size);
 
-            if (!estatus)
-            {
+            //if (!estatus)
+            //{
 
-               return false;
+            //   return false;
 
-            }
+            //}
 
             pimage->fill(0, 0, 0, 0);
 
@@ -235,7 +239,7 @@ namespace draw2d
 
          pgraphics->draw(imagedrawing);
 
-         return true;
+         //return true;
 
       }
 

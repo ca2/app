@@ -26,25 +26,27 @@ namespace gpu
       m_strFragment = strFragment;
       m_strGeometry = strGeometry;
 
-      ::e_status estatus = pobject->__construct_new(m_pshader);
+      //::e_status estatus = 
+      pobject->__construct_new(m_pshader);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = m_pshader->create_shader(m_strProjection, m_strFragment, m_strGeometry);
+      //estatus = 
+      m_pshader->create_shader(m_strProjection, m_strFragment, m_strGeometry);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 

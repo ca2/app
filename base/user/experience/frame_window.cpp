@@ -522,20 +522,23 @@ namespace experience
    void frame_window::initialize_frame_window_experience()
    {
 
-      ::e_status estatusDockManager = error_failed;
-
-      ::e_status estatusMoveManager = error_failed;
-
-      ::e_status estatusSizeManager = error_failed;
-
-      ::e_status estatusMenuManager = error_failed;
-
       if (m_pdockmanager == nullptr)
       {
 
          __compose(m_pdockmanager, __new(class dock_manager));
 
-         estatusDockManager = m_pdockmanager->initialize_dock_manager(this);
+         try
+         {
+
+            m_pdockmanager->initialize_dock_manager(this);
+
+            m_pdockmanager->set_frame_window(this);
+
+         }
+         catch (...)
+         {
+
+         }
 
       }
 
@@ -544,7 +547,18 @@ namespace experience
 
          __compose(m_pmovemanager,__new(class move_manager));
 
-         estatusMoveManager = m_pmovemanager->initialize_move_manager(this);
+         try
+         {
+
+            m_pmovemanager->initialize_move_manager(this);
+
+            m_pmovemanager->set_frame_window(this);
+
+         }
+         catch (...)
+         {
+
+         }
 
       }
 
@@ -553,7 +567,19 @@ namespace experience
 
          __compose(m_psizemanager, __new(class size_manager));
 
-         estatusSizeManager = m_psizemanager->initialize_size_manager(this);
+         try
+         {
+
+            m_psizemanager->initialize_size_manager(this);
+
+            m_psizemanager->set_frame_window(this);
+
+         }
+         catch (...)
+         {
+
+
+         }
 
       }
 
@@ -562,7 +588,18 @@ namespace experience
 
          __compose(m_pmenumanager, __new(class menu_manager));
 
-         estatusMenuManager = m_pmenumanager->initialize_menu_manager(this);
+         try
+         {
+
+            m_pmenumanager->initialize_menu_manager(this);
+
+            m_pmenumanager->set_frame_window(this);
+
+         }
+         catch (...)
+         {
+
+         }
 
       }
 
@@ -572,60 +609,60 @@ namespace experience
 
 //      m_pmovemanager->SetSWPFlags(SWP_SHOWWINDOW);
 
-      if(estatusMoveManager.succeeded())
-      {
+      //if(estatusMoveManager.succeeded())
+      //{
 
-         if (!m_pmovemanager->set_frame_window(this))
-         {
+      //   if (!m_pmovemanager->set_frame_window(this))
+      //   {
 
-            estatusMoveManager = error_failed;
+      //      estatusMoveManager = error_failed;
 
-         }
+      //   }
 
-      }
+      //}
 
-      if(estatusDockManager.succeeded())
-      {
+      //if(estatusDockManager.succeeded())
+      //{
 
-         if (!m_pdockmanager->set_frame_window(this))
-         {
+      //   if (!m_pdockmanager->set_frame_window(this))
+      //   {
 
-            estatusDockManager = error_failed;
+      //      estatusDockManager = error_failed;
 
-         }
+      //   }
 
-      }
+      //}
 
-      if(estatusSizeManager.succeeded())
-      {
+      //if(estatusSizeManager.succeeded())
+      //{
 
-         if (!m_psizemanager->set_frame_window(this))
-         {
+      //   if (!m_psizemanager->set_frame_window(this))
+      //   {
 
-            estatusSizeManager = error_failed;
+      //      estatusSizeManager = error_failed;
 
-         }
+      //   }
 
-      }
+      //}
 
-      if(estatusMenuManager.succeeded())
-      {
+      //if(estatusMenuManager.succeeded())
+      //{
 
-         if (!m_pmenumanager->set_frame_window(this))
-         {
+      //   if (!m_pmenumanager->set_frame_window(this))
+      //   {
 
-            estatusMenuManager = error_failed;
+      //      estatusMenuManager = error_failed;
 
-         }
+      //   }
 
-      }
+      //}
 
       try
       {
 
          m_pframe->on_initialize_appearance();
 
-         return ::success;
+         //return ::success;
 
       }
       catch (...)
@@ -634,7 +671,7 @@ namespace experience
       }
 
 
-      return error_failed;
+      //return error_failed;
 
    }
 
@@ -1099,14 +1136,16 @@ namespace experience
 
          __compose(m_psizemanager, __new(class size_manager));
 
-         auto estatus = m_psizemanager->initialize_size_manager(this);
+         //auto estatus = 
+         
+         m_psizemanager->initialize_size_manager(this);
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            __release(m_psizemanager);
+         //   __release(m_psizemanager);
 
-         }
+         //}
 
       }
 
@@ -2288,7 +2327,7 @@ namespace experience
 
       post_redraw();
       
-      return ::success;
+      //return ::success;
 
    }
 

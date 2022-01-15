@@ -21,14 +21,14 @@ namespace account
       
       
       storage_client();
-      virtual ~storage_client();
+      ~storage_client() override;
       
       
       virtual void initialize_account_storage_client(storage * pstorage);
 
       
-      virtual void get(string strKey, string & strValue);
-      virtual bool set(string strKey, string strValue);
+      virtual bool get(string strKey, string & strValue);
+      virtual void set(string strKey, string strValue);
 
       
    };

@@ -244,36 +244,42 @@ namespace account
    void department::initialize(::object * pobject)
    {
 
-      auto estatus = ::acme::department::initialize(pobject);
+      //auto estatus = 
+      
+      ::acme::department::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = __construct_new(m_ptaskpool);
+      //estatus = 
+      
+      __construct_new(m_ptaskpool);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       auto pstorage = __new(system_storage);
 
       m_pstorage = pstorage;
 
-      estatus = pstorage->initialize_system_storage(this);
+      //estatus =
+      
+      pstorage->initialize_system_storage(this);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       m_pauthenticator = __create_new< network_authenticator >();
 
@@ -281,27 +287,31 @@ namespace account
       
       m_pusera = pusera;
 
-      estatus = pusera->initialize_user_array(this);
+      //estatus = 
+      
+      pusera->initialize_user_array(this);
 
-      if(!estatus)
-      {
+      //if(!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       m_pproducta = __new(product_array);
 
-      estatus = m_pproducta->initialize_product_array(this);
+      //estatus = 
+      
+      m_pproducta->initialize_product_array(this);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 

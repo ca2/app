@@ -28,14 +28,16 @@ namespace user
    void copydesk::initialize_copydesk(::windowing::window * pwindow)
    {
 
-      auto estatus = ::object::initialize(pwindow);
+      //auto estatus = 
+      
+      ::object::initialize(pwindow);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       m_pwindow = pwindow;
 
@@ -49,7 +51,7 @@ namespace user
 
       m_pfont = pwritetext->point_font(pnode->font_name(e_font_sans), 14.0);
 
-      return true;
+      //return true;
 
    }
 
@@ -57,14 +59,16 @@ namespace user
    void copydesk::destroy()
    {
 
-      auto estatus = ::object::destroy();
+      //auto estatus = 
+      
+      ::object::destroy();
 
-      return estatus;
+      //return estatus;
 
    }
 
 
-   void copydesk::string_to_filea(::file::patha  * ppatha, const ::string & str)
+   bool copydesk::string_to_filea(::file::patha * ppatha, const ::string & str)
    {
 
       string_array stra;
@@ -95,11 +99,11 @@ namespace user
       if (ppatha != nullptr && ppatha->has_elements())
       {
 
-         return ::success;
+         return true;
 
       }
 
-      return error_failed;
+      return false;
 
    }
 
@@ -119,14 +123,10 @@ namespace user
 
          string str;
 
-         auto estatus = _get_plain_text(str);
-
-         if(::succeeded(estatus))
+         if(_get_plain_text(str))
          {
 
-            estatus = string_to_filea(nullptr, str);
-
-            if(::succeeded(estatus))
+            if(string_to_filea(nullptr, str))
             {
 
                return true;
@@ -135,6 +135,8 @@ namespace user
 
          }
 
+         return true;
+
       }
 
       return false;
@@ -142,42 +144,38 @@ namespace user
    }
 
 
-   void copydesk::get_filea(::file::patha & patha, e_op & eop)
+   bool copydesk::get_filea(::file::patha & patha, enum_op & eop)
    {
 
-      auto estatus = _get_filea(patha, eop);
-
-      if(::succeeded(estatus))
+      if(_get_filea(patha, eop))
       {
 
-         return estatus;
+         return true;
 
       }
 
       string str;
 
-      estatus = _get_plain_text(str);
-
-      if(::succeeded(estatus))
+      if (!_get_plain_text(str))
       {
 
-         estatus = string_to_filea(&patha, str);
-
-         if(::succeeded(estatus))
-         {
-
-            return estatus;
-
-         }
+         return false;
 
       }
 
-      return estatus;
+      if(!string_to_filea(&patha, str))
+      {
+
+         return false;
+
+      }
+
+      return true;
 
    }
 
 
-   void copydesk::set_filea(const ::file::patha & patha, e_op eop)
+   bool copydesk::set_filea(const ::file::patha & patha, enum_op eop)
    {
 
       return _set_filea(patha, eop);
@@ -185,13 +183,13 @@ namespace user
    }
 
 
-   void copydesk::set_plain_text(const ::string & str, bool bForceSetIfEmpty)
+   bool copydesk::set_plain_text(const ::string & str, bool bForceSetIfEmpty)
    {
 
       if(str.is_empty() && !bForceSetIfEmpty)
       {
 
-         return error_failed;
+         return false;
 
       }
 
@@ -200,17 +198,15 @@ namespace user
    }
 
 
-   void copydesk::get_plain_text(string & str, enum_flag eflag)
+   bool copydesk::get_plain_text(string & str, enum_flag eflag)
    {
 
-      if (!(eflag & flag_prevent_data_blob) && _has_image())
+      if (!(eflag & e_flag_prevent_data_blob) && _has_image())
       {
 
          ::image_pointer pimage;
 
-         auto estatus = desk_to_image(pimage);
-
-         if(::succeeded(estatus))
+         if(desk_to_image(pimage))
          {
 
             memory mem;
@@ -238,31 +234,26 @@ namespace user
 
             auto pcontextimage = pcontext->context_image();
 
-            if (pcontextimage->save_image(mem, pimage, psaveimage))
+            pcontextimage->save_image(mem, pimage, psaveimage);
+
+            auto pbase64 = psystem->base64();
+
+            str = pbase64->encode(mem);
+
+            if (psaveimage->m_eformat == ::draw2d::format_png)
             {
 
-               auto psystem = m_psystem;
-
-               auto pbase64 = psystem->base64();
-
-               str = pbase64->encode(mem);
-
-               if (psaveimage->m_eformat == ::draw2d::format_png)
-               {
-
-                  str = "data:image/png;base64;" + str;
-
-               }
-               else if (psaveimage->m_eformat == ::draw2d::format_gif)
-               {
-
-                  str = "data:image/gif;base64;" + str;
-
-               }
-
-               return ::success;
+               str = "data:image/png;base64;" + str;
 
             }
+            else if (psaveimage->m_eformat == ::draw2d::format_gif)
+            {
+
+               str = "data:image/gif;base64;" + str;
+
+            }
+
+            return true;
 
          }
 
@@ -271,9 +262,7 @@ namespace user
 
             string strPlainText;
 
-            auto estatus = get_plain_text(strPlainText, flag_prevent_data_blob);
-
-            if(::succeeded(estatus))
+            if(get_plain_text(strPlainText, e_flag_prevent_data_blob))
             {
 
                string_array straLines;
@@ -322,7 +311,7 @@ namespace user
 
                      str = "data:image/gif;base64," + strBase64;
 
-                     return ::success;
+                     return true;
 
                   }
 
@@ -337,33 +326,29 @@ namespace user
       if (_has_filea())
       {
 
-         e_op eop = op_copy;
+         enum_op eop = e_op_copy;
 
          ::file::patha patha;
 
-         auto estatus = get_filea(patha, eop);
-
-         if(::succeeded(estatus))
+         if(get_filea(patha, eop))
          {
 
             str = patha.implode("\r\n");
 
-            return estatus;
+            return true;
 
          }
 
       }
 
-      auto estatus = _get_plain_text(str);
-
-      if(::succeeded(estatus))
+      if(!_get_plain_text(str))
       {
 
-         return estatus;
+         return false;
 
       }
 
-      return estatus;
+      return true;
 
    }
 
@@ -390,7 +375,7 @@ namespace user
    }
 
 
-   void copydesk::desk_to_image(::image_pointer & pimage)
+   bool copydesk::desk_to_image(::image_pointer & pimage)
    {
 
       if (_has_image())
@@ -398,16 +383,14 @@ namespace user
 
          m_pwindow->__construct(pimage);
 
-         auto estatus = _desk_to_image(pimage);
-
-         if (::succeeded(estatus))
+         if (_desk_to_image(pimage))
          {
 
             pimage->set_ok();
 
-         }
+            return true;
 
-         return estatus;
+         }
 
       }
 
@@ -416,9 +399,7 @@ namespace user
 
          string str;
 
-         auto estatus = get_plain_text(str);
-
-         if(::succeeded(estatus))
+         if(get_plain_text(str))
          {
 
             auto pmemory = create_memory();
@@ -441,8 +422,8 @@ namespace user
 
             auto pcontextimage = pcontext->context_image();
 
-            if (!pcontextimage->_load_image(pimage, pmemory))
-            {
+            pcontextimage->_load_image(pimage, pmemory);
+            //{
 
                // Couldn't load image from file/URL path...
                // ... gonna create image with the text.
@@ -451,15 +432,19 @@ namespace user
                // create image (1x1) with a graphics context for measuring the text extent
                // (the image raw allocation can be reused when the image
                //
-               auto estatus = __construct(pimage);
+               //auto estatus = 
+            
+            __construct(pimage);
 
-               if(estatus.succeeded())
-               {
+               //if(estatus.succeeded())
+               //{
 
-                  estatus = pimage->create({ 1, 1 });
+                  //estatus = 
+            
+            pimage->create({ 1, 1 });
 
-                  if (is_status_ok())
-                  {
+                  //if (is_status_ok())
+                  //{
 
                      auto pfont = m_pfont;
 
@@ -470,15 +455,15 @@ namespace user
                      if (s.area() > 0.)
                      {
 
-                        estatus = __construct(pimage);
+                         __construct(pimage);
 
-                        if(estatus.succeeded())
+                        //if(estatus.succeeded())
                         {
 
-                           estatus = pimage->create({ (int)ceil(s.cx), (int)ceil(s.cy) });
+                           pimage->create({ (int)ceil(s.cx), (int)ceil(s.cy) });
 
-                           if (is_status_ok())
-                           {
+                           //if (is_status_ok())
+                           //{
 
                               pimage->fill_byte(0);
 
@@ -488,30 +473,30 @@ namespace user
 
                               pimage->g()->draw_text(str, ::rectangle_i32(pimage->get_size()), e_align_bottom_left);
 
-                              return estatus;
+                              return true;
 
-                           }
+                           //}
 
                         }
 
-                     }
+                     //}
 
                   }
 
-               }
+               //}
 
             }
 
-         }
+         //}
 
       }
 
-      return error_failed;
+      return false;
 
    }
 
 
-   void copydesk::image_to_desk(const ::image * pimage)
+   bool copydesk::image_to_desk(const ::image * pimage)
    {
 
       return _image_to_desk(pimage);
@@ -551,7 +536,7 @@ namespace user
    }
 
 
-   void copydesk::_get_filea(::file::patha & stra, e_op & eop)
+   bool copydesk::_get_filea(::file::patha & stra, enum_op & eop)
    {
 
       __UNREFERENCED_PARAMETER(stra);
@@ -563,7 +548,7 @@ namespace user
    }
 
 
-   void copydesk::_set_filea(const ::file::patha & patha, e_op eop)
+   bool copydesk::_set_filea(const ::file::patha & patha, enum_op eop)
    {
 
       __UNREFERENCED_PARAMETER(patha);
@@ -575,7 +560,7 @@ namespace user
    }
 
 
-   void copydesk::_set_plain_text(const ::string & str)
+   bool copydesk::_set_plain_text(const ::string & str)
    {
 
       __UNREFERENCED_PARAMETER(str);
@@ -587,7 +572,7 @@ namespace user
    }
 
 
-   void copydesk::_get_plain_text(string & str)
+   bool copydesk::_get_plain_text(string & str)
    {
 
       throw ::interface_only_exception();
@@ -607,7 +592,7 @@ namespace user
    }
 
 
-   void copydesk::_desk_to_image(::image * pimage)
+   bool copydesk::_desk_to_image(::image * pimage)
    {
 
       __UNREFERENCED_PARAMETER(pimage);
@@ -619,7 +604,7 @@ namespace user
    }
 
 
-   void copydesk::_image_to_desk(const ::image * pimage)
+   bool copydesk::_image_to_desk(const ::image * pimage)
    {
 
       __UNREFERENCED_PARAMETER(pimage);

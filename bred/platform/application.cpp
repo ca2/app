@@ -27,16 +27,18 @@ namespace bred
    void application::initialize(::object * pobject)
    {
 
-      auto estatus = ::application::initialize(pobject);
+      //auto estatus = 
+      
+      ::application::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 

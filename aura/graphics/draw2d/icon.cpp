@@ -55,16 +55,7 @@ namespace draw2d
    void icon::initialize(::object * pobject)
    {
 
-      auto estatus = ::matter::initialize(pobject);
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      return estatus;
+      ::matter::initialize(pobject);
 
    }
 
@@ -76,7 +67,7 @@ namespace draw2d
 
       on_update_icon();
 
-      return ::success;
+      //return ::success;
 
    }
 

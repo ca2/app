@@ -20,16 +20,18 @@ networking_application::~networking_application()
 void networking_application::initialize(::object* pobject)
 {
 
-   auto estatus = ::object::initialize(pobject);
+   //auto estatus = 
+   
+   ::object::initialize(pobject);
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
-   return estatus;
+   //return estatus;
 
 }
 
@@ -37,14 +39,16 @@ void networking_application::initialize(::object* pobject)
 void networking_application::create_networking_application()
 {
 
-   auto estatus = __compose(m_psocketthread, __new(::netserver::socket_thread < networking_application_socket >()));
+   //auto estatus = 
+   
+   __compose(m_psocketthread, __new(::netserver::socket_thread < networking_application_socket >()));
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
    m_psocketthread->m_strIp = "127.0.0.1";
    
@@ -81,19 +85,22 @@ void networking_application::create_networking_application()
      //    m_psocketthread->m_strCipherList = "ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES128-SHA:ECDHE-RSA-RC4-SHA:DHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA:RSA:SHA:3DES:!aNULL:!eNULL:!EXP:!LOW:!MD5:@STRENGTH";
        //  m_psocketthread->m_iSsl = 1;
 
-   if (!m_psocketthread->branch())
-   {
+   //if (!
+   
+   m_psocketthread->branch();
 
-      return ::error_failed;
+   //{
 
-   }
+   //   return ::error_failed;
+
+   //}
 
    //fork([this]()
      // {
 
          //::hyperlink::open_link("http://" + m_psocketthread->m_strIp + ":" + __string(m_psocketthread->m_iPort) + "/");
 
-   return estatus;
+   //return estatus;
 
 }
 
@@ -132,7 +139,7 @@ void networking_application::add_handler(const ::string& strPrefix, networking_a
    if (::is_null(phandler))
    {
 
-      return ::error_failed;
+      throw_status(error_failed);
 
    }
 
@@ -140,12 +147,12 @@ void networking_application::add_handler(const ::string& strPrefix, networking_a
 
    phandlerMapped = phandler;
 
-   return ::success;
+   //return ::success;
 
 }
 
 
-void networking_application::on_html_response(::string & strHtml, const ::string& strUrl, const ::property_set& setPost)
+::e_status networking_application::on_html_response(::string & strHtml, const ::string& strUrl, const ::property_set& setPost)
 {
 
    string strRequestScript = m_psystem->url()->get_script(strUrl);

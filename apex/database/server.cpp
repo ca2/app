@@ -64,23 +64,23 @@ namespace database
    }
 
 
-   bool server::_data_server_save(client * pclient, const key & id, block block, ::subject * psubject)
+   void server::_data_server_save(client * pclient, const key & id, block block, ::subject * psubject)
    {
 
-      return true;
+      //return true;
 
    }
 
 
-   bool server::data_pulse_change(client * pclient, const key & id, ::subject * psubject)
+   void server::data_pulse_change(client * pclient, const key & id, ::subject * psubject)
    {
 
-      return on_after_data_change(pclient, id, psubject);
+      on_after_data_change(pclient, id, psubject);
 
    }
 
 
-   bool server::on_before_data_change(client * pclient, const key & id, ::payload & payload, ::subject * psubject)
+   void server::on_before_data_change(client * pclient, const key & id, ::payload & payload, ::subject * psubject)
    {
 
       //::database::change_event signal(payload);
@@ -93,23 +93,24 @@ namespace database
       for(i32 i = 0; i < m_clienta.get_count(); i++)
       {
 
-         bool bOk = m_clienta.element_at(i)->data_on_before_change(pclient, id, payload, psubject);
+         //bool bOk = 
+         m_clienta.element_at(i)->data_on_before_change(pclient, id, payload, psubject);
 
-         if(!bOk)
-         {
+         //if(!bOk)
+         //{
 
-            return false;
+         //   return false;
 
-         }
+         //}
 
       }
 
-      return true;
+//      return true;
 
    }
 
 
-   bool server::on_after_data_change(client * pclient, const key & id, const ::payload & payload, ::subject * psubject)
+   void server::on_after_data_change(client * pclient, const key & id, const ::payload & payload, ::subject * psubject)
    {
 
       //::database::change_event signal;
@@ -132,7 +133,7 @@ namespace database
 
       }
 
-      return true;
+      //return true;
 
    }
 
@@ -162,25 +163,14 @@ namespace database
    }
 
 
-   bool server::data_save(client * pclient, const key & id, ::payload & payload, ::subject * psubject)
+   void server::data_save(client * pclient, const key & id, ::payload & payload, ::subject * psubject)
    {
 
       ::memory_stream writer;
 
       writer << payload;
 
-      {
-
-         if (!_data_server_load(pclient, id, writer->memory(), psubject))
-         {
-
-            return false;
-
-         }
-
-      }
-
-      return true;
+      _data_server_save(pclient, id, writer->memory(), psubject);
 
    }
 

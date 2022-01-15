@@ -37,7 +37,7 @@ namespace browser
 
 
       application(::object * pobject);
-      virtual ~application();
+      ~application() override;
 
 
       virtual string preferred_experience() override;

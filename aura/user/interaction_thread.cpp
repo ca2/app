@@ -67,14 +67,16 @@ namespace user
    void thread::initialize_user_thread(interaction_impl * pimpl)
    {
 
-      auto estatus = initialize(pimpl);
+      //auto estatus = 
+      
+      initialize(pimpl);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       m_pimpl = pimpl;
 
@@ -84,7 +86,7 @@ namespace user
 
       m_bSimpleMessageLoop = false;
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -195,7 +197,7 @@ namespace user
       //}
 
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -203,14 +205,16 @@ namespace user
    void thread::init_thread()
    {
 
-      auto estatus = ::thread::init_thread();
+      //auto estatus = 
+      
+      ::thread::init_thread();
 
-      if (!estatus)
+   /*   if (!estatus)
       {
 
          return estatus;
 
-      }
+      }*/
 
 #ifdef WINDOWS_DESKTOP
 
@@ -263,31 +267,33 @@ namespace user
 
       m_pwindowing = pwindowing;
 
-      estatus = m_pimpl->native_create_host();
+      //estatus =
+      
+      m_pimpl->native_create_host();
 
-      if(!estatus)
-      {
+      ///*if(!estatus)
+      //{*/
 
-         m_pimpl->m_puserinteraction->m_pusersystem->m_routineFailure();
+      //   m_pimpl->m_puserinteraction->m_pusersystem->m_routineFailure();
 
-         if (is_debugger_attached())
-         {
+      //   if (is_debugger_attached())
+      //   {
 
-            output_error_message("Window not created", "Window not created", e_message_box_icon_warning);
+      //      output_error_message("Window not created", "Window not created", e_message_box_icon_warning);
 
-         }
+      //   }
 
-         //delete m_pusersystem;
+      //   //delete m_pusersystem;
 
-         //m_pusersystem = nullptr;
+      //   //m_pusersystem = nullptr;
 
-         m_estatus = error_failed;
+      //   m_estatus = error_failed;
 
-         destroy();
+      //   destroy();
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       auto pusersystem = m_pimpl->m_puserinteraction->m_pusersystem;
 
@@ -317,7 +323,7 @@ namespace user
 
       //m_pusersystem = nullptr;
 
-      return true;
+      //return true;
 
    }
 
@@ -382,9 +388,11 @@ namespace user
       try
       {
 
-         auto estatus = get_message(&m_message, nullptr, 0, 0);
+         //auto estatus =
+         
+         get_message(&m_message, nullptr, 0, 0);
 
-         if(estatus == status_quit)
+         if(m_message.m_id == e_message_quit)
          {
 
             if (m_strDebugType.contains("filemanager"))
@@ -460,7 +468,7 @@ namespace user
 
             }
 
-            if (estatus != status_kick_idle)
+            //if (estatus != status_kick_idle)
             {
 
                process_message();
@@ -482,12 +490,14 @@ namespace user
 
          }
 
-         if (handle_exception(e))
-         {
+         handle_exception(e);
 
-            return true;
+         //if (handle_exception(e))
+         //{
 
-         }
+         //   return true;
+
+         //}
 
          //// get_application() may be it self, it is ok...
          //if (papplication->final_handle_exception(e))
@@ -510,7 +520,7 @@ namespace user
    }
 
 
-   void thread::process_message()
+   bool thread::process_message()
    {
 
       try
@@ -662,8 +672,7 @@ namespace user
    }
 
 
-
-   void thread::process_message(::message::message * pmessage)
+   bool thread::process_message(::message::message * pmessage)
    {
 
       if(pmessage->m_oswindow)
@@ -682,7 +691,7 @@ namespace user
    }
 
 
-   void thread::process_user_message(::message::message * pmessage)
+   bool thread::process_user_message(::message::message * pmessage)
    {
 
       __pointer(::user::message) pusermessage(pmessage);
@@ -767,9 +776,11 @@ namespace user
    void thread::destroy_composites()
    {
 
-      auto estatus = ::channel::destroy_composites();
+      //auto estatus = 
+      
+      ::channel::destroy_composites();
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -985,7 +996,7 @@ namespace user
 
       }
 
-      return m_estatus;
+      //return m_estatus;
 
    }
 
@@ -1138,12 +1149,12 @@ namespace user
 
       }
 
-      return ::success;
+      //return ::success;
 
    }
 
 
-   void thread::set_finish()
+   ::e_status thread::set_finish()
    {
 
       return ::thread::set_finish();

@@ -14,7 +14,7 @@ public:
 
 
    //template < primitive_point POINT, image_source_pointer IMAGE_SOURCE_POINTER >
-   //inline bool draw(const POINT & pointDst, IMAGE_SOURCE_POINTER pimagesource, ::image_drawing imagedrawing = nullptr)
+   //inline void draw(const POINT & pointDst, IMAGE_SOURCE_POINTER pimagesource, ::image_drawing imagedrawing = nullptr)
    //{
 
    //   imagedrawing.set(pointDst, pimagesource);
@@ -25,7 +25,7 @@ public:
 
 
    //template < image_source_pointer IMAGE_SOURCE_POINTER >
-   //inline bool draw(IMAGE_SOURCE_POINTER pimagesource, ::image_drawing imagedrawing = nullptr)
+   //inline void draw(IMAGE_SOURCE_POINTER pimagesource, ::image_drawing imagedrawing = nullptr)
    //{
 
    //   imagedrawing.set(pimagesource);
@@ -36,7 +36,7 @@ public:
 
 
    //template < primitive_point POINT, image_source_pointer IMAGE_SOURCE_POINTER >
-   //inline bool draw(IMAGE_SOURCE_POINTER pimagesource, const POINT & pointSrc, ::image_drawing imagedrawing = nullptr)
+   //inline void draw(IMAGE_SOURCE_POINTER pimagesource, const POINT & pointSrc, ::image_drawing imagedrawing = nullptr)
    //{
 
    //   imagedrawing.set(pimagesource, pointSrc);
@@ -46,7 +46,7 @@ public:
    //}
 
    //template < primitive_rectangle RECTANGLE, image_source_pointer IMAGE_SOURCE_POINTER >
-   //inline bool draw(IMAGE_SOURCE_POINTER pimagesource, const RECTANGLE & rectangleSource, ::image_drawing imagedrawing = nullptr)
+   //inline void draw(IMAGE_SOURCE_POINTER pimagesource, const RECTANGLE & rectangleSource, ::image_drawing imagedrawing = nullptr)
    //{
 
    //   imagedrawing.set(pimagesource, rectangleSource);
@@ -57,7 +57,7 @@ public:
 
 
    //template < primitive_size SIZE, image_source_pointer IMAGE_SOURCE_POINTER, primitive_point POINT >
-   //inline bool draw(const SIZE & sizeDst, IMAGE_SOURCE_POINTER pimagesource, ::image_drawing imagedrawing = nullptr)
+   //inline void draw(const SIZE & sizeDst, IMAGE_SOURCE_POINTER pimagesource, ::image_drawing imagedrawing = nullptr)
    //{
 
    //   imagedrawing.set(sizeDst, pimagesource);
@@ -68,7 +68,7 @@ public:
 
 
    //template < primitive_size SIZE, image_source_pointer IMAGE_SOURCE_POINTER, primitive_point POINT >
-   //inline bool draw(const SIZE & sizeDst, IMAGE_SOURCE_POINTER pimagesource, const POINT & pointSrc, ::image_drawing imagedrawing = nullptr)
+   //inline void draw(const SIZE & sizeDst, IMAGE_SOURCE_POINTER pimagesource, const POINT & pointSrc, ::image_drawing imagedrawing = nullptr)
    //{
 
    //   imagedrawing.set(sizeDst, pimagesource, pointSrc);
@@ -79,7 +79,7 @@ public:
 
 
    //template < primitive_rectangle RECTANGLE, image_source_pointer IMAGE_SOURCE_POINTER >
-   //inline bool draw(const RECTANGLE & rectangleTarget, IMAGE_SOURCE_POINTER pimagesource, ::image_drawing imagedrawing = nullptr)
+   //inline void draw(const RECTANGLE & rectangleTarget, IMAGE_SOURCE_POINTER pimagesource, ::image_drawing imagedrawing = nullptr)
    //{
 
    //   imagedrawing.set(rectangleTarget, pimagesource);
@@ -90,7 +90,7 @@ public:
 
 
    //template < primitive_rectangle RECTANGLE, image_source_pointer IMAGE_SOURCE_POINTER, primitive_point POINT >
-   //inline bool draw(const RECTANGLE & rectangleTarget, IMAGE_SOURCE_POINTER pimagesource, const POINT & pointSrc, ::image_drawing imagedrawing = nullptr)
+   //inline void draw(const RECTANGLE & rectangleTarget, IMAGE_SOURCE_POINTER pimagesource, const POINT & pointSrc, ::image_drawing imagedrawing = nullptr)
    //{
 
    //   imagedrawing.set(rectangleTarget, pimagesource, pointSrc);
@@ -101,7 +101,7 @@ public:
 
 
    //template < primitive_size SIZE, image_source_pointer IMAGE_SOURCE_POINTER >
-   //inline bool draw(const SIZE & sizeDst, IMAGE_SOURCE_POINTER pimagesource, ::image_drawing imagedrawing = nullptr)
+   //inline void draw(const SIZE & sizeDst, IMAGE_SOURCE_POINTER pimagesource, ::image_drawing imagedrawing = nullptr)
    //{
 
    //   imagedrawing.set(sizeDst, pimagesource);
@@ -112,7 +112,7 @@ public:
 
 
    //template < image_source_pointer IMAGE_SOURCE_POINTER, primitive_rectangle RECTANGLE >
-   //inline bool stretch(IMAGE_SOURCE_POINTER pimagesource, const RECTANGLE & rectangleSource, enum_image_selection eimageselection = e_image_selection_default, ::image_drawing imagedrawing = nullptr)
+   //inline void stretch(IMAGE_SOURCE_POINTER pimagesource, const RECTANGLE & rectangleSource, enum_image_selection eimageselection = e_image_selection_default, ::image_drawing imagedrawing = nullptr)
    //{
 
    //   imagedrawing.set(get_image_drawer_size(), pimagesource, rectangleSource, eimageselection);
@@ -123,7 +123,7 @@ public:
 
 
    //template < image_source_pointer IMAGE_SOURCE_POINTER, primitive_size SIZE_SRC >
-   //inline bool stretch(IMAGE_SOURCE_POINTER pimagesource, const SIZE_SRC & sizeSrc, ::image_drawing imagedrawing = nullptr)
+   //inline void stretch(IMAGE_SOURCE_POINTER pimagesource, const SIZE_SRC & sizeSrc, ::image_drawing imagedrawing = nullptr)
    //{
 
    //   imagedrawing.set(get_image_drawer_size(), pimagesource, sizeSrc);
@@ -134,7 +134,7 @@ public:
 
 
    //template < primitive_size SIZE, image_source_pointer IMAGE_SOURCE_POINTER >
-   //inline bool stretch(const SIZE & sizeDst, IMAGE_SOURCE_POINTER pimagesource, ::image_drawing imagedrawing = nullptr)
+   //inline void stretch(const SIZE & sizeDst, IMAGE_SOURCE_POINTER pimagesource, ::image_drawing imagedrawing = nullptr)
    //{
 
    //   imagedrawing.set(sizeDst, pimagesource, pimagesource->size());
@@ -145,7 +145,7 @@ public:
 
 
    //template < primitive_size SIZE, image_source_pointer IMAGE_SOURCE_POINTER, primitive_rectangle RECTANGLE >
-   //inline bool stretch(const SIZE & sizeDst, IMAGE_SOURCE_POINTER pimagesource, const RECTANGLE & rectangleSource, enum_image_selection eimageselection = e_image_selection_default, ::image_drawing imagedrawing = nullptr)
+   //inline void stretch(const SIZE & sizeDst, IMAGE_SOURCE_POINTER pimagesource, const RECTANGLE & rectangleSource, enum_image_selection eimageselection = e_image_selection_default, ::image_drawing imagedrawing = nullptr)
    //{
 
    //   imagedrawing.set(sizeDst, pimagesource, rectangleSource, eimageselection);
@@ -156,7 +156,7 @@ public:
 
 
    //template < primitive_rectangle RECTANGLE, image_source_pointer IMAGE_SOURCE_POINTER >
-   //inline bool stretch(const RECTANGLE & rectangleTarget, IMAGE_SOURCE_POINTER pimagesource, enum_image_selection eimageselection = e_image_selection_default, ::image_drawing imagedrawing = nullptr)
+   //inline void stretch(const RECTANGLE & rectangleTarget, IMAGE_SOURCE_POINTER pimagesource, enum_image_selection eimageselection = e_image_selection_default, ::image_drawing imagedrawing = nullptr)
    //{
 
    //   imagedrawing.set(rectangleTarget, pimagesource, eimageselection);
@@ -167,7 +167,7 @@ public:
 
 
    //template < primitive_rectangle RECTANGLE_DST, image_source_pointer IMAGE_SOURCE_POINTER, primitive_rectangle RECTANGLE_SRC >
-   //inline bool stretch(const RECTANGLE_DST & rectangleTarget, IMAGE_SOURCE_POINTER pimagesource, const RECTANGLE_SRC & rectangleSource, ::image_drawing imagedrawing = nullptr)
+   //inline void stretch(const RECTANGLE_DST & rectangleTarget, IMAGE_SOURCE_POINTER pimagesource, const RECTANGLE_SRC & rectangleSource, ::image_drawing imagedrawing = nullptr)
    //{
 
    //   imagedrawing.set(rectangleTarget, pimagesource, rectangleSource);
@@ -178,7 +178,7 @@ public:
 
 
    //template < primitive_size SIZE_DST, image_source_pointer IMAGE_SOURCE_POINTER, primitive_size SIZE_SRC >
-   //inline bool stretch(const SIZE_DST & sizeDst, IMAGE_SOURCE_POINTER pimagesource, const SIZE_SRC & sizeSrc, ::image_drawing imagedrawing = nullptr)
+   //inline void stretch(const SIZE_DST & sizeDst, IMAGE_SOURCE_POINTER pimagesource, const SIZE_SRC & sizeSrc, ::image_drawing imagedrawing = nullptr)
    //{
 
    //   imagedrawing.set(sizeDst, pimagesource, sizeSrc);
@@ -191,16 +191,19 @@ public:
    virtual ::size_i32 get_image_drawer_size() const = 0;
 
 
-   virtual bool draw(const image_drawing & imagedrawing);
+   virtual void draw(const image_drawing & imagedrawing);
 
-   //virtual bool stretch(const image_source & imagesource);
+   //virtual void stretch(const image_source & imagesource);
 
-   virtual bool _draw_blend(const image_drawing & imagedrawing) = 0;
-   virtual bool _draw_raw(const image_drawing & imagedrawing);
+
+   virtual bool has_blender() const;
+
+   virtual void _draw_blend(const image_drawing & imagedrawing) = 0;
+   virtual void _draw_raw(const image_drawing & imagedrawing);
 
    
-   virtual bool _draw_raw(const ::rectangle_f64 & rectangleTarget, image * pimage, const image_drawing_options & imagedrawingoptions, const ::point_f64 & pointSrc);
-   virtual bool _stretch_raw(const ::rectangle_f64 & rectangleTarget, image * pimage, const image_drawing_options & imagedrawingoptions, const ::rectangle_f64 & rectangleSource);
+   virtual void _draw_raw(const ::rectangle_f64 & rectangleTarget, image * pimage, const image_drawing_options & imagedrawingoptions, const ::point_f64 & pointSrc);
+   virtual void _stretch_raw(const ::rectangle_f64 & rectangleTarget, image * pimage, const image_drawing_options & imagedrawingoptions, const ::rectangle_f64 & rectangleSource);
 
 
 };

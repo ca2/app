@@ -575,7 +575,7 @@ void binary_stream::read(id & id)
 //   if (path.is_empty())
 //   {
 //
-//      set_fail_bit();
+//      throw_status(error_io);
 //
 //      return;
 //
@@ -590,7 +590,7 @@ void binary_stream::read(id & id)
 //   catch (...)
 //   {
 //
-//      set_fail_bit();
+//      throw_status(error_io);
 //
 //   }
 //
@@ -607,7 +607,7 @@ void binary_stream::read(id & id)
 //   if (path.is_empty())
 //   {
 //
-//      set_fail_bit();
+//      throw_status(error_io);
 //
 //      return;
 //
@@ -622,7 +622,7 @@ void binary_stream::read(id & id)
 //   catch (...)
 //   {
 //
-//      set_fail_bit();
+//      throw_status(error_io);
 //
 //   }
 //
@@ -846,12 +846,12 @@ void binary_stream::read_var_type(enum_type & etype)
 
    *this >> i;
 
-   if (!fail())
-   {
+   //if (!fail())
+   //{
 
       etype = (enum_type)i;
 
-   }
+   //}
 
    return;
 
@@ -1047,7 +1047,8 @@ void binary_stream::read(string & str)
 
    read_buffer_length(u);
 
-   if (!fail() && u > 0)
+   //if (!fail() && u > 0)
+   if(u > 0)
    {
 
       auto psz = str.get_string_buffer((strsize) u);
@@ -1105,7 +1106,7 @@ void binary_stream::read(block & block)
    if (u != block.get_size())
    {
 
-      set_fail_bit();
+      throw_status(error_io);
 
       return;
 

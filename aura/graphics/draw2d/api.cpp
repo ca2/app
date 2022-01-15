@@ -269,16 +269,17 @@ namespace draw2d
    void api::initialize(::object * pobject)
    {
 
-      auto estatus = ::object::initialize(pobject);
+      //auto estatus = 
+      ::object::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -286,16 +287,18 @@ namespace draw2d
    void api::destroy()
    {
 
-      auto estatus = ::object::destroy();
+      //auto estatus = 
+      
+      ::object::destroy();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         output_debug_string("::object::destroy returned error at ::draw2d::api::destroy");
+      //   output_debug_string("::object::destroy returned error at ::draw2d::api::destroy");
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 

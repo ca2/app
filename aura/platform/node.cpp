@@ -31,20 +31,22 @@ namespace aura
    void node::on_initialize_object()
    {
 
-      auto estatus = ::apex::node::on_initialize_object();
+      //auto estatus =
+      
+      ::apex::node::on_initialize_object();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       message_box_factory();
 
       m_psystem->m_pauranode = this;
 
-      return estatus;
+      //return estatus;
 
    }
 

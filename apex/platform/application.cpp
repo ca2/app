@@ -1861,6 +1861,9 @@ create_impact_system();
 if (!is_system() && !is_session())
 {
 
+   if(m_pdataserver)
+   {
+
 string str;
 // if system locale has changed (compared to last recorded one by apex)
 // use the system locale
@@ -1984,13 +1987,14 @@ set_schema(str, ::e_source_database);
 else if (data_get({ "schema", true }, str))
 {
 
-if (str.has_char())
-{
+   if (str.has_char())
+   {
 
-   set_schema(str, ::e_source_database);
+      set_schema(str, ::e_source_database);
+
+   }
 
 }
-
 }
 
 //data_pulse_change({ "ca2.savings", true }, nullptr);
@@ -2003,144 +2007,147 @@ psystem->appa_load_string_table();
 if (!is_system() && !is_session())
 {
 
-string str;
-// if system locale has changed (compared to last recorded one by apex)
-// use the system locale
-if (data_get({ "system_locale", true }, str))
-{
-
-if (str.has_char())
-{
-
-   if (str != get_locale())
+   if(m_pdataserver)
+   {
+   string str;
+   // if system locale has changed (compared to last recorded one by apex)
+   // use the system locale
+   if (data_get({ "system_locale", true }, str))
    {
 
-      try
+      if (str.has_char())
       {
 
-         data_set({ "system_locale", true }, get_locale());
+         if (str != get_locale())
+         {
 
-         data_set({ "locale", true }, get_locale());
+            try
+            {
+
+               data_set({ "system_locale", true }, get_locale());
+
+               data_set({ "locale", true }, get_locale());
+
+            }
+            catch (...)
+            {
+
+            }
+
+         }
 
       }
-      catch (...)
+
+   }
+   else
+   {
+
+      data_set({ "system_locale", true }, get_locale());
+
+   }
+
+   if (payload("locale").get_count() > 0)
+   {
+
+      str = payload("locale").stra()[0];
+
+      data_set({ "system_locale", true }, str);
+
+      data_set({ "locale", true }, str);
+
+      set_locale(str, ::e_source_database);
+
+   }
+   else if (payload("lang").get_count() > 0)
+   {
+
+      str = payload("lang").stra()[0];
+
+      data_set({ "system_locale", true }, str);
+
+      data_set({ "locale", true }, str);
+
+      set_locale(str, ::e_source_database);
+
+   }
+   else if (data_get({ "locale", true }, str))
+   {
+
+      if (str.has_char())
       {
+
+         set_locale(str, ::e_source_database);
+
+      }
+
+   }
+   // if system schema has changed (compared to last recorded one by apex)
+   // use the system schema
+   if (data_get({ "system_schema", true }, str))
+   {
+
+      if (str.has_char())
+      {
+
+         if (str != get_schema())
+         {
+
+            try
+            {
+
+               data_set({ "system_schema", true }, get_schema());
+
+               data_set({ "schema", true }, get_schema());
+
+            }
+            catch (...)
+            {
+
+            }
+
+         }
+
+      }
+
+   }
+   else
+   {
+
+      data_set({ "system_schema", true }, get_schema());
+
+   }
+
+   if (payload("schema").get_count() > 0)
+   {
+
+      str = payload("schema").stra()[0];
+
+      data_set({ "system_schema", true }, str);
+
+      data_set({ "schema", true }, str);
+
+      set_schema(str, ::e_source_database);
+
+   }
+   else if (data_get({ "schema", true }, str))
+   {
+
+      if (str.has_char())
+      {
+
+         set_schema(str, ::e_source_database);
 
       }
 
    }
 
-}
+   //data_pulse_change({ "ca2.savings", true }, nullptr);
+
+   auto psystem = get_system()->m_papexsystem;
+
+   psystem->appa_load_string_table();
 
 }
-else
-{
-
-data_set({ "system_locale", true }, get_locale());
-
-}
-
-if (payload("locale").get_count() > 0)
-{
-
-str = payload("locale").stra()[0];
-
-data_set({ "system_locale", true }, str);
-
-data_set({ "locale", true }, str);
-
-set_locale(str, ::e_source_database);
-
-}
-else if (payload("lang").get_count() > 0)
-{
-
-str = payload("lang").stra()[0];
-
-data_set({ "system_locale", true }, str);
-
-data_set({ "locale", true }, str);
-
-set_locale(str, ::e_source_database);
-
-}
-else if (data_get({ "locale", true }, str))
-{
-
-if (str.has_char())
-{
-
-   set_locale(str, ::e_source_database);
-
-}
-
-}
-// if system schema has changed (compared to last recorded one by apex)
-// use the system schema
-if (data_get({ "system_schema", true }, str))
-{
-
-if (str.has_char())
-{
-
-   if (str != get_schema())
-   {
-
-      try
-      {
-
-         data_set({ "system_schema", true }, get_schema());
-
-         data_set({ "schema", true }, get_schema());
-
-      }
-      catch (...)
-      {
-
-      }
-
-   }
-
-}
-
-}
-else
-{
-
-data_set({ "system_schema", true }, get_schema());
-
-}
-
-if (payload("schema").get_count() > 0)
-{
-
-str = payload("schema").stra()[0];
-
-data_set({ "system_schema", true }, str);
-
-data_set({ "schema", true }, str);
-
-set_schema(str, ::e_source_database);
-
-}
-else if (data_get({ "schema", true }, str))
-{
-
-if (str.has_char())
-{
-
-   set_schema(str, ::e_source_database);
-
-}
-
-}
-
-//data_pulse_change({ "ca2.savings", true }, nullptr);
-
-auto psystem = get_system()->m_papexsystem;
-
-psystem->appa_load_string_table();
-
 }
 //return true;
 
@@ -4252,7 +4259,9 @@ return "";
 void application::message_handler(::message::message * pmessage)
 {
 
-::thread::message_handler(pmessage);
+   ::thread::message_handler(pmessage);
+
+   //return false;
 
 }
 
@@ -6478,7 +6487,7 @@ bool application::defer_process_activation_message()
 //}
 
 
-bool application::update_appmatter(__pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative)
+void application::update_appmatter(__pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative)
 {
 
 auto psystem = get_system()->m_papexsystem;
@@ -6514,11 +6523,12 @@ psystem->install_progress_add_up();
 }
 
 
-return true;
+///return true;
 
 }
 
-bool application::update_appmatter(__pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative, const string & pszLocale, const string & pszStyle)
+
+void application::update_appmatter(__pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative, const string & pszLocale, const string & pszStyle)
 {
 
 string strLocale;
@@ -6568,12 +6578,12 @@ property_set set;
 
 set["get_memory"] = "";
 
-if (!m_pcontext->m_papexcontext->http().request(psession, strUrl, set))
-{
-
-return false;
-
-}
+m_pcontext->m_papexcontext->http().request(psession, strUrl, set);
+//{
+//
+//m_pdraw2d->init()
+//
+//}
 
 ::memory_file file;
 
@@ -6588,26 +6598,26 @@ string strDir = strFile;
 
 ::str::ends_eat_ci(strDir, ".zip");
 
-try
-{
+//try
+//{
 
 pfolder->extract_all(strDir);
 
-}
-catch (...)
-{
-
-// spa app_app_admin.exe would recover by retrying or someone would fix the resource packaging problem and then zip extraction at least should work.
-
-return false;
-
-}
+//}
+//catch (...)
+//{
+//
+//// spa app_app_admin.exe would recover by retrying or someone would fix the resource packaging problem and then zip extraction at least should work.
+//
+////return false;
+//
+//}
 
 //psystem->compress().extract_all(strFile, this);
 
 }
 
-return true;
+//return true;
 
 }
 

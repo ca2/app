@@ -81,14 +81,16 @@ namespace axis
    void session::initialize(::object * pobject)
    {
 
-      auto estatus = ::thread::initialize(pobject);
+      //auto estatus = 
+      
+      ::thread::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       m_bIfs                           = true;
 
@@ -131,7 +133,7 @@ namespace axis
 
       m_puiMouseMoveCapture = nullptr;
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -141,20 +143,22 @@ namespace axis
 
       INFORMATION("axis::session::process_init");
 
-      auto estatus = ::aura::session::process_init();
+      //auto estatus = 
+      
+      ::aura::session::process_init();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
 
 
       INFORMATION("axis::session::process_init success");
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -641,22 +645,23 @@ namespace axis
    }
 
 
-
    void session::init1()
    {
 
-      auto estatus = ::aura::session::init1();
+      //auto estatus =
+      
+      ::aura::session::init1();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         m_result.add(estatus);
+      //   m_result.add(estatus);
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -665,14 +670,16 @@ namespace axis
    void session::init2()
    {
 
-      ::e_status estatus = ::aura::session::init2();
+      //::e_status estatus = 
+      
+      ::aura::session::init2();
 
-      if(!estatus)
-      {
+      //if(!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       //if (!InitializeLocalDataCentral())
       //{
@@ -683,7 +690,7 @@ namespace axis
 
       //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -691,18 +698,20 @@ namespace axis
    void session::init()
    {
 
-      ::e_status estatus = ::aura::session::init();
+      //::e_status estatus = 
+      
+      ::aura::session::init();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         m_result.add(estatus);
+      //   m_result.add(estatus);
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -722,7 +731,7 @@ namespace axis
       catch (...)
       {
 
-         m_result.add(error_failed);
+         m_estatus = error_exception;
 
       }
 
@@ -1255,7 +1264,7 @@ namespace axis
 
       puser->m_pathFolder = pcontext->m_papexcontext->dir().appdata() / "profile" / puser->m_strLogin;
 
-      pcontext->m_papexcontext->dir().mk(puser->m_pathFolder);
+      pcontext->m_papexcontext->dir().create(puser->m_pathFolder);
 
       for (auto& papp : m_applicationa)
       {

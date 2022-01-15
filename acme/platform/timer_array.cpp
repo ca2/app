@@ -122,7 +122,7 @@ namespace acme
    }
 
 
-   bool timer_array::erase_timer(::timer * ptimer)
+   void timer_array::erase_timer(::timer * ptimer)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -137,7 +137,7 @@ namespace acme
          if (ppair == nullptr)
          {
 
-            return true;
+            return;
 
          }
 
@@ -156,7 +156,7 @@ namespace acme
 
       }
 
-      return true;
+      //return true;
 
    }
 
@@ -169,7 +169,7 @@ namespace acme
    }
 
 
-   bool timer_array::on_timer(timer * ptimer)
+   void timer_array::on_timer(timer * ptimer)
    {
 
       if (!m_bOk)
@@ -177,7 +177,7 @@ namespace acme
 
          delete_timer(ptimer->m_uEvent);
 
-         return false;
+         return;
 
       }
 
@@ -188,11 +188,11 @@ namespace acme
 
          delete_timer(ptimer->m_uEvent);
 
-         return false;
+         return;
 
       }
 
-      return true;
+      //return true;
 
    }
 

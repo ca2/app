@@ -21,7 +21,7 @@ namespace account
       
       
       system_storage();
-      virtual ~system_storage();
+      ~system_storage() override;
       
 
       virtual void initialize_system_storage(department* pdepartment);
@@ -29,8 +29,8 @@ namespace account
       virtual ::file::path path_prefix(string strToken);
       
       
-      virtual void     get(string strKey, string strToken, string & strValue) override;
-      virtual bool set(string strKey, string strToken, string strValue) override;
+      virtual bool get(string strKey, string strToken, string & strValue) override;
+      virtual void set(string strKey, string strToken, string strValue) override;
       
       
    };

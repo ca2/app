@@ -31,14 +31,16 @@ namespace graphics
    void multiple_buffer::initialize_graphics_graphics(::user::interaction_impl * pimpl)
    {
 
-      auto estatus = graphics::initialize_graphics_graphics(pimpl);
+      //auto estatus = 
+      
+      graphics::initialize_graphics_graphics(pimpl);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
 #ifdef MACOS
 
@@ -61,7 +63,7 @@ namespace graphics
 
       m_mutexa.set_size(m_imageaBuffer.get_size());
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -82,12 +84,14 @@ namespace graphics
       //if (m_imageaBuffer[m_iBuffer]->size() != sizeBuffer)
       {
 
-         if (!m_imageaBuffer[m_iBuffer]->create(sizeBuffer))
-         {
+         m_imageaBuffer[m_iBuffer]->create(sizeBuffer);
 
-            return nullptr;
+         //if (!m_imageaBuffer[m_iBuffer]->create(sizeBuffer))
+         //{
 
-         }
+         //   return nullptr;
+
+         //}
 
       }
 

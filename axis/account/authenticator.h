@@ -17,11 +17,12 @@ namespace account
       
       
       authenticator();
-      virtual ~authenticator();
+      ~authenticator() override;
       
-      virtual void  pre_authenticate(credentials * pcredentials);
       
-      virtual void  authenticate(credentials * pcredentials);
+      virtual void pre_authenticate(credentials * pcredentials);
+      
+      virtual void authenticate(credentials * pcredentials);
       
 
    };

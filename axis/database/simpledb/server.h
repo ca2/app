@@ -34,17 +34,17 @@ namespace simpledb
 
       
       virtual bool _data_server_load(::database::client * pclient, const ::database::key & id, get_memory getmemory, ::subject * psubject = nullptr) override;
-      virtual bool _data_server_save(::database::client * pclient, const ::database::key & id, block block, ::subject * psubject = nullptr) override;
+      virtual void _data_server_save(::database::client * pclient, const ::database::key & id, block block, ::subject * psubject = nullptr) override;
 
 
-      virtual bool create_server_dataset();
+      virtual void create_server_dataset();
 
 
       virtual void initialize_simpledb_server(::object * pobject, const ::string & pszDatabase);
       virtual void destroy() override;
 
 
-      virtual bool initialize_user(::database::database * pdatabaseUser, const ::string & pszUser);
+      virtual void initialize_user(::database::database * pdatabaseUser, const ::string & pszUser);
 
 
    };

@@ -25,14 +25,16 @@ namespace graphics
    void double_buffer::initialize_graphics_graphics(::user::interaction_impl * pimpl)
    {
 
-      auto estatus = graphics::initialize_graphics_graphics(pimpl);
+      //auto estatus = 
+      
+      graphics::initialize_graphics_graphics(pimpl);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       __construct(m_imageaBuffer[0]);
       //m_imageaBuffer[0]->defer_create_mutex();
@@ -42,7 +44,7 @@ namespace graphics
       //m_imageaBuffer[1]->defer_create_mutex();
       m_imageaBuffer[1]->m_id = 1;
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -77,12 +79,14 @@ namespace graphics
 //
 //            }
 //
-            if (!pimage->create(sizeWindow))
-            {
+// 
+          pimage->create(sizeWindow);
+            //if (!pimage->create(sizeWindow))
+            //{
 
-               return nullptr;
+            //   return nullptr;
 
-            }
+            //}
             
 //         }
 //

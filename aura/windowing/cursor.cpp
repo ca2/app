@@ -31,7 +31,7 @@ namespace windowing
 
       m_ecursor = ecursor;
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -55,7 +55,7 @@ namespace windowing
 
       m_szHotspotOffset.cy = yHotspot;
       
-      return ::success;
+      //return ::success;
 
    }
 
@@ -65,7 +65,7 @@ namespace windowing
 
       m_path = path;
 
-      return ::success;
+      //return ::success;
 
    }
 

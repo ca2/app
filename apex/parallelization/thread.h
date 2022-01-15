@@ -303,13 +303,13 @@ public:
    virtual bool get_message();     // low level message pump
    virtual bool raw_pump_message();     // low level message pump
    bool defer_pump_message() override;     // deferred message pump
-   virtual void process_message(::message::message * pmessage);
+   virtual bool process_message(::message::message * pmessage);
    ///virtual void process_base_message(::message::message * pmessage);
-   virtual void process_thread_message(::message::message * pmessage);
+   virtual bool process_thread_message(::message::message * pmessage);
    // apex commented
    //virtual void process_window_message(::user::message * pusermessage);
-   virtual void process_message();     // route message
-   virtual void raw_process_message();     // route message
+   virtual bool process_message();     // route message
+   virtual bool raw_process_message();     // route message
    // virtual bool on_idle(::i32 lCount); // return true if more idle processing
    virtual void on_thread_on_idle(::thread * pthread, ::i32 lCount);
    virtual bool is_idle_message(::message::message * pmessage);  // checks for special messages

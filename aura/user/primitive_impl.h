@@ -63,13 +63,13 @@ namespace user
       virtual void queue_message_handler(::message::message * pmessage);
 
 
-      virtual bool enable_window(bool bEnable = true) override;
+      virtual void enable_window(bool bEnable = true) override;
 
 
 
 
-      virtual bool create_host(::user::interaction * puserinteraction);
-      virtual bool create_child(::user::interaction * puserinteraction, ::user::primitive * puserprimitiveParent);
+      virtual void create_host(::user::interaction * puserinteraction);
+      virtual void create_child(::user::interaction * puserinteraction, ::user::primitive * puserprimitiveParent);
 
 
       //virtual bool check_need_layout();
@@ -84,18 +84,18 @@ namespace user
       virtual void window_show_change_visibility(::e_display edisplay, ::e_activation eactivation);
 
 
-      virtual bool start_window_visual();
+      virtual void start_window_visual();
 
-      virtual bool create_message_queue(::user::interaction * pinteraction, const ::string & lpszName);
+      virtual void create_message_queue(::user::interaction * pinteraction, const ::string & lpszName);
       
-      virtual bool prodevian_update_screen();
+      virtual void prodevian_update_screen();
 
       virtual void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::id nIdLeftOver, ::u32 nFlag = reposDefault, RECTANGLE_I32 * prectParam = nullptr, const ::rectangle_i32 & rectangleClient = nullptr, bool bStretch = true) override;
 
-      virtual bool window_move(i32 x, i32 y);
+      virtual void window_move(i32 x, i32 y);
 
 
-      virtual bool RedrawWindow(const ::rectangle_i32& rectangleUpdate = nullptr,::draw2d::region* prgnUpdate = nullptr,::u32 flags = 0);
+      virtual void RedrawWindow(const ::rectangle_i32& rectangleUpdate = nullptr,::draw2d::region* prgnUpdate = nullptr,::u32 flags = 0);
 
 
       virtual i32 GetUpdateRgn(::draw2d::region* pRgn, bool bErase = false);
@@ -139,8 +139,8 @@ namespace user
 
       //virtual u32 GetStyle() const override;
       //virtual u32 GetExStyle() const override;
-      //virtual bool ModifyStyle(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0) override;
-      //virtual bool ModifyStyleEx(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0) override;
+      //virtual void ModifyStyle(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0) override;
+      //virtual void ModifyStyleEx(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0) override;
 
       //virtual ::i32 get_window_long(i32 nIndex) const override;
       //virtual ::i32 set_window_long(i32 nIndex,::i32 lValue) override;
@@ -219,27 +219,27 @@ namespace user
 
 
 
-      virtual bool get_rect_normal(RECTANGLE_I32 * prectangle);
+      virtual void get_rect_normal(RECTANGLE_I32 * prectangle);
 
 
-      virtual bool SetTimer(uptr uEvent, const ::duration & millisElapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void * pdata = nullptr) override;
-      virtual bool KillTimer(uptr uEvent) override;
+      virtual void SetTimer(uptr uEvent, const ::duration & millisElapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void * pdata = nullptr) override;
+      virtual void KillTimer(uptr uEvent) override;
 
 
 
-      virtual void _001OnTimer(::timer * ptimer) override;
+      void _001OnTimer(::timer * ptimer) override;
 
       virtual bool IsTopParentActive();
 
-      virtual bool destroy_impl_only();
-      virtual bool start_destroying_window() override;
+      virtual void destroy_impl_only();
+      void start_destroying_window() override;
 
 
       //virtual void defer_start_prodevian();
       //virtual void _defer_start_prodevian();
 
 
-      virtual bool mouse_hover_add(::user::interaction * pinterface);
+      virtual void mouse_hover_add(::user::interaction * pinterface);
       virtual bool mouse_hover_erase(::user::interaction * pinterface);
 
 
@@ -255,11 +255,11 @@ namespace user
       virtual void impl_clear_keyboard_focus();
 
 
-      virtual bool post_message(const ::id & id, wparam wparam = 0, lparam lparam = 0) override;
+      virtual void post_message(const ::id & id, wparam wparam = 0, lparam lparam = 0) override;
 
       virtual void post_non_client_destroy() override;
 
-      //virtual bool display(::display edisplay) override;
+      //void display(::display edisplay) override;
 
       DECLARE_MESSAGE_HANDLER(_001OnPrioCreate);
       DECLARE_MESSAGE_HANDLER(on_message_show_window);

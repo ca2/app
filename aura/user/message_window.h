@@ -19,10 +19,10 @@ namespace user
 
 
       message_window();
-      virtual ~message_window();
+      ~message_window() override;
 
 
-      virtual bool create_message_window(const ::string & pszName,::user::message_window_listener * plistener = nullptr);
+      virtual void create_message_window(const ::string & pszName,::user::message_window_listener * plistener = nullptr);
 
       virtual void message_handler(::user::message * pusermessage);
 
@@ -30,15 +30,15 @@ namespace user
 
       virtual bool message_window_is_initialized();
 
-      virtual bool message_window_set_timer(uptr uId, const ::duration & duration);
+      virtual void message_window_set_timer(uptr uId, const ::duration & duration);
 
-      virtual bool message_window_post_message(const ::id & id, wparam wparam = 0,lparam lparam = 0);
+      virtual void message_window_post_message(const ::id & id, wparam wparam = 0,lparam lparam = 0);
 
       virtual lresult message_window_send_message(const ::id & id, wparam wparam = 0,lparam lparam = 0);
 
-      virtual bool message_window_del_timer(uptr uId);
+      virtual void message_window_del_timer(uptr uId);
 
-      virtual bool message_window_destroy();
+      virtual void message_window_destroy();
 
       virtual void * message_window_get_os_handle();
 

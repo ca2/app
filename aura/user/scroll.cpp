@@ -916,12 +916,14 @@ namespace user
 
       pbar->m_eorientation = ::e_orientation_horizontal;
 
-      if (!pbar->create_child(this))
-      {
+      pbar->create_child(this);
 
-         return false;
+      //if (!)
+      //{
 
-      }
+      //   return false;
+
+      //}
 
       m_pscrollbarHorizontal = pbar;
 
@@ -1016,12 +1018,14 @@ namespace user
 
       pbar->m_eorientation = ::e_orientation_vertical;
 
-      if (!pbar->create_child(this))
-      {
-         
-         return false;
+      pbar->create_child(this);
 
-      }
+      ////if (!pbar->create_child(this))
+      //{
+      //   
+      //   return false;
+
+      //}
 
       m_pscrollbarVertical = pbar;
 
@@ -1135,7 +1139,7 @@ namespace user
 
       m_sizeTotal.cy = size.cy;
 
-      return ::success;
+      //return ::success;
 
    }
 

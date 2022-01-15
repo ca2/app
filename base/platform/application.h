@@ -250,7 +250,7 @@ namespace base
 //
 //
 //      //application();
-//      //virtual ~application();
+//      //~application() override;
 //
 //
 //      //virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema);
@@ -1226,7 +1226,7 @@ virtual void on_change_cur_sel(::user::tab* ptab);
 //
 //
 ////application();
-////virtual ~application();
+////~application() override;
 //
 //
 ////virtual void     initialize(::object * pobject) override;

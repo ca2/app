@@ -49,11 +49,11 @@ inline stream & operator >>(stream & stream, ::array_base < TYPE, ARG_TYPE, ALLO
 
    stream >> c;
 
-   if (!stream.fail())
+   //if (!stream.fail())
    {
 
-      try
-      {
+      //try
+      //{
 
          for (::index i = 0; i < c; i++)
          {
@@ -64,31 +64,31 @@ inline stream & operator >>(stream & stream, ::array_base < TYPE, ARG_TYPE, ALLO
 
             stream >> item;
 
-            if (stream.fail())
-            {
+            //if (stream.fail())
+            //{
 
-               break;
+            //   break;
 
-            }
+            //}
 
             cSerialized++;
 
          }
 
-      }
-      catch (...)
-      {
+      //}
+      //catch (...)
+      //{
 
-         stream.set_fail_bit();
+      //   stream.set_fail_bit();
 
-      }
+      //}
 
-      if (stream.fail())
-      {
+      //if (stream.fail())
+      //{
 
-         array.set_size((::count) cSerialized);
+      //   array.set_size((::count) cSerialized);
 
-      }
+      //}
 
    }
 
@@ -111,12 +111,12 @@ inline stream & operator <<(stream & stream, const ::array_base < TYPE, ARG_TYPE
 
       stream << matter;
 
-      if (stream.fail())
-      {
+      //if (stream.fail())
+      //{
 
-         break;
+      //   break;
 
-      }
+      //}
 
    }
 

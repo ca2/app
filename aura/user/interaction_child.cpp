@@ -44,7 +44,7 @@ namespace user
    }
 
 
-   bool interaction_child::create_child(::user::interaction * pinteraction, ::user::primitive * pprimitiveParent)
+   void interaction_child::create_child(::user::interaction * pinteraction, ::user::primitive * pprimitiveParent)
    {
 
       if (_is_window())
@@ -61,8 +61,8 @@ namespace user
 
       }
 
-      try
-      {
+      //try
+      //{
 
          m_bCreate = true;
 
@@ -174,23 +174,23 @@ namespace user
             m_puserinteraction->send_message(e_message_create, 0, 0);
          }
 
-      }
-      catch (...)
-      {
+      //}
+      //catch (...)
+      //{
 
-         m_puserinteraction->m_ewindowflag -= e_window_flag_is_window;
+      //   m_puserinteraction->m_ewindowflag -= e_window_flag_is_window;
 
-         m_bCreate = false;
+      //   m_bCreate = false;
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
       m_puserinteraction->m_ewindowflag |= e_window_flag_window_created;
 
       m_puserinteraction->set(e_flag_task_started);
 
-      return true;
+      //return true;
 
    }
 
@@ -396,19 +396,21 @@ namespace user
    //}
 
 
-   bool interaction_child::start_destroying_window()
+   void interaction_child::start_destroying_window()
    {
 
       if (!m_bCreate)
       {
 
-         return false;
+         return;
 
       }
 
-      bool bOk = ::user::primitive_impl::start_destroying_window();
+      //bool bOk = 
+      
+      ::user::primitive_impl::start_destroying_window();
 
-      return bOk;
+      //return bOk;
 
    }
 
@@ -486,7 +488,7 @@ namespace user
 
          //         }
 
-         //if (pmessage->m_bRet)
+         if (pmessage->m_bRet)
          {
 
             return;
@@ -508,19 +510,19 @@ namespace user
 
       message = pmessage->m_id.umessage();
 
-      if (m_puserinteraction != nullptr)
-      {
+      //if (m_puserinteraction != nullptr)
+      //{
 
-         //m_puserinteraction->GuieProc(pmessage);
+      //   //m_puserinteraction->GuieProc(pmessage);
 
-         //if (pmessage->m_bRet)
-         //{
+      //   //if (pmessage->m_bRet)
+      //   //{
 
-         //   return;
+      //   //   return;
 
-         //}
+      //   //}
 
-      }
+      //}
 
       //if (message == e_message_event)
       //{
@@ -778,7 +780,7 @@ namespace user
    }
 
 
-   bool interaction_child::RedrawWindow(const ::rectangle_i32 & rectangleUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
+   void interaction_child::RedrawWindow(const ::rectangle_i32 & rectangleUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
    {
 
       ::user::interaction * pinteraction = get_wnd();
@@ -786,13 +788,13 @@ namespace user
       if (pinteraction == nullptr)
       {
 
-         return false;
+         return;
 
       }
 
       pinteraction->RedrawWindow(rectangleUpdate, prgnUpdate, flags);
 
-      return true;
+      //return true;
 
    }
 
@@ -847,20 +849,20 @@ namespace user
    }
 
 
-   bool interaction_child::start_window_visual()
+   void interaction_child::start_window_visual()
    {
 
       if (!m_puserinteraction)
       {
 
-         return false;
+         return;
 
       }
 
       if (m_puserinteraction->layout().window().visual() == m_puserinteraction->layout().sketch().visual())
       {
 
-         return true;
+         return;
 
       }
 
@@ -881,7 +883,7 @@ namespace user
 
       }
 
-      return true;
+      //return true;
 
    }
 

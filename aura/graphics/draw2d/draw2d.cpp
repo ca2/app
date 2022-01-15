@@ -51,27 +51,31 @@ namespace draw2d
    void draw2d::initialize(::object * pobject)
    {
 
-      auto estatus = ::acme::department::initialize(pobject);
+      //auto estatus = 
+      
+      ::acme::department::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = __construct_new(m_papi);
+      //estatus = 
+      
+      __construct_new(m_papi);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       lock::__s_initialize();
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -89,28 +93,25 @@ namespace draw2d
    void draw2d::init1()
    {
 
-      if (!::acme::department::init1())
-      {
+      //if (!
+      ::acme::department::init1();
 
-         return false;
+      //{
 
-      }
+      //   return false;
+
+      //}
 
       auto psystem = m_psystem->m_paurasystem;
 
       if (psystem->m_paurasystem->m_bWriteText)
       {
 
-         if (!initialize_write_text())
-         {
-
-            return false;
-
-         }
+         initialize_write_text();
 
       }
 
-      return true;
+      //return true;
 
    }
 
@@ -118,12 +119,7 @@ namespace draw2d
    void draw2d::process_init()
    {
 
-      if (!::acme::department::process_init())
-      {
-
-         return false;
-
-      }
+      ::acme::department::process_init();
 
       //synchronous_lock synchronouslock(mutex());
 
@@ -134,7 +130,7 @@ namespace draw2d
 
       //}
 
-      return true;
+      //return true;
 
    }
 
@@ -142,14 +138,15 @@ namespace draw2d
    void draw2d::init()
    {
 
-      if (!::acme::department::init())
-      {
+      //if (!)
+      ::acme::department::init();
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
-      return true;
+      //return true;
 
    }
 
@@ -226,7 +223,7 @@ namespace draw2d
 
       m_alpha_spread__32CC_filterMap.erase_all();
 
-      return ::success;
+      // return ::success;
 
    }
 
@@ -238,9 +235,10 @@ namespace draw2d
 
       lock::__s_finalize();
 
-      auto estatus = ::acme::department::destroy();
+      //auto estatus = 
+      ::acme::department::destroy();
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -322,19 +320,21 @@ namespace draw2d
 
       auto pgraphics = create_graphics();
 
-      if (!pgraphics)
-      {
+      //if (!pgraphics)
+      //{
 
-         return nullptr;
+      //   return nullptr;
 
-      }
+      //}
 
-      if (!pgraphics->create_memory_graphics())
-      {
+      pgraphics->create_memory_graphics();
 
-         return nullptr;
+      //if (!pgraphics->create_memory_graphics())
+      //{
 
-      }
+      //   return nullptr;
+
+      //}
 
       return pgraphics;
 
@@ -359,12 +359,12 @@ namespace draw2d
 
       }
 
-      return ::success;
+      //return ::success;
 
    }
 
 
-   bool draw2d::embossed_text_out(
+   void draw2d::embossed_text_out(
    ::draw2d::graphics_pointer & pgraphics,
    const ::rectangle_i32 & rectangle,
    string strText,
@@ -385,7 +385,7 @@ namespace draw2d
       if (strText.is_empty())
       {
 
-         return false;
+         throw_status(error_null_pointer);
 
       }
 
@@ -420,7 +420,8 @@ namespace draw2d
       pgraphics->set(pfont);
       pgraphics->_DrawText(strText, *rectangle, ealign, edrawtext);
 
-      return true;
+      //return true;
+
 
    }
 
@@ -1312,7 +1313,7 @@ breakFilter2:
 
             output_error_message("Failed to initialize write_text library.");
 
-            pfactoryWriteText = (const ::extended::status &) error_failed;
+            //pfactoryWriteText = (const ::extended::status &) error_failed;
 
          }
 
@@ -1324,47 +1325,51 @@ breakFilter2:
 
       }
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         INFORMATION("write_text factory_item exchange has failed.\n\nSome reasons:\n   - No write_text library present;\n   - Failure to open any suitable write_text library.");
+      //   INFORMATION("write_text factory_item exchange has failed.\n\nSome reasons:\n   - No write_text library present;\n   - Failure to open any suitable write_text library.");
 
-         return estatus;
+      //   //return estatus;
 
-      }
+      //}
 
       auto psystem = get_system();
 
-      estatus = __construct(m_pwritetext);
+      //estatus = 
+      
+      __construct(m_pwritetext);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         INFORMATION("Couldn't construct new write_text.");
+      //   INFORMATION("Couldn't construct new write_text.");
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = m_pwritetext->init1();
+      //estatus =
+      
+      m_pwritetext->init1();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         INFORMATION("Couldn't initialize write_text (init1).");
+      //   INFORMATION("Couldn't initialize write_text (init1).");
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      if (::succeeded(estatus))
-      {
+      //if (::succeeded(estatus))
+      //{
 
          ::factory::add_factory_item < ::draw2d::task_tool_item >(::e_task_tool_draw2d);
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -1403,12 +1408,12 @@ breakFilter2:
 
          auto & pfactoryWriteText = psystem->factory("write_text", strLibrary);
 
-         if(pfactoryWriteText.succeeded())
-         {
+         //if(pfactoryWriteText.succeeded())
+         //{
 
-            return pfactoryWriteText;
+         //   return pfactoryWriteText;
 
-         }
+         //}
 
       }
 
@@ -1433,7 +1438,7 @@ breakFilter2:
 
       auto & pfactoryWriteText = psystem->factory("write_text", strLibrary);
 
-      if (pfactoryWriteText.succeeded())
+      if (pfactoryWriteText)
       {
 
          return pfactoryWriteText;
@@ -1450,7 +1455,7 @@ breakFilter2:
 
          auto & pfactoryWriteText = psystem->factory("write_text", "gdiplus");
 
-         if(pfactoryWriteText.succeeded())
+         if(pfactoryWriteText)
          {
 
             return pfactoryWriteText;
@@ -1467,7 +1472,7 @@ breakFilter2:
 
          auto & pfactoryWriteText = psystem->factory("write_text", "direct2d");
 
-         if(pfactoryWriteText.succeeded())
+         if(pfactoryWriteText)
          {
 
             return pfactoryWriteText;
@@ -1486,7 +1491,7 @@ breakFilter2:
 
          auto & pfactoryWriteText = psystem->factory("write_text", "pango");
 
-         if(pfactoryWriteText.succeeded())
+         if(pfactoryWriteText)
          {
 
             return pfactoryWriteText;
@@ -1496,7 +1501,14 @@ breakFilter2:
       }
 
       //output_debug_string("No write_text pluging available!!.");
-      return pfactoryWriteText;
+      if (pfactoryWriteText)
+      {
+
+         return pfactoryWriteText;
+
+      }
+
+      throw exception::exception(error_resource, "No write_text pluging available!!");
 
       //destroy:
 
@@ -1539,7 +1551,7 @@ breakFilter2:
    void draw2d::lock_device()
    {
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -1547,7 +1559,7 @@ breakFilter2:
    void draw2d::unlock_device()
    {
 
-      return ::success;
+      //return ::success;
 
    }
 

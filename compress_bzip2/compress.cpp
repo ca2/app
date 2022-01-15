@@ -52,16 +52,18 @@ namespace compress_bzip2
    void compress::initialize(::object* pobject)
    {
 
-      auto estatus = ::object::initialize(pobject);
+      //auto estatus = 
+      
+      ::object::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -73,7 +75,7 @@ namespace compress_bzip2
       m_iVerbosity = iVerbosity;
       m_iWorkFactor = iWorkFactor;
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -124,7 +126,7 @@ namespace compress_bzip2
       if (err != BZ_OK || memory.get_data() == nullptr)
       {
 
-         return error_failed;
+         throw_status(error_failed);
 
       }
 
@@ -195,7 +197,12 @@ namespace compress_bzip2
       BZ2_bzCompressEnd(&(zstream));
 
 
-      return ret >= 0 ? ::success : ::error_failed;
+      if (ret < 0)
+      {
+
+         throw_status(error_failed);
+
+      }// ? ::success : ::error_failed;
 
    }
 

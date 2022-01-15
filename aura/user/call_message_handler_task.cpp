@@ -29,7 +29,7 @@ namespace user
 
       m_pinteraction->call_message_handler(m_id, m_wparam, m_lparam);
 
-      return ::success;
+      //return ::success;
 
    }
 

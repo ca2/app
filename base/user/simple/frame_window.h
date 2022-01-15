@@ -99,8 +99,8 @@ public:
    virtual bool window_is_notify_icon_enabled() override;
    void OnUpdateControlBarMenu(::message::command * pcommand);
 
-   virtual bool WindowDataSaveWindowRect() override;
-   virtual bool WindowDataLoadWindowRect(bool bForceRestore = false, bool bInitialFramePosition = false) override;
+   void WindowDataSaveWindowRect() override;
+   bool WindowDataLoadWindowRect(bool bForceRestore = false, bool bInitialFramePosition = false) override;
 
    using ::experience::frame_window::frame_experience;
    virtual ::experience::frame * frame_experience();

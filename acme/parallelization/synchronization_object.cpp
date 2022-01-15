@@ -93,10 +93,10 @@ void synchronization_object::lock()
 }
 
 
-void synchronization_object::lock(const class ::wait & wait)
+bool synchronization_object::lock(const class ::wait & wait)
 {
 
-   /* return */ this->wait(wait);
+   return this->wait(wait);
    
    //.succeeded();
 
@@ -111,10 +111,10 @@ void synchronization_object::_lock()
 }
 
 
-void synchronization_object::_lock(const class ::wait & wait)
+bool synchronization_object::_lock(const class ::wait & wait)
 {
 
-   /* return */ this->_wait(wait); /*.succeeded();*/
+   return this->_wait(wait); /*.succeeded();*/
 
 }
 
@@ -146,7 +146,7 @@ void synchronization_object::wait()
 
    }
 
-   while (ptask->task_get_run())
+   while (true)
    {
 
       if (_wait(100_ms))
@@ -156,6 +156,7 @@ void synchronization_object::wait()
 
       }
 
+      preempt();
 
    }
 

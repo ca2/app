@@ -99,16 +99,18 @@ simple_frame_window::~simple_frame_window()
 void simple_frame_window::initialize(::object * pobject)
 {
 
-   auto estatus = ::experience::frame_window::initialize(pobject);
+   //auto estatus = 
+   
+   ::experience::frame_window::initialize(pobject);
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
-   return estatus;
+   //return estatus;
 
 }
 
@@ -329,7 +331,7 @@ bool simple_frame_window::WindowDataLoadWindowRect(bool bForceRestore, bool bIni
 
             design_down();
 
-            return true;
+            //return true;
 
          }
          else
@@ -374,7 +376,7 @@ bool simple_frame_window::WindowDataLoadWindowRect(bool bForceRestore, bool bIni
 }
 
 
-bool simple_frame_window::WindowDataSaveWindowRect()
+void simple_frame_window::WindowDataSaveWindowRect()
 {
 
    if(wfi_is_up_down())
@@ -403,12 +405,15 @@ bool simple_frame_window::_001OnBeforeAppearance()
    if (edisplay == ::e_display_up || edisplay == ::e_display_down)
    {
 
-      if (!initialize_frame_window_experience())
-      {
 
-         return false;
+      initialize_frame_window_experience();
 
-      }
+      //if (!initialize_frame_window_experience())
+      //{
+
+      //   return false;
+
+      //}
 
    }
 
@@ -465,20 +470,20 @@ void simple_frame_window::_thread_save_window_placement()
 
          m_bPendingSaveWindowRect = false;
 
-         if (WindowDataSaveWindowRect())
-         {
+         WindowDataSaveWindowRect();
+         
 
-            break;
+         break;
 
-         }
+         
 
-         m_bPendingSaveWindowRect = true;
 
       }
       catch (...)
       {
 
       }
+      m_bPendingSaveWindowRect = true;
 
    }
 
@@ -641,7 +646,9 @@ void simple_frame_window::initialize_frame_window_experience()
    if (m_pframe.is_set())
    {
 
-      return true;
+      //return true;
+
+      return;
 
    }
 
@@ -660,7 +667,7 @@ void simple_frame_window::initialize_frame_window_experience()
    catch (...)
    {
 
-      return error_failed;
+      //return error_failed;
 
    }
 
@@ -668,18 +675,20 @@ void simple_frame_window::initialize_frame_window_experience()
    {
 
 
-      return false;
+      throw_status(error_null_pointer);
 
    }
 
    set_frame(pexperienceframe);
 
-   if (!::experience::frame_window::initialize_frame_window_experience())
-   {
+   ::experience::frame_window::initialize_frame_window_experience();
 
-      return false;
+   //if (!::experience::frame_window::initialize_frame_window_experience())
+   //{
 
-   }
+   //   return false;
+
+   //}
 
 #if defined(LINUX) || defined(__APPLE__)
 
@@ -687,7 +696,7 @@ void simple_frame_window::initialize_frame_window_experience()
 
 #endif
 
-   return true;
+   //return true;
 
 }
 
@@ -886,17 +895,19 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
    if (m_bWindowFrame)
    {
+      
+      initialize_frame_window_experience();
 
-      if (!initialize_frame_window_experience())
-      {
+      //if (!initialize_frame_window_experience())
+      //{
 
-         pcreate->m_lresult = -1;
+      //   pcreate->m_lresult = -1;
 
-         pcreate->m_bRet = true;
+      //   pcreate->m_bRet = true;
 
-         return;
+      //   return;
 
-      }
+      //}
 
    }
 
@@ -953,9 +964,11 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
          //auto psystem = m_psystem->m_papexsystem;
 
-         auto estatus = __defer_construct(m_pnotifyicon);
+         //auto estatus = 
+         
+         __defer_construct(m_pnotifyicon);
 
-         if (estatus.succeeded())
+         //if (estatus.succeeded())
          {
 
             //m_pnotifyicon->m_puserinteraction = this;
@@ -2090,11 +2103,13 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
 
    //bool bCreated = create_window_ex(pusersystem, puiParent, m_id);
 
-   bool bCreated;
+   //bool bCreated;
 
    m_pusersystem = pusersystem;
 
-   bCreated = create_interaction(puiParent, id());
+   //bCreated = 
+   
+   create_interaction(puiParent, id());
 
    if (bLoadImplRect)
    {
@@ -2103,12 +2118,12 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
 
    }
 
-   if (!bCreated)
-   {
+   //if (!bCreated)
+   //{
 
-      return false;   // will self destruct on failure normally
+   //   return false;   // will self destruct on failure normally
 
-   }
+   //}
 
    if (pusersystem == nullptr)   // send initial update
    {
@@ -2404,14 +2419,16 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
    if(rectangleClient.area() > 0 && dAlpha > 0.0 && dAlpha < 1.0 && m_bTransparent)
    {
 
-      auto estatus = __defer_construct(m_pimageAlpha);
+      //auto estatus = 
+      __defer_construct(m_pimageAlpha);
 
-      if(estatus.succeeded())
-      {
+      //if(estatus.succeeded())
+      //{
 
-         estatus = m_pimageAlpha->create(rectangleClient.size());
+         //estatus = 
+      m_pimageAlpha->create(rectangleClient.size());
 
-         if(estatus.succeeded())
+      //   if(estatus.succeeded())
          {
 
             m_pimageAlpha->fill(0, 0, 0, 0);
@@ -2424,7 +2441,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 
          }
 
-      }
+      //}
 
    }
 
@@ -2783,9 +2800,11 @@ void simple_frame_window::defer_create_notification_icon()
       if (!m_piconNotify)
       {
 
-         auto estatus = __construct(m_piconNotify);
+         //auto estatus = 
+         
+         __construct(m_piconNotify);
 
-         if(estatus.succeeded())
+         //if(estatus.succeeded())
          {
 
             //const char * pszAppName = papplication->m_strAppName;
@@ -2799,15 +2818,15 @@ void simple_frame_window::defer_create_notification_icon()
       __defer_construct(m_pnotifyicon);
 
       //m_pnotifyicon->m_puserinteraction = this;
+      m_pnotifyicon->create_notify_icon(1, this, m_piconNotify);
+      //if (!)
+      //{
 
-      if (!m_pnotifyicon->create_notify_icon(1, this, m_piconNotify))
-      {
+      //   m_pnotifyicon.release();
 
-         m_pnotifyicon.release();
+      //   return;
 
-         return;
-
-      }
+      //}
 
       m_bitMinimizeToTray.defer(e_boolean_true);
 
@@ -3813,12 +3832,14 @@ bool simple_frame_window::keyboard_focus_is_focusable() const
 bool simple_frame_window::create_bars()
 {
 
-   if (!on_create_bars())
-   {
+   on_create_bars();
 
-      return false;
+   //if (!on_create_bars())
+   //{
 
-   }
+   //   return false;
+
+   //}
 
    show_control_bars();
 
@@ -3835,7 +3856,8 @@ void simple_frame_window::on_create_bars()
    if(!m_bDefaultCreateToolbar)
    {
 
-      return ::success;
+      //return ::success;
+      return;
 
    }
 
@@ -3848,7 +3870,7 @@ void simple_frame_window::on_create_bars()
 
    }
 
-   return ::success;
+   //return ::success;
 
 }
 

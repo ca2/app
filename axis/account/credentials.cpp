@@ -20,14 +20,7 @@ namespace account
    void credentials::initialize_account_credentials(const credentials & credentials)
    {
 
-      auto estatus = initialize_account_storage_client(credentials.m_pstorage);
-
-      if (!estatus)
-      {
-
-         __throw(estatus);
-
-      }
+      initialize_account_storage_client(credentials.m_pstorage);
 
       m_puser = credentials.m_puser;
 
@@ -63,22 +56,13 @@ namespace account
 
       m_estatusHttp = credentials.m_estatusHttp;
 
-      return estatus;
-
    }
 
 
    void credentials::initialize_account_credentials(user * puser, storage * pstorage) 
    {
 
-      auto estatus = initialize_account_storage_client(pstorage);
-
-      if (!estatus)
-      {
-
-         __throw(estatus);
-
-      }
+      initialize_account_storage_client(pstorage);
 
       m_puser = puser;
 
@@ -105,8 +89,6 @@ namespace account
 
       m_estatus = error_none;
 
-      return m_estatus;
-
    }
 
 
@@ -116,21 +98,21 @@ namespace account
    }
 
 
-   void     credentials::get_credentials()
+   void credentials::get_credentials()
    {
 
       m_estatus = error_none;
 
-      void     estatus = load_from_storage();
+      ::e_status estatus = load_from_storage();
 
       if(estatus == ::success_credentials || estatus == ::success_authenticated)
       {
 
-         return success_credentials;
+         return;
 
       }
 
-      return interactive_credentials();
+      interactive_credentials();
 
    }
 
@@ -144,7 +126,7 @@ namespace account
    /// output
    /// m_strUsername
    /// m_strPassword
-   void CLASS_DECL_AXIS credentials::interactive_credentials()
+   void credentials::interactive_credentials()
    {
 
       m_estatus = error_none;
@@ -152,7 +134,7 @@ namespace account
       if(!m_bInteractive)
       {
 
-         return error_credentials_no_valid_cached_credentials;
+         throw_status(error_credentials_no_valid_cached_credentials);
 
       }
 
@@ -173,7 +155,7 @@ namespace account
 
       papplication->interactive_credentials(this);
 
-      return m_estatus;
+      //return m_estatus;
 
    }
 
@@ -184,7 +166,7 @@ namespace account
    /// output
    /// m_strUsername
    /// m_strPassword
-   void  credentials::load_from_storage(::count cTry)
+   ::e_status credentials::load_from_storage(::count cTry)
    {
 
       if (cTry <= 0)
@@ -276,7 +258,7 @@ namespace account
          if (bOk)
          {
 
-            auto estatus = (void) ::ansi_to_i64(strOpen);
+            auto estatus = (::e_status) ::ansi_to_i64(strOpen);
 
             if (estatus == ::success_credentials || estatus == ::success_authenticated)
             {
@@ -372,7 +354,7 @@ namespace account
 
          set("open", strOpenResult);
 
-         return error_authentication;
+         throw_status(error_authentication);
 
       }
 
@@ -382,7 +364,7 @@ namespace account
 
       credentials credentialsPrevious;
       
-      auto estatus = credentialsPrevious.initialize_account_credentials(&userPrevious, m_pstorage);
+      credentialsPrevious.initialize_account_credentials(&userPrevious, m_pstorage);
 
       credentialsPrevious.load_from_storage();
 
@@ -403,7 +385,7 @@ namespace account
 
       }
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -505,10 +487,18 @@ namespace account
       for(i32 i = 0; i < 3; i++)
       {
 
-         if(pcontext->m_papexcontext->http().get(strUrl,strResponse,set))
+         try
          {
 
+            pcontext->m_papexcontext->http().get(strUrl, strResponse, set);
+
             break;
+
+         }
+         catch (const ::exception& exception)
+         {
+
+            ERROR("check_ca2_hash " << exception.m_estatus.m_estatus);
 
          }
 

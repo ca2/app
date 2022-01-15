@@ -187,36 +187,42 @@ namespace aura
    void application::initialize(::object * pobject)
    {
 
-      auto estatus = ::application::initialize(pobject);
+      //auto estatus =
+      
+      ::application::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = __compose_new(m_puserinteractiona);
+      //estatus =
+      
+      __compose_new(m_puserinteractiona);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = __compose_new(m_puserinteractionaFrame);
+      //estatus = 
+      
+      __compose_new(m_puserinteractionaFrame);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       m_pauracontext = this;
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -281,9 +287,10 @@ namespace aura
    void application::destroy()
    {
 
-      auto estatus = ::application::destroy();
+      //auto estatus = 
+      ::application::destroy();
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -1578,20 +1585,22 @@ namespace aura
    void application::init_instance()
    {
 
-      auto estatus = ::application::init_instance();
+      //auto estatus =
+      
+      ::application::init_instance();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
       
       auto psignal = m_psystem->m_papexsystem->get_signal(id_app_activated);
       
       psignal->add_handler(this);
 
-      return true;
+      //return true;
 
    }
 
@@ -1623,25 +1632,29 @@ namespace aura
 
       //m_atomSystemTopic    = ::GlobalAddAtomW(L"system");
 
-      auto estatus = __compose(m_pshellopen);
+      //auto estatus = 
+      
+      __compose(m_pshellopen);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = m_pshellopen->initialize_shell_open();
+      //estatus = 
+      
+      m_pshellopen->initialize_shell_open();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -1704,23 +1717,23 @@ namespace aura
    }
 
  
-   bool application::do_install()
+   void application::do_install()
    {
 
       auto psystem = get_system()->m_paurasystem;
 
 
+      on_install();
+      //if (!on_install())
+      //{
 
-      if (!on_install())
-      {
+      //   ::output_debug_string("Failed at on_install : " + m_strAppId + "\n\n");
 
-         ::output_debug_string("Failed at on_install : " + m_strAppId + "\n\n");
+      //   psystem->m_result.add(error_failed);
 
-         psystem->m_result.add(error_failed);
+      //   return false;
 
-         return false;
-
-      }
+      //}
 
       string strBuild = m_strBuild;
 
@@ -1731,7 +1744,7 @@ namespace aura
       system_add_app_install(strAppId, strBuild);
 
 
-      return true;
+      //return true;
 
    }
 
@@ -1756,7 +1769,10 @@ namespace aura
 
          if (!assert_user_logged_in())
          {
-            return false;
+            //return false;
+
+            throw_status(error_authentication_none);
+
          }
 
          // call application's is_licensed function
@@ -1777,7 +1793,9 @@ retry_license:
             if (iRetry > 0)
                goto retry_license;
 
-            return false;
+            //return false;
+
+            throw_status(error_licensing);
 
          }
 
@@ -1785,25 +1803,26 @@ retry_license:
 
       INFORMATION("initial_check_directrix : ok ("<< __type_name(this) << ")" << m_strAppId);
 
-      return true;
+      //return true;
 
    }
 
 
-
-   bool application::do_uninstall()
+   void application::do_uninstall()
    {
 
-      if (!on_uninstall())
-      {
+      on_uninstall();
 
-         return false;
+//      if (!on_uninstall())
+//      {
+//
+//         return false;
+//
+////         psystem->install().erase_spa_start(m_XstrAppId);
+//
+//      }
 
-//         psystem->install().erase_spa_start(m_XstrAppId);
-
-      }
-
-      return true;
+      //return true;
 
    }
 
@@ -1840,7 +1859,7 @@ retry_license:
 // #endif
 
       }
-      return true;
+      //return true;
 
    }
 
@@ -1866,7 +1885,7 @@ retry_license:
 
       }
 
-      return bOk;
+      //return bOk;
 
    }
 
@@ -1874,14 +1893,16 @@ retry_license:
    void application::process_init()
    {
 
-      auto estatus = ::application::process_init();
+      //auto estatus =
+      
+      ::application::process_init();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
 
       INFORMATION("axis::application::process_init");
@@ -1890,7 +1911,7 @@ retry_license:
       INFORMATION("aura::application::process_init success");
 
 
-      return true;
+      //return true;
 
    }
 
@@ -2031,49 +2052,54 @@ retry_license:
    void application::init1()
    {
 
-      ::e_status estatus = ::application::init1();
+      //::e_status estatus = 
+      
+      ::application::init1();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       auto psystem = get_system()->m_paurasystem;
 
       if (psystem->m_bImaging)
       {
 
-         estatus = __compose(m_pcontextimage);
+         //estatus = 
+         __compose(m_pcontextimage);
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            INFORMATION("ERROR: context_image required but missing.");
+         //   INFORMATION("ERROR: context_image required but missing.");
 
-            //output_error_message("context_image required but missing.\n\nIs it a image library missing?", get_app_user_friendly_task_bar_name(), ::e_message_box_icon_information);
+         //   //output_error_message("context_image required but missing.\n\nIs it a image library missing?", get_app_user_friendly_task_bar_name(), ::e_message_box_icon_information);
 
-            return estatus;
+         //   return estatus;
 
-         }
+         //}
 
       }
       else
       {
 
-         estatus = __compose_new(m_pcontextimage);
+         //estatus = 
+         
+         __compose_new(m_pcontextimage);
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            INFORMATION("ERROR: context_image required but missing.");
+         //   INFORMATION("ERROR: context_image required but missing.");
 
-            //output_error_message("context_image required but missing.\n\nIs it a image library missing?", get_app_user_friendly_task_bar_name(), ::e_message_box_icon_information);
+         //   //output_error_message("context_image required but missing.\n\nIs it a image library missing?", get_app_user_friendly_task_bar_name(), ::e_message_box_icon_information);
 
-            return estatus;
+         //   return estatus;
 
-         }
+         //}
 
       }
 
@@ -2082,7 +2108,7 @@ retry_license:
 
       m_durationHeartBeat.Now();
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -2124,18 +2150,19 @@ retry_license:
 
       //}
 
-      if (!notify_init2())
-      {
+      notify_init2();
 
-         return false;
+      //if (!notify_init2())
+      //{
 
-      }
+      //   return false;
 
+      //}
 
-
-      return true;
+      //return true;
 
    }
+
 
    void application::term2()
    {
@@ -2182,14 +2209,16 @@ retry_license:
 
       //}
 
-      if (!notify_init3())
-      {
+      notify_init3();
 
-         return false;
+      //if (!notify_init3())
+      //{
 
-      }
+      //   return false;
 
-      return true;
+      //}
+
+      //return true;
 
    }
 
@@ -4766,7 +4795,7 @@ retry_license:
    void application::verb()
    {
 
-      return true;
+      //return true;
 
    }
 
@@ -5043,16 +5072,18 @@ retry_license:
    void application::init()
    {
 
-      auto estatus = ::application::init();
+      //auto estatus = 
+      
+      ::application::init();
 
-      if(!estatus)
-      {
+      //if(!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return true;
+      //return true;
 
    }
 
@@ -5087,7 +5118,7 @@ retry_license:
    //}
 
 
-   bool application::update_appmatter( __pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative)
+   void application::update_appmatter( __pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative)
    {
 
       auto plocaleschema = __create_new < ::text::international::locale_schema >();
@@ -5123,12 +5154,12 @@ retry_license:
       }
 
 
-      return true;
+      //return true;
 
    }
 
 
-   bool application::update_appmatter(__pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative, const string & pszLocale, const string & pszStyle)
+   void application::update_appmatter(__pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative, const string & pszLocale, const string & pszStyle)
    {
 
       string strLocale;
@@ -5185,12 +5216,14 @@ retry_license:
 
       set["get_memory"] = "";
 
-      if (!http().request(psession, strUrl, set))
-      {
+      http().request(psession, strUrl, set);
 
-         return false;
+      //if (!http().request(psession, strUrl, set))
+      //{
 
-      }
+      //   return false;
+
+      //}
 
       ::memory_file file;
 
@@ -5205,26 +5238,26 @@ retry_license:
 
          ::str::ends_eat_ci(strDir, ".zip");
 
-         try
-         {
+         //try
+         //{
 
             pfolder->extract_all(strDir);
 
-         }
-         catch (...)
-         {
+         //}
+         //catch (...)
+         //{
 
-            // spa app_app_admin.exe would recover by retrying or someone would fix the resource packaging problem and then zip extraction at least should work.
+         //   // spa app_app_admin.exe would recover by retrying or someone would fix the resource packaging problem and then zip extraction at least should work.
 
-            return false;
+         //   return false;
 
-         }
+         //}
 
          //psystem->compress().extract_all(strFile, this);
 
       }
 
-      return true;
+      //return true;
 
    }
 
@@ -8569,30 +8602,34 @@ namespace aura
    void application::initialize_contextualized_theme()
    {
 
-      auto estatus = __compose_new(m_ptheme);
+      //auto estatus =
+      
+      __compose_new(m_ptheme);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       if (m_bContextTheme)
       {
 
-         estatus = m_ptheme->initialize_contextualized_theme();
+         //estatus = 
+         
+         m_ptheme->initialize_contextualized_theme();
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            return estatus;
+         //   return estatus;
 
-         }
+         //}
 
       }
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -8827,7 +8864,7 @@ namespace aura
    void     application::create_impact_system()
    {
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -9032,7 +9069,7 @@ namespace aura
      {
      }
 
-     return lCount < 0;  // nothing more to do if lCount >= 0
+     //return lCount < 0;  // nothing more to do if lCount >= 0
 
    }
 

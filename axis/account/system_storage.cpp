@@ -30,18 +30,20 @@ namespace account
    void system_storage::initialize_system_storage(department* pdepartment)
    {
 
-      auto estatus = storage::initialize(pdepartment);
+      //auto estatus = 
+      
+      storage::initialize(pdepartment);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       m_paccount = pdepartment;
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -69,7 +71,7 @@ namespace account
    }
    
    
-   void     system_storage::get(string strKey, string strToken, string & strValue)
+   bool system_storage::get(string strKey, string strToken, string & strValue)
    {
       
       ::file::path path;
@@ -79,13 +81,26 @@ namespace account
       auto psystem = get_system()->m_papexsystem;
       
       path /= psystem->crypto()->md5(strToken + strKey);
-      
-      return psystem->crypto()->file_get(path, strValue, strToken, get_application());
+
+      try
+      {
+
+         psystem->crypto()->file_get(path, strValue, strToken, get_application());
+
+      }
+      catch (...)
+      {
+
+         return false;
+
+      }
+
+      return true;
       
    }
    
    
-   bool system_storage::set(string strKey, string strToken, string strValue)
+   void system_storage::set(string strKey, string strToken, string strValue)
    {
       
       ::file::path path;
@@ -100,7 +115,7 @@ namespace account
 
       path /= psystem->crypto()->md5(strToken + strKey);
       
-      return psystem->crypto()->file_set(path, strValue, strToken, get_application());
+      psystem->crypto()->file_set(path, strValue, strToken, get_application());
       
    }
    

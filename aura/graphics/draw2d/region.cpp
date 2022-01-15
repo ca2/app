@@ -44,7 +44,7 @@ namespace draw2d
       m_pregion1.release();
       m_pregion2.release();
 
-      return ::success;
+      //return ::success;
 
    }
 

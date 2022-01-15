@@ -41,23 +41,23 @@ public:
 
    virtual void blur_32CC_r2(::image * ppimageDst, ::image * pimageSrc);
 
-   virtual bool channel_gray_blur_32CC(::image * ppimageDst, ::image * pimageSrc, i32 iChannel, i32 iRadius);
-   virtual bool channel_gray_blur(::draw2d::graphics * pgraphics, const ::point_i32 & pointDst, const ::size_i32 & size, ::draw2d::graphics * pdcSrc, const ::point_i32 & pointSrc, i32 iChannel, i32 iRadius);
-   virtual bool channel_gray_blur_32CC(::image * ppimageDst, ::image * pimageSrc, i32 iChannel, i32 iFilterWidth, i32 iFilterHeight,  byte * pbFilter);
+   virtual void channel_gray_blur_32CC(::image * ppimageDst, ::image * pimageSrc, i32 iChannel, i32 iRadius);
+   virtual void channel_gray_blur(::draw2d::graphics * pgraphics, const ::point_i32 & pointDst, const ::size_i32 & size, ::draw2d::graphics * pdcSrc, const ::point_i32 & pointSrc, i32 iChannel, i32 iRadius);
+   virtual void channel_gray_blur_32CC(::image * ppimageDst, ::image * pimageSrc, i32 iChannel, i32 iFilterWidth, i32 iFilterHeight,  byte * pbFilter);
 
-   virtual bool channel_gray_blur(::draw2d::graphics * pgraphics, const ::point_i32 & pointDst, const ::size_i32 & size, ::draw2d::graphics * pdcSrc, const ::point_i32 & pointSrc, i32 iChannel, const ::size_i32 & sizeFilter,  byte * pbFilter);
+   virtual void channel_gray_blur(::draw2d::graphics * pgraphics, const ::point_i32 & pointDst, const ::size_i32 & size, ::draw2d::graphics * pdcSrc, const ::point_i32 & pointSrc, i32 iChannel, const ::size_i32 & sizeFilter,  byte * pbFilter);
 
-   virtual bool channel_alpha_gray_blur_32CC(::image * ppimageDst, ::image * pimageSrc, i32 iChannel, i32 iRadius);
-   virtual bool channel_alpha_gray_blur(::draw2d::graphics * pgraphics, const ::point_i32 & pointDst, const ::size_i32 & size, ::draw2d::graphics * pdcSrc, const ::point_i32 & pointSrc, i32 iChannel, i32 iRadius);
+   virtual void channel_alpha_gray_blur_32CC(::image * ppimageDst, ::image * pimageSrc, i32 iChannel, i32 iRadius);
+   virtual void channel_alpha_gray_blur(::draw2d::graphics * pgraphics, const ::point_i32 & pointDst, const ::size_i32 & size, ::draw2d::graphics * pdcSrc, const ::point_i32 & pointSrc, i32 iChannel, i32 iRadius);
 
    void alpha_spread_R2_24CC(byte * pbDest, i32 xDest, i32 yDest, i32 wDest, i32 cx, i32 cy, byte * pbSrc, i32 ySrc, i32 xSrc, i32 wSrc, byte bMin);
 
    void alpha_spread__24CC(byte * pbDest, i32 xDest, i32 yDest, i32 wDest, i32 cx, i32 cy, byte * pbSrc, i32 ySrc, i32 xSrc, i32 wSrc, byte bMin, i32 iRadius);
 
-   bool spread__32CC(::image * ppimageDst, ::image * pimageSrc, i32 iRadius, const ::color::color & colorSpreadSetColor);
+   void spread__32CC(::image * ppimageDst, ::image * pimageSrc, i32 iRadius, const ::color::color & colorSpreadSetColor);
 
 
-   bool channel_spread(
+   void channel_spread(
    ::draw2d::graphics * pgraphics,
    const ::point_i32 & pointDst,
    const ::size_i32 & size,
@@ -66,7 +66,7 @@ public:
    i32 iChannel,
    i32 iRadius);
 
-   bool channel_spread_set_color(
+   void channel_spread_set_color(
    ::draw2d::graphics * pgraphics,
    const ::point_i32 & pointDst,
    const ::size_i32 & size,
@@ -76,7 +76,7 @@ public:
    i32 iRadius,
    ::color32_t color32);
 
-   bool spread(
+   void spread(
    ::draw2d::graphics * pgraphics,
    const ::point_i32 & pointDst,
    const ::size_i32 & size,
@@ -84,7 +84,7 @@ public:
    const ::point_i32 & pointSrc,
    i32 iRadius);
 
-   bool spread_set_color(
+   void spread_set_color(
    ::draw2d::graphics * pgraphics,
    const ::point_i32 & pointDst,
    const ::size_i32 & size,
@@ -93,11 +93,11 @@ public:
    i32 iRadius,
    ::color32_t color32);
 
-   bool true_blend(::draw2d::graphics * pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::graphics * pdcColorAlpha, const ::point_i32 & pointAlpha, ::image * pimageWork = nullptr, ::image * pimageWork2 = nullptr, ::image * pimageWork3 = nullptr);
+   void true_blend(::draw2d::graphics * pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::graphics * pdcColorAlpha, const ::point_i32 & pointAlpha, ::image * pimageWork = nullptr, ::image * pimageWork2 = nullptr, ::image * pimageWork3 = nullptr);
 
-   bool blur(::image * pimage, int iRadius);
+   void blur(::image * pimage, int iRadius);
 
-   bool blur(::image * pimage, rectangle_i32 rectangle, i32 iRadius);
+   void blur(::image * pimage, rectangle_i32 rectangle, i32 iRadius);
 
    void color_blend_24CC(
    byte * pbA,
@@ -117,8 +117,8 @@ public:
 
 
 
-   bool clip_color_blend(::draw2d::graphics * pgraphics, const ::point_i32 & point, const ::size_i32 & size, ::color32_t color32, byte alpha);
-   bool clip_color_blend(::draw2d::graphics * pgraphics, const ::rectangle_i32 & rectangle, ::color32_t color32, byte alpha);
+   void clip_color_blend(::draw2d::graphics * pgraphics, const ::point_i32 & point, const ::size_i32 & size, ::color32_t color32, byte alpha);
+   void clip_color_blend(::draw2d::graphics * pgraphics, const ::rectangle_i32 & rectangle, ::color32_t color32, byte alpha);
 
    /*
       bool clip_color_blend(::draw2d::graphics * pgraphics, const ::point_i32 & point, const ::size_i32 & size, ::color32_t color32, byte alpha, ::draw2d::region * prgnClip);
@@ -127,22 +127,22 @@ public:
 
    void trait(::image * pimage, ::i64 iTrait);
 
-   static bool CreateBitmap(
-   ::draw2d::graphics * pgraphics,
-   ::draw2d::bitmap * pbitmapOld,
-   ::draw2d::bitmap * pbitmap,
-//  BITMAP * pbmp,
-   i32 cx,
-   i32 cy);
+//   static void CreateBitmap(
+//   ::draw2d::graphics * pgraphics,
+//   ::draw2d::bitmap * pbitmapOld,
+//   ::draw2d::bitmap * pbitmap,
+////  BITMAP * pbmp,
+//   i32 cx,
+//   i32 cy);
 
-   static bool CreateBitmap(
-      ::draw2d::graphics * pgraphics,
-   ::draw2d::graphics * pdcScreen,
-   ::draw2d::bitmap * pbitmap,
-   ::draw2d::bitmap * pbitmapOld,
-   //BITMAP * pbmp,
-   i32 cx,
-   i32 cy);
+   //static bool CreateBitmap(
+   //   ::draw2d::graphics * pgraphics,
+   //::draw2d::graphics * pdcScreen,
+   //::draw2d::bitmap * pbitmap,
+   //::draw2d::bitmap * pbitmapOld,
+   ////BITMAP * pbmp,
+   //i32 cx,
+   //i32 cy);
 
    void AlphaTextOut(::draw2d::graphics * pgraphics, i32 left, i32 top, const ::string & pcsz, i32 len, ::color32_t color32, double dBlend);
 
@@ -208,7 +208,7 @@ public:
 //      i32 cy,
 //      ::color::color crTransparent);
 
-   bool HueVRCP(::image * pimage, ::color::color crHue, double dCompress);
+   void HueVRCP(::image * pimage, ::color::color crHue, double dCompress);
 
 //   bool GrayVRCP(
 //      ::draw2d::graphics * pgraphics,
@@ -225,13 +225,13 @@ public:
 //      i32 cy,
 //      ::color::color crAlpha);
 
-   bool change_hue(image_list * pilHue, image_list * pil, const ::color::color & crHue, double dCompress);
+   void change_hue(image_list * pilHue, image_list * pil, const ::color::color & crHue, double dCompress);
 
-   bool BitmapBlend2(::draw2d::graphics * pdcDst, const ::point_i32 & point, const ::size_i32 & size, ::draw2d::graphics * pdcSrc, const ::point_i32 & pointSrc,
+   void BitmapBlend2(::draw2d::graphics * pdcDst, const ::point_i32 & point, const ::size_i32 & size, ::draw2d::graphics * pdcSrc, const ::point_i32 & pointSrc,
                      ::draw2d::graphics * pdcAlpha, // alpha information device (in alpha channel)
                      const ::point_i32 & pointAlpha);
 
-   bool BitmapDivBlend(::draw2d::graphics * pdcDst, const ::point_i32 & point, const ::size_i32 & size, ::draw2d::graphics * pdcSrc, const ::point_i32 & pointSrc, byte bAlpha);
+   void BitmapDivBlend(::draw2d::graphics * pdcDst, const ::point_i32 & point, const ::size_i32 & size, ::draw2d::graphics * pdcSrc, const ::point_i32 & pointSrc, byte bAlpha);
 
    //bool bitmap_blend(::draw2d::graphics * pdcDst, const ::point_i32 & point, const ::size_i32 & size, ::draw2d::graphics * pdcSrc, const ::point_i32 & pointSrc, byte bAlpha);
 
@@ -270,7 +270,7 @@ public:
    i32 wSrc,
    byte bAlpha);
 
-   virtual bool ColorInvert(::draw2d::graphics * pgraphics, i32 x, i32 y, i32 cx, i32 cy);
+   virtual void ColorInvert(::draw2d::graphics * pgraphics, i32 x, i32 y, i32 cx, i32 cy);
 
 
    //inline void load_image(::image_pointer & pimage, ::memory_pointer pmemory)
@@ -328,10 +328,7 @@ public:
    void free_work_image(::image * pimage);
    
    
-   
-
-   
-   
 };
+
 
 

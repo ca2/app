@@ -44,7 +44,7 @@ namespace gpu
    {
 
 
-      return ::success;
+      //return ::success;
 
    }
 

@@ -17,8 +17,8 @@ namespace account
       string                                    m_strLogin;
       string                                    m_strUserId;
       
-      void                                      m_estatus;
-      void                                      m_estatusAuthentication;
+      ::e_status                                m_estatus;
+      ::e_status                                m_estatusAuthentication;
 
       ::datetime::time                          m_timeAuthenticationRequest;
       ::datetime::time                          m_timeAuthentication;

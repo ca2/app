@@ -30,6 +30,10 @@ namespace draw2d
    graphics::graphics()
    {
 
+
+      //m_estatus = success;
+      //m_estatusLast = success;
+
       m_bAlphaBlend = false;
       m_bBeginDraw = false;
       //m_puserstyle = nullptr;
@@ -55,10 +59,10 @@ namespace draw2d
    }
 
 
-   bool graphics::prefer_mapped_image_on_mix()
+   void graphics::prefer_mapped_image_on_mix()
    {
 
-      return false;
+      //return false;
 
    }
 
@@ -76,9 +80,12 @@ namespace draw2d
       return m_pdrawcontext;
    }
 
+
    bool graphics::is_set()
    {
+
       return get_os_data() != 0;
+
    }
 
 
@@ -113,17 +120,18 @@ namespace draw2d
    }
 
 
-   bool graphics::on_begin_draw()
+   void graphics::on_begin_draw()
    {
 
       set_alpha_mode(::draw2d::e_alpha_mode_set);
 
       set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+
       ::color::color color(0, 0, 0, 0);
 
       fill_rectangle(get_size(), color);
 
-      return true;
+      //return true;
 
    }
 
@@ -141,12 +149,12 @@ namespace draw2d
    //}
 
 
-   bool graphics::attach(void * pdata)
+   void graphics::attach(void * pdata)
    {
 
 
 
-      return false;
+      //return false;
 
    }
 
@@ -164,12 +172,12 @@ namespace draw2d
 #ifdef WINDOWS_DESKTOP
 
 
-   bool graphics::attach_hdc(hdc hdc)
+   void graphics::attach_hdc(hdc hdc)
    {
 
       throw interface_only_exception();
 
-      return false;
+      //return false;
 
    }
 
@@ -184,12 +192,12 @@ namespace draw2d
    }
 
 
-   bool graphics::AttachPrinter(hdc hdc)
+   void graphics::AttachPrinter(hdc hdc)
    {
 
       throw interface_only_exception();
 
-      return false;
+      //return false;
 
    }
 
@@ -238,7 +246,7 @@ namespace draw2d
    //}
 
 
-   //bool graphics::IsPrinting()
+   //void graphics::IsPrinting()
    //{
 
 
@@ -255,7 +263,7 @@ namespace draw2d
    }
 
 
-   bool graphics::create_device_context(const ::string & pszDriverName,  const ::string & pszDeviceName, const ::string & pszOutput, const void * pInitData)
+   void graphics::create_device_context(const ::string & pszDriverName,  const ::string & pszDeviceName, const ::string & pszOutput, const void * pInitData)
    {
 
       __UNREFERENCED_PARAMETER(pszDriverName);
@@ -266,12 +274,12 @@ namespace draw2d
 
       __UNREFERENCED_PARAMETER(pInitData);
 
-      return false;
+      //return false;
 
    }
 
 
-   bool graphics::create_information_context(const ::string & pszDriverName,  const ::string & pszDeviceName, const ::string & pszOutput, const void * pInitData)
+   void graphics::create_information_context(const ::string & pszDriverName,  const ::string & pszDeviceName, const ::string & pszOutput, const void * pInitData)
    {
 
       __UNREFERENCED_PARAMETER(pszDriverName);
@@ -282,45 +290,47 @@ namespace draw2d
 
       __UNREFERENCED_PARAMETER(pInitData);
 
-      return false;
+      //return false;
 
    }
 
 
-   bool graphics::create_memory_graphics()
+   void graphics::create_memory_graphics()
    {
 
-      if (!CreateCompatibleDC(nullptr))
-      {
+      CreateCompatibleDC(nullptr);
+      //if (!CreateCompatibleDC(nullptr))
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
-      return true;
+      //return true;
 
    }
 
 
-   bool graphics::CreateCompatibleDC(::draw2d::graphics * pgraphics)
+   void graphics::CreateCompatibleDC(::draw2d::graphics * pgraphics)
    {
 
       __UNREFERENCED_PARAMETER(pgraphics);
 
 
 
-      return false;
+      //return false;
 
    }
 
-   bool graphics::CreateWindowDC(oswindow wnd)
+
+   void graphics::CreateWindowDC(oswindow wnd)
    {
 
       __UNREFERENCED_PARAMETER(wnd);
 
 
 
-      return false;
+      //return false;
 
    }
 
@@ -350,7 +360,7 @@ namespace draw2d
    }
 
 
-   bool graphics::set_font(::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate)
+   void graphics::set_font(::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate)
    {
 
       auto pstyle = pinteraction->get_style(m_puserstyle);
@@ -362,17 +372,19 @@ namespace draw2d
    }
 
 
-   bool graphics::set_text_color(::color::color color)
+   void graphics::set_text_color(::color::color color)
    {
 
       auto pbrush = __create < ::draw2d::brush >();
 
-      if (!pbrush)
-      {
+      //if (!pbrush)
+      //{
 
-         return false;
+      //   //return false;
 
-      }
+
+
+      //}
 
       pbrush->create_solid(color);
 
@@ -424,13 +436,13 @@ namespace draw2d
       if (::is_null(pbitmap))
       {
 
-         return ::error_failed;
+         throw_status(error_invalid_argument);
 
       }
 
       m_pbitmap = pbitmap;
 
-      return ::error_failed;
+      //return ::error_failed;
 
    }
 
@@ -442,13 +454,11 @@ namespace draw2d
       if (::is_null(ppen))
       {
 
-         return ::error_failed;
+         throw_status(error_invalid_argument);
 
       }
 
       m_ppen = ppen;
-
-      return ::success;
 
    }
 
@@ -459,13 +469,11 @@ namespace draw2d
       if (::is_null(pbrush))
       {
 
-         return ::error_failed;
+         throw_status(error_invalid_argument);
 
       }
 
       m_pbrush = pbrush;
-
-      return ::success;
 
    }
 
@@ -476,13 +484,11 @@ namespace draw2d
       if (::is_null(pregion))
       {
 
-         return ::error_failed;
+         throw_status(error_invalid_argument);
 
       }
 
       m_pregion = pregion;
-
-      return ::success;
 
    }
 
@@ -648,18 +654,18 @@ namespace draw2d
    }
 
 
-   bool graphics::fill_region(::draw2d::region* pregion, ::draw2d::brush* pbrush)
+   void graphics::fill_region(::draw2d::region* pregion, ::draw2d::brush* pbrush)
    {
 
       __UNREFERENCED_PARAMETER(pregion);
       __UNREFERENCED_PARAMETER(pbrush);
 
-      return false;
+      //return false;
 
    }
 
 
-   bool graphics::frame_region(::draw2d::region * pregion, ::draw2d::brush * pbrush, double nWidth, double nHeight)
+   void graphics::frame_region(::draw2d::region * pregion, ::draw2d::brush * pbrush, double nWidth, double nHeight)
    {
 
       __UNREFERENCED_PARAMETER(pregion);
@@ -667,27 +673,27 @@ namespace draw2d
       __UNREFERENCED_PARAMETER(nWidth);
       __UNREFERENCED_PARAMETER(nHeight);
 
-      return false;
+      //return false;
 
    }
 
 
-   bool graphics::invert_region(::draw2d::region * pregion)
+   void graphics::invert_region(::draw2d::region * pregion)
    {
 
       __UNREFERENCED_PARAMETER(pregion);
 
-      return false;
+      //return false;
 
    }
 
 
-   bool graphics::paint_region(::draw2d::region * pregion)
+   void graphics::paint_region(::draw2d::region * pregion)
    {
 
       __UNREFERENCED_PARAMETER(pregion);
 
-      return false;
+      //return false;
 
    }
 
@@ -700,19 +706,19 @@ namespace draw2d
    }
 
 
-   bool graphics::move_to(double x, double y)
+   void graphics::move_to(double x, double y)
    {
 
       m_point.x = x;
 
       m_point.y = y;
 
-      return true;
+      //return true;
 
    }
 
 
-   bool graphics::line_to(double x, double y)
+   void graphics::line_to(double x, double y)
    {
 
       return draw_line(m_point.x, m_point.y, x, y);
@@ -720,7 +726,7 @@ namespace draw2d
    }
 
 
-   bool graphics::draw_line(double x1, double y1, double x2, double y2)
+   void graphics::draw_line(double x1, double y1, double x2, double y2)
    {
 
       return draw_line(x1, y1, x2, y2, m_ppen);
@@ -728,148 +734,153 @@ namespace draw2d
    }
 
 
-   bool graphics::draw_line(double x1, double y1, double x2, double y2, ::draw2d::pen * ppen)
+   void graphics::draw_line(double x1, double y1, double x2, double y2, ::draw2d::pen * ppen)
    {
 
       // return draw_line(point_f64(point1), point_f64(point2), ppen);
-      return false;
+      //return false;
 
    }
 
 
-   bool graphics::rectangle(const ::rectangle_f64 & rectangle)
+   void graphics::rectangle(const ::rectangle_f64 & rectangle)
    {
 
-      if (fill_rectangle(rectangle))
-      {
+      //if (fill_rectangle(rectangle))
 
-         if (draw_rectangle(rectangle))
-         {
+      fill_rectangle(rectangle);
+      //{
+      draw_rectangle(rectangle);
+         //if (draw_rectangle(rectangle))
+      //   {
 
-            return true;
+      //      return true;
 
-         }
+      //   }
 
-      }
+      //}
 
-      return false;
+      //return false;
 
    }
 
 
-   bool graphics::draw_rectangle(const ::rectangle_f64 & rectangle)
+   void graphics::draw_rectangle(const ::rectangle_f64 & rectangle)
    {
 
-      return draw_rectangle(::rectangle_f64(rectangle), m_ppen);
+      //return draw_rectangle(::rectangle_f64(rectangle), m_ppen);
+      draw_rectangle(::rectangle_f64(rectangle), m_ppen);
 
    }
 
 
-   bool graphics::draw_rectangle(const ::rectangle_f64 & rectangle, ::draw2d::pen * ppen)
+   void graphics::draw_rectangle(const ::rectangle_f64 & rectangle, ::draw2d::pen * ppen)
    {
       
       throw ::interface_only_exception();
 
-      return false;
+      //return false;
 
    }
 
 
-   bool graphics::fill_rectangle(const ::rectangle_f64 & rectangle)
+   void graphics::fill_rectangle(const ::rectangle_f64 & rectangle)
    {
 
-      auto bOk = fill_rectangle(rectangle, m_pbrush);
+      //auto bOk = fill_rectangle(rectangle, m_pbrush);
 
-      if (!bOk)
-      {
+      fill_rectangle(rectangle, m_pbrush);
 
-         return false;
+      //if (!bOk)
+      //{
 
-      }
+      //   return false;
 
-      return true;
+      //}
+
+      //return true;
 
    }
 
 
-   bool graphics::fill_rectangle(const ::rectangle_f64 & rectangle, ::draw2d::brush * pbrush)
+   void graphics::fill_rectangle(const ::rectangle_f64 & rectangle, ::draw2d::brush * pbrush)
    {
 
-      return false;
+      //return false;
 
    }
 
 
-   bool graphics::Arc(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4)
+   void graphics::Arc(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4)
    {
 
       double x = (x1 + x2) / 2.0;
 
       double y = (y1 + y2) / 2.0;
 
-      return Arc(x1, y1, x2 - x1, y2 - y1, atan2(x3 - x, y3 - y), atan2(x4 - x, y4 - y));
+      Arc(x1, y1, x2 - x1, y2 - y1, atan2(x3 - x, y3 - y), atan2(x4 - x, y4 - y));
 
    }
 
 
-   bool graphics::Arc(const ::rectangle_f64 & rectangle, const ::point_f64 & pointStart, const ::point_f64 & pointEnd)
+   void graphics::Arc(const ::rectangle_f64 & rectangle, const ::point_f64 & pointStart, const ::point_f64 & pointEnd)
    {
 
-      return Arc(rectangle.left, rectangle.top, rectangle.width(), rectangle.height(), pointStart.x, pointStart.y, pointEnd.x, pointEnd.y);
+      Arc(rectangle.left, rectangle.top, rectangle.width(), rectangle.height(), pointStart.x, pointStart.y, pointEnd.x, pointEnd.y);
 
    }
 
 
-   bool graphics::Arc(double x, double y, double w, double h, angle start, angle extends)
+   void graphics::Arc(double x, double y, double w, double h, angle start, angle extends)
    {
 
-      return Arc(rectangle_f64_dimension(x, y, w, h), start, extends);
+      Arc(rectangle_f64_dimension(x, y, w, h), start, extends);
 
    }
 
 
-   bool graphics::Arc(const ::rectangle_f64 & rectangle, angle start, angle extends)
+   void graphics::Arc(const ::rectangle_f64 & rectangle, angle start, angle extends)
    {
 
-      return Arc(rectangle.left, rectangle.top, rectangle.width(), rectangle.height(), start, extends);
+      Arc(rectangle.left, rectangle.top, rectangle.width(), rectangle.height(), start, extends);
 
    }
 
 
-   bool graphics::polyline(const ::point_f64 * ppoints, count nCount)
+   void graphics::polyline(const ::point_f64 * ppoints, count nCount)
    {
 
       __UNREFERENCED_PARAMETER(ppoints);
 
       __UNREFERENCED_PARAMETER(nCount);
 
-      return false;
+      //return false;
 
    }
 
 
-   bool graphics::frame_rectangle(const ::rectangle_f64 & rectangle, ::draw2d::brush * pbrush)
+   void graphics::frame_rectangle(const ::rectangle_f64 & rectangle, ::draw2d::brush * pbrush)
    {
 
       __UNREFERENCED_PARAMETER(rectangle);
       __UNREFERENCED_PARAMETER(pbrush);
 
-      return false;
+      //return false;
 
    }
 
 
-   bool graphics::invert_rectangle(const ::rectangle_f64 & rectangle)
+   void graphics::invert_rectangle(const ::rectangle_f64 & rectangle)
    {
 
       __UNREFERENCED_PARAMETER(rectangle);
 
-      return false;
+      //return false;
 
    }
 
 
-   bool graphics::Chord(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4)
+   void graphics::Chord(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4)
    {
 
       __UNREFERENCED_PARAMETER(x1);
@@ -881,19 +892,19 @@ namespace draw2d
       __UNREFERENCED_PARAMETER(x4);
       __UNREFERENCED_PARAMETER(y4);
 
-      return false;
+      //return false;
 
    }
 
 
-   bool graphics::Chord(const ::rectangle_f64 & rectangle, const ::point_f64 & pointStart, const ::point_f64 & pointEnd)
+   void graphics::Chord(const ::rectangle_f64 & rectangle, const ::point_f64 & pointStart, const ::point_f64 & pointEnd)
    {
 
       __UNREFERENCED_PARAMETER(rectangle);
       __UNREFERENCED_PARAMETER(pointStart);
       __UNREFERENCED_PARAMETER(pointEnd);
 
-      return false;
+      //return false;
 
    }
 
@@ -906,47 +917,47 @@ namespace draw2d
    }
 
 
-   bool graphics::ellipse(const ::rectangle_f64 & rectangle)
+   void graphics::ellipse(const ::rectangle_f64 & rectangle)
    {
 
       auto ealphamode = m_ealphamode;
 
       set_alpha_mode(e_alpha_mode_blend);
 
-      bool bFill = fill_ellipse(rectangle);
+      fill_ellipse(rectangle);
 
-      bool bDraw = draw_ellipse(rectangle);
+      draw_ellipse(rectangle);
 
       set_alpha_mode(ealphamode);
 
-      return bFill && bDraw;
+      //return bFill && bDraw;
 
    }
 
 
-   bool graphics::ellipse(double x1, double y1, double x2, double y2)
+   void graphics::ellipse(double x1, double y1, double x2, double y2)
    {
 
-      bool bFill = fill_ellipse(x1, y1, x2, y2);
+      fill_ellipse(x1, y1, x2, y2);
 
-      bool bDraw = draw_ellipse(x1, y1, x2, y2);
+      draw_ellipse(x1, y1, x2, y2);
 
-      return bFill && bDraw;
+      //return bFill && bDraw;
 
    }
 
 
-   bool graphics::draw_ellipse(double x1, double y1, double x2, double y2)
+   void graphics::draw_ellipse(double x1, double y1, double x2, double y2)
    {
 
       ::rectangle_f64 rectangle(x1, y1, x2, y2);
 
-      return draw_ellipse(rectangle);
+      draw_ellipse(rectangle);
 
    }
 
 
-   bool graphics::draw_ellipse(const ::rectangle_f64 & rectangle)
+   void graphics::draw_ellipse(const ::rectangle_f64 & rectangle)
    {
 
       return draw_ellipse(rectangle.left, rectangle.top, rectangle.right, rectangle.bottom);
@@ -954,27 +965,27 @@ namespace draw2d
    }
 
 
-   bool graphics::fill_ellipse(double x1, double y1, double x2, double y2)
+   void graphics::fill_ellipse(double x1, double y1, double x2, double y2)
    {
 
       ::rectangle_f64 rectangle(x1, y1, x2, y2);
 
-      return fill_ellipse(rectangle);
+      fill_ellipse(rectangle);
 
    }
 
 
-   bool graphics::fill_ellipse(const ::rectangle_f64 & rectangle)
+   void graphics::fill_ellipse(const ::rectangle_f64 & rectangle)
    {
 
       __UNREFERENCED_PARAMETER(rectangle);
 
-      return false;
+      //return false;
 
    }
 
 
-   bool graphics::Pie(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4)
+   void graphics::Pie(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4)
    {
 
       __UNREFERENCED_PARAMETER(x1);
@@ -986,81 +997,82 @@ namespace draw2d
       __UNREFERENCED_PARAMETER(x4);
       __UNREFERENCED_PARAMETER(y4);
 
-      return false;
+      //return false;
 
    }
 
 
-   bool graphics::Pie(const ::rectangle_f64 & rectangle, const ::point_f64 & pointStart, const ::point_f64 & pointEnd)
+   void graphics::Pie(const ::rectangle_f64 & rectangle, const ::point_f64 & pointStart, const ::point_f64 & pointEnd)
    {
 
       __UNREFERENCED_PARAMETER(rectangle);
       __UNREFERENCED_PARAMETER(pointStart);
       __UNREFERENCED_PARAMETER(pointEnd);
 
-      return false;
+      //return false;
 
    }
 
 
-   bool graphics::fill_polygon(const POINT_F64 * ppoints, count nCount)
+   void graphics::fill_polygon(const POINT_F64 * ppoints, count nCount)
    {
       
       throw ::interface_only_exception();
 
-      return false;
+      //return false;
 
    }
 
 
-   bool graphics::draw_polygon(const POINT_F64 * ppoints, count nCount)
+   void graphics::draw_polygon(const POINT_F64 * ppoints, count nCount)
    {
       
       throw ::interface_only_exception();
 
-      return false;
+      //return false;
 
    }
 
 
-   bool graphics::polygon(const POINT_F64 * ppoints, count nCount)
+   void graphics::polygon(const POINT_F64 * ppoints, count nCount)
    {
 
-      bool bOk1 = fill_polygon(ppoints, nCount);
+      fill_polygon(ppoints, nCount);
 
-      bool bOk2 = draw_polygon(ppoints, nCount);
+      draw_polygon(ppoints, nCount);
 
-      return bOk1 && bOk2;
+      //return bOk1 && bOk2;
 
    }
 
 
-   bool graphics::poly_polygon(const POINT_F64 * ppoints, const i32 * pPolyCounts, count nCount)
+   void graphics::poly_polygon(const POINT_F64 * ppoints, const i32 * pPolyCounts, count nCount)
    {
 
-      bool bOk1 = fill_poly_polygon(ppoints, pPolyCounts, nCount);
+      fill_poly_polygon(ppoints, pPolyCounts, nCount);
 
-      bool bOk2 = draw_poly_polygon(ppoints, pPolyCounts, nCount);
+      draw_poly_polygon(ppoints, pPolyCounts, nCount);
 
-      return bOk1 && bOk2;
+      //return bOk1 && bOk2;
 
    }
 
 
-   bool graphics::draw_poly_polygon(const POINT_F64 * ppoints, const i32 * pPolyCounts, count nCount)
+   void graphics::draw_poly_polygon(const POINT_F64 * ppoints, const i32 * pPolyCounts, count nCount)
    {
 
-      bool bOk = true;
+      //bool bOk = true;
 
       for (int i = 0; i < nCount; i++)
       {
 
-         if (!draw_polygon(ppoints, *pPolyCounts))
-         {
+         //if (!draw_polygon(ppoints, *pPolyCounts))
+         draw_polygon(ppoints, *pPolyCounts);
+         //{
 
-            bOk = false;
+         //   bOk = false;
 
-         }
+         //}
 
          ppoints += *pPolyCounts;
 
@@ -1068,25 +1080,26 @@ namespace draw2d
 
       }
 
-      return bOk;
+      // return bOk;
 
    }
 
 
-   bool graphics::fill_poly_polygon(const POINT_F64 * ppoints, const i32 * pPolyCounts, count nCount)
+   void graphics::fill_poly_polygon(const POINT_F64 * ppoints, const i32 * pPolyCounts, count nCount)
    {
 
-      bool bOk = true;
+      //bool bOk = true;
 
       for (int i = 0; i < nCount; i++)
       {
 
-         if (!fill_polygon(ppoints, *pPolyCounts))
-         {
+         //if (!fill_polygon(ppoints, *pPolyCounts))
+         fill_polygon(ppoints, *pPolyCounts);
+         //{
 
-            bOk = false;
+         //   bOk = false;
 
-         }
+         //}
 
          ppoints += *pPolyCounts;
 
@@ -1094,121 +1107,130 @@ namespace draw2d
 
       }
 
-      return bOk;
+      //return bOk;
 
    }
 
 
-   bool graphics::_draw_blend(const ::image_drawing & imagedrawing)
+   bool graphics::has_blender() const
    {
 
-      if (!m_bAlphaBlend)
+      return m_bAlphaBlend;
+
+   }
+
+
+   void graphics::_draw_blend(const ::image_drawing & imagedrawing)
+   {
+
+      if (!has_blender())
       {
 
-         if (m_pimageAlphaBlend->is_ok())
+         throw_status(error_invalid_argument);
+
+      }
+
+      if (m_pimageAlphaBlend->is_ok())
+      {
+
+         ::rectangle_f64 rectangleIntersect(m_pointAlphaBlend, m_pimageAlphaBlend->size());
+
+         if (rectangleIntersect.intersect(rectangleIntersect, imagedrawing.m_rectangleTarget))
          {
 
-            ::rectangle_f64 rectangleIntersect(m_pointAlphaBlend, m_pimageAlphaBlend->size());
+            auto rectangleSource = imagedrawing.source_rectangle();
 
-            if (rectangleIntersect.intersect(rectangleIntersect, imagedrawing.m_rectangleTarget))
+            auto & rectangleTarget = imagedrawing.m_rectangleTarget;
+
+            ::point_i32 pointSrc(rectangleSource.top_left());
+
+            ::point_i32 pointDst(imagedrawing.m_rectangleTarget.top_left());
+
+            ::size_i32 size(imagedrawing.m_rectangleTarget.size());
+
+            ::image_pointer pimage1 = m_pcontext->context_image()->create_image(size);
+
+            //if (!pimage1)
+            //{
+
+            //   return false;
+
+            //}
+
             {
 
-               auto rectangleSource = imagedrawing.source_rectangle();
+               image_source imagesource(imagedrawing.m_pimagesource, { pointSrc, size });
 
-               auto & rectangleTarget = imagedrawing.m_rectangleTarget;
+               rectangle_f64 rectangle(size);
 
-               ::point_i32 pointSrc(rectangleSource.top_left());
+               image_drawing_options imagedrawingoptions(rectangle);
 
-               ::point_i32 pointDst(imagedrawing.m_rectangleTarget.top_left());
+               image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-               ::size_i32 size(imagedrawing.m_rectangleTarget.size());
+               //if (!pimage1->draw(imagedrawing))
+                  pimage1->draw(imagedrawing);
+               //{
 
-               ::image_pointer pimage1 = m_pcontext->context_image()->create_image(size);
+               //   return false;
 
-               if (!pimage1)
-               {
-
-                  return false;
-
-               }
-
-               {
-
-                  image_source imagesource(imagedrawing.m_pimagesource, { pointSrc, size });
-
-                  rectangle_f64 rectangle(size);
-
-                  image_drawing_options imagedrawingoptions(rectangle);
-
-                  image_drawing imagedrawing(imagedrawingoptions, imagesource);
-
-                  if (!pimage1->draw(imagedrawing))
-                  {
-
-                     return false;
-
-                  }
-
-               }
-
-               ::image_pointer pimage2 = m_pcontext->context_image()->create_image(size);
-
-               if (!pimage2)
-               {
-
-                  return false;
-
-               }
-
-               pimage2->fill(255, 0, 0, 0);
-
-               {
-
-                  image_source imagesource(m_pimageAlphaBlend,
-                     { ::point_f64(maximum(0, rectangleTarget.left - m_pointAlphaBlend.x), maximum(0, rectangleTarget.top - m_pointAlphaBlend.y)), size });
-
-                  rectangle_f64 rectangle(point_f64(maximum(0, m_pointAlphaBlend.x - rectangleTarget.left), maximum(0, m_pointAlphaBlend.y - rectangleTarget.top)), size);
-
-                  image_drawing_options imagedrawingoptions(rectangle);
-
-                  image_drawing imagedrawing(imagedrawingoptions, imagesource);
-
-                  pimage2->g()->draw(imagedrawing);
-
-               }
-
-               pimage1->channel_multiply(::color::e_channel_alpha, pimage2);
-
-               {
-
-                  image_source imagesource(pimage1, ::rectangle_f64(pointSrc, size));
-
-                  rectangle_f64 rectangle(pointDst, size);
-
-                  image_drawing_options imagedrawingoptions(rectangle);
-
-                  image_drawing imagedrawing(imagedrawingoptions, imagesource);
-
-                  __keep(m_bAlphaBlend);
-
-                  draw(imagedrawing);
-
-               }
-
-               return true;
+               //}
 
             }
 
+            ::image_pointer pimage2 = m_pcontext->context_image()->create_image(size);
+
+            //if (!pimage2)
+            //{
+
+            //   return false;
+
+            //}
+
+            pimage2->fill(255, 0, 0, 0);
+
+            {
+
+               image_source imagesource(m_pimageAlphaBlend,
+                  { ::point_f64(maximum(0, rectangleTarget.left - m_pointAlphaBlend.x), maximum(0, rectangleTarget.top - m_pointAlphaBlend.y)), size });
+
+               rectangle_f64 rectangle(point_f64(maximum(0, m_pointAlphaBlend.x - rectangleTarget.left), maximum(0, m_pointAlphaBlend.y - rectangleTarget.top)), size);
+
+               image_drawing_options imagedrawingoptions(rectangle);
+
+               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+               pimage2->g()->draw(imagedrawing);
+
+            }
+
+            pimage1->channel_multiply(::color::e_channel_alpha, pimage2);
+
+            {
+
+               image_source imagesource(pimage1, ::rectangle_f64(pointSrc, size));
+
+               rectangle_f64 rectangle(pointDst, size);
+
+               image_drawing_options imagedrawingoptions(rectangle);
+
+               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+               __keep(m_bAlphaBlend);
+
+               draw(imagedrawing);
+
+            }
+
+            //return true;
+
          }
 
       }
 
-      return false;
-
    }
 
 
-   //bool graphics::draw(const ::point_f64 & point, cursor * pcursor)
+   //void graphics::draw(const ::point_f64 & point, cursor * pcursor)
    //{
    //
    //   set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -1222,7 +1244,7 @@ namespace draw2d
    //}
 
 
-   //bool graphics::draw_at(const ::point_f64 & pointDst, ::image * pimage)
+   //void graphics::draw_at(const ::point_f64 & pointDst, ::image * pimage)
    //{
 
    //   return draw(::rectangle_f64(pointDst, pimage->get_size()), pimage->g());
@@ -1230,7 +1252,7 @@ namespace draw2d
    //}
 
 
-   //bool graphics::draw_at(const ::point_f64 & pointDst, ::image_frame * pframe)
+   //void graphics::draw_at(const ::point_f64 & pointDst, ::image_frame * pframe)
    //{
 
    //   return draw_at(pointDst, pframe->m_pimage);
@@ -1238,7 +1260,7 @@ namespace draw2d
    //}
 
 
-   //bool graphics::draw_at(const ::point_f64 & pointDst, ::draw2d::graphics * pgraphics)
+   //void graphics::draw_at(const ::point_f64 & pointDst, ::draw2d::graphics * pgraphics)
    //{
 
    //   return draw_at(pointDst, pgraphics->m_pimage);
@@ -1246,7 +1268,7 @@ namespace draw2d
    //}
 
 
-   //bool graphics::draw(::image * pimage, const ::point_f64 & pointSrc)
+   //void graphics::draw(::image * pimage, const ::point_f64 & pointSrc)
    //{
 
    //   return draw(pimage->get_size() - pointSrc, pimage, pointSrc);
@@ -1254,7 +1276,7 @@ namespace draw2d
    //}
 
 
-   //bool graphics::draw(::image_frame * pframe, const ::point_f64 & pointSrc)
+   //void graphics::draw(::image_frame * pframe, const ::point_f64 & pointSrc)
    //{
 
    //   return draw(pframe->m_pimage, pointSrc);
@@ -1262,7 +1284,7 @@ namespace draw2d
    //}
 
 
-   //bool graphics::draw(::draw2d::graphics * pgraphicsSrc, const ::point_f64 & pointSrc)
+   //void graphics::draw(::draw2d::graphics * pgraphicsSrc, const ::point_f64 & pointSrc)
    //{
 
    //   return draw(pgraphicsSrc->m_pimage, pointSrc);
@@ -1270,7 +1292,7 @@ namespace draw2d
    //}
 
    
-   //bool graphics::draw(const ::rectangle_f64 & rectangleTarget, ::image * pimage, const ::point_f64 & pointSrc)
+   //void graphics::draw(const ::rectangle_f64 & rectangleTarget, ::image * pimage, const ::point_f64 & pointSrc)
    //{
 
    //   return draw(rectangleTarget, pimage->g(), pointSrc);
@@ -1278,7 +1300,7 @@ namespace draw2d
    //}
 
 
-   //bool graphics::draw(const ::rectangle_f64 & rectangleTarget, ::image_frame * pframe, const ::point_f64 & pointSrc)
+   //void graphics::draw(const ::rectangle_f64 & rectangleTarget, ::image_frame * pframe, const ::point_f64 & pointSrc)
    //{
 
    //   return draw(rectangleTarget, pframe->m_pimage, pointSrc);
@@ -1288,7 +1310,7 @@ namespace draw2d
 
 
 
-   //bool graphics::stretch_raw(const ::rectangle_f64 & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectangleSource)
+   //void graphics::stretch_raw(const ::rectangle_f64 & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectangleSource)
    //{
 
    //   return false;
@@ -1296,7 +1318,7 @@ namespace draw2d
    //}
 
 
-   //bool graphics::stretch_blend(const ::rectangle_f64 & rectangleDstParam, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectangleSrcParam)
+   //void graphics::stretch_blend(const ::rectangle_f64 & rectangleDstParam, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectangleSrcParam)
    //{
 
    //   //::rectangle_f64 rectangleTarget(rectangleDstParam);
@@ -1385,7 +1407,7 @@ namespace draw2d
    //}
 
 
-   //bool graphics::draw_image(const ::rectangle_f64 & rectangleTarget, ::draw2d::graphics * pgraphicsSrc)
+   //void graphics::draw_image(const ::rectangle_f64 & rectangleTarget, ::draw2d::graphics * pgraphicsSrc)
    //{
 
    //   if(pgraphicsSrc == nullptr)
@@ -1411,7 +1433,7 @@ namespace draw2d
    //}
 
 
-   //bool graphics::stretch(const ::rectangle_f64 & rectangleTarget, ::image * pimage, const ::rectangle_f64 & rectangleSource)
+   //void graphics::stretch(const ::rectangle_f64 & rectangleTarget, ::image * pimage, const ::rectangle_f64 & rectangleSource)
    //{
 
    //   return stretch(rectangleTarget, pimage->g(), rectangleSource.is_null() ? ::rectangle_f64(pimage->rectangle()) : rectangleSource);
@@ -1419,7 +1441,7 @@ namespace draw2d
    //}
 
 
-   //bool graphics::stretch(const ::rectangle_f64 & rectangleTarget, ::image_frame * pframe, const ::rectangle_f64 & rectangleSource)
+   //void graphics::stretch(const ::rectangle_f64 & rectangleTarget, ::image_frame * pframe, const ::rectangle_f64 & rectangleSource)
    //{
 
    //   return stretch(rectangleTarget, pframe->m_pimage, rectangleSource);
@@ -1427,7 +1449,7 @@ namespace draw2d
    //}
 
 
-   //bool graphics::stretch(const ::rectangle_f64 & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectangleSource)
+   //void graphics::stretch(const ::rectangle_f64 & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectangleSource)
    //{
 
    //   if (stretch_blend(rectangleTarget, pgraphicsSrc, rectangleSource))
@@ -1504,7 +1526,7 @@ namespace draw2d
    }
 
 
-   //bool graphics::text_out(double x, double y, const ::string & pszString, strsize nCount)
+   //void graphics::text_out(double x, double y, const ::string & pszString, strsize nCount)
    //{
 
    //   return text_out(x, y, string(pszString, nCount));
@@ -1513,7 +1535,7 @@ namespace draw2d
    //}
 
 
-   //bool graphics::text_out(double x, double y, const ::string & str)
+   //void graphics::text_out(double x, double y, const ::string & str)
    //{
 
    //   return text_out((double) x, (double) y, str);
@@ -1521,7 +1543,7 @@ namespace draw2d
    //}
 
 
-   //bool graphics::text_out(double x, double y, const ::string & pszString, strsize nCount)
+   //void graphics::text_out(double x, double y, const ::string & pszString, strsize nCount)
    //{
 
    //   return text_out(x, y, string(pszString, nCount));
@@ -1529,29 +1551,25 @@ namespace draw2d
    //}
 
 
-   bool graphics::text_out(double x, double y, const block & block)
+   void graphics::text_out(double x, double y, const block & block)
    {
 
       if (m_pimageAlphaBlend)
       {
 
-         if (TextOutAlphaBlend(x, y, block))
-         {
+         //if (TextOutAlphaBlend(x, y, block))
+         TextOutAlphaBlend(x, y, block);
+         //{
 
-            return true;
+         //   return true;
 
-         }
+         //}
 
-      }
-
-      if (TextOutRaw(x, y, block))
-      {
-
-         return true;
+         return;
 
       }
 
-      return false;
+      TextOutRaw(x, y, block);
 
    }
 
@@ -1559,18 +1577,18 @@ namespace draw2d
    void graphics::TextOutRaw(double x, double y, const block & str)
    {
 
-      return false;
+      //return false;
 
    }
 
 
-   bool graphics::TextOutAlphaBlend(double x, double y, const block & block)
+   void graphics::TextOutAlphaBlend(double x, double y, const block & block)
    {
 
       if (block.get_size() <= 0)
       {
 
-         return false;
+         throw_status(error_failed);
 
       }
 
@@ -1632,16 +1650,16 @@ namespace draw2d
 
          }
 
-         return true;
+         //return true;
 
       }
 
-      return false;
+      //return false;
 
    }
 
 
-   //bool graphics::ExtTextOut(double x, double y, ::u32 nOptions, const ::rectangle_f64 & rectangle, const ::string & pszString, strsize nCount, i32 * pDxWidths)
+   //void graphics::ExtTextOut(double x, double y, ::u32 nOptions, const ::rectangle_f64 & rectangle, const ::string & pszString, strsize nCount, i32 * pDxWidths)
    //{
 
    //   __UNREFERENCED_PARAMETER(x);
@@ -1657,7 +1675,7 @@ namespace draw2d
    //}
 
 
-   //bool graphics::ExtTextOut(double x, double y, ::u32 nOptions, const ::rectangle_f64 & rectangle, const ::string & str, i32 * pDxWidths)
+   //void graphics::ExtTextOut(double x, double y, ::u32 nOptions, const ::rectangle_f64 & rectangle, const ::string & str, i32 * pDxWidths)
    //{
 
    //   __UNREFERENCED_PARAMETER(x);
@@ -1787,17 +1805,17 @@ namespace draw2d
 
       __UNREFERENCED_PARAMETER(pMetrics);
 
-      return false;
+      //return false;
 
    }
 
 
-   bool graphics::get_output_text_metrics(::write_text::text_metric * pMetrics)
+   void graphics::get_output_text_metrics(::write_text::text_metric * pMetrics)
    {
 
       __UNREFERENCED_PARAMETER(pMetrics);
 
-      return false;
+      //return false;
 
    }
 
@@ -1828,7 +1846,7 @@ namespace draw2d
 //#if !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID) && !defined(SOLARIS)
 //
 //
-//   bool graphics::ResetDC(const DEVMODE* pDevMode)
+//   void graphics::ResetDC(const DEVMODE* pDevMode)
 //   {
 //
 //      __UNREFERENCED_PARAMETER(pDevMode);
@@ -1890,30 +1908,30 @@ namespace draw2d
    }
 
 
-   bool graphics::SetPixelV(double x, double y, const ::color::color& color)
+   void graphics::SetPixelV(double x, double y, const ::color::color& color)
    {
 
       __UNREFERENCED_PARAMETER(x);
       __UNREFERENCED_PARAMETER(y);
       __UNREFERENCED_PARAMETER(color);
 
-      return false;
+      //return false;
 
    }
 
 
-   bool graphics::SetPixelV(const ::point_f64 & point, const ::color::color& color)
+   void graphics::SetPixelV(const ::point_f64 & point, const ::color::color& color)
    {
 
       __UNREFERENCED_PARAMETER(point);
       __UNREFERENCED_PARAMETER(color);
 
-      return false;
+      //return false;
 
    }
 
 
-   bool graphics::AngleArc(double x, double y, double nRadius, angle fStartAngle, angle fSweepAngle)
+   void graphics::AngleArc(double x, double y, double nRadius, angle fStartAngle, angle fSweepAngle)
    {
 
       __UNREFERENCED_PARAMETER(x);
@@ -1922,19 +1940,19 @@ namespace draw2d
       __UNREFERENCED_PARAMETER(fStartAngle);
       __UNREFERENCED_PARAMETER(fSweepAngle);
 
-      return false;
+      //return false;
 
    }
 
 
-   bool graphics::ArcTo(const ::rectangle_f64 & rectangle, const ::point_f64 & pointStart, const ::point_f64 & pointEnd)
+   void graphics::ArcTo(const ::rectangle_f64 & rectangle, const ::point_f64 & pointStart, const ::point_f64 & pointEnd)
    {
 
       __UNREFERENCED_PARAMETER(rectangle);
       __UNREFERENCED_PARAMETER(pointStart);
       __UNREFERENCED_PARAMETER(pointEnd);
 
-      return false;
+      //return false;
 
    }
 
@@ -1947,7 +1965,7 @@ namespace draw2d
    //}
 
 
-   bool graphics::poly_polyline(const ::point_f64 * ppoints, const ::i32 * pPolyPoints, count nCount)
+   void graphics::poly_polyline(const ::point_f64 * ppoints, const ::i32 * pPolyPoints, count nCount)
    {
 
       __UNREFERENCED_PARAMETER(ppoints);
@@ -1957,14 +1975,14 @@ namespace draw2d
       __UNREFERENCED_PARAMETER(nCount);
 
 
-      return false;
+      //return false;
 
    }
 
 
 //#ifdef WINDOWS_DESKTOP
 //
-//   bool graphics::GetColorAdjustment(LPCOLORADJUSTMENT pColorAdjust)
+//   void graphics::GetColorAdjustment(LPCOLORADJUSTMENT pColorAdjust)
 //
 //   {
 //      __UNREFERENCED_PARAMETER(pColorAdjust);
@@ -2008,61 +2026,61 @@ namespace draw2d
    }
 
 
-   bool graphics::poly_bezier(const ::point_f64 * ppoints, count nCount)
+   void graphics::poly_bezier(const ::point_f64 * ppoints, count nCount)
    {
 
       __UNREFERENCED_PARAMETER(ppoints);
       __UNREFERENCED_PARAMETER(nCount);
 
-      return false;
+      //return false;
 
    }
 
 
-   bool graphics::abort_path()
+   void graphics::abort_path()
    {
 
-      return false;
+      //return false;
 
    }
 
 
-   bool graphics::begin_path()
+   void graphics::begin_path()
    {
 
-      return false;
+      //return false;
 
    }
 
 
-   bool graphics::close_figure()
+   void graphics::close_figure()
    {
 
-      return false;
+      //return false;
 
    }
 
 
-   bool graphics::end_path()
+   void graphics::end_path()
    {
 
-      return false;
+      //return false;
 
    }
 
 
-   bool graphics::fill_path()
+   void graphics::fill_path()
    {
 
-      return false;
+      //return false;
 
    }
 
 
-   bool graphics::flatten_path()
+   void graphics::flatten_path()
    {
 
-      return false;
+      //return false;
 
    }
 
@@ -2087,91 +2105,93 @@ namespace draw2d
 //   }
 
 
-   bool graphics::SetMiterLimit(float fMiterLimit)
+   void graphics::SetMiterLimit(float fMiterLimit)
    {
 
       __UNREFERENCED_PARAMETER(fMiterLimit);
 
-      return false;
+      //return false;
 
    }
 
 
-   bool graphics::stroke_and_fill_path()
+   void graphics::stroke_and_fill_path()
    {
 
-      return false;
+      //return false;
 
    }
 
 
-   bool graphics::stroke_path()
+   void graphics::stroke_path()
    {
 
-      return false;
+      //return false;
 
    }
 
 
-   bool graphics::widen_path()
+   void graphics::widen_path()
    {
 
-      return false;
+      //return false;
 
    }
 
 
-   bool graphics::draw_path(::draw2d::path * ppath)
+   void graphics::draw_path(::draw2d::path * ppath)
    {
 
-      return false;
+      //return false;
 
    }
 
 
-   bool graphics::draw_path(::draw2d::path * ppath, ::draw2d::pen * ppen)
+   void graphics::draw_path(::draw2d::path * ppath, ::draw2d::pen * ppen)
    {
 
-      return false;
+      //return false;
 
    }
 
 
-   bool graphics::fill_path(::draw2d::path * ppath)
+   void graphics::fill_path(::draw2d::path * ppath)
    {
 
-      return false;
+      //return false;
 
    }
 
 
-   bool graphics::fill_path(::draw2d::path * ppath, ::draw2d::brush * pbrush)
+   void graphics::fill_path(::draw2d::path * ppath, ::draw2d::brush * pbrush)
    {
 
-      return false;
+      //return false;
 
    }
 
 
-   bool graphics::path(::draw2d::path * ppath)
+   void graphics::path(::draw2d::path * ppath)
    {
 
-      bool bOk1 = fill_path(ppath);
+      //bool bOk1 = 
+      fill_path(ppath);
 
-      bool bOk2 = draw_path(ppath);
+      //bool bOk2 = 
+      draw_path(ppath);
 
-      return bOk1 && bOk2;
+      //return bOk1 && bOk2;
 
    }
 
 
-   bool graphics::AddMetaFileComment(::u32 nDataSize, const byte* pCommentData)
+   void graphics::AddMetaFileComment(::u32 nDataSize, const byte* pCommentData)
    {
 
       __UNREFERENCED_PARAMETER(nDataSize);
       __UNREFERENCED_PARAMETER(pCommentData);
 
-      return false;
+      //return false;
 
    }
 
@@ -2179,7 +2199,7 @@ namespace draw2d
 //#ifdef WINDOWS
 //
 //
-//   bool graphics::PlayMetaFile(HENHMETAFILE henhmetafile, const rectangle_f64 & rectangleBounds)
+//   void graphics::PlayMetaFile(HENHMETAFILE henhmetafile, const rectangle_f64 & rectangleBounds)
 //   {
 //
 //      __UNREFERENCED_PARAMETER(henhmetafile);
@@ -2241,53 +2261,55 @@ namespace draw2d
    }
 
 
-   bool graphics::fill_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color)
+   void graphics::fill_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color)
    {
 
       auto pbrushSolidColor = __create < ::draw2d::brush > ();
 
       pbrushSolidColor->create_solid(color);
 
-      if (!fill_rectangle(rectangle, pbrushSolidColor))
-      {
+      //if (!fill_rectangle(rectangle, pbrushSolidColor))
+      fill_rectangle(rectangle, pbrushSolidColor);
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
-      return true;
+      //return true;
 
    }
 
 
-   bool graphics::fill_inset_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color)
+   void graphics::fill_inset_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color)
    {
 
       auto pbrushSolidColor = __create < ::draw2d::brush > ();
 
       pbrushSolidColor->create_solid(color);
 
-      if (!fill_rectangle(
+      //if (!
+      fill_rectangle(
          {
             rectangle.left + 1,
             rectangle.top + 1,
             rectangle.right - 1,
             rectangle.bottom - 1
          },
-         pbrushSolidColor))
+         pbrushSolidColor);/*)
       {
 
          return false;
 
       }
 
-      return true;
+      return true;*/
 
    }
 
 
    
-   bool graphics::fill_solid_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color)
+   void graphics::fill_solid_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color)
    {
 
       auto pbrushSolidColor = __create < ::draw2d::brush > ();
@@ -2303,12 +2325,13 @@ namespace draw2d
 
       }
 
-      if (!fill_rectangle(rectangle, pbrushSolidColor))
-      {
+      //if (!fill_rectangle(rectangle, pbrushSolidColor))
+      fill_rectangle(rectangle, pbrushSolidColor);
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
       if (smooth_mode != smooth_mode_none)
       {
@@ -2317,12 +2340,12 @@ namespace draw2d
 
       }
 
-      return true;
+      //return true;
 
    }
 
 
-   bool graphics::color_blend_3dRect(const rectangle_i32& rectangleParam, const ::color::color& colorTopLeft, const ::opacity& opacityTopLeft, const ::color::color & colorBottomRight, const ::opacity& opacityBottomRight)
+   void graphics::color_blend_3dRect(const rectangle_i32& rectangleParam, const ::color::color& colorTopLeft, const ::opacity& opacityTopLeft, const ::color::color & colorBottomRight, const ::opacity& opacityBottomRight)
    {
 
       ::rectangle_i32 rectangle(rectangleParam);
@@ -2332,20 +2355,24 @@ namespace draw2d
       i32 cx = rectangle.width();
       i32 cy = rectangle.height();
 
-      auto estatus1 = fill_rectangle({ point_i32(x, y), size_i32(cx - 1, 1) }, colorTopLeft & opacityTopLeft);
+      //auto estatus1 = 
+      fill_rectangle({ point_i32(x, y), size_i32(cx - 1, 1) }, colorTopLeft & opacityTopLeft);
 
-      auto estatus2 = fill_rectangle({ point_i32(x, y), size_i32(1, cy - 1) }, colorTopLeft & opacityTopLeft);
+      //auto estatus2 = 
+      fill_rectangle({ point_i32(x, y), size_i32(1, cy - 1) }, colorTopLeft & opacityTopLeft);
 
-      auto estatus3 = fill_rectangle({ point_i32(x + cx - 1, y + 1), size_i32(1, cy - 1) }, colorBottomRight & opacityBottomRight);
+      //auto estatus3 = 
+      fill_rectangle({ point_i32(x + cx - 1, y + 1), size_i32(1, cy - 1) }, colorBottomRight & opacityBottomRight);
 
-      auto estatus4 = fill_rectangle({ point_i32(x + 1, y + cy - 1), size_i32(cx - 1, 1) }, colorBottomRight & opacityBottomRight);
+      //auto estatus4 =
+      fill_rectangle({ point_i32(x + 1, y + cy - 1), size_i32(cx - 1, 1) }, colorBottomRight & opacityBottomRight);
 
-      return estatus1 && estatus2 && estatus3 && estatus4 ;
+      //return estatus1 && estatus2 && estatus3 && estatus4 ;
 
    }
 
 
-//   bool graphics::color_blend(const ::rectangle_i32 & rectangle, const ::color::color& color, const ::opacity& opacity)
+//   void graphics::color_blend(const ::rectangle_i32 & rectangle, const ::color::color& color, const ::opacity& opacity)
 //   {
 //
 //      set_alpha_mode(e_alpha_mode_blend);
@@ -2363,7 +2390,7 @@ namespace draw2d
    //}
 
 
-   bool graphics::draw_inset_3d_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & colorTopLeft, const ::color::color & colorBottomRight, const ::e_border & eborder)
+   void graphics::draw_inset_3d_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & colorTopLeft, const ::color::color & colorBottomRight, const ::e_border & eborder)
    {
 
       auto smooth_mode = get_smooth_mode();
@@ -2378,62 +2405,58 @@ namespace draw2d
       if (eborder & e_border_top)
       {
 
-         if (!fill_rectangle(rectangle_f64_dimension(rectangle.left, rectangle.top, rectangle.width(), 1.0), colorTopLeft))
-         {
-
-            return false;
-
-         }
+         fill_rectangle(rectangle_f64_dimension(rectangle.left, rectangle.top, rectangle.width(), 1.0), colorTopLeft);
 
       }
 
       if (eborder & e_border_left)
       {
 
-         if (!fill_rectangle(rectangle_f64_dimension(
-            rectangle.left, 
+         fill_rectangle(rectangle_f64_dimension(
+            rectangle.left,
             rectangle.top + (eborder & e_border_top ? 1.0 : 0),
             1.0,
-            rectangle.height() - (eborder & e_border_top ? 1.0 : 0)), colorTopLeft))
-         {
+            rectangle.height() - (eborder & e_border_top ? 1.0 : 0)), colorTopLeft);
+         //{
 
-            return false;
+         //   return false;
 
-         }
+         //}
 
       }
 
       if (eborder & e_border_bottom)
       {
 
-         if (!fill_rectangle(rectangle_f64_dimension(
+         fill_rectangle(rectangle_f64_dimension(
             rectangle.left + (eborder & e_border_left ? 1.0 : 0),
             rectangle.bottom - 1.0,
             rectangle.width() - (eborder & e_border_left ? 1.0 : 0),
-            1.0), colorBottomRight))
-         {
+            1.0), colorBottomRight);
+         //{
 
-            return false;
+         //   return false;
 
-         }
+         //}
 
       }
 
       if (eborder & e_border_right)
       {
 
-         if (!fill_rectangle(
+         //if (!
+         fill_rectangle(
             ::rectangle_f64_dimension(
-               rectangle.right-1.0,
+               rectangle.right - 1.0,
                rectangle.top + (eborder & e_border_top ? 1.0 : 0),
                1.0,
                rectangle.height() - (eborder & e_border_top ? 1.0 : 0) - (eborder & e_border_bottom ? 1.0 : 0)),
-               colorBottomRight))
-         {
+            colorBottomRight);
+         //{
 
-            return false;
+         //   return false;
 
-         }
+         //}
 
       }
 
@@ -2444,40 +2467,42 @@ namespace draw2d
 
       }
 
-      return true;
+      ///return true;
 
    }
 
 
-   bool graphics::draw_inset_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color, const ::e_border & eborder)
+   void graphics::draw_inset_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color, const ::e_border & eborder)
    {
 
-      if (!draw_inset_3d_rectangle(rectangle, color, color, eborder))
-      {
+      //if (!
+      draw_inset_3d_rectangle(rectangle, color, color, eborder);
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
-      return true;
+      //return true;
 
    }
 
-   bool graphics::frame_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color, const ::e_border & eborder)
+   void graphics::frame_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color, const ::e_border & eborder)
    {
 
       auto rectangleFrame(rectangle);
 
       rectangleFrame.inflate(1.0);
 
-      if (!draw_inset_rectangle(rectangleFrame, color, eborder))
-      {
+      //if (!
+      draw_inset_rectangle(rectangleFrame, color, eborder);
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
-      return true;
+      //return true;
    }
 
 
@@ -2502,11 +2527,15 @@ namespace draw2d
    void graphics::destroy()
    {
       
-      auto estatusOsData = destroy_os_data();
+      //auto estatusOsData =
+         
+         
+         destroy_os_data();
       
-      auto estatusDestroy = ::aura::simple_chain < ::aura::draw_context >::destroy();
+      //auto estatusDestroy =
+         ::aura::simple_chain < ::aura::draw_context >::destroy();
       
-      return estatusOsData && estatusDestroy;
+      //return estatusOsData && estatusDestroy;
       
    }
 
@@ -2514,17 +2543,17 @@ namespace draw2d
    void graphics::destroy_os_data()
    {
       
-      return ::success;
+      //return ::success;
       
    }
 
 
-   bool graphics::DeleteDC()
+   void graphics::DeleteDC()
    {
 
 
 
-      return false;
+      //return false;
 
    }
 
@@ -2550,10 +2579,10 @@ namespace draw2d
    }
 
 
-   bool graphics::RestoreDC(i32)
+   void graphics::RestoreDC(i32)
    {
 
-      return false;
+      //return false;
 
    }
 
@@ -2619,7 +2648,7 @@ namespace draw2d
 
 //#ifdef WINDOWS
 //
-//   bool graphics::SetWorldTransform(const XFORM* pXform)
+//   void graphics::SetWorldTransform(const XFORM* pXform)
 //   {
 //
 //      __UNREFERENCED_PARAMETER(pXform);
@@ -2628,7 +2657,7 @@ namespace draw2d
 //
 //   }
 //
-//   bool graphics::ModifyWorldTransform(const XFORM* pXform, u32 iMode)
+//   void graphics::ModifyWorldTransform(const XFORM* pXform, u32 iMode)
 //   {
 //
 //      __UNREFERENCED_PARAMETER(pXform);
@@ -2980,7 +3009,7 @@ namespace draw2d
    /////////////////////////////////////////////////////////////////////////////
    // Advanced Win32 GDI functions
 
-   bool graphics::ArcTo(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4)
+   void graphics::ArcTo(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4)
    {
       __UNREFERENCED_PARAMETER(x1);
       __UNREFERENCED_PARAMETER(y1);
@@ -2991,7 +3020,7 @@ namespace draw2d
       __UNREFERENCED_PARAMETER(x4);
       __UNREFERENCED_PARAMETER(y4);
 
-      return false;
+      //return false;
    }
 
    //i32 graphics::SetArcDirection(i32 nArcDirection)
@@ -3002,46 +3031,46 @@ namespace draw2d
    //}
 
 
-   bool graphics::polydraw(const ::point_f64 * ppoints, const byte* pTypes, count nCount)
+   void graphics::polydraw(const ::point_f64 * ppoints, const byte* pTypes, count nCount)
    {
 
       __UNREFERENCED_PARAMETER(ppoints);
       __UNREFERENCED_PARAMETER(pTypes);
       __UNREFERENCED_PARAMETER(nCount);
 
-      return false;
+      //return false;
    
    }
 
 
-   bool graphics::polyline_to(const ::point_f64 * ppoints, count nCount)
+   void graphics::polyline_to(const ::point_f64 * ppoints, count nCount)
    {
 
       __UNREFERENCED_PARAMETER(ppoints);
       __UNREFERENCED_PARAMETER(nCount);
 
-      return false;
+      //return false;
 
    }
 
 
-   bool graphics::poly_bezier_to(const ::point_f64 * ppoints, count nCount)
+   void graphics::poly_bezier_to(const ::point_f64 * ppoints, count nCount)
    {
 
       __UNREFERENCED_PARAMETER(ppoints);
       __UNREFERENCED_PARAMETER(nCount);
 
-      return false;
+      //return false;
 
    }
 
 
-   bool graphics::SelectClipPath(i32 nMode)
+   void graphics::SelectClipPath(i32 nMode)
    {
 
       __UNREFERENCED_PARAMETER(nMode);
 
-      return false;
+      //return false;
 
    }
 
@@ -3049,7 +3078,7 @@ namespace draw2d
    void graphics::reset_clip()
    {
    
-      return ::success;
+      //return ::success;
    
    }
 
@@ -3064,7 +3093,7 @@ namespace draw2d
          
       }
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -3075,23 +3104,23 @@ namespace draw2d
       switch(pshape->eshape())
       {
       case e_shape_none:
-         return ::success_none;
+         return;
       case e_shape_intersect_clip:
-         return _intersect_clip();
+         _intersect_clip();
       case e_shape_rectangle:
-         return _add_shape(pshape->shape < ::rectangle >());
+         _add_shape(pshape->shape < ::rectangle >());
       case e_shape_ellipse:
-         return _add_shape(pshape->shape < ::ellipse >());
+         _add_shape(pshape->shape < ::ellipse >());
 //      case e_shape_lines:
 //         return _add_shape(pshape->shape < ::lines >());
       case e_shape_polygon:
-         return _add_shape(pshape->shape < ::polygon >());
+         _add_shape(pshape->shape < ::polygon >());
       default:
          break;
             
       }
 
-      return error_not_implemented;
+      throw_status(error_not_implemented);
       
    }
 
@@ -3169,25 +3198,27 @@ namespace draw2d
    void graphics::intersect_clip(const ::rectangle_f64 & rectangle)
    {
    
-      auto estatus = _add_shape(rectangle);
+      //auto estatus = 
+      _add_shape(rectangle);
       
-      if(!estatus)
-      {
-       
-         return estatus;
-         
-      }
+      //if(!estatus)
+      //{
+      // 
+      //   return estatus;
+      //   
+      //}
       
-      estatus = _intersect_clip();
+      //estatus = 
+      _intersect_clip();
       
-      if(!estatus)
-      {
-       
-         return estatus;
-         
-      }
-      
-      return estatus;
+      //if(!estatus)
+      //{
+      // 
+      //   return estatus;
+      //   
+      //}
+      //
+      //return estatus;
    
    }
 
@@ -3247,25 +3278,29 @@ namespace draw2d
    void graphics::intersect_clip(const ::ellipse & ellipse)
    {
    
-      auto estatus = _add_shape(ellipse);
+      //auto estatus =
       
-      if(!estatus)
-      {
-       
-         return estatus;
-         
-      }
+      _add_shape(ellipse);
       
-      estatus = _intersect_clip();
+      //if(!estatus)
+      //{
+      // 
+      //   return estatus;
+      //   
+      //}
       
-      if(!estatus)
-      {
-       
-         return estatus;
-         
-      }
+      //estatus = 
       
-      return estatus;
+      _intersect_clip();
+      
+      //if(!estatus)
+      //{
+      // 
+      //   return estatus;
+      //   
+      //}
+      //
+      //return estatus;
    
    }
 
@@ -3299,25 +3334,27 @@ namespace draw2d
    void graphics::intersect_clip(const ::polygon_f64 & polygon_i32)
    {
 
-      auto estatus = _add_shape(polygon_i32);
+      //auto estatus = 
+      _add_shape(polygon_i32);
+      //
+      //if(!estatus)
+      //{
+      // 
+      //   return estatus;
+      //   
+      //}
+      //
+      //estatus =
+      _intersect_clip();
       
-      if(!estatus)
-      {
-       
-         return estatus;
-         
-      }
-      
-      estatus = _intersect_clip();
-      
-      if(!estatus)
-      {
-       
-         return estatus;
-         
-      }
-      
-      return estatus;
+      //if(!estatus)
+      //{
+      // 
+      //   return estatus;
+      //   
+      //}
+      //
+      //return estatus;
 
    }
 
@@ -3349,7 +3386,7 @@ namespace draw2d
 
 //#ifdef WINDOWS
 //
-//   bool graphics::PlayMetaFile(HMETAFILE hMF)
+//   void graphics::PlayMetaFile(HMETAFILE hMF)
 //   {
 //      __UNREFERENCED_PARAMETER(hMF);
 //
@@ -3516,19 +3553,14 @@ namespace draw2d
       
       ::size_f64 size;
 
-      if (!get_text_extent(size, (const char *) block.get_data(), block.get_size()))
-      {
-
-         return nullptr;
-
-      }
+      get_text_extent(size, (const char*)block.get_data(), block.get_size());
 
       return size;
 
    }
 
 
-   bool graphics::get_text_extent(size_f64 & size, const char * pszString, strsize nCount, strsize iIndex)
+   void graphics::get_text_extent(size_f64 & size, const char * pszString, strsize nCount, strsize iIndex)
    {
 
       ::size_f64 sz = get_text_extent(string(pszString), nCount, iIndex);
@@ -3536,12 +3568,12 @@ namespace draw2d
       size.cx = sz.cx;
       size.cy = sz.cy;
 
-      return true;
+      //return true;
 
    }
 
 
-   bool graphics::get_text_extent(size_f64 & size, const char * pszString, strsize nCount)
+   void graphics::get_text_extent(size_f64 & size, const char * pszString, strsize nCount)
    {
 
       ::size_f64 sz = get_text_extent(string(pszString), nCount);
@@ -3549,12 +3581,12 @@ namespace draw2d
       size.cx = sz.cx;
       size.cy = sz.cy;
 
-      return true;
+      //return true;
 
    }
 
 
-   bool graphics::get_text_extent(size_f64 & size, const ::string & str)
+   void graphics::get_text_extent(size_f64 & size, const ::string & str)
    {
 
       ::size_f64 sz = get_text_extent(str);
@@ -3562,7 +3594,7 @@ namespace draw2d
       size.cx = sz.cx;
       size.cy = sz.cy;
 
-      return true;
+      //return true;
 
    }
 
@@ -3588,17 +3620,17 @@ namespace draw2d
    //}
 
 
-   bool graphics::draw_text(const ::string & str, const rectangle_f64 & rectangleParam, const ::e_align & ealign, const ::e_draw_text & edrawtext)
+   void graphics::draw_text(const ::string & str, const rectangle_f64 & rectangleParam, const ::e_align & ealign, const ::e_draw_text & edrawtext)
    {
 
       ::rectangle_f64 rectangle(rectangleParam);
 
-      return _001DrawText(str, rectangle, ealign, edrawtext, false);
+      _001DrawText(str, rectangle, ealign, edrawtext, false);
 
    }
 
 
-   //bool graphics::draw_text(const ::string & strParam, const ::rectangle_f64 & rectangleParam, const ::e_align & ealign, const ::e_draw_text & edrawtext)
+   //void graphics::draw_text(const ::string & strParam, const ::rectangle_f64 & rectangleParam, const ::e_align & ealign, const ::e_draw_text & edrawtext)
    //{
 
    //   ::rectangle_f64 rectangle(rectangleParam);
@@ -3608,7 +3640,7 @@ namespace draw2d
    //}
 
 
-   bool graphics::_001DrawText(const ::string & strParam, ::rectangle_f64 & rectangleParam, const ::e_align & ealign, const ::e_draw_text & edrawtext, bool bMeasure)
+   void graphics::_001DrawText(const ::string & strParam, ::rectangle_f64 & rectangleParam, const ::e_align & ealign, const ::e_draw_text & edrawtext, bool bMeasure)
    {
 
       string str(strParam);
@@ -3704,7 +3736,7 @@ namespace draw2d
 
       }
 
-      return 1;
+      //return 1;
 
    }
 
@@ -3712,7 +3744,7 @@ namespace draw2d
 #ifndef _UWP
 
 
-   bool graphics::draw_text_ex(const ::string & str, const rectangle_f64 & rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext)
+   void graphics::draw_text_ex(const ::string & str, const rectangle_f64 & rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext)
    {
 
       __UNREFERENCED_PARAMETER(str);
@@ -3720,7 +3752,7 @@ namespace draw2d
       __UNREFERENCED_PARAMETER(ealign);
       __UNREFERENCED_PARAMETER(edrawtext);
 
-      return false;
+      //return false;
 
    }
 
@@ -3729,53 +3761,53 @@ namespace draw2d
 
 
 
-   bool graphics::set_alpha_mode(enum_alpha_mode ealphamode)
+   void graphics::set_alpha_mode(enum_alpha_mode ealphamode)
    {
 
       m_ealphamode = ealphamode;
 
-      return true;
+      //return true;
 
    }
 
 
-   bool graphics::set_smooth_mode(e_smooth_mode esmoothmode)
+   void graphics::set_smooth_mode(e_smooth_mode esmoothmode)
    {
 
       m_esmoothmode = esmoothmode;
 
-      return true;
+      //return true;
 
    }
 
 
-   bool graphics::set_interpolation_mode(enum_interpolation_mode einterpolationmode)
+   void graphics::set_interpolation_mode(enum_interpolation_mode einterpolationmode)
    {
 
       m_einterpolationmode = einterpolationmode;
 
-      return true;
+      //return true;
 
    }
 
 
-   bool graphics::set_compositing_quality(e_compositing_quality ecompositingquality)
+   void graphics::set_compositing_quality(e_compositing_quality ecompositingquality)
    {
 
       m_ecompositingquality = ecompositingquality;
 
-      return true;
+      //return true;
 
    }
 
 
 
-   bool graphics::set_text_rendering_hint(::write_text::enum_rendering etextrenderinghint)
+   void graphics::set_text_rendering_hint(::write_text::enum_rendering etextrenderinghint)
    {
 
       m_ewritetextrendering = etextrenderinghint;
 
-      return true;
+      //return true;
 
    }
 
@@ -3788,24 +3820,24 @@ namespace draw2d
    }
 
 
-   bool graphics::blur(bool bExpand, double dRadius, const ::rectangle_f64 & rectangle)
+   void graphics::blur(bool bExpand, double dRadius, const ::rectangle_f64 & rectangle)
    {
 
 
 
-      return false;
+      //return false;
 
    }
 
 
-   bool graphics::set_solid_pen(double dWidth, const ::color::color & color)
+   void graphics::set_solid_pen(double dWidth, const ::color::color & color)
    {
 
       __defer_construct(m_ppen);
 
       m_ppen->create_solid(dWidth, color);
 
-      return true;
+      //return true;
 
    }
 
@@ -3841,15 +3873,15 @@ namespace draw2d
    }
 
 
-   bool graphics::flush()
+   void graphics::flush()
    {
 
-      return true;
+      //return true;
 
    }
 
 
-   bool graphics::sync_flush()
+   void graphics::sync_flush()
    {
 
       return flush();
@@ -3896,7 +3928,7 @@ namespace draw2d
    //
 
 
-   bool graphics::draw_round_rect(const ::rectangle_f64 & rectangle, ::draw2d::pen * ppen, double radius, const ::e_border & eborder)
+   void graphics::draw_round_rect(const ::rectangle_f64 & rectangle, ::draw2d::pen * ppen, double radius, const ::e_border & eborder)
    {
 
       if (eborder & e_border_all)
@@ -3913,7 +3945,7 @@ namespace draw2d
 
       }
 
-      return true;
+      //return true;
 
    }
 
@@ -3932,7 +3964,7 @@ namespace draw2d
    //
    // Returns:     None
    //
-   //bool graphics::draw_round_rect(const ::rectangle_f64 & rectangleParam, const ::color::color & color, double radius, const ::e_border & eborder)
+   //void graphics::draw_round_rect(const ::rectangle_f64 & rectangleParam, const ::color::color & color, double radius, const ::e_border & eborder)
    //{
 
    //   ::rectangle_f64 rectangle(rectangleParam);
@@ -3958,7 +3990,7 @@ namespace draw2d
    //}
 
 
-   //bool graphics::draw_round_top_left(const ::rectangle_f64 & rectangle, ::draw2d::pen  * ppen, i32 radius, const ::e_border & eborder)
+   //void graphics::draw_round_top_left(const ::rectangle_f64 & rectangle, ::draw2d::pen  * ppen, i32 radius, const ::e_border & eborder)
    //{
 
    //   auto ppath = __create < ::draw2d::path > ();
@@ -3978,7 +4010,7 @@ namespace draw2d
    //}
 
 
-   //bool graphics::draw_round_top_left(const ::rectangle_f64 & rectangleParam, const ::color::color & color, i32 radius, double width, const ::e_border & eborder)
+   //void graphics::draw_round_top_left(const ::rectangle_f64 & rectangleParam, const ::color::color & color, i32 radius, double width, const ::e_border & eborder)
    //{
 
    //   ::rectangle_f64 rectangle(rectangleParam);
@@ -4013,7 +4045,7 @@ namespace draw2d
    //}
 
 
-   //bool graphics::draw_round_bottom_right(const ::rectangle_f64 & rectangle, ::draw2d::pen  * ppen, i32 radius, const ::e_border & eborder)
+   //void graphics::draw_round_bottom_right(const ::rectangle_f64 & rectangle, ::draw2d::pen  * ppen, i32 radius, const ::e_border & eborder)
    //{
 
    //   auto ppath = __create < ::draw2d::path > ();
@@ -4035,7 +4067,7 @@ namespace draw2d
    //}
 
 
-   //bool graphics::draw_round_bottom_right(const ::rectangle_f64 & rectangleParam, const ::color::color & color, i32 radius, double width, const ::e_border & eborder)
+   //void graphics::draw_round_bottom_right(const ::rectangle_f64 & rectangleParam, const ::color::color & color, i32 radius, double width, const ::e_border & eborder)
    //{
 
    //   ::rectangle_f64 rectangle(rectangleParam);
@@ -4083,7 +4115,7 @@ namespace draw2d
    //
    // Returns:     None
    //
-   bool graphics::fill_round_rect(const ::rectangle_f64 & rectangle, const ::color::color & color, double radius)
+   void graphics::fill_round_rect(const ::rectangle_f64 & rectangle, const ::color::color & color, double radius)
    {
 
       auto pbrush = __create < ::draw2d::brush > ();
@@ -4111,7 +4143,7 @@ namespace draw2d
    //
    // Returns:     None
    //
-   bool graphics::fill_round_rect(const ::rectangle_f64 & rectangle, ::draw2d::brush * pbrush, double radius)
+   void graphics::fill_round_rect(const ::rectangle_f64 & rectangle, ::draw2d::brush * pbrush, double radius)
    {
 
       auto ppath = __create < ::draw2d::path > ();
@@ -4128,19 +4160,23 @@ namespace draw2d
 
       fill_path(ppath, pbrush);
 
-      return true;
+      //return true;
 
    }
 
 
-   bool graphics::round_rectangle(const ::rectangle_f64 & rectangle, double radius)
+   void graphics::round_rectangle(const ::rectangle_f64 & rectangle, double radius)
    {
 
-      bool bOk1 = fill_round_rect(rectangle, m_pbrush.m_p, radius);
+      //bool bOk1 = 
+      
+      fill_round_rect(rectangle, m_pbrush.m_p, radius);
 
-      bool bOk2 = draw_round_rect(rectangle, m_ppen, radius);
+      //bool bOk2 = 
+      
+      draw_round_rect(rectangle, m_ppen, radius);
 
-      return bOk1 && bOk2;
+      //return bOk1 && bOk2;
 
    }
 
@@ -4658,7 +4694,7 @@ namespace draw2d
 
 
 
-   bool graphics::draw_stock_icon(const ::rectangle_f64 & rectangleParam, enum_stock_icon estockicon)
+   void graphics::draw_stock_icon(const ::rectangle_f64 & rectangleParam, enum_stock_icon estockicon)
    {
 
       ::rectangle_f64 rectangle(rectangleParam);
@@ -4841,7 +4877,7 @@ namespace draw2d
 
       }
 
-      return true;
+      //return true;
 
    }
 
@@ -4851,7 +4887,7 @@ namespace draw2d
    }
 
 
-   bool graphics::draw_error_line(double x1, double h, double x2, i32 iStyle)
+   void graphics::draw_error_line(double x1, double h, double x2, i32 iStyle)
    {
 
       int iR = m_ppen->m_color.red;
@@ -4872,21 +4908,26 @@ namespace draw2d
 
          double w = x2 - x1 + 1;
 
-         auto estatus = __construct(pimage);
+         //auto estatus = 
+         
+         __construct(pimage);
 
-         if (!estatus)
+         //if (!estatus)
+         //{
+
+         //   return estatus;
+
+         //}
+
+         //estatus = 
+         
+         pimage->create({ (i32)w, 6 });
+
+         //if (!estatus || pimage->area() <= 0)
+         if(pimage->area() <= 0)
          {
 
-            return estatus;
-
-         }
-
-         estatus = pimage->create({ (i32)w, 6 });
-
-         if (!estatus || pimage->area() <= 0)
-         {
-
-            return estatus;
+            throw_status(error_failed);
 
          }
 
@@ -5003,7 +5044,7 @@ namespace draw2d
 
       }
 
-      return true;
+      //return true;
 
    }
 
@@ -5068,12 +5109,12 @@ namespace draw2d
    }
 
 
-   bool graphics::fill_contains(const point_f64 & point)
+   void graphics::fill_contains(const point_f64 & point)
    {
 
       __throw(error_not_implemented);
 
-      return false;
+      //return false;
 
    }
 
@@ -5540,7 +5581,7 @@ namespace draw2d
    //}
 
 
-   bool graphics::nanosvg(string str, int x, int y, int w, int h)
+   void graphics::nanosvg(string str, int x, int y, int w, int h)
    {
 
       struct NSVGimage* pnsvgimage;
@@ -5551,16 +5592,16 @@ namespace draw2d
 
       nsvgDelete(pnsvgimage);
 
-      return true;
+      //return true;
 
    }
 
 
 
-   bool graphics::is_valid_update_window_thread()
+   void graphics::is_valid_update_window_thread()
    {
 
-      return true;
+      //return true;
 
    }
 
@@ -5612,45 +5653,45 @@ namespace draw2d
 
    }
 
-   bool graphics::_get(matrix & matrix)
+   void graphics::_get(matrix & matrix)
    {
 
-      return false;
+      //return false;
 
    }
 
 
-   bool graphics::_set(const matrix & matrix)
+   void graphics::_set(const matrix & matrix)
    {
 
-      return false;
+      //return false;
 
    }
 
 
-   bool graphics::get(matrix & matrix)
+   void graphics::get(matrix & matrix)
    {
 
       matrix = m_matrixTransform;
 
-      return true;
+      //return true;
 
    }
 
 
-   bool graphics::set(const matrix & matrix)
+   void graphics::set(const matrix & matrix)
    {
 
       m_matrixTransform = matrix;
 
       update_matrix();
 
-      return true;
+      //return true;
 
    }
 
 
-   bool graphics::update_matrix()
+   void graphics::update_matrix()
    {
 
       matrix matrixViewport;
@@ -5669,40 +5710,42 @@ namespace draw2d
 
       matrix matrix = matrixViewportScale * m_matrixTransform * matrixViewportTranslate;
 
-      if (!_set(matrix))
-      {
+      _set(matrix);
+      //if (!_set(matrix))
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
-      return true;
+      //return true;
 
    }
 
 
-   bool graphics::append(const matrix & matrix)
+   void graphics::append(const matrix & matrix)
    {
 
       m_matrixTransform.append(matrix);
 
       update_matrix();
 
-      return true;
+      //return true;
 
    }
 
 
-   bool graphics::prepend(const matrix & matrix)
+   void graphics::prepend(const matrix & matrix)
    {
 
       m_matrixTransform.prepend(matrix);
 
       update_matrix();
 
-      return true;
+      //return true;
 
    }
+
 
    void graphics::draw_rect_side(const ::rectangle_f64& rectangle, enum_border eborder)
    {
@@ -5775,7 +5818,7 @@ namespace draw2d
 
       __throw(todo);
 
-      return ::success_none;
+      //return ::success_none;
 
    }
 

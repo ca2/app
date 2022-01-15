@@ -54,14 +54,16 @@ namespace account
    void user::initialize(::object * pobject)
    {
 
-      auto estatus = ::object::initialize(pobject);
+      //auto estatus = 
+      
+      ::object::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       //if (get_session())
       //{
@@ -70,7 +72,7 @@ namespace account
 
       //}
 
-      return true;
+//      return true;
 
    }
 
@@ -208,25 +210,22 @@ namespace account
          try
          {
 
-            m_estatusAuthentication = do_logon(pathUrl, bInteractive);
+            do_logon(pathUrl, bInteractive);
 
-            if(m_estatusAuthentication == ::success_authenticated)
-            {
+            break;
 
-               break;
+         }
+         catch(const ::exception & exception)
+         {
 
-            }
+            m_estatusAuthentication = exception.m_estatus;
 
-            if(m_estatusAuthentication == error_credentials_user_cancelled)
+            if (m_estatusAuthentication == error_credentials_user_cancelled)
             {
 
                return;
 
             }
-
-         }
-         catch(...)
-         {
 
          }
 
@@ -259,7 +258,7 @@ namespace account
    }
 
 
-   void  user::do_logon(::file::path pathUrl, bool bInteractive)
+   void user::do_logon(::file::path pathUrl, bool bInteractive)
    {
 
       m_timeAuthenticationRequest = ::datetime::time::now();
@@ -274,17 +273,24 @@ namespace account
 
       pcredentials->      m_bInteractive = bInteractive;
 
-
       m_pathUrl = pathUrl;
 
-      m_estatusAuthentication = psession->account()->authenticator()->pre_authenticate(pcredentials);
-
-      if(m_estatusAuthentication != ::success_pre_authenticated)
+      try
       {
 
+         psession->account()->authenticator()->pre_authenticate(pcredentials);
+
+         m_estatusAuthentication = ::success_pre_authenticated;
+
+      }
+      catch(const ::exception & exception)
+      {
+
+         m_estatusAuthentication = exception.m_estatus;
+      
          defer_failed(m_estatusAuthentication, error_pre_authentication);
 
-         return m_estatus;
+         throw exception;
 
       }
 
@@ -298,7 +304,20 @@ namespace account
 
       //      m_eresult = papplication->interactive_credentials(thisget_app(), m_pathUrl, nullptr, strUsername, strPassword, m_strRequestingHost, "ca2", m_bInteractive);
 
-      m_estatusAuthentication = pcredentials->get_credentials();
+      try
+      {
+
+         pcredentials->get_credentials();
+
+         m_estatusAuthentication = ::success_credentials;
+
+      }
+      catch (const ::exception& exception)
+      {
+
+         m_estatusAuthentication = exception.m_estatus;
+
+      }
 
       if(m_estatusAuthentication != ::success_credentials || !pcredentials->is_ok())
       {
@@ -312,20 +331,30 @@ namespace account
 
          defer_failed(m_estatusAuthentication, error_credentials);
 
-         return m_estatusAuthentication;
+         throw_status(m_estatusAuthentication);
 
       }
 
       auto pauthenticator = psession->account()->authenticator();
 
-      m_estatusAuthentication = pauthenticator->authenticate(pcredentials);
-
-      if(m_estatusAuthentication != ::success_authenticated)
+      try
       {
 
+          pauthenticator->authenticate(pcredentials);
+
+          m_estatusAuthentication = success_authenticated;
+
+      }
+      catch (const ::exception& exception)
+      {
+
+         m_estatusAuthentication = exception.m_estatus;
+         
          defer_failed(m_estatusAuthentication, error_authentication);
 
          pcredentials->m_strPassword.Empty();
+
+         throw exception;
 
       }
 
@@ -345,7 +374,7 @@ namespace account
 
       //return m_puser;
 
-      return m_estatusAuthentication;
+      //return m_estatusAuthentication;
 
    }
 

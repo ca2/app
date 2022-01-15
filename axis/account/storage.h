@@ -17,9 +17,9 @@ namespace account
    public:
       
       
-      virtual void     get(string strKey, string strToken, string & strValue) = 0;
+      virtual bool get(string strKey, string strToken, string & strValue) = 0;
       
-      virtual bool set(string strKey, string strToken, string strValue) = 0;
+      virtual void set(string strKey, string strToken, string strValue) = 0;
       
       
    };

@@ -23,16 +23,18 @@ namespace account
    void product_array::initialize_product_array(department* pdepartment)
    {
 
-      auto estatus = ::object::initialize(pdepartment);
+      //auto estatus = 
+      
+      ::object::initialize(pdepartment);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 

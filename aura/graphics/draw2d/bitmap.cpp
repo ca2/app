@@ -43,7 +43,7 @@ namespace draw2d
    }
 
 
-   bool bitmap::CreateBitmap(::draw2d::graphics* pgraphics, const ::size_i32 & size,::u32 nPlanes,::u32 nBitcount,const void * pBits,i32 stride)
+   void bitmap::CreateBitmap(::draw2d::graphics* pgraphics, const ::size_i32 & size,::u32 nPlanes,::u32 nBitcount,const void * pBits,i32 stride)
    {
 
       __UNREFERENCED_PARAMETER(size);
@@ -53,11 +53,11 @@ namespace draw2d
 
       __UNREFERENCED_PARAMETER(stride);
       throw interface_only_exception();
-      return false;
+      //return false;
    }
 
 
-//   bool bitmap::CreateBitmapIndirect(::draw2d::graphics * pgraphics,LPBITMAP pBitmap)
+//   void bitmap::CreateBitmapIndirect(::draw2d::graphics * pgraphics,LPBITMAP pBitmap)
 //   {
 //
 //      __UNREFERENCED_PARAMETER(pBitmap);
@@ -67,7 +67,7 @@ namespace draw2d
 //   }
 
 
-//   bool bitmap::CreateDIBSection(::draw2d::graphics * pgraphics,const BITMAPINFO * pbmi,::u32 usage,void **ppvBits,int * stride,HANDLE hSection,u32 offset)
+//   void bitmap::CreateDIBSection(::draw2d::graphics * pgraphics,const BITMAPINFO * pbmi,::u32 usage,void **ppvBits,int * stride,HANDLE hSection,u32 offset)
 //   {
 
 //      __UNREFERENCED_PARAMETER(pgraphics);
@@ -82,7 +82,7 @@ namespace draw2d
 //      return false;
 //   }
 //
-//   bool bitmap::HostDIBSection(::draw2d::graphics * pgraphics, const BITMAPINFO * pbmi, ::u32 usage, void * ppvBits, int stride, HANDLE hSection, u32 offset)
+//   void bitmap::HostDIBSection(::draw2d::graphics * pgraphics, const BITMAPINFO * pbmi, ::u32 usage, void * ppvBits, int stride, HANDLE hSection, u32 offset)
 
 //   {
 //      __UNREFERENCED_PARAMETER(pgraphics);
@@ -98,7 +98,7 @@ namespace draw2d
 //      return false;
 //   }
 //
-//   bool bitmap::CreateDIBitmap(::draw2d::graphics * pgraphics,const BITMAPINFOHEADER *pbmih,u32 flInit,const void *pjBits,const BITMAPINFO *pbmi,::u32 iUsage)
+//   void bitmap::CreateDIBitmap(::draw2d::graphics * pgraphics,const BITMAPINFOHEADER *pbmih,u32 flInit,const void *pjBits,const BITMAPINFO *pbmi,::u32 iUsage)
 //   {
 //      __UNREFERENCED_PARAMETER(pgraphics);
 //      __UNREFERENCED_PARAMETER(pbmih);
@@ -111,7 +111,7 @@ namespace draw2d
 //   }
 
 
-   bool bitmap::create_bitmap(::draw2d::graphics * pgraphics, const ::size_i32 & size,void **ppvBits,int * stride)
+   void bitmap::create_bitmap(::draw2d::graphics * pgraphics, const ::size_i32 & size,void **ppvBits,int * stride)
    {
 
       __UNREFERENCED_PARAMETER(pgraphics);
@@ -121,12 +121,12 @@ namespace draw2d
 
       throw interface_only_exception();
 
-      return false;
+      //return false;
 
    }
 
 
-   bool bitmap::host_bitmap(::draw2d::graphics * pgraphics, const pixmap * ppixmap)
+   void bitmap::host_bitmap(::draw2d::graphics * pgraphics, const pixmap * ppixmap)
    {
 
       __UNREFERENCED_PARAMETER(pgraphics);
@@ -135,12 +135,12 @@ namespace draw2d
       // callers must be prepared to cases when the
       // backend doesn't support "hosting" a portion of RAM as bitmap data
 
-      return false;
+      //return false;
 
    }
 
 
-   bool bitmap::CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy,u32 flInit,const void *pjBits, ::u32 iUsage)
+   void bitmap::CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy,u32 flInit,const void *pjBits, ::u32 iUsage)
    {
       __UNREFERENCED_PARAMETER(pgraphics);
       __UNREFERENCED_PARAMETER(cx);
@@ -149,7 +149,7 @@ namespace draw2d
       __UNREFERENCED_PARAMETER(pjBits);
       __UNREFERENCED_PARAMETER(iUsage);
       throw interface_only_exception();
-      return false;
+      //return false;
    }
 
 
@@ -174,21 +174,21 @@ namespace draw2d
       return 0;
    }
 
-   bool bitmap::CreateCompatibleBitmap(::draw2d::graphics * pgraphics,i32 nWidth,i32 nHeight)
+   void bitmap::CreateCompatibleBitmap(::draw2d::graphics * pgraphics,i32 nWidth,i32 nHeight)
    {
       __UNREFERENCED_PARAMETER(pgraphics);
       __UNREFERENCED_PARAMETER(nWidth);
       __UNREFERENCED_PARAMETER(nHeight);
       throw interface_only_exception();
-      return false;
+      //return false;
    }
-   bool bitmap::CreateDiscardableBitmap(::draw2d::graphics * pgraphics,i32 nWidth,i32 nHeight)
+   void bitmap::CreateDiscardableBitmap(::draw2d::graphics * pgraphics,i32 nWidth,i32 nHeight)
    {
       __UNREFERENCED_PARAMETER(pgraphics);
       __UNREFERENCED_PARAMETER(nWidth);
       __UNREFERENCED_PARAMETER(nHeight);
       throw interface_only_exception();
-      return false;
+      //return false;
    }
 
 
@@ -211,11 +211,11 @@ namespace draw2d
    //}
 
 
-   bool bitmap::attach(void * posdata)
+   void bitmap::attach(void * posdata)
    {
       __UNREFERENCED_PARAMETER(posdata);
       throw ::interface_only_exception();
-      return false;
+      //return false;
    }
 
    void * bitmap::detach()

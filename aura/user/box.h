@@ -54,17 +54,18 @@ namespace user
 
 
       virtual bool should_save_window_rect() override;
-      virtual bool WindowDataSaveWindowRect() override;
-      virtual bool WindowDataLoadWindowRect(bool bForceRestore = false, bool bInitialFramePosition = false) override;
+      
+      bool WindowDataLoadWindowRect(bool bForceRestore = false, bool bInitialFramePosition = false) override;
+      void WindowDataSaveWindowRect() override;
 
       virtual string window_data_key_modifier();
 
       virtual bool LoadWindowRect_(const ::database::key & key, bool bForceRestore = false, bool bInitialFramePosition = false);
-      virtual bool SaveWindowRect_(const ::database::key & key);
+      virtual void SaveWindowRect_(const ::database::key & key);
 
 
-      virtual void on_simple_command(::message::simple_command * psimplecommand) override;
-      virtual void on_command(::message::command * pcommand) override;
+      void on_simple_command(::message::simple_command * psimplecommand) override;
+      void on_command(::message::command * pcommand) override;
 
 
       virtual bool on_set_parent(::user::primitive * puiParent) override;

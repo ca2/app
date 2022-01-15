@@ -27,9 +27,11 @@ namespace draw2d
 
 
       bitmap();
-      virtual ~bitmap();
+      ~bitmap() override;
+
 
       void dump(dump_context & dumpcontext) const override;
+
 
       template < typename POINTER >
       inline POINTER get_os_data(i8 i = 0) const
@@ -48,18 +50,18 @@ namespace draw2d
       }
 
 
-      virtual bool CreateBitmap(::draw2d::graphics * pgraphics, const ::size_i32 & size, ::u32 nPlanes, ::u32 nBitcount, const void * pBits, i32 stride);
+      virtual void CreateBitmap(::draw2d::graphics * pgraphics, const ::size_i32 & size, ::u32 nPlanes, ::u32 nBitcount, const void * pBits, i32 stride);
 
       //virtual bool CreateBitmapIndirect(::draw2d::graphics * pgraphics, LPBITMAP pBitmap);
 
-      virtual bool CreateCompatibleBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight);
-      virtual bool CreateDiscardableBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight);
+      virtual void CreateCompatibleBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight);
+      virtual void CreateDiscardableBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight);
 
-      virtual bool create_bitmap(::draw2d::graphics * pgraphics, const ::size_i32& size, void** ppcolorref, int* piScan);
-      virtual bool host_bitmap(::draw2d::graphics* pgraphics, const pixmap* ppximap);
-      virtual bool CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy, u32 flInit, const void *pjBits, ::u32 iUsage);
+      virtual void create_bitmap(::draw2d::graphics * pgraphics, const ::size_i32& size, void** ppcolorref, int* piScan);
+      virtual void host_bitmap(::draw2d::graphics* pgraphics, const pixmap* ppximap);
+      virtual void CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy, u32 flInit, const void *pjBits, ::u32 iUsage);
 
-      virtual bool attach(void * posdata);
+      virtual void attach(void * posdata);
       virtual void * detach();
 
       //virtual ::size_i32 SetBitmapDimension(i32 nWidth, i32 nHeight);

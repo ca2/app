@@ -289,12 +289,12 @@ namespace user
    }
 
 
-   bool element::enable_window(bool bEnable)
+   void element::enable_window(bool bEnable)
    {
 
       __UNREFERENCED_PARAMETER(bEnable);
 
-      return false;
+      //return false;
 
    }
 
@@ -750,18 +750,18 @@ namespace user
    //}
 
 
-   bool element::add_prodevian(::matter * pmatter)
+   void element::add_prodevian(::matter * pmatter)
    {
 
-      return false;
+      //return false;
 
    }
 
 
-   bool element::erase_prodevian(::matter * pmatter)
+   void element::erase_prodevian(::matter * pmatter)
    {
 
-      return false;
+      //return false;
 
    }
 
@@ -1231,12 +1231,12 @@ namespace user
    }
 
 
-   bool element::subclass_window(oswindow posdata)
+   void element::subclass_window(oswindow posdata)
    {
 
       throw ::interface_only_exception();
 
-      return false;
+      //return false;
 
    }
 
@@ -1855,12 +1855,12 @@ namespace user
    //}
 
 
-   bool element::start_destroying_window()
+   void element::start_destroying_window()
    {
 
       throw ::interface_only_exception();
 
-      return false;
+      //return false;
 
    }
 
@@ -2098,12 +2098,12 @@ namespace user
    //}
 
 
-   bool element::CheckAutoCenter()
+   void element::CheckAutoCenter()
    {
 
       throw ::interface_only_exception();
 
-      return false;
+      //return false;
 
    }
 
@@ -2127,6 +2127,8 @@ namespace user
    {
 
       throw ::interface_only_exception();
+
+      //return false;
 
    }
 
@@ -2417,32 +2419,32 @@ namespace user
    }
 
 
-   bool element::post_message(const ::id & id,wparam wparam,lparam lparam)
+   void element::post_message(const ::id & id,wparam wparam,lparam lparam)
    {
 
       throw ::interface_only_exception();
 
-      return false;
+      //return false;
 
    }
 
 
-   bool element::SetTimer(uptr uEvent, const ::duration & millisElapse, PFN_TIMER pfnTimer, bool bPeriodic, void* pdata)
+   void element::SetTimer(uptr uEvent, const ::duration & millisElapse, PFN_TIMER pfnTimer, bool bPeriodic, void* pdata)
    {
 
       throw ::interface_only_exception();
 
-      return false;
+      //return false;
 
    }
 
 
-   bool element::KillTimer(uptr uEvent)
+   void element::KillTimer(uptr uEvent)
    {
 
       throw ::interface_only_exception();
 
-      return false;
+      //return false;
 
    }
 
@@ -2647,12 +2649,12 @@ namespace user
    //}
 
 
-   bool element::create_message_queue(const ::string & lpszName)
+   void element::create_message_queue(const ::string & lpszName)
    {
 
       throw ::interface_only_exception();
 
-      return false;
+      //return false;
 
    }
 
@@ -3044,12 +3046,12 @@ namespace user
    }
 
 
-   bool element::update_data(bool bSaveAndValidate)
+   void element::update_data(bool bSaveAndValidate)
    {
 
       throw ::interface_only_exception();
 
-      return false;
+      ///return false;
 
    }
 
@@ -3543,12 +3545,12 @@ namespace user
 {
 
 
-   bool element::post_simple_command(const enum_simple_command & ecommand, lparam lparam)
+   void element::post_simple_command(const enum_simple_command & ecommand, lparam lparam)
    {
 
       post_message(e_message_simple_command, (wparam)ecommand, lparam);
 
-      return true;
+      //return true;
 
    }
 
@@ -4235,6 +4237,8 @@ namespace user
 
       throw ::interface_only_exception();
 
+      //return false;
+
    }
 
 
@@ -4397,10 +4401,10 @@ namespace user
    }
 
 
-   bool element::hide()
+   void element::hide()
    {
 
-      return false;
+      //return false;
 
    }
 
@@ -4533,10 +4537,10 @@ namespace user
    //}
 
 
-   bool element::display(::e_display edisplay, ::e_activation eactivation)
+   void element::display(::e_display edisplay, ::e_activation eactivation)
    {
 
-      return true;
+      //return true;
 
    }
 

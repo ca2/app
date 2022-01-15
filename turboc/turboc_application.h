@@ -45,7 +45,7 @@ namespace turboc
 
 
       application(::object * pobject);
-      virtual ~application();
+      ~application() override;
 
 
       virtual bool initialize_application();

@@ -29,7 +29,7 @@ namespace user
    }
 
 
-   __pointer(::extended::sequence < ::conversation >) message_box::show(::user::interaction * puserinteraction, const string & strMessageParam, const string & strTitle, const ::e_message_box & emessagebox)
+   __pointer(::sequence < ::conversation >) message_box::show(::user::interaction * puserinteraction, const string & strMessageParam, const string & strTitle, const ::e_message_box & emessagebox)
    {
 
       auto emessageboxType = emessagebox & e_message_box_type_mask;
@@ -78,17 +78,19 @@ namespace user
 
       m_buttona.add(__new(::user::button(strTitle, edialogresult)));
 
-      return ::success;
+      //return ::success;
 
    }
 
 
-   __pointer(::extended::sequence < ::conversation >) default_message_box::show(::user::interaction * puserinteraction, const string& strMessageParam, const string& strTitle, const ::e_message_box& emessagebox)
+   __pointer(::sequence < ::conversation >) default_message_box::show(::user::interaction * puserinteraction, const string& strMessageParam, const string& strTitle, const ::e_message_box& emessagebox)
    {
 
-      ///acme_defer_os_init_windowing();
+      auto psequence = __new(::sequence <::conversation >());
 
-      auto pfuture = this->sequence();
+      psequence->m_p = this;
+
+      payload("sequence<conversation>") = psequence;
 
       string strMessage(strMessageParam);
 
@@ -132,20 +134,22 @@ namespace user
 
       do_layout();
 
-      auto estatus = create_host();
+      //auto estatus = 
+      
+      create_host();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         pfuture->set_status(error_failed);
+      //   pfuture->set_status(error_failed);
 
-         return pfuture;
+      //   return pfuture;
 
-      }
+      //}
 
       do_show();
 
-      return pfuture;
+      return psequence;
 
    }
 
@@ -243,7 +247,7 @@ namespace user
 
          m_edialogresult = (enum_dialog_result)psubject->m_puserelement->m_id.i64();
 
-         ::extended::asynchronous <::conversation>::sequence()->set_status(::success);
+         m_estatus = ::success;
 
          set_finish();
 

@@ -42,11 +42,9 @@ i32 WINAPI _tWinMain(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, TCHAR* pC
 
    __apps(main);
 
-   auto estatus = __main(main);
+   __main(main);
 
-   int iStatus = estatus.error_status();
-
-   return iStatus;
+   return main.m_iExitCode;
 
 }
 

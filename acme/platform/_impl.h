@@ -477,12 +477,12 @@ template < typename TYPE >
 
    stream >> c;
 
-   if (stream.fail())
+ /*  if (stream.fail())
    {
 
       return stream;
 
-   }
+   }*/
 
    while (c > 0)
    {
@@ -491,12 +491,12 @@ template < typename TYPE >
 
       stream >> *p;
 
-      if (stream.fail())
-      {
+      //if (stream.fail())
+      //{
 
-         break;
+      //   break;
 
-      }
+      //}
 
       a.add(p);
 
@@ -517,12 +517,12 @@ template < typename TYPE >
 
    stream << c;
 
-   if (stream.fail())
-   {
+   //if (stream.fail())
+   //{
 
-      return stream;
+   //   return stream;
 
-   }
+   //}
 
    for (auto & item : a)
    {
@@ -830,7 +830,7 @@ TYPE & sequence < TYPE > ::topic(const ::duration& duration)
 
 
 template < typename TYPE >
-void sequence < TYPE > ::wait(const ::duration& duration)
+bool sequence < TYPE > ::wait(const ::duration& duration)
 {
 
    critical_section_lock lock(get_sequence_critical_section());
@@ -842,7 +842,7 @@ void sequence < TYPE > ::wait(const ::duration& duration)
 
       lock.unlock();
 
-      if (!m_pevent->wait(duration).succeeded())
+      if (!m_pevent->wait(duration))
       {
 
          lock.lock();
@@ -872,7 +872,7 @@ sequence < TYPE > & sequence < TYPE > ::then(OPERATION operation)
 
    critical_section_lock lock(get_sequence_critical_section());
 
-   if (m_p.m_estatus == error_not_initialized)
+   if (m_p)
    {
 
       m_stepa.add(__new(step_operation < OPERATION >(operation)));

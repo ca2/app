@@ -1179,12 +1179,13 @@ public:
       //auto pusersystem = __new(::user::system (WS_EX_LAYERED, nullptr, "", WS_VISIBLE));
 
       //if(create_window_ex(pusersystem))
-      if(create_host())
-      {
+      //if(create_host())
+      create_host();
+      //{
 
-         TRACE("created trw");
+      //   TRACE("created trw");
 
-      }
+      //}
 
       best_monitor(nullptr,nullptr,true);
 
@@ -1696,23 +1697,27 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphi
    if (m_pimageDots->is_null())
    {
 
-      auto estatus = __construct(m_pimageDots);
+      //auto estatus = 
+      
+      __construct(m_pimageDots);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return;
+      //   return;
 
-      }
+      //}
 
-      estatus = m_pimageDots->create({ (int)(rectangleDraw.width() * iDiv), (int)(rectangleDraw.height() * iDiv) });
+      //estatus = 
+      
+      m_pimageDots->create({ (int)(rectangleDraw.width() * iDiv), (int)(rectangleDraw.height() * iDiv) });
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return;
+      //   return;
 
-      }
+      //}
 
       m_pimageDots->fill_byte(0);
 

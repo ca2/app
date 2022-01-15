@@ -122,7 +122,7 @@ namespace http
       //virtual void on_auth(property_set & set, ::application * papp, string & strUrl, string & strSessId, __pointer(::account::user) & puser);
 
       //application();
-      //virtual ~application();
+      //~application() override;
 
       void http_application_destruct();
 

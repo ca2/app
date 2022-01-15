@@ -595,14 +595,16 @@ namespace write_text
    void font_list::initialize(::object * pobject)
    {
 
-      auto estatus = ::object::initialize(pobject);
+      //auto estatus = 
+      
+      ::object::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       auto psystem = m_psystem->m_papexsystem;
 
@@ -612,7 +614,7 @@ namespace write_text
 
       call(id_operating_system_user_color_change);
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -736,7 +738,7 @@ namespace write_text
 
          auto pfontenumeration = pfonts->enumeration();
 
-         if (pfontenumeration->m_eventReady.wait(30_s).failed())
+         if (!pfontenumeration->m_eventReady.wait(30_s))
          {
 
             return;

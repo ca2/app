@@ -63,16 +63,18 @@ namespace user
 
       set_window_text(strCaption);
 
-      bool bOk = create_host();
+      //bool bOk = 
+      
+      create_host();
 
-      if (!bOk)
-      {
+      //if (!bOk)
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
-      return ::success;
+      //return ::success;
 
    }
 

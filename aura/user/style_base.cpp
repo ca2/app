@@ -25,14 +25,16 @@ namespace user
    void style_base::on_initialize_object()
    {
 
-      auto estatus = ::manager::on_initialize_object();
+      //auto estatus = 
+      
+      ::manager::on_initialize_object();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       auto psystem = m_psystem->m_paurasystem;
 
@@ -42,7 +44,7 @@ namespace user
 
       on_user_color();
 
-      return estatus;
+      //return estatus;
 
    }
 

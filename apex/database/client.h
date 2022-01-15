@@ -27,7 +27,7 @@ namespace database
 
 
       client();
-      virtual ~client();
+      ~client() override;
 
 
       virtual bool set_data_server(server * pserver);
@@ -38,30 +38,30 @@ namespace database
 //      DECLARE_MESSAGE_HANDLER(data_on_before_change);
       DECLARE_MESSAGE_HANDLER(data_on_after_change);
 
-      virtual bool data_on_before_change(client* pclient, const key& id, ::payload& payload, ::subject * psubject);
+
+      virtual void data_on_before_change(client* pclient, const key& id, ::payload& payload, ::subject * psubject);
       virtual void data_on_after_change(client* pclient, const key& id, const ::payload & payload, ::subject * psubject);
 
 
-
-      virtual bool _data_set(const key& key, const ::payload & payload, ::subject * psubject = nullptr);
-      virtual bool _data_set(const selection & selection, const ::payload & payload, ::subject * psubject = nullptr);
-
-
-      template < typename TYPE >
-      inline bool binary_set(const key & key, const TYPE & t);
+      virtual void _data_set(const key& key, const ::payload & payload, ::subject * psubject = nullptr);
+      virtual void _data_set(const selection & selection, const ::payload & payload, ::subject * psubject = nullptr);
 
 
       template < typename TYPE >
-      inline bool binary_set(const key & key, const __pointer(TYPE) & p)
+      inline void binary_set(const key & key, const TYPE & t);
+
+
+      template < typename TYPE >
+      inline void binary_set(const key & key, const __pointer(TYPE) & p)
       {
 
-         return binary_set(key, *p);
+         binary_set(key, *p);
 
       }
 
 
       template < typename TYPE >
-      inline bool data_set(const key & key, const TYPE & t)
+      inline void data_set(const key & key, const TYPE & t)
       {
 
          var_stream stream;
@@ -70,24 +70,23 @@ namespace database
 
          __exchange(stream, (TYPE &) t);
 
-         if (stream.fail())
-         {
+         //if (stream.fail())
+         //{
 
-            return false;
+         //   return false;
 
-         }
+         //}
+         binary_set(key, stream.payload());
+         //if (!)
+         //{
 
-         if (!binary_set(key, stream.payload()))
-         {
+         //   return false;
 
-            return false;
+         //}
 
-         }
-
-         return true;
+         //return true;
 
       }
-
 
       virtual bool _data_get(const key& key, ::payload & payload);
 
@@ -98,22 +97,23 @@ namespace database
       inline bool binary_get(const key & key, __pointer(TYPE) & p)
       {
 
-         return binary_get(key, *p);
+         binary_get(key, *p);
 
       }
-
 
       virtual ::payload data_get(const key & key)
       {
 
          ::payload payload;
 
-         if (!_data_get(key, payload))
-         {
+         _data_get(key, payload);
 
-            return ::error_not_found;
+         //if (!)
+         //{
 
-         }
+         //   return ::error_not_found;
+
+         //}
 
          return payload;
 
@@ -137,12 +137,12 @@ namespace database
 
          __exchange(stream, t);
 
-         if (stream.fail())
-         {
+         //if (stream.fail())
+         //{
 
-            return false;
+         //   return false;
 
-         }
+         //}
 
          return true;
 

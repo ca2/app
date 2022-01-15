@@ -179,8 +179,8 @@ public:
 
       read(uRead);
 
-      if (!fail())
-      {
+      //if (!fail())
+      //{
 
          if (uRead < 255)
          {
@@ -195,8 +195,8 @@ public:
 
             read(uRead);
 
-            if (!fail())
-            {
+            //if (!fail())
+            //{
 
                if (uRead < 65535)
                {
@@ -213,9 +213,9 @@ public:
 
             }
 
-         }
+      //   }
 
-      }
+      //}
 
    }
 
@@ -356,19 +356,19 @@ public:
    inline void full_read(void * pdata, memsize nCount)
    {
 
-      if (!fail())
-      {
+      //if (!fail())
+      //{
 
          m_gcount = m_p->read(pdata, nCount);
 
          if (m_gcount != nCount)
          {
 
-            set_fail_bit();
+            throw_status(error_premature_end_of_file);
 
          }
 
-      }
+ /*     }*/
 
    }
 

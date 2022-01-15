@@ -26,18 +26,20 @@ namespace account
    void user_array::initialize_user_array(department* pdepartment)
    {
 
-      auto estatus = ::object::initialize(pdepartment);
-
-      if(!estatus)
-      {
-
-         return estatus;
+      //auto estatus = 
       
-      }
+      ::object::initialize(pdepartment);
+
+      //if(!estatus)
+      //{
+
+      //   return estatus;
+      //
+      //}
 
       m_paccount = pdepartment;
 
-      return estatus;
+      ///return estatus;
 
    }
 
@@ -68,14 +70,16 @@ namespace account
 
          string strHost = purl->get_server(pathUrl);
 
-         auto estatus = __construct(puser);
+         //auto estatus = 
+         
+         __construct(puser);
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            return;
+         //   return;
 
-         }
+         //}
 
          synchronous_lock synchronouslock(mutex());
 

@@ -35,20 +35,22 @@ namespace graphics
    void graphics::initialize_graphics_graphics(::user::interaction_impl * pimpl)
    {
 
-      auto estatus = object::initialize(pimpl);
+      //auto estatus = 
+      
+      object::initialize(pimpl);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       m_pimpl = pimpl;
 
       m_pwindow = pimpl->get_window();
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -58,9 +60,11 @@ namespace graphics
 
       destroy_buffer();
 
-      auto estatus = object::destroy();
+      //auto estatus = 
+      
+      object::destroy();
 
-      return estatus;
+      //return estatus;
 
    }
 

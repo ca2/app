@@ -4,7 +4,7 @@
 #include "framework.h"
 
 
-CLASS_DECL_ACME void to_string(string & str, const e_status3 & estatus)
+CLASS_DECL_ACME void to_string(string & str, const ::e_status & estatus)
 {
 
    str.format("%" PRIestatus, estatus.m_estatus);
@@ -20,7 +20,7 @@ CLASS_DECL_ACME string __string(const ::e_status & estatus)
 }
 
 
-int e_status3::exit_code() const
+int ::e_status::exit_code() const
 {
 
 #ifdef WINDOWS

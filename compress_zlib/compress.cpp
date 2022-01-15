@@ -45,7 +45,7 @@ namespace compress_zlib
 
       m_iLevel = iLevel;
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -94,7 +94,7 @@ namespace compress_zlib
       if (deflateInit2(&zstream, iLevel, Z_DEFLATED, 16 + MAX_WBITS, 9, Z_DEFAULT_STRATEGY) != Z_OK)
       {
 
-         return error_failed;
+         throw_status(error_failed);
 
       }
 
@@ -159,7 +159,14 @@ namespace compress_zlib
 
       status = deflateEnd(&zstream);
 
-      return status >= 0 ? ::success : error_failed;
+      //return status >= 0 ? ::success : error_failed;
+
+      if (status < 0)
+      {
+
+         throw_status(error_failed);
+
+      }
 
    }
 

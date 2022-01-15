@@ -16,7 +16,7 @@ namespace programming
 
 
       application();
-      virtual ~application();
+      ~application() override;
 
 
       DECLARE_MESSAGE_HANDLER(on_application_signal);

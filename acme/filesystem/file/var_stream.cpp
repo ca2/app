@@ -272,7 +272,7 @@ void var_stream::read(block & block)
    if (m_ppayload->m_etype != e_type_memory || ::is_null(m_ppayload->m_pmemory))
    {
 
-      set_fail_bit();
+      throw_status(error_io);
 
       return;
 
@@ -283,7 +283,7 @@ void var_stream::read(block & block)
       || m_ppayload->m_pmemory->get_data() == nullptr)
    {
 
-      set_fail_bit();
+      throw_status(error_io);
 
       return;
 

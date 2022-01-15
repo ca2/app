@@ -708,7 +708,9 @@ void property_object::run_property(const ::id& id)
    if (!pproperty)
    {
 
-      throw_status(error_not_found);
+      ///throw_status(error_not_found);
+
+      return;
 
    }
 

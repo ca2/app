@@ -68,14 +68,16 @@ namespace opengl
    void opengl::initialize(::object * pobject)
    {
 
-      ::e_status estatus = ::object::initialize(pobject);
+      //::e_status estatus =
+      
+      ::object::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
 #ifdef WINDOWS_DESKTOP
 
@@ -94,7 +96,7 @@ namespace opengl
          if (!m_atomClass)
          {
 
-            return ::error_failed;
+            throw_status(error_failed);
 
          }
 
@@ -102,7 +104,7 @@ namespace opengl
 
 #endif
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -169,7 +171,7 @@ namespace opengl
             // Problem: glewInit failed, something is seriously wrong.
             FORMATTED_TRACE("glewInit failed: %s (%d)\n", pszErrorString, err);
 
-            return ::error_failed;
+            throw_status(error_failed);
 
          }
          
@@ -179,7 +181,7 @@ namespace opengl
 
       }
 
-      return ::success;
+      //return ::success;
 
    }
 

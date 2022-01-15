@@ -145,7 +145,7 @@ public:
 
 
    template < typename TYPE >
-   void write_only(TYPE & t) { is_loading() ? set_fail_bit() : write(t); }
+   void write_only(TYPE & t) { is_loading() ? throw_status(error_io) : write(t); }
 
    template < typename TYPE >
    void exchange(const ::id & id, TYPE & t) { ::__string_exchange(*this, t); }

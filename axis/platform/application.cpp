@@ -26,19 +26,21 @@ namespace axis
    }
 
 
-   void     application::initialize(::object * pobject)
+   void application::initialize(::object * pobject)
    {
 
-      auto estatus = ::aura::application::initialize(pobject);
+      //auto estatus = 
+      
+      ::aura::application::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -311,14 +313,15 @@ namespace axis
    void application::init_instance()
    {
 
-      auto estatus = ::aura::application::init_instance();
+      //auto estatus =
+      ::aura::application::init_instance();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
 
 
@@ -595,7 +598,7 @@ namespace axis
 
          psystem->appa_load_string_table();
 
-      return true;
+      //return true;
 
    }
 
@@ -603,16 +606,18 @@ namespace axis
    void application::application_pre_run()
    {
 
-      auto estatus = ::aura::application::application_pre_run();
+      //auto estatus = 
+      
+      ::aura::application::application_pre_run();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -666,14 +671,16 @@ namespace axis
    void application::process_init()
    {
 
-      auto estatus = ::aura::application::process_init();
+      //auto estatus = 
+      
+      ::aura::application::process_init();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       //string_array stra;
 
@@ -795,7 +802,7 @@ namespace axis
 
       INFORMATION("success");
 
-      return true;
+      //return true;
 
    }
 
@@ -1053,14 +1060,16 @@ namespace axis
    void application::init1()
    {
 
-      ::e_status estatus = ::aura::application::init1();
+      //::e_status estatus = 
+      
+      ::aura::application::init1();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
 
 
@@ -1189,31 +1198,33 @@ namespace axis
 
          //__throw(todo("database"));
 
-         auto estatus = m_psimpledb->initialize_simpledb_server(this, pathDatabase);
+         //auto estatus = 
+         
+         m_psimpledb->initialize_simpledb_server(this, pathDatabase);
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            m_result.add(estatus);
+         //   m_result.add(estatus);
 
-            if(m_bDataCentralRequired)
-            {
+         //   if(m_bDataCentralRequired)
+         //   {
 
-               return estatus;
+         //      return estatus;
 
-            }
+         //   }
 
-         }
-         else
-         {
+         //}
+         //else
+         //{
 
             set_data_server(m_psimpledb);
 
-         }
+         //}
 
       }
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -1266,7 +1277,7 @@ namespace axis
 
 
 
-      return true;
+      //return true;
 
    }
 
@@ -1323,7 +1334,7 @@ namespace axis
 
       //}
 
-      return true;
+      //return true;
 
    }
 
@@ -1508,7 +1519,7 @@ namespace axis
          catch (...)
          {
 
-            m_result.add(error_failed);
+            //m_result.add(error_failed);
 
          }
 
@@ -1682,30 +1693,34 @@ namespace axis
    void application::create_networking_application()
    {
 
-      auto estatus = __defer_construct(m_pnetworkingapplication);
+      //auto estatus = 
+      
+      __defer_construct(m_pnetworkingapplication);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = m_pnetworkingapplication->create_networking_application();
+      //estatus = 
+      
+      m_pnetworkingapplication->create_networking_application();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
 
-   void application::on_html_response(string & strHtml, const ::string& strUrl, const ::property_set& setPost)
+   ::e_status application::on_html_response(string & strHtml, const ::string& strUrl, const ::property_set& setPost)
    {
 
       auto estatus = networking_application()->on_html_response(strHtml, strUrl, setPost);
@@ -1718,7 +1733,7 @@ namespace axis
    void application::verb()
    {
 
-      return true;
+      //return true;
 
    }
 
@@ -1774,13 +1789,13 @@ namespace axis
          try
          {
 
-            m_estatus = run();
+            run();
 
          }
          catch (const ::exception & e)
          {
 
-            if (handle_exception(e))
+            handle_exception(e);
             {
 
                goto resume_on_exception;
@@ -1814,11 +1829,11 @@ namespace axis
       catch (...)
       {
 
-         m_result.add(error_failed);
+         //m_result.add(error_failed);
 
       }
 
-      return m_estatus;
+      //return m_estatus;
 
    }
 
@@ -2031,16 +2046,18 @@ namespace axis
    void application::init()
    {
 
-      auto estatus = ::aura::application::init();
+      //auto estatus = 
+      
+      ::aura::application::init();
 
-      if(!estatus)
-      {
+      //if(!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 

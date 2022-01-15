@@ -135,9 +135,9 @@
 
       void on_interprocess_receive(::interprocess_communication::rx * prx, ::string && strMessage) override;
 
-      virtual bool start(const ::string & strApp);
+      virtual void start(const ::string & strApp);
 
-      virtual bool connect(const ::string & strApp, const ::id & idPid);
+      virtual void connect(const ::string & strApp, const ::id & idPid);
 
       virtual void on_new_instance(const ::string & strModule, const ::id & idPid);
 

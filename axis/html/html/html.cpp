@@ -28,14 +28,16 @@ namespace html
    void html::initialize(::object * pobject)
    {
 
-      auto estatus = ::acme::department::initialize(pobject);
+      //auto estatus = 
+      
+      ::acme::department::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       //__compose_new(this, m_pentitysolver = new LiteHTMLEntityResolver(pobject);
       __compose_new(m_pentitysolver);
@@ -215,10 +217,9 @@ namespace html
       m_namedcolor["ghostwhite"] = rgb(0xF8, 0xF8, 0xFF);
       m_namedcolor["aliceblue"] = rgb(0xF0, 0xF8, 0xFF);
 
-      return estatus;
+      //return estatus;
 
    }
-
 
 
    string html::special_chars(const ::string & psz)
@@ -812,16 +813,18 @@ namespace axis
    void system::defer_create_html()
    {
 
-      ::e_status estatus = ::success;
+      //::e_status estatus = ::success;
 
       if (!m_phtml)
       {
 
-         estatus = create_html();
+         //estatus = 
+         
+         create_html();
 
       }
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -829,16 +832,19 @@ namespace axis
    void system::create_html()
    {
 
-      auto estatus = __compose_new(m_phtml);
+      //auto estatus =
+         
+         
+         __compose_new(m_phtml);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 

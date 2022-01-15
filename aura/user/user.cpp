@@ -50,27 +50,31 @@ namespace user
    void user::initialize(::object * pobject)
    {
 
-      auto estatus = ::acme::department::initialize(pobject);
+      //auto estatus = 
+      
+      ::acme::department::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = create_windowing();
+      //estatus = 
+      
+      create_windowing();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         output_debug_string("\nFailed to create_windowing at user::user::initialize.");
+      //   output_debug_string("\nFailed to create_windowing at user::user::initialize.");
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -81,22 +85,26 @@ namespace user
       if (m_bOnInitializeWindowObject)
       {
 
-         return ::success_none;
+         //return ::success_none;
+
+         return;
 
       }
 
       m_bOnInitializeWindowObject = true;
 
-      auto estatus = _on_initialize_window_object();
+      //auto estatus = 
+      
+      _on_initialize_window_object();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -104,20 +112,22 @@ namespace user
    void user::_on_initialize_window_object()
    {
 
-      auto estatus = __construct_new(m_puserstyle);
+      //auto estatus = 
+      
+      __construct_new(m_puserstyle);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       m_psystem->m_pnode->fetch_user_color();
 
       m_puserstyle->default_style_construct();
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -129,14 +139,16 @@ namespace user
       if (!m_pshell)
       {
 
-         auto estatus = create_user_shell();
+         //auto estatus = 
+         
+         create_user_shell();
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            INFORMATION("failed to create user shell");
+         //   INFORMATION("failed to create user shell");
 
-         }
+         //}
 
       }
 
@@ -297,16 +309,18 @@ namespace user
 
       }
 
-      auto estatus = pwindow->set_active_window();
+      //auto estatus =
+      
+      pwindow->set_active_window();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -358,16 +372,18 @@ namespace user
 
       }
 
-      auto estatus = pwindow->set_foreground_window();
+      //auto estatus = 
+      
+      pwindow->set_foreground_window();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -401,14 +417,17 @@ namespace user
 
       //}
 
-      if (!::acme::department::init1())
-      {
+      //if (!
+      ::acme::department::init1();
 
-         return false;
 
-      }
+      //{
 
-      return true;
+      //   return false;
+
+      //}
+
+      //return true;
 
    }
 
@@ -416,12 +435,14 @@ namespace user
    void user::init()
    {
 
-      if (!::acme::department::init())
-      {
+      //if (!
+      ::acme::department::init();
 
-         return false;
+      //{
 
-      }
+      //   return false;
+
+      //}
 
       ::factory::add_factory_item <::user::plain_edit >();
 
@@ -486,7 +507,7 @@ namespace user
 
       debug_print("user::initialize bHasUninstall %c", bHasUninstall);
 
-      return true;
+      //return true;
 
    }
 
@@ -494,14 +515,16 @@ namespace user
    void user::init2()
    {
 
-      auto estatus = ::acme::department::init2();
+      //auto estatus =
+      
+      ::acme::department::init2();
 
-      if(!estatus)
-      {
+      //if(!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       //estatus = create_windowing();
 
@@ -512,7 +535,7 @@ namespace user
 
       //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -520,16 +543,17 @@ namespace user
    void user::destroy()
    {
 
-      auto estatus = ::acme::department::destroy();
+      //auto estatus =
+      ::acme::department::destroy();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -576,7 +600,7 @@ namespace user
 
       }
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -584,31 +608,32 @@ namespace user
    void user::create_user_shell()
    {
 
-      ::e_status estatus = ::success;
+      //::e_status estatus = ::success;
 
       if (!m_pshell)
       {
 
          //estatus = __compose(m_pshell, __new(::windows::shell));
-         estatus = __compose(m_pshell);
+         //estatus =
+         __compose(m_pshell);
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            return estatus;
+         //   return estatus;
 
-         }
-
-      }
-
-      if (!m_pshell)
-      {
-
-         return ::error_failed;
+         //}
 
       }
 
-      return ::success;
+      //if (!m_pshell)
+      //{
+
+      //   return ::error_failed;
+
+      //}
+
+      //return ::success;
 
    }
 
@@ -799,16 +824,18 @@ namespace user
 
       auto pinteraction = pobject->__create_new < ::user::interaction >();
 
-      if(pinteraction->create_child(pinteractionParent))
-      {
+      pinteraction->create_child(pinteractionParent);
+
+      //if()
+      //{
 
          return ::move(pinteraction);
 
-      }
+      //}
 
-      pinteraction.release();
+      //pinteraction.release();
 
-      return nullptr;
+      //return nullptr;
 
    }
 
@@ -1391,16 +1418,17 @@ namespace user
    void user::create_windowing()
    {
 
-      ::e_status estatus = ::success;
+      //::e_status estatus = ::success;
 
-      estatus = __compose(m_pwindowing);
+      //estatus = 
+      __compose(m_pwindowing);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
 //      if (!estatus)
 //      {
@@ -1463,16 +1491,17 @@ namespace user
 //
 //      }
 
-      estatus = m_pwindowing->initialize_windowing(this);
+      //estatus =
+      m_pwindowing->initialize_windowing(this);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         output_debug_string("\nFailed to initialize_windowing at ::user::user::create_windowing");
+      //   output_debug_string("\nFailed to initialize_windowing at ::user::user::create_windowing");
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       auto psystem = m_psystem->m_paurasystem;
 
@@ -1480,7 +1509,7 @@ namespace user
 
       pnode->m_pwindowing = m_pwindowing;
 
-      return estatus;
+      //return estatus;
 
    }
 

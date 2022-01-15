@@ -152,18 +152,22 @@ namespace user
       if (m_bInitialized)
       {
 
-         return ::success;
+         //return ::success;
+
+         return;
 
       }
 
-      auto estatus = ::object::initialize(pobject);
+      //auto estatus = 
+      
+      ::object::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       synchronous_lock synchronouslock(mutex());
 
@@ -175,7 +179,7 @@ namespace user
 
       m_bInitialized = true;
 
-      return success;
+      //return success;
 
    }
 
@@ -1693,7 +1697,7 @@ namespace user
 
       }
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -2088,7 +2092,7 @@ namespace user
 
       //task_erase_all();
 
-      return ::success;
+      //return ::success;
 
    }
 

@@ -29,14 +29,16 @@ namespace write_text
       if (m_pfonts == nullptr)
       {
 
-         auto estatus = __construct(m_pfonts);
+         //auto estatus = 
+         
+         __construct(m_pfonts);
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            return nullptr;
+         //   return nullptr;
 
-         }
+         //}
 
          auto psystem = m_psystem->m_paurasystem;
 
@@ -68,9 +70,11 @@ namespace write_text
 
       }
 
-      auto estatus = ::acme::department::term();
+      //auto estatus = 
+      
+      ::acme::department::term();
 
-      return success;
+      //return success;
 
    }
 
@@ -80,9 +84,11 @@ namespace write_text
 
       m_pfonts.release();
 
-      auto estatus = ::acme::department::destroy();
+      //auto estatus = 
+      
+      ::acme::department::destroy();
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -94,9 +100,11 @@ namespace write_text
 
       auto pfonts = this->fonts();
 
-      auto estatus = pfonts->enumerate_fonts();
+      //auto estatus = 
+      
+      pfonts->enumerate_fonts();
 
-      return estatus;
+      //return estatus;
 
    }
 

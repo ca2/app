@@ -157,14 +157,16 @@ namespace aura
    void system::initialize(::object * pobject)
    {
 
-      auto estatus = ::aqua::system::initialize(pobject);
+      //auto estatus = 
+      
+      ::aqua::system::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       enable_trace_category(e_trace_category_windowing, true);
 
@@ -182,14 +184,14 @@ namespace aura
 
       m_pauracontext = this;
 
-      if (!initialize_log(strId))
-      {
+      initialize_log(strId);
+      //{
 
-         //xxdebug_box("Could not initialize log", "Failed to initialize log", 0);
+      //   //xxdebug_box("Could not initialize log", "Failed to initialize log", 0);
 
-         throw ::exception(error_failed, "failed to initialize log");
+      //   throw ::exception(error_failed, "failed to initialize log");
 
-      }
+      //}
 
       {
 
@@ -232,7 +234,7 @@ namespace aura
       thread::s_bAllocReady = true;
 
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -509,14 +511,16 @@ namespace aura
    void system::system_main()
    {
 
-      auto estatus = ::aqua::system::system_main();
+      //auto estatus =
+      
+      ::aqua::system::system_main();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       //estatus = create_os_node();
 
@@ -534,7 +538,7 @@ namespace aura
 
       //}
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -542,14 +546,16 @@ namespace aura
    void system::on_start_system()
    {
 
-      auto estatus = ::aqua::system::on_start_system();
+      //auto estatus = 
+      
+      ::aqua::system::on_start_system();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       //estatus = create_os_node();
 
@@ -567,7 +573,7 @@ namespace aura
 
       //}
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -640,14 +646,16 @@ namespace aura
    void system::process_init()
    {
 
-      auto estatus = ::apex::system::process_init();
+      //auto estatus =
+      
+      ::apex::system::process_init();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
 
 
@@ -1040,7 +1048,7 @@ namespace aura
 
       //}
 
-      return true;
+      //return true;
 
    }
 
@@ -1071,20 +1079,20 @@ namespace aura
 
          m_pfactoryDraw2d = draw2d_factory();
 
-         if (m_pfactoryDraw2d)
+         //if (m_pfactoryDraw2d)
          {
 
             m_pfactoryDraw2d->merge_to_global_factory();
 
          }
-         else
-         {
+         //else
+         //{
 
-            output_debug_string("ERROR: Failed to initialize draw2d library.");
+         //   output_debug_string("ERROR: Failed to initialize draw2d library.");
 
-            estatus = (const ::extended::status &) m_pfactoryDraw2d;
+         //   ///estatus = (const ::extended::status &) m_pfactoryDraw2d;
 
-         }
+         //}
 
       }
       catch (...)
@@ -1094,14 +1102,16 @@ namespace aura
 
       }
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         INFORMATION("draw2d_factory has failed.\n\nSome reasons:\n   - No draw2d library present;\n   - Failure to open any suitable draw2d library.");
+      //   INFORMATION("draw2d_factory has failed.\n\nSome reasons:\n   - No draw2d library present;\n   - Failure to open any suitable draw2d library.");
 
-         return estatus;
+      //   retru
 
-      }
+      //   //return estatus;
+
+      //}
 
       if (m_bImaging)
       {
@@ -1144,36 +1154,40 @@ namespace aura
 
       synchronous_lock synchronouslock(&m_mutexLibrary4);
 
-      estatus = __construct(m_pdraw2d);
+      ///estatus = 
+      
+      __construct(m_pdraw2d);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         INFORMATION("Couldn't construct new draw2d.");
+      //   INFORMATION("Couldn't construct new draw2d.");
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
-      estatus = m_pdraw2d->init1();
+      //estatus = 
+      
+      m_pdraw2d->init1();
 
-      if(!estatus)
-      {
+      //if(!estatus)
+      //{
 
-         INFORMATION("Couldn't initialize draw2d (init1).");
+      //   INFORMATION("Couldn't initialize draw2d (init1).");
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      if (::succeeded(estatus))
-      {
+      //if (::succeeded(estatus))
+      //{
 
          ::factory::add_factory_item < ::draw2d::task_tool_item >(::e_task_tool_draw2d);
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -1258,7 +1272,9 @@ namespace aura
 
          auto & pfactoryDraw2d = factory("draw2d", strLibrary);
 
-         if(pfactoryDraw2d.succeeded())
+         //if(pfactoryDraw2d)
+
+         if(pfactoryDraw2d)
          {
 
             return pfactoryDraw2d;
@@ -1286,7 +1302,7 @@ namespace aura
 
       auto & pfactoryDraw2d = factory("draw2d", strLibrary);
 
-      if(pfactoryDraw2d.succeeded())
+      if(pfactoryDraw2d)
       {
 
          return pfactoryDraw2d;
@@ -1302,7 +1318,7 @@ namespace aura
 
          auto & pfactoryDraw2d = factory("draw2d", "gdiplus");
 
-         if(pfactoryDraw2d.succeeded())
+         if(pfactoryDraw2d)
          {
 
             return pfactoryDraw2d;
@@ -1317,7 +1333,7 @@ namespace aura
 
          auto & pfactoryDraw2d = factory("draw2d", "direct2d");
 
-         if(pfactoryDraw2d.succeeded())
+         if(pfactoryDraw2d)
          {
 
             return pfactoryDraw2d;
@@ -1334,7 +1350,7 @@ namespace aura
 
          auto & pfactoryDraw2d = factory("draw2d", "cairo");
 
-         if(pfactoryDraw2d.succeeded())
+         if(pfactoryDraw2d)
          {
 
             return pfactoryDraw2d;
@@ -1344,7 +1360,14 @@ namespace aura
       }
 
       //output_debug_string("No draw2d pluging available!!.");
-      return pfactoryDraw2d;
+      if (pfactoryDraw2d)
+      {
+
+         return pfactoryDraw2d;
+
+      }
+
+      throw(error_not_found, "No draw2d plugin available");
 
    //destroy:
 
@@ -1403,12 +1426,12 @@ namespace aura
 
          auto & pfactoryImaging = factory("imaging", strLibrary);
 
-         if(pfactoryImaging.succeeded())
-         {
+         //if(pfactoryImaging.succeeded())
+         //{
 
-            return pfactoryImaging;
+         //   return pfactoryImaging;
 
-         }
+         //}
 
       }
 
@@ -1435,12 +1458,12 @@ namespace aura
 
       auto & pfactoryImaging = factory("imaging", strLibrary);
 
-      if(pfactoryImaging.succeeded())
-      {
+      //if(pfactoryImaging.succeeded())
+      //{
 
-         return pfactoryImaging;
+      //   return pfactoryImaging;
 
-      }
+      //}
 
 #ifdef WINDOWS_DESKTOP
 
@@ -1449,12 +1472,12 @@ namespace aura
 
          auto & pfactoryImaging = factory("imaging", "wic");
 
-         if(pfactoryImaging.succeeded())
-         {
+         //if(pfactoryImaging.succeeded())
+         //{
 
-            return pfactoryImaging;
+         //   return pfactoryImaging;
 
-         }
+         //}
 
       }
 
@@ -1465,12 +1488,12 @@ namespace aura
 
          auto & pfactoryImaging = factory("imaging", "freeimage");
 
-         if(pfactoryImaging.succeeded())
-         {
+         //if(pfactoryImaging.succeeded())
+         //{
 
-            return pfactoryImaging;
+         //   return pfactoryImaging;
 
-         }
+         //}
 
       }
 
@@ -1595,16 +1618,18 @@ namespace aura
       if (::is_set(m_pdraw2d))
       {
 
-         if (!m_pdraw2d->init())
-         {
+         m_pdraw2d->init();
+
+         //if (!m_pdraw2d->init())
+ /*        {
 
             return false;
 
-         }
+         }*/
 
       }
 
-      return true;
+      //return true;
 
    }
 
@@ -1627,15 +1652,17 @@ namespace aura
 
       //}
 
-      auto estatus = ::apex::system::init1();
+      //auto estatus = 
+      
+      ::apex::system::init1();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
 
-      }
+      //}
 
 
       //auto psession = get_session();
@@ -1762,7 +1789,7 @@ namespace aura
 
 //      enum_display_monitors();
 
-      return true;
+      //return true;
 
    }
 
@@ -1786,16 +1813,18 @@ namespace aura
    void system::inline_init()
    {
 
-      ::e_status estatus = ::aqua::system::inline_init();
+      //::e_status estatus =
+      
+      ::aqua::system::inline_init();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -1803,16 +1832,18 @@ namespace aura
    void system::inline_term()
    {
 
-      ::e_status estatus = ::aqua::system::inline_term();
+      //::e_status estatus = 
+      
+      ::aqua::system::inline_term();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -1830,18 +1861,20 @@ namespace aura
    void system::system_prep()
    {
 
-      auto estatus = ::aqua::system::system_prep();
+      //auto estatus = 
+      
+      ::aqua::system::system_prep();
 
-      if(!estatus)
-      {
+      //if(!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      //os_init_windowing();
+      ////os_init_windowing();
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -1972,28 +2005,29 @@ namespace aura
    void system::term_thread()
    {
 
-      try
-      {
+      //try
+      //{
 
          term_system();
 
-      }
-      catch(...)
-      {
+      //}
+      //catch(...)
+      //{
 
-      }
+      //}
 
 
-      try
-      {
+      //try
+      //{
 
          ::thread::term_thread();
 
-      }
-      catch(...)
-      {
+      //}
+      //catch(...)
+      //{
 
-      }
+      //}
+
    }
 
 
@@ -4632,7 +4666,7 @@ namespace aura
       if (m_pgpu)
       {
 
-         return ::success;
+         return;
 
       }
 
@@ -4644,27 +4678,29 @@ namespace aura
 
 
 
-      if (!pfactoryGpu)
-      {
+      //if (!pfactoryGpu)
+      //{
 
-         ERROR("gpu_opengl ([a-z0-9_]+)_factory has failed");
+      //   ERROR("gpu_opengl ([a-z0-9_]+)_factory has failed");
 
-         return pfactoryGpu;
+      //   return pfactoryGpu;
 
-      }
+      //}
 
       pfactoryGpu->merge_to_global_factory();
 
-      auto estatus = pfactoryGpu->__compose(this, m_pgpu);
+      //auto estatus =
+      
+      pfactoryGpu->__compose(this, m_pgpu);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return ::success;
+      //return ::success;
 
    }
 //#endif
@@ -5437,14 +5473,16 @@ namespace aura
    void system::init2()
    {
 
-      auto estatus = ::apex::system::init2();
+      //auto estatus = 
+      
+      ::apex::system::init2();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       //if(!::aura::application::init2())
       //   return false;
@@ -5458,18 +5496,20 @@ namespace aura
 
       //}
 
-      estatus = __compose_new(m_phistory);
+      //estatus = 
+      
+      __compose_new(m_phistory);
 
-      if(!estatus)
-      {
+      //if(!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      //post_creation_requests();
+      ////post_creation_requests();
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -5480,39 +5520,45 @@ namespace aura
       if (m_bDraw2d)
       {
 
-         if (!initialize_draw2d())
-         {
+         initialize_draw2d();
 
-            return false;
+         ////if (!initialize_draw2d())
+         //{
 
-         }
+         //   return false;
 
-      }
-
-      auto estatus = __compose_new(m_pimaging);
-
-      if (!estatus)
-      {
-
-         if (m_bUser && m_bDraw2d && m_bImaging)
-         {
-
-            return estatus;
-
-         }
+         //}
 
       }
 
-      estatus = ::aura::context::initialize_context();
+      //auto estatus =
+      
+      __compose_new(m_pimaging);
 
-      if(!estatus)
-      {
+      /*/if (!estatus)
+      {*/
 
-         return estatus;
+      //   if (m_bUser && m_bDraw2d && m_bImaging)
+      //   {
 
-      }
+      //      throw_statu()
 
-      return estatus;
+      //   }
+
+      //}
+
+      //estatus =
+      
+      ::aura::context::initialize_context();
+
+      //if(!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
+
+      //return estatus;
 
    }
 
@@ -6404,29 +6450,35 @@ namespace aura
       if (m_pestamira)
       {
 
-         return ::success;
+         //return ::success;
+
+         return;
 
       }
 
-      auto estatus = __compose(m_pestamira);
+      //auto estatus = 
+      
+      __compose(m_pestamira);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = m_pestamira->init_instance();
+      //estatus = 
+      
+      m_pestamira->init_instance();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -6816,9 +6868,11 @@ namespace aura
    void system::destroy()
    {
 
-      auto estatus = ::aqua::system::destroy();
+      //auto estatus =
+      
+      ::aqua::system::destroy();
 
-      return estatus;
+      //return estatus;
 
    }
 

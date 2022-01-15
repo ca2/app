@@ -366,12 +366,14 @@ namespace user
 
       }
 
-      if(!pholder->::user::interaction::create_child(get_parent()))
-      {
+      pholder->::user::interaction::create_child(get_parent());
 
-         return nullptr;
+      //if(!pholder->::user::interaction::create_child(get_parent()))
+      //{
 
-      }
+      //   return nullptr;
+
+      //}
 
       return pholder;
 

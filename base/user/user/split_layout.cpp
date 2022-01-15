@@ -150,16 +150,20 @@ namespace user
          if(!m_splitbara[i])
          {
 
-            auto estatus = __construct(m_splitbara[i]);
+            //auto estatus = 
+            
+            __construct(m_splitbara[i]);
 
-            if (!estatus)
+            //if (!estatus)
             {
 
                ::user::split_bar & splitbar = m_splitbara(i);
 
                splitbar.m_iIndex = i;
 
-               if (splitbar.create_child(this))
+               splitbar.create_child(this);
+
+               //if (splitbar.create_child(this))
                {
 
                   splitbar.m_dwPosition = 0;
@@ -182,14 +186,16 @@ namespace user
          if(!ppane)
          {
 
-            auto estatus = __compose_new(ppane);
+            //auto estatus =
+            
+            __compose_new(ppane);
 
-            if (!estatus)
-            {
+            ////if (!estatus)
+            //{
 
-               return false;
+            //   return false;
 
-            }
+            //}
 
             ppane->m_bFixedSize =  false;
 
@@ -943,25 +949,29 @@ namespace user
 
          pbar->m_iIndex = iIndex;
 
-         if (!pbar->create_child(this))
-         {
+         pbar->create_child(this);
 
-            return false;
+         //if (!pbar->create_child(this))
+         //{
 
-         }
+         //   return false;
+
+         //}
 
       //}
 
       auto & ppane = m_splitpanecompositea.add_new_at(iIndex);
 
-      auto estatus = __compose_new(ppane);
+      //auto estatus = 
+      
+      __compose_new(ppane);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
       ppane->m_pplaceholder = place_hold(puserinteraction, ppane->m_rectangleClient);
 
@@ -1007,12 +1017,14 @@ namespace user
 
          splitbar.m_iIndex = i;
 
-         if (!splitbar.create_child(this))
-         {
+         splitbar.create_child(this);
 
-            return false;
+         //if (!splitbar.create_child(this))
+         //{
 
-         }
+         //   return false;
+
+         //}
 
       }
 

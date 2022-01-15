@@ -749,7 +749,7 @@ namespace user
 
       }
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -1106,14 +1106,16 @@ namespace user
    void tab_drop_target_window::initialize_tab_drop_target_window(::user::tab* ptab, index iTab)
    {
 
-      auto estatus = ::user::interaction::initialize(ptab);
+      //auto estatus = 
+      
+      ::user::interaction::initialize(ptab);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
 
 
@@ -1129,7 +1131,7 @@ namespace user
 
       m_iTab = iTab;
 
-      return estatus;
+      //return estatus;
 
    }
 

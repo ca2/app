@@ -340,10 +340,21 @@ namespace user
 
       ::user::validate validate;
 
-      if(!validate.Validate(str, pinteraction))
+      try
       {
-         // que tal um balão para indicar o erro
+
+         validate.Validate(str, pinteraction);
+         //{
+         //   // que tal um balão para indicar o erro
+         //   return false;
+         //}
+
+      }
+      catch (...)
+      {
+
          return false;
+
       }
 
       ::payload payload;
@@ -1169,16 +1180,18 @@ namespace user
    void form_window::open_document(const ::payload & payloadFile)
    {
 
-      auto estatus = ::user::form_control::open_document(payloadFile);
+      //auto estatus = 
+      
+      ::user::form_control::open_document(payloadFile);
 
-      if(!estatus)
-      {
+      //if(!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 

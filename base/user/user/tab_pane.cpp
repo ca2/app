@@ -41,14 +41,16 @@ namespace user
    void tab_pane::initialize_tab_pane(class tab* ptab)
    {
 
-      auto estatus = ::matter::initialize_matter(ptab);
+      //auto estatus =
+      
+      ::matter::initialize_matter(ptab);
 
-      if(!estatus)
-      {
+      //if(!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       m_ptab = ptab;
 
@@ -56,7 +58,7 @@ namespace user
       m_pbrushFillSel.create(ptab);
       m_pbrushFillHover.create(ptab);
 
-      return estatus;
+      //return estatus;
 
    }
 

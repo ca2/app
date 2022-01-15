@@ -123,7 +123,9 @@ namespace user
       for (auto & pui : uia.interactiona())
       {
 
-         auto estatus = pui->set_finish();
+         //auto estatus = pui->set_finish();
+
+         pui->set_finish();
 
    /*      if (estatus == ::error_pending)
          {
@@ -974,10 +976,10 @@ namespace user
          preader->close();
 
       }
-      catch (const ::exception & exception)
+      catch (const ::exception &)
       {
 
-         report_load_exception(payloadFile, exception, "__IDP_FAILED_TO_OPEN_DOC");
+         report_load_exception(payloadFile, preader, "__IDP_FAILED_TO_OPEN_DOC");
 
       }
 
@@ -1031,10 +1033,10 @@ namespace user
          pwriter->close();
 
       }
-      catch (const ::exception & exception)
+      catch (const ::exception & )
       {
 
-         report_save_exception(payloadFile, exception, "__IDP_FAILED_TO_OPEN_DOC");
+         report_save_exception(payloadFile, pwriter, "__IDP_FAILED_TO_OPEN_DOC");
 
       }
 
@@ -1740,14 +1742,14 @@ namespace user
       if (pview->m_pdocument)
       {
 
-         return ::error_invalid_argument;// must not be already attached
+         throw_status(::error_invalid_argument);// must not be already attached
 
       }
 
       if (!m_viewa.add_unique(pview))
       {
 
-         return ::error_already_added;// must not be already added
+         throw_status(::error_already_added);// must not be already added
 
       }
 
@@ -1755,7 +1757,7 @@ namespace user
 
       on_changed_view_list();    // must be the last thing done to the document
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -1770,14 +1772,14 @@ namespace user
       if(pview->get_document() != this)
       {
 
-         return ::error_invalid_argument; // must be attached to us
+         throw_status(::error_invalid_argument); // must be attached to us
 
       }
 
       if (m_viewa.erase(pview) < 0)
       {
 
-         return ::error_not_found;
+         throw_status(::error_not_found);
 
       }
 
@@ -1785,7 +1787,7 @@ namespace user
 
       on_changed_view_list();    // must be the last thing done to the document
 
-      return ::success;
+      //return ::success;
 
    }
 

@@ -127,7 +127,8 @@ namespace user
             if (strHtml.has_char())
             {
 
-               if (m_pform->open_html(strHtml))
+               m_pform->open_html(strHtml);
+               //if ()
                {
 
                   bOk = true;
@@ -135,18 +136,25 @@ namespace user
                }
 
             }
-            else if (m_pform->open_document(pathHtml))
-            {
-
-               bOk = true;
-
-            }
             else
             {
 
-               m_pform->start_destroying_window();
+               try
+               {
 
-               m_pform.release();
+                  m_pform->open_document(pathHtml);
+
+                  bOk = true;
+
+               }
+               catch (...)
+               {
+
+                  m_pform->start_destroying_window();
+
+                  m_pform.release();
+
+               }
 
             }
 
@@ -193,7 +201,7 @@ namespace user
 
       }
 
-      return bOk;
+      //return bOk;
 
    }
 
@@ -205,7 +213,7 @@ namespace user
 
       auto pformOld = m_pform;
 
-      void     estatus = error_failed;
+      //void     estatus = error_failed;
 
       //__pointer(::user::form_view) pformChild = create_view(psession->userex()->get_html_view_type());
       //
@@ -259,7 +267,7 @@ namespace user
       //
       //}
 
-      return estatus;
+      //return estatus;
 
    }
 

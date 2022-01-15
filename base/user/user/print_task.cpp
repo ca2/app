@@ -22,16 +22,18 @@ namespace user
    void print_task::initialize(::object * pobject)
    {
 
-      auto estatus = ::task::initialize(pobject);
+      //auto estatus =
+      
+      ::task::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 

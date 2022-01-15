@@ -32,25 +32,29 @@ namespace user
    void document_manager_container::initialize(::object * pobject)
    {
 
-      auto estatus = ::object::initialize(pobject);
+      //auto estatus = 
+      
+      ::object::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = __compose_new(m_pdocmanager);
+      //estatus = 
+      
+      __compose_new(m_pdocmanager);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 

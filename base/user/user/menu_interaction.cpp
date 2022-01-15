@@ -24,18 +24,20 @@ namespace user
    void menu_interaction::initialize_menu_interaction(menu_item* pmenuitem)
    {
 
-      auto estatus = ::user::interaction::initialize(pmenuitem);
+      //auto estatus = 
+      
+      ::user::interaction::initialize(pmenuitem);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       m_pmenuitem = pmenuitem;
          
-      return estatus;
+      //return estatus;
 
    }
 

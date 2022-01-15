@@ -60,19 +60,23 @@ namespace user
    void tab::on_initialize_object()
    {
 
-      auto estatus = ::user::interaction::on_initialize_object();
+      //auto estatus = 
+      
+      ::user::interaction::on_initialize_object();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = __defer_construct_new(m_pdata);
+      //estatus = 
+      
+      __defer_construct_new(m_pdata);
 
-      if (estatus == ::success)
-      {
+      //if (estatus == ::success)
+      //{
 
          auto pdata = get_data();
 
@@ -83,9 +87,9 @@ namespace user
          pdata->m_iTabWidth = 48;
          pdata->m_iClickTab = -1;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -179,14 +183,16 @@ namespace user
 
       auto & ppane = get_data()->m_tabpanecompositea.add_new();
 
-      auto estatus = __compose_new(ppane);
+      //auto estatus = 
+      
+      __compose_new(ppane);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
       ppane->initialize_tab_pane(this);
 
@@ -280,14 +286,16 @@ namespace user
 
       auto & ppane = get_data()->m_tabpanecompositea.add_new();
 
-      auto estatus = __compose_new(ppane);
+      //auto estatus =
+      
+      __compose_new(ppane);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
       ppane->initialize_tab_pane(this);
 

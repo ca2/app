@@ -308,10 +308,28 @@ namespace user
 
       ::user::validate validate;
 
-      if(!validate.Validate(str, pinteraction))
+      try
       {
-         // que tal um balão para indicar o erro
-         return false;
+
+         validate.Validate(str, pinteraction);
+
+         //if (!validate.Validate(str, pinteraction))
+         //{
+         //   // que tal um balão para indicar o erro
+         //   return false;
+         //}
+
+      }
+      catch (const ::exception& exception)
+      {
+
+         if (::failed(exception.m_estatus))
+         {
+
+            return false;
+
+         }
+
       }
 
       ::payload payload;
@@ -927,7 +945,7 @@ namespace user
    }
 
 
-   bool form_control::update_data(bool bSaveAndValidate)
+   void form_control::update_data(bool bSaveAndValidate)
    {
 
       ::user::interaction::update_data(bSaveAndValidate);
@@ -957,7 +975,7 @@ namespace user
 
       route(psubject);
 
-      return psubject->m_bOk;
+      //return psubject->m_bOk;
 
    }
 
@@ -1256,15 +1274,15 @@ namespace user
    void form_control::open_document(const ::payload & payloadFile)
    {
 
-      return true;
+      //return true;
 
    }
 
 
-   void     form_control::open_html(const ::string & str)
+   void form_control::open_html(const ::string & str)
    {
 
-      return error_not_implemented;
+      throw_status(error_not_implemented);
 
    }
 

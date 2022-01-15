@@ -526,23 +526,27 @@ namespace user
 
                   ::image_pointer pimage2;
 
-                  auto estatus = __construct(pimage2);
+                  //auto estatus = 
+                  
+                  __construct(pimage2);
 
-                  if (!estatus)
-                  {
+                  //if (!estatus)
+                  //{
 
-                     return;
+                  //   return;
 
-                  }
+                  //}
 
-                  estatus = pimage2->create({ 300, rectangle.size().cy * 300 / rectangle.size().cx });
+                  //estatus = 
+                  
+                  pimage2->create({ 300, rectangle.size().cy * 300 / rectangle.size().cx });
 
-                  if (!estatus)
-                  {
+                  //if (!estatus)
+                  //{
 
-                     return;
+                  //   return;
 
-                  }
+                  //}
 
                   pimage2->get_graphics()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
@@ -1081,23 +1085,27 @@ namespace user
       if (puiParent)
       {
 
-         if (!create_child(puiParent))
-         {
+         create_child(puiParent);
 
-            return false;
+         //if (!create_child(puiParent))
+         //{
 
-         }
+         //   return false;
+
+         //}
 
       }
       else
       {
 
-         if (!create_host())
-         {
+         create_host();
 
-            return false;
+         //if (!create_host())
+         //{
 
-         }
+         //   return false;
+
+         //}
 
 
       }
@@ -1639,7 +1647,7 @@ namespace user
 
       post_redraw();
 
-      return ::success;
+//      return ::success;
 
    }
 
@@ -1666,23 +1674,23 @@ namespace user
    __pointer(toolbar) frame_window::get_toolbar(const ::id & idToolbar, bool bCreate, const ::string & strToolbarParam, u32 dwCtrlStyle, u32 uStyle, const ::type & type)
    {
 
-      auto & toolbartransport = m_mapToolbar[idToolbar];
+      auto & ptoolbartransport = m_mapToolbar[idToolbar];
 
-      if(bCreate && toolbartransport.not_initialized())
+      if(bCreate && !ptoolbartransport)
       {
 
-         toolbartransport = create_toolbar(idToolbar, strToolbarParam, dwCtrlStyle, uStyle, "simple_toolbar");
+         ptoolbartransport = create_toolbar(idToolbar, strToolbarParam, dwCtrlStyle, uStyle, "simple_toolbar");
 
-         if(toolbartransport)
+         if(ptoolbartransport)
          {
 
-            add_control_bar(toolbartransport);
+            add_control_bar(ptoolbartransport);
 
          }
 
       }
 
-      return toolbartransport;
+      return ptoolbartransport;
 
    }
 
@@ -1703,14 +1711,16 @@ namespace user
 
       toolbartransport->m_dwCtrlStyle = dwCtrlStyle;
 
-      auto estatus = toolbartransport->create_child(this);
+      //auto estatus = 
+      
+      toolbartransport->create_child(this);
 
-      if(!estatus)
-      {
+      //if(!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       auto pcontext = get_context();
 
@@ -1727,12 +1737,14 @@ namespace user
 
       string strXml = pcontext->m_papexcontext->file().as_string(strMatter);
 
-      if(!toolbartransport->LoadXmlToolBar(strXml))
-      {
+      toolbartransport->LoadXmlToolBar(strXml);
 
-         return error_failed;
+      //if(!toolbartransport->LoadXmlToolBar(strXml))
+      //{
 
-      }
+      //   return error_failed;
+
+      //}
 
       return toolbartransport;
 
@@ -2653,7 +2665,7 @@ namespace user
 
       m_controlbara.add_unique(pcontrolbar);
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -2663,7 +2675,7 @@ namespace user
 
       m_controlbara.erase(pcontrolbar);
 
-      return ::success;
+      //return ::success;
 
    }
 

@@ -1157,8 +1157,6 @@ namespace user
    void thread::set_finish()
    {
 
-      //return 
-
       ::thread::set_finish();
 
    }

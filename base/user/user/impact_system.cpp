@@ -140,9 +140,11 @@ namespace user
 
       __pointer(::user::document) pdocument;
 
-      auto estatus = papp->__id_construct(pdocument, m_typeDocument);
+      //auto estatus = 
+      
+      papp->__id_construct(pdocument, m_typeDocument);
 
-      if (!estatus || !pdocument)
+      if (!pdocument)
       {
 
          CATEGORY_WARNING(appmsg, "Warning: Dynamic create of ::user::document type %hs failed.\n" << m_typeDocument.name());
@@ -216,9 +218,11 @@ namespace user
 
       __pointer(::user::frame_window) pframe;
 
-      auto estatus = papp->__id_construct(pframe, m_typeFrame);
+      //auto estatus =
+      
+      papp->__id_construct(pframe, m_typeFrame);
 
-      if (!estatus || !pframe)
+      if (!pframe)
       {
 
          CATEGORY_WARNING(appmsg,"Warning: Dynamic create of frame %hs failed.\n", m_typeFrame.name().c_str());

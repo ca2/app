@@ -36,7 +36,7 @@ namespace user
    }
 
 
-   bool image_list::update_data(bool bSaveAndValidate)
+   void image_list::update_data(bool bSaveAndValidate)
    {
 
       if (bSaveAndValidate)
@@ -52,7 +52,7 @@ namespace user
 
       }
 
-      return true;
+      //return true;
 
    }
 

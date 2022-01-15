@@ -217,25 +217,27 @@ namespace user
    void impact::initialize_view(::user::document * pdocument)
    {
 
-      auto estatus = ::user::box::initialize(pdocument);
+      //auto estatus = 
+      
+      ::user::box::initialize(pdocument);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       m_pdocument =  pdocument;
 
       if (!m_pdocument && pdocument)
       {
 
-         return error_wrong_type;
+         throw_status(error_wrong_type);
 
       }
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -682,11 +684,11 @@ namespace user
       if (!m_puserinteractionImpactNotify && puserinteractionNotify)
       {
 
-         return error_wrong_type;
+         throw_status(error_wrong_type);
 
       }
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -847,7 +849,8 @@ namespace user
 
          }
 
-         estatus = pobject->__id_construct(pinteraction, pusersystem->m_typeNewView);
+         //estatus = 
+         pobject->__id_construct(pinteraction, pusersystem->m_typeNewView);
 
       }
 
@@ -865,12 +868,14 @@ namespace user
       pinteraction->m_id = id;
 
       //if (!pinteraction->create_interaction(nullptr, nullptr, WS_VISIBLE | WS_CHILD, puserinteractionParent, id, pcreate))
-      if (!pinteraction->create_child(puserinteractionParent))
-      {
+      //if (!pinteraction->create_child(puserinteractionParent))
 
-         return nullptr;
+      pinteraction->create_child(puserinteractionParent);
+      //{
 
-      }
+      //   return nullptr;
+
+      //}
 
       __pointer(::user::impact) pview = pinteraction;
 

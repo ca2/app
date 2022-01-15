@@ -35,12 +35,14 @@ namespace user
 
       pplaceholder->display(e_display_normal);
 
-      if(!pplaceholder->create_child(this))
-      {
+      pplaceholder->create_child(this);
 
-         return nullptr;
+      //if(!pplaceholder->create_child(this))
+      //{
 
-      }
+      //   return nullptr;
+
+      //}
 
       m_placeholdera.add(pplaceholder);
 

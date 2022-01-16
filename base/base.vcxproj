@@ -977,6 +977,7 @@
     <ClInclude Include="user\user\image_list.h" />
     <ClInclude Include="user\user\impact_data.h" />
     <ClInclude Include="user\user\server.h" />
+    <ClInclude Include="user\user\show.h" />
     <ClInclude Include="user\user\split_pane.h" />
     <ClInclude Include="user\user\tab_data.h" />
     <ClInclude Include="user\user\tab_drop_target_window.h" />

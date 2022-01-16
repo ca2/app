@@ -76,14 +76,16 @@ namespace filemanager
    void data::initialize_filemanager_data(::object * pobject)
    {
 
-      auto estatus = ::data::data::initialize(pobject);
+      //auto estatus = 
+      
+      ::data::data::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       m_strLevelUp.Empty();
       m_setToolbar[::userfs::mode_normal] = "matter://filemanager_toolbar.xml";
@@ -97,7 +99,7 @@ namespace filemanager
       m_idExpandBox = 0;
       m_idCollapseBox = 0;
 
-      return true;
+      //return true;
 
    }
 
@@ -298,7 +300,7 @@ namespace filemanager
 
          }
 
-         //pcontext->m_papexcontext->dir().mk(strPath);
+         //pcontext->m_papexcontext->dir().create(strPath);
 
          if (pcontext->m_papexcontext->dir().is(strPath))
          {
@@ -378,7 +380,7 @@ namespace filemanager
 
       }
 
-      return ::success;
+      //return ::success;
 
    }
 

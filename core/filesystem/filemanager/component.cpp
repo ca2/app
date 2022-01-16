@@ -178,14 +178,16 @@ namespace filemanager
    void component::initialize_filemanager_component(::object * pobject)
    {
 
-      auto estatus = ::object::initialize(pobject);
+      //auto estatus = 
+      
+      ::object::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       ::factory::add_factory_item <form >();
       ::factory::add_factory_item <document >();
@@ -241,7 +243,7 @@ namespace filemanager
 
       psession->add_document_template(pmulti);
 
-      auto psingle = __new(::user::single_document_template(
+      auto psingle = __new(::user::multiple_document_template(
                           "filemanager",
                           __type(operation_document),
                           __type(operation_child_frame),
@@ -251,7 +253,7 @@ namespace filemanager
 
       psession->add_document_template(psingle);
 
-      return true;
+      //return true;
 
    }
 

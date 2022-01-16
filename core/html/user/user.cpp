@@ -32,7 +32,7 @@ namespace core
 
       add_document_template(ptemplate);
 
-      return ::success;
+      //return ::success;
 
    }
 

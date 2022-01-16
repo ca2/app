@@ -27,48 +27,54 @@ namespace user
    }
 
 
-   e_status format_tool::initialize(::object * pobject)
+   void format_tool::initialize(::object * pobject)
    {
 
-      auto estatus = ::user::tool_window::initialize(pobject);
+      //auto estatus = 
+      
+      ::user::tool_window::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = __defer_construct_new(m_pformata);
+      //estatus = 
+      
+      __defer_construct_new(m_pformata);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       auto pformat = __create_new < ::user::rich_text::format > ();
 
-      if (!pformat)
-      {
+      //if (!pformat)
+      //{
 
-         return pformat;
+      //   return pformat;
 
-      }
+      //}
 
-      estatus = pformat->initialize_user_rich_text_format(m_pformata);
+      //estatus = 
+      
+      pformat->initialize_user_rich_text_format(m_pformata);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       m_pformata->add(pformat);
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -107,32 +113,32 @@ namespace user
 
       }
       int iControl = 0;
-      auto estatus = __compose(m_pbuttonBold);
-      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __string(iControl) + ")"); return; }
-      estatus = __compose(m_pbuttonItalic);
-      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __string(iControl) + ")"); return; }
-      estatus = __compose(m_pbuttonUnderline);
-      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __string(iControl) + ")"); return; }
-      estatus = __compose(m_pcomboFamily);
-      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __string(iControl) + ")"); return; }
-      estatus = __compose(m_pcomboSize);
-      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __string(iControl) + ")"); return; }
-      estatus = __compose(m_pbuttonForeground);
-      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __string(iControl) + ")"); return; }
-      estatus = __compose(m_pbuttonBackground);
-      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __string(iControl) + ")"); return; }
-      estatus = __compose(m_pbuttonSubscript);
-      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __string(iControl) + ")"); return; }
-      estatus = __compose(m_pbuttonSuperscript);
-      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __string(iControl) + ")"); return; }
-      estatus = __compose(m_pbuttonLineHeight);
-      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __string(iControl) + ")"); return; }
-      estatus = __compose(m_pbuttonAlignLeft);
-      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __string(iControl) + ")"); return; }
-      estatus = __compose(m_pbuttonAlignCenter);
-      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __string(iControl) + ")"); return; }
-      estatus = __compose(m_pbuttonAlignRight);
-      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __string(iControl) + ")"); return; }
+      __compose(m_pbuttonBold);
+      iControl++;
+      __compose(m_pbuttonItalic);
+      iControl++;
+      __compose(m_pbuttonUnderline);
+      iControl++;
+      __compose(m_pcomboFamily);
+      iControl++;
+      __compose(m_pcomboSize);
+      iControl++;
+      __compose(m_pbuttonForeground);
+      iControl++;
+      __compose(m_pbuttonBackground);
+      iControl++;
+      __compose(m_pbuttonSubscript);
+      iControl++;
+      __compose(m_pbuttonSuperscript);
+      iControl++;
+      __compose(m_pbuttonLineHeight);
+      iControl++;
+      __compose(m_pbuttonAlignLeft);
+      iControl++;
+      __compose(m_pbuttonAlignCenter);
+      iControl++;
+      __compose(m_pbuttonAlignRight);
+      iControl++;
 
       m_pbuttonBold->create_control(this, "font_bold");
       m_pbuttonBold->LoadBitmaps("matter://fontformat/bold-text-option12.png");
@@ -602,13 +608,13 @@ namespace user
    }
 
 
-   bool format_tool::update_data(bool bSaveAndValidate)
+   void format_tool::update_data(bool bSaveAndValidate)
    {
 
       if (m_pformata->is_empty() || !m_pformata->first())
       {
 
-         return false;
+         throw_status(error_failed);
 
       }
 
@@ -720,7 +726,7 @@ namespace user
 
       }
 
-      return true;
+      //return true;
 
    }
 

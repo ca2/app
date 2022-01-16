@@ -85,7 +85,7 @@ namespace dynamic_source
 //
 //      auto pacmedir = m_psystem->m_pacmedir;
 //
-//      m_pcontext->m_papexcontext->dir().mk(pacmedir->system() / "netnodelite/symbols");
+//      m_pcontext->m_papexcontext->dir().create(pacmedir->system() / "netnodelite/symbols");
 //
 //      ::file::path strVars;
 //
@@ -237,7 +237,7 @@ namespace dynamic_source
 //
 //#endif
 //
-//      m_pcontext->m_papexcontext->dir().mk(m_pcontext->m_papexcontext->dir().install()/m_strDynamicSourceStage / "front");
+//      m_pcontext->m_papexcontext->dir().create(m_pcontext->m_papexcontext->dir().install()/m_strDynamicSourceStage / "front");
 //
 //      string str;
 //
@@ -651,9 +651,9 @@ pacmedir->create(pathDVP_Folder);
       }
 
 
-      m_pcontext->m_papexcontext->dir().mk(pscript->m_strScriptPath.folder());
-      m_pcontext->m_papexcontext->dir().mk(strL.folder());
-      m_pcontext->m_papexcontext->dir().mk(m_strTime / "intermediate" / m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + ::file::path("_dynamic_source_script") / strTransformName);
+      m_pcontext->m_papexcontext->dir().create(pscript->m_strScriptPath.folder());
+      m_pcontext->m_papexcontext->dir().create(strL.folder());
+      m_pcontext->m_papexcontext->dir().create(m_strTime / "intermediate" / m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + ::file::path("_dynamic_source_script") / strTransformName);
 
       cppize(pscript);
 
@@ -1055,7 +1055,7 @@ pacmedir->create(pathDVP_Folder);
 
       }
 
-      m_pcontext->m_papexcontext->dir().mk(pscript->m_strCppPath.folder());
+      m_pcontext->m_papexcontext->dir().create(pscript->m_strCppPath.folder());
 
       cppize1(pscript);
 
@@ -1443,8 +1443,8 @@ pacmedir->create(pathDVP_Folder);
       // plib->m_strLibraryPath.format(strFolder, "app/_stage/aura/account/app/main/front/Release/%s.dll", false), strName);
       //#endif
 
-      m_pcontext->m_papexcontext->dir().mk(l.m_strLibraryPath.folder());
-      m_pcontext->m_papexcontext->dir().mk(m_strTime / "intermediate" / m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + "_dynamic_source_library/library");
+      m_pcontext->m_papexcontext->dir().create(l.m_strLibraryPath.folder());
+      m_pcontext->m_papexcontext->dir().create(m_strTime / "intermediate" / m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + "_dynamic_source_library/library");
 
       for(i32 i = 0; i < l.m_straLibIncludePath.get_size(); i++)
       {
@@ -1550,8 +1550,8 @@ pacmedir->create(pathDVP_Folder);
          str.replace("%SDK1%",m_strSdk1);
          //str.replace("%DVP%", strDVP_B);
 
-         m_pcontext->m_papexcontext->dir().mk(m_strTime / "intermediate" / m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + "_dynamic_source_library" / str1.folder());
-         m_pcontext->m_papexcontext->dir().mk(m_strTime / "library" / m_strStagePlatform / str1.folder());
+         m_pcontext->m_papexcontext->dir().create(m_strTime / "intermediate" / m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + "_dynamic_source_library" / str1.folder());
+         m_pcontext->m_papexcontext->dir().create(m_strTime / "library" / m_strStagePlatform / str1.folder());
 
          string strFormat = "libc-" + str1;
 
@@ -1706,7 +1706,7 @@ pacmedir->create(pathDVP_Folder);
       string strTargetName = l.m_strLibraryPath;
       ::str::ends_eat_ci(strTargetName,".dll");
       str.replace("%TARGET_NAME%", strTargetName);
-      m_pcontext->m_papexcontext->dir().mk(m_pcontext->m_papexcontext->dir().install()/ m_strDynamicSourceStage / m_strStagePlatform /"library");
+      m_pcontext->m_papexcontext->dir().create(m_pcontext->m_papexcontext->dir().install()/ m_strDynamicSourceStage / m_strStagePlatform /"library");
 //#ifdef LINUX
 //      //sleep(2000_ms);
 //      strCmd = m_pcontext->m_papexcontext->dir().install()/m_strDynamicSourceStage/ "front\\libl1.bash";
@@ -1800,7 +1800,7 @@ auto tickStart = ::duration::now();
    void script_compiler::cppize(const ::file::path & lpcszSource,const ::file::path & lpcszDest,ecpptype enum_type)
    {
 
-      m_pcontext->m_papexcontext->dir().mk(lpcszDest.folder());
+      m_pcontext->m_papexcontext->dir().create(lpcszDest.folder());
 
       cppize1(lpcszSource, lpcszDest, enum_type);
 

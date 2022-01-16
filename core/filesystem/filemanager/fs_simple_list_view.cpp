@@ -72,7 +72,9 @@ namespace filemanager
 
             }
 
-            auto estatus = __construct_new(m_puserlistcache);
+            //auto estatus = 
+            
+            __construct_new(m_puserlistcache);
 
             set_cache_interface(m_puserlistcache);
 

@@ -21,7 +21,7 @@ namespace user
 
 
       form();
-      virtual ~form();
+      ~form() override;
 
 
       inline ::aura::application* get_application() const;
@@ -42,7 +42,7 @@ namespace user
 
       virtual ::user::form_callback* get_form_callback();
       //virtual ::handler* get_user_callback() override;
-      virtual ::user::form * get_parent_form() override;
+      ::user::form * get_parent_form() override;
 
 
       //virtual enum_control_type get_control_type() const override;
@@ -54,9 +54,9 @@ namespace user
       //virtual __pointer(control_descriptor) new_form_control();
 
 
-      virtual void open_html(const ::string& str);
+      virtual bool open_document(const ::payload& payloadFile);
 
-      virtual void open_document(const ::payload& payloadFile);
+      virtual bool open_html(const ::string& str);
 
       virtual void soft_reload();
 

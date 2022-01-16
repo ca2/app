@@ -2018,70 +2018,61 @@ void object::sleep(const ::duration& duration)
 
    auto ptask = ::get_task();
 
-   try
+   if (::is_set(ptask))
    {
 
-      if (::is_set(ptask))
+
+      __pointer(manual_reset_event) pevent;
+
       {
 
+         _synchronous_lock synchronouslock(ptask->mutex());
 
-         __pointer(manual_reset_event) pevent;
-
+         if (ptask->m_pevSleep.is_null())
          {
 
-            _synchronous_lock synchronouslock(ptask->mutex());
+            ptask->m_pevSleep = __new(manual_reset_event());
 
-            if (ptask->m_pevSleep.is_null())
-            {
-
-               ptask->m_pevSleep = __new(manual_reset_event());
-
-               ptask->m_pevSleep->ResetEvent();
-
-            }
-
-            pevent = ptask->m_pevSleep;
+            ptask->m_pevSleep->ResetEvent();
 
          }
 
-         if (m_psystem && m_psystem->is_finishing())
-         {
-
-            throw_status(error_exit_system);
-
-         }
-
-         //if (m_psession && m_psession->finish_bit())
-         //{
-
-         //   return error_exit_session;
-
-         //}
-
-         //if (m_papplication && m_papplication->finish_bit())
-         //{
-
-         //   return error_exit_application;
-
-         //}
-
-         if (::is_set(pevent))
-         {
-
-            pevent->wait(duration);
-
-            pevent.release();
-
-            return;
-            //return ::task_get_run();
-
-         }
+         pevent = ptask->m_pevSleep;
 
       }
 
-   }
-   catch (...)
-   {
+      if (m_psystem && m_psystem->is_finishing())
+      {
+
+         throw_status(error_exit_system);
+
+      }
+
+      //if (m_psession && m_psession->finish_bit())
+      //{
+
+      //   return error_exit_session;
+
+      //}
+
+      //if (m_papplication && m_papplication->finish_bit())
+      //{
+
+      //   return error_exit_application;
+
+      //}
+
+      if (::is_set(pevent))
+      {
+
+         pevent->wait(duration);
+
+         pevent.release();
+
+         return;
+         //return ::task_get_run();
+
+      }
 
    }
 
@@ -2092,7 +2083,7 @@ void object::sleep(const ::duration& duration)
 
       auto waitStep = minimum(duration - start.elapsed(), 100_ms);
 
-      if (waitStep.is_null())
+      if (waitStep <= 0_s)
       {
 
          break;

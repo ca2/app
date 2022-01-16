@@ -87,7 +87,7 @@ namespace user
 
       __pointer(::image_list) get_image_list();
       bool draw_image();
-      bool draw_group_image();
+      void draw_group_image();
       void update_item_color();
       void set_text_color();
       void draw_text();

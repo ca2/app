@@ -467,7 +467,7 @@ namespace user
    {
       //    window::on_destroy();
 
-      return ::success;
+      //return ::success;
 
    }
 

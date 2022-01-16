@@ -5443,7 +5443,7 @@ namespace user
 
       }
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -5622,9 +5622,13 @@ namespace user
    }
 
 
-   bool draw_mesh_item::draw_group_image()
+   void draw_mesh_item::draw_group_image()
    {
-      return m_pmesh->m_pilGroup->draw(m_pgraphics,(i32)m_iImage,m_rectangleImage.top_left(),m_rectangleImage.size(),point_i32(0,0),0);
+      //return 
+      
+      m_pmesh->m_pilGroup->draw(m_pgraphics,(i32)m_iImage,m_rectangleImage.top_left(),m_rectangleImage.size(),point_i32(0,0),0);
+
+
    }
 
 

@@ -218,6 +218,8 @@ namespace user
 
 #include "impact.h"
 
+#include "show.h"
+
 #include "acme/primitive/primitive/match.h"
 
 

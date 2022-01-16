@@ -46,21 +46,24 @@ namespace user
    //}
 
 
-   void form::open_html(const ::string& str)
+   bool form::open_document(const ::payload& payloadFile)
    {
 
       throw ::interface_only_exception();
 
+      return false;
+
    }
 
 
-   void form::open_document(const ::payload& payloadFile)
+   bool form::open_html(const ::string& str)
    {
 
       throw ::interface_only_exception();
 
-   }
+      return false;
 
+   }
 
 
    void form::soft_reload()

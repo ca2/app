@@ -30,27 +30,31 @@ namespace user
       void edit_impl::initialize_edit_impl(document * pdocument)
       {
 
-         auto estatus = ::user::rich_text::edit::initialize(pdocument);
+         //auto estatus =
+         
+         ::user::rich_text::edit::initialize(pdocument);
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            return estatus;
+         //   return estatus;
 
-         }
+         //}
 
          m_bComposing = false;
 
          m_pdata = __new(data);
 
-         estatus = m_pdata->initialize_data(pdocument);
+         //estatus = 
+         
+         m_pdata->initialize_data(pdocument);
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            return estatus;
+         //   return estatus;
 
-         }
+         //}
 
          m_bPendingSelectionChange = false;
 
@@ -64,7 +68,7 @@ namespace user
 
          m_bClickThrough = false;
 
-         return estatus;
+         //return estatus;
 
       }
 
@@ -75,7 +79,7 @@ namespace user
       }
 
 
-      bool edit_impl::update_data(bool bSaveAndValidate)
+      void edit_impl::update_data(bool bSaveAndValidate)
       {
 
          if (bSaveAndValidate)
@@ -91,7 +95,7 @@ namespace user
 
          }
 
-         return true;
+         //return true;
 
       }
 
@@ -155,16 +159,18 @@ namespace user
 
          }
 
-         auto estatus = initialize_edit_impl(get_document());
+         //auto estatus = 
+         
+         initialize_edit_impl(get_document());
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            pcreate->set_fail();
+         //   pcreate->set_fail();
 
-            return;
+         //   return;
 
-         }
+         //}
 
          auto psession = get_session();
 

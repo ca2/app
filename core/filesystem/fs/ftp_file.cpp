@@ -98,7 +98,7 @@ ftpfs_file::~ftpfs_file()
 }
 
 
-::extended::status ftpfs_file::open(const ::file::path & filepath, const ::file::e_open & eopen)
+void ftpfs_file::open(const ::file::path & filepath, const ::file::e_open & eopen)
 {
 
    m_filepath = filepath;

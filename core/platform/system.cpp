@@ -43,16 +43,18 @@ namespace core
    void system::initialize(::object * pobject)
    {
 
-      auto estatus = ::base::system::initialize(pobject);
+      //auto estatus = 
+      
+      ::base::system::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -85,11 +87,11 @@ namespace core
       if (!__rich_text_initialize())
       {
 
-         return false;
+         throw_status(error_not_initialized);
 
       }
 
-      return ::success;
+      //return ::success;
 
    }
 

@@ -1271,20 +1271,39 @@ namespace user
    }
 
 
-   void form_control::open_document(const ::payload & payloadFile)
+   bool form_control::open_document(const ::payload & payloadFile)
    {
 
-      //return true;
+      auto bOk = ::user::form::open_document(payloadFile);
+
+      if (!bOk)
+      {
+
+         return false;
+
+      }
+
+      return true;
 
    }
 
 
-   void form_control::open_html(const ::string & str)
+   bool form_control::open_html(const ::string & str)
    {
 
-      throw_status(error_not_implemented);
+      auto bOk = ::user::form::open_html(str);
+
+      if (!bOk)
+      {
+
+         return false;
+
+      }
+
+      return true;
 
    }
+
 
    //void form_control::handle(::subject * psubject, ::context * pcontext)
    //{

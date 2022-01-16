@@ -16,13 +16,13 @@ namespace filemanager
    }
 
 
-   void operation_thread::step()
+   bool operation_thread::step()
    {
 
       if (m_bStep)
       {
 
-         return ::success;
+         return true;
 
       }
 
@@ -32,15 +32,23 @@ namespace filemanager
       {
       case ::filemanager::state_start:
       {
-         if(m_fileoperationa[m_iOperation]->start())
+         try
          {
+
+            m_fileoperationa[m_iOperation]->start();
+
             m_estate = ::filemanager::state_step;
+
          }
-         else
+         catch(...)
          {
+
             m_estate = ::filemanager::state_start;
+
             m_iOperation++;
+
          }
+
       }
       break;
       case ::filemanager::state_step:
@@ -204,7 +212,7 @@ namespace filemanager
 
       m_pimpact->post_message(operation_view::MessageMainPost,  operation_view::MessageMainPostFileOperationFinal);
 
-      return ::success;
+      //return ::success;
 
    }
 

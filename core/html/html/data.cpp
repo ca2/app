@@ -21,18 +21,20 @@ html_data::~html_data()
 void html_data::initialize_html_data(::html_data * phtmldata)
 {
 
-   auto estatus = ::form_data::initialize(phtmldata);
+   //auto estatus =
+   
+   ::form_data::initialize(phtmldata);
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
    m_pimplHtml = phtmldata;
 
-   return estatus;
+   //return estatus;
 
 }
 
@@ -81,16 +83,18 @@ void html_data::delete_contents()
 void html_data::destroy()
 {
 
-   auto estatus = m_pcoredata->destroy();
+   //auto estatus =
+   
+   m_pcoredata->destroy();
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
-   return estatus;
+   //return estatus;
 
 }
 
@@ -231,7 +235,7 @@ bool html_data::open_document(const ::payload & payloadFile)
 }
 
 
-void     html_data::open_html(const ::string & str)
+bool html_data::open_html(const ::string & str)
 {
 
    return m_pcoredata->open_html(str);

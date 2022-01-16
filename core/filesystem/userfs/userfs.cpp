@@ -25,14 +25,16 @@ namespace userfs
    void userfs::initialize(::object * pobject)
    {
 
-      auto estatus = ::acme::department::initialize(pobject);
+      //auto estatus = 
+      
+      ::acme::department::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
 
       ::factory::add_factory_item <::userfs::main_impact > ();
@@ -40,14 +42,16 @@ namespace userfs
       ::factory::add_factory_item <::userfs::list > ();
       ::factory::add_factory_item <::userfs::list_item > ();
 
-      if (!::acme::department::init())
-      {
+      ::acme::department::init();
 
-         return false;
+      //if (!::acme::department::init())
+      //{
 
-      }
+      //   return false;
 
-      return true;
+      //}
+
+      //return true;
 
    }
 
@@ -55,7 +59,7 @@ namespace userfs
    void userfs::init1()
    {
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -85,18 +89,20 @@ namespace core
 
       //m_puserfs = create_userfs();
 
-      auto estatus = __compose(m_puserfs);
+      //auto estatus = 
+      
+      __compose(m_puserfs);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         ERROR(".1");
+      //   ERROR(".1");
 
-         m_result.add(estatus);
+      //   m_result.add(estatus);
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       //m_spobjectUserFs = m_puserfs;
 
@@ -104,7 +110,7 @@ namespace core
 
       INFORMATION("ok");
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -114,22 +120,24 @@ namespace core
 
       INFORMATION("start");
 
-      auto estatus = m_puserfs->init1();
+      //auto estatus =
+      
+      m_puserfs->init1();
 
-      if(!estatus)
-      {
+      //if(!estatus)
+      //{
 
-         m_result.add(estatus);
+      //   m_result.add(estatus);
 
-         ERROR(".1");
+      //   ERROR(".1");
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       INFORMATION("ok");
 
-      return ::success;
+      //return ::success;
 
    }
 

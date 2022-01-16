@@ -302,7 +302,7 @@ namespace userstack
 
          ::file::path str = psz/straPath[i].relative();
 
-         pcontext->m_papexcontext->dir().mk(str.folder());
+         pcontext->m_papexcontext->dir().create(str.folder());
 
          pcontext->m_papexcontext->file().copy(str, straPath[i], true);
 
@@ -317,7 +317,7 @@ namespace userstack
       {
          ::file::path str = psz / straPath[i].relative();
 
-         pcontext->m_papexcontext->dir().mk(str.folder());
+         pcontext->m_papexcontext->dir().create(str.folder());
 
          pcontext->m_papexcontext->file().copy(str, straPath[i], true);
 
@@ -336,7 +336,7 @@ namespace userstack
 
       }
 
-      pcontext->m_papexcontext->dir().mk(psz);
+      pcontext->m_papexcontext->dir().create(psz);
 
       string strDir(psz);
 
@@ -368,7 +368,7 @@ namespace userstack
             for(i32 i = 0; i < straPath.get_size(); i++)
             {
                string str = pcontext->m_papexcontext->dir().path(psz, straRelative[i]);
-               pcontext->m_papexcontext->dir().mk(pcontext->m_papexcontext->dir().name(str));
+               pcontext->m_papexcontext->dir().create(pcontext->m_papexcontext->dir().name(str));
                ::CopyFile(straPath[i], str, true);
             }*/
    }
@@ -398,7 +398,7 @@ namespace userstack
 //
 //               ::file::path str = psz / listing[i].relative();
 //
-//               pcontext->m_papexcontext->dir().mk(str.folder());
+//               pcontext->m_papexcontext->dir().create(str.folder());
 //
 //               ::CopyFileW(wstring(listing[i]), wstring(str), true);
 //
@@ -420,7 +420,7 @@ namespace userstack
 //            for(i32 i = 0; i < listing.get_size(); i++)
 //            {
 //               ::file::path str = psz / listing[i].relative();
-//               pcontext->m_papexcontext->dir().mk(listing[i].folder());
+//               pcontext->m_papexcontext->dir().create(listing[i].folder());
 //               ::CopyFile(listing[i], str, true);
 //            }
 //         }

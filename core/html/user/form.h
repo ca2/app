@@ -14,26 +14,26 @@ public:
 
 
    html_form();
-   virtual ~html_form();
+   ~html_form() override;
 
    
-   virtual void initialize(::object * pobject) override;
+   void initialize(::object * pobject) override;
 
 
-   virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
-   virtual void _001DrawChildren(::draw2d::graphics_pointer & pgraphics) override;
+   void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+   void _001DrawChildren(::draw2d::graphics_pointer & pgraphics) override;
 
    //virtual void on_layout(::html_data * phtmldata);
-   virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+   void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
-   virtual void handle(::subject * psubject, ::context * pcontext) override;
+   void handle(::subject * psubject, ::context * pcontext) override;
 
    void install_message_routing(::channel * pchannel) override;
 
-   virtual string get_path() override;
+   string get_path() override;
 
-   virtual void open_document(const ::payload & payloadFile) override;
-   virtual void open_html(const ::string & str) override;
+   bool open_document(const ::payload & payloadFile) override;
+   bool open_html(const ::string & str) override;
 
 
    ::html_data * get_html_data();

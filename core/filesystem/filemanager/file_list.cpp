@@ -566,7 +566,7 @@ namespace filemanager
 
       auto pcopydesk = pwindow->copydesk();
 
-      pcopydesk->set_filea(patha, ::user::copydesk::op_copy);
+      pcopydesk->set_filea(patha, ::user::copydesk::e_op_copy);
 
       pmessage->m_bRet = true;
 
@@ -2173,7 +2173,7 @@ namespace filemanager
 
                auto pcontext = get_context();
 
-               pcontext->m_papexcontext->dir().mk(pathFolder);
+               pcontext->m_papexcontext->dir().create(pathFolder);
 
                psubject->m_bRet = true;
 

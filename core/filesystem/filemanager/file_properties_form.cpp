@@ -23,14 +23,16 @@ namespace filemanager
    void file_properties_form::initialize(::object * pobject)
    {
 
-      auto estatus = ::user::impact_host::initialize(pobject);
+      //auto estatus = 
+      
+      ::user::impact_host::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       m_ptemplatePane = __new(::user::single_document_template(
          "system/auth",
@@ -38,7 +40,7 @@ namespace filemanager
          __type(simple_frame_window),
          __type(::userex::pane_tab_view)));
 
-      return estatus;
+      //return estatus;
 
    }
 

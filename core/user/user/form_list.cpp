@@ -867,14 +867,27 @@ break_click:;
 
       ::user::validate validate;
 
-      if (!validate.Validate(str, pinteraction))
+      try
       {
 
-         // que tal um balão para indicar o erro
+         validate.Validate(str, pinteraction);
+
+      }
+      catch (...)
+      {
 
          return false;
 
       }
+
+      //if (!validate.Validate(str, pinteraction))
+      //{
+
+      //   // que tal um balão para indicar o erro
+
+      //   return false;
+
+      //}
 
       ::payload payload;
 

@@ -67,38 +67,44 @@ namespace user
       }
 
 
-      auto estatus = __compose_new(m_ptree);
+      //auto estatus =
+      
+      __compose_new(m_ptree);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         _ERROR(pcreate, "Error creating tree data at ::user::tree::on_message_create");
+      //   _ERROR(pcreate, "Error creating tree data at ::user::tree::on_message_create");
 
-         return;
+      //   return;
 
-      }
+      //}
 
-      estatus = __construct_new(m_pimagelist);
+      //estatus = 
+      
+      __construct_new(m_pimagelist);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         _ERROR(pcreate, "Error creating image list at ::user::tree::on_message_create");
+      //   _ERROR(pcreate, "Error creating image list at ::user::tree::on_message_create");
 
-         return;
+      //   return;
 
-      }
+      //}
 
-      estatus = m_pimagelist->create(16, 16, 0, 10, 10);
+      //estatus = 
+      
+      m_pimagelist->create(16, 16, 0, 10, 10);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         _ERROR(pcreate, "Error creating image list (2) at ::user::tree::on_message_create");
+      //   _ERROR(pcreate, "Error creating image list (2) at ::user::tree::on_message_create");
 
-         return;
+      //   return;
 
-      }
+      //}
 
       fork([this]()
          {

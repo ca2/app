@@ -49,8 +49,7 @@ namespace filemanager
       void expand(::file::listing & straExpanded,::file::patha & straExpand);
 
       virtual void start();
-      virtual void step() override;
-      //   virtual bool mark();
+      virtual bool step() override;
       virtual bool end();
       virtual bool make_duplicate_name(::file::path & str,const ::file::path & psz);
 

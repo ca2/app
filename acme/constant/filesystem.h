@@ -52,6 +52,7 @@ namespace file
       e_open_no_callstack = (i32)0x080000,
       e_open_no_cache = (i32)0x100000,
       e_open_no_share_violation_wait = (i32)0x200000,
+      e_open_no_exception_on_open = (i32)0x10000000,
       //binary = type_binary,
       //out = mode_write,
       //in = mode_read,

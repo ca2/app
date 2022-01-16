@@ -84,7 +84,7 @@ namespace user
    }
 
 
-   void form_view::open_document(const ::payload & payloadFile)
+   bool form_view::open_document(const ::payload & payloadFile)
    {
 
       auto psystem = m_psystem->m_pbasesystem;
@@ -201,19 +201,19 @@ namespace user
 
       }
 
-      //return bOk;
+      return bOk;
 
    }
 
 
-   void form_view::open_html(const ::string & str)
+   bool form_view::open_html(const ::string & str)
    {
 
       synchronous_lock synchronouslock(mutex());
 
       auto pformOld = m_pform;
 
-      //void     estatus = error_failed;
+      bool bOk = true;
 
       //__pointer(::user::form_view) pformChild = create_view(psession->userex()->get_html_view_type());
       //
@@ -267,7 +267,7 @@ namespace user
       //
       //}
 
-      //return estatus;
+      return bOk;
 
    }
 

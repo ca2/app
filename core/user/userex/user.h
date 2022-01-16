@@ -44,7 +44,7 @@ namespace core
 
       __composite(::userfs::userfs)                m_puserfs;
 
-      ::extended::status                             m_result;
+      ::e_status                                   m_estatus;
 
       //__composite(::user::keyboard)              m_pkeyboard;
 
@@ -152,11 +152,11 @@ namespace core
       virtual void init() override;
 
 
-      virtual __pointer(::extended::sequence < ::conversation >) dialog_box(::object * pobject, const ::string & pszMatter, property_set & propertyset);
+      virtual __pointer(::sequence < ::conversation >) dialog_box(::object * pobject, const ::string & pszMatter, property_set & propertyset);
 
 
-      virtual __pointer(::extended::sequence < ::conversation >) ui_message_box(::object * pobject, ::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok);
-      virtual __pointer(::extended::sequence < ::conversation >) ui_message_box_timeout(::object * pobject, ::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok);
+      virtual __pointer(::sequence < ::conversation >) ui_message_box(::object * pobject, ::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok);
+      virtual __pointer(::sequence < ::conversation >) ui_message_box_timeout(::object * pobject, ::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok);
       //virtual void ui_message_box_timeout(::object* pobject, ::user::primitive* puiOwner, ::payload payload, ::duration durationTimeout, ::u32 fuStyle = e_message_box_ok, ::aura::application* papp = nullptr, const function_arg& functionargResult = function_arg());
 
       virtual void on_file_manager_open(::filemanager::data* pdata, ::file::item_array& itema);

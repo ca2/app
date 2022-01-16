@@ -15,6 +15,33 @@ namespace factory
    }
 
 
+   inline bool has(const ::id& id)
+   {
+
+      critical_section_lock cs(get_factory_critical_section());
+
+      auto passociation = get_factory()->get_association(id);
+
+      if (::is_null(passociation))
+      {
+
+         return false;
+
+      }
+
+      if (::is_null(passociation->m_element2))
+      {
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
+
+
    inline void set_factory(const ::id & id, const __pointer(factory_item_interface) & pfactory)
    {
 

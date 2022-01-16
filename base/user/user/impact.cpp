@@ -9,6 +9,8 @@ namespace user
    impact::impact()
    {
 
+      m_bToolbar = false;
+
    }
 
 
@@ -411,6 +413,46 @@ namespace user
    }
 
 
+   bool impact::has_toolbar()
+   {
+
+      return m_bToolbar;
+
+   }
+
+
+   ::id impact::get_toolbar_id()
+   {
+
+      return get_document()->m_pimpactsystem->m_id.to_string() + "/" + m_id.to_string();
+
+   }
+
+
+   __pointer(toolbar) impact::get_toolbar(::user::frame_window* pframewindow, bool bCreate)
+   {
+
+      if (!has_toolbar())
+      {
+
+         throw_status(error_wrong_state);
+
+      }
+
+      auto toolbartransport = pframewindow->get_toolbar(get_toolbar_id(), bCreate);
+
+      if (!toolbartransport)
+      {
+
+         return toolbartransport;
+
+      }
+
+      return toolbartransport;
+
+   }
+
+
    void impact::OnActivateView(bool bActivate, __pointer(::user::impact) pActivateView, __pointer(::user::impact))
    {
       //    UNUSED(pActivateView);   // unused in release builds
@@ -431,17 +473,21 @@ namespace user
 
          __pointer(::user::frame_window) pframewindow = get_parent_frame();
 
-         if (pdocument && pframewindow)
+         if (pdocument && pdocument->has_toolbar() && pframewindow)
          {
 
             auto ptoolbar = pdocument->get_toolbar(pframewindow, true);
 
-            if(::is_set(ptoolbar))
-            {
+            pframewindow->show_control_bar(ptoolbar);
 
-               pframewindow->show_control_bar(ptoolbar);
+         }
 
-            }
+         if (has_toolbar() && pframewindow)
+         {
+
+            auto ptoolbar = get_toolbar(pframewindow, true);
+
+            pframewindow->show_control_bar(ptoolbar);
 
          }
 
@@ -453,12 +499,26 @@ namespace user
 
          __pointer(::user::frame_window) pframewindow = get_parent_frame();
 
-         if (pdocument && pframewindow)
+         if (pdocument && pdocument->has_toolbar() && pframewindow)
          {
 
             auto ptoolbar = pdocument->get_toolbar(pframewindow, false);
 
             if(::is_set(ptoolbar))
+            {
+
+               pframewindow->hide_control_bar(ptoolbar);
+
+            }
+
+         }
+
+         if (has_toolbar() && pframewindow)
+         {
+
+            auto ptoolbar = get_toolbar(pframewindow, false);
+
+            if (::is_set(ptoolbar))
             {
 
                pframewindow->hide_control_bar(ptoolbar);

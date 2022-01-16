@@ -34,34 +34,41 @@ namespace account
    void dialog::initialize_account_dialog(::account::credentials * pcredentials)
    {
 
-      auto estatus = initialize(pcredentials);
+      //auto estatus =
+      
+      
+      initialize(pcredentials);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = __refer(m_pcredentials, pcredentials);
+      //estatus = 
+      
+      __refer(m_pcredentials, pcredentials);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = __compose_new(m_plogin);
+      //estatus = 
+      
+      __compose_new(m_plogin);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -93,16 +100,18 @@ namespace account
 
       }
 
-      if(!m_plogin->create_child(this))
-      {
+      m_plogin->create_child(this);
 
-         pcreate->m_lresult = -1;
+      //if(!m_plogin->create_child(this))
+      //{
 
-         pcreate->m_bRet = true;
+      //   pcreate->m_lresult = -1;
 
-         return;
+      //   pcreate->m_bRet = true;
 
-      }
+      //   return;
+
+      //}
 
       string strUser;
 
@@ -341,15 +350,10 @@ namespace account
 
       bool bWasWaiting = false;
 
-      while (!synchronouslock.wait(1_s).signaled())
+      while (!synchronouslock.wait(1_s))
       {
 
-         if (!::task_get_run())
-         {
-
-            return;
-
-         }
+         preempt();
 
          bWasWaiting = true;
 
@@ -370,13 +374,13 @@ namespace account
 #endif
 
       // auto pusersystem = __new(::user::system(rectangleFontopus));
+      create_child(puiParent);
+      //if(!create_child(puiParent))
+      //{
 
-      if(!create_child(puiParent))
-      {
+      //   return;
 
-         return;
-
-      }
+      //}
 
       m_rectangleFontopus = rectangleFontopus;
 

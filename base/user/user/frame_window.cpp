@@ -1698,22 +1698,15 @@ namespace user
    __pointer(toolbar) frame_window::create_toolbar(const ::id & idToolbar, const ::string & strToolbarParam, u32 dwCtrlStyle, u32 uStyle, const ::type & type)
    {
 
-      auto toolbartransport = __id_create < toolbar >(type);
+      auto ptoolbar = __id_create < toolbar >(type);
 
-      if(!toolbartransport)
-      {
+      ptoolbar->m_dwStyle = uStyle;
 
-         return toolbartransport;
-
-      }
-
-      toolbartransport->m_dwStyle = uStyle;
-
-      toolbartransport->m_dwCtrlStyle = dwCtrlStyle;
+      ptoolbar->m_dwCtrlStyle = dwCtrlStyle;
 
       //auto estatus = 
       
-      toolbartransport->create_child(this);
+      ptoolbar->create_child(this);
 
       //if(!estatus)
       //{
@@ -1737,7 +1730,7 @@ namespace user
 
       string strXml = pcontext->m_papexcontext->file().as_string(strMatter);
 
-      toolbartransport->LoadXmlToolBar(strXml);
+      ptoolbar->LoadXmlToolBar(strXml);
 
       //if(!toolbartransport->LoadXmlToolBar(strXml))
       //{
@@ -1746,7 +1739,7 @@ namespace user
 
       //}
 
-      return toolbartransport;
+      return ptoolbar;
 
    }
 

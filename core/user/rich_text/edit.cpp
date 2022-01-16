@@ -37,7 +37,7 @@ namespace user
       }
 
 
-      bool edit::update_data(bool bSaveAndValidate)
+      void edit::update_data(bool bSaveAndValidate)
       {
 
          if (bSaveAndValidate)
@@ -53,7 +53,7 @@ namespace user
 
          }
 
-         return true;
+         //return true;
 
       }
 

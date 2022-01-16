@@ -228,7 +228,7 @@ namespace html
       bool open_document(const ::payload & payloadFile) override;
 
 
-      void     open_html(const ::string & str) override;
+      bool open_html(const ::string & str) override;
 
 
       bool open_link(const ::string & pszPath) override;

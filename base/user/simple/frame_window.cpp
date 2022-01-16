@@ -197,89 +197,64 @@ void simple_frame_window::SaveWindowRectTaskProcedure()
 
    ::output_debug_string("_task_save_window_rect start\n");
 
-   try
+   while (true)
    {
 
-      while (true)
+      preempt();
+
+      bool bIsWindow = (m_ewindowflag & e_window_flag_is_window);
+
+      if (!bIsWindow)
       {
 
-         bool bThreadRun = ::task_get_run();
-
-         if (!bThreadRun)
-         {
-
-            break;
-
-         }
-
-         bool bIsWindow = (m_ewindowflag & e_window_flag_is_window);
-
-         if (!bIsWindow)
-         {
-
-            break;
-
-         }
-
-         bool bImpl = !!m_pimpl;
-
-         if (!bImpl)
-         {
-
-            break;
-
-         }
-
-         bool bDestroying = m_pimpl->is_destroying();
-
-         if (bDestroying)
-         {
-
-            break;
-
-         }
-
-         if (m_durationLastSaveWindowRectRequest.elapsed() < 300_ms)
-         {
-
-            sleep(150_ms);
-
-         }
-         else if (m_bPendingSaveWindowRect)
-         {
-
-            try
-            {
-
-               _thread_save_window_placement();
-
-               m_durationLastSaveWindowRect.Now();
-
-            }
-            catch (...)
-            {
-
-            }
-
-         }
-         else if (m_durationLastSaveWindowRect.elapsed() > 10_s)
-         {
-
-            break;
-
-         }
-         else
-         {
-
-            sleep(1_s);
-
-         }
+         break;
 
       }
 
-   }
-   catch (...)
-   {
+      bool bImpl = !!m_pimpl;
+
+      if (!bImpl)
+      {
+
+         break;
+
+      }
+
+      bool bDestroying = m_pimpl->is_destroying();
+
+      if (bDestroying)
+      {
+
+         break;
+
+      }
+
+      if (m_durationLastSaveWindowRectRequest.elapsed() < 300_ms)
+      {
+
+         sleep(150_ms);
+
+      }
+      else if (m_bPendingSaveWindowRect)
+      {
+
+         _thread_save_window_placement();
+
+         m_durationLastSaveWindowRect.Now();
+
+      }
+      else if (m_durationLastSaveWindowRect.elapsed() > 10_s)
+      {
+
+         break;
+
+      }
+      else
+      {
+
+         sleep(1_s);
+
+      }
 
    }
 

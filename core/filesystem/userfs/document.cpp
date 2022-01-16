@@ -26,25 +26,29 @@ namespace userfs
    void document::initialize(::object * pobject)
    {
 
-      auto estatus = ::user::document::initialize(pobject);
+      //auto estatus = 
+      
+      ::user::document::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = __compose_new(m_pfsset);
+      //estatus = 
+      
+      __compose_new(m_pfsset);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 

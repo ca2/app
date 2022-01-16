@@ -17,22 +17,10 @@ namespace experience
 
 
       style();
-      virtual ~style();
+      ~style() override;
 
-
-      //virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
-      //{
-
-      //   return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
-
-      //}
-
-      //virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
-      //{
-
-      //   return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
-
-      //}
+      
+      void on_initialize_object() override;
 
 
       bool _001TabOnDrawSchema01(::draw2d::graphics_pointer & pgraphics,::user::tab * ptab) override;

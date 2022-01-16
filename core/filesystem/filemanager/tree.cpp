@@ -58,14 +58,16 @@ namespace filemanager
    void tree::initialize_filemanager_tree(document * pdocument)
    {
 
-      auto estatus = initialize_view(pdocument);
+      //auto estatus = 
+      
+      initialize_view(pdocument);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       pdocument->add_data(this);
 
@@ -79,7 +81,7 @@ namespace filemanager
 
       __compose(m_pimagelist, puser->shell()->GetImageList(16));
 
-      return estatus;
+      //return estatus;
 
    }
 

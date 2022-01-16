@@ -97,36 +97,42 @@ namespace user
       void data::initialize_data(::data::data_container_base * pdocument)
       {
 
-         auto estatus = ::data::data::initialize_data(pdocument);
+         //auto estatus =
+         
+         ::data::data::initialize_data(pdocument);
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            return estatus;
+         //   return estatus;
 
-         }
+         //}
 
-         estatus = __construct_new(m_pformata);
+         //estatus = 
+         
+         __construct_new(m_pformata);
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            return estatus;
+         //   return estatus;
 
-         }
+         //}
 
          m_pformatCurrent = add_format();
 
-         estatus = __construct_new(m_plinea);
+         //estatus = 
+         
+         __construct_new(m_plinea);
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            return estatus;
+         //   return estatus;
 
-         }
+         //}
 
-         return estatus;
+         //return estatus;
 
       }
 
@@ -2105,16 +2111,18 @@ namespace user
 
          __defer_construct(pformat);
 
-         auto estatus = pformat->initialize_user_rich_text_format(m_pformata);
+         //auto estatus = 
+         
+         pformat->initialize_user_rich_text_format(m_pformata);
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            return estatus;
+         //   return estatus;
 
-         }
+         //}
 
-         return estatus;
+         //return estatus;
 
       }
 

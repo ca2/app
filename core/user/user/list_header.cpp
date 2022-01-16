@@ -402,12 +402,14 @@ namespace user
 
          auto papplication = get_application();
 
-         if (!papplication->data_set(datakey, iaWidth))
-         {
+         papplication->data_set(datakey, iaWidth);
 
-            return false;
+         //if (!papplication->data_set(datakey, iaWidth))
+         //{
 
-         }
+         //   return false;
+
+         //}
 
       }
       else

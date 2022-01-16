@@ -63,16 +63,18 @@ namespace html
    void core_data::initialize_html_data(html_data * pdata)
    {
 
-      auto estatus = ::html_data::initialize_html_data(pdata);
+      //auto estatus = 
+      
+      ::html_data::initialize_html_data(pdata);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -226,7 +228,7 @@ namespace html
 
       m_bLaidout = false;
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -822,21 +824,23 @@ namespace html
 
       }
       
-      auto estatus = open_html(str);
+      //auto estatus = 
+      
+      open_html(str);
 
-      if(::failed(estatus))
-      {
-         
-         return false;
+      //if(::failed(estatus))
+      //{
+      //   
+      //   return false;
 
-      }
+      //}
 
       return true;
 
    }
    
    
-   void     core_data::open_html(const ::string & strParam)
+   bool core_data::open_html(const ::string & strParam)
    {
       
       string str(strParam);
@@ -876,7 +880,7 @@ namespace html
          
       }
       
-      return success;
+      return true;
 
    }
 
@@ -918,23 +922,25 @@ namespace html
 
       ::image_pointer pimage;
 
-      auto estatus = __construct(pimage);
+      //auto estatus = 
       
-      if (!estatus)
-      {
+      __construct(pimage);
+      
+      //if (!estatus)
+      //{
 
-         return;
+      //   return;
 
-      }
+      //}
 
       pimage->create({ 50, 50 });
 
-      if (!estatus)
+      /*if (!estatus)
       {
 
          return;
 
-      }
+      }*/
 
       synchronous_lock lock(mutex());
 
@@ -967,23 +973,27 @@ namespace html
 
       ::image_pointer pimage;
 
-      auto estatus = __construct(pimage);
-
-      if (!estatus)
-      {
-
-         return;
-
-      }
+      //auto estatus = 
       
-      estatus = pimage->create( { 50, 50 } );
+      __construct(pimage);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return;
+      //   return;
 
-      }
+      //}
+      
+      //estatus =
+      
+      pimage->create( { 50, 50 } );
+
+      //if (!estatus)
+      //{
+
+      //   return;
+
+      //}
 
       synchronous_lock lock(mutex());
 
@@ -1005,23 +1015,27 @@ namespace html
 
       ::image_pointer pimage;
 
-      auto estatus = __construct(pimage);
+      //auto estatus = 
       
-      if (!estatus)
-      {
+      __construct(pimage);
+      
+      //if (!estatus)
+      //{
 
-         return;
+      //   return;
 
-      }
+      //}
 
-      estatus = pimage->create( { 50, 50 } );
+      //estatus = 
+      
+      pimage->create( { 50, 50 } );
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return;
+      //   return;
 
-      }
+      //}
 
       synchronous_lock lock(mutex());
 

@@ -81,34 +81,40 @@ namespace user
    void form_list_view::initialize(::object * pobject)
    {
 
-      auto estatus = ::user::form_list::initialize(pobject);
+      //auto estatus = 
+      
+      ::user::form_list::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = ::user::form_view::initialize(pobject);
+      //estatus =
+      
+      ::user::form_view::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = ::user::list_view::initialize(pobject);
+      //estatus = 
+      
+      ::user::list_view::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 

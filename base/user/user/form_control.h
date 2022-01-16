@@ -24,7 +24,7 @@ namespace user
 
 
       form_control();
-      virtual ~form_control();
+      ~form_control() override;
 
 
 
@@ -37,10 +37,10 @@ namespace user
 
 
       virtual string get_path();
-      virtual void open_document(const ::payload & payloadFile) override;
+      bool open_document(const ::payload & payloadFile) override;
       //::type controltype_to_typeinfo(::user::enum_control_type econtroltype);
 
-      virtual void open_html(const ::string & str) override;
+      bool open_html(const ::string & str) override;
 
 
       //using ::user::interaction::_001IsPointInside;
@@ -50,8 +50,8 @@ namespace user
       virtual void control_get_client_rect(::user::interaction * pinteraction,RECTANGLE_I32 * prectangle);
 
       
-      virtual ::user::form * get_form() override;
-      virtual void soft_reload() override;
+      ::user::form * get_form() override;
+      void soft_reload() override;
 
 
       virtual bool _001Initialize();
@@ -64,7 +64,7 @@ namespace user
       //virtual void _001RemoveControls();
       bool _001Validate(::user::interaction * pinteraction,::payload & payload);
       bool _001SaveEdit(::user::interaction * pinteraction);
-      virtual void on_command(::message::command * pcommand) override;
+      void on_command(::message::command * pcommand) override;
       DECLARE_MESSAGE_HANDLER(_001OnNotify);
       DECLARE_MESSAGE_HANDLER(_001OnMessageNotify);
       virtual void _001GetSelection(::database::key & key,::database::selection & selection);
@@ -134,7 +134,7 @@ namespace user
       //virtual void handle(::subject * psubject, ::context * pcontext) override;
       //      virtual void handle(::subject * psubject, ::context * pcontext);
       //      DECLARE_MESSAGE_HANDLER(on_message_create);
-      virtual void _001OnTimer(::timer * ptimer) override;
+      void _001OnTimer(::timer * ptimer) override;
       DECLARE_MESSAGE_HANDLER(_001OnUser123);
       //      void install_message_routing(::channel * pchannel) override;
 

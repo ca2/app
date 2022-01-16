@@ -243,21 +243,23 @@ namespace userex
    void group_image_list_view::set_current_item(const ::item & item, const ::action_context & context)
    {
 
-      auto estatus = ::user::impact::set_current_item(item, context);
+      //auto estatus = 
+      
+      ::user::impact::set_current_item(item, context);
 
-      if(estatus != success)
-      {
+      //if(estatus != success)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       auto pgroup = m_groupa[item];
 
       if (!pgroup)
       {
 
-         return error_not_found;
+         throw_status(error_not_found);
 
       }
 
@@ -286,7 +288,7 @@ namespace userex
 
       set_need_redraw();*/
 
-      return ::success;
+      //return ::success;
 
    }
 

@@ -6,6 +6,7 @@ memory_file::memory_file() :
 {
 
    m_position = 0;
+   m_estatus = ::success;
 
 }
 
@@ -16,6 +17,7 @@ memory_file::memory_file(const ::file::e_open & eopen) :
 
    m_eopen = eopen;
    m_position = 0;
+   m_estatus = ::success;
 
 }
 
@@ -26,6 +28,7 @@ memory_file::memory_file(memsize size) :
 {
 
    m_position = 0;
+   m_estatus = ::success;
 
 }
 
@@ -37,6 +40,7 @@ memory_file::memory_file(const memory_file & m) :
 {
 
    m_position = m.m_position;
+   m_estatus = m.m_estatus;
 
 }
 
@@ -47,6 +51,7 @@ memory_file::memory_file(memory_file && m) :
 {
 
    m_position = m.m_position;
+   m_estatus = m.m_estatus;
 
 }
 
@@ -59,6 +64,7 @@ memory_file::memory_file(void * pMemory, memsize dwSize) :
 {
 
    m_position = 0;
+   m_estatus = ::success;
 
 }
 
@@ -69,6 +75,7 @@ memory_file::memory_file(::payload & payload, const ::file::e_open & eopen) :
 
    m_eopen = eopen;
    m_position = 0;
+   m_estatus = ::success;
 
 }
 
@@ -79,6 +86,7 @@ memory_file::memory_file(memory_base & memory, const ::file::e_open & eopen) :
 
    m_eopen = eopen;
    m_position = 0;
+   m_estatus = ::success;
 
 }
 
@@ -89,6 +97,7 @@ memory_file::memory_file(memory_base* pmemory, const ::file::e_open & eopen) :
 
    m_eopen = eopen;
    m_position = 0;
+   m_estatus = ::success;
 
 }
 
@@ -529,6 +538,37 @@ bool memory_file::set_internal_data_size(memsize c)
    set_size(c);
 
    return c == get_internal_data_size();
+
+}
+
+
+void memory_file::write_file(::file::file* pfileIn, memsize uiBufSize)
+{
+
+   if (pfileIn->is_in_memory_file())
+   {
+
+      auto size = pfileIn->get_size();
+
+      if (increase_internal_data_size(size))
+      {
+
+         auto read = pfileIn->read((byte *) get_internal_data() + get_position(), size);
+
+         if (read != size)
+         {
+
+            throw io_exception();
+
+         }
+
+         return;
+
+      }
+
+   }
+
+   ::file::file::write_file(pfileIn, uiBufSize);
 
 }
 

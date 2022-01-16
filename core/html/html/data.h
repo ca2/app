@@ -25,7 +25,7 @@ public:
 
 
    virtual bool open_document(const ::payload & payloadFile);
-   virtual void     open_html(const ::string & str);
+   virtual bool open_html(const ::string & str);
 
 
    virtual bool open_link(const ::string & pszPath);

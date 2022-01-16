@@ -411,17 +411,24 @@ namespace account
       if (pcreate->previous())
          return;
 
-      if (!m_pstillUser->create_control(this, "label_user")
-            || !m_peditUser->create_control(this, "edit_user")
-            || !m_pstillPassword->create_control(this, "label_password")
-            || !m_peditPassword->create_control(this, "password")
-            || !m_pbutton->create_control(this, "submit")
-            || !m_pbuttonClose->create_control(this, "escape"))
-      {
-         pcreate->m_lresult = -1;
-         pcreate->m_bRet = true;
-         return;
-      }
+      m_pstillUser->create_control(this, "label_user");
+      m_peditUser->create_control(this, "edit_user");
+      m_pstillPassword->create_control(this, "label_password");
+      m_peditPassword->create_control(this, "password");
+      m_pbutton->create_control(this, "submit");
+      m_pbuttonClose->create_control(this, "escape");
+
+      //if (!m_pstillUser->create_control(this, "label_user")
+      //      || !m_peditUser->create_control(this, "edit_user")
+      //      || !m_pstillPassword->create_control(this, "label_password")
+      //      || !m_peditPassword->create_control(this, "password")
+      //      || !m_pbutton->create_control(this, "submit")
+      //      || !m_pbuttonClose->create_control(this, "escape"))
+      //{
+      //   pcreate->m_lresult = -1;
+      //   pcreate->m_bRet = true;
+      //   return;
+      //}
 
       m_pbuttonClose->set_stock_icon(e_stock_icon_close);
 

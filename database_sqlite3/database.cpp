@@ -795,7 +795,7 @@ namespace sqlite
    }
 
 
-   void database::get_id_blob(string strKey, get_memory getmemory)
+   bool database::get_id_blob(string strKey, get_memory getmemory)
    {
       
       if (m_pstmtSelect == nullptr)
@@ -872,7 +872,9 @@ namespace sqlite
 
          //return payload.get_string();
 
-         throw_status(error_failed);
+         //throw_status(error_failed);
+
+         return false;
 
       }
 
@@ -888,6 +890,8 @@ namespace sqlite
       }
 
       //return success;
+
+      return true;
 
    }
 

@@ -63,11 +63,13 @@ void simple_tab_view::on_message_create(::message::message * pmessage)
    if(pcreate->previous())
       return;
 
-   if(!::user::interaction::create_child(this))
-   {
-      pcreate->m_lresult = -1;
-      return;
-   }
+   ::user::interaction::create_child(this);
+
+   //if(!::user::interaction::create_child(this))
+   //{
+   //   pcreate->m_lresult = -1;
+   //   return;
+   //}
 
 }
 

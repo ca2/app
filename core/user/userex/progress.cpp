@@ -240,17 +240,19 @@ namespace userex
       
       pmessage->previous();
 
-      if (!m_pprogress->create_control(this, "progress_control"))
-      {
+      m_pprogress->create_control(this, "progress_control");
+
+      //if (!m_pprogress->create_control(this, "progress_control"))
+      //{
 
 
-         pcreate->m_lresult = -1;
+      //   pcreate->m_lresult = -1;
 
-         pcreate->m_bRet = true;
+      //   pcreate->m_bRet = true;
 
-         return;
+      //   return;
 
-      }
+      //}
 
       SetTimer(e_timer_update_current_area, 300_ms);
 

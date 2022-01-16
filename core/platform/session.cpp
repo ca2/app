@@ -30,16 +30,18 @@ namespace core
    void session::initialize(::object * pobject)
    {
 
-      auto estatus = ::base::session::initialize(pobject);
+      //auto estatus = 
+      
+      ::base::session::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 

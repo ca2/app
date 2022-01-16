@@ -56,9 +56,9 @@ namespace user
          void assert_valid() const override;
          void dump(dump_context & dumpcontext) const override;
 
-         virtual bool _001GetItemText(string & str, index iItem) override;
-         virtual bool _001IsPointInside(const ::point_i32 & point) override;
-         virtual bool update_data(bool bSaveAndValidate) override;
+         bool _001GetItemText(string & str, index iItem) override;
+         bool _001IsPointInside(const ::point_i32 & point) override;
+         void update_data(bool bSaveAndValidate) override;
          virtual void update_placement() override;
 
          document * get_document();
@@ -71,36 +71,36 @@ namespace user
             return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
          }*/
 
-         virtual bool set_text_editable(bool bEditable = true) override;
+         bool set_text_editable(bool bEditable = true) override;
 
-         virtual bool is_text_editable() const override;
+         bool is_text_editable() const override;
 
-         virtual bool is_text_editor() const override;
+         bool is_text_editor() const override;
 
-         virtual void _001OnDeleteText() override;
+         void _001OnDeleteText() override;
 
-         virtual void on_selection_change() override;
+         void on_selection_change() override;
 
-         virtual void insert_text(string str, bool bForceNewStep, const ::action_context & context) override;
+         void insert_text(string str, bool bForceNewStep, const ::action_context & context) override;
 
-         virtual void install_message_routing(::channel * psender) override;
+         void install_message_routing(::channel * psender) override;
 
-         virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+         void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-         virtual void draw_impl(::draw2d::graphics_pointer & pgraphics) override;
+         void draw_impl(::draw2d::graphics_pointer & pgraphics) override;
 
          __pointer(format_tool) get_format_tool(bool bCreate);
 
          //::user::tool_window * tool_window(enum_tool etool, bool bCreate) override;
 
          using ::user::interaction::_001GetText;
-         virtual void _001GetText(string & str) const override;
-         virtual void _001GetLayoutText(string & str) const override;
+         void _001GetText(string & str) const override;
+         void _001GetLayoutText(string & str) const override;
 
-         virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+         void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
 
-         virtual ::user::rich_text::data * get_rich_text_data() override;
+         ::user::rich_text::data * get_rich_text_data() override;
 
          DECLARE_MESSAGE_HANDLER(on_message_create);
          DECLARE_MESSAGE_HANDLER(on_message_destroy);
@@ -116,40 +116,40 @@ namespace user
          //DECLARE_MESSAGE_HANDLER(_001OnKillFocus);
 
 
-         virtual void _001OnTimer(::timer * ptimer) override;
+         void _001OnTimer(::timer * ptimer) override;
 
 
-         virtual void key_to_char(::message::key * pkey) override;
+         void key_to_char(::message::key * pkey) override;
 
 
-         virtual bool keyboard_focus_is_focusable() const override;
+         bool keyboard_focus_is_focusable() const override;
 
 
-         virtual void keyboard_focus_OnChar(::message::message * pmessage) override;
+         void keyboard_focus_OnChar(::message::message * pmessage) override;
 
 
-         virtual void on_set_keyboard_focus() override;
+         void on_set_keyboard_focus() override;
 
 
-         virtual void on_kill_keyboard_focus() override;
+         void on_kill_keyboard_focus() override;
 
 
-         virtual void handle(::subject * psubject, ::context * pcontext) override;
+         void handle(::subject * psubject, ::context * pcontext) override;
 
 
-         virtual strsize _001GetTextLength() const override;
+         strsize _001GetTextLength() const override;
 
-         virtual ::stream & write(::stream & stream) const override;
-virtual ::stream & read(::stream & stream) override;
+         ::stream & write(::stream & stream) const override;
+         ::stream & read(::stream & stream) override;
 
-         virtual void _001GetSel(strsize & iBeg, strsize & iEnd) const override;
-         virtual void _001GetSelLineText(string & str) const override;
+         void _001GetSel(strsize & iBeg, strsize & iEnd) const override;
+         void _001GetSelLineText(string & str) const override;
 
 
-         virtual void get_text_composition_area(::rectangle_i32 & r) override;
-         virtual void on_text_composition(string str) override;
-         virtual void on_text_composition_done() override;
-         virtual bool edit_undo() override;
+         void get_text_composition_area(::rectangle_i32 & r) override;
+         void on_text_composition(string str) override;
+         void on_text_composition_done() override;
+         bool edit_undo() override;
 
 
       };

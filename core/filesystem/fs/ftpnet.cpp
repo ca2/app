@@ -19,25 +19,29 @@ ftpnet::~ftpnet()
 void ftpnet::initialize(::object * pobject)
 {
 
-   auto estatus = ::object::initialize(pobject);
+   //auto estatus = 
+   
+   ::object::initialize(pobject);
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
-   estatus = __construct_new(m_psockethandler);
+   //estatus = 
+   
+   __construct_new(m_psockethandler);
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
-   return estatus;
+   //return estatus;
 
 }
 

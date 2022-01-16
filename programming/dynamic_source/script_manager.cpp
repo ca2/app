@@ -1519,24 +1519,11 @@ namespace dynamic_source
    bool script_manager::extract_image_size(const ::file::path & strFile,::size_i32 * psize)
    {
 
-      file_pointer f;
+      auto pcontext = get_context();
 
-      try
-      {
+      auto pfile = pcontext->m_papexcontext->file().get_file(strFile, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_no_exception_on_open);
 
-         auto pcontext = get_context();
-
-         f = pcontext->m_papexcontext->file().get_file(strFile, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_write);
-
-      }
-      catch(...)
-      {
-
-         return false;
-
-      }
-
-      if(f.is_null())
+      if(!pfile || ::failed(pfile->m_estatus))
       {
 
          return false;
@@ -1545,14 +1532,14 @@ namespace dynamic_source
 
       // http://www.cplusplus.com/forum/beginner/45217/
 
-      filesize len = f->seek_to_end();
+      filesize len = pfile->seek_to_end();
 
       if(len < 24)
       {
          return false;
       }
 
-      f->seek_to_begin();
+      pfile->seek_to_begin();
 
       // Strategy:
       // reading GIF dimensions requires the first 10 bytes of the file
@@ -1561,7 +1548,7 @@ namespace dynamic_source
       // In all formats, the file is at least 24 bytes big, so we'll read that always
       unsigned char buf[24];
 
-      if(f->read(buf, 24) < 24)
+      if(pfile->read(buf, 24) < 24)
       {
          return false;
       }
@@ -1579,9 +1566,9 @@ namespace dynamic_source
             if(i >= len)
                return false;   //Check to protect against segmentation faults
 
-            f->set_position(i);
+            pfile->set_position(i);
 
-            if(f->read(buf, 4) < 4)
+            if(pfile->read(buf, 4) < 4)
                return false;
 
             if(buf[i] != 0xFF)
@@ -1592,7 +1579,7 @@ namespace dynamic_source
                //0xFFC0 is the "Start of frame" marker which contains the file size_i32
                //The structure of the 0xFFC0 block is quite simple [0xFFC0][ushort length][uchar precision][ushort x][ushort y]
 
-               if(f->read(buf, 5) < 5)
+               if(pfile->read(buf, 5) < 5)
                   return false;
 
                psize->cy = buf[i+1]*256 + buf[i+2];
@@ -1647,6 +1634,7 @@ namespace dynamic_source
       return false;
 
    }
+
 
    ::file::path script_manager::get_stage_path(const ::file::path & strScriptPath)
    {

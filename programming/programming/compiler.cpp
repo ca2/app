@@ -29,14 +29,16 @@ namespace programming
    void compiler::initialize_programming_compiler(::object* pobject)
    {
 
-      auto estatus = ::object::initialize(pobject);
+      //auto estatus = 
+      
+      ::object::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
 #ifdef WINDOWS_DESKTOP
 
@@ -120,7 +122,7 @@ namespace programming
 
       m_strDynamicSourceStageFolder = m_pcontext->m_papexcontext->dir().install() / m_strDynamicSourceStage;
 
-      return estatus;
+      //return estatus;
 
    }
 

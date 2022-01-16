@@ -33,25 +33,29 @@ namespace introjection
    void library::initialize(::object* pobject)
    {
 
-      auto estatus = ::object::initialize(pobject);
+      //auto estatus =
+      
+      ::object::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = __construct_new(m_plibrary);
+      //estatus = 
+      
+      __construct_new(m_plibrary);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 

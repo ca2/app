@@ -1188,7 +1188,7 @@ pacmedir->create(pathDVP_Folder);
       //strDest += "   " + m_pmanager->m_strNamespace + "_dynamic_source_script(dynamic_source::script * pscript) : ::object(pscript->get_application()), dynamic_source::script_instance(pscript), ::" + m_pmanager->m_strNamespace + "::script_instance(pscript), ::" + m_pmanager->m_strNamespace + "::script_impl(pscript) {};  \r\n";
       strDest += "   " + m_pmanager->m_strNamespace + "_dynamic_source_script() {};\r\n";
       strDest += "   virtual ~" + m_pmanager->m_strNamespace + "_dynamic_source_script() {};\r\n";
-      strDest += "   virtual void     run() {script_run(); return ::success; };\r\n";
+      strDest += "   virtual void     run() { script_run(); };\r\n";
       strDest += "   virtual void script_run();\r\n";
       strDest += "   \r\n\r\n";
       strDest += strDs;
@@ -2849,7 +2849,14 @@ ch_else:
 
       auto pcontext = m_pcontext;
 
-      pcontext->m_papexcontext->dir().rls(straFile, m_pmanager->m_strNetnodePath / "net/aura/pstr_set");
+      ::file::path pathPstrSet = m_pmanager->m_strNetnodePath / "net/aura/pstr_set";
+
+      if (pcontext->m_papexcontext->dir().is(pathPstrSet))
+      {
+
+         pcontext->m_papexcontext->dir().rls(straFile, pathPstrSet);
+
+      }
 
       for(int i = 0; i < straFile.get_count(); i++)
       {

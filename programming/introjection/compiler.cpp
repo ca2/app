@@ -62,14 +62,16 @@ namespace introjection
    void compiler::initialize_introjection_compiler(::object * pobject, const ::string& pszRepos, const ::string& pszApp, const ::string& pszProjectName)
    {
 
-      auto estatus = initialize_programming_compiler(pobject);
+      //auto estatus =
+      
+      initialize_programming_compiler(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
 //      auto pcontext = get_context();
 //
@@ -161,7 +163,7 @@ namespace introjection
       prepare_compile_and_link_environment();
 
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -1461,12 +1463,14 @@ auto tickStart = ::duration::now();
 
       strTargetPath.replace("\\ ", " ");
 
-      if(!plibrary->m_plibrary->open(strTargetPath))
-      {
+      plibrary->m_plibrary->open(strTargetPath);
 
-         output_error_message("Failed to open bot library (1)\n\n" + plibrary->m_plibrary->m_strMessage);
+      //if(!plibrary->m_plibrary->open(strTargetPath))
+      //{
 
-      }
+      //   output_error_message("Failed to open bot library (1)\n\n" + plibrary->m_plibrary->m_strMessage);
+
+      //}
 
       //if(!plibrary->m_plibrary->open_library(strLibTitle))
       //{

@@ -42,14 +42,16 @@ xfplayer_view_line::xfplayer_view_line()
 void xfplayer_view_line::initialize_xfplayer_view_line(xfplayer_view_linea * pContainer)
 {
 
-   auto estatus = initialize(pContainer);
+   //auto estatus = 
    
-   if(!estatus)
-   {
-      
-      return estatus;
-      
-   }
+   initialize(pContainer);
+   
+   //if(!estatus)
+   //{
+   //   
+   //   return estatus;
+   //   
+   //}
    
    m_pfont.create(this);
 
@@ -73,7 +75,7 @@ void xfplayer_view_line::initialize_xfplayer_view_line(xfplayer_view_linea * pCo
    m_dAnimateProgressIncrement = 1.0;
    m_iIndex = 0;
    
-   return estatus;
+   //return estatus;
    
 }
 

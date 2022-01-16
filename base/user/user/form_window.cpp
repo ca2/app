@@ -1177,12 +1177,19 @@ namespace user
    }
 
 
-   void form_window::open_document(const ::payload & payloadFile)
+   bool form_window::open_document(const ::payload & payloadFile)
    {
 
       //auto estatus = 
       
-      ::user::form_control::open_document(payloadFile);
+      auto bOk = ::user::form_control::open_document(payloadFile);
+
+      if (!bOk)
+      {
+
+         return false;
+
+      }
 
       //if(!estatus)
       //{
@@ -1191,7 +1198,7 @@ namespace user
 
       //}
 
-      //return estatus;
+      return true;
 
    }
 

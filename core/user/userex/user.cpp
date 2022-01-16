@@ -101,16 +101,18 @@ namespace core
    void user::initialize(::object * pobject)
    {
 
-      auto estatus = ::base::user::initialize(pobject);
+      //auto estatus =
+      
+      ::base::user::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -148,13 +150,14 @@ namespace core
 
       //}
 
+      ::base::user::init1();
 
-      if (!::base::user::init1())
-      {
+      //if (!::base::user::init1())
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
       //if (!initialize1_experience())
       //{
@@ -172,7 +175,7 @@ namespace core
 
       //m_bProcessInitializeResult = true;
 
-      return true;
+      //return true;
 
    }
 
@@ -180,12 +183,14 @@ namespace core
    void user::init()
    {
 
-      if (!::base::user::init())
-      {
+      ::base::user::init();
 
-         return ::error_failed;
+      //if (!::base::user::init())
+      //{
 
-      }
+      //   return ::error_failed;
+
+      //}
 
       if (!m_typeDefaultMeshData)
       {
@@ -286,27 +291,31 @@ namespace core
 
       add_document_template(ptemplate);
 
-      auto estatus = initialize_html();
+      //auto estatus = 
+      
+      initialize_html();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         //m_result.add(estatus);
+      //   //m_result.add(estatus);
 
-         ERROR("Failed to initialize html");
+      //   ERROR("Failed to initialize html");
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = __compose(m_phtml);
+      //estatus = 
+      
+      __compose(m_phtml);
 
-      if(!estatus)
-      {
+      //if(!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       TRACE("::user::application::initialize");
 
@@ -412,16 +421,18 @@ namespace core
       ::factory::add_factory_item <simple_toolbar, ::user::toolbar >();
       ::factory::add_factory_item <::experience::orto_button >();
 
-      estatus = initialize_filemanager_component(this);
+      //estatus = 
+      
+      initialize_filemanager_component(this);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -429,14 +440,16 @@ namespace core
    void user::init2()
    {
 
-      if (!::acme::department::init2())
-      {
+      ::acme::department::init2();
 
-         return false;
+      //if (!::acme::department::init2())
+      //{
 
-      }
+      //   return false;
 
-      return true;
+      //}
+
+      //return true;
 
    }
 
@@ -466,7 +479,7 @@ namespace core
 
       }
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -483,7 +496,7 @@ namespace core
    void user::term()
    {
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -570,7 +583,7 @@ namespace core
    }
 
 
-   __pointer(::extended::sequence < ::conversation >) user::dialog_box(::object * pobject, const ::string & pszMatter, property_set & propertyset)
+   __pointer(::sequence < ::conversation >) user::dialog_box(::object * pobject, const ::string & pszMatter, property_set & propertyset)
    {
 
       return nullptr;
@@ -601,7 +614,7 @@ namespace core
    }
 
 
-   __pointer(::extended::sequence < ::conversation >) user::ui_message_box(::object * pobject, ::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox)
+   __pointer(::sequence < ::conversation >) user::ui_message_box(::object * pobject, ::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox)
    {
 
       return nullptr;
@@ -736,7 +749,7 @@ namespace core
    }
 
 
-   __pointer(::extended::sequence < ::conversation >) user::ui_message_box_timeout(::object * pobject, ::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox)
+   __pointer(::sequence < ::conversation >) user::ui_message_box_timeout(::object * pobject, ::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox)
    {
 
       //__UNREFERENCED_PARAMETER(puiOwner);
@@ -994,7 +1007,7 @@ namespace core
    void user::term_instance()
    {
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -1835,7 +1848,7 @@ namespace core
 
       //}
 
-      return true;
+      //return true;
 
    }
 

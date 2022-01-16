@@ -165,6 +165,7 @@ typedef __pointer(::user::interaction_impl) window_pointer;
 #include "base/user/user/document_data_map.h"
 #include "base/user/user/document.h"
 #include "base/user/user/impact.h"
+#include "base/user/user/show.h"
 
 
 

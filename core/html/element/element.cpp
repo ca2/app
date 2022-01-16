@@ -149,7 +149,7 @@ namespace html
 
       }
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -169,14 +169,16 @@ namespace html
       if (m_etag == tag_initial)
       {
 
-         estatus = initialize_html_element(phtmldata);
+         //estatus =
+         
+         initialize_html_element(phtmldata);
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            return;
+         //   return;
 
-         }
+         //}
 
       }
 
@@ -1407,14 +1409,16 @@ namespace html
    void element::initialize_html_elemental(html_data * phtmldata, element * pparent)
    {
 
-      auto estatus = ::user::primitive::initialize(phtmldata);
+      //auto estatus =
+      
+      ::user::primitive::initialize(phtmldata);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       m_pstyle = __create_new < ::html::style > ();
 
@@ -1426,7 +1430,7 @@ namespace html
       m_bParent = false;
       m_bTagVisible = false;
 
-      return estatus;
+      //return estatus;
 
    }
 

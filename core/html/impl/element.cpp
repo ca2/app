@@ -36,16 +36,18 @@ namespace html
       void element::initialize_html_impl_elemental(::html_data * pdata)
       {
 
-         auto estatus = initialize(pdata);
+         //auto estatus = 
+         
+         initialize(pdata);
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            return estatus;
+         //   return estatus;
 
-         }
+         //}
 
-         return estatus;
+         //return estatus;
 
       }
 

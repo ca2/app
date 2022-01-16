@@ -20,7 +20,9 @@ public:
    ~ftpfs_file() override;
 
 
-   ::extended::status open(const ::file::path & path, const ::file::e_open & eopen) override;
+   //::extended::status open(const ::file::path & path, const ::file::e_open & eopen) override;
+
+   void open(const ::file::path& path, const ::file::e_open& eopen) override;
 
    memsize read(void *pdata, memsize nCount) override;
 

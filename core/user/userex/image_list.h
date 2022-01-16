@@ -30,7 +30,7 @@ namespace userex
 
       virtual string_array get_ls_pattern_stra() const;
 
-      bool update_data(bool bSaveAndValidate) override;
+      void update_data(bool bSaveAndValidate) override;
 
       bool _001GetItemText(string & str, index iItem) override;
 #ifdef _DEBUG

@@ -23,21 +23,23 @@ ftpfs::~ftpfs()
 void ftpfs::initialize_ftpfs(::object * pobject, const ::string & pszRoot)
 {
 
-   auto estatus = ::fs::data::initialize(pobject);
+   //auto estatus = 
+   
+   ::fs::data::initialize(pobject);
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
    m_strRoot = pszRoot;
    m_bInitialized = false;
 
    m_straFtpServer.add("localhost");
 
-   return estatus;
+   //return estatus;
 
 }
 
@@ -223,7 +225,7 @@ retry:
       if (iTry > 3)
       {
 
-         return listing = ::error_failed;
+         return listing;
 
       }
 
@@ -247,7 +249,7 @@ retry:
       if (iTry > 3)
       {
 
-         return listing = ::error_failed;
+         return listing;
 
       }
 
@@ -472,14 +474,16 @@ retry:
 
       spfile = __new(ftpfs_file(this, pclient));
 
-      auto result = spfile->open(path, eopen);
+      //auto result = 
+      
+      spfile->open(path, eopen);
 
-      if (!result)
-      {
+      //if (!result)
+      //{
 
-         return result;
+      //   return result;
 
-      }
+      //}
 
       return spfile;
 

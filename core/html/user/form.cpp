@@ -30,27 +30,31 @@ html_form::~html_form()
 void html_form::initialize(::object * pobject)
 {
 
-   auto estatus = ::user::form_view::initialize(pobject);
+   //auto estatus = 
+   
+   ::user::form_view::initialize(pobject);
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
    auto psystem = get_system()->m_pcoresystem;
 
-   estatus = psystem->defer_create_html();
+   //estatus = 
+   
+   psystem->defer_create_html();
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
-   return estatus;
+   //return estatus;
 
 }
 
@@ -490,7 +494,7 @@ void html_form::set_need_load_form_data()
 }
 
 
-void html_form::open_document(const ::payload & payloadFile)
+bool html_form::open_document(const ::payload & payloadFile)
 {
 
    auto path = payloadFile.get_file_path();
@@ -527,42 +531,50 @@ void html_form::open_document(const ::payload & payloadFile)
 
    auto phtmldata = get_html_data();
 
-   if(!phtmldata->open_document(payloadFile))
-   {
+   phtmldata->open_document(payloadFile);
 
-      return false;
+   //if(!phtmldata->open_document(payloadFile))
+   //{
 
-   }
+   //   return false;
+
+   //}
 
    m_strPath = path;
+
+   //return true;
 
    return true;
 
 }
 
 
-void html_form::open_html(const ::string & str)
+bool html_form::open_html(const ::string & str)
 {
 
    auto phtmldata = get_html_data();
 
-   if (::is_null(phtmldata))
-   {
+   //if (::is_null(phtmldata))
+   //{
 
-      return error_failed;
+   //   return error_failed;
 
-   }
+   //}
 
-   auto estatus = phtmldata->open_html(str);
+   ///auto estatus =
+   
+   phtmldata->open_html(str);
 
-   if(::failed(estatus))
-   {
+   //if(::failed(estatus))
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
-   return estatus;
+   //return estatus;
+
+   return true;
 
 }
 
@@ -639,23 +651,27 @@ void html_form::_001SetText(const ::string & str, const ::action_context & conte
 void html_form::create_html_data()
 {
 
-   auto estatus = __construct_new(m_phtmldata);
+   //auto estatus = 
+   
+   __construct_new(m_phtmldata);
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
       
-   estatus = m_phtmldata->__compose_new(m_phtmldata->m_pcompositeCoreData);
+   //estatus = 
+   
+   m_phtmldata->__compose_new(m_phtmldata->m_pcompositeCoreData);
 
-   if (!estatus)
-   {
+   //if (!estatus)
+   //{
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
    m_phtmldata->m_pcoredata = m_phtmldata->m_pcompositeCoreData;
 
@@ -671,7 +687,7 @@ void html_form::create_html_data()
 
    m_phtmldata->m_pcoredata->m_pcallback = this;
 
-   return estatus;
+   //return estatus;
 
 }
 

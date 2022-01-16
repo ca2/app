@@ -108,7 +108,7 @@ namespace sqlite
 
 
       virtual void set_id_blob(string strKey, ::block block) override;
-      virtual void get_id_blob(string strKey, ::get_memory getmemory) override;
+      virtual bool get_id_blob(string strKey, ::get_memory getmemory) override;
 
 
 

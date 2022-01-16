@@ -64,7 +64,18 @@ namespace database
 
       //}
 
-      stream >> t;
+      try
+      {
+
+         stream >> t;
+
+      }
+      catch (...)
+      {
+
+         return false;
+
+      }
 
       //if (stream.fail())
       //{

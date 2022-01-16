@@ -43,7 +43,7 @@ namespace file
       void assert_valid() const override;
       void dump(dump_context & dumpcontext) const override;
 
-
+      virtual bool is_in_memory_file() const;
       virtual void* get_internal_data();
       virtual const void* get_internal_data() const;
       virtual memsize get_internal_data_size() const;

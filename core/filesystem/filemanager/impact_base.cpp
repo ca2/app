@@ -140,7 +140,7 @@ void filemanager_impact_base::_001OnEditPaste(::message::message * pmessage)
 
    ::file::listing listing;
 
-   ::user::copydesk::e_op eop;
+   ::user::copydesk::enum_op eop;
 
    auto pwindow = window();
    
@@ -175,7 +175,7 @@ void filemanager_impact_base::_001OnEditPaste(::message::message * pmessage)
    if(ptabview != nullptr)
    {
 
-      bool bDeleteOriginOnSuccessfulCopy = eop == ::user::copydesk::op_cut;
+      bool bDeleteOriginOnSuccessfulCopy = eop == ::user::copydesk::e_op_cut;
 
       ptabview->filemanager_document()->get_operation_doc(true)->m_thread.queue_copy(listing, strDir, nullptr, true, false, bDeleteOriginOnSuccessfulCopy, this, WM_APP + 1024, 4096);
 

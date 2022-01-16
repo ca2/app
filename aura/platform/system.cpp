@@ -1392,7 +1392,6 @@ namespace aura
    __pointer(::factory::factory) & system::imaging_factory()
    {
 
-
       string strLibrary;
 
       if (has_property("imaging"))
@@ -1426,12 +1425,12 @@ namespace aura
 
          auto & pfactoryImaging = factory("imaging", strLibrary);
 
-         //if(pfactoryImaging.succeeded())
-         //{
+         if(pfactoryImaging)
+         {
 
-         //   return pfactoryImaging;
+            return pfactoryImaging;
 
-         //}
+         }
 
       }
 
@@ -1458,12 +1457,12 @@ namespace aura
 
       auto & pfactoryImaging = factory("imaging", strLibrary);
 
-      //if(pfactoryImaging.succeeded())
-      //{
+      if(pfactoryImaging)
+      {
 
-      //   return pfactoryImaging;
+         return pfactoryImaging;
 
-      //}
+      }
 
 #ifdef WINDOWS_DESKTOP
 
@@ -1472,12 +1471,12 @@ namespace aura
 
          auto & pfactoryImaging = factory("imaging", "wic");
 
-         //if(pfactoryImaging.succeeded())
-         //{
+         if(pfactoryImaging)
+         {
 
-         //   return pfactoryImaging;
+            return pfactoryImaging;
 
-         //}
+         }
 
       }
 
@@ -1488,16 +1487,21 @@ namespace aura
 
          auto & pfactoryImaging = factory("imaging", "freeimage");
 
-         //if(pfactoryImaging.succeeded())
-         //{
+         if(pfactoryImaging)
+         {
 
-         //   return pfactoryImaging;
+            return pfactoryImaging;
 
-         //}
+         }
 
       }
 
-      output_debug_string("No imaging pluging available!!.");
+      if (!pfactoryImaging)
+      {
+
+         throw_status(error_resource, "No imaging pluging available!!.");
+
+      }
 
       return pfactoryImaging;
 

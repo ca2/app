@@ -31,6 +31,7 @@ namespace user
 
       string                              m_strSaveFileExtension;
       id_map < ::routine_array >          m_mapRoutine;
+      bool                                m_bToolbar;
 
 
 
@@ -382,6 +383,9 @@ namespace user
       virtual void form_document_set_property_set(const property_set & set);
       virtual property_set * form_document_get_property_set();
       virtual property_set & form_document_property_set();
+
+
+      virtual bool has_toolbar();
 
       virtual ::id get_toolbar_id();
 

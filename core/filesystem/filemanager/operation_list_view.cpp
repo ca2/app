@@ -94,7 +94,9 @@ namespace filemanager
 
       pmessage->previous();
 
-      auto estatus = __defer_construct_new(m_puserlistcache);
+      //auto estatus = 
+      
+      __defer_construct_new(m_puserlistcache);
 
       m_pmeshcache = m_puserlistcache;
 

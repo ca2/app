@@ -76,10 +76,16 @@ public:
 
    //virtual void full_load(::payload payloadFile);
 
+   bool is_in_memory_file() const override { return true; }
+
    using ::file::file::get_internal_data;
    virtual void * get_internal_data() override;
    virtual memsize get_internal_data_size() const override;
    virtual bool set_internal_data_size(memsize c) override;
+
+
+   void write_file(::file::file* pfileIn, memsize uiBufSize) override;
+
 
    virtual void to(::file::file * pfileOut, memsize uiBufferSize = 1024 * 1024) override;
 

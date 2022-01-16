@@ -375,7 +375,15 @@ void* task::s_os_task(void* p)
 
 
       }
-      catch (...)
+      catch (::exit_exception & exitexception)
+      {
+
+         _ERROR(ptask, "Exit Exception reached task procedure (1)");
+
+         exitexception.finish(ptask);
+         
+      }
+      catch (::exception& exception)
       {
 
          _ERROR(ptask, "Exception reached task procedure");

@@ -39,29 +39,33 @@ namespace filemanager
    void folder_list_data::on_initialize_object()
    {
 
-      auto estatus = ::user::list_data::on_initialize_object();
+      //auto estatus = 
+      
+      ::user::list_data::on_initialize_object();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = ::database::client::on_initialize_object();
+      //estatus = 
+      
+      ::database::client::on_initialize_object();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       auto papplication = get_application();
 
       initialize_data_client(papplication->dataserver());
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -180,12 +184,14 @@ namespace filemanager
 
       }
 
-      if (!data_set(::id(), straFolderPath))
-      {
+      data_set(::id(), straFolderPath);
 
-         return false;
+      //if (!data_set(::id(), straFolderPath))
+      //{
 
-      }
+      //   return false;
+
+      //}
 
       return true;
 
@@ -228,12 +234,14 @@ namespace filemanager
 
       }
 
-      if (!data_set(::id(), straFolderPath))
-      {
+      data_set(::id(), straFolderPath);
 
-         return false;
+      //if (!data_set(::id(), straFolderPath))
+      //{
 
-      }
+      //   return false;
+
+      //}
 
       try
       {
@@ -306,12 +314,14 @@ namespace filemanager
 
       }
 
-      if (!data_set(::id(), straFolderPath))
-      {
+      data_set(::id(), straFolderPath);
 
-         return false;
+      //if (!data_set(::id(), straFolderPath))
+      //{
 
-      }
+      //   return false;
+
+      //}
 
       try
       {

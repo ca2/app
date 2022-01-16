@@ -1669,13 +1669,6 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       m_pfactoryFolder = factory("folder", "zip");
 
-      if (!m_pfactoryFolder)
-      {
-
-         return m_pfactoryFolder;
-
-      }
-
       m_pfactoryFolder->merge_to_global_factory();
 
       return m_pfactoryFolder;

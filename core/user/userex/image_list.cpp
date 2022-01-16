@@ -78,7 +78,7 @@ namespace userex
    }
 
 
-   bool image_list_view::update_data(bool bSaveAndValidate)
+   void image_list_view::update_data(bool bSaveAndValidate)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -86,7 +86,7 @@ namespace userex
       if (bSaveAndValidate)
       {
 
-         return true;
+         return;
 
       }
       else
@@ -113,7 +113,7 @@ namespace userex
 
          load_images();
 
-         return ::user::image_list::update_data(false);
+         ::user::image_list::update_data(false);
 
       }
 

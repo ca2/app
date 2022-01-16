@@ -749,7 +749,7 @@ namespace experience
 
                auto pdrawicon = m_pframewindow->get_draw_icon();
 
-               if(is_set(pdrawicon))
+               if(::is_ok(pdrawicon))
                {
 
                   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);

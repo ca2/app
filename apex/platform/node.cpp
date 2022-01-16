@@ -279,7 +279,7 @@ namespace apex
    void node::defer_create_main_menu(const string_array & straParent, const string_array & straMenu, const string_array & straId)
    {
       
-      throw ::interface_only_exception();
+      //throw ::interface_only_exception();
       
    }
 

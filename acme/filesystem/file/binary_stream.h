@@ -364,7 +364,7 @@ public:
          if (m_gcount != nCount)
          {
 
-            throw_status(error_premature_end_of_file);
+            throw serialization_exception(error_premature_end_of_file);
 
          }
 

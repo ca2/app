@@ -109,7 +109,8 @@ namespace user
       {
          if (!m_plistheader->is_window())
          {
-            bool bOk = m_plistheader->create_child(this);
+            //bool bOk = 
+            m_plistheader->create_child(this);
             //bool bOk = m_plistheader->create_window(
             //           nullptr,
             //           "",
@@ -124,7 +125,7 @@ namespace user
             //{
             //   m_plistheader->m_pfont = m_pfont;
             //}
-            return bOk;
+            return true;
          }
          else
             return true;
@@ -7218,7 +7219,9 @@ namespace user
          if (item == iCurrentSelection)
          {
 
-            return ::success;
+            //return ::success;
+
+            return;
 
          }
 
@@ -7241,7 +7244,7 @@ namespace user
 
       _001OnSelectionChange();
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -7379,8 +7382,9 @@ namespace user
    }
 
 
-   bool draw_list_item::draw_image()
+   void draw_list_item::draw_image()
    {
+
       if (m_pcolumn->m_bIcon)
       {
 
@@ -7397,7 +7401,9 @@ namespace user
 
             image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            return m_pgraphics->draw(imagedrawing) != false;
+            //m_pgraphics->draw(imagedrawing) != false;
+
+            m_pgraphics->draw(imagedrawing);
 
          }
 
@@ -7411,7 +7417,7 @@ namespace user
                || get_image_list()->m_pimage->area() <= 0)
          {
 
-            return false;
+            return;
 
          }
 
@@ -7555,7 +7561,7 @@ namespace user
 
             }
 
-            return true;
+            return;
 
          }
          //if(m_plist->m_bMorePlain)
@@ -7567,8 +7573,12 @@ namespace user
          //}
          else
          {
+            
             m_pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-            auto ret = get_image_list()->draw(m_pgraphics, (i32)m_iImage, m_rectangleImage.top_left(), m_rectangleImage.size(), ::point_i32(), 0);
+            
+            //auto ret = 
+            
+            get_image_list()->draw(m_pgraphics, (i32)m_iImage, m_rectangleImage.top_left(), m_rectangleImage.size(), ::point_i32(), 0);
 
             //auto pimageDebug = create_image(m_rectangleImage.size());
             //{
@@ -7579,16 +7589,20 @@ namespace user
 
             //}
 
-            return ret;
+            return;
          }
       }
-      return false;
+      //return false;
    }
 
 
-   bool draw_list_item::draw_group_image()
+   void draw_list_item::draw_group_image()
    {
-      return m_plist->m_pilGroup->draw(m_pgraphics, (i32)m_iImage, m_rectangleImage.top_left(), m_rectangleImage.size(), ::point_i32(), 0);
+
+      //return 
+      
+      m_plist->m_pilGroup->draw(m_pgraphics, (i32)m_iImage, m_rectangleImage.top_left(), m_rectangleImage.size(), ::point_i32(), 0);
+
    }
 
 
@@ -7657,7 +7671,9 @@ namespace user
 
                auto pdraw2d = psystem->draw2d();
 
-               if (pdraw2d->embossed_text_out(
+               //if (
+               
+               pdraw2d->embossed_text_out(
                      m_pgraphics,
                      m_rectangleText,
                      m_strText,
@@ -7670,7 +7686,9 @@ namespace user
                      m_colorTextBackground,
                      m_plist->m_iTextSpreadRadius, m_plist->m_iTextBlurRadius,
                      m_plist->m_iTextBlur,
-                     m_strText != m_plist->m_mapText[m_iItem] || m_colorTextBackground != m_plist->m_mapBackColor[m_iItem]))
+                  m_strText != m_plist->m_mapText[m_iItem] || m_colorTextBackground != m_plist->m_mapBackColor[m_iItem]);
+               
+               //)
                {
 
                   m_plist->m_mapText[m_iItem] = m_strText;
@@ -7772,14 +7790,16 @@ namespace user
 
       }
 
-      auto estatus = plistdata->initialize(this);
+      //auto estatus = 
+      
+      plistdata->initialize(this);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return;
+      //   return;
 
-      }
+      //}
 
       set_data_interface(plistdata);
 

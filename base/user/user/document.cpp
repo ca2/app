@@ -12,6 +12,7 @@ namespace user
    document::document()
    {
 
+      m_bToolbar = false;
 
       m_bAutoDelete = false;
       m_bEmbedded = false;
@@ -336,6 +337,14 @@ namespace user
 
    //}
 
+   
+   bool document::has_toolbar()
+   {
+
+      return m_bToolbar;
+
+   }
+
 
    ::id document::get_toolbar_id()
    {
@@ -347,6 +356,13 @@ namespace user
 
    __pointer(toolbar) document::get_toolbar(::user::frame_window * pframewindow, bool bCreate)
    {
+
+      if (!has_toolbar())
+      {
+
+         throw_status(error_wrong_state);
+
+      }
 
       auto toolbartransport = pframewindow->get_toolbar(get_toolbar_id(), bCreate);
 

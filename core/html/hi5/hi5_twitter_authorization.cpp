@@ -40,14 +40,16 @@ namespace hi5
       void authorization::initialize_twitter_authorization(::object* pobject, const ::string & pszAuthorizationUrl, const ::string & pszForm, bool bAuth, bool bInteractive)
       {
 
-         auto estatus = ::object::initialize(pobject);
+         // auto estatus = 
+         
+         ::object::initialize(pobject);
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            return estatus;
+         //   return estatus;
 
-         }
+         //}
 
          m_strAuthorizationUrl = pszAuthorizationUrl;
          m_bInteractive = bInteractive;
@@ -62,7 +64,7 @@ namespace hi5
             __type(simple_frame_window),
             psystem->get_pane_tab_view_type_info());
 
-         return estatus;
+         //return estatus;
 
       }
 

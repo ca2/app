@@ -21,7 +21,7 @@ namespace user
 
       
       form_view();
-      virtual ~form_view();
+      ~form_view() override;
 
 
       inline ::base::application * get_application() const { return form_control::get_application(); }
@@ -30,15 +30,15 @@ namespace user
       inline ::base::user * user() const { return form_control::user(); }
 
 
-      virtual void handle(::subject * psubject, ::context * pcontext) override;
+      void handle(::subject * psubject, ::context * pcontext) override;
 
-      virtual void open_document(const ::payload & payloadFile) override;
+      bool open_document(const ::payload & payloadFile) override;
       
-      virtual void open_html(const ::string & str) override;
+      bool open_html(const ::string & str) override;
 
       virtual bool Navigate(const ::string & pszUrl);
 
-      virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
       template < typename FORM >
       void create_child_form()
@@ -48,9 +48,9 @@ namespace user
 
       }
       
-      virtual void soft_reload() override;
+      void soft_reload() override;
 
-      virtual void set_need_load_form_data() override;
+      void set_need_load_form_data() override;
 
       //virtual void handle(::subject * psubject, ::context * pcontext) override;
       

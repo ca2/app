@@ -40,36 +40,42 @@ namespace account
    void main_window::initialize_simple_ui(::account::credentials * pcredentials)
    {
 
-      auto estatus = initialize(pcredentials);
+      //auto estatus =
+      
+      initialize(pcredentials);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = __refer(m_pcredentials, pcredentials);
+      //estatus = 
+      
+      __refer(m_pcredentials, pcredentials);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = __compose_new(m_plogin);
+      //estatus = 
+      
+      __compose_new(m_plogin);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
+
    }
-
 
 
    void main_window::install_message_routing(::channel * pchannel)
@@ -98,16 +104,18 @@ namespace account
 
       }
 
-      if(!m_plogin->create_child(this))
-      {
+      m_plogin->create_child(this);
 
-         pcreate->m_lresult = -1;
+      //if(!m_plogin->create_child(this))
+      //{
 
-         pcreate->m_bRet = true;
+      //   pcreate->m_lresult = -1;
 
-         return;
+      //   pcreate->m_bRet = true;
 
-      }
+      //   return;
+
+      //}
 
       string strUser;
 
@@ -267,12 +275,14 @@ namespace account
 
       //auto pusersystem = __new(::user::system (0, nullptr, nullptr, 0, rectangleFontopus));
 
-      if (!create_host())
-      {
+      create_host();
 
-         return "";
+      //if (!create_host())
+      //{
 
-      }
+      //   return "";
+
+      //}
 
       set_window_text( "account Auth Windows");
 

@@ -86,7 +86,12 @@ bool image_list::create(i32 cx, i32 cy, ::u32 nFlags, i32 nInitial, i32 nGrow)
 
    __defer_compose(m_pimage);
 
-   m_pimage->create(::size_i32(m_size.cx * m_iSize, m_size.cy));
+   if (m_iSize > 0)
+   {
+
+      m_pimage->create(::size_i32(m_size.cx * m_iSize, m_size.cy));
+
+   }
 
    return true;
 

@@ -21,16 +21,16 @@ namespace user
 
 
          edit();
-         virtual ~edit();
+         ~edit() override;
 
 
          virtual void on_after_change(::enum_subject esubject);
-         virtual double get_rotate() override;
+         double get_rotate() override;
 
 
          //__pointer(span) add_span(::e_align ealignNewLine = e_align_none);
 
-         virtual void on_hit_test(::item & item) override;
+         void on_hit_test(::item & item) override;
 
          virtual bool get_item_rect(RECTANGLE_I32 * prectangle, index i);
 
@@ -46,7 +46,7 @@ namespace user
 
          virtual bool _001GetItemText(string & str, index iItem);
          virtual bool _001IsPointInside(const ::point_i32 & point) override;
-         virtual bool update_data(bool bSaveAndValidate) override;
+         virtual void update_data(bool bSaveAndValidate) override;
          virtual void update_placement() override;
 
 

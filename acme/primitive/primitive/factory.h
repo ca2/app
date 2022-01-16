@@ -236,6 +236,8 @@ namespace factory
 
    
    inline __pointer(factory_item_interface) & get_factory_item(const ::id & id);
+   inline bool has(const ::id& id);
+   
 
    
    inline void set_factory(const ::id & id, const __pointer(factory_item_interface) & pfactory);

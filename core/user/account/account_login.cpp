@@ -89,25 +89,35 @@ namespace account
    void login::initialize(::object * pobject)
    {
 
-      auto estatus = ::user::interaction::initialize(pobject);
+      //auto estatus = 
       
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
+      ::user::interaction::initialize(pobject);
       
+      //if (!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
+      //
       m_bSubmitted = false;
 
-      if (!(estatus = __compose_new(m_pstillUser))) return false;
-      if(!(estatus = __compose_new(m_peditUser))) return false;
-      if (!(estatus = __compose_new(m_pstillPassword))) return false;
-      if (!(estatus = __compose_new(m_peditPassword))) return false;
-      if (!(estatus = __compose_new(m_pbutton))) return false;
-      if (!(estatus = __compose_new(m_pbuttonClose))) return false;
+      //if (!(estatus = __compose_new(m_pstillUser))) return false;
+      //if(!(estatus = __compose_new(m_peditUser))) return false;
+      //if (!(estatus = __compose_new(m_pstillPassword))) return false;
+      //if (!(estatus = __compose_new(m_peditPassword))) return false;
+      //if (!(estatus = __compose_new(m_pbutton))) return false;
+      //if (!(estatus = __compose_new(m_pbuttonClose))) return false;
 
-      return estatus;
+
+      __compose_new(m_pstillUser);
+      __compose_new(m_peditUser);
+      __compose_new(m_pstillPassword);
+      __compose_new(m_peditPassword);
+      __compose_new(m_pbutton);
+      __compose_new(m_pbuttonClose);
+
+      //return estatus;
 
    }
 
@@ -458,22 +468,28 @@ namespace account
          return;
 
       }
+      m_pstillUser->create_control(this, "label_user");
+         m_peditUser->create_control(this, "edit_user");
+         m_pstillPassword->create_control(this, "label_password");
+         m_peditPassword->create_control(this, "password");
+         m_pbutton->create_control(this, "submit");
+         m_pbuttonClose->create_control(this, "escape");
 
-      if(!m_pstillUser->create_control(this,"label_user")
-            || !m_peditUser->create_control(this,"edit_user")
-            || !m_pstillPassword->create_control(this,"label_password")
-            || !m_peditPassword->create_control(this,"password")
-            || !m_pbutton->create_control(this,"submit")
-            || !m_pbuttonClose->create_control(this,"escape"))
-      {
+      //if(!m_pstillUser->create_control(this,"label_user")
+      //      || !m_peditUser->create_control(this,"edit_user")
+      //      || !m_pstillPassword->create_control(this,"label_password")
+      //      || !m_peditPassword->create_control(this,"password")
+      //      || !m_pbutton->create_control(this,"submit")
+      //      || !m_pbuttonClose->create_control(this,"escape"))
+      //{
 
-         pcreate->m_lresult = -1;
+      //   pcreate->m_lresult = -1;
 
-         pcreate->m_bRet = true;
+      //   pcreate->m_bRet = true;
 
-         return;
+      //   return;
 
-      }
+      //}
 
       m_pbuttonClose->set_stock_icon(e_stock_icon_close);
 

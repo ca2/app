@@ -21,25 +21,29 @@ namespace filehandler
    void handler::initialize(::object * pobject)
    {
 
-      auto estatus = ::object::initialize(pobject);
+      //auto estatus = 
+      
+      ::object::initialize(pobject);
 
-      if(!estatus)
-      {
+      //if(!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = __compose_new(m_ptree);
+      //estatus =
+      
+      __compose_new(m_ptree);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 

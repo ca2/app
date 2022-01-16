@@ -554,13 +554,9 @@ bool file_context::try_create_file(const ::file::path &path, bool bTryDelete)
 
    }
 
-   try
-   {
+   pfile->open(path, ::file::e_open_create | ::file::e_open_binary | ::file::e_open_no_exception_on_open);
 
-      pfile->open(path, ::file::e_open_create | ::file::e_open_binary);
-
-   }
-   catch (...)
+   if (::failed(pfile->m_estatus))
    {
 
       return false;
@@ -643,9 +639,15 @@ bool file_context::as_memory(const ::payload &payloadFile, memory_base &mem, boo
    try
    {
 
-      pfile = get_file(payloadFile, ::file::e_open_share_deny_none | ::file::e_open_read | ::file::e_open_binary);
+      pfile = get_file(payloadFile, ::file::e_open_share_deny_none | ::file::e_open_read | ::file::e_open_binary | (bNoExceptionOnFail ? ::file::e_open_no_exception_on_open : 0));
 
       if (!pfile)
+      {
+
+         return false;
+
+      }
+      else if (::failed(pfile->m_estatus))
       {
 
          return false;
@@ -787,12 +789,32 @@ void file_context::get_lines(string_array &stra, const ::payload &payloadFile, b
    try
    {
 
-      pfile = get_file(payloadFile, ::file::e_open_text | ::file::e_open_read);
+      pfile = get_file(payloadFile, ::file::e_open_share_deny_none | ::file::e_open_read | ::file::e_open_text | (bNoExceptionIfFailToOpen ? ::file::e_open_no_exception_on_open : 0));
 
       if (!pfile)
       {
 
-         throw_status(error_io);
+         if (bNoExceptionIfFailToOpen)
+         {
+
+            return;
+
+         }
+
+         throw file_open_exception();
+
+      }
+      else if (::failed(pfile->m_estatus))
+      {
+
+         if (bNoExceptionIfFailToOpen)
+         {
+
+            return;
+
+         }
+
+         throw file_open_exception(pfile->m_estatus);
 
       }
 
@@ -1059,13 +1081,6 @@ void file_context::calculate_main_resource_memory()
 
    auto & pfactory = m_psystem->folder_factory();
 
-   if (!pfactory)
-   {
-
-      return nullptr;
-
-   }
-
    if (m_bFolderResourceCalculated)
    {
 
@@ -1152,14 +1167,7 @@ void file_context::calculate_main_resource_memory()
 
    auto pfileOutput = create_memory_file();
 
-   memsize read;
-
-   while ((read = pfile->read(buffer, sizeof(buffer))) > 0)
-   {
-
-      pfileOutput->write(buffer, read);
-
-   }
+   transfer(pfileOutput, pfile);
 
    pfileOutput->seek_to_begin();
 

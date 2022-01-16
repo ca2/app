@@ -49,6 +49,8 @@ namespace file
    file::file()
    {
 
+      m_estatus = error_not_initialized;
+
    }
 
 
@@ -798,6 +800,14 @@ namespace file
    }
 
 
+   bool file::is_in_memory_file() const
+   {
+
+      return false;
+
+   }
+
+
    void* file::get_internal_data()
    {
 
@@ -1147,7 +1157,6 @@ namespace file
          return;
 
       }
-
 
       memsize uRead;
       memsize uiSize = 0;

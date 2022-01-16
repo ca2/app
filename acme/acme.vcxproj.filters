@@ -2738,6 +2738,15 @@
     <ClInclude Include="node\operating_system\windows\_windows.h">
       <Filter>Header Files\node\operating_system\windows</Filter>
     </ClInclude>
+    <ClInclude Include="exception\serialization.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\io.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\file_open.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">
@@ -3855,6 +3864,12 @@
     </ClCompile>
     <ClCompile Include="platform\string.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\serialization.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\file_open.cpp">
+      <Filter>Source Files\exception</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -106,7 +106,7 @@ namespace user
    }
 
 
-   bool font_list::update_data(bool bSaveAndValidate)
+   void font_list::update_data(bool bSaveAndValidate)
    {
 
       if (bSaveAndValidate)
@@ -125,7 +125,7 @@ namespace user
 
       }
 
-      return true;
+      //return true;
 
    }
 

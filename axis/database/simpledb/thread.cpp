@@ -19,8 +19,10 @@ namespace simpledb
       try
       {
 
-         while (task_get_run())
+         while (true)
          {
+
+            preempt();
 
             try
             {

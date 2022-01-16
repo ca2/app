@@ -37,16 +37,18 @@ namespace core
    void application::initialize(::object * pobject)
    {
 
-      auto estatus = ::base::application::initialize(pobject);
+      //auto estatus =
+      
+      ::base::application::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 

@@ -238,45 +238,59 @@ namespace user
 
       //add_task(m_puserinteraction);
 
-      while (task_get_run())
+      try
       {
 
-         pump_runnable();
-
-         if (!m_puserinteraction)
+         while (task_get_run())
          {
 
-            break;
+            pump_runnable();
+
+            if (!m_puserinteraction)
+            {
+
+               break;
+
+            }
+
+            if (!m_pimpl)
+            {
+
+               break;
+
+            }
+
+            if (!prodevian_iteration())
+            {
+
+               break;
+
+            }
+
+            if (!m_puserinteraction)
+            {
+
+               break;
+
+            }
+
+            if (!m_pimpl)
+            {
+
+               break;
+
+            }
 
          }
 
-         if (!m_pimpl)
-         {
+      }
+      catch (::exception&)
+      {
 
-            break;
 
-         }
-
-         if (!prodevian_iteration())
-         {
-
-            break;
-
-         }
-
-         if (!m_puserinteraction)
-         {
-
-            break;
-
-         }
-
-         if (!m_pimpl)
-         {
-
-            break;
-
-         }
+      }
+      catch (...)
+      {
 
       }
 

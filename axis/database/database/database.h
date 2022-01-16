@@ -109,7 +109,7 @@ namespace database
       virtual ::payload get_insert_id() = 0;
 
       virtual void set_id_blob(string strKey, ::block block);
-      virtual void get_id_blob(string strKey, ::get_memory getmemory);
+      virtual bool get_id_blob(string strKey, ::get_memory getmemory);
 
 
 

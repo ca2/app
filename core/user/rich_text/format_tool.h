@@ -39,7 +39,7 @@ namespace user
          ~format_tool() override;
 
          
-         e_status initialize(::object * pobject)override;
+         void initialize(::object * pobject)override;
       
          void install_message_routing(::channel * psender) override;
 
@@ -60,7 +60,7 @@ namespace user
          void handle(::subject * psubject, ::context * pcontext) override;
 
 
-         bool update_data(bool bSaveAndValidate) override;
+         void update_data(bool bSaveAndValidate) override;
 
 
       };

@@ -76,8 +76,9 @@ namespace databaseuser
       string_array straData;
       data_get(::id(), straData);
       straData.add_unique(stra);
-      if(!data_set(::id(), straData))
-         return false;
+      data_set(::id(), straData);
+      //if(!data_set(::id(), straData))
+         //return false;
       return true;
    }
 
@@ -87,8 +88,8 @@ namespace databaseuser
       if(!data_get(::id(), straData))
          return true;
       straData.erase(stra);
-      if(!data_set(::id(), straData))
-         return false;
+      data_set(::id(), straData);
+         //return false;
       return true;
    }
 

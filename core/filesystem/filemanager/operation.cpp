@@ -93,9 +93,19 @@ namespace filemanager
       m_strBase = strBase;
       m_dRead = 0.0;
       m_iFile = 0;
-      if(!initialize(this))
+
+      try
+      {
+         initialize(this);
+
+         return true;
+      }
+      catch (...)
+      {
          return false;
-      return true;
+
+      }
+      
    }
 
    bool operation::set_move(::file::listing & stra,const ::file::path & psz)
@@ -105,10 +115,23 @@ namespace filemanager
       m_str = psz;
       m_dRead = 0.0;
       m_iFile = 0;
-      if(!initialize(this))
+      try
+      {
+
+         initialize(this);
+
+         return true;
+
+      }
+      catch (...)
+      {
+
          return false;
-      return true;
+
+      }
+
    }
+
 
    bool operation::set_delete(::file::listing & stra)
    {
@@ -116,9 +139,22 @@ namespace filemanager
       m_stra = stra;
       m_dRead = 0.0;
       m_iFile = 0;
-      if(!initialize(this))
+
+      try
+      {
+
+         initialize(this);
+
+         return true;
+
+      }
+      catch (...)
+      {
+
          return false;
-      return true;
+
+      }
+      
    }
 
    bool operation::open_src_dst(const ::file::path & pszSrc,::file::path & strDst,const ::file::path & pszDir)
@@ -254,7 +290,7 @@ namespace filemanager
          if (!open_src_dst(m_stra[m_iFile], strName, m_str))
          {
 
-            return error_failed;
+            throw_status(error_failed);
 
          }
 
@@ -276,7 +312,7 @@ namespace filemanager
          if (!open_src_dst(m_stra[m_iFile], strPath, m_str))
          {
 
-            return error_failed;
+            throw_status(error_failed);
 
          }
 
@@ -287,12 +323,12 @@ namespace filemanager
          break;
       }
 
-      return success;
+      //return success;
 
    }
 
    
-   void operation::step()
+   bool operation::step()
    {
 
       auto pcontext = get_context();
@@ -487,14 +523,16 @@ namespace filemanager
    void operation::initialize(::object * pobject)
    {
 
-      auto estatus = ::object::initialize(pobject);
+      //auto estatus = 
+      
+      ::object::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       m_dSize = 0.0;
 
@@ -541,7 +579,7 @@ namespace filemanager
 
       }
 
-      return estatus;
+      //return estatus;
 
    }
 

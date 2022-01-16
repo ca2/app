@@ -52,16 +52,16 @@ bool form_document::on_open_document(const ::payload & payloadFile)
 
    }
 
-   pformview->open_document(payloadFile);
+   //pformview->open_document(payloadFile);
 
-   //if(!pformview->open_document(payloadFile))
-   //{
+   if(!pformview->open_document(payloadFile))
+   {
 
-   //   return false;
+      return false;
 
-   //}
+   }
 
-   //return true;
+   return true;
 
 }
 

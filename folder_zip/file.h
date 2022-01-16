@@ -56,6 +56,10 @@ namespace folder_zip
 
       virtual filesize get_position() const override;
 
+
+      bool is_in_memory_file() const override { return true; }
+
+
       //virtual bool zip_open(const char *,::u32);
       //virtual bool zip_open(::zip::file * pzfile,const char * pcszFileName);
 

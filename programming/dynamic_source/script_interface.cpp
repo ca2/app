@@ -160,7 +160,7 @@ namespace dynamic_source
    void script_interface::on_initialize()
    {
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -272,7 +272,7 @@ namespace dynamic_source
       try
       {
 
-         bOk = run();
+         run();
 
       }
       catch (const ::dynamic_source::exit_exception & e)

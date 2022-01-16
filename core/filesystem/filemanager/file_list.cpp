@@ -2173,7 +2173,7 @@ namespace filemanager
 
                auto pcontext = get_context();
 
-               pcontext->m_papexcontext->dir().mk(pathFolder);
+               pcontext->m_papexcontext->dir().create(pathFolder);
 
                psubject->m_bRet = true;
 

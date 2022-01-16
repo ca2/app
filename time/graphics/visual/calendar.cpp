@@ -27,7 +27,7 @@ namespace datetime
       void graphics::initialize(::object * pobject)
       {
 
-         return ::success;
+         //return ::success;
 
       }
 

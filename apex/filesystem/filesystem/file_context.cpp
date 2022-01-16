@@ -2221,7 +2221,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //         MD5_Init(&ctx);
 //         read_gen_string(pfile, &ctx, strRelative);
 //         ::file::path strPath = ::file::path(pszDir) / strRelative;
-//         m_pcontext->m_papexcontext->dir().mk(strPath.folder());
+//         m_pcontext->m_papexcontext->dir().create(strPath.folder());
 //         if (pfile2->open(strPath, ::file::e_open_create | ::file::e_open_binary | ::file::e_open_write).failed())
 //            __throw(::exception("failed"));
 //         read_n_number(pfile, &ctx, iLen);

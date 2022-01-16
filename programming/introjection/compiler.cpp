@@ -189,7 +189,7 @@ namespace introjection
 //
 //      auto pacmedir = m_psystem->m_pacmedir;
 //
-//      pcontext->m_papexcontext->dir().mk(pacmedir->system() / "introjection\\symbols");
+//      pcontext->m_papexcontext->dir().create(pacmedir->system() / "introjection\\symbols");
 //
 //      ::file::path strVars;
 //
@@ -344,7 +344,7 @@ namespace introjection
 //      //   m_strDynamicSourceConfiguration  + "_libl" + m_strPlat1 + ".bat");
 //#endif
 //
-//      pcontext->m_papexcontext->dir().mk(pcontext->m_papexcontext->dir().install() / m_strDynamicSourceStage / "front");
+//      pcontext->m_papexcontext->dir().create(pcontext->m_papexcontext->dir().install() / m_strDynamicSourceStage / "front");
 //
 //      //#ifdef WINDOWS
 //      //      string vars1batSrc;
@@ -545,10 +545,10 @@ namespace introjection
 //      //#else
 //      // strCmd = strFolder, "app\\time\\aura\\account\\app\\main\\front\\dynamic_source_cl.bat", false);
 //      //#endif
-//      pcontext->m_papexcontext->dir().mk(strCmd.folder());
+//      pcontext->m_papexcontext->dir().create(strCmd.folder());
 //      //pcontext->m_papexcontext->file().put_text_utf8(strCmd, str);
 //      pcontext->m_papexcontext->file().put_contents(strCmd,str);
-//      pcontext->m_papexcontext->dir().mk(m_strTime / "dynamic_source");
+//      pcontext->m_papexcontext->dir().create(m_strTime / "dynamic_source");
 //
 //   }
 
@@ -953,8 +953,8 @@ pacmedir->create("/var/tmp/ca2/intermediate");
       //}
 #ifndef LINUX
 
-      //      pcontext->m_papexcontext->dir().mk(strDVI.folder());
-      //      pcontext->m_papexcontext->dir().mk(lib->m_strBuildBat.folder());
+      //      pcontext->m_papexcontext->dir().create(strDVI.folder());
+      //      pcontext->m_papexcontext->dir().create(lib->m_strBuildBat.folder());
       //try
       //{
       //   //         pcontext->m_papexcontext->file().copy(strDVI, strSVI, false);
@@ -1011,9 +1011,9 @@ pacmedir->create("/var/tmp/ca2/intermediate");
 
 #endif
 
-      pcontext->m_papexcontext->dir().mk(plibrary->m_pathScript.folder());
-      pcontext->m_papexcontext->dir().mk(strL.folder());
-      pcontext->m_papexcontext->dir().mk(m_strTime / "intermediate" / m_strPlatform / m_strDynamicSourceConfiguration /  m_strRepos / m_strProjectName / strTransformName);
+      pcontext->m_papexcontext->dir().create(plibrary->m_pathScript.folder());
+      pcontext->m_papexcontext->dir().create(strL.folder());
+      pcontext->m_papexcontext->dir().create(m_strTime / "intermediate" / m_strPlatform / m_strDynamicSourceConfiguration /  m_strRepos / m_strProjectName / strTransformName);
 
       ::file::path pathN = m_pathProjectDir;
 
@@ -1062,7 +1062,7 @@ pacmedir->create("/var/tmp/ca2/intermediate");
 
       strHmhLctvWildPdbPath = ::file::path(pacmedir->system() / "netnodelite\\symbols") / strRndTitle;
       strHmhLctvWildPdbPath.replace("\\","/");
-      pcontext->m_papexcontext->dir().mk(::file::path(strHmhLctvWildPdbPath).folder());
+      pcontext->m_papexcontext->dir().create(::file::path(strHmhLctvWildPdbPath).folder());
       str.replace("%HMH_LCTVWILD_PDB_PATH%",strHmhLctvWildPdbPath);
 
       str.replace("%CA2_ROOT%",strElem);
@@ -1088,7 +1088,7 @@ pacmedir->create("/var/tmp/ca2/intermediate");
             + "/app-core/app_core_resident_desktop/" 
             + strTransformName);
 
-      m_pcontext->m_papexcontext->dir().mk(pathOutputFolder);
+      m_pcontext->m_papexcontext->dir().create(pathOutputFolder);
       
 
 #ifdef LINUX

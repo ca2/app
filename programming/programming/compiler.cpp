@@ -130,7 +130,7 @@ namespace programming
 
       auto pacmedir = m_psystem->m_pacmedir;
 
-      m_pcontext->m_papexcontext->dir().mk(pacmedir->system() / "netnodelite/symbols");
+      m_pcontext->m_papexcontext->dir().create(pacmedir->system() / "netnodelite/symbols");
 
       ::file::path strVars;
 
@@ -282,7 +282,7 @@ namespace programming
 
 #endif
 
-      m_pcontext->m_papexcontext->dir().mk(m_pcontext->m_papexcontext->dir().install() / m_strDynamicSourceStage / "front");
+      m_pcontext->m_papexcontext->dir().create(m_pcontext->m_papexcontext->dir().install() / m_strDynamicSourceStage / "front");
 
       string str;
 
@@ -438,10 +438,10 @@ namespace programming
       //   //#else
       //   // strCmd = strFolder, "app\\time-" PLATFORM_NAME"\\aura\\account\\app\\main\\front\\dynamic_source_cl.bat", false);
       //   //#endif
-      //   m_pcontext->m_papexcontext->dir().mk(strCmd.folder());
+      //   m_pcontext->m_papexcontext->dir().create(strCmd.folder());
       //   //m_pcontext->m_papexcontext->file().put_text_utf8(strCmd, str);
       //   m_pcontext->m_papexcontext->file().put_contents(strCmd, str);
-      //   m_pcontext->m_papexcontext->dir().mk(m_strTime / "dynamic_source");
+      //   m_pcontext->m_papexcontext->dir().create(m_strTime / "dynamic_source");
       //
       //
       //   string strBuildCmd = m_strEnv;
@@ -624,10 +624,10 @@ namespace programming
       //#else
       // strCmd = strFolder, "app\\_stage\\aura\\account\\app\\main\\front\\dynamic_source_cl.bat", false);
       //#endif
-      m_pcontext->m_papexcontext->dir().mk(strCmd.folder());
+      m_pcontext->m_papexcontext->dir().create(strCmd.folder());
       //m_pcontext->m_papexcontext->file().put_text_utf8(strCmd, str);
       m_pcontext->m_papexcontext->file().put_text(strCmd, str);
-      m_pcontext->m_papexcontext->dir().mk(m_strTime / "dynamic_source");
+      m_pcontext->m_papexcontext->dir().create(m_strTime / "dynamic_source");
    }
 
 

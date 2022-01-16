@@ -141,7 +141,7 @@ pacmedir->system() / "database.sqlite";
 
    }
 
-   if(!pcontext->m_papexcontext->dir().mk(str.folder()))
+   if(!pcontext->m_papexcontext->dir().create(str.folder()))
    {
 
       return false;

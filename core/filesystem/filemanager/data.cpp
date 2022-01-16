@@ -298,7 +298,7 @@ namespace filemanager
 
          }
 
-         //pcontext->m_papexcontext->dir().mk(strPath);
+         //pcontext->m_papexcontext->dir().create(strPath);
 
          if (pcontext->m_papexcontext->dir().is(strPath))
          {

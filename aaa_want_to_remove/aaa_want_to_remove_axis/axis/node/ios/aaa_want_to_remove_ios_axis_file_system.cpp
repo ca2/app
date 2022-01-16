@@ -211,12 +211,12 @@ namespace ios
 //      restart:
 //         str.Empty();
 //         str = psz;
-//         pcontext->m_papexcontext->dir().mk(str, papp);
+//         pcontext->m_papexcontext->dir().create(str, papp);
 //         string_array straTitle;
 //         string strFormat;
 //         for(i32 i = 1; i <= iMaxLevel;)
 //         {
-//            pcontext->m_papexcontext->dir().mk(str, papp);
+//            pcontext->m_papexcontext->dir().create(str, papp);
 //            if(!pcontext->m_papexcontext->dir().is(str, papp))
 //               __throw(::exception("time square dir does not exist"));
 //            straTitle.erase_all();
@@ -227,7 +227,7 @@ namespace ios
 //               if(iMax == -1)
 //               {
 //                  str = pcontext->m_papexcontext->dir().path(str, "00");
-//                  pcontext->m_papexcontext->dir().mk(str, papp);
+//                  pcontext->m_papexcontext->dir().create(str, papp);
 //               }
 //               else if(iMax == 99)
 //               {
@@ -244,7 +244,7 @@ namespace ios
 //                  str = pcontext->m_papexcontext->dir().path(str, strFormat);
 //                  if(i == iIncLevel)
 //                  {
-//                     pcontext->m_papexcontext->dir().mk(str, papp);
+//                     pcontext->m_papexcontext->dir().create(str, papp);
 //                  }
 //               }
 //               i++;
@@ -711,14 +711,14 @@ namespace ios
 //                  }
 //                  else
 //                  {
-//                     pcontext->m_papexcontext->dir().mk(strDst, papp);
+//                     pcontext->m_papexcontext->dir().create(strDst, papp);
 //                  }
 //               }
 //               else
 //               {
 //                  if(!pcontext->m_papexcontext->dir().is(pcontext->m_papexcontext->dir().name(strDst), papp))
 //                  {
-//                     pcontext->m_papexcontext->dir().mk(pcontext->m_papexcontext->dir().name(strDst), papp);
+//                     pcontext->m_papexcontext->dir().create(pcontext->m_papexcontext->dir().name(strDst), papp);
 //                  }
 //                  copy(strDst, strSrc, bFailIfExists, eextract == extract_all ? extract_all : extract_none, papp);
 //               }
@@ -1083,7 +1083,7 @@ namespace ios
 //
 //         string strDir = pcontext->m_papexcontext->dir().trash_that_is_not_trash(stra[0]);
 //
-//         pcontext->m_papexcontext->dir().mk(strDir, papp);
+//         pcontext->m_papexcontext->dir().create(strDir, papp);
 //
 //         for(i32 i = 0; i < stra.get_size(); i++)
 //         {
@@ -1101,7 +1101,7 @@ namespace ios
 //
 //         string strDir = pcontext->m_papexcontext->dir().trash_that_is_not_trash(psz);
 //
-//         pcontext->m_papexcontext->dir().mk(strDir, papp);
+//         pcontext->m_papexcontext->dir().create(strDir, papp);
 //
 //#ifdef WINDOWS
 //         //         ::MoveFile(psz, pcontext->m_papexcontext->dir().path(strDir, name_(psz)));
@@ -1218,7 +1218,7 @@ namespace ios
 //      file_pointer file_system::get(const ::string & name, ::aura::application *  papp)
 //      {
 //
-//         pcontext->m_papexcontext->dir().mk(pcontext->m_papexcontext->dir().name(name), papp);
+//         pcontext->m_papexcontext->dir().create(pcontext->m_papexcontext->dir().name(name), papp);
 //
 //         file_pointer fileOut = App(papp).file().get_file(name, ::file::e_open_create | ::file::e_open_binary | ::file::e_open_write);
 //

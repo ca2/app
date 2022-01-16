@@ -4422,7 +4422,7 @@ namespace aura
 //
 //      pathProfileDir = pathProfile.folder();
 //
-//      pcontext->m_papexcontext->dir().mk(pathProfileDir);
+//      pcontext->m_papexcontext->dir().create(pathProfileDir);
 //
 //      string strParam = "-no-remote -CreateProfile \"" + strProfileName + " " + pathProfile + "\"";
 //

@@ -129,7 +129,7 @@ namespace filemanager
       if(pcontext->m_papexcontext->dir().is(pszSrc) && !::str::ends_ci(pszSrc,".zip"))
       {
 
-         pcontext->m_papexcontext->dir().mk(strDst.folder());
+         pcontext->m_papexcontext->dir().create(strDst.folder());
 
          return false;
 
@@ -203,7 +203,7 @@ namespace filemanager
 
       }
 
-      pcontext->m_papexcontext->dir().mk(strDst.folder());
+      pcontext->m_papexcontext->dir().create(strDst.folder());
 
       m_fileDst = pcontext->m_papexcontext->file().get_file(strDst,::file::e_open_write | ::file::e_open_binary | ::file::e_open_create);
 

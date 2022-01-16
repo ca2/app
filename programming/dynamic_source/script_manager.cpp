@@ -110,14 +110,16 @@ namespace dynamic_source
    {
 
       //auto estatus = ::user::message_window_listener::initialize(pobject);
-      auto estatus = ::channel::initialize(pobject);
+      //auto estatus = 
+      
+      ::channel::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
       
       //estatus = __compose_new(m_pmessagequeue);
       //
@@ -130,13 +132,16 @@ namespace dynamic_source
 
       calc_rsa_key();
 
-      estatus = init1();
-      if (!estatus)
-      {
+      //estatus = 
+      
+      init1();
 
-         return estatus;
+      //if (!estatus)
+      //{
 
-      }
+      //   return estatus;
+
+      //}
       fork([this]()
          {
 
@@ -161,7 +166,7 @@ namespace dynamic_source
 
          });
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -172,38 +177,44 @@ namespace dynamic_source
       if(m_bCompiler)
       {
 
-         auto estatus = __construct_new(m_pcache);
+         //auto estatus = 
+         
+         __construct_new(m_pcache);
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            return estatus;
+         //   return estatus;
 
-         }
+         //}
 
          m_pcache->m_pmanager = this;
 
          m_pcompiler = __new(script_compiler);
 
-         estatus = m_pcompiler->initialize_dynamic_source_script_compiler(this);
+         //estatus = 
+         
+         m_pcompiler->initialize_dynamic_source_script_compiler(this);
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            return estatus;
+         //   return estatus;
 
-         }
+         //}
 
          m_pcompiler->m_pmanager = this;
 
-         estatus = m_pcompiler->init1();
+         //estatus = 
+         
+         m_pcompiler->init1();
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            return estatus;
+         //   return estatus;
 
-         }
+         //}
 
       }
 
@@ -249,7 +260,7 @@ namespace dynamic_source
 
       LoadEnv();
 
-      return true;
+      //return true;
 
    }
 

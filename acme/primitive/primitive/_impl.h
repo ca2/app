@@ -3016,6 +3016,38 @@ inline void object::__refer(__reference(BASE_TYPE)& preference, const SOURCE* ps
 }
 
 
+template < typename BASE_TYPE, typename SOURCE >
+inline void object::__defer_refer(__reference(BASE_TYPE)& preference, const __pointer(SOURCE)& psource  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+{
+
+   __defer_refer(preference, psource.get()  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+
+}
+
+
+template < typename BASE_TYPE, typename SOURCE >
+inline void object::__defer_refer(__reference(BASE_TYPE)& preference, const SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+{
+
+   if (preference.get() != psource)
+   {
+
+      __release(preference);
+
+      preference = psource;
+
+      if (preference)
+      {
+
+         add_reference(preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+
+      }
+
+   }
+
+}
+
+
 template < typename SOURCE >
 inline void object::add_reference(__pointer(SOURCE)& psource  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {

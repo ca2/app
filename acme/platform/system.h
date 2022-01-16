@@ -121,6 +121,8 @@ public:
 
    virtual void defer_audio();
 
+   virtual bool has_audio();
+
    virtual void init1();
 
    //virtual logger & log() { return *m_plogger; }

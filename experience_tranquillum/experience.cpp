@@ -23,34 +23,36 @@ namespace experience
       }
 
 
-         void experience::initialize(::object * pobject)
-         {
+      void experience::initialize(::object * pobject)
+      {
 
-            auto estatus = ::experience::experience::initialize(pobject);
+         //auto estatus = 
+         
+         ::experience::experience::initialize(pobject);
 
-            if (!estatus)
-            {
+         //if (!estatus)
+         //{
 
-               return estatus;
+         //   return estatus;
 
-            }
+         //}
 
 #if !defined(CUBE)
 
-            fork([this]()
-               {
+         fork([this]()
+            {
 
-                  auto psession = get_session();
+               auto psession = get_session();
 
-                  psession->user()->windowing()->set_cursor_set_from_matter("cursor/tranquillum");
+               psession->user()->windowing()->set_cursor_set_from_matter("cursor/tranquillum");
 
-               });
+            });
 
 #endif
 
-            return ::success;
+         //return ::success;
 
-         }
+      }
 
 
 

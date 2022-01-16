@@ -66,14 +66,14 @@ namespace draw2d_cairo
       ~font() override;
 
 
-      virtual bool create(::draw2d::graphics * pgraphics, i8 iCreate) override;
+      void create(::draw2d::graphics * pgraphics, i8 iCreate) override;
       void destroy() override;
       void destroy_os_data() override;
 
 
       void dump(dump_context & dumpcontext) const override;
 
-      virtual ::enum_character_set calculate_character_set(::draw2d::graphics * pgraphics) override;
+      ::enum_character_set calculate_character_set(::draw2d::graphics * pgraphics) override;
 
       virtual cairo_font_slant_t get_cairo_font_slant();
       virtual cairo_font_weight_t get_cairo_font_weight();

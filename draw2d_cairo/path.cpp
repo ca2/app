@@ -31,16 +31,18 @@ namespace draw2d_cairo
    void path::destroy()
    {
 
-      auto estatus = ::draw2d::path::destroy();
+      //auto estatus = 
+      
+      ::draw2d::path::destroy();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -61,8 +63,9 @@ namespace draw2d_cairo
 
       pgraphics.cast < graphics >()->_set(this);
 
-      return pgraphics->fill_contains(point);
+      //return pgraphics->fill_contains(point);
 
+      return pgraphics->fill_contains(point);
 
    }
 

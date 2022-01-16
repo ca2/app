@@ -107,7 +107,7 @@ namespace draw2d_cairo
 
 #endif
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -147,7 +147,7 @@ namespace draw2d_cairo
 
       ::write_text::font::destroy();
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -160,7 +160,7 @@ namespace draw2d_cairo
    }
 
 
-   bool font::create(::draw2d::graphics * pgraphics, i8 iCreate)
+   void font::create(::draw2d::graphics * pgraphics, i8 iCreate)
    {
 
 #if defined(USE_PANGO)
@@ -250,7 +250,7 @@ namespace draw2d_cairo
 
 #endif
 
-      return m_osdata[0];
+      //return m_osdata[0];
 
    }
 

@@ -40,16 +40,18 @@ namespace draw2d_cairo
    void brush::destroy()
    {
 
-      auto estatus = ::draw2d::brush::destroy();
+      //auto estatus = 
+      
+      ::draw2d::brush::destroy();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 

@@ -2930,6 +2930,8 @@ inline T * set_heap_allocated(T * p) { p->set_heap_allocated();  return p; }
 
 #include "acme/primitive/primitive/pointer.h"
 
+#include "acme/primitive/primitive/holder.h"
+
 
 template < typename FROM, typename TO_POINTER >
 concept pointer_castable =

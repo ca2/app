@@ -40,9 +40,11 @@ namespace aqua
 
       virtual void create_audio();
 
-      virtual void defer_audio() override;
+      void defer_audio() override;
 
       virtual void defer_multimedia();
+
+      bool has_audio() override;
 
       virtual ::aqua::multimedia* defer_get_multimedia();
 

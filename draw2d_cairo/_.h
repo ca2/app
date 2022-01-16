@@ -36,6 +36,14 @@ void init_cairo_mutex();
 void destroy_cairo_mutex();
 
 
+void destroy_pointer(cairo_surface_t* p);
+void destroy_pointer(cairo_pattern_t* p);
+
+
+using cairo_surface_holder = ::holder < cairo_surface_t* >;
+using cairo_pattern_holder = ::holder < cairo_pattern_t* >;
+
+
 #ifdef _DRAW2D_CAIRO_LIBRARY
 #define CLASS_DECL_DRAW2D_CAIRO  CLASS_DECL_EXPORT
 #else

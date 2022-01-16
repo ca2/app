@@ -3876,7 +3876,7 @@ namespace user
 
       m_pmeshdata = pinterface;
 
-      __refer(m_psimplemeshdata,m_pmeshdata);
+      __defer_refer(m_psimplemeshdata, m_pmeshdata);
 
    }
 

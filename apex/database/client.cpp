@@ -228,7 +228,18 @@ namespace database
 
             is.initialize(this);
 
-            is >> payload;
+            try
+            {
+
+               is >> payload;
+
+            }
+            catch (::exception&)
+            {
+
+               return false;
+
+            }
 
             //if (is.fail())
             //{

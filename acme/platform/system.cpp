@@ -876,6 +876,14 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
+   bool system::has_audio()
+   {
+
+      return false;
+
+   }
+
+
    void system::init1()
    {
 

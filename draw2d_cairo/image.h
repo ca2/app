@@ -22,37 +22,36 @@ namespace draw2d_cairo
       ~image() override;
 
 
-      virtual bool _map(bool bApplyAlphaTransform = true) override;
-      virtual bool _unmap() override;
+      void _map(bool bApplyAlphaTransform = true) override;
+      void _unmap() override;
 
 
-
-      virtual ::draw2d::graphics * _get_graphics() const override;
-      virtual ::draw2d::bitmap_pointer get_bitmap() const override;
-      virtual ::draw2d::bitmap_pointer detach_bitmap() override;
+      ::draw2d::graphics * _get_graphics() const override;
+      ::draw2d::bitmap_pointer get_bitmap() const override;
+      ::draw2d::bitmap_pointer detach_bitmap() override;
 
       //virtual bool stretch(const ::image * pimage) override;
 
-      bool dc_select(bool bSelect = true) override;
+      void dc_select(bool bSelect = true) override;
 
-      virtual void create(const ::size_i32 & size, ::enum_flag eflagCreate = OK_IMAGE, int iGoodStride = -1, bool bPreserve = false) override;
-      virtual void create(::draw2d::graphics * pgraphics) override;
-      virtual void destroy() override;
+      void create(const ::size_i32 & size, ::enum_flag eflagCreate = OK_IMAGE, int iGoodStride = -1, bool bPreserve = false) override;
+      void create(::draw2d::graphics * pgraphics) override;
+      void destroy() override;
 
 
-      virtual bool on_host_read_pixels(const ::pixmap * ppixmap) override;
+      bool on_host_read_pixels(const ::pixmap * ppixmap) override;
       //virtual bool stretch(const ::image * pimage) override;
-      virtual bool _draw_raw(const ::rectangle_i32 & rectangle, ::image * pimage, const ::point_i32 & point = ::point_i32()) override;
+      void _draw_raw(const ::rectangle_i32 & rectangle, ::image * pimage, const ::point_i32 & point = ::point_i32()) override;
 
       //bool to(::draw2d::graphics * pgraphics, const ::point_i32 & point, const ::size_i32 & size, const ::point_i32 & pointSrc) override;
-      virtual void SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy) override;
+      void SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy) override;
 
 
-      virtual ::stream & write(::stream & stream) const override;
-      virtual ::stream & read(::stream & stream) override;
+      ::stream & write(::stream & stream) const override;
+      ::stream & read(::stream & stream) override;
 
 
-      virtual bool blend(const ::point_i32 & ptDst, ::image * pimageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size, byte bA) override;
+      void blend(const ::point_i32 & ptDst, ::image * pimageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size, byte bA) override;
 
 
    };

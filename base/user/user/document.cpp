@@ -1021,9 +1021,9 @@ namespace user
 
       auto pcontext = get_context();
 
-      auto pwriter = pcontext->m_papexcontext->file().get_writer(payloadFile, ::file::e_open_defer_create_directory | ::file::e_open_create | ::file::e_open_read | ::file::e_open_write | ::file::e_open_share_exclusive);
+      auto pwriter = pcontext->m_papexcontext->file().get_writer(payloadFile, ::file::e_open_defer_create_directory | ::file::e_open_create | ::file::e_open_read | ::file::e_open_write | ::file::e_open_share_exclusive | ::file::e_open_no_exception_on_open);
 
-      if(!pwriter)
+      if(!::is_ok(pwriter))
       {
 
          ::file::path path = payloadFile.get_file_path();

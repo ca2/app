@@ -782,7 +782,10 @@ namespace filemanager
       if (!pdata)
       {
 
-         __compose(pdata, filemanager_create_data(id));
+         filemanager_create_data(id);
+
+         // filemanager_create_data should had set pdata.
+         ASSERT(pdata);
 
       }
 

@@ -981,6 +981,12 @@ public:
    template < typename BASE_TYPE, typename SOURCE >
    inline void __refer(__reference(BASE_TYPE)& preference, const ::primitive::member < SOURCE >& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
+   template < typename BASE_TYPE, typename SOURCE >
+   inline void __defer_refer(__reference(BASE_TYPE)& preference, const SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+
+   template < typename BASE_TYPE, typename SOURCE >
+   inline void __defer_refer(__reference(BASE_TYPE)& preference, const __pointer(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+
    template < typename SOURCE >
    inline void add_reference(SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 

@@ -2747,6 +2747,9 @@
     <ClInclude Include="exception\file_open.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\primitive\holder.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">

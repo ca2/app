@@ -5109,12 +5109,12 @@ namespace draw2d
    }
 
 
-   void graphics::fill_contains(const point_f64 & point)
+   bool graphics::fill_contains(const point_f64 & point)
    {
 
       __throw(error_not_implemented);
 
-      //return false;
+      return false;
 
    }
 

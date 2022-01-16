@@ -1722,6 +1722,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
     <ClInclude Include="primitive\primitive\enumeration1.h" />
     <ClInclude Include="primitive\primitive\enum_bitset.h" />
     <ClInclude Include="primitive\primitive\e_flag.h" />
+    <ClInclude Include="primitive\primitive\holder.h" />
     <ClInclude Include="primitive\primitive\id_array.h" />
     <ClInclude Include="primitive\primitive\interlocked.h" />
     <ClInclude Include="primitive\primitive\interlocked_count.h" />

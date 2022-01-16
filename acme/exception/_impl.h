@@ -34,7 +34,7 @@ inline void throw_status(const ::enum_status& estatus, const char* pszMessage)
    else
    {
     
-      throw ::exception::exception(estatus, pszMessage);
+      throw exception(estatus, pszMessage);
 
    }
 

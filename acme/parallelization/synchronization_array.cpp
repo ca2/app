@@ -228,7 +228,13 @@ void synchronization_array::wait()
 
    auto estatus = windows_wait_result_to_status(windowsWaitResult);
 
-   if (failed(estatus))
+   if (estatus == error_wait_timeout)
+   {
+
+      return -1;
+
+   }
+   else if (failed(estatus))
    {
 
       throw_status(estatus);

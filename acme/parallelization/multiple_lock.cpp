@@ -88,13 +88,13 @@ multiple_lock::~multiple_lock()
 }
 
 
-void multiple_lock::lock(const duration & duration, bool bWaitForAll, u32 dwWakeMask)
+::index multiple_lock::lock(const duration & duration, bool bWaitForAll, u32 dwWakeMask)
 {
 
    if (m_synchronizationa.has_no_synchronization_object())
    {
 
-      return;
+      throw_status(error_invalid_empty_argument);
 
    }
 
@@ -152,6 +152,8 @@ void multiple_lock::lock(const duration & duration, bool bWaitForAll, u32 dwWake
    }
 
    //return estatus;
+
+   return iSignaled;
 
 }
 

@@ -470,11 +470,11 @@ void acme_file::write_memory_to_file(FILE * file, const void * pdata, memsize nC
    if (!bOk)
    {
 
-      return error_failed;
+      throw_status(error_failed);
 
    }
 
-   return success;
+   // return success;
 
 #endif
 

@@ -785,11 +785,9 @@ namespace dynamic_source
       // just verifying
 
 #ifdef WINDOWS_DESKTOP
-      dwSize = GetEnvironmentVariableW(L"PATH", nullptr, 0);
-      lpsz = new wchar_t[dwSize + 1024];
-      dwSize = GetEnvironmentVariableW(L"PATH", lpsz, dwSize + 1024);
-      TRACE(lpsz);
-      delete lpsz;
+
+      string strPath = m_psystem->node()->get_environment_variable("PATH");
+
 #elif defined(_UWP)
 
       __throw(todo);

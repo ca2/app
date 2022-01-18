@@ -71,6 +71,7 @@ public:
 
 
    virtual void exchange(::stream & stream) override;
+   virtual void exchange(::payload_stream& stream) override;
 
 
    virtual void handle_exception(const ::exception& e);

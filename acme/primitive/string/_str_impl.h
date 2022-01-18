@@ -605,7 +605,7 @@ inline void from_string(::id & id, const ansichar * psz)
 inline void from_string(::element & element, const ansichar * psz)
 {
 
-   var_stream stream;
+   payload_stream stream;
 
    stream.m_ppayload->parse_network_payload(psz);
 

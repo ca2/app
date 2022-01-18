@@ -75,9 +75,9 @@ void __exchange(stream & stream, i8 & i) { __exchange_blt(stream, i); }
 void __exchange(stream & stream, string & str) { __exchange_string(stream, str); }
 void __exchange(stream & stream, in_addr & addr) { __exchange_stringable(stream, addr); }
 
-void __exchange(var_stream & stream, i8 & i) { __exchange_blt(stream, i); }
-void __exchange(var_stream & stream, string & str) { __exchange_string(stream, str); }
-void __exchange(var_stream & stream, in_addr & addr) { __exchange_stringable(stream, addr); }
+void __exchange(payload_stream & stream, i8 & i) { __exchange_blt(stream, i); }
+void __exchange(payload_stream & stream, string & str) { __exchange_string(stream, str); }
+void __exchange(payload_stream & stream, in_addr & addr) { __exchange_stringable(stream, addr); }
 
 class window
 {

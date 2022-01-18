@@ -2950,9 +2950,6 @@
     <ClCompile Include="filesystem\file\text_file.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\file\var_stream.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\file\file.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
@@ -3873,6 +3870,9 @@
     </ClCompile>
     <ClCompile Include="exception\file_open.cpp">
       <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\payload_stream.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

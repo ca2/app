@@ -64,7 +64,7 @@ namespace database
       inline void data_set(const key & key, const TYPE & t)
       {
 
-         var_stream stream;
+         payload_stream stream;
 
          stream.set_storing();
 
@@ -124,7 +124,7 @@ namespace database
       inline bool data_get(const key & key, TYPE & t)
       {
 
-         var_stream stream;
+         payload_stream stream;
 
          if (!binary_get(key, stream.payload()))
          {

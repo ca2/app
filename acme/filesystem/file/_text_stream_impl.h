@@ -64,7 +64,7 @@ template < typename TYPE >
 inline void text_stream::network_payload_write(const TYPE & t)
 {
 
-   var_stream s;
+   payload_stream s;
 
    string strNetworkPayload;
 
@@ -83,7 +83,7 @@ template < typename TYPE >
 inline void text_stream::network_payload_read(TYPE & t)
 {
 
-   var_stream s;
+   payload_stream s;
 
    string strNetworkPayload;
 

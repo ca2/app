@@ -3,7 +3,7 @@
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
-inline void __exchange(::var_stream& stream, ::array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >& array)
+inline void __exchange(::payload_stream& stream, ::array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >& array)
 {
 
    __exchange_array(stream, array);
@@ -12,7 +12,7 @@ inline void __exchange(::var_stream& stream, ::array_base < TYPE, ARG_TYPE, ALLO
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
-inline void __exchange(::var_stream& stream, ::raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >& array)
+inline void __exchange(::payload_stream& stream, ::raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >& array)
 {
 
    __exchange_array(stream, array);
@@ -21,7 +21,7 @@ inline void __exchange(::var_stream& stream, ::raw_array < TYPE, ARG_TYPE, ALLOC
 
 
 template < typename TYPE, enum_type t_etypePayload >
-inline void __exchange(::var_stream& stream, ::numeric_array < TYPE, t_etypePayload >& array)
+inline void __exchange(::payload_stream& stream, ::numeric_array < TYPE, t_etypePayload >& array)
 {
 
    __exchange_array(stream, array);
@@ -30,7 +30,7 @@ inline void __exchange(::var_stream& stream, ::numeric_array < TYPE, t_etypePayl
 
 
 template < typename Type, typename RawType, enum_type t_etypePayload >
-inline void __exchange(::var_stream& stream, ::string_array_base < Type, RawType, t_etypePayload >& array)
+inline void __exchange(::payload_stream& stream, ::string_array_base < Type, RawType, t_etypePayload >& array)
 {
 
    __exchange_array(stream, array);
@@ -39,7 +39,7 @@ inline void __exchange(::var_stream& stream, ::string_array_base < Type, RawType
 
 
 template < class ARRAY >
-inline void __exchange_array(::var_stream& stream, ARRAY& array)
+inline void __exchange_array(::payload_stream& stream, ARRAY& array)
 {
 
    if (stream.is_storing())
@@ -58,7 +58,7 @@ inline void __exchange_array(::var_stream& stream, ARRAY& array)
 
 
 template < typename ARRAY >
-inline void __exchange_save_array(::var_stream& stream, ARRAY& array)
+inline void __exchange_save_array(::payload_stream& stream, ARRAY& array)
 {
 
    auto c = array.get_count();
@@ -90,7 +90,7 @@ inline void __exchange_save_array(::var_stream& stream, ARRAY& array)
 
 
 template < typename ARRAY >
-inline void __exchange_load_array(::var_stream& stream, ARRAY& array)
+inline void __exchange_load_array(::payload_stream& stream, ARRAY& array)
 {
 
    auto c = array.get_count();
@@ -131,7 +131,7 @@ inline void __exchange_load_array(::var_stream& stream, ARRAY& array)
 
 
 template < typename OBJECT >
-inline void __exchange(::var_stream& s, __pointer(OBJECT)& pobject)
+inline void __exchange(::payload_stream& s, __pointer(OBJECT)& pobject)
 {
 
    s.__defer_construct(pobject);
@@ -142,7 +142,7 @@ inline void __exchange(::var_stream& s, __pointer(OBJECT)& pobject)
 
 
 template < typename TYPE >
-inline void var_stream::stream_exchange(const ::id& id, TYPE& t) 
+inline void payload_stream::stream_exchange(const ::id& id, TYPE& t) 
 { 
    
    var_exchange(id, t); 

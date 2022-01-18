@@ -2816,7 +2816,7 @@ inline void object::__construct(__pointer(TYPE) & p)
    if (!p)
    {
 
-      ERROR("object::__construct object("<< __type_name(ptypeNew) << ") is not of type \"" + __type_name < TYPE >() + "\"");
+      ERROR("object::__construct object("<< __type_name(ptypeNew) << ") is not of type \"" << __type_name < TYPE >() << "\"");
 
       throw_status(::error_wrong_type);
    

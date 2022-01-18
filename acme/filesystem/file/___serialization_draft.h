@@ -32,7 +32,7 @@ int var_procedure()
 
    in_addr addr;
 
-   ::var_stream stream(payload);
+   ::payload_stream stream(payload);
 
    stream >> addr;
 
@@ -89,7 +89,7 @@ public:
 };
 
 
-class var_stream
+class payload_stream
 {
 public:
 
@@ -114,14 +114,14 @@ public:
 
    virtual void write_object(const ::id & id, const ::id & idFactory, ::matter * pobject) override
    {
-      var_stream stream(new ::payload(&payload()[id].propset()));
+      payload_stream stream(new ::payload(&payload()[id].propset()));
       stream.exchange("id", idFactory);
       stream.exchange("", pobject);
    }
 
    virtual __pointer(::contex_object) read_object(const ::id & id) override
    {
-      var_stream stream(new ::payload(&payload()[id].propset()));
+      payload_stream stream(new ::payload(&payload()[id].propset()));
       ::id idFactory;
       stream.exchange("id", idFactory);
       auto pobject = __id_create<::matter>(idFactory);
@@ -140,9 +140,9 @@ public:
 //void __exchange(stream & stream, const ::id & id, in_addr & addr) { __exchange_stringable(stream, addr); }
 //
 //
-//void __exchange(var_stream & stream, i8 & i) { __exchange_blt(stream, i); }
-//void __exchange(var_stream & stream, string & str) { __exchange_string(stream, str); }
-//void __exchange(var_stream & stream, in_addr & addr) { __exchange_stringable(stream, addr); }
+//void __exchange(payload_stream & stream, i8 & i) { __exchange_blt(stream, i); }
+//void __exchange(payload_stream & stream, string & str) { __exchange_string(stream, str); }
+//void __exchange(payload_stream & stream, in_addr & addr) { __exchange_stringable(stream, addr); }
 
 
 class window :

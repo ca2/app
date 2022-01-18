@@ -155,6 +155,7 @@ public:
 
 
    virtual void exchange(::stream& s);
+   virtual void exchange(::payload_stream& s);
 
    virtual stream& write(::stream& stream) const;
    virtual stream& read(::stream& stream);

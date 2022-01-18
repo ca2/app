@@ -170,7 +170,7 @@ CLASS_DECL_ACME ::file::path dir_base_module();
 
 #include "text_stream.h"
 
-#include "var_stream.h"
+#include "payload_stream.h"
 
 
 

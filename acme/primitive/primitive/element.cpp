@@ -356,6 +356,11 @@ void element::exchange(stream& s)
 }
 
 
+void element::exchange(payload_stream& s)
+{
+
+}
+
 stream & element::write(stream& s) const
 {
 

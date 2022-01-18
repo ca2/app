@@ -301,7 +301,15 @@ void property_object::operator()()
 void property_object::exchange(::stream & stream)
 {
 
-   throw ::interface_only_exception();
+   __exchange(stream, *m_ppropertyset);
+
+}
+
+
+void property_object::exchange(::payload_stream& stream)
+{
+
+   __exchange(stream, *m_ppropertyset);
 
 }
 

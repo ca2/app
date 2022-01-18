@@ -11,6 +11,7 @@ class duration;
 class task_pool;
 class object;
 class stream;
+class payload_stream;
 
 
 namespace message

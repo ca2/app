@@ -872,6 +872,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
     <ClCompile Include="filesystem\file\dir2.cpp" />
     <ClCompile Include="filesystem\file\exception.cpp" />
     <ClCompile Include="filesystem\file\folder.cpp" />
+    <ClCompile Include="filesystem\file\payload_stream.cpp" />
     <ClCompile Include="filesystem\file\stdio_file.cpp" />
     <ClCompile Include="filesystem\file\streamable.cpp" />
     <ClCompile Include="filesystem\file\streamable_composite.cpp" />
@@ -1810,7 +1811,6 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
     <ClCompile Include="filesystem\file\stream.cpp" />
     <ClCompile Include="filesystem\file\string_file.cpp" />
     <ClCompile Include="filesystem\file\text_file.cpp" />
-    <ClCompile Include="filesystem\file\var_stream.cpp" />
     <ClCompile Include="primitive\collection\2d_array.cpp" />
     <ClCompile Include="primitive\collection\array.cpp" />
     <ClCompile Include="primitive\collection\bit_array.cpp" />

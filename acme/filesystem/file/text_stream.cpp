@@ -516,7 +516,7 @@ void text_stream::write(const void * psz, strsize s)
 //void text_stream::network_payload_write(const ::matter & matter)
 //{
 //
-//   var_stream s;
+//   payload_stream s;
 //
 //   string strNetworkPayload;
 //
@@ -534,7 +534,7 @@ void text_stream::write(const void * psz, strsize s)
 //void text_stream::network_payload_read(::matter & matter)
 //{
 //
-//   var_stream s;
+//   payload_stream s;
 //
 //   string strNetworkPayload;
 //

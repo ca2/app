@@ -4,7 +4,7 @@
 #define __EXCHANGE(xxx) stream.stream_exchange(__STRING(xxx), m_##xxx)
 #define __TYPE_EXCHANGE(xxx) stream.stream_exchange(__STRING(xxx), t.m_##xxx)
 
-class var_stream;
+class payload_stream;
 class text_stream;
 
 // Use cases:
@@ -17,10 +17,10 @@ template < typename TYPE >
 inline stream & operator << (stream & stream, const TYPE & t);
 
 template < typename TYPE >
-inline var_stream & operator >> (var_stream & stream, TYPE & t);
+inline payload_stream & operator >> (payload_stream & stream, TYPE & t);
 
 template < typename TYPE >
-inline var_stream & operator << (var_stream & stream, const TYPE & t);
+inline payload_stream & operator << (payload_stream & stream, const TYPE & t);
 
 template < typename TYPE >
 inline text_stream & operator >> (text_stream & stream, TYPE & t);
@@ -273,7 +273,7 @@ public:
 //};
 //
 //
-//class CLASS_DECL_ACME var_stream :
+//class CLASS_DECL_ACME payload_stream :
 //   virtual public matter
 //{
 //public:
@@ -282,8 +282,8 @@ public:
 //   ::payload *          m_ppayload;
 //
 //
-//   var_stream() : m_ppayload(nullptr) { }
-//   var_stream(::payload & payload) : m_ppayload(&payload) { }
+//   payload_stream() : m_ppayload(nullptr) { }
+//   payload_stream(::payload & payload) : m_ppayload(&payload) { }
 //
 //   virtual stream * branch(const ::id &);
 //

@@ -386,7 +386,7 @@ void* task::s_os_task(void* p)
       catch (::exception& exception)
       {
 
-         _ERROR(ptask, "Exception reached task procedure");
+         _ERROR(ptask, "Exception reached task procedure : " << exception);
 
       }
 

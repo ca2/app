@@ -496,6 +496,8 @@ template<class T>
 
 class matter;
 class element;
+class stream;
+class payload_stream;
 
 
 
@@ -3000,8 +3002,6 @@ using folder_pointer = __pointer(::folder);
 
 using folder_pointer = __pointer(::folder);
 
-class stream;
-
 
 class binary_stream;
 
@@ -3796,7 +3796,7 @@ inline auto &__typed(__composite(POINTER_TYPE) *pp) { return *pp->operator POINT
 #include "acme/filesystem/file/file.h"
 #include "acme/filesystem/file/stream.h"
 #include "acme/filesystem/file/binary_stream.h"
-#include "acme/filesystem/file/var_stream.h"
+#include "acme/filesystem/file/payload_stream.h"
 #include "acme/filesystem/file/string_file.h"
 #include "acme/filesystem/file/text_stream.h"
 
@@ -3869,7 +3869,7 @@ using lresult = iptr;
 #include "acme/filesystem/file/string_file.h"
 
 
-#include "acme/filesystem/file/var_stream.h"
+#include "acme/filesystem/file/payload_stream.h"
 
 
 //#include "acme/primitive/str/str_format.h"

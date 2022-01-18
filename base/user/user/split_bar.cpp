@@ -63,6 +63,20 @@ namespace user
    void split_bar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
+      auto pframeTopLevel = top_level_frame();
+
+      if (pframeTopLevel)
+      {
+
+         if (pframeTopLevel->frame_is_transparent())
+         {
+
+            return;
+
+         }
+
+      }
+
       ::rectangle_i32 rectangleClient;
 
       get_client_rect(rectangleClient);

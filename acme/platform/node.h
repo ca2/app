@@ -165,12 +165,12 @@ namespace acme
       virtual ::file::path get_last_run_application_path(const ::string & strAppId);
       virtual void  set_last_run_application_path(const string& strAppId);
 
-      virtual void is_keyboard_hook_enabled(::user::interaction * puserinteractionEnablePrompt);
+      virtual ::e_status is_keyboard_hook_enabled(::user::interaction * puserinteractionEnablePrompt);
 
       virtual void install_keyboard_hook(::matter * pmatterListener);
       virtual void uninstall_keyboard_hook(::matter * pmatterListener);
       
-      virtual void is_mouse_hook_enabled(::user::interaction * puserinteractionEnablePrompt);
+      virtual ::e_status is_mouse_hook_enabled(::user::interaction * puserinteractionEnablePrompt);
 
       virtual void install_mouse_hook(::matter * pmatterListener);
       virtual void uninstall_mouse_hook(::matter * pmatterListener);

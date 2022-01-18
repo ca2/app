@@ -692,6 +692,84 @@ bool file_context::as_memory(const ::payload &payloadFile, memory_base &mem, boo
 }
 
 
+memsize file_context::read(const ::payload& payloadFile, void * p, filesize position, memsize size, bool bNoExceptionOnFail)
+{
+
+   file_pointer pfile;
+
+   try
+   {
+
+      pfile = get_file(payloadFile, ::file::e_open_share_deny_none | ::file::e_open_read | ::file::e_open_binary | (bNoExceptionOnFail ? ::file::e_open_no_exception_on_open : 0));
+
+      if (!pfile)
+      {
+
+         return -1;
+
+      }
+      else if (::failed(pfile->m_estatus))
+      {
+
+         return -1;
+
+      }
+
+   }
+   catch (const ::exception& exception)
+   {
+
+      if (bNoExceptionOnFail)
+      {
+
+         return -1;
+
+      }
+
+      throw exception;
+
+   }
+
+   memsize sizeToRead = minimum(size, pfile->get_size() - position);
+
+   if (position > 0)
+   {
+
+      pfile->set_position(position);
+
+   }
+
+   auto sizeRead = pfile->read(p, sizeToRead);
+
+   return sizeRead;
+
+}
+
+
+memsize file_context::read_beginning(const ::payload& payloadFile, void* p, memsize size, bool bNoExceptionOnFail)
+{
+
+   return read(payloadFile, p, 0, size, bNoExceptionOnFail);
+   
+}
+
+
+memory file_context::beginning(const ::payload& payloadFile, memsize size, bool bNoExceptionOnFail)
+{
+
+   memory mem;
+
+   mem.set_size(size);
+
+   auto sizeRead = read(payloadFile, mem.get_data(), mem.get_size(), bNoExceptionOnFail);
+
+   mem.set_size(sizeRead);
+
+   return ::move(mem);
+
+}
+
+
 void file_context::put_lines(const ::payload &payloadFile, const string_array &stra, const plain_text_file_options & options)
 {
 
@@ -2931,7 +3009,7 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, const ::f
    if (!preader)
    {
 
-      preader = get_file(payloadFile, eopenFlags | ::file::e_open_read);
+      preader = get_file(payloadFile, eopenFlags | ::file::e_open_read | ::file::e_open_no_exception_on_open);
 
    }
 

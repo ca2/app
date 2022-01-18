@@ -121,30 +121,33 @@ namespace windowing
       if(pmessage->m_id == e_message_post_user)
       {
 
-
          auto pobject = pmessage->m_union.m_pobject;
 
-         pmessage = dynamic_cast < ::message::message * >(pobject->m_pelement.m_p);
+         __pointer(::message::message) pmessagePost = pobject->m_pelement;
 
-         if (::is_null(pmessage))
+         if (::is_null(pmessagePost))
          {
 
             return;
 
          }
 
-         if(pmessage->m_id==e_message_vscroll)
+         if(pmessagePost->m_id==e_message_vscroll)
          {
 
             ::output_debug_string("vscroll");
 
          }
-         else if(pmessage->m_id == e_message_text_composition)
+         else if(pmessagePost->m_id == e_message_text_composition)
          {
 
             ::output_debug_string("message text composition");
 
          }
+
+         m_pimpl->message_handler(pmessagePost);
+
+         return;
 
       }
 

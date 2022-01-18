@@ -13,12 +13,12 @@ public:
    bool                                            m_bProdevianFrame : 1;
    bool                                            m_bFirstShow : 1;
    bool                                            m_bPendingSaveWindowRect : 1;
-   bool                                            m_bDefaultCreateToolbar : 1;
    bool                                            m_bTransparentFrameEnable : 1;
    bool                                            m_bCustomFrameBefore : 1;
+   bool                                            m_bToolbar : 1;
    __pointer(::user::tool_window)                  m_ptoolwindowFont;
-   ::duration                                          m_durationLastSaveWindowRect;
-   ::duration                                          m_durationLastSaveWindowRectRequest;
+   ::duration                                      m_durationLastSaveWindowRect;
+   ::duration                                      m_durationLastSaveWindowRectRequest;
    ::image_pointer                                 m_pimageBk;
    ::rectangle_i32                                 m_FullScreenWindowRect;
    draw2d::fastblur                                m_blur;

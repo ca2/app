@@ -644,6 +644,8 @@ namespace message
 
       m_pelement = pelement;
 
+      m_lparam = 0;
+
    }
 
 

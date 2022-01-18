@@ -39,9 +39,11 @@ simple_frame_window::simple_frame_window()
 
    m_bProdevianFrame = true;
 
+   m_bToolbar = false;
+
    m_etranslucencyFrame = ::user::e_translucency_present;
 
-   m_bDefaultCreateToolbar = true;
+   //m_bDefaultCreateToolbar = true;
 
    m_bShowTask = true;
 
@@ -3828,20 +3830,25 @@ bool simple_frame_window::create_bars()
 void simple_frame_window::on_create_bars()
 {
 
-   if(!m_bDefaultCreateToolbar)
+   //if(!m_bDefaultCreateToolbar)
+   //{
+
+   //   //return ::success;
+   //   return;
+
+   //}
+
+   if (m_bToolbar)
    {
 
-      //return ::success;
-      return;
+      ::id id = m_pdocumenttemplate->m_id;
 
-   }
+      if (id.has_char())
+      {
 
-   ::id id = m_pdocumenttemplate->m_id;
+         get_toolbar(id);
 
-   if (id.has_char())
-   {
-
-      get_toolbar(id);
+      }
 
    }
 

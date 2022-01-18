@@ -7453,7 +7453,7 @@ namespace user
 
                pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-               pimage->get_graphics()->fill_rectangle(pimage->size(), 0);
+               pimage->get_graphics()->fill_rectangle(pimage->size(), ::color::transparent);
 
                get_image_list()->draw(pimage->g(), (i32)m_iImage,
                                       point_i32(m_plist->m_iIconBlurRadius*iRate, m_plist->m_iIconBlurRadius *iRate), m_rectangleImage.size(), ::point_i32(), 0);
@@ -7499,16 +7499,21 @@ namespace user
 
             m_pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-            image_source imagesource(pimage);
+            if (::is_ok(pimage))
+            {
 
-            rectangle_f64 rectangleDib(m_rectangleImage.top_left() - size_i32(m_plist->m_iIconBlurRadius *iRate, m_plist->m_iIconBlurRadius * iRate),
-                      m_rectangleImage.size() + size_i32(m_plist->m_iIconBlurRadius *iRate * 2, m_plist->m_iIconBlurRadius * iRate * 2));
+               image_source imagesource(pimage);
 
-            image_drawing_options imagedrawingoptions(rectangleDib);
+               rectangle_f64 rectangleDib(m_rectangleImage.top_left() - size_i32(m_plist->m_iIconBlurRadius * iRate, m_plist->m_iIconBlurRadius * iRate),
+                  m_rectangleImage.size() + size_i32(m_plist->m_iIconBlurRadius * iRate * 2, m_plist->m_iIconBlurRadius * iRate * 2));
 
-            image_drawing imagedrawing(imagedrawingoptions, imagesource);
+               image_drawing_options imagedrawingoptions(rectangleDib);
 
-            m_pgraphics->draw(imagedrawing);
+               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+               m_pgraphics->draw(imagedrawing);
+
+            }
 
             ::rectangle_i32 rectangleI;
 

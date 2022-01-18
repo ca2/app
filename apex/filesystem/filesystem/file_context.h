@@ -163,6 +163,9 @@ public:
    virtual ::payload as_network_payload(const ::payload & payloadFile, bool bNoExceptionOnFail = true);
    virtual string as_string(const ::payload & payloadFile, bool bNoExceptionOnFail = true);
    virtual bool as_memory(const ::payload & payloadFile, memory_base & mem, bool bNoExceptionOnFail = true);
+   virtual memsize read(const ::payload& payloadFile, void * p, filesize position, memsize size, bool bNoExceptionOnFail = true);
+   virtual memsize read_beginning(const ::payload& payloadFile, void * p, memsize size, bool bNoExceptionOnFail = true);
+   virtual memory beginning(const ::payload& payloadFile, memsize size, bool bNoExceptionOnFail = true);
 
 
    inline string_array lines(const ::payload & payloadFile, bool bAddEmpty = true, bool bNoExceptionOnFail = true)

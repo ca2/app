@@ -24,7 +24,7 @@ namespace imaging_freeimage
       if (!mem)
       {
 
-         return false;
+         throw_status(error_failed);
 
       }
 
@@ -220,11 +220,13 @@ namespace imaging_freeimage
       }
       catch (...)
       {
-         return false;
+         //return false;
+
+         throw_status(error_failed);
 
       }
 
-      return true;
+      //return true;
 
    }
 
@@ -255,9 +257,12 @@ namespace imaging_freeimage
 
       image_pointer pimageFrame;
 
-      auto estatus = pimageCompose->__construct(pimageFrame);
+      //auto estatus = 
+      
+      pimageCompose->__construct(pimageFrame);
 
-      if (!estatus || !pimageFrame)
+      //if (!estatus || !pimageFrame)
+      if (!pimageFrame)
       {
 
          return false;

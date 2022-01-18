@@ -4,7 +4,7 @@
 void duration::normalize()
 {
 
-   m_iSecond += m_iSecond / SECOND_NANOS;
+   m_iSecond += m_iNanosecond / SECOND_NANOS;
 
    m_iNanosecond %= SECOND_NANOS;
 

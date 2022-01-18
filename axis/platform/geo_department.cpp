@@ -1305,7 +1305,7 @@ namespace geo
 
             auto pfile = m_pcontext->m_papexcontext->file().get_reader(path);
 
-            if (pfile)
+            if (::is_ok(pfile))
             {
 
                ::binary_stream reader(pfile);

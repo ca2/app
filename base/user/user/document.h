@@ -219,14 +219,16 @@ namespace user
 
          }
 
-         auto estatus = pdata->initialize_data(this);
+         //auto estatus = 
+         
+         pdata->initialize_data(this);
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            return estatus;
+         //   return estatus;
 
-         }
+         //}
 
          return pdata;
 

@@ -3869,21 +3869,21 @@ namespace user
          if(wparam==1)
          {
 
-            auto pelement = (::element *) lparam.m_lparam;
+            __pointer(::message::message) pmessage(lparam);
 
-            __pointer(::message::message) pmessage(e_move_transfer, pelement);
+            lparam = 0;
 
             if(pmessage)
             {
 
                message_handler(pmessage);
 
-               if (pmessage->m_bRet)
-               {
+               //if (pmessage->m_bRet)
+               //{
 
                   return true;
 
-               }
+               //}
 
             }
 

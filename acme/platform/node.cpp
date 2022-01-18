@@ -572,10 +572,10 @@ namespace acme
    }
 
 
-   void node::is_keyboard_hook_enabled(::user::interaction * puserinteractionEnablePrompt)
+   ::e_status node::is_keyboard_hook_enabled(::user::interaction * puserinteractionEnablePrompt)
    {
    
-      //return ::success;
+      return ::success;
       
    }
 
@@ -604,10 +604,10 @@ namespace acme
    }
 
    
-   void node::is_mouse_hook_enabled(::user::interaction * puserinteractionEnablePrompt)
+   ::e_status node::is_mouse_hook_enabled(::user::interaction * puserinteractionEnablePrompt)
    {
 
-      //return ::success;
+      return ::success;
    
    }
 

@@ -839,6 +839,10 @@ void context_image::_load_multi_frame_image(image * pimage, memory & memory)
    else if (pframea->get_count() == 1)
    {
 
+      pimage->m_estatus = ::success;
+
+      pimage->set_ok();
+
       return;
 
    }
@@ -848,6 +852,10 @@ void context_image::_load_multi_frame_image(image * pimage, memory & memory)
    pextension->m_pframea = pframea;
 
    pimage->pixmap::init(pframea->m_size, nullptr, 0);
+
+   pimage->m_estatus = ::success;
+
+   pimage->set_ok();
 
    //for (index iFrame = 0; iFrame < pframea->get_count(); iFrame++)
    //{
@@ -1091,7 +1099,7 @@ void context_image::_os_load_image(::image * pimage, memory & memory)
    if (!pimage)
    {
 
-      __refer(pimage, __create_new <image>());
+      __refer(pimage, __create<image>());
 
       pimage->set_nok();
 

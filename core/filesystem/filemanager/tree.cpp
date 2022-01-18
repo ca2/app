@@ -489,7 +489,12 @@ namespace filemanager
 
       auto puser = user();
 
-      __compose(m_pimagelist, puser->shell()->GetImageList(filemanager_data()->m_iIconSize));;
+      if (::is_null(m_pimagelist))
+      {
+
+         __compose(m_pimagelist, puser->shell()->GetImageList(filemanager_data()->m_iIconSize));;
+
+      }
 
       m_usertreea.predicate_each([](auto & ptree)
       {

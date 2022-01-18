@@ -32,12 +32,14 @@ namespace imaging_freeimage
 
       int h = FreeImage_GetHeight(image32);
 
-      if (!pimage->create({ w, h}))
-      {
+      pimage->create({ w, h });
 
-         return false;
+      ////if (!pimage->create({ w, h}))
+      //{
 
-      }
+      //   return false;
+
+      //}
 
       void * pdata = FreeImage_GetBits(image32);
 
@@ -263,16 +265,16 @@ namespace imaging_freeimage
 
       ::file::path pathProcess = m_pcontext->m_papexcontext->defer_process_path(path);
 
-      auto estatus = m_pcontext->m_papexcontext->file().as_memory(payloadFile, memory);
+      auto bOk = m_pcontext->m_papexcontext->file().as_memory(payloadFile, memory);
 
       auto p1 = memory.get_data();
 
       auto s1 = memory.get_size();
 
-      if(!estatus)
+      if(!bOk)
       {
 
-         return estatus;
+         return;
 
       }
 
@@ -284,21 +286,27 @@ namespace imaging_freeimage
       if (::is_null(psz))
       {
 
-         return pimage->m_estatus;
+         //return pimage->m_estatus;
+
+         return;
 
       }
 
       if (::is_null(pimage))
       {
 
-         return false;
+         //return false;
+
+         throw_status(error_null_pointer);
 
       }
 
       if (memory.is_empty())
       {
 
-         return false;
+         //return false;
+
+         throw_status(error_failed);
 
       }
 
@@ -334,14 +342,18 @@ namespace imaging_freeimage
       && !bExif)
       {
 
-         estatus = pcontextimage->load_svg(pimage, memory);
+         //estatus = 
+         
+         pcontextimage->load_svg(pimage, memory);
 
-         if (::succeeded(estatus))
+         //if (::succeeded(estatus))
          {
 
             auto pdata = pimage->get_data();
 
-            return estatus;
+            //return estatus;
+
+            return;
 
          }
 
@@ -350,14 +362,16 @@ namespace imaging_freeimage
       if (memory.get_size() > 3 && strnicmp(psz, "gif", 3) == 0)
       {
 
-         if (!_load_multi_frame_image(pimage, memory))
-         {
+         _load_multi_frame_image(pimage, memory);
+
+         //if (!)
+ /*        {
 
             pimage->set_nok();
 
             return pimage->m_estatus;
 
-         }
+         }*/
 
          pimage->on_load_image();
 
@@ -365,7 +379,9 @@ namespace imaging_freeimage
 
          pimage->m_estatus = ::success;
 
-         return pimage->m_estatus;
+         return;
+
+         // return pimage->m_estatus;
 
       }
 
@@ -374,7 +390,7 @@ namespace imaging_freeimage
       if (pmem == nullptr)
       {
 
-         return false;
+         throw_status(error_failed);
 
       }
 
@@ -401,7 +417,7 @@ namespace imaging_freeimage
 
          FreeImage_CloseMemory(pmem);
 
-         return false;
+         throw_status(error_failed);
 
       }
 
@@ -461,7 +477,7 @@ namespace imaging_freeimage
 
          FreeImage_CloseMemory(pmem);
 
-         return false;
+         throw_status(error_failed);
 
       }
 
@@ -533,7 +549,7 @@ namespace imaging_freeimage
 
       pimage->m_estatus = ::success;
 
-      return pimage->m_estatus;
+//      return pimage->m_estatus;
 
    }
 

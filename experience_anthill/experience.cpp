@@ -21,20 +21,23 @@ namespace experience
 
          experience::~experience()
          {
+
          }
 
 
          void experience::initialize(::object * pobject)
          {
 
-            auto estatus = ::experience::experience::initialize(pobject);
+            //auto estatus = 
+            
+            ::experience::experience::initialize(pobject);
 
-            if (!estatus)
-            {
+            //if (!estatus)
+            //{
 
-               return estatus;
+            //   return estatus;
 
-            }
+            //}
 
             fork([this]()
                {
@@ -43,7 +46,7 @@ namespace experience
 
                });
 
-            return ::success;
+            //return ::success;
 
          }
 

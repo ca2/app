@@ -3417,11 +3417,11 @@ inline void object::__construct(::task_pointer& p, void (TYPE::* pfn)(), enum_pr
    if (!p)
    {
 
-      return error_failed;
+      throw_status(error_failed);
 
    }
 
-   return p->m_estatus;
+   //return p->m_estatus;
 
 }
 
@@ -3529,7 +3529,7 @@ inline __pointer(task) object::fork(PREDICATE predicate, ::enum_priority epriori
 
 
 template < typename POSTING_OBJECT, typename POSTING_METHOD, typename OBJECT_POINTER, typename OBJECT_METHOD, typename PAYLOAD_REFERENCE >
-void material_object::__send_payload(POSTING_OBJECT pposting, POSTING_METHOD posting_method, OBJECT_POINTER pobject, OBJECT_METHOD method, PAYLOAD_REFERENCE & payload)
+bool material_object::__send_payload(POSTING_OBJECT pposting, POSTING_METHOD posting_method, OBJECT_POINTER pobject, OBJECT_METHOD method, PAYLOAD_REFERENCE & payload)
 {
 
    auto psynchronization = __new(::promise::synchronization);
@@ -3569,7 +3569,7 @@ void material_object::__send_payload(POSTING_OBJECT pposting, POSTING_METHOD pos
 
       psynchronization->m_evResponse.SetEvent();
 
-      return error_timeout;
+      return false;
 
    }
 
@@ -3577,14 +3577,15 @@ void material_object::__send_payload(POSTING_OBJECT pposting, POSTING_METHOD pos
 
    psynchronization->m_evReady.wait();
 
-   if(!psynchronization->m_estatus)
-   {
-
-      return psynchronization->m_estatus;
-
-   }
-
-   return psynchronization->m_estatus;
+//   if(!psynchronization->m_estatus)
+//   {
+//
+//      return psynchronization->m_estatus;
+//
+//   }
+//
+//   return psynchronization->m_estatus;
+   return true;
 
 }
 

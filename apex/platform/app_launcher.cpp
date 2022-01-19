@@ -208,12 +208,14 @@ namespace apex
 
       auto pnode = psystem->node();
 
-      if (::succeeded(pnode->call_async(strPath, strParams, strDir, e_display_none, false)))
-      {
+      pnode->call_async(strPath, strParams, strDir, e_display_none, false);
 
-         return true;
-
-      }
+//      if (::succeeded(pnode->call_async(strPath, strParams, strDir, e_display_none, false)))
+//      {
+//
+//         return true;
+//
+//      }
 
 #endif
 

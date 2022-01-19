@@ -3796,8 +3796,6 @@ bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin
 void thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
 {
 
-   bool bQuit = false;
-
 #ifdef WINDOWS_DESKTOP
 
    if (m_bAuraMessageQueue)
@@ -3953,41 +3951,9 @@ void thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
 
    auto pmessagequeue = get_message_queue();
 
-   while(true)
-   {
-
-      auto estatus = pmessagequeue->get_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax);
-
-      if (estatus == status_quit)
-      {
-
-         return status_quit;
-
-      }
-      else if (::succeeded(estatus))
-      {
-
-         return estatus;
-
-      }
-      else if(is_ready_to_quit())
-      {
-
-         return status_quit;
-
-      }
-      else
-      {
-
-         return estatus;
-
-      }
-
-   }
+   pmessagequeue->get_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax);
 
 #endif
-
-   //return status_quit;
 
 }
 

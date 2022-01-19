@@ -532,7 +532,7 @@ bool file_context::try_create_file(const ::file::path &path, bool bTryDelete)
 
       }
 
-      m_pcontext->m_papexcontext->file().del(path);
+      m_pcontext->m_papexcontext->file().erase(path);
 
       if (m_pcontext->m_papexcontext->file().exists(path))
       {
@@ -1680,7 +1680,7 @@ void file_context::move(const ::file::path &pszNew, const ::file::path &psz)
 }
 
 
-void file_context::del(const ::file::path & path)
+void file_context::erase(const ::file::path & path)
 {
 
    throw ::interface_only_exception();
@@ -2654,7 +2654,7 @@ void file_context::post_output(const ::file::path & pathOut, const ::file::path 
 
       INFORMATION("Failed to rename \"downloading\" file from " << pathDownloading << " to " << pathOut);
 
-      del(pathDownloading);
+      erase(pathDownloading);
 
       throw_status(error_io);
 

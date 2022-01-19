@@ -19,15 +19,15 @@ namespace audio
 
 
 
-CLASS_DECL_ACME bool __node_acme_pre_init()
+CLASS_DECL_ACME void __node_acme_pre_init()
 {
 
-   return true;
+   //return true;
 
 }
 
 
-CLASS_DECL_ACME bool __node_acme_pos_init()
+CLASS_DECL_ACME void __node_acme_pos_init()
 {
 
 //   t_hthread = new htask();
@@ -36,7 +36,7 @@ CLASS_DECL_ACME bool __node_acme_pos_init()
 //
 //   t_hthread->m_bRun = true;
 
-   return true;
+   //return true;
 
 }
 
@@ -48,20 +48,20 @@ CLASS_DECL_ACME bool __node_acme_pos_init()
 //CLASS_DECL_ACME void __node_term_cross_windows_threading();
 
 
-CLASS_DECL_ACME bool __node_acme_pre_term()
+CLASS_DECL_ACME void __node_acme_pre_term()
 {
 
    //__node_term_cross_windows_threading();
 
-   return true;
+   //return true;
 
 }
 
 
-CLASS_DECL_ACME bool __node_acme_pos_term()
+CLASS_DECL_ACME void __node_acme_pos_term()
 {
 
-   return true;
+   //return true;
 
 }
 

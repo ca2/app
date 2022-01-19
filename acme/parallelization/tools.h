@@ -163,12 +163,12 @@ public:
 
       }
 
-      if (!prepare(::e_task_op_fork_count, iCount - iStart))
-      {
-
-         return -1;
-
-      }
+      prepare(::e_task_op_fork_count, iCount - iStart);
+//      {
+//
+//         return -1;
+//
+//      }
 
       synchronization_array ptra;
 
@@ -188,12 +188,12 @@ public:
 
       }
 
-      if (!this->operator()())
-      {
-
-         return -1;
-
-      }
+      this->operator()();
+//      {
+//
+//         return -1;
+//
+//      }
 
       return iScan;
 

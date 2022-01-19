@@ -56,7 +56,7 @@ public:
 
 
    template < typename POSTING_OBJECT, typename POSTING_METHOD, typename OBJECT_POINTER, typename OBJECT_METHOD, typename PAYLOAD_REFERENCE >
-   void __send_payload(POSTING_OBJECT pposting, POSTING_METHOD posting_method, OBJECT_POINTER pobject, OBJECT_METHOD objectmethod, PAYLOAD_REFERENCE & payload);
+   bool __send_payload(POSTING_OBJECT pposting, POSTING_METHOD posting_method, OBJECT_POINTER pobject, OBJECT_METHOD objectmethod, PAYLOAD_REFERENCE & payload);
 
    template < typename POSTING_OBJECT, typename POSTING_METHOD >
    void __send_routine(POSTING_OBJECT pposting, POSTING_METHOD posting_method, const ::routine & routine);

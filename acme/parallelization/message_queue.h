@@ -27,7 +27,7 @@ public:
 
 
    bool peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg);
-   bool get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, const ::duration & duration = ::duration::infinite());
+   void get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, const ::duration & duration = ::duration::infinite());
    void post_message(oswindow oswindow, const ::id & id, wparam wparam, lparam lparam);
    void post_message(const MESSAGE & message);
 

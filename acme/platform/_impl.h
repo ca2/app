@@ -806,7 +806,7 @@ TYPE & sequence < TYPE > ::topic(const ::duration& duration)
 
       m_pevent = new manual_reset_event();
 
-      if (!m_pevent->wait(duration).succeeded())
+      if (!m_pevent->wait(duration))
       {
 
          lock.lock();
@@ -908,7 +908,7 @@ sequence < TYPE > & sequence < TYPE > ::then(const ::duration& duration, OPERATI
 
       lock.unlock();
 
-      if (!m_pevent->wait(duration).succeeded())
+      if (!m_pevent->wait(duration))
       {
 
          lock.lock();

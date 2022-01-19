@@ -228,21 +228,6 @@ void synchronization_array::wait()
 
    auto estatus = windows_wait_result_to_status(windowsWaitResult);
 
-   if (estatus == error_wait_timeout)
-   {
-
-      return -1;
-
-   }
-   else if (failed(estatus))
-   {
-
-      throw_status(estatus);
-
-   }
-
-   return (::index) (estatus.m_estatus - signaled_base);
-   
 #else
 
    for(auto & psync : m_synchronizationa)
@@ -305,6 +290,8 @@ void synchronization_array::wait()
          }
 
       }
+
+
 //      while (result == e_synchronization_result_io_completion);
 
 //   }
@@ -313,6 +300,21 @@ void synchronization_array::wait()
    //return estatus;
 
 #endif
+
+   if (estatus == error_wait_timeout)
+   {
+
+      return -1;
+
+   }
+   else if (failed(estatus))
+   {
+
+      throw_status(estatus);
+
+   }
+
+   return (::index) (estatus.m_estatus - signaled_base);
 
 }
 

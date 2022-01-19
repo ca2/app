@@ -107,7 +107,7 @@ void message_queue::post_message(const MESSAGE & message)
 //}
 
 
-bool message_queue::get_message(MESSAGE * pmessage, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, const ::duration & duration)
+void message_queue::get_message(MESSAGE * pmessage, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, const ::duration & duration)
 {
 
    if (wMsgFilterMax == 0)
@@ -139,7 +139,7 @@ bool message_queue::get_message(MESSAGE * pmessage, oswindow oswindow, ::u32 wMs
             // 2021-07-22 15:03 BRT quit message would be last message and empty message queue?
             m_messagea.erase_all();
 
-            return false;
+            return;
 
          }
 
@@ -154,7 +154,7 @@ bool message_queue::get_message(MESSAGE * pmessage, oswindow oswindow, ::u32 wMs
 
             //m_bKickIdle = false;
 
-            return true;
+            return;
 
          }
 

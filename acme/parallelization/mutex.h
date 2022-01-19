@@ -61,13 +61,13 @@ public:
 
 #ifndef WINDOWS
 
-   virtual bool lock() override;
+   virtual void lock() override;
 
    virtual bool lock(const class ::wait & wait) override;
 
    virtual void _wait() override;
 
-   virtual void _wait(const class ::wait & wait) override;
+   virtual bool _wait(const class ::wait & wait) override;
 
 #endif
 

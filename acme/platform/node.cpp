@@ -315,7 +315,7 @@ namespace acme
    void node::calculate_linux_distribution()
    {
 
-      return ::success;
+      //return ::success;
 
    }
 

@@ -10,27 +10,27 @@ namespace file
 } // namespace file
 
 
-void fgets_string(string & str, FILE * pfile, memsize iBufferSize)
+::e_status fgets_string(string & str, FILE * pfile, memsize iBufferSize)
 {
 
    if(::is_null(pfile))
    {
 
-      throw_status(error_null_pointer);
+      return error_null_pointer;
 
    }
 
    if(iBufferSize <= 0)
    {
 
-      throw_status(error_invalid_argument);
+      return error_invalid_argument;
 
    }
 
    if(feof(pfile))
    {
 
-      throw_status(::success_end_of_file);
+      return ::success_end_of_file;
 
    }
 
@@ -39,7 +39,7 @@ void fgets_string(string & str, FILE * pfile, memsize iBufferSize)
    if(::is_null(pszBuffer))
    {
 
-      throw_status(error_resource);
+      return error_resource;
 
    }
 
@@ -69,7 +69,7 @@ void fgets_string(string & str, FILE * pfile, memsize iBufferSize)
 
    str.release_string_buffer();
 
-   ///return ::success;
+   return ::success;
 
 }
 

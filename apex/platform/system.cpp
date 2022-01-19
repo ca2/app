@@ -4651,7 +4651,7 @@ namespace apex
 
          set["cookies"] = pcookies;
 
-         m_pcontext->m_papexcontext->file().del(filename);
+         m_pcontext->m_papexcontext->file().erase(filename);
 
          return m_pcontext->m_papexcontext->http().download(str, strLocation, set);
 

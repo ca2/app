@@ -267,16 +267,18 @@ void apex_main_data::system_construct(const char * pszCommandLine, const ::e_dis
 
    //__zero(m_mainrunnera);
 
-   auto estatus = on_system_construct();
+   //auto estatus =
+   //
+   on_system_construct();
 
-   if(!estatus)
-   {
-
-      return estatus;
-
-   }
-
-   return estatus;
+//   if(!estatus)
+//   {
+//
+//      return estatus;
+//
+//   }
+//
+//   return estatus;
 
 }
 
@@ -298,16 +300,17 @@ void apex_main_data::system_construct(os_local * poslocal, const ::e_display & e
 
    //__zero(m_mainrunnera);
 
-   auto estatus = on_system_construct();
 
-   if(!estatus)
-   {
+   on_system_construct();
 
-      return estatus;
-
-   }
-
-   return estatus;
+//   if(!estatus)
+//   {
+//
+//      return estatus;
+//
+//   }
+//
+//   return estatus;
 
 }
 

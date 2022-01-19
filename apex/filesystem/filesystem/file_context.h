@@ -41,7 +41,7 @@ public:
 
    virtual void copy(::payload varTarget, ::payload varSource, bool bFailIfExists = false, e_extract eextract = extract_first);
    virtual void move(const ::file::path & pathNew, const ::file::path & path);
-   virtual void del(const ::file::path & path);
+   virtual void erase(const ::file::path & path);
    virtual ::file::path duplicate(const ::file::path & path);
    virtual ::file::path paste(const ::file::path & pathLocation, const ::file::path & path);
    virtual void rename(const ::file::path & pathNew, const ::file::path & path);
@@ -114,13 +114,6 @@ public:
 
       auto preader = get_reader(payloadFile);
 
-      if (!preader)
-      {
-
-         return preader.m_estatus;
-
-      }
-
       binary_stream stream(preader);
 
       stream.defer_set_loading();
@@ -137,13 +130,6 @@ public:
    {
 
       auto pwriter = get_writer(payloadFile);
-
-      if (!pwriter)
-      {
-
-         return pwriter.m_estatus;
-
-      }
 
       binary_stream stream(pwriter);
 
@@ -305,16 +291,7 @@ public:
 
       auto writer = get_writer(payloadFile);
 
-      if(!writer)
-      {
-
-         return writer.m_estatus;
-
-      }
-
       *writer << a;
-
-      return writer.m_estatus;
 
    }
 
@@ -339,13 +316,11 @@ public:
 
       *reader >> a;
 
-      return reader.m_estatus;
-
    }
 
 
    template < class ARRAY >
-   bool to_array(ARRAY & a, const ::payload & payloadFile)
+   void to_array(ARRAY & a, const ::payload & payloadFile)
    {
 
       auto pfile = get_reader(payloadFile);

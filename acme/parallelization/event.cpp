@@ -817,7 +817,7 @@ bool event::_wait (const class ::wait & wait)
 
       }
 
-      estatus = error_wait_timeout;
+      return false;
 
    }
 
@@ -840,6 +840,8 @@ bool event::_wait (const class ::wait & wait)
    //}
 
    //return estatus;
+
+   return true;
 
 }
 

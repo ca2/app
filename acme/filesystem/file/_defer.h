@@ -24,7 +24,7 @@ template < typename TYPE >
 inline void stream::stream_exchange(const ::id & id, TYPE & t) { ::__exchange(*this, t); }
 
 
-#include "_defer_var_stream.h"
+#include "_defer_payload_stream.h"
 
 
 #endif // __cplusplus_winrt

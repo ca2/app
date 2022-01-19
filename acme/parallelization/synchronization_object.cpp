@@ -315,7 +315,9 @@ bool synchronization_object::_wait(const class ::wait & wait)
 
 #endif
 
-//   return error_failed;
+   throw_status(error_interface_only);
+
+   return false;
 
 }
 

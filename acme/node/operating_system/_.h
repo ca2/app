@@ -2,6 +2,53 @@
 #pragma once
 
 
+#ifdef __cplusplus
+
+
+class CLASS_DECL_ACME int_handle
+{
+public:
+
+
+   int m_i;
+
+   int_handle(int i = -1)
+   {
+
+      m_i = i;
+
+   }
+
+   ~int_handle()
+   {
+
+      if(m_i >= 0)
+      {
+
+         ::close(m_i);
+
+         m_i = -1;
+
+      }
+
+   }
+
+   operator int() const {return m_i;}
+   operator int &() {return m_i;}
+
+
+
+};
+
+
+//CLASS_DECL_ACME void destroy_pointer(int_handle i);
+//
+//using int_handle_holder = holder< int_handle >();
+
+
+#endif
+
+
 #ifndef WINDOWS
 
 

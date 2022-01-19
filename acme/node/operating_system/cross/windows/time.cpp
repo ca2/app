@@ -1143,7 +1143,7 @@ CLASS_DECL_ACME void GetSystemTime(system_time_t * systime)
 
       GetSystemTime(psystemtime);
 
-      return success;
+      //return success;
 
    }
 
@@ -1161,18 +1161,20 @@ CLASS_DECL_ACME void GetSystemTime(system_time_t * systime)
 
       struct tm tm;
 
-      auto estatus = system_time_to_tm(&tm, psystemtime);
+      //auto estatus =
 
-      if(!estatus)
-      {
+      system_time_to_tm(&tm, psystemtime);
 
-         return estatus;
-
-      }
+//      if(!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
 
       *ptime = timegm(&tm);
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -1214,18 +1216,20 @@ CLASS_DECL_ACME void GetSystemTime(system_time_t * systime)
 
       gmtime_r(ptime, &tm);
 
-      system_time_t systemtime;
+      //system_time_t systemtime;
 
-      auto estatus = tm_to_system_time(psystemtime, &tm);
+      //auto estatus =
 
-      if(!estatus)
-      {
+         tm_to_system_time(psystemtime, &tm);
 
-         return estatus;
-
-      }
-
-      return estatus;
+//      if(!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
+//
+//      return estatus;
 
    }
 

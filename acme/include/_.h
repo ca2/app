@@ -511,7 +511,7 @@ template < typename T >
 concept a_enum = std::is_enum < T >::value;
 
 template < typename T >
-concept primitive_integral = std::is_integral < T >::value || std::is_enum < T >::value || std::same_as < T, ::e_status2 >;
+concept primitive_integral = std::is_integral < T >::value || std::is_enum < T >::value || std::same_as < T, ::e_status >;
 
 template < typename T >
 concept primitive_integer = std::is_integral < T >::value;
@@ -4440,7 +4440,7 @@ class task_tool;
 #include "acme/filesystem/file/_impl.h"
 
 
-#include "acme/filesystem/file/_var_stream_impl.h"
+#include "acme/filesystem/file/_payload_stream_impl.h"
 
 
 #include "acme/filesystem/file/_text_stream_impl.h"

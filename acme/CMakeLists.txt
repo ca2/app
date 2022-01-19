@@ -40,6 +40,8 @@ list(APPEND library_source
    exception/extended_transport.h
    exception/file.cpp
    exception/file.h
+   exception/file_open.cpp
+   exception/file_open.h
    #exception/hresult.cpp
    #exception/index_out_of_bounds.cpp
    #exception/installing.cpp
@@ -59,6 +61,8 @@ list(APPEND library_source
    exception/parsing.cpp
    exception/resource.cpp
    #exception/result.cpp
+   exception/serialization.cpp
+   exception/serialization.h
    #exception/simple.cpp
    #exception/standard_translator.cpp
    #exception/temporary.cpp
@@ -101,7 +105,7 @@ list(APPEND library_source
    filesystem/file/text_stream.cpp
    filesystem/file/transfer.cpp
    filesystem/file/transfer.h
-   filesystem/file/var_stream.cpp
+   filesystem/file/payload_stream.cpp
    filesystem/filesystem/acme_dir.cpp
    filesystem/filesystem/acme_dir.h
    filesystem/filesystem/acme_file.cpp
@@ -619,7 +623,7 @@ list(APPEND library_source
    filesystem/file/_c.h
    filesystem/file/_const.h
    filesystem/file/_defer.h
-   filesystem/file/_defer_var_stream.h
+   filesystem/file/_defer_payload_stream.h
    filesystem/file/_file.h
    filesystem/file/_impl.h
    filesystem/file/_papaya.h
@@ -627,7 +631,7 @@ list(APPEND library_source
    filesystem/file/_serializable_impl.h
    filesystem/file/_stream_process_impl.h
    filesystem/file/_text_stream_impl.h
-   filesystem/file/_var_stream_impl.h
+   filesystem/file/_payload_stream_impl.h
    filesystem/file/binary_stream.h
    filesystem/file/buffer.h
    filesystem/file/buffered_file.h
@@ -660,7 +664,7 @@ list(APPEND library_source
    filesystem/file/text_file.h
    filesystem/file/text_stream.h
    filesystem/file/transfer_file.h
-   filesystem/file/var_stream.h
+   filesystem/file/payload_stream.h
    #filesystem/filesystem.h
    #filesystem/filesystem/_.h
    filesystem/filesystem/_impl.h

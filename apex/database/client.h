@@ -97,9 +97,10 @@ namespace database
       inline bool binary_get(const key & key, __pointer(TYPE) & p)
       {
 
-         binary_get(key, *p);
+         return binary_get(key, *p);
 
       }
+
 
       virtual ::payload data_get(const key & key)
       {

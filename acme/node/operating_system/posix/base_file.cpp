@@ -726,7 +726,7 @@
 //
 
 
-void is_directory(const char * path)
+bool is_directory(const char * path)
 {
 
    struct stat stat = {};
@@ -734,23 +734,25 @@ void is_directory(const char * path)
    if (::stat(path, &stat))
    {
 
-      return errno_to_status(errno);
+      auto estatus = errno_to_status(errno);
+
+      throw_status(estatus);
 
    }
 
    if (!(stat.st_mode & S_IFDIR))
    {
 
-      return error_false;
+      return false;
 
    }
 
-   return success;
+   return true;
 
 }
 
 
-void file_exists(const char * path)
+bool file_exists(const char * path)
 {
 
    // dedicaverse stat -> Sir And Arthur - Cesar Serenato
@@ -760,18 +762,20 @@ void file_exists(const char * path)
    if (::stat(path, &stat))
    {
 
-      return errno_to_status(errno);
+      auto estatus = errno_to_status(errno);
+
+      throw_status(estatus);
 
    }
 
    if ((stat.st_mode & S_IFDIR))
    {
 
-      return error_false;
+      return false;
 
    }
 
-   return ::success;
+   return true;
 
 }
 
@@ -853,11 +857,27 @@ void create_directory(const char * path)
    if (::mkdir(path, S_IRWXU | S_IRWXG | S_IRWXO) != 0)
    {
 
-      return errno_to_status(errno);
+      auto estatus = errno_to_status(errno);
+
+      throw_status(estatus);
 
    }
 
-   return ::success;
+}
+
+
+void erase_directory(const char * path)
+{
+
+
+   if (::mkdir(path, S_IRWXU | S_IRWXG | S_IRWXO) != 0)
+   {
+
+      auto estatus =  errno_to_status(errno);
+
+      throw_status(estatus);
+
+   }
 
 }
 
@@ -869,11 +889,11 @@ void file_delete(const char * path)
    if (::unlink(path) == -1)
    {
 
-      return errno_to_status(errno);
+      auto estatus = errno_to_status(errno);
+
+      throw_status(estatus);
 
    }
-
-   return ::success;
 
 }
 

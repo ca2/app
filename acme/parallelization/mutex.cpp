@@ -676,13 +676,15 @@ bool mutex::already_exists()
 #if !defined(WINDOWS)
 
 
-void mutex::_wait(const class ::wait & wait)
+bool mutex::_wait(const class ::wait & wait)
 {
 
    if(wait.is_infinite())
    {
 
-      return _wait();
+      _wait();
+
+      return true;
 
    }
 
@@ -1063,7 +1065,7 @@ void mutex::_wait(const class ::wait & wait)
 }
 
 
-bool mutex::lock()
+void mutex::lock()
 {
 
 #if defined(MUTEX_NAMED_POSIX)
@@ -1108,7 +1110,7 @@ bool mutex::lock()
       if (rc < 0)
       {
 
-         return false;
+         throw_status(error_failed);
 
       }
 
@@ -1121,7 +1123,7 @@ bool mutex::lock()
 
          ASSERT(iError == 0);
 
-         return true;
+         return;
 
       }
 
@@ -1140,7 +1142,7 @@ bool mutex::lock()
 
                ASSERT(iError == 0);
 
-               return true;
+               return;
 
             }
 
@@ -1159,7 +1161,7 @@ bool mutex::lock()
 
                pthread_mutex_unlock(&m_mutex);
 
-               return true;
+               return;
 
             }
             else
@@ -1174,7 +1176,7 @@ bool mutex::lock()
 
                   ASSERT(iError == 0);
 
-                  return false;
+                  throw_status(error_failed);
 
                }
 
@@ -1189,7 +1191,7 @@ bool mutex::lock()
 
             ASSERT(false);
 
-            return false;
+            throw_status(error_failed);
 
          }
 
@@ -1200,7 +1202,7 @@ bool mutex::lock()
          if (rc < 0)
          {
 
-            return false;
+            throw_status(error_failed);
 
          }
 
@@ -1248,7 +1250,7 @@ bool mutex::lock()
       if(rc < 0)
       {
 
-         return false;
+         throw_status(error_failed);
 
       }
 
@@ -1264,7 +1266,7 @@ bool mutex::lock()
 
             ASSERT(iError == 0);
 
-            return false;
+            throw_status(error_failed);
 
          }
 
@@ -1283,12 +1285,12 @@ bool mutex::lock()
 
       if(iError != 0)
       {
-       
-         return false;
+
+         throw_status(error_failed);
          
       }
 
-      return true;
+      return;
 
    }
 
@@ -1309,24 +1311,15 @@ bool mutex::lock()
 
 #endif
 
-   return true;
-
 }
 
 
 bool mutex::lock(const class ::wait & wait)
 {
 
-   auto estatus = this->wait(wait);
+   auto bOk = this->wait(wait);
 
-   if (!estatus.signaled())
-   {
-
-      return false;
-
-   }
-
-   return true;
+   return bOk;
 
 }
 
@@ -1334,14 +1327,14 @@ bool mutex::lock(const class ::wait & wait)
 void mutex::_wait()
 {
 
-   if (!lock())
-   {
-
-      return error_failed;
-
-   }
-
-   return signaled_base;
+   lock();
+//   {
+//
+//      return error_failed;
+//
+//   }
+//
+//   return signaled_base;
 
 }
 
@@ -1387,7 +1380,7 @@ void mutex::unlock()
       if (rc < 0)
       {
 
-         return false;
+         throw_status(error_failed);
 
       }
 
@@ -1400,7 +1393,7 @@ void mutex::unlock()
 
          ASSERT(iError == 0);
 
-         return false;
+         throw_status(error_failed);
 
       }
 
@@ -1430,7 +1423,12 @@ void mutex::unlock()
 
       ASSERT(iError == 0);
 
-      return rc == 0;
+      if(rc != 0)
+      {
+
+         throw_status(error_failed);
+
+      }
 
    }
    else
@@ -1462,7 +1460,7 @@ void mutex::unlock()
       if(rc < 0)
       {
 
-         return false;
+         throw_status(error_failed);
 
       }
 
@@ -1475,7 +1473,7 @@ void mutex::unlock()
 
          ASSERT(iError == 0);
 
-         return false;
+         throw_status(error_failed);
 
       }
 
@@ -1507,12 +1505,12 @@ void mutex::unlock()
 
       if(iError != 0)
       {
-         
-         return false;
+
+         throw_status(error_failed);
          
       }
 
-      return true;
+      //return true;
 
    }
 

@@ -167,7 +167,7 @@ synchronization_result semaphore::wait(const duration & durationTimeout)
 
 #elif defined(LINUX) || defined(SOLARIS) || defined(FREEBSD)
 
-void semaphore::wait(const class ::wait & wait)
+bool semaphore::wait(const class ::wait & wait)
 {
 
    int iRet = 0;
@@ -414,7 +414,7 @@ void semaphore::unlock(::i32 lCount, ::i32 * pPrevCount)
    if(lCount + semctl_arg.val > m_lMaxCount)
    {
 
-      return false;
+      throw_status(error_failed);
 
    }
 
@@ -422,7 +422,7 @@ void semaphore::unlock(::i32 lCount, ::i32 * pPrevCount)
 
    semctl(static_cast < i32 > (m_hsync), 0, SETVAL, semctl_arg);
 
-   return true;
+   //return true;
 
 #endif
 

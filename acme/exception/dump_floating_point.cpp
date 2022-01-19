@@ -36,7 +36,9 @@ void dump_context::write(double d)
 
 #else
 
-   gcvt(d, DBL_DIG, szBuffer);
+   //gcvt(d, DBL_DIG, szBuffer);
+
+   snprintf(szBuffer, sizeof(szBuffer), "%.6f", d);
 
 #endif
 

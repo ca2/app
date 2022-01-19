@@ -844,37 +844,13 @@ namespace factory
 
          auto& pfactoryitem = get_factory_item < BASE_TYPE >();
 
-         if (!pfactoryitem)
-         {
-
-            return ::error_no_factory;
-
-         }
-
          auto pelement = pfactoryitem->create_element();
 
-         if (!pelement)
-         {
-
-            return ::error_no_memory;
-
-         }
-
-         auto estatus = pobjectComposer->__raw_compose(pcomposite, pelement);
-
-         if (!estatus)
-         {
-
-            return estatus;
-
-         }
+         pobjectComposer->__raw_compose(pcomposite, pelement);
 
       }
 
-      return ::success;
-
    }
-
 
 
 } // namespace factory

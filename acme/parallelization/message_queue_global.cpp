@@ -214,7 +214,7 @@ CLASS_DECL_ACME int_bool mq_peek_message(MESSAGE * pMsg, oswindow oswindow, ::u3
 }
 
 
-CLASS_DECL_ACME int_bool mq_get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
+CLASS_DECL_ACME void mq_get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
 {
 
    auto pmq = ::get_message_queue(::get_current_ithread(), true);
@@ -222,18 +222,11 @@ CLASS_DECL_ACME int_bool mq_get_message(MESSAGE * pMsg, oswindow oswindow, ::u32
    if (pmq == nullptr)
    {
 
-      return false;
+      throw_status(error_failed);
 
    }
 
-   if (!pmq->get_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax))
-   {
-
-      return false;
-
-   }
-
-   return true;
+   pmq->get_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax);
 
 }
 

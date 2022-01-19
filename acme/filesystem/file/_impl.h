@@ -1186,7 +1186,7 @@ inline void payload_stream::var_exchange(const ::id & id, TYPE & t)
 }
 
 
-#include "_var_stream_impl.h"
+#include "_payload_stream_impl.h"
 
 
 

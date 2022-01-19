@@ -2228,7 +2228,7 @@ ret:
 
       ::file::path pathMeta = pathCache + ".meta_information";
 
-      psystem->file().del(pathMeta);
+      psystem->file().erase(pathMeta);
 
       ((enumeration < ::file::enum_flag >&)path) = patha[0];
 

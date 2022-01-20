@@ -1632,7 +1632,9 @@ namespace aura
 
       //m_atomSystemTopic    = ::GlobalAddAtomW(L"system");
 
-      //auto estatus = 
+      //auto estatus =
+
+#ifdef WINDOWS
       
       __compose(m_pshellopen);
 
@@ -1646,6 +1648,8 @@ namespace aura
       //estatus = 
       
       m_pshellopen->initialize_shell_open();
+
+#endif
 
       //if (!estatus)
       //{

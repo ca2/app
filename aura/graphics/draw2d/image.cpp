@@ -5582,7 +5582,7 @@ void image::rotate(image * pimage, const ::angle& angle, double dScale)
             for (i32 j = 0; j < cy; j++)
             {
 
-               pimage->colorref()[i * s + j] = colorref()[j * srcS + (cx - i - 1)];
+               colorref()[i * s + j] = pimage->colorref()[j * srcS + (cx - i - 1)];
 
             }
 

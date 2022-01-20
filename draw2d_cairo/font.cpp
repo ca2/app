@@ -172,7 +172,9 @@ namespace draw2d_cairo
 
          WARNING("Invalid size for font: pango_font_description_set_size: assertion 'size >= 0' failed");
 
-         return false;
+         //return false;
+
+         throw_status(error_wrong_state);
 
       }
 

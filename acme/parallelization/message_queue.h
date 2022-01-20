@@ -31,7 +31,7 @@ public:
    void post_message(oswindow oswindow, const ::id & id, wparam wparam, lparam lparam);
    void post_message(const MESSAGE & message);
 
-   //void kick_idle() override;
+   void kick_idle() override;
    
 
 };

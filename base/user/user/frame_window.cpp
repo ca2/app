@@ -1666,7 +1666,7 @@ namespace user
 
       RepositionBars();
 
-      throw ::interface_only_exception();
+      //throw ::interface_only_exception();
 
    }
 

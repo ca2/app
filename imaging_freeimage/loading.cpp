@@ -419,7 +419,11 @@ namespace imaging_freeimage
 
          FreeImage_CloseMemory(pmem);
 
-         throw_status(error_failed);
+         pimage->m_estatus = error_failed;
+
+         pimage->set_nok();
+
+         return;
 
       }
 

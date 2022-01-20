@@ -95,16 +95,18 @@ void message_queue::post_message(const MESSAGE & message)
 }
 
 
-//void message_queue::kick_idle()
-//{
-//
-//   _synchronous_lock synchronouslock(mutex());
-//
-//   m_bKickIdle = true;
-//
-//   m_eventNewMessage.set_event();
-//
-//}
+void message_queue::kick_idle()
+{
+
+   //_synchronous_lock synchronouslock(mutex());
+
+   //m_bKickIdle = true;
+
+   //m_eventNewMessage.set_event();
+
+   post_message(nullptr, e_message_kick_idle, 0, 0);
+
+}
 
 
 void message_queue::get_message(MESSAGE * pmessage, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, const ::duration & duration)

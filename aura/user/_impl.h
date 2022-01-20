@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   inline bool interaction::has_prodevian() const noexcept { return m_pimpl2 ? m_pimpl2->has_prodevian() : false; }
+   inline bool interaction::has_prodevian() const noexcept { return m_pinteractionimpl ? m_pinteractionimpl->has_prodevian() : false; }
 
    
    template < class T >
@@ -279,7 +279,7 @@ namespace user
 
       auto pwindow = window();
 
-      return pwindow ? pwindow->m_pimpl : nullptr;
+      return pwindow ? pwindow->m_puserinteractionimpl : nullptr;
 
    }
 

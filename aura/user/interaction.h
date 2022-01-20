@@ -352,8 +352,8 @@ namespace user
       __pointer(::user::form)                      m_pform;
       __pointer(alpha_source)                      m_palphasource;
       __pointer(::aura::drawable)                  m_pdrawableBackground;
-      __pointer(primitive_impl)                    m_pimpl;
-      __pointer(interaction_impl)                  m_pimpl2;
+      __pointer(primitive_impl)                    m_pprimitiveimpl;
+      __pointer(interaction_impl)                  m_pinteractionimpl;
       __pointer(primitive_pointer_array)           m_puserinteractionpointeraOwned;
       __pointer(interaction_array)                 m_puserinteractionpointeraChild;
       __pointer(interaction)                       m_ptooltip;
@@ -480,13 +480,10 @@ namespace user
       inline bool is_visual_changed()const { return m_ewindowflag & e_window_flag_visual_changed; }
 
 
-      bool is_ok()
+      bool is_ok() const
       {
 
-         return ::is_set(this)
-            && m_pimpl.is_set()
-            && (m_ewindowflag & e_window_flag_is_window)
-            && !m_pimpl->is_destroying();
+         return ::is_set(this) && m_pprimitiveimpl.is_set();
 
       }
 

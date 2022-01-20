@@ -573,7 +573,7 @@ namespace windowing
 
       auto puserinteraction = pusermessage->userinteraction();
 
-      puserinteraction->m_pimpl->message_handler(pusermessage);
+      puserinteraction->m_pinteractionimpl->message_handler(pusermessage);
 
       return true;
 

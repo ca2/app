@@ -178,16 +178,16 @@ namespace user
 
       }
 
-      auto pimpl = pwindow->m_pimpl;
+      auto puserinteractionimpl = pwindow->m_puserinteractionimpl;
 
-      if (::is_null(pimpl))
+      if (::is_null(puserinteractionimpl))
       {
 
          return nullptr;
 
       }
 
-      return pimpl->m_puserinteraction;
+      return puserinteractionimpl->m_puserinteraction;
 
    }
 
@@ -213,16 +213,16 @@ namespace user
 
       }
 
-      auto pimpl = pwindow->m_pimpl;
+      auto puserinteractionimpl = pwindow->m_puserinteractionimpl;
 
-      if (::is_null(pimpl))
+      if (::is_null(puserinteractionimpl))
       {
 
          return nullptr;
 
       }
 
-      return pimpl->m_puserinteractionCapture;
+      return puserinteractionimpl->m_puserinteractionCapture;
 
    }
 
@@ -248,16 +248,16 @@ namespace user
 
       }
 
-      auto pimpl = pwindow->m_pimpl;
+      auto puserinteractionimpl = pwindow->m_puserinteractionimpl;
 
-      if (::is_null(pimpl))
+      if (::is_null(puserinteractionimpl))
       {
 
          return nullptr;
 
       }
 
-      return pimpl->m_puserinteractionFocus1;
+      return puserinteractionimpl->m_puserinteractionFocus1;
 
    }
 
@@ -283,16 +283,16 @@ namespace user
 
       }
 
-      auto pimpl = pwindow->m_pimpl;
+      auto puserinteractionimpl = pwindow->m_puserinteractionimpl;
 
-      if (::is_null(pimpl))
+      if (::is_null(puserinteractionimpl))
       {
 
          return nullptr;
 
       }
 
-      return pimpl->m_puserinteraction;
+      return puserinteractionimpl->m_puserinteraction;
 
    }
 
@@ -346,16 +346,16 @@ namespace user
 
       }
 
-      auto pimpl = pwindow->m_pimpl;
+      auto puserinteractionimpl = pwindow->m_puserinteractionimpl;
 
-      if (::is_null(pimpl))
+      if (::is_null(puserinteractionimpl))
       {
 
          return nullptr;
 
       }
 
-      return pimpl->m_puserinteraction;
+      return puserinteractionimpl->m_puserinteraction;
 
    }
 

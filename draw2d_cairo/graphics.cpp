@@ -370,10 +370,10 @@ graphics::~graphics()
    }
 
 
-   void graphics::_add_shape(const ::polygon_f64 & polygon_i32)
+   void graphics::_add_shape(const ::polygon_f64 & polygon)
    {
 
-       if (polygon_i32.is_empty())
+       if (polygon.is_empty())
        {
 
            //return ::success;
@@ -384,12 +384,12 @@ graphics::~graphics()
 
        cairo_new_sub_path(m_pdc);
 
-       cairo_move_to(m_pdc, polygon_i32[0].x + m_pointAddShapeTranslate.x, polygon_i32[0].y + m_pointAddShapeTranslate.y);
+       cairo_move_to(m_pdc, polygon[0].x + m_pointAddShapeTranslate.x, polygon[0].y + m_pointAddShapeTranslate.y);
 
-       for (i32 i = 1; i < polygon_i32.get_count(); i++)
+       for (i32 i = 1; i < polygon.get_count(); i++)
        {
 
-           cairo_line_to(m_pdc, polygon_i32[i].x + m_pointAddShapeTranslate.x, polygon_i32[i].y + m_pointAddShapeTranslate.y);
+           cairo_line_to(m_pdc, polygon[i].x + m_pointAddShapeTranslate.x, polygon[i].y + m_pointAddShapeTranslate.y);
 
        }
 
@@ -1892,7 +1892,7 @@ void graphics::get_text_metrics(::write_text::text_metric * lpMetrics)
     if(!pdesc)
     {
 
-        return false;
+       throw_status(error_failed);
 
     }
 
@@ -3625,7 +3625,7 @@ void graphics::draw_text(const ::string & strParam, const ::rectangle_f64 & rect
 
     __copy(rectangle, rectangleParam);
 
-    return internal_draw_text(strParam, rectangle, ealign, edrawtext);
+    internal_draw_text(strParam, rectangle, ealign, edrawtext);
 
 }
 
@@ -3648,14 +3648,14 @@ void graphics::internal_draw_text_pango(const block & block, const ::rectangle_f
     if(::is_null(pfont))
     {
 
-        return false;
+       throw_status(error_null_pointer);
 
     }
 
     if(pfont->m_dFontSize <= 0.0 || pfont->m_dFontWidth <= 0.0)
     {
 
-        return false;
+       throw_status(error_wrong_state);
 
     }
 
@@ -3664,7 +3664,7 @@ void graphics::internal_draw_text_pango(const block & block, const ::rectangle_f
     if(!pdesc)
     {
 
-        return false;
+       throw_status(error_null_pointer);
 
     }
 
@@ -3768,7 +3768,7 @@ void graphics::internal_draw_text_pango(const block & block, const ::rectangle_f
 
 //   g_object_unref(playout);                         // free the layout
 
-   return true;
+   //return true;
 
 }
 
@@ -4067,7 +4067,7 @@ void graphics::get_text_extent(size_f64 & size, const char * lpszString, strsize
       if(::is_null(pdesc))
       {
 
-         return false;
+         throw_status(error_failed);
 
       }
 

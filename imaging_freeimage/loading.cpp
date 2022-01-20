@@ -333,6 +333,8 @@ namespace imaging_freeimage
 
       bool bExif = memory.begins("Exif", 4);
 
+      bool bGif = memory.begins("GIF", 3);
+
       bool bBinary = *pszData == '\0';
 
       if(!bPng

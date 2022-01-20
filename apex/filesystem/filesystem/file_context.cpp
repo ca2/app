@@ -3121,7 +3121,22 @@ file_pointer file_context::get_file(const ::payload &payloadFile, const ::file::
 
          //INFORMATION("::file::file_context::get_file file with empty name!!");
 
-         throw io_exception(::error_file_not_found);
+         if(eopenFlags & ::file::e_open_no_exception_on_open)
+         {
+
+            __construct_new(pfile);
+
+            pfile->m_estatus = error_file_not_found;
+
+            return pfile;
+
+         }
+         else
+         {
+
+            throw io_exception(::error_file_not_found);
+
+         }
 
       }
       else if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str::find_file_extension("zip:", path) >= 0))

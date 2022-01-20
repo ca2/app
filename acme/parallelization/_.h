@@ -300,7 +300,7 @@ namespace windowing
 
 //CLASS_DECL_ACME u32 random_processor_index_generator();
 
-CLASS_DECL_ACME int_bool post_message(::windowing::window * pwindow, const ::id & id, wparam wparam, lparam lparam);
+CLASS_DECL_ACME void post_message(::windowing::window * pwindow, const ::id & id, wparam wparam, lparam lparam);
 
 
 

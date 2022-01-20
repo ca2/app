@@ -1554,7 +1554,7 @@ namespace user
             try
             {
 
-               pcontext->m_papexcontext->file().del(newName);
+               pcontext->m_papexcontext->file().erase(newName);
 
             }
             catch(const ::exception &)

@@ -1240,11 +1240,11 @@ CLASS_DECL_ACME void GetSystemTime(system_time_t * systime)
       if(!SystemTimeToFileTime(psystemtime, pfiletime))
       {
 
-         return error_failed;
+         throw_status(error_failed);
 
       }
 
-      return ::success;
+      ///return ::success;
 
    }
 
@@ -1255,11 +1255,11 @@ CLASS_DECL_ACME void GetSystemTime(system_time_t * systime)
       if(!FileTimeToSystemTime(pfiletime, psystemtime))
       {
 
-         return error_failed;
+         throw_status(error_failed);
 
       }
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -1270,11 +1270,11 @@ CLASS_DECL_ACME void GetSystemTime(system_time_t * systime)
       if(!FileTimeToLocalFileTime(pfiletime, pfiletimeLocal))
       {
 
-         return error_failed;
+         throw_status(error_failed);
 
       }
 
-      return ::success;
+      //return ::success;
 
    }
 

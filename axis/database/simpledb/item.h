@@ -10,8 +10,9 @@ namespace simpledb
    public:
 
 
-      ::duration               m_tick;
+      ::duration           m_tick;
       memory               m_memory;
+      bool                 m_bData;
 
       item();
       item(const item & item);

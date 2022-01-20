@@ -33,7 +33,7 @@ namespace linux
       m_strDesktopEnvironment = (*pini)["VARIANT_ID"];
       m_strVersion = (*pini)["VERSION_ID"];
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -75,7 +75,7 @@ namespace linux
 
       }
 
-      return ::success;
+      //return ::success;
 
    }
 

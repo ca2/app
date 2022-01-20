@@ -4107,15 +4107,15 @@ retry_license:
 
         pwindow = pwindowing->window(pmsg->oswindow);
 
-        auto pinteractionimpl = pwindow->m_pimpl;
+        auto puserinteractionimpl = pwindow->m_puserinteractionimpl;
 
-        if (pinteractionimpl != nullptr)
+        if (puserinteractionimpl != nullptr)
         {
 
            try
            {
 
-              pinteraction = pinteractionimpl->m_puserinteraction;
+              pinteraction = puserinteractionimpl->m_puserinteraction;
 
            }
            catch (...)
@@ -4130,7 +4130,7 @@ retry_license:
         if (pinteraction == nullptr)
         {
 
-           pinteraction = pinteractionimpl;
+           pinteraction = puserinteractionimpl;
 
         }
 

@@ -551,14 +551,14 @@ namespace user
 
       auto pwindowMain = m_psystem->m_paurasystem->m_pwindowMain;
 
-      if (pwindowMain && !pwindowMain->m_pimpl)
+      if (pwindowMain && !pwindowMain->m_puserinteractionimpl)
       {
 
          m_pwindow = m_psystem->m_paurasystem->m_pwindowMain;
 
-         m_pwindow->m_pimpl = this;
+         m_pwindow->m_puserinteractionimpl = this;
 
-         m_puserinteraction->m_pimpl = this;
+         m_puserinteraction->m_pinteractionimpl = this;
 
       }
       else
@@ -605,9 +605,9 @@ namespace user
 
       m_puserinteraction = puserinteraction;
 
-      m_puserinteraction->m_pimpl = this;
+      m_puserinteraction->m_pprimitiveimpl = this;
 
-      m_puserinteraction->m_pimpl2 = this;
+      m_puserinteraction->m_pinteractionimpl = this;
 
       #if !defined(_UWP)
 
@@ -1273,13 +1273,6 @@ namespace user
 
       }
 
-      if (pinterface->m_pimpl->m_bDestroyImplOnly)
-      {
-
-         return;
-
-      }
-
       bool bWasEmpty = false;
       
       {
@@ -1609,11 +1602,11 @@ namespace user
 
          }
 
-         m_puserinteraction->m_pimpl.release();
+         m_puserinteraction->m_pprimitiveimpl.release();
 
-         m_puserinteraction->m_pimpl2.release();
+         m_puserinteraction->m_pinteractionimpl.release();
 
-         m_puserinteraction = nullptr;
+         m_puserinteraction.release();
 
          auto pwindow = get_window();
 
@@ -1701,10 +1694,15 @@ namespace user
          output_debug_string("main_frame user::interaction_impl::destroy_window");
 
       }
+
+      if(!m_puserinteraction->is_destroying())
+      {
+
+         m_puserinteraction->set(e_flag_destroying);
+
+      }
       
-      m_puserinteraction->set(e_flag_destroying);
-      
-      m_puserinteraction->m_ewindowflag -= e_window_flag_window_created;
+      //m_puserinteraction->m_ewindowflag -= e_window_flag_window_created;
 
       //::destroy_window(get_handle());
 

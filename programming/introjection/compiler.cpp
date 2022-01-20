@@ -799,7 +799,7 @@ pacmedir->create("/var/tmp/ca2/intermediate");
       {
          if(pcontext->m_papexcontext->file().exists(strO))
          {
-            pcontext->m_papexcontext->file().del(strO);
+            pcontext->m_papexcontext->file().erase(strO);
          }
       }
       catch(...)
@@ -809,7 +809,7 @@ pacmedir->create("/var/tmp/ca2/intermediate");
       {
          if(pcontext->m_papexcontext->file().exists(strObj))
          {
-            pcontext->m_papexcontext->file().del(strObj);
+            pcontext->m_papexcontext->file().erase(strObj);
          }
       }
       catch(...)
@@ -901,7 +901,7 @@ pacmedir->create("/var/tmp/ca2/intermediate");
       {
          if(pcontext->m_papexcontext->file().exists(strClog))
          {
-            pcontext->m_papexcontext->file().del(strClog);
+            pcontext->m_papexcontext->file().erase(strClog);
          }
       }
       catch(...)
@@ -911,7 +911,7 @@ pacmedir->create("/var/tmp/ca2/intermediate");
       {
          if(pcontext->m_papexcontext->file().exists(strLlog))
          {
-            pcontext->m_papexcontext->file().del(strLlog);
+            pcontext->m_papexcontext->file().erase(strLlog);
          }
       }
       catch(...)

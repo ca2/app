@@ -48,7 +48,7 @@ namespace opengl
       if (::is_null(popengl))
       {
 
-         return ::error_failed;
+         throw_status(error_failed);
 
       }
 
@@ -98,7 +98,7 @@ namespace opengl
 
          fprintf(stderr, "P-Buffers not supported.");
 
-         return ::error_failed;
+         throw_status(error_failed);
 
       }
 
@@ -108,8 +108,11 @@ namespace opengl
       if ( !glXQueryVersion(pdisplay, &glx_major, &glx_minor ) ||
          ( ( glx_major == 1 ) && ( glx_minor < 3 ) ) || ( glx_major < 1 ) )
       {
+
          printf("Invalid GLX version");
-         return ::error_failed;
+
+         throw_status(error_failed);
+
       }
 
 
@@ -130,7 +133,7 @@ namespace opengl
 
          fprintf(stderr, "Failed to create P-Buffer.");
 
-         return ::error_failed;
+         throw_status(error_failed);
 
       }
 
@@ -142,30 +145,34 @@ namespace opengl
 
          fprintf(stderr, "Failed to create graphics context.");
 
-         return error_failed;
+         throw_status(error_failed);
 
       }
 
-      ::e_status estatus = make_current();
+      //::e_status estatus =
+      //
+      make_current();
 
-      if(!estatus)
-      {
+//      if(!estatus)
+//      {
+//
+//         throw_status(estatus);
+//
+//      }
 
-         return estatus;
 
-      }
+      //estatus =
+      //
+      popengl->defer_init_glew();
 
-
-      estatus = popengl->defer_init_glew();
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      return estatus;
+//      if (!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
+//
+//      return estatus;
 
    }
 
@@ -199,7 +206,12 @@ namespace opengl
 
       }
 
-      return estatus;
+      if(!estatus)
+      {
+
+         throw_status(estatus);
+
+      }
 
    }
 
@@ -214,14 +226,16 @@ namespace opengl
 
       }
 
-      auto estatus = ::gpu::context::resize_offscreen_buffer(size);
+      //auto estatus =
+      //
+      ::gpu::context::resize_offscreen_buffer(size);
 
-      if(!estatus)
-      {
-
-         return estatus;
-
-      }
+//      if(!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
 
       int bufferAttribList[]=
       {
@@ -259,7 +273,7 @@ namespace opengl
 
       make_current();
 
-      return ::success_none;
+      //return ::success_none;
 
    }
 
@@ -267,9 +281,9 @@ namespace opengl
    void context_glx::destroy_offscreen_buffer()
    {
 
-      ::e_status estatus = error_failed;
-
-      return estatus;
+//      ::e_status estatus = error_failed;
+//
+//      return estatus;
 
    }
 

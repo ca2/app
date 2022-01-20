@@ -891,10 +891,10 @@ bool mutex::_wait(const class ::wait & wait)
 
       int rc = pthread_mutex_lock(&m_mutex);
 
-      if(rc < 0)
+      if(rc != 0)
       {
 
-         return error_failed;
+         throw_status(error_failed);
 
       }
 
@@ -982,9 +982,14 @@ bool mutex::_wait(const class ::wait & wait)
 
             int iError = pthread_mutex_unlock(&m_mutex);
 
-            ASSERT(iError == 0);
+            if(iError != 0)
+            {
 
-            return error_wait_timeout;
+               throw_status(error_failed);
+
+            }
+
+            return false;
 
          }
          else if(rc != 0)
@@ -994,7 +999,7 @@ bool mutex::_wait(const class ::wait & wait)
 
             ASSERT(iError == 0);
 
-            return error_failed;
+            throw_status(error_failed);
 
          }
 
@@ -1011,9 +1016,14 @@ bool mutex::_wait(const class ::wait & wait)
 
       int iError = pthread_mutex_unlock(&m_mutex);
 
-      ASSERT(iError == 0);
+      if(iError != 0)
+      {
 
-      return signaled_base;
+         throw_status(error_failed);
+
+      }
+
+      return true;
 
    }
 
@@ -1247,7 +1257,7 @@ void mutex::lock()
 
       int rc = pthread_mutex_lock(&m_mutex);
 
-      if(rc < 0)
+      if(rc != 0)
       {
 
          throw_status(error_failed);
@@ -1259,7 +1269,7 @@ void mutex::lock()
 
          rc = pthread_cond_wait(&m_cond, &m_mutex);
 
-         if(rc < 0)
+         if(rc != 0)
          {
 
             int iError = pthread_mutex_unlock(&m_mutex);
@@ -1477,8 +1487,6 @@ void mutex::unlock()
 
       }
 
-      rc = 0;
-
       if(m_count > 1)
       {
 
@@ -1490,14 +1498,18 @@ void mutex::unlock()
 
          rc = pthread_cond_signal(&m_cond);
 
-         if(rc == 0)
+         if(rc != 0)
          {
 
-            m_thread = 0;
+            int iError = pthread_mutex_unlock(&m_mutex);
 
-            m_count = 0;
+            throw_status(error_failed);
 
          }
+
+         m_thread = 0;
+
+         m_count = 0;
 
       }
 

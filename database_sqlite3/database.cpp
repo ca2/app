@@ -494,7 +494,7 @@ namespace sqlite
 
          auto pcontext = get_context();
 
-         pcontext->m_papexcontext->file().del(m_strName);
+         pcontext->m_papexcontext->file().erase(m_strName);
 
       }
       catch (...)

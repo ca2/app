@@ -16,13 +16,37 @@ namespace audio
 
 } // namespace audio
 
+//void sigfpe_handler(int iSignalNumber)
+//{
+//
+//   throw standard_sigfpe();
+//
+//}
 
 
+void * standard_exception::siginfodup(void * psiginfo)
+{
 
+   auto p = malloc(sizeof(siginfo_t));
+
+   memcpy(p, psiginfo, sizeof(siginfo_t));
+
+   return p;
+
+}
+void standard_exception::siginfofree(void * psiginfo)
+{
+
+   ::free(psiginfo);
+
+}
 CLASS_DECL_ACME void __node_acme_pre_init()
 {
 
-   //return true;
+
+   //::signal(SIGFPE, &sigfpe_handler);
+
+         //return true;
 
 }
 

@@ -213,16 +213,14 @@ void simple_frame_window::SaveWindowRectTaskProcedure()
 
       }
 
-      bool bImpl = !!m_pimpl;
-
-      if (!bImpl)
+      if (!m_pprimitiveimpl)
       {
 
          break;
 
       }
 
-      bool bDestroying = m_pimpl->is_destroying();
+      bool bDestroying = m_pprimitiveimpl->is_destroying();
 
       if (bDestroying)
       {
@@ -902,7 +900,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
    if (!m_bShowTask)
    {
 
-      m_pimpl->show_task(m_bShowTask);
+      m_pprimitiveimpl->show_task(m_bShowTask);
 
    }
 
@@ -2356,7 +2354,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 
       synchronous_lock synchronouslock(mutex());
 
-      if (m_pimpl->m_puserinteraction == nullptr)
+      if (m_pprimitiveimpl->m_puserinteraction == nullptr)
       {
 
          return;
@@ -4004,7 +4002,7 @@ void simple_frame_window::OnUpdateToolWindow(bool bVisible)
 
    }
 
-   if (m_pimpl == nullptr)
+   if (m_pprimitiveimpl == nullptr)
    {
 
       return;
@@ -4014,11 +4012,11 @@ void simple_frame_window::OnUpdateToolWindow(bool bVisible)
 #ifdef LINUX
 
 
-   m_pimpl->show_task(bVisible && m_bShowTask);
+   m_pprimitiveimpl->show_task(bVisible && m_bShowTask);
 
 #else
 
-   m_pimpl->show_task(bVisible && m_bShowTask
+   m_pprimitiveimpl->show_task(bVisible && m_bShowTask
                       && !layout().is_iconic());
 
 #endif
@@ -4029,14 +4027,14 @@ void simple_frame_window::OnUpdateToolWindow(bool bVisible)
 void simple_frame_window::show_task(bool bShow)
 {
 
-   if (m_pimpl == nullptr)
+   if (m_pprimitiveimpl == nullptr)
    {
 
       return;
 
    }
 
-   m_pimpl->show_task(bShow);
+   m_pprimitiveimpl->show_task(bShow);
 
 }
 

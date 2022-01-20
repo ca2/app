@@ -2058,7 +2058,7 @@ namespace user
 
       }
 
-      ptree->install_message_routing(m_pimpl);
+      ptree->install_message_routing(m_pinteractionimpl);
 
       return true;
 

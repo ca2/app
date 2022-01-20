@@ -21,7 +21,7 @@ namespace windowing
       void *                                    m_pWindow2;
 
       __pointer(::windowing::display)           m_pdisplay;
-      __pointer(::user::interaction_impl)       m_pimpl;
+      __pointer(::user::interaction_impl)       m_puserinteractionimpl;
       string                                    m_strDebug;
       __pointer(::message_queue)                m_pmessagequeue;
       ::duration                                m_durationLastMouseMove;

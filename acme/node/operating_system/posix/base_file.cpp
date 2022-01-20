@@ -736,6 +736,13 @@ bool is_directory(const char * path)
 
       auto estatus = errno_to_status(errno);
 
+      if(estatus == error_file_not_found)
+      {
+
+         return false;
+
+      }
+
       throw_status(estatus);
 
    }
@@ -763,6 +770,13 @@ bool file_exists(const char * path)
    {
 
       auto estatus = errno_to_status(errno);
+
+      if(estatus == error_file_not_found)
+      {
+
+         return false;
+
+      }
 
       throw_status(estatus);
 

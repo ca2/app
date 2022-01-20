@@ -373,7 +373,6 @@ void* task::s_os_task(void* p)
 
          ptask->main();
 
-
       }
       catch (::exit_exception & exitexception)
       {
@@ -389,6 +388,13 @@ void* task::s_os_task(void* p)
          _ERROR(ptask, "Exception reached task procedure : " << exception);
 
       }
+      catch(...)
+      {
+
+         _ERROR(ptask, "Exception reached task procedure (...)");
+
+      }
+
 
       clear_message_queue(ptask->m_itask);
 

@@ -556,7 +556,7 @@ namespace user
             if (pwindow)
             {
 
-               auto pimpl = pwindow->m_pimpl;
+               auto pimpl = pwindow->m_puserinteractionimpl;
 
                if (pimpl)
                {
@@ -716,10 +716,10 @@ namespace user
                //__throw(todo("interaction"));
                //__throw(todo("thread"));
 
-               if (puserinteraction->m_pimpl2)
+               if (puserinteraction->m_pinteractionimpl)
                {
 
-                  puserinteraction->m_pimpl2->_001OnApplyVisual(pusermessage);
+                  puserinteraction->m_pinteractionimpl->_001OnApplyVisual(pusermessage);
 
                   return true;
 
@@ -737,7 +737,7 @@ namespace user
             else if (iMessage == e_message_simple_command)
             {
 
-               puserinteraction->m_pimpl2->_001OnApplyVisual(pusermessage);
+               puserinteraction->m_pinteractionimpl->_001OnApplyVisual(pusermessage);
 
                return true;
 

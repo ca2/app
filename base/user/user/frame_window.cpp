@@ -481,7 +481,7 @@ namespace user
             if (pkey->m_ekey == ::user::e_key_p)
             {
 
-               __pointer(::user::interaction_impl) pimpl = m_pimpl;
+               __pointer(::user::interaction_impl) pimpl = m_pprimitiveimpl;
 
                if (pimpl.is_set())
                {

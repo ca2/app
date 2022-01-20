@@ -9,7 +9,7 @@ inline ::user::interaction_impl * __interaction_impl(::windowing::window * pwind
 
    if (::is_null(pwindow)) return nullptr;
 
-   auto pimpl = pwindow->m_pimpl.m_p;
+   auto pimpl = pwindow->m_puserinteractionimpl.m_p;
 
    if (::is_null(pimpl)) return nullptr;
 

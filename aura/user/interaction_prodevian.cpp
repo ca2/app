@@ -246,35 +246,7 @@ namespace user
 
             pump_runnable();
 
-            if (!m_puserinteraction)
-            {
-
-               break;
-
-            }
-
-            if (!m_pimpl)
-            {
-
-               break;
-
-            }
-
             if (!prodevian_iteration())
-            {
-
-               break;
-
-            }
-
-            if (!m_puserinteraction)
-            {
-
-               break;
-
-            }
-
-            if (!m_pimpl)
             {
 
                break;
@@ -297,17 +269,10 @@ namespace user
       if (m_puserinteraction)
       {
 
-         if (!(m_puserinteraction->m_ewindowflag & e_window_flag_is_window))
+         if (m_puserinteraction->is_destroying())
          {
 
-            if (!m_pimpl->is_destroying())
-            {
-
-               m_pimpl->set_destroying();
-
-               m_puserinteraction->post_message(e_message_destroy_window);
-
-            }
+           m_puserinteraction->post_message(e_message_destroy_window);
 
          }
 
@@ -430,40 +395,28 @@ namespace user
 
          }
 
-         if (m_puserinteraction->m_ewindowflag & e_window_flag_embedded_prodevian)
-         {
+         ASSERT(!(m_puserinteraction->m_ewindowflag & e_window_flag_embedded_prodevian));
+         ASSERT(m_puserinteraction->m_pinteractionimpl.is_set());
 
-            bHasProdevian = false;
+         bHasProdevian = m_puserinteraction->has_prodevian();
 
-         }
-         else if (m_puserinteraction->m_pimpl2.is_null())
-         {
+         //synchronous_lock synchronouslock(m_pimpl->mutex());
 
-            bHasProdevian = false;
+         // if (bHasProdevian)
+         // {
 
-         }
-         else
-         {
+         //    output_debug_string("has_prodevian");
 
-            bHasProdevian = m_puserinteraction->has_prodevian();
-
-            //synchronous_lock synchronouslock(m_pimpl->mutex());
-
-            // if (bHasProdevian)
-            // {
-
-            //    output_debug_string("has_prodevian");
-
-            // }
-
-         }
+         // }
+//
+//         }
 
       }
 
       if (!(m_puserinteraction->m_ewindowflag & e_window_flag_embedded_prodevian))
       {
 
-         if (m_puserinteraction->m_pimpl2.is_null() || !bHasProdevian)
+         if (m_puserinteraction->m_pinteractionimpl.is_null() || !bHasProdevian)
          {
 
             m_puserinteraction->m_ewindowflag -= e_window_flag_redraw_in_queue;
@@ -1435,7 +1388,7 @@ namespace user
 
       //auto estatus = 
       
-      m_pimpl2->m_pprodevian->post_routine(routine);
+      m_pinteractionimpl->m_pprodevian->post_routine(routine);
 
       //if (!estatus)
       //{

@@ -9,6 +9,8 @@ namespace simpledb
    item::item()
    {
 
+      m_bData = false;
+
    }
 
 
@@ -38,6 +40,8 @@ namespace simpledb
 
          m_memory = item.m_memory;
 
+         m_bData = item.m_bData;
+
       }
 
       return *this;
@@ -54,6 +58,8 @@ namespace simpledb
          m_tick = item.m_tick;
 
          m_memory = ::move(item.m_memory);
+
+         m_bData = item.m_bData;
 
       }
 

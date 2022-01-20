@@ -107,7 +107,7 @@ namespace user
          if (puserinteractionHost)
          {
 
-            auto pimpl = puserinteractionHost->m_pimpl.cast<::user::interaction_impl>();
+            auto pimpl = puserinteractionHost->m_pinteractionimpl;
 
             if (pimpl)
             {
@@ -334,7 +334,7 @@ namespace user
          if(puserinteractionHost)
          {
 
-            auto pimpl = puserinteractionHost->m_pimpl.cast<::user::interaction_impl>();
+            auto pimpl = puserinteractionHost->m_pinteractionimpl;
 
             if (pimpl)
             {

@@ -1157,9 +1157,9 @@ namespace user
    {
 
       if (m_scrolldataHorizontal.m_bScrollEnable && m_scrolldataHorizontal.m_bScroll
-            && m_pscrollbarHorizontal.is_set() && m_pscrollbarHorizontal->m_pimpl.is_set()
+            && m_pscrollbarHorizontal.is_set() && m_pscrollbarHorizontal->is_ok()
             && m_scrolldataVertical.m_bScrollEnable && m_scrolldataVertical.m_bScroll
-            && m_pscrollbarVertical.is_set() && m_pscrollbarVertical->m_pimpl.is_set())
+            && m_pscrollbarVertical.is_set() && m_pscrollbarVertical->is_ok())
       {
 
          ::rectangle_i32 rectangleClient;

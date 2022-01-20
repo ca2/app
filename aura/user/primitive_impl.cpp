@@ -1239,14 +1239,14 @@ namespace user
          if (::is_set(puserinteraction))
          {
 
-            auto pimpl2 = puserinteraction->m_pimpl2;
+            auto pinteractionimpl = puserinteraction->m_pinteractionimpl;
 
-            if (pimpl2)
+            if (pinteractionimpl)
             {
 
-               synchronous_lock synchronouslock(pimpl2->mutex());
+               synchronous_lock synchronouslock(pinteractionimpl->mutex());
 
-               pimpl2->m_userinteractionaMouseHover.erase(m_puserinteraction);
+               pinteractionimpl->m_userinteractionaMouseHover.erase(m_puserinteraction);
 
             }
 

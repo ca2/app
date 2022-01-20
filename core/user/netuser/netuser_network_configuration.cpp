@@ -129,7 +129,7 @@ namespace usernet
             if(strServer.get_length() == 0)
             {
 
-               pcontext->m_papexcontext->file().del(pcontext->m_papexcontext->dir().appdata()/ "proxy.xml");
+               pcontext->m_papexcontext->file().erase(pcontext->m_papexcontext->dir().appdata()/ "proxy.xml");
 
             }
             else

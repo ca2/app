@@ -137,11 +137,11 @@ namespace geo
          try
          {
 
-            file.del(pathFolder / "weather-cit.bin");
-            file.del(pathFolder / "weather-cil.bin");
-            file.del(pathFolder / "weather-ids.bin");
-            file.del(pathFolder / "weather-lon.bin");
-            file.del(pathFolder / "weather-lat.bin");
+            file.erase(pathFolder / "weather-cit.bin");
+            file.erase(pathFolder / "weather-cil.bin");
+            file.erase(pathFolder / "weather-ids.bin");
+            file.erase(pathFolder / "weather-lon.bin");
+            file.erase(pathFolder / "weather-lat.bin");
 
             m_straCityLo.erase_all();
             m_straCity.erase_all();

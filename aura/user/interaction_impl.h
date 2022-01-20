@@ -849,11 +849,11 @@ inline ::user::interaction * __interaction(::windowing::window * pwindow)
 
    if (::is_null(pwindow)) return nullptr;
 
-   auto pimpl = pwindow->m_pimpl;
+   auto puserinteractionimpl = pwindow->m_puserinteractionimpl;
 
-   if (!pimpl) return nullptr;
+   if (!puserinteractionimpl) return nullptr;
 
-   return pimpl->m_puserinteraction;
+   return puserinteractionimpl->m_puserinteraction;
 
 }
 

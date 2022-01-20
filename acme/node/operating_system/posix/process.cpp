@@ -32,7 +32,7 @@ void command_system(string& strOutput, string& strError, int& iExitCode, const c
 
       estatus = errno_to_status(iErrNo);
 
-      return estatus;
+      throw_status(estatus);
 
    }
 
@@ -47,7 +47,7 @@ void command_system(string& strOutput, string& strError, int& iExitCode, const c
 
       estatus = errno_to_status(iErrNo);
 
-      return estatus;
+      throw_status(estatus);
 
    }
 
@@ -209,11 +209,11 @@ void command_system(string& strOutput, string& strError, int& iExitCode, const c
 
       auto estatus = failed_errno_to_status(iExitCode);
 
-      return estatus;
+      throw_status(estatus);
 
    }
 
-   return ::success;
+   //return ::success;
 
 }
 

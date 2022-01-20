@@ -123,7 +123,7 @@ namespace userex
 
             puiNext = pinteraction->get_parent();
 
-            if (puiNext == nullptr || (pinteraction->m_pimpl) != nullptr)
+            if (puiNext == nullptr || (pinteraction->m_pprimitiveimpl) != nullptr)
             {
 
                break;

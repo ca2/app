@@ -70,9 +70,9 @@ namespace user
 
          //__refer(m_pthreadUserImpl,  m_puserinteraction->m_pthreadUserInteraction  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
 
-         m_puserinteraction->m_pimpl = this;
+         m_puserinteraction->m_pprimitiveimpl = this;
 
-         m_puserinteraction->m_pimpl2.release();
+         m_puserinteraction->m_pinteractionimpl.release();
 
          //m_puserinteraction->m_id = id;
 

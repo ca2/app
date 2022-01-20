@@ -3107,21 +3107,23 @@ namespace draw2d
          return;
       case e_shape_intersect_clip:
          _intersect_clip();
+         break;
       case e_shape_rectangle:
          _add_shape(pshape->shape < ::rectangle >());
+         break;
       case e_shape_ellipse:
          _add_shape(pshape->shape < ::ellipse >());
+         break;
 //      case e_shape_lines:
 //         return _add_shape(pshape->shape < ::lines >());
       case e_shape_polygon:
          _add_shape(pshape->shape < ::polygon >());
-      default:
          break;
-            
+      default:
+         throw_status(error_not_implemented);
+         break;
       }
 
-      throw_status(error_not_implemented);
-      
    }
 
 

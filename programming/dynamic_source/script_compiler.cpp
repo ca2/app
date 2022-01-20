@@ -459,7 +459,7 @@ pacmedir->create(pathDVP_Folder);
       {
          if(m_pcontext->m_papexcontext->file().exists(strO))
          {
-            m_pcontext->m_papexcontext->file().del(strO);
+            m_pcontext->m_papexcontext->file().erase(strO);
          }
       }
       catch(...)
@@ -469,7 +469,7 @@ pacmedir->create(pathDVP_Folder);
       {
          if(m_pcontext->m_papexcontext->file().exists(strObj))
          {
-            m_pcontext->m_papexcontext->file().del(strObj);
+            m_pcontext->m_papexcontext->file().erase(strObj);
          }
       }
       catch(...)
@@ -564,7 +564,7 @@ pacmedir->create(pathDVP_Folder);
          if(m_pcontext->m_papexcontext->file().exists(strClog))
          {
 
-            m_pcontext->m_papexcontext->file().del(strClog);
+            m_pcontext->m_papexcontext->file().erase(strClog);
 
          }
 
@@ -580,7 +580,7 @@ pacmedir->create(pathDVP_Folder);
          if(m_pcontext->m_papexcontext->file().exists(strLlog))
          {
 
-            m_pcontext->m_papexcontext->file().del(strLlog);
+            m_pcontext->m_papexcontext->file().erase(strLlog);
 
          }
 
@@ -598,7 +598,7 @@ pacmedir->create(pathDVP_Folder);
          if(m_pcontext->m_papexcontext->file().exists(pscript->m_strScriptPath + ".old"))
          {
 
-            m_pcontext->m_papexcontext->file().del(pscript->m_strScriptPath + ".old");
+            m_pcontext->m_papexcontext->file().erase(pscript->m_strScriptPath + ".old");
 
          }
 
@@ -638,7 +638,7 @@ pacmedir->create(pathDVP_Folder);
          if(m_pcontext->m_papexcontext->file().exists(pscript->m_strScriptPath + ".old"))
          {
 
-            m_pcontext->m_papexcontext->file().del(pscript->m_strScriptPath + ".old");
+            m_pcontext->m_papexcontext->file().erase(pscript->m_strScriptPath + ".old");
 
          }
 

@@ -745,7 +745,7 @@ bool event::_wait (const class ::wait & wait)
 
                pthread_mutex_unlock((pthread_mutex_t *) m_mutex);
 
-               return error_wait_timeout;
+               return false;
 
             }
 
@@ -756,13 +756,13 @@ bool event::_wait (const class ::wait & wait)
          if(m_bSignaled)
          {
 
-            estatus = signaled_base;
+            return true;
 
          }
          else
          {
 
-            estatus = error_failed;
+            throw_status(error_failed);
 
          }
 
@@ -803,7 +803,7 @@ bool event::_wait (const class ::wait & wait)
             else
             {
 
-               return error_failed;
+               throw_status(error_failed);
 
             }
 
@@ -811,7 +811,7 @@ bool event::_wait (const class ::wait & wait)
          else
          {
 
-            return signaled_base;
+            return true;
 
          }
 

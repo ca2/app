@@ -230,7 +230,14 @@ void task_set_name(const ::string & psz)
 
    thread_name_abbreviate(strName, 15);
 
-   return !pthread_setname_np(pthread_self(), strName);
+   int iError = pthread_setname_np(pthread_self(), strName);
+
+   if(iError != 0)
+   {
+
+      throw_status(error_failed);
+
+   }
 
 }
 

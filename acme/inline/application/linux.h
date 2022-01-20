@@ -36,11 +36,13 @@ int main(int argc, char * argv[], char * envp[])
 
    main.m_pchar_binary__matter_zip_end = _binary__matter_zip_end;
 
-   auto estatus = __main(main);
+   //auto estatus =
+   //
+   __main(main);
 
-   int iStatus = estatus.error_status();
+   int iExitCode = main.m_iExitCode;
 
-   return iStatus;
+   return iExitCode;
 
 }
 

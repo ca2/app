@@ -261,7 +261,7 @@ namespace opengl
       if (pbuffer == None)
       {
 
-         return ::error_failed;
+         throw_status(::error_failed);
 
       }
 

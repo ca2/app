@@ -970,7 +970,7 @@ namespace user
 
       auto preader = pcontext->m_papexcontext->file().get_reader(payloadFile, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
 
-      if (!preader)
+      if (!::is_ok(preader))
       {
 
          report_load_exception(payloadFile, preader, "__IDP_FAILED_TO_OPEN_DOC");

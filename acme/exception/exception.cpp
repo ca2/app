@@ -128,8 +128,8 @@ bool ::exception::s_bDoStackTrace = true;
       m_bHandled = false;
 
       m_bContinue = true;
-      
-      m_strMessage.format("%s (%d:%s)", pszMessage, estatus.m_estatus, __string(estatus).c_str());
+
+      m_strMessage.format("%s (%0x16" PRIestatus ":%s)", pszMessage, estatus.m_estatus, __string(estatus).c_str());
          
    }
 

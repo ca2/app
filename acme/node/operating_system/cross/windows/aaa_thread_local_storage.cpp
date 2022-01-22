@@ -77,7 +77,7 @@
 ////
 ////   }
 //
-//   auto pthreadlocaldata = ___get_thread_local_data(get_current_ithread());
+//   auto pthreadlocaldata = ___get_thread_local_data(get_current_itask());
 //
 ////   t_pthreadlocaldata = pthreadlocaldata;
 //
@@ -167,7 +167,7 @@
 //LPVOID thread_data_get(thread_data_index dwIndex)
 //{
 //
-//   return __thread_get_data(get_current_ithread(), dwIndex);
+//   return __thread_get_data(get_current_itask(), dwIndex);
 //
 //}
 //
@@ -216,7 +216,7 @@
 //int_bool thread_set_data(thread_data_index dwIndex, void* pvalue)
 //{
 //
-//   return __thread_set_data(get_current_ithread(), dwIndex, pvalue);
+//   return __thread_set_data(get_current_itask(), dwIndex, pvalue);
 //
 //}
 //
@@ -270,7 +270,7 @@
 //
 //      synchronous_lock ml(g_pmutexThreadLocalData);
 //
-//      g_pmapThreadLocalData->erase_key(get_current_ithread());
+//      g_pmapThreadLocalData->erase_key(get_current_itask());
 //
 //   }
 //

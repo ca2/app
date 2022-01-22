@@ -338,6 +338,12 @@ string __string(const ::enum_status & estatus)
       str += "error_bad_path";
 
    }
+   else if (estatus == error_library_not_found)
+   {
+
+      str += "error_library_not_found";
+
+   }
    else if(failed(estatus))
    {
 
@@ -356,8 +362,6 @@ string __string(const ::enum_status & estatus)
       str += "\"succeeded\"";
 
    }
-
-   str += "(" + __string((iptr)estatus) + ")";
 
    return str;
 

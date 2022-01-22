@@ -535,7 +535,7 @@ namespace linux
 
             }
 
-            htask_t htask = ::get_current_hthread();
+            htask_t htask = ::get_current_htask();
 
             m_oswindow->m_htask = htask;
 

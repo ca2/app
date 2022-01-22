@@ -4483,7 +4483,7 @@ return "";
 
       }
 
-      auto itaskCurrent = get_current_ithread();
+      auto itaskCurrent = get_current_itask();
 
       auto itaskUserInteraction = m_pthreadUserInteraction->m_itask;
 

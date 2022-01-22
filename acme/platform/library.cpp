@@ -171,11 +171,11 @@ namespace acme
 
             string strMessage;
 
-            strMessage.format("acme::library::open error: %s", pszPath);
+            strMessage.format("Library not found: \"%s\"", pszPath);
 
             ERROR(strMessage);
 
-            throw_status(error_resource, strMessage);
+            throw_status(error_library_not_found, strMessage);
 
             //return false;
 

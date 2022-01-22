@@ -1,3 +1,4 @@
+// Included enum_dialog_result camilo on 2021-01-21 05:53 PM <3ThomasBorregaardSørensen
 #pragma once
 
 
@@ -273,6 +274,17 @@ inline id& id::operator = (const ::enum_subject & esubject)
 
 }
 
+
+inline id & id::operator = (const ::enum_dialog_result & edialogresult)
+{
+
+   m_etype = e_type_dialog_result;
+
+   m_edialogresult = edialogresult;
+
+   return *this;
+
+}
 
 
 

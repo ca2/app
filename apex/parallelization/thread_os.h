@@ -22,9 +22,9 @@ typedef THREAD_PROC * thread_proc;
 
 
 
-//CLASS_DECL_APEX itask_t get_current_ithread();
+//CLASS_DECL_APEX itask_t get_current_itask();
 
-//CLASS_DECL_APEX htask_t get_current_hthread();
+//CLASS_DECL_APEX htask_t get_current_htask();
 
 
 

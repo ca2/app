@@ -861,13 +861,7 @@ namespace user
       if (!on_open_document(payloadFile))
       {
 
-         m_bNew = false;
-
-         m_bModified = false;
-
-         m_path.Empty();
-
-         m_strTitle.Empty();
+         m_bNew = true;
 
       }
       else
@@ -875,13 +869,13 @@ namespace user
 
          m_bNew = false;
 
-         m_bModified = false;
-
-         m_path = payloadFile;
-
-         m_strTitle = payloadFile.get_file_path().name();
-
       }
+
+      m_bModified = false;
+
+      m_path = payloadFile;
+
+      m_strTitle = payloadFile.get_file_path().name();
 
       return true;
 

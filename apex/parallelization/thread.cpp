@@ -1253,7 +1253,7 @@ bool thread::defer_pump_message()
       if(m_message.m_id == e_message_quit)
       {
 
-         ::output_debug_string("\n\n\nthread::defer_pump_message (1) quitting (wm_quit? {PeekMessage->message : " + __string(m_message.m_id == e_message_quit ? 1 : 0) + "!}) : " + __type_name(this) + " (" + __string((u64)::get_current_ithread()) + ")\n\n\n");
+         ::output_debug_string("\n\n\nthread::defer_pump_message (1) quitting (wm_quit? {PeekMessage->message : " + __string(m_message.m_id == e_message_quit ? 1 : 0) + "!}) : " + __type_name(this) + " (" + __string((u64)::get_current_itask()) + ")\n\n\n");
 
          return false;
 
@@ -2607,15 +2607,15 @@ void thread::set_current_handles()
 
 #ifdef WINDOWS_DESKTOP
 
-   m_htask = duplicate_handle(::get_current_hthread());
+   m_htask = duplicate_handle(::get_current_htask());
 
 #else
 
-   m_htask = ::get_current_hthread();
+   m_htask = ::get_current_htask();
 
 #endif
 
-   m_itask = ::get_current_ithread();
+   m_itask = ::get_current_itask();
 
 }
 
@@ -2674,11 +2674,11 @@ void thread::__os_initialize()
 //
 //#else
 //
-//   m_htask = ::get_current_hthread();
+//   m_htask = ::get_current_htask();
 //
 //#endif
 //
-//   m_uThread = ::get_current_ithread();
+//   m_uThread = ::get_current_itask();
 
    try
    {
@@ -2848,7 +2848,7 @@ void thread::__set_thread_on()
 
    //SetCurrentHandles();
 
-   //auto id = ::get_current_ithread();
+   //auto id = ::get_current_itask();
 
    //::parallelization::task_register(m_itask, this);
 
@@ -2908,9 +2908,9 @@ void thread::__set_thread_off()
 
    unregister_task();
 
-   auto id = ::get_current_ithread();
+   auto id = ::get_current_itask();
 
-   get_system()->set_task_off(::get_current_ithread());
+   get_system()->set_task_off(::get_current_itask());
 
    //::set_task(nullptr);
 
@@ -3822,9 +3822,7 @@ void thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
 
          set_finishing();
 
-         bQuit = pMsg->m_id == e_message_quit;
-
-         if (!bQuit)
+         if (pMsg->m_id == e_message_quit)
          {
 
             return;
@@ -3840,38 +3838,10 @@ void thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
    if (m_htask)
    {
 
-      MSG msg;
+      MSG msg{};
 
       int iRet = -1;
       
-      //if (m_bSetFinish)
-      //{
-
-      //   while(iRet = ::PeekMessage(&msg, __hwnd(oswindow), wMsgFilterMin, wMsgFilterMax, TRUE))
-      //   {
-
-      //      if (msg.message == e_message_quit)
-      //      {
-
-      //         break;
-
-      //      }
-
-      //      if (!task_get_run())
-      //      {
-
-      //         return false;
-
-      //      }
-
-      //      update_task_ready_to_quit();
-
-      //   }
-
-      //}
-      //else
-      //{
-
       if (is_finishing())
       {
 
@@ -3883,60 +3853,6 @@ void thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
             if (is_ready_to_quit())
             {
 
-               bQuit = true;
-
-               break;
-
-            }
-
-         }
-
-      }
-
-      if(!bQuit)
-      {
-
-         iRet = ::GetMessage(&msg, __hwnd(oswindow), wMsgFilterMin, wMsgFilterMax);
-
-         //}
-
-         if (msg.message == e_message_quit)
-         {
-
-            ::output_debug_string("e_message_quit");
-
-         }
-         else if (msg.message == e_message_destroy_window)
-         {
-
-            ::output_debug_string("e_message_destroy_window");
-
-         }
-
-         copy(pMsg, &msg);
-
-         if (iRet == -1)
-         {
-
-            ::u32 dwLastError = ::GetLastError();
-
-            ::output_debug_string("Last Error : " + __string(dwLastError) + "\n");
-
-         }
-         else
-         {
-
-            bQuit = !iRet || pMsg->m_id == e_message_quit;
-
-            if (bQuit)
-            {
-
-               ::output_debug_string("received e_message_quit");
-
-            }
-            else
-            {
-
                return;
 
             }
@@ -3944,6 +3860,43 @@ void thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
          }
 
       }
+
+      iRet = ::GetMessage(&msg, __hwnd(oswindow), wMsgFilterMin, wMsgFilterMax);
+
+      if (iRet == -1)
+      {
+
+         auto lastError = ::GetLastError();
+
+         ::output_debug_string("Last Error : " + __string(lastError) + "\n");
+
+         auto estatus = last_error_to_status(lastError);
+
+         throw_status(estatus);
+
+      }
+      else if (iRet == 0)
+      {
+
+         ::output_debug_string("GetMessage returned 0");
+
+         msg.message = WM_QUIT;
+
+      }
+      else if(msg.message == e_message_quit)
+      {
+
+         ::output_debug_string("e_message_quit");
+
+      }
+      else if (msg.message == e_message_destroy_window)
+      {
+
+         ::output_debug_string("e_message_destroy_window");
+
+      }
+
+      copy(pMsg, &msg);
 
    }
 

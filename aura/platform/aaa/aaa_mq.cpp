@@ -480,7 +480,7 @@ CLASS_DECL_AURA int_bool message_queue_post(oswindow oswindow, const ::id & id, 
 CLASS_DECL_AURA int_bool mq_peek_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg)
 {
 
-   auto pmq = ::get_message_queue(::get_current_ithread(), false);
+   auto pmq = ::get_message_queue(::get_current_itask(), false);
 
    if (pmq == nullptr)
    {
@@ -504,7 +504,7 @@ CLASS_DECL_AURA int_bool mq_peek_message(LPMESSAGE pMsg, oswindow oswindow, ::u3
 CLASS_DECL_AURA int_bool mq_get_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
 {
 
-   auto pmq = ::get_message_queue(::get_current_ithread(), true);
+   auto pmq = ::get_message_queue(::get_current_itask(), true);
 
    if (pmq == nullptr)
    {

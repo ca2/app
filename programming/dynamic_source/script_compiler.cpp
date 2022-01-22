@@ -480,7 +480,7 @@ pacmedir->create(pathDVP_Folder);
       {
          if(m_pcontext->m_papexcontext->file().exists(strP))
          {
-            m_pcontext->m_papexcontext->file().del(strP);
+            m_pcontext->m_papexcontext->file().erase(strP);
          }
       }
       catch(...)
@@ -490,7 +490,7 @@ pacmedir->create(pathDVP_Folder);
       {
          if(m_pcontext->m_papexcontext->file().exists(strL))
          {
-            m_pcontext->m_papexcontext->file().del(strL);
+            m_pcontext->m_papexcontext->file().erase(strL);
          }
       }
       catch(...)
@@ -500,7 +500,7 @@ pacmedir->create(pathDVP_Folder);
       {
          if(m_pcontext->m_papexcontext->file().exists(strE))
          {
-            m_pcontext->m_papexcontext->file().del(strE);
+            m_pcontext->m_papexcontext->file().erase(strE);
          }
       }
       catch(...)
@@ -1023,7 +1023,7 @@ pacmedir->create(pathDVP_Folder);
       //}
       try
       {
-         m_pcontext->m_papexcontext->file().del(strDVP);
+         m_pcontext->m_papexcontext->file().erase(strDVP);
       }
       catch(...)
       {

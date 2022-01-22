@@ -5006,7 +5006,7 @@ void x11_start()
    g_pthreadXlib = psession->fork([]()
    {
 
-      g_ithreadXlib = ::get_current_ithread();
+      g_ithreadXlib = ::get_current_itask();
 
       auto posdisplay = x11_main_display();
 

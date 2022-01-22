@@ -178,7 +178,7 @@ CLASS_DECL_CORE ::u32 WINAPI MsgWaitForMultipleObjectsEx(::u32 nCount, const HAN
 
       ::memcpy_dup(ph, pHandles, sizeof(HANDLE) * nCount);
 
-      ph[nCount] = (HANDLE)::get_message_queue(get_current_ithread(), true)->m_eventNewMessage.hsync();
+      ph[nCount] = (HANDLE)::get_message_queue(get_current_itask(), true)->m_eventNewMessage.hsync();
 
       dwResult = ::WaitForMultipleObjectsEx(nCount + 1, ph, dwFlags & MWMO_WAITALL, dw::durations, true);
 
@@ -205,7 +205,7 @@ void _on_os_hthread_end()
 }
 
 
-itask_t get_current_ithread()
+itask_t get_current_itask()
 {
 
    return ::GetCurrentThreadId();
@@ -213,7 +213,7 @@ itask_t get_current_ithread()
 }
 
 
-htask_t get_current_hthread()
+htask_t get_current_htask()
 {
 
    return ::GetCurrentThread();

@@ -17,7 +17,7 @@ template < typename PRED >
 void x11_fork(PRED pred)
 {
 
-   if(::get_current_ithread() == g_ithreadXlib)
+   if(::get_current_itask() == g_ithreadXlib)
    {
 
       pred();

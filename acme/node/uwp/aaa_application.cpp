@@ -253,7 +253,7 @@ namespace acme
    /*void application::BaseSetCurrentHandles()
    {
 
-      set_os_data(::get_current_hthread());
+      set_os_data(::get_current_htask());
       set_os_int(::GetCurrentThreadId());
 
 

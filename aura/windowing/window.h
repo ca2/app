@@ -60,6 +60,7 @@ namespace windowing
       virtual void create_window(::user::interaction_impl * pimpl);
 
 
+
       virtual void set_keyboard_focus();
 
       virtual void set_mouse_capture();
@@ -294,9 +295,8 @@ namespace windowing
 
       bool is_branch_current() const override;
 
-
-
-
+      
+      itask_t get_itask() const;
 
 
    };

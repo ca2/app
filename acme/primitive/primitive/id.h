@@ -1,3 +1,4 @@
+// Included enum_dialog_result camilo on 2021-01-21 05:53 PM <3ThomasBorregaardSørensen
 #pragma once
 
 
@@ -57,6 +58,7 @@ public:
       e_type_command_probe,
       e_type_has_command_handler,
       e_type_update,
+      e_type_dialog_result,
 
       e_type_text = 1ull << 32,
       e_type_id_text = e_type_id | e_type_text,
@@ -96,6 +98,7 @@ public:
             enum_timer           m_etimer;
             enum_message         m_emessage;
             enum_subject         m_esubject;
+            enum_dialog_result   m_edialogresult;
          };
 
          enum_type                  m_etype;
@@ -134,6 +137,7 @@ public:
    inline id(enum_timer etimer);
    inline id(enum_message emessage);
    inline id(enum_subject esubject);
+   inline id(enum_dialog_result edialogresult);
    inline id(enum_type etype, ::i64 i);
    inline id(const id & id);
    id(const char * psz);
@@ -287,6 +291,14 @@ public:
    inline bool operator >= (::enum_subject esubject) const;
 
 
+   inline int compare(::enum_dialog_result edialogresult) const;
+   inline bool operator == (::enum_dialog_result edialogresult) const;
+   inline bool operator != (::enum_dialog_result edialogresult) const;
+   inline bool operator < (::enum_dialog_result edialogresult) const;
+   inline bool operator <= (::enum_dialog_result edialogresult) const;
+   inline bool operator > (::enum_dialog_result edialogresult) const;
+   inline bool operator >= (::enum_dialog_result edialogresult) const;
+
    id & operator = (const ::payload & payload);
    id & operator = (const property & prop);
    id & operator = (const id & id);
@@ -304,6 +316,7 @@ public:
    id & operator = (const enum_timer & etimer);
    id & operator = (const enum_message & emessage);
    id & operator = (const enum_subject & esubject);
+   id & operator = (const enum_dialog_result & edialogresult);
 
 
    inline ansistring to_string_base() const { return to_string(); }
@@ -314,6 +327,8 @@ public:
    inline ::index index() const { return (::index)i64(); }
    inline ::u32 umessage() const { return u32(); }
    inline operator const char* () const;
+   //inline operator enum_message () const;
+   //inline operator enum_dialog_result () const;
 
 
    inline void to_string(string & str) const;
@@ -443,6 +458,14 @@ inline id::id(enum_message emessage) :
 inline id::id(enum_subject esubject) :
    m_etype(e_type_subject),
    m_esubject(esubject)
+{
+
+}
+
+
+inline id::id(enum_dialog_result edialogresult) :
+   m_etype(e_type_dialog_result),
+   m_edialogresult(edialogresult)
 {
 
 }
@@ -1004,6 +1027,64 @@ inline bool id::operator >= (::enum_subject esubject) const
 }
 
 
+
+
+inline int id::compare(::enum_dialog_result edialogresult) const
+{
+
+   return __COMPARE_SQUARE(m_etype - e_type_dialog_result, m_edialogresult - edialogresult);
+
+}
+
+
+inline bool id::operator == (::enum_dialog_result edialogresult) const
+{
+
+   return compare(edialogresult) == 0;
+
+}
+
+
+inline bool id::operator != (::enum_dialog_result edialogresult) const
+{
+
+   return compare(edialogresult) != 0;
+
+}
+
+
+inline bool id::operator < (::enum_dialog_result edialogresult) const
+{
+
+   return compare(edialogresult) < 0;
+
+}
+
+
+inline bool id::operator <= (::enum_dialog_result edialogresult) const
+{
+
+   return compare(edialogresult) <= 0;
+
+}
+
+
+inline bool id::operator > (::enum_dialog_result edialogresult) const
+{
+
+   return compare(edialogresult) > 0;
+
+}
+
+
+inline bool id::operator >= (::enum_dialog_result edialogresult) const
+{
+
+   return compare(edialogresult) >= 0;
+
+}
+
+
 inline id::operator ::i64 () const
 {
 
@@ -1018,6 +1099,22 @@ inline ::i64 id::i64() const
    return primitive_type() == e_type_integer ? m_i : 0x8000000000000000ll;
 
 }
+
+
+//inline id::operator enum_message () const
+//{
+//
+//   return m_etype == e_type_message ? m_emessage : e_message_undefined;
+//
+//}
+//
+//
+//inline id::operator enum_dialog_result () const
+//{
+//
+//   return m_etype == e_type_dialog_result ? m_edialogresult : e_dialog_result_none;
+//
+//}
 
 
 inline bool id::is_null() const

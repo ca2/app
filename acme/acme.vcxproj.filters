@@ -282,6 +282,9 @@
     <Filter Include="Header Files\compress">
       <UniqueIdentifier>{029fd5d0-35f1-489e-a65d-bf45039ad5f1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\node\operating_system\windows\nano_user">
+      <UniqueIdentifier>{e33747e2-de15-4146-a5a1-85d6d125129b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -2750,6 +2753,18 @@
     <ClInclude Include="primitive\primitive\holder.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
+    <ClInclude Include="node\operating_system\windows\nano_user\nano_button.h">
+      <Filter>Source Files\node\operating_system\windows\nano_user</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\windows\nano_user\nano_message_box.h">
+      <Filter>Source Files\node\operating_system\windows\nano_user</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\windows\nano_user\nano_window.h">
+      <Filter>Source Files\node\operating_system\windows\nano_user</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\windows\nano_user\nano_child.h">
+      <Filter>Source Files\node\operating_system\windows\nano_user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">
@@ -3850,10 +3865,10 @@
     <ClCompile Include="filesystem\file\folder.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="node\operating_system\windows\base_file.cpp">
+    <ClCompile Include="node\operating_system\windows\file.cpp">
       <Filter>Source Files\node\operating_system\windows</Filter>
     </ClCompile>
-    <ClCompile Include="node\operating_system\windows_common\base_file.cpp">
+    <ClCompile Include="node\operating_system\windows_common\file.cpp">
       <Filter>Source Files\node\operating_system\windows_common</Filter>
     </ClCompile>
     <ClCompile Include="node\operating_system\windows\process.cpp">
@@ -3873,6 +3888,24 @@
     </ClCompile>
     <ClCompile Include="filesystem\file\payload_stream.cpp">
       <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\windows\message_box.cpp">
+      <Filter>Source Files\node\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\windows\nano_user\nano_button.cpp">
+      <Filter>Source Files\node\operating_system\windows\nano_user</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\windows\nano_user\nano_message_box.cpp">
+      <Filter>Source Files\node\operating_system\windows\nano_user</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\windows\nano_user\nano_window.cpp">
+      <Filter>Source Files\node\operating_system\windows\nano_user</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\windows\nano_user\nano_child.cpp">
+      <Filter>Source Files\node\operating_system\windows\nano_user</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\windows\nano_user\nano_user.cpp">
+      <Filter>Source Files\node\operating_system\windows\nano_user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

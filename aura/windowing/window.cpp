@@ -1338,6 +1338,31 @@ namespace windowing
    }
 
 
+   itask_t window::get_itask() const
+   {
+
+      itask_t itask = 0;
+
+      auto puserinteraction = m_puserinteractionimpl->m_puserinteraction;
+
+      if (puserinteraction && puserinteraction->m_pthreadUserInteraction)
+      {
+
+         itask = puserinteraction->m_pthreadUserInteraction->get_ithread();
+
+      }
+      else
+      {
+
+         itask = get_current_itask();
+
+      }
+
+      return itask;
+
+   }
+
+
 } // namespace windowing
 
 

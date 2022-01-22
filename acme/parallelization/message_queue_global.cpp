@@ -193,7 +193,7 @@ void mq_post_thread_message(itask_t idthread, const ::id & id, wparam wparam, lp
 CLASS_DECL_ACME int_bool mq_peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg)
 {
 
-   auto pmq = ::get_message_queue(::get_current_ithread(), false);
+   auto pmq = ::get_message_queue(::get_current_itask(), false);
 
    if (pmq == nullptr)
    {
@@ -217,7 +217,7 @@ CLASS_DECL_ACME int_bool mq_peek_message(MESSAGE * pMsg, oswindow oswindow, ::u3
 CLASS_DECL_ACME void mq_get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
 {
 
-   auto pmq = ::get_message_queue(::get_current_ithread(), true);
+   auto pmq = ::get_message_queue(::get_current_itask(), true);
 
    if (pmq == nullptr)
    {

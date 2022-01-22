@@ -820,7 +820,7 @@ pacmedir->create("/var/tmp/ca2/intermediate");
       {
          if(pcontext->m_papexcontext->file().exists(strP))
          {
-            pcontext->m_papexcontext->file().del(strP);
+            pcontext->m_papexcontext->file().erase(strP);
          }
       }
       catch(...)
@@ -830,7 +830,7 @@ pacmedir->create("/var/tmp/ca2/intermediate");
       {
          if(pcontext->m_papexcontext->file().exists(strL))
          {
-            pcontext->m_papexcontext->file().del(strL);
+            pcontext->m_papexcontext->file().erase(strL);
          }
       }
       catch(...)
@@ -840,7 +840,7 @@ pacmedir->create("/var/tmp/ca2/intermediate");
       {
          if(pcontext->m_papexcontext->file().exists(strE))
          {
-            pcontext->m_papexcontext->file().del(strE);
+            pcontext->m_papexcontext->file().erase(strE);
          }
       }
       catch(...)
@@ -1449,7 +1449,7 @@ auto tickStart = ::duration::now();
       try
       {
 
-         pcontext->m_papexcontext->file().del(strDVP);
+         pcontext->m_papexcontext->file().erase(strDVP);
 
       }
       catch(...)

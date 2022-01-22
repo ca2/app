@@ -19,31 +19,14 @@ public:
 
    }
 
-   ~int_handle()
-   {
+   ~int_handle();
 
-      if(m_i >= 0)
-      {
-
-         ::close(m_i);
-
-         m_i = -1;
-
-      }
-
-   }
 
    operator int() const {return m_i;}
    operator int &() {return m_i;}
 
 
-
 };
-
-
-//CLASS_DECL_ACME void destroy_pointer(int_handle i);
-//
-//using int_handle_holder = holder< int_handle >();
 
 
 #endif
@@ -214,7 +197,7 @@ enum enum_command_system
 
 CLASS_DECL_ACME void command_system(string & strOutput, string & strError, int & iExitCode, const char* psz, enum_command_system ecommandsystem = e_command_system_none, const ::duration & durationTimeout = ::duration::infinite());
 
-
+CLASS_DECL_ACME ::id os_message_box(const char * pszMessage, const char * pszTitle = nullptr, enum_message_box emessagebox = e_message_box_ok);
 
 #include "_c.h"
 

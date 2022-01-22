@@ -76,7 +76,7 @@ void output_debug_string(const unichar * pwsz)
 }
 
 
-CLASS_DECL_ACME htask_t get_current_hthread()
+CLASS_DECL_ACME htask_t get_current_htask()
 {
 
    return ::GetCurrentThread();
@@ -84,7 +84,7 @@ CLASS_DECL_ACME htask_t get_current_hthread()
 }
 
 
-CLASS_DECL_ACME itask_t get_current_ithread()
+CLASS_DECL_ACME itask_t get_current_itask()
 {
 
    return ::GetCurrentThreadId();

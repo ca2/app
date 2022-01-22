@@ -128,7 +128,7 @@ void task::add_task(::object* pobjectTask)
 bool task::is_current_task() const
 {
 
-   auto itaskCurrent = ::get_current_ithread();
+   auto itaskCurrent = ::get_current_itask();
 
    return itaskCurrent == m_itask;
 
@@ -146,7 +146,7 @@ bool task::is_current_task() const
 bool task::task_set_name(const char* pszTaskName)
 {
    
-   if(::get_current_ithread() == m_itask)
+   if(::get_current_itask() == m_itask)
    {
       
       ::task_set_name(pszTaskName);
@@ -1070,7 +1070,7 @@ void task::kick_idle()
 bool task::is_branch_current() const
 {
 
-   return ::get_current_ithread() == m_itask;
+   return ::get_current_itask() == m_itask;
 
 }
 

@@ -547,5 +547,3 @@ CLASS_DECL_ACME string executable_get_app_id(hinstance hinstance)
 
 }
 
-
-

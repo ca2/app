@@ -46,7 +46,7 @@ message_queue * get_message_queue(itask_t idthread, bool bCreate);
    if (dwWakeMask > 0)
    {
 
-      pmq = ::get_message_queue(get_current_ithread(), false);
+      pmq = ::get_message_queue(get_current_itask(), false);
 
    }
 
@@ -240,7 +240,7 @@ message_queue * get_message_queue(itask_t idthread, bool bCreate);
 //}
 
 
-CLASS_DECL_ACME htask_t get_current_hthread()
+CLASS_DECL_ACME htask_t get_current_htask()
 {
 
    return (htask_t) ::pthread_self();
@@ -248,7 +248,7 @@ CLASS_DECL_ACME htask_t get_current_hthread()
 }
 
 
-CLASS_DECL_ACME itask_t get_current_ithread()
+CLASS_DECL_ACME itask_t get_current_itask()
 {
 
    return (itask_t) ::pthread_self();

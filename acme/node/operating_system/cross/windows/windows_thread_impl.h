@@ -1,7 +1,7 @@
 #pragma once
 
 
-CLASS_DECL_ACME itask_t get_current_ithread();
+CLASS_DECL_ACME itask_t get_current_itask();
 
 
 #ifdef __cplusplus

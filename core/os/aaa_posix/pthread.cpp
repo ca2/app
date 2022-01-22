@@ -36,7 +36,7 @@ CLASS_DECL_CORE::enum_priority process_get_scheduling_priority(int iOsPolicy, co
    if (dwWakeMask > 0)
    {
 
-      pmq = ::get_message_queue(get_current_ithread(), false);
+      pmq = ::get_message_queue(get_current_itask(), false);
 
    }
 
@@ -230,7 +230,7 @@ CLASS_DECL_CORE::enum_priority process_get_scheduling_priority(int iOsPolicy, co
 //}
 
 
-CLASS_DECL_CORE htask_t get_current_hthread()
+CLASS_DECL_CORE htask_t get_current_htask()
 {
 
    return ::pthread_self();
@@ -238,7 +238,7 @@ CLASS_DECL_CORE htask_t get_current_hthread()
 }
 
 
-CLASS_DECL_CORE itask_t get_current_ithread()
+CLASS_DECL_CORE itask_t get_current_itask()
 {
 
    return ::pthread_self();
@@ -471,14 +471,14 @@ namespace parallelization
    CLASS_DECL_CORE bool set_priority(::enum_priority epriority)
    {
 
-      return (::SetThreadPriority(::get_current_hthread(), epriority) != 0);
+      return (::SetThreadPriority(::get_current_htask(), epriority) != 0);
    }
 
 
    CLASS_DECL_CORE i32 priority()
    {
 
-      return ::GetThreadPriority(::get_current_hthread());
+      return ::GetThreadPriority(::get_current_htask());
 
    }
 

@@ -2,6 +2,7 @@
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
 #include "acme/operating_system.h"
+#include <io.h>
 
 
 CLASS_DECL_ACME bool windows_get_alternate_path(wstring& wstr)
@@ -316,6 +317,22 @@ void erase_directory(const char* path)
       auto estatus = last_error_to_status(lastError);
 
       throw_status(estatus);
+
+   }
+
+}
+
+
+
+int_handle::~int_handle()
+{
+
+   if (m_i >= 0)
+   {
+
+      ::_close(m_i);
+
+      m_i = -1;
 
    }
 

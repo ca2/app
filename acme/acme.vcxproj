@@ -1279,6 +1279,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
     <ClCompile Include="subject\item.cpp" />
     <ClCompile Include="subject\subject.cpp" />
     <ClCompile Include="user\check.cpp" />
+    <ClCompile Include="user\drag_move.cpp" />
     <ClCompile Include="user\element.cpp" />
     <ClCompile Include="user\os_colors.cpp" />
     <ClCompile Include="user\os_theme_colors.cpp" />
@@ -1795,6 +1796,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
     <ClInclude Include="update.h" />
     <ClInclude Include="user\check.h" />
     <ClInclude Include="user\conversation.h" />
+    <ClInclude Include="user\drag_move.h" />
     <ClInclude Include="user\element.h" />
     <ClInclude Include="user\ewindowflag.h" />
     <ClInclude Include="user\os_colors.h" />

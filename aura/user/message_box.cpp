@@ -245,7 +245,7 @@ namespace user
       else if (psubject->m_id == ::e_subject_click)
       {
 
-         m_edialogresult = (enum_dialog_result)psubject->m_puserelement->m_id.i64();
+         m_idResult = psubject->m_puserelement->m_id;
 
          m_estatus = ::success;
 

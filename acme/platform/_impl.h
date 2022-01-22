@@ -754,12 +754,24 @@ sequence < TYPE > ::sequence()
 
 
 template < typename TYPE >
-void sequence < TYPE > ::set_status(const ::e_status& estatus)
+void sequence < TYPE > ::fork()
+{
+
+   m_psystem->fork(__routine([this]()
+   {
+
+      on_sequence();
+
+   }));
+
+}
+
+
+template < typename TYPE >
+void sequence < TYPE > ::on_sequence()
 {
 
    critical_section_lock lock(get_sequence_critical_section());
-
-   m_p.m_estatus = estatus;
 
    if (m_pevent)
    {
@@ -768,32 +780,62 @@ void sequence < TYPE > ::set_status(const ::e_status& estatus)
 
    }
    
-   increment_reference_count();
+   while(m_stepa.has_element())
+   {
 
-   m_psystem->fork(__routine([this]()
-      {
-      
-         auto pHold = ::move_transfer(this);
+      auto pfunction = m_stepa.pop_first();
 
-         critical_section_lock lock(get_sequence_critical_section());
+      lock.unlock();
 
-         while(m_stepa.has_element())
-         {
+      pfunction->process(*this);
 
-            auto pfunction = m_stepa.pop_first();
+      lock.lock();
 
-            lock.unlock();
-
-            pfunction->process(*this);
-
-            lock.lock();
-
-         }
-
-      }));
+   }
 
 }
 
+
+//template < typename TYPE >
+//void sequence < TYPE > ::set_status(const ::e_status & estatus)
+//{
+//
+//   critical_section_lock lock(get_sequence_critical_section());
+//
+//   m_p.m_estatus = estatus;
+//
+//   if (m_pevent)
+//   {
+//
+//      m_pevent->SetEvent();
+//
+//   }
+//
+//   increment_reference_count();
+//
+//   m_psystem->fork(__routine([this]()
+//      {
+//
+//         auto pHold = ::move_transfer(this);
+//
+//         critical_section_lock lock(get_sequence_critical_section());
+//
+//         while (m_stepa.has_element())
+//         {
+//
+//            auto pfunction = m_stepa.pop_first();
+//
+//            lock.unlock();
+//
+//            pfunction->process(*this);
+//
+//            lock.lock();
+//
+//         }
+//
+//      }));
+//
+//}
 
 template < typename TYPE >
 TYPE & sequence < TYPE > ::topic(const ::duration& duration)

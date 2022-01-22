@@ -298,12 +298,7 @@ namespace user
    }
 
 
-   void interaction::enable_drag_move()
-   {
 
-      __construct_new(m_pdragmove);
-
-   }
 
 
    //interaction_draw2d * interaction::get_draw2d()
@@ -16644,16 +16639,16 @@ order(zorderParam);
    }
 
 
-   __pointer(::sequence < ::conversation >) interaction::message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox)
-   {
+   //__pointer(::sequence < ::conversation >) interaction::message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox)
+   //{
 
-      auto pmessagebox = __create < ::user::message_box >();
+   //   auto pmessagebox = __create < ::user::message_box >();
 
-      auto psequence = pmessagebox->show(this, strMessage, strTitle, emessagebox);
+   //   auto psequence = pmessagebox->show(this, strMessage, strTitle, emessagebox);
 
-      return psequence;
+   //   return psequence;
 
-   }
+   //}
 
 
    bool interaction::has_text_input()
@@ -18133,15 +18128,6 @@ order(zorderParam);
 
    }
 
-
-   interaction::drag_move::drag_move()
-   {
-
-      m_bDrag = false;
-      
-      m_bLButtonDown = false;
-
-   }
 
 
 } // namespace user

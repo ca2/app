@@ -201,7 +201,7 @@ void nano_message_box::add_button(const char * pszText, enum_dialog_result edial
 }
 
 
-void nano_message_box::display_synchronously(const char * pszMessage, const char * pszTitle, enum_message_box emessagebox)
+void nano_message_box::display_synchronously(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
 {
 
    int wScreen = GetSystemMetrics(SM_CXSCREEN);
@@ -214,8 +214,9 @@ void nano_message_box::display_synchronously(const char * pszMessage, const char
 
    m_rectangle.set_dim(x, y, w, h);
 
-   m_strMessage = pszMessage;
-   m_strTitle = pszTitle;
+   m_strMessage = strMessage;
+
+   m_strTitle = strTitle;
 
    auto emessageboxType = emessagebox & e_message_box_type_mask;
 
@@ -253,11 +254,10 @@ void nano_message_box::display_synchronously(const char * pszMessage, const char
       break;
    }
 
-   
    if (emessagebox & e_message_box_default_button_mask)
    {
 
-      int iDefaultButton = ((emessagebox & e_message_box_default_button_mask) >> 4) & 7;
+      int iDefaultButton = ((int)(emessagebox & e_message_box_default_button_mask) >> 4) & 7;
 
       if (emessagebox & e_message_box_default_button_1)
       {
@@ -292,15 +292,32 @@ void nano_message_box::display_synchronously(const char * pszMessage, const char
 
    }
 
-
-
    create();
 
    nano_window::display_synchronously();
 
-   //return m_id;
-
 }
+
+
+//__pointer(::sequence < ::conversation >) nano_message_box::display(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
+//{
+//
+//   auto psequence = __new(::sequence <::conversation >());
+//
+//   psequence->m_p = this;
+//
+//   fork([strMessage, strTitle, emessagebox, psequence]()
+//      {
+//
+//         psequence->m_p->display_synchronously(strMessage, strTitle, emessagebox);
+//
+//         psequence->on_sequence();
+//
+//      });
+//
+//   return psequence;
+//
+//}
 
 
 //LRESULT nano_message_box::window_procedure(UINT message, WPARAM wparam, LPARAM lparam)
@@ -309,3 +326,6 @@ void nano_message_box::display_synchronously(const char * pszMessage, const char
 //   return ::DefWindowProc(m_hwnd, message, wparam, lparam);
 //
 //}
+
+
+

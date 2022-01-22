@@ -4,9 +4,10 @@
 #include "nano_window.h"
 
 
-
 nano_window::nano_window()
 {
+
+   enable_drag_move();
 
    m_hbrushWindow = nullptr;
    m_hpenBorder = nullptr;
@@ -241,6 +242,26 @@ void nano_window::on_left_button_down(int x, int y)
 
    m_idLeftButtonDown = hit_test(x, y);
 
+   if (m_pdragmove && m_idLeftButtonDown == e_dialog_result_none)
+   {
+
+      m_pdragmove->m_bLButtonDown = true;
+
+      m_pdragmove->m_bDrag = false;
+
+      point_i32 pointCursor(x, y);
+
+      pointCursor += m_rectangle.origin();
+
+      m_pdragmove->m_pointLButtonDown = pointCursor;
+
+      m_pdragmove->m_sizeLButtonDownOffset = m_pdragmove->m_pointLButtonDown - m_rectangle.origin();
+
+      return;
+
+   }
+
+
 }
 
 
@@ -249,6 +270,17 @@ void nano_window::on_left_button_up(int x, int y)
    
    ReleaseCapture();
    
+   if (m_pdragmove && (m_pdragmove->m_bLButtonDown || m_pdragmove->m_bDrag))
+   {
+
+      m_pdragmove->m_bLButtonDown = false;
+
+      m_pdragmove->m_bDrag = false;
+
+      return;
+
+   }
+
    m_idLeftButtonUp = hit_test(x, y);
 
    if (m_idLeftButtonUp == m_idLeftButtonDown && m_idLeftButtonUp != e_dialog_result_none)
@@ -259,6 +291,39 @@ void nano_window::on_left_button_up(int x, int y)
       on_click(m_idResult);
 
    }
+
+}
+
+void nano_window::on_mouse_move(int x, int y)
+{
+
+   if (m_pdragmove && m_pdragmove->m_bLButtonDown)
+   {
+
+      ::SetCursor(::LoadCursor(NULL, IDC_SIZEALL));
+
+      if (!m_pdragmove->m_bDrag)
+      {
+
+         m_pdragmove->m_bDrag = true;
+
+         point_i32 pointCursor(x, y);
+
+         pointCursor += m_rectangle.origin();
+
+         auto point = pointCursor - m_pdragmove->m_sizeLButtonDownOffset;
+
+         move_to(point.x, point.y);
+
+         m_pdragmove->m_bDrag = false;
+
+      }
+
+      return;
+
+   }
+
+
 
 }
 
@@ -341,12 +406,15 @@ LRESULT nano_window::window_procedure(UINT message, WPARAM wparam, LPARAM lparam
    break;
    case WM_CHAR:
    {
-      on_char(wparam);
+      on_char((int) wparam);
       return 0;
    }
    break;
    case WM_LBUTTONDOWN:
       on_left_button_down(GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam));
+      break;
+   case WM_MOUSEMOVE:
+      on_mouse_move(GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam));
       break;
    case WM_LBUTTONUP:
    {
@@ -460,7 +528,7 @@ void nano_window::message_loop()
 
    MSG msg;
          
-   while (GetMessage(&msg, NULL, 0, 0) > 0)
+   while (::task_get_run() && GetMessage(&msg, NULL, 0, 0) > 0)
    {
             
       TranslateMessage(&msg);
@@ -544,4 +612,11 @@ void nano_window::on_click(const ::id & id)
 }
 
 
+void nano_window::move_to(int x, int y)
+{
 
+   ::SetWindowPos(m_hwnd, nullptr, x, y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+
+   ::GetWindowRect(m_hwnd, (RECT *) &m_rectangle);
+
+}

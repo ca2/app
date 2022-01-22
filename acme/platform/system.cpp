@@ -11,6 +11,8 @@
 #include "acme/compress/_.h"
 //#include "system_impl.h"
 #include "library.h"
+#include "acme/node/operating_system/windows/nano_user/nano_message_box.h"
+
 
 //__namespace_object_factory(class ::system, ::static_setup::flag_system)
 
@@ -2101,6 +2103,28 @@ __pointer(class ::system) platform_create_system(const char* pszAppId)
 }
 
 
+
+__pointer(::sequence < ::conversation >) system::message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
+{
+
+   auto pmessagebox = __create_new < nano_message_box >();
+
+   auto psequence = __new(::sequence <::conversation >());
+
+   psequence->m_p = pmessagebox;
+
+   fork([strMessage, strTitle, emessagebox, psequence, pmessagebox]()
+   {
+
+      pmessagebox->display_synchronously(strMessage, strTitle, emessagebox);
+
+      psequence->on_sequence();
+
+   });
+
+   return psequence;
+
+}
 
 
 

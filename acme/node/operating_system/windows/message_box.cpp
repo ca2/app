@@ -150,10 +150,11 @@ CLASS_DECL_ACME ::id os_message_box(const char * pszMessage, const char * pszTit
 void nano_message_box::on_click(const ::id & id)
 {
 
-  
+   m_idResult = id;
 
    destroy();
-   
-
 
 }
+
+
+

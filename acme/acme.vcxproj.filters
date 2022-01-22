@@ -2765,6 +2765,9 @@
     <ClInclude Include="node\operating_system\windows\nano_user\nano_child.h">
       <Filter>Source Files\node\operating_system\windows\nano_user</Filter>
     </ClInclude>
+    <ClInclude Include="user\drag_move.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">
@@ -3906,6 +3909,9 @@
     </ClCompile>
     <ClCompile Include="node\operating_system\windows\nano_user\nano_user.cpp">
       <Filter>Source Files\node\operating_system\windows\nano_user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\drag_move.cpp">
+      <Filter>Source Files\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

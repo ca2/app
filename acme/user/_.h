@@ -28,6 +28,7 @@ namespace user
 #include "os_colors.h"
 #include "theme_colors.h"
 
+#include "drag_move.h"
 
 
 

@@ -3,14 +3,14 @@
 
 
 class CLASS_DECL_ACME conversation :
-   virtual public element
+   virtual public ::matter
 {
 public:
 
 
-   __pointer(::object)                          m_pobject;
-   enum_dialog_result                           m_edialogresult;
-   ::id                                         m_idResult;
+   //__pointer(::object)                           m_pobject;
+   //enum_dialog_result                            m_edialogresult;
+   ::id                                            m_idResult;
 
 
 };

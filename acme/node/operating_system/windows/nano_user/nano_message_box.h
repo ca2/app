@@ -7,8 +7,8 @@
 class nano_message_box :
    virtual public nano_window
 {
-
 public:
+
 
    HWND              m_hwnd;
 
@@ -20,7 +20,8 @@ public:
    nano_message_box();
    ~nano_message_box();
 
-   void display_synchronously(const char * pszMessage, const char * pszTitle, enum_message_box emessagebox);
+   virtual void display_synchronously(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox);
+   //__pointer(::sequence < ::conversation >) display(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox);
 
    void on_draw(HDC hdc) override;
 

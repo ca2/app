@@ -103,12 +103,12 @@ namespace app_message_box
    void main_window::show_message_box()
    {
 
-      auto psequence = message_box("Showing a message box as requested.\n\nIs it ok?", nullptr, e_message_box_yes_no_cancel);
+      auto psequence = m_psystem->message_box("Showing a message box as requested.\n\nIs it ok?", nullptr, e_message_box_yes_no_cancel);
 
       psequence->then([this](auto psequence)
          {
 
-            if (psequence->m_edialogresult == e_dialog_result_yes)
+            if (psequence->m_idResult == e_dialog_result_yes)
             {
 
                auto papplication = get_application();
@@ -116,7 +116,7 @@ namespace app_message_box
                papplication->_001TryCloseApplication();
 
             }
-            else if (psequence->m_edialogresult == e_dialog_result_cancel)
+            else if (psequence->m_idResult == e_dialog_result_cancel)
             {
 
                show_message_box();

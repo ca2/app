@@ -5,10 +5,11 @@
 
 
 class nano_window :
-   virtual public ::object
+   virtual public ::conversation,
+   virtual public ::user::drag_move_client
 {
-
 public:
+
 
    HWND                             m_hwnd;
    HBRUSH                           m_hbrushWindow;
@@ -28,7 +29,7 @@ public:
    __pointer_array(nano_child)      m_childa;
    ::id                             m_idLeftButtonDown;
    ::id                             m_idLeftButtonUp;
-   ::id                             m_idResult;
+   //::id                             m_idResult;
    __pointer(nano_child)            m_pchildFocus;
 
 
@@ -62,11 +63,14 @@ public:
 
    virtual ::id get_result();
 
+   virtual void on_mouse_move(int x, int y);
    virtual void on_left_button_down(int x, int y);
    virtual void on_left_button_up(int x, int y);
    virtual void on_click(const ::id & id);
 
    virtual LRESULT window_procedure(UINT message, WPARAM wparam, LPARAM lparam);
+
+   virtual void move_to(int x, int y);
 
    virtual void destroy();
 

@@ -13,25 +13,11 @@ namespace user
       virtual public ::aura::drawable,
       virtual public ::timer_callback,
       //,
-      virtual public ::conversation
+      virtual public ::conversation,
+      virtual public ::user::drag_move_client
    {
    public:
 
-
-      class drag_move :
-         virtual public ::matter
-      {
-      public:
-
-         bool                       m_bLButtonDown;
-         ::point_i32                m_pointLButtonDown;
-         ::size_i32                 m_sizeLButtonDownOffset;
-
-         bool                       m_bDrag;
-
-         drag_move();
-
-      };
 
       class iterator
       {
@@ -389,7 +375,7 @@ namespace user
 
       virtual void _001Minimize();
 
-      void enable_drag_move();
+      //void enable_drag_move();
 
 
       //virtual interaction_draw2d * get_draw2d();
@@ -1797,7 +1783,6 @@ namespace user
       virtual void _001DrawItem(::draw2d::graphics_pointer& pgraphics, ::item * pitem);
 
 
-      __pointer(::sequence < ::conversation >) message_box(const ::string& strMessage, const ::string& strTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok);
 
 
 

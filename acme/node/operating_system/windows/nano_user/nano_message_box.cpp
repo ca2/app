@@ -32,11 +32,11 @@ void nano_message_box::on_draw(HDC hdc)
 
    rectangleText = m_rectangleClient;
 
-   rectangleText.bottom = rectangleText.center_y();
+   rectangleText.bottom = rectangleText.top + rectangleText.height() * 3 / 4;
 
    rectangleText.deflate(25);
 
-   ::DrawText(hdc, wstrMessage, (int)wstrMessage.get_length(), (LPRECT)&rectangleText, DT_LEFT | DT_TOP);
+   ::DrawText(hdc, wstrMessage, (int)wstrMessage.get_length(), (LPRECT)&rectangleText, DT_LEFT | DT_TOP | DT_WORDBREAK);
 
 
 }

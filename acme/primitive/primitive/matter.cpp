@@ -343,7 +343,7 @@ void matter::kick_idle()
 
 
 
-void matter::on_future(const ::payload & payload)
+void matter::on_sequence(const ::payload & payload)
 {
 
 }
@@ -916,6 +916,16 @@ CLASS_DECL_ACME void __call(const ::routine & routine)
    //return routine();
 
    routine();
+
+}
+
+
+__pointer(::sequence < ::conversation >) matter::message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
+{
+
+   auto psequence = m_psystem->message_box(strMessage, strTitle, emessagebox);
+
+   return psequence;
 
 }
 

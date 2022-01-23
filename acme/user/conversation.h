@@ -3,7 +3,7 @@
 
 
 class CLASS_DECL_ACME conversation :
-   virtual public ::matter
+   virtual public ::element
 {
 public:
 

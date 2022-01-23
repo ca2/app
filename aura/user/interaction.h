@@ -330,7 +330,7 @@ namespace user
       // ownership
       __pointer(::user::system)                    m_pusersystem;
       __pointer(::user::interaction_layout)        m_playout;
-      __pointer(drag_move)                         m_pdragmove;
+      //__pointer(drag_move)                         m_pdragmove;
       __pointer(graphics_call_array)               m_pgraphicscalla;
       __pointer(::user::interaction)               m_puserinteractionCustomWindowProc;
       __pointer(::user::interaction)               m_puiLabel;

@@ -248,11 +248,11 @@ namespace filemanager
 
                //   });
 
-               message_box("Do you want to replace the existing file " + strPath + "?", nullptr, e_message_box_yes_no)
-                  ->then([this, strPath](auto pfuture)
+               m_psystem->message_box("Do you want to replace the existing file " + strPath + "?", nullptr, e_message_box_yes_no)
+                  ->then([this, strPath](auto pconversation)
                      {
 
-                        if (pfuture->m_edialogresult == e_dialog_result_yes)
+                        if (pconversation->m_idResult == e_dialog_result_yes)
                         {
 
                            save_document(strPath);

@@ -3318,9 +3318,13 @@ class CLASS_DECL_ACME integral_byte { public: integral_byte(memsize memsize = 1)
 #include "acme/parallelization/synchronization_result.h"
 
 
+template < typename TYPE > class sequence;
+
+
 #include "acme/subject/handler.h"
 #include "acme/primitive/primitive/e_flag.h"
 #include "acme/primitive/primitive/element.h"
+#include "acme/user/conversation.h"
 #include "acme/primitive/primitive/tracer.h"
 #include "acme/primitive/primitive/matter.h"
 #include "acme/primitive/primitive/material_object.h"

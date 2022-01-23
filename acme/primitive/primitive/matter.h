@@ -277,12 +277,12 @@ public:
    virtual void trace_last_status();
 
 
-   virtual void on_future(const ::payload & payload);
+   virtual void on_sequence(const ::payload & payload);
 
    virtual void clear_member() { }
 
 
-
+   __pointer(::sequence < ::conversation >) message_box(const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok);
 
 
 };

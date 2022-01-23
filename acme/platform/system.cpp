@@ -49,6 +49,8 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
       trace_category_static_init(this);
 
       ::factory::add_factory_item < simple_log, logger >();
+
+      ::factory::add_factory_item < task >();
       
       m_bPostedInitialRequest = false;
 

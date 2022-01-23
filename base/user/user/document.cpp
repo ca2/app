@@ -873,9 +873,9 @@ namespace user
 
       m_bModified = false;
 
-      m_path = payloadFile;
+      m_path = payloadFile.get_file_path();
 
-      m_strTitle = payloadFile.get_file_path().name();
+      m_strTitle = m_path.name();
 
       return true;
 

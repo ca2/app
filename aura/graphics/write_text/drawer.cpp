@@ -302,6 +302,8 @@ namespace write_text
 
             ptextout->m_point.y = y;
 
+            ptextout->m_pfont = pfont;
+
             textouta.add_text_out(ptextout);
 
             cx = maximum(cx, ptextout->m_size.cx);

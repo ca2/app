@@ -4,12 +4,12 @@
 #pragma once
 
 
-namespace app_build
+namespace app_core_build
 {
 
 
 
-   class CLASS_DECL_APP_BUILD build :
+   class CLASS_DECL_APP_CORE_BUILD build :
       virtual public ::thread
    {
    public:

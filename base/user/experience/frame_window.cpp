@@ -679,16 +679,14 @@ namespace experience
    void frame_window::handle(::subject * psubject, ::context * pcontext)
    {
 
-      if (psubject->m_id == ::e_subject_click && m_pframe != nullptr)
+      if (psubject->m_esubject == ::e_subject_click && m_pframe != nullptr)
       {
 
-         ::id id = psubject->user_interaction()->GetDlgCtrlId();
-
-         string str(__string(id));
+         string str(psubject->m_id);
 
          FORMATTED_TRACE("frame_window::handle_event btn_clkd=%s", str.c_str());
 
-         auto ebutton = m_pframe->get_control_box()->get_control_box_button_type(id);
+         auto ebutton = m_pframe->get_control_box()->get_control_box_button_type(psubject->m_id);
 
          switch (ebutton)
          {

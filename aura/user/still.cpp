@@ -543,7 +543,20 @@ namespace user
 
       m_ptextouta->text_outa().erase_all();
 
-      auto pfont = get_font(pstyle, ::e_element_none);
+      __pointer(::write_text::font) pfont;
+      
+      if (m_pfont)
+      {
+
+         pfont = m_pfont;
+
+      }
+      else
+      {
+
+         pfont = get_font(pstyle, ::e_element_none);
+
+      }
 
       pgraphics->create_simple_multiline_layout(*m_ptextouta, strText, rectangleClient, pfont, ealign, etextwrap);
 
@@ -729,7 +742,18 @@ namespace user
 
       string strText(get_window_text());
 
-      pgraphics->set_font(this, ::e_element_none);
+      if (m_pfont)
+      {
+
+         pgraphics->set(m_pfont);
+
+      }
+      else
+      {
+
+         pgraphics->set_font(this, ::e_element_none);
+
+      }
 
       pgraphics->draw_text(strText, rectangleText, e_align_top_left);
 

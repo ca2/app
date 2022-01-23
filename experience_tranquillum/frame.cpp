@@ -779,7 +779,7 @@ namespace experience
 
                ::draw2d::icon * picon = m_pframewindow->m_pdrawicon;
 
-               if (picon != nullptr)
+               if (::is_ok(picon))
                {
 
                   image_source imagesource(picon);

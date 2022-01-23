@@ -15984,9 +15984,11 @@ order(zorderParam);
 
                      ::subject subject;
 
+                     subject.m_esubject = e_subject_click;
+
                      subject.m_puserelement = this;
 
-                     subject.m_id = ::e_subject_click;
+                     subject.m_id = m_id;
 
                      subject.m_item = item;
 

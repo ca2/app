@@ -332,19 +332,19 @@
 				SKIP_INSTALL = YES;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SYSTEM_HEADER_SEARCH_PATHS = (
-					"$(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/third-$(PLATFORM_MODIFIER)/include",
+					"$(WorkspaceDir)/archive $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/third-$(PLATFORM_MODIFIER)/include",
 					"$(WorkspaceDir)/source/third/include $(WorkspaceDir)/archive $(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include/include $(WorkspaceDir)/archive $(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include",
-					"$(WorkspaceDir)/source/app $(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/_include",
-					"$(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/third-$(PLATFORM_MODIFIER)/third/include/",
+					"$(WorkspaceDir)/source/app $(WorkspaceDir)/archive $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/_include",
+					"$(WorkspaceDir)/archive $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/third-$(PLATFORM_MODIFIER)/third/include/",
 				);
 				USER_HEADER_SEARCH_PATHS = (
 					"$(WorkspaceDir)/source",
 					"$(WorkspaceDir)/source/include",
-					"$(WorkspaceDir)/platform-$(PLATFORM_MODIFIER)",
-					"$(WorkspaceDir)/platform-$(PLATFORM_MODIFIER)/_include",
-					"$(WorkspaceDir)/source/app $(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/_include",
+					"$(WorkspaceDir)/operating-system-$(PLATFORM_MODIFIER)",
+					"$(WorkspaceDir)/operating-system-$(PLATFORM_MODIFIER)/_include",
+					"$(WorkspaceDir)/source/app $(WorkspaceDir)/archive $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/_include",
 					"$(WorkspaceDir)/source/third/include $(WorkspaceDir)/archive $(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include/include $(WorkspaceDir)/archive $(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include",
-					"$(WorkspaceDir)/source/app $(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)",
+					"$(WorkspaceDir)/source/app $(WorkspaceDir)/archive $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)",
 					.,
 					"$(PROJECT_DIR)",
 					"$(HOME)/__archive/sensitive/sensitive/include",
@@ -424,19 +424,19 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SYSTEM_HEADER_SEARCH_PATHS = (
-					"$(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/third-$(PLATFORM_MODIFIER)/include",
+					"$(WorkspaceDir)/archive $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/third-$(PLATFORM_MODIFIER)/include",
 					"$(WorkspaceDir)/source/third/include $(WorkspaceDir)/archive $(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include/include $(WorkspaceDir)/archive $(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include",
-					"$(WorkspaceDir)/source/app $(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/_include",
-					"$(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/third-$(PLATFORM_MODIFIER)/third/include/",
+					"$(WorkspaceDir)/source/app $(WorkspaceDir)/archive $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/_include",
+					"$(WorkspaceDir)/archive $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/third-$(PLATFORM_MODIFIER)/third/include/",
 				);
 				USER_HEADER_SEARCH_PATHS = (
 					"$(WorkspaceDir)/source",
 					"$(WorkspaceDir)/source/include",
-					"$(WorkspaceDir)/platform-$(PLATFORM_MODIFIER)",
-					"$(WorkspaceDir)/platform-$(PLATFORM_MODIFIER)/_include",
-					"$(WorkspaceDir)/source/app $(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/_include",
+					"$(WorkspaceDir)/operating-system-$(PLATFORM_MODIFIER)",
+					"$(WorkspaceDir)/operating-system-$(PLATFORM_MODIFIER)/_include",
+					"$(WorkspaceDir)/source/app $(WorkspaceDir)/archive $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/_include",
 					"$(WorkspaceDir)/source/third/include $(WorkspaceDir)/archive $(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include/include $(WorkspaceDir)/archive $(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include",
-					"$(WorkspaceDir)/source/app $(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)",
+					"$(WorkspaceDir)/source/app $(WorkspaceDir)/archive $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)",
 					.,
 					"$(PROJECT_DIR)",
 					"$(HOME)/__archive/sensitive/sensitive/include",

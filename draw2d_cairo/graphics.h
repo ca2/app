@@ -515,7 +515,7 @@ namespace draw2d_cairo
       //static ::draw2d_cairo::object* PASCAL SelectGdiObject(::object * pobject, HDC hDC, HGDIOBJ h) override;
 
 
-      // platform-specific or platform-internals
+      // operating-system-specific or operating-system-internals
       bool _set_os_color(color32_t color32);
       bool _set(::draw2d::brush * pbrush, double x = 0.0, double y = 0.0);
       bool _set(::draw2d::pen * ppen);

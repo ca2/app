@@ -80,27 +80,27 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\archive\platform-universal_windows\Common.props" />
+    <Import Project="..\..\..\operating-system\operating-system-universal_windows\Common.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\archive\platform-universal_windows\Common.props" />
+    <Import Project="..\..\..\operating-system\operating-system-universal_windows\Common.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\archive\platform-universal_windows\Common.props" />
+    <Import Project="..\..\..\operating-system\operating-system-universal_windows\Common.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\archive\platform-universal_windows\Common.props" />
+    <Import Project="..\..\..\operating-system\operating-system-universal_windows\Common.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\archive\platform-universal_windows\Common.props" />
+    <Import Project="..\..\..\operating-system\operating-system-universal_windows\Common.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\archive\platform-universal_windows\Common.props" />
+    <Import Project="..\..\..\operating-system\operating-system-universal_windows\Common.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup />
@@ -144,7 +144,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <CompileAsWinRT>true</CompileAsWinRT>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(SolutionDir)../../platform-universal_windows/;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(SolutionDir)../../../source/app/base/base;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(__archive)third-universal_windows/include;$(__archive)third-universal_windows/third/include;$(SolutionDir)../../../;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(SolutionDir)../../../source/app/base3/openssl;$(SolutionDir)../../../source/app/base/openssl/crypto2;$(SolutionDir)../../../source/app/base/openssl/ssl2;$(SolutionDir)../../../source/app/base/base/openssl/crypto/asn1;$(SolutionDir)../../../source/app/base/base/openssl/crypto/evp;$(SolutionDir)../../../source/app/base/base/openssl/crypto/krb5;$(SolutionDir)../../../source/app/base/base/openssl/crypto/modes;$(SolutionDir)../../../source/app/base/base/openssl/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__operating_system)local/include;$(SolutionDir)../../operating-system-universal_windows/;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(SolutionDir)../../../source/app/base/base;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(__operating_system)third-universal_windows/include;$(__operating_system)third-universal_windows/third/include;$(SolutionDir)../../../;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(SolutionDir)../../../source/app/base3/openssl;$(SolutionDir)../../../source/app/base/openssl/crypto2;$(SolutionDir)../../../source/app/base/openssl/ssl2;$(SolutionDir)../../../source/app/base/base/openssl/crypto/asn1;$(SolutionDir)../../../source/app/base/base/openssl/crypto/evp;$(SolutionDir)../../../source/app/base/base/openssl/crypto/krb5;$(SolutionDir)../../../source/app/base/base/openssl/crypto/modes;$(SolutionDir)../../../source/app/base/base/openssl/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_APP_ACE_SHARED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAsManaged>false</CompileAsManaged>
       <ExceptionHandling>Async</ExceptionHandling>
@@ -157,7 +157,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-universal_windows\third\library\$(PlatformName)\$(Configuration);$(__archive)storage-universal_windows\library\$(PlatformName)\$(Configuration);$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(__operating_system)storage-universal_windows\third\library\$(PlatformName)\$(Configuration);$(__operating_system)storage-universal_windows\library\$(PlatformName)\$(Configuration);$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
       <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
@@ -166,7 +166,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <CompileAsWinRT>true</CompileAsWinRT>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(SolutionDir)../../platform-universal_windows/;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(SolutionDir)../../../source/app/base/base;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(__archive)third-universal_windows/include;$(__archive)third-universal_windows/third/include;$(SolutionDir)../../../;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(SolutionDir)../../../source/app/base3/openssl;$(SolutionDir)../../../source/app/base/openssl/crypto2;$(SolutionDir)../../../source/app/base/openssl/ssl2;$(SolutionDir)../../../source/app/base/base/openssl/crypto/asn1;$(SolutionDir)../../../source/app/base/base/openssl/crypto/evp;$(SolutionDir)../../../source/app/base/base/openssl/crypto/krb5;$(SolutionDir)../../../source/app/base/base/openssl/crypto/modes;$(SolutionDir)../../../source/app/base/base/openssl/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__operating_system)local/include;$(SolutionDir)../../operating-system-universal_windows/;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(SolutionDir)../../../source/app/base/base;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(__operating_system)third-universal_windows/include;$(__operating_system)third-universal_windows/third/include;$(SolutionDir)../../../;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(SolutionDir)../../../source/app/base3/openssl;$(SolutionDir)../../../source/app/base/openssl/crypto2;$(SolutionDir)../../../source/app/base/openssl/ssl2;$(SolutionDir)../../../source/app/base/base/openssl/crypto/asn1;$(SolutionDir)../../../source/app/base/base/openssl/crypto/evp;$(SolutionDir)../../../source/app/base/base/openssl/crypto/krb5;$(SolutionDir)../../../source/app/base/base/openssl/crypto/modes;$(SolutionDir)../../../source/app/base/base/openssl/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_APP_ACE_SHARED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAsManaged>false</CompileAsManaged>
       <ExceptionHandling>Async</ExceptionHandling>
@@ -177,7 +177,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-universal_windows\third\library\$(PlatformName)\$(Configuration);$(__archive)storage-universal_windows\library\$(PlatformName)\$(Configuration);$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(__operating_system)storage-universal_windows\third\library\$(PlatformName)\$(Configuration);$(__operating_system)storage-universal_windows\library\$(PlatformName)\$(Configuration);$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
       <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
@@ -186,7 +186,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <CompileAsWinRT>true</CompileAsWinRT>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(SolutionDir)../../platform-universal_windows/;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(SolutionDir)../../../source/app/base/base;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(__archive)third-universal_windows/include;$(__archive)third-universal_windows/third/include;$(SolutionDir)../../../;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(SolutionDir)../../../source/app/base3/openssl;$(SolutionDir)../../../source/app/base/openssl/crypto2;$(SolutionDir)../../../source/app/base/openssl/ssl2;$(SolutionDir)../../../source/app/base/base/openssl/crypto/asn1;$(SolutionDir)../../../source/app/base/base/openssl/crypto/evp;$(SolutionDir)../../../source/app/base/base/openssl/crypto/krb5;$(SolutionDir)../../../source/app/base/base/openssl/crypto/modes;$(SolutionDir)../../../source/app/base/base/openssl/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__operating_system)local/include;$(SolutionDir)../../operating-system-universal_windows/;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(SolutionDir)../../../source/app/base/base;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(__operating_system)third-universal_windows/include;$(__operating_system)third-universal_windows/third/include;$(SolutionDir)../../../;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(SolutionDir)../../../source/app/base3/openssl;$(SolutionDir)../../../source/app/base/openssl/crypto2;$(SolutionDir)../../../source/app/base/openssl/ssl2;$(SolutionDir)../../../source/app/base/base/openssl/crypto/asn1;$(SolutionDir)../../../source/app/base/base/openssl/crypto/evp;$(SolutionDir)../../../source/app/base/base/openssl/crypto/krb5;$(SolutionDir)../../../source/app/base/base/openssl/crypto/modes;$(SolutionDir)../../../source/app/base/base/openssl/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_APP_ACE_SHARED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAsManaged>false</CompileAsManaged>
       <ExceptionHandling>Async</ExceptionHandling>
@@ -198,7 +198,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-universal_windows\third\library\$(PlatformName)\$(Configuration);$(__archive)storage-universal_windows\library\$(PlatformName)\$(Configuration);$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(__operating_system)storage-universal_windows\third\library\$(PlatformName)\$(Configuration);$(__operating_system)storage-universal_windows\library\$(PlatformName)\$(Configuration);$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
       <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
@@ -207,7 +207,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <CompileAsWinRT>true</CompileAsWinRT>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(SolutionDir)../../platform-universal_windows/;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(SolutionDir)../../../source/app/base/base;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(__archive)third-universal_windows/include;$(__archive)third-universal_windows/third/include;$(SolutionDir)../../../;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(SolutionDir)../../../source/app/base3/openssl;$(SolutionDir)../../../source/app/base/openssl/crypto2;$(SolutionDir)../../../source/app/base/openssl/ssl2;$(SolutionDir)../../../source/app/base/base/openssl/crypto/asn1;$(SolutionDir)../../../source/app/base/base/openssl/crypto/evp;$(SolutionDir)../../../source/app/base/base/openssl/crypto/krb5;$(SolutionDir)../../../source/app/base/base/openssl/crypto/modes;$(SolutionDir)../../../source/app/base/base/openssl/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__operating_system)local/include;$(SolutionDir)../../operating-system-universal_windows/;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(SolutionDir)../../../source/app/base/base;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(__operating_system)third-universal_windows/include;$(__operating_system)third-universal_windows/third/include;$(SolutionDir)../../../;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(SolutionDir)../../../source/app/base3/openssl;$(SolutionDir)../../../source/app/base/openssl/crypto2;$(SolutionDir)../../../source/app/base/openssl/ssl2;$(SolutionDir)../../../source/app/base/base/openssl/crypto/asn1;$(SolutionDir)../../../source/app/base/base/openssl/crypto/evp;$(SolutionDir)../../../source/app/base/base/openssl/crypto/krb5;$(SolutionDir)../../../source/app/base/base/openssl/crypto/modes;$(SolutionDir)../../../source/app/base/base/openssl/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_APP_ACE_SHARED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAsManaged>false</CompileAsManaged>
       <ExceptionHandling>Async</ExceptionHandling>
@@ -218,7 +218,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-universal_windows\third\library\$(PlatformName)\$(Configuration);$(__archive)storage-universal_windows\library\$(PlatformName)\$(Configuration);$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(__operating_system)storage-universal_windows\third\library\$(PlatformName)\$(Configuration);$(__operating_system)storage-universal_windows\library\$(PlatformName)\$(Configuration);$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
       <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
@@ -227,7 +227,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <CompileAsWinRT>true</CompileAsWinRT>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(SolutionDir)../../platform-universal_windows/;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(SolutionDir)../../../source/app/base/base;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(__archive)third-universal_windows/include;$(__archive)third-universal_windows/third/include;$(SolutionDir)../../../;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(SolutionDir)../../../source/app/base3/openssl;$(SolutionDir)../../../source/app/base/openssl/crypto2;$(SolutionDir)../../../source/app/base/openssl/ssl2;$(SolutionDir)../../../source/app/base/base/openssl/crypto/asn1;$(SolutionDir)../../../source/app/base/base/openssl/crypto/evp;$(SolutionDir)../../../source/app/base/base/openssl/crypto/krb5;$(SolutionDir)../../../source/app/base/base/openssl/crypto/modes;$(SolutionDir)../../../source/app/base/base/openssl/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__operating_system)local/include;$(SolutionDir)../../operating-system-universal_windows/;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(SolutionDir)../../../source/app/base/base;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(__operating_system)third-universal_windows/include;$(__operating_system)third-universal_windows/third/include;$(SolutionDir)../../../;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(SolutionDir)../../../source/app/base3/openssl;$(SolutionDir)../../../source/app/base/openssl/crypto2;$(SolutionDir)../../../source/app/base/openssl/ssl2;$(SolutionDir)../../../source/app/base/base/openssl/crypto/asn1;$(SolutionDir)../../../source/app/base/base/openssl/crypto/evp;$(SolutionDir)../../../source/app/base/base/openssl/crypto/krb5;$(SolutionDir)../../../source/app/base/base/openssl/crypto/modes;$(SolutionDir)../../../source/app/base/base/openssl/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_APP_ACE_SHARED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAsManaged>false</CompileAsManaged>
       <ExceptionHandling>Async</ExceptionHandling>
@@ -240,7 +240,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-universal_windows\third\library\$(PlatformName)\$(Configuration);$(__archive)storage-universal_windows\library\$(PlatformName)\$(Configuration);$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(__operating_system)storage-universal_windows\third\library\$(PlatformName)\$(Configuration);$(__operating_system)storage-universal_windows\library\$(PlatformName)\$(Configuration);$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
       <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
@@ -249,7 +249,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <CompileAsWinRT>true</CompileAsWinRT>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(SolutionDir)../../platform-universal_windows/;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(SolutionDir)../../../source/app/base/base;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(__archive)third-universal_windows/include;$(__archive)third-universal_windows/third/include;$(SolutionDir)../../../;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(SolutionDir)../../../source/app/base3/openssl;$(SolutionDir)../../../source/app/base/openssl/crypto2;$(SolutionDir)../../../source/app/base/openssl/ssl2;$(SolutionDir)../../../source/app/base/base/openssl/crypto/asn1;$(SolutionDir)../../../source/app/base/base/openssl/crypto/evp;$(SolutionDir)../../../source/app/base/base/openssl/crypto/krb5;$(SolutionDir)../../../source/app/base/base/openssl/crypto/modes;$(SolutionDir)../../../source/app/base/base/openssl/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__operating_system)local/include;$(SolutionDir)../../operating-system-universal_windows/;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(SolutionDir)../../../source/app/base/base;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(__operating_system)third-universal_windows/include;$(__operating_system)third-universal_windows/third/include;$(SolutionDir)../../../;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(SolutionDir)../../../source/app/base3/openssl;$(SolutionDir)../../../source/app/base/openssl/crypto2;$(SolutionDir)../../../source/app/base/openssl/ssl2;$(SolutionDir)../../../source/app/base/base/openssl/crypto/asn1;$(SolutionDir)../../../source/app/base/base/openssl/crypto/evp;$(SolutionDir)../../../source/app/base/base/openssl/crypto/krb5;$(SolutionDir)../../../source/app/base/base/openssl/crypto/modes;$(SolutionDir)../../../source/app/base/base/openssl/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_APP_ACE_SHARED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAsManaged>false</CompileAsManaged>
       <ExceptionHandling>Async</ExceptionHandling>
@@ -260,7 +260,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-universal_windows\third\library\$(PlatformName)\$(Configuration);$(__archive)storage-universal_windows\library\$(PlatformName)\$(Configuration);$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(__operating_system)storage-universal_windows\third\library\$(PlatformName)\$(Configuration);$(__operating_system)storage-universal_windows\library\$(PlatformName)\$(Configuration);$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>w_$(TargetName).def</ModuleDefinitionFile>
       <ProgramDatabaseFile>$(TimeDir)$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
     </Link>

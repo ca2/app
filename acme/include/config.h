@@ -39,7 +39,7 @@
 //#define BSD_STYLE_SOCKETS
 
 
-#define PLATFORM_NAME   "universal_windows"
+#define OPERATING_SYSTEM_NAME   "universal_windows"
 
 // #ifdef _DEBUG
 // #define DEBUG

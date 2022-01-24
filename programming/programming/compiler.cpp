@@ -111,7 +111,7 @@ namespace programming
 #elif defined(_DEBUG)
 
       m_strDynamicSourceConfiguration = "basis";
-      m_strDynamicSourceStage = "time-" PLATFORM_NAME;
+      m_strDynamicSourceStage = "time-" OPERATING_SYSTEM_NAME;
 
 #else
 
@@ -209,7 +209,7 @@ namespace programming
 
 #endif
 
-      m_strTime = m_pcontext->m_papexcontext->dir().install() / ("time-" PLATFORM_NAME);
+      m_strTime = m_pcontext->m_papexcontext->dir().install() / ("time-" OPERATING_SYSTEM_NAME);
 
 #ifdef WINDOWS_DESKTOP
 
@@ -402,7 +402,7 @@ namespace programming
       //   if (!::str::ends(strFolder, "/") && !::str::ends(strFolder, "\\"))
       //      strFolder += "/";
       //   string strTemplate;
-      //   string strSource = "platform/time-" PLATFORM_NAME"/dynamic_source/";
+      //   string strSource = "platform/time-" OPERATING_SYSTEM_NAME"/dynamic_source/";
       //   strSource += lpcszSource;
       //
       ::file::path pathN = m_pathProjectDir;
@@ -415,7 +415,7 @@ namespace programming
       //   //#ifdef _DEBUG
       //   strTemplate = strFolder / strSource;
       //   //#else
-      //   // strTemplate = strFolder, "app/time-" PLATFORM_NAME"/aura/account/app/main/matter/dynamic_source_cl.bat", false);
+      //   // strTemplate = strFolder, "app/time-" OPERATING_SYSTEM_NAME"/aura/account/app/main/matter/dynamic_source_cl.bat", false);
       //   //#endif
       //   string str;
       //   str = m_pcontext->m_papexcontext->file().as_string(strTemplate);
@@ -438,7 +438,7 @@ namespace programming
       //   //#ifdef _DEBUG
       //   strCmd = strFolder / strDest;
       //   //#else
-      //   // strCmd = strFolder, "app\\time-" PLATFORM_NAME"\\aura\\account\\app\\main\\front\\dynamic_source_cl.bat", false);
+      //   // strCmd = strFolder, "app\\time-" OPERATING_SYSTEM_NAME"\\aura\\account\\app\\main\\front\\dynamic_source_cl.bat", false);
       //   //#endif
       //   m_pcontext->m_papexcontext->dir().create(strCmd.folder());
       //   //m_pcontext->m_papexcontext->file().put_text_utf8(strCmd, str);
@@ -588,7 +588,7 @@ namespace programming
       if (!::str::ends(strFolder, "/") && !::str::ends(strFolder, "\\"))
          strFolder += "/";
       string strTemplate;
-      string strSource = "archive/platform-" PLATFORM_NAME "/_stage/dynamic_source/";
+      string strSource = "operating-system/operating-system-" OPERATING_SYSTEM_NAME "/_stage/dynamic_source/";
       strSource += lpcszSource;
 
       //   string strN = m_pmanager->m_strNetnodePath;

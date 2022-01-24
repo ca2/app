@@ -6,7 +6,7 @@
 
 
 //#ifdef __cplusplus
-//#include "platform-windows_common/windows_commoncomptr.h"
+//#include "operating-system-windows_common/windows_commoncomptr.h"
 //#endif
 
 

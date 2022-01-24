@@ -1,0 +1,6 @@
+app/draw2d_cairo
+app/gpu_opengl
+operating-system-linux/node_linux
+operating-system-posix/windowing_x11
+operating-system-posix/write_text_pango
+app/crypto_openssl

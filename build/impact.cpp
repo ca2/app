@@ -172,7 +172,7 @@ namespace app_core_build
 //
 //      //process->prop("inherit") = false;
 //
-//      string strCompiler = "msbuild \"C:/basis/archive/platform-windows/_seed/basic.sln\" -p:Configuration=basis;Platform=x64";
+//      string strCompiler = "msbuild \"C:/basis/operating-system/operating-system-windows/_seed/basic.sln\" -p:Configuration=basis;Platform=x64";
 //
 //      m_straLine.add(strCompiler);
 //

@@ -1,6 +1,0 @@
-platform-windows/draw2d_gdiplus
-app/gpu_opengl
-platform-windows/node_windows
-platform-windows/windowing_win32
-platform-windows/write_text_win32
-app/crypto_openssl

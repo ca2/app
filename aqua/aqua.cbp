@@ -19,8 +19,8 @@
 					<Add option="-m64" />
 					<Add option="-g" />
 					<Add option="-D_DEBUG" />
-					<Add directory="$(WORKSPACE_DIR)/../../../archive/platform-linux" />
-					<Add directory="$(WORKSPACE_DIR)/../../../archive/platform-linux/_include" />
+					<Add directory="$(WORKSPACE_DIR)/../../../operating-system/operating-system-linux" />
+					<Add directory="$(WORKSPACE_DIR)/../../../operating-system/operating-system-linux/_include" />
 					<Add directory="$(#archive)/third-linux/third/include" />
 				</Compiler>
 				<Linker>
@@ -47,7 +47,7 @@
 					<Add option="-m64" />
 					<Add option="-g" />
 					<Add option="-O0" />
-					<Add directory="$(WORKSPACE_DIR)/../../../archive/platform-linux" />
+					<Add directory="$(WORKSPACE_DIR)/../../../operating-system/operating-system-linux" />
 				</Compiler>
 				<Linker>
 					<Add option="-pg" />
@@ -94,7 +94,7 @@
 					<Add option="-g" />
 					<Add option="-D_DEBUG" />
 					<Add option="-DMEMDLEAK" />
-					<Add directory="$(WORKSPACE_DIR)/../../../archive/platform-linux" />
+					<Add directory="$(WORKSPACE_DIR)/../../../operating-system/operating-system-linux" />
 				</Compiler>
 				<Linker>
 					<Add directory="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
@@ -112,8 +112,8 @@
 					<Add option="-pg" />
 					<Add option="-g" />
 					<Add option="-D_DEBUG" />
-					<Add directory="$(WORKSPACE_DIR)/../../../archive/platform-raspbian" />
-					<Add directory="$(WORKSPACE_DIR)/../../../archive/platform-raspbian/_include" />
+					<Add directory="$(WORKSPACE_DIR)/../../../operating-system/operating-system-raspbian" />
+					<Add directory="$(WORKSPACE_DIR)/../../../operating-system/operating-system-raspbian/_include" />
 					<Add directory="$(#archive)/third-raspbian/third/include" />
 				</Compiler>
 				<Linker>
@@ -158,7 +158,7 @@
 					<Add option="-fsanitize-recover=address" />
 					<Add option="-fsanitize=undefined" />
 					<Add option="-D_DEBUG" />
-					<Add directory="$(WORKSPACE_DIR)/../../../archive/platform-linux" />
+					<Add directory="$(WORKSPACE_DIR)/../../../operating-system/operating-system-linux" />
 				</Compiler>
 				<Linker>
 					<Add option="-Wl,-rpath=\\$$$ORIGIN" />
@@ -218,8 +218,8 @@
 			<Add directory="$(WORKSPACE_DIR)/../../../source/include" />
 			<Add directory="$(WORKSPACE_DIR)/../../../source/app/_include" />
 			<Add directory="$(WORKSPACE_DIR)/../../../source/app/" />
-			<Add directory="$(WORKSPACE_DIR)/../../../archive/platform-$(#platform_modifier)" />
-			<Add directory="$(WORKSPACE_DIR)/../../../archive/platform-$(#platform_modifier)/_include" />
+			<Add directory="$(WORKSPACE_DIR)/../../../operating-system/operating-system-$(#platform_modifier)" />
+			<Add directory="$(WORKSPACE_DIR)/../../../operating-system/operating-system-$(#platform_modifier)/_include" />
 			<Add directory="$(#archive)/third-$(#platform_modifier)/third/include" />
 			<Add directory="$(#sensitive)/sensitive/include" />
 			<Add directory="$(#archive)/third-linux/third/include" />

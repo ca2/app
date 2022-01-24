@@ -26,7 +26,7 @@
     <ClCompile Include="__winpr.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\archive\platform-windows-common\cross\ansi\__dirent.c">
+    <ClCompile Include="..\..\..\..\operating-system\operating-system-windows-common\cross\ansi\__dirent.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="__openssl0-98.c">

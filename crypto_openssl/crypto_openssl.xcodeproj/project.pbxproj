@@ -53,7 +53,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9A2199932761000D001E14CC /* libcrypto.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.3.dylib; path = "../../../archive/storage-macos/library/libcrypto.3.dylib"; sourceTree = "<group>"; };
+		9A2199932761000D001E14CC /* libcrypto.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.3.dylib; path = "../../../operating-system/storage-macos/library/libcrypto.3.dylib"; sourceTree = "<group>"; };
 		9A81FBDD27516603003F38EC /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A81FBE127518CAF003F38EC /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A81FBEA27518CE5003F38EC /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
@@ -192,7 +192,7 @@
 				9A81FBE827518CE5003F38EC /* x86_64 */,
 			);
 			name = library;
-			path = "../../../archive/storage-macos/library";
+			path = "../../../operating-system/storage-macos/library";
 			sourceTree = "<group>";
 		};
 		9A81FBE527518CE5003F38EC /* arm64 */ = {
@@ -357,7 +357,7 @@
 				9A81FC4C27518D10003F38EC /* libcrypto.3.dylib */,
 			);
 			name = Debug;
-			path = "../../../archive/storage-macos/library/x86_64/Debug";
+			path = "../../../operating-system/storage-macos/library/x86_64/Debug";
 			sourceTree = "<group>";
 		};
 		9AC0192B2748A002006BEBCC = {
@@ -627,8 +627,8 @@
 					"$(WorkspaceDir)/source/app",
 					"$(WorkspaceDir)/source/app/_include",
 					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)",
-					"$(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/_include",
+					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)",
+					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/_include",
 					"$(WorkspaceDir)/source/third/include",
 					"$(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include/include",
 					"$(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include",
@@ -718,8 +718,8 @@
 					"$(WorkspaceDir)/source/app",
 					"$(WorkspaceDir)/source/app/_include",
 					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)",
-					"$(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/_include",
+					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)",
+					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/_include",
 					"$(WorkspaceDir)/source/third/include",
 					"$(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include/include",
 					"$(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include",

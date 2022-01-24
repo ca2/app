@@ -3786,7 +3786,7 @@ void graphics::draw_text(const ::string & strParam, const ::rectangle_f64 & rect
 }
 
 
-bool graphics::internal_draw_text(const ::block & block, const ::rectangle_f64 & rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext, PFN_CAIRO_TEXT ftext)
+void graphics::internal_draw_text(const ::block & block, const ::rectangle_f64 & rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext, PFN_CAIRO_TEXT ftext)
 {
 
     string str((const char *) block.get_data(), block.get_size());
@@ -3796,7 +3796,7 @@ bool graphics::internal_draw_text(const ::block & block, const ::rectangle_f64 &
     if (str.is_empty())
     {
 
-        return false;
+       throw_status(error_invalid_empty_argument);
 
     }
 
@@ -3805,14 +3805,14 @@ bool graphics::internal_draw_text(const ::block & block, const ::rectangle_f64 &
     if (m_pfont.is_null())
     {
 
-        return false;
+       throw_status(error_null_pointer);
 
     }
 
     if (m_pfont->m_dFontWidth <= 0.0)
     {
 
-        return false;
+       throw_status(error_wrong_state);
 
     }
 
@@ -3942,7 +3942,7 @@ bool graphics::internal_draw_text(const ::block & block, const ::rectangle_f64 &
 
     _fill2();
 
-    return 1;
+    //return 1;
 
 }
 

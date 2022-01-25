@@ -147,13 +147,13 @@ namespace str
 
    void CLASS_DECL_ACME copy(string & str, const char * pcsz, i32 iCount);
 
-   string CLASS_DECL_ACME replace(const char * pszFind, const char * pszReplace, const char * psz, strsize iStart = 0);
-   string CLASS_DECL_ACME replace_ci(const char * pszFind, const char * pszReplace, const char * psz, strsize iStart = 0);
-   ::count CLASS_DECL_ACME replace_ci_count(const char * pszFind, const char * pszReplace, const char * psz, strsize iStart = 0);
-   ::count CLASS_DECL_ACME utf8_replace(string & str, const char * pszFind, const char * pszReplace, strsize iStart = 0);
-   string CLASS_DECL_ACME utf8_replace(const char * pszFind, const char * pszReplace, const char * psz, strsize iStart = 0);
+   string CLASS_DECL_ACME replace_with(const char * pszNew, const char * pszOld, const char * psz, strsize iStart = 0);
+   string CLASS_DECL_ACME replace_with_ci(const char * pszNew, const char * pszOld, const char * psz, strsize iStart = 0);
+   ::count CLASS_DECL_ACME replace_with_ci_count(const char * pszNew, const char * pszOld, const char * psz, strsize iStart = 0);
+   ::count CLASS_DECL_ACME utf8_replace_with(string & str, const char * pszNew, const char * pszOld, strsize iStart = 0);
+   string CLASS_DECL_ACME utf8_replace_with(const char * pszNew, const char * pszOld, const char * psz, strsize iStart = 0);
 
-   string CLASS_DECL_ACME random_replace(::matter * pobject, const string_array & straReplacement, const string_array & straSearch, const char * psz);
+   string CLASS_DECL_ACME random_replace(::matter * pobject, const string_array & straNew, const string_array & straOld, const char * psz);
 
    strsize CLASS_DECL_ACME find_first(const string_array & straSearch, index & iFound, const ::string & str, index iStart = 0);
 

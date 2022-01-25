@@ -19,6 +19,7 @@ namespace user
       m_estockicon = e_stock_icon_none;
       m_estyle = style_none;
       m_iClick = 0;
+      m_ealignText = e_align_center;
 
       m_flagNonClient -= non_client_background;
       m_flagNonClient -= non_client_focus_rect;
@@ -528,7 +529,7 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      ::e_align ealign = (enum_align)get_int(pstyle, ::user::e_int_edit_text_align, ::user::e_state_none, e_align_left_center);
+      ::e_align ealign = (enum_align)get_int(pstyle, ::user::e_int_edit_text_align, ::user::e_state_none, m_ealignText);
 
       ::e_draw_text edrawtext = (enum_draw_text)get_int(pstyle, ::user::e_int_edit_draw_text_flags, ::user::e_state_none, e_draw_text_single_line);
 

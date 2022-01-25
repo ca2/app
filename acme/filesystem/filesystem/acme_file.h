@@ -98,7 +98,7 @@ public:
 
    virtual void move(const char * pszNewName, const char * pszOldName);
 
-   virtual void delete_file(const char * pszFileName);
+   virtual void erase(const char * pszFileName);
 
    //virtual bool set_line(const char * pszPath, index iLine, const char * pszLine);
 
@@ -153,7 +153,7 @@ public:
 
 
    virtual bool _exists(const char * path);
-   virtual void _delete(const char * path);
+   virtual void _erase(const char * path);
 
 
 };

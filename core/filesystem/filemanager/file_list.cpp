@@ -2158,7 +2158,7 @@ namespace filemanager
 
                ::file::path pathFolder = filemanager_item()->get_user_path();
 
-               pcontext->m_papexcontext->file().replace(pathFolder, psubject->payload(id_find), psubject->payload(id_replace));
+               pcontext->m_papexcontext->file().replace_with(pathFolder, psubject->payload(id_replace), psubject->payload(id_find));
 
             }
 

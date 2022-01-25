@@ -176,9 +176,12 @@ namespace http
 
       string strFile(strUrl);
 
-      strFile.replace(":", "_");
-      strFile.replace("//", "/");
-      strFile.replace("?", "%19");
+      strFile.replace_with("_", ":");
+
+      strFile.replace_with("/", "//");
+
+      strFile.replace_with("%19", "?");
+
       strFile = m_pcontext->m_papexcontext->dir().cache() / strFile + ".meta_information";
 
       string strCache;
@@ -328,9 +331,12 @@ namespace http
 
       string strFile(strUrl);
 
-      strFile.replace(":", "_");
-      strFile.replace("//", "/");
-      strFile.replace("?", "%19");
+      strFile.replace_with("_", ":");
+      
+      strFile.replace_with("/", "//");
+      
+      strFile.replace_with("%19", "?");
+
       strFile = m_pcontext->m_papexcontext->dir().cache() / strFile + ".length_question";
 
       bool bNoCache = set["nocache"].get_bool();
@@ -1156,9 +1162,9 @@ namespace http
 
          string strScript = purl->url_encode(purl->url_decode(purl->get_script(strUrl)));
 
-         strScript.replace("+", "%20");
+         strScript.replace_with("%20", "+");
 
-         strScript.replace("%2F", "/");
+         strScript.replace_with("/", "%2F");
 
          strUrl = purl->set_script(strUrl, strScript);
 
@@ -1338,9 +1344,9 @@ namespace http
 
             string strScript = purl->url_encode(purl->url_decode(purl->get_script(strUrl)));
 
-            strScript.replace("+", "%20");
+            strScript.replace_with("%20", "+");
 
-            strScript.replace("%2F", "/");
+            strScript.replace_with("/", "%2F");
 
             strUrl = purl->set_script(strUrl, strScript);
 
@@ -1359,9 +1365,13 @@ namespace http
          strRequest = purl->get_object(strUrl);
 
          psession->inheaders().clear();
+
          psession->outheaders().clear();
+
          psession->inattrs().clear();
+
          psession->outattrs().clear();
+
          psession->m_memoryfile.set_size(0);
 
          psession->inheaders() = set["headers"].propset();
@@ -1921,9 +1931,9 @@ namespace http
 
             string strScript = purl->url_encode(purl->url_decode(purl->get_script(strUrl)));
 
-            strScript.replace("+", "%20");
+            strScript.replace_with("%20", "+");
 
-            strScript.replace("%2F", "/");
+            strScript.replace_with("/", "%2F");
 
             strUrl = purl->set_script(strUrl, strScript);
 

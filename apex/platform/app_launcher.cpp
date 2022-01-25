@@ -59,9 +59,9 @@ namespace apex
 
       string strExe = m_strApp;
 
-      strExe.replace("-", "_");
+      strExe.replace_with("_", "-");
 
-      strExe.replace("/", "_");
+      strExe.replace_with("_", "/");
 
 #ifdef WINDOWS
 

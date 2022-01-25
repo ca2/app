@@ -384,7 +384,7 @@ namespace geo
 
       strTry = strQueryLo;
 
-      strTry.replace("'", "");
+      strTry.replace_with("", "'");
 
       if (bPrefix)
       {
@@ -440,24 +440,24 @@ namespace geo
 
       strTry = strQueryLo;
 
-      strTry.replace("st.", "saint");
-      strTry.replace(unitext("são"), "sao");
-      strTry.replace(unitext("ž"), "z");
-      strTry.replace(unitext("á"), "a");
-      strTry.replace(unitext("à"), "a");
-      strTry.replace(unitext("ä"), "a");
-      strTry.replace(unitext("é"), "e");
-      strTry.replace(unitext("è"), "e");
-      strTry.replace(unitext("ë"), "e");
-      strTry.replace(unitext("í"), "i");
-      strTry.replace(unitext("ì"), "i");
-      strTry.replace(unitext("ï"), "i");
-      strTry.replace(unitext("ó"), "o");
-      strTry.replace(unitext("ò"), "o");
-      strTry.replace(unitext("ö"), "o");
-      strTry.replace(unitext("ú"), "u");
-      strTry.replace(unitext("ù"), "u");
-      strTry.replace(unitext("ü"), "u");
+      strTry.replace_with("saint", "st.");
+      strTry.replace_with("sao", unitext("são"));
+      strTry.replace_with("z", unitext("ž"));
+      strTry.replace_with("a", unitext("á"));
+      strTry.replace_with("a", unitext("à"));
+      strTry.replace_with("a", unitext("ä"));
+      strTry.replace_with("e", unitext("é"));
+      strTry.replace_with("e", unitext("è"));
+      strTry.replace_with("e", unitext("ë"));
+      strTry.replace_with("i", unitext("í"));
+      strTry.replace_with("i", unitext("ì"));
+      strTry.replace_with("i", unitext("ï"));
+      strTry.replace_with("o", unitext("ó"));
+      strTry.replace_with("o", unitext("ò"));
+      strTry.replace_with("o", unitext("ö"));
+      strTry.replace_with("u", unitext("ú"));
+      strTry.replace_with("u", unitext("ù"));
+      strTry.replace_with("u", unitext("ü"));
 
       if (bPrefix)
       {

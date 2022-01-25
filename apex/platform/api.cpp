@@ -242,10 +242,10 @@ void api::on_login_authentication_failed()
       string str = pbase64->encode(m);
 
       // Converts base64 to base64url.
-      str.replace("+", "-");
-      str.replace("/", "_");
+      str.replace_with("-", "+");
+      str.replace_with("_", "/");
       // Strips padding.
-      str.replace("=", "");
+      str.replace_with("", "=");
 
       return str;
 

@@ -493,25 +493,25 @@ if (WIN32)
       #node/windows/windows_desktop.cpp
       #node/windows_common/application.cpp
       #os/windows/-ehrror.cpp
-      os/windows/_.h
-      os/windows/_c.h
-      os/windows/_user.h
-      os/windows/_windows.h
-      os/windows/_windows_impl.h
+#      os/windows/_.h
+#      os/windows/_c.h
+#      os/windows/_user.h
+#      os/windows/_windows.h
+#      os/windows/_windows_impl.h
       #os/windows/application.cpp
-      os/windows/aura.cpp
+#      os/windows/aura.cpp
       #os/windows/d2d1_1.h
-      os/windows/dpi.cpp
-      os/windows/gdi.cpp
+#      os/windows/dpi.cpp
+#      os/windows/gdi.cpp
       #os/windows/gdi_icon.cpp
-      os/windows/gdiplus.h
-      os/windows/graphics.cpp
-      os/windows/graphics.h
+#      os/windows/gdiplus.h
+#      os/windows/graphics.cpp
+#      os/windows/graphics.h
       #os/windows/imm_client.cpp
       #os/windows/imm_client.h
       #os/windows/imm_context.cpp
       #os/windows/imm_context.h
-      os/windows/implementation.h
+#      os/windows/implementation.h
       #os/windows/interaction_debug.cpp
       #os/windows/internal.cpp
       #os/windows/internal.h
@@ -522,9 +522,9 @@ if (WIN32)
       #os/windows/launcher.cpp
       #os/windows/library.cpp
       #os/windows/lock.cpp
-      os/windows/main.cpp
+#      os/windows/main.cpp
       #os/windows/message_loop.cpp
-      os/windows/monitor.cpp
+#      os/windows/monitor.cpp
       #os/windows/opengl_buffer.h
       #os/windows/port_forward.h
       #os/windows/print_job.h
@@ -533,22 +533,22 @@ if (WIN32)
       #os/windows/top_level_enum.h
       #os/windows/window_opengl.cpp
       #os/windows/window_opengl.h
-      os/windows/windowing.cpp
-      os/windows/windowing.h
-      os/windows_common/_.h
-      os/windows_common/_c.h
-      os/windows_common/_default_dll_impl.h
-      os/windows_common/_file_c.h
-      os/windows_common/_unicode_c.h
-      os/windows_common/bstring.h
-      os/windows_common/cotaskptr.h
+#      os/windows/windowing.cpp
+#      os/windows/windowing.h
+#      os/windows_common/_.h
+#      os/windows_common/_c.h
+#      os/windows_common/_default_dll_impl.h
+#      os/windows_common/_file_c.h
+#      os/windows_common/_unicode_c.h
+#      os/windows_common/bstring.h
+#      os/windows_common/cotaskptr.h
       #os/windows_common/draw2d_direct2d_global.cpp
       #os/windows_common/draw2d_direct2d_global.h
-      os/windows_common/file.h
-      os/windows_common/graphics.h
-      os/windows_common/multithreading.h
-      os/windows_common/new_api.h
-      os/windows_common/variant.h
+#      os/windows_common/file.h
+#      os/windows_common/graphics.h
+#      os/windows_common/multithreading.h
+#      os/windows_common/new_api.h
+#      os/windows_common/variant.h
       )
 
 else ()

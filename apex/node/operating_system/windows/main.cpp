@@ -113,9 +113,9 @@ bool application::os_on_start_application()
 
       strLinkTitle = m_strAppName;
 
-      strLinkTitle.replace("/", "_");
-      strLinkTitle.replace("\\", "_");
-      strLinkTitle.replace("-", "_");
+      strLinkTitle.replace_with("_", "/");
+      strLinkTitle.replace_with("_", "\\");
+      strLinkTitle.replace_with("_", "-");
 
       pathLnk = m_psystem->m_pacmedir->localconfig() / "desk/monitor-0/2desk" / strLinkTitle + ".lnk";
 

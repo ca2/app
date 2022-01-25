@@ -515,7 +515,7 @@ namespace introjection
 //      ::file::path pathN = m_pathProjectDir;
 //      pathN -= 3;
 //      string strN = pathN;
-//      strN.replace("\\", "/");
+//      strN.find_replace("\\", "/");
 //      strN += "/";
 //
 //
@@ -529,17 +529,17 @@ namespace introjection
 //      /*string strVars = getenv("VS100COMNTOOLS");
 //      pcontext->m_papexcontext->file().path().eat_end_level(strVars, 2, "/");
 //      strVars += "vc/bin/vcvars32.bat";*/
-//      str.replace("%VS_VARS%",m_strEnv);
-//      str.replace("%VS_VARS_PLAT2%",m_strPlat2);
+//      str.find_replace("%VS_VARS%",m_strEnv);
+//      str.find_replace("%VS_VARS_PLAT2%",m_strPlat2);
 //
 //      string strV(pcontext->m_papexcontext->dir().install());
-//      strV.replace("\\","/");
+//      strV.find_replace("\\","/");
 //      if(!::str::ends(strV,"/") && !::str::ends(strV,"\\"))
 //         strV += "/";
-//      str.replace("%CA2_ROOT%",strV);
-//      str.replace("%PROJECT_DIR%", m_pathProjectDir);
-//      str.replace("%NETNODE_ROOT%",strN);
-//      str.replace("%SDK1%",m_strSdk1);
+//      str.find_replace("%CA2_ROOT%",strV);
+//      str.find_replace("%PROJECT_DIR%", m_pathProjectDir);
+//      str.find_replace("%NETNODE_ROOT%",strN);
+//      str.find_replace("%SDK1%",m_strSdk1);
 //      string strDest = m_strDynamicSourceStage / "front" / lpcszDest;
 //      ::file::path strCmd;
 //      //#ifdef _DEBUG
@@ -617,7 +617,7 @@ namespace introjection
 
 #ifdef WINDOWS
 
-      strName.replace("/","\\");
+      strName.find_replace("/","\\");
 
 #endif
 
@@ -638,7 +638,7 @@ namespace introjection
       if(pcontext->m_papexcontext->file().exists(strName))
       {
 
-         strTransformName.replace(":","");
+         strTransformName.find_replace(":","");
 
          ::str::ends_eat_ci(strTransformName,".cpp");
 
@@ -681,13 +681,13 @@ namespace introjection
       {
 
          string str2 = pcontext->m_papexcontext->file().as_string(strLfl+".LinkFileList");
-         str2.replace("%TARGET_PATH%", strTargetPath);
-         str2.replace("%DSYM_PATH%", strDsymPath);
-         str2.replace("%DERIVED_DATA%", strDdPath);
-         str2.replace("%FRAMEWORK%", strFramework);
-         str2.replace("%BUILD_FOLDER%", strBuildFolderPath);
-         str2.replace("%SRC_FOLDER%", strSrcFolder);
-         str2.replace("%SRC_NAME%", strSrcName);
+         str2.find_replace("%TARGET_PATH%", strTargetPath);
+         str2.find_replace("%DSYM_PATH%", strDsymPath);
+         str2.find_replace("%DERIVED_DATA%", strDdPath);
+         str2.find_replace("%FRAMEWORK%", strFramework);
+         str2.find_replace("%BUILD_FOLDER%", strBuildFolderPath);
+         str2.find_replace("%SRC_FOLDER%", strSrcFolder);
+         str2.find_replace("%SRC_NAME%", strSrcName);
          pcontext->m_papexcontext->file().put_text(strLfl + "2.LinkFileList", str2);
 
       }
@@ -708,7 +708,7 @@ pacmedir->create("/var/tmp/ca2/intermediate");
       strCmdCompile = strCmd + "-win-compile.bat";
       strCmdLink = strCmd + "-win-link.bat";
 
-      //strName.replace("/", "\\");
+      //strName.find_replace("/", "\\");
       //string strFolder;
       //strFolder = pcontext->m_papexcontext->dir().install();
       //::file::path strB;
@@ -730,8 +730,8 @@ pacmedir->create("/var/tmp/ca2/intermediate");
 
 
       /*string strScript(strName);
-      strScript.replace("\\", ",");
-      strScript.replace("/", ",");
+      strScript.find_replace("\\", ",");
+      strScript.find_replace("/", ",");
       strScript = "ca2" + m_pmanager->m_strNamespace + "_script." + strScript;*/
 
       ::file::path strSourceDir;
@@ -1023,7 +1023,7 @@ pacmedir->create("/var/tmp/ca2/intermediate");
 
       string strN = pathN;
 
-      strN.replace("\\", "/");
+      strN.find_replace("\\", "/");
 
       strN += "/";
 
@@ -1038,17 +1038,17 @@ pacmedir->create("/var/tmp/ca2/intermediate");
 #endif
 
       str = pcontext->m_papexcontext->file().as_string(strBuildCmd);
-      str.replace("%SOURCE%",::str::replace("\\","/",string(strName)));
-      str.replace("%ITEM_NAME%",::str::replace("\\","/",string(strTransformName)));
-      str.replace("%ITEM_TITLE%",strTransformName.name());
-      str.replace("%ITEM_DIR%",::str::replace("\\","/",string(strTransformName.folder())) + "/");
-      str.replace("%LIBS_LIBS%",m_strLibsLibs);
-      str.replace("%VS_VARS%",m_strEnv);
-      str.replace("%VS_VARS_PLAT2%",m_strPlat2);
+      str.find_replace("%SOURCE%",::str::find_replace("\\","/",string(strName)));
+      str.find_replace("%ITEM_NAME%",::str::find_replace("\\","/",string(strTransformName)));
+      str.find_replace("%ITEM_TITLE%",strTransformName.name());
+      str.find_replace("%ITEM_DIR%",::str::find_replace("\\","/",string(strTransformName.folder())) + "/");
+      str.find_replace("%LIBS_LIBS%",m_strLibsLibs);
+      str.find_replace("%VS_VARS%",m_strEnv);
+      str.find_replace("%VS_VARS_PLAT2%",m_strPlat2);
 
       string strElem = pcontext->m_papexcontext->dir().install();
 
-      strElem.replace("\\","/");
+      strElem.find_replace("\\","/");
 
       strElem += "/";
       string strHmhLctvWildPdbPath;
@@ -1063,22 +1063,22 @@ pacmedir->create("/var/tmp/ca2/intermediate");
       auto pacmedir = m_psystem->m_pacmedir;
 
       strHmhLctvWildPdbPath = ::file::path(pacmedir->system() / "netnodelite\\symbols") / strRndTitle;
-      strHmhLctvWildPdbPath.replace("\\","/");
+      strHmhLctvWildPdbPath.find_replace("\\","/");
       pcontext->m_papexcontext->dir().create(::file::path(strHmhLctvWildPdbPath).folder());
-      str.replace("%HMH_LCTVWILD_PDB_PATH%",strHmhLctvWildPdbPath);
+      str.find_replace("%HMH_LCTVWILD_PDB_PATH%",strHmhLctvWildPdbPath);
 
-      str.replace("%CA2_ROOT%",strElem);
-      str.replace("%PROJECT_DIR%", m_pathProjectDir);
-      str.replace("%CONFIGURATION_NAME%",m_strDynamicSourceConfiguration);
-      str.replace("%CONFIGURATION%",m_strDynamicSourceConfiguration);
-      str.replace("%PLATFORM%",m_strPlatform);
-      str.replace("%STAGEPLATFORM%",m_strStagePlatform);
+      str.find_replace("%CA2_ROOT%",strElem);
+      str.find_replace("%PROJECT_DIR%", m_pathProjectDir);
+      str.find_replace("%CONFIGURATION_NAME%",m_strDynamicSourceConfiguration);
+      str.find_replace("%CONFIGURATION%",m_strDynamicSourceConfiguration);
+      str.find_replace("%PLATFORM%",m_strPlatform);
+      str.find_replace("%STAGEPLATFORM%",m_strStagePlatform);
 
-      str.replace("%SDK1%",m_strSdk1);
+      str.find_replace("%SDK1%",m_strSdk1);
       string strT2 = plibrary->m_pathScript;
-      strT2.replace("\\",".");
-      strT2.replace("/",".");
-      strT2.replace(":","_");
+      strT2.find_replace("\\",".");
+      strT2.find_replace("/",".");
+      strT2.find_replace(":","_");
 
       ::file::path pathOutputFolder;
       
@@ -1109,7 +1109,7 @@ pacmedir->create("/var/tmp/ca2/intermediate");
 
       strTargetPath += "-"+strRndTitle;
 
-      str.replace("%TARGET_PATH%",strTargetPath);
+      str.find_replace("%TARGET_PATH%",strTargetPath);
 
       ::operating_system::process_pointer process(e_create, this);
 
@@ -1143,20 +1143,20 @@ pacmedir->create("/var/tmp/ca2/intermediate");
 
          ::chdir(strSrcFolder);
          strSrcFolder.trim();
-         strSrcFolder.replace(" ", "\\ ");
+         strSrcFolder.find_replace(" ", "\\ ");
          strBuildFolderPath.trim();
-         strBuildFolderPath.replace(" ", "\\ ");
+         strBuildFolderPath.find_replace(" ", "\\ ");
          strTargetPath.trim();
-         strTargetPath.replace(" ", "\\ ");
+         strTargetPath.find_replace(" ", "\\ ");
          string str2 = pcontext->m_papexcontext->file().as_string(strCmd);
-         str2.replace("%TARGET_PATH%", strTargetPath);
-         str2.replace("%DSYM_PATH%", strDsymPath);
-         str2.replace("%DERIVED_DATA%", strDdPath);
-         str2.replace("%FRAMEWORK%", strFramework);
-         str2.replace("%BUILD_FOLDER%", strBuildFolderPath);
-         str2.replace("%SRC_FOLDER%", strSrcFolder);
-         str2.replace("%SRC_NAME%", strSrcName);
-         str2.replace("%LOG_NAME%", strLogName);
+         str2.find_replace("%TARGET_PATH%", strTargetPath);
+         str2.find_replace("%DSYM_PATH%", strDsymPath);
+         str2.find_replace("%DERIVED_DATA%", strDdPath);
+         str2.find_replace("%FRAMEWORK%", strFramework);
+         str2.find_replace("%BUILD_FOLDER%", strBuildFolderPath);
+         str2.find_replace("%SRC_FOLDER%", strSrcFolder);
+         str2.find_replace("%SRC_NAME%", strSrcName);
+         str2.find_replace("%LOG_NAME%", strLogName);
          pcontext->m_papexcontext->file().put_text(strCmd + "2", str2);
 
          ::system(str2);
@@ -1238,7 +1238,7 @@ auto tickStart = ::duration::now();
             {
                plibrary->m_memfileError << "error: Timeout during compilation (If there are the compilation or link errors about the file \"" + plibrary->m_pathScript + "\" following this message, they may be out-of-date)";
             }
-            str.replace("\r\n","\n");
+            str.find_replace("\r\n","\n");
             plibrary->m_memfileError << str;
 
          }
@@ -1256,25 +1256,25 @@ auto tickStart = ::duration::now();
          str = pcontext->m_papexcontext->file().as_string(strBuildCmd);
 
 
-         str.replace("%ITEM_NAME%",::str::replace("\\","/",string(strTransformName)));
-         str.replace("%ITEM_TITLE%",strTransformName.name());
-         str.replace("%ITEM_DIR%",::str::replace("\\","/",string(strTransformName.folder())) + "/");
-         str.replace("%LIBS_LIBS%",m_strLibsLibs);
-         str.replace("%VS_VARS%",m_strEnv);
-         str.replace("%VS_VARS_PLAT2%",m_strPlat2);
-         str.replace("%HMH_LCTVWILD_PDB_PATH%",strHmhLctvWildPdbPath);
+         str.find_replace("%ITEM_NAME%",::str::find_replace("\\","/",string(strTransformName)));
+         str.find_replace("%ITEM_TITLE%",strTransformName.name());
+         str.find_replace("%ITEM_DIR%",::str::find_replace("\\","/",string(strTransformName.folder())) + "/");
+         str.find_replace("%LIBS_LIBS%",m_strLibsLibs);
+         str.find_replace("%VS_VARS%",m_strEnv);
+         str.find_replace("%VS_VARS_PLAT2%",m_strPlat2);
+         str.find_replace("%HMH_LCTVWILD_PDB_PATH%",strHmhLctvWildPdbPath);
 
-         str.replace("%CA2_ROOT%",strElem);
-         str.replace("%PROJECT_DIR%", m_pathProjectDir);
-         str.replace("%CONFIGURATION_NAME%",m_strDynamicSourceConfiguration);
-         str.replace("%CONFIGURATION%",m_strDynamicSourceConfiguration);
-         str.replace("%PLATFORM%",m_strPlatform);
-         str.replace("%STAGEPLATFORM%",m_strStagePlatform);
-         //      str.replace("%LIBPLATFORM%", m_strLibPlatform);
-         str.replace("%SDK1%",m_strSdk1);
+         str.find_replace("%CA2_ROOT%",strElem);
+         str.find_replace("%PROJECT_DIR%", m_pathProjectDir);
+         str.find_replace("%CONFIGURATION_NAME%",m_strDynamicSourceConfiguration);
+         str.find_replace("%CONFIGURATION%",m_strDynamicSourceConfiguration);
+         str.find_replace("%PLATFORM%",m_strPlatform);
+         str.find_replace("%STAGEPLATFORM%",m_strStagePlatform);
+         //      str.find_replace("%LIBPLATFORM%", m_strLibPlatform);
+         str.find_replace("%SDK1%",m_strSdk1);
          //string strTargetPath = lib->m_pathScript;
-         //strTargetPath.replace("\\",".");
-         //strTargetPath.replace("/",".");
+         //strTargetPath.find_replace("\\",".");
+         //strTargetPath.find_replace("/",".");
          //::str::ends_eat_ci(strTargetPath,".cpp");
          //#ifdef LINUX
          //         ::str::ends_eat_ci(strTargetPath,".so");
@@ -1282,7 +1282,7 @@ auto tickStart = ::duration::now();
          //         ::str::ends_eat_ci(strTargetPath,".dll");
          //#endif
          //         strTargetPath = pcontext->m_papexcontext->dir().install() /
-         str.replace("%TARGET_PATH%",strTargetPath);
+         str.find_replace("%TARGET_PATH%",strTargetPath);
 
          pcontext->m_papexcontext->file().put_text(strCmdLink, str);
          //strBuildCmd = lib->m_strBuildBat;
@@ -1290,7 +1290,7 @@ auto tickStart = ::duration::now();
 
          //pcontext->m_papexcontext->file().put_contents(strBuildCmd,str);
 
-         //str.replace("\\", "/");
+         //str.find_replace("\\", "/");
 
          bTimeout = false;
 
@@ -1315,21 +1315,21 @@ auto tickStart = ::duration::now();
          {
 
             string str2 = pcontext->m_papexcontext->file().as_string(strPreLinkScript);
-            str2.replace("%TARGET_PATH%", strTargetPath);
-            str2.replace("%DSYM_PATH%", strDsymPath);
-            str2.replace("%DERIVED_DATA%", strDdPath);
-            str2.replace("%FRAMEWORK%", strFramework);
-            str2.replace("%BUILD_FOLDER%", strBuildFolderPath);
-            str2.replace("%SRC_FOLDER%", strSrcFolder);
-            str2.replace("%SRC_NAME%", strSrcName);
-            str2.replace("%LOG_NAME%", strLogName);
+            str2.find_replace("%TARGET_PATH%", strTargetPath);
+            str2.find_replace("%DSYM_PATH%", strDsymPath);
+            str2.find_replace("%DERIVED_DATA%", strDdPath);
+            str2.find_replace("%FRAMEWORK%", strFramework);
+            str2.find_replace("%BUILD_FOLDER%", strBuildFolderPath);
+            str2.find_replace("%SRC_FOLDER%", strSrcFolder);
+            str2.find_replace("%SRC_NAME%", strSrcName);
+            str2.find_replace("%LOG_NAME%", strLogName);
             pcontext->m_papexcontext->file().put_text(strPreLinkScript + "2", str2);
 
             ::chmod(strPreLinkScript + "2", 0755);
 
             string strFileNameCmd = strPreLinkScript;
 
-            strFileNameCmd.replace(" ", "\\ ");
+            strFileNameCmd.find_replace(" ", "\\ ");
 
             ::system(strFileNameCmd + "2 &> " + strFileNameCmd + ".txt");
 
@@ -1338,14 +1338,14 @@ auto tickStart = ::duration::now();
          {
 
             string str2 = pcontext->m_papexcontext->file().as_string(strLCmd);
-            str2.replace("%TARGET_PATH%", strTargetPath);
-            str2.replace("%DSYM_PATH%", strDsymPath);
-            str2.replace("%DERIVED_DATA%", strDdPath);
-            str2.replace("%FRAMEWORK%", strFramework);
-            str2.replace("%BUILD_FOLDER%", strBuildFolderPath);
-            str2.replace("%SRC_FOLDER%", strSrcFolder);
-            str2.replace("%SRC_NAME%", strSrcName);
-            str2.replace("%LOG_NAME%", strLogName);
+            str2.find_replace("%TARGET_PATH%", strTargetPath);
+            str2.find_replace("%DSYM_PATH%", strDsymPath);
+            str2.find_replace("%DERIVED_DATA%", strDdPath);
+            str2.find_replace("%FRAMEWORK%", strFramework);
+            str2.find_replace("%BUILD_FOLDER%", strBuildFolderPath);
+            str2.find_replace("%SRC_FOLDER%", strSrcFolder);
+            str2.find_replace("%SRC_NAME%", strSrcName);
+            str2.find_replace("%LOG_NAME%", strLogName);
             pcontext->m_papexcontext->file().put_text(strLCmd + "2", str2);
             //::system(strLCmd + "2");
             ::system(str2);
@@ -1353,14 +1353,14 @@ auto tickStart = ::duration::now();
             if(!::str::begins_ci(pcontext->m_papexcontext->dir().module(), "/Applications/"))
             {
                string str2 = pcontext->m_papexcontext->file().as_string(strDCmd);
-               str2.replace("%TARGET_PATH%", strTargetPath);
-               str2.replace("%DSYM_PATH%", strDsymPath);
-               str2.replace("%DERIVED_DATA%", strDdPath);
-               str2.replace("%FRAMEWORK%", strFramework);
-               str2.replace("%BUILD_FOLDER%", strBuildFolderPath);
-               str2.replace("%SRC_FOLDER%", strSrcFolder);
-               str2.replace("%SRC_NAME%", strSrcName);
-               str2.replace("%LOG_NAME%", strLogName);
+               str2.find_replace("%TARGET_PATH%", strTargetPath);
+               str2.find_replace("%DSYM_PATH%", strDsymPath);
+               str2.find_replace("%DERIVED_DATA%", strDdPath);
+               str2.find_replace("%FRAMEWORK%", strFramework);
+               str2.find_replace("%BUILD_FOLDER%", strBuildFolderPath);
+               str2.find_replace("%SRC_FOLDER%", strSrcFolder);
+               str2.find_replace("%SRC_NAME%", strSrcName);
+               str2.find_replace("%LOG_NAME%", strLogName);
                pcontext->m_papexcontext->file().put_text(strDCmd + "2", str2);
                //              ::system(strDCmd + "2");
                ::system(str2);
@@ -1427,7 +1427,7 @@ auto tickStart = ::duration::now();
 #endif
 
                plibrary->m_memfileError << "Linking...\n";
-               str.replace("\r\n","\n");
+               str.find_replace("\r\n","\n");
                plibrary->m_memfileError << str;
                plibrary->m_memfileError << "</pre>";
 
@@ -1461,7 +1461,7 @@ auto tickStart = ::duration::now();
 
 #endif
 
-      strTargetPath.replace("\\ ", " ");
+      strTargetPath.find_replace("\\ ", " ");
 
       plibrary->m_plibrary->open(strTargetPath);
 

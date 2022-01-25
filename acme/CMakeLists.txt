@@ -433,6 +433,9 @@ list(APPEND library_source
    primitive/primitive/work.cpp
    primitive/promise/signalization.cpp
    primitive/promise/signalization.h
+   primitive/string/_.h
+   primitive/string/_base.h
+   primitive/string/_base_impl.h
    primitive/string/_.cpp
    primitive/string/_c.cpp
    primitive/string/_c_trait_ansi.cpp
@@ -1394,40 +1397,40 @@ if (WIN32)
 #      node/windows/uac_tools.cpp
 #      node/windows/windows.cpp
 #      node/windows/windows_desktop.cpp
-      os/windows/_.cpp
-      os/windows/_ansi.cpp
-      os/windows/_wd16.cpp
-      os/windows/_wd32.cpp
-      os/windows/ansi_file.cpp
-      os/windows/api.cpp
-      os/windows/application.cpp
+#      os/windows/_.cpp
+#      os/windows/_ansi.cpp
+#      os/windows/_wd16.cpp
+#      os/windows/_wd32.cpp
+#      os/windows/ansi_file.cpp
+#      os/windows/api.cpp
+#      os/windows/application.cpp
       #os/windows/application_system_run.cpp
       #os/windows/callstack.cpp
-      os/windows/debug.cpp
-      os/windows/dir.cpp
-      os/windows/environment_variable.cpp
-      os/windows/exception_engine.cpp
-      os/windows/extract_icon.cpp
-      os/windows/file.cpp
+#      os/windows/debug.cpp
+#      os/windows/dir.cpp
+#      os/windows/environment_variable.cpp
+#      os/windows/exception_engine.cpp
+#      os/windows/extract_icon.cpp
+#      os/windows/file.cpp
       #os/windows/gdiplus.cpp
-      os/windows/internal.cpp
-      os/windows/itemidlist.cpp
-      os/windows/language.cpp
-      os/windows/library.cpp
+#      os/windows/internal.cpp
+#      os/windows/itemidlist.cpp
+#      os/windows/language.cpp
+#      os/windows/library.cpp
       #os/windows/list_serial_ports.cpp
       #os/windows/local_memory_map.cpp
-      os/windows/lock.cpp
-      os/windows/main.cpp
-      os/windows/message_loop.cpp
-      os/windows/printer.cpp
-      os/windows/process.cpp
-      os/windows/registry.cpp
-      os/windows/simple_app.cpp
-      os/windows/parallelization.cpp
-      os/windows/time.cpp
-      os/windows/user.cpp
-      os/windows/util.cpp
-      os/windows/windowing.cpp
+#      os/windows/lock.cpp
+#      os/windows/main.cpp
+#      os/windows/message_loop.cpp
+#      os/windows/printer.cpp
+#      os/windows/process.cpp
+#      os/windows/registry.cpp
+#      os/windows/simple_app.cpp
+#      os/windows/parallelization.cpp
+#      os/windows/time.cpp
+#      os/windows/user.cpp
+#      os/windows/util.cpp
+#      os/windows/windowing.cpp
       #node/windows/base/
       #node/windows/base/implementation.h
       #node/windows/base/print_job.h
@@ -1509,19 +1512,20 @@ endif ()
 if (WIN32 OR UWP)
 
    list(APPEND library_source
-      os/windows_common/_dll.cpp
-      os/windows_common/aura.cpp
-      os/windows_common/base.cpp
-      os/windows_common/bstring.cpp
-      os/windows_common/com.cpp
-      os/windows_common/debug.cpp
-      os/windows_common/file.cpp
+#      os/windows_common/_dll.cpp
+#      os/windows_common/aura.cpp
+#      os/windows_common/base.cpp
+#      os/windows_common/bstring.cpp
+#      os/windows_common/com.cpp
+#      os/windows_common/debug.cpp
+#      os/windows_common/file.cpp
       #os/windows_common/file_c.cpp
       #os/windows_common/graphics.cpp
       #os/windows_common/net.cpp
-      os/windows_common/parallelization.cpp
-      os/windows_common/time.cpp
-      os/windows_common/unicode.cpp)
+#      os/windows_common/parallelization.cpp
+#      os/windows_common/time.cpp
+#      os/windows_common/unicode.cpp
+      )
 
 endif ()
 
@@ -2035,8 +2039,8 @@ endif ()
 
 
 target_link_directories(acme PRIVATE ${LIBRARY_OUTPUT_PATH})
-target_link_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../operating-system/storage-${PLATFORM_NAME}/library/x64/basis)
-target_link_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../operating-system/storage-${PLATFORM_NAME}/third/library/x64/basis)
+target_link_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../operating-system/storage-${OPERATING_SYSTEM_NAME}/library/x64/basis)
+target_link_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../operating-system/storage-${OPERATING_SYSTEM_NAME}/third/library/x64/basis)
 
 
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
@@ -2050,9 +2054,9 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories
 target_compile_definitions(acme PRIVATE _ACME_LIBRARY)
 
 #if(LINUX)
-#set(third_binaries "${CMAKE_CURRENT_SOURCE_DIR}/../../../operating-system/storage-${PLATFORM_NAME}/third/binary/x64/basis/")
+#set(third_binaries "${CMAKE_CURRENT_SOURCE_DIR}/../../../operating-system/storage-${OPERATING_SYSTEM_NAME}/third/binary/x64/basis/")
 #add_custom_command(TARGET acme POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${third_binaries} ${EXECUTABLE_OUTPUT_PATH})
-#set(storage_binaries "${CMAKE_CURRENT_SOURCE_DIR}/../../../operating-system/storage-${PLATFORM_NAME}/binary/x64/basis/")
+#set(storage_binaries "${CMAKE_CURRENT_SOURCE_DIR}/../../../operating-system/storage-${OPERATING_SYSTEM_NAME}/binary/x64/basis/")
 #add_custom_command(TARGET acme POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${storage_binaries} ${EXECUTABLE_OUTPUT_PATH})
 #endif()
 

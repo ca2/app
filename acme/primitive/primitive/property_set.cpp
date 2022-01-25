@@ -1732,7 +1732,7 @@ string property_set::get_command_line(const string_array & straKeys) const
       if(strItem.find(" ") >= 0 || strItem.find("\'") >= 0)
       {
 
-         strItem.replace("\"", "\\\"");
+         strItem.replace_with("\\\"", "\"");
 
          str = "\"" + strItem + "\"";
 
@@ -1740,7 +1740,7 @@ string property_set::get_command_line(const string_array & straKeys) const
       else if(strItem.find("\"") >= 0)
       {
 
-         strItem.replace("\'", "\\\'");
+         strItem.replace_with("\\\'", "\'");
 
          str = "\'" + strItem + "\'";
 
@@ -1766,7 +1766,7 @@ string property_set::get_command_line(const string_array & straKeys) const
       if(strItem.find(" ") >= 0 || strItem.find("\'") >= 0)
       {
 
-         strItem.replace("\"", "\\\"");
+         strItem.replace_with("\\\"", "\"");
 
          str = "\"" + strItem + "\"";
 
@@ -1774,7 +1774,7 @@ string property_set::get_command_line(const string_array & straKeys) const
       else if(strItem.find("\"") >= 0)
       {
 
-         strItem.replace("\'", "\\\'");
+         strItem.replace_with("\\\'", "\'");
 
          str = "\'" + strItem + "\'";
 
@@ -1813,7 +1813,7 @@ string property_set::get_command_line() const
       if(strItem.find(" ") >= 0 || strItem.find("\'") >= 0)
       {
 
-         strItem.replace("\"", "\\\"");
+         strItem.replace_with("\\\"", "\"");
 
          str = "\"" + strItem + "\"";
 
@@ -1821,7 +1821,7 @@ string property_set::get_command_line() const
       else if(strItem.find("\"") >= 0)
       {
 
-         strItem.replace("\'", "\\\'");
+         strItem.replace_with("\\\'", "\'");
 
          str = "\'" + strItem + "\'";
 
@@ -1847,7 +1847,7 @@ string property_set::get_command_line() const
       if(strItem.find(" ") >= 0 || strItem.find("\'") >= 0)
       {
 
-         strItem.replace("\"", "\\\"");
+         strItem.replace_with("\\\"", "\"");
 
          str = "\"" + strItem + "\"";
 
@@ -1855,7 +1855,7 @@ string property_set::get_command_line() const
       else if(strItem.find("\"") >= 0)
       {
 
-         strItem.replace("\'", "\\\'");
+         strItem.replace_with("\\\'", "\'");
 
          str = "\'" + strItem + "\'";
 

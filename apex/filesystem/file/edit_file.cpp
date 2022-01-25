@@ -954,7 +954,7 @@ namespace file
          
          str = buf;
          
-         str.replace("\n","\r\n");
+         str.replace_with("\r\n", "\n");
          
          pfile->print(str);
          

@@ -3893,22 +3893,22 @@ void graphics::internal_draw_text(const ::block & block, const ::rectangle_f64 &
     if (edrawtext & e_draw_text_expand_tabs)
     {
 
-        str.replace("\t", "        ");
+        str.replace_with("        ", "\t");
 
     }
     else
     {
 
-        str.replace("\t", "");
+        str.replace_with(" ", "\t");
 
     }
 
     if (edrawtext & e_draw_text_single_line)
     {
 
-        str.replace("\n", "");
+        str.replace_with("", "\n");
 
-        str.replace("\rectangle_i32", "");
+        str.replace_with("", "\r");
 
     }
 

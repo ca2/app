@@ -923,11 +923,11 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
       strAppTitle = stra.slice(1).implode(" ");
 
-      strAppTitle.replace("_", " ");
+      strAppTitle.replace_with(" ", "_");
 
-      strAppTitle.replace("-", " ");
+      strAppTitle.replace_with(" ", "-");
 
-      strAppTitle.replace(".", " ");
+      strAppTitle.replace_with(" ", ".");
 
    }
 

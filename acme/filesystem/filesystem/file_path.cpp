@@ -875,7 +875,7 @@ bool file_path_normalize_inline(string & strPath, enum_path & epath)
 
       epath = e_path_url;
 
-      strPath.replace("\\", "/");
+      strPath.replace_with("/", "\\");
 
    }
    else

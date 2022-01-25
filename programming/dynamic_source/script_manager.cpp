@@ -1639,10 +1639,10 @@ namespace dynamic_source
 
       ::file::path strPath = strScriptPath;
 
-      strPath.replace(":/",".");
-      strPath.replace(":\\",".");
-      strPath.replace("/",".");
-      strPath.replace("\\",".");
+      strPath.find_replace(":/",".");
+      strPath.find_replace(":\\",".");
+      strPath.find_replace("/",".");
+      strPath.find_replace("\\",".");
 #ifdef WINDOWS
       return ::file::path("C:\\netnode")/ m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_strStagePlatform / m_pcompiler->m_strDynamicSourceConfiguration / strPath;
 #else
@@ -1667,7 +1667,7 @@ namespace dynamic_source
 
       ::file::path strTransformName = strName;
 
-      strTransformName.replace(":","");
+      strTransformName.find_replace(":","");
 
       ::file::path strScript;
 

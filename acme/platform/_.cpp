@@ -249,7 +249,7 @@ int __cdecl debug_report(int iType, wchar_t const* pszFile, int iLine, wchar_t c
    va_start(argList, pszFormat);
    string strFormat;
    strFormat = pszFormat;
-   strFormat.replace("%s", "%S");
+   strFormat.replace_with("%S", "%s");
    strExtra.format(strFormat, argList);
    va_end(argList);
 

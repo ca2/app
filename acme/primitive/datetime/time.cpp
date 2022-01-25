@@ -839,12 +839,12 @@ namespace datetime
 
       str = strFormat;
 
-      str.replace("%Y", __string(time.year(timeshift)));
-      str.replace("%m", ::str::zero_padded(__string(time.month(timeshift)), 2));
-      str.replace("%d", ::str::zero_padded(__string(time.day(timeshift)), 2));
-      str.replace("%H", ::str::zero_padded(__string(time.hour(timeshift)), 2));
-      str.replace("%M", ::str::zero_padded(__string(time.minute(timeshift)), 2));
-      str.replace("%S", ::str::zero_padded(__string(time.second(timeshift)), 2));
+      str.replace_with(__string(time.year(timeshift)), "%Y");
+      str.replace_with(::str::zero_padded(__string(time.month(timeshift)), 2), "%m");
+      str.replace_with(::str::zero_padded(__string(time.day(timeshift)), 2), "%d");
+      str.replace_with(::str::zero_padded(__string(time.hour(timeshift)), 2), "%H");
+      str.replace_with(::str::zero_padded(__string(time.minute(timeshift)), 2), "%M");
+      str.replace_with(::str::zero_padded(__string(time.second(timeshift)), 2), "%S");
 
       return str;
 

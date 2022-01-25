@@ -472,7 +472,7 @@ namespace datetime
 
       string str = get_date_time_for_file(timeshift);
 
-      str.replace(" ", "_");
+      str.replace_with("_", " ");
 
       return str;
 
@@ -812,7 +812,7 @@ namespace datetime
 
          strV.format("%02d", ISO_WN(time.year(timeshift), time.month(timeshift), time.day(timeshift)));
 
-         strFormat.replace("%V", strV);
+         strFormat.replace_with(strV, "%V");
 
       }
 
@@ -886,17 +886,17 @@ namespace datetime
          if (iMinDiff <= 1)
          {
             strTime = pcontext->get("about 1 minute and %SECONDS% seconds ago");
-            strTime.replace("%SECONDS%", __string((timeNow - time).GetSeconds()));
+            strTime.replace_with(__string((timeNow - time).GetSeconds()), "%SECONDS%");
          }
          else if (iMinDiff <= 2)
          {
             strTime = pcontext->get("about 2 minutes and %SECONDS% seconds ago");
-            strTime.replace("%SECONDS%", __string((timeNow - time).GetSeconds()));
+            strTime.replace_with(__string((timeNow - time).GetSeconds()), "%SECONDS%");
          }
          else
          {
             strTime = pcontext->get("about %MINUTES% minutes ago");
-            strTime.replace("%MINUTES%", __string(iMinDiff));
+            strTime.replace_with(__string(iMinDiff), "%MINUTES%");
          }
       }
       else if (iHouDiff <= 24)
@@ -913,7 +913,7 @@ namespace datetime
          else
          {
             strTime = pcontext->get("about %HOURS% hours ago");
-            strTime.replace("%HOURS%", __string(iHouDiff));
+            strTime.replace_with(__string(iHouDiff), "%HOURS%");
          }
       }
       else

@@ -1770,7 +1770,7 @@ auto tickStart = ::duration::now();
       // convert the port number to 2 bytes + add to the local IP
       strPortArguments = strHostIP + "," + __string (ushPort >> 8) + "," + __string (ushPort & 0xFF);
 
-      strPortArguments.replace(".", ",");
+      strPortArguments.find_replace(".", ",");
 
       reply Reply;
       if (!SendCommand(command::PORT(), { strPortArguments } , Reply))

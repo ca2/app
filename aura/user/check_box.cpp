@@ -78,9 +78,9 @@ namespace user
 
             subject.m_puserelement = this;
 
-            //subject.m_id = m_id;
+            subject.m_id = m_id;
 
-            subject.m_id = ::e_subject_set_check;
+            subject.m_esubject = ::e_subject_set_check;
 
             subject.m_actioncontext = context;
 

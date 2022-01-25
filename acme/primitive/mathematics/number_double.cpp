@@ -23,13 +23,13 @@ namespace mathematics
    CLASS_DECL_ACME bool convert_to_double(double & d, string str)
    {
 
-      str.replace(" ", "");
+      str.replace_with("", " ");
       
-      str.replace("\t", "");
+      str.replace_with("", "\t");
 
-      str.replace("\n", "");
+      str.replace_with("", "\n");
 
-      str.replace("\r", "");
+      str.replace_with("", "\r");
 
       bool bDouble = false;
 

@@ -475,7 +475,7 @@ namespace file
       if (m_epath == e_path_url || strPath.Right(3) == "://")
       {
 
-         str.replace("\\", "/");
+         str.replace_with("/", "\\");
 
          str.trim_left("/");
 

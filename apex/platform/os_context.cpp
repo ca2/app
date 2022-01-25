@@ -415,6 +415,22 @@
    }
 
 
+   void os_context::edit_link_target(const ::file::path & path, const ::file::path & pathLink)
+   {
+
+      throw_status(error_interface_only);
+
+   }
+
+
+   void os_context::edit_link_folder(const ::file::path & path, const ::file::path & pathLink)
+   {
+
+      throw_status(error_interface_only);
+
+   }
+
+
    bool os_context::resolve_link(::file::path & path, const ::string & strSource, string * pstrDirectory, string * pstrParams)
    {
 

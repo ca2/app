@@ -3430,31 +3430,31 @@ catch(...)
 void application::init3()
 {
 
-string strFolder = m_strAppName;
+   string strFolder = m_strAppName;
 
-strFolder.replace(".", "_");
-strFolder.replace("::", "-");
-strFolder.replace(":", "_");
+   strFolder.replace_with("_", ".");
+   strFolder.replace_with("-", "::");
+   strFolder.replace_with("_", ":");
 
-m_strRelativeFolder = strFolder;
+   m_strRelativeFolder = strFolder;
 
-//if (!impl_init3())
-//{
+   //if (!impl_init3())
+   //{
 
-//   return false;
+   //   return false;
 
-//}
+   //}
 
-notify_init3();
+   notify_init3();
 
-//if (!notify_init3())
-//{
-//
-//return false;
-//
-//}
-//
-//return true;
+   //if (!notify_init3())
+   //{
+   //
+   //return false;
+   //
+   //}
+   //
+   //return true;
 
 }
 

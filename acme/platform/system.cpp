@@ -2036,11 +2036,11 @@ __pointer(class ::system) platform_create_system(const char* pszAppId)
 
       string strLibrary = strAppId;
 
-      strLibrary.replace("/", "_");
+      strLibrary.replace_with("_", "/");
 
-      strLibrary.replace("-", "_");
+      strLibrary.replace_with("_", "-");
 
-      strLibrary.replace(".", "_");
+      strLibrary.replace_with("_", ".");
 
       auto plibrary = __node_library_open(strLibrary, strMessage);
 

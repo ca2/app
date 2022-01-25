@@ -73,7 +73,7 @@ namespace simpledb
 
       string strKey = key.m_strDataKey;
 
-      strKey.replace("\\", "/");
+      strKey.replace_with("/", "\\");
 
       return pstorage->erase_key(strKey);
 
@@ -128,7 +128,7 @@ namespace simpledb
 
       string strKey = key.m_strDataKey;
 
-      strKey.replace("\\", "/");
+      strKey.replace_with("/", "\\");
 
       if (!pserver->m_bRemote || key.m_bLocalData)
       {
@@ -318,7 +318,7 @@ namespace simpledb
 
          string strKey = key.m_strDataKey;
 
-         strKey.replace("\\", "/");
+         strKey.replace_with("/", "\\");
 
          auto pdatabase = pserver->m_pdatabaseUser;
 
@@ -347,7 +347,7 @@ namespace simpledb
 
       string strKey = key.m_strDataKey;
 
-      strKey.replace("\\", "/");
+      strKey.replace_with("/", "\\");
 
       if (!pserver->m_bRemote || key.m_bLocalData)
       {

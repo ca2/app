@@ -1223,7 +1223,7 @@ void file_context::calculate_main_resource_memory()
 
    string strPath(path);
 
-   strPath.replace("\\", "/");
+   strPath.replace_with("/", "\\");
 
    if (!pfolder->locate(strPath))
    {
@@ -1240,8 +1240,6 @@ void file_context::calculate_main_resource_memory()
       return nullptr;
 
    }
-
-   char buffer[1024];
 
    auto pfileOutput = create_memory_file();
 
@@ -1295,7 +1293,7 @@ bool file_context::resource_is_file_or_dir(const char* path)
 
    string strPath(path);
 
-   strPath.replace("\\", "/");
+   strPath.replace_with("/", "\\");
 
    strPath.trim_right("\\/");
 
@@ -1913,30 +1911,34 @@ void file_context::set_status(const ::file::path &path, const ::file::file_statu
 }
 
 
-void file_context::replace(const ::file::path &pszContext, const string &pszFind, const string &pszReplace)
+void file_context::replace_with(const ::file::path & pathContext, const string & strNew, const string & strOld)
 {
 
-   //::extended::status e;
+   ::file::listing listing;
 
-   ::file::listing straTitle;
-   m_pcontext->m_papexcontext->dir().ls(straTitle, pszContext);
-   string strOld;
-   string strNew;
-   //string strFail;
-   ::file::path pathContext = pszContext;
-   for (i32 i = 0; i < straTitle.get_size(); i++)
+   string strOldName;
+
+   string strNewName;
+
+   m_pcontext->m_papexcontext->dir().ls(listing, pathContext);
+
+   for (i32 i = 0; i < listing.get_size(); i++)
    {
-      strOld = straTitle[i].name();
-      strNew = strOld;
-      strNew.replace(pszFind, pszReplace);
-      if (strNew != strOld)
+      
+      strOldName = listing[i].name();
+      
+      strNewName = strOldName;
+
+      strNewName.replace_with(strNew, strOld);
+
+      if (strNewName != strOldName)
       {
          // TODO(camilo) : should there be a way to chain or return multiple exceptions... instead of ::extended::status specifile file smart...
          // why not a super smart chained super hand heroe smarter pointerer that can contain vector of any excepction based on
          // ::exception like (::file::exception) (I supposed ::file::exception is already based on ::exception OMG CAMILO!!!)
          // and may be then replace could do replace for example on HTTP servers and return may io_exception and not tighted
          // to a barely translated io exception into a empty ::file::exception with improper filled members....
-         move(pathContext / strNew, pathContext / strOld);
+         move(pathContext / strNewName, pathContext / strOldName);
 
       }
 
@@ -2099,37 +2101,38 @@ file_pointer file_context::get(const ::file::path &name)
 }
 
 
-::file::path file_context::replace_extension(const ::file::path &pszFile, const char *pszExtension)
+::file::path file_context::replace_with_extension(const char * pszExtension, const ::file::path & path)
 {
 
-   ::file::path strFile(pszFile);
+   ::file::path pathNew(path);
 
-   set_extension(strFile, pszExtension);
+   set_extension(pathNew, pszExtension);
 
-   return strFile;
+   return pathNew;
 
 }
 
 
-void file_context::set_extension(::file::path &strFile, const char *pszExtension)
+void file_context::set_extension(::file::path & path, const char * pszExtension)
 {
 
-   strsize iEnd = strFile.reverse_find('.');
+   strsize iEnd = path.reverse_find('.');
 
    if (iEnd < 0)
    {
 
-      iEnd = strFile.get_length();
+      iEnd = path.get_length();
 
    }
 
-   strFile = strFile.Left(iEnd) + ::str::has_char(pszExtension, ".");
+   path = path.Left(iEnd) + ::str::has_char(pszExtension, ".");
 
 }
 
 
 void file_context::normalize(string &str)
 {
+
    if (str.is_empty())
    {
 
@@ -2875,11 +2878,11 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, const ::f
       }
 
 #ifdef WINDOWS
-      pathCache.replace("://", "_\\");
-      pathCache.replace("?", "_");
-      pathCache.replace(":", "_");
+      pathCache.replace_with("_\\", "://");
+      pathCache.replace_with("_", "?");
+      pathCache.replace_with("_", ":");
 #else
-      pathCache.replace("://", "_/");
+      pathCache.replace_with("_/", "://");
 #endif
       pathCache = m_pcontext->m_papexcontext->dir().cache() / pathCache;
 

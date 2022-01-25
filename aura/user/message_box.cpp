@@ -96,7 +96,7 @@ namespace user
 
       m_strTitle = strTitle;
 
-      strMessage.replace_ci("<br>", " \n");
+      strMessage.replace_with_ci(" \n", "<br>");
 
       __construct_new(m_pstill);
 

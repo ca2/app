@@ -561,7 +561,7 @@ namespace html
 
          strUrl = m_strPathName.sibling(strUrl);
 
-         strUrl.replace("/", "\\");
+         strUrl.find_replace("/", "\\");
 
       }
 

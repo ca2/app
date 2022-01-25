@@ -301,7 +301,7 @@ namespace filemanager
 
       string strTemplateId = id;
 
-      strTemplateId.replace("::", "/");
+      strTemplateId.find_replace("::", "/");
 
       if (is_filemanager_group(id, TABBED_GROUP))
       {

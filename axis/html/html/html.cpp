@@ -225,11 +225,11 @@ namespace html
    string html::special_chars(const ::string & psz)
    {
       string str(psz);
-      str.replace("&", "&amp;");
-      str.replace("\"", "&quot;"); // quando ENT_NOQUOTES n縊 est・definida.
-      str.replace("'", "&#039;"); // apenas quando ENT_QUOTES est・definida.
-      str.replace("<", "&lt;");
-      str.replace(">", "&gt;");
+      str.replace_with("&amp;"     , "&"     );
+      str.replace_with( "&quot;"   , "\""    ); // quando ENT_NOQUOTES n縊 est・definida.
+      str.replace_with("&#039;"    , "'"     ); // apenas quando ENT_QUOTES est・definida.
+      str.replace_with("&lt;"      , "<"     );
+      str.replace_with("&gt;"     ,  ">"     );
       return str;
    }
 
@@ -371,7 +371,7 @@ namespace html
          if (iParseLen)
          {
 
-            str.replace(str.Mid(iCurPos, iParseLen), strChar);
+            str.replace_with(strChar, str.Mid(iCurPos, iParseLen));
 
          }
 

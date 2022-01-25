@@ -192,7 +192,23 @@ namespace tranquillum
 
       }
 
-      if (eelement == ::e_element_background)
+         if (eelement == ::e_element_check)
+         {
+
+            if (is_dark_mode())
+            {
+               return argb(255, 215, 215, 215);
+
+            }
+            else
+            {
+
+               return argb(255,40,40, 40);
+
+            }
+
+         }
+      else if (eelement == ::e_element_background)
       {
 
          if (is_dark_mode())

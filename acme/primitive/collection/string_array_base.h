@@ -441,7 +441,7 @@ public:
    bool operator != (const RawStringArray & a) const;
 
 
-   void replace(const Type& pszSearch,const Type& pszReplace);
+   void replace_with(const Type& pszNew, const Type& pszOld);
 
 
    //void write(stream & ostream) const;
@@ -3426,16 +3426,17 @@ bool string_array_base < Type, RawType, t_etypePayload > ::operator != (const ty
 
 
 template < typename Type, typename RawType, enum_type t_etypePayload >
-void string_array_base < Type, RawType, t_etypePayload > ::replace(const Type& pszSearch,const Type& pszReplace)
-
+void string_array_base < Type, RawType, t_etypePayload > ::replace_with(const Type& pszNew, const Type& pszOld)
 {
+
    for(::index i = 0; i < this->get_size(); i++)
    {
-      this->element_at(i).replace(pszSearch,pszReplace);
+
+      this->element_at(i).replace_with(pszNew, pszOld);
 
    }
-}
 
+}
 
 
 template < typename Type, typename RawType, enum_type t_etypePayload >

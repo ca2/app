@@ -87,7 +87,7 @@ public:
    string_base(ansichar ansich, strsize repeat = 1);
    string_base(wd16char wd16ch, strsize repeat = 1);
    string_base(wd32char wd32ch, strsize repeat = 1);
-   
+
 //#ifdef _UWP
    //string_base(Array <byte > ^ a);
    //string_base(Object ^ o);
@@ -129,7 +129,7 @@ public:
 
    //inline operator const CHAR_TYPE* () const noexcept { return this->m_pdata; }
 
-//#if defined(_UWP) 
+//#if defined(_UWP)
    //inline operator String ^ () const { return ref new String(wd16string(*this)); }
 //#endif
 
@@ -594,21 +594,71 @@ public:
    strsize Insert(strsize iIndex, const CHAR_TYPE* psz);
 
    // replace all occurrences of character 'chOld' with character 'chNew'
-   strsize replace(CHAR_TYPE chOld, CHAR_TYPE chNew, strsize iStart = 0);
+   strsize replace_with(CHAR_TYPE charNew, CHAR_TYPE charOld, strsize iStart = 0);
 
    // replace all occurrences of string_base 'pszOld' with string_base 'pszNew'
-   template < raw_pointer_castable < TYPE_CHAR > PCHAR1, raw_pointer_castable < TYPE_CHAR > PCHAR2 >
-   strsize replace(PCHAR1 pchar1, PCHAR2 pchar2, strsize iStart = 0);
+   template < raw_pointer_castable < TYPE_CHAR > PCHARNEW, raw_pointer_castable < TYPE_CHAR > PCHAROLD >
+   strsize replace_with(PCHARNEW pcharNew, PCHAROLD pcharOld, strsize iStart = 0);
 
-   template < raw_pointer_castable < TYPE_CHAR > PCHAR1, raw_pointer_castable < TYPE_CHAR > PCHAR2 >
-   strsize replace_ci(PCHAR1 pchar1, PCHAR2 pchar2, strsize iStart = 0);
+   template < raw_pointer_castable < TYPE_CHAR > PCHARNEW, raw_pointer_castable < TYPE_CHAR > PCHAROLD >
+   strsize replace_with_ci(PCHARNEW pcharNew, PCHAROLD pcharOld, strsize iStart = 0);
 
    // replace all occurrences of string_base 'pszOld' with string_base 'pszNew'
-   template < raw_pointer_castable < TYPE_CHAR > PCHAR1, raw_pointer_castable < TYPE_CHAR > PCHAR2 >
-   ::count replace_count(PCHAR1 pchar1, PCHAR2 pchar2, strsize iStart = 0);
+   template < raw_pointer_castable < TYPE_CHAR > PCHARNEW, raw_pointer_castable < TYPE_CHAR > PCHAROLD >
+   ::count replace_with_count(PCHARNEW pcharNew, PCHAROLD pcharOld, strsize iStart = 0);
 
-   template < raw_pointer_castable < TYPE_CHAR > PCHAR1, raw_pointer_castable < TYPE_CHAR > PCHAR2 >
-   ::count replace_ci_count(PCHAR1 pchar1, PCHAR2 pchar2, strsize iStart = 0);
+   template < raw_pointer_castable < TYPE_CHAR > PCHARNEW, raw_pointer_castable < TYPE_CHAR > PCHAROLD >
+   ::count replace_with_ci_count(PCHARNEW pcharNew, PCHAROLD pcharOld, strsize iStart = 0);
+
+   // replace all occurrences of character 'chOld' with character 'chNew'
+   strsize find_replace(CHAR_TYPE charOld, CHAR_TYPE charNew, strsize iStart = 0)
+   {
+      return replace_with(charNew, charOld, iStart);
+   }
+
+   // replace all occurrences of string_base 'pszOld' with string_base 'pszNew'
+   template < raw_pointer_castable < TYPE_CHAR > PCHAROLD, raw_pointer_castable < TYPE_CHAR > PCHARNEW >
+   strsize find_replace(PCHAROLD pcharOld, PCHARNEW pcharNew, strsize iStart = 0)
+   {
+      return replace_with(pcharNew, pcharOld, iStart);
+   }
+
+   template < raw_pointer_castable < TYPE_CHAR > PCHAROLD, raw_pointer_castable < TYPE_CHAR > PCHARNEW >
+   strsize find_replace_ci(PCHAROLD pcharOld, PCHARNEW pcharNew, strsize iStart = 0)
+   {
+      return replace_with_ci(pcharNew, pcharOld, iStart);
+   }
+
+   // replace all occurrences of string_base 'pszOld' with string_base 'pszNew'
+   template < raw_pointer_castable < TYPE_CHAR > PCHAROLD, raw_pointer_castable < TYPE_CHAR > PCHARNEW >
+   ::count find_replace_count(PCHAROLD pcharOld, PCHARNEW pcharNew, strsize iStart = 0)
+   {
+      return replace_with_count(pcharNew, pcharOld, iStart);
+   }
+
+   template < raw_pointer_castable < TYPE_CHAR > PCHAROLD, raw_pointer_castable < TYPE_CHAR > PCHARNEW >
+   ::count find_replace_ci_count(PCHAROLD pcharOld, PCHARNEW pcharNew, strsize iStart = 0)
+   {
+      return replace_with_ci_count(pcharNew, pcharOld, iStart);
+   }
+
+
+   //// replace all occurrences of character 'chOld' with character 'chNew'
+   //strsize xxx_replace(CHAR_TYPE charOld, CHAR_TYPE charNew, strsize iStart = 0);
+
+   //// replace all occurrences of string_base 'pszOld' with string_base 'pszNew'
+   //template < raw_pointer_castable < TYPE_CHAR > PCHAROLD, raw_pointer_castable < TYPE_CHAR > PCHARNEW >
+   //strsize xxx_replace(PCHAROLD pcharOld, PCHARNEW pcharNew, strsize iStart = 0);
+
+   //template < raw_pointer_castable < TYPE_CHAR > PCHAROLD, raw_pointer_castable < TYPE_CHAR > PCHARNEW >
+   //strsize xxx_replace_ci(PCHAROLD pcharOld, PCHARNEW pcharNew, strsize iStart = 0);
+
+   //// replace all occurrences of string_base 'pszOld' with string_base 'pszNew'
+   //template < raw_pointer_castable < TYPE_CHAR > PCHAROLD, raw_pointer_castable < TYPE_CHAR > PCHARNEW >
+   //::count xxx_replace_count(PCHAROLD pcharOld, PCHARNEW pcharNew, strsize iStart = 0);
+
+   //template < raw_pointer_castable < TYPE_CHAR > PCHAROLD, raw_pointer_castable < TYPE_CHAR > PCHARNEW >
+   //::count xxx_replace_ci_count(PCHAROLD pcharOld, PCHARNEW pcharNew, strsize iStart = 0);
 
    //::count utf8_replace(const CHAR_TYPE* pszOld, const CHAR_TYPE* pszNew, strsize iStart = 0);
 

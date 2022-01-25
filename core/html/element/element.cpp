@@ -963,11 +963,14 @@ namespace html
             }
             else
             {
+               
                strUrl = m_pdata->m_pcoredata->m_strPathName.sibling(strUrl);
-               strUrl.replace("/","\\");
-            }
-            auto pcontext = get_context();
+               
+               strUrl.find_replace("/","\\");
 
+            }
+
+            auto pcontext = get_context();
 
             pstylesheet->parse(phtmldata, pcontext->m_papexcontext->file().as_string(strUrl));
             phtmldata->m_pcoredata->m_stylesheeta.add(pstylesheet);

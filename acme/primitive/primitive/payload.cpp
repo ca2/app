@@ -6606,7 +6606,7 @@ string & payload::get_network_payload(::string & str, bool bNewLine) const
 
       strValue = string();
 
-      strValue.replace("\"", "\\\"");
+      strValue.replace_with("\\\"", "\"");
 
       return str += ("\"" + strValue + "\"");
 

@@ -344,9 +344,9 @@ void LiteHTMLElemAttr::putValue(::lite_html_reader * preader, const ::string & p
    m_strValue.erase_character('\n');
 
    // replace tab and carriage-return with a single space
-   m_strValue.replace('\r', ' ');
+   m_strValue.replace_with(' ', '\r');
 
-   m_strValue.replace('\t', ' ');
+   m_strValue.replace_with(' ', '\t');
 
    /** resolve entity object(s) */
    strsize iCurPos = -1, iParseLen = 0;
@@ -366,7 +366,7 @@ void LiteHTMLElemAttr::putValue(::lite_html_reader * preader, const ::string & p
       if (iParseLen)
       {
 
-         m_strValue.replace(m_strValue.Mid(iCurPos, iParseLen), strChar);
+         m_strValue.replace_with(strChar, m_strValue.Mid(iCurPos, iParseLen));
 
       }
 

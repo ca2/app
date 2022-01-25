@@ -3694,22 +3694,22 @@ namespace draw2d
       if(edrawtext & e_draw_text_expand_tabs)
       {
 
-         str.replace("\t", "        ");
+         str.replace_with("        ", "\t");
 
       }
       else
       {
 
-         str.replace("\t", "");
+         str.replace_with(" ", "\t");
 
       }
 
       if(edrawtext & e_draw_text_single_line)
       {
 
-         str.replace("\rectangle_i32", "");
+         str.replace_with("", "\r");
 
-         str.replace("\n", "");
+         str.replace_with("", "\n");
 
          text_out(rectangleParam.left + dx, rectangleParam.top + dy, str);
 

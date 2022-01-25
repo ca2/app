@@ -110,11 +110,11 @@ namespace xml
 
       string str(psz);
 
-      str.replace("&", "&amp;");
-      str.replace("\"", "&quot;");      // quando ENT_NOQUOTES n縊 est・definida.
-      str.replace("'", "&#039;");       // apenas quando ENT_QUOTES est・definida.
-      str.replace("<", "&lt;");
-      str.replace(">", "&gt;");
+      str.replace_with("&amp;", "&");
+      str.replace_with("&quot;", "\"");      // quando ENT_NOQUOTES n縊 est・definida.
+      str.replace_with("&#039;", "'");       // apenas quando ENT_QUOTES est・definida.
+      str.replace_with("&lt;", "<");
+      str.replace_with("&gt;", ">");
 
       return str;
 
@@ -159,12 +159,12 @@ namespace xml
       else
          strValue = prop.string();
 
-      strValue.replace("\\", "\\\\"); // should be first
-      strValue.replace("\n", "\\n");
-      strValue.replace("\t", "\\t");
-      strValue.replace("\r", "\\r");
-      strValue.replace("'", "\\'");
-      strValue.replace("\"", "\\\"");
+      strValue.replace_with("\\\\", "\\"); // should be first
+      strValue.replace_with("\\n", "\n");
+      strValue.replace_with("\\t", "\t");
+      strValue.replace_with("\\r", "\r");
+      strValue.replace_with("\\'", "'");
+      strValue.replace_with("\\\"", "\"");
 
       str += strValue;
       str += opt->m_chQuote;

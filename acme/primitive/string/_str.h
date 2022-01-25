@@ -49,13 +49,34 @@ namespace str
 
    void CLASS_DECL_ACME copy(string & str, const ansichar * pcsz, i32 iCount);
 
-   string CLASS_DECL_ACME replace(const ansichar * pszFind, const ansichar * pszReplace, const ansichar * psz, strsize iStart = 0);
-   string CLASS_DECL_ACME replace_ci(const ansichar * pszFind, const ansichar * pszReplace, const ansichar * psz, strsize iStart = 0);
-   ::count CLASS_DECL_ACME replace_ci_count(const ansichar * pszFind, const ansichar * pszReplace, const ansichar * psz, strsize iStart = 0);
-   ::count CLASS_DECL_ACME utf8_replace(string & str, const ansichar * pszFind, const ansichar * pszReplace, strsize iStart = 0);
-   string CLASS_DECL_ACME utf8_replace(const ansichar * pszFind, const ansichar * pszReplace, const ansichar * psz, strsize iStart = 0);
+   string CLASS_DECL_ACME replace_with(const ansichar * pszNew, const ansichar * pszOld, const ansichar * psz, strsize iStart = 0);
+   string CLASS_DECL_ACME replace_with_ci(const ansichar * pszNew, const ansichar * pszOld, const ansichar * psz, strsize iStart = 0);
+   ::count CLASS_DECL_ACME replace_with_ci_count(const ansichar * pszNew, const ansichar * pszOld, const ansichar * psz, strsize iStart = 0);
+   ::count CLASS_DECL_ACME utf8_replace_with(string & str, const ansichar * pszNew, const ansichar * pszOld, strsize iStart = 0);
+   string CLASS_DECL_ACME utf8_replace_with(const ansichar * pszNew, const ansichar * pszOld, const ansichar * psz, strsize iStart = 0);
 
-   string CLASS_DECL_ACME random_replace(::matter * pmatter, const string_array & straReplacement, const string_array & straSearch, const ansichar * psz);
+   inline string find_replace(const ansichar * pszOld, const ansichar * pszNew, const ansichar * psz, strsize iStart = 0)
+   {
+      return replace_with(pszNew, pszOld, psz, iStart);
+   }
+   inline string find_replace_ci(const ansichar * pszOld, const ansichar * pszNew, const ansichar * psz, strsize iStart = 0)
+   {
+      return replace_with_ci(pszNew, pszOld, psz, iStart);
+   }
+   inline ::count find_replace_ci_count(const ansichar * pszOld, const ansichar * pszNew, const ansichar * psz, strsize iStart = 0)
+   {
+      return replace_with_ci_count(pszNew, pszOld, psz, iStart);
+   }
+   inline ::count utf8_find_replace(string & str, const ansichar * pszOld, const ansichar * pszNew, strsize iStart = 0)
+   {
+      return utf8_replace_with(str, pszNew, pszOld, iStart);
+   }
+   inline string utf8_find_replace(const ansichar * pszOld, const ansichar * pszNew, const ansichar * psz, strsize iStart = 0)
+   {
+      return utf8_replace_with(pszNew, pszOld, psz, iStart);
+   }
+
+   string CLASS_DECL_ACME random_replace(::matter * pmatter, const string_array & straNew, const string_array & straOld, const ansichar * psz);
 
    strsize CLASS_DECL_ACME find_first(const string_array & straSearch, index & iFound, const ::string & str, index iStart = 0);
 

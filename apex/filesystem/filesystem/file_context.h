@@ -58,7 +58,7 @@ public:
    virtual void set_status(const ::file::path & path, const ::file::file_status & status);
 
 
-   virtual void replace(const ::file::path & pszContext, const string & pszFind, const string & pszReplace);
+   virtual void replace_with(const ::file::path & pszContext, const string & pszNew, const string & pszOld);
 
 
    virtual bool is_file_or_dir(const ::file::path & path, ::payload * pvarQuery, ::file::enum_type * petype);
@@ -189,7 +189,7 @@ public:
    virtual ::file::path sys_temp_unique(const ::file::path & lpszName);
 
 
-   virtual ::file::path replace_extension(const ::file::path & pszFile, const char * pszExtension);
+   virtual ::file::path replace_with_extension(const char * pszExtension,  const ::file::path & pszFile);
    virtual void set_extension(::file::path & str, const char * pszExtension);
 
 

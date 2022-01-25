@@ -1541,7 +1541,7 @@ namespace user
 
          string strPack = m.element1();
 
-         str.replace(strPack, m.element2());
+         str.replace_with(m.element2(), strPack);
 
       }
 
@@ -2473,13 +2473,13 @@ namespace user
             if(psession->m_bProgrammerMode)
             {
 
-               strText.replace("\n", "\\n");
+               strText.replace_with("\\n", "\n");
 
             }
             else
             {
 
-               strText.replace("\n", "");
+               strText.replace_with("", "\n");
 
             }
 
@@ -2491,13 +2491,13 @@ namespace user
             if (psession->m_bProgrammerMode)
             {
 
-               strText.replace("\r", "\\r");
+               strText.replace_with("\\r", "\r");
 
             }
             else
             {
 
-               strText.replace("\r", "");
+               strText.replace_with("", "\r");
 
             }
 
@@ -6190,7 +6190,7 @@ finished_update:
       
       _001GetSelText(str);
 
-      str.replace("\r", "\r\n");
+      str.replace_with("\r\n", "\r");
       
       auto pwindow = window();
 

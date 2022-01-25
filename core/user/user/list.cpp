@@ -6276,7 +6276,7 @@ namespace user
 
                item.m_strText.make_lower();
 
-               item.m_strText.replace("_", " ");
+               item.m_strText.find_replace("_", " ");
 
                auto ptopic = m_pregexFilter1->create_topic(item.m_strText);
 

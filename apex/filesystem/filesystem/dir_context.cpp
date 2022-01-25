@@ -1667,7 +1667,7 @@ void dir_context::erase(const ::file::path& path, bool bRecursive)
          else
          {
 
-            m_psystem->m_pacmefile->delete_file(pathItem);
+            m_psystem->m_pacmefile->erase(pathItem);
 
          }
 
@@ -1750,12 +1750,13 @@ bool dir_context::matter_ls(const ::file::path & path, ::file::listing & stra)
       if (iFind > 0)
       {
 
-         strFile.replace(":", "_", iFind + 1);
+         strFile.replace_with("_", ":", iFind + 1);
 
       }
 
-      strFile.replace("////", "//");
-      strFile.replace("\\\\", "\\", 1);
+      strFile.replace_with("//", "////");
+
+      strFile.replace_with("\\", "\\\\", 1);
 
       ::file::path strLs;
 
@@ -1863,12 +1864,12 @@ bool dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
       if (iFind > 0)
       {
 
-         strFile.replace(":", "_", iFind + 1);
+         strFile.replace_with("_", ":", iFind + 1);
 
       }
 
-      strFile.replace("////", "//");
-      strFile.replace("\\\\", "\\", 1);
+      strFile.replace_with("//", "////");
+      strFile.replace_with("\\", "\\\\", 1);
 
       string strLs;
 
@@ -2106,7 +2107,7 @@ bool dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
       strMatter = m_pcontext->m_papexcontext->http().get(strUrl, set);
 
       //strMatter.replace("https://server.ca2.software/", string(get_server_ca2_cc()));
-      strMatter.replace("https://server.ca2.software/", "https://ca2.software/");
+      strMatter.replace_with("https://ca2.software/", "https://server.ca2.software/");
 
       //TRACE("");
       //TRACE("");
@@ -2152,10 +2153,9 @@ bool dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
 
          strMatter = strLs / pathItem;
 
-         strMatter.replace("\\", "/");
+         strMatter.replace_with("/", "\\");
 
          if (m_psystem->m_papexsystem->file().resource_is_file_or_dir(strMatter))
-         
          {
 
             path = "zipresource://" + strMatter;
@@ -2306,9 +2306,9 @@ ret:
    else
    {
 
-      strApp.replace("-", "_");
+      strApp.replace_with("_", "-");
 
-      strApp.replace("\\", "_");
+      strApp.replace_with("_",  "\\");
 
       if (::str::begins_eat_ci(strApp, "app_veriwell_"))
       {

@@ -321,7 +321,7 @@ namespace user
 
             }
 
-            str.replace("\\n", "\n");
+            str.replace_with("\n", "\\n");
 
             if (iState == 0)
             {

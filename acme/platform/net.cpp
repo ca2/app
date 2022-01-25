@@ -9,7 +9,7 @@ CLASS_DECL_ACME string url_decode(const ::string & strParam)
 
    string strDecode;
 
-   str.replace("+"," ");
+   str.replace_with(" ", "+");
 
    strsize iStart = 0;
 
@@ -560,7 +560,7 @@ CLASS_DECL_ACME string url_decode(const char* psz)
 
    string strDecode;
 
-   str.replace("+", " ");
+   str.replace_with(" ", "+");
 
    strsize iStart = 0;
 

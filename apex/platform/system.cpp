@@ -1038,9 +1038,9 @@ pacmedir->create("/ca2core");
 
       string strLogTime = pdatetime->international().get_date_time_for_file_with_no_spaces();
 
-      strLogTime.replace("-", "/");
+      strLogTime.replace_with("/", "-");
 
-      strLogTime.replace("_", "/");
+      strLogTime.replace_with("/", "_");
 
       {
 
@@ -1852,9 +1852,9 @@ pacmedir->create("/ca2core");
 
       string strApplicationServerName = m_strAppId;
 
-      strApplicationServerName.replace("/", ".");
+      strApplicationServerName.replace_with(".", "/");
 
-      strApplicationServerName.replace("_", "-");
+      strApplicationServerName.replace_with("-", "_");
 
       return strApplicationServerName;
 
@@ -2167,7 +2167,7 @@ pacmedir->create("/ca2core");
 
       string strPrint(str);
 
-      strPrint.replace("%","%%");
+      strPrint.replace_with("%%", "%");
 
       //if(m_ptracelog)
       //{
@@ -3479,8 +3479,8 @@ pacmedir->create("/ca2core");
 
          stra.explode("/", strAppId);
 
-         strProj.replace_ci("-", "_");
-         strProj.replace_ci("/", "_");
+         strProj.replace_with_ci("_", "-");
+         strProj.replace_with_ci("_", "/");
 
          //strProj = "..\\..\\..\\" + stra[0] + "\\" + stra[1] + "\\" + stra[1] + ".vcxproj";
 

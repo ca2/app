@@ -1748,26 +1748,26 @@ namespace url
    string department::os_fs(string strUrl, bool bPath)
    {
 
-      strUrl.replace("<","_lt_");
-      strUrl.replace(">","_gt_");
-      strUrl.replace(":","_cl_");
-      strUrl.replace(".","_dot_");
+      strUrl.replace_with("_lt_", "<");
+      strUrl.replace_with("_gt_", ">");
+      strUrl.replace_with("_cl_", ":");
+      strUrl.replace_with("_dot_", ".");
 
       if(bPath)
       {
 
-         strUrl.replace("\\","/");
+         strUrl.replace_with("/", "\\");
 
       }
       else
       {
 
-         strUrl.replace("/","_sl_");
-         strUrl.replace("\\","_bsl_");
+         strUrl.replace_with("_sl_","/");
+         strUrl.replace_with("_bsl_","\\");
 
       }
 
-      strUrl.replace(" ","_");
+      strUrl.replace_with("_", " ");
 
       return strUrl;
 

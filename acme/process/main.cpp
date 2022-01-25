@@ -501,9 +501,9 @@ void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
 CLASS_DECL_ACME string executable_title_from_appid(string str)
 {
 
-   str.replace("-", "_");
+   str.replace_with("_", "-");
 
-   str.replace("/", "_");
+   str.replace_with("_", "/");
 
    return str;
 
@@ -977,7 +977,7 @@ string transform_to_c_arg(const char* psz)
    if (bNeedQuote)
    {
 
-      return string("\"") + ::str::replace("\"", "\\\"", psz) + "\"";
+      return string("\"") + ::str::replace_with("\\\"", "\"", psz) + "\"";
 
    }
    else
@@ -995,9 +995,9 @@ string transform_to_quoted_value(const char* psz)
 
    string str(psz);
 
-   str.replace("\\", "\\\\");
+   str.replace_with("\\\\", "\\");
 
-   str.replace("\"", "\\\"");
+   str.replace_with("\\\"", "\"");
 
    return "\"" + str + "\"";
 

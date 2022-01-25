@@ -408,7 +408,7 @@ namespace programming
       ::file::path pathN = m_pathProjectDir;
       pathN -= 3;
       string strN = pathN;
-      strN.replace("\\", "/");
+      strN.find_replace("\\", "/");
       strN += "/";
       //
       //
@@ -606,17 +606,17 @@ namespace programming
       /*string strVars = getenv("VS100COMNTOOLS");
       m_pcontext->m_papexcontext->file().path().eat_end_level(strVars, 2, "/");
       strVars += "vc/bin/vcvars32.bat";*/
-      str.replace("%VS_VARS%", m_strEnv);
-      str.replace("%VS_VARS_PLAT2%", m_strPlat2);
+      str.find_replace("%VS_VARS%", m_strEnv);
+      str.find_replace("%VS_VARS_PLAT2%", m_strPlat2);
 
       string strV(m_pcontext->m_papexcontext->dir().install());
-      strV.replace("\\", "/");
+      strV.find_replace("\\", "/");
       if (!::str::ends(strV, "/") && !::str::ends(strV, "\\"))
          strV += "/";
-      str.replace("%CA2_ROOT%", strV);
-      str.replace("%PROJECT_DIR%", m_pathProjectDir);
-      str.replace("%NETNODE_ROOT%", strN);
-      str.replace("%SDK1%", m_strSdk1);
+      str.find_replace("%CA2_ROOT%", strV);
+      str.find_replace("%PROJECT_DIR%", m_pathProjectDir);
+      str.find_replace("%NETNODE_ROOT%", strN);
+      str.find_replace("%SDK1%", m_strSdk1);
       //str.replace("%DVP%", strDVP_B);
 
       string strDest = m_strDynamicSourceStage / "front" / lpcszDest;

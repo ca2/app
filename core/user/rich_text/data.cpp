@@ -1233,9 +1233,9 @@ namespace user
 
             __pointer(span) pspan = m_spana[iSpan];
 
-            pspan->m_str.replace("\n", "");
+            pspan->m_str.find_replace("\n", "");
 
-            pspan->m_str.replace("\r", "");
+            pspan->m_str.find_replace("\r", "");
 
             auto pformat = pspan->format();
 

@@ -814,8 +814,8 @@ end:
    string table::body(const char * psz)
    {
       string table(psz);
-      table.replace("\\r", "\r");
-      table.replace("\\n", "\n");
+      table.replace_with("\r", "\\r");
+      table.replace_with("\n", "\\n");
       return table;
    }
 

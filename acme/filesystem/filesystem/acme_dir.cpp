@@ -189,7 +189,7 @@ string acme_dir::system_short_name()
 ::file::path acme_dir::relative(::file::path path)
 {
 
-   path.replace(":", "");
+   path.replace_with("", ":");
 
    ::str::ends_eat_ci(path, ".exe");
 
@@ -808,7 +808,7 @@ void acme_dir::_create2(const char * pathParam)
    if(bExists)
    {
 
-      m_pacmefile->delete_file(pathParam);
+      m_pacmefile->erase(pathParam);
 
    }
 

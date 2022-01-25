@@ -240,7 +240,7 @@ namespace filemanager
 
                strName = strPrefix + pdatetime->international().get_date_time() + strSuffix;
 
-               strName.replace(":", "-");
+               strName.find_replace(":", "-");
 
                ptopview->m_pedit->_001SetText(strName, psubject->m_actioncontext);
 

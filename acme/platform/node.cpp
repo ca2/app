@@ -470,7 +470,7 @@ namespace acme
 
       string strFolder = pathExe.folder();
 
-      strFolder.replace(":", "");
+      strFolder.replace_with("", ":");
 
       return m_psystem->m_pacmedir->ca2roaming() / "appdata" / strFolder / strAppId / pszPlatform / pszConfiguration / pszLocale / pszSchema;
 

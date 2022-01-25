@@ -1314,9 +1314,9 @@ namespace axis
 
       string strFolder = m_strAppName;
 
-      strFolder.replace(".", "_");
-      strFolder.replace("::", "-");
-      strFolder.replace(":", "_");
+      strFolder.replace_with("_", ".");
+      strFolder.replace_with("-", "::");
+      strFolder.replace_with("_", ":");
 
       m_strRelativeFolder = strFolder;
 

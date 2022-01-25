@@ -613,10 +613,15 @@ namespace sqlite
 
    string database::escape(const ::string & psz)
    {
+      
       string str(psz);
-      str.replace("\'", "\'\'");
-      str.replace("\"", "\"\"");
+      
+      str.replace_with("\'\'", "\'");
+
+      str.replace_with("\"\"", "\"");
+
       return str;
+
    }
 
 

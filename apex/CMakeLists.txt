@@ -104,6 +104,7 @@ list(APPEND apex_source
    filesystem/filesystem/file_system.h
    filesystem/filesystem/file_watcher.cpp
    filesystem/filesystem/file_watcher.h
+   filesystem/filesystem/file_listener.h
    #filesystem/filesystem/path.h
    filesystem/fs/_.h
    filesystem/fs/_fs.h
@@ -599,26 +600,26 @@ if (WIN32)
       #node/windows/timer.cpp
       #node/windows/trace.cpp
       #node/windows_common/application.cpp
-      os/windows/_.cpp
-      os/windows/_.h
-      os/windows/_windows.h
-      os/windows/application.cpp
-      os/windows/application_system_run.cpp
-      os/windows/dpi.cpp
-      os/windows/gdi.cpp
+#      os/windows/_.cpp
+#      os/windows/_.h
+#      os/windows/_windows.h
+#      os/windows/application.cpp
+#      os/windows/application_system_run.cpp
+#      os/windows/dpi.cpp
+#      os/windows/gdi.cpp
       #os/windows/interprocess_communication.cpp
       #os/windows/launcher.cpp
       #os/windows/library.cpp
-      os/windows/main.cpp
-      os/windows/menu.cpp
+#      os/windows/main.cpp
+#      os/windows/menu.cpp
       #os/windows/shell_launcher.cpp
-      os/windows/thread.cpp
-      os/windows/user.cpp
-      os/windows/windowing.cpp
-      os/windows/windowing.h
-      os/windows_common/_.h
-      os/windows_common/_windows_common.h
-      os/windows_common/file.cpp
+#      os/windows/thread.cpp
+#      os/windows/user.cpp
+#      os/windows/windowing.cpp
+#      os/windows/windowing.h
+#      os/windows_common/_.h
+#      os/windows_common/_windows_common.h
+#      os/windows_common/file.cpp
       #os/win32/_.h
       #os/win32/dialog.cpp
       #os/win32/dialog.h
@@ -1380,7 +1381,7 @@ else ()
 endif ()
 
 
-add_library(apex SHARED ${apex_source} filesystem/filesystem/file_listener.h)
+add_library(apex SHARED ${apex_source} )
 
 target_precompile_headers(apex PRIVATE framework.h)
 

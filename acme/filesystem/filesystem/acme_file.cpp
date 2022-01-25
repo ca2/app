@@ -373,7 +373,7 @@ string acme_file::get_temporary_file_name(const char * lpszName, const char * ps
       if (this->exists(path))
       {
 
-         this->delete_file(path);
+         this->erase(path);
 
       }
 
@@ -684,12 +684,12 @@ void acme_file::move(const char * pszNewName, const char * pszOldName)
 
    copy(pszNewName, pszOldName, true);
 
-   delete_file(pszOldName);
+   erase(pszOldName);
 
 }
 
 
-void acme_file::delete_file(const char * path)
+void acme_file::erase(const char * path)
 {
 
    if(::is_null(path))
@@ -706,7 +706,7 @@ void acme_file::delete_file(const char * path)
 
    }
 
-    _delete(path);
+    _erase(path);
 
    //if(!estatus)
    //{
@@ -1184,7 +1184,7 @@ void acme_file::set_line(const char * pszPath, index iLine, const char * pszLine
 
       //}
 
-      delete_file(pathTime);
+      erase(pathTime);
 
    }
 
@@ -1340,7 +1340,12 @@ void acme_file::write(FILE * file, const void * pdata, memsize nCount, memsize *
 
    }
 
-   return bOk;
+   if(!bOk)
+   {
+
+      throw io_exception(error_io);
+
+   }
 
 #endif
 
@@ -1433,7 +1438,7 @@ bool acme_file::_exists(const char * path)
 }
 
 
-void acme_file::_delete(const char * path)
+void acme_file::_erase(const char * path)
 {
 
    if (::unlink(path) == -1)

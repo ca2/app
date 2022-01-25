@@ -1392,7 +1392,7 @@ namespace user
 
       prompt = _("MessageBoxChangedFileAskToSave");
 
-      prompt.replace("%1", strName);
+      prompt.replace_with(strName, "%1");
 
       if (m_bAutoSaveModified)
       {

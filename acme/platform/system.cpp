@@ -11,8 +11,10 @@
 #include "acme/compress/_.h"
 //#include "system_impl.h"
 #include "library.h"
-#include "acme/node/operating_system/windows/nano_user/nano_message_box.h"
 
+#ifdef WINDOWS_DESKTOP
+#include "acme/node/operating_system/windows/nano_user/nano_message_box.h"
+#endif
 
 //__namespace_object_factory(class ::system, ::static_setup::flag_system)
 

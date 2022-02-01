@@ -61,6 +61,12 @@ bool nano_window_interface::is_active()
 }
 
 
+void nano_window_interface::set_active()
+{
+
+}
+
+
 void nano_window_interface::draw_children(nano_device * pnanodevice)
 {
 

@@ -57,6 +57,7 @@ public:
    void on_char(int iChar) override;
 
    bool is_active() override;
+   void set_active() override;
 
    void draw_children(nano_device * pnanodevice) override;
 

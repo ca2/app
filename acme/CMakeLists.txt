@@ -1578,9 +1578,7 @@ if(WITH_X11)
       node/operating_system/x11/nano/window.cpp
       )
 
-
-   list(APPEND extra_pkg_modules
-      x11 cairo)
+   list(APPEND extra_pkg_modules x11 cairo xkbcommon)
 
 endif()
 

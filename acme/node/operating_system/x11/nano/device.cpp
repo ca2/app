@@ -27,8 +27,10 @@ namespace x11
    }
 
 
-   void nano_device::draw_text(const ::string & str, const ::rectangle_i32 & rectangleText, const ::e_align & ealign, ::nano_brush * pnanobrushBack, ::nano_brush * pnanobrushText, ::nano_font * pnanofont)
+   void nano_device::draw_text(const ::string & str, const ::rectangle_i32 & rectangleText, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::nano_brush * pnanobrushBack, ::nano_brush * pnanobrushText, ::nano_font * pnanofont)
    {
+
+      cairo_set_antialias(m_pdc, CAIRO_ANTIALIAS_SUBPIXEL);
 
       cairo_select_font_face(m_pdc, pnanofont->m_strFontName, CAIRO_FONT_SLANT_NORMAL, pnanofont->m_bBold ? CAIRO_FONT_WEIGHT_BOLD : CAIRO_FONT_WEIGHT_NORMAL);
 
@@ -80,20 +82,38 @@ namespace x11
    void nano_device::rectangle(const ::rectangle_i32 & rectangle, ::nano_brush * pnanobrush, ::nano_pen * pnanopen)
    {
 
+      cairo_set_antialias(m_pdc, CAIRO_ANTIALIAS_NONE);
+
       int iWidth = pnanopen ? pnanopen->m_iWidth : 0;
+
+      if(iWidth > 0 || pnanobrush && pnanobrush->m_color)
+      {
+
+         cairo_rectangle(m_pdc,
+                         rectangle.left + !!iWidth,
+                         rectangle.top  + !!iWidth,
+                         rectangle.width() -  !!iWidth ,
+                         rectangle.height() - !!iWidth);
+
+      }
 
       if (pnanobrush && pnanobrush->m_color)
       {
 
-         auto rectangleFill = rectangle;
-
-         rectangleFill.deflate(iWidth);
-
          _set_source(pnanobrush->m_color);
 
-         cairo_rectangle(m_pdc, rectangleFill.left, rectangleFill.top, rectangleFill.width(), rectangleFill.height());
+         if(iWidth > 0)
+         {
 
-         cairo_fill(m_pdc);
+            cairo_fill_preserve(m_pdc);
+
+         }
+         else
+         {
+
+            cairo_fill(m_pdc);
+
+         }
 
       }
 
@@ -104,13 +124,19 @@ namespace x11
 
          cairo_set_line_width(m_pdc, iWidth);
 
-         cairo_rectangle(m_pdc, rectangle.left, rectangle.top, rectangle.width(), rectangle.height());
-
          cairo_stroke(m_pdc);
 
       }
 
    }
+
+
+//   void nano_device::set_antialias(bool bAntialiasOn)
+//   {
+//
+//
+//
+//   }
 
 
 //   XColor nano_device::_alloc_xcolor(const ::color::color & color)

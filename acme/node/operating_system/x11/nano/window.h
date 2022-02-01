@@ -66,6 +66,8 @@ namespace x11
 
       bool is_active() override;
 
+      void set_active() override;
+
       ///virtual void draw_children(nano_device * pnanodevice);
 
       void delete_drawing_objects() override;

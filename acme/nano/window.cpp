@@ -155,6 +155,14 @@ bool nano_window::is_active()
 }
 
 
+void nano_window::set_active()
+{
+
+   m_pimplementation->set_active();
+
+}
+
+
 void nano_window::delete_drawing_objects()
 {
 
@@ -204,7 +212,7 @@ void nano_window::create_drawing_objects()
 
       m_colorWindow = rgb(255, 255, 255);
       m_colorText = rgb(0, 0, 0);
-      m_colorFocus = rgb(1, 64, 128);
+      m_colorFocus = rgb(2, 58, 235);
 
    }
 

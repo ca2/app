@@ -4,7 +4,17 @@
 #include "framework.h"
 #include "_nano.h"
 #include <X11/Xatom.h>
+#include <xkbcommon/xkbcommon.h>
+#include <X11/XKBlib.h>
 
+
+Window g_windowActive = 0;
+
+
+unsigned long x11_get_long_property(Display *d, Window w, char *property_name);
+
+
+Window _x11_get_active_window(Display * pdisplay);
 
 
 struct MWMHints
@@ -118,7 +128,7 @@ namespace x11
    bool nano_window::get_dark_mode()
    {
 
-      return m_pinterface->get_dark_mode();
+      return m_psystem->node()->dark_mode();
 
    }
 
@@ -190,6 +200,8 @@ namespace x11
       }
 
       XSelectInput(m_pdisplay, m_window, ExposureMask | KeyPressMask | VisibilityChangeMask | StructureNotifyMask | ButtonPressMask | ButtonMotionMask);
+
+      XSelectInput(m_pdisplay, windowRoot, PropertyChangeMask);
 
       create_drawing_objects();
 
@@ -413,13 +425,44 @@ void nano_window::display_synchronously()
 
    XMapWindow(m_pdisplay, m_window);
 
+   XRaiseWindow(m_pdisplay, m_window);
 
-
-   //UpdateWindow(m_hwnd);
+   set_active();
 
    message_loop();
 
 }
+
+
+void nano_window::set_active()
+{
+
+   XEvent xev;
+
+   __zero(xev);
+
+   Window windowRoot = DefaultRootWindow(m_pdisplay);
+
+   Atom atomActiveWindow = XInternAtom(m_pdisplay, "_NET_ACTIVE_WINDOW", False);
+
+   xev.xclient.type = ClientMessage;
+   xev.xclient.send_event = True;
+   xev.xclient.display = m_pdisplay;
+   xev.xclient.window = m_window;
+   xev.xclient.message_type = atomActiveWindow;
+   xev.xclient.format = 32;
+   xev.xclient.data.l[0] = 1;
+   xev.xclient.data.l[1] = 0;
+   xev.xclient.data.l[2] = 0;
+   xev.xclient.data.l[3] = 0;
+   xev.xclient.data.l[4] = 0;
+
+   XSendEvent(m_pdisplay, windowRoot, False, SubstructureRedirectMask | SubstructureNotifyMask, &xev);
+
+}
+
+
+
 
 
 void nano_window::_on_event(XEvent *pevent)
@@ -477,8 +520,54 @@ void nano_window::_on_event(XEvent *pevent)
       _update_window();
 
    }
+   else if(pevent->type == PropertyNotify)
+   {
+
+      if(pevent->xany.window == DefaultRootWindow(m_pdisplay))
+      {
+
+         Atom atom = XInternAtom(m_pdisplay, "_NET_ACTIVE_WINDOW", False);
+
+         if(atom == pevent->xproperty.atom)
+         {
+
+            auto windowActive = _x11_get_active_window(m_pdisplay);
+
+            bool bNcActive = windowActive == m_window;
+
+            if(is_different(bNcActive, m_pinterface->m_bNcActive))
+            {
+
+               m_pinterface->m_bNcActive = bNcActive;
+
+               redraw();
+
+            }
+
+            g_windowActive = windowActive;
+
+         }
+
+      }
+
+   }
+   else if (pevent->type == KeyPress)
+   {
+
+      auto keysym = XkbKeycodeToKeysym(m_pdisplay, pevent->xkey.keycode, 0, pevent->xkey.state & ShiftMask ? 1 : 0);
+
+      int iChar = xkb_keysym_to_utf32(keysym);
+
+      on_char(iChar);
+
+   }
+   else if (pevent->type == KeyRelease)
+   {
+
+   }
    else if (pevent->type == ButtonPress)
    {
+
 
       if (pevent->xbutton.button == Button1)
       {
@@ -781,3 +870,79 @@ void nano_window::redraw()
 
 
 } // namespace x11
+
+
+void x11_check_status(int status, unsigned long window)
+{
+
+   if (status == BadWindow)
+   {
+
+      printf("window id # 0x%lx does not exists!", window);
+
+      throw_status(error_exception);
+
+   }
+
+   if (status != Success)
+   {
+
+      printf("XGetWindowProperty failed!");
+
+      throw_status(error_exception);
+
+   }
+
+}
+
+
+#define MAXSTR 1000
+
+
+unsigned char* x11_get_string_property(Display * display, Window window, char* property_name)
+{
+
+   unsigned char * prop;
+   Atom actual_type, filter_atom;
+   int actual_format, status;
+   unsigned long nitems, bytes_after;
+
+   filter_atom = XInternAtom(display, property_name, True);
+
+   status = XGetWindowProperty(display, window, filter_atom, 0, MAXSTR, False, AnyPropertyType,
+                               &actual_type, &actual_format, &nitems, &bytes_after, &prop);
+
+   x11_check_status(status, window);
+
+   return prop;
+
+}
+
+
+unsigned long x11_get_long_property(Display *d, Window w, char *property_name)
+{
+
+   unsigned char *prop = x11_get_string_property(d, w, property_name);
+
+   unsigned long long_property = prop[0] + (prop[1] << 8) + (prop[2] << 16) + (prop[3] << 24);
+
+   return long_property;
+
+}
+
+
+Window _x11_get_active_window(Display * pdisplay)
+{
+
+   int screen = XDefaultScreen(pdisplay);
+
+   Window windowRoot = RootWindow(pdisplay, screen);
+
+   Window window = x11_get_long_property(pdisplay, windowRoot, (char*) "_NET_ACTIVE_WINDOW");
+
+   return window;
+
+}
+
+
+

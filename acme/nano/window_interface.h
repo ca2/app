@@ -25,6 +25,7 @@ public:
    virtual void on_char(int iChar);
 
    virtual bool is_active();
+   virtual void set_active();
 
    virtual void draw_children(nano_device * pnanodevice);
 

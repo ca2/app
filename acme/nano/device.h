@@ -17,6 +17,8 @@ public:
    virtual void rectangle(const ::rectangle_i32 & rectangle, ::nano_brush * pnanobrush, ::nano_pen * pnanopen);
 
 
+   //void set_antialias(bool bAntialiasOn);
+
 };
 
 

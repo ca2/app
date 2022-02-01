@@ -282,8 +282,17 @@
     <Filter Include="Header Files\compress">
       <UniqueIdentifier>{029fd5d0-35f1-489e-a65d-bf45039ad5f1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\node\operating_system\windows\nano_user">
+    <Filter Include="Header Files\nano">
+      <UniqueIdentifier>{64f3072c-011e-4c9b-9c5d-cc74e8a606e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\nano">
+      <UniqueIdentifier>{f4adab8b-6d1a-4595-a4c2-92846414eca9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\node\operating_system\windows\nano">
       <UniqueIdentifier>{e33747e2-de15-4146-a5a1-85d6d125129b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\node\operating_system\windows\nano">
+      <UniqueIdentifier>{3a65d5bf-ef19-454a-99be-3faaf53c688f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -2753,20 +2762,65 @@
     <ClInclude Include="primitive\primitive\holder.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="node\operating_system\windows\nano_user\nano_button.h">
-      <Filter>Source Files\node\operating_system\windows\nano_user</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\windows\nano_user\nano_message_box.h">
-      <Filter>Source Files\node\operating_system\windows\nano_user</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\windows\nano_user\nano_window.h">
-      <Filter>Source Files\node\operating_system\windows\nano_user</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\windows\nano_user\nano_child.h">
-      <Filter>Source Files\node\operating_system\windows\nano_user</Filter>
-    </ClInclude>
     <ClInclude Include="user\drag_move.h">
       <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\_nano.h">
+      <Filter>Header Files\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\brush.h">
+      <Filter>Header Files\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\button.h">
+      <Filter>Header Files\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\child.h">
+      <Filter>Header Files\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\device.h">
+      <Filter>Header Files\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\font.h">
+      <Filter>Header Files\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\message_box.h">
+      <Filter>Header Files\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\object.h">
+      <Filter>Header Files\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\pen.h">
+      <Filter>Header Files\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\window.h">
+      <Filter>Header Files\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\window_implementation.h">
+      <Filter>Header Files\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\window_interface.h">
+      <Filter>Header Files\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\windows\nano\brush.h">
+      <Filter>Header Files\node\operating_system\windows\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\windows\nano\device.h">
+      <Filter>Header Files\node\operating_system\windows\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\windows\nano\font.h">
+      <Filter>Header Files\node\operating_system\windows\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\windows\nano\object.h">
+      <Filter>Header Files\node\operating_system\windows\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\windows\nano\pen.h">
+      <Filter>Header Files\node\operating_system\windows\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\windows\nano\window.h">
+      <Filter>Header Files\node\operating_system\windows\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\windows\nano\_nano.h">
+      <Filter>Header Files\node\operating_system\windows\nano</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -3895,23 +3949,65 @@
     <ClCompile Include="node\operating_system\windows\message_box.cpp">
       <Filter>Source Files\node\operating_system\windows</Filter>
     </ClCompile>
-    <ClCompile Include="node\operating_system\windows\nano_user\nano_button.cpp">
-      <Filter>Source Files\node\operating_system\windows\nano_user</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\windows\nano_user\nano_message_box.cpp">
-      <Filter>Source Files\node\operating_system\windows\nano_user</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\windows\nano_user\nano_window.cpp">
-      <Filter>Source Files\node\operating_system\windows\nano_user</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\windows\nano_user\nano_child.cpp">
-      <Filter>Source Files\node\operating_system\windows\nano_user</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\windows\nano_user\nano_user.cpp">
-      <Filter>Source Files\node\operating_system\windows\nano_user</Filter>
-    </ClCompile>
     <ClCompile Include="user\drag_move.cpp">
       <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\_nano.cpp">
+      <Filter>Source Files\nano</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\brush.cpp">
+      <Filter>Source Files\nano</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\button.cpp">
+      <Filter>Source Files\nano</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\child.cpp">
+      <Filter>Source Files\nano</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\device.cpp">
+      <Filter>Source Files\nano</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\font.cpp">
+      <Filter>Source Files\nano</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\message_box.cpp">
+      <Filter>Source Files\nano</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\object.cpp">
+      <Filter>Source Files\nano</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\pen.cpp">
+      <Filter>Source Files\nano</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\window.cpp">
+      <Filter>Source Files\nano</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\window_implementation.cpp">
+      <Filter>Source Files\nano</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\window_interface.cpp">
+      <Filter>Source Files\nano</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\windows\nano\brush.cpp">
+      <Filter>Source Files\node\operating_system\windows\nano</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\windows\nano\device.cpp">
+      <Filter>Source Files\node\operating_system\windows\nano</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\windows\nano\font.cpp">
+      <Filter>Source Files\node\operating_system\windows\nano</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\windows\nano\object.cpp">
+      <Filter>Source Files\node\operating_system\windows\nano</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\windows\nano\pen.cpp">
+      <Filter>Source Files\node\operating_system\windows\nano</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\windows\nano\window.cpp">
+      <Filter>Source Files\node\operating_system\windows\nano</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\windows\nano\_nano.cpp">
+      <Filter>Source Files\node\operating_system\windows\nano</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

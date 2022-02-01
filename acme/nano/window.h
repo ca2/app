@@ -68,6 +68,7 @@ public:
 
    ::id hit_test(int x, int y) override;
    void add_child(nano_child * pchild) override;
+   nano_child * get_child_by_id(const ::id & id);
 
    ::id get_result() override;
 
@@ -94,11 +95,13 @@ public:
 
    void set_cursor(enum_cursor ecursor) override;
 
+   
+
 
 };
 
 
-void initialize_nano();
+CLASS_DECL_ACME void initialize_nano();
 
 
 

@@ -3,6 +3,7 @@
 //
 #include "framework.h"
 #include "_nano.h"
+#include "acme/id.h"
 
 
 nano_window::nano_window()
@@ -58,7 +59,7 @@ void nano_window::draw(nano_device * pnanodevice)
 
    get_client_rectangle(rectangleClient);
 
-   pnanodevice->rectangle(rectangleClient, m_pbrushWindow, m_ppenBorder);
+   pnanodevice->rectangle(rectangleClient, m_pbrushWindow, pnanopenBorder);
 
    on_draw(pnanodevice);
 
@@ -135,7 +136,8 @@ void nano_window::on_char(int iChar)
 
       redraw();
 
-   } else if (m_pchildFocus)
+   }
+   else if (m_pchildFocus)
    {
 
       m_pchildFocus->on_char(iChar);
@@ -168,7 +170,7 @@ void nano_window::delete_drawing_objects()
 bool nano_window::get_dark_mode()
 {
 
-   return true;
+   return m_pimplementation->get_dark_mode();
 
 }
 
@@ -260,6 +262,25 @@ void nano_window::add_child(nano_child * pchild)
 }
 
 
+nano_child * nano_window::get_child_by_id(const ::id & id)
+{
+
+   for (auto & pchild : m_childa)
+   {
+
+      if (pchild->m_id == id)
+      {
+
+         return pchild;
+
+      }
+
+   }
+
+   return nullptr;
+
+}
+
 ::id nano_window::get_result()
 {
 
@@ -319,6 +340,15 @@ void nano_window::on_left_button_down(int x, int y)
       m_pdragmove->m_sizeLButtonDownOffset = m_pdragmove->m_pointLButtonDown - m_rectangle.origin();
 
       return;
+
+   }
+
+   auto pchild = get_child_by_id(m_idLeftButtonDown);
+
+   if (::is_set(pchild))
+   {
+
+      pchild->set_focus();
 
    }
 
@@ -410,6 +440,7 @@ void nano_window::set_cursor(enum_cursor ecursor)
    m_pimplementation->set_cursor(ecursor);
 
 }
+
 
 
 void nano_window::release_capture()

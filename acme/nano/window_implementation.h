@@ -19,6 +19,8 @@ public:
 
    void draw(nano_device * pnanodevice) override;
 
+   bool get_dark_mode() override;
+   bool is_active() override;
 
 
 };

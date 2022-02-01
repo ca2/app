@@ -8,11 +8,20 @@
 nano_object::nano_object()
 {
 
+   m_bModified = true;
+   m_pthis = nullptr;
 
 }
 
 
 nano_object::~nano_object()
+{
+
+
+}
+
+
+void nano_object::destroy()
 {
 
 

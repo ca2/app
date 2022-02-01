@@ -18,6 +18,9 @@ public:
    void on_char(int iChar) override;
 
 
+   bool is_focusable() const override;
+
+
 };
 
 

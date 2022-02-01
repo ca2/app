@@ -17,6 +17,10 @@ namespace windows
       nano_brush();
       ~nano_brush() override;
 
+      
+      void update(::nano_device * pnanodevice) override;
+
+
    };
 
 

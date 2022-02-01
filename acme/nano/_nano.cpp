@@ -1,6 +1,7 @@
 //
 // Created by camilo on 31/01/2022.
 //
+#include "framework.h"
 
 
 void operating_system_initialize_nano();

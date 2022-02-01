@@ -1,8 +1,5 @@
 // Created by camilo on 2021-01-21 05:05 PM <3ThomasBorregaardSørensen
-#include "framework.h"
-#include "acme/operating_system.h"
-#include "nano_child.h"
-#include "source/app/acme/nano/nano_window.h"
+#pragma once
 
 
 namespace windows
@@ -35,60 +32,66 @@ namespace windows
 
       nano_window();
 
-      ~nano_window();
+      ~nano_window() override;
 
-      virtual void create();
+      void create() override;
 
-      virtual void display_synchronously();
+      void display_synchronously() override;
 
-      virtual void message_loop();
+      void message_loop() override;
 
       virtual void _draw(HDC hdc);
 
-      void on_draw(nano_device * pnanodevice) override;
+      //void on_draw(nano_device * pnanodevice) override;
 
-      virtual void on_char(int iChar);
+      void on_char(int iChar) override;
 
-      virtual bool is_active();
+      //bool is_active() override;
 
-      void draw_children(nano_device * pnanodevice) override;
+      //virtual void draw_children(nano_device * pnanodevice);
 
-      virtual void delete_drawing_objects();
+      void delete_drawing_objects() override;
 
-      virtual bool get_dark_mode();
+      bool get_dark_mode() override;
 
-      virtual void create_drawing_objects();
+      void create_drawing_objects() override;
 
-      virtual void update_drawing_objects();
+      void update_drawing_objects() override;
 
-      virtual ::id hit_test(int x, int y);
+      ::id hit_test(int x, int y) override;
 
-      virtual void add_child(nano_child * pchild);
+      void add_child(nano_child * pchild) override;
 
-      virtual ::id get_result();
+      ::id get_result() override;
 
-      virtual void on_mouse_move(int x, int y);
+      void on_mouse_move(int x, int y) override;
 
-      virtual void on_left_button_down(int x, int y);
+      void on_left_button_down(int x, int y) override;
 
-      virtual void on_left_button_up(int x, int y);
+      void on_left_button_up(int x, int y) override;
 
-      virtual void on_click(const ::id & id);
+      void on_click(const ::id & id) override;
 
       virtual LRESULT window_procedure(UINT message, WPARAM wparam, LPARAM lparam);
 
-      virtual void move_to(int x, int y);
+      void move_to(int x, int y) override;
 
-      virtual void destroy();
+      void destroy() override;
 
-      virtual void redraw();
+      void redraw() override;
 
 
       void get_client_rectangle(::rectangle_i32 & rectangle) override;
 
+      void get_window_rectangle(::rectangle_i32 & rectangle) override;
+
       void set_capture() override;
 
       void release_capture() override;
+
+      void set_cursor(enum_cursor ecursor) override;
+      
+      static bool _is_light_theme();
 
 
    };

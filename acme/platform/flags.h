@@ -10,6 +10,7 @@ class flags :
 {
 public:
 
+
    i64_array m_ia;
 
 
@@ -17,7 +18,8 @@ public:
    flags(ENUM eenum);
    flags(const ::std::initializer_list < ENUM >& evaluelist);
    flags(const flags & f);
-   virtual ~flags();
+   ~flags() override;
+
 
    bool add(ENUM eenum);
    bool erase(ENUM eenum);
@@ -26,6 +28,7 @@ public:
    i32 add(flags < ENUM > & f);
    bool clear();
    bool toggle(ENUM eenum);
+
 
    flags operator & (ENUM eenum) const
    {

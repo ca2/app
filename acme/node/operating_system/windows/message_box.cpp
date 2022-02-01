@@ -2,7 +2,6 @@
 // Help from http://www.winprog.org/tutorial/simple_window.html
 #include "framework.h"
 #include "acme/operating_system.h"
-#include "nano_user/nano_message_box.h"
 
 
 int message_box_to_windows_message_box_type(enum_message_box emessagebox)
@@ -128,17 +127,6 @@ enum_dialog_result windows_message_box_result_to_dialog_result(int iResult)
 
 }
 
-x
-
-
-void nano_message_box::on_click(const ::id & id)
-{
-
-   m_idResult = id;
-
-   destroy();
-
-}
 
 
 

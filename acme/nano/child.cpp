@@ -9,6 +9,16 @@ void nano_child::set_focus()
 
    m_pwindow->m_pchildFocus = this;
 
+   m_pwindow->redraw();
+
+}
+
+
+bool nano_child::is_focusable() const
+{
+
+   return false;
+
 }
 
 

@@ -615,97 +615,75 @@ namespace file
 
       }
 
+      memory mem;
+
       str.Empty();
 
-      memory m;
-
-      while (i != EOF)
-      {
-
-         if ((char)i == '\n' || (char)i == '\r')
-         {
-
-            break;
-
-         }
-         
-         char ch = i;
-
-         m.append(&ch, 1);
-
-         i = get_character();
-
-      };
-
-      str = m.as_utf8();
-
-      int iNew = get_character();
-
-      if(iNew == EOF)
-      {
-
-         return true;
-
-      }
-
-      if (iNew == i || ((char)iNew != '\n' && (char)iNew != '\r'))
-      {
-
-         put_character_back(iNew);
-
-      }
-
-      return true;
-
-   }
-
-
-   bool file::read_string(memory_base & mem)
-   {
-
-      m_estate -= ::file::e_state_read_line_truncated;
-
-      int i = get_character();
-
-      if (i == EOF)
+      if (!read_string(mem))
       {
 
          return false;
 
       }
 
-      strsize iPos = 0;
+      str = mem.as_utf8();
 
-      while (i != EOF)
+      return true;
+
+   }
+
+
+   bool file::read_string(memory_base & memory)
+   {
+
+      auto position = get_position();
+
+      int i;
+
+      while (true)
       {
-
-         if ((char)i == '\n' || (char)i == '\r')
-         {
-
-            break;
-
-         }
-
-         mem.set_char_at_grow(iPos, char(i));
 
          i = get_character();
 
-         iPos++;
+         if (i == EOF)
+         {
 
-      };
+            set_position(position);
 
-      mem.set_char_at_grow(iPos, '\0');
+            return false;
 
-      int iNew = get_character();
+         }
 
-      if ((iNew == i || ((char)iNew != '\n' && (char)iNew != '\r')) && iNew != EOF)
-      {
+         if ((char)i == '\n')
+         {
 
-         --position();
+            return true;
+
+         }
+
+         if ((char)i == '\r')
+         {
+
+            i = get_character();
+
+            if ((char)i != '\n')
+            {
+
+               put_character_back(i);
+
+               i = '\r';
+
+            }
+
+            return true;
+
+         }
+
+         char ch = i;
+
+         memory.append(&ch, 1);
 
       }
-
-      return true;
 
    }
 

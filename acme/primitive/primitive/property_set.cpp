@@ -1193,7 +1193,7 @@ property_set& property_set::operator = (const ::payload & payload)
    if (payload.m_etype == e_type_property_set)
    {
 
-      if (has(e_flag_data_struct))
+      if (::element::has(e_flag_data_struct))
       {
 
          for (auto & pproperty : *this)

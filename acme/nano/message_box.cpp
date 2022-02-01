@@ -32,7 +32,14 @@ void nano_message_box::on_draw(nano_device * pnanodevice)
 
    rectangleText.deflate(25);
 
-   pnanodevice->draw_text(m_strMessage, rectangleText, e_align_top_left, m_pbrushWindow, m_pbrushText, m_pfont);
+   pnanodevice->draw_text(
+      m_strMessage, 
+      rectangleText,
+      e_align_top_left,
+      e_draw_text_word_break,
+      m_pbrushWindow, 
+      m_pbrushText, 
+      m_pfont);
 
 }
 
@@ -344,4 +351,16 @@ CLASS_DECL_ACME ::id os_message_box(::object * pobject, const char * pszMessage,
    return idResult;
 
 }
+
+
+void nano_message_box::on_click(const ::id & id)
+{
+
+   m_idResult = id;
+
+   destroy();
+
+}
+
+
 

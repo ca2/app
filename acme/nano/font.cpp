@@ -29,7 +29,7 @@ namespace nano
    __pointer(nano_font) create_point_font(::object * pobject, int iPoint, enum_font efont, bool bBold)
    {
 
-      __pointer(nano_font) pfont(e_create_new, pobject);
+      __pointer(nano_font) pfont(e_create, pobject);
 
       pfont->m_iFontSize = iPoint;
       pfont->m_strFontName = pobject->m_psystem->node()->font_name(efont);

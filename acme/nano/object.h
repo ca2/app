@@ -11,8 +11,15 @@ class CLASS_DECL_ACME nano_object :
 public:
 
 
+   bool              m_bModified;
+   void *            m_pthis;
+
+
    nano_object();
    ~nano_object();
+
+
+   virtual void destroy();
 
 
    virtual void * operating_system_data();

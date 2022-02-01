@@ -20,7 +20,7 @@ namespace windows
       ~nano_device() override;
 
 
-      void draw_text(const ::string & strMessage, const ::rectangle_i32 & rectangleText, const ::e_align & ealign, ::nano_brush * pnanobrushBack, ::nano_brush * pnanobrushText, ::nano_font * pnanofont) override;
+      void draw_text(const ::string & strMessage, const ::rectangle_i32 & rectangleText, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::nano_brush * pnanobrushBack, ::nano_brush * pnanobrushText, ::nano_font * pnanofont) override;
       void rectangle(const ::rectangle_i32 & rectangle, ::nano_brush * pnanobrush, ::nano_pen * pnanopen) override;
 
 

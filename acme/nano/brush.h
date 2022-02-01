@@ -20,14 +20,14 @@ public:
 };
 
 
-namespace nano
-{
-
-
-   __pointer(nano_brush) create_solid_brush(::object * pobject, color32_t color);
-
-
-} // namespace nano
+//namespace nano
+//{
+//
+//
+//   __pointer(nano_brush) create_solid_brush(::object * pobject, color32_t color);
+//
+//
+//} // namespace nano
 
 
 

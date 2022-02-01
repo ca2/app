@@ -27,7 +27,7 @@ namespace nano
    __pointer(nano_pen) create_pen(::object * pobject, int iWidth, color32_t color)
    {
 
-      __pointer(nano_pen) ppen(e_create_new, pobject);
+      __pointer(nano_pen) ppen(e_create, pobject);
 
       ppen->m_iWidth = iWidth;
 

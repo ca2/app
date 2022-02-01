@@ -4,9 +4,6 @@
 #pragma once
 
 
-#include "source/app/acme/nano/nano_pen.h"
-
-
 namespace windows
 {
 
@@ -20,6 +17,9 @@ namespace windows
 
       nano_pen();
       ~nano_pen() override;
+
+      
+      void update(::nano_device * pnanodevice) override;
 
 
    };

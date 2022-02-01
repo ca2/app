@@ -20,6 +20,7 @@ public:
    virtual void on_draw(nano_device * pnanodevice) = 0;
    virtual void on_char(int iChar) = 0;
    virtual void set_focus();
+   virtual bool is_focusable() const;
 
 
 };

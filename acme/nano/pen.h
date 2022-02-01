@@ -5,7 +5,7 @@
 
 
 class CLASS_DECL_ACME nano_pen :
-   virtual public ::matter
+   virtual public ::nano_object
 {
 public:
 

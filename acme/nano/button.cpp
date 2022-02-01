@@ -31,9 +31,14 @@ void nano_button::on_draw(nano_device * pnanodevice)
 
    rectangleText.deflate(4);
 
-   //DT_SINGLELINE;
-
-   pnanodevice->draw_text(m_strText, rectangleText, e_align_center, m_pwindow->m_pbrushWindow, m_pwindow->m_pbrushText, m_pwindow->m_pfont);
+   pnanodevice->draw_text(
+      m_strText,
+      rectangleText, 
+      e_align_center,
+      e_draw_text_single_line, 
+      m_pwindow->m_pbrushWindow,
+      m_pwindow->m_pbrushText, 
+      m_pwindow->m_pfont);
 
 }
 
@@ -49,4 +54,14 @@ void nano_button::on_char(int iChar)
    }
 
 }
+
+
+bool nano_button::is_focusable() const
+{
+
+   return true;
+
+}
+
+
 

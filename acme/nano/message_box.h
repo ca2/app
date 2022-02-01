@@ -23,6 +23,8 @@ public:
 
    void on_draw(nano_device * pnanodevice) override;
 
+
+
    //void draw_buttons(HDC hdc);
 
    //void delete_drawing_objects();
@@ -39,7 +41,7 @@ public:
 
    //LRESULT window_procedure(UINT message, WPARAM wparam, LPARAM lparam);
 
-   //void on_click(const ::id & id) override;
+   void on_click(const ::id & id) override;
 
    void add_button(const char * pszText, enum_dialog_result edialogresult);
 

@@ -261,14 +261,19 @@ void nano_message_box::display_synchronously(const ::string & strMessage, const 
    if (emessagebox & e_message_box_default_button_mask)
    {
 
-      int iDefaultButton = ((int)(emessagebox & e_message_box_default_button_mask) >> 4) & 7;
+      int iDefaultButtonMask = (int)(emessagebox & e_message_box_default_button_mask);
 
-      if (emessagebox & e_message_box_default_button_1)
-      {
+      int iDefaultButtonIndex = iDefaultButtonMask >> 8;
 
-         m_childa[iDefaultButton]->set_focus();
+      int iDefaultButton = iDefaultButtonIndex & 7;
 
-      }
+      m_childa[iDefaultButton]->set_focus();
+
+   }
+   else
+   {
+
+      m_childa[0]->set_focus();
 
    }
 

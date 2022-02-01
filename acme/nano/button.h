@@ -5,6 +5,9 @@
 #include "nano_child.h"
 
 
+class nano_device;
+
+
 class nano_button :
    virtual public nano_child
 {
@@ -14,7 +17,7 @@ public:
    enum_dialog_result      m_edialogresult;
 
 
-   void on_draw(HDC hdc) override;
+   void on_draw(nano_device * pnanodevice) override;
    void on_char(int iChar) override;
 
 

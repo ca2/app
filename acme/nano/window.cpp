@@ -8,6 +8,11 @@
 nano_window::nano_window()
 {
 
+   enable_drag_move();
+
+   m_bNcActive = false;
+
+   m_bStartCentered = false;
 
 }
 
@@ -19,10 +24,20 @@ nano_window::~nano_window()
 }
 
 
-void nano_window::draw(nano_device * pnanodevice)
+void nano_window::on_initialize_object()
 {
 
-   get_client_rectangle(m_rectangleClient);
+   ::object::on_initialize_object();
+
+   __construct(m_pimplementation);
+
+   m_pimplementation->m_pinterface = this;
+
+}
+
+
+void nano_window::draw(nano_device * pnanodevice)
+{
 
    __pointer(::nano_pen) pnanopenBorder;
 
@@ -39,7 +54,11 @@ void nano_window::draw(nano_device * pnanodevice)
 
    }
 
-   pnanodevice->rectangle(m_rectangleClient, m_pbrushWindow, m_ppenBorder);
+   ::rectangle_i32 rectangleClient;
+
+   get_client_rectangle(rectangleClient);
+
+   pnanodevice->rectangle(rectangleClient, m_pbrushWindow, m_ppenBorder);
 
    on_draw(pnanodevice);
 
@@ -64,9 +83,15 @@ void nano_window::draw_children(nano_device * pnanodevice)
 void nano_window::create()
 {
 
-   __construct(m_pnanowindowImpl);
+   m_pimplementation->create();
 
-   m_pnanowindowImpl->create();
+}
+
+
+void nano_window::destroy()
+{
+
+   m_pimplementation->destroy();
 
 }
 
@@ -74,7 +99,7 @@ void nano_window::create()
 void nano_window::display_synchronously()
 {
 
-   m_pnanowindowImpl->display_synchronously();
+   m_pimplementation->display_synchronously();
 
 }
 
@@ -82,7 +107,7 @@ void nano_window::display_synchronously()
 void nano_window::message_loop()
 {
 
-   m_pnanowindowImpl->display_synchronously();
+   m_pimplementation->message_loop();
 
 }
 
@@ -91,7 +116,7 @@ void nano_window::message_loop()
 void nano_window::on_draw(nano_device * pnanodevice)
 {
 
-   m_pnanowindowImpl->draw(pnanodevice);
+   m_pimplementation->draw(pnanodevice);
 
 }
 
@@ -99,7 +124,23 @@ void nano_window::on_draw(nano_device * pnanodevice)
 void nano_window::on_char(int iChar)
 {
 
-   m_pnanowindowImpl->on_char(iChar);
+   if (iChar == '\t' && m_childa.has_element())
+   {
+
+      auto iFind = m_childa.find_first(m_pchildFocus);
+
+      iFind++;
+
+      m_pchildFocus = m_childa % iFind;
+
+      redraw();
+
+   } else if (m_pchildFocus)
+   {
+
+      m_pchildFocus->on_char(iChar);
+
+   }
 
 }
 
@@ -107,7 +148,7 @@ void nano_window::on_char(int iChar)
 bool nano_window::is_active()
 {
 
-   return m_pnanowindowImpl->is_active();
+   return m_bNcActive;
 
 }
 
@@ -115,7 +156,11 @@ bool nano_window::is_active()
 void nano_window::delete_drawing_objects()
 {
 
-   m_pnanowindowImpl->delete_drawing_objects();
+   m_pbrushWindow.release();
+
+   m_ppenBorder.release();
+
+   m_ppenBorder.release();
 
 }
 
@@ -123,7 +168,7 @@ void nano_window::delete_drawing_objects()
 bool nano_window::get_dark_mode()
 {
 
-   return m_pnanowindowImpl->get_dark_mode();
+   return true;
 
 }
 
@@ -131,7 +176,43 @@ bool nano_window::get_dark_mode()
 void nano_window::create_drawing_objects()
 {
 
-   m_pnanowindowImpl->create_drawing_objects();
+   if (!m_pfont)
+   {
+
+      __construct(m_pfont);
+
+      m_pfont->m_iFontSize = 14;
+
+      m_pfont->m_strFontName = m_psystem->node()->font_name(e_font_sans);
+
+   }
+
+   bool bDarkMode = get_dark_mode();
+
+   if (bDarkMode)
+   {
+
+      m_colorWindow = rgb(0, 0, 0);
+      m_colorText = rgb(255, 255, 255);
+      m_colorFocus = rgb(2, 128, 255);
+
+   }
+   else
+   {
+
+      m_colorWindow = rgb(255, 255, 255);
+      m_colorText = rgb(0, 0, 0);
+      m_colorFocus = rgb(1, 64, 128);
+
+   }
+
+   m_pbrushWindow = ::nano::create_solid_brush(this, m_colorWindow);
+
+   m_pbrushText = ::nano::create_solid_brush(this, m_colorText);
+
+   m_ppenBorder = ::nano::create_pen(this, 1, m_colorText);
+
+   m_ppenBorderFocus = ::nano::create_pen(this, 1, m_colorFocus);
 
 }
 
@@ -139,7 +220,9 @@ void nano_window::create_drawing_objects()
 void nano_window::update_drawing_objects()
 {
 
-   m_pnanowindowImpl->update_drawing_objects();
+   delete_drawing_objects();
+
+   create_drawing_objects();
 
 }
 
@@ -147,15 +230,32 @@ void nano_window::update_drawing_objects()
 ::id nano_window::hit_test(int x, int y)
 {
 
-   return m_pnanowindowImpl->hit_test(x, y);
+   x -= m_rectangle.left;
 
+   y -= m_rectangle.top;
+
+   for (auto & pchild: m_childa)
+   {
+
+      if (pchild->m_rectangle.contains(point_i32(x, y)))
+      {
+
+         return pchild->m_id;
+
+      }
+
+   }
+
+   return e_dialog_result_none;
 }
 
 
 void nano_window::add_child(nano_child * pchild)
 {
 
-   m_pnanowindowImpl->add_child(pchild);
+   pchild->m_pwindow = this;
+
+   m_childa.add(pchild);
 
 }
 
@@ -163,7 +263,7 @@ void nano_window::add_child(nano_child * pchild)
 ::id nano_window::get_result()
 {
 
-   return m_pnanowindowImpl->get_result();
+   return m_idResult;
 
 }
 
@@ -171,7 +271,29 @@ void nano_window::add_child(nano_child * pchild)
 void nano_window::on_mouse_move(int x, int y)
 {
 
-   m_pnanowindowImpl->on_mouse_move(x, y);
+   if (m_pdragmove && m_pdragmove->m_bLButtonDown)
+   {
+
+      set_cursor(e_cursor_move);
+
+      if (!m_pdragmove->m_bDrag)
+      {
+
+         m_pdragmove->m_bDrag = true;
+
+         point_i32 pointCursor(x, y);
+
+         auto point = pointCursor - m_pdragmove->m_sizeLButtonDownOffset;
+
+         move_to(point.x, point.y);
+
+         m_pdragmove->m_bDrag = false;
+
+      }
+
+      return;
+
+   }
 
 }
 
@@ -179,7 +301,26 @@ void nano_window::on_mouse_move(int x, int y)
 void nano_window::on_left_button_down(int x, int y)
 {
 
-   m_pnanowindowImpl->on_left_button_down(x, y);
+   set_capture();
+
+   m_idLeftButtonDown = hit_test(x, y);
+
+   if (m_pdragmove && m_idLeftButtonDown == e_dialog_result_none)
+   {
+
+      m_pdragmove->m_bLButtonDown = true;
+
+      m_pdragmove->m_bDrag = false;
+
+      point_i32 pointCursor(x, y);
+
+      m_pdragmove->m_pointLButtonDown = pointCursor;
+
+      m_pdragmove->m_sizeLButtonDownOffset = m_pdragmove->m_pointLButtonDown - m_rectangle.origin();
+
+      return;
+
+   }
 
 }
 
@@ -187,7 +328,29 @@ void nano_window::on_left_button_down(int x, int y)
 void nano_window::on_left_button_up(int x, int y)
 {
 
-   m_pnanowindowImpl->on_left_button_up(x, y);
+   release_capture();
+
+   if (m_pdragmove && (m_pdragmove->m_bLButtonDown || m_pdragmove->m_bDrag))
+   {
+
+      m_pdragmove->m_bLButtonDown = false;
+
+      m_pdragmove->m_bDrag = false;
+
+      return;
+
+   }
+
+   m_idLeftButtonUp = hit_test(x, y);
+
+   if (m_idLeftButtonUp == m_idLeftButtonDown && m_idLeftButtonUp != e_dialog_result_none)
+   {
+
+      m_idResult = m_idLeftButtonUp;
+
+      on_click(m_idResult);
+
+   }
 
 }
 
@@ -195,23 +358,13 @@ void nano_window::on_left_button_up(int x, int y)
 void nano_window::on_click(const ::id & id)
 {
 
-   m_pnanowindowImpl->on_click(id);
-
 }
 
 
 void nano_window::move_to(int x, int y)
 {
 
-   m_pnanowindowImpl->move_to(x, y);
-
-}
-
-
-void nano_window::destroy()
-{
-
-   m_pnanowindowImpl->destroy();
+   m_pimplementation->move_to(x, y);
 
 }
 
@@ -219,7 +372,7 @@ void nano_window::destroy()
 void nano_window::redraw()
 {
 
-   m_pnanowindowImpl->redraw();
+   m_pimplementation->redraw();
 
 }
 
@@ -227,7 +380,18 @@ void nano_window::redraw()
 void nano_window::get_client_rectangle(::rectangle_i32 & rectangle)
 {
 
-   m_pnanowindowImpl->get_client_rectangle(rectangle);
+   rectangle.left = 0;
+   rectangle.top = 0;
+   rectangle.right = m_rectangle.width();
+   rectangle.bottom = m_rectangle.height();
+
+}
+
+
+void nano_window::get_window_rectangle(::rectangle_i32 & rectangle)
+{
+
+   rectangle = m_rectangle;
 
 }
 
@@ -235,6 +399,25 @@ void nano_window::get_client_rectangle(::rectangle_i32 & rectangle)
 void nano_window::set_capture()
 {
 
-   m_pnanowindowImpl->set_capture();
+   m_pimplementation->set_capture();
 
 }
+
+
+void nano_window::set_cursor(enum_cursor ecursor)
+{
+
+   m_pimplementation->set_cursor(ecursor);
+
+}
+
+
+void nano_window::release_capture()
+{
+
+   m_pimplementation->release_capture();
+
+}
+
+
+

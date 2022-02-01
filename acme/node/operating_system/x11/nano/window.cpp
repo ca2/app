@@ -2,7 +2,36 @@
 // Created by camilo on 31/01/2022 15:37 <3ThomasBorregaardSørensen!!
 //
 #include "framework.h"
-#include "nano_window.h"
+#include "_nano.h"
+#include <X11/Xatom.h>
+
+
+
+struct MWMHints
+{
+
+   unsigned long flags;
+   unsigned long functions;
+   unsigned long decorations;
+   long input_mode;
+   unsigned long status;
+
+};
+
+
+#define MWM_HINTS_DECORATIONS   (1L << 1)
+
+
+/* MWM decorations values */
+#define MWM_DECOR_NONE          0
+#define MWM_DECOR_ALL           (1L << 0)
+#define MWM_DECOR_BORDER        (1L << 1)
+#define MWM_DECOR_RESIZEH       (1L << 2)
+#define MWM_DECOR_TITLE         (1L << 3)
+#define MWM_DECOR_MENU          (1L << 4)
+#define MWM_DECOR_MINIMIZE      (1L << 5)
+#define MWM_DECOR_MAXIMIZE      (1L << 6)
+
 
 
 namespace x11
@@ -12,69 +41,27 @@ namespace x11
    nano_window::nano_window()
    {
 
-      enable_drag_move();
-
-      //m_pbrushWindow = nullptr;
-      //m_hpenBorder = nullptr;
-      //m_hpenBorderFocus = nullptr;
-      //m_hfont = nullptr;
-      //m_hpenNull = (HPEN) GetStockObject(NULL_PEN);
-      m_bNcActive = false;
+      m_psurface = nullptr;
 
    }
 
 
-//{
-//
-//   Display * d;
-//   Window w;
-//   XEvent e;
-//   const char * msg = "Hello, World!";
-//   int s;
-//
-//   d = XOpenDisplay(NULL);
-//   if (d == NULL)
-//{
-//   fprintf(stderr,
-//   "Cannot open display\n");
-//   exit(1);
-//}
-//
-//s = DefaultScreen(d);
-//w = XCreateSimpleWindow(d, RootWindow(d, s), 10, 10, 100, 100, 1,
-//                        BlackPixel(d, s), WhitePixel(d, s));
-//XSelectInput(d, w, ExposureMask
-//| KeyPressMask);
-//XMapWindow(d, w
-//);
-//
-//while (1) {
-//XNextEvent(d, & e
-//);
-//if (e.type == Expose) {
-//XFillRectangle(d, w, DefaultGC(d, s),
-//20, 20, 10, 10);
-//XDrawString(d, w, DefaultGC(d, s),
-//10, 50, msg,
-//strlen(msg)
-//);
-//}
-//if (e.type == KeyPress)
-//break;
-//}
-//
-//XCloseDisplay(d);
-//return 0;
-//
-//}
-//
-//
-//
+   nano_window::~nano_window()
+   {
 
-nano_window::~nano_window()
-{
+      delete_drawing_objects();
 
-   delete_drawing_objects();
+      m_pnanodevice.release();
+
+      if(m_psurface != nullptr)
+      {
+
+         cairo_surface_destroy(m_psurface);
+
+         m_psurface = nullptr;
+
+      }
+
 
 //   if (m_hfont)
 //   {
@@ -85,139 +72,130 @@ nano_window::~nano_window()
 //
 //   }
 
-}
+   }
 
 
-void nano_window::on_char(int iChar)
-{
-
-   if (iChar == '\t' && m_childa.has_element())
+   void nano_window::on_initialize_object()
    {
 
-      auto iFind = m_childa.find_first(m_pchildFocus);
-
-      iFind++;
-
-      m_pchildFocus = m_childa % iFind;
-
-      redraw();
-
-   } else if (m_pchildFocus)
-   {
-
-      m_pchildFocus->on_char(iChar);
+      ::object::on_initialize_object();
 
    }
 
-}
+
+   void nano_window::on_char(int iChar)
+   {
+
+      m_pinterface->on_char(iChar);
+
+   }
 
 
-void nano_window::_draw(nano_device * pnanodevice)
-{
+   void nano_window::_draw(nano_device * pnanodevice)
+   {
 
-   draw(pnanodevice);
+      m_pinterface->draw(pnanodevice);
 
-}
+   }
 
 
-//void nano_window::on_draw(HDC hdc)
+   bool nano_window::is_active()
+   {
+
+      return m_pinterface->is_active();
+
+   }
+
+
+   void nano_window::delete_drawing_objects()
+   {
+
+      m_pinterface->delete_drawing_objects();
+
+   }
+
+
+   bool nano_window::get_dark_mode()
+   {
+
+      return m_pinterface->get_dark_mode();
+
+   }
+
+
+   void nano_window::create_drawing_objects()
+   {
+
+      m_pinterface->create_drawing_objects();
+
+   }
+
+
+   void nano_window::update_drawing_objects()
+   {
+
+      m_pinterface->update_drawing_objects();
+
+   }
+
+
+   void nano_window::create()
+   {
+
+
 //{
 //
+//   XEvent e;
+//   const char * msg = "Hello, World!";
+//   int s;
 //
-//}
+      m_pdisplay = XOpenDisplay(NULL);
 
-bool nano_window::is_active()
-{
+      if (!m_pdisplay)
+      {
+         //fprintf(stderr,
+         //"Cannot open display\n");
+        // exit(1);
+        throw_status(error_null_pointer);
+      }
 
-   return m_bNcActive;
-
-}
-
-
-//void nano_window::draw_children(HDC hdc)
-//{
 //
-//   for (auto & pchild: m_childa)
-//   {
-//
-//      pchild->on_draw(hdc);
-//
-//   }
-//
-//}
+      auto screen = DefaultScreen(m_pdisplay);
 
-void nano_window::delete_drawing_objects()
-{
+      auto windowRoot = RootWindow(m_pdisplay, screen);
 
-   m_pbrushWindow.release();
+      m_window = XCreateSimpleWindow(m_pdisplay, windowRoot,
+                         m_pinterface->m_rectangle.left,
+                         m_pinterface->m_rectangle.top,
+                         m_pinterface->m_rectangle.width(),
+                         m_pinterface->m_rectangle.height(), 1,
+                        BlackPixel(m_pdisplay, screen), WhitePixel(m_pdisplay, screen));
 
-   m_ppenBorder.release();
+      if(m_pinterface->m_bStartCentered)
+      {
 
-   m_ppenBorder.release();
+         auto atomWindowType = XInternAtom(m_pdisplay, "_NET_WM_WINDOW_TYPE", true);
 
-}
+         auto atomWindowTypeSplash = XInternAtom(m_pdisplay, "_NET_WM_WINDOW_TYPE_SPLASH", true);
 
+         if (atomWindowType != None && atomWindowTypeSplash != None)
+         {
 
-bool nano_window::get_dark_mode()
-{
+            XChangeProperty(m_pdisplay, m_window,
+                            atomWindowType, XA_ATOM, 32, PropModeReplace,
+                            (unsigned char *) &atomWindowTypeSplash, 1);
 
-   return true;
+         }
 
-}
+      }
 
+      XSelectInput(m_pdisplay, m_window, ExposureMask | KeyPressMask | VisibilityChangeMask | StructureNotifyMask | ButtonPressMask | ButtonMotionMask);
 
-void nano_window::create_drawing_objects()
-{
+      create_drawing_objects();
 
-   if (!m_pfont)
-   {
-
-      __construct(m_pfont);
-
-      m_pfont->m_iFontSize = 14;
-
-      m_pfont->m_strFontName = m_psystem->node()->font_name(e_font_sans);
-
-      m_pfont->create();
+      //XMapWindow(m_pdisplay, m_window);
 
    }
-
-   bool bDarkMode = get_dark_mode();
-
-   if (bDarkMode)
-   {
-
-      m_colorWindow = rgb(0, 0, 0);
-      m_colorText = rgb(255, 255, 255);
-      m_colorFocus = rgb(2, 128, 255);
-
-   }
-   else
-   {
-
-      m_colorWindow = rgb(255, 255, 255);
-      m_colorText = rgb(0, 0, 0);
-      m_colorFocus = rgb(1, 64, 128);
-
-   }
-
-   m_pbrushWindow = ::nano::create_solid_brush(this, m_colorWindow);
-
-   m_ppenBorder = ::nano::create_pen(this, 1, m_colorText);
-
-   m_ppenBorderFocus =  ::nano::create_pen(this, 1, m_colorFocus);
-
-}
-
-
-void nano_window::update_drawing_objects()
-{
-
-   delete_drawing_objects();
-   create_drawing_objects();
-
-}
-
 
 //::id nano_window::hit_test(int x, int y)
 //{
@@ -241,29 +219,7 @@ void nano_window::update_drawing_objects()
 void nano_window::on_left_button_down(int x, int y)
 {
 
-   set_capture();
-
-   m_idLeftButtonDown = hit_test(x, y);
-
-   if (m_pdragmove && m_idLeftButtonDown == e_dialog_result_none)
-   {
-
-      m_pdragmove->m_bLButtonDown = true;
-
-      m_pdragmove->m_bDrag = false;
-
-      point_i32 pointCursor(x, y);
-
-      pointCursor += m_rectangle.origin();
-
-      m_pdragmove->m_pointLButtonDown = pointCursor;
-
-      m_pdragmove->m_sizeLButtonDownOffset = m_pdragmove->m_pointLButtonDown - m_rectangle.origin();
-
-      return;
-
-   }
-
+   m_pinterface->on_left_button_down(x, y);
 
 }
 
@@ -271,61 +227,14 @@ void nano_window::on_left_button_down(int x, int y)
 void nano_window::on_left_button_up(int x, int y)
 {
 
-   ReleaseCapture();
-
-   if (m_pdragmove && (m_pdragmove->m_bLButtonDown || m_pdragmove->m_bDrag))
-   {
-
-      m_pdragmove->m_bLButtonDown = false;
-
-      m_pdragmove->m_bDrag = false;
-
-      return;
-
-   }
-
-   m_idLeftButtonUp = hit_test(x, y);
-
-   if (m_idLeftButtonUp == m_idLeftButtonDown && m_idLeftButtonUp != e_dialog_result_none)
-   {
-
-      m_idResult = m_idLeftButtonUp;
-
-      on_click(m_idResult);
-
-   }
-
+   m_pinterface->on_left_button_up(x, y);
 }
+
 
 void nano_window::on_mouse_move(int x, int y)
 {
 
-   if (m_pdragmove && m_pdragmove->m_bLButtonDown)
-   {
-
-      ::SetCursor(::LoadCursor(NULL, IDC_SIZEALL));
-
-      if (!m_pdragmove->m_bDrag)
-      {
-
-         m_pdragmove->m_bDrag = true;
-
-         point_i32 pointCursor(x, y);
-
-         pointCursor += m_rectangle.origin();
-
-         auto point = pointCursor - m_pdragmove->m_sizeLButtonDownOffset;
-
-         move_to(point.x, point.y);
-
-         m_pdragmove->m_bDrag = false;
-
-      }
-
-      return;
-
-   }
-
+   m_pinterface->on_mouse_move(x, y);
 
 }
 
@@ -333,7 +242,7 @@ void nano_window::on_mouse_move(int x, int y)
 ::id nano_window::get_result()
 {
 
-   return m_idResult;
+   return m_pinterface->get_result();
 
 }
 
@@ -341,19 +250,7 @@ void nano_window::on_mouse_move(int x, int y)
 ::id nano_window::hit_test(int x, int y)
 {
 
-   for (auto & pchild: m_childa)
-   {
-
-      if (pchild->m_rectangle.contains(point_i32(x, y)))
-      {
-
-         return pchild->m_id;
-
-      }
-
-   }
-
-   return e_dialog_result_none;
+   return m_pinterface->hit_test(x, y);
 
 }
 
@@ -377,79 +274,79 @@ void nano_window::on_mouse_move(int x, int y)
 //
 //}
 
-#ifndef GET_X_LPARAM
-#define GET_X_LPARAM(lparam)                          ((i32)(i16)LOWORD(lparam))
-#endif
-
-
-#ifndef GET_Y_LPARAM
-#define GET_Y_LPARAM(lparam)                          ((i32)(i16)HIWORD(lparam))
-#endif
-
-LRESULT nano_window::window_procedure(UINT message, WPARAM wparam, LPARAM lparam)
-{
-   switch (message)
-   {
-      case WM_CLOSE:
-         DestroyWindow(m_hwnd);
-         break;
-      case WM_DESTROY:
-         PostQuitMessage(0);
-         break;
-      case WM_CREATE:
-      {
-         update_drawing_objects();
-      }
-         break;
-      case WM_CHAR:
-      {
-         on_char((int) wparam);
-         return 0;
-      }
-         break;
-      case WM_LBUTTONDOWN:
-         on_left_button_down(GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam));
-         break;
-      case WM_MOUSEMOVE:
-         on_mouse_move(GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam));
-         break;
-      case WM_LBUTTONUP:
-      {
-         on_left_button_up(GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam));
-
-      }
-
-         break;
-      case WM_PAINT:
-      {
-         PAINTSTRUCT paintstruct{};
-         HDC hdc = BeginPaint(m_hwnd, &paintstruct);
-         draw(hdc);
-         EndPaint(m_hwnd, &paintstruct);
-      }
-         break;
-      case WM_NCACTIVATE:
-      {
-         LRESULT lresult = DefWindowProc(m_hwnd, message, wparam, lparam);
-         m_bNcActive = wparam != 0;
-         redraw();
-
-         return lresult;
-
-      }
-      case WM_ACTIVATE:
-      {
-         LRESULT lresult = DefWindowProc(m_hwnd, message, wparam, lparam);
-
-
-         return lresult;
-
-      }
-      default:
-         return DefWindowProc(m_hwnd, message, wparam, lparam);
-   }
-   return 0;
-}
+//#ifndef GET_X_LPARAM
+//#define GET_X_LPARAM(lparam)                          ((i32)(i16)LOWORD(lparam))
+//#endif
+//
+//
+//#ifndef GET_Y_LPARAM
+//#define GET_Y_LPARAM(lparam)                          ((i32)(i16)HIWORD(lparam))
+//#endif
+//
+////LRESULT nano_window::window_procedure(UINT message, WPARAM wparam, LPARAM lparam)
+//{
+//   switch (message)
+//   {
+//      case WM_CLOSE:
+//         DestroyWindow(m_hwnd);
+//         break;
+//      case WM_DESTROY:
+//         PostQuitMessage(0);
+//         break;
+//      case WM_CREATE:
+//      {
+//         update_drawing_objects();
+//      }
+//         break;
+//      case WM_CHAR:
+//      {
+//         on_char((int) wparam);
+//         return 0;
+//      }
+//         break;
+//      case WM_LBUTTONDOWN:
+//         on_left_button_down(GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam));
+//         break;
+//      case WM_MOUSEMOVE:
+//         on_mouse_move(GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam));
+//         break;
+//      case WM_LBUTTONUP:
+//      {
+//         on_left_button_up(GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam));
+//
+//      }
+//
+//         break;
+//      case WM_PAINT:
+//      {
+//         PAINTSTRUCT paintstruct{};
+//         HDC hdc = BeginPaint(m_hwnd, &paintstruct);
+//         draw(hdc);
+//         EndPaint(m_hwnd, &paintstruct);
+//      }
+//         break;
+//      case WM_NCACTIVATE:
+//      {
+//         LRESULT lresult = DefWindowProc(m_hwnd, message, wparam, lparam);
+//         m_bNcActive = wparam != 0;
+//         redraw();
+//
+//         return lresult;
+//
+//      }
+//      case WM_ACTIVATE:
+//      {
+//         LRESULT lresult = DefWindowProc(m_hwnd, message, wparam, lparam);
+//
+//
+//         return lresult;
+//
+//      }
+//      default:
+//         return DefWindowProc(m_hwnd, message, wparam, lparam);
+//   }
+//   return 0;
+//}
 //
 //
 //HINSTANCE nano_message_box_hinstance()
@@ -511,52 +408,191 @@ LRESULT nano_window::window_procedure(UINT message, WPARAM wparam, LPARAM lparam
 
 void nano_window::display_synchronously()
 {
-   ShowWindow(m_hwnd, SW_SHOW);
 
-   UpdateWindow(m_hwnd);
+   _wm_nodecorations(false);
+
+   XMapWindow(m_pdisplay, m_window);
+
+
+
+   //UpdateWindow(m_hwnd);
 
    message_loop();
 
 }
 
-void nano_window::message_loop()
+
+void nano_window::_on_event(XEvent *pevent)
 {
 
-   MSG msg;
 
-   while (::task_get_run() && GetMessage(&msg, NULL, 0, 0) > 0)
+   if (pevent->type == ConfigureNotify)
    {
 
-      TranslateMessage(&msg);
+      m_pinterface->m_rectangle.left = pevent->xconfigure.x;
 
-      DispatchMessage(&msg);
+      m_pinterface->m_rectangle.top = pevent->xconfigure.y;
+
+      m_pinterface->m_rectangle.right = pevent->xconfigure.x + pevent->xconfigure.width;
+
+      m_pinterface->m_rectangle.bottom = pevent->xconfigure.y +  pevent->xconfigure.height;
+
+      if (m_psurface)
+      {
+
+         cairo_xlib_surface_set_size(m_psurface, m_pinterface->m_rectangle.width(), m_pinterface->m_rectangle.height());
+
+      }
+
+   }
+   else if (pevent->type == MapNotify)
+   {
+
+      if (!m_psurface)
+      {
+
+         rectangle_i32 r;
+
+         get_client_rectangle(r);
+
+         m_psurface = cairo_xlib_surface_create(
+            m_pdisplay,
+            m_window,
+            DefaultVisual(m_pdisplay, DefaultScreen(m_pdisplay)),
+            m_pinterface->m_rectangle.width(),
+            m_pinterface->m_rectangle.height());
+
+         auto pdc = cairo_create(m_psurface);
+
+         m_pnanodevice = __new(::x11::nano_device(pdc));
+
+      }
+
+      _update_window();
+
+   }
+   else if (pevent->type == Expose)
+   {
+
+      _update_window();
+
+   }
+   else if (pevent->type == ButtonPress)
+   {
+
+      if (pevent->xbutton.button == Button1)
+      {
+
+         on_left_button_down(pevent->xbutton.x_root, pevent->xbutton.y_root);
+
+      }
+
+   }
+   else if (pevent->type == ButtonRelease)
+   {
+
+      if (pevent->xbutton.button == Button1)
+      {
+
+         on_left_button_up(pevent->xbutton.x_root, pevent->xbutton.y_root);
+
+      }
+
+   }
+   else if (pevent->type == MotionNotify)
+   {
+
+      on_mouse_move(pevent->xmotion.x_root, pevent->xmotion.y_root);
 
    }
 
 }
 
-void nano_window::add_child(nano_child * pchild)
+
+void nano_window::_update_window()
 {
 
-   pchild->m_pwindow = this;
+   if(m_pnanodevice && m_psurface)
+   {
 
-   m_childa.add(pchild);
+      cairo_push_group(m_pnanodevice->m_pdc);
+
+      cairo_set_operator(m_pnanodevice->m_pdc, CAIRO_OPERATOR_SOURCE);
+
+      draw(m_pnanodevice);
+
+      cairo_pop_group_to_source(m_pnanodevice->m_pdc);
+
+      cairo_paint(m_pnanodevice->m_pdc);
+
+      cairo_surface_flush(m_psurface);
+
+   }
 
 }
+
+
+bool nano_window::message_loop_step()
+{
+
+   XEvent event;
+
+   XNextEvent(m_pdisplay, &event);
+
+   _on_event(&event);
+
+   return m_pinterface->m_idResult.is_empty();
+
+}
+
+
+void nano_window::message_loop()
+{
+
+   while(message_loop_step())
+   {
+
+
+
+   }
+
+}
+
+
+//
+//
+//
+
+
+//   MSG msg;
+//
+//   while (::task_get_run() && GetMessage(&msg, NULL, 0, 0) > 0)
+//   {
+//
+//      TranslateMessage(&msg);
+//
+//      DispatchMessage(&msg);
+//
+//   }
+//
+//}
+
+//void nano_window::add_child(nano_child * pchild)
+//{
+//
+//   pchild->m_pwindow = m_pinterfacethis;
+//
+//   m_childa.add(pchild);
+//
+//}
 
 
 void nano_window::redraw()
 {
 
-   ::RedrawWindow(m_hwnd, nullptr, nullptr, RDW_UPDATENOW | RDW_INVALIDATE);
+   //::RedrawWindow(m_hwnd, nullptr, nullptr, RDW_UPDATENOW | RDW_INVALIDATE);
 
-}
-
-
-void nano_window::destroy()
-{
-
-   ::DestroyWindow(m_hwnd);
+   _update_window();
 
 }
 
@@ -600,23 +636,148 @@ void nano_window::destroy()
 //   return 0;
 //}
 
+   void nano_window::destroy()
+   {
 
-void nano_window::on_click(const ::id & id)
-{
+      XCloseDisplay(m_pdisplay);
+
+   }
+
+   void nano_window::on_click(const ::id & id)
+   {
+
+      m_pinterface->on_click(id);
+
+   }
 
 
-}
+   void nano_window::move_to(int x, int y)
+   {
+
+      ::XMoveWindow(m_pdisplay, m_window, x, y);
+
+   }
 
 
-void nano_window::move_to(int x, int y)
-{
+   void nano_window::set_capture()
+   {
 
-   ::SetWindowPos(m_hwnd, nullptr, x, y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+      if (XGrabPointer(m_pdisplay, m_window, False, ButtonPressMask | ButtonReleaseMask | PointerMotionMask,
+                       GrabModeAsync, GrabModeAsync, None, None, CurrentTime) != GrabSuccess)
+      {
 
-   ::GetWindowRect(m_hwnd, (RECT * ) & m_rectangle);
+         throw_status(error_exception);
 
-}
+      }
 
+   }
+
+
+   void nano_window::release_capture()
+   {
+
+      int bRet = XUngrabPointer(m_pdisplay, CurrentTime);
+
+   }
+
+
+   void nano_window::get_client_rectangle(::rectangle_i32 & rectangle)
+   {
+
+      rectangle.left = 0;
+      rectangle.top = 0;
+
+      Window windowRoot = 0;
+      int x = 0;
+      int y = 0;
+      unsigned int w = 0;
+      unsigned int h = 0;
+      unsigned int border = 0;
+      unsigned int depth = 0;
+
+      auto status = XGetGeometry(m_pdisplay, m_window, &windowRoot, &x, &y, &w,
+                          &h, &border, &depth);
+
+      if(status == BadDrawable)
+      {
+
+         throw_status(error_exception);
+
+      }
+
+      rectangle.right = w;
+      rectangle.bottom = h;
+
+
+   }
+
+
+   void nano_window::get_window_rectangle(::rectangle_i32 & rectangle)
+   {
+
+      Window windowRoot = 0;
+      int x = 0;
+      int y = 0;
+      unsigned int w = 0;
+      unsigned int h = 0;
+      unsigned int border = 0;
+      unsigned int depth = 0;
+
+      auto status = XGetGeometry(m_pdisplay, m_window, &windowRoot, &x, &y, &w,
+                                 &h, &border, &depth);
+
+      if(status == BadDrawable)
+      {
+
+         throw_status(error_exception);
+
+      }
+
+      rectangle.left = x;
+      rectangle.top = y;
+      rectangle.right = x + w;
+      rectangle.bottom = y + h;
+
+
+   }
+
+
+   void nano_window::_wm_nodecorations(int iMap)
+   {
+
+      auto windowRoot = DefaultRootWindow(m_pdisplay);
+
+      bool bCreateAtom = false;
+
+      Atom atomMotifHints = XInternAtom(m_pdisplay, "_MOTIF_WM_HINTS", bCreateAtom ? True : False);
+
+      if (atomMotifHints != None)
+      {
+
+         MWMHints hints = {};
+
+         hints.flags = MWM_HINTS_DECORATIONS;
+         hints.decorations = MWM_DECOR_NONE;
+
+         //XChangeProperty(Display(), Window(), atomMotifHints, atomMotifHints, 32, PropModeReplace,
+         //              (unsigned char *) &hints, sizeof(MWMHints) / 4);
+         XChangeProperty(m_pdisplay, m_window, atomMotifHints, atomMotifHints, 32, PropModeReplace,
+                         (unsigned char *) &hints, sizeof(hints) / 4);
+
+      }
+
+      if (iMap)
+      {
+
+         XUnmapWindow(m_pdisplay, m_window);
+
+         XMapWindow(m_pdisplay, m_window);
+
+      }
+
+      windowing_output_debug_string("\n::wm_nodecorations 2");
+
+   }
 
 
 } // namespace x11

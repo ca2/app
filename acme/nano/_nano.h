@@ -5,6 +5,7 @@
 
 
 class nano_device;
+class nano_window;
 
 
 #include "object.h"
@@ -13,7 +14,14 @@ class nano_device;
 #include "pen.h"
 #include "device.h"
 #include "child.h"
+
+
+#include "window_interface.h"
+#include "window_implementation.h"
 #include "window.h"
+
+
+#include "button.h"
 
 
 #include "message_box.h"

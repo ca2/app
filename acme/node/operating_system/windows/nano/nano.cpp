@@ -139,7 +139,7 @@ void nano_window::create()
 void operating_system_initialize_nano()
 {
 
-   ::factory::add_factory_item < ::windows::nano_window, ::nano_window >();
+   ::factory::add_factory_item < ::windows::nano_window, ::nano_window_implementation >();
    ::factory::add_factory_item < ::windows::nano_brush, ::nano_brush >();
    ::factory::add_factory_item < ::windows::nano_font, ::nano_font >();
    ::factory::add_factory_item < ::windows::nano_pen, ::nano_pen >();

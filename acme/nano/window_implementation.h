@@ -1,8 +1,27 @@
 //
-// Created by camilo on 31/01/2022.
+// Created by camilo on 31/01/2022 23:04 <3ThomasBorregaardSørensen!!
 //
+#pragma once
 
-#ifndef BASIS_WINDOW_IMPLEMENTATION_H
-#define BASIS_WINDOW_IMPLEMENTATION_H
 
-#endif //BASIS_WINDOW_IMPLEMENTATION_H
+class CLASS_DECL_ACME nano_window_implementation :
+   virtual public nano_window_interface
+{
+public:
+
+
+   __pointer(nano_window)        m_pinterface;
+
+
+   nano_window_implementation();
+   ~nano_window_implementation() override;
+
+
+   void draw(nano_device * pnanodevice) override;
+
+
+
+};
+
+
+

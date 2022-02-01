@@ -1,8 +1,19 @@
 //
-// Created by camilo on 31/01/2022.
+// Created by camilo on 31/01/2022 19:00 <3ThomasBorregaardSørensen!!
 //
+#pragma once
 
-#ifndef BASIS__NANO_H
-#define BASIS__NANO_H
 
-#endif //BASIS__NANO_H
+#include "nano/_nano.h"
+#include "acme/operating_system.h"
+#include <X11/Xlib.h>
+
+
+#include "font.h"
+
+#include "device.h"
+
+#include "window.h"
+
+
+

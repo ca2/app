@@ -523,9 +523,7 @@ namespace windows
    void nano_window::add_child(nano_child * pchild)
    {
 
-      pchild->m_pwindow = this;
-
-      m_childa.add(pchild);
+      m_pinterface->add_child(pchild);
 
    }
 
@@ -626,6 +624,18 @@ namespace windows
 
    }
 
+
+   void nano_window::set_cursor(enum_cursor ecursor)
+   {
+
+      if(ecursor == e_cursor_move)
+      {
+
+         ::SetCursor(::LoadCursor(NULL, IDC_SIZEALL));
+
+      }
+
+   }
 
 } // namespace windows
 

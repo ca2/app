@@ -26,7 +26,7 @@ namespace nano
    __pointer(nano_brush) create_solid_brush(::object * pobject, color32_t color)
    {
 
-      __pointer(nano_brush) pbrush(pobject);
+      __pointer(nano_brush) pbrush(e_create_new, pobject);
 
       pbrush->m_color = color;
 

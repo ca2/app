@@ -18,7 +18,7 @@ public:
    virtual void * operating_system_data();
 
 
-   virtual void create();
+   virtual void update(nano_device * pnanodevice);
 
 
 };

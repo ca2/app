@@ -1846,7 +1846,7 @@ void object::handle_exception(const ::exception& e)
    else if (e.estatus() == error_library_not_found)
    {
 
-      ::os_message_box(e.m_strMessage);
+      ::os_message_box(this, e.m_strMessage);
 
    }
 

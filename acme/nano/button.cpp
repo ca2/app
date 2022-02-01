@@ -1,32 +1,29 @@
 // Created by camilo on 2021-01-21 14:57 <3ThomasBorregaardSørensen
 #include "framework.h"
-#include "acme/operating_system.h"
-#include "nano_button.h"
-#include "source/app/acme/node/operating_system/windows/nano_user/nano_window.h"
+#include "_nano.h"
 
 
-void nano_button::on_draw(HDC hdc)
+void nano_button::on_draw(nano_device * pnanodevice)
 {
 
-   ::SelectObject(hdc, m_pwindow->m_hbrushWindow);
+   //::SelectObject(hdc, m_pwindow->m_hbrushWindow);
+
+   __pointer(nano_pen) ppenBorder;
 
    if (m_pwindow->m_pchildFocus == this)
    {
 
-      ::SelectObject(hdc, m_pwindow->m_hpenBorderFocus);
+      ppenBorder = m_pwindow->m_ppenBorderFocus;
 
    }
    else
    {
 
-      ::SelectObject(hdc, m_pwindow->m_hpenBorder);
+      ppenBorder = m_pwindow->m_ppenBorder;
+
    }
 
-   Rectangle(hdc, m_rectangle.left, m_rectangle.top, m_rectangle.right, m_rectangle.bottom);
-
-   SetBkColor(hdc, m_pwindow->m_crWindow);
-
-   SetTextColor(hdc, m_pwindow->m_crText);
+   pnanodevice->rectangle(m_rectangle, m_pwindow->m_pbrushWindow, ppenBorder);
 
    wstring wstrText(m_strText);
 
@@ -34,7 +31,9 @@ void nano_button::on_draw(HDC hdc)
 
    rectangleText.deflate(4);
 
-   ::DrawText(hdc, wstrText, (int)wstrText.get_length(), (LPRECT)&rectangleText, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
+   //DT_SINGLELINE;
+
+   pnanodevice->draw_text(m_strText, rectangleText, e_align_center, m_pwindow->m_pbrushWindow, m_pwindow->m_pbrushText, m_pwindow->m_pfont);
 
 }
 

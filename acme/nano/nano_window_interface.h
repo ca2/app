@@ -1,8 +1,0 @@
-//
-// Created by camilo on 31/01/2022.
-//
-
-#ifndef BASIS_NANO_WINDOW_INTERFACE_H
-#define BASIS_NANO_WINDOW_INTERFACE_H
-
-#endif //BASIS_NANO_WINDOW_INTERFACE_H

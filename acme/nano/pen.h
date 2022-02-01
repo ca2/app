@@ -10,8 +10,8 @@ class CLASS_DECL_ACME nano_pen :
 public:
 
 
-   int            m_iWidth;
-   color32_t      m_color;
+   int                  m_iWidth;
+   ::color::color       m_color;
 
 
    nano_pen();

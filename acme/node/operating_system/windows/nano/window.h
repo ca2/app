@@ -10,27 +10,27 @@ namespace windows
 
 
    class nano_window :
-      virtual public ::nano_window
+      virtual public ::nano_window_implementation
    {
    public:
 
 
       HWND m_hwnd;
-      HFONT m_hfont;
-      COLORREF m_crText;
-      COLORREF m_crFocus;
-      COLORREF m_crWindow;
-      string m_strTitle;
-      bool m_bNcActive;
+//      HFONT m_hfont;
+//      COLORREF m_crText;
+//      COLORREF m_crFocus;
+//      COLORREF m_crWindow;
+//      string m_strTitle;
+//      bool m_bNcActive;
 
-      rectangle_i32 m_rectangle;
-      rectangle_i32 m_rectangleClient;
-
-      __pointer_array(nano_child) m_childa;
-      ::id m_idLeftButtonDown;
-      ::id m_idLeftButtonUp;
-      //::id                             m_idResult;
-      __pointer(nano_child) m_pchildFocus;
+//      rectangle_i32 m_rectangle;
+//      rectangle_i32 m_rectangleClient;
+//
+//      __pointer_array(nano_child) m_childa;
+//      ::id m_idLeftButtonDown;
+//      ::id m_idLeftButtonUp;
+//      //::id                             m_idResult;
+//      __pointer(nano_child) m_pchildFocus;
 
 
       nano_window();

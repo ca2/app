@@ -1,6 +1,7 @@
 //
 // Created by camilo on 31/01/2022 14:40 <3ThomasBorregaardSørensen!!
 //
+#pragma once
 
 
 class CLASS_DECL_ACME nano_brush :
@@ -9,7 +10,7 @@ class CLASS_DECL_ACME nano_brush :
 public:
 
 
-   color32_t      m_color;
+   ::color::color       m_color;
 
 
    nano_brush();

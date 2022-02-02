@@ -10035,9 +10035,9 @@ string application::get_wm_class() const
 
    string strWMClass = m_strAppId;
 
-   strWMClass.replace("/", ".");
+   strWMClass.find_replace("/", ".");
 
-   strWMClass.replace("_", "-");
+   strWMClass.find_replace("_", "-");
 
    return strWMClass;
 

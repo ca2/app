@@ -12,8 +12,6 @@ public:
 
    HWND              m_hwnd;
 
-   string            m_strMessage;
-   string            m_strTitle;
 
 
 

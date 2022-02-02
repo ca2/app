@@ -4080,7 +4080,7 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
 
          string strCmd = path + " " + strParam;
 
-         strCmd.replace("\'", "\\\'");
+         strCmd.find_replace("\'", "\\\'");
 
          strParam = " -c '" + strCmd + "'";
 

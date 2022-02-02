@@ -182,9 +182,9 @@ namespace file_lock
 
       string str;
 
-      str.replace("\\", "-");
+      str.find_replace("\\", "-");
 
-      str.replace("::", "_");
+      str.find_replace("::", "_");
 
       str = "/var/lib/ca2/" + str;
 

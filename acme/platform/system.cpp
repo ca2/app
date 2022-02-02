@@ -11,13 +11,10 @@
 #include "acme/compress/_.h"
 //#include "system_impl.h"
 #include "library.h"
+#include "nano/_nano.h"
 
-#ifdef WINDOWS_DESKTOP
-#include "acme/node/operating_system/windows/nano_user/nano_message_box.h"
-#endif
 
 //__namespace_object_factory(class ::system, ::static_setup::flag_system)
-
 
 
 CLASS_DECL_ACME void trace_category_static_init(class ::system* psystem);
@@ -2110,6 +2107,8 @@ __pointer(class ::system) platform_create_system(const char* pszAppId)
 
 __pointer(::sequence < ::conversation >) system::message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
 {
+
+   initialize_nano();
 
    auto pmessagebox = __create_new < nano_message_box >();
 

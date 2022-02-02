@@ -148,6 +148,31 @@ list(APPEND library_source
    memory/string_memory_allocate.cpp
    memory/string_memory_allocate.h
    memory/string_memory_allocator.h
+   nano/_nano.cpp
+   nano/_nano.h
+   nano/device.h
+   nano/brush.cpp
+   nano/brush.h
+   nano/button.cpp
+   nano/button.h
+   nano/font.cpp
+   nano/font.h
+   nano/child.cpp
+   nano/child.h
+   nano/device.cpp
+   nano/device.h
+   nano/message_box.cpp
+   nano/message_box.h
+   nano/object.cpp
+   nano/object.h
+   nano/pen.cpp
+   nano/pen.h
+   nano/window.cpp
+   nano/window.h
+   nano/window_implementation.cpp
+   nano/window_implementation.h
+   nano/window_interface.cpp
+   nano/window_interface.h
    networking/top_level_domain_list.cpp
    networking/url.cpp
    networking/url.h
@@ -494,6 +519,8 @@ list(APPEND library_source
    subject/subject.h
    user/check.cpp
    user/check.h
+   user/drag_move.cpp
+   user/drag_move.h
    user/element.cpp
    user/element.h
    user/ewindowflag.h
@@ -1449,6 +1476,16 @@ if (WIN32)
       #node/windows/_node_windows.h
       #node/windows/_node_windows_private.h
       #node/windows/_windows.h
+      node/operating_system/windows/nano_user/nano_brush.cpp
+      node/operating_system/windows/nano_user/nano_brush.h
+      node/operating_system/windows/nano_user/nano_device.cpp
+      node/operating_system/windows/nano_user/nano_device.h
+      node/operating_system/windows/nano_user/nano_font.cpp
+      node/operating_system/windows/nano_user/nano_font.h
+      node/operating_system/windows/nano_user/nano_object.h
+      node/operating_system/windows/nano_user/nano_object.cpp
+      node/operating_system/windows/nano_user/nano_pen.cpp
+      node/operating_system/windows/nano_user/nano_pen.h
       )
 else ()
 
@@ -1528,6 +1565,22 @@ if (WIN32 OR UWP)
       )
 
 endif ()
+
+
+if(WITH_X11)
+
+   list(APPEND library_source
+      node/operating_system/x11/nano/_nano.cpp
+      node/operating_system/x11/nano/_nano.h
+      node/operating_system/x11/nano/device.cpp
+      node/operating_system/x11/nano/device.h
+      node/operating_system/x11/nano/window.h
+      node/operating_system/x11/nano/window.cpp
+      )
+
+   list(APPEND extra_pkg_modules x11 cairo xkbcommon)
+
+endif()
 
 
 if (LINUX)
@@ -1994,7 +2047,7 @@ if (LINUX)
 endif ()
 
 
-add_library(acme SHARED ${library_source})
+add_library(acme SHARED ${library_source} node/operating_system/x11/nano/font.cpp node/operating_system/x11/nano/font.h)
 
 
 target_precompile_headers(acme PRIVATE framework.h)
@@ -2016,7 +2069,8 @@ if (MSVC)
 elseif(LINUX OR FREEBSD)
 
 #//target_compile_options\([A-Za-z0-9_)]+\s+PRIVATE\s+\$\{PKGCONFIG_CFLAGS\}\)
-   pkg_check_modules(PKGCONFIG freetype2 libidn)
+
+   pkg_check_modules(PKGCONFIG freetype2 libidn ${extra_pkg_modules})
    target_compile_options(acme PRIVATE -fpermissive)
       target_compile_options(acme PRIVATE ${PKGCONFIG_CFLAGS})
    target_link_options(acme PRIVATE ${PKGCONFIG_LDFLAGS})

@@ -351,3 +351,21 @@ void CLASS_DECL_ACME __cdecl _ca2_purecall()
 
 
 
+
+
+namespace color
+{
+
+
+   ::u32 color::get_COLORREF() const
+   {
+
+      return RGB(red, green, blue);
+   
+   }
+
+
+} // namespace color
+
+
+

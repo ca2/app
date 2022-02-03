@@ -18,14 +18,14 @@ CLASS_DECL_AXIS ::user::interaction * create_system_message_window(::object* pob
 #if defined(APPLE_IOS) || defined(_UWP) || defined(ANDROID)
 
 
-namespace PLATFORM_NAMESPACE
+namespace OPERATING_SYSTEM_NAMESPACE
 {
 
 
    CLASS_DECL_AXIS ::user::interaction * create_host_window();
 
 
-} // namespace PLATFORM_NAMESPACE
+} // namespace OPERATING_SYSTEM_NAMESPACE
 
 
 #endif

@@ -73,7 +73,7 @@ namespace user
 #if defined(WINDOWS_DESKTOP) && !defined(ENABLE_TEXT_SERVICES_FRAMEWORK)
       //HIMC                                    m_himc;
 #endif
-      ::PLATFORM_NAMESPACE::interaction_impl *  m_pImpl2;
+      ::OPERATING_SYSTEM_NAMESPACE::interaction_impl *  m_pImpl2;
       ::rectangle_i32                           m_rectangleWindowScreen;
       ::rectangle_i32                           m_rectangleClientScreen;
       int                                       m_iState1;

@@ -13,7 +13,7 @@
 #include <locale.h>
 
 #ifdef RASPBIAN
-#define PLATFORM_NAMESPACE linux
+#define OPERATING_SYSTEM_NAMESPACE linux
 #endif
 
 #if defined(__APPLE__)
@@ -488,7 +488,7 @@ namespace aura
 
       //xxdebug_box("aura.dll base_static_start (0)", "box", e_message_box_ok);
 
-      //g_pexceptionengine = new ::PLATFORM_NAMESPACE::exception_engine();
+      //g_pexceptionengine = new ::OPERATING_SYSTEM_NAMESPACE::exception_engine();
 
       //g_pmutexGlobals = new ::mutex();
 

@@ -46,7 +46,7 @@ public:
 
    void erase(index index);
 
-   virtual void wait();
+   void wait() override;
 
    virtual ::index wait(const class ::wait & wait, bool waitForAll = true, ::u32 uWaitMask = 0);
 

@@ -1,6 +1,16 @@
 #include "framework.h"
 
 #include <sys/stat.h>
+
+#ifdef __APPLE__
+
+
+#include <unistd.h>
+
+
+#endif
+
+
 //
 //
 //HANDLE

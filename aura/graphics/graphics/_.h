@@ -21,14 +21,14 @@ namespace windowing_win32
 } // namespace windowing_win32
 
 
-namespace PLATFORM_NAMESPACE
+namespace OPERATING_SYSTEM_NAMESPACE
 {
 
 
    class buffer;
 
 
-} // namespace PLATFORM_NAMESPACE
+} // namespace OPERATING_SYSTEM_NAMESPACE
 
 
 

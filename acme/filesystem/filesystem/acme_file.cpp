@@ -370,16 +370,16 @@ string acme_file::get_temporary_file_name(const char * lpszName, const char * ps
 
       path /= (string(lpszName) + "." + string(pszExtension));
 
-      if (this->exists(path))
+      if (!this->exists(path))
       {
 
-         this->erase(path);
-
+         return ::move(path);
+         
       }
 
-      return ::move(path);
-
    }
+   
+   throw_status(error_not_found);
 
    return string();
 
@@ -606,7 +606,7 @@ filesize acme_file::get_size(const char * path)
 
    throw ::interface_only_exception();
 
-   throw ::interface_only_exception();
+   return 0;
 
 }
 
@@ -624,7 +624,7 @@ filesize acme_file::get_size_fd(int iFile)
 
    throw ::interface_only_exception();
 
-   throw ::interface_only_exception();
+   return 0;
 
 }
 

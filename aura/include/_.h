@@ -67,14 +67,14 @@ namespace universal_windows
 #endif
 
 
-namespace PLATFORM_NAMESPACE
+namespace OPERATING_SYSTEM_NAMESPACE
 {
 
 
    class interaction_impl;
 
 
-} // namespace PLATFORM_NAMESPACE
+} // namespace OPERATING_SYSTEM_NAMESPACE
 
 
 #include "aura/graphics/draw2d/_.h"
@@ -938,12 +938,12 @@ CLASS_DECL_AURA void aura_ref();
 //#include "aura/graphics/draw2d/_const.h"
 
 
-namespace PLATFORM_NAMESPACE
+namespace OPERATING_SYSTEM_NAMESPACE
 {
 
    class buffer;
 
-} // namespace PLATFORM_NAMESPACE
+} // namespace OPERATING_SYSTEM_NAMESPACE
 
 
 namespace windowing_universal_windows
@@ -2816,14 +2816,14 @@ namespace draw2d
 #include "aura/game/_.h"
 
 
-//namespace PLATFORM_NAMESPACE
+//namespace OPERATING_SYSTEM_NAMESPACE
 //{
 //
 //
 //   class window;
 //
 //
-//} // namespace PLATFORM_NAMESPACE
+//} // namespace OPERATING_SYSTEM_NAMESPACE
 
 
 #include "aura/windowing/_windowing.h"

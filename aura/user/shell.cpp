@@ -15,7 +15,7 @@
 
 
 #if defined(RASPBIAN)
-#define PLATFORM_NAMESPACE linux
+#define OPERATING_SYSTEM_NAMESPACE linux
 #endif
 
 

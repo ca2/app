@@ -4,7 +4,7 @@
 //
 //  Copied from node/ios by Camilo Sasuke Tsumanuma on 20/06/05.
 //  (with refactorization: ui_interaction -> host_interaction to
-//  match PLATFORM_NAMESPACE::create_*host*_window() naming.)
+//  match OPERATING_SYSTEM_NAMESPACE::create_*host*_window() naming.)
 //
 #include "framework.h"
 #include "_android.h"

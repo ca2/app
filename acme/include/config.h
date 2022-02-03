@@ -27,7 +27,7 @@
 #endif
 
 
-#define PLATFORM_NAMESPACE universal_windows
+#define OPERATING_SYSTEM_NAMESPACE universal_windows
 
 #define DEFAULT_DIR_SEPARATOR "\\"
 

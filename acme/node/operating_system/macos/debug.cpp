@@ -93,9 +93,9 @@ void output_debug_string(const char * pszOutputString)
 
    string strOutputString(pszOutputString);
 
-   strOutputString.replace("\r\n", "\n");
+   strOutputString.find_replace("\r\n", "\n");
 
-   strOutputString.replace("\n", "\r");
+   strOutputString.find_replace("\n", "\r");
 
    wd32char * pusz = ansi_to_wd32_dup(strOutputString);
 

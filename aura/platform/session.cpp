@@ -12,12 +12,12 @@
 //#endif // LINUX
 
 
-//namespace PLATFORM_NAMESPACE
+//namespace OPERATING_SYSTEM_NAMESPACE
 //{
 //
 //   CLASS_DECL_AURA bool adjust_monitor(index iMonitor, ::u32 dwTemperature, double dBrightness, double dGamma);
 //
-//} // namespace PLATFORM_NAMESPACE
+//} // namespace OPERATING_SYSTEM_NAMESPACE
 
 
 
@@ -34,14 +34,14 @@
 #if defined(APPLE_IOS) || defined(_UWP) || defined(ANDROID)
 
 
-namespace PLATFORM_NAMESPACE
+namespace OPERATING_SYSTEM_NAMESPACE
 {
 
 
    CLASS_DECL_AURA ::user::interaction * create_host_window();
 
 
-} // namespace PLATFORM_NAMESPACE
+} // namespace OPERATING_SYSTEM_NAMESPACE
 
 
 #endif
@@ -1913,7 +1913,7 @@ namespace aura
 //
 //      }
 //
-//      auto puserinteraction = ::PLATFORM_NAMESPACE::create_host_window();
+//      auto puserinteraction = ::OPERATING_SYSTEM_NAMESPACE::create_host_window();
 //
 //      if(!puserinteraction)
 //      {

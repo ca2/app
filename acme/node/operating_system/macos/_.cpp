@@ -6,25 +6,25 @@
 void ns_app_run();
 
 
-CLASS_DECL_ACME bool __node_acme_pre_init()
+CLASS_DECL_ACME void __node_acme_pre_init()
 {
 
    setlocale(LC_ALL,"");
 
-   return true;
+   //return true;
 
 }
 
 
 
-CLASS_DECL_ACME bool __node_acme_pos_init()
+CLASS_DECL_ACME void __node_acme_pos_init()
 {
 
 //   t_posthread = new os_thread(nullptr, nullptr);
 //
 //   t_posthread->m_bRun = true;
 
-   return true;
+   //return true;
 
 }
 
@@ -32,7 +32,7 @@ CLASS_DECL_ACME bool __node_acme_pos_init()
 
 
 
-CLASS_DECL_ACME bool __node_acme_pre_term()
+CLASS_DECL_ACME void __node_acme_pre_term()
 {
 
 //   if(t_posthread != nullptr)
@@ -53,13 +53,13 @@ CLASS_DECL_ACME bool __node_acme_pre_term()
 //
 //   }
 
-   return true;
+   //return true;
 
 }
 
 
 
-CLASS_DECL_ACME bool __node_acme_pos_term()
+CLASS_DECL_ACME void __node_acme_pos_term()
 {
 
 //#ifdef MACOS
@@ -73,7 +73,7 @@ CLASS_DECL_ACME bool __node_acme_pos_term()
 //#endif
 
 
-   return true;
+   //return true;
 
 }
 

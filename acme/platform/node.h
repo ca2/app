@@ -50,11 +50,11 @@ namespace acme
       ::apex::posix::node *                  m_pApexPosix;
       ::aura::posix::node *                  m_pAuraPosix;
 
-      ::acme::PLATFORM_NAMESPACE::node *     m_pAcmePlatform;
-      ::apex::PLATFORM_NAMESPACE::node *     m_pApexPlatform;
-      ::aura::PLATFORM_NAMESPACE::node *     m_pAuraPlatform;
+      ::acme::OPERATING_SYSTEM_NAMESPACE::node *     m_pAcmePlatform;
+      ::apex::OPERATING_SYSTEM_NAMESPACE::node *     m_pApexPlatform;
+      ::aura::OPERATING_SYSTEM_NAMESPACE::node *     m_pAuraPlatform;
 
-      ::PLATFORM_NAMESPACE::node *           m_pNode;
+      ::OPERATING_SYSTEM_NAMESPACE::node *           m_pNode;
 
 
       ::windowing_win32::node *              m_pWindowingWin32Node;

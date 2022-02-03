@@ -49,7 +49,7 @@ public:
 
    virtual void move_to(int x, int y);
 
-   virtual void destroy();
+   void destroy() override;
 
    virtual void redraw();
 

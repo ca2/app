@@ -199,12 +199,14 @@ void acme_path::create_symbolic_link(const char * pszLink, const char * pszSourc
 }
 
 
-void acme_path::is_symbolic_link(const char * pszLink)
+bool acme_path::is_symbolic_link(const char * pszLink)
 {
    
    throw ::interface_only_exception();
    
    //throw ::interface_only_exception();
+
+   return false;
    
 }
 

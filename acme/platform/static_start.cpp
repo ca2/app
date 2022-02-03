@@ -123,7 +123,7 @@ void finalize_global_message_queue();
 
 
 #ifdef RASPBIAN
-#define PLATFORM_NAMESPACE linux
+#define OPERATING_SYSTEM_NAMESPACE linux
 #endif
 
 
@@ -557,7 +557,7 @@ namespace acme
 
       //xxdebug_box("acme.dll base_static_start (0)", "box", e_message_box_ok);
 
-      //g_pengine = new ::PLATFORM_NAMESPACE::exception_engine();
+      //g_pengine = new ::OPERATING_SYSTEM_NAMESPACE::exception_engine();
 
       g_pmutexGlobals = new ::mutex();
 

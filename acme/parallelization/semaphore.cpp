@@ -254,7 +254,7 @@ bool semaphore::wait(const class ::wait & wait)
 //}
 
 
-void semaphore::wait(const class ::wait & wait)
+bool semaphore::wait(const class ::wait & wait)
 {
 
 //   struct sigaction alarm;
@@ -277,8 +277,15 @@ void semaphore::wait(const class ::wait & wait)
       sb.sem_flg  = 0;
 
       int i = semop(static_cast < i32 > (m_hsync), &sb, 1);
+      
+      if(i != 0)
+      {
+         
+         throw_status(error_exception);
+         
+      }
 
-      return i == 0 ? signaled_base : error_failed;
+      return true;
 
    }
 
@@ -300,7 +307,7 @@ void semaphore::wait(const class ::wait & wait)
       if(i == 0)
       {
 
-         return signaled_base;
+         return true;
 
       }
 
@@ -316,7 +323,7 @@ void semaphore::wait(const class ::wait & wait)
          if(tRemaining > wait)
          {
 
-            return error_wait_timeout;
+            return false;
 
          }
 
@@ -324,7 +331,7 @@ void semaphore::wait(const class ::wait & wait)
       else
       {
 
-         return error_failed;
+         throw_status(error_exception);
 
       }
 

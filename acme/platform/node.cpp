@@ -1191,7 +1191,7 @@ namespace acme
 //
 //#else
 
-      return "sans-serif";
+      return "Helvetica";
 
 //#endif
 

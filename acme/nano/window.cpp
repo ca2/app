@@ -396,6 +396,7 @@ void nano_window::on_left_button_up(int x, int y)
 void nano_window::on_click(const ::id & id)
 {
 
+   
 }
 
 

@@ -152,7 +152,7 @@ namespace acme
    } // namespace posix
 
 
-   namespace PLATFORM_NAMESPACE
+   namespace OPERATING_SYSTEM_NAMESPACE
    {
 
 
@@ -160,7 +160,7 @@ namespace acme
       class buffer;
 
 
-   } // namespace PLATFORM_NAMESPACE
+   } // namespace OPERATING_SYSTEM_NAMESPACE
 
 
 } // namespace acme
@@ -184,14 +184,14 @@ namespace apex
    };
 
 
-   namespace PLATFORM_NAMESPACE
+   namespace OPERATING_SYSTEM_NAMESPACE
    {
 
 
       class node;
 
 
-   } // namespace PLATFORM_NAMESPACE
+   } // namespace OPERATING_SYSTEM_NAMESPACE
 
 
 } // namespace apex
@@ -215,14 +215,14 @@ namespace aura
    };
 
 
-   namespace PLATFORM_NAMESPACE
+   namespace OPERATING_SYSTEM_NAMESPACE
    {
 
 
       class node;
 
 
-   } // namespace PLATFORM_NAMESPACE
+   } // namespace OPERATING_SYSTEM_NAMESPACE
 
 
 } // namespace aura
@@ -248,14 +248,14 @@ namespace windowing_universal_windows
 } // namespace windowing_universal_windows
 
 
-namespace PLATFORM_NAMESPACE
+namespace OPERATING_SYSTEM_NAMESPACE
 {
 
 
    class node;
 
 
-} // namespace PLATFORM_NAMESPACE
+} // namespace OPERATING_SYSTEM_NAMESPACE
 
 
 namespace windowing_x11
@@ -351,7 +351,7 @@ namespace desktop_environment_xfce
 #define ___STR(s) #s
 #define __STR(s) ___STR(s)
 #define __IDENTIFIER(identifier) identifier
-#define PLATFORM_INCLUDE(include) __STR(__IDENTIFIER(PLATFORM_NAMESPACE)/include)
+#define PLATFORM_INCLUDE(include) __STR(__IDENTIFIER(OPERATING_SYSTEM_NAMESPACE)/include)
 
 #ifndef  __STRING
 #  define   __STRING(x) "x"
@@ -722,7 +722,7 @@ class acme_file;
 class acme_path;
 
 
-namespace PLATFORM_NAMESPACE
+namespace OPERATING_SYSTEM_NAMESPACE
 {
 
 
@@ -733,7 +733,7 @@ namespace PLATFORM_NAMESPACE
    class acme_path;
 
 
-} // namespace PLATFORM_NAMESPACE
+} // namespace OPERATING_SYSTEM_NAMESPACE
 
 
 CLASS_DECL_ACME int __assert_failed_line(const char *pszFileName, int iLineNumber);

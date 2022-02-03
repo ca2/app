@@ -3560,7 +3560,7 @@ namespace user
 
       throw ::interface_only_exception();
 
-      throw ::interface_only_exception();
+      //throw ::interface_only_exception();
 
       //auto pchild = get_primitive_by_id(idChild);
 

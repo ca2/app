@@ -2130,4 +2130,3 @@ __pointer(::sequence < ::conversation >) system::message_box(const ::string & st
 }
 
 
-

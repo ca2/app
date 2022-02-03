@@ -736,11 +736,10 @@ namespace OPERATING_SYSTEM_NAMESPACE
 } // namespace OPERATING_SYSTEM_NAMESPACE
 
 
-CLASS_DECL_ACME int __assert_failed_line(const char *pszFileName, int iLineNumber);
-
+// returns true if it should continue...
+CLASS_DECL_ACME bool __assert_failed_line(const char *pszFileName, int iLineNumber);
 
 CLASS_DECL_ACME int is_debugger_attached(void);
-
 
 CLASS_DECL_ACME void debug_print(const char *psz, ...);
 

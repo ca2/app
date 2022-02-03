@@ -22,7 +22,7 @@
 //#endif
 
 
-CLASS_DECL_ACME int __cpp_assert_failed_line(const char * pszFileName, int iLineNumber);
+CLASS_DECL_ACME ::id __cpp_assert_failed_line(const char * pszFileName, int iLineNumber);
 
 
 CLASS_DECL_ACME string message_box_result_to_string(int iResult);
@@ -108,29 +108,41 @@ namespace acme
 //
 //#endif
 
-CLASS_DECL_ACME int __assert_failed_line(const char * pszFileName, int iLineNumber)
+
+class ::system * get_system();
+
+
+CLASS_DECL_ACME bool __assert_failed_line(const char * pszFileName, int iLineNumber)
 {
 
-   return __cpp_assert_failed_line(pszFileName, iLineNumber);
+   auto edialogresult = __cpp_assert_failed_line(pszFileName, iLineNumber);
+
+   if(edialogresult == e_dialog_result_cancel)
+   {
+
+      exit(0);
+
+   }
+   else if(edialogresult == e_dialog_result_try_again)
+   {
+
+      return false;
+
+   }
+
+   return true;
 
 }
 
 
-CLASS_DECL_ACME int __cpp_assert_failed_line(const char * pszFileName, int iLineNumber)
+CLASS_DECL_ACME ::id __cpp_assert_failed_line(const char * pszFileName, int iLineNumber)
 {
-
-
-   //char szTitle[1024];
 
    char szMessage[1024*4];
 
-   //strcpy(szTitle, "Assert failed");
-
    sprintf(szMessage,"Assert failed!\n\nFile: %s\nLine: %d\n\nYou can choose to:\n\n\t - \"Cancel\": cancel debugging.\n\t - \"Try\": try debug break where assertion occurred.\n\t - \"Continue\": continue running",pszFileName,iLineNumber);
 
-   __throw(error_assert, szMessage);
-
-   return 0;
+   return os_message_box(::get_system(), szMessage, "ASSERT", e_message_box_cancel_try_continue);
 
 }
 

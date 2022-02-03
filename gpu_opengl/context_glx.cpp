@@ -331,7 +331,7 @@ namespace opengl
 
       }
 
-      stra.replace("gl_FragColor", "fragmentColor");
+      stra.replace_with("fragmentColor", "gl_FragColor");
 
    }
 

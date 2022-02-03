@@ -14,14 +14,22 @@ void _debug_debug_string_string()
 
 }
 
-void __assert_valid_object(const ::matter * pOb, const char * pszFileName, i32 nLine)
 
+void __assert_valid_object(const ::matter * pOb, const char * pszFileName, i32 nLine)
 {
 
    if (pOb == nullptr)
    {
 
-      if (__assert_failed_line(pszFileName, nLine))
+      auto edialogresult = __assert_failed_line(pszFileName, nLine);
+
+      if(edialogresult == e_dialog_result_cancel)
+      {
+
+         exit(0);
+
+      }
+      else if(edialogresult == e_dialog_result_try_again)
       {
 
          DEBUG_BREAK;

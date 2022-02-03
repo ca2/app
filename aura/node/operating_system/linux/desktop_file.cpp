@@ -250,11 +250,11 @@ namespace linux
 
       strName = papplication->m_strAppId;
 
-      strName.replace("-", "_");
+      strName.find_replace("-", "_");
 
-      strName.replace("/", "_");
+      strName.find_replace("/", "_");
 
-      strName.replace(".", "_");
+      strName.find_replace(".", "_");
 
       //pathLaunch = pacmedir->home() / ".config/ca2/bin" / (strName + ".sh");
 

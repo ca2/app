@@ -31,7 +31,7 @@ void nano_button::on_draw(nano_device * pnanodevice)
 
    rectangleText.deflate(4);
 
-   pnanodevice->draw_text(
+   pnanodevice->draw_text123(
       m_strText,
       rectangleText, 
       e_align_center,

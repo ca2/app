@@ -32,7 +32,7 @@ void nano_message_box::on_draw(nano_device * pnanodevice)
 
    rectangleText.deflate(25);
 
-   pnanodevice->draw_text(
+   pnanodevice->draw_text123(
       m_strMessage, 
       rectangleText,
       e_align_top_left,
@@ -250,7 +250,7 @@ void nano_message_box::display_synchronously(const ::string & strMessage, const 
          break;
       case e_message_box_cancel_try_continue:
          add_button("Cancel", e_dialog_result_cancel);
-         add_button("Try", e_dialog_result_retry);
+         add_button("Try", e_dialog_result_try_again);
          add_button("Continue", e_dialog_result_continue);
          break;
       default:

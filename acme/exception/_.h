@@ -322,7 +322,7 @@ CLASS_DECL_ACME void __cdecl __clearerr_s(FILE *stream);
 
 
 
-CLASS_DECL_ACME int __assert_failed_line(const char * pszFileName, int nLine);
+CLASS_DECL_ACME bool __assert_failed_line(const char * pszFileName, int nLine);
 
 //CLASS_DECL_ACME void TRACE(e_trace_category ecategory, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
 //CLASS_DECL_ACME void __tracef(e_trace_category ecategory, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...);

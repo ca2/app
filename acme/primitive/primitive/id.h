@@ -161,19 +161,19 @@ public:
    id(SIGNED i);
    template < primitive_unsigned UNSIGNED >
    id(UNSIGNED u);
+   id(const ::string & str);
+   id(const type & type);
+   id(const ::payload & payload);
 #endif // !NO_TEMPLATE
    id(const ::lparam & lparam);
-   id(const ::string & str);
-   id(const ::payload & payload);
-   id(const type & type);
    id(::id && id) { m_all = id.m_all; id.m_all = {}; }
 
 
    void raw_set(const char * psz);
 
-
+#ifndef NO_TEMPLATE
    string str() const;
-
+#endif
 
    enum_type primitive_type() const
    {

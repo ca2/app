@@ -1,7 +1,5 @@
 app/app_just_message_box
 app/draw2d_cairo
-operating-system-linux/node_linux
-operating-system-posix/windowing_x11
-operating-system-linux/aura_linux
-operating-system-posix/aura_posix
-operating-system-posix/write_text_pango
+platform-linux/node_linux
+platform-posix/windowing_x11
+platform-posix/write_text_pango

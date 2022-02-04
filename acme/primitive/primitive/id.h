@@ -254,6 +254,9 @@ public:
    inline bool operator >= (const char * psz) const;
 
 
+#ifndef NO_TEMPLATE
+
+
    inline int compare(const ::string & str) const;
    inline bool operator == (const ::string & str) const;
    inline bool operator != (const ::string & str) const;
@@ -263,7 +266,7 @@ public:
    inline bool operator >= (const ::string & str) const;
 
 
-#ifndef NO_TEMPLATE
+
    template < primitive_integral INTEGRAL >
    inline int compare(INTEGRAL i) const;
    template < primitive_integral INTEGRAL >
@@ -278,7 +281,10 @@ public:
    inline bool operator > (INTEGRAL i) const;
    template < primitive_integral INTEGRAL >
    inline bool operator >= (INTEGRAL i) const;
+
+
 #endif // !NO_TEMPLATE
+
 
    inline int compare(::enum_id i) const;
    inline bool operator == (::enum_id eid) const;

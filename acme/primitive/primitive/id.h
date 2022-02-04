@@ -321,18 +321,24 @@ public:
    inline bool operator > (::enum_dialog_result edialogresult) const;
    inline bool operator >= (::enum_dialog_result edialogresult) const;
 
-   id & operator = (const ::payload & payload);
-   id & operator = (const property & prop);
    id & operator = (const id & id);
    id & operator = (const char * psz);
-   id & operator = (const ::string & str);
 
 #ifndef NO_TEMPLATE
+
+   id & operator = (const ::payload & payload);
+   id & operator = (const property & prop);
+   id & operator = (const ::string & str);
+
+
    template < primitive_integer INTEGER >
    id & operator = (INTEGER i);
    template < primitive_natural NATURAL >
    id & operator = (NATURAL u);
+
 #endif // !NO_TEMPLATE
+
+
    id & operator = (const enum_id & eid);
    id & operator = (const enum_property & eproperty);
    id & operator = (const enum_factory & efactory);
@@ -343,7 +349,12 @@ public:
    id & operator = (const enum_dialog_result & edialogresult);
 
 
+#ifndef NO_TEMPLATE
+
    inline ansistring to_string_base() const { return to_string(); }
+
+#endif
+
    inline operator ::i64() const;
    inline ::i64 i64() const;
    inline ::i32 i32() const { return (::i32) i64(); }

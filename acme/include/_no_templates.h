@@ -34,15 +34,15 @@ class string;
 typedef iptr strsize;
 class payload;
 
-//namespace subject
+//namespace topic
 //{
 
    
-   class subject;
+   class topic;
    class context;
 
 
-//} // namespace subject
+//} // namespace topic
 
 
 namespace message
@@ -98,12 +98,10 @@ class duration;
 //#include "acme/primitive/datetime/_.h"
 #include "acme/primitive/primitive/atomic.h"
 #include "acme/primitive/primitive/interlocked_count.h"
-#include "acme/subject/handler.h"
+#include "acme/topic/topic.h"
+#include "acme/topic/handler.h"
 #include "acme/primitive/primitive/e_flag.h"
 #include "acme/primitive/primitive/element.h"
-//#include "acme/primitive/primitive/tracer.h"
-//#include "acme/subject/handler.h"
-//#include "acme/primitive/primitive/matter.h"
 #ifdef __APPLE__
 #include "acme/node/operating_system/apple/_apple_no_templates.h"
 #endif

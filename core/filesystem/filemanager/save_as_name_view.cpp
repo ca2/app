@@ -114,7 +114,7 @@ namespace filemanager
    }
 
 
-   void save_as_edit_view::handle(::subject * psubject, ::context * pcontext)
+   void save_as_edit_view::handle(::topic * psubject, ::context * pcontext)
    {
 
       ::user::impact::handle(psubject, pcontext);
@@ -166,7 +166,7 @@ namespace filemanager
    }
 
 
-   void save_as_button::handle(::subject * psubject, ::context * pcontext)
+   void save_as_button::handle(::topic * psubject, ::context * pcontext)
    {
 
       ::filemanager_impact_base::handle(psubject, pcontext);
@@ -323,7 +323,7 @@ namespace filemanager
 
       __throw(todo, "new_action?? (->new_subject)");
 
-      //auto psubject = new_action(subject(id_topic_cancel));
+      //auto psubject = new_action(topic(id_topic_cancel));
 
       //get_document()->update_all_views(psubject);
 
@@ -347,7 +347,7 @@ namespace filemanager
    }
 
 
-   void save_as_view::handle(::subject * psubject, ::context * pcontext)
+   void save_as_view::handle(::topic * psubject, ::context * pcontext)
    {
 
       ::user::impact::handle(psubject, pcontext);

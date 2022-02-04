@@ -896,21 +896,15 @@ CLASS_DECL_ACME int throw_assert_exception(const char *pszFileName, int iLineNum
 CLASS_DECL_ACME int trailingBytesForUTF8(char ch);
 
 
-//namespace subject
-//{
-
-   class signal;
-   class backing;
-   class manager;
-   class subject;
-   class context;
-   class routine;
-   class handler;
-   template < typename RESULT > class process;
-
-
-
-//} // namespace subject
+class signal;
+class backing;
+class manager;
+class topic;
+class context;
+class routine;
+class handler;
+template < typename RESULT > class process;
+class extended_topic;
 
 
 CLASS_DECL_ACME int trailingBytesForUTF8(char ch);
@@ -1821,20 +1815,11 @@ class task;
 
 #include "_forward_declaration.h"
 
-//
-//namespace subject
-//{
-
 
 using handler_pointer = __pointer(handler);
 using manager_pointer = __pointer(manager);
-using subject_pointer = __pointer(subject);
+using extended_topic_pointer = __pointer(extended_topic);
 using context_pointer = __pointer(context);
-
-
-
-
-//} // namespace subject
 
 
 template<typename THREAD_POINTER>
@@ -2971,9 +2956,6 @@ namespace message
 #include "acme/platform/routine.h"
 
 
-//#include "acme/primitive/subject/handler.h"
-
-
 template<class POINTER_TYPE>
 inline auto &__typed(__pointer(POINTER_TYPE) &p) { return *p; }
 
@@ -3320,7 +3302,9 @@ class CLASS_DECL_ACME integral_byte { public: integral_byte(memsize memsize = 1)
 template < typename TYPE > class sequence;
 
 
-#include "acme/subject/handler.h"
+
+#include "acme/topic/topic.h"
+#include "acme/topic/handler.h"
 #include "acme/primitive/primitive/e_flag.h"
 #include "acme/primitive/primitive/element.h"
 #include "acme/user/conversation.h"
@@ -3528,7 +3512,7 @@ void add_routine(routine_array& array, PRED pred);
 //void add_process(process_array &array, PRED pred);
 
 
-//} // namespace subject
+//} // namespace topic
 
 
 using exception_array = ::array < ::exception >;
@@ -3587,8 +3571,6 @@ CLASS_DECL_ACME task_bitset& task_flag();
 
 #include "acme/platform/predicate_routine.h"
 
-//#include "acme/platform/predicate_handler.h"
-
 #include "acme/platform/predicate_process.h"
 
 
@@ -3634,8 +3616,8 @@ public:                                                                         
    void on_initialize_object() override {}         \
    void assert_valid() const override {}                                    \
    void dump(dump_context&) const override {}                               \
-   void handle(::subject*,::context*) override {}    \
-   //void on_subject(::subject::subject*, ::context*) override {} \
+   void handle(::topic*,::context*) override {}    \
+   //void on_subject(::topic::topic*, ::context*) override {} \
 
 
 #define OPTIONAL_INTERACTION_BODY                                                   \
@@ -4325,8 +4307,9 @@ namespace user
 DECLARE_ENUMERATION(e_element, enum_element);
 
 
-#include "acme/subject/item.h"
-#include "acme/subject/subject.h"
+#include "acme/topic/item.h"
+//#include "acme/topic/topic.h"
+#include "acme/topic/extended_topic.h"
 
 
 

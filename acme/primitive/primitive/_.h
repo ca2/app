@@ -68,7 +68,7 @@ void release(TYPE *& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 //CLASS_DECL_ACME void launch_action(action* psubject);
 
 
-//#include "acme/primitive/subject/_.h"
+//#include "acme/primitive/topic/_.h"
 
 
 // class CLASS_DECL_ACME parents :

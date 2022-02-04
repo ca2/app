@@ -1409,7 +1409,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   ::regular_expression_pointer system::create_pcre(const string& str)
+   ::regular_expression_pointer system::compile_pcre(const string& str)
    {
 
       return create_regular_expression("pcre2", str);

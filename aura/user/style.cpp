@@ -80,7 +80,7 @@ namespace user
    }
 
 
-   void style::handle(::subject * psubject, ::context * pcontext)
+   void style::handle(::topic * psubject, ::context * pcontext)
    {
 
       if (psubject->m_id == id_user_style_change 

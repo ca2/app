@@ -807,7 +807,7 @@ namespace user
 
          synchronous_lock synchronouslock(mutex());
 
-         //pgraphics->OffsetViewportOrg(m_pointScroll.x, m_pointScroll.y);
+         //pgraphics->OffsetImpactportOrg(m_pointScroll.x, m_pointScroll.y);
 
          m_pdata->_001OnDraw(pgraphics);
 
@@ -940,10 +940,10 @@ namespace user
       }
 
 
-      void edit_impl::handle(::subject * psubject, ::context * pcontext)
+      void edit_impl::handle(::topic * psubject, ::context * pcontext)
       {
 
-         if (psubject->m_id == ::e_subject_after_change_cur_sel)
+         if (psubject->m_id == ::id_after_change_cur_sel)
          {
 
             auto pformattool = get_format_tool(false);
@@ -1032,19 +1032,19 @@ namespace user
 
          {
 
-            ::subject subject;
+            ::topic topic;
 
-            subject.m_puserelement = this;
+            topic.m_puserelement = this;
 
-            subject.m_id = ::e_subject_key_down;
+            topic.m_id = ::id_key_down;
 
-            subject.m_actioncontext.m_pmessage = pmessage;
+            topic.m_actioncontext.m_pmessage = pmessage;
 
-            subject.m_actioncontext = ::e_source_user;
+            topic.m_actioncontext = ::e_source_user;
 
-            route(&subject);
+            route(&topic);
 
-            if (subject.m_bRet)
+            if (topic.m_bRet)
             {
 
                return;
@@ -1094,17 +1094,17 @@ namespace user
          else if (pkey->m_ekey == ::user::e_key_escape)
          {
 
-            ::subject subject;
+            ::topic topic;
 
-            subject.m_puserelement = this;
+            topic.m_puserelement = this;
 
-            subject.m_id = ::e_subject_escape;
+            topic.m_id = ::id_escape;
 
-            subject.m_actioncontext = ::e_source_user;
+            topic.m_actioncontext = ::e_source_user;
 
-            route(&subject);
+            route(&topic);
 
-            if (!subject.m_bRet && subject.m_bOk)
+            if (!topic.m_bRet && topic.m_bOk)
             {
 
                on_action("escape");
@@ -1362,7 +1362,7 @@ namespace user
 
                //index i = find_span(m_pdata->m_spana, i1);
 
-               on_after_change(::e_subject_after_change_text);
+               on_after_change(::id_after_change_text);
 
                set_need_redraw();
 
@@ -1382,7 +1382,7 @@ namespace user
 
                //index i = find_span(m_pdata->m_spana, i1);
 
-               on_after_change(::e_subject_after_change_text);
+               on_after_change(::id_after_change_text);
 
                set_need_redraw();
 
@@ -1582,7 +1582,7 @@ namespace user
 
                               m_pdata->m_iSelBeg = m_pdata->m_iSelEnd = i1;
 
-                              on_after_change(::e_subject_after_change_text);
+                              on_after_change(::id_after_change_text);
 
                               set_need_redraw();
 
@@ -1600,7 +1600,7 @@ namespace user
 
                               m_pdata->m_iSelBeg = m_pdata->m_iSelEnd = i1 - iDecLen;
 
-                              on_after_change(::e_subject_after_change_text);
+                              on_after_change(::id_after_change_text);
 
                               set_need_redraw();
 
@@ -1977,20 +1977,20 @@ namespace user
       }
 
 
-      void edit_impl::on_after_change(::enum_subject esubject)
+      void edit_impl::on_after_change(::enum_topic etopic)
       {
 
          m_pdata->optimize_data();
 
-         ::subject subject(esubject);
+         ::topic topic(etopic);
 
-         //subject.m_id = eevent;
+         //topic.m_id = eevent;
 
-         //subject.m_id = m_id;
+         //topic.m_id = m_id;
 
-         subject.m_puserelement = this;
+         topic.m_puserelement = this;
 
-         route(&subject);
+         route(&topic);
 
          set_need_layout();
 

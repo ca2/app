@@ -75,7 +75,7 @@ void source::add_handler(::matter * pmatter, bool bPriority)
 //}
 
 
-void source::route(::subject * psubject, ::context * pcontext)
+void source::route(::topic * psubject, ::context * pcontext)
 {
 
    if (m_phandlera)

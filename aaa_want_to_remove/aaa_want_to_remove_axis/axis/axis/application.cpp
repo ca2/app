@@ -1519,7 +1519,7 @@ pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition"
 
 
 
-   void application::handle(::subject * psubject, ::context * pcontext)
+   void application::handle(::topic * psubject, ::context * pcontext)
    {
 
    }

@@ -96,7 +96,7 @@ namespace data
    }
 
 
-   ::user::primitive *  data::get_data_bound_view(index iView)
+   ::user::primitive *  data::get_data_bound_view(index iImpact)
    {
 
       return nullptr;
@@ -117,7 +117,7 @@ namespace data
    //}
 
 
-   void data::handle(::subject * psubject, ::context * pcontext)
+   void data::handle(::topic * psubject, ::context * pcontext)
    {
 
       //if (m_pdatacontainerbase)

@@ -924,7 +924,7 @@ namespace user
    }
 
 
-   void combo_box::handle(::subject * psubject, ::context * pcontext)
+   void combo_box::handle(::topic * psubject, ::context * pcontext)
    {
 
       ////if(m_bEdit)
@@ -934,7 +934,7 @@ namespace user
 
       //}
 
-      if (psubject->m_id == ::e_subject_after_change_cur_sel)
+      if (psubject->m_id == ::id_after_change_cur_sel)
       {
 
          auto puserinteraction = psubject->user_interaction();
@@ -1542,10 +1542,10 @@ namespace user
    }
 
 
-   //void combo_box::handle(::subject * psubject, ::context * pcontext)
+   //void combo_box::handle(::topic * psubject, ::context * pcontext)
    //{
 
-   //   if(psubject->m_id == ::e_subject_after_change_cur_sel)
+   //   if(psubject->m_id == ::id_after_change_cur_sel)
    //   {
 
    //      auto puserinteraction = psubject->user_interaction();

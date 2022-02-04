@@ -45,17 +45,17 @@ namespace userex
    }
 
 
-   void group_image_list_view::handle(::subject * psubject, ::context * pcontext)
+   void group_image_list_view::handle(::topic * psubject, ::context * pcontext)
    {
 
       ::user::impact::handle(psubject, pcontext);
 
-      if (psubject->m_id == ::e_subject_item_clicked)
+      if (psubject->m_id == ::id_item_clicked)
       {
 
 
       }
-      else if (psubject->m_id == ::e_subject_click)
+      else if (psubject->m_id == ::id_click)
       {
 
          if (psubject->user_interaction()->m_id == m_id)
@@ -355,15 +355,15 @@ namespace userex
    }
 
 
-   //void group_image_list_view::handle(::subject * psubject, ::context * pcontext)
+   //void group_image_list_view::handle(::topic * psubject, ::context * pcontext)
    //{
 
-   //   if (psubject->m_id == ::e_subject_item_clicked)
+   //   if (psubject->m_id == ::id_item_clicked)
    //   {
 
 
    //   }
-   //   else if (psubject->m_id == ::e_subject_click)
+   //   else if (psubject->m_id == ::id_click)
    //   {
 
    //      if (psubject->user_interaction()->m_id == m_id)

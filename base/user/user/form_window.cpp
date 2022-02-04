@@ -393,7 +393,7 @@ namespace user
    }
 
 
-   void form_window::handle(::subject * psubject, ::context * pcontext)
+   void form_window::handle(::topic * psubject, ::context * pcontext)
    {
       
       
@@ -417,7 +417,7 @@ namespace user
 
       }
 
-      if (psubject->m_id == ::e_subject_tab_key)
+      if (psubject->m_id == ::id_tab_key)
       {
 
          __pointer(::user::primitive) pfocus = psubject->user_interaction()->keyboard_get_next_focusable();
@@ -430,7 +430,7 @@ namespace user
          }
 
       }
-      else if (psubject->m_id == ::e_subject_click)
+      else if (psubject->m_id == ::id_click)
       {
 
          __pointer(interaction) pinteraction = psubject->user_interaction();
@@ -459,7 +459,7 @@ namespace user
          }
 
       }
-      else if (psubject->m_id == ::e_subject_set_check && psubject->m_actioncontext.is_user_source())
+      else if (psubject->m_id == ::id_set_check && psubject->m_actioncontext.is_user_source())
       {
 
          __pointer(interaction) pinteraction = psubject->user_interaction();
@@ -859,7 +859,7 @@ namespace user
    }
 
 
-   void form_window::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::subject * psubject)
+   void form_window::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::topic * psubject)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -969,14 +969,14 @@ namespace user
 
       }
 
-      ::subject subject;
+      ::topic topic;
 
-      subject.m_puserelement         = pinteraction;
-      subject.m_actioncontext = ::e_source_database;
-      subject.m_id       = ::e_subject_initialize_control;
-      subject.m_uiEvent      = 0;
+      topic.m_puserelement         = pinteraction;
+      topic.m_actioncontext = ::e_source_database;
+      topic.m_id       = ::id_initialize_control;
+      topic.m_uiEvent      = 0;
 
-      route(&subject);
+      route(&topic);
 
    }
 
@@ -1202,7 +1202,7 @@ namespace user
 
    }
 
-   //if (psubject->m_id == ::e_subject_form_initialize)
+   //if (psubject->m_id == ::id_form_initialize)
    //{
 
    //   call_sync(get_document()->m_mapRunnablea["load"]);
@@ -1210,7 +1210,7 @@ namespace user
    //}
 
 
-   //void form_window::handle(::subject * psubject, ::context * pcontext)
+   //void form_window::handle(::topic * psubject, ::context * pcontext)
    //{
 
    //   ::user::form_control::handle(psubject, pcontext);
@@ -1222,7 +1222,7 @@ namespace user
 
    //   }
 
-   //   if(psubject->m_id == ::e_subject_tab_key)
+   //   if(psubject->m_id == ::id_tab_key)
    //   {
 
    //      __pointer(::user::primitive) pfocus = psubject->user_interaction()->keyboard_get_next_focusable();
@@ -1235,7 +1235,7 @@ namespace user
    //      }
 
    //   }
-   //   else if(psubject->m_id == ::e_subject_click)
+   //   else if(psubject->m_id == ::id_click)
    //   {
 
    //      __pointer(interaction) pinteraction = psubject->user_interaction();
@@ -1264,7 +1264,7 @@ namespace user
    //      }
 
    //   }
-   //   else if(psubject->m_id == ::e_subject_set_check && psubject->m_actioncontext.is_user_source())
+   //   else if(psubject->m_id == ::id_set_check && psubject->m_actioncontext.is_user_source())
    //   {
 
    //      __pointer(interaction) pinteraction = psubject->user_interaction();

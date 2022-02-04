@@ -108,10 +108,10 @@ namespace turboc
 
 
 
-   void main_impact::handle(::subject * psubject, ::context * pcontext)
+   void main_impact::handle(::topic * psubject, ::context * pcontext)
    {
 
-      if(psubject->m_id == ::e_subject_click)
+      if(psubject->m_id == ::id_click)
       {
 
          if(psubject->user_element_id() == "turboc_toggle")

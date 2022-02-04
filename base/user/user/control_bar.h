@@ -283,7 +283,7 @@ namespace user
       friend class BaseDockBar;
 
 
-      virtual void handle(::subject * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * psubject, ::context * pcontext) override;
 
 
 

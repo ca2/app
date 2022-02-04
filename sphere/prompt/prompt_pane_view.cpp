@@ -56,7 +56,7 @@ namespace prompt
    }
 
 
-   void pane_view::handle(::subject * psubject, ::context * pcontext)
+   void pane_view::handle(::topic * psubject, ::context * pcontext)
    {
 
       ::user::tab_view::handle(psubject, pcontext);
@@ -244,7 +244,7 @@ namespace prompt
          if(pdocument == nullptr)
             return;
          ::user::impact_data * pimpactdata = new ::user::impact_data;
-         __pointer(::user::impact) pview = pdocument->get_typed_view < ::user::impact > ();
+         __pointer(::user::impact) pview = pdocument->get_type_impact < ::user::impact > ();
          auto pupdate = new_update();
          pupdate->m_actioncontext = ::e_source_system;
          psubject->id() = id_browse;
@@ -329,7 +329,7 @@ namespace prompt
    }
 
 
-   void pane_view::handle(::subject * psubject, ::context * pcontext)
+   void pane_view::handle(::topic * psubject, ::context * pcontext)
    {
 
       ::prompt::form_callback::handle(psubject, pcontext);

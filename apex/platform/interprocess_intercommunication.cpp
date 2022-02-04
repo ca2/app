@@ -156,7 +156,7 @@ void interprocess_intercommunication::start(const ::string & strApp)
       if(ida.is_empty())
       {
 
-         branch_task(plauncher);
+         branch_element(plauncher);
 
          int iStep = 0;
 

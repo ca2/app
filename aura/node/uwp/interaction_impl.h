@@ -89,7 +89,7 @@ namespace universal_windows
 
       void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
-      virtual void handle(::subject * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * psubject, ::context * pcontext) override;
 
       virtual void main_async(const ::routine & routine, enum_priority epriority = e_priority_normal);
 

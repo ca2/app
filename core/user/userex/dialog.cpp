@@ -45,13 +45,13 @@ dialog::~dialog()
 }
 
 
-void dialog::handle(::subject * psubject, ::context * pcontext)
+void dialog::handle(::topic * psubject, ::context * pcontext)
 {
 
    if(::is_set(psubject->user_interaction()) && m_pform == nullptr)
    {
 
-      if(psubject->m_id == ::e_subject_create)
+      if(psubject->m_id == ::id_create)
       {
 
          m_pform = psubject->user_interaction();
@@ -114,7 +114,7 @@ bool dialog::show(const ::string & pszMatter)
 
    //m_pframe->add_each_routine_from(DIALOG_RESULT_PROCESS, this);
 
-   m_pform = m_pdocument->get_typed_view<::user::form>();
+   m_pform = m_pdocument->get_type_impact<::user::form>();
 
    on_position_parent_frame();
 

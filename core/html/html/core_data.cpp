@@ -202,7 +202,7 @@ namespace html
    }
 
 
-   void core_data::handle(::subject * psubject, ::context * pcontext)
+   void core_data::handle(::topic * psubject, ::context * pcontext)
    {
 
       html_data::handle(psubject, pcontext);
@@ -327,7 +327,7 @@ namespace html
          for (auto & pinteraction : m_pform->m_puserinteractionpointeraChild->interactiona())
          {
             
-            auto psubject = create_subject(::e_subject_initialize_control);
+            auto psubject = create_subject(::id_initialize_control);
 
             psubject->m_puserelement = pinteraction;
 
@@ -404,7 +404,7 @@ namespace html
       if (m_pcallback != nullptr)
       {
          
-         auto psubject = create_subject(::e_subject_form_initialize);
+         auto psubject = create_subject(::id_form_initialize);
 
          psubject->m_puserelement = m_puserinteraction;
          

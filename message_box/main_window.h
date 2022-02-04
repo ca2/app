@@ -26,7 +26,7 @@ namespace app_message_box
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void handle(::subject * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * psubject, ::context * pcontext) override;
 
       virtual void show_message_box();
 

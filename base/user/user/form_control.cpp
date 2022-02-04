@@ -364,7 +364,7 @@ namespace user
    }
 
 
-   void form_control::handle(::subject * psubject, ::context * pcontext)
+   void form_control::handle(::topic * psubject, ::context * pcontext)
    {
 
       //for(auto pinteraction : proper_children())
@@ -374,7 +374,7 @@ namespace user
 
       //}
 
-      if (psubject->m_id == ::e_subject_create)
+      if (psubject->m_id == ::id_create)
       {
 
          if (is_child(psubject->user_interaction()))
@@ -385,7 +385,7 @@ namespace user
          }
 
       }
-      else if (psubject->m_id == ::e_subject_set_focus)
+      else if (psubject->m_id == ::id_set_focus)
       {
 
          if (!_001OnControlSetFocus(psubject->user_interaction()))
@@ -398,7 +398,7 @@ namespace user
          }
 
       }
-      else if (psubject->m_id == ::e_subject_kill_focus)
+      else if (psubject->m_id == ::id_kill_focus)
       {
 
          if (!_001OnControlKillFocus(psubject->user_interaction()))
@@ -435,7 +435,7 @@ namespace user
 
       }
 
-      if (psubject->m_id == ::e_subject_tab_key)
+      if (psubject->m_id == ::id_tab_key)
       {
 
          __pointer(::user::primitive) pfocus = psubject->user_interaction()->keyboard_get_next_focusable();
@@ -448,7 +448,7 @@ namespace user
          }
 
       }
-      else if (psubject->m_id == ::e_subject_click)
+      else if (psubject->m_id == ::id_click)
       {
 
          __pointer(interaction) pinteraction = psubject->user_interaction();
@@ -483,7 +483,7 @@ namespace user
          }
 
       }
-      else if (psubject->m_id == ::e_subject_set_check && psubject->m_actioncontext.is_user_source())
+      else if (psubject->m_id == ::id_set_check && psubject->m_actioncontext.is_user_source())
       {
 
          __pointer(interaction) pinteraction = psubject->user_interaction();
@@ -959,7 +959,7 @@ namespace user
       if (bSaveAndValidate)
       {
 
-         psubject->m_id = ::e_subject_save_form_data;
+         psubject->m_id = ::id_save_form_data;
 
          m_bNeedSaveFormData = false;
 
@@ -967,7 +967,7 @@ namespace user
       else
       {
 
-         psubject->m_id = ::e_subject_load_form_data;
+         psubject->m_id = ::id_load_form_data;
 
          m_bNeedLoadFormData = false;
 
@@ -980,7 +980,7 @@ namespace user
    }
 
 
-   void form_control::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::subject * psubject)
+   void form_control::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::topic * psubject)
    {
 
       for(auto pinteraction : proper_children())
@@ -1051,14 +1051,14 @@ namespace user
    void form_control::_001OnInitializeForm(::user::interaction * pinteraction)
    {
 
-      ::subject subject;
+      ::topic topic;
 
-      subject.m_puserelement         = pinteraction;
-      subject.m_actioncontext        = ::e_source_database;
-      subject.m_id       = ::e_subject_initialize_control;
-      subject.m_uiEvent      = 0;
+      topic.m_puserelement         = pinteraction;
+      topic.m_actioncontext        = ::e_source_database;
+      topic.m_id       = ::id_initialize_control;
+      topic.m_uiEvent      = 0;
 
-      route(&subject);
+      route(&topic);
 
    }
 
@@ -1305,10 +1305,10 @@ namespace user
    }
 
 
-   //void form_control::handle(::subject * psubject, ::context * pcontext)
+   //void form_control::handle(::topic * psubject, ::context * pcontext)
    //{
 
-   //   if (psubject->m_id == ::e_subject_create)
+   //   if (psubject->m_id == ::id_create)
    //   {
 
    //      if (is_child(psubject->user_interaction()))
@@ -1319,7 +1319,7 @@ namespace user
    //      }
 
    //   }
-   //   else if(psubject->m_id == ::e_subject_set_focus)
+   //   else if(psubject->m_id == ::id_set_focus)
    //   {
 
    //      if(!_001OnControlSetFocus(psubject->user_interaction()))
@@ -1332,7 +1332,7 @@ namespace user
    //      }
 
    //   }
-   //   else if(psubject->m_id == ::e_subject_kill_focus)
+   //   else if(psubject->m_id == ::id_kill_focus)
    //   {
 
    //      if(!_001OnControlKillFocus(psubject->user_interaction()))
@@ -1369,7 +1369,7 @@ namespace user
 
    //   }
 
-   //   if(psubject->m_id == ::e_subject_tab_key)
+   //   if(psubject->m_id == ::id_tab_key)
    //   {
 
    //      __pointer(::user::primitive) pfocus = psubject->user_interaction()->keyboard_get_next_focusable();
@@ -1382,7 +1382,7 @@ namespace user
    //      }
 
    //   }
-   //   else if(psubject->m_id == ::e_subject_click)
+   //   else if(psubject->m_id == ::id_click)
    //   {
 
    //      __pointer(interaction) pinteraction = psubject->user_interaction();
@@ -1417,7 +1417,7 @@ namespace user
    //      }
 
    //   }
-   //   else if(psubject->m_id == ::e_subject_set_check && psubject->m_actioncontext.is_user_source())
+   //   else if(psubject->m_id == ::id_set_check && psubject->m_actioncontext.is_user_source())
    //   {
 
    //      __pointer(interaction) pinteraction = psubject->user_interaction();
@@ -1654,28 +1654,28 @@ namespace user
       if(m_pcallback != nullptr)
       {
 
-         ::subject subject;
+         ::topic topic;
 
-         subject.m_puserelement = this;
+         topic.m_puserelement = this;
 
-         subject.m_id = ::e_subject_timer;
+         topic.m_id = ::id_timer;
 
-         subject.m_uiEvent = ptimer->m_uEvent;
+         topic.m_uiEvent = ptimer->m_uEvent;
 
-         subject.m_etimer = ptimer->m_etimer;
+         topic.m_etimer = ptimer->m_etimer;
 
          auto papplication = get_application();
 
-         papplication->route(&subject);
+         papplication->route(&topic);
 
-         if(subject.m_bRet)
+         if(topic.m_bRet)
          {
 
             return;
 
          }
 
-         m_pcallback->route(&subject);
+         m_pcallback->route(&topic);
 
       }
 

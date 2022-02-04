@@ -914,13 +914,13 @@ namespace user
    void menu::defer_close()
    {
 
-      ::subject subject;
+      ::topic topic;
 
-      subject.m_id = ::e_subject_context_menu_close;
+      topic.m_id = ::id_context_menu_close;
 
-      route(&subject);
+      route(&topic);
 
-      if (!m_bInline && !subject.m_bRet)
+      if (!m_bInline && !topic.m_bRet)
       {
 
          post_message(e_message_close);
@@ -930,10 +930,10 @@ namespace user
    }
 
 
-   void menu::handle(::subject * psubject, ::context * pcontext)
+   void menu::handle(::topic * psubject, ::context * pcontext)
    {
 
-      if (psubject->m_id == ::e_subject_click)
+      if (psubject->m_id == ::id_click)
       {
 
          if (m_pitemClose.is_set() && psubject->user_interaction() == m_pitemClose->m_puserinteraction)
@@ -1000,7 +1000,7 @@ namespace user
          }
 
       }
-//      else if (psubject->m_id == ::e_subject_mouse_enter)
+//      else if (psubject->m_id == ::id_mouse_enter)
 //      {
 //
 //         if (m_pitemClose.is_set()
@@ -1054,11 +1054,11 @@ namespace user
 //                        else
 //                        {
 //
-//                           ::subject subject;
+//                           ::topic topic;
 //
-//                           subject.m_id = ::e_subject_menu_hover;
+//                           topic.m_id = ::id_menu_hover;
 //
-//                           subject.m_id = pitem->m_id;
+//                           topic.m_id = pitem->m_id;
 //
 //                           ::user::interaction * puiTarget = get_target_window();
 //
@@ -1069,7 +1069,7 @@ namespace user
 //
 //                           }
 //
-//                           return puiTarget->route(&subject);
+//                           return puiTarget->route(&topic);
 //
 //                        }
 //
@@ -1088,7 +1088,7 @@ namespace user
 //         return;
 //
 //      }
-//      else if (psubject->m_id == ::e_subject_mouse_leave)
+//      else if (psubject->m_id == ::id_mouse_leave)
 //      {
 //         if (psubject->user_element_id() == m_idTimerMenu)
 //         {

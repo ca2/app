@@ -79,7 +79,7 @@ namespace userex
 
       //virtual bool create_app_options(::user::impact_data * pimpactdata);
 
-      void handle(::subject * psubject, ::context * pcontext) override;
+      void handle(::topic * psubject, ::context * pcontext) override;
 
       //void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
 

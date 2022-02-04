@@ -35,7 +35,7 @@ namespace usernet
       if(m_pdocument != nullptr)
       {
 
-         m_pimpact = m_pdocument->get_typed_view < ::user::form > ();
+         m_pimpact = m_pdocument->get_type_impact < ::user::form > ();
 
          m_pimpact->set_form_callback(this);
 
@@ -62,7 +62,7 @@ namespace usernet
       if(m_pdocument != nullptr)
       {
 
-         m_pimpact = m_pdocument->get_typed_view < ::user::form > ();
+         m_pimpact = m_pdocument->get_type_impact < ::user::form > ();
 
          m_pimpact->set_form_callback(this);
 
@@ -109,12 +109,12 @@ namespace usernet
    }
 
 
-   void network_configuration::handle(::subject * psubject, ::context * )
+   void network_configuration::handle(::topic * psubject, ::context * )
    {
 
       auto pcontext = get_context();
 
-      if(psubject->m_id == ::e_subject_click)
+      if(psubject->m_id == ::id_click)
       {
 
          if(psubject->user_interaction()->m_id == "submit")

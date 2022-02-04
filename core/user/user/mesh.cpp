@@ -76,7 +76,7 @@ namespace user
 
       m_iDefaultColumnWidth      = 200;
 
-      m_bLockViewUpdate = false;
+      m_bLockImpactUpdate = false;
 
 
       //m_dItemHeight = 0;
@@ -143,9 +143,9 @@ namespace user
 
       MESSAGE_LINK(e_message_create, pchannel, this,&mesh::on_message_create);
 
-      add_command_handler("mesh_view_auto_arrange", this, &mesh::_001OnMeshViewAutoArrange);
+      add_command_handler("mesh_view_auto_arrange", this, &mesh::_001OnMeshImpactAutoArrange);
 
-      add_command_prober("mesh_view_auto_arrange", this, &mesh::_001OnUpdateMeshViewAutoArrange);
+      add_command_prober("mesh_view_auto_arrange", this, &mesh::_001OnUpdateMeshImpactAutoArrange);
 
    }
 
@@ -159,7 +159,7 @@ namespace user
 
       pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias_grid_fit);
 
-      if(m_bLockViewUpdate)
+      if(m_bLockImpactUpdate)
          return;
 
       ::user::interaction::_001OnDraw(pgraphics);
@@ -185,7 +185,7 @@ namespace user
 
          pbrushText->create_solid(get_color(pstyle, ::e_element_text));
 
-         const ::point_i32 & pointViewportOrg = pgraphics->GetViewportOrg();
+         const ::point_i32 & pointImpactportOrg = pgraphics->GetImpactportOrg();
 
          pgraphics->set(pbrushText);
          ::size_array sizea;
@@ -227,7 +227,7 @@ namespace user
                iStart = iNewStart;
             }
          }
-         pgraphics->SetViewportOrg(pointViewportOrg);
+         pgraphics->SetImpactportOrg(pointImpactportOrg);
       }
 
 
@@ -1443,18 +1443,18 @@ namespace user
       }
       if(m_eview == impact_icon)
       {
-         ::rectangle_i32 rectangleView;
-         get_client_rect(&rectangleView);
+         ::rectangle_i32 rectangleImpact;
+         get_client_rect(&rectangleImpact);
          const ::size_i32 & sizeItem = get_item_size();
-         return maximum((rectangleView.width() / sizeItem.cx) * (rectangleView.height() / sizeItem.cy),
+         return maximum((rectangleImpact.width() / sizeItem.cx) * (rectangleImpact.height() / sizeItem.cy),
                     m_piconlayout->m_iaDisplayToStrict.get_max_a() + 1);
       }
       else if(m_eview == impact_report || m_eview == impact_grid)
       {
          
-         ::rectangle_i32 rectangleView;
+         ::rectangle_i32 rectangleImpact;
          
-         get_client_rect(&rectangleView);
+         get_client_rect(&rectangleImpact);
          
          if(m_dItemHeight == 0.)
          {
@@ -1468,13 +1468,13 @@ namespace user
             if(m_bTopText)
             {
 
-               return (::i32)((rectangleView.height() - m_rectangleTopText.height()) / m_dItemHeight);
+               return (::i32)((rectangleImpact.height() - m_rectangleTopText.height()) / m_dItemHeight);
 
             }
             else
             {
 
-               return (::i32)(rectangleView.height() / m_dItemHeight);
+               return (::i32)(rectangleImpact.height() / m_dItemHeight);
 
             }
 
@@ -3056,18 +3056,18 @@ namespace user
    bool mesh::on_click(const ::item & item)
    {
 
-      ::subject subject;
+      ::topic topic;
 
-      subject.m_puserelement = this;
+      topic.m_puserelement = this;
 
-      subject.m_id = ::e_subject_list_clicked;
+      topic.m_id = ::id_list_clicked;
 
-      route(&subject);
+      route(&topic);
 
       /*if(m_pformcallback != nullptr)
       {
 
-         m_p->route(&subject);
+         m_p->route(&topic);
 
       }
       else if(get_form() != nullptr)
@@ -4944,7 +4944,7 @@ namespace user
    }
 
 
-   void mesh::_001SetView(EView eview, bool bLayout)
+   void mesh::_001SetImpact(EImpact eview, bool bLayout)
    {
 
       m_eview = eview;
@@ -5016,7 +5016,7 @@ namespace user
       return data_get_sort_id(m_eview);
    }
 
-   id mesh::data_get_sort_id(EView eview)
+   id mesh::data_get_sort_id(EImpact eview)
    {
       __UNREFERENCED_PARAMETER(eview);
       switch(m_eview)
@@ -5039,7 +5039,7 @@ namespace user
       }
    }
 
-   mesh::EView mesh::_001GetView()
+   mesh::EImpact mesh::_001GetImpact()
    {
       return m_eview;
    }
@@ -5379,13 +5379,13 @@ namespace user
       return m_flags.has(flag_auto_arrange);
    }
 
-   void mesh::_001OnMeshViewAutoArrange(::message::message * pmessage)
+   void mesh::_001OnMeshImpactAutoArrange(::message::message * pmessage)
    {
       __UNREFERENCED_PARAMETER(pmessage);
       auto_arrange(!get_auto_arrange());
    }
 
-   void mesh::_001OnUpdateMeshViewAutoArrange(::message::message * pmessage)
+   void mesh::_001OnUpdateMeshImpactAutoArrange(::message::message * pmessage)
    {
       __pointer(::message::command) pcommand(pmessage);
       pcommand->_001SetCheck(get_auto_arrange());
@@ -5886,7 +5886,7 @@ namespace user
 
    //      ::rectangle_i32 rectangleTotal;
 
-   //      _001GetViewRect(&rectangleTotal);
+   //      _001GetImpactRect(&rectangleTotal);
 
    //      size_i32 sizeTotal = rectangleTotal.size();
 
@@ -5894,13 +5894,13 @@ namespace user
 
    //      m_sizeTotal.cy = sizeTotal.cy / m_dItemHeight;
 
-   //      ::rectangle_i32 rectangleViewClient;
+   //      ::rectangle_i32 rectangleImpactClient;
 
-   //      get_client_rect(&rectangleViewClient);
+   //      get_client_rect(&rectangleImpactClient);
 
-   //      m_scrolldata.m_sizePage.cx = rectangleViewClient.size().cx;
+   //      m_scrolldata.m_sizePage.cx = rectangleImpactClient.size().cx;
 
-   //      m_scrolldata.m_sizePage.cy = rectangleViewClient.size().cy / m_dItemHeight;
+   //      m_scrolldata.m_sizePage.cy = rectangleImpactClient.size().cy / m_dItemHeight;
 
    //      if(m_scrolldata.m_pointScroll.y > (m_sizeTotal.cy - m_scrolldata.m_sizePage.cy))
    //      {

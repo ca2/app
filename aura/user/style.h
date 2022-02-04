@@ -74,7 +74,7 @@ namespace user
 
       virtual bool _001DrawCheckBox(::draw2d::graphics_pointer & pgraphics, ::user::check_box * pcheckbox);
 
-      void handle(::subject * psubject, ::context * pcontext) override;
+      void handle(::topic * psubject, ::context * pcontext) override;
 
       virtual void initialize_style();
 

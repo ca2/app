@@ -288,10 +288,10 @@ namespace user
    }
 
 
-   void list_box::handle(::subject * psubject, ::context * pcontext)
+   void list_box::handle(::topic * psubject, ::context * pcontext)
    {
 
-      if(psubject->m_id == ::e_subject_click)
+      if(psubject->m_id == ::id_click)
       {
 
          if(psubject->user_interaction() == this)

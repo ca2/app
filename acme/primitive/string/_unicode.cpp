@@ -149,7 +149,7 @@ wd32char* wd16_to_wd32(const wd16char * input, strsize input_size)
 //Top Network Posts
 //
 //5Is it possible for a genin to become a jonin?
-//View more network posts →
+//Impact more network posts →
 
 
 

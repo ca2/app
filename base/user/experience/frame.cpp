@@ -978,7 +978,7 @@ namespace experience
    }
 
 
-   void frame::handle(::subject * psubject, ::context * pcontext)
+   void frame::handle(::topic * psubject, ::context * pcontext)
    {
 
       if (psubject->m_id == id_user_style_change)

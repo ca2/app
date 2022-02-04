@@ -220,7 +220,7 @@ namespace user
    }
 
 
-   void menu_view::handle(::subject * psubject, ::context * pcontext)
+   void menu_view::handle(::topic * psubject, ::context * pcontext)
    {
 
       ::user::impact::handle(psubject, pcontext);

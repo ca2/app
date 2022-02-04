@@ -51,14 +51,14 @@ public:
    // <3ThomasBorregaardSørensen__!! likes handler concept...
    //void route(::signal * psignal) override;
    //void signal(::signal * psignal) override;
-   //void route(::subject * psubject, ::context * pcontext) override;
-   //void post_process(::subject * psubject, ::context * pcontext) override;
+   //void route(::topic * psubject, ::context * pcontext) override;
+   //void post_process(::topic * psubject, ::context * pcontext) override;
 
    // <3TBS_!! handle -> call_member <3TBS_!!
    virtual void call_member(::i64 i64);
    // <3ThomasBS_!! handle -> handle <3ThomasBS_!!
    //void handle(const  emessage, i64 iData = 0, ::matter * pmatter = nullptr) override;
-   void handle(::subject * psubject, ::context * pcontext) override;
+   void handle(::topic * psubject, ::context * pcontext) override;
    void handle(::message::message * pmessage) override;
 
 

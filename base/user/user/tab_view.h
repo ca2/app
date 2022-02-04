@@ -93,11 +93,11 @@ namespace user
 
       void _001OnTabClick(::index iTab) override;
 
-      void handle(::subject * psubject, ::context * pcontext) override;
+      void handle(::topic * psubject, ::context * pcontext) override;
 
       bool pre_create_window(::user::system * pusersystem) override;
 
-      void OnActivateView(bool bActivate, __pointer(impact) pActivateView, __pointer(impact) pDeactiveView) override;
+      void OnActivateImpact(bool bActivate, __pointer(impact) pActivateImpact, __pointer(impact) pDeactiveImpact) override;
 
       void _001OnRemoveTab(class tab_pane * ptab) override;
 

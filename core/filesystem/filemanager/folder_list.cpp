@@ -393,7 +393,7 @@ namespace filemanager
 
 
 
-   void folder_list::handle(::subject * psubject, ::context * pcontext)
+   void folder_list::handle(::topic * psubject, ::context * pcontext)
    {
 
       ::filemanager_impact_base::handle(psubject, pcontext);

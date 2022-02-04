@@ -367,7 +367,7 @@ namespace userex
 
       m_bCompact = false;
 
-      m_idView = COLORSEL_IMPACT;
+      m_idImpact = COLORSEL_IMPACT;
 
       m_bLButtonPressed = false;
 
@@ -417,7 +417,7 @@ namespace userex
    }
 
 
-   void color_view::handle(::subject * psubject, ::context * pcontext)
+   void color_view::handle(::topic * psubject, ::context * pcontext)
    {
 
       ::user::impact::handle(psubject, pcontext);
@@ -425,7 +425,7 @@ namespace userex
    }
 
 
-   //void color_view::handle(::subject * psubject, ::context * pcontext)
+   //void color_view::handle(::topic * psubject, ::context * pcontext)
    //{
 
    //   ::user::impact::handle(psubject, pcontext);
@@ -565,15 +565,15 @@ namespace userex
          if(has_handler())
          {
 
-            ::subject subject;
+            ::topic topic;
 
-            subject.m_id = ::e_subject_after_change_cur_hover;
+            topic.m_id = ::id_after_change_cur_hover;
 
-            subject.m_puserelement = this;
+            topic.m_puserelement = this;
 
-            subject.m_actioncontext = ::e_source_user;
+            topic.m_actioncontext = ::e_source_user;
 
-            route(&subject);
+            route(&topic);
                
          }
 
@@ -592,15 +592,15 @@ namespace userex
          if(has_handler())
          {
 
-            ::subject subject;
+            ::topic topic;
 
-            subject.m_id = ::e_subject_after_change_cur_hover;
+            topic.m_id = ::id_after_change_cur_hover;
 
-            subject.m_puserelement = this;
+            topic.m_puserelement = this;
 
-            subject.m_actioncontext = ::e_source_user;
+            topic.m_actioncontext = ::e_source_user;
 
-            route(&subject);
+            route(&topic);
                
          }
 
@@ -881,15 +881,15 @@ namespace userex
       if(has_handler())
       {
 
-         ::subject subject;
+         ::topic topic;
 
-         subject.m_id = ::e_subject_after_change_cur_sel;
+         topic.m_id = ::id_after_change_cur_sel;
 
-         subject.m_puserelement = this;
+         topic.m_puserelement = this;
 
-         subject.m_actioncontext = ::e_source_user;
+         topic.m_actioncontext = ::e_source_user;
 
-         route(&subject);
+         route(&topic);
             
       }
 

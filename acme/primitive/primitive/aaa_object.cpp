@@ -1986,11 +1986,11 @@ void object::message_receiver_destruct()
 void object::_001OnUpdate(::message::message * pmessage)
 {
 
-   ::subject subject(this, (::iptr)pmessage->m_wparam);
+   ::topic topic(this, (::iptr)pmessage->m_wparam);
 
-   subject.m_payload = (::matter*) (::iptr) pmessage->m_lparam;
+   topic.m_payload = (::matter*) (::iptr) pmessage->m_lparam;
 
-   process(&subject);
+   process(&topic);
 
 }
 

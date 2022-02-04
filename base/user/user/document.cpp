@@ -561,18 +561,18 @@ namespace user
    }
 
 
-   __pointer(::user::impact) document::get_typed_view(::type info, index indexFind)
+   __pointer(::user::impact) document::get_type_impact(::type info, index indexFind)
    {
 
       single_lock synchronouslock(mutex(), true);
 
-      ::count countView = get_view_count();
+      ::count countImpact = get_view_count();
 
       ::count countFind = 0;
 
       __pointer(::user::impact) pview;
 
-      for (index index = 0; index < countView; index++)
+      for (index index = 0; index < countImpact; index++)
       {
 
          pview = get_view(index);
@@ -605,10 +605,10 @@ namespace user
    __pointer(::user::impact) document::get_typed_view_with_id(::type info, id id)
    {
       single_lock synchronouslock(mutex(), true);
-      ::count countView = get_view_count();
+      ::count countImpact = get_view_count();
       ::count countFind = 0;
       __pointer(::user::impact) pview;
-      for (index index = 0; index < countView; index++)
+      for (index index = 0; index < countImpact; index++)
       {
          pview = get_view(index);
          if (info == __type_name(pview))
@@ -1906,7 +1906,7 @@ namespace user
    }
 
 
-   void document::update_all_views(::subject * psubject)
+   void document::update_all_views(::topic * psubject)
    {
 
       ASSERT(psubject->m_psender == nullptr || !m_viewa.is_empty());
@@ -1935,7 +1935,7 @@ namespace user
    }
 
 
-   void document::handle(::subject * psubject, ::context * pcontext)
+   void document::handle(::topic * psubject, ::context * pcontext)
    {
 
       update_all_views(psubject);

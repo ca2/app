@@ -35,7 +35,8 @@ public:
 
 #pragma pack(push, user_ITEM, 1)
 
-struct CLASS_DECL_ACME ITEM
+struct CLASS_DECL_ACME ITEM :
+   virtual public topic
 {
 
    enum_element       m_eelement;
@@ -72,7 +73,6 @@ struct CLASS_DECL_ACME item_data :
    ::point_i32                   m_pointClient;
    ::point_i32                   m_pointHitTest;
    ::rectangle_i32               m_rectangle;
-   ::enum_subject                m_esubject;
    u64                           m_uFlags;
 
 
@@ -100,19 +100,19 @@ public:
    //item(enum_element eelement, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, const ::u64 uFlags = e_flag_none) :
    //   item(eelement, iItem, iSubItem, iListItem, uFlags) {}
 
-   item(const ::user::e_flag & eflag, enum_element eelement, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, ::enum_subject esubject = ::e_subject_none) :
-      item(eelement, iItem, iSubItem, iListItem, esubject, eflag) {}
+   item(const ::user::e_flag & eflag, enum_element eelement, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, const ::id & id = ::id::e_type_null) :
+      item(eelement, iItem, iSubItem, iListItem, id, eflag) {}
 
-   item(enum_element eelement, ::enum_subject esubject)
-      : item(eelement, -1, -1, -1, esubject)
+   item(enum_element eelement, const ::id & id)
+      : item(eelement, -1, -1, -1, id)
    {
 
    }
 
-   item(enum_element eelement = ::e_element_none, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, ::enum_subject esubject = ::e_subject_none, const ::user::e_flag uFlags = ::user::e_flag_none)
+   item(enum_element eelement = ::e_element_none, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, const ::id & id = ::id::e_type_null, const ::user::e_flag uFlags = ::user::e_flag_none)
    {
 
-      m_esubject = esubject;
+      m_id = id;
 
       m_eelement = eelement;
 
@@ -128,8 +128,6 @@ public:
 
    item(::index iItem)
    {
-
-      m_esubject = ::e_subject_none;
 
       m_eelement = ::e_element_none;
 

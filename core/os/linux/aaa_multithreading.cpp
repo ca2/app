@@ -186,11 +186,11 @@ CLASS_DECL_CORE void main_sync_runnable(::object * pobjectRunnable, ::duration d
 
       }
 
-      psubject->SetEvent();
+      ptopic->SetEvent();
 
    });
 
-   psubject->wait(durationTimeout);
+   ptopic->wait(durationTimeout);
 
 }
 

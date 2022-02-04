@@ -13,7 +13,7 @@
 //	   in the Software without restriction, including without limitation the rights
 //	   to uxse, cxopy, mxodify, mxerge, pxublish, dxistribute, sxublicense, and/or sxell
 //	   copies of the Software, and to permit persons to whom the Software is
-//	   furnished to do so, subject to the following conditions:
+//	   furnished to do so, topic to the following conditions:
 //
 //
 #pragma once

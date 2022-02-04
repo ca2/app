@@ -19,7 +19,7 @@
 //   }
 //
 //
-//   void callback::handle(::subject * psubject, ::context * pcontext)
+//   void callback::handle(::topic * psubject, ::context * pcontext)
 //   {
 //
 //      __UNREFERENCED_PARAMETER(pevent);

@@ -198,8 +198,8 @@ namespace user
       bool                                m_bGetTextNeedUpdate;
       bool                                m_bNeedScrollUpdate;
       bool                                m_bTabInsertSpaces;
-      strsize                             m_iViewOffset; // in bytes
-      strsize                             m_iViewSize; // in bytes
+      strsize                             m_iImpactOffset; // in bytes
+      strsize                             m_iImpactSize; // in bytes
       double                              m_dLineHeight;
       index                               m_iColumn;
       i32                                 m_iColumnX;
@@ -346,7 +346,7 @@ namespace user
 
       void install_message_routing(::channel * pchannel) override;
       virtual void OnDraw(::image * pimage);      // overridden to draw this ::user::impact
-      virtual void handle(::subject * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * psubject, ::context * pcontext) override;
 
 
 
@@ -384,7 +384,7 @@ namespace user
       virtual void _001GetSelText(string & str) const override;
       virtual void _001GetText(string & str, index iBeg, index iEnd) const override;
 
-      void _001GetViewSel(strsize &iSelStart, strsize &iSelEnd) const override;
+      void _001GetImpactSel(strsize &iSelStart, strsize &iSelEnd) const override;
 
       void _001SetText(const ::string & str, const ::action_context & action_context) override;
       void _001SetSelText(const ::string & psz, const ::action_context & action_context) override;

@@ -174,8 +174,8 @@ void simple_frame_window::install_message_routing(::channel * pchannel)
    add_command_prober("transparent_frame", this, &simple_frame_window::_001OnUpdateToggleTransparentFrame);
    add_command_handler("transparent_frame", this, &simple_frame_window::_001OnToggleTransparentFrame);
 
-   add_command_prober("impact_full_screen", this, &simple_frame_window::_001OnUpdateViewFullScreen);
-   add_command_handler("impact_full_screen", this, &simple_frame_window::_001OnViewFullScreen);
+   add_command_prober("impact_full_screen", this, &simple_frame_window::_001OnUpdateImpactFullScreen);
+   add_command_handler("impact_full_screen", this, &simple_frame_window::_001OnImpactFullScreen);
 
    add_command_handler("notify_icon_topic", this, &simple_frame_window::_001OnNotifyIconTopic);
    add_command_handler("app_exit", this, &simple_frame_window::on_message_app_exit);
@@ -1237,7 +1237,7 @@ void simple_frame_window::on_reposition()
 }
 
 
-void simple_frame_window::ViewOnActivateFrame(__pointer(::user::impact) pview, ::u32 user, __pointer(::user::interaction) pframe)
+void simple_frame_window::ImpactOnActivateFrame(__pointer(::user::impact) pview, ::u32 user, __pointer(::user::interaction) pframe)
 {
    __UNREFERENCED_PARAMETER(pview);
    __UNREFERENCED_PARAMETER(user);
@@ -1384,7 +1384,7 @@ void simple_frame_window::_001OnExitFullScreen()
 }
 
 
-void simple_frame_window::_001OnViewFullScreen(::message::message * pmessage)
+void simple_frame_window::_001OnImpactFullScreen(::message::message * pmessage)
 {
 
    __UNREFERENCED_PARAMETER(pmessage);
@@ -1426,7 +1426,7 @@ void simple_frame_window::_001OnMouseActivate(::message::message * pmessage)
 }
 
 
-void simple_frame_window::_001OnUpdateViewFullScreen(::message::message * pmessage)
+void simple_frame_window::_001OnUpdateImpactFullScreen(::message::message * pmessage)
 {
    
    __pointer(::message::command) pcommand(pmessage);
@@ -1633,16 +1633,16 @@ void simple_frame_window::on_message_close(::message::message * pmessage)
    if (wfi_is_up_down())
    {
 
-      string strView = m_id;
+      string strImpact = m_id;
 
       bool bShow = false;
 
       auto papplication = get_application();
 
-      if (::str::ends_eat_ci(strView, "::frame"))
+      if (::str::ends_eat_ci(strImpact, "::frame"))
       {
 
-         papplication->data_set("frame::" + strView + ".visible", bShow);
+         papplication->data_set("frame::" + strImpact + ".visible", bShow);
 
       }
 
@@ -2410,7 +2410,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 
             pgraphics = m_pimageAlpha->get_graphics();
 
-            pgraphics->SetViewportOrg(pgraphics->GetViewportOrg());
+            pgraphics->SetImpactportOrg(pgraphics->GetImpactportOrg());
 
             bDib = true;
 
@@ -3173,10 +3173,10 @@ void simple_frame_window::_001OnQueryEndSession(::message::message * pmessage)
 }
 
 
-void simple_frame_window::handle(::subject * psubject, ::context * pcontext)
+void simple_frame_window::handle(::topic * psubject, ::context * pcontext)
 {
 
-   if (psubject->m_id == e_subject_task_bar_created)
+   if (psubject->m_id == id_task_bar_created)
    {
 
       defer_create_notification_icon();
@@ -3185,7 +3185,7 @@ void simple_frame_window::handle(::subject * psubject, ::context * pcontext)
    else if(psubject->user_interaction() == m_pnotifyicon)
    {
 
-      if(psubject->m_id == ::e_subject_context_menu)
+      if(psubject->m_id == ::id_context_menu)
       {
 
          //OnNotifyIconContextMenu(psubject->m_puserelement->m_id);
@@ -3203,13 +3203,13 @@ void simple_frame_window::handle(::subject * psubject, ::context * pcontext)
          puser->track_popup_xml_menu(this, strXml, 0, pointCursor, size_i32(), m_pnotifyicon);
 
       }
-      else if(psubject->m_id == ::e_subject_left_button_double_click)
+      else if(psubject->m_id == ::id_left_button_double_click)
       {
 
          //OnNotifyIconLButtonDblClk(psubject->m_puserelement->m_id);
 
       }
-      else if(psubject->m_id == ::e_subject_left_button_down)
+      else if(psubject->m_id == ::id_left_button_down)
       {
 
          //OnNotifyIconLButtonDown(psubject->m_puserelement->m_id);
@@ -3276,7 +3276,7 @@ string simple_frame_window::get_window_default_matter()
 //         // send initial update to all views (and other controls) in the frame
 //         pframe->send_message_to_descendants(WM_INITIALUPDATE, 0, (LPARAM)0, true, true);
 //
-//         // give ::user::impact a chance to save the focus (CFormView needs this)
+//         // give ::user::impact a chance to save the focus (CFormImpact needs this)
 //         if (pview != nullptr)
 //            pview->OnActivateFrame(WA_INACTIVE, pframe);
 //
@@ -3300,7 +3300,7 @@ string simple_frame_window::get_window_default_matter()
 //            pframe->ActivateFrame(edisplay);
 //         }
 //         if (pview != nullptr)
-//            pview->OnActivateView(true, pview, pview);
+//            pview->OnActivateImpact(true, pview, pview);
 //
 //      }
 //

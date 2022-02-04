@@ -728,7 +728,7 @@ public:
       virtual string get_app_user_friendly_task_bar_name();
 
       //void signal(::signal * psignal) override;
-      void handle(::subject * psubject, ::context * pcontext) override;
+      void handle(::topic * psubject, ::context * pcontext) override;
 
       //virtual bool compress_ungz(::file::file * pfileUncompressed, ::file::file * pfileCompressed);
 
@@ -795,7 +795,7 @@ public:
 
       //virtual ::draw2d::icon * get_icon(object * pobject, bool bBigIcon) const;
 
-      //virtual void handle(::subject * psubject, ::context * pcontext);
+      //virtual void handle(::topic * psubject, ::context * pcontext);
 
 
 
@@ -823,7 +823,7 @@ public:
       virtual void close(::apex::enum_end eend);
 
 
-      //user virtual __pointer(::user::document) defer_create_view(string strView, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::id & id = nullptr);
+      //user virtual __pointer(::user::document) defer_create_view(string strImpact, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::id & id = nullptr);
 
 
       virtual void HideApplication();
@@ -1050,7 +1050,7 @@ public:
 
 
 
-      virtual void data_on_after_change(::database::client* pclient, const ::database::key& id, const ::payload & payload, ::subject * psubject) override;
+      virtual void data_on_after_change(::database::client* pclient, const ::database::key& id, const ::payload & payload, ::topic * psubject) override;
 
 
 

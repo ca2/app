@@ -12,7 +12,7 @@ menu_view::menu_view()
 }
 
 
-void menu_view::handle(::subject * psubject, ::context * pcontext)
+void menu_view::handle(::topic * psubject, ::context * pcontext)
 {
    ::user::form_view::handle(psubject, pcontext);
 
@@ -52,7 +52,7 @@ void menu_view::handle(::subject * psubject, ::context * pcontext)
 }
 
 //
-//void menu_view::handle(::subject * psubject, ::context * pcontext)
+//void menu_view::handle(::topic * psubject, ::context * pcontext)
 //{
 //
 //   auto papplication = get_application();
@@ -114,28 +114,28 @@ void menu_view::_001OnTimer(::timer * ptimer)
    if(m_pcallback != nullptr)
    {
 
-      ::subject subject;
+      ::topic topic;
 
-      subject.m_id = ::e_subject_timer;
+      topic.m_id = ::id_timer;
 
-      subject.m_uiEvent = ptimer->m_uEvent;
+      topic.m_uiEvent = ptimer->m_uEvent;
       
-      subject.m_etimer = ptimer->m_etimer;
+      topic.m_etimer = ptimer->m_etimer;
 
-      subject.m_puserelement = this;
+      topic.m_puserelement = this;
 
       auto papplication = get_application();
 
-      papplication->route(&subject);
+      papplication->route(&topic);
 
-      if(subject.m_bRet)
+      if(topic.m_bRet)
       {
 
          return;
 
       }
 
-      m_pcallback->route(&subject);
+      m_pcallback->route(&topic);
 
    }
 

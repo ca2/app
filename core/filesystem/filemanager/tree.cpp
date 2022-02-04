@@ -808,7 +808,7 @@ namespace filemanager
    }
 
 
-   void tree::handle(::subject * psubject, ::context * pcontext)
+   void tree::handle(::topic * psubject, ::context * pcontext)
    {
 
       ::filemanager_impact_base::handle(psubject, pcontext);

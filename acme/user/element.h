@@ -513,7 +513,7 @@ namespace user
 
       virtual bool is_selected(::data::item * pitem);
 
-      void handle(::subject * psubject, ::context * pcontext) override;
+      void handle(::topic * psubject, ::context * pcontext) override;
 
       //virtual void on_notify_control_event(control_event* pevent);
 

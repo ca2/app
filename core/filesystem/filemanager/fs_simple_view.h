@@ -41,7 +41,7 @@ namespace filemanager
             void open_folder(i64 iFolder);
             void start_music();
             void start_root();
-            void CreateViews();
+            void CreateImpacts();
 
             void set_request_interface(::object * prequestinterface);
 

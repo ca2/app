@@ -34,7 +34,7 @@ namespace filemanager
       m_bListText                = true;
       m_bListSelection           = true;
       m_bPassBk                  = false;
-      m_bIconView                = false;
+      m_bIconImpact                = false;
       m_pholderFileList          = nullptr;
       m_ptreeFileTreeMerge       = nullptr;
       m_pdocumentTopic           = nullptr;

@@ -112,7 +112,7 @@ namespace hi5
          if(m_pdocument == nullptr)
             return;
 
-         __pointer(user::tab_view) pview = m_pdocument->get_typed_view < user::tab_view >();
+         __pointer(user::tab_view) pview = m_pdocument->get_type_impact < user::tab_view >();
          m_ptabview = pview;
          pview->create_impact("twitter_authorization", "ca2open", this);
          pview->set_current_tab_by_id("twitter_authorization");
@@ -268,7 +268,7 @@ namespace hi5
             if (m_pdocAuth != nullptr)
             {
 
-               m_pviewAuth = m_pdocAuth->get_typed_view < ::user::form >();
+               m_pviewAuth = m_pdocAuth->get_type_impact < ::user::form >();
                m_pviewAuth->set_form_callback(this);
                pimpactdata->m_pdocument = m_pdocAuth;
                pimpactdata->m_puserinteraction = m_pviewAuth->get_parent_frame();
@@ -296,13 +296,13 @@ namespace hi5
       }
 
 
-      void authorization::handle(::subject * psubject, ::context *pcontext)   
+      void authorization::handle(::topic * psubject, ::context *pcontext)   
       {
 
-         if(psubject->m_id == ::e_subject_click || psubject->m_id == ::e_subject_enter_key)
+         if(psubject->m_id == ::id_click || psubject->m_id == ::id_enter_key)
          {
 
-            if(psubject->user_interaction()->m_id == "submit" || psubject->m_id == ::e_subject_enter_key)
+            if(psubject->user_interaction()->m_id == "submit" || psubject->m_id == ::id_enter_key)
             {
 
                auto pinteraction = m_pviewAuth->get_child_by_name("pin");

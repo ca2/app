@@ -264,7 +264,7 @@ public:
    virtual void on_end();
 
    //using ::manager::on_subject;
-   //virtual void on_subject(::subject * psubject) override;
+   //virtual void on_subject(::topic * psubject) override;
 
    virtual ::duration get_update_poll_time(const ::id& id);
 
@@ -422,7 +422,7 @@ public:
    //virtual __pointer(::regular_expression::context) create_regular_expression_context(const ::string &pszStyle, int iCount);
    virtual __pointer(::regular_expression::context) get_regular_expression_context(const ::string &pszStyle);
 
-   virtual ::regular_expression_pointer create_pcre(const string& str);
+   virtual ::regular_expression_pointer compile_pcre(const string& str);
    virtual __pointer(::regular_expression::context) get_pcre_context();
    //virtual int system::pcre_add_tokens(string_array& stra, const string& strTopic, const string& strRegexp, int nCount)
 

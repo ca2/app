@@ -811,19 +811,19 @@ namespace user
 
          m_itemCurrent = item;
 
-         ::subject subject;
+         ::topic topic;
 
-         subject.m_puserinteraction = this;
+         topic.m_puserinteraction = this;
 
-         //subject.m_id = m_id;
+         //topic.m_id = m_id;
 
-         subject.m_id = ::e_subject_after_change_cur_sel;
+         topic.m_id = ::id_after_change_cur_sel;
 
-         subject.m_item = item;
+         topic.m_item = item;
 
-         subject.m_actioncontext = context;
+         topic.m_actioncontext = context;
 
-         route(&subject);
+         route(&topic);
 
          set_need_redraw();
 
@@ -922,7 +922,7 @@ namespace user
    }
 
 
-   void combo_box::handle(::subject * psubject, ::context * pcontext)
+   void combo_box::handle(::topic * psubject, ::context * pcontext)
    {
 
       if(m_bEdit)
@@ -934,7 +934,7 @@ namespace user
       //else
       //{
 
-      //   ::user::interaction::handle(::subject * psubject, ::context * pcontext);
+      //   ::user::interaction::handle(::topic * psubject, ::context * pcontext);
 
       //}
 
@@ -1668,10 +1668,10 @@ namespace user
    }
 
 
-   void combo_box::handle(::subject * psubject, ::context * pcontext)
+   void combo_box::handle(::topic * psubject, ::context * pcontext)
    {
 
-      if(psubject->m_id == ::e_subject_after_change_cur_sel)
+      if(psubject->m_id == ::id_after_change_cur_sel)
       {
 
          if(psubject->user_interaction() == m_plist)

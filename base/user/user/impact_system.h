@@ -68,7 +68,7 @@ namespace user
       ::type               m_typeFrame;       // class for creating new frames
       ::type               m_typeImpact;        // class for creating new views
       //::type       m_pOleFrameClass;    // class for creating in-place frame
-      //::type       m_pOleViewClass;     // class for creating in-place ::user::impact
+      //::type       m_pOleImpactClass;     // class for creating in-place ::user::impact
 
       string                  m_strDocStrings;    // '\n' separated names
       // The ::user::document names sub-strings are represented as _one_ string:
@@ -94,12 +94,12 @@ namespace user
 
       virtual bool GetDocString(string & rString, enum DocStringIndex index) const; // get one of the info strings
       //__pointer(::user::frame_window) CreateOleFrame(::user::interaction_impl * puiParent, ::user::document * pDoc,
-      //   bool bCreateView);
+      //   bool bCreateImpact);
 
       virtual void update_all_views(::user::impact * pimpact, const ::id & id);
-      virtual void update_all_views(::subject * psubject);
+      virtual void update_all_views(::topic * psubject);
 
-      virtual void handle(::subject * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * psubject, ::context * pcontext) override;
 
       virtual Confidence MatchDocType(const ::file::path & pszPathName,::user::document *& rpDocMatch);
 

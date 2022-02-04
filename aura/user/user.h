@@ -38,7 +38,7 @@ namespace user
       __composite(::html::html)                 m_phtml; // defined in upper level
 
       ::type                                    m_typeHtmlDocument;
-      ::type                                    m_typeHtmlView;
+      ::type                                    m_typeHtmlImpact;
       
       __pointer_array(::user::interaction)      m_uiptraToolWindow;
 
@@ -115,7 +115,7 @@ namespace user
       inline ::html::html* html() { return m_phtml; } // defined in upper level
 
       inline ::type get_html_document_type() { return m_typeHtmlDocument; }
-      inline ::type get_html_view_type() { return m_typeHtmlView; }
+      inline ::type get_html_view_type() { return m_typeHtmlImpact; }
 
       virtual void create_user_shell();
 

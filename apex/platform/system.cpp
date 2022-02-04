@@ -1375,7 +1375,7 @@ pacmedir->create("/ca2core");
       {
 
          ///if (!
-         m_papexsession->begin_synch();
+         m_papexsession->begin_synchronously();
          //{
 
          //   output_debug_string("\nFailed to begin_synch the session (::apex::session or ::apex::session derived)");
@@ -3762,7 +3762,7 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
 
          string * pstrNew = new string(strUrl);
 
-         ::winrt::Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal,
+         ::winrt::Windows::ApplicationModel::Core::CoreApplication::MainImpact->CoreWindow->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal,
             ref new ::winrt::Windows::UI::Core::DispatchedHandler([pstrNew]()
                {
 
@@ -4312,12 +4312,12 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
    //}
 
 
-   //__pointer(::subject) system::new_subject(const MESSAGE& message)
+   //__pointer(::topic) system::new_subject(const MESSAGE& message)
    //{
 
    //   auto id = (::iptr)message.wParam;
 
-   //   auto psubject = subject(id);
+   //   auto psubject = topic(id);
 
    //   psubject->m_pobjectTopic = (::object*) message.lParam.m_lparam;
 
@@ -4782,7 +4782,7 @@ namespace apex
    //   for (i32 i = 0; i < ida.get_count(); i++)
    //   {
 
-   //      m_idmapCreateViewLibrary.set_at(ida[i], plibrary);
+   //      m_idmapCreateImpactLibrary.set_at(ida[i], plibrary);
 
    //   }
 
@@ -4921,7 +4921,7 @@ namespace apex
    }
 
    
-   void system::handle(::subject * psubject, ::context * pcontext)
+   void system::handle(::topic * psubject, ::context * pcontext)
    {
 
 //      auto psignal = get_signal((::enum_id) iUpdate);
@@ -4930,10 +4930,10 @@ namespace apex
 //
 //      psignal->notify();
       
-      if(psubject->id() == id_set_dark_mode)
+      if(psubject->m_etopic() == id_set_dark_mode)
       {
          
-         if(psubject->m_payload.is_true())
+         if(psubject->m_pextendedtopic->m_payload.is_true())
          {
 
             m_pnode->background_color(::color::black);
@@ -4963,7 +4963,7 @@ namespace apex
          else
          {
 
-            psubject->m_esubject = e_subject_not_modified;
+            psubject->m_etopic = id_not_modified;
 
          }
 
@@ -5312,7 +5312,7 @@ namespace apex
 //{
 //
 //
-//   void system::on_subject(::subject* psubject)
+//   void system::on_subject(::topic* psubject)
 //   {
 //
 //

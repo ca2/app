@@ -44,7 +44,7 @@ namespace base
       inline ::base::session* get_session() const;
 
 
-      virtual __pointer(::user::document) defer_create_view(string strView, ::user::interaction* puiParent = nullptr, ewindowflag ewindowflag = ::ewindowflag(), const ::id& id = ::id());
+      virtual __pointer(::user::document) defer_create_view(string strImpact, ::user::interaction* puiParent = nullptr, ewindowflag ewindowflag = ::ewindowflag(), const ::id& id = ::id());
 
 ///*
 //
@@ -221,9 +221,9 @@ namespace base
 //
 //      virtual void on_update_view(::user::impact * pview, ::user::impact * pviewSender, LPARAM lHint, object * pHint);
 //
-//      virtual void handle(::subject * psubject, ::context * pcontext) override;
+//      virtual void handle(::topic * psubject, ::context * pcontext) override;
 //      virtual void on_notify_control_event(::user::control_event* pevent);
-//      virtual void route(::subject * psubject, ::context * pcontext);
+//      virtual void route(::topic * psubject, ::context * pcontext);
 //
 //
 //
@@ -640,7 +640,7 @@ namespace base
 //
 //      virtual string get_app_user_friendly_task_bar_name();
 //
-//      virtual void handle(::subject * psubject, ::context * pcontext) override;
+//      virtual void handle(::topic * psubject, ::context * pcontext) override;
 //
 //      //virtual bool compress_ungz(::file::file * pfileUncompressed, ::file::file * pfileCompressed);
 //
@@ -706,7 +706,7 @@ namespace base
 //
 //      //virtual ::draw2d::icon * get_icon(object * pobject, bool bBigIcon) const;
 //
-//      //virtual void handle(::subject * psubject, ::context * pcontext);
+//      //virtual void handle(::topic * psubject, ::context * pcontext);
 //
 //
 //
@@ -732,7 +732,7 @@ namespace base
 //      virtual void close(e_end eend);
 //
 //
-//      virtual __pointer(::user::document) defer_create_view(string strView, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::id & id = nullptr);
+//      virtual __pointer(::user::document) defer_create_view(string strImpact, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::id & id = nullptr);
 //
 //
 //      virtual void HideApplication();
@@ -1234,7 +1234,7 @@ virtual void on_change_cur_sel(::user::tab* ptab);
 //
 ////void install_message_routing(::channel * pchannel) override;
 //
-////virtual void handle(::subject * psubject, ::context * pcontext) override;
+////virtual void handle(::topic * psubject, ::context * pcontext) override;
 //
 ////virtual void process_init() override;
 //
@@ -1280,11 +1280,11 @@ virtual void on_create_impact(::user::impact_data* pimpactdata) override;
 //
 ////virtual ::draw2d::icon* get_icon(object* pobject, bool bBigIcon) const override;
 //
-////virtual void handle(::subject * psubject, ::context * pcontext) override;
+////virtual void handle(::topic * psubject, ::context * pcontext) override;
 //
 //virtual ::user::interaction* create_menu_interaction();
 //
-////      virtual __pointer(::user::document) defer_create_view(string strView, ::user::interaction* puiParent, ewindowflag ewindowflag = e_window_flag_none, const ::id& id = nullptr) override;
+////      virtual __pointer(::user::document) defer_create_view(string strImpact, ::user::interaction* puiParent, ewindowflag ewindowflag = e_window_flag_none, const ::id& id = nullptr) override;
 //
 //      // multimedia
 //

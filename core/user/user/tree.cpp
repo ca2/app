@@ -322,7 +322,7 @@ namespace user
 
             drawitemdata.m_rectangle.bottom = (::i32) (drawitemdata.m_rectangle.top + drawitemdata.m_dItemHeight);
 
-            drawitemdata.m_rectangle.right = m_iCurrentViewWidth;
+            drawitemdata.m_rectangle.right = m_iCurrentImpactWidth;
 
             {
                ::duration tickItem;
@@ -879,7 +879,7 @@ namespace user
 
       ::size_f64 sizeTotal;
 
-      sizeTotal.cx = m_iCurrentViewWidth;
+      sizeTotal.cx = m_iCurrentImpactWidth;
 
       sizeTotal.cy = (::i32)(get_proper_item_count() * _001GetItemHeight());
 
@@ -1234,13 +1234,13 @@ namespace user
 
       m_pitemFirstVisible = CalcFirstVisibleItem(m_iFirstVisibleItemProperIndex);
 
-      m_iCurrentViewWidth = _001CalcTotalViewWidth();
+      m_iCurrentImpactWidth = _001CalcTotalImpactWidth();
 
       size_f64 sizeTotal;
 
-      sizeTotal.cx = m_iCurrentViewWidth;
+      sizeTotal.cx = m_iCurrentImpactWidth;
 
-      sizeTotal.cy = _001CalcTotalViewHeight();
+      sizeTotal.cy = _001CalcTotalImpactHeight();
 
       set_total_size(sizeTotal);
 
@@ -1368,7 +1368,7 @@ namespace user
    }
 
 
-   i32 tree::_001CalcCurrentViewWidth()
+   i32 tree::_001CalcCurrentImpactWidth()
    {
 
       ::rectangle_i32 rectangleClient;
@@ -1485,7 +1485,7 @@ namespace user
    }
 
 
-   i32 tree::_001CalcTotalViewWidth()
+   i32 tree::_001CalcTotalImpactWidth()
    {
 
       index nOffset;
@@ -1611,7 +1611,7 @@ namespace user
 
    }
 
-   int tree::_001CalcTotalViewHeight()
+   int tree::_001CalcTotalImpactHeight()
    {
 
       return (int) (_001GetProperItemCount() * _001GetItemHeight());
@@ -2228,7 +2228,7 @@ namespace user
    }
 
 
-   void tree::handle(::subject * psubject, ::context * pcontext)
+   void tree::handle(::topic * psubject, ::context * pcontext)
    {
 
       if (m_ptree)

@@ -619,7 +619,7 @@ namespace write_text
    }
 
 
-//   void font_list::on_subject(::subject * psubject)
+//   void font_list::on_subject(::topic * psubject)
 //   {
 //
 //      ::manager::on_subject(psubject);
@@ -627,7 +627,7 @@ namespace write_text
 //   }
 
 
-   void font_list::handle(::subject * psubject, ::context * pcontext)
+   void font_list::handle(::topic * psubject, ::context * pcontext)
    {
 
       ::enum_id eid = (::enum_id)psubject->id().i64();

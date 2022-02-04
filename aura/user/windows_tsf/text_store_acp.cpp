@@ -1002,12 +1002,12 @@ namespace tsf
 
    **************************************************************************/
 
-   STDMETHODIMP edit_window::get_active_view(TsViewCookie *pvcView)
+   STDMETHODIMP edit_window::get_active_view(TsImpactCookie *pvcImpact)
    {
        OutputDebugString(TEXT("edit_window::get_active_view \n"));
 
        //this app only supports one impact, so this can be constant
-       *pvcView = EDIT_VIEW_COOKIE;
+       *pvcImpact = EDIT_VIEW_COOKIE;
 
        return S_OK;
    }
@@ -1018,7 +1018,7 @@ namespace tsf
 
    **************************************************************************/
 
-   STDMETHODIMP edit_window::GetACPFromPoint(  TsViewCookie vcView, 
+   STDMETHODIMP edit_window::GetACPFromPoint(  TsImpactCookie vcImpact, 
                                                const POINT_I32 *pt,
                                                ::u32 dwFlags,
                                                ::i32 *pacp)
@@ -1037,7 +1037,7 @@ namespace tsf
 
    **************************************************************************/
 
-   STDMETHODIMP edit_window::GetTextExt(   TsViewCookie vcView, 
+   STDMETHODIMP edit_window::GetTextExt(   TsImpactCookie vcImpact, 
                                            ::i32 acpStart,
                                            ::i32 acpEnd,
                                            RECTANGLE_I32 *prc,
@@ -1053,7 +1053,7 @@ namespace tsf
        *pfClipped = false;
        ZeroMemory(prc, sizeof(RECTANGLE_I32));
 
-       if(EDIT_VIEW_COOKIE != vcView)
+       if(EDIT_VIEW_COOKIE != vcImpact)
        {
            return E_INVALIDARG;
        }
@@ -1192,7 +1192,7 @@ namespace tsf
 
    **************************************************************************/
 
-   STDMETHODIMP edit_window::GetScreenExt(TsViewCookie vcView, RECTANGLE_I32 *prc)
+   STDMETHODIMP edit_window::GetScreenExt(TsImpactCookie vcImpact, RECTANGLE_I32 *prc)
    {
        OutputDebugString(TEXT("edit_window::GetScreenExt \n"));
 
@@ -1203,7 +1203,7 @@ namespace tsf
 
        ZeroMemory(prc, sizeof(RECTANGLE_I32));
 
-       if(EDIT_VIEW_COOKIE != vcView)
+       if(EDIT_VIEW_COOKIE != vcImpact)
        {
            return E_INVALIDARG;
        }
@@ -1226,11 +1226,11 @@ namespace tsf
 
    **************************************************************************/
 
-   STDMETHODIMP edit_window::GetWnd(TsViewCookie vcView, HWND *phwnd)
+   STDMETHODIMP edit_window::GetWnd(TsImpactCookie vcImpact, HWND *phwnd)
    {
        OutputDebugString(TEXT("edit_window::GetWnd \n"));
 
-       if(EDIT_VIEW_COOKIE == vcView)
+       if(EDIT_VIEW_COOKIE == vcImpact)
        {
            *phwnd = get_handle();
 

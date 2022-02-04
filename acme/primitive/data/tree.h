@@ -97,7 +97,7 @@ namespace data
 
 
       //void signal(::signal * psignal) override;
-      void handle(::subject * psubject, ::context * pcontext) override;
+      void handle(::topic * psubject, ::context * pcontext) override;
 
 
       virtual void on_fill_children() override;

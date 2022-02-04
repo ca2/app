@@ -676,10 +676,10 @@ namespace experience
    }
 
 
-   void frame_window::handle(::subject * psubject, ::context * pcontext)
+   void frame_window::handle(::topic * psubject, ::context * pcontext)
    {
 
-      if (psubject->m_esubject == ::e_subject_click && m_pframe != nullptr)
+      if (psubject->m_etopic == ::id_click && m_pframe != nullptr)
       {
 
          string str(psubject->m_id);
@@ -2331,7 +2331,7 @@ namespace experience
 
 
 
-   //void frame_window::handle(::subject * psubject, ::context * pcontext)
+   //void frame_window::handle(::topic * psubject, ::context * pcontext)
    //{
 
    //   if(psubject->id() == id_app_activated)

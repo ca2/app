@@ -174,7 +174,7 @@ namespace filemanager
    }
 
 
-   void path_view::handle(::subject * psubject, ::context * pcontext)
+   void path_view::handle(::topic * psubject, ::context * pcontext)
    {
 
       ::filemanager_impact_base::handle(psubject, pcontext);
@@ -209,7 +209,7 @@ namespace filemanager
          FilterApply();
          }*/
       }
-      else if(psubject->id() == e_subject_after_change_text)
+      else if(psubject->id() == id_after_change_text)
       {
 
       if (!psubject->m_actioncontext.is_user_source())

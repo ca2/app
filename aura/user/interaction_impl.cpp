@@ -731,7 +731,7 @@ namespace user
       {
 
          //if (!m_puserthread->begin_synch())
-         m_puserthread->begin_synch();
+         m_puserthread->begin_synchronously();
          //{
 
          //   __release(m_pprodevian);
@@ -3526,7 +3526,7 @@ namespace user
    //}
 
 
-   //oswindow interaction_impl::SetClipboardViewer()
+   //oswindow interaction_impl::SetClipboardImpacter()
    //{
 
    //   throw ::interface_only_exception();

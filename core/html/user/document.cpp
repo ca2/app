@@ -13,7 +13,7 @@ html_document::html_document()
 bool html_document::on_new_document()
 {
 
-   auto phtmlform = get_typed_view < ::html_form >();
+   auto phtmlform = get_type_impact < ::html_form >();
 
    auto phtmldata = phtmlform->get_html_data();
 
@@ -92,7 +92,7 @@ void html_document::dump(dump_context & dumpcontext) const
 //
 //   set_data("html", pdata);
 //
-//   pdata->m_pcoredata->m_puserinteraction = get_typed_view < ::user::form_view >();
+//   pdata->m_pcoredata->m_puserinteraction = get_type_impact < ::user::form_view >();
 //
 //   pdata->m_pcoredata->m_pcallback = this;
 //
@@ -128,12 +128,12 @@ property_set * html_document::form_document_get_property_set()
 //bool html_document::open_document(::create * pcreate)
 //{
 //
-//   auto phtmlform = get_typed_view < ::html_form >();
+//   auto phtmlform = get_type_impact < ::html_form >();
 //
 //   if (!phtmlform)
 //   {
 //
-//      auto pform = get_typed_view < ::user::form_view >();
+//      auto pform = get_type_impact < ::user::form_view >();
 //
 //      if (!pform)
 //      {
@@ -181,12 +181,12 @@ property_set * html_document::form_document_get_property_set()
 bool html_document::on_open_document(const ::payload & payloadFile)
 {
 
-   auto phtmlform = get_typed_view < ::html_form >();
+   auto phtmlform = get_type_impact < ::html_form >();
 
    if (!phtmlform)
    {
 
-      auto pform = get_typed_view < ::user::form_view >();
+      auto pform = get_type_impact < ::user::form_view >();
 
       if (!pform)
       {
@@ -239,11 +239,11 @@ bool html_document::on_open_document(const ::payload & payloadFile)
 
    auto phtmldocument = this;
 
-   ::subject subject(id_document_complete);
+   ::topic topic(id_document_complete);
 
-   subject.payload(id_url) = payloadFile;
+   topic.payload(id_url) = payloadFile;
 
-   phtmldocument->update_all_views(&subject);
+   phtmldocument->update_all_views(&topic);
 
    //data_set({ "LastOpenedFile", true }, get_file_path());
 
@@ -299,7 +299,7 @@ void html_document::soft_reload()
 ::html_data * html_document::get_html_data()
 {
 
-   auto phtmlform = get_typed_view < ::html_form >();
+   auto phtmlform = get_type_impact < ::html_form >();
 
    if (::is_null(phtmlform))
    {

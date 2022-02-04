@@ -79,7 +79,7 @@ void element::call_member(::i64 iId)
 //
 
 
-void element::handle(::subject * psubject, ::context * pcontext)
+void element::handle(::topic * psubject, ::context * pcontext)
 {
 
 

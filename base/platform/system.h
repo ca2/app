@@ -24,7 +24,7 @@ namespace base
 //
 //      // __composite(::aura::estamira)                      m_pestamira;
 //
-//      ::type                                             m_typePaneTabView;
+//      ::type                                             m_typePaneTabImpact;
 //#ifdef APPLE_IOS
 //
 //      plane_system *                                     m_pplanesystem;
@@ -239,7 +239,7 @@ namespace base
 //      //bool                                         m_bProcessInitialize;
 //      //bool                                         m_bProcessInitializeResult;
 //
-//      strid_map < ::acme::library* >              m_idmapCreateViewLibrary;
+//      strid_map < ::acme::library* >              m_idmapCreateImpactLibrary;
 //
 //      __pointer_array(::acme::library)                         m_libraryspa;
 //
@@ -982,7 +982,7 @@ namespace base
 //      //virtual ::user::interaction_impl * impl_from_handle(void * pdata) override;
 //      //virtual ::user::interaction * ui_from_handle(void * pdata) override;
 //
-//      virtual void handle(::subject * psubject, ::context * pcontext) override;
+//      virtual void handle(::topic * psubject, ::context * pcontext) override;
 //
 //      // virtual void on_command_create(::create* pcreate);
 //

@@ -41,13 +41,13 @@ namespace user
       __pointer(::windowing::window)         m_pwindow;
 
       boolean                                m_bWindowFrame;
-      ::type                                 m_typeNewView;
+      ::type                                 m_typeNewImpact;
       __pointer(::object)                    m_pdocumentCurrent;
       __pointer(::user::primitive)           m_puserprimitiveNew;
 
       __pointer(::object)                    m_ptemplateNewDocument;
 
-      __pointer(::user::primitive)           m_puserprimitiveLastView;
+      __pointer(::user::primitive)           m_puserprimitiveLastImpact;
       __pointer(::user::primitive)           m_puserprimitiveCurrentFrame;
       __pointer(::matter)                    m_pimpactdata;
 

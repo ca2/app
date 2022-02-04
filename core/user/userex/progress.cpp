@@ -71,7 +71,7 @@ namespace userex
 
          m_pdocument = puser->m_ptemplateProgress2->open_document_file(get_application(), ::e_type_null, __visible(false).is_true());
 
-         m_pimpact = m_pdocument->get_typed_view<::userex::progress_view>();
+         m_pimpact = m_pdocument->get_type_impact<::userex::progress_view>();
 
       }
 
@@ -227,7 +227,7 @@ namespace userex
    }
 
 
-   void progress_view::handle(::subject * psubject, ::context * pcontext)
+   void progress_view::handle(::topic * psubject, ::context * pcontext)
    {
 
    }

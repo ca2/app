@@ -21,7 +21,7 @@ namespace prompt
    }
 
 
-   void form_callback::handle(::subject * psubject, ::context * pcontext)
+   void form_callback::handle(::topic * psubject, ::context * pcontext)
    {
 
       __pointer(::user::interaction) pinteraction =  (this);

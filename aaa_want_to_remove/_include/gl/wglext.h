@@ -20,7 +20,7 @@ extern "C" {
 ** "Materials"), to deal in the Materials without restriction, including
 ** without limitation the rights to use, copy, modify, merge, publish,
 ** distribute, sublicense, and/or sell copies of the Materials, and to
-** permit persons to whom the Materials are furnished to do so, subject to
+** permit persons to whom the Materials are furnished to do so, topic to
 ** the following conditions:
 ** 
 ** The above copyright notice and this permission notice shall be included

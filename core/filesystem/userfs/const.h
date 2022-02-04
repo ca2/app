@@ -17,11 +17,11 @@ namespace userfs
    //   ::update_filter,
    //   ::update_get_active_view_selection,
    //   ::update_open_selection_properties,
-   //   ::update_topic_start,
-   //   ::update_topic_cancel,
-   //   ::update_topic_ok,
-   //   ::update_topic_save_failed,
-   //   ::update_topic_saved,
+   //   ::updatid_start,
+   //   ::updatid_cancel,
+   //   ::updatid_ok,
+   //   ::updatid_save_failed,
+   //   ::updatid_saved,
 
    //};
 

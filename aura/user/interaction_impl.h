@@ -598,7 +598,7 @@ namespace user
 //#endif   // WINVER >= 0x0500
 
       //virtual bool ChangeClipboardChain(::windowing::window * pwindow_Next);
-      //virtual oswindow SetClipboardViewer();
+      //virtual oswindow SetClipboardImpacter();
       //virtual bool OpenClipboard();
 
       virtual void HideCaret();

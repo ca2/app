@@ -82,7 +82,7 @@ namespace filemanager
    }
 
 
-   void left_view::handle(::subject * psubject, ::context * pcontext)
+   void left_view::handle(::topic * psubject, ::context * pcontext)
    {
 
       ::filemanager_impact_base::handle(psubject, pcontext);

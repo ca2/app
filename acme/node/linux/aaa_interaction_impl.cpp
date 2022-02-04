@@ -1301,7 +1301,7 @@ namespace linux
    }
 
 
-   void interaction_impl::handle(::subject * psubject, ::context * pcontext)
+   void interaction_impl::handle(::topic * psubject, ::context * pcontext)
    {
 
       __UNREFERENCED_PARAMETER(pevent);

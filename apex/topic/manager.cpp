@@ -89,7 +89,7 @@ class ::signal * manager::get_signal(const ::id & id, const ::action_context& ac
       else if (psignal->should_poll(psignal->poll_time()))
       {
 
-         m_pcontext->branch_task(psignal);
+         m_pcontext->branch_element(psignal);
 
       }
 
@@ -122,10 +122,10 @@ class ::signal * manager::get_signal(const ::id & id, const ::action_context& ac
 }
 
 
-//   ::subject::subject_pointer manager::fork_subject(const ::id & id)
+//   ::topic::subject_pointer manager::fork_subject(const ::id & id)
 //   {
 //
-//      auto psubject = this->subject(id);
+//      auto psubject = this->topic(id);
 //
 //      return psubject;
 //
@@ -143,7 +143,7 @@ void manager::__s_erase_signal_handler_from_any_source(::matter* pmatter)
 //   void manager::deliver(const ::id &id)
 //   {
 //
-//      auto psubject = subject(id);
+//      auto psubject = topic(id);
 //
 //      if(psubject)
 //      {
@@ -160,7 +160,7 @@ void manager::__s_erase_signal_handler_from_any_source(::matter* pmatter)
 //
 //      aut
 //
-//      subject(id)->deliver();
+//      topic(id)->deliver();
 //
 //   }
 
@@ -168,7 +168,7 @@ void manager::__s_erase_signal_handler_from_any_source(::matter* pmatter)
 //   void manager::process_subject(const ::id &id)
 //   {
 //
-//      auto psubject = subject(id);
+//      auto psubject = topic(id);
 //
 //      if (psubject->m_bNewSubject)
 //      {
@@ -185,7 +185,7 @@ void manager::__s_erase_signal_handler_from_any_source(::matter* pmatter)
 //   void manager::process_subject(const ::id &id, const ::action_context &actioncontext)
 //   {
 //
-//      auto psubject = subject(id);
+//      auto psubject = topic(id);
 //
 //      psubject->m_actioncontext = actioncontext;
 //
@@ -203,18 +203,18 @@ void manager::signal(const ::id & id, const ::action_context & actioncontext)
 
    //handle(psignal, nullptr);
 
-   //psubject->m_esubject = e_subject_handle;
+   //psubject->m_etopic = id_handle;
 
    //signal(psubject);
 
-   //if(psubject->m_esubject == e_subject_not_modified)
+   //if(psubject->m_etopic == id_not_modified)
    //{
 
    //   return;
 
    //}
 
-   //psubject->m_esubject = e_subject_notify;
+   //psubject->m_etopic = id_notify;
 
    //psubject->notify();
 
@@ -235,25 +235,25 @@ void manager::on_property_changed(property * pproperty, const ::action_context &
 //void manager::signal(::signal * psignal)
 //{
 //
-////      if (psubject->m_esubject == e_subject_prepare)
+////      if (psubject->m_etopic == id_prepare)
 ////      {
 ////
 ////         //on_subject(psubject);
 ////
-////         psubject->m_esubject = e_subject_process;
+////         psubject->m_etopic = id_process;
 ////
 ////      }
 ////
-////      if (psubject->m_esubject == e_subject_process)
+////      if (psubject->m_etopic == id_process)
 ////      {
 ////
 ////         //on_subject(psubject);
 ////
-////         psubject->m_esubject = e_subject_deliver;
+////         psubject->m_etopic = id_deliver;
 ////
 ////      }
 ////
-////      if (psubject->m_esubject == e_subject_deliver)
+////      if (psubject->m_etopic == id_deliver)
 ////      {
 ////
 ////         psubject->deliver();
@@ -266,7 +266,7 @@ void manager::on_property_changed(property * pproperty, const ::action_context &
 //   void manager::process_subject(const ::id &id, const ::payload & payload)
 //   {
 //
-//      auto psubject = subject(id);
+//      auto psubject = topic(id);
 //
 //      psubject->m_payload = payload;
 //
@@ -278,7 +278,7 @@ void manager::on_property_changed(property * pproperty, const ::action_context &
 //   void manager::set_modified(const ::id &id)
 //   {
 //
-//      auto psubject = subject(id);
+//      auto psubject = topic(id);
 //
 //      if (::is_set(psubject))
 //      {
@@ -293,7 +293,7 @@ void manager::on_property_changed(property * pproperty, const ::action_context &
 //   void manager::delivery_for(const ::id &id, ::matter *pmatter, bool bForkWhenNotify)
 //   {
 //
-//      auto psubject = subject(id);
+//      auto psubject = topic(id);
 //
 //      if (::is_set(psubject))
 //      {
@@ -308,23 +308,23 @@ void manager::on_property_changed(property * pproperty, const ::action_context &
 //   void manager::erase_subject(const ::id &id, ::matter *pmatter)
 //   {
 //
-//      subject(id)->erase(pmatter);
+//      topic(id)->erase(pmatter);
 //
 //   }
 
 
-//subject_pointer manager::subject(const ::id &id, ::matter *pmatter)
+//subject_pointer manager::topic(const ::id &id, ::matter *pmatter)
 //{
 
 
-//   auto psubject = __new(::subject(id, pmatter));
+//   auto psubject = __new(::topic(id, pmatter));
 
 //   return psubject;
 
 //}
 
 
-//   action_pointer source::subject(const ::id &id, ::matter *pmatter)
+//   action_pointer source::topic(const ::id &id, ::matter *pmatter)
 //   {
 //
 //      auto pupdate = update(id);
@@ -421,7 +421,7 @@ bool manager::__s_may_run_signal_handling()
 //#include "acme/platform/static_start.h"
 
 
-//namespace subject
+//namespace topic
 //{
 //
 //

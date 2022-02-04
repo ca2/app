@@ -694,7 +694,7 @@ namespace apex
 
       }
 
-      m_varCurrentViewFile = pcreate->m_pcommandline->m_varFile;
+      m_varCurrentImpactFile = pcreate->m_pcommandline->m_varFile;
 
       //string strApp;
 
@@ -730,9 +730,9 @@ namespace apex
          else if (m_bShowPlatform)
          {
             //create_bergedge(pcreate);
-            //if(get_document() != nullptr && get_document()->get_typed_view < ::bergedge::impact >() != nullptr)
+            //if(get_document() != nullptr && get_document()->get_type_impact < ::bergedge::impact >() != nullptr)
             //{
-            //   __pointer(::simple_frame_window) pframe =  (get_document()->get_typed_view < ::bergedge::impact >()->get_parent_frame());
+            //   __pointer(::simple_frame_window) pframe =  (get_document()->get_type_impact < ::bergedge::impact >()->get_parent_frame());
             //   if(pframe != nullptr)
             //   {
             //      pframe->display(e_display_normal);
@@ -1716,10 +1716,10 @@ namespace apex
 
    //   auto psession = get_session();
 
-   //   if (psession->m_varCurrentViewFile != psession->m_varTopicFile && !psession->m_varTopicFile.is_empty())
+   //   if (psession->m_varCurrentImpactFile != psession->m_varTopicFile && !psession->m_varTopicFile.is_empty())
    //   {
 
-   //      psession->m_varCurrentViewFile = psession->m_varTopicFile;
+   //      psession->m_varCurrentImpactFile = psession->m_varTopicFile;
 
    //      request_topic_file();
 
@@ -1740,18 +1740,18 @@ namespace apex
 
    //   string strAppName = app.m_strAppName;
 
-   //   //if(get_document()->get_typed_view < ::bergedge::pane_view >() != nullptr)
+   //   //if(get_document()->get_type_impact < ::bergedge::pane_view >() != nullptr)
    //   //{
 
-   //   //   get_document()->get_typed_view < ::bergedge::pane_view >()->set_current_tab_by_id("app:" + strAppName);
+   //   //   get_document()->get_type_impact < ::bergedge::pane_view >()->set_current_tab_by_id("app:" + strAppName);
 
-   //   //   holderptra.add(get_document()->get_typed_view < ::bergedge::pane_view >()->get_tab_holder(get_document()->get_typed_view < ::bergedge::pane_view >()->get_tab_by_id("app:" + strAppName)));
+   //   //   holderptra.add(get_document()->get_type_impact < ::bergedge::pane_view >()->get_tab_holder(get_document()->get_type_impact < ::bergedge::pane_view >()->get_tab_by_id("app:" + strAppName)));
 
    //   //}
    //   //else
    //   //{
 
-   //   //   holderptra.add(get_document()->get_typed_view < ::bergedge::impact >());
+   //   //   holderptra.add(get_document()->get_type_impact < ::bergedge::impact >());
 
    //   //}
 
@@ -1780,7 +1780,7 @@ namespace apex
       if (m_applicationa.lookup(pszAppId, papp) && papp)
       {
 
-         //__pointer(::bergedge::pane_view) ppaneview = get_document()->get_typed_view < ::bergedge::pane_view >();
+         //__pointer(::bergedge::pane_view) ppaneview = get_document()->get_type_impact < ::bergedge::pane_view >();
 
          //if(ppaneview != nullptr)
          //{

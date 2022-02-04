@@ -50,7 +50,7 @@ namespace database
    }
 
 
-   bool server::_data_server_load(client * pclient, const key & id, get_memory getmemory, ::subject * psubject)
+   bool server::_data_server_load(client * pclient, const key & id, get_memory getmemory, ::topic * psubject)
    {
 
 #if MEMDLEAK
@@ -64,7 +64,7 @@ namespace database
    }
 
 
-   void server::_data_server_save(client * pclient, const key & id, block block, ::subject * psubject)
+   void server::_data_server_save(client * pclient, const key & id, block block, ::topic * psubject)
    {
 
       //return true;
@@ -72,7 +72,7 @@ namespace database
    }
 
 
-   void server::data_pulse_change(client * pclient, const key & id, ::subject * psubject)
+   void server::data_pulse_change(client * pclient, const key & id, ::topic * psubject)
    {
 
       on_after_data_change(pclient, id, psubject);
@@ -80,7 +80,7 @@ namespace database
    }
 
 
-   void server::on_before_data_change(client * pclient, const key & id, ::payload & payload, ::subject * psubject)
+   void server::on_before_data_change(client * pclient, const key & id, ::payload & payload, ::topic * psubject)
    {
 
       //::database::change_event signal(payload);
@@ -110,7 +110,7 @@ namespace database
    }
 
 
-   void server::on_after_data_change(client * pclient, const key & id, const ::payload & payload, ::subject * psubject)
+   void server::on_after_data_change(client * pclient, const key & id, const ::payload & payload, ::topic * psubject)
    {
 
       //::database::change_event signal;
@@ -125,7 +125,7 @@ namespace database
          if (::is_set(psubject))
          {
 
-            psubject->m_pmatter = m_clienta.element_at(i);
+            psubject->m_pextendedtopic->m_pmatter = m_clienta.element_at(i);
 
          }
 
@@ -138,7 +138,7 @@ namespace database
    }
 
 
-   ::payload server::data_load(client * pclient, const key & id, ::subject * psubject)
+   ::payload server::data_load(client * pclient, const key & id, ::topic * psubject)
    {
 
       ::memory_stream is;
@@ -163,7 +163,7 @@ namespace database
    }
 
 
-   void server::data_save(client * pclient, const key & id, ::payload & payload, ::subject * psubject)
+   void server::data_save(client * pclient, const key & id, ::payload & payload, ::topic * psubject)
    {
 
       ::memory_stream writer;

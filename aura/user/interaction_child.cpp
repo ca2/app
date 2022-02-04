@@ -529,7 +529,7 @@ namespace user
 
       //   ::user::control_event * pevent = pmessage->m_lparam.cast < ::user::control_event >();
 
-      //   m_puserinteraction->handle(psubject, pcontext);
+      //   m_puserinteraction->handle(ptopic, pcontext);
 
       //   return;
 
@@ -767,7 +767,7 @@ namespace user
 
             puserinteraction->viewport_screen_to_client(rectangleWindow);
 
-            pgraphics->SetViewportOrg(rectangleWindow.top_left());
+            pgraphics->SetImpactportOrg(rectangleWindow.top_left());
 
          }
 

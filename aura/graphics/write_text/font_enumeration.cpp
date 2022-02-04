@@ -45,7 +45,7 @@ namespace write_text
    }
 
 
-   void font_enumeration::handle(::subject * psubject, ::context * pcontext)
+   void font_enumeration::handle(::topic * psubject, ::context * pcontext)
    {
 
       if (psubject->id() == id_font_enumeration)
@@ -177,7 +177,7 @@ namespace write_text
    }
 
 
-   void font_enumeration::check_need_update(::subject * psubject)
+   void font_enumeration::check_need_update(::topic * psubject)
    {
 
       m_bUpdating = true;
@@ -201,7 +201,7 @@ namespace write_text
 
          m_bUpdating = false;
 
-         psubject->m_esubject = e_subject_not_modified;
+         psubject->m_etopic = id_not_modified;
 
          return;
 
@@ -215,7 +215,7 @@ namespace write_text
 
       psubject->set_modified();
 
-      //psubject->m_esubject = e_subject_handle;
+      //psubject->m_etopic = id_handle;
 
    }
 

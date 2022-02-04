@@ -77,7 +77,7 @@ namespace user
 
       //virtual void OnPrepareDC(::draw2d::graphics_pointer & pgraphics, CPrintInfo* pInfo = nullptr);
 
-      virtual void OnActivateView(bool bActivate, __pointer(impact) pActivateView, __pointer(impact) pDeactiveView);
+      virtual void OnActivateImpact(bool bActivate, __pointer(impact) pActivateImpact, __pointer(impact) pDeactiveImpact);
       virtual void OnActivateFrame(enum_activate eactivate,  __pointer(::user::frame_window) pFrameWnd);
 
 
@@ -115,7 +115,7 @@ namespace user
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_destroy);
-      //DECLARE_MESSAGE_HANDLER(_001OnView);
+      //DECLARE_MESSAGE_HANDLER(_001OnImpact);
       DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
       DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
@@ -180,10 +180,10 @@ namespace user
 #endif
 
 
-      //virtual void OnActivateView(bool bActivate, __pointer(::user::impact) pActivateView, __pointer(::user::impact) pDeactiveView);
+      //virtual void OnActivateImpact(bool bActivate, __pointer(::user::impact) pActivateImpact, __pointer(::user::impact) pDeactiveImpact);
       //virtual void OnActivateFrame(::u32 nState, __pointer(::user::frame_window) pFrameWnd);
 
-      //virtual void handle(::subject * psubject, ::context * pcontext) override;
+      //virtual void handle(::topic * psubject, ::context * pcontext) override;
 
       //      virtual void dump(dump_context &) const;
       //    void assert_valid() const override;

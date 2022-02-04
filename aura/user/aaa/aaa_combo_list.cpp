@@ -775,19 +775,19 @@ namespace user
 
             }
 
-            ::subject subject;
+            ::topic topic;
 
-            subject.m_puserinteraction = this;
+            topic.m_puserinteraction = this;
 
-            //subject.m_id = m_id;
+            //topic.m_id = m_id;
 
-            subject.m_id = ::e_subject_after_change_cur_sel;
+            topic.m_id = ::id_after_change_cur_sel;
 
-            subject.m_actioncontext = ::e_source_user;
+            topic.m_actioncontext = ::e_source_user;
 
-            subject.m_item = itemHit;
+            topic.m_item = itemHit;
 
-            route(&subject);
+            route(&topic);
 
          }
 

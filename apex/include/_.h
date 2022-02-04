@@ -833,7 +833,7 @@ namespace core
 
 //#include "apex/primitive/primitive/object.h"
 
-#include "apex/subject/_.h"
+#include "apex/topic/_.h"
 
 //#include "apex/primitive/primitive/object.h"
 

@@ -35,7 +35,7 @@ namespace user
          virtual void initialize_edit_impl(document * pdocument);
 
 
-         virtual void on_after_change(::enum_subject esubject) override;
+         virtual void on_after_change(::enum_topic etopic) override;
          virtual double get_rotate() override;
 
 
@@ -134,7 +134,7 @@ namespace user
          void on_kill_keyboard_focus() override;
 
 
-         void handle(::subject * psubject, ::context * pcontext) override;
+         void handle(::topic * psubject, ::context * pcontext) override;
 
 
          strsize _001GetTextLength() const override;

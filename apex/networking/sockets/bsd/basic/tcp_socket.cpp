@@ -2573,7 +2573,7 @@ namespace sockets
 
       ::X509 *cert = nullptr;
 
-      ::X509_name_st *subject = nullptr;
+      ::X509_name_st *topic = nullptr;
 
 #if OPENSSL_VERSION_NUMBER >= 0x30000000L
 
@@ -2592,7 +2592,7 @@ namespace sockets
 
          char data[256];
 
-         if((subject = X509_get_subject_name(cert)) != nullptr && X509_NAME_get_text_by_NID(subject,NID_commonName,data,256) > 0)
+         if((topic = X509_get_subject_name(cert)) != nullptr && X509_NAME_get_text_by_NID(topic,NID_commonName,data,256) > 0)
          {
 
             data[255] = 0;

@@ -26,7 +26,7 @@ public:
    virtual __pointer(::fs::data)                   fs_data();
 
 
-   void handle(::subject * psubject, ::context * pcontext) override;
+   void handle(::topic * psubject, ::context * pcontext) override;
 
 
    virtual void browse_sync(const ::action_context & action_context);
@@ -72,7 +72,7 @@ public:
    }
 
 
-   virtual void handle(::subject * psubject, ::context * pcontext) override
+   virtual void handle(::topic * psubject, ::context * pcontext) override
    {
 
       IMPACT::handle(psubject, pcontext);

@@ -436,22 +436,12 @@ public:
    virtual void osthread_term() override;
 
 
-   virtual void begin_thread(
-   bool bSynchInitialization = false,
-   ::enum_priority epriority = ::e_priority_normal,
-   ::u32 nStackSize = 0,
-   u32 uiCreateFlags = 0 ARG_SEC_ATTRS_DEF);
+   void branch(
+      ::enum_priority epriority = ::e_priority_normal,
+      ::u32 nStackSize = 0,
+      u32 uiCreateFlags = 0 ARG_SEC_ATTRS_DEF) override;
 
-   using task::branch;
-   using object::branch;
-
-   virtual void branch(
-   ::enum_priority epriority = ::e_priority_normal,
-   ::u32 nStackSize = 0,
-   u32 uiCreateFlags = 0 ARG_SEC_ATTRS_DEF) override;
-
-
-   virtual void begin_synch(
+   void begin_synchronously(
    ::enum_priority epriority = ::e_priority_normal,
    ::u32 nStackSize = 0,
    u32 uiCreateFlags = 0 ARG_SEC_ATTRS_DEF);

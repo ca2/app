@@ -24,7 +24,7 @@ namespace user
       m_flagNonClient.add(non_client_hover_rect);
 
       m_bFirstShown = false;
-      m_idView = FONTSEL_IMPACT;
+      m_idImpact = FONTSEL_IMPACT;
       m_scrolldataVertical.m_bScrollEnable = true;
       m_bEnsureVisible = false;
 
@@ -172,17 +172,17 @@ namespace user
          if(has_handler())
          {
 
-            ::subject subject;
+            ::topic topic;
 
-            subject.m_puserelement = this;
+            topic.m_puserelement = this;
 
-            subject.m_id = ::e_subject_after_change_cur_sel;
+            topic.m_id = ::id_after_change_cur_sel;
 
-            subject.m_actioncontext = ::e_source_user;
+            topic.m_actioncontext = ::e_source_user;
 
-            subject.m_item = item;
+            topic.m_item = item;
 
-            route(&subject);
+            route(&topic);
             
          }
 
@@ -223,15 +223,15 @@ namespace user
          if(has_handler())
          {
 
-            ::subject subject;
+            ::topic topic;
 
-            subject.m_puserelement = this;
+            topic.m_puserelement = this;
 
-            subject.m_id = ::e_subject_after_change_cur_hover;
+            topic.m_id = ::id_after_change_cur_hover;
 
-            subject.m_actioncontext = ::e_source_user;
+            topic.m_actioncontext = ::e_source_user;
 
-            route(&subject);
+            route(&topic);
                
          }
 
@@ -242,7 +242,7 @@ namespace user
    }
 
 
-   void font_list::handle(::subject * psubject, ::context * pcontext)
+   void font_list::handle(::topic * psubject, ::context * pcontext)
    {
 
       list_box::handle(psubject, pcontext);

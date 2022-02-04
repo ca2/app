@@ -28,7 +28,7 @@ namespace userex
    home_view::home_view()
    {
 
-      m_idView = COLORSEL_IMPACT;
+      m_idImpact = COLORSEL_IMPACT;
 
    }
 
@@ -70,7 +70,7 @@ namespace userex
    }
 
 
-   void home_view::handle(::subject * psubject, ::context * pcontext)
+   void home_view::handle(::topic * psubject, ::context * pcontext)
    {
 
       ::user::impact::handle(psubject, pcontext);
@@ -78,7 +78,7 @@ namespace userex
    }
 
 
-   //void home_view::handle(::subject * psubject, ::context * pcontext)
+   //void home_view::handle(::topic * psubject, ::context * pcontext)
    //{
 
    //   ::user::impact::handle(psubject, pcontext);
@@ -216,17 +216,17 @@ namespace userex
 
       pwindowing->release_mouse_capture();
 
-      ::subject subject;
+      ::topic topic;
 
-      subject.m_id = ::e_subject_after_change_cur_sel;
+      topic.m_id = ::id_after_change_cur_sel;
 
-      subject.m_id = m_idView;
+      topic.m_id = m_idImpact;
 
-      subject.m_puserelement = this;
+      topic.m_puserelement = this;
 
-      subject.m_actioncontext = ::e_source_user;
+      topic.m_actioncontext = ::e_source_user;
 
-      route(&subject);
+      route(&topic);
 
    }
 

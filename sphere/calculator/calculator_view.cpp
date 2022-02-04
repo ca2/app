@@ -67,7 +67,7 @@ namespace calculator
    }
 
 
-   void impact::handle(::subject * psubject, ::context * pcontext)
+   void impact::handle(::topic * psubject, ::context * pcontext)
    {
 
       __UNREFERENCED_PARAMETER(psubject);

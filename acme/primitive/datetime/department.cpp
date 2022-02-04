@@ -1571,17 +1571,23 @@ namespace datetime
 
       auto pdatetime = m_psystem->datetime();
 
-      auto pcre1 = psystem->create_pcre("^\\s*((\\d+)\\s*/\\s*(\\d+))((\\d|$)?!)");
+      auto pcre1 = psystem->compile_pcre("^\\s*((\\d+)\\s*/\\s*(\\d+))((\\d|$)?!)");
 
-      auto ptopic = pcre1->create_topic(str);
+      auto presult = pcre1->run(str);
 
-      if (!bBaseTime && ptopic && ptopic->get_count() >= 5)
+      if (!bBaseTime && presult && presult->get_count() >= 5)
       {
+
          time = ::datetime::time::now();
-         i32 i1 = atoi(ptopic->get_match(2));
-         i32 i2 = atoi(ptopic->get_match(3));
+
+         i32 i1 = atoi(presult->get_match(2));
+
+         i32 i2 = atoi(presult->get_match(3));
+
          i32 iCount = 0;
+
          bool bFirst = false;
+
          if (i1 != i2
             && i1 >= 1 && i1 <= 12
             && i2 >= 1 && i2 <=

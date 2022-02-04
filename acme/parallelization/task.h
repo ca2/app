@@ -111,10 +111,17 @@ public:
    virtual bool has_message() const;
 
 
+   
+
    virtual void branch(
-      ::enum_priority epriority = e_priority_normal,
-      u32 nStackSize = 0,
-      u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
+      ::enum_priority epriority = ::e_priority_normal,
+      ::u32 nStackSize = 0,
+      u32 uiCreateFlags = 0 ARG_SEC_ATTRS_DEF);
+
+   virtual void begin_synchronously(
+      ::enum_priority epriority = ::e_priority_normal,
+      ::u32 nStackSize = 0,
+      u32 uiCreateFlags = 0 ARG_SEC_ATTRS_DEF);
 
    
    virtual bool task_sleep(const class ::wait & wait);

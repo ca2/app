@@ -825,7 +825,7 @@ namespace user
 
          update_span_cache(m_spana);
 
-         m_pedit->on_after_change(::e_subject_after_change_text);
+         m_pedit->on_after_change(::id_after_change_text);
 
       }
 
@@ -967,7 +967,7 @@ namespace user
 
          }
 
-         m_pedit->on_after_change(::e_subject_after_change_text_format);
+         m_pedit->on_after_change(::id_after_change_text_format);
 
       }
 
@@ -1807,13 +1807,13 @@ namespace user
 
                ::size_i32 sz = m_pedit->m_ppictureimpl->m_rectangleDrawing.size();
 
-               pimage->g()->SetViewportOrg(sz.cx / 2, sz.cy / 2);
+               pimage->g()->SetImpactportOrg(sz.cx / 2, sz.cy / 2);
 
                ::draw2d::graphics_pointer pgraphicsImage = pimage->g();
 
                draw_text(pgraphicsImage, rectangle);
 
-               pimage->g()->SetViewportOrg(0, 0);
+               pimage->g()->SetImpactportOrg(0, 0);
 
                m_pedit->defer_draw_drop_shadow_phase1(rDropShadow, blurDropShadow, imageDropShadow, pimage);
 

@@ -337,10 +337,10 @@ namespace user
 
 
 /*
-   ::user::impact_data * impact_host::get_impact_data(const id& id, bool bCallOnCreateView)
+   ::user::impact_data * impact_host::get_impact_data(const id& id, bool bCallOnCreateImpact)
    {
 
-      if(!bCallOnCreateView)
+      if(!bCallOnCreateImpact)
       {
 
          synchronous_lock synchronouslock(mutex());
@@ -351,12 +351,12 @@ namespace user
 
       auto rectangleClient = get_child_rect();
 
-      return get_impact_data(id, rectangleClient, bCallOnCreateView);
+      return get_impact_data(id, rectangleClient, bCallOnCreateImpact);
 
    }*/
 
 
-   ::user::impact_data * impact_host::get_impact_data(const id& id,bool bCallOnCreateView)
+   ::user::impact_data * impact_host::get_impact_data(const id& id,bool bCallOnCreateImpact)
    {
 
       auto & pimpactdata = m_impactdatamap[id];
@@ -368,7 +368,7 @@ namespace user
 
       }
 
-      if (!bCallOnCreateView)
+      if (!bCallOnCreateImpact)
       {
 
          pimpactdata = allocate_impact_data(id, "");
@@ -401,7 +401,7 @@ namespace user
       //   && pupdown->m_eupdown != updown_none)
       //{
 
-      //   string strView = pupdown->m_id;
+      //   string strImpact = pupdown->m_id;
 
       //   auto& app = papplication;
 
@@ -412,9 +412,9 @@ namespace user
 
       //      bool bShow = false;
 
-      //      ::str::begins_eat_ci(strView, "frame::");
+      //      ::str::begins_eat_ci(strImpact, "frame::");
 
-      //      pdataclient->data_set("frame::" + strView + ".visible", bShow);
+      //      pdataclient->data_set("frame::" + strImpact + ".visible", bShow);
 
       //   }
 
@@ -433,7 +433,7 @@ namespace user
       //   && pupdown->m_eupdown != updown_none)
       //{
 
-      //   string strView = pupdown->m_id;
+      //   string strImpact = pupdown->m_id;
 
       //   auto pdataclient = papplication->cast < ::database::client > ();
 
@@ -442,9 +442,9 @@ namespace user
 
       //      bool bShow = false;
 
-      //      ::str::begins_eat_ci(strView, "frame::");
+      //      ::str::begins_eat_ci(strImpact, "frame::");
 
-      //      pdataclient->data_set("frame::" + strView + ".visible", bShow);
+      //      pdataclient->data_set("frame::" + strImpact + ".visible", bShow);
 
       //   }
 
@@ -463,7 +463,7 @@ namespace user
       //   && pupdown->m_eupdown != updown_none)
       //{
 
-      //   string strView = pupdown->m_id;
+      //   string strImpact = pupdown->m_id;
 
       //   auto pdataclient = papplication->cast < ::database::client >();
 
@@ -472,9 +472,9 @@ namespace user
 
       //      bool bShow = false;
 
-      //      ::str::begins_eat_ci(strView, "frame::");
+      //      ::str::begins_eat_ci(strImpact, "frame::");
 
-      //      pdataclient->data_set("frame::" + strView + ".visible", bShow);
+      //      pdataclient->data_set("frame::" + strImpact + ".visible", bShow);
       //
       //   }
 
@@ -493,7 +493,7 @@ namespace user
          && pupdown->m_eupdown != updown_none)
       {
 
-         string strView = pupdown->m_id;
+         string strImpact = pupdown->m_id;
 
          auto pdataclient = papplication->cast < ::database::client >();
 
@@ -502,9 +502,9 @@ namespace user
 
             bool bShow = false;
 
-            ::str::begins_eat_ci(strView, "frame::");
+            ::str::begins_eat_ci(strImpact, "frame::");
 
-            pdataclient->data_set("frame::" + strView + ".visible", bShow);
+            pdataclient->data_set("frame::" + strImpact + ".visible", bShow);
 
          }
 
@@ -697,7 +697,7 @@ namespace user
    }
 
 
-   void impact_host::handle(::subject * psubject, ::context * pcontext)
+   void impact_host::handle(::topic * psubject, ::context * pcontext)
    {
 
    }

@@ -81,7 +81,7 @@ namespace user
    }
 
 
-   void style_base::handle(::subject * psubject, ::context * pcontext)
+   void style_base::handle(::topic * psubject, ::context * pcontext)
    {
 
       if (psubject->m_id == id_operating_system_user_color_change)

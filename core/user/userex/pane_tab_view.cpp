@@ -288,7 +288,7 @@ namespace userex
 
             }
 
-            auto pformview = m_pdocumentMenu->get_typed_view < ::user::form_view>();
+            auto pformview = m_pdocumentMenu->get_type_impact < ::user::form_view>();
 
             pformview->get_form()->add_handler(get_application());
 
@@ -459,7 +459,7 @@ namespace userex
 
       auto psystem = m_psystem->m_paurasystem;
 
-//      if(pimpactdata->m_id.is_text() && psystem->m_idmapCreateViewLibrary.lookup(pimpactdata->m_id,plibrary) && plibrary != nullptr)
+//      if(pimpactdata->m_id.is_text() && psystem->m_idmapCreateImpactLibrary.lookup(pimpactdata->m_id,plibrary) && plibrary != nullptr)
 //      {
 //
 //
@@ -527,7 +527,7 @@ namespace userex
 
          auto pdocument = ptemplate->open_document_file(get_application(), ::e_type_null, __visible(true).is_true(), pimpactdata->m_pplaceholder);
 
-         m_pfontview = pdocument->get_typed_view < font_view >();
+         m_pfontview = pdocument->get_type_impact < font_view >();
 
          m_pfontview->set_need_layout();
 
@@ -564,7 +564,7 @@ namespace userex
 
          auto pdocument = pimpactsystem->open_document_file(get_application(), ::e_type_null, __visible(false).is_true(), pimpactdata->m_pplaceholder);
 
-         m_pcolorview = pdocument->get_typed_view < color_view >();
+         m_pcolorview = pdocument->get_type_impact < color_view >();
 
          pdocument->m_pviewTopic->set_notify_user_interaction(this);
 
@@ -838,12 +838,12 @@ namespace userex
    }
 
 
-   void pane_tab_view::handle(::subject * psubject, ::context * pcontext)
+   void pane_tab_view::handle(::topic * psubject, ::context * pcontext)
    {
 
       ::user::tab_view::handle(psubject, pcontext);
 
-      if (psubject->m_id == ::e_subject_context_menu_close)
+      if (psubject->m_id == ::id_context_menu_close)
       {
 
          if (m_pimpactdataOld != nullptr)
@@ -875,10 +875,10 @@ namespace userex
 //   }
 
 
-   //void pane_tab_view::handle(::subject * psubject, ::context * pcontext)
+   //void pane_tab_view::handle(::topic * psubject, ::context * pcontext)
    //{
 
-   //   if (psubject->m_id == ::e_subject_context_menu_close)
+   //   if (psubject->m_id == ::id_context_menu_close)
    //   {
 
    //      if (m_pimpactdataOld != nullptr)
@@ -923,7 +923,7 @@ namespace userex
 
    //   m_pdocAppOptions = puser->create_child_form(this, this, pimpactdata->m_pplaceholder, strAppOptions);
 
-   //   //auto pform = m_pdocAppOptions->get_typed_view<::user::form>();
+   //   //auto pform = m_pdocAppOptions->get_type_impact<::user::form>();
 
    //   //if (pform)
    //   //{

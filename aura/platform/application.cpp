@@ -3411,7 +3411,7 @@ retry_license:
 //   }
 //
 //
-//   void application::handle(::subject * psubject, ::context * pcontext)
+//   void application::handle(::topic * psubject, ::context * pcontext)
 //   {
 //
 //
@@ -4348,10 +4348,10 @@ retry_license:
    }
 
 
-   //__pointer(::user::document) application::defer_create_view(string strView, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::id & id)
+   //__pointer(::user::document) application::defer_create_view(string strImpact, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::id & id)
    //{
 
-   //   //auto pcontroller = pmultimedia->defer_create_view(strView, puiParent, ewindowflag, id);
+   //   //auto pcontroller = pmultimedia->defer_create_view(strImpact, puiParent, ewindowflag, id);
 
    //   //if (pcontroller)
    //   //{
@@ -5660,7 +5660,7 @@ retry_license:
 //
 //
 
-   //void application::handle(::subject * psubject, ::context * pcontext)
+   //void application::handle(::topic * psubject, ::context * pcontext)
    //{
 
    //}
@@ -5692,7 +5692,7 @@ retry_license:
 
    //}
 
-   //void application::handle(::subject * psubject, ::context * pcontext)
+   //void application::handle(::topic * psubject, ::context * pcontext)
    //{
 
    //}
@@ -5705,7 +5705,7 @@ retry_license:
    //}
 
 
-   //void application::route(::subject * psubject, ::context * pcontext)
+   //void application::route(::topic * psubject, ::context * pcontext)
    //{
 
    //   handle(psubject);
@@ -8384,7 +8384,7 @@ namespace aura
    }
 
 
-   void application::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::subject * psubject)
+   void application::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::topic * psubject)
    {
 
    }
@@ -8724,7 +8724,7 @@ namespace aura
    //   }
 
 
-      void application::handle(::subject * psubject, ::context * pcontext)
+      void application::handle(::topic * psubject, ::context * pcontext)
       {
 
          //::aqua::application::handle(psubject, pcontext);
@@ -8743,7 +8743,7 @@ namespace aura
             }
             
          }
-         if (psubject->m_id == ::e_subject_initialize_control)
+         if (psubject->m_id == ::id_initialize_control)
          {
 
             auto puserinteraction = psubject->m_puserelement->cast<::user::interaction>();
@@ -8783,7 +8783,7 @@ namespace aura
             }
 
          }
-         else if (psubject->m_id == ::e_subject_set_check)
+         else if (psubject->m_id == ::id_set_check)
          {
 
             auto puserinteraction = psubject->user_interaction();
@@ -9171,10 +9171,10 @@ namespace aura
    }
 
 
-   //__pointer(::user::document) application::defer_create_view(string strView, ::user::interaction* puiParent, ewindowflag ewindowflag, const ::id& id)
+   //__pointer(::user::document) application::defer_create_view(string strImpact, ::user::interaction* puiParent, ewindowflag ewindowflag, const ::id& id)
    //{
 
-   //   auto pcontroller = ::aura::application::defer_create_view(strView, puiParent, ewindowflag, id);
+   //   auto pcontroller = ::aura::application::defer_create_view(strImpact, puiParent, ewindowflag, id);
 
    //   if (pcontroller)
    //   {

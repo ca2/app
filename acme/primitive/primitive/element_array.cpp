@@ -23,7 +23,7 @@
 //   for (auto& pmatter : *this)
 //   {
 //
-//      pmatter->apply(psubject);
+//      pmatter->apply(ptopic);
 //
 //   }
 //

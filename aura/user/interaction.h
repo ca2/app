@@ -266,7 +266,7 @@ namespace user
       bool                                         m_bNeedLoadFormData;
       bool                                         m_bNeedSaveFormData;
       ::duration                                         m_durationLastRedraw;
-      ::id                                         m_idView;
+      ::id                                         m_idImpact;
       ::color::color                                      m_colorBackground;
       bool                                         m_bWorkspaceFullScreen;
       point_i32                                        m_pointScroll;
@@ -1225,13 +1225,13 @@ namespace user
       //virtual void ShowOwnedPopups(bool bShow = true);
 
 
-      //virtual void route(::subject * psubject, ::context * pcontext);
-      //virtual void handle(::subject * psubject, ::context * pcontext) override;
+      //virtual void route(::topic * psubject, ::context * pcontext);
+      //virtual void handle(::topic * psubject, ::context * pcontext) override;
 
 
       /*void pre_create_window(::user::system* pusersystem);*/
       using ::user::primitive::handle;
-      virtual void handle(::subject * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * psubject, ::context * pcontext) override;
 
 
 
@@ -1629,7 +1629,7 @@ namespace user
       virtual void layout_scroll_bar(::draw2d::graphics_pointer & pgraphics);
 
 
-      //virtual void handle(::subject * psubject, ::context * pcontext) override;
+      //virtual void handle(::topic * psubject, ::context * pcontext) override;
 
 
       virtual void keyboard_focus_OnKeyDown(::message::message* pmessage) override;
@@ -1760,7 +1760,7 @@ namespace user
 
       virtual bool keyboard_focus_is_focusable() const override;
 
-      //virtual bool simple_on_control_event(::message::message* pmessage, ::enum_subject esubject);
+      //virtual bool simple_on_control_event(::message::message* pmessage, ::enum_topic etopic);
 
       using ::aura::drawable::hit_test;
       virtual void hit_test(::item& item, const ::point_i32 & point) override;
@@ -1836,10 +1836,10 @@ namespace user
       DECLARE_MESSAGE_HANDLER(_001OnEditDelete);
       //DECLARE_MESSAGE_HANDLER(_001OnSetFocus);
       //DECLARE_MESSAGE_HANDLER(_001OnKillFocus);
-      //virtual void route(::subject * psubject, ::context * pcontext) override;
+      //virtual void route(::topic * psubject, ::context * pcontext) override;
       //virtual void on_notify_control_event(control_event* pevent) override;
-      //virtual void handle(::subject * psubject, ::context * pcontext) override;
-      //virtual bool simple_on_control_event(::message::message * pmessage, ::enum_subject esubject) override;
+      //virtual void handle(::topic * psubject, ::context * pcontext) override;
+      //virtual bool simple_on_control_event(::message::message * pmessage, ::enum_topic etopic) override;
       //virtual void walk_pre_translate_tree(::message::message * pmessage,__pointer(::user::interaction) puiStop);
       //virtual bool get_element_rect(RECTANGLE_I32* prectangle, enum_element eelement);
       virtual void get_simple_drop_down_open_arrow_polygon(point_f64_array& pointa);

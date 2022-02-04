@@ -80,7 +80,7 @@ namespace userex
             
             //create_context cc;
             //cc.m_pCurrentDoc = get_document();
-            //cc.m_typeNewView = __type(::user::menu_list_view);
+            //cc.m_typeNewImpact = __type(::user::menu_list_view);
 
             __pointer(::user::impact) pview = create_view < ::user::impact > ();
             if(pview != nullptr)

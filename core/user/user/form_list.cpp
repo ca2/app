@@ -76,7 +76,7 @@ namespace user
             if (pinteraction->get_control_type() == ::user::e_control_type_button)
             {
 
-               auto psubject = __new(::subject(e_subject_click));
+               auto psubject = __new(::topic(id_click));
 
                psubject->m_puserelement = pinteraction;
 
@@ -163,11 +163,11 @@ namespace user
             if (pinteraction->get_control_type() == ::user::e_control_type_button)
             {
 
-               auto psubject = __new(::subject);
+               auto psubject = __new(::topic);
 
                psubject->m_puserelement = pinteraction;
 
-               psubject->m_id = ::e_subject_click;
+               psubject->m_id = ::id_click;
 
                m_itemControl = item;
 
@@ -465,9 +465,9 @@ namespace user
 
          rectangle_f64 rectangleControl(item.m_rectangleSubItem);
 
-         auto pointViewport = get_viewport_offset();
+         auto pointImpactport = get_viewport_offset();
 
-         rectangleControl.offset(pointViewport);
+         rectangleControl.offset(pointImpactport);
 
          if (!bOnlySizeAndPosition)
          {
@@ -830,11 +830,11 @@ break_click:;
 
          //auto pformlist = this;
 
-         ::subject subject(id_control_saved);
+         ::topic topic(id_control_saved);
 
-         subject.m_puserelement = pinteraction;
+         topic.m_puserelement = pinteraction;
 
-         route(&subject);
+         route(&topic);
          
          //pformlist->handle_subject(psubject);
 
@@ -921,11 +921,11 @@ break_click:;
 
          //auto pformlist = this;
 
-         ::subject subject(id_control_saved);
+         ::topic topic(id_control_saved);
 
-         subject.m_puserelement = pinteraction;
+         topic.m_puserelement = pinteraction;
 
-         route(&subject);
+         route(&topic);
 
          //pformlist->handle_subject(psubject);
 
@@ -1883,10 +1883,10 @@ break_click:;
 
 
 
-   void form_list::handle(::subject * psubject, ::context * pcontext)
+   void form_list::handle(::topic * psubject, ::context * pcontext)
    {
 
-      if (psubject->m_id == ::e_subject_set_check)
+      if (psubject->m_id == ::id_set_check)
       {
 
          auto puserinteraction = psubject->user_interaction();
@@ -1903,7 +1903,7 @@ break_click:;
          }
 
       }
-      else if (psubject->m_id == ::e_subject_after_change_cur_sel)
+      else if (psubject->m_id == ::id_after_change_cur_sel)
       {
 
          if (m_pcontrolEdit == psubject->user_interaction())
@@ -1921,7 +1921,7 @@ break_click:;
          }
 
       }
-      else if (psubject->m_id == ::e_subject_enter_key)
+      else if (psubject->m_id == ::id_enter_key)
       {
 
          if(m_pcontrolEdit != nullptr)
@@ -1936,7 +1936,7 @@ break_click:;
          }
 
       }
-      else if (psubject->m_id == ::e_subject_tab_key)
+      else if (psubject->m_id == ::id_tab_key)
       {
 
          index iItem = 0;
@@ -1987,7 +1987,7 @@ break_click:;
          }
 
       }
-      else if (psubject->m_id == ::e_subject_key_down)
+      else if (psubject->m_id == ::id_key_down)
       {
 
          SCAST_PTR(::message::key, pkey, psubject->m_actioncontext.m_pmessage.m_p);

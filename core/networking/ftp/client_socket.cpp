@@ -688,7 +688,7 @@ namespace ftp
    /// Puts a file on the FTP server.
    /// The source file is on an other FTP server (FXP).
    /// NOTICE: The file is directly transferred from one server to the other server.
-   /// @lparam[in] SourceFtpServer A FTP server from which the file is taken for upload psubject->
+   /// @lparam[in] SourceFtpServer A FTP server from which the file is taken for upload ptopic->
    /// @lparam[in] strSourceFile File which is on the source FTP server.
    /// @lparam[in] strTargetFile Filename of the target file on the FTP server.
    /// @lparam[in] repType Representation Type (see documentation of representation)
@@ -1132,7 +1132,7 @@ namespace ftp
 
    /// Sends data over a socket to the server.
    /// @lparam[in] Observer Object for observing the execution of the command.
-   /// @lparam[in] sckDataConnection Socket which is used for the send psubject->
+   /// @lparam[in] sckDataConnection Socket which is used for the send ptopic->
    bool client_socket::SendData(itransfer_notification& Observer, ::sockets::transfer_socket & sckDataConnection)
    {
       try

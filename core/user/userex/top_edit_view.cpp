@@ -79,13 +79,13 @@ namespace userex
 
       auto pkey = pmessage->m_union.m_pkey;
 
-      ::subject subject(id_key_down);
+      ::topic topic(id_key_down);
 
-      subject.m_puserelement = this;
+      topic.m_puserelement = this;
 
-      subject.m_ekey = pkey->m_ekey;
+      topic.m_ekey = pkey->m_ekey;
 
-      get_document()->update_all_views(&subject);
+      get_document()->update_all_views(&topic);
 
       if (pkey->m_ekey == ::user::e_key_return)
       {
@@ -144,7 +144,7 @@ namespace userex
    }
 
 
-   void top_edit_view::handle(::subject * psubject, ::context * pcontext)
+   void top_edit_view::handle(::topic * psubject, ::context * pcontext)
    {
 
    }

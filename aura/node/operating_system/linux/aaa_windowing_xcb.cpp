@@ -516,7 +516,7 @@ bool xcb_message_loop_step()
 //thread_int_ptr < iptr > t_iXim;
 
 
-//        XGenericEventCookie *cookie = (XGenericEventCookie*)&subject.xcookie;
+//        XGenericEventCookie *cookie = (XGenericEventCookie*)&topic.xcookie;
 //        XNextEvent(display, (XEvent*)&ev);
 //
 //        if (XGetEventData(display, cookie) &&

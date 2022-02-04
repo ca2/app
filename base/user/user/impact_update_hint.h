@@ -14,7 +14,7 @@ public:
    bool                                m_bEnterKeyPressed;
    ::payload                                 m_varFile;
    e_impact                            m_epaneview;
-   string                              m_strView;
+   string                              m_strImpact;
    __pointer_array(::user::impact)     m_viewaAttachable;
    __pointer(::user::impact)           m_pviewTopic;
    __pointer(::user::document)         m_pdocTopic;

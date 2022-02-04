@@ -180,7 +180,7 @@ namespace filemanager
    }
 
 
-   void folder_list_view::handle(::subject * psubject, ::context * pcontext)
+   void folder_list_view::handle(::topic * psubject, ::context * pcontext)
    {
 
       FILEMANAGER_SHOW_IMPACT::handle(psubject, pcontext);

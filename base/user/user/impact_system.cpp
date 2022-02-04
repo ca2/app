@@ -197,7 +197,7 @@ namespace user
       else
       {
 
-         pusersystem->m_typeNewView = m_typeImpact;
+         pusersystem->m_typeNewImpact = m_typeImpact;
 
       }
 
@@ -243,7 +243,7 @@ namespace user
 
       pframe->m_pdocumenttemplate = this;
 
-      if (!pusersystem->m_typeNewView)
+      if (!pusersystem->m_typeNewImpact)
       {
 
          CATEGORY_WARNING(appmsg,"Warning: creating frame with no default ::user::impact.\n");
@@ -438,7 +438,7 @@ namespace user
    }
 
 
-   void impact_system::handle(::subject * psubject, ::context * pcontext)
+   void impact_system::handle(::topic * psubject, ::context * pcontext)
    {
 
       update_all_views(psubject);
@@ -446,7 +446,7 @@ namespace user
    }
 
 
-   void impact_system::update_all_views(::subject * psubject)
+   void impact_system::update_all_views(::topic * psubject)
    {
 
       ::count count = get_document_count();

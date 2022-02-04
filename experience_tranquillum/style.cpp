@@ -1247,10 +1247,10 @@ namespace tranquillum
 
 
 
-//   bool style::on_ui_event(::enum_subject esubject, ::user::e_object eobject, ::user::interaction * pframewindow)
+//   bool style::on_ui_event(::enum_topic etopic, ::user::e_object eobject, ::user::interaction * pframewindow)
 //   {
 //
-//      if (eevent == ::e_subject_calc_item_height)
+//      if (eevent == ::id_calc_item_height)
 //      {
 //
 //         pframewindow->m_iItemHeight += 8;

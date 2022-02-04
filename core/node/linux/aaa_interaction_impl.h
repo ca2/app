@@ -66,7 +66,7 @@ namespace linux
 
       void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
-      virtual void handle(::subject * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * psubject, ::context * pcontext) override;
 
       DECLARE_MESSAGE_HANDLER(_001OnEraseBkgnd);
       DECLARE_MESSAGE_HANDLER(on_message_move);

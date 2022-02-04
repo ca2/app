@@ -133,11 +133,11 @@ namespace universal_windows
 
                on_window_size_changed(m_window.Get(), size);
 
-               subject.set_event();
+               topic.set_event();
 
             }));
 
-         subject.wait(15_s);
+         topic.wait(15_s);
 
          auto puserinteractionHost = __user_interaction(m_psystem->get_session()->m_puserinteractionHost);
 

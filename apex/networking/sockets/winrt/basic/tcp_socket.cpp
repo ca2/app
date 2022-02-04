@@ -1456,14 +1456,14 @@ namespace sockets
       }
 
       //X509 *cert = nullptr;
-      //X509_NAME *subject = nullptr;
+      //X509_NAME *topic = nullptr;
 
       //cert = SSL_get_peer_certificate(m_ssl);
       //bool ok = false;
       //if (cert != nullptr && strlen(common_name) > 0)
       //{
       //   char data[256];
-      //   if ((subject = X509_get_subject_name(cert)) != nullptr && X509_NAME_get_text_by_NID(subject, NID_commonName, data, 256) > 0)
+      //   if ((topic = X509_get_subject_name(cert)) != nullptr && X509_NAME_get_text_by_NID(topic, NID_commonName, data, 256) > 0)
       //   {
       //      data[255] = 0;
       //      if (ansi_count_compare_ci(data, common_name, 255) == 0)

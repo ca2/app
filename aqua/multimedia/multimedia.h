@@ -32,7 +32,7 @@ namespace aqua
 
       virtual void on_decoder_fill_title_info(::multimedia::decoder * pdecoder, string_array & straTitle, string2a & str2aTitle);
 
-      virtual __pointer(::user::controller) defer_create_view(::object* pobject, const ::string & strView, ::user::interaction* puiParent, ewindowflag ewindowflag = e_window_flag_none, const ::id& id = nullptr);
+      virtual __pointer(::user::controller) defer_create_view(::object* pobject, const ::string & strImpact, ::user::interaction* puiParent, ewindowflag ewindowflag = e_window_flag_none, const ::id& id = nullptr);
 
       virtual void exit_application();
 

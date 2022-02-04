@@ -893,14 +893,14 @@ void matter::osthread_term()
 //}
 
 
-//void matter::route(::subject * psubject, ::context * pcontext)
+//void matter::route(::topic * psubject, ::context * pcontext)
 //{
 //
 //
 //}
 
 
-//void matter::post_process(::subject * psubject, ::context * pcontext)
+//void matter::post_process(::topic * psubject, ::context * pcontext)
 //{
 //
 //

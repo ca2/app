@@ -40,7 +40,7 @@ namespace app_core_build
    }
 
 
-   void main_impact::handle(::subject * psubject, ::context * pcontext)
+   void main_impact::handle(::topic * psubject, ::context * pcontext)
    {
 
       ::user::split_view::handle(psubject, pcontext);
@@ -131,10 +131,10 @@ namespace app_core_build
    }
 
 
-   //void main_impact::handle(::subject * psubject, ::context * pcontext)
+   //void main_impact::handle(::topic * psubject, ::context * pcontext)
    //{
 
-   //   if(psubject->m_id == ::e_subject_click)
+   //   if(psubject->m_id == ::id_click)
    //   {
 
    //      if(psubject->user_interaction()->m_id == "hellomultiverse_toggle")

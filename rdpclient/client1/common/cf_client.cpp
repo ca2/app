@@ -584,7 +584,7 @@ CLASS_DECL_EXPORT BOOL af_pre_connect(freerdp* instance)
 //	return af_authenticate_raw(instance, tmp, username, password, domain);
 //}
 //
-//BOOL af_verify_certificate(freerdp* instance, char* subject, char* issuer, char* fingerprint)
+//BOOL af_verify_certificate(freerdp* instance, char* topic, char* issuer, char* fingerprint)
 //{
 //#if 0
 //	::u32 mode;
@@ -595,7 +595,7 @@ CLASS_DECL_EXPORT BOOL af_pre_connect(freerdp* instance)
 //	HANDLE input_handle;
 //#endif
 //	WLog_INFO(TAG, "Certificate details:");
-//	WLog_INFO(TAG, "\tSubject: %s", subject);
+//	WLog_INFO(TAG, "\tSubject: %s", topic);
 //	WLog_INFO(TAG, "\tIssuer: %s", issuer);
 //	WLog_INFO(TAG, "\tThumbprint: %s", fingerprint);
 //	WLog_INFO(TAG, "The above X.509 certificate could not be verified, possibly because you do not have "

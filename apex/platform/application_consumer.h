@@ -49,7 +49,7 @@ void on_initialize_object() override                                            
                                                                                        \
 }                                                                                      \
                                                                                        \
-void handle(::subject * psubject, ::context * pcontext) override \
+void handle(::topic * psubject, ::context * pcontext) override \
 {                                                                                      \
                                                                                        \
    BASE1::handle(psubject, pcontext);                                              \

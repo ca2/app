@@ -4687,7 +4687,7 @@ m_pcontext->m_papexcontext->os_context()->file_open(strFile);
 //}
 
 
-void application::handle(::subject * psubject, ::context * pcontext)
+void application::handle(::topic * psubject, ::context * pcontext)
 {
 
 
@@ -5301,10 +5301,10 @@ return m_psystem->m_pacmedir->config() / m_strAppName;
 
 
 
-//__pointer(::user::document) application::defer_create_view(string strView, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::id & id)
+//__pointer(::user::document) application::defer_create_view(string strImpact, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::id & id)
 //{
 
-//   //auto pcontroller = pmultimedia->defer_create_view(strView, puiParent, ewindowflag, id);
+//   //auto pcontroller = pmultimedia->defer_create_view(strImpact, puiParent, ewindowflag, id);
 
 //   //if (pcontroller)
 //   //{
@@ -5496,7 +5496,7 @@ bool application::start_application(bool bSynch, ::create * pcreate)
 if (bSynch)
 {
 
-   begin_synch();
+   begin_synchronously();
 
 //if (!begin_synch())
 //{
@@ -5801,11 +5801,11 @@ void application::close_application()
 
 //#ifdef _UWP
 //
-//::winrt::Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(
+//::winrt::Windows::ApplicationModel::Core::CoreApplication::MainImpact->CoreWindow->Dispatcher->RunAsync(
 //::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal,
 //ref new ::winrt::Windows::UI::Core::DispatchedHandler([this]()
 //{
-//::winrt::Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->TryConsolidateAsync();
+//::winrt::Windows::UI::ImpactManagement::ApplicationImpact::GetForCurrentImpact()->TryConsolidateAsync();
 //}));
 //
 //#else
@@ -7024,7 +7024,7 @@ void application::hotplugin_host_host_starter_start_sync(const ::string & pszCom
 
 
 
-//void application::handle(::subject * psubject, ::context * pcontext)
+//void application::handle(::topic * psubject, ::context * pcontext)
 //{
 
 //}
@@ -7056,7 +7056,7 @@ void application::hotplugin_host_host_starter_start_sync(const ::string & pszCom
 
 //}
 
-//void application::handle(::subject * psubject, ::context * pcontext)
+//void application::handle(::topic * psubject, ::context * pcontext)
 //{
 
 //}
@@ -7069,7 +7069,7 @@ void application::hotplugin_host_host_starter_start_sync(const ::string & pszCom
 //}
 
 
-//void application::route(::subject * psubject, ::context * pcontext)
+//void application::route(::topic * psubject, ::context * pcontext)
 //{
 
 //   handle(psubject, pcontext);
@@ -9774,7 +9774,7 @@ return papp;
 
 
 
-void application::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::subject * psubject)
+void application::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::topic * psubject)
 {
 
 

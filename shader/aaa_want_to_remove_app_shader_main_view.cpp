@@ -44,7 +44,7 @@ namespace simple_shader
    }
 
 
-   void main_impact::handle(::subject * psubject, ::context * pcontext)
+   void main_impact::handle(::topic * psubject, ::context * pcontext)
    {
 
       ::user::split_view::handle(psubject, pcontext);
@@ -144,7 +144,7 @@ namespace simple_shader
    bool main_impact::BaseOnControlEvent(::user::control_event * pevent)
    {
 
-      if(psubject->m_id == ::e_subject_click)
+      if(psubject->m_id == ::id_click)
       {
 
          if(psubject->user_element_id() == "simple_shader_toggle")

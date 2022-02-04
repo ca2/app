@@ -470,19 +470,19 @@ namespace user
       if (iKey == ::user::e_key_return || iKey == ::user::e_key_space)
       {
 
-         ::subject subject;
+         ::topic topic;
 
-         subject.m_puserelement = this;
+         topic.m_puserelement = this;
 
-         subject.m_id = ::e_subject_click;
+         topic.m_id = ::id_click;
 
-         subject.m_actioncontext.m_pmessage = pkey;
+         topic.m_actioncontext.m_pmessage = pkey;
 
-         subject.m_actioncontext.add(e_source_user);
+         topic.m_actioncontext.add(e_source_user);
 
-         route(&subject);
+         route(&topic);
 
-         pmessage->m_bRet = subject.m_bRet;
+         pmessage->m_bRet = topic.m_bRet;
 
          if (pmessage->m_bRet)
          {
@@ -566,7 +566,7 @@ namespace user
    }
 
 
-   void button::handle(::subject * psubject, ::context * pcontext)
+   void button::handle(::topic * psubject, ::context * pcontext)
    {
 
       interaction::handle(psubject, pcontext);

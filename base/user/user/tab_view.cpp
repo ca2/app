@@ -60,7 +60,7 @@ namespace user
    }
 
 
-   void tab_view::handle(::subject * psubject, ::context * pcontext)
+   void tab_view::handle(::topic * psubject, ::context * pcontext)
    {
 
       tab::handle(psubject, pcontext);
@@ -85,7 +85,7 @@ namespace user
    }
 
 
-   void tab_view::OnActivateView(bool bActivate, __pointer(impact) pActivateView, __pointer(impact) pDeactiveView)
+   void tab_view::OnActivateImpact(bool bActivate, __pointer(impact) pActivateImpact, __pointer(impact) pDeactiveImpact)
    {
 
       __pointer(::user::interaction) pinteraction = get_view_uie();
@@ -121,13 +121,13 @@ namespace user
       if (pview.is_set() && pview != this)
       {
 
-         pview->OnActivateView(bActivate, pActivateView, pDeactiveView);
+         pview->OnActivateImpact(bActivate, pActivateImpact, pDeactiveImpact);
 
       }
       else
       {
 
-         ::user::impact::OnActivateView(bActivate, pActivateView, pDeactiveView);
+         ::user::impact::OnActivateImpact(bActivate, pActivateImpact, pDeactiveImpact);
 
       }
 
@@ -595,7 +595,7 @@ namespace user
       {
 
          if (m_pimpactdata->m_eflag.has(::user::e_flag_hide_all_others_on_show)
-            || m_pimpactdata->m_eflag.has(::user::e_flag_hide_topic_on_show))
+            || m_pimpactdata->m_eflag.has(::user::e_flag_hidid_on_show))
          {
 
             ::user::tab_pane_composite_array & panecompositea = get_data()->m_tabpanecompositea;
@@ -612,7 +612,7 @@ namespace user
 
                }
 
-               else if (m_pimpactdata->m_eflag & ::user::e_flag_hide_topic_on_show)
+               else if (m_pimpactdata->m_eflag & ::user::e_flag_hidid_on_show)
                {
 
                   if ((m_pimpactdata->m_eflag & ::user::e_flag_modifier_impact)

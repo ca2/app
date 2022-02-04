@@ -141,11 +141,11 @@ bool __os_term_thread()
 //
 //      }
 //
-//      psubject->SetEvent();
+//      ptopic->SetEvent();
 //
 //   });
 //
-//   psubject->wait(durationTimeout);
+//   ptopic->wait(durationTimeout);
 //
 //}
 

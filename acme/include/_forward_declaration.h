@@ -19,13 +19,13 @@ class payload;
 class stream;
 
 
-//namespace subject
+//namespace topic
 //{
 
-   class subject;
+   class topic;
    class context;
 
-//} // namespace subject
+//} // namespace topic
 
 
 

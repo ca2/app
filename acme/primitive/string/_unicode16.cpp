@@ -530,7 +530,7 @@ wd16char surrogate_to_utf16(wd16char _1st, wd16char _2nd)
 //Top Network Posts
 //
 //5Is it possible for a genin to become a jonin?
-//View more network posts →
+//Impact more network posts →
 
 
 

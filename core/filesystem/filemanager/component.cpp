@@ -675,7 +675,7 @@ namespace filemanager
 
       //pdocument->Initialize(pcreate == nullptr ? true : pcreate->m_bMakeVisible, false);
 
-      //tab_view * ptabview = pdocument->get_typed_view < tab_view >();
+      //tab_view * ptabview = pdocument->get_type_impact < tab_view >();
 
       //if (ptabview != nullptr)
       //{
@@ -877,7 +877,7 @@ namespace filemanager
 //   if (pdocument != nullptr)
 //   {
 
-//      tab_view * ptabview = pdocument->get_typed_view < tab_view >();
+//      tab_view * ptabview = pdocument->get_type_impact < tab_view >();
 
 //      if (pathFolder.m_iDir == 1)
 //      {

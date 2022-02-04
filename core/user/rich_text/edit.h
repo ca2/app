@@ -24,7 +24,7 @@ namespace user
          ~edit() override;
 
 
-         virtual void on_after_change(::enum_subject esubject);
+         virtual void on_after_change(::enum_topic etopic);
          double get_rotate() override;
 
 
@@ -114,7 +114,7 @@ namespace user
          virtual void keyboard_focus_OnChar(::message::message * pmessage) override;
 
 
-         virtual void handle(::subject * psubject, ::context * pcontext) override;
+         virtual void handle(::topic * psubject, ::context * pcontext) override;
 
 
          virtual strsize _001GetTextLength() const override;

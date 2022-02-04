@@ -87,7 +87,7 @@ namespace core
       ////__composite(::user::interaction)                      m_puserinteractionSystem;
 
       //::payload                                                   m_varTopicFile;
-      //::payload                                                   m_varCurrentViewFile;
+      //::payload                                                   m_varCurrentImpactFile;
       //bool                                                  m_bShowPlatform;
 
       //__composite(::text::context)                      m_ptextcontext;
@@ -194,7 +194,7 @@ namespace core
       ::type default_type_list_data();
 
 
-      virtual void will_use_view_hint(::id idView);
+      virtual void will_use_view_hint(::id idImpact);
 
 
       virtual void term_instance() override;
@@ -488,8 +488,8 @@ namespace core
       //virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::brush_pointer & pbrushText);
 
 
-      //virtual void set_bound_ui(::id idView, ::user::interaction * pinteraction);
-      //virtual ::user::interaction * get_bound_ui(::id idView);
+      //virtual void set_bound_ui(::id idImpact, ::user::interaction * pinteraction);
+      //virtual ::user::interaction * get_bound_ui(::id idImpact);
 
       //virtual void on_show_user_input_popup(::user::interaction * pinteraction);
 
@@ -550,7 +550,7 @@ namespace core
 
       ////virtual bool create_bergedge(::create * pcreate);
 
-      //virtual void will_use_view_hint(::id idView);
+      //virtual void will_use_view_hint(::id idImpact);
 
       ////virtual void on_app_request_bergedge_callback(::object * pobject);
 

@@ -27,7 +27,7 @@ namespace user
    }
 
 
-   void list_view::handle(::subject * psubject, ::context * pcontext)
+   void list_view::handle(::topic * psubject, ::context * pcontext)
    {
 
       BASE_VIEW::handle(psubject, pcontext);

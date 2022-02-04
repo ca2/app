@@ -4063,7 +4063,7 @@ namespace aura
 //
 //         string * pstrNew = new string(strUrl);
 //
-//         ::winrt::Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal,
+//         ::winrt::Windows::ApplicationModel::Core::CoreApplication::MainImpact->CoreWindow->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal,
 //            ref new ::winrt::Windows::UI::Core::DispatchedHandler([pstrNew]()
 //               {
 //
@@ -6225,7 +6225,7 @@ namespace aura
    //   for (i32 i = 0; i < ida.get_count(); i++)
    //   {
 
-   //      m_idmapCreateViewLibrary.set_at(ida[i], plibrary);
+   //      m_idmapCreateImpactLibrary.set_at(ida[i], plibrary);
 
    //   }
 
@@ -6419,7 +6419,7 @@ namespace aura
 
 
 
-//   void system::on_subject(::subject * psubject)
+//   void system::on_subject(::topic * psubject)
 //   {
 //
 //
@@ -6428,7 +6428,7 @@ namespace aura
 //   }
 
 
-   void system::handle(::subject * psubject, ::context * pcontext)
+   void system::handle(::topic * psubject, ::context * pcontext)
    {
 
       if (psubject->m_id == id_font_enumeration)
@@ -6827,7 +6827,7 @@ namespace aura
    ::type system::get_pane_tab_view_type_info()
    {
 
-      return m_typePaneTabView;
+      return m_typePaneTabImpact;
 
    }
 

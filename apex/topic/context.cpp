@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-//namespace subject
+//namespace topic
 //{
 //
 
@@ -28,7 +28,7 @@ void context::start_task()
 }
 
 
-void context::set_up_to_date(const ::subject *phandler)
+void context::set_up_to_date(const ::topic *phandler)
 {
 
    m_iUpdateSerial = phandler->m_iUpdateSerial;
@@ -36,7 +36,7 @@ void context::set_up_to_date(const ::subject *phandler)
 }
 
 
-bool context::is_up_to_date(const ::subject * phandler) const
+bool context::is_up_to_date(const ::topic * phandler) const
 {
 
    if (m_iUpdateSerial < 0)
@@ -58,7 +58,7 @@ bool context::is_up_to_date(const ::subject * phandler) const
 }
 
 
-//} // namespace subject
+//} // namespace topic
 
 
 

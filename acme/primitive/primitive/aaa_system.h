@@ -302,7 +302,7 @@ namespace apex
       //::task_tool * task_tool(::enum_task_tool etool);
 
 
-      virtual __pointer(::subject) new_subject(const MESSAGE& message);
+      virtual __pointer(::topic) new_subject(const MESSAGE& message);
 
       //virtual string install_get_platform() override;
       //virtual void install_set_platform(const char * pszPlatform) override;
@@ -997,8 +997,8 @@ namespace apex
       //virtual ::user::interaction_impl * impl_from_handle(void * pdata) override;
       //virtual ::user::interaction * ui_from_handle(void * pdata) override;
 
-      virtual void on_subject(::subject * psubject) override;
-      virtual void handle(::subject * psubject, ::context * pcontext) override;
+      virtual void on_subject(::topic * psubject) override;
+      virtual void handle(::topic * psubject, ::context * pcontext) override;
 
       // virtual void on_command_create(::create* pcreate);
 

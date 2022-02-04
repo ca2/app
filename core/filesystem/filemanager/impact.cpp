@@ -54,13 +54,13 @@ namespace filemanager
 
       auto papplication = get_application();
 
-      bool bPathView = papplication->is_false("no_path_view");
+      bool bPathImpact = papplication->is_false("no_path_view");
 
-      SetPaneCount(bPathView ? 2 : 1);
+      SetPaneCount(bPathImpact ? 2 : 1);
 
       SetSplitOrientation(e_orientation_horizontal);
 
-      if (bPathView)
+      if (bPathImpact)
       {
 
          set_position(0, 24);
@@ -87,7 +87,7 @@ namespace filemanager
       }
 
 
-      main_impact * pmainview = create_pane_view < main_impact >(bPathView ? 1 : 0);
+      main_impact * pmainview = create_pane_view < main_impact >(bPathImpact ? 1 : 0);
 
       if (pmainview == nullptr)
       {
@@ -103,7 +103,7 @@ namespace filemanager
    }
 
 
-   void impact::handle(::subject * psubject, ::context * pcontext)
+   void impact::handle(::topic * psubject, ::context * pcontext)
    {
 
       ::filemanager_impact_base::handle(psubject, pcontext);
@@ -149,7 +149,7 @@ namespace filemanager
 
             }
 
-            OnActivateView(true, this, this);
+            OnActivateImpact(true, this, this);
 
             set_need_redraw();
 

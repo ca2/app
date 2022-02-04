@@ -1,9 +1,9 @@
-// Extrapolation from merge with control_"subject" by camilo on day after ThomasBirthday2021 10:16!!
+// Extrapolation from merge with control_"topic" by camilo on day after ThomasBirthday2021 10:16!!
 #pragma once
 
 
 class CLASS_DECL_APEX signal :
-   virtual public ::subject
+   virtual public ::extended_topic
 {
 public:
 
@@ -58,7 +58,7 @@ public:
    }
 
 
-   ::subject & operator=(const ::id & id)
+   ::topic & operator=(const ::id & id)
    {
 
       m_id = id;

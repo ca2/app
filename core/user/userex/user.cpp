@@ -576,7 +576,7 @@ namespace core
 
       }
 
-      __pointer(::user::form_window) pform = pdocument->get_typed_view < ::user::form_window >();
+      __pointer(::user::form_window) pform = pdocument->get_type_impact < ::user::form_window >();
 
       return pdocument;
 
@@ -957,7 +957,7 @@ namespace core
 
       auto pdocument = m_mapimpactsystem[COLORSEL_IMPACT]->open_document_file(puiOwner->get_application(), ::e_type_null, __visible(true));
 
-      __pointer(::userex::color_view) pview = pdocument->get_typed_view < ::userex::color_view >();
+      __pointer(::userex::color_view) pview = pdocument->get_type_impact < ::userex::color_view >();
 
       __pointer(::user::frame_window) pframe = pview->top_level_frame();
 
@@ -1061,7 +1061,7 @@ namespace core
 
       }
 
-      __pointer(::user::form_window) pform = pdocument->get_typed_view < ::user::form_window >();
+      __pointer(::user::form_window) pform = pdocument->get_type_impact < ::user::form_window >();
 
       if (pform.is_set())
       {
@@ -1145,7 +1145,7 @@ namespace core
 
       }
 
-      __pointer(::user::form_window) pform = pdocument->get_typed_view < ::user::form_window >();
+      __pointer(::user::form_window) pform = pdocument->get_type_impact < ::user::form_window >();
 
       if (pform.is_set() && ::is_null(pform->get_form_callback()))
       {
@@ -1236,7 +1236,7 @@ namespace core
 
       }
 
-      __pointer(::user::form_window) pform = pdocument->get_typed_view < ::user::form_window >();
+      __pointer(::user::form_window) pform = pdocument->get_type_impact < ::user::form_window >();
 
       if (pform.is_set())
       {
@@ -1313,7 +1313,7 @@ namespace core
 
       }
 
-      __pointer(::user::form_window) pform = pdocument->get_typed_view < ::user::form_window >();
+      __pointer(::user::form_window) pform = pdocument->get_type_impact < ::user::form_window >();
 
       if (pform.is_set())
       {
@@ -1421,7 +1421,7 @@ namespace core
 
       }
 
-      __pointer(::user::form_window) pform = pdocument->get_typed_view < ::user::form_window >();
+      __pointer(::user::form_window) pform = pdocument->get_type_impact < ::user::form_window >();
 
       return pdocument;
 
@@ -1441,7 +1441,7 @@ namespace core
 
       __pointer(::form_document) pdocument = ::user::__document(pcreate);
 
-      __pointer(::user::place_holder) pholder = pdocument->get_typed_view < ::user::place_holder  >();
+      __pointer(::user::place_holder) pholder = pdocument->get_type_impact < ::user::place_holder  >();
 
       pholder->place_hold(pinteraction);
 
@@ -1993,10 +1993,10 @@ namespace core
    //}
 
 
-   void user::will_use_view_hint(::id idView)
+   void user::will_use_view_hint(::id idImpact)
    {
 
-      if (idView == FILEMANAGER_IMPACT)
+      if (idImpact == FILEMANAGER_IMPACT)
       {
 
          if (m_mapimpactsystem[FILEMANAGER_IMPACT] != nullptr)
@@ -2006,7 +2006,7 @@ namespace core
 
          }
 
-         m_mapimpactsystem[FILEMANAGER_IMPACT] = filemanager(idView)->m_pdocumenttemplate;
+         m_mapimpactsystem[FILEMANAGER_IMPACT] = filemanager(idImpact)->m_pdocumenttemplate;
 
          //add_factory_item <::user::color_view >();
 
@@ -2020,7 +2020,7 @@ namespace core
          //add_document_template(user()->m_mapimpactsystem[COLORSEL_IMPACT]);
 
       }
-      else if (idView == COLORSEL_IMPACT)
+      else if (idImpact == COLORSEL_IMPACT)
       {
 
          if (m_mapimpactsystem[COLORSEL_IMPACT] != nullptr)
@@ -2045,7 +2045,7 @@ namespace core
          m_mapimpactsystem[COLORSEL_IMPACT] = ptemplate;
 
       }
-      else if (idView == FONTSEL_IMPACT)
+      else if (idImpact == FONTSEL_IMPACT)
       {
 
          if (m_bFontSelInitialized)

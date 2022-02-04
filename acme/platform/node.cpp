@@ -988,7 +988,7 @@ namespace acme
    }
 
 
-  bool node::should_launch_on_node(::subject * psubject)
+  bool node::should_launch_on_node(::topic * psubject)
   {
 
       return false;
@@ -996,7 +996,7 @@ namespace acme
   }
 
 
-  bool node::defer_launch_on_node(::subject * psubject)
+  bool node::defer_launch_on_node(::topic * psubject)
   {
 
       bool bShouldLaunchOnNode = should_launch_on_node(psubject);
@@ -1022,7 +1022,7 @@ namespace acme
   }
 
 
-  bool node::launch_on_node(::subject * psubject)
+  bool node::launch_on_node(::topic * psubject)
   {
 
       return false;

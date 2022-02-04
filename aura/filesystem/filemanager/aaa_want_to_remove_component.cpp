@@ -656,7 +656,7 @@ pacmedir->localconfig() / "user.component";
 
       //pdocument->Initialize(pcreate == nullptr ? true : pcreate->m_bMakeVisible, false);
 
-      //tab_view * ptabview = pdocument->get_typed_view < tab_view >();
+      //tab_view * ptabview = pdocument->get_type_impact < tab_view >();
 
       //if (ptabview != nullptr)
       //{
@@ -859,7 +859,7 @@ pacmedir->localconfig() / "user.component";
 //   if (pdocument != nullptr)
 //   {
 
-//      tab_view * ptabview = pdocument->get_typed_view < tab_view >();
+//      tab_view * ptabview = pdocument->get_type_impact < tab_view >();
 
 //      if (pathFolder.m_iDir == 1)
 //      {

@@ -76,7 +76,7 @@ namespace filemanager
       bool                                m_bListSelection;
       bool                                m_bFileSize;
       bool                                m_bPassBk;
-      bool                                m_bIconView;
+      bool                                m_bIconImpact;
 
 
       data();

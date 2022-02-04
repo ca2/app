@@ -96,7 +96,7 @@ namespace prompt
 
 
 
-   void impact::handle(::subject * psubject, ::context * pcontext)
+   void impact::handle(::topic * psubject, ::context * pcontext)
    {
       
       if(psubject->id() == id_update_current_area)

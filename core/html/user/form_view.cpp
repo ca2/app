@@ -68,7 +68,7 @@ void html_form_view::dump(dump_context & dumpcontext) const
 /////////////////////////////////////////////////////////////////////////////
 // html_form_view message handlers
 
-// vmpLightView.cpp : implementation of the html_form_view class
+// vmpLightImpact.cpp : implementation of the html_form_view class
 //
 
 

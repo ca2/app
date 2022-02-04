@@ -3196,7 +3196,7 @@ namespace user
    }
 
 
-   void primitive::handle(::subject * psubject, ::context * pcontext)
+   void primitive::handle(::topic * psubject, ::context * pcontext)
    {
 
 
@@ -4169,7 +4169,7 @@ namespace user
    }
 
 
-   //void primitive::route(::subject * psubject, ::context * pcontext)
+   //void primitive::route(::topic * psubject, ::context * pcontext)
    //{
 
    //   handle(psubject, pcontext);

@@ -209,7 +209,7 @@ void filemanager_impact_base::_001OnOperationDocMessage(::message::message * pme
 
 
 
-void filemanager_impact_base::handle(::subject * psubject, ::context * pcontext)
+void filemanager_impact_base::handle(::topic * psubject, ::context * pcontext)
 {
 
    ::user::impact::handle(psubject, pcontext);

@@ -60,8 +60,8 @@ namespace user
       i32 _001CalcItemWidth(::draw2d::graphics_pointer & pgraphics, index iItem, index iSubItem) override;
       virtual i32 _001CalcItemWidth(::draw2d::graphics_pointer & pgraphics, ::write_text::font * pfont, index iItem, index iSubItem);
       virtual i32 _001CalcItemHeight(::user::style * pstyle, int iBaseHeight);
-      virtual ::e_align get_draw_text_align(EView eview);
-      virtual ::e_draw_text get_draw_text_flags(EView eview);
+      virtual ::e_align get_draw_text_align(EImpact eview);
+      virtual ::e_draw_text get_draw_text_flags(EImpact eview);
 
 
       //virtual ::index item_index(::user::interaction * pinteractionControl);
@@ -163,7 +163,7 @@ namespace user
       void data_get_DisplayToStrict() override;
       void data_set_DisplayToStrict() override;
       id data_get_current_sort_id() override;
-      id data_get_sort_id(EView eview) override;
+      id data_get_sort_id(EImpact eview) override;
       virtual id data_get_current_list_layout_id();
 
       bool query_drop(index iDisplayDrop, index iDisplayDrag) override;
@@ -289,9 +289,9 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_create);
       void _001OnTimer(::timer * ptimer) override;
 
-      DECLARE_MESSAGE_HANDLER(_001OnUpdateListViewAutoArrange);
+      DECLARE_MESSAGE_HANDLER(_001OnUpdateListImpactAutoArrange);
 
-      DECLARE_MESSAGE_HANDLER(_001OnListViewAutoArrange);
+      DECLARE_MESSAGE_HANDLER(_001OnListImpactAutoArrange);
 
 
       bool on_click(const ::item & item) override;
@@ -357,9 +357,9 @@ namespace user
 
       void _001SetHighlightRange(range & range) override;
 
-      //void _001SetView(EView eview, bool bLayout = true);
+      //void _001SetImpact(EImpact eview, bool bLayout = true);
 
-      EView _001GetView() override;
+      EImpact _001GetImpact() override;
 
 
       virtual i32 get_wheel_scroll_delta() override;

@@ -25,7 +25,7 @@ namespace usernet
 
       void on_show();
 
-      void handle(::subject * psubject, ::context * pcontext);
+      void handle(::topic * psubject, ::context * pcontext);
 
    };
 

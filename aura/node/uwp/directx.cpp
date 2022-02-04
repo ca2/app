@@ -360,7 +360,7 @@ namespace universal_windows
 
          ::draw2d::device_lock devicelock(this);
 
-         auto psubject = m_psystem->subject(id_os_dark_mode);
+         auto psubject = m_psystem->topic(id_os_dark_mode);
 
          m_psystem->process(psubject);
 

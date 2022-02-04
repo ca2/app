@@ -235,6 +235,57 @@ enum enum_id : u64
 
    // callbacks:
 
+         // user topic
+      e_id_initialize_control = 1'073'741'824, // 0x40000000
+      e_topic_action,
+      e_topic_left_button_down,
+      e_topic_left_button_double_click,
+      e_topic_click,
+      e_topic_context_menu,
+      //subjectnt_m_button_down,
+      //subjectnt_m_button_up,
+      e_topic_list_clicked,
+      //subjectnt_mouse_enter,
+      //subjectnt_mouse_leave,
+      e_topic_set_check,
+      e_topic_timer,
+      e_topic_enter_key,
+      e_topic_escape,
+      e_topic_tab_key,
+      e_topic_key_down,
+      e_topic_after_change_text,
+      e_topic_after_change_text_format,
+      e_topic_after_change_cur_sel,
+      e_topic_after_change_cur_hover,
+      e_topic_mouse_enter,
+      e_topic_mouse_leave,
+      e_topic_timebar_change,
+      e_topic_menu_hover,
+      e_topic_context_menu_close,
+      e_topic_set_focus,
+      e_topic_kill_focus,
+      e_topic_on_create_impact,
+      e_topic_on_create_tab,
+      e_topic_form_initialize,
+      e_topic_create,
+      e_topic_layout,
+      e_topic_calc_item_height,
+      e_topic_change_view_style,
+      e_topic_item_clicked,
+      e_topic_image_list_action,
+      e_topic_load_form_data,
+      e_topic_save_form_data,
+      e_topic_close_app,
+      e_topic_switch,
+
+
+      e_topic_show_view,
+      e_topic_load_projects,
+
+
+      e_topic_task_bar_created,
+
+
 };
 
 

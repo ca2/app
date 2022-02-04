@@ -393,7 +393,7 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 //   // draw gripper in non-client area
 //   DrawGripper(pgraphics, rectangleWindow);
 //
-//   //pgraphics->SetViewportOrg(pointViewport);
+//   //pgraphics->SetImpactportOrg(pointImpactport);
 //}
 
 

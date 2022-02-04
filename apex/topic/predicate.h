@@ -20,7 +20,7 @@ public:
 
    //inline void operator()() const;
 
-   void handle(::subject * psubject, ::context * pcontext) override
+   void handle(::topic * psubject, ::context * pcontext) override
    {
 
       m_predicate(psubject, pcontext);

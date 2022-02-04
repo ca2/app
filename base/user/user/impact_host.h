@@ -99,10 +99,10 @@ namespace user
 
       virtual bool is_hosting(::user::interaction * pinteraction);
 
-      virtual ::user::impact_data * get_impact_data(const id& id, bool bCallOnCreateView = true);
+      virtual ::user::impact_data * get_impact_data(const id& id, bool bCallOnCreateImpact = true);
 
 
-      virtual void handle(::subject * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * psubject, ::context * pcontext) override;
 
 
       virtual ::count get_view_count();

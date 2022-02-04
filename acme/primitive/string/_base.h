@@ -818,6 +818,12 @@ public:
    inline bool begins_eat_ci(const CHAR_TYPE* psz);
    inline bool ends_eat_ci(const CHAR_TYPE* psz);
 
+   inline bool begins_eaten(string_base & strEaten, const CHAR_TYPE * psz);
+   inline bool ends_eaten(string_base & strEaten, const CHAR_TYPE * psz);
+
+   inline bool begins_eaten_ci(string_base & strEaten, const CHAR_TYPE * psz);
+   inline bool ends_eaten_ci(string_base & strEaten, const CHAR_TYPE * psz);
+
    inline string_base& ensure_begins(const CHAR_TYPE* psz);
    inline string_base& ensure_begins_ci(const CHAR_TYPE* psz);
 

@@ -32,7 +32,7 @@ namespace userex
    }
 
 
-   void wait_message_dialog::handle(::subject * psubject, ::context * pcontext)
+   void wait_message_dialog::handle(::topic * psubject, ::context * pcontext)
    {
       
       dialog::handle(psubject, pcontext);
@@ -40,7 +40,7 @@ namespace userex
       if(psubject->user_interaction() == m_pform)
       {
       
-         if(psubject->m_id == ::e_subject_create)
+         if(psubject->m_id == ::id_create)
          {
             
             if(m_durationDelay > 0_s)
@@ -55,7 +55,7 @@ namespace userex
             m_durationStart.Now();
 
          }
-         else if(psubject->m_id == ::e_subject_timer)
+         else if(psubject->m_id == ::id_timer)
          {
             
             if(psubject->m_etimer == e_timer_reload)
@@ -68,7 +68,7 @@ namespace userex
          }
          
       }
-      else if(psubject->m_id == ::e_subject_click)
+      else if(psubject->m_id == ::id_click)
       {
 
          m_idResponse = psubject->user_interaction()->m_id;

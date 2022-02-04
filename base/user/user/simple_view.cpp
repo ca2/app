@@ -43,7 +43,7 @@ namespace user
    }
 
 
-   void simple_view::handle(::subject * psubject, ::context * pcontext)
+   void simple_view::handle(::topic * psubject, ::context * pcontext)
    {
 
       ::user::impact::handle(psubject, pcontext);

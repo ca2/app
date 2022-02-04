@@ -996,6 +996,219 @@ void task::branch(::enum_priority epriority, u32 nStackSize, u32 uCreateFlags AR
 }
 
 
+void task::begin_synchronously(::enum_priority epriority, u32 nStackSize, u32 uCreateFlags ARG_SEC_ATTRS)
+{
+
+   if (m_id.is_empty())
+   {
+
+      if (m_pelement)
+      {
+
+         m_id = __type_name(m_pelement);
+
+      }
+      else
+      {
+
+         m_id = __type_name(this);
+
+      }
+
+   }
+
+   if (m_id.is_empty() || m_id == "task" || m_id == "thread")
+   {
+
+      __throw(error_invalid_argument);
+
+      ///return ::error_failed;
+
+   }
+
+   //   if (::is_null(m_pelement))
+   //   {
+   //
+   //      m_pelement = this;
+   //
+   //   }
+
+#ifdef __DEBUG
+
+   string strId = m_id;
+
+   if (strId.contains_ci("forking_thread"))
+   {
+
+#if 0
+
+#ifdef WINDOWS_DESKTOP
+
+      ::exception_engine().reset();
+
+      OS_DWORD                dwDisplacement;
+
+      OS_DWORD                uia[4096];
+
+      dwDisplacement = 0;
+
+      ::u32 maxframes = sizeof(uia) / sizeof(uia[0]);
+
+      ULONG BackTraceHash;
+
+      int iAddressWrite = RtlCaptureStackBackTrace(0, maxframes, reinterpret_cast<PVOID *>(&uia), &BackTraceHash);
+
+      char sz[1024];
+
+      __zero(sz);
+
+      engine_symbol(sz, sizeof(sz), &dwDisplacement, uia[5]);
+
+      u32 uiLine = 0;
+
+      {
+         critical_section_lock csl(&::exception_engine().m_criticalsection);
+
+         engine_fileline(uia[5], 0, 0, &uiLine, nullptr);
+
+      }
+
+      strId = string(sz) + "(" + __string(uiLine) + ") :: forking_thread";
+
+#endif
+
+#endif
+
+   }
+
+   m_pszDebug = strdup(strId);
+
+#endif
+
+   /*auto estatus =*/ task_caller_on_init();
+
+   //if (!estatus)
+   //{
+
+   //   return estatus;
+
+   //}
+
+   //if (m_pobjectParent && m_bIsPredicate)
+   //{
+
+   //   //auto pthreadParent = calc_parent_thread();
+
+   //   m_pobjectParent->task_add(this);
+
+
+   //   if (pthreadParent)
+   //   {
+
+   //
+
+   //   }
+
+   //}
+
+   // __task_procedure() should release this (pelement)
+   //increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS_FUNCTION_LINE);
+
+   m_bIsRunning = true;
+
+   set(e_flag_task_started);
+
+   if (::is_null(m_pobjectParentTask))
+   {
+
+      auto pobjectParentTask = ::get_task();
+
+      if (::is_null(pobjectParentTask))
+      {
+
+         pobjectParentTask = m_pcontext;
+
+      }
+
+      if (::is_null(pobjectParentTask))
+      {
+
+         pobjectParentTask = m_psystem;
+
+      }
+
+      if (pobjectParentTask)
+      {
+
+         if (pobjectParentTask != this)
+         {
+
+            pobjectParentTask->add_task(this);
+
+         }
+
+      }
+      else
+      {
+
+         __throw(error_invalid_usage);
+
+      }
+
+   }
+
+#ifdef WINDOWS
+
+   DWORD dwThread = 0;
+
+   m_htask = ::CreateThread((LPSECURITY_ATTRIBUTES)PARAM_SEC_ATTRS, nStackSize, (LPTHREAD_START_ROUTINE) & ::task::s_os_task, (LPVOID)(task *)this, uCreateFlags, &dwThread);
+
+   m_itask = dwThread;
+
+#else
+
+   pthread_attr_t taskAttr;
+
+   pthread_attr_init(&taskAttr);
+
+   if (nStackSize > 0)
+   {
+
+      pthread_attr_setstacksize(&taskAttr, nStackSize); // Set the stack size of the task
+
+   }
+
+   if (!m_bJoinable)
+   {
+
+      pthread_attr_setdetachstate(&taskAttr, PTHREAD_CREATE_DETACHED); // Set task to detached state. No need for pthread_join
+
+   }
+
+   pthread_create(
+      (pthread_t *)&m_htask,
+      &taskAttr,
+      &task::s_os_task,
+      this);
+
+#endif
+
+   if (!m_htask)
+   {
+
+      m_bIsRunning = false;
+
+      throw_status(error_wrong_state);
+
+      //return ::error_failed;
+
+   }
+
+   //return ::success;
+
+}
+
+
 bool task::task_sleep(const class ::wait & wait)
 {
    

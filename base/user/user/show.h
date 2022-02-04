@@ -116,7 +116,7 @@ namespace user
       }
 
       //using ::user::impact::update;
-      void handle(::subject* psubject, ::context* pcontext) override
+      void handle(::topic* psubject, ::context* pcontext) override
       {
 
          ::user::impact::handle(psubject, pcontext);
@@ -190,7 +190,7 @@ namespace user
 
 
 
-      //virtual void handle(::subject * psubject, ::context * pcontext) override
+      //virtual void handle(::topic * psubject, ::context * pcontext) override
       //{
 
       //   VIEW::handle(psubject, pcontext);

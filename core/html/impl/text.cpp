@@ -592,9 +592,9 @@ namespace html
 
          //::rectangle_i32 rectangleWindow;
          //m_pcheckbox->get_window_rect(rectangleWindow);
-         ::point_i32 pointPreviousViewportOrg = pgraphics->GetViewportOrg();
+         ::point_i32 pointPreviousImpactportOrg = pgraphics->GetImpactportOrg();
 
-         pgraphics->OffsetViewportOrg((i32) m_box.left, (i32) m_box.top);
+         pgraphics->OffsetImpactportOrg((i32) m_box.left, (i32) m_box.top);
 
          if (::is_set(m_pedit) && m_pedit->is_window() && pdata->m_pcoredata->m_bEdit)
          {
@@ -635,7 +635,7 @@ namespace html
 
          }
 
-         pgraphics->SetViewportOrg(pointPreviousViewportOrg);
+         pgraphics->SetImpactportOrg(pointPreviousImpactportOrg);
 
          /*
 
@@ -784,7 +784,7 @@ namespace html
          draw2d::graphics_extension(pdata->m_pcoredata->get_application()).get_text_extent(pgraphics, unitext("gGYIﾍ"), size3);
          i32 maxcy = size3.cy;
 
-         _001GetViewSel(iSelStart, iSelEnd);
+         _001GetImpactSel(iSelStart, iSelEnd);
          strsize iCursor = iSelEnd;
          sort::sort(iSelStart, iSelEnd);
 

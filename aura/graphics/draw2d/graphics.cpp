@@ -550,15 +550,15 @@ namespace draw2d
    //}
 
 
-   point_f64 graphics::GetViewportOrg()
+   point_f64 graphics::GetImpactportOrg()
    {
 
-      return ::point_i32((::i32)m_matrixViewport.c1, (::i32) m_matrixViewport.c2);
+      return ::point_i32((::i32)m_matrixImpactport.c1, (::i32) m_matrixImpactport.c2);
 
    }
 
 
-   size_f64 graphics::GetViewportExt()
+   size_f64 graphics::GetImpactportExt()
    {
 
       return ::size_f64(0, 0);
@@ -582,15 +582,15 @@ namespace draw2d
    }
 
 
-   point_f64 graphics::SetViewportOrg(const ::point_f64 & point)
+   point_f64 graphics::SetImpactportOrg(const ::point_f64 & point)
    {
 
-      return SetViewportOrg(point.x, point.y);
+      return SetImpactportOrg(point.x, point.y);
 
    }
 
 
-   size_f64 graphics::SetViewportExt(const ::size_f64 & size)
+   size_f64 graphics::SetImpactportExt(const ::size_f64 & size)
    {
 
       __UNREFERENCED_PARAMETER(size);
@@ -1360,7 +1360,7 @@ namespace draw2d
    //   //      //if (m_pimage != nullptr && pgraphicsSrc->m_pimage != nullptr)
    //   //      //{
 
-   //   //      //   const ::point_f64 & pointOff = GetViewportOrg();
+   //   //      //   const ::point_f64 & pointOff = GetImpactportOrg();
 
    //   //      //   x += pointOff.x;
 
@@ -2679,16 +2679,16 @@ namespace draw2d
    //}
 
 
-   point_f64 graphics::SetViewportOrg(double x, double y)
+   point_f64 graphics::SetImpactportOrg(double x, double y)
    {
 
-      m_matrixViewport.c1 = x;
+      m_matrixImpactport.c1 = x;
 
-      m_matrixViewport.c2 = y;
+      m_matrixImpactport.c2 = y;
 
       update_matrix();
 
-      return ::point_i32((::i32)m_matrixViewport.c1, (::i32)m_matrixViewport.c2);
+      return ::point_i32((::i32)m_matrixImpactport.c1, (::i32)m_matrixImpactport.c2);
 
    }
 
@@ -2698,28 +2698,28 @@ namespace draw2d
 
       matrix = ::draw2d::matrix();
 
-      matrix.a1 = m_matrixViewport.a1;
+      matrix.a1 = m_matrixImpactport.a1;
 
-      matrix.b2 = m_matrixViewport.b2;
+      matrix.b2 = m_matrixImpactport.b2;
 
    }
 
 
-   point_f64 graphics::OffsetViewportOrg(double nWidth, double nHeight)
+   point_f64 graphics::OffsetImpactportOrg(double nWidth, double nHeight)
    {
 
-      m_matrixViewport.c1 += nWidth;
+      m_matrixImpactport.c1 += nWidth;
 
-      m_matrixViewport.c2 += nHeight;
+      m_matrixImpactport.c2 += nHeight;
 
       update_matrix();
 
-      return point_f64(m_matrixViewport.c1, m_matrixViewport.c2);
+      return point_f64(m_matrixImpactport.c1, m_matrixImpactport.c2);
 
    }
 
 
-   size_f64 graphics::SetViewportExt(double x, double y)
+   size_f64 graphics::SetImpactportExt(double x, double y)
    {
 
       __UNREFERENCED_PARAMETER(x);
@@ -2731,12 +2731,12 @@ namespace draw2d
    }
 
 
-   size_f64 graphics::ScaleViewportExt(double xNum, double xDenom, double yNum, double yDenom)
+   size_f64 graphics::ScaleImpactportExt(double xNum, double xDenom, double yNum, double yDenom)
    {
 
-      m_matrixViewport.a1 *= xNum / xDenom;
+      m_matrixImpactport.a1 *= xNum / xDenom;
 
-      m_matrixViewport.b2 *= yNum / yDenom;
+      m_matrixImpactport.b2 *= yNum / yDenom;
 
       update_matrix();
 
@@ -5491,11 +5491,11 @@ namespace draw2d
       //glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
       //glfwGetFramebufferSize(window, &width, &height);
 
-      //glViewport(0, 0, width, height);
+      //glImpactport(0, 0, width, height);
 
       int n=SaveDC();
 
-      OffsetViewportOrg(x, y);
+      OffsetImpactportOrg(x, y);
 
       //glClearColor(220.0f / 255.0f, 220.0f / 255.0f, 220.0f / 255.0f, 1.0f);
       //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -5628,7 +5628,7 @@ namespace draw2d
          if (m_pgraphics != nullptr)
          {
             m_iSavedDC = m_pgraphics->SaveDC();
-            m_matrixViewport = pgraphics->m_matrixViewport;
+            m_matrixImpactport = pgraphics->m_matrixImpactport;
             m_matrixTransform = pgraphics->m_matrixTransform;
          }
       }
@@ -5644,7 +5644,7 @@ namespace draw2d
          if (m_pgraphics != nullptr)
          {
             m_pgraphics->RestoreDC(m_iSavedDC);
-            m_pgraphics->m_matrixViewport = m_matrixViewport;
+            m_pgraphics->m_matrixImpactport = m_matrixImpactport;
             m_pgraphics->m_matrixTransform = m_matrixTransform;
          }
       }
@@ -5696,21 +5696,21 @@ namespace draw2d
    void graphics::update_matrix()
    {
 
-      matrix matrixViewport;
+      matrix matrixImpactport;
 
-      matrix matrixViewportScale;
+      matrix matrixImpactportScale;
 
-      matrix matrixViewportTranslate;
+      matrix matrixImpactportTranslate;
 
-      matrixViewportScale.a1 = m_matrixViewport.a1;
+      matrixImpactportScale.a1 = m_matrixImpactport.a1;
 
-      matrixViewportScale.b2 = m_matrixViewport.b2;
+      matrixImpactportScale.b2 = m_matrixImpactport.b2;
 
-      matrixViewportTranslate.c1 = m_matrixViewport.c1;
+      matrixImpactportTranslate.c1 = m_matrixImpactport.c1;
 
-      matrixViewportTranslate.c2 = m_matrixViewport.c2;
+      matrixImpactportTranslate.c2 = m_matrixImpactport.c2;
 
-      matrix matrix = matrixViewportScale * m_matrixTransform * matrixViewportTranslate;
+      matrix matrix = matrixImpactportScale * m_matrixTransform * matrixImpactportTranslate;
 
       _set(matrix);
       //if (!_set(matrix))

@@ -158,7 +158,7 @@ namespace filemanager
    }
 
 
-   void operation_list_view::handle(::subject * psubject, ::context * pcontext)
+   void operation_list_view::handle(::topic * psubject, ::context * pcontext)
    {
 
       BASE::handle(psubject, pcontext);

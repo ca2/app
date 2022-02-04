@@ -1769,7 +1769,7 @@ a copy of this software and associated documentation files (the
 "Software"), to deal in the Software without restriction, including
 without limitation the rights to uxse, cxopy, mxodify, mxerge, pxublish,
 distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
+permit persons to whom the Software is furnished to do so, topic to
 the following conditions:
 
 The above copyright notice and this permission notice shall be
@@ -3013,7 +3013,7 @@ extern bool b_prevent_xdisplay_lock_log;
 //thread_int_ptr < iptr > t_iXim;
 
 
-//        XGenericEventCookie *cookie = (XGenericEventCookie*)&subject.xcookie;
+//        XGenericEventCookie *cookie = (XGenericEventCookie*)&topic.xcookie;
 //        XNextEvent(display, (XEvent*)&ev);
 //
 //        if (XGetEventData(display, cookie) &&

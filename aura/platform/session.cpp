@@ -1680,18 +1680,18 @@ namespace aura
 //   }
 
 
-   void session::set_bound_ui(::id idView, ::user::interaction * pinteraction)
+   void session::set_bound_ui(::id idImpact, ::user::interaction * pinteraction)
    {
 
-      m_mapboundui.set_at(idView, pinteraction);
+      m_mapboundui.set_at(idImpact, pinteraction);
 
    }
 
 
-   ::user::primitive * session::get_bound_ui(::id idView)
+   ::user::primitive * session::get_bound_ui(::id idImpact)
    {
 
-      auto p = m_mapboundui.plookup(idView);
+      auto p = m_mapboundui.plookup(idImpact);
 
       if (!p)
       {
@@ -2388,10 +2388,10 @@ namespace aura
    //void session::check_topic_file_change()
    //{
 
-   //   if (m_varCurrentViewFile != m_varTopicFile && !m_varTopicFile.is_empty())
+   //   if (m_varCurrentImpactFile != m_varTopicFile && !m_varTopicFile.is_empty())
    //   {
 
-   //      m_varCurrentViewFile = m_varTopicFile;
+   //      m_varCurrentImpactFile = m_varTopicFile;
 
    //      request_topic_file();
 
@@ -2422,7 +2422,7 @@ namespace aura
       if (m_applicationa.lookup(pszAppId, papp) && papp)
       {
 
-         //__pointer(::bergedge::pane_view) ppaneview = get_document()->get_typed_view < ::bergedge::pane_view >();
+         //__pointer(::bergedge::pane_view) ppaneview = get_document()->get_type_impact < ::bergedge::pane_view >();
 
          //if(ppaneview != nullptr)
          //{

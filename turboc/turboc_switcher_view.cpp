@@ -89,10 +89,10 @@ namespace turboc
 
 
 
-   void switcher_view::handle(::subject * psubject, ::context * pcontext)
+   void switcher_view::handle(::topic * psubject, ::context * pcontext)
    {
 
-      if(psubject->m_id == ::e_subject_click)
+      if(psubject->m_id == ::id_click)
       {
 
          if(psubject->user_element_id() == "switcher_toggle")

@@ -1,4 +1,5 @@
 // Injected in acme (camilo) from apex(thomas) by camilo on ThomasMonth19-2021 12:27 BRT
+// Changed to extended on 2022-02-04 18:08 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "acme/platform/object_reference_count_debug.h"
 #include "acme/user/check.h"
@@ -6,7 +7,8 @@
 #include "acme/user/element.h"
 
 
-subject::subject(const ::id & id) :
+extended_topic::extended_topic(enum_topic etopic, const ::id & id) :
+   ::topic(etopic),
    ::material_object(id),
    ::property_object(id),
    ::object(id)
@@ -14,15 +16,13 @@ subject::subject(const ::id & id) :
 
    m_bOk = true;
    m_bRet = false;
-   //m_puserelement = nullptr;
    m_ptab = nullptr;
-   m_esubject = e_subject_handle;
    m_bRet = false;
 
 }
 
 
-subject::~subject()
+extended_topic::~extended_topic()
 {
 
    m_pmatter.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS_FUNCTION_LINE);
@@ -34,7 +34,7 @@ subject::~subject()
 #ifdef _DEBUG
 
 
-i64 subject::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+i64 extended_topic::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 {
 
 return ::property_object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -42,7 +42,7 @@ return ::property_object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG
 }
 
 
-i64 subject::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+i64 extended_topic::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 {
 
 return ::property_object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -50,7 +50,7 @@ return ::property_object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG
 }
 
 
-i64 subject::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+i64 extended_topic::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 {
 
 return ::property_object::release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -70,7 +70,7 @@ return ::property_object::release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 {
 
 
-subject::subject()
+extended_topic::extended_topic()
 {
 
    m_bOk = true;
@@ -84,13 +84,13 @@ subject::subject()
 }
 
 
-subject::~subject()
+extended_topic::~extended_topic()
 {
 
 }*/
 
 
-::user::form * subject::get_form()
+::user::form * extended_topic::get_form()
 {
 
    auto puserelement = m_puserelement;
@@ -107,7 +107,7 @@ subject::~subject()
 }
 
 
-::user::form * subject::get_parent_form()
+::user::form * extended_topic::get_parent_form()
 {
 
    auto puserelement = m_puserelement;
@@ -124,7 +124,7 @@ subject::~subject()
 }
 
 
-::user::interaction * subject::user_interaction()
+::user::interaction * extended_topic::user_interaction()
 {
 
    if (::is_null(m_puserelement))
@@ -139,7 +139,7 @@ subject::~subject()
 }
 
 
-void subject::Nok()
+void extended_topic::Nok()
 {
 
    m_bOk = false;
@@ -148,14 +148,14 @@ void subject::Nok()
 
 }
 
-void subject::Ret()
+void extended_topic::Ret()
 {
 
    m_bRet = true;
 
 }
 
-void subject::Ok()
+void extended_topic::Ok()
 {
 
    m_bOk = true;
@@ -165,7 +165,7 @@ void subject::Ok()
 }
 
 
-::id subject::user_element_id() const
+::id extended_topic::user_element_id() const
 {
 
    if (::is_null(m_puserelement))
@@ -180,14 +180,14 @@ void subject::Ok()
 }
 
 
-//impact * subject::get_view()
+//impact * extended_topic::get_view()
 //{
 
 //   return dynamic_cast <::user::impact *> (m_puserinteraction);
 
 //}
 
-//document * subject::get_document()
+//document * extended_topic::get_document()
 //{
 
 //   impact * pimpact = get_view();
@@ -199,7 +199,7 @@ void subject::Ok()
 
 //}
 
-//impact_system * subject::get_impact_system()
+//impact_system * extended_topic::get_impact_system()
 //{
 
 //   document * pdocument = get_document();
@@ -211,7 +211,7 @@ void subject::Ok()
 
 //}
 
-//string subject::get_impact_matter()
+//string extended_topic::get_impact_matter()
 //{
 
 //   impact_system * psystem = get_impact_system();
@@ -224,7 +224,7 @@ void subject::Ok()
 //}
 
 
-//} // namespace subject
+//} // namespace extended_topic
 
 
 

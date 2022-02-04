@@ -183,7 +183,7 @@ namespace helloworld
    }
 
 
-   void impact::handle(::subject * psubject, ::context * pcontext)
+   void impact::handle(::topic * psubject, ::context * pcontext)
    {
 
       impact_base::handle(psubject, pcontext);

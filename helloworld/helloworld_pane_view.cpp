@@ -299,13 +299,13 @@ namespace helloworld
    }
 
 
-   void pane_view::handle(::subject * psubject, ::context * pcontext)
+   void pane_view::handle(::topic * psubject, ::context * pcontext)
    {
 
       if(m_pdocMenu != nullptr && dynamic_cast < ::user::impact * > (pview) == m_pdocMenu->get_view(0) && psubject->user_interaction() != nullptr)
       {
 
-         if(psubject->m_id == ::e_subject_after_change_text)
+         if(psubject->m_id == ::id_after_change_text)
          {
 
             if(m_prollfps != nullptr && psubject->user_element_id() == "roll_fps" && !psubject->m_context.is_source(::e_source_initialize)
@@ -383,7 +383,7 @@ namespace helloworld
 
 
          }
-         else if (psubject->m_id == ::e_subject_set_check && psubject->user_interaction() != nullptr)
+         else if (psubject->m_id == ::id_set_check && psubject->user_interaction() != nullptr)
          {
 
             string strCheck = psubject->user_element_id();
@@ -506,7 +506,7 @@ namespace helloworld
    }
 
 
-   void pane_view::handle(::subject * psubject, ::context * pcontext)
+   void pane_view::handle(::topic * psubject, ::context * pcontext)
    {
 
       ::update * pupdate = dynamic_cast <::update *> (pupdate);
@@ -519,7 +519,7 @@ namespace helloworld
                && m_pviewLast != nullptr)
          {
 
-            if(pupdate->m_pusercontrolevent->m_eevent == ::e_subject_after_change_cur_sel)
+            if(pupdate->m_pusercontrolevent->m_eevent == ::id_after_change_cur_sel)
             {
 
                string strFont = m_pfontview->m_pimpact->get_cur_sel_face_name();
@@ -536,7 +536,7 @@ namespace helloworld
                }
 
             }
-            else if (pupdate->m_pusercontrolevent->m_eevent == ::e_subject_after_change_cur_hover)
+            else if (pupdate->m_pusercontrolevent->m_eevent == ::id_after_change_cur_hover)
             {
 
                string strFont = m_pfontview->m_pimpact->get_cur_hover_face_name();

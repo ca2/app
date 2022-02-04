@@ -484,10 +484,10 @@ namespace aura
    }
 
 
-   void theme::handle_file_action(::file::action* psubject)
+   void theme::handle_file_action(::file::action* ptopic)
    {
 
-      //if (psubject->m_pathFile.ends_ci("weather_state.txt"))
+      //if (ptopic->m_pathFile.ends_ci("weather_state.txt"))
       //{
 
       //   (*m_prunnerChangeWeatherState)(::duration(300), [this]()

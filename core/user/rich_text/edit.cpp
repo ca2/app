@@ -469,7 +469,7 @@ namespace user
       }
 
 
-      void edit::handle(::subject * psubject, ::context * pcontext)
+      void edit::handle(::topic * psubject, ::context * pcontext)
       {
 
          return ::user::interaction::handle(psubject, pcontext);
@@ -515,19 +515,19 @@ namespace user
 
          {
 
-            ::subject subject;
+            ::topic topic;
 
-            subject.m_puserelement = this;
+            topic.m_puserelement = this;
 
-            subject.m_id = ::e_subject_key_down;
+            topic.m_id = ::id_key_down;
 
-            subject.m_actioncontext.m_pmessage = pmessage;
+            topic.m_actioncontext.m_pmessage = pmessage;
 
-            subject.m_actioncontext = ::e_source_user;
+            topic.m_actioncontext = ::e_source_user;
 
-            route(&subject);
+            route(&topic);
 
-            if (subject.m_bRet)
+            if (topic.m_bRet)
             {
 
                return;
@@ -577,17 +577,17 @@ namespace user
          else if (pkey->m_ekey == ::user::e_key_escape)
          {
 
-            ::subject subject;
+            ::topic topic;
 
-            subject.m_puserelement = this;
+            topic.m_puserelement = this;
 
-            subject.m_id = ::e_subject_escape;
+            topic.m_id = ::id_escape;
 
-            subject.m_actioncontext = ::e_source_user;
+            topic.m_actioncontext = ::e_source_user;
 
-            route(&subject);
+            route(&topic);
 
-            if (!subject.m_bRet && subject.m_bOk)
+            if (!topic.m_bRet && topic.m_bOk)
             {
 
                on_action("escape");
@@ -814,7 +814,7 @@ namespace user
       }
 
 
-      void edit::on_after_change(::enum_subject esubject)
+      void edit::on_after_change(::enum_topic etopic)
       {
 
       }

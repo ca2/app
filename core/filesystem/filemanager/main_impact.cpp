@@ -179,7 +179,7 @@ namespace filemanager
    }
 
 
-   void main_impact::handle(::subject * psubject, ::context * pcontext)
+   void main_impact::handle(::topic * psubject, ::context * pcontext)
    {
 
       ::filemanager_impact_base::handle(psubject, pcontext);
@@ -209,7 +209,7 @@ namespace filemanager
 
             get_parent_frame()->ActivateFrame(e_display_normal);
 
-            OnActivateView(true, this, this);
+            OnActivateImpact(true, this, this);
 
             set_need_redraw();
 

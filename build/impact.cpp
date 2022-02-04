@@ -41,7 +41,7 @@ namespace app_core_build
 #endif //_DEBUG
 
 
-   void impact::handle(::subject* psubject, ::context* pcontext)
+   void impact::handle(::topic* psubject, ::context* pcontext)
    {
 
       ::user::impact::handle(psubject, pcontext);

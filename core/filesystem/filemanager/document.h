@@ -106,7 +106,7 @@ namespace filemanager
       virtual void OnFileManagerBrowse(const ::action_context & action_context);
       virtual void OpenSelectionProperties();
 
-      virtual void GetActiveViewSelection(::file::item_array & itema);
+      virtual void GetActiveImpactSelection(::file::item_array & itema);
 
 
       virtual void FileManagerSaveAs(::user::document * pdocument);
@@ -134,8 +134,8 @@ namespace filemanager
 
       virtual bool HandleDefaultFileManagerItemCmdMsg(::message::command * pcommand,::file::item_array & itema);
 
-      void PopViews();
-      void CreateViews();
+      void PopImpacts();
+      void CreateImpacts();
       void OpenFolder(::file::item * item, const ::action_context & action_context);
       void filemanager_initialize(bool bMakeVisible, bool bInitialBrowsePath = true);
       void filemanager_initialize(bool bMakeVisible, const ::file::path & path);

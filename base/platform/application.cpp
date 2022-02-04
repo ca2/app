@@ -136,7 +136,7 @@ namespace base
    }
 
 
-   __pointer(::user::document) application::defer_create_view(string strView, ::user::interaction* puiParent, ewindowflag ewindowflag, const ::id& id)
+   __pointer(::user::document) application::defer_create_view(string strImpact, ::user::interaction* puiParent, ewindowflag ewindowflag, const ::id& id)
    {
 
       return nullptr;

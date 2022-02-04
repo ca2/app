@@ -23,7 +23,7 @@ namespace base
       //__composite(::user::shell)                    m_pshell;
 
       //::type                                        m_typeHtmlDocument;
-      //::type                                        m_typeHtmlView;
+      //::type                                        m_typeHtmlImpact;
 
       __composite(::user::menu_central)               m_pmenucentral;
 
@@ -61,7 +61,7 @@ namespace base
 
   
       inline ::type get_html_document_type() { return m_typeHtmlDocument; }
-      inline ::type get_html_view_type() { return m_typeHtmlView; }
+      inline ::type get_html_view_type() { return m_typeHtmlImpact; }
 
       virtual ::type user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype);
 

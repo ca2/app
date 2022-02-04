@@ -247,7 +247,7 @@ namespace filemanager
          }
 
 
-         void list_view::handle(::subject * psubject, ::context * pcontext)
+         void list_view::handle(::topic * psubject, ::context * pcontext)
          {
 
             simple_list_view::handle(psubject, pcontext);

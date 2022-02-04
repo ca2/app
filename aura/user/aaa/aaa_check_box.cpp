@@ -52,17 +52,17 @@ namespace user
 
          check::_001SetCheck(echeck, context);
 
-         ::subject subject;
+         ::topic topic;
 
-         subject.m_puserinteraction = this;
+         topic.m_puserinteraction = this;
 
-         //subject.m_id = m_id;
+         //topic.m_id = m_id;
 
-         subject.m_id = ::e_subject_set_check;
+         topic.m_id = ::id_set_check;
 
-         subject.m_actioncontext = context;
+         topic.m_actioncontext = context;
 
-         route(&subject);
+         route(&topic);
 
          set_need_redraw();
 
@@ -629,7 +629,7 @@ namespace user
    }
 
 
-   void check_box::handle(::subject * psubject, ::context * pcontext)
+   void check_box::handle(::topic * psubject, ::context * pcontext)
    {
 
       interaction::handle(psubject, pcontext);

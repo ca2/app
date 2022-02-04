@@ -210,17 +210,23 @@
     <Filter Include="Source Files\node\operating_system\windows_common">
       <UniqueIdentifier>{b94bd312-2829-4680-a780-b95f8c3c91dc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\subject">
-      <UniqueIdentifier>{8c14af4a-58b5-448e-98d3-17f2a2ec8244}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\subject">
-      <UniqueIdentifier>{9de9273b-1c23-4a67-a244-075fc3af4d01}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\platform\parallelization">
       <UniqueIdentifier>{f5fb0b8d-82f2-4a87-b245-1747ef8e70a3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\constant">
       <UniqueIdentifier>{f8ac833f-c335-48be-81bf-1c8408752720}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\topic">
+      <UniqueIdentifier>{9de9273b-1c23-4a67-a244-075fc3af4d01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\topic">
+      <UniqueIdentifier>{8c14af4a-58b5-448e-98d3-17f2a2ec8244}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\topic\NewFilter1">
+      <UniqueIdentifier>{4f1d0a2b-d52d-4b65-89f2-433210095582}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\topic\NewFilter2">
+      <UniqueIdentifier>{1f173ac5-75e1-4ae9-affc-45e529c3c63a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1163,36 +1169,6 @@
     <ClInclude Include="node\operating_system\windows\_.h">
       <Filter>Header Files\node\operating_system\windows</Filter>
     </ClInclude>
-    <ClInclude Include="subject\_.h">
-      <Filter>Header Files\subject</Filter>
-    </ClInclude>
-    <ClInclude Include="subject\_impl.h">
-      <Filter>Header Files\subject</Filter>
-    </ClInclude>
-    <ClInclude Include="subject\aaa_handler.h">
-      <Filter>Header Files\subject</Filter>
-    </ClInclude>
-    <ClInclude Include="subject\context.h">
-      <Filter>Header Files\subject</Filter>
-    </ClInclude>
-    <ClInclude Include="subject\manager.h">
-      <Filter>Header Files\subject</Filter>
-    </ClInclude>
-    <ClInclude Include="subject\predicate.h">
-      <Filter>Header Files\subject</Filter>
-    </ClInclude>
-    <ClInclude Include="subject\promise.h">
-      <Filter>Header Files\subject</Filter>
-    </ClInclude>
-    <ClInclude Include="subject\promise1.h">
-      <Filter>Header Files\subject</Filter>
-    </ClInclude>
-    <ClInclude Include="subject\signal.h">
-      <Filter>Header Files\subject</Filter>
-    </ClInclude>
-    <ClInclude Include="subject\source.h">
-      <Filter>Header Files\subject</Filter>
-    </ClInclude>
     <ClInclude Include="platform\thread_set.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
@@ -1207,6 +1183,33 @@
     </ClInclude>
     <ClInclude Include="application.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="topic\_.h">
+      <Filter>Header Files\topic</Filter>
+    </ClInclude>
+    <ClInclude Include="topic\_impl.h">
+      <Filter>Header Files\topic</Filter>
+    </ClInclude>
+    <ClInclude Include="topic\context.h">
+      <Filter>Header Files\topic</Filter>
+    </ClInclude>
+    <ClInclude Include="topic\manager.h">
+      <Filter>Header Files\topic</Filter>
+    </ClInclude>
+    <ClInclude Include="topic\predicate.h">
+      <Filter>Header Files\topic</Filter>
+    </ClInclude>
+    <ClInclude Include="topic\promise.h">
+      <Filter>Header Files\topic</Filter>
+    </ClInclude>
+    <ClInclude Include="topic\promise1.h">
+      <Filter>Header Files\topic</Filter>
+    </ClInclude>
+    <ClInclude Include="topic\signal.h">
+      <Filter>Header Files\topic</Filter>
+    </ClInclude>
+    <ClInclude Include="topic\source.h">
+      <Filter>Header Files\topic</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1765,30 +1768,6 @@
     <ClCompile Include="platform\interprocess_intercommunication.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="subject\context.cpp">
-      <Filter>Source Files\subject</Filter>
-    </ClCompile>
-    <ClCompile Include="subject\handler.cpp">
-      <Filter>Source Files\subject</Filter>
-    </ClCompile>
-    <ClCompile Include="subject\manager.cpp">
-      <Filter>Source Files\subject</Filter>
-    </ClCompile>
-    <ClCompile Include="subject\process.cpp">
-      <Filter>Source Files\subject</Filter>
-    </ClCompile>
-    <ClCompile Include="subject\promise.cpp">
-      <Filter>Source Files\subject</Filter>
-    </ClCompile>
-    <ClCompile Include="subject\routine.cpp">
-      <Filter>Source Files\subject</Filter>
-    </ClCompile>
-    <ClCompile Include="subject\signal.cpp">
-      <Filter>Source Files\subject</Filter>
-    </ClCompile>
-    <ClCompile Include="subject\source.cpp">
-      <Filter>Source Files\subject</Filter>
-    </ClCompile>
     <ClCompile Include="message\dispatcher.cpp">
       <Filter>Source Files\message</Filter>
     </ClCompile>
@@ -1803,6 +1782,30 @@
     </ClCompile>
     <ClCompile Include="platform\api_client.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="topic\context.cpp">
+      <Filter>Source Files\topic</Filter>
+    </ClCompile>
+    <ClCompile Include="topic\handler.cpp">
+      <Filter>Source Files\topic</Filter>
+    </ClCompile>
+    <ClCompile Include="topic\manager.cpp">
+      <Filter>Source Files\topic</Filter>
+    </ClCompile>
+    <ClCompile Include="topic\process.cpp">
+      <Filter>Source Files\topic</Filter>
+    </ClCompile>
+    <ClCompile Include="topic\promise.cpp">
+      <Filter>Source Files\topic</Filter>
+    </ClCompile>
+    <ClCompile Include="topic\routine.cpp">
+      <Filter>Source Files\topic</Filter>
+    </ClCompile>
+    <ClCompile Include="topic\signal.cpp">
+      <Filter>Source Files\topic</Filter>
+    </ClCompile>
+    <ClCompile Include="topic\source.cpp">
+      <Filter>Source Files\topic</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

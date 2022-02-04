@@ -112,7 +112,7 @@ namespace filemanager
 
       void RenameFile(i32 iLine, string & str, const ::action_context & action_context);
 
-      virtual void handle(::subject * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * psubject, ::context * pcontext) override;
 
 
       DECLARE_MESSAGE_HANDLER(on_message_context_menu);

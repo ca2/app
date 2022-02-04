@@ -116,7 +116,7 @@ namespace user
    }
 
 
-   void text::_001GetViewSel(strsize & iBeg, strsize & iEnd) const
+   void text::_001GetImpactSel(strsize & iBeg, strsize & iEnd) const
    {
 
       __UNREFERENCED_PARAMETER(iBeg);

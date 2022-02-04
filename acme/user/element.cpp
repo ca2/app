@@ -3158,7 +3158,7 @@ namespace user
    //}
 
 
-   void element::handle(::subject * psubject, ::context * pcontext)
+   void element::handle(::topic * psubject, ::context * pcontext)
    {
 
 
@@ -4017,7 +4017,7 @@ namespace user
    }
 
 
-   //void element::route(::subject * psubject, ::context * pcontext)
+   //void element::route(::topic * psubject, ::context * pcontext)
    //{
 
    //   handle(psubject, pcontext);

@@ -231,7 +231,7 @@ namespace user
    }
 
 
-   void default_message_box::handle(::subject * psubject, ::context * pcontext)
+   void default_message_box::handle(::topic * psubject, ::context * pcontext)
    {
 
       if (psubject->id() == id_user_style_change)
@@ -242,7 +242,7 @@ namespace user
          invalidate();
 
       }
-      else if (psubject->m_id == ::e_subject_click)
+      else if (psubject->m_id == ::id_click)
       {
 
          m_idResult = psubject->m_puserelement->m_id;
@@ -456,10 +456,10 @@ namespace user
 
 
    ////bool default_message_box::process_event(Display * pdisplay, XEvent & e, XGenericEventCookie * cookie)
-   //void default_message_box::handle(::subject * psubject, ::context * pcontext)
+   //void default_message_box::handle(::topic * psubject, ::context * pcontext)
    //{
 
-   //   if (psubject->m_id == ::e_subject_click)
+   //   if (psubject->m_id == ::id_click)
    //   {
 
    //      m_edialogresult = (enum_dialog_result) psubject->m_puserelement->m_id.i64();

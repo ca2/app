@@ -143,7 +143,7 @@ namespace user
       virtual void on_user_style_change();
 
 
-      void handle(::subject * psubject, ::context * pcontext) override;
+      void handle(::topic * psubject, ::context * pcontext) override;
 
 
       void display_previous_restore() override;
@@ -177,7 +177,7 @@ namespace user
 
 
       virtual ::user::interaction * get_active_view() const;
-      virtual void set_active_view(::user::impact * pViewNew, bool bNotify = true);
+      virtual void set_active_view(::user::impact * pImpactNew, bool bNotify = true);
 
       virtual void ActivateFrame(::e_display edisplay = e_display_undefined);
 

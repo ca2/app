@@ -96,7 +96,7 @@ enum enum_library_main
 };
 
 
-#include "subject.h"
+//#include "topic.h"
 
 
 enum enum_dialog_result

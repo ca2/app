@@ -7,7 +7,7 @@
 //CLASS_DECL_ACME ::duration os_get_system_update_poll_time(const ::id & id);
 
 
-//namespace subject
+//namespace topic
 //{
 
 
@@ -18,35 +18,35 @@
    using matter_context = map < ::matter_pointer, ::context_pointer >;
 
 
-//} // namespace subject
+//} // namespace topic
 
 
 
 
 
 //
-//#include "apex/subject/item.h"
+//#include "apex/topic/item.h"
 //
 //
-//#include "apex/subject/subject.h"
+//#include "apex/topic/topic.h"
 
 
-#include "apex/subject/signal.h"
+#include "apex/topic/signal.h"
 
 
-#include "apex/subject/context.h"
+#include "apex/topic/context.h"
 
 
-#include "apex/subject/manager.h"
+#include "apex/topic/manager.h"
 
 
-#include "apex/subject/promise.h"
+#include "apex/topic/promise.h"
 
 
-#include "apex/subject/predicate.h"
+#include "apex/topic/predicate.h"
 
 
-#include "apex/subject/source.h"
+#include "apex/topic/source.h"
 
 
 

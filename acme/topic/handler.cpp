@@ -7,35 +7,26 @@
 #include "framework.h"
 
 
-CLASS_DECL_ACME void __call(handler * phandler, const ::id & id, i64 iData, ::matter * pmatter)
+CLASS_DECL_ACME void __call(handler * phandler, enum_topic etopic, const ::id & id, i64 iData, ::matter * pmatter)
 {
 
-   ::subject subject(id);
+   ::extended_topic topic(etopic, id);
 
    if (iData != 0)
    {
 
-      subject.m_payload = iData;
+      topic.m_payload = iData;
 
    }
 
    if (pmatter != nullptr)
    {
 
-      subject.m_pmatter = pmatter;
+      topic.m_pmatter = pmatter;
 
    }
 
-   phandler->handle(&subject, nullptr);
-
-   //if (!subject.m_estatus)
-   //{
-
-   //   //return subject.m_estatus;
-
-   //}
-
-   //return subject.m_estatus;
+   phandler->handle(&topic, nullptr);
 
 }
 
@@ -43,7 +34,7 @@ CLASS_DECL_ACME void __call(handler * phandler, const ::id & id, i64 iData, ::ma
 void handler::call(enum_message emessage, i64 iData, ::matter * pmatter)
 {
 
-   return __call(this, emessage, iData, pmatter);
+   return __call(this, id_call_message, emessage, iData, pmatter);
 
 }
 
@@ -51,7 +42,7 @@ void handler::call(enum_message emessage, i64 iData, ::matter * pmatter)
 void handler::call(enum_id eid, i64 iData, ::matter * pmatter)
 {
 
-   return __call(this, eid, iData, pmatter);
+   return __call(this, id_trigger_id, eid, iData, pmatter);
 
 }
 

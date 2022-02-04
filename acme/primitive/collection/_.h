@@ -10,7 +10,7 @@ inline ::count __iterable_count(const ITERABLE & iterable);
 //
 //
 //template < typename T >
-//inline ::count __iterable_count(::winrt::Windows::Foundation::Collections::IVectorView < T > ^ a)
+//inline ::count __iterable_count(::winrt::Windows::Foundation::Collections::IVectorImpact < T > ^ a)
 //{
 //
 //   return a.Size;

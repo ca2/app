@@ -75,7 +75,7 @@ namespace userex
    }
 
 
-   void font_view::handle(::subject * psubject, ::context * pcontext)
+   void font_view::handle(::topic * psubject, ::context * pcontext)
    {
 
       ::user::split_view::handle(psubject, pcontext);
@@ -100,7 +100,7 @@ namespace userex
       else if (psubject->user_element_id() == impact_font_sel)
       {
 
-         if (psubject->m_id == ::e_subject_after_change_cur_sel)
+         if (psubject->m_id == ::id_after_change_cur_sel)
          {
 
             if (m_bSourceFontSel)
@@ -228,7 +228,7 @@ namespace userex
    }
 
 
-   //void font_view::handle(::subject * psubject, ::context * pcontext)
+   //void font_view::handle(::topic * psubject, ::context * pcontext)
    //{
 
    //   ::user::impact::handle(psubject, pcontext);
@@ -236,7 +236,7 @@ namespace userex
    //   if (psubject->m_puserelement->m_id == impact_font_sel)
    //   {
 
-   //      if (psubject->m_id == ::e_subject_after_change_cur_sel)
+   //      if (psubject->m_id == ::id_after_change_cur_sel)
    //      {
 
    //         if (m_bSourceFontSel)

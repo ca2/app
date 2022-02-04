@@ -157,7 +157,7 @@ namespace userfs
    }
 
 
-   void list::handle(::subject * psubject, ::context * pcontext)
+   void list::handle(::topic * psubject, ::context * pcontext)
    {
 
 

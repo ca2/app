@@ -139,7 +139,7 @@ namespace user
    //   if (hit_test(pmouse->)
    //   {
 
-   //      if (!simple_process_system_message(pmessage, ::e_subject_button_down))
+   //      if (!simple_process_system_message(pmessage, ::id_button_down))
    //      {
 
    //         psession->m_puiLastLButtonDown = this;
@@ -169,7 +169,7 @@ namespace user
    //   if (hit_test(point, eelement) >= 0)
    //   {
 
-   //      if (!simple_process_system_message(pmessage, ::e_subject_m_button_down))
+   //      if (!simple_process_system_message(pmessage, ::id_m_button_down))
    //      {
 
    //         //psession->m_puiLastLButtonDown = this;
@@ -199,7 +199,7 @@ namespace user
    //   if (hit_test(point, eelement) >= 0)
    //   {
 
-   //      if (!simple_process_system_message(pmessage, ::e_subject_m_button_up))
+   //      if (!simple_process_system_message(pmessage, ::id_m_button_up))
    //      {
 
    //         //psession->m_puiLastLButtonDown = this;
@@ -246,15 +246,15 @@ namespace user
    //   //   else
    //   //   {
 
-   //   //      ::subject subject;
+   //   //      ::topic topic;
 
-   //   //      subject.m_puserinteraction = this;
+   //   //      topic.m_puserinteraction = this;
 
-   //   //      subject.m_id = ::e_subject_click;
+   //   //      topic.m_id = ::id_click;
 
-   //   //      route(&subject);
+   //   //      route(&topic);
 
-   //   //      pmessage->m_bRet = subject.m_bRet;
+   //   //      pmessage->m_bRet = topic.m_bRet;
 
    //   //      if (!pmessage->m_bRet)
    //   //      {
@@ -309,18 +309,18 @@ namespace user
 
    //   //   if (iOldHover == -1)
    //   //   {
-   //   //      ::subject subject;
-   //   //      subject.m_puserinteraction = this;
-   //   //      subject.m_id = ::e_subject_mouse_enter;
+   //   //      ::topic topic;
+   //   //      topic.m_puserinteraction = this;
+   //   //      topic.m_id = ::id_mouse_enter;
    //   //      get_parent()->send_message(
    //   //      e_message_event, 0, (LPARAM)&ev);
    //   //      //               m_bActionHover = true;
    //   //   }
    //   //   else if (iHover == -1)
    //   //   {
-   //   //      ::subject subject;
-   //   //      subject.m_puserinteraction = this;
-   //   //      subject.m_id = ::e_subject_mouse_leave;
+   //   //      ::topic topic;
+   //   //      topic.m_puserinteraction = this;
+   //   //      topic.m_id = ::id_mouse_leave;
    //   //      get_parent()->send_message(
    //   //      e_message_event, 0, (LPARAM)&ev);
    //   //      //             m_bActionHover = false;
@@ -340,9 +340,9 @@ namespace user
    //   //if (iOldHover >= 0)
    //   //{
    //   //   set_need_redraw();
-   //   //   ::subject subject;
-   //   //   subject.m_puserinteraction = this;
-   //   //   subject.m_id = ::e_subject_mouse_leave;
+   //   //   ::topic topic;
+   //   //   topic.m_puserinteraction = this;
+   //   //   topic.m_id = ::id_mouse_leave;
    //   //   if (get_parent() != nullptr)
    //   //   {
    //   //      get_parent()->send_message(e_message_event, 0, (LPARAM)&ev);
@@ -780,19 +780,19 @@ namespace user
       if (iKey == ::user::e_key_return || iKey == ::user::e_key_space)
       {
 
-         ::subject subject;
+         ::topic topic;
 
-         subject.m_puserelement = this;
+         topic.m_puserelement = this;
 
-         subject.m_id = ::e_subject_click;
+         topic.m_id = ::id_click;
 
-         subject.m_actioncontext.m_pmessage = pmessage;
+         topic.m_actioncontext.m_pmessage = pmessage;
 
-         subject.m_actioncontext.add(e_source_user);
+         topic.m_actioncontext.add(e_source_user);
 
-         route(&subject);
+         route(&topic);
 
-         pmessage->m_bRet = subject.m_bRet;
+         pmessage->m_bRet = topic.m_bRet;
 
          if (pmessage->m_bRet)
          {

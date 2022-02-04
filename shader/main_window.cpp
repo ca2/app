@@ -78,7 +78,7 @@ namespace app_shader
 
       {
 
-         add_user_item({ ::e_element_switch_button, ::e_subject_close_app });
+         add_user_item({ ::e_element_switch_button, ::id_close_app });
 
          auto pitem = get_user_item(::e_element_switch_button);
 
@@ -128,7 +128,7 @@ namespace app_shader
    }
 
 
-   void main_window::handle(::subject * psubject, ::context * pcontext)
+   void main_window::handle(::topic * psubject, ::context * pcontext)
    {
 
       if (psubject->id() == id_simple_checkbox || psubject->id() == id_no_client_frame)

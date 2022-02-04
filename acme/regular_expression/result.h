@@ -8,7 +8,7 @@ namespace regular_expression
 {
 
 
-   class CLASS_DECL_ACME topic :
+   class CLASS_DECL_ACME result :
       virtual public matter
    {
    public:
@@ -21,11 +21,11 @@ namespace regular_expression
       ::str::range_array               m_rangea;
 
 
-      topic();
-      virtual ~topic();
+      result();
+      ~result() override;
 
 
-      virtual void create(const ::string & strExpression);
+      //virtual void compile(const ::string & strExpression);
 
 
       virtual ::count get_count() const;

@@ -321,10 +321,8 @@ public:
 
    }
 
-   virtual ::subject_pointer create_subject(const ::id & id);
-   //virtual ::user::primitive* get_user_interaction_host();
-   //virtual ::user::interaction * get_host_window();
 
+   virtual ::extended_topic_pointer create_extended_topic(const ::id & id);
 
    virtual void dev_log(string str);
 
@@ -610,7 +608,7 @@ public:
    //inline auto new_predicateicate_thread(PRED pred);
 
    template < typename TYPE >
-   inline __pointer(task) branch_task(void (TYPE::* pfnMemberProcedure)(),
+   inline __pointer(task) branch_procedure(void (TYPE::* pfnMemberProcedure)(),
       ::enum_priority epriority = e_priority_normal,
       ::u32 nStackSize = 0,
       ::u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF)
@@ -632,14 +630,14 @@ public:
    }
 
 
-   __pointer(::task) branch_task(element* pelement,
+   __pointer(::task) branch_element(element* pelement,
       ::enum_priority epriority = e_priority_normal,
       ::u32 nStackSize = 0,
       ::u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
 
 
-   template < typename PRED >
-   inline ::task_pointer predicate_run(bool bSync, PRED pred);
+   template < typename PREDICATE >
+   inline ::task_pointer predicate_run(bool bSync, PREDICATE pred);
 
    //using property_object::branch;
 
@@ -1114,7 +1112,7 @@ public:
    //void single_fork(const ::routine_array& routinea);
    //void multiple_fork(const ::routine_array& routinea);
 
-   //using subject::manager::defer_fork;
+   //using topic::manager::defer_fork;
 
    //template < typename THREAD >
    //inline __pointer(THREAD)& defer_fork(__pointer(THREAD)& pthread, const ::routine& routine)

@@ -16,20 +16,20 @@ namespace filemanager
    }
 
 
-   void form::handle(::subject * psubject, ::context * pcontext)
+   void form::handle(::topic * psubject, ::context * pcontext)
    {
 
-      if(psubject->m_id == ::e_subject_click)
+      if(psubject->m_id == ::id_click)
       {
 
          if(psubject->user_interaction()->m_id == "lfs")
          {
 
-            ::subject subject(BROWSE_ID);
+            ::topic topic(BROWSE_ID);
 
-            subject.payload(id_form) = "filemanager_add_location_lfs.xhtml";
+            topic.payload(id_form) = "filemanager_add_location_lfs.xhtml";
 
-            get_document()->update_all_views(&subject);
+            get_document()->update_all_views(&topic);
 
             auto pinteraction = get_child_by_name("lfs");
 
@@ -39,11 +39,11 @@ namespace filemanager
          else if(psubject->user_interaction()->m_id == "ftp")
          {
 
-            ::subject subject(id_browse);
+            ::topic topic(id_browse);
 
-            subject.payload(id_form) = "filemanager_add_location_ftp.xhtml";
+            topic.payload(id_form) = "filemanager_add_location_ftp.xhtml";
 
-            get_document()->update_all_views(&subject);
+            get_document()->update_all_views(&topic);
 
          }
          else if(psubject->user_interaction()->m_id == "submit")
@@ -74,33 +74,33 @@ namespace filemanager
             else if(m_idCreator == "replace_name")
             {
 
-               ::subject subject(id_replace_name);
+               ::topic topic(id_replace_name);
 
                auto pinteraction = get_child_by_name("find");
 
-               pinteraction->_001GetText(subject.payload(id_find).as_string());
+               pinteraction->_001GetText(topic.payload(id_find).as_string());
 
                pinteraction = get_child_by_name("replace");
 
-               pinteraction->_001GetText(subject.payload(id_replace).as_string());
+               pinteraction->_001GetText(topic.payload(id_replace).as_string());
 
                auto pdocument =  filemanager_document();
 
-               pdocument->update_all_views(&subject);
+               pdocument->update_all_views(&topic);
 
             }
             else if (m_idCreator == "new_folder")
             {
                
-               ::subject subject(id_new_folder);
+               ::topic topic(id_new_folder);
 
                auto pinteraction = get_child_by_name("name");
 
-               pinteraction->_001GetText(subject.payload(id_text).as_string());
+               pinteraction->_001GetText(topic.payload(id_text).as_string());
 
                auto pdocument = filemanager_document();
 
-               pdocument->update_all_views(&subject);
+               pdocument->update_all_views(&topic);
 
             }
 

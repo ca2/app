@@ -112,12 +112,12 @@ namespace user
 
          m_bLButtonDown = false;
 
-         ::subject subject;
-         subject.m_puserelement = this;
-         subject.m_id = ::e_subject_click;
-         subject.m_actioncontext = ::e_source_user;
+         ::topic topic;
+         topic.m_puserelement = this;
+         topic.m_id = ::id_click;
+         topic.m_actioncontext = ::e_source_user;
 
-         route(&subject);
+         route(&topic);
 
       }
 

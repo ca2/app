@@ -2358,7 +2358,7 @@ size_t engine_symbol(char * sz, int n, DWORD_PTR * pdisplacement, DWORD_PTR dwAd
 //}
 
 
-void thread::begin_thread(bool bSynchInitialization, ::enum_priority epriority, ::u32 nStackSize, u32 uiCreateFlags ARG_SEC_ATTRS)
+void thread::branch(::enum_priority epriority, ::u32 nStackSize, u32 uiCreateFlags ARG_SEC_ATTRS)
 {
 
    unset_finishing();
@@ -2433,15 +2433,6 @@ void thread::begin_thread(bool bSynchInitialization, ::enum_priority epriority, 
 
    }
 
-   if (bSynchInitialization)
-   {
-
-      m_peventInitialization = __new(manual_reset_event());
-
-   }
-
-   //auto estatus = branch(epriority, nStackSize, uiCreateFlags);
-
    branch(epriority, nStackSize, uiCreateFlags);
 
    if(m_htask == 0)
@@ -2494,44 +2485,180 @@ void thread::begin_thread(bool bSynchInitialization, ::enum_priority epriority, 
 }
 
 
+//
+//void thread::branch(::enum_priority epriority, ::u32 nStackSize, u32 uiCreateFlags ARG_SEC_ATTRS)
+//{
+//
+//   //auto estatus = task::branch(epriority, nStackSize, uiCreateFlags ADD_PARAM_SEC_ATTRS);
+//
+//   task::branch(epriority, nStackSize, uiCreateFlags ADD_PARAM_SEC_ATTRS);
+//
+//   //if(!estatus)
+//   //{
+//
+//   //   return estatus;
+//
+//   //}
+//
+//   //return estatus;
+//
+//}
 
-void thread::branch(::enum_priority epriority, ::u32 nStackSize, u32 uiCreateFlags ARG_SEC_ATTRS)
+
+void thread::begin_synchronously(::enum_priority epriority, ::u32 nStackSize, u32 uiCreateFlags ARG_SEC_ATTRS)
 {
 
-   //auto estatus = task::branch(epriority, nStackSize, uiCreateFlags ADD_PARAM_SEC_ATTRS);
+   unset_finishing();
 
-   task::branch(epriority, nStackSize, uiCreateFlags ADD_PARAM_SEC_ATTRS);
+   ENSURE(m_htask == (htask_t) nullptr);
 
-   //if(!estatus)
+   //if(m_id.is_empty())
    //{
 
-   //   return estatus;
+   //   m_id = __type_name(this);
 
    //}
 
-   //return estatus;
+//#ifdef __DEBUG
+//
+//   string strId = m_id;
+//
+//   if (strId.contains_ci("forking_thread"))
+//   {
+//
+//#if 0
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//      ::exception_engine().reset();
+//
+//      OS_DWORD                dwDisplacement;
+//
+//      OS_DWORD                uia[4096];
+//
+//      dwDisplacement = 0;
+//
+//      ::u32 maxframes = sizeof(uia) / sizeof(uia[0]);
+//
+//      ULONG BackTraceHash;
+//
+//      int iAddressWrite = RtlCaptureStackBackTrace(0, maxframes, reinterpret_cast<PVOID*>(&uia), &BackTraceHash);
+//
+//      char sz[1024];
+//
+//      __zero(sz);
+//
+//      engine_symbol(sz, sizeof(sz), &dwDisplacement, uia[5]);
+//
+//      u32 uiLine = 0;
+//
+//      {
+//         critical_section_lock csl(&::exception_engine().m_criticalsection);
+//
+//         engine_fileline(uia[5], 0, 0, &uiLine, nullptr);
+//
+//      }
+//
+//      strId =  string(sz) + "(" + __string(uiLine) + ") :: forking_thread";
+//
+//#endif
+//
+//#endif
+//
+//   }
+//
+//   m_pszDebug = strdup(strId);
+//
+//#endif
+//
+   auto pobject = this;
+
+   if (::is_set(pobject) && pobject != this)
+   {
+
+      pobject->add_composite(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
+
+   }
+
+   //if (bSynchInitialization)
+   {
+
+      m_peventInitialization = __new(manual_reset_event());
+
+   }
+
+   //auto estatus = branch(epriority, nStackSize, uiCreateFlags);
+
+   branch(epriority, nStackSize, uiCreateFlags);
+
+   if (m_htask == 0)
+   {
+
+      if (::is_set(this))
+      {
+
+         this->release_reference(this);
+
+      }
+
+      decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+
+      throw_status(error_resource);
+
+   }
+
+#ifndef WINDOWS
+
+   if (pthread_equal((pthread_t)m_htask, (pthread_t)m_itask))
+   {
+
+      INFORMATION("create_thread success");
+
+   }
+
+#endif
+
+   if (m_peventInitialization)
+   {
+
+      m_peventInitialization->wait();
+
+      ::e_status estatus = get_result_status();
+
+      if (failed(estatus))
+      {
+
+         ::e_status estatusExit = m_estatus;
+
+         throw_status(estatusExit);
+
+      }
+
+   }
+
+   //return ::success;
 
 }
 
 
-void thread::begin_synch(::enum_priority epriority, ::u32 nStackSize, u32 uiCreateFlags ARG_SEC_ATTRS)
-{
 
-   //auto estatus = begin_thread(true, epriority, nStackSize, uiCreateFlags ADD_PARAM_SEC_ATTRS);
-
-   begin_thread(true, epriority, nStackSize, uiCreateFlags ADD_PARAM_SEC_ATTRS);
-
-   //if(!estatus)
-   //{
-
-   //   return estatus;
-
-   //}
-
-   //return estatus;
-
-}
-
+//void thread::branch(::enum_priority epriority, ::u32 nStackSize, u32 uiCreateFlags ARG_SEC_ATTRS)
+//{
+//
+//   //auto estatus = task::branch(epriority, nStackSize, uiCreateFlags ADD_PARAM_SEC_ATTRS);
+//
+//   task::branch(epriority, nStackSize, uiCreateFlags ADD_PARAM_SEC_ATTRS);
+//
+//   //if(!estatus)
+//   //{
+//
+//   //   return estatus;
+//
+//   //}
+//
+//   //return estatus;
+//
+//}
 
 void thread::inline_init()
 {
@@ -4160,9 +4287,9 @@ bool thread::process_message()
 
             //auto psystem = m_psystem->m_papexsystem;
 
-            //auto psubject = psystem->new_subject(message);
+            //auto ptopic = psystem->new_subject(message);
 
-            //signal(psubject);
+            //signal(ptopic);
 
          }
          //else

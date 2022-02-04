@@ -208,7 +208,7 @@ void html_form::on_layout(::draw2d::graphics_pointer & pgraphics)
 
    {
 
-      auto psubject = create_subject(::e_subject_layout);
+      auto psubject = create_subject(::id_layout);
 
       psubject->m_puserelement = this;
 
@@ -795,7 +795,7 @@ bool html_form::load_html(const ::string & str)
 
 
 
-void html_form::handle(::subject * psubject, ::context * pcontext)
+void html_form::handle(::topic * psubject, ::context * pcontext)
 {
 
    ::user::form_view::handle(psubject, pcontext);
@@ -830,7 +830,7 @@ void html_form::handle(::subject * psubject, ::context * pcontext)
 
 
 
-void html_form_view::handle(::subject * psubject, ::context * pcontext)
+void html_form_view::handle(::topic * psubject, ::context * pcontext)
 {
 
    ::html_form::handle(psubject, pcontext);
@@ -914,7 +914,7 @@ void html_form_view::handle(::subject * psubject, ::context * pcontext)
 }
 
 
-void html_view::handle(::subject * psubject, ::context * pcontext)
+void html_view::handle(::topic * psubject, ::context * pcontext)
 {
 
    ::html_form::handle(psubject, pcontext);

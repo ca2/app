@@ -1,9 +1,9 @@
 // Injected in acme (camilo) from apex(thomas) by camilo on ThomasMonth19-2021 12:27 BRT
-// Merge with control_"subject" by camilo on day after ThomasBirthday2021 10:14
+// Merge with control_"topic" by camilo on day after ThomasBirthday2021 10:14
 #pragma once
 
 
-class CLASS_DECL_ACME subject :
+class CLASS_DECL_ACME extended_topic :
    virtual public object
 {
 public:
@@ -31,7 +31,6 @@ public:
    bool                                   m_bModified;
    ::duration                               m_durationSleep;
 
-   enum_subject                           m_esubject;
    __pointer(::matter)                    m_pmatter;
    __pointer(::property_object)           m_pobjectTopic;
    //::action_context                     m_actioncontext;
@@ -42,8 +41,8 @@ public:
    //bool                                   m_bRet;
 
 
-   subject(const ::id & id = e_type_null);
-   ~subject() override;
+   extended_topic(const ::id & id);
+   ~extended_topic() override;
 
 
 #ifdef _DEBUG
@@ -55,7 +54,7 @@ public:
 #endif
 
 
-   ::subject & operator=(const ::id & id)
+   ::topic & operator=(const ::id & id)
    {
 
       m_id = id;
@@ -67,9 +66,9 @@ public:
 
    inline bool operator==(const ::id & id) const { return m_id == id || m_id == FULL_ID; }
 
-   operator subject *() { return this; }
+   operator topic *() { return this; }
 
-   operator const subject *() const { return this; }
+   operator const topic *() const { return this; }
 
    inline ::id &id() { return m_id; }
 

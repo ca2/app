@@ -1016,7 +1016,7 @@ public:
    void single_fork(const ::routine_array& routinea);
    void multiple_fork(const ::routine_array& routinea);
 
-   using subject::manager::defer_fork;
+   using topic::manager::defer_fork;
 
    template < typename THREAD >
    inline __pointer(THREAD)& defer_fork(__pointer(THREAD)& pthread, const ::routine& routine)

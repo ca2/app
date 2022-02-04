@@ -610,7 +610,7 @@ namespace userfs
 
 
 
-   void tree::handle(::subject * psubject, ::context * pcontext)
+   void tree::handle(::topic * psubject, ::context * pcontext)
    {
 
       ////__update(::update)

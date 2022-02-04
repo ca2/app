@@ -210,7 +210,7 @@ namespace user
    }
 
 
-   void frame::set_active_view(::user::impact* pViewNew, bool bNotify)
+   void frame::set_active_view(::user::impact* pImpactNew, bool bNotify)
    {
 
 
@@ -455,7 +455,7 @@ namespace user
 
 
 
-   void frame::handle(::subject * psubject, ::context * pcontext)
+   void frame::handle(::topic * psubject, ::context * pcontext)
    {
 
       if (psubject->m_id == id_user_style_change)

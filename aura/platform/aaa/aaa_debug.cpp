@@ -71,7 +71,7 @@ void debug_id_eid()
 
    auto pupdate = new_update();
 
-   psubject->payload(id_filter) = "*.jpg";
+   ptopic->payload(id_filter) = "*.jpg";
 
 }
 

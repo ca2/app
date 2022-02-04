@@ -2264,7 +2264,7 @@ namespace jwt {
 		 */
 		bool has_issuer() const noexcept { return has_payload_claim("iss"); }
 		/**
-		 * Check if subject is present ("sub")
+		 * Check if topic is present ("sub")
 		 * \return true if present, false otherwise
 		 */
 		bool has_subject() const noexcept { return has_payload_claim("sub"); }
@@ -2301,8 +2301,8 @@ namespace jwt {
 		 */
 		typename json_traits::string_type get_issuer() const { return get_payload_claim("iss").as_string(); }
 		/**
-		 * Get subject claim
-		 * \return subject as string
+		 * Get topic claim
+		 * \return topic as string
 		 * \throw std::runtime_error If claim was not present
 		 * \throw std::bad_cast Claim was present but not a string (Should not happen in a valid token)
 		 */
@@ -2654,7 +2654,7 @@ namespace jwt {
 			return set_payload_claim("iss", typename json_traits::value_type(str));
 		}
 		/**
-		 * Set subject claim
+		 * Set topic claim
 		 * \param str Subject to set
 		 * \return *this to allow for method chaining
 		 */
@@ -3088,7 +3088,7 @@ namespace jwt {
 		}
 
 		/**
-		 * Set a subject to check for.
+		 * Set a topic to check for.
 		 * Check is casesensitive.
 		 * \param sub Subject to check for.
 		 * \return *this to allow chaining

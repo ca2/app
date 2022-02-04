@@ -14,7 +14,7 @@ namespace aura
 
       bool                                               m_bAvoidFirstResponder;
 
-      ::type                                             m_typePaneTabView;
+      ::type                                             m_typePaneTabImpact;
       
       __pointer(::windowing::window)                     m_pwindowMain;
 
@@ -758,7 +758,7 @@ namespace aura
 
       //void signal(::signal * psignal) override;
 
-      void handle(::subject * psubject, ::context * pcontext) override;
+      void handle(::topic * psubject, ::context * pcontext) override;
 
       virtual void initialize_estamira();
 

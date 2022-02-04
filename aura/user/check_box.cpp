@@ -74,17 +74,17 @@ namespace user
          if(has_handler())
          {
 
-            ::subject subject;
+            ::topic topic;
 
-            subject.m_puserelement = this;
+            topic.m_puserelement = this;
 
-            subject.m_id = m_id;
+            topic.m_id = m_id;
 
-            subject.m_esubject = ::e_subject_set_check;
+            topic.m_etopic = ::id_set_check;
 
-            subject.m_actioncontext = context;
+            topic.m_actioncontext = context;
 
-            route(&subject);
+            route(&topic);
             
          }
 
@@ -174,7 +174,7 @@ namespace user
 
       ::draw2d::savedc savedc(pgraphics);
 
-      pgraphics->OffsetViewportOrg(rectangleClient.left, rectangleClient.top);
+      pgraphics->OffsetImpactportOrg(rectangleClient.left, rectangleClient.top);
 
       ::rectangle_i32 rectangleCheckBox;
 
@@ -576,7 +576,7 @@ namespace user
       //      pgraphics->line_to(13, 6);
       //   }
       //}
-      //pgraphics->OffsetViewportOrg(-rectangleClient.left, -rectangleClient.top);
+      //pgraphics->OffsetImpactportOrg(-rectangleClient.left, -rectangleClient.top);
 
    }
 
@@ -665,7 +665,7 @@ namespace user
    }
 
 
-   void check_box::handle(::subject * psubject, ::context * pcontext)
+   void check_box::handle(::topic * psubject, ::context * pcontext)
    {
 
       interaction::handle(psubject, pcontext);

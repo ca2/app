@@ -313,13 +313,13 @@ namespace user
 
 
 
-   void format_tool::handle(::subject * psubject, ::context * pcontext)
+   void format_tool::handle(::topic * psubject, ::context * pcontext)
    {
 
       if (psubject->m_actioncontext.is_user_source())
       {
 
-         if (psubject->m_id == ::e_subject_click)
+         if (psubject->m_id == ::id_click)
          {
 
             if (psubject->user_interaction()->m_id == "font_bold")
@@ -486,7 +486,7 @@ namespace user
             }
 
          }
-         else if (psubject->m_id == ::e_subject_after_change_text)
+         else if (psubject->m_id == ::id_after_change_text)
          {
 
             if (psubject->user_interaction()->m_id == "combo_size")
@@ -501,7 +501,7 @@ namespace user
             }
 
          }
-         else if (psubject->m_id == ::e_subject_enter_key)
+         else if (psubject->m_id == ::id_enter_key)
          {
 
             if (psubject->user_interaction()->m_id == "combo_size")
@@ -516,7 +516,7 @@ namespace user
             }
 
          }
-         else if (psubject->m_id == ::e_subject_after_change_cur_sel)
+         else if (psubject->m_id == ::id_after_change_cur_sel)
          {
 
             if (psubject->user_interaction()->m_id == "combo_family")
@@ -688,15 +688,15 @@ namespace user
 
          m_pformata->first()->m_bUpdated = false;
 
-         ::subject subject;
+         ::topic topic;
 
-         subject.m_id = ::e_subject_after_change_cur_sel;
+         topic.m_id = ::id_after_change_cur_sel;
 
-         subject.m_puserelement = this;
+         topic.m_puserelement = this;
 
-         //subject.m_id = m_id;
+         //topic.m_id = m_id;
 
-         route(&subject);
+         route(&topic);
 
       }
       else

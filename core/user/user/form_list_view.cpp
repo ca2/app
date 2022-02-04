@@ -29,7 +29,7 @@ namespace user
    }
 
 
-   void form_list_view::handle(::subject * psubject, ::context * pcontext)
+   void form_list_view::handle(::topic * psubject, ::context * pcontext)
    {
 
       ::user::form_view::handle(psubject, pcontext);
@@ -212,7 +212,7 @@ namespace user
    }
 
 
-   //void form_list_view::handle(::subject * psubject, ::context * pcontext)
+   //void form_list_view::handle(::topic * psubject, ::context * pcontext)
    //{
 
    //   form_view::handle(psubject, pcontext);
@@ -222,13 +222,13 @@ namespace user
    //}
 
 
-   void form_list_view::OnActivateView(bool bActivate, __pointer(::user::impact) pActivateView, __pointer(::user::impact) pviewDeactive)
+   void form_list_view::OnActivateImpact(bool bActivate, __pointer(::user::impact) pActivateImpact, __pointer(::user::impact) pviewDeactive)
    {
-      //    UNUSED(pActivateView);   // unused in release builds
+      //    UNUSED(pActivateImpact);   // unused in release builds
 
       if (bActivate && m_pcontrolEdit.is_null())
       {
-         //ASSERT(pActivateView == this);
+         //ASSERT(pActivateImpact == this);
 
          // take the focus if this frame/::user::impact/pane is now active
          if (IsTopParentActive())

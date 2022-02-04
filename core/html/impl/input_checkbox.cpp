@@ -124,15 +124,15 @@ namespace html
          if(pdata->m_pcoredata->m_pform != nullptr)
          {
 
-            auto psubject = create_subject(::e_subject_initialize_control);
+            auto ptopic = create_subject(::id_initialize_control);
 
-            psubject->m_puserelement = m_pcheckbox;
+            ptopic->m_puserelement = m_pcheckbox;
 
-            psubject->m_actioncontext = ::action_context(::e_source_data) +  ::e_source_load;
+            ptopic->m_actioncontext = ::action_context(::e_source_data) +  ::e_source_load;
 
-            psubject->m_uiEvent = 0;
+            ptopic->m_uiEvent = 0;
 
-            pdata->m_pcoredata->m_pform->route(psubject);
+            pdata->m_pcoredata->m_pform->route(ptopic);
 
          }
 
@@ -172,13 +172,13 @@ namespace html
 
          //::rectangle_i32 rectangleWindow;
          //m_pcheckbox->get_window_rect(rectangleWindow);
-  //       ::point_i32 pointPreviousViewportOrg = pgraphics->GetViewportOrg();
+  //       ::point_i32 pointPreviousImpactportOrg = pgraphics->GetImpactportOrg();
 
-    //     pgraphics->OffsetViewportOrg((i32) m_box.left, (i32) m_box.top);
+    //     pgraphics->OffsetImpactportOrg((i32) m_box.left, (i32) m_box.top);
 
          m_pcheckbox->_000CallOnDraw(pdata->m_pcoredata->m_pgraphics);
 
-      //   pgraphics->SetViewportOrg(pointPreviousViewportOrg);
+      //   pgraphics->SetImpactportOrg(pointPreviousImpactportOrg);
 
       }
 

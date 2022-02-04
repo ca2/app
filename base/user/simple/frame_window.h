@@ -81,7 +81,7 @@ public:
 
    virtual ::color::color get_border_main_body_color() override;
 
-   void ViewOnActivateFrame(__pointer(::user::impact) pview, ::u32 user, __pointer(::user::interaction) pframe);
+   void ImpactOnActivateFrame(__pointer(::user::impact) pview, ::u32 user, __pointer(::user::interaction) pframe);
 
    virtual void ToggleFullScreen();
    virtual void WfiOnFullScreen() override;
@@ -149,9 +149,9 @@ public:
    DECLARE_MESSAGE_HANDLER(on_message_size);
    DECLARE_MESSAGE_HANDLER(on_message_close);
    DECLARE_MESSAGE_HANDLER(on_message_show_window);
-   DECLARE_MESSAGE_HANDLER(_001OnViewFullScreen);
+   DECLARE_MESSAGE_HANDLER(_001OnImpactFullScreen);
    DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
-   DECLARE_MESSAGE_HANDLER(_001OnUpdateViewFullScreen);
+   DECLARE_MESSAGE_HANDLER(_001OnUpdateImpactFullScreen);
    DECLARE_MESSAGE_HANDLER(_001OnToggleCustomFrame);
    DECLARE_MESSAGE_HANDLER(_001OnUpdateToggleCustomFrame);
    DECLARE_MESSAGE_HANDLER(_001OnToggleTransparentFrame);
@@ -209,7 +209,7 @@ public:
 
    void _001OnQueryEndSession(::message::message * pmessage);
 
-   void handle(::subject * psubject, ::context * pcontext) override;
+   void handle(::topic * psubject, ::context * pcontext) override;
 
    void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 

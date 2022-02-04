@@ -20,14 +20,14 @@ namespace user
    }
 
 
-   void form_view::handle(::subject * psubject, ::context * pcontext)
+   void form_view::handle(::topic * psubject, ::context * pcontext)
    {
 
       //::user::impact::handle(psubject, pcontext);
 
       form_window::handle(psubject, pcontext);
 
-      if (psubject->m_id == ::e_subject_form_initialize && psubject->user_interaction() == this)
+      if (psubject->m_id == ::id_form_initialize && psubject->user_interaction() == this)
       {
 
          if (get_document())
@@ -310,12 +310,12 @@ namespace user
    }
 
 
-   //void form_view::handle(::subject * psubject, ::context * pcontext)
+   //void form_view::handle(::topic * psubject, ::context * pcontext)
    //{
 
    //   form_window::handle(psubject, pcontext);
 
-   //   if (psubject->m_id == ::e_subject_form_initialize && psubject->user_interaction() == this)
+   //   if (psubject->m_id == ::id_form_initialize && psubject->user_interaction() == this)
    //   {
 
    //      if (get_document())

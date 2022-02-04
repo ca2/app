@@ -56,7 +56,7 @@ namespace filemanager
    }
 
 
-   void preview::handle(::subject * psubject, ::context * pcontext)
+   void preview::handle(::topic * psubject, ::context * pcontext)
    {
 
       ::filemanager_impact_base::handle(psubject, pcontext);

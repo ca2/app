@@ -26,7 +26,7 @@ namespace userex
       virtual void on_command(::message::command * pcommand) override;
 
 
-      virtual void handle(::subject * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * psubject, ::context * pcontext) override;
 
       bool create_pane(i32 iPane, bool bFixedSize, ::id id);
       virtual bool on_prepare_impact_data(::user::impact_data* pimpactdata) override;

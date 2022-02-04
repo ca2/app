@@ -246,12 +246,6 @@
     <Filter Include="Source Files\constant">
       <UniqueIdentifier>{f8ac833f-c335-48be-81bf-1c8408752720}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\subject">
-      <UniqueIdentifier>{216b7636-fcbb-4785-a0f8-f564db4e94e5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\subject">
-      <UniqueIdentifier>{fac79683-8c74-4c33-b5a1-5548b9f726f0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\primitive\duration">
       <UniqueIdentifier>{8177ae06-3813-4278-9ac7-bce64a71d8b6}</UniqueIdentifier>
     </Filter>
@@ -293,6 +287,12 @@
     </Filter>
     <Filter Include="Header Files\node\operating_system\windows\nano">
       <UniqueIdentifier>{3a65d5bf-ef19-454a-99be-3faaf53c688f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\topic">
+      <UniqueIdentifier>{216b7636-fcbb-4785-a0f8-f564db4e94e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\topic">
+      <UniqueIdentifier>{fac79683-8c74-4c33-b5a1-5548b9f726f0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -2270,7 +2270,7 @@
     <ClInclude Include="regular_expression\regular_expression.h">
       <Filter>Header Files\regular_expression</Filter>
     </ClInclude>
-    <ClInclude Include="regular_expression\topic.h">
+    <ClInclude Include="regular_expression\result.h">
       <Filter>Header Files\regular_expression</Filter>
     </ClInclude>
     <ClInclude Include="exception\file.h">
@@ -2513,15 +2513,6 @@
     <ClInclude Include="platform\sequence.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="subject\subject.h">
-      <Filter>Header Files\subject</Filter>
-    </ClInclude>
-    <ClInclude Include="subject\item.h">
-      <Filter>Header Files\subject</Filter>
-    </ClInclude>
-    <ClInclude Include="subject\handler.h">
-      <Filter>Header Files\subject</Filter>
-    </ClInclude>
     <ClInclude Include="user\check.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
@@ -2651,7 +2642,7 @@
     <ClInclude Include="constant\_mathematics.h">
       <Filter>Header Files\constant</Filter>
     </ClInclude>
-    <ClInclude Include="constant\subject.h">
+    <ClInclude Include="constant\aaa_topic.h">
       <Filter>Header Files\constant</Filter>
     </ClInclude>
     <ClInclude Include="parallelization\keep_task_flag.h">
@@ -2821,6 +2812,18 @@
     </ClInclude>
     <ClInclude Include="node\operating_system\windows\nano\_nano.h">
       <Filter>Header Files\node\operating_system\windows\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="topic\extended_topic.h">
+      <Filter>Header Files\topic</Filter>
+    </ClInclude>
+    <ClInclude Include="topic\handler.h">
+      <Filter>Header Files\topic</Filter>
+    </ClInclude>
+    <ClInclude Include="topic\item.h">
+      <Filter>Header Files\topic</Filter>
+    </ClInclude>
+    <ClInclude Include="topic\topic.h">
+      <Filter>Header Files\topic</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -3673,7 +3676,7 @@
     <ClCompile Include="regular_expression\regular_expression.cpp">
       <Filter>Source Files\regular_expression</Filter>
     </ClCompile>
-    <ClCompile Include="regular_expression\topic.cpp">
+    <ClCompile Include="regular_expression\result.cpp">
       <Filter>Source Files\regular_expression</Filter>
     </ClCompile>
     <ClCompile Include="exception\translator.cpp">
@@ -3862,15 +3865,6 @@
     <ClCompile Include="platform\sequence.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="subject\handler.cpp">
-      <Filter>Source Files\subject</Filter>
-    </ClCompile>
-    <ClCompile Include="subject\item.cpp">
-      <Filter>Source Files\subject</Filter>
-    </ClCompile>
-    <ClCompile Include="subject\subject.cpp">
-      <Filter>Source Files\subject</Filter>
-    </ClCompile>
     <ClCompile Include="user\check.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
@@ -4008,6 +4002,18 @@
     </ClCompile>
     <ClCompile Include="node\operating_system\windows\nano\_nano.cpp">
       <Filter>Source Files\node\operating_system\windows\nano</Filter>
+    </ClCompile>
+    <ClCompile Include="topic\extended_topic.cpp">
+      <Filter>Source Files\topic</Filter>
+    </ClCompile>
+    <ClCompile Include="topic\handler.cpp">
+      <Filter>Source Files\topic</Filter>
+    </ClCompile>
+    <ClCompile Include="topic\item.cpp">
+      <Filter>Source Files\topic</Filter>
+    </ClCompile>
+    <ClCompile Include="topic\topic.cpp">
+      <Filter>Source Files\topic</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

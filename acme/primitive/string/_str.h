@@ -275,8 +275,10 @@ namespace str
 
    CLASS_DECL_ACME string pad(const ansichar * psz, ::count iLen, const ansichar * pszPattern, e_pad epad);
 
-   inline ::count ilen(const ansichar * psz) { return (count) strlen(psz); }
-   inline i64 len(const ansichar * psz) { return (i64) strlen(psz); }
+
+   inline i64 length(const ansichar * pansichar) { return (i64) ansi_length(pansichar); }
+   inline i64 length(const wd16char * pwd16char) { return (i64) wd16_length(pwd16char); }
+   inline i64 length(const wd32char * pwd32char) { return (i64) wd32_length(pwd32char); }
 
 
    template < typename TYPE >

@@ -24,7 +24,7 @@ namespace calculator
    }
 
 
-   void plain_edit_view::handle(::subject * psubject, ::context * pcontext)
+   void plain_edit_view::handle(::topic * psubject, ::context * pcontext)
    {
 
       if(eupdate == 2000)

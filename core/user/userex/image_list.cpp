@@ -344,7 +344,7 @@ namespace userex
    }
 
 
-   void image_list_view::handle(::subject * psubject, ::context * pcontext)
+   void image_list_view::handle(::topic * psubject, ::context * pcontext)
    {
 
       ::user::image_list_view::handle(psubject, pcontext);

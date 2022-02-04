@@ -735,7 +735,7 @@ namespace data
    //}
 
 
-   void tree::handle(::subject * psubject, ::context * pcontext)
+   void tree::handle(::topic * psubject, ::context * pcontext)
    {
 
       for (auto& ptree : m_treea)
@@ -749,7 +749,7 @@ namespace data
 
 
 
-   //void tree::handle(::subject * psubject, ::context * pcontext)
+   //void tree::handle(::topic * psubject, ::context * pcontext)
    //{
 
    //}

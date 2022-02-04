@@ -39,7 +39,7 @@ namespace turboc
 
    void top_view::on_update(::aura::impact * pSender,e_update eupdate,object* pupdate)
    {
-      ::user::split_view::handle(psubject, pcontext);
+      ::user::split_view::handle(ptopic, pcontext);
    }
 
 

@@ -67,7 +67,7 @@ namespace filemanager
          }
 
 
-         void impact::CreateViews()
+         void impact::CreateImpacts()
          {
 
             SetPaneCount(2);

@@ -20,7 +20,7 @@ namespace hi5
 
          string                                    m_strPin;
          string                                    m_strAuthorizationUrl;
-         i32                                   m_iView;
+         i32                                   m_iImpact;
          __pointer(::user::single_document_template)      m_ptemplatePane;
          __pointer(::user::document)                      m_pdocument;
          __pointer(::user::tab_view)                      m_ptabview;
@@ -50,7 +50,7 @@ namespace hi5
          virtual void on_change_cur_sel();
 
 
-         virtual void handle(::subject * psubject, ::context * pcontext) override;
+         virtual void handle(::topic * psubject, ::context * pcontext) override;
 
          virtual bool style_translucency(::user::enum_translucency & etranslucency, ::enum_element);
 

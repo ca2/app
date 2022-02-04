@@ -21,9 +21,9 @@ public:
 
    virtual void add_handler(::matter * pmatter, bool bPriority = false);
 
-   void route(::subject * psubject, ::context * pcontext = nullptr);
+   void route(::topic * psubject, ::context * pcontext = nullptr);
 
-   //void signal(::subject * psubject, ::context * pcontext) override;
+   //void signal(::topic * psubject, ::context * pcontext) override;
 
 
 };

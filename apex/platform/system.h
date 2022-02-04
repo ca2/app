@@ -171,7 +171,7 @@ namespace apex
       //::task_tool * task_tool(::enum_task_tool etool);
 
 
-      //virtual __pointer(::subject) new_subject(const MESSAGE& message);
+      //virtual __pointer(::topic) new_subject(const MESSAGE& message);
 
       //virtual string install_get_platform() override;
       //virtual void install_set_platform(const ::string & pszPlatform) override;
@@ -847,7 +847,7 @@ namespace apex
       void route_command(::message::command * pcommand, bool bRouteToKeyDescendant) override;
 
       //void signal(::signal * psignal) override;
-      void handle(::subject * psubject, ::context * pcontext) override;
+      void handle(::topic * psubject, ::context * pcontext) override;
 
       // virtual void on_command_create(::create* pcreate);
 

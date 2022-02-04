@@ -110,7 +110,7 @@ namespace file
       
       ::file::action action;
 
-      psubject->m_pathFile = m_pathFolder;
+      ptopic->m_pathFile = m_pathFolder;
 
       if (uEventType & DISPATCH_VNODE_ATTRIB)
       {
@@ -118,7 +118,7 @@ namespace file
       }
       if (uEventType & DISPATCH_VNODE_DELETE)
       {
-          psubject->m_eaction = ::file::action_delete;
+          ptopic->m_eaction = ::file::action_delete;
           m_bKeepMonitoringFile = true;
       }
       if (uEventType & DISPATCH_VNODE_EXTEND)
@@ -131,7 +131,7 @@ namespace file
       }
       if (uEventType & DISPATCH_VNODE_RENAME)
       {
-          psubject->m_eaction = ::file::action_modify;
+          ptopic->m_eaction = ::file::action_modify;
           m_bKeepMonitoringFile = true;
       }
       if (uEventType & DISPATCH_VNODE_REVOKE)
@@ -140,7 +140,7 @@ namespace file
       }
       if (uEventType & DISPATCH_VNODE_WRITE)
       {
-          psubject->m_eaction = ::file::action_modify;
+          ptopic->m_eaction = ::file::action_modify;
       }
       
 
@@ -148,7 +148,7 @@ namespace file
 //         if(eventFlags[i] & kFSEventStreamEventFlagItemCreated)
 //         {
 //
-//            psubject->m_eaction = ::file::action_add;
+//            ptopic->m_eaction = ::file::action_add;
 //
 //         }
 

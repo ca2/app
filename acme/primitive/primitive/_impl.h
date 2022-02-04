@@ -3496,7 +3496,7 @@ inline __pointer(task) object::fork(PREDICATE predicate, ::enum_priority epriori
 
    }
 
-   auto ptask = this->branch_task(proutine, epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
+   auto ptask = this->branch_element(proutine, epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
 
    if(!ptask)
    {

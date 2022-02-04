@@ -64,7 +64,7 @@ namespace filemanager
 
       __pointer(document) pdocument = this;
 
-      tab_view * pview = pdocument->get_typed_view < tab_view >();
+      tab_view * pview = pdocument->get_type_impact < tab_view >();
 
 //#ifdef WINDOWS_DESKTOP
 //      oswindow oswindowDesktop = ::get_desktop_window();
@@ -241,13 +241,13 @@ namespace filemanager
 
          __pointer(document) pdocument = this;
 
-         ::subject subject(TOPIC_OK_ID);
+         ::topic topic(TOPIC_OK_ID);
 
-         subject.payload(DOCUMENT_ID) = pdocument;
+         topic.payload(DOCUMENT_ID) = pdocument;
 
-         subject.m_pfileitem = itema.get_first_pointer();
+         topic.m_pfileitem = itema.get_first_pointer();
 
-         pdocument->update_all_views(&subject);
+         pdocument->update_all_views(&topic);
 
          pfilemanagerdata->m_pdocumentTopic = nullptr;
 
@@ -469,7 +469,7 @@ namespace filemanager
    document * document::get_main_document()
    {
 
-      __pointer(tab_view) ptabview = get_typed_view < tab_view >();
+      __pointer(tab_view) ptabview = get_type_impact < tab_view >();
 
       if (ptabview.is_set())
       {
@@ -663,13 +663,13 @@ namespace filemanager
       if (!fs_data()->is_zero_latency(pitem->m_filepathFinal))
       {
 
-         ::subject subject(SYNCHRONIZE_PATH_ID);
+         ::topic topic(SYNCHRONIZE_PATH_ID);
 
-         subject.m_actioncontext = context + ::e_source_sync + ::e_source_system;
+         topic.m_actioncontext = context + ::e_source_sync + ::e_source_system;
 
-         subject.m_pfileitem = pitem;
+         topic.m_pfileitem = pitem;
 
-         update_all_views(&subject);
+         update_all_views(&topic);
 
       }
 
@@ -696,13 +696,13 @@ namespace filemanager
 
       }
 
-      ::subject subject(SYNCHRONIZE_PATH_ID);
+      ::topic topic(SYNCHRONIZE_PATH_ID);
 
-      subject.m_actioncontext = context + ::e_source_sync;
+      topic.m_actioncontext = context + ::e_source_sync;
 
-      subject.m_pfileitem = pitem;
+      topic.m_pfileitem = pitem;
 
-      update_all_views(&subject);
+      update_all_views(&topic);
 
    }
 
@@ -744,7 +744,7 @@ namespace filemanager
    void document::OpenSelectionProperties()
    {
 
-      auto psubject = subject(id_open_selection_properties);
+      auto psubject = topic(id_open_selection_properties);
 
       update_all_views(psubject);
 
@@ -839,7 +839,7 @@ namespace filemanager
 
       __pointer(document) pdocument = this;
 
-      __pointer(impact) pview = get_typed_view<impact>();
+      __pointer(impact) pview = get_type_impact<impact>();
 
       if (pview.is_set())
       {
@@ -1011,11 +1011,11 @@ namespace filemanager
       if (m_emode == ::userfs::mode_saving || m_emode == ::userfs::mode_export)
       {
 
-         ::subject subject(id_topic_ok);
+         ::topic topic(id_topic_ok);
 
-         subject.payload(id_document) = this;
+         topic.payload(id_document) = this;
 
-         update_all_views(&subject);
+         update_all_views(&topic);
 
       }
 
@@ -1032,11 +1032,11 @@ namespace filemanager
       if (m_emode == ::userfs::mode_import)
       {
 
-         ::subject subject(id_topic_ok);
+         ::topic topic(id_topic_ok);
 
-         subject.payload(id_document) = this;
+         topic.payload(id_document) = this;
 
-         update_all_views(&subject);
+         update_all_views(&topic);
 
       }
 
@@ -1051,11 +1051,11 @@ namespace filemanager
       if (m_emode == ::userfs::mode_saving)
       {
 
-         ::subject subject(id_topic_ok);
+         ::topic topic(id_topic_ok);
 
-         subject.payload(id_document) = this;
+         topic.payload(id_document) = this;
 
-         update_all_views(&subject);
+         update_all_views(&topic);
 
       }
 
@@ -1067,22 +1067,22 @@ namespace filemanager
 
       InitializeFileManager("filemanager");
 
-      CreateViews();
+      CreateImpacts();
 
-      ::subject subject(id_create_bars);
+      ::topic topic(id_create_bars);
 
-      subject.payload(id_document) = this;
+      topic.payload(id_document) = this;
 
       browse(path, ::e_source_database);
 
-      update_all_views(&subject);
+      update_all_views(&topic);
 
       if (bMakeVisible)
       {
 
-         ::subject subject(id_pop);
+         ::topic topic(id_pop);
 
-         update_all_views(&subject);
+         update_all_views(&topic);
 
       }
 
@@ -1092,7 +1092,7 @@ namespace filemanager
    void document::filemanager_initialize(bool bMakeVisible, bool bInitialBrowsePath)
    {
 
-      CreateViews();
+      CreateImpacts();
 
       auto psubject = create_subject(id_create_bars);
 
@@ -1181,7 +1181,7 @@ namespace filemanager
    }
 
 
-   void document::CreateViews()
+   void document::CreateImpacts()
    {
 
       {
@@ -1209,24 +1209,24 @@ namespace filemanager
    }
 
 
-   void document::PopViews()
+   void document::PopImpacts()
    {
 
       {
 
-         subject subject(id_create_bars);
+         topic topic(id_create_bars);
 
-         subject.payload(id_document) = this;
+         topic.payload(id_document) = this;
 
-         update_all_views(&subject);
+         update_all_views(&topic);
 
       }
 
       {
 
-         ::subject subject(id_pop);
+         ::topic topic(id_pop);
 
-         update_all_views(&subject);
+         update_all_views(&topic);
 
       }
 
@@ -1295,7 +1295,7 @@ namespace filemanager
    operation_document * document::get_operation_doc(bool bSwitch)
    {
 
-      //::filemanager::tab_view * ptabview = psession->m_pdocumenttemplateMain->get_document(0)->get_typed_view < ::filemanager::tab_view >();
+      //::filemanager::tab_view * ptabview = psession->m_pdocumenttemplateMain->get_document(0)->get_type_impact < ::filemanager::tab_view >();
 
       //if (ptabview == nullptr)
       //{
@@ -1331,14 +1331,14 @@ namespace filemanager
    }
 
 
-   void document::GetActiveViewSelection(::file::item_array & itema)
+   void document::GetActiveImpactSelection(::file::item_array & itema)
    {
 
-      ::subject subject(id_get_active_view_selection);
+      ::topic topic(id_get_active_view_selection);
 
-      update_all_views(&subject);
+      update_all_views(&topic);
 
-      itema = *subject.cast < ::file::item_array>(id_selected);
+      itema = *topic.cast < ::file::item_array>(id_selected);
 
    }
 
@@ -1388,19 +1388,19 @@ namespace filemanager
 
       {
 
-         ::subject subject(id_topic_start);
+         ::topic topic(id_topic_start);
 
-         subject.payload(id_document) = pdocumentFilemanager;
+         topic.payload(id_document) = pdocumentFilemanager;
 
-         pdocumentFilemanager->update_all_views(&subject);
+         pdocumentFilemanager->update_all_views(&topic);
 
       }
 
       {
 
-         ::subject subject(id_create_bars);
+         ::topic topic(id_create_bars);
 
-         pdocumentFilemanager->update_all_views(&subject);
+         pdocumentFilemanager->update_all_views(&topic);
 
       }
 
@@ -1420,19 +1420,19 @@ namespace filemanager
 
       {
 
-         ::subject subject(id_topic_start);
+         ::topic topic(id_topic_start);
 
-         subject.payload(id_document) = pdocumentFilemanager;
+         topic.payload(id_document) = pdocumentFilemanager;
 
-         pdocumentFilemanager->update_all_views(&subject);
+         pdocumentFilemanager->update_all_views(&topic);
 
       }
 
       {
 
-         ::subject subject(id_create_bars);
+         ::topic topic(id_create_bars);
 
-         pdocumentFilemanager->update_all_views(&subject);
+         pdocumentFilemanager->update_all_views(&topic);
 
       }
 

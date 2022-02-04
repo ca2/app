@@ -186,7 +186,7 @@ namespace user
    }
 
 
-   void frame_window::update_active_document(::subject * psubject)
+   void frame_window::update_active_document(::topic * psubject)
    {
 
       auto pdocument = get_active_document();
@@ -926,7 +926,7 @@ namespace user
       if (pusersystem != nullptr)
       {
 
-         if (pusersystem->m_typeNewView || pusersystem->m_puserprimitiveNew != nullptr)
+         if (pusersystem->m_typeNewImpact || pusersystem->m_puserprimitiveNew != nullptr)
          {
 
             if (::user::create_view(pusersystem, this, FIRST_PANE).is_null())
@@ -1221,7 +1221,7 @@ namespace user
          // send initial update to all views (and other controls) in the frame
          send_message_to_descendants(e_message_system_update, INITIAL_UPDATE, (lparam)0, true, true);
 
-         // give ::user::impact a chance to save the focus (CFormView needs this)
+         // give ::user::impact a chance to save the focus (CFormImpact needs this)
          if (pview != nullptr)
          {
 
@@ -1236,7 +1236,7 @@ namespace user
          if (pview != nullptr)
          {
 
-            pview->OnActivateView(true, pview, pview);
+            pview->OnActivateImpact(true, pview, pview);
 
          }
 
@@ -1409,21 +1409,21 @@ namespace user
    // Delegate scroll messages to active ::user::impact as well
    void frame_window::OnHScroll(::u32, ::u32, CScrollBar*)
    {
-      __pointer(::user::interaction) pActiveView = get_active_view();
-      if (pActiveView != nullptr)
+      __pointer(::user::interaction) pActiveImpact = get_active_view();
+      if (pActiveImpact != nullptr)
       {
          // trans const MESSAGE* pMsg = GetCurrentMessage();
-         // trans pActiveView->SendMessage(e_message_hscroll, pMsg->wParam, pMsg->lParam);
+         // trans pActiveImpact->SendMessage(e_message_hscroll, pMsg->wParam, pMsg->lParam);
       }
    }
 
    void frame_window::OnVScroll(::u32, ::u32, CScrollBar*)
    {
-      __pointer(::user::interaction) pActiveView = get_active_view();
-      if (pActiveView != nullptr)
+      __pointer(::user::interaction) pActiveImpact = get_active_view();
+      if (pActiveImpact != nullptr)
       {
          // trans      const MESSAGE* pMsg = GetCurrentMessage();
-         // trans      pActiveView->SendMessage(e_message_vscroll, pMsg->wParam, pMsg->lParam);
+         // trans      pActiveImpact->SendMessage(e_message_vscroll, pMsg->wParam, pMsg->lParam);
       }
    }
    */
@@ -1442,19 +1442,19 @@ namespace user
    //   //thread *pThread = get_task();
    //   //ASSERT(pThread);
    //   
-   //   __pointer(::user::impact) pActiveView = get_active_view();
+   //   __pointer(::user::impact) pActiveImpact = get_active_view();
 
-   //   if (pActiveView == nullptr)
+   //   if (pActiveImpact == nullptr)
    //   {
 
-   //      pActiveView = GetActiveFrame()->get_active_view();
+   //      pActiveImpact = GetActiveFrame()->get_active_view();
 
    //   }
 
-   //   if (pActiveView != nullptr)
+   //   if (pActiveImpact != nullptr)
    //   {
 
-   //      pActiveView->OnActivateView(false, pActiveView, pActiveView);
+   //      pActiveImpact->OnActivateImpact(false, pActiveImpact, pActiveImpact);
 
    //   }
 
@@ -1495,23 +1495,23 @@ namespace user
 
       // get active ::user::impact (use active frame if no active ::user::impact)
       
-      __pointer(::user::impact) pActiveView = get_active_view();
+      __pointer(::user::impact) pActiveImpact = get_active_view();
 
-      if (pActiveView == nullptr)
+      if (pActiveImpact == nullptr)
       {
 
-         pActiveView = GetActiveFrame()->get_active_view();
+         pActiveImpact = GetActiveFrame()->get_active_view();
 
       }
 
       // when frame gets activated, re-activate current ::user::impact
-      if (pActiveView != nullptr)
+      if (pActiveImpact != nullptr)
       {
          if (pactivate->m_eactivate != e_activate_inactive && !pactivate->m_bMinimized)
-            pActiveView->OnActivateView(true, pActiveView, pActiveView);
+            pActiveImpact->OnActivateImpact(true, pActiveImpact, pActiveImpact);
 
          // always notify the ::user::impact of frame activations
-         pActiveView->OnActivateFrame(pactivate->m_eactivate, this);
+         pActiveImpact->OnActivateFrame(pactivate->m_eactivate, this);
       }
 
       set_need_redraw();
@@ -1781,11 +1781,11 @@ namespace user
       if (pviewOld != nullptr && bNotify)
       {
 
-         pviewOld->OnActivateView(false, pviewNew, pviewOld);
+         pviewOld->OnActivateImpact(false, pviewNew, pviewOld);
 
       }
 
-      // if the OnActivateView moves the active interaction_impl,
+      // if the OnActivateImpact moves the active interaction_impl,
       //    that will veto this machine
       if (m_pviewActive != nullptr)
       {
@@ -1803,7 +1803,7 @@ namespace user
          if (bNotify)
          {
 
-            pviewNew->OnActivateView(true, pviewNew, pviewOld);
+            pviewNew->OnActivateImpact(true, pviewNew, pviewOld);
 
          }
 
@@ -2516,7 +2516,7 @@ namespace user
    }
 
 
-   void frame_window::handle(::subject * psubject, ::context * pcontext)
+   void frame_window::handle(::topic * psubject, ::context * pcontext)
    {
 
       ::user::interaction::handle(psubject, pcontext);

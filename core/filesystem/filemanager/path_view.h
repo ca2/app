@@ -22,7 +22,7 @@ namespace filemanager
 
       //virtual void _001OnAfterChangeText(const ::action_context & action_context);
 
-      void handle(::subject * psubject, ::context * pcontext) override;
+      void handle(::topic * psubject, ::context * pcontext) override;
 
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 

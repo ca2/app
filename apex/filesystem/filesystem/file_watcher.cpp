@@ -13,7 +13,7 @@
 //	   in the Software without restriction, including without limitation the rights
 //	   to uxse, cxopy, mxodify, mxerge, pxublish, dxistribute, sxublicense, and/or sxell
 //	   copies of the Software, and to permit persons to whom the Software is
-//	   furnished to do so, subject to the following conditions:
+//	   furnished to do so, topic to the following conditions:
 //
 //
 #include "framework.h"
@@ -204,60 +204,32 @@ namespace file
 
       __pointer(watch) pwatch;
 
-      try
+      __construct(pwatch);
+
+      pwatch->m_pwatcher = this;
+
+      pwatch->m_id = ++m_idLast;
+
+      m_watchmap[pwatch->m_id] = pwatch;
+
+      if (m_bCreateWatchThread)
       {
 
-         __construct(pwatch);
-
-         pwatch->m_pwatcher = this;
-
-         pwatch->m_id = ++m_idLast;
-
-         m_watchmap[pwatch->m_id] = pwatch;
-
-         if (m_bCreateWatchThread)
+         if (m_htask == nullptr)
          {
-
-//            auto estatus = __construct_new(m_pthread);
-//
-//            if (!estatus)
-//            {
-//
-//               return estatus;
-//
-//            }
-// 
-//             
-//
-
-            if (m_htask == nullptr)
-            {
-               /*auto estatus = */ begin_thread();
-
-             /*  if (!estatus)
-               {
-
-                  return estatus;
-
-               }*/
-
-            }
-
-         }
-
-         if (!pwatch->open(pathFolder, bRecursive))
-         {
-
-            m_watchmap.erase_key(pwatch->m_id);
-
-            return -1;
+               
+            branch();
 
          }
 
       }
-      catch (...)
+
+      if (!pwatch->open(pathFolder, bRecursive))
       {
 
+         m_watchmap.erase_key(pwatch->m_id);
+
+         return -1;
 
       }
 

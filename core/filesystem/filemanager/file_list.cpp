@@ -1250,7 +1250,7 @@ namespace filemanager
 
       auto pcontext = m_pcontext->m_papexcontext;
 
-      if (filemanager_data()->m_bIconView)
+      if (filemanager_data()->m_bIconImpact)
       {
 
          m_eview = impact_icon;
@@ -1980,7 +1980,7 @@ namespace filemanager
    }
 
 
-   void file_list::handle(::subject * psubject, ::context * pcontext)
+   void file_list::handle(::topic * psubject, ::context * pcontext)
    {
 
       ::filemanager_impact_base::handle(psubject, pcontext);
@@ -2025,19 +2025,19 @@ namespace filemanager
       else if (psubject->id() == id_view_list)
       {
 
-         _001SetView(impact_list);
+         _001SetImpact(impact_list);
 
       }
       else if (psubject->id() == id_view_report)
       {
 
-         _001SetView(impact_report);
+         _001SetImpact(impact_report);
 
       }
       else if (psubject->id() == id_view_icon)
       {
 
-         _001SetView(impact_icon);
+         _001SetImpact(impact_icon);
 
       }
 

@@ -98,7 +98,7 @@ namespace user
       e_flag_tool_impact = 1 << 2,
       e_flag_blur_background = 1 << 3,
       e_flag_hide_all_others_on_show = 1 << 4,
-      e_flag_hide_topic_on_show = 1 << 5,
+      e_flag_hidid_on_show = 1 << 5,
       e_flag_strict_update = 1 << 6,
       e_flag_hide_on_kill_focus = 1 << 7,
       e_flag_background_bypass = 1 << 8,

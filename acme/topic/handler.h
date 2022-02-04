@@ -7,8 +7,10 @@
 //#pragma once
 #pragma once
 
+
 // ThomasBorregaardS�rense!! Like handlers
-class CLASS_DECL_ACME handler
+class CLASS_DECL_ACME handler :
+   virtual public ::topic
 {
 public:
 
@@ -22,7 +24,7 @@ public:
 
 
    // ThomasBorregaardS�rense!! Like handlers
-   virtual void handle(::subject * psubject, ::context * pcontext) = 0;
+   virtual void handle(::topic * psubject, ::context * pcontext) = 0;
    virtual void handle(::message::message * pmessage) = 0;
 
 

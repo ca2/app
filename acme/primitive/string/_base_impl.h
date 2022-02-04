@@ -3229,6 +3229,8 @@ inline bool string_base < TYPE_CHAR > ::ends_eat_ci(const string_base& strPrefix
 }
 
 
+
+
 template < typename TYPE_CHAR >
 inline string_base < TYPE_CHAR >& string_base < TYPE_CHAR > ::ensure_begins(const string_base& strPrefix)
 {
@@ -3384,6 +3386,79 @@ inline bool string_base < TYPE_CHAR > ::ends_eat_ci(const CHAR_TYPE* psz)
    return ::str::ends_eat_ci(*this, psz);
 
 }
+
+
+template < typename TYPE_CHAR >
+inline bool string_base < TYPE_CHAR > ::begins_eaten(string_base & strEaten, const CHAR_TYPE * psz)
+{
+
+   if (!::str::begins(*this, psz))
+   {
+
+      return false;
+
+   }
+
+   strEaten = c_str() + ::str::length(psz);
+
+   return true;
+
+}
+
+
+template < typename TYPE_CHAR >
+inline bool string_base < TYPE_CHAR > ::ends_eaten(string_base & strEaten, const CHAR_TYPE * psz)
+{
+
+   if (!::str::begins(*this, psz))
+   {
+
+      return false;
+
+   }
+
+   strEaten = string(c_str(), length()- ::str::length(psz));
+
+   return true;
+
+}
+
+
+template < typename TYPE_CHAR >
+inline bool string_base < TYPE_CHAR > ::begins_eaten_ci(string_base & strEaten, const CHAR_TYPE * psz)
+{
+
+   if (!::str::begins_ci(*this, psz))
+   {
+
+      return false;
+
+   }
+
+   strEaten = c_str() + ::str::length(psz);
+
+   return true;
+
+}
+
+
+template < typename TYPE_CHAR >
+inline bool string_base < TYPE_CHAR > ::ends_eaten_ci(string_base & strEaten, const CHAR_TYPE * psz)
+{
+
+   if (!::str::begins(*this, psz))
+   {
+
+      return false;
+
+   }
+
+   strEaten = string(c_str(), length() - ::str::length(psz));
+
+   return true;
+
+}
+
 
 
 template < typename TYPE_CHAR >

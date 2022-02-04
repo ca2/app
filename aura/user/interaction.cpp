@@ -1033,7 +1033,7 @@ namespace user
 
       }
 
-      if (m_idView.is_null())
+      if (m_idImpact.is_null())
       {
 
          return nullptr;
@@ -1042,7 +1042,7 @@ namespace user
 
       auto psession = get_session();
 
-      return psession->get_bound_ui(m_idView);
+      return psession->get_bound_ui(m_idImpact);
 
    }
 
@@ -1518,13 +1518,13 @@ namespace user
 
       }
 
-      ::subject subject;
+      ::topic topic;
 
-      subject.m_puserelement = this;
+      topic.m_puserelement = this;
 
-      subject.m_id = ::e_subject_set_focus;
+      topic.m_id = ::id_set_focus;
 
-      route(&subject);
+      route(&topic);
 
    }
 
@@ -1557,15 +1557,15 @@ namespace user
 
       }
 
-      ::subject subject;
+      ::topic topic;
 
-      subject.m_puserelement = this;
+      topic.m_puserelement = this;
 
-      //subject.m_id = m_id;
+      //topic.m_id = m_id;
 
-      subject.m_id = ::e_subject_kill_focus;
+      topic.m_id = ::id_kill_focus;
 
-      route(&subject);
+      route(&topic);
 
    }
 
@@ -3136,7 +3136,7 @@ namespace user
       if (!pointScroll.is_null())
       {
 
-         pgraphics->OffsetViewportOrg(-pointScroll.x, -pointScroll.y);
+         pgraphics->OffsetImpactportOrg(-pointScroll.x, -pointScroll.y);
 
       }
 
@@ -3218,7 +3218,7 @@ auto tickStartWithLock = ::duration::now();
 
 #endif //__DEBUG
 
-      pgraphics->OffsetViewportOrg(pointScroll.x, pointScroll.y);
+      pgraphics->OffsetImpactportOrg(pointScroll.x, pointScroll.y);
 
    }
 
@@ -3258,11 +3258,11 @@ auto tickStartWithLock = ::duration::now();
 
       }
 
-      auto pointViewportOffset = get_viewport_offset();
+      auto pointImpactportOffset = get_viewport_offset();
 
-      auto offset = pointOffset - pointViewportOffset;
+      auto offset = pointOffset - pointImpactportOffset;
 
-      pgraphics->OffsetViewportOrg((::i32) offset.cx, (::i32) offset.cy);
+      pgraphics->OffsetImpactportOrg((::i32) offset.cx, (::i32) offset.cy);
 
    }
 
@@ -3356,7 +3356,7 @@ auto tickStartWithLock = ::duration::now();
                         if (!bParentScrollX && pinteraction->m_bParentScrollX)
                         {
 
-                           pgraphics->OffsetViewportOrg(-pointScroll.x, 0);
+                           pgraphics->OffsetImpactportOrg(-pointScroll.x, 0);
 
                            bParentScrollX = true;
 
@@ -3364,7 +3364,7 @@ auto tickStartWithLock = ::duration::now();
                         else if (bParentScrollX && !pinteraction->m_bParentScrollX)
                         {
 
-                           pgraphics->OffsetViewportOrg(pointScroll.x, 0);
+                           pgraphics->OffsetImpactportOrg(pointScroll.x, 0);
 
                            bParentScrollX = false;
 
@@ -3373,7 +3373,7 @@ auto tickStartWithLock = ::duration::now();
                         if (!bParentScrollY && pinteraction->m_bParentScrollY)
                         {
 
-                           pgraphics->OffsetViewportOrg(0, -pointScroll.y);
+                           pgraphics->OffsetImpactportOrg(0, -pointScroll.y);
 
                            bParentScrollY = true;
 
@@ -3381,7 +3381,7 @@ auto tickStartWithLock = ::duration::now();
                         else if (bParentScrollY && !pinteraction->m_bParentScrollY)
                         {
 
-                           pgraphics->OffsetViewportOrg(0, pointScroll.y);
+                           pgraphics->OffsetImpactportOrg(0, pointScroll.y);
 
                            bParentScrollY = false;
 
@@ -3441,19 +3441,19 @@ auto tickStartWithLock = ::duration::now();
 
       }
 
-      //pgraphics->OffsetViewportOrg(pointScroll.x, pointScroll.y);
+      //pgraphics->OffsetImpactportOrg(pointScroll.x, pointScroll.y);
 
       if (bParentScrollX && pointScroll.x)
       {
 
-         pgraphics->OffsetViewportOrg(pointScroll.x, 0);
+         pgraphics->OffsetImpactportOrg(pointScroll.x, 0);
 
       }
 
       if (bParentScrollY && pointScroll.y)
       {
 
-         pgraphics->OffsetViewportOrg(0, pointScroll.y);
+         pgraphics->OffsetImpactportOrg(0, pointScroll.y);
 
       }
 
@@ -3864,7 +3864,7 @@ return "";
       if (!pointOffset.is_null())
       {
 
-         pgraphics->OffsetViewportOrg(pointOffset.x, pointOffset.y);
+         pgraphics->OffsetImpactportOrg(pointOffset.x, pointOffset.y);
 
       }
 
@@ -3882,7 +3882,7 @@ return "";
       if (!pointOffset.is_null())
       {
 
-         pgraphics->OffsetViewportOrg(-pointOffset.x, -pointOffset.y);
+         pgraphics->OffsetImpactportOrg(-pointOffset.x, -pointOffset.y);
 
       }
 
@@ -3953,7 +3953,7 @@ return "";
          //}
          ////         ::point_i32 pointParentOffset = get_parent_viewport_offset();
          ////
-         ////         pgraphics->OffsetViewportOrg(-pointParentOffset.x, -pointParentOffset.y);
+         ////         pgraphics->OffsetImpactportOrg(-pointParentOffset.x, -pointParentOffset.y);
 
          try
          {
@@ -4440,7 +4440,7 @@ return "";
    void interaction::on_message_subject(::message::message* pmessage)
    {
 
-      __pointer(::subject) psubject(pmessage->m_lparam);
+      __pointer(::topic) psubject(pmessage->m_lparam);
 
       if(!psubject)
       { 
@@ -4621,13 +4621,13 @@ return "";
 
       m_bReposition = true;
 
-      ::subject subject;
+      ::topic topic;
 
-      subject.m_puserelement = this;
+      topic.m_puserelement = this;
 
-      subject.m_id = ::e_subject_create;
+      topic.m_id = ::id_create;
 
-      route(&subject);
+      route(&topic);
 
       //auto psession = get_session();
 
@@ -5838,15 +5838,15 @@ void interaction::route_message_to_descendants(::message::message * pmessage)
 //   //   if(pkey->m_ekey == ::user::e_key_tab)
 //   //   {
 
-//   //      ::subject subject;
+//   //      ::topic topic;
 
-//   //      subject.m_puserinteraction         = this;
+//   //      topic.m_puserinteraction         = this;
 
-//   //      subject.m_id       = ::e_subject_tab_key;
+//   //      topic.m_id       = ::id_tab_key;
 
-//   //      subject.m_context        = ::e_source_user;
+//   //      topic.m_context        = ::e_source_user;
 
-//   //      if(!route(&subject))
+//   //      if(!route(&topic))
 //   //      {
 
 //   //         __pointer(::user::interaction) pinteraction = psession->get_keyboard_focus();
@@ -11882,7 +11882,7 @@ void interaction::on_message_close(::message::message * pmessage)
       if (pitem->m_eelement == ::e_element_close_button || pitem->m_eelement == ::e_element_close_icon)
       {
 
-         if (pitem->m_esubject == ::e_subject_close_app)
+         if (pitem->m_etopic == ::id_close_app)
          {
 
             display(e_display_hide);
@@ -14159,13 +14159,13 @@ order(zorderParam);
       if (pkey->m_ekey == ::user::e_key_tab)
       {
 
-         ::subject subject;
+         ::topic topic;
 
-         subject.m_puserelement = dynamic_cast <::user::interaction *> (this);
-         subject.m_id = ::e_subject_tab_key;
-         subject.m_actioncontext = ::e_source_user;
+         topic.m_puserelement = dynamic_cast <::user::interaction *> (this);
+         topic.m_id = ::id_tab_key;
+         topic.m_actioncontext = ::e_source_user;
 
-         route(&subject);
+         route(&topic);
 
       }
 
@@ -14430,19 +14430,19 @@ order(zorderParam);
       if(has_handler())
       {
 
-         ::subject subject;
+         ::topic topic;
 
-         subject.m_puserelement = this;
+         topic.m_puserelement = this;
 
-         //subject.m_id = m_id;
+         //topic.m_id = m_id;
 
-         subject.m_id = ::e_subject_after_change_cur_sel;
+         topic.m_id = ::id_after_change_cur_sel;
 
-         subject.m_item = item;
+         topic.m_item = item;
 
-         subject.m_actioncontext = context;
+         topic.m_actioncontext = context;
 
-         route(&subject);
+         route(&topic);
 
          set_need_redraw();
 
@@ -14510,7 +14510,7 @@ order(zorderParam);
    }
 
 
-   void interaction::handle(::subject * psubject, ::context * pcontext)
+   void interaction::handle(::topic * psubject, ::context * pcontext)
    {
 
       //auto pevent = pmessage->m_lparam.cast < ::user::control_event >();
@@ -15641,7 +15641,7 @@ order(zorderParam);
 
 
 
-//   bool interaction::simple_on_control_event(::message::message* pmessage, ::enum_subject esubject)
+//   bool interaction::simple_on_control_event(::message::message* pmessage, ::enum_topic etopic)
 //   {
 //
 //      if (eevent == e_event_mouse_leave)
@@ -15667,22 +15667,22 @@ order(zorderParam);
 //
 //      }
 //
-//      ::subject subject;
+//      ::topic topic;
 //
-//      subject.m_puserinteraction = this;
+//      topic.m_puserinteraction = this;
 //
-//      //subject.m_id = m_id;
+//      //topic.m_id = m_id;
 //
-//      subject.m_id = eevent;
+//      topic.m_id = eevent;
 //
-//      subject.m_pmessage = pmessage;
+//      topic.m_pmessage = pmessage;
 //
-//      route(&subject);
+//      route(&topic);
 //
 //      if (::is_set(pmessage))
 //      {
 //
-//         pmessage->m_bRet = subject.m_bRet;
+//         pmessage->m_bRet = topic.m_bRet;
 //
 //         if (pmessage->m_bRet)
 //         {
@@ -15698,7 +15698,7 @@ order(zorderParam);
 //
 //      }
 //
-//      return subject.m_bRet;
+//      return topic.m_bRet;
 //
 //   }
 
@@ -15869,7 +15869,7 @@ order(zorderParam);
 //
 //            psession->m_puiLastLButtonDown = this;
 //
-////            simple_on_control_event(pmessage, ::e_subject_button_down);
+////            simple_on_control_event(pmessage, ::id_button_down);
 ////
 ////            if (pmessage->m_bRet)
 ////            {
@@ -15982,25 +15982,25 @@ order(zorderParam);
                   if(has_handler())
                   {
 
-                     ::subject subject;
+                     ::topic topic;
 
-                     subject.m_esubject = e_subject_click;
+                     topic.m_etopic = id_click;
 
-                     subject.m_puserelement = this;
+                     topic.m_puserelement = this;
 
-                     subject.m_id = m_id;
+                     topic.m_id = m_id;
 
-                     subject.m_item = item;
+                     topic.m_item = item;
 
-                     subject.m_actioncontext.m_pmessage = pmouse;
+                     topic.m_actioncontext.m_pmessage = pmouse;
 
-                     subject.m_actioncontext.add(::e_source_user);
+                     topic.m_actioncontext.add(::e_source_user);
 
-                     route(&subject);
+                     route(&topic);
 
-                     INFORMATION("interaction::on_message_left_button_up route_btn_clked=" << (int) subject.m_bRet);
+                     INFORMATION("interaction::on_message_left_button_up route_btn_clked=" << (int) topic.m_bRet);
 
-                     pmessage->m_bRet = subject.m_bRet;
+                     pmessage->m_bRet = topic.m_bRet;
                   
                   }
 
@@ -16063,7 +16063,7 @@ order(zorderParam);
 //
 //               }
 //
-//               simple_on_control_event(pmessage, ::e_subject_button_down);
+//               simple_on_control_event(pmessage, ::id_button_down);
 //
 //            }
             
@@ -16142,7 +16142,7 @@ order(zorderParam);
 //         if (item.is_set())
 //         {
 //
-//            simple_on_control_event(pmessage, ::e_subject_m_button_down);
+//            simple_on_control_event(pmessage, ::id_m_button_down);
 //
 //         }
 
@@ -16166,7 +16166,7 @@ order(zorderParam);
 //         if (item.is_set())
 //         {
 //
-//            simple_on_control_event(pmessage, ::e_subject_m_button_up);
+//            simple_on_control_event(pmessage, ::id_m_button_up);
 //
 //         }
 //
@@ -16752,7 +16752,7 @@ order(zorderParam);
    }
 
 
-   //void interaction::handle(::subject * psubject, ::context * pcontext)
+   //void interaction::handle(::topic * psubject, ::context * pcontext)
    //{
 
    //   if (psubject->id() == REDRAW_ID || psubject->id() == m_id)

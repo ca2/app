@@ -339,13 +339,13 @@ namespace browser
    }
 
 
-   void pane_view::handle(::subject * psubject, ::context * pcontext)
+   void pane_view::handle(::topic * psubject, ::context * pcontext)
    {
 
       if(m_pdocMenu != nullptr && dynamic_cast < ::user::impact * > (psubject->get_form()) == m_pdocMenu->get_view(0) && psubject->user_interaction() != nullptr)
       {
 
-         if(psubject->m_id == ::e_subject_after_change_text)
+         if(psubject->m_id == ::id_after_change_text)
          {
 
             if(m_prollfps != nullptr && psubject->user_element_id() == "roll_fps" && !psubject->m_context.is(::e_source_initialize)
@@ -427,7 +427,7 @@ namespace browser
 
 
          }
-         else if (psubject->m_id == ::e_subject_set_check && psubject->user_interaction() != nullptr)
+         else if (psubject->m_id == ::id_set_check && psubject->user_interaction() != nullptr)
          {
 
             string strCheck = psubject->user_element_id();
@@ -473,7 +473,7 @@ namespace browser
          if (m_pfontview != nullptr && psubject->user_interaction() == m_pfontview->m_pimpact)
          {
 
-            if (psubject->m_id == ::e_subject_after_change_cur_sel)
+            if (psubject->m_id == ::id_after_change_cur_sel)
             {
 
                string strFont = m_pfontview->m_pimpact->get_cur_sel_face_name();
@@ -492,7 +492,7 @@ namespace browser
                }
 
             }
-            else if (psubject->m_id == ::e_subject_after_change_cur_hover)
+            else if (psubject->m_id == ::id_after_change_cur_hover)
             {
 
                string strFont = m_pfontview->m_pimpact->get_cur_hover_face_name();
@@ -513,13 +513,13 @@ namespace browser
          {
 
 
-            if (psubject->m_id == ::e_subject_after_change_cur_sel
-                  || psubject->m_id == ::e_subject_after_change_cur_hover)
+            if (psubject->m_id == ::id_after_change_cur_sel
+                  || psubject->m_id == ::id_after_change_cur_hover)
             {
 
                m_pcolorview->get_color().get_hls(m_pviewLastBilbo->m_prender->m_hlsForeground);
 
-               if (psubject->m_id == ::e_subject_after_change_cur_sel)
+               if (psubject->m_id == ::id_after_change_cur_sel)
                {
 
                   m_pviewLastBilbo->data_set("cur_color", m_pviewLastBilbo->m_prender->m_hlsForeground);
@@ -607,7 +607,7 @@ namespace browser
    }
 
 
-   void pane_view::handle(::subject * psubject, ::context * pcontext)
+   void pane_view::handle(::topic * psubject, ::context * pcontext)
    {
 
 

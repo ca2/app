@@ -678,7 +678,7 @@ namespace user
 //    }
 
 
-   void control_bar::handle(::subject * psubject, ::context * pcontext)
+   void control_bar::handle(::topic * psubject, ::context * pcontext)
    {
 
       // // update the indicators before becoming visible

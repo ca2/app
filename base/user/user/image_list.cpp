@@ -155,13 +155,13 @@ namespace user
 
       }
 
-      ::subject subject(e_subject_image_list_action);
+      ::topic topic(id_image_list_action);
 
-      subject.m_item      = item;
+      topic.m_item      = item;
 
-      subject.m_puserelement      = this;
+      topic.m_puserelement      = this;
 
-      route(&subject);
+      route(&topic);
 
       _001SetSelection(iaSel, ::e_source_user);
 
@@ -709,7 +709,7 @@ namespace user
    }
 
 
-   void image_list_view::handle(::subject * psubject, ::context * pcontext)
+   void image_list_view::handle(::topic * psubject, ::context * pcontext)
    {
 
       ::user::impact::handle(psubject, pcontext);
@@ -783,17 +783,17 @@ namespace user
 
          m_iaSel = ia;
 
-         ::subject subject;
+         ::topic topic;
 
-         subject.m_puserelement = this;
+         topic.m_puserelement = this;
 
-         //subject.m_id = m_id;
+         //topic.m_id = m_id;
 
-         subject.m_item = current_item();
+         topic.m_item = current_item();
 
-         subject.m_id = ::e_subject_after_change_cur_sel;
+         topic.m_id = ::id_after_change_cur_sel;
 
-         route(&subject);
+         route(&topic);
 
       }
 

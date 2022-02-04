@@ -59,7 +59,7 @@ namespace user
 
       void install_message_routing(::channel * pchannel) override;
 
-      void handle(::subject * psubject, ::context * pcontext) override;
+      void handle(::topic * psubject, ::context * pcontext) override;
 
       bool on_click(const ::item & item) override;
 

@@ -31,7 +31,7 @@ namespace user
       point_i32                                 m_pointLButtonUp;
       ::data::tree_item *                       m_pitemFirstVisible;
       index                                     m_iFirstVisibleItemProperIndex;
-      i32                                       m_iCurrentViewWidth;
+      i32                                       m_iCurrentImpactWidth;
       ::size_i32                                m_sizeItemMaximum;
       //::color::color                               m_colorTextSelected;
       //::color::color                               m_colorTextHighlight;
@@ -87,9 +87,9 @@ namespace user
 
       void _001OnTreeDataChange();
       __pointer(::data::tree_item) CalcFirstVisibleItem(index & iProperIndex);
-      virtual i32 _001CalcCurrentViewWidth();
-      virtual i32 _001CalcTotalViewWidth();
-      virtual i32 _001CalcTotalViewHeight();
+      virtual i32 _001CalcCurrentImpactWidth();
+      virtual i32 _001CalcTotalImpactWidth();
+      virtual i32 _001CalcTotalImpactHeight();
       void _001SelectItem(::data::tree_item * pitem);
       count _001GetProperItemCount();
       count _001GetVisibleItemCount();
@@ -179,7 +179,7 @@ namespace user
 
       virtual void      _001EnsureVisible(::data::tree_item * pitem);
 
-      virtual void handle(::subject * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * psubject, ::context * pcontext) override;
 
       virtual bool keyboard_focus_is_focusable() const override;
 

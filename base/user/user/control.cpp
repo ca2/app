@@ -67,13 +67,13 @@
 //
 //      pcreate->previous();
 //
-//      ::subject subject;
+//      ::topic topic;
 //
-//      subject.m_puserinteraction = this;
+//      topic.m_puserinteraction = this;
 //
-//      subject.m_id = ::e_subject_create;
+//      topic.m_id = ::id_create;
 //
-//      route(&subject);
+//      route(&topic);
 //
 //   }
 //
@@ -477,15 +477,15 @@
 //
 //      //}
 //
-//      ::subject subject;
+//      ::topic topic;
 //
-//      subject.m_puserinteraction = this;
+//      topic.m_puserinteraction = this;
 //
-//      subject.m_id = ::e_subject_set_focus;
+//      topic.m_id = ::id_set_focus;
 //
-//      route(&subject);
+//      route(&topic);
 //
-//      pmessage->m_bRet =  subject.m_bRet;
+//      pmessage->m_bRet =  topic.m_bRet;
 //
 //   }
 //
@@ -495,17 +495,17 @@
 //
 //      __pointer(::message::kill_focus) pkillfocus(pmessage);
 //
-//      ::subject subject;
+//      ::topic topic;
 //
-//      subject.m_puserinteraction = this;
+//      topic.m_puserinteraction = this;
 //
-//      //subject.m_id = m_id;
+//      //topic.m_id = m_id;
 //
-//      subject.m_id = ::e_subject_kill_focus;
+//      topic.m_id = ::id_kill_focus;
 //
-//      route(&subject);
+//      route(&topic);
 //
-//      pkillfocus->m_bRet = subject.m_bRet;
+//      pkillfocus->m_bRet = topic.m_bRet;
 //
 //   }
 //
@@ -846,17 +846,17 @@
 //
 //   //   }
 //
-//   //   ::subject subject;
+//   //   ::topic topic;
 //
-//   //   //subject.m_id = m_id;
+//   //   //topic.m_id = m_id;
 //
-//   //   subject.m_puserinteraction = this;
+//   //   topic.m_puserinteraction = this;
 //
-//   //   subject.m_id = e_event_mouse_leave;
+//   //   topic.m_id = e_event_mouse_leave;
 //
-//   //   subject.m_pmessage = pmessage;
+//   //   topic.m_pmessage = pmessage;
 //
-//   //   route(&subject);
+//   //   route(&topic);
 //
 //   //}
 //
@@ -892,7 +892,7 @@
 //   //}
 //
 //
-//   void control::route(::subject * psubject, ::context * pcontext)
+//   void control::route(::topic * psubject, ::context * pcontext)
 //   {
 //
 //      ::user::box::route_handling(pevent);
@@ -908,7 +908,7 @@
 //   }
 //
 //
-//   void control::handle(::subject * psubject, ::context * pcontext)
+//   void control::handle(::topic * psubject, ::context * pcontext)
 //   {
 //
 //      ::user::box::handle(psubject, pcontext);

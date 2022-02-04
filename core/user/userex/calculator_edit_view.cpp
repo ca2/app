@@ -68,7 +68,7 @@ namespace calculator
 
       auto pplaineditview = this;
 
-      //auto psubject = pplaineditview->subject(id_after_change_text);
+      //auto psubject = pplaineditview->topic(id_after_change_text);
 
       //psubject->add_listener(this);
 
@@ -93,7 +93,7 @@ namespace calculator
    }
 
 
-   void plain_edit_view::handle(::subject * psubject, ::context * pcontext)
+   void plain_edit_view::handle(::topic * psubject, ::context * pcontext)
    {
 
       if (psubject->id() == id_after_change_text)
@@ -383,11 +383,11 @@ namespace calculator
 
       auto pplaineditview = this;
 
-      ::subject subject(id_after_change_text);
+      ::topic topic(id_after_change_text);
 
-      subject.m_puserelement = this;
+      topic.m_puserelement = this;
 
-      route(&subject);
+      route(&topic);
 
       plain_edit::plain_edit_on_after_change_text(pgraphics, context);
 

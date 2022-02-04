@@ -148,7 +148,7 @@ namespace filemanager
             virtual count _001GetItemCount() override;
             virtual void _001SearchGetItemText(::user::mesh_item * pitem) override;
 
-            virtual void handle(::subject * psubject, ::context * pcontext) override;
+            virtual void handle(::topic * psubject, ::context * pcontext) override;
 
             virtual bool on_click(const ::item & item) override;
 

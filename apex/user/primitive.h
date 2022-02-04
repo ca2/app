@@ -474,9 +474,9 @@ namespace user
 
       bool has_command_handler(::message::command * pcommand) override;
 
-      //virtual void route(::subject * psubject, ::context * pcontext);
+      //virtual void route(::topic * psubject, ::context * pcontext);
 
-      void handle(::subject * psubject, ::context * pcontext) override;
+      void handle(::topic * psubject, ::context * pcontext) override;
 
       //virtual void on_notify_control_event(control_event* pevent);
 

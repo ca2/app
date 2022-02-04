@@ -2144,7 +2144,7 @@
 //
 // MessageText:
 //
-// An attempt was made to cancel or set a timer that has an associated APC and the subject thread is not the thread that originally set the timer with an associated APC routine.
+// An attempt was made to cancel or set a timer that has an associated APC and the topic thread is not the thread that originally set the timer with an associated APC routine.
 //
 #define ERROR_TIMER_NOT_CANCELED         541L
 
@@ -28724,7 +28724,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Full subject issuer chain SSL principal name expected from the server.
+// Full topic issuer chain SSL principal name expected from the server.
 //
 #define RPC_E_FULLSIC_REQUIRED           _HRESULT_TYPEDEF_(0x80010121L)
 
@@ -30649,7 +30649,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// No DLL or exported function was found to verify subject usage.
+// No DLL or exported function was found to verify topic usage.
 //
 #define CRYPT_E_NO_VERIFY_USAGE_DLL      _HRESULT_TYPEDEF_(0x80092027L)
 
@@ -30658,7 +30658,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The called function was unable to do a usage check on the subject.
+// The called function was unable to do a usage check on the topic.
 //
 #define CRYPT_E_NO_VERIFY_USAGE_CHECK    _HRESULT_TYPEDEF_(0x80092028L)
 
@@ -30676,7 +30676,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The subject was not found in a CertifiCAte Trust List (CTL).
+// The topic was not found in a CertifiCAte Trust List (CTL).
 //
 #define CRYPT_E_NOT_IN_CTL               _HRESULT_TYPEDEF_(0x8009202AL)
 
@@ -31299,7 +31299,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The request subject name is invalid or too long.
+// The request topic name is invalid or too long.
 //
 #define CERTSRV_E_BAD_REQUESTSUBJECT     _HRESULT_TYPEDEF_(0x80094001L)
 
@@ -31542,7 +31542,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The request was made on behalf of a subject other than the caller. The certifiCAte template must be configured to require at least one signature to authorize the request.
+// The request was made on behalf of a topic other than the caller. The certifiCAte template must be configured to require at least one signature to authorize the request.
 //
 #define CERTSRV_E_BAD_RENEWAL_SUBJECT    _HRESULT_TYPEDEF_(0x80094806L)
 
@@ -32054,7 +32054,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The form specified for the subject is not one supported or known by the specified trust provider.
+// The form specified for the topic is not one supported or known by the specified trust provider.
 //
 #define TRUST_E_SUBJECT_FORM_UNKNOWN     _HRESULT_TYPEDEF_(0x800B0003L)
 
@@ -32063,7 +32063,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The subject is not trusted for the specified psubject->
+// The topic is not trusted for the specified psubject->
 //
 #define TRUST_E_SUBJECT_NOT_TRUSTED      _HRESULT_TYPEDEF_(0x800B0004L)
 
@@ -32135,7 +32135,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// No signature was present in the subject.
+// No signature was present in the topic.
 //
 #define TRUST_E_NOSIGNATURE              _HRESULT_TYPEDEF_(0x800B0100L)
 
@@ -32207,7 +32207,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// A certifiCAte is missing or has an empty value for an important field, such as a subject or issuer name.
+// A certifiCAte is missing or has an empty value for an important field, such as a topic or issuer name.
 //
 #define CERT_E_MALFORMED                 _HRESULT_TYPEDEF_(0x800B0108L)
 

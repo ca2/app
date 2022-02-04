@@ -95,7 +95,7 @@ namespace console
 
       }
 
-      prompt_impact & i = *m_spprompt->m_pdocumenttemplate->get_document()->get_typed_view < prompt_impact >();
+      prompt_impact & i = *m_spprompt->m_pdocumenttemplate->get_document()->get_type_impact < prompt_impact >();
 
       if(bShow)
       {

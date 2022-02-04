@@ -97,8 +97,8 @@ namespace user
 
       MESSAGE_LINK(e_message_create, pchannel, this, &list::on_message_create);
       //      //MESSAGE_LINK(e_message_timer,           pchannel, this, &list::_001OnTimer);
-      add_command_handler("list_view_auto_arrange", this, &list::_001OnListViewAutoArrange);
-      add_command_prober("list_view_auto_arrange", this, &list::_001OnUpdateListViewAutoArrange);
+      add_command_handler("list_view_auto_arrange", this, &list::_001OnListImpactAutoArrange);
+      add_command_prober("list_view_auto_arrange", this, &list::_001OnUpdateListImpactAutoArrange);
 
    }
 
@@ -166,7 +166,7 @@ namespace user
 
       pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias_grid_fit);
 
-      if (m_bLockViewUpdate)
+      if (m_bLockImpactUpdate)
       {
 
          return;
@@ -199,7 +199,7 @@ namespace user
 
          pbrushText->create_solid(get_color(pstyle,::e_element_text));
 
-         auto pointViewportOrg = pgraphics->GetViewportOrg();
+         auto pointImpactportOrg = pgraphics->GetImpactportOrg();
 
          pgraphics->set(pbrushText);
 
@@ -254,7 +254,7 @@ namespace user
             }
          }
 
-         pgraphics->SetViewportOrg(pointViewportOrg);
+         pgraphics->SetImpactportOrg(pointImpactportOrg);
 
       }
 
@@ -1768,20 +1768,20 @@ namespace user
       if (m_eview == impact_list)
       {
 
-         ::rectangle_i32 rectangleView;
+         ::rectangle_i32 rectangleImpact;
 
-         get_client_rect(&rectangleView);
+         get_client_rect(&rectangleImpact);
 
-         index dHeight = (::index) ((rectangleView.height() / m_dItemHeight) * m_dItemHeight);
+         index dHeight = (::index) ((rectangleImpact.height() / m_dItemHeight) * m_dItemHeight);
 
-         index iWidth = rectangleView.width();
+         index iWidth = rectangleImpact.width();
 
-         int iViewRowCount = 1;
+         int iImpactRowCount = 1;
 
          if(m_dItemHeight > 0)
          {
 
-            iViewRowCount = (int) maximum(1, dHeight / m_dItemHeight);
+            iImpactRowCount = (int) maximum(1, dHeight / m_dItemHeight);
 
          }
 
@@ -1794,28 +1794,28 @@ namespace user
 
          }
 
-         return iViewRowCount * iColumnCount;
+         return iImpactRowCount * iColumnCount;
 
       }
       else if (m_eview == impact_icon)
       {
 
-         ::rectangle_i32 rectangleView;
+         ::rectangle_i32 rectangleImpact;
 
-         get_client_rect(&rectangleView);
+         get_client_rect(&rectangleImpact);
 
          const ::size_i32 & sizeItem = get_item_size();
 
-         return maximum((rectangleView.width() / sizeItem.cx) * (rectangleView.height() / sizeItem.cy),
+         return maximum((rectangleImpact.width() / sizeItem.cx) * (rectangleImpact.height() / sizeItem.cy),
                     m_piconlayout->m_iaDisplayToStrict.get_max_a() + 1);
 
       }
       else if (m_eview == impact_report)
       {
 
-         ::rectangle_i32 rectangleView;
+         ::rectangle_i32 rectangleImpact;
 
-         get_client_rect(&rectangleView);
+         get_client_rect(&rectangleImpact);
 
          if (m_dItemHeight == 0)
          {
@@ -1826,7 +1826,7 @@ namespace user
          else
          {
 
-            double dHeight = rectangleView.height();
+            double dHeight = rectangleImpact.height();
 
             if (m_bTopText)
             {
@@ -2226,12 +2226,12 @@ namespace user
 
          index iItem = -1;
 
-         int iViewRowCount = 1;
+         int iImpactRowCount = 1;
 
          if(m_dItemHeight > 0)
          {
 
-            iViewRowCount = (int) maximum(1, dHeight / m_dItemHeight);
+            iImpactRowCount = (int) maximum(1, dHeight / m_dItemHeight);
 
          }
 
@@ -2253,7 +2253,7 @@ namespace user
 
          }
 
-         iItem = iColumn * iViewRowCount + iRow;
+         iItem = iColumn * iImpactRowCount + iRow;
 
          if (iItem < 0)
          {
@@ -2674,11 +2674,11 @@ namespace user
          if (dHeight != 0 && m_dItemHeight != 0)
          {
 
-            int iViewRowCount = (int) maximum(1, dHeight / m_dItemHeight);
+            int iImpactRowCount = (int) maximum(1, dHeight / m_dItemHeight);
 
-            int iColumn = (int) (pdrawitem->m_iItem / iViewRowCount);
+            int iColumn = (int) (pdrawitem->m_iItem / iImpactRowCount);
 
-            int iRow = pdrawitem->m_iItem % iViewRowCount;
+            int iRow = pdrawitem->m_iItem % iImpactRowCount;
 
             pdrawitem->m_rectangleItem.left = iColumn * m_iItemWidth;
 
@@ -4154,18 +4154,18 @@ namespace user
    bool list::on_click(const ::item & item)
    {
 
-      ::subject subject;
+      ::topic topic;
 
-      subject.m_puserelement = this;
+      topic.m_puserelement = this;
 
-      subject.m_id = ::e_subject_list_clicked;
+      topic.m_id = ::id_list_clicked;
 
-      route(&subject);
+      route(&topic);
 
       //if (m_pformcallback != nullptr)
       //{
 
-      //   m_pformcallback->route(&subject);
+      //   m_pformcallback->route(&topic);
 
       //}
       //else if (get_form() != nullptr)
@@ -4181,7 +4181,7 @@ namespace user
 
       //}
 
-      return subject.m_bRet;
+      return topic.m_bRet;
 
    }
 
@@ -5276,11 +5276,11 @@ namespace user
 
       _001RemoveAllColumns();
 
-      auto keepLockViewUpdate = keep(m_bLockViewUpdate);
+      auto keepLockImpactUpdate = keep(m_bLockImpactUpdate);
 
       _001InsertColumns();
 
-      keepLockViewUpdate.KeepAway();
+      keepLockImpactUpdate.KeepAway();
 
       DIDDXHeaderLayout(false);
 
@@ -6797,7 +6797,7 @@ namespace user
       return data_get_sort_id(m_eview);
    }
 
-   id list::data_get_sort_id(EView eview)
+   id list::data_get_sort_id(EImpact eview)
    {
 
       return ::user::mesh::data_get_sort_id(eview);
@@ -6824,7 +6824,7 @@ namespace user
    }
 
 
-   list::EView list::_001GetView()
+   list::EImpact list::_001GetImpact()
    {
 
       return m_eview;
@@ -7151,13 +7151,13 @@ namespace user
       return m_flags.has(flag_auto_arrange);
    }
 
-   void list::_001OnListViewAutoArrange(::message::message * pmessage)
+   void list::_001OnListImpactAutoArrange(::message::message * pmessage)
    {
       __UNREFERENCED_PARAMETER(pmessage);
       auto_arrange(!get_auto_arrange());
    }
 
-   void list::_001OnUpdateListViewAutoArrange(::message::message * pmessage)
+   void list::_001OnUpdateListImpactAutoArrange(::message::message * pmessage)
    {
       __pointer(::message::command) pcommand(pmessage);
       pcommand->_001SetCheck(get_auto_arrange());
@@ -7195,13 +7195,13 @@ namespace user
    void list::_001OnSelectionChange()
    {
 
-      ::subject subject;
+      ::topic topic;
 
-      subject.m_puserelement = this;
+      topic.m_puserelement = this;
 
-      subject.m_id = ::e_subject_after_change_cur_sel;
+      topic.m_id = ::id_after_change_cur_sel;
 
-      route(&subject);
+      route(&topic);
 
       set_need_redraw();
 
@@ -7870,7 +7870,7 @@ namespace user
    }
 
 
-   ::e_align list::get_draw_text_align(EView eview)
+   ::e_align list::get_draw_text_align(EImpact eview)
    {
 
       return m_pdrawmeshitem->m_ealign;
@@ -7878,7 +7878,7 @@ namespace user
    }
 
 
-   ::e_draw_text list::get_draw_text_flags(EView eview)
+   ::e_draw_text list::get_draw_text_flags(EImpact eview)
    {
 
       return m_pdrawmeshitem->m_edrawtext;

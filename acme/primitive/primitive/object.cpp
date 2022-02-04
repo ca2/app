@@ -274,14 +274,14 @@ void object::add_reference(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG_COMM
 //}
 
 
-::subject_pointer object::create_subject(const ::id & id)
+::extended_topic_pointer object::create_extended_topic(enum_topic etopic)
 {
 
-   auto psubject = __new(subject(id));
+   auto pextendedtopic = __new(extended_topic(etopic));
 
-   psubject->initialize(this);
+   pextendedtopic->initialize(this);
 
-   return ::move(psubject);
+   return ::move(pextendedtopic);
 
 }
 
@@ -1787,7 +1787,7 @@ void object::branch_each(const ::routine_array& routinea)
 }
 
 
-__pointer(task) object::branch_task(element * pelement, ::enum_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
+__pointer(task) object::branch_element(element * pelement, ::enum_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
 {
 
    if (::is_null(pelement))
@@ -1810,14 +1810,7 @@ __pointer(task) object::branch_task(element * pelement, ::enum_priority epriorit
 
    ptask->m_id = typeid(*pelement).name();
 
-   /*auto estatus =*/ ptask->branch(epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
-
-   //if (!estatus)
-   //{
-
-   //   return estatus;
-
-   //}
+   ptask->branch(epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
 
    return ptask;
 
@@ -1827,7 +1820,7 @@ __pointer(task) object::branch_task(element * pelement, ::enum_priority epriorit
 __pointer(task) object::branch(::enum_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
 {
 
-   auto ptask = branch_task(this, epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
+   auto ptask = branch_element(this, epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
 
    return ptask;
 
@@ -2236,11 +2229,11 @@ void object::message_receiver_destruct()
 void object::_001OnUpdate(::message::message* pmessage)
 {
 
-   //::subject subject(this, (::iptr)pmessage->m_wparam);
+   //::topic topic(this, (::iptr)pmessage->m_wparam);
 
-   //subject.m_payload = (::element*)(::iptr)pmessage->m_lparam;
+   //topic.m_payload = (::element*)(::iptr)pmessage->m_lparam;
 
-   //process(&subject);
+   //process(&topic);
 
 }
 

@@ -1,4 +1,4 @@
-// Extrapolation from merge with control_"subject" by camilo on day after ThomasBirthday2021 10:30!!
+// Extrapolation from merge with control_"topic" by camilo on day after ThomasBirthday2021 10:30!!
 #include "framework.h"
 
 
@@ -6,7 +6,7 @@ signal::signal(const ::id & id, ::manager * pmanager) :
    ::material_object(id),
    ::property_object(id),
    ::object(id),
-   ::subject(id),
+   ::topic(id),
    m_pmanager(pmanager)
 {
 
@@ -27,7 +27,7 @@ signal::~signal()
 i64 signal::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 {
 
-   return ::subject::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+   return ::topic::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
 }
 
@@ -35,7 +35,7 @@ i64 signal::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DE
 i64 signal::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 {
 
-   return ::subject::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+   return ::topic::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
 }
 
@@ -43,7 +43,7 @@ i64 signal::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DE
 i64 signal::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 {
 
-   return ::subject::release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+   return ::topic::release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
 }
 
@@ -147,7 +147,7 @@ void signal::notify()
       if (pcontext->m_bFork)
       {
 
-         branch_task(pmatter);
+         branch_element(pmatter);
 
       }
       else
@@ -189,7 +189,7 @@ void signal::start_task()
 }
 
 
-//void subject::reset_update(const ::id & id)
+//void topic::reset_update(const ::id & id)
 //{
 //
 //
@@ -291,7 +291,7 @@ void signal::set_modified()
    if (!should_poll(poll_time()))
    {
 
-      branch_task(this);
+      branch();
 
    }
 

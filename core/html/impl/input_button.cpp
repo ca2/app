@@ -126,10 +126,10 @@ namespace html
          //::rectangle_i32 rectangleWindow;
          //m_pbutton->get_window_rect(rectangleWindow);
          //m_pbutton->GetWindow()->screen_to_client(rectangleWindow);
-         //auto pointPreviousViewportOrg = pgraphics->GetViewportOrg();
-         //pgraphics->OffsetViewportOrg((i32) m_box.left, (i32) m_box.top);
+         //auto pointPreviousImpactportOrg = pgraphics->GetImpactportOrg();
+         //pgraphics->OffsetImpactportOrg((i32) m_box.left, (i32) m_box.top);
          m_pbutton->_000CallOnDraw(pgraphics);
-         //pgraphics->SetViewportOrg(pointPreviousViewportOrg);
+         //pgraphics->SetImpactportOrg(pointPreviousImpactportOrg);
 
       }
 

@@ -7,8 +7,8 @@ namespace user
 {
 
 
-   multiple_document_template::multiple_document_template(const ::string & pszMatter, ::type pDocClass, ::type pFrameClass, ::type pViewClass) :
-      ::user::impact_system(pszMatter, pDocClass, pFrameClass, pViewClass)
+   multiple_document_template::multiple_document_template(const ::string & pszMatter, ::type pDocClass, ::type pFrameClass, ::type pImpactClass) :
+      ::user::impact_system(pszMatter, pDocClass, pFrameClass, pImpactClass)
    {
 
       defer_create_mutex();

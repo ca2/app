@@ -622,7 +622,7 @@ namespace user
 
       }
 
-      //point_i32 pointViewportOffset = pgraphics->GetViewportOrg();
+      //point_i32 pointImpactportOffset = pgraphics->GetImpactportOrg();
 
       ::rectangle_f64 rClip;
 
@@ -2574,15 +2574,15 @@ namespace user
    void tab::on_create_tabs()
    {
 
-      ::subject subject;
+      ::topic topic;
 
-      subject.m_puserelement      = this;
+      topic.m_puserelement      = this;
 
-      subject.m_ptab      = this;
+      topic.m_ptab      = this;
 
-      subject.m_id    = ::e_subject_on_create_tab;
+      topic.m_id    = ::id_on_create_tab;
 
-      route(&subject);
+      route(&topic);
 
    }
 
@@ -3446,7 +3446,7 @@ namespace user
    }
 
 
-   void tab::handle(::subject * psubject, ::context * pcontext)
+   void tab::handle(::topic * psubject, ::context * pcontext)
    {
 
       ::user::interaction::handle(psubject, pcontext);

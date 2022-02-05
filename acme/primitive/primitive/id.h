@@ -3,8 +3,6 @@
 
 
 
-
-
 #include "acme/primitive/comparison/equals.h"
 #include "acme/primitive/comparison/hash.h"
 #include "acme/constant/thread.h"
@@ -50,10 +48,10 @@ int __compare_square(A a, B b)
 }
 
 
-#define safe_strcmp(a, b) ::str::compare(a, b)
+#define __safe_strcmp(a, b) ::str::compare(a, b)
 
 
-#define safe_stricmp(a, b) ::str::compare_ci(a, b)
+#define __safe_stricmp(a, b) ::str::compare_ci(a, b)
 
 
 #else
@@ -74,7 +72,7 @@ int __compare_square(A a, B b)
 (sgn(MAJOR_COMPARISON) != 0 ? (sgn(MAJOR_COMPARISON)) : (sgn(MINOR_COMPARISON)))
 
 
-inline int safe_strcmp(const char * a, const char * b)
+inline int __safe_strcmp(const char * a, const char * b)
 {
 
    if (__str_is_empty(a))
@@ -103,14 +101,14 @@ inline int safe_strcmp(const char * a, const char * b)
    else
    {
 
-      return stricmp(a, b);
+      return strcmp(a, b);
 
    }
 
 }
 
 
-inline int safe_strcmp_ci(const char * a, const char * b)
+inline int __safe_stricmp(const char * a, const char * b)
 {
 
    if (__str_is_empty(a))
@@ -913,7 +911,7 @@ inline string id::str() const
 inline int id::compare(const char * psz) const
 {
 
-   return __compare_square(primitive_type() - e_type_text, safe_strcmp(m_psz, psz));
+   return __compare_square(primitive_type() - e_type_text, __safe_strcmp(m_psz, psz));
 
 }
 
@@ -1360,7 +1358,7 @@ inline iptr id::compare_ci(const char * psz) const
    else
    {
 
-      return ansi_compare_ci(m_psz,psz);
+      return safe_stricmp(m_psz,psz);
 
    }
 

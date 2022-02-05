@@ -21,22 +21,37 @@ class lparam;
 template <typename T>
 int sgn(T x)
 {
+
    return (((T) 0) < x) - (x < ((T) 0));
+
+}
+
+
+template <typename A, typename B>
+int __compare_square(A a, B b)
+{
+
+   auto aSgn = sgn(a);
+
+   return aSgn ? aSgn : sgn(b);
+
 }
 
 
 #else
 
 
-#define sgn(x) ((0 < x) - (x < 0));
+#define sgn(x) ((0 < (x)) - ((x) < 0)))
+
+
+// Lets (AMajor.AMinor) (BMajor.BMinor)
+// compare_square(AMajor - BMajor, AMinor - BMinor)
+#define __compare_square(MAJOR_COMPARISON, MINOR_COMPARISON) \
+(sgn(MAJOR_COMPARISON) != 0 ? (sgn(MAJOR_COMPARISON)) : (sgn(MINOR_COMPARISON)))
 
 
 #endif
 
-// Lets (AMajor.AMinor) (BMajor.BMinor)
-// compare_square(AMajor - BMajor, AMinor - BMinor)
-#define __COMPARE_SQUARE(MAJOR_COMPARISON, MINOR_COMPARISON) \
-((MAJOR_COMPARISON) != 0 ? ::sgn(MAJOR_COMPARISON) : ::sgn(MINOR_COMPARISON))
 
 
 struct id_all
@@ -366,9 +381,14 @@ public:
    //inline operator enum_dialog_result () const;
 
 
+#ifndef NO_TEMPLATE
+
+
    inline void to_string(string & str) const;
    inline string to_string() const;
    //inline string __string() const;
+
+#endif
 
 
    inline bool is_null() const;
@@ -382,20 +402,26 @@ public:
    inline iptr compare_ci(const char * psz) const;
 
 
-   inline bool begins(const ::string & strPrefix) const;
-   inline bool begins_ci(const ::string & strPrefix) const;
-
+   inline bool begins(const char * pszPrefix) const;
+   inline bool begins_ci(const char * pszPrefix) const;
 
    inline bool is_text() const { return m_etype >= e_type_text; }
    inline bool is_integer() const { return m_etype >= 0 && m_etype < e_type_text; }
 
 
-   inline id & operator +=(const char * psz);
+   //inline id & operator +=(const char * psz);
 
-   inline id operator +(const id & id) const;
+
+
+#ifndef NO_TEMPLATE
+
+
+   //inline string operator +(const id & id) const;
    inline string operator +(const char * psz) const;
    inline string operator +(const ::string & str) const;
 
+
+#endif
 
 };
 
@@ -531,7 +557,7 @@ inline id::id(const char * psz, id_space *)
 
 }
 
-
+#ifndef NO_TEMPLATE
 
 template < primitive_signed SIGNED >
 inline id::id(SIGNED i)
@@ -554,13 +580,13 @@ inline id::id(UNSIGNED u)
 
 }
 
-//#endif
+#endif
 
 
 inline int id::compare(const id & id) const
 {
 
-   return __COMPARE_SQUARE(m_iType - id.m_iType, m_iBody - id.m_iBody);
+   return __compare_square(m_iType - id.m_iType, m_iBody - id.m_iBody);
 
 }
 
@@ -626,7 +652,7 @@ inline id & id::operator = (const id & id)
 inline int id::compare(const ::string & str) const
 {
 
-   return __COMPARE_SQUARE(primitive_type() - e_type_text, ansi_compare(m_psz, str.c_str()));
+   return __compare_square(primitive_type() - e_type_text, ansi_compare(m_psz, str.c_str()));
 
 }
 
@@ -776,7 +802,7 @@ inline string id::str() const
 inline int id::compare(const char * psz) const
 {
 
-   return __COMPARE_SQUARE(primitive_type() - e_type_text, ansi_compare(m_psz, psz));
+   return __compare_square(primitive_type() - e_type_text, ansi_compare(m_psz, psz));
 
 }
 
@@ -834,7 +860,7 @@ template < primitive_integral INTEGRAL >
 inline int id::compare(INTEGRAL i) const
 {
 
-   return __COMPARE_SQUARE((::i32)primitive_type() - (::i32)e_type_integer, (::i64) m_i - (::i64)i);
+   return __compare_square((::i32)primitive_type() - (::i32)e_type_integer, (::i64) m_i - (::i64)i);
 
 }
 
@@ -897,7 +923,7 @@ inline bool id::operator >= (INTEGRAL i) const
 inline int id::compare(::enum_id eid) const
 {
 
-   return __COMPARE_SQUARE(m_etype - e_type_id, m_i - eid);
+   return __compare_square(m_etype - e_type_id, m_i - eid);
 
 }
 
@@ -953,7 +979,7 @@ inline bool id::operator >= (::enum_id eid) const
 inline int id::compare(::enum_message emessage) const
 {
 
-   return __COMPARE_SQUARE(m_etype - e_type_message, m_emessage - emessage);
+   return __compare_square(m_etype - e_type_message, m_emessage - emessage);
 
 }
 
@@ -1009,7 +1035,7 @@ inline bool id::operator >= (::enum_message emessage) const
 //inline int id::compare(::enum_topic etopic) const
 //{
 //
-//   return __COMPARE_SQUARE(m_etype - e_type_subject, m_etopic - etopic);
+//   return __compare_square(m_etype - e_type_subject, m_etopic - etopic);
 //
 //}
 //
@@ -1067,7 +1093,7 @@ inline bool id::operator >= (::enum_message emessage) const
 inline int id::compare(::enum_dialog_result edialogresult) const
 {
 
-   return __COMPARE_SQUARE(m_etype - e_type_dialog_result, m_edialogresult - edialogresult);
+   return __compare_square(m_etype - e_type_dialog_result, m_edialogresult - edialogresult);
 
 }
 
@@ -1186,7 +1212,7 @@ inline void id::clear()
 }
 
 
-inline CLASS_DECL_ACME id & id::operator += (const char * psz) { return operator = (string(*this) + string(psz)); }
+//inline CLASS_DECL_ACME id & id::operator += (const char * psz) { return operator = (string(*this) + string(psz)); }
 
 
 inline iptr id::compare_ci(const char * psz) const
@@ -1273,5 +1299,76 @@ public:
 
 };
 
+
+
+
+
+
+inline bool id::begins(const char * pszCandidatePrefix) const
+{
+
+   if (::is_null(pszCandidatePrefix) || *pszCandidatePrefix == '\0')
+   {
+
+      return true;
+
+   }
+
+   if (is_empty() || is_integer())
+   {
+
+      return false;
+
+   }
+   else if (is_text())
+   {
+
+      return strncmp(m_psz, pszCandidatePrefix, strlen(pszCandidatePrefix)) == 0;
+
+   }
+   else
+   {
+
+      __throw(error_wrong_type, "Unexpected::id m_etype");
+
+      return false;
+
+   }
+
+}
+
+
+inline bool id::begins_ci(const char * pszCandidatePrefix) const
+{
+
+   if (::is_null(pszCandidatePrefix) || *pszCandidatePrefix == '\0')
+   {
+
+      return true;
+
+   }
+
+   if (is_empty())
+   {
+
+      return false;
+
+   }
+   else if (is_text())
+   {
+
+      return strncmp(m_psz, pszCandidatePrefix, strlen(pszCandidatePrefix)) == 0;
+
+   }
+   else
+   {
+
+      throw "Unexpected ::id m_etype";
+
+      return false;
+
+   }
+
+}
 
 

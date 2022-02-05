@@ -269,80 +269,80 @@ inline string  id::operator +(const ::string & str) const
 }
 
 
-inline CLASS_DECL_ACME id id::operator + (const id & id) const
-{
-
-   if (is_integer())
-   {
-
-      if (id.is_integer())
-      {
-
-         return (iptr)(m_i + id.m_i);
-
-      }
-      else if (id.is_text())
-      {
-
-         return __string(m_i) + "." + string(id.m_psz);
-
-      }
-      else
-      {
-
-         return *this;
-
-      }
-
-   }
-   else if (id.is_integer())
-   {
-
-      if (is_text())
-      {
-
-         return string(m_psz) + "." + __string(id.m_i);
-
-      }
-      else
-      {
-
-         return id;
-
-      }
-
-   }
-   else if (is_text())
-   {
-
-      if (id.is_text())
-      {
-
-         return string(m_psz) + string(id.m_psz);
-
-      }
-      else
-      {
-
-         return *this;
-
-      }
-
-   }
-   else if (id.is_text())
-   {
-
-      return id;
-
-   }
-   else
-   {
-
-      return ::id();
-
-   }
-
-}
+//inline CLASS_DECL_ACME string id::operator + (const id & id) const
+//{
+//
+//   if (is_integer())
+//   {
+//
+//      if (id.is_integer())
+//      {
+//
+//         return (iptr)(m_i + id.m_i);
+//
+//      }
+//      else if (id.is_text())
+//      {
+//
+//         return __string(m_i) + "." + string(id.m_psz);
+//
+//      }
+//      else
+//      {
+//
+//         return *this;
+//
+//      }
+//
+//   }
+//   else if (id.is_integer())
+//   {
+//
+//      if (is_text())
+//      {
+//
+//         return string(m_psz) + "." + __string(id.m_i);
+//
+//      }
+//      else
+//      {
+//
+//         return id;
+//
+//      }
+//
+//   }
+//   else if (is_text())
+//   {
+//
+//      if (id.is_text())
+//      {
+//
+//         return string(m_psz) + string(id.m_psz);
+//
+//      }
+//      else
+//      {
+//
+//         return *this;
+//
+//      }
+//
+//   }
+//   else if (id.is_text())
+//   {
+//
+//      return id;
+//
+//   }
+//   else
+//   {
+//
+//      return ::id();
+//
+//   }
+//
+//}
 
 
 inline bool property_set::has_property(id idName) const
@@ -589,95 +589,6 @@ inline property & payload::get_property(const ::id & id)
    return as_propset()[id];
 
 }
-
-
-inline bool id::begins(const ::string & strPrefix) const
-{
-
-   if (strPrefix.is_empty())
-   {
-
-      return true;
-
-   }
-
-   if (is_empty())
-   {
-
-      return false;
-
-   }
-   else if (is_integer())
-   {
-
-      char sz[64];
-
-      ansi_from_i64(sz, m_i);
-
-      return ::str::begins(sz, strPrefix);
-
-   }
-   else if (is_text())
-   {
-
-      return ::str::begins(m_psz, strPrefix);
-
-   }
-   else
-   {
-
-      __throw(error_wrong_type, "Unexpected::id m_etype");
-
-      return false;
-
-   }
-
-}
-
-
-inline bool id::begins_ci(const ::string & strPrefix) const
-{
-
-   if (strPrefix.is_empty())
-   {
-
-      return true;
-
-   }
-
-   if (is_empty())
-   {
-
-      return false;
-
-   }
-   else if (is_integer())
-   {
-
-      char sz[64];
-
-      ansi_from_i64(sz, m_i);
-
-      return ::str::begins(sz, strPrefix);
-
-   }
-   else if (is_text())
-   {
-
-      return ::str::begins_ci(m_psz, strPrefix);
-
-   }
-   else
-   {
-
-      __throw(error_wrong_type, "Unexpected ::id m_etype");
-
-      return false;
-
-   }
-
-}
-
 
 template < class T >
 template < typename VAR >

@@ -178,7 +178,7 @@ inline bool __str_begins(const char * a, const char * b)
    else
    {
 
-      return strcmp(a, b, strlen(b));
+      return strncmp(a, b, strlen(b));
 
    }
 
@@ -214,7 +214,7 @@ inline bool __str_begins_ci(const char * a, const char * b)
    else
    {
 
-      return stricmp(a, b, strlen(b));
+      return strnicmp(a, b, strlen(b));
 
    }
 

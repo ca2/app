@@ -15,7 +15,7 @@ public:
 
    extended_topic *     m_pextendedtopic;
 
-   class ::id           m_id;
+   class ::atom         m_atom;
 
    
 };
@@ -35,12 +35,12 @@ public:
 
    }
 
-   topic(const class ::id & id)
+   topic(const class ::atom & atom)
    {
       
       m_pextendedtopic = nullptr;
 
-      m_id = id;
+      m_atom = atom;
 
    }
 

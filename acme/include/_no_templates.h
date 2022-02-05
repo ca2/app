@@ -4,7 +4,7 @@
 //
 //  Created by Camilo Sasuke Tsumanuma on 24/04/20.
 //
-
+#define NO_TEMPLATE
 
 #include "operating_system/config.h"
 
@@ -86,7 +86,7 @@ class duration;
 #include "acme/parallelization/synchronization_result.h"
 #include "acme/primitive/primitive/atomic.h"
 #include "acme/primitive/primitive/interlocked_count.h"
-#include "acme/primitive/primitive/id.h"
+#include "acme/primitive/primitive/atom.h"
 #include "acme/topic/topic.h"
 #include "acme/topic/handler.h"
 #include "acme/primitive/primitive/e_flag.h"

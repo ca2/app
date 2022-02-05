@@ -64,13 +64,13 @@ public:
    }
 
 
-   inline bool operator==(const ::atom & atom) const { return m_id == atom || m_id == FULL_ID; }
+   inline bool operator==(const ::atom & atom) const { return m_atom == atom || m_id == FULL_ID; }
 
-   inline bool operator==(const ::id & id) const { return m_id == id || m_id == FULL_ID; }
+   //inline bool operator==(const ::atom & atom) const { return m_atom == atom || m_atom == FULL_ID; }
 
-   inline ::id &id() { return m_id; }
+   inline ::atom &atom() { return m_atom; }
 
-   inline const ::id &id() const { return m_id; }
+   inline const ::atom &atom() const { return m_atom; }
 
    void Ret();
    void Ok();

@@ -217,7 +217,7 @@ public:
    item(enum_element eelement = ::e_element_none, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, const ::atom & atom = ::atom::e_type_null, const ::user::e_flag uFlags = ::user::e_flag_none)
    {
 
-      m_id = atom;
+      m_atom = atom;
 
       m_eelement = eelement;
 

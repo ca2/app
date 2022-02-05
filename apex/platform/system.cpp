@@ -4960,14 +4960,6 @@ namespace apex
             m_strOsUserTheme = strTheme;
 
          }
-         else
-         {
-
-            ptopic->m_id = id_not_modified;
-
-         }
-
-         //m_pnode->defer_update_dark_mode();
 
       }
       else if (ptopic->m_id == id_open_hyperlink)

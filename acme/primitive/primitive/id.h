@@ -54,6 +54,12 @@ int __compare_square(A a, B b)
 #define __safe_stricmp(a, b) ::str::compare_ci(a, b)
 
 
+#define __str_begins(a, b) ::str::begins(a, b)
+
+
+#define __str_begins_ci(a, b) ::str::begins_ci(a, b)
+
+
 #else
 
 
@@ -143,8 +149,80 @@ inline int __safe_stricmp(const char * a, const char * b)
 
 }
 
+inline bool __str_begins(const char * a, const char * b)
+{
+
+   if (__str_is_empty(a))
+   {
+
+      if (__str_is_empty(b))
+      {
+
+         return true;
+
+      }
+      else
+      {
+
+         return false;
+
+      }
+
+   }
+   else if (__str_is_empty(b))
+   {
+
+      return true;
+
+   }
+   else
+   {
+
+      return strcmp(a, b, strlen(b));
+
+   }
+
+}
+
+
+inline bool __str_begins_ci(const char * a, const char * b)
+{
+
+   if (__str_is_empty(a))
+   {
+
+      if (__str_is_empty(b))
+      {
+
+         return true;
+
+      }
+      else
+      {
+
+         return false;
+
+      }
+
+   }
+   else if (__str_is_empty(b))
+   {
+
+      return true;
+
+   }
+   else
+   {
+
+      return stricmp(a, b, strlen(b));
+
+   }
+
+}
+
 
 #endif
+
 
 
 
@@ -1374,6 +1452,9 @@ inline bool EqualElements< id >(id element1, id element2)
 }
 
 
+#ifndef NO_TEMPLATE
+
+
 template < >
 inline uptr uptr_hash< const id & >(const id & key)
 {
@@ -1391,6 +1472,8 @@ inline uptr uptr_hash< id>(id key)
 
 }
 
+
+#endif
 
 //inline string CLASS_DECL_ACME operator + (const char * psz, const ::id & id);
 
@@ -1437,13 +1520,13 @@ inline bool id::begins(const char * pszCandidatePrefix) const
    else if (is_text())
    {
 
-      return strncmp(m_psz, pszCandidatePrefix, strlen(pszCandidatePrefix)) == 0;
+      return __str_begins(m_psz, pszCandidatePrefix);
 
    }
    else
    {
 
-      __throw(error_wrong_type, "Unexpected::id m_etype");
+      throw "Unexpected::id m_etype";
 
       return false;
 

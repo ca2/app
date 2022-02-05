@@ -54,13 +54,14 @@ int __compare_square(A a, B b)
 #else
 
 
-#define __str_is_empty(psz) (is_null(psz) || *psz == '\0')
-
-
 #define sgn(x) ((0 < (x)) - ((x) < 0))
 
 
-#define is_null(p) (!(p))
+#define __is_null_ptr(p) (!(p))
+
+
+#define __str_is_empty(psz) (__is_null_ptr(psz) || *psz == '\0')
+
 
 // Lets (AMajor.AMinor) (BMajor.BMinor)
 // compare_square(AMajor - BMajor, AMinor - BMinor)

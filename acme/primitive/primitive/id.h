@@ -49,7 +49,12 @@ int __compare_square(A a, B b)
 
 }
 
+
 #define safe_strcmp(a, b) ::str::compare(a, b)
+
+
+#define safe_stricmp(a, b) ::str::compare_ci(a, b)
+
 
 #else
 
@@ -98,11 +103,48 @@ inline int safe_strcmp(const char * a, const char * b)
    else
    {
 
-      return strcmp(a, b);
+      return stricmp(a, b);
 
    }
 
 }
+
+
+inline int safe_strcmp_ci(const char * a, const char * b)
+{
+
+   if (__str_is_empty(a))
+   {
+
+      if (__str_is_empty(b))
+      {
+
+         return true;
+
+      }
+      else
+      {
+
+         return -1;
+
+      }
+
+   }
+   else if (__str_is_empty(b))
+   {
+
+      return 1;
+
+   }
+   else
+   {
+
+      return stricmp(a, b);
+
+   }
+
+}
+
 
 #endif
 
@@ -925,6 +967,9 @@ inline bool id::operator >= (const char * psz) const
 }
 
 
+#ifndef NO_TEMPLATE
+
+
 template < primitive_integral INTEGRAL >
 inline int id::compare(INTEGRAL i) const
 {
@@ -987,7 +1032,9 @@ inline bool id::operator >= (INTEGRAL i) const
 
 }
 
-//#endif
+
+#endif
+
 
 inline int id::compare(::enum_id eid) const
 {

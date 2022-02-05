@@ -1358,7 +1358,7 @@ inline iptr id::compare_ci(const char * psz) const
    else
    {
 
-      return safe_stricmp(m_psz,psz);
+      return __safe_stricmp(m_psz,psz);
 
    }
 

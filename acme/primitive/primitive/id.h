@@ -2,7 +2,7 @@
 #pragma once
 
 
-#define __str_is_empty(psz) (::is_null(psz) || *psz == '\0')
+
 
 
 #include "acme/primitive/comparison/equals.h"
@@ -22,6 +22,13 @@ class lparam;
 
 #ifndef NO_TEMPLATE
 
+
+inline bool __str_is_empty(const char * psz)
+{
+
+   return ::is_null(psz) || *psz == '\0';
+
+}
 
 template <typename T>
 int sgn(T x)
@@ -45,6 +52,9 @@ int __compare_square(A a, B b)
 #define safe_strcmp(a, b) ::str::compare(a, b)
 
 #else
+
+
+#define __str_is_empty(psz) (is_null(psz) || *psz == '\0')
 
 
 #define sgn(x) ((0 < (x)) - ((x) < 0))

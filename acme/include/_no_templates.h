@@ -34,15 +34,9 @@ class string;
 typedef iptr strsize;
 class payload;
 
-//namespace topic
-//{
 
-   
-   class topic;
-   class context;
-
-
-//} // namespace topic
+class topic;
+class context;
 
 
 namespace message
@@ -62,13 +56,9 @@ class system;
 #include "acme/constant/_.h"
 #include "acme/parallelization/_types.h"
 #include "acme/node/operating_system/parallelization.h"
-//#include "acme/platform/struct.h"
-//#include "acme/node/operating_system/cross/_.h"
-//#include "acme/node/operating_system/acme.h"
 
 
 #include "acme/include/_c.h"
-//#include "acme/node/operating_system/apple/_c_mm.h"
 
 
 class synchronization_object;
@@ -85,8 +75,7 @@ class duration;
 #include "acme/platform/object_reference_count_debug.h"
 #include "acme/platform/object_type_counter.h"
 #include "acme/constant/_constant.h"
-#include "acme/id.h"
-//#include "acme/primitive/primitive/tracer.h"
+#include "acme/constant/id.h"
 #include "acme/platform/object_reference_count_debug.h"
 #include "acme/primitive/primitive/uid.h"
 #include "acme/primitive/primitive/estatus.h"
@@ -95,9 +84,9 @@ class duration;
 #include "acme/primitive/mathematics/index.h"
 #include "acme/primitive/primitive/interlocked.h"
 #include "acme/parallelization/synchronization_result.h"
-//#include "acme/primitive/datetime/_.h"
 #include "acme/primitive/primitive/atomic.h"
 #include "acme/primitive/primitive/interlocked_count.h"
+#include "acme/primitive/primitive/id.h"
 #include "acme/topic/topic.h"
 #include "acme/topic/handler.h"
 #include "acme/primitive/primitive/e_flag.h"

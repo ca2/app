@@ -66,13 +66,11 @@ public:
 
    inline bool operator==(const ::atom & atom) const { return m_id == atom || m_id == FULL_ID; }
 
-   operator topic *() { return this; }
+   inline bool operator==(const ::id & id) const { return m_id == id || m_id == FULL_ID; }
 
-   operator const topic *() const { return this; }
+   inline ::id &id() { return m_id; }
 
-   inline ::atom &atom() { return m_id; }
-
-   inline const ::atom &atom() const { return m_id; }
+   inline const ::id &id() const { return m_id; }
 
    void Ret();
    void Ok();

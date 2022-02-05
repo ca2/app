@@ -9,80 +9,185 @@ class ___stack
 {
 public:
 
-   T& m_reference;
+   
+   T & m_reference;
    T m_tPrevious;
+   
 
    ___stack(T& reference, const T& tStack) :
       m_reference(reference)
    {
+      
       m_tPrevious = reference;
+      
       reference = tStack;
+      
    }
 
+   
    ~___stack()
    {
+      
       m_reference = m_tPrevious;
 
    }
+   
 
 };
 
 
 #define __stack(xxxx, aaaa) auto stack_at_line ## LINE_NUMBER = ::___stack < ::erase_reference< decltype(xxxx) >::TYPE > (xxxx, aaaa);
 
-//namespace user
-//{
 
 #pragma pack(push, user_ITEM, 1)
 
-struct CLASS_DECL_ACME ITEM :
-   virtual public topic
+
+struct ITEM_BASE_ADDITIONS
 {
+   
 
-   enum_element       m_eelement;
-   ::index            m_iItem;
-   ::index            m_iSubItem;
-   ::index            m_iListItem;
-
-
-   inline ::index  menu_view_index() const { return (::index) m_iItem; }
-   inline ::index  menu_view_group() const { return (::index) m_iSubItem; }
-   inline ::index  menu_view_command() const { return (::index) m_iListItem; }
-
-   inline ::index item_index() const { return (::index) m_iItem; }
-   inline ::index subitem_index() const { return (::index) m_iSubItem; }
-   inline ::index list_item_index() const { return (::index) m_iListItem; }
-
-
-   bool operator == (const ITEM & item)  const { return !memcmp(this, &item, sizeof(ITEM)); }
-   bool operator != (const ITEM & item)  const { return !operator == (item); }
-
+   enum_element                  m_eelement;
+   ::index                       m_iItem;
+   ::index                       m_iSubItem;
+   ::index                       m_iListItem;
+   
+   
 };
 
-#pragma pack(pop, user_ITEM)
 
-#define ITEM_DRAWN 0x800000
-
-
-struct CLASS_DECL_ACME item_data :
-   public ITEM
+struct ITEM_DATA_ADDITIONS
 {
 
+   
    ::point_i32                   m_pointScreen;
    ::point_i32                   m_pointHost;
    ::point_i32                   m_pointClient;
    ::point_i32                   m_pointHitTest;
    ::rectangle_i32               m_rectangle;
    u64                           m_uFlags;
+   
+   
+};
 
 
-   item_data & operator = (const item_data& item) { if (this != &item) memcpy(this, &item, sizeof(item_data)); return *this; }
-
-   bool operator == (const item_data & item)  const { return ITEM::operator==(item); }
-   bool operator != (const item_data & item)  const { return ITEM::operator!=(item); }
+struct ITEM_BASE :
+   public TOPIC,
+   public ITEM_BASE_ADDITIONS
+{
 
 
 };
+
+
+struct ITEM_DATA :
+   public TOPIC,
+   public ITEM_BASE_ADDITIONS,
+   public ITEM_DATA_ADDITIONS
+{
+
+
+};
+
+
+#pragma pack(pop, user_ITEM)
+
+
+#define ITEM_DRAWN 0x800000
+
+
+class CLASS_DECL_ACME item_base :
+   virtual public ::topic,
+   virtual public ITEM_BASE_ADDITIONS
+{
+   
+   
+   inline ::index menu_view_index() const { return (::index) m_iItem; }
+   inline ::index menu_view_group() const { return (::index) m_iSubItem; }
+   inline ::index menu_view_command() const { return (::index) m_iListItem; }
+
+   inline ::index item_index() const { return (::index) m_iItem; }
+   inline ::index subitem_index() const { return (::index) m_iSubItem; }
+   inline ::index list_item_index() const { return (::index) m_iListItem; }
+
+   
+   item_base & operator = (const ::topic & topic) { if ((TOPIC *) this != (TOPIC *) &topic) memcpy((TOPIC *) this, (TOPIC *) &topic, sizeof(TOPIC)); return *this; }
+
+
+   bool operator == (const ::topic & topic)  const { return ((TOPIC *)this == (TOPIC *)&topic) ? true : !memcmp((TOPIC *) this, (TOPIC *) &topic, sizeof(TOPIC)); }
+   bool operator != (const ::topic & topic)  const { return !operator == (topic); }
+
+   
+   item_base & operator = (const item_base & itembase) { if ((TOPIC *) this != (TOPIC *) &itembase) memcpy((TOPIC *) this, (TOPIC *) &itembase, sizeof(ITEM_BASE)); return *this; }
+
+
+   bool operator == (const ::item_base & itembase)  const { return ((TOPIC *)this == (TOPIC *)&itembase) ? true : !memcmp((TOPIC *) this, (TOPIC *) &itembase, sizeof(ITEM_BASE)); }
+   bool operator != (const ::item_base & itembase)  const { return !operator == (itembase); }
+   
+
+   item_base & operator = (const ::TOPIC & topic) { if ((TOPIC *) this != (TOPIC *) &topic) memcpy((TOPIC *) this, (TOPIC *) &topic, sizeof(TOPIC)); return *this; }
+
+
+   bool operator == (const ::TOPIC & topic)  const { return ((TOPIC *)this == (TOPIC *)&topic) ? true : !memcmp((TOPIC *) this, (TOPIC *) &topic, sizeof(TOPIC)); }
+   bool operator != (const ::TOPIC & topic)  const { return !operator == (topic); }
+
+   
+   item_base & operator = (const ITEM_BASE & itembase) { if ((TOPIC *)this != (TOPIC *)&itembase) memcpy((TOPIC *) this, (TOPIC *) &itembase, sizeof(ITEM_BASE)); return *this; }
+
+
+   bool operator == (const ::ITEM_BASE & itembase)  const { return ((TOPIC *)this == (TOPIC *)&itembase) ? true : !memcmp((TOPIC *) this, (TOPIC *) &itembase, sizeof(ITEM_BASE)); }
+   bool operator != (const ::ITEM_BASE & itembase)  const { return !operator == (itembase); }
+
+
+};
+
+
+struct CLASS_DECL_ACME item_data :
+   virtual public ITEM_DATA_ADDITIONS,
+   virtual public item_base
+{
+   
+   
+   item_data & operator = (const ::topic & topic) { if ((TOPIC*) this != (TOPIC *) &topic) memcpy((TOPIC *) this, (TOPIC *) &topic, sizeof(TOPIC)); return *this; }
+
+
+   bool operator == (const ::topic & topic)  const { return ((TOPIC *)this == (TOPIC *)&topic) ? true : !memcmp((TOPIC *) this, (TOPIC *) &topic, sizeof(TOPIC)); }
+   bool operator != (const ::topic & topic)  const { return !operator == (topic); }
+   
+   
+   item_data & operator = (const item_base & itembase) { if ((TOPIC *) this != (TOPIC *) &itembase) memcpy((TOPIC *) this, (TOPIC *) &itembase, sizeof(ITEM_BASE)); return *this; }
+
+   bool operator == (const item_base & itembase)  const { return ((TOPIC *)this == (TOPIC *)&itembase) ? true : !memcmp((TOPIC *) this, (TOPIC *) &itembase, sizeof(ITEM_BASE)); }
+   bool operator != (const item_base & itembase)  const { return !operator==(itembase); }
+   
+   
+   item_data & operator = (const item_data & itemdata) { if ((TOPIC *) this != (TOPIC *)&itemdata) memcpy((TOPIC *) this, (TOPIC *) &itemdata, sizeof(ITEM_DATA)); return *this; }
+
+   bool operator == (const item_data & itemdata)  const { return ((TOPIC *) this == (TOPIC *)&itemdata) ? true : !memcmp((TOPIC *) this, (TOPIC *) &itemdata, sizeof(ITEM_DATA)); }
+   bool operator != (const item_data & itemdata)  const { return !operator==(itemdata); }
+
+
+   item_data & operator = (const ::TOPIC & topic) { if ((TOPIC *)this != (TOPIC *)&topic) memcpy((TOPIC *) this, (TOPIC *) &topic, sizeof(TOPIC)); return *this; }
+
+
+   bool operator == (const ::TOPIC & topic)  const { return ((TOPIC *)this == (TOPIC *)&topic) ? true : !memcmp((TOPIC *) this, (TOPIC *) &topic, sizeof(TOPIC)); }
+   bool operator != (const ::TOPIC & topic)  const { return !operator == (topic); }
+   
+   
+   item_data & operator = (const ITEM_BASE & itembase) { if ((TOPIC *) this != (TOPIC *) &itembase) memcpy((TOPIC *) this, (TOPIC *) &itembase, sizeof(ITEM_BASE)); return *this; }
+
+   bool operator == (const ITEM_BASE & itembase)  const { return ((TOPIC *)this == (TOPIC *)&itembase) ? true : !memcmp((TOPIC *) this, (TOPIC *) &itembase, sizeof(ITEM_BASE)); }
+   bool operator != (const ITEM_BASE & itembase)  const { return !operator==(itembase); }
+   
+   
+
+   item_data & operator = (const ITEM_DATA & itemdata) { if ((TOPIC *)this != (TOPIC *)&itemdata) memcpy((TOPIC *) this, (TOPIC *) &itemdata, sizeof(ITEM_DATA)); return *this; }
+
+   bool operator == (const ITEM_DATA & itemdata)  const { return ((TOPIC *)this == (TOPIC *)&itemdata) ? true : !memcmp((TOPIC *) this, (TOPIC *) &itemdata, sizeof(ITEM_DATA)); }
+   bool operator != (const ITEM_DATA & itemdata)  const { return !operator==(itemdata); }
+
+
+};
+
 
 
 class CLASS_DECL_ACME item :
@@ -153,11 +258,12 @@ public:
 
 
    item(item && item):
-   item_data(item),
-   matter(::move(item))
+      item_data(item),
+      matter(::move(item))
    {
 
    }
+   
 
    bool is_drawn() { return m_uFlags & ITEM_DRAWN;  }
 
@@ -171,11 +277,53 @@ public:
 
    template < primitive_integral INTEGRAL >
    operator INTEGRAL() const { return (INTEGRAL) m_iItem; }
+   
+   
+   
+   item & operator = (const ::topic & topic) { if ((TOPIC *) this != (TOPIC *)&topic) memcpy((TOPIC *) this, (TOPIC *) &topic, sizeof(TOPIC)); return *this; }
 
-   item& operator = (const item & item) { item_data::operator=(item); return *this; }
 
-   bool operator == (const item & item)  const { return ITEM::operator==(item); }
-   bool operator != (const item & item)  const { return ITEM::operator!=(item); }
+   bool operator == (const ::topic & topic)  const { return ((TOPIC *) this == (TOPIC *)&topic) ? true : !memcmp((TOPIC *) this, (TOPIC *) &topic, sizeof(TOPIC)); }
+   bool operator != (const ::topic & topic)  const { return !operator == (topic); }
+   
+   
+   item & operator = (const item_base & itembase) { if ((void *) this != (void *) &itembase) memcpy((TOPIC *) this, (TOPIC *) &itembase, sizeof(ITEM_BASE)); return *this; }
+
+   bool operator == (const item_base & itembase)  const { return ((TOPIC *) this == (TOPIC *)&itembase) ? true : !memcmp((TOPIC *) this, (TOPIC *) &itembase, sizeof(ITEM_BASE)); }
+   bool operator != (const item_base & itembase)  const { return !operator==(itembase); }
+   
+   
+
+   item & operator = (const item_data & itemdata) { if ((TOPIC *) this != (TOPIC *) &itemdata) memcpy((TOPIC *) this, (TOPIC *) &itemdata, sizeof(ITEM_DATA)); return *this; }
+
+   bool operator == (const item_data & itemdata)  const { return ((TOPIC *) this == (TOPIC *) &itemdata) ? true : !memcmp((TOPIC *) this, (TOPIC *) &itemdata, sizeof(ITEM_DATA)); }
+   bool operator != (const item_data & itemdata)  const { return !operator==(itemdata); }
+   
+   
+   item & operator = (const ::TOPIC & topic) { if ((TOPIC *) this != (TOPIC *) &topic) memcpy((TOPIC *) this, (TOPIC *) &topic, sizeof(TOPIC)); return *this; }
+
+   
+   bool operator == (const ::TOPIC & topic)  const { return ((TOPIC *) this == (TOPIC *) &topic) ? true : !memcmp((TOPIC *) this, (TOPIC *) &topic, sizeof(TOPIC)); }
+   bool operator != (const ::TOPIC & topic)  const { return !operator == (topic); }
+   
+   
+   item & operator = (const ITEM_BASE & itembase) { if ((TOPIC *) this != (TOPIC *) &itembase) memcpy((TOPIC *) this,(TOPIC *)  &itembase, sizeof(ITEM_BASE)); return *this; }
+
+   bool operator == (const ITEM_BASE & itembase)  const { return ((TOPIC *) this == (TOPIC *) &itembase) ? true : !memcmp((TOPIC *) this, (TOPIC *) &itembase, sizeof(ITEM_BASE)); }
+   bool operator != (const ITEM_BASE & itembase)  const { return !operator==(itembase); }
+   
+   
+
+   item & operator = (const ITEM_DATA & itemdata) { if ((TOPIC *) this != (TOPIC *) &itemdata) memcpy((TOPIC *) this, (TOPIC *) &itemdata, sizeof(ITEM_DATA)); return *this; }
+
+   bool operator == (const ITEM_DATA & itemdata)  const { return ((TOPIC *) this == (TOPIC *) &itemdata) ? true : !memcmp((TOPIC *) this, (TOPIC *) &itemdata, sizeof(ITEM_DATA)); }
+   bool operator != (const ITEM_DATA & itemdata)  const { return !operator==(itemdata); }
+
+
+   item & operator = (const item & item) { if ((TOPIC *) this != (TOPIC *) &item) memcpy((TOPIC *) this, (TOPIC *) &item, sizeof(ITEM_DATA)); return *this; }
+
+   bool operator == (const item & item)  const { return ((TOPIC *) this == (TOPIC *) &item) ? true : !memcmp((TOPIC *) this, (TOPIC *) &item, sizeof(ITEM_DATA)); }
+   bool operator != (const item & item)  const { return !operator==(item); }
 
    item& operator = (enum_element eelement);
 
@@ -222,5 +370,6 @@ inline bool is_set(const ::item * pitem)
    return ::is_set((const void * )pitem) && pitem->is_set();
 
 }
+
 
 

@@ -4270,7 +4270,6 @@
 		9A8929FD26CD7571008D6412 /* aaa_launcher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_launcher.cpp; sourceTree = "<group>"; };
 		9A8929FE26CD7571008D6412 /* aaa_want_to_remove_main_uwp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_want_to_remove_main_uwp.cpp; sourceTree = "<group>"; };
 		9A8929FF26CD7571008D6412 /* language.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = language.cpp; sourceTree = "<group>"; };
-		9A892A0026CD7571008D6412 /* aaa_library.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_library.cpp; sourceTree = "<group>"; };
 		9A892A0126CD7571008D6412 /* simple_hold_handle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = simple_hold_handle.h; sourceTree = "<group>"; };
 		9A892A0226CD7571008D6412 /* aura.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aura.cpp; sourceTree = "<group>"; };
 		9A892A0326CD7571008D6412 /* aaa_simple_shell_launcher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_simple_shell_launcher.cpp; sourceTree = "<group>"; };
@@ -5292,25 +5291,15 @@
 		9A68A6332511442F008DABD2 /* primitive */ = {
 			isa = PBXGroup;
 			children = (
-				9A017F5B27AE726F00DB039E /* _atom_impl.h */,
-				9A017F5A27AE726F00DB039E /* atom_array.h */,
-				9A017F5C27AE727000DB039E /* atom_space.cpp */,
-				9A017F5D27AE727000DB039E /* atom_space.h */,
-				9A017F5E27AE727000DB039E /* atom.cpp */,
-				9A017F5F27AE727000DB039E /* atom.h */,
-				9AC018F2274892F2006BEBCC /* _interlocked_count_impl.h */,
-				9AC018F1274892F1006BEBCC /* e_flag.h */,
-				9AC018F0274892F1006BEBCC /* enum_bitset.h */,
-				9AC018ED274892F0006BEBCC /* payload_type.h */,
-				9AC018EF274892F1006BEBCC /* tracer.cpp */,
-				9AC018EE274892F0006BEBCC /* tracer.h */,
 				9A68A6732511442F008DABD2 /* _.cpp */,
 				9A68A6AA2511442F008DABD2 /* _.h */,
+				9A017F5B27AE726F00DB039E /* _atom_impl.h */,
 				9A68A6A82511442F008DABD2 /* _c_memory.h */,
 				9A68A6482511442F008DABD2 /* _defer.h */,
 				9A68A67F2511442F008DABD2 /* _factory_impl.h */,
 				9A68A68C2511442F008DABD2 /* _factory_prefix.h */,
 				9A68A63B2511442F008DABD2 /* _impl.h */,
+				9AC018F2274892F2006BEBCC /* _interlocked_count_impl.h */,
 				9A68A6962511442F008DABD2 /* _memory.h */,
 				9A68A67A2511442F008DABD2 /* _papaya_impl.h */,
 				9A68A6472511442F008DABD2 /* _papaya.h */,
@@ -5318,6 +5307,11 @@
 				9A786193264B9095003DF8A0 /* _property_object_impl.h */,
 				9AB988AD2519B9720040B207 /* action_context.h */,
 				9A68A6712511442F008DABD2 /* application_bias.cpp */,
+				9A017F5A27AE726F00DB039E /* atom_array.h */,
+				9A017F5C27AE727000DB039E /* atom_space.cpp */,
+				9A017F5D27AE727000DB039E /* atom_space.h */,
+				9A017F5E27AE727000DB039E /* atom.cpp */,
+				9A017F5F27AE727000DB039E /* atom.h */,
 				9A68A6AB2511442F008DABD2 /* atomic.h */,
 				9A68A6752511442F008DABD2 /* bit.cpp */,
 				9A68A65E2511442F008DABD2 /* bit.h */,
@@ -5329,11 +5323,13 @@
 				9A68A6602511442F008DABD2 /* command.cpp */,
 				9A786194264B9095003DF8A0 /* compare_predicate.h */,
 				9A68A6912511442F008DABD2 /* context_object_traits.cpp */,
+				9AC018F1274892F1006BEBCC /* e_flag.h */,
 				9A68A63D2511442F008DABD2 /* edit.cpp */,
 				9A786176264B908C003DF8A0 /* element_array.cpp */,
 				9A786177264B908C003DF8A0 /* element_array.h */,
 				9A1625EB26EFCC34003D9CB9 /* element.cpp */,
 				9A1625EC26EFCC34003D9CB9 /* element.h */,
+				9AC018F0274892F1006BEBCC /* enum_bitset.h */,
 				9A786175264B908C003DF8A0 /* enumeration.h */,
 				9A786186264B9092003DF8A0 /* enumeration1.h */,
 				9A68A66E2511442F008DABD2 /* eobject.h */,
@@ -5376,6 +5372,7 @@
 				9A78618C264B9093003DF8A0 /* object.h */,
 				9A78617B264B908D003DF8A0 /* osdata_array.h */,
 				9A68A6572511442F008DABD2 /* papaya.h */,
+				9AC018ED274892F0006BEBCC /* payload_type.h */,
 				9A78617A264B908D003DF8A0 /* payload.cpp */,
 				9A786192264B9095003DF8A0 /* payload.h */,
 				9A68A6A12511442F008DABD2 /* pointer.h */,
@@ -5399,6 +5396,8 @@
 				9A68A6422511442F008DABD2 /* simple_object.h */,
 				9A68A6612511442F008DABD2 /* stick.h */,
 				9A68A6892511442F008DABD2 /* str.h */,
+				9AC018EF274892F1006BEBCC /* tracer.cpp */,
+				9AC018EE274892F0006BEBCC /* tracer.h */,
 				9A787C96264C0370003DF8A0 /* trait_predicate.h */,
 				9A68A6812511442F008DABD2 /* trait.h */,
 				9A68A6722511442F008DABD2 /* traits.cpp */,
@@ -6567,7 +6566,6 @@
 				9A892A0426CD7571008D6412 /* aaa_application_system_run.cpp */,
 				9A8929F726CD7571008D6412 /* aaa_base_file.cpp */,
 				9A8929FD26CD7571008D6412 /* aaa_launcher.cpp */,
-				9A892A0026CD7571008D6412 /* aaa_library.cpp */,
 				9A892A1E26CD7571008D6412 /* aaa_simple_app.cpp */,
 				9A892A0326CD7571008D6412 /* aaa_simple_shell_launcher.cpp */,
 				9A892A1A26CD7571008D6412 /* aaa_small_ipca_channel.cpp */,

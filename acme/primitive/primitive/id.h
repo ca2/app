@@ -2,6 +2,9 @@
 #pragma once
 
 
+#define __str_is_empty(psz) (::is_null(psz) || *psz == '\0')
+
+
 #include "acme/primitive/comparison/equals.h"
 #include "acme/primitive/comparison/hash.h"
 #include "acme/constant/thread.h"
@@ -14,6 +17,8 @@ class id_space;
 
 
 class lparam;
+
+
 
 #ifndef NO_TEMPLATE
 
@@ -37,11 +42,14 @@ int __compare_square(A a, B b)
 
 }
 
+#define safe_strcmp(a, b) ::str::compare(a, b)
 
 #else
 
 
-#define sgn(x) ((0 < (x)) - ((x) < 0)))
+#define sgn(x) ((0 < (x)) - ((x) < 0))
+
+
 
 
 // Lets (AMajor.AMinor) (BMajor.BMinor)
@@ -49,6 +57,41 @@ int __compare_square(A a, B b)
 #define __compare_square(MAJOR_COMPARISON, MINOR_COMPARISON) \
 (sgn(MAJOR_COMPARISON) != 0 ? (sgn(MAJOR_COMPARISON)) : (sgn(MINOR_COMPARISON)))
 
+
+inline int safe_strcmp(const char * a, const char * b)
+{
+
+   if (__str_is_empty(a))
+   {
+
+      if (__str_is_empty(b))
+      {
+
+         return true;
+
+      }
+      else
+      {
+
+         return -1;
+
+      }
+
+   }
+   else if(__str_is_empty(b))
+   {
+
+      return 1;
+
+   }
+   else
+   {
+
+      return strcmp(a, b);
+
+   }
+
+}
 
 #endif
 
@@ -649,6 +692,9 @@ inline id & id::operator = (const id & id)
 }
 
 
+#ifndef NO_TEMPLATE
+
+
 inline int id::compare(const ::string & str) const
 {
 
@@ -705,6 +751,9 @@ inline bool id::operator >= (const ::string & str) const
 }
 
 
+#endif
+
+
 inline id::operator const char *() const
 {
 
@@ -712,6 +761,8 @@ inline id::operator const char *() const
 
 }
 
+
+#ifndef NO_TEMPLATE
 
 inline void id::to_string(string & strRet) const
 {
@@ -728,6 +779,7 @@ inline string id::to_string() const
 
 }
 
+#endif
 
 //inline string id::__string() const
 //{
@@ -760,6 +812,9 @@ inline void id::raw_set(const char * psz)
    m_i         = (::i64) (::iptr) psz;
 
 }
+
+
+#ifndef NO_TEMPLATE
 
 
 inline string id::str() const
@@ -799,10 +854,13 @@ inline string id::str() const
 }
 
 
+#endif
+
+
 inline int id::compare(const char * psz) const
 {
 
-   return __compare_square(primitive_type() - e_type_text, ansi_compare(m_psz, psz));
+   return __compare_square(primitive_type() - e_type_text, safe_strcmp(m_psz, psz));
 
 }
 

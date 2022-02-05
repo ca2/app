@@ -759,9 +759,9 @@ namespace user
       if (!::is_null(pprimitive) && pprimitive != m_pprimitiveSoftwareKeyboard)
       {
 
-         //return error_invalid_argument;
+         //return error_bad_argument;
 
-         throw_status(error_invalid_argument);
+         throw_status(error_bad_argument);
 
       }
 

@@ -31,7 +31,7 @@ namespace message
 
 
       __pointer(::channel)                        m_pcommandtargetSource;
-      id                                           m_idControl;     // menu item or other index
+      atom                                           m_idControl;     // menu item or other index
       index                                        m_iIndex;
       ::count                                      m_iCount;        // last + 1 for iterating m_iIndex
       __pointer_array(::channel)                   m_commandtargetptraHandle;
@@ -56,7 +56,7 @@ namespace message
 
 
       command(::object * pobject = nullptr);
-      command(const ::id & id);
+      command(const ::atom & atom);
 
 
       void common_construct();

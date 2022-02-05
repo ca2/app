@@ -412,7 +412,7 @@ public:
    Type surround_and_implode(const Type& strSeparator = nullptr,const Type& pszPrefix = nullptr,const Type& pszSuffix = nullptr,::index iStart = 0,::count iCount = -1);
 
 
-   comparable_array < id > get_comparable_ida() const;
+   comparable_array < atom > get_comparable_ida() const;
 
    ::count explode_command_line(const Type & str, address_array < char * > * argv = nullptr);
 
@@ -1316,10 +1316,10 @@ void string_array_base < Type, RawType, t_etypePayload >::insert_at(::index nSta
 //
 //
 //template < typename Type, typename RawType, enum_type t_etypePayload >
-//void string_array_base < Type, RawType, t_etypePayload >::assert_valid() const
+//void string_array_base < Type, RawType, t_etypePayload >::assert_ok() const
 //{
 //
-//   matter::assert_valid();
+//   matter::assert_ok();
 //
 //   if(this->m_pData == nullptr)
 //   {
@@ -4453,10 +4453,10 @@ void string_array_base < Type, RawType, t_etypePayload > ::make_upper()
 
 
 template < typename Type, typename RawType, enum_type t_etypePayload >
-comparable_array < id > string_array_base < Type, RawType, t_etypePayload > ::get_comparable_ida() const
+comparable_array < atom > string_array_base < Type, RawType, t_etypePayload > ::get_comparable_ida() const
 {
 
-   comparable_array < id > ida;
+   comparable_array < atom > ida;
 
    for(::index i = 0; i < get_count(); i++)
    {

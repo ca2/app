@@ -101,7 +101,7 @@ void nano_window_interface::update_drawing_objects()
 }
 
 
-::id nano_window_interface::hit_test(int x, int y)
+::atom nano_window_interface::hit_test(int x, int y)
 {
 
    return {};
@@ -116,7 +116,7 @@ void nano_window_interface::add_child(nano_child * pchild)
 }
 
 
-::id nano_window_interface::get_result()
+::atom nano_window_interface::get_result()
 {
 
    return {};
@@ -144,7 +144,7 @@ void nano_window_interface::on_left_button_up(int x, int y)
 }
 
 
-void nano_window_interface::on_click(const ::id & id)
+void nano_window_interface::on_click(const ::atom & atom)
 {
 
 

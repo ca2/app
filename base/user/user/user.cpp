@@ -314,7 +314,7 @@ namespace base
    }
 
 
-   void user::SendMessageToWindows(const ::id & id,wparam wparam,lparam lparam)
+   void user::SendMessageToWindows(const ::atom & atom,wparam wparam,lparam lparam)
    {
 
       //auto papplicationBase = get_application();
@@ -336,9 +336,9 @@ namespace base
             if (pinteraction != nullptr && pinteraction->is_window())
             {
 
-               pinteraction->send_message(id, wparam, lparam);
+               pinteraction->send_message(atom, wparam, lparam);
 
-               pinteraction->send_message_to_descendants(id, wparam, lparam);
+               pinteraction->send_message_to_descendants(atom, wparam, lparam);
 
             }
 
@@ -454,7 +454,7 @@ namespace base
 #ifdef WINDOWS_DESKTOP
 
 
-   CLASS_DECL_BASE __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const ::string & pClassName, const ::string & lpWindowName, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, id id, hinstance hInstance, void * pParam);
+   CLASS_DECL_BASE __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const ::string & pClassName, const ::string & lpWindowName, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, atom atom, hinstance hInstance, void * pParam);
 
 
    CLASS_DECL_BASE __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const ::string & pClassName, const ::string & pWindowName, u32 uStyle, ::user::interaction * puiParent, hinstance hInstance, void * pParam)

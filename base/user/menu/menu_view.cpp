@@ -38,10 +38,10 @@ namespace user
    }
 
 
-   void menu_view::assert_valid() const
+   void menu_view::assert_ok() const
    {
 
-      ::user::impact::assert_valid();
+      ::user::impact::assert_ok();
 
    }
 
@@ -81,7 +81,7 @@ namespace user
 
       auto itemHit = item;
 
-      ::id idCommand;
+      ::atom idCommand;
 
       if (itemHit.menu_view_command() >= 0)
       {
@@ -105,7 +105,7 @@ namespace user
             if (pnodeItem != nullptr)
             {
 
-               idCommand = pnodeItem->attribute("id").id();
+               idCommand = pnodeItem->attribute("atom").atom();
 
             }
 
@@ -171,7 +171,7 @@ namespace user
 
       //set_topic_text("menu_view> ");
 
-      auto id = get_document()->m_pimpactsystem->m_id;
+      auto atom = get_document()->m_pimpactsystem->m_id;
 
       string strText;
 
@@ -230,7 +230,7 @@ namespace user
 
          auto peditview = _001TypedWindow < ::user::plain_edit_view >();
 
-         if (peditview != nullptr && ptopic->m_puserelement == peditview)
+         if (peditview != nullptr && ptopic->m_pextendedtopic->m_puserelement == peditview)
          {
 
             string strText;
@@ -529,13 +529,13 @@ namespace user
                   pgraphics->move_to(rectangle.left + 1, rectangle.top);
                   pgraphics->line_to(rectangle.left + 1, rectangle.bottom - 1);
 
-                  pimage1 = m_pimageMap[pnodeItem->attribute("id").id()];
+                  pimage1 = m_pimageMap[pnodeItem->attribute("atom").atom()];
 
                }
                else
                {
 
-                  pimage1 = m_pimageMapGray[pnodeItem->attribute("id").id()];
+                  pimage1 = m_pimageMapGray[pnodeItem->attribute("atom").atom()];
 
                }
 
@@ -717,7 +717,7 @@ namespace user
             if (pimage1)
             {
 
-               m_pimageMap[pnode->child_at(iCommand)->attribute("id").id()] = pimage1;
+               m_pimageMap[pnode->child_at(iCommand)->attribute("atom").atom()] = pimage1;
 
                ::image_pointer pimageGray;
 
@@ -727,7 +727,7 @@ namespace user
 
                pimageGray->saturation(0.0);
 
-               m_pimageMapGray[pnode->child_at(iCommand)->attribute("id").id()] = pimageGray;
+               m_pimageMapGray[pnode->child_at(iCommand)->attribute("atom").atom()] = pimageGray;
 
             }
 

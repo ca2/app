@@ -173,10 +173,10 @@ void synchronization_object::release_ownership()
 }
 
 
-//void synchronization_object::assert_valid() const
+//void synchronization_object::assert_ok() const
 //{
 //
-//   matter::assert_valid();
+//   matter::assert_ok();
 //
 //}
 

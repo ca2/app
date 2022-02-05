@@ -100,19 +100,19 @@ public:
    //item(enum_element eelement, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, const ::u64 uFlags = e_flag_none) :
    //   item(eelement, iItem, iSubItem, iListItem, uFlags) {}
 
-   item(const ::user::e_flag & eflag, enum_element eelement, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, const ::id & id = ::id::e_type_null) :
-      item(eelement, iItem, iSubItem, iListItem, id, eflag) {}
+   item(const ::user::e_flag & eflag, enum_element eelement, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, const ::atom & atom = ::atom::e_type_null) :
+      item(eelement, iItem, iSubItem, iListItem, atom, eflag) {}
 
-   item(enum_element eelement, const ::id & id)
-      : item(eelement, -1, -1, -1, id)
+   item(enum_element eelement, const ::atom & atom)
+      : item(eelement, -1, -1, -1, atom)
    {
 
    }
 
-   item(enum_element eelement = ::e_element_none, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, const ::id & id = ::id::e_type_null, const ::user::e_flag uFlags = ::user::e_flag_none)
+   item(enum_element eelement = ::e_element_none, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, const ::atom & atom = ::atom::e_type_null, const ::user::e_flag uFlags = ::user::e_flag_none)
    {
 
-      m_id = id;
+      m_id = atom;
 
       m_eelement = eelement;
 

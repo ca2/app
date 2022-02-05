@@ -30,7 +30,7 @@ namespace user
    //}
 
 
-   //bool form::create_interaction(::user::interaction * pinteractionParent, const ::id & id)
+   //bool form::create_interaction(::user::interaction * pinteractionParent, const ::atom & atom)
    //{
 
    //   return false;

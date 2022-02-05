@@ -118,7 +118,7 @@ public:
 
       stream.defer_set_loading();
 
-      stream.exchange(::id::e_type_null, t);
+      stream.exchange(::atom::e_type_null, t);
 
       //return stream.fail() ? ::error_failed : ::success;
 
@@ -135,7 +135,7 @@ public:
 
       stream.defer_set_storing();
 
-      stream.exchange(::id::e_type_null, t);
+      stream.exchange(::atom::e_type_null, t);
 
       //return stream.fail() ? ::error_failed : ::success;
 

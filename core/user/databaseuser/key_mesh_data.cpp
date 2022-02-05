@@ -15,7 +15,7 @@ namespace databaseuser
    }
 
 
-   void data_key_mesh_data::assert_valid() const
+   void data_key_mesh_data::assert_ok() const
    {
 
    }
@@ -30,7 +30,7 @@ namespace databaseuser
    void data_key_mesh_data::_001GetItemText(::user::mesh_item * pitem)
    {
       string_array stra;
-      if(!data_get(::id(), stra))
+      if(!data_get(::atom(), stra))
          return_(pitem->m_bOk, false)
          pitem->m_strText = stra[pitem->m_iItem];
       pitem->m_bOk = true;
@@ -41,7 +41,7 @@ namespace databaseuser
       
       string_array wstraTotal;
 
-      if (!data_get(::id(), wstraTotal))
+      if (!data_get(::atom(), wstraTotal))
       {
 
          return;
@@ -65,7 +65,7 @@ namespace databaseuser
    ::count data_key_mesh_data::_001GetItemCount()
    {
       string_array straTotal;
-      if(!data_get(::id(), straTotal))
+      if(!data_get(::atom(), straTotal))
          return -1;
       return straTotal.get_size();
    }
@@ -74,10 +74,10 @@ namespace databaseuser
    bool data_key_mesh_data::add_unique(const string_array & stra)
    {
       string_array straData;
-      data_get(::id(), straData);
+      data_get(::atom(), straData);
       straData.add_unique(stra);
-      data_set(::id(), straData);
-      //if(!data_set(::id(), straData))
+      data_set(::atom(), straData);
+      //if(!data_set(::atom(), straData))
          //return false;
       return true;
    }
@@ -85,10 +85,10 @@ namespace databaseuser
    bool data_key_mesh_data::erase(const string_array & stra)
    {
       string_array straData;
-      if(!data_get(::id(), straData))
+      if(!data_get(::atom(), straData))
          return true;
       straData.erase(stra);
-      data_set(::id(), straData);
+      data_set(::atom(), straData);
          //return false;
       return true;
    }

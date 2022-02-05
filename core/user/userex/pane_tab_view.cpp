@@ -56,7 +56,7 @@ namespace userex
    }
 
 
-   id pane_tab_view::get_view_id()
+   atom pane_tab_view::get_view_id()
    {
 
       return ::user::tab_view::get_view_id();
@@ -424,10 +424,10 @@ namespace userex
    }
 
 
-   ::user::tab_pane * pane_tab_view::create_tab_by_id(const ::id & id)
+   ::user::tab_pane * pane_tab_view::create_tab_by_id(const ::atom & atom)
    {
 
-      ::user::impact_data * pimpactdata = get_impact_data(id, get_data()->m_rectangleTabClient);
+      ::user::impact_data * pimpactdata = get_impact_data(atom, get_data()->m_rectangleTabClient);
 
       if(pimpactdata == nullptr)
       {
@@ -851,7 +851,7 @@ namespace userex
 
             set_current_tab_by_id(m_pimpactdataOld->m_id);
 
-            ptopic->m_bRet = true;
+            ptopic->m_pextendedtopic->m_bRet = true;
 
             return;
 
@@ -886,7 +886,7 @@ namespace userex
 
    //         set_current_tab_by_id(m_pimpactdataOld->m_id);
 
-   //         ptopic->m_bRet = true;
+   //         ptopic->m_pextendedtopic->m_bRet = true;
 
    //         return;
 
@@ -947,12 +947,12 @@ namespace userex
    //}
 
 
-   void pane_tab_view::prepare_form(id id, ::form_document * pdocument)
+   void pane_tab_view::prepare_form(atom atom, ::form_document * pdocument)
    {
 
       auto papplication = get_application();
 
-      papplication->prepare_form(id, pdocument);
+      papplication->prepare_form(atom, pdocument);
 
    }
 

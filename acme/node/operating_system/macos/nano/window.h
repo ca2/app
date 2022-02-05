@@ -33,9 +33,9 @@ namespace macos
       //rectangle_i32                 m_rectangleClient;
 
       //__pointer_array(nano_child)   m_childa;
-      //::id                          m_idLeftButtonDown;
-      //::id                          m_idLeftButtonUp;
-      //::id                             m_idResult;
+      //::atom                          m_idLeftButtonDown;
+      //::atom                          m_idLeftButtonUp;
+      //::atom                             m_idResult;
       //__pointer(nano_child)         m_pchildFocus;
 
 
@@ -79,11 +79,11 @@ namespace macos
 
       void update_drawing_objects() override;
 
-      ::id hit_test(int x, int y) override;
+      ::atom hit_test(int x, int y) override;
 
       //virtual void add_child(nano_child * pchild);
 
-      ::id get_result() override;
+      ::atom get_result() override;
 
       void on_mouse_move(int x, int y) override;
 
@@ -91,7 +91,7 @@ namespace macos
 
       void on_left_button_up(int x, int y) override;
 
-      void on_click(const ::id & id) override;
+      void on_click(const ::atom & atom) override;
 
 
       //virtual LRESULT window_procedure(UINT message, WPARAM wparam, LPARAM lparam);

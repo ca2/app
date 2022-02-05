@@ -218,9 +218,9 @@ namespace acme
 
 
 
-      void application::assert_valid() const
+      void application::assert_ok() const
       {
-         ::universal_windows::thread::assert_valid();
+         ::universal_windows::thread::assert_ok();
       }
 
       void application::dump(dump_context & dumpcontext) const

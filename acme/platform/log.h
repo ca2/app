@@ -50,7 +50,7 @@ public:
       void initialize(::object* pobject) override;
       
 
-      virtual void initialize_log(enum_trace_level etracelevelMin, const ::id& id);
+      virtual void initialize_log(enum_trace_level etracelevelMin, const ::atom& atom);
 
 
       //virtual void print(const char* pszFormat, ...);

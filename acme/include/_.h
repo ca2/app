@@ -795,7 +795,7 @@ CLASS_DECL_ACME int throw_assert_exception(const char *pszFileName, int iLineNum
 
 
 #define _ASSUME(cond)      do { bool _gen__condVal=!!(cond); ASSERT(_gen__condVal); __analysis_assume(_gen__condVal); } while(0)
-#define ASSERT_VALID(pOb)  ::__assert_valid_object(pOb, __FILE__, __LINE__)
+#define ASSERT_VALID(pOb)  ::__assert_object_ok(pOb, __FILE__, __LINE__)
 
 
 #else
@@ -2250,7 +2250,7 @@ class channel;
 class dump_context;
 
 
-class id_space;
+class atom_space;
 
 
 class ptra;
@@ -2274,7 +2274,7 @@ class critical_section;
 class mutex;
 
 
-class id;
+class atom;
 
 namespace colorertake5
 {
@@ -2726,7 +2726,7 @@ CLASS_DECL_ACME void __node_acme_pos_term();
 #define ARRAY_SIZE(a) (sizeof(a)/sizeof(*(a)))
 
 
-class id;
+class atom;
 
 
 namespace calculator
@@ -2818,7 +2818,7 @@ class thread_parameter;
 #include "acme/primitive/primitive/interlocked.h"
 #include "acme/primitive/primitive/interlocked_long_pulse.h"
 #include "acme/primitive/primitive/type.h"
-#include "acme/primitive/primitive/id.h"
+#include "acme/primitive/primitive/atom.h"
 #include "acme/primitive/primitive/uid.h"
 
 
@@ -3465,7 +3465,7 @@ struct MESSAGE
 {
 
    ::oswindow              oswindow;
-   ::id                    m_id;
+   ::atom                    m_id;
    wparam                  wParam;
    lparam                  lParam;
    point_i32               pt;
@@ -3494,8 +3494,8 @@ template < class TYPE, class ARG_TYPE = const TYPE & >
 class list;
 
 
-template < typename TYPE, typename ARG_TYPE = typename argument_of < TYPE >::type, typename PAIR = pair < ::id, TYPE, typename argument_of < ::id >::type, ARG_TYPE > >
-using id_map = ::map < id, TYPE, typename argument_of < ::id >::type, ARG_TYPE, PAIR >;
+template < typename TYPE, typename ARG_TYPE = typename argument_of < TYPE >::type, typename PAIR = pair < ::atom, TYPE, typename argument_of < ::atom >::type, ARG_TYPE > >
+using id_map = ::map < atom, TYPE, typename argument_of < ::atom >::type, ARG_TYPE, PAIR >;
 
 using routine_array = ::array < routine >;
 using routine_list = ::list < routine >;
@@ -3614,7 +3614,7 @@ namespace draw2d
 #define OPTIONAL_BASE_BODY                                                          \
 public:                                                                             \
    void on_initialize_object() override {}         \
-   void assert_valid() const override {}                                    \
+   void assert_ok() const override {}                                    \
    void dump(dump_context&) const override {}                               \
    void handle(::topic*,::context*) override {}    \
    //void on_subject(::topic::topic*, ::context*) override {} \
@@ -3714,22 +3714,22 @@ inline bool is_callstack_enabled(e_callstack ecallstack) { return (i64) get_call
 //#include "acme/memory/plex.h"
 
 
-#include "acme/primitive/primitive/id.h"
+#include "acme/primitive/primitive/atom.h"
 
 
-inline bool is_filemanager(::id id) { return is_impact_group(id.i64(), FILEMANAGER_IMPACT); }
+inline bool is_filemanager(::atom atom) { return is_impact_group(atom.i64(), FILEMANAGER_IMPACT); }
 
 
-inline bool is_filemanager_group(::id id, ::i64 iGroup)
+inline bool is_filemanager_group(::atom atom, ::i64 iGroup)
 {
-   return is_impact_subgroup(id.i64(), FILEMANAGER_IMPACT + iGroup);
+   return is_impact_subgroup(atom.i64(), FILEMANAGER_IMPACT + iGroup);
 }
 
 
-inline bool is_color_sel(::id id) { return is_impact_group(id.i64(), COLORSEL_IMPACT); }
+inline bool is_color_sel(::atom atom) { return is_impact_group(atom.i64(), COLORSEL_IMPACT); }
 
 
-inline bool is_font_sel(::id id) { return is_impact_group(id.i64(), FONTSEL_IMPACT); }
+inline bool is_font_sel(::atom atom) { return is_impact_group(atom.i64(), FONTSEL_IMPACT); }
 
 
 #include "acme/primitive/string/composite.h"
@@ -3743,19 +3743,19 @@ inline bool is_font_sel(::id id) { return is_impact_group(id.i64(), FONTSEL_IMPA
 namespace acme
 {
 
-   inline ::id id(const class ::payload & payload);
+   inline ::atom atom(const class ::payload & payload);
 
-   inline ::id id(const property &prop);
+   inline ::atom atom(const property &prop);
 
-   inline ::id id(const ::std::type_info &info);
+   inline ::atom atom(const ::std::type_info &info);
 
-   inline ::id id(const char *psz);
+   inline ::atom atom(const char *psz);
 
-   inline ::id id(const string &str);
+   inline ::atom atom(const string &str);
 
-   inline ::id id(i64 i);
+   inline ::atom atom(i64 i);
 
-   inline id_space &id();
+   inline atom_space &atom();
 
 
 } //namespace acme
@@ -3857,13 +3857,10 @@ using lresult = iptr;
 #include "acme/filesystem/file/payload_stream.h"
 
 
-//#include "acme/primitive/str/str_format.h"
+#include "acme/primitive/primitive/payload2.h"
 
 
-#include "acme/primitive/primitive/var2.h"
-
-
-#include "acme/primitive/primitive/id_space.h"
+#include "acme/primitive/primitive/atom_space.h"
 
 
 namespace mathematics
@@ -4452,11 +4449,10 @@ class task_tool;
 #include "acme/filesystem/file/_text_stream_impl.h"
 
 
-
 #include "acme/filesystem/filesystem/_impl.h"
 
 
-#include "acme/primitive/primitive/_id_impl.h"
+#include "acme/primitive/primitive/_atom_impl.h"
 
 
 #include "acme/primitive/primitive/_payload_impl.h"

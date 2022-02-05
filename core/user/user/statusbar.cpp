@@ -49,14 +49,14 @@ namespace user
    }
 
 
-   //bool status_bar::create_window(::user::interaction * puiParent, u32 uStyle, id strId)
+   //bool status_bar::create_window(::user::interaction * puiParent, u32 uStyle, atom strId)
    //{
 
    //   return create_window_ex(puiParent, 0, uStyle, strId);
 
    //}
 
-//   bool status_bar::create_window_ex(::user::interaction * puiParent,u32 dwCtrlStyle,u32 uStyle, id strId)
+//   bool status_bar::create_window_ex(::user::interaction * puiParent,u32 dwCtrlStyle,u32 uStyle, atom strId)
 //   {
 //
 //      ASSERT_VALID(puiParent);   // must have a parent
@@ -308,7 +308,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // status_bar attribute access
 
-   i32 status_bar::CommandToIndex(id id)
+   i32 status_bar::CommandToIndex(atom atom)
    {
       ASSERT_VALID(this);
 
@@ -318,14 +318,14 @@ namespace user
       for (i32 i = 0; i < m_panecompositea.get_count(); i++)
       {
          __STATUSPANE* pSBP = _GetPanePtr(i);
-         if (pSBP->m_id == id)
+         if (pSBP->m_id == atom)
             return i;
       }
 
       return -1;
    }
 
-   id status_bar::GetItemId(i32 nIndex)
+   atom status_bar::GetItemId(i32 nIndex)
    {
       ASSERT_VALID(this);
       return _GetPanePtr(nIndex)->m_id;
@@ -373,26 +373,26 @@ namespace user
 //      }
    }
 
-   void status_bar::GetPaneInfo(i32 nIndex, id & id, ::u32& nStyle,
+   void status_bar::GetPaneInfo(i32 nIndex, atom & atom, ::u32& nStyle,
                                 i32& cxWidth)
    {
       ASSERT_VALID(this);
 
       __STATUSPANE* pSBP = _GetPanePtr(nIndex);
-      id = pSBP->m_id;
+      atom = pSBP->m_id;
       nStyle = pSBP->nStyle;
       cxWidth = pSBP->cxText;
    }
 
 
-   void status_bar::SetPaneInfo(i32 nIndex, const ::id & id, ::u32 nStyle, i32 cxWidth)
+   void status_bar::SetPaneInfo(i32 nIndex, const ::atom & atom, ::u32 nStyle, i32 cxWidth)
    {
 
       ASSERT_VALID(this);
 
       bool bChanged = false;
       __STATUSPANE* pSBP = _GetPanePtr(nIndex);
-      pSBP->m_id = id;
+      pSBP->m_id = atom;
       if (pSBP->nStyle != nStyle)
       {
          if ((pSBP->nStyle ^ nStyle) & SBPS_STRETCH)
@@ -923,9 +923,9 @@ namespace user
    // status_bar diagnostics
 
 
-   void status_bar::assert_valid() const
+   void status_bar::assert_ok() const
    {
-      ::user::control_bar::assert_valid();
+      ::user::control_bar::assert_ok();
    }
 
    void status_bar::dump(dump_context & dumpcontext) const

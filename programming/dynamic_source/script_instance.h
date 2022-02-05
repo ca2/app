@@ -21,7 +21,7 @@ namespace dynamic_source
       virtual bool ShouldBuild();
       
       
-      //void assert_valid(void) const override;
+      //void assert_ok(void) const override;
       //void matter::dump(dump_context&) const override;
       //e_status on_initialize_object(void) override;
       //void on_subject(topic::topic*, topic::context*) override;

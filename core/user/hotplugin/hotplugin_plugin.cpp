@@ -137,7 +137,7 @@ namespace hotplugin
       }
    }
 
-   void plugin::post_message(const ::id & id, wparam wparam, lparam lparam)
+   void plugin::post_message(const ::atom & atom, wparam wparam, lparam lparam)
 
    {
       if(m_phost != nullptr)
@@ -232,7 +232,7 @@ namespace hotplugin
 
 #ifdef WINDOWS
 
-   /*   LRESULT plugin::message_handler(const ::id & id, wparam wparam, lparam lparam)
+   /*   LRESULT plugin::message_handler(const ::atom & atom, wparam wparam, lparam lparam)
 
       {
          return 0;
@@ -1073,7 +1073,7 @@ pacmedir->create(dir::appdata() / "time" / "aura");
    void plugin::message_handler(::user::message * pusermessage)
    {
 
-      const ::id & id;
+      const ::atom & atom;
 
       wparam wparam;
 
@@ -1107,7 +1107,7 @@ pacmedir->create(dir::appdata() / "time" / "aura");
    }
 
 
-   void plugin::plugin_message_handler(const ::id & id, wparam wparam, lparam lparam, bool bEnsureTx)
+   void plugin::plugin_message_handler(const ::atom & atom, wparam wparam, lparam lparam, bool bEnsureTx)
 
    {
 

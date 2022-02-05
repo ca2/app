@@ -153,7 +153,7 @@ inline bool operator == (const string& str, const ::payload & payload)
 
 
 
-inline id& id::operator = (const ::payload & payload)
+inline atom& atom::operator = (const ::payload & payload)
 {
 
    if (payload.is_null())
@@ -176,7 +176,7 @@ inline id& id::operator = (const ::payload & payload)
 
 }
 
-inline id& id::operator = (const property& prop)
+inline atom& atom::operator = (const property& prop)
 {
 
    return operator = ((const ::payload&)prop);
@@ -185,7 +185,7 @@ inline id& id::operator = (const property& prop)
 
 
 
-inline id::id(const ::payload & payload)
+inline atom::atom(const ::payload & payload)
 {
    m_all = {};
    operator = (payload);

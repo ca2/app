@@ -568,7 +568,7 @@
 #define AFX_IDC_PRINT_PORTNAME          203
 #define AFX_IDC_PRINT_PAGENUM           204
 
-// Property Sheet control id's (determined with Spy++)
+// Property Sheet control atom's (determined with Spy++)
 #define ID_APPLY_NOW                    0x3021
 #define ID_WIZBACK                      0x3023
 #define ID_WIZNEXT                      0x3024

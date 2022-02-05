@@ -203,7 +203,7 @@ namespace user
    }
 
 
-   void frame_window::update_active_document(const ::id & id)
+   void frame_window::update_active_document(const ::atom & atom)
    {
 
       auto pdocument = get_active_document();
@@ -215,12 +215,12 @@ namespace user
 
       }
 
-      pdocument->id_update_all_views(id);
+      pdocument->id_update_all_views(atom);
 
    }
 
 
-   ::id frame_window::get_topic_view_id()
+   ::atom frame_window::get_topic_view_id()
    {
 
       auto pdocument = get_active_document();
@@ -237,7 +237,7 @@ namespace user
    }
 
 
-   bool frame_window::set_topic_view_by_id(const ::id & id)
+   bool frame_window::set_topic_view_by_id(const ::atom & atom)
    {
 
       auto pdocument = get_active_document();
@@ -249,7 +249,7 @@ namespace user
 
       }
 
-      return pdocument->set_topic_view_by_id(id);
+      return pdocument->set_topic_view_by_id(atom);
 
    }
 
@@ -303,13 +303,13 @@ namespace user
    }
 
 
-   void frame_window::assert_valid() const
+   void frame_window::assert_ok() const
    {
 
       try
       {
 
-         ::user::interaction::assert_valid();
+         ::user::interaction::assert_ok();
 
       }
       catch (...)
@@ -655,12 +655,12 @@ namespace user
       */
    }
 
-   bool frame_window::OnSetCursor(__pointer(::user::interaction) pwindow, ::u32 nHitTest, const ::id & id)
+   bool frame_window::OnSetCursor(__pointer(::user::interaction) pwindow, ::u32 nHitTest, const ::atom & atom)
    {
       
       __UNREFERENCED_PARAMETER(pwindow);
       __UNREFERENCED_PARAMETER(nHitTest);
-      __UNREFERENCED_PARAMETER(id);
+      __UNREFERENCED_PARAMETER(atom);
       
       __pointer(::user::frame_window) pFrameWnd = top_level_frame();
 
@@ -1671,7 +1671,7 @@ namespace user
    }
 
 
-   __pointer(toolbar) frame_window::get_toolbar(const ::id & idToolbar, bool bCreate, const ::string & strToolbarParam, u32 dwCtrlStyle, u32 uStyle, const ::type & type)
+   __pointer(toolbar) frame_window::get_toolbar(const ::atom & idToolbar, bool bCreate, const ::string & strToolbarParam, u32 dwCtrlStyle, u32 uStyle, const ::type & type)
    {
 
       auto & ptoolbartransport = m_mapToolbar[idToolbar];
@@ -1695,7 +1695,7 @@ namespace user
    }
 
 
-   __pointer(toolbar) frame_window::create_toolbar(const ::id & idToolbar, const ::string & strToolbarParam, u32 dwCtrlStyle, u32 uStyle, const ::type & type)
+   __pointer(toolbar) frame_window::create_toolbar(const ::atom & idToolbar, const ::string & strToolbarParam, u32 dwCtrlStyle, u32 uStyle, const ::type & type)
    {
 
       auto ptoolbar = __id_create < toolbar >(type);
@@ -2419,7 +2419,7 @@ namespace user
    }
 
 
-//   void frame_window::load_toolbar(const ::id & idToolbar, const ::string & strToolbar, u32 dwCtrlStyle, u32 uStyle)
+//   void frame_window::load_toolbar(const ::atom & idToolbar, const ::string & strToolbar, u32 dwCtrlStyle, u32 uStyle)
 //   {
 //
 //      throw ::interface_only_exception();

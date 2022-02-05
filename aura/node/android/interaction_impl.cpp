@@ -223,7 +223,7 @@ namespace android
    }
 
 
-   bool interaction_impl::create_window_ex(::user::interaction * pinteraction, __pointer(::user::system) pusersystem, ::user::primitive * puiParent, id id)
+   bool interaction_impl::create_window_ex(::user::interaction * pinteraction, __pointer(::user::system) pusersystem, ::user::primitive * puiParent, atom atom)
    {
 
       auto oswindow = puiParent ? puiParent->get_safe_handle() : nullptr;
@@ -231,7 +231,7 @@ namespace android
       if(puiParent == nullptr)
       {
 
-         if(!native_create_window_ex(pinteraction, pusersystem, oswindow, id))
+         if(!native_create_window_ex(pinteraction, pusersystem, oswindow, atom))
          {
 
             return false;
@@ -242,7 +242,7 @@ namespace android
       else
       {
 
-         if(!native_create_window_ex(pinteraction, pusersystem, oswindow, id))
+         if(!native_create_window_ex(pinteraction, pusersystem, oswindow, atom))
          {
 
             return false;
@@ -461,7 +461,7 @@ namespace android
    }
 
 
-   bool interaction_impl::create_window(::user::interaction * pinteraction, const ::string & lpszClassName, const ::string & lpszWindowName, u32 dwStyle, const ::rectangle_i32 & rectangle, ::user::primitive * pParentWnd, id id, ::create * pcreate)
+   bool interaction_impl::create_window(::user::interaction * pinteraction, const ::string & lpszClassName, const ::string & lpszWindowName, u32 dwStyle, const ::rectangle_i32 & rectangle, ::user::primitive * pParentWnd, atom atom, ::create * pcreate)
    {
 
       // can't use for desktop or pop-up android (use create_window_ex instead)
@@ -482,7 +482,7 @@ namespace android
       pusersystem->m_createstruct.hwndParent = pParentWnd->get_safe_handle();
       pusersystem->m_createstruct.lpCreateParams = (LPVOID)pcreate;
 
-      return create_window_ex(pinteraction, pusersystem, pParentWnd, id);
+      return create_window_ex(pinteraction, pusersystem, pParentWnd, atom);
 
    }
 
@@ -662,7 +662,7 @@ namespace android
          post_non_client_destroy();
    }
 
-   void interaction_impl::assert_valid() const
+   void interaction_impl::assert_ok() const
    {
       if(((::android::interaction_impl *)this)->get_handle() == nullptr)
          return;     // null (unattached) android are valid
@@ -726,7 +726,7 @@ namespace android
    }
 
 
-   LRESULT interaction_impl::DefWindowProc(const ::id & id, WPARAM wParam, lparam lParam)
+   LRESULT interaction_impl::DefWindowProc(const ::atom & atom, WPARAM wParam, lparam lParam)
    {
 
       return 0;
@@ -1715,7 +1715,7 @@ namespace android
 //   return false;   // let the parent handle it
 //}
 
-   void interaction_impl::OnParentNotify(const ::id & id, lparam lparam)
+   void interaction_impl::OnParentNotify(const ::atom & atom, lparam lparam)
    {
       //if ((LOWORD(message) == e_message_create || LOWORD(message) == e_message_destroy))
       //{
@@ -2723,13 +2723,13 @@ namespace android
    //}
 
 
-   id interaction_impl::SetDlgCtrlId(id id)
+   atom interaction_impl::SetDlgCtrlId(atom atom)
    {
 
-      return m_puserinteraction->SetDlgCtrlId(id);
+      return m_puserinteraction->SetDlgCtrlId(atom);
    }
 
-   id interaction_impl::GetDlgCtrlId()
+   atom interaction_impl::GetDlgCtrlId()
    {
       return m_puserinteraction->GetDlgCtrlId();
    }
@@ -2861,7 +2861,7 @@ namespace android
       m_puserinteraction->SetOwner((pOwnerWnd));
    }
 
-   LRESULT interaction_impl::send_message(const ::id & id, wparam wparam, lparam lparam)
+   LRESULT interaction_impl::send_message(const ::atom & atom, wparam wparam, lparam lparam)
    {
 
       //if (::get_task() == nullptr)
@@ -2871,15 +2871,15 @@ namespace android
 
       //}
 
-      return ::user::interaction_impl::send_message(id, wparam, lparam);
+      return ::user::interaction_impl::send_message(atom, wparam, lparam);
 
    }
 
 
-   bool interaction_impl::post_message(const ::id & id, wparam wparam, lparam lparam)
+   bool interaction_impl::post_message(const ::atom & atom, wparam wparam, lparam lparam)
    {
 
-      return ::user::interaction_impl::post_message(id, wparam, lparam);
+      return ::user::interaction_impl::post_message(atom, wparam, lparam);
       //return ::post_me((oswindow)get_handle(), message, wparam, lparam) != false;
 
    }
@@ -3263,7 +3263,7 @@ namespace android
 
    }
 
-   //void interaction_impl::send_message_to_descendants(const ::id & id, wparam wparam, lparam lparam, bool bDeep, bool bOnlyPerm)
+   //void interaction_impl::send_message_to_descendants(const ::atom & atom, wparam wparam, lparam lparam, bool bDeep, bool bOnlyPerm)
    //{
    //   ASSERT(::is_window((oswindow)get_handle()));
    //   //interaction_impl::send_message_to_descendants(get_handle(), message, wparam, lparam, bDeep, bOnlyPerm);
@@ -3526,7 +3526,7 @@ namespace android
          if (IsDlgButtonChecked(nID))
          {
 
-            return nID; // id that matched
+            return nID; // atom that matched
 
          }
 
@@ -3592,12 +3592,12 @@ namespace android
    }
 
    /*
-   void interaction_impl::GetDlgItem(id id, oswindow* phWnd) const
+   void interaction_impl::GetDlgItem(atom atom, oswindow* phWnd) const
    {
 
    ASSERT(::is_window((oswindow) get_handle()));
    ASSERT(phWnd != nullptr);
-   *phWnd = ::GetDlgItem(get_handle(), (i32) id);
+   *phWnd = ::GetDlgItem(get_handle(), (i32) atom);
 
    }
    */
@@ -3646,7 +3646,7 @@ namespace android
 
    }
 
-   //LPARAM interaction_impl::SendDlgItemMessage(i32 nID, const ::id & id, wparam wparam, lparam lparam)
+   //LPARAM interaction_impl::SendDlgItemMessage(i32 nID, const ::atom & atom, wparam wparam, lparam lparam)
    //{
 
    //   __throw(error_not_implemented);
@@ -3885,7 +3885,7 @@ namespace android
 
    }
 
-   //bool interaction_impl::SendNotifyMessage(const ::id & id, wparam wparam, lparam lparam)
+   //bool interaction_impl::SendNotifyMessage(const ::atom & atom, wparam wparam, lparam lparam)
    //{
 
    //   __throw(error_not_implemented);
@@ -4790,7 +4790,7 @@ namespace android
       if (!::is_null(pprimitive) && pprimitive != m_pprimitiveSoftwareKeyboard)
       {
 
-         return ::error_invalid_argument;
+         return ::error_bad_argument;
 
       }
 

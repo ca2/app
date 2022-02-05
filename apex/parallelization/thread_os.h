@@ -99,7 +99,7 @@ namespace parallelization
    CLASS_DECL_APEX void destroy();
 //
 //   //CLASS_DECL_APEX bool thread_registered(::thread * pthread);
-//   //CLASS_DECL_APEX bool thread_id_registered(itask_t id);
+//   //CLASS_DECL_APEX bool thread_id_registered(itask_t atom);
 //
 //   //CLASS_DECL_APEX void thread_register(itask_t itask, ::thread * pthread);
 //
@@ -109,7 +109,7 @@ namespace parallelization
 //
 //   //CLASS_DECL_APEX void post_quit_to_all_threads(class ::system * psystem);
 //
-//   //CLASS_DECL_APEX void post_to_all_threads(const ::id & id, wparam wparam, lparam lparam);
+//   //CLASS_DECL_APEX void post_to_all_threads(const ::atom & atom, wparam wparam, lparam lparam);
 //
 //   //CLASS_DECL_APEX bool wait_threads(::duration duration, __pointer_array(::thread) threadaExcept = __pointer_array(::thread)());
 //

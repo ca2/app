@@ -276,9 +276,9 @@ namespace aura
 
 
 
-      void application::assert_valid() const
+      void application::assert_ok() const
       {
-         ::win::thread::assert_valid();
+         ::win::thread::assert_ok();
       }
 
       void application::dump(dump_context & dumpcontext) const

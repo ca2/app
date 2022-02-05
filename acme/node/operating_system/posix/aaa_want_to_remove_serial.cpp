@@ -136,7 +136,7 @@ serial::serial_impl::open()
 {
    if (m_strPort.empty())
    {
-      __throw(error_invalid_argument, "Empty port is invalid."));
+      __throw(error_bad_argument, "Empty port is invalid."));
    }
    if (m_bOpened == true)
    {
@@ -368,7 +368,7 @@ serial::serial_impl::reconfigurePort()
    else if (m_ebytesize == fivebits)
       options.c_cflag |= CS5;
    else
-      __throw(error_invalid_argument, "invalid char len"));
+      __throw(error_bad_argument, "invalid char len"));
    // setup estopbit
    if (m_estopbit == e_stop_bit_one)
       options.c_cflag &= (tcflag_t)~(CSTOPB);
@@ -378,7 +378,7 @@ serial::serial_impl::reconfigurePort()
    else if (m_estopbit == estopbit_two)
       options.c_cflag |= (CSTOPB);
    else
-      __throw(error_invalid_argument, "invalid stop bit"));
+      __throw(error_bad_argument, "invalid stop bit"));
    // setup eparity
    options.c_iflag &= (tcflag_t)~(INPCK | ISTRIP);
    if (m_eparity == e_parity_none)
@@ -408,12 +408,12 @@ serial::serial_impl::reconfigurePort()
    // CMSPAR is not defined on OSX. So do not support mark or space eparity.
    else if (m_eparity == eparity_mark || m_eparity == eparity_space)
    {
-      __throw(error_invalid_argument, "OS does not support mark or space eparity"));
+      __throw(error_bad_argument, "OS does not support mark or space eparity"));
    }
 #endif  // ifdef CMSPAR
    else
    {
-      __throw(error_invalid_argument, "invalid eparity"));
+      __throw(error_bad_argument, "invalid eparity"));
    }
    // setup flow control
    if (m_eflowcontrol == e_flow_control_none)

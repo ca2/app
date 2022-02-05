@@ -24,9 +24,9 @@ namespace user
       public:
 
 
-         id       m_id;
+         atom       m_id;
 
-         exception(id id) : m_id(id) {}
+         exception(atom atom) : m_id(atom) {}
 
 
       };
@@ -45,22 +45,22 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_destroy);
 
-      //virtual class impact_data * new_impact_data(impact_creator * pimpactcreator, id id);
+      //virtual class impact_data * new_impact_data(impact_creator * pimpactcreator, atom atom);
 
       virtual bool on_prepare_impact_data(::user::impact_data * pimpactdata);
       virtual bool on_after_create_impact_data(::user::impact_data * pimpactdata);
       virtual void on_change_cur_sel();
 
 
-      virtual ::user::impact_data * new_impact_data(const id & idconst, const ::id & idTitle = "");
-      virtual ::user::impact_data * allocate_impact_data(const id & id, const ::id & idTitle = "");
+      virtual ::user::impact_data * new_impact_data(const atom & idconst, const ::atom & idTitle = "");
+      virtual ::user::impact_data * allocate_impact_data(const atom & atom, const ::atom & idTitle = "");
 
 
-      virtual ::user::impact_data * host_impact(const id& id, const ::id & idTitle, ::user::interaction * pinteraction, ::user::document * pdocument);
+      virtual ::user::impact_data * host_impact(const atom& atom, const ::atom & idTitle, ::user::interaction * pinteraction, ::user::document * pdocument);
 
       virtual ::user::place_holder* updown_target_get_place_holder(::user::interaction* pinteraction, ::user::document* pdocument);
 
-      virtual ::user::impact_data * impact_host_get_impact_data(const id& id, const ::id& idTitle, ::user::interaction* pinteraction, ::user::document* pdocument);
+      virtual ::user::impact_data * impact_host_get_impact_data(const atom& atom, const ::atom& idTitle, ::user::interaction* pinteraction, ::user::document* pdocument);
 
 
       virtual void on_erase_child(::user::interaction* pinteraction) override;
@@ -72,10 +72,10 @@ namespace user
 
 
       template < class VIEW >
-      __pointer(VIEW) host_view(const ::id & id, const ::id & idTitle = "")
+      __pointer(VIEW) host_view(const ::atom & atom, const ::atom & idTitle = "")
       {
 
-         impact_data* pimpactdata = allocate_impact_data(id, idTitle);
+         impact_data* pimpactdata = allocate_impact_data(atom, idTitle);
 
          pimpactdata->m_puserinteraction = create_view <VIEW>(pimpactdata);
 
@@ -90,7 +90,7 @@ namespace user
       }
 
 
-      virtual ::user::impact_data * create_impact(const id  & id, const string& strTitle = "", impact_creator * pcreator = nullptr);
+      virtual ::user::impact_data * create_impact(const atom  & atom, const string& strTitle = "", impact_creator * pcreator = nullptr);
       virtual void create_impact(::user::impact_data * pimpactdata, impact_creator * pcreator = nullptr);
       virtual bool _create_impact(impact_creator * pcreator, ::user::impact_data * pimpactdata);
 
@@ -99,7 +99,7 @@ namespace user
 
       virtual bool is_hosting(::user::interaction * pinteraction);
 
-      virtual ::user::impact_data * get_impact_data(const id& id, bool bCallOnCreateImpact = true);
+      virtual ::user::impact_data * get_impact_data(const atom& atom, bool bCallOnCreateImpact = true);
 
 
       virtual void handle(::topic * ptopic, ::context * pcontext) override;
@@ -107,12 +107,12 @@ namespace user
 
       virtual ::count get_view_count();
 
-      virtual id get_view_id();
+      virtual atom get_view_id();
       virtual __pointer(::user::impact) get_view();
       virtual ::user::document * get_view_document();
 
 
-      virtual void hide_all_except(const id_array & id);
+      virtual void hide_all_except(const id_array & atom);
 
 
       template < class T > __pointer(T) get_typed_document()

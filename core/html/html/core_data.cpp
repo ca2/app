@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "core/id.h"
+#include "core/atom.h"
 #include "aura/graphics/draw2d/context_image.h"
 #include "acme/platform/hyperlink.h"
 #if !BROAD_PRECOMPILED_HEADER
@@ -329,7 +329,7 @@ namespace html
             
             auto ptopic = create_subject(::id_initialize_control);
 
-            ptopic->m_puserelement = pinteraction;
+            ptopic->m_pextendedtopic->m_puserelement = pinteraction;
 
             m_pform->route(ptopic);
 
@@ -406,7 +406,7 @@ namespace html
          
          auto ptopic = create_subject(::id_form_initialize);
 
-         ptopic->m_puserelement = m_puserinteraction;
+         ptopic->m_pextendedtopic->m_puserelement = m_puserinteraction;
          
          m_puserinteraction->route(ptopic);
 
@@ -456,18 +456,18 @@ namespace html
    }
 
 
-   ::html::element * core_data::get_element_by_name(id id)
+   ::html::element * core_data::get_element_by_name(atom atom)
    {
 
-      return m_pelement->get_element_by_name(id);
+      return m_pelement->get_element_by_name(atom);
 
    }
 
 
-   ::html::element * core_data::get_element_by_id(id id)
+   ::html::element * core_data::get_element_by_id(atom atom)
    {
 
-      return m_pelement->get_element_by_id(id);
+      return m_pelement->get_element_by_id(atom);
 
    }
 

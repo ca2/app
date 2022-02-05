@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "acme/operating_system.h"
-#include "acme/constant/id.h"
+#include "acme/id.h"
 
 
 #ifdef LINUX
@@ -46,14 +46,14 @@ namespace parallelization
 
    //}
 
-   //CLASS_DECL_ACME bool thread_id_registered(itask_t id)
+   //CLASS_DECL_ACME bool thread_id_registered(itask_t atom)
    //{
 
    //   //cslock lock(s_pcs2);
 
-   //   //return s_piaThread2->contains(id);
+   //   //return s_piaThread2->contains(atom);
 
-   //   return get_system()->get_task(id) != nullptr;
+   //   return get_system()->get_task(atom) != nullptr;
 
    //}
 

@@ -465,10 +465,10 @@ void simple_frame_window::_thread_save_window_placement()
 }
 
 
-void simple_frame_window::assert_valid() const
+void simple_frame_window::assert_ok() const
 {
 
-   ::user::frame_window::assert_valid();
+   ::user::frame_window::assert_ok();
 
 }
 
@@ -2084,7 +2084,7 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
 
    //bCreated = 
    
-   create_interaction(puiParent, id());
+   create_interaction(puiParent, atom());
 
    if (bLoadImplRect)
    {
@@ -3182,13 +3182,13 @@ void simple_frame_window::handle(::topic * ptopic, ::context * pcontext)
       defer_create_notification_icon();
 
    }
-   else if(ptopic->user_interaction() == m_pnotifyicon)
+   else if(ptopic->m_pextendedtopic->user_interaction() == m_pnotifyicon)
    {
 
       if(ptopic->m_id == ::id_context_menu)
       {
 
-         //OnNotifyIconContextMenu(ptopic->m_puserelement->m_id);
+         //OnNotifyIconContextMenu(ptopic->m_pextendedtopic->m_puserelement->m_id);
 
          auto psession = get_session();
 
@@ -3206,13 +3206,13 @@ void simple_frame_window::handle(::topic * ptopic, ::context * pcontext)
       else if(ptopic->m_id == ::id_left_button_double_click)
       {
 
-         //OnNotifyIconLButtonDblClk(ptopic->m_puserelement->m_id);
+         //OnNotifyIconLButtonDblClk(ptopic->m_pextendedtopic->m_puserelement->m_id);
 
       }
       else if(ptopic->m_id == ::id_left_button_down)
       {
 
-         //OnNotifyIconLButtonDown(ptopic->m_puserelement->m_id);
+         //OnNotifyIconLButtonDown(ptopic->m_pextendedtopic->m_puserelement->m_id);
 
          default_notify_icon_topic();
 
@@ -3225,7 +3225,7 @@ void simple_frame_window::handle(::topic * ptopic, ::context * pcontext)
 
    ::experience::frame_window::handle(ptopic, pcontext);
 
-   if(ptopic->m_bRet)
+   if(ptopic->m_pextendedtopic->m_bRet)
    {
 
       return;
@@ -3839,12 +3839,12 @@ void simple_frame_window::on_create_bars()
    if (m_bToolbar)
    {
 
-      ::id id = m_pdocumenttemplate->m_id;
+      ::atom atom = m_pdocumenttemplate->m_id;
 
-      if (id.has_char())
+      if (atom.has_char())
       {
 
-         get_toolbar(id);
+         get_toolbar(atom);
 
       }
 
@@ -3901,10 +3901,10 @@ void simple_frame_window::_001OnTimer(::timer * ptimer)
 //}
 
 
-//void simple_frame_window::command_handler(const ::id & id)
+//void simple_frame_window::command_handler(const ::atom & atom)
 //{
 //
-//   if(id == "notify_icon_topic")
+//   if(atom == "notify_icon_topic")
 //   {
 //
 //      _001OnNotifyIconTopic(nullptr);
@@ -3912,7 +3912,7 @@ void simple_frame_window::_001OnTimer(::timer * ptimer)
 //      return ::success;
 //
 //   }
-//   else if (id == "transparent_frame")
+//   else if (atom == "transparent_frame")
 //   {
 //
 //      _001OnToggleTransparentFrame(nullptr);
@@ -3921,7 +3921,7 @@ void simple_frame_window::_001OnTimer(::timer * ptimer)
 //
 //   }
 //
-//   auto estatus = ::experience::frame_window::command_handler(id);
+//   auto estatus = ::experience::frame_window::command_handler(atom);
 //
 //   if(estatus)
 //   {
@@ -4115,12 +4115,12 @@ void simple_frame_window::on_select_user_style()
 void simple_frame_window::call_notification_area_action(const ::string & pszId)
 {
 
-   ::id id(pszId);
+   ::atom atom(pszId);
 
-   post_routine(__routine([this, id]()
+   post_routine(__routine([this, atom]()
    {
 
-      handle_command(id);
+      handle_command(atom);
 
    }));
 
@@ -4132,7 +4132,7 @@ void simple_frame_window::notification_area_action(const ::string & pszId)
 
    __pointer(::user::interaction) pinteraction = this;
 
-   ::message::command command((::id) pszId);
+   ::message::command command((::atom) pszId);
 
    pinteraction->_001SendCommand(&command);
 
@@ -4158,7 +4158,7 @@ string simple_frame_window::notification_area_get_xml_menu()
       else
       {
 
-         pdocument->root()->add_child("item", { "id", pitem->m_strId }, pitem->m_strName);
+         pdocument->root()->add_child("item", { "atom", pitem->m_strId }, pitem->m_strName);
 
       }
 

@@ -403,11 +403,11 @@ namespace ios
    ::user::interaction * pinteraction,
    __pointer(::user::system) pusersystem,
    ::user::interaction * puiParent,
-   id id)
+   atom atom)
    {
 
       if(!native_create_window_ex(pinteraction, cs,
-                                  puiParent == nullptr ? nullptr : puiParent->get_safe_handle(), id))
+                                  puiParent == nullptr ? nullptr : puiParent->get_safe_handle(), atom))
       {
 
          return false;
@@ -521,7 +521,7 @@ namespace ios
    }
 
 
-   bool interaction_impl::create_window(::user::interaction * pinteraction, const ::string & pszClassName, const ::string & pszWindowName,u32 uStyle,const ::rectangle_i32 & rectangle,::user::interaction * puiParent,id id, ::create * pcreate)
+   bool interaction_impl::create_window(::user::interaction * pinteraction, const ::string & pszClassName, const ::string & pszWindowName,u32 uStyle,const ::rectangle_i32 & rectangle,::user::interaction * puiParent,atom atom, ::create * pcreate)
    {
       
       // can't use for desktop or pop-up windows (use CreateEx instead)
@@ -532,7 +532,7 @@ namespace ios
       ::user::system createstruct(0, pszClassName, pszWindowName, uStyle | WS_CHILD,
                                rectangle_i32);
 
-      return create_window_ex(pinteraction, createstruct, puiParent, id);
+      return create_window_ex(pinteraction, createstruct, puiParent, atom);
       
    }
 
@@ -786,7 +786,7 @@ namespace ios
    }
 
 
-   void interaction_impl::assert_valid() const
+   void interaction_impl::assert_ok() const
    {
       
       if (get_handle() == nullptr)
@@ -1810,7 +1810,7 @@ namespace ios
       return false;   // let the parent handle it
    }
 
-   void interaction_impl::OnParentNotify(const ::id & id, lparam lparam)
+   void interaction_impl::OnParentNotify(const ::atom & atom, lparam lparam)
    {
       if ((LOWORD(message) == e_message_create || LOWORD(message) == e_message_destroy))
       {
@@ -2855,15 +2855,15 @@ namespace ios
 //   }
 
 
-   id interaction_impl::SetDlgCtrlId(id id)
+   atom interaction_impl::SetDlgCtrlId(atom atom)
    {
 
-      return m_puserinteraction->SetDlgCtrlId((id));
+      return m_puserinteraction->SetDlgCtrlId((atom));
 
    }
 
 
-   id interaction_impl::GetDlgCtrlId()
+   atom interaction_impl::GetDlgCtrlId()
    {
 
       return m_puserinteraction->GetDlgCtrlId();
@@ -2977,7 +2977,7 @@ namespace ios
       return nullptr;
    }
 
-//   LRESULT interaction_impl::send_message(const ::id & id, wparam wparam, lparam lparam)
+//   LRESULT interaction_impl::send_message(const ::atom & atom, wparam wparam, lparam lparam)
 //   {
 //
 //      return ::user::interaction_impl::send_message(message, wparam, lparam);
@@ -3023,7 +3023,7 @@ namespace ios
 //      //return ::SendMessage(get_handle(), message, wParam, lParam);
 //   }
 
-//   bool interaction_impl::post_message(const ::id & id, wparam wparam, lparam lparam)
+//   bool interaction_impl::post_message(const ::atom & atom, wparam wparam, lparam lparam)
 //   {
 //      if(get_application() != nullptr)
 //      {
@@ -3346,7 +3346,7 @@ namespace ios
 
    }
 
-//   void interaction_impl::send_message_to_descendants(const ::id & id, wparam wparam, lparam lparam, bool bDeep, bool bOnlyPerm)
+//   void interaction_impl::send_message_to_descendants(const ::atom & atom, wparam wparam, lparam lparam, bool bDeep, bool bOnlyPerm)
 //   {
 //      ASSERT(::is_window(get_handle()));
 //      //interaction_impl::send_message_to_descendants(get_handle(), message, wparam, lparam, bDeep, bOnlyPerm);
@@ -3705,7 +3705,7 @@ namespace ios
       for (i32 nID = nIDFirstButton; nID <= nIDLastButton; nID++)
       {
          if (IsDlgButtonChecked(nID))
-            return nID; // id that matched
+            return nID; // atom that matched
       }
       return 0; // invalid ID
    }
@@ -3765,12 +3765,12 @@ namespace ios
    }
 
    /*
-    void interaction_impl::GetDlgItem(id id, oswindow* phWnd) const
+    void interaction_impl::GetDlgItem(atom atom, oswindow* phWnd) const
     {
 
     ASSERT(::is_window(get_handle()));
     ASSERT(phWnd != nullptr);
-    *phWnd = ::GetDlgItem(get_handle(), (i32) id);
+    *phWnd = ::GetDlgItem(get_handle(), (i32) atom);
 
     }
     */
@@ -3819,7 +3819,7 @@ namespace ios
 
    }
 
-   LPARAM interaction_impl::SendDlgItemMessage(i32 nID, const ::id & id, wparam wparam, lparam lparam)
+   LPARAM interaction_impl::SendDlgItemMessage(i32 nID, const ::atom & atom, wparam wparam, lparam lparam)
    {
 
       __throw(error_not_implemented);
@@ -4052,7 +4052,7 @@ namespace ios
 
    }
 
-   bool interaction_impl::SendNotifyMessage(const ::id & id, wparam wparam, lparam lparam)
+   bool interaction_impl::SendNotifyMessage(const ::atom & atom, wparam wparam, lparam lparam)
    {
 
       __throw(error_not_implemented);

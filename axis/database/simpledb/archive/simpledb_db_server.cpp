@@ -403,15 +403,15 @@ __pointer(::sqlite::database) db_server::get_database()
 }
 
 
-bool db_server::data_pulse_change(::database::client * pclient, ::database::key id, ::update * pupdate)
+bool db_server::data_pulse_change(::database::client * pclient, ::database::key atom, ::update * pupdate)
 {
 
-   return ::database::server::data_pulse_change(pclient, id, pupdate);
+   return ::database::server::data_pulse_change(pclient, atom, pupdate);
 
 }
 
 
-void db_server::assert_valid() const
+void db_server::assert_ok() const
 {
 
    // return void HAHAHAHAHAHA

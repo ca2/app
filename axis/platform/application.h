@@ -35,7 +35,7 @@ namespace axis
       virtual void initialize(::object * pobject) override;
 
 
-      void assert_valid() const override;
+      void assert_ok() const override;
       void dump(dump_context & dumpcontext) const override;
       virtual bool assert_user_logged_in() override;
 
@@ -109,11 +109,11 @@ namespace axis
 
 
 
-      virtual bool app_data_set(const ::id & id, stream & os) override;
-      virtual bool app_data_get(const ::id & id, stream & is) override;
+      virtual bool app_data_set(const ::atom & atom, stream & os) override;
+      virtual bool app_data_get(const ::atom & atom, stream & is) override;
 
-      virtual bool app_data_set(const ::id & id, ::object & obj) override;
-      virtual bool app_data_get(const ::id & id, ::object & obj) override;
+      virtual bool app_data_set(const ::atom & atom, ::object & obj) override;
+      virtual bool app_data_get(const ::atom & atom, ::object & obj) override;
 
 
 
@@ -162,7 +162,7 @@ namespace axis
       virtual ::account::user * noninteractive_get_user(::file::path pathUrl = nullptr);
 
      
-      virtual ::type control_type_from_id(const ::id& id, ::user::enum_control_type& econtroltype) override;
+      virtual ::type control_type_from_id(const ::atom& atom, ::user::enum_control_type& econtroltype) override;
       ::user::interaction* create_menu_interaction() override;
 
 

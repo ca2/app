@@ -82,7 +82,7 @@ namespace hotplugin
    }
 
 
-   void host::post_message(const ::id & id, wparam wparam, lparam lparam)
+   void host::post_message(const ::atom & atom, wparam wparam, lparam lparam)
 
    {
 
@@ -625,7 +625,7 @@ namespace hotplugin
    }
 
 
-   void host::plugin_message_handler(const ::id & id,wparam wparam,lparam lparam, bool bEnsureTx)
+   void host::plugin_message_handler(const ::atom & atom,wparam wparam,lparam lparam, bool bEnsureTx)
 
    {
 

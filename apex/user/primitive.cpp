@@ -1027,7 +1027,7 @@ namespace user
    }
 
 
-   ::user::interaction * primitive::get_child_by_id(const id & id, ::index iItem, i32 iLevel)
+   ::user::interaction * primitive::get_child_by_id(const atom & atom, ::index iItem, i32 iLevel)
    {
 
       throw ::interface_only_exception();
@@ -1037,7 +1037,7 @@ namespace user
    }
 
 
-   ::user::element* primitive::get_primitive_by_id(const id & id, ::index iItem, i32 iLevel)
+   ::user::element* primitive::get_primitive_by_id(const atom & atom, ::index iItem, i32 iLevel)
    {
 
       throw ::interface_only_exception();
@@ -1080,15 +1080,15 @@ namespace user
    }
 
 
-   lresult primitive::send_message(const ::id & id,wparam wparam,lparam lparam, const ::point_i32& point)
+   lresult primitive::send_message(const ::atom & atom,wparam wparam,lparam lparam, const ::point_i32& point)
    {
 
-      return message_call(id, wparam, lparam, point);
+      return message_call(atom, wparam, lparam, point);
 
    }
 
 
-   lresult primitive::message_call(const ::id & id, wparam wparam, lparam lparam, const ::point_i32& point)
+   lresult primitive::message_call(const ::atom & atom, wparam wparam, lparam lparam, const ::point_i32& point)
    {
 
       return 0;
@@ -1183,7 +1183,7 @@ namespace user
    //}
 
 
-   void primitive::send_message_to_descendants(const ::id & id,wparam wparam,lparam lparam,bool bDeep,bool bOnlyPerm)
+   void primitive::send_message_to_descendants(const ::atom & atom,wparam wparam,lparam lparam,bool bDeep,bool bOnlyPerm)
 
    {
 
@@ -1260,10 +1260,10 @@ namespace user
    }
 
    
-   void primitive::create_control(::user::interaction * puserinteractionParent, const ::id & id)
+   void primitive::create_control(::user::interaction * puserinteractionParent, const ::atom & atom)
    {
 
-      m_id = id;
+      m_id = atom;
 
       //auto estatus =
       
@@ -1299,13 +1299,13 @@ namespace user
    //}
 
 
-   void primitive::create_interaction(::user::interaction * puserinteractionParent, const ::id & id)
+   void primitive::create_interaction(::user::interaction * puserinteractionParent, const ::atom & atom)
    {
 
-      if (!id.is_empty())
+      if (!atom.is_empty())
       {
 
-         m_id = id;
+         m_id = atom;
 
       }
 
@@ -1338,7 +1338,7 @@ namespace user
    }
 
 
-   //bool primitive::create_window_ex(__pointer(::user::system) pcs, ::user::interaction * puiParent, const ::id & id)
+   //bool primitive::create_window_ex(__pointer(::user::system) pcs, ::user::interaction * puiParent, const ::atom & atom)
    void primitive::create_host()
    {
 
@@ -1909,7 +1909,7 @@ namespace user
    //}
 
 
-   void primitive::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::id idLeftOver, ::u32 nFlag, RECTANGLE_I32 * prectParam, const ::rectangle_i32 & rectangleClient, bool bStretch)
+   void primitive::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag, RECTANGLE_I32 * prectParam, const ::rectangle_i32 & rectangleClient, bool bStretch)
    {
 
       throw ::interface_only_exception();
@@ -2399,32 +2399,32 @@ namespace user
    }
 
 
-   id primitive::run_modal_loop(::user::interaction * pinteraction,u32 dwFlags)
+   atom primitive::run_modal_loop(::user::interaction * pinteraction,u32 dwFlags)
    {
 
       throw ::interface_only_exception();
 
-      return ::id();
+      return ::atom();
 
    }
 
 
-   id primitive::RunModalLoop(u32 dwFlags)
+   atom primitive::RunModalLoop(u32 dwFlags)
    {
 
       throw ::interface_only_exception();
 
-      return ::id();
+      return ::atom();
 
    }
 
 
-   id primitive::_001RunModalLoop(u32 dwFlags)
+   atom primitive::_001RunModalLoop(u32 dwFlags)
    {
 
       throw ::interface_only_exception();
 
-      return id();
+      return atom();
 
    }
 
@@ -2439,7 +2439,7 @@ namespace user
    }
 
 
-   void primitive::EndModalLoop(id nResult)
+   void primitive::EndModalLoop(atom nResult)
    {
 
       throw ::interface_only_exception();
@@ -2447,7 +2447,7 @@ namespace user
    }
 
 
-   void primitive::post_message(const ::id & id,wparam wparam,lparam lparam)
+   void primitive::post_message(const ::atom & atom,wparam wparam,lparam lparam)
    {
 
       throw ::interface_only_exception();
@@ -2457,7 +2457,7 @@ namespace user
    }
 
 
-   //bool primitive::user_post(const ::id& id, wparam wparam, lparam lparam)
+   //bool primitive::user_post(const ::atom& atom, wparam wparam, lparam lparam)
    //{
 
    //   throw ::interface_only_exception();
@@ -3425,22 +3425,22 @@ namespace user
    //}
 
 
-   id primitive::GetDlgCtrlId() const
+   atom primitive::GetDlgCtrlId() const
    {
 
       throw ::interface_only_exception();
 
-      return id();
+      return atom();
 
    }
 
 
-   id primitive::SetDlgCtrlId(id id)
+   atom primitive::SetDlgCtrlId(atom atom)
    {
 
       throw ::interface_only_exception();
 
-      return ::id();
+      return ::atom();
 
    }
 
@@ -3670,7 +3670,7 @@ namespace user
    }
 
 
-   void primitive::add_child_handler(::matter * pmatter, const ::id & idChild, bool bPriority)
+   void primitive::add_child_handler(::matter * pmatter, const ::atom & idChild, bool bPriority)
    {
 
       auto pchild = get_primitive_by_id(idChild);
@@ -3712,12 +3712,12 @@ namespace user
    }
 
 
-//   __pointer(::message::message) primitive::get_message(const ::id & id, wparam wparam, lparam lparam)
+//   __pointer(::message::message) primitive::get_message(const ::atom & atom, wparam wparam, lparam lparam)
 //   {
 //
 //      __pointer(::message::message) pmessage;
 //
-//      auto eprototype = ::message::get_message_prototype((enum_message) id.i64(), 0);
+//      auto eprototype = ::message::get_message_prototype((enum_message) atom.i64(), 0);
 //
 //      switch (eprototype)
 //      {
@@ -3853,17 +3853,17 @@ namespace user
 //
 //      }
 //
-//      pmessage->set(get_oswindow(), get_window(), id, wparam, lparam);
+//      pmessage->set(get_oswindow(), get_window(), atom, wparam, lparam);
 //
 //      return pmessage;
 //
 //   }
 
 
-   bool primitive::call_message_handler(const ::id & id, wparam wparam, lparam lparam, const ::point_i32 & point, lresult * plresult)
+   bool primitive::call_message_handler(const ::atom & atom, wparam wparam, lparam lparam, const ::point_i32 & point, lresult * plresult)
    {
       
-      if(id == e_message_post_user)
+      if(atom == e_message_post_user)
       {
 
          if(wparam==1)
@@ -3891,7 +3891,7 @@ namespace user
 
       }
 
-      auto pmessage = get_message(id, wparam, lparam);
+      auto pmessage = get_message(atom, wparam, lparam);
 
       try
       {

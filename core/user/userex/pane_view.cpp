@@ -27,7 +27,7 @@ namespace userex
       for(i32 i = 0; i < m_menua.get_size(); i++)
       {
 
-         if(pcommand->m_id == m_menua[i]->m_id.compounded(::id::e_type_command_probe))
+         if(pcommand->m_id == m_menua[i]->m_id.compounded(::atom::e_type_command_probe))
          {
 
             pcommand->enable(true);
@@ -51,7 +51,7 @@ namespace userex
       for(i32 i = 0; i < m_menua.get_size(); i++)
       {
 
-         if(pcommand->m_id == m_menua[i]->m_id.compounded(::id::e_type_command))
+         if(pcommand->m_id == m_menua[i]->m_id.compounded(::atom::e_type_command))
          {
             
             // show_view where??
@@ -97,12 +97,12 @@ namespace userex
       }
    }
 
-   void pane_view::set_new_pane_info(id id, const ::string & pszMatter)
+   void pane_view::set_new_pane_info(atom atom, const ::string & pszMatter)
    {
-      set_menu_info(id, pszMatter, "new_pane");
+      set_menu_info(atom, pszMatter, "new_pane");
    }
 
-   void pane_view::set_menu_info(id id, const ::string & pszMatter, ::id idCommand)
+   void pane_view::set_menu_info(atom atom, const ::string & pszMatter, ::atom idCommand)
    {
 
       __pointer(menu) pmenu;
@@ -110,7 +110,7 @@ namespace userex
       for(i32 i = 0; i < m_menua.get_size(); i++)
       {
 
-         if(m_menua[i]->m_id == id)
+         if(m_menua[i]->m_id == atom)
          {
 
             pmenu = m_menua[i];
@@ -126,7 +126,7 @@ namespace userex
 
          pmenu = new menu;
 
-         pmenu->m_id = id;
+         pmenu->m_id = atom;
 
          m_menua.add(pmenu);
 

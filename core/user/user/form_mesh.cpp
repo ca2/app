@@ -65,7 +65,7 @@ namespace user
 
                auto ptopic = __new(::topic(::id_click));
 
-               ptopic->m_puserelement        = pinteraction;
+               ptopic->m_pextendedtopic->m_puserelement        = pinteraction;
 
                //topic.m_id                = ;
 
@@ -210,11 +210,11 @@ namespace user
    }
 
 
-   bool form_mesh::_001OnMouseActivate(::user::interaction_impl * pDesktopWnd,::u32 nHitTest,const ::id & id, lresult & iResult)
+   bool form_mesh::_001OnMouseActivate(::user::interaction_impl * pDesktopWnd,::u32 nHitTest,const ::atom & atom, lresult & iResult)
    {
       __UNREFERENCED_PARAMETER(pDesktopWnd);
       __UNREFERENCED_PARAMETER(nHitTest);
-      __UNREFERENCED_PARAMETER(id);
+      __UNREFERENCED_PARAMETER(atom);
       __UNREFERENCED_PARAMETER(iResult);
       return false;
    }
@@ -459,7 +459,7 @@ namespace user
    //   {
    //      if(m_columna[i]->m_iControl >= 0 && m_columna[i]->m_iControl < m_controldescriptorset.get_size())
    //      {
-   //         ::user::interaction * pinteractionParent, const ::id & id = m_controldescriptorset.element_at(m_columna[i]->m_iControl);
+   //         ::user::interaction * pinteractionParent, const ::atom & atom = m_controldescriptorset.element_at(m_columna[i]->m_iControl);
    //         if(pdescriptor != nullptr)
    //         {
    //            if(m_columna[i]->m_iSubItem >= 0)

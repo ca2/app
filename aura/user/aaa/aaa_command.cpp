@@ -20,12 +20,12 @@ namespace user
    }
 
 
-   command::command(const ::id & id)
+   command::command(const ::atom & atom)
    {
 
       common_construct();
       m_emessage           = ::e_message_system_command;
-      m_id                          = id;
+      m_id                          = atom;
       m_bRadioChanged               = false;
 
    }

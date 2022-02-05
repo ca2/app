@@ -5,18 +5,18 @@
 namespace aura
 {
 
-   inline id system::id(const class ::payload & payload)
+   inline atom system::atom(const class ::payload & payload)
    {
-      return ::id((const ::string &)(class ::payload &) ::payload);
+      return ::atom((const ::string &)(class ::payload &) ::payload);
    }
 
-   inline id system::id(const property & prop)
+   inline atom system::atom(const property & prop)
    {
-      return ::id((const string &)(property &)prop);
+      return ::atom((const string &)(property &)prop);
    }
 
 
-   inline id system::id(const ::std::type_info & info)
+   inline atom system::atom(const ::std::type_info & info)
    {
 #ifdef WINDOWS
       return get_id_space()(info.name());
@@ -25,22 +25,22 @@ namespace aura
 #endif
    }
 
-   inline id system::id(const ::string & psz)
+   inline atom system::atom(const ::string & psz)
    {
       return get_id_space()(psz);
    }
 
-   inline id system::id(const ::string & str)
+   inline atom system::atom(const ::string & str)
    {
       return get_id_space()(str);
    }
 
-   inline id system::id(i64 i)
+   inline atom system::atom(i64 i)
    {
       return get_id_space()(i);
    }
 
-   inline id_space & system::id()
+   inline atom_space & system::atom()
    {
       return get_id_space();
    }
@@ -50,7 +50,7 @@ namespace aura
 
 
 
-inline id::id(const ::string & psz)
+inline atom::atom(const ::string & psz)
 {
 
    m_all = {};
@@ -58,30 +58,30 @@ inline id::id(const ::string & psz)
    if(psz != nullptr)
    {
 
-      operator = (::aura::system::id(psz));
+      operator = (::aura::system::atom(psz));
 
    }
 
 }
 
 
-inline id::id(const ::string & str)
+inline atom::atom(const ::string & str)
 {
 
    m_all = {};
 
-   operator = (::aura::system::id(str.c_str()));
+   operator = (::aura::system::atom(str.c_str()));
 
 }
 
 
-inline id::id(const type & type) :
-   id((const string &) type.to_string())
+inline atom::atom(const type & type) :
+   atom((const string &) type.to_string())
 {
 
 }
 
-inline id & id::operator = (::i32 i)
+inline atom & atom::operator = (::i32 i)
 {
    
    m_etype     = type_integer;
@@ -93,7 +93,7 @@ inline id & id::operator = (::i32 i)
 }
 
 
-inline id & id::operator = (::i64 i)
+inline atom & atom::operator = (::i64 i)
 {
 
    m_etype     = type_integer;
@@ -105,7 +105,7 @@ inline id & id::operator = (::i64 i)
 }
 
 
-inline id & id::operator = (::u64 u)
+inline atom & atom::operator = (::u64 u)
 {
    
    m_etype     = type_integer;
@@ -117,7 +117,7 @@ inline id & id::operator = (::u64 u)
 }
 
 
-inline id & id::operator = (const ::enum_property & eproperty)
+inline atom & atom::operator = (const ::enum_property & eproperty)
 {
 
    m_etype = type_property;
@@ -129,7 +129,7 @@ inline id & id::operator = (const ::enum_property & eproperty)
 }
 
 
-inline id & id::operator = (const ::enum_factory & efactory)
+inline atom & atom::operator = (const ::enum_factory & efactory)
 {
 
    m_etype = type_factory;
@@ -141,7 +141,7 @@ inline id & id::operator = (const ::enum_factory & efactory)
 }
 
 
-inline id& id::operator = (const ::enum_task_tool & ethreadtool)
+inline atom& atom::operator = (const ::enum_task_tool & ethreadtool)
 {
 
    m_etype = type_thread_tool;

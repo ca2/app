@@ -14,7 +14,7 @@ namespace user
       index                               m_iIndex;
       index                               m_iImage;
       ::image_pointer                     m_pimage;
-      id                                  m_id;
+      atom                                  m_id;
       e_toolbar_item_state                m_estate;
       e_toolbar_item_style                m_estyle;
       string                              m_str;
@@ -71,9 +71,9 @@ namespace user
 
 
       //using ::user::control_bar::create_interaction;
-      //virtual bool create_interaction(::user::interaction * puiParent,u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP, ::id id = __IDW_TOOLBAR);
+      //virtual bool create_interaction(::user::interaction * puiParent,u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP, ::atom atom = __IDW_TOOLBAR);
       //using ::user::control_bar::create_window_ex;
-      //virtual bool create_toolbar(::user::interaction * puiParent, u32 dwCtrlStyle = TBSTYLE_FLAT,u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP, id nID = __IDW_TOOLBAR);
+      //virtual bool create_toolbar(::user::interaction * puiParent, u32 dwCtrlStyle = TBSTYLE_FLAT,u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP, atom nID = __IDW_TOOLBAR);
 
       void SetSizes(const ::size_i32 & sizeButton, const ::size_i32 & sizeImage);
       // button size_i32 should be bigger than image
@@ -132,7 +132,7 @@ namespace user
 
       void OnBarStyleChange(u32 dwOldStyle, u32 dwNewStyle) override;
 
-      void assert_valid() const override;
+      void assert_ok() const override;
       void dump(dump_context & dumpcontext) const override;
 
 

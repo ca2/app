@@ -48,13 +48,13 @@ dialog::~dialog()
 void dialog::handle(::topic * ptopic, ::context * pcontext)
 {
 
-   if(::is_set(ptopic->user_interaction()) && m_pform == nullptr)
+   if(::is_set(ptopic->m_pextendedtopic->user_interaction()) && m_pform == nullptr)
    {
 
       if(ptopic->m_id == ::id_create)
       {
 
-         m_pform = ptopic->user_interaction();
+         m_pform = ptopic->m_pextendedtopic->user_interaction();
 
       }
 
@@ -149,7 +149,7 @@ void dialog::on_show(const ::string & pszMatter)
 }
 
 
-void dialog::EndModalLoop(id idResult)
+void dialog::EndModalLoop(atom idResult)
 {
 
    if (m_pframe == nullptr)
@@ -233,11 +233,11 @@ int_bool dialog::on_init_dialog()
 
 
 
-CLASS_DECL_CORE void DDX_Control(::user::data_exchange * pdx, id idControl, ::user::interaction & control)
+CLASS_DECL_CORE void DDX_Control(::user::data_exchange * pdx, atom idControl, ::user::interaction & control)
 {
 }
 
-CLASS_DECL_CORE void DDX_Text(::user::data_exchange * pdx, id idControl, string & str)
+CLASS_DECL_CORE void DDX_Text(::user::data_exchange * pdx, atom idControl, string & str)
 {
 }
 
@@ -245,11 +245,11 @@ CLASS_DECL_CORE void DDV_MaxChars(::user::data_exchange * pdx, string & str, i32
 {
 }
 
-CLASS_DECL_CORE void DDX_Check(::user::data_exchange * pdx, id idControl, i32 & iBool)
+CLASS_DECL_CORE void DDX_Check(::user::data_exchange * pdx, atom idControl, i32 & iBool)
 {
 }
 
-CLASS_DECL_CORE void DDX_Check(::user::data_exchange * pdx, id idControl, bool & b)
+CLASS_DECL_CORE void DDX_Check(::user::data_exchange * pdx, atom idControl, bool & b)
 {
 }
 

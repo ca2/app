@@ -44,7 +44,7 @@ namespace linux
       void linux_interaction_impl_common_construct();
 
 
-      void assert_valid() const override;
+      void assert_ok() const override;
       void dump(dump_context & dumpcontext) const override;
 
 
@@ -114,7 +114,7 @@ namespace linux
 //      ::u32 dwStyle,
 //      const ::rectangle & rectangle,
 //      ::user::interaction * pParentWnd,
-//      id id,
+//      atom atom,
 //      ::create * pContext = nullptr) override;
 //
 //      // advanced creation (allows access to extended styles)
@@ -122,7 +122,7 @@ namespace linux
 //      ::user::interaction * pinteraction,
 //      __pointer(::user::system) pusersystem,
 //      ::user::interaction * pParentWnd = nullptr,
-//      id id = ::id()) override;
+//      atom atom = ::atom()) override;
 
     virtual bool _native_create_window_ex(__pointer(::user::system) pusersystem) override;
 
@@ -131,7 +131,7 @@ namespace linux
 //      ::user::interaction * pinteraction,
 //      __pointer(::user::system) pusersystem,
 //      ::user::interaction * pParentWnd = nullptr,
-//      id id = ::id());
+//      atom atom = ::atom());
 
       virtual bool DestroyWindow() override;
 
@@ -167,12 +167,12 @@ namespace linux
 
 #endif   // WINVER >= 0x0500
 
-      LRESULT send_message(const ::id & id, WPARAM wParam = 0, lparam lparam = 0) override;
+      LRESULT send_message(const ::atom & atom, WPARAM wParam = 0, lparam lparam = 0) override;
 
-      bool post_message(const ::id & id, WPARAM wParam = 0, lparam lparam = 0) override;
+      bool post_message(const ::atom & atom, WPARAM wParam = 0, lparam lparam = 0) override;
 
 
-//      bool SendNotifyMessage(const ::id & id, WPARAM wParam, lparam lParam);
+//      bool SendNotifyMessage(const ::atom & atom, WPARAM wParam, lparam lParam);
 //
 //      bool SendChildNotifyLastMsg(LRESULT* pResult = nullptr);
 //

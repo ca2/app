@@ -16,10 +16,10 @@ namespace userfs
    //}
 
 
-   //__pointer(list_item) list_item_array::get_item(index i, const ::id & id)
+   //__pointer(list_item) list_item_array::get_item(index i, const ::atom & atom)
    //{
 
-   //   return this->element_at(i, id);
+   //   return this->element_at(i, atom);
 
    //}
 

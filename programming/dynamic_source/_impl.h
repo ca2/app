@@ -5,42 +5,42 @@ namespace dynamic_source
 {
 
 
-   inline property& script_interface::get(const ::id & id)
+   inline property& script_interface::get(const ::atom & atom)
    {
 
-      return netnodesocket()->request().form().get()[id];
+      return netnodesocket()->request().form().get()[atom];
 
    }
 
 
-   inline property& script_interface::post(const ::id & id)
+   inline property& script_interface::post(const ::atom & atom)
    {
 
-      return netnodesocket()->request().form().post()[id];
+      return netnodesocket()->request().form().post()[atom];
 
    }
 
 
-   inline http::cookie& script_interface::get_cookie(const ::id & id)
+   inline http::cookie& script_interface::get_cookie(const ::atom & atom)
    {
 
-      return netnodesocket()->request().cookies().cookie(id);
+      return netnodesocket()->request().cookies().cookie(atom);
 
    }
 
 
-   inline http::cookie& script_interface::set_cookie(const ::id & id)
+   inline http::cookie& script_interface::set_cookie(const ::atom & atom)
    {
 
-      return netnodesocket()->response().cookies().cookie(id);
+      return netnodesocket()->response().cookies().cookie(atom);
 
    }
 
 
-   inline property& script_interface::request(const ::id & id)
+   inline property& script_interface::request(const ::atom & atom)
    {
 
-      return netnodesocket()->request().form().request()[id];
+      return netnodesocket()->request().form().request()[atom];
 
    }
 
@@ -85,44 +85,44 @@ namespace dynamic_source
    }
 
 
-   inline property& script_interface::inheader(const ::id & id)
+   inline property& script_interface::inheader(const ::atom & atom)
    {
 
-      return netnodesocket()->inheader(id);
+      return netnodesocket()->inheader(atom);
 
    }
 
 
-   inline property& script_interface::outheader(const ::id & id)
+   inline property& script_interface::outheader(const ::atom & atom)
    {
 
-      return netnodesocket()->outheader(id);
+      return netnodesocket()->outheader(atom);
 
    }
 
 
-   inline property& script_interface::inattr(const ::id & id)
+   inline property& script_interface::inattr(const ::atom & atom)
    {
 
-      return netnodesocket()->inattr(id);
+      return netnodesocket()->inattr(atom);
 
    }
 
 
-   inline property& script_interface::outattr(const ::id & id)
+   inline property& script_interface::outattr(const ::atom & atom)
    {
 
-      return netnodesocket()->outattr(id);
+      return netnodesocket()->outattr(atom);
 
    }
 
 
 
 
-   inline string& script_interface::gstr(const ::id & id)
+   inline string& script_interface::gstr(const ::atom & atom)
    {
 
-      return gprop(id).as_string();
+      return gprop(atom).as_string();
 
    }
 
@@ -189,12 +189,12 @@ namespace dynamic_source
 
 
 
-   inline property& script_interface::gprop(const ::id & id)
+   inline property& script_interface::gprop(const ::atom & atom)
    {
 
       auto& set = m_pmain->get_property_set();
 
-      return set.get(id);
+      return set.get(atom);
 
    }
 

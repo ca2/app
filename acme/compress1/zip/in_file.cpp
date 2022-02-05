@@ -416,7 +416,7 @@ namespace zip
       else
       {
 
-         throw ::exception(error_invalid_argument, "zip::in_file::seek invalid seek option");
+         throw ::exception(error_bad_argument, "zip::in_file::seek invalid seek option");
 
       }
 
@@ -523,7 +523,7 @@ namespace zip
    }
 
 
-   void in_file::assert_valid() const
+   void in_file::assert_ok() const
    {
 
 

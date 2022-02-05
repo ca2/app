@@ -412,10 +412,10 @@ m_bAppHasInstallerChangedProtected = true;
 //   }
 
 
-void application::assert_valid() const
+void application::assert_ok() const
 {
 
-thread::assert_valid();
+thread::assert_ok();
 
 }
 
@@ -635,7 +635,7 @@ __pointer(::handle::ini) application::get_ini()
 }
 
 
-bool application::app_data_set(const ::id & id, stream & os)
+bool application::app_data_set(const ::atom & atom, stream & os)
 {
 
 return false;
@@ -643,7 +643,7 @@ return false;
 }
 
 
-bool application::app_data_get(const ::id & id, stream & is)
+bool application::app_data_get(const ::atom & atom, stream & is)
 {
 
 return false;
@@ -651,7 +651,7 @@ return false;
 }
 
 
-bool application::app_data_set(const ::id & id, ::object & obj)
+bool application::app_data_set(const ::atom & atom, ::object & obj)
 {
 
 return false;
@@ -659,7 +659,7 @@ return false;
 }
 
 
-bool application::app_data_get(const ::id & id, ::object & obj)
+bool application::app_data_get(const ::atom & atom, ::object & obj)
 {
 
 return false;
@@ -986,12 +986,12 @@ pcreate->m_pcommandline->m_eventReady.SetEvent();
 
 //// lang string
 //// load string
-//string application::lstr(const ::id & id, string strDefault)
+//string application::lstr(const ::atom & atom, string strDefault)
 //{
 
 //   string str;
 
-//   if (!load_string(str, id))
+//   if (!load_string(str, atom))
 //   {
 
 //      if (strDefault.has_char())
@@ -1014,34 +1014,34 @@ void application::on_file_new()
 }
 
 
-//string application::load_string(const ::id & id)
+//string application::load_string(const ::atom & atom)
 //{
 //   string str;
-//   if (!load_string(str, id))
+//   if (!load_string(str, atom))
 //   {
-//      return (const string &)id;
+//      return (const string &)atom;
 //   }
 //   return str;
 //}
 
-//bool application::load_string(string & str, const ::id & id)
+//bool application::load_string(string & str, const ::atom & atom)
 //{
-//   if (!load_cached_string(str, id, true))
+//   if (!load_cached_string(str, atom, true))
 //   {
 //      return false;
 //   }
 //   return true;
 //}
 
-/*bool application::load_cached_string(string & str, const ::id & id, bool bLoadStringTable)
+/*bool application::load_cached_string(string & str, const ::atom & atom, bool bLoadStringTable)
 {
 
 ::xml::document doc;
 
-if (!doc.load(id))
+if (!doc.load(atom))
 {
 
-if (load_cached_string_by_id(str, id, bLoadStringTable))
+if (load_cached_string_by_id(str, atom, bLoadStringTable))
 {
 
 return true;
@@ -1053,7 +1053,7 @@ return true;
 if (doc.get_name() == "string")
 {
 
-string strId = doc.attribute("id");
+string strId = doc.attribute("atom");
 
 if (load_cached_string_by_id(str, strId, bLoadStringTable))
 {
@@ -1072,10 +1072,10 @@ return false;
 }*/
 
 
-bool application::load_cached_string_by_id(string & str, const ::id & id, bool bLoadStringTable)
+bool application::load_cached_string_by_id(string & str, const ::atom & atom, bool bLoadStringTable)
 {
 
-string strId(id.str());
+string strId(atom.str());
 
 string strTable;
 
@@ -1133,7 +1133,7 @@ synchronouslock.unlock();
 
 load_string_table(strTable, "");
 
-return load_cached_string_by_id(str, id, false);
+return load_cached_string_by_id(str, atom, false);
 
 }
 
@@ -1167,7 +1167,7 @@ load_string_table("", "");
 //}
 
 
-//object * application::alloc(const  id & idType)
+//object * application::alloc(const  atom & idType)
 //{
 
 //   return psystem->alloc(this, idType);
@@ -3670,7 +3670,7 @@ bool application::check_exclusive(bool & bHandled)
       if (bGlobalIdExclusiveFail)
       {
 
-         INFORMATION("A instance of the application:<br><br>-" << m_strAppName << "with the id \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine with the same id.<br><br>Exiting this new instance.");
+         INFORMATION("A instance of the application:<br><br>-" << m_strAppName << "with the atom \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine with the same atom.<br><br>Exiting this new instance.");
 
          try
          {
@@ -3723,7 +3723,7 @@ bool application::check_exclusive(bool & bHandled)
       {
 
          // Should in some way activate the other instance
-         INFORMATION("A instance of the application:<br><br> - " << m_strAppName << " with the id \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::count with the same id.<br><br>Exiting this new instance.");
+         INFORMATION("A instance of the application:<br><br> - " << m_strAppName << " with the atom \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::count with the same atom.<br><br>Exiting this new instance.");
 
          on_exclusive_instance_conflict(bHandled, ExclusiveInstanceLocalId, get_local_mutex_id());
          //if(!)
@@ -4058,7 +4058,7 @@ bHandled = true;
 }
 
 
-void application::on_new_instance(string strModule, const ::id & iPid)
+void application::on_new_instance(string strModule, const ::atom & iPid)
 {
 
 }
@@ -4923,7 +4923,7 @@ return true;
 }
 
 
-bool application::send_message_to_windows(const ::id & id, wparam wparam, lparam lparam) // with tbs in <3
+bool application::send_message_to_windows(const ::atom & atom, wparam wparam, lparam lparam) // with tbs in <3
 {
 
 //__pointer(::user::interaction) puserinteraction;
@@ -5103,12 +5103,12 @@ return "core";
 //}
 
 
-void application::post_message(const ::id & id, wparam wparam, lparam lparam )
+void application::post_message(const ::atom & atom, wparam wparam, lparam lparam )
 {
 
-//return ::thread::post_message(id, wparam, lparam);
+//return ::thread::post_message(atom, wparam, lparam);
 
-   ::thread::post_message(id, wparam, lparam);
+   ::thread::post_message(atom, wparam, lparam);
 
 }
 
@@ -5301,10 +5301,10 @@ return m_psystem->m_pacmedir->config() / m_strAppName;
 
 
 
-//__pointer(::user::document) application::defer_create_view(string strImpact, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::id & id)
+//__pointer(::user::document) application::defer_create_view(string strImpact, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::atom & atom)
 //{
 
-//   //auto pcontroller = pmultimedia->defer_create_view(strImpact, puiParent, ewindowflag, id);
+//   //auto pcontroller = pmultimedia->defer_create_view(strImpact, puiParent, ewindowflag, atom);
 
 //   //if (pcontroller)
 //   //{
@@ -5363,7 +5363,7 @@ return m_psystem->m_pacmedir->config() / m_strAppName;
 //}
 
 
-//::type application::control_type_from_id(const ::id & id, ::user::enum_control_type & econtroltype)
+//::type application::control_type_from_id(const ::atom & atom, ::user::enum_control_type & econtroltype)
 //{
 
 //   econtroltype = ::user::e_control_type_none;
@@ -5373,16 +5373,16 @@ return m_psystem->m_pacmedir->config() / m_strAppName;
 //}
 
 
-::id application::translate_property_id(const ::id & id)
+::atom application::translate_property_id(const ::atom & atom)
 {
 
-   if (id == "hide_recycle_bin")
+   if (atom == "hide_recycle_bin")
    {
 
       return id_hide_recycle_bin;
 
    }
-   else if (id == "show_recycle_bin")
+   else if (atom == "show_recycle_bin")
    {
 
       return id_show_recycle_bin;
@@ -5396,19 +5396,19 @@ return m_psystem->m_pacmedir->config() / m_strAppName;
 // if(!is_session())
 //{
 
-// return psession->translate_property_id(id);
+// return psession->translate_property_id(atom);
 
 //}
 //else
 //{
 
-// return psystem->translate_property_id(id);
+// return psystem->translate_property_id(atom);
 
 //}
 
 //}
 
-return id;
+return atom;
 
 }
 
@@ -5546,40 +5546,40 @@ __throw(todo, "interaction");
 }
 
 
-string application::load_string(const ::id & id)
+string application::load_string(const ::atom & atom)
 {
 
 synchronous_lock synchronouslock(&m_mutexStr);
 
 string str;
 
-if (m_stringmap.lookup(id, str))
+if (m_stringmap.lookup(atom, str))
 {
 
 return str;
 
 }
 
-if (!load_string(str, id))
+if (!load_string(str, atom))
 {
 
-id.to_string(str);
+atom.to_string(str);
 
 return str;
 
 }
 
-m_stringmap.set_at(id, str);
+m_stringmap.set_at(atom, str);
 
 return str;
 
 }
 
 
-bool application::load_string(string & str, const ::id & id)
+bool application::load_string(string & str, const ::atom & atom)
 {
 
-if (!load_cached_string(str, id, true))
+if (!load_cached_string(str, atom, true))
 {
 
 return false;
@@ -5591,7 +5591,7 @@ return true;
 }
 
 
-bool application::load_cached_string(string & str, const ::id & id, bool bLoadStringTable)
+bool application::load_cached_string(string & str, const ::atom & atom, bool bLoadStringTable)
 {
 
 
@@ -5599,10 +5599,10 @@ bool application::load_cached_string(string & str, const ::id & id, bool bLoadSt
 
 //auto pdocument = __new(::xml::document);
 
-//if (!pdocument->load(id) || !*pdocument)
+//if (!pdocument->load(atom) || !*pdocument)
 //{
 
-//   return load_cached_string_by_id(str, id, bLoadStringTable);
+//   return load_cached_string_by_id(str, atom, bLoadStringTable);
 
 //}
 
@@ -5611,7 +5611,7 @@ bool application::load_cached_string(string & str, const ::id & id, bool bLoadSt
 //if (pnodeRoot->get_name() == "string")
 //{
 
-//   string strId = pnodeRoot->attribute("id");
+//   string strId = pnodeRoot->attribute("atom");
 
 //   if (!load_cached_string_by_id(str, strId, bLoadStringTable))
 //   {
@@ -5629,10 +5629,10 @@ return false;
 }
 
 
-//bool application::load_cached_string_by_id(string & str, const ::id & id, bool bLoadStringTable)
+//bool application::load_cached_string_by_id(string & str, const ::atom & atom, bool bLoadStringTable)
 //{
 
-//   string strId(id.str());
+//   string strId(atom.str());
 
 //   string strTable;
 
@@ -5688,7 +5688,7 @@ return false;
 
 //      load_string_table(strTable, "");
 
-//      return load_cached_string_by_id(str, id, false);
+//      return load_cached_string_by_id(str, atom, false);
 
 //   }
 
@@ -7074,7 +7074,7 @@ void application::hotplugin_host_host_starter_start_sync(const ::string & pszCom
 
 //   handle(ptopic, pcontext);
 
-//   if (ptopic->m_bRet)
+//   if (ptopic->m_pextendedtopic->m_bRet)
 //   {
 
 //      return;
@@ -7083,7 +7083,7 @@ void application::hotplugin_host_host_starter_start_sync(const ::string & pszCom
 
 //   on_notify_control_event(pevent);
 
-//   if (ptopic->m_bRet)
+//   if (ptopic->m_pextendedtopic->m_bRet)
 //   {
 
 //      return;
@@ -7138,34 +7138,34 @@ void application::hotplugin_host_host_starter_start_sync(const ::string & pszCom
 
 //}
 
-//bool application::app_data_set(::const ::id & id, stream & stream)
+//bool application::app_data_set(::const ::atom & atom, stream & stream)
 //{
 
-//   return data_save(id, stream);
+//   return data_save(atom, stream);
 
 //}
 
 
-//bool application::app_data_get(::const ::id & id, stream & stream)
+//bool application::app_data_get(::const ::atom & atom, stream & stream)
 //{
 
-//   return data_get(id, stream);
+//   return data_get(atom, stream);
 
 //}
 
 
-//bool application::app_data_set(::const ::id & id, ::object & obj)
+//bool application::app_data_set(::const ::atom & atom, ::object & obj)
 //{
 
-//   return data_set(id, obj);
+//   return data_set(atom, obj);
 
 //}
 
 
-//bool application::app_data_get(::const ::id & id, ::object & obj)
+//bool application::app_data_get(::const ::atom & atom, ::object & obj)
 //{
 
-//   return data_get(id, obj);
+//   return data_get(atom, obj);
 
 //}
 
@@ -9129,9 +9129,9 @@ pmessage->m_bRet = true;
 
 
 
-//void application::assert_valid() const
+//void application::assert_ok() const
 //{
-//   thread::assert_valid();
+//   thread::assert_ok();
 
 
 //   if (::get_task() != (thread*)this)

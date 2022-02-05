@@ -193,11 +193,11 @@ namespace windowing
             if(pitem)
             {
 
-               ::id id(::id::e_type_command_probe, pitem->m_id);
+               ::atom atom(::atom::e_type_command_probe, pitem->m_id);
 
                menu_command command(pitem);
 
-               command.m_id = id;
+               command.m_id = atom;
 
                pchannel->on_command_probe(&command);
 

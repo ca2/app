@@ -421,7 +421,7 @@ namespace user
    }
 
 
-   ::id impact::get_toolbar_id()
+   ::atom impact::get_toolbar_id()
    {
 
       return get_document()->m_pimpactsystem->m_id.to_string() + "/" + m_id.to_string();
@@ -539,7 +539,7 @@ namespace user
 
 
    /* trans
-   i32 impact::OnMouseActivate(::user::interaction_impl * pDesktopWnd, ::u32 nHitTest, const ::id & id)
+   i32 impact::OnMouseActivate(::user::interaction_impl * pDesktopWnd, ::u32 nHitTest, const ::atom & atom)
    {
    i32 nResult = ::user::interaction::OnMouseActivate(pDesktopWnd, nHitTest, message);
    if (nResult == MA_NOACTIVATE || nResult == MA_NOACTIVATEANDEAT)
@@ -728,10 +728,10 @@ namespace user
    }
 
 
-   void impact::assert_valid() const
+   void impact::assert_ok() const
    {
       
-      ::user::interaction::assert_valid();
+      ::user::interaction::assert_ok();
 
    }
 
@@ -795,7 +795,7 @@ namespace user
    }
 
 
-   __pointer(::user::interaction) impact::create_view(const ::type & type, ::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::id & id, ::user::interaction * pviewLast, ::user::impact_data * pimpactdata)
+   __pointer(::user::interaction) impact::create_view(const ::type & type, ::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::atom & atom, ::user::interaction * pviewLast, ::user::impact_data * pimpactdata)
    {
 
       __pointer(::create) pcreate(e_create_new, this);
@@ -835,12 +835,12 @@ namespace user
 
       }
 
-      ::id idCreate(id);
+      ::atom idCreate(atom);
 
       if (idCreate.is_empty())
       {
 
-         idCreate = (const ::id &) pusersystem->m_typeNewImpact.name();
+         idCreate = (const ::atom &) pusersystem->m_typeNewImpact.name();
 
       }
 
@@ -849,7 +849,7 @@ namespace user
    }
 
 
-   __pointer(::user::interaction) create_view(const ::type & type, ::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::id & id, ::user::interaction * pviewLast)
+   __pointer(::user::interaction) create_view(const ::type & type, ::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::atom & atom, ::user::interaction * pviewLast)
    {
 
       __pointer(::create) pcreate(e_create_new, pdocument);
@@ -864,12 +864,12 @@ namespace user
 
       pusersystem->m_pdocumentCurrent = pdocument;
 
-      return ::user::create_view(pusersystem, puserinteractionParent, id);
+      return ::user::create_view(pusersystem, puserinteractionParent, atom);
 
    }
 
 
-   __pointer(::user::interaction) create_view(::user::system * pusersystem, ::user::interaction * puserinteractionParent, const ::id & id)
+   __pointer(::user::interaction) create_view(::user::system * pusersystem, ::user::interaction * puserinteractionParent, const ::atom & atom)
    {
 
       ASSERT(pusersystem != nullptr);
@@ -925,9 +925,9 @@ namespace user
 
       pinteraction->display(e_display_normal);
 
-      pinteraction->m_id = id;
+      pinteraction->m_id = atom;
 
-      //if (!pinteraction->create_interaction(nullptr, nullptr, WS_VISIBLE | WS_CHILD, puserinteractionParent, id, pcreate))
+      //if (!pinteraction->create_interaction(nullptr, nullptr, WS_VISIBLE | WS_CHILD, puserinteractionParent, atom, pcreate))
       //if (!pinteraction->create_child(puserinteractionParent))
 
       pinteraction->create_child(puserinteractionParent);

@@ -374,10 +374,10 @@ namespace user
    }
 
 
-   void single_document_template::assert_valid() const
+   void single_document_template::assert_ok() const
    {
 
-      impact_system::assert_valid();
+      impact_system::assert_ok();
 
    }
 

@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "_linux.h"
-#include "acme/constant/id.h"
+#include "acme/id.h"
 #include "aura/const/message.h"
 //#include "third/sn/sn.h"
 #include <fcntl.h> // library for fcntl function
@@ -645,7 +645,7 @@ void x11_check_status(int status, unsigned long window)
 {
    if (status == BadWindow)
    {
-      printf("window id # 0x%lx does not exists!", window);
+      printf("window atom # 0x%lx does not exists!", window);
       //   exit(1);
    }
 

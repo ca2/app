@@ -447,7 +447,7 @@ namespace android
       if (m_iFile == hFileNull)
       {
 
-         ::file::throw_status(error_invalid_argument, -1, m_path);
+         ::file::throw_status(error_bad_argument, -1, m_path);
 
       }
 
@@ -615,9 +615,9 @@ namespace android
    // file diagnostics
 
 
-   void file::assert_valid() const
+   void file::assert_ok() const
    {
-      ::file::file::assert_valid();
+      ::file::file::assert_ok();
       // we permit the descriptor m_iFile to be any value for derived classes
    }
 

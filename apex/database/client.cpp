@@ -16,43 +16,43 @@ namespace database
    }
 
 
-   void client::default_data_save_handling(const ::id & idParam)
+   void client::default_data_save_handling(const ::atom & idParam)
    {
 
-      ::id id(idParam);
+      ::atom atom(idParam);
 
-      auto linkedproperty = fetch_property(id);
+      auto linkedproperty = fetch_property(atom);
 
       ::payload payload;
 
-      if(data_get(id, payload))
+      if(data_get(atom, payload))
       {
 
          linkedproperty->convert(payload);
 
       }
 
-      //auto idProcedure = translate_property_id(id);
+      //auto idProcedure = translate_property_id(atom);
 
-      //auto linkedproperty = fetch_property(id);
+      //auto linkedproperty = fetch_property(atom);
 
       auto psignal = get_application()->get_signal(linkedproperty->m_id);
 
-      psignal->add_handler(predicate([this, id, linkedproperty](::topic * ptopic, ::context * pcontext)
+      psignal->add_handler(predicate([this, atom, linkedproperty](::topic * ptopic, ::context * pcontext)
 
-      //connect(id, [id, linkedproperty](::message::message* pmessage)
+      //connect(atom, [atom, linkedproperty](::message::message* pmessage)
          {
 
-            data_set(id, (const ::payload&)*linkedproperty.m_pproperty);
+            data_set(atom, (const ::payload&)*linkedproperty.m_pproperty);
 
          }));
 
-      //::add_routine(get_application()->m_routinemap[idProcedure], [this, id]()
+      //::add_routine(get_application()->m_routinemap[idProcedure], [this, atom]()
       //   {
 
-      //      auto pproperty = fetch_property(id);
+      //      auto pproperty = fetch_property(atom);
 
-      //      data_set(id, (const ::payload &) *pproperty);
+      //      data_set(atom, (const ::payload &) *pproperty);
 
       //   });
 
@@ -429,14 +429,14 @@ namespace database
    }
 
 
-   void client::data_on_before_change(client* pclient, const key& id, ::payload& payload, ::topic * ptopic)
+   void client::data_on_before_change(client* pclient, const key& atom, ::payload& payload, ::topic * ptopic)
    {
 
       //return true;
 
    }
 
-   void client::data_on_after_change(client* pclient, const key& id, const ::payload & payload, ::topic * ptopic)
+   void client::data_on_after_change(client* pclient, const key& atom, const ::payload & payload, ::topic * ptopic)
    {
 
    }

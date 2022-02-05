@@ -41,7 +41,7 @@ public:
 
    //LRESULT window_procedure(UINT message, WPARAM wparam, LPARAM lparam);
 
-   void on_click(const ::id & id) override;
+   void on_click(const ::atom & atom) override;
 
    void add_button(const char * pszText, enum_dialog_result edialogresult);
 

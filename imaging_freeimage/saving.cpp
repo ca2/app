@@ -258,7 +258,7 @@ namespace imaging_freeimage
          }
          break;
       default:
-         throw_status(error_invalid_argument);
+         throw_status(error_bad_argument);
       }
 
       eformat = FreeImage_GetFIFFromFilename(strFile);

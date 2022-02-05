@@ -2809,7 +2809,7 @@ namespace str
       if(uMax < uMin)
       {
 
-         __throw(error_invalid_argument, "maximum should be greater than minimum");
+         __throw(error_bad_argument, "maximum should be greater than minimum");
 
       }
 

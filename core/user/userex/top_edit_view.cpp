@@ -129,9 +129,9 @@ namespace userex
 
                auto ptopic = create_subject(id_after_change_text_delayed);
 
-               ptopic->m_puserelement = this;
+               ptopic->m_pextendedtopic->m_puserelement = this;
 
-               ptopic->payload(id_enter_key_pressed) = bEnterKeyPressed;
+               ptopic->m_pextendedtopic->payload(id_enter_key_pressed) = bEnterKeyPressed;
 
                pdocument->update_all_views(ptopic);
 
@@ -162,7 +162,7 @@ namespace userex
 
          ptopic->m_psender = this;
 
-         ptopic->m_puserelement = this;
+         ptopic->m_pextendedtopic->m_puserelement = this;
 
          get_document()->update_all_views(ptopic);
 

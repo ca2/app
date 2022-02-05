@@ -10,7 +10,7 @@ public:
 
    //__pointer(::object)                           m_pobject;
    //enum_dialog_result                            m_edialogresult;
-   ::id                                            m_idResult;
+   ::atom                                            m_idResult;
 
 
 };

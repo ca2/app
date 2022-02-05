@@ -256,11 +256,11 @@ namespace sockets
          for(auto & pproperty : m_fields)
          {
 
-            id & id = pproperty->m_id;
+            atom & atom = pproperty->m_id;
 
             ::payload & payload = *pproperty;
 
-            strFields += "--" + m_boundary + "\r\nContent-Disposition: form-data; name=\"" + id.to_string() + "\"\r\n\r\n";
+            strFields += "--" + m_boundary + "\r\nContent-Disposition: form-data; name=\"" + atom.to_string() + "\"\r\n\r\n";
 
             string value = payload.string();
 
@@ -382,9 +382,9 @@ namespace sockets
          //tmp = "";
          //for(auto & property : m_fields)
          //{
-         //   id & id = property.element1();
+         //   atom & atom = property.element1();
          //   ::payload & payload = property.element2();
-         //   tmp += "--" + m_boundary + "\r\nContent-Disposition: form-data; name=\"" + id.to_string() + "\"\r\n\r\n";
+         //   tmp += "--" + m_boundary + "\r\nContent-Disposition: form-data; name=\"" + atom.to_string() + "\"\r\n\r\n";
          //   string value = payload.string();
          //   tmp += value + "\r\n";
          //   //for(int j = 0; j < payload.get_count(); j++)

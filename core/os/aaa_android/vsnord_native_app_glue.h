@@ -116,7 +116,7 @@ struct android_poll_source
 {
    // The identifier of this source.  May be LOOPER_ID_MAIN or
    // LOOPER_ID_INPUT.
-   i32 id;
+   i32 atom;
 
    // The android_app this ident is associated with.
    struct android_app* app;

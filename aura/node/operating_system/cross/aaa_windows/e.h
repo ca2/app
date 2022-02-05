@@ -16343,7 +16343,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Schema update failed: dupliCAte schema-id GUID.
+// Schema update failed: dupliCAte schema-atom GUID.
 //
 #define ERROR_DS_DUP_SCHEMA_ID_GUID      8381L
 
@@ -23302,7 +23302,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The message id for the desired message could not be found.
+// The message atom for the desired message could not be found.
 //
 #define ERROR_EVT_MESSAGE_ID_NOT_FOUND   15028L
 
@@ -23338,7 +23338,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The event definition could not be found for event id (%1).
+// The event definition could not be found for event atom (%1).
 //
 #define ERROR_EVT_EVENT_DEFINITION_NOT_FOUND 15032L
 
@@ -24203,7 +24203,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// The class is configured to run as a security id different from the caller
+// The class is configured to run as a security atom different from the caller
 //
 #define CO_E_WRONG_SERVER_IDENTITY       _HRESULT_TYPEDEF_(0x80004015L)
 
@@ -25803,7 +25803,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// The resource manager id is not associated with this transaction or the transaction manager.
+// The resource manager atom is not associated with this transaction or the transaction manager.
 //
 #define XACT_E_UNKNOWNRMGRID             _HRESULT_TYPEDEF_(0x8004D010L)
 
@@ -34327,7 +34327,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The appliCAtion name is not unique and Cannot be resolved to an appliCAtion id
+// The appliCAtion name is not unique and Cannot be resolved to an appliCAtion atom
 //
 #define COMADMIN_E_AMBIGUOUS_APPLICATION_NAME _HRESULT_TYPEDEF_(0x8011045CL)
 
@@ -34336,7 +34336,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The partition name is not unique and Cannot be resolved to a partition id
+// The partition name is not unique and Cannot be resolved to a partition atom
 //
 #define COMADMIN_E_AMBIGUOUS_PARTITION_NAME _HRESULT_TYPEDEF_(0x8011045DL)
 
@@ -42290,7 +42290,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The specified disk id is invalid. There are no disks with the specified disk id.
+// The specified disk atom is invalid. There are no disks with the specified disk atom.
 //
 #define ERROR_VOLMGR_DISK_ID_INVALID     _NDIS_ERROR_TYPEDEF_(0xC0380008L)
 
@@ -42650,7 +42650,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The specified pack id is invalid. There are no packs with the specified pack id.
+// The specified pack atom is invalid. There are no packs with the specified pack atom.
 //
 #define ERROR_VOLMGR_PACK_ID_INVALID     _NDIS_ERROR_TYPEDEF_(0xC0380030L)
 
@@ -42848,7 +42848,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The specified volume id is invalid. There are no volumes with the specified volume id.
+// The specified volume atom is invalid. There are no volumes with the specified volume atom.
 //
 #define ERROR_VOLMGR_VOLUME_ID_INVALID   _NDIS_ERROR_TYPEDEF_(0xC0380046L)
 

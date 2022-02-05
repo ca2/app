@@ -55,9 +55,9 @@ namespace browser
    {
    }
 
-   void impact::assert_valid() const
+   void impact::assert_ok() const
    {
-      user::box::assert_valid();
+      user::box::assert_ok();
    }
 
    void impact::dump(dump_context & dumpcontext) const
@@ -264,7 +264,7 @@ namespace browser
 
          auto * peditview = _001TypedWindow < ::userex::top_edit_view >();
 
-         if (peditview != nullptr && ptopic->user_interaction() == peditview)
+         if (peditview != nullptr && ptopic->m_pextendedtopic->user_interaction() == peditview)
          {
 
             string strText;

@@ -166,13 +166,13 @@ CLASS_DECL_ACME void mq_clear(itask_t idthread)
 }
 
 
-void mq_post_thread_message(itask_t idthread, const ::id & id, wparam wparam, lparam lparam)
+void mq_post_thread_message(itask_t idthread, const ::atom & atom, wparam wparam, lparam lparam)
 {
 
-   if (id.m_etype != ::id::e_type_message)
+   if (atom.m_etype != ::atom::e_type_message)
    {
 
-      __throw(error_invalid_argument);
+      __throw(error_bad_argument);
 
    }
 
@@ -185,7 +185,7 @@ void mq_post_thread_message(itask_t idthread, const ::id & id, wparam wparam, lp
 
    }
 
-   pmq->post_message(nullptr, id.m_emessage, wparam, lparam);
+   pmq->post_message(nullptr, atom.m_emessage, wparam, lparam);
 
 }
 

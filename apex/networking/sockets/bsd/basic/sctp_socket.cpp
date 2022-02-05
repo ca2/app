@@ -242,10 +242,10 @@ namespace sockets
 #endif
 
 
-   i32 SctpSocket::getpaddrs(sctp_assoc_t id,list<string>& vec)
+   i32 SctpSocket::getpaddrs(sctp_assoc_t atom,list<string>& vec)
    {
       struct sockaddr *point = nullptr;
-      i32 n = sctp_getpaddrs(GetSocket(), id, &point);
+      i32 n = sctp_getpaddrs(GetSocket(), atom, &point);
       if (!n || n == -1)
       {
          WARNING("SctpSocket", -1, "sctp_getpaddrs failed");
@@ -260,10 +260,10 @@ namespace sockets
    }
 
 
-   i32 SctpSocket::getladdrs(sctp_assoc_t id,list<string>& vec)
+   i32 SctpSocket::getladdrs(sctp_assoc_t atom,list<string>& vec)
    {
       struct sockaddr *point = nullptr;
-      i32 n = sctp_getladdrs(GetSocket(), id, &point);
+      i32 n = sctp_getladdrs(GetSocket(), atom, &point);
       if (!n || n == -1)
       {
          WARNING("SctpSocket", -1, "sctp_getladdrs failed");
@@ -278,9 +278,9 @@ namespace sockets
    }
 
 
-   i32 SctpSocket::PeelOff(sctp_assoc_t id)
+   i32 SctpSocket::PeelOff(sctp_assoc_t atom)
    {
-      i32 n = sctp_peeloff(GetSocket(), id);
+      i32 n = sctp_peeloff(GetSocket(), atom);
       if (n == -1)
       {
          WARNING("SctpSocket", -1, "PeelOff failed");

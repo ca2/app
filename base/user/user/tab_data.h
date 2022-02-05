@@ -56,7 +56,7 @@ namespace user
       void initialize(::object * pobject) override;
 
 
-      virtual tab_pane * get_tab_by_id(id id);
+      virtual tab_pane * get_tab_by_id(atom atom);
 
       ::count get_visible_tab_count();
 

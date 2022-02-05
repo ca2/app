@@ -552,7 +552,7 @@ namespace apex
 
       //virtual ::type * get_type_info(const ::std::type_info & info);
 
-      //::type * get_type_info(const ::id & idType)
+      //::type * get_type_info(const ::atom & idType)
       //{
 
       //   if(idType.is_empty())
@@ -580,7 +580,7 @@ namespace apex
       virtual ::acme::library * get_library(const char * pszLibrary, bool bOpenCa2 = false);
 
 
-      virtual ::u32 os_post_to_all_threads(const ::id & id,wparam wparam = 0,lparam lparam = 0);
+      virtual ::u32 os_post_to_all_threads(const ::atom & atom,wparam wparam = 0,lparam lparam = 0);
 
 
       virtual void session_add(index iEdge, ::apex::session * psession);
@@ -604,7 +604,7 @@ namespace apex
       virtual void term_thread() override;
 
 
-      //virtual void post_to_all_threads(const ::id& id, wparam wparam, lparam lparam);
+      //virtual void post_to_all_threads(const ::atom& atom, wparam wparam, lparam lparam);
 
 
       virtual void thread_loop() override;
@@ -934,7 +934,7 @@ namespace apex
 
 
 
-      void assert_valid() const override;
+      void assert_ok() const override;
       void dump(dump_context& action_context) const override;
 
 
@@ -985,7 +985,7 @@ namespace apex
 
 
       void post_quit_to_all_threads();
-      void post_to_all_threads(const ::id& id, wparam wparam, lparam lparam);
+      void post_to_all_threads(const ::atom& atom, wparam wparam, lparam lparam);
 
       //virtual bool get_monitor_rectangle(index iMonitor, RECTANGLE_I32* prectangle) override;
 

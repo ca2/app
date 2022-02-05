@@ -67,7 +67,7 @@ Heavily leverages an existing CoreText-based editor and merely serves as the "gl
 // (using contained RoundTextView)
 @interface RoundEditView : UIView <UITextInput>
 
-@property (nonatomic, weak) IBOutlet id <RoundEditTextDelegate> editableCoreTextViewDelegate;
+@property (nonatomic, weak) IBOutlet atom <RoundEditTextDelegate> editableCoreTextViewDelegate;
 @property (nonatomic) RoundTextView *textView;
 
 @end

@@ -5011,12 +5011,12 @@ namespace user
       }
    }
 
-   id mesh::data_get_current_sort_id()
+   atom mesh::data_get_current_sort_id()
    {
       return data_get_sort_id(m_eview);
    }
 
-   id mesh::data_get_sort_id(EImpact eview)
+   atom mesh::data_get_sort_id(EImpact eview)
    {
       __UNREFERENCED_PARAMETER(eview);
       switch(m_eview)
@@ -5182,7 +5182,7 @@ namespace user
    }
 
 
-   id mesh::data_get_current_mesh_layout_id()
+   atom mesh::data_get_current_mesh_layout_id()
    {
 
       return "mesh";

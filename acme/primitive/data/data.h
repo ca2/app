@@ -27,7 +27,7 @@ namespace data
 
 
       listener_array                               m_listenera;
-      ::id                 m_id;
+      ::atom                 m_id;
 
 
       data();
@@ -35,7 +35,7 @@ namespace data
 
 
       virtual void dump(dump_context &) const override;
-      void assert_valid() const override;
+      void assert_ok() const override;
 
 
       virtual ::data::data_container_base* get_data_container();

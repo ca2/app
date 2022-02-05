@@ -63,7 +63,7 @@ namespace write_text
 
          update();
 
-         ptopic->set_modified();
+         ptopic->m_pextendedtopic->set_modified();
 
       }
 
@@ -201,7 +201,7 @@ namespace write_text
 
          m_bUpdating = false;
 
-         ptopic->m_etopic = id_not_modified;
+         ptopic->m_id = id_not_modified;
 
          return;
 
@@ -213,9 +213,9 @@ namespace write_text
 
       m_bUpdating = false;
 
-      ptopic->set_modified();
+      ptopic->m_pextendedtopic->set_modified();
 
-      //ptopic->m_etopic = id_handle;
+      //ptopic->m_id = id_handle;
 
    }
 

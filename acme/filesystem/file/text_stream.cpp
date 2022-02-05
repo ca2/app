@@ -268,10 +268,10 @@ void text_stream::write(const char * psz)
 }
 
 
-void text_stream::write(const ::id & id)
+void text_stream::write(const ::atom & atom)
 {
 
-   write(id.to_string());
+   write(atom.to_string());
 
 }
 
@@ -475,7 +475,7 @@ void text_stream::read(property_set& set)
 }
 
 
-void text_stream::read(::id & id)
+void text_stream::read(::atom & atom)
 {
 
    string str;
@@ -483,7 +483,7 @@ void text_stream::read(::id & id)
    read(str);
 
 
-   id = str;
+   atom = str;
 
 
 }

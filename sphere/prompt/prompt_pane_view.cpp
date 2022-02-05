@@ -24,9 +24,9 @@ namespace prompt
 
 
 
-   void pane_view::assert_valid() const
+   void pane_view::assert_ok() const
    {
-      ::user::impact::assert_valid();
+      ::user::impact::assert_ok();
    }
 
    void pane_view::dump(dump_context & dumpcontext) const
@@ -248,7 +248,7 @@ namespace prompt
          auto pupdate = new_update();
          pupdate->m_actioncontext = ::e_source_system;
          ptopic->m_id = id_browse;
-         ptopic->payload(id_form) = "filemanager\\replace_name_in_file_system.xhtml";
+         ptopic->m_pextendedtopic->payload(id_form) = "filemanager\\replace_name_in_file_system.xhtml";
          pdocument->update_all_views(pupdate);
 
          ptopic->m_id = id_get_form_view;
@@ -299,7 +299,7 @@ namespace prompt
    void pane_view::rotate()
    {
 
-      id idNew;
+      atom idNew;
 
       if (get_view_id() == FILEMANAGER_IMPACT)
       {
@@ -334,7 +334,7 @@ namespace prompt
 
       ::prompt::form_callback::handle(ptopic, pcontext);
 
-      if(ptopic->m_bRet)
+      if(ptopic->m_pextendedtopic->m_bRet)
       {
 
          return;

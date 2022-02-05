@@ -312,7 +312,7 @@ namespace windows
    }
 
 
-//::id nano_window::hit_test(int x, int y)
+//::atom nano_window::hit_test(int x, int y)
 //{
 //
 //   for (int i = 0; i < m_iButtonCount; i++)
@@ -427,7 +427,7 @@ namespace windows
    }
 
 
-   ::id nano_window::get_result()
+   ::atom nano_window::get_result()
    {
 
       return m_pinterface->get_result();
@@ -435,7 +435,7 @@ namespace windows
    }
 
 
-   ::id nano_window::hit_test(int x, int y)
+   ::atom nano_window::hit_test(int x, int y)
    {
 
       return m_pinterface->hit_test(x, y);
@@ -778,7 +778,7 @@ namespace windows
 //}
 
 
-   void nano_window::on_click(const ::id & id)
+   void nano_window::on_click(const ::atom & atom)
    {
 
 

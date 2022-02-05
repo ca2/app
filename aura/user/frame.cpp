@@ -138,7 +138,7 @@ namespace user
    }
 
 
-//   ::user::toolbar * frame::get_toolbar(const ::id & idToolBar)
+//   ::user::toolbar * frame::get_toolbar(const ::atom & idToolBar)
 //   {
 //
 //      return nullptr;
@@ -186,7 +186,7 @@ namespace user
    }
 
 
-//   __pointer(::utoolbar) frame::load_toolbar(const ::id & idToolbar, const ::string & strToolbar, u32 dwCtrlStyle, u32 uStyle, const ::type & type)
+//   __pointer(::utoolbar) frame::load_toolbar(const ::atom & idToolbar, const ::string & strToolbar, u32 dwCtrlStyle, u32 uStyle, const ::type & type)
 //   {
 //
 //      return false;

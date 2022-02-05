@@ -20,7 +20,7 @@ namespace user
 
       virtual void Fail();
 
-      __pointer(::user::interaction) prepare_control(id id);
+      __pointer(::user::interaction) prepare_control(atom atom);
 
    };
 

@@ -1993,7 +1993,7 @@ namespace core
    //}
 
 
-   void user::will_use_view_hint(::id idImpact)
+   void user::will_use_view_hint(::atom idImpact)
    {
 
       if (idImpact == FILEMANAGER_IMPACT)

@@ -204,7 +204,7 @@ string get_debug_report_type_text(int iType)
    else
    {
 
-      __throw(error_invalid_argument);
+      __throw(error_bad_argument);
 
    }
 
@@ -318,16 +318,16 @@ extern "C"
 //}
 //
 //
-//void system_update(const ::id & id, const ::payload & payload)
+//void system_update(const ::atom & atom, const ::payload & payload)
 //{
 //
 //   if(g_pfnCallUpdateSystem)
 //   {
 //
-//      g_pfnCallUpdateSystem(id, payload);
+//      g_pfnCallUpdateSystem(atom, payload);
 //
 //   }
-//   else if(id == id_dark_mode)
+//   else if(atom == id_dark_mode)
 //   {
 //
 //      ::user::os_calc_dark_mode();
@@ -348,13 +348,13 @@ extern "C"
 //}
 //
 //
-//void system_set_modified(const ::id & id)
+//void system_set_modified(const ::atom & atom)
 //{
 //
 //   if (g_pfnSetModifiedSystem)
 //   {
 //
-//      g_pfnSetModifiedSystem(id);
+//      g_pfnSetModifiedSystem(atom);
 //
 //   }
 //

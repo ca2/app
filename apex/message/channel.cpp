@@ -98,10 +98,10 @@ void channel::transfer_handler(::message::dispatcher_map & dispatchermap, ::matt
 }
 
 
-::matter * channel::add_message_handler(const ::id & id, const ::message::dispatcher & dispatcher)
+::matter * channel::add_message_handler(const ::atom & atom, const ::message::dispatcher & dispatcher)
 {
 
-   auto & dispatchera = m_dispatchermap[id];
+   auto & dispatchera = m_dispatchermap[atom];
    
    // Try to not add already added dispatcher
    for (index i = 0; i < dispatchera.get_count(); i++)
@@ -168,8 +168,8 @@ __pointer(::message::message) channel::get_message(MESSAGE * pmessage)
 }
 
 
-//__pointer(::message::message) channel::get_message(const ::id & id, wparam wparam, lparam lparam, const ::point_i32 & point)
-__pointer(::message::message) channel::get_message(const ::id& id, wparam wparam, lparam lparam)
+//__pointer(::message::message) channel::get_message(const ::atom & atom, wparam wparam, lparam lparam, const ::point_i32 & point)
+__pointer(::message::message) channel::get_message(const ::atom& atom, wparam wparam, lparam lparam)
 {
 
    auto pmessagemessage = __new(::message::message);
@@ -177,7 +177,7 @@ __pointer(::message::message) channel::get_message(const ::id& id, wparam wparam
    pmessagemessage->set(
       nullptr,
       nullptr,
-      id,
+      atom,
       wparam,
       lparam);
 
@@ -186,13 +186,13 @@ __pointer(::message::message) channel::get_message(const ::id& id, wparam wparam
 }
 
 
-//__pointer(::user::message) channel::get_message_base(::windowing::window * pwindow, const ::id & id, wparam wparam, lparam lparam)
+//__pointer(::user::message) channel::get_message_base(::windowing::window * pwindow, const ::atom & atom, wparam wparam, lparam lparam)
 //{
 //
-//   if (id.m_etype != ::id::e_type_message)
+//   if (atom.m_etype != ::atom::e_type_message)
 //   {
 //
-//      __throw(error_invalid_argument);
+//      __throw(error_bad_argument);
 //
 //   }
 //
@@ -200,7 +200,7 @@ __pointer(::message::message) channel::get_message(const ::id& id, wparam wparam
 //
 //   __zero(msg);
 //
-//   msg.message = (::u32) id.m_emessage;
+//   msg.message = (::u32) atom.m_emessage;
 //   msg.wParam = wparam;
 //   msg.lParam = lparam;
 //
@@ -357,7 +357,7 @@ void channel::_001SendCommand(::message::command * pcommand)
 
       __scoped_restore(pcommand->m_id.m_etype);
 
-      pcommand->m_id.set_compounded_type(::id::e_type_command);
+      pcommand->m_id.set_compounded_type(::atom::e_type_command);
 
       route_command(pcommand, true);
 
@@ -375,7 +375,7 @@ void channel::_001SendCommandProbe(::message::command * pcommand)
 
       __scoped_restore(pcommand->m_id.m_etype);
 
-      pcommand->m_id.set_compounded_type(::id::e_type_command_probe);
+      pcommand->m_id.set_compounded_type(::atom::e_type_command_probe);
 
       route_command(pcommand);
 
@@ -446,7 +446,7 @@ bool channel::has_command_handler(::message::command * pcommand)
 
    __scoped_restore(pcommand->m_id.m_etype);
 
-   pcommand->m_id.set_compounded_type(::id::e_type_command);
+   pcommand->m_id.set_compounded_type(::atom::e_type_command);
 
    if (m_idaHandledCommands.contains(pcommand->m_id))
    {
@@ -488,7 +488,7 @@ void channel::on_command_probe(::message::command * pcommand)
 
    __scoped_restore(pcommand->m_id.m_etype);
 
-   pcommand->m_id.set_compounded_type(::id::e_type_command_probe);
+   pcommand->m_id.set_compounded_type(::atom::e_type_command_probe);
 
    route_message(pcommand);
 
@@ -507,17 +507,17 @@ void channel::on_command(::message::command * pcommand)
 
    __scoped_restore(pcommand->m_id.m_etype);
 
-   pcommand->m_id.set_compounded_type(::id::e_type_command);
+   pcommand->m_id.set_compounded_type(::atom::e_type_command);
 
    route_message(pcommand);
 
 }
 
 
-//bool channel::_add_message_handler(const ::id & id, ::object * preceiver, void * phandler, const ::message::handler & handler)
+//bool channel::_add_message_handler(const ::atom & atom, ::object * preceiver, void * phandler, const ::message::handler & handler)
 //{
 //
-//    auto & handlera = m_handlermap[id];
+//    auto & handlera = m_handlermap[atom];
 //
 //    if(preceiver != nullptr || phandler != nullptr)
 //    {
@@ -548,12 +548,12 @@ void channel::on_command(::message::command * pcommand)
 //}
 
 
-void channel::id_notify(const ::id & id, ::matter * pmatter)
+void channel::id_notify(const ::atom & atom, ::matter * pmatter)
 {
 
-    auto & routinea = m_routinemap[id];
+    auto & routinea = m_routinemap[atom];
 
-    routinea.add(pmatter); // pmatter is notified with id
+    routinea.add(pmatter); // pmatter is notified with atom
 
     //return ::success;
 
@@ -563,12 +563,12 @@ void channel::id_notify(const ::id & id, ::matter * pmatter)
 
 
 
-void channel::default_toggle_check_handling(const ::id & id)
+void channel::default_toggle_check_handling(const ::atom & atom)
 {
 
-   auto linkedproperty = fetch_property(id);
+   auto linkedproperty = fetch_property(atom);
 
-   add_command_handler(id, [linkedproperty](::message::message * pmessage)
+   add_command_handler(atom, [linkedproperty](::message::message * pmessage)
       {
 
          if (linkedproperty->get_bool())

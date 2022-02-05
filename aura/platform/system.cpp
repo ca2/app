@@ -6,7 +6,7 @@
 #include "aura/gpu/gpu/_gpu.h"
 //#include "aqua/xml/_.h"
 //#include "apex/platform/app_core.h"
-//#include "acme/constant/id.h"
+//#include "acme/id.h"
 //#include "aura/node/_node.h"
 //#include "acme/platform/profiler.h"
 #include "acme/platform/static_setup.h"
@@ -103,7 +103,7 @@ namespace aura
 
 
 
-   //class ::id system::idEmpty;
+   //class ::atom system::idEmpty;
 
    //system * system::g_p = nullptr;
    ::mutex * g_pmutexImage = nullptr;
@@ -2149,10 +2149,10 @@ namespace aura
    }
 
 
-   //::u32 system::os_post_to_all_threads(const ::id & id,wparam wparam,lparam lparam)
+   //::u32 system::os_post_to_all_threads(const ::atom & atom,wparam wparam,lparam lparam)
    //{
 
-   //   post_to_all_threads(id, wparam, lparam);
+   //   post_to_all_threads(atom, wparam, lparam);
 
    //   return 0;
 
@@ -4568,7 +4568,7 @@ namespace aura
    //{
    //   string strId(pszId);
    //   string strMutex;
-   //   strMutex.format("Local\\ca2_application_local_mutex:%s, id:%s", pszAppName, strId.c_str());
+   //   strMutex.format("Local\\ca2_application_local_mutex:%s, atom:%s", pszAppName, strId.c_str());
    //   return strMutex;
    //}
 
@@ -4583,7 +4583,7 @@ namespace aura
    //{
    //   string strId(pszId);
    //   string strMutex;
-   //   strMutex.format("Global\\ca2_application_global_mutex:%s, id:%s", pszAppName, strId.c_str());
+   //   strMutex.format("Global\\ca2_application_global_mutex:%s, atom:%s", pszAppName, strId.c_str());
    //   return strMutex;
    //}
 
@@ -6218,7 +6218,7 @@ namespace aura
 
    //   m_libraryspa.add(plibrary);
 
-   //   ::array < ::id > ida;
+   //   ::array < ::atom > ida;
 
    //   plibrary->get_create_view_id_list(ida);
 
@@ -6314,10 +6314,10 @@ namespace aura
    //}
 
 
-   void system::assert_valid() const
+   void system::assert_ok() const
    {
 
-      ::thread::assert_valid();
+      ::thread::assert_ok();
 
    }
 

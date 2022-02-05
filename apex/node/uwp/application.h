@@ -141,7 +141,7 @@
 //   // Operations
 //      ::u32 SuspendThread();
 //      ::u32 ResumeThread();
-//      bool post_message(::user::interaction * pguie, const ::id & id, WPARAM wParam, LPARAM lParam);
+//      bool post_message(::user::interaction * pguie, const ::atom & atom, WPARAM wParam, LPARAM lParam);
 //
 //      virtual bool PreInitInstance();
 //
@@ -153,7 +153,7 @@
 //      // thread initialization
 //      virtual bool init_application();
 //
-//      virtual ::message::e_prototype GetMessagePrototype(const ::id & id, ::u32 uCode);
+//      virtual ::message::e_prototype GetMessagePrototype(const ::atom & atom, ::u32 uCode);
 //
 //      // running and idle processing
 //      virtual int run();
@@ -174,7 +174,7 @@
 //      // Advanced: virtual access to GetMainWnd()
 //      virtual ::user::interaction* GetMainWnd();
 //
-//      void assert_valid() const override;
+//      void assert_ok() const override;
 //      void dump(dump_context & dumpcontext) const override;
 //      virtual void CommonConstruct();
 //      virtual void Delete();

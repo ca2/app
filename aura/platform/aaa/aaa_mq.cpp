@@ -427,7 +427,7 @@ CLASS_DECL_AURA void mq_clear(itask_t idthread)
 }
 
 
-int_bool mq_post_thread_message(itask_t idthread, const ::id & id, WPARAM wparam, LPARAM lparam)
+int_bool mq_post_thread_message(itask_t idthread, const ::atom & atom, WPARAM wparam, LPARAM lparam)
 {
 
    auto pmq = get_message_queue(idthread, true);
@@ -444,7 +444,7 @@ int_bool mq_post_thread_message(itask_t idthread, const ::id & id, WPARAM wparam
 }
 
 
-CLASS_DECL_AURA int_bool message_queue_post(oswindow oswindow, const ::id & id, WPARAM wparam, LPARAM lparam)
+CLASS_DECL_AURA int_bool message_queue_post(oswindow oswindow, const ::atom & atom, WPARAM wparam, LPARAM lparam)
 {
 
    ::user::interaction* pinteraction = oswindow_interaction(oswindow);

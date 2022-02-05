@@ -503,7 +503,7 @@ namespace draw2d_opengl
 
       // Implementation
    public:
-      void assert_valid() const override;
+      void assert_ok() const override;
       void dump(dump_context & dumpcontext) const override;
 
       HGDIOBJ SelectObject(HGDIOBJ);      // do not use for regions

@@ -1045,7 +1045,7 @@ namespace linux
    }
 
 
-   void interaction_impl::assert_valid() const
+   void interaction_impl::assert_ok() const
    {
 
       if (((interaction_impl *) this)->get_handle() == nullptr)
@@ -2175,7 +2175,7 @@ namespace linux
 //      return false;   // let the parent handle it
 //   }
 //
-//   void interaction_impl::OnParentNotify(const ::id & id, LPARAM lparam)
+//   void interaction_impl::OnParentNotify(const ::atom & atom, LPARAM lparam)
 //
 //   {
 //      if ((LOWORD(message) == e_message_create || LOWORD(message) == e_message_destroy))
@@ -2946,15 +2946,15 @@ namespace linux
 //   }
 
 
-//   id interaction_impl::SetDlgCtrlId(id id)
+//   atom interaction_impl::SetDlgCtrlId(atom atom)
 //   {
 //
-//      return m_puserinteraction->SetDlgCtrlId(id);
+//      return m_puserinteraction->SetDlgCtrlId(atom);
 //
 //   }
 //
 //
-//   id interaction_impl::GetDlgCtrlId()
+//   atom interaction_impl::GetDlgCtrlId()
 //   {
 //
 //      return m_puserinteraction->GetDlgCtrlId();
@@ -3169,7 +3169,7 @@ namespace linux
    }
 
 
-   LRESULT interaction_impl::send_message(const ::id & id, WPARAM wparam, lparam lparam)
+   LRESULT interaction_impl::send_message(const ::atom & atom, WPARAM wparam, lparam lparam)
 
    {
 
@@ -3179,7 +3179,7 @@ namespace linux
    }
 
 
-   bool interaction_impl::post_message(const ::id & id, WPARAM wparam, lparam lparam)
+   bool interaction_impl::post_message(const ::atom & atom, WPARAM wparam, lparam lparam)
    {
 
 //      if(::is_set(m_pwindowthread))
@@ -3576,7 +3576,7 @@ namespace linux
 //
 //   }
 //
-////   void interaction_impl::send_message_to_descendants(const ::id & id, WPARAM wparam, lparam lparam, bool bDeep, bool bOnlyPerm)
+////   void interaction_impl::send_message_to_descendants(const ::atom & atom, WPARAM wparam, lparam lparam, bool bDeep, bool bOnlyPerm)
 //
 ////   {
 ////      ASSERT(::is_window((oswindow) get_handle()));
@@ -3859,7 +3859,7 @@ namespace linux
 //      for (i32 nID = nIDFirstButton; nID <= nIDLastButton; nID++)
 //      {
 //         if (IsDlgButtonChecked(nID))
-//            return nID; // id that matched
+//            return nID; // atom that matched
 //      }
 //      return 0; // invalid ID
 //   }
@@ -3927,12 +3927,12 @@ namespace linux
 //   }
 //
 //   /*
-//      void interaction_impl::GetDlgItem(id id, oswindow* phWnd) const
+//      void interaction_impl::GetDlgItem(atom atom, oswindow* phWnd) const
 //      {
 //
 //         ASSERT(::is_window((oswindow) get_handle()));
 //         ASSERT(phWnd != nullptr);
-//         *phWnd = ::GetDlgItem(get_handle(), (i32) id);
+//         *phWnd = ::GetDlgItem(get_handle(), (i32) atom);
 //
 //      }
 //   */
@@ -3985,7 +3985,7 @@ namespace linux
 //
 //   }
 //
-//   LPARAM interaction_impl::SendDlgItemMessage(i32 nID, const ::id & id, WPARAM wparam, LPARAM lparam)
+//   LPARAM interaction_impl::SendDlgItemMessage(i32 nID, const ::atom & atom, WPARAM wparam, LPARAM lparam)
 //
 //   {
 //
@@ -4236,7 +4236,7 @@ namespace linux
 //   }
 //
 //
-//   bool interaction_impl::SendNotifyMessage(const ::id & id, WPARAM wparam, lparam lparam)
+//   bool interaction_impl::SendNotifyMessage(const ::atom & atom, WPARAM wparam, lparam lparam)
 //
 //   {
 //

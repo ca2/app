@@ -81,7 +81,7 @@ namespace filemanager
             index _001GetItemImage(__pointer(::data::tree_item) pitem, bool bSelected);
 
 
-            void assert_valid() const override;
+            void assert_ok() const override;
             void dump(dump_context & dumpcontext) const override;
 
 

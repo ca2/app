@@ -88,16 +88,16 @@ public:
    __pointer(BASE_TYPE) file_as(const ::payload& payloadFile);
 
 
-   virtual void add_routine(const ::id& idRoutine, const ::routine& routine);
+   virtual void add_routine(const ::atom& idRoutine, const ::routine& routine);
 
 
-   virtual void add_each_routine_from(const ::id& idRoutine, ::object* pobjectSource);
+   virtual void add_each_routine_from(const ::atom& idRoutine, ::object* pobjectSource);
 
 
-   virtual array < ::routine >* routinea(const ::id& idRoutine);
+   virtual array < ::routine >* routinea(const ::atom& idRoutine);
 
 
-   virtual void call_routine(const ::id& idRoutine);
+   virtual void call_routine(const ::atom& idRoutine);
 
 
    inline ::payload context_value(const ::payload& payload);
@@ -143,7 +143,7 @@ public:
 
    //inline ::application * application() const { return m_papplication; }
 
-   virtual string get_text(const ::payload& payload, const ::id& id) override;
+   virtual string get_text(const ::payload& payload, const ::atom& atom) override;
 
 #ifdef _DEBUG
    virtual void set_context(::context* pcontext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
@@ -204,7 +204,7 @@ public:
    //inline __pointer(BASE_TYPE) __create();
 
    //template < typename BASE_TYPE >
-   //inline __pointer(BASE_TYPE) __id_create(const ::id& id);
+   //inline __pointer(BASE_TYPE) __id_create(const ::atom& atom);
 
    //template < typename TYPE >
    //inline __pointer(TYPE) __create_new();
@@ -227,7 +227,7 @@ public:
    inline void __compose(__composite(BASE_TYPE)& pusermessage, const __pointer(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
    template < typename BASE_TYPE >
-   inline void __id_compose(__composite(BASE_TYPE)& pusermessage, const ::id& id);
+   inline void __id_compose(__composite(BASE_TYPE)& pusermessage, const ::atom& atom);
 
    template < typename BASE_TYPE >
    inline void __raw_compose(__composite(BASE_TYPE)& pusermessage);
@@ -251,7 +251,7 @@ public:
    inline void __defer_compose(__composite(BASE_TYPE)& pusermessage) { return !pusermessage ? __compose(pusermessage) : void(::success); }
 
    template < typename BASE_TYPE >
-   inline void __defer_id_compose(__composite(BASE_TYPE)& pusermessage, const ::id& id) { return !pusermessage ? __id_compose(pusermessage) : void(::success); }
+   inline void __defer_id_compose(__composite(BASE_TYPE)& pusermessage, const ::atom& atom) { return !pusermessage ? __id_compose(pusermessage) : void(::success); }
 
    template < typename TYPE >
    inline void __defer_raw_compose_new(__composite(TYPE)& ptype) { return !ptype ? __raw_compose_new(ptype) : void(::success); }
@@ -265,7 +265,7 @@ public:
    //inline void __construct(__pointer(BASE_TYPE)& pusermessage);
 
    //template < typename BASE_TYPE >
-   //inline void __id_construct(__pointer(BASE_TYPE)& pusermessage, const ::id& id);
+   //inline void __id_construct(__pointer(BASE_TYPE)& pusermessage, const ::atom& atom);
 
    //template < typename TYPE >
    //inline void __construct_new(__pointer(TYPE)& pusermessage);
@@ -343,7 +343,7 @@ public:
 
 
    virtual void defer_update_object_id();
-   virtual ::id calc_default_object_id() const;
+   virtual ::atom calc_default_object_id() const;
 
 
    virtual void install_message_routing(::channel* pchannel);
@@ -396,14 +396,14 @@ public:
    //virtual ::user::document* open_new_document(::application* pappOnBehalfOf);
    virtual void on_request(::create* pcreate);
    //virtual ::user::document* open_document_file(::application* pappOnBehalfOf);
-   //virtual ::user::document* open_document_file(::application* pappOnBehalfOf, const ::payload& payloadFile, const ::payload & varOptions, ::user::interaction* puiParent = nullptr, ewindowflag eflag = e_window_flag_none, ::id id = ::id());
+   //virtual ::user::document* open_document_file(::application* pappOnBehalfOf, const ::payload& payloadFile, const ::payload & varOptions, ::user::interaction* puiParent = nullptr, ewindowflag eflag = e_window_flag_none, ::atom atom = ::atom());
    //virtual ::user::document* open_document_file(::application* pappOnBehalfOf, const ::payload& payloadFile);
    //virtual ::user::document* create_subdocument(::user::impact_data* pimpactdata);
 
 
    virtual void run() override;
 
-   virtual string lstr(const ::id& id, string strDefault = "");
+   virtual string lstr(const ::atom& atom, string strDefault = "");
 
    virtual string __get_text(string str);
 
@@ -559,8 +559,8 @@ public:
 
 
    //void add_update_notification(property * pproperty);
-   //void add_update_notification(const ::id & id, bool bCreate = true);
-   //void property_notify(const ::id & id, ::matter * pmatter);
+   //void add_update_notification(const ::atom & atom, bool bCreate = true);
+   //void property_notify(const ::atom & atom, ::matter * pmatter);
 
 
 //   inline void format_topic_text(const char * psz, ...)
@@ -617,7 +617,7 @@ public:
 
 
    template < typename TYPE >
-   ::thread_pointer __start_thread(const ::id& id, void(TYPE::* pfn)(), enum_priority epriority = e_priority_normal);
+   ::thread_pointer __start_thread(const ::atom& atom, void(TYPE::* pfn)(), enum_priority epriority = e_priority_normal);
 
 
    virtual matter* get_taskpool_container() override;

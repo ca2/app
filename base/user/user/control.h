@@ -33,7 +33,7 @@ namespace user
    //   /// you should be able (control developer pay attention now),
    //   /// to build a default control with a default constructed
    //   /// ::user::control_descriptor.
-   //   virtual bool create_interaction(::user::interaction * pinteractionParent, const ::id & id) override;
+   //   virtual bool create_interaction(::user::interaction * pinteractionParent, const ::atom & atom) override;
 
 
    //   virtual estate get_state() const override;
@@ -51,7 +51,7 @@ namespace user
    //   virtual enum_control_type get_control_type() const override;
 
    //   virtual void _003CallCustomDraw(::draw2d::graphics_pointer & pgraphics, ::aura::draw_context * pitem);
-   //   virtual bool _003CallCustomWindowProc(__pointer(::user::interaction) puserinteraction, const ::id & id, wparam wparam, lparam lparam, LRESULT & lresult);
+   //   virtual bool _003CallCustomWindowProc(__pointer(::user::interaction) puserinteraction, const ::atom & atom, wparam wparam, lparam lparam, LRESULT & lresult);
 
    //   virtual void _003OnCustomDraw(::draw2d::graphics_pointer & pgraphics, ::aura::draw_context * pitem);
    //   virtual void _003CustomWindowProc(::message::message * pmessage);
@@ -131,7 +131,7 @@ namespace user
    //   virtual void SetCheck(i32 nCheck);
    //   virtual void SetText(const ::string & pszText);
 
-   //   id GetControlCommand(id id);
+   //   atom GetControlCommand(atom atom);
 
    //};
 

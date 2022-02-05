@@ -75,18 +75,18 @@ class CLASS_DECL_ACME property : public ::payload
 public:
 
 
-   using TYPE1 = ::id;
-   using ARG_TYPE1 = const ::id &;
+   using TYPE1 = ::atom;
+   using ARG_TYPE1 = const ::atom &;
    using TYPE2 = payload;
    using ARG_TYPE2 = const ::payload &;
 
 
-   ::id              m_id;
+   ::atom              m_id;
 
 
    property() { on_property_construct(this); }
-   property(const ::id& id) : m_id(id) { on_property_construct(this); }
-   property(const ::id& id, const ::payload& varValue) : m_id(id), ::payload(varValue) { on_property_construct(this); }
+   property(const ::atom& atom) : m_id(atom) { on_property_construct(this); }
+   property(const ::atom& atom, const ::payload& varValue) : m_id(atom), ::payload(varValue) { on_property_construct(this); }
    property(const ::property& property) : m_id(property.m_id), ::payload(property) { on_property_construct(this); }
    property(::property&& property) : m_id(::move(property.m_id)), ::payload(::move(property)) { on_property_construct(this); }
    ~property() { on_property_destruct(this); }
@@ -125,8 +125,8 @@ public:
 
 
 
-   ::id& element1() { return m_id; };
-   const ::id& element1() const { return m_id; };
+   ::atom& element1() { return m_id; };
+   const ::atom& element1() const { return m_id; };
    ::payload& element2() { return *this; };
    const ::payload& element2() const { return *this; };
 
@@ -147,7 +147,7 @@ public:
    }
 
 
-   ::id name() const { return m_id; }
+   ::atom name() const { return m_id; }
 
   
    inline ::string & get_network_payload(::string & str, bool bNewLine = true) const
@@ -189,7 +189,7 @@ public:
 using property_pointer = ::property *;
 
 
-CLASS_DECL_ACME void property_parse_network_payload_id(id & id, const char *& pszJson, const char * pszEnd);
+CLASS_DECL_ACME void property_parse_network_payload_id(atom & atom, const char *& pszJson, const char * pszEnd);
 CLASS_DECL_ACME void property_parse_network_payload_value(::payload & payload, const char *& pszJson, const char * pszEnd);
 CLASS_DECL_ACME void property_skip_network_payload_id(const char *& pszJson, const char * pszEnd);
 CLASS_DECL_ACME void property_skip_network_payload_value(const char *& pszJson, const char * pszEnd);
@@ -201,7 +201,7 @@ CLASS_DECL_ACME void property_skip_network_payload_value(const char *& pszJson, 
 
 using property_ptra = auto_ptr_array < ::property >;
 
-//using property_map = map < ::id, const ::id &, payload, const ::payload &, ::property >;
+//using property_map = map < ::atom, const ::atom &, payload, const ::payload &, ::property >;
 
 
 //inline bool operator == (const ::string & str, const property & prop)

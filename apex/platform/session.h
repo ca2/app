@@ -362,8 +362,8 @@ namespace apex
 
 
       // apex commented
-      //virtual void set_bound_ui(::id idImpact, ::user::interaction * pinteraction);
-      //virtual ::user::interaction * get_bound_ui(::id idImpact);
+      //virtual void set_bound_ui(::atom idImpact, ::user::interaction * pinteraction);
+      //virtual ::user::interaction * get_bound_ui(::atom idImpact);
 
       // apex commented
       //virtual void on_show_user_input_popup(::user::interaction * pinteraction);
@@ -427,7 +427,7 @@ namespace apex
 
       //virtual bool create_bergedge(::create * pcreate);
 
-      //virtual void will_use_view_hint(::id idImpact);
+      //virtual void will_use_view_hint(::atom idImpact);
 
       //virtual void on_app_request_bergedge_callback(::object * pobject);
 

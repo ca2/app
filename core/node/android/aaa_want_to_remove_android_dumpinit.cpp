@@ -55,11 +55,11 @@
 
 //    ASSERT( pResult != nullptr );
 //    if( pResult == nullptr )
-//       __throw(error_invalid_argument);
+//       __throw(error_bad_argument);
 
 //    ASSERT( szMsg != nullptr );
 //    if( szMsg == nullptr )
-//       __throw(error_invalid_argument);
+//       __throw(error_bad_argument);
 
 //    // non-nullptr m_pFile, so go through psystem->m_pdumpcontext for the message
 //    *pResult = false;

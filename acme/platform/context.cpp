@@ -93,10 +93,10 @@ namespace acme
    }
 
 
-   ::text::text context::__text(const ::id& id)
+   ::text::text context::__text(const ::atom& atom)
    {
 
-      return m_ptexttranslator->create_text_data(id);
+      return m_ptexttranslator->create_text_data(atom);
 
    }
 

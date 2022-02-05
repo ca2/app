@@ -1065,7 +1065,7 @@ namespace user
 
          }
 
-         stream.exchange(id(), bEnable);
+         stream.exchange(atom(), bEnable);
 
          if (!stream.is_storing())
          {

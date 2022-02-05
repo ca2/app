@@ -37,9 +37,9 @@ namespace user
 
       virtual void modify_icon(::windowing::icon * picon);
 
-      //virtual void create_notify_icon(::u32 id, notify_icon_listener * plistener, ::windowing::icon * picon);
+      //virtual void create_notify_icon(::u32 atom, notify_icon_listener * plistener, ::windowing::icon * picon);
 
-      virtual void create_notify_icon(const ::id & id, ::user::interaction * puserinteractionNotify, ::windowing::icon * picon);
+      virtual void create_notify_icon(const ::atom & atom, ::user::interaction * puserinteractionNotify, ::windowing::icon * picon);
 
       bool step() override;
 

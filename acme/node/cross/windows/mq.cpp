@@ -32,7 +32,7 @@
 //}
 //
 //
-//int_bool message_queue::post_message(oswindow oswindow, const ::id & id, WPARAM wParam, LPARAM lParam)
+//int_bool message_queue::post_message(oswindow oswindow, const ::atom & atom, WPARAM wParam, LPARAM lParam)
 //{
 //
 //   if (m_bQuit)
@@ -42,7 +42,7 @@
 //
 //   }
 //
-//   mq_message message(id);
+//   mq_message message(atom);
 //
 //   message.m_message.hwnd = oswindow;
 //   message.m_message.wParam = wParam;
@@ -368,13 +368,13 @@
 //}
 //
 //
-//int_bool mq_post_thread_message(itask_t idthread, const ::id & id, wparam wparam, lparam lparam)
+//int_bool mq_post_thread_message(itask_t idthread, const ::atom & atom, wparam wparam, lparam lparam)
 //{
 //
-//   if (id.m_etype != ::id::e_type_message)
+//   if (atom.m_etype != ::atom::e_type_message)
 //   {
 //
-//      __throw(error_invalid_argument);
+//      __throw(error_bad_argument);
 //
 //   }
 //
@@ -387,7 +387,7 @@
 //
 //   }
 //
-//   return pmq->post_message(nullptr, id.m_emessage, wparam, lparam);
+//   return pmq->post_message(nullptr, atom.m_emessage, wparam, lparam);
 //
 //}
 //

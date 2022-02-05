@@ -27,10 +27,10 @@ namespace user
    }
 
 
-   void tab_view::assert_valid() const
+   void tab_view::assert_ok() const
    {
 
-      impact::assert_valid();
+      impact::assert_ok();
 
    }
 
@@ -254,7 +254,7 @@ namespace user
 
       m_placeholdera.erase(ptabpane->m_pplaceholder);
 
-      id idTab = ptabpane->m_id;
+      atom idTab = ptabpane->m_id;
 
       ::user::impact_data * pimpactdata = m_impactdatamap[idTab];
 
@@ -283,11 +283,11 @@ namespace user
       if (eposition != e_position_none)
       {
 
-         id id1 = ::user::tab::index_id(::user::tab::get_current_tab_index());
+         atom id1 = ::user::tab::index_id(::user::tab::get_current_tab_index());
 
-         id id2 = ::user::tab::index_id(iTab);
+         atom id2 = ::user::tab::index_id(iTab);
 
-         id id3 = payload(id1).string() + "->:<-" + payload(id2).string();
+         atom id3 = payload(id1).string() + "->:<-" + payload(id2).string();
 
          ::user::tab_pane * ppane1 = get_tab_by_id(id1);
 
@@ -462,15 +462,15 @@ namespace user
 
       index iTab = get_current_tab_index();
 
-      id id = index_id(iTab);
+      atom atom = index_id(iTab);
 
-      ::id idSplit;
+      ::atom idSplit;
 
       auto ptabdata = get_data();
 
       ::rectangle_i32 rectangleTabClient = ptabdata->m_rectangleTabClient;
 
-      ::user::impact_data * pimpactdata = get_impact_data(id, rectangleTabClient);
+      ::user::impact_data * pimpactdata = get_impact_data(atom, rectangleTabClient);
 
       if (pimpactdata == nullptr)
       {
@@ -715,17 +715,17 @@ namespace user
    }
 
 
-   ::user::tab_pane * tab_view::create_tab_by_id(const ::id & id)
+   ::user::tab_pane * tab_view::create_tab_by_id(const ::atom & atom)
    {
 
-      if (get_impact_data(id, get_data()->m_rectangleTabClient) == nullptr)
+      if (get_impact_data(atom, get_data()->m_rectangleTabClient) == nullptr)
       {
 
          return nullptr;
 
       }
 
-      index iTab = id_index(id);
+      index iTab = id_index(atom);
 
       if (iTab < 0)
       {
@@ -815,27 +815,27 @@ namespace user
    }
 
 
-   //::user::impact_data * tab_view::create_impact(id id, const ::rectangle_i32 & rectangleCreate, ::user::frame_window * pframewindow)
+   //::user::impact_data * tab_view::create_impact(atom atom, const ::rectangle_i32 & rectangleCreate, ::user::frame_window * pframewindow)
 
    //{
 
    //   if (m_pviewcreator == nullptr)
    //      return nullptr;
 
-   //   ::user::impact_data * pimpactdata = m_pviewcreator->::user::impact_creator::create_impact(id, rectangleCreate);
+   //   ::user::impact_data * pimpactdata = m_pviewcreator->::user::impact_creator::create_impact(atom, rectangleCreate);
 
 
    //   if (pimpactdata != nullptr)
    //   {
 
-   //      if (id_pane(id) == -1)
+   //      if (id_pane(atom) == -1)
    //      {
 
-   //         ::user::tab::add_tab("", id);
+   //         ::user::tab::add_tab("", atom);
 
    //      }
 
-   //      ::user::tab_pane * ppane = get_tab_by_id(id);
+   //      ::user::tab_pane * ppane = get_tab_by_id(atom);
 
    //      if (ppane != nullptr)
    //      {
@@ -870,13 +870,13 @@ namespace user
 
    //}
 
-   id tab_view::get_view_id()
+   atom tab_view::get_view_id()
    {
 
       if (m_pimpactdata == nullptr)
       {
 
-         return ::id();
+         return ::atom();
 
       }
 

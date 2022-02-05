@@ -563,7 +563,7 @@ bool acme_file::exists(const char * path)
    if(*path == '\0')
    {
 
-      throw_status(error_invalid_argument);
+      throw_status(error_bad_argument);
 
    }
 
@@ -702,7 +702,7 @@ void acme_file::erase(const char * path)
    if(*path == '\0')
    {
 
-      throw_status(error_invalid_argument);
+      throw_status(error_bad_argument);
 
    }
 

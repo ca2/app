@@ -51,7 +51,7 @@ namespace filemanager
       bool                                m_bSetBergedgeTopicFile;
       property_set                        m_setToolbar;
       bool                                m_bEnableRecursiveFolderSelectionList;
-      id                                  m_id;
+      atom                                  m_id;
       string                              m_strCopy;
       ::file::path                        m_pathDefault;
       string                              m_strMenuBar;
@@ -62,8 +62,8 @@ namespace filemanager
 
       string                              m_strFolderPopup;
 
-      id                                  m_idExpandBox;
-      id                                  m_idCollapseBox;
+      atom                                  m_idExpandBox;
+      atom                                  m_idCollapseBox;
 
       ::database::key                     m_dataidStatic;
 
@@ -83,7 +83,7 @@ namespace filemanager
       virtual ~data();
 
 
-      void assert_valid() const override;
+      void assert_ok() const override;
       virtual void dump(dump_context& dumpcontext) const override;
 
 
@@ -106,7 +106,7 @@ namespace filemanager
       //virtual void defer_update_data_key() override;
 
 
-      virtual ::id get_local_machine_id();
+      virtual ::atom get_local_machine_id();
       virtual string get_last_browse_path(::object * pobject, const ::string & pszDefault = nullptr);
       virtual void set_last_browse_path(::object * pobject, const ::file::path & path);
 

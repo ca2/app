@@ -63,7 +63,7 @@ namespace userex
 
       void install_message_routing(::channel * pchannel) override;
 
-      void assert_valid() const override;
+      void assert_ok() const override;
       void dump(dump_context & dumpcontext) const override;
 
       virtual void handle(::topic * ptopic, ::context * pcontext) override;
@@ -73,22 +73,22 @@ namespace userex
 
       virtual bool _001IsCompactMode();
 
-      virtual void _001OnImpact(::id idImpact);
-      virtual void show_view(::id idImpact);
-      virtual void hide_view(::id idImpact);
-      virtual void toggle_view(::id idImpact);
-      virtual void defer_show_view(::id idImpact);
-      virtual __pointer(::user::impact) _001GetImpact(::id idImpact);
-      virtual __pointer(::simple_frame_window) _001GetFrame(::id idImpact);
-      virtual __pointer(::user::impact) _001DetachImpact(::id idImpact);
-      virtual bool _001AttachImpact(::id idImpact);
-      virtual void _001DefaultLayoutImpact(::id idImpact);
-      virtual __pointer(::user::impact) get_view(::id idImpact);
-      virtual __pointer(::user::document) get_doc(::id idImpact);
-      virtual bool defer_create_view(::id idImpact, ::create * pcreate = nullptr);
-      //virtual __pointer(::user::document) detach_doc(::id idImpact);
-      //virtual bool attach(__pointer(::user::document) pdocument, ::id idImpact);
-      //virtual bool toggle(__pointer(::user::document) pdocument, ::id idImpact);
+      virtual void _001OnImpact(::atom idImpact);
+      virtual void show_view(::atom idImpact);
+      virtual void hide_view(::atom idImpact);
+      virtual void toggle_view(::atom idImpact);
+      virtual void defer_show_view(::atom idImpact);
+      virtual __pointer(::user::impact) _001GetImpact(::atom idImpact);
+      virtual __pointer(::simple_frame_window) _001GetFrame(::atom idImpact);
+      virtual __pointer(::user::impact) _001DetachImpact(::atom idImpact);
+      virtual bool _001AttachImpact(::atom idImpact);
+      virtual void _001DefaultLayoutImpact(::atom idImpact);
+      virtual __pointer(::user::impact) get_view(::atom idImpact);
+      virtual __pointer(::user::document) get_doc(::atom idImpact);
+      virtual bool defer_create_view(::atom idImpact, ::create * pcreate = nullptr);
+      //virtual __pointer(::user::document) detach_doc(::atom idImpact);
+      //virtual bool attach(__pointer(::user::document) pdocument, ::atom idImpact);
+      //virtual bool toggle(__pointer(::user::document) pdocument, ::atom idImpact);
 
       virtual bool OnUpDownTargetAttach(::user::interaction * pupdown) override;
       virtual bool OnUpDownTargetDetach(::user::interaction * pupdown) override;

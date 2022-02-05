@@ -40,22 +40,22 @@ void set_osremote(os_remote * posremote)
 }
 
 
-::duration os_get_system_update_poll_time(const ::id & id)
+::duration os_get_system_update_poll_time(const ::atom & atom)
 {
 
-   if (id == id_os_dark_mode)
+   if (atom == id_os_dark_mode)
    {
 
       return 0;
 
    }
-   else if (id == id_os_font_change)
+   else if (atom == id_os_font_change)
    {
 
       return 0;
 
    }
-   else if (id == id_font_enumeration)
+   else if (atom == id_font_enumeration)
    {
 
       return 0;
@@ -94,7 +94,7 @@ CLASS_DECL_ACME bool __node_acme_pos_init()
 }
 
 
-//void __clear_mq(const char * pszDebug, itask_t id, bool bClose);
+//void __clear_mq(const char * pszDebug, itask_t atom, bool bClose);
 //void __clear_mq(const char * pszDebug, bool bClose);
 
 

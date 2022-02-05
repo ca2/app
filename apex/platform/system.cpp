@@ -33,9 +33,9 @@
 
 ///const ::string & g_pszMultimediaLibraryName = nullptr;
 
-void apex_system_update(const ::id & id, const ::payload & payload);
+void apex_system_update(const ::atom & atom, const ::payload & payload);
 
-void apex_system_set_modified(const ::id& id);
+void apex_system_set_modified(const ::atom& atom);
 
 
 // CLASS_DECL_APEX void multimedia_set_library_name(const ::string & psz)
@@ -1933,7 +1933,7 @@ pacmedir->create("/ca2core");
    }
 
 
-   //void system::post_to_all_threads(const ::id & id, WPARAM wparam, LPARAM lparam)
+   //void system::post_to_all_threads(const ::atom & atom, WPARAM wparam, LPARAM lparam)
    //{
 
    //   synchronous_lock synchronouslock(m_mutexThread);
@@ -2080,10 +2080,10 @@ pacmedir->create("/ca2core");
    }
 
 
-   ::u32 system::os_post_to_all_threads(const ::id & id,wparam wparam,lparam lparam)
+   ::u32 system::os_post_to_all_threads(const ::atom & atom,wparam wparam,lparam lparam)
    {
 
-      post_to_all_threads(id,wparam,lparam);
+      post_to_all_threads(atom,wparam,lparam);
 
       return 0;
 
@@ -4241,7 +4241,7 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
    {
       string strId(pszId);
       string strMutex;
-      strMutex.format("Local\\ca2_application_local_mutex:%s, id:%s", pszAppName.c_str(), strId.c_str());
+      strMutex.format("Local\\ca2_application_local_mutex:%s, atom:%s", pszAppName.c_str(), strId.c_str());
       return strMutex;
    }
 
@@ -4256,7 +4256,7 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
    {
       string strId(pszId);
       string strMutex;
-      strMutex.format("Global\\ca2_application_global_mutex:%s, id:%s", pszAppName.c_str(), strId.c_str());
+      strMutex.format("Global\\ca2_application_global_mutex:%s, atom:%s", pszAppName.c_str(), strId.c_str());
       return strMutex;
    }
 
@@ -4315,9 +4315,9 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
    //__pointer(::topic) system::new_subject(const MESSAGE& message)
    //{
 
-   //   auto id = (::iptr)message.wParam;
+   //   auto atom = (::iptr)message.wParam;
 
-   //   auto ptopic = topic(id);
+   //   auto ptopic = topic(atom);
 
    //   ptopic->m_pobjectTopic = (::object*) message.lParam.m_lparam;
 
@@ -4775,7 +4775,7 @@ namespace apex
 
    //   m_libraryspa.add(plibrary);
 
-   //   ::array < ::id > ida;
+   //   ::array < ::atom > ida;
 
    //   plibrary->get_create_view_id_list(ida);
 
@@ -4841,10 +4841,10 @@ namespace apex
 #endif
 
 
-   void system::assert_valid() const
+   void system::assert_ok() const
    {
 
-      ::thread::assert_valid();
+      ::thread::assert_ok();
 
    }
 
@@ -4965,7 +4965,7 @@ namespace apex
       else if (ptopic->m_id == id_open_hyperlink)
       {
 
-         auto plink = ptopic->m_payload.cast < ::hyperlink >();
+         auto plink = ptopic->m_pextendedtopic->m_payload.cast < ::hyperlink >();
 
          if (plink)
          {
@@ -5282,21 +5282,21 @@ namespace apex
 } // namespace apex
 
 
-//void apex_system_update(const ::id & id, const ::payload & payload)
+//void apex_system_update(const ::atom & atom, const ::payload & payload)
 //{
 //
-//   psystem->process_subject(id, payload);
+//   psystem->process_subject(atom, payload);
 //
 //}
 
 //
 //
-//void apex_system_set_modified(const ::id& id)
+//void apex_system_set_modified(const ::atom& atom)
 //{
 //
 //
 //
-//   psystem->set_modified(id);
+//   psystem->set_modified(atom);
 //
 //}
 //

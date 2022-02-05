@@ -13,7 +13,7 @@ namespace userex
 
       ::duration              m_durationStart;
       ::duration              m_durationDelay;
-      id                      m_idResponse;
+      atom                      m_idResponse;
       ::integral_second       m_second;
 
 

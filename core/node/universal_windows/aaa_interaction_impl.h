@@ -44,7 +44,7 @@ namespace universal_windows
       virtual void construct(oswindow hwnd);
 
 
-      void assert_valid() const override;
+      void assert_ok() const override;
       void dump(dump_context & dumpcontext) const override;
 
 
@@ -129,7 +129,7 @@ namespace universal_windows
       virtual void update_graphics_resources() override;
 
       // for child windows, views, panes etc
-      //virtual bool create_window(::user::interaction * pinteraction, const ::string & lpszClassName, const ::string & lpszWindowName,u32 dwStyle,const RECT32 & rectangle,::user::interaction * pParentWnd,id id, ::create * pcreate = nullptr) override;
+      //virtual bool create_window(::user::interaction * pinteraction, const ::string & lpszClassName, const ::string & lpszWindowName,u32 dwStyle,const RECT32 & rectangle,::user::interaction * pParentWnd,atom atom, ::create * pcreate = nullptr) override;
 
       virtual bool _native_create_window_ex(::user::system& cs);
 
@@ -137,12 +137,12 @@ namespace universal_windows
       //virtual bool CreateEx(u32 dwExStyle, const ::string & lpszClassName,
       //                      const char * lpszWindowName, u32 dwStyle,
       //                      int x, int y, int nWidth, int nHeight,
-      //                      oswindow hWndParent, id id, LPVOID lpParam = nullptr);
+      //                      oswindow hWndParent, atom atom, LPVOID lpParam = nullptr);
 
       //virtual bool CreateEx(u32 dwExStyle, const ::string & lpszClassName,
       //                      const char * lpszWindowName, u32 dwStyle,
       //                      const RECT32& rectangle,
-      //                      ::user::interaction* pParentWnd, id id,
+      //                      ::user::interaction* pParentWnd, atom atom,
       //                      LPVOID lpParam = nullptr);
 
       virtual bool DestroyWindow();
@@ -157,7 +157,7 @@ namespace universal_windows
 
       // get immediate child with given ID
       //      using ::user::interaction::GetDlgItem;
-      void GetDlgItem(id id, oswindow* phWnd) const;
+      void GetDlgItem(atom atom, oswindow* phWnd) const;
 
       //virtual bool IsWindow() const;
 
@@ -167,10 +167,10 @@ namespace universal_windows
 
 #endif   // WINVER >= 0x0500
 
-      LRESULT send_message(const ::id & id, WPARAM wParam = 0, lparam lParam = nullptr);
-      bool post_message(const ::id & id, WPARAM wParam = 0, lparam lParam = nullptr);
+      LRESULT send_message(const ::atom & atom, WPARAM wParam = 0, lparam lParam = nullptr);
+      bool post_message(const ::atom & atom, WPARAM wParam = 0, lparam lParam = nullptr);
 
-      bool SendNotifyMessage(const ::id & id, WPARAM wParam, LPARAM lParam);
+      bool SendNotifyMessage(const ::atom & atom, WPARAM wParam, LPARAM lParam);
       bool SendChildNotifyLastMsg(LRESULT* pResult = nullptr);
 
       bool DragDetect(POINT32 pt) const;
@@ -297,8 +297,8 @@ namespace universal_windows
       virtual bool SetForegroundWindow();
       static __pointer(::user::interaction_impl) GetForegroundWindow();
 
-      virtual id SetDlgCtrlId(id id);
-      virtual id GetDlgCtrlId();
+      virtual atom SetDlgCtrlId(atom atom);
+      virtual atom GetDlgCtrlId();
 
 
 
@@ -335,7 +335,7 @@ namespace universal_windows
       virtual ::user::interaction_impl * GetNextDlgGroupItem(::user::interaction_impl * pWndCtl, bool bPrevious = false) const;
       virtual ::user::interaction_impl * GetNextDlgTabItem(::user::interaction_impl * pWndCtl, bool bPrevious = false) const;
       virtual ::u32 IsDlgButtonChecked(int nIDButton) const;
-      virtual LRESULT SendDlgItemMessage(int nID, const ::id & id, WPARAM wParam = 0, LPARAM lParam = 0);
+      virtual LRESULT SendDlgItemMessage(int nID, const ::atom & atom, WPARAM wParam = 0, LPARAM lParam = 0);
       virtual void SetDlgItemInt(int nID, ::u32 nValue, bool bSigned = true);
       virtual void SetDlgItemText(int nID, const ::string & lpszString);
 
@@ -434,10 +434,10 @@ namespace universal_windows
       void OnHelpUsing();     // ID_HELP_USING
       void UpdateDialogControls(channel* pTarget, bool bDisableIfNoHndler);
       void CenterWindow(::user::interaction * pAlternateOwner = nullptr);
-      virtual id RunModalLoop(u32 dwFlags = 0) override;
+      virtual atom RunModalLoop(u32 dwFlags = 0) override;
       virtual bool ContinueModal() override;
-      virtual void EndModalLoop(id nResult) override;
-      //virtual void EndAllModalLoops(id nResult);
+      virtual void EndModalLoop(atom nResult) override;
+      //virtual void EndAllModalLoops(atom nResult);
 
       // Window-Management message handler member functions
       virtual bool OnCommand(WPARAM wParam, LPARAM lParam);
@@ -470,7 +470,7 @@ namespace universal_windows
       void OnMove(int x, int y);
       DECLARE_MESSAGE_HANDLER(_001OnPaint);
       DECLARE_MESSAGE_HANDLER(_001OnPrint);
-      void OnParentNotify(const ::id & id, LPARAM lParam);
+      void OnParentNotify(const ::atom & atom, LPARAM lParam);
       HCURSOR OnQueryDragIcon();
       bool OnQueryEndSession();
       bool OnQueryNewPalette();
@@ -535,7 +535,7 @@ namespace universal_windows
       void OnMButtonDblClk(::u32 nFlags, const ::point_i32 & point);
       void OnMButtonDown(::u32 nFlags, const ::point_i32 & point);
       void OnMButtonUp(::u32 nFlags, const ::point_i32 & point);
-      int OnMouseActivate(::user::interaction_impl * pDesktopWnd, ::u32 nHitTest, const ::id & id);
+      int OnMouseActivate(::user::interaction_impl * pDesktopWnd, ::u32 nHitTest, const ::atom & atom);
       void OnMouseMove(::u32 nFlags, const ::point_i32 & point);
       bool OnMouseWheel(::u32 nFlags, short zDelta, const ::point_i32 & point);
       LRESULT OnRegisteredMouseWheel(WPARAM wParam, LPARAM lParam);
@@ -601,19 +601,19 @@ namespace universal_windows
 
       // for processing Windows messages
       virtual void message_handler(::user::message * pusermessage);
-      //virtual bool OnWndMsg(const ::id & id, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
+      //virtual bool OnWndMsg(const ::atom & atom, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
 
       // for handling default processing
       LRESULT Default();
-      virtual LRESULT DefWindowProc(const ::id & id, WPARAM wParam, lparam lParam);
+      virtual LRESULT DefWindowProc(const ::atom & atom, WPARAM wParam, lparam lParam);
 
       // for custom cleanup after e_message_non_client_destroy
       virtual void post_non_client_destroy();
 
       // for notifications from parent
-      virtual bool OnChildNotify(const ::id & id, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
+      virtual bool OnChildNotify(const ::atom & atom, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
       // return true if parent should not process this message
-      bool ReflectChildNotify(const ::id & id, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
+      bool ReflectChildNotify(const ::atom & atom, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
       static bool ReflectLastMsg(oswindow hWndChild, LRESULT* pResult = nullptr);
 
       virtual bool CheckAutoCenter();

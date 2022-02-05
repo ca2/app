@@ -103,7 +103,7 @@ namespace aura
    //extern CLASS_DECL_AURA array < matter* >* g_paAura;
 
 
-   //extern ::map < ::id, const ::id&, ::id, const ::id& >* g_pmapRTL;
+   //extern ::map < ::atom, const ::atom&, ::atom, const ::atom& >* g_pmapRTL;
 
    //extern plex_heap_alloc_array* g_pheap;
 

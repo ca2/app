@@ -41,7 +41,7 @@ public:
 
    iterator add(const property & prop);
 
-   iterator add(const id & id);
+   iterator add(const atom & atom);
 
    iterator add(const Type & newElement);
 
@@ -151,9 +151,9 @@ typename string_iterable < ITERABLE >::iterator string_iterable < ITERABLE >::ad
 
 
 template < typename ITERABLE >
-typename string_iterable < ITERABLE >::iterator string_iterable < ITERABLE >::add(const id & id)
+typename string_iterable < ITERABLE >::iterator string_iterable < ITERABLE >::add(const atom & atom)
 {
-   if (id.is_null())
+   if (atom.is_null())
    {
 
       return end();
@@ -161,7 +161,7 @@ typename string_iterable < ITERABLE >::iterator string_iterable < ITERABLE >::ad
    }
    else
    {
-      add(id);
+      add(atom);
    }
 }
 

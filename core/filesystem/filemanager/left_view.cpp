@@ -34,9 +34,9 @@ namespace filemanager
 
 
 
-   void left_view::assert_valid() const
+   void left_view::assert_ok() const
    {
-      ::user::split_view::assert_valid();
+      ::user::split_view::assert_ok();
    }
 
    void left_view::dump(dump_context & dumpcontext) const

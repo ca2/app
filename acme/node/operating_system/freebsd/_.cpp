@@ -41,7 +41,7 @@ CLASS_DECL_ACME bool __node_acme_pos_init()
 }
 
 
-//void __clear_mq(const char * pszDebug, itask_t id, bool bClose);
+//void __clear_mq(const char * pszDebug, itask_t atom, bool bClose);
 //void __clear_mq(const char * pszDebug, bool bClose);
 
 
@@ -131,10 +131,10 @@ int get_proc_cpuinfo_core_count()
 // }
 
 
-::duration os_get_system_update_poll_time(const ::id & id)
+::duration os_get_system_update_poll_time(const ::atom & atom)
 {
 
-   if(id == id_operating_system_user_theme_change)
+   if(atom == id_operating_system_user_theme_change)
    {
 
       // On Gnome you can?
@@ -145,7 +145,7 @@ int get_proc_cpuinfo_core_count()
       return e_zero;
 
    }
-   else if(id == id_operating_system_user_color_change)
+   else if(atom == id_operating_system_user_color_change)
    {
 
       // On Gnome you can?

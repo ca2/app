@@ -214,8 +214,8 @@ message_box_callback::message_box_callback(::message_box_w * pmessageboxw)
 }
 
 
-#define create_a_button(id,text) \
-   messagedialog->Commands->Append(ref new UICommand(text,ref new UICommandInvokedHandler(this, &::message_box_callback::CommandInvokedHandler),id));
+#define create_a_button(atom,text) \
+   messagedialog->Commands->Append(ref new UICommand(text,ref new UICommandInvokedHandler(this, &::message_box_callback::CommandInvokedHandler),atom));
 
 
 void message_box_callback::show(String ^ text,String ^ caption, const ::e_message_box & emessagebox, const ::future & process)

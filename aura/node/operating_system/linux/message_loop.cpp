@@ -98,10 +98,10 @@ sys_thread * sys_thread_pool::get(pthread_t pthread)
 
 
 
-void post_message(oswindow oswindow, const ::id & id, wparam wparam, lparam lparam)
+void post_message(oswindow oswindow, const ::atom & atom, wparam wparam, lparam lparam)
 {
 
-   message_queue_post(oswindow, id, wparam, lparam);
+   message_queue_post(oswindow, atom, wparam, lparam);
 
 }
 

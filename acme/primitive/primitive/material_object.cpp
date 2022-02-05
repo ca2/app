@@ -37,7 +37,7 @@ material_object::~material_object()
 
 
 // <3TBS_!! handle -> command_handler <3TBS_(I need to suck you)!!
-void material_object::handle_command(const ::id & id)
+void material_object::handle_command(const ::atom & atom)
 {
    
    //return ::success_none;

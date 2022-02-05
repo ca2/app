@@ -51,9 +51,9 @@ namespace filemanager
 
 
 
-         void list_view::assert_valid() const
+         void list_view::assert_ok() const
          {
-            simple_list_view::assert_valid();
+            simple_list_view::assert_ok();
          }
 
          void list_view::dump(dump_context & dumpcontext) const
@@ -333,7 +333,7 @@ namespace filemanager
          {
             string strSql;
 
-            strSql = "select id, title, artist, filename, filepath from album";
+            strSql = "select atom, title, artist, filename, filepath from album";
 
             if(m_sortinfo.m_itema.get_size() > 0)
             {
@@ -345,7 +345,7 @@ namespace filemanager
                   switch(item.m_iSubItem)
                   {
                   case SubItemId:
-                     strSql += "id";
+                     strSql += "atom";
                      break;
                   case SubItemTitle:
                      strSql += "title";
@@ -533,7 +533,7 @@ namespace filemanager
             if(iFind < pdocument->m_fileinfo.m_iaUpdate.get_size())
             {
             fv = pdocument->m_fileinfo.m_iaUpdate[iFind];
-            if(pds->find_first("id", fv))
+            if(pds->find_first("atom", fv))
             {
             PostFillTask(pds->fv("filepath").get_asString(), uEvent);
             break;
@@ -547,7 +547,7 @@ namespace filemanager
             else if(iFind < pdocument->m_fileinfo.m_iaRemove.get_size())
             {
             fv = pdocument->m_fileinfo.m_iaRemove[iFind];
-            if(pds->find_first("id", fv))
+            if(pds->find_first("atom", fv))
             {
             iaRemove.add(pdocument->m_fileinfo.m_iaRemove[iFind]);
             pdocument->m_fileinfo.m_iaRemove.erase_at(iFind);
@@ -742,7 +742,7 @@ namespace filemanager
 
             }
 
-            pxmldocument->root()->attribute("id").as(m_iParentFolder);
+            pxmldocument->root()->attribute("atom").as(m_iParentFolder);
 
             auto pnodeFolder = pxmldocument->root()->get_child("folder");
 
@@ -762,7 +762,7 @@ namespace filemanager
                {
 
                   item.m_iParent = m_iParentFolder;
-                  pnodeItem->attribute("id").as(item.m_iFolder);
+                  pnodeItem->attribute("atom").as(item.m_iFolder);
                   pnodeItem->attribute("name").as(item.m_strTitle);
 
                   /*            if(wstrType == "normal")

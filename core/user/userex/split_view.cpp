@@ -89,7 +89,7 @@ namespace userex
    }
 
 
-   bool split_view::create_pane(i32 iPane, bool bFixedSize, ::id id)
+   bool split_view::create_pane(i32 iPane, bool bFixedSize, ::atom atom)
    {
 
       ASSERT(iPane >= 0);
@@ -100,13 +100,13 @@ namespace userex
 
       ppane->m_bFixedSize = bFixedSize;
 
-      ppane->m_id = id;
+      ppane->m_id = atom;
 
       ::rectangle_i32 rectangleClient;
 
       ppane->m_pplaceholder->get_client_rect(rectangleClient);
 
-      ::user::impact_data * pdata = create_impact(id);
+      ::user::impact_data * pdata = create_impact(atom);
 
       if (pdata == nullptr)
       {

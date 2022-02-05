@@ -20,13 +20,13 @@ namespace message
    }
 
 
-   command::command(const ::id & id) :
-      material_object(id)
+   command::command(const ::atom & atom) :
+      material_object(atom)
    {
 
       common_construct();
 
-      m_id.set_compounded_type(::id::e_type_command);
+      m_id.set_compounded_type(::atom::e_type_command);
       m_bRadioChanged = false;
 
    }

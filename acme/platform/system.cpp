@@ -652,12 +652,12 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
 
 
-   bool system::is_task_on(itask_t id)
+   bool system::is_task_on(itask_t atom)
    {
 
       synchronous_lock synchronouslock(&m_mutexTaskOn);
 
-      return m_mapTaskOn.plookup(id) != nullptr;
+      return m_mapTaskOn.plookup(atom) != nullptr;
 
    }
 
@@ -677,22 +677,22 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   void system::set_task_on(itask_t id)
+   void system::set_task_on(itask_t atom)
    {
 
       synchronous_lock synchronouslock(&m_mutexTaskOn);
 
-      m_mapTaskOn.set_at(id, id);
+      m_mapTaskOn.set_at(atom, atom);
 
    }
 
 
-   void system::set_task_off(itask_t id)
+   void system::set_task_off(itask_t atom)
    {
 
       synchronous_lock synchronouslock(&m_mutexTaskOn);
 
-      m_mapTaskOn.erase_key(id);
+      m_mapTaskOn.erase_key(atom);
 
    }
 
@@ -958,7 +958,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
       if (str.is_empty())
       {
 
-         throw_status(error_invalid_argument);
+         throw_status(error_bad_argument);
 
       }
 
@@ -1108,7 +1108,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    //   if (strComponent.is_empty() || strImplementation.is_empty())
    //   {
 
-   //      throw error_invalid_argument;
+   //      throw error_bad_argument;
 
    //   }
 
@@ -1222,7 +1222,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    //}
 
 
-   ::duration system::get_update_poll_time(const ::id & id)
+   ::duration system::get_update_poll_time(const ::atom & atom)
    {
       
       return 0_s;

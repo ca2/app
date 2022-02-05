@@ -90,7 +90,7 @@ inline uptr uptr_hash(itask_t key)
 
 #endif
 
-//CLASS_DECL_ACME __pointer(message_queue) __get_mq(itask_t id, bool bCreate);
+//CLASS_DECL_ACME __pointer(message_queue) __get_mq(itask_t atom, bool bCreate);
 
 
 

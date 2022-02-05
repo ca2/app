@@ -35,7 +35,7 @@ namespace file_watcher
 
    struct watch_struct_item
    {
-      id m_id;
+      atom m_id;
       vsstring m_strDirName;
    };
 
@@ -74,7 +74,7 @@ namespace file_watcher
    }
 
    //--------
-   id os_file_watcher::add_watch(const vsstring & directory,  file_watch_listener * pwatcher, bool bRecursive)
+   atom os_file_watcher::add_watch(const vsstring & directory,  file_watch_listener * pwatcher, bool bRecursive)
    {
       i32 wd = inotify_add_watch (mFD, directory, IN_CLOSE_WRITE | IN_MOVED_TO | IN_CREATE | IN_MOVED_FROM | IN_DELETE);
       if (wd < 0)
@@ -151,7 +151,7 @@ namespace file_watcher
    }
 
    //--------
-   void os_file_watcher::erase_watch(id watchid)
+   void os_file_watcher::erase_watch(atom watchid)
    {
       WatchMap::pair * ppair = m_watchmap.plookup(watchid);
 
@@ -167,9 +167,9 @@ namespace file_watcher
       watch = 0;
    }
 
-   vsstring os_file_watcher::watch_path(id id)
+   vsstring os_file_watcher::watch_path(atom atom)
    {
-      return m_watchmap[id]->m_strDirName;
+      return m_watchmap[atom]->m_strDirName;
    }
 
    //--------
@@ -197,7 +197,7 @@ namespace file_watcher
          {
             struct inotify_event *pevent = (struct inotify_event *)&buff[i];
 
-            watch_struct* watch = m_watchmap[(id &)ptopic->wd];
+            watch_struct* watch = m_watchmap[(atom &)ptopic->wd];
             handle_action(watch, ptopic->name, ptopic->mask);
             i += sizeof(struct inotify_event) + ptopic->len;
          }

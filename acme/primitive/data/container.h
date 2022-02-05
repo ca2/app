@@ -41,10 +41,10 @@ namespace data
       virtual ~data_container_base();
 
 
-      bool set_data(const ::id & id, ::data::data * pdata);
+      bool set_data(const ::atom & atom, ::data::data * pdata);
       bool add_data(::data::data * pdata);
       bool erase_data(::data::data * pdata);
-      data * get_data(const ::id & id);
+      data * get_data(const ::atom & atom);
       ::count get_count() const;
 
 
@@ -61,10 +61,10 @@ namespace data
 
 
       template < typename TYPE >
-      bool replace_data(const ::id & id, TYPE * pdata)
+      bool replace_data(const ::atom & atom, TYPE * pdata)
       {
 
-         m_datamap.set(id, pdata);
+         m_datamap.set(atom, pdata);
 
          return true;
 

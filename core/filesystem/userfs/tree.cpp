@@ -86,7 +86,7 @@ namespace userfs
 #endif
 
 
-   void tree::assert_valid() const
+   void tree::assert_ok() const
    {
 
    }
@@ -623,14 +623,14 @@ namespace userfs
          if (ptopic->m_id == id_filter)
          {
 
-            if (ptopic->payload(id_filter).is_empty())
+            if (ptopic->m_pextendedtopic->payload(id_filter).is_empty())
             {
                //               FilterClose();
             }
             else
             {
                //             FilterBegin();
-               //           Filter1(ptopic->payload(id_filter));
+               //           Filter1(ptopic->m_pextendedtopic->payload(id_filter));
                //         FilterApply();
             }
 

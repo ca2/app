@@ -7,13 +7,13 @@
 #include "framework.h"
 
 
-CLASS_DECL_ACME void __call(handler * phandler, const ::id & id, i64 iData, ::matter * pmatter)
+CLASS_DECL_ACME void __call(handler * phandler, const ::atom & atom, i64 iData, ::matter * pmatter)
 {
 
    if (iData == 0 && ::is_null(pmatter))
    {
 
-      ::topic topic(id);
+      ::topic topic(atom);
 
       phandler->handle(&topic, nullptr);
 
@@ -21,7 +21,7 @@ CLASS_DECL_ACME void __call(handler * phandler, const ::id & id, i64 iData, ::ma
    else
    {
 
-      ::extended_topic topic(id);
+      ::extended_topic topic(atom);
 
       if (iData != 0)
       {
@@ -61,10 +61,10 @@ CLASS_DECL_ACME void __call(handler * phandler, const ::id & id, i64 iData, ::ma
 //
 
 
-void handler::call(const ::id & id, i64 iData, ::matter * pmatter)
+void handler::call(const ::atom & atom, i64 iData, ::matter * pmatter)
 {
 
-   return __call(this, id, iData, pmatter);
+   return __call(this, atom, iData, pmatter);
 
 }
 

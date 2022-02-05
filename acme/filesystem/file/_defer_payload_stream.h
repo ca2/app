@@ -142,10 +142,10 @@ inline void __exchange(::payload_stream& s, __pointer(OBJECT)& pobject)
 
 
 template < typename TYPE >
-inline void payload_stream::stream_exchange(const ::id& id, TYPE& t) 
+inline void payload_stream::stream_exchange(const ::atom& atom, TYPE& t) 
 { 
    
-   var_exchange(id, t); 
+   var_exchange(atom, t); 
 
 }
 

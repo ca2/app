@@ -33,7 +33,7 @@ void source::add_handler(::matter * pmatter, bool bPriority)
 }
 
 
-//void source::add_handler(::matter * pmatter, const ::id & idChild, bool bPriority)
+//void source::add_handler(::matter * pmatter, const ::atom & idChild, bool bPriority)
 //{
 //
 //   if (::is_null(pmatter))
@@ -95,7 +95,7 @@ void source::route(::topic * ptopic, ::context * pcontext)
 
          }
 
-         if (ptopic->m_bRet)
+         if (ptopic->m_pextendedtopic->m_bRet)
          {
 
             break;

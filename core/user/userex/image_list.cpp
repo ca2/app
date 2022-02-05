@@ -213,9 +213,9 @@ namespace userex
    }
 
 
-   void image_list_view::assert_valid() const
+   void image_list_view::assert_ok() const
    {
-      ::user::image_list_view::assert_valid();
+      ::user::image_list_view::assert_ok();
    }
 
    void image_list_view::dump(dump_context & dumpcontext) const
@@ -327,7 +327,7 @@ namespace userex
 
       }
 
-      ::id id = get_document()->m_pimpactsystem->m_id;
+      ::atom atom = get_document()->m_pimpactsystem->m_id;
 
       string strText;
 
@@ -354,7 +354,7 @@ namespace userex
 
          auto * peditview = _001TypedWindow < ::userex::top_edit_view >();
 
-         if (peditview != nullptr && ptopic->m_puserelement == peditview)
+         if (peditview != nullptr && ptopic->m_pextendedtopic->m_puserelement == peditview)
          {
 
             string strText;

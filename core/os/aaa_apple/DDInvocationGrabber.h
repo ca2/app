@@ -75,7 +75,7 @@
  */
 @interface DDInvocationGrabber : NSProxy
 {
-	id _target;
+	atom _target;
 	NSInvocation * _invocation;
     BOOL _forwardInvokesOnMainThread;
     BOOL _waitUntilDone;
@@ -85,10 +85,10 @@
  * @method invocationGrabber
  * @abstract Returns a newly allocated, inited, autoreleased DDInvocationGrabber object.
  */
-+ (id)invocationGrabber;
++ (atom)invocationGrabber;
 
-- (id)target;
-- (void)setTarget:(id)inTarget;
+- (atom)target;
+- (void)setTarget:(atom)inTarget;
 
 - (NSInvocation *)invocation;
 - (void)setInvocation:(NSInvocation *)inInvocation;
@@ -107,7 +107,7 @@
  * @method prepareWithInvocationTarget:
  * @abstract Sets the target object of the receiver and returns itself. The sender can then send a message to the 
  */
-- (id)prepareWithInvocationTarget:(id)inTarget;
+- (atom)prepareWithInvocationTarget:(atom)inTarget;
 
 @end
 

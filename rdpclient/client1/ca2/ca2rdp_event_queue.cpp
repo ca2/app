@@ -8,7 +8,7 @@ struct CLASS_DECL_AXIS_RDPCLIENT rdp_event_item
    int bKey;
    int down;
    ::u32 scancode;
-   const ::id & id;
+   const ::atom & atom;
    POINT_I32 pt;
    void send();
 };
@@ -20,7 +20,7 @@ typedef array < rdp_event_item > rdp_event_itema;
 
 map < void *,void *,rdp_event_itema> g_eventmap;
 
-CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_event(void * input,int bKey,int down,::u32 scancode,const ::id & id,POINT_I32 pt);
+CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_event(void * input,int bKey,int down,::u32 scancode,const ::atom & atom,POINT_I32 pt);
 
 ::mutex * ca2rdp_get_event_queue_mutex()
 {
@@ -37,7 +37,7 @@ CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_event(void * input,int bKey,int down,
 
 }
 
-CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_queue_event(void * input,int bKey,int down,::u32 scancode,const ::id & id,POINT_I32 pt)
+CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_queue_event(void * input,int bKey,int down,::u32 scancode,const ::atom & atom,POINT_I32 pt)
 {
 
    synchronous_lock synchronouslock(ca2rdp_get_event_queue_mutex());

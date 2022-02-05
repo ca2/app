@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "acme/constant/id.h"
+#include "acme/id.h"
 #include "base/user/user/tab_pane.h"
 
 
@@ -26,10 +26,10 @@ namespace app_core_build
    }
 
 
-   void pane_view::assert_valid() const
+   void pane_view::assert_ok() const
    {
 
-      ::user::impact::assert_valid();
+      ::user::impact::assert_ok();
 
    }
 

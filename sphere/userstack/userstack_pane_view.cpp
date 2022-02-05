@@ -32,9 +32,9 @@ namespace userstack
    }
 
 
-   void pane_view::assert_valid() const
+   void pane_view::assert_ok() const
    {
-      ::user::impact::assert_valid();
+      ::user::impact::assert_ok();
    }
 
    void pane_view::dump(dump_context & dumpcontext) const

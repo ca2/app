@@ -490,7 +490,7 @@ namespace file
       if(pfile == nullptr)
       {
 
-         __throw(error_invalid_argument);
+         __throw(error_bad_argument);
 
       }
 

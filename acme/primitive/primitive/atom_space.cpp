@@ -2,16 +2,16 @@
 
 
 
-class ::id_space * id_space::s_pidspace = nullptr;
+class ::atom_space * atom_space::s_pidspace = nullptr;
 
 
-id_space::id_space()
+atom_space::atom_space()
 {
    
 }
 
 
-const char * id_space::get_id(const char * psz)
+const char * atom_space::get_id(const char * psz)
 {
 
    critical_section_lock synchronouslock(&m_criticalsection);
@@ -43,10 +43,10 @@ const char * id_space::get_id(const char * psz)
 
 }
 
-// id_space is static, it goes aways only and with the application
+// atom_space is static, it goes aways only and with the application
 // so avoid freeing errors when even crash translators does not exist.
 
-id_space::~id_space()
+atom_space::~atom_space()
 {
 
    free_all();
@@ -54,7 +54,7 @@ id_space::~id_space()
 }
 
 
-void id_space::free_all()
+void atom_space::free_all()
 {
 
    critical_section_lock synchronouslock(&m_criticalsection);
@@ -89,15 +89,15 @@ void id_space::free_all()
 }
 
 
-id id_space::operator()(const char * psz)
+atom atom_space::operator()(const char * psz)
 {
 
-   return ::id(get_id(psz), this);
+   return ::atom(get_id(psz), this);
 
 }
 
 
-id id_space::operator()(i64 i)
+atom atom_space::operator()(i64 i)
 {
 
    return (iptr) i;
@@ -105,7 +105,7 @@ id id_space::operator()(i64 i)
 }
 
 
-//void id_space::sort()
+//void atom_space::sort()
 //{
 //
 //   if(m_psza.m_nSize <= 1)
@@ -201,7 +201,7 @@ id id_space::operator()(i64 i)
 //}
 
 
-bool id_space::find(const char * pszFind,index & iIndex)
+bool atom_space::find(const char * pszFind,index & iIndex)
 {
 
    if(m_psza.m_nSize <= 0)
@@ -291,7 +291,7 @@ strid_array::strid_array(bool bSynch)
 
 }
 
-// id_space is static, it goes aways only and with the application
+// atom_space is static, it goes aways only and with the application
 // so avoid freeing errors when even crash translators does not exist.
 
 strid_array::~strid_array()
@@ -489,26 +489,26 @@ bool strid_array::find(const char * psz,index & iIndex) const
 }
 
 
-void strid_array::add(const id & id)
+void strid_array::add(const atom & atom)
 {
 
    index iIndex;
 
-   if(find(id,iIndex))
+   if(find(atom,iIndex))
       return;
 
-   m_idptra.add((char * const &) id.m_psz);
+   m_idptra.add((char * const &) atom.m_psz);
    m_iaId.insert_at(iIndex,m_idptra.get_upper_bound());
    //m_iaId.add(m_idptra.get_upper_bound());
    //sort();
 
 }
 
-bool strid_array::find(const id & id,index & iIndex) const
+bool strid_array::find(const atom & atom,index & iIndex) const
 {
 
 
-   if(!find((const char *)id,iIndex))
+   if(!find((const char *)atom,iIndex))
       return false;
 
    iIndex = m_iaId[iIndex];
@@ -519,10 +519,10 @@ bool strid_array::find(const id & id,index & iIndex) const
 }
 
 
-::id_space & get_id_space()
+::atom_space & get_id_space()
 {
 
-   return *::id_space::s_pidspace;
+   return *::atom_space::s_pidspace;
 
 }
 

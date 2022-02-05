@@ -150,9 +150,9 @@ payload_stream::~payload_stream()
 //      m_var = wch;
 //   }
 //#endif
-//   void payload_stream::write(id & id)
+//   void payload_stream::write(atom & atom)
 //   {
-//      m_var = id;
+//      m_var = atom;
 //   }
 //   void payload_stream::write(::payload & payload)
 //   {
@@ -195,7 +195,7 @@ payload_stream::~payload_stream()
 //   void payload_stream::read(RECTANGLE_I32 * prectangle);
 
 //   void payload_stream::read(const size_i32 & & size);
-//   void payload_stream::read(id & id);
+//   void payload_stream::read(atom & atom);
 //   void payload_stream::read(::payload & payload);
 //   void payload_stream::read(property & property);
 //   void payload_stream::read(string & str);
@@ -222,12 +222,12 @@ payload_stream::~payload_stream()
 //
 
 
-//void payload_stream::write_object(const ::id & id, ::matter * pobject)
+//void payload_stream::write_object(const ::atom & atom, ::matter * pobject)
 //{
 //
-//   payload_stream stream(new ::payload(&payload()[id].propset()));
+//   payload_stream stream(new ::payload(&payload()[atom].propset()));
 //
-//   ::id idType = __type_name(pobject);
+//   ::atom idType = __type_name(pobject);
 //
 //   string strId = stream.factory_id_to_text(idType);
 //
@@ -240,10 +240,10 @@ payload_stream::~payload_stream()
 //}
 //
 //
-//__pointer(::matter) payload_stream::read_object(const ::id & id)
+//__pointer(::matter) payload_stream::read_object(const ::atom & atom)
 //{
 //
-//   payload_stream stream(new ::payload(&payload()[id].propset()));
+//   payload_stream stream(new ::payload(&payload()[atom].propset()));
 //
 //   string strId;
 //
@@ -302,17 +302,17 @@ void payload_stream::write(const block & block)
 }
 
 
-void payload_stream::exchange(const ::id & id, double & d)
+void payload_stream::exchange(const ::atom & atom, double & d)
 {
 
-   var_exchange(id, d);
+   var_exchange(atom, d);
 
 }
 
-void payload_stream::exchange(const ::id& id, i64& i)
+void payload_stream::exchange(const ::atom& atom, i64& i)
 {
 
-   var_exchange(id, i);
+   var_exchange(atom, i);
 
 }
 

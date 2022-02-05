@@ -39,8 +39,8 @@ namespace database
       DECLARE_MESSAGE_HANDLER(data_on_after_change);
 
 
-      virtual void data_on_before_change(client* pclient, const key& id, ::payload& payload, ::topic * ptopic);
-      virtual void data_on_after_change(client* pclient, const key& id, const ::payload & payload, ::topic * ptopic);
+      virtual void data_on_before_change(client* pclient, const key& atom, ::payload& payload, ::topic * ptopic);
+      virtual void data_on_after_change(client* pclient, const key& atom, const ::payload & payload, ::topic * ptopic);
 
 
       virtual void _data_set(const key& key, const ::payload & payload, ::topic * ptopic = nullptr);
@@ -149,7 +149,7 @@ namespace database
 
       }
 
-      virtual void default_data_save_handling(const ::id & id);
+      virtual void default_data_save_handling(const ::atom & atom);
 
       virtual bool data_pulse_change(const key & key, ::topic * ptopic);
 

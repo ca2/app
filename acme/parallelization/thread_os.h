@@ -99,7 +99,7 @@ inline void preempt();
 //   //CLASS_DECL_ACME void term_multithreading();
 //
 //   //CLASS_DECL_ACME bool thread_registered(::thread * pthread);
-//   //CLASS_DECL_ACME bool thread_id_registered(itask_t id);
+//   //CLASS_DECL_ACME bool thread_id_registered(itask_t atom);
 //
 //   //CLASS_DECL_ACME void thread_register(itask_t itask, ::thread * pthread);
 //
@@ -109,7 +109,7 @@ inline void preempt();
 //
 //   //CLASS_DECL_ACME void post_quit_to_all_threads();
 //
-//   //CLASS_DECL_ACME void post_to_all_threads(const ::id & id, WPARAM wparam, LPARAM lparam);
+//   //CLASS_DECL_ACME void post_to_all_threads(const ::atom & atom, WPARAM wparam, LPARAM lparam);
 //
 //   ////CLASS_DECL_ACME bool wait_threads(::duration duration, __pointer_array(::thread) threadaExcept = __pointer_array(::thread)());
 //

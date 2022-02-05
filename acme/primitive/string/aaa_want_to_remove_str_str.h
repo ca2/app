@@ -2,7 +2,7 @@
 
 
 class ::payload;
-class id;
+class atom;
 //class string_format;
 
 
@@ -68,11 +68,11 @@ namespace str
 
    inline bool begins(const char * psz,string & strFed, const ::string & strPrefix);
    inline bool begins(const ::string & str,string & strFed,const ::string & strPrefix);
-   inline bool begins(const id & id,string & strFed,const ::string & strPrefix);
+   inline bool begins(const atom & atom,string & strFed,const ::string & strPrefix);
 
    inline bool begins(const char * psz, const ::string & strPrefix);
    inline bool begins(const ::string & str, const ::string & strPrefix);
-   inline bool begins(const id & id, const ::string & strPrefix);
+   inline bool begins(const atom & atom, const ::string & strPrefix);
    inline bool begins_with(const char * psz, const ::string & strPrefix);
    inline bool begins_with(const ::string & str, const ::string & strPrefix);
 
@@ -276,7 +276,7 @@ namespace str
    inline CLASS_DECL_ACME string  to_string(i64 i);
    inline CLASS_DECL_ACME string  to_string(u64 u);
    inline CLASS_DECL_ACME string  to_string(const ::payload & payload);
-   inline CLASS_DECL_ACME string  to_string(const id & id);
+   inline CLASS_DECL_ACME string  to_string(const atom & atom);
    inline CLASS_DECL_ACME string  to_string(double d);
    inline CLASS_DECL_ACME string  to_string(float f);*/
 
@@ -287,7 +287,7 @@ namespace str
       CLASS_DECL_ACME  string &       to_string(string & str, u64 u);
       CLASS_DECL_ACME  string &       to_string(string & str, float f);
       CLASS_DECL_ACME  string &       to_string(string & str, double d);
-      inline CLASS_DECL_ACME string & to_string(string & str, const id & id);
+      inline CLASS_DECL_ACME string & to_string(string & str, const atom & atom);
       inline CLASS_DECL_ACME string & to_string(string & str, const ::payload & payload);
 
 
@@ -445,7 +445,7 @@ namespace str
 //#endif
 
 
-   //inline bool begins(const id & id, const ::string & strPrefix) { return begins(id.m_psz, strPrefix); }
+   //inline bool begins(const atom & atom, const ::string & strPrefix) { return begins(atom.m_psz, strPrefix); }
 
    inline int get_utf8_char_length(const char * psz)
    {

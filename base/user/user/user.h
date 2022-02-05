@@ -76,7 +76,7 @@ namespace base
 
       virtual void destroy() override;
 
-      virtual void SendMessageToWindows(const ::id & id, wparam wParam, lparam lParam) override;
+      virtual void SendMessageToWindows(const ::atom & atom, wparam wParam, lparam lParam) override;
 
       virtual void term() override;
 

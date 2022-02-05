@@ -24,7 +24,7 @@ stream & operator __exchange (stream & stream, in_addr & o)
 
    string str = to_string(o);
 
-   stream.exchange(id, s);
+   stream.exchange(atom, s);
 
 }
 
@@ -38,7 +38,7 @@ void window::exchange(stream & stream)
 
 }
 
-void __exchange(stream & s, const ::id & id,)
+void __exchange(stream & s, const ::atom & atom,)
 
 
 int main()
@@ -107,12 +107,12 @@ class exchanger
     stream * m_pstream;
 
 template
-exchange(id, value) read/write value
+exchange(atom, value) read/write value
 {
     if(is_storing)
-    m_pstream->write(id value)
+    m_pstream->write(atom value)
     else 
-    m_pstream->read(id, value)
+    m_pstream->read(atom, value)
 
 }
 template
@@ -130,14 +130,14 @@ stream
 {
 
 
-read(id, i8) throw not_implemented;
-read(id, i16) throw not_implemented;
-read(id, i32) throw not_implemented;
-read(id, i64) throw not_implemented;
-read(id, u8) throw not_implemented;
-read(id, u16) throw not_implemented;
-read(id, u32) throw not_implemented;
-read(id, u64) throw not_implemented;
+read(atom, i8) throw not_implemented;
+read(atom, i16) throw not_implemented;
+read(atom, i32) throw not_implemented;
+read(atom, i64) throw not_implemented;
+read(atom, u8) throw not_implemented;
+read(atom, u16) throw not_implemented;
+read(atom, u32) throw not_implemented;
+read(atom, u64) throw not_implemented;
 
 read(i8) throw not_implemented;
 read(i16) throw not_implemented;
@@ -148,14 +148,14 @@ read(u16) throw not_implemented;
 read(u32) throw not_implemented;
 read(u64) throw not_implemented;
 
-write(id, i8) throw not_implemented;
-write(id, i16) throw not_implemented;
-write(id, i32) throw not_implemented;
-write(id, i64) throw not_implemented;
-write(id, u8) throw not_implemented;
-write(id, u16) throw not_implemented;
-write(id, u32) throw not_implemented;
-write(id, u64) throw not_implemented;
+write(atom, i8) throw not_implemented;
+write(atom, i16) throw not_implemented;
+write(atom, i32) throw not_implemented;
+write(atom, i64) throw not_implemented;
+write(atom, u8) throw not_implemented;
+write(atom, u16) throw not_implemented;
+write(atom, u32) throw not_implemented;
+write(atom, u64) throw not_implemented;
 
 write(i8) throw not_implemented;
 write(i16) throw not_implemented;
@@ -174,14 +174,14 @@ binary_stream
 {
 
 
-read(id, i8) read(i8)
-read(id, i16) read(i16)
-read(id, i32) read(i32)
-read(id, i64) read(i64)
-read(id, u8) read(u8)
-read(id, u16) read(u16)
-read(id, u32) read(u32)
-read(id, u64) read(u64)
+read(atom, i8) read(i8)
+read(atom, i16) read(i16)
+read(atom, i32) read(i32)
+read(atom, i64) read(i64)
+read(atom, u8) read(u8)
+read(atom, u16) read(u16)
+read(atom, u32) read(u32)
+read(atom, u64) read(u64)
 
 read(i8) m_pfile->read(i8)
 read(i16) m_pfile->read(i16)
@@ -192,14 +192,14 @@ read(u16) m_pfile->read(u16)
 read(u32) m_pfile->read(u32)
 read(u64) m_pfile->read(u64)
 
-write(id, i8) write(i8)
-write(id, i16) write(i16)
-write(id, i32) write(i32)
-write(id, i64) write(i64)
-write(id, u8) write(u8)
-write(id, u16) write(u16)
-write(id, u32) write(u32)
-write(id, u64) write(u64)
+write(atom, i8) write(i8)
+write(atom, i16) write(i16)
+write(atom, i32) write(i32)
+write(atom, i64) write(i64)
+write(atom, u8) write(u8)
+write(atom, u16) write(u16)
+write(atom, u32) write(u32)
+write(atom, u64) write(u64)
 
 write(i8) m_pfile->write(i8)
 write(i16) m_pfile->write(i16)
@@ -217,14 +217,14 @@ text_stream
 {
 
 
-write(id, i8) write(i8)
-write(id, i16) write(i16)
-write(id, i32) write(i32)
-write(id, i64) write(i64)
-write(id, u8) write(u8)
-write(id, u16) write(u16)
-write(id, u32) write(u32)
-write(id, u64) write(u64)
+write(atom, i8) write(i8)
+write(atom, i16) write(i16)
+write(atom, i32) write(i32)
+write(atom, i64) write(i64)
+write(atom, u8) write(u8)
+write(atom, u16) write(u16)
+write(atom, u32) write(u32)
+write(atom, u64) write(u64)
 
 write(i8) m_pfile->write(i8)
 write(i16) m_pfile->write(i16)
@@ -244,14 +244,14 @@ id_stream :
     stream
 {
 
-read(id, i8)i8 = m_ppayload->operator[](id);
-read(id, i16) i16= m_ppayload->operator[](id);
-read(id, i32) i32= m_ppayload->operator[](id);
-read(id, i64) i64= m_ppayload->operator[](id);
-read(id, u8) u8= m_ppayload->operator[](id);
-read(id, u16) u16= m_ppayload->operator[](id);
-read(id, u32) u32= m_ppayload->operator[](id);
-read(id, u64) u64= m_ppayload->operator[](id);
+read(atom, i8)i8 = m_ppayload->operator[](atom);
+read(atom, i16) i16= m_ppayload->operator[](atom);
+read(atom, i32) i32= m_ppayload->operator[](atom);
+read(atom, i64) i64= m_ppayload->operator[](atom);
+read(atom, u8) u8= m_ppayload->operator[](atom);
+read(atom, u16) u16= m_ppayload->operator[](atom);
+read(atom, u32) u32= m_ppayload->operator[](atom);
+read(atom, u64) u64= m_ppayload->operator[](atom);
 
 read(i8) i8 = *m_ppayload
 read(i16) i16 = *m_ppayload
@@ -262,14 +262,14 @@ read(u16) u16 = *m_ppayload
 read(u32) u32 = *m_ppayload
 read(u64) u64 = *m_ppayload
 
-write(id, i8) write(i8)
-write(id, i16) write(i16)
-write(id, i32) write(i32)
-write(id, i64) write(i64)
-write(id, u8) write(u8)
-write(id, u16) write(u16)
-write(id, u32) write(u32)
-write(id, u64) write(u64)
+write(atom, i8) write(i8)
+write(atom, i16) write(i16)
+write(atom, i32) write(i32)
+write(atom, i64) write(i64)
+write(atom, u8) write(u8)
+write(atom, u16) write(u16)
+write(atom, u32) write(u32)
+write(atom, u64) write(u64)
 
 write(i8) m_pfile->write(i8)
 write(i16) m_pfile->write(i16)

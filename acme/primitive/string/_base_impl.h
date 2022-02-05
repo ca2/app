@@ -2765,7 +2765,7 @@ string_base < TYPE_CHAR > string_base < TYPE_CHAR >::span_including(const CHAR_T
    if (pszCharSet == nullptr)
    {
 
-      __throw(error_invalid_argument);
+      __throw(error_bad_argument);
 
    }
 
@@ -2784,7 +2784,7 @@ string_base < TYPE_CHAR > string_base < TYPE_CHAR >::span_excluding(const CHAR_T
    if (pszCharSet == nullptr)
    {
 
-      __throw(error_invalid_argument);
+      __throw(error_bad_argument);
 
    }
 
@@ -2829,7 +2829,7 @@ void string_base < TYPE_CHAR >::format_arguments(const CHAR_TYPE* pszFormat, va_
    if (pszFormat == nullptr)
    {
 
-      __throw(error_invalid_argument);
+      __throw(error_bad_argument);
 
    }
 
@@ -5211,7 +5211,7 @@ string_base < TYPE_CHAR > string_base < TYPE_CHAR >::Tokenize(PCHAR pszTokens, s
    ASSERT(iStart >= 0);
 
    if (iStart < 0)
-      __throw(error_invalid_argument);
+      __throw(error_bad_argument);
 
    if ((pszTokens == nullptr) || (*pszTokens == (char)0))
    {

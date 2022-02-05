@@ -124,7 +124,7 @@ public:
    
 
 
-   void assert_valid() const override;
+   void assert_ok() const override;
    void dump(dump_context & dumpcontext) const override;
 
    
@@ -140,7 +140,7 @@ public:
 
    bool peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg);
    void get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
-   void post_message(oswindow oswindow, const ::id & id, wparam wParam, lparam lParam);
+   void post_message(oswindow oswindow, const ::atom & atom, wparam wParam, lparam lParam);
 
    user_interaction_ptr_array & uiptra();
 
@@ -223,18 +223,18 @@ public:
 
    virtual ::task_pool* taskpool() override;
 
-   //inline bool has_property(const ::id& id) const;
-   //inline ::payload command_value(const ::id& id) const;
-   //inline bool command_value_is_true(const ::id& id) const;
+   //inline bool has_property(const ::atom& atom) const;
+   //inline ::payload command_value(const ::atom& atom) const;
+   //inline bool command_value_is_true(const ::atom& atom) const;
 
 
-   virtual void post_message(const ::id & id, wparam wParam = 0, lparam lParam = 0);
+   virtual void post_message(const ::atom & atom, wparam wParam = 0, lparam lParam = 0);
 
-   virtual void send_message(const ::id & id, wparam wParam = 0, lparam lParam = 0, const ::duration & durationTimeout = ::duration::infinite());
+   virtual void send_message(const ::atom & atom, wparam wParam = 0, lparam lParam = 0, const ::duration & durationTimeout = ::duration::infinite());
 
-   virtual void post_element(const ::id & id, wparam wParam, ::element * pelement);
+   virtual void post_element(const ::atom & atom, wparam wParam, ::element * pelement);
 
-   virtual void send_element(const ::id & id, wparam wParam, ::element * pelement, const ::duration & durationTimeout = ::duration::infinite());
+   virtual void send_element(const ::atom & atom, wparam wParam, ::element * pelement, const ::duration & durationTimeout = ::duration::infinite());
 
 
    template < typename PREDICATE >
@@ -548,9 +548,9 @@ using id_thread_map = id_map < __pointer(thread) >;
 
 
 
-//CLASS_DECL_APEX bool is_thread_on(itask_t id);
-//CLASS_DECL_APEX void set_thread_on(itask_t id);
-//CLASS_DECL_APEX void set_thread_off(itask_t id);
+//CLASS_DECL_APEX bool is_thread_on(itask_t atom);
+//CLASS_DECL_APEX void set_thread_on(itask_t atom);
+//CLASS_DECL_APEX void set_thread_off(itask_t atom);
 
 
 

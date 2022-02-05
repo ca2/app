@@ -23,11 +23,11 @@ namespace str
          bool                       m_bSchemaOnly;
          bool                       m_bAddAlternateStyle;
 
-         id                         m_idLocale;
-         id                         m_idSchema;
+         atom                         m_idLocale;
+         atom                         m_idSchema;
 
-         comparable_array < id >    m_idaLocale;
-         comparable_array < id >    m_idaSchema;
+         comparable_array < atom >    m_idaLocale;
+         comparable_array < atom >    m_idaSchema;
 
 
          locale_schema();
@@ -35,17 +35,17 @@ namespace str
          virtual ~locale_schema();
 
 
-         ::id localeid(const char * pszLocale, strsize iLen);
+         ::atom localeid(const char * pszLocale, strsize iLen);
 
 
-         virtual bool add_locale_variant(id idLocale, id Style);
+         virtual bool add_locale_variant(atom idLocale, atom Style);
          virtual bool end_prepare(bool bRtlLayout);
          //virtual void end_prepare();
 
-         bool defer_add_locale(id idLocale, id idStyle);
-         bool defer_add_locale(const char * psz, strsize iLen, id idStyle);
-         bool _add_locale_variant(id pszLocale, id idStyle);
-         bool _add_locale_variant(const char * psz, strsize iLen, id idStyle);
+         bool defer_add_locale(atom idLocale, atom idStyle);
+         bool defer_add_locale(const char * psz, strsize iLen, atom idStyle);
+         bool _add_locale_variant(atom pszLocale, atom idStyle);
+         bool _add_locale_variant(const char * psz, strsize iLen, atom idStyle);
          bool process_final_locale_schema(bool bRTLLayout);
          //bool process_final_locale_schema();
 
@@ -59,7 +59,7 @@ namespace str
       };
 
 
-      inline bool locale_schema::_add_locale_variant(id idLocale, id idStyle)
+      inline bool locale_schema::_add_locale_variant(atom idLocale, atom idStyle)
       {
 
          return _add_locale_variant(idLocale.m_psz, strlen(idLocale.m_psz), idStyle);
@@ -67,7 +67,7 @@ namespace str
       }
 
 
-      inline bool locale_schema::defer_add_locale(const char * pszLocale, strsize iLen, id idSchema)
+      inline bool locale_schema::defer_add_locale(const char * pszLocale, strsize iLen, atom idSchema)
       {
 
          return defer_add_locale(localeid(pszLocale, iLen), idSchema);

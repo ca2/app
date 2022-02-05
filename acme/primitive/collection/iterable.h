@@ -3446,7 +3446,7 @@ end:
    //void get_comparable_ida(const ITERABLE & iterable, ITERABLE2 & iterable2)
    //{
 
-   //   array < id > ida;
+   //   array < atom > ida;
 
    //   for (i32 i = 0; i < get_count(); i++)
    //   {

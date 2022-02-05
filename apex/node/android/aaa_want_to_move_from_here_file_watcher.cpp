@@ -185,7 +185,7 @@
 //   }
 //
 //
-//   void os_file_watcher::erase_watch(id watchid)
+//   void os_file_watcher::erase_watch(atom watchid)
 //   {
 //
 //      synchronous_lock synchronouslock(mutex());
@@ -206,12 +206,12 @@
 //   }
 //
 //
-//   string os_file_watcher::watch_path(id id)
+//   string os_file_watcher::watch_path(atom atom)
 //   {
 //
 //      synchronous_lock synchronouslock(mutex());
 //
-//      return m_watchmap[id]->m_strDirName;
+//      return m_watchmap[atom]->m_strDirName;
 //
 //   }
 //
@@ -274,7 +274,7 @@
 //
 //            a.m_strFilename = ptopic->name;
 //
-//            a.m_pwatch = m_watchmap[(id &)ptopic->wd];
+//            a.m_pwatch = m_watchmap[(atom &)ptopic->wd];
 //
 //            a.m_ulOsAction = ptopic->mask;
 //

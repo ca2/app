@@ -267,11 +267,11 @@ void xmpp_handler_delete(xmpp_conn_t * const conn,
 
 void xmpp_id_handler_add(xmpp_conn_t * const conn,
 			 xmpp_handler handler,
-			 const char * const id,
+			 const char * const atom,
 			 void * const userdata);
 void xmpp_id_handler_delete(xmpp_conn_t * const conn,
 			    xmpp_handler handler,
-			    const char * const id);
+			    const char * const atom);
 
 /*
 void xmpp_register_stanza_handler(conn, stanza, xmlns, type, handler)
@@ -336,7 +336,7 @@ int xmpp_stanza_set_text_with_size(xmpp_stanza_t *stanza,
 char *xmpp_stanza_get_type(xmpp_stanza_t * const stanza);
 char *xmpp_stanza_get_id(xmpp_stanza_t * const stanza);
 int xmpp_stanza_set_id(xmpp_stanza_t * const stanza, 
-		       const char * const id);
+		       const char * const atom);
 int xmpp_stanza_set_type(xmpp_stanza_t * const stanza, 
 			 const char * const type);
 

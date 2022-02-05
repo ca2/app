@@ -20,10 +20,10 @@ namespace turboc
    }
 
 
-   void document::assert_valid() const
+   void document::assert_ok() const
    {
 
-      ::aura::document::assert_valid();
+      ::aura::document::assert_ok();
 
    }
 

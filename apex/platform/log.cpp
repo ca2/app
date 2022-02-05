@@ -52,7 +52,7 @@ namespace apex
    }
 
 
-   void log::initialize_log(enum_trace_level etracelevelMin, const ::id & id)
+   void log::initialize_log(enum_trace_level etracelevelMin, const ::atom & atom)
    {
 
       /*auto estatus = */ __compose_new(m_ptrace);
@@ -143,7 +143,7 @@ namespace apex
 
       }
 
-      m_id = id;
+      m_id = atom;
 
       m_bInitialized = true;
 
@@ -645,7 +645,7 @@ namespace apex
    //void log::initialize_apex_log(enum_trace_level etracelevelMin, const char * pszId)
    //{
 
-   //   //if (!initialize(id(pszId)))
+   //   //if (!initialize(atom(pszId)))
    //   //{
 
    //   //   return false;
@@ -713,7 +713,7 @@ namespace apex
    }
 
 
-   //void log::initialize(e_traceid id)
+   //void log::initialize(e_traceid atom)
    //{
 
 

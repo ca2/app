@@ -405,7 +405,7 @@ CLASS_DECL_AXIS u32 g_tickStartTime = 0;
 //   else
 //   {
 //
-//      __throw(error_invalid_argument);
+//      __throw(error_bad_argument);
 //
 //   }
 //

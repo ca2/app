@@ -118,7 +118,7 @@ namespace netserver
    }
 
 
-   bool socket::http_filter_response_header(id key, string_array & straValue)
+   bool socket::http_filter_response_header(atom key, string_array & straValue)
    {
       
       if (key == __id(location) && straValue.get_count() >= 1)

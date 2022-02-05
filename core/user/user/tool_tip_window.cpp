@@ -361,7 +361,7 @@ namespace user
    }
 
 
-   //bool tool_tip_window::create(::user::interaction * puserinteraction, const id & id)
+   //bool tool_tip_window::create(::user::interaction * puserinteraction, const atom & atom)
    //{
    //   
    //   m_puserinteraction = puserinteraction;
@@ -370,7 +370,7 @@ namespace user
 
    //   auto pusersystem = __new(::user::system);
 
-   //   return create_window_ex(pusersystem, nullptr, id) != 0;
+   //   return create_window_ex(pusersystem, nullptr, atom) != 0;
 
    //}
 

@@ -22,7 +22,7 @@ inline void __exchange(::payload_stream & s, ::datetime::time & time);
 inline void __exchange(::payload_stream & s, const char * psz);
 inline void __exchange(::payload_stream & s, string & str);
 inline void __exchange(::payload_stream & s, ::file::path & path);
-inline void __exchange(::payload_stream & s, ::id & id);
+inline void __exchange(::payload_stream & s, ::atom & atom);
 inline void __exchange(::payload_stream & s, ::payload & payload);
 inline void __exchange(::payload_stream & s, ::property & property);
 inline void __exchange(::payload_stream & s, ::property_set& set);
@@ -90,22 +90,22 @@ public:
    void write_only(TYPE & t);
 
    template < typename TYPE >
-   void var_exchange(const ::id & id, TYPE & t);
+   void var_exchange(const ::atom & atom, TYPE & t);
 
-   //virtual void write_object(const ::id & id, ::matter * pobject) override;
-   //virtual __pointer(::matter) read_object(const ::id & id) override;
+   //virtual void write_object(const ::atom & atom, ::matter * pobject) override;
+   //virtual __pointer(::matter) read_object(const ::atom & atom) override;
 
 
    virtual void read(block & block) override;
    virtual void write(const block & block) override;
 
 
-   virtual void exchange(const ::id & id, double & d) override;
-   virtual void exchange(const ::id& id, i64& i) override;
+   virtual void exchange(const ::atom & atom, double & d) override;
+   virtual void exchange(const ::atom& atom, i64& i) override;
 
 
    template < typename TYPE >
-   inline void stream_exchange(const ::id& id, TYPE& t);
+   inline void stream_exchange(const ::atom& atom, TYPE& t);
 
 
 };

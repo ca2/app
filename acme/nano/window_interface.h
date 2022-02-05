@@ -35,15 +35,15 @@ public:
    virtual void create_drawing_objects();
    virtual void update_drawing_objects();
 
-   virtual ::id hit_test(int x, int y);
+   virtual ::atom hit_test(int x, int y);
    virtual void add_child(nano_child * pchild);
 
-   virtual ::id get_result();
+   virtual ::atom get_result();
 
    virtual void on_mouse_move(int x, int y);
    virtual void on_left_button_down(int x, int y);
    virtual void on_left_button_up(int x, int y);
-   virtual void on_click(const ::id & id);
+   virtual void on_click(const ::atom & atom);
 
    //virtual LRESULT window_procedure(UINT message, WPARAM wparam, LPARAM lparam);
 

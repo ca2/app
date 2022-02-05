@@ -9,7 +9,7 @@ namespace message
    class command;
 
 
-   inline ::u32 translate_to_os_message(const ::id& id) { return id.u32(); }
+   inline ::u32 translate_to_os_message(const ::atom& atom) { return atom.u32(); }
 
 
    //class base;

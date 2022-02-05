@@ -141,10 +141,10 @@ namespace userfs
    }
 
 
-   void list::assert_valid() const
+   void list::assert_ok() const
    {
 
-      ::user::form_list_view::assert_valid();
+      ::user::form_list_view::assert_ok();
 
    }
 

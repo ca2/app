@@ -163,10 +163,10 @@ graphics::graphics()
 }
 
 
-void graphics::assert_valid() const
+void graphics::assert_ok() const
 {
 
-    object::assert_valid();
+    object::assert_ok();
 
 }
 

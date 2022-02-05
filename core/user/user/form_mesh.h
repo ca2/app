@@ -89,7 +89,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(_001OnHScroll);
       DECLARE_MESSAGE_HANDLER(on_message_key_down);
 
-      virtual bool _001OnMouseActivate(::user::interaction_impl * pDesktopWnd,::u32 nHitTest,const ::id & id,lresult & iResult);
+      virtual bool _001OnMouseActivate(::user::interaction_impl * pDesktopWnd,::u32 nHitTest,const ::atom & atom,lresult & iResult);
 
 
       void install_message_routing(::channel * pchannel) override;

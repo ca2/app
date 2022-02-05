@@ -1180,9 +1180,9 @@ namespace user
    // control_bar diagnostics
 
 
-   void control_bar::assert_valid() const
+   void control_bar::assert_ok() const
    {
-      ::user::interaction::assert_valid();
+      ::user::interaction::assert_ok();
 
       ASSERT((m_dwStyle & CBRS_ALL) == m_dwStyle);
    }

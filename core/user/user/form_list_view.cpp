@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "core/user/user/_user.h"
 #include "aura/update.h"
-#include "acme/constant/id.h"
+#include "acme/id.h"
 
 
 namespace user
@@ -42,15 +42,15 @@ namespace user
          if(ptopic->m_id == id_browse)
          {
 
-            if(!ptopic->payload(id_form).is_empty())
+            if(!ptopic->m_pextendedtopic->payload(id_form).is_empty())
             {
 
-               string strMatter = m_pcontext->m_papexcontext->dir().matter(ptopic->payload(id_form));
+               string strMatter = m_pcontext->m_papexcontext->dir().matter(ptopic->m_pextendedtopic->payload(id_form));
 
                if(get_document()->on_open_document(strMatter))
                {
 
-                  m_strPath = ptopic->payload(id_form);
+                  m_strPath = ptopic->m_pextendedtopic->payload(id_form);
 
                }
 
@@ -60,7 +60,7 @@ namespace user
          else if(ptopic->m_id == id_get_form_view)
          {
 
-            ptopic->payload(id_form) = this;
+            ptopic->m_pextendedtopic->payload(id_form) = this;
 
          }
 
@@ -69,7 +69,7 @@ namespace user
       if(m_pcallback != nullptr)
       {
 
-         ptopic->payload(id_form) = this;
+         ptopic->m_pextendedtopic->payload(id_form) = this;
 
          m_pcallback->handle(ptopic, pcontext);
 
@@ -119,12 +119,12 @@ namespace user
    }
 
 
-   void form_list_view::assert_valid() const
+   void form_list_view::assert_ok() const
    {
 
-      form_list::assert_valid();
-      form_view::assert_valid();
-      list_view::assert_valid();
+      form_list::assert_ok();
+      form_view::assert_ok();
+      list_view::assert_ok();
 
    }
 

@@ -51,10 +51,10 @@ COMMAND_LINE_ARGUMENT_A args[] =
 	{ "size_i32", COMMAND_LINE_VALUE_REQUIRED, "<width>x<height> or <percent>%", "1024x768", nullptr, -1, nullptr, "Screen size_i32" },
 	{ "f", COMMAND_LINE_VALUE_FLAG, nullptr, nullptr, nullptr, -1, nullptr, "Fullscreen mode" },
 	{ "bpp", COMMAND_LINE_VALUE_REQUIRED, "<depth>", "16", nullptr, -1, nullptr, "Session bpp (color depth)" },
-	{ "kbd", COMMAND_LINE_VALUE_REQUIRED, "0x<on_layout id> or <on_layout name>", nullptr, nullptr, -1, nullptr, "Keyboard on_layout" },
+	{ "kbd", COMMAND_LINE_VALUE_REQUIRED, "0x<on_layout atom> or <on_layout name>", nullptr, nullptr, -1, nullptr, "Keyboard on_layout" },
 	{ "kbd-list", COMMAND_LINE_VALUE_FLAG | COMMAND_LINE_PRINT, nullptr, nullptr, nullptr, -1, nullptr, "List keyboard layouts" },
-	{ "kbd-type", COMMAND_LINE_VALUE_REQUIRED, "<type id>", nullptr, nullptr, -1, nullptr, "Keyboard type" },
-	{ "kbd-subtype", COMMAND_LINE_VALUE_REQUIRED, "<subtype id>", nullptr, nullptr, -1, nullptr, "Keyboard subtype" },
+	{ "kbd-type", COMMAND_LINE_VALUE_REQUIRED, "<type atom>", nullptr, nullptr, -1, nullptr, "Keyboard type" },
+	{ "kbd-subtype", COMMAND_LINE_VALUE_REQUIRED, "<subtype atom>", nullptr, nullptr, -1, nullptr, "Keyboard subtype" },
 	{ "kbd-fn-key", COMMAND_LINE_VALUE_REQUIRED, "<function key count>", nullptr, nullptr, -1, nullptr, "Keyboard function key count" },
 	{ "admin", COMMAND_LINE_VALUE_FLAG, nullptr, nullptr, nullptr, -1, "console", "Admin (or console) session" },
 	{ "restricted-admin", COMMAND_LINE_VALUE_FLAG, nullptr, nullptr, nullptr, -1, "restrictedAdmin", "Restricted admin mode" },
@@ -104,7 +104,7 @@ COMMAND_LINE_ARGUMENT_A args[] =
 	{ "parallel", COMMAND_LINE_VALUE_OPTIONAL, nullptr, nullptr, nullptr, -1, nullptr, "Redirect parallel device" },
 	{ "smartcard", COMMAND_LINE_VALUE_OPTIONAL, nullptr, nullptr, nullptr, -1, nullptr, "Redirect smartcard device" },
 	{ "printer", COMMAND_LINE_VALUE_OPTIONAL, nullptr, nullptr, nullptr, -1, nullptr, "Redirect printer device" },
-	{ "usb", COMMAND_LINE_VALUE_REQUIRED, "[dbg][dev][id|addr][auto]", nullptr, nullptr, -1, nullptr, "Redirect USB device" },
+	{ "usb", COMMAND_LINE_VALUE_REQUIRED, "[dbg][dev][atom|addr][auto]", nullptr, nullptr, -1, nullptr, "Redirect USB device" },
 	{ "multitouch", COMMAND_LINE_VALUE_BOOL, nullptr, BoolValueFalse, nullptr, -1, nullptr, "Redirect multitouch input" },
 	{ "gestures", COMMAND_LINE_VALUE_BOOL, nullptr, BoolValueFalse, nullptr, -1, nullptr, "Consume multitouch input locally" },
 	{ "echo", COMMAND_LINE_VALUE_FLAG, nullptr, nullptr, nullptr, -1, "echo", "Echo channel" },
@@ -137,7 +137,7 @@ COMMAND_LINE_ARGUMENT_A args[] =
 	{ "cert-name", COMMAND_LINE_VALUE_REQUIRED, "<name>", nullptr, nullptr, -1, nullptr, "certificate name" },
 	{ "cert-ignore", COMMAND_LINE_VALUE_FLAG, nullptr, nullptr, nullptr, -1, nullptr, "ignore certificate" },
 	{ "pcb", COMMAND_LINE_VALUE_REQUIRED, "<blob>", nullptr, nullptr, -1, nullptr, "Preconnection Blob" },
-	{ "pcid", COMMAND_LINE_VALUE_REQUIRED, "<id>", nullptr, nullptr, -1, nullptr, "Preconnection Id" },
+	{ "pcid", COMMAND_LINE_VALUE_REQUIRED, "<atom>", nullptr, nullptr, -1, nullptr, "Preconnection Id" },
 	{ "spn-class", COMMAND_LINE_VALUE_REQUIRED, "<service class>", nullptr, nullptr, -1, nullptr, "SPN authentication service class" },
 	{ "credentials-delegation", COMMAND_LINE_VALUE_BOOL, nullptr, BoolValueFalse, nullptr, -1, nullptr, "Disable credentials delegation" },
 	{ "vmconnect", COMMAND_LINE_VALUE_OPTIONAL, "<vmid>", nullptr, nullptr, -1, nullptr, "Hyper-V console (use port 2179, disable negotiation)" },
@@ -146,7 +146,7 @@ COMMAND_LINE_ARGUMENT_A args[] =
 	{ "grab-keyboard", COMMAND_LINE_VALUE_BOOL, nullptr, BoolValueTrue, nullptr, -1, nullptr, "grab keyboard" },
 	{ "toggle-fullscreen", COMMAND_LINE_VALUE_BOOL, nullptr, BoolValueTrue, nullptr, -1, nullptr, "Alt+Ctrl+Enter toggles fullscreen" },
 	{ "mouse-motion", COMMAND_LINE_VALUE_BOOL, nullptr, BoolValueTrue, nullptr, -1, nullptr, "mouse-motion" },
-	{ "parent-window", COMMAND_LINE_VALUE_REQUIRED, "<window id>", nullptr, nullptr, -1, nullptr, "Parent window id" },
+	{ "parent-window", COMMAND_LINE_VALUE_REQUIRED, "<window atom>", nullptr, nullptr, -1, nullptr, "Parent window atom" },
 	{ "bitmap-cache", COMMAND_LINE_VALUE_BOOL, nullptr, BoolValueTrue, nullptr, -1, nullptr, "bitmap cache" },
 	{ "offscreen-cache", COMMAND_LINE_VALUE_BOOL, nullptr, BoolValueTrue, nullptr, -1, nullptr, "offscreen bitmap cache" },
 	{ "glyph-cache", COMMAND_LINE_VALUE_BOOL, nullptr, BoolValueTrue, nullptr, -1, nullptr, "glyph cache" },
@@ -277,7 +277,7 @@ BOOL freerdp_client_print_command_line_help(int argc, char** argv)
 
 	printf("Multimedia Redirection: /multimedia:sys:oss,dev:/dev/dsp1,decoder:ffmpeg\n");
 	printf("Multimedia Redirection: /multimedia:sys:alsa\n");
-	printf("USB Device Redirection: /usb:id,dev:054c:0268\n");
+	printf("USB Device Redirection: /usb:atom,dev:054c:0268\n");
 	printf("\n");
 
 	printf("More documentation is coming, in the meantime consult source files\n");
@@ -1127,7 +1127,7 @@ BOOL freerdp_set_connection_type(rdpSettings* settings, int type)
 int freerdp_map_keyboard_layout_name_to_id(char* name)
 {
 	int i;
-	int id = 0;
+	int atom = 0;
 	RDP_KEYBOARD_LAYOUT* layouts;
 
 	layouts = freerdp_keyboard_get_layouts(RDP_KEYBOARD_LAYOUT_TYPE_STANDARD);
@@ -1137,13 +1137,13 @@ int freerdp_map_keyboard_layout_name_to_id(char* name)
 	for (i = 0; layouts[i].code; i++)
 	{
 		if (_stricmp(layouts[i].name, name) == 0)
-			id = layouts[i].code;
+			atom = layouts[i].code;
 	}
 
 	free(layouts);
 
-	if (id)
-		return id;
+	if (atom)
+		return atom;
 
 	layouts = freerdp_keyboard_get_layouts(RDP_KEYBOARD_LAYOUT_TYPE_VARIANT);
 	if (!layouts)
@@ -1152,13 +1152,13 @@ int freerdp_map_keyboard_layout_name_to_id(char* name)
 	for (i = 0; layouts[i].code; i++)
 	{
 		if (_stricmp(layouts[i].name, name) == 0)
-			id = layouts[i].code;
+			atom = layouts[i].code;
 	}
 
 	free(layouts);
 
-	if (id)
-		return id;
+	if (atom)
+		return atom;
 
 	layouts = freerdp_keyboard_get_layouts(RDP_KEYBOARD_LAYOUT_TYPE_IME);
 	if (!layouts)
@@ -1167,13 +1167,13 @@ int freerdp_map_keyboard_layout_name_to_id(char* name)
 	for (i = 0; layouts[i].code; i++)
 	{
 		if (_stricmp(layouts[i].name, name) == 0)
-			id = layouts[i].code;
+			atom = layouts[i].code;
 	}
 
 	free(layouts);
 
-	if (id)
-		return id;
+	if (atom)
+		return atom;
 
 	return 0;
 }
@@ -1649,29 +1649,29 @@ int freerdp_client_settings_parse_command_line_arguments(rdpSettings* settings,
 		}
 		CommandLineSwitchCase(arg, "kbd")
 		{
-			unsigned long int id;
+			unsigned long int atom;
 			char* pEnd;
 
-			id = strtoul(arg->Value, &pEnd, 16);
+			atom = strtoul(arg->Value, &pEnd, 16);
 
 			if (pEnd != (arg->Value + strlen(arg->Value)))
-				id = 0;
+				atom = 0;
 
-			if (id == 0)
+			if (atom == 0)
 			{
-				id = (unsigned long int) freerdp_map_keyboard_layout_name_to_id(arg->Value);
-				if (id == -1)
-					WLog_ERR(TAG, "A problem occured while mapping the on_layout name to id");
-				else if (id == 0)
+				atom = (unsigned long int) freerdp_map_keyboard_layout_name_to_id(arg->Value);
+				if (atom == -1)
+					WLog_ERR(TAG, "A problem occured while mapping the on_layout name to atom");
+				else if (atom == 0)
 				{
 					WLog_ERR(TAG, "Could not identify keyboard on_layout: %s", arg->Value);
 					WLog_ERR(TAG, "Use /kbd-list to list available layouts");
 				}
-				if (id <= 0)
+				if (atom <= 0)
 					return COMMAND_LINE_STATUS_PRINT;
 			}
 
-			settings->KeyboardLayout = (::u32) id;
+			settings->KeyboardLayout = (::u32) atom;
 		}
 		CommandLineSwitchCase(arg, "kbd-type")
 		{

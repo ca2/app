@@ -20,7 +20,7 @@ extern locale_t g_localeC;
 property_set::property_set(::std::initializer_list < ::payload > list)
 {
 
-   ::id id;
+   ::atom atom;
 
    index i = 0;
 
@@ -30,13 +30,13 @@ property_set::property_set(::std::initializer_list < ::payload > list)
       if (i % 2 == 0)
       {
 
-         id = item;
+         atom = item;
 
       }
       else if (i % 2 == 1)
       {
 
-         operator[](id) = item;
+         operator[](atom) = item;
 
       }
 
@@ -47,7 +47,7 @@ property_set::property_set(::std::initializer_list < ::payload > list)
    if (i % 2 == 1)
    {
 
-      operator[](id) = ::e_type_empty;
+      operator[](atom) = ::e_type_empty;
 
    }
 
@@ -60,7 +60,7 @@ property_set::~property_set()
 }
 
 
-//id property_set::get_new_id()
+//atom property_set::get_new_id()
 //{
 //
 //   index iMax = -1;
@@ -68,7 +68,7 @@ property_set::~property_set()
 //   for(iterator it = begin(); it != end(); it++)
 //   {
 //
-//      if(it->element1().m_etype == id::type_integer)
+//      if(it->element1().m_etype == atom::type_integer)
 //      {
 //
 //         if(it->element1().m_i > iMax)
@@ -91,7 +91,7 @@ property_set::~property_set()
 
 
 //
-//property & property_set::defer_auto_add(id idName)
+//property & property_set::defer_auto_add(atom idName)
 //{
 //
 //   return *add(idName);
@@ -386,7 +386,7 @@ bool property_set::erase_first_value(const char * pcsz)
 }
 
 
-::count property_set::unset(const id & idName)
+::count property_set::unset(const atom & idName)
 {
 
    ::count c = 0;
@@ -414,7 +414,7 @@ bool property_set::erase_first_value(const char * pcsz)
 }
 
 
-bool property_set::is_new(const id & idName) const
+bool property_set::is_new(const atom & idName) const
 {
 
    const property * pproperty = find(idName);
@@ -431,7 +431,7 @@ bool property_set::is_new(const id & idName) const
 }
 
 
-bool property_set::is_null(const id & idName) const
+bool property_set::is_null(const atom & idName) const
 {
 
    const property * pproperty = find(idName);
@@ -448,7 +448,7 @@ bool property_set::is_null(const id & idName) const
 }
 
 
-bool property_set::is_new_or_null(const id & idName) const
+bool property_set::is_new_or_null(const atom & idName) const
 {
 
    const property * pproperty = find(idName);
@@ -465,7 +465,7 @@ bool property_set::is_new_or_null(const id & idName) const
 }
 
 
-bool property_set::is_empty(const id & idName) const
+bool property_set::is_empty(const atom & idName) const
 {
 
    const property * pproperty = find(idName);
@@ -682,7 +682,7 @@ void property_set_skip_network_payload(const char *& pszJson, const char * pszEn
    while (true)
    {
 
-      ::id id;
+      ::atom atom;
 
       property_skip_network_payload_id(pszJson, pszEnd);
 
@@ -821,11 +821,11 @@ void property_set::parse_network_payload(const char * & pszJson, const char * ps
    while(true)
    {
 
-      ::id id;
+      ::atom atom;
 
-      ::property_parse_network_payload_id(id, pszJson,pszEnd);
+      ::property_parse_network_payload_id(atom, pszJson,pszEnd);
 
-      auto & property = operator[](id);
+      auto & property = operator[](atom);
 
       ::property_parse_network_payload_value(property,pszJson,pszEnd);
 
@@ -1014,7 +1014,7 @@ string property_set::_001Replace(const ::string & str) const
 
 }
 
-::count property_set::erase_by_name(const id & idName)
+::count property_set::erase_by_name(const atom & idName)
 {
    return unset(idName);
 }
@@ -1283,7 +1283,7 @@ property_set & property_set::merge(const property_set & set)
       for(auto & pproperty : set)
       {
 
-         id idName = pproperty->name();
+         atom idName = pproperty->name();
 
          auto ppropertyThis = find(idName);
 
@@ -1576,10 +1576,10 @@ string & property_set::get_http_post(string & strPost) const
 //}
 //
 //
-//bool stable_property_set::is_new_or_null(id id)
+//bool stable_property_set::is_new_or_null(atom atom)
 //{
 //
-//   index iFind = find(id);
+//   index iFind = find(atom);
 //
 //   if (iFind < 0)
 //   {
@@ -1600,10 +1600,10 @@ string & property_set::get_http_post(string & strPost) const
 //}
 //
 //
-//bool stable_property_set::has_property(id id)
+//bool stable_property_set::has_property(atom atom)
 //{
 //
-//   index iFind = find(id);
+//   index iFind = find(atom);
 //
 //   if (iFind < 0)
 //   {
@@ -1617,13 +1617,13 @@ string & property_set::get_http_post(string & strPost) const
 //}
 //
 //
-//index stable_property_set::find(id id)
+//index stable_property_set::find(atom atom)
 //{
 //
 //   for (index i = 0; i < m_propertyptra.get_size(); i++)
 //   {
 //
-//      if (m_propertyptra[i]->m_id == id)
+//      if (m_propertyptra[i]->m_id == atom)
 //      {
 //
 //         return i;
@@ -1637,10 +1637,10 @@ string & property_set::get_http_post(string & strPost) const
 //}
 //
 //
-//property & stable_property_set::set_at(const id & id, const ::payload & payload)
+//property & stable_property_set::set_at(const atom & atom, const ::payload & payload)
 //{
 //
-//   index iFind = find(id);
+//   index iFind = find(atom);
 //
 //   if (iFind < 0)
 //   {
@@ -1649,7 +1649,7 @@ string & property_set::get_http_post(string & strPost) const
 //
 //      m_propertyptra.add(pproperty);
 //
-//      pproperty->m_id = id;
+//      pproperty->m_id = atom;
 //
 //      return *pproperty;
 //
@@ -1666,15 +1666,15 @@ string & property_set::get_http_post(string & strPost) const
 //}
 //
 //
-//property & stable_property_set::operator [](const id & id)
+//property & stable_property_set::operator [](const atom & atom)
 //{
 //
 //   index iFind;
 //
-//   if (id.is_integer())
+//   if (atom.is_integer())
 //   {
 //
-//      iFind = (index) (id.i64());
+//      iFind = (index) (atom.i64());
 //
 //      if (iFind < 0 || iFind >= m_propertyptra.get_count())
 //      {
@@ -1687,12 +1687,12 @@ string & property_set::get_http_post(string & strPost) const
 //   else
 //   {
 //
-//      iFind = find(id);
+//      iFind = find(atom);
 //
 //      if (iFind < 0)
 //      {
 //
-//         return set_at(id, ::e_type_new);
+//         return set_at(atom, ::e_type_new);
 //
 //      }
 //

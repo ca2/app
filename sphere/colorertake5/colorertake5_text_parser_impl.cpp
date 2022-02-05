@@ -583,8 +583,8 @@ namespace colorertake5
             if (picked != nullptr && gx+11 <= matchend.s[0] && ((const ::string &)str)[gx] == 'C')
             {
                i32 ci;
-               static char id[] = "fnq%Qtrjhg";
-               for(ci = 0; ci < 10; ci++) if (((const ::string &)str)[gx+1+ci] != id[ci]-5) break;
+               static char atom[] = "fnq%Qtrjhg";
+               for(ci = 0; ci < 10; ci++) if (((const ::string &)str)[gx+1+ci] != atom[ci]-5) break;
                if (ci == 10)
                {
                   addRegion(gy, gx, gx+11, picked);

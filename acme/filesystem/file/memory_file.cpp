@@ -470,10 +470,10 @@ string memory_file::get_string() const
 }
 
 
-void memory_file::assert_valid() const
+void memory_file::assert_ok() const
 {
 
-   file::assert_valid();
+   file::assert_ok();
 
 }
 

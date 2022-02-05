@@ -66,9 +66,9 @@ namespace user
    }
 
 
-   void document::assert_valid() const
+   void document::assert_ok() const
    {
-      ::object::assert_valid();
+      ::object::assert_ok();
 
       ::count count = get_view_count();
       for (index index = 0; index < count; index++)
@@ -346,7 +346,7 @@ namespace user
    }
 
 
-   ::id document::get_toolbar_id()
+   ::atom document::get_toolbar_id()
    {
 
       return m_pimpactsystem->m_id.to_string() + "/top";
@@ -390,7 +390,7 @@ namespace user
    }
 
 
-   ::id document::get_topic_view_id()
+   ::atom document::get_topic_view_id()
    {
 
       auto psignal = get_signal(id_get_topic_view_id);
@@ -402,12 +402,12 @@ namespace user
    }
 
 
-   bool document::set_topic_view_by_id(::id id)
+   bool document::set_topic_view_by_id(::atom atom)
    {
 
       auto psignal = get_signal(id_get_topic_view_id);
 
-      psignal->payload(id_id) = id;
+      psignal->payload(id_id) = atom;
 
       update_all_views(psignal);
 
@@ -602,7 +602,7 @@ namespace user
    }
 
 
-   __pointer(::user::impact) document::get_typed_view_with_id(::type info, id id)
+   __pointer(::user::impact) document::get_typed_view_with_id(::type info, atom atom)
    {
       single_lock synchronouslock(mutex(), true);
       ::count countImpact = get_view_count();
@@ -613,7 +613,7 @@ namespace user
          pview = get_view(index);
          if (info == __type_name(pview))
          {
-            if (id == pview->m_id)
+            if (atom == pview->m_id)
                return pview;
             else
                countFind++;
@@ -1752,7 +1752,7 @@ namespace user
       if (pview->m_pdocument)
       {
 
-         throw_status(::error_invalid_argument);// must not be already attached
+         throw_status(::error_bad_argument);// must not be already attached
 
       }
 
@@ -1782,7 +1782,7 @@ namespace user
       if(pview->get_document() != this)
       {
 
-         throw_status(::error_invalid_argument); // must be attached to us
+         throw_status(::error_bad_argument); // must be attached to us
 
       }
 
@@ -1898,10 +1898,10 @@ namespace user
    }
 
 
-   void document::id_update_all_views(const ::id & id)
+   void document::id_update_all_views(const ::atom & atom)
    {
 
-      update_all_views(nullptr, id);
+      update_all_views(nullptr, atom);
 
    }
 
@@ -1921,7 +1921,7 @@ namespace user
 
             pview->handle(ptopic, nullptr);
 
-            if(ptopic->m_bRet)
+            if(ptopic->m_pextendedtopic->m_bRet)
             {
 
                break;
@@ -1943,10 +1943,10 @@ namespace user
    }
 
 
-   void document::update_all_views(impact * pimpactSender, const ::id & id)
+   void document::update_all_views(impact * pimpactSender, const ::atom & atom)
    {
 
-      auto ptopic = create_subject(id);
+      auto ptopic = create_subject(atom);
 
       ptopic->m_psender = pimpactSender;
 

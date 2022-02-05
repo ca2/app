@@ -34,7 +34,7 @@ public:
    __pointer(command_line)                                     m_pcommandline;
    __pointer(::matter)                                         m_pmatterUserPayload;
    ewindowflag                                                 m_ewindowflag;
-   ::id                                                        m_id;
+   ::atom                                                        m_id;
 
 
    create();
@@ -43,7 +43,7 @@ public:
 
    
    virtual void initialize_create(arguments arguments);
-   virtual void initialize_create(string strAppId, ::payload payloadFile, const ::payload& varOptions = __visible(true), ::user::primitive* puiParent = nullptr, ewindowflag eflag = e_window_flag_none, ::id = ::id());
+   virtual void initialize_create(string strAppId, ::payload payloadFile, const ::payload& varOptions = __visible(true), ::user::primitive* puiParent = nullptr, ewindowflag eflag = e_window_flag_none, ::atom = ::atom());
 
 
    void create_common_construct(const ::payload & varOptions, ::user::primitive * puiParent);

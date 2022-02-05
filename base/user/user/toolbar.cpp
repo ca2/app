@@ -86,15 +86,15 @@ namespace user
    }
 
 
-   //bool toolbar::create_interaction(::user::interaction * puiParent,u32 uStyle, ::id id)
+   //bool toolbar::create_interaction(::user::interaction * puiParent,u32 uStyle, ::atom atom)
    //{
 
-   //   return create_toolbar(puiParent, 0, uStyle, id);
+   //   return create_toolbar(puiParent, 0, uStyle, atom);
 
    //}
 
 
-//   bool toolbar::create_toolbar(::user::interaction * puiParent,u32 dwCtrlStyle,u32 uStyle, id nID)
+//   bool toolbar::create_toolbar(::user::interaction * puiParent,u32 dwCtrlStyle,u32 uStyle, atom nID)
 //   {
 //
 //      ASSERT_VALID(puiParent);   // must have a parent
@@ -1521,9 +1521,9 @@ return { 0,0 };
    // toolbar diagnostics
 
 
-   void toolbar::assert_valid() const
+   void toolbar::assert_ok() const
    {
-      // Note: ::user::control_bar::assert_valid is not called because it checks for
+      // Note: ::user::control_bar::assert_ok is not called because it checks for
       //  m_nCount and m_pData to be in synchronization_object, which they are not in toolbar.
 
       /*      ASSERT(m_hbmImageWell == nullptr ||
@@ -1777,7 +1777,7 @@ return { 0,0 };
 
             item = __new(::user::toolbar_item);
 
-            auto pattribute = pchild->find_attribute("id");
+            auto pattribute = pchild->find_attribute("atom");
 
             item->m_id = pattribute->string();
 

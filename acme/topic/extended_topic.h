@@ -41,7 +41,7 @@ public:
    //bool                                   m_bRet;
 
 
-   extended_topic(const ::id & id);
+   extended_topic(const ::atom & atom);
    ~extended_topic() override;
 
 
@@ -54,32 +54,32 @@ public:
 #endif
 
 
-   ::topic & operator=(const ::id & id)
+   ::topic & operator=(const ::atom & atom)
    {
 
-      m_id = id;
+      m_id = atom;
 
       return *this;
 
    }
 
 
-   inline bool operator==(const ::id & id) const { return m_id == id || m_id == FULL_ID; }
+   inline bool operator==(const ::atom & atom) const { return m_id == atom || m_id == FULL_ID; }
 
    operator topic *() { return this; }
 
    operator const topic *() const { return this; }
 
-   inline ::id &id() { return m_id; }
+   inline ::atom &atom() { return m_id; }
 
-   inline const ::id &id() const { return m_id; }
+   inline const ::atom &atom() const { return m_id; }
 
    void Ret();
    void Ok();
    void Nok();
 
 
-   ::id user_element_id() const;
+   ::atom user_element_id() const;
 
 
    virtual ::user::form * get_form();

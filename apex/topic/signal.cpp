@@ -2,11 +2,12 @@
 #include "framework.h"
 
 
-signal::signal(const ::id & id, ::manager * pmanager) :
-   ::material_object(id),
-   ::property_object(id),
-   ::object(id),
-   ::topic(id),
+signal::signal(const ::atom & atom, ::manager * pmanager) :
+   ::extended_topic(atom),
+   ::material_object(atom),
+   ::property_object(atom),
+   ::object(atom),
+   ::topic(atom),
    m_pmanager(pmanager)
 {
 
@@ -27,7 +28,7 @@ signal::~signal()
 i64 signal::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 {
 
-   return ::topic::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+   return ::extended_topic::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
 }
 
@@ -35,7 +36,7 @@ i64 signal::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DE
 i64 signal::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 {
 
-   return ::topic::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+   return ::extended_topic::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
 }
 
@@ -43,7 +44,7 @@ i64 signal::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DE
 i64 signal::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 {
 
-   return ::topic::release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+   return ::extended_topic::release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
 }
 
@@ -189,7 +190,7 @@ void signal::start_task()
 }
 
 
-//void topic::reset_update(const ::id & id)
+//void topic::reset_update(const ::atom & atom)
 //{
 //
 //

@@ -190,7 +190,7 @@ namespace ftp
          }
       };
 
-      /// Order by user id.
+      /// Order by user atom.
       class uid : public criteria
       {
       public:
@@ -200,7 +200,7 @@ namespace ftp
          }
       };
 
-      /// Order by group id.
+      /// Order by group atom.
       class gid : public criteria
       {
       public:
@@ -220,8 +220,8 @@ namespace ftp
          }
       };
 
-      /// Order by id.
-      class id : public criteria
+      /// Order by atom.
+      class atom : public criteria
       {
       public:
          virtual bool Compare(file_status & x, file_status & y) const override

@@ -268,15 +268,15 @@ namespace user
       dumpcontext << "\n";
    }
 
-   void multiple_document_template::assert_valid() const
+   void multiple_document_template::assert_ok() const
    {
-      impact_system::assert_valid();
+      impact_system::assert_ok();
 
       ::count count = get_document_count();
       for(index index = 0; index < count; index++)
       {
          __pointer(::user::document) pdocument = get_document(index);
-         pdocument->assert_valid();
+         pdocument->assert_ok();
       }
 
    }

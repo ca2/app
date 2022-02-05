@@ -25,10 +25,10 @@ namespace helloworld
    }
 
 
-   void switcher_view::assert_valid() const
+   void switcher_view::assert_ok() const
    {
 
-      ::user::split_view::assert_valid();
+      ::user::split_view::assert_ok();
 
    }
 

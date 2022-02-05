@@ -20,7 +20,7 @@ namespace userex
       public:
 
          ::index                 m_iIndex;
-         ::id                    m_idGroup;
+         ::atom                    m_idGroup;
          string                  m_strIcon;
          string                  m_strTitle;
          __pointer(image_list_view)     m_plist;
@@ -34,19 +34,19 @@ namespace userex
       ::user::button                m_buttonMenu;
       __pointer_array(group)                    m_groupa;
       __pointer(::user::menu)              m_pmenu;
-      ::id                          m_idGroup;
+      ::atom                          m_idGroup;
 
 
       group_image_list_view();
       virtual ~group_image_list_view();
 
 
-      void assert_valid() const override;
+      void assert_ok() const override;
 
       void dump(dump_context & dumpcontext) const override;
 
 
-      virtual ::userex::image_list_view * get_group_list(::id idGroup);
+      virtual ::userex::image_list_view * get_group_list(::atom idGroup);
 
       virtual ::file::path get_link_path(string strLink);
 
@@ -63,11 +63,11 @@ namespace userex
 
       virtual void on_command(::message::command * pcommand) override;
 
-      virtual ::userex::image_list_view * add_group(::id idGroup, string strIcon, string strTitle, ::file::path pathFolder = "");
+      virtual ::userex::image_list_view * add_group(::atom idGroup, string strIcon, string strTitle, ::file::path pathFolder = "");
 
       void set_current_item(const ::item & item, const ::action_context & action_context) override;
 
-      virtual bool show_group(::id idGroup, ::file::path pathFolder = "");
+      virtual bool show_group(::atom idGroup, ::file::path pathFolder = "");
 
       virtual void show_menu();
 
@@ -75,7 +75,7 @@ namespace userex
 
       ::userex::image_list_view * get_current_list();
 
-      virtual group * get_group(::id idGroup);
+      virtual group * get_group(::atom idGroup);
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
 

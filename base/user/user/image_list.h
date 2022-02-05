@@ -41,7 +41,7 @@ namespace user
 
 
 
-      void assert_valid() const override;
+      void assert_ok() const override;
       void dump(dump_context & dumpcontext) const override;
 
       virtual bool _001GetItemText(string & str, index iItem);
@@ -99,7 +99,7 @@ namespace user
       ~image_list_view() override;
 
 
-      void assert_valid() const override;
+      void assert_ok() const override;
       void dump(dump_context & dumpcontext) const override;
 
 #ifdef _DEBUG

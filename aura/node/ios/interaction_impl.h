@@ -36,7 +36,7 @@ namespace ios
 
       virtual void construct(oswindow hwnd);
 
-      void assert_valid() const override;
+      void assert_ok() const override;
       void dump(dump_context & dumpcontext) const override;
 
       virtual bool round_window_become_first_responder() override;
@@ -87,14 +87,14 @@ namespace ios
 
       using ::user::interaction_impl::create_window;
       // for child windows, views, panes etc
-      virtual bool create_window(::user::interaction * pinteraction, const ::string & pszClassName, const ::string & pszWindowName,u32 uStyle,const ::rectangle_i32 & rectangle,::user::interaction * puiParent,id id, ::create * pcreate = nullptr) override;
+      virtual bool create_window(::user::interaction * pinteraction, const ::string & pszClassName, const ::string & pszWindowName,u32 uStyle,const ::rectangle_i32 & rectangle,::user::interaction * puiParent,atom atom, ::create * pcreate = nullptr) override;
 
       // advanced creation (allows access to extended styles)
       virtual bool create_window_ex(
       ::user::interaction * pinteraction,
       __pointer(::user::system) pusersystem,
       ::user::interaction * puiParent,
-      id id) override;
+      atom atom) override;
 
       virtual bool _native_create_window_ex(::user::system& cs) override;
 
@@ -125,10 +125,10 @@ namespace ios
 
 #endif   // WINVER >= 0x0500
 
-//      LRESULT send_message(const ::id & id, WPARAM wParam = 0, lparam lParam = 0) override;
-  //    bool post_message(const ::id & id, WPARAM wParam = 0, lparam lParam = 0) override;
+//      LRESULT send_message(const ::atom & atom, WPARAM wParam = 0, lparam lParam = 0) override;
+  //    bool post_message(const ::atom & atom, WPARAM wParam = 0, lparam lParam = 0) override;
 
-      bool SendNotifyMessage(const ::id & id, WPARAM wParam, LPARAM lParam);
+      bool SendNotifyMessage(const ::atom & atom, WPARAM wParam, LPARAM lParam);
       bool SendChildNotifyLastMsg(LRESULT* pResult = nullptr);
 
       //bool DragDetect(POINT_I32 point_i32) const override;
@@ -257,8 +257,8 @@ namespace ios
       virtual bool SetForegroundWindow() override;
       static ::user::interaction * PASCAL GetForegroundWindow();
 
-      virtual id SetDlgCtrlId(id id) override;
-      virtual id GetDlgCtrlId();
+      virtual atom SetDlgCtrlId(atom atom) override;
+      virtual atom GetDlgCtrlId();
 
       virtual ::user::interaction *  GetFocus() override;
 
@@ -283,7 +283,7 @@ namespace ios
       virtual ::user::interaction * GetNextDlgGroupItem(::user::interaction * pWndCtl, bool bPrevious = false) const ;
       virtual ::user::interaction * GetNextDlgTabItem(::user::interaction * pWndCtl, bool bPrevious = false) const ;
       virtual ::u32 IsDlgButtonChecked(i32 nIDButton) const override;
-      virtual LRESULT SendDlgItemMessage(i32 nID, const ::id & id, WPARAM wParam = 0, LPARAM lParam = 0) override;
+      virtual LRESULT SendDlgItemMessage(i32 nID, const ::atom & atom, WPARAM wParam = 0, LPARAM lParam = 0) override;
       virtual void SetDlgItemInt(i32 nID, ::u32 nValue, bool bSigned = true) override;
       virtual void SetDlgItemText(i32 nID, const ::string & lpszString) override;
 
@@ -414,7 +414,7 @@ namespace ios
 
 
 
-      void OnParentNotify(const ::id & id, LPARAM lParam);
+      void OnParentNotify(const ::atom & atom, LPARAM lParam);
       HCURSOR OnQueryDragIcon();
       bool OnQueryEndSession();
       bool OnQueryNewPalette();
@@ -478,7 +478,7 @@ namespace ios
       void OnMButtonDblClk(::u32 nFlags, const ::point_i32 & point);
       void OnMButtonDown(::u32 nFlags, const ::point_i32 & point);
       void OnMButtonUp(::u32 nFlags, const ::point_i32 & point);
-      i32 OnMouseActivate(::user::interaction * pDesktopWnd, ::u32 nHitTest, const ::id & id);
+      i32 OnMouseActivate(::user::interaction * pDesktopWnd, ::u32 nHitTest, const ::atom & atom);
       void OnMouseMove(::u32 nFlags, const ::point_i32 & point);
       bool OnMouseWheel(::u32 nFlags, short zDelta, const ::point_i32 & point);
       LRESULT OnRegisteredMouseWheel(WPARAM wParam, LPARAM lParam);
@@ -560,18 +560,18 @@ namespace ios
 
       // for processing oswindows messages
       virtual void message_handler(::user::message * pusermessage) override;
-      //virtual bool OnWndMsg(const ::id & id, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
+      //virtual bool OnWndMsg(const ::atom & atom, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
 
       // for handling default processing
 //      LRESULT Default() override;
-  //    virtual LRESULT DefWindowProc(const ::id & id, WPARAM wParam, ::lparam lParam) override;
+  //    virtual LRESULT DefWindowProc(const ::atom & atom, WPARAM wParam, ::lparam lParam) override;
 
       virtual void post_non_client_destroy() override;
 
       // for notifications from parent
-      virtual bool OnChildNotify(const ::id & id, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
+      virtual bool OnChildNotify(const ::atom & atom, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
       // return true if parent should not process this message
-      bool ReflectChildNotify(const ::id & id, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
+      bool ReflectChildNotify(const ::atom & atom, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
       static bool PASCAL ReflectLastMsg(oswindow hWndChild, LRESULT* pResult = nullptr);
 
       virtual bool CheckAutoCenter() override;

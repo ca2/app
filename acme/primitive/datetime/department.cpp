@@ -675,7 +675,7 @@ namespace datetime
          return 30;
       }
       
-      throw ::exception(error_invalid_argument);
+      throw ::exception(error_bad_argument);
 
 
    }
@@ -1205,15 +1205,15 @@ namespace datetime
    result department::span_parse_time(const ::text::context* pcontext, const string & strSpanExpression, const ::time_shift & timeshift)
    {
 
-      static id idCalendarDay("calendar:day");
-      static id idCalendarDays("calendar:days");
-      static id idCalendarWeek("calendar:week");
-      static id idCalendarWeeks("calendar:weeks");
-      static id idCalendarYear("calendar:year");
-      static id idCalendarYears("calendar:years");
-      static id idCalendarHour("calendar:hour");
-      static id idCalendarHours("calendar:hours");
-      static id idCalendarNow("calendar:now");
+      static atom idCalendarDay("calendar:day");
+      static atom idCalendarDays("calendar:days");
+      static atom idCalendarWeek("calendar:week");
+      static atom idCalendarWeeks("calendar:weeks");
+      static atom idCalendarYear("calendar:year");
+      static atom idCalendarYears("calendar:years");
+      static atom idCalendarHour("calendar:hour");
+      static atom idCalendarHours("calendar:hours");
+      static atom idCalendarNow("calendar:now");
 
       result time;
       time.m_bSpan = true;
@@ -1267,7 +1267,7 @@ namespace datetime
                   || (pcontext != nullptr && pcontext->matches(idCalendarNow, strText1)))
                {
                   
-                  __throw(error_invalid_argument, "now cannot be span");
+                  __throw(error_bad_argument, "now cannot be span");
 
                }
                else if (strText1.compare_ci("UTC") == 0)

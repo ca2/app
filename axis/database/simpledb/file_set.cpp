@@ -51,7 +51,7 @@ namespace simpledb
 
       __construct_new(pbaRecursive);
 
-      if (!data_get(::id(), ppatha))
+      if (!data_get(::atom(), ppatha))
       {
 
          return;
@@ -78,7 +78,7 @@ namespace simpledb
    void file_set::add_search(const ::file::path & pathSearchFolder, bool bRecursive)
    {
 
-      data_get(::id(), m_ppathaSearch);
+      data_get(::atom(), m_ppathaSearch);
 
       data_get("recursive", m_pbaRecursive);
 
@@ -95,7 +95,7 @@ namespace simpledb
 
          m_pbaRecursive->add(bRecursive);
 
-         data_set(::id(), m_ppathaSearch);
+         data_set(::atom(), m_ppathaSearch);
 
          data_set("recursive", m_pbaRecursive);
 
@@ -117,7 +117,7 @@ namespace simpledb
 
       ::file::set::clear_search();
 
-      data_set(::id(), ::payload(e_type_new));
+      data_set(::atom(), ::payload(e_type_new));
 
       data_set("recursive", ::payload(e_type_new));
 

@@ -947,7 +947,7 @@ namespace universal_windows
    }
 
 
-   //void os_context::post_to_all_threads(const ::id & id, WPARAM wparam, LPARAM lparam)
+   //void os_context::post_to_all_threads(const ::atom & atom, WPARAM wparam, LPARAM lparam)
    //{
 
 

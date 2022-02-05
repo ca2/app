@@ -3,7 +3,7 @@
 #include "acme/node/operating_system/x11/_x11.h"
 #include "acme/node/operating_system/xcb/_xcb.h"
 #include "_linux.h"
-#include "acme/constant/id.h"
+#include "acme/id.h"
 #include "acme/constant/message.h"
 //#include "third/sn/sn.h"
 #include <fcntl.h> // library for fcntl function
@@ -59,7 +59,7 @@ void xcb_check_status(int status, unsigned long window)
    if (status == BadWindow)
    {
 
-      printf("window id # 0x%lx does not exists!", window);
+      printf("window atom # 0x%lx does not exists!", window);
       //   exit(1);
 
    }

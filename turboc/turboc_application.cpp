@@ -153,7 +153,7 @@ namespace turboc
       /*
 
       {
-      id lowvalue;
+      atom lowvalue;
       {
       string str = "ABC";
       lowvalue = str.lower();

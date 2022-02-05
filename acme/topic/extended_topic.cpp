@@ -7,10 +7,10 @@
 #include "acme/user/element.h"
 
 
-extended_topic::extended_topic(const ::id & id) :
-   ::material_object(id),
-   ::property_object(id),
-   ::object(id)
+extended_topic::extended_topic(const ::atom & atom) :
+   ::material_object(atom),
+   ::property_object(atom),
+   ::object(atom)
 {
 
    m_bOk = true;
@@ -164,13 +164,13 @@ void extended_topic::Ok()
 }
 
 
-::id extended_topic::user_element_id() const
+::atom extended_topic::user_element_id() const
 {
 
    if (::is_null(m_puserelement))
    {
 
-      return ::id::e_type_null;
+      return ::atom::e_type_null;
 
    }
 

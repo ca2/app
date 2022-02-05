@@ -8,7 +8,7 @@
 #include "acme/parallelization/message_queue.h"
 
 
-int_bool post_message(oswindow oswindow, const ::id & id, WPARAM wparam, LPARAM lparam)
+int_bool post_message(oswindow oswindow, const ::atom & atom, WPARAM wparam, LPARAM lparam)
 {
 
    return message_queue_post(oswindow, message, wparam, lparam);

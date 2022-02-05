@@ -154,7 +154,7 @@ namespace user
 
       
 
-      void assert_valid() const override;
+      void assert_ok() const override;
       void dump(dump_context & dumpcontext) const override;
 
       virtual void set_prodevian_fps(double dProdevianFps);
@@ -326,7 +326,7 @@ namespace user
 
 
       // advanced creation (allows access to extended styles)
-      //virtual bool create_window_ex(::user::interaction * pinteraction, __pointer(::user::system) pcs, ::user::primitive * puiParent, id id) override;
+      //virtual bool create_window_ex(::user::interaction * pinteraction, __pointer(::user::system) pcs, ::user::primitive * puiParent, atom atom) override;
 
       //virtual bool create_interaction() override;
 
@@ -365,7 +365,7 @@ namespace user
 
 #endif   // WINVER >= 0x0500
 
-      virtual lresult send_message(const ::id& id, wparam wParam = 0, lparam lParam = 0, const ::point_i32 & point = nullptr) override;
+      virtual lresult send_message(const ::atom& atom, wparam wParam = 0, lparam lParam = 0, const ::point_i32 & point = nullptr) override;
 
 
 //#ifdef LINUX
@@ -375,7 +375,7 @@ namespace user
 //#endif
 
 
-      void post_message(const ::id & id,wparam wParam = 0,lparam lParam = 0) override;
+      void post_message(const ::atom & atom,wparam wParam = 0,lparam lParam = 0) override;
 
 
       //virtual bool SendNotifyMessage(::u32 message,wparam wParam,lparam lParam);

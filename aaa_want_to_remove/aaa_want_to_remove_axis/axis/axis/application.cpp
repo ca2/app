@@ -69,10 +69,10 @@ namespace axis
    }
 
 
-   void application::assert_valid() const
+   void application::assert_ok() const
    {
 
-      thread::assert_valid();
+      thread::assert_ok();
 
 
    }
@@ -86,40 +86,40 @@ namespace axis
    }
 
 
-   string application::load_string(const ::id & id)
+   string application::load_string(const ::atom & atom)
    {
 
       synchronous_lock synchronouslock(&m_mutexStr);
 
       string str;
 
-      if(m_stringmap.lookup(id, str))
+      if(m_stringmap.lookup(atom, str))
       {
 
          return str;
 
       }
 
-      if(!load_string(str,id))
+      if(!load_string(str,atom))
       {
 
-         id.to_string(str);
+         atom.to_string(str);
 
          return str;
 
       }
 
-      m_stringmap.set_at(id, str);
+      m_stringmap.set_at(atom, str);
 
       return str;
 
    }
 
 
-   bool application::load_string(string & str,const ::id & id)
+   bool application::load_string(string & str,const ::atom & atom)
    {
 
-      if(!load_cached_string(str,id,true))
+      if(!load_cached_string(str,atom,true))
       {
 
          return false;
@@ -131,15 +131,15 @@ namespace axis
    }
 
 
-   bool application::load_cached_string(string & str,const ::id & id,bool bLoadStringTable)
+   bool application::load_cached_string(string & str,const ::atom & atom,bool bLoadStringTable)
    {
 
       auto pdocument = __new(::xml::document);
 
-      if(!pdocument->load(id))
+      if(!pdocument->load(atom))
       {
 
-         return load_cached_string_by_id(str,id,bLoadStringTable);
+         return load_cached_string_by_id(str,atom,bLoadStringTable);
 
       }
 
@@ -148,7 +148,7 @@ namespace axis
       if(pnodeRoot->get_name() == "string")
       {
 
-         string strId = pnodeRoot->attribute("id");
+         string strId = pnodeRoot->attribute("atom");
 
          if (!load_cached_string_by_id(str, strId, bLoadStringTable))
          {
@@ -166,10 +166,10 @@ namespace axis
    }
 
 
-   bool application::load_cached_string_by_id(string & str,const ::id & id,bool bLoadStringTable)
+   bool application::load_cached_string_by_id(string & str,const ::atom & atom,bool bLoadStringTable)
    {
 
-      string strId(id.str());
+      string strId(atom.str());
 
       string strTable;
 
@@ -225,7 +225,7 @@ namespace axis
 
          load_string_table(strTable,"");
 
-         return load_cached_string_by_id(str,id,false);
+         return load_cached_string_by_id(str,atom,false);
 
       }
 
@@ -1596,34 +1596,34 @@ pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition"
 
    //}
 
-   //bool application::app_data_set(::const ::id & id, stream & stream)
+   //bool application::app_data_set(::const ::atom & atom, stream & stream)
    //{
 
-   //   return data_save(id, stream);
+   //   return data_save(atom, stream);
 
    //}
 
 
-   //bool application::app_data_get(::const ::id & id, stream & stream)
+   //bool application::app_data_get(::const ::atom & atom, stream & stream)
    //{
 
-   //   return data_get(id, stream);
+   //   return data_get(atom, stream);
 
    //}
 
 
-   //bool application::app_data_set(::const ::id & id, ::object & obj)
+   //bool application::app_data_set(::const ::atom & atom, ::object & obj)
    //{
 
-   //   return data_set(id, obj);
+   //   return data_set(atom, obj);
 
    //}
 
 
-   //bool application::app_data_get(::const ::id & id, ::object & obj)
+   //bool application::app_data_get(::const ::atom & atom, ::object & obj)
    //{
 
-   //   return data_get(id, obj);
+   //   return data_get(atom, obj);
 
    //}
 

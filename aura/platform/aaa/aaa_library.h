@@ -65,7 +65,7 @@ namespace aura
       virtual bool contains_app(const ::string & pszAppId);
 
 
-      virtual void get_create_view_id_list(::array < id > & ida);
+      virtual void get_create_view_id_list(::array < atom > & ida);
 
 
       virtual string get_root();

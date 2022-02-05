@@ -53,7 +53,7 @@ i64 manager::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 #endif
 
 
-class ::signal * manager::get_signal(const ::id & id, const ::action_context& actioncontext)
+class ::signal * manager::get_signal(const ::atom & atom, const ::action_context& actioncontext)
 {
 
    synchronous_lock synchronouslock(mutex());
@@ -65,20 +65,20 @@ class ::signal * manager::get_signal(const ::id & id, const ::action_context& ac
 
    }
 
-   auto & psignal = (*m_psignalmap)[id];
+   auto & psignal = (*m_psignalmap)[atom];
 
    bool bNew = false;
 
    if (!psignal)
    {
 
-      psignal = __new(class ::signal(id, this));
+      psignal = __new(class ::signal(atom, this));
 
       psignal->initialize(this);
 
       auto psystem = m_psystem;
 
-      psignal->m_durationSleep = psystem->get_update_poll_time(id);
+      psignal->m_durationSleep = psystem->get_update_poll_time(atom);
 
       auto pnode = psystem->node();
 
@@ -122,10 +122,10 @@ class ::signal * manager::get_signal(const ::id & id, const ::action_context& ac
 }
 
 
-//   ::topic::subject_pointer manager::fork_subject(const ::id & id)
+//   ::topic::subject_pointer manager::fork_subject(const ::atom & atom)
 //   {
 //
-//      auto ptopic = this->topic(id);
+//      auto ptopic = this->topic(atom);
 //
 //      return ptopic;
 //
@@ -140,10 +140,10 @@ void manager::__s_erase_signal_handler_from_any_source(::matter* pmatter)
 }
 
 
-//   void manager::deliver(const ::id &id)
+//   void manager::deliver(const ::atom &atom)
 //   {
 //
-//      auto ptopic = topic(id);
+//      auto ptopic = topic(atom);
 //
 //      if(ptopic)
 //      {
@@ -155,20 +155,20 @@ void manager::__s_erase_signal_handler_from_any_source(::matter* pmatter)
 //   }
 
 
-//   void manager::deliver(const ::id &id, const ::action_context &actioncontext)
+//   void manager::deliver(const ::atom &atom, const ::action_context &actioncontext)
 //   {
 //
 //      aut
 //
-//      topic(id)->deliver();
+//      topic(atom)->deliver();
 //
 //   }
 
 
-//   void manager::process_subject(const ::id &id)
+//   void manager::process_subject(const ::atom &atom)
 //   {
 //
-//      auto ptopic = topic(id);
+//      auto ptopic = topic(atom);
 //
 //      if (ptopic->m_bNewSubject)
 //      {
@@ -182,39 +182,39 @@ void manager::__s_erase_signal_handler_from_any_source(::matter* pmatter)
 //   }
 
 
-//   void manager::process_subject(const ::id &id, const ::action_context &actioncontext)
+//   void manager::process_subject(const ::atom &atom, const ::action_context &actioncontext)
 //   {
 //
-//      auto ptopic = topic(id);
+//      auto ptopic = topic(atom);
 //
-//      ptopic->m_actioncontext = actioncontext;
+//      ptopic->m_pextendedtopic->m_actioncontext = actioncontext;
 //
 //      process(ptopic);
 //
 //   }
 
    
-void manager::signal(const ::id & id, const ::action_context & actioncontext)
+void manager::signal(const ::atom & atom, const ::action_context & actioncontext)
 {
 
-   auto psignal = get_signal(id, actioncontext);
+   auto psignal = get_signal(atom, actioncontext);
 
    psignal->notify();
 
    //handle(psignal, nullptr);
 
-   //ptopic->m_etopic = id_handle;
+   //ptopic->m_id = id_handle;
 
    //signal(ptopic);
 
-   //if(ptopic->m_etopic == id_not_modified)
+   //if(ptopic->m_id == id_not_modified)
    //{
 
    //   return;
 
    //}
 
-   //ptopic->m_etopic = id_notify;
+   //ptopic->m_id = id_notify;
 
    //ptopic->notify();
 
@@ -235,25 +235,25 @@ void manager::on_property_changed(property * pproperty, const ::action_context &
 //void manager::signal(::signal * psignal)
 //{
 //
-////      if (ptopic->m_etopic == id_prepare)
+////      if (ptopic->m_id == id_prepare)
 ////      {
 ////
 ////         //on_subject(ptopic);
 ////
-////         ptopic->m_etopic = id_process;
+////         ptopic->m_id = id_process;
 ////
 ////      }
 ////
-////      if (ptopic->m_etopic == id_process)
+////      if (ptopic->m_id == id_process)
 ////      {
 ////
 ////         //on_subject(ptopic);
 ////
-////         ptopic->m_etopic = id_deliver;
+////         ptopic->m_id = id_deliver;
 ////
 ////      }
 ////
-////      if (ptopic->m_etopic == id_deliver)
+////      if (ptopic->m_id == id_deliver)
 ////      {
 ////
 ////         ptopic->deliver();
@@ -263,37 +263,37 @@ void manager::on_property_changed(property * pproperty, const ::action_context &
 //}
 
 
-//   void manager::process_subject(const ::id &id, const ::payload & payload)
+//   void manager::process_subject(const ::atom &atom, const ::payload & payload)
 //   {
 //
-//      auto ptopic = topic(id);
+//      auto ptopic = topic(atom);
 //
-//      ptopic->m_payload = payload;
+//      ptopic->m_pextendedtopic->m_payload = payload;
 //
 //      process(ptopic);
 //
 //   }
 
 
-//   void manager::set_modified(const ::id &id)
+//   void manager::set_modified(const ::atom &atom)
 //   {
 //
-//      auto ptopic = topic(id);
+//      auto ptopic = topic(atom);
 //
 //      if (::is_set(ptopic))
 //      {
 //
-//         ptopic->set_modified();
+//         ptopic->m_pextendedtopic->set_modified();
 //
 //      }
 //
 //   }
 
 
-//   void manager::delivery_for(const ::id &id, ::matter *pmatter, bool bForkWhenNotify)
+//   void manager::delivery_for(const ::atom &atom, ::matter *pmatter, bool bForkWhenNotify)
 //   {
 //
-//      auto ptopic = topic(id);
+//      auto ptopic = topic(atom);
 //
 //      if (::is_set(ptopic))
 //      {
@@ -305,29 +305,29 @@ void manager::on_property_changed(property * pproperty, const ::action_context &
 //   }
 
 
-//   void manager::erase_subject(const ::id &id, ::matter *pmatter)
+//   void manager::erase_subject(const ::atom &atom, ::matter *pmatter)
 //   {
 //
-//      topic(id)->erase(pmatter);
+//      topic(atom)->erase(pmatter);
 //
 //   }
 
 
-//subject_pointer manager::topic(const ::id &id, ::matter *pmatter)
+//subject_pointer manager::topic(const ::atom &atom, ::matter *pmatter)
 //{
 
 
-//   auto ptopic = __new(::topic(id, pmatter));
+//   auto ptopic = __new(::topic(atom, pmatter));
 
 //   return ptopic;
 
 //}
 
 
-//   action_pointer source::topic(const ::id &id, ::matter *pmatter)
+//   action_pointer source::topic(const ::atom &atom, ::matter *pmatter)
 //   {
 //
-//      auto pupdate = update(id);
+//      auto pupdate = update(atom);
 //
 //      auto ptopic = ::new_action(pupdate, pmatter);
 //
@@ -430,11 +430,11 @@ bool manager::__s_may_run_signal_handling()
 
  
 
-   //manager::manager(::manager * pmanager, const ::id & id) :
+   //manager::manager(::manager * pmanager, const ::atom & atom) :
    //   m_pbacking(pbacking)
    //{
 
-   //   //m_id = id;
+   //   //m_id = atom;
 
    //   m_iUpdateSerial = -1;
 

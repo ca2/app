@@ -3,7 +3,7 @@
 #include "apex/platform/app_core.h"
 
 
-// typedef int (WINAPI * LPFN_ChangeWindowMessageFilter)(const ::id & id, ::u32 dwFlag);
+// typedef int (WINAPI * LPFN_ChangeWindowMessageFilter)(const ::atom & atom, ::u32 dwFlag);
 
 
 //extern LPFN_ChangeWindowMessageFilter g_pfnChangeWindowMessageFilter;

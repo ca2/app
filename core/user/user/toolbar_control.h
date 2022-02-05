@@ -25,7 +25,7 @@ namespace user
 
 
       //using ::user::interaction::create_window;
-      //bool create_window(u32 uStyle, const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, ::id id);
+      //bool create_window(u32 uStyle, const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, ::atom atom);
       //bool create_child(::user::interaction * puserinteraction);
 
 

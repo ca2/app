@@ -233,7 +233,7 @@ namespace sockets
       }
       ::str::parse pa(line,":");
       string strKey = pa.getword();
-      id key(strKey.make_lower());
+      atom key(strKey.make_lower());
       string value = pa.getrest();
       OnHeader(key, value);
       if(key == __id(content_length))
@@ -456,7 +456,7 @@ namespace sockets
 
    }
 
-   void sip_base_client_socket::OnHeader(id key, const string & value)
+   void sip_base_client_socket::OnHeader(atom key, const string & value)
    {
       //sip_base_client_socket::OnHeader(key, value);
       FORMATTED_TRACE("  (request)OnHeader %s: %s\n", (const ::string &) string(key), (const ::string &) value);

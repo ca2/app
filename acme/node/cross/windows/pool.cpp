@@ -18,10 +18,10 @@ task_pool::~task_pool()
 }
 
 
-task_pointer & task_pool::defer_start(const ::id& id, const ::routine & routine)
+task_pointer & task_pool::defer_start(const ::atom& atom, const ::routine & routine)
 {
 
-   auto& pthread = task(id);
+   auto& pthread = task(atom);
 
    auto estatus = __defer_construct(pthread);
 

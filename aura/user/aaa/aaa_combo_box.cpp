@@ -942,10 +942,10 @@ namespace user
    }
 
 
-   bool combo_box::create_window(::user::interaction * puiParent, const ::id & id)
+   bool combo_box::create_window(::user::interaction * puiParent, const ::atom & atom)
    {
 
-      if (!::user::plain_edit::create_window(puiParent, id))
+      if (!::user::plain_edit::create_window(puiParent, atom))
       {
 
          return false;
@@ -1674,7 +1674,7 @@ namespace user
       if(ptopic->m_id == ::id_after_change_cur_sel)
       {
 
-         if(ptopic->user_interaction() == m_plist)
+         if(ptopic->m_pextendedtopic->user_interaction() == m_plist)
          {
 
             if (ptopic->m_item == e_element_item)

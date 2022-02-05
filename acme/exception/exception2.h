@@ -26,7 +26,7 @@ inline errno_t c_runtime_error_check(errno_t error)
             break;
         case EINVAL:
         case ERANGE:
-            __throw(error_invalid_argument);
+            __throw(error_bad_argument);
             break;
 #if defined(WINDOWS)
         case STRUNCATE:
@@ -34,7 +34,7 @@ inline errno_t c_runtime_error_check(errno_t error)
         case 0:
             break;
         default:
-            __throw(error_invalid_argument);
+            __throw(error_bad_argument);
             break;
     }
     return error;

@@ -49,9 +49,9 @@
 //
 //
 //
-//void string_list::assert_valid() const
+//void string_list::assert_ok() const
 //{
-//   matter::assert_valid();
+//   matter::assert_ok();
 //
 //   if (m_count == 0)
 //   {

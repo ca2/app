@@ -937,16 +937,16 @@ namespace user
       if (ptopic->m_id == ::id_after_change_cur_sel)
       {
 
-         auto puserinteraction = ptopic->user_interaction();
+         auto puserinteraction = ptopic->m_pextendedtopic->user_interaction();
 
          if (puserinteraction == m_plistbox)
          {
 
-            set_current_item(ptopic->m_item, ptopic->m_actioncontext);
+            set_current_item(ptopic->m_pextendedtopic->m_item, ptopic->m_pextendedtopic->m_actioncontext);
 
             _001ShowDropDown(false);
 
-            ptopic->Ret();
+            ptopic->m_pextendedtopic->Ret();
 
             set_need_redraw();
 
@@ -963,10 +963,10 @@ namespace user
    }
 
 
-   //bool combo_box::create_interaction(::user::interaction * puiParent, const ::id & id)
+   //bool combo_box::create_interaction(::user::interaction * puiParent, const ::atom & atom)
    //{
 
-   //   if (!::user::plain_edit::create_interaction(puiParent, id))
+   //   if (!::user::plain_edit::create_interaction(puiParent, atom))
    //   {
 
    //      return false;
@@ -1548,12 +1548,12 @@ namespace user
    //   if(ptopic->m_id == ::id_after_change_cur_sel)
    //   {
 
-   //      auto puserinteraction = ptopic->user_interaction();
+   //      auto puserinteraction = ptopic->m_pextendedtopic->user_interaction();
 
    //      if(puserinteraction == m_plistbox)
    //      {
 
-   //         set_current_item(ptopic->m_item, ptopic->m_actioncontext);
+   //         set_current_item(ptopic->m_item, ptopic->m_pextendedtopic->m_actioncontext);
 
    //         _001ShowDropDown(false);
 

@@ -5,9 +5,9 @@
 //
 // Compose, Construct, Create, Refer and Add_Reference
 //
-// __create        // return __pointer(BASE_TYPE)          // _id id   // _new TYPE
-// __compose       // __composite(BASE_TYPE) &             // _id id   // _new TYPE  // SOURCE &&
-// __construct     // __pointer(BASE_TYPE) &               // _id id   // _new TYPE  // SOURCE &&
+// __create        // return __pointer(BASE_TYPE)          // _id atom   // _new TYPE
+// __compose       // __composite(BASE_TYPE) &             // _id atom   // _new TYPE  // SOURCE &&
+// __construct     // __pointer(BASE_TYPE) &               // _id atom   // _new TYPE  // SOURCE &&
 // __refer         // __reference(BASE_TYPE) & SOURCE &&
 // add_reference   // SOURCE &&
 //
@@ -26,7 +26,7 @@
 //inline __pointer(BASE_TYPE) __create();
 //
 //template < typename BASE_TYPE >
-//inline __pointer(BASE_TYPE) __id_create(const ::id & id);
+//inline __pointer(BASE_TYPE) __id_create(const ::atom & atom);
 //
 //template < typename TYPE >
 //inline __pointer(TYPE) __create_new();
@@ -50,7 +50,7 @@
 //// inline void __compose(OBJECT && pobject, __composite(BASE_TYPE) & pownership, const ::member < SOURCE > & psource);
 //
 //// template < typename OBJECT, typename BASE_TYPE >
-//// inline void __id_compose(OBJECT && pobject, __composite(BASE_TYPE) & pownership, const ::id & id);
+//// inline void __id_compose(OBJECT && pobject, __composite(BASE_TYPE) & pownership, const ::atom & atom);
 //
 //// template < typename OBJECT, typename BASE_TYPE >
 //// inline void __id_compose(OBJECT && pobject, __composite(BASE_TYPE) & pownership, const ::type & type);
@@ -74,7 +74,7 @@
 //// inline void __defer_compose(OBJECT && pobject, __composite(BASE_TYPE) & pownership, const ::member < SOURCE > & psource);
 //
 //// template < typename OBJECT, typename BASE_TYPE >
-//// inline void __defer_id_compose(OBJECT && pobject, __composite(BASE_TYPE) & pownership, const ::id & id);
+//// inline void __defer_id_compose(OBJECT && pobject, __composite(BASE_TYPE) & pownership, const ::atom & atom);
 //
 //// //template < typename OBJECT, typename BASE_TYPE >
 //// //inline void __defer_id_compose(OBJECT && pobject, __composite(BASE_TYPE) & pownership, const ::type & type);
@@ -101,7 +101,7 @@
 //// inline void __defer_refer(OBJECT && pobject, __reference(BASE_TYPE) & pcomposite, const ::member < SOURCE > & psource);
 //
 //// template < typename OBJECT, typename BASE_TYPE >
-//// inline void __id_compose(OBJECT && pobject, __reference(BASE_TYPE) & pcomposite, const ::id & id);
+//// inline void __id_compose(OBJECT && pobject, __reference(BASE_TYPE) & pcomposite, const ::atom & atom);
 //
 ////template < typename OBJECT, typename BASE_TYPE >
 ////inline void __id_compose(OBJECT && pobject, __reference(BASE_TYPE) & pcomposite, const ::type & type);
@@ -116,10 +116,10 @@
 //inline void __defer_construct(__pointer(BASE_TYPE) & pusermessage);
 //
 //template < typename BASE_TYPE >
-//inline void __id_construct(__pointer(BASE_TYPE) & pusermessage, const ::id & id);
+//inline void __id_construct(__pointer(BASE_TYPE) & pusermessage, const ::atom & atom);
 //
 //template < typename BASE_TYPE >
-//inline void __defer_id_construct(__pointer(BASE_TYPE) & pusermessage, const ::id & id);
+//inline void __defer_id_construct(__pointer(BASE_TYPE) & pusermessage, const ::atom & atom);
 //
 //template < typename TYPE >
 //inline void __construct_new(__pointer(TYPE) & ptype);

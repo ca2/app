@@ -159,10 +159,10 @@ inline prodevian::prodevian(::user::interaction* pinteraction) :
 //
 //
 //   template < class VIEW >
-//   inline __pointer(VIEW) split_view::create_pane_view(index iPane, id id, ::user::interaction* pviewLast)
+//   inline __pointer(VIEW) split_view::create_pane_view(index iPane, atom atom, ::user::interaction* pviewLast)
 //   {
 //
-//      return create_view < VIEW >(get_pane_holder(iPane), id, pviewLast);
+//      return create_view < VIEW >(get_pane_holder(iPane), atom, pviewLast);
 //
 //   }
 //
@@ -181,19 +181,19 @@ inline prodevian::prodevian(::user::interaction* pinteraction) :
 //
 //
 //   template < class VIEW >
-//   inline __pointer(VIEW) impact::create_view(::user::document* pdocument, ::user::interaction* puserinteractionParent, id id, ::user::interaction* pviewLast, ::user::impact_data* pimpactdata)
+//   inline __pointer(VIEW) impact::create_view(::user::document* pdocument, ::user::interaction* puserinteractionParent, atom atom, ::user::interaction* pviewLast, ::user::impact_data* pimpactdata)
 //   {
 //
-//      return create_view(__type(VIEW), pdocument, puserinteractionParent, id, pviewLast, pimpactdata);
+//      return create_view(__type(VIEW), pdocument, puserinteractionParent, atom, pviewLast, pimpactdata);
 //
 //   }
 //
 //
 //   template < class VIEW >
-//   inline __pointer(VIEW) impact::create_view(::user::interaction* puserinteractionParent, id id, ::user::interaction* pviewLast, ::user::impact_data* pimpactdata)
+//   inline __pointer(VIEW) impact::create_view(::user::interaction* puserinteractionParent, atom atom, ::user::interaction* pviewLast, ::user::impact_data* pimpactdata)
 //   {
 //
-//      return create_view < VIEW >(get_document(), puserinteractionParent, id, pviewLast, pimpactdata);
+//      return create_view < VIEW >(get_document(), puserinteractionParent, atom, pviewLast, pimpactdata);
 //
 //   }
 //
@@ -247,9 +247,9 @@ inline prodevian::prodevian(::user::interaction* pinteraction) :
 
 
 
-//inline bool thread::has_property(const ::id& id) const { return command() && has_property(id); }
-//inline ::payload thread::command_value(const ::id& id) const { return has_property(id) ? (const ::payload&)&command()->m_varQuery[id] : (const ::payload&)e_type_new; }
-//inline bool thread::command_value_is_true(const ::id& id) const { return has_property(id) ? command()->m_varQuery.is_true(id) : false; }
+//inline bool thread::has_property(const ::atom& atom) const { return command() && has_property(atom); }
+//inline ::payload thread::command_value(const ::atom& atom) const { return has_property(atom) ? (const ::payload&)&command()->m_varQuery[atom] : (const ::payload&)e_type_new; }
+//inline bool thread::command_value_is_true(const ::atom& atom) const { return has_property(atom) ? command()->m_varQuery.is_true(atom) : false; }
 
 
 

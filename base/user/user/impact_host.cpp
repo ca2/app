@@ -84,10 +84,10 @@ namespace user
    }
 
 
-   id impact_host::get_view_id()
+   atom impact_host::get_view_id()
    {
 
-      return id(::e_type_empty);
+      return atom(::e_type_empty);
 
    }
 
@@ -120,22 +120,22 @@ namespace user
    }
 
 
-   impact_data * impact_host::new_impact_data(const id & id, const ::id & idTitle)
+   impact_data * impact_host::new_impact_data(const atom & atom, const ::atom & idTitle)
    {
 
-      auto pimpactdata  = __new(::user::impact_data(id, idTitle));
+      auto pimpactdata  = __new(::user::impact_data(atom, idTitle));
 
-      m_impactdatamap[id] = pimpactdata;
+      m_impactdatamap[atom] = pimpactdata;
 
       return pimpactdata;
 
    }
 
 
-   impact_data * impact_host::allocate_impact_data(const id & id, const ::id & idTitle)
+   impact_data * impact_host::allocate_impact_data(const atom & atom, const ::atom & idTitle)
    {
 
-      impact_data * pimpactdata = new_impact_data(id, idTitle);
+      impact_data * pimpactdata = new_impact_data(atom, idTitle);
 
       try
       {
@@ -185,10 +185,10 @@ namespace user
    }
 
 
-   impact_data * impact_host::create_impact(const ::id & id, const ::string & strTitle,  impact_creator * pcreator)
+   impact_data * impact_host::create_impact(const ::atom & atom, const ::string & strTitle,  impact_creator * pcreator)
    {
 
-      impact_data * pimpactdata = allocate_impact_data(id, strTitle);
+      impact_data * pimpactdata = allocate_impact_data(atom, strTitle);
 
       try
       {
@@ -199,7 +199,7 @@ namespace user
       catch (const exception& exception)
       {
 
-         if (exception.m_id == id)
+         if (exception.m_id == atom)
          {
 
             //::acme::del(pimpactdata);
@@ -337,7 +337,7 @@ namespace user
 
 
 /*
-   ::user::impact_data * impact_host::get_impact_data(const id& id, bool bCallOnCreateImpact)
+   ::user::impact_data * impact_host::get_impact_data(const atom& atom, bool bCallOnCreateImpact)
    {
 
       if(!bCallOnCreateImpact)
@@ -345,21 +345,21 @@ namespace user
 
          synchronous_lock synchronouslock(mutex());
 
-         return m_impactdatamap[id];
+         return m_impactdatamap[atom];
 
       }
 
       auto rectangleClient = get_child_rect();
 
-      return get_impact_data(id, rectangleClient, bCallOnCreateImpact);
+      return get_impact_data(atom, rectangleClient, bCallOnCreateImpact);
 
    }*/
 
 
-   ::user::impact_data * impact_host::get_impact_data(const id& id,bool bCallOnCreateImpact)
+   ::user::impact_data * impact_host::get_impact_data(const atom& atom,bool bCallOnCreateImpact)
    {
 
-      auto & pimpactdata = m_impactdatamap[id];
+      auto & pimpactdata = m_impactdatamap[atom];
 
       if (pimpactdata != nullptr)
       {
@@ -371,13 +371,13 @@ namespace user
       if (!bCallOnCreateImpact)
       {
 
-         pimpactdata = allocate_impact_data(id, "");
+         pimpactdata = allocate_impact_data(atom, "");
 
          return pimpactdata;
 
       }
 
-      pimpactdata = create_impact(id, "");
+      pimpactdata = create_impact(atom, "");
 
       if (pimpactdata == nullptr)
       {
@@ -512,10 +512,10 @@ namespace user
 
    }
 
-   ::user::impact_data * impact_host::impact_host_get_impact_data(const id& id, const ::id& idTitle, ::user::interaction* pinteraction, ::user::document* pdocument)
+   ::user::impact_data * impact_host::impact_host_get_impact_data(const atom& atom, const ::atom& idTitle, ::user::interaction* pinteraction, ::user::document* pdocument)
    {
 
-      auto pimpactdata = m_impactdatamap[id];
+      auto pimpactdata = m_impactdatamap[atom];
 
       if (pimpactdata)
       {
@@ -524,7 +524,7 @@ namespace user
 
       }
 
-      pimpactdata = allocate_impact_data(id, idTitle);
+      pimpactdata = allocate_impact_data(atom, idTitle);
 
       if (!pimpactdata)
       {
@@ -561,7 +561,7 @@ namespace user
    }
 
 
-   impact_data * impact_host::host_impact(const id & id, const ::id & idTitle, ::user::interaction * pinteraction, ::user::document * pdocument)
+   impact_data * impact_host::host_impact(const atom & atom, const ::atom & idTitle, ::user::interaction * pinteraction, ::user::document * pdocument)
    {
 
 
@@ -573,7 +573,7 @@ namespace user
       INFORMATION("");
 
 
-      auto pimpactdata = impact_host_get_impact_data(id, idTitle, pinteraction, pdocument);
+      auto pimpactdata = impact_host_get_impact_data(atom, idTitle, pinteraction, pdocument);
 
       if (::is_null(pimpactdata))
       {

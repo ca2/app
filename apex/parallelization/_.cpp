@@ -40,16 +40,16 @@ namespace parallelization
 
    }
 
-   //CLASS_DECL_APEX bool thread_id_registered(itask_t id)
+   //CLASS_DECL_APEX bool thread_id_registered(itask_t atom)
    //{
 
    //   //critical_section_lock lock(s_pcs2);
 
-   //   //return s_piaThread2->contains(id);
+   //   //return s_piaThread2->contains(atom);
 
    //   auto psystem = get_system()->m_papexsystem;
 
-   //   return psystem->get_task(id) != nullptr;
+   //   return psystem->get_task(atom) != nullptr;
 
    //}
 
@@ -155,7 +155,7 @@ namespace parallelization
    }
 
 
-   CLASS_DECL_APEX void post_to_all_threads(::apex::system * psystem, const ::id & id, wparam wparam, lparam lparam)
+   CLASS_DECL_APEX void post_to_all_threads(::apex::system * psystem, const ::atom & atom, wparam wparam, lparam lparam)
    {
 
       synchronous_lock synchronouslock(&psystem->m_mutexTask);
@@ -168,7 +168,7 @@ namespace parallelization
 
             __pointer(::thread) pthread = pair.element1();
 
-            pthread->post_message(id, wparam, lparam);
+            pthread->post_message(atom, wparam, lparam);
 
          }
          catch (...)

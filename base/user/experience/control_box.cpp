@@ -718,9 +718,9 @@ namespace experience
 
       pbutton->m_ebutton = ebutton;
 
-      id id = get_control_box_button_id(ebutton);
+      atom atom = get_control_box_button_id(ebutton);
 
-      pbutton->m_id = id;
+      pbutton->m_id = atom;
 
       string strTag = get_control_box_button_tag(ebutton);
 
@@ -827,7 +827,7 @@ namespace experience
    }
 
 
-   void control_box::set_control_box_button_id(enum_button ebutton, id id)
+   void control_box::set_control_box_button_id(enum_button ebutton, atom atom)
    {
 
       //auto estatus =
@@ -841,16 +841,16 @@ namespace experience
 
       //}
 
-      m_itemmap[ebutton]->m_id = id;
+      m_itemmap[ebutton]->m_id = atom;
 
-      m_idmap[id] = ebutton;
+      m_idmap[atom] = ebutton;
 
       //return estatus;
 
    }
 
 
-   id control_box::get_control_box_button_id(enum_button ebutton) const
+   atom control_box::get_control_box_button_id(enum_button ebutton) const
    {
 
       auto pitem = get_item(ebutton);
@@ -858,7 +858,7 @@ namespace experience
       if (!pitem)
       {
 
-         return ::id();
+         return ::atom();
 
       }
 
@@ -899,10 +899,10 @@ namespace experience
    }
 
 
-   enum_button control_box::get_control_box_button_type(id id) const
+   enum_button control_box::get_control_box_button_type(atom atom) const
    {
 
-      return m_idmap[id];
+      return m_idmap[atom];
 
    }
 

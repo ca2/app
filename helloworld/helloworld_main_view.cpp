@@ -27,10 +27,10 @@ namespace helloworld
    }
 
 
-   void main_impact::assert_valid() const
+   void main_impact::assert_ok() const
    {
 
-      ::user::split_view::assert_valid();
+      ::user::split_view::assert_ok();
 
    }
 

@@ -162,9 +162,9 @@ namespace user
 
       void data_get_DisplayToStrict() override;
       void data_set_DisplayToStrict() override;
-      id data_get_current_sort_id() override;
-      id data_get_sort_id(EImpact eview) override;
-      virtual id data_get_current_list_layout_id();
+      atom data_get_current_sort_id() override;
+      atom data_get_sort_id(EImpact eview) override;
+      virtual atom data_get_current_list_layout_id();
 
       bool query_drop(index iDisplayDrop, index iDisplayDrag) override;
       bool do_drop(index iDisplayDrop, index iDisplayDrag) override;

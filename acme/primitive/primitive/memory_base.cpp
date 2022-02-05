@@ -1142,7 +1142,7 @@ void memory_base::to_hex(string & str, memsize pos, memsize size)
    if (pos > this->get_size())
    {
 
-      __throw(error_invalid_argument);
+      __throw(error_bad_argument);
 
    }
 
@@ -1784,7 +1784,7 @@ Array < uchar, 1U > ^ memory_base::get_os_bytes(memsize pos, memsize size) const
    if (pos > get_size())
    {
 
-      __throw(error_invalid_argument);
+      __throw(error_bad_argument);
 
    }
 
@@ -1837,14 +1837,14 @@ void memory_base::set_os_bytes(Array < uchar, 1U > ^ a, memsize pos, memsize siz
    if (pos > (memsize) a->Length)
    {
 
-      __throw(error_invalid_argument);
+      __throw(error_bad_argument);
 
    }
 
    if (pos > (memsize) a->Length)
    {
 
-      __throw(error_invalid_argument);
+      __throw(error_bad_argument);
 
    }
 

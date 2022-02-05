@@ -265,7 +265,7 @@ namespace file
 
    //   synchronous_lock synchronouslock(mutex());
 
-   //   id watchid = ++m_idLast;
+   //   atom watchid = ++m_idLast;
 
    //   ::file::path pathFolder = get_context()->defer_process_path(pathFolderParam);
 
@@ -326,7 +326,7 @@ namespace file
    //}
 
 
-   //void os_file_watcher::erase_watch(id watchid)
+   //void os_file_watcher::erase_watch(atom watchid)
    //{
 
    //   watch_map::pair * ppair = m_watchmap.plookup(watchid);
@@ -339,7 +339,7 @@ namespace file
    //}
 
 
-   //string os_file_watcher::watch_path(id watchid)
+   //string os_file_watcher::watch_path(atom watchid)
    //{
 
    //   return m_watchmap[watchid]->m_strFolder;

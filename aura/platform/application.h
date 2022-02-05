@@ -91,7 +91,7 @@ namespace aura
       //::mutex                                         m_mutexStr;
       //string_table                                    m_stringtable;
       //string_table                                    m_stringtableStd;
-      //map < id, id, string, string >                  m_stringmap;
+      //map < atom, atom, string, string >                  m_stringmap;
 
       //id_map < __pointer(::channel) >                 m_mapNotify;
 
@@ -154,7 +154,7 @@ namespace aura
       virtual void initialize(::object * pobject) override;
 
 
-      void assert_valid() const override;
+      void assert_ok() const override;
       void dump(dump_context & dumpcontext) const override;
 
 
@@ -167,11 +167,11 @@ namespace aura
 
 
       //virtual ::user::style* get_user_style() const;
-      //virtual bool app_data_get(const ::id & id, stream & os) override;
-      //virtual bool app_data_set(const ::id & id, stream & is) override;
+      //virtual bool app_data_get(const ::atom & atom, stream & os) override;
+      //virtual bool app_data_set(const ::atom & atom, stream & is) override;
 
-      //virtual bool app_data_set(const ::id & id, object & obj) override;
-      //virtual bool app_data_get(const ::id & id, object & obj) override;
+      //virtual bool app_data_set(const ::atom & atom, object & obj) override;
+      //virtual bool app_data_get(const ::atom & atom, object & obj) override;
 
 //      virtual void     interactive_credentials(::account::credentials * pcredentials) override;
 
@@ -180,11 +180,11 @@ namespace aura
 
       //virtual string load_podata(string strLang, bool bOnlyHeader);
 
-      //virtual string load_string(const ::id & id) override;
-      //virtual bool load_string(string & str, const ::id & id) override;
+      //virtual string load_string(const ::atom & atom) override;
+      //virtual bool load_string(string & str, const ::atom & atom) override;
       //virtual void load_string_table() override;
-      //virtual bool load_cached_string(string & str, const ::id & id, bool bLoadStringTable) override;
-      //virtual bool load_cached_string_by_id(string & str, const ::id & id, bool bLoadStringTable) override;
+      //virtual bool load_cached_string(string & str, const ::atom & atom, bool bLoadStringTable) override;
+      //virtual bool load_cached_string_by_id(string & str, const ::atom & atom, bool bLoadStringTable) override;
       //virtual void load_string_table(const string & pszApp, const string & pszId) override;
 
 
@@ -384,7 +384,7 @@ namespace aura
       //virtual ::file::path appconfig_folder() override;
 
 
-      //void assert_valid() const override;
+      //void assert_ok() const override;
       //void dump(dump_context & dumpcontext) const override;
 
 
@@ -392,11 +392,11 @@ namespace aura
       //virtual ::handle::ini get_ini() override;
 
 
-      //virtual bool app_data_set(const ::id & id, stream & os) override;
-      //virtual bool app_data_get(const ::id & id, stream & is) override;
+      //virtual bool app_data_set(const ::atom & atom, stream & os) override;
+      //virtual bool app_data_get(const ::atom & atom, stream & is) override;
 
-      //virtual bool app_data_set(const ::id & id, ::object & obj) override;
-      //virtual bool app_data_get(const ::id & id, ::object & obj) override;
+      //virtual bool app_data_set(const ::atom & atom, ::object & obj) override;
+      //virtual bool app_data_get(const ::atom & atom, ::object & obj) override;
 
       void install_message_routing(::channel * pchannel) override;
 
@@ -409,7 +409,7 @@ namespace aura
 
 
 
-      //virtual void notify_changed(const ::id & id, const ::action_context & action_context);
+      //virtual void notify_changed(const ::atom & atom, const ::action_context & action_context);
 
 
       //virtual ::file::path local_application_path() override;
@@ -644,7 +644,7 @@ namespace aura
       /// bHandled true if some action was done in response to the external new additional instance creation
       //virtual void on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine) override;
 
-      //virtual void on_new_instance(string strModule, const ::id & idPid) override;
+      //virtual void on_new_instance(string strModule, const ::atom & idPid) override;
 
       //virtual string get_local_mutex_id() override;
       //virtual string get_global_mutex_id() override;
@@ -734,7 +734,7 @@ namespace aura
       //virtual void _001FranceExit() override;
 
 
-      //virtual string lstr(const ::id & id, string strDefault = "") override;
+      //virtual string lstr(const ::atom & atom, string strDefault = "") override;
 
 
 
@@ -799,7 +799,7 @@ namespace aura
       virtual void add_user_interaction(::user::interaction * puserinteraction);
       virtual void erase_user_interaction(::user::interaction * puserinteraction);
 
-      virtual bool send_message_to_windows(const ::id & id, wparam wparam, lparam lparam) override; // with tbs in <3
+      virtual bool send_message_to_windows(const ::atom & atom, wparam wparam, lparam lparam) override; // with tbs in <3
 
       virtual bool route_message_to_windows(::message::message * pmessage) override; // with tbs in <3
 
@@ -814,7 +814,7 @@ namespace aura
       // user virtual ::user::document * place_hold(::user::interaction * pinteraction);
 
 
-      virtual void post_message(const ::id & id, wparam wparam = 0, lparam lparam = 0) override;
+      virtual void post_message(const ::atom & atom, wparam wparam = 0, lparam lparam = 0) override;
 
 
       //virtual ::draw2d::icon * set_icon(object * pobject, ::draw2d::icon * picon, bool bBigIcon);
@@ -836,18 +836,18 @@ namespace aura
       virtual void on_graphics_ready();
 
       //virtual ::type user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype);
-      virtual ::type control_type_from_id(const ::id & id, ::user::enum_control_type & econtroltype);
+      virtual ::type control_type_from_id(const ::atom & atom, ::user::enum_control_type & econtroltype);
 
 
-      virtual ::id translate_property_id(const ::id & id) override;
-      //virtual property fetch_property(const ::id & id) override;
+      virtual ::atom translate_property_id(const ::atom & atom) override;
+      //virtual property fetch_property(const ::atom & atom) override;
 
       //virtual void get_time(struct timeval *point_i32) override;
 
       virtual void close(::apex::enum_end eend) override;
 
 
-      //user virtual __pointer(::user::document) defer_create_view(string strImpact, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::id & id = nullptr);
+      //user virtual __pointer(::user::document) defer_create_view(string strImpact, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::atom & atom = nullptr);
 
 
       virtual void HideApplication() override;
@@ -1003,13 +1003,13 @@ namespace aura
 
 
 
-      void data_on_after_change(::database::client* pclient, const ::database::key& id, const ::payload & payload, ::topic * ptopic) override;
+      void data_on_after_change(::database::client* pclient, const ::database::key& atom, const ::payload & payload, ::topic * ptopic) override;
 
 
       virtual i32 GetVisibleTopLevelFrameCountExcept(__pointer(::user::interaction) puserinteractionExcept);
       virtual i32 GetVisibleFrameCount();
 
-      virtual void prepare_form(id id, ::form_document* pdocument);
+      virtual void prepare_form(atom atom, ::form_document* pdocument);
 
 
       void report_error(const ::exception & exception, int iMessageFlags, const ::string & pszTopic) override;

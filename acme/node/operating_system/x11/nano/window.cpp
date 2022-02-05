@@ -209,7 +209,7 @@ namespace x11
 
    }
 
-//::id nano_window::hit_test(int x, int y)
+//::atom nano_window::hit_test(int x, int y)
 //{
 //
 //   for (int i = 0; i < m_iButtonCount; i++)
@@ -251,7 +251,7 @@ void nano_window::on_mouse_move(int x, int y)
 }
 
 
-::id nano_window::get_result()
+::atom nano_window::get_result()
 {
 
    return m_pinterface->get_result();
@@ -259,7 +259,7 @@ void nano_window::on_mouse_move(int x, int y)
 }
 
 
-::id nano_window::hit_test(int x, int y)
+::atom nano_window::hit_test(int x, int y)
 {
 
    return m_pinterface->hit_test(x, y);
@@ -732,10 +732,10 @@ void nano_window::redraw()
 
    }
 
-   void nano_window::on_click(const ::id & id)
+   void nano_window::on_click(const ::atom & atom)
    {
 
-      m_pinterface->on_click(id);
+      m_pinterface->on_click(atom);
 
    }
 
@@ -878,7 +878,7 @@ void x11_check_status(int status, unsigned long window)
    if (status == BadWindow)
    {
 
-      printf("window id # 0x%lx does not exists!", window);
+      printf("window atom # 0x%lx does not exists!", window);
 
       throw_status(error_exception);
 

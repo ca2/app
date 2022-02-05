@@ -271,7 +271,7 @@ namespace windowing
 } // namespace windowing
 
 
-CLASS_DECL_ACME int_bool post_message(oswindow oswindow, const ::id & id, wparam wparam, lparam lparam);
+CLASS_DECL_ACME int_bool post_message(oswindow oswindow, const ::atom & atom, wparam wparam, lparam lparam);
 
 
 
@@ -300,7 +300,7 @@ namespace parallelization
 
 
    CLASS_DECL_ACME bool task_registered(::task * ptask);
-   CLASS_DECL_ACME bool task_id_registered(itask_t id);
+   CLASS_DECL_ACME bool task_id_registered(itask_t atom);
 
    CLASS_DECL_ACME void task_register(itask_t itask, ::task * ptask);
 

@@ -524,7 +524,7 @@ public:
    association * get_association_at(ARG_KEY, ::u32&, ::u32&) const;
 
 
-   void assert_valid() const override;
+   void assert_ok() const override;
    void dump(dump_context & dumpcontext) const override;
 
 
@@ -1219,10 +1219,10 @@ get(ARG_KEY argkey, ARG_KEY valueDefault)
 
 
 template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-void set < KEY, ARG_KEY, PAYLOAD >::assert_valid() const
+void set < KEY, ARG_KEY, PAYLOAD >::assert_ok() const
 {
 
-   ::matter::assert_valid();
+   ::matter::assert_ok();
 
    ASSERT(GetHashTableSize() > 0);
 

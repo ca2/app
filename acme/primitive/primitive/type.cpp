@@ -88,11 +88,11 @@ string cxxabi_demangle (const char* name)
 #endif
 
 //
-//type::type(const id & id, const ::id & idFriendly)
+//type::type(const atom & atom, const ::atom & idFriendly)
 //{
 //
 //   m_pfactoryitem = nullptr;
-//   m_id              = id;
+//   m_id              = atom;
 //   m_idFriendly      = idFriendly;
 //
 //}
@@ -219,10 +219,10 @@ string cxxabi_demangle (const char* name)
 //}
 //
 //
-//bool type::operator == (const id & id ) const
+//bool type::operator == (const atom & atom ) const
 //{
 //
-//   return m_id == id ;
+//   return m_id == atom ;
 //
 //}
 //
@@ -259,10 +259,10 @@ string cxxabi_demangle (const char* name)
 //}
 //
 //
-//bool type::operator != (const id & id ) const
+//bool type::operator != (const atom & atom ) const
 //{
 //
-//   return m_id != id ;
+//   return m_id != atom ;
 //
 //}
 //

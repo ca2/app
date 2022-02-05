@@ -880,7 +880,6 @@
     <ClCompile Include="message\debug.cpp" />
     <ClCompile Include="message\dispatcher.cpp" />
     <ClCompile Include="message\handler.cpp" />
-    <ClCompile Include="message\id.cpp" />
     <ClCompile Include="message\message.cpp" />
     <ClCompile Include="message\receiver.cpp" />
     <ClCompile Include="message\sender.cpp" />
@@ -1094,7 +1093,6 @@
     <ClInclude Include="message\global.h" />
     <ClInclude Include="message\handler.h" />
     <ClInclude Include="message\handler_item.h" />
-    <ClInclude Include="message\id.h" />
     <ClInclude Include="message\listener_smart_pointer_array.h" />
     <ClInclude Include="message\message.h" />
     <ClInclude Include="message\predicate_handler.h" />

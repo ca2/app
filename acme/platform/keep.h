@@ -1,10 +1,10 @@
 #pragma once
 
 
-//inline ::payload & thread_property(const ::id & id);
-//inline void thread_set(const ::id & id) { thread_property(id) = true; }
-//inline void thread_unset(const ::id & id) { thread_property(id) = false; }
-//inline bool task_flag().is_set(const ::id & id);
+//inline ::payload & thread_property(const ::atom & atom);
+//inline void thread_set(const ::atom & atom) { thread_property(atom) = true; }
+//inline void thread_unset(const ::atom & atom) { thread_property(atom) = false; }
+//inline bool task_flag().is_set(const ::atom & atom);
 
 
 template  < typename TYPE >
@@ -477,8 +477,8 @@ ___keep_on < TYPE > keep_on(TYPE * pKept, TYPE_KEEP keepValue, bool bStartKept =
 //   ::payload &      m_varThread;
 //
 //
-//   ___keep_thread_flag(const ::id & id) :
-//      m_varThread(thread_property(id))
+//   ___keep_thread_flag(const ::atom & atom) :
+//      m_varThread(thread_property(atom))
 //   {
 //
 //      if ((bool) m_varThread)
@@ -516,10 +516,10 @@ ___keep_on < TYPE > keep_on(TYPE * pKept, TYPE_KEEP keepValue, bool bStartKept =
 //
 //
 //
-//inline ___keep_thread_flag keep_thread_flag(const ::id & id)
+//inline ___keep_thread_flag keep_thread_flag(const ::atom & atom)
 //{
 //
-//   return id;
+//   return atom;
 //
 //}
 

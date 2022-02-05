@@ -3466,7 +3466,7 @@ const char * GeoIP_region_name_by_code(const char * country_code,const char * re
       name = "Bani Suwayf";
       break;
       case 19:
-      name = "Bur Sa'id";
+      name = "Bur Sa'atom";
       break;
       case 20:
       name = "Dumyat";
@@ -10283,7 +10283,7 @@ const char * GeoIP_region_name_by_code(const char * country_code,const char * re
       name = "Jariyan al Batnah";
       break;
       case 12:
-      name = "Umm Sa'id";
+      name = "Umm Sa'atom";
       break;
     }
   }

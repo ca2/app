@@ -25,10 +25,10 @@ namespace browser
    }
 
 
-   void switcher_view::assert_valid() const
+   void switcher_view::assert_ok() const
    {
 
-      ::user::split_view::assert_valid();
+      ::user::split_view::assert_ok();
 
    }
 
@@ -98,7 +98,7 @@ namespace browser
 
             pview->m_prender->m_bLite = !pview->m_prender->m_bLite;
 
-            ptopic->m_bRet = true;
+            ptopic->m_pextendedtopic->m_bRet = true;
             return;
 
          }
@@ -110,7 +110,7 @@ namespace browser
 
             m_pimpact->on_layout(pgraphics);
 
-            ptopic->m_bRet = true;
+            ptopic->m_pextendedtopic->m_bRet = true;
             return;
 
          }

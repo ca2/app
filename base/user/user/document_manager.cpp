@@ -82,7 +82,7 @@ namespace user
       // enough info to register it
       if (!ptemplate->GetDocString(strFileTypeName,
       impact_system::regFileTypeName))
-      strFileTypeName = strFileTypeId;    // use id name
+      strFileTypeName = strFileTypeId;    // use atom name
 
       ASSERT(strFileTypeId.find(' ') == -1);  // no spaces allowed
 
@@ -193,7 +193,7 @@ namespace user
       // enough info to register it
       if (!ptemplate->GetDocString(strFileTypeName,
       impact_system::regFileTypeName))
-      strFileTypeName = strFileTypeId;    // use id name
+      strFileTypeName = strFileTypeId;    // use atom name
 
       ASSERT(strFileTypeId.find(' ') == -1);  // no spaces allowed
 
@@ -711,10 +711,10 @@ namespace user
    }
 
 
-   void document_manager::assert_valid() const
+   void document_manager::assert_ok() const
    {
 
-      object::assert_valid();
+      object::assert_ok();
 
       ::count count = m_templateptra.get_count();
 
@@ -757,7 +757,7 @@ namespace user
       if(pcreate->m_pcommandline->m_varFile.is_empty())
       {
 
-         __throw(error_invalid_argument);
+         __throw(error_bad_argument);
 
       }
 

@@ -61,10 +61,10 @@ ID3_C_EXPORT size_t               CCONV ID3Tag_LinkWithFlags        (ID3Tag *tag
 ID3_C_EXPORT ID3_Err              CCONV ID3Tag_Update               (ID3Tag *tag);
 ID3_C_EXPORT ID3_Err              CCONV ID3Tag_UpdateByTagType      (ID3Tag *tag, flags_t type);
 ID3_C_EXPORT ID3_Err              CCONV ID3Tag_Strip                (ID3Tag *tag, flags_t ulTagFlags);
-ID3_C_EXPORT ID3Frame*            CCONV ID3Tag_FindFrameWithID      (const ID3Tag *tag, ID3_FrameID id);
-ID3_C_EXPORT ID3Frame*            CCONV ID3Tag_FindFrameWithINT     (const ID3Tag *tag, ID3_FrameID id, ID3_FieldID fld, u32 data);
-ID3_C_EXPORT ID3Frame*            CCONV ID3Tag_FindFrameWithASCII   (const ID3Tag *tag, ID3_FrameID id, ID3_FieldID fld, const ::string &data);
-ID3_C_EXPORT ID3Frame*            CCONV ID3Tag_FindFrameWithUNICODE (const ID3Tag *tag, ID3_FrameID id, ID3_FieldID fld, const unicode_t *data);
+ID3_C_EXPORT ID3Frame*            CCONV ID3Tag_FindFrameWithID      (const ID3Tag *tag, ID3_FrameID atom);
+ID3_C_EXPORT ID3Frame*            CCONV ID3Tag_FindFrameWithINT     (const ID3Tag *tag, ID3_FrameID atom, ID3_FieldID fld, u32 data);
+ID3_C_EXPORT ID3Frame*            CCONV ID3Tag_FindFrameWithASCII   (const ID3Tag *tag, ID3_FrameID atom, ID3_FieldID fld, const ::string &data);
+ID3_C_EXPORT ID3Frame*            CCONV ID3Tag_FindFrameWithUNICODE (const ID3Tag *tag, ID3_FrameID atom, ID3_FieldID fld, const unicode_t *data);
 ID3_C_EXPORT size_t               CCONV ID3Tag_NumFrames            (const ID3Tag *tag);
 ID3_C_EXPORT bool                 CCONV ID3Tag_HasTagType           (const ID3Tag *tag, ID3_TagType);
 ID3_C_EXPORT ID3TagIterator*      CCONV ID3Tag_CreateIterator       (ID3Tag *tag);
@@ -77,10 +77,10 @@ ID3_C_EXPORT const ID3Frame*      CCONV ID3TagConstIterator_GetNext(ID3TagConstI
 
 /* frame wrappers */
 ID3_C_EXPORT ID3Frame*            CCONV ID3Frame_New                (void);
-ID3_C_EXPORT ID3Frame*            CCONV ID3Frame_NewID              (ID3_FrameID id);
+ID3_C_EXPORT ID3Frame*            CCONV ID3Frame_NewID              (ID3_FrameID atom);
 ID3_C_EXPORT void                 CCONV ID3Frame_Delete             (ID3Frame *frame);
 ID3_C_EXPORT void                 CCONV ID3Frame_Clear              (ID3Frame *frame);
-ID3_C_EXPORT void                 CCONV ID3Frame_SetID              (ID3Frame *frame, ID3_FrameID id);
+ID3_C_EXPORT void                 CCONV ID3Frame_SetID              (ID3Frame *frame, ID3_FrameID atom);
 ID3_C_EXPORT ID3_FrameID          CCONV ID3Frame_GetID              (const ID3Frame *frame);
 ID3_C_EXPORT ID3Field*            CCONV ID3Frame_GetField           (const ID3Frame *frame, ID3_FieldID name);
 ID3_C_EXPORT void                 CCONV ID3Frame_SetCompression     (ID3Frame *frame, bool comp);

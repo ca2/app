@@ -32,8 +32,8 @@
 //
 //      os_watch();
 //      virtual ~os_watch();
-//      /// type for a map from id to watch_struct pointer
-//      //typedef map < id, id, __pointer(watch), __pointer(watch) > WatchMap;
+//      /// type for a map from atom to watch_struct pointer
+//      //typedef map < atom, atom, __pointer(watch), __pointer(watch) > WatchMap;
 //
 //   ////public:
 //   //   ///
@@ -46,15 +46,15 @@
 //
 //   //   /// Add a directory watch
 //   //   /// @exception file_not_found_exception Thrown when the requested directory does not exist
-//   //   id add_watch(const string & directory, listener * watcher, bool bRecursive, bool bOwn);
+//   //   atom add_watch(const string & directory, listener * watcher, bool bRecursive, bool bOwn);
 //
 //   //   /// Remove a directory watch. This is a brute force lazy search O(nlogn).
 //   //   void erase_watch(const string & directory);
 //
 //   //   /// Remove a directory watch. This is a map lookup O(logn).
-//   //   void erase_watch(id watchid);
+//   //   void erase_watch(atom watchid);
 //
-//   //   string watch_path(id watchid);
+//   //   string watch_path(atom watchid);
 //
 //   //   /// Updates the watcher. Must be called often.
 //   //   bool select();
@@ -65,10 +65,10 @@
 //   //   virtual void handle_action(action * ptopic);
 //
 //   ////private:
-//   //   /// Map of id to watch_struct pointers
+//   //   /// Map of atom to watch_struct pointers
 //   //   //WatchMap m_watchmap;
 //   //   /// The last watchid
-//   //   //id mLastWatchID;
+//   //   //atom mLastWatchID;
 //   //   /// inotify file descriptor
 //   //   //i32 mFD;
 //   //   /// time out data
@@ -84,7 +84,7 @@
 //   //{
 //   //public:
 //
-//   //   id                            m_id;
+//   //   atom                            m_id;
 //   //   string                        m_strDirName;
 //
 //   //};

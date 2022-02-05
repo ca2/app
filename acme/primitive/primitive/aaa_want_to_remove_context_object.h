@@ -17,7 +17,7 @@ struct CLASS_DECL_ACME matter :
    ::matter *                             this; // Context Object
    ::acme::application *                  get_application(); // Context papplication
    ::eobject                              m_eobject;
-   //::id                                   m_id;
+   //::atom                                   m_id;
    __pointer(__pointer_array(::matter))     m_preferencea;
 
 
@@ -125,7 +125,7 @@ struct CLASS_DECL_ACME matter :
 
 
 
-   void assert_valid() const override;
+   void assert_ok() const override;
    void dump(dump_context & dumpcontext) const override;
 
 
@@ -247,7 +247,7 @@ struct CLASS_DECL_ACME matter :
    inline void     compose(__composite(TYPE) & p);
 
    template < typename TYPE >
-   inline void     compose(__composite(TYPE) & p, const ::id & id);
+   inline void     compose(__composite(TYPE) & p, const ::atom & atom);
 
    template < typename TYPE >
    inline void     compose_new(__composite(TYPE) & p);
@@ -260,7 +260,7 @@ struct CLASS_DECL_ACME matter :
    inline void     create(__pointer(TYPE) & p);
 
    template < typename TYPE >
-   inline void     create(__pointer(TYPE) & p, const ::id & id);
+   inline void     create(__pointer(TYPE) & p, const ::atom & atom);
 
    //template < typename TYPE >
    //inline void     create_new(__pointer(TYPE) & p);
@@ -272,7 +272,7 @@ struct CLASS_DECL_ACME matter :
    //inline void     realize(TYPE *& p);
 
    //template < typename TYPE >
-   //inline void     realize(TYPE *& p, const ::id & id);
+   //inline void     realize(TYPE *& p, const ::atom & atom);
 
    //template < typename TYPE >
    //inline void     compose(TYPE *& p);

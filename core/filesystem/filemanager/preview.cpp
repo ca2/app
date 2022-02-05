@@ -79,14 +79,14 @@ namespace filemanager
       }
       else if (ptopic->m_id == FILTER_ID)
       {
-         /*if(ptopic->payload(id_filter).is_empty())
+         /*if(ptopic->m_pextendedtopic->payload(id_filter).is_empty())
          {
          FilterClose();
          }
          else
          {
          FilterBegin();
-         Filter1(ptopic->payload(id_filter));
+         Filter1(ptopic->m_pextendedtopic->payload(id_filter));
          FilterApply();
          }*/
       }

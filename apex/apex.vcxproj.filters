@@ -683,9 +683,6 @@
     <ClInclude Include="message\global.h">
       <Filter>Header Files\message</Filter>
     </ClInclude>
-    <ClInclude Include="message\id.h">
-      <Filter>Header Files\message</Filter>
-    </ClInclude>
     <ClInclude Include="message\listener_smart_pointer_array.h">
       <Filter>Header Files\message</Filter>
     </ClInclude>
@@ -1262,9 +1259,6 @@
       <Filter>Source Files\message</Filter>
     </ClCompile>
     <ClCompile Include="message\channel.cpp">
-      <Filter>Source Files\message</Filter>
-    </ClCompile>
-    <ClCompile Include="message\id.cpp">
       <Filter>Source Files\message</Filter>
     </ClCompile>
     <ClCompile Include="message\message.cpp">

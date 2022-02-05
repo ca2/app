@@ -127,7 +127,7 @@ namespace hi5
 
          string strUrl;
 
-         strUrl = "http://spaignition.api.server.ca2.software/query?node=install_application&id=";
+         strUrl = "http://spaignition.api.server.ca2.software/query?node=install_application&atom=";
 
          string strAppName;
 
@@ -302,7 +302,7 @@ namespace hi5
          if(ptopic->m_id == ::id_click || ptopic->m_id == ::id_enter_key)
          {
 
-            if(ptopic->user_interaction()->m_id == "submit" || ptopic->m_id == ::id_enter_key)
+            if(ptopic->m_pextendedtopic->user_interaction()->m_id == "submit" || ptopic->m_id == ::id_enter_key)
             {
 
                auto pinteraction = m_pviewAuth->get_child_by_name("pin");

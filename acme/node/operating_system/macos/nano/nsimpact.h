@@ -56,6 +56,6 @@ struct mf_context
    
 }
 
-- (id)initWithFrame:(NSRect)frame andns_nano_window:(ns_nano_window*)apexwindow;
+- (atom)initWithFrame:(NSRect)frame andns_nano_window:(ns_nano_window*)apexwindow;
 
 @end

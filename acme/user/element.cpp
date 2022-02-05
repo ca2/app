@@ -1028,7 +1028,7 @@ namespace user
    }
 
 
-   ::user::interaction * element::get_child_by_id(const id & id, ::index iItem, i32 iLevel)
+   ::user::interaction * element::get_child_by_id(const atom & atom, ::index iItem, i32 iLevel)
    {
 
       throw ::interface_only_exception();
@@ -1038,7 +1038,7 @@ namespace user
    }
 
 
-   ::user::element * element::get_primitive_by_id(const id & id, ::index iItem, i32 iLevel)
+   ::user::element * element::get_primitive_by_id(const atom & atom, ::index iItem, i32 iLevel)
    {
 
       throw ::interface_only_exception();
@@ -1081,15 +1081,15 @@ namespace user
    //}
 
 
-   lresult element::send_message(const ::id & id,wparam wparam,lparam lparam, const ::point_i32& point)
+   lresult element::send_message(const ::atom & atom,wparam wparam,lparam lparam, const ::point_i32& point)
    {
 
-      return message_call(id, wparam, lparam, point);
+      return message_call(atom, wparam, lparam, point);
 
    }
 
 
-   lresult element::message_call(const ::id & id, wparam wparam, lparam lparam, const ::point_i32& point)
+   lresult element::message_call(const ::atom & atom, wparam wparam, lparam lparam, const ::point_i32& point)
    {
 
       return 0;
@@ -1184,7 +1184,7 @@ namespace user
    //}
 
 
-   void element::send_message_to_descendants(const ::id & id,wparam wparam,lparam lparam,bool bDeep,bool bOnlyPerm)
+   void element::send_message_to_descendants(const ::atom & atom,wparam wparam,lparam lparam,bool bDeep,bool bOnlyPerm)
 
    {
 
@@ -1263,10 +1263,10 @@ namespace user
    }
 
    
-   void element::create_control(::user::interaction * puserinteractionParent, const ::id & id)
+   void element::create_control(::user::interaction * puserinteractionParent, const ::atom & atom)
    {
 
-      m_id = id;
+      m_id = atom;
 
       /*auto estatus =*/ create_child(puserinteractionParent);
 
@@ -1300,13 +1300,13 @@ namespace user
    //}
 
 
-   void element::create_interaction(::user::interaction * puserinteractionParent, const ::id & id)
+   void element::create_interaction(::user::interaction * puserinteractionParent, const ::atom & atom)
    {
 
-      if (!id.is_empty())
+      if (!atom.is_empty())
       {
 
-         m_id = id;
+         m_id = atom;
 
       }
 
@@ -1339,7 +1339,7 @@ namespace user
    }
 
 
-   //bool element::create_window_ex(__pointer(::user::system) pcs, ::user::interaction * puiParent, const ::id & id)
+   //bool element::create_window_ex(__pointer(::user::system) pcs, ::user::interaction * puiParent, const ::atom & atom)
    void element::create_host()
    {
 
@@ -1908,7 +1908,7 @@ namespace user
    //}
 
 
-   void element::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::id idLeftOver, ::u32 nFlag, RECTANGLE_I32 * prectParam, const ::rectangle_i32 & rectangleClient, bool bStretch)
+   void element::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag, RECTANGLE_I32 * prectParam, const ::rectangle_i32 & rectangleClient, bool bStretch)
    {
 
       throw ::interface_only_exception();
@@ -2371,32 +2371,32 @@ namespace user
    }
 
 
-   id element::run_modal_loop(::user::interaction * pinteraction,u32 dwFlags)
+   atom element::run_modal_loop(::user::interaction * pinteraction,u32 dwFlags)
    {
 
       throw ::interface_only_exception();
 
-      return ::id();
+      return ::atom();
 
    }
 
 
-   id element::RunModalLoop(u32 dwFlags)
+   atom element::RunModalLoop(u32 dwFlags)
    {
 
       throw ::interface_only_exception();
 
-      return ::id();
+      return ::atom();
 
    }
 
 
-   id element::_001RunModalLoop(u32 dwFlags)
+   atom element::_001RunModalLoop(u32 dwFlags)
    {
 
       throw ::interface_only_exception();
 
-      return id();
+      return atom();
 
    }
 
@@ -2411,7 +2411,7 @@ namespace user
    }
 
 
-   void element::EndModalLoop(id nResult)
+   void element::EndModalLoop(atom nResult)
    {
 
       throw ::interface_only_exception();
@@ -2419,7 +2419,7 @@ namespace user
    }
 
 
-   void element::post_message(const ::id & id,wparam wparam,lparam lparam)
+   void element::post_message(const ::atom & atom,wparam wparam,lparam lparam)
    {
 
       throw ::interface_only_exception();
@@ -3387,22 +3387,22 @@ namespace user
    //}
 
 
-   id element::GetDlgCtrlId() const
+   atom element::GetDlgCtrlId() const
    {
 
       throw ::interface_only_exception();
 
-      return id();
+      return atom();
 
    }
 
 
-   id element::SetDlgCtrlId(id id)
+   atom element::SetDlgCtrlId(atom atom)
    {
 
       throw ::interface_only_exception();
 
-      return ::id();
+      return ::atom();
 
    }
 
@@ -3555,7 +3555,7 @@ namespace user
    }
 
 
-   void element::add_child_handler(::matter * pmatter, const ::id & idChild, bool bPriority)
+   void element::add_child_handler(::matter * pmatter, const ::atom & idChild, bool bPriority)
    {
 
       throw ::interface_only_exception();
@@ -3600,12 +3600,12 @@ namespace user
    //}
 
 
-//   __pointer(::message::message) element::get_message(const ::id & id, wparam wparam, lparam lparam)
+//   __pointer(::message::message) element::get_message(const ::atom & atom, wparam wparam, lparam lparam)
 //   {
 //
 //      __pointer(::message::message) pmessage;
 //
-//      auto eprototype = ::message::get_message_prototype((enum_message) id.i64(), 0);
+//      auto eprototype = ::message::get_message_prototype((enum_message) atom.i64(), 0);
 //
 //      switch (eprototype)
 //      {
@@ -3741,17 +3741,17 @@ namespace user
 //
 //      }
 //
-//      pmessage->set(get_oswindow(), get_window(), id, wparam, lparam);
+//      pmessage->set(get_oswindow(), get_window(), atom, wparam, lparam);
 //
 //      return pmessage;
 //
 //   }
 
 
-   bool element::call_message_handler(const ::id & id, wparam wparam, lparam lparam, const ::point_i32 & point, lresult * plresult)
+   bool element::call_message_handler(const ::atom & atom, wparam wparam, lparam lparam, const ::point_i32 & point, lresult * plresult)
    {
 
-      //auto pmessage = get_message(id, wparam, lparam);
+      //auto pmessage = get_message(atom, wparam, lparam);
 
       //try
       //{

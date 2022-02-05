@@ -27,10 +27,10 @@ namespace browser
    }
 
 
-   void main_impact::assert_valid() const
+   void main_impact::assert_ok() const
    {
 
-      ::user::split_view::assert_valid();
+      ::user::split_view::assert_ok();
 
    }
 
@@ -156,7 +156,7 @@ namespace browser
 
             m_pimpact->on_layout(pgraphics);
 
-            ptopic->m_bRet = true;
+            ptopic->m_pextendedtopic->m_bRet = true;
             return;
 
          }

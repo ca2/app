@@ -343,11 +343,11 @@ payload::payload(::property * pproperty)
 }
 
 
-payload::payload(const ::id & id)
+payload::payload(const ::atom & atom)
 {
 
    m_etype = e_type_new;
-   operator = (id);
+   operator = (atom);
 
 }
 
@@ -620,7 +620,7 @@ void payload::set_type(enum_type etype, bool bConvert)
             m_str = ::move(this->string());
             break;
          case e_type_id:
-            m_id = ::move(this->id());
+            m_id = ::move(this->atom());
             break;
          default:
             ::set_last_status(error_conversion_not_a_number);
@@ -710,25 +710,25 @@ bool payload::failed() const
 }
 
 
-void payload::set_id(const ::id & id)
+void payload::set_id(const ::atom & atom)
 {
 
    if(get_type() == e_type_pid)
    {
 
-      *m_pid = id;
+      *m_pid = atom;
 
    }
    else if(get_type() == e_type_payload_pointer)
    {
 
-      *m_ppayload = id;
+      *m_ppayload = atom;
 
    }
    else if (get_type() == e_type_property)
    {
 
-      *m_pproperty = id;
+      *m_pproperty = atom;
 
    }
    else
@@ -736,7 +736,7 @@ void payload::set_id(const ::id & id)
 
       set_type(e_type_id, false);
 
-      m_id = id;
+      m_id = atom;
 
    }
 
@@ -1064,7 +1064,7 @@ class ::payload & payload::operator = (::string * pstr)
 }
 
 
-class ::payload & payload::operator = (::id * pid)
+class ::payload & payload::operator = (::atom * pid)
 {
 
    set_type(e_type_pid, false);
@@ -1333,10 +1333,10 @@ class ::payload & payload::operator = (const property_set & propsetParam)
 }
 
 
-class ::payload & payload::operator = (const ::id & id)
+class ::payload & payload::operator = (const ::atom & atom)
 {
 
-   set_id(id);
+   set_id(atom);
 
    return *this;
 
@@ -2281,19 +2281,19 @@ string & payload::as_string(const char * pszOnNull)
 //}
 
 
-::id payload::id(const ::id & idDefault) const
+::atom payload::atom(const ::atom & idDefault) const
 {
 
    if(m_etype == e_type_payload_pointer)
    {
 
-      return m_ppayload->id(idDefault);
+      return m_ppayload->atom(idDefault);
 
    }
    else if (m_etype == e_type_property)
    {
 
-      return m_pproperty->id(idDefault);
+      return m_pproperty->atom(idDefault);
 
    }
    else if(m_etype == e_type_pid)
@@ -2305,54 +2305,54 @@ string & payload::as_string(const char * pszOnNull)
    else if(m_etype != e_type_id)
    {
 
-      ::id id;
+      ::atom atom;
 
       if (m_etype == ::e_type_i8)
       {
 
-         id = (::index) m_i8;
+         atom = (::index) m_i8;
 
       }
       else if (m_etype == ::e_type_u8)
       {
 
-         id = (::index)m_u8;
+         atom = (::index)m_u8;
 
       }
       else if (m_etype == ::e_type_i16)
       {
 
-         id = (::index)m_i8;
+         atom = (::index)m_i8;
 
       }
       else if (m_etype == ::e_type_u16)
       {
 
-         id = (::index)m_u8;
+         atom = (::index)m_u8;
 
       }
       else if(m_etype == ::e_type_i32)
       {
          
-         id = m_i32;
+         atom = m_i32;
 
       }
       else if (m_etype == ::e_type_u32)
       {
 
-         id = (::index) m_u32;
+         atom = (::index) m_u32;
 
       }
       else if(m_etype == ::e_type_i64)
       {
 
-         id = (::index) m_i64;
+         atom = (::index) m_i64;
 
       }
       else if(m_etype == ::e_type_u64)
       {
 
-         id = (::index) m_u64;
+         atom = (::index) m_u64;
 
       }
       else if (m_etype == ::e_type_f32)
@@ -2362,7 +2362,7 @@ string & payload::as_string(const char * pszOnNull)
 
          str.format("%f", m_f32);
 
-         id = str;
+         atom = str;
 
       }
       else if(m_etype == ::e_type_f64)
@@ -2372,29 +2372,29 @@ string & payload::as_string(const char * pszOnNull)
 
          str.format("%f", m_f64);
 
-         id = str;
+         atom = str;
 
       }
       else if(m_etype == ::e_type_string)
       {
 
-         id = m_str;
+         atom = m_str;
 
       }
       else if(m_etype == ::e_type_pstring)
       {
 
-         id = *m_pstr;
+         atom = *m_pstr;
 
       }
       else
       {
 
-         id = idDefault;
+         atom = idDefault;
 
       }
 
-      return id;
+      return atom;
 
    }
    else
@@ -2407,7 +2407,7 @@ string & payload::as_string(const char * pszOnNull)
 }
 
 
-::id & payload::as_id(const ::id & idDefault)
+::atom & payload::as_id(const ::atom & idDefault)
 {
 
    if(m_etype == e_type_payload_pointer)
@@ -2431,11 +2431,11 @@ string & payload::as_string(const char * pszOnNull)
    else
    {
 
-      auto id = this->id(idDefault);
+      auto atom = this->atom(idDefault);
 
       set_type(e_type_id, false);
 
-      m_id = ::move(id);
+      m_id = ::move(atom);
 
       return m_id;
 
@@ -2501,13 +2501,13 @@ string & payload::as_string(const char * pszOnNull)
    case e_type_id:
    {
       if(!fits_i32(m_id.i64()))
-         __throw(error_overflow, "::payload contains id that does not fit 32 bit integer");
+         __throw(error_overflow, "::payload contains atom that does not fit 32 bit integer");
       return (::i32) (::i64) m_id;
    }
    case e_type_pid:
    {
       if(!fits_i32(m_pid->i64()))
-         __throw(error_overflow, "::payload contains id that does not fit 32 bit integer");
+         __throw(error_overflow, "::payload contains atom that does not fit 32 bit integer");
       return (::i32) (::i64) *m_pid;
    }
    default:
@@ -5601,10 +5601,10 @@ bool payload::is_natural() const
 //}
 
 
-bool payload::is_property_true(const ::id & id) const
+bool payload::is_property_true(const ::atom & atom) const
 {
 
-   auto pproperty = find_property(id);
+   auto pproperty = find_property(atom);
 
    if (!pproperty)
    {
@@ -5625,10 +5625,10 @@ bool payload::is_property_true(const ::id & id) const
 }
 
 
-bool payload::is_property_false(const ::id & id) const
+bool payload::is_property_false(const ::atom & atom) const
 {
 
-   return !is_property_true(id);
+   return !is_property_true(atom);
 
 }
 
@@ -5655,10 +5655,10 @@ block payload::block () const
 
 
 
-::payload payload::get_topic(const ::id & id) const
+::payload payload::get_topic(const ::atom & atom) const
 {
 
-   auto pproperty = find_property(id);
+   auto pproperty = find_property(atom);
 
    if(!pproperty)
    {
@@ -5672,10 +5672,10 @@ block payload::block () const
 }
 
 
-//::payload payload::defer_get(const ::id & id) const
+//::payload payload::defer_get(const ::atom & atom) const
 //{
 //
-//   auto pproperty = defer_get_property(id);
+//   auto pproperty = defer_get_property(atom);
 //
 //   if(::is_null(pproperty))
 //   {
@@ -5689,21 +5689,21 @@ block payload::block () const
 //}
 
 
-//property * payload::defer_get_property(const ::id & id) const
+//property * payload::defer_get_property(const ::atom & atom) const
 //{
 //   if(get_type() == e_type_property_set)
 //   {
-//      return dynamic_cast < const property_set * > (m_pointer.m_p)->defer_get(id);
+//      return dynamic_cast < const property_set * > (m_pointer.m_p)->defer_get(atom);
 //   }
 //   else if(get_type() == e_type_payload_pointer)
 //   {
-//      return m_ppayload->defer_get_property(id);
+//      return m_ppayload->defer_get_property(atom);
 //   }
 //   else if(get_type() == e_type_element)
 //   {
 //      if(cast < property_set >() != nullptr)
 //      {
-//         return cast < property_set >()->defer_get(id);
+//         return cast < property_set >()->defer_get(atom);
 //      }
 //      //else if(cast < property >() != nullptr)
 //      //{
@@ -5721,10 +5721,10 @@ block payload::block () const
 //}
 
 
-bool payload::has_property(const ::id & id) const
+bool payload::has_property(const ::atom & atom) const
 {
 
-   return __found(property_index(id));
+   return __found(property_index(atom));
 
 }
 
@@ -6217,14 +6217,14 @@ void payload::parse_network_payload(const char *& pszJson, const char * pszEnd)
 
       }
 
-      ::id id;
+      ::atom atom;
 
       while (true)
       {
 
-         property_parse_network_payload_id(id, pszJson, pszEnd);
+         property_parse_network_payload_id(atom, pszJson, pszEnd);
 
-         if (varChild.string().compare_ci(id) == 0)
+         if (varChild.string().compare_ci(atom) == 0)
          {
 
             ::str::consume_spaces(pszJson, 0, pszEnd);

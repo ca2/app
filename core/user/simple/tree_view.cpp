@@ -33,9 +33,9 @@ void simple_tree_view::handle(::topic * ptopic, ::context * pcontext)
 
 
 
-void simple_tree_view::assert_valid() const
+void simple_tree_view::assert_ok() const
 {
-   ::user::impact::assert_valid();
+   ::user::impact::assert_ok();
 }
 
 void simple_tree_view::dump(dump_context & dumpcontext) const

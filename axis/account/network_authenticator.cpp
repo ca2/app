@@ -73,7 +73,7 @@ namespace account
 
       //string strDecrypt;
 
-      //string strId = proot->attribute("id");
+      //string strId = proot->attribute("atom");
 
       //if(strId == "auth")
       //{
@@ -98,13 +98,13 @@ namespace account
       //   }
 
       //}
-      //else if(proot->attribute("id") == "registration_deferred")
+      //else if(proot->attribute("atom") == "registration_deferred")
       //{
 
       //   estatus = ::error_registration_deferred;
 
       //}
-      //else if(proot->attribute("id") == "not_auth")
+      //else if(proot->attribute("atom") == "not_auth")
       //{
 
       //   if(proot->attribute("detail") == "please_finish_registration")

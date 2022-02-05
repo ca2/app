@@ -73,14 +73,14 @@ namespace user
 
       virtual void __synthesizes_creates_styles(::user::interaction * pinteraction, ::u32 & nExStyle, ::u32 & nStyle);
 
-      //virtual bool create_interaction(::user::interaction * pinteraction, const ::rectangle_i32 & rectangle, ::user::primitive * pparent, id id) override;
+      //virtual bool create_interaction(::user::interaction * pinteraction, const ::rectangle_i32 & rectangle, ::user::primitive * pparent, atom atom) override;
       //virtual bool create_interaction(::user::interaction * pinteraction, ::u32 uExStyle, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::primitive * puiParent, ::create * pcreate = nullptr) override;
 
       
       void create_child(::user::interaction * pinteraction, ::user::primitive * pprimitiveParent) override;
 
 
-      //virtual bool create_window_ex(::user::interaction * pinteraction, __pointer(::user::system) pcs, ::user::primitive * puiParent, id id) override;
+      //virtual bool create_window_ex(::user::interaction * pinteraction, __pointer(::user::system) pcs, ::user::primitive * puiParent, atom atom) override;
 
       //virtual bool create_interaction() override;
 
@@ -101,9 +101,9 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_destroy);
       DECLARE_MESSAGE_HANDLER(on_message_show_window);
 
-      void send_message_to_descendants(const ::id & id,wparam wParam = 0,lparam lParam = 0,bool bDeep = true,bool bOnlyPerm = 0) override;
+      void send_message_to_descendants(const ::atom & atom,wparam wParam = 0,lparam lParam = 0,bool bDeep = true,bool bOnlyPerm = 0) override;
 
-      //virtual bool post_message(const ::id & id,wparam wparam,lparam lparam) override;
+      //virtual bool post_message(const ::atom & atom,wparam wparam,lparam lparam) override;
 
       void set_viewport_org(::draw2d::graphics_pointer & pgraphics) override;
 

@@ -161,7 +161,7 @@ i32 __memcmp(const void * p1, const void * p2, memsize iLen)
    else if (iLen > UINTPTR_MAX)
    {
 
-      __throw(error_invalid_argument);
+      __throw(error_bad_argument);
 
    }
 

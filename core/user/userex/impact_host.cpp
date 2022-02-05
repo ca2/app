@@ -40,10 +40,10 @@ namespace userex
    }
 
 
-   void impact_host::assert_valid() const
+   void impact_host::assert_ok() const
    {
 
-      ::user::impact::assert_valid();
+      ::user::impact::assert_ok();
 
    }
 
@@ -92,7 +92,7 @@ namespace userex
 
 
 
-   void impact_host::_001DefaultLayoutImpact(::id idImpact)
+   void impact_host::_001DefaultLayoutImpact(::atom idImpact)
    {
 
       if (m_mapframe[idImpact] == nullptr)
@@ -119,7 +119,7 @@ namespace userex
    }
 
 
-   __pointer(::simple_frame_window) impact_host::_001GetFrame(::id idImpact)
+   __pointer(::simple_frame_window) impact_host::_001GetFrame(::atom idImpact)
    {
 
       __pointer(::user::impact) pimpact = _001GetImpact(idImpact);
@@ -145,7 +145,7 @@ namespace userex
    }
 
 
-   __pointer(::user::impact) impact_host::_001GetImpact(::id idImpact)
+   __pointer(::user::impact) impact_host::_001GetImpact(::atom idImpact)
    {
 
       __pointer(::user::document) pdocument = get_doc(idImpact);
@@ -250,11 +250,11 @@ namespace userex
 
             pframewindow->m_bMoveEnable = false;
 
-            ::id id = pupdown->m_id;
+            ::atom atom = pupdown->m_id;
 
             auto strTitle = pframewindow->get_window_text();
 
-            strTitle.is_empty(id);
+            strTitle.is_empty(atom);
 
 
             INFORMATION("-------------------------------------------------------------------");
@@ -264,8 +264,8 @@ namespace userex
             INFORMATION("");
             INFORMATION("");
 
-            //::user::impact_data* pimpactdata = ptabview->host_impact(id, strTitle, pframewindow, pframewindow->get_active_document());
-            ptabview->host_impact(id, strTitle, pframewindow, pframewindow->get_active_document());
+            //::user::impact_data* pimpactdata = ptabview->host_impact(atom, strTitle, pframewindow, pframewindow->get_active_document());
+            ptabview->host_impact(atom, strTitle, pframewindow, pframewindow->get_active_document());
 
 
             INFORMATION("-------------------------------------------------------------------");
@@ -287,7 +287,7 @@ namespace userex
                INFORMATION("");
 
 
-               ptabview->set_current_tab_by_id(id);
+               ptabview->set_current_tab_by_id(atom);
 
                pframewindow->set_need_layout();
 
@@ -512,7 +512,7 @@ namespace userex
    }
 
 
-   __pointer(::user::document) impact_host::get_doc(::id idImpact)
+   __pointer(::user::document) impact_host::get_doc(::atom idImpact)
    {
 
       return m_mapdoc[idImpact];
@@ -520,7 +520,7 @@ namespace userex
    }
 
 
-   __pointer(::user::impact) impact_host::get_view(::id idImpact)
+   __pointer(::user::impact) impact_host::get_view(::atom idImpact)
    {
 
       __pointer(::user::document) pdocument = get_doc(idImpact);
@@ -546,7 +546,7 @@ namespace userex
    }
 
 
-   bool impact_host::_001AttachImpact(::id idImpact)
+   bool impact_host::_001AttachImpact(::atom idImpact)
    {
 
       if(_001IsCompactMode())
@@ -576,7 +576,7 @@ namespace userex
    }
 
 
-   __pointer(::user::impact) impact_host::_001DetachImpact(::id idImpact)
+   __pointer(::user::impact) impact_host::_001DetachImpact(::atom idImpact)
    {
 
       __pointer(::user::impact) pview = _001GetImpact(idImpact);
@@ -597,7 +597,7 @@ namespace userex
    }
 
 
-   bool impact_host::defer_create_view(::id idImpact, ::create * pcreate)
+   bool impact_host::defer_create_view(::atom idImpact, ::create * pcreate)
    {
 
       __pointer(::user::document) pdocument = get_doc(idImpact);
@@ -611,7 +611,7 @@ namespace userex
 
       }
 
-      ::id id = idImpact;
+      ::atom atom = idImpact;
 
       auto pcontext = m_pcontext;
       
@@ -627,7 +627,7 @@ namespace userex
          if (pcreate != nullptr)
          {
 
-            pcreate->m_id = id;
+            pcreate->m_id = atom;
 
             pimpactsystem->do_request(pcreate);
 
@@ -637,7 +637,7 @@ namespace userex
          else
          {
 
-            pdocument = pimpactsystem->open_document_file(get_application(), e_type_empty, __visible(true).is_true(), this, m_bWfiUpDownTarget ? e_window_flag_updown : e_window_flag_none, id);
+            pdocument = pimpactsystem->open_document_file(get_application(), e_type_empty, __visible(true).is_true(), this, m_bWfiUpDownTarget ? e_window_flag_updown : e_window_flag_none, atom);
 
          }
 
@@ -652,7 +652,7 @@ namespace userex
       else
       {
 
-         pdocument = papplication->defer_create_view(idImpact, this, m_bWfiUpDownTarget ? e_window_flag_updown : e_window_flag_none, id);
+         pdocument = papplication->defer_create_view(idImpact, this, m_bWfiUpDownTarget ? e_window_flag_updown : e_window_flag_none, atom);
 
       }
 
@@ -667,7 +667,7 @@ namespace userex
    }
 
 
-   void impact_host::_001OnImpact(::id idImpact)
+   void impact_host::_001OnImpact(::atom idImpact)
    {
 
       toggle_view(idImpact);
@@ -691,7 +691,7 @@ namespace userex
    }
 
 
-   void impact_host::show_view(::id idImpact)
+   void impact_host::show_view(::atom idImpact)
    {
 
       bool bShow = true;
@@ -729,7 +729,7 @@ namespace userex
    }
 
 
-   void impact_host::hide_view(::id idImpact)
+   void impact_host::hide_view(::atom idImpact)
    {
 
       bool bShow = false;
@@ -756,7 +756,7 @@ namespace userex
    }
 
 
-   void impact_host::toggle_view(::id idImpact)
+   void impact_host::toggle_view(::atom idImpact)
    {
 
       //post_routine(__routine([this, idImpact]()
@@ -789,7 +789,7 @@ namespace userex
    }
 
 
-   void impact_host::defer_show_view(::id idImpact)
+   void impact_host::defer_show_view(::atom idImpact)
    {
 
       bool bShow = false;
@@ -832,10 +832,10 @@ namespace userex
       if (psimplecommand->command() == e_simple_command_defer_initialize_handled_views)
       {
          
-         for (auto & id : m_idaHandledImpacts)
+         for (auto & atom : m_idaHandledImpacts)
          {
             
-            defer_show_view(id);
+            defer_show_view(atom);
             
          }
          

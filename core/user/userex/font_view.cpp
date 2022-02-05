@@ -30,10 +30,10 @@ namespace userex
    }
 
 
-   void font_view::assert_valid() const
+   void font_view::assert_ok() const
    {
 
-      ::user::split_view::assert_valid();
+      ::user::split_view::assert_ok();
 
    }
 
@@ -83,7 +83,7 @@ namespace userex
       if (ptopic->m_id == id_after_change_text)
       {
 
-         if (m_ptopview != nullptr && ptopic->m_puserelement == m_ptopview->m_peditview)
+         if (m_ptopview != nullptr && ptopic->m_pextendedtopic->m_puserelement == m_ptopview->m_peditview)
          {
 
             synchronous_lock synchronouslock(m_pimpact->m_pfontlist->mutex());
@@ -233,7 +233,7 @@ namespace userex
 
    //   ::user::impact::handle(ptopic, pcontext);
 
-   //   if (ptopic->m_puserelement->m_id == impact_font_sel)
+   //   if (ptopic->m_pextendedtopic->m_puserelement->m_id == impact_font_sel)
    //   {
 
    //      if (ptopic->m_id == ::id_after_change_cur_sel)

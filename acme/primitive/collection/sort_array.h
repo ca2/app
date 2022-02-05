@@ -84,10 +84,10 @@
 //
 //
 //   template < typename PRED >
-//   void add_sort(const ::id & id, PRED predLess)
+//   void add_sort(const ::atom & atom, PRED predLess)
 //   {
 //
-//      auto& psortmap = m_map[id];
+//      auto& psortmap = m_map[atom];
 //
 //      __defer_construct_new(psortmap);
 //
@@ -121,10 +121,10 @@
 //   }
 //
 //
-//   sort_data * get_sort(const ::id & id) const
+//   sort_data * get_sort(const ::atom & atom) const
 //   {
 //
-//      auto ppair = m_map.plookup(id);
+//      auto ppair = m_map.plookup(atom);
 //
 //      if (!ppair) return nullptr;
 //
@@ -135,10 +135,10 @@
 //   }
 //
 //
-//   sort_data * get_sorted(const ::id & id) const
+//   sort_data * get_sorted(const ::atom & atom) const
 //   {
 //
-//      auto pdata = get_sort(id);
+//      auto pdata = get_sort(atom);
 //
 //      // sort information is considered a const sorting property, i.e.,
 //      // a mutable cache;
@@ -149,13 +149,13 @@
 //   }
 //
 //
-//   bool find(ARG_TYPE t, index & iIndex, const ::id & id) const;
+//   bool find(ARG_TYPE t, index & iIndex, const ::atom & atom) const;
 //
-//   bool contains(ARG_TYPE t, const ::id & id) const;
+//   bool contains(ARG_TYPE t, const ::atom & atom) const;
 //
-//   bool add_unique(ARG_TYPE t, const ::id & id);
+//   bool add_unique(ARG_TYPE t, const ::atom & atom);
 //
-//   void sort(const ::id & id);
+//   void sort(const ::atom & atom);
 //
 //   void set_size(::count ca);
 //
@@ -165,9 +165,9 @@
 //
 //   ::index get_size() const { return m_parray->get_size(); }
 //
-//   const TYPE & element_at (::index i, const ::id & id) const;
+//   const TYPE & element_at (::index i, const ::atom & atom) const;
 //
-//   TYPE & element_at (::index i, const ::id & id);
+//   TYPE & element_at (::index i, const ::atom & atom);
 //
 //   const TYPE & operator [] (::index i) const;
 //
@@ -211,7 +211,7 @@
 //
 //template < class TYPE, class ARG_TYPE, class BASE_ARRAY >
 //bool sort_array < TYPE, ARG_TYPE, BASE_ARRAY >::
-//find(ARG_TYPE t, index & iIndex, const ::id & id) const
+//find(ARG_TYPE t, index & iIndex, const ::atom & atom) const
 //{
 //
 //   if(m_parray->is_empty())
@@ -221,7 +221,7 @@
 //
 //   }
 //
-//   auto psort = get_sorted(id);
+//   auto psort = get_sorted(atom);
 //
 //   return ::papaya::array::binary_search(
 //      *m_parray,
@@ -235,22 +235,22 @@
 //
 //template < class TYPE, class ARG_TYPE, class BASE_ARRAY >
 //bool sort_array < TYPE, ARG_TYPE, BASE_ARRAY >::
-//contains(ARG_TYPE t, const ::id & id) const
+//contains(ARG_TYPE t, const ::atom & atom) const
 //{
 //
 //   index iIndex = 0;
 //
-//   return find(t, iIndex, id);
+//   return find(t, iIndex, atom);
 //
 //}
 //
 //
 //template < class TYPE, class ARG_TYPE, class BASE_ARRAY >
 //bool sort_array < TYPE, ARG_TYPE, BASE_ARRAY >::
-//add_unique(ARG_TYPE t, const ::id & id)
+//add_unique(ARG_TYPE t, const ::atom & atom)
 //{
 //
-//   if (contains(t, id))
+//   if (contains(t, atom))
 //   {
 //
 //      return false;
@@ -266,10 +266,10 @@
 //
 //template < class TYPE, class ARG_TYPE, class BASE_ARRAY >
 //void sort_array < TYPE, ARG_TYPE, BASE_ARRAY >::
-//sort(const ::id & id)
+//sort(const ::atom & atom)
 //{
 //
-//   ((const sort_array *)this)->get_sorted(id);
+//   ((const sort_array *)this)->get_sorted(atom);
 //
 //}
 //
@@ -288,20 +288,20 @@
 //
 //template < class TYPE, class ARG_TYPE, class BASE_ARRAY >
 //TYPE & sort_array < TYPE, ARG_TYPE, BASE_ARRAY >::
-//element_at(::index i, const ::id & id)
+//element_at(::index i, const ::atom & atom)
 //{
 //
-//   return m_parray->element_at(get_sort(id)->m_pindexa->element_at(i));
+//   return m_parray->element_at(get_sort(atom)->m_pindexa->element_at(i));
 //
 //}
 //
 //
 //template < class TYPE, class ARG_TYPE, class BASE_ARRAY >
 //const TYPE & sort_array < TYPE, ARG_TYPE, BASE_ARRAY >::
-//element_at(::index i, const ::id & id) const
+//element_at(::index i, const ::atom & atom) const
 //{
 //
-//   return ((sort_array *) this)->element_at(i, id);
+//   return ((sort_array *) this)->element_at(i, atom);
 //
 //}
 //

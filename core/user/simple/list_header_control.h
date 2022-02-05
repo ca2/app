@@ -15,7 +15,7 @@ public:
 
 
    //using ::user::list_header::create_window;
-   //virtual bool create_window(u32 uStyle, ::user::interaction * puiParent, ::id id);
+   //virtual bool create_window(u32 uStyle, ::user::interaction * puiParent, ::atom atom);
 
 
    void install_message_routing(::channel * pchannel) override;

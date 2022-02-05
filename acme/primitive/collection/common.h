@@ -61,7 +61,7 @@ public:
       else
       {
 
-         __throw(error_invalid_argument);
+         __throw(error_bad_argument);
 
       }
 
@@ -106,7 +106,7 @@ public:
       else
       {
 
-         __throw(error_invalid_argument);
+         __throw(error_bad_argument);
 
       }
 

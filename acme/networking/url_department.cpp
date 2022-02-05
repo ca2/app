@@ -196,7 +196,7 @@ namespace url
    }
 
 
-   string department::object_get_query(const ::string & strParam) // id=1
+   string department::object_get_query(const ::string & strParam) // atom=1
    {
 
       string str(strParam);
@@ -237,7 +237,7 @@ namespace url
    }
 
 
-   string department::get_query(const ::string & strParam) // id=1
+   string department::get_query(const ::string & strParam) // atom=1
    {
 
       return object_get_query(get_object(strParam));
@@ -1273,7 +1273,7 @@ namespace url
 
    }
 
-   bool department::locale_is_eu(id idLocale)
+   bool department::locale_is_eu(atom idLocale)
    {
 
 
@@ -1319,7 +1319,7 @@ namespace url
 
    }
 
-   bool department::locale_is_asia(id idLocale)
+   bool department::locale_is_asia(atom idLocale)
    {
 
       if(idLocale == __id(asia)
@@ -1348,7 +1348,7 @@ namespace url
 
    }
 
-   bool department::locale_is_middle_east(id idLocale)
+   bool department::locale_is_middle_east(atom idLocale)
    {
 
       string strLocale(idLocale);
@@ -1367,7 +1367,7 @@ namespace url
 
 
 
-   bool department::locale_is_south_america(id idLocale)
+   bool department::locale_is_south_america(atom idLocale)
    {
 
       string strLocale(idLocale);
@@ -1392,7 +1392,7 @@ namespace url
 
    }
 
-   bool department::locale_is_oceania(id idLocale)
+   bool department::locale_is_oceania(atom idLocale)
    {
 
       string strLocale(idLocale);
@@ -1410,7 +1410,7 @@ namespace url
    }
 
 
-   bool department::locale_is_africa(id idLocale)
+   bool department::locale_is_africa(atom idLocale)
    {
 
       string strLocale(idLocale);
@@ -1428,7 +1428,7 @@ namespace url
 
    }
 
-   bool department::locale_is_latin_america(id idLocale)
+   bool department::locale_is_latin_america(atom idLocale)
    {
 
       string strLocale(idLocale);
@@ -1442,7 +1442,7 @@ namespace url
 
    }
 
-   bool department::locale_is_north_america(id idLocale)
+   bool department::locale_is_north_america(atom idLocale)
    {
 
       string strLocale(idLocale);
@@ -1458,7 +1458,7 @@ namespace url
 
    }
 
-   bool department::locale_is_caribe(id idLocale)
+   bool department::locale_is_caribe(atom idLocale)
    {
 
       string strLocale(idLocale);
@@ -1478,7 +1478,7 @@ namespace url
    }
 
 
-   bool department::locale_is_central_america(id idLocale)
+   bool department::locale_is_central_america(atom idLocale)
    {
 
       string strLocale(idLocale);
@@ -1498,7 +1498,7 @@ namespace url
 
    }
 
-   bool department::locale_is_america(id idLocale)
+   bool department::locale_is_america(atom idLocale)
    {
 
       string strLocale(idLocale);

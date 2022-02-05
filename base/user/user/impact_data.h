@@ -16,21 +16,21 @@ namespace user
 
       ::i64                            m_iId;
       ::index                          m_iIndex;
-      id                               m_id;
+      atom                               m_id;
       __pointer(interaction)           m_puserinteraction;
       __pointer(place_holder)          m_pplaceholder;
       __pointer(document)              m_pdocument;
-      id                               m_idSplit;
+      atom                               m_idSplit;
       bool                             m_bTabSplitSwap;
       i32                              m_iExtendOnParent;
       eflag                            m_eflag;
-      ::id                             m_idTitle;
+      ::atom                             m_idTitle;
       void *                           m_pimpactdata;
       bool                             m_bOk;
 
       
       impact_data();
-      impact_data(const ::id & id, const ::id & idTitle);
+      impact_data(const ::atom & atom, const ::atom & idTitle);
       virtual ~impact_data();
 
       void impact_data_common_construct();

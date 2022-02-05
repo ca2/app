@@ -564,10 +564,10 @@ namespace user
    }
 
 
-   //bool still::create_interaction(::user::interaction * pinteractionParent, const ::id & id)
+   //bool still::create_interaction(::user::interaction * pinteractionParent, const ::atom & atom)
    //{
 
-   //   return interaction::create_interaction(pinteractionParent, id);
+   //   return interaction::create_interaction(pinteractionParent, atom);
 
    //}
 
@@ -780,19 +780,17 @@ namespace user
       if (iKey == ::user::e_key_return || iKey == ::user::e_key_space)
       {
 
-         ::topic topic;
+         ::extended_topic extendedtopic(::id_click);
 
-         topic.m_puserelement = this;
+         extendedtopic.m_puserelement = this;
 
-         topic.m_id = ::id_click;
+         extendedtopic.m_actioncontext.m_pmessage = pmessage;
 
-         topic.m_actioncontext.m_pmessage = pmessage;
+         extendedtopic.m_actioncontext.add(e_source_user);
 
-         topic.m_actioncontext.add(e_source_user);
+         route(&extendedtopic);
 
-         route(&topic);
-
-         pmessage->m_bRet = topic.m_bRet;
+         pmessage->m_bRet = extendedtopic.m_bRet;
 
          if (pmessage->m_bRet)
          {
@@ -1045,7 +1043,7 @@ namespace user
 
    i32 still::BaseToolTipGetIndex()
    {
-      // use window dialog control id as the index
+      // use window dialog control atom as the index
       return (i32)GetDlgCtrlId();
    }
 

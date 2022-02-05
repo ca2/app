@@ -31,7 +31,7 @@ namespace filemanager
       virtual ~file_list();
 
 
-      void assert_valid() const override;
+      void assert_ok() const override;
       void dump(dump_context & dumpcontext) const override;
 
 
@@ -67,7 +67,7 @@ namespace filemanager
 
 
 
-      virtual id data_get_current_list_layout_id() override;
+      virtual atom data_get_current_list_layout_id() override;
 
 
 

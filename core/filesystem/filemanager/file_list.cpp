@@ -62,10 +62,10 @@ namespace filemanager
    }
 
 
-   void file_list::assert_valid() const
+   void file_list::assert_ok() const
    {
 
-      ::user::impact::assert_valid();
+      ::user::impact::assert_ok();
 
    }
 
@@ -988,7 +988,7 @@ namespace filemanager
    }
 
 
-   id file_list::data_get_current_list_layout_id()
+   atom file_list::data_get_current_list_layout_id()
    {
 
       return filemanager_item()->m_filepathUser;
@@ -1275,7 +1275,7 @@ namespace filemanager
 
          index iControl;
 
-         ::id id = 1000 + i;
+         ::atom atom = 1000 + i;
 
          {
 
@@ -1283,7 +1283,7 @@ namespace filemanager
             pinteraction->m_bTransparent = true;
             //pinteraction->set_control_type(user::e_control_type_button);
             //pinteraction->m_type = __type(::user::button);
-            pinteraction->m_id = id;
+            pinteraction->m_id = atom;
             pinteraction->add_function(user::e_control_function_action);
             iControl = _001AddControl(pinteraction);
 
@@ -1295,7 +1295,7 @@ namespace filemanager
 
             pcolumn->m_iWidth = 18;
             pcolumn->m_iSubItem = i;
-            pcolumn->m_id = id;
+            pcolumn->m_id = atom;
             pcolumn->m_bCustomDraw = true;
             pcolumn->m_bEditOnSecondClick = true;
             pcolumn->m_pil = pcallback->GetActionButtonImageList(i);
@@ -2096,7 +2096,7 @@ namespace filemanager
       else if (ptopic->m_id == id_filter)
       {
 
-         if (ptopic->payload(id_filter).is_empty())
+         if (ptopic->m_pextendedtopic->payload(id_filter).is_empty())
          {
 
             FilterClose();
@@ -2107,7 +2107,7 @@ namespace filemanager
 
             FilterBegin();
 
-            Filter1(ptopic->payload(id_filter).as_string());
+            Filter1(ptopic->m_pextendedtopic->payload(id_filter).as_string());
 
          }
 
@@ -2126,14 +2126,14 @@ namespace filemanager
       else if (ptopic->m_id == id_after_browse)
       {
 
-         if (ptopic->payload(id_after_browse) == "filemanager\\replace_name_in_file_system.xhtml")
+         if (ptopic->m_pextendedtopic->payload(id_after_browse) == "filemanager\\replace_name_in_file_system.xhtml")
          {
 
             //html::matter * pelemental = dynamic_cast < html::matter * > (pupdate->m_pformview->get_html_data()->get_element_by_name("encontrar"));
 
             //html::impl::input_text * pinput = dynamic_cast < html::impl::input_text * > (pelemental->m_pimpl);
 
-            __pointer(::user::interaction) puserinteractionParent = ptopic->m_puserelement;
+            __pointer(::user::interaction) puserinteractionParent = ptopic->m_pextendedtopic->m_puserelement;
 
             auto pinteraction = puserinteractionParent->get_child_by_id("encontrar");
 
@@ -2142,7 +2142,7 @@ namespace filemanager
             if (pitem)
             {
 
-               pinteraction->_001SetText(ptopic->payload(id_name), ptopic->m_actioncontext);
+               pinteraction->_001SetText(ptopic->m_pextendedtopic->payload(id_name), ptopic->m_pextendedtopic->m_actioncontext);
 
             }
 
@@ -2151,14 +2151,14 @@ namespace filemanager
          if (ptopic->m_id == id_replace_name)
          {
 
-            if (ptopic->payload(id_find).has_char())
+            if (ptopic->m_pextendedtopic->payload(id_find).has_char())
             {
 
                auto pcontext = get_context();
 
                ::file::path pathFolder = filemanager_item()->get_user_path();
 
-               pcontext->m_papexcontext->file().replace_with(pathFolder, ptopic->payload(id_replace), ptopic->payload(id_find));
+               pcontext->m_papexcontext->file().replace_with(pathFolder, ptopic->m_pextendedtopic->payload(id_replace), ptopic->m_pextendedtopic->payload(id_find));
 
             }
 
@@ -2166,16 +2166,16 @@ namespace filemanager
          else if (ptopic->m_id == id_new_folder)
          {
 
-            if (ptopic->payload(id_folder).has_char())
+            if (ptopic->m_pextendedtopic->payload(id_folder).has_char())
             {
 
-               ::file::path pathFolder = filemanager_item()->get_user_path() / ptopic->payload(id_folder);
+               ::file::path pathFolder = filemanager_item()->get_user_path() / ptopic->m_pextendedtopic->payload(id_folder);
 
                auto pcontext = get_context();
 
                pcontext->m_papexcontext->dir().create(pathFolder);
 
-               ptopic->m_bRet = true;
+               ptopic->m_pextendedtopic->m_bRet = true;
 
             }
 

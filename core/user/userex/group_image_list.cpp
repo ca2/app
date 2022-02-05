@@ -29,10 +29,10 @@ namespace userex
 
 
 
-   void group_image_list_view::assert_valid() const
+   void group_image_list_view::assert_ok() const
    {
 
-      ::user::impact::assert_valid();
+      ::user::impact::assert_ok();
 
    }
 
@@ -58,7 +58,7 @@ namespace userex
       else if (ptopic->m_id == ::id_click)
       {
 
-         if (ptopic->user_interaction()->m_id == m_id)
+         if (ptopic->m_pextendedtopic->user_interaction()->m_id == m_id)
          {
 
             show_menu();
@@ -83,7 +83,7 @@ namespace userex
    }
 
 
-   ::userex::image_list_view * group_image_list_view::add_group(::id idGroup, string strIcon, string strTitle, ::file::path pathFolder)
+   ::userex::image_list_view * group_image_list_view::add_group(::atom idGroup, string strIcon, string strTitle, ::file::path pathFolder)
    {
 
       __pointer(group) pgroup = __new(group);
@@ -146,7 +146,7 @@ namespace userex
    }
 
 
-   group_image_list_view::group * group_image_list_view::get_group(::id idGroup)
+   group_image_list_view::group * group_image_list_view::get_group(::atom idGroup)
    {
 
       index iFind = m_groupa.predicate_find_first([=](auto & item)
@@ -210,7 +210,7 @@ namespace userex
    }
 
 
-   ::userex::image_list_view * group_image_list_view::get_group_list(::id idGroup)
+   ::userex::image_list_view * group_image_list_view::get_group_list(::atom idGroup)
    {
 
       __pointer(group) pgroup = get_group(idGroup);
@@ -293,7 +293,7 @@ namespace userex
    }
 
 
-   bool group_image_list_view::show_group(::id idGroup, ::file::path pathFolder)
+   bool group_image_list_view::show_group(::atom idGroup, ::file::path pathFolder)
    {
 
       __pointer(group) pgroup = get_group(idGroup);
@@ -366,7 +366,7 @@ namespace userex
    //   else if (ptopic->m_id == ::id_click)
    //   {
 
-   //      if (ptopic->user_interaction()->m_id == m_id)
+   //      if (ptopic->m_pextendedtopic->user_interaction()->m_id == m_id)
    //      {
 
    //         show_menu();
@@ -390,7 +390,7 @@ namespace userex
       for (auto & pgroup : m_groupa)
       {
 
-         str += "<item id=\"menu_item_";
+         str += "<item atom=\"menu_item_";
          str += pgroup->m_idGroup.to_string();
          str += "\" pimage =\"";
          str += pgroup->m_strIcon;

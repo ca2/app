@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "acme/node/operating_system/_c.h"
 #include "acme/node/operating_system/_.h"
-#include "acme/constant/id.h"
+#include "acme/id.h"
 
 
 namespace parallelization
@@ -66,14 +66,14 @@ namespace parallelization
 
    //}
 
-   //CLASS_DECL_ACME bool thread_id_registered(itask_t id)
+   //CLASS_DECL_ACME bool thread_id_registered(itask_t atom)
    //{
 
    //   //critical_section_lock lock(s_pcs2);
 
-   //   //return s_piaThread2->contains(id);
+   //   //return s_piaThread2->contains(atom);
 
-   //   return ::acme::get_system()->get_task(id) != nullptr;
+   //   return ::acme::get_system()->get_task(atom) != nullptr;
 
    //}
 
@@ -173,7 +173,7 @@ namespace parallelization
    //}
 
 
-   //CLASS_DECL_ACME void post_to_all_threads(const ::id & id, wparam wparam, lparam lparam)
+   //CLASS_DECL_ACME void post_to_all_threads(const ::atom & atom, wparam wparam, lparam lparam)
    //{
 
    //   synchronous_lock synchronouslock(::acme::get_system()->m_mutexThread);

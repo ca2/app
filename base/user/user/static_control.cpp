@@ -30,10 +30,10 @@ namespace user
 
 
 
-   //bool static_control::create_interaction(::user::interaction * puiParent,id id)
+   //bool static_control::create_interaction(::user::interaction * puiParent,atom atom)
    //{
 
-   //   return ::user::interaction::create_interaction(puiParent, id);
+   //   return ::user::interaction::create_interaction(puiParent, atom);
 
    //}
 

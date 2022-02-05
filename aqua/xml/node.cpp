@@ -131,10 +131,10 @@ namespace xml
    //}
 
 
-   property * node::set_attribute(const ::id & id, const ::payload & payload)
+   property * node::set_attribute(const ::atom & atom, const ::payload & payload)
    {
 
-      auto & property = m_set.get(id);
+      auto & property = m_set.get(atom);
 
       property = payload;
 
@@ -175,13 +175,13 @@ namespace xml
    }
 
 
-   node * node::get_child_with_attribute(const char * pcszName, const ::id & id, const ::payload & payload, index iStart)
+   node * node::get_child_with_attribute(const char * pcszName, const ::atom & atom, const ::payload & payload, index iStart)
    {
 
       for(index i = iStart; i < m_nodea.get_count(); i++)
       {
 
-         if (m_nodea[i]->m_strName == pcszName && m_nodea[i]->attribute(id) == payload)
+         if (m_nodea[i]->m_strName == pcszName && m_nodea[i]->attribute(atom) == payload)
          {
 
             return m_nodea[i]->get_xml_node();

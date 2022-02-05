@@ -811,7 +811,7 @@ pacmedir->system() / "config\\plugin\\version.txt");
          if(lpnodeType == nullptr)
             goto run_install;
 
-         ::xml::node * pnode = lpnodeType->GetChildByAttr(pszType, "id", pszInstall);
+         ::xml::node * pnode = lpnodeType->GetChildByAttr(pszType, "atom", pszInstall);
 
          if(pnode == nullptr)
             goto run_install;

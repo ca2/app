@@ -59,7 +59,7 @@ namespace filemanager
    }
 
 
-   void data::assert_valid() const
+   void data::assert_ok() const
    {
 
 
@@ -329,10 +329,10 @@ namespace filemanager
    }
 
 
-   id data::get_local_machine_id()
+   atom data::get_local_machine_id()
    {
 
-      id idMachine;
+      atom idMachine;
 
 #ifdef LINUX
       idMachine = "Linux";

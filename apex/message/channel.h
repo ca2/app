@@ -37,86 +37,86 @@ public:
    virtual void erase_all_routes();
 
    //template < typename RECEIVER >
-   //bool add_message_handler(const ::id & id, RECEIVER * preceiver, void (RECEIVER:: * phandler)(::message::message * pmessage));
+   //bool add_message_handler(const ::atom & atom, RECEIVER * preceiver, void (RECEIVER:: * phandler)(::message::message * pmessage));
 
    //template < typename RECEIVER >
    //bool add_message_handler(::i64 iMessage, RECEIVER* preceiver, void (RECEIVER::* phandler)(::message::message* pmessage))
    //{
 
-      //return add_message_handler((const ::id&)(::enum_message)iMessage, preceiver, phandler);
+      //return add_message_handler((const ::atom&)(::enum_message)iMessage, preceiver, phandler);
 
    //}
 
    //template < typename MESSAGE_PRED >
-   //bool add_message_handler(const ::id & id, MESSAGE_PRED pred);
+   //bool add_message_handler(const ::atom & atom, MESSAGE_PRED pred);
 
 
    virtual void route_message(::message::message * pmessage);
 
    virtual __pointer(::message::message) get_message(MESSAGE * pmessage);
 
-   virtual __pointer(::message::message) get_message(const ::id& id, wparam wparam, lparam lparam);
+   virtual __pointer(::message::message) get_message(const ::atom& atom, wparam wparam, lparam lparam);
 
 
-   void id_notify(const ::id & id, ::matter * pmatter);
+   void id_notify(const ::atom & atom, ::matter * pmatter);
 
 
    //template < class T >
-   //void add_command_prober(const ::id & id, void (T:: * pfn)(::message::message *))
+   //void add_command_prober(const ::atom & atom, void (T:: * pfn)(::message::message *))
    //{
 
-   //   add_command_prober(id, dynamic_cast <T *> (this), pfn);
+   //   add_command_prober(atom, dynamic_cast <T *> (this), pfn);
 
    //}
 
 
-   ::matter * add_message_handler(const ::id & id, const ::message::dispatcher & dispatcher);
+   ::matter * add_message_handler(const ::atom & atom, const ::message::dispatcher & dispatcher);
 
 
    template < typename T1, typename T2 >
-   ::matter * add_message_handler(const ::id & id, T1 * p, void (T2:: * pfn)(::message::message *))
+   ::matter * add_message_handler(const ::atom & atom, T1 * p, void (T2:: * pfn)(::message::message *))
    {
 
-      return add_message_handler(id, { p, pfn });
+      return add_message_handler(atom, { p, pfn });
 
    }
 
 
-   ::matter * add_command_prober(const ::id & id, const ::message::dispatcher & dispatcher)
+   ::matter * add_command_prober(const ::atom & atom, const ::message::dispatcher & dispatcher)
    {
 
-      return add_message_handler(id.compounded(::id::e_type_command_probe), dispatcher);
-
-   }
-
-
-   template < typename T1, typename T2 >
-   ::matter * add_command_prober(const ::id & id, T1 * p, void (T2:: * pfn)(::message::message *))
-   {
-
-      return add_command_prober(id, { p, pfn });
-
-   }
-
-
-   ::matter * add_command_handler(const ::id & id, const ::message::dispatcher & dispatcher)
-   {
-
-      return add_message_handler(id.compounded(::id::e_type_command), dispatcher);
+      return add_message_handler(atom.compounded(::atom::e_type_command_probe), dispatcher);
 
    }
 
 
    template < typename T1, typename T2 >
-   ::matter * add_command_handler(const ::id & id, T1 * p, void (T2:: * pfn)(::message::message *))
+   ::matter * add_command_prober(const ::atom & atom, T1 * p, void (T2:: * pfn)(::message::message *))
    {
 
-      return add_command_handler(id, { p, pfn });
+      return add_command_prober(atom, { p, pfn });
 
    }
 
 
-   void default_toggle_check_handling(const ::id& id);
+   ::matter * add_command_handler(const ::atom & atom, const ::message::dispatcher & dispatcher)
+   {
+
+      return add_message_handler(atom.compounded(::atom::e_type_command), dispatcher);
+
+   }
+
+
+   template < typename T1, typename T2 >
+   ::matter * add_command_handler(const ::atom & atom, T1 * p, void (T2:: * pfn)(::message::message *))
+   {
+
+      return add_command_handler(atom, { p, pfn });
+
+   }
+
+
+   void default_toggle_check_handling(const ::atom& atom);
 
    
    void _001SendCommand(::message::command * pmessage);

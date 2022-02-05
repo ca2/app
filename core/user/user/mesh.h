@@ -338,9 +338,9 @@ namespace user
 
       virtual void data_get_DisplayToStrict();
       virtual void data_set_DisplayToStrict();
-      virtual id data_get_current_sort_id();
-      virtual id data_get_sort_id(EImpact eview);
-      virtual id data_get_current_mesh_layout_id();
+      virtual atom data_get_current_sort_id();
+      virtual atom data_get_sort_id(EImpact eview);
+      virtual atom data_get_current_mesh_layout_id();
 
       virtual bool query_drop(index iDisplayDrop,index iDisplayDrag);
       virtual bool do_drop(index iDisplayDrop,index iDisplayDrag);

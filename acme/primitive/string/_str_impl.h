@@ -594,10 +594,10 @@ inline void from_string(wd32char sz[n], const ansichar * psz)
 }
 
 
-inline void from_string(::id & id, const ansichar * psz)
+inline void from_string(::atom & atom, const ansichar * psz)
 {
 
-   id = psz;
+   atom = psz;
 
 }
 
@@ -671,10 +671,10 @@ inline void to_string(string & str, const element & o)
 //}
 
 
-inline void to_string(string & str, const ::id & id)
+inline void to_string(string & str, const ::atom & atom)
 {
 
-   id.to_string(str);
+   atom.to_string(str);
 
 }
 
@@ -794,7 +794,7 @@ inline string string_from_u(const T& t)
 //      if(strsize != 0)
 //      {
 //
-//         __throw(error_invalid_argument);
+//         __throw(error_bad_argument);
 //
 //      }
 //
@@ -848,7 +848,7 @@ inline string string_from_u(const T& t)
 //   if((iChar < 0) || (iChar >= get_length()))
 //   {
 //
-//      __throw(error_invalid_argument);
+//      __throw(error_bad_argument);
 //
 //   }
 //
@@ -884,7 +884,7 @@ inline string string_from_u(const T& t)
 //      if(pszSrc == nullptr)
 //      {
 //
-//         __throw(error_invalid_argument);
+//         __throw(error_bad_argument);
 //
 //      }
 //
@@ -942,7 +942,7 @@ inline string string_from_u(const T& t)
 //   if(nLength < 0)
 //   {
 //
-//      __throw(error_invalid_argument);
+//      __throw(error_bad_argument);
 //
 //   }
 //
@@ -1534,7 +1534,7 @@ inline void string_meta_data < TYPE_CHAR > ::set_length(::strsize strsize)
    if (strsize >= strsizeStorage)
    {
 
-      __throw(error_invalid_argument);
+      __throw(error_bad_argument);
 
    }
 

@@ -123,11 +123,11 @@ namespace user
 
          m_iFullHeightItemCount++;
 
-         ::id id = pnode->attribute("id");
+         ::atom atom = pnode->attribute("atom");
 
-         id = translate_property_id(id);
+         atom = translate_property_id(atom);
 
-         m_id = id;
+         m_id = atom;
 
          string strText;
 
@@ -342,7 +342,7 @@ namespace user
    }
 
 
-   menu_item * menu_item::find(id id)
+   menu_item * menu_item::find(atom atom)
    {
 
       if(m_pmenuitema.is_null())
@@ -351,7 +351,7 @@ namespace user
 
       }
 
-      return m_pmenuitema->find(id);
+      return m_pmenuitema->find(atom);
 
    }
 
@@ -367,7 +367,7 @@ namespace user
 
    }
 
-   menu_item * menu_item_ptra::find(id id)
+   menu_item * menu_item_ptra::find(atom atom)
    {
 
       menu_item * pitemFind;
@@ -377,14 +377,14 @@ namespace user
 
          menu_item * pitem = element_at(i);
 
-         if(pitem->m_id  == id)
+         if(pitem->m_id  == atom)
          {
 
             return pitem;
 
          }
 
-         pitemFind = pitem->find(id);
+         pitemFind = pitem->find(atom);
 
          if(pitemFind != nullptr)
          {

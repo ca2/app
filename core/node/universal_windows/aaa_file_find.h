@@ -23,7 +23,7 @@ namespace universal_windows
       virtual ~file_find();
 
       void dump(dump_context & dumpcontext) const;
-      void assert_valid() const;
+      void assert_ok() const;
 
 
       i64 get_length() const;

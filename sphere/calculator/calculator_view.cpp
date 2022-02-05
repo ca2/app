@@ -35,9 +35,9 @@ namespace calculator
    }
 
 
-   void impact::assert_valid() const
+   void impact::assert_ok() const
    {
-      ::user::impact::assert_valid();
+      ::user::impact::assert_ok();
    }
 
    void impact::dump(dump_context & dumpcontext) const

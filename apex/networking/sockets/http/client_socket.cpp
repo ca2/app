@@ -267,7 +267,7 @@ namespace sockets
    }
 
 
-   void http_client_socket::OnHeader(id key, const string & value)
+   void http_client_socket::OnHeader(atom key, const string & value)
    {
 
 #if HEAVY_HTTP_LOG

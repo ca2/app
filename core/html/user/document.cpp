@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "_user.h"
 #include "aura/update.h"
-#include "acme/constant/id.h"
+#include "acme/id.h"
 
 
 html_document::html_document()
@@ -49,10 +49,10 @@ html_document::~html_document()
 }
 
 
-void html_document::assert_valid() const
+void html_document::assert_ok() const
 {
 
-   ::user::document::assert_valid();
+   ::user::document::assert_ok();
 
 }
 
@@ -281,7 +281,7 @@ void html_document::soft_reload()
 //
 //   ptopic->m_id = id_document_complete;
 //
-//   ptopic->payload(id_url) = get_file_path();
+//   ptopic->m_pextendedtopic->payload(id_url) = get_file_path();
 //
 //   update_all_views(pupdate);
 

@@ -69,7 +69,7 @@ namespace universal_windows
 
       virtual bool is_remote_session() override;
 
-//      virtual void post_to_all_threads(const ::id & id, WPARAM wParam, LPARAM lParam);
+//      virtual void post_to_all_threads(const ::atom & atom, WPARAM wParam, LPARAM lParam);
 
       virtual int get_pid() override;
 

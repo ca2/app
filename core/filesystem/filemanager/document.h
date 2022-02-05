@@ -33,7 +33,7 @@ namespace filemanager
       inline ::core::system* get_system() const { return m_psystem ? m_psystem->m_pcoresystem : nullptr; }
 
       
-      void assert_valid() const override;
+      void assert_ok() const override;
       void dump(dump_context & dumpcontext) const override;
 
 
@@ -147,7 +147,7 @@ namespace filemanager
       //virtual ::user::toolbar * get_toolbar(::user::frame * pframe, bool bCreate) override;
 
 
-      ::id get_toolbar_id() override;
+      ::atom get_toolbar_id() override;
 
 
       virtual void start_full_browse(__pointer(::file::item) pitem, const ::action_context & action_context);

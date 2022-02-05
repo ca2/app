@@ -225,7 +225,7 @@ CLASS_DECL_AURA void aura_ref();
 //
 //#define ASSERT(f)          ((void) ((f) || (is_debugger_attached() && !::__assert_failed_line(__FILE__, __LINE__) && (::debug_break(), 0)) || (!is_debugger_attached() && (throw_assert_exception(__FILE__, __LINE__), 0))))
 //#define _ASSUME(cond)       do { bool _gen__condVal=!!(cond); ASSERT(_gen__condVal); __analysis_assume(_gen__condVal); } while(0)
-//#define ASSERT_VALID(pOb)  ::__assert_valid_object(pOb, __FILE__, __LINE__)
+//#define ASSERT_VALID(pOb)  ::__assert_object_ok(pOb, __FILE__, __LINE__)
 //
 //
 //#else
@@ -1605,7 +1605,7 @@ class form_document;
 //
 //class dump_context;
 //
-//class id_space;
+//class atom_space;
 //class ptra;
 //class factory_item_base;
 //class fixed_alloc_no_sync;
@@ -1615,7 +1615,7 @@ class form_document;
 //class channel;
 //class critical_section;
 //class ::mutex;
-//class id;
+//class atom;
 //
 //namespace colorertake5
 //{
@@ -2339,7 +2339,7 @@ CLASS_DECL_AURA void __node_aura_pos_term();
 //
 //
 //class ::payload;
-//class id;
+//class atom;
 //
 //
 //namespace calculator
@@ -2397,7 +2397,7 @@ CLASS_DECL_AURA void __node_aura_pos_term();
 //#include "aura/primitive/primitive/interlocked_long.h"
 //#include "aura/primitive/primitive/interlocked_long_pulse.h"
 //#include "aura/primitive/primitive/type.h"
-//#include "aura/primitive/primitive/id.h"
+//#include "aura/primitive/primitive/atom.h"
 //#include "aura/primitive/primitive/uid.h"
 //
 //

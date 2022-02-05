@@ -118,7 +118,7 @@ void simple_toolbar::install_message_routing(::channel * pchannel)
 }
 
 
-//bool simple_toolbar::create(::user::interaction * puiParent, u32 uStyle, id nID)
+//bool simple_toolbar::create(::user::interaction * puiParent, u32 uStyle, atom nID)
 //{
 //
 //   return create_toolbar(puiParent, 0, uStyle, nID);
@@ -126,7 +126,7 @@ void simple_toolbar::install_message_routing(::channel * pchannel)
 //}
 
 
-//bool simple_toolbar::create_toolbar(::user::interaction * puiParent, u32 dwCtrlStyle, u32 uStyle, id nID)
+//bool simple_toolbar::create_toolbar(::user::interaction * puiParent, u32 dwCtrlStyle, u32 uStyle, atom nID)
 //{
 //
 //   ASSERT_VALID(puiParent);   // must have a parent

@@ -174,10 +174,10 @@ namespace user
       index                                        m_iListItem;
       index                                        m_iColumn;
 
-      id                                        m_uiText;
+      atom                                        m_uiText;
       ::type                                    m_type;
-      id                                        m_idPrivateDataSection;
-      //::id                                      m_idTranslated;
+      atom                                        m_idPrivateDataSection;
+      //::atom                                      m_idTranslated;
       bool                                      m_bTransparent;
       enum_control_type                         m_econtroltype;
       bool                                      m_bCreated;
@@ -266,7 +266,7 @@ namespace user
       bool                                         m_bNeedLoadFormData;
       bool                                         m_bNeedSaveFormData;
       ::duration                                         m_durationLastRedraw;
-      ::id                                         m_idImpact;
+      ::atom                                         m_idImpact;
       ::color::color                                      m_colorBackground;
       bool                                         m_bWorkspaceFullScreen;
       point_i32                                        m_pointScroll;
@@ -299,7 +299,7 @@ namespace user
       bool                                         m_bRectOk;
       string                                       m_strWindowText;
       bool                                         m_bModal;
-      id                                           m_idModalResult; // for return values from interaction_impl::RunModalLoop
+      atom                                           m_idModalResult; // for return values from interaction_impl::RunModalLoop
       i32                                          m_nModalResult; // for return values from ::interaction_impl::RunModalLoop
 
       bool                                         m_bNeedRedraw;
@@ -533,7 +533,7 @@ namespace user
 
       virtual ::user::style * get_style(::draw2d::graphics_pointer& pgraphics) const;
 
-      __pointer(::message::message) get_message(const ::id & id, wparam wparam, lparam lparam) override;
+      __pointer(::message::message) get_message(const ::atom & atom, wparam wparam, lparam lparam) override;
 
       inline ::user::style * get_style(::user::style * pstyle) const
       {
@@ -548,7 +548,7 @@ namespace user
       /// you should be able (control developer pay attention now),
       /// to build a default control with a default constructed
       /// ::user::control_descriptor.
-      //virtual bool create_interaction(::user::interaction * pinteractionParent, const ::id & id);
+      //virtual bool create_interaction(::user::interaction * pinteractionParent, const ::atom & atom);
 
 
 //      virtual bool add_control(arguments arguments);
@@ -587,7 +587,7 @@ namespace user
 
       ::element * get_taskpool_container() override;
 
-      //task_pointer defer_fork(const ::id& id, const matter_pointer& pmatter);
+      //task_pointer defer_fork(const ::atom& atom, const matter_pointer& pmatter);
 
       virtual void set_place_child_title(const ::string & pszTitle);
 
@@ -922,11 +922,11 @@ namespace user
       virtual void update_dialog_controls(channel* ptarget) override;
       virtual void CenterWindow(::user::interaction* pAlternateOwner = nullptr) override;
       virtual void _001Emphasize(int cx, int cy);
-      virtual id   run_modal_loop(::user::interaction* pinteraction, u32 dwFlags = 0) override;
-      virtual id   RunModalLoop(u32 dwFlags = 0) override;
-      virtual id   _001RunModalLoop(u32 dwFlags = 0) override;
+      virtual atom   run_modal_loop(::user::interaction* pinteraction, u32 dwFlags = 0) override;
+      virtual atom   RunModalLoop(u32 dwFlags = 0) override;
+      virtual atom   _001RunModalLoop(u32 dwFlags = 0) override;
       virtual bool ContinueModal() override;
-      virtual void EndModalLoop(id nResult) override;
+      virtual void EndModalLoop(atom nResult) override;
 
 
       void update_data(bool bSaveAndValidate = true) override;
@@ -996,7 +996,7 @@ namespace user
 
       // virtual bool create_interaction(const ::string & pszClassName, const ::string & pszWindowName, u32 uStyle, ::user::interaction * puiParent, ::create * pcreate = nullptr) override;
 
-      //virtual bool create_window_ex(__pointer(::user::system) pcs, ::user::interaction* puiParent = nullptr, const ::id& id = ::id()) override;
+      //virtual bool create_window_ex(__pointer(::user::system) pcs, ::user::interaction* puiParent = nullptr, const ::atom& atom = ::atom()) override;
       //enum AdjustType { adjustBorder = 0, adjustOutside = 1 };
       //virtual void CalcWindowRect(RECTANGLE_I32* pClientRect, ::u32 nAdjustType = adjustBorder) override;
 
@@ -1070,9 +1070,9 @@ namespace user
       using ::user::primitive::send;
       virtual lresult send(::message::message* pmessage) override;
       void post(::message::message* pmessage) override;
-      virtual lresult send_message(const ::id & id, wparam wparam = 0, lparam lparam = 0, const ::point_i32& point = nullptr) override;
+      virtual lresult send_message(const ::atom & atom, wparam wparam = 0, lparam lparam = 0, const ::point_i32& point = nullptr) override;
 
-      virtual lresult message_call(const ::id & id, wparam wparam = 0, lparam lparam = 0, const ::point_i32& point = nullptr) override;
+      virtual lresult message_call(const ::atom & atom, wparam wparam = 0, lparam lparam = 0, const ::point_i32& point = nullptr) override;
       virtual lresult message_call(::message::message * pmessage) override;
 
 
@@ -1082,12 +1082,12 @@ namespace user
 
 #endif
 
-      virtual void post_message(const ::id & id, wparam wParam = 0, lparam lParam = 0) override;
+      virtual void post_message(const ::atom & atom, wparam wParam = 0, lparam lParam = 0) override;
 
-      virtual void post_object(const ::id & id, wparam wParam, lparam lParam);
+      virtual void post_object(const ::atom & atom, wparam wParam, lparam lParam);
 
 
-      //virtual void user_post(const ::id& id, wparam wParam = 0, lparam lParam = 0) override;
+      //virtual void user_post(const ::atom& atom, wparam wParam = 0, lparam lParam = 0) override;
 
       //virtual void SetWindowDisplayChanged() override;
 
@@ -1117,8 +1117,8 @@ namespace user
 
       virtual bool is_custom_draw();
 
-      virtual id GetDlgCtrlId() const override;
-      virtual id SetDlgCtrlId(::id id) override;
+      virtual atom GetDlgCtrlId() const override;
+      virtual atom SetDlgCtrlId(::atom atom) override;
 
 //#ifdef WINDOWS_DESKTOP
 //
@@ -1311,8 +1311,8 @@ namespace user
 
 
       ::user::interaction * get_child_by_name(const ::string & strName, ::index iItem = -1, i32 iLevel = -1) override;
-      ::user::interaction * get_child_by_id(const id & id, ::index iItem = -1, i32 iLevel = -1) override;
-      ::user::element * get_primitive_by_id(const id & id, ::index iItem, i32 iLevel) override;
+      ::user::interaction * get_child_by_id(const atom & atom, ::index iItem = -1, i32 iLevel = -1) override;
+      ::user::element * get_primitive_by_id(const atom & atom, ::index iItem, i32 iLevel) override;
 
       ::user::interaction * child_from_point(const ::point_i32 & point);
 
@@ -1365,7 +1365,7 @@ namespace user
       //virtual ::user::frame * top_level_frame() const override;
 
 
-      virtual void send_message_to_descendants(const ::id & id, wparam wParam = 0, lparam lParam = 0, bool bDeep = true, bool bOnlyPerm = false) override;
+      virtual void send_message_to_descendants(const ::atom & atom, wparam wParam = 0, lparam lParam = 0, bool bDeep = true, bool bOnlyPerm = false) override;
 
       virtual void route_message_to_descendants(::message::message* pmessage) override;
 
@@ -1382,7 +1382,7 @@ namespace user
       virtual void show_control_bar(::user::control_bar * pcontrolbar);
       virtual void hide_control_bar(::user::control_bar * pcontrolbar);
 
-      void RepositionBars(::u32 nIDFirst = 0, ::u32 nIDLast = 0xffff, ::id idLeftOver = FIRST_PANE, ::u32 nFlag = reposDefault, RECTANGLE_I32* prectParam = nullptr, const ::rectangle_i32& rectangleClient = nullptr, bool bStretch = true) override;
+      void RepositionBars(::u32 nIDFirst = 0, ::u32 nIDLast = 0xffff, ::atom idLeftOver = FIRST_PANE, ::u32 nFlag = reposDefault, RECTANGLE_I32* prectParam = nullptr, const ::rectangle_i32& rectangleClient = nullptr, bool bStretch = true) override;
 
       virtual ::user::interaction* ChildWindowFromPoint(const ::point_i32& point) override;
       virtual ::user::interaction* ChildWindowFromPoint(const ::point_i32& point, ::u32 nFlags) override;
@@ -1478,7 +1478,7 @@ namespace user
 #endif
 
       //// <3ThomasBorregaardS�rensen__!! (I need to suck you, and take care of you, both front and back and middle but it ought to be unexplored by else...)
-      void handle_command(const ::id& id) override;
+      void handle_command(const ::atom& atom) override;
 
       virtual bool has_command_handler(::message::command* pcommand) override;
 
@@ -1795,7 +1795,7 @@ namespace user
       /// you should be able (control developer pay attention now),
       /// to build a default control with a default constructed
       /// ::user::control_descriptor.
-      //void create_interaction(::user::interaction * pinteractionParent, const ::id & id) override;
+      //void create_interaction(::user::interaction * pinteractionParent, const ::atom & atom) override;
       //virtual elayout get_state() const override;
       //bool _003IsCustomMessage();
       //::user::primitive* _003GetCustomMessageWnd();
@@ -1804,7 +1804,7 @@ namespace user
       virtual bool has_function(enum_control_function econtrolfunction) const;
       //virtual enum_control_type get_control_type() const;
       //virtual void _003CallCustomDraw(::draw2d::graphics_pointer& pgraphics, ::aura::draw_context* pitem);
-      //virtual bool _003CallCustomWindowProc(__pointer(::user::interaction) puserinteraction, const ::id & id, wparam wparam, lparam lparam, lresult& lresult);
+      //virtual bool _003CallCustomWindowProc(__pointer(::user::interaction) puserinteraction, const ::atom & atom, wparam wparam, lparam lparam, lresult& lresult);
       //virtual void _003OnCustomDraw(::draw2d::graphics_pointer& pgraphics, ::aura::draw_context* pitem);
       //virtual void _003CustomWindowProc(::message::message* pmessage);
       //virtual form_list * get_form_list();
@@ -2049,7 +2049,7 @@ namespace user
       virtual void SetCheck(i32 nCheck);
       virtual void SetText(const ::string & pszText);
 
-      id GetControlCommand(id id);
+      atom GetControlCommand(atom atom);
 
    };
 

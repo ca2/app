@@ -33,10 +33,10 @@ namespace html
       string resolve_entities(const ::string & str);
 
 
-      e_tag tag_name_to_id(id idTag);
+      e_tag tag_name_to_id(atom idTag);
       edisplay display_name_to_id(const ::payload & varDisplay,e_tag e_tag);
       edisplay tag_to_display(e_tag etag);
-      id concat(id id1,id id2);
+      atom concat(atom id1,atom id2);
 
       virtual bool defer_get_html(string& strHtml, ::file::path& pathHtml, ::object* pobject, const ::payload & payload);
 

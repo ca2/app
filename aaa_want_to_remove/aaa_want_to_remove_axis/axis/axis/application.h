@@ -49,25 +49,25 @@ namespace axis
       virtual void     initialize(::object * pobject) override;
 
 
-      void assert_valid() const override;
+      void assert_ok() const override;
       void dump(dump_context & dumpcontext) const override;
 
 
-      //virtual bool app_data_get(const ::id & id, stream & os) override;
-      //virtual bool app_data_set(const ::id & id, stream & is) override;
+      //virtual bool app_data_get(const ::atom & atom, stream & os) override;
+      //virtual bool app_data_set(const ::atom & atom, stream & is) override;
 
-      //virtual bool app_data_set(const ::id & id, object & obj) override;
-      //virtual bool app_data_get(const ::id & id, object & obj) override;
+      //virtual bool app_data_set(const ::atom & atom, object & obj) override;
+      //virtual bool app_data_get(const ::atom & atom, object & obj) override;
 
 //      virtual void     interactive_credentials(::account::credentials * pcredentials) override;
 
       virtual string calc_data_key() override;
 
-      virtual string load_string(const ::id & id) override;
-      virtual bool load_string(string & str, const ::id & id) override;
+      virtual string load_string(const ::atom & atom) override;
+      virtual bool load_string(string & str, const ::atom & atom) override;
       virtual void load_string_table() override;
-      virtual bool load_cached_string(string & str, const ::id & id, bool bLoadStringTable) override;
-      virtual bool load_cached_string_by_id(string & str, const ::id & id, bool bLoadStringTable) override;
+      virtual bool load_cached_string(string & str, const ::atom & atom, bool bLoadStringTable) override;
+      virtual bool load_cached_string_by_id(string & str, const ::atom & atom, bool bLoadStringTable) override;
       virtual void load_string_table(const string & pszApp, const string & pszId) override;
 
 

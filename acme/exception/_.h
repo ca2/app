@@ -216,13 +216,13 @@ CLASS_DECL_ACME void __set_thread_note(const char * pszNote);
 // Debug ASSERTs then throws. Retail throws if condition not met
 #define ENSURE_THROW(cond, exception)   \
    do { i32 _gen__condVal=!!(cond); ASSERT(_gen__condVal); if (!(_gen__condVal)){exception;} } while (false)
-#define ENSURE(cond)      ENSURE_THROW(cond, __throw(error_invalid_argument))
-#define ENSURE_ARG(cond)   ENSURE_THROW(cond, __throw(error_invalid_argument))
+#define ENSURE(cond)      ENSURE_THROW(cond, __throw(error_bad_argument))
+#define ENSURE_ARG(cond)   ENSURE_THROW(cond, __throw(error_bad_argument))
 
 // Debug ASSERT_VALIDs then throws. Retail throws if pOb is nullptr
 #define ENSURE_VALID_THROW(pOb, exception)   \
    do { ASSERT_VALID(pOb); if (!(pOb)){exception;} } while (false)
-#define ENSURE_VALID(pOb)   ENSURE_VALID_THROW(pOb, __throw(error_invalid_argument))
+#define ENSURE_VALID(pOb)   ENSURE_VALID_THROW(pOb, __throw(error_bad_argument))
 
 #define ASSERT_POINTER(point, type) \
    ASSERT(((point) != nullptr) && __is_valid_address((point), sizeof(type), false))
@@ -327,7 +327,7 @@ CLASS_DECL_ACME bool __assert_failed_line(const char * pszFileName, int nLine);
 //CLASS_DECL_ACME void TRACE(e_trace_category ecategory, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
 //CLASS_DECL_ACME void __tracef(e_trace_category ecategory, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...);
 //CLASS_DECL_ACME void __tracev(e_trace_category ecategory, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args);
-CLASS_DECL_ACME void __assert_valid_object(const ::matter * pOb, const char * pszFileName, i32 nLine);
+CLASS_DECL_ACME void __assert_object_ok(const ::matter * pOb, const char * pszFileName, i32 nLine);
 
 CLASS_DECL_ACME void __dump(const ::matter * pOb);
 

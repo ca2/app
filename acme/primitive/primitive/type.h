@@ -112,7 +112,7 @@ public:
    }
 
 
-   bool operator == (const ::id& id) const;
+   bool operator == (const ::atom& atom) const;
 
 
    bool operator != (const ::std::type_info & typeinfo) const

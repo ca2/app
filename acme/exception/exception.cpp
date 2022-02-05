@@ -214,7 +214,7 @@ errno_t c_runtime_error_check(errno_t error)
       break;
    case EINVAL:
    case ERANGE:
-      __throw(error_invalid_argument);
+      __throw(error_bad_argument);
       break;
 #if defined(WINDOWS)
    case STRUNCATE:
@@ -222,7 +222,7 @@ errno_t c_runtime_error_check(errno_t error)
    case 0:
       break;
    default:
-      __throw(error_invalid_argument);
+      __throw(error_bad_argument);
       break;
    }
    return error;
@@ -334,7 +334,7 @@ void __cdecl __clearerr_s(FILE *stream)
 //      i32     nDisposition;
 ////      ::u32    nHelpContext;
 //
-//      // nHelpContext should come with the message "<helpcontext id=\"123\" />"
+//      // nHelpContext should come with the message "<helpcontext atom=\"123\" />"
 //      strErrorMessage = get_message();
 //      //if (get_message(strErrorMessage, &nHelpContext))
 //      //   nDisposition = message_box(nullptr, strErrorMessage, nType);

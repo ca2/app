@@ -80,7 +80,7 @@ namespace apex
 
       iRetry++;
 
-      strBuild = http_get(strSpaIgnitionBaseUrl + "/query?node=build&configuration=" + strConfiguration + "&id=" + string(pszAppId));
+      strBuild = http_get(strSpaIgnitionBaseUrl + "/query?node=build&configuration=" + strConfiguration + "&atom=" + string(pszAppId));
 
       ::str::_008Trim(strBuild);
 
@@ -1302,7 +1302,7 @@ namespace apex
       if (::is_null(pcreate) || contains(pcreate))
       {
 
-         __throw(error_invalid_argument);
+         __throw(error_bad_argument);
 
       }
 

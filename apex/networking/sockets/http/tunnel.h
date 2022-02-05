@@ -57,7 +57,7 @@ namespace sockets
       virtual bool step() override;
 
       virtual void OnFirst() override;
-      virtual void OnHeader(id idKey, const string &) override;
+      virtual void OnHeader(atom idKey, const string &) override;
       virtual void OnHeaderComplete() override;
       virtual void OnData(const char * psz, memsize size) override;
 

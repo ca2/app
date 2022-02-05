@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-interprocess_task::interprocess_task(interprocess_call* pcall, const ::id& idPid, i64 iTask) :
+interprocess_task::interprocess_task(interprocess_call* pcall, const ::atom& idPid, i64 iTask) :
    //::object(pcall),
    m_pcall(pcall),
    m_idPid(idPid),

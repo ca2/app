@@ -19,13 +19,13 @@
 //      }
 //
 //
-//      command::command(const ::id & id) :
-//         object(id)
+//      command::command(const ::atom & atom) :
+//         object(atom)
 //      {
 //
 //         common_construct();
 //
-//         m_id.set_compounded_type(::id::e_type_command);
+//         m_id.set_compounded_type(::atom::e_type_command);
 //         m_bRadioChanged = false;
 //
 //      }
@@ -268,7 +268,7 @@
 //
 //         __restore(pcommand->m_id.m_etype);
 //
-//         pcommand->m_id.set_compounded_type(::id::e_type_command);
+//         pcommand->m_id.set_compounded_type(::atom::e_type_command);
 //
 //         route_command(pcommand);
 //
@@ -286,7 +286,7 @@
 //
 //         __restore(pcommand->m_id.m_etype);
 //
-//         pcommand->m_id.set_compounded_type(::id::e_type_command_probe);
+//         pcommand->m_id.set_compounded_type(::atom::e_type_command_probe);
 //
 //         route_command(pcommand);
 //
@@ -326,7 +326,7 @@
 //         on_command(pcommand);
 //
 //      }
-//      else if (pcommand->m_id.is_compounded(::id::e_type_command_probe))
+//      else if (pcommand->m_id.is_compounded(::atom::e_type_command_probe))
 //      {
 //
 //         pcommand->m_bHasCommandHandler = has_command_handler(pcommand);
@@ -334,7 +334,7 @@
 //         on_command_probe(pcommand);
 //
 //      }
-//      else if (pcommand->m_id.is_compounded(::id::e_type_command))
+//      else if (pcommand->m_id.is_compounded(::atom::e_type_command))
 //      {
 //
 //         pcommand->m_bHasCommandHandler = has_command_handler(pcommand);
@@ -357,7 +357,7 @@
 //
 //         __restore(pcommand->m_id.m_etype);
 //
-//         pcommand->m_id.set_compounded_type(::id::e_type_command);
+//         pcommand->m_id.set_compounded_type(::atom::e_type_command);
 //
 //         route_message(pcommand);
 //
@@ -373,7 +373,7 @@
 //
 //      __restore(pcommand->m_id.m_etype);
 //
-//      pcommand->m_id.set_compounded_type(::id::e_type_command);
+//      pcommand->m_id.set_compounded_type(::atom::e_type_command);
 //
 //      if (m_idaHandledCommands.contains(pcommand->m_id))
 //      {
@@ -417,7 +417,7 @@
 //
 //         __restore(pcommand->m_id.m_etype);
 //
-//         pcommand->m_id.set_compounded_type(::id::e_type_command_probe);
+//         pcommand->m_id.set_compounded_type(::atom::e_type_command_probe);
 //
 //         route_message(pcommand);
 //

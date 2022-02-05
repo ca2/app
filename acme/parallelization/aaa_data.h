@@ -104,9 +104,9 @@
 //
 //
 
-//inline ::payload & thread_property(const ::id & id) { return ::get_task()->payload(id); }
+//inline ::payload & thread_property(const ::atom & atom) { return ::get_task()->payload(atom); }
 //
-//inline bool task_flag().is_set(const ::id & id)
+//inline bool task_flag().is_set(const ::atom & atom)
 //{
 //   if (!::get_task())
 //   {
@@ -122,14 +122,14 @@
 //
 //   }
 //
-//   if (!::get_task()->has_property(id))
+//   if (!::get_task()->has_property(atom))
 //   {
 //
 //      return false;
 //
 //   }
 //
-//   return ::get_task()->payload(id);
+//   return ::get_task()->payload(atom);
 //
 //}
 

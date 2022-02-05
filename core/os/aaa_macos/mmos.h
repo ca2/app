@@ -18,7 +18,7 @@
    
 }
 
-+ (id)get;
++ (atom)get;
 
 - (void)get_user_wallpaper:(void **)charpp forScreen:(NSScreen *) s;
 

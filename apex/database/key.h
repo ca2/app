@@ -37,7 +37,7 @@ namespace database
 
       }
 
-      key(const id & idDataKey, bool bLocalData = false)
+      key(const atom & idDataKey, bool bLocalData = false)
       {
 
          m_strDataKey = __string(idDataKey);

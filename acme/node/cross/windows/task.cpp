@@ -406,7 +406,7 @@ void task::begin_task(
    if (m_id.is_empty() || m_id == "task" || m_id == "thread")
    {
 
-      __throw(error_invalid_argument);
+      __throw(error_bad_argument);
 
       return ::error_failed;
 

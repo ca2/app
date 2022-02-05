@@ -36,11 +36,11 @@ public:
 
 
    //using ::simple_toolbar::create_window;
-   //bool create_window(::user::interaction * puiParent, u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP, ::id id = __IDW_TOOLBAR) override;
+   //bool create_window(::user::interaction * puiParent, u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP, ::atom atom = __IDW_TOOLBAR) override;
 
 
    //using ::simple_toolbar::create_window_ex;
-   //bool create_window_ex(::user::interaction * puiParent, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP, ::id id = __IDW_TOOLBAR);
+   //bool create_window_ex(::user::interaction * puiParent, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP, ::atom atom = __IDW_TOOLBAR);
 
 //
 //#ifdef WINDOWS_DESKTOP

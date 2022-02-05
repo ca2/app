@@ -754,10 +754,10 @@ namespace filemanager
    }
 
 
-   void tree::assert_valid() const
+   void tree::assert_ok() const
    {
 
-      ::data::tree::assert_valid();
+      ::data::tree::assert_ok();
 
    }
 

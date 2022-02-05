@@ -346,10 +346,10 @@ namespace user
    }
 
 
-   //bool place_holder::create_interaction(::user::place_holder_container * pcontainer,id id)
+   //bool place_holder::create_interaction(::user::place_holder_container * pcontainer,atom atom)
    //{
 
-   //   return ::user::interaction::create_interaction(pcontainer, id) != false;
+   //   return ::user::interaction::create_interaction(pcontainer, atom) != false;
 
    //}
 

@@ -112,28 +112,28 @@ void prop_id_debug(::matter * pobject);
 ////}
 //
 //
-////property::property(property_set * pset, const id & id) :
+////property::property(property_set * pset, const atom & atom) :
 ////   m_ppropertyset(pset)
 ////{
 ////
-////   m_id = id;
+////   m_id = atom;
 ////
 ////   if (m_ppropertyset)
 ////   {
 ////
-////      m_ppropertyset->find(id, m_var);
+////      m_ppropertyset->find(atom, m_var);
 ////
 ////   }
 ////
 ////}
 //
 //
-////property::property(property_set * pset, const id & id, const ::payload &  ::payload, ::matter * pobject) :
+////property::property(property_set * pset, const atom & atom, const ::payload &  ::payload, ::matter * pobject) :
 ////   m_ppropertyset(pset),
 ////   m_var(payload)
 ////{
 ////
-////   m_id = id;
+////   m_id = atom;
 ////
 ////   if(::is_set(pobject))
 ////   {
@@ -203,7 +203,7 @@ void prop_id_debug(::matter * pobject);
 //}
 //
 //
-void property_parse_network_payload_id(id & id, const char *& pszJson, const char * pszEnd)
+void property_parse_network_payload_id(atom & atom, const char *& pszJson, const char * pszEnd)
 {
 
    ::str::consume_spaces(pszJson, 0, pszEnd);
@@ -216,7 +216,7 @@ void property_parse_network_payload_id(id & id, const char *& pszJson, const cha
 
    ::str::consume_quoted_value_ex2(pszJson, pszEnd, &psz, iBuffer);
 
-   id = psz;
+   atom = psz;
 
    if (iBuffer > sizeof(sz))
    {
@@ -1477,7 +1477,7 @@ string & property::get_http_post(::string & str) const
 //void prop_id_debug(::matter * pobject)
 //{
 //
-//   comparable_array < ::id > idaSchema;
+//   comparable_array < ::atom > idaSchema;
 //
 //   property_set set;
 //

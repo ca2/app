@@ -2,7 +2,7 @@
 #include "base/user/user/_user.h"
 #include "aura/os/x11/_x11.h"
 #include "_linux.h"
-#include "acme/constant/id.h"
+#include "acme/id.h"
 #include "acme/constant/message.h"
 ////#include "third/sn/sn.h"
 #include <fcntl.h> // library for fcntl function
@@ -650,7 +650,7 @@ void x11_check_status(int status, unsigned long window)
 {
    if (status == BadWindow)
    {
-      printf("window id # 0x%lx does not exists!", window);
+      printf("window atom # 0x%lx does not exists!", window);
       //   exit(1);
    }
 
@@ -3453,9 +3453,9 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
             auto ptopic = ::aura::get_system()->topic(eid);
 
-            ptopic->payload("return") = is_return_key((XIRawEvent*)cookie->data);
+            ptopic->m_pextendedtopic->payload("return") = is_return_key((XIRawEvent*)cookie->data);
 
-            ptopic->payload("space") = is_space_key((XIRawEvent*)cookie->data);
+            ptopic->m_pextendedtopic->payload("space") = is_space_key((XIRawEvent*)cookie->data);
 
             ::context context;
 

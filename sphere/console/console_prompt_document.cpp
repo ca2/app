@@ -37,10 +37,10 @@ namespace console
 
 
 
-   void prompt_document::assert_valid() const
+   void prompt_document::assert_ok() const
    {
 
-      ::user::document::assert_valid();
+      ::user::document::assert_ok();
 
    }
 

@@ -51,7 +51,7 @@ inline auto get_dimension(enum_orientation eorientation, X x, Y y)
    else
    {
 
-      __throw(error_invalid_argument, "invalid orientation");
+      __throw(error_bad_argument, "invalid orientation");
 
    }
 
@@ -77,7 +77,7 @@ inline auto get_normal_dimension(enum_orientation eorientation, X x, Y y)
    else
    {
 
-      throw ::exception(error_invalid_argument, "invalid orientation");
+      throw ::exception(error_bad_argument, "invalid orientation");
 
    }
 

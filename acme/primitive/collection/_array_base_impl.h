@@ -69,7 +69,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_ety
    if (nIndex < 0 || nCount < 0 || (nUpperBound > m_nSize) || (nUpperBound < nIndex) || (nUpperBound < nCount))
    {
 
-      __throw(error_invalid_argument);
+      __throw(error_bad_argument);
 
    }
 
@@ -222,7 +222,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_ety
       return -1;
 
    if(nIndex < 0)
-      __throw(error_invalid_argument);
+      __throw(error_bad_argument);
 
    if(nIndex >= m_nSize)
    {
@@ -388,7 +388,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_ety
       return -1;
 
    if (nIndex < 0)
-      __throw(error_invalid_argument);
+      __throw(error_bad_argument);
 
    if (nIndex >= m_nSize)
    {
@@ -447,7 +447,7 @@ TYPE array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::pick_at(::index n
    if (nIndex < 0 || nCount < 0 || (nUpperBound > m_nSize) || (nUpperBound < nIndex) || (nUpperBound < nCount))
    {
 
-      __throw(error_invalid_argument);
+      __throw(error_bad_argument);
 
    }
 
@@ -482,7 +482,7 @@ array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > array_base < TYPE, ARG_
    if (nIndex < 0 || nCount < 0 || (nUpperBound > m_nSize) || (nUpperBound < nIndex) || (nUpperBound < nCount))
    {
 
-      __throw(error_invalid_argument);
+      __throw(error_bad_argument);
 
    }
 
@@ -515,7 +515,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_ety
    ASSERT(nNewSize >= 0);
 
    if(nNewSize < 0)
-      __throw(error_invalid_argument);
+      __throw(error_bad_argument);
 
    if(nGrowBy >= 0)
       m_nGrowBy = nGrowBy;  // set new size_i32
@@ -621,7 +621,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_ety
       ASSERT(nNewMax >= m_nMaxSize);  // no wrap around
 
       if(nNewMax  < m_nMaxSize)
-         __throw(error_invalid_argument);
+         __throw(error_bad_argument);
 
 #ifdef SIZE_T_MAX
       ASSERT(nNewMax <= SIZE_T_MAX / sizeof(TYPE)); // no overflow
@@ -707,7 +707,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_ety
    if(nNewSize < 0)
    {
 
-      __throw(error_invalid_argument);
+      __throw(error_bad_argument);
 
    }
 
@@ -870,7 +870,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_ety
       if(nNewMax  < m_nMaxSize)
       {
 
-         __throw(error_invalid_argument);
+         __throw(error_bad_argument);
 
       }
 

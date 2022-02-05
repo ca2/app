@@ -235,7 +235,7 @@ namespace acme
    array < matter* >* g_paAura;
 
 
-   //::map < ::id, const ::id&, ::id, const ::id& >* g_pmapRTL;
+   //::map < ::atom, const ::atom&, ::atom, const ::atom& >* g_pmapRTL;
 
    //plex_heap_alloc_array* g_pheap;
 
@@ -581,7 +581,7 @@ namespace acme
 
       ::mathematics::initialize_mathematics();
 
-      ::id_space::s_pidspace = new id_space();
+      ::atom_space::s_pidspace = new atom_space();
 
 //      ::acme::idpool::init();
 
@@ -952,7 +952,7 @@ namespace acme
 
       finalize_global_message_queue();
 
-      ::acme::del(::id_space::s_pidspace);
+      ::acme::del(::atom_space::s_pidspace);
 
       ::mathematics::finalize_mathematics();
 

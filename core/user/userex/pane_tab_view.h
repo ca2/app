@@ -49,7 +49,7 @@ namespace userex
 
       ::user::interaction * get_view_uie() override;
 
-      id get_view_id() override;
+      atom get_view_id() override;
 
       void on_change_cur_sel() override;
 
@@ -61,7 +61,7 @@ namespace userex
 
       bool on_place_hold(::user::interaction * pinteraction, ::user::place_holder * pholder) override;
 
-      ::user::tab_pane * create_tab_by_id(const ::id & id) override;
+      ::user::tab_pane * create_tab_by_id(const ::atom & atom) override;
 
       void on_create_impact(::user::impact_data * pimpactdata) override;
 
@@ -83,7 +83,7 @@ namespace userex
 
       //void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void prepare_form(id id, ::form_document * pdocument);
+      virtual void prepare_form(atom atom, ::form_document * pdocument);
 
 
    };

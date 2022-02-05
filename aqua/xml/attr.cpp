@@ -23,7 +23,7 @@
 //   }
 //
 //
-//   ::xml::attr * attr_array::add_attr(const id & idName)
+//   ::xml::attr * attr_array::add_attr(const atom & idName)
 //   {
 //
 //      return &operator[](idName);

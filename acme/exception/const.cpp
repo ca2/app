@@ -21,8 +21,8 @@
 //      case error_exception:
 //         strError = "error_exception";
 //         break;
-//      case error_invalid_argument:
-//         strError = "error_invalid_argument";
+//      case error_bad_argument:
+//         strError = "error_bad_argument";
 //         break;
 //      case error_io:
 //         strError = "error_io";

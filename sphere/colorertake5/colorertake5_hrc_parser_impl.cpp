@@ -155,13 +155,13 @@ namespace colorertake5
       return regionNamesVector.get_size();
    }
 
-   class region *HRCParserImpl::getRegion(i32 id)
+   class region *HRCParserImpl::getRegion(i32 atom)
    {
-      if (id < 0 || id >= regionNamesVector.get_size())
+      if (atom < 0 || atom >= regionNamesVector.get_size())
       {
          return nullptr;
       }
-      return regionNamesVector.element_at(id);
+      return regionNamesVector.element_at(atom);
    }
 
    class region* HRCParserImpl::getRegion(const ::string &name)

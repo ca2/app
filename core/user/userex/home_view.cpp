@@ -40,10 +40,10 @@ namespace userex
    }
 
 
-   void home_view::assert_valid() const
+   void home_view::assert_ok() const
    {
 
-      ::user::impact::assert_valid();
+      ::user::impact::assert_ok();
 
    }
 

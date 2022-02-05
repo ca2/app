@@ -512,15 +512,15 @@ extern "C" {
 #define LOCALE_SNATIVECTRYNAME        0x00000008   // native name of country, eg "Deutschland"
 
 // Additional LCTypes
-#define LOCALE_ILANGUAGE              0x00000001   // language id, LOCALE_SNAME preferred
+#define LOCALE_ILANGUAGE              0x00000001   // language atom, LOCALE_SNAME preferred
 
 #define LOCALE_SABBREVLANGNAME        0x00000003   // arbitrary abbreviated language name, LOCALE_SISO639LANGNAME preferred
 
 #define LOCALE_ICOUNTRY               0x00000005   // country code, eg 1, LOCALE_SISO3166CTRYNAME may be more useful.
 #define LOCALE_SABBREVCTRYNAME        0x00000007   // arbitrary abbreviated country name, LOCALE_SISO3166CTRYNAME preferred
-#define LOCALE_IGEOID                 0x0000005B   // geographical location id, eg "244"
+#define LOCALE_IGEOID                 0x0000005B   // geographical location atom, eg "244"
 
-#define LOCALE_IDEFAULTLANGUAGE       0x00000009   // default language id, deprecated
+#define LOCALE_IDEFAULTLANGUAGE       0x00000009   // default language atom, deprecated
 #define LOCALE_IDEFAULTCOUNTRY        0x0000000A   // default country code, deprecated
 #define LOCALE_IDEFAULTCODEPAGE       0x0000000B   // default oem code page (use of Unicode is recommended instead)
 #define LOCALE_IDEFAULTANSICODEPAGE   0x00001004   // default ansi code page (use of Unicode is recommended instead)
@@ -946,7 +946,7 @@ typedef struct _cpinfoexA
    byte    DefaultChar[MAX_DEFAULTCHAR];   // default character (MB)
    byte    LeadByte[MAX_LEADBYTES];        // lead byte ranges
    WCHAR   UnicodeDefaultChar;             // default character (Unicode)
-   ::u32    CodePage;                       // code page id
+   ::u32    CodePage;                       // code page atom
    char    CodePageName[MAX_PATH];         // code page name (Unicode)
 } CPINFOEXA, *LPCPINFOEXA;
 typedef struct _cpinfoexW
@@ -955,7 +955,7 @@ typedef struct _cpinfoexW
    byte    DefaultChar[MAX_DEFAULTCHAR];   // default character (MB)
    byte    LeadByte[MAX_LEADBYTES];        // lead byte ranges
    WCHAR   UnicodeDefaultChar;             // default character (Unicode)
-   ::u32    CodePage;                       // code page id
+   ::u32    CodePage;                       // code page atom
    WCHAR   CodePageName[MAX_PATH];         // code page name (Unicode)
 } CPINFOEXW, *LPCPINFOEXW;
 #ifdef UNICODE

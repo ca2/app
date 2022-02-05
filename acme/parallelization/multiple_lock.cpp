@@ -31,7 +31,7 @@ multiple_lock::multiple_lock(const synchronization_array & synchronizationa,bool
    if(synchronizationa.synchronization_object_count() <= 0)
    {
 
-      __throw(error_invalid_argument);
+      __throw(error_bad_argument);
 
    }
 
@@ -62,7 +62,7 @@ multiple_lock::multiple_lock(::count c, const synchronization_array & synchroniz
    if (synchronizationa.has_no_synchronization_object() || c <= 0 || c > synchronizationa.synchronization_object_count() || c > MAXIMUM_WAIT_OBJECTS)
    {
 
-      __throw(error_invalid_argument);
+      __throw(error_bad_argument);
 
    }
 

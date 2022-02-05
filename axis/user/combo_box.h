@@ -79,7 +79,7 @@ namespace user
       virtual index _001FindListText(const ::string & str) const;
       virtual count _001GetListCount() const;
 
-      //virtual bool create_interaction(::user::interaction * pinteractionParent, const ::id & id) override;
+      //virtual bool create_interaction(::user::interaction * pinteractionParent, const ::atom & atom) override;
 
       virtual bool get_element_rect(RECTANGLE_I32 * prectangle, enum_element eelement) override;
 
@@ -120,7 +120,7 @@ namespace user
 
 
 
-      //virtual bool create_interaction(::user::interaction * puiParent, const ::id & id) override;
+      //virtual bool create_interaction(::user::interaction * puiParent, const ::atom & atom) override;
 
       //::count get_count();
       //::item current_item() override;

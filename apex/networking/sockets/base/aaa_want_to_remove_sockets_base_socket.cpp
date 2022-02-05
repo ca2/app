@@ -2298,15 +2298,15 @@ namespace sockets
    }
 
 
-   void base_socket::Subscribe(int id)
+   void base_socket::Subscribe(int atom)
    {
-      socket_handler()->Subscribe(id, this);
+      socket_handler()->Subscribe(atom, this);
    }
 
 
-   void base_socket::Unsubscribe(int id)
+   void base_socket::Unsubscribe(int atom)
    {
-      socket_handler()->Unsubscribe(id, this);
+      socket_handler()->Unsubscribe(atom, this);
    }
 
 

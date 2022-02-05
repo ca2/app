@@ -12,7 +12,7 @@ public:
 
 
    string                  m_strText;
-   ::id                    m_id;
+   ::atom                    m_id;
    rectangle_i32           m_rectangle;
    nano_window *           m_pwindow;
 

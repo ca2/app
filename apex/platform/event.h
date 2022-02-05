@@ -20,7 +20,7 @@
 //      ::user::primitive *              m_puserprimitive;
 //      ::user::interaction *            m_ptab;
 //      ::user::interaction *            m_pform;
-//      id                               m_id;
+//      atom                               m_id;
 //      u64                              m_uiEvent;
 //      enum_timer                       m_etimer;
 //      ::action_context                 m_actioncontext;

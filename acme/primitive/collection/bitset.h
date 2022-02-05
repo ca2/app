@@ -455,7 +455,7 @@ private:
 
 	void _Xinv() const
    {	// report invalid string matter in bitset conversion
-		__throw(error_invalid_argument, "invalid bitset<N> char");
+		__throw(error_bad_argument, "invalid bitset<N> char");
 	}
 
 	void _Xoflo() const

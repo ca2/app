@@ -4,7 +4,6 @@
 #include "apex/platform/app_core.h"
 #include "acme/platform/profiler.h"
 #include "acme/primitive/text/context.h"
-//#include "apex/compress/zip/context.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/platform/node.h"
@@ -373,10 +372,10 @@ namespace aura
    //}
 
 
-   void application::assert_valid() const
+   void application::assert_ok() const
    {
 
-      ::application::assert_valid();
+      ::application::assert_ok();
 
    }
 
@@ -726,12 +725,12 @@ namespace aura
 
    //// lang string
    //// load string
-   //string application::lstr(const ::id & id, string strDefault)
+   //string application::lstr(const ::atom & atom, string strDefault)
    //{
 
    //   string str;
 
-   //   if (!load_string(str, id))
+   //   if (!load_string(str, atom))
    //   {
 
    //      if (strDefault.has_char())
@@ -754,34 +753,34 @@ namespace aura
    //}
 
 
-   //string application::load_string(const ::id & id)
+   //string application::load_string(const ::atom & atom)
    //{
    //   string str;
-   //   if (!load_string(str, id))
+   //   if (!load_string(str, atom))
    //   {
-   //      return (const string &)id;
+   //      return (const string &)atom;
    //   }
    //   return str;
    //}
 
-   //bool application::load_string(string & str, const ::id & id)
+   //bool application::load_string(string & str, const ::atom & atom)
    //{
-   //   if (!load_cached_string(str, id, true))
+   //   if (!load_cached_string(str, atom, true))
    //   {
    //      return false;
    //   }
    //   return true;
    //}
 
-   /*bool application::load_cached_string(string & str, const ::id & id, bool bLoadStringTable)
+   /*bool application::load_cached_string(string & str, const ::atom & atom, bool bLoadStringTable)
    {
 
       ::xml::document doc;
 
-      if (!doc.load(id))
+      if (!doc.load(atom))
       {
 
-         if (load_cached_string_by_id(str, id, bLoadStringTable))
+         if (load_cached_string_by_id(str, atom, bLoadStringTable))
          {
 
             return true;
@@ -793,7 +792,7 @@ namespace aura
       if (doc.get_name() == "string")
       {
 
-         string strId = doc.attribute("id");
+         string strId = doc.attribute("atom");
 
          if (load_cached_string_by_id(str, strId, bLoadStringTable))
          {
@@ -812,10 +811,10 @@ namespace aura
    }*/
 
 
-   //bool application::load_cached_string_by_id(string & str, const ::id & id, bool bLoadStringTable)
+   //bool application::load_cached_string_by_id(string & str, const ::atom & atom, bool bLoadStringTable)
    //{
 
-   //   string strId(id.str());
+   //   string strId(atom.str());
 
    //   string strTable;
 
@@ -873,7 +872,7 @@ namespace aura
 
    //      load_string_table(strTable, "");
 
-   //      return load_cached_string_by_id(str, id, false);
+   //      return load_cached_string_by_id(str, atom, false);
 
    //   }
 
@@ -907,7 +906,7 @@ namespace aura
    //}
 
 
-   //object * application::alloc(const  id & idType)
+   //object * application::alloc(const  atom & idType)
    //{
 
    //   return psystem->alloc(this, idType);
@@ -2499,7 +2498,7 @@ retry_license:
 //            if (bGlobalIdExclusiveFail)
 //            {
 //
-//               TRACE("A instance of the application:<br><br>-" + string(m_strAppName) + "with the id \"" + get_local_mutex_id() + "\" <br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine with the same id.<br><br>Exiting this new instance.");
+//               TRACE("A instance of the application:<br><br>-" + string(m_strAppName) + "with the atom \"" + get_local_mutex_id() + "\" <br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine with the same atom.<br><br>Exiting this new instance.");
 //
 //               try
 //               {
@@ -2562,7 +2561,7 @@ retry_license:
 //               {
 //
 //                  // Should in some way activate the other instance
-//                  TRACE("A instance of the application:<br><br>           - " + string(m_strAppName) + "with the id \"" + get_local_mutex_id() + "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::count with the same id.<br><br>Exiting this new instance.");
+//                  TRACE("A instance of the application:<br><br>           - " + string(m_strAppName) + "with the atom \"" + get_local_mutex_id() + "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::count with the same atom.<br><br>Exiting this new instance.");
 //
 //                  if(!on_exclusive_instance_conflict(bHandled, ExclusiveInstanceLocalId, get_local_mutex_id()))
 //                  {
@@ -2784,7 +2783,7 @@ retry_license:
    //}
 
 
-   //void application::on_new_instance(string strModule, const ::id & iPid)
+   //void application::on_new_instance(string strModule, const ::atom & iPid)
    //{
 
    //}
@@ -3938,7 +3937,7 @@ retry_license:
    }
 
 
-   bool application::send_message_to_windows(const ::id & id, wparam wparam, lparam lparam) // with tbs in <3
+   bool application::send_message_to_windows(const ::atom & atom, wparam wparam, lparam lparam) // with tbs in <3
    {
 
       __pointer(::user::interaction) puserinteraction;
@@ -3958,7 +3957,7 @@ retry_license:
                   try
                   {
 
-                     puserinteraction->send_message(id, wparam, lparam);
+                     puserinteraction->send_message(atom, wparam, lparam);
 
                   }
                   catch (...)
@@ -3969,7 +3968,7 @@ retry_license:
                   try
                   {
 
-                     puserinteraction->send_message_to_descendants(id, wparam, lparam);
+                     puserinteraction->send_message_to_descendants(atom, wparam, lparam);
 
                   }
                   catch (...)
@@ -4189,10 +4188,10 @@ retry_license:
    //}
 
 
-   void application::post_message(const ::id & id, wparam wparam, lparam lparam )
+   void application::post_message(const ::atom & atom, wparam wparam, lparam lparam )
    {
 
-      ::thread::post_message(id, wparam, lparam);
+      ::thread::post_message(atom, wparam, lparam);
 
    }
 
@@ -4348,10 +4347,10 @@ retry_license:
    }
 
 
-   //__pointer(::user::document) application::defer_create_view(string strImpact, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::id & id)
+   //__pointer(::user::document) application::defer_create_view(string strImpact, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::atom & atom)
    //{
 
-   //   //auto pcontroller = pmultimedia->defer_create_view(strImpact, puiParent, ewindowflag, id);
+   //   //auto pcontroller = pmultimedia->defer_create_view(strImpact, puiParent, ewindowflag, atom);
 
    //   //if (pcontroller)
    //   //{
@@ -4410,28 +4409,28 @@ retry_license:
    //}
 
 
-   ::id application::translate_property_id(const ::id & id)
+   ::atom application::translate_property_id(const ::atom & atom)
    {
-      return ::aqua::application::translate_property_id(id);
+      return ::aqua::application::translate_property_id(atom);
       //if(!is_system())
       //{
 
         // if(!is_session())
          //{
 
-           // return psession->translate_property_id(id);
+           // return psession->translate_property_id(atom);
 
          //}
          //else
          //{
 
-           // return psystem->translate_property_id(id);
+           // return psystem->translate_property_id(atom);
 
          //}
 
       //}
 
-      return id;
+      return atom;
 
    }
 
@@ -4578,40 +4577,40 @@ retry_license:
    }
 
 
-   //string application::load_string(const ::id & id)
+   //string application::load_string(const ::atom & atom)
    //{
 
    //   synchronous_lock synchronouslock(&m_mutexStr);
 
    //   string str;
 
-   //   if (m_stringmap.lookup(id, str))
+   //   if (m_stringmap.lookup(atom, str))
    //   {
 
    //      return str;
 
    //   }
 
-   //   if (!load_string(str, id))
+   //   if (!load_string(str, atom))
    //   {
 
-   //      id.to_string(str);
+   //      atom.to_string(str);
 
    //      return str;
 
    //   }
 
-   //   m_stringmap.set_at(id, str);
+   //   m_stringmap.set_at(atom, str);
 
    //   return str;
 
    //}
 
 
-   //bool application::load_string(string & str, const ::id & id)
+   //bool application::load_string(string & str, const ::atom & atom)
    //{
 
-   //   if (!load_cached_string(str, id, true))
+   //   if (!load_cached_string(str, atom, true))
    //   {
 
    //      return false;
@@ -4623,7 +4622,7 @@ retry_license:
    //}
 
 
-   //bool application::load_cached_string(string & str, const ::id & id, bool bLoadStringTable)
+   //bool application::load_cached_string(string & str, const ::atom & atom, bool bLoadStringTable)
    //{
 
 
@@ -4631,10 +4630,10 @@ retry_license:
 
    //   //auto pdocument = __new(::xml::document);
 
-   //   //if (!pdocument->load(id) || !*pdocument)
+   //   //if (!pdocument->load(atom) || !*pdocument)
    //   //{
 
-   //   //   return load_cached_string_by_id(str, id, bLoadStringTable);
+   //   //   return load_cached_string_by_id(str, atom, bLoadStringTable);
 
    //   //}
 
@@ -4643,7 +4642,7 @@ retry_license:
    //   //if (pnodeRoot->get_name() == "string")
    //   //{
 
-   //   //   string strId = pnodeRoot->attribute("id");
+   //   //   string strId = pnodeRoot->attribute("atom");
 
    //   //   if (!load_cached_string_by_id(str, strId, bLoadStringTable))
    //   //   {
@@ -4661,10 +4660,10 @@ retry_license:
    //}
 
 
-   //bool application::load_cached_string_by_id(string & str, const ::id & id, bool bLoadStringTable)
+   //bool application::load_cached_string_by_id(string & str, const ::atom & atom, bool bLoadStringTable)
    //{
 
-   //   string strId(id.str());
+   //   string strId(atom.str());
 
    //   string strTable;
 
@@ -4720,7 +4719,7 @@ retry_license:
 
    //      load_string_table(strTable, "");
 
-   //      return load_cached_string_by_id(str, id, false);
+   //      return load_cached_string_by_id(str, atom, false);
 
    //   }
 
@@ -5710,7 +5709,7 @@ retry_license:
 
    //   handle(ptopic);
 
-   //   if (ptopic->m_bRet)
+   //   if (ptopic->m_pextendedtopic->m_bRet)
    //   {
 
    //      return;
@@ -5719,7 +5718,7 @@ retry_license:
 
    //   on_notify_control_event(pevent);
 
-   //   if (ptopic->m_bRet)
+   //   if (ptopic->m_pextendedtopic->m_bRet)
    //   {
 
    //      return;
@@ -5774,34 +5773,34 @@ retry_license:
 
       //}
 
-      //bool application::app_data_set(::const ::id & id, stream & stream)
+      //bool application::app_data_set(::const ::atom & atom, stream & stream)
       //{
 
-      //   return data_save(id, stream);
+      //   return data_save(atom, stream);
 
       //}
 
 
-      //bool application::app_data_get(::const ::id & id, stream & stream)
+      //bool application::app_data_get(::const ::atom & atom, stream & stream)
       //{
 
-      //   return data_get(id, stream);
+      //   return data_get(atom, stream);
 
       //}
 
 
-      //bool application::app_data_set(::const ::id & id, ::object & obj)
+      //bool application::app_data_set(::const ::atom & atom, ::object & obj)
       //{
 
-      //   return data_set(id, obj);
+      //   return data_set(atom, obj);
 
       //}
 
 
-      //bool application::app_data_get(::const ::id & id, ::object & obj)
+      //bool application::app_data_get(::const ::atom & atom, ::object & obj)
       //{
 
-      //   return data_get(id, obj);
+      //   return data_get(atom, obj);
 
       //}
 
@@ -5931,7 +5930,7 @@ namespace aura
       if (m_puserinteractionMain != nullptr)
       {
 
-         ::id idCommand(pszCommand);
+         ::atom idCommand(pszCommand);
 
          __pointer(::user::interaction) pinteraction = m_puserinteractionMain.get();
 
@@ -7826,9 +7825,9 @@ namespace aura
 
 
 
-   //void application::assert_valid() const
+   //void application::assert_ok() const
    //{
-   //   thread::assert_valid();
+   //   thread::assert_ok();
 
 
    //   if (::get_task() != (thread*)this)
@@ -8501,7 +8500,7 @@ namespace aura
    //}
 
 
-   void application::prepare_form(id id, ::form_document* pdocument)
+   void application::prepare_form(atom atom, ::form_document* pdocument)
    {
 
 
@@ -8569,10 +8568,10 @@ namespace aura
    }
 
 
-   ::type application::control_type_from_id(const ::id& id, ::user::enum_control_type& econtroltype)
+   ::type application::control_type_from_id(const ::atom& atom, ::user::enum_control_type& econtroltype)
    {
 
-      string str(id);
+      string str(atom);
 
       if (str.begins_ci("edit_"))
       {
@@ -8583,7 +8582,7 @@ namespace aura
 
       }
 
-      return ::aura::application::control_type_from_id(id, econtroltype);
+      return ::aura::application::control_type_from_id(atom, econtroltype);
 
    }
 
@@ -8746,7 +8745,7 @@ namespace aura
          if (ptopic->m_id == ::id_initialize_control)
          {
 
-            auto puserinteraction = ptopic->m_puserelement->cast<::user::interaction>();
+            auto puserinteraction = ptopic->m_pextendedtopic->m_puserelement->cast<::user::interaction>();
 
             if (puserinteraction->m_id == __id(user_auto_start_checkbox))
             {
@@ -8786,10 +8785,10 @@ namespace aura
          else if (ptopic->m_id == ::id_set_check)
          {
 
-            auto puserinteraction = ptopic->user_interaction();
+            auto puserinteraction = ptopic->m_pextendedtopic->user_interaction();
 
             if (puserinteraction->m_id == __id(user_auto_start_checkbox)
-               && ptopic->m_actioncontext.is_user_source())
+               && ptopic->m_pextendedtopic->m_actioncontext.is_user_source())
             {
 
                try
@@ -8808,7 +8807,7 @@ namespace aura
 
                   }
 
-                  ptopic->m_bRet = true;
+                  ptopic->m_pextendedtopic->m_bRet = true;
 
                   return;
 
@@ -9171,10 +9170,10 @@ namespace aura
    }
 
 
-   //__pointer(::user::document) application::defer_create_view(string strImpact, ::user::interaction* puiParent, ewindowflag ewindowflag, const ::id& id)
+   //__pointer(::user::document) application::defer_create_view(string strImpact, ::user::interaction* puiParent, ewindowflag ewindowflag, const ::atom& atom)
    //{
 
-   //   auto pcontroller = ::aura::application::defer_create_view(strImpact, puiParent, ewindowflag, id);
+   //   auto pcontroller = ::aura::application::defer_create_view(strImpact, puiParent, ewindowflag, atom);
 
    //   if (pcontroller)
    //   {
@@ -9329,7 +9328,7 @@ namespace aura
 
    //      ::message::command command;
 
-   //      command.m_id = ::id(pszCommand);
+   //      command.m_id = ::atom(pszCommand);
 
    //      __channel(m_puserinteractionMain)->route_command_message(&command);
 

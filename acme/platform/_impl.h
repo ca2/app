@@ -45,7 +45,7 @@ inline BLOCK_TYPE & memory_template < BLOCK_TYPE > ::operator = (const ::block &
    if (block.get_size() < get_size())
    {
 
-      __throw(error_invalid_argument);
+      __throw(error_bad_argument);
 
    }
 
@@ -601,7 +601,7 @@ inline i64 release(c_derived *& pca OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DE
 
 #ifdef _DEBUG
 
-//   ::id id = p->m_id;
+//   ::atom atom = p->m_id;
    //char * pszType = nullptr;
    //
    //try
@@ -628,7 +628,7 @@ inline i64 release(c_derived *& pca OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DE
    catch (...)
    {
 
-      //::output_debug_string("exception release pca = nullptr; (" + string(id) + ")\n");
+      //::output_debug_string("exception release pca = nullptr; (" + string(atom) + ")\n");
       ::output_debug_string("exception release pca = nullptr; \n");
 
    }

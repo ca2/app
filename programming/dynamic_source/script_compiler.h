@@ -105,7 +105,7 @@ namespace dynamic_source
 
       virtual void parse_pstr_set();
 
-      virtual void pstr_set(id pszTopic,id idLocale,id idSchema, const ::string & psz);
+      virtual void pstr_set(atom pszTopic,atom idLocale,atom idSchema, const ::string & psz);
 
    };
 

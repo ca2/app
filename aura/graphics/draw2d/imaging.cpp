@@ -2207,7 +2207,7 @@ void imaging::blur(::image * pimage, i32 iRadius)
    if (!pimage->is_ok())
    {
 
-      throw_status(error_invalid_argument);
+      throw_status(error_bad_argument);
 
    }
 
@@ -2226,7 +2226,7 @@ void imaging::blur(::image * pimage, rectangle_i32 rectangle, i32 iRadius)
    if (!pimage->is_ok())
    {
 
-      throw_status(error_invalid_argument);
+      throw_status(error_bad_argument);
 
    }
 
@@ -4904,7 +4904,7 @@ i32 iChannel,i32 iRadius,
 {
 
    if (size.is_empty())
-      throw_status(error_invalid_argument);
+      throw_status(error_bad_argument);
 
    ::image_pointer pimageDst = m_pcontext->context_image()->create_image(size);
 
@@ -5004,7 +5004,7 @@ i32 iRadius,
 {
 
    if (size.is_empty())
-      throw_status(error_invalid_argument);
+      throw_status(error_bad_argument);
 
    ::image_pointer pimageDst = m_pcontext->context_image()->create_image(size);
 
@@ -5073,7 +5073,7 @@ void imaging::spread__32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius,
    if (iRadius <= 1)
    {
 
-      throw_status(error_invalid_argument);
+      throw_status(error_bad_argument);
 
    }
 
@@ -5187,7 +5187,7 @@ void imaging::spread__32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius,
    if (cx != pimageSrc->width() || cy != pimageSrc->height())
    {
 
-      throw_status(error_invalid_argument);
+      throw_status(error_bad_argument);
 
    }
 

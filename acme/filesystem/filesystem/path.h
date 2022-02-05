@@ -220,7 +220,7 @@ namespace file
       path operator + (const char * psz) const;
       path operator + (const ::payload & payload) const;
       path operator + (const property & property) const;
-      path operator + (const id & id) const;
+      path operator + (const atom & atom) const;
 
       path & operator += (const path & path);
       path & operator += (const ::string & str);

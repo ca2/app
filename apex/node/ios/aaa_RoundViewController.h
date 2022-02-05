@@ -22,7 +22,7 @@
 
 
 -(void) deferEdit : (CGRect) frame;
-- (void)editingChanged:(id)object;
+- (void)editingChanged:(atom)object;
 -(void)onEditSetFocus : (CGRect) rectangle withText : (NSString *) strText withSelBeg : (long) iSelBeg withSelEnd : (long) iSelEnd;
 -(void)onEditKillFocus;
 

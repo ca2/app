@@ -100,7 +100,7 @@ namespace tc4
       /*
 
       {
-         id lowvalue;
+         atom lowvalue;
          {
             string str = "ABC";
             lowvalue = str.lower();

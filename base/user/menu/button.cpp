@@ -59,10 +59,10 @@ namespace user
    }
 
 
-   //bool menu_button::create_interaction(::user::interaction *pparent, const ::id & id)
+   //bool menu_button::create_interaction(::user::interaction *pparent, const ::atom & atom)
    //{
 
-   //   if (!button::create_interaction(pparent, id))
+   //   if (!button::create_interaction(pparent, atom))
    //   {
 
    //      return false;

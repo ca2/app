@@ -7,7 +7,7 @@ property_object::~property_object()
 }
 
 
-//void property_object::assert_valid() const
+//void property_object::assert_ok() const
 //{
 //
 //}
@@ -94,7 +94,7 @@ public:
 
 };
 
-string get_message_text(const ::id & id, bool bWithNumbers);
+string get_message_text(const ::atom & atom, bool bWithNumbers);
 
 CLASS_DECL_ACME void debug_debug_reference()
 {
@@ -371,13 +371,13 @@ stream & property_object::read(::stream & stream)
 }
 
 
-routine_array * property_object::routine_array(const ::id & id, bool bCreate)
+routine_array * property_object::routine_array(const ::atom & atom, bool bCreate)
 {
 
    if (!bCreate)
    {
 
-      auto passociation = m_pmapPropertyRoutine->plookup(id);
+      auto passociation = m_pmapPropertyRoutine->plookup(atom);
 
       if (::is_null(passociation))
       {
@@ -392,22 +392,22 @@ routine_array * property_object::routine_array(const ::id & id, bool bCreate)
 
    m_psystem->__defer_construct_new(m_pmapPropertyRoutine);
 
-   return &m_pmapPropertyRoutine->operator[](id);
+   return &m_pmapPropertyRoutine->operator[](atom);
 
 }
 
 
-void property_object::add_routine(const ::id & id, const ::routine & routine)
+void property_object::add_routine(const ::atom & atom, const ::routine & routine)
 {
 
    if (!routine)
    {
 
-      throw_status(error_invalid_argument);
+      throw_status(error_bad_argument);
 
    }
 
-   auto proutinea = routine_array(id, true);
+   auto proutinea = routine_array(atom, true);
    
    if (!proutinea)
    {
@@ -446,7 +446,7 @@ void property_object::add_routine(const ::id & id, const ::routine & routine)
 }
 
 
-linked_property property_object::parent_lookup_property(const id & id) const
+linked_property property_object::parent_lookup_property(const atom & atom) const
 {
 
    auto pobject = parent_property_set_holder();
@@ -458,15 +458,15 @@ linked_property property_object::parent_lookup_property(const id & id) const
 
    }
 
-   return pobject->on_fetch_property(id);
+   return pobject->on_fetch_property(atom);
 
 }
 
 
-::linked_property property_object::on_fetch_property(const ::id & id) const
+::linked_property property_object::on_fetch_property(const ::atom & atom) const
 {
 
-   auto pproperty = find_property(id);
+   auto pproperty = find_property(atom);
 
    if (pproperty)
    {
@@ -490,7 +490,7 @@ linked_property property_object::parent_lookup_property(const id & id) const
    //      for (auto & pset : parray->ptra())
    //      {
 
-   //         pproperty = pset->find(id); // first-level find
+   //         pproperty = pset->find(atom); // first-level find
 
    //         if (pproperty)
    //         {
@@ -505,12 +505,12 @@ linked_property property_object::parent_lookup_property(const id & id) const
 
    //}
 
-   return parent_lookup_property(id);
+   return parent_lookup_property(atom);
 
 }
 
 
-id property_object::translate_property_id(const ::id & id)
+atom property_object::translate_property_id(const ::atom & atom)
 {
 
    auto pparent = parent_property_set_holder();
@@ -518,11 +518,11 @@ id property_object::translate_property_id(const ::id & id)
    if (!pparent)
    {
 
-      return id;
+      return atom;
 
    }
 
-   return pparent->translate_property_id(id);
+   return pparent->translate_property_id(atom);
 
 }
 
@@ -628,15 +628,15 @@ void property_object::on_property_changed(property* pproperty, const action_cont
 }
 
 
-::linked_property property_object::fetch_property(const ::id & idParam, bool bCreate)
+::linked_property property_object::fetch_property(const ::atom & idParam, bool bCreate)
 {
 
-   auto id = translate_property_id(idParam);
+   auto atom = translate_property_id(idParam);
 
-   if(!id.is_empty())
+   if(!atom.is_empty())
    {
 
-      auto linkedproperty = on_fetch_property(id);
+      auto linkedproperty = on_fetch_property(atom);
 
       if(linkedproperty)
       {
@@ -650,7 +650,7 @@ void property_object::on_property_changed(property* pproperty, const action_cont
    if (bCreate)
    {
 
-      return { &get_property_set().get_property(id), this };
+      return { &get_property_set().get_property(atom), this };
 
    }
 
@@ -693,13 +693,13 @@ void property_object::on_property_changed(property* pproperty, const action_cont
 //}
 
 
-string property_object::get_text(const ::payload & payload, const ::id & id)
+string property_object::get_text(const ::payload & payload, const ::atom & atom)
 {
 
-   if (payload.has_property(id) && payload[id].has_char())
+   if (payload.has_property(atom) && payload[atom].has_char())
    {
 
-      return payload[id];
+      return payload[atom];
 
    }
 
@@ -708,10 +708,10 @@ string property_object::get_text(const ::payload & payload, const ::id & id)
 }
 
 
-void property_object::run_property(const ::id& id)
+void property_object::run_property(const ::atom& atom)
 {
 
-   auto pproperty = find_property(id);
+   auto pproperty = find_property(atom);
 
    if (!pproperty)
    {

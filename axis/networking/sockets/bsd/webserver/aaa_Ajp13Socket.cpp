@@ -43,13 +43,13 @@ namespace sockets
    }
 
 
-   void Ajp13Socket::OnHeader( i16 id, i16 len )
+   void Ajp13Socket::OnHeader( i16 atom, i16 len )
    {
 
-      if (id != 0x1234)
+      if (atom != 0x1234)
       {
 
-         TRACE("ABORT: bad packet id: %x\n", id);
+         TRACE("ABORT: bad packet atom: %x\n", atom);
 
          SetCloseAndDelete();
 

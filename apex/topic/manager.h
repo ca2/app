@@ -33,11 +33,11 @@ public:
 #endif
 
 
-   virtual class ::signal * get_signal(const ::id& id, const ::action_context& actioncontext = ::action_context());
+   virtual class ::signal * get_signal(const ::atom& atom, const ::action_context& actioncontext = ::action_context());
 
 
    // <3ThomasBorregaardSørensen handle...!!
-   virtual void signal(const ::id & id, const ::action_context & actioncontext = ::action_context());
+   virtual void signal(const ::atom & atom, const ::action_context & actioncontext = ::action_context());
 
 
    virtual void on_property_changed(property * pproperty, const ::action_context & actioncontext) override;

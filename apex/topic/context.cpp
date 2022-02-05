@@ -1,10 +1,6 @@
 #include "framework.h"
 
 
-//namespace topic
-//{
-//
-
 context::context()
 {
 
@@ -23,20 +19,18 @@ context::~context()
 void context::start_task()
 {
 
-   //return ::success_none;
-
 }
 
 
-void context::set_up_to_date(const ::topic *phandler)
+void context::set_up_to_date(const ::topic * ptopic)
 {
 
-   m_iUpdateSerial = phandler->m_iUpdateSerial;
+   m_iUpdateSerial = ptopic->m_pextendedtopic->m_iUpdateSerial;
 
 }
 
 
-bool context::is_up_to_date(const ::topic * phandler) const
+bool context::is_up_to_date(const ::topic * ptopic) const
 {
 
    if (m_iUpdateSerial < 0)
@@ -46,19 +40,16 @@ bool context::is_up_to_date(const ::topic * phandler) const
 
    }
 
-   if (phandler->m_iUpdateSerial < 0)
+   if (ptopic->m_pextendedtopic->m_iUpdateSerial < 0)
    {
 
       return false;
 
    }
 
-   return m_iUpdateSerial == phandler->m_iUpdateSerial;
+   return m_iUpdateSerial == ptopic->m_pextendedtopic->m_iUpdateSerial;
 
 }
-
-
-//} // namespace topic
 
 
 

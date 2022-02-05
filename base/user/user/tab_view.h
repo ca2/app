@@ -29,7 +29,7 @@ namespace user
       ~tab_view() override;
 
 
-      void assert_valid() const override;
+      void assert_ok() const override;
       void dump(dump_context & dumpcontext) const override;
 
 
@@ -51,7 +51,7 @@ namespace user
 
       void on_hide_place_holder_child(::user::interaction* pinteraction) override;
 
-      id get_view_id() override;
+      atom get_view_id() override;
 
       ::user::interaction * get_view_uie() override;
 
@@ -79,7 +79,7 @@ namespace user
 
       void rotate() override;
 
-      ::user::tab_pane * create_tab_by_id(const ::id & idTab) override;
+      ::user::tab_pane * create_tab_by_id(const ::atom & idTab) override;
 
       virtual void create_impact_menu(::user::impact_data * pimpactdata);
 

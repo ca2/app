@@ -42,7 +42,7 @@ public:
 
    //   FILE_POINTER & operator ->() { m_p; }
 
-   virtual stream * branch(const ::id &) { return this; }
+   virtual stream * branch(const ::atom &) { return this; }
 
    ////inline auto seek_begin() { m_p->seek_begin(); }
    ////inline auto get_length() const { m_p->get_length(); }
@@ -60,15 +60,15 @@ public:
    //   }
    //}
 
-   //// streaming uses the ordering/sequence and versioning "to omit" the id
+   //// streaming uses the ordering/sequence and versioning "to omit" the atom
    //// reordering or adding/excluding members leads to new format
    //// up-to-date is the only readily-fastly-effortless safe one for streaming
-   //// id-value pairs are safe about reordering/adding/excluding members at most? scenarios
+   //// atom-value pairs are safe about reordering/adding/excluding members at most? scenarios
    //template < typename TYPE >
-   //void exchange(const ::id &, TYPE & t)
+   //void exchange(const ::atom &, TYPE & t)
    //{
 
-   //   __pointer(::stream) pstream = branch(this, id);
+   //   __pointer(::stream) pstream = branch(this, atom);
 
    //   t.exchange(*pstream);
 
@@ -80,8 +80,8 @@ public:
    virtual filesize translate(filesize offset, ::enum_seek eseek);
 
 
-   string factory_id_to_text(const ::id & id) override;
-   ::id text_to_factory_id(string strText) override;
+   string factory_id_to_text(const ::atom & atom) override;
+   ::atom text_to_factory_id(string strText) override;
 
 
    template < typename TYPE >
@@ -247,7 +247,7 @@ public:
 #ifdef WINDOWS
    virtual void write(const unichar * wch) { write(string(wch)); }
 #endif
-   virtual void write(const id & id) override;
+   virtual void write(const atom & atom) override;
    virtual void write(const ::payload & payload) override;
    virtual void write(const property & property) override;
    virtual void write(const ::string & str) override;
@@ -288,7 +288,7 @@ public:
    //virtual void read(POINT_I32 & point) { raw_read(point); }
    //virtual void read(SIZE_I32 & size) { raw_read(size); }
    //virtual void read(RECTANGLE_I32 & rectangle) { raw_read(rectangle); }
-   virtual void read(id & id) override;
+   virtual void read(atom & atom) override;
    virtual void read(::payload & payload) override;
    virtual void read_var_type(enum_type & etype) override;
    virtual void read_var_body(::payload & payload, enum_type etype) override;

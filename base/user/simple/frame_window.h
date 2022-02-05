@@ -111,7 +111,7 @@ public:
 
    void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pgraphics) override;
 
-   //virtual bool LoadToolBar(::type sptype,id idToolBar, const ::string & pszToolBar,u32 dwCtrlStyle = TBSTYLE_FLAT,u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
+   //virtual bool LoadToolBar(::type sptype,atom idToolBar, const ::string & pszToolBar,u32 dwCtrlStyle = TBSTYLE_FLAT,u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
 
 
 
@@ -137,7 +137,7 @@ public:
    virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
 
 
-   //void command_handler(const ::id & id) override;
+   //void command_handler(const ::atom & atom) override;
 
 
    virtual bool _001CanEnterScreenSaver() override;
@@ -188,7 +188,7 @@ public:
    virtual string get_window_default_matter() override;
 
 
-   void assert_valid() const override;
+   void assert_ok() const override;
    void dump(dump_context & dumpcontext) const override;
 
 
@@ -245,9 +245,9 @@ public:
 
    virtual void call_notification_area_action(const ::string & pszId);
 
-   //virtual void OnNotifyIconContextMenu(const ::id & idNotifyIcon);
-   //virtual void OnNotifyIconLButtonDblClk(const ::id& idNotifyIcon);
-   //virtual void OnNotifyIconLButtonDown(const ::id& idNotifyIcon);
+   //virtual void OnNotifyIconContextMenu(const ::atom & idNotifyIcon);
+   //virtual void OnNotifyIconLButtonDblClk(const ::atom& idNotifyIcon);
+   //virtual void OnNotifyIconLButtonDown(const ::atom& idNotifyIcon);
 
    virtual void notification_area_action(const ::string & pszId);
 

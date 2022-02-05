@@ -342,7 +342,7 @@ void nano_message_box::display_synchronously(const ::string & strMessage, const 
 
 
 
-CLASS_DECL_ACME ::id os_message_box(::object * pobject, const char * pszMessage, const char * pszTitle, enum_message_box emessagebox)
+CLASS_DECL_ACME ::atom os_message_box(::object * pobject, const char * pszMessage, const char * pszTitle, enum_message_box emessagebox)
 {
 
    initialize_nano();
@@ -358,10 +358,10 @@ CLASS_DECL_ACME ::id os_message_box(::object * pobject, const char * pszMessage,
 }
 
 
-void nano_message_box::on_click(const ::id & id)
+void nano_message_box::on_click(const ::atom & atom)
 {
 
-   m_idResult = id;
+   m_idResult = atom;
 
    destroy();
 

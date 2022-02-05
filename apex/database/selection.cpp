@@ -17,10 +17,10 @@ namespace database
    }
 
 
-   void selection::add_item(class key id)
+   void selection::add_item(class key atom)
    {
 
-      selection_item item(id);
+      selection_item item(atom);
 
       m_itema.add(item);
 

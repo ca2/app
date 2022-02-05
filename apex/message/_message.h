@@ -33,7 +33,7 @@ namespace message
    class message;
    //class id_route;
    //template < typename MESSAGE > class typed_route;
-   //class id;
+   //class atom;
    class route;
 
 
@@ -56,7 +56,6 @@ namespace draw2d
 
 
 #include "const.h"
-#include "id.h"
 #include "receiver.h"
 #include "dispatcher.h"
 #include "message.h"

@@ -1229,7 +1229,7 @@ pacmedir->create(pathDVP_Folder);
       string strId;
       for(i32 i = 0; i < straId.get_size(); i++)
       {
-         strId += "static ::id lscript_id" + __string(i) + "(\"" + straId[i] + "\");\r\n";
+         strId += "static ::atom lscript_id" + __string(i) + "(\"" + straId[i] + "\");\r\n";
       }
 
       strDest = strDest.Left(iPosId) + strId + strDest.Mid(iPosId);
@@ -1868,7 +1868,7 @@ auto tickStart = ::duration::now();
       string strId;
       for(i32 i = 0; i < straId.get_size(); i++)
       {
-         strId += "static ::id lscript_id" + __string(i) + "(\"" + straId[i] + "\");\r\n";
+         strId += "static ::atom lscript_id" + __string(i) + "(\"" + straId[i] + "\");\r\n";
       }
 
       strDest = strDest.Left(iPosId) + strId + strDest.Mid(iPosId);
@@ -2924,7 +2924,7 @@ ch_else:
    }
 
 
-   void script_compiler::pstr_set(id pszTopic,id idLocale,id idSchema, const ::string & psz)
+   void script_compiler::pstr_set(atom pszTopic,atom idLocale,atom idSchema, const ::string & psz)
    {
 
       synchronous_lock synchronouslock(m_pmanager->mutex());

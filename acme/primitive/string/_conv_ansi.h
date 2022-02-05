@@ -124,7 +124,7 @@ inline void to_string(string& str, const long& l);
 
 inline void to_string(string& str, const string& strSrc);
 
-inline void to_string(string & str, const ::id & id);
+inline void to_string(string & str, const ::atom & atom);
 
 inline void to_string(string & str, const ::wd16string & wd16str);
 

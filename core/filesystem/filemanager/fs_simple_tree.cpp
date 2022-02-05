@@ -68,10 +68,10 @@ namespace filemanager
          }
 
 
-         void tree::assert_valid() const
+         void tree::assert_ok() const
          {
 
-            ::data::tree::assert_valid();
+            ::data::tree::assert_ok();
 
          }
 
@@ -106,7 +106,7 @@ namespace filemanager
 
             }
 
-            pxmldocument->root()->attribute("id").as(m_iParentFolder);
+            pxmldocument->root()->attribute("atom").as(m_iParentFolder);
 
             __pointer(::data::tree_item) ptreeitemParent;
 
@@ -143,7 +143,7 @@ namespace filemanager
 
                auto pnodeItem = pnodeFolder->child_at(i);
 
-               auto iFolder = pnodeItem->attribute("id").iptr();
+               auto iFolder = pnodeItem->attribute("atom").iptr();
 
                index iNewItem = m_foldera.find_absolute(iFolder);
 

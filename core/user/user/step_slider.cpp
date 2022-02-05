@@ -20,10 +20,10 @@ namespace user
    }
 
 
-   //bool step_slider::create_window(::user::interaction * puserinteractionParent, id id)
+   //bool step_slider::create_window(::user::interaction * puserinteractionParent, atom atom)
    //{
 
-   //   return ::user::interaction::create_window(nullptr, nullptr, WS_CHILD, puserinteractionParent, id) != false;
+   //   return ::user::interaction::create_window(nullptr, nullptr, WS_CHILD, puserinteractionParent, atom) != false;
 
    //}
 

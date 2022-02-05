@@ -72,12 +72,12 @@ void create::initialize_create(arguments arguments)
 }
 
 
-void create::initialize_create(string strAppId, ::payload payloadFile, const ::payload & varOptions, ::user::primitive * puiParent, ewindowflag ewindowflag, ::id id)
+void create::initialize_create(string strAppId, ::payload payloadFile, const ::payload & varOptions, ::user::primitive * puiParent, ewindowflag ewindowflag, ::atom atom)
 {
 
    m_ewindowflag = ewindowflag;
       
-   m_id = id;
+   m_id = atom;
 
    create_common_construct(varOptions, puiParent);
 

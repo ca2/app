@@ -109,18 +109,18 @@ namespace user
    }
 
 
-   void message_window::message_window_post_message(const ::id & id,wparam wparam,lparam lparam)
+   void message_window::message_window_post_message(const ::atom & atom,wparam wparam,lparam lparam)
    {
 
-      post_message(id, wparam, lparam);
+      post_message(atom, wparam, lparam);
 
    }
 
 
-   lresult message_window::message_window_send_message(const ::id& id,wparam wparam,lparam lparam)
+   lresult message_window::message_window_send_message(const ::atom& atom,wparam wparam,lparam lparam)
    {
 
-      return send_message(id, wparam, lparam);
+      return send_message(atom, wparam, lparam);
 
    }
 

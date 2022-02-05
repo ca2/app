@@ -23,9 +23,9 @@ void simple_form_list_view::install_message_routing(::channel * pchannel)
 
 
 
-void simple_form_list_view::assert_valid() const
+void simple_form_list_view::assert_ok() const
 {
-   ::user::impact::assert_valid();
+   ::user::impact::assert_ok();
 }
 
 

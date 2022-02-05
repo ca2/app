@@ -64,9 +64,9 @@ public:
    }
 
 
-   virtual string get_text(const ::payload & payload, id id);
+   virtual string get_text(const ::payload & payload, atom atom);
 
-   virtual property * parent_lookup_property(const id & id) const;
+   virtual property * parent_lookup_property(const atom & atom) const;
 
    virtual void set_trait_result(::u64 uId, ::u64 uTrait, ::matter * preference);
 
@@ -114,22 +114,22 @@ public:
    virtual string property_set_get_string(const ::string & str) const;
 
 
-   virtual id translate_property_id(const ::id& id);
+   virtual atom translate_property_id(const ::atom& atom);
 
    virtual void add_property_set(property_set * pset);
 
-   virtual property * fetch_property(const ::id & id, bool bCreate = true);
+   virtual property * fetch_property(const ::atom & atom, bool bCreate = true);
 
-   virtual property * on_fetch_property(const ::id & id) const;
+   virtual property * on_fetch_property(const ::atom & atom) const;
 
    virtual ::matter * parent_property_set_holder() const;
 
    void add_update_notification(property * pproperty);
-   void add_update_notification(const ::id & id, bool bCreate = true);
-   void add_update_notification(const ::id & id, ::matter * pobject);
+   void add_update_notification(const ::atom & atom, bool bCreate = true);
+   void add_update_notification(const ::atom & atom, ::matter * pobject);
 
 
-   inline ::papaya::topic topic(const ::id & id);
+   inline ::papaya::topic topic(const ::atom & atom);
 
 
    

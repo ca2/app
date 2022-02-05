@@ -50,10 +50,10 @@ namespace base
    }
 
 
-   void application::assert_valid() const
+   void application::assert_ok() const
    {
 
-      ::axis::application::assert_valid();
+      ::axis::application::assert_ok();
 
    }
 
@@ -136,7 +136,7 @@ namespace base
    }
 
 
-   __pointer(::user::document) application::defer_create_view(string strImpact, ::user::interaction* puiParent, ewindowflag ewindowflag, const ::id& id)
+   __pointer(::user::document) application::defer_create_view(string strImpact, ::user::interaction* puiParent, ewindowflag ewindowflag, const ::atom& atom)
    {
 
       return nullptr;

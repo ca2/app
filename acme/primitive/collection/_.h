@@ -104,7 +104,7 @@ public:
       if(iIndex != 0)
       {
 
-         __throw(error_invalid_argument);
+         __throw(error_bad_argument);
 
       }
 
@@ -147,7 +147,7 @@ public:
       if(iIndex != 0)
       {
 
-         __throw(error_invalid_argument);
+         __throw(error_bad_argument);
 
       }
 

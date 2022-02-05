@@ -7,7 +7,7 @@ namespace aura
 
 
 
-   interprocess_communication::task::task(class call * pcall, const ::id & idPid, i64 iTask) :
+   interprocess_communication::task::task(class call * pcall, const ::atom & idPid, i64 iTask) :
          ::object(pcall),
          m_pcall(pcall),
          m_idPid(idPid),
@@ -131,7 +131,7 @@ namespace aura
    }
 
 
-   void interprocess_communication::call::post(const ::id & idPid)
+   void interprocess_communication::call::post(const ::atom & idPid)
    {
 
       fork([this, idPid]()
@@ -346,7 +346,7 @@ namespace aura
 
       ::aura::app_launcher launcher(process_platform_dir_name2(), strApp);
 
-      id idPid = -1;
+      atom idPid = -1;
 
       {
 
@@ -408,7 +408,7 @@ started:
    }
 
 
-   bool interprocess_communication::connect(const ::string & strApp, const ::id & idPid)
+   bool interprocess_communication::connect(const ::string & strApp, const ::atom & idPid)
    {
 
       string strKey = strApp + ":" + __string(idPid);
@@ -436,7 +436,7 @@ started:
    }
 
 
-   ::aura::ipc::tx & interprocess_communication::tx(const ::string & strApp, const ::id & iPid)
+   ::aura::ipc::tx & interprocess_communication::tx(const ::string & strApp, const ::atom & iPid)
    {
 
       string strKey = strApp + ":" + __string(iPid);
@@ -460,7 +460,7 @@ started:
    }
 
 
-   string interprocess_communication::key(const string &strApp, const ::id & idPid)
+   string interprocess_communication::key(const string &strApp, const ::atom & idPid)
    {
 
       string strKey;
@@ -577,7 +577,7 @@ pacmedir->system() / "interprocess_communication" / strApp / __string(idPid);
 
       }
 
-      ::id idPidFrom = strFrom;
+      ::atom idPidFrom = strFrom;
 
       if(idPidFrom.is_empty() || (idPidFrom.is_integer() && idPidFrom.i64() == 0))
       {
@@ -674,7 +674,7 @@ pacmedir->system() / "interprocess_communication" / strApp / __string(idPid);
    }
 
 
-   __pointer(class interprocess_communication::task) interprocess_communication::create_task(call * pcall, const ::id & idPid)
+   __pointer(class interprocess_communication::task) interprocess_communication::create_task(call * pcall, const ::atom & idPid)
    {
 
       auto pobjectTask = __new(class task(pcall, idPid, atomic_increment(&m_iTaskSeed)));
@@ -752,7 +752,7 @@ pacmedir->system() / "interprocess_communication" / strApp / __string(idPid);
    }
 
 
-   void interprocess_communication::on_new_instance(const ::string & strModule, const ::id & idPid)
+   void interprocess_communication::on_new_instance(const ::string & strModule, const ::atom & idPid)
    {
 
       defer_add_module(strModule, idPid);
@@ -866,7 +866,7 @@ repeat:
    }
 
 
-   void interprocess_communication::defer_add_module(const ::string & strModule, const ::id & idPid)
+   void interprocess_communication::defer_add_module(const ::string & strModule, const ::atom & idPid)
    {
 
 #ifndef _UWP

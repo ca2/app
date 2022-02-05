@@ -634,10 +634,10 @@ namespace universal_windows
 
 
 
-   void native_buffer::assert_valid() const
+   void native_buffer::assert_ok() const
    {
 
-      ::file::file::assert_valid();
+      ::file::file::assert_ok();
       
    }
 

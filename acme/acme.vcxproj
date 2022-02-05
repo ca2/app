@@ -1765,7 +1765,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="primitive\primitive\enum_bitset.h" />
     <ClInclude Include="primitive\primitive\e_flag.h" />
     <ClInclude Include="primitive\primitive\holder.h" />
-    <ClInclude Include="primitive\primitive\id_array.h" />
+    <ClInclude Include="primitive\primitive\atom_array.h" />
     <ClInclude Include="primitive\primitive\interlocked.h" />
     <ClInclude Include="primitive\primitive\interlocked_count.h" />
     <ClInclude Include="primitive\primitive\object.h" />
@@ -1786,7 +1786,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="primitive\primitive\system.h" />
     <ClInclude Include="primitive\primitive\tracer.h" />
     <ClInclude Include="primitive\primitive\work.h" />
-    <ClInclude Include="primitive\primitive\_id_impl.h" />
+    <ClInclude Include="primitive\primitive\_atom_impl.h" />
     <ClInclude Include="primitive\primitive\_interlocked_count_impl.h" />
     <ClInclude Include="primitive\primitive\_payload_impl.h" />
     <ClInclude Include="primitive\promise\signalization.h" />
@@ -1893,8 +1893,8 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClCompile Include="primitive\primitive\edit.cpp" />
     <ClCompile Include="primitive\primitive\factory.cpp" />
     <ClCompile Include="primitive\primitive\handler.cpp" />
-    <ClCompile Include="primitive\primitive\id.cpp" />
-    <ClCompile Include="primitive\primitive\id_space.cpp" />
+    <ClCompile Include="primitive\primitive\atom.cpp" />
+    <ClCompile Include="primitive\primitive\atom_space.cpp" />
     <ClCompile Include="primitive\primitive\interlocked_long.cpp" />
     <ClCompile Include="primitive\primitive\interlocked_long_pulse.cpp" />
     <ClCompile Include="primitive\primitive\memory.cpp" />
@@ -2073,8 +2073,8 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="primitive\primitive\action_context.h" />
     <ClInclude Include="primitive\primitive\eobject.h" />
     <ClInclude Include="primitive\primitive\factory.h" />
-    <ClInclude Include="primitive\primitive\id.h" />
-    <ClInclude Include="primitive\primitive\id_space.h" />
+    <ClInclude Include="primitive\primitive\atom.h" />
+    <ClInclude Include="primitive\primitive\atom_space.h" />
     <ClInclude Include="primitive\primitive\interlocked_long_pulse.h" />
     <ClInclude Include="primitive\primitive\papaya.h" />
     <ClInclude Include="primitive\primitive\logic.h" />
@@ -2103,7 +2103,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="primitive\primitive\uid.h" />
     <ClInclude Include="primitive\primitive\util.h" />
     <ClInclude Include="primitive\primitive\value.h" />
-    <ClInclude Include="primitive\primitive\var2.h" />
+    <ClInclude Include="primitive\primitive\payload2.h" />
     <ClInclude Include="primitive\primitive\virtual_memory.h" />
     <ClInclude Include="primitive\primitive\property_set_papaya.h" />
     <ClInclude Include="primitive\primitive\_defer.h" />

@@ -6,23 +6,23 @@ namespace acme
 {
 
 
-   inline ::id id(const class ::payload & payload)
+   inline ::atom atom(const class ::payload & payload)
    {
       
-      return ::id(payload.id());
+      return ::atom(payload.atom());
 
    }
 
    
-   inline ::id id(const ::property & property)
+   inline ::atom atom(const ::property & property)
    {
       
-      return ::id(property);
+      return ::atom(property);
 
    }
 
 
-   inline ::id id(const ::std::type_info& info)
+   inline ::atom atom(const ::std::type_info& info)
    {
 
 #ifdef WINDOWS
@@ -38,7 +38,7 @@ namespace acme
    }
 
 
-   inline ::id id(const char* psz)
+   inline ::atom atom(const char* psz)
    {
 
       return get_id_space()(psz);
@@ -46,7 +46,7 @@ namespace acme
    }
 
 
-   inline ::id id(const string& str)
+   inline ::atom atom(const string& str)
    {
 
       return get_id_space()(str);
@@ -54,7 +54,7 @@ namespace acme
    }
 
 
-   inline ::id id(i64 i)
+   inline ::atom atom(i64 i)
    {
 
       return get_id_space()(i);
@@ -62,7 +62,7 @@ namespace acme
    }
 
 
-   inline id_space& id()
+   inline atom_space& atom()
    {
 
       return get_id_space();
@@ -80,18 +80,18 @@ namespace acme
 //namespace acme
 //{
 //
-//   inline id system::id(const class ::payload & payload)
+//   inline atom system::atom(const class ::payload & payload)
 //   {
-//      return ::id((const char *)(class ::payload &) payload);
+//      return ::atom((const char *)(class ::payload &) payload);
 //   }
 //
-//   inline id system::id(const property & prop)
+//   inline atom system::atom(const property & prop)
 //   {
-//      return ::id((const string &)(property &)prop);
+//      return ::atom((const string &)(property &)prop);
 //   }
 //
 //
-//   inline id system::id(const ::std::type_info & info)
+//   inline atom system::atom(const ::std::type_info & info)
 //   {
 //#ifdef WINDOWS
 //      return get_id_space()(info.name());
@@ -100,22 +100,22 @@ namespace acme
 //#endif
 //   }
 //
-//   inline id system::id(const char * psz)
+//   inline atom system::atom(const char * psz)
 //   {
 //      return get_id_space()(psz);
 //   }
 //
-//   inline id system::id(const ::string & str)
+//   inline atom system::atom(const ::string & str)
 //   {
 //      return get_id_space()(str);
 //   }
 //
-//   inline id system::id(i64 i)
+//   inline atom system::atom(i64 i)
 //   {
 //      return get_id_space()(i);
 //   }
 //
-//   inline id_space & system::id()
+//   inline atom_space & system::atom()
 //   {
 //      return get_id_space();
 //   }
@@ -127,12 +127,12 @@ namespace acme
 namespace acme
 {
 
-   CLASS_DECL_ACME::id id(const char* psz);
+   CLASS_DECL_ACME::atom atom(const char* psz);
 
 } // namespace acme
 
 
-inline id::id(const char* psz)
+inline atom::atom(const char* psz)
 {
 
    m_all = {};
@@ -140,32 +140,32 @@ inline id::id(const char* psz)
    if (psz != nullptr)
    {
 
-      operator = (::acme::id(psz));
+      operator = (::acme::atom(psz));
 
    }
 
 }
 
 
-inline id::id(const string& str)
+inline atom::atom(const string& str)
 {
 
    m_all = {};
 
-   operator = (::acme::id(str.c_str()));
+   operator = (::acme::atom(str.c_str()));
 
 }
 
 
-inline id::id(const type& type) :
-   id((const string&)type.to_string())
+inline atom::atom(const type& type) :
+   atom((const string&)type.to_string())
 {
 
 }
 
 
 template < primitive_integer INTEGER >
-inline id& id::operator = (INTEGER i)
+inline atom& atom::operator = (INTEGER i)
 {
 
    m_etype = e_type_integer;
@@ -178,7 +178,7 @@ inline id& id::operator = (INTEGER i)
 
 
 template < primitive_natural NATURAL >
-inline id& id::operator = (NATURAL n)
+inline atom& atom::operator = (NATURAL n)
 {
 
    m_etype = e_type_integer;
@@ -190,7 +190,7 @@ inline id& id::operator = (NATURAL n)
 }
 
 
-inline id& id::operator = (const ::enum_id& eid)
+inline atom& atom::operator = (const ::enum_id& eid)
 {
 
    m_etype = e_type_id;
@@ -202,7 +202,7 @@ inline id& id::operator = (const ::enum_id& eid)
 }
 
 
-inline id& id::operator = (const ::enum_property& eproperty)
+inline atom& atom::operator = (const ::enum_property& eproperty)
 {
 
    m_etype = e_type_property;
@@ -214,7 +214,7 @@ inline id& id::operator = (const ::enum_property& eproperty)
 }
 
 
-inline id& id::operator = (const ::enum_factory& efactory)
+inline atom& atom::operator = (const ::enum_factory& efactory)
 {
 
    m_etype = e_type_factory;
@@ -226,7 +226,7 @@ inline id& id::operator = (const ::enum_factory& efactory)
 }
 
 
-inline id& id::operator = (const ::enum_task_tool& etasktool)
+inline atom& atom::operator = (const ::enum_task_tool& etasktool)
 {
 
    m_etype = e_type_task_tool;
@@ -238,7 +238,7 @@ inline id& id::operator = (const ::enum_task_tool& etasktool)
 }
 
 
-inline id& id::operator = (const ::enum_timer& etimer)
+inline atom& atom::operator = (const ::enum_timer& etimer)
 {
 
    m_etype = e_type_timer;
@@ -251,7 +251,7 @@ inline id& id::operator = (const ::enum_timer& etimer)
 
 
 
-inline id& id::operator = (const ::enum_message & emessage)
+inline atom& atom::operator = (const ::enum_message & emessage)
 {
 
    m_etype = e_type_message;
@@ -263,7 +263,7 @@ inline id& id::operator = (const ::enum_message & emessage)
 }
 
 
-//inline id& id::operator = (const ::id & id)
+//inline atom& atom::operator = (const ::atom & atom)
 //{
 //
 //   m_etype = e_type_subject;
@@ -275,7 +275,7 @@ inline id& id::operator = (const ::enum_message & emessage)
 //}
 //
 
-inline id & id::operator = (const ::enum_dialog_result & edialogresult)
+inline atom & atom::operator = (const ::enum_dialog_result & edialogresult)
 {
 
    m_etype = e_type_dialog_result;

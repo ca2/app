@@ -9,7 +9,7 @@ namespace sockets
    public:
       Ajp13Socket();
 
-      void OnHeader( short id, short len );
+      void OnHeader( short atom, short len );
       void OnPacket( const char *buf, memsize sz );
 
       virtual void Respond();

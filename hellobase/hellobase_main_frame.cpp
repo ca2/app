@@ -39,10 +39,10 @@ namespace hellobase
    }
 
 
-   void main_frame::assert_valid() const
+   void main_frame::assert_ok() const
    {
 
-      ::user::frame_window::assert_valid();
+      ::user::frame_window::assert_ok();
 
    }
 

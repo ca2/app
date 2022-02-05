@@ -436,7 +436,7 @@ namespace draw2d
       if (::is_null(pbitmap))
       {
 
-         throw_status(error_invalid_argument);
+         throw_status(error_bad_argument);
 
       }
 
@@ -454,7 +454,7 @@ namespace draw2d
       if (::is_null(ppen))
       {
 
-         throw_status(error_invalid_argument);
+         throw_status(error_bad_argument);
 
       }
 
@@ -469,7 +469,7 @@ namespace draw2d
       if (::is_null(pbrush))
       {
 
-         throw_status(error_invalid_argument);
+         throw_status(error_bad_argument);
 
       }
 
@@ -484,7 +484,7 @@ namespace draw2d
       if (::is_null(pregion))
       {
 
-         throw_status(error_invalid_argument);
+         throw_status(error_bad_argument);
 
       }
 
@@ -1126,7 +1126,7 @@ namespace draw2d
       if (!has_blender())
       {
 
-         throw_status(error_invalid_argument);
+         throw_status(error_bad_argument);
 
       }
 
@@ -2506,7 +2506,7 @@ namespace draw2d
    }
 
 
-      void graphics::assert_valid() const
+      void graphics::assert_ok() const
    {
 
 

@@ -161,7 +161,7 @@ public:
       virtual void initialize(::object * pobject) override;
 
 
-      void assert_valid() const override;
+      void assert_ok() const override;
       void dump(dump_context & dumpcontext) const override;
 
 
@@ -172,11 +172,11 @@ public:
 
 
       //virtual ::user::style* get_user_style() const;
-      //virtual bool app_data_get(const ::id & id, stream & os) override;
-      //virtual bool app_data_set(const ::id & id, stream & is) override;
+      //virtual bool app_data_get(const ::atom & atom, stream & os) override;
+      //virtual bool app_data_set(const ::atom & atom, stream & is) override;
 
-      //virtual bool app_data_set(const ::id & id, object & obj) override;
-      //virtual bool app_data_get(const ::id & id, object & obj) override;
+      //virtual bool app_data_set(const ::atom & atom, object & obj) override;
+      //virtual bool app_data_get(const ::atom & atom, object & obj) override;
 
       //      virtual void     interactive_credentials(::account::credentials * pcredentials) override;
 
@@ -185,11 +185,11 @@ public:
 
       //virtual string load_podata(string strLang, bool bOnlyHeader);
 
-      virtual string load_string(const ::id & id);
-      virtual bool load_string(string & str, const ::id & id);
+      virtual string load_string(const ::atom & atom);
+      virtual bool load_string(string & str, const ::atom & atom);
       virtual void load_string_table();
-      virtual bool load_cached_string(string & str, const ::id & id, bool bLoadStringTable);
-      virtual bool load_cached_string_by_id(string & str, const ::id & id, bool bLoadStringTable);
+      virtual bool load_cached_string(string & str, const ::atom & atom, bool bLoadStringTable);
+      virtual bool load_cached_string_by_id(string & str, const ::atom & atom, bool bLoadStringTable);
       virtual void load_string_table(const string & pszApp, const string & pszId);
 
 
@@ -362,7 +362,7 @@ public:
       virtual ::file::path appconfig_folder();
 
 
-      //void assert_valid() const override;
+      //void assert_ok() const override;
       //void dump(dump_context & dumpcontext) const override;
 
 
@@ -370,11 +370,11 @@ public:
       virtual __pointer(::handle::ini) get_ini();
 
 
-      virtual bool app_data_set(const ::id & id, stream & os);
-      virtual bool app_data_get(const ::id & id, stream & is);
+      virtual bool app_data_set(const ::atom & atom, stream & os);
+      virtual bool app_data_get(const ::atom & atom, stream & is);
 
-      virtual bool app_data_set(const ::id & id, ::object & obj);
-      virtual bool app_data_get(const ::id & id, ::object & obj);
+      virtual bool app_data_set(const ::atom & atom, ::object & obj);
+      virtual bool app_data_get(const ::atom & atom, ::object & obj);
 
       void install_message_routing(::channel * pchannel) override;
 
@@ -387,7 +387,7 @@ public:
 
 
 
-      //virtual void notify_changed(const ::id & id, const ::action_context & action_context);
+      //virtual void notify_changed(const ::atom & atom, const ::action_context & action_context);
 
 
       virtual ::file::path local_application_path();
@@ -606,7 +606,7 @@ public:
       /// bHandled true if some action was done in response to the external new additional instance creation
       virtual void on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine);
 
-      virtual void on_new_instance(string strModule, const ::id & idPid);
+      virtual void on_new_instance(string strModule, const ::atom & idPid);
 
       virtual string get_local_mutex_id();
       virtual string get_global_mutex_id();
@@ -703,7 +703,7 @@ public:
       //virtual void _001FranceExit();
 
 
-      //virtual string lstr(const ::id & id, string strDefault = "") override;
+      //virtual string lstr(const ::atom & atom, string strDefault = "") override;
 
 
 
@@ -770,7 +770,7 @@ public:
       //virtual void add_frame(::user::interaction * puserinteraction);
       //virtual void erase_frame(::user::interaction * puserinteraction);
 
-      virtual bool send_message_to_windows(const ::id & id, wparam wparam, lparam lparam); // with tbs in <3
+      virtual bool send_message_to_windows(const ::atom & atom, wparam wparam, lparam lparam); // with tbs in <3
 
       virtual bool route_message_to_windows(::message::message * pmessage); // with tbs in <3
 
@@ -788,7 +788,7 @@ public:
       // user virtual ::user::document * place_hold(::user::interaction * pinteraction);
 
 
-      virtual void post_message(const ::id & id, wparam wParam = 0, lparam lParam = 0) override;
+      virtual void post_message(const ::atom & atom, wparam wParam = 0, lparam lParam = 0) override;
 
 
       //virtual ::draw2d::icon * set_icon(object * pobject, ::draw2d::icon * picon, bool bBigIcon);
@@ -811,11 +811,11 @@ public:
 
       //virtual ::type user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype);
       // apex commented
-      //virtual ::type control_type_from_id(const ::id & id, ::user::enum_control_type & econtroltype);
+      //virtual ::type control_type_from_id(const ::atom & atom, ::user::enum_control_type & econtroltype);
 
 
-      virtual ::id translate_property_id(const ::id & id) override;
-      //virtual property fetch_property(const ::id & id) override;
+      virtual ::atom translate_property_id(const ::atom & atom) override;
+      //virtual property fetch_property(const ::atom & atom) override;
 
       //virtual void get_time(micro_duration * pmicroduration);
 
@@ -823,7 +823,7 @@ public:
       virtual void close(::apex::enum_end eend);
 
 
-      //user virtual __pointer(::user::document) defer_create_view(string strImpact, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::id & id = nullptr);
+      //user virtual __pointer(::user::document) defer_create_view(string strImpact, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::atom & atom = nullptr);
 
 
       virtual void HideApplication();
@@ -874,7 +874,7 @@ public:
       //user virtual void on_create_split_view(::user::split_view* pview);
 
 
-      //virtual ::type control_type_from_id(const ::id& id, ::user::enum_control_type& econtroltype) override;
+      //virtual ::type control_type_from_id(const ::atom& atom, ::user::enum_control_type& econtroltype) override;
 
 
       // virtual bool base_support();
@@ -1050,7 +1050,7 @@ public:
 
 
 
-      virtual void data_on_after_change(::database::client* pclient, const ::database::key& id, const ::payload & payload, ::topic * ptopic) override;
+      virtual void data_on_after_change(::database::client* pclient, const ::database::key& atom, const ::payload & payload, ::topic * ptopic) override;
 
 
 

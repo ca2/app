@@ -309,7 +309,7 @@ namespace sockets
 
       }
 
-      id key;
+      atom key;
       string strKey;
       string value;
       strsize iFind = line.find(':');
@@ -724,7 +724,7 @@ namespace sockets
    {
    }
 
-   void http_socket::OnHeader(id key, const string & value)
+   void http_socket::OnHeader(atom key, const string & value)
    {
 
 

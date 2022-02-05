@@ -443,7 +443,7 @@ gboolean clipboard_callback(gpointer data)
    else
    {
 
-      __throw(error_invalid_argument);
+      __throw(error_bad_argument);
 
    }
 

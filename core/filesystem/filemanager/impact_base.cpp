@@ -254,7 +254,7 @@ void filemanager_impact_base::handle(::topic * ptopic, ::context * pcontext)
          for (index i = 0; i < DBG_LOOP; i++)
          {
 
-            browse_sync(ptopic->m_actioncontext + ::e_source_sync);
+            browse_sync(ptopic->m_pextendedtopic->m_actioncontext + ::e_source_sync);
 
          }
 
@@ -262,7 +262,7 @@ void filemanager_impact_base::handle(::topic * ptopic, ::context * pcontext)
       else
       {
 
-         knowledge(ptopic->m_pfileitem->m_filepathUser, ptopic->m_actioncontext + ::e_source_sync);
+         knowledge(ptopic->m_pfileitem->m_filepathUser, ptopic->m_pextendedtopic->m_actioncontext + ::e_source_sync);
 
       }
 

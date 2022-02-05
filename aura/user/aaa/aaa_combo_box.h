@@ -129,7 +129,7 @@ namespace user
 
 
 
-      virtual bool create_window(::user::interaction * puiParent, const ::id & id) override;
+      virtual bool create_window(::user::interaction * puiParent, const ::atom & atom) override;
 
       //::count get_count();
       //index current_item();

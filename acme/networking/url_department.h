@@ -19,14 +19,14 @@ namespace url
       virtual ~department();
 
 
-      // Example: http://veriwell.com.br:443/page?id=1
+      // Example: http://veriwell.com.br:443/page?atom=1
       string get_protocol(const ::string & strUrl); // http
       string get_root(const ::string & strUrl); // veriwell.com.br:443
       string get_server(const ::string & strUrl); // veriwell.com.br
       i32 get_port(const ::string & strUrl, i32 iDefault = -1); // 443
-      string get_object(const ::string & strUrl); // page?id=1
+      string get_object(const ::string & strUrl); // page?atom=1
       string get_script(const ::string & strUrl); // page
-      string get_query(const ::string & strUrl); // id=1
+      string get_query(const ::string & strUrl); // atom=1
       string set_key(const ::string & strUrl, const ::string & strKey, ::payload payload);
       void set_key(string & strUrl, const ::string & str, const ::string & strKey, ::payload payload);
       void set_param(string & strUrl, const ::string & str, const ::string & strKey, const ::string & strParam);
@@ -42,9 +42,9 @@ namespace url
       string string_erase(string & strUrl, const ::string & strKey);
       ::payload & var_erase(::payload & varUrl, const ::string & strKey);
       property & property_erase(property & propUrl, const ::string & strKey);
-      // Example: page?id=1
+      // Example: page?atom=1
       string object_get_script(const ::string & str); // page
-      string object_get_query(const ::string & str); // id=1
+      string object_get_query(const ::string & str); // atom=1
 
       bool is_url(const ::string & strCandidate);
       
@@ -78,17 +78,17 @@ namespace url
       bool param_has_char(const ::string & strUrl, const ::string & strKey);
       bool has_param_replace(string & strUrl, const ::string & strKey, const ::string & strValue);
 
-      virtual bool locale_is_eu(id pszLocale);
-      virtual bool locale_is_asia(id pszLocale);
-      virtual bool locale_is_africa(id pszLocale);
-      virtual bool locale_is_america(id pszLocale);
-      virtual bool locale_is_caribe(id pszLocale);
-      virtual bool locale_is_middle_east(id pszLocale);
-      virtual bool locale_is_south_america(id pszLocale);
-      virtual bool locale_is_latin_america(id pszLocale);
-      virtual bool locale_is_north_america(id pszLocale);
-      virtual bool locale_is_central_america(id pszLocale);
-      virtual bool locale_is_oceania(id pszLocale);
+      virtual bool locale_is_eu(atom pszLocale);
+      virtual bool locale_is_asia(atom pszLocale);
+      virtual bool locale_is_africa(atom pszLocale);
+      virtual bool locale_is_america(atom pszLocale);
+      virtual bool locale_is_caribe(atom pszLocale);
+      virtual bool locale_is_middle_east(atom pszLocale);
+      virtual bool locale_is_south_america(atom pszLocale);
+      virtual bool locale_is_latin_america(atom pszLocale);
+      virtual bool locale_is_north_america(atom pszLocale);
+      virtual bool locale_is_central_america(atom pszLocale);
+      virtual bool locale_is_oceania(atom pszLocale);
       
       
       virtual bool server_ends(string strUrl, string strRoot);

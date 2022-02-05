@@ -1569,7 +1569,7 @@ void thread::task_erase(::task * ptask)
       if (::is_null(ptask))
       {
 
-         __throw(error_invalid_argument);
+         __throw(error_bad_argument);
 
       }
 
@@ -1578,7 +1578,7 @@ void thread::task_erase(::task * ptask)
       //if (!m_pcompositea->contains(ptask) && ptask->thread_parent() != this)
       //{
 
-      //   __throw(error_invalid_argument, "thread is no parent-child releationship between the threads");
+      //   __throw(error_bad_argument, "thread is no parent-child releationship between the threads");
 
       //}
 
@@ -2975,7 +2975,7 @@ void thread::__set_thread_on()
 
    //SetCurrentHandles();
 
-   //auto id = ::get_current_itask();
+   //auto atom = ::get_current_itask();
 
    //::parallelization::task_register(m_itask, this);
 
@@ -3035,7 +3035,7 @@ void thread::__set_thread_off()
 
    unregister_task();
 
-   auto id = ::get_current_itask();
+   auto atom = ::get_current_itask();
 
    get_system()->set_task_off(::get_current_itask());
 
@@ -3082,23 +3082,23 @@ namespace apex
 
 
 
-   void system::post_to_all_threads(const ::id& id, wparam wparam, lparam lparam)
+   void system::post_to_all_threads(const ::atom& atom, wparam wparam, lparam lparam)
    {
 
 //#ifdef _DEBUG
 //
-//      if (id == e_message_quit)
+//      if (atom == e_message_quit)
 //      {
 //
 //         //!!for e_message_quit please use post_quit_to_all_threads;
-//         __throw(error_invalid_argument);
+//         __throw(error_bad_argument);
 //
 //      }
 //
 //#endif
 
       //for e_message_quit please use post_quit_to_all_threads;
-      //if(id == e_message_quit)
+      //if(atom == e_message_quit)
       //{
 
       //   ::parallelization::post_quit_to_all_threads();
@@ -3109,7 +3109,7 @@ namespace apex
 
 //      auto psystem = m_psystem->m_papexsystem;
 //
-//      psystem->m_papexsystem->post_to_all_threads(id, wparam, lparam);
+//      psystem->m_papexsystem->post_to_all_threads(atom, wparam, lparam);
 
    }
 
@@ -3148,24 +3148,24 @@ namespace apex
 //}
 
 
-void thread::post_element(const ::id & id, wparam wparam, ::element * pelement)
+void thread::post_element(const ::atom & atom, wparam wparam, ::element * pelement)
 {
 
-   post_message(id, wparam, pelement);
+   post_message(atom, wparam, pelement);
 
 }
 
 
-void thread::post_message(const ::id & id, wparam wparam, lparam lparam)
+void thread::post_message(const ::atom & atom, wparam wparam, lparam lparam)
 {
 
-   if (id == e_message_close)
+   if (atom == e_message_close)
    {
 
       output_debug_string("thread::post_message e_message_close");
 
    }
-   else if (id == e_message_branch)
+   else if (atom == e_message_branch)
    {
 
       output_debug_string("thread::post_message e_message_branch");
@@ -3177,7 +3177,7 @@ void thread::post_message(const ::id & id, wparam wparam, lparam lparam)
    if (m_htask && !m_bAuraMessageQueue && m_bMessageThread)
    {
 
-      if (id.umessage() == e_message_quit)
+      if (atom.umessage() == e_message_quit)
       {
 
          string strType = __type_name(this);
@@ -3226,7 +3226,7 @@ void thread::post_message(const ::id & id, wparam wparam, lparam lparam)
 
       }
 
-      int_bool bOk = ::PostThreadMessage((DWORD) m_itask, id.umessage(), wparam, lparam) != false;
+      int_bool bOk = ::PostThreadMessage((DWORD) m_itask, atom.umessage(), wparam, lparam) != false;
 
       if (!bOk)
       {
@@ -3252,18 +3252,18 @@ void thread::post_message(const ::id & id, wparam wparam, lparam lparam)
 
    }
 
-   pmessagequeue->post_message(nullptr, id, wparam, lparam);
+   pmessagequeue->post_message(nullptr, atom, wparam, lparam);
 
 }
 
 
-void thread::send_element(const ::id & id, wparam wparam, ::element * pelement, const ::duration & duration)
+void thread::send_element(const ::atom & atom, wparam wparam, ::element * pelement, const ::duration & duration)
 {
 
-   if (!id.is_message())
+   if (!atom.is_message())
    {
 
-      throw_status(error_invalid_argument);
+      throw_status(error_bad_argument);
 
    }
 
@@ -3274,7 +3274,7 @@ void thread::send_element(const ::id & id, wparam wparam, ::element * pelement, 
 
    }
 
-   //if (id == e_message_quit)
+   //if (atom == e_message_quit)
    //{
 
    //   return false;
@@ -3289,20 +3289,20 @@ void thread::send_element(const ::id & id, wparam wparam, ::element * pelement, 
 
    }
 
-   send_message(id, wparam, pelement, duration);
+   send_message(atom, wparam, pelement, duration);
 
    //return true;
 
 }
 
 
-void thread::send_message(const ::id & id, wparam wparam, lparam lparam, const ::duration & duration)
+void thread::send_message(const ::atom & atom, wparam wparam, lparam lparam, const ::duration & duration)
 {
 
-   if (!id.is_message())
+   if (!atom.is_message())
    {
 
-      __throw(error_invalid_argument);
+      __throw(error_bad_argument);
 
    }
 
@@ -3313,7 +3313,7 @@ void thread::send_message(const ::id & id, wparam wparam, lparam lparam, const :
 
    }
 
-   //if (id == e_message_quit)
+   //if (atom == e_message_quit)
    //{
 
    //   ///wait(durWaitStep);
@@ -3324,7 +3324,7 @@ void thread::send_message(const ::id & id, wparam wparam, lparam lparam, const :
 
    auto pmessage = __new(::send_thread_message(this));
 
-   pmessage->m_message.m_id = id;
+   pmessage->m_message.m_id = atom;
 
    pmessage->m_message.wParam = wparam;
 
@@ -4038,13 +4038,13 @@ void thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
 }
 
 
-void thread::post_message(oswindow oswindow, const ::id & id, wparam wparam, lparam lparam)
+void thread::post_message(oswindow oswindow, const ::atom & atom, wparam wparam, lparam lparam)
 {
 
-   if (!id.is_message())
+   if (!atom.is_message())
    {
 
-      __throw(error_invalid_argument);
+      __throw(error_bad_argument);
 
    }
 
@@ -4060,7 +4060,7 @@ void thread::post_message(oswindow oswindow, const ::id & id, wparam wparam, lpa
    if (m_htask && !m_bAuraMessageQueue)
    {
 
-      if (::PostMessage(__hwnd(oswindow), id.u32(), wparam, lparam))
+      if (::PostMessage(__hwnd(oswindow), atom.u32(), wparam, lparam))
       {
 
          return;
@@ -4071,17 +4071,17 @@ void thread::post_message(oswindow oswindow, const ::id & id, wparam wparam, lpa
 
 #endif
 
-   //return get_message_queue()->post_message(oswindow, id, wparam, lparam);
+   //return get_message_queue()->post_message(oswindow, atom, wparam, lparam);
 
-   get_message_queue()->post_message(oswindow, id, wparam, lparam);
+   get_message_queue()->post_message(oswindow, atom, wparam, lparam);
 
 }
 
 
-void thread::assert_valid() const
+void thread::assert_ok() const
 {
 
-   channel::assert_valid();
+   channel::assert_ok();
 
 }
 

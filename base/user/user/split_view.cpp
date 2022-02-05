@@ -36,9 +36,9 @@ namespace user
 
 
 
-   void split_view::assert_valid() const
+   void split_view::assert_ok() const
    {
-      impact::assert_valid();
+      impact::assert_ok();
    }
 
    void split_view::dump(dump_context & dumpcontext) const

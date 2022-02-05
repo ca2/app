@@ -47,7 +47,7 @@ namespace user
 
       //virtual void font_list_update();
 
-      //void assert_valid() const override;
+      //void assert_ok() const override;
       //void dump(dump_context & dumpcontext) const override;
 
       //virtual bool get_color(::color::color & color32, e_color ecolor, ::user::interaction * pinteraction) override;

@@ -27,7 +27,7 @@ public:
 
 
    virtual void pre_translate_message(::message::message * pmessage) override;
-   //virtual bool create_interaction(const ::string & pszClassName, const ::string & pszWindowName,u32 uStyle, ::user::interaction * puiParent, const ::id & id, ::create * pcreate = nullptr) override;
+   //virtual bool create_interaction(const ::string & pszClassName, const ::string & pszWindowName,u32 uStyle, ::user::interaction * puiParent, const ::atom & atom, ::create * pcreate = nullptr) override;
 
    void install_message_routing(::channel * pchannel) override;
 
@@ -50,7 +50,7 @@ public:
    virtual bool _001GetScrollInfo(::user::scroll_info * psi) override;
    virtual bool _001SetScrollInfo(::user::scroll_info * psi, bool bRedraw = true) override;
 
-   //virtual bool create_interaction(enum_orientation eorientation, u32 uStyle, ::user::interaction * puiParent, ::id id) override;
+   //virtual bool create_interaction(enum_orientation eorientation, u32 uStyle, ::user::interaction * puiParent, ::atom atom) override;
 
    i32 SetTrackingPos(const ::point_i32 & point, ::draw2d::graphics_pointer & pgraphics);
    i32 GetTrackSize(::size_i32 & size, ::draw2d::graphics_pointer & pgraphics);

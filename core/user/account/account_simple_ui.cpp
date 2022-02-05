@@ -304,7 +304,7 @@ namespace account
 
       SetTimer(2000, 300_ms,nullptr);
 
-      id idResult = RunModalLoop();
+      atom idResult = RunModalLoop();
 
       return idResult;
 
@@ -331,7 +331,7 @@ namespace account
 
       }
 
-      id idResult = do_account(rectangle);
+      atom idResult = do_account(rectangle);
 
       if(idResult == "ok")
       {

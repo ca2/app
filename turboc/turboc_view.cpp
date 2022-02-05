@@ -76,9 +76,9 @@ namespace turboc
    {
    }
 
-   void impact::assert_valid() const
+   void impact::assert_ok() const
    {
-      ::aura::impact::assert_valid();
+      ::aura::impact::assert_ok();
    }
 
    void impact::dump(dump_context & dumpcontext) const

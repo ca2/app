@@ -441,7 +441,7 @@ namespace file
    }
 
 
-   void file::assert_valid() const
+   void file::assert_ok() const
    {
 
    }
@@ -1304,9 +1304,9 @@ namespace file
       throw ::interface_only_exception();
    }
 
-   void file::write (const id & id)
+   void file::write (const atom & atom)
    {
-      __UNREFERENCED_PARAMETER(id);
+      __UNREFERENCED_PARAMETER(atom);
       throw ::interface_only_exception();
    }
 

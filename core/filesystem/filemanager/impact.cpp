@@ -31,9 +31,9 @@ namespace filemanager
    }
 
 
-   void impact::assert_valid() const
+   void impact::assert_ok() const
    {
-      ::user::split_view::assert_valid();
+      ::user::split_view::assert_ok();
    }
 
    void impact::dump(dump_context & dumpcontext) const
@@ -217,7 +217,7 @@ namespace filemanager
                else if (path.final_extension().has_char())
                {
 
-                  string strExtension = ptopic->payload("file_extension");
+                  string strExtension = ptopic->m_pextendedtopic->payload("file_extension");
 
                   if (strExtension.has_char())
                   {
@@ -242,7 +242,7 @@ namespace filemanager
 
                strName.find_replace(":", "-");
 
-               ptopview->m_pedit->_001SetText(strName, ptopic->m_actioncontext);
+               ptopview->m_pedit->_001SetText(strName, ptopic->m_pextendedtopic->m_actioncontext);
 
                filemanager_data()->m_pdocument->m_strTopic = strName;
 
@@ -278,7 +278,7 @@ namespace filemanager
             if (filemanager_document()->m_emode == ::userfs::mode_import)
             {
 
-               ptopic->m_bRet = filemanager_data()->m_pdocumentTopic->on_filemanager_open(filemanager_document(), ptopic->m_pfileitem->m_filepathUser);
+               ptopic->m_pextendedtopic->m_bRet = filemanager_data()->m_pdocumentTopic->on_filemanager_open(filemanager_document(), ptopic->m_pfileitem->m_filepathUser);
 
             }
 

@@ -569,15 +569,15 @@ typedef HGLRC (WINAPI * PFNWGLCREATECONTEXTATTRIBSARBPROC) (HDC hDC, HGLRC hShar
 #ifndef WGL_EXT_display_color_table
 #define WGL_EXT_display_color_table 1
 #ifdef WGL_WGLEXT_PROTOTYPES
-extern GLboolean WINAPI wglCreateDisplayColorTableEXT (GLushort id);
+extern GLboolean WINAPI wglCreateDisplayColorTableEXT (GLushort atom);
 extern GLboolean WINAPI wglLoadDisplayColorTableEXT (const GLushort *table, GLuint length);
-extern GLboolean WINAPI wglBindDisplayColorTableEXT (GLushort id);
-extern VOID WINAPI wglDestroyDisplayColorTableEXT (GLushort id);
+extern GLboolean WINAPI wglBindDisplayColorTableEXT (GLushort atom);
+extern VOID WINAPI wglDestroyDisplayColorTableEXT (GLushort atom);
 #endif /* WGL_WGLEXT_PROTOTYPES */
-typedef GLboolean (WINAPI * PFNWGLCREATEDISPLAYCOLORTABLEEXTPROC) (GLushort id);
+typedef GLboolean (WINAPI * PFNWGLCREATEDISPLAYCOLORTABLEEXTPROC) (GLushort atom);
 typedef GLboolean (WINAPI * PFNWGLLOADDISPLAYCOLORTABLEEXTPROC) (const GLushort *table, GLuint length);
-typedef GLboolean (WINAPI * PFNWGLBINDDISPLAYCOLORTABLEEXTPROC) (GLushort id);
-typedef VOID (WINAPI * PFNWGLDESTROYDISPLAYCOLORTABLEEXTPROC) (GLushort id);
+typedef GLboolean (WINAPI * PFNWGLBINDDISPLAYCOLORTABLEEXTPROC) (GLushort atom);
+typedef VOID (WINAPI * PFNWGLDESTROYDISPLAYCOLORTABLEEXTPROC) (GLushort atom);
 #endif
 
 #ifndef WGL_EXT_extensions_string
@@ -864,20 +864,20 @@ typedef BOOL (WINAPI * PFNWGLDELETEDCNVPROC) (HDC hdc);
 #define WGL_AMD_gpu_association 1
 #ifdef WGL_WGLEXT_PROTOTYPES
 extern ::u32 WINAPI wglGetGPUIDsAMD (::u32 maxCount, ::u32 *ids);
-extern ::i32 WINAPI wglGetGPUInfoAMD (::u32 id, int property, GLenum dataType, ::u32 size, void *data);
+extern ::i32 WINAPI wglGetGPUInfoAMD (::u32 atom, int property, GLenum dataType, ::u32 size, void *data);
 extern ::u32 WINAPI wglGetContextGPUIDAMD (HGLRC hglrc);
-extern HGLRC WINAPI wglCreateAssociatedContextAMD (::u32 id);
-extern HGLRC WINAPI wglCreateAssociatedContextAttribsAMD (::u32 id, HGLRC hShareContext, const int *attribList);
+extern HGLRC WINAPI wglCreateAssociatedContextAMD (::u32 atom);
+extern HGLRC WINAPI wglCreateAssociatedContextAttribsAMD (::u32 atom, HGLRC hShareContext, const int *attribList);
 extern BOOL WINAPI wglDeleteAssociatedContextAMD (HGLRC hglrc);
 extern BOOL WINAPI wglMakeAssociatedContextCurrentAMD (HGLRC hglrc);
 extern HGLRC WINAPI wglGetCurrentAssociatedContextAMD (void);
 extern VOID WINAPI wglBlitContextFramebufferAMD (HGLRC dstCtx, GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter);
 #endif /* WGL_WGLEXT_PROTOTYPES */
 typedef ::u32 (WINAPI * PFNWGLGETGPUIDSAMDPROC) (::u32 maxCount, ::u32 *ids);
-typedef ::i32 (WINAPI * PFNWGLGETGPUINFOAMDPROC) (::u32 id, int property, GLenum dataType, ::u32 size, void *data);
+typedef ::i32 (WINAPI * PFNWGLGETGPUINFOAMDPROC) (::u32 atom, int property, GLenum dataType, ::u32 size, void *data);
 typedef ::u32 (WINAPI * PFNWGLGETCONTEXTGPUIDAMDPROC) (HGLRC hglrc);
-typedef HGLRC (WINAPI * PFNWGLCREATEASSOCIATEDCONTEXTAMDPROC) (::u32 id);
-typedef HGLRC (WINAPI * PFNWGLCREATEASSOCIATEDCONTEXTATTRIBSAMDPROC) (::u32 id, HGLRC hShareContext, const int *attribList);
+typedef HGLRC (WINAPI * PFNWGLCREATEASSOCIATEDCONTEXTAMDPROC) (::u32 atom);
+typedef HGLRC (WINAPI * PFNWGLCREATEASSOCIATEDCONTEXTATTRIBSAMDPROC) (::u32 atom, HGLRC hShareContext, const int *attribList);
 typedef BOOL (WINAPI * PFNWGLDELETEASSOCIATEDCONTEXTAMDPROC) (HGLRC hglrc);
 typedef BOOL (WINAPI * PFNWGLMAKEASSOCIATEDCONTEXTCURRENTAMDPROC) (HGLRC hglrc);
 typedef HGLRC (WINAPI * PFNWGLGETCURRENTASSOCIATEDCONTEXTAMDPROC) (void);

@@ -95,10 +95,10 @@ public:
 
    //string_base(const ::payload & payload);
    //string_base(const ::property & property);
-   //string_base(const ::id & id);
+   //string_base(const ::atom & atom);
    //string_base(::payload & payload);
    //string_base(property & property);
-   //string_base(id & id);
+   //string_base(atom & atom);
 
 
    inline const string_base & to_string() const { return *this; }
@@ -1007,7 +1007,7 @@ public:
    //bool xxxgetenv(const CHAR_TYPE* pszVar);
 
    // Load the string_base from resource 'nID'
-   //bool load_string(::matter* pobject, id id);
+   //bool load_string(::matter* pobject, atom atom);
 
    // Load the string_base from resource 'nID' in module 'hInstance'
    /*    bool load_string(HINSTANCE hInstance,strsize nID )

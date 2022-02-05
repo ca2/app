@@ -45,10 +45,10 @@ namespace axis
    }
 
 
-   void application::assert_valid() const
+   void application::assert_ok() const
    {
 
-      thread::assert_valid();
+      thread::assert_ok();
 
    }
 
@@ -113,7 +113,7 @@ namespace axis
    //}
 
 
-   bool application::app_data_set(const ::id & id, stream & os)
+   bool application::app_data_set(const ::atom & atom, stream & os)
    {
 
       return false;
@@ -121,7 +121,7 @@ namespace axis
    }
 
 
-   bool application::app_data_get(const ::id & id, stream & is)
+   bool application::app_data_get(const ::atom & atom, stream & is)
    {
 
       return false;
@@ -129,7 +129,7 @@ namespace axis
    }
 
 
-   bool application::app_data_set(const ::id & id, ::object & obj)
+   bool application::app_data_set(const ::atom & atom, ::object & obj)
    {
 
       return false;
@@ -137,7 +137,7 @@ namespace axis
    }
 
 
-   bool application::app_data_get(const ::id & id, ::object & obj)
+   bool application::app_data_get(const ::atom & atom, ::object & obj)
    {
 
       return false;
@@ -2192,10 +2192,10 @@ namespace axis
    }
 
 
-   ::type application::control_type_from_id(const ::id& id, ::user::enum_control_type& econtroltype)
+   ::type application::control_type_from_id(const ::atom& atom, ::user::enum_control_type& econtroltype)
    {
 
-      string str(id);
+      string str(atom);
 
       if (str.begins_ci("still_"))
       {
@@ -2238,7 +2238,7 @@ namespace axis
 
       }
 
-      return ::axis::application::control_type_from_id(id, econtroltype);
+      return ::axis::application::control_type_from_id(atom, econtroltype);
 
    }
 

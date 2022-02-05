@@ -65,7 +65,7 @@ namespace datetime
       if(m_i == -1)
       {
 
-         __throw(error_invalid_argument);
+         __throw(error_bad_argument);
 
       }
 
@@ -103,7 +103,7 @@ namespace datetime
       if (m_i == -1)
       {
 
-         __throw(error_invalid_argument);
+         __throw(error_bad_argument);
 
       }
 

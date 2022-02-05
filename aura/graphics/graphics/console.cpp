@@ -156,7 +156,7 @@ namespace graphics
    }
 
 
-   void console::assert_valid() const
+   void console::assert_ok() const
    {
 
 

@@ -30,10 +30,10 @@ namespace data
    }
 
    
-   void data::assert_valid() const
+   void data::assert_ok() const
    {
 
-      ::matter::assert_valid();
+      ::matter::assert_ok();
 
    }
 

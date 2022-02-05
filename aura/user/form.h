@@ -48,7 +48,7 @@ namespace user
       //virtual enum_control_type get_control_type() const override;
 
       virtual bool _001AddControl(::user::interaction * pinteraction);
-      //virtual bool create_interaction(::user::interaction * pinteractionParent, const ::id & id);
+      //virtual bool create_interaction(::user::interaction * pinteractionParent, const ::atom & atom);
 
 
       //virtual __pointer(control_descriptor) new_form_control();

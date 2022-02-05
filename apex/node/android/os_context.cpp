@@ -642,7 +642,7 @@ namespace android
    }
 
 
-   //void os_context::post_to_all_threads(const ::id & id, wparam wparam, lparam lparam)
+   //void os_context::post_to_all_threads(const ::atom & atom, wparam wparam, lparam lparam)
    //{
 
    //   throw interface_only_exception();

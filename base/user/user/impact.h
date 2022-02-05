@@ -18,7 +18,7 @@ namespace user
 
 
       string                              m_strImpactTitle;
-      id                                  m_idCreator;
+      atom                                  m_idCreator;
       __pointer(::user::document)         m_pdocument;
       __pointer(::user::interaction)      m_puserinteractionImpactNotify;
 
@@ -30,7 +30,7 @@ namespace user
 
       
       void dump(dump_context&) const override;
-      void assert_valid() const override;
+      void assert_ok() const override;
 
 
 
@@ -84,15 +84,15 @@ namespace user
       virtual void set_impact_title(const ::string & strImpactTitle);
       virtual string get_impact_title() const;
 
-      __pointer(::user::interaction) create_view(const ::type & type, ::user::document * pdocument = nullptr, ::user::interaction * puserinteractionParent = nullptr, const ::id & id = ::id(), ::user::interaction * pviewLast = nullptr, ::user::impact_data * pdata = nullptr);
+      __pointer(::user::interaction) create_view(const ::type & type, ::user::document * pdocument = nullptr, ::user::interaction * puserinteractionParent = nullptr, const ::atom & atom = ::atom(), ::user::interaction * pviewLast = nullptr, ::user::impact_data * pdata = nullptr);
 
       virtual void initialize_view(::user::document * pdocument);
 
       template < class VIEW >
-      __pointer(VIEW) create_view(::user::document * pdocument = nullptr, ::user::interaction * puserinteractionParent = nullptr, const ::id & id = ::id(),::user::interaction * pviewLast = nullptr, ::user::impact_data * pimpactdata = nullptr);
+      __pointer(VIEW) create_view(::user::document * pdocument = nullptr, ::user::interaction * puserinteractionParent = nullptr, const ::atom & atom = ::atom(),::user::interaction * pviewLast = nullptr, ::user::impact_data * pimpactdata = nullptr);
 
       template < class VIEW >
-      __pointer(VIEW) create_view(::user::interaction * puserinteractionParent, const ::id & id = ::id(),::user::interaction * pviewLast = nullptr, ::user::impact_data * pimpactdata = nullptr);
+      __pointer(VIEW) create_view(::user::interaction * puserinteractionParent, const ::atom & atom = ::atom(),::user::interaction * pviewLast = nullptr, ::user::impact_data * pimpactdata = nullptr);
 
       template < class VIEW >
       __pointer(VIEW) create_view(::user::impact_data * pimpactdata, ::user::interaction * pviewLast = nullptr);
@@ -186,7 +186,7 @@ namespace user
       //virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
       //      virtual void dump(dump_context &) const;
-      //    void assert_valid() const override;
+      //    void assert_ok() const override;
 
 
 
@@ -207,7 +207,7 @@ namespace user
       //virtual bool is_local_data() override;
       virtual bool has_toolbar();
 
-      virtual ::id get_toolbar_id();
+      virtual ::atom get_toolbar_id();
 
       virtual __pointer(toolbar) get_toolbar(::user::frame_window* pframe, bool bCreate = true);
 
@@ -217,8 +217,8 @@ namespace user
 
 
 
-   CLASS_DECL_BASE __pointer(::user::interaction) create_view(const ::type & type, ::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::id & id, ::user::interaction * pviewLast = nullptr);
-   CLASS_DECL_BASE __pointer(::user::interaction) create_view(::user::system * pusersystem, ::user::interaction * puserinteractionParent, const ::id & id);
+   CLASS_DECL_BASE __pointer(::user::interaction) create_view(const ::type & type, ::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::atom & atom, ::user::interaction * pviewLast = nullptr);
+   CLASS_DECL_BASE __pointer(::user::interaction) create_view(::user::system * pusersystem, ::user::interaction * puserinteractionParent, const ::atom & atom);
    CLASS_DECL_BASE ::user::document * get_document(::user::interaction * pinteraction);
 
 

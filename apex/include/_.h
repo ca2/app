@@ -463,7 +463,7 @@ class channel;
 
 class dump_context;
 
-class id_space;
+class atom_space;
 class ptra;
 class factory_item_base;
 class fixed_alloc_no_sync;
@@ -473,7 +473,7 @@ class thread;
 class channel;
 class critical_section;
 class mutex;
-class id;
+class atom;
 
 namespace colorertake5
 {
@@ -717,7 +717,7 @@ namespace aura
 
 
 class payload;
-class id;
+class atom;
 
 
 namespace calculator

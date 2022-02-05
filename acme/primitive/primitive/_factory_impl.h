@@ -5,22 +5,22 @@ namespace factory
 {
 
 
-   inline __pointer(factory_item_interface) & get_factory_item(const ::id & id)
+   inline __pointer(factory_item_interface) & get_factory_item(const ::atom & atom)
    {
 
       critical_section_lock cs(get_factory_critical_section());
 
-      return (*get_factory())[id];
+      return (*get_factory())[atom];
 
    }
 
 
-   inline bool has(const ::id& id)
+   inline bool has(const ::atom& atom)
    {
 
       critical_section_lock cs(get_factory_critical_section());
 
-      auto passociation = get_factory()->get_association(id);
+      auto passociation = get_factory()->get_association(atom);
 
       if (::is_null(passociation))
       {
@@ -42,21 +42,21 @@ namespace factory
 
 
 
-   inline void set_factory(const ::id & id, const __pointer(factory_item_interface) & pfactory)
+   inline void set_factory(const ::atom & atom, const __pointer(factory_item_interface) & pfactory)
    {
 
       critical_section_lock cs(get_factory_critical_section());
 
-      get_factory()->set_at(id, pfactory);
+      get_factory()->set_at(atom, pfactory);
 
    }
 
 
    template < typename TYPE, typename BASE >
-   inline void add_factory_item(const ::id & id)
+   inline void add_factory_item(const ::atom & atom)
    {
 
-      set_factory(id, __new(factory_item < TYPE, BASE >()));
+      set_factory(atom, __new(factory_item < TYPE, BASE >()));
 
    }
 
@@ -106,9 +106,9 @@ namespace factory
    //   else
    //   {
 
-   //      auto id = stream.text_to_factory_id(strText);
+   //      auto atom = stream.text_to_factory_id(strText);
 
-   //      if (p && id == __type_name(p))
+   //      if (p && atom == __type_name(p))
    //      {
 
    //         ::output_debug_string("loading into existing matter of same class type (2)");
@@ -125,7 +125,7 @@ namespace factory
    //            ::output_debug_string("stream::alloc_object_from_text failed (2.1)");
 
    //         }
-   //         else if (__type_name(p)) != id.to_string()
+   //         else if (__type_name(p)) != atom.to_string()
    //         {
 
    //            ::output_debug_string("allocated matter type is different from streamed matter type (2.2)");
@@ -229,10 +229,10 @@ namespace factory
 //
 //
 //template < typename BASE_TYPE >
-//inline __pointer(BASE_TYPE) __id_create(const ::id & id)
+//inline __pointer(BASE_TYPE) __id_create(const ::atom & atom)
 //{
 //
-//   auto pfactory = ::factory::get_factory_item(id);
+//   auto pfactory = ::factory::get_factory_item(atom);
 //
 //   if (!pfactory)
 //   {
@@ -391,7 +391,7 @@ namespace factory
 
 
 // template < typename OBJECT, typename BASE_TYPE >
-// inline void __id_compose(OBJECT && pobject, __composite(BASE_TYPE) & pcomposite, const ::id & id)
+// inline void __id_compose(OBJECT && pobject, __composite(BASE_TYPE) & pcomposite, const ::atom & atom)
 // {
 
 //    //if (((uptr)&pcomposite) < (uptr)pobject || ((uptr)&pcomposite) >= ((uptr)pobject) + sizeof(typename ::raw_type < OBJECT>::RAW_TYPE))
@@ -401,7 +401,7 @@ namespace factory
 
 //    //}
 
-//    return pobject->__id_compose(pcomposite, id);
+//    return pobject->__id_compose(pcomposite, atom);
 
 // }
 
@@ -410,7 +410,7 @@ namespace factory
 // inline void __id_compose(OBJECT && pobject, __composite(BASE_TYPE) & pcomposite, const ::type & type)
 // {
 
-//    return pobject->__id_compose(pcomposite, (id) type);
+//    return pobject->__id_compose(pcomposite, (atom) type);
 
 // }
 
@@ -447,7 +447,7 @@ namespace factory
 // inline void __defer_compose(OBJECT && pobject, __composite(BASE_TYPE) & pcomposite, const ::member < SOURCE > & psource) { return !pcomposite ? __compose(pobject, pcomposite, psource) : ::success; }
 
 // template < typename OBJECT, typename BASE_TYPE >
-// inline void __defer_id_compose(OBJECT && pobject, __composite(BASE_TYPE) & pcomposite, const ::id & id) { return !pcomposite ? __id_compose(pobject, pcomposite) : ::success; }
+// inline void __defer_id_compose(OBJECT && pobject, __composite(BASE_TYPE) & pcomposite, const ::atom & atom) { return !pcomposite ? __id_compose(pobject, pcomposite) : ::success; }
 
 // //template < typename OBJECT, typename BASE_TYPE >
 // //inline void __defer_id_compose(OBJECT && pobject, __composite(BASE_TYPE) & pcomposite, const ::type & type)  { return !pcomposite ? __compose(pobject, pcomposite) : ::success; }
@@ -530,7 +530,7 @@ namespace factory
 
 //
 //template < typename OBJECT, typename BASE_TYPE >
-//inline void __id_refer(OBJECT && pobject, __reference(BASE_TYPE) & preference, const ::id & id)
+//inline void __id_refer(OBJECT && pobject, __reference(BASE_TYPE) & preference, const ::atom & atom)
 //{
 //
 //   if (((uptr)&preference) < (uptr)pobject || ((uptr)&preference) >= ((uptr)pobject) + sizeof(typename ::raw_type < OBJECT>::RAW_TYPE))
@@ -540,7 +540,7 @@ namespace factory
 //
 //   }
 //
-//   return pobject->__id_compose(preference, id);
+//   return pobject->__id_compose(preference, atom);
 //
 //}
 
@@ -556,7 +556,7 @@ namespace factory
 //
 //   }
 //
-//   return pobject->__id_compose(preference, (id)type);
+//   return pobject->__id_compose(preference, (atom)type);
 //
 //}
 
@@ -642,10 +642,10 @@ namespace factory
 
 
 //template < typename BASE_TYPE >
-//inline void __id_construct(__pointer(BASE_TYPE) & pusermessage, const ::id & id)
+//inline void __id_construct(__pointer(BASE_TYPE) & pusermessage, const ::atom & atom)
 //{
 //
-//   auto pfactory = ::factory::get_factory_item(id);
+//   auto pfactory = ::factory::get_factory_item(atom);
 //
 //   if (!pfactory)
 //   {
@@ -682,7 +682,7 @@ namespace factory
 
 
 //template < typename BASE_TYPE >
-//inline void __defer_id_construct(__pointer(BASE_TYPE) & pusermessage, const ::id & id) { return !pusermessage ? __construct(pusermessage, id) : ::success; }
+//inline void __defer_id_construct(__pointer(BASE_TYPE) & pusermessage, const ::atom & atom) { return !pusermessage ? __construct(pusermessage, atom) : ::success; }
 
 
 //template < typename TYPE >
@@ -717,23 +717,23 @@ namespace factory
 {
 
 
-   inline __pointer(::factory::factory_item_interface)& factory::get_factory_item(const ::id& id)
+   inline __pointer(::factory::factory_item_interface)& factory::get_factory_item(const ::atom& atom)
    {
 
       critical_section_lock cs(::factory::get_factory_critical_section());
 
 
-      return (*this)[id];
+      return (*this)[atom];
 
    }
 
 
-   inline ::factory::factory_item_interface * factory::get_factory_item(const ::id& id) const
+   inline ::factory::factory_item_interface * factory::get_factory_item(const ::atom& atom) const
    {
 
       critical_section_lock cs(::factory::get_factory_critical_section());
 
-      auto p = this->plookup(id);
+      auto p = this->plookup(atom);
 
       if (!p)
       {

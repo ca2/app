@@ -19,10 +19,10 @@ namespace app_core_build
    }
 
 
-   void frame::assert_valid() const
+   void frame::assert_ok() const
    {
 
-      simple_frame_window::assert_valid();
+      simple_frame_window::assert_ok();
 
    }
 

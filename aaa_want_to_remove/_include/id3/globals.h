@@ -382,7 +382,7 @@ ID3_ENUM(ID3_Err)
    ID3E_BadData,                 /**< Improperly formatted data */
    ID3E_NoBuffer,                /**< No buffer to write to */
    ID3E_SmallBuffer,             /**< Buffer is too small */
-   ID3E_InvalidFrameID,          /**< Invalid frame id */
+   ID3E_InvalidFrameID,          /**< Invalid frame atom */
    ID3E_FieldNotFound,           /**< Requested field not found */
    ID3E_UnknownFieldType,        /**< Unknown field type */
    ID3E_TagAlreadyAttached,      /**< Tag is already attached to a file */

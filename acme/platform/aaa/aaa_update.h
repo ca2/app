@@ -13,14 +13,14 @@ protected:
    friend class matter;
    friend class ::acme::acme;
 
-   static __pointer(update)& get(const ::id & id);
+   static __pointer(update)& get(const ::atom & atom);
 
    virtual void add(::matter* pmatter);
    virtual void erase(::matter* pmatter);
 
-   static void _add(const :: id & id, ::matter* pmatter);
+   static void _add(const :: atom & atom, ::matter* pmatter);
 
-   static void _erase(const ::id& id, ::matter* pmatter);
+   static void _erase(const ::atom& atom, ::matter* pmatter);
 
    static void _erase(::matter* pmatter);
 
@@ -33,7 +33,7 @@ protected:
 public:
 
 
-   ::id                                            m_id;
+   ::atom                                            m_id;
    bool                                            m_bRet;
    __pointer(::layered)                            m_psender;
    __pointer(::layered)                            m_pobjectTopic;
@@ -53,14 +53,14 @@ public:
 
 
    update();
-   update(const ::id & id);
+   update(const ::atom & atom);
    virtual ~update();
 
 
    virtual void notify();
 
 
-   static void set_modified(const ::id& id);
+   static void set_modified(const ::atom& atom);
 
 
 
@@ -83,8 +83,8 @@ public:
    //virtual ~update();
 
 
-   ::update& operator =(const ::id& id) { m_id = id; return *this; }
-   inline bool operator ==(const ::id& id) const { return m_id == id || m_id == FULL_ID; }
+   ::update& operator =(const ::atom& atom) { m_id = atom; return *this; }
+   inline bool operator ==(const ::atom& atom) const { return m_id == atom || m_id == FULL_ID; }
 
    //void set_handled_by(const ::matter* pobject) { m_handledbya.add((::matter*) pobject); }
    //bool handled_by(const ::matter* pobject) const { return m_handledbya.has((::matter*) pobject); }
@@ -97,5 +97,5 @@ public:
 using manager_pointer = __pointer(::update);
 
 
-inline auto new_update(const ::id & id) { return __new(::update(id)); }
+inline auto new_update(const ::atom & atom) { return __new(::update(atom)); }
 

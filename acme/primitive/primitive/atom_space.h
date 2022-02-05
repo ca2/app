@@ -3,7 +3,7 @@
 
 
 
-inline index BaseSortCompare(const id & id1, const id & id2)
+inline index BaseSortCompare(const atom & id1, const atom & id2)
 {
 
 
@@ -16,7 +16,7 @@ inline index BaseSortCompare(const id & id1, const id & id2)
 //class ::mutex;
 
 
-class CLASS_DECL_ACME id_space
+class CLASS_DECL_ACME atom_space
 {
 protected:
 
@@ -34,17 +34,17 @@ protected:
 public:
 
 
-   id_space();
-   virtual ~id_space();
+   atom_space();
+   virtual ~atom_space();
 
 
    const char * get_id(const char * pszFind);
 
 
-   id operator()(const char * psz);
-   id operator()(i64 i);
+   atom operator()(const char * psz);
+   atom operator()(i64 i);
 
-   static id_space *                            s_pidspace;
+   static atom_space *                            s_pidspace;
 
 };
 
@@ -74,12 +74,12 @@ public:
    strid_array(bool bSynch);
    virtual ~strid_array();
 
-   void add(const id & id);
+   void add(const atom & atom);
 
 
-   bool find(const id & id, index & iIndex) const;
+   bool find(const atom & atom, index & iIndex) const;
 
-   bool contains(const id & id) const { index iIndex; return find(id, iIndex); }
+   bool contains(const atom & atom) const { index iIndex; return find(atom, iIndex); }
 
 
 };
@@ -87,4 +87,4 @@ public:
 
 
 
-CLASS_DECL_ACME ::id_space & get_id_space();
+CLASS_DECL_ACME ::atom_space & get_id_space();

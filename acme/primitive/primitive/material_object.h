@@ -7,12 +7,12 @@ class CLASS_DECL_ACME material_object :
 public:
 
 
-   ::id                                m_id;
+   ::atom                                m_id;
    ::e_status                         m_estatus;
 
 
    material_object() { }
-   material_object(const ::id & id) : m_id(id) {}
+   material_object(const ::atom & atom) : m_id(atom) {}
    material_object(const material_object & object);
    material_object(material_object && object) :
       matter(::move(object)),
@@ -35,7 +35,7 @@ public:
    
    
    //// <3TBS_!! handle -> command_handler <3TBS_(I need to suck you)!!
-   virtual void handle_command(const ::id & id);
+   virtual void handle_command(const ::atom & atom);
 
 
 

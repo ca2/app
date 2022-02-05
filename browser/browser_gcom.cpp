@@ -31,9 +31,9 @@ namespace browser
    {
    }
 
-   void gcom::assert_valid() const
+   void gcom::assert_ok() const
    {
-      user::box::assert_valid();
+      user::box::assert_ok();
    }
 
    void gcom::dump(dump_context & dumpcontext) const

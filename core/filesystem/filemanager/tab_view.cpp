@@ -21,9 +21,9 @@ namespace filemanager
    }
 
 
-   void tab_view::assert_valid() const
+   void tab_view::assert_ok() const
    {
-      ::user::tab_view::assert_valid();
+      ::user::tab_view::assert_ok();
    }
 
    void tab_view::dump(dump_context & dumpcontext) const

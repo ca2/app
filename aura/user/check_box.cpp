@@ -74,17 +74,13 @@ namespace user
          if(has_handler())
          {
 
-            ::topic topic;
+            ::extended_topic extendedtopic(::id_set_check);
 
-            topic.m_puserelement = this;
+            extendedtopic.m_puserelement = this;
 
-            topic.m_id = m_id;
+            extendedtopic.m_actioncontext = context;
 
-            topic.m_etopic = ::id_set_check;
-
-            topic.m_actioncontext = context;
-
-            route(&topic);
+            route(&extendedtopic);
             
          }
 

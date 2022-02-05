@@ -58,10 +58,10 @@ namespace user
       }
 
 
-      void edit::assert_valid() const
+      void edit::assert_ok() const
       {
 
-         ::user::interaction::assert_valid();
+         ::user::interaction::assert_ok();
 
       }
 

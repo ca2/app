@@ -16,14 +16,14 @@ namespace factory
 
 
    template < typename TYPE, typename BASE_TYPE>
-   inline __pointer(::factory::factory_item_base < BASE_TYPE >) add_factory_item(const ::id & id)
+   inline __pointer(::factory::factory_item_base < BASE_TYPE >) add_factory_item(const ::atom & atom)
    {
 
       critical_section_lock lock(::factory::get_factory_critical_section());
 
       auto pfactory = __new(::factory::factory_item< TYPE, BASE_TYPE >());
 
-      ::factory::get_factory()->set_at(id, pfactory);
+      ::factory::get_factory()->set_at(atom, pfactory);
 
       return pfactory;
 

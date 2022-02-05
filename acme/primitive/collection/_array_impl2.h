@@ -439,7 +439,7 @@ inline ::index array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > ::append(cons
    ASSERT(this != &src);   // cannot append to itself
 
    if(this == &src)
-      __throw(error_invalid_argument);
+      __throw(error_bad_argument);
 
    ::count nOldSize = this->m_nSize;
    this->allocate(this->m_nSize) + __count(src.m_nSize);
@@ -501,10 +501,10 @@ inline void array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::copy(const arra
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
-//void array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > ::assert_valid() const
+//void array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > ::assert_ok() const
 //{
 //   
-//   //matter::assert_valid();
+//   //matter::assert_ok();
 //
 //   if (this->m_pData == nullptr)
 //   {

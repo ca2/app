@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "core/id.h"
+#include "core/atom.h"
 #include "core/html/html/_.h"
 #include "core/html/impl/_impl.h"
 #include "core/user/user/_user.h"
@@ -1043,7 +1043,7 @@ namespace html
       string strTag(pszTag, psz - pszTag);
       if (strTag[0] == '/')
          return false;
-      m_idTagName = (id) ::str::ansi_lower(strTag);
+      m_idTagName = (atom) ::str::ansi_lower(strTag);
       if (strTag == "!DOCTYPE")
       {
          // skip white space
@@ -1213,17 +1213,17 @@ namespace html
 
 
 
-   element * element::get_element_by_name(id id)
+   element * element::get_element_by_name(atom atom)
    {
       if (m_pbase->get_type() == base::type_value)
          return nullptr;
       ::html::tag * ptag = m_pbase->get_tag();
-      if (id == ptag->get_attr_value("name"))
+      if (atom == ptag->get_attr_value("name"))
          return this;
       element * pelemental = nullptr;
       for (i32 i = 0; i < m_elementalptra.get_size(); i++)
       {
-         pelemental = m_elementalptra[i]->get_element_by_name(id);
+         pelemental = m_elementalptra[i]->get_element_by_name(atom);
          if (pelemental != nullptr)
             break;
       }
@@ -1233,7 +1233,7 @@ namespace html
    }
 
 
-   element * element::get_element_by_id(id id)
+   element * element::get_element_by_id(atom atom)
    {
 
       if (m_pbase->get_type() == base::type_value)
@@ -1245,7 +1245,7 @@ namespace html
 
       ::html::tag * ptag = m_pbase->get_tag();
 
-      if (id == ptag->get_attr_value("id"))
+      if (atom == ptag->get_attr_value("atom"))
       {
 
          return this;
@@ -1257,7 +1257,7 @@ namespace html
       for (i32 i = 0; i < m_elementalptra.get_size(); i++)
       {
 
-         pelemental = m_elementalptra[i]->get_element_by_id(id);
+         pelemental = m_elementalptra[i]->get_element_by_id(atom);
 
          if (pelemental != nullptr)
          {

@@ -71,7 +71,7 @@ void interprocess_call::exclude_this_app()
 }
 
 
-void interprocess_call::post(const ::id& idPid)
+void interprocess_call::post(const ::atom& idPid)
 {
 
    __pointer(interprocess_call) pcall = this;

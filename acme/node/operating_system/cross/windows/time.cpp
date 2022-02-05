@@ -1074,7 +1074,7 @@ int_bool SystemTimeToFileTime( const system_time_t *syst, filetime_t * ft )
    if( !RtlTimeFieldsToTime(&tf, &t))
    {
 
-      set_last_status(error_invalid_argument);
+      set_last_status(error_bad_argument);
 
       return false;
 

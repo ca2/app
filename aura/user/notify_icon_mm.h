@@ -33,7 +33,7 @@ class user_notify_icon_mm_bridge;
    
 }
 
-- (id)init:(NSString *)strIconFile bridge: (user_notify_icon_mm_bridge *) pbridge;
+- (atom)init:(NSString *)strIconFile bridge: (user_notify_icon_mm_bridge *) pbridge;
 
 - (void)play:(NSString *)strIconFile;
 

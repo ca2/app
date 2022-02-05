@@ -34,7 +34,7 @@ namespace aura
       FILE *                     m_pfile;
       bool                       m_bInitialized;
       string                     m_strLogPath;
-      id                         m_id;
+      atom                         m_id;
       i32                        m_iYear;
       i32                        m_iMonth;
       i32                        m_iDay;
@@ -50,8 +50,8 @@ namespace aura
       virtual void print(const ::string & psz, ...);
 
 
-      virtual void initialize_aura_log(enum_trace_level etracelevelMin, const ::id & id);
-      //virtual bool initialize(id id);
+      virtual void initialize_aura_log(enum_trace_level etracelevelMin, const ::atom & atom);
+      //virtual bool initialize(atom atom);
       virtual void destroy() override;
 
       virtual bool process_init();

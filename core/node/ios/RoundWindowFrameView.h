@@ -61,7 +61,7 @@
 //markedTextStyle
 //A dictionary of attributes that describes how marked text should be drawn.
 //Required.
-//@property(nonatomic, copy) NSDictionary<NSAttributedStringKey, id> *markedTextStyle;
+//@property(nonatomic, copy) NSDictionary<NSAttributedStringKey, atom> *markedTextStyle;
 
 
 
@@ -80,10 +80,10 @@
 //inputDelegate
 //An input delegate that is notified when text changes or when the selection changes.
 //Required.
-//@property(nonatomic, weak) id<UITextInputDelegate> inputDelegate;
+//@property(nonatomic, weak) atom<UITextInputDelegate> inputDelegate;
 //tokenizer
 //An input tokenizer that provides information about the granularity of text units.
 //Required.
-//@property(nonatomic, readonly) id<UITextInputTokenizer> tokenizer;
+//@property(nonatomic, readonly) atom<UITextInputTokenizer> tokenizer;
 
 @end

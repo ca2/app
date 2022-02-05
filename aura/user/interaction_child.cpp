@@ -74,7 +74,7 @@ namespace user
 
          m_puserinteraction->m_pinteractionimpl.release();
 
-         //m_puserinteraction->m_id = id;
+         //m_puserinteraction->m_id = atom;
 
          //if (!m_puserinteraction->pre_create_window(pusersystem))
          //{
@@ -195,7 +195,7 @@ namespace user
    }
 
 //
-//   //bool interaction_child::create_interaction(::user::interaction * pinteraction, const ::string & pszClassName, const ::string & pszWindowName, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::primitive * puiParent, id id, ::create * pcreate)
+//   //bool interaction_child::create_interaction(::user::interaction * pinteraction, const ::string & pszClassName, const ::string & pszWindowName, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::primitive * puiParent, atom atom, ::create * pcreate)
 //   bool interaction_child::create_child(::user::interaction * pinteraction, ::user::primitive * pprimitiveParent)
 //   {
 //
@@ -242,7 +242,7 @@ namespace user
 //      pusersystem->m_createstruct.hMenu = nullptr;
 //      //pusersystem->m_pcreate = pcreate;
 //
-//      //return create_window_ex(pinteraction, pusersystem, puiParent, id);
+//      //return create_window_ex(pinteraction, pusersystem, puiParent, atom);
 //      return _create_interaction(pinteraction, pparent);
 //
 //   }
@@ -252,7 +252,7 @@ namespace user
    //{
 
    //   return _create_interaction(pinteraction, pparent);
-   //   /*return create_interaction(pinteraction, nullptr, nullptr, WS_CHILD | WS_VISIBLE, rectangle, puiParent, id, nullptr);*/
+   //   /*return create_interaction(pinteraction, nullptr, nullptr, WS_CHILD | WS_VISIBLE, rectangle, puiParent, atom, nullptr);*/
 
    //}
 
@@ -683,7 +683,7 @@ namespace user
    }
 
 
-   void interaction_child::send_message_to_descendants(const ::id & id, wparam wParam, lparam lParam, bool bDeep, bool bOnlyPerm)
+   void interaction_child::send_message_to_descendants(const ::atom & atom, wparam wParam, lparam lParam, bool bDeep, bool bOnlyPerm)
    {
 
       if (m_puserinteraction == nullptr)
@@ -701,7 +701,7 @@ namespace user
          try
          {
 
-            pinteraction->send_message(id, wParam, lParam);
+            pinteraction->send_message(atom, wParam, lParam);
 
          }
          catch (...)
@@ -715,7 +715,7 @@ namespace user
             try
             {
 
-               pinteraction->send_message_to_descendants(id, wParam, lParam, bDeep, bOnlyPerm);
+               pinteraction->send_message_to_descendants(atom, wParam, lParam, bDeep, bOnlyPerm);
 
             }
             catch (...)

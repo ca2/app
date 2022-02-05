@@ -50,15 +50,15 @@ binary_stream::~binary_stream()
 }
 
 
-string binary_stream::factory_id_to_text(const ::id & id)
+string binary_stream::factory_id_to_text(const ::atom & atom)
 {
 
-   return id;
+   return atom;
 
 }
 
 
-::id binary_stream::text_to_factory_id(string str)
+::atom binary_stream::text_to_factory_id(string str)
 {
 
    return str;
@@ -163,39 +163,39 @@ void binary_stream::write(const void * pdata, memsize nCount, memsize * dwWritte
 
 
 
-void binary_stream::write(const id & id)
+void binary_stream::write(const atom & atom)
 {
 
-   raw_write(id.m_etype);
+   raw_write(atom.m_etype);
 
-   if(id.m_etype == ::id::e_type_text)
+   if(atom.m_etype == ::atom::e_type_text)
    {
 
-      write(id.m_psz);
+      write(atom.m_psz);
 
    }
-   else if(id.m_etype == ::id::e_type_integer)
+   else if(atom.m_etype == ::atom::e_type_integer)
    {
 
-      write(id.m_i);
+      write(atom.m_i);
 
    }
-   else if (id.m_etype >= ::id::e_type_property)
+   else if (atom.m_etype >= ::atom::e_type_property)
    {
 
-      raw_write(id.m_eproperty);
+      raw_write(atom.m_eproperty);
 
    }
-   else if (id.m_etype >= ::id::e_type_factory)
+   else if (atom.m_etype >= ::atom::e_type_factory)
    {
 
-      raw_write(id.m_efactory);
+      raw_write(atom.m_efactory);
 
    }
-   else if (id.m_etype >= ::id::e_type_task_tool)
+   else if (atom.m_etype >= ::atom::e_type_task_tool)
    {
 
-      raw_write(id.m_etasktool);
+      raw_write(atom.m_etasktool);
 
    }
 
@@ -473,47 +473,47 @@ void binary_stream::write(const memory_base & m)
 }
 
 
-void binary_stream::read(id & id)
+void binary_stream::read(atom & atom)
 {
 
-   raw_read(id.m_etype);
+   raw_read(atom.m_etype);
 
-   if (id.m_etype == ::id::e_type_text)
+   if (atom.m_etype == ::atom::e_type_text)
    {
 
       string str;
 
       read(str);
 
-      id = str;
+      atom = str;
 
    }
-   else if (id.m_etype == ::id::e_type_integer)
+   else if (atom.m_etype == ::atom::e_type_integer)
    {
 
       i64 i;
 
       read(i);
 
-      id = i;
+      atom = i;
 
    }
-   else if (id.m_etype == ::id::e_type_property)
+   else if (atom.m_etype == ::atom::e_type_property)
    {
 
-      raw_read(id.m_eproperty);
+      raw_read(atom.m_eproperty);
 
    }
-   else if (id.m_etype == ::id::e_type_factory)
+   else if (atom.m_etype == ::atom::e_type_factory)
    {
 
-      raw_read(id.m_efactory);
+      raw_read(atom.m_efactory);
 
    }
-   else if (id.m_etype == ::id::e_type_task_tool)
+   else if (atom.m_etype == ::atom::e_type_task_tool)
    {
 
-      raw_read(id.m_etasktool);
+      raw_read(atom.m_etasktool);
 
    }
 
@@ -1306,9 +1306,9 @@ __pointer(::matter) binary_stream::create_object_from_text(string strText)
 
    }
 
-   auto id = text_to_factory_id(strText);
+   auto atom = text_to_factory_id(strText);
 
-   return __id_create < ::matter >(id);
+   return __id_create < ::matter >(atom);
 
 }
 

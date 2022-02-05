@@ -11,7 +11,7 @@ public:
    packset();
    
    
-   void pack(ARG_ID_TYPE id, ARG_ITEM_TYPE item);
+   void pack(ARG_ID_TYPE atom, ARG_ITEM_TYPE item);
 
 
    ::count get_pack_count();
@@ -29,10 +29,10 @@ packset < ID_TYPE, ARG_ID_TYPE, ITEM_TYPE, ARG_ITEM_TYPE, ARRAY > ::packset()
 
 
 template < typename ID_TYPE, typename ARG_ID_TYPE, typename ITEM_TYPE, typename ARG_ITEM_TYPE, typename ARRAY >
-void packset < ID_TYPE, ARG_ID_TYPE, ITEM_TYPE, ARG_ITEM_TYPE, ARRAY > ::pack(ARG_ID_TYPE id, ARG_ITEM_TYPE item)
+void packset < ID_TYPE, ARG_ID_TYPE, ITEM_TYPE, ARG_ITEM_TYPE, ARRAY > ::pack(ARG_ID_TYPE atom, ARG_ITEM_TYPE item)
 {
    
-   this->operator[](id).add(item);
+   this->operator[](atom).add(item);
 
 }
 

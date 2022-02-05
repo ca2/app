@@ -1146,19 +1146,17 @@ namespace user
 
       {
 
-         ::topic topic;
+         ::extended_topic extendedtopic(::id_key_down);
 
-         topic.m_puserelement = this;
+         extendedtopic.m_puserelement = this;
 
-         topic.m_id = ::id_key_down;
+         extendedtopic.m_actioncontext.m_pmessage = pmessage;
 
-         topic.m_actioncontext.m_pmessage = pmessage;
+         extendedtopic.m_actioncontext = ::e_source_user;
 
-         topic.m_actioncontext = ::e_source_user;
+         route(&extendedtopic);
 
-         route(&topic);
-
-         if (topic.m_bRet)
+         if (extendedtopic.m_bRet)
          {
 
             return;
@@ -1188,17 +1186,15 @@ namespace user
          if ((!m_bMultiLine || m_bSendEnterKey) && get_parent() != nullptr)
          {
 
-            ::topic topic;
+            ::extended_topic extendedtopic(::id_enter_key);
 
-            topic.m_puserelement = this;
+            extendedtopic.m_puserelement = this;
 
-            topic.m_id = ::id_enter_key;
+            extendedtopic.m_actioncontext = ::e_source_user;
 
-            topic.m_actioncontext = ::e_source_user;
+            route(&extendedtopic);
 
-            route(&topic);
-
-            if(!topic.m_bRet && topic.m_bOk)
+            if(!extendedtopic.m_bRet && extendedtopic.m_bOk)
             {
 
                on_action("submit");
@@ -1231,17 +1227,15 @@ namespace user
 
             pkey->previous();
 
-            ::topic topic;
+            ::extended_topic extendedtopic(::id_tab_key);
 
-            topic.m_puserelement = this;
+            extendedtopic.m_puserelement = this;
 
-            topic.m_id = ::id_tab_key;
+            extendedtopic.m_actioncontext = ::e_source_user;
 
-            topic.m_actioncontext = ::e_source_user;
+            route(&extendedtopic);
 
-            route(&topic);
-
-            if(!topic.m_bRet && topic.m_bOk)
+            if(!extendedtopic.m_bRet && extendedtopic.m_bOk)
             {
 
                keyboard_set_focus_next();
@@ -1266,17 +1260,15 @@ namespace user
       else if (pkey->m_ekey == ::user::e_key_escape)
       {
 
-         ::topic topic;
+         ::extended_topic extendedtopic(::id_escape);
 
-         topic.m_puserelement = this;
+         extendedtopic.m_puserelement = this;
 
-         topic.m_id = ::id_escape;
+         extendedtopic.m_actioncontext = ::e_source_user;
 
-         topic.m_actioncontext = ::e_source_user;
+         route(&extendedtopic);
 
-         route(&topic);
-
-         if(!topic.m_bRet && topic.m_bOk)
+         if(!extendedtopic.m_bRet && extendedtopic.m_bOk)
          {
 
             on_action("escape");
@@ -6163,13 +6155,13 @@ finished_update:
       if(has_handler())
       {
 
-         auto ptopic = create_subject(::id_after_change_text);
+         auto pextendedtopic = create_extended_topic(::id_after_change_text);
 
-         ptopic->m_puserelement = this;
+         pextendedtopic->m_puserelement = this;
 
-         ptopic->m_actioncontext = actioncontext;
+         pextendedtopic->m_actioncontext = actioncontext;
 
-         route(ptopic);
+         route(pextendedtopic);
 
       }
 
@@ -6230,17 +6222,15 @@ finished_update:
       if(m_bEnterKeyOnPaste)
       {
 
-         ::topic topic;
+         ::extended_topic extendedtopic(::id_enter_key);
 
-         topic.m_puserelement = this;
+         extendedtopic.m_puserelement = this;
 
-         topic.m_id = ::id_enter_key;
+         extendedtopic.m_actioncontext = ::e_source_paste;
 
-         topic.m_actioncontext = ::e_source_paste;
+         route(&extendedtopic);
 
-         route(&topic);
-
-         if(!topic.m_bRet && topic.m_bOk)
+         if(!extendedtopic.m_bRet && extendedtopic.m_bOk)
          {
 
             on_action("submit");
@@ -6300,10 +6290,10 @@ finished_update:
    }
 
 
-   //bool plain_edit::create_interaction(::user::interaction * puserinteractionParent, const ::id & id)
+   //bool plain_edit::create_interaction(::user::interaction * puserinteractionParent, const ::atom & atom)
    //{
 
-   //   if (!::user::interaction::create_interaction(puserinteractionParent, id))
+   //   if (!::user::interaction::create_interaction(puserinteractionParent, atom))
    //   {
 
    //      TRACE("Failed to create control");

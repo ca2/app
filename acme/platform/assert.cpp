@@ -22,7 +22,7 @@
 //#endif
 
 
-CLASS_DECL_ACME ::id __cpp_assert_failed_line(const char * pszFileName, int iLineNumber);
+CLASS_DECL_ACME ::atom __cpp_assert_failed_line(const char * pszFileName, int iLineNumber);
 
 
 CLASS_DECL_ACME string message_box_result_to_string(int iResult);
@@ -135,7 +135,7 @@ CLASS_DECL_ACME bool __assert_failed_line(const char * pszFileName, int iLineNum
 }
 
 
-CLASS_DECL_ACME ::id __cpp_assert_failed_line(const char * pszFileName, int iLineNumber)
+CLASS_DECL_ACME ::atom __cpp_assert_failed_line(const char * pszFileName, int iLineNumber)
 {
 
    char szMessage[1024*4];

@@ -109,7 +109,7 @@ namespace acme
    }
 
 
-   void library::assert_valid() const
+   void library::assert_ok() const
    {
 
    }
@@ -815,7 +815,7 @@ namespace acme
    //}
 
 
-   //void library::get_create_view_id_list(::array < ::id > & ida)
+   //void library::get_create_view_id_list(::array < ::atom > & ida)
    //{
 
    //   auto psystem = get_system();
@@ -931,7 +931,7 @@ namespace acme
    //   if (strComponent.is_empty() || strImplementation.is_empty())
    //   {
 
-   //      throw error_invalid_argument;
+   //      throw error_bad_argument;
 
    //   }
 
@@ -960,7 +960,7 @@ namespace acme
    //   if (strLibrary.is_empty())
    //   {
 
-   //      throw error_invalid_argument;
+   //      throw error_bad_argument;
 
    //   }
 
@@ -986,7 +986,7 @@ namespace acme
    //   if (strComponent.is_empty())
    //   {
 
-   //      throw error_invalid_argument;
+   //      throw error_bad_argument;
 
    //   }
 

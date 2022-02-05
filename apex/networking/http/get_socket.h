@@ -21,7 +21,7 @@ namespace http
 
 
       virtual void OnDataArrived(const char *, memsize len);
-      void OnHeader(id idKey, const string & value);
+      void OnHeader(atom idKey, const string & value);
 
 
 

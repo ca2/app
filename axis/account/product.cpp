@@ -104,7 +104,7 @@ namespace account
 //
 //         string strDecrypt;
 //
-//         string strId = doc.attribute("id");
+//         string strId = doc.attribute("atom");
 //
 //         string strAppId = doc.attribute("license");
 //

@@ -100,10 +100,10 @@ namespace user
       }
 
 
-      void edit_impl::assert_valid() const
+      void edit_impl::assert_ok() const
       {
 
-         ::user::interaction::assert_valid();
+         ::user::interaction::assert_ok();
 
       }
 
@@ -948,7 +948,7 @@ namespace user
 
             auto pformattool = get_format_tool(false);
 
-            if (ptopic->user_interaction() == pformattool)
+            if (ptopic->m_pextendedtopic->user_interaction() == pformattool)
             {
 
                if (pformattool->m_eattribute & attribute_align)

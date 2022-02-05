@@ -30,7 +30,7 @@ void stream::on_catch_all_exception()
 }
 
 
-void stream::write_element(const ::id & id, ::element * pelement)
+void stream::write_element(const ::atom & atom, ::element * pelement)
 {
 
    auto strId = factory_id_to_text(__type_name(pelement));
@@ -42,7 +42,7 @@ void stream::write_element(const ::id & id, ::element * pelement)
 }
 
 
-__pointer(::element) stream::read_element(const ::id & id)
+__pointer(::element) stream::read_element(const ::atom & atom)
 {
 
    string strId;
@@ -202,7 +202,7 @@ void stream::set_length(filesize len)
    if (len != 0)
    {
 
-      __throw(error_invalid_argument);
+      __throw(error_bad_argument);
 
    }
 
@@ -307,10 +307,10 @@ stream::~stream()
 
 
 
-string stream::factory_id_to_text(const ::id & id)
+string stream::factory_id_to_text(const ::atom & atom)
 {
 
-   return id.to_string();
+   return atom.to_string();
 
 }
 
@@ -318,7 +318,7 @@ string stream::factory_id_to_text(const ::id & id)
 
 
 
-::id stream::text_to_factory_id(string strType)
+::atom stream::text_to_factory_id(string strType)
 {
 
    return strType;
@@ -369,23 +369,23 @@ bool stream::is_version(index i)
 
 
 
-void stream::write(const id & id)
+void stream::write(const atom & atom)
 {
 
-   ::id::enum_type etype = id.m_etype;
+   ::atom::enum_type etype = atom.m_etype;
 
    write(i8(etype));
 
-   if (etype == ::id::e_type_text)
+   if (etype == ::atom::e_type_text)
    {
 
-      write(id.m_psz);
+      write(atom.m_psz);
 
    }
-   else if (etype == ::id::e_type_integer)
+   else if (etype == ::atom::e_type_integer)
    {
 
-      write(id.m_i);
+      write(atom.m_i);
 
    }
 
@@ -844,7 +844,7 @@ void stream::read(double & d)
 //}
 
 
-void stream::read(id & id)
+void stream::read(atom & atom)
 {
 
    throw_status(error_io);
@@ -956,14 +956,14 @@ __pointer(::matter) stream::create_object_from_text(string strText)
 
    }
 
-   auto id = text_to_factory_id(strText);
+   auto atom = text_to_factory_id(strText);
 
-   return __id_create < ::matter >(id);
+   return __id_create < ::matter >(atom);
 
 }
 
 
-void stream::exchange(const ::id & id, const char * psz)
+void stream::exchange(const ::atom & atom, const char * psz)
 {
 
    if(is_loading())
@@ -985,7 +985,7 @@ void stream::exchange(const ::id & id, const char * psz)
 #ifdef WINDOWS
 
 
-void stream::exchange(const ::id & id, const unichar * wch)
+void stream::exchange(const ::atom & atom, const unichar * wch)
 {
 
    if(is_loading())
@@ -1007,39 +1007,39 @@ void stream::exchange(const ::id & id, const unichar * wch)
 #endif
 
 
-void stream::exchange(const ::id & id, ::id & idExchange)
+void stream::exchange(const ::atom & atom, ::atom & idExchange)
 {
 
-   stream_exchange(id, idExchange);
+   stream_exchange(atom, idExchange);
 
 }
 
 
-void stream::exchange(const ::id & id, ::payload & payload)
+void stream::exchange(const ::atom & atom, ::payload & payload)
 {
 
-   stream_exchange(id, payload);
+   stream_exchange(atom, payload);
 
 }
 
 
-void stream::exchange(const ::id & id, property & property)
+void stream::exchange(const ::atom & atom, property & property)
 {
 
-  stream_exchange(id, property);
+  stream_exchange(atom, property);
 
 }
 
 
-void stream::exchange(const ::id & id, string & str)
+void stream::exchange(const ::atom & atom, string & str)
 {
 
-   stream_exchange(id, str);
+   stream_exchange(atom, str);
 
 }
 
 
-void stream::exchange(const ::id & id, ::matter * pobject)
+void stream::exchange(const ::atom & atom, ::matter * pobject)
 {
 
    pobject->exchange(*this);
@@ -1047,7 +1047,7 @@ void stream::exchange(const ::id & id, ::matter * pobject)
 }
 
 
-void stream::exchange(const ::id & id, ::matter & matter)
+void stream::exchange(const ::atom & atom, ::matter & matter)
 {
 
    matter.exchange(*this);
@@ -1055,18 +1055,18 @@ void stream::exchange(const ::id & id, ::matter & matter)
 }
 
 
-void stream::exchange(const ::id & id, property_set & set)
+void stream::exchange(const ::atom & atom, property_set & set)
 {
 
-   stream_exchange(id, set);
+   stream_exchange(atom, set);
 
 }
 
 
-void stream::exchange(const ::id & id, block & block)
+void stream::exchange(const ::atom & atom, block & block)
 {
 
-   stream_exchange(id, block);
+   stream_exchange(atom, block);
 
 }
 

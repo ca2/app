@@ -45,7 +45,7 @@ namespace windowing
       void on_initialize_object() override;
 
 
-      void assert_valid() const override;
+      void assert_ok() const override;
       void dump(dump_context & dumpcontext) const override;
 
 
@@ -156,9 +156,9 @@ namespace windowing
 
       virtual void win_update_graphics();
 
-      virtual lresult send_message(const ::id & id, wparam wParam = 0, lparam lParam = nullptr);
+      virtual lresult send_message(const ::atom & atom, wparam wParam = 0, lparam lParam = nullptr);
 
-      virtual bool post_message(const ::id & id, wparam wParam = 0, lparam lParam = nullptr);
+      virtual bool post_message(const ::atom & atom, wparam wParam = 0, lparam lParam = nullptr);
 
 
       virtual void set_window_text(const ::string & pszString);

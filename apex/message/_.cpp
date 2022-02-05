@@ -67,15 +67,15 @@ namespace message
    }
 
 
-//   ::u32 translate_to_os_message(const ::id & id)
+//   ::u32 translate_to_os_message(const ::atom & atom)
 //   {
 //
 ////#ifdef WINDOWS
 ////
-////      if (id.m_etype == ::id::e_type_message)
+////      if (atom.m_etype == ::atom::e_type_message)
 ////      {
 ////
-////         return (::u32) id.m_emessage;
+////         return (::u32) atom.m_emessage;
 ////
 ////      }
 ////

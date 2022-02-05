@@ -37,7 +37,7 @@ namespace userex
       
       dialog::handle(ptopic, pcontext);
       
-      if(ptopic->user_interaction() == m_pform)
+      if(ptopic->m_pextendedtopic->user_interaction() == m_pform)
       {
       
          if(ptopic->m_id == ::id_create)
@@ -71,11 +71,11 @@ namespace userex
       else if(ptopic->m_id == ::id_click)
       {
 
-         m_idResponse = ptopic->user_interaction()->m_id;
+         m_idResponse = ptopic->m_pextendedtopic->user_interaction()->m_id;
 
          EndModalLoop(m_idResponse);
 
-         ptopic->m_bRet = true;
+         ptopic->m_pextendedtopic->m_bRet = true;
 
       }
 

@@ -69,8 +69,8 @@ namespace user
       DECLARE_MESSAGE_HANDLER(_001OnMessageNotify);
       virtual void _001GetSelection(::database::key & key,::database::selection & selection);
       void Update(bool bSave);
-      bool _001SetData(id uId,bool bData);
-      bool _001GetData(id uId,bool & bData);
+      bool _001SetData(atom uId,bool bData);
+      bool _001GetData(atom uId,bool & bData);
       bool _001AddControl(::user::interaction * pinteraction) override;
       //__pointer(class control_descriptor) new_form_control() override;
       void _001FillCombo(::user::interaction * pinteraction);
@@ -110,7 +110,7 @@ namespace user
       virtual void data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::topic * ptopic = nullptr);
 
 
-      //virtual bool create_interaction(::user::interaction * pinteractionParent, const ::id & id) override;
+      //virtual bool create_interaction(::user::interaction * pinteractionParent, const ::atom & atom) override;
       //virtual bool normalize_control_descriptor_typeinfo(class ::user::control_descriptor * pdescriptor);
 
       //void handle(::topic * ptopic, ::context * pcontext) override;

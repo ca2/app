@@ -4,16 +4,16 @@
 #define APPLICATION_CONSUMER_BODY                                                      \
                                                                                        \
                                                                                        \
-void assert_valid() const override                                                     \
+void assert_ok() const override                                                     \
 {                                                                                      \
                                                                                        \
-   BASE1::assert_valid();                                                              \
+   BASE1::assert_ok();                                                              \
                                                                                        \
-   BASE2::assert_valid();                                                              \
+   BASE2::assert_ok();                                                              \
                                                                                        \
-   BASE3::assert_valid();                                                              \
+   BASE3::assert_ok();                                                              \
                                                                                        \
-   BASE4::assert_valid();                                                              \
+   BASE4::assert_ok();                                                              \
                                                                                        \
 }                                                                                      \
                                                                                        \

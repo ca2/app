@@ -114,7 +114,7 @@
 //   }
 //
 //
-//   bool control::_003CallCustomWindowProc(__pointer(::user::interaction) puserinteraction, const ::id & id, wparam wparam, lparam lparam, LRESULT& lresult)
+//   bool control::_003CallCustomWindowProc(__pointer(::user::interaction) puserinteraction, const ::atom & atom, wparam wparam, lparam lparam, LRESULT& lresult)
 //
 //   {
 //
@@ -315,7 +315,7 @@
 //   }
 //
 //
-//   bool control::create_interaction(::user::interaction * pinteractionParent, const ::id & id)
+//   bool control::create_interaction(::user::interaction * pinteractionParent, const ::atom & atom)
 //   {
 //
 //      m_pdescriptor = pdescriptor;
@@ -612,14 +612,14 @@
 //   }
 //
 //
-//   id control_cmd_ui::GetControlCommand(id id)
+//   atom control_cmd_ui::GetControlCommand(atom atom)
 //   {
-//      ::id idCommand;
-//      if (m_mapControlCommand.lookup(id, idCommand))
+//      ::atom idCommand;
+//      if (m_mapControlCommand.lookup(atom, idCommand))
 //      {
-//         return id;
+//         return atom;
 //      }
-//      return id;
+//      return atom;
 //   }
 //
 //
@@ -678,7 +678,7 @@
 ////         if (pcontrolex != nullptr)
 ////         {
 ////
-////            id idControl = puserinteraction->GetDlgCtrlId();
+////            atom idControl = puserinteraction->GetDlgCtrlId();
 ////
 ////            // xxx         state.m_nIndex = uId;
 ////            state.m_iCount = -1;
@@ -728,12 +728,12 @@
 ////
 ////#ifdef WINDOWS
 ////
-////         const ::id & id = ((wParam >> 16) & 0xffff);
+////         const ::atom & atom = ((wParam >> 16) & 0xffff);
 ////
 ////
 ////         if (emessage == BN_CLICKED)
 ////         {
-////            //xxx id idCommand = m_commandui.GetControlCommand(wParam & 0xffff);
+////            //xxx atom idCommand = m_commandui.GetControlCommand(wParam & 0xffff);
 ////            //::message::command command(idCommand);
 ////            //xxx get_window()->get_parent_frame()->_001SendCommand(&command);
 ////         }

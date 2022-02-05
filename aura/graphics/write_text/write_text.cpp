@@ -93,18 +93,12 @@ namespace write_text
    }
 
 
-   void write_text::handle_font_enumeration(::topic* ptopic)
+   void write_text::handle_font_enumeration(::topic * ptopic)
    {
-
-      __pointer(::topic) ptopicHold(ptopic);
 
       auto pfonts = this->fonts();
 
-      //auto estatus = 
-      
       pfonts->enumerate_fonts();
-
-      //return estatus;
 
    }
 

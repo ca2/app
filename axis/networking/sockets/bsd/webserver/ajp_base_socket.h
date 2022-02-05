@@ -54,7 +54,7 @@ namespace sockets
 
       virtual void OnRawData(char *buf, memsize sz) override;
 
-      virtual void OnHeader( i16 id, i16 len ) = 0;
+      virtual void OnHeader( i16 atom, i16 len ) = 0;
       virtual void OnPacket( const char *buf, memsize sz ) = 0;
 
    protected:

@@ -67,7 +67,7 @@ namespace user
 
 
       button();
-      button(const ::string & pszName, const ::id & id);
+      button(const ::string & pszName, const ::atom & atom);
       ~button() override;
 
 
@@ -76,7 +76,7 @@ namespace user
 
       ::element * clone() const override;
 
-      //virtual bool create_interaction(::user::interaction * pinteractionParent, const ::id & id) override;
+      //virtual bool create_interaction(::user::interaction * pinteractionParent, const ::atom & atom) override;
 
 
       virtual ::write_text::font_pointer get_font(style* pstyle, enum_element eelement = e_element_none, ::user::enum_state estate = e_state_none) const override;

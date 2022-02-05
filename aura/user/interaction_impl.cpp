@@ -521,7 +521,7 @@ namespace user
    //   //else
    //   //{
 
-   //   //   if (!native_create_window_ex(pinteraction, pusersystem, puiParent->get_safe_handle(), id))
+   //   //   if (!native_create_window_ex(pinteraction, pusersystem, puiParent->get_safe_handle(), atom))
    //   //   {
 
    //   //      return false;
@@ -1567,10 +1567,10 @@ namespace user
 
 
 
-   void interaction_impl::assert_valid() const
+   void interaction_impl::assert_ok() const
    {
 
-      ::user::primitive::assert_valid();
+      ::user::primitive::assert_ok();
 
    }
 
@@ -2214,7 +2214,7 @@ namespace user
    }
 
 
-//   void interaction_impl::OnParentNotify(const ::id & id,lparam lParam)
+//   void interaction_impl::OnParentNotify(const ::atom & atom,lparam lParam)
 //   {
 //      __UNREFERENCED_PARAMETER(message);
 //      __UNREFERENCED_PARAMETER(lParam);
@@ -2442,24 +2442,24 @@ namespace user
    }
 
 
-   //id interaction_impl::SetDlgCtrlId(id id)
+   //atom interaction_impl::SetDlgCtrlId(atom atom)
    //{
 
-   //   __UNREFERENCED_PARAMETER(id);
+   //   __UNREFERENCED_PARAMETER(atom);
 
    //   throw ::interface_only_exception();
 
-   //   return ::id();
+   //   return ::atom();
 
    //}
 
 
-   //id interaction_impl::GetDlgCtrlId() const
+   //atom interaction_impl::GetDlgCtrlId() const
    //{
 
    //   throw ::interface_only_exception();
 
-   //   return ::id();
+   //   return ::atom();
 
    //}
 
@@ -2718,10 +2718,10 @@ namespace user
    }
 
 
-   lresult interaction_impl::send_message(const ::id & id, wparam wparam, lparam lparam, const ::point_i32& point)
+   lresult interaction_impl::send_message(const ::atom & atom, wparam wparam, lparam lparam, const ::point_i32& point)
    {
 
-      auto pmessage = m_puserinteraction->get_message(id, wparam, lparam);
+      auto pmessage = m_puserinteraction->get_message(atom, wparam, lparam);
 
       if(m_puserinteraction->layout().is_moving())
       {
@@ -2774,7 +2774,7 @@ namespace user
 //#endif
 
 
-   void interaction_impl::post_message(const ::id & id,wparam wParam,lparam lParam)
+   void interaction_impl::post_message(const ::atom & atom,wparam wParam,lparam lParam)
    {
 
       if(!m_puserinteraction)
@@ -2815,7 +2815,7 @@ namespace user
 
       message.oswindow = oswindow;
 
-      message.m_id = id;
+      message.m_id = atom;
 
       message.wParam = wParam;
 

@@ -14,10 +14,10 @@ namespace user
    }
 
 
-   //bool toolbar_control::create_window(u32 uStyle,const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, ::id id)
+   //bool toolbar_control::create_window(u32 uStyle,const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, ::atom atom)
    //{
    //   
-   //   return create_window("ToolbarWindow32", nullptr, uStyle, puiParent, id);
+   //   return create_window("ToolbarWindow32", nullptr, uStyle, puiParent, atom);
    //   
    //}
 

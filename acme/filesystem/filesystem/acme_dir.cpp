@@ -840,7 +840,7 @@ bool acme_dir::is(const char * path)
    if(*path == '\0')
    {
 
-      throw_status(error_invalid_argument);
+      throw_status(error_bad_argument);
 
    }
 

@@ -5,7 +5,7 @@
 #include "aura/message.h"
 #include "aura/message/timer.h"
 #include "acme/constant/timer.h"
-#include "acme/constant/id.h"
+#include "acme/id.h"
 #include "acme/constant/simple_command.h"
 #include "apex/message/simple_command.h"
 #include "interaction_thread.h"
@@ -774,7 +774,7 @@ namespace user
    //   //auto pdescriptor = __new(control_descriptor());
 
 
-   //   //pdescriptor->m_id = id;
+   //   //pdescriptor->m_id = atom;
 
    //   //pdescriptor->m_type = type;
 
@@ -987,7 +987,7 @@ namespace user
 
       //      ptopic->m_id = id_place_child_title_change;
 
-      //      ptopic->user_interaction() = pholder;
+      //      ptopic->m_pextendedtopic->user_interaction() = pholder;
 
       //      pparent->apply(ptopic);
 
@@ -1518,13 +1518,11 @@ namespace user
 
       }
 
-      ::topic topic;
+      ::extended_topic extendedtopic(::id_set_focus);
 
-      topic.m_puserelement = this;
+      extendedtopic.m_puserelement = this;
 
-      topic.m_id = ::id_set_focus;
-
-      route(&topic);
+      route(&extendedtopic);
 
    }
 
@@ -1557,15 +1555,11 @@ namespace user
 
       }
 
-      ::topic topic;
+      ::extended_topic extendedtopic(::id_kill_focus);
 
-      topic.m_puserelement = this;
+      extendedtopic.m_puserelement = this;
 
-      //topic.m_id = m_id;
-
-      topic.m_id = ::id_kill_focus;
-
-      route(&topic);
+      route(&extendedtopic);
 
    }
 
@@ -2015,7 +2009,7 @@ namespace user
 //      else
 //      {
 //
-//         __throw(error_invalid_argument);
+//         __throw(error_bad_argument);
 //
 //      }
 //
@@ -2979,7 +2973,7 @@ namespace user
       if (pgraphics == nullptr)
       {
 
-         __throw(error_invalid_argument);
+         __throw(error_bad_argument);
 
       }
 
@@ -4153,12 +4147,12 @@ return "";
    }
 
 
-   __pointer(::message::message) interaction::get_message(const ::id & id, wparam wparam, lparam lparam)
+   __pointer(::message::message) interaction::get_message(const ::atom & atom, wparam wparam, lparam lparam)
    {
    
       __pointer(::message::message) pmessage;
    
-      auto eprototype = ::message::get_message_prototype((enum_message) id.i64(), 0);
+      auto eprototype = ::message::get_message_prototype((enum_message) atom.i64(), 0);
    
       switch (eprototype)
       {
@@ -4310,7 +4304,7 @@ return "";
 
       //}
    
-      pmessage->set(get_oswindow(), get_window(), id, wparam, lparam);
+      pmessage->set(get_oswindow(), get_window(), atom, wparam, lparam);
    
       return pmessage;
    
@@ -4621,13 +4615,11 @@ return "";
 
       m_bReposition = true;
 
-      ::topic topic;
+      ::extended_topic extendedtopic(::id_create);
 
-      topic.m_puserelement = this;
+      extendedtopic.m_puserelement = this;
 
-      topic.m_id = ::id_create;
-
-      route(&topic);
+      route(&extendedtopic);
 
       //auto psession = get_session();
 
@@ -5376,7 +5368,7 @@ return "";
    }
 
 
-   ::user::interaction * interaction::get_child_by_id(const id & id, index iItem, i32 iLevel)
+   ::user::interaction * interaction::get_child_by_id(const atom & atom, index iItem, i32 iLevel)
    {
 
       auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
@@ -5393,7 +5385,7 @@ return "";
 
          auto pinteraction = puserinteractionpointeraChild->get_interaction(i);
 
-         if (pinteraction->GetDlgCtrlId() == id)
+         if (pinteraction->GetDlgCtrlId() == atom)
          {
 
             if (iItem < 0 || iItem == pinteraction->m_iItem)
@@ -5425,7 +5417,7 @@ return "";
 
          auto pinteraction = puserinteractionpointeraChild->get_interaction(i);
 
-         ::user::interaction * puiChild = pinteraction->get_child_by_id(id, iItem, iLevel);
+         ::user::interaction * puiChild = pinteraction->get_child_by_id(atom, iItem, iLevel);
 
          if (::is_set(puiChild))
          {
@@ -5441,10 +5433,10 @@ return "";
    }
 
 
-   ::user::element * interaction::get_primitive_by_id(const id & id, ::index iItem, i32 iLevel)
+   ::user::element * interaction::get_primitive_by_id(const atom & atom, ::index iItem, i32 iLevel)
    {
 
-      auto pchild = get_child_by_id(id, iItem, iLevel);
+      auto pchild = get_child_by_id(atom, iItem, iLevel);
 
       if (::is_null(pchild))
       {
@@ -5604,7 +5596,7 @@ return "";
    }
 
 
-   lresult interaction::send_message(const ::id & id, wparam wparam, lparam lparam, const ::point_i32& point)
+   lresult interaction::send_message(const ::atom & atom, wparam wparam, lparam lparam, const ::point_i32& point)
    {
 
       if (m_pprimitiveimpl == nullptr)
@@ -5614,12 +5606,12 @@ return "";
 
       }
 
-      return m_pprimitiveimpl->send_message(id, wparam, lparam);
+      return m_pprimitiveimpl->send_message(atom, wparam, lparam);
 
    }
 
 
-   lresult interaction::message_call(const ::id & id, wparam wparam, lparam lparam, const ::point_i32& point)
+   lresult interaction::message_call(const ::atom & atom, wparam wparam, lparam lparam, const ::point_i32& point)
    {
 
       if (m_pprimitiveimpl == nullptr)
@@ -5629,7 +5621,7 @@ return "";
 
       }
 
-      return m_pprimitiveimpl->message_call(id, wparam, lparam);
+      return m_pprimitiveimpl->message_call(atom, wparam, lparam);
 
    }
 
@@ -5719,7 +5711,7 @@ void interaction::enable_window(bool bEnable)
 //}
 
 
-void interaction::send_message_to_descendants(const ::id & id, wparam wparam, lparam lparam, bool bDeep, bool bOnlyPerm)
+void interaction::send_message_to_descendants(const ::atom & atom, wparam wparam, lparam lparam, bool bDeep, bool bOnlyPerm)
 
 {
 
@@ -5745,7 +5737,7 @@ void interaction::send_message_to_descendants(const ::id & id, wparam wparam, lp
             try
             {
 
-               puserinteraction->send_message(id, wparam, lparam);
+               puserinteraction->send_message(atom, wparam, lparam);
 
             }
             catch (...)
@@ -5768,7 +5760,7 @@ void interaction::send_message_to_descendants(const ::id & id, wparam wparam, lp
             try
             {
 
-               puserinteraction->send_message_to_descendants(id, wparam, lparam, true, bOnlyPerm);
+               puserinteraction->send_message_to_descendants(atom, wparam, lparam, true, bOnlyPerm);
 
 
             }
@@ -6273,7 +6265,7 @@ void interaction::create_child(::user::interaction * puserinteractionParent)
 
          //   //m_pdescriptor.defer_create(this);
 
-         //   if (!m_pprimitiveimpl->create_window_ex(this, pusersystem, puserinteractionParent, id))
+         //   if (!m_pprimitiveimpl->create_window_ex(this, pusersystem, puserinteractionParent, atom))
          //   {
 
          //      m_bUserElementOk = false;
@@ -6715,7 +6707,7 @@ void interaction::RedrawWindow(const ::rectangle_i32& rectangleUpdate, ::draw2d:
    else
    {
 
-      __throw(error_invalid_argument);
+      __throw(error_bad_argument);
 
    }
 
@@ -7581,7 +7573,7 @@ void interaction::hide_control_bar(::user::control_bar * pcontrolbar)
 }
 
 
-void interaction::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::id idLeftOver, ::u32 nFlag, RECTANGLE_I32 * prectParam, const ::rectangle_i32 & rectangleClient, bool bStretch)
+void interaction::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag, RECTANGLE_I32 * prectParam, const ::rectangle_i32 & rectangleClient, bool bStretch)
 {
 
    if (m_pprimitiveimpl == nullptr)
@@ -9418,7 +9410,7 @@ void interaction::_001Emphasize(int cx, int cy)
 }
 
 
-id interaction::run_modal_loop(::user::interaction * pinteraction, u32 dwFlags)
+atom interaction::run_modal_loop(::user::interaction * pinteraction, u32 dwFlags)
 {
 
    return pinteraction->_001RunModalLoop(dwFlags);
@@ -9426,7 +9418,7 @@ id interaction::run_modal_loop(::user::interaction * pinteraction, u32 dwFlags)
 }
 
 
-id interaction::RunModalLoop(u32 dwFlags)
+atom interaction::RunModalLoop(u32 dwFlags)
 {
 
    set_need_redraw();
@@ -9438,7 +9430,7 @@ id interaction::RunModalLoop(u32 dwFlags)
 }
 
 
-id interaction::_001RunModalLoop(u32 dwFlags)
+atom interaction::_001RunModalLoop(u32 dwFlags)
 {
 
    ASSERT(!m_bModal);
@@ -9446,7 +9438,7 @@ id interaction::_001RunModalLoop(u32 dwFlags)
    if(m_bModal)
    {
 
-      return ::id();
+      return ::atom();
 
    }
 
@@ -9498,7 +9490,7 @@ bool interaction::ContinueModal()
 }
 
 
-void interaction::EndModalLoop(id idResult)
+void interaction::EndModalLoop(atom idResult)
 {
 
    TRACE("EndModalLoop");
@@ -9544,7 +9536,7 @@ void interaction::EndModalLoop(id idResult)
 //
 //      handle(ptopic, pcontext);
 //
-//      if (ptopic->m_bRet)
+//      if (ptopic->m_pextendedtopic->m_bRet)
 //      {
 //
 //         return;
@@ -9553,7 +9545,7 @@ void interaction::EndModalLoop(id idResult)
 //
 //      on_notify_control_event(pevent);
 //
-//      if (ptopic->m_bRet)
+//      if (ptopic->m_pextendedtopic->m_bRet)
 //      {
 //
 //         return;
@@ -9573,7 +9565,7 @@ void interaction::EndModalLoop(id idResult)
 //
 //         pusercallback->handle(ptopic, pcontext);
 //
-//         if (ptopic->m_bRet)
+//         if (ptopic->m_pextendedtopic->m_bRet)
 //         {
 //
 //            return;
@@ -9589,7 +9581,7 @@ void interaction::EndModalLoop(id idResult)
 //
 //         pinteractionBind->handle(ptopic, pcontext);
 //
-//         if (ptopic->m_bRet)
+//         if (ptopic->m_pextendedtopic->m_bRet)
 //         {
 //
 //            return;
@@ -9637,7 +9629,7 @@ void interaction::EndModalLoop(id idResult)
 
 
 
-void interaction::post_message(const ::id & id, wparam wparam, lparam lparam)
+void interaction::post_message(const ::atom & atom, wparam wparam, lparam lparam)
 {
 
    if (m_pprimitiveimpl.is_null())
@@ -9649,13 +9641,13 @@ void interaction::post_message(const ::id & id, wparam wparam, lparam lparam)
 
    }
 
-   if(id == e_message_key_down)
+   if(atom == e_message_key_down)
    {
 
       output_debug_string("::user::interaction::post_message e_message_key_down");
 
    }
-   else if (id == e_message_close)
+   else if (atom == e_message_close)
    {
 
       output_debug_string("::user::interaction::post_message e_message_close");
@@ -9671,17 +9663,17 @@ void interaction::post_message(const ::id & id, wparam wparam, lparam lparam)
 
    }
 
-   return m_pprimitiveimpl->post_message(id, wparam, lparam);
+   return m_pprimitiveimpl->post_message(atom, wparam, lparam);
 
 }
 
 
-void interaction::post_object(const ::id & id, wparam wparam, lparam lparam)
+void interaction::post_object(const ::atom & atom, wparam wparam, lparam lparam)
 {
 
    bool bIsWindow = m_pprimitiveimpl.is_set() && is_window();
 
-   if (id == e_message_quit || !bIsWindow)
+   if (atom == e_message_quit || !bIsWindow)
    {
 
       {
@@ -9699,20 +9691,20 @@ void interaction::post_object(const ::id & id, wparam wparam, lparam lparam)
 
       }
 
-      return m_pprimitiveimpl->post_message(id);
+      return m_pprimitiveimpl->post_message(atom);
 
    }
 
-   return m_pprimitiveimpl->post_message(id, wparam, lparam);
+   return m_pprimitiveimpl->post_message(atom, wparam, lparam);
 
 
 }
 
 
-//bool interaction::user_post(const ::id& id, wparam wparam, lparam lparam)
+//bool interaction::user_post(const ::atom& atom, wparam wparam, lparam lparam)
 //{
 //
-//   return m_pthreadUserInteraction->post_message(id, wparam, lparam);
+//   return m_pthreadUserInteraction->post_message(atom, wparam, lparam);
 //
 //}
 
@@ -11882,7 +11874,7 @@ void interaction::on_message_close(::message::message * pmessage)
       if (pitem->m_eelement == ::e_element_close_button || pitem->m_eelement == ::e_element_close_icon)
       {
 
-         if (pitem->m_etopic == ::id_close_app)
+         if (pitem->m_id == ::id_close_app)
          {
 
             display(e_display_hide);
@@ -12173,13 +12165,13 @@ bool interaction::is_selected(::data::item * pitem)
 
 
 //// <3ThomasBorregaardS�rensen__!!
-void interaction::handle_command(const ::id & id)
+void interaction::handle_command(const ::atom & atom)
 {
 
    if (m_pmaterialCommandHandler)
    {
 
-      return m_pmaterialCommandHandler->handle_command(id);
+      return m_pmaterialCommandHandler->handle_command(atom);
 
    }
 
@@ -13551,7 +13543,7 @@ order(zorderParam);
    }
 
 
-   id interaction::GetDlgCtrlId() const
+   atom interaction::GetDlgCtrlId() const
    {
 
       return m_id;
@@ -13559,10 +13551,10 @@ order(zorderParam);
    }
 
 
-   id interaction::SetDlgCtrlId(id id)
+   atom interaction::SetDlgCtrlId(atom atom)
    {
 
-      m_id = id;
+      m_id = atom;
 
       return m_id;
 
@@ -14159,13 +14151,12 @@ order(zorderParam);
       if (pkey->m_ekey == ::user::e_key_tab)
       {
 
-         ::topic topic;
+         ::extended_topic extendedtopic(::id_tab_key);
 
-         topic.m_puserelement = dynamic_cast <::user::interaction *> (this);
-         topic.m_id = ::id_tab_key;
-         topic.m_actioncontext = ::e_source_user;
+         extendedtopic.m_puserelement = dynamic_cast <::user::interaction *> (this);
+         extendedtopic.m_actioncontext = ::e_source_user;
 
-         route(&topic);
+         route(&extendedtopic);
 
       }
 
@@ -14430,19 +14421,15 @@ order(zorderParam);
       if(has_handler())
       {
 
-         ::topic topic;
+         ::extended_topic extendedtopic(::id_after_change_cur_sel);
 
-         topic.m_puserelement = this;
+         extendedtopic.m_puserelement = this;
 
-         //topic.m_id = m_id;
+         extendedtopic.m_item = item;
 
-         topic.m_id = ::id_after_change_cur_sel;
+         extendedtopic.m_actioncontext = context;
 
-         topic.m_item = item;
-
-         topic.m_actioncontext = context;
-
-         route(&topic);
+         route(&extendedtopic);
 
          set_need_redraw();
 
@@ -15977,37 +15964,33 @@ order(zorderParam);
                else
                {
                
-                  ::id id = translate_property_id(m_id);
+                  ::atom atom = translate_property_id(m_id);
                   
                   if(has_handler())
                   {
 
-                     ::topic topic;
+                     ::extended_topic extendedtopic(id_click);
 
-                     topic.m_etopic = id_click;
+                     extendedtopic.m_puserelement = this;
 
-                     topic.m_puserelement = this;
+                     extendedtopic.m_item = item;
 
-                     topic.m_id = m_id;
+                     extendedtopic.m_actioncontext.m_pmessage = pmouse;
 
-                     topic.m_item = item;
+                     extendedtopic.m_actioncontext.add(::e_source_user);
 
-                     topic.m_actioncontext.m_pmessage = pmouse;
+                     route(&extendedtopic);
 
-                     topic.m_actioncontext.add(::e_source_user);
+                     INFORMATION("interaction::on_message_left_button_up route_btn_clked=" << (int)extendedtopic.m_bRet);
 
-                     route(&topic);
-
-                     INFORMATION("interaction::on_message_left_button_up route_btn_clked=" << (int) topic.m_bRet);
-
-                     pmessage->m_bRet = topic.m_bRet;
+                     pmessage->m_bRet = extendedtopic.m_bRet;
                   
                   }
 
                   //if (!pmessage->m_bRet)
                   //{
 
-                  //   auto estatus = command_handler(id);
+                  //   auto estatus = command_handler(atom);
 
                   //   pmessage->m_bRet = estatus.succeeded();
 
@@ -16016,7 +15999,7 @@ order(zorderParam);
                   if (!pmessage->m_bRet)
                   {
 
-                     ::message::command command(id);
+                     ::message::command command(atom);
 
                      command.m_puiOther = this;
 
@@ -17119,7 +17102,7 @@ order(zorderParam);
    }
 
 
-   //bool interaction::create_interaction(::user::interaction * pinteractionParent, const ::id & id)
+   //bool interaction::create_interaction(::user::interaction * pinteractionParent, const ::atom & atom)
    //{
 
    //   try
@@ -17352,14 +17335,14 @@ order(zorderParam);
    }
 
 
-   id control_cmd_ui::GetControlCommand(id id)
+   atom control_cmd_ui::GetControlCommand(atom atom)
    {
-      ::id idCommand;
-      if (m_mapControlCommand.lookup(id, idCommand))
+      ::atom idCommand;
+      if (m_mapControlCommand.lookup(atom, idCommand))
       {
-         return id;
+         return atom;
       }
-      return id;
+      return atom;
    }
 
 
@@ -17442,7 +17425,7 @@ order(zorderParam);
       if (strClass.find(",") >= 0)
       {
 
-         throw_status(error_invalid_argument);
+         throw_status(error_bad_argument);
 
       }
 

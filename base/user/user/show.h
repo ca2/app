@@ -69,10 +69,10 @@ namespace user
       }
 
 
-      virtual void assert_valid() const override
+      virtual void assert_ok() const override
       {
-         impact::assert_valid();
-         VIEW::assert_valid();
+         impact::assert_ok();
+         VIEW::assert_ok();
 
       }
       virtual void dump(dump_context& dumpcontext) const override
@@ -125,7 +125,7 @@ namespace user
 
          ////VIEW::handle(ptopic, pcontext);
 
-         //if (ptopic->m_bRet)
+         //if (ptopic->m_pextendedtopic->m_bRet)
          //{
 
          //   return;
@@ -146,7 +146,7 @@ namespace user
 
          //   puiParent->handle(pevent);
 
-         //   if (ptopic->m_bRet)
+         //   if (ptopic->m_pextendedtopic->m_bRet)
          //   {
 
          //      return;
@@ -195,7 +195,7 @@ namespace user
 
       //   VIEW::handle(ptopic, pcontext);
 
-      //   if(ptopic->m_bRet)
+      //   if(ptopic->m_pextendedtopic->m_bRet)
       //   {
 
       //      return;
@@ -216,7 +216,7 @@ namespace user
 
       //      puiParent->handle(ptopic, pcontext);
 
-      //      if (ptopic->m_bRet)
+      //      if (ptopic->m_pextendedtopic->m_bRet)
       //      {
 
       //         return;

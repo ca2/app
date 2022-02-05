@@ -170,7 +170,7 @@ error_rtf_table,
 
 error_exception = INT_FAILURE_STATUS(STATUS_RANGE_EXCEPTION),
 error_standard_exception,
-error_invalid_argument,
+error_bad_argument,
 error_index_out_of_bounds,
 error_unexpected,  // "This shouldn't ever happen"
 error_unexpected_result, // "This shouldn't ever happen" for integer result

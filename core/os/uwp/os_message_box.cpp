@@ -62,8 +62,8 @@ message_box_w::message_box_w()
 }
 
 
-#define create_a_button(id,text) \
-   msg->Commands->Append(ref new UICommand(text,ref new UICommandInvokedHandler(this, &::message_box_w::CommandInvokedHandler),id));
+#define create_a_button(atom,text) \
+   msg->Commands->Append(ref new UICommand(text,ref new UICommandInvokedHandler(this, &::message_box_w::CommandInvokedHandler),atom));
 
 
 void message_box_w::show(String ^ text,String ^ caption, const ::e_message_box & emessagebox, ::callback callback)

@@ -41,7 +41,7 @@ namespace file
    public:
 
 
-      id                   m_id;
+      atom                   m_id;
 
       string               m_strFolder;
 
@@ -82,17 +82,17 @@ namespace file
    //public:
 
 
-   //   /// type for a map from id to watch_struct pointer
-   //   typedef map < id, id, __pointer(watch), __pointer(watch) > watch_map;
+   //   /// type for a map from atom to watch_struct pointer
+   //   typedef map < atom, atom, __pointer(watch), __pointer(watch) > watch_map;
 
 
    //private:
 
 
-   //   /// Map of id to watch_struct pointers
+   //   /// Map of atom to watch_struct pointers
    //   watch_map m_watchmap;
    //   /// The last watchid
-   //   id m_idLast;
+   //   atom m_idLast;
 
 
    //public:
@@ -104,16 +104,16 @@ namespace file
 
    //   /// Add a directory watch
    //   /// @exception file_not_found_exception Thrown when the requested directory does not exist
-   //   virtual id add_watch(const string & directory, listener * watcher, bool bRecursive, bool bOwn) override;
+   //   virtual atom add_watch(const string & directory, listener * watcher, bool bRecursive, bool bOwn) override;
 
    //   /// Remove a directory watch. This is a brute force lazy search O(nlogn).
    //   void erase_watch(const string & directory);
 
    //   /// Remove a directory watch. This is a map lookup O(logn).
-   //   void erase_watch(id watchid);
+   //   void erase_watch(atom watchid);
 
-   //   /// Return the directory name for a watch id
-   //   string watch_path(id watchid);
+   //   /// Return the directory name for a watch atom
+   //   string watch_path(atom watchid);
 
    //   /// Updates the watcher. Must be called often.
    //   bool update();

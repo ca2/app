@@ -26,8 +26,8 @@
 
 @interface NSObject (DDExtensions)
 
-- (id)dd_invokeOnMainThread;
-- (id)dd_invokeOnMainThreadAndWaitUntilDone:(BOOL)waitUntilDone;
+- (atom)dd_invokeOnMainThread;
+- (atom)dd_invokeOnMainThreadAndWaitUntilDone:(BOOL)waitUntilDone;
 
 @end
 

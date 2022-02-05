@@ -936,7 +936,7 @@ namespace user
       if (ptopic->m_id == ::id_click)
       {
 
-         if (m_pitemClose.is_set() && ptopic->user_interaction() == m_pitemClose->m_puserinteraction)
+         if (m_pitemClose.is_set() && ptopic->m_pextendedtopic->user_interaction() == m_pitemClose->m_puserinteraction)
          {
 
             defer_close();
@@ -945,12 +945,12 @@ namespace user
          else
          {
 
-            __pointer(::user::menu_item) pitem = ptopic->user_interaction()->m_pmenuitem;
+            __pointer(::user::menu_item) pitem = ptopic->m_pextendedtopic->user_interaction()->m_pmenuitem;
 
             if (pitem != nullptr && !pitem->m_bPopup)
             {
 
-               if (ptopic->user_interaction()->m_id.begins(astr.ingSysCommand))
+               if (ptopic->m_pextendedtopic->user_interaction()->m_id.begins(astr.ingSysCommand))
                {
 
                   auto pchannelNotify = get_notify_channel();
@@ -962,7 +962,7 @@ namespace user
 
                      //puiTarget->_001SendCommand(&command);
 
-                     pchannelNotify->handle_command(ptopic->user_interaction()->m_id);
+                     pchannelNotify->handle_command(ptopic->m_pextendedtopic->user_interaction()->m_id);
 
                   }
 
@@ -972,7 +972,7 @@ namespace user
 
                   auto pchannelNotify = m_pchannelNotify;
 
-                  id idCommand = ptopic->user_interaction()->m_id;
+                  atom idCommand = ptopic->m_pextendedtopic->user_interaction()->m_id;
 
                   idCommand = translate_property_id(idCommand);
 
@@ -985,11 +985,11 @@ namespace user
 
                      ::message::command command(idCommand);
 
-                     command.m_actioncontext = ptopic->m_actioncontext;
+                     command.m_actioncontext = ptopic->m_pextendedtopic->m_actioncontext;
 
                      pchannelNotify->_001SendCommand(&command);
 
-                     ptopic->m_bRet = command.m_bRet;
+                     ptopic->m_pextendedtopic->m_bRet = command.m_bRet;
 
                   }
 
@@ -1004,18 +1004,18 @@ namespace user
 //      {
 //
 //         if (m_pitemClose.is_set()
-//               && ptopic->user_interaction() != m_pitemClose->m_puserinteraction)
+//               && ptopic->m_pextendedtopic->user_interaction() != m_pitemClose->m_puserinteraction)
 //         {
 //
 //            if (!m_bInline)
 //            {
 //
-//               if (ptopic->user_interaction()->m_pmenuitem != m_pmenuitemSub)
+//               if (ptopic->m_pextendedtopic->user_interaction()->m_pmenuitem != m_pmenuitemSub)
 //               {
 //
 //                  {
 //
-//                     __pointer(::user::menu_item) pitem = ptopic->user_interaction()->m_pmenuitem;
+//                     __pointer(::user::menu_item) pitem = ptopic->m_pextendedtopic->user_interaction()->m_pmenuitem;
 //
 //                     if (pitem)
 //                     {
@@ -1044,7 +1044,7 @@ namespace user
 //
 //                           ::rectangle_i32 rectangle;
 //
-//                           ptopic->user_interaction()->get_window_rect(rectangle);
+//                           ptopic->m_pextendedtopic->user_interaction()->get_window_rect(rectangle);
 //
 //                           m_psubmenu->update_position(rectangle.top_right());
 //
@@ -1083,7 +1083,7 @@ namespace user
 //
 //         }
 //
-//         ptopic->m_bRet = true;
+//         ptopic->m_pextendedtopic->m_bRet = true;
 //
 //         return;
 //
@@ -1096,7 +1096,7 @@ namespace user
 //            m_idTimerMenu.is_empty();
 //         }
 //
-//         ptopic->m_bRet = true;
+//         ptopic->m_pextendedtopic->m_bRet = true;
 //
 //         return;
 //
@@ -1616,7 +1616,7 @@ namespace user
 
 
    // <3ThomasBorregaardS�rensen__!! (I need to suck you, back, middle, front)
-   void menu::handle_command(const ::id& id)
+   void menu::handle_command(const ::atom& atom)
    {
 
       if (m_pmaterialCommandHandler)
@@ -1626,7 +1626,7 @@ namespace user
 
          //auto estatus = 
          
-         m_pmaterialCommandHandler->handle_command(id);
+         m_pmaterialCommandHandler->handle_command(atom);
 
          //if (!estatus)
          //{

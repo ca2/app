@@ -93,7 +93,7 @@ zonetime::zonetime(time_t zonetime, int iZoneOffset) noexcept :
       if (m_i == -1)
       {
          
-         __throw(error_invalid_argument);
+         __throw(error_bad_argument);
 
       }
 

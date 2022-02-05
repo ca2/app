@@ -1021,7 +1021,7 @@ void file_context::add_contents(const ::payload &payloadFile, const char *pcszCo
    if (is_null(pcszContents))
    {
 
-      throw_status(error_invalid_argument);
+      throw_status(error_bad_argument);
 
    }
 

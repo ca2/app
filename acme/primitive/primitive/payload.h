@@ -40,7 +40,7 @@ public:
 
       void * m_pvoid;
       para_return                m_parareturn;
-      id                         m_id;
+      atom                         m_id;
       bool                       m_b;
       bool * m_pb;
       ::i8                       m_i8;
@@ -67,7 +67,7 @@ public:
       payload * m_ppayload;
       ::datetime::time           m_time;
       filetime_t                 m_filetime;
-      id * m_pid;
+      atom * m_pid;
       ::property * m_pproperty;
       integral_nanosecond        m_integralnanosecond;
       integral_nanosecond *      m_pintegralnanosecond;
@@ -150,7 +150,7 @@ public:
    payload(const char * psz);
    payload(const ::string & str);
    payload(const ::type & type);
-   payload(const ::id & id);
+   payload(const ::atom & atom);
    payload(const ::datetime::time & time);
    payload(const ::color::color & color);
    payload(const ::color::hls & hls);
@@ -322,7 +322,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 
 
    ::string & as_string(::string & str);
-   ::id & as_id(const ::id & idDefault = nullptr);
+   ::atom & as_id(const ::atom & idDefault = nullptr);
 
    ::memory & as_memory();
 
@@ -362,7 +362,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    ::string string(const char * pszOnNull = nullptr) const;
    ::string get_string() const;
    ::string get_recursive_string() const;
-   ::id id(const ::id & idDefault = nullptr)   const;
+   ::atom atom(const ::atom & idDefault = nullptr)   const;
 
    ::memory memory() const;
    ::string_array stra() const;
@@ -398,7 +398,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    void           set_string(const char * psz);
    void           set_string(const ::string & str);
    void           set_string(::string && str);
-   void           set_id(const ::id & id);
+   void           set_id(const ::atom & atom);
    void unset();
    void unset(const ::string & strPropertySetKey);
 
@@ -418,10 +418,10 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    bool casts_to(::enum_type etype) const;
 
 
-   ///property * defer_get_property(const ::id & id) const;
-   bool has_property(const ::id & id) const;
-   bool is_property_true(const ::id & id) const;
-   bool is_property_false(const ::id & id) const;
+   ///property * defer_get_property(const ::atom & atom) const;
+   bool has_property(const ::atom & atom) const;
+   bool is_property_true(const ::atom & atom) const;
+   bool is_property_false(const ::atom & atom) const;
 
 
    bool begins(const ::string & strPrefix) const { return get_string().begins(strPrefix); }
@@ -429,8 +429,8 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    bool begins_ci(const ::string & strPrefix) const { return get_string().begins_ci(strPrefix); }
    bool ends_ci(const ::string & strSuffix) const { return get_string().ends_ci(strSuffix); }
 
-   payload get_topic(const ::id & id) const;
-   //payload defer_get(const ::id & id) const;
+   payload get_topic(const ::atom & atom) const;
+   //payload defer_get(const ::atom & atom) const;
 
    payload & operator ++(::i32);
 
@@ -652,8 +652,8 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    payload & operator = (const ::memory & memory);
    payload & operator = (const ::payload_array & payloada);
    payload & operator = (const ::property_set & propset);
-   payload & operator = (const ::id & id);
-   payload & operator = (::id * pid);
+   payload & operator = (const ::atom & atom);
+   payload & operator = (::atom * pid);
    //payload & operator = (const ::second & second);
    //payload & operator = (class ::second * pduration);
    //payload & operator = (const ::duration & duration);
@@ -870,29 +870,29 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    inline ::count get_count() const;
 
 
-   inline ::property & operator[] (const ::id & id) { return get_property(id); }
-   inline ::payload operator[] (const ::id & id) const { return find_property(id); }
+   inline ::property & operator[] (const ::atom & atom) { return get_property(atom); }
+   inline ::payload operator[] (const ::atom & atom) const { return find_property(atom); }
 
-   inline ::property & operator[] (const char * psz) { return get_property(::id(psz)); }
-   inline ::payload operator[] (const char * psz) const { return find_property(::id(psz)); }
+   inline ::property & operator[] (const char * psz) { return get_property(::atom(psz)); }
+   inline ::payload operator[] (const char * psz) const { return find_property(::atom(psz)); }
 
-   inline ::property & operator[] (const ::string & str) { return get_property(::id(str)); }
-   inline ::payload operator[] (const ::string & str) const { return find_property(::id(str)); }
+   inline ::property & operator[] (const ::string & str) { return get_property(::atom(str)); }
+   inline ::payload operator[] (const ::string & str) const { return find_property(::atom(str)); }
 
-   inline ::property & operator[] (::index i) { return get_property(::id(i)); }
-   inline ::payload operator[] (::index i) const { return find_property(::id(i)); }
+   inline ::property & operator[] (::index i) { return get_property(::atom(i)); }
+   inline ::payload operator[] (::index i) const { return find_property(::atom(i)); }
 
 #if OSBIT == 64
 
-   inline ::property & operator[] (::i32 i) { return get_property(::id(i)); }
-   inline ::payload operator[] (::i32 i) const { return find_property(::id(i)); }
+   inline ::property & operator[] (::i32 i) { return get_property(::atom(i)); }
+   inline ::payload operator[] (::i32 i) const { return find_property(::atom(i)); }
 
 #endif
 
-   inline ::index property_index(const ::id & id) const;
-   inline ::property * find_property(const ::id & id) const;
+   inline ::index property_index(const ::atom & atom) const;
+   inline ::property * find_property(const ::atom & atom) const;
 
-   inline ::property & get_property(const ::id & id);
+   inline ::property & get_property(const ::atom & atom);
 
    ::payload at(index i);
    inline ::payload at(index i) const { return ((::payload *)this)->at(i); }

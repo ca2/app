@@ -398,7 +398,7 @@ namespace str
    //   if(size > UINT_MAX)
    //   {
    //      // API only allows u32 size_i32
-   //      __throw(error_invalid_argument);
+   //      __throw(error_bad_argument);
    //   }
    //   u32 dwSize=static_cast<u32>(size);
    //   bool fSuccess=::OemToCharBuffA(pstrString,pstrString,dwSize) != 0;
@@ -420,7 +420,7 @@ namespace str
    //   if(size > UINT_MAX)
    //   {
    //      // API only allows u32 size_i32
-   //      __throw(error_invalid_argument);
+   //      __throw(error_bad_argument);
    //   }
    //   u32 dwSize=static_cast<u32>(size);
    //   bool fSuccess=::CharToOemBuffA(pstrString,pstrString,dwSize) != 0;

@@ -169,18 +169,18 @@ GEOIP_API char *GeoIP_name_by_addr_v6 (GeoIP* gi, const char *addr);
 GEOIP_API char *GeoIP_name_by_name_v6 (GeoIP* gi, const char *name);
 
 /** return two letter country code */
-GEOIP_API const char* GeoIP_code_by_id(i32 id);
+GEOIP_API const char* GeoIP_code_by_id(i32 atom);
 
 /** return three letter country code */
-GEOIP_API const char* GeoIP_code3_by_id(i32 id);
+GEOIP_API const char* GeoIP_code3_by_id(i32 atom);
 
 /** return full name of country */
-GEOIP_API const char* GeoIP_name_by_id(i32 id);
+GEOIP_API const char* GeoIP_name_by_id(i32 atom);
 
 /** return continent of country */
-GEOIP_API const char* GeoIP_continent_by_id(i32 id);
+GEOIP_API const char* GeoIP_continent_by_id(i32 atom);
 
-/** return id by country code **/
+/** return atom by country code **/
 GEOIP_API i32 GeoIP_id_by_code(const char *country);
 
 /** return return number of known countries */

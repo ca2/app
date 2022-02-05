@@ -34,7 +34,7 @@ namespace user
 
       i32 iIndex;
 
-      id id;
+      atom atom;
 
       for(i32 i = 0; i < pnode->children().get_count(); i++)
       {
@@ -43,7 +43,7 @@ namespace user
 
          string strId;
 
-         pchild->find_attribute("id", strId);
+         pchild->find_attribute("atom", strId);
 
          string strImage;
 
@@ -61,11 +61,11 @@ namespace user
 
          iIndex = MenuV033GetImageList()->add(imagedrawing);
 
-         id = strId;
+         atom = strId;
 
-         m_mapCommandImage.set_at(id, iIndex);
+         m_mapCommandImage.set_at(atom, iIndex);
 
-         m_mapImageCommand.set_at(iIndex, id);
+         m_mapImageCommand.set_at(iIndex, atom);
 
       }
 
@@ -115,12 +115,12 @@ namespace user
    }
 
 
-   int menu_central::command_image(id id)
+   int menu_central::command_image(atom atom)
    {
 
       int iImage;
 
-      if(!m_mapCommandImage.lookup(id, iImage))
+      if(!m_mapCommandImage.lookup(atom, iImage))
       {
 
          return -1;
@@ -132,19 +132,19 @@ namespace user
    }
 
 
-   id menu_central::image_command(int iImage)
+   atom menu_central::image_command(int iImage)
    {
 
-      id id;
+      atom atom;
 
-      if(!m_mapImageCommand.lookup(iImage, id))
+      if(!m_mapImageCommand.lookup(iImage, atom))
       {
 
-         return ::id();
+         return ::atom();
 
       }
 
-      return id;
+      return atom;
 
    }
 

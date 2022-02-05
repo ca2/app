@@ -143,9 +143,9 @@ namespace sockets
                   return; // read more
                }
                i32 point = 0;
-               i16 id = get_integer(m_message, point);
+               i16 atom = get_integer(m_message, point);
                i16 length = get_integer(m_message, point);
-               OnHeader(id, length);
+               OnHeader(atom, length);
                m_iState = 1;
                m_length = length;
                m_ptr = 0; // bytes in m_message

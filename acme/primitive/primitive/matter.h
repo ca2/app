@@ -61,7 +61,7 @@ public:
    ~matter() override;
 
 
-   virtual void  assert_valid() const;
+   virtual void  assert_ok() const;
    virtual void  dump(dump_context& dumpcontext) const;
 
 
@@ -153,7 +153,7 @@ public:
 
 
 
-   //virtual ::task * defer_branch(const ::id & id, const ::routine & routine);
+   //virtual ::task * defer_branch(const ::atom & atom, const ::routine & routine);
 
 
    void delete_this() override;

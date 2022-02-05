@@ -2,7 +2,7 @@
 //#if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/_user.h"
 //#endif
-//#include "acme/constant/id.h"
+//#include "acme/id.h"
 //#include "apex/platform/app_core.h"
 #include "acme/platform/static_setup.h"
 //#include "apex/platform/str_context.h"
@@ -1680,7 +1680,7 @@ namespace aura
 //   }
 
 
-   void session::set_bound_ui(::id idImpact, ::user::interaction * pinteraction)
+   void session::set_bound_ui(::atom idImpact, ::user::interaction * pinteraction)
    {
 
       m_mapboundui.set_at(idImpact, pinteraction);
@@ -1688,7 +1688,7 @@ namespace aura
    }
 
 
-   ::user::primitive * session::get_bound_ui(::id idImpact)
+   ::user::primitive * session::get_bound_ui(::atom idImpact)
    {
 
       auto p = m_mapboundui.plookup(idImpact);

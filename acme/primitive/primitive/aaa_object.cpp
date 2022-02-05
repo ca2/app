@@ -328,13 +328,13 @@ void object::dev_log(string strMessage) const
 }
 
 
-array < ::routine >* object::routinea(const ::id & id)
+array < ::routine >* object::routinea(const ::atom & atom)
 {
 
    if (m_pmeta)
    {
 
-      auto p = m_pmeta->m_mapRoutine.plookup(id);
+      auto p = m_pmeta->m_mapRoutine.plookup(atom);
 
       if (p)
       {
@@ -350,7 +350,7 @@ array < ::routine >* object::routinea(const ::id & id)
 }
 
 
-//array < ::future >* object::processa(const ::id & idProcess)
+//array < ::future >* object::processa(const ::atom & idProcess)
 //{
 //
 //   if (m_pmeta)
@@ -372,10 +372,10 @@ array < ::routine >* object::routinea(const ::id & id)
 //}
 
 
-void object::call_routine(const ::id & id)
+void object::call_routine(const ::atom & atom)
 {
 
-   auto proutinea = routinea(id);
+   auto proutinea = routinea(atom);
 
    if(proutinea)
    {
@@ -387,7 +387,7 @@ void object::call_routine(const ::id & id)
 }
 
 
-//void object::send_payload(const ::id & idProcess, const ::payload & payload)
+//void object::send_payload(const ::atom & idProcess, const ::payload & payload)
 //{
 //
 //   auto pprocessa = processa(idProcess);
@@ -402,34 +402,34 @@ void object::call_routine(const ::id & id)
 //}
 //
 
-void object::add_routine(const ::id & id, const ::routine & routine)
+void object::add_routine(const ::atom & atom, const ::routine & routine)
 {
 
-   get_meta()->m_mapRoutine[id].add(routine);
+   get_meta()->m_mapRoutine[atom].add(routine);
 
 }
 
 
-//void object::add_process(const ::id & id, const ::future & process)
+//void object::add_process(const ::atom & atom, const ::future & process)
 //{
 //
-//   get_meta()->m_mapProcess[id].add(process);
+//   get_meta()->m_mapProcess[atom].add(process);
 //
 //}
 
 
-void object::add_each_routine_from(const ::id &id, ::object* pobjectSource)
+void object::add_each_routine_from(const ::atom &atom, ::object* pobjectSource)
 {
 
    if (pobjectSource)
    {
 
-      auto proutinea = pobjectSource->routinea(id);
+      auto proutinea = pobjectSource->routinea(atom);
 
       if (proutinea)
       {
 
-         get_meta()->m_mapRoutine[id].add(*proutinea);
+         get_meta()->m_mapRoutine[atom].add(*proutinea);
 
       }
 
@@ -438,18 +438,18 @@ void object::add_each_routine_from(const ::id &id, ::object* pobjectSource)
 }
 
 
-//void object::add_each_process_from(const ::id & id, ::object * pobjectSource)
+//void object::add_each_process_from(const ::atom & atom, ::object * pobjectSource)
 //{
 //
 //   if (pobjectSource)
 //   {
 //
-//      auto pprocessa = pobjectSource->processa(id);
+//      auto pprocessa = pobjectSource->processa(atom);
 //
 //      if (pprocessa)
 //      {
 //
-//         get_meta()->m_mapProcess[id].add(*pprocessa);
+//         get_meta()->m_mapProcess[atom].add(*pprocessa);
 //
 //      }
 //
@@ -632,7 +632,7 @@ void object::defer_update_object_id()
 
 
 
-::id object::calc_default_object_id() const
+::atom object::calc_default_object_id() const
 {
 
    string strType = __type_name(this);
@@ -949,10 +949,10 @@ void object::delete_this()
 }
 
 
-string object::lstr(const ::id & id, string strDefault)
+string object::lstr(const ::atom & atom, string strDefault)
 {
 
-   return get_application()->lstr(id,strDefault);
+   return get_application()->lstr(atom,strDefault);
 
 }
 
@@ -1710,7 +1710,7 @@ void object::task_erase(::task* ptask)
          if (::is_null(ptask))
          {
 
-            __throw(error_invalid_argument);
+            __throw(error_bad_argument);
 
          }
 
@@ -1719,7 +1719,7 @@ void object::task_erase(::task* ptask)
          if (!m_pcompositea->contains(ptask) && ptask->thread_parent() != this)
          {
 
-            __throw(error_invalid_argument, "thread is no parent-child releationship between the threads");
+            __throw(error_bad_argument, "thread is no parent-child releationship between the threads");
 
          }
 
@@ -2042,10 +2042,10 @@ __pointer(::matter) object::running(const char * pszTag) const
 }
 
 
-//void object::add_update_notification(const ::id & id, bool bCreate)
+//void object::add_update_notification(const ::atom & atom, bool bCreate)
 //{
 //
-//   auto pproperty = fetch_property(id, bCreate);
+//   auto pproperty = fetch_property(atom, bCreate);
 //
 //   if (!pproperty)
 //   {
@@ -2059,7 +2059,7 @@ __pointer(::matter) object::running(const char * pszTag) const
 //}
 
 
-//void object::add_update_notification(const ::id & id, ::object * pobject)
+//void object::add_update_notification(const ::atom & atom, ::object * pobject)
 //{
 //
 //   if (::is_null(pobject))
@@ -2076,7 +2076,7 @@ __pointer(::matter) object::running(const char * pszTag) const
 //
 //   }
 //
-//   auto pproperty = pobject->m_ppropertyset->find(id);
+//   auto pproperty = pobject->m_ppropertyset->find(atom);
 //
 //   if (!pproperty)
 //   {
@@ -2239,13 +2239,13 @@ void call_sync(const ::routine_array & methoda)
 
 
 
-string object::get_text(const ::payload & payload, const ::id& id)
+string object::get_text(const ::payload & payload, const ::atom& atom)
 {
 
-   if (payload.has_property(id) && payload[id].has_char())
+   if (payload.has_property(atom) && payload[atom].has_char())
    {
 
-      return payload[id];
+      return payload[atom];
 
    }
 
@@ -2260,7 +2260,7 @@ string object::get_text(const ::payload & payload, const ::id& id)
 
    auto strExtension = payload.get_file_path().extension();
 
-   if (strExtension == __string(id))
+   if (strExtension == __string(atom))
    {
 
       return "";

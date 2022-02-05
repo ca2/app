@@ -40,7 +40,7 @@ message_queue::~message_queue()
 }
 
 
-void message_queue::post_message(oswindow oswindow, const ::id & id, wparam wparam, lparam lparam)
+void message_queue::post_message(oswindow oswindow, const ::atom & atom, wparam wparam, lparam lparam)
 {
 
    if (m_bQuit)
@@ -53,7 +53,7 @@ void message_queue::post_message(oswindow oswindow, const ::id & id, wparam wpar
 
    MESSAGE message;
 
-   message.m_id = id;
+   message.m_id = atom;
    message.oswindow = oswindow;
    message.wParam = wparam;
    message.lParam = lparam;

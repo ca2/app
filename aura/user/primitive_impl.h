@@ -90,7 +90,7 @@ namespace user
       
       virtual void prodevian_update_screen();
 
-      virtual void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::id nIdLeftOver, ::u32 nFlag = reposDefault, RECTANGLE_I32 * prectParam = nullptr, const ::rectangle_i32 & rectangleClient = nullptr, bool bStretch = true) override;
+      virtual void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom nIdLeftOver, ::u32 nFlag = reposDefault, RECTANGLE_I32 * prectParam = nullptr, const ::rectangle_i32 & rectangleClient = nullptr, bool bStretch = true) override;
 
       virtual void window_move(i32 x, i32 y);
 
@@ -148,8 +148,8 @@ namespace user
       //virtual iptr get_window_long_ptr(i32 nIndex) const override;
       //virtual void set_window_long_ptr(i32 nIndex, iptr lValue) override;
 
-      virtual id GetDlgCtrlId() const override;
-      virtual id SetDlgCtrlId(::id id) override;
+      virtual atom GetDlgCtrlId() const override;
+      virtual atom SetDlgCtrlId(::atom atom) override;
 
       virtual ::user::interaction * first_child() override;
       virtual ::user::interaction * top_child() override;
@@ -194,12 +194,12 @@ namespace user
       //virtual ::user::frame * EnsureParentFrame() override;
 
 
-      virtual lresult message_call(const ::id & id, wparam wparam, lparam lparam, const ::point_i32& point = nullptr) override;
+      virtual lresult message_call(const ::atom & atom, wparam wparam, lparam lparam, const ::point_i32& point = nullptr) override;
       virtual lresult message_call(::message::message * pmessage) override;
 
 
 
-      virtual void send_message_to_descendants(const ::id & id, wparam wParam = 0,lparam lParam = 0,bool bDeep = true,bool bOnlyPerm = false) override;
+      virtual void send_message_to_descendants(const ::atom & atom, wparam wParam = 0,lparam lParam = 0,bool bDeep = true,bool bOnlyPerm = false) override;
 
 
 
@@ -255,7 +255,7 @@ namespace user
       virtual void impl_clear_keyboard_focus();
 
 
-      virtual void post_message(const ::id & id, wparam wparam = 0, lparam lparam = 0) override;
+      virtual void post_message(const ::atom & atom, wparam wparam = 0, lparam lparam = 0) override;
 
       virtual void post_non_client_destroy() override;
 

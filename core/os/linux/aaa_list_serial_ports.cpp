@@ -213,7 +213,7 @@ string_array get_sysfs_info(const string & device_path)
    {
       // Try to read ID string of PCI device
 
-      string sys_id_path = sys_device_path + "/id";
+      string sys_id_path = sys_device_path + "/atom";
 
       if( path_exists( sys_id_path ) )
          hardware_id = file_first_line_dup( sys_id_path );

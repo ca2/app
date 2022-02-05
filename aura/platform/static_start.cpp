@@ -166,7 +166,7 @@ namespace aura
    //array < matter* >* g_paAura;
 
 
-   //::map < ::id, const ::id&, ::id, const ::id& >* g_pmapRTL;
+   //::map < ::atom, const ::atom&, ::atom, const ::atom& >* g_pmapRTL;
 
    //plex_heap_alloc_array* g_pheap;
 

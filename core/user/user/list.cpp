@@ -4356,7 +4356,7 @@ namespace user
       if (pcolumn == nullptr)
       {
 
-         return id();
+         return atom();
 
       }
 
@@ -4750,7 +4750,7 @@ namespace user
    }
 
 
-   index list_column_array::control_id_index(const ::id & id)
+   index list_column_array::control_id_index(const ::atom & atom)
    {
 
       for (index iIndex = 0; iIndex < this->get_size(); iIndex++)
@@ -4758,7 +4758,7 @@ namespace user
 
          list_column * pcolumn = element_at(iIndex);
 
-         if (pcolumn != nullptr && pcolumn->m_id == id)
+         if (pcolumn != nullptr && pcolumn->m_id == atom)
          {
 
             return iIndex;
@@ -4781,10 +4781,10 @@ namespace user
    }
 
 
-   list_column * list_column_array::get_by_control_id(const ::id & id)
+   list_column * list_column_array::get_by_control_id(const ::atom & atom)
    {
 
-      auto iIndex = subitem_index((::index) id);
+      auto iIndex = subitem_index((::index) atom);
 
       return get_by_index(iIndex);
 
@@ -6792,12 +6792,12 @@ namespace user
       }
    }
 
-   id list::data_get_current_sort_id()
+   atom list::data_get_current_sort_id()
    {
       return data_get_sort_id(m_eview);
    }
 
-   id list::data_get_sort_id(EImpact eview)
+   atom list::data_get_sort_id(EImpact eview)
    {
 
       return ::user::mesh::data_get_sort_id(eview);
@@ -6876,7 +6876,7 @@ namespace user
    }
 
 
-   id list::data_get_current_list_layout_id()
+   atom list::data_get_current_list_layout_id()
    {
 
       return "list";

@@ -51,10 +51,10 @@ namespace data
    }
 
 
-   bool data_container_base::set_data(const ::id & id, ::data::data * pdata)
+   bool data_container_base::set_data(const ::atom & atom, ::data::data * pdata)
    {
 
-      pdata->m_id = id;
+      pdata->m_id = atom;
 
       pdata->initialize_data(this);
 
@@ -94,10 +94,10 @@ namespace data
    }
 
 
-   data * data_container_base::get_data(const ::id & id)
+   data * data_container_base::get_data(const ::atom & atom)
    {
 
-      auto p = m_datamap.plookup(id);
+      auto p = m_datamap.plookup(atom);
 
       if (!p)
       {

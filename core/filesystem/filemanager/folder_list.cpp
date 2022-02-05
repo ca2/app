@@ -36,10 +36,10 @@ namespace filemanager
    }
 
 
-   void folder_list::assert_valid() const
+   void folder_list::assert_ok() const
    {
 
-      ::user::impact::assert_valid();
+      ::user::impact::assert_ok();
 
    }
 

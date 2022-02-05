@@ -18,8 +18,8 @@ i32 get_process_pid(const ::string & procNameParam)
       while (pid < 0 && (dirp = readdir(dp)))
       {
          // Skip non-numeric entries
-         i32 id = atoi(dirp->d_name);
-         if (id > 0)
+         i32 atom = atoi(dirp->d_name);
+         if (atom > 0)
          {
             // Read contents of virtual /proc/{pid}/cmdline file
             string cmdPath = string("/proc/") + dirp->d_name + "/cmdline";
@@ -41,7 +41,7 @@ i32 get_process_pid(const ::string & procNameParam)
                   cmdLine = cmdLine.substr(pos + 1);
                // compare against requested process name
                if (procName == cmdLine)
-                  pid = id;
+                  pid = atom;
             }
             fclose(cmdFile);
          }

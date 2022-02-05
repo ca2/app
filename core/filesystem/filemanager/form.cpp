@@ -22,7 +22,7 @@ namespace filemanager
       if(ptopic->m_id == ::id_click)
       {
 
-         if(ptopic->user_interaction()->m_id == "lfs")
+         if(ptopic->m_pextendedtopic->user_interaction()->m_id == "lfs")
          {
 
             ::topic topic(BROWSE_ID);
@@ -36,7 +36,7 @@ namespace filemanager
             pinteraction->_001SetText(filemanager_item()->m_filepathUser,::e_source_user);
 
          }
-         else if(ptopic->user_interaction()->m_id == "ftp")
+         else if(ptopic->m_pextendedtopic->user_interaction()->m_id == "ftp")
          {
 
             ::topic topic(id_browse);
@@ -46,7 +46,7 @@ namespace filemanager
             get_document()->update_all_views(&topic);
 
          }
-         else if(ptopic->user_interaction()->m_id == "submit")
+         else if(ptopic->m_pextendedtopic->user_interaction()->m_id == "submit")
          {
 
             if(m_strPath == "filemanager_add_location_lfs.xhtml")

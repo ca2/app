@@ -29,7 +29,7 @@ public:
    ~stdio_file() override;
 
 
-   void assert_valid() const override;
+   void assert_ok() const override;
    void dump(dump_context & dumpcontext) const override;
 
 

@@ -7,7 +7,7 @@ class CLASS_DECL_ACME task_pool :
 protected:
 
 
-   task_pointer & task(const ::id & id) { return m_map[id]; }
+   task_pointer & task(const ::atom & atom) { return m_map[atom]; }
 
 
 public:
@@ -20,7 +20,7 @@ public:
    virtual ~task_pool();
 
 
-   virtual ::task_pointer & defer_start(const ::id& id, const ::routine & routine);
+   virtual ::task_pointer & defer_start(const ::atom& atom, const ::routine & routine);
 
 
    virtual void start_clock(enum_timer etimer, const duration & duration);

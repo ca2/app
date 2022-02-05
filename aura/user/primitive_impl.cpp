@@ -68,7 +68,7 @@ namespace user
    //}
 
 
-   //void primitive_impl::create_window_ex(::user::interaction * pinteraction, __pointer(::user::system) pcs, ::user::primitive * puiParent, id id)
+   //void primitive_impl::create_window_ex(::user::interaction * pinteraction, __pointer(::user::system) pcs, ::user::primitive * puiParent, atom atom)
    //{
 
    //   throw ::interface_only_exception();
@@ -173,7 +173,7 @@ namespace user
    }
 
 
-   void primitive_impl::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, id idLeft, ::u32 nFlags, RECTANGLE_I32 * prectParam, const rectangle_i32 & rectangleClient, bool bStretch)
+   void primitive_impl::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, atom idLeft, ::u32 nFlags, RECTANGLE_I32 * prectParam, const rectangle_i32 & rectangleClient, bool bStretch)
    {
 
       if (!_is_window())
@@ -222,9 +222,9 @@ namespace user
       while (m_puserinteraction->get_child(pinteraction))
       {
 
-         id id = pinteraction->GetDlgCtrlId();
+         atom atom = pinteraction->GetDlgCtrlId();
 
-         if (id == idLeft)
+         if (atom == idLeft)
          {
 
             puiLeft = pinteraction;
@@ -602,13 +602,13 @@ namespace user
 //   }
 
 
-   id primitive_impl::GetDlgCtrlId() const
+   atom primitive_impl::GetDlgCtrlId() const
    {
 
       if (!m_puserinteraction)
       {
 
-         return ::id::e_type_null;
+         return ::atom::e_type_null;
 
       }
 
@@ -617,17 +617,17 @@ namespace user
    }
 
 
-   id primitive_impl::SetDlgCtrlId(id id)
+   atom primitive_impl::SetDlgCtrlId(atom atom)
    {
 
       if (!m_puserinteraction)
       {
 
-         return id::e_type_null;
+         return atom::e_type_null;
 
       }
 
-      return m_puserinteraction->SetDlgCtrlId(id);
+      return m_puserinteraction->SetDlgCtrlId(atom);
 
    }
 
@@ -1005,7 +1005,7 @@ namespace user
    }
 
 
-   lresult primitive_impl::message_call(const ::id & id, wparam wparam, lparam lparam, const ::point_i32& point)
+   lresult primitive_impl::message_call(const ::atom & atom, wparam wparam, lparam lparam, const ::point_i32& point)
    {
 
       ___pointer < ::message::message > pmessage;
@@ -1013,13 +1013,13 @@ namespace user
       if (m_puserinteraction)
       {
 
-         pmessage = m_puserinteraction->get_message(id, wparam, lparam);
+         pmessage = m_puserinteraction->get_message(atom, wparam, lparam);
 
       }
       else
       {
 
-         pmessage = get_message(id, wparam, lparam);
+         pmessage = get_message(atom, wparam, lparam);
 
       }
 
@@ -1073,10 +1073,10 @@ namespace user
    }
 
 
-   void primitive_impl::send_message_to_descendants(const ::id & id, wparam wparam, lparam lparam, bool bDeep, bool bOnlyPerm)
+   void primitive_impl::send_message_to_descendants(const ::atom & atom, wparam wparam, lparam lparam, bool bDeep, bool bOnlyPerm)
    {
 
-      return m_puserinteraction->send_message_to_descendants(id, wparam, lparam, bDeep, bOnlyPerm);
+      return m_puserinteraction->send_message_to_descendants(atom, wparam, lparam, bDeep, bOnlyPerm);
 
    }
 
@@ -1435,7 +1435,7 @@ namespace user
    }
 
 
-   void primitive_impl::post_message(const ::id & id, wparam wparam, lparam lparam)
+   void primitive_impl::post_message(const ::atom & atom, wparam wparam, lparam lparam)
    {
 
       if (::is_null(m_puserinteraction))
@@ -1445,7 +1445,7 @@ namespace user
 
       }
 
-      m_puserinteraction->post_routine(__new(call_message_handler_task(m_puserinteraction, id, wparam, lparam)));
+      m_puserinteraction->post_routine(__new(call_message_handler_task(m_puserinteraction, atom, wparam, lparam)));
 
       //return true;
 

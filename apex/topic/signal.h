@@ -12,7 +12,7 @@ public:
    ::matter_context                       m_mattercontext;
 
 
-   signal(const ::id & id, ::manager * pmanager = nullptr);
+   signal(const ::atom & atom, ::manager * pmanager = nullptr);
    ~signal() override;
 
 
@@ -58,17 +58,17 @@ public:
    }
 
 
-   ::topic & operator=(const ::id & id)
+   ::topic & operator=(const ::atom & atom)
    {
 
-      m_id = id;
+      m_id = atom;
 
       return *this;
 
    }
 
 
-   inline bool operator==(const ::id & id) const { return m_id == id || m_id == FULL_ID; }
+   inline bool operator==(const ::atom & atom) const { return m_id == atom || m_id == FULL_ID; }
 
    void subject_common_construct();
 

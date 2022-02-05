@@ -138,8 +138,8 @@ WINMMAPI ::u32 WINAPI mixerGetNumDevs(void);
 
 typedef struct tagMIXERcaPSA
 {
-   ::u16            wMid;                   /* manufacturer id */
-   ::u16            wPid;                   /* product id */
+   ::u16            wMid;                   /* manufacturer atom */
+   ::u16            wPid;                   /* product atom */
    MMVERSION       vDriverVersion;         /* version of the driver */
    char            szPname[MAXPNAMELEN];   /* product name */
    ::u32           fdwSupport;             /* misc. support bits */
@@ -147,8 +147,8 @@ typedef struct tagMIXERcaPSA
 } MIXERcaPSA, *PMIXERcaPSA, *LPMIXERcaPSA;
 typedef struct tagMIXERcaPSW
 {
-   ::u16            wMid;                   /* manufacturer id */
-   ::u16            wPid;                   /* product id */
+   ::u16            wMid;                   /* manufacturer atom */
+   ::u16            wPid;                   /* product atom */
    MMVERSION       vDriverVersion;         /* version of the driver */
    WCHAR           szPname[MAXPNAMELEN];   /* product name */
    ::u32           fdwSupport;             /* misc. support bits */
@@ -165,8 +165,8 @@ typedef LPMIXERcaPSA LPMIXERcaPS;
 #endif // UNICODE
 typedef struct tagMIXERcaPS2A
 {
-   ::u16            wMid;                   /* manufacturer id */
-   ::u16            wPid;                   /* product id */
+   ::u16            wMid;                   /* manufacturer atom */
+   ::u16            wPid;                   /* product atom */
    MMVERSION       vDriverVersion;         /* version of the driver */
    char            szPname[MAXPNAMELEN];   /* product name */
    ::u32           fdwSupport;             /* misc. support bits */
@@ -177,8 +177,8 @@ typedef struct tagMIXERcaPS2A
 } MIXERcaPS2A, *PMIXERcaPS2A, *LPMIXERcaPS2A;
 typedef struct tagMIXERcaPS2W
 {
-   ::u16            wMid;                   /* manufacturer id */
-   ::u16            wPid;                   /* product id */
+   ::u16            wMid;                   /* manufacturer atom */
+   ::u16            wPid;                   /* product atom */
    MMVERSION       vDriverVersion;         /* version of the driver */
    WCHAR           szPname[MAXPNAMELEN];   /* product name */
    ::u32           fdwSupport;             /* misc. support bits */
@@ -218,7 +218,7 @@ typedef struct tagMIXERLINEA
    ::u32       cbStruct;               /* size of MIXERLINE structure */
    ::u32       dwDestination;          /* zero based destination index */
    ::u32       dwSource;               /* zero based source index (if source) */
-   ::u32       dwLineID;               /* unique line id for mixer device */
+   ::u32       dwLineID;               /* unique line atom for mixer device */
    ::u32       fdwLine;                /* state/information about line */
    dword_ptr   dwUser;                 /* driver specific information */
    ::u32       dwComponentType;        /* component type line connects to */
@@ -242,7 +242,7 @@ typedef struct tagMIXERLINEW
    ::u32       cbStruct;               /* size of MIXERLINE structure */
    ::u32       dwDestination;          /* zero based destination index */
    ::u32       dwSource;               /* zero based source index (if source) */
-   ::u32       dwLineID;               /* unique line id for mixer device */
+   ::u32       dwLineID;               /* unique line atom for mixer device */
    ::u32       fdwLine;                /* state/information about line */
    dword_ptr   dwUser;                 /* driver specific information */
    ::u32       dwComponentType;        /* component type line connects to */
@@ -276,7 +276,7 @@ typedef LPMIXERLINEA LPMIXERLINE;
 typedef struct tagMIXERCONTROLA
 {
    ::u32           cbStruct;           /* size in bytes of MIXERCONTROL */
-   ::u32           dwControlID;        /* unique control id for mixer device */
+   ::u32           dwControlID;        /* unique control atom for mixer device */
    ::u32           dwControlType;      /* MIXERCONTROL_CONTROLTYPE_xxx */
    ::u32           fdwControl;         /* MIXERCONTROL_CONTROLF_xxx */
    ::u32           cMultipleItems;     /* if MIXERCONTROL_CONTROLF_MULTIPLE set */
@@ -306,7 +306,7 @@ typedef struct tagMIXERCONTROLA
 typedef struct tagMIXERCONTROLW
 {
    ::u32           cbStruct;           /* size in bytes of MIXERCONTROL */
-   ::u32           dwControlID;        /* unique control id for mixer device */
+   ::u32           dwControlID;        /* unique control atom for mixer device */
    ::u32           dwControlType;      /* MIXERCONTROL_CONTROLTYPE_xxx */
    ::u32           fdwControl;         /* MIXERCONTROL_CONTROLF_xxx */
    ::u32           cMultipleItems;     /* if MIXERCONTROL_CONTROLF_MULTIPLE set */
@@ -388,7 +388,7 @@ typedef LPMIXERCONTROLA LPMIXERCONTROL;
 typedef struct tagMIXERLINECONTROLSA
 {
    ::u32           cbStruct;       /* size in bytes of MIXERLINECONTROLS */
-   ::u32           dwLineID;       /* line id (from MIXERLINE.dwLineID) */
+   ::u32           dwLineID;       /* line atom (from MIXERLINE.dwLineID) */
    union
    {
       ::u32       dwControlID;    /* MIXER_GETLINECONTROLSF_ONEBYID */
@@ -401,7 +401,7 @@ typedef struct tagMIXERLINECONTROLSA
 typedef struct tagMIXERLINECONTROLSW
 {
    ::u32           cbStruct;       /* size in bytes of MIXERLINECONTROLS */
-   ::u32           dwLineID;       /* line id (from MIXERLINE.dwLineID) */
+   ::u32           dwLineID;       /* line atom (from MIXERLINE.dwLineID) */
    union
    {
       ::u32       dwControlID;    /* MIXER_GETLINECONTROLSF_ONEBYID */

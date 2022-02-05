@@ -689,7 +689,7 @@ namespace user
    }
 
 
-   void user::SendMessageToWindows(const ::id & id,wparam wparam,lparam lparam)
+   void user::SendMessageToWindows(const ::atom & atom,wparam wparam,lparam lparam)
    {
 
       auto psession = get_session();
@@ -709,9 +709,9 @@ namespace user
             if (pinteraction != nullptr && pinteraction->is_window())
             {
 
-               pinteraction->send_message(id, wparam, lparam);
+               pinteraction->send_message(atom, wparam, lparam);
 
-               pinteraction->send_message_to_descendants(id, wparam, lparam);
+               pinteraction->send_message_to_descendants(atom, wparam, lparam);
 
             }
 
@@ -815,10 +815,10 @@ namespace user
 //   }
 
 
-   //CLASS_DECL_AURA __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const ::string & pClassName, const ::string & lpWindowName, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, id id, HINSTANCE hInstance, LPVOID pParam);
+   //CLASS_DECL_AURA __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const ::string & pClassName, const ::string & lpWindowName, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, atom atom, HINSTANCE hInstance, LPVOID pParam);
 
 
-   //CLASS_DECL_AURA __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const ::string & pClassName, const ::string & pWindowName, u32 uStyle, ::user::interaction * puiParent, id id, HINSTANCE hInstance, LPVOID pParam)
+   //CLASS_DECL_AURA __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const ::string & pClassName, const ::string & pWindowName, u32 uStyle, ::user::interaction * puiParent, atom atom, HINSTANCE hInstance, LPVOID pParam)
    CLASS_DECL_AURA __pointer(::user::interaction) create_virtual_window(::object * pobject, ::user::interaction * pinteractionParent)
    {
 

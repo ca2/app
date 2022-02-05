@@ -14,8 +14,8 @@ namespace user
    }
 
 
-   impact_data::impact_data(const ::id& id, const ::id & idTitle) :
-      m_id(id),
+   impact_data::impact_data(const ::atom& atom, const ::atom & idTitle) :
+      m_id(atom),
       m_idTitle(idTitle)
    {
 

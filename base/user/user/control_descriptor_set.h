@@ -15,7 +15,7 @@
 //      virtual ~control_descriptor_set();
 //
 //
-//      __pointer(interaction) get_control(::user::form * pform, id id);
+//      __pointer(interaction) get_control(::user::form * pform, atom atom);
 //      control_descriptor * get_by_sub_item(index iSubItem);
 //
 //      bool find_control(::user::interaction * pinteraction, index & iItem, index & iSubItem);

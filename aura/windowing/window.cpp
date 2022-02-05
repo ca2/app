@@ -93,7 +93,7 @@ namespace windowing
    }
 
 
-   void window::assert_valid() const
+   void window::assert_ok() const
    {
 
 
@@ -336,7 +336,7 @@ namespace windowing
    }
 
 
-   lresult window::send_message(const ::id & id, wparam wParam, lparam lParam)
+   lresult window::send_message(const ::atom & atom, wparam wParam, lparam lParam)
    {
 
       return 0;
@@ -344,7 +344,7 @@ namespace windowing
    }
 
 
-   bool window::post_message(const ::id & id, wparam wParam, lparam lParam)
+   bool window::post_message(const ::atom & atom, wparam wParam, lparam lParam)
    {
 
       return false;

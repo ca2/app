@@ -33,7 +33,7 @@ matter::~matter()
 }
 
 
-void matter::assert_valid() const
+void matter::assert_ok() const
 {
 
 }
@@ -349,7 +349,7 @@ void matter::on_sequence(const ::payload & payload)
 }
 
 
-//::task* matter::defer_branch(const ::id& id, const ::routine & routine)
+//::task* matter::defer_branch(const ::atom& atom, const ::routine & routine)
 //{
 //
 //   auto ptasktool = taskpool();
@@ -361,7 +361,7 @@ void matter::on_sequence(const ::payload & payload)
 //
 //   }
 //
-//   return ptasktool->defer_branch(id, routine);
+//   return ptasktool->defer_branch(atom, routine);
 //
 //}
 
@@ -693,7 +693,7 @@ void matter::trace_log_fatal(const char * psz, ...)
 
 
 
-//void matter::future(const ::id & id, const ::payload & payload)
+//void matter::future(const ::atom & atom, const ::payload & payload)
 //{
 //
 //

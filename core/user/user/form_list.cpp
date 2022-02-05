@@ -2,7 +2,7 @@
 #include "core/user/user/_user.h"
 #include "axis/user/validate.h"
 #include "aura/update.h"
-#include "acme/constant/id.h"
+#include "acme/id.h"
 
 
 namespace user
@@ -78,7 +78,7 @@ namespace user
 
                auto ptopic = __new(::topic(id_click));
 
-               ptopic->m_puserelement = pinteraction;
+               ptopic->m_pextendedtopic->m_puserelement = pinteraction;
 
                m_itemControl = item;
 
@@ -165,7 +165,7 @@ namespace user
 
                auto ptopic = __new(::topic);
 
-               ptopic->m_puserelement = pinteraction;
+               ptopic->m_pextendedtopic->m_puserelement = pinteraction;
 
                ptopic->m_id = ::id_click;
 
@@ -1050,12 +1050,12 @@ break_click:;
    }
 
 
-   bool form_list::_001OnMouseActivate(::user::interaction_impl * pDesktopWnd,::u32 nHitTest,const ::id & id, lresult & iResult)
+   bool form_list::_001OnMouseActivate(::user::interaction_impl * pDesktopWnd,::u32 nHitTest,const ::atom & atom, lresult & iResult)
    {
 
       __UNREFERENCED_PARAMETER(pDesktopWnd);
       __UNREFERENCED_PARAMETER(nHitTest);
-      __UNREFERENCED_PARAMETER(id);
+      __UNREFERENCED_PARAMETER(atom);
       __UNREFERENCED_PARAMETER(iResult);
       return false;
    }
@@ -1210,7 +1210,7 @@ break_click:;
    void form_list::_001OnAddColumn(list_column * pcolumn)
    {
 
-      //if (pcolumn->M-id >= 0)
+      //if (pcolumn->M-atom >= 0)
       //{
 
       //   m_controldescriptorset[pcolumn->m_iControl]->m_iSubItem = pcolumn->subitem_index();
@@ -1889,7 +1889,7 @@ break_click:;
       if (ptopic->m_id == ::id_set_check)
       {
 
-         auto puserinteraction = ptopic->user_interaction();
+         auto puserinteraction = ptopic->m_pextendedtopic->user_interaction();
 
          auto iSubItem = puserinteraction->m_iSubItem;
 
@@ -1906,7 +1906,7 @@ break_click:;
       else if (ptopic->m_id == ::id_after_change_cur_sel)
       {
 
-         if (m_pcontrolEdit == ptopic->user_interaction())
+         if (m_pcontrolEdit == ptopic->m_pextendedtopic->user_interaction())
          {
 
             if (m_pcontrolEdit->has_function(::user::e_control_function_data_selection))
@@ -1914,7 +1914,7 @@ break_click:;
 
                _001SaveEdit(m_pcontrolEdit);
 
-               ptopic->m_bRet = true;
+               ptopic->m_pextendedtopic->m_bRet = true;
 
             }
 
@@ -1931,7 +1931,7 @@ break_click:;
 
             _001HideControl(m_pcontrolEdit);
 
-            ptopic->m_bRet = true;
+            ptopic->m_pextendedtopic->m_bRet = true;
 
          }
 
@@ -1954,7 +1954,7 @@ break_click:;
 
             _001HideControl(m_pcontrolEdit);
 
-            ptopic->m_bRet = true;
+            ptopic->m_pextendedtopic->m_bRet = true;
 
          }
 
@@ -1982,7 +1982,7 @@ break_click:;
 
             _001PlaceControl(pinteraction, iItem);
 
-            ptopic->m_bRet = true;
+            ptopic->m_pextendedtopic->m_bRet = true;
 
          }
 
@@ -1990,7 +1990,7 @@ break_click:;
       else if (ptopic->m_id == ::id_key_down)
       {
 
-         SCAST_PTR(::message::key, pkey, ptopic->m_actioncontext.m_pmessage.m_p);
+         SCAST_PTR(::message::key, pkey, ptopic->m_pextendedtopic->m_actioncontext.m_pmessage.m_p);
 
          if (pkey->m_ekey == e_key_down || pkey->m_ekey == e_key_up
                || pkey->m_ekey == e_key_left || pkey->m_ekey == e_key_right)
@@ -2050,7 +2050,7 @@ break_click:;
                _001SaveEdit(m_pcontrolEdit);
                _001HideControl(m_pcontrolEdit);
 
-               ptopic->m_bRet = true;
+               ptopic->m_pextendedtopic->m_bRet = true;
 
             }
 
@@ -2112,7 +2112,7 @@ break_click:;
 
                }
 
-               ptopic->m_bRet = true;
+               ptopic->m_pextendedtopic->m_bRet = true;
 
             }
 
@@ -2120,7 +2120,7 @@ break_click:;
 
       }
 
-      if (ptopic->m_bRet)
+      if (ptopic->m_pextendedtopic->m_bRet)
       {
 
          return;

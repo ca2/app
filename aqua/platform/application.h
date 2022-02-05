@@ -30,7 +30,7 @@ namespace aqua
 
       virtual void game_on_create(::aqua::game * pgame);
 
-      bool load_cached_string(string& str, const ::id& id, bool bLoadStringTable) override;
+      bool load_cached_string(string& str, const ::atom& atom, bool bLoadStringTable) override;
 
 
    };

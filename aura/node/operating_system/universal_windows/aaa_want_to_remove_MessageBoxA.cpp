@@ -23,8 +23,8 @@ message_box_a::message_box_a()
  
 }
 
-#define create_a_button(id,text) \
-   msg->Commands->Append(ref new UICommand(text,nullptr,id));
+#define create_a_button(atom,text) \
+   msg->Commands->Append(ref new UICommand(text,nullptr,atom));
 
 int message_box_a::do_modal(String ^ text,String ^ caption,unsigned int uFlags)
 {

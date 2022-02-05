@@ -13,14 +13,14 @@ namespace user
 {
 
 
-   impact_system::impact_system(const ::id & id, const ::type & typeDocument, const ::type & typeFrame, const ::type & typeImpact)
+   impact_system::impact_system(const ::atom & atom, const ::type & typeDocument, const ::type & typeFrame, const ::type & typeImpact)
    {
 
       m_bHiddenOnNotifyIcon = false;
 
       m_puserinteractionOwner = nullptr;
 
-      m_id = id;
+      m_id = atom;
       m_typeDocument = typeDocument;
       m_typeFrame = typeFrame;
       m_typeImpact = typeImpact;
@@ -425,15 +425,15 @@ namespace user
       dumpcontext << "\n";
    }
 
-   void impact_system::assert_valid() const
+   void impact_system::assert_ok() const
    {
-      channel::assert_valid();
+      channel::assert_ok();
 
       ::count count = get_document_count();
       for (index index = 0; index < count; index++)
       {
          __pointer(::user::document) pdocument = get_document(index);
-         pdocument->assert_valid();
+         pdocument->assert_ok();
       }
    }
 
@@ -493,7 +493,7 @@ namespace user
    }
 
 
-   void impact_system::update_all_views(::user::impact * pimpact, const ::id & id)
+   void impact_system::update_all_views(::user::impact * pimpact, const ::atom & atom)
    {
 
       ::count count = get_document_count();
@@ -503,7 +503,7 @@ namespace user
 
          ::user::document * pdocument = get_document(index);
 
-         pdocument->update_all_views(pimpact, id);
+         pdocument->update_all_views(pimpact, atom);
 
       }
 

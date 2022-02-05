@@ -15,7 +15,7 @@
 CFDataRef get_os_cf_data(const ::memory_base & memory, memsize pos, memsize size)
 {
    if (pos > memory.get_size())
-      __throw(error_invalid_argument);
+      __throw(error_bad_argument);
    if(size < 0)
    {
       size = memory.get_size() - pos;
@@ -35,14 +35,14 @@ void set_os_cf_data(memory_base &memory, CFDataRef data, memsize pos, memsize si
    if (pos > CFDataGetLength(data))
    {
 
-      __throw(error_invalid_argument);
+      __throw(error_bad_argument);
 
    }
 
    if (pos > CFDataGetLength(data))
    {
 
-      __throw(error_invalid_argument);
+      __throw(error_bad_argument);
 
    }
 

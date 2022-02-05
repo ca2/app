@@ -150,22 +150,22 @@ bool __node_acme_pos_term()
 
 
 
-::duration os_get_system_update_poll_time(const ::id & id)
+::duration os_get_system_update_poll_time(const ::atom & atom)
 {
 
-   if (id == id_user_color)
+   if (atom == id_user_color)
    {
 
       return 500_ms;
 
    }
-   else if (id == id_os_font_change)
+   else if (atom == id_os_font_change)
    {
 
       return 0_s;
 
    }
-   else if (id == id_font_enumeration)
+   else if (atom == id_font_enumeration)
    {
 
       return 0_s;

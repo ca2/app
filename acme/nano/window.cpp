@@ -237,7 +237,7 @@ void nano_window::update_drawing_objects()
 }
 
 
-::id nano_window::hit_test(int x, int y)
+::atom nano_window::hit_test(int x, int y)
 {
 
    x -= m_rectangle.left;
@@ -270,13 +270,13 @@ void nano_window::add_child(nano_child * pchild)
 }
 
 
-nano_child * nano_window::get_child_by_id(const ::id & id)
+nano_child * nano_window::get_child_by_id(const ::atom & atom)
 {
 
    for (auto & pchild : m_childa)
    {
 
-      if (pchild->m_id == id)
+      if (pchild->m_id == atom)
       {
 
          return pchild;
@@ -289,7 +289,7 @@ nano_child * nano_window::get_child_by_id(const ::id & id)
 
 }
 
-::id nano_window::get_result()
+::atom nano_window::get_result()
 {
 
    return m_idResult;
@@ -393,7 +393,7 @@ void nano_window::on_left_button_up(int x, int y)
 }
 
 
-void nano_window::on_click(const ::id & id)
+void nano_window::on_click(const ::atom & atom)
 {
 
    

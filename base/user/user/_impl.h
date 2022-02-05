@@ -6,10 +6,10 @@ namespace user
 
 
    template < class VIEW >
-   inline __pointer(VIEW) split_view::create_pane_view(index iPane, id id, ::user::interaction* pviewLast)
+   inline __pointer(VIEW) split_view::create_pane_view(index iPane, atom atom, ::user::interaction* pviewLast)
    {
 
-      return create_view < VIEW >(get_pane_holder(iPane), id, pviewLast);
+      return create_view < VIEW >(get_pane_holder(iPane), atom, pviewLast);
 
    }
 
@@ -28,19 +28,19 @@ namespace user
 
 
    template < class VIEW >
-   inline __pointer(VIEW) impact::create_view(::user::document* pdocument, ::user::interaction* puserinteractionParent, const ::id & id, ::user::interaction* pviewLast, ::user::impact_data* pimpactdata)
+   inline __pointer(VIEW) impact::create_view(::user::document* pdocument, ::user::interaction* puserinteractionParent, const ::atom & atom, ::user::interaction* pviewLast, ::user::impact_data* pimpactdata)
    {
 
-      return create_view(__type(VIEW), pdocument, puserinteractionParent, id, pviewLast, pimpactdata);
+      return create_view(__type(VIEW), pdocument, puserinteractionParent, atom, pviewLast, pimpactdata);
 
    }
 
 
    template < class VIEW >
-   inline __pointer(VIEW) impact::create_view(::user::interaction* puserinteractionParent, const ::id & id, ::user::interaction* pviewLast, ::user::impact_data* pimpactdata)
+   inline __pointer(VIEW) impact::create_view(::user::interaction* puserinteractionParent, const ::atom & atom, ::user::interaction* pviewLast, ::user::impact_data* pimpactdata)
    {
 
-      return create_view < VIEW >(get_document(), puserinteractionParent, id, pviewLast, pimpactdata);
+      return create_view < VIEW >(get_document(), puserinteractionParent, atom, pviewLast, pimpactdata);
 
    }
 
@@ -122,7 +122,7 @@ namespace user
 
 
    template < class TOOLBAR >
-      void frame_window::load_toolbar(const ::id & idToolbar, const ::string & strToolbar, u32 dwCtrlStyle, u32 uStyle)
+      void frame_window::load_toolbar(const ::atom & idToolbar, const ::string & strToolbar, u32 dwCtrlStyle, u32 uStyle)
       {
 
          return load_toolbar(__type(TOOLBAR), idToolbar, strToolbar, dwCtrlStyle, uStyle);

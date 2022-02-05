@@ -24,10 +24,10 @@ namespace app_core_build
 
 #ifdef _DEBUG
 
-   void impact::assert_valid() const
+   void impact::assert_ok() const
    {
 
-      ::user::impact::assert_valid();
+      ::user::impact::assert_ok();
 
    }
 

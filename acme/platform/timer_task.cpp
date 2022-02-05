@@ -132,7 +132,7 @@ void timer_task::start(const class ::wait & wait, bool bPeriodic)
       //      if (pcontextobjectContainer)
       //      {
 
-      //         strFormat.format(", id = % s]", __string(pcontextobjectContainer->m_id).c_str());
+      //         strFormat.format(", atom = % s]", __string(pcontextobjectContainer->m_id).c_str());
       //         
       //         m_strDebugNote += strFormat;
 

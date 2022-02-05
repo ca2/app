@@ -20,7 +20,7 @@ void menu_view::handle(::topic * ptopic, ::context * pcontext)
 
    papplication->handle(ptopic, pcontext);
 
-   if (ptopic->m_bRet)
+   if (ptopic->m_pextendedtopic->m_bRet)
    {
 
       return;
@@ -39,7 +39,7 @@ void menu_view::handle(::topic * ptopic, ::context * pcontext)
 
       get_parent()->handle(ptopic, pcontext);
 
-      if (ptopic->m_bRet)
+      if (ptopic->m_pextendedtopic->m_bRet)
       {
 
          return;
@@ -59,7 +59,7 @@ void menu_view::handle(::topic * ptopic, ::context * pcontext)
 //
 //   papplication->handle(ptopic, pcontext);
 //
-//   if(ptopic->m_bRet)
+//   if(ptopic->m_pextendedtopic->m_bRet)
 //   {
 //
 //      return;
@@ -78,7 +78,7 @@ void menu_view::handle(::topic * ptopic, ::context * pcontext)
 //
 //      get_parent()->handle(ptopic, pcontext);
 //
-//      if(ptopic->m_bRet)
+//      if(ptopic->m_pextendedtopic->m_bRet)
 //      {
 //
 //         return;

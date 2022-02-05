@@ -85,11 +85,11 @@ void freemsg(char* msg){
 
 int* list2array(char* poplist){
 /* returns an int array of sizes of messages from a LIST pop query */
-/* array[0] holds id of the array's matter */
+/* array[0] holds atom of the array's matter */
 /* should only be called on data received by a pop3_list() request */
 int* array=nullptr;
 int len,size_i32;
-int id=0;
+int atom=0;
 char* cur;
 
 #ifdef EBUG
@@ -101,14 +101,14 @@ char* cur;
 	if(!dotline(poplist)){/* if simple matter list */
 	/* you should't use this function for simple matter... */
 	/* you should better use listi2size() */
-		/* skip '+OK ': look for first mail int id */
+		/* skip '+OK ': look for first mail int atom */
 		for(cur=poplist;(*cur<'0')||(*cur>'9');cur++);
 		/* not dot line here */
-		sscanf(cur,"%d %d\n",&id,&size);
-		array=(int*)malloc((id+1)*sizeof(int));
-		__memset(array,0,(id+1)*sizeof(int));
-		array[0]=id;
-		array[id]=size_i32;
+		sscanf(cur,"%d %d\n",&atom,&size);
+		array=(int*)malloc((atom+1)*sizeof(int));
+		__memset(array,0,(atom+1)*sizeof(int));
+		array[0]=atom;
+		array[atom]=size_i32;
 		return(array);
 	}
 	/* else this is a true list */
@@ -117,25 +117,25 @@ char* cur;
 	cur ++; /* one more time to get behind '\n' */
 	len=1; /* array len */
 	while((*cur)!='.'){
-		sscanf(cur,"%d %d\n",&id,&size);
-		while(id > len){ /* fill array while id > len */
+		sscanf(cur,"%d %d\n",&atom,&size);
+		while(atom > len){ /* fill array while atom > len */
 			len++;
 			array=(int*)realloc(array,len*sizeof(int));
 			array[len-1]=0; /* no mail */
 		}
 		len++;
 		array=(int*)realloc(array,len*sizeof(int));
-		array[id]=size_i32;
+		array[atom]=size_i32;
 		cur=nextline(cur);
 	}
-	if(id){
-		array[0]=id; /* last id */
+	if(atom){
+		array[0]=atom; /* last atom */
 	}else{
 		array=(int*)malloc(1*sizeof(int));
 		array[0]=0;
 	}
 #ifdef EBUG
-	fprintf(stderr,"%d message(s)\n",id);
+	fprintf(stderr,"%d message(s)\n",atom);
 	fprintf(stderr,"</list2array>\n");
 #endif
 	return(array);
@@ -162,7 +162,7 @@ int r;
 }
 
 int stat2last(char* resp){
-/* returns the last id of retrievable messages */
+/* returns the last atom of retrievable messages */
 /* should only be called just after a pop3_stat() request */
 int n,s;
 
@@ -200,11 +200,11 @@ int n,s;
 }
 
 char** uidl2array(char* resp){
-/* returns an array of unique strings for each message id */
-/* array[0] gives array's last id */
+/* returns an array of unique strings for each message atom */
+/* array[0] gives array's last atom */
 /* should only be called just after a pop3_uidl() request */
 char** array=nullptr;
-int l,i=0; /* l is array lenth, i is id of msg */
+int l,i=0; /* l is array lenth, i is atom of msg */
 char s[POPBUF]; /* temp signature string : sig theorically <512 chars */
 char* cur;
 
@@ -220,7 +220,7 @@ char* cur;
 #ifdef EBUG
 		fprintf(stderr,"bad way of use of uidl2array()\n");
 #endif
-		/* skip '+OK ': look for first mail int id */
+		/* skip '+OK ': look for first mail int atom */
 		for(cur=resp;(*cur<'0')||(*cur>'9');cur++);
 		/* no dot line here */
 		sscanf(cur,"%d %s\n",&i,s);
@@ -232,13 +232,13 @@ char* cur;
 		return(array);
 	}
 	/* else this is a true uid list */
-	/* skip '+OK\r\n : look for first mail integer id */
+	/* skip '+OK\r\n : look for first mail integer atom */
 	for(cur=resp;(*cur!='.')&&(*cur!='\n'); cur++);
 	cur ++; /* one more time to get behind '\n' */
 	l=1; /* array len */
 	while((*cur)!='.'){
 		sscanf(cur,"%d %s\n",&i,s);
-		while(i > l){ /* fill array while id > len */
+		while(i > l){ /* fill array while atom > len */
 			l++;
 			array=(char**)realloc(array,l*sizeof(char*));
 			array[l-1]=(char*)malloc(sizeof(char));
@@ -250,10 +250,10 @@ char* cur;
 		array[i]=ansi_count_copy(array[i],s,POPBUF); 
 		cur=nextline(cur);
 	}
-	if(i){ /* i is now the last message id met in this session */
+	if(i){ /* i is now the last message atom met in this session */
 		array[0]=(char*)malloc(4); /* up to 9999 msg uids FIXME */
 		snprintf(array[0],4,"%d",i);
-		/* contains the id of the last msg (char*) */
+		/* contains the atom of the last msg (char*) */
 	}else{
 		array=(char**)malloc(1*sizeof(char*));
 		array[0]=(char*)malloc(2*sizeof(char)); /* 2 because of '\0' */

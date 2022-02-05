@@ -24,7 +24,7 @@ namespace filemanager
 
       //m_pfilewatcherlistenerthread = nullptr;
 
-      //command_signalid id;
+      //command_signalid atom;
 
       add_command_prober("levelup", this, &document::_001OnUpdateLevelUp);
       add_command_handler("levelup", this, &document::_001OnLevelUp);
@@ -266,7 +266,7 @@ namespace filemanager
 
          //      //payloadFile = itema[0]->get_user_path();
 
-         //      //varQuery["::filemanager::id"] = "filemanager::main::left";
+         //      //varQuery["::filemanager::atom"] = "filemanager::main::left";
 
          //      pfilemanagerdata->m_pcallback->on_file_manager_open(pfilemanagerdata, itema, context);
 
@@ -276,7 +276,7 @@ namespace filemanager
 
          //      //payloadFile = itema[1]->get_user_path();
 
-         //      //varQuery["::filemanager::id"] = "filemanager::main::right";
+         //      //varQuery["::filemanager::atom"] = "filemanager::main::right";
 
          //      pfilemanagerdata->m_pcallback->on_file_manager_open(pfilemanagerdata, itema, context);
 
@@ -290,7 +290,7 @@ namespace filemanager
 
          //      //payloadFile = itema[0]->get_user_path();
 
-         //      //varQuery["::filemanager::id"] = "filemanager::main::right";
+         //      //varQuery["::filemanager::atom"] = "filemanager::main::right";
 
          //      pfilemanagerdata->m_pcallback->on_file_manager_open(pfilemanagerdata, itema, context);
 
@@ -300,7 +300,7 @@ namespace filemanager
 
          //      //payloadFile = itema[1]->get_user_path();
 
-         //      //varQuery["::filemanager::id"] = "filemanager::main::left";
+         //      //varQuery["::filemanager::atom"] = "filemanager::main::left";
 
          //      pfilemanagerdata->m_pcallback->on_file_manager_open(pfilemanagerdata, itema, context);
 
@@ -314,7 +314,7 @@ namespace filemanager
 
          //   //varQuery = itema.get_var_query();
 
-         //   //varQuery["::filemanager::id"] = m_id;
+         //   //varQuery["::filemanager::atom"] = m_id;
 
             auto pcallback = pfilemanagerdata->m_pcallback;
 
@@ -646,9 +646,9 @@ namespace filemanager
    }
 
 
-   void document::assert_valid() const
+   void document::assert_ok() const
    {
-      ::user::document::assert_valid();
+      ::user::document::assert_ok();
    }
 
    void document::dump(dump_context & dumpcontext) const
@@ -1096,7 +1096,7 @@ namespace filemanager
 
       auto ptopic = create_subject(id_create_bars);
 
-      ptopic->payload(id_document) = this;
+      ptopic->m_pextendedtopic->payload(id_document) = this;
 
       if (bInitialBrowsePath)
       {
@@ -1115,7 +1115,7 @@ namespace filemanager
 //            if (str == "machinefs://")
 //            {
 //
-//               id idMachine;
+//               atom idMachine;
 //
 //#ifdef LINUX
 //               idMachine = "Linux";
@@ -1188,7 +1188,7 @@ namespace filemanager
 
          auto ptopic = create_subject(id_initialize);
 
-         ptopic->payload(id_document) = this;
+         ptopic->m_pextendedtopic->payload(id_document) = this;
 
          update_all_views(ptopic);
 
@@ -1198,9 +1198,9 @@ namespace filemanager
 
          auto ptopic = create_subject(id_synchronize_locations);
 
-         ptopic->m_actioncontext = ::e_source_sync;
+         ptopic->m_pextendedtopic->m_actioncontext = ::e_source_sync;
 
-         ptopic->payload(id_document) = this;
+         ptopic->m_pextendedtopic->payload(id_document) = this;
 
          update_all_views(ptopic);
 
@@ -1358,7 +1358,7 @@ namespace filemanager
 
          auto ptopic = create_subject(id_topic_start);
 
-         ptopic->payload(id_document) = pdocumentFilemanager;
+         ptopic->m_pextendedtopic->payload(id_document) = pdocumentFilemanager;
 
          pdocumentFilemanager->update_all_views(ptopic);
 
@@ -1530,7 +1530,7 @@ namespace filemanager
    }
 
 
-   ::id document::get_toolbar_id()
+   ::atom document::get_toolbar_id()
    {
 
       auto pfilemanagerdata = filemanager_data();

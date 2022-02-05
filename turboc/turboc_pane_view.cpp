@@ -23,10 +23,10 @@ namespace turboc
    }
 
 
-   void pane_view::assert_valid() const
+   void pane_view::assert_ok() const
    {
 
-	   ::aura::impact::assert_valid();
+	   ::aura::impact::assert_ok();
 
    }
 

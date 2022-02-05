@@ -27,7 +27,7 @@ namespace android
       virtual ~interaction_impl();
 
 
-      void assert_valid() const override;
+      void assert_ok() const override;
       void dump(dump_context & dumpcontext) const override;
 
       //bool create_message_queue(::user::interaction * pinteraction, const ::string & pszName) override;
@@ -80,10 +80,10 @@ namespace android
       //bool ExecuteDlgInit(LPVOID lpResource);
 
       // for child windows, views, panes etc
-      virtual bool create_window(::user::interaction * pinteraction, const ::string & lpszClassName, const ::string & lpszWindowName, u32 dwStyle, const ::rectangle_i32 & rectangle, ::user::primitive * pParentWnd, id id, ::create * pcreate = nullptr) override;
+      virtual bool create_window(::user::interaction * pinteraction, const ::string & lpszClassName, const ::string & lpszWindowName, u32 dwStyle, const ::rectangle_i32 & rectangle, ::user::primitive * pParentWnd, atom atom, ::create * pcreate = nullptr) override;
 
       // for top level windows and/or special features
-      virtual bool create_window_ex(::user::interaction * pinteraction, __pointer(::user::system) pusersystem, ::user::primitive * puiParent = nullptr, ::id id = ::id()) override;
+      virtual bool create_window_ex(::user::interaction * pinteraction, __pointer(::user::system) pusersystem, ::user::primitive * puiParent = nullptr, ::atom atom = ::atom()) override;
 
       // for top level windows and/or special features
       virtual bool _native_create_window_ex(__pointer(::user::system) pusersystem) override;
@@ -105,7 +105,7 @@ namespace android
       virtual void hide_software_keyboard(::user::primitive * pprimitive) override;
 
       using ::user::interaction_impl::get_child_by_id;
-      void get_child_by_id(id id,oswindow* poswindow_) const;
+      void get_child_by_id(atom atom,oswindow* poswindow_) const;
 
       //virtual bool IsWindow() const;
 
@@ -118,10 +118,10 @@ namespace android
       virtual ::user::interaction * SetActiveWindow() override;
 
 
-      LRESULT send_message(const ::id & id,WPARAM wParam = 0,lparam lParam = 0) override;
-      bool post_message(const ::id & id,WPARAM wParam = 0,lparam lParam = 0) override;
+      LRESULT send_message(const ::atom & atom,WPARAM wParam = 0,lparam lParam = 0) override;
+      bool post_message(const ::atom & atom,WPARAM wParam = 0,lparam lParam = 0) override;
 
-      //bool SendNotifyMessage(const ::id & id,WPARAM wParam,lparam lParam) override;
+      //bool SendNotifyMessage(const ::atom & atom,WPARAM wParam,lparam lParam) override;
       //bool SendChildNotifyLastMsg(LRESULT* pResult = nullptr);
 
       //bool DragDetect(POINT_I32 pt) const;
@@ -244,7 +244,7 @@ namespace android
       //virtual ::user::interaction * GetNextDlgGroupItem(::user::interaction * pWndCtl, bool bPrevious = false) const;
       //virtual ::user::interaction * GetNextDlgTabItem(::user::interaction * pWndCtl, bool bPrevious = false) const;
       virtual ::u32 IsDlgButtonChecked(i32 nIDButton) const override;
-      //virtual LRESULT SendDlgItemMessage(i32 nID, const ::id & id, WPARAM wParam = 0, LPARAM lParam = 0) override;
+      //virtual LRESULT SendDlgItemMessage(i32 nID, const ::atom & atom, WPARAM wParam = 0, LPARAM lParam = 0) override;
       virtual void SetDlgItemInt(i32 nID, ::u32 nValue, bool bSigned = true) override;
       virtual void SetDlgItemText(i32 nID, const ::string & lpszString) override;
 
@@ -369,7 +369,7 @@ namespace android
       void OnMove(i32 x,i32 y);
       DECLARE_MESSAGE_HANDLER(_001OnPaint);
       DECLARE_MESSAGE_HANDLER(_001OnPrint);
-      void OnParentNotify(const ::id & id,LPARAM lParam);
+      void OnParentNotify(const ::atom & atom,LPARAM lParam);
       HCURSOR OnQueryDragIcon();
       bool OnQueryEndSession();
       bool OnQueryNewPalette();
@@ -433,7 +433,7 @@ namespace android
       void OnMButtonDblClk(::u32 nFlags, const ::point_i32 & point);
       void OnMButtonDown(::u32 nFlags, const ::point_i32 & point);
       void OnMButtonUp(::u32 nFlags, const ::point_i32 & point);
-      i32 OnMouseActivate(::user::interaction * pDesktopWnd,::u32 nHitTest,const ::id & id);
+      i32 OnMouseActivate(::user::interaction * pDesktopWnd,::u32 nHitTest,const ::atom & atom);
       void OnMouseMove(::u32 nFlags, const ::point_i32 & point);
       bool OnMouseWheel(::u32 nFlags,i16 zDelta, const ::point_i32 & point);
       LRESULT OnRegisteredMouseWheel(WPARAM wParam,LPARAM lParam);
@@ -503,7 +503,7 @@ namespace android
 
       // for handling default processing
       LRESULT Default();
-      virtual LRESULT DefWindowProc(const ::id & id,WPARAM wParam,lparam lParam);
+      virtual LRESULT DefWindowProc(const ::atom & atom,WPARAM wParam,lparam lParam);
 
       virtual void post_non_client_destroy() override;
 
@@ -587,8 +587,8 @@ namespace android
       //virtual void MoveWindow(i32 x, i32 y, i32 nWidth, i32 nHeight, bool bRepaint);
       //virtual void MoveWindow(const RECTANGLE_I32 * lpRect, bool bRepaint = true);
 
-      virtual id SetDlgCtrlId(id id) override;
-      virtual id GetDlgCtrlId();
+      virtual atom SetDlgCtrlId(atom atom) override;
+      virtual atom GetDlgCtrlId();
 
 
       //virtual ::i32 GetWindowLong(i32 nIndex);

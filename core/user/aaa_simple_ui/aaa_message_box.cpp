@@ -59,23 +59,23 @@ namespace simple_ui
    }
 
 
-   void message_box::create_a_button(id id, const ::string & pszText)
+   void message_box::create_a_button(atom atom, const ::string & pszText)
    {
 
-      create_button(m_tapaA,id,pszText);
+      create_button(m_tapaA,atom,pszText);
 
    }
 
 
-   void message_box::create_b_button(id id, const ::string & pszText)
+   void message_box::create_b_button(atom atom, const ::string & pszText)
    {
 
-      create_button(m_tapaB,id,pszText);
+      create_button(m_tapaB,atom,pszText);
 
    }
 
 
-   void message_box::create_button(__pointer_array(tap) & tapa,id id, const ::string & pszText)
+   void message_box::create_button(__pointer_array(tap) & tapa,atom atom, const ::string & pszText)
    {
 
       auto ptap = __new(::simple_ui::tap);

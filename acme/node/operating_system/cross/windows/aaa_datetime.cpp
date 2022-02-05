@@ -1010,7 +1010,7 @@ int_bool WINAPI SystemTimeToFileTime( const SYSTEMTIME *syst, LPFILETIME ft )
    if( !RtlTimeFieldsToTime(&tf, &t))
    {
    
-      set_last_status(error_invalid_argument);
+      set_last_status(error_bad_argument);
 
       return false;
 

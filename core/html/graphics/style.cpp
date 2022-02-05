@@ -5,7 +5,7 @@
 #endif
 
 #endif
-#include "core/id.h"
+#include "core/atom.h"
 #include "core/html/html/_html.h"
 #include "core/user/user/_user.h"
 
@@ -82,7 +82,7 @@ namespace html
    }
 
 
-   bool style::get_dimension(bool bParent, id idName, const ::string & strSubClass, html_data * pdata, ::html::element* pelement, float & f)
+   bool style::get_dimension(bool bParent, atom idName, const ::string & strSubClass, html_data * pdata, ::html::element* pelement, float & f)
    {
 
       f = 0.f;
@@ -131,7 +131,7 @@ namespace html
    }
 
 
-   bool style::get_surround_box(id idName, const ::string & strSubClass, html_data * pdata, ::html::element * pelement, ::rectangle_f32 & rectangle)
+   bool style::get_surround_box(atom idName, const ::string & strSubClass, html_data * pdata, ::html::element * pelement, ::rectangle_f32 & rectangle)
    {
 
       e_tag etag = pelement->m_etag;
@@ -288,7 +288,7 @@ namespace html
    }
 
 
-   bool style::get_border_box(id idName, const ::string & strSubClass, html_data * pdata, ::html::element* pelement, border & rectangle)
+   bool style::get_border_box(atom idName, const ::string & strSubClass, html_data * pdata, ::html::element* pelement, border & rectangle)
    {
 
       e_tag etag = pelement->m_etag;
@@ -460,7 +460,7 @@ namespace html
    }
 
 
-   bool style::get_border_color(id idName, const ::string & strSubClass, html_data * pdata, ::html::element * pelement, border & rectangle)
+   bool style::get_border_color(atom idName, const ::string & strSubClass, html_data * pdata, ::html::element * pelement, border & rectangle)
    {
 
       e_tag etag = pelement->m_etag;
@@ -633,7 +633,7 @@ namespace html
    }
 
 
-   bool style::get_color(id idName, const ::string & strSubClass, html_data * pdata, const ::html::element * pelement, ::color::color & color32)
+   bool style::get_color(atom idName, const ::string & strSubClass, html_data * pdata, const ::html::element * pelement, ::color::color & color32)
    {
 
       e_tag etag = pelement->m_etag;
@@ -665,7 +665,7 @@ namespace html
    }
 
 
-   bool style::get_text(id idName, const ::string & strSubClass, html_data * pdata, const ::html::element * pelement, string & str)
+   bool style::get_text(atom idName, const ::string & strSubClass, html_data * pdata, const ::html::element * pelement, string & str)
    {
 
       e_tag etag = pelement->m_etag;
@@ -911,7 +911,7 @@ namespace html
    }
 
 
-   bool style::matches(e_tag etag, const ::string & strClass, const ::string & strSubClass, id idName)
+   bool style::matches(e_tag etag, const ::string & strClass, const ::string & strSubClass, atom idName)
    {
 
       if(etag != tag_none && m_etag != tag_none)
@@ -930,7 +930,7 @@ namespace html
    }
 
 
-   bool style::matches_border_width(e_tag etag, const ::string & strClass, const ::string & strSubClass, id idName, float & f)
+   bool style::matches_border_width(e_tag etag, const ::string & strClass, const ::string & strSubClass, atom idName, float & f)
    {
       if(etag != tag_none && m_etag != tag_none)
          if(m_etag != etag)
@@ -952,7 +952,7 @@ namespace html
    }
 
 
-   bool style::matches_border_color(e_tag etag, const ::string & strClass, const ::string & strSubClass, id idName, ::color::color & color32)
+   bool style::matches_border_color(e_tag etag, const ::string & strClass, const ::string & strSubClass, atom idName, ::color::color & color32)
    {
 
       if (etag != tag_none && m_etag != tag_none)

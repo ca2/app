@@ -370,7 +370,7 @@ typedef struct {
 #define TBIF_COMMAND            0x00000020
 #define TBIF_SIZE               0x00000040
 
-#define TBIF_BYINDEX            0x80000000 // this specifies that the wparam in Get/SetButtonInfo is an index, not id
+#define TBIF_BYINDEX            0x80000000 // this specifies that the wparam in Get/SetButtonInfo is an index, not atom
 
 typedef struct {
    ::u32 cbSize;
@@ -601,7 +601,7 @@ typedef struct tagNMTBGETINFOTIPW
 typedef struct {
    NMHDR  hdr;
    ::u32 dwMask;     // [in] Specifies the values requested .[out] Client ask the data to be set for future use
-   int idCommand;    // [in] id of button we're requesting info for
+   int idCommand;    // [in] atom of button we're requesting info for
    DWORD_PTR lParam;  // [in] lParam of button
    int iImage;       // [out] image index
    char * pszText;    // [out] new text for item
@@ -611,7 +611,7 @@ typedef struct {
 typedef struct {
    NMHDR hdr;
    ::u32 dwMask;      //[in] Specifies the values requested .[out] Client ask the data to be set for future use
-   int idCommand;    // [in] id of button we're requesting info for
+   int idCommand;    // [in] atom of button we're requesting info for
    DWORD_PTR lParam;  // [in] lParam of button
    int iImage;       // [out] image index
    LPWSTR pszText;   // [out] new text for item
@@ -849,7 +849,7 @@ typedef REBARBANDINFOW const *LPCREBARBANDINFOW;
 #define RB_GETBANDCOUNT (WM_USER +  12)
 #define RB_GETROWCOUNT  (WM_USER +  13)
 #define RB_GETROWHEIGHT (WM_USER +  14)
-#define RB_IDTOINDEX    (WM_USER +  16) // wParam == id
+#define RB_IDTOINDEX    (WM_USER +  16) // wParam == atom
 #define RB_GETTOOLTIPS  (WM_USER +  17)
 #define RB_SETTOOLTIPS  (WM_USER +  18)
 #define RB_SETBKCOLOR   (WM_USER +  19) // sets the default BK color

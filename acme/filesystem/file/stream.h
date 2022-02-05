@@ -59,7 +59,7 @@ inline ::file::file & operator << (::file::file & file, const TYPE & t);
  inline void __exchange(::stream & s, const char * psz);
  inline void __exchange(::stream & s, string & str);
  inline void __exchange(::stream & s, ::file::path & path);
- inline void __exchange(::stream & s, ::id & id);
+ inline void __exchange(::stream & s, ::atom & atom);
  inline void __exchange(::stream & s, ::payload & payload);
  inline void __exchange(::stream & s, ::property & property);
  inline void __exchange(::stream & s, ::matter & matter);
@@ -268,7 +268,7 @@ public:
 //   property_set_stream() : m_ppropertyset(nullptr) { }
 //   property_set_stream(property_set & set) : m_ppropertyset(&set) { }
 //
-//   virtual stream * branch(const ::id & id);
+//   virtual stream * branch(const ::atom & atom);
 //
 //};
 //
@@ -285,7 +285,7 @@ public:
 //   payload_stream() : m_ppayload(nullptr) { }
 //   payload_stream(::payload & payload) : m_ppayload(&payload) { }
 //
-//   virtual stream * branch(const ::id &);
+//   virtual stream * branch(const ::atom &);
 //
 //
 //};
@@ -299,7 +299,7 @@ public:
 //   __pointer(stream) m_pstream;
 //
 //
-//   stream_stack(stream * pstream, const ::id & id);
+//   stream_stack(stream * pstream, const ::atom & atom);
 //
 //
 //   stream & stream() { return *m_pstream; }
@@ -330,8 +330,8 @@ public:
 
    inline void defer_set_storing() { if (!is_storing()) set_storing(); }
 
-   virtual string factory_id_to_text(const :: id & id);
-   virtual ::id text_to_factory_id(string strText);
+   virtual string factory_id_to_text(const :: atom & atom);
+   virtual ::atom text_to_factory_id(string strText);
 
    template < typename TYPE >
    void default_exchange(TYPE & t);
@@ -340,16 +340,16 @@ public:
    void write_only(TYPE & t);
 
    template < typename TYPE >
-   void stream_exchange(const ::id & id, TYPE & t);
+   void stream_exchange(const ::atom & atom, TYPE & t);
 
-   inline void exchange(const ::id & id, void * pdata, memsize s);
+   inline void exchange(const ::atom & atom, void * pdata, memsize s);
 
    void add_exception(const ::exception & e) override;
    void on_catch_all_exception() override;
 
-   virtual void write_element(const ::id & id, ::element * pelement);
+   virtual void write_element(const ::atom & atom, ::element * pelement);
 
-   virtual __pointer(::element) read_element(const ::id & id);
+   virtual __pointer(::element) read_element(const ::atom & atom);
 
 
    virtual bool is_open() const;
@@ -480,7 +480,7 @@ public:
 #ifdef WINDOWS
    virtual void write(const unichar * wch) { write(string(wch)); }
 #endif
-   virtual void write(const id & id);
+   virtual void write(const atom & atom);
    virtual void write(const ::payload & payload);
    virtual void write(const property & property);
    virtual void write(const ::string & str) ;
@@ -524,7 +524,7 @@ public:
    //virtual void read(POINT_I32 & point);
    //virtual void read(SIZE_I32 & size);
    //virtual void read(RECTANGLE_I32 & rectangle);
-   virtual void read(id & id);
+   virtual void read(atom & atom);
    virtual void read(::payload & payload);
    virtual void read_var_type(enum_type & etype);
    virtual void read_var_body(::payload & payload, enum_type etype);
@@ -539,44 +539,44 @@ public:
 
 
 
-   virtual void exchange(const ::id & id, char & ch) { stream_exchange(id, ch); }
-   virtual void exchange(const ::id & id, uchar & uch) { stream_exchange(id, uch); }
-   virtual void exchange(const ::id & id, i8 & i) { stream_exchange(id, i); }
-   virtual void exchange(const ::id & id, i16 & i) { stream_exchange(id, i); }
-   virtual void exchange(const ::id & id, u16 & u) { stream_exchange(id, u); }
+   virtual void exchange(const ::atom & atom, char & ch) { stream_exchange(atom, ch); }
+   virtual void exchange(const ::atom & atom, uchar & uch) { stream_exchange(atom, uch); }
+   virtual void exchange(const ::atom & atom, i8 & i) { stream_exchange(atom, i); }
+   virtual void exchange(const ::atom & atom, i16 & i) { stream_exchange(atom, i); }
+   virtual void exchange(const ::atom & atom, u16 & u) { stream_exchange(atom, u); }
 #ifdef WINDOWS
-   virtual void exchange(const ::id & id, unichar & wch) { stream_exchange(id, wch); }
+   virtual void exchange(const ::atom & atom, unichar & wch) { stream_exchange(atom, wch); }
 #endif
-   virtual void exchange(const ::id & id, bool & b) { stream_exchange(id, b); }
-   virtual void exchange(const ::id & id, i32 & i) { stream_exchange(id, i); }
-   virtual void exchange(const ::id & id, u32 & u) { stream_exchange(id, u); }
-   virtual void exchange(const ::id & id, i64 & i) { stream_exchange(id, i); }
-   virtual void exchange(const ::id & id, ::u64 & u) { stream_exchange(id, u); }
+   virtual void exchange(const ::atom & atom, bool & b) { stream_exchange(atom, b); }
+   virtual void exchange(const ::atom & atom, i32 & i) { stream_exchange(atom, i); }
+   virtual void exchange(const ::atom & atom, u32 & u) { stream_exchange(atom, u); }
+   virtual void exchange(const ::atom & atom, i64 & i) { stream_exchange(atom, i); }
+   virtual void exchange(const ::atom & atom, ::u64 & u) { stream_exchange(atom, u); }
 #if defined(__APPLE__) || defined(ANDROID) || defined(WINDOWS) || defined(RASPBIAN)
-   virtual void exchange(const ::id & id, unsigned long & ul) { stream_exchange(id, ul); }
-   virtual void exchange(const ::id & id, long & l) { stream_exchange(id, l); }
-   //inline void exchange(const ::id & id, long long & ll);
+   virtual void exchange(const ::atom & atom, unsigned long & ul) { stream_exchange(atom, ul); }
+   virtual void exchange(const ::atom & atom, long & l) { stream_exchange(atom, l); }
+   //inline void exchange(const ::atom & atom, long long & ll);
 #endif
-   virtual void exchange(const ::id & id, float & f) { stream_exchange(id, f); }
-   virtual void exchange(const ::id & id, double & d) { stream_exchange(id, d); }
-   virtual void exchange(const ::id & id, POINT_I32 & point) { stream_exchange(id, point); }
-   virtual void exchange(const ::id & id, SIZE_I32 & size) { stream_exchange(id, size); }
-   virtual void exchange(const ::id & id, RECTANGLE_I32 & crect) { stream_exchange(id, crect); }
-   virtual void exchange(const ::id & id, POINT_F64& point) { stream_exchange(id, point); }
-   virtual void exchange(const ::id & id, SIZE_F64& size) { stream_exchange(id, size); }
-   virtual void exchange(const ::id & id, RECTANGLE_F64& crect) { stream_exchange(id, crect); }
-   virtual void exchange(const ::id & id, const char * psz);
+   virtual void exchange(const ::atom & atom, float & f) { stream_exchange(atom, f); }
+   virtual void exchange(const ::atom & atom, double & d) { stream_exchange(atom, d); }
+   virtual void exchange(const ::atom & atom, POINT_I32 & point) { stream_exchange(atom, point); }
+   virtual void exchange(const ::atom & atom, SIZE_I32 & size) { stream_exchange(atom, size); }
+   virtual void exchange(const ::atom & atom, RECTANGLE_I32 & crect) { stream_exchange(atom, crect); }
+   virtual void exchange(const ::atom & atom, POINT_F64& point) { stream_exchange(atom, point); }
+   virtual void exchange(const ::atom & atom, SIZE_F64& size) { stream_exchange(atom, size); }
+   virtual void exchange(const ::atom & atom, RECTANGLE_F64& crect) { stream_exchange(atom, crect); }
+   virtual void exchange(const ::atom & atom, const char * psz);
 #ifdef WINDOWS
-   virtual void exchange(const ::id & id, const unichar * wch);
+   virtual void exchange(const ::atom & atom, const unichar * wch);
 #endif
-   virtual void exchange(const ::id & id, ::id & idExchange);
-   virtual void exchange(const ::id & id, ::payload & payload);
-   virtual void exchange(const ::id & id, property & property);
-   virtual void exchange(const ::id & id, string & str) ;
-   virtual void exchange(const ::id & id, ::matter * pobject);
-   virtual void exchange(const ::id & id, ::matter & matter);
-   virtual void exchange(const ::id & id, property_set & set);
-   virtual void exchange(const ::id & id, block & block);
+   virtual void exchange(const ::atom & atom, ::atom & idExchange);
+   virtual void exchange(const ::atom & atom, ::payload & payload);
+   virtual void exchange(const ::atom & atom, property & property);
+   virtual void exchange(const ::atom & atom, string & str) ;
+   virtual void exchange(const ::atom & atom, ::matter * pobject);
+   virtual void exchange(const ::atom & atom, ::matter & matter);
+   virtual void exchange(const ::atom & atom, property_set & set);
+   virtual void exchange(const ::atom & atom, block & block);
 
 
    virtual void getline(char * sz, strsize n) ;
@@ -667,10 +667,10 @@ public:
 };
 
 
-//stream_stack::stream_stack(stream * pstreamStack, const ::id & id)
+//stream_stack::stream_stack(stream * pstreamStack, const ::atom & atom)
 //{
 //
-//   m_pstream = pstreamStack->branch(id);
+//   m_pstream = pstreamStack->branch(atom);
 //
 //}
 
@@ -735,7 +735,7 @@ namespace std
 //
 //inline stream & operator >> (stream & s, RECTANGLE_I32 & rectangle) { s.read(rectangle); return s; }
 //
-//inline stream & operator >> (stream & s, ::id & id) { s.read(id); return s; }
+//inline stream & operator >> (stream & s, ::atom & atom) { s.read(atom); return s; }
 //
 //inline stream & operator >> (stream & s, ::payload & payload) { s.read(payload); return s; }
 //
@@ -841,7 +841,7 @@ namespace std
 //
 //inline stream & operator << (stream & s, const char * psz) { s.write(psz); return s; }
 //
-//inline stream & operator << (stream & s, const id & id) { s.write(id); return s; }
+//inline stream & operator << (stream & s, const atom & atom) { s.write(atom); return s; }
 //
 //inline stream & operator << (stream & s, const ::payload & payload) { s.write(payload); return s; }
 //

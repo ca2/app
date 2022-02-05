@@ -28,11 +28,11 @@ namespace user
       bool                                   m_bAutoDelete;
       double                                 m_dHeaderHeight;
       __pointer(::user::menu_item)           m_pitemClose;
-      id                                     m_idSubMenu;
+      atom                                     m_idSubMenu;
       i32                                    m_iHoverSubMenu;
       u32                                    m_dwOut;
       __pointer(menu)                        m_psubmenu;
-      id                                     m_idTimerMenu;
+      atom                                     m_idTimerMenu;
       point_i32                              m_pointTrack;
       point_i32                              m_pointPositionHint;
       int                                    m_iFlags;
@@ -136,7 +136,7 @@ namespace user
       void route_command(::message::command* pcommand, bool bRouteToKeyDescendant) override;
 
       //// <3ThomasBorregaardS�rensen__!!
-      void handle_command(const ::id& id) override;
+      void handle_command(const ::atom& atom) override;
 
 
    };

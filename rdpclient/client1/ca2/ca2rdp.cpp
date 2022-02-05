@@ -313,14 +313,14 @@ static int ca2rdp_receive_channel_data(freerdp* instance, int channelId, byte* d
 //
 //	if (event)
 //	{
-//		switch (GetMessageType(event->id))
+//		switch (GetMessageType(event->atom))
 //		{
 //			case CliprdrChannel_MonitorReady:
 //				ca2rdp_process_cb_monitor_ready_event(channels, instance);
 //				break;
 //
 //			default:
-//				WLog_ERR(TAG, "ca2rdp_process_channel_event: unknown event type %d\n", GetMessageType(event->id));
+//				WLog_ERR(TAG, "ca2rdp_process_channel_event: unknown event type %d\n", GetMessageType(event->atom));
 //				break;
 //		}
 //

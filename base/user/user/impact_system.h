@@ -40,7 +40,7 @@ namespace user
       };
 
 
-      //::id                             m_idToolbar;
+      //::atom                             m_idToolbar;
       bool                             m_bHiddenOnNotifyIcon;
 
       ::user::interaction *            m_puserinteractionOwner;
@@ -74,12 +74,12 @@ namespace user
       // The ::user::document names sub-strings are represented as _one_ string:
       // windowTitle\ndocName\n ... (see DocStringIndex enum)
 
-      impact_system(const ::id & id, const ::type & typeDocument, const ::type & typeFrame, const ::type & typeImpact);
+      impact_system(const ::atom & atom, const ::type & typeDocument, const ::type & typeFrame, const ::type & typeImpact);
       ~impact_system() override;
 
 
       void dump(dump_context &) const override;
-      void assert_valid() const override;
+      void assert_ok() const override;
 
 
       virtual void load_template();
@@ -96,7 +96,7 @@ namespace user
       //__pointer(::user::frame_window) CreateOleFrame(::user::interaction_impl * puiParent, ::user::document * pDoc,
       //   bool bCreateImpact);
 
-      virtual void update_all_views(::user::impact * pimpact, const ::id & id);
+      virtual void update_all_views(::user::impact * pimpact, const ::atom & atom);
       virtual void update_all_views(::topic * ptopic);
 
       virtual void handle(::topic * ptopic, ::context * pcontext) override;

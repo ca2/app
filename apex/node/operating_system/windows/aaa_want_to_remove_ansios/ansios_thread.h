@@ -9,7 +9,7 @@
 //class message_queue;
 
 
-//CLASS_DECL_APEX __pointer(message_queue) __get_mq(itask_t id);
+//CLASS_DECL_APEX __pointer(message_queue) __get_mq(itask_t atom);
 
 //CLASS_DECL_APEX int_bool WINAPI GetMessage(LPMESSAGE lpMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
 

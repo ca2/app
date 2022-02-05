@@ -57,10 +57,10 @@ namespace user
    }
 
 
-   void image_list::assert_valid() const
+   void image_list::assert_ok() const
    {
 
-      ::user::box::assert_valid();
+      ::user::box::assert_ok();
 
    }
 
@@ -665,10 +665,10 @@ namespace user
    }
 
 
-   void image_list_view::assert_valid() const
+   void image_list_view::assert_ok() const
    {
 
-      ::user::image_list::assert_valid();
+      ::user::image_list::assert_ok();
 
    }
 
@@ -720,7 +720,7 @@ namespace user
          __throw(todo, "core");
          //auto * peditview = _001TypedWindow < ::userex::top_edit_view >();
 
-         //if (peditview != nullptr && ptopic->user_interaction() == peditview)
+         //if (peditview != nullptr && ptopic->m_pextendedtopic->user_interaction() == peditview)
          //{
 
          //   string strText;

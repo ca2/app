@@ -71,41 +71,41 @@
 //void channel::add_route (RECEIVER * preceiver, void (RECEIVER::* phandler)(::message::message * pmessage))
 //{
 //
-//  add_receiver_route(id, preceiver, phandler);
+//  add_receiver_route(atom, preceiver, phandler);
 //
 //}
 
 
 //template < typename RECEIVER, typename MESSAGE_PRED >
-//void channel::add_route (const ::id & id, RECEIVER * preceiverDerived, MESSAGE_PRED message_predicate)
+//void channel::add_route (const ::atom & atom, RECEIVER * preceiverDerived, MESSAGE_PRED message_predicate)
 //{
 //
-//  get_typed_route < typename ::erase_reference < decltype(*preceiverDerived) >::TYPE, ::message::message >(id, preceiverDerived) = message_predicate;
+//  get_typed_route < typename ::erase_reference < decltype(*preceiverDerived) >::TYPE, ::message::message >(atom, preceiverDerived) = message_predicate;
 //
 //}
 
 
 //template < typename RECEIVER >
-//bool channel::add_message_handler(const ::id & id, RECEIVER* preceiver, void (RECEIVER::* phandler)(::message::message * pmessage))
+//bool channel::add_message_handler(const ::atom & atom, RECEIVER* preceiver, void (RECEIVER::* phandler)(::message::message * pmessage))
 //{
 //
 //   ::message::__handler(preceiver, phandler)
 //
-//   return _add_message_handler(id, preceiver, reinterpret_cast<void *&>(phandler), );
+//   return _add_message_handler(atom, preceiver, reinterpret_cast<void *&>(phandler), );
 //
 //}
 
 
 //template < typename RECEIVER >
-//::message::route & channel::add_route(const ::id & idParam, RECEIVER * preceiverDerived, void (RECEIVER:: * phandler)(MESSAGE * pmessage))
+//::message::route & channel::add_route(const ::atom & idParam, RECEIVER * preceiverDerived, void (RECEIVER:: * phandler)(MESSAGE * pmessage))
 //{
 //
-//   ::id id(idParam);
+//   ::atom atom(idParam);
 //
-//   if (id.m_etype == ::id::e_type_integer)
+//   if (atom.m_etype == ::atom::e_type_integer)
 //   {
 //
-//      id.m_etype = ::id::e_type_message;
+//      atom.m_etype = ::atom::e_type_message;
 //
 //   }
 //
@@ -122,7 +122,7 @@
 //
 //  }
 //
-//  auto & proutea = m_idroute[id];
+//  auto & proutea = m_idroute[atom];
 //
 //  __pointer(::message::route) proute;
 //
@@ -156,7 +156,7 @@
 //
 //     ASSERT(false);
 //
-//     __throw(error_invalid_argument);
+//     __throw(error_bad_argument);
 //
 //  }
 //
@@ -196,7 +196,7 @@
 
 
 //template < typename RECEIVER, typename MESSAGE >
-//::message::typed_route < MESSAGE > & channel::get_typed_route (const ::id & id, RECEIVER * preceiverDerived)
+//::message::typed_route < MESSAGE > & channel::get_typed_route (const ::atom & atom, RECEIVER * preceiverDerived)
 //{
 //
 //  synchronous_lock synchronouslock(s_pmutexChannel);
@@ -212,7 +212,7 @@
 //
 //  }
 //
-//  __pointer(::message::route_array) & proutea = m_idroute[id];
+//  __pointer(::message::route_array) & proutea = m_idroute[atom];
 //
 //  __pointer(::message::typed_route < MESSAGE >) proute;
 //
@@ -244,7 +244,7 @@
 //
 //     ASSERT(false);
 //
-//     __throw(error_invalid_argument);
+//     __throw(error_bad_argument);
 //
 //  }
 //
@@ -437,7 +437,7 @@
 //
 //#ifdef _DEBUG
 //
-////   ::id id = p->m_id;
+////   ::atom atom = p->m_id;
 //   //char * pszType = nullptr;
 //   //
 //   //try
@@ -464,7 +464,7 @@
 //   catch (...)
 //   {
 //
-//      //::output_debug_string("exception release pca = nullptr; (" + string(id) + ")\n");
+//      //::output_debug_string("exception release pca = nullptr; (" + string(atom) + ")\n");
 //      ::output_debug_string("exception release pca = nullptr; \n");
 //
 //   }
@@ -478,7 +478,7 @@
 //   catch (...)
 //   {
 //
-//      //::output_debug_string("exception release p->release() (" + string(id) + ")\n");
+//      //::output_debug_string("exception release p->release() (" + string(atom) + ")\n");
 //      ::output_debug_string("exception release p->release() \n");
 //
 //   }

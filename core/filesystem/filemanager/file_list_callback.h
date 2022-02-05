@@ -20,13 +20,13 @@ namespace filemanager
       virtual bool initialize_file_list_callback();
 
       virtual i32 GetActionButtonCount();
-      virtual __pointer(::image_list) GetActionButtonImageList(id i);
-      virtual void InitializeActionButton(id i, __pointer(::user::button) pbutton);
-      virtual void OnButtonAction(id i, __pointer(::file::item)  item);
+      virtual __pointer(::image_list) GetActionButtonImageList(atom i);
+      virtual void InitializeActionButton(atom i, __pointer(::user::button) pbutton);
+      virtual void OnButtonAction(atom i, __pointer(::file::item)  item);
 
-      virtual bool GetMenuItemCallback(id iId);
-      virtual void OnMenuItemAction(id iId, const ::file::item_array & itema);
-      virtual void GetMenuItemUpdate(id iId, const ::file::item_array & itema, ::message::command * pcommand);
+      virtual bool GetMenuItemCallback(atom iId);
+      virtual void OnMenuItemAction(atom iId, const ::file::item_array & itema);
+      virtual void GetMenuItemUpdate(atom iId, const ::file::item_array & itema, ::message::command * pcommand);
 
    };
 

@@ -37,13 +37,13 @@ namespace user
 
       void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
       virtual void on_command(::message::command* pcommand) override;
-      virtual void handle(::topic * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
       virtual void set_viewport_offset(::draw2d::graphics_pointer & pgraphics, int, int) override;
       virtual ::point_i32 get_viewport_offset() override;
       virtual ::size_f64 get_total_size() override;
 
-      //virtual void handle(::topic * psubject, ::context * pcontext) override;
+      //virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
       virtual void OnActivateImpact(bool bActivate, __pointer(::user::impact) pActivateImpact, __pointer(::user::impact) pviewDeactivate) override;
 

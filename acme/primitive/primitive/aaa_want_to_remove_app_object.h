@@ -20,8 +20,8 @@ public:
 
 
    void call_update(::u64 uId);
-   virtual void apply(::action * psubject);
-   virtual void handle(::topic * psubject, ::context * pcontext);
+   virtual void apply(::action * ptopic);
+   virtual void handle(::topic * ptopic, ::context * pcontext);
    virtual bool update((::update * pupdate);
 
 

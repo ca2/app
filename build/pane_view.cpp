@@ -129,11 +129,11 @@ namespace app_core_build
    }
 
 
-   void pane_view::handle(::topic * psubject, ::context * pcontext)
+   void pane_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
 
-      ::userex::pane_tab_view::handle(psubject, pcontext);
+      ::userex::pane_tab_view::handle(ptopic, pcontext);
 
    }
 

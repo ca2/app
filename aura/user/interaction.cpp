@@ -985,11 +985,11 @@ namespace user
 
       //      auto pupdate = new_update();
 
-      //      psubject->id() = id_place_child_title_change;
+      //      ptopic->m_id = id_place_child_title_change;
 
-      //      psubject->user_interaction() = pholder;
+      //      ptopic->user_interaction() = pholder;
 
-      //      pparent->apply(psubject);
+      //      pparent->apply(ptopic);
 
       //   }
 
@@ -4440,9 +4440,9 @@ return "";
    void interaction::on_message_subject(::message::message* pmessage)
    {
 
-      __pointer(::topic) psubject(pmessage->m_lparam);
+      __pointer(::topic) ptopic(pmessage->m_lparam);
 
-      if(!psubject)
+      if(!ptopic)
       { 
       
          return;
@@ -4452,7 +4452,7 @@ return "";
       if (pmessage->m_wparam == 0)
       {
 
-         route(psubject);
+         route(ptopic);
 
       }
 
@@ -9542,9 +9542,9 @@ void interaction::EndModalLoop(id idResult)
 //   void interaction::route_handling(control_event * pevent)
 //   {
 //
-//      handle(psubject, pcontext);
+//      handle(ptopic, pcontext);
 //
-//      if (psubject->m_bRet)
+//      if (ptopic->m_bRet)
 //      {
 //
 //         return;
@@ -9553,7 +9553,7 @@ void interaction::EndModalLoop(id idResult)
 //
 //      on_notify_control_event(pevent);
 //
-//      if (psubject->m_bRet)
+//      if (ptopic->m_bRet)
 //      {
 //
 //         return;
@@ -9571,9 +9571,9 @@ void interaction::EndModalLoop(id idResult)
 //      if (pusercallback)
 //      {
 //
-//         pusercallback->handle(psubject, pcontext);
+//         pusercallback->handle(ptopic, pcontext);
 //
-//         if (psubject->m_bRet)
+//         if (ptopic->m_bRet)
 //         {
 //
 //            return;
@@ -9587,9 +9587,9 @@ void interaction::EndModalLoop(id idResult)
 //      if (pinteractionBind && pinteractionBind != pusercallback)
 //      {
 //
-//         pinteractionBind->handle(psubject, pcontext);
+//         pinteractionBind->handle(ptopic, pcontext);
 //
-//         if (psubject->m_bRet)
+//         if (ptopic->m_bRet)
 //         {
 //
 //            return;
@@ -14510,14 +14510,14 @@ order(zorderParam);
    }
 
 
-   void interaction::handle(::topic * psubject, ::context * pcontext)
+   void interaction::handle(::topic * ptopic, ::context * pcontext)
    {
 
       //auto pevent = pmessage->m_lparam.cast < ::user::control_event >();
 
-      //handle(psubject, pcontext);
+      //handle(ptopic, pcontext);
 
-      if (psubject->id() == REDRAW_ID || psubject->id() == m_id)
+      if (ptopic->m_id == REDRAW_ID || ptopic->m_id == m_id)
       {
 
          set_need_redraw();
@@ -14525,7 +14525,7 @@ order(zorderParam);
          post_redraw();
 
       }
-      else if (psubject->id() == id_user_style_change)
+      else if (ptopic->m_id == id_user_style_change)
       {
 
          set_need_redraw();
@@ -16752,10 +16752,10 @@ order(zorderParam);
    }
 
 
-   //void interaction::handle(::topic * psubject, ::context * pcontext)
+   //void interaction::handle(::topic * ptopic, ::context * pcontext)
    //{
 
-   //   if (psubject->id() == REDRAW_ID || psubject->id() == m_id)
+   //   if (ptopic->m_id == REDRAW_ID || ptopic->m_id == m_id)
    //   {
 
    //      set_need_redraw();
@@ -16763,7 +16763,7 @@ order(zorderParam);
    //      post_redraw();
 
    //   }
-   //   else if (psubject->id() == id_os_dark_mode)
+   //   else if (ptopic->m_id == id_os_dark_mode)
    //   {
 
    //      set_need_redraw();

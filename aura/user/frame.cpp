@@ -455,16 +455,16 @@ namespace user
 
 
 
-   void frame::handle(::topic * psubject, ::context * pcontext)
+   void frame::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (psubject->m_id == id_user_style_change)
+      if (ptopic->m_id == id_user_style_change)
       {
 
          on_user_style_change();
 
       }
-      else if (psubject->m_id == id_operating_system_user_color_change)
+      else if (ptopic->m_id == id_operating_system_user_color_change)
       {
 
          set_need_redraw();

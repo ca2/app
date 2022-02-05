@@ -676,17 +676,17 @@ namespace experience
    }
 
 
-   void frame_window::handle(::topic * psubject, ::context * pcontext)
+   void frame_window::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (psubject->m_etopic == ::id_click && m_pframe != nullptr)
+      if (ptopic->m_etopic == ::id_click && m_pframe != nullptr)
       {
 
-         string str(psubject->m_id);
+         string str(ptopic->m_id);
 
          FORMATTED_TRACE("frame_window::handle_event btn_clkd=%s", str.c_str());
 
-         auto ebutton = m_pframe->get_control_box()->get_control_box_button_type(psubject->m_id);
+         auto ebutton = m_pframe->get_control_box()->get_control_box_button_type(ptopic->m_id);
 
          switch (ebutton)
          {
@@ -698,7 +698,7 @@ namespace experience
 
             set_need_redraw();
 
-            psubject->m_bRet = true;
+            ptopic->m_bRet = true;
 
             return;
 
@@ -710,7 +710,7 @@ namespace experience
 
             set_need_redraw();
 
-            psubject->m_bRet = true;
+            ptopic->m_bRet = true;
 
             return;
 
@@ -728,7 +728,7 @@ namespace experience
 
             post_redraw();
 
-            psubject->m_bRet = true;
+            ptopic->m_bRet = true;
 
             return;
 
@@ -738,7 +738,7 @@ namespace experience
 
             frame_experience_restore();
 
-            psubject->m_bRet = true;
+            ptopic->m_bRet = true;
 
             return;
 
@@ -750,7 +750,7 @@ namespace experience
 
             set_need_redraw();
 
-            psubject->m_bRet = true;
+            ptopic->m_bRet = true;
 
             return;
 
@@ -762,7 +762,7 @@ namespace experience
 
             set_need_redraw();
 
-            psubject->m_bRet = true;
+            ptopic->m_bRet = true;
 
             return;
 
@@ -782,7 +782,7 @@ namespace experience
 
             post_redraw();
 
-            psubject->m_bRet = true;
+            ptopic->m_bRet = true;
 
             return;
 
@@ -794,7 +794,7 @@ namespace experience
 
             set_need_redraw();
 
-            psubject->m_bRet = true;
+            ptopic->m_bRet = true;
 
             return;
 
@@ -805,7 +805,7 @@ namespace experience
          }
 
       }
-      else if (psubject->id() == id_app_activated)
+      else if (ptopic->m_id == id_app_activated)
       {
 
          frame_toggle_restore();
@@ -2115,7 +2115,7 @@ namespace experience
 //
 //         //::rectangle_i32 rectangleWindow;
 //
-//         //psubject->user_interaction()->get_window_rect(rectangleWindow);
+//         //ptopic->user_interaction()->get_window_rect(rectangleWindow);
 //
 //         ///dock_manager()->m_pointCursorOrigin = rectangleWindow.center();
 //
@@ -2331,10 +2331,10 @@ namespace experience
 
 
 
-   //void frame_window::handle(::topic * psubject, ::context * pcontext)
+   //void frame_window::handle(::topic * ptopic, ::context * pcontext)
    //{
 
-   //   if(psubject->id() == id_app_activated)
+   //   if(ptopic->m_id == id_app_activated)
    //   {
 
    //      frame_toggle_restore();

@@ -34,7 +34,7 @@ public:
 
    void install_message_routing(::channel * pchannel) override;
    virtual bool pre_create_window(::user::system * pusersystem) override;
-   virtual void handle(::topic * psubject, ::context * pcontext) override;
+   virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
    DECLARE_MESSAGE_HANDLER(on_message_destroy);
    DECLARE_MESSAGE_HANDLER(on_message_create);

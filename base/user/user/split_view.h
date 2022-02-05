@@ -25,7 +25,7 @@ namespace user
       virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void handle(::topic * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * ptopic, ::context * pcontext) override;
       virtual bool create_split_impact();
       virtual void on_create_split_impact();
 

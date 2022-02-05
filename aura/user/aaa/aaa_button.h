@@ -142,7 +142,7 @@ namespace user
       virtual color32_t get_button_text_color();
 
 
-      virtual void handle(::topic * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
 
    };

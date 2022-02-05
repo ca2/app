@@ -29,38 +29,38 @@ namespace user
    }
 
 
-   void form_list_view::handle(::topic * psubject, ::context * pcontext)
+   void form_list_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::user::form_view::handle(psubject, pcontext);
+      ::user::form_view::handle(ptopic, pcontext);
 
-      ::user::list_view::handle(psubject, pcontext);
+      ::user::list_view::handle(ptopic, pcontext);
 
       ////__update(::update)
       {
 
-         if(psubject->id() == id_browse)
+         if(ptopic->m_id == id_browse)
          {
 
-            if(!psubject->payload(id_form).is_empty())
+            if(!ptopic->payload(id_form).is_empty())
             {
 
-               string strMatter = m_pcontext->m_papexcontext->dir().matter(psubject->payload(id_form));
+               string strMatter = m_pcontext->m_papexcontext->dir().matter(ptopic->payload(id_form));
 
                if(get_document()->on_open_document(strMatter))
                {
 
-                  m_strPath = psubject->payload(id_form);
+                  m_strPath = ptopic->payload(id_form);
 
                }
 
             }
 
          }
-         else if(psubject->id() == id_get_form_view)
+         else if(ptopic->m_id == id_get_form_view)
          {
 
-            psubject->payload(id_form) = this;
+            ptopic->payload(id_form) = this;
 
          }
 
@@ -69,9 +69,9 @@ namespace user
       if(m_pcallback != nullptr)
       {
 
-         psubject->payload(id_form) = this;
+         ptopic->payload(id_form) = this;
 
-         m_pcallback->handle(psubject, pcontext);
+         m_pcallback->handle(ptopic, pcontext);
 
       }
 
@@ -212,12 +212,12 @@ namespace user
    }
 
 
-   //void form_list_view::handle(::topic * psubject, ::context * pcontext)
+   //void form_list_view::handle(::topic * ptopic, ::context * pcontext)
    //{
 
-   //   form_view::handle(psubject, pcontext);
+   //   form_view::handle(ptopic, pcontext);
 
-   //   list_view::handle(psubject, pcontext);
+   //   list_view::handle(ptopic, pcontext);
 
    //}
 

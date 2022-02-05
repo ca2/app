@@ -174,12 +174,12 @@ namespace filemanager
    }
 
 
-   void path_view::handle(::topic * psubject, ::context * pcontext)
+   void path_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::filemanager_impact_base::handle(psubject, pcontext);
+      ::filemanager_impact_base::handle(ptopic, pcontext);
 
-      if (psubject->id() == INITIALIZE_ID)
+      if (ptopic->m_id == INITIALIZE_ID)
       {
 
          //            filemanager_document() = pupdate->filemanager_document();
@@ -196,23 +196,23 @@ namespace filemanager
                      DISetSection(str);
                      _001UpdateColumns();*/
       }
-      else if (psubject->id() == FILTER_ID)
+      else if (ptopic->m_id == FILTER_ID)
       {
-         /*if(psubject->payload(id_filter).is_empty())
+         /*if(ptopic->payload(id_filter).is_empty())
          {
          FilterClose();
          }
          else
          {
          FilterBegin();
-         Filter1(psubject->payload(id_filter));
+         Filter1(ptopic->payload(id_filter));
          FilterApply();
          }*/
       }
-      else if(psubject->id() == id_after_change_text)
+      else if(ptopic->m_id == id_after_change_text)
       {
 
-      if (!psubject->m_actioncontext.is_user_source())
+      if (!ptopic->m_actioncontext.is_user_source())
       {
 
          return;
@@ -244,7 +244,7 @@ namespace filemanager
          if (strPreviousPath != strPath)
          {
 
-            filemanager_document()->browse(str, psubject->m_actioncontext + ::e_source_sync);
+            filemanager_document()->browse(str, ptopic->m_actioncontext + ::e_source_sync);
 
          }
 
@@ -273,7 +273,7 @@ namespace filemanager
 
                   __keep(m_bVoidSync);
 
-                  filemanager_document()->browse(pathAddress, psubject->m_actioncontext + ::e_source_sync);
+                  filemanager_document()->browse(pathAddress, ptopic->m_actioncontext + ::e_source_sync);
 
                }
 

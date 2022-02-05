@@ -124,10 +124,10 @@ namespace filemanager
    }
 
 
-   void folder_selection_list_view::handle(::topic * psubject, ::context * pcontext)
+   void folder_selection_list_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::filemanager_impact_base::handle(psubject, pcontext);
+      ::filemanager_impact_base::handle(ptopic, pcontext);
 
    }
 

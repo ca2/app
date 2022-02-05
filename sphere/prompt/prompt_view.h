@@ -40,7 +40,7 @@ namespace prompt
       void install_message_routing(::channel * pchannel) override;
       virtual bool pre_create_window(::user::system * pusersystem) override;
       virtual void OnDraw(::draw2d::graphics_pointer & pgraphics);      // overridden to draw this ::impact
-      virtual void handle(::topic * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * ptopic, ::context * pcontext) override;
       DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
       DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
       void _001OnTimer(::timer * ptimer) override;

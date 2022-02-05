@@ -339,9 +339,9 @@
 //
 //      virtual void on_update_view(::user::impact * pview, ::user::impact * pviewSender, LPARAM lHint, object * pHint);
 //
-//      virtual void handle(::topic * psubject, ::context * pcontext) override;
+//      virtual void handle(::topic * ptopic, ::context * pcontext) override;
 //      virtual void on_notify_control_event(::user::control_event* pevent);
-//      virtual void route(::topic * psubject, ::context * pcontext);
+//      virtual void route(::topic * ptopic, ::context * pcontext);
 //
 //
 //
@@ -758,7 +758,7 @@
 //
 //      virtual string get_app_user_friendly_task_bar_name();
 //
-//      virtual void handle(::topic * psubject, ::context * pcontext) override;
+//      virtual void handle(::topic * ptopic, ::context * pcontext) override;
 //
 //      //virtual bool compress_ungz(::file::file * pfileUncompressed, ::file::file * pfileCompressed);
 //
@@ -824,7 +824,7 @@
 //
 //      //virtual ::draw2d::icon * get_icon(object * pobject, bool bBigIcon) const;
 //
-//      //virtual void handle(::topic * psubject, ::context * pcontext);
+//      //virtual void handle(::topic * ptopic, ::context * pcontext);
 //
 //
 //
@@ -1352,7 +1352,7 @@
 //
 //      //void install_message_routing(::channel * pchannel) override;
 //
-//      //virtual void handle(::topic * psubject, ::context * pcontext) override;
+//      //virtual void handle(::topic * ptopic, ::context * pcontext) override;
 //
 //      //virtual void process_init() override;
 //
@@ -1398,7 +1398,7 @@
 //
 //      //virtual ::draw2d::icon* get_icon(object* pobject, bool bBigIcon) const override;
 //
-//      //virtual void handle(::topic * psubject, ::context * pcontext) override;
+//      //virtual void handle(::topic * ptopic, ::context * pcontext) override;
 //
 //      virtual ::user::interaction* create_menu_interaction();
 //

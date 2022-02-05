@@ -339,9 +339,9 @@ namespace aura
 
       //virtual void on_update_view(::user::impact * pview, ::user::impact * pviewSender, lparam lHint, object * pHint);
 
-      virtual void handle(::topic * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * ptopic, ::context * pcontext) override;
       //virtual void on_notify_control_event(::user::control_event* pevent);
-      //virtual void route(::topic * psubject, ::context * pcontext);
+      //virtual void route(::topic * ptopic, ::context * pcontext);
 
 
 
@@ -758,7 +758,7 @@ namespace aura
 
       //virtual string get_app_user_friendly_task_bar_name() override;
 
-      //void handle(::topic * psubject, ::context * pcontext) override;
+      //void handle(::topic * ptopic, ::context * pcontext) override;
 
       //virtual bool compress_ungz(::file::file * pfileUncompressed, ::file::file * pfileCompressed);
 
@@ -821,7 +821,7 @@ namespace aura
 
       //virtual ::draw2d::icon * get_icon(object * pobject, bool bBigIcon) const;
 
-      //virtual void handle(::topic * psubject, ::context * pcontext);
+      //virtual void handle(::topic * ptopic, ::context * pcontext);
 
 
 
@@ -1003,7 +1003,7 @@ namespace aura
 
 
 
-      void data_on_after_change(::database::client* pclient, const ::database::key& id, const ::payload & payload, ::topic * psubject) override;
+      void data_on_after_change(::database::client* pclient, const ::database::key& id, const ::payload & payload, ::topic * ptopic) override;
 
 
       virtual i32 GetVisibleTopLevelFrameCountExcept(__pointer(::user::interaction) puserinteractionExcept);

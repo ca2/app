@@ -53,7 +53,7 @@ namespace ios
 
       void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
-      virtual void handle(::topic * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
       void _002OnDraw(::draw2d::graphics_pointer & pgraphics);
 

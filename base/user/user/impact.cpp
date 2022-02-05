@@ -338,7 +338,7 @@ namespace user
    }
 
 
-   //void impact::handle(::topic * psubject, ::context * pcontext)
+   //void impact::handle(::topic * ptopic, ::context * pcontext)
    //{
 
    //   //call_update(INITIAL_UPDATE);        // initial update
@@ -346,10 +346,10 @@ namespace user
    //}
 
 
-   //void impact::handle(::topic * psubject, ::context * pcontext)
+   //void impact::handle(::topic * ptopic, ::context * pcontext)
    //{
 
-   //   ::user::box::handle(psubject, pcontext);
+   //   ::user::box::handle(ptopic, pcontext);
 
    //   //if (pHint != nullptr)
    //   //{
@@ -360,7 +360,7 @@ namespace user
    //   //   }
    //   //}
 
-   //   //if(psubject->id() == id_set_edit_file)
+   //   //if(ptopic->m_id == id_set_edit_file)
    //   //{
 
    //   //   post_simple_command(e_simple_command_set_edit_file, pobject);
@@ -752,7 +752,7 @@ namespace user
 
    }
 
-   //void impact::handle(::topic * psubject, ::context * pcontext)
+   //void impact::handle(::topic * ptopic, ::context * pcontext)
    //{
 
    //   __pointer(::user::message) pusermessage(pmessage);
@@ -1121,14 +1121,14 @@ namespace user
    // ::user::impact drawing support
 
 
-   /*void impact::handle(::topic * psubject, ::context * pcontext)
+   /*void impact::handle(::topic * ptopic, ::context * pcontext)
    {
    call_update(INITIAL_UPDATE);        // initial update
    }*/
 
    /*   void impact::on_update(::user::impact * pSender, LPARAM lHint, object * pHint)
    {
-   ::user::impact::handle(psubject, pcontext);
+   ::user::impact::handle(ptopic, pcontext);
    }
    */
    /////////////////////////////////////////////////////////////////////////////
@@ -1386,7 +1386,7 @@ namespace user
    }
 
    __pointer(::user::impact) pview =  (pview);
-   pview->handle(::topic * psubject, ::context * pcontext);
+   pview->handle(::topic * ptopic, ::context * pcontext);
    if (afxData.bWin4 && (pview->GetExStyle() & WS_EX_CLIENTEDGE))
    {
    // erase the 3d style from the frame, since the ::user::impact is
@@ -1422,7 +1422,7 @@ namespace user
    return nullptr;        // can't continue without a ::user::impact
    }
 
-   ( (pview))->handle(::topic * psubject, ::context * pcontext);
+   ( (pview))->handle(::topic * ptopic, ::context * pcontext);
    if (afxData.bWin4 && (pview->GetExStyle() & WS_EX_CLIENTEDGE))
    {
    // erase the 3d style from the frame, since the ::user::impact is

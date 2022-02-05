@@ -65,7 +65,7 @@ void release(TYPE *& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 //   htask_t* phthread = nullptr);
 
 
-//CLASS_DECL_ACME void launch_action(action* psubject);
+//CLASS_DECL_ACME void launch_action(action* ptopic);
 
 
 //#include "acme/primitive/topic/_.h"

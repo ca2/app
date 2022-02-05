@@ -114,12 +114,12 @@ namespace filemanager
    }
 
 
-   void save_as_edit_view::handle(::topic * psubject, ::context * pcontext)
+   void save_as_edit_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::user::impact::handle(psubject, pcontext);
+      ::user::impact::handle(ptopic, pcontext);
 
-      if (psubject->id() == INITIALIZE_ID && psubject->m_puserelement == this)
+      if (ptopic->m_id == INITIALIZE_ID && ptopic->m_puserelement == this)
       {
          //            filemanager_document() = pupdate->filemanager_document();
          /*            m_pserverNext = simpledb::AppGet()->GetDataServer();
@@ -135,16 +135,16 @@ namespace filemanager
          DISetSection(str);
          _001UpdateColumns();*/
       }
-      else if (psubject->id() == FILTER_ID)
+      else if (ptopic->m_id == FILTER_ID)
       {
-         /*if(psubject->payload(id_filter).is_empty())
+         /*if(ptopic->payload(id_filter).is_empty())
          {
          FilterClose();
          }
          else
          {
          FilterBegin();
-         Filter1(psubject->payload(id_filter));
+         Filter1(ptopic->payload(id_filter));
          FilterApply();
          }*/
       }
@@ -166,10 +166,10 @@ namespace filemanager
    }
 
 
-   void save_as_button::handle(::topic * psubject, ::context * pcontext)
+   void save_as_button::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::filemanager_impact_base::handle(psubject, pcontext);
+      ::filemanager_impact_base::handle(ptopic, pcontext);
 
    }
 
@@ -301,7 +301,7 @@ namespace filemanager
       if (pdocumentTopic->on_filemanager_save(filemanager_document(), path))
       {
 
-         //psubject->id() = id_topic_saved;
+         //ptopic->m_id = id_topic_saved;
 
          //pupdate->m_pfileitem = __new(::file::item(path, path));
 
@@ -311,7 +311,7 @@ namespace filemanager
 
          //output_error_message("Failed to save document");
 
-         //psubject->id() = id_topic_save_failed;
+         //ptopic->m_id = id_topic_save_failed;
 
       }
 
@@ -323,9 +323,9 @@ namespace filemanager
 
       __throw(todo, "new_action?? (->new_subject)");
 
-      //auto psubject = new_action(topic(id_topic_cancel));
+      //auto ptopic = new_action(topic(id_topic_cancel));
 
-      //get_document()->update_all_views(psubject);
+      //get_document()->update_all_views(ptopic);
 
    }
 
@@ -347,15 +347,15 @@ namespace filemanager
    }
 
 
-   void save_as_view::handle(::topic * psubject, ::context * pcontext)
+   void save_as_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::user::impact::handle(psubject, pcontext);
+      ::user::impact::handle(ptopic, pcontext);
 
       ////__update(::update)
       {
 
-         if (psubject->id() == id_topic_saved)
+         if (ptopic->m_id == id_topic_saved)
          {
 
             if (top_level_frame()->m_bModal)
@@ -366,7 +366,7 @@ namespace filemanager
             }
 
          }
-         else if (psubject->id() == id_topic_save_failed)
+         else if (ptopic->m_id == id_topic_save_failed)
          {
 
             if (top_level_frame()->m_bModal)
@@ -377,7 +377,7 @@ namespace filemanager
             }
 
          }
-         else if (psubject->m_puserelement == this && psubject->id() == id_initialize)
+         else if (ptopic->m_puserelement == this && ptopic->m_id == id_initialize)
          {
             //            filemanager_document() = pupdate->filemanager_document();
             /*            m_pserverNext = simpledb::AppGet()->GetDataServer();
@@ -393,16 +393,16 @@ namespace filemanager
                         DISetSection(str);
                         _001UpdateColumns();*/
          }
-         else if (psubject->id() == id_filter)
+         else if (ptopic->m_id == id_filter)
          {
-            /*if(psubject->payload(id_filter).is_empty())
+            /*if(ptopic->payload(id_filter).is_empty())
             {
             FilterClose();
             }
             else
             {
             FilterBegin();
-            Filter1(psubject->payload(id_filter));
+            Filter1(ptopic->payload(id_filter));
             FilterApply();
             }*/
          }

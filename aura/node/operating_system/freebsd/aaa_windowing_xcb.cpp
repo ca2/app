@@ -159,7 +159,7 @@ bool xcb_on_event(xcb_generic_event_t * pevent)
 //   if(g_pobjectaExtendedEventListener)
 //   {
 //
-//      cookie = &psubject->xcookie;
+//      cookie = &ptopic->xcookie;
 //
 //   }
 //   else
@@ -587,7 +587,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, xcb_generic_event_t * peve
 
    e.type = 0;
 
-   auto eevent = psubject->response_type & ~0x80;
+   auto eevent = ptopic->response_type & ~0x80;
 
    switch(eevent)
    {

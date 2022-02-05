@@ -60,12 +60,12 @@ namespace user
    }
 
 
-   void tab_view::handle(::topic * psubject, ::context * pcontext)
+   void tab_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      tab::handle(psubject, pcontext);
+      tab::handle(ptopic, pcontext);
 
-      impact::handle(psubject, pcontext);
+      impact::handle(ptopic, pcontext);
 
    }
 

@@ -231,10 +231,10 @@ namespace user
    }
 
 
-   void default_message_box::handle(::topic * psubject, ::context * pcontext)
+   void default_message_box::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (psubject->id() == id_user_style_change)
+      if (ptopic->m_id == id_user_style_change)
       {
 
          m_bOsUserThemeColorModified = true;
@@ -242,10 +242,10 @@ namespace user
          invalidate();
 
       }
-      else if (psubject->m_id == ::id_click)
+      else if (ptopic->m_id == ::id_click)
       {
 
-         m_idResult = psubject->m_puserelement->m_id;
+         m_idResult = ptopic->m_puserelement->m_id;
 
          m_estatus = ::success;
 
@@ -253,7 +253,7 @@ namespace user
 
       }
 
-      ::user::interaction::handle(psubject, pcontext);
+      ::user::interaction::handle(ptopic, pcontext);
 
    }
 
@@ -456,13 +456,13 @@ namespace user
 
 
    ////bool default_message_box::process_event(Display * pdisplay, XEvent & e, XGenericEventCookie * cookie)
-   //void default_message_box::handle(::topic * psubject, ::context * pcontext)
+   //void default_message_box::handle(::topic * ptopic, ::context * pcontext)
    //{
 
-   //   if (psubject->m_id == ::id_click)
+   //   if (ptopic->m_id == ::id_click)
    //   {
 
-   //      m_edialogresult = (enum_dialog_result) psubject->m_puserelement->m_id.i64();
+   //      m_edialogresult = (enum_dialog_result) ptopic->m_puserelement->m_id.i64();
 
    //      ::extended::asynchronous <::conversation>::sequence()->set_status(::success);
 

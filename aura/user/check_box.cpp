@@ -665,10 +665,10 @@ namespace user
    }
 
 
-   void check_box::handle(::topic * psubject, ::context * pcontext)
+   void check_box::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      interaction::handle(psubject, pcontext);
+      interaction::handle(ptopic, pcontext);
 
    }
 

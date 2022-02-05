@@ -940,15 +940,15 @@ namespace user
       }
 
 
-      void edit_impl::handle(::topic * psubject, ::context * pcontext)
+      void edit_impl::handle(::topic * ptopic, ::context * pcontext)
       {
 
-         if (psubject->m_id == ::id_after_change_cur_sel)
+         if (ptopic->m_id == ::id_after_change_cur_sel)
          {
 
             auto pformattool = get_format_tool(false);
 
-            if (psubject->user_interaction() == pformattool)
+            if (ptopic->user_interaction() == pformattool)
             {
 
                if (pformattool->m_eattribute & attribute_align)
@@ -970,7 +970,7 @@ namespace user
 
                set_keyboard_focus();
 
-               //psubject->Ret();
+               //ptopic->Ret();
 
                //return;
 
@@ -978,7 +978,7 @@ namespace user
 
          }
 
-         return ::user::interaction::handle(psubject, pcontext);
+         return ::user::interaction::handle(ptopic, pcontext);
 
       }
 

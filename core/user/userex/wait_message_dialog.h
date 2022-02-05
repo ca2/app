@@ -25,7 +25,7 @@ namespace userex
 
       virtual void on_show(const ::string & pszMatter) override;
 
-      virtual void handle(::topic * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
       //virtual void _001OnTimer(::timer * ptimer) override;
 
@@ -36,7 +36,7 @@ namespace userex
       virtual void on_timer_soft_reload(::duration tickTimeout);
 
       
-      //virtual void handle(::topic * psubject, ::context * pcontext) override;
+      //virtual void handle(::topic * ptopic, ::context * pcontext) override;
       
 
    };

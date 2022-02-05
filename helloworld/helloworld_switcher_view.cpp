@@ -41,9 +41,9 @@ namespace helloworld
    }
 
 
-   void switcher_view::handle(::topic * psubject, ::context * pcontext)
+   void switcher_view::handle(::topic * ptopic, ::context * pcontext)
    {
-      ::user::split_view::handle(psubject, pcontext);
+      ::user::split_view::handle(ptopic, pcontext);
    }
 
 
@@ -93,13 +93,13 @@ namespace helloworld
 
 
 
-   void switcher_view::handle(::topic * psubject, ::context * pcontext)
+   void switcher_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if(psubject->m_id == ::id_click)
+      if(ptopic->m_id == ::id_click)
       {
 
-         if(psubject->user_element_id() == "switcher_toggle")
+         if(ptopic->user_element_id() == "switcher_toggle")
          {
 
             __pointer(impact) pview = m_pimpact;
@@ -109,7 +109,7 @@ namespace helloworld
             return true;
 
          }
-         else if(psubject->user_element_id() == "helloworld_toggle")
+         else if(ptopic->user_element_id() == "helloworld_toggle")
          {
 
             m_pimpact->m_prender->m_bLite = !m_pimpact->m_prender->m_bLite;

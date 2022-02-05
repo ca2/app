@@ -254,17 +254,17 @@ namespace browser
    }
 
 
-   void impact::handle(::topic * psubject, ::context * pcontext)
+   void impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      impact_base::handle(psubject, pcontext);
+      impact_base::handle(ptopic, pcontext);
 
-      if (psubject->id() == id_after_change_text)
+      if (ptopic->m_id == id_after_change_text)
       {
 
          auto * peditview = _001TypedWindow < ::userex::top_edit_view >();
 
-         if (peditview != nullptr && psubject->user_interaction() == peditview)
+         if (peditview != nullptr && ptopic->user_interaction() == peditview)
          {
 
             string strText;

@@ -3411,7 +3411,7 @@ retry_license:
 //   }
 //
 //
-//   void application::handle(::topic * psubject, ::context * pcontext)
+//   void application::handle(::topic * ptopic, ::context * pcontext)
 //   {
 //
 //
@@ -5660,7 +5660,7 @@ retry_license:
 //
 //
 
-   //void application::handle(::topic * psubject, ::context * pcontext)
+   //void application::handle(::topic * ptopic, ::context * pcontext)
    //{
 
    //}
@@ -5692,7 +5692,7 @@ retry_license:
 
    //}
 
-   //void application::handle(::topic * psubject, ::context * pcontext)
+   //void application::handle(::topic * ptopic, ::context * pcontext)
    //{
 
    //}
@@ -5705,12 +5705,12 @@ retry_license:
    //}
 
 
-   //void application::route(::topic * psubject, ::context * pcontext)
+   //void application::route(::topic * ptopic, ::context * pcontext)
    //{
 
-   //   handle(psubject);
+   //   handle(ptopic);
 
-   //   if (psubject->m_bRet)
+   //   if (ptopic->m_bRet)
    //   {
 
    //      return;
@@ -5719,7 +5719,7 @@ retry_license:
 
    //   on_notify_control_event(pevent);
 
-   //   if (psubject->m_bRet)
+   //   if (ptopic->m_bRet)
    //   {
 
    //      return;
@@ -8384,7 +8384,7 @@ namespace aura
    }
 
 
-   void application::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::topic * psubject)
+   void application::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::topic * ptopic)
    {
 
    }
@@ -8724,14 +8724,14 @@ namespace aura
    //   }
 
 
-      void application::handle(::topic * psubject, ::context * pcontext)
+      void application::handle(::topic * ptopic, ::context * pcontext)
       {
 
-         //::aqua::application::handle(psubject, pcontext);
+         //::aqua::application::handle(ptopic, pcontext);
 
-         //::user::form_callback::handle(psubject, pcontext);
+         //::user::form_callback::handle(ptopic, pcontext);
 
-         if(psubject->m_id == id_app_activated)
+         if(ptopic->m_id == id_app_activated)
          {
             
             if(m_puserinteractionMain)
@@ -8743,10 +8743,10 @@ namespace aura
             }
             
          }
-         if (psubject->m_id == ::id_initialize_control)
+         if (ptopic->m_id == ::id_initialize_control)
          {
 
-            auto puserinteraction = psubject->m_puserelement->cast<::user::interaction>();
+            auto puserinteraction = ptopic->m_puserelement->cast<::user::interaction>();
 
             if (puserinteraction->m_id == __id(user_auto_start_checkbox))
             {
@@ -8783,13 +8783,13 @@ namespace aura
             }
 
          }
-         else if (psubject->m_id == ::id_set_check)
+         else if (ptopic->m_id == ::id_set_check)
          {
 
-            auto puserinteraction = psubject->user_interaction();
+            auto puserinteraction = ptopic->user_interaction();
 
             if (puserinteraction->m_id == __id(user_auto_start_checkbox)
-               && psubject->m_actioncontext.is_user_source())
+               && ptopic->m_actioncontext.is_user_source())
             {
 
                try
@@ -8808,7 +8808,7 @@ namespace aura
 
                   }
 
-                  psubject->m_bRet = true;
+                  ptopic->m_bRet = true;
 
                   return;
 

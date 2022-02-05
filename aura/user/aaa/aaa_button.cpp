@@ -548,10 +548,10 @@ namespace user
    }
 
 
-   void button::handle(::topic * psubject, ::context * pcontext)
+   void button::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      interaction::handle(psubject, pcontext);
+      interaction::handle(ptopic, pcontext);
 
    }
 

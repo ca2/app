@@ -83,10 +83,10 @@ namespace userstack
    }
 
 
-   void pane_view::handle(::topic * psubject, ::context * pcontext)
+   void pane_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::user::tab_view::handle(psubject, pcontext);
+      ::user::tab_view::handle(ptopic, pcontext);
       
    }
 
@@ -581,7 +581,7 @@ namespace userstack
    }
 
 
-   void pane_view::handle(::topic * psubject, ::context * pcontext)
+   void pane_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
       __UNREFERENCED_PARAMETER(pevent);

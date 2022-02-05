@@ -877,7 +877,7 @@ namespace universal_windows
    }
 
 
-   void interaction_impl::handle(::topic * psubject, ::context * pcontext)
+   void interaction_impl::handle(::topic * ptopic, ::context * pcontext)
    {
 
       __UNREFERENCED_PARAMETER(pevent);

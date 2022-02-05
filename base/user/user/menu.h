@@ -100,7 +100,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(_001OnNcCreate);
 
 
-      virtual void handle(::topic * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
       bool pre_create_window(::user::system * pusersystem) override;
 

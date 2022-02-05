@@ -288,19 +288,19 @@ namespace user
    }
 
 
-   void list_box::handle(::topic * psubject, ::context * pcontext)
+   void list_box::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if(psubject->m_id == ::id_click)
+      if(ptopic->m_id == ::id_click)
       {
 
-         if(psubject->user_interaction() == this)
+         if(ptopic->user_interaction() == this)
          {
 
             if (m_pcombo)
             {
 
-               m_pcombo->set_current_item(psubject->m_item, psubject->m_actioncontext);
+               m_pcombo->set_current_item(ptopic->m_item, ptopic->m_actioncontext);
 
                m_pcombo->ShowDropDown(false);
 
@@ -308,7 +308,7 @@ namespace user
             else
             {
 
-               set_current_item(psubject->m_item, psubject->m_actioncontext);
+               set_current_item(ptopic->m_item, ptopic->m_actioncontext);
 
             }
 

@@ -183,10 +183,10 @@ namespace helloworld
    }
 
 
-   void impact::handle(::topic * psubject, ::context * pcontext)
+   void impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      impact_base::handle(psubject, pcontext);
+      impact_base::handle(ptopic, pcontext);
 
       ::update * pupdate = dynamic_cast < ::update *> (pupdate);
 
@@ -198,7 +198,7 @@ namespace helloworld
          if (peditview != nullptr)
          {
 
-            if (pupdate->m_ehint == id_after_change_text && psubject->user_interaction() == peditview)
+            if (pupdate->m_ehint == id_after_change_text && ptopic->user_interaction() == peditview)
             {
 
                string strText;

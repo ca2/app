@@ -364,7 +364,7 @@ namespace user
    }
 
 
-   void form_control::handle(::topic * psubject, ::context * pcontext)
+   void form_control::handle(::topic * ptopic, ::context * pcontext)
    {
 
       //for(auto pinteraction : proper_children())
@@ -374,37 +374,37 @@ namespace user
 
       //}
 
-      if (psubject->m_id == ::id_create)
+      if (ptopic->m_id == ::id_create)
       {
 
-         if (is_child(psubject->user_interaction()))
+         if (is_child(ptopic->user_interaction()))
          {
 
-            psubject->user_interaction()->m_pform = this;
+            ptopic->user_interaction()->m_pform = this;
 
          }
 
       }
-      else if (psubject->m_id == ::id_set_focus)
+      else if (ptopic->m_id == ::id_set_focus)
       {
 
-         if (!_001OnControlSetFocus(psubject->user_interaction()))
+         if (!_001OnControlSetFocus(ptopic->user_interaction()))
          {
 
-            psubject->Nok();
+            ptopic->Nok();
 
             return;
 
          }
 
       }
-      else if (psubject->m_id == ::id_kill_focus)
+      else if (ptopic->m_id == ::id_kill_focus)
       {
 
-         if (!_001OnControlKillFocus(psubject->user_interaction()))
+         if (!_001OnControlKillFocus(ptopic->user_interaction()))
          {
 
-            psubject->Nok();
+            ptopic->Nok();
 
             return;
 
@@ -415,9 +415,9 @@ namespace user
       //if(m_pcallback != nullptr)
       //{
 
-      //   m_pcallback->handle(psubject, pcontext);
+      //   m_pcallback->handle(ptopic, pcontext);
 
-      //   if(psubject->m_bRet)
+      //   if(ptopic->m_bRet)
       //   {
 
       //      return;
@@ -426,19 +426,19 @@ namespace user
 
       //}
 
-      ::user::interaction::handle(psubject, pcontext);
+      ::user::interaction::handle(ptopic, pcontext);
 
-      if (psubject->m_bRet)
+      if (ptopic->m_bRet)
       {
 
          return;
 
       }
 
-      if (psubject->m_id == ::id_tab_key)
+      if (ptopic->m_id == ::id_tab_key)
       {
 
-         __pointer(::user::primitive) pfocus = psubject->user_interaction()->keyboard_get_next_focusable();
+         __pointer(::user::primitive) pfocus = ptopic->user_interaction()->keyboard_get_next_focusable();
 
          if (pfocus != nullptr)
          {
@@ -448,10 +448,10 @@ namespace user
          }
 
       }
-      else if (psubject->m_id == ::id_click)
+      else if (ptopic->m_id == ::id_click)
       {
 
-         __pointer(interaction) pinteraction = psubject->user_interaction();
+         __pointer(interaction) pinteraction = ptopic->user_interaction();
 
          if (::is_null(pinteraction))
          {
@@ -468,7 +468,7 @@ namespace user
 
                _001OnButtonAction(pinteraction);
 
-               psubject->m_bRet = true;
+               ptopic->m_bRet = true;
 
                return;
 
@@ -483,10 +483,10 @@ namespace user
          }
 
       }
-      else if (psubject->m_id == ::id_set_check && psubject->m_actioncontext.is_user_source())
+      else if (ptopic->m_id == ::id_set_check && ptopic->m_actioncontext.is_user_source())
       {
 
-         __pointer(interaction) pinteraction = psubject->user_interaction();
+         __pointer(interaction) pinteraction = ptopic->user_interaction();
 
          if (!pinteraction)
          {
@@ -513,7 +513,7 @@ namespace user
 
             pclient->data_get(pinteraction->m_datakey, ia);
 
-            __pointer(check) pcheck = psubject->user_interaction();
+            __pointer(check) pcheck = ptopic->user_interaction();
 
             if (pcheck->echeck() == ::check_checked)
             {
@@ -537,9 +537,9 @@ namespace user
       if (::is_set(m_pcallback))
       {
 
-         m_pcallback->handle(psubject, pcontext);
+         m_pcallback->handle(ptopic, pcontext);
 
-         if (psubject->m_bRet)
+         if (ptopic->m_bRet)
          {
 
             return;
@@ -950,16 +950,16 @@ namespace user
 
       ::user::interaction::update_data(bSaveAndValidate);
 
-      auto psubject = create_subject(id_none);
+      auto ptopic = create_subject(id_none);
 
-      psubject->m_bOk = true;
+      ptopic->m_bOk = true;
 
-      psubject->m_puserelement = this;
+      ptopic->m_puserelement = this;
 
       if (bSaveAndValidate)
       {
 
-         psubject->m_id = ::id_save_form_data;
+         ptopic->m_id = ::id_save_form_data;
 
          m_bNeedSaveFormData = false;
 
@@ -967,20 +967,20 @@ namespace user
       else
       {
 
-         psubject->m_id = ::id_load_form_data;
+         ptopic->m_id = ::id_load_form_data;
 
          m_bNeedLoadFormData = false;
 
       }
 
-      route(psubject);
+      route(ptopic);
 
-      //return psubject->m_bOk;
+      //return ptopic->m_bOk;
 
    }
 
 
-   void form_control::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::topic * psubject)
+   void form_control::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::topic * ptopic)
    {
 
       for(auto pinteraction : proper_children())
@@ -1305,40 +1305,40 @@ namespace user
    }
 
 
-   //void form_control::handle(::topic * psubject, ::context * pcontext)
+   //void form_control::handle(::topic * ptopic, ::context * pcontext)
    //{
 
-   //   if (psubject->m_id == ::id_create)
+   //   if (ptopic->m_id == ::id_create)
    //   {
 
-   //      if (is_child(psubject->user_interaction()))
+   //      if (is_child(ptopic->user_interaction()))
    //      {
 
-   //         psubject->user_interaction()->m_pform = this;
+   //         ptopic->user_interaction()->m_pform = this;
 
    //      }
 
    //   }
-   //   else if(psubject->m_id == ::id_set_focus)
+   //   else if(ptopic->m_id == ::id_set_focus)
    //   {
 
-   //      if(!_001OnControlSetFocus(psubject->user_interaction()))
+   //      if(!_001OnControlSetFocus(ptopic->user_interaction()))
    //      {
 
-   //         psubject->Nok();
+   //         ptopic->Nok();
 
    //         return;
 
    //      }
 
    //   }
-   //   else if(psubject->m_id == ::id_kill_focus)
+   //   else if(ptopic->m_id == ::id_kill_focus)
    //   {
 
-   //      if(!_001OnControlKillFocus(psubject->user_interaction()))
+   //      if(!_001OnControlKillFocus(ptopic->user_interaction()))
    //      {
 
-   //         psubject->Nok();
+   //         ptopic->Nok();
 
    //         return;
 
@@ -1349,9 +1349,9 @@ namespace user
    //   //if(m_pcallback != nullptr)
    //   //{
 
-   //   //   m_pcallback->handle(psubject, pcontext);
+   //   //   m_pcallback->handle(ptopic, pcontext);
 
-   //   //   if(psubject->m_bRet)
+   //   //   if(ptopic->m_bRet)
    //   //   {
 
    //   //      return;
@@ -1360,19 +1360,19 @@ namespace user
 
    //   //}
 
-   //   ::user::interaction::handle(psubject, pcontext);
+   //   ::user::interaction::handle(ptopic, pcontext);
 
-   //   if(psubject->m_bRet)
+   //   if(ptopic->m_bRet)
    //   {
 
    //      return;
 
    //   }
 
-   //   if(psubject->m_id == ::id_tab_key)
+   //   if(ptopic->m_id == ::id_tab_key)
    //   {
 
-   //      __pointer(::user::primitive) pfocus = psubject->user_interaction()->keyboard_get_next_focusable();
+   //      __pointer(::user::primitive) pfocus = ptopic->user_interaction()->keyboard_get_next_focusable();
 
    //      if(pfocus != nullptr)
    //      {
@@ -1382,10 +1382,10 @@ namespace user
    //      }
 
    //   }
-   //   else if(psubject->m_id == ::id_click)
+   //   else if(ptopic->m_id == ::id_click)
    //   {
 
-   //      __pointer(interaction) pinteraction = psubject->user_interaction();
+   //      __pointer(interaction) pinteraction = ptopic->user_interaction();
 
    //      if (::is_null(pinteraction))
    //      {
@@ -1402,7 +1402,7 @@ namespace user
 
    //            _001OnButtonAction(pinteraction);
 
-   //            psubject->m_bRet = true;
+   //            ptopic->m_bRet = true;
 
    //            return;
 
@@ -1417,10 +1417,10 @@ namespace user
    //      }
 
    //   }
-   //   else if(psubject->m_id == ::id_set_check && psubject->m_actioncontext.is_user_source())
+   //   else if(ptopic->m_id == ::id_set_check && ptopic->m_actioncontext.is_user_source())
    //   {
 
-   //      __pointer(interaction) pinteraction = psubject->user_interaction();
+   //      __pointer(interaction) pinteraction = ptopic->user_interaction();
 
    //      if (!pinteraction)
    //      {
@@ -1447,7 +1447,7 @@ namespace user
 
    //         pclient->data_get(pinteraction->m_datakey, ia);
 
-   //         __pointer(check) pcheck = psubject->user_interaction();
+   //         __pointer(check) pcheck = ptopic->user_interaction();
 
    //         if(pcheck->echeck() == ::check_checked)
    //         {
@@ -1471,9 +1471,9 @@ namespace user
    //   if (::is_set(m_pcallback))
    //   {
 
-   //      m_pcallback->handle(psubject, pcontext);
+   //      m_pcallback->handle(ptopic, pcontext);
 
-   //      if (psubject->m_bRet)
+   //      if (ptopic->m_bRet)
    //      {
 
    //         return;

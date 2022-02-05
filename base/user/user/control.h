@@ -95,11 +95,11 @@ namespace user
    //   DECLARE_MESSAGE_HANDLER(_001OnSetFocus);
    //   DECLARE_MESSAGE_HANDLER(_001OnKillFocus);
 
-   //   virtual void route(::topic * psubject, ::context * pcontext) override;
+   //   virtual void route(::topic * ptopic, ::context * pcontext) override;
 
    //   virtual void on_notify_control_event(control_event* pevent) override;
 
-   //   virtual void handle(::topic * psubject, ::context * pcontext) override;
+   //   virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
    //   //virtual bool simple_on_control_event(::message::message * pmessage, ::enum_topic etopic) override;
 

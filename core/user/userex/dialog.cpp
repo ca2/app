@@ -45,16 +45,16 @@ dialog::~dialog()
 }
 
 
-void dialog::handle(::topic * psubject, ::context * pcontext)
+void dialog::handle(::topic * ptopic, ::context * pcontext)
 {
 
-   if(::is_set(psubject->user_interaction()) && m_pform == nullptr)
+   if(::is_set(ptopic->user_interaction()) && m_pform == nullptr)
    {
 
-      if(psubject->m_id == ::id_create)
+      if(ptopic->m_id == ::id_create)
       {
 
-         m_pform = psubject->user_interaction();
+         m_pform = ptopic->user_interaction();
 
       }
 

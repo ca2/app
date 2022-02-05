@@ -63,15 +63,15 @@ namespace user
             if(pinteraction->get_control_type() == ::user::e_control_type_button)
             {
 
-               auto psubject = __new(::topic(::id_click));
+               auto ptopic = __new(::topic(::id_click));
 
-               psubject->m_puserelement        = pinteraction;
+               ptopic->m_puserelement        = pinteraction;
 
                //topic.m_id                = ;
 
                m_itemControl              = item;
 
-               send_message(e_message_subject,0,psubject);
+               send_message(e_message_subject,0,ptopic);
 
             }
 
@@ -664,7 +664,7 @@ namespace user
    }
 
 
-   void form_mesh::handle(::topic * psubject, ::context * pcontext)
+   void form_mesh::handle(::topic * ptopic, ::context * pcontext)
    {
 
 
@@ -672,7 +672,7 @@ namespace user
       //{
       ///pdescriptor->m_pcontrol->m_iEditItem = m_iControlItem;
       //}
-      return form::handle(psubject, pcontext);
+      return form::handle(ptopic, pcontext);
    }
 
 

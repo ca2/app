@@ -56,10 +56,10 @@ namespace prompt
    }
 
 
-   void pane_view::handle(::topic * psubject, ::context * pcontext)
+   void pane_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::user::tab_view::handle(psubject, pcontext);
+      ::user::tab_view::handle(ptopic, pcontext);
 
    }
 
@@ -247,14 +247,14 @@ namespace prompt
          __pointer(::user::impact) pview = pdocument->get_type_impact < ::user::impact > ();
          auto pupdate = new_update();
          pupdate->m_actioncontext = ::e_source_system;
-         psubject->id() = id_browse;
-         psubject->payload(id_form) = "filemanager\\replace_name_in_file_system.xhtml";
+         ptopic->m_id = id_browse;
+         ptopic->payload(id_form) = "filemanager\\replace_name_in_file_system.xhtml";
          pdocument->update_all_views(pupdate);
 
-         psubject->id() = id_get_form_view;
+         ptopic->m_id = id_get_form_view;
          pdocument->update_all_views(pupdate);
 
-         psubject->id() = id_after_browse;
+         ptopic->m_id = id_after_browse;
          pdocument->update_all_views(pupdate);
 
 
@@ -329,19 +329,19 @@ namespace prompt
    }
 
 
-   void pane_view::handle(::topic * psubject, ::context * pcontext)
+   void pane_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::prompt::form_callback::handle(psubject, pcontext);
+      ::prompt::form_callback::handle(ptopic, pcontext);
 
-      if(psubject->m_bRet)
+      if(ptopic->m_bRet)
       {
 
          return;
 
       }
 
-      ::userex::pane_tab_view::handle(psubject, pcontext);
+      ::userex::pane_tab_view::handle(ptopic, pcontext);
 
    }
 

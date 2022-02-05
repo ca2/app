@@ -272,11 +272,11 @@ namespace acme
 
       virtual void node_quit();
 
-      virtual bool should_launch_on_node(::topic * psubject);
+      virtual bool should_launch_on_node(::topic * ptopic);
 
-      virtual bool defer_launch_on_node(::topic * psubject);
+      virtual bool defer_launch_on_node(::topic * ptopic);
 
-      virtual bool launch_on_node(::topic * psubject);
+      virtual bool launch_on_node(::topic * ptopic);
 
 
       virtual string get_user_name();

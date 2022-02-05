@@ -186,7 +186,7 @@ namespace user
    }
 
 
-   void frame_window::update_active_document(::topic * psubject)
+   void frame_window::update_active_document(::topic * ptopic)
    {
 
       auto pdocument = get_active_document();
@@ -198,7 +198,7 @@ namespace user
 
       }
 
-      pdocument->update_all_views(psubject);
+      pdocument->update_all_views(ptopic);
 
    }
 
@@ -2516,10 +2516,10 @@ namespace user
    }
 
 
-   void frame_window::handle(::topic * psubject, ::context * pcontext)
+   void frame_window::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::user::interaction::handle(psubject, pcontext);
+      ::user::interaction::handle(ptopic, pcontext);
 
    }
 

@@ -296,13 +296,13 @@ namespace hi5
       }
 
 
-      void authorization::handle(::topic * psubject, ::context *pcontext)   
+      void authorization::handle(::topic * ptopic, ::context *pcontext)   
       {
 
-         if(psubject->m_id == ::id_click || psubject->m_id == ::id_enter_key)
+         if(ptopic->m_id == ::id_click || ptopic->m_id == ::id_enter_key)
          {
 
-            if(psubject->user_interaction()->m_id == "submit" || psubject->m_id == ::id_enter_key)
+            if(ptopic->user_interaction()->m_id == "submit" || ptopic->m_id == ::id_enter_key)
             {
 
                auto pinteraction = m_pviewAuth->get_child_by_name("pin");

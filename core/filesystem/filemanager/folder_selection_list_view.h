@@ -27,7 +27,7 @@ namespace filemanager
 
       void install_message_routing(::channel * pchannel) override;
 
-      virtual void handle(::topic * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
       DECLARE_MESSAGE_HANDLER(_001OnAdd);
       DECLARE_MESSAGE_HANDLER(_001OnRemove);

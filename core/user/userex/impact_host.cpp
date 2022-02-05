@@ -162,10 +162,10 @@ namespace userex
    }
 
 
-   void impact_host::handle(::topic * psubject, ::context * pcontext)
+   void impact_host::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::user::impact::handle(psubject, pcontext);
+      ::user::impact::handle(ptopic, pcontext);
 
    }
 

@@ -246,7 +246,7 @@ namespace browser
 
       virtual void _006OnDraw(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void handle(::topic * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
       ::user::document * get_document();
 

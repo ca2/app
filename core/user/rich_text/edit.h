@@ -114,7 +114,7 @@ namespace user
          virtual void keyboard_focus_OnChar(::message::message * pmessage) override;
 
 
-         virtual void handle(::topic * psubject, ::context * pcontext) override;
+         virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
 
          virtual strsize _001GetTextLength() const override;

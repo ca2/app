@@ -610,27 +610,27 @@ namespace userfs
 
 
 
-   void tree::handle(::topic * psubject, ::context * pcontext)
+   void tree::handle(::topic * ptopic, ::context * pcontext)
    {
 
       ////__update(::update)
       {
 
-         if (psubject->id() == id_initialize)
+         if (ptopic->m_id == id_initialize)
          {
 
          }
-         if (psubject->id() == id_filter)
+         if (ptopic->m_id == id_filter)
          {
 
-            if (psubject->payload(id_filter).is_empty())
+            if (ptopic->payload(id_filter).is_empty())
             {
                //               FilterClose();
             }
             else
             {
                //             FilterBegin();
-               //           Filter1(psubject->payload(id_filter));
+               //           Filter1(ptopic->payload(id_filter));
                //         FilterApply();
             }
 

@@ -264,7 +264,7 @@ public:
    virtual void on_end();
 
    //using ::manager::on_subject;
-   //virtual void on_subject(::topic * psubject) override;
+   //virtual void on_subject(::topic * ptopic) override;
 
    virtual ::duration get_update_poll_time(const ::id& id);
 

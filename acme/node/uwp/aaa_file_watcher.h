@@ -119,7 +119,7 @@ namespace file
    //   bool update();
 
    //   /// Handles the action
-   //   void handle_action(action * psubject);
+   //   void handle_action(action * ptopic);
 
 
    //}; // end os_file_watcher

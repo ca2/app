@@ -220,17 +220,17 @@ namespace user
    }
 
 
-   void menu_view::handle(::topic * psubject, ::context * pcontext)
+   void menu_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::user::impact::handle(psubject, pcontext);
+      ::user::impact::handle(ptopic, pcontext);
 
-      if (psubject->id() == id_after_change_text)
+      if (ptopic->m_id == id_after_change_text)
       {
 
          auto peditview = _001TypedWindow < ::user::plain_edit_view >();
 
-         if (peditview != nullptr && psubject->m_puserelement == peditview)
+         if (peditview != nullptr && ptopic->m_puserelement == peditview)
          {
 
             string strText;

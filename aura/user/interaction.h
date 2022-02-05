@@ -1225,13 +1225,13 @@ namespace user
       //virtual void ShowOwnedPopups(bool bShow = true);
 
 
-      //virtual void route(::topic * psubject, ::context * pcontext);
-      //virtual void handle(::topic * psubject, ::context * pcontext) override;
+      //virtual void route(::topic * ptopic, ::context * pcontext);
+      //virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
 
       /*void pre_create_window(::user::system* pusersystem);*/
       using ::user::primitive::handle;
-      virtual void handle(::topic * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
 
 
@@ -1629,7 +1629,7 @@ namespace user
       virtual void layout_scroll_bar(::draw2d::graphics_pointer & pgraphics);
 
 
-      //virtual void handle(::topic * psubject, ::context * pcontext) override;
+      //virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
 
       virtual void keyboard_focus_OnKeyDown(::message::message* pmessage) override;
@@ -1836,9 +1836,9 @@ namespace user
       DECLARE_MESSAGE_HANDLER(_001OnEditDelete);
       //DECLARE_MESSAGE_HANDLER(_001OnSetFocus);
       //DECLARE_MESSAGE_HANDLER(_001OnKillFocus);
-      //virtual void route(::topic * psubject, ::context * pcontext) override;
+      //virtual void route(::topic * ptopic, ::context * pcontext) override;
       //virtual void on_notify_control_event(control_event* pevent) override;
-      //virtual void handle(::topic * psubject, ::context * pcontext) override;
+      //virtual void handle(::topic * ptopic, ::context * pcontext) override;
       //virtual bool simple_on_control_event(::message::message * pmessage, ::enum_topic etopic) override;
       //virtual void walk_pre_translate_tree(::message::message * pmessage,__pointer(::user::interaction) puiStop);
       //virtual bool get_element_rect(RECTANGLE_I32* prectangle, enum_element eelement);

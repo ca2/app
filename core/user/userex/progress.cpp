@@ -227,7 +227,7 @@ namespace userex
    }
 
 
-   void progress_view::handle(::topic * psubject, ::context * pcontext)
+   void progress_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
    }

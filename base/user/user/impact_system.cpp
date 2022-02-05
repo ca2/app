@@ -438,15 +438,15 @@ namespace user
    }
 
 
-   void impact_system::handle(::topic * psubject, ::context * pcontext)
+   void impact_system::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      update_all_views(psubject);
+      update_all_views(ptopic);
 
    }
 
 
-   void impact_system::update_all_views(::topic * psubject)
+   void impact_system::update_all_views(::topic * ptopic)
    {
 
       ::count count = get_document_count();
@@ -456,7 +456,7 @@ namespace user
 
          ::user::document * pdocument = get_document(index);
 
-         pdocument->update_all_views(psubject);
+         pdocument->update_all_views(ptopic);
 
       }
 

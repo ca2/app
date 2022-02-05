@@ -83,7 +83,7 @@ namespace userfs
       virtual bool on_click(const ::item & item) override;
 
 
-      virtual void handle(::topic * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * ptopic, ::context * pcontext) override;
       virtual bool pre_create_window(::user::system * pusersystem) override;
 
       DECLARE_MESSAGE_HANDLER(_001OnHScroll);

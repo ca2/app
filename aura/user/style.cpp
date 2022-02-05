@@ -80,19 +80,19 @@ namespace user
    }
 
 
-   void style::handle(::topic * psubject, ::context * pcontext)
+   void style::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (psubject->m_id == id_user_style_change 
-         || psubject->m_id == id_operating_system_user_theme_change
-         || psubject->m_id == id_operating_system_user_color_change)
+      if (ptopic->m_id == id_user_style_change 
+         || ptopic->m_id == id_operating_system_user_theme_change
+         || ptopic->m_id == id_operating_system_user_color_change)
       {
 
          m_iUpdate++;
 
       }
 
-      style_base::handle(psubject, pcontext);
+      style_base::handle(ptopic, pcontext);
 
    }
 

@@ -76,13 +76,13 @@ namespace user
             if (pinteraction->get_control_type() == ::user::e_control_type_button)
             {
 
-               auto psubject = __new(::topic(id_click));
+               auto ptopic = __new(::topic(id_click));
 
-               psubject->m_puserelement = pinteraction;
+               ptopic->m_puserelement = pinteraction;
 
                m_itemControl = item;
 
-               send_message(e_message_subject, 0, psubject);
+               send_message(e_message_subject, 0, ptopic);
 
             }
 
@@ -163,15 +163,15 @@ namespace user
             if (pinteraction->get_control_type() == ::user::e_control_type_button)
             {
 
-               auto psubject = __new(::topic);
+               auto ptopic = __new(::topic);
 
-               psubject->m_puserelement = pinteraction;
+               ptopic->m_puserelement = pinteraction;
 
-               psubject->m_id = ::id_click;
+               ptopic->m_id = ::id_click;
 
                m_itemControl = item;
 
-               send_message(e_message_subject, 0, psubject);
+               send_message(e_message_subject, 0, ptopic);
 
             }
 
@@ -836,7 +836,7 @@ break_click:;
 
          route(&topic);
          
-         //pformlist->handle_subject(psubject);
+         //pformlist->handle_subject(ptopic);
 
          return true;
 
@@ -927,7 +927,7 @@ break_click:;
 
          route(&topic);
 
-         //pformlist->handle_subject(psubject);
+         //pformlist->handle_subject(ptopic);
 
          if (pinteraction->has_function(::user::e_control_function_duplicate_on_check_box))
          {
@@ -1883,13 +1883,13 @@ break_click:;
 
 
 
-   void form_list::handle(::topic * psubject, ::context * pcontext)
+   void form_list::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (psubject->m_id == ::id_set_check)
+      if (ptopic->m_id == ::id_set_check)
       {
 
-         auto puserinteraction = psubject->user_interaction();
+         auto puserinteraction = ptopic->user_interaction();
 
          auto iSubItem = puserinteraction->m_iSubItem;
 
@@ -1903,10 +1903,10 @@ break_click:;
          }
 
       }
-      else if (psubject->m_id == ::id_after_change_cur_sel)
+      else if (ptopic->m_id == ::id_after_change_cur_sel)
       {
 
-         if (m_pcontrolEdit == psubject->user_interaction())
+         if (m_pcontrolEdit == ptopic->user_interaction())
          {
 
             if (m_pcontrolEdit->has_function(::user::e_control_function_data_selection))
@@ -1914,14 +1914,14 @@ break_click:;
 
                _001SaveEdit(m_pcontrolEdit);
 
-               psubject->m_bRet = true;
+               ptopic->m_bRet = true;
 
             }
 
          }
 
       }
-      else if (psubject->m_id == ::id_enter_key)
+      else if (ptopic->m_id == ::id_enter_key)
       {
 
          if(m_pcontrolEdit != nullptr)
@@ -1931,12 +1931,12 @@ break_click:;
 
             _001HideControl(m_pcontrolEdit);
 
-            psubject->m_bRet = true;
+            ptopic->m_bRet = true;
 
          }
 
       }
-      else if (psubject->m_id == ::id_tab_key)
+      else if (ptopic->m_id == ::id_tab_key)
       {
 
          index iItem = 0;
@@ -1954,7 +1954,7 @@ break_click:;
 
             _001HideControl(m_pcontrolEdit);
 
-            psubject->m_bRet = true;
+            ptopic->m_bRet = true;
 
          }
 
@@ -1982,15 +1982,15 @@ break_click:;
 
             _001PlaceControl(pinteraction, iItem);
 
-            psubject->m_bRet = true;
+            ptopic->m_bRet = true;
 
          }
 
       }
-      else if (psubject->m_id == ::id_key_down)
+      else if (ptopic->m_id == ::id_key_down)
       {
 
-         SCAST_PTR(::message::key, pkey, psubject->m_actioncontext.m_pmessage.m_p);
+         SCAST_PTR(::message::key, pkey, ptopic->m_actioncontext.m_pmessage.m_p);
 
          if (pkey->m_ekey == e_key_down || pkey->m_ekey == e_key_up
                || pkey->m_ekey == e_key_left || pkey->m_ekey == e_key_right)
@@ -2050,7 +2050,7 @@ break_click:;
                _001SaveEdit(m_pcontrolEdit);
                _001HideControl(m_pcontrolEdit);
 
-               psubject->m_bRet = true;
+               ptopic->m_bRet = true;
 
             }
 
@@ -2112,7 +2112,7 @@ break_click:;
 
                }
 
-               psubject->m_bRet = true;
+               ptopic->m_bRet = true;
 
             }
 
@@ -2120,14 +2120,14 @@ break_click:;
 
       }
 
-      if (psubject->m_bRet)
+      if (ptopic->m_bRet)
       {
 
          return;
 
       }
 
-      return form_mesh::handle(psubject, pcontext);
+      return form_mesh::handle(ptopic, pcontext);
    }
 
 

@@ -128,17 +128,17 @@ namespace app_shader
    }
 
 
-   void main_window::handle(::topic * psubject, ::context * pcontext)
+   void main_window::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (psubject->id() == id_simple_checkbox || psubject->id() == id_no_client_frame)
+      if (ptopic->m_id == id_simple_checkbox || ptopic->m_id == id_no_client_frame)
       {
 
          set_need_redraw();
 
       }
 
-      ::user::interaction::handle(psubject, pcontext);
+      ::user::interaction::handle(ptopic, pcontext);
 
    }
 

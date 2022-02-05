@@ -27,7 +27,7 @@ namespace filemanager
       void FileManagerBrowse(const ::string & pcwstr, const ::action_context & action_context);
 
 
-      virtual void handle(::topic * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
 
    };

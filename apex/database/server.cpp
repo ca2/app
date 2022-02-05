@@ -50,7 +50,7 @@ namespace database
    }
 
 
-   bool server::_data_server_load(client * pclient, const key & id, get_memory getmemory, ::topic * psubject)
+   bool server::_data_server_load(client * pclient, const key & id, get_memory getmemory, ::topic * ptopic)
    {
 
 #if MEMDLEAK
@@ -64,7 +64,7 @@ namespace database
    }
 
 
-   void server::_data_server_save(client * pclient, const key & id, block block, ::topic * psubject)
+   void server::_data_server_save(client * pclient, const key & id, block block, ::topic * ptopic)
    {
 
       //return true;
@@ -72,15 +72,15 @@ namespace database
    }
 
 
-   void server::data_pulse_change(client * pclient, const key & id, ::topic * psubject)
+   void server::data_pulse_change(client * pclient, const key & id, ::topic * ptopic)
    {
 
-      on_after_data_change(pclient, id, psubject);
+      on_after_data_change(pclient, id, ptopic);
 
    }
 
 
-   void server::on_before_data_change(client * pclient, const key & id, ::payload & payload, ::topic * psubject)
+   void server::on_before_data_change(client * pclient, const key & id, ::payload & payload, ::topic * ptopic)
    {
 
       //::database::change_event signal(payload);
@@ -94,7 +94,7 @@ namespace database
       {
 
          //bool bOk = 
-         m_clienta.element_at(i)->data_on_before_change(pclient, id, payload, psubject);
+         m_clienta.element_at(i)->data_on_before_change(pclient, id, payload, ptopic);
 
          //if(!bOk)
          //{
@@ -110,7 +110,7 @@ namespace database
    }
 
 
-   void server::on_after_data_change(client * pclient, const key & id, const ::payload & payload, ::topic * psubject)
+   void server::on_after_data_change(client * pclient, const key & id, const ::payload & payload, ::topic * ptopic)
    {
 
       //::database::change_event signal;
@@ -122,14 +122,14 @@ namespace database
       for(i32 i = 0; i < m_clienta.get_count(); i++)
       {
 
-         if (::is_set(psubject))
+         if (::is_set(ptopic))
          {
 
-            psubject->m_pextendedtopic->m_pmatter = m_clienta.element_at(i);
+            ptopic->m_pextendedtopic->m_pmatter = m_clienta.element_at(i);
 
          }
 
-         m_clienta.element_at(i)->data_on_after_change(pclient, id, payload, psubject);
+         m_clienta.element_at(i)->data_on_after_change(pclient, id, payload, ptopic);
 
       }
 
@@ -138,14 +138,14 @@ namespace database
    }
 
 
-   ::payload server::data_load(client * pclient, const key & id, ::topic * psubject)
+   ::payload server::data_load(client * pclient, const key & id, ::topic * ptopic)
    {
 
       ::memory_stream is;
 
       {
 
-         if (!_data_server_load(pclient, id, is->memory(), psubject))
+         if (!_data_server_load(pclient, id, is->memory(), ptopic))
          {
 
             return ::e_type_null;
@@ -163,14 +163,14 @@ namespace database
    }
 
 
-   void server::data_save(client * pclient, const key & id, ::payload & payload, ::topic * psubject)
+   void server::data_save(client * pclient, const key & id, ::payload & payload, ::topic * ptopic)
    {
 
       ::memory_stream writer;
 
       writer << payload;
 
-      _data_server_save(pclient, id, writer->memory(), psubject);
+      _data_server_save(pclient, id, writer->memory(), ptopic);
 
    }
 

@@ -202,10 +202,10 @@ namespace html
    }
 
 
-   void core_data::handle(::topic * psubject, ::context * pcontext)
+   void core_data::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      html_data::handle(psubject, pcontext);
+      html_data::handle(ptopic, pcontext);
 
    }
 
@@ -327,11 +327,11 @@ namespace html
          for (auto & pinteraction : m_pform->m_puserinteractionpointeraChild->interactiona())
          {
             
-            auto psubject = create_subject(::id_initialize_control);
+            auto ptopic = create_subject(::id_initialize_control);
 
-            psubject->m_puserelement = pinteraction;
+            ptopic->m_puserelement = pinteraction;
 
-            m_pform->route(psubject);
+            m_pform->route(ptopic);
 
          }
 
@@ -404,11 +404,11 @@ namespace html
       if (m_pcallback != nullptr)
       {
          
-         auto psubject = create_subject(::id_form_initialize);
+         auto ptopic = create_subject(::id_form_initialize);
 
-         psubject->m_puserelement = m_puserinteraction;
+         ptopic->m_puserelement = m_puserinteraction;
          
-         m_puserinteraction->route(psubject);
+         m_puserinteraction->route(ptopic);
 
       }
 

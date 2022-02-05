@@ -893,7 +893,7 @@ namespace user
    }
 
 
-   void document_manager::handle(::topic * psubject, ::context * pcontext)
+   void document_manager::handle(::topic * ptopic, ::context * pcontext)
    {
 
       auto templateptra = m_templateptra;
@@ -901,7 +901,7 @@ namespace user
       for(auto & ptemplate : templateptra.ptra())
       {
 
-         ptemplate->handle(psubject, pcontext);
+         ptemplate->handle(ptopic, pcontext);
 
       }
 

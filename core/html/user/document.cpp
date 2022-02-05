@@ -279,9 +279,9 @@ void html_document::soft_reload()
 
 //   auto pupdate = new_update();
 //
-//   psubject->id() = id_document_complete;
+//   ptopic->m_id = id_document_complete;
 //
-//   psubject->payload(id_url) = get_file_path();
+//   ptopic->payload(id_url) = get_file_path();
 //
 //   update_all_views(pupdate);
 

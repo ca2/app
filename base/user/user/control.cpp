@@ -892,7 +892,7 @@
 //   //}
 //
 //
-//   void control::route(::topic * psubject, ::context * pcontext)
+//   void control::route(::topic * ptopic, ::context * pcontext)
 //   {
 //
 //      ::user::box::route_handling(pevent);
@@ -908,10 +908,10 @@
 //   }
 //
 //
-//   void control::handle(::topic * psubject, ::context * pcontext)
+//   void control::handle(::topic * ptopic, ::context * pcontext)
 //   {
 //
-//      ::user::box::handle(psubject, pcontext);
+//      ::user::box::handle(ptopic, pcontext);
 //
 //   }
 //

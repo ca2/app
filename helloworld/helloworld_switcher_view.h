@@ -25,9 +25,9 @@ namespace helloworld
 
       void on_create_split_impact();
 
-      virtual void handle(::topic * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
-      virtual void handle(::topic * psubject, ::context * pcontext);
+      virtual void handle(::topic * ptopic, ::context * pcontext);
       virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics);
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
 

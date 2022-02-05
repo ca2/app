@@ -110,20 +110,20 @@ namespace data
    //  //if (m_pdatacontainerbase)
    //  //{
 
-   //  //   m_pdatacontainerbase->process(psubject);
+   //  //   m_pdatacontainerbase->process(ptopic);
 
    //  //}
 
    //}
 
 
-   void data::handle(::topic * psubject, ::context * pcontext)
+   void data::handle(::topic * ptopic, ::context * pcontext)
    {
 
       //if (m_pdatacontainerbase)
       //{
 
-      //   m_pdatacontainerbase->process(psubject);
+      //   m_pdatacontainerbase->process(ptopic);
 
       //}
 

@@ -997,8 +997,8 @@ namespace apex
       //virtual ::user::interaction_impl * impl_from_handle(void * pdata) override;
       //virtual ::user::interaction * ui_from_handle(void * pdata) override;
 
-      virtual void on_subject(::topic * psubject) override;
-      virtual void handle(::topic * psubject, ::context * pcontext) override;
+      virtual void on_subject(::topic * ptopic) override;
+      virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
       // virtual void on_command_create(::create* pcreate);
 

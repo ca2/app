@@ -988,7 +988,7 @@ namespace acme
    }
 
 
-  bool node::should_launch_on_node(::topic * psubject)
+  bool node::should_launch_on_node(::topic * ptopic)
   {
 
       return false;
@@ -996,10 +996,10 @@ namespace acme
   }
 
 
-  bool node::defer_launch_on_node(::topic * psubject)
+  bool node::defer_launch_on_node(::topic * ptopic)
   {
 
-      bool bShouldLaunchOnNode = should_launch_on_node(psubject);
+      bool bShouldLaunchOnNode = should_launch_on_node(ptopic);
 
       if(!bShouldLaunchOnNode)
       {
@@ -1008,7 +1008,7 @@ namespace acme
 
       }
 
-      bool bLaunchedOnNode = launch_on_node(psubject);
+      bool bLaunchedOnNode = launch_on_node(ptopic);
 
       if(!bLaunchedOnNode)
       {
@@ -1022,7 +1022,7 @@ namespace acme
   }
 
 
-  bool node::launch_on_node(::topic * psubject)
+  bool node::launch_on_node(::topic * ptopic)
   {
 
       return false;

@@ -1980,16 +1980,16 @@ namespace filemanager
    }
 
 
-   void file_list::handle(::topic * psubject, ::context * pcontext)
+   void file_list::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::filemanager_impact_base::handle(psubject, pcontext);
+      ::filemanager_impact_base::handle(ptopic, pcontext);
 
-      ::userfs::list::handle(psubject, pcontext);
+      ::userfs::list::handle(ptopic, pcontext);
 
       auto papplication = get_application();
 
-      if (m_bStatic && psubject->id() == id_add_location)
+      if (m_bStatic && ptopic->m_id == id_add_location)
       {
 
          ::file::patha filepatha;
@@ -2022,26 +2022,26 @@ namespace filemanager
          }
 
       }
-      else if (psubject->id() == id_view_list)
+      else if (ptopic->m_id == id_view_list)
       {
 
          _001SetImpact(impact_list);
 
       }
-      else if (psubject->id() == id_view_report)
+      else if (ptopic->m_id == id_view_report)
       {
 
          _001SetImpact(impact_report);
 
       }
-      else if (psubject->id() == id_view_icon)
+      else if (ptopic->m_id == id_view_icon)
       {
 
          _001SetImpact(impact_icon);
 
       }
 
-      if (psubject->id() == id_initialize)
+      if (ptopic->m_id == id_initialize)
       {
 
          if (filemanager_data()->m_bPassBk)
@@ -2056,10 +2056,10 @@ namespace filemanager
          _001OnUpdateItemCount();
 
       }
-      else if (!m_bStatic && psubject->id() == id_synchronize_path)
+      else if (!m_bStatic && ptopic->m_id == id_synchronize_path)
       {
 
-         if (psubject->m_pfileitem->m_filepathUser != filemanager_item()->m_filepathUser)
+         if (ptopic->m_pfileitem->m_filepathUser != filemanager_item()->m_filepathUser)
          {
 
             return;
@@ -2093,10 +2093,10 @@ namespace filemanager
          _001OnUpdateItemCount();
 
       }
-      else if (psubject->id() == id_filter)
+      else if (ptopic->m_id == id_filter)
       {
 
-         if (psubject->payload(id_filter).is_empty())
+         if (ptopic->payload(id_filter).is_empty())
          {
 
             FilterClose();
@@ -2107,33 +2107,33 @@ namespace filemanager
 
             FilterBegin();
 
-            Filter1(psubject->payload(id_filter).as_string());
+            Filter1(ptopic->payload(id_filter).as_string());
 
          }
 
       }
-      else if (psubject->id() == id_get_active_view_selection)
+      else if (ptopic->m_id == id_get_active_view_selection)
       {
 
          if (get_parent_frame()->get_active_view() == (this))
          {
 
-            get_selected_items(*psubject->cast <::file::item_array>(id_selected));
+            get_selected_items(*ptopic->cast <::file::item_array>(id_selected));
 
          }
 
       }
-      else if (psubject->id() == id_after_browse)
+      else if (ptopic->m_id == id_after_browse)
       {
 
-         if (psubject->payload(id_after_browse) == "filemanager\\replace_name_in_file_system.xhtml")
+         if (ptopic->payload(id_after_browse) == "filemanager\\replace_name_in_file_system.xhtml")
          {
 
             //html::matter * pelemental = dynamic_cast < html::matter * > (pupdate->m_pformview->get_html_data()->get_element_by_name("encontrar"));
 
             //html::impl::input_text * pinput = dynamic_cast < html::impl::input_text * > (pelemental->m_pimpl);
 
-            __pointer(::user::interaction) puserinteractionParent = psubject->m_puserelement;
+            __pointer(::user::interaction) puserinteractionParent = ptopic->m_puserelement;
 
             auto pinteraction = puserinteractionParent->get_child_by_id("encontrar");
 
@@ -2142,40 +2142,40 @@ namespace filemanager
             if (pitem)
             {
 
-               pinteraction->_001SetText(psubject->payload(id_name), psubject->m_actioncontext);
+               pinteraction->_001SetText(ptopic->payload(id_name), ptopic->m_actioncontext);
 
             }
 
          }
 
-         if (psubject->id() == id_replace_name)
+         if (ptopic->m_id == id_replace_name)
          {
 
-            if (psubject->payload(id_find).has_char())
+            if (ptopic->payload(id_find).has_char())
             {
 
                auto pcontext = get_context();
 
                ::file::path pathFolder = filemanager_item()->get_user_path();
 
-               pcontext->m_papexcontext->file().replace_with(pathFolder, psubject->payload(id_replace), psubject->payload(id_find));
+               pcontext->m_papexcontext->file().replace_with(pathFolder, ptopic->payload(id_replace), ptopic->payload(id_find));
 
             }
 
          }
-         else if (psubject->id() == id_new_folder)
+         else if (ptopic->m_id == id_new_folder)
          {
 
-            if (psubject->payload(id_folder).has_char())
+            if (ptopic->payload(id_folder).has_char())
             {
 
-               ::file::path pathFolder = filemanager_item()->get_user_path() / psubject->payload(id_folder);
+               ::file::path pathFolder = filemanager_item()->get_user_path() / ptopic->payload(id_folder);
 
                auto pcontext = get_context();
 
                pcontext->m_papexcontext->dir().create(pathFolder);
 
-               psubject->m_bRet = true;
+               ptopic->m_bRet = true;
 
             }
 

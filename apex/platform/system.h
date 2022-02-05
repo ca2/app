@@ -847,7 +847,7 @@ namespace apex
       void route_command(::message::command * pcommand, bool bRouteToKeyDescendant) override;
 
       //void signal(::signal * psignal) override;
-      void handle(::topic * psubject, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::context * pcontext) override;
 
       // virtual void on_command_create(::create* pcreate);
 

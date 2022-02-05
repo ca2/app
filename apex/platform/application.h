@@ -728,7 +728,7 @@ public:
       virtual string get_app_user_friendly_task_bar_name();
 
       //void signal(::signal * psignal) override;
-      void handle(::topic * psubject, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::context * pcontext) override;
 
       //virtual bool compress_ungz(::file::file * pfileUncompressed, ::file::file * pfileCompressed);
 
@@ -795,7 +795,7 @@ public:
 
       //virtual ::draw2d::icon * get_icon(object * pobject, bool bBigIcon) const;
 
-      //virtual void handle(::topic * psubject, ::context * pcontext);
+      //virtual void handle(::topic * ptopic, ::context * pcontext);
 
 
 
@@ -1050,7 +1050,7 @@ public:
 
 
 
-      virtual void data_on_after_change(::database::client* pclient, const ::database::key& id, const ::payload & payload, ::topic * psubject) override;
+      virtual void data_on_after_change(::database::client* pclient, const ::database::key& id, const ::payload & payload, ::topic * ptopic) override;
 
 
 

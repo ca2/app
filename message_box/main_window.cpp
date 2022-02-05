@@ -69,13 +69,13 @@ namespace app_message_box
    }
 
 
-   void main_window::handle(::topic * psubject, ::context * pcontext)
+   void main_window::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (psubject->m_id == ::id_click)
+      if (ptopic->m_id == ::id_click)
       {
 
-         if (psubject->user_interaction() == m_pbuttonShowMessageBox && psubject->m_actioncontext.is_user_source())
+         if (ptopic->user_interaction() == m_pbuttonShowMessageBox && ptopic->m_actioncontext.is_user_source())
          {
 
             try
@@ -83,7 +83,7 @@ namespace app_message_box
 
                show_message_box();
 
-               psubject->m_bRet = true;
+               ptopic->m_bRet = true;
 
                return;
 

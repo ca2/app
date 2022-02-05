@@ -2983,7 +2983,7 @@ bool x11_on_event(XEvent * pevent)
             if(g_pobjectaExtendedEventListener)
             {
 
-               cookie = &psubject->xcookie;
+               cookie = &ptopic->xcookie;
 
             }
             else
@@ -3451,18 +3451,18 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
             }
 
-            auto psubject = ::aura::get_system()->topic(eid);
+            auto ptopic = ::aura::get_system()->topic(eid);
 
-            psubject->payload("return") = is_return_key((XIRawEvent*)cookie->data);
+            ptopic->payload("return") = is_return_key((XIRawEvent*)cookie->data);
 
-            psubject->payload("space") = is_space_key((XIRawEvent*)cookie->data);
+            ptopic->payload("space") = is_space_key((XIRawEvent*)cookie->data);
 
             ::context context;
 
             for(auto & p : *g_pobjectaExtendedEventListener)
             {
 
-               p->on_subject(psubject, &context);
+               p->on_subject(ptopic, &context);
 
             }
 

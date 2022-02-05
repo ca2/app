@@ -2355,7 +2355,7 @@
 //
 // MessageText:
 //
-// IndiCAtes a process has too many threads to perform the requested psubject-> For example, assignment of a primary token may only be performed when a process has zero or one threads.
+// IndiCAtes a process has too many threads to perform the requested ptopic-> For example, assignment of a primary token may only be performed when a process has zero or one threads.
 //
 #define ERROR_TOO_MANY_THREADS           565L
 
@@ -13558,7 +13558,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Log service encountered an invalid container state when attempting a requested psubject->
+// Log service encountered an invalid container state when attempting a requested ptopic->
 //
 #define ERROR_LOG_CONTAINER_STATE_INVALID 6642L
 
@@ -13567,7 +13567,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Log service is not in the correct state to perform a requested psubject->
+// Log service is not in the correct state to perform a requested ptopic->
 //
 #define ERROR_LOG_STATE_INVALID          6643L
 
@@ -32063,7 +32063,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The topic is not trusted for the specified psubject->
+// The topic is not trusted for the specified ptopic->
 //
 #define TRUST_E_SUBJECT_NOT_TRUSTED      _HRESULT_TYPEDEF_(0x800B0004L)
 
@@ -37214,7 +37214,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The TPM has insufficient internal resources to perform the requested psubject->
+// The TPM has insufficient internal resources to perform the requested ptopic->
 //
 #define TPM_E_RESOURCES                  _HRESULT_TYPEDEF_(0x80280015L)
 
@@ -39042,7 +39042,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// BitLocker Drive Encryption Cannot perform the requested psubject-> This condition may occur when two requests are issued at the same time. Wait a few moments and then try the action again.
+// BitLocker Drive Encryption Cannot perform the requested ptopic-> This condition may occur when two requests are issued at the same time. Wait a few moments and then try the action again.
 //
 #define FVE_E_ACTION_NOT_ALLOWED         _HRESULT_TYPEDEF_(0x80310009L)
 

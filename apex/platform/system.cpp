@@ -4317,11 +4317,11 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
 
    //   auto id = (::iptr)message.wParam;
 
-   //   auto psubject = topic(id);
+   //   auto ptopic = topic(id);
 
-   //   psubject->m_pobjectTopic = (::object*) message.lParam.m_lparam;
+   //   ptopic->m_pobjectTopic = (::object*) message.lParam.m_lparam;
 
-   //   return psubject;
+   //   return ptopic;
 
    //}
 
@@ -4921,7 +4921,7 @@ namespace apex
    }
 
    
-   void system::handle(::topic * psubject, ::context * pcontext)
+   void system::handle(::topic * ptopic, ::context * pcontext)
    {
 
 //      auto psignal = get_signal((::enum_id) iUpdate);
@@ -4930,10 +4930,10 @@ namespace apex
 //
 //      psignal->notify();
       
-      if(psubject->m_etopic() == id_set_dark_mode)
+      if(ptopic->m_id == id_set_dark_mode)
       {
          
-         if(psubject->m_pextendedtopic->m_payload.is_true())
+         if(ptopic->m_pextendedtopic->m_payload.is_true())
          {
 
             m_pnode->background_color(::color::black);
@@ -4947,7 +4947,7 @@ namespace apex
          }
          
       }
-      else if (psubject->id() == id_operating_system_user_theme_change)
+      else if (ptopic->m_id == id_operating_system_user_theme_change)
       {
 
          auto pnode = node();
@@ -4963,17 +4963,17 @@ namespace apex
          else
          {
 
-            psubject->m_etopic = id_not_modified;
+            ptopic->m_etopic = id_not_modified;
 
          }
 
          //m_pnode->defer_update_dark_mode();
 
       }
-      else if (psubject->id() == id_open_hyperlink)
+      else if (ptopic->m_id == id_open_hyperlink)
       {
 
-         auto plink = psubject->m_payload.cast < ::hyperlink >();
+         auto plink = ptopic->m_payload.cast < ::hyperlink >();
 
          if (plink)
          {
@@ -4994,13 +4994,13 @@ namespace apex
          }
 
       }
-      else if(psubject->id() == id_app_activated)
+      else if(ptopic->m_id == id_app_activated)
       {
          
          if(::is_set(m_papplicationMain))
          {
          
-            m_papplicationMain->handle(psubject, pcontext);
+            m_papplicationMain->handle(ptopic, pcontext);
             
          }
          
@@ -5312,11 +5312,11 @@ namespace apex
 //{
 //
 //
-//   void system::on_subject(::topic* psubject)
+//   void system::on_subject(::topic* ptopic)
 //   {
 //
 //
-//      ::manager::on_subject(psubject);
+//      ::manager::on_subject(ptopic);
 //
 //   }
 //

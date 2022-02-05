@@ -208,11 +208,11 @@ void html_form::on_layout(::draw2d::graphics_pointer & pgraphics)
 
    {
 
-      auto psubject = create_subject(::id_layout);
+      auto ptopic = create_subject(::id_layout);
 
-      psubject->m_puserelement = this;
+      ptopic->m_puserelement = this;
 
-      route(psubject);
+      route(ptopic);
 
    }
 
@@ -795,15 +795,15 @@ bool html_form::load_html(const ::string & str)
 
 
 
-void html_form::handle(::topic * psubject, ::context * pcontext)
+void html_form::handle(::topic * ptopic, ::context * pcontext)
 {
 
-   ::user::form_view::handle(psubject, pcontext);
+   ::user::form_view::handle(ptopic, pcontext);
 
    ////__update(::update)
    {
 
-      if (psubject->id() == id_document_complete)
+      if (ptopic->m_id == id_document_complete)
       {
 
          //m_phtmldata = get_html_data();
@@ -812,7 +812,7 @@ void html_form::handle(::topic * psubject, ::context * pcontext)
 
    }
 
-   if (psubject->id() == id_open_document)
+   if (ptopic->m_id == id_open_document)
    {
 
       if (m_strOpenOnCreate.has_char())
@@ -830,15 +830,15 @@ void html_form::handle(::topic * psubject, ::context * pcontext)
 
 
 
-void html_form_view::handle(::topic * psubject, ::context * pcontext)
+void html_form_view::handle(::topic * ptopic, ::context * pcontext)
 {
 
-   ::html_form::handle(psubject, pcontext);
+   ::html_form::handle(ptopic, pcontext);
 
    ////__update(::update)
    {
 
-      if (psubject->id() == id_document_complete)
+      if (ptopic->m_id == id_document_complete)
       {
 
          ASSERT(get_html_data() != nullptr);
@@ -858,7 +858,7 @@ void html_form_view::handle(::topic * psubject, ::context * pcontext)
 
          defer_html_layout();
 
-         on_document_complete(psubject->payload(id_url));
+         on_document_complete(ptopic->payload(id_url));
 
          get_parent_frame()->set_active_view(this);
 
@@ -871,30 +871,30 @@ void html_form_view::handle(::topic * psubject, ::context * pcontext)
    ////__update(::update)
    {
 
-      if (psubject->id() == id_browse)
+      if (ptopic->m_id == id_browse)
       {
 
-         if (!psubject->payload(id_form).is_empty())
+         if (!ptopic->payload(id_form).is_empty())
          {
 
             ::file::path matter;
 
             auto pcontext = get_context();
 
-            matter = pcontext->m_papexcontext->dir().matter(psubject->payload(id_form));
+            matter = pcontext->m_papexcontext->dir().matter(ptopic->payload(id_form));
 
             if (get_document()->on_open_document(matter))
             {
 
-               m_strPath = psubject->payload(id_form);
+               m_strPath = ptopic->payload(id_form);
 
             }
 
          }
-         else if (psubject->id() == id_get_form_view)
+         else if (ptopic->m_id == id_get_form_view)
          {
 
-            psubject->payload(id_form) = this;
+            ptopic->payload(id_form) = this;
 
          }
 
@@ -903,9 +903,9 @@ void html_form_view::handle(::topic * psubject, ::context * pcontext)
       if (m_pcallback != nullptr)
       {
 
-         psubject->payload(id_form) = this;
+         ptopic->payload(id_form) = this;
 
-         m_pcallback->handle(psubject, pcontext);
+         m_pcallback->handle(ptopic, pcontext);
 
       }
 
@@ -914,15 +914,15 @@ void html_form_view::handle(::topic * psubject, ::context * pcontext)
 }
 
 
-void html_view::handle(::topic * psubject, ::context * pcontext)
+void html_view::handle(::topic * ptopic, ::context * pcontext)
 {
 
-   ::html_form::handle(psubject, pcontext);
+   ::html_form::handle(ptopic, pcontext);
 
    ////__update(::update)
    {
 
-      if (psubject->id() == id_document_complete)
+      if (ptopic->m_id == id_document_complete)
       {
 
          {
@@ -940,7 +940,7 @@ void html_view::handle(::topic * psubject, ::context * pcontext)
 
          }
          
-         on_document_complete(psubject->payload(id_url));
+         on_document_complete(ptopic->payload(id_url));
 
          set_need_layout();
 

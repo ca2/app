@@ -930,13 +930,13 @@ namespace user
    }
 
 
-   void menu::handle(::topic * psubject, ::context * pcontext)
+   void menu::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (psubject->m_id == ::id_click)
+      if (ptopic->m_id == ::id_click)
       {
 
-         if (m_pitemClose.is_set() && psubject->user_interaction() == m_pitemClose->m_puserinteraction)
+         if (m_pitemClose.is_set() && ptopic->user_interaction() == m_pitemClose->m_puserinteraction)
          {
 
             defer_close();
@@ -945,12 +945,12 @@ namespace user
          else
          {
 
-            __pointer(::user::menu_item) pitem = psubject->user_interaction()->m_pmenuitem;
+            __pointer(::user::menu_item) pitem = ptopic->user_interaction()->m_pmenuitem;
 
             if (pitem != nullptr && !pitem->m_bPopup)
             {
 
-               if (psubject->user_interaction()->m_id.begins(astr.ingSysCommand))
+               if (ptopic->user_interaction()->m_id.begins(astr.ingSysCommand))
                {
 
                   auto pchannelNotify = get_notify_channel();
@@ -958,11 +958,11 @@ namespace user
                   if (::is_set(pchannelNotify))
                   {
 
-                     //::message::command command(psubject->user_element_id());
+                     //::message::command command(ptopic->user_element_id());
 
                      //puiTarget->_001SendCommand(&command);
 
-                     pchannelNotify->handle_command(psubject->user_interaction()->m_id);
+                     pchannelNotify->handle_command(ptopic->user_interaction()->m_id);
 
                   }
 
@@ -972,7 +972,7 @@ namespace user
 
                   auto pchannelNotify = m_pchannelNotify;
 
-                  id idCommand = psubject->user_interaction()->m_id;
+                  id idCommand = ptopic->user_interaction()->m_id;
 
                   idCommand = translate_property_id(idCommand);
 
@@ -985,11 +985,11 @@ namespace user
 
                      ::message::command command(idCommand);
 
-                     command.m_actioncontext = psubject->m_actioncontext;
+                     command.m_actioncontext = ptopic->m_actioncontext;
 
                      pchannelNotify->_001SendCommand(&command);
 
-                     psubject->m_bRet = command.m_bRet;
+                     ptopic->m_bRet = command.m_bRet;
 
                   }
 
@@ -1000,22 +1000,22 @@ namespace user
          }
 
       }
-//      else if (psubject->m_id == ::id_mouse_enter)
+//      else if (ptopic->m_id == ::id_mouse_enter)
 //      {
 //
 //         if (m_pitemClose.is_set()
-//               && psubject->user_interaction() != m_pitemClose->m_puserinteraction)
+//               && ptopic->user_interaction() != m_pitemClose->m_puserinteraction)
 //         {
 //
 //            if (!m_bInline)
 //            {
 //
-//               if (psubject->user_interaction()->m_pmenuitem != m_pmenuitemSub)
+//               if (ptopic->user_interaction()->m_pmenuitem != m_pmenuitemSub)
 //               {
 //
 //                  {
 //
-//                     __pointer(::user::menu_item) pitem = psubject->user_interaction()->m_pmenuitem;
+//                     __pointer(::user::menu_item) pitem = ptopic->user_interaction()->m_pmenuitem;
 //
 //                     if (pitem)
 //                     {
@@ -1044,7 +1044,7 @@ namespace user
 //
 //                           ::rectangle_i32 rectangle;
 //
-//                           psubject->user_interaction()->get_window_rect(rectangle);
+//                           ptopic->user_interaction()->get_window_rect(rectangle);
 //
 //                           m_psubmenu->update_position(rectangle.top_right());
 //
@@ -1083,26 +1083,26 @@ namespace user
 //
 //         }
 //
-//         psubject->m_bRet = true;
+//         ptopic->m_bRet = true;
 //
 //         return;
 //
 //      }
-//      else if (psubject->m_id == ::id_mouse_leave)
+//      else if (ptopic->m_id == ::id_mouse_leave)
 //      {
-//         if (psubject->user_element_id() == m_idTimerMenu)
+//         if (ptopic->user_element_id() == m_idTimerMenu)
 //         {
 //            KillTimer(e_timer_menu);
 //            m_idTimerMenu.is_empty();
 //         }
 //
-//         psubject->m_bRet = true;
+//         ptopic->m_bRet = true;
 //
 //         return;
 //
 //      }
 
-      ::user::interaction::handle(psubject, pcontext);
+      ::user::interaction::handle(ptopic, pcontext);
 
    }
 

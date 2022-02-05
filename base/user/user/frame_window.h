@@ -98,7 +98,7 @@ namespace user
       virtual bool set_topic_view_by_id(const ::id & id);
 
 
-      virtual void update_active_document(::topic * psubject);
+      virtual void update_active_document(::topic * ptopic);
       virtual void update_active_document(const ::id & id);
 
 
@@ -313,7 +313,7 @@ namespace user
       virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
 
-      virtual void handle(::topic * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
 
       __pointer(::user::interaction) WindowDataGetWnd();

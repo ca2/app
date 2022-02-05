@@ -700,25 +700,25 @@ void matter::trace_log_fatal(const char * psz, ...)
 //}
 
 
-//void matter::future(::promise::update * psubject)
+//void matter::future(::promise::update * ptopic)
 //{
 //
-//   if (!psubject->is_up_to_date())
+//   if (!ptopic->is_up_to_date())
 //   {
 //
-//      handle(psubject, pcontext);
+//      handle(ptopic, pcontext);
 //
-//      if(!psubject->m_bitProcessed)
+//      if(!ptopic->m_bitProcessed)
 //      {
 //
-//         handle(psubject, pcontext);
+//         handle(ptopic, pcontext);
 //
 //      }
 //
-//      if(psubject->m_bitProcessed)
+//      if(ptopic->m_bitProcessed)
 //      {
 //
-//         handle(psubject, pcontext);
+//         handle(ptopic, pcontext);
 //
 //      }
 //
@@ -727,21 +727,21 @@ void matter::trace_log_fatal(const char * psz, ...)
 //}
 
 
-//void matter::on_subject(::promise::update *psubject)
+//void matter::on_subject(::promise::update *ptopic)
 //{
 //
 //
 //}
 
 
-//void matter::on_subject(::promise::update *psubject)
+//void matter::on_subject(::promise::update *ptopic)
 //{
 //
 //
 //}
 
 
-//void matter::on_subject(::promise::update *psubject)
+//void matter::on_subject(::promise::update *ptopic)
 //{
 //
 //
@@ -893,14 +893,14 @@ void matter::osthread_term()
 //}
 
 
-//void matter::route(::topic * psubject, ::context * pcontext)
+//void matter::route(::topic * ptopic, ::context * pcontext)
 //{
 //
 //
 //}
 
 
-//void matter::post_process(::topic * psubject, ::context * pcontext)
+//void matter::post_process(::topic * ptopic, ::context * pcontext)
 //{
 //
 //

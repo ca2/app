@@ -45,20 +45,20 @@ namespace userex
    }
 
 
-   void group_image_list_view::handle(::topic * psubject, ::context * pcontext)
+   void group_image_list_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::user::impact::handle(psubject, pcontext);
+      ::user::impact::handle(ptopic, pcontext);
 
-      if (psubject->m_id == ::id_item_clicked)
+      if (ptopic->m_id == ::id_item_clicked)
       {
 
 
       }
-      else if (psubject->m_id == ::id_click)
+      else if (ptopic->m_id == ::id_click)
       {
 
-         if (psubject->user_interaction()->m_id == m_id)
+         if (ptopic->user_interaction()->m_id == m_id)
          {
 
             show_menu();
@@ -67,7 +67,7 @@ namespace userex
 
       }
 
-      return ::user::impact::handle(psubject, pcontext);
+      return ::user::impact::handle(ptopic, pcontext);
 
 
    }
@@ -355,18 +355,18 @@ namespace userex
    }
 
 
-   //void group_image_list_view::handle(::topic * psubject, ::context * pcontext)
+   //void group_image_list_view::handle(::topic * ptopic, ::context * pcontext)
    //{
 
-   //   if (psubject->m_id == ::id_item_clicked)
+   //   if (ptopic->m_id == ::id_item_clicked)
    //   {
 
 
    //   }
-   //   else if (psubject->m_id == ::id_click)
+   //   else if (ptopic->m_id == ::id_click)
    //   {
 
-   //      if (psubject->user_interaction()->m_id == m_id)
+   //      if (ptopic->user_interaction()->m_id == m_id)
    //      {
 
    //         show_menu();
@@ -375,7 +375,7 @@ namespace userex
 
    //   }
 
-   //   return ::user::impact::handle(psubject, pcontext);
+   //   return ::user::impact::handle(ptopic, pcontext);
 
    //}
 

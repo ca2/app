@@ -924,29 +924,29 @@ namespace user
    }
 
 
-   void combo_box::handle(::topic * psubject, ::context * pcontext)
+   void combo_box::handle(::topic * ptopic, ::context * pcontext)
    {
 
       ////if(m_bEdit)
       //{
 
-      //   ::user::plain_edit::handle(psubject, pcontext);
+      //   ::user::plain_edit::handle(ptopic, pcontext);
 
       //}
 
-      if (psubject->m_id == ::id_after_change_cur_sel)
+      if (ptopic->m_id == ::id_after_change_cur_sel)
       {
 
-         auto puserinteraction = psubject->user_interaction();
+         auto puserinteraction = ptopic->user_interaction();
 
          if (puserinteraction == m_plistbox)
          {
 
-            set_current_item(psubject->m_item, psubject->m_actioncontext);
+            set_current_item(ptopic->m_item, ptopic->m_actioncontext);
 
             _001ShowDropDown(false);
 
-            psubject->Ret();
+            ptopic->Ret();
 
             set_need_redraw();
 
@@ -1542,22 +1542,22 @@ namespace user
    }
 
 
-   //void combo_box::handle(::topic * psubject, ::context * pcontext)
+   //void combo_box::handle(::topic * ptopic, ::context * pcontext)
    //{
 
-   //   if(psubject->m_id == ::id_after_change_cur_sel)
+   //   if(ptopic->m_id == ::id_after_change_cur_sel)
    //   {
 
-   //      auto puserinteraction = psubject->user_interaction();
+   //      auto puserinteraction = ptopic->user_interaction();
 
    //      if(puserinteraction == m_plistbox)
    //      {
 
-   //         set_current_item(psubject->m_item, psubject->m_actioncontext);
+   //         set_current_item(ptopic->m_item, ptopic->m_actioncontext);
 
    //         _001ShowDropDown(false);
 
-   //         psubject->Ret();
+   //         ptopic->Ret();
 
    //         set_need_redraw();
 
@@ -1571,7 +1571,7 @@ namespace user
 
    //   }
 
-   //   ::user::plain_edit::handle(psubject, pcontext);
+   //   ::user::plain_edit::handle(ptopic, pcontext);
 
    //}
 

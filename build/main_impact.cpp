@@ -40,10 +40,10 @@ namespace app_core_build
    }
 
 
-   void main_impact::handle(::topic * psubject, ::context * pcontext)
+   void main_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::user::split_view::handle(psubject, pcontext);
+      ::user::split_view::handle(ptopic, pcontext);
 
    }
 
@@ -131,20 +131,20 @@ namespace app_core_build
    }
 
 
-   //void main_impact::handle(::topic * psubject, ::context * pcontext)
+   //void main_impact::handle(::topic * ptopic, ::context * pcontext)
    //{
 
-   //   if(psubject->m_id == ::id_click)
+   //   if(ptopic->m_id == ::id_click)
    //   {
 
-   //      if(psubject->user_interaction()->m_id == "hellomultiverse_toggle")
+   //      if(ptopic->user_interaction()->m_id == "hellomultiverse_toggle")
    //      {
 
    //         m_pimpact->m_prender->m_bLite = !m_pimpact->m_prender->m_bLite;
 
    //         m_pimpact->set_need_layout();
 
-   //         psubject->m_bRet = true;
+   //         ptopic->m_bRet = true;
 
    //         return;
 
@@ -152,7 +152,7 @@ namespace app_core_build
 
    //   }
 
-   //   ::user::split_view::handle(psubject, pcontext);
+   //   ::user::split_view::handle(ptopic, pcontext);
 
    //}
 

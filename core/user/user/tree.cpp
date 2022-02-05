@@ -2228,13 +2228,13 @@ namespace user
    }
 
 
-   void tree::handle(::topic * psubject, ::context * pcontext)
+   void tree::handle(::topic * ptopic, ::context * pcontext)
    {
 
       if (m_ptree)
       {
 
-         m_ptree->handle(psubject, pcontext);
+         m_ptree->handle(ptopic, pcontext);
 
       }
 

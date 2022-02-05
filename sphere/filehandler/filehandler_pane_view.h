@@ -18,7 +18,7 @@ namespace filehandler
       void on_create_impact(::user::impact_data * pimpactdata) override;
       void install_message_routing(::channel * pchannel) override;
 
-      virtual void handle(::topic * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * ptopic, ::context * pcontext) override;
       virtual bool pre_create_window(::user::system * pusersystem) override;
 
       DECLARE_MESSAGE_HANDLER(_001OnMenuMessage);

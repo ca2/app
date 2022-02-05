@@ -272,15 +272,15 @@
 //
 //            pevent = (struct inotify_event *)&buff[i];
 //
-//            a.m_strFilename = psubject->name;
+//            a.m_strFilename = ptopic->name;
 //
-//            a.m_pwatch = m_watchmap[(id &)psubject->wd];
+//            a.m_pwatch = m_watchmap[(id &)ptopic->wd];
 //
-//            a.m_ulOsAction = psubject->mask;
+//            a.m_ulOsAction = ptopic->mask;
 //
 //            handle_action(&a);
 //
-//            i += sizeof(struct inotify_event) + psubject->len;
+//            i += sizeof(struct inotify_event) + ptopic->len;
 //
 //         }
 //
@@ -291,41 +291,41 @@
 //   }
 //
 //
-//   void os_file_watcher::handle_action(action * psubject)
+//   void os_file_watcher::handle_action(action * ptopic)
 //   {
 //
-//      if (!psubject->m_pwatch)
+//      if (!ptopic->m_pwatch)
 //      {
 //
 //         return;
 //
 //      }
 //
-//      if (!psubject->m_pwatch->m_plistener)
+//      if (!ptopic->m_pwatch->m_plistener)
 //      {
 //
 //         return;
 //
 //      }
 //
-//      if (IN_CLOSE_WRITE & psubject->m_ulOsAction)
+//      if (IN_CLOSE_WRITE & ptopic->m_ulOsAction)
 //      {
 //
-//         psubject->m_pwatch->m_plistener->handle_file_action(::file::action * paction);
+//         ptopic->m_pwatch->m_plistener->handle_file_action(::file::action * paction);
 //
 //      }
 //
-//      if (IN_MOVED_TO & psubject->m_ulOsAction || IN_CREATE & psubject->m_ulOsAction)
+//      if (IN_MOVED_TO & ptopic->m_ulOsAction || IN_CREATE & ptopic->m_ulOsAction)
 //      {
 //
-//         psubject->m_pwatch->m_plistener->handle_file_action(::file::action * paction);
+//         ptopic->m_pwatch->m_plistener->handle_file_action(::file::action * paction);
 //
 //      }
 //
-//      if (IN_MOVED_FROM & psubject->m_ulOsAction || IN_DELETE & psubject->m_ulOsAction)
+//      if (IN_MOVED_FROM & ptopic->m_ulOsAction || IN_DELETE & ptopic->m_ulOsAction)
 //      {
 //
-//         psubject->m_pwatch->m_plistener->handle_file_action(::file::action * paction);
+//         ptopic->m_pwatch->m_plistener->handle_file_action(::file::action * paction);
 //
 //      }
 //

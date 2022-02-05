@@ -39,7 +39,7 @@ namespace filemanager
 
       virtual void GetSel(string_array & stra);
 
-      virtual void handle(::topic * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
 
    };

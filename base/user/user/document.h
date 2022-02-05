@@ -255,10 +255,10 @@ namespace user
       // Update Impacts (simple update - DAG only)
       void id_update_all_views(const ::id & id);
       void update_all_views(impact * pimpact, const ::id & id);
-      virtual void update_all_views(::topic * psubject);
+      virtual void update_all_views(::topic * ptopic);
 
 
-      virtual void handle(::topic * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
       //void send_update(__pointer(::user::impact) pSender, LPARAM lHint = 0L,
       //                 ::object* pHint = nullptr);

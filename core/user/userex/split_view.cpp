@@ -68,11 +68,11 @@ namespace userex
    }
 
 
-   void split_view::handle(::topic * psubject, ::context * pcontext)
+   void split_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::user::split_view::handle(psubject, pcontext);
-      ::user::impact_host::handle(psubject, pcontext);
+      ::user::split_view::handle(ptopic, pcontext);
+      ::user::impact_host::handle(ptopic, pcontext);
 
    }
 

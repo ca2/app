@@ -75,15 +75,15 @@ namespace userex
    }
 
 
-   void font_view::handle(::topic * psubject, ::context * pcontext)
+   void font_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::user::split_view::handle(psubject, pcontext);
+      ::user::split_view::handle(ptopic, pcontext);
 
-      if (psubject->id() == id_after_change_text)
+      if (ptopic->m_id == id_after_change_text)
       {
 
-         if (m_ptopview != nullptr && psubject->m_puserelement == m_ptopview->m_peditview)
+         if (m_ptopview != nullptr && ptopic->m_puserelement == m_ptopview->m_peditview)
          {
 
             synchronous_lock synchronouslock(m_pimpact->m_pfontlist->mutex());
@@ -97,10 +97,10 @@ namespace userex
          }
 
       }
-      else if (psubject->user_element_id() == impact_font_sel)
+      else if (ptopic->user_element_id() == impact_font_sel)
       {
 
-         if (psubject->m_id == ::id_after_change_cur_sel)
+         if (ptopic->m_id == ::id_after_change_cur_sel)
          {
 
             if (m_bSourceFontSel)
@@ -124,7 +124,7 @@ namespace userex
 
       }
 
-      ::user::impact::handle(psubject, pcontext);
+      ::user::impact::handle(ptopic, pcontext);
 
 
 
@@ -228,15 +228,15 @@ namespace userex
    }
 
 
-   //void font_view::handle(::topic * psubject, ::context * pcontext)
+   //void font_view::handle(::topic * ptopic, ::context * pcontext)
    //{
 
-   //   ::user::impact::handle(psubject, pcontext);
+   //   ::user::impact::handle(ptopic, pcontext);
 
-   //   if (psubject->m_puserelement->m_id == impact_font_sel)
+   //   if (ptopic->m_puserelement->m_id == impact_font_sel)
    //   {
 
-   //      if (psubject->m_id == ::id_after_change_cur_sel)
+   //      if (ptopic->m_id == ::id_after_change_cur_sel)
    //      {
 
    //         if (m_bSourceFontSel)

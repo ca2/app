@@ -360,9 +360,9 @@ namespace universal_windows
 
          ::draw2d::device_lock devicelock(this);
 
-         auto psubject = m_psystem->topic(id_os_dark_mode);
+         auto ptopic = m_psystem->topic(id_os_dark_mode);
 
-         m_psystem->process(psubject);
+         m_psystem->process(ptopic);
 
          CreateWindowSizeDependentResources();
 

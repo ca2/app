@@ -62,7 +62,7 @@
 //   //   virtual void     run() override;
 //
 //   //   /// Handles the action
-//   //   virtual void handle_action(action * psubject);
+//   //   virtual void handle_action(action * ptopic);
 //
 //   ////private:
 //   //   /// Map of id to watch_struct pointers

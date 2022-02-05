@@ -145,7 +145,7 @@ namespace user
 
       // TODO: could return a kind of - also TODO - JOB object in case of assynchronous call
       //virtual void collaborate(::job * pjob);
-      virtual i32  get_total_page_count(::context * psubject) override;
+      virtual i32  get_total_page_count(::context * ptopic) override;
 
 
       virtual ::user::interaction::enum_type get_window_type() override;
@@ -183,7 +183,7 @@ namespace user
       //virtual void OnActivateImpact(bool bActivate, __pointer(::user::impact) pActivateImpact, __pointer(::user::impact) pDeactiveImpact);
       //virtual void OnActivateFrame(::u32 nState, __pointer(::user::frame_window) pFrameWnd);
 
-      //virtual void handle(::topic * psubject, ::context * pcontext) override;
+      //virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
       //      virtual void dump(dump_context &) const;
       //    void assert_valid() const override;

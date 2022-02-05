@@ -96,10 +96,10 @@ namespace prompt
 
 
 
-   void impact::handle(::topic * psubject, ::context * pcontext)
+   void impact::handle(::topic * ptopic, ::context * pcontext)
    {
       
-      if(psubject->id() == id_update_current_area)
+      if(ptopic->m_id == id_update_current_area)
       {
 
          SetTimer(::e_timer_update_current_area, 100, nullptr);

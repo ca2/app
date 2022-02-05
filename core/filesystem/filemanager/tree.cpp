@@ -808,10 +808,10 @@ namespace filemanager
    }
 
 
-   void tree::handle(::topic * psubject, ::context * pcontext)
+   void tree::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::filemanager_impact_base::handle(psubject, pcontext);
+      ::filemanager_impact_base::handle(ptopic, pcontext);
 
    }
 

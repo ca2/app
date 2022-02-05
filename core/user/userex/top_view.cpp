@@ -40,10 +40,10 @@ namespace userex
    }
 
 
-   void top_view::handle(::topic * psubject, ::context * pcontext)
+   void top_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::user::split_view::handle(psubject, pcontext);
+      ::user::split_view::handle(ptopic, pcontext);
 
    }
 

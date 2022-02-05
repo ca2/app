@@ -70,10 +70,10 @@ namespace user
    }
 
 
-   void font_combo_box::handle(::topic * psubject, ::context * pcontext)
+   void font_combo_box::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (psubject->m_id == id_font_enumeration)
+      if (ptopic->m_id == id_font_enumeration)
       {
 
          __pointer(::user::font_list) pfontlist = m_plistbox;
@@ -100,7 +100,7 @@ namespace user
 
       }
 
-      ::user::combo_box::handle(psubject, pcontext);
+      ::user::combo_box::handle(ptopic, pcontext);
 
    }
 

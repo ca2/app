@@ -134,7 +134,7 @@ namespace user
          void on_kill_keyboard_focus() override;
 
 
-         void handle(::topic * psubject, ::context * pcontext) override;
+         void handle(::topic * ptopic, ::context * pcontext) override;
 
 
          strsize _001GetTextLength() const override;

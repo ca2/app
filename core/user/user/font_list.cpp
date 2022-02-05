@@ -242,12 +242,12 @@ namespace user
    }
 
 
-   void font_list::handle(::topic * psubject, ::context * pcontext)
+   void font_list::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      list_box::handle(psubject, pcontext);
+      list_box::handle(ptopic, pcontext);
 
-      if (psubject->m_id == id_font_list_total_size)
+      if (ptopic->m_id == id_font_list_total_size)
       {
 
          set_need_layout();
@@ -596,7 +596,7 @@ namespace user
 
             psystem->signal(id_font_enumeration);
 
-            //psystem->handle_subject(psubject);
+            //psystem->handle_subject(ptopic);
 
             //fork([this]()
   //             {

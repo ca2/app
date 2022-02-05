@@ -13,7 +13,7 @@ namespace userstack
       virtual ~form_callback();
 
       void update(::user::form * pform, ::update & update);
-      virtual void handle(::topic * psubject, ::context * pcontext);
+      virtual void handle(::topic * ptopic, ::context * pcontext);
    };
 
 

@@ -44,9 +44,9 @@ template <typename A, typename B>
 int __id_compare_square(A a, B b)
 {
 
-   auto aSgn = sgn(a);
+   auto aSgn = __id_sgn(a);
 
-   return aSgn ? aSgn : sgn(b);
+   return aSgn ? aSgn : __id_sgn(b);
 
 }
 
@@ -72,13 +72,13 @@ int __id_compare_square(A a, B b)
 #define __id_is_null_ptr(p) (!(p))
 
 
-#define __str_is_empty(psz) (__is_null_ptr(psz) || *psz == '\0')
+#define __id_str_is_empty(psz) (__id_is_null_ptr(psz) || *psz == '\0')
 
 
 // Lets (AMajor.AMinor) (BMajor.BMinor)
 // compare_square(AMajor - BMajor, AMinor - BMinor)
 #define __id_compare_square(MAJOR_COMPARISON, MINOR_COMPARISON) \
-(sgn(MAJOR_COMPARISON) != 0 ? (sgn(MAJOR_COMPARISON)) : (sgn(MINOR_COMPARISON)))
+(__id_sgn(MAJOR_COMPARISON) != 0 ? (__id_sgn(MAJOR_COMPARISON)) : (__id_sgn(MINOR_COMPARISON)))
 
 
 inline int __id_safe_strcmp(const char * a, const char * b)
@@ -761,7 +761,7 @@ inline id::id(UNSIGNED u)
 inline int id::compare(const id & id) const
 {
 
-   return __compare_square(m_iType - id.m_iType, m_iBody - id.m_iBody);
+   return __id_compare_square(m_iType - id.m_iType, m_iBody - id.m_iBody);
 
 }
 
@@ -830,7 +830,7 @@ inline id & id::operator = (const id & id)
 inline int id::compare(const ::string & str) const
 {
 
-   return __compare_square(primitive_type() - e_type_text, ansi_compare(m_psz, str.c_str()));
+   return __id_compare_square(primitive_type() - e_type_text, ansi_compare(m_psz, str.c_str()));
 
 }
 
@@ -992,7 +992,7 @@ inline string id::str() const
 inline int id::compare(const char * psz) const
 {
 
-   return __compare_square(primitive_type() - e_type_text, __safe_strcmp(m_psz, psz));
+   return __id_compare_square(primitive_type() - e_type_text, __id_safe_strcmp(m_psz, psz));
 
 }
 
@@ -1053,7 +1053,7 @@ template < primitive_integral INTEGRAL >
 inline int id::compare(INTEGRAL i) const
 {
 
-   return __compare_square((::i32)primitive_type() - (::i32)e_type_integer, (::i64) m_i - (::i64)i);
+   return __id_compare_square((::i32)primitive_type() - (::i32)e_type_integer, (::i64) m_i - (::i64)i);
 
 }
 
@@ -1118,7 +1118,7 @@ inline bool id::operator >= (INTEGRAL i) const
 inline int id::compare(::enum_id eid) const
 {
 
-   return __compare_square(m_etype - e_type_id, m_i - eid);
+   return __id_compare_square(m_etype - e_type_id, m_i - eid);
 
 }
 
@@ -1174,7 +1174,7 @@ inline bool id::operator >= (::enum_id eid) const
 inline int id::compare(::enum_message emessage) const
 {
 
-   return __compare_square(m_etype - e_type_message, m_emessage - emessage);
+   return __id_compare_square(m_etype - e_type_message, m_emessage - emessage);
 
 }
 
@@ -1230,7 +1230,7 @@ inline bool id::operator >= (::enum_message emessage) const
 //inline int id::compare(::enum_topic etopic) const
 //{
 //
-//   return __compare_square(m_etype - e_type_subject, m_etopic - etopic);
+//   return __id_compare_square(m_etype - e_type_subject, m_etopic - etopic);
 //
 //}
 //
@@ -1288,7 +1288,7 @@ inline bool id::operator >= (::enum_message emessage) const
 inline int id::compare(::enum_dialog_result edialogresult) const
 {
 
-   return __compare_square(m_etype - e_type_dialog_result, m_edialogresult - edialogresult);
+   return __id_compare_square(m_etype - e_type_dialog_result, m_edialogresult - edialogresult);
 
 }
 
@@ -1439,7 +1439,7 @@ inline iptr id::compare_ci(const char * psz) const
    else
    {
 
-      return __safe_stricmp(m_psz,psz);
+      return __id_safe_stricmp(m_psz,psz);
 
    }
 
@@ -1507,7 +1507,7 @@ public:
 inline bool id::begins(const char * pszCandidatePrefix) const
 {
 
-   if (__str_is_empty(pszCandidatePrefix))
+   if (__id_str_is_empty(pszCandidatePrefix))
    {
 
       return true;
@@ -1523,7 +1523,7 @@ inline bool id::begins(const char * pszCandidatePrefix) const
    else if (is_text())
    {
 
-      return __str_begins(m_psz, pszCandidatePrefix);
+      return __id_str_begins(m_psz, pszCandidatePrefix);
 
    }
    else
@@ -1541,7 +1541,7 @@ inline bool id::begins(const char * pszCandidatePrefix) const
 inline bool id::begins_ci(const char * pszCandidatePrefix) const
 {
 
-   if (::is_null(pszCandidatePrefix) || *pszCandidatePrefix == '\0')
+   if (__id_str_is_empty(pszCandidatePrefix))
    {
 
       return true;

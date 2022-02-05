@@ -179,30 +179,30 @@ namespace filemanager
    }
 
 
-   void main_impact::handle(::topic * psubject, ::context * pcontext)
+   void main_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::filemanager_impact_base::handle(psubject, pcontext);
+      ::filemanager_impact_base::handle(ptopic, pcontext);
 
-      ::user::split_view::handle(psubject, pcontext);
+      ::user::split_view::handle(ptopic, pcontext);
 
-      if (psubject->id() == OPEN_DOCUMENT_UPDATE)
+      if (ptopic->m_id == OPEN_DOCUMENT_UPDATE)
       {
 
          output_debug_string("filemanager::main_impact ::update_open_document");
 
       }
 
-      if (filemanager_document() == psubject->cast < ::user::document >(DOCUMENT_ID))
+      if (filemanager_document() == ptopic->cast < ::user::document >(DOCUMENT_ID))
       {
 
-         if (psubject->id() == id_open_selection_properties)
+         if (ptopic->m_id == id_open_selection_properties)
          {
 
             OpenSelectionProperties();
 
          }
-         else if (psubject->id() == id_pop)
+         else if (ptopic->m_id == id_pop)
          {
 
             OnActivateFrame(e_activate_inactive, ((get_parent_frame())));
@@ -222,7 +222,7 @@ namespace filemanager
             }
 
          }
-         else if (psubject->id() == id_create_bars)
+         else if (ptopic->m_id == id_create_bars)
          {
 
             __pointer(simple_frame_window) pframe = get_parent_frame();

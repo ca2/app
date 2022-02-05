@@ -6419,31 +6419,31 @@ namespace aura
 
 
 
-//   void system::on_subject(::topic * psubject)
+//   void system::on_subject(::topic * ptopic)
 //   {
 //
 //
-//      ::aqua::system::on_subject(psubject);
+//      ::aqua::system::on_subject(ptopic);
 //
 //   }
 
 
-   void system::handle(::topic * psubject, ::context * pcontext)
+   void system::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (psubject->m_id == id_font_enumeration)
+      if (ptopic->m_id == id_font_enumeration)
       {
 
-         draw2d()->write_text()->handle_font_enumeration(psubject);
+         draw2d()->write_text()->handle_font_enumeration(ptopic);
 
       }
-      else if (psubject->m_id == id_operating_system_user_color_change)
+      else if (ptopic->m_id == id_operating_system_user_color_change)
       {
 
 
       }
 
-      ::aqua::system::handle(psubject, pcontext);
+      ::aqua::system::handle(ptopic, pcontext);
 
    }
 

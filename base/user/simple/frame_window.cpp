@@ -3173,22 +3173,22 @@ void simple_frame_window::_001OnQueryEndSession(::message::message * pmessage)
 }
 
 
-void simple_frame_window::handle(::topic * psubject, ::context * pcontext)
+void simple_frame_window::handle(::topic * ptopic, ::context * pcontext)
 {
 
-   if (psubject->m_id == id_task_bar_created)
+   if (ptopic->m_id == id_task_bar_created)
    {
 
       defer_create_notification_icon();
 
    }
-   else if(psubject->user_interaction() == m_pnotifyicon)
+   else if(ptopic->user_interaction() == m_pnotifyicon)
    {
 
-      if(psubject->m_id == ::id_context_menu)
+      if(ptopic->m_id == ::id_context_menu)
       {
 
-         //OnNotifyIconContextMenu(psubject->m_puserelement->m_id);
+         //OnNotifyIconContextMenu(ptopic->m_puserelement->m_id);
 
          auto psession = get_session();
 
@@ -3203,16 +3203,16 @@ void simple_frame_window::handle(::topic * psubject, ::context * pcontext)
          puser->track_popup_xml_menu(this, strXml, 0, pointCursor, size_i32(), m_pnotifyicon);
 
       }
-      else if(psubject->m_id == ::id_left_button_double_click)
+      else if(ptopic->m_id == ::id_left_button_double_click)
       {
 
-         //OnNotifyIconLButtonDblClk(psubject->m_puserelement->m_id);
+         //OnNotifyIconLButtonDblClk(ptopic->m_puserelement->m_id);
 
       }
-      else if(psubject->m_id == ::id_left_button_down)
+      else if(ptopic->m_id == ::id_left_button_down)
       {
 
-         //OnNotifyIconLButtonDown(psubject->m_puserelement->m_id);
+         //OnNotifyIconLButtonDown(ptopic->m_puserelement->m_id);
 
          default_notify_icon_topic();
 
@@ -3223,16 +3223,16 @@ void simple_frame_window::handle(::topic * psubject, ::context * pcontext)
 
 //#endif
 
-   ::experience::frame_window::handle(psubject, pcontext);
+   ::experience::frame_window::handle(ptopic, pcontext);
 
-   if(psubject->m_bRet)
+   if(ptopic->m_bRet)
    {
 
       return;
 
    }
 
-   return ::user::frame_window::handle(psubject, pcontext);
+   return ::user::frame_window::handle(ptopic, pcontext);
 
 }
 

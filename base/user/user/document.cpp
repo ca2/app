@@ -1906,22 +1906,22 @@ namespace user
    }
 
 
-   void document::update_all_views(::topic * psubject)
+   void document::update_all_views(::topic * ptopic)
    {
 
-      ASSERT(psubject->m_psender == nullptr || !m_viewa.is_empty());
+      ASSERT(ptopic->m_psender == nullptr || !m_viewa.is_empty());
 
       for (auto & pview : m_viewa.ptra())
       {
 
          ASSERT_VALID(pview);
 
-         if (pview != psubject->m_psender)
+         if (pview != ptopic->m_psender)
          {
 
-            pview->handle(psubject, nullptr);
+            pview->handle(ptopic, nullptr);
 
-            if(psubject->m_bRet)
+            if(ptopic->m_bRet)
             {
 
                break;
@@ -1935,10 +1935,10 @@ namespace user
    }
 
 
-   void document::handle(::topic * psubject, ::context * pcontext)
+   void document::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      update_all_views(psubject);
+      update_all_views(ptopic);
 
    }
 
@@ -1946,11 +1946,11 @@ namespace user
    void document::update_all_views(impact * pimpactSender, const ::id & id)
    {
 
-      auto psubject = create_subject(id);
+      auto ptopic = create_subject(id);
 
-      psubject->m_psender = pimpactSender;
+      ptopic->m_psender = pimpactSender;
 
-      update_all_views(psubject);
+      update_all_views(ptopic);
 
    }
 

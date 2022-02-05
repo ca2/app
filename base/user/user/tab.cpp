@@ -3446,34 +3446,34 @@ namespace user
    }
 
 
-   void tab::handle(::topic * psubject, ::context * pcontext)
+   void tab::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::user::interaction::handle(psubject, pcontext);
+      ::user::interaction::handle(ptopic, pcontext);
 
-      if (psubject->id() == id_get_topic_view_id)
+      if (ptopic->m_id == id_get_topic_view_id)
       {
 
-         psubject->payload(id_id) = get_current_tab_id();
+         ptopic->payload(id_id) = get_current_tab_id();
 
-         psubject->m_bRet = true;
+         ptopic->m_bRet = true;
 
       }
-      else if (psubject->id() == id_set_topic_view_by_id)
+      else if (ptopic->m_id == id_set_topic_view_by_id)
       {
 
-         set_current_tab_by_id(psubject->payload(id_id));
+         set_current_tab_by_id(ptopic->payload(id_id));
 
-         psubject->m_bRet = true;
+         ptopic->m_bRet = true;
 
       }
-      else if(psubject->id() == id_place_child_title_change)
+      else if(ptopic->m_id == id_place_child_title_change)
       {
 
          for (auto& ppane : get_data()->m_tabpanecompositea)
          {
 
-            if (ppane->m_pplaceholder == psubject->m_puserelement)
+            if (ppane->m_pplaceholder == ptopic->m_puserelement)
             {
 
                auto puserinteractionpointeraChild = ppane->m_pplaceholder->m_puserinteractionpointeraChild;

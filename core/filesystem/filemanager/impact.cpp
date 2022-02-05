@@ -103,21 +103,21 @@ namespace filemanager
    }
 
 
-   void impact::handle(::topic * psubject, ::context * pcontext)
+   void impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::filemanager_impact_base::handle(psubject, pcontext);
+      ::filemanager_impact_base::handle(ptopic, pcontext);
 
-      ::user::split_view::handle(psubject, pcontext);
+      ::user::split_view::handle(ptopic, pcontext);
 
       auto psystem = m_psystem->m_paurasystem;
 
-      auto pdocumentSubject = psubject->cast < ::user::document >(id_document);
+      auto pdocumentSubject = ptopic->cast < ::user::document >(id_document);
 
       if (filemanager_document() == pdocumentSubject)
       {
 
-         //if (psubject->id() == id_initialize)
+         //if (ptopic->m_id == id_initialize)
          //{
 
          //   string str;
@@ -135,7 +135,7 @@ namespace filemanager
 
          //}
          //else
-         if (psubject->id() == id_pop)
+         if (ptopic->m_id == id_pop)
          {
 
             OnActivateFrame(e_activate_inactive, get_parent_frame());
@@ -154,7 +154,7 @@ namespace filemanager
             set_need_redraw();
 
          }
-         else if (psubject->id() == id_create_bars)
+         else if (ptopic->m_id == id_create_bars)
          {
 
             __pointer(simple_frame_window) pframe = get_parent_frame();
@@ -167,7 +167,7 @@ namespace filemanager
             }
 
          }
-         else if (psubject->id() == id_topic_start)
+         else if (ptopic->m_id == id_topic_start)
          {
 
             if (filemanager_document()->m_emode != ::userfs::mode_import && get_pane_count() == 2)
@@ -217,7 +217,7 @@ namespace filemanager
                else if (path.final_extension().has_char())
                {
 
-                  string strExtension = psubject->payload("file_extension");
+                  string strExtension = ptopic->payload("file_extension");
 
                   if (strExtension.has_char())
                   {
@@ -242,7 +242,7 @@ namespace filemanager
 
                strName.find_replace(":", "-");
 
-               ptopview->m_pedit->_001SetText(strName, psubject->m_actioncontext);
+               ptopview->m_pedit->_001SetText(strName, ptopic->m_actioncontext);
 
                filemanager_data()->m_pdocument->m_strTopic = strName;
 
@@ -261,7 +261,7 @@ namespace filemanager
             }
 
          }
-         else if (psubject->id() == id_topic_cancel)
+         else if (ptopic->m_id == id_topic_cancel)
          {
 
             if (base_class < ::filemanager::save_as_view >::bases(get_pane_window(0)))
@@ -272,13 +272,13 @@ namespace filemanager
             }
 
          }
-         else if (psubject->id() == id_topic_ok)
+         else if (ptopic->m_id == id_topic_ok)
          {
 
             if (filemanager_document()->m_emode == ::userfs::mode_import)
             {
 
-               psubject->m_bRet = filemanager_data()->m_pdocumentTopic->on_filemanager_open(filemanager_document(), psubject->m_pfileitem->m_filepathUser);
+               ptopic->m_bRet = filemanager_data()->m_pdocumentTopic->on_filemanager_open(filemanager_document(), ptopic->m_pfileitem->m_filepathUser);
 
             }
 

@@ -75,7 +75,7 @@ void source::add_handler(::matter * pmatter, bool bPriority)
 //}
 
 
-void source::route(::topic * psubject, ::context * pcontext)
+void source::route(::topic * ptopic, ::context * pcontext)
 {
 
    if (m_phandlera)
@@ -87,7 +87,7 @@ void source::route(::topic * psubject, ::context * pcontext)
          try
          {
 
-            phandler->handle(psubject, pcontext);
+            phandler->handle(ptopic, pcontext);
 
          }
          catch (...)
@@ -95,7 +95,7 @@ void source::route(::topic * psubject, ::context * pcontext)
 
          }
 
-         if (psubject->m_bRet)
+         if (ptopic->m_bRet)
          {
 
             break;

@@ -209,15 +209,15 @@ void filemanager_impact_base::_001OnOperationDocMessage(::message::message * pme
 
 
 
-void filemanager_impact_base::handle(::topic * psubject, ::context * pcontext)
+void filemanager_impact_base::handle(::topic * ptopic, ::context * pcontext)
 {
 
-   ::user::impact::handle(psubject, pcontext);
+   ::user::impact::handle(ptopic, pcontext);
 
-   if (psubject->id() == id_initialize)
+   if (ptopic->m_id == id_initialize)
    {
 
-      if (filemanager_document() == psubject->cast < ::user::document >(DOCUMENT_ID))
+      if (filemanager_document() == ptopic->cast < ::user::document >(DOCUMENT_ID))
       {
 
          __pointer(::database::client) pclient = get_parent_frame();
@@ -236,16 +236,16 @@ void filemanager_impact_base::handle(::topic * psubject, ::context * pcontext)
       }
 
    }
-   else if (psubject->id() == id_synchronize_path)
+   else if (ptopic->m_id == id_synchronize_path)
    {
 
       __pointer(::core::application) papplication = get_application();
 
-      auto pfileitem = psubject->m_pfileitem;
+      auto pfileitem = ptopic->m_pfileitem;
 
       auto bFileManagerItemSet = ::is_set(filemanager_item());
 
-      bool bEqualFilePath = bFileManagerItemSet && papplication->is_equal_file_path(psubject->m_pfileitem->m_filepathFinal, filemanager_item()->m_filepathFinal);
+      bool bEqualFilePath = bFileManagerItemSet && papplication->is_equal_file_path(ptopic->m_pfileitem->m_filepathFinal, filemanager_item()->m_filepathFinal);
 
       if (pfileitem && (bFileManagerItemSet && bEqualFilePath))
       {
@@ -254,7 +254,7 @@ void filemanager_impact_base::handle(::topic * psubject, ::context * pcontext)
          for (index i = 0; i < DBG_LOOP; i++)
          {
 
-            browse_sync(psubject->m_actioncontext + ::e_source_sync);
+            browse_sync(ptopic->m_actioncontext + ::e_source_sync);
 
          }
 
@@ -262,7 +262,7 @@ void filemanager_impact_base::handle(::topic * psubject, ::context * pcontext)
       else
       {
 
-         knowledge(psubject->m_pfileitem->m_filepathUser, psubject->m_actioncontext + ::e_source_sync);
+         knowledge(ptopic->m_pfileitem->m_filepathUser, ptopic->m_actioncontext + ::e_source_sync);
 
       }
 

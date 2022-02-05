@@ -51,9 +51,9 @@ bool simple_form_list_view::pre_create_window(::user::system * pusersystem)
 }
 
 
-void simple_form_list_view::handle(::topic * psubject, ::context * pcontext)
+void simple_form_list_view::handle(::topic * ptopic, ::context * pcontext)
 {
 
-   BASE::handle(psubject, pcontext);
+   BASE::handle(ptopic, pcontext);
 
 }

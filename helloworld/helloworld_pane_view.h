@@ -37,12 +37,12 @@ namespace helloworld
       void dump(dump_context & dumpcontext) const override;
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
-      void handle(::topic * psubject, ::context * pcontext);
+      void handle(::topic * ptopic, ::context * pcontext);
       void on_change_cur_sel();
 
       virtual ::file::path prepare_menu_view();
 
-      virtual void handle(::topic * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
 
       virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics);

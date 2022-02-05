@@ -417,18 +417,18 @@ namespace userex
    }
 
 
-   void color_view::handle(::topic * psubject, ::context * pcontext)
+   void color_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::user::impact::handle(psubject, pcontext);
+      ::user::impact::handle(ptopic, pcontext);
 
    }
 
 
-   //void color_view::handle(::topic * psubject, ::context * pcontext)
+   //void color_view::handle(::topic * ptopic, ::context * pcontext)
    //{
 
-   //   ::user::impact::handle(psubject, pcontext);
+   //   ::user::impact::handle(ptopic, pcontext);
 
    //}
 

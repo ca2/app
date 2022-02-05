@@ -304,13 +304,13 @@ namespace user
 
    }
 
-   void tree_data::handle(::topic * psubject, ::context * pcontext)
+   void tree_data::handle(::topic * ptopic, ::context * pcontext)
    {
 
       for (auto& pusertree : m_usertreea)
       {
 
-         pusertree->handle(psubject, pcontext);
+         pusertree->handle(ptopic, pcontext);
 
       }
 

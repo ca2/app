@@ -103,13 +103,13 @@ namespace file
    }
 
 
-   void watch::handle_action(action * psubject)
+   void watch::handle_action(action * ptopic)
    {
 
       for (auto & plistener : m_listenera.ptra())
       {
 
-         plistener->handle_file_action(psubject);
+         plistener->handle_file_action(ptopic);
 
       }
 

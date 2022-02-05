@@ -744,9 +744,9 @@ namespace filemanager
    void document::OpenSelectionProperties()
    {
 
-      auto psubject = topic(id_open_selection_properties);
+      auto ptopic = topic(id_open_selection_properties);
 
-      update_all_views(psubject);
+      update_all_views(ptopic);
 
    }
 
@@ -1094,9 +1094,9 @@ namespace filemanager
 
       CreateImpacts();
 
-      auto psubject = create_subject(id_create_bars);
+      auto ptopic = create_subject(id_create_bars);
 
-      psubject->payload(id_document) = this;
+      ptopic->payload(id_document) = this;
 
       if (bInitialBrowsePath)
       {
@@ -1166,7 +1166,7 @@ namespace filemanager
 
       }
 
-      //psubject->id() = ;
+      //ptopic->m_id = ;
 
       //update_all_views(pupdate);
 
@@ -1186,23 +1186,23 @@ namespace filemanager
 
       {
 
-         auto psubject = create_subject(id_initialize);
+         auto ptopic = create_subject(id_initialize);
 
-         psubject->payload(id_document) = this;
+         ptopic->payload(id_document) = this;
 
-         update_all_views(psubject);
+         update_all_views(ptopic);
 
       }
 
       {
 
-         auto psubject = create_subject(id_synchronize_locations);
+         auto ptopic = create_subject(id_synchronize_locations);
 
-         psubject->m_actioncontext = ::e_source_sync;
+         ptopic->m_actioncontext = ::e_source_sync;
 
-         psubject->payload(id_document) = this;
+         ptopic->payload(id_document) = this;
 
-         update_all_views(psubject);
+         update_all_views(ptopic);
 
       }
 
@@ -1356,19 +1356,19 @@ namespace filemanager
 
       {
 
-         auto psubject = create_subject(id_topic_start);
+         auto ptopic = create_subject(id_topic_start);
 
-         psubject->payload(id_document) = pdocumentFilemanager;
+         ptopic->payload(id_document) = pdocumentFilemanager;
 
-         pdocumentFilemanager->update_all_views(psubject);
+         pdocumentFilemanager->update_all_views(ptopic);
 
       }
 
       {
 
-         auto psubject = create_subject(id_create_bars);
+         auto ptopic = create_subject(id_create_bars);
 
-         pdocumentFilemanager->update_all_views(psubject);
+         pdocumentFilemanager->update_all_views(ptopic);
 
       }
 

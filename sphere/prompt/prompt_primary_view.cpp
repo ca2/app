@@ -25,10 +25,10 @@ namespace prompt
    }
 
 
-   void primary_view::handle(::topic * psubject, ::context * pcontext)
+   void primary_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      __UNREFERENCED_PARAMETER(psubject);
+      __UNREFERENCED_PARAMETER(ptopic);
 
    }
 

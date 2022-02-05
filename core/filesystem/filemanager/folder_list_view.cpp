@@ -180,12 +180,12 @@ namespace filemanager
    }
 
 
-   void folder_list_view::handle(::topic * psubject, ::context * pcontext)
+   void folder_list_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      FILEMANAGER_SHOW_IMPACT::handle(psubject, pcontext);
+      FILEMANAGER_SHOW_IMPACT::handle(ptopic, pcontext);
 
-      if (psubject->id() == INITIALIZE_ID)
+      if (ptopic->m_id == INITIALIZE_ID)
       {
 
          if (filemanager_data()->m_bPassBk)

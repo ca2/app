@@ -38,7 +38,7 @@ namespace database
 
       auto psignal = get_application()->get_signal(linkedproperty->m_id);
 
-      psignal->add_handler(predicate([this, id, linkedproperty](::topic * psubject, ::context * pcontext)
+      psignal->add_handler(predicate([this, id, linkedproperty](::topic * ptopic, ::context * pcontext)
 
       //connect(id, [id, linkedproperty](::message::message* pmessage)
          {
@@ -141,7 +141,7 @@ namespace database
    //}
 
 
-   void client::_data_set(const key & key, const ::payload & payload, ::topic * psubject)
+   void client::_data_set(const key & key, const ::payload & payload, ::topic * ptopic)
    {
 
       if(::is_null(m_pdataserver))
@@ -155,12 +155,12 @@ namespace database
 
       os << payload;
 
-      m_pdataserver->_data_server_save(this, key, os->memory(), psubject);
+      m_pdataserver->_data_server_save(this, key, os->memory(), ptopic);
 
    }
 
 
-   void client::_data_set(const selection & selection, const ::payload & payload, ::topic * psubject)
+   void client::_data_set(const selection & selection, const ::payload & payload, ::topic * ptopic)
    {
 
       if (::is_null(m_pdataserver))
@@ -183,7 +183,7 @@ namespace database
 
          auto & item = selection.get_item(iItem);
 
-         m_pdataserver->_data_server_save(this, item.m_datakey, os->memory(), psubject);
+         m_pdataserver->_data_server_save(this, item.m_datakey, os->memory(), ptopic);
          //{
 
          //   bOk = false;
@@ -259,16 +259,16 @@ namespace database
    }
 
 
-   bool client::data_pulse_change(const key & key, ::topic * psubject)
+   bool client::data_pulse_change(const key & key, ::topic * ptopic)
    {
 
       if(m_pdataserver != nullptr)
       {
 
 
-         m_pdataserver->data_pulse_change(this, key, psubject);
+         m_pdataserver->data_pulse_change(this, key, ptopic);
 
-         //if (!m_pdataserver->data_pulse_change(this, key, psubject))
+         //if (!m_pdataserver->data_pulse_change(this, key, ptopic))
          //{
 
          //   return false;
@@ -429,14 +429,14 @@ namespace database
    }
 
 
-   void client::data_on_before_change(client* pclient, const key& id, ::payload& payload, ::topic * psubject)
+   void client::data_on_before_change(client* pclient, const key& id, ::payload& payload, ::topic * ptopic)
    {
 
       //return true;
 
    }
 
-   void client::data_on_after_change(client* pclient, const key& id, const ::payload & payload, ::topic * psubject)
+   void client::data_on_after_change(client* pclient, const key& id, const ::payload & payload, ::topic * ptopic)
    {
 
    }

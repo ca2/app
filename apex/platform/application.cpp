@@ -4687,7 +4687,7 @@ m_pcontext->m_papexcontext->os_context()->file_open(strFile);
 //}
 
 
-void application::handle(::topic * psubject, ::context * pcontext)
+void application::handle(::topic * ptopic, ::context * pcontext)
 {
 
 
@@ -7024,7 +7024,7 @@ void application::hotplugin_host_host_starter_start_sync(const ::string & pszCom
 
 
 
-//void application::handle(::topic * psubject, ::context * pcontext)
+//void application::handle(::topic * ptopic, ::context * pcontext)
 //{
 
 //}
@@ -7056,7 +7056,7 @@ void application::hotplugin_host_host_starter_start_sync(const ::string & pszCom
 
 //}
 
-//void application::handle(::topic * psubject, ::context * pcontext)
+//void application::handle(::topic * ptopic, ::context * pcontext)
 //{
 
 //}
@@ -7069,12 +7069,12 @@ void application::hotplugin_host_host_starter_start_sync(const ::string & pszCom
 //}
 
 
-//void application::route(::topic * psubject, ::context * pcontext)
+//void application::route(::topic * ptopic, ::context * pcontext)
 //{
 
-//   handle(psubject, pcontext);
+//   handle(ptopic, pcontext);
 
-//   if (psubject->m_bRet)
+//   if (ptopic->m_bRet)
 //   {
 
 //      return;
@@ -7083,7 +7083,7 @@ void application::hotplugin_host_host_starter_start_sync(const ::string & pszCom
 
 //   on_notify_control_event(pevent);
 
-//   if (psubject->m_bRet)
+//   if (ptopic->m_bRet)
 //   {
 
 //      return;
@@ -9774,7 +9774,7 @@ return papp;
 
 
 
-void application::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::topic * psubject)
+void application::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::topic * ptopic)
 {
 
 

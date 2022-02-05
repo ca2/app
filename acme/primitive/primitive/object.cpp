@@ -274,10 +274,10 @@ void object::add_reference(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG_COMM
 //}
 
 
-::extended_topic_pointer object::create_extended_topic(enum_topic etopic)
+::extended_topic_pointer object::create_extended_topic(const ::id & id)
 {
 
-   auto pextendedtopic = __new(extended_topic(etopic));
+   auto pextendedtopic = __new(extended_topic(id));
 
    pextendedtopic->initialize(this);
 

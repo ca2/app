@@ -49,16 +49,16 @@ void on_initialize_object() override                                            
                                                                                        \
 }                                                                                      \
                                                                                        \
-void handle(::topic * psubject, ::context * pcontext) override \
+void handle(::topic * ptopic, ::context * pcontext) override \
 {                                                                                      \
                                                                                        \
-   BASE1::handle(psubject, pcontext);                                              \
+   BASE1::handle(ptopic, pcontext);                                              \
                                                                                        \
-   BASE2::handle(psubject, pcontext);                                              \
+   BASE2::handle(ptopic, pcontext);                                              \
                                                                                        \
-   BASE3::handle(psubject, pcontext);                                              \
+   BASE3::handle(ptopic, pcontext);                                              \
                                                                                        \
-   BASE4::handle(psubject, pcontext);                                              \
+   BASE4::handle(ptopic, pcontext);                                              \
                                                                                        \
 }            
 //void signal(::signal * psignal) override                            \

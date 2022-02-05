@@ -33,10 +33,10 @@ namespace userex
    }
 
 
-   void top_toggle_view::handle(::topic * psubject, ::context * pcontext)
+   void top_toggle_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::user::impact::handle(psubject, pcontext);
+      ::user::impact::handle(ptopic, pcontext);
 
    }
 

@@ -109,15 +109,15 @@ namespace usernet
    }
 
 
-   void network_configuration::handle(::topic * psubject, ::context * )
+   void network_configuration::handle(::topic * ptopic, ::context * )
    {
 
       auto pcontext = get_context();
 
-      if(psubject->m_id == ::id_click)
+      if(ptopic->m_id == ::id_click)
       {
 
-         if(psubject->user_interaction()->m_id == "submit")
+         if(ptopic->user_interaction()->m_id == "submit")
          {
 
             auto pinteraction = m_pimpact->get_child_by_name("server");

@@ -7,44 +7,74 @@
 #include "framework.h"
 
 
-CLASS_DECL_ACME void __call(handler * phandler, enum_topic etopic, const ::id & id, i64 iData, ::matter * pmatter)
+CLASS_DECL_ACME void __call(handler * phandler, const ::id & id, i64 iData, ::matter * pmatter)
 {
 
-   ::extended_topic topic(etopic, id);
-
-   if (iData != 0)
+   if (iData == 0 && ::is_null(pmatter))
    {
 
-      topic.m_payload = iData;
+      ::topic topic(id);
+
+      phandler->handle(&topic, nullptr);
+
+   }
+   else
+   {
+
+      ::extended_topic topic(id);
+
+      if (iData != 0)
+      {
+
+         topic.m_payload = iData;
+
+      }
+
+      if (pmatter != nullptr)
+      {
+
+         topic.m_pmatter = pmatter;
+
+      }
+
+      phandler->handle(&topic, nullptr);
 
    }
 
-   if (pmatter != nullptr)
-   {
-
-      topic.m_pmatter = pmatter;
-
-   }
-
-   phandler->handle(&topic, nullptr);
-
 }
+//
+//
+//void handler::call(enum_message emessage, i64 iData, ::matter * pmatter)
+//{
+//
+//   return __call(this, emessage, iData, pmatter);
+//
+//}
+//
+//
+//void handler::call(enum_id eid, i64 iData, ::matter * pmatter)
+//{
+//
+//   return __call(this, eid, iData, pmatter);
+//
+//}
+//
 
 
-void handler::call(enum_message emessage, i64 iData, ::matter * pmatter)
+void handler::call(const ::id & id, i64 iData, ::matter * pmatter)
 {
 
-   return __call(this, id_call_message, emessage, iData, pmatter);
+   return __call(this, id, iData, pmatter);
 
 }
 
 
-void handler::call(enum_id eid, i64 iData, ::matter * pmatter)
-{
-
-   return __call(this, id_trigger_id, eid, iData, pmatter);
-
-}
-
+//
+//void handler::call(enum_id eid, i64 iData, ::matter * pmatter)
+//{
+//
+//   return __call(this, eid, iData, pmatter);
+//
+//}
 
 

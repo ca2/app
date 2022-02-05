@@ -339,17 +339,17 @@ namespace browser
    }
 
 
-   void pane_view::handle(::topic * psubject, ::context * pcontext)
+   void pane_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if(m_pdocMenu != nullptr && dynamic_cast < ::user::impact * > (psubject->get_form()) == m_pdocMenu->get_view(0) && psubject->user_interaction() != nullptr)
+      if(m_pdocMenu != nullptr && dynamic_cast < ::user::impact * > (ptopic->get_form()) == m_pdocMenu->get_view(0) && ptopic->user_interaction() != nullptr)
       {
 
-         if(psubject->m_id == ::id_after_change_text)
+         if(ptopic->m_id == ::id_after_change_text)
          {
 
-            if(m_prollfps != nullptr && psubject->user_element_id() == "roll_fps" && !psubject->m_context.is(::e_source_initialize)
-                  && !psubject->m_context.is(::e_source_database))
+            if(m_prollfps != nullptr && ptopic->user_element_id() == "roll_fps" && !ptopic->m_context.is(::e_source_initialize)
+                  && !ptopic->m_context.is(::e_source_database))
             {
 
                try
@@ -395,12 +395,12 @@ namespace browser
                {
                }
 
-               psubject->m_bRet = true;
+               ptopic->m_bRet = true;
                return;
 
 
             }
-            //else if(psubject->user_element_id() == "roll_spf" && !psubject->m_context.is_source(::e_source_initialize))
+            //else if(ptopic->user_element_id() == "roll_spf" && !ptopic->m_context.is_source(::e_source_initialize))
             //{
 
             //   try
@@ -427,22 +427,22 @@ namespace browser
 
 
          }
-         else if (psubject->m_id == ::id_set_check && psubject->user_interaction() != nullptr)
+         else if (ptopic->m_id == ::id_set_check && ptopic->user_interaction() != nullptr)
          {
 
-            string strCheck = psubject->user_element_id();
+            string strCheck = ptopic->user_element_id();
 
 
             if (::str::begins_eat_ci(strCheck, "slide"))
             {
 
-               if (psubject->user_interaction() != nullptr && !psubject->m_context.is(::e_source_initialize)
-                     && !psubject->m_context.is(::e_source_sync))
+               if (ptopic->user_interaction() != nullptr && !ptopic->m_context.is(::e_source_initialize)
+                     && !ptopic->m_context.is(::e_source_sync))
                {
 
                   int iCheck = atoi(strCheck);
 
-                  __pointer(::user::check) pcheck = psubject->user_interaction();
+                  __pointer(::user::check) pcheck = ptopic->user_interaction();
 
                   if (m_pviewLastBilbo != nullptr && pcheck.is_set())
                   {
@@ -457,7 +457,7 @@ namespace browser
 
                   }
 
-                  psubject->m_bRet = true;
+                  ptopic->m_bRet = true;
                   return;
 
 
@@ -470,10 +470,10 @@ namespace browser
       else
       {
 
-         if (m_pfontview != nullptr && psubject->user_interaction() == m_pfontview->m_pimpact)
+         if (m_pfontview != nullptr && ptopic->user_interaction() == m_pfontview->m_pimpact)
          {
 
-            if (psubject->m_id == ::id_after_change_cur_sel)
+            if (ptopic->m_id == ::id_after_change_cur_sel)
             {
 
                string strFont = m_pfontview->m_pimpact->get_cur_sel_face_name();
@@ -492,7 +492,7 @@ namespace browser
                }
 
             }
-            else if (psubject->m_id == ::id_after_change_cur_hover)
+            else if (ptopic->m_id == ::id_after_change_cur_hover)
             {
 
                string strFont = m_pfontview->m_pimpact->get_cur_hover_face_name();
@@ -509,17 +509,17 @@ namespace browser
             }
 
          }
-         else if (psubject->user_interaction() == m_pcolorview)
+         else if (ptopic->user_interaction() == m_pcolorview)
          {
 
 
-            if (psubject->m_id == ::id_after_change_cur_sel
-                  || psubject->m_id == ::id_after_change_cur_hover)
+            if (ptopic->m_id == ::id_after_change_cur_sel
+                  || ptopic->m_id == ::id_after_change_cur_hover)
             {
 
                m_pcolorview->get_color().get_hls(m_pviewLastBilbo->m_prender->m_hlsForeground);
 
-               if (psubject->m_id == ::id_after_change_cur_sel)
+               if (ptopic->m_id == ::id_after_change_cur_sel)
                {
 
                   m_pviewLastBilbo->data_set("cur_color", m_pviewLastBilbo->m_prender->m_hlsForeground);
@@ -536,7 +536,7 @@ namespace browser
       }
 
 
-      ::userex::pane_tab_view::handle(psubject, pcontext);
+      ::userex::pane_tab_view::handle(ptopic, pcontext);
 
    }
 
@@ -607,12 +607,12 @@ namespace browser
    }
 
 
-   void pane_view::handle(::topic * psubject, ::context * pcontext)
+   void pane_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
 
 
-      ::userex::pane_tab_view::handle(psubject, pcontext);
+      ::userex::pane_tab_view::handle(ptopic, pcontext);
 
    }
 

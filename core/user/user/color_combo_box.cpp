@@ -173,21 +173,21 @@ namespace user
    }
 
 
-   void color_combo_box::handle(::topic * psubject, ::context * pcontext)
+   void color_combo_box::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if(psubject->m_puserelement == m_pimpact)
+      if(ptopic->m_puserelement == m_pimpact)
       {
 
-         psubject->m_puserelement = this;
+         ptopic->m_puserelement = this;
 
-         psubject->m_puserelement->m_id = m_id;
+         ptopic->m_puserelement->m_id = m_id;
 
          m_hls = m_pimpact->m_hls;
 
       }
 
-      ::user::interaction::handle(psubject, pcontext);
+      ::user::interaction::handle(ptopic, pcontext);
 
    }
 

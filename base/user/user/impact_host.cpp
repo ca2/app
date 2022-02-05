@@ -697,7 +697,7 @@ namespace user
    }
 
 
-   void impact_host::handle(::topic * psubject, ::context * pcontext)
+   void impact_host::handle(::topic * ptopic, ::context * pcontext)
    {
 
    }

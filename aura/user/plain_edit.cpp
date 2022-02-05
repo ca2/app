@@ -296,10 +296,10 @@ namespace user
    }
 
 
-   void plain_edit::handle(::topic * psubject, ::context * pcontext)
+   void plain_edit::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if(psubject->id() == id_current_text_changed)
+      if(ptopic->m_id == id_current_text_changed)
       {
 
          queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
@@ -317,7 +317,7 @@ namespace user
       else
       {
 
-         ::user::interaction::handle(psubject, pcontext);
+         ::user::interaction::handle(ptopic, pcontext);
 
       }
 
@@ -6163,13 +6163,13 @@ finished_update:
       if(has_handler())
       {
 
-         auto psubject = create_subject(::id_after_change_text);
+         auto ptopic = create_subject(::id_after_change_text);
 
-         psubject->m_puserelement = this;
+         ptopic->m_puserelement = this;
 
-         psubject->m_actioncontext = actioncontext;
+         ptopic->m_actioncontext = actioncontext;
 
-         route(psubject);
+         route(ptopic);
 
       }
 

@@ -922,19 +922,19 @@ namespace user
    }
 
 
-   void combo_box::handle(::topic * psubject, ::context * pcontext)
+   void combo_box::handle(::topic * ptopic, ::context * pcontext)
    {
 
       if(m_bEdit)
       {
 
-         ::user::plain_edit::handle(psubject, pcontext);
+         ::user::plain_edit::handle(ptopic, pcontext);
 
       }
       //else
       //{
 
-      //   ::user::interaction::handle(::topic * psubject, ::context * pcontext);
+      //   ::user::interaction::handle(::topic * ptopic, ::context * pcontext);
 
       //}
 
@@ -1668,25 +1668,25 @@ namespace user
    }
 
 
-   void combo_box::handle(::topic * psubject, ::context * pcontext)
+   void combo_box::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if(psubject->m_id == ::id_after_change_cur_sel)
+      if(ptopic->m_id == ::id_after_change_cur_sel)
       {
 
-         if(psubject->user_interaction() == m_plist)
+         if(ptopic->user_interaction() == m_plist)
          {
 
-            if (psubject->m_item == e_element_item)
+            if (ptopic->m_item == e_element_item)
             {
 
-               set_current_item((::index) psubject->m_item.m_iItem, ::e_source_user);
+               set_current_item((::index) ptopic->m_item.m_iItem, ::e_source_user);
 
             }
 
             _001ShowDropDown(false);
 
-            psubject->Ret();
+            ptopic->Ret();
 
             set_need_redraw();
 
@@ -1700,7 +1700,7 @@ namespace user
 
       }
 
-      ::user::plain_edit::handle(psubject, pcontext);
+      ::user::plain_edit::handle(ptopic, pcontext);
 
    }
 

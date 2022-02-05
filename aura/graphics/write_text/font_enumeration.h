@@ -28,11 +28,11 @@ namespace write_text
 
 
       //void signal(::signal * psignal) override;
-      void handle(::topic * psubject, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::context * pcontext) override;
 
 
-      virtual void check_need_update(::topic * psubject);
-      //virtual bool update(::topic * psubject);
+      virtual void check_need_update(::topic * ptopic);
+      //virtual bool update(::topic * ptopic);
       virtual void update();
 
 

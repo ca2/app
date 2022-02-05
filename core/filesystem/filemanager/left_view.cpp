@@ -82,12 +82,12 @@ namespace filemanager
    }
 
 
-   void left_view::handle(::topic * psubject, ::context * pcontext)
+   void left_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::filemanager_impact_base::handle(psubject, pcontext);
+      ::filemanager_impact_base::handle(ptopic, pcontext);
 
-      ::user::split_view::handle(psubject, pcontext);
+      ::user::split_view::handle(ptopic, pcontext);
 
 //      //__update(::update)
 //      {
@@ -95,7 +95,7 @@ namespace filemanager
 //         if (filemanager_document() == pupdate->m_pdocument)
 //         {
 //
-//            //if (psubject->id() == id_initialize)
+//            //if (ptopic->m_id == id_initialize)
 //            //{
 //
 //            //   string str;

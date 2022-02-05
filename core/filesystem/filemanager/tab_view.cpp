@@ -107,7 +107,7 @@ namespace filemanager
 
          pdocument->update_all_views(&topic);
 
-         //psubject->m_pcontext = psubject->context(id_after_browse);
+         //ptopic->m_pcontext = ptopic->context(id_after_browse);
 
          topic.m_id = id_after_browse;
 
@@ -276,17 +276,17 @@ namespace filemanager
 
 
 
-   void tab_view::handle(::topic * psubject, ::context * pcontext)
+   void tab_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      impact::handle(psubject, pcontext);
+      impact::handle(ptopic, pcontext);
 
-      ::user::tab_view::handle(psubject, pcontext);
+      ::user::tab_view::handle(ptopic, pcontext);
 
       ////__update(::update)
       {
 
-         if (psubject->id() == id_open_document)
+         if (ptopic->m_id == id_open_document)
          {
 
             //if (m_viewmap.get_count() == 0)
@@ -303,7 +303,7 @@ namespace filemanager
       ////__update(::update)
       {
 
-         if (psubject->id() == id_initialize)
+         if (ptopic->m_id == id_initialize)
          {
 
             //               string str;
@@ -320,7 +320,7 @@ namespace filemanager
             //               }
 
          }
-         else if (psubject->id() == id_pop)
+         else if (ptopic->m_id == id_pop)
          {
 
             __pointer(::user::frame_window) pframe = get_parent_frame();
@@ -340,19 +340,19 @@ namespace filemanager
 
       }
 
-      if (psubject->id() == id_add_location)
+      if (ptopic->m_id == id_add_location)
       {
 
          set_current_tab_by_id("add_location");
 
       }
-      else if (psubject->id() == id_replace_name)
+      else if (ptopic->m_id == id_replace_name)
       {
 
          set_current_tab_by_id("replace_name");
 
       }
-      else if (psubject->id() == id_new_folder)
+      else if (ptopic->m_id == id_new_folder)
       {
 
          set_current_tab_by_id("new_folder");

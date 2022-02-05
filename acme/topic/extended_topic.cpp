@@ -7,8 +7,7 @@
 #include "acme/user/element.h"
 
 
-extended_topic::extended_topic(enum_topic etopic, const ::id & id) :
-   ::topic(etopic),
+extended_topic::extended_topic(const ::id & id) :
    ::material_object(id),
    ::property_object(id),
    ::object(id)

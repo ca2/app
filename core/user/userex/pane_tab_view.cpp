@@ -838,12 +838,12 @@ namespace userex
    }
 
 
-   void pane_tab_view::handle(::topic * psubject, ::context * pcontext)
+   void pane_tab_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::user::tab_view::handle(psubject, pcontext);
+      ::user::tab_view::handle(ptopic, pcontext);
 
-      if (psubject->m_id == ::id_context_menu_close)
+      if (ptopic->m_id == ::id_context_menu_close)
       {
 
          if (m_pimpactdataOld != nullptr)
@@ -851,7 +851,7 @@ namespace userex
 
             set_current_tab_by_id(m_pimpactdataOld->m_id);
 
-            psubject->m_bRet = true;
+            ptopic->m_bRet = true;
 
             return;
 
@@ -859,7 +859,7 @@ namespace userex
 
       }
 
-      ::user::tab_view::handle(psubject, pcontext);
+      ::user::tab_view::handle(ptopic, pcontext);
 
 
    }
@@ -875,10 +875,10 @@ namespace userex
 //   }
 
 
-   //void pane_tab_view::handle(::topic * psubject, ::context * pcontext)
+   //void pane_tab_view::handle(::topic * ptopic, ::context * pcontext)
    //{
 
-   //   if (psubject->m_id == ::id_context_menu_close)
+   //   if (ptopic->m_id == ::id_context_menu_close)
    //   {
 
    //      if (m_pimpactdataOld != nullptr)
@@ -886,7 +886,7 @@ namespace userex
 
    //         set_current_tab_by_id(m_pimpactdataOld->m_id);
 
-   //         psubject->m_bRet = true;
+   //         ptopic->m_bRet = true;
 
    //         return;
 
@@ -894,7 +894,7 @@ namespace userex
 
    //   }
 
-   //   ::user::tab_view::handle(psubject, pcontext);
+   //   ::user::tab_view::handle(ptopic, pcontext);
 
    //}
 

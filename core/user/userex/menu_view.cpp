@@ -12,15 +12,15 @@ menu_view::menu_view()
 }
 
 
-void menu_view::handle(::topic * psubject, ::context * pcontext)
+void menu_view::handle(::topic * ptopic, ::context * pcontext)
 {
-   ::user::form_view::handle(psubject, pcontext);
+   ::user::form_view::handle(ptopic, pcontext);
 
    auto papplication = get_application();
 
-   papplication->handle(psubject, pcontext);
+   papplication->handle(ptopic, pcontext);
 
-   if (psubject->m_bRet)
+   if (ptopic->m_bRet)
    {
 
       return;
@@ -30,16 +30,16 @@ void menu_view::handle(::topic * psubject, ::context * pcontext)
    if (m_pcallback != nullptr)
    {
 
-      m_pcallback->handle(psubject, pcontext);
+      m_pcallback->handle(ptopic, pcontext);
 
    }
 
    if (get_parent() != nullptr)
    {
 
-      get_parent()->handle(psubject, pcontext);
+      get_parent()->handle(ptopic, pcontext);
 
-      if (psubject->m_bRet)
+      if (ptopic->m_bRet)
       {
 
          return;
@@ -52,14 +52,14 @@ void menu_view::handle(::topic * psubject, ::context * pcontext)
 }
 
 //
-//void menu_view::handle(::topic * psubject, ::context * pcontext)
+//void menu_view::handle(::topic * ptopic, ::context * pcontext)
 //{
 //
 //   auto papplication = get_application();
 //
-//   papplication->handle(psubject, pcontext);
+//   papplication->handle(ptopic, pcontext);
 //
-//   if(psubject->m_bRet)
+//   if(ptopic->m_bRet)
 //   {
 //
 //      return;
@@ -69,16 +69,16 @@ void menu_view::handle(::topic * psubject, ::context * pcontext)
 //   if(m_pcallback != nullptr)
 //   {
 //
-//      m_pcallback->handle(psubject, pcontext);
+//      m_pcallback->handle(ptopic, pcontext);
 //
 //   }
 //
 //   if(get_parent() != nullptr)
 //   {
 //
-//      get_parent()->handle(psubject, pcontext);
+//      get_parent()->handle(ptopic, pcontext);
 //
-//      if(psubject->m_bRet)
+//      if(ptopic->m_bRet)
 //      {
 //
 //         return;

@@ -19,12 +19,13 @@ public:
 
 
    // ThomasBorregaardS�rense!! Like handlers
-   virtual void call(const enum_message, i64 iData = 0, ::matter * pmatter = nullptr);
-   virtual void call(const enum_id, i64 iData = 0, ::matter* pmatter = nullptr);
+   //virtual void call(const enum_message, i64 iData = 0, ::matter * pmatter = nullptr);
+   //virtual void call(const enum_id, i64 iData = 0, ::matter* pmatter = nullptr);
+   virtual void call(const ::id & id, i64 iData = 0, ::matter * pmatter = nullptr);
 
 
    // ThomasBorregaardS�rense!! Like handlers
-   virtual void handle(::topic * psubject, ::context * pcontext) = 0;
+   virtual void handle(::topic * ptopic, ::context * pcontext) = 0;
    virtual void handle(::message::message * pmessage) = 0;
 
 

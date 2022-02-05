@@ -45,7 +45,7 @@ namespace data
       virtual ::user::primitive * get_data_bound_view(index iInteraction);
 
       //void signal(::signal * psignal) override;
-      void handle(::topic * psubject, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::context * pcontext) override;
 
       virtual void on_update_data(i32 iHint);
 

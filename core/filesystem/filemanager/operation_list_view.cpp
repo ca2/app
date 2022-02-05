@@ -158,12 +158,12 @@ namespace filemanager
    }
 
 
-   void operation_list_view::handle(::topic * psubject, ::context * pcontext)
+   void operation_list_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      BASE::handle(psubject, pcontext);
+      BASE::handle(ptopic, pcontext);
 
-      if (psubject->id() == INITIAL_UPDATE)
+      if (ptopic->m_id == INITIAL_UPDATE)
       {
 
          _001UpdateColumns();

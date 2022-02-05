@@ -45,16 +45,16 @@ namespace write_text
    }
 
 
-   void font_enumeration::handle(::topic * psubject, ::context * pcontext)
+   void font_enumeration::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (psubject->id() == id_font_enumeration)
+      if (ptopic->m_id == id_font_enumeration)
       {
 
-         check_need_update(psubject);
+         check_need_update(ptopic);
 
       }
-      else if (psubject->id() == id_operating_system_font_list_change)
+      else if (ptopic->m_id == id_operating_system_font_list_change)
       {
 
          __pointer(::aura::system) psystem = m_psystem;
@@ -63,7 +63,7 @@ namespace write_text
 
          update();
 
-         psubject->set_modified();
+         ptopic->set_modified();
 
       }
 
@@ -177,7 +177,7 @@ namespace write_text
    }
 
 
-   void font_enumeration::check_need_update(::topic * psubject)
+   void font_enumeration::check_need_update(::topic * ptopic)
    {
 
       m_bUpdating = true;
@@ -201,7 +201,7 @@ namespace write_text
 
          m_bUpdating = false;
 
-         psubject->m_etopic = id_not_modified;
+         ptopic->m_etopic = id_not_modified;
 
          return;
 
@@ -213,9 +213,9 @@ namespace write_text
 
       m_bUpdating = false;
 
-      psubject->set_modified();
+      ptopic->set_modified();
 
-      //psubject->m_etopic = id_handle;
+      //ptopic->m_etopic = id_handle;
 
    }
 

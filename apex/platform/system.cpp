@@ -4963,7 +4963,7 @@ namespace apex
          else
          {
 
-            ptopic->m_etopic = id_not_modified;
+            ptopic->m_id = id_not_modified;
 
          }
 

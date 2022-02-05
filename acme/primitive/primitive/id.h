@@ -21,7 +21,10 @@ class lparam;
 #ifndef NO_TEMPLATE
 
 
-inline bool __str_is_empty(const char * psz)
+#define __id_is_null_ptr(p) ::is_null(p)
+
+
+inline bool __id_str_is_empty(const char * psz)
 {
 
    return ::is_null(psz) || *psz == '\0';
@@ -29,7 +32,7 @@ inline bool __str_is_empty(const char * psz)
 }
 
 template <typename T>
-int sgn(T x)
+int __id_sgn(T x)
 {
 
    return (((T) 0) < x) - (x < ((T) 0));
@@ -38,7 +41,7 @@ int sgn(T x)
 
 
 template <typename A, typename B>
-int __compare_square(A a, B b)
+int __id_compare_square(A a, B b)
 {
 
    auto aSgn = sgn(a);
@@ -48,25 +51,25 @@ int __compare_square(A a, B b)
 }
 
 
-#define __safe_strcmp(a, b) ::str::compare(a, b)
+#define __id_safe_strcmp(a, b) ::str::compare(a, b)
 
 
-#define __safe_stricmp(a, b) ::str::compare_ci(a, b)
+#define __id_safe_stricmp(a, b) ::str::compare_ci(a, b)
 
 
-#define __str_begins(a, b) ::str::begins(a, b)
+#define __id_str_begins(a, b) ::str::begins(a, b)
 
 
-#define __str_begins_ci(a, b) ::str::begins_ci(a, b)
+#define __id_str_begins_ci(a, b) ::str::begins_ci(a, b)
 
 
 #else
 
 
-#define sgn(x) ((0 < (x)) - ((x) < 0))
+#define __id_sgn(x) ((0 < (x)) - ((x) < 0))
 
 
-#define __is_null_ptr(p) (!(p))
+#define __id_is_null_ptr(p) (!(p))
 
 
 #define __str_is_empty(psz) (__is_null_ptr(psz) || *psz == '\0')
@@ -74,17 +77,17 @@ int __compare_square(A a, B b)
 
 // Lets (AMajor.AMinor) (BMajor.BMinor)
 // compare_square(AMajor - BMajor, AMinor - BMinor)
-#define __compare_square(MAJOR_COMPARISON, MINOR_COMPARISON) \
+#define __id_compare_square(MAJOR_COMPARISON, MINOR_COMPARISON) \
 (sgn(MAJOR_COMPARISON) != 0 ? (sgn(MAJOR_COMPARISON)) : (sgn(MINOR_COMPARISON)))
 
 
-inline int __safe_strcmp(const char * a, const char * b)
+inline int __id_safe_strcmp(const char * a, const char * b)
 {
 
-   if (__str_is_empty(a))
+   if (__id_str_is_empty(a))
    {
 
-      if (__str_is_empty(b))
+      if (__id_str_is_empty(b))
       {
 
          return true;
@@ -98,7 +101,7 @@ inline int __safe_strcmp(const char * a, const char * b)
       }
 
    }
-   else if(__str_is_empty(b))
+   else if(__id_str_is_empty(b))
    {
 
       return 1;
@@ -114,13 +117,13 @@ inline int __safe_strcmp(const char * a, const char * b)
 }
 
 
-inline int __safe_stricmp(const char * a, const char * b)
+inline int __id_safe_stricmp(const char * a, const char * b)
 {
 
-   if (__str_is_empty(a))
+   if (__id_str_is_empty(a))
    {
 
-      if (__str_is_empty(b))
+      if (__id_str_is_empty(b))
       {
 
          return true;
@@ -134,7 +137,7 @@ inline int __safe_stricmp(const char * a, const char * b)
       }
 
    }
-   else if (__str_is_empty(b))
+   else if (__id_str_is_empty(b))
    {
 
       return 1;
@@ -149,13 +152,13 @@ inline int __safe_stricmp(const char * a, const char * b)
 
 }
 
-inline bool __str_begins(const char * a, const char * b)
+inline bool __id_str_begins(const char * a, const char * b)
 {
 
-   if (__str_is_empty(a))
+   if (__id_str_is_empty(a))
    {
 
-      if (__str_is_empty(b))
+      if (__id_str_is_empty(b))
       {
 
          return true;
@@ -169,7 +172,7 @@ inline bool __str_begins(const char * a, const char * b)
       }
 
    }
-   else if (__str_is_empty(b))
+   else if (__id_str_is_empty(b))
    {
 
       return true;
@@ -185,13 +188,13 @@ inline bool __str_begins(const char * a, const char * b)
 }
 
 
-inline bool __str_begins_ci(const char * a, const char * b)
+inline bool __id_str_begins_ci(const char * a, const char * b)
 {
 
-   if (__str_is_empty(a))
+   if (__id_str_is_empty(a))
    {
 
-      if (__str_is_empty(b))
+      if (__id_str_is_empty(b))
       {
 
          return true;
@@ -205,7 +208,7 @@ inline bool __str_begins_ci(const char * a, const char * b)
       }
 
    }
-   else if (__str_is_empty(b))
+   else if (__id_str_is_empty(b))
    {
 
       return true;
@@ -1504,7 +1507,7 @@ public:
 inline bool id::begins(const char * pszCandidatePrefix) const
 {
 
-   if (::is_null(pszCandidatePrefix) || *pszCandidatePrefix == '\0')
+   if (__str_is_empty(pszCandidatePrefix))
    {
 
       return true;

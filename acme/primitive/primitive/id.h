@@ -50,7 +50,7 @@ int __compare_square(A a, B b)
 #define sgn(x) ((0 < (x)) - ((x) < 0))
 
 
-
+#define is_null(p) (!(p))
 
 // Lets (AMajor.AMinor) (BMajor.BMinor)
 // compare_square(AMajor - BMajor, AMinor - BMinor)

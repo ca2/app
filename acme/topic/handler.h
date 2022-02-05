@@ -21,7 +21,7 @@ public:
    // ThomasBorregaardS�rense!! Like handlers
    //virtual void call(const enum_message, i64 iData = 0, ::matter * pmatter = nullptr);
    //virtual void call(const enum_id, i64 iData = 0, ::matter* pmatter = nullptr);
-   virtual void call(const ::id & id, i64 iData = 0, ::matter * pmatter = nullptr);
+   virtual void call(const class ::id & id, i64 iData = 0, ::matter * pmatter = nullptr);
 
 
    // ThomasBorregaardS�rense!! Like handlers

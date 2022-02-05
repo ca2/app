@@ -21,13 +21,13 @@ class lparam;
 #ifndef NO_TEMPLATE
 
 
-#define __id_is_null_ptr(p) ::is_null(p)
+#define __id_is_null_ptr(p) (!(p))
 
 
 inline bool __id_str_is_empty(const char * psz)
 {
 
-   return ::is_null(psz) || *psz == '\0';
+   return __id_is_null_ptr(psz) || *psz == '\0';
 
 }
 

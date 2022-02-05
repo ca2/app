@@ -66,10 +66,6 @@ public:
 
    inline bool operator==(const ::id & id) const { return m_id == id || m_id == FULL_ID; }
 
-   operator topic *() { return this; }
-
-   operator const topic *() const { return this; }
-
    inline ::id &id() { return m_id; }
 
    inline const ::id &id() const { return m_id; }

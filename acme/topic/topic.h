@@ -8,15 +8,25 @@
 class extended_topic;
 
 
-class CLASS_DECL_ACME topic
+struct TOPIC
 {
 public:
    
 
    extended_topic *     m_pextendedtopic;
 
-   ::id                 m_id;
+   class ::id           m_id;
 
+   
+};
+   
+
+
+class CLASS_DECL_ACME topic :
+   virtual public TOPIC
+{
+public:
+   
 
    topic()
    {
@@ -25,7 +35,7 @@ public:
 
    }
 
-   topic(const ::id & id)
+   topic(const class ::id & id)
    {
       
       m_pextendedtopic = nullptr;

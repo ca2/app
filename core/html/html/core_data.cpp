@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "core/atom.h"
+#include "core/id.h"
 #include "aura/graphics/draw2d/context_image.h"
 #include "acme/platform/hyperlink.h"
 #if !BROAD_PRECOMPILED_HEADER
@@ -327,11 +327,11 @@ namespace html
          for (auto & pinteraction : m_pform->m_puserinteractionpointeraChild->interactiona())
          {
             
-            auto ptopic = create_subject(::id_initialize_control);
+            auto pextendedtopic = create_extended_topic(::id_initialize_control);
 
-            ptopic->m_pextendedtopic->m_puserelement = pinteraction;
+            pextendedtopic->m_puserelement = pinteraction;
 
-            m_pform->route(ptopic);
+            m_pform->route(pextendedtopic);
 
          }
 
@@ -404,11 +404,11 @@ namespace html
       if (m_pcallback != nullptr)
       {
          
-         auto ptopic = create_subject(::id_form_initialize);
+         auto pextendedtopic = create_extended_topic(::id_form_initialize);
 
-         ptopic->m_pextendedtopic->m_puserelement = m_puserinteraction;
+         pextendedtopic->m_puserelement = m_puserinteraction;
          
-         m_puserinteraction->route(ptopic);
+         m_puserinteraction->route(pextendedtopic);
 
       }
 

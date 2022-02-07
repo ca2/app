@@ -296,7 +296,7 @@ namespace linux
       ASSERT_VALID(this);
       ASSERT(m_pStream != nullptr);
 
-      __throw(error_not_supported);
+      throw ::exception(error_not_supported);
       return nullptr;
    }
 
@@ -306,7 +306,7 @@ namespace linux
       ASSERT_VALID(this);
       ASSERT(m_pStream != nullptr);
 
-      __throw(error_not_supported);
+      throw ::exception(error_not_supported);
    }
 
    void stdio_file::UnlockRange(filesize /* dwPos */, filesize /* dwCount */)
@@ -314,7 +314,7 @@ namespace linux
       ASSERT_VALID(this);
       ASSERT(m_pStream != nullptr);
 
-      __throw(error_not_supported);
+      throw ::exception(error_not_supported);
    }
 
 

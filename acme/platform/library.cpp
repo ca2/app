@@ -3,6 +3,7 @@
 //#include "system_impl.h"
 #include "library.h"
 
+
 //typedef  void(*PFN_create_factory)();
 
 
@@ -166,20 +167,11 @@ namespace acme
 
 ///         }
 
-         if(m_plibrary == nullptr)
-         {
+         //if(m_plibrary == nullptr)
+         //{
 
-            string strMessage;
 
-            strMessage.format("Library not found: \"%s\"", pszPath);
-
-            ERROR(strMessage);
-
-            throw_status(error_library_not_found, strMessage);
-
-            //return false;
-
-         }
+         //}
 
          //m_strPath = pszPath;
 

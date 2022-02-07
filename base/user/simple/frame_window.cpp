@@ -803,10 +803,10 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
 //#if !defined(APPLE_IOS) && !defined(ANDROID)
 
-         if (m_pdocumenttemplate->m_id.has_char())
+         if (m_pdocumenttemplate->m_atom.has_char())
          {
 
-            ::file::path pathFrameJson = "matter://" + m_pdocumenttemplate->m_id + "/frame.network_payload";
+            ::file::path pathFrameJson = "matter://" + m_pdocumenttemplate->m_atom + "/frame.network_payload";
 
             auto pcontext = get_context();
 
@@ -1269,7 +1269,7 @@ void simple_frame_window::_001OnGetMinMaxInfo(::message::message * pmessage)
    //}
 
 #else
-   __throw(todo);
+   throw ::exception(todo);
 #endif
 }
 
@@ -1633,7 +1633,7 @@ void simple_frame_window::on_message_close(::message::message * pmessage)
    if (wfi_is_up_down())
    {
 
-      string strImpact = m_id;
+      string strImpact = m_atom;
 
       bool bShow = false;
 
@@ -1936,7 +1936,7 @@ void simple_frame_window::_001OnActivate(::message::message * pmessage)
 bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultStyle, ::user::interaction * puiParent, ::user::system * pusersystem)
 {
 
-   m_id = pusersystem->m_id.to_string() + "::frame";
+   m_atom = pusersystem->m_atom.to_string() + "::frame";
 
    __UNREFERENCED_PARAMETER(puiParent);
 
@@ -2076,7 +2076,7 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
 
    m_ewindowflag -= e_window_flag_load_window_rect_on_impl;
 
-   //bool bCreated = create_window_ex(pusersystem, puiParent, m_id);
+   //bool bCreated = create_window_ex(pusersystem, puiParent, m_atom);
 
    //bool bCreated;
 
@@ -2132,13 +2132,13 @@ void simple_frame_window::_001OnKey(::message::message * pmessage)
 void simple_frame_window::pre_translate_message(::message::message * pmessage)
 {
 
-   if(pmessage->m_id == e_message_display_change)
+   if(pmessage->m_atom == e_message_display_change)
    {
 
       display();
 
    }
-   else if (pmessage->m_id == e_message_mouse_move)
+   else if (pmessage->m_atom == e_message_mouse_move)
    {
 
    }
@@ -2410,7 +2410,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 
             pgraphics = m_pimageAlpha->get_graphics();
 
-            pgraphics->SetImpactportOrg(pgraphics->GetImpactportOrg());
+            pgraphics->SetViewportOrg(pgraphics->GetViewportOrg());
 
             bDib = true;
 
@@ -3003,7 +3003,7 @@ void simple_frame_window::route_command(::message::command * pcommand, bool bRou
 //
 //#else
 //
-//   throw interface_only_exception();
+//   throw ::interface_only();
 //
 //#endif
 //
@@ -3066,7 +3066,7 @@ void simple_frame_window::route_command(::message::command * pcommand, bool bRou
 //
 //#else
 //
-//   throw interface_only_exception();
+//   throw ::interface_only();
 //
 //#endif
 //
@@ -3083,7 +3083,7 @@ void simple_frame_window::route_command(::message::command * pcommand, bool bRou
 //
 //#else
 //
-//   throw interface_only_exception();
+//   throw ::interface_only();
 //
 //#endif
 //
@@ -3141,7 +3141,7 @@ void simple_frame_window::route_command(::message::command * pcommand, bool bRou
 //   }
 //
 //#else
-//   __throw(todo);
+//   throw ::exception(todo);
 //#endif
 //}
 
@@ -3176,19 +3176,19 @@ void simple_frame_window::_001OnQueryEndSession(::message::message * pmessage)
 void simple_frame_window::handle(::topic * ptopic, ::context * pcontext)
 {
 
-   if (ptopic->m_id == id_task_bar_created)
+   if (ptopic->m_atom == id_task_bar_created)
    {
 
       defer_create_notification_icon();
 
    }
-   else if(ptopic->m_pextendedtopic->user_interaction() == m_pnotifyicon)
+   else if(ptopic->get_extended_topic()->user_interaction() == m_pnotifyicon)
    {
 
-      if(ptopic->m_id == ::id_context_menu)
+      if(ptopic->m_atom == ::id_context_menu)
       {
 
-         //OnNotifyIconContextMenu(ptopic->m_pextendedtopic->m_puserelement->m_id);
+         //OnNotifyIconContextMenu(ptopic->get_extended_topic()->m_puserelement->m_atom);
 
          auto psession = get_session();
 
@@ -3203,16 +3203,16 @@ void simple_frame_window::handle(::topic * ptopic, ::context * pcontext)
          puser->track_popup_xml_menu(this, strXml, 0, pointCursor, size_i32(), m_pnotifyicon);
 
       }
-      else if(ptopic->m_id == ::id_left_button_double_click)
+      else if(ptopic->m_atom == ::id_left_button_double_click)
       {
 
-         //OnNotifyIconLButtonDblClk(ptopic->m_pextendedtopic->m_puserelement->m_id);
+         //OnNotifyIconLButtonDblClk(ptopic->get_extended_topic()->m_puserelement->m_atom);
 
       }
-      else if(ptopic->m_id == ::id_left_button_down)
+      else if(ptopic->m_atom == ::id_left_button_down)
       {
 
-         //OnNotifyIconLButtonDown(ptopic->m_pextendedtopic->m_puserelement->m_id);
+         //OnNotifyIconLButtonDown(ptopic->get_extended_topic()->m_puserelement->m_atom);
 
          default_notify_icon_topic();
 
@@ -3225,7 +3225,7 @@ void simple_frame_window::handle(::topic * ptopic, ::context * pcontext)
 
    ::experience::frame_window::handle(ptopic, pcontext);
 
-   if(ptopic->m_pextendedtopic->m_bRet)
+   if(ptopic->get_extended_topic()->m_bRet)
    {
 
       return;
@@ -3247,7 +3247,7 @@ string simple_frame_window::get_window_default_matter()
 
    }
 
-   return m_pdocumenttemplate->m_id;
+   return m_pdocumenttemplate->m_atom;
 
 }
 
@@ -3839,7 +3839,7 @@ void simple_frame_window::on_create_bars()
    if (m_bToolbar)
    {
 
-      ::atom atom = m_pdocumenttemplate->m_id;
+      ::atom atom = m_pdocumenttemplate->m_atom;
 
       if (atom.has_char())
       {

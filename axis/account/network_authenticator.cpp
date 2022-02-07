@@ -56,7 +56,7 @@ namespace account
 
       network_authentication(pcredentials);
 
-      __throw(todo, "xml->network_payload");
+      throw ::exception(todo, "xml->network_payload");
 
       //xml::document doc;
 
@@ -340,7 +340,7 @@ namespace account
 
       }
 
-      __throw(todo, "xml->js");
+      throw ::exception(todo, "xml->js");
 
       //::xml::document doc;
 

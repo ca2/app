@@ -18,7 +18,7 @@ static void TraceDDE(const char * lpszPrefix, const MSG* pMsg)
       ASSERT(hCommands != nullptr);
 
       const char * lpszCommands = (const char *)::GlobalLock(hCommands);
-      ENSURE_THROW(lpszCommands != nullptr, __throw(error_no_memory));
+      ENSURE_THROW(lpszCommands != nullptr, throw ::exception(error_no_memory));
 //      ::output_debug_string(::apex::trace::category_AppMsg, 0, "%s: Execute '%s'.\n", lpszPrefix, lpszCommands);
       ::GlobalUnlock(hCommands);
    }
@@ -39,7 +39,7 @@ static void TraceDDE(const char * lpszPrefix, const MSG* pMsg)
       ASSERT(hAdvise != nullptr);
 
       DDEADVISE* lpAdvise = (DDEADVISE*)::GlobalLock(hAdvise);
-      ENSURE_THROW(lpAdvise != nullptr, __throw(error_no_memory));
+      ENSURE_THROW(lpAdvise != nullptr, throw ::exception(error_no_memory));
       char szItem[80];
       szItem[0] = '\0';
 

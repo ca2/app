@@ -51,9 +51,9 @@ namespace windowing
    void icon::load_file(const ::string & strPath)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -92,7 +92,7 @@ namespace windowing
    image_pointer icon::get_image(const concrete < ::size_i32 > & size)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
       
       return nullptr;
 

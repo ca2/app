@@ -7,7 +7,7 @@ CLASS_DECL_ACME string executable_get_app_id(hinstance hinstance);
 #endif
 
 
-#include "acme/node/operating_system/_.h"
+#include "acme/operating_system/_.h"
 #include "apex/node/operating_system/_c.h"
 
 

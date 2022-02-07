@@ -299,7 +299,7 @@ namespace user
    void plain_edit::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if(ptopic->m_id == id_current_text_changed)
+      if(ptopic->m_atom == id_current_text_changed)
       {
 
          queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
@@ -451,13 +451,13 @@ namespace user
          if (iVerticalOffsetModule > 0)
          {
 
-            pgraphics->OffsetImpactportOrg(0, -iVerticalOffsetModule);
+            pgraphics->OffsetViewportOrg(0, -iVerticalOffsetModule);
 
          }
 
       }
 
-      pgraphics->OffsetImpactportOrg(-pointOffset.x, 0);
+      pgraphics->OffsetViewportOrg(-pointOffset.x, 0);
 
       double y = rectangleClient.top;
 
@@ -916,7 +916,7 @@ namespace user
 
       }
 
-      m_propertyText = fetch_property(m_id, true);
+      m_propertyText = fetch_property(m_atom, true);
 
       if(m_propertyText && !m_propertyText->is_empty())
       {
@@ -925,7 +925,7 @@ namespace user
 
       }
 
-      //m_ppropertyText = fetch_property(m_id, true);
+      //m_ppropertyText = fetch_property(m_atom, true);
 
       //add_change_notification(m_ppropertyText);
 
@@ -1683,22 +1683,22 @@ namespace user
 
       get_client_rect(rectangleClient);
 
-      auto xImpactport = get_viewport_offset().x;
+      auto xViewport = get_viewport_offset().x;
 
       if (x > 0 && x < get_viewport_offset().x)
       {
 
-         xImpactport = maximum(0, x - rectangleClient.width() / 2);
+         xViewport = maximum(0, x - rectangleClient.width() / 2);
 
       }
       else if (x > rectangleClient.width())
       {
 
-         xImpactport = maximum(0, x - rectangleClient.width() / 2);
+         xViewport = maximum(0, x - rectangleClient.width() / 2);
 
       }
 
-      if (iSelEnd == m_ptree->m_iSelEnd && iColumn == m_iColumn && xImpactport == get_viewport_offset().x)
+      if (iSelEnd == m_ptree->m_iSelEnd && iColumn == m_iColumn && xViewport == get_viewport_offset().x)
       {
 
          return;
@@ -1709,10 +1709,10 @@ namespace user
 
       m_iColumn = iColumn;
 
-      if (xImpactport != get_viewport_offset().x)
+      if (xViewport != get_viewport_offset().x)
       {
 
-         set_viewport_offset_x(pgraphics, (int) xImpactport);
+         set_viewport_offset_x(pgraphics, (int) xViewport);
 
       }
 
@@ -5034,7 +5034,7 @@ finished_update:
                         iCode |= 0x80000000;
                      }
                      //str = psession->keyboard().process_key(pkey);
-                     __throw(todo, "keyboard");
+                     throw ::exception(todo, "keyboard");
                   }
 
                   insert_text(str, false, e_source_user);

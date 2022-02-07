@@ -250,7 +250,7 @@ namespace user
 
    //   //      topic.m_puserinteraction = this;
 
-   //   //      topic.m_id = ::id_click;
+   //   //      topic.m_atom = ::id_click;
 
    //   //      route(&topic);
 
@@ -261,7 +261,7 @@ namespace user
 
    //   //         ::message::command command;
 
-   //   //         command.m_id = m_id;
+   //   //         command.m_atom = m_atom;
 
    //   //         command.m_puiOther = this;
 
@@ -311,7 +311,7 @@ namespace user
    //   //   {
    //   //      ::topic topic;
    //   //      topic.m_puserinteraction = this;
-   //   //      topic.m_id = ::id_mouse_enter;
+   //   //      topic.m_atom = ::id_mouse_enter;
    //   //      get_parent()->send_message(
    //   //      e_message_event, 0, (LPARAM)&ev);
    //   //      //               m_bActionHover = true;
@@ -320,7 +320,7 @@ namespace user
    //   //   {
    //   //      ::topic topic;
    //   //      topic.m_puserinteraction = this;
-   //   //      topic.m_id = ::id_mouse_leave;
+   //   //      topic.m_atom = ::id_mouse_leave;
    //   //      get_parent()->send_message(
    //   //      e_message_event, 0, (LPARAM)&ev);
    //   //      //             m_bActionHover = false;
@@ -342,7 +342,7 @@ namespace user
    //   //   set_need_redraw();
    //   //   ::topic topic;
    //   //   topic.m_puserinteraction = this;
-   //   //   topic.m_id = ::id_mouse_leave;
+   //   //   topic.m_atom = ::id_mouse_leave;
    //   //   if (get_parent() != nullptr)
    //   //   {
    //   //      get_parent()->send_message(e_message_event, 0, (LPARAM)&ev);
@@ -482,10 +482,10 @@ namespace user
       //}
 
 
-      if (m_id.has_char())
+      if (m_atom.has_char())
       {
 
-         string strText = _(m_id);
+         string strText = _(m_atom);
 
          set_window_text(strText);
 

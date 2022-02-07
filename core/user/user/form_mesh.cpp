@@ -63,15 +63,15 @@ namespace user
             if(pinteraction->get_control_type() == ::user::e_control_type_button)
             {
 
-               auto ptopic = __new(::topic(::id_click));
+               auto pextendedtopic = __new(::extended_topic(::id_click));
 
-               ptopic->m_pextendedtopic->m_puserelement        = pinteraction;
+               pextendedtopic->m_puserelement        = pinteraction;
 
-               //topic.m_id                = ;
+               //topic.m_atom                = ;
 
                m_itemControl              = item;
 
-               send_message(e_message_subject,0,ptopic);
+               send_message(e_message_subject,0, pextendedtopic);
 
             }
 
@@ -491,7 +491,7 @@ namespace user
 
    //   //screen_to_client(point);
 
-   //   //if(pmouse->m_id == e_message_left_button_down)
+   //   //if(pmouse->m_atom == e_message_left_button_down)
    //   //{
    //   //
    //   //   i32 iItem;

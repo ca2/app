@@ -464,7 +464,7 @@ namespace draw2d_opengl
    //      color32_t colorrefaN[2];
    //      colorrefaN[0] = _colorrefN;
    //      colorrefaN[1] = _colorrefN;
-   //      __throw(todo);
+   //      throw ::exception(todo);
    //   }
 
    //}

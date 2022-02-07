@@ -370,7 +370,7 @@ CLASS_DECL_ACME void thread_release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
 
 #ifdef __cplusplus_winrt
 
-#include "acme/node/operating_system/universal_windows/parallelization_winrt.h"
+#include "acme/operating_system/universal_windows/parallelization_winrt.h"
 
 #endif
 

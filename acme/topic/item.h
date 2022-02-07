@@ -99,7 +99,31 @@ class CLASS_DECL_ACME item_base :
    virtual public ::topic,
    virtual public ITEM_BASE_ADDITIONS
 {
+public:
    
+
+   item_base()
+   {
+
+   }
+
+
+   item_base(const item_base & itembase) :
+      TOPIC(itembase),
+      topic(itembase),
+      ITEM_BASE_ADDITIONS(itembase)
+   {
+
+   }
+
+
+   item_base(item_base && itembase) :
+      TOPIC(::move(itembase)),
+      topic(::move(itembase)),
+      ITEM_BASE_ADDITIONS(::move(itembase))
+   {
+
+   }
    
    inline ::index menu_view_index() const { return (::index) m_iItem; }
    inline ::index menu_view_group() const { return (::index) m_iSubItem; }
@@ -142,9 +166,39 @@ class CLASS_DECL_ACME item_base :
 
 
 struct CLASS_DECL_ACME item_data :
-   virtual public ITEM_DATA_ADDITIONS,
-   virtual public item_base
+   virtual public item_base,
+   virtual public ITEM_DATA_ADDITIONS
 {
+public:
+
+
+   item_data()
+   {
+
+   }
+
+
+   item_data(const item_data & itemdata) :
+      TOPIC(itemdata),
+      topic(itemdata),
+      ITEM_BASE_ADDITIONS(itemdata),
+      item_base(itemdata),
+      ITEM_DATA_ADDITIONS(itemdata)
+   {
+
+   }
+
+
+   item_data(item_data && itemdata) :
+      TOPIC(::move(itemdata)),
+      topic(::move(itemdata)),
+      ITEM_BASE_ADDITIONS(::move(itemdata)),
+      item_base(::move(itemdata)),
+      ITEM_DATA_ADDITIONS(::move(itemdata))
+   {
+
+   }
+
    
    
    item_data & operator = (const ::topic & topic) { if ((TOPIC*) this != (TOPIC *) &topic) memcpy((TOPIC *) this, (TOPIC *) &topic, sizeof(TOPIC)); return *this; }
@@ -250,6 +304,11 @@ public:
 
 
    item(const item & item):
+      TOPIC(item),
+      topic(item),
+      ITEM_BASE_ADDITIONS(item),
+      item_base(item),
+      ITEM_DATA_ADDITIONS(item),
       item_data(item),
       matter(item)
    {
@@ -257,8 +316,13 @@ public:
    }
 
 
-   item(item && item):
-      item_data(item),
+   item(item && item) :
+      TOPIC(::move(item)),
+      topic(::move(item)),
+      ITEM_BASE_ADDITIONS(::move(item)),
+      item_base(::move(item)),
+      ITEM_DATA_ADDITIONS(::move(item)),
+      item_data(::move(item)),
       matter(::move(item))
    {
 

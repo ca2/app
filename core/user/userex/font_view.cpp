@@ -13,7 +13,7 @@ namespace userex
    font_view::font_view()
    {
 
-      m_id = "font_view";
+      m_atom = "font_view";
 
       m_pimpact = nullptr;
 
@@ -80,10 +80,10 @@ namespace userex
 
       ::user::split_view::handle(ptopic, pcontext);
 
-      if (ptopic->m_id == id_after_change_text)
+      if (ptopic->m_atom == id_after_change_text)
       {
 
-         if (m_ptopview != nullptr && ptopic->m_pextendedtopic->m_puserelement == m_ptopview->m_peditview)
+         if (m_ptopview != nullptr && ptopic->get_extended_topic()->m_puserelement == m_ptopview->m_peditview)
          {
 
             synchronous_lock synchronouslock(m_pimpact->m_pfontlist->mutex());
@@ -97,10 +97,10 @@ namespace userex
          }
 
       }
-      else if (ptopic->user_element_id() == impact_font_sel)
+      else if (ptopic->get_extended_topic()->user_element_id() == impact_font_sel)
       {
 
-         if (ptopic->m_id == ::id_after_change_cur_sel)
+         if (ptopic->m_atom == ::id_after_change_cur_sel)
          {
 
             if (m_bSourceFontSel)
@@ -125,9 +125,6 @@ namespace userex
       }
 
       ::user::impact::handle(ptopic, pcontext);
-
-
-
 
    }
 
@@ -233,10 +230,10 @@ namespace userex
 
    //   ::user::impact::handle(ptopic, pcontext);
 
-   //   if (ptopic->m_pextendedtopic->m_puserelement->m_id == impact_font_sel)
+   //   if (ptopic->get_extended_topic()->m_puserelement->m_atom == impact_font_sel)
    //   {
 
-   //      if (ptopic->m_id == ::id_after_change_cur_sel)
+   //      if (ptopic->m_atom == ::id_after_change_cur_sel)
    //      {
 
    //         if (m_bSourceFontSel)

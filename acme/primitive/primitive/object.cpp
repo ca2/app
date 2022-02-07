@@ -672,10 +672,10 @@ bool object::is_running() const
 void object::defer_update_object_id()
 {
 
-   if (m_id.is_empty())
+   if (m_atom.is_empty())
    {
 
-      m_id = calc_default_object_id();
+      m_atom = calc_default_object_id();
 
    }
 
@@ -844,7 +844,7 @@ void object::on_request(::create * pcreate)
    //   if (!estatus)
    //   {
 
-   //      __throw(estatus);
+   //      throw ::exception(estatus);
 
    //   }
 
@@ -853,7 +853,7 @@ void object::on_request(::create * pcreate)
    //   if (!estatus)
    //   {
 
-   //      __throw(estatus);
+   //      throw ::exception(estatus);
 
    //   }
 
@@ -987,14 +987,14 @@ void     object::run()
 //
 //   //on_finalize();
 //
-//   if (string(m_id).contains("::rx"))
+//   if (string(m_atom).contains("::rx"))
 //   {
 //
 //      output_debug_string("::rx destroy");
 //
 //   }
 //
-//   if (string(m_id).contains("::interprocess_intercommunication"))
+//   if (string(m_atom).contains("::interprocess_intercommunication"))
 //   {
 //
 //      output_debug_string("::interprocess_intercommunication destroy");
@@ -1034,7 +1034,7 @@ void object::add_task(::object* pobjectTask)
    if(::is_null(pobjectTask))
    {
 
-      __throw(error_bad_argument);
+      throw ::exception(error_bad_argument);
 
       return;
 
@@ -1043,7 +1043,7 @@ void object::add_task(::object* pobjectTask)
    if(pobjectTask == this)
    {
 
-      __throw(error_bad_argument);
+      throw ::exception(error_bad_argument);
 
       return;
 
@@ -1054,7 +1054,7 @@ void object::add_task(::object* pobjectTask)
    if(is_ascendant_task(pobjectTask))
    {
 
-      __throw(error_bad_argument);
+      throw ::exception(error_bad_argument);
 
       return;
 
@@ -1128,7 +1128,7 @@ void object::erase_task(::object* pobjectTask)
    if (pobjectTask->m_pobjectParentTask != this)
    {
 
-      __throw(error_bad_argument);
+      throw ::exception(error_bad_argument);
 
       return;
 
@@ -1161,7 +1161,7 @@ void object::transfer_tasks_from(::object* ptask)
    if(::is_null(ptask))
    {
 
-      __throw(error_bad_argument);
+      throw ::exception(error_bad_argument);
 
       return;
 
@@ -1170,7 +1170,7 @@ void object::transfer_tasks_from(::object* ptask)
    if(ptask == this)
    {
 
-      __throw(error_bad_argument);
+      throw ::exception(error_bad_argument);
 
       return;
 
@@ -1181,7 +1181,7 @@ void object::transfer_tasks_from(::object* ptask)
    if(is_ascendant_task(ptask))
    {
 
-      __throw(error_bad_argument);
+      throw ::exception(error_bad_argument);
 
       return;
 
@@ -1808,7 +1808,7 @@ __pointer(task) object::branch_element(element * pelement, ::enum_priority eprio
 
    ptask->m_pelement = pelement;
 
-   ptask->m_id = typeid(*pelement).name();
+   ptask->m_atom = typeid(*pelement).name();
 
    ptask->branch(epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
 
@@ -1956,7 +1956,7 @@ void object::task_erase(::task* ptask)
       if (::is_null(ptask))
       {
 
-         __throw(error_bad_argument);
+         throw ::exception(error_bad_argument);
 
       }
 
@@ -1965,7 +1965,7 @@ void object::task_erase(::task* ptask)
       //if (!m_pcompositea->contains(ptask) && ptask->thread_parent() != this)
       //{
 
-      //   __throw(error_bad_argument, "thread is no parent-child releationship between the threads");
+      //   throw ::exception(error_bad_argument, "thread is no parent-child releationship between the threads");
 
       //}
 
@@ -2900,7 +2900,7 @@ void object::initialize(::object* pobject)
 //
 //   pthread->m_pelement = routine;
 //
-//   pthread->m_id = __type_name(pthread->m_pelement);
+//   pthread->m_atom = __type_name(pthread->m_pelement);
 //
 //   pthread->begin_thread();
 //

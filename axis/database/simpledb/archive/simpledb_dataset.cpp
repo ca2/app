@@ -447,7 +447,7 @@ namespace simpledb
       string qc = ::str::get_utf8_char(psz);
       if(qc != "\'")
       {
-         __throw(::exception("Quote character is required here"));
+         throw ::exception(::exception("Quote character is required here"));
       }
       string str;
       while(true)
@@ -457,7 +457,7 @@ namespace simpledb
          //string str = ::str::international::utf8_to_unicode(qc2);
          if(qc2.is_empty())
          {
-            __throw(::exception("Quote character is required here, premature end"));
+            throw ::exception(::exception("Quote character is required here, premature end"));
          }
          if(qc2 == qc)
             break;
@@ -518,7 +518,7 @@ namespace simpledb
             db->start_transaction();
 
          if(db == nullptr)
-            __throw(::database::exception("No database Connection"));
+            throw ::exception(::database::exception("No database Connection"));
 
          //close();
 
@@ -531,7 +531,7 @@ namespace simpledb
             /*            if (db->setErr(sqlite3_exec((::sqlite3::sqlite3 *) this->handle(),query,nullptr,nullptr,&err))!=SQLITE_OK)
                         {
                            fprintf(stderr,"Error: %s",err);
-                           __throw(::database::exception(db->getErrorMsg()));
+                           throw ::exception(::database::exception(db->getErrorMsg()));
                         }*/
          } // end of for
 
@@ -815,7 +815,7 @@ namespace simpledb
          }
          if (!found)
          {
-            __throw(::database::exception("Field not found: %s",f_name));
+            throw ::exception(::database::exception("Field not found: %s",f_name));
          }
          return true;
       }
@@ -824,7 +824,7 @@ namespace simpledb
          return dataset::SetFieldValue(f_name, value);
       }
 
-      //__throw(::database::exception("Not in Insert or Edit or Select state"));
+      //throw ::exception(::database::exception("Not in Insert or Edit or Select state"));
       //  return false;
 
    }
@@ -841,7 +841,7 @@ namespace simpledb
          }
          else
          {
-            __throw(::database::exception("Field not found: %d",iFieldIndex));
+            throw ::exception(::database::exception("Field not found: %d",iFieldIndex));
          }
       }
       else
@@ -849,7 +849,7 @@ namespace simpledb
          ASSERT(false);
          //      return dataset::SetFieldValue(f_name, value);
       }
-      __throw(::database::exception("Not in Insert or Edit or Select state"));
+      throw ::exception(::database::exception("Not in Insert or Edit or Select state"));
       //  return false;
    }
 
@@ -863,7 +863,7 @@ namespace simpledb
          }
          else
          {
-            __throw(::database::exception("Field not found: %d",iFieldIndex));
+            throw ::exception(::database::exception("Field not found: %d",iFieldIndex));
          }
       }
       //   else
@@ -872,7 +872,7 @@ namespace simpledb
          //return dataset::SetFieldValue(f_name, value);
 
       }
-      //__throw(::database::exception("Not in Insert or Edit or Select state"));
+      //throw ::exception(::database::exception("Not in Insert or Edit or Select state"));
       //  return false;
    }
 
@@ -901,7 +901,7 @@ namespace simpledb
                iFound = i;
                break;
             }
-         if (iFound < 0) __throw(::database::exception("Field not found: %s",fieldname));
+         if (iFound < 0) throw ::exception(::database::exception("Field not found: %s",fieldname));
          ::count iNumRows = num_rows();
          for(i=0; i < iNumRows; i++)
             if(m_resultset.m_records[i][iFound] == value)
@@ -912,7 +912,7 @@ namespace simpledb
 
          return false;
       }
-      __throw(::database::exception("not in Select state"));
+      throw ::exception(::database::exception("not in Select state"));
    }
 
    void dataset::query_items(string_array & stra, const ::string & pszSql)

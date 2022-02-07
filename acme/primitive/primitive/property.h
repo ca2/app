@@ -81,14 +81,14 @@ public:
    using ARG_TYPE2 = const ::payload &;
 
 
-   ::atom              m_id;
+   ::atom              m_atom;
 
 
    property() { on_property_construct(this); }
-   property(const ::atom& atom) : m_id(atom) { on_property_construct(this); }
-   property(const ::atom& atom, const ::payload& varValue) : m_id(atom), ::payload(varValue) { on_property_construct(this); }
-   property(const ::property& property) : m_id(property.m_id), ::payload(property) { on_property_construct(this); }
-   property(::property&& property) : m_id(::move(property.m_id)), ::payload(::move(property)) { on_property_construct(this); }
+   property(const ::atom& atom) : m_atom(atom) { on_property_construct(this); }
+   property(const ::atom& atom, const ::payload& varValue) : m_atom(atom), ::payload(varValue) { on_property_construct(this); }
+   property(const ::property& property) : m_atom(property.m_atom), ::payload(property) { on_property_construct(this); }
+   property(::property&& property) : m_atom(::move(property.m_atom)), ::payload(::move(property)) { on_property_construct(this); }
    ~property() { on_property_destruct(this); }
 
 
@@ -125,8 +125,8 @@ public:
 
 
 
-   ::atom& element1() { return m_id; };
-   const ::atom& element1() const { return m_id; };
+   ::atom& element1() { return m_atom; };
+   const ::atom& element1() const { return m_atom; };
    ::payload& element2() { return *this; };
    const ::payload& element2() const { return *this; };
 
@@ -147,7 +147,7 @@ public:
    }
 
 
-   ::atom name() const { return m_id; }
+   ::atom name() const { return m_atom; }
 
   
    inline ::string & get_network_payload(::string & str, bool bNewLine = true) const
@@ -155,7 +155,7 @@ public:
 
       str += "\"";
 
-      str += m_id.str();
+      str += m_atom.str();
 
       str += "\"";
 

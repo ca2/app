@@ -714,7 +714,7 @@ try1:;
    ::file::path dir_context::userquicklaunch()
    {
 
-      __throw(todo);
+      throw ::exception(todo);
 
    }
 
@@ -722,7 +722,7 @@ try1:;
    ::file::path dir_context::userprograms()
    {
 
-      __throw(todo);
+      throw ::exception(todo);
 
    }
 
@@ -730,7 +730,7 @@ try1:;
    ::file::path dir_context::commonprograms()
    {
 
-      __throw(todo);
+      throw ::exception(todo);
 
    }
 

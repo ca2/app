@@ -278,7 +278,7 @@ namespace crypto
       //u32 crypto::crc32(u32 dwPrevious, const char* psz)
       //{
 
-      //   throw interface_only_exception();
+      //   throw ::interface_only();
 
       //   return 0;
 
@@ -395,7 +395,7 @@ namespace crypto
       int crypto::get_hash_digest_length(enum_hash) const
       {
 
-         throw interface_only_exception();
+         throw ::interface_only();
 
           return 0;
 

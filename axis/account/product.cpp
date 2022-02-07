@@ -85,7 +85,7 @@ namespace account
 
       strAuthUrl = "https://api.ca2.software/account/license3?sessid=" + strRequestSessId;
 
-//      __throw(todo("xml->js"));
+//      throw ::exception(todo("xml->js"));
 //
 //      property_set set;
 //

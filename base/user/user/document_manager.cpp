@@ -63,7 +63,7 @@ namespace user
 
    void document_manager::UnregisterShellFileTypes()
    {
-      throw interface_only_exception();
+      throw ::interface_only();
       /*   ASSERT(!m_templateptra.is_empty());  // must have some doc templates
 
       string strPathName, strTemp;
@@ -152,7 +152,7 @@ namespace user
    void document_manager::RegisterShellFileTypes(bool bCompat)
    {
       __UNREFERENCED_PARAMETER(bCompat);
-      throw interface_only_exception();
+      throw ::interface_only();
 
       /*   ASSERT(!m_templateptra.is_empty());  // must have some doc templates
 
@@ -757,7 +757,7 @@ namespace user
       if(pcreate->m_pcommandline->m_varFile.is_empty())
       {
 
-         __throw(error_bad_argument);
+         throw ::exception(error_bad_argument);
 
       }
 

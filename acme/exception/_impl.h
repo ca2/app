@@ -16,13 +16,13 @@ inline void throw_status(const ::enum_status& estatus, const char* pszMessage)
    if (estatus == error_not_implemented)
    {
 
-      throw not_implemented_exception(pszMessage);
+      throw ::not_implemented(pszMessage);
 
    }
    else if (estatus == error_interface_only)
    {
 
-      throw interface_only_exception(pszMessage);
+      throw ::interface_only(pszMessage);
 
    }
    else if (estatus == error_io)

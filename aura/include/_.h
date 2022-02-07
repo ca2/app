@@ -1386,7 +1386,7 @@ using image_pointer_array = __pointer_array(::image);
 //
 //
 //#include "aura/user/_const.h"
-#include "acme/user/_const_key.h"
+#include "acme/user/user/_const_key.h"
 
 namespace draw2d
 {
@@ -2247,9 +2247,9 @@ namespace draw2d
 //#define RINOK(x) { i32 __result__ = (x); if (__result__ != 0) return __result__; }
 //#endif
 //
-//// __throw( - exception - result exception - if not ok
+//// throw ::exception( - exception - result exception - if not ok
 //#ifndef TINOK
-//#define TINOK(e, x) { i32 __result__ = (x); if (__result__ != 0) __throw(e(get_application(), __result__)); }
+//#define TINOK(e, x) { i32 __result__ = (x); if (__result__ != 0) throw ::exception(e(get_application(), __result__)); }
 //#endif
 //
 //

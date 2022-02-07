@@ -282,7 +282,7 @@ bool os_finalize()
 //
 //string key_to_char(wparam wparam, lparam lparam)
 //{
-//   __throw(::exception("todo"));
+//   throw ::exception(::exception("todo"));
 //}
 //
 //

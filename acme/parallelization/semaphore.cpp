@@ -6,7 +6,7 @@
 #ifdef PARALLELIZATION_PTHREAD
 
 
-#include "acme/node/operating_system/ansi/_pthread.h"
+#include "acme/operating_system/ansi/_pthread.h"
 
 
 #endif
@@ -15,13 +15,13 @@
 #if defined(LINUX) || defined(__APPLE__) || defined(FREEBSD)
 #include <sys/ipc.h>
 #include <sys/sem.h>
-#include "acme/node/operating_system/ansi/_ansi.h"
+#include "acme/operating_system/ansi/_ansi.h"
 #elif defined(ANDROID)
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <semaphore.h>
-#include "acme/node/operating_system/ansi/_ansi.h"
+#include "acme/operating_system/ansi/_ansi.h"
 #endif
 
 
@@ -38,7 +38,7 @@ semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const char * pstrName
    if (m_hsync == nullptr)
    {
 
-      __throw(error_resource);
+      throw ::exception(error_resource);
 
    }
 
@@ -63,14 +63,14 @@ semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const char * pstrName
       {
 
          if (errno != EEXIST)
-            __throw(error_resource);
+            throw ::exception(error_resource);
 
          // We're not first.  Try again
 
          m_psem = sem_open(m_strName,0);
 
          if (m_psem == SEM_FAILED)
-            __throw(error_resource);
+            throw ::exception(error_resource);
 
       }
 

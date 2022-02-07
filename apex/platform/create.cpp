@@ -60,7 +60,7 @@ void create::initialize_create(arguments arguments)
       else if(auto pcreate = arg.cast < create >())
       {
 
-         __throw(todo, "Fix this. This shouldn't happen. (create is \"fat\" object, so it is not meant to be copied through copy constructors, assign operators,...)");
+         throw ::exception(todo, "Fix this. This shouldn't happen. (create is \"fat\" object, so it is not meant to be copied through copy constructors, assign operators,...)");
          //operator = (*pcreate);
 
       }
@@ -77,7 +77,7 @@ void create::initialize_create(string strAppId, ::payload payloadFile, const ::p
 
    m_ewindowflag = ewindowflag;
       
-   m_id = atom;
+   m_atom = atom;
 
    create_common_construct(varOptions, puiParent);
 

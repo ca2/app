@@ -388,7 +388,7 @@ namespace programming
       for (auto& pproperty : setEnvironment)
       {
 
-         SetEnvironmentVariableW(wstring(pproperty->m_id), wstring(pproperty->string()));
+         SetEnvironmentVariableW(wstring(pproperty->m_atom), wstring(pproperty->string()));
 
       }
 

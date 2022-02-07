@@ -486,7 +486,7 @@ namespace universal_windows
       if (u != nCount)
       {
 
-         __throw(error_io);
+         throw ::exception(error_io);
 
       }
 

@@ -82,7 +82,7 @@ class pointer_array;
 //};
 
 
-#define __throw(...) throw_exception(__VA_ARGS__)
+//#define throw ::exception(...) throw_exception(__VA_ARGS__)
 
 
 CLASS_DECL_ACME void output_error_message(const ansichar * pszMessage, const ansichar * pszTitle = nullptr, int iMessageBox = 0);

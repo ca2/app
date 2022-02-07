@@ -176,8 +176,8 @@ namespace user
 
       atom                                        m_uiText;
       ::type                                    m_type;
-      atom                                        m_idPrivateDataSection;
-      //::atom                                      m_idTranslated;
+      atom                                        m_atomPrivateDataSection;
+      //::atom                                      m_atomTranslated;
       bool                                      m_bTransparent;
       enum_control_type                         m_econtroltype;
       bool                                      m_bCreated;
@@ -266,7 +266,7 @@ namespace user
       bool                                         m_bNeedLoadFormData;
       bool                                         m_bNeedSaveFormData;
       ::duration                                         m_durationLastRedraw;
-      ::atom                                         m_idImpact;
+      ::atom                                         m_atomImpact;
       ::color::color                                      m_colorBackground;
       bool                                         m_bWorkspaceFullScreen;
       point_i32                                        m_pointScroll;
@@ -299,7 +299,7 @@ namespace user
       bool                                         m_bRectOk;
       string                                       m_strWindowText;
       bool                                         m_bModal;
-      atom                                           m_idModalResult; // for return values from interaction_impl::RunModalLoop
+      atom                                           m_atomModalResult; // for return values from interaction_impl::RunModalLoop
       i32                                          m_nModalResult; // for return values from ::interaction_impl::RunModalLoop
 
       bool                                         m_bNeedRedraw;

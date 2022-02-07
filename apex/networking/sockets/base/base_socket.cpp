@@ -44,7 +44,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #ifdef PARALLELIZATION_PTHREAD
 
 
-#include "acme/node/operating_system/ansi/_pthread.h"
+#include "acme/operating_system/ansi/_pthread.h"
 
 
 #endif
@@ -248,7 +248,7 @@ namespace sockets
    {
    FATAL("getprotobyname" << Errno << ", " << bsd_socket_error(Errno));
    SetCloseAndDelete();
-   __throw(::exception(string("getprotobyname() failed: ") + bsd_socket_error(Errno)));
+   throw ::exception(::exception(string("getprotobyname() failed: ") + bsd_socket_error(Errno)));
    return INVALID_SOCKET;
    }
    }
@@ -259,7 +259,7 @@ namespace sockets
    {
    FATAL("base_socket" << Errno << ", " << bsd_socket_error(Errno));
    SetCloseAndDelete();
-   __throw(::exception(string("base_socket() failed: ") + bsd_socket_error(Errno)));
+   throw ::exception(::exception(string("base_socket() failed: ") + bsd_socket_error(Errno)));
    return INVALID_SOCKET;
    }
    attach(s);
@@ -2627,7 +2627,7 @@ namespace sockets
    port_t base_socket::GetLocalPort()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return 0;
 
@@ -2637,7 +2637,7 @@ namespace sockets
    ::net::address base_socket::GetLocalAddress()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return ::net::address();
 

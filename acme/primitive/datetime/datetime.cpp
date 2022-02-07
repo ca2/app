@@ -123,7 +123,7 @@ namespace datetime
 //               else if(strText1 == "now"
 //                       || (pcontext != nullptr && pcontext->m_papexcontext->matches(idCalendarNow,strText1)))
 //               {
-//                  __throw(::exception("now cannot be span"));
+//                  throw ::exception(::exception("now cannot be span"));
 //               }
 //               else if (strText1.compare_ci("UTC") == 0)
 //               {
@@ -131,7 +131,7 @@ namespace datetime
 //               }
 //               else
 //               {
-//                  __throw(error_not_implemented);
+//                  throw ::not_implemented();
 //               }
 //               strNumber.Empty();
 //               strText1.Empty();

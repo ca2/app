@@ -25,7 +25,7 @@ namespace regular_expression
    ::count result::get_count() const
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return 0;
 
@@ -44,7 +44,7 @@ namespace regular_expression
    string result::get_match(::index iMatch) const
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return "";
 

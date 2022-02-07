@@ -327,13 +327,13 @@ namespace userex
 
       }
 
-      ::atom atom = get_document()->m_pimpactsystem->m_id;
+      ::atom atom = get_document()->m_pimpactsystem->m_atom;
 
       string strText;
 
       auto papplication = get_application();
 
-      papplication->data_get(m_id + ".cur_text", strText);
+      papplication->data_get(m_atom + ".cur_text", strText);
 
    }
 
@@ -349,12 +349,12 @@ namespace userex
 
       ::user::image_list_view::handle(ptopic, pcontext);
 
-      if (ptopic->m_id == id_after_change_text)
+      if (ptopic->m_atom == id_after_change_text)
       {
 
          auto * peditview = _001TypedWindow < ::userex::top_edit_view >();
 
-         if (peditview != nullptr && ptopic->m_pextendedtopic->m_puserelement == peditview)
+         if (peditview != nullptr && ptopic->get_extended_topic()->m_puserelement == peditview)
          {
 
             string strText;

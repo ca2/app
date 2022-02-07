@@ -59,7 +59,7 @@ public:
 
 
    listener *           m_plistener;
-   ::atom                   m_id;
+   ::atom                   m_atom;
 
    scalar_source();
 

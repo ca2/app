@@ -3260,7 +3260,7 @@ namespace aura
    sp(::user::message) application::get_message_base(void * pevent,::user::interaction * puserinteraction)
    {
 
-      __throw(todo);
+      throw ::exception(todo);
 
       return nullptr;
 

@@ -59,9 +59,9 @@ namespace dx
    {
 
       if (FAILED(hr))
-         __throw(hresult_exception(hr));
+         throw ::exception(hresult_exception(hr));
       //if(FAILED(hr))
-      // __throw(hr);
+      // throw ::exception(hr);
 
    }
 

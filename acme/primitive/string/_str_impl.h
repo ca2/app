@@ -553,7 +553,7 @@ inline void from_string(ansichar sz[n], const ansichar * psz)
    if (strlen(psz) >= n)
    {
 
-      __throw(error_would_reach_buffer_limit);
+      throw ::exception(error_would_reach_buffer_limit);
 
    }
 
@@ -569,7 +569,7 @@ inline void from_string(wd16char sz[n], const ansichar * psz)
    if (::str::utf_to_utf_length(sz, psz) >= n)
    {
 
-      __throw(error_would_reach_buffer_limit);
+      throw ::exception(error_would_reach_buffer_limit);
 
    }
 
@@ -585,7 +585,7 @@ inline void from_string(wd32char sz[n], const ansichar * psz)
    if (::str::utf_to_utf_length(sz, psz) >= n)
    {
 
-      __throw(error_would_reach_buffer_limit);
+      throw ::exception(error_would_reach_buffer_limit);
 
    }
 
@@ -794,7 +794,7 @@ inline string string_from_u(const T& t)
 //      if(strsize != 0)
 //      {
 //
-//         __throw(error_bad_argument);
+//         throw ::exception(error_bad_argument);
 //
 //      }
 //
@@ -809,7 +809,7 @@ inline string string_from_u(const T& t)
 //      if (pNew == nullptr)
 //      {
 //
-//         throw_memory_exception();
+//         throw no_memory();
 //
 //      }
 //
@@ -848,7 +848,7 @@ inline string string_from_u(const T& t)
 //   if((iChar < 0) || (iChar >= get_length()))
 //   {
 //
-//      __throw(error_bad_argument);
+//      throw ::exception(error_bad_argument);
 //
 //   }
 //
@@ -884,7 +884,7 @@ inline string string_from_u(const T& t)
 //      if(pszSrc == nullptr)
 //      {
 //
-//         __throw(error_bad_argument);
+//         throw ::exception(error_bad_argument);
 //
 //      }
 //
@@ -942,7 +942,7 @@ inline string string_from_u(const T& t)
 //   if(nLength < 0)
 //   {
 //
-//      __throw(error_bad_argument);
+//      throw ::exception(error_bad_argument);
 //
 //   }
 //
@@ -1326,7 +1326,7 @@ inline void to_string(string& str, const long& l)
 //inline bool string_format::defer_get_additional_argument(const ansichar * & s)
 //{
 //
-//   __throw(::exception("missing argument value"));
+//   throw ::exception(::exception("missing argument value"));
 //
 //}
 //
@@ -1356,13 +1356,13 @@ inline void to_string(string& str, const long& l)
 //   if(m_estate == state_waiting_width)
 //   {
 //
-//      __throw(::exception("width should plain i32"));
+//      throw ::exception(::exception("width should plain i32"));
 //
 //   }
 //   else if(m_estate == state_waiting_precision)
 //   {
 //
-//      __throw(::exception("width should plain i32"));
+//      throw ::exception(::exception("width should plain i32"));
 //
 //   }
 //
@@ -1525,7 +1525,7 @@ inline void string_meta_data < TYPE_CHAR > ::set_length(::strsize strsize)
    if (this->natural_is_shared())
    {
 
-      __throw(error_wrong_state, "invalid state");
+      throw ::exception(error_wrong_state, "invalid state");
 
    }
 
@@ -1534,7 +1534,7 @@ inline void string_meta_data < TYPE_CHAR > ::set_length(::strsize strsize)
    if (strsize >= strsizeStorage)
    {
 
-      __throw(error_bad_argument);
+      throw ::exception(error_bad_argument);
 
    }
 

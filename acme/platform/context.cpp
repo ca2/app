@@ -67,13 +67,13 @@ namespace acme
 
       bool bSet = false;
 
-      if (ptextdata->m_id.is_text())
+      if (ptextdata->m_atom.is_text())
       {
 
-         if (::str::begins(ptextdata->m_id.m_psz, "text://"))
+         if (::str::begins(ptextdata->m_atom.m_psz, "text://"))
          {
 
-            auto psz = ansi_rchr(ptextdata->m_id.m_psz + 7, '/');
+            auto psz = ansi_rchr(ptextdata->m_atom.m_psz + 7, '/');
 
             if (psz)
             {
@@ -88,7 +88,7 @@ namespace acme
 
       }
 
-      ptextdata->m_str = ptextdata->m_id;
+      ptextdata->m_str = ptextdata->m_atom;
 
    }
 

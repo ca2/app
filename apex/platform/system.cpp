@@ -103,7 +103,7 @@ string get_user_name()
 
 }
 
-//#include "acme/node/operating_system/windows/_c.h"
+//#include "acme/operating_system/windows/_c.h"
 #endif
 
 
@@ -842,14 +842,14 @@ namespace apex
 
       //if (!m_pxml->init1())
       //{
-      //   __throw(::exception("failed to construct system m_pxml->init1()"));
+      //   throw ::exception(::exception("failed to construct system m_pxml->init1()"));
 
       //}
 
       //if (!m_pxml->init())
       //{
 
-      //   __throw(::exception("failed to construct system m_pxml->initialize()"));
+      //   throw ::exception(::exception("failed to construct system m_pxml->initialize()"));
 
       //}
 
@@ -1144,14 +1144,14 @@ pacmedir->create("/ca2core");
 
       auto & pfactoryCrypto = factory("crypto", "openssl");
 
-      if (!pfactoryCrypto)
-      {
+      //if (!pfactoryCrypto)
+      //{
 
-         WARNING("Could not open crypto openssl plugin.");
+      //   WARNING("Could not open crypto openssl plugin.");
 
-         //return pfactoryCrypto;
+      //   //return pfactoryCrypto;
 
-      }
+      //}
 
       pfactoryCrypto->merge_to_global_factory();
 
@@ -1291,7 +1291,7 @@ pacmedir->create("/ca2core");
 
 
 
-      //__throw(todo("filehandler"));
+      //throw ::exception(todo("filehandler"));
 
       //estatus = __compose_new(m_pfilehandler);
 
@@ -1780,6 +1780,38 @@ pacmedir->create("/ca2core");
       //}
 
       //return estatus;
+
+   }
+
+
+   void system::__thread_init()
+   {
+
+      try
+      {
+
+         ::apex::context::__thread_init();
+
+      }
+      catch (exception & exception)
+      {
+
+         string strMessage;
+         
+         strMessage += "Failed to initialize application\n";
+         strMessage += "\n";
+         strMessage += exception.m_strMessage + "\n";
+         strMessage += "(" + __string(exception.m_estatus) + ")";
+
+         string strTitle;
+
+         strTitle = "Exception during initialization";
+
+         os_message_box(this, strMessage, strTitle, e_message_box_ok | e_message_box_icon_exclamation);
+
+         throw exception;
+
+      }
 
    }
 
@@ -2472,7 +2504,7 @@ pacmedir->create("/ca2core");
 
 #else
 
-            __throw(todo);
+            throw ::exception(todo);
 
 #endif
 
@@ -2495,7 +2527,7 @@ pacmedir->create("/ca2core");
 
 #if defined(_UWP)
 
-            __throw(todo);
+            throw ::exception(todo);
 
 #else
 
@@ -2535,7 +2567,7 @@ pacmedir->create("/ca2core");
 
 #ifdef _UWP
 
-            __throw(todo);
+            throw ::exception(todo);
 
 #else
 
@@ -2569,7 +2601,7 @@ pacmedir->create("/ca2core");
 
 #ifdef _UWP
 
-            __throw(todo);
+            throw ::exception(todo);
 
 #else
 
@@ -2639,7 +2671,7 @@ pacmedir->create("/ca2core");
    //string system::crypto_md5_text(const ::string & str)
    //{
 
-   //   throw interface_only_exception();
+   //   throw ::interface_only();
 
    //   return "";
 
@@ -3054,7 +3086,7 @@ pacmedir->create("/ca2core");
    //string system::url_encode(const ::string & str)
    //{
 
-   //   //throw ::interface_only_exception();
+   //   //throw ::interface_only();
 
    //   return url_encode(str);
 
@@ -3407,7 +3439,7 @@ pacmedir->create("/ca2core");
 //   void system::enum_display_monitors()
 //   {
 //
-//   __throw(todo("aura"));
+//   throw ::exception(todo("aura"));
 ////#ifdef WINDOWS_DESKTOP
 ////
 ////      m_monitorinfoa.erase_all();
@@ -4301,7 +4333,7 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
 
    //      auto ptool = __new(::task_tool);
 
-   //      ptool->m_id = etool;
+   //      ptool->m_atom = etool;
 
    //      threadtoola.add(ptool);
 
@@ -4435,7 +4467,7 @@ namespace apex
    __pointer(::data::node) system::load_xml(const ::string & pszXml)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
@@ -4445,7 +4477,7 @@ namespace apex
    void system::on_start_find_applications_from_cache()
    {
 
-      __throw(todo, "filehandler");
+      throw ::exception(todo, "filehandler");
      // m_pfilehandler->m_ptree->erase_all();
 
    }
@@ -4454,7 +4486,7 @@ namespace apex
    void system::on_end_find_applications_from_cache(stream& is)
    {
 
-      //__throw(todo("filehandler"));
+      //throw ::exception(todo("filehandler"));
       //is >> *m_pfilehandler;
 
    }
@@ -4462,7 +4494,7 @@ namespace apex
    void system::on_end_find_applications_to_cache(stream& os)
    {
 
-      //__throw(todo("filehandler"));
+      //throw ::exception(todo("filehandler"));
       //os << *m_pfilehandler;
 
    }
@@ -4470,7 +4502,7 @@ namespace apex
    void system::on_map_application_library(::acme::library& library)
    {
 
-      __throw(todo, "filehandler");
+      throw ::exception(todo, "filehandler");
       // m_pfilehandler->defer_add_library(library.m_pca2library);
 
    }
@@ -4930,10 +4962,10 @@ namespace apex
 //
 //      psignal->notify();
       
-      if(ptopic->m_id == id_set_dark_mode)
+      if(ptopic->get_extended_topic()->m_atom == id_set_dark_mode)
       {
          
-         if(ptopic->m_pextendedtopic->m_payload.is_true())
+         if(ptopic->get_extended_topic()->m_payload.is_true())
          {
 
             m_pnode->background_color(::color::black);
@@ -4947,7 +4979,7 @@ namespace apex
          }
          
       }
-      else if (ptopic->m_id == id_operating_system_user_theme_change)
+      else if (ptopic->m_atom == id_operating_system_user_theme_change)
       {
 
          auto pnode = node();
@@ -4962,10 +4994,10 @@ namespace apex
          }
 
       }
-      else if (ptopic->m_id == id_open_hyperlink)
+      else if (ptopic->m_atom == id_open_hyperlink)
       {
 
-         auto plink = ptopic->m_pextendedtopic->m_payload.cast < ::hyperlink >();
+         auto plink = ptopic->get_extended_topic()->m_payload.cast < ::hyperlink >();
 
          if (plink)
          {
@@ -4986,7 +5018,7 @@ namespace apex
          }
 
       }
-      else if(ptopic->m_id == id_app_activated)
+      else if(ptopic->m_atom == id_app_activated)
       {
          
          if(::is_set(m_papplicationMain))

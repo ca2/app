@@ -6,7 +6,7 @@
 //#include <X11/cursorfont.h>
 #include <sys/time.h>
 #include <link.h>
-#include "acme/node/operating_system/ansi/_pthread.h"
+#include "acme/operating_system/ansi/_pthread.h"
 
 
 

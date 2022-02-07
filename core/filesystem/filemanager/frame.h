@@ -11,7 +11,7 @@ namespace filemanager
    public:
 
 
-      atom m_idTab;
+      atom m_atomTab;
 
 
       frame();

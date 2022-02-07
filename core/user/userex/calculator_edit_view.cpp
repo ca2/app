@@ -96,7 +96,7 @@ namespace calculator
    void plain_edit_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (ptopic->m_id == id_after_change_text)
+      if (ptopic->m_atom == id_after_change_text)
       {
 
          {
@@ -222,7 +222,7 @@ namespace calculator
             {
 
                pelement = pparser->parse(strExp);
-               //__throw(::exception("now a simple exception here"));
+               //throw ::exception(::exception("now a simple exception here"));
 
             }
             catch (const ::exception & exception)
@@ -383,11 +383,11 @@ namespace calculator
 
       auto pplaineditview = this;
 
-      ::topic topic(id_after_change_text);
+      ::extended_topic extendedtopic(id_after_change_text);
 
-      topic.m_puserelement = this;
+      extendedtopic.m_puserelement = this;
 
-      route(&topic);
+      route(&extendedtopic);
 
       plain_edit::plain_edit_on_after_change_text(pgraphics, context);
 

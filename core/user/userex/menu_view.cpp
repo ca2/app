@@ -20,7 +20,7 @@ void menu_view::handle(::topic * ptopic, ::context * pcontext)
 
    papplication->handle(ptopic, pcontext);
 
-   if (ptopic->m_pextendedtopic->m_bRet)
+   if (ptopic->get_extended_topic()->m_bRet)
    {
 
       return;
@@ -39,7 +39,7 @@ void menu_view::handle(::topic * ptopic, ::context * pcontext)
 
       get_parent()->handle(ptopic, pcontext);
 
-      if (ptopic->m_pextendedtopic->m_bRet)
+      if (ptopic->get_extended_topic()->m_bRet)
       {
 
          return;
@@ -59,7 +59,7 @@ void menu_view::handle(::topic * ptopic, ::context * pcontext)
 //
 //   papplication->handle(ptopic, pcontext);
 //
-//   if(ptopic->m_pextendedtopic->m_bRet)
+//   if(ptopic->get_extended_topic()->m_bRet)
 //   {
 //
 //      return;
@@ -78,7 +78,7 @@ void menu_view::handle(::topic * ptopic, ::context * pcontext)
 //
 //      get_parent()->handle(ptopic, pcontext);
 //
-//      if(ptopic->m_pextendedtopic->m_bRet)
+//      if(ptopic->get_extended_topic()->m_bRet)
 //      {
 //
 //         return;
@@ -114,28 +114,26 @@ void menu_view::_001OnTimer(::timer * ptimer)
    if(m_pcallback != nullptr)
    {
 
-      ::topic topic;
+      ::extended_topic extendedtopic(::id_timer);
 
-      topic.m_id = ::id_timer;
-
-      topic.m_uiEvent = ptimer->m_uEvent;
+      extendedtopic.m_uiEvent = ptimer->m_uEvent;
       
-      topic.m_etimer = ptimer->m_etimer;
+      extendedtopic.m_etimer = ptimer->m_etimer;
 
-      topic.m_puserelement = this;
+      extendedtopic.m_puserelement = this;
 
       auto papplication = get_application();
 
-      papplication->route(&topic);
+      papplication->route(&extendedtopic);
 
-      if(topic.m_bRet)
+      if(extendedtopic.m_bRet)
       {
 
          return;
 
       }
 
-      m_pcallback->route(&topic);
+      m_pcallback->route(&extendedtopic);
 
    }
 

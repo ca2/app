@@ -57,7 +57,7 @@ strsize wd32_to_wd16_len(const wd32char* codepoints, strsize input_size)
       {
 
          // invalid code_point, do something !
-         __throw(error_invalid_character, "wd32_to_wd16_len :: invalid code_point, do something ! ");
+         throw ::exception(error_invalid_character, "wd32_to_wd16_len :: invalid code_point, do something ! ");
 
          //++len;
 

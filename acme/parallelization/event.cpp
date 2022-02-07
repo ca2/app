@@ -6,7 +6,7 @@
 #ifdef PARALLELIZATION_PTHREAD
 
 
-#include "acme/node/operating_system/ansi/_pthread.h"
+#include "acme/operating_system/ansi/_pthread.h"
 
 
 #endif
@@ -14,7 +14,7 @@
 
 #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD)
 #include <sys/ipc.h>
-#include "acme/node/operating_system/ansi/_pthread.h"
+#include "acme/operating_system/ansi/_pthread.h"
 #include <sys/time.h>
 #include <time.h>
 #include <sys/time.h>
@@ -22,7 +22,7 @@
 #if defined(LINUX) || defined(__APPLE__)
 #include <sys/sem.h>
 #endif
-#include "acme/node/operating_system/ansi/_ansi.h"
+#include "acme/operating_system/ansi/_ansi.h"
 
 #ifdef __MACH__
 
@@ -102,7 +102,7 @@ event::event(char * sz, bool bInitiallyOwn, bool bManualReset, const char * pstr
    if (m_hsync == NULL)
    {
 
-      __throw(error_resource);
+      throw ::exception(error_resource);
 
    }
 
@@ -129,7 +129,7 @@ event::event(char * sz, bool bInitiallyOwn, bool bManualReset, const char * pstr
    if (m_hsync == nullptr)
    {
 
-      __throw(error_resource);
+      throw ::exception(error_resource);
 
    }
 
@@ -152,7 +152,7 @@ event::event(char * sz, bool bInitiallyOwn, bool bManualReset, const char * pstr
       m_mutex = new pthread_mutex_t;
       if((rc = pthread_mutex_init((pthread_mutex_t *) m_mutex,&attr)))
       {
-         __throw(::exception("RC_OBJECT_NOT_CREATED"));
+         throw ::exception(::exception("RC_OBJECT_NOT_CREATED"));
       }
 
 
@@ -429,7 +429,7 @@ bool event::ResetEvent()
 void event::_wait ()
 {
 
-   //__throw(todo("thread"));
+   //throw ::exception(todo("thread"));
    //if(m_eobject & e_object_alertable_wait)
    //{
 
@@ -537,7 +537,7 @@ void event::_wait ()
 
 #endif
 
-   //__throw(todo("thread"));
+   //throw ::exception(todo("thread"));
    //if(m_eobject & e_object_alertable_wait)
    //{
 
@@ -562,7 +562,7 @@ bool event::_wait (const class ::wait & wait)
 
    ::e_status estatus;
 
-   //__throw(todo("thread"));
+   //throw ::exception(todo("thread"));
    //if(durationTimeout > 1_s && m_eobject & e_object_alertable_wait)
    //{
 
@@ -824,7 +824,7 @@ bool event::_wait (const class ::wait & wait)
 
 #endif
 
-   ////__throw(todo("thread"));
+   ////throw ::exception(todo("thread"));
    //if(durationTimeout > 1_s && m_eobject & e_object_alertable_wait)
    //{
 

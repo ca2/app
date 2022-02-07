@@ -156,7 +156,7 @@ typedef struct _QRinput QRinput;
  * and the error correction level is set to QR_ECLEVEL_L.
  * @return an input object (initialized). On error, NULL is returned and errno
  *         is set to indicate the error.
- * @__throw( ENOMEM unable to allocate memory.
+ * @throw ::exception( ENOMEM unable to allocate memory.
  */
 extern QRinput *QRinput_new(void);
 
@@ -166,8 +166,8 @@ extern QRinput *QRinput_new(void);
  * @param level Error correction level.
  * @return an input object (initialized). On error, NULL is returned and errno
  *         is set to indicate the error.
- * @__throw( ENOMEM unable to allocate memory for input objects.
- * @__throw( EINVAL invalid arguments.
+ * @throw ::exception( ENOMEM unable to allocate memory for input objects.
+ * @throw ::exception( EINVAL invalid arguments.
  */
 extern QRinput *QRinput_new2(int version, QRecLevel level);
 
@@ -178,8 +178,8 @@ extern QRinput *QRinput_new2(int version, QRecLevel level);
  * @param level Error correction level.
  * @return an input object (initialized). On error, NULL is returned and errno
  *         is set to indicate the error.
- * @__throw( ENOMEM unable to allocate memory for input objects.
- * @__throw( EINVAL invalid arguments.
+ * @throw ::exception( ENOMEM unable to allocate memory for input objects.
+ * @throw ::exception( EINVAL invalid arguments.
  */
 extern QRinput *QRinput_newMQR(int version, QRecLevel level);
 
@@ -193,8 +193,8 @@ extern QRinput *QRinput_newMQR(int version, QRecLevel level);
  * @retval 0 success.
  * @retval -1 an error occurred and errno is set to indeicate the error.
  *            See Execptions for the details.
- * @__throw( ENOMEM unable to allocate memory.
- * @__throw( EINVAL input data is invalid.
+ * @throw ::exception( ENOMEM unable to allocate memory.
+ * @throw ::exception( EINVAL input data is invalid.
  *
  */
 extern int QRinput_append(QRinput *input, QRencodeMode mode, int size, const unsigned char *data);
@@ -206,8 +206,8 @@ extern int QRinput_append(QRinput *input, QRencodeMode mode, int size, const uns
  * @retval 0 success.
  * @retval -1 an error occurred and errno is set to indeicate the error.
  *            See Execptions for the details.
- * @__throw( ENOMEM unable to allocate memory.
- * @__throw( EINVAL input data is invalid.
+ * @throw ::exception( ENOMEM unable to allocate memory.
+ * @throw ::exception( EINVAL input data is invalid.
  *
  */
 extern int QRinput_appendECIheader(QRinput *input, unsigned int ecinum);
@@ -283,7 +283,7 @@ typedef struct _QRinput_Struct QRinput_Struct;
  * Instantiate a set of input data object.
  * @return an instance of QRinput_Struct. On error, NULL is returned and errno
  *         is set to indicate the error.
- * @__throw( ENOMEM unable to allocate memory.
+ * @throw ::exception( ENOMEM unable to allocate memory.
  */
 extern QRinput_Struct *QRinput_Struct_new(void);
 
@@ -302,8 +302,8 @@ extern void QRinput_Struct_setParity(QRinput_Struct *s, unsigned char eparity);
  * @param input an input object.
  * @retval >0 number of input objects in the structure.
  * @retval -1 an error occurred. See Exceptions for the details.
- * @__throw( ENOMEM unable to allocate memory.
- * @__throw( EINVAL invalid arguments.
+ * @throw ::exception( ENOMEM unable to allocate memory.
+ * @throw ::exception( EINVAL invalid arguments.
  */
 extern int QRinput_Struct_appendInput(QRinput_Struct *s, QRinput *input);
 
@@ -321,9 +321,9 @@ extern void QRinput_Struct_free(QRinput_Struct *s);
  *        set.
  * @return a set of input data. On error, NULL is returned, and errno is set
  *         to indicate the error. See Exceptions for the details.
- * @__throw( ERANGE input data is too large.
- * @__throw( EINVAL invalid input data.
- * @__throw( ENOMEM unable to allocate memory.
+ * @throw ::exception( ERANGE input data is too large.
+ * @throw ::exception( EINVAL invalid input data.
+ * @throw ::exception( ENOMEM unable to allocate memory.
  */
 extern QRinput_Struct *QRinput_splitQRinputToStruct(QRinput *input);
 
@@ -334,8 +334,8 @@ extern QRinput_Struct *QRinput_splitQRinputToStruct(QRinput *input);
  * @retval 0 success.
  * @retval -1 an error occurred and errno is set to indeicate the error.
  *            See Execptions for the details.
- * @__throw( EINVAL invalid input object.
- * @__throw( ENOMEM unable to allocate memory.
+ * @throw ::exception( EINVAL invalid input object.
+ * @throw ::exception( ENOMEM unable to allocate memory.
  */
 extern int QRinput_Struct_insertStructuredAppendHeaders(QRinput_Struct *s);
 
@@ -395,8 +395,8 @@ typedef struct _QRcode_List {
  *         be larger than the designated version. On error, NULL is returned,
  *         and errno is set to indicate the error. See Exceptions for the
  *         details.
- * @__throw( EINVAL invalid input object.
- * @__throw( ENOMEM unable to allocate memory for input objects.
+ * @throw ::exception( EINVAL invalid input object.
+ * @throw ::exception( ENOMEM unable to allocate memory for input objects.
  */
 extern QRcode *QRcode_encodeInput(QRinput *input);
 
@@ -419,9 +419,9 @@ extern QRcode *QRcode_encodeInput(QRinput *input);
  *         be larger than the designated version. On error, NULL is returned,
  *         and errno is set to indicate the error. See Exceptions for the
  *         details.
- * @__throw( EINVAL invalid input object.
- * @__throw( ENOMEM unable to allocate memory for input objects.
- * @__throw( ERANGE input data is too large.
+ * @throw ::exception( EINVAL invalid input object.
+ * @throw ::exception( ENOMEM unable to allocate memory for input objects.
+ * @throw ::exception( ERANGE input data is too large.
  */
 extern QRcode *QRcode_encodeString(const ::string &string, int version, QRecLevel level, QRencodeMode hint, int casesensitive);
 
@@ -451,9 +451,9 @@ extern QRcode *QRcode_encodeString8bitMQR(const ::string &string, int version, Q
  * @param version version of the symbol. If 0, the library chooses the minimum
  *                version for the given input data.
  * @param level error correction level.
- * @__throw( EINVAL invalid input object.
- * @__throw( ENOMEM unable to allocate memory for input objects.
- * @__throw( ERANGE input data is too large.
+ * @throw ::exception( EINVAL invalid input object.
+ * @throw ::exception( ENOMEM unable to allocate memory for input objects.
+ * @throw ::exception( ERANGE input data is too large.
  */
 extern QRcode *QRcode_encodeData(int size, const unsigned char *data, int version, QRecLevel level);
 
@@ -493,8 +493,8 @@ extern QRcode_List *QRcode_encodeInputStructured(QRinput_Struct *s);
  * @param casesensitive case-sensitive(1) or not(0).
  * @return a singly-linked list of QRcode. On error, NULL is returned, and
  *         errno is set to indicate the error. See Exceptions for the details.
- * @__throw( EINVAL invalid input object.
- * @__throw( ENOMEM unable to allocate memory for input objects.
+ * @throw ::exception( EINVAL invalid input object.
+ * @throw ::exception( ENOMEM unable to allocate memory for input objects.
  */
 extern QRcode_List *QRcode_encodeStringStructured(const ::string &string, int version, QRecLevel level, QRencodeMode hint, int casesensitive);
 
@@ -514,8 +514,8 @@ extern QRcode_List *QRcode_encodeString8bitStructured(const ::string &string, in
  * @param level error correction level.
  * @return a singly-linked list of QRcode. On error, NULL is returned, and
  *         errno is set to indicate the error. See Exceptions for the details.
- * @__throw( EINVAL invalid input object.
- * @__throw( ENOMEM unable to allocate memory for input objects.
+ * @throw ::exception( EINVAL invalid input object.
+ * @throw ::exception( ENOMEM unable to allocate memory for input objects.
  */
 extern QRcode_List *QRcode_encodeDataStructured(int size, const unsigned char *data, int version, QRecLevel level);
 

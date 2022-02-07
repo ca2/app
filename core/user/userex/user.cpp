@@ -519,7 +519,7 @@ namespace core
       {
 
          psystem = __new(::user::multiple_document_template(
-                        m_ptemplateForm->m_id,
+                        m_ptemplateForm->m_atom,
                         m_ptemplateForm->m_typeDocument,
                         m_ptemplateForm->m_typeFrame,
                         type));
@@ -607,7 +607,7 @@ namespace core
 
       //}
 
-      ////process_subject(pbox->m_idResponse);
+      ////process_subject(pbox->m_atomResponse);
 
       //return psequence;
 
@@ -708,25 +708,25 @@ namespace core
 
       //return pfuture;
 
-      ////if(pbox->m_idResponse == "ok")
+      ////if(pbox->m_atomResponse == "ok")
       ////{
 
       ////   return e_dialog_result_ok;
 
       ////}
-      ////else if(pbox->m_idResponse == "yes")
+      ////else if(pbox->m_atomResponse == "yes")
       ////{
 
       ////   return e_dialog_result_yes;
 
       ////}
-      ////else if(pbox->m_idResponse == "no")
+      ////else if(pbox->m_atomResponse == "no")
       ////{
 
       ////   return e_dialog_result_no;
 
       ////}
-      ////else if(pbox->m_idResponse == "cancel")
+      ////else if(pbox->m_atomResponse == "cancel")
       ////{
 
       ////   return e_dialog_result_cancel;
@@ -1360,7 +1360,7 @@ namespace core
          }
 
          auto psystemNew = __new(::user::multiple_document_template(
-                                m_ptemplateChildForm->m_id,
+                                m_ptemplateChildForm->m_atom,
                                 typeDocument,
                                 m_ptemplateChildForm->m_typeFrame,
                                 type));

@@ -80,7 +80,7 @@ void ns_launch_app(const char * psz, const char ** argv, int iFlags);
 //#include <X11/cursorfont.h>
 #include <sys/time.h>
 #include <link.h>
-#include "acme/node/operating_system/ansi/_pthread.h"
+#include "acme/operating_system/ansi/_pthread.h"
 
 #endif
 #define _GNU_SOURCE
@@ -692,7 +692,7 @@ do_request(pcreate);
 //   str = pcreate->m_varFile;
 
 //      // apex commented
-//      //__throw(todo("interaction"));
+//      //throw ::exception(todo("interaction"));
 
 //   /*if (!m_pinterprocessintercommunication)
 //   {
@@ -821,7 +821,7 @@ do_request(pcreate);
 
 //    psystem->on_run_exception(esp);
 
-//    __throw(exit_exception(esp->get_application(), ::exit_application));
+//    throw ::exception(exit_exception(esp->get_application(), ::exit_application));
 
 // }
 catch (const ::exception & e)
@@ -1217,7 +1217,7 @@ return bIsUserService && bIsService;
 bool application::_001OnDDECommand(const ::string & str)
 {
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
    return false;
 
@@ -1239,7 +1239,7 @@ void application::_001CloseApplication()
 void application::get_temp_file_name_template(string & strRet, const ::string & lpszName, const ::string & pszExtension, const ::string & pszTemplate)
 {
 
-__throw(error_not_implemented);
+throw ::not_implemented();
 
 ///return false;
 
@@ -1826,7 +1826,7 @@ m_pinterprocessintercommunication->on_new_instance(
 
 //   }
 
-//   //__throw(todo("database"));
+//   //throw ::exception(todo("database"));
 
 //   //auto estatus = m_psimpledb->initialize_simpledb_server(this, pathDatabase);
 
@@ -2296,15 +2296,19 @@ try
 catch (const ::exception & e)
 {
 
-handle_exception(e);
+   handle_exception(e);
 
-//return false;
+   os_message_box(this, "Application failed to initialize (1). ", m_strAppName, e_message_box_ok, e.m_strMessage + "\n" + e.m_strDetails);
+
+   throw e;
 
 }
 catch (...)
 {
 
-//return false;
+   os_message_box(this, "Application failed to initialize (2). Unknown exception", m_strAppName);
+
+   throw "Unknown exception";
 
 }
 
@@ -2352,21 +2356,19 @@ on_update_matter_locator();
 catch (const ::exit_exception & exception)
 {
 
-__rethrow(exception);
+   handle_exception(exception);
+
+   os_message_box(this, "Application failed to initialize (3). ", m_strAppName, e_message_box_ok, exception.m_strMessage + "\n" + exception.m_strDetails);
+
+   throw exception;
 
 }
-//catch(const ::exception & e)
-//{
-//
-////m_result.add(e);
-//
-////return m_result.estatus();
-//
-//}
 catch (...)
 {
 
-//return false;
+   os_message_box(this, "Application failed to initialize (4). Unknown exception", m_strAppName);
+
+   throw "Unknown exception";
 
 }
 
@@ -4249,7 +4251,7 @@ void application::get_scalar_maximum(e_scalar escalar, i64 & i)
 string application::http_get_locale_schema(const ::string & pszUrl, const ::string & pszLocale, const ::string & pszSchema)
 {
 
-throw ::interface_only_exception();
+throw ::interface_only();
 
 return "";
 
@@ -4418,8 +4420,8 @@ void application::fill_locale_schema(::text::international::locale_schema & loca
    string strSchema(pszSchema);
 
 
-   localeschema.m_idLocale = pszLocale;
-   localeschema.m_idSchema = pszSchema;
+   localeschema.m_atomLocale = pszLocale;
+   localeschema.m_atomSchema = pszSchema;
 
 
    localeschema.add_locale_variant(strLocale, strSchema);
@@ -4466,8 +4468,8 @@ void application::fill_locale_schema(::text::international::locale_schema & loca
 
    straSchema.add_unique(payload("schema").stra());
 
-   localeschema.m_idLocale = straLocale[0];
-   localeschema.m_idSchema = straSchema[0];
+   localeschema.m_atomLocale = straLocale[0];
+   localeschema.m_atomSchema = straSchema[0];
 
    for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
    {
@@ -4862,7 +4864,7 @@ return "";
 
 ::string strContents = m_psystem->m_pacmefile->as_string(strPath.c_str());
 
-__throw(todo, "xml");
+throw ::exception(todo, "xml");
 
 //::xml::document doc;
 
@@ -4892,7 +4894,7 @@ return nullptr;
 //LPWAVEOUT application::waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback)
 //{
 
-//   __throw(interface_only_exception(nullptr));
+//   throw ::exception(interface_only_exception(nullptr));
 
 //   return nullptr;
 
@@ -4981,7 +4983,7 @@ bool application::send_message_to_windows(const ::atom & atom, wparam wparam, lp
 
 //}
 
-throw ::interface_only_exception();
+throw ::interface_only();
 
 return false;
 
@@ -4991,7 +4993,7 @@ return false;
 bool application::route_message_to_windows(::message::message * pmessage) // with tbs in <3
 {
 
-throw ::interface_only_exception();
+throw ::interface_only();
 
 //__pointer(::user::interaction) puserinteraction;
 
@@ -5524,7 +5526,7 @@ void application::HideApplication()
 
 //try
 //{
-__throw(todo, "interaction");
+throw ::exception(todo, "interaction");
 
 //   if (m_puserinteractionMain)
 //   {
@@ -5595,7 +5597,7 @@ bool application::load_cached_string(string & str, const ::atom & atom, bool bLo
 {
 
 
-//__throw(todo("xml"));
+//throw ::exception(todo("xml"));
 
 //auto pdocument = __new(::xml::document);
 
@@ -6498,7 +6500,7 @@ auto plocaleschema = __create_new < ::text::international::locale_schema >();
 
 bool bIgnoreStdStd = string(pszRoot) == "app" && (string(pszRelative) == "main" || string(pszRelative) == "bergedge");
 
-//update_appmatter(h, psession, pszRoot, pszRelative, plocaleschema->m_idLocale, plocaleschema->m_idSchema);
+//update_appmatter(h, psession, pszRoot, pszRelative, plocaleschema->m_atomLocale, plocaleschema->m_atomSchema);
 
 ::count iCount = plocaleschema->m_idaLocale.get_count();
 
@@ -6796,7 +6798,7 @@ pnode->show_wait_cursor(true);
 //void application::TermThread(HINSTANCE hInstTerm)
 //{
 
-//   throw ::interface_only_exception();
+//   throw ::interface_only();
 
 //}
 
@@ -6806,7 +6808,7 @@ pnode->show_wait_cursor(true);
 //string application::get_version()
 //{
 
-//   throw ::interface_only_exception();
+//   throw ::interface_only();
 
 //   return "";
 
@@ -6818,7 +6820,7 @@ pnode->show_wait_cursor(true);
 //   void application::set_env_var(const string & payload,const string & value)
 //   {
 //
-//      throw ::interface_only_exception();
+//      throw ::interface_only();
 //
 //   }
 
@@ -6827,7 +6829,7 @@ pnode->show_wait_cursor(true);
 //::draw2d::printer * application::get_printer(const ::string & pszDeviceName)
 //{
 
-//   throw ::interface_only_exception();
+//   throw ::interface_only();
 
 //   return nullptr;
 
@@ -6837,7 +6839,7 @@ pnode->show_wait_cursor(true);
 __pointer(::progress::real) application::show_progress(::user::interaction * puiParent, const ::string & strTitle, ::count iProgressCount)
 {
 
-   __throw(todo);
+   throw ::exception(todo);
 
    return nullptr;
 
@@ -6863,7 +6865,7 @@ void application::userfs_process_init()
 string application::dialog_box(const ::string & pszMatter, property_set& propertyset)
 {
 
-__throw(todo, "core and os");
+throw ::exception(todo, "core and os");
 
 return"";
 
@@ -6887,7 +6889,7 @@ return"";
 //bool application::get_temp_file_name_template(string & strRet,const ::string & lpszName,const ::string & pszExtension,const ::string & pszTemplate)
 //{
 
-//   __throw(error_not_implemented);
+//   throw ::not_implemented();
 
 //   return false;
 
@@ -7074,7 +7076,7 @@ void application::hotplugin_host_host_starter_start_sync(const ::string & pszCom
 
 //   handle(ptopic, pcontext);
 
-//   if (ptopic->m_pextendedtopic->m_bRet)
+//   if (ptopic->get_extended_topic()->m_bRet)
 //   {
 
 //      return;
@@ -7083,7 +7085,7 @@ void application::hotplugin_host_host_starter_start_sync(const ::string & pszCom
 
 //   on_notify_control_event(pevent);
 
-//   if (ptopic->m_pextendedtopic->m_bRet)
+//   if (ptopic->get_extended_topic()->m_bRet)
 //   {
 
 //      return;
@@ -7451,7 +7453,7 @@ ENSURE_ARG(pmessage != nullptr);
 
 // handle certain messages in thread
 
-switch (pmessage->m_id)
+switch (pmessage->m_atom)
 {
 case e_message_create:
 case e_message_paint:
@@ -7464,7 +7466,7 @@ return thread::process_window_procedure_exception(e, pmessage);
 //linux ::u32 nIDP = __IDP_INTERNAL_FAILURE;   // matter message string
 const ::string & nIDP = "Internal Failure";
 pmessage->m_lresult = 0;        // sensible default
-if (pmessage->m_id == e_message_command)
+if (pmessage->m_atom == e_message_command)
 {
 
    if (pmessage->m_lparam == 0)
@@ -8348,7 +8350,7 @@ return true;
 //      __UNREFERENCED_PARAMETER(hDevNames);
 //      __UNREFERENCED_PARAMETER(hDevMode);
 //      __UNREFERENCED_PARAMETER(bFreeOld);
-//      throw interface_only_exception();
+//      throw ::interface_only();
 //   }
 //
 //
@@ -8356,7 +8358,7 @@ return true;
 
 //::draw2d::graphics* application::CreatePrinterDC()
 //{
-//throw interface_only_exception();
+//throw ::interface_only();
 //return nullptr;
 //}
 
@@ -8545,7 +8547,7 @@ return true;
 //{
 ////__UNREFERENCED_PARAMETER(nIDRegistryKey);
 ////ASSERT(m_pszRegistryKey == nullptr);
-////throw interface_only_exception();
+////throw ::interface_only();
 /////*char szRegistryKey[256];
 ////VERIFY(::apex::LoadString(nIDRegistryKey, szRegistryKey));
 ////SetRegistryKey(szRegistryKey);*/
@@ -9082,7 +9084,7 @@ pmessage->m_bRet = true;
 //bool application::_001OnDDECommand(const ::string & pcsz)
 
 //{
-//   throw interface_only_exception();
+//   throw ::interface_only();
 //   //return m_pimpl->_001OnDDECommand(pcsz);
 
 
@@ -9103,7 +9105,7 @@ pmessage->m_bRet = true;
 //   ::user::interaction * application::get_desktop_window()
 //   {
 //#if defined(_UWP) || defined(__APPLE__)
-//      __throw(todo);
+//      throw ::exception(todo);
 //      /*#elif defined(LINUX)
 //
 //      //      synchronous_lock synchronouslock(&user_mutex());
@@ -9612,7 +9614,7 @@ psession->set_app_title(m_strAppName, pszTitle);
 //
 //      return (i32)SendMessage(__hwnd(oswindow), WM_COPYDATA, (WPARAM)osdataSender, (LPARAM)&cds);
 //#else
-//      __throw(todo);
+//      throw ::exception(todo);
 //#endif
 //   }
 
@@ -9632,7 +9634,7 @@ void application::ensure_app_interest()
 //
 //#else
 //
-//      //__throw(todo);
+//      //throw ::exception(todo);
 //
 //#endif
 
@@ -9730,14 +9732,14 @@ papp = psession->start_application("application", pszAppId, spcreate);
 catch(const ::exit_exception & e)
 {
 
-__throw(e);
+throw ::exception(e);
 
 }
 catch(const const ::exception & e)
 {
 
 if(!get_application()->on_run_exception((::exception &) e))
-__throw(exit_exception());
+throw ::exception(exit_exception());
 
 }
 catch(...)
@@ -9800,7 +9802,7 @@ void application::report_error(const ::exception & e, int iMessageFlags, const :
 
    strMessage += e.get_message();
 
-   __throw(todo, "interaction");
+   throw ::exception(todo, "interaction");
 
 }
 
@@ -9852,7 +9854,7 @@ void application::process_message_filter(i32 code, ::message::message* pmessage)
 void application::on_thread_on_idle(::thread* pthread, ::i32 lCount)
 {
 
-   __throw(todo, "interaction");
+   throw ::exception(todo, "interaction");
 
    //return ::error_failed;
 

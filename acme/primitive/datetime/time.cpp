@@ -2,6 +2,7 @@
 #include "acme/operating_system.h"
 #include <time.h>
 #include "acme/primitive/datetime/_string.h"
+#include "acme/operating_system/time.h"
 
 
 void mkgmtime_from_filetime(time_t & time, const ::filetime_t & filetime);
@@ -65,7 +66,7 @@ namespace datetime
       if(m_i == -1)
       {
 
-         __throw(error_bad_argument);
+         throw ::exception(error_bad_argument);
 
       }
 
@@ -103,7 +104,7 @@ namespace datetime
       if (m_i == -1)
       {
 
-         __throw(error_bad_argument);
+         throw ::exception(error_bad_argument);
 
       }
 
@@ -158,7 +159,7 @@ namespace datetime
 
       __UNREFERENCED_PARAMETER(span);
 
-      __throw(error_not_implemented);
+      throw ::not_implemented();
 
       return *this;
 
@@ -170,7 +171,7 @@ namespace datetime
 
        __UNREFERENCED_PARAMETER(span);
 
-      __throw(error_not_implemented);
+      throw ::not_implemented();
 
       return *this;
 
@@ -182,7 +183,7 @@ namespace datetime
 
        __UNREFERENCED_PARAMETER(span);
 
-      __throw(error_not_implemented);
+      throw ::not_implemented();
 
       return 0;
 
@@ -194,7 +195,7 @@ namespace datetime
 
        __UNREFERENCED_PARAMETER(span);
 
-      __throw(error_not_implemented);
+      throw ::not_implemented();
 
       return 0;
 
@@ -234,7 +235,7 @@ namespace datetime
          if(ptmTemp == nullptr)
             return nullptr;
 
-         // but don't __throw( exception or generate error...
+         // but don't throw ::exception( exception or generate error...
          // (reason for commenting out below, fat to be erased...)
 //         if(errno != 0)
          //          return nullptr;
@@ -753,7 +754,7 @@ CLASS_DECL_ACME FILETIME __FILETIME(const ::datetime::time & time)
 //   if (!estatus)
 //   {
 //
-//      __throw(::exception(estatus));
+//      throw ::exception(::exception(estatus));
 //
 //   }
 //

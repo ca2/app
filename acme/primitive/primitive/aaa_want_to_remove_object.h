@@ -296,7 +296,7 @@ inline i64 release(c_derived * & pca)
 
 #ifdef _DEBUG
 
-   ::atom atom = p->m_id;
+   ::atom atom = p->m_atom;
    //char * pszType = nullptr;
    //
    //try

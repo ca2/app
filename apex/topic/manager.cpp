@@ -187,7 +187,7 @@ void manager::__s_erase_signal_handler_from_any_source(::matter* pmatter)
 //
 //      auto ptopic = topic(atom);
 //
-//      ptopic->m_pextendedtopic->m_actioncontext = actioncontext;
+//      ptopic->get_extended_topic()->m_actioncontext = actioncontext;
 //
 //      process(ptopic);
 //
@@ -203,18 +203,18 @@ void manager::signal(const ::atom & atom, const ::action_context & actioncontext
 
    //handle(psignal, nullptr);
 
-   //ptopic->m_id = id_handle;
+   //ptopic->m_atom = id_handle;
 
    //signal(ptopic);
 
-   //if(ptopic->m_id == id_not_modified)
+   //if(ptopic->m_atom == id_not_modified)
    //{
 
    //   return;
 
    //}
 
-   //ptopic->m_id = id_notify;
+   //ptopic->m_atom = id_notify;
 
    //ptopic->notify();
 
@@ -228,32 +228,32 @@ void manager::signal(const ::atom & atom, const ::action_context & actioncontext
 void manager::on_property_changed(property * pproperty, const ::action_context & actioncontext)
 {
 
-   signal(pproperty->m_id, actioncontext);
+   signal(pproperty->m_atom, actioncontext);
 
 }
 
 //void manager::signal(::signal * psignal)
 //{
 //
-////      if (ptopic->m_id == id_prepare)
+////      if (ptopic->m_atom == id_prepare)
 ////      {
 ////
 ////         //on_subject(ptopic);
 ////
-////         ptopic->m_id = id_process;
+////         ptopic->m_atom = id_process;
 ////
 ////      }
 ////
-////      if (ptopic->m_id == id_process)
+////      if (ptopic->m_atom == id_process)
 ////      {
 ////
 ////         //on_subject(ptopic);
 ////
-////         ptopic->m_id = id_deliver;
+////         ptopic->m_atom = id_deliver;
 ////
 ////      }
 ////
-////      if (ptopic->m_id == id_deliver)
+////      if (ptopic->m_atom == id_deliver)
 ////      {
 ////
 ////         ptopic->deliver();
@@ -268,7 +268,7 @@ void manager::on_property_changed(property * pproperty, const ::action_context &
 //
 //      auto ptopic = topic(atom);
 //
-//      ptopic->m_pextendedtopic->m_payload = payload;
+//      ptopic->get_extended_topic()->m_payload = payload;
 //
 //      process(ptopic);
 //
@@ -283,7 +283,7 @@ void manager::on_property_changed(property * pproperty, const ::action_context &
 //      if (::is_set(ptopic))
 //      {
 //
-//         ptopic->m_pextendedtopic->set_modified();
+//         ptopic->get_extended_topic()->set_modified();
 //
 //      }
 //
@@ -434,7 +434,7 @@ bool manager::__s_may_run_signal_handling()
    //   m_pbacking(pbacking)
    //{
 
-   //   //m_id = atom;
+   //   //m_atom = atom;
 
    //   m_iUpdateSerial = -1;
 

@@ -15,7 +15,7 @@ public:
    using property_ptra::erase;
 
 
-   __declare_iterator(name_iterator, &(*this->m_pelement)->m_id);
+   __declare_iterator(name_iterator, &(*this->m_pelement)->m_atom);
    __declare_iterator(value_iterator, &(*this->m_pelement)->m_var);
 
 
@@ -167,7 +167,7 @@ public:
       else
       {
 
-         __throw(error_bad_argument);
+         throw ::exception(error_bad_argument);
 
       }
 

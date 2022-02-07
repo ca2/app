@@ -95,7 +95,7 @@ namespace universal_windows
    bool copydesk::_set_filea(const ::file::patha & patha, e_op eop)
    {
 
-      __throw(todo);
+      throw ::exception(todo);
 
       return false;
 

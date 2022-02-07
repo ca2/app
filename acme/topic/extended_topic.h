@@ -29,16 +29,13 @@ public:
    ::payload                              m_payload;
    ::i64                                  m_iUpdateSerial;
    bool                                   m_bModified;
-   ::duration                               m_durationSleep;
+   ::duration                             m_durationSleep;
 
    __pointer(::matter)                    m_pmatter;
    __pointer(::property_object)           m_pobjectTopic;
-   //::action_context                     m_actioncontext;
    __pointer(::property_object)           m_psender;
    __pointer(::user::element)             m_puserelement; // user::interaction
-   //__pointer(::property_object)         m_pcontrolevent; // user::control_event
    __pointer(::file::item)                m_pfileitem;
-   //bool                                   m_bRet;
 
 
    extended_topic(const ::atom & atom);
@@ -57,14 +54,14 @@ public:
    ::topic & operator=(const ::atom & atom)
    {
 
-      m_id = atom;
+      m_atom = atom;
 
       return *this;
 
    }
 
 
-   inline bool operator==(const ::atom & atom) const { return m_atom == atom || m_id == FULL_ID; }
+   inline bool operator==(const ::atom & atom) const { return m_atom == atom || m_atom == FULL_ID; }
 
    //inline bool operator==(const ::atom & atom) const { return m_atom == atom || m_atom == FULL_ID; }
 
@@ -84,6 +81,9 @@ public:
    virtual ::user::form * get_parent_form();
    virtual ::user::interaction * user_interaction();
 
+
+   ::extended_topic * get_extended_topic();
+   const ::extended_topic * get_extended_topic() const override;
 
 
 };

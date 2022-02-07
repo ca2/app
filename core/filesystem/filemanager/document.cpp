@@ -241,13 +241,13 @@ namespace filemanager
 
          __pointer(document) pdocument = this;
 
-         ::topic topic(TOPIC_OK_ID);
+         ::extended_topic extendedtopic(TOPIC_OK_ID);
 
-         topic.payload(DOCUMENT_ID) = pdocument;
+         extendedtopic.payload(DOCUMENT_ID) = pdocument;
 
-         topic.m_pfileitem = itema.get_first_pointer();
+         extendedtopic.m_pfileitem = itema.get_first_pointer();
 
-         pdocument->update_all_views(&topic);
+         pdocument->update_all_views(&extendedtopic);
 
          pfilemanagerdata->m_pdocumentTopic = nullptr;
 
@@ -259,7 +259,7 @@ namespace filemanager
 
          //::payload varQuery;
 
-         //if (itema.get_count() == 2 && m_id == "filemanager::main::left")
+         //if (itema.get_count() == 2 && m_atom == "filemanager::main::left")
          //{
 
          //   {
@@ -283,7 +283,7 @@ namespace filemanager
          //   }
 
          //}
-         //else if (itema.get_count() == 2 && m_id == "filemanager::main::right")
+         //else if (itema.get_count() == 2 && m_atom == "filemanager::main::right")
          //{
 
          //   {
@@ -314,7 +314,7 @@ namespace filemanager
 
          //   //varQuery = itema.get_var_query();
 
-         //   //varQuery["::filemanager::atom"] = m_id;
+         //   //varQuery["::filemanager::atom"] = m_atom;
 
             auto pcallback = pfilemanagerdata->m_pcallback;
 
@@ -551,7 +551,7 @@ namespace filemanager
 
   /*          __pointer(main_frame) pframe = get_view()->GetTypedParent < main_frame >();
 
-            if (pframe.is_set() && !pframe->m_id.to_string().contains("::frame"))
+            if (pframe.is_set() && !pframe->m_atom.to_string().contains("::frame"))
             {
 
                pframe->set_data_key_modifier(m_strManagerId);
@@ -663,13 +663,13 @@ namespace filemanager
       if (!fs_data()->is_zero_latency(pitem->m_filepathFinal))
       {
 
-         ::topic topic(SYNCHRONIZE_PATH_ID);
+         ::extended_topic extendedtopic(SYNCHRONIZE_PATH_ID);
 
-         topic.m_actioncontext = context + ::e_source_sync + ::e_source_system;
+         extendedtopic.m_actioncontext = context + ::e_source_sync + ::e_source_system;
 
-         topic.m_pfileitem = pitem;
+         extendedtopic.m_pfileitem = pitem;
 
-         update_all_views(&topic);
+         update_all_views(&extendedtopic);
 
       }
 
@@ -696,13 +696,13 @@ namespace filemanager
 
       }
 
-      ::topic topic(SYNCHRONIZE_PATH_ID);
+      ::extended_topic extendedtopic(SYNCHRONIZE_PATH_ID);
 
-      topic.m_actioncontext = context + ::e_source_sync;
+      extendedtopic.m_actioncontext = context + ::e_source_sync;
 
-      topic.m_pfileitem = pitem;
+      extendedtopic.m_pfileitem = pitem;
 
-      update_all_views(&topic);
+      update_all_views(&extendedtopic);
 
    }
 
@@ -744,9 +744,9 @@ namespace filemanager
    void document::OpenSelectionProperties()
    {
 
-      auto ptopic = topic(id_open_selection_properties);
+      auto pextendedtopic = create_extended_topic(id_open_selection_properties);
 
-      update_all_views(ptopic);
+      update_all_views(pextendedtopic);
 
    }
 
@@ -759,7 +759,7 @@ namespace filemanager
       if (pfilemanagerdata != nullptr)
       {
 
-         if (pcommand->m_id == "levelup")
+         if (pcommand->m_atom == "levelup")
          {
 
             FileManagerOneLevelUp(::e_source_user);
@@ -779,7 +779,7 @@ namespace filemanager
 
    void document::on_command_probe(::message::command * pcommand)
    {
-      /*if(pcommand->m_id == filemanager_template()->m_strLevelUp)
+      /*if(pcommand->m_atom == filemanager_template()->m_strLevelUp)
       {
       FileManagerOnUpdateLevelUp(pcommand);
       return true;
@@ -1011,11 +1011,11 @@ namespace filemanager
       if (m_emode == ::userfs::mode_saving || m_emode == ::userfs::mode_export)
       {
 
-         ::topic topic(id_topic_ok);
+         ::extended_topic extendedtopic(id_topic_ok);
 
-         topic.payload(id_document) = this;
+         extendedtopic.payload(id_document) = this;
 
-         update_all_views(&topic);
+         update_all_views(&extendedtopic);
 
       }
 
@@ -1032,11 +1032,11 @@ namespace filemanager
       if (m_emode == ::userfs::mode_import)
       {
 
-         ::topic topic(id_topic_ok);
+         ::extended_topic extendedtopic(id_topic_ok);
 
-         topic.payload(id_document) = this;
+         extendedtopic.payload(id_document) = this;
 
-         update_all_views(&topic);
+         update_all_views(&extendedtopic);
 
       }
 
@@ -1051,11 +1051,11 @@ namespace filemanager
       if (m_emode == ::userfs::mode_saving)
       {
 
-         ::topic topic(id_topic_ok);
+         ::extended_topic extendedtopic(id_topic_ok);
 
-         topic.payload(id_document) = this;
+         extendedtopic.payload(id_document) = this;
 
-         update_all_views(&topic);
+         update_all_views(&extendedtopic);
 
       }
 
@@ -1069,13 +1069,13 @@ namespace filemanager
 
       CreateImpacts();
 
-      ::topic topic(id_create_bars);
+      ::extended_topic extendedtopic(id_create_bars);
 
-      topic.payload(id_document) = this;
+      extendedtopic.payload(id_document) = this;
 
       browse(path, ::e_source_database);
 
-      update_all_views(&topic);
+      update_all_views(&extendedtopic);
 
       if (bMakeVisible)
       {
@@ -1094,9 +1094,9 @@ namespace filemanager
 
       CreateImpacts();
 
-      auto ptopic = create_subject(id_create_bars);
+      auto ptopic = create_extended_topic(id_create_bars);
 
-      ptopic->m_pextendedtopic->payload(id_document) = this;
+      ptopic->get_extended_topic()->payload(id_document) = this;
 
       if (bInitialBrowsePath)
       {
@@ -1166,7 +1166,7 @@ namespace filemanager
 
       }
 
-      //ptopic->m_id = ;
+      //ptopic->m_atom = ;
 
       //update_all_views(pupdate);
 
@@ -1186,9 +1186,9 @@ namespace filemanager
 
       {
 
-         auto ptopic = create_subject(id_initialize);
+         auto ptopic = create_extended_topic(id_initialize);
 
-         ptopic->m_pextendedtopic->payload(id_document) = this;
+         ptopic->payload(id_document) = this;
 
          update_all_views(ptopic);
 
@@ -1196,11 +1196,11 @@ namespace filemanager
 
       {
 
-         auto ptopic = create_subject(id_synchronize_locations);
+         auto ptopic = create_extended_topic(id_synchronize_locations);
 
-         ptopic->m_pextendedtopic->m_actioncontext = ::e_source_sync;
+         ptopic->m_actioncontext = ::e_source_sync;
 
-         ptopic->m_pextendedtopic->payload(id_document) = this;
+         ptopic->payload(id_document) = this;
 
          update_all_views(ptopic);
 
@@ -1214,11 +1214,11 @@ namespace filemanager
 
       {
 
-         topic topic(id_create_bars);
+         extended_topic extendedtopic(id_create_bars);
 
-         topic.payload(id_document) = this;
+         extendedtopic.payload(id_document) = this;
 
-         update_all_views(&topic);
+         update_all_views(&extendedtopic);
 
       }
 
@@ -1247,7 +1247,7 @@ namespace filemanager
             if (pfilemanagerdata->m_pcallback != nullptr)
             {
 
-               if (pfilemanagerdata->m_pcallback->get_file_manager_item_callback(pfilemanagerdata, pcommand->m_id, itema))
+               if (pfilemanagerdata->m_pcallback->get_file_manager_item_callback(pfilemanagerdata, pcommand->m_atom, itema))
                {
 
                   pfilemanagerdata->m_pcallback->on_file_manager_item_update(pfilemanagerdata, pcommand, itema);
@@ -1272,10 +1272,10 @@ namespace filemanager
             if (::is_set(pcallback))
             {
 
-               if (pcallback->get_file_manager_item_callback(pfilemanagerdata, pcommand->m_id, itema))
+               if (pcallback->get_file_manager_item_callback(pfilemanagerdata, pcommand->m_atom, itema))
                {
 
-                  pcallback->on_file_manager_item_command(pfilemanagerdata, pcommand->m_id, itema);
+                  pcallback->on_file_manager_item_command(pfilemanagerdata, pcommand->m_atom, itema);
 
                   return true;
 
@@ -1334,11 +1334,11 @@ namespace filemanager
    void document::GetActiveImpactSelection(::file::item_array & itema)
    {
 
-      ::topic topic(id_get_active_view_selection);
+      ::extended_topic extendedtopic(id_get_active_view_selection);
 
-      update_all_views(&topic);
+      update_all_views(&extendedtopic);
 
-      itema = *topic.cast < ::file::item_array>(id_selected);
+      itema = *extendedtopic.cast < ::file::item_array>(id_selected);
 
    }
 
@@ -1356,19 +1356,19 @@ namespace filemanager
 
       {
 
-         auto ptopic = create_subject(id_topic_start);
+         auto pextendedtopic = create_extended_topic(id_topic_start);
 
-         ptopic->m_pextendedtopic->payload(id_document) = pdocumentFilemanager;
+         pextendedtopic->payload(id_document) = pdocumentFilemanager;
 
-         pdocumentFilemanager->update_all_views(ptopic);
+         pdocumentFilemanager->update_all_views(pextendedtopic);
 
       }
 
       {
 
-         auto ptopic = create_subject(id_create_bars);
+         auto pextendedtopic = create_extended_topic(id_create_bars);
 
-         pdocumentFilemanager->update_all_views(ptopic);
+         pdocumentFilemanager->update_all_views(pextendedtopic);
 
       }
 
@@ -1388,11 +1388,11 @@ namespace filemanager
 
       {
 
-         ::topic topic(id_topic_start);
+         ::extended_topic extendedtopic(id_topic_start);
 
-         topic.payload(id_document) = pdocumentFilemanager;
+         extendedtopic.payload(id_document) = pdocumentFilemanager;
 
-         pdocumentFilemanager->update_all_views(&topic);
+         pdocumentFilemanager->update_all_views(&extendedtopic);
 
       }
 
@@ -1420,11 +1420,11 @@ namespace filemanager
 
       {
 
-         ::topic topic(id_topic_start);
+         ::extended_topic extendedtopic(id_topic_start);
 
-         topic.payload(id_document) = pdocumentFilemanager;
+         extendedtopic.payload(id_document) = pdocumentFilemanager;
 
-         pdocumentFilemanager->update_all_views(&topic);
+         pdocumentFilemanager->update_all_views(&extendedtopic);
 
       }
 
@@ -1456,7 +1456,7 @@ namespace filemanager
       if (m_pfilemanagerdata.is_null())
       {
 
-         m_pfilemanagerdata = puser->filemanager(pcreate->m_id);
+         m_pfilemanagerdata = puser->filemanager(pcreate->m_atom);
 
       }
       ASSERT(m_pfilemanagerdata.is_set());

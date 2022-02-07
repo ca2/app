@@ -167,7 +167,7 @@ namespace opengl
 
             const char * pszErrorString = (const char *) glewGetErrorString(err);
 
-            //__throw(error_resource);
+            //throw ::exception(error_resource);
             // Problem: glewInit failed, something is seriously wrong.
             FORMATTED_TRACE("glewInit failed: %s (%d)\n", pszErrorString, err);
 

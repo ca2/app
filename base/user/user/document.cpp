@@ -349,7 +349,7 @@ namespace user
    ::atom document::get_toolbar_id()
    {
 
-      return m_pimpactsystem->m_id.to_string() + "/top";
+      return m_pimpactsystem->m_atom.to_string() + "/top";
 
    }
 
@@ -613,7 +613,7 @@ namespace user
          pview = get_view(index);
          if (info == __type_name(pview))
          {
-            if (atom == pview->m_id)
+            if (atom == pview->m_atom)
                return pview;
             else
                countFind++;
@@ -1248,7 +1248,7 @@ namespace user
          //   else*/ if (base_class < ::file::exception >::bases(e))
          //   {
          //      ::file::exception * pfe = dynamic_cast <::file::exception *> (e);
-         //      // throw interface_only_exception();
+         //      // throw ::interface_only();
          //      CATEGORY_WARNING(appmsg, "Reporting file I/O exception on Save/Load with lOsError = $%lX.\n",
          //         pfe->m_lOsError);
 
@@ -1296,7 +1296,7 @@ namespace user
          //{
          //   string strTitle = ::file::path(pszPathName).title();
 
-         //   //throw interface_only_exception();
+         //   //throw ::interface_only();
          //   /*
          //   ::aura::FormatString1(prompt, nIDP, strTitle);*/
          //}
@@ -1909,19 +1909,19 @@ namespace user
    void document::update_all_views(::topic * ptopic)
    {
 
-      ASSERT(ptopic->m_psender == nullptr || !m_viewa.is_empty());
+      ASSERT(ptopic->get_extended_topic()->m_psender == nullptr || !m_viewa.is_empty());
 
       for (auto & pview : m_viewa.ptra())
       {
 
          ASSERT_VALID(pview);
 
-         if (pview != ptopic->m_psender)
+         if (pview != ptopic->get_extended_topic()->m_psender)
          {
 
             pview->handle(ptopic, nullptr);
 
-            if(ptopic->m_pextendedtopic->m_bRet)
+            if(ptopic->get_extended_topic()->m_bRet)
             {
 
                break;
@@ -1946,11 +1946,11 @@ namespace user
    void document::update_all_views(impact * pimpactSender, const ::atom & atom)
    {
 
-      auto ptopic = create_subject(atom);
+      auto pextendedtopic = create_extended_topic(atom);
 
-      ptopic->m_psender = pimpactSender;
+      pextendedtopic->m_psender = pimpactSender;
 
-      update_all_views(ptopic);
+      update_all_views(pextendedtopic);
 
    }
 

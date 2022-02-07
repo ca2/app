@@ -398,7 +398,7 @@ namespace filemanager
 
       ::filemanager_impact_base::handle(ptopic, pcontext);
 
-      if (ptopic->m_id == INITIALIZE_ID)
+      if (ptopic->m_atom == INITIALIZE_ID)
       {
 
          if (filemanager_data()->m_bPassBk)

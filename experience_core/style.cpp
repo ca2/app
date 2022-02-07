@@ -153,7 +153,7 @@ namespace experience
 
                auto ppath = __create < ::draw2d::path > ();
 
-               if(ptab->get_data()->m_idaSel.contains(ppane->m_id))
+               if(ptab->get_data()->m_idaSel.contains(ppane->m_atom))
                {
 
                   ppath->begin_figure();
@@ -277,7 +277,7 @@ namespace experience
 
                auto ppath = __create < ::draw2d::path >();
 
-               if(ptab->get_data()->m_idaSel.contains(ppane->m_id))
+               if(ptab->get_data()->m_idaSel.contains(ppane->m_atom))
                {
 
                   if (iPane != iCurrentTab)

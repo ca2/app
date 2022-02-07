@@ -48,7 +48,7 @@ namespace ios
 //      ASSERT(__is_valid_string(lpszFileName));
 //
 //      if(!open(lpszFileName, nOpenFlags))
-//         __throw(::file::exception(::file::exception::none, -1, lpszFileName));
+//         throw ::exception(::file::exception(::file::exception::none, -1, lpszFileName));
 //
 //   }
 
@@ -747,7 +747,7 @@ bool CLASS_DECL_APEX vfxFullPath(wstring & wstrFullPath, const wstring & wstrPat
 CLASS_DECL_APEX void vfxGetModuleShortFileName(HINSTANCE hInst, string& strShortName)
 {
 
-   __throw(todo);
+   throw ::exception(todo);
 
 }
 
@@ -755,7 +755,7 @@ CLASS_DECL_APEX void vfxGetModuleShortFileName(HINSTANCE hInst, string& strShort
 //void CLASS_DECL_APEX vfxThrowFileException(::object * pobject, void cause, ::i32 lOsError, const char * lpszFileName /* == nullptr */)
 //{
 //
-//   __throw(::file::exception(cause, lOsError, lpszFileName));
+//   throw ::exception(::file::exception(cause, lOsError, lpszFileName));
 //
 //}
 //

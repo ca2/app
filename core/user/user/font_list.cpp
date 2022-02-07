@@ -24,7 +24,7 @@ namespace user
       m_flagNonClient.add(non_client_hover_rect);
 
       m_bFirstShown = false;
-      m_idImpact = FONTSEL_IMPACT;
+      m_atomImpact = FONTSEL_IMPACT;
       m_scrolldataVertical.m_bScrollEnable = true;
       m_bEnsureVisible = false;
 
@@ -99,7 +99,7 @@ namespace user
       else
       {
 
-         __throw(todo);
+         throw ::exception(todo);
 
       }
 
@@ -172,17 +172,15 @@ namespace user
          if(has_handler())
          {
 
-            ::topic topic;
+            ::extended_topic extendedtopic(::id_after_change_cur_sel);
 
-            topic.m_puserelement = this;
+            extendedtopic.m_puserelement = this;
 
-            topic.m_id = ::id_after_change_cur_sel;
+            extendedtopic.m_actioncontext = ::e_source_user;
 
-            topic.m_actioncontext = ::e_source_user;
+            extendedtopic.m_item = item;
 
-            topic.m_item = item;
-
-            route(&topic);
+            route(&extendedtopic);
             
          }
 
@@ -223,15 +221,13 @@ namespace user
          if(has_handler())
          {
 
-            ::topic topic;
+            ::extended_topic extendedtopic(::id_after_change_cur_hover);
 
-            topic.m_puserelement = this;
+            extendedtopic.m_puserelement = this;
 
-            topic.m_id = ::id_after_change_cur_hover;
+            extendedtopic.m_actioncontext = ::e_source_user;
 
-            topic.m_actioncontext = ::e_source_user;
-
-            route(&topic);
+            route(&extendedtopic);
                
          }
 
@@ -247,7 +243,7 @@ namespace user
 
       list_box::handle(ptopic, pcontext);
 
-      if (ptopic->m_id == id_font_list_total_size)
+      if (ptopic->m_atom == id_font_list_total_size)
       {
 
          set_need_layout();

@@ -96,8 +96,8 @@ namespace filemanager
       m_strXmlPopup = "matter://department/file_popup.xml";
       m_strFolderPopup = "matter://department/folder_popup.xml";
       m_strPopup = "matter://department/popup.xml";
-      m_idExpandBox = 0;
-      m_idCollapseBox = 0;
+      m_atomExpandBox = 0;
+      m_atomCollapseBox = 0;
 
       //return true;
 
@@ -228,7 +228,7 @@ namespace filemanager
                              bMakeVisible,
                              puiParent,
                           ewindowflag(),
-                          m_id));
+                          m_atom));
 
       }
 
@@ -263,7 +263,7 @@ namespace filemanager
 //      if(m_datakey.is_empty())
 //      {
 //
-//         m_datakey.m_strDataKey.format("%s", m_id.str().c_str());
+//         m_datakey.m_strDataKey.format("%s", m_atom.str().c_str());
 //
 //      }
 //

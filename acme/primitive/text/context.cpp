@@ -68,26 +68,26 @@ namespace text
       if(m_plocaleschema != nullptr)
       {
 
-         if(!m_plocaleschema->m_idLocale.is_empty())
+         if(!m_plocaleschema->m_atomLocale.is_empty())
          {
 
-            m_plocale = (locale *) m_ptable->get_locale(m_plocaleschema->m_idLocale);
+            m_plocale = (locale *) m_ptable->get_locale(m_plocaleschema->m_atomLocale);
 
             if(m_plocale != nullptr)
             {
 
-               if(!m_plocaleschema->m_idSchema.is_empty() && m_plocaleschema->m_idSchema != m_plocaleschema->m_idLocale)
+               if(!m_plocaleschema->m_atomSchema.is_empty() && m_plocaleschema->m_atomSchema != m_plocaleschema->m_atomLocale)
                {
-                  m_pschema = (schema *) m_plocale->get_schema(m_plocaleschema->m_idSchema);
+                  m_pschema = (schema *) m_plocale->get_schema(m_plocaleschema->m_atomSchema);
                }
-               m_pschemaLocale = (schema *)m_plocale->get_schema(m_plocaleschema->m_idSchema);
+               m_pschemaLocale = (schema *)m_plocale->get_schema(m_plocaleschema->m_atomSchema);
             }
          }
 
-         if(!m_plocaleschema->m_idSchema.is_empty())
+         if(!m_plocaleschema->m_atomSchema.is_empty())
          {
 
-            const locale * plocale = m_ptable->get_locale(m_plocaleschema->m_idSchema);
+            const locale * plocale = m_ptable->get_locale(m_plocaleschema->m_atomSchema);
 
             if(plocale != nullptr)
             {

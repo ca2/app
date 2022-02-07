@@ -43,14 +43,14 @@ namespace user
 
       //}
 
-      if (m_id.is_empty())
+      if (m_atom.is_empty())
       {
 
-         m_id = __type_name(this);
+         m_atom = __type_name(this);
 
       }
 
-      m_databasekey.m_strDataKey = m_id;
+      m_databasekey.m_strDataKey = m_atom;
 
       //return estatus;
 

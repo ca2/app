@@ -779,9 +779,9 @@ namespace user
 
             topic.m_puserinteraction = this;
 
-            //topic.m_id = m_id;
+            //topic.m_atom = m_atom;
 
-            topic.m_id = ::id_after_change_cur_sel;
+            topic.m_atom = ::id_after_change_cur_sel;
 
             topic.m_actioncontext = ::e_source_user;
 
@@ -1057,7 +1057,7 @@ namespace user
 
             m_pcombo->m_plist.release();
 
-            __throw(error_resource);
+            throw ::exception(error_resource);
 
          }
 

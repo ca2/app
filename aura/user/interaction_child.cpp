@@ -74,7 +74,7 @@ namespace user
 
          m_puserinteraction->m_pinteractionimpl.release();
 
-         //m_puserinteraction->m_id = atom;
+         //m_puserinteraction->m_atom = atom;
 
          //if (!m_puserinteraction->pre_create_window(pusersystem))
          //{
@@ -508,7 +508,7 @@ namespace user
 
       ::u32 message;
 
-      message = pmessage->m_id.umessage();
+      message = pmessage->m_atom.umessage();
 
       //if (m_puserinteraction != nullptr)
       //{
@@ -767,7 +767,7 @@ namespace user
 
             puserinteraction->viewport_screen_to_client(rectangleWindow);
 
-            pgraphics->SetImpactportOrg(rectangleWindow.top_left());
+            pgraphics->SetViewportOrg(rectangleWindow.top_left());
 
          }
 

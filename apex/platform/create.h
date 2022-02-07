@@ -34,7 +34,7 @@ public:
    __pointer(command_line)                                     m_pcommandline;
    __pointer(::matter)                                         m_pmatterUserPayload;
    ewindowflag                                                 m_ewindowflag;
-   ::atom                                                        m_id;
+   ::atom                                                        m_atom;
 
 
    create();

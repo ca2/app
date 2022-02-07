@@ -27,7 +27,7 @@ namespace data
 
 
       listener_array                               m_listenera;
-      ::atom                 m_id;
+      ::atom                 m_atom;
 
 
       data();

@@ -14,7 +14,7 @@ namespace user
       index                               m_iIndex;
       index                               m_iImage;
       ::image_pointer                     m_pimage;
-      atom                                  m_id;
+      atom                                  m_atom;
       e_toolbar_item_state                m_estate;
       e_toolbar_item_style                m_estyle;
       string                              m_str;

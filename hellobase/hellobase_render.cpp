@@ -1286,7 +1286,7 @@ namespace hellobase
    //         if (!m_mapDib23[strImage].load_image(strImage, true, true))
    //         {
 
-   //            __throw(::exception("Failed to load \"" + strImage + "\""));
+   //            throw ::exception(::exception("Failed to load \"" + strImage + "\""));
 
    //         }
 

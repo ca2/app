@@ -339,7 +339,7 @@ namespace factory
 //    //if (((uptr)&pcomposite) < (uptr)pobject || ((uptr)&pcomposite) >= ((uptr)pobject) + sizeof(typename ::raw_type < OBJECT>::RAW_TYPE))
 //    //{
 
-//    //   __throw(::status_exception(error_composite_not_composer_member));
+//    //   throw ::exception(::status_exception(error_composite_not_composer_member));
 
 //    //}
 
@@ -381,7 +381,7 @@ namespace factory
 // //   if (((uptr)&pcomposite) < (uptr)pobject || ((uptr)&pcomposite) >= ((uptr)pobject) + sizeof(typename ::raw_type < OBJECT>::RAW_TYPE))
 // //   {
 // //
-// //      __throw(::status_exception(error_composite_not_composer_member));
+// //      throw ::exception(::status_exception(error_composite_not_composer_member));
 // //
 // //   }
 
@@ -397,7 +397,7 @@ namespace factory
 //    //if (((uptr)&pcomposite) < (uptr)pobject || ((uptr)&pcomposite) >= ((uptr)pobject) + sizeof(typename ::raw_type < OBJECT>::RAW_TYPE))
 //    //{
 
-//    //   __throw(::status_exception(error_composite_not_composer_member));
+//    //   throw ::exception(::status_exception(error_composite_not_composer_member));
 
 //    //}
 
@@ -467,7 +467,7 @@ namespace factory
 //   if (((uptr)&preference) < (uptr)pobject || ((uptr)&preference) >= ((uptr)pobject) + sizeof(typename ::raw_type < OBJECT>::RAW_TYPE))
 //   {
 //
-//      __throw(::status_exception(error_composite_not_composer_member));
+//      throw ::exception(::status_exception(error_composite_not_composer_member));
 //
 //   }
 //
@@ -509,7 +509,7 @@ namespace factory
 ////   if (((uptr)&preference) < (uptr)pobject || ((uptr)&preference) >= ((uptr)pobject) + sizeof(typename ::raw_type < OBJECT>::RAW_TYPE))
 ////   {
 ////
-////      __throw(::status_exception(error_composite_not_composer_member));
+////      throw ::exception(::status_exception(error_composite_not_composer_member));
 ////
 ////   }
 //
@@ -536,7 +536,7 @@ namespace factory
 //   if (((uptr)&preference) < (uptr)pobject || ((uptr)&preference) >= ((uptr)pobject) + sizeof(typename ::raw_type < OBJECT>::RAW_TYPE))
 //   {
 //
-//      __throw(::status_exception(error_composite_not_composer_member));
+//      throw ::exception(::status_exception(error_composite_not_composer_member));
 //
 //   }
 //
@@ -552,7 +552,7 @@ namespace factory
 //   if (((uptr)&preference) < (uptr)pobject || ((uptr)&preference) >= ((uptr)pobject) + sizeof(typename ::raw_type < OBJECT>::RAW_TYPE))
 //   {
 //
-//      __throw(::status_exception(error_composite_not_composer_member));
+//      throw ::exception(::status_exception(error_composite_not_composer_member));
 //
 //   }
 //
@@ -568,7 +568,7 @@ namespace factory
 //   if (((uptr)&preference) < (uptr)pobject || ((uptr)&preference) >= ((uptr)pobject) + sizeof(typename ::raw_type < OBJECT>::RAW_TYPE))
 //   {
 //
-//      __throw(::status_exception(error_composite_not_composer_member));
+//      throw ::exception(::status_exception(error_composite_not_composer_member));
 //
 //   }
 //

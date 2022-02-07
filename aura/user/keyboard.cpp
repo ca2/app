@@ -315,7 +315,7 @@ namespace user
          return false;
       }
 
-      __throw(todo, "xml");
+      throw ::exception(todo, "xml");
 
       //::xml::document doc;
 
@@ -666,7 +666,7 @@ namespace user
 //      if(str.is_empty())
 //         return false;
 //
-//      __throw(todo("xml"));
+//      throw ::exception(todo("xml"));
 //
 ////      ::xml::document doc;
 ////
@@ -705,7 +705,7 @@ namespace user
 ////
 ////#else
 ////
-////      //__throw(todo);
+////      //throw ::exception(todo);
 ////
 ////#endif
 ////

@@ -61,7 +61,7 @@ namespace filemanager
 
       ::filemanager_impact_base::handle(ptopic, pcontext);
 
-      if (ptopic->m_id == INITIALIZE_ID)
+      if (ptopic->m_atom == INITIALIZE_ID)
       {
 
          /*            m_pserverNext = simpledb::AppGet()->GetDataServer();
@@ -77,16 +77,16 @@ namespace filemanager
                      DISetSection(str);
                      _001UpdateColumns();*/
       }
-      else if (ptopic->m_id == FILTER_ID)
+      else if (ptopic->m_atom == FILTER_ID)
       {
-         /*if(ptopic->m_pextendedtopic->payload(id_filter).is_empty())
+         /*if(ptopic->get_extended_topic()->payload(id_filter).is_empty())
          {
          FilterClose();
          }
          else
          {
          FilterBegin();
-         Filter1(ptopic->m_pextendedtopic->payload(id_filter));
+         Filter1(ptopic->get_extended_topic()->payload(id_filter));
          FilterApply();
          }*/
       }

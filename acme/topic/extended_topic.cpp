@@ -2,12 +2,14 @@
 // Changed to extended on 2022-02-04 18:08 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "acme/platform/object_reference_count_debug.h"
-#include "acme/user/check.h"
-#include "acme/user/text.h"
-#include "acme/user/element.h"
+#include "acme/user/user/check.h"
+#include "acme/user/user/text.h"
+#include "acme/user/user/element.h"
 
 
 extended_topic::extended_topic(const ::atom & atom) :
+   ::TOPIC(atom),
+   ::topic(atom),
    ::material_object(atom),
    ::property_object(atom),
    ::object(atom)
@@ -174,56 +176,25 @@ void extended_topic::Ok()
 
    }
 
-   return m_puserelement->m_id;
+   return m_puserelement->m_atom;
 
 }
 
 
-//impact * extended_topic::get_view()
-//{
+::extended_topic * extended_topic::get_extended_topic()
+{
 
-//   return dynamic_cast <::user::impact *> (m_puserinteraction);
+   return this;
 
-//}
-
-//document * extended_topic::get_document()
-//{
-
-//   impact * pimpact = get_view();
-
-//   if(pimpact == nullptr)
-//      return nullptr;
-
-//   return pimpact->get_document();
-
-//}
-
-//impact_system * extended_topic::get_impact_system()
-//{
-
-//   document * pdocument = get_document();
-
-//   if(pdocument == nullptr)
-//      return nullptr;
-
-//   return pdocument->get_document_template();
-
-//}
-
-//string extended_topic::get_impact_matter()
-//{
-
-//   impact_system * psystem = get_impact_system();
-
-//   if(psystem == nullptr)
-//      return "";
-
-//   return psystem->m_strMatter;
-
-//}
+}
 
 
-//} // namespace extended_topic
+const ::extended_topic * extended_topic::get_extended_topic() const
+{
+
+   return this;
+
+}
 
 
 

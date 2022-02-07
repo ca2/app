@@ -65,7 +65,7 @@ void update::run()
 
       }
 
-      system_call_update(m_id);
+      system_call_update(m_atom);
 
       if(m_bModified)
       {

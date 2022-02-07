@@ -84,7 +84,7 @@ namespace user
    void style_base::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (ptopic->m_id == id_operating_system_user_color_change)
+      if (ptopic->m_atom == id_operating_system_user_color_change)
       {
 
          on_user_color();

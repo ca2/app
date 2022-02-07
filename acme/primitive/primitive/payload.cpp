@@ -620,7 +620,7 @@ void payload::set_type(enum_type etype, bool bConvert)
             m_str = ::move(this->string());
             break;
          case e_type_id:
-            m_id = ::move(this->atom());
+            m_atom = ::move(this->atom());
             break;
          default:
             ::set_last_status(error_conversion_not_a_number);
@@ -736,7 +736,7 @@ void payload::set_id(const ::atom & atom)
 
       set_type(e_type_id, false);
 
-      m_id = atom;
+      m_atom = atom;
 
    }
 
@@ -1270,7 +1270,7 @@ class ::payload & payload::operator = (const class ::payload & payload)
             m_pproperty=payload.m_pproperty;
             break;
          case e_type_id:
-            m_id = payload.m_id;
+            m_atom = payload.m_atom;
             break;
          default:
             memcpy(m_all, payload.m_all, sizeof(m_all));
@@ -1626,7 +1626,7 @@ bool payload::is_empty() const
    case e_type_property:
       return m_pproperty->is_empty();
    case e_type_id:
-      return m_id.is_empty();
+      return m_atom.is_empty();
    case e_type_pid:
       return m_pid->is_empty();
 
@@ -2201,7 +2201,7 @@ string payload::string(const char * pszOnNull) const
       }
       else if(m_etype == ::e_type_id)
       {
-         str = m_id;
+         str = m_atom;
       }
       else if(m_etype == ::e_type_pid)
       {
@@ -2400,7 +2400,7 @@ string & payload::as_string(const char * pszOnNull)
    else
    {
 
-      return m_id;
+      return m_atom;
 
    }
 
@@ -2435,9 +2435,9 @@ string & payload::as_string(const char * pszOnNull)
 
       set_type(e_type_id, false);
 
-      m_id = ::move(atom);
+      m_atom = ::move(atom);
 
-      return m_id;
+      return m_atom;
 
    }
 
@@ -2500,14 +2500,14 @@ string & payload::as_string(const char * pszOnNull)
       return atoi(*m_pstr);
    case e_type_id:
    {
-      if(!fits_i32(m_id.i64()))
-         __throw(error_overflow, "::payload contains atom that does not fit 32 bit integer");
-      return (::i32) (::i64) m_id;
+      if(!fits_i32(m_atom.i64()))
+         throw ::exception(error_overflow, "::payload contains atom that does not fit 32 bit integer");
+      return (::i32) (::i64) m_atom;
    }
    case e_type_pid:
    {
       if(!fits_i32(m_pid->i64()))
-         __throw(error_overflow, "::payload contains atom that does not fit 32 bit integer");
+         throw ::exception(error_overflow, "::payload contains atom that does not fit 32 bit integer");
       return (::i32) (::i64) *m_pid;
    }
    default:
@@ -4220,7 +4220,7 @@ property_set & payload::as_propset()
    if (m_etype != e_type_property)
    {
 
-      __throw(error_wrong_state, "::payload is not a property (1)");
+      throw ::exception(error_wrong_state, "::payload is not a property (1)");
 
    }
 
@@ -4236,7 +4236,7 @@ property & payload::as_property()
    if(m_etype != e_type_property)
    {
 
-      __throw(error_wrong_state, "::payload is not a property (1)");
+      throw ::exception(error_wrong_state, "::payload is not a property (1)");
 
    }
 
@@ -4341,7 +4341,7 @@ string payload::implode(const char * pszGlue) const
 //      }
 //      else
 //      {
-//         __throw(::exception("index out of bounds"));
+//         throw ::exception(::exception("index out of bounds"));
 //      }
 //   }
 //}
@@ -4371,7 +4371,7 @@ string payload::implode(const char * pszGlue) const
       else
       {
 
-         __throw(error_index_out_of_bounds, "index out of bounds");
+         throw ::exception(error_index_out_of_bounds, "index out of bounds");
 
          return error_failed;
 
@@ -4617,9 +4617,9 @@ bool payload::array_contains_ci(const char * psz, index find, index last) const
 //   switch(payload.m_etype)
 //   {
 //   case ::e_type_null:
-//      __throw(::exception("division by zero"));
+//      throw ::exception(::exception("division by zero"));
 //   case ::e_type_empty:
-//      __throw(::exception("division by zero"));
+//      throw ::exception(::exception("division by zero"));
 //   case ::e_type_i32:
 //      return (iptr) ul / payload.m_i32;
 //   case ::e_type_u32:
@@ -4643,7 +4643,7 @@ bool payload::array_contains_ci(const char * psz, index find, index last) const
 //   case ::e_type_property:
 //      return operator / (ul, *payload.m_pproperty);
 //   default:
-//      __throw(::exception("division by zero"));
+//      throw ::exception(::exception("division by zero"));
 //   }
 //
 //}
@@ -5497,7 +5497,7 @@ bool payload::is_natural() const
 //   else if (m_etype == e_type_id)
 //   {
 //
-//      return (m_id.is_text() && ::papaya::is_true(m_id.m_psz)) || (m_id.is_integer() && m_id.m_i != 0);
+//      return (m_atom.is_text() && ::papaya::is_true(m_atom.m_psz)) || (m_atom.is_integer() && m_atom.m_i != 0);
 //
 //   }
 //   else if (m_etype == e_type_pid)
@@ -5645,7 +5645,7 @@ block payload::block () const
    if (get_type() != e_type_memory)
    {
 
-      __throw(error_wrong_type);
+      throw ::exception(error_wrong_type);
 
    }
 
@@ -5772,7 +5772,7 @@ void payload::consume_identifier(const char * & psz, const char * pszEnd)
    }
    else
    {
-      __throw(error_parsing, "not expected identifier");
+      throw ::exception(error_parsing, "not expected identifier");
    }
    psz = pszParse;
 }
@@ -5858,7 +5858,7 @@ end:
    if(pszParse == pszStart)
    {
 
-      __throw(error_parsing, "empty string : not a number");
+      throw ::exception(error_parsing, "empty string : not a number");
 
    }
 
@@ -5937,12 +5937,12 @@ void var_skip_identifier(const char *& psz, const char * pszEnd)
       }
       else
       {
-         __throw(error_parsing, "not expected identifier");
+         throw ::exception(error_parsing, "not expected identifier");
       }
    }
    else
    {
-      __throw(error_parsing, "not expected identifier");
+      throw ::exception(error_parsing, "not expected identifier");
    }
    psz = pszParse;
 }
@@ -6016,7 +6016,7 @@ void var_skip_number(const char *& psz, const char * pszEnd)
 end:
    if (pszParse == pszStart)
    {
-      __throw(error_parsing, "empty string : not a number");
+      throw ::exception(error_parsing, "empty string : not a number");
    }
    psz = pszParse;
 }
@@ -6256,7 +6256,7 @@ void payload::parse_network_payload(const char *& pszJson, const char * pszEnd)
 
             str += pszJson;
 
-            __throw(error_parsing, str);
+            throw ::exception(error_parsing, str);
 
          }
 
@@ -6470,7 +6470,7 @@ bool payload::is_numeric() const
       return false;
 
    case e_type_id:
-      return false; // m_id.is_number(); // may be improved MBI
+      return false; // m_atom.is_number(); // may be improved MBI
 
    case e_type_pid:
       return false; // m_pid->is_number(); // may be improved MBI
@@ -6486,7 +6486,7 @@ bool payload::is_numeric() const
          return true;
    default:
    {
-      __throw(error_not_implemented);
+      throw ::not_implemented();
 
       return false;
 
@@ -6846,7 +6846,7 @@ bool payload::is_false() const
    case e_type_pduration:
       return !m_pduration || m_pduration->is_null();
    case e_type_id:
-      return m_id.is_empty() || !m_id.compare_ci("false") || !m_id.compare_ci("no");
+      return m_atom.is_empty() || !m_atom.compare_ci("false") || !m_atom.compare_ci("no");
    case e_type_pid:
       return !m_pid || m_pid->is_empty() || !m_pid->compare_ci("false") || !m_pid->compare_ci("no");
    case e_type_time:
@@ -7032,7 +7032,7 @@ bool payload::is_set_false() const
    case e_type_pduration:
       return !m_pduration || m_pduration->is_null();
    case e_type_id:
-      return m_id.is_empty() || !m_id.compare_ci("false") || !m_id.compare_ci("no");
+      return m_atom.is_empty() || !m_atom.compare_ci("false") || !m_atom.compare_ci("no");
    case e_type_pid:
       return !m_pid || m_pid->is_empty() || !m_pid->compare_ci("false") || !m_pid->compare_ci("no");
    case e_type_time:

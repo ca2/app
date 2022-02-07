@@ -54,7 +54,7 @@
 //            else
 //            {
 //
-//               m_id = argument.get_id();
+//               m_atom = argument.get_id();
 //
 //            }
 //
@@ -65,7 +65,7 @@
 //         case e_type_i32:
 //         {
 //
-//            m_id = argument.get_id();
+//            m_atom = argument.get_id();
 //
 //            break;
 //
@@ -167,7 +167,7 @@
 //   void control_descriptor::control_descriptor_common_construct()
 //   {
 //
-//      m_id.is_empty();
+//      m_atom.is_empty();
 //      m_iItem = 0;
 //      m_econtroltype = e_control_type_none;
 //      m_bTransparent = false;
@@ -188,7 +188,7 @@
 ////   m_playout = nullptr;
 ////   m_puserinteractionParent = nullptr;
 ////   m_playout = nullptr;
-////   m_id.is_empty();
+////   m_atom.is_empty();
 ////   m_iItem = 0;
 ////   m_econtroltype = e_control_type_none;
 ////   m_bTransparent = false;
@@ -220,7 +220,7 @@
 //   //      return *this;
 //
 //   //   m_iItem = control_descriptor.m_iItem;
-//   //   m_id = control_descriptor.m_id;
+//   //   m_atom = control_descriptor.m_atom;
 //   //   m_econtroltype = control_descriptor.m_econtroltype;
 //   //   m_datakey = control_descriptor.m_datakey;
 //   //   m_bTransparent = control_descriptor.m_bTransparent;
@@ -228,7 +228,7 @@
 //   //   m_type = control_descriptor.m_type;
 //   //   m_bCreated = control_descriptor.m_bCreated;
 //   //   m_edatatype = control_descriptor.m_edatatype;
-//   //   m_idPrivateDataSection = control_descriptor.m_idPrivateDataSection;
+//   //   m_atomPrivateDataSection = control_descriptor.m_atomPrivateDataSection;
 //   //   //m_pcontrol              = control_descriptor.m_pcontrol;
 //   //   m_controlmap.erase_all();
 //   //   m_eddx = control_descriptor.m_eddx;
@@ -270,7 +270,7 @@
 //
 // //     }*/
 //
-// //     return m_id == descriptor.m_id && m_puserinteractionParent->descriptor() == descriptor.m_puserinteractionParent->descriptor();
+// //     return m_atom == descriptor.m_atom && m_puserinteractionParent->descriptor() == descriptor.m_puserinteractionParent->descriptor();
 //
 // //  }
 //
@@ -394,7 +394,7 @@
 //      case e_control_type_combo_box:
 //      {
 //
-//         //__throw(todo);
+//         //throw ::exception(todo);
 //
 ////            m_data.m_pcombobox = new Ex1FormInterfaceComboBox;
 //
@@ -425,10 +425,10 @@
 //      if (m_type.m_strName.is_empty())
 //      {
 //
-//         if (m_id.has_char())
+//         if (m_atom.has_char())
 //         {
 //
-//            m_type = App(m_puserinteraction).control_type_from_id(m_id, econtroltype);
+//            m_type = App(m_puserinteraction).control_type_from_id(m_atom, econtroltype);
 //
 //         }
 //         //else if(m_econtroltype != e_control_type_none)

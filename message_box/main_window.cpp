@@ -72,10 +72,10 @@ namespace app_message_box
    void main_window::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (ptopic->m_id == ::id_click)
+      if (ptopic->m_atom == ::id_click)
       {
 
-         if (ptopic->m_pextendedtopic->user_interaction() == m_pbuttonShowMessageBox && ptopic->m_pextendedtopic->m_actioncontext.is_user_source())
+         if (ptopic->get_extended_topic()->user_interaction() == m_pbuttonShowMessageBox && ptopic->get_extended_topic()->m_actioncontext.is_user_source())
          {
 
             try
@@ -83,7 +83,7 @@ namespace app_message_box
 
                show_message_box();
 
-               ptopic->m_pextendedtopic->m_bRet = true;
+               ptopic->get_extended_topic()->m_bRet = true;
 
                return;
 
@@ -108,7 +108,7 @@ namespace app_message_box
       psequence->then([this](auto psequence)
          {
 
-            if (psequence->m_idResult == e_dialog_result_yes)
+            if (psequence->m_atomResult == e_dialog_result_yes)
             {
 
                auto papplication = get_application();
@@ -116,7 +116,7 @@ namespace app_message_box
                papplication->_001TryCloseApplication();
 
             }
-            else if (psequence->m_idResult == e_dialog_result_cancel)
+            else if (psequence->m_atomResult == e_dialog_result_cancel)
             {
 
                show_message_box();

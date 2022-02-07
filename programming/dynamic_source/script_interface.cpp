@@ -150,7 +150,7 @@ namespace dynamic_source
       else
       {
 
-         throw ::interface_only_exception();
+         throw ::interface_only();
 
       }
 
@@ -332,7 +332,7 @@ namespace dynamic_source
       property_set& script_interface::inattra()
       {
 
-         throw ::interface_only_exception();
+         throw ::interface_only();
 
          return *(property_set *)nullptr;
 
@@ -358,7 +358,7 @@ namespace dynamic_source
       property_set& script_interface::geta()
       {
 
-         throw ::interface_only_exception();
+         throw ::interface_only();
 
          return *(property_set *)nullptr;
 
@@ -369,7 +369,7 @@ namespace dynamic_source
       property_set& script_interface::posta()
       {
 
-         throw ::interface_only_exception();
+         throw ::interface_only();
 
          return *(property_set *)nullptr;
 
@@ -380,7 +380,7 @@ namespace dynamic_source
       http::cookies& script_interface::cookies()
       {
 
-         throw ::interface_only_exception();
+         throw ::interface_only();
 
          return *(http::cookies *)nullptr;
 
@@ -390,7 +390,7 @@ namespace dynamic_source
       property_set& script_interface::requesta()
       {
 
-         throw ::interface_only_exception();
+         throw ::interface_only();
 
          return *(property_set *)nullptr;
 
@@ -400,7 +400,7 @@ namespace dynamic_source
       property& script_interface::inheader(atom atom)
       {
 
-         throw ::interface_only_exception();
+         throw ::interface_only();
 
          return *(property *)nullptr;
 
@@ -410,7 +410,7 @@ namespace dynamic_source
       property& script_interface::outheader(atom atom)
       {
 
-         throw ::interface_only_exception();
+         throw ::interface_only();
 
          return *(property *)nullptr;
 
@@ -420,7 +420,7 @@ namespace dynamic_source
       property& script_interface::inattr(atom atom)
       {
 
-         throw ::interface_only_exception();
+         throw ::interface_only();
 
          return *(property *)nullptr;
 
@@ -430,7 +430,7 @@ namespace dynamic_source
       property& script_interface::outattr(atom atom)
       {
 
-         throw ::interface_only_exception();
+         throw ::interface_only();
 
          return *(property *)nullptr;
 
@@ -440,7 +440,7 @@ namespace dynamic_source
       string& script_interface::gstr(atom atom)
       {
 
-         throw ::interface_only_exception();
+         throw ::interface_only();
 
          return *(string *)nullptr;
 
@@ -450,7 +450,7 @@ namespace dynamic_source
       property& script_interface::gprop(atom atom)
       {
 
-         throw ::interface_only_exception();
+         throw ::interface_only();
 
          return *(property *)nullptr;
 
@@ -460,7 +460,7 @@ namespace dynamic_source
       property& script_interface::get(atom idKey)
       {
 
-         throw ::interface_only_exception();
+         throw ::interface_only();
 
          return *(property *)nullptr;
 
@@ -470,7 +470,7 @@ namespace dynamic_source
       property& script_interface::post(atom idKey)
       {
 
-         throw ::interface_only_exception();
+         throw ::interface_only();
 
          return *(property *)nullptr;
 
@@ -480,7 +480,7 @@ namespace dynamic_source
       http::cookie& script_interface::get_cookie(atom idKey)
       {
 
-         throw ::interface_only_exception();
+         throw ::interface_only();
 
          return *(http::cookie *)nullptr;
 
@@ -490,7 +490,7 @@ namespace dynamic_source
       http::cookie& script_interface::set_cookie(atom idKey)
       {
 
-         throw ::interface_only_exception();
+         throw ::interface_only();
 
          return *(http::cookie *)nullptr;
 

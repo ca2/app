@@ -515,19 +515,17 @@ namespace user
 
          {
 
-            ::topic topic;
+            ::extended_topic extendedtopic(::id_key_down);
 
-            topic.m_puserelement = this;
+            extendedtopic.m_puserelement = this;
 
-            topic.m_id = ::id_key_down;
+            extendedtopic.m_actioncontext.m_pmessage = pmessage;
 
-            topic.m_actioncontext.m_pmessage = pmessage;
+            extendedtopic.m_actioncontext = ::e_source_user;
 
-            topic.m_actioncontext = ::e_source_user;
+            route(&extendedtopic);
 
-            route(&topic);
-
-            if (topic.m_bRet)
+            if (extendedtopic.m_bRet)
             {
 
                return;
@@ -577,17 +575,17 @@ namespace user
          else if (pkey->m_ekey == ::user::e_key_escape)
          {
 
-            ::topic topic;
+            ::extended_topic extendedtopic(::id_escape);
 
-            topic.m_puserelement = this;
+            extendedtopic.m_puserelement = this;
 
-            topic.m_id = ::id_escape;
+            extendedtopic.m_atom = ::id_escape;
 
-            topic.m_actioncontext = ::e_source_user;
+            extendedtopic.m_actioncontext = ::e_source_user;
 
-            route(&topic);
+            route(&extendedtopic);
 
-            if (!topic.m_bRet && topic.m_bOk)
+            if (!extendedtopic.m_bRet && extendedtopic.m_bOk)
             {
 
                on_action("escape");
@@ -814,7 +812,7 @@ namespace user
       }
 
 
-      void edit::on_after_change(::enum_topic etopic)
+      void edit::on_after_change(const ::atom & atom)
       {
 
       }

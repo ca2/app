@@ -38,11 +38,11 @@ namespace graphics
 
       __construct(m_imageaBuffer[0]);
       //m_imageaBuffer[0]->defer_create_mutex();
-      m_imageaBuffer[0]->m_id = 0;
+      m_imageaBuffer[0]->m_atom = 0;
 
       __construct(m_imageaBuffer[1]);
       //m_imageaBuffer[1]->defer_create_mutex();
-      m_imageaBuffer[1]->m_id = 1;
+      m_imageaBuffer[1]->m_atom = 1;
 
       //return estatus;
 

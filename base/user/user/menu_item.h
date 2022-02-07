@@ -11,7 +11,7 @@ namespace user
    public:
 
 
-      atom                               m_id;
+      atom                               m_atom;
       __pointer(menu_item_ptra)        m_pmenuitema;
       __pointer(menu_item)             m_pmenuitemParent;
       i32                              m_iFullHeightItemCount;

@@ -176,7 +176,7 @@ namespace filemanager
 
       return ::error_not_implemented;
 
-      //__throw(todo("core"));
+      //throw ::exception(todo("core"));
       ////add_factory_item <form >();
       ////add_factory_item <document >();
       ////add_factory_item <child_frame >();
@@ -206,7 +206,7 @@ namespace filemanager
 
       ////__compose_new(this, m_pmap);
 
-      //__throw(todo("core"));
+      //throw ::exception(todo("core"));
       ////psession->userex()->shell()->initialize(&Session);
 
       ////auto pmulti = __new(::user::multiple_document_template(
@@ -265,12 +265,12 @@ namespace filemanager
 
    //   }
 
-   //   __throw(todo("core"));
+   //   throw ::exception(todo("core"));
    //   //auto pdata = __new(data);
 
    //   //pdata->initialize_filemanager_data(this);
 
-   //   //pdata->m_id = atom;
+   //   //pdata->m_atom = atom;
 
    //   //filemanager_set_data(atom, pdata);
 
@@ -332,7 +332,7 @@ namespace filemanager
    void component::filemanager_set_data(atom atom, data * pdata)
    {
 
-      __throw(todo("core"));
+      throw ::exception(todo("core"));
       //add_reference(pdata);
 
       //__compose(datamap()[atom], pdata);
@@ -582,7 +582,7 @@ pacmedir->localconfig() / "user.component";
    document * component::find_filemanager(::payload payloadFile)
    {
 
-      __throw(todo("core"));
+      throw ::exception(todo("core"));
       //__pointer(document) pdocument;
 
       //for (index i = 0; i < m_pdocumenttemplateProject->get_document_count(); i++)
@@ -679,7 +679,7 @@ pacmedir->localconfig() / "user.component";
    document * component::restore_filemanager(::payload payloadFile, ::create * pcreate, ::fs::data * pfsdata, callback * pcallback)
    {
 
-      __throw(todo("core"));
+      throw ::exception(todo("core"));
       //filemanager()->m_filepath = payloadFile.get_file_path();
 
       //filemanager()->m_pcreate = pcreate;
@@ -763,7 +763,7 @@ pacmedir->localconfig() / "user.component";
 
       }
 
-      __throw(todo("core"));
+      throw ::exception(todo("core"));
  /*     if (!pdata)
       {
 
@@ -1123,7 +1123,7 @@ pacmedir->localconfig() / "user.component";
 //   {
 
 //      pdocument->filemanager_data()->m_datakey.m_strDataKey.format("%s(%d)",
-//            psession->component().m_idFileManager.str(),
+//            psession->component().m_atomFileManager.str(),
 //            pdocument->filemanager_data()->m_iDocument);
 
 //   }

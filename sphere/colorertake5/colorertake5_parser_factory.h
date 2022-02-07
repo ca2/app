@@ -40,7 +40,7 @@ namespace colorertake5
          /**
           * ParserFactory Constructor.
           * Searches for catalog.xml in the set of predefined locations
-          * @__throw( ParserFactoryException If can't find catalog at any of standard locations.
+          * @throw ::exception( ParserFactoryException If can't find catalog at any of standard locations.
           */
          ParserFactory(::object * pobject);
 
@@ -48,7 +48,7 @@ namespace colorertake5
           * ParserFactory Constructor with explicit catalog path.
           * @param catalogPath Path to catalog.xml spfile-> If nullptr,
           *        standard search method is used.
-          * @__throw( ParserFactoryException If can't load specified catalog.
+          * @throw ::exception( ParserFactoryException If can't load specified catalog.
           */
          ParserFactory(::object * pobject, string catalogPath);
          virtual ~ParserFactory();
@@ -89,7 +89,7 @@ namespace colorertake5
           * Creates RegionMapper instance and loads specified hrd files into it.
           * @param classID Class identifier of loaded hrd instance.
           * @param nameID  Name identifier of loaded hrd instances.
-          * @__throw( ParserFactoryException If method can't find specified pair of
+          * @throw ::exception( ParserFactoryException If method can't find specified pair of
           *         class and name IDs in catalog.xml file
           */
          StyledHRDMapper *createStyledMapper(string classID, string nameID);
@@ -97,7 +97,7 @@ namespace colorertake5
           * Creates RegionMapper instance and loads specified hrd files into it.
           * It uses 'text' class by default.
           * @param nameID  Name identifier of loaded hrd instances.
-          * @__throw( ParserFactoryException If method can't find specified pair of
+          * @throw ::exception( ParserFactoryException If method can't find specified pair of
           *         class and name IDs in catalog.xml file
           */
          TextHRDMapper *createTextMapper(string nameID);

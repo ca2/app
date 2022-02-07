@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "base/atom.h"
+#include "base/id.h"
 
 
 namespace bred

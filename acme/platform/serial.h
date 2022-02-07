@@ -43,7 +43,7 @@
 //#include <stdexcept>
 //#include <serial/v8stdint.h>
 
-#define THROW(exceptionClass, message) __throw( exceptionClass(__FILE__, __LINE__, (message) ) )
+#define THROW(exceptionClass, message) throw ::exception( exceptionClass(__FILE__, __LINE__, (message) ) )
 
 namespace serial
 {
@@ -183,9 +183,9 @@ namespace serial
        * e_flow_control_none, possible values are: e_flow_control_none,
        * e_flow_control_software, e_flow_control_hardware
        *
-       * \__throw( serial::port_not_opened_exception
-       * \__throw( serial::io_exception
-       * \__throw( invalid_argument
+       * \throw ::exception( serial::port_not_opened_exception
+       * \throw ::exception( serial::io_exception
+       * \throw ::exception( invalid_argument
        */
       serial ();
 
@@ -211,9 +211,9 @@ namespace serial
        *
        * \see serial::serial
        *
-       * \__throw( invalid_argument
-       * \__throw( serial::serial_exception
-       * \__throw( serial::io_exception
+       * \throw ::exception( invalid_argument
+       * \throw ::exception( serial::serial_exception
+       * \throw ::exception( serial::io_exception
        */
       virtual void
       open ();
@@ -277,8 +277,8 @@ namespace serial
        * \return A size_t representing the number of bytes read as a result of the
        *         call to read.
        *
-       * \__throw( serial::port_not_opened_exception
-       * \__throw( serial::serial_exception
+       * \throw ::exception( serial::port_not_opened_exception
+       * \throw ::exception( serial::serial_exception
        */
       virtual size_t
       read (u8 *buffer, size_t size);
@@ -291,8 +291,8 @@ namespace serial
        * \return A size_t representing the number of bytes read as a result of the
        *         call to read.
        *
-       * \__throw( serial::port_not_opened_exception
-       * \__throw( serial::serial_exception
+       * \throw ::exception( serial::port_not_opened_exception
+       * \throw ::exception( serial::serial_exception
        */
       virtual size_t
       read (memory &buffer, size_t size = 1);
@@ -305,8 +305,8 @@ namespace serial
        * \return A size_t representing the number of bytes read as a result of the
        *         call to read.
        *
-       * \__throw( serial::port_not_opened_exception
-       * \__throw( serial::serial_exception
+       * \throw ::exception( serial::port_not_opened_exception
+       * \throw ::exception( serial::serial_exception
        */
       virtual size_t
       read (string &buffer, size_t size = 1);
@@ -318,8 +318,8 @@ namespace serial
        *
        * \return A string containing the data read from the port.
        *
-       * \__throw( serial::port_not_opened_exception
-       * \__throw( serial::serial_exception
+       * \throw ::exception( serial::port_not_opened_exception
+       * \throw ::exception( serial::serial_exception
        */
       virtual string
       read (size_t size = 1);
@@ -334,8 +334,8 @@ namespace serial
        *
        * \return A size_t representing the number of bytes read.
        *
-       * \__throw( serial::port_not_opened_exception
-       * \__throw( serial::serial_exception
+       * \throw ::exception( serial::port_not_opened_exception
+       * \throw ::exception( serial::serial_exception
        */
       virtual size_t
       readline (string &buffer, size_t size = 65536, string eol = "\n");
@@ -349,8 +349,8 @@ namespace serial
        *
        * \return A string containing the line.
        *
-       * \__throw( serial::port_not_opened_exception
-       * \__throw( serial::serial_exception
+       * \throw ::exception( serial::port_not_opened_exception
+       * \throw ::exception( serial::serial_exception
        */
       virtual string
       readline (size_t size = 65536, string eol = "\n");
@@ -366,8 +366,8 @@ namespace serial
        *
        * \return A vector<string> containing the lines.
        *
-       * \__throw( serial::port_not_opened_exception
-       * \__throw( serial::serial_exception
+       * \throw ::exception( serial::port_not_opened_exception
+       * \throw ::exception( serial::serial_exception
        */
       virtual string_array
       readlines (size_t size = 65536, string eol = "\n");
@@ -383,9 +383,9 @@ namespace serial
        * \return A size_t representing the number of bytes actually written to
        * the serial port.
        *
-       * \__throw( serial::port_not_opened_exception
-       * \__throw( serial::serial_exception
-       * \__throw( serial::io_exception
+       * \throw ::exception( serial::port_not_opened_exception
+       * \throw ::exception( serial::serial_exception
+       * \throw ::exception( serial::io_exception
        */
       virtual size_t
       write (const u8 *data, size_t size);
@@ -398,9 +398,9 @@ namespace serial
        * \return A size_t representing the number of bytes actually written to
        * the serial port.
        *
-       * \__throw( serial::port_not_opened_exception
-       * \__throw( serial::serial_exception
-       * \__throw( serial::io_exception
+       * \throw ::exception( serial::port_not_opened_exception
+       * \throw ::exception( serial::serial_exception
+       * \throw ::exception( serial::io_exception
        */
       virtual size_t
       write (const memory &data);
@@ -413,9 +413,9 @@ namespace serial
        * \return A size_t representing the number of bytes actually written to
        * the serial port.
        *
-       * \__throw( serial::port_not_opened_exception
-       * \__throw( serial::serial_exception
-       * \__throw( serial::io_exception
+       * \throw ::exception( serial::port_not_opened_exception
+       * \throw ::exception( serial::serial_exception
+       * \throw ::exception( serial::io_exception
        */
       virtual size_t
       write (const string &data);
@@ -426,7 +426,7 @@ namespace serial
        * serial port, which would be something like 'COM1' on Windows and
        * '/dev/ttyS0' on Linux.
        *
-       * \__throw( invalid_argument
+       * \throw ::exception( invalid_argument
        */
       virtual void setPort (const string &port);
 
@@ -437,7 +437,7 @@ namespace serial
        *
        * \see serial::setPort
        *
-       * \__throw( invalid_argument
+       * \throw ::exception( invalid_argument
        */
       virtual string
       getPort () const;
@@ -509,7 +509,7 @@ namespace serial
        *
        * \lparam baudrate An integer that sets the baud rate for the serial port.
        *
-       * \__throw( invalid_argument
+       * \throw ::exception( invalid_argument
        */
       virtual void
       setBaudrate (u32 baudrate);
@@ -520,7 +520,7 @@ namespace serial
        *
        * \see serial::setBaudrate
        *
-       * \__throw( invalid_argument
+       * \throw ::exception( invalid_argument
        */
       virtual u32
       getBaudrate () const;
@@ -531,7 +531,7 @@ namespace serial
        * default is e_byte_size_eight, possible values are: fivebits, sixbits, sevenbits,
        * e_byte_size_eight
        *
-       * \__throw( invalid_argument
+       * \throw ::exception( invalid_argument
        */
       virtual void
       setBytesize (enum_byte_size ebytesize);
@@ -540,7 +540,7 @@ namespace serial
        *
        * \see serial::setBytesize
        *
-       * \__throw( invalid_argument
+       * \throw ::exception( invalid_argument
        */
       virtual enum_byte_size
       getBytesize () const;
@@ -550,7 +550,7 @@ namespace serial
        * \lparam eparity Method of eparity, default is e_parity_none, possible values
        * are: e_parity_none, eparity_odd, eparity_even
        *
-       * \__throw( invalid_argument
+       * \throw ::exception( invalid_argument
        */
       virtual void
       setParity (enum_parity eparity);
@@ -559,7 +559,7 @@ namespace serial
        *
        * \see serial::setParity
        *
-       * \__throw( invalid_argument
+       * \throw ::exception( invalid_argument
        */
       virtual enum_parity
       getParity () const;
@@ -569,7 +569,7 @@ namespace serial
        * \lparam estopbit Number of stop bits used, default is e_stop_bit_one,
        * possible values are: e_stop_bit_one, e_stop_bit_one_point_five, estopbit_two
        *
-       * \__throw( invalid_argument
+       * \throw ::exception( invalid_argument
        */
       virtual void
       setStopbits (enum_stop_bit estopbit);
@@ -578,7 +578,7 @@ namespace serial
        *
        * \see serial::setStopbits
        *
-       * \__throw( invalid_argument
+       * \throw ::exception( invalid_argument
        */
       virtual enum_stop_bit
       getStopbits () const;
@@ -589,7 +589,7 @@ namespace serial
        * possible values are: e_flow_control_none, e_flow_control_software,
        * e_flow_control_hardware
        *
-       * \__throw( invalid_argument
+       * \throw ::exception( invalid_argument
        */
       virtual void
       setFlowcontrol (enum_flow_control eflowcontrol);
@@ -598,7 +598,7 @@ namespace serial
        *
        * \see serial::setFlowcontrol
        *
-       * \__throw( invalid_argument
+       * \throw ::exception( invalid_argument
        */
       virtual enum_flow_control
       getFlowcontrol () const;
@@ -634,7 +634,7 @@ namespace serial
       /*!
        * Blocks until CTS, DSR, RI, CD changes or something interrupts it.
        *
-       * Can __throw( an exception if an error occurs while waiting.
+       * Can throw ::exception( an exception if an error occurs while waiting.
        * You can check the status of CTS, DSR, RI, and CD once this returns.
        * Uses TIOCMIWAIT via ioctl if available (mostly only on Linux) with a
        * resolution of less than +-1ms and as good as +-0.2ms.  Otherwise a
@@ -643,7 +643,7 @@ namespace serial
        * \return Returns true if one of the lines changed, false if something else
        * occurred.
        *
-       * \__throw( serial_exception
+       * \throw ::exception( serial_exception
        */
       virtual bool
       waitForChange ();

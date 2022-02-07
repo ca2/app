@@ -114,7 +114,7 @@ inline stream & operator >> (stream & stream, type & type)
 //   if (!pproperty)
 //   {
 //
-//      __throw(error_resource);
+//      throw ::exception(error_resource);
 //
 //   }
 //
@@ -129,7 +129,7 @@ inline ::index property_set::find_index(const ::atom & atom, ::index i) const
    for(; i < m_nSize; i++)
    {
 
-      if (m_pData[i]->m_id == atom)
+      if (m_pData[i]->m_atom == atom)
       {
 
          return i;

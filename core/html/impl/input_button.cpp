@@ -61,12 +61,12 @@ namespace html
 
          __defer_compose_new(m_pbutton);
 
-         m_pbutton->m_id = pelemental->m_pbase->get_tag()->get_attr_value("atom");
+         m_pbutton->m_atom = pelemental->m_pbase->get_tag()->get_attr_value("atom");
 
-         if (m_pbutton->m_id.is_empty())
+         if (m_pbutton->m_atom.is_empty())
          {
 
-            m_pbutton->m_id = pelemental->m_pbase->get_tag()->get_attr_value("name");
+            m_pbutton->m_atom = pelemental->m_pbase->get_tag()->get_attr_value("name");
 
          }
 
@@ -126,10 +126,10 @@ namespace html
          //::rectangle_i32 rectangleWindow;
          //m_pbutton->get_window_rect(rectangleWindow);
          //m_pbutton->GetWindow()->screen_to_client(rectangleWindow);
-         //auto pointPreviousImpactportOrg = pgraphics->GetImpactportOrg();
-         //pgraphics->OffsetImpactportOrg((i32) m_box.left, (i32) m_box.top);
+         //auto pointPreviousViewportOrg = pgraphics->GetViewportOrg();
+         //pgraphics->OffsetViewportOrg((i32) m_box.left, (i32) m_box.top);
          m_pbutton->_000CallOnDraw(pgraphics);
-         //pgraphics->SetImpactportOrg(pointPreviousImpactportOrg);
+         //pgraphics->SetViewportOrg(pointPreviousViewportOrg);
 
       }
 

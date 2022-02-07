@@ -125,7 +125,7 @@ namespace user
 
          ////VIEW::handle(ptopic, pcontext);
 
-         //if (ptopic->m_pextendedtopic->m_bRet)
+         //if (ptopic->get_extended_topic()->m_bRet)
          //{
 
          //   return;
@@ -146,7 +146,7 @@ namespace user
 
          //   puiParent->handle(pevent);
 
-         //   if (ptopic->m_pextendedtopic->m_bRet)
+         //   if (ptopic->get_extended_topic()->m_bRet)
          //   {
 
          //      return;
@@ -195,7 +195,7 @@ namespace user
 
       //   VIEW::handle(ptopic, pcontext);
 
-      //   if(ptopic->m_pextendedtopic->m_bRet)
+      //   if(ptopic->get_extended_topic()->m_bRet)
       //   {
 
       //      return;
@@ -216,7 +216,7 @@ namespace user
 
       //      puiParent->handle(ptopic, pcontext);
 
-      //      if (ptopic->m_pextendedtopic->m_bRet)
+      //      if (ptopic->get_extended_topic()->m_bRet)
       //      {
 
       //         return;

@@ -35,7 +35,7 @@ namespace user
          virtual void initialize_edit_impl(document * pdocument);
 
 
-         virtual void on_after_change(::enum_topic etopic) override;
+         virtual void on_after_change(const ::atom & atom) override;
          virtual double get_rotate() override;
 
 

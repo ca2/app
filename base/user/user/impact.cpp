@@ -150,26 +150,17 @@ namespace user
 
       {
 
-         ::topic topic;
+         ::extended_topic extendedtopic(::id_on_create_impact);
 
-         topic.m_puserelement              = this;
+         extendedtopic.m_puserelement              = this;
 
-         topic.m_id                      = ::id_on_create_impact;
+         extendedtopic.m_actioncontext.m_pmessage    = pmessage;
 
-         topic.m_actioncontext.m_pmessage    = pmessage;
+         extendedtopic.m_actioncontext.add(e_source_initialize);
 
-         topic.m_actioncontext.add(e_source_initialize);
-
-         route(&topic);
+         route(&extendedtopic);
 
       }
-
-      //if (get_parent_frame() != nullptr)
-      //{
-
-      //   get_parent_frame()->m_interactionaCommandHandlers.add(this);
-
-      //}
 
       pmessagecreate->m_lresult = 0;
 
@@ -190,13 +181,6 @@ namespace user
 
       }
 
-      //if (get_parent_frame() != nullptr)
-      //{
-
-      //   get_parent_frame()->m_interactionaCommandHandlers.erase(this);
-
-      //}
-
       if (m_pdocument != nullptr)
       {
 
@@ -204,7 +188,6 @@ namespace user
 
       }
 
-      //   ::user::interaction::on_destroy();
    }
 
 
@@ -360,7 +343,7 @@ namespace user
    //   //   }
    //   //}
 
-   //   //if(ptopic->m_id == id_set_edit_file)
+   //   //if(ptopic->m_atom == id_set_edit_file)
    //   //{
 
    //   //   post_simple_command(e_simple_command_set_edit_file, pobject);
@@ -424,7 +407,7 @@ namespace user
    ::atom impact::get_toolbar_id()
    {
 
-      return get_document()->m_pimpactsystem->m_id.to_string() + "/" + m_id.to_string();
+      return get_document()->m_pimpactsystem->m_atom.to_string() + "/" + m_atom.to_string();
 
    }
 
@@ -790,7 +773,7 @@ namespace user
 
       pusersystem->m_pdocumentCurrent = get_document();
 
-      return ::user::create_view(pusersystem, pimpactdata->m_pplaceholder, pimpactdata->m_id);
+      return ::user::create_view(pusersystem, pimpactdata->m_pplaceholder, pimpactdata->m_atom);
 
    }
 
@@ -925,7 +908,7 @@ namespace user
 
       pinteraction->display(e_display_normal);
 
-      pinteraction->m_id = atom;
+      pinteraction->m_atom = atom;
 
       //if (!pinteraction->create_interaction(nullptr, nullptr, WS_VISIBLE | WS_CHILD, puserinteractionParent, atom, pcreate))
       //if (!pinteraction->create_child(puserinteractionParent))

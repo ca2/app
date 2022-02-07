@@ -202,7 +202,7 @@ void stream::set_length(filesize len)
    if (len != 0)
    {
 
-      __throw(error_bad_argument);
+      throw ::exception(error_bad_argument);
 
    }
 
@@ -488,7 +488,7 @@ void stream::write(const ::payload & payload)
       *this << payload.propset();
       break;
    case e_type_id:
-      *this << payload.m_id;
+      *this << payload.m_atom;
       break;
    case e_type_element:
    case e_type_path:
@@ -499,7 +499,7 @@ void stream::write(const ::payload & payload)
    }
    break;
    default:
-      __throw(error_io, "payload::write ::payload type not recognized");
+      throw ::exception(error_io, "payload::write ::payload type not recognized");
    }
 
 }
@@ -508,7 +508,7 @@ void stream::write(const ::payload & payload)
 void stream::write(const property & property)
 {
 
-   write(property.m_id);
+   write(property.m_atom);
    write((const ::payload &) property);
 
 }
@@ -969,7 +969,7 @@ void stream::exchange(const ::atom & atom, const char * psz)
    if(is_loading())
    {
 
-      __throw(error_io);
+      throw ::exception(error_io);
 
    }
    else
@@ -991,7 +991,7 @@ void stream::exchange(const ::atom & atom, const unichar * wch)
    if(is_loading())
    {
 
-      __throw(error_io);
+      throw ::exception(error_io);
 
    }
    else

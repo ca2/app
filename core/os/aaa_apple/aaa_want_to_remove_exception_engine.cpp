@@ -368,7 +368,7 @@ int_bool __stdcall My_ReadProcessMemory32(HANDLE hProcess, ::u32 qwBaseAddress, 
 
    SIZE_T size = 0;
 #if defined(_UWP) || defined(LINUX) || defined(APPLEOS) || defined(ANDROID) || defined(SOLARIS)
-   __throw(todo);
+   throw ::exception(todo);
 #else
    if (!ReadProcessMemory(hProcess, (const void *)qwBaseAddress, (LPVOID)pBuffer, nSize, &size))
 

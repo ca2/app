@@ -199,7 +199,7 @@ namespace user
       catch (const exception& exception)
       {
 
-         if (exception.m_id == atom)
+         if (exception.m_atom == atom)
          {
 
             //::acme::del(pimpactdata);
@@ -302,7 +302,7 @@ namespace user
       }
       catch (const exception& exception)
       {
-         if (exception.m_id == pimpactdata->m_id)
+         if (exception.m_atom == pimpactdata->m_atom)
          {
 
             //::acme::del(pimpactdata);
@@ -317,7 +317,7 @@ namespace user
       catch (const ::exception & exception)
       {
 
-         m_impactdatamap.erase_key(pimpactdata->m_id);
+         m_impactdatamap.erase_key(pimpactdata->m_atom);
 
          handle_exception(exception);
 
@@ -401,7 +401,7 @@ namespace user
       //   && pupdown->m_eupdown != updown_none)
       //{
 
-      //   string strImpact = pupdown->m_id;
+      //   string strImpact = pupdown->m_atom;
 
       //   auto& app = papplication;
 
@@ -433,7 +433,7 @@ namespace user
       //   && pupdown->m_eupdown != updown_none)
       //{
 
-      //   string strImpact = pupdown->m_id;
+      //   string strImpact = pupdown->m_atom;
 
       //   auto pdataclient = papplication->cast < ::database::client > ();
 
@@ -463,7 +463,7 @@ namespace user
       //   && pupdown->m_eupdown != updown_none)
       //{
 
-      //   string strImpact = pupdown->m_id;
+      //   string strImpact = pupdown->m_atom;
 
       //   auto pdataclient = papplication->cast < ::database::client >();
 
@@ -493,7 +493,7 @@ namespace user
          && pupdown->m_eupdown != updown_none)
       {
 
-         string strImpact = pupdown->m_id;
+         string strImpact = pupdown->m_atom;
 
          auto pdataclient = papplication->cast < ::database::client >();
 
@@ -547,7 +547,7 @@ namespace user
    ::user::place_holder * impact_host::updown_target_get_place_holder(::user::interaction* pinteraction, ::user::document* pdocument)
    {
 
-      auto pimpactdata = impact_host_get_impact_data(pinteraction->m_id, pinteraction->get_window_text(), pinteraction, pdocument);
+      auto pimpactdata = impact_host_get_impact_data(pinteraction->m_atom, pinteraction->get_window_text(), pinteraction, pdocument);
 
       if (::is_null(pimpactdata))
       {

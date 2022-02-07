@@ -104,7 +104,7 @@ namespace browser
 
 
 
-      bool bAlternate = string(m_id).contains_ci("switcher");
+      bool bAlternate = string(m_atom).contains_ci("switcher");
 
       m_prender = __new(render(get_application(), bAlternate));
 
@@ -259,12 +259,12 @@ namespace browser
 
       impact_base::handle(ptopic, pcontext);
 
-      if (ptopic->m_id == id_after_change_text)
+      if (ptopic->m_atom == id_after_change_text)
       {
 
          auto * peditview = _001TypedWindow < ::userex::top_edit_view >();
 
-         if (peditview != nullptr && ptopic->m_pextendedtopic->user_interaction() == peditview)
+         if (peditview != nullptr && ptopic->get_extended_topic()->user_interaction() == peditview)
          {
 
             string strText;
@@ -328,7 +328,7 @@ namespace browser
       event.x = point.x;
       event.y = point.y;
 
-      if (pmouse->m_id == e_message_left_button_down)
+      if (pmouse->m_atom == e_message_left_button_down)
       {
 
          papplication->m_ppaneview->m_pviewLastBilbo = this;
@@ -336,13 +336,13 @@ namespace browser
          m_pbrowser->GetHost()->SendMouseClickEvent(event, cef_mouse_button_type_t::MBT_LEFT, false, 1);
 
       }
-      else if (pmouse->m_id == e_message_left_button_up)
+      else if (pmouse->m_atom == e_message_left_button_up)
       {
 
          m_pbrowser->GetHost()->SendMouseClickEvent(event, cef_mouse_button_type_t::MBT_LEFT, true, 1);
 
       }
-      else if (pmouse->m_id == e_message_mouse_move)
+      else if (pmouse->m_atom == e_message_mouse_move)
       {
 
          m_pbrowser->GetHost()->SendMouseMoveEvent(event, false);

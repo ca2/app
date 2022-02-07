@@ -141,7 +141,7 @@ namespace helloworld
    void main_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if(ptopic->m_id == ::id_click)
+      if(ptopic->m_atom == ::id_click)
       {
 
          if(ptopic->user_element_id() == "helloworld_toggle")

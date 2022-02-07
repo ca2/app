@@ -47,7 +47,7 @@ public:
    void post_destroy_all();
 
 
-   inline ::duration poll_time() { return m_psystem->get_update_poll_time(m_id); };
+   inline ::duration poll_time() { return m_psystem->get_update_poll_time(m_atom); };
 
 
    static inline bool should_poll(const ::duration & duration)
@@ -61,14 +61,14 @@ public:
    ::topic & operator=(const ::atom & atom)
    {
 
-      m_id = atom;
+      m_atom = atom;
 
       return *this;
 
    }
 
 
-   inline bool operator==(const ::atom & atom) const { return m_id == atom || m_id == FULL_ID; }
+   inline bool operator==(const ::atom & atom) const { return m_atom == atom || m_atom == FULL_ID; }
 
    void subject_common_construct();
 

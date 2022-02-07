@@ -197,7 +197,7 @@ namespace universal_windows
    //::file::path dir_system::userquicklaunch(::object* pobject)
    //{
 
-   //   __throw(todo);
+   //   throw ::exception(todo);
 
    //}
 
@@ -205,7 +205,7 @@ namespace universal_windows
    //::file::path dir_system::userprograms(::object* pobject)
    //{
 
-   //   __throw(todo);
+   //   throw ::exception(todo);
 
    //}
 
@@ -213,7 +213,7 @@ namespace universal_windows
    //::file::path dir_system::commonprograms()
    //{
 
-   //   __throw(todo);
+   //   throw ::exception(todo);
 
    //}
 

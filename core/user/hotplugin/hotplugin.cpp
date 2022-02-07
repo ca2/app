@@ -33,7 +33,7 @@ namespace hotplugin
 
       g_iSystemCount++;
 
-      __throw(todo(nullptr));
+      throw ::exception(todo(nullptr));
 
 //      try
 //      {

@@ -70,7 +70,7 @@ namespace file
    public:
 
 
-      watch_id                            m_id;
+      watch_id                            m_atom;
       ::file::path                        m_pathFolder;
       __pointer_array(listener)           m_listenera;
       __pointer(thread)                   m_pthread;
@@ -120,7 +120,7 @@ namespace file
 
       watch_map            m_watchmap;
 
-      watch_id             m_idLast;
+      watch_id             m_atomLast;
 
       bool                 m_bCreateWatchThread;
 

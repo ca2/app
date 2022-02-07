@@ -120,6 +120,7 @@ error_need_restart_application_to_activate_feature,
 error_function_entry_not_found,
 error_some_error_has_occurred,
 error_library_not_found,
+error_library_not_loaded,
 
 
 error_time_bag = INT_FAILURE_STATUS(STATUS_RANGE_EXCEPTION),

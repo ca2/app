@@ -110,7 +110,7 @@ bool ifs::has_subdir(const ::file::path & path)
       if(str == "You have not logged in! Exiting!")
       {
 
-         __throw(error_wrong_state, "uifs:// You have not logged in!");
+         throw ::exception(error_wrong_state, "uifs:// You have not logged in!");
 
       }
 
@@ -122,7 +122,7 @@ bool ifs::has_subdir(const ::file::path & path)
 
    }
 
-   __throw(todo, "xml");
+   throw ::exception(todo, "xml");
 
    //xml::document doc;
 

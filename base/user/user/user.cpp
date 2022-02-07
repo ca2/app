@@ -1294,7 +1294,7 @@ namespace base
 
             ERROR("aura::session::defer_instantiate_user_theme");
 
-            __throw(error_resource);
+            throw ::exception(error_resource);
 
          }
 

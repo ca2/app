@@ -6,7 +6,7 @@
 #ifdef PARALLELIZATION_PTHREAD
 
 
-#include "acme/node/operating_system/ansi/_pthread.h"
+#include "acme/operating_system/ansi/_pthread.h"
 
 
 #endif
@@ -336,7 +336,7 @@ void task::stop_task()
 
    // but it should wait for thread to finish...
 
-   __throw(todo);
+   throw ::exception(todo);
 
    //return estatus;
 
@@ -720,9 +720,9 @@ void task::term_task()
 //
 //   //      }
 //
-//   //      m_id = __type_name(pelement);
+//   //      m_atom = __type_name(pelement);
 //
-//   //      task_set_name(m_id);
+//   //      task_set_name(m_atom);
 //
 //   //      m_pelement.m_p = nullptr;
 //
@@ -740,7 +740,7 @@ void task::term_task()
 bool task::do_events()
 {
    
-   throw interface_only_exception("tasks don't have message queue, threads do");
+   throw ::interface_only("tasks don't have message queue, threads do");
 
    return true;
 
@@ -750,7 +750,7 @@ bool task::do_events()
 bool task::defer_pump_message()
 {
 
-   throw interface_only_exception("tasks don't have message queue, threads do");
+   throw ::interface_only("tasks don't have message queue, threads do");
 
    return false;
 
@@ -760,7 +760,7 @@ bool task::defer_pump_message()
 bool task::has_message() const
 {
 
-   throw interface_only_exception("tasks don't have message queue, threads do");
+   throw ::interface_only("tasks don't have message queue, threads do");
 
    return false;
 
@@ -776,7 +776,7 @@ bool task::has_message() const
 //
 //   m_pelement = pelement;
 //
-//   m_id = __type_name(pelement);
+//   m_atom = __type_name(pelement);
 //
 //   return branch(epriority, nStackSize, uCreateFlags ADD_PARAM_SEC_ATTRS);
 //
@@ -786,28 +786,28 @@ bool task::has_message() const
 void task::branch(::enum_priority epriority, u32 nStackSize, u32 uCreateFlags ARG_SEC_ATTRS)
 {
 
-   if (m_id.is_empty())
+   if (m_atom.is_empty())
    {
 
       if (m_pelement)
       {
 
-         m_id = __type_name(m_pelement);
+         m_atom = __type_name(m_pelement);
 
       }
       else
       {
 
-         m_id = __type_name(this);
+         m_atom = __type_name(this);
 
       }
 
    }
 
-   if (m_id.is_empty() || m_id == "task" || m_id == "thread")
+   if (m_atom.is_empty() || m_atom == "task" || m_atom == "thread")
    {
 
-      __throw(error_bad_argument);
+      throw ::exception(error_bad_argument);
 
       ///return ::error_failed;
 
@@ -822,7 +822,7 @@ void task::branch(::enum_priority epriority, u32 nStackSize, u32 uCreateFlags AR
 
 #ifdef __DEBUG
 
-   string strId = m_id;
+   string strId = m_atom;
 
    if (strId.contains_ci("forking_thread"))
    {
@@ -938,7 +938,7 @@ void task::branch(::enum_priority epriority, u32 nStackSize, u32 uCreateFlags AR
       else
       {
 
-         __throw(error_invalid_usage);
+         throw ::exception(error_invalid_usage);
 
       }
 
@@ -999,28 +999,28 @@ void task::branch(::enum_priority epriority, u32 nStackSize, u32 uCreateFlags AR
 void task::begin_synchronously(::enum_priority epriority, u32 nStackSize, u32 uCreateFlags ARG_SEC_ATTRS)
 {
 
-   if (m_id.is_empty())
+   if (m_atom.is_empty())
    {
 
       if (m_pelement)
       {
 
-         m_id = __type_name(m_pelement);
+         m_atom = __type_name(m_pelement);
 
       }
       else
       {
 
-         m_id = __type_name(this);
+         m_atom = __type_name(this);
 
       }
 
    }
 
-   if (m_id.is_empty() || m_id == "task" || m_id == "thread")
+   if (m_atom.is_empty() || m_atom == "task" || m_atom == "thread")
    {
 
-      __throw(error_bad_argument);
+      throw ::exception(error_bad_argument);
 
       ///return ::error_failed;
 
@@ -1035,7 +1035,7 @@ void task::begin_synchronously(::enum_priority epriority, u32 nStackSize, u32 uC
 
 #ifdef __DEBUG
 
-   string strId = m_id;
+   string strId = m_atom;
 
    if (strId.contains_ci("forking_thread"))
    {
@@ -1151,7 +1151,7 @@ void task::begin_synchronously(::enum_priority epriority, u32 nStackSize, u32 uC
       else
       {
 
-         __throw(error_invalid_usage);
+         throw ::exception(error_invalid_usage);
 
       }
 

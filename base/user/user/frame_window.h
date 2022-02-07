@@ -35,7 +35,7 @@ namespace user
       boolean                                      m_bWindowFrame;
       bool                                         m_bLayered;
       i32                                          m_iFrameData;
-      ::atom                                         m_idHelp;         // xxx mrs
+      ::atom                                         m_atomHelp;         // xxx mrs
       ::user::impact_system *                      m_pdocumenttemplate;
 
       i32                                          m_nWindow;  // general purpose interaction_impl number - display as ":n"

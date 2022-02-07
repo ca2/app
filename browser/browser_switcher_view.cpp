@@ -88,7 +88,7 @@ namespace browser
    void switcher_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if(ptopic->m_id == ::id_click)
+      if(ptopic->m_atom == ::id_click)
       {
 
          if(ptopic->user_element_id() == "switcher_toggle")
@@ -98,7 +98,7 @@ namespace browser
 
             pview->m_prender->m_bLite = !pview->m_prender->m_bLite;
 
-            ptopic->m_pextendedtopic->m_bRet = true;
+            ptopic->get_extended_topic()->m_bRet = true;
             return;
 
          }
@@ -110,7 +110,7 @@ namespace browser
 
             m_pimpact->on_layout(pgraphics);
 
-            ptopic->m_pextendedtopic->m_bRet = true;
+            ptopic->get_extended_topic()->m_bRet = true;
             return;
 
          }

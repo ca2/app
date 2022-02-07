@@ -26,7 +26,7 @@ namespace message
 
       common_construct();
 
-      m_id.set_compounded_type(::atom::e_type_command);
+      m_atom.set_compounded_type(::atom::e_type_command);
       m_bRadioChanged = false;
 
    }
@@ -250,7 +250,7 @@ namespace message
    void command::do_probe(channel * ptarget)
    {
 
-      if (m_id.is_empty())
+      if (m_atom.is_empty())
          return;     // ignore invalid IDs
 
       ENSURE_VALID(ptarget);

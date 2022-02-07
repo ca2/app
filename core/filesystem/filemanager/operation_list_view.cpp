@@ -163,7 +163,7 @@ namespace filemanager
 
       BASE::handle(ptopic, pcontext);
 
-      if (ptopic->m_id == INITIAL_UPDATE)
+      if (ptopic->m_atom == INITIAL_UPDATE)
       {
 
          _001UpdateColumns();

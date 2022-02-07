@@ -141,7 +141,7 @@ void oswindow_data::set_user_interaction_impl(::user::interaction_impl * pimpl)
 {
 
    if(is_null())
-      __throw(::exception("error, m_pdata cannot be nullptr to ::oswindow::set_user_interaction"));
+      throw ::exception(::exception("error, m_pdata cannot be nullptr to ::oswindow::set_user_interaction"));
 
    m_pimpl = pimpl;
 

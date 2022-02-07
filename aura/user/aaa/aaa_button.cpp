@@ -272,7 +272,7 @@ namespace user
 
       }
 
-      m_ppropertyCheck = fetch_property(m_id, true);
+      m_ppropertyCheck = fetch_property(m_atom, true);
 
       if (m_ppropertyCheck)
       {
@@ -464,7 +464,7 @@ namespace user
 
          ::topic topic;
          topic.m_puserinteraction = this;
-         topic.m_id = ::id_click;
+         topic.m_atom = ::id_click;
          topic.m_pmessage = pmessage;
          route(&topic);
          pmessage->m_bRet = topic.m_bRet;

@@ -4,14 +4,14 @@
 #include "interaction_prodevian.h"
 #include "interaction_thread.h"
 #include "acme/parallelization/message_queue.h"
-#include "acme/node/operating_system/_user.h"
+#include "acme/operating_system/_user.h"
 #include "aura/graphics/draw2d/graphics.h"
 
 
 #ifdef PARALLELIZATION_PTHREAD
 
 
-#include "acme/node/operating_system/ansi/_pthread.h"
+#include "acme/operating_system/ansi/_pthread.h"
 
 
 #endif
@@ -423,7 +423,7 @@ namespace user
 
             get_message(&m_message, NULL, 0, 0);
 
-            if(m_message.m_id == e_message_quit)
+            if(m_message.m_atom == e_message_quit)
             {
 
                CATEGORY_INFORMATION(prodevian, "Prodevian has quit!! " << strType);
@@ -446,7 +446,7 @@ namespace user
             while (peek_message(&m_message, NULL, 0, 0, PM_NOREMOVE))
             {
 
-               if (m_message.m_id == e_message_redraw || m_message.m_id == WM_KICKIDLE)
+               if (m_message.m_atom == e_message_redraw || m_message.m_atom == WM_KICKIDLE)
                {
 
                   iSkipped++;
@@ -469,13 +469,13 @@ namespace user
 
    #endif
 
-            if (m_message.m_id == e_message_null)
+            if (m_message.m_atom == e_message_null)
             {
 
                return true;
 
             }
-            else if (m_message.m_id != e_message_redraw)
+            else if (m_message.m_atom != e_message_redraw)
             {
 
                return true;
@@ -497,13 +497,13 @@ namespace user
             while (peek_message(&m_message, NULL, 0, 0, PM_REMOVE))
             {
 
-               if (m_message.m_id == e_message_null)
+               if (m_message.m_atom == e_message_null)
                {
 
                   return true;
 
                }
-               else if (m_message.m_id != e_message_redraw)
+               else if (m_message.m_atom != e_message_redraw)
                {
 
                   return true;

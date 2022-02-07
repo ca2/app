@@ -712,7 +712,7 @@
     <ClInclude Include="factory_exchange.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="regular_expression.h" />
-    <ClInclude Include="topic.h" />
+    <ClInclude Include="result.h" />
     <ClInclude Include="util_impl.h" />
     <ClInclude Include="_.h" />
     <ClInclude Include="_2.h" />
@@ -733,7 +733,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="regular_expression.cpp" />
-    <ClCompile Include="topic.cpp" />
+    <ClCompile Include="result.cpp" />
     <ClCompile Include="_.cpp" />
   </ItemGroup>
   <ItemGroup>

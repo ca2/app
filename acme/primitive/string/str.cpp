@@ -16,7 +16,7 @@ namespace hex
          pszNext = ::str::__utf8_inc(psz);
          if (pszNext > pszEnd)
          {
-            __throw(error_parsing, "hexadecimal digit expected, premature end");
+            throw ::exception(error_parsing, "hexadecimal digit expected, premature end");
             return -1;
          }
          if ((pszNext - psz == 1) && ((*psz >= '0' && *psz <= '9') || (*psz >= 'A' && *psz <= 'F') || (*psz >= 'a' && *psz <= 'f')))
@@ -25,7 +25,7 @@ namespace hex
          }
          else
          {
-            __throw(error_parsing, "hexadecimal digit expect expected here");
+            throw ::exception(error_parsing, "hexadecimal digit expect expected here");
             return -1;
          }
       }
@@ -891,7 +891,7 @@ namespace str
          if(iFind < iStart)
          {
 
-            __throw(error_parsing, "random replace error");
+            throw ::exception(error_parsing, "random replace error");
 
             return "";
 
@@ -2126,37 +2126,37 @@ namespace str
          *pslide += 0;
          return psz;
       }
-      if(*psz++ == 0)   __throw(error_invalid_character, "invalid utf8 character");
+      if(*psz++ == 0)   throw ::exception(error_invalid_character, "invalid utf8 character");
       if(len == 1)
       {
          *pslide += 1;
          return psz;
       }
-      if(*psz++ == 0)   __throw(error_invalid_character, "invalid utf8 character");
+      if(*psz++ == 0)   throw ::exception(error_invalid_character, "invalid utf8 character");
       if(len == 2)
       {
          *pslide += 2;
          return psz;
       }
-      if(*psz++ == 0)   __throw(error_invalid_character, "invalid utf8 character");
+      if(*psz++ == 0)   throw ::exception(error_invalid_character, "invalid utf8 character");
       if(len == 3)
       {
          *pslide += 3;
          return psz;
       }
-      if(*psz++ == 0)   __throw(error_invalid_character, "invalid utf8 character");
+      if(*psz++ == 0)   throw ::exception(error_invalid_character, "invalid utf8 character");
       if(len == 4)
       {
          *pslide += 4;
          return psz;
       }
-      if(*psz++ == 0)   __throw(error_invalid_character, "invalid utf8 character");
+      if(*psz++ == 0)   throw ::exception(error_invalid_character, "invalid utf8 character");
       if(len == 5)
       {
          *pslide += 5;
          return psz;
       }
-      if(*psz++ == 0)   __throw(error_invalid_character, "invalid utf8 character");
+      if(*psz++ == 0)   throw ::exception(error_invalid_character, "invalid utf8 character");
       if(len == 6)
       {
          *pslide += 6;
@@ -2690,7 +2690,7 @@ namespace str
          if(pszParse[idx] != psz[idx])
          {
 
-            __throw(error_parsing, "Name does not match expected");
+            throw ::exception(error_parsing, "Name does not match expected");
 
             break;
 
@@ -2750,7 +2750,7 @@ namespace str
       {
          if(pszParse[idx] != psz[idx])
          {
-            __throw(error_parsing, "Name does not match expected");
+            throw ::exception(error_parsing, "Name does not match expected");
             break;
          }
       }
@@ -2765,7 +2765,7 @@ namespace str
       {
          if(pszParse[idx] != psz[idx])
          {
-            __throw(error_parsing, "Name does not match expected");
+            throw ::exception(error_parsing, "Name does not match expected");
             break;
          }
       }
@@ -2783,7 +2783,7 @@ namespace str
       }
       if(i < iMinimumCount)
       {
-         __throw(error_parsing, "Space is required");
+         throw ::exception(error_parsing, "Space is required");
       }
       pszParse = psz;
    }
@@ -2809,7 +2809,7 @@ namespace str
       if(uMax < uMin)
       {
 
-         __throw(error_bad_argument, "maximum should be greater than minimum");
+         throw ::exception(error_bad_argument, "maximum should be greater than minimum");
 
       }
 
@@ -2831,7 +2831,7 @@ namespace str
       if(psz == pszParse)
       {
 
-         __throw(error_parsing, "empty natural found");
+         throw ::exception(error_parsing, "empty natural found");
 
       }
 
@@ -2840,13 +2840,13 @@ namespace str
       if(u < uMin)
       {
 
-         __throw(error_parsing, "natural less than minimum");
+         throw ::exception(error_parsing, "natural less than minimum");
 
       }
       else if(u > uMax)
       {
 
-         __throw(error_parsing, "natural greater than maximum");
+         throw ::exception(error_parsing, "natural greater than maximum");
 
       }
 
@@ -2866,14 +2866,14 @@ namespace str
          psz = __utf8_inc(psz);
          if(psz > pszEnd)
          {
-            __throw(error_parsing, "premature end");
+            throw ::exception(error_parsing, "premature end");
             break;
          }
          i++;
       }
       if(i < iMinimumCount)
       {
-         __throw(error_parsing, "Space is required");
+         throw ::exception(error_parsing, "Space is required");
       }
       pszParse = psz;
    }
@@ -2925,7 +2925,7 @@ namespace str
       }
       if(psz == pszParse)
       {
-         __throw(error_parsing, "no hex consumed");
+         throw ::exception(error_parsing, "no hex consumed");
          return "";
       }
       string str(pszParse, psz - pszParse);
@@ -2946,7 +2946,7 @@ namespace str
          {
             if(!::str::ch::is_letter(ca) || *ca == '\0')
             {
-               __throw(error_parsing, "NCName required here");
+               throw ::exception(error_parsing, "NCName required here");
                return "";
             }
             start = false;
@@ -2974,13 +2974,13 @@ namespace str
    //   utf8char.parse(psz); // quote character
    //   if(utf8char.m_chLen != 1)
    //   {
-   //      __throw(error_parsing, "Quote character is required here");
+   //      throw ::exception(error_parsing, "Quote character is required here");
    //      return "";
    //   }
    //   char qc = utf8char.m_sz[0];
    //   if(qc != '\"' && qc != '\\')
    //   {
-   //      __throw(error_parsing, "Quote character is required here");
+   //      throw ::exception(error_parsing, "Quote character is required here");
    //      return "";
    //   }
    //   int iPos = utf8char.m_chLen;
@@ -2991,7 +2991,7 @@ namespace str
    //      iPos += utf8char.parse(&psz[iPos]);
    //      if(utf8char.m_chLen <= 0)
    //      {
-   //         __throw(error_parsing, "Quote character is required here, premature end");
+   //         throw ::exception(error_parsing, "Quote character is required here, premature end");
    //         return "";
    //      }
    //      if(utf8char.m_chLen == 1 && utf8char.m_sz[0] == qc)
@@ -3014,7 +3014,7 @@ namespace str
       if(*psz != '\"' && *psz != '\'')
       {
 
-         __throw(error_parsing, "Quote character is required here");
+         throw ::exception(error_parsing, "Quote character is required here");
 
          return "";
 
@@ -3036,7 +3036,7 @@ skip:
          if(psz > pszEnd || *psz == '\0')
          {
 
-            __throw(error_parsing, "Quote character is required here, premature end");
+            throw ::exception(error_parsing, "Quote character is required here, premature end");
 
             return "";
 
@@ -3050,7 +3050,7 @@ skip:
             if(psz > pszEnd)
             {
 
-               __throw(error_parsing, "Quote character is required here, premature end");
+               throw ::exception(error_parsing, "Quote character is required here, premature end");
 
                return "";
 
@@ -3111,7 +3111,7 @@ skip:
       if (*psz != '\"' && *psz != '\\')
       {
 
-         __throw(error_parsing, "Quote character is required here");
+         throw ::exception(error_parsing, "Quote character is required here");
 
          return;
 
@@ -3131,7 +3131,7 @@ skip:
          if (psz > pszEnd)
          {
 
-            __throw(error_parsing, "Quote character is required here, premature end");
+            throw ::exception(error_parsing, "Quote character is required here, premature end");
 
             return;
 
@@ -3169,7 +3169,7 @@ skip:
       if (*psz != '\"' && *psz != '\\')
       {
 
-         __throw(error_parsing, "Quote character is required here");
+         throw ::exception(error_parsing, "Quote character is required here");
 
          return;
 
@@ -3189,7 +3189,7 @@ skip:
          if (psz > pszEnd)
          {
 
-            __throw(error_parsing, "Quote character is required here, premature end");
+            throw ::exception(error_parsing, "Quote character is required here, premature end");
 
             return;
 
@@ -3324,7 +3324,7 @@ skip:
       char qc = *psz; // quote character
       if(qc != '\"' && qc != '\'')
       {
-         __throw(error_parsing, "Quote character is required here, premature end");
+         throw ::exception(error_parsing, "Quote character is required here, premature end");
          return "";
       }
       psz++;
@@ -3337,12 +3337,12 @@ skip:
          pszNext = __utf8_inc(psz);
          if(pszNext > pszEnd)
          {
-            __throw(error_parsing, "Quote character is required here, premature end");
+            throw ::exception(error_parsing, "Quote character is required here, premature end");
             return "";
          }
          if (*psz == '\0')
          {
-            __throw(error_parsing, "Quote character is required here, premature end");
+            throw ::exception(error_parsing, "Quote character is required here, premature end");
             return "";
          }
          else if(*psz == qc)
@@ -3356,7 +3356,7 @@ skip:
             pszNext = __utf8_inc(psz);
             if(pszNext > pszEnd)
             {
-               __throw(error_parsing, "Quote character is required here, premature end");
+               throw ::exception(error_parsing, "Quote character is required here, premature end");
                return "";
             }
             if(*psz == 'n')
@@ -3380,12 +3380,12 @@ skip:
                {
                   if (*psz != '\\')
                   {
-                     __throw(error_parsing, "expect back slash here (for low surrogate)");
+                     throw ::exception(error_parsing, "expect back slash here (for low surrogate)");
                   }
                   psz++;
                   if (*psz != 'u' && *psz != 'U')
                   {
-                     __throw(error_parsing, "expect 'u' character here (for low surrogate)");
+                     throw ::exception(error_parsing, "expect 'u' character here (for low surrogate)");
                   }
                   psz++;
                   u[1] = ::hex::parse_u16_exc(psz, pszEnd);
@@ -3393,7 +3393,7 @@ skip:
                   if (!utf16_is_2nd_surrogate(u[1]))
                   {
 
-                     __throw(error_parsing, "expect low surrogate");
+                     throw ::exception(error_parsing, "expect low surrogate");
 
                   }
                   else
@@ -3448,7 +3448,7 @@ skip:
       char qc = *pszParse; // quote character
       if (qc != '\"' && qc != '\'')
       {
-         __throw(error_parsing, "Quote character is required here, premature end");
+         throw ::exception(error_parsing, "Quote character is required here, premature end");
          return;
       }
       psz++;
@@ -3460,12 +3460,12 @@ skip:
          pszNext = __utf8_inc(psz);
          if (pszNext > pszEnd)
          {
-            __throw(error_parsing, "Quote character is required here, premature end");
+            throw ::exception(error_parsing, "Quote character is required here, premature end");
             return;
          }
          if (*psz == '\0')
          {
-            __throw(error_parsing, "Quote character is required here, premature end");
+            throw ::exception(error_parsing, "Quote character is required here, premature end");
             return;
          }
          else if (*psz == '\"')
@@ -3479,7 +3479,7 @@ skip:
             pszNext = __utf8_inc(psz);
             if (pszNext > pszEnd)
             {
-               __throw(error_parsing, "Quote character is required here, premature end");
+               throw ::exception(error_parsing, "Quote character is required here, premature end");
                return;
             }
             if (*psz == 'n')
@@ -3500,7 +3500,7 @@ skip:
                   pszNext = __utf8_inc(psz);
                   if (pszNext > pszEnd)
                   {
-                     __throw(error_parsing, "Quote character is required here, premature end");
+                     throw ::exception(error_parsing, "Quote character is required here, premature end");
                      return;
                   }
                   if ((pszNext - psz == 1) && ((*psz >= '0' && *psz <= '9') || (*psz >= 'A' && *psz <= 'F') || (*psz >= 'a' && *psz <= 'f')))
@@ -3508,7 +3508,7 @@ skip:
                   }
                   else
                   {
-                     __throw(error_parsing, "16 bit unicode expect here");
+                     throw ::exception(error_parsing, "16 bit unicode expect here");
                      return;
                   }
 
@@ -3737,7 +3737,7 @@ skip:
       if(strQuoteChar != "\"" && strQuoteChar != "\\")
       {
 
-         __throw(error_parsing, "Quote character is required here");
+         throw ::exception(error_parsing, "Quote character is required here");
 
          return "";
 
@@ -3754,7 +3754,7 @@ skip:
          //string str = ::str::international::utf8_to_unicode(qc2);
          if(strCurrentChar.is_empty())
          {
-            __throw(error_parsing, "Quote character is required here, premature end");
+            throw ::exception(error_parsing, "Quote character is required here, premature end");
             return "";
          }
          if(strPreviousChar == "\\")

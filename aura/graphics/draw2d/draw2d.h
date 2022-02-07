@@ -204,11 +204,11 @@ namespace draw2d
             pbrushText->create_solid(argb(255, 255, 255, 255));
             pimage->get_graphics()->set(pbrushText);
 
-            pimage->get_graphics()->OffsetImpactportOrg(rectangleCache.left - rectangle.left, rectangleCache.top - rectangle.top);
+            pimage->get_graphics()->OffsetViewportOrg(rectangleCache.left - rectangle.left, rectangleCache.top - rectangle.top);
 
             pred(pimage->get_graphics());
 
-            pimage->get_graphics()->OffsetImpactportOrg(-rectangleCache.left + rectangle.left, -rectangleCache.top + rectangle.top);
+            pimage->get_graphics()->OffsetViewportOrg(-rectangleCache.left + rectangle.left, -rectangleCache.top + rectangle.top);
 
             __pointer(::aura::system) psystem = m_psystem;
 

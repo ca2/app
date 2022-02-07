@@ -1,7 +1,7 @@
 #include "framework.h"
 #include <sys/ipc.h>
 #include <sys/msg.h>
-#include "acme/node/operating_system/ansi/_pthread.h"
+#include "acme/operating_system/ansi/_pthread.h"
 
 
 

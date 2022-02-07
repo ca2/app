@@ -12,7 +12,7 @@ void acme_system_term();
 //::acme::layer g_layer;
 
 #ifdef _UWP
-#include "acme/node/operating_system/console.inl"
+#include "acme/operating_system/console.inl"
 
 #endif
 

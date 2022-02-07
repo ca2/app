@@ -93,7 +93,7 @@ zonetime::zonetime(time_t zonetime, int iZoneOffset) noexcept :
       if (m_i == -1)
       {
          
-         __throw(error_bad_argument);
+         throw ::exception(error_bad_argument);
 
       }
 
@@ -143,7 +143,7 @@ zonetime::zonetime(time_t zonetime, int iZoneOffset) noexcept :
          if (ptmTemp == nullptr)
             return nullptr;
 
-         // but don't __throw( exception or generate error...
+         // but don't throw ::exception( exception or generate error...
          // (reason for commenting out below, fat to be erased...)
          //         if(errno != 0)
          //          return nullptr;

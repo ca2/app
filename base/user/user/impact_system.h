@@ -40,7 +40,7 @@ namespace user
       };
 
 
-      //::atom                             m_idToolbar;
+      //::atom                             m_atomToolbar;
       bool                             m_bHiddenOnNotifyIcon;
 
       ::user::interaction *            m_puserinteractionOwner;

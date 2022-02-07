@@ -80,7 +80,7 @@ namespace simple_ui
 //
 //      topic.m_puserinteraction = this;
 //
-//      topic.m_id = eevent;
+//      topic.m_atom = eevent;
 //
 //      topic.m_pmessage = pmessage;
 //
@@ -239,9 +239,9 @@ namespace simple_ui
 //
 //            topic.m_puserinteraction = this;
 //
-//            //topic.m_id = m_id;
+//            //topic.m_atom = m_atom;
 //
-//            topic.m_id = ::id_click;
+//            topic.m_atom = ::id_click;
 //
 //            topic.m_pmessage = pmouse->
 //
@@ -258,7 +258,7 @@ namespace simple_ui
 //
 //               ::message::command command;
 //
-//               command.m_id = m_id;
+//               command.m_atom = m_atom;
 //
 //               command.m_puiOther = this;
 //
@@ -321,7 +321,7 @@ namespace simple_ui
 //
 //            topic.m_puserinteraction = this;
 //
-//            topic.m_id = ::id_mouse_enter;
+//            topic.m_atom = ::id_mouse_enter;
 //
 //            route(&topic);
 //
@@ -333,7 +333,7 @@ namespace simple_ui
 //
 //            topic.m_puserinteraction = this;
 //
-//            topic.m_id = ::id_mouse_leave;
+//            topic.m_atom = ::id_mouse_leave;
 //
 //            route(&topic);
 //
@@ -364,7 +364,7 @@ namespace simple_ui
 //
 //         topic.m_puserinteraction = this;
 //
-//         topic.m_id = ::id_mouse_leave;
+//         topic.m_atom = ::id_mouse_leave;
 //
 //         route(&topic);
 //

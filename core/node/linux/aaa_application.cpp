@@ -73,7 +73,7 @@ namespace aura
    {
       return "";
 
-      __throw(todo);
+      throw ::exception(todo);
 
       /*      char pszModuleFilePath[MAX_PATH + 1];
 
@@ -359,7 +359,7 @@ namespace aura
 //      ::u32 dwRet = ::GetModuleFileName(m_hInstance, szBuff, _MAX_PATH);
 //      ASSERT( dwRet != 0 && dwRet != _MAX_PATH );
 //      if( dwRet == 0 || dwRet == _MAX_PATH )
-//         __throw(aura_exception());*/
+//         throw ::exception(aura_exception());*/
 //
 //      /*
 //      char * pszExt = ::PathFindExtension(szBuff);
@@ -368,7 +368,7 @@ namespace aura
 
 //      if( pszExt == nullptr )
 
-//         __throw(aura_exception());
+//         throw ::exception(aura_exception());
 //
 //      ASSERT(*pszExt == '.');
 

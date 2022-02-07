@@ -338,7 +338,7 @@ int_bool file_is_equal_path_dup(const char * psz1, const char * psz2)
    if(stricmp_dup(psz1, psz2) == 0)
       return true;
 
-   __throw(::exception(" // TODO: it should follow links "));
+   throw ::exception(::exception(" // TODO: it should follow links "));
 
    return false;
 
@@ -347,7 +347,7 @@ int_bool file_is_equal_path_dup(const char * psz1, const char * psz2)
 
 CLASS_DECL_APEX string file_get_mozilla_firefox_plugin_container_path()
 {
-   __throw(::exception(" todo "));
+   throw ::exception(::exception(" todo "));
 
    return "";
 

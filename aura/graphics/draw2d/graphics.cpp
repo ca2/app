@@ -175,7 +175,7 @@ namespace draw2d
    void graphics::attach_hdc(hdc hdc)
    {
 
-      throw interface_only_exception();
+      throw ::interface_only();
 
       //return false;
 
@@ -185,7 +185,7 @@ namespace draw2d
    hdc graphics::detach_hdc()
    {
 
-      throw interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
@@ -195,7 +195,7 @@ namespace draw2d
    void graphics::AttachPrinter(hdc hdc)
    {
 
-      throw interface_only_exception();
+      throw ::interface_only();
 
       //return false;
 
@@ -205,7 +205,7 @@ namespace draw2d
    hdc graphics::DetachPrinter()
    {
 
-      throw interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
@@ -550,15 +550,15 @@ namespace draw2d
    //}
 
 
-   point_f64 graphics::GetImpactportOrg()
+   point_f64 graphics::GetViewportOrg()
    {
 
-      return ::point_i32((::i32)m_matrixImpactport.c1, (::i32) m_matrixImpactport.c2);
+      return ::point_i32((::i32)m_matrixViewport.c1, (::i32) m_matrixViewport.c2);
 
    }
 
 
-   size_f64 graphics::GetImpactportExt()
+   size_f64 graphics::GetViewportExt()
    {
 
       return ::size_f64(0, 0);
@@ -582,15 +582,15 @@ namespace draw2d
    }
 
 
-   point_f64 graphics::SetImpactportOrg(const ::point_f64 & point)
+   point_f64 graphics::SetViewportOrg(const ::point_f64 & point)
    {
 
-      return SetImpactportOrg(point.x, point.y);
+      return SetViewportOrg(point.x, point.y);
 
    }
 
 
-   size_f64 graphics::SetImpactportExt(const ::size_f64 & size)
+   size_f64 graphics::SetViewportExt(const ::size_f64 & size)
    {
 
       __UNREFERENCED_PARAMETER(size);
@@ -777,7 +777,7 @@ namespace draw2d
    void graphics::draw_rectangle(const ::rectangle_f64 & rectangle, ::draw2d::pen * ppen)
    {
       
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       //return false;
 
@@ -1017,7 +1017,7 @@ namespace draw2d
    void graphics::fill_polygon(const POINT_F64 * ppoints, count nCount)
    {
       
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       //return false;
 
@@ -1027,7 +1027,7 @@ namespace draw2d
    void graphics::draw_polygon(const POINT_F64 * ppoints, count nCount)
    {
       
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       //return false;
 
@@ -1360,7 +1360,7 @@ namespace draw2d
    //   //      //if (m_pimage != nullptr && pgraphicsSrc->m_pimage != nullptr)
    //   //      //{
 
-   //   //      //   const ::point_f64 & pointOff = GetImpactportOrg();
+   //   //      //   const ::point_f64 & pointOff = GetViewportOrg();
 
    //   //      //   x += pointOff.x;
 
@@ -2679,16 +2679,16 @@ namespace draw2d
    //}
 
 
-   point_f64 graphics::SetImpactportOrg(double x, double y)
+   point_f64 graphics::SetViewportOrg(double x, double y)
    {
 
-      m_matrixImpactport.c1 = x;
+      m_matrixViewport.c1 = x;
 
-      m_matrixImpactport.c2 = y;
+      m_matrixViewport.c2 = y;
 
       update_matrix();
 
-      return ::point_i32((::i32)m_matrixImpactport.c1, (::i32)m_matrixImpactport.c2);
+      return ::point_i32((::i32)m_matrixViewport.c1, (::i32)m_matrixViewport.c2);
 
    }
 
@@ -2698,28 +2698,28 @@ namespace draw2d
 
       matrix = ::draw2d::matrix();
 
-      matrix.a1 = m_matrixImpactport.a1;
+      matrix.a1 = m_matrixViewport.a1;
 
-      matrix.b2 = m_matrixImpactport.b2;
+      matrix.b2 = m_matrixViewport.b2;
 
    }
 
 
-   point_f64 graphics::OffsetImpactportOrg(double nWidth, double nHeight)
+   point_f64 graphics::OffsetViewportOrg(double nWidth, double nHeight)
    {
 
-      m_matrixImpactport.c1 += nWidth;
+      m_matrixViewport.c1 += nWidth;
 
-      m_matrixImpactport.c2 += nHeight;
+      m_matrixViewport.c2 += nHeight;
 
       update_matrix();
 
-      return point_f64(m_matrixImpactport.c1, m_matrixImpactport.c2);
+      return point_f64(m_matrixViewport.c1, m_matrixViewport.c2);
 
    }
 
 
-   size_f64 graphics::SetImpactportExt(double x, double y)
+   size_f64 graphics::SetViewportExt(double x, double y)
    {
 
       __UNREFERENCED_PARAMETER(x);
@@ -2731,12 +2731,12 @@ namespace draw2d
    }
 
 
-   size_f64 graphics::ScaleImpactportExt(double xNum, double xDenom, double yNum, double yDenom)
+   size_f64 graphics::ScaleViewportExt(double xNum, double xDenom, double yNum, double yDenom)
    {
 
-      m_matrixImpactport.a1 *= xNum / xDenom;
+      m_matrixViewport.a1 *= xNum / xDenom;
 
-      m_matrixImpactport.b2 *= yNum / yDenom;
+      m_matrixViewport.b2 *= yNum / yDenom;
 
       update_matrix();
 
@@ -2927,7 +2927,7 @@ namespace draw2d
 //   i32 graphics::OffsetClipRgn(const ::size_i32 & size)
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 //      return 0;
 //
 //      /*
@@ -3130,9 +3130,9 @@ namespace draw2d
    void graphics::_intersect_clip()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -3140,9 +3140,9 @@ namespace draw2d
    void graphics::_add_shape(const ::rectangle_f64 & rectangle)
    {
    
-      throw ::interface_only_exception();
+      throw ::interface_only();
    
-      throw ::interface_only_exception();
+      throw ::interface_only();
    
    }
 
@@ -3150,9 +3150,9 @@ namespace draw2d
    //void graphics::_add_shape(const ::rectangle_f64 & rectangle)
    //{
    //
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
    //
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
    //
    //}
 
@@ -3160,9 +3160,9 @@ namespace draw2d
    //void graphics::_add_shape(const ::ellipse & ellipse)
    //{
    //
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
    //
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
    //
    //}
 
@@ -3170,9 +3170,9 @@ namespace draw2d
    void graphics::_add_shape(const ::ellipse & ellipse)
    {
    
-      throw ::interface_only_exception();
+      throw ::interface_only();
    
-      throw ::interface_only_exception();
+      throw ::interface_only();
    
    }
 
@@ -3180,9 +3180,9 @@ namespace draw2d
    //void graphics::_add_shape(const ::polygon_i32 & polygon_i32)
    //{
    //
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
    //
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
    //
    //}
 
@@ -3190,9 +3190,9 @@ namespace draw2d
    void graphics::_add_shape(const ::polygon_f64 & polygon_i32)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -4875,7 +4875,7 @@ namespace draw2d
       else
       {
 
-         throw interface_only_exception();
+         throw ::interface_only();
 
       }
 
@@ -5114,7 +5114,7 @@ namespace draw2d
    bool graphics::fill_contains(const point_f64 & point)
    {
 
-      __throw(error_not_implemented);
+      throw ::not_implemented();
 
       return false;
 
@@ -5491,11 +5491,11 @@ namespace draw2d
       //glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
       //glfwGetFramebufferSize(window, &width, &height);
 
-      //glImpactport(0, 0, width, height);
+      //glViewport(0, 0, width, height);
 
       int n=SaveDC();
 
-      OffsetImpactportOrg(x, y);
+      OffsetViewportOrg(x, y);
 
       //glClearColor(220.0f / 255.0f, 220.0f / 255.0f, 220.0f / 255.0f, 1.0f);
       //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -5628,7 +5628,7 @@ namespace draw2d
          if (m_pgraphics != nullptr)
          {
             m_iSavedDC = m_pgraphics->SaveDC();
-            m_matrixImpactport = pgraphics->m_matrixImpactport;
+            m_matrixViewport = pgraphics->m_matrixViewport;
             m_matrixTransform = pgraphics->m_matrixTransform;
          }
       }
@@ -5644,7 +5644,7 @@ namespace draw2d
          if (m_pgraphics != nullptr)
          {
             m_pgraphics->RestoreDC(m_iSavedDC);
-            m_pgraphics->m_matrixImpactport = m_matrixImpactport;
+            m_pgraphics->m_matrixViewport = m_matrixViewport;
             m_pgraphics->m_matrixTransform = m_matrixTransform;
          }
       }
@@ -5696,21 +5696,21 @@ namespace draw2d
    void graphics::update_matrix()
    {
 
-      matrix matrixImpactport;
+      matrix matrixViewport;
 
-      matrix matrixImpactportScale;
+      matrix matrixViewportScale;
 
-      matrix matrixImpactportTranslate;
+      matrix matrixViewportTranslate;
 
-      matrixImpactportScale.a1 = m_matrixImpactport.a1;
+      matrixViewportScale.a1 = m_matrixViewport.a1;
 
-      matrixImpactportScale.b2 = m_matrixImpactport.b2;
+      matrixViewportScale.b2 = m_matrixViewport.b2;
 
-      matrixImpactportTranslate.c1 = m_matrixImpactport.c1;
+      matrixViewportTranslate.c1 = m_matrixViewport.c1;
 
-      matrixImpactportTranslate.c2 = m_matrixImpactport.c2;
+      matrixViewportTranslate.c2 = m_matrixViewport.c2;
 
-      matrix matrix = matrixImpactportScale * m_matrixTransform * matrixImpactportTranslate;
+      matrix matrix = matrixViewportScale * m_matrixTransform * matrixViewportTranslate;
 
       _set(matrix);
       //if (!_set(matrix))
@@ -5818,7 +5818,7 @@ namespace draw2d
    void graphics::clear_current_point()
    {
 
-      __throw(todo);
+      throw ::exception(todo);
 
       //return ::success_none;
 

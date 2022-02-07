@@ -6,7 +6,7 @@
 //#include <X11/cursorfont.h>
 #include <sys/time.h>
 #include <link.h>
-#include "acme/node/operating_system/ansi/_pthread.h"
+#include "acme/operating_system/ansi/_pthread.h"
 
 
 //namespace apex
@@ -74,7 +74,7 @@
 //   {
 //      return "";
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //      /*      char pszModuleFilePath[MAX_PATH + 1];
 //
@@ -360,7 +360,7 @@
 //      ::u32 dwRet = ::GetModuleFileName(m_hInstance, szBuff, _MAX_PATH);
 //      ASSERT( dwRet != 0 && dwRet != _MAX_PATH );
 //      if( dwRet == 0 || dwRet == _MAX_PATH )
-//         __throw(apex_exception());*/
+//         throw ::exception(apex_exception());*/
 //
 //      /*
 //      char * pszExt = ::PathFindExtension(szBuff);
@@ -369,7 +369,7 @@
 
 //      if( pszExt == nullptr )
 
-//         __throw(apex_exception());
+//         throw ::exception(apex_exception());
 //
 //      ASSERT(*pszExt == '.');
 

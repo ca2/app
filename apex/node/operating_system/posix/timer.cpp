@@ -30,7 +30,7 @@
 //   //if (e_timer_create(CLOCK_REALTIME, &m_sev, &m_timerid) == -1)
 //   //{
 //
-//   //   __throw(::exception("e_timer_create failed"));
+//   //   throw ::exception(::exception("e_timer_create failed"));
 //
 //   //}
 //

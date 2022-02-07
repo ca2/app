@@ -45,7 +45,7 @@ CLASS_DECL_ACME bool throw_parsing_exception(const ::string & strMessage)
 
    }
 
-   __throw(error_parsing, strMessage);
+   throw ::exception(error_parsing, strMessage);
 
    return true;
 
@@ -98,7 +98,7 @@ CLASS_DECL_ACME bool throw_network_payload_parsing_exception(const ::string & st
 
    }
 
-   __throw(error_network_payload_parsing, strMessage);
+   throw ::exception(error_network_payload_parsing, strMessage);
 
    return true;
 

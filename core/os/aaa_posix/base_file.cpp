@@ -487,7 +487,7 @@ int_bool file_is_equal_path_dup(const ::string & psz1, const ::string & psz2)
    if (ansi_compare_ci(psz1, psz2) == 0)
       return true;
 
-   //__throw(::exception(" // TODO: it should follow links "));
+   //throw ::exception(::exception(" // TODO: it should follow links "));
 
    return false;
 
@@ -496,7 +496,7 @@ int_bool file_is_equal_path_dup(const ::string & psz1, const ::string & psz2)
 
 CLASS_DECL_CORE string file_get_mozilla_firefox_plugin_container_path()
 {
-   __throw(::exception(" todo "));
+   throw ::exception(::exception(" todo "));
 
    return "";
 

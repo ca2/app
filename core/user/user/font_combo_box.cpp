@@ -49,7 +49,7 @@ namespace user
 
       pcreate->previous();
 
-      //__throw(todo("style"));
+      //throw ::exception(todo("style"));
 
       //::rectangle_f64 r(2, 2, 2, 2);
 
@@ -73,7 +73,7 @@ namespace user
    void font_combo_box::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (ptopic->m_id == id_font_enumeration)
+      if (ptopic->m_atom == id_font_enumeration)
       {
 
          __pointer(::user::font_list) pfontlist = m_plistbox;

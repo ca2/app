@@ -2,7 +2,7 @@
 // recreated by Camilo 2021-01-28 22:20
 #include "framework.h"
 #include "aura/user/_user.h"
-#include "acme/node/operating_system/_user.h"
+#include "acme/operating_system/_user.h"
 
 
 namespace windowing
@@ -118,7 +118,7 @@ namespace windowing
    void window::message_handler(::message::message * pmessage)
    {
       
-      if(pmessage->m_id == e_message_post_user)
+      if(pmessage->m_atom == e_message_post_user)
       {
 
          auto pobject = pmessage->m_union.m_pobject;
@@ -132,13 +132,13 @@ namespace windowing
 
          }
 
-         if(pmessagePost->m_id==e_message_vscroll)
+         if(pmessagePost->m_atom==e_message_vscroll)
          {
 
             ::output_debug_string("vscroll");
 
          }
-         else if(pmessagePost->m_id == e_message_text_composition)
+         else if(pmessagePost->m_atom == e_message_text_composition)
          {
 
             ::output_debug_string("message text composition");
@@ -161,9 +161,9 @@ namespace windowing
 
       __UNREFERENCED_PARAMETER(puserinteractionimpl);
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
       
    }
 
@@ -241,9 +241,9 @@ namespace windowing
    void window::set_mouse_capture()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -251,7 +251,7 @@ namespace windowing
    //void window::get_capture()
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return m_pcapture;;
 
@@ -262,9 +262,9 @@ namespace windowing
    //void window::set_capture()
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //}
 
@@ -272,9 +272,9 @@ namespace windowing
    void window::destroy_window()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -323,7 +323,7 @@ namespace windowing
    void window::on_visual_applied()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -331,7 +331,7 @@ namespace windowing
    void window::win_update_graphics()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -357,7 +357,7 @@ namespace windowing
    void window::set_window_text(const ::string & pszString)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -365,7 +365,7 @@ namespace windowing
    strsize window::get_window_text(char * pszStringBuf, strsize nMaxCount)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return 0;
 
@@ -374,7 +374,7 @@ namespace windowing
    void window::get_window_text(string & rectangleString)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -383,7 +383,7 @@ namespace windowing
    strsize window::get_window_text_length()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return 0;
 
@@ -393,7 +393,7 @@ namespace windowing
    void window::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -402,7 +402,7 @@ namespace windowing
    //bool window::window_is_iconic()
    //{
    //
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
    //
    //   return false;
    //
@@ -412,7 +412,7 @@ namespace windowing
    bool window::is_zoomed()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return false;
 
@@ -422,7 +422,7 @@ namespace windowing
    ::u32 window::ArrangeIconicWindows()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return 0;
 
@@ -454,7 +454,7 @@ namespace windowing
    void window::route_command(::message::command* pcommand, bool bRouteToKeyDescendant)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -462,7 +462,7 @@ namespace windowing
    void window::present()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -508,7 +508,7 @@ namespace windowing
    bool window::GetUpdateRect(RECTANGLE_I32 * prectangle, bool bErase)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return false;
 
@@ -567,7 +567,7 @@ namespace windowing
    bool window::LockWindowUpdate()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return false;
 
@@ -584,7 +584,7 @@ namespace windowing
    bool window::RedrawWindow(const ::rectangle_i32 & rectangleUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return false;
 
@@ -594,7 +594,7 @@ namespace windowing
    bool window::is_this_enabled()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return false;
 
@@ -604,7 +604,7 @@ namespace windowing
    bool window::enable_window(bool bEnable)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return false;
 
@@ -615,7 +615,7 @@ namespace windowing
    ::user::interaction * window::GetActiveWindow()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
@@ -625,7 +625,7 @@ namespace windowing
    ::user::interaction * window::SetActiveWindow()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
@@ -636,7 +636,7 @@ namespace windowing
    void window::set_foreground_window()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       //return false;
 
@@ -646,7 +646,7 @@ namespace windowing
    ::user::interaction * window::get_foreground_window()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
@@ -671,7 +671,7 @@ namespace windowing
    ::user::interaction * window::get_desktop_window()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
@@ -680,7 +680,7 @@ namespace windowing
    ::windowing::window * window::get_next_window(::u32 nFlag)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
@@ -690,7 +690,7 @@ namespace windowing
    ::windowing::window * window::get_top_window() const 
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
@@ -700,7 +700,7 @@ namespace windowing
    ::windowing::window * window::get_window(::u32 nCmd) const 
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
@@ -710,7 +710,7 @@ namespace windowing
    ::windowing::window * window::get_last_active_popup() const 
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
@@ -720,7 +720,7 @@ namespace windowing
    ::windowing::window * window::get_parent() const 
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
@@ -730,7 +730,7 @@ namespace windowing
    oswindow window::get_parent_oswindow() const
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
@@ -740,9 +740,9 @@ namespace windowing
    void window::set_parent(::windowing::window * pwindowNewParent) 
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -750,7 +750,7 @@ namespace windowing
    ::windowing::window * window::get_owner() const
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
@@ -760,7 +760,7 @@ namespace windowing
    oswindow window::get_owner_oswindow() const
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
@@ -770,9 +770,9 @@ namespace windowing
    void window::set_owner(::windowing::window * pwindowNewOwner)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -780,7 +780,7 @@ namespace windowing
    point_i32 window::GetCaretPos()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
@@ -790,7 +790,7 @@ namespace windowing
    void window::SetCaretPos(const ::point_i32 & point)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -798,7 +798,7 @@ namespace windowing
    void window::HideCaret() 
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
      
@@ -806,7 +806,7 @@ namespace windowing
    void window::ShowCaret() 
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -814,7 +814,7 @@ namespace windowing
    void window::DragAcceptFiles(bool bAccept)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -860,7 +860,7 @@ namespace windowing
    __pointer(::windowing::icon) window::get_icon() const
    {
 
-      //throw ::interface_only_exception();
+      //throw ::interface_only();
 
       ///return nullptr;
 
@@ -872,9 +872,9 @@ namespace windowing
    void window::set_mouse_cursor(::windowing::cursor * pcursor)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -890,9 +890,9 @@ namespace windowing
    void window::set_tool_window(bool bSet)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -900,7 +900,7 @@ namespace windowing
    void window::on_set_parent(::user::interaction * pinteraction) 
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -908,7 +908,7 @@ namespace windowing
    bool window::get_rect_normal(RECTANGLE_I32 * prectangle)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
       
       return false;
    
@@ -918,7 +918,7 @@ namespace windowing
    void window::show_task(bool bShow)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -926,7 +926,7 @@ namespace windowing
    void window::window_show_change_visibility(::e_display edisplay, ::e_activation eactivation)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -934,7 +934,7 @@ namespace windowing
    void window::non_top_most_upper_window_rects(::rectangle_i32_array & recta)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -1081,9 +1081,9 @@ namespace windowing
    void window::set_keyboard_focus()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -1091,9 +1091,9 @@ namespace windowing
    void window::set_active_window()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -1101,9 +1101,9 @@ namespace windowing
    void window::bring_to_front()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 

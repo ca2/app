@@ -18,7 +18,7 @@ namespace universal_windows
       if (FAILED(hr))
       {
 
-         __throw(hresult_exception(hr));
+         throw ::exception(hresult_exception(hr));
 
       }
 

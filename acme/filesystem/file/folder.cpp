@@ -38,7 +38,7 @@ void folder::initialize(::object* pobject)
 bool folder::is_reading() const
 {
 
-   throw interface_only_exception();
+   throw ::interface_only();
 
    //return false;
 
@@ -48,9 +48,9 @@ bool folder::is_reading() const
 void folder::open_for_reading(file_pointer pfile, int iBufferLevel)
 {
 
-   throw interface_only_exception();
+   throw ::interface_only();
 
-   //throw ::interface_only_exception();
+   //throw ::interface_only();
 
 }
 
@@ -58,7 +58,7 @@ void folder::open_for_reading(file_pointer pfile, int iBufferLevel)
 bool folder::locate(const char* pszFileName)
 {
 
-   throw interface_only_exception();
+   throw ::interface_only();
 
 //   return false;
 
@@ -68,7 +68,7 @@ bool folder::locate(const char* pszFileName)
 ::file_pointer folder::get_file(const char * pszFile)
 {
 
-   throw interface_only_exception();
+   throw ::interface_only();
 
    return nullptr;
 
@@ -86,9 +86,9 @@ bool folder::has_sub_folder(const char* pszFileName)
 void folder::extract(memory& m, const char* pszFile)
 {
 
-   throw interface_only_exception();
+   throw ::interface_only();
 
-   //throw ::interface_only_exception();
+   //throw ::interface_only();
 
 }
 
@@ -104,9 +104,9 @@ bool folder::is_compressed(const char* pszFileName)
 void folder::extract_all(const char* pszTargetDir, ::file::patha* ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat)
 {
 
-   throw interface_only_exception();
+   throw ::interface_only();
 
-   //throw ::interface_only_exception();
+   //throw ::interface_only();
 
 }
 
@@ -114,7 +114,7 @@ void folder::extract_all(const char* pszTargetDir, ::file::patha* ppatha, string
 bool folder::perform_file_listing(::file::listing& listing)
 {
 
-   throw interface_only_exception();
+   throw ::interface_only();
 
    return false;
 
@@ -124,7 +124,7 @@ bool folder::perform_file_listing(::file::listing& listing)
 bool folder::perform_file_relative_name_listing(::file::listing& listing)
 {
 
-   throw interface_only_exception();
+   throw ::interface_only();
 
    return false;
 
@@ -134,9 +134,9 @@ bool folder::perform_file_relative_name_listing(::file::listing& listing)
 void folder::open_for_writing(file_pointer pfile)
 {
 
-   throw interface_only_exception();
+   throw ::interface_only();
 
-   //throw ::interface_only_exception();
+   //throw ::interface_only();
 
 }
 
@@ -144,7 +144,7 @@ void folder::open_for_writing(file_pointer pfile)
 void folder::add_file(const ::file::path& pszRelative, ::file::file* pfile)
 {
 
-   throw interface_only_exception();
+   throw ::interface_only();
 
 }
 

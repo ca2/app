@@ -20,7 +20,7 @@ namespace http
       string                           m_strRequestUri;
       string                           m_strQueryString;
       string                           m_strHttpHost;
-      atom                               m_idHttpMethod;
+      atom                               m_atomHttpMethod;
       memory_file                      m_memfileBody;
       ::text_stream                    m_ostream;
       string                           m_null;

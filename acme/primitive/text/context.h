@@ -17,7 +17,7 @@ namespace text
    public:
 
 
-      ::atom m_idSchema;
+      ::atom m_atomSchema;
 
 
       schema() { InitHashTable(4 * 1024 -1); };
@@ -31,7 +31,7 @@ namespace text
    public:
 
 
-      ::atom       m_idLocale;
+      ::atom       m_atomLocale;
 
       inline const schema * get_schema(const ::atom & idSchema) const
       {

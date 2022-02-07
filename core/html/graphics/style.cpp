@@ -5,7 +5,7 @@
 #endif
 
 #endif
-#include "core/atom.h"
+#include "core/id.h"
 #include "core/html/html/_html.h"
 #include "core/user/user/_user.h"
 

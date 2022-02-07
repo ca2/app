@@ -40,7 +40,7 @@ public:
 
       void * m_pvoid;
       para_return                m_parareturn;
-      atom                         m_id;
+      atom                         m_atom;
       bool                       m_b;
       bool * m_pb;
       ::i8                       m_i8;

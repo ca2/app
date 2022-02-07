@@ -13,7 +13,7 @@ namespace user
    {
 
 
-      ::atom              m_id;        // IDC of indicator: 0 => normal text area
+      ::atom              m_atom;        // IDC of indicator: 0 => normal text area
       i32               cxText;     // width of string area in pixels
                      //   on both sides there is a 3 pixel gap and
                      //   a one pixel border, making a pane 6 pixels wider

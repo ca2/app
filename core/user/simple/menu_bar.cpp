@@ -201,7 +201,7 @@ void simple_menu_bar::pre_translate_message(::message::message * pmessage)
 
    __pointer(::user::message) pusermessage(pmessage);
 
-   if (pusermessage->m_id == WM_USER && pusermessage->userinteraction() == this)
+   if (pusermessage->m_atom == WM_USER && pusermessage->userinteraction() == this)
    {
 
       if (pusermessage->m_wparam == 33)
@@ -213,7 +213,7 @@ void simple_menu_bar::pre_translate_message(::message::message * pmessage)
 
    }
 
-   INFORMATION("simple_menu_bar::pre_translate_message messageID="<<pusermessage->m_id.i64()<<" wParam="<<pusermessage->m_wparam.m_number<<" lParam=" << pusermessage->m_lparam.m_lparam);
+   INFORMATION("simple_menu_bar::pre_translate_message messageID="<<pusermessage->m_atom.i64()<<" wParam="<<pusermessage->m_wparam.m_number<<" lParam=" << pusermessage->m_lparam.m_lparam);
 
    return simple_toolbar::pre_translate_message(pmessage);
 

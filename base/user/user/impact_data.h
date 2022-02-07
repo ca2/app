@@ -16,15 +16,15 @@ namespace user
 
       ::i64                            m_iId;
       ::index                          m_iIndex;
-      atom                               m_id;
+      atom                               m_atom;
       __pointer(interaction)           m_puserinteraction;
       __pointer(place_holder)          m_pplaceholder;
       __pointer(document)              m_pdocument;
-      atom                               m_idSplit;
+      atom                               m_atomSplit;
       bool                             m_bTabSplitSwap;
       i32                              m_iExtendOnParent;
       eflag                            m_eflag;
-      ::atom                             m_idTitle;
+      ::atom                             m_atomTitle;
       void *                           m_pimpactdata;
       bool                             m_bOk;
 

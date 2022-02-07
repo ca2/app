@@ -243,7 +243,7 @@ namespace sockets
 
       //   close_socket(s);
 
-      //   __throw(::exception("listen() failed for port " + __string(ad.get_service_number()) + ": " + bsd_socket_error(Errno)));
+      //   throw ::exception(::exception("listen() failed for port " + __string(ad.get_service_number()) + ": " + bsd_socket_error(Errno)));
 
       //   return -1;
 

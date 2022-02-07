@@ -619,10 +619,10 @@ void object::child_post_quit_and_wait(const char * pszTag, const duration & dura
 void object::defer_update_object_id()
 {
 
-   if(m_id.is_empty())
+   if(m_atom.is_empty())
    {
 
-      m_id = calc_default_object_id();
+      m_atom = calc_default_object_id();
 
    }
 
@@ -782,7 +782,7 @@ void object::on_request(::create* pcreateParam)
       if (!estatus)
       {
 
-         __throw(estatus);
+         throw ::exception(estatus);
 
       }
 
@@ -791,7 +791,7 @@ void object::on_request(::create* pcreateParam)
       if (!estatus)
       {
 
-         __throw(estatus);
+         throw ::exception(estatus);
 
       }
 
@@ -877,14 +877,14 @@ void object::destroy()
 
    on_finalize();
 
-   if(string(m_id).contains("::rx"))
+   if(string(m_atom).contains("::rx"))
    {
 
       output_debug_string("::rx destroy");
 
    }
 
-   if(string(m_id).contains("::interprocess_intercommunication"))
+   if(string(m_atom).contains("::interprocess_intercommunication"))
    {
 
       output_debug_string("::interprocess_intercommunication destroy");
@@ -1710,7 +1710,7 @@ void object::task_erase(::task* ptask)
          if (::is_null(ptask))
          {
 
-            __throw(error_bad_argument);
+            throw ::exception(error_bad_argument);
 
          }
 
@@ -1719,7 +1719,7 @@ void object::task_erase(::task* ptask)
          if (!m_pcompositea->contains(ptask) && ptask->thread_parent() != this)
          {
 
-            __throw(error_bad_argument, "thread is no parent-child releationship between the threads");
+            throw ::exception(error_bad_argument, "thread is no parent-child releationship between the threads");
 
          }
 
@@ -2283,7 +2283,7 @@ __pointer(::extended::future < ::conversation >) object::message_box(const char*
 
    //auto psession = get_session();
 
-   ////future.m_id = DIALOG_RESULT_PROCESS;
+   ////future.m_atom = DIALOG_RESULT_PROCESS;
 
    //if (::is_set(psession))
    //{

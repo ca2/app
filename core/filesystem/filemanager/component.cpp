@@ -293,7 +293,7 @@ namespace filemanager
 
       pdata->initialize_filemanager_data(this);
 
-      pdata->m_id = atom;
+      pdata->m_atom = atom;
 
       filemanager_set_data(atom, pdata);
 
@@ -1141,7 +1141,7 @@ namespace filemanager
 //   {
 
 //      pdocument->filemanager_data()->m_datakey.m_strDataKey.format("%s(%d)",
-//            psession->component().m_idFileManager.str(),
+//            psession->component().m_atomFileManager.str(),
 //            pdocument->filemanager_data()->m_iDocument);
 
 //   }

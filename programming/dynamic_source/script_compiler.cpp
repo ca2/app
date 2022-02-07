@@ -6,7 +6,7 @@
 #ifdef WINDOWS_DESKTOP
 #include "acme_windows/_.h"
 #include "acme_windows/_acme_windows.h"
-//#include "acme/node/operating_system/windows/environment_variable.h"
+//#include "acme/operating_system/windows/environment_variable.h"
 #endif
 #include "acme/filesystem/filesystem/acme_dir.h"
 
@@ -2030,7 +2030,7 @@ auto tickStart = ::duration::now();
                      strResult += ":*<invalid-syntax>*:"; // fatal;
                      break;
                      break;
-                     //__throw(::exception("invalid syntax."));
+                     //throw ::exception(::exception("invalid syntax."));
                   }
                }
                continue;

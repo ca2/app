@@ -807,7 +807,7 @@ namespace user
 
          synchronous_lock synchronouslock(mutex());
 
-         //pgraphics->OffsetImpactportOrg(m_pointScroll.x, m_pointScroll.y);
+         //pgraphics->OffsetViewportOrg(m_pointScroll.x, m_pointScroll.y);
 
          m_pdata->_001OnDraw(pgraphics);
 
@@ -943,12 +943,12 @@ namespace user
       void edit_impl::handle(::topic * ptopic, ::context * pcontext)
       {
 
-         if (ptopic->m_id == ::id_after_change_cur_sel)
+         if (ptopic->m_atom == ::id_after_change_cur_sel)
          {
 
             auto pformattool = get_format_tool(false);
 
-            if (ptopic->m_pextendedtopic->user_interaction() == pformattool)
+            if (ptopic->get_extended_topic()->user_interaction() == pformattool)
             {
 
                if (pformattool->m_eattribute & attribute_align)
@@ -1032,19 +1032,17 @@ namespace user
 
          {
 
-            ::topic topic;
+            ::extended_topic extendedtopic(::id_key_down);
 
-            topic.m_puserelement = this;
+            extendedtopic.m_puserelement = this;
 
-            topic.m_id = ::id_key_down;
+            extendedtopic.m_actioncontext.m_pmessage = pmessage;
 
-            topic.m_actioncontext.m_pmessage = pmessage;
+            extendedtopic.m_actioncontext = ::e_source_user;
 
-            topic.m_actioncontext = ::e_source_user;
+            route(&extendedtopic);
 
-            route(&topic);
-
-            if (topic.m_bRet)
+            if (extendedtopic.m_bRet)
             {
 
                return;
@@ -1094,17 +1092,15 @@ namespace user
          else if (pkey->m_ekey == ::user::e_key_escape)
          {
 
-            ::topic topic;
+            ::extended_topic extendedtopic(::id_escape);
 
-            topic.m_puserelement = this;
+            extendedtopic.m_puserelement = this;
 
-            topic.m_id = ::id_escape;
+            extendedtopic.m_actioncontext = ::e_source_user;
 
-            topic.m_actioncontext = ::e_source_user;
+            route(&extendedtopic);
 
-            route(&topic);
-
-            if (!topic.m_bRet && topic.m_bOk)
+            if (!extendedtopic.m_bRet && extendedtopic.m_bOk)
             {
 
                on_action("escape");
@@ -1977,20 +1973,20 @@ namespace user
       }
 
 
-      void edit_impl::on_after_change(::enum_topic etopic)
+      void edit_impl::on_after_change(const ::atom & atom)
       {
 
          m_pdata->optimize_data();
 
-         ::topic topic(etopic);
+         ::extended_topic extendedtopic(atom);
 
-         //topic.m_id = eevent;
+         //topic.m_atom = eevent;
 
-         //topic.m_id = m_id;
+         //topic.m_atom = m_atom;
 
-         topic.m_puserelement = this;
+         extendedtopic.m_puserelement = this;
 
-         route(&topic);
+         route(&extendedtopic);
 
          set_need_layout();
 

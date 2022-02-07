@@ -139,7 +139,7 @@ namespace user
 //
 //#endif
 
-      __throw(todo);
+      throw ::exception(todo);
 
       return "";
 

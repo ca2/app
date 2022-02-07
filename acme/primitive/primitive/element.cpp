@@ -222,7 +222,7 @@ bool element::wait(const ::duration & duration)
 void element::add_composite(::element * pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
-   //__throw(error_not_implemented);
+   //throw ::not_implemented();
 
    pelement->increment_reference_count();
 

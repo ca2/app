@@ -177,7 +177,7 @@ namespace user
 //#ifdef WINDOWS_DESKTOP
 //      if (!MenuV033GetImageList()->create(16, 16, ILC_COLOR24 | ILC_MASK, 0, 10))
 //      {
-//         __throw(::exception("resource exception menu_central constructor"));
+//         throw ::exception(::exception("resource exception menu_central constructor"));
 //      }
 //#else
       if (!MenuV033GetImageList()->create(16, 16, 0, 0, 10))

@@ -451,7 +451,7 @@ namespace str
             {
                if( i > 0)
                {
-                  //__throw(io_exception("Input file incomplete.\n"));
+                  //throw ::exception(io_exception("Input file incomplete.\n"));
                   //ASSERT(false);
                   return false;
                }
@@ -464,7 +464,7 @@ namespace str
 
                str.format("Illegal character '%ca' in input spfile->\n", uch);
 
-               //__throw(io_exception(str));
+               //throw ::exception(io_exception(str));
                return false;
 
 //               i--;
@@ -511,7 +511,7 @@ namespace str
             {
                if( i > 0)
                {
-                  //__throw(io_exception("Input file incomplete.\n"));
+                  //throw ::exception(io_exception("Input file incomplete.\n"));
                   //ASSERT(false);
                   return -1;
                }
@@ -524,7 +524,7 @@ namespace str
 
                str.format("Illegal character '%ca' in input spfile->\n", uch);
 
-               //__throw(io_exception(str));
+               //throw ::exception(io_exception(str));
                return -1;
 
 //               i--;

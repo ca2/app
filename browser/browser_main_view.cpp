@@ -145,7 +145,7 @@ namespace browser
    void main_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if(ptopic->m_id == ::id_click)
+      if(ptopic->m_atom == ::id_click)
       {
 
          if(ptopic->user_element_id() == "browser_toggle")
@@ -156,7 +156,7 @@ namespace browser
 
             m_pimpact->on_layout(pgraphics);
 
-            ptopic->m_pextendedtopic->m_bRet = true;
+            ptopic->get_extended_topic()->m_bRet = true;
             return;
 
          }

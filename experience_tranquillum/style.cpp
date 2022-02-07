@@ -864,7 +864,7 @@ namespace tranquillum
             if (true)
             {
 
-               if (ptab->get_data()->m_idaSel.contains(pane.m_id))
+               if (ptab->get_data()->m_idaSel.contains(pane.m_atom))
                {
 
                   ::rectangle_i32 rSel;
@@ -1006,7 +1006,7 @@ namespace tranquillum
 
                auto ppath = __create < ::draw2d::path > ();
 
-               if (ptab->get_data()->m_idaSel.contains(pane.m_id))
+               if (ptab->get_data()->m_idaSel.contains(pane.m_atom))
                {
 
                   ::rectangle_i32 rSel;
@@ -1302,7 +1302,7 @@ namespace tranquillum
 
    //   bool bHover = ptoolbar->m_itemHover == iItem;
 
-   //   ::u32 uImage = psession->userex()->menu()->command_image(item.m_id);
+   //   ::u32 uImage = psession->userex()->menu()->command_image(item.m_atom);
 
    //   ::user::toolbar::enum_element eelement = ::user::toolbar::e_element_item;
    //   ::user::toolbar::enum_element eelementImage = ::user::toolbar::element_image;
@@ -1608,7 +1608,7 @@ namespace tranquillum
 
    //   bool bHover = ptoolbar->m_itemHover == iItem;
 
-   //   ::u32 uImage = psession->userex()->menu()->command_image(item.m_id);
+   //   ::u32 uImage = psession->userex()->menu()->command_image(item.m_atom);
 
    //   ::user::toolbar::enum_element eelement = ::user::toolbar::e_element_item;
    //   ::user::toolbar::enum_element eelementImage = ::user::toolbar::element_image;
@@ -1666,7 +1666,7 @@ namespace tranquillum
 
    //   ptoolbar->_001GetElementRect(iItem, rectangleImage, eelementImage);
 
-   //   if (item.m_id.compare_ci("separator") == 0)
+   //   if (item.m_atom.compare_ci("separator") == 0)
    //   {
    //      /*::rectangle_i32 rectangleSeparator;
    //      rectangleSeparator.left = (rectangleImage.left + rectangleImage.right) / 2 - 1;

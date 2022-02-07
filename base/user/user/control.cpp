@@ -44,7 +44,7 @@
 //      //
 //      //#else
 //      //
-//      //      //throw interface_only_exception();
+//      //      //throw ::interface_only();
 //      //
 //      //#endif
 //      //
@@ -71,7 +71,7 @@
 //
 //      topic.m_puserinteraction = this;
 //
-//      topic.m_id = ::id_create;
+//      topic.m_atom = ::id_create;
 //
 //      route(&topic);
 //
@@ -323,7 +323,7 @@
 //      try
 //      {
 //
-//         if (!create_interaction(pdescriptor->m_puserinteractionParent, pdescriptor->m_id))
+//         if (!create_interaction(pdescriptor->m_puserinteractionParent, pdescriptor->m_atom))
 //         {
 //
 //            m_pdescriptor.release();
@@ -481,7 +481,7 @@
 //
 //      topic.m_puserinteraction = this;
 //
-//      topic.m_id = ::id_set_focus;
+//      topic.m_atom = ::id_set_focus;
 //
 //      route(&topic);
 //
@@ -499,9 +499,9 @@
 //
 //      topic.m_puserinteraction = this;
 //
-//      //topic.m_id = m_id;
+//      //topic.m_atom = m_atom;
 //
-//      topic.m_id = ::id_kill_focus;
+//      topic.m_atom = ::id_kill_focus;
 //
 //      route(&topic);
 //
@@ -521,7 +521,7 @@
 //
 //      ASSERT_KINDOF(::user::interaction, puserinteraction);
 //
-//      __pointer(::user::interaction) pinteraction = puserinteraction->get_child_by_id(m_idControl);
+//      __pointer(::user::interaction) pinteraction = puserinteraction->get_child_by_id(m_atomControl);
 //
 //      __pointer(control) pcontrolex = (pinteraction.m_p);
 //
@@ -672,7 +672,7 @@
 ////            //#ifdef WINDOWS_DESKTOP
 ////            //            puserinteraction->send_message(control::g_uiMessage, control::MessageParamGetBaseControlExPtr, (LPARAM) &pcontrolex);
 ////            //#else
-////            __throw(todo(puserinteraction->get_application()));
+////            throw ::exception(todo(puserinteraction->get_application()));
 ////            //#endif
 ////         }
 ////         if (pcontrolex != nullptr)
@@ -682,7 +682,7 @@
 ////
 ////            // xxx         state.m_nIndex = uId;
 ////            state.m_iCount = -1;
-////            state.m_id = m_commandui.GetControlCommand(idControl);
+////            state.m_atom = m_commandui.GetControlCommand(idControl);
 ////            state.m_bContinueRouting = false;
 ////
 ////            // ignore separators
@@ -848,11 +848,11 @@
 //
 //   //   ::topic topic;
 //
-//   //   //topic.m_id = m_id;
+//   //   //topic.m_atom = m_atom;
 //
 //   //   topic.m_puserinteraction = this;
 //
-//   //   topic.m_id = e_event_mouse_leave;
+//   //   topic.m_atom = e_event_mouse_leave;
 //
 //   //   topic.m_pmessage = pmessage;
 //

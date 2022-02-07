@@ -28,11 +28,11 @@ namespace user
       bool                                   m_bAutoDelete;
       double                                 m_dHeaderHeight;
       __pointer(::user::menu_item)           m_pitemClose;
-      atom                                     m_idSubMenu;
+      atom                                     m_atomSubMenu;
       i32                                    m_iHoverSubMenu;
       u32                                    m_dwOut;
       __pointer(menu)                        m_psubmenu;
-      atom                                     m_idTimerMenu;
+      atom                                     m_atomTimerMenu;
       point_i32                              m_pointTrack;
       point_i32                              m_pointPositionHint;
       int                                    m_iFlags;

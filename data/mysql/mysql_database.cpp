@@ -855,7 +855,7 @@ namespace mysql
       if (psz == nullptr)
       {
 
-         __throw(error_no_memory);
+         throw ::exception(error_no_memory);
 
       }
 

@@ -304,7 +304,7 @@ filesize memory_file::get_position() const
    if (!is_valid())
    {
 
-      __throw(error_io, "memory_file::get_position");
+      throw ::exception(error_io, "memory_file::get_position");
 
    }
 

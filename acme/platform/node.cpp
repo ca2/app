@@ -96,9 +96,9 @@ namespace acme
    void node::call_async(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
-      //throw ::interface_only_exception();
+      //throw ::interface_only();
 
    }
 
@@ -106,9 +106,9 @@ namespace acme
    void node::call_sync(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
-      ///throw ::interface_only_exception();
+      ///throw ::interface_only();
 
    }
   
@@ -143,9 +143,9 @@ namespace acme
    void node::_launch_macos_app(const ::string & pszAppFolder)
    {
       
-      throw ::interface_only_exception();
+      throw ::interface_only();
       
-      //throw ::interface_only_exception();
+      //throw ::interface_only();
       
    }
 
@@ -153,9 +153,9 @@ namespace acme
    void node::_launch_macos_app_args(const ::string & pszAppFolder, const ::string & pszArgs)
    {
       
-      throw ::interface_only_exception();
+      throw ::interface_only();
    
-      //throw ::interface_only_exception();
+      //throw ::interface_only();
       
    }
 
@@ -183,7 +183,7 @@ namespace acme
    enum_operating_system node::get_operating_system() const
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return e_operating_system_unknown;
 
@@ -257,9 +257,9 @@ namespace acme
    void node::reboot()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
-      //throw ::interface_only_exception();
+      //throw ::interface_only();
 
    }
 
@@ -345,9 +345,9 @@ namespace acme
    void node::register_dll(const ::file::path& pathDll)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
-      //throw ::interface_only_exception();
+      //throw ::interface_only();
 
    }
 
@@ -623,8 +623,8 @@ namespace acme
    void node::datetime_to_filetime(::filetime_t* pfiletime, const ::datetime::time& time)
    {
 
-      throw ::interface_only_exception();
-      //throw ::interface_only_exception();
+      throw ::interface_only();
+      //throw ::interface_only();
 
    }
 
@@ -648,7 +648,7 @@ namespace acme
    ::color::color node::get_system_color(enum_system_color esystemcolor)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return argb(0, 0, 0, 0);
 
@@ -851,9 +851,9 @@ namespace acme
    void node::os_set_user_theme(const ::string & strUserTheme)
    {
 
-      throw interface_only_exception();
+      throw ::interface_only();
 
-      //throw ::interface_only_exception();
+      //throw ::interface_only();
 
    }
 
@@ -925,9 +925,9 @@ namespace acme
    void node::node_post(const ::routine & routine)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
-      //throw ::interface_only_exception();
+      //throw ::interface_only();
 
    }
 
@@ -1110,9 +1110,9 @@ namespace acme
    void node::browse_for_folder(::file::path & pathFolder)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
      
-      //throw ::interface_only_exception();
+      //throw ::interface_only();
 
    }
 
@@ -1120,16 +1120,16 @@ namespace acme
    void node::browse_for_file(::file::path & path)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
      
-      //throw ::interface_only_exception();
+      //throw ::interface_only();
 
    }
 
 //void node::get_system_time_as_file_time(filetime_t * pfiletime)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //}
 
@@ -1137,7 +1137,7 @@ namespace acme
    //void node::file_time_to_system_time(system_time_t * psystemtime, const filetime_t * pfiletime)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //}
 
@@ -1145,7 +1145,7 @@ namespace acme
    //void node::system_time_to_time(time_t * ptime, const system_time_t * psystemtime, i32 nDST)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //}
 
@@ -1153,7 +1153,7 @@ namespace acme
    //void node::system_time_to_file_time(filetime_t * pfiletime, const system_time_t * psystemtime)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //}
 
@@ -1161,7 +1161,7 @@ namespace acme
    //void node::time_to_system_time(system_time_t * psystem_time, const time_t * ptime)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //}
 
@@ -1169,7 +1169,7 @@ namespace acme
    //void node::time_to_file_time(filetime_t * pfiletime, const time_t * ptime)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //}
 
@@ -1291,9 +1291,9 @@ namespace acme
    void node::launch_app(const ::string & psz, const char ** argv, int iFlags)
    {
       
-      throw ::interface_only_exception();
+      throw ::interface_only();
       
-      //throw ::interface_only_exception();
+      //throw ::interface_only();
       
    }
 
@@ -1302,9 +1302,9 @@ namespace acme
    void node::create_process(const ::string & pszCommandLine, u32 * pprocessID)
    {
 
-      //throw ::interface_only_exception();
+      //throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
       //return false;
 
    }
@@ -1313,7 +1313,7 @@ namespace acme
    void node::run_silent(const ::string & strFunct, const ::string & strstrParams)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       //return false;
 
@@ -1323,7 +1323,7 @@ namespace acme
    bool node::process_modules(string_array& stra, u32 processID)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       //return false;
 
@@ -1333,9 +1333,9 @@ namespace acme
    bool node::load_modules_diff(string_array& straOld, string_array& straNew, const ::string & pszExceptDir)
    {
 
-      //throw ::interface_only_exception();
+      //throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       //return false;
 
@@ -1345,9 +1345,9 @@ namespace acme
    id_array node::get_pids()
    {
       
-      //throw ::interface_only_exception();
+      //throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
    
       //return id_array();
       
@@ -1386,9 +1386,9 @@ namespace acme
    string node::module_path_from_pid(u32 pid)
    {
       
-      //throw ::interface_only_exception();
+      //throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return "";
 
@@ -1398,9 +1398,9 @@ namespace acme
    string node::command_line_from_pid(u32 pid)
    {
       
-      //throw ::interface_only_exception();
+      //throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return "";
 
@@ -1410,7 +1410,7 @@ namespace acme
    bool node::is_shared_library_busy(u32 processid, const string_array& stra)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return false;
 
@@ -1420,7 +1420,7 @@ namespace acme
    bool node::is_shared_library_busy(const string_array& stra)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return false;
 
@@ -1430,9 +1430,9 @@ namespace acme
    bool node::process_contains_module(string& strImage, ::u32 processID, const ::string & pszLibrary)
    {
 
-      //throw ::interface_only_exception();
+      //throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return false;
 
@@ -1442,9 +1442,9 @@ namespace acme
    void node::shared_library_process(dword_array& dwa, string_array& straProcesses, const ::string & pszLibrary)
    {
 
-      //throw ::interface_only_exception();
+      //throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -1452,11 +1452,11 @@ namespace acme
    bool node::is_process_running(::u32 pid)
    {
 
-      //throw ::interface_only_exception();
+      //throw ::interface_only();
 
       //return false;
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return false;
 
@@ -1482,9 +1482,9 @@ namespace acme
    void node::set_environment_variable(const ::string& pszEnvironmentVariable, const ::string& pszValue)
    {
 
-      //throw ::interface_only_exception();
+      //throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       //return
 
@@ -1496,9 +1496,9 @@ namespace acme
    array <::serial::port_info> node::list_serial_ports()
    {
 
-      //throw ::interface_only_exception();
+      //throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return ::array <::serial::port_info>();
 
@@ -1525,11 +1525,11 @@ namespace acme
    void node::register_spa_file_type(const ::string & strAppIdHandler)
    {
       
-      //throw ::interface_only_exception();
+      //throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
-      //throw ::interface_only_exception();
+      //throw ::interface_only();
 
    }
 
@@ -1570,11 +1570,11 @@ namespace acme
    void node::get_folder_path_from_user(::file::path & pathFolder)
    {
 
-      //throw ::interface_only_exception();
+      //throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
-      //throw ::interface_only_exception();
+      //throw ::interface_only();
 
    }
 
@@ -1629,11 +1629,11 @@ namespace acme
    void node::launch_application(::matter * pobject, const ::string & strAppId, const ::string & strParams, int iBitCount)
    {
 
-      //throw ::interface_only_exception();
+      //throw ::interface_only();
 
-      //throw ::interface_only_exception();
+      //throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -1641,11 +1641,11 @@ namespace acme
    void node::shell_execute_async(const char * pszFile, const char * pszParams)
    {
 
-      //throw ::interface_only_exception();
+      //throw ::interface_only();
 
-      //throw ::interface_only_exception();
+      //throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -1653,11 +1653,11 @@ namespace acme
    void node::shell_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout)
    {
 
-      //throw ::interface_only_exception();
+      //throw ::interface_only();
 
-      //throw ::interface_only_exception();
+      //throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -1665,11 +1665,11 @@ namespace acme
    void node::root_execute_async(const char * pszFile, const char * pszParams)
    {
 
-      //throw ::interface_only_exception();
+      //throw ::interface_only();
 
-      //throw ::interface_only_exception();
+      //throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -1677,11 +1677,11 @@ namespace acme
    void node::root_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout)
    {
 
-      //throw ::interface_only_exception();
+      //throw ::interface_only();
 
-      //throw ::interface_only_exception();
+      //throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 

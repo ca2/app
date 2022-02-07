@@ -55,7 +55,7 @@
    //public:
 
 
-   //   ::atom                                m_idPid;
+   //   ::atom                                m_atomPid;
    //   ::i64                               m_iTask;
    //   __pointer(interprocess_call)               m_pcall;
    //   ::payload                                 m_var;
@@ -88,7 +88,7 @@
 
       interlocked_i64                                             m_iTaskSeed;
       string                                                      m_strApp;
-      ::atom                                                        m_idApp;
+      ::atom                                                        m_atomApp;
       string_map < __pointer(::interprocess_communication::tx) >  m_txmap;
       string_map < __pointer(::mutex) >                           m_mapAppMutex;
       __pointer(::interprocess_communication::rx)                 m_prx;

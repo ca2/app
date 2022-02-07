@@ -59,7 +59,7 @@ namespace user
 
       get_client_rect(rectangleClient);
 
-      if (m_id == "separator")
+      if (m_atom == "separator")
       {
 
          auto ppen = __create < ::draw2d::pen > ();
@@ -141,7 +141,7 @@ namespace user
    void menu_interaction::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      if (m_id != "separator")
+      if (m_atom != "separator")
       {
 
          ::user::interaction::_001OnNcDraw(pgraphics);

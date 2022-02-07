@@ -29,7 +29,7 @@ namespace colorertake5
 
       if (hbase->get_name() != "hrd")
       {
-         __throw(exception(string("Error loading HRD file")));
+         throw ::exception(exception(string("Error loading HRD file")));
       };
 
       for(__pointer(::xml::node)curel = hbase->first_child(); curel; curel = curel->get_next_sibling())

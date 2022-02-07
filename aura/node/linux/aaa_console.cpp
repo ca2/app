@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "acme/node/operating_system/console.h"
+#include "acme/operating_system/console.h"
 #include "console.h"
 #define trace ncurses_trace
 #include <ncurses.h>

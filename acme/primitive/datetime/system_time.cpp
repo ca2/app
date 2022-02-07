@@ -12,7 +12,7 @@
 //   void node::system_time_to_time(time_t * ptime, const system_time_t * psystemtime, i32 nDST)
 //   {
 //
-//      throw ::interface_only_exception();
+//      throw ::interface_only();
 //
 //   }
 //
@@ -20,7 +20,7 @@
 //   void node::time_to_system_time(system_time_t * psystemtime, const time_t * ptime)
 //   {
 //
-//      throw ::interface_only_exception();
+//      throw ::interface_only();
 //
 //   }
 //

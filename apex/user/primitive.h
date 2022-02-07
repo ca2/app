@@ -2,9 +2,9 @@
 #pragma once
 
 
-#include "acme/user/check.h"
-#include "acme/user/text.h"
-#include "acme/user/element.h"
+#include "acme/user/user/check.h"
+#include "acme/user/user/text.h"
+#include "acme/user/user/element.h"
 
 
 namespace user

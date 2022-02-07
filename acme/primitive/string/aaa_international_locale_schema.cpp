@@ -22,8 +22,8 @@ namespace str
       locale_schema::locale_schema()
       {
 
-         m_idSchema = "_std"; // __id(std)
-         m_idLocale = "_std"; // __id(std)
+         m_atomSchema = "_std"; // __id(std)
+         m_atomLocale = "_std"; // __id(std)
 
          m_idaLocale.allocate(0, 256);
          m_idaSchema.allocate(0, 256);
@@ -49,18 +49,18 @@ namespace str
       bool locale_schema::add_locale_variant(atom idLocale, atom idSchema)
       {
 
-         if(m_idLocale.is_empty())
+         if(m_atomLocale.is_empty())
          {
-            m_idLocale = idLocale;
-            if(m_idLocale.is_empty())
-               m_idLocale = "_std";
+            m_atomLocale = idLocale;
+            if(m_atomLocale.is_empty())
+               m_atomLocale = "_std";
          }
 
-         if(m_idSchema.is_empty())
+         if(m_atomSchema.is_empty())
          {
-            m_idSchema = idSchema;
-            if(m_idSchema.is_empty())
-               m_idSchema = "_std";
+            m_atomSchema = idSchema;
+            if(m_atomSchema.is_empty())
+               m_atomSchema = "_std";
          }
 
          atom idLocale2 = idLocale;
@@ -70,10 +70,10 @@ namespace str
             return false;
 
          if(idLocale2.is_empty() )
-            idLocale2 = m_idLocale;
+            idLocale2 = m_atomLocale;
 
          if(idSchema2.is_empty() )
-            idSchema2 = m_idSchema;
+            idSchema2 = m_atomSchema;
 
 
          //if(defer_add_locale(idLocale2, idSchema2))
@@ -523,7 +523,7 @@ namespace str
 //
 //            idSchema2 = idSchema;
 //
-//            if(idSchema2 == m_idSchema && m_idSchema == m_idLocale) // if style is a locale and alternate style is locale too
+//            if(idSchema2 == m_atomSchema && m_atomSchema == m_atomLocale) // if style is a locale and alternate style is locale too
 //            {
 //               idSchema2 = idLocale;
 //            }
@@ -548,7 +548,7 @@ namespace str
 //
 //step2:
 //
-//         idSchema2 = m_idSchema;
+//         idSchema2 = m_atomSchema;
 //
 //         if(idSchema2.is_empty())
 //         {
@@ -612,7 +612,7 @@ restart:
          {
             string strLocale = m_idaLocale[i];
             if(i >= m_idaSchema.get_count())
-               m_idaSchema.add(m_idSchema);
+               m_idaSchema.add(m_atomSchema);
             atom idSchema = m_idaSchema[i];
             strsize iFind = strLocale.find("-");
             if(iFind >= 0)
@@ -655,7 +655,7 @@ restart:
             {
                atom idLocale2 = m_idaLocale[i];
                while(i >= m_idaSchema.get_count())
-                  m_idaSchema.add(m_idSchema);
+                  m_idaSchema.add(m_atomSchema);
                atom idSchema = m_idaSchema[i];
                if(idSchema != _std)
                {
@@ -711,8 +711,8 @@ restart:
 
             m_bSchemaOnly           = ls.m_bSchemaOnly;
             m_bAddAlternateStyle    = ls.m_bAddAlternateStyle;
-            m_idLocale              = ls.m_idLocale;
-            m_idSchema              = ls.m_idSchema;
+            m_atomLocale              = ls.m_atomLocale;
+            m_atomSchema              = ls.m_atomSchema;
             m_idaLocale             = ls.m_idaLocale;
             m_idaSchema             = ls.m_idaSchema;
 

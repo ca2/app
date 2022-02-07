@@ -15,7 +15,7 @@ bool launcher::start()
 
 #ifdef _UWP
 
-   __throw(::exception("todo"));
+   throw ::exception(::exception("todo"));
 
 #else
 

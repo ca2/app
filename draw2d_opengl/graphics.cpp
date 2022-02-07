@@ -272,7 +272,7 @@ namespace draw2d_opengl
    i32 graphics::ExcludeUpdateRgn(::user::primitive * pwindow)
    {
       // ASSERT(m_hdc != nullptr);
-      //throw interface_only_exception();
+      //throw ::interface_only();
       ////return ::ExcludeUpdateRgn(m_hdc, WIN_WINDOW(pwindow)->get_handle());
       return 0;
    }
@@ -1915,7 +1915,7 @@ namespace draw2d_opengl
 
       //return ::GetTextMetricsW(m_hdc, lpMetrics) != false;
 
-      //throw interface_only_exception();
+      //throw ::interface_only();
 
       return false;
 
@@ -2749,7 +2749,7 @@ namespace draw2d_opengl
       ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight, BLENDFUNCTION blend)
    {
 
-      throw interface_only_exception();
+      throw ::interface_only();
       //if(m_hdc == nullptr)
         // return false;
 
@@ -3060,7 +3060,7 @@ namespace draw2d_opengl
    void graphics::DrawDragRect(const RECTANGLE_I32 &  rectangle, const ::size_i32 & size, const RECTANGLE_I32 &  lpRectLast, const ::size_i32 & sizeLast, ::draw2d::brush* pBrush, ::draw2d::brush* pBrushLast)
    {
 
-      throw interface_only_exception();
+      throw ::interface_only();
 
       /*
 
@@ -4383,7 +4383,7 @@ namespace draw2d_opengl
 //            if (hObjOld == hStockFont)
 //            {
 //               // got the stock object back, so must be selecting a font
-//               __throw(error_not_implemented);
+//               throw ::not_implemented();
 ////                  (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->SelectObject(::draw2d_opengl::font::from_handle(pgraphics->get_application(), (HFONT)hObject));
 //               break;  // don't play the default record
 //            }
@@ -4399,7 +4399,7 @@ namespace draw2d_opengl
 //         {
 //            // play back as graphics::SelectObject(::write_text::font*)
 ////               (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->SelectObject(::draw2d_opengl::font::from_handle(pgraphics->get_application(), (HFONT)hObject));
-//            __throw(error_not_implemented);
+//            throw ::not_implemented();
 //            break;  // don't play the default record
 //         }
 //      }

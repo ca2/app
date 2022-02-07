@@ -23,7 +23,7 @@ void XfplayerImpactLineSelection::relay_event(xfplayer_view_line & viewline, ::m
 
    ::u32 message;
 
-   message = pusermessage->m_id.umessage();
+   message = pusermessage->m_atom.umessage();
 
    if(message != e_message_mouse_move
          && message != e_message_timer

@@ -302,7 +302,7 @@ namespace draw2d_cairo
 //         pgraphics->set(bitmap);
 //         return false;
 //      }
-//      __throw(todo);
+//      throw ::exception(todo);
 //      // xxx bool bOk = GetDIBits(LNX_HDC(pgraphics), (HBITMAP) pbitmap->get_os_data(), 0, cy, m_pcolorrefMap, &(m_info), DIB_RGB_COLORS) != false;
 //      // xxx pgraphics->SelectObject(pbitmap);
 //      // xxx return bOk;
@@ -625,7 +625,7 @@ namespace draw2d_cairo
    void image::SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy)
    {
 
-      __throw(todo);
+      throw ::exception(todo);
 
       //return error_not_implemented;
 

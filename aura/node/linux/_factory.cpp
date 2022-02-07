@@ -1,6 +1,6 @@
 #include "framework.h"
-//#include "acme/node/operating_system/_const_console.h"
-//#include "acme/node/operating_system/console.h"
+//#include "acme/operating_system/_const_console.h"
+//#include "acme/operating_system/console.h"
 //#include "console.h"
 #include "_linux.h"
 #include "aura/node/_node.h"

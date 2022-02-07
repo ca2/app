@@ -197,7 +197,7 @@ bool ftpfs::has_subdir(const ::file::path & path)
    //   if (str == "You have not logged in! Exiting!")
    //   {
 
-   //      __throw(string("uftpfs:// You have not logged in!"));
+   //      throw ::exception(string("uftpfs:// You have not logged in!"));
 
    //   }
 

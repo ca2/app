@@ -238,7 +238,7 @@ bool property_set::erase_first_value_ci(const ::payload & payload)
    if(pproperty != nullptr)
    {
 
-      return erase_by_name(pproperty->m_id);
+      return erase_by_name(pproperty->m_atom);
 
    }
 
@@ -255,7 +255,7 @@ bool property_set::erase_first_value_ci(const char * pcsz)
    if(pproperty != nullptr)
    {
 
-      return erase_by_name(pproperty->m_id);
+      return erase_by_name(pproperty->m_atom);
 
    }
 
@@ -272,7 +272,7 @@ bool property_set::erase_first_value(const ::payload & payload)
    if(pproperty != nullptr)
    {
 
-      return erase_by_name(pproperty->m_id);
+      return erase_by_name(pproperty->m_atom);
 
    }
 
@@ -289,7 +289,7 @@ bool property_set::erase_first_value(const char * pcsz)
    if(pproperty != nullptr)
    {
 
-      return erase_by_name(pproperty->m_id);
+      return erase_by_name(pproperty->m_atom);
 
    }
 
@@ -713,7 +713,7 @@ void property_set_skip_network_payload(const char *& pszJson, const char * pszEn
 
          str += pszJson;
 
-         __throw(error_failed, str);
+         throw ::exception(error_failed, str);
 
       }
 
@@ -854,7 +854,7 @@ void property_set::parse_network_payload(const char * & pszJson, const char * ps
 
          str += pszJson;
 
-         __throw(error_parsing, str);
+         throw ::exception(error_parsing, str);
 
       }
 
@@ -1199,7 +1199,7 @@ property_set& property_set::operator = (const ::payload & payload)
          for (auto & pproperty : *this)
          {
 
-            auto ppropertySource = payload.m_ppropertyset->find(pproperty->m_id);
+            auto ppropertySource = payload.m_ppropertyset->find(pproperty->m_atom);
 
             if (::is_set(ppropertySource))
             {
@@ -1224,13 +1224,13 @@ property_set& property_set::operator = (const ::payload & payload)
 
       erase_all();
 
-      set_at(payload.m_pproperty->m_id, *payload.m_pproperty);
+      set_at(payload.m_pproperty->m_atom, *payload.m_pproperty);
 
    }
    else
    {
 
-      __throw(error_wrong_type);
+      throw ::exception(error_wrong_type);
 
    }
 
@@ -1623,7 +1623,7 @@ string & property_set::get_http_post(string & strPost) const
 //   for (index i = 0; i < m_propertyptra.get_size(); i++)
 //   {
 //
-//      if (m_propertyptra[i]->m_id == atom)
+//      if (m_propertyptra[i]->m_atom == atom)
 //      {
 //
 //         return i;
@@ -1649,7 +1649,7 @@ string & property_set::get_http_post(string & strPost) const
 //
 //      m_propertyptra.add(pproperty);
 //
-//      pproperty->m_id = atom;
+//      pproperty->m_atom = atom;
 //
 //      return *pproperty;
 //
@@ -1679,7 +1679,7 @@ string & property_set::get_http_post(string & strPost) const
 //      if (iFind < 0 || iFind >= m_propertyptra.get_count())
 //      {
 //
-//         __throw(error_index_out_of_bounds);
+//         throw ::exception(error_index_out_of_bounds);
 //
 //      }
 //
@@ -1727,7 +1727,7 @@ string property_set::get_command_line(const string_array & straKeys) const
 
       }
 
-      string strItem = pproperty->m_id;
+      string strItem = pproperty->m_atom;
 
       if(strItem.find(" ") >= 0 || strItem.find("\'") >= 0)
       {
@@ -1808,7 +1808,7 @@ string property_set::get_command_line() const
 
       }
 
-      string strItem(pproperty->m_id);
+      string strItem(pproperty->m_atom);
 
       if(strItem.find(" ") >= 0 || strItem.find("\'") >= 0)
       {

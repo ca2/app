@@ -29,7 +29,7 @@
     <ClCompile Include="regular_expression.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="topic.cpp">
+    <ClCompile Include="result.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -67,7 +67,7 @@
     <ClInclude Include="regular_expression.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="topic.h">
+    <ClInclude Include="result.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="util_impl.h">

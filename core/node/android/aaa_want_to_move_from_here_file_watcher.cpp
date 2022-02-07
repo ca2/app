@@ -96,13 +96,13 @@
 //         //if (errno == ENOENT)
 //         //{
 //
-//         //   __throw(file_not_found_exception(directory));
+//         //   throw ::exception(file_not_found_exception(directory));
 //
 //         //}
 //         //else
 //         //{
 //
-//         //   __throw(exception(strerror(errno)));
+//         //   throw ::exception(exception(strerror(errno)));
 //
 //         //}
 //
@@ -111,7 +111,7 @@
 //      __pointer(os_watch) pWatch = new os_watch();
 //
 //      pWatch->m_listenera.add(pwatcher);
-//      pWatch->m_id = wd;
+//      pWatch->m_atom = wd;
 //      pWatch->m_pathFolder = directory;
 //      //pWatch->m_bOwn = bOwn;
 //      pWatch->m_pwatcher = this;
@@ -135,14 +135,14 @@
 //               if(errno == ENOENT)
 //                  ::file::throw_status(error_file_not_found, errno, stra[index]);
 //               else
-//                  __throw(exception(strerror(errno)));
+//                  throw ::exception(exception(strerror(errno)));
 //            }
 //
 //            watch_item item;
 //
 //            item.m_strDirName = stra[index];
 //
-//            item.m_id = inaw;
+//            item.m_atom = inaw;
 //
 //            pWatch->m_itema.add(item);
 //

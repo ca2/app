@@ -17,7 +17,7 @@ struct CLASS_DECL_ACME matter :
    ::matter *                             this; // Context Object
    ::acme::application *                  get_application(); // Context papplication
    ::eobject                              m_eobject;
-   //::atom                                   m_id;
+   //::atom                                   m_atom;
    __pointer(__pointer_array(::matter))     m_preferencea;
 
 
@@ -95,7 +95,7 @@ struct CLASS_DECL_ACME matter :
 
 
 
-   //inline void __throw(const ::exception & e) const;
+   //inline void throw ::exception(const ::exception & e) const;
 
 
    virtual void __tracea(matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz);

@@ -48,13 +48,13 @@ dialog::~dialog()
 void dialog::handle(::topic * ptopic, ::context * pcontext)
 {
 
-   if(::is_set(ptopic->m_pextendedtopic->user_interaction()) && m_pform == nullptr)
+   if(::is_set(ptopic->get_extended_topic()->user_interaction()) && m_pform == nullptr)
    {
 
-      if(ptopic->m_id == ::id_create)
+      if(ptopic->m_atom == ::id_create)
       {
 
-         m_pform = ptopic->m_pextendedtopic->user_interaction();
+         m_pform = ptopic->get_extended_topic()->user_interaction();
 
       }
 

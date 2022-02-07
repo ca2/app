@@ -20,14 +20,14 @@
 #define BROAD_PRECOMPILED_HEADER 1
 #endif
 #if BROAD_PRECOMPILED_HEADER
-//#include "acme/user/_user.h"
+//#include "acme/user/user/_user.h"
 //#include "core/user/simple/_simple.h"
-//#include "acme/user/rich_text/_rich_text.h"
+//#include "acme/user/user/rich_text/_rich_text.h"
 //#include "acme/filesystem/filemanager/_filemanager.h"
 //#include "acme/filesystem/filehandler/_filehandler.h"
 //#include "core/user/userex/_userex.h"
 //#include "core/user/experience/_experience.h"
-//#include "acme/user/databaseuser/_databaseuser.h"
+//#include "acme/user/user/databaseuser/_databaseuser.h"
 #endif
 //#include "acme/crypto/crypto_openssl.h"
 #include "acme/_defer.h"

@@ -402,7 +402,7 @@ void oswindow_data::set_impl(::user::interaction_impl * pimpl)
    if (::is_null(this))
    {
 
-      __throw(::exception("error, m_pdata cannot be nullptr to ::oswindow::set_user_interaction"));
+      throw ::exception(::exception("error, m_pdata cannot be nullptr to ::oswindow::set_user_interaction"));
 
    }
 
@@ -1147,7 +1147,7 @@ void _android_key(unsigned int message, int keyCode, int iUni)
 
    __pointer(::message::key) pkey = __new(::message::key());
 
-   pkey->m_id = message;
+   pkey->m_atom = message;
 
    if (!translate_android_key_message(pkey, keyCode, iUni))
    {
@@ -1360,7 +1360,7 @@ namespace apex
 
       __pointer(::message::key) pkey = __new(::message::key());
 
-      pkey->m_id = e_message_key_down;
+      pkey->m_atom = e_message_key_down;
 
       pkey->m_ekey = ::user::e_key_refer_to_text_member;
 

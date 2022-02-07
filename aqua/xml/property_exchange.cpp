@@ -39,7 +39,7 @@ namespace xml
 
          varexchange.m_ppayload = pproperty;
 
-         xmlot.export_node(pproperty->m_id, varexchange);
+         xmlot.export_node(pproperty->m_atom, varexchange);
 
       }
 
@@ -59,7 +59,7 @@ namespace xml
 
          varexchange.m_ppayload = pproperty;
 
-         xmlit.import_node(pproperty->m_id, varexchange);
+         xmlit.import_node(pproperty->m_atom, varexchange);
 
       }
 

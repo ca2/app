@@ -505,7 +505,7 @@ namespace experience
       //void frame::handle(::topic * ptopic, ::context * pcontext)
       //{
 
-      //   if(ptopic->m_id == id_user_style_change)
+      //   if(ptopic->m_atom == id_user_style_change)
       //   {
 
       //      on_style_change();

@@ -903,8 +903,8 @@
     <ClInclude Include="astr.h" />
     <ClInclude Include="callback.h" />
     <ClInclude Include="console.h" />
+    <ClInclude Include="constant\idpool.h" />
     <ClInclude Include="const\GLOBAL_ID.h" />
-    <ClInclude Include="const\idpool.h" />
     <ClInclude Include="const\procedure.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="framework_c.h" />

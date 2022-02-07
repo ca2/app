@@ -367,7 +367,7 @@ namespace userex
 
       m_bCompact = false;
 
-      m_idImpact = COLORSEL_IMPACT;
+      m_atomImpact = COLORSEL_IMPACT;
 
       m_bLButtonPressed = false;
 
@@ -450,7 +450,7 @@ namespace userex
 
 
 
-      //get_parent_frame()->m_id += ".color_sel";
+      //get_parent_frame()->m_atom += ".color_sel";
 
       pmessage->previous();
 
@@ -565,15 +565,13 @@ namespace userex
          if(has_handler())
          {
 
-            ::topic topic;
+            ::extended_topic extendedtopic(::id_after_change_cur_hover);
 
-            topic.m_id = ::id_after_change_cur_hover;
+            extendedtopic.m_puserelement = this;
 
-            topic.m_puserelement = this;
+            extendedtopic.m_actioncontext = ::e_source_user;
 
-            topic.m_actioncontext = ::e_source_user;
-
-            route(&topic);
+            route(&extendedtopic);
                
          }
 
@@ -592,15 +590,13 @@ namespace userex
          if(has_handler())
          {
 
-            ::topic topic;
+            ::extended_topic extendedtopic(::id_after_change_cur_hover);
 
-            topic.m_id = ::id_after_change_cur_hover;
+            extendedtopic.m_puserelement = this;
 
-            topic.m_puserelement = this;
+            extendedtopic.m_actioncontext = ::e_source_user;
 
-            topic.m_actioncontext = ::e_source_user;
-
-            route(&topic);
+            route(&extendedtopic);
                
          }
 
@@ -881,15 +877,13 @@ namespace userex
       if(has_handler())
       {
 
-         ::topic topic;
+         ::extended_topic extendedtopic(::id_after_change_cur_sel);
 
-         topic.m_id = ::id_after_change_cur_sel;
+         extendedtopic.m_puserelement = this;
 
-         topic.m_puserelement = this;
+         extendedtopic.m_actioncontext = ::e_source_user;
 
-         topic.m_actioncontext = ::e_source_user;
-
-         route(&topic);
+         route(&extendedtopic);
             
       }
 

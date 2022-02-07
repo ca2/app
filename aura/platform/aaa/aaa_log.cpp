@@ -175,7 +175,7 @@ pacmedir->system() / "trace.txt";
 
       }
 
-      m_id = atom;
+      m_atom = atom;
 
       m_bInitialized = true;
 
@@ -475,7 +475,7 @@ pacmedir->system() / "log.txt"))
 
          strIndex.format("%d-%05d", get_current_process_id(), iRetry);
 
-         m_strLogPath = ::dir::appdata() / string(m_id) / strDatetime + "-" + strIndex + ".ca2log";
+         m_strLogPath = ::dir::appdata() / string(m_atom) / strDatetime + "-" + strIndex + ".ca2log";
 
          try
          {

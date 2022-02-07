@@ -219,9 +219,9 @@ namespace windowing
    void windowing::set_cursor_position(const ::point_i32 & point)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -295,9 +295,9 @@ namespace windowing
    void windowing::clear_active_window(::thread *, ::windowing::window *)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -305,7 +305,7 @@ namespace windowing
    ::windowing::display * windowing::display()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
@@ -315,7 +315,7 @@ namespace windowing
    void windowing::__hook_on_idle(class display * pdisplay)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -349,7 +349,7 @@ namespace windowing
    // int windowing::message_box(const ::string & str, const ::string & strTitle, const ::e_message_box & emessagebox)
    //{
 
-   //    throw ::interface_only_exception();
+   //    throw ::interface_only();
    //    return 0;
    //}
 
@@ -445,7 +445,7 @@ namespace windowing
    void windowing::release_mouse_capture()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -513,7 +513,7 @@ namespace windowing
    window *windowing::new_message_window(::user::interaction_impl *pimpl)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
@@ -523,7 +523,7 @@ namespace windowing
    window *windowing::new_window(::user::interaction_impl *pimpl)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
@@ -548,7 +548,7 @@ namespace windowing
 //   void windowing::hook(class hook *phook)
 //   {
 //
-//      throw ::interface_only_exception();
+//      throw ::interface_only();
 //
 //      return
 //         error_interface_only;
@@ -559,7 +559,7 @@ namespace windowing
 //   void windowing::unhook(class hook * phook)
 //   {
 //
-//      throw ::interface_only_exception();
+//      throw ::interface_only();
 //
 //      return
 //         error_interface_only;
@@ -695,9 +695,9 @@ namespace windowing
    void windowing::windowing_post(const ::routine & routine)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -724,7 +724,7 @@ namespace windowing
          //if (!m_pkeyboard)
          //{
 
-         //   __throw(error_exception, "Could not create keyboard");
+         //   throw ::exception(error_exception, "Could not create keyboard");
 
          //}
 
@@ -735,7 +735,7 @@ namespace windowing
          //         if (!m_pkeyboard->initialize())
          //         {
          //
-         //            __throw(::exception("Could not initialize keyboard"));
+         //            throw ::exception(::exception("Could not initialize keyboard"));
          //
          //         }
          //
@@ -805,9 +805,9 @@ namespace windowing
    void windowing::register_extended_event_listener(::matter * pdata, bool bMouse, bool bKeyboard)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 

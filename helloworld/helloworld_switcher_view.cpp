@@ -96,7 +96,7 @@ namespace helloworld
    void switcher_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if(ptopic->m_id == ::id_click)
+      if(ptopic->m_atom == ::id_click)
       {
 
          if(ptopic->user_element_id() == "switcher_toggle")

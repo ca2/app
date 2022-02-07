@@ -200,7 +200,7 @@ bool file_context::is_file_or_dir(const ::file::path &path, ::payload *pvarQuery
 ::payload file_context::length(const ::file::path &path, ::payload *pvarQuery)
 {
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
    return false;
 
@@ -337,7 +337,7 @@ file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPref
       if (!m_pcontext->m_papexcontext->dir().is(str))
       {
 
-         __throw(error_path_not_found, "time square dir does not exist");
+         throw ::exception(error_path_not_found, "time square dir does not exist");
 
       }
 
@@ -1446,7 +1446,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
             string strError;
             strError.format("Failed to copy file \"%s\" to \"%s\" bFailIfExists=%d error=could not open input file",
                             varSource.get_file_path().c_str(), varNew.get_file_path().c_str(), bFailIfExists);
-            __throw(::error_io, strError);
+            throw ::exception(::error_io, strError);
          }
 
          binary_stream ostream(ofile);
@@ -1535,14 +1535,14 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
             strError.format(
                "During copy, failed to close both input file \"%s\" and output file \"%s\" bFailIfExists=%d",
                varSource.get_file_path().c_str(), varTarget.get_file_path().c_str(), bFailIfExists);
-            __throw(::error_io, strError);
+            throw ::exception(::error_io, strError);
          }
          else
          {
             string strError;
             strError.format("During copy, failed to close input file \"%s\" bFailIfExists=%d",
                             varSource.get_file_path().c_str(), bFailIfExists);
-            __throw(::error_io, strError);
+            throw ::exception(::error_io, strError);
          }
       }
       else if (bOutputFail)
@@ -1550,7 +1550,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
          string strError;
          strError.format("During copy, failed to close output file \"%s\" bFailIfExists=%d",
                          varTarget.get_file_path().c_str(), bFailIfExists);
-         __throw(::error_io, strError);
+         throw ::exception(::error_io, strError);
       }
 
    }
@@ -1569,9 +1569,9 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 void file_context::move(const ::file::path &pszNew, const ::file::path &psz)
 {
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
-   //throw ::interface_only_exception();
+   //throw ::interface_only();
 
 //#ifdef WINDOWS_DESKTOP
 //
@@ -1616,7 +1616,7 @@ void file_context::move(const ::file::path &pszNew, const ::file::path &psz)
 //
 //      strError.Format("Failed to move file \"%s\" to \"%s\" error=%d", psz, pszNew, dwError);
 //
-//      __throw(io_exception(::error_io, strError));
+//      throw ::exception(io_exception(::error_io, strError));
 //
 //   }
 //
@@ -1629,7 +1629,7 @@ void file_context::move(const ::file::path &pszNew, const ::file::path &psz)
 //
 //      //output_debug_string("test");
 //
-//      __throw(::exception("file::file_context::move Could not move file, could not open source file"));
+//      throw ::exception(::exception("file::file_context::move Could not move file, could not open source file"));
 //
 //   }
 //
@@ -1669,7 +1669,7 @@ void file_context::move(const ::file::path &pszNew, const ::file::path &psz)
 //      i32 err = errno;
 //      string strError;
 //      strError.Format("Failed to delete file error=%d", err);
-//      __throw(::exception(strError));
+//      throw ::exception(::exception(strError));
 //   }
 //#endif
 //
@@ -1681,9 +1681,9 @@ void file_context::move(const ::file::path &pszNew, const ::file::path &psz)
 void file_context::erase(const ::file::path & path)
 {
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
-   //throw ::interface_only_exception();
+   //throw ::interface_only();
 
 //#ifdef WINDOWS_DESKTOP
 //
@@ -1723,7 +1723,7 @@ void file_context::erase(const ::file::path & path)
 //   return;
 //   string strError;
 //   strError.Format("Failed to delete file \"%s\" error=%d", psz, dwError);
-//   __throw(io_exception(strError));
+//   throw ::exception(io_exception(strError));
 //   }*/
 //
 //
@@ -1736,7 +1736,7 @@ void file_context::erase(const ::file::path & path)
 //      {
 //         string strError;
 //         strError.Format("Failed to delete file error=%d", err);
-//         __throw(::exception(strError));
+//         throw ::exception(::exception(strError));
 //      }
 //   }
 //#endif
@@ -1891,7 +1891,7 @@ void file_context::get_status(const ::file::path &path, ::file::file_status &sta
    __UNREFERENCED_PARAMETER(path);
    __UNREFERENCED_PARAMETER(status);
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
    //return false;
 
@@ -1904,7 +1904,7 @@ void file_context::set_status(const ::file::path &path, const ::file::file_statu
    __UNREFERENCED_PARAMETER(path);
    __UNREFERENCED_PARAMETER(status);
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
    //return ::success;
 
@@ -1978,7 +1978,7 @@ void file_context::transfer(::file::file *pfileOut, ::file::file *pfileIn)
 bool file_context::is_read_only(const ::file::path &psz)
 {
 
-   //throw ::interface_only_exception();
+   //throw ::interface_only();
 
    return false;
 
@@ -1997,7 +1997,7 @@ bool file_context::is_read_only(const ::file::path &psz)
 //
 //#elif defined(_UWP)
 //
-//   __throw(todo);
+//   throw ::exception(todo);
 //
 //#else
 //
@@ -2016,7 +2016,7 @@ bool file_context::is_read_only(const ::file::path &psz)
 file_pointer file_context::resource_get_file(const ::file::path & path)
 {
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
    return nullptr;
 
@@ -2211,7 +2211,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //   if (pfile.is_null())
 //   {
 //
-//      __throw(::exception("failed"));
+//      throw ::exception(::exception("failed"));
 //
 //   }
 //
@@ -2253,7 +2253,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //      string strRelative = stra[i].relative();
 //      write_gen_string(pfile, &ctx, strRelative);
 //      if (pfile2->open(stra[i], ::file::e_open_read | ::file::e_open_binary).failed())
-//         __throw(::exception("failed"));
+//         throw ::exception(::exception("failed"));
 //      write_n_number(pfile, &ctx, (i32)pfile2->get_size());
 //      while ((uRead = pfile2->read(buf, iBufSize)) > 0)
 //      {
@@ -2280,7 +2280,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //   file_pointer pfile = get_file(pszFile, ::file::e_open_read | ::file::e_open_binary);
 //
 //   if (pfile.is_null())
-//      __throw(::exception("failed"));
+//      throw ::exception(::exception("failed"));
 //
 //   read_gen_string(pfile, nullptr, strVersion);
 //
@@ -2312,7 +2312,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //         ::file::path strPath = ::file::path(pszDir) / strRelative;
 //         m_pcontext->m_papexcontext->dir().create(strPath.folder());
 //         if (pfile2->open(strPath, ::file::e_open_create | ::file::e_open_binary | ::file::e_open_write).failed())
-//            __throw(::exception("failed"));
+//            throw ::exception(::exception("failed"));
 //         read_n_number(pfile, &ctx, iLen);
 //         while (iLen > 0)
 //         {
@@ -2326,7 +2326,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //         pfile2->close();
 //         strMd5New = __string(ctx);
 //         if (strMd5 != strMd5New)
-//            __throw(::exception("failed"));
+//            throw ::exception(::exception("failed"));
 //      }
 //   }
 //
@@ -2379,7 +2379,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //   }
 //
 //   if (ch != 'n')
-//      __throw(::exception("failed"));
+//      throw ::exception(::exception("failed"));
 //
 //   if (pctx != nullptr)
 //   {
@@ -2481,7 +2481,7 @@ string file_context::md5(const ::payload &payloadFile)
 string file_context::nessie(const ::payload &payloadFile)
 {
 
-   __throw(todo, "nessie");
+   throw ::exception(todo, "nessie");
 
    return "";
 
@@ -2519,7 +2519,7 @@ string file_context::nessie(const ::payload &payloadFile)
 void file_context::get_last_write_time(filetime_t *pfiletime, const string &strFilename)
 {
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
    //return false;
 
@@ -3747,7 +3747,7 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
 void file_context::crypto_set(const ::payload &payloadFile, const char *pszData, const char *pszSalt)
 {
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
    ///return false;
 
@@ -3757,7 +3757,7 @@ void file_context::crypto_set(const ::payload &payloadFile, const char *pszData,
 void file_context::crypto_get(const ::payload &payloadFile, string &str, const char *pszSalt)
 {
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
    ///return false;
 

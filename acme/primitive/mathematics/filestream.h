@@ -37,7 +37,7 @@ void serialize_read(stream & istream, map < t1, t2, t3, t4 > & m)
    catch (const char * psz)
    {
       m.erase_all();
-      __throw(psz);
+      throw ::exception(psz);
    }
 }
 
@@ -99,7 +99,7 @@ stream & operator >> (stream & istream, biunique< T, T_to_T > & b)
       m_iEmptyB = -1;
       m_iMaxA = -1;
       m_iMaxB = -1;
-      __throw(psz);
+      throw ::exception(psz);
    }
    return istream;
 }

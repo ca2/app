@@ -32,7 +32,7 @@ CLASS_DECL_CA2_MATH bool throw_numeric_parsing_exception(const ::string & strMes
    if(get_avoid_numeric_parsing_exception())
       return false;
 
-   __throw(numeric_parsing_exception(strMessage));
+   throw ::exception(numeric_parsing_exception(strMessage));
 
    return true;
 

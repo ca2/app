@@ -39,28 +39,28 @@ namespace user
       ////__update(::update)
       {
 
-         if(ptopic->m_id == id_browse)
+         if(ptopic->m_atom == id_browse)
          {
 
-            if(!ptopic->m_pextendedtopic->payload(id_form).is_empty())
+            if(!ptopic->get_extended_topic()->payload(id_form).is_empty())
             {
 
-               string strMatter = m_pcontext->m_papexcontext->dir().matter(ptopic->m_pextendedtopic->payload(id_form));
+               string strMatter = m_pcontext->m_papexcontext->dir().matter(ptopic->get_extended_topic()->payload(id_form));
 
                if(get_document()->on_open_document(strMatter))
                {
 
-                  m_strPath = ptopic->m_pextendedtopic->payload(id_form);
+                  m_strPath = ptopic->get_extended_topic()->payload(id_form);
 
                }
 
             }
 
          }
-         else if(ptopic->m_id == id_get_form_view)
+         else if(ptopic->m_atom == id_get_form_view)
          {
 
-            ptopic->m_pextendedtopic->payload(id_form) = this;
+            ptopic->get_extended_topic()->payload(id_form) = this;
 
          }
 
@@ -69,7 +69,7 @@ namespace user
       if(m_pcallback != nullptr)
       {
 
-         ptopic->m_pextendedtopic->payload(id_form) = this;
+         ptopic->get_extended_topic()->payload(id_form) = this;
 
          m_pcallback->handle(ptopic, pcontext);
 

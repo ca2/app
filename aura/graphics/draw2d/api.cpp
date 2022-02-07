@@ -29,13 +29,13 @@ namespace draw2d
 
       ::rectangle_i32 clipRect;
 
-      size_i32 viewportExt = pgraphics->GetImpactportExt();
-      point_i32 viewportOrg = pgraphics->GetImpactportOrg();
+      size_i32 viewportExt = pgraphics->GetViewportExt();
+      point_i32 viewportOrg = pgraphics->GetViewportOrg();
 
-      pgraphics->OffsetImpactportOrg(ppointOffset->x, ppointOffset->y);
+      pgraphics->OffsetViewportOrg(ppointOffset->x, ppointOffset->y);
 
 
-      pgraphics->ScaleImpactportExt((i32)dRateX, 1, 1, 1);
+      pgraphics->ScaleViewportExt((i32)dRateX, 1, 1, 1);
 
       pgraphics->begin_path();
       pgraphics->poly_bezier(ppoints, iCount);
@@ -44,7 +44,7 @@ namespace draw2d
       pgraphics->stroke_path();
 
       pgraphics->set_window_ext(viewportExt);
-      pgraphics->SetImpactportOrg(viewportOrg);
+      pgraphics->SetViewportOrg(viewportOrg);
 
    }
 
@@ -59,16 +59,16 @@ namespace draw2d
 
       ::rectangle_i32 clipRect;
 
-      size_i32 viewportExt = pgraphics->GetImpactportExt();
-      point_i32 viewportOrg = pgraphics->GetImpactportOrg();
+      size_i32 viewportExt = pgraphics->GetViewportExt();
+      point_i32 viewportOrg = pgraphics->GetViewportOrg();
 
-      pgraphics->OffsetImpactportOrg(
+      pgraphics->OffsetViewportOrg(
       ppointOffset->x,
 
       ppointOffset->y);
 
 
-      pgraphics->ScaleImpactportExt((i32)dRateX, 1, 1, 1);
+      pgraphics->ScaleViewportExt((i32)dRateX, 1, 1, 1);
 
       pgraphics->begin_path();
       pgraphics->poly_bezier(ppoints, iCount);
@@ -77,7 +77,7 @@ namespace draw2d
       pgraphics->stroke_and_fill_path();
 
       pgraphics->set_window_ext(viewportExt);
-      pgraphics->SetImpactportOrg(viewportOrg);
+      pgraphics->SetViewportOrg(viewportOrg);
 
    }
 
@@ -93,16 +93,16 @@ namespace draw2d
 
       ::rectangle_i32 clipRect;
 
-      size_i32 viewportExt = pgraphics->GetImpactportExt();
-      point_i32 viewportOrg = pgraphics->GetImpactportOrg();
+      size_i32 viewportExt = pgraphics->GetViewportExt();
+      point_i32 viewportOrg = pgraphics->GetViewportOrg();
 
-      pgraphics->OffsetImpactportOrg(
+      pgraphics->OffsetViewportOrg(
       ppointOffset->x,
 
       ppointOffset->y);
 
 
-      pgraphics->ScaleImpactportExt((i32)(dRateX * 1000.0), 1, 1, 1);
+      pgraphics->ScaleViewportExt((i32)(dRateX * 1000.0), 1, 1, 1);
 
       for (i32 i = 0; i < pglyph->get_size(); i++)
 
@@ -112,7 +112,7 @@ namespace draw2d
       }
 
       pgraphics->set_window_ext(viewportExt);
-      pgraphics->SetImpactportOrg(viewportOrg);
+      pgraphics->SetViewportOrg(viewportOrg);
 
    }
 
@@ -135,9 +135,9 @@ namespace draw2d
       //      point_i32 viewportOrg;
       //      ::write_text::font * pfont = pgraphics->get_current_font();
       //      ASSERT(pfont != nullptr);
-      //      VERIFY(::GetImpactportOrgEx(pgraphics->m_hDC, &viewportOrg));
+      //      VERIFY(::GetViewportOrgEx(pgraphics->m_hDC, &viewportOrg));
 
-      //      VERIFY(::OffsetImpactportOrgEx(
+      //      VERIFY(::OffsetViewportOrgEx(
       //         pgraphics->m_hDC,
       //         rectangle.left,
       //         rectangle.top,
@@ -145,7 +145,7 @@ namespace draw2d
       //      VERIFY(::SetMapMode(pgraphics->m_hDC, MM_ANISOTROPIC));
       //      if(floatRateX == 0.0)
       //         floatRateX = 1.0;
-      //      VERIFY(::ScaleImpactportExtEx(pgraphics->m_hDC, floatRateX * 30000.0, 10000, 1, 1, nullptr));
+      //      VERIFY(::ScaleViewportExtEx(pgraphics->m_hDC, floatRateX * 30000.0, 10000, 1, 1, nullptr));
 
       //      VERIFY(::SelectObject(pgraphics->m_hDC, pfont->m_hObject));
 
@@ -157,7 +157,7 @@ namespace draw2d
 
 
       //      VERIFY(::SetMapMode(pgraphics->m_hDC, iOldMapMode));
-      //      VERIFY(::SetImpactportOrgEx(
+      //      VERIFY(::SetViewportOrgEx(
       //         pgraphics->m_hDC,
       //         viewportOrg.x,
       //         viewportOrg.y,
@@ -181,9 +181,9 @@ namespace draw2d
       //      point_i32 viewportOrg;
       //      ::write_text::font * pfont = pgraphics->get_current_font();
       //      ASSERT(pfont != nullptr);
-      //      VERIFY(::GetImpactportOrgEx(pgraphics->m_hDC, &viewportOrg));
+      //      VERIFY(::GetViewportOrgEx(pgraphics->m_hDC, &viewportOrg));
 
-      //      VERIFY(::OffsetImpactportOrgEx(
+      //      VERIFY(::OffsetViewportOrgEx(
       //         pgraphics->m_hDC,
       //         rectangle.left,
       //         rectangle.top,
@@ -191,7 +191,7 @@ namespace draw2d
       //      VERIFY(::SetMapMode(pgraphics->m_hDC, MM_ANISOTROPIC));
       //      if(floatRateX == 0.0)
       //         floatRateX = 1.0;
-      //      VERIFY(::ScaleImpactportExtEx(pgraphics->m_hDC, floatRateX * 30000.0, 10000, 1, 1, nullptr));
+      //      VERIFY(::ScaleViewportExtEx(pgraphics->m_hDC, floatRateX * 30000.0, 10000, 1, 1, nullptr));
 
       //      VERIFY(::SelectObject(pgraphics->m_hDC, pfont->m_hObject));
 
@@ -219,7 +219,7 @@ namespace draw2d
 
 
 //      VERIFY(::SetMapMode(pgraphics->m_hDC, iOldMapMode));
-//      VERIFY(::SetImpactportOrgEx(
+//      VERIFY(::SetViewportOrgEx(
 //         pgraphics->m_hDC,
 //         viewportOrg.x,
 //         viewportOrg.y,

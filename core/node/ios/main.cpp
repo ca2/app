@@ -9,7 +9,7 @@ CLASS_DECL_CORE i32 ca2_main();
 
 void CLASS_DECL_CORE __cdecl _ca2_purecall()
 {
-   __throw(::exception());
+   throw ::exception(::exception());
 }
 
 

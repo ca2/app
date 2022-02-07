@@ -37,10 +37,10 @@ namespace userex
       
       dialog::handle(ptopic, pcontext);
       
-      if(ptopic->m_pextendedtopic->user_interaction() == m_pform)
+      if(ptopic->get_extended_topic()->user_interaction() == m_pform)
       {
       
-         if(ptopic->m_id == ::id_create)
+         if(ptopic->m_atom == ::id_create)
          {
             
             if(m_durationDelay > 0_s)
@@ -55,10 +55,10 @@ namespace userex
             m_durationStart.Now();
 
          }
-         else if(ptopic->m_id == ::id_timer)
+         else if(ptopic->m_atom == ::id_timer)
          {
             
-            if(ptopic->m_etimer == e_timer_reload)
+            if(ptopic->get_extended_topic()->m_etimer == e_timer_reload)
             {
 
                on_timeout_check();
@@ -68,14 +68,14 @@ namespace userex
          }
          
       }
-      else if(ptopic->m_id == ::id_click)
+      else if(ptopic->m_atom == ::id_click)
       {
 
-         m_idResponse = ptopic->m_pextendedtopic->user_interaction()->m_id;
+         m_atomResponse = ptopic->get_extended_topic()->user_interaction()->m_atom;
 
-         EndModalLoop(m_idResponse);
+         EndModalLoop(m_atomResponse);
 
-         ptopic->m_pextendedtopic->m_bRet = true;
+         ptopic->get_extended_topic()->m_bRet = true;
 
       }
 
@@ -115,7 +115,7 @@ namespace userex
    bool wait_message_dialog::on_timeout()
    {
 
-      m_idResponse = "timeout";
+      m_atomResponse = "timeout";
 
       return true;
 

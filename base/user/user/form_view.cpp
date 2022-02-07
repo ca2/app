@@ -27,7 +27,7 @@ namespace user
 
       form_window::handle(ptopic, pcontext);
 
-      if (ptopic->m_id == ::id_form_initialize && ptopic->m_pextendedtopic->user_interaction() == this)
+      if (ptopic->m_atom == ::id_form_initialize && ptopic->get_extended_topic()->user_interaction() == this)
       {
 
          if (get_document())
@@ -39,33 +39,33 @@ namespace user
          }
 
       }
-      else if (ptopic->m_id == id_browse)
+      else if (ptopic->m_atom == id_browse)
       {
 
-         if (!ptopic->m_pextendedtopic->payload(id_form).is_empty())
+         if (!ptopic->get_extended_topic()->payload(id_form).is_empty())
          {
 
-            if (get_document()->on_open_document(ptopic->m_pextendedtopic->payload(id_form)))
+            if (get_document()->on_open_document(ptopic->get_extended_topic()->payload(id_form)))
             {
 
-               m_strPath = ptopic->m_pextendedtopic->payload(id_form);
+               m_strPath = ptopic->get_extended_topic()->payload(id_form);
 
             }
 
          }
 
       }
-      else if (ptopic->m_id == id_get_form_view)
+      else if (ptopic->m_atom == id_get_form_view)
       {
 
-         ptopic->m_pextendedtopic->payload(id_form) = this;
+         ptopic->get_extended_topic()->payload(id_form) = this;
 
       }
 
       if(m_pcallback != nullptr)
       {
 
-         ptopic->m_pextendedtopic->payload(id_form) = this;
+         ptopic->get_extended_topic()->payload(id_form) = this;
 
          m_pcallback->handle(ptopic, pcontext);
 
@@ -315,7 +315,7 @@ namespace user
 
    //   form_window::handle(ptopic, pcontext);
 
-   //   if (ptopic->m_id == ::id_form_initialize && ptopic->m_pextendedtopic->user_interaction() == this)
+   //   if (ptopic->m_atom == ::id_form_initialize && ptopic->get_extended_topic()->user_interaction() == this)
    //   {
 
    //      if (get_document())

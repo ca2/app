@@ -164,7 +164,7 @@ namespace message
 
       virtual unsigned int get_message() override
       {
-         return (unsigned int)m_id.i64();
+         return (unsigned int)m_atom.i64();
       }
 
    };

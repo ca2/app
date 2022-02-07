@@ -430,7 +430,7 @@ inline ::index array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > ::append(cons
    ASSERT(this != &src);   // cannot append to itself
 
    if(this == &src)
-      __throw(error_bad_argument);
+      throw ::exception(error_bad_argument);
 
    ::count nOldSize = this->m_nSize;
    this->allocate(this->m_nSize + src.m_nSize);
@@ -519,7 +519,7 @@ inline TYPE & array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > ::add_new(::co
    if (c <= 0)
    {
 
-      __throw(error_bad_argument);
+      throw ::exception(error_bad_argument);
 
    }
 

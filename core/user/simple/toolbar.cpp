@@ -215,7 +215,7 @@ size_i32 simple_toolbar::CalcSimpleLayout(::draw2d::graphics_pointer& pgraphics)
 
 #else
 
-   __throw(todo);
+   throw ::exception(todo);
 
 #endif
 
@@ -393,7 +393,7 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 //   // draw gripper in non-client area
 //   DrawGripper(pgraphics, rectangleWindow);
 //
-//   //pgraphics->SetImpactportOrg(pointImpactport);
+//   //pgraphics->SetViewportOrg(pointViewport);
 //}
 
 
@@ -426,10 +426,10 @@ void simple_toolbar::on_command_probe(::user::frame_window * ptarget, bool bDisa
    for (state.m_iIndex = 0; state.m_iIndex < state.m_iCount; state.m_iIndex++)
    {
 
-      if (m_itema[state.m_iIndex]->m_id != "separator")
+      if (m_itema[state.m_iIndex]->m_atom != "separator")
       {
 
-         state.m_id = m_itema[state.m_iIndex]->m_id;
+         state.m_atom = m_itema[state.m_iIndex]->m_atom;
 
          // allow reflections
          //if (::user::interaction::on_command(0,
@@ -702,7 +702,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
    __pointer(::user::menu_central) pmenucentral = puser->menu();
 
-   ::u32 uImage = pmenucentral->command_image(item.m_id);
+   ::u32 uImage = pmenucentral->command_image(item.m_atom);
    
    auto estate = get_item_user_state(iItem);
 
@@ -1103,7 +1103,7 @@ void simple_toolbar::SetSizes(const ::size_i32 & sizeButton, const ::size_i32 & 
 //      VERIFY(send_message(TB_SETBITMAPSIZE, 0, MAKELONG(sizeImage.cx, sizeImage.cy)));
 //      VERIFY(send_message(TB_SETBUTTONSIZE, 0, MAKELONG(sizeButton.cx, sizeButton.cy)));
 //#else
-//      //__throw(todo);
+//      //throw ::exception(todo);
 //#endif
 //
 //      Invalidate();   // just to be nice if called when toolbar is visible
@@ -1513,7 +1513,7 @@ bool simple_toolbar::on_click(const ::item & item)
 
    }
 
-   ::message::command command(m_itema[item]->m_id);
+   ::message::command command(m_itema[item]->m_atom);
 
    puserinteraction->_001SendCommand(&command);
 
@@ -1708,7 +1708,7 @@ void simple_tool_command::_001SetCheck(enum_check echeck, const ::action_context
    if(estyle & e_toolbar_item_style_separator)
    {
 
-      __throw(::error_failed);
+      throw ::exception(::error_failed);
 
    }
 
@@ -1806,7 +1806,7 @@ void simple_toolbar::on_message_non_client_calculate_size(::message::message * p
 
    ::user::control_bar::CalcInsideRect(pgraphics, rectangle, bHorz);
 
-   __throw(todo);
+   throw ::exception(todo);
 
    //auto pparams = (NCCALCSIZE_PARAMS *)pnccalcsize->m_pNCCALCSIZE_PARAMS;
 
@@ -1821,7 +1821,7 @@ void simple_toolbar::on_message_non_client_calculate_size(::message::message * p
 
 #else
 
-   __throw(todo);
+   throw ::exception(todo);
 
 #endif
 
@@ -1944,7 +1944,7 @@ index simple_toolbar::WrapToolBar(::draw2d::graphics_pointer & pgraphics, index 
             // a separator that has a command ID is not
             // a separator, but a custom control.
             if ((m_itema[j]->m_estyle & e_toolbar_item_style_separator) &&
-                  (m_itema[j]->m_id == "separator") &&
+                  (m_itema[j]->m_atom == "separator") &&
                   !(m_itema[j]->m_estate & e_toolbar_item_state_hidden))
             {
 
@@ -1976,7 +1976,7 @@ index simple_toolbar::WrapToolBar(::draw2d::graphics_pointer & pgraphics, index 
                // or any custom controls
                if ((m_itema[j]->m_estate & e_toolbar_item_state_hidden) ||
                      ((m_itema[j]->m_estyle & e_toolbar_item_style_separator) &&
-                      (m_itema[j]->m_id != "separator")))
+                      (m_itema[j]->m_atom != "separator")))
                {
 
                   continue;
@@ -2266,7 +2266,7 @@ size_i32 simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, u32 
          for (i = 0; i < nCount; i++)
          {
 
-            if ((m_itema[i]->m_estyle & e_toolbar_item_style_separator) && (m_itema[i]->m_id != "separator"))
+            if ((m_itema[i]->m_estyle & e_toolbar_item_style_separator) && (m_itema[i]->m_atom != "separator"))
             {
 
                nControlCount++;
@@ -2285,12 +2285,12 @@ size_i32 simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, u32 
             for (index i = 0; i < nCount; i++)
             {
 
-               if ((m_itema[i]->m_estyle & e_toolbar_item_style_separator) && (m_itema[i]->m_id != "separator"))
+               if ((m_itema[i]->m_estyle & e_toolbar_item_style_separator) && (m_itema[i]->m_atom != "separator"))
                {
 
                   pControl[nControlCount].nIndex = i;
 
-                  pControl[nControlCount].strId = m_itema[i]->m_id;
+                  pControl[nControlCount].strId = m_itema[i]->m_atom;
 
                   ::rectangle_i32 rectangle;
 
@@ -2353,7 +2353,7 @@ size_i32 simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, u32 
             //
             // button.dwMask = TBIF_COMMAND | TBIF_SIZE;
             // button.cx = size.cx;
-            // button.m_id = i;
+            // button.m_atom = i;
             //
             // GetToolBarCtrl().SetButtonInfo(i, &button);
 
@@ -2371,7 +2371,7 @@ size_i32 simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, u32 
             //    | TBIF_SIZE;
             // ::u32 uID = GetItemID(i);
             // GetToolBarCtrl().GetButtonInfo(uId, &buttona);
-            // FORMATTED_TRACE("BUTTON.m_id = %d\n", buttona.m_id  );
+            // FORMATTED_TRACE("BUTTON.m_atom = %d\n", buttona.m_atom  );
             // FORMATTED_TRACE("BUTTON.m_fsStyle = %d\n", buttona.m_fsStyle  );
             // FORMATTED_TRACE("BUTTON.cx = %d\n", buttona.cx );
 

@@ -40,7 +40,7 @@ namespace draw2d
 
 #else
 
-            //__throw(todo);
+            //throw ::exception(todo);
 
 #endif
 

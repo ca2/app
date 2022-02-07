@@ -529,7 +529,7 @@ namespace user
    bool copydesk::_has_filea()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return 0;
 
@@ -541,7 +541,7 @@ namespace user
 
       __UNREFERENCED_PARAMETER(stra);
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return false;
 
@@ -553,7 +553,7 @@ namespace user
 
       __UNREFERENCED_PARAMETER(patha);
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return false;
 
@@ -565,7 +565,7 @@ namespace user
 
       __UNREFERENCED_PARAMETER(str);
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return false;
 
@@ -575,7 +575,7 @@ namespace user
    bool copydesk::_get_plain_text(string & str)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return false;
 
@@ -585,7 +585,7 @@ namespace user
    bool copydesk::_has_plain_text()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return 0;
 
@@ -597,7 +597,7 @@ namespace user
 
       __UNREFERENCED_PARAMETER(pimage);
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return false;
 
@@ -609,7 +609,7 @@ namespace user
 
       __UNREFERENCED_PARAMETER(pimage);
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return false;
 
@@ -619,7 +619,7 @@ namespace user
    bool copydesk::_has_image()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return 0;
 

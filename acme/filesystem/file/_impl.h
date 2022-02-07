@@ -127,14 +127,14 @@ inline void __exchange(stream & s, memory_base & memory)
 //   }
 //   catch (...)
 //   {
-//      __throw(error_io);
+//      throw ::exception(error_io);
 //   }
 //   if (!s.fail())
 //   {
 //      memsize size = c * sizeof(a.get_data()[0]);
 //      if (read(a.get_data(), size) != size_i32)
 //      {
-//         __throw(error_io);
+//         throw ::exception(error_io);
 //      }
 //   }
 
@@ -1074,7 +1074,7 @@ inline ::file::file & operator >> (::file::file & file, TYPE & t)
    if (::is_null(file))
    {
 
-      __throw(error_io);
+      throw ::exception(error_io);
 
    }
 

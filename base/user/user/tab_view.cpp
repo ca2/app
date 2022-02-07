@@ -193,7 +193,7 @@ namespace user
       if(pusermessage->m_wparam == 0 && pusermessage->m_lparam == 0)
       {
 
-         set_current_tab_by_id(m_pimpactdataOld->m_id);
+         set_current_tab_by_id(m_pimpactdataOld->m_atom);
 
       }
 
@@ -254,7 +254,7 @@ namespace user
 
       m_placeholdera.erase(ptabpane->m_pplaceholder);
 
-      atom idTab = ptabpane->m_id;
+      atom idTab = ptabpane->m_atom;
 
       ::user::impact_data * pimpactdata = m_impactdatamap[idTab];
 
@@ -527,15 +527,15 @@ namespace user
 
                synchronous_lock synchronouslock(mutex());
 
-               if (pimpactdata->m_idTitle.has_char())
+               if (pimpactdata->m_atomTitle.has_char())
                {
 
                   index iTab = get_current_tab_index();
 
-                  if (iTab >= 0 && get_data()->m_tabpanecompositea[iTab]->m_id == pimpactdata->m_id)
+                  if (iTab >= 0 && get_data()->m_tabpanecompositea[iTab]->m_atom == pimpactdata->m_atom)
                   {
 
-                     get_data()->m_tabpanecompositea[iTab]->set_title(pimpactdata->m_idTitle);
+                     get_data()->m_tabpanecompositea[iTab]->set_title(pimpactdata->m_atomTitle);
 
                   }
 
@@ -547,7 +547,7 @@ namespace user
 
       }
 
-      idSplit = pimpactdata->m_idSplit;
+      idSplit = pimpactdata->m_atomSplit;
 
       if(pimpactdata != m_pimpactdata)
       {
@@ -581,8 +581,8 @@ namespace user
 
       if (m_pimpactdataOld 
          && m_pimpactdataOld->m_eflag & ::user::e_flag_hide_on_kill_focus
-         && m_pimpactdataOld->m_id != MENU_IMPACT
-         && m_pimpactdataOld->m_id != OPTIONS_IMPACT)
+         && m_pimpactdataOld->m_atom != MENU_IMPACT
+         && m_pimpactdataOld->m_atom != OPTIONS_IMPACT)
       {
 
          output_debug_string("::user::e_flag_hide_on_kill_focus");
@@ -699,7 +699,7 @@ namespace user
 
       _on_change_cur_sel();
 
-      if (m_pimpactdata->m_id == MENU_IMPACT)
+      if (m_pimpactdata->m_atom == MENU_IMPACT)
       {
 
          create_impact_menu(m_pimpactdata);
@@ -844,7 +844,7 @@ namespace user
 
    //            synchronous_lock synchronouslock(mutex());
 
-   //            if (pimpactdata->m_strCreatorDataTitle.has_char() && ppane->m_id == pimpactdata->m_id)
+   //            if (pimpactdata->m_strCreatorDataTitle.has_char() && ppane->m_atom == pimpactdata->m_atom)
    //            {
 
    //               ppane->set_title(pimpactdata->m_strCreatorDataTitle);
@@ -880,7 +880,7 @@ namespace user
 
       }
 
-      return m_pimpactdata->m_id;
+      return m_pimpactdata->m_atom;
 
    }
 
@@ -1011,26 +1011,26 @@ namespace user
    bool tab_view::on_prepare_impact_data(::user::impact_data* pimpactdata)
    {
 
-      //if (!add_tab(pimpactdata->m_id, pimpactdata->m_idTitle))
+      //if (!add_tab(pimpactdata->m_atom, pimpactdata->m_atomTitle))
       //{
 
       //   return false;
 
       //}
 
-      auto ptabpane = get_tab_by_id(pimpactdata->m_id);
+      auto ptabpane = get_tab_by_id(pimpactdata->m_atom);
 
       if (!ptabpane)
       {
 
-         if (!add_tab(pimpactdata->m_idTitle, pimpactdata->m_id))
+         if (!add_tab(pimpactdata->m_atomTitle, pimpactdata->m_atom))
          {
 
             return false;
 
          }
 
-         ptabpane = get_tab_by_id(pimpactdata->m_id);
+         ptabpane = get_tab_by_id(pimpactdata->m_atom);
 
       }
 
@@ -1066,7 +1066,7 @@ namespace user
 
       ::user::impact_host::on_after_host_impact(pimpactdata);
 
-      __throw(todo, "experience");
+      throw ::exception(todo, "experience");
 
       //__pointer(::user::frame) pframewindow = pimpactdata->m_puserinteraction;
 

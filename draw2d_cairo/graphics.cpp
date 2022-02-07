@@ -209,7 +209,7 @@ graphics::~graphics()
 //void graphics::CreateDC(const ::string & lpszDriverName, const ::string & lpszDeviceName, const ::string & lpszOutput, const void * lpInitData)
 //{
 //
-//    __throw(error_not_supported);
+//    throw ::exception(error_not_supported);
 //
 //}
 
@@ -217,7 +217,7 @@ graphics::~graphics()
 //void graphics::CreateIC(const ::string & lpszDriverName, const ::string & lpszDeviceName, const ::string & lpszOutput, const void * lpInitData)
 //{
 //
-//    __throw(error_not_supported);
+//    throw ::exception(error_not_supported);
 //
 //}
 
@@ -403,7 +403,7 @@ graphics::~graphics()
 //i32 graphics::ExcludeUpdateRgn(::user::primitive * pwindow)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return 0;
 //
@@ -413,7 +413,7 @@ graphics::~graphics()
 i32 graphics::GetDevicecaps(i32 nIndex)
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     return 0;
 
@@ -423,7 +423,7 @@ i32 graphics::GetDevicecaps(i32 nIndex)
 point_f64 graphics::GetBrushOrg()
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     return ::point_f64();
 
@@ -433,7 +433,7 @@ point_f64 graphics::GetBrushOrg()
 point_f64 graphics::SetBrushOrg(double x, double y)
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     return ::point_i32();
 
@@ -443,7 +443,7 @@ point_f64 graphics::SetBrushOrg(double x, double y)
 point_f64 graphics::SetBrushOrg(const ::point_f64 & point)
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     return ::point_f64();
 
@@ -453,7 +453,7 @@ point_f64 graphics::SetBrushOrg(const ::point_f64 & point)
 //i32 graphics::EnumObjects(i32 nObjectType, i32(CALLBACK* lpfn)(LPVOID, LPARAM), LPARAM lpData)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return 0;
 //
@@ -669,7 +669,7 @@ void graphics::LPtoDP(::rectangle_f64 * prectangle)
 void graphics::fill_region(::draw2d::region* pRgn, ::draw2d::brush* pBrush)
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     //return false;
 
@@ -679,7 +679,7 @@ void graphics::fill_region(::draw2d::region* pRgn, ::draw2d::brush* pBrush)
 void graphics::frame_region(::draw2d::region* pRgn, ::draw2d::brush* pBrush, double nWidth, double nHeight)
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     //return false;
 
@@ -689,7 +689,7 @@ void graphics::frame_region(::draw2d::region* pRgn, ::draw2d::brush* pBrush, dou
 void graphics::invert_region(::draw2d::region* pRgn)
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     //return false;
 
@@ -699,7 +699,7 @@ void graphics::invert_region(::draw2d::region* pRgn)
 void graphics::paint_region(::draw2d::region* pRgn)
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     //return false;
 
@@ -709,7 +709,7 @@ void graphics::paint_region(::draw2d::region* pRgn)
 //void graphics::PtVisible(double x, double y)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return false;
 //
@@ -719,7 +719,7 @@ void graphics::paint_region(::draw2d::region* pRgn)
 //void graphics::PtVisible(const ::point_f64 & point)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return false;
 //
@@ -729,7 +729,7 @@ void graphics::paint_region(::draw2d::region* pRgn)
 //void graphics::rectVisible(const ::rectangle_i32 & rectangle)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return false;
 //
@@ -887,7 +887,7 @@ void graphics::draw_rectangle(const ::rectangle_f64 & rectangle, ::draw2d::pen *
 void graphics::invert_rectangle(const ::rectangle_f64 & rectangle)
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     //return false;
 
@@ -897,7 +897,7 @@ void graphics::invert_rectangle(const ::rectangle_f64 & rectangle)
 //void graphics::DrawIcon(double x, double y, ::draw2d::icon * picon)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return false;
 //
@@ -907,7 +907,7 @@ void graphics::invert_rectangle(const ::rectangle_f64 & rectangle)
 //void graphics::DrawIcon(const ::point_f64 & point, ::draw2d::icon * picon)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return false;
 //
@@ -1045,7 +1045,7 @@ void graphics::invert_rectangle(const ::rectangle_f64 & rectangle)
 //void graphics::DrawState(const ::point_f64 & point, const ::size_f64 & size_f64, HBITMAP hBitmap, ::u32 nFlags, HBRUSH hBrush)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return false;
 //
@@ -1055,7 +1055,7 @@ void graphics::invert_rectangle(const ::rectangle_f64 & rectangle)
 //void graphics::DrawState(const ::point_f64 & point, const ::size_f64 & size_f64, ::draw2d::bitmap* pBitmap, ::u32 nFlags, ::draw2d::brush* pBrush)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return false;
 //
@@ -1065,7 +1065,7 @@ void graphics::invert_rectangle(const ::rectangle_f64 & rectangle)
 //void graphics::DrawState(const ::point_f64 & point, const ::size_f64 & size_f64, const ::string & lpszText, ::u32 nFlags, bool bPrefixText, i32 nTextLen, HBRUSH hBrush)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return false;
 //
@@ -1075,7 +1075,7 @@ void graphics::invert_rectangle(const ::rectangle_f64 & rectangle)
 //void graphics::DrawState(const ::point_f64 & point, const ::size_f64 & size_f64, const ::string & lpszText, ::u32 nFlags, bool bPrefixText, i32 nTextLen, ::draw2d::brush* pBrush)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return false;
 //
@@ -1085,7 +1085,7 @@ void graphics::invert_rectangle(const ::rectangle_f64 & rectangle)
 //void graphics::DrawEdge(const ::rectangle_i32 & rectangle, ::u32 nEdge, ::u32 nFlags)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return false;
 //
@@ -1095,7 +1095,7 @@ void graphics::invert_rectangle(const ::rectangle_f64 & rectangle)
 //void graphics::DrawFrameControl(const ::rectangle_i32 & rectangle, ::u32 nType, ::u32 nState)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return false;
 //
@@ -1105,7 +1105,7 @@ void graphics::invert_rectangle(const ::rectangle_f64 & rectangle)
 void graphics::Chord(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4)
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     //return false;
 
@@ -1115,7 +1115,7 @@ void graphics::Chord(double x1, double y1, double x2, double y2, double x3, doub
 void graphics::Chord(const ::rectangle_f64 & rectangle, const ::point_f64 & pointStart, const ::point_f64 & pointEnd)
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     //return false;
 
@@ -1125,7 +1125,7 @@ void graphics::Chord(const ::rectangle_f64 & rectangle, const ::point_f64 & poin
 void graphics::DrawFocusRect(const ::rectangle_f64 & rectangle)
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
 }
 
@@ -1236,7 +1236,7 @@ void graphics::fill_ellipse(const ::rectangle_f64 & rectangle)
 void graphics::Pie(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4)
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     //return false;
 
@@ -1246,7 +1246,7 @@ void graphics::Pie(double x1, double y1, double x2, double y2, double x3, double
 void graphics::Pie(const ::rectangle_f64 & rectangle, const ::point_f64 & pointStart, const ::point_f64 & pointEnd)
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     //return false;
 
@@ -1362,7 +1362,7 @@ void graphics::rectangle(const ::rectangle_f64 & rectangle)
 void graphics::round_rectangle(const ::rectangle_f64 & rectangle, double dRadius)
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     //return false;
 
@@ -1673,7 +1673,7 @@ void graphics::_stretch_raw(const ::rectangle_f64 & rectangleTarget, ::image * p
 ::color::color graphics::GetPixel(double x, double y)
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     return false;
 
@@ -1683,7 +1683,7 @@ void graphics::_stretch_raw(const ::rectangle_f64 & rectangleTarget, ::image * p
 ::color::color graphics::GetPixel(const ::point_f64 & point)
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     return false;
 
@@ -1693,7 +1693,7 @@ void graphics::_stretch_raw(const ::rectangle_f64 & rectangleTarget, ::image * p
 ::color::color graphics::SetPixel(double x, double y, const ::color::color & color)
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     return false;
 
@@ -1703,7 +1703,7 @@ void graphics::_stretch_raw(const ::rectangle_f64 & rectangleTarget, ::image * p
 ::color::color graphics::SetPixel(const ::point_f64 & point, const ::color::color & color)
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     return false;
 
@@ -1713,7 +1713,7 @@ void graphics::_stretch_raw(const ::rectangle_f64 & rectangleTarget, ::image * p
 //void graphics::FloodFill(double x, double y, const ::color::color & color)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return false;
 //
@@ -1723,7 +1723,7 @@ void graphics::_stretch_raw(const ::rectangle_f64 & rectangleTarget, ::image * p
 //void graphics::ExtFloodFill(double x, double y, const ::color::color & color, ::u32 nFillType)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return false;
 //
@@ -1748,7 +1748,7 @@ void graphics::_stretch_raw(const ::rectangle_f64 & rectangleTarget, ::image * p
 //void graphics::ExtTextOut(double x, double y, ::u32 nOptions, const ::rectangle_f64 & rectangle, const ::string & lpszString, strsize nCount, int * lpDxWidths)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return false;
 //
@@ -1758,7 +1758,7 @@ void graphics::_stretch_raw(const ::rectangle_f64 & rectangleTarget, ::image * p
 //size_f64 graphics::TabbedTextOut(double x, double y, const ::string & lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions, i32 nTabOrigin)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return ::size_f64(0, 0);
 //
@@ -1768,7 +1768,7 @@ void graphics::_stretch_raw(const ::rectangle_f64 & rectangleTarget, ::image * p
 //size_f64 graphics::TabbedTextOut(double x, double y, const ::string & str, count nTabPositions, int * lpnTabStopPositions, i32 nTabOrigin)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return ::size_f64(0, 0);
 //
@@ -1778,7 +1778,7 @@ void graphics::_stretch_raw(const ::rectangle_f64 & rectangleTarget, ::image * p
 //size_f64 graphics::GetTabbedTextExtent(const ::string & lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return ::size_f64(0, 0);
 //
@@ -1788,7 +1788,7 @@ void graphics::_stretch_raw(const ::rectangle_f64 & rectangleTarget, ::image * p
 //size_f64 graphics::GetTabbedTextExtent(const ::string & str, count nTabPositions, int * lpnTabStopPositions)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return ::size_f64(0, 0);
 //
@@ -1798,7 +1798,7 @@ void graphics::_stretch_raw(const ::rectangle_f64 & rectangleTarget, ::image * p
 //size_f64 graphics::GetOutputTabbedTextExtent(const ::string & lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return ::size_f64(0, 0);
 //
@@ -1808,7 +1808,7 @@ void graphics::_stretch_raw(const ::rectangle_f64 & rectangleTarget, ::image * p
 //size_f64 graphics::GetOutputTabbedTextExtent(const ::string & str, count nTabPositions, int * lpnTabStopPositions)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return ::size_f64(0, 0);
 //
@@ -1818,7 +1818,7 @@ void graphics::_stretch_raw(const ::rectangle_f64 & rectangleTarget, ::image * p
 //void graphics::GrayString(::draw2d::brush* pBrush, bool (CALLBACK* lpfnOutput)(HDC, LPARAM, i32), LPARAM lpData, i32 nCount, double x, double y, double nWidth, double nHeight)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return false;
 //
@@ -1828,7 +1828,7 @@ void graphics::_stretch_raw(const ::rectangle_f64 & rectangleTarget, ::image * p
 ::u32 graphics::GetTextAlign()
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     return 0;
 
@@ -1838,7 +1838,7 @@ void graphics::_stretch_raw(const ::rectangle_f64 & rectangleTarget, ::image * p
 //i32 graphics::GetTextFace(count nCount, char * lpszFacename)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return 0;
 //
@@ -1848,7 +1848,7 @@ void graphics::_stretch_raw(const ::rectangle_f64 & rectangleTarget, ::image * p
 //i32 graphics::GetTextFace(string & rString)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return 0;
 //
@@ -1987,7 +1987,7 @@ void graphics::get_text_metrics(::write_text::text_metric * lpMetrics)
 void graphics::get_output_text_metrics(::write_text::text_metric * lpMetrics)
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     //return false;
 
@@ -1997,7 +1997,7 @@ void graphics::get_output_text_metrics(::write_text::text_metric * lpMetrics)
 //i32 graphics::GetTextCharacterExtra()
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return 0;
 //
@@ -2007,7 +2007,7 @@ void graphics::get_output_text_metrics(::write_text::text_metric * lpMetrics)
 //void graphics::GetCharWidth(::u32 nFirstChar, ::u32 nLastChar, LPINT lpBuffer)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return false;
 //
@@ -2017,7 +2017,7 @@ void graphics::get_output_text_metrics(::write_text::text_metric * lpMetrics)
 //void graphics::GetOutputCharWidth(::u32 nFirstChar, ::u32 nLastChar, LPINT lpBuffer)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return false;
 //
@@ -2027,7 +2027,7 @@ void graphics::get_output_text_metrics(::write_text::text_metric * lpMetrics)
 //u32 graphics::GetFontLanguageInfo()
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return 0;
 //
@@ -2037,7 +2037,7 @@ void graphics::get_output_text_metrics(::write_text::text_metric * lpMetrics)
 //size_f64 graphics::GetAspectRatioFilter()
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return size_f64(0, 0);
 //
@@ -2047,7 +2047,7 @@ void graphics::get_output_text_metrics(::write_text::text_metric * lpMetrics)
 //void graphics::ScrollDC(i32 dx, i32 dy, const ::rectangle_i32 & rectangleScroll, const ::rectangle_i32 & rectangleClip, ::draw2d::region* pRgnUpdate, RECTANGLE_I32 * lpRectUpdate)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return false;
 //
@@ -2058,7 +2058,7 @@ void graphics::get_output_text_metrics(::write_text::text_metric * lpMetrics)
 //i32 graphics::Escape(i32 nEscape, i32 nCount, const ::string & lpszInData, LPVOID lpOutData)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return 0;
 //
@@ -2069,7 +2069,7 @@ void graphics::get_output_text_metrics(::write_text::text_metric * lpMetrics)
 ::u32 graphics::SetBoundsRect(const ::rectangle_f64 & rectangleBounds, ::u32 flags)
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     return 0;
 
@@ -2079,7 +2079,7 @@ void graphics::get_output_text_metrics(::write_text::text_metric * lpMetrics)
 ::u32 graphics::GetBoundsRect(::rectangle_f64 * rectangleBounds, ::u32 flags)
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     return 0;
 
@@ -2089,7 +2089,7 @@ void graphics::get_output_text_metrics(::write_text::text_metric * lpMetrics)
 //u32 graphics::GetFontData(u32 dwTable, u32 dwOffset, LPVOID lpData, u32 cbData)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return 0;
 //
@@ -2099,7 +2099,7 @@ void graphics::get_output_text_metrics(::write_text::text_metric * lpMetrics)
 i32 graphics::StartPage()
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     return 0;
 
@@ -2109,7 +2109,7 @@ i32 graphics::StartPage()
 i32 graphics::EndPage()
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     return 0;
 
@@ -2119,7 +2119,7 @@ i32 graphics::EndPage()
 //i32 graphics::SetAbortProc(bool (CALLBACK* lpfn)(HDC, i32))
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return 0;
 //
@@ -2129,7 +2129,7 @@ i32 graphics::EndPage()
 i32 graphics::AbortDoc()
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     return 0;
 
@@ -2139,7 +2139,7 @@ i32 graphics::AbortDoc()
 i32 graphics::EndDoc()
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     return 0;
 
@@ -2149,7 +2149,7 @@ i32 graphics::EndDoc()
 //void graphics::MaskBlt(double x, double y, double nWidth, double nHeight, ::draw2d::graphics * pgraphicsSrc, double xSrc, double ySrc, ::draw2d::bitmap& maskBitmap, double xMask, double yMask)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return false;
 //
@@ -2415,7 +2415,7 @@ i32 graphics::EndDoc()
 //void graphics::SetPixelV(double x, double y, const ::color::color & color)
 //{
 //
-//   throw interface_only_exception();
+//   throw ::interface_only();
 //
 //   //return false;
 //
@@ -2425,7 +2425,7 @@ i32 graphics::EndDoc()
 //void graphics::SetPixelV(const ::point_f64 & point, const ::color::color & color)
 //{
 //
-//   throw interface_only_exception();
+//   throw ::interface_only();
 //
 //   return false;
 //
@@ -2435,7 +2435,7 @@ i32 graphics::EndDoc()
 void graphics::AngleArc(double x, double y, double nRadius, angle fStartAngle, angle fSweepAngle)
 {
 
-   throw interface_only_exception();
+   throw ::interface_only();
 
    //return false;
 
@@ -2445,7 +2445,7 @@ void graphics::AngleArc(double x, double y, double nRadius, angle fStartAngle, a
 void graphics::ArcTo(const ::rectangle_f64 & rectangle, const ::point_f64 & pointStart, const ::point_f64 & pointEnd)
 {
 
-   throw interface_only_exception();
+   throw ::interface_only();
 
    //return false;
 
@@ -2455,7 +2455,7 @@ void graphics::ArcTo(const ::rectangle_f64 & rectangle, const ::point_f64 & poin
 //i32 graphics::GetArcDirection()
 //{
 //
-//   throw interface_only_exception();
+//   throw ::interface_only();
 //
 //   return 0;
 //
@@ -2465,7 +2465,7 @@ void graphics::ArcTo(const ::rectangle_f64 & rectangle, const ::point_f64 & poin
 void graphics::poly_polyline(const ::point_f64* lpPoints, const ::i32 * lpPolyPoints, count nCount)
 {
 
-   throw interface_only_exception();
+   throw ::interface_only();
 
    //return false;
 
@@ -2515,7 +2515,7 @@ void graphics::poly_polyline(const ::point_f64* lpPoints, const ::i32 * lpPolyPo
 void graphics::poly_bezier(const ::point_f64* lpPoints, count nCount)
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     //return false;
 
@@ -2525,7 +2525,7 @@ void graphics::poly_bezier(const ::point_f64* lpPoints, count nCount)
 //i32 graphics::DrawEscape(i32 nEscape, i32 nInputSize, const ::string & lpszInputData)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return 0;
 //
@@ -2535,7 +2535,7 @@ void graphics::poly_bezier(const ::point_f64* lpPoints, count nCount)
 //i32 graphics::Escape(i32 nEscape, i32 nInputSize, const ::string & lpszInputData, i32 nOutputSize, char * lpszOutputData)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return 0;
 //
@@ -2545,7 +2545,7 @@ void graphics::poly_bezier(const ::point_f64* lpPoints, count nCount)
 //void graphics::GetCharWidth(::u32 nFirstChar, ::u32 nLastChar, float* lpFloatBuffer)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return false;
 //
@@ -2555,7 +2555,7 @@ void graphics::poly_bezier(const ::point_f64* lpPoints, count nCount)
 void graphics::abort_path()
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     //return false;
 
@@ -2565,7 +2565,7 @@ void graphics::abort_path()
 void graphics::begin_path()
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     //return false;
 
@@ -2575,7 +2575,7 @@ void graphics::begin_path()
 void graphics::close_figure()
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     //return false;
 
@@ -2585,7 +2585,7 @@ void graphics::close_figure()
 void graphics::end_path()
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     //return false;
 
@@ -2595,7 +2595,7 @@ void graphics::end_path()
 void graphics::fill_path()
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     //return false;
 
@@ -2605,7 +2605,7 @@ void graphics::fill_path()
 void graphics::flatten_path()
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     //return false;
 
@@ -2615,7 +2615,7 @@ void graphics::flatten_path()
 float graphics::GetMiterLimit()
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     //return 0.f;
 
@@ -2625,7 +2625,7 @@ float graphics::GetMiterLimit()
 //i32 graphics::GetPath(::point_f64 * lpPoints, byte * lpTypes, count nCount)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return 0;
 //
@@ -2635,7 +2635,7 @@ float graphics::GetMiterLimit()
 void graphics::SetMiterLimit(float fMiterLimit)
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     //return false;
 
@@ -2645,7 +2645,7 @@ void graphics::SetMiterLimit(float fMiterLimit)
 void graphics::stroke_and_fill_path()
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     //return false;
 
@@ -2655,7 +2655,7 @@ void graphics::stroke_and_fill_path()
 void graphics::stroke_path()
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     //return false;
 
@@ -2665,7 +2665,7 @@ void graphics::stroke_path()
 void graphics::widen_path()
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     //return false;
 
@@ -2868,7 +2868,7 @@ void graphics::fill_path(::draw2d::path * ppath, ::draw2d::brush * pbrush)
 //void graphics::TransparentBlt(double xDest, double yDest, i32 nDestWidth, i32 nDestHeight, ::draw2d::graphics * pgraphicsSrc, double xSrc, double ySrc, i32 nSrcWidth, i32 nSrcHeight, ::u32 crTransparent)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return false;
 //
@@ -2878,7 +2878,7 @@ void graphics::fill_path(::draw2d::path * ppath, ::draw2d::brush * pbrush)
 //void graphics::GradientFill(TRIVERTEX* pVertices, WINULONG nVertices, void * pMesh, WINULONG nMeshElements, u32 dwMode)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return false;
 //
@@ -2892,7 +2892,7 @@ void graphics::fill_path(::draw2d::path * ppath, ::draw2d::brush * pbrush)
 //color32_t graphics::GetDCBrushColor()
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return 0;
 //
@@ -2902,7 +2902,7 @@ void graphics::fill_path(::draw2d::path * ppath, ::draw2d::brush * pbrush)
 //color32_t graphics::SetDCBrushColor(color32_t crColor)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return 0;
 //
@@ -2912,7 +2912,7 @@ void graphics::fill_path(::draw2d::path * ppath, ::draw2d::brush * pbrush)
 //color32_t graphics::GetDCPenColor()
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return 0;
 //
@@ -2922,7 +2922,7 @@ void graphics::fill_path(::draw2d::path * ppath, ::draw2d::brush * pbrush)
 //color32_t graphics::SetDCPenColor(color32_t crColor)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return 0;
 //
@@ -2938,7 +2938,7 @@ void graphics::fill_path(::draw2d::path * ppath, ::draw2d::brush * pbrush)
 //void graphics::GetCharABCWidthsI(::u32 giFirst, ::u32 cgi, LPWORD pgi, LPABC lpabc)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return false;
 //
@@ -2948,7 +2948,7 @@ void graphics::fill_path(::draw2d::path * ppath, ::draw2d::brush * pbrush)
 //void graphics::GetCharWidthI(::u32 giFirst, ::u32 cgi, LPWORD pgi, LPINT lpBuffer)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return false;
 //
@@ -2964,7 +2964,7 @@ void graphics::fill_path(::draw2d::path * ppath, ::draw2d::brush * pbrush)
 //void graphics::GetTextExtentExPointI(LPWORD pgiIn, i32 cgi, i32 nMaxExtent, LPINT lpnFit, LPINT alpDx, LPSIZE32 LPSIZE32)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return false;
 //
@@ -2974,7 +2974,7 @@ void graphics::fill_path(::draw2d::path * ppath, ::draw2d::brush * pbrush)
 //void graphics::GetTextExtentPointI(LPWORD pgiIn, i32 cgi, LPSIZE32 LPSIZE32)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return false;
 //
@@ -2994,7 +2994,7 @@ void graphics::fill_path(::draw2d::path * ppath, ::draw2d::brush * pbrush)
 void graphics::DPtoHIMETRIC(::size_f64 * psize)
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
 }
 
@@ -3002,7 +3002,7 @@ void graphics::DPtoHIMETRIC(::size_f64 * psize)
 void graphics::HIMETRICtoDP(::size_f64 * psize)
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
 }
 
@@ -3025,7 +3025,7 @@ void graphics::HIMETRICtoDP(::size_f64 * psize)
 //   void graphics::DrawDragRect(const ::rectangle_i32 & rectangle, const ::size_f64 & size_f64, const ::rectangle_i32 & rectangleLast, const ::size_f64 & sizeLast, ::draw2d::brush* pBrush, ::draw2d::brush* pBrushLast)
 //   {
 //
-//      throw interface_only_exception();
+//      throw ::interface_only();
 //
 //   }
 
@@ -3056,7 +3056,7 @@ void graphics::DeleteDC()
 //i32 graphics::StartDoc(const ::string & lpszDocName)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return 0;
 //
@@ -3153,7 +3153,7 @@ void graphics::RestoreDC(i32 nSavedDC)
 void graphics::set(::draw2d::region* pregion)
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     //return false;
 
@@ -3171,7 +3171,7 @@ void graphics::set(::draw2d::region* pregion)
 //i32 graphics::SetPolyFillMode(i32 nPolyFillMode)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return 0;
 //
@@ -3181,7 +3181,7 @@ void graphics::set(::draw2d::region* pregion)
 //i32 graphics::SetROP2(i32 nDrawMode)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return 0;
 //
@@ -3208,7 +3208,7 @@ void graphics::set_interpolation_mode(::draw2d::enum_interpolation_mode einterpo
 //i32 graphics::SetGraphicsMode(i32 iMode)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return 0;
 //
@@ -3218,7 +3218,7 @@ void graphics::set_interpolation_mode(::draw2d::enum_interpolation_mode einterpo
 //void graphics::SetWorldTransform(const XFORM* pXform)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return false;
 //
@@ -3228,7 +3228,7 @@ void graphics::set_interpolation_mode(::draw2d::enum_interpolation_mode einterpo
 //void graphics::ModifyWorldTransform(const XFORM* pXform, u32 iMode)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return false;
 //
@@ -3270,7 +3270,7 @@ point_f64 graphics::OffsetViewportOrg(double nWidth, double nHeight)
 size_f64 graphics::SetViewportExt(double x, double y)
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     return ::size_f64(0, 0);
 
@@ -3288,7 +3288,7 @@ size_f64 graphics::ScaleViewportExt(double xNum, double xDenom, double yNum, dou
 point_f64 graphics::SetWindowOrg(double x, double y)
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     return ::point_i32();
 
@@ -3298,7 +3298,7 @@ point_f64 graphics::SetWindowOrg(double x, double y)
 point_f64 graphics::offset_window_org(double nWidth, double nHeight)
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     return ::point_f64();
 
@@ -3308,7 +3308,7 @@ point_f64 graphics::offset_window_org(double nWidth, double nHeight)
 size_f64 graphics::set_window_ext(double x, double y)
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     return ::size_f64(0, 0);
 
@@ -3318,7 +3318,7 @@ size_f64 graphics::set_window_ext(double x, double y)
 size_f64 graphics::scale_window_ext(double xNum, double xDenom, double yNum, double yDenom)
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     return ::size_f64(0, 0);
 
@@ -3359,7 +3359,7 @@ i32 graphics::get_clip_box(::rectangle_f64 * prectangle)
 //i32 graphics::ExcludeClipRect(double x1, double y1, double x2, double y2)
 //{
 //
-//    //throw interface_only_exception();
+//    //throw ::interface_only();
 //
 //    return ::draw2d::graphics::ExcludeClipRect(x1, y1, x2, y2);
 //
@@ -3369,7 +3369,7 @@ i32 graphics::get_clip_box(::rectangle_f64 * prectangle)
 //i32 graphics::ExcludeClipRect(const ::rectangle_i32 & rectangle)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return 0;
 //
@@ -3403,7 +3403,7 @@ i32 graphics::get_clip_box(::rectangle_f64 * prectangle)
 //
 //   return ::draw2d::graphics::OffsetClipRgn(x, y);
 //
-//    //throw interface_only_exception();
+//    //throw ::interface_only();
 //
 //    // does cairo automatically offset clip region
 //    // according to current transformation?
@@ -3416,7 +3416,7 @@ i32 graphics::get_clip_box(::rectangle_f64 * prectangle)
 //i32 graphics::OffsetClipRgn(const ::size_f64 & size_f64)
 //{
 //
-//    //throw interface_only_exception();
+//    //throw ::interface_only();
 //
 //    //return 0;
 //
@@ -3468,7 +3468,7 @@ void graphics::move_to(double x, double y)
 //i32 graphics::SetTextJustification(i32 nBreakExtra, i32 nBreakCount)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return 0;
 //
@@ -3478,7 +3478,7 @@ void graphics::move_to(double x, double y)
 //i32 graphics::SetTextCharacterExtra(i32 nCharExtra)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return 0;
 //
@@ -3488,7 +3488,7 @@ void graphics::move_to(double x, double y)
 //u32 graphics::SetMapperFlags(u32 dwFlag)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return 0;
 //
@@ -3498,7 +3498,7 @@ void graphics::move_to(double x, double y)
 u32 graphics::GetLayout()
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     return 0;
 
@@ -3508,7 +3508,7 @@ u32 graphics::GetLayout()
 u32 graphics::SetLayout(u32 dwSetLayout)
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     return 0;
 
@@ -3518,7 +3518,7 @@ u32 graphics::SetLayout(u32 dwSetLayout)
 //void graphics::ArcTo(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return false;
 //
@@ -3528,7 +3528,7 @@ u32 graphics::SetLayout(u32 dwSetLayout)
 //i32 graphics::SetArcDirection(i32 nArcDirection)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return 0;
 //
@@ -3538,7 +3538,7 @@ u32 graphics::SetLayout(u32 dwSetLayout)
 void graphics::polydraw(const ::point_f64* lpPoints, const byte* lpTypes, count nCount)
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     //return false;
 
@@ -3548,7 +3548,7 @@ void graphics::polydraw(const ::point_f64* lpPoints, const byte* lpTypes, count 
 void graphics::polyline_to(const ::point_f64* lpPoints, count nCount)
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     //return false;
 
@@ -3558,7 +3558,7 @@ void graphics::polyline_to(const ::point_f64* lpPoints, count nCount)
 void graphics::poly_bezier_to(const ::point_f64* lpPoints, count nCount)
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     //return 0;
 
@@ -3568,7 +3568,7 @@ void graphics::poly_bezier_to(const ::point_f64* lpPoints, count nCount)
 void graphics::SelectClipPath(i32 nMode)
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     //return 0;
 
@@ -3586,7 +3586,7 @@ void graphics::SelectClipPath(i32 nMode)
 void graphics::LPtoDP(::size_f64 * psize)
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     return;
 
@@ -3596,7 +3596,7 @@ void graphics::LPtoDP(::size_f64 * psize)
 void graphics::DPtoLP(::size_f64 * psize)
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     //return;
 
@@ -3953,7 +3953,7 @@ void graphics::internal_draw_text(const ::block & block, const ::rectangle_f64 &
 void graphics::draw_text_ex(const ::string & str, const ::rectangle_f64 & rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext)
 {
 
-    throw interface_only_exception();
+    throw ::interface_only();
 
     //return 0;
 
@@ -3998,7 +3998,7 @@ size_f64 graphics::get_text_extent(const block & block)
 //size_f64 graphics::GetOutputTextExtent(const char * lpszString, strsize nCount)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return ::size_f64(0, 0);
 //
@@ -4008,7 +4008,7 @@ size_f64 graphics::get_text_extent(const block & block)
 //size_f64 graphics::GetOutputTextExtent(const ::string & str)
 //{
 //
-//    throw interface_only_exception();
+//    throw ::interface_only();
 //
 //    return ::size_f64(0, 0);
 //
@@ -6022,7 +6022,7 @@ void graphics::flush()
 ////
 ////#else
 ////
-////    __throw(error_not_implemented);
+////    throw ::not_implemented();
 ////
 ////#endif
 ////

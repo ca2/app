@@ -184,7 +184,7 @@ namespace datetime
                GetRectDay(6,7,lprect);
                return;
             default:
-               __throw(error_not_supported);
+               throw ::exception(error_not_supported);
             }
          }
       }

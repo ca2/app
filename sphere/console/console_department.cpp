@@ -48,7 +48,7 @@ namespace console
 
       if(pusermessage != nullptr)
       {
-         if(pusermessage->m_id == e_message_key_down)
+         if(pusermessage->m_atom == e_message_key_down)
          {
 
             auto pkey = pmessage->m_union.m_pkey;

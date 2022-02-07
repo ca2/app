@@ -12,7 +12,7 @@
 //
 //void CLASS_DECL_AURA __cdecl _ca2_purecall()
 //{
-//   __throw(::exception());
+//   throw ::exception(::exception());
 //}
 //
 //

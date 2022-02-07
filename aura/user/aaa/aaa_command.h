@@ -12,7 +12,7 @@ namespace user
 
 
       __pointer(::channel)                         m_pcommandtargetSource;
-      atom                                           m_idControl;     // menu item or other index
+      atom                                           m_atomControl;     // menu item or other index
       index                                        m_iIndex;
       ::count                                      m_iCount;        // last + 1 for iterating m_iIndex
       __pointer_array(::channel)                        m_commandtargetptraHandle;

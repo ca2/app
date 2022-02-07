@@ -366,14 +366,14 @@ void text_stream::read(i32 & i)
 {
    u64 uRead = m_p->read(&i, sizeof(i));
    if (uRead != sizeof(i))
-      __throw(error_io, "failed to read i32");
+      throw ::exception(error_io, "failed to read i32");
 }
 
 void text_stream::read(u32 & u)
 {
    u64 uRead = m_p->read(&u, sizeof(u));
    if (uRead != sizeof(u))
-      __throw(error_io, "failed to read u32");
+      throw ::exception(error_io, "failed to read u32");
 }
 
 

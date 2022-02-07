@@ -17,7 +17,7 @@
 #include <sys/stat.h>
 #include <dirent.h>
 #elif defined(_UWP)
-#include "acme/node/operating_system/universal_windows/file_winrt.h"
+#include "acme/operating_system/universal_windows/file_winrt.h"
 #endif
 
 
@@ -391,7 +391,7 @@ namespace dir
 
       auto wstrModuleFolder = strModuleFolder.get_string_buffer(MAX_PATH * 8);
 
-      __throw(todo);
+      throw ::exception(todo);
 
       return wstrModuleFolder;
 

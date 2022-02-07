@@ -8,15 +8,6 @@
     <Filter Include="Source Files\user">
       <UniqueIdentifier>{8832ff75-5113-4095-b832-a6e62e777cfd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\graphics">
-      <UniqueIdentifier>{14fc58bd-e136-4919-be5e-6efac6e33bf1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\graphics\draw2d">
-      <UniqueIdentifier>{bbcb5eb9-be41-465a-a232-c4136a47d021}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\graphics\draw3d">
-      <UniqueIdentifier>{7b756908-fa74-403f-a5ac-88be99a8b8cc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
@@ -33,17 +24,8 @@
     <Filter Include="Header Files\graphics\draw3d">
       <UniqueIdentifier>{cb60f64d-82e7-49e9-9d04-a5e35430215f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\graphics\draw2d\apple">
-      <UniqueIdentifier>{34efaa0b-f6bf-4aa5-9d45-4ce5191524d1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\graphics\draw2d\winrt">
-      <UniqueIdentifier>{180c7432-81c3-4bd3-9dbf-d970eefd11e0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\graphics\graphics">
       <UniqueIdentifier>{7244c2df-317d-4622-9d20-c9e6bf6c4e42}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\graphics\graphics">
-      <UniqueIdentifier>{272b2218-7490-41dd-9af7-993900a1cabf}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\inline">
       <UniqueIdentifier>{ca5a634b-db67-405b-b94e-e17dbe4fdeeb}</UniqueIdentifier>
@@ -53,9 +35,6 @@
     </Filter>
     <Filter Include="Header Files\const">
       <UniqueIdentifier>{d1dc7140-9c26-4249-9bf3-84fc6fbb92d7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\graphics\draw2d\no_precompiled_header">
-      <UniqueIdentifier>{df007898-a66f-47d8-aad3-693c470c1bf4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\include">
       <UniqueIdentifier>{0c0346ef-bd1c-4a0a-85b1-cfd8ef8ec242}</UniqueIdentifier>
@@ -129,12 +108,6 @@
     <Filter Include="Header Files\graphics\write_text">
       <UniqueIdentifier>{2f1acfc1-10fb-47b5-8b52-b81dfb0e47ac}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\graphics\write_text">
-      <UniqueIdentifier>{9c7fbf2d-65a8-4085-8fc1-26598744d146}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\graphics\user">
-      <UniqueIdentifier>{a52aa32c-8f7e-49e3-b7e4-78a433431da5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\graphics\user">
       <UniqueIdentifier>{fe2a712a-f741-4216-9474-353b7d33f177}</UniqueIdentifier>
     </Filter>
@@ -170,6 +143,33 @@
     </Filter>
     <Filter Include="Source Files\gpu\game">
       <UniqueIdentifier>{f65206ec-dbbc-4b74-a23c-3b5bf23d50a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics">
+      <UniqueIdentifier>{14fc58bd-e136-4919-be5e-6efac6e33bf1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\draw2d">
+      <UniqueIdentifier>{bbcb5eb9-be41-465a-a232-c4136a47d021}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\draw2d\apple">
+      <UniqueIdentifier>{34efaa0b-f6bf-4aa5-9d45-4ce5191524d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\draw2d\winrt">
+      <UniqueIdentifier>{180c7432-81c3-4bd3-9dbf-d970eefd11e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\draw2d\no_precompiled_header">
+      <UniqueIdentifier>{df007898-a66f-47d8-aad3-693c470c1bf4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\draw3d">
+      <UniqueIdentifier>{7b756908-fa74-403f-a5ac-88be99a8b8cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\graphics">
+      <UniqueIdentifier>{272b2218-7490-41dd-9af7-993900a1cabf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\write_text">
+      <UniqueIdentifier>{9c7fbf2d-65a8-4085-8fc1-26598744d146}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\user">
+      <UniqueIdentifier>{a52aa32c-8f7e-49e3-b7e4-78a433431da5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -239,11 +239,11 @@ bool html_document::on_open_document(const ::payload & payloadFile)
 
    auto phtmldocument = this;
 
-   ::topic topic(id_document_complete);
+   ::extended_topic extendedtopic(id_document_complete);
 
-   topic.payload(id_url) = payloadFile;
+   extendedtopic.payload(id_url) = payloadFile;
 
-   phtmldocument->update_all_views(&topic);
+   phtmldocument->update_all_views(&extendedtopic);
 
    //data_set({ "LastOpenedFile", true }, get_file_path());
 
@@ -279,9 +279,9 @@ void html_document::soft_reload()
 
 //   auto pupdate = new_update();
 //
-//   ptopic->m_id = id_document_complete;
+//   ptopic->m_atom = id_document_complete;
 //
-//   ptopic->m_pextendedtopic->payload(id_url) = get_file_path();
+//   ptopic->get_extended_topic()->payload(id_url) = get_file_path();
 //
 //   update_all_views(pupdate);
 
@@ -354,7 +354,7 @@ void html_document::soft_reload()
 void html_document::on_command_probe(::message::command * pcommand)
 {
 
-   if(pcommand->m_id == "viewindefaultbrowser")
+   if(pcommand->m_atom == "viewindefaultbrowser")
    {
 
       pcommand->enable();
@@ -373,7 +373,7 @@ void html_document::on_command(::message::command * pcommand)
 
    auto papplication = get_application();
 
-   if(pcommand->m_id == "viewindefaultbrowser")
+   if(pcommand->m_atom == "viewindefaultbrowser")
    {
 
       property_set propertyset;

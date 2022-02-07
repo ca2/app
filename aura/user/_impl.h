@@ -202,7 +202,7 @@ inline prodevian::prodevian(::user::interaction* pinteraction) :
 //   inline __pointer(VIEW) impact::create_view(::user::impact_data* pimpactdata, ::user::interaction* pviewLast)
 //   {
 //
-//      return create_view < VIEW >(get_document(), pimpactdata->m_pplaceholder, pimpactdata->m_id, pviewLast, pimpactdata);
+//      return create_view < VIEW >(get_document(), pimpactdata->m_pplaceholder, pimpactdata->m_atom, pviewLast, pimpactdata);
 //
 //   }
 //

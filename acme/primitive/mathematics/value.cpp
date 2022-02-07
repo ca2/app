@@ -59,7 +59,7 @@ namespace mathematics
 //      binary_operation * pbinopNew;
       address_array < number * > stackptra;
 
-      __throw(error_not_implemented);
+      throw ::not_implemented();
 
       /*
 

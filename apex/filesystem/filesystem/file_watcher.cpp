@@ -96,7 +96,7 @@ namespace file
       if (m_listenera.is_empty())
       {
 
-         m_pwatcher->erase_watch(m_id);
+         m_pwatcher->erase_watch(m_atom);
 
       }
 
@@ -176,7 +176,7 @@ namespace file
    {
 
       m_pThis = nullptr;
-      m_idLast = 0;
+      m_atomLast = 0;
       m_bCreateWatchThread = true;
 
    }
@@ -208,9 +208,9 @@ namespace file
 
       pwatch->m_pwatcher = this;
 
-      pwatch->m_id = ++m_idLast;
+      pwatch->m_atom = ++m_atomLast;
 
-      m_watchmap[pwatch->m_id] = pwatch;
+      m_watchmap[pwatch->m_atom] = pwatch;
 
       if (m_bCreateWatchThread)
       {
@@ -227,7 +227,7 @@ namespace file
       if (!pwatch->open(pathFolder, bRecursive))
       {
 
-         m_watchmap.erase_key(pwatch->m_id);
+         m_watchmap.erase_key(pwatch->m_atom);
 
          return -1;
 
@@ -244,7 +244,7 @@ namespace file
 
       pwatch->m_pathFolder = pathFolder;
 
-      return pwatch->m_id;
+      return pwatch->m_atom;
 
    }
 

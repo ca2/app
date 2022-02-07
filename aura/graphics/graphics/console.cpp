@@ -1,6 +1,6 @@
 #include "framework.h"
-#include "acme/node/operating_system/_const_console.h"
-#include "acme/node/operating_system/console.h"
+#include "acme/operating_system/_const_console.h"
+#include "acme/operating_system/console.h"
 #include "console.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -792,7 +792,7 @@ namespace graphics
    string console::get_string() const
    {
 
-      __throw(error_not_implemented);
+      throw ::not_implemented();
 
       return "";
 

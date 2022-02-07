@@ -81,7 +81,7 @@ namespace html
 
          element::implement_phase1(pdata, pelement);
 
-         ::atom atom = pelement->m_pbase->get_tag()->get_attr_value("atom");
+         ::atom atom = pelement->m_pbase->get_tag()->get_attr_value("id");
 
          atom = translate_property_id(atom);
 
@@ -115,7 +115,7 @@ namespace html
          else
          {
 
-            m_pcheckbox->m_id = atom;
+            m_pcheckbox->m_atom = atom;
 
          }
 
@@ -124,11 +124,11 @@ namespace html
          if(pdata->m_pcoredata->m_pform != nullptr)
          {
 
-            auto ptopic = create_subject(::id_initialize_control);
+            auto ptopic = create_extended_topic(::id_initialize_control);
 
-            ptopic->m_pextendedtopic->m_puserelement = m_pcheckbox;
+            ptopic->get_extended_topic()->m_puserelement = m_pcheckbox;
 
-            ptopic->m_pextendedtopic->m_actioncontext = ::action_context(::e_source_data) +  ::e_source_load;
+            ptopic->get_extended_topic()->m_actioncontext = ::action_context(::e_source_data) +  ::e_source_load;
 
             ptopic->m_uiEvent = 0;
 
@@ -172,13 +172,13 @@ namespace html
 
          //::rectangle_i32 rectangleWindow;
          //m_pcheckbox->get_window_rect(rectangleWindow);
-  //       ::point_i32 pointPreviousImpactportOrg = pgraphics->GetImpactportOrg();
+  //       ::point_i32 pointPreviousViewportOrg = pgraphics->GetViewportOrg();
 
-    //     pgraphics->OffsetImpactportOrg((i32) m_box.left, (i32) m_box.top);
+    //     pgraphics->OffsetViewportOrg((i32) m_box.left, (i32) m_box.top);
 
          m_pcheckbox->_000CallOnDraw(pdata->m_pcoredata->m_pgraphics);
 
-      //   pgraphics->SetImpactportOrg(pointPreviousImpactportOrg);
+      //   pgraphics->SetViewportOrg(pointPreviousViewportOrg);
 
       }
 

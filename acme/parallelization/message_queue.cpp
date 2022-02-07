@@ -6,7 +6,7 @@
 #ifdef PARALLELIZATION_PTHREAD
 
 
-#include "acme/node/operating_system/ansi/_pthread.h"
+#include "acme/operating_system/ansi/_pthread.h"
 
 
 #endif
@@ -53,7 +53,7 @@ void message_queue::post_message(oswindow oswindow, const ::atom & atom, wparam 
 
    MESSAGE message;
 
-   message.m_id = atom;
+   message.m_atom = atom;
    message.oswindow = oswindow;
    message.wParam = wparam;
    message.lParam = lparam;
@@ -77,7 +77,7 @@ void message_queue::post_message(const MESSAGE & message)
 
    }
 
-   if (message.m_id == e_message_quit)
+   if (message.m_atom == e_message_quit)
    {
 
       ::output_debug_string("message_queue::post_message e_message_quit\n");
@@ -129,7 +129,7 @@ void message_queue::get_message(MESSAGE * pmessage, oswindow oswindow, ::u32 wMs
 
          auto & message = m_messagea[i];
 
-         if (message.m_id == e_message_quit)
+         if (message.m_atom == e_message_quit)
          {
 
             m_bQuit = true;
@@ -145,7 +145,7 @@ void message_queue::get_message(MESSAGE * pmessage, oswindow oswindow, ::u32 wMs
 
          }
 
-         auto iMessage = message.m_id.i64();
+         auto iMessage = message.m_atom.i64();
 
          if ((oswindow == nullptr || message.oswindow == oswindow) && iMessage >= wMsgFilterMin && iMessage <= wMsgFilterMax)
          {
@@ -215,7 +215,7 @@ bool message_queue::peek_message(MESSAGE * pMsg, oswindow oswindow,::u32 wMsgFil
 
       MESSAGE & msg = m_messagea[i];
 
-      if((oswindow == nullptr || msg.oswindow == oswindow) && msg.m_id.i64() >= wMsgFilterMin && msg.m_id.i64() <= wMsgFilterMax)
+      if((oswindow == nullptr || msg.oswindow == oswindow) && msg.m_atom.i64() >= wMsgFilterMin && msg.m_atom.i64() <= wMsgFilterMax)
       {
 
          *pMsg = msg;

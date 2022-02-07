@@ -3,4 +3,20 @@
 #include "framework.h"
 
 
+::extended_topic * topic::get_extended_topic()
+{
+
+   return nullptr;
+
+}
+
+
+const ::extended_topic * topic::get_extended_topic() const
+{
+
+   return nullptr;
+
+}
+
+
 

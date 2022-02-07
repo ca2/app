@@ -104,7 +104,7 @@ namespace app_core_build
    void pane_view::on_create_impact(::user::impact_data * pimpactdata)
    {
 
-      switch(pimpactdata->m_id)
+      switch(pimpactdata->m_atom)
       {
       break;
       case MAIN_IMPACT:

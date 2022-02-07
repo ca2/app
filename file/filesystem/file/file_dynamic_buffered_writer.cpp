@@ -38,7 +38,7 @@ namespace file
          return;
       byte *buf = GetBufPtrForWriting(size);
       if (!buf)
-         __throw(error_no_memory);
+         throw ::exception(error_no_memory);
       ::memcpy_dup(buf, data, size);
       UpdateSize(size);
       if (processedSize)

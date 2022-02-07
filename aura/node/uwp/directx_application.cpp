@@ -55,7 +55,7 @@ namespace universal_windows
       if (!main_initialize())
       {
 
-         __throw(::exception("Failed to run main_initialize at directx_framework_view constructor."));
+         throw ::exception(::exception("Failed to run main_initialize at directx_framework_view constructor."));
 
       }
 
@@ -87,7 +87,7 @@ namespace universal_windows
          if (!m_psystem->begin_synch())
          {
 
-            __throw(::exception("failed to begin_synch the system"));
+            throw ::exception(::exception("failed to begin_synch the system"));
 
          }
 
@@ -98,7 +98,7 @@ namespace universal_windows
       if (!estatus)
       {
 
-         __throw(error_resource);
+         throw ::exception(error_resource);
 
       }
 
@@ -178,7 +178,7 @@ namespace universal_windows
       if (!puserinteractionHost->create_window_ex(pcs))
       {
 
-         __throw(resource_exception("Couldn't create Main Window"));
+         throw ::exception(resource_exception("Couldn't create Main Window"));
 
          return;
 
@@ -404,7 +404,7 @@ namespace universal_windows
 
       pusermessage = pkey;
 
-      pkey->m_id = e_message_char;
+      pkey->m_atom = e_message_char;
       pkey->m_playeredUserPrimitive = puserinteractionHost;
       pkey->m_nChar = keycode_to_char(args->KeyCode);
 
@@ -447,7 +447,7 @@ namespace universal_windows
          || m_psystem->get_session()->is_key_pressed(::user::e_key_alt))
       {
 
-         pkey->m_id                 = e_message_key_down;
+         pkey->m_atom                 = e_message_key_down;
          pkey->m_playeredUserPrimitive       = m_psystem->get_session()->m_puserinteractionHost;
          pkey->m_nChar              = virtualkey_to_char(args->VirtualKey);
          pkey->m_ekey               = ekey;
@@ -503,7 +503,7 @@ namespace universal_windows
       if (bSpecialKey || !bTextFocus)
       {
 
-         pkey->m_id = e_message_key_up;
+         pkey->m_atom = e_message_key_up;
          pkey->m_playeredUserPrimitive = m_psystem->get_session()->m_puserinteractionHost;
          pkey->m_nChar = virtualkey_to_char(args->VirtualKey);
          pkey->m_ekey = ekey;
@@ -636,7 +636,7 @@ namespace universal_windows
 
       pmouse->m_point.x       = (::i32) pointerPoint->RawPosition.X;
       pmouse->m_point.y       = (::i32) pointerPoint->RawPosition.Y;
-      pmouse->m_id            = e_message_mouse_move;
+      pmouse->m_atom            = e_message_mouse_move;
       pmouse->m_playeredUserPrimitive  = m_psystem->get_session()->m_puserinteractionHost;
 
       m_pointLastCursor = pointerPoint->RawPosition;
@@ -697,7 +697,7 @@ namespace universal_windows
       if(args->CurrentPoint->Properties->IsLeftButtonPressed && !m_bLeftButton)
       {
 
-         pmouse->m_id     = e_message_left_button_down;
+         pmouse->m_atom     = e_message_left_button_down;
 
          m_bLeftButton           = true;
          m_bMiddleButton         = false;
@@ -707,7 +707,7 @@ namespace universal_windows
       else if(args->CurrentPoint->Properties->IsRightButtonPressed && !m_bRightButton)
       {
 
-         pmouse->m_id     = e_message_right_button_down;
+         pmouse->m_atom     = e_message_right_button_down;
 
          m_bLeftButton           = false;
          m_bMiddleButton         = false;
@@ -717,7 +717,7 @@ namespace universal_windows
       else if(args->CurrentPoint->Properties->IsMiddleButtonPressed && !m_bMiddleButton)
       {
 
-         pmouse->m_id     = e_message_middle_button_down;
+         pmouse->m_atom     = e_message_middle_button_down;
 
          m_bLeftButton           = false;
          m_bMiddleButton         = true;
@@ -769,21 +769,21 @@ namespace universal_windows
       if(m_bLeftButton && !args->CurrentPoint->Properties->IsLeftButtonPressed)
       {
 
-         pmouse->m_id     = e_message_left_button_up;
+         pmouse->m_atom     = e_message_left_button_up;
          m_bLeftButton           = false;
 
       }
       else if(m_bRightButton && !args->CurrentPoint->Properties->IsRightButtonPressed)
       {
 
-         pmouse->m_id     = e_message_right_button_up;
+         pmouse->m_atom     = e_message_right_button_up;
          m_bRightButton          = false;
 
       }
       else if(m_bMiddleButton && !args->CurrentPoint->Properties->IsMiddleButtonPressed)
       {
 
-         pmouse->m_id     = e_message_middle_button_up;
+         pmouse->m_atom     = e_message_middle_button_up;
          m_bMiddleButton         = false;
 
       }

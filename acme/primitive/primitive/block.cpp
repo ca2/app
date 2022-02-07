@@ -25,7 +25,7 @@
 //   if (pos > get_size())
 //   {
 //
-//      __throw(error_bad_argument);
+//      throw ::exception(error_bad_argument);
 //
 //   }
 //

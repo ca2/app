@@ -32,7 +32,7 @@ namespace user
 
       BASE_VIEW::handle(ptopic, pcontext);
 
-      if (ptopic->m_id == id_initial)
+      if (ptopic->m_atom == id_initial)
       {
 
          _001OnUpdateItemCount();

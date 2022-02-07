@@ -21,7 +21,7 @@ gboolean linux_start_system(gpointer data);
 void CLASS_DECL_CORE __cdecl _ca2_purecall()
 {
 
-   __throw(::exception());
+   throw ::exception(::exception());
 
 }
 

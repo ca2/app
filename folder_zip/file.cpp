@@ -61,7 +61,7 @@ namespace folder_zip
 //
 //      file_pointer spfile(e_create_new);
 //
-//      __throw(todo("object"));
+//      throw ::exception(todo("object"));
 //      //spfile->initialize(this);
 //
 //      try
@@ -400,7 +400,7 @@ void file::write(const void* pdata, memsize nCount)
    void file::set_size(filesize dwNewLen)
    {
 
-      __throw(error_not_supported);
+      throw ::exception(error_not_supported);
 
    }
 

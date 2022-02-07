@@ -466,7 +466,7 @@ struct INT_STRING
 };
 
 
-#include "acme/node/operating_system/windows_common/arg_sec_attrs.h"
+#include "acme/operating_system/windows_common/arg_sec_attrs.h"
 
 
 template < typename CONCRETE >
@@ -985,7 +985,7 @@ enum enum_optional
 #include <intsafe.h>
 #else
 
-#include "acme/node/operating_system/cross/windows/_include.h"
+#include "acme/operating_system/cross/windows/_include.h"
 
 #endif
 
@@ -1108,7 +1108,7 @@ CLASS_DECL_ACME ::enum_priority get_os_class_scheduling_priority(i32 iCa2Priorit
 //#include "acme/multimedia/_c.h"
 
 
-#include "acme/node/operating_system/argcargv.h"
+#include "acme/operating_system/argcargv.h"
 
 
 
@@ -1672,7 +1672,7 @@ inline u32 u32_hash(ARG_KEY key) { return (u32) (uptr_hash<ARG_KEY>(key)); }
 // #define __exception(TYPE) __base(TYPE, pe, e)
 
 #define __rethrow(pe) throw pe;
-#define __throw_exit(estatus) __throw(exit_exception(estatus))
+#define __throw_exit(estatus) throw ::exception(exit_exception(estatus))
 
 
 #undef _
@@ -1733,9 +1733,9 @@ class synchronization_object;
 
 #include "acme/primitive/mathematics/_.h"
 
-//#include "acme/user/_const.h"
+//#include "acme/user/user/_const.h"
 
-//#include "acme/user/_experience_const.h"
+//#include "acme/user/user/_experience_const.h"
 
 #include "acme/filesystem/file/_const.h"
 
@@ -2668,9 +2668,9 @@ namespace html
 #define RINOK(x) { i32 __result__ = (x); if (__result__ != 0) return __result__; }
 #endif
 
-// __throw( - exception - result exception - if not ok
+// throw ::exception( - exception - result exception - if not ok
 #ifndef TINOK
-#define TINOK(e, x) { i32 __result__ = (x); if (__result__ != 0) __throw(e(get_application(), __result__)); }
+#define TINOK(e, x) { i32 __result__ = (x); if (__result__ != 0) throw ::exception(e(get_application(), __result__)); }
 #endif
 
 
@@ -2809,7 +2809,7 @@ namespace text
 
 
 // C-includes
-//#include "acme/node/operating_system/os.h"
+//#include "acme/operating_system/os.h"
 
 
 class thread_parameter;
@@ -2881,7 +2881,7 @@ inline bool is_set(const TYPE & t)
 }
 
 
-//#include "acme/user/primitive.h"
+//#include "acme/user/user/primitive.h"
 
 
 
@@ -2961,7 +2961,6 @@ inline auto &__typed(__pointer(POINTER_TYPE) &p) { return *p; }
 
 
 class duration;
-
 
 #include "acme/parallelization/wait.h"
 
@@ -3307,7 +3306,7 @@ template < typename TYPE > class sequence;
 #include "acme/topic/handler.h"
 #include "acme/primitive/primitive/e_flag.h"
 #include "acme/primitive/primitive/element.h"
-#include "acme/user/conversation.h"
+#include "acme/user/user/conversation.h"
 #include "acme/primitive/primitive/tracer.h"
 #include "acme/primitive/primitive/matter.h"
 #include "acme/primitive/primitive/material_object.h"
@@ -3465,7 +3464,7 @@ struct MESSAGE
 {
 
    ::oswindow              oswindow;
-   ::atom                    m_id;
+   ::atom                    m_atom;
    wparam                  wParam;
    lparam                  lParam;
    point_i32               pt;
@@ -3551,7 +3550,7 @@ CLASS_DECL_ACME task_bitset& task_flag();
 //#include "acme/exception/extended_pointer.h"
 
 
-#include "acme/user/conversation.h"
+#include "acme/user/user/conversation.h"
 
 
 //CLASS_DECL_ACME __pointer(::extended::future < ::conversation >) xxxshow_error_message(const string& strMessage, const string& strTitle, const ::e_message_box& emessagebox = e_message_box_ok);
@@ -3891,7 +3890,7 @@ namespace mathematics
 
 
 
-#include "acme/node/operating_system/_.h"
+#include "acme/operating_system/_.h"
 
 
 
@@ -3943,10 +3942,10 @@ namespace acme
 
 ///#include "acme/primitive/primitive/job.h"
 
-//#include "acme/user/simple/message_box.h"
+//#include "acme/user/user/simple/message_box.h"
 
 
-//#include "acme/user/impact_data.h"
+//#include "acme/user/user/impact_data.h"
 
 //#include "acme/platform/log.h"
 
@@ -4063,12 +4062,12 @@ struct lib_main_int
 //} // namespace zip
 //
 
-#include "acme/node/operating_system/text.h"
+#include "acme/operating_system/text.h"
 
 
 #ifdef ANDROID
 
-#include "acme/node/operating_system/android/_os_local.h"
+#include "acme/operating_system/android/_os_local.h"
 
 class os_local;
 class os_remote;
@@ -4085,7 +4084,7 @@ void set_osremote(os_remote * posremote);
 
 #include "acme/process/_.h"
 
-#include "acme/node/operating_system/process.h"
+#include "acme/operating_system/process.h"
 
 
 
@@ -4136,7 +4135,7 @@ namespace xml
 #define new ACME_NEW
 
 
-//#include "acme/node/operating_system/chronometer.h"
+//#include "acme/operating_system/chronometer.h"
 
 
 #include "acme/platform/number.h"
@@ -4238,10 +4237,10 @@ class wcsdup_array;
 #include "acme/graphics/draw2d/_.h"
 
 
-#include "acme/user/_.h"
+#include "acme/user/user/_.h"
 
 
-#include "acme/user/ewindowflag.h"
+#include "acme/user/user/ewindowflag.h"
 
 
 #include "acme/platform/node.h"

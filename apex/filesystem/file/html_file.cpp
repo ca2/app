@@ -51,7 +51,7 @@ namespace html
 
       __UNREFERENCED_PARAMETER(str);
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -61,7 +61,7 @@ namespace html
 
       __UNREFERENCED_PARAMETER(str);
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -85,7 +85,7 @@ namespace html
 
       __UNREFERENCED_PARAMETER(pcsz);
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 

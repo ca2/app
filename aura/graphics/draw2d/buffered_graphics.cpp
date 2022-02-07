@@ -24,7 +24,7 @@ namespace draw2d
 
       ::rectangle_i32 rectangle(rectangleParam);
 
-      m_p->SetImpactportOrg(rectangle.top_left());
+      m_p->SetViewportOrg(rectangle.top_left());
 
       m_pbitmap->CreateCompatibleBitmap(*this, rectangle.width(), rectangle.height());
 

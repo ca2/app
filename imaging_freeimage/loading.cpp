@@ -138,7 +138,7 @@ namespace imaging_freeimage
 
 #ifdef _UWP
 
-         __throw(todo);
+         throw ::exception(todo);
 
 #else
          FreeImage_Unload(pfibitmap);
@@ -164,7 +164,7 @@ namespace imaging_freeimage
    const char * pszId)
 
    {
-   throw interface_only_exception();
+   throw ::interface_only();
 
    ::memory_file file(this);
 

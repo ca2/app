@@ -76,7 +76,7 @@ namespace acme
    void acme::datetime_to_filetime(::filetime_t* pfiletime, const ::datetime::time& time)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
    }
 
 

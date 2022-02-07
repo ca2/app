@@ -13,11 +13,35 @@ struct TOPIC
 public:
    
 
-   extended_topic *     m_pextendedtopic;
-
    class ::atom         m_atom;
 
-   
+   TOPIC()
+   {
+
+   }
+
+
+   TOPIC(const class ::atom & atom) :
+      m_atom(atom)
+   {
+
+   }
+
+
+   TOPIC(const TOPIC & topic) :
+      m_atom(topic.m_atom)
+   {
+
+   }
+
+
+   TOPIC(TOPIC && topic) :
+      m_atom(topic.m_atom)
+   {
+
+   }
+
+
 };
    
 
@@ -26,23 +50,37 @@ class CLASS_DECL_ACME topic :
    virtual public TOPIC
 {
 public:
-   
+
 
    topic()
    {
 
-      m_pextendedtopic = nullptr;
-
    }
 
-   topic(const class ::atom & atom)
+
+   topic(const class ::atom & atom) :
+      TOPIC(atom)
    {
-      
-      m_pextendedtopic = nullptr;
-
-      m_atom = atom;
 
    }
+
+
+   topic(const topic & topic) :
+      TOPIC(topic)
+   {
+
+   }
+
+
+   topic(topic && topic) :
+      TOPIC(topic)
+   {
+
+   }
+
+
+   virtual ::extended_topic * get_extended_topic();
+   virtual const ::extended_topic * get_extended_topic() const;
 
 
 };

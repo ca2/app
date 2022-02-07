@@ -29,9 +29,9 @@ acme_file::~acme_file()
 void acme_file::ensure_exists(const char* path)
 {
 
-   throw interface_only_exception();
+   throw ::interface_only();
 
-   //throw ::interface_only_exception();
+   //throw ::interface_only();
 
 }
 
@@ -39,9 +39,9 @@ void acme_file::ensure_exists(const char* path)
 void acme_file::touch(const char* path)
 {
 
-   throw interface_only_exception();
+   throw ::interface_only();
 
-   //throw ::interface_only_exception();
+   //throw ::interface_only();
 
 
 }
@@ -50,9 +50,9 @@ void acme_file::touch(const char* path)
 void acme_file::clear_read_only(const char* path)
 {
 
-   throw interface_only_exception();
+   throw ::interface_only();
 
-   //throw ::interface_only_exception();
+   //throw ::interface_only();
 
 }
 
@@ -60,9 +60,9 @@ void acme_file::clear_read_only(const char* path)
 void acme_file::set_file_normal(const char* path)
 {
 
-   throw interface_only_exception();
+   throw ::interface_only();
 
-   //throw ::interface_only_exception();
+   //throw ::interface_only();
 
 }
 
@@ -163,9 +163,9 @@ file_pointer acme_file::stdio_open(const char * path, const char * attrs, int iS
 memory acme_file::as_memory(const char * path, strsize iReadAtMostByteCount)
 {
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
-   //throw ::interface_only_exception();
+   //throw ::interface_only();
 
 }
 
@@ -584,9 +584,9 @@ bool acme_file::exists(const char * path)
 void acme_file::put_contents(const char * path, const char * contents, strsize len)
 {
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
-   //throw ::interface_only_exception();
+   //throw ::interface_only();
 
 }
 
@@ -594,9 +594,9 @@ void acme_file::put_contents(const char * path, const char * contents, strsize l
 void acme_file::get_temporary_file_name_template(char * szRet, strsize iBufferSize, const char * lpszName, const char * pszExtension, const char * pszTemplate)
 {
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
-   //throw ::interface_only_exception();
+   //throw ::interface_only();
 
 }
 
@@ -604,7 +604,7 @@ void acme_file::get_temporary_file_name_template(char * szRet, strsize iBufferSi
 filesize acme_file::get_size(const char * path)
 {
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
    return 0;
 
@@ -622,7 +622,7 @@ filesize acme_file::get_size(FILE * pfile)
 filesize acme_file::get_size_fd(int iFile)
 {
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
    return 0;
 
@@ -632,7 +632,7 @@ filesize acme_file::get_size_fd(int iFile)
 void acme_file::clear_application_data()
 {
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
    //return -1;
 
@@ -642,9 +642,9 @@ void acme_file::clear_application_data()
 bool acme_file::is_true(const char * path)
 {
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
-   //throw ::interface_only_exception();
+   //throw ::interface_only();
 
 }
 
@@ -652,7 +652,7 @@ bool acme_file::is_true(const char * path)
 void acme_file::set_size(const char * lpszName, filesize size)
 {
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
    //return success;
 
@@ -662,7 +662,7 @@ void acme_file::set_size(const char * lpszName, filesize size)
 void acme_file::set_size(int iFileDescriptor, filesize size)
 {
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
    //return false;
 
@@ -672,7 +672,7 @@ void acme_file::set_size(int iFileDescriptor, filesize size)
 void acme_file::set_size(FILE * pfile, filesize size)
 {
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
    //return false;
 
@@ -743,9 +743,9 @@ void replace_char(char * sz, char ch1, char ch2)
 void acme_file::copy(const char * pszDup, const char * pszSrc, bool bOverwrite)
 {
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
-   //throw ::interface_only_exception();
+   //throw ::interface_only();
 
 }
 
@@ -753,7 +753,7 @@ void acme_file::copy(const char * pszDup, const char * pszSrc, bool bOverwrite)
 ::duration acme_file::modification_time(const char* psz)
 {
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
    return {};
 
@@ -764,9 +764,9 @@ void acme_file::copy(const char * pszDup, const char * pszSrc, bool bOverwrite)
 void acme_file::set_modification_time(const char* psz, const ::duration& duration)
 {
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
-   //throw ::interface_only_exception();
+   //throw ::interface_only();
 
 }
 
@@ -774,9 +774,9 @@ void acme_file::set_modification_time(const char* psz, const ::duration& duratio
 //::duration acme_file::modification_time(const char* psz)
 //{
 //
-//   throw interface_only_exception();
+//   throw ::interface_only();
 //
-//   throw ::interface_only_exception();
+//   throw ::interface_only();
 //
 //}
 
@@ -847,7 +847,7 @@ void acme_file::synchronize(const char* psz1, const char* psz2)
 void acme_file::save_stra(const char * lpszName, const string_array & stra)
 {
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
    //return ::success;
 
@@ -857,7 +857,7 @@ void acme_file::save_stra(const char * lpszName, const string_array & stra)
 void acme_file::load_stra(const char * lpszName, string_array & stra, bool bAddEmpty)
 {
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
    //return ::success;
 
@@ -867,7 +867,7 @@ void acme_file::load_stra(const char * lpszName, string_array & stra, bool bAddE
 void acme_file::put_contents(const char * path, const memory_base & memory)
 {
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
    //return false;
 

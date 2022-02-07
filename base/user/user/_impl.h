@@ -51,7 +51,7 @@ namespace user
 
       pimpactdata->m_puserinteraction.release();
 
-      return create_view < VIEW >(get_document(), pimpactdata->m_pplaceholder, pimpactdata->m_id, pviewLast, pimpactdata);
+      return create_view < VIEW >(get_document(), pimpactdata->m_pplaceholder, pimpactdata->m_atom, pviewLast, pimpactdata);
 
    }
 

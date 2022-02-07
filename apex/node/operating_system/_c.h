@@ -5,7 +5,7 @@
 CLASS_DECL_ACME const char* executable_get_app_id();
 
 
-#include "acme/node/operating_system/_c.h"
+#include "acme/operating_system/_c.h"
 
 
 #if defined(MACOS)

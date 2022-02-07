@@ -186,13 +186,13 @@ namespace aura
 //      ::u32 dwRet = ::GetModuleFileName(m_hInstance, szBuff, _MAX_PATH);
 //      ASSERT( dwRet != 0 && dwRet != _MAX_PATH );
 //      if( dwRet == 0 || dwRet == _MAX_PATH )
-//      __throw(user_exception());*/
+//      throw ::exception(user_exception());*/
 //
 //      /*
 //      char * lpszExt = ::PathFindExtension(szBuff);
 //      ASSERT(lpszExt != nullptr);
 //      if( lpszExt == nullptr )
-//      __throw(user_exception());
+//      throw ::exception(user_exception());
 //
 //      ASSERT(*lpszExt == '.');
 //      *lpszExt = 0;       // no suffix

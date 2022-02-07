@@ -82,7 +82,7 @@ bool ::exception::s_bDoStackTrace = true;
 
    }
 
-   exception::exception(const ::e_status & estatus, const char * pszMessage, i32 iSkip, void * caller_address)
+   exception::exception(const ::e_status & estatus, const char * pszMessage, const char * pszDetails, i32 iSkip, void * caller_address)
    {
 
 #if !defined(__SANITIZE_ADDRESS__)
@@ -118,7 +118,6 @@ bool ::exception::s_bDoStackTrace = true;
 
       //}
 
-
       m_bDumpBackTrace = true;
 
       defer_failed(m_estatus, error_exception);
@@ -129,7 +128,11 @@ bool ::exception::s_bDoStackTrace = true;
 
       m_bContinue = true;
 
-      m_strMessage.format("%s (%0x16" PRIestatus ":%s)", pszMessage, estatus.m_estatus, __string(estatus).c_str());
+      m_strMessage = pszMessage;
+
+      m_strDetails = pszDetails;
+
+      //m_strMessage.format("%s (%0x16" PRIestatus ":%s)", pszMessage, estatus.m_estatus, __string(estatus).c_str());
          
    }
 
@@ -210,11 +213,11 @@ errno_t c_runtime_error_check(errno_t error)
    switch(error)
    {
    case ENOMEM:
-      __throw(error_no_memory);
+      throw ::exception(error_no_memory);
       break;
    case EINVAL:
    case ERANGE:
-      __throw(error_bad_argument);
+      throw ::exception(error_bad_argument);
       break;
 #if defined(WINDOWS)
    case STRUNCATE:
@@ -222,7 +225,7 @@ errno_t c_runtime_error_check(errno_t error)
    case 0:
       break;
    default:
-      __throw(error_bad_argument);
+      throw ::exception(error_bad_argument);
       break;
    }
    return error;
@@ -246,7 +249,7 @@ void __cdecl __clearerr_s(FILE *stream)
    CLASS_DECL_ACME void throw_interface_only(const char * pszMessage)
    {
 
-      __throw(error_interface_only, pszMessage);
+      throw ::exception(error_interface_only, pszMessage);
 
    }
 
@@ -254,7 +257,7 @@ void __cdecl __clearerr_s(FILE *stream)
    CLASS_DECL_ACME void throw_not_implemented(const char * pszMessage)
    {
 
-      __throw(error_not_implemented, pszMessage);
+      throw ::exception(error_not_implemented, pszMessage);
 
    }
 
@@ -495,13 +498,13 @@ string estatus_to_string(::e_status estatus)
 
 }
 
-
-CLASS_DECL_ACME void throw_exception(const ::e_status & estatus, const char * pszMessage, i32 iSkip, void * caller_address)
-{
-
-   throw ::exception(estatus, pszMessage, iSkip, caller_address);
-
-}
+//
+//CLASS_DECL_ACME void throw_exception(const ::e_status & estatus, const char * pszMessage, const char * pszDetails, i32 iSkip, void * caller_address)
+//{
+//
+//   throw ::exception(estatus, pszMessage, pszDetails, iSkip, caller_address);
+//
+//}
 
 
 

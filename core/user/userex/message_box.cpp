@@ -47,7 +47,7 @@ namespace userex
 
    bool message_box::on_timeout()
    {
-      m_id = "ok";
+      m_atom = "ok";
       return wait_message_dialog::on_timeout();
    }
 
@@ -78,7 +78,7 @@ namespace userex
 //      
 //      pbox->show(pszMatter);
 //      
-//      return pbox->m_idResponse;
+//      return pbox->m_atomResponse;
 //      
 //   }
 //

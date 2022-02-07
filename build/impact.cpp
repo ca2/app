@@ -102,7 +102,7 @@ namespace app_core_build
 //
 //#else
 //
-//      throw not_implemented_exception();
+//      throw ::not_implemented();
 //
 //#endif
 //
@@ -151,7 +151,7 @@ namespace app_core_build
    for (auto& pproperty : setEnvironment)
    {
 
-      SetEnvironmentVariableW(wstring(pproperty->m_id), wstring(pproperty->string()));
+      SetEnvironmentVariableW(wstring(pproperty->m_atom), wstring(pproperty->string()));
 
    }
 

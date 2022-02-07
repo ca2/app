@@ -69,7 +69,7 @@ namespace opengl
       //   if (!bOk)
       //   {
 
-      //      __throw(::exception("failed to reference"););
+      //      throw ::exception(::exception("failed to reference"););
 
       //   }
 

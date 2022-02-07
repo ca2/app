@@ -198,7 +198,7 @@ namespace helloworld
          if (peditview != nullptr)
          {
 
-            if (pupdate->m_ehint == id_after_change_text && ptopic->m_pextendedtopic->user_interaction() == peditview)
+            if (pupdate->m_ehint == id_after_change_text && ptopic->get_extended_topic()->user_interaction() == peditview)
             {
 
                string strText;

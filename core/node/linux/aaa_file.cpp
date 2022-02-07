@@ -56,7 +56,7 @@ namespace linux
 //      if(!open(pszFileName, eopen))
 //      {
 //
-//         __throw(::file::exception(::error_file, -1, pszFileName));
+//         throw ::exception(::file::exception(::error_file, -1, pszFileName));
 //
 //      }
 //

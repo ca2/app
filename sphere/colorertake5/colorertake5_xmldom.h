@@ -221,7 +221,7 @@ namespace colorertak5
          }
        }
        if (ppos >= src_length){
-         __throw(ParseException(string("End of stream is reached")));
+         throw ::exception(ParseException(string("End of stream is reached")));
        }
    #if XMLDOM_FEATURE_POSITION_TRACE
        if (src[ppos] == '\n'){
@@ -341,7 +341,7 @@ namespace colorertak5
        {
          if (documentElement != nullptr)
          {
-           __throw(ParseException(string("Invalid document root content"), line, pos));
+           throw ::exception(ParseException(string("Invalid document root content"), line, pos));
          }
          documentElement = (xml::node*)newChild;
        };

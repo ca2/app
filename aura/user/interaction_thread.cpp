@@ -392,7 +392,7 @@ namespace user
          
          get_message(&m_message, nullptr, 0, 0);
 
-         if(m_message.m_id == e_message_quit)
+         if(m_message.m_atom == e_message_quit)
          {
 
             if (m_strDebugType.contains("filemanager"))
@@ -413,14 +413,14 @@ namespace user
 
          }
 
-         if(m_message.m_id == e_message_left_button_down)
+         if(m_message.m_atom == e_message_left_button_down)
          {
 
             output_debug_string("test");
 
          }
 
-         if (m_message.m_id == e_message_quit)
+         if (m_message.m_atom == e_message_quit)
          {
 
             if (m_pimpl 
@@ -434,23 +434,23 @@ namespace user
 
          }
 
-         if(m_message.m_id == e_message_left_button_down)
+         if(m_message.m_atom == e_message_left_button_down)
          {
 
             ::output_debug_string("::user::thread::LBUTTONDOWN\n");
 
          }
-         else if(m_message.m_id == e_message_left_button_up)
+         else if(m_message.m_atom == e_message_left_button_up)
          {
 
             ::output_debug_string("::user::thread::LBUTTONUP\n");
 
          }
 
-         if (m_message.m_id != WM_KICKIDLE && m_message.m_id != e_message_quit)
+         if (m_message.m_atom != WM_KICKIDLE && m_message.m_atom != e_message_quit)
          {
 
-            if (m_message.m_id == e_message_destroy_window)
+            if (m_message.m_atom == e_message_destroy_window)
             {
 
                if (m_strDebugType.contains("notify_icon"))
@@ -528,18 +528,18 @@ namespace user
 
          MESSAGE & msg = m_message;
 
-         if(msg.m_id == e_message_mouse_move)
+         if(msg.m_atom == e_message_mouse_move)
          {
 
 
          }
-         else if(msg.m_id == e_message_left_button_down)
+         else if(msg.m_atom == e_message_left_button_down)
          {
 
             ::output_debug_string("e_message_left_button_down");
 
          }
-         else if(msg.m_id == e_message_left_button_up)
+         else if(msg.m_atom == e_message_left_button_up)
          {
 
             ::output_debug_string("e_message_left_button_up");
@@ -566,7 +566,7 @@ namespace user
                   if (puserinteraction)
                   {
 
-                     if (msg.m_id == ::e_message_redraw)
+                     if (msg.m_atom == ::e_message_redraw)
                      {
 
                         string strType = __type_name(puserinteraction);
@@ -589,25 +589,25 @@ namespace user
                      else
                      {
 
-                        if(msg.m_id == e_message_left_button_down)
+                        if(msg.m_atom == e_message_left_button_down)
                         {
 
                            ::output_debug_string("e_message_left_button_down");
 
                         }
-                        else if(msg.m_id == e_message_left_button_up)
+                        else if(msg.m_atom == e_message_left_button_up)
                         {
 
                            ::output_debug_string("e_message_left_button_up");
 
                         }
 
-                        auto pmessage = puserinteraction->get_message(msg.m_id, msg.wParam, msg.lParam);
+                        auto pmessage = puserinteraction->get_message(msg.m_atom, msg.wParam, msg.lParam);
 
                         if (pmessage)
                         {
 
-                           if(pmessage->m_id == e_message_left_button_down)
+                           if(pmessage->m_atom == e_message_left_button_down)
                            {
 
                               ::output_debug_string("e_message_left_button_down");
@@ -704,17 +704,17 @@ namespace user
          if (::is_set(puserinteraction))
          {
 
-            ::i64 iMessage = pmessage->m_id;
+            ::i64 iMessage = pmessage->m_atom;
 
-            //__throw(todo("interaction"));
-            //__throw(todo("thread"));
+            //throw ::exception(todo("interaction"));
+            //throw ::exception(todo("thread"));
 
             //short circuit for frequent messages
             if (iMessage == e_message_apply_visual)
             {
 
-               //__throw(todo("interaction"));
-               //__throw(todo("thread"));
+               //throw ::exception(todo("interaction"));
+               //throw ::exception(todo("thread"));
 
                if (puserinteraction->m_pinteractionimpl)
                {
@@ -757,8 +757,8 @@ namespace user
             //{
 
             //      //return true;
-            //   //__throw(todo("interaction"));
-            //   //__throw(todo("thread"));
+            //   //throw ::exception(todo("interaction"));
+            //   //throw ::exception(todo("thread"));
 
             puserinteraction->message_handler(pusermessage);
 

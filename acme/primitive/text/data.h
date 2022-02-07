@@ -13,7 +13,7 @@ namespace text
 
       bool                       m_bPendingUpdate;
       translator *               m_ptranslator;
-      ::atom                       m_id;
+      ::atom                       m_atom;
       string                     m_str;
 
 

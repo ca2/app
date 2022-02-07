@@ -6,23 +6,23 @@ namespace database
 
 //   bool atom::is_null()
 //   {
-//      return m_id.is_empty();
+//      return m_atom.is_empty();
 //   }
 
 //   ::atom atom::get_id()
 //   {
-//      return m_id;
+//      return m_atom;
 //   }
 //
 //   void atom::set_id(::atom atom)
 //   {
-//      m_id = atom;
+//      m_atom = atom;
 //   }
 //
 //   atom & atom::operator += (const char * psz)
 //   {
 //
-//      m_id += psz;
+//      m_atom += psz;
 //
 //      return *this;
 //
@@ -31,7 +31,7 @@ namespace database
 //   atom atom::operator + (const atom & atom) const
 //   {
 //
-//      return m_id + atom.m_id;
+//      return m_atom + atom.m_atom;
 //
 //   }
 

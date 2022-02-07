@@ -18,7 +18,7 @@ namespace user
 
 
       string                              m_strImpactTitle;
-      atom                                  m_idCreator;
+      atom                                  m_atomCreator;
       __pointer(::user::document)         m_pdocument;
       __pointer(::user::interaction)      m_puserinteractionImpactNotify;
 

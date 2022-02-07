@@ -786,7 +786,7 @@ namespace user
    //void user::close_all_documents(bool bEndSession)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //}
 
@@ -1359,7 +1359,7 @@ namespace user
 
       }
 
-      i64 iMessage = pmouse->m_id;
+      i64 iMessage = pmouse->m_atom;
 
       if(iMessage == e_message_left_button_down
        //|| iMessage == e_message_left_button_up

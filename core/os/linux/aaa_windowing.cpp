@@ -3121,7 +3121,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericE
 
             }
 
-            ptopic->m_id = eid;
+            ptopic->m_atom = eid;
 
             pupdate->payload("return") = is_return_key((XIRawEvent*)cookie->data);
 
@@ -4136,7 +4136,7 @@ namespace user
    __pointer(::user::message) channel::get_message_base(void * pevent,::user::interaction * puserinteraction)
    {
 
-      __throw(todo);
+      throw ::exception(todo);
 
       return nullptr;
 

@@ -2,7 +2,7 @@
 #include "_console.h"
 
 
-#include "acme/node/operating_system/binreloc.h"
+#include "acme/operating_system/binreloc.h"
 
 
 const char * br_init_get_symbol();

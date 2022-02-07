@@ -309,7 +309,7 @@ bool xfplayer_view_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool
                   pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
                   pgraphics->flush();
 
-                  //const ::point_i32 & point = pgraphics->GetImpactportOrg();
+                  //const ::point_i32 & point = pgraphics->GetViewportOrg();
                   //pimage->from(nullptr, pgraphics, point_i32 + rectangle.top_left(), rectangle.size());
 
                   {
@@ -1634,9 +1634,9 @@ void xfplayer_view_line::PrepareURLLinks()
 
    auto psystem = m_psystem->m_pcoresystem;
 
-   auto pregex = psystem->create_pcre("/^|\\s|([;\"()]+))(((((http|https)://))|(www\\.))[0-9a-zA-Z./\\-_?=]+)(([;\"()]+)|\\s|$/");
+   auto pregex = psystem->compile_pcre("/^|\\s|([;\"()]+))(((((http|https)://))|(www\\.))[0-9a-zA-Z./\\-_?=]+)(([;\"()]+)|\\s|$/");
 
-   auto ptopic = pregex->create_topic(m_str);
+   auto ptopic = pregex->run(m_str);
 
    auto & rangea = ptopic->get_range_array();
 

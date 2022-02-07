@@ -35,7 +35,7 @@ namespace file_watcher
 
    struct watch_struct_item
    {
-      atom m_id;
+      atom m_atom;
       vsstring m_strDirName;
    };
 
@@ -80,9 +80,9 @@ namespace file_watcher
       if (wd < 0)
       {
          if(errno == ENOENT)
-            __throw(file_not_found_exception(directory));
+            throw ::exception(file_not_found_exception(directory));
          else
-            __throw(exception(strerror(errno)));
+            throw ::exception(exception(strerror(errno)));
 
 //			fprintf (stderr, "Error: %s\n", strerror(errno));
 //			return -1;
@@ -90,7 +90,7 @@ namespace file_watcher
 
       watch_struct* pWatch = new watch_struct();
       pWatch->m_plistener = pwatcher;
-      pWatch->m_id = wd;
+      pWatch->m_atom = wd;
       pWatch->m_strDirName = directory;
       if(bRecursive)
       {
@@ -109,16 +109,16 @@ namespace file_watcher
             if(inaw < 0)
             {
                if(errno == ENOENT)
-                  __throw(file_not_found_exception(directory));
+                  throw ::exception(file_not_found_exception(directory));
                else
-                  __throw(exception(strerror(errno)));
+                  throw ::exception(exception(strerror(errno)));
             }
 
             watch_struct_item item;
 
             item.m_strDirName = stra[index];
 
-            item.m_id = inaw;
+            item.m_atom = inaw;
 
             pWatch->m_itema.add(item);
 

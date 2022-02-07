@@ -7,9 +7,9 @@
 void file_transfer::transfer(::file::file* pfileOut, ::file::file* pfileIn)
 {
 
-   throw interface_only_exception();
+   throw ::interface_only();
 
-   //throw ::interface_only_exception();
+   //throw ::interface_only();
 
 }
 

@@ -45,7 +45,7 @@ namespace file
 
 
          watch *                          m_pwatch;
-         watch_id                         m_id;
+         watch_id                         m_atom;
          ::file::path                     m_pathFolder;
          ::file::path                     m_pathFile;
          enumeration < enum_action >      m_eaction;

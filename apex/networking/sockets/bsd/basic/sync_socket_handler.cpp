@@ -31,7 +31,7 @@ namespace sockets
       if(m_psocket != nullptr)
       {
 
-         __throw(error_socket); // busy
+         throw ::exception(error_socket); // busy
 
       }
 
@@ -141,7 +141,7 @@ namespace sockets
       if (read(&uLen, 4) != 4)
       {
 
-         __throw(error_socket);
+         throw ::exception(error_socket);
 
       }
 
@@ -154,7 +154,7 @@ namespace sockets
       if (read(memory, uLen) != uLen)
       {
 
-         __throw(error_socket);
+         throw ::exception(error_socket);
 
       }
 

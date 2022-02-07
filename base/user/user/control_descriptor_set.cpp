@@ -27,7 +27,7 @@
 //
 //         class control_descriptor & control_descriptor = *this->element_at(i);
 //
-//         if (control_descriptor.m_id == atom)
+//         if (control_descriptor.m_atom == atom)
 //         {
 //
 //            return control_descriptor.m_pinteraction;

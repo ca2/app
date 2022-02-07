@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "acme/id.h"
 //#if !BROAD_PRECOMPILED_HEADER
-//#include "acme/user/_user.h"
+//#include "acme/user/user/_user.h"
 //CLASS_DECL_ACME void __simple_tracev(e_trace_category ecategory, enum_trace_level elevel, const char* pszFunction, const char* pszFile, i32 iLine, const char* pszFormat, va_list args);
 //CLASS_DECL_ACME void __simple_tracea(e_trace_category ecategory, enum_trace_level elevel, const char* pszFunction, const char* pszFileName, i32 iLine, const char* psz);
 
@@ -85,7 +85,7 @@ void debug_object_event_promisse_predicate()
 //
 //   auto pupdate = new_update();
 //
-//   ptopic->m_pextendedtopic->payload(id_filter) = "*.jpg";
+//   ptopic->get_extended_topic()->payload(id_filter) = "*.jpg";
 //
 //}
 

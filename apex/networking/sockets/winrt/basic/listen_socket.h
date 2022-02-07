@@ -345,7 +345,7 @@ namespace sockets
          {
             log("listen", Errno, bsd_socket_error(Errno), ::ca::log::level_fatal);
             ::closesocket(s);
-            __throw(::exception("listen() failed for port " + ::ca__str(ad.GetPort()) + ": " + bsd_socket_error(Errno)));
+            throw ::exception(::exception("listen() failed for port " + ::ca__str(ad.GetPort()) + ": " + bsd_socket_error(Errno)));
             return -1;
          }*/
          m_depth = depth;

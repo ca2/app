@@ -254,7 +254,7 @@ namespace hi5
       void authorization::on_create_impact(::user::impact_data * pimpactdata)
       {
 
-         if (pimpactdata->m_id == "twitter_authorization")
+         if (pimpactdata->m_atom == "twitter_authorization")
          {
 
             auto pcontext = m_pcontext;
@@ -299,10 +299,10 @@ namespace hi5
       void authorization::handle(::topic * ptopic, ::context *pcontext)   
       {
 
-         if(ptopic->m_id == ::id_click || ptopic->m_id == ::id_enter_key)
+         if(ptopic->m_atom == ::id_click || ptopic->m_atom == ::id_enter_key)
          {
 
-            if(ptopic->m_pextendedtopic->user_interaction()->m_id == "submit" || ptopic->m_id == ::id_enter_key)
+            if(ptopic->get_extended_topic()->user_interaction()->m_atom == "submit" || ptopic->m_atom == ::id_enter_key)
             {
 
                auto pinteraction = m_pviewAuth->get_child_by_name("pin");

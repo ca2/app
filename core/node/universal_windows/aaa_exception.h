@@ -12,7 +12,7 @@
 //   NOINLINE DECLSPEC_NO_RETURN inline void WINAPI gen_ThrowLastWin32()
 //   {
 //      ::u32 dwError = ::get_last_error();
-//      __throw(hresult_exception(HRESULT_FROM_WIN32( dwError ) ));
+//      throw ::exception(hresult_exception(HRESULT_FROM_WIN32( dwError ) ));
 //   }
 //
 //#else  // no exception handling
@@ -21,7 +21,7 @@
 //   NOINLINE inline void WINAPI gen_ThrowLastWin32()
 //   {
 //      ::u32 dwError = ::get_last_error();
-//      __throw(hresult_exception(HRESULT_FROM_WIN32( dwError ) ));
+//      throw ::exception(hresult_exception(HRESULT_FROM_WIN32( dwError ) ));
 //   }
 //
 //#endif  // no exception handling

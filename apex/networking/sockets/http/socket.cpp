@@ -249,7 +249,7 @@ namespace sockets
          {
             str.make_lower();
             //m_request.attr(__id(remote_addr)) = GetRemoteAddress().get_display_number();
-            m_request.m_idHttpMethod = str;
+            m_request.m_atomHttpMethod = str;
             m_request.attr(__id(http_method)) = str;
             m_request.attr(__id(https)) = IsSSL();
             if(IsSSL())
@@ -536,7 +536,7 @@ namespace sockets
          //   if (spfile->open(strFile, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_none).failed())
          //   {
 
-         //      __throw(::error_io, "http_socket::SendResponseBody(1) file=" + strFile + "\n");
+         //      throw ::exception(::error_io, "http_socket::SendResponseBody(1) file=" + strFile + "\n");
 
          //   }
 
@@ -544,7 +544,7 @@ namespace sockets
          //catch (...)
          //{
 
-         //   __throw(::error_io, "http_socket::SendResponseBody(2) file=" + strFile + "\n");
+         //   throw ::exception(::error_io, "http_socket::SendResponseBody(2) file=" + strFile + "\n");
 
          //}
 

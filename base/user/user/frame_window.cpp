@@ -793,7 +793,7 @@ namespace user
    {
       __UNREFERENCED_PARAMETER(bShow);
       // walk through all top-level windows
-      throw interface_only_exception();
+      throw ::interface_only();
       /*   oswindow oswindow = ::GetWindow(::get_desktop_window(), GW_CHILD);
       while (oswindow != nullptr)
       {
@@ -834,7 +834,7 @@ namespace user
       //         ::SetFocus(nullptr);
       //#else
       //
-      //         __throw(todo);
+      //         throw ::exception(todo);
       //
       //#endif
       //
@@ -906,7 +906,7 @@ namespace user
 
    //   auto pusersystem = __new(::user::system (dwExStyle, pszClassName, pszWindowName, uStyle, rectangle, pcreate));
 
-   //   if (!::user::interaction::create_window_ex(pusersystem, puiParent, pcreate->m_id))
+   //   if (!::user::interaction::create_window_ex(pusersystem, puiParent, pcreate->m_atom))
    //   {
 
    //      TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: failed to create frame_window.\n");
@@ -1075,7 +1075,7 @@ namespace user
 
       //auto pusersystem = __new(::user::system (0L, nullptr, m_strFrameTitle, dwDefaultStyle, rectangleFrame, pcreate));
 
-      //if (!create_window_ex(pusersystem, puiParent, pcreate->m_id))
+      //if (!create_window_ex(pusersystem, puiParent, pcreate->m_atom))
       //{
 
       //   return false;   // will self destruct on failure normally
@@ -1295,7 +1295,7 @@ namespace user
    void frame_window::OnClose()
    {
 
-      throw interface_only_exception();
+      throw ::interface_only();
       /*if (m_lpfnCloseProc != nullptr)
       (*m_lpfnCloseProc)(this);
 
@@ -1666,7 +1666,7 @@ namespace user
 
       RepositionBars();
 
-      //throw ::interface_only_exception();
+      //throw ::interface_only();
 
    }
 
@@ -1855,7 +1855,7 @@ namespace user
       __UNREFERENCED_PARAMETER(nID);
       __UNREFERENCED_PARAMETER(rMessage);
       // load appropriate string
-      throw interface_only_exception();
+      throw ::interface_only();
       /*   char * psz = rMessage.GetBuffer(255);
 
       if (::aura::LoadString(nID, psz) != 0)
@@ -2319,7 +2319,7 @@ namespace user
 //
 //#else
 //
-//      throw interface_only_exception();
+//      throw ::interface_only();
 //
 //#endif
 //
@@ -2422,7 +2422,7 @@ namespace user
 //   void frame_window::load_toolbar(const ::atom & idToolbar, const ::string & strToolbar, u32 dwCtrlStyle, u32 uStyle)
 //   {
 //
-//      throw ::interface_only_exception();
+//      throw ::interface_only();
 //
 //      return false;
 //

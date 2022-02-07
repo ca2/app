@@ -46,7 +46,7 @@ namespace android
             AdjustTokenPrivileges(hToken, false, &tkp, 0, (PTOKEN_PRIVILEGES) nullptr, 0);
             return retval;*/
 
-      throw interface_only_exception();
+      throw ::interface_only();
       return false;
 
    }
@@ -107,14 +107,14 @@ namespace android
       /*    tkp.Privileges[0].Attributes = 0;
           AdjustTokenPrivileges(hToken, false, &tkp, 0, (PTOKEN_PRIVILEGES) nullptr, 0);
           return true;*/
-      throw interface_only_exception();
+      throw ::interface_only();
       return false;
 
    }
 
    void os_context::terminate_processes_by_title(const ::string & pszName)
    {
-      throw interface_only_exception();
+      throw ::interface_only();
       return;
 
       /*      ::u32 dwPid;
@@ -206,7 +206,7 @@ namespace android
 
       CloseHandle( hProcess );
       return strName;*/
-      throw interface_only_exception();
+      throw ::interface_only();
       return "";
 
    }
@@ -214,7 +214,7 @@ namespace android
    void os_context::get_all_processes(::u32_array & dwa )
    {
 
-      throw interface_only_exception();
+      throw ::interface_only();
       return;
 
       /*
@@ -236,7 +236,7 @@ namespace android
 
    //string os_context::get_module_path(HMODULE hmodule)
    //{
-   //   throw interface_only_exception();
+   //   throw ::interface_only();
    //   return "";
    //   /*
    //   string strPath;
@@ -255,7 +255,7 @@ namespace android
 
    ::payload os_context::connection_settings_get_auto_detect()
    {
-      //throw interface_only_exception();
+      //throw ::interface_only();
       return false;
 
       /*
@@ -278,7 +278,7 @@ namespace android
    ::payload os_context::connection_settings_get_auto_config_url()
    {
 
-      //throw interface_only_exception();
+      //throw ::interface_only();
       return "";
       /*
             registry::Key key;
@@ -296,7 +296,7 @@ namespace android
    bool os_context::local_machine_set_run(const ::string & pszKey, const ::string & pszCommand, bool bSet)
    {
 
-//      throw interface_only_exception();
+//      throw ::interface_only();
       return false;
 
       /*
@@ -315,7 +315,7 @@ namespace android
    {
 
 
-      throw interface_only_exception();
+      throw ::interface_only();
       return false;
       /*    registry::Key keyKar(HKEY_LOcaL_MACHINE, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\RunOnce", true);
 
@@ -330,7 +330,7 @@ namespace android
    bool os_context::current_user_set_run(const ::string & pszKey, const ::string & pszCommand, bool bSet)
    {
 
-      throw interface_only_exception();
+      throw ::interface_only();
       return false;
 
       /*
@@ -347,7 +347,7 @@ namespace android
    bool os_context::current_user_set_run_once(const ::string & pszKey, const ::string & pszCommand, bool bSet)
    {
 
-      throw interface_only_exception();
+      throw ::interface_only();
       return false;
 
       /*
@@ -364,7 +364,7 @@ namespace android
 
    bool os_context::defer_register_ca2_plugin_for_mozilla()
    {
-      //  throw interface_only_exception();
+      //  throw ::interface_only();
       return false;
 
       /*
@@ -403,7 +403,7 @@ namespace android
 
    bool os_context::file_extension_get_open_with_list_keys(string_array & straKey, const ::string & pszExtension)
    {
-      throw interface_only_exception();
+      throw ::interface_only();
       return false;
 
       /*
@@ -442,7 +442,7 @@ namespace android
    bool os_context::file_association_set_default_icon(const ::string & pszExtension, const ::string & pszExtensionNamingClass, const ::string & pszIconPath)
    {
 
-      throw interface_only_exception();
+      throw ::interface_only();
       return false;
 
       /*
@@ -459,7 +459,7 @@ namespace android
 
    bool os_context::file_association_set_shell_open_command(const ::string & pszExtension, const ::string & pszExtensionNamingClass,  const char * pszCommand, const ::string & pszParam)
    {
-      throw interface_only_exception();
+      throw ::interface_only();
       return false;
 
       /*
@@ -491,7 +491,7 @@ namespace android
 
    bool os_context::file_association_get_shell_open_command(const ::string & pszExtension, string & strExtensionNamingClass, string & strCommand, string & strParam)
    {
-      throw interface_only_exception();
+      throw ::interface_only();
       return false;
 
       /*
@@ -535,7 +535,7 @@ namespace android
    bool os_context::native_modern_web_browser(const ::string & lpcsz)
    {
 
-      throw interface_only_exception();
+      throw ::interface_only();
       return false;
    }
 
@@ -543,7 +543,7 @@ namespace android
    bool os_context::native_full_web_browser(const ::string & lpcsz)
    {
 
-      throw interface_only_exception();
+      throw ::interface_only();
       return false;
 
       /*    registry reg;
@@ -592,7 +592,7 @@ namespace android
    void os_context::create_service()
    {
 
-      //throw interface_only_exception();
+      //throw ::interface_only();
       return error_failed;
 
 
@@ -601,21 +601,21 @@ namespace android
 
    void os_context::erase_service()
    {
-//      throw interface_only_exception();
+//      throw ::interface_only();
       return error_failed;
 
    }
 
    void os_context::start_service()
    {
-      //throw interface_only_exception();
+      //throw ::interface_only();
       return error_failed;
 
    }
 
    void os_context::stop_service()
    {
-      throw interface_only_exception();
+      throw ::interface_only();
       return error_failed;
 
    }
@@ -624,7 +624,7 @@ namespace android
    //void os_context::raise_exception( ::u32 dwExceptionCode, ::u32 dwExceptionFlags)
    //{
 
-   //   throw interface_only_exception();
+   //   throw ::interface_only();
    //   return;
    //   /*
    //         RaiseException( dwExceptionCode, dwExceptionFlags, 0, nullptr );
@@ -634,7 +634,7 @@ namespace android
    bool os_context::is_remote_session()
    {
 
-//      throw interface_only_exception();
+//      throw ::interface_only();
       return false;
       /*
             return GetSystemMetrics(SM_REMOTESESSION) != false;
@@ -645,7 +645,7 @@ namespace android
    //void os_context::post_to_all_threads(const ::atom & atom, WPARAM wparam, LPARAM lparam)
    //{
 
-   //   throw interface_only_exception();
+   //   throw ::interface_only();
    //   return;
 
 

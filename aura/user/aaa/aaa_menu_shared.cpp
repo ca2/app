@@ -232,7 +232,7 @@ void menu_shared_idle(::user::frame * pframe)
 
          menu_shared_command command(&pmenushared->m_statusa[i]);
 
-         command.m_id = atom;
+         command.m_atom = atom;
 
          pframe->on_command_probe(&command);
 

@@ -20,7 +20,7 @@ namespace userex
       public:
 
          ::index                 m_iIndex;
-         ::atom                    m_idGroup;
+         ::atom                    m_atomGroup;
          string                  m_strIcon;
          string                  m_strTitle;
          __pointer(image_list_view)     m_plist;
@@ -34,7 +34,7 @@ namespace userex
       ::user::button                m_buttonMenu;
       __pointer_array(group)                    m_groupa;
       __pointer(::user::menu)              m_pmenu;
-      ::atom                          m_idGroup;
+      ::atom                          m_atomGroup;
 
 
       group_image_list_view();

@@ -9,7 +9,7 @@ namespace str
    inline strsize utf_to_utf_length(const TYPE_TARGET *, const TYPE_SOURCE * psource, strsize srclen)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return 0;
 
@@ -100,7 +100,7 @@ namespace str
    inline strsize utf_to_utf_length(const TYPE_TARGET *, const TYPE_SOURCE * psource)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return 0;
 
@@ -190,7 +190,7 @@ namespace str
    inline void utf_to_utf(TYPE_TARGET * ptarget, const TYPE_SOURCE * psource, strsize srclen)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -296,7 +296,7 @@ namespace str
    inline void utf_to_utf(TYPE_TARGET * ptarget, const TYPE_SOURCE * psource)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 

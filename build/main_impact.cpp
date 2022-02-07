@@ -134,17 +134,17 @@ namespace app_core_build
    //void main_impact::handle(::topic * ptopic, ::context * pcontext)
    //{
 
-   //   if(ptopic->m_id == ::id_click)
+   //   if(ptopic->m_atom == ::id_click)
    //   {
 
-   //      if(ptopic->m_pextendedtopic->user_interaction()->m_id == "hellomultiverse_toggle")
+   //      if(ptopic->get_extended_topic()->user_interaction()->m_atom == "hellomultiverse_toggle")
    //      {
 
    //         m_pimpact->m_prender->m_bLite = !m_pimpact->m_prender->m_bLite;
 
    //         m_pimpact->set_need_layout();
 
-   //         ptopic->m_pextendedtopic->m_bRet = true;
+   //         ptopic->get_extended_topic()->m_bRet = true;
 
    //         return;
 

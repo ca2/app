@@ -720,7 +720,7 @@ namespace experience
 
       atom atom = get_control_box_button_id(ebutton);
 
-      pbutton->m_id = atom;
+      pbutton->m_atom = atom;
 
       string strTag = get_control_box_button_tag(ebutton);
 
@@ -841,7 +841,7 @@ namespace experience
 
       //}
 
-      m_itemmap[ebutton]->m_id = atom;
+      m_itemmap[ebutton]->m_atom = atom;
 
       m_idmap[atom] = ebutton;
 
@@ -862,7 +862,7 @@ namespace experience
 
       }
 
-      return m_itemmap[ebutton]->m_id;
+      return m_itemmap[ebutton]->m_atom;
 
    }
 

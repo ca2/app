@@ -70,7 +70,7 @@ namespace user
       {
 
          m_ptab = tab_pane.m_ptab;
-         m_id = tab_pane.m_id;
+         m_atom = tab_pane.m_atom;
          m_textTitle = tab_pane.m_textTitle;
          m_pimage = tab_pane.m_pimage;
          m_pplaceholder = tab_pane.m_pplaceholder;

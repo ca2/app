@@ -77,7 +77,7 @@ public:
    virtual void create_isotropic(double_array & daRate, ::enum_priority epriority);
 
 
-   virtual void SetImpactportOrg(const ::point_i32 & point);
+   virtual void SetViewportOrg(const ::point_i32 & point);
    virtual void set_font_factor(double dFactor);
    virtual void set_alpha_mode(::draw2d::enum_alpha_mode enum_alpha_mode);
 

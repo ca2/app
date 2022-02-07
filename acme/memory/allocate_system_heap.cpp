@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/exception/no_memory.h"
 
 //#include <crtdbg.h>
 
@@ -25,7 +26,7 @@ void * system_heap_alloc_normal(memsize size)
    if(p == nullptr)
    {
 
-      throw_memory_exception();
+      throw no_memory();
 
    }
 
@@ -62,7 +63,7 @@ void * system_heap_alloc_debug(memsize size, int nBlockUse, const char * pszFile
    if(p == nullptr)
    {
 
-      throw_memory_exception();
+      throw no_memory();
 
    }
 
@@ -259,7 +260,7 @@ else
 
 #if MEMDLEAK
 
-   __throw(::exception("plex_heap_alloc_array::get_mem_info member function is available only with \"memdleak\" builds - MEMDLEAK defined"));
+   throw ::exception(::exception("plex_heap_alloc_array::get_mem_info member function is available only with \"memdleak\" builds - MEMDLEAK defined"));
 
 
    synchronous_lock lock(g_pmutgen);
@@ -324,7 +325,7 @@ else
 //
 //#ifndef MEMDLEAK
 //
-//   __throw(::exception("plex_heap_alloc_array::get_mem_info member function is available only with \"memdleak\" builds - MEMDLEAK defined"));
+//   throw ::exception(::exception("plex_heap_alloc_array::get_mem_info member function is available only with \"memdleak\" builds - MEMDLEAK defined"));
 //
 //#endif
 //

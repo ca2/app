@@ -55,7 +55,7 @@ namespace colorertake5
       if (parserFactory == nullptr || lineSource == nullptr)
       {
 
-         __throw(exception(string("Bad base_editor constructor parameters")));
+         throw ::exception(exception(string("Bad base_editor constructor parameters")));
 
       }
 

@@ -45,7 +45,7 @@ inline BLOCK_TYPE & memory_template < BLOCK_TYPE > ::operator = (const ::block &
    if (block.get_size() < get_size())
    {
 
-      __throw(error_bad_argument);
+      throw ::exception(error_bad_argument);
 
    }
 
@@ -391,7 +391,7 @@ inline void to_string(string & str, const bool & b)
 #endif // __cplusplus_winrt
 
 
-inline void copy(void *, const void *) /* = 0 */ { throw_exception(error_interface_only); }
+inline void copy(void *, const void *) /* = 0 */ { throw ::interface_only(); }
 
 
 namespace papaya
@@ -406,7 +406,7 @@ namespace papaya
       inline TYPE default_value()
       {
 
-         throw interface_only_exception("template only exception");
+         throw ::interface_only("template only exception");
 
       }
 
@@ -566,7 +566,7 @@ inline i64 increment_reference_count(c_derived * & pca, const SOURCE * psource)
    if (::is_null(pderived))
    {
 
-      __throw(error_wrong_type);
+      throw ::exception(error_wrong_type);
 
    }
 
@@ -601,7 +601,7 @@ inline i64 release(c_derived *& pca OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DE
 
 #ifdef _DEBUG
 
-//   ::atom atom = p->m_id;
+//   ::atom atom = p->m_atom;
    //char * pszType = nullptr;
    //
    //try

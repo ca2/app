@@ -390,17 +390,17 @@ namespace sqlite
 //
 //               output_debug_string(pszErrorMessage);
 //            }
-//            //__throw(::database::exception(get_error_message()));
+//            //throw ::exception(::database::exception(get_error_message()));
 //         }
 ////         if (setErr(sqlite3_exec((sqlite3 *)get_handle(), "PRAGMA synchronous=OFF", nullptr, nullptr, &err)) != SQLITE_OK)
 ////         {
 ////            fprintf(stderr, "Error: %s", err);
-////            __throw(::database::exception(get_error_message()));
+////            throw ::exception(::database::exception(get_error_message()));
 ////         }
          //if (setErr(sqlite3_exec((sqlite3 *)get_handle(), "PRAGMA temp_store=MEMORY", nullptr, nullptr, &err)) != SQLITE_OK)
          //{
          //   FORMATTED_TRACE("Error: %s", err);
-         //   //__throw(::database::exception(get_error_message()));
+         //   //throw ::exception(::database::exception(get_error_message()));
          //}
 
          m_bActive = true;
@@ -642,7 +642,7 @@ namespace sqlite
    //      if (dataset.num_rows() == 0)
    //      {
 
-   //         dataset.exec("create table '" + strTable + "' (atom text primary key, value integer)");
+   //         dataset.exec("create table '" + strTable + "' (id text primary key, value integer)");
    //      }
 
    //   }
@@ -671,7 +671,7 @@ namespace sqlite
    //      if(dataset.num_rows() == 0)
    //      {
 
-   //         dataset.exec("create table '" + strTable + "' (atom text primary key, value text)");
+   //         dataset.exec("create table '" + strTable + "' (id text primary key, value text)");
 
    //      }
 
@@ -729,7 +729,7 @@ namespace sqlite
 
                i32 iResult = sqlite3_prepare_v2(
                   (sqlite3 *) get_handle(),
-                  "REPLACE INTO blobtable (atom, value) values (:atom, :value);",
+                  "REPLACE INTO blobtable (id, value) values (:id, :value);",
                   -1,
                   &m_pstmtReplace, nullptr);
 
@@ -746,7 +746,7 @@ namespace sqlite
 
                }
 
-               m_iReplaceId = sqlite3_bind_parameter_index(m_pstmtReplace, ":atom");
+               m_iReplaceId = sqlite3_bind_parameter_index(m_pstmtReplace, ":id");
 
                m_iReplaceValue = sqlite3_bind_parameter_index(m_pstmtReplace, ":value");
 
@@ -808,7 +808,7 @@ namespace sqlite
 
          i32 iResult = sqlite3_prepare_v2(
             (sqlite3 *) get_handle(),
-            "select `value` FROM `blobtable` WHERE `atom` = :atom;",
+            "select `value` FROM `blobtable` WHERE `id` = :id;",
             -1,
             &m_pstmtSelect, nullptr);
 
@@ -825,7 +825,7 @@ namespace sqlite
 
          }
 
-         m_iSelectId = sqlite3_bind_parameter_index(m_pstmtSelect, ":atom");
+         m_iSelectId = sqlite3_bind_parameter_index(m_pstmtSelect, ":id");
 
       }
       else
@@ -864,7 +864,7 @@ namespace sqlite
       if (res != SQLITE_ROW)
       {
 
-         //string strSql = "select `value` FROM stringtable WHERE `atom` = '" + escape(strKey) + "'";
+         //string strSql = "select `value` FROM stringtable WHERE `id` = '" + escape(strKey) + "'";
 
          //::payload payload = query_item(strSql);
 

@@ -204,41 +204,11 @@
     <Filter Include="Source Files\networking">
       <UniqueIdentifier>{498cf75a-61e7-4f40-9aca-b6956f291bc9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\node">
-      <UniqueIdentifier>{2143d8b7-ada2-4e21-8d70-f05986ff23d2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\node\operating_system">
-      <UniqueIdentifier>{994172a0-f0a4-46f4-bda5-2f31f319c237}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\node\operating_system\windows">
-      <UniqueIdentifier>{9f2ad250-ea08-4169-b025-c6902a2e3fd7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\node\operating_system\windows_common">
-      <UniqueIdentifier>{60cf0917-c1fd-4ff5-acb4-ad83cec550c7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\node">
-      <UniqueIdentifier>{a3052857-61d1-403c-9c1b-7f209075ac46}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\node\operating_system">
-      <UniqueIdentifier>{d17eb1bb-baba-469e-9bcb-fefa2918c583}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\node\operating_system\ansi">
-      <UniqueIdentifier>{3e3eb7e6-b2d0-4ef9-8057-41cbc4350638}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\node\operating_system\windows">
-      <UniqueIdentifier>{dcf0b0df-388b-4f18-8433-eb40ffbf2136}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\node\operating_system\windows_common">
-      <UniqueIdentifier>{c26364a6-c152-42d4-aa51-604b28f79049}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\networking\sockets">
       <UniqueIdentifier>{ac03c8a4-0251-4733-b21c-70d7d4ebb3bc}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\networking\sockets">
       <UniqueIdentifier>{0ec62c58-cc39-40e4-80bb-d77c3eca3012}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\node\operating_system\ansi">
-      <UniqueIdentifier>{b6713797-af08-4440-b4d1-631dd04e5514}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\constant">
       <UniqueIdentifier>{4ca6747d-48cf-4544-9523-a0a3bfe96729}</UniqueIdentifier>
@@ -276,23 +246,47 @@
     <Filter Include="Header Files\compress">
       <UniqueIdentifier>{029fd5d0-35f1-489e-a65d-bf45039ad5f1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\nano">
-      <UniqueIdentifier>{64f3072c-011e-4c9b-9c5d-cc74e8a606e5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\nano">
-      <UniqueIdentifier>{f4adab8b-6d1a-4595-a4c2-92846414eca9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\node\operating_system\windows\nano">
-      <UniqueIdentifier>{e33747e2-de15-4146-a5a1-85d6d125129b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\node\operating_system\windows\nano">
-      <UniqueIdentifier>{3a65d5bf-ef19-454a-99be-3faaf53c688f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\topic">
       <UniqueIdentifier>{216b7636-fcbb-4785-a0f8-f564db4e94e5}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\topic">
       <UniqueIdentifier>{fac79683-8c74-4c33-b5a1-5548b9f726f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\operating_system">
+      <UniqueIdentifier>{a3052857-61d1-403c-9c1b-7f209075ac46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\operating_system">
+      <UniqueIdentifier>{2143d8b7-ada2-4e21-8d70-f05986ff23d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\operating_system\windows">
+      <UniqueIdentifier>{3d09fa42-8293-406c-97c3-1c14172e62fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\operating_system\windows_common">
+      <UniqueIdentifier>{d4b069d5-ab45-483a-93cc-6fa49ebc3fec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\operating_system\windows\nano">
+      <UniqueIdentifier>{9c1bbbaf-4645-489d-8d25-4d034f0ca555}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\operating_system\windows">
+      <UniqueIdentifier>{8397e392-1c49-4c19-a405-20115319f187}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\operating_system\windows_common">
+      <UniqueIdentifier>{78bb2d35-9002-45ea-bd02-3b7ffbeaafb3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\operating_system\windows\nano">
+      <UniqueIdentifier>{7142358a-d975-4e4f-bd5f-f657a4c1e589}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\user">
+      <UniqueIdentifier>{49fa2b40-9738-4236-84fc-258c24f0c715}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\nano">
+      <UniqueIdentifier>{e158d95a-2e1a-4797-a0aa-c0a3407e47d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\nano">
+      <UniqueIdentifier>{3463229f-ca18-45c1-a380-4bd85c897c0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\user">
+      <UniqueIdentifier>{70490f20-e581-4135-a168-4ad4d3881e83}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1223,15 +1217,6 @@
     <ClInclude Include="filesystem\file\_defer_var_stream.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
-    <ClInclude Include="user\_.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\_const.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\_const_key.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive\matter.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
@@ -1403,20 +1388,11 @@
     <ClInclude Include="primitive\logic\bit.h">
       <Filter>Header Files\primitive\logic</Filter>
     </ClInclude>
-    <ClInclude Include="user\os_theme_colors.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\os_colors.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
     <ClInclude Include="platform\trace.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\simple_log.h">
       <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="user\_style.h">
-      <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="memory\_impl.h">
       <Filter>Header Files\memory</Filter>
@@ -1690,9 +1666,6 @@
     </ClInclude>
     <ClInclude Include="platform\user_parent.h">
       <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="user\conversation.h">
-      <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="_start.h">
       <Filter>Header Files</Filter>
@@ -2048,9 +2021,6 @@
     <ClInclude Include="primitive\datetime\department.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
-    <ClInclude Include="user\ewindowflag.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\collection\aaa_want_to_remove_papaya_array_decl.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
@@ -2129,7 +2099,7 @@
     <ClInclude Include="exception\aaa_io.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
-    <ClInclude Include="exception\aaa_memory.h">
+    <ClInclude Include="exception\no_memory.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
     <ClInclude Include="exception\aaa_not_implemented.h">
@@ -2342,90 +2312,6 @@
     <ClInclude Include="networking\url_domain.h">
       <Filter>Header Files\networking</Filter>
     </ClInclude>
-    <ClInclude Include="node\operating_system\windows_common\parallelization.h">
-      <Filter>Header Files\node\operating_system\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\windows_common\api.h">
-      <Filter>Header Files\node\operating_system\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\windows_common\_windows_common.h">
-      <Filter>Header Files\node\operating_system\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\windows_common\_.h">
-      <Filter>Header Files\node\operating_system\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\windows\process.h">
-      <Filter>Header Files\node\operating_system\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\windows\_.h">
-      <Filter>Header Files\node\operating_system\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\winpr_input.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\user.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\time.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\text.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\process.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\parallelization.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\os_windowing2.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\microsecond_sleep.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\graphics.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\file.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\cross.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\console.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\chronometer.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\argcargv.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\aaa_c2.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\_user.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\_operating_system.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\_impl.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\_const_console.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\_application.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\_aaa_c.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\_.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
     <ClInclude Include="networking\sockets\trace_interface.h">
       <Filter>Header Files\networking\sockets</Filter>
     </ClInclude>
@@ -2512,18 +2398,6 @@
     </ClInclude>
     <ClInclude Include="platform\sequence.h">
       <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="user\check.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\element.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\text.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\theme_colors.h">
-      <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="exception\interface_only.h">
       <Filter>Header Files\exception</Filter>
@@ -2738,9 +2612,6 @@
     <ClInclude Include="filesystem\file\folder.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
-    <ClInclude Include="node\operating_system\windows\_windows.h">
-      <Filter>Header Files\node\operating_system\windows</Filter>
-    </ClInclude>
     <ClInclude Include="exception\serialization.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
@@ -2753,66 +2624,6 @@
     <ClInclude Include="primitive\primitive\holder.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="user\drag_move.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="nano\_nano.h">
-      <Filter>Header Files\nano</Filter>
-    </ClInclude>
-    <ClInclude Include="nano\brush.h">
-      <Filter>Header Files\nano</Filter>
-    </ClInclude>
-    <ClInclude Include="nano\button.h">
-      <Filter>Header Files\nano</Filter>
-    </ClInclude>
-    <ClInclude Include="nano\child.h">
-      <Filter>Header Files\nano</Filter>
-    </ClInclude>
-    <ClInclude Include="nano\device.h">
-      <Filter>Header Files\nano</Filter>
-    </ClInclude>
-    <ClInclude Include="nano\font.h">
-      <Filter>Header Files\nano</Filter>
-    </ClInclude>
-    <ClInclude Include="nano\message_box.h">
-      <Filter>Header Files\nano</Filter>
-    </ClInclude>
-    <ClInclude Include="nano\object.h">
-      <Filter>Header Files\nano</Filter>
-    </ClInclude>
-    <ClInclude Include="nano\pen.h">
-      <Filter>Header Files\nano</Filter>
-    </ClInclude>
-    <ClInclude Include="nano\window.h">
-      <Filter>Header Files\nano</Filter>
-    </ClInclude>
-    <ClInclude Include="nano\window_implementation.h">
-      <Filter>Header Files\nano</Filter>
-    </ClInclude>
-    <ClInclude Include="nano\window_interface.h">
-      <Filter>Header Files\nano</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\windows\nano\brush.h">
-      <Filter>Header Files\node\operating_system\windows\nano</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\windows\nano\device.h">
-      <Filter>Header Files\node\operating_system\windows\nano</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\windows\nano\font.h">
-      <Filter>Header Files\node\operating_system\windows\nano</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\windows\nano\object.h">
-      <Filter>Header Files\node\operating_system\windows\nano</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\windows\nano\pen.h">
-      <Filter>Header Files\node\operating_system\windows\nano</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\windows\nano\window.h">
-      <Filter>Header Files\node\operating_system\windows\nano</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\windows\nano\_nano.h">
-      <Filter>Header Files\node\operating_system\windows\nano</Filter>
-    </ClInclude>
     <ClInclude Include="topic\extended_topic.h">
       <Filter>Header Files\topic</Filter>
     </ClInclude>
@@ -2824,6 +2635,231 @@
     </ClInclude>
     <ClInclude Include="topic\topic.h">
       <Filter>Header Files\topic</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\library_not_loaded.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="operating-system\operating-system\_.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\_.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\_2.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\_aaa_c.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\_application.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\_c.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\_const_console.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\_impl.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\_operating_system.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\_user.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\aaa_c2.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\aaa_node2.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\argcargv.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\chronometer.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\console.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\cross.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\file.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\graphics.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\microsecond_sleep.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\os_windowing2.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\parallelization.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\process.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\serial.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\text.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\time.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\user.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\winpr_input.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\_.h">
+      <Filter>Header Files\operating_system\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\_c.h">
+      <Filter>Header Files\operating_system\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\_windows_common.h">
+      <Filter>Header Files\operating_system\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\api.h">
+      <Filter>Header Files\operating_system\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\arg_sec_attrs.h">
+      <Filter>Header Files\operating_system\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\parallelization.h">
+      <Filter>Header Files\operating_system\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\_.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\_c.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\_windows.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\process.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\nano\_nano.h">
+      <Filter>Header Files\operating_system\windows\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\nano\aaa_nano_child.h">
+      <Filter>Header Files\operating_system\windows\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\nano\aaa_nano_message_box.h">
+      <Filter>Header Files\operating_system\windows\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\nano\brush.h">
+      <Filter>Header Files\operating_system\windows\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\nano\device.h">
+      <Filter>Header Files\operating_system\windows\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\nano\font.h">
+      <Filter>Header Files\operating_system\windows\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\nano\object.h">
+      <Filter>Header Files\operating_system\windows\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\nano\pen.h">
+      <Filter>Header Files\operating_system\windows\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\nano\window.h">
+      <Filter>Header Files\operating_system\windows\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\theme_colors.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\text.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\os_theme_colors.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\os_colors.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\ewindowflag.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\element.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\drag_move.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\conversation.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\check.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\aaa_action_item_exchange.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\_style.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\_const_key.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\_const.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\_.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\nano\_nano.h">
+      <Filter>Header Files\user\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="user\nano\brush.h">
+      <Filter>Header Files\user\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="user\nano\button.h">
+      <Filter>Header Files\user\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="user\nano\child.h">
+      <Filter>Header Files\user\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="user\nano\device.h">
+      <Filter>Header Files\user\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="user\nano\font.h">
+      <Filter>Header Files\user\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="user\nano\message_box.h">
+      <Filter>Header Files\user\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="user\nano\object.h">
+      <Filter>Header Files\user\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="user\nano\pen.h">
+      <Filter>Header Files\user\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="user\nano\still.h">
+      <Filter>Header Files\user\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="user\nano\window.h">
+      <Filter>Header Files\user\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="user\nano\window_implementation.h">
+      <Filter>Header Files\user\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="user\nano\window_interface.h">
+      <Filter>Header Files\user\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="user\nano\details_window.h">
+      <Filter>Header Files\user\nano</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -3229,9 +3265,6 @@
     <ClCompile Include="platform\static_start.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="framework.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="platform\_.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
@@ -3301,9 +3334,6 @@
     <ClCompile Include="memory\os_alloc\WindowsHeapAlloc.cpp">
       <Filter>Source Files\memory\os_alloc</Filter>
     </ClCompile>
-    <ClCompile Include="_.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\filesystem\path.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
@@ -3342,9 +3372,6 @@
     </ClCompile>
     <ClCompile Include="graphics\draw2d\_.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="user\os_colors.cpp">
-      <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive\matter.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
@@ -3441,9 +3468,6 @@
     </ClCompile>
     <ClCompile Include="process\exit_status.cpp">
       <Filter>Source Files\process</Filter>
-    </ClCompile>
-    <ClCompile Include="user\os_theme_colors.cpp">
-      <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive\estatus.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
@@ -3742,99 +3766,6 @@
     <ClCompile Include="networking\url_domain.cpp">
       <Filter>Source Files\networking</Filter>
     </ClCompile>
-    <ClCompile Include="node\operating_system\_.cpp">
-      <Filter>Source Files\node\operating_system</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\argcargv.cpp">
-      <Filter>Source Files\node\operating_system</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\chronometer.cpp">
-      <Filter>Source Files\node\operating_system</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\console.cpp">
-      <Filter>Source Files\node\operating_system</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\debug.cpp">
-      <Filter>Source Files\node\operating_system</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\file.cpp">
-      <Filter>Source Files\node\operating_system</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\http.cpp">
-      <Filter>Source Files\node\operating_system</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\parallelization.cpp">
-      <Filter>Source Files\node\operating_system</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\time.cpp">
-      <Filter>Source Files\node\operating_system</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\windowing.cpp">
-      <Filter>Source Files\node\operating_system</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\windows_common\api.cpp">
-      <Filter>Source Files\node\operating_system\windows_common</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\windows_common\dll.cpp">
-      <Filter>Source Files\node\operating_system\windows_common</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\windows_common\parallelization.cpp">
-      <Filter>Source Files\node\operating_system\windows_common</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\windows_common\time.cpp">
-      <Filter>Source Files\node\operating_system\windows_common</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\windows_common\unicode.cpp">
-      <Filter>Source Files\node\operating_system\windows_common</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\windows_common\windows_common.cpp">
-      <Filter>Source Files\node\operating_system\windows_common</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\windows\library.cpp">
-      <Filter>Source Files\node\operating_system\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\windows\parallelization.cpp">
-      <Filter>Source Files\node\operating_system\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\windows\windows.cpp">
-      <Filter>Source Files\node\operating_system\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\ansi\base.cpp">
-      <Filter>Source Files\node\operating_system\ansi</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\ansi\datetime.cpp">
-      <Filter>Source Files\node\operating_system\ansi</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\ansi\debug.cpp">
-      <Filter>Source Files\node\operating_system\ansi</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\ansi\exception_engine.cpp">
-      <Filter>Source Files\node\operating_system\ansi</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\ansi\file.cpp">
-      <Filter>Source Files\node\operating_system\ansi</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\ansi\file_raw.cpp">
-      <Filter>Source Files\node\operating_system\ansi</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\ansi\file_std.cpp">
-      <Filter>Source Files\node\operating_system\ansi</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\ansi\language.cpp">
-      <Filter>Source Files\node\operating_system\ansi</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\ansi\memory.cpp">
-      <Filter>Source Files\node\operating_system\ansi</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\ansi\process.cpp">
-      <Filter>Source Files\node\operating_system\ansi</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\ansi\user.cpp">
-      <Filter>Source Files\node\operating_system\ansi</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\ansi\win.cpp">
-      <Filter>Source Files\node\operating_system\ansi</Filter>
-    </ClCompile>
     <ClCompile Include="networking\sockets\trace_interface.cpp">
       <Filter>Source Files\networking\sockets</Filter>
     </ClCompile>
@@ -3864,15 +3795,6 @@
     </ClCompile>
     <ClCompile Include="platform\sequence.cpp">
       <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="user\check.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\element.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\text.cpp">
-      <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="exception\interface_only.cpp">
       <Filter>Source Files\exception</Filter>
@@ -3916,15 +3838,6 @@
     <ClCompile Include="filesystem\file\folder.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="node\operating_system\windows\file.cpp">
-      <Filter>Source Files\node\operating_system\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\windows_common\file.cpp">
-      <Filter>Source Files\node\operating_system\windows_common</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\windows\process.cpp">
-      <Filter>Source Files\node\operating_system\windows</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\geometry2d\_shape.cpp">
       <Filter>Source Files\primitive\geometry2d</Filter>
     </ClCompile>
@@ -3940,69 +3853,6 @@
     <ClCompile Include="filesystem\file\payload_stream.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="node\operating_system\windows\message_box.cpp">
-      <Filter>Source Files\node\operating_system\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="user\drag_move.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="nano\_nano.cpp">
-      <Filter>Source Files\nano</Filter>
-    </ClCompile>
-    <ClCompile Include="nano\brush.cpp">
-      <Filter>Source Files\nano</Filter>
-    </ClCompile>
-    <ClCompile Include="nano\button.cpp">
-      <Filter>Source Files\nano</Filter>
-    </ClCompile>
-    <ClCompile Include="nano\child.cpp">
-      <Filter>Source Files\nano</Filter>
-    </ClCompile>
-    <ClCompile Include="nano\device.cpp">
-      <Filter>Source Files\nano</Filter>
-    </ClCompile>
-    <ClCompile Include="nano\font.cpp">
-      <Filter>Source Files\nano</Filter>
-    </ClCompile>
-    <ClCompile Include="nano\message_box.cpp">
-      <Filter>Source Files\nano</Filter>
-    </ClCompile>
-    <ClCompile Include="nano\object.cpp">
-      <Filter>Source Files\nano</Filter>
-    </ClCompile>
-    <ClCompile Include="nano\pen.cpp">
-      <Filter>Source Files\nano</Filter>
-    </ClCompile>
-    <ClCompile Include="nano\window.cpp">
-      <Filter>Source Files\nano</Filter>
-    </ClCompile>
-    <ClCompile Include="nano\window_implementation.cpp">
-      <Filter>Source Files\nano</Filter>
-    </ClCompile>
-    <ClCompile Include="nano\window_interface.cpp">
-      <Filter>Source Files\nano</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\windows\nano\brush.cpp">
-      <Filter>Source Files\node\operating_system\windows\nano</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\windows\nano\device.cpp">
-      <Filter>Source Files\node\operating_system\windows\nano</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\windows\nano\font.cpp">
-      <Filter>Source Files\node\operating_system\windows\nano</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\windows\nano\object.cpp">
-      <Filter>Source Files\node\operating_system\windows\nano</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\windows\nano\pen.cpp">
-      <Filter>Source Files\node\operating_system\windows\nano</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\windows\nano\window.cpp">
-      <Filter>Source Files\node\operating_system\windows\nano</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\windows\nano\_nano.cpp">
-      <Filter>Source Files\node\operating_system\windows\nano</Filter>
-    </ClCompile>
     <ClCompile Include="topic\extended_topic.cpp">
       <Filter>Source Files\topic</Filter>
     </ClCompile>
@@ -4014,6 +3864,180 @@
     </ClCompile>
     <ClCompile Include="topic\topic.cpp">
       <Filter>Source Files\topic</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\library_not_loaded.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\no_memory.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\nano\_nano.cpp">
+      <Filter>Source Files\operating_system\windows\nano</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\nano\brush.cpp">
+      <Filter>Source Files\operating_system\windows\nano</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\nano\device.cpp">
+      <Filter>Source Files\operating_system\windows\nano</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\nano\font.cpp">
+      <Filter>Source Files\operating_system\windows\nano</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\nano\object.cpp">
+      <Filter>Source Files\operating_system\windows\nano</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\nano\pen.cpp">
+      <Filter>Source Files\operating_system\windows\nano</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\nano\window.cpp">
+      <Filter>Source Files\operating_system\windows\nano</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\file.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\library.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\message_box.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\parallelization.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\process.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\windows.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows_common\api.cpp">
+      <Filter>Source Files\operating_system\windows_common</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows_common\dll.cpp">
+      <Filter>Source Files\operating_system\windows_common</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows_common\file.cpp">
+      <Filter>Source Files\operating_system\windows_common</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows_common\parallelization.cpp">
+      <Filter>Source Files\operating_system\windows_common</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows_common\time.cpp">
+      <Filter>Source Files\operating_system\windows_common</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows_common\unicode.cpp">
+      <Filter>Source Files\operating_system\windows_common</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows_common\windows_common.cpp">
+      <Filter>Source Files\operating_system\windows_common</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\_.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\argcargv.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\chronometer.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\console.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\debug.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\file.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\http.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\node_serial.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\parallelization.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windowing.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\winpr_keycode.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\winpr_scancode.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="user\nano\_nano.cpp">
+      <Filter>Source Files\user\nano</Filter>
+    </ClCompile>
+    <ClCompile Include="user\nano\brush.cpp">
+      <Filter>Source Files\user\nano</Filter>
+    </ClCompile>
+    <ClCompile Include="user\nano\button.cpp">
+      <Filter>Source Files\user\nano</Filter>
+    </ClCompile>
+    <ClCompile Include="user\nano\child.cpp">
+      <Filter>Source Files\user\nano</Filter>
+    </ClCompile>
+    <ClCompile Include="user\nano\device.cpp">
+      <Filter>Source Files\user\nano</Filter>
+    </ClCompile>
+    <ClCompile Include="user\nano\font.cpp">
+      <Filter>Source Files\user\nano</Filter>
+    </ClCompile>
+    <ClCompile Include="user\nano\message_box.cpp">
+      <Filter>Source Files\user\nano</Filter>
+    </ClCompile>
+    <ClCompile Include="user\nano\object.cpp">
+      <Filter>Source Files\user\nano</Filter>
+    </ClCompile>
+    <ClCompile Include="user\nano\pen.cpp">
+      <Filter>Source Files\user\nano</Filter>
+    </ClCompile>
+    <ClCompile Include="user\nano\window.cpp">
+      <Filter>Source Files\user\nano</Filter>
+    </ClCompile>
+    <ClCompile Include="user\nano\window_implementation.cpp">
+      <Filter>Source Files\user\nano</Filter>
+    </ClCompile>
+    <ClCompile Include="user\nano\window_interface.cpp">
+      <Filter>Source Files\user\nano</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\text.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\os_theme_colors.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\os_colors.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\element.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\drag_move.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\check.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="_.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="user\nano\still.cpp">
+      <Filter>Source Files\user\nano</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\time.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\memory.cpp">
+      <Filter>Source Files\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="user\nano\details_window.cpp">
+      <Filter>Source Files\user\nano</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -84,7 +84,7 @@ namespace http
       m_form.parse_query_string(m_strQueryString, m_strQueryString.get_length());
       m_form.request()         = m_form.get();
       attr(__id(http_referer)) = header(__id(referer));
-      if(m_idHttpMethod == __id(put))
+      if(m_atomHttpMethod == __id(put))
       {
          // skip following POST processing below
          return;

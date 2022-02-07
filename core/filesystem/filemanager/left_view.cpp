@@ -95,12 +95,12 @@ namespace filemanager
 //         if (filemanager_document() == pupdate->m_pdocument)
 //         {
 //
-//            //if (ptopic->m_id == id_initialize)
+//            //if (ptopic->m_atom == id_initialize)
 //            //{
 //
 //            //   string str;
 //
-//            //   str.format("frame(%s)", filemanager_data()->m_id.str().c_str());
+//            //   str.format("frame(%s)", filemanager_data()->m_atom.str().c_str());
 //
 //            //   __pointer(::user::frame_window) pframe = get_parent_frame();
 //

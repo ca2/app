@@ -24,9 +24,9 @@ namespace user
    void notify_icon::create_notify_icon(const ::atom & atom, ::user::interaction * pinteractionNotify, ::windowing::icon * picon)
    {
       
-      throw ::interface_only_exception();
+      throw ::interface_only();
       
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -51,9 +51,9 @@ namespace user
 
       }
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -159,10 +159,10 @@ namespace user
 
       ::channel::on_command(pcommand);
 
-      //if (pcommand->m_id.is_text())
+      //if (pcommand->m_atom.is_text())
       //{
 
-      //   string strId(pcommand->m_id);
+      //   string strId(pcommand->m_atom);
 
       //   call_notification_area_action(strId);
 

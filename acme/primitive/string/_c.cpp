@@ -949,7 +949,7 @@ const char* wildcard_next_stop(const char* pszCriteria)
          }
          else
          {
-            __throw(error_bad_argument, "not_expected, check wildcard_next_stop function");
+            throw ::exception(error_bad_argument, "not_expected, check wildcard_next_stop function");
          }
 
 
@@ -1035,7 +1035,7 @@ const char* wildcard_next_stop(const char* pszCriteria)
          }
          else
          {
-            __throw(error_bad_argument, "not_expected, check wildcard_next_stop function");
+            throw ::exception(error_bad_argument, "not_expected, check wildcard_next_stop function");
          }
 
 
@@ -1118,7 +1118,7 @@ const char* wildcard_next_stop(const char* pszCriteria)
          }
          else
          {
-            __throw(error_bad_argument, "not_expected, check wildcard_next_stop function");
+            throw ::exception(error_bad_argument, "not_expected, check wildcard_next_stop function");
          }
 
 

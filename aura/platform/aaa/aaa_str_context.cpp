@@ -70,26 +70,26 @@
 //      if(m_plocaleschema != nullptr)
 //      {
 //
-//         if(!m_plocaleschema->m_idLocale.is_empty())
+//         if(!m_plocaleschema->m_atomLocale.is_empty())
 //         {
 //
-//            m_plocale = (str_locale *) m_pstr->get_locale(m_plocaleschema->m_idLocale);
+//            m_plocale = (str_locale *) m_pstr->get_locale(m_plocaleschema->m_atomLocale);
 //
 //            if(m_plocale != nullptr)
 //            {
 //
-//               if(!m_plocaleschema->m_idSchema.is_empty() && m_plocaleschema->m_idSchema != m_plocaleschema->m_idLocale)
+//               if(!m_plocaleschema->m_atomSchema.is_empty() && m_plocaleschema->m_atomSchema != m_plocaleschema->m_atomLocale)
 //               {
-//                  m_pschema = (str_schema *) m_plocale->get_schema(m_plocaleschema->m_idSchema);
+//                  m_pschema = (str_schema *) m_plocale->get_schema(m_plocaleschema->m_atomSchema);
 //               }
-//               m_pschemaLocale = (str_schema *)m_plocale->get_schema(m_plocaleschema->m_idSchema);
+//               m_pschemaLocale = (str_schema *)m_plocale->get_schema(m_plocaleschema->m_atomSchema);
 //            }
 //         }
 //
-//         if(!m_plocaleschema->m_idSchema.is_empty())
+//         if(!m_plocaleschema->m_atomSchema.is_empty())
 //         {
 //
-//            const str_locale * plocale = m_pstr->get_locale(m_plocaleschema->m_idSchema);
+//            const str_locale * plocale = m_pstr->get_locale(m_plocaleschema->m_atomSchema);
 //
 //            if(plocale != nullptr)
 //            {

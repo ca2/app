@@ -786,7 +786,7 @@ namespace user
          if(m_plist == nullptr)
          {
 
-            __throw(error_resource);
+            throw ::exception(error_resource);
 
          }
 
@@ -815,9 +815,9 @@ namespace user
 
          topic.m_puserinteraction = this;
 
-         //topic.m_id = m_id;
+         //topic.m_atom = m_atom;
 
-         topic.m_id = ::id_after_change_cur_sel;
+         topic.m_atom = ::id_after_change_cur_sel;
 
          topic.m_item = item;
 
@@ -973,34 +973,34 @@ namespace user
    bool combo_box::OnChildNotify(::user::message * pusermessage)
    {
 
-      switch (pusermessage->m_id)
+      switch (pusermessage->m_atom)
       {
       case WM_DRAWITEM:
 #ifdef WINODWSEX
          DrawItem((LPDRAWITEMSTRUCT)pusermessage->m_lparam);
 #else
-         __throw(todo);
+         throw ::exception(todo);
 #endif
          break;
       case e_message_measure_item:
 #ifdef WINODWSEX
          MeasureItem((LPMEASUREITEMSTRUCT)pusermessage->m_lparam);
 #else
-         __throw(todo);
+         throw ::exception(todo);
 #endif
          break;
       case WM_COMPAREITEM:
 #ifdef WINODWSEX
          *pResult = CompareItem((LPCOMPAREITEMSTRUCT)pusermessage->m_lparam);
 #else
-         __throw(todo);
+         throw ::exception(todo);
 #endif
          break;
       case WM_DELETEITEM:
 #ifdef WINODWSEX
          DeleteItem((LPDELETEITEMSTRUCT)pusermessage->m_lparam);
 #else
-         __throw(todo);
+         throw ::exception(todo);
 #endif
          break;
       default:
@@ -1671,10 +1671,10 @@ namespace user
    void combo_box::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if(ptopic->m_id == ::id_after_change_cur_sel)
+      if(ptopic->m_atom == ::id_after_change_cur_sel)
       {
 
-         if(ptopic->m_pextendedtopic->user_interaction() == m_plist)
+         if(ptopic->get_extended_topic()->user_interaction() == m_plist)
          {
 
             if (ptopic->m_item == e_element_item)

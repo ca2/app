@@ -7,16 +7,16 @@ class CLASS_DECL_ACME material_object :
 public:
 
 
-   ::atom                                m_id;
+   ::atom                                m_atom;
    ::e_status                         m_estatus;
 
 
    material_object() { }
-   material_object(const ::atom & atom) : m_id(atom) {}
+   material_object(const ::atom & atom) : m_atom(atom) {}
    material_object(const material_object & object);
    material_object(material_object && object) :
       matter(::move(object)),
-      m_id(::move(object.m_id))
+      m_atom(::move(object.m_atom))
    {  }
    ~material_object() override;
 

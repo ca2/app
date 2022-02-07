@@ -30,7 +30,7 @@ namespace user
 
       m_iFlags = 0;
       m_bPositionHint = false;
-      //m_itemClose.m_id = "close_menu";
+      //m_itemClose.m_atom = "close_menu";
       //m_itemClose.m_pmenu = this;
       m_bAutoDelete = true;
       m_bOwnItem = true;
@@ -503,7 +503,7 @@ namespace user
 
             m_pitemClose = __new(menu_item);
 
-            m_pitemClose->m_id = "close_menu";
+            m_pitemClose->m_atom = "close_menu";
 
             m_pitemClose->m_pmenu = this;
 
@@ -914,13 +914,11 @@ namespace user
    void menu::defer_close()
    {
 
-      ::topic topic;
+      ::extended_topic extendedtopic(id_context_menu_close);
 
-      topic.m_id = ::id_context_menu_close;
+      route(&extendedtopic);
 
-      route(&topic);
-
-      if (!m_bInline && !topic.m_bRet)
+      if (!m_bInline && !extendedtopic.m_bRet)
       {
 
          post_message(e_message_close);
@@ -933,10 +931,10 @@ namespace user
    void menu::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (ptopic->m_id == ::id_click)
+      if (ptopic->m_atom == ::id_click)
       {
 
-         if (m_pitemClose.is_set() && ptopic->m_pextendedtopic->user_interaction() == m_pitemClose->m_puserinteraction)
+         if (m_pitemClose.is_set() && ptopic->get_extended_topic()->user_interaction() == m_pitemClose->m_puserinteraction)
          {
 
             defer_close();
@@ -945,12 +943,12 @@ namespace user
          else
          {
 
-            __pointer(::user::menu_item) pitem = ptopic->m_pextendedtopic->user_interaction()->m_pmenuitem;
+            __pointer(::user::menu_item) pitem = ptopic->get_extended_topic()->user_interaction()->m_pmenuitem;
 
             if (pitem != nullptr && !pitem->m_bPopup)
             {
 
-               if (ptopic->m_pextendedtopic->user_interaction()->m_id.begins(astr.ingSysCommand))
+               if (ptopic->get_extended_topic()->user_interaction()->m_atom.begins(astr.ingSysCommand))
                {
 
                   auto pchannelNotify = get_notify_channel();
@@ -962,7 +960,7 @@ namespace user
 
                      //puiTarget->_001SendCommand(&command);
 
-                     pchannelNotify->handle_command(ptopic->m_pextendedtopic->user_interaction()->m_id);
+                     pchannelNotify->handle_command(ptopic->get_extended_topic()->user_interaction()->m_atom);
 
                   }
 
@@ -972,7 +970,7 @@ namespace user
 
                   auto pchannelNotify = m_pchannelNotify;
 
-                  atom idCommand = ptopic->m_pextendedtopic->user_interaction()->m_id;
+                  atom idCommand = ptopic->get_extended_topic()->user_interaction()->m_atom;
 
                   idCommand = translate_property_id(idCommand);
 
@@ -985,11 +983,11 @@ namespace user
 
                      ::message::command command(idCommand);
 
-                     command.m_actioncontext = ptopic->m_pextendedtopic->m_actioncontext;
+                     command.m_actioncontext = ptopic->get_extended_topic()->m_actioncontext;
 
                      pchannelNotify->_001SendCommand(&command);
 
-                     ptopic->m_pextendedtopic->m_bRet = command.m_bRet;
+                     ptopic->get_extended_topic()->m_bRet = command.m_bRet;
 
                   }
 
@@ -1000,22 +998,22 @@ namespace user
          }
 
       }
-//      else if (ptopic->m_id == ::id_mouse_enter)
+//      else if (ptopic->m_atom == ::id_mouse_enter)
 //      {
 //
 //         if (m_pitemClose.is_set()
-//               && ptopic->m_pextendedtopic->user_interaction() != m_pitemClose->m_puserinteraction)
+//               && ptopic->get_extended_topic()->user_interaction() != m_pitemClose->m_puserinteraction)
 //         {
 //
 //            if (!m_bInline)
 //            {
 //
-//               if (ptopic->m_pextendedtopic->user_interaction()->m_pmenuitem != m_pmenuitemSub)
+//               if (ptopic->get_extended_topic()->user_interaction()->m_pmenuitem != m_pmenuitemSub)
 //               {
 //
 //                  {
 //
-//                     __pointer(::user::menu_item) pitem = ptopic->m_pextendedtopic->user_interaction()->m_pmenuitem;
+//                     __pointer(::user::menu_item) pitem = ptopic->get_extended_topic()->user_interaction()->m_pmenuitem;
 //
 //                     if (pitem)
 //                     {
@@ -1044,7 +1042,7 @@ namespace user
 //
 //                           ::rectangle_i32 rectangle;
 //
-//                           ptopic->m_pextendedtopic->user_interaction()->get_window_rect(rectangle);
+//                           ptopic->get_extended_topic()->user_interaction()->get_window_rect(rectangle);
 //
 //                           m_psubmenu->update_position(rectangle.top_right());
 //
@@ -1056,9 +1054,9 @@ namespace user
 //
 //                           ::topic topic;
 //
-//                           topic.m_id = ::id_menu_hover;
+//                           topic.m_atom = ::id_menu_hover;
 //
-//                           topic.m_id = pitem->m_id;
+//                           topic.m_atom = pitem->m_atom;
 //
 //                           ::user::interaction * puiTarget = get_target_window();
 //
@@ -1083,20 +1081,20 @@ namespace user
 //
 //         }
 //
-//         ptopic->m_pextendedtopic->m_bRet = true;
+//         ptopic->get_extended_topic()->m_bRet = true;
 //
 //         return;
 //
 //      }
-//      else if (ptopic->m_id == ::id_mouse_leave)
+//      else if (ptopic->m_atom == ::id_mouse_leave)
 //      {
-//         if (ptopic->user_element_id() == m_idTimerMenu)
+//         if (ptopic->user_element_id() == m_atomTimerMenu)
 //         {
 //            KillTimer(e_timer_menu);
-//            m_idTimerMenu.is_empty();
+//            m_atomTimerMenu.is_empty();
 //         }
 //
-//         ptopic->m_pextendedtopic->m_bRet = true;
+//         ptopic->get_extended_topic()->m_bRet = true;
 //
 //         return;
 //
@@ -1126,25 +1124,25 @@ namespace user
       if (ptimer->m_uEvent == e_timer_menu)
       {
          KillTimer(e_timer_menu);
-         if (m_idSubMenu.has_char())
+         if (m_atomSubMenu.has_char())
          {
             m_psubmenu->send_message(e_message_close);
             m_psubmenu = nullptr;
-            m_idSubMenu.is_empty();
+            m_atomSubMenu.is_empty();
          }
 
-         if (m_idTimerMenu.has_char())
+         if (m_atomTimerMenu.has_char())
          {
 
-            m_idSubMenu = m_idTimerMenu;
+            m_atomSubMenu = m_atomTimerMenu;
 
-            m_psubmenu = __new(menu(pmenuitema->find(m_idTimerMenu)));
+            m_psubmenu = __new(menu(pmenuitema->find(m_atomTimerMenu)));
 
             m_psubmenu->initialize(this);
 
             ::rectangle_i32 rectangle;
 
-            pmenuitema->find(m_idTimerMenu)->m_puserinteraction->get_window_rect(rectangle);
+            pmenuitema->find(m_atomTimerMenu)->m_puserinteraction->get_window_rect(rectangle);
 
             m_psubmenu->update_position(rectangle.top_right());
 
@@ -1152,7 +1150,7 @@ namespace user
 
          }
 
-         m_idTimerMenu.is_empty();
+         m_atomTimerMenu.is_empty();
 
       }
       else if (ptimer->m_uEvent == ::e_timer_command_probe)
@@ -1174,7 +1172,7 @@ namespace user
          //   {
          //
          //      commandui.m_iIndex    = i;
-         //      commandui.m_id        = pmenuitema->element_at(i)->m_id;
+         //      commandui.m_atom        = pmenuitema->element_at(i)->m_atom;
          //      commandui.m_pOther    = pmenuitema->element_at(i)->m_puserinteraction;
          //
          //      __pointer(::user::interaction) puiTarget = get_target_window();
@@ -1231,7 +1229,7 @@ namespace user
    //          {
 
    //             commandui.m_iIndex    = i;
-   //             commandui.m_id        = pmenuitema->element_at(i)->m_id;
+   //             commandui.m_atom        = pmenuitema->element_at(i)->m_atom;
    //             commandui.m_pOther    = pmenuitema->element_at(i)->m_puserinteraction;
 
    //             __pointer(::user::interaction) puserinteractionParent = m_puiNotify;
@@ -1501,7 +1499,7 @@ namespace user
 
          __pointer(menu_item) pitem = pitemParent->m_pmenuitema->element_at(pmenucommand->m_iIndex);
 
-         pmenucommand->m_id = pitem->m_id;
+         pmenucommand->m_atom = pitem->m_atom;
 
          pmenucommand->m_puiOther = pitem->m_puserinteraction;
 
@@ -1532,7 +1530,7 @@ namespace user
 
          __pointer(menu_item) pitem = pitemParent->m_pmenuitema->element_at(pmenucommand->m_iIndex);
 
-         pmenucommand->m_id = pitem->m_id;
+         pmenucommand->m_atom = pitem->m_atom;
 
          pmenucommand->m_puiOther = pitem->m_puserinteraction;
 

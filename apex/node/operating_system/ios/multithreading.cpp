@@ -134,14 +134,14 @@ i32 thread_get_scheduling_priority(i32 iOsPolicy, const sched_param * pparam)
 void process_get_os_priority(i32 * piPolicy, sched_param * pparam, i32 nCa2Priority)
 {
 
-   __throw(::exception("not applicable in Mac OS"));
+   throw ::exception(::exception("not applicable in Mac OS"));
 
 }
 
 i32 process_get_scheduling_priority(i32 iOsPolicy, const sched_param * pparam)
 {
 
-   __throw(::exception("not applicable in Mac OS"));
+   throw ::exception(::exception("not applicable in Mac OS"));
 
 }
 

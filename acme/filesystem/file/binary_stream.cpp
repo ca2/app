@@ -304,7 +304,7 @@ void binary_stream::write(const ::payload & payload)
    //   *this << *payload.m_pimage;
    //   break;
    case e_type_id:
-      *this << payload.m_id;
+      *this << payload.m_atom;
       break;
    case e_type_element:
    case e_type_path:
@@ -316,7 +316,7 @@ void binary_stream::write(const ::payload & payload)
    break;
    default:
       write(payload.m_all, sizeof(payload.m_all));
-      //__throw(::exception("payload::write ::payload type not recognized"));
+      //throw ::exception(::exception("payload::write ::payload type not recognized"));
    }
 
    return;
@@ -327,7 +327,7 @@ void binary_stream::write(const ::payload & payload)
 void binary_stream::write(const property & property)
 {
 
-   write(property.m_id);
+   write(property.m_atom);
    write((const ::payload &) property);
 
    return;
@@ -1002,7 +1002,7 @@ void binary_stream::read_var_body(::payload & payload, enum_type etype)
 
       payload.set_type(::e_type_id, false);
 
-      *this >> payload.m_id;
+      *this >> payload.m_atom;
 
    }
    break;
@@ -1032,7 +1032,7 @@ void binary_stream::read_var_body(::payload & payload, enum_type etype)
 void binary_stream::read(property & property)
 {
 
-   read(property.m_id);
+   read(property.m_atom);
    read((::payload &) property);
 
    return;

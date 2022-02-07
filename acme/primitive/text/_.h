@@ -11,7 +11,7 @@
 //{
 //public:
 //
-//   ::atom           m_id;
+//   ::atom           m_atom;
 //   string         m_str;
 //
 //};

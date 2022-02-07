@@ -66,7 +66,7 @@ void window_opengl::destroy_window_graphics()
       if (!bOk)
       {
 
-         __throw(::exception("failed to reference"););
+         throw ::exception(::exception("failed to reference"););
 
       }
 

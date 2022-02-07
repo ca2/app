@@ -2,8 +2,8 @@
 #include "aura/operating_system.h"
 #include "base/user/user/_user.h"
 #include "aqua/xml.h"
-//#include "acme/node/operating_system/_os.h"
-//#include "acme/node/operating_system/cross.h"
+//#include "acme/operating_system/_os.h"
+//#include "acme/operating_system/cross.h"
 #include "aura/node/operating_system/_user.h"
 #include "toolbar.h"
 #include "aura/graphics/draw2d/_draw2d.h"
@@ -60,7 +60,7 @@ namespace user
 //#ifdef WINDOWS_DESKTOP
 //      ::DeleteObject((HGDIOBJ*)&m_hbmImageWell);
 //#else
-      //    __throw(todo);
+      //    throw ::exception(todo);
 //#endif
       delete m_pStringMap;
 
@@ -135,7 +135,7 @@ namespace user
 //      ASSERT(is_window());
 //      default_window_procedure(TB_SETPARENT, (WPARAM)pOwnerWnd.m_p, 0);
 //#else
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //#endif
       return ::user::control_bar::set_owner(pOwnerWnd);
@@ -165,7 +165,7 @@ namespace user
 //         //VERIFY(send_message(TB_SETBITMAPSIZE, 0, MAKELONG(sizeImage.cx, sizeImage.cy)));
 //         //VERIFY(send_message(TB_SETBUTTONSIZE, 0, MAKELONG(sizeButton.cx, sizeButton.cy)));
 //#else
-//         //__throw(todo);
+//         //throw ::exception(todo);
 //#endif
          // Invalidate();   // just to be nice if called when toolbar is visible
       }
@@ -258,7 +258,7 @@ namespace user
 //               m_hbmImageWell = hbmImageWell;
 //            }
 //      #else
-//            __throw(todo);
+//            throw ::exception(todo);
 //      #endif*/
 //      return bResult;
 //   }
@@ -326,7 +326,7 @@ namespace user
 //      //   m_nCount = (index)default_window_procedure(TB_BUTTONCOUNT, 0, 0);
 //      m_bDelayedButtonLayout = true;
 //#else
-//      __throw(todo);
+//      throw ::exception(todo);
 //#endif
       return true;
    }
@@ -414,7 +414,7 @@ namespace user
 ////      toolbar* pBar = (toolbar*)this;
 ////      return (index)pBar->default_window_procedure(TB_COMMANDTOINDEX, nIDFind, 0);
 ////#else
-////      __throw(todo);
+////      throw ::exception(todo);
 ////#endif
 //   }
 
@@ -428,7 +428,7 @@ namespace user
 //      _GetButton(nIndex, &button);
 //      return button.idCommand;
 //#else
-//      __throw(todo);
+//      throw ::exception(todo);
 //#endif
       return 0;
    }
@@ -451,7 +451,7 @@ namespace user
 //         ::SetRectEmpty(prectangle);
 //
 //#else
-//      __throw(todo);
+//      throw ::exception(todo);
 //#endif
    }
 
@@ -1056,7 +1056,7 @@ namespace user
 //      }
 //      return sizeResult;
 //#else
-//      __throw(todo);
+//      throw ::exception(todo);
 //#endif
 
 return { 0,0 };
@@ -1103,7 +1103,7 @@ return { 0,0 };
 //      nStyle = MAKELONG(button.fsStyle, button.fsState);
 //      iImage = button.iBitmap;
 //#else
-//      __throw(todo);
+//      throw ::exception(todo);
 //#endif
    }
 
@@ -1125,7 +1125,7 @@ return { 0,0 };
 //         m_bDelayedButtonLayout = true;
 //      }
 //#else
-//      __throw(todo);
+//      throw ::exception(todo);
 //#endif
 
    }
@@ -1156,7 +1156,7 @@ return { 0,0 };
 //
 //         // add new string to toolbar list
 //         string strTemp(str);
-//         throw interface_only_exception();
+//         throw ::interface_only();
 //         // xxx nString = (index)default_window_procedure(TB_ADDSTRINGW, 0, (LPARAM)(const ::string &)(const unichar *)strTemp);
 //         if (nString == -1)
 //            return false;
@@ -1190,7 +1190,7 @@ return { 0,0 };
 //      string str;
 //      GetButtonText(nIndex, str);
 //#else
-//      __throw(todo);
+//      throw ::exception(todo);
 //#endif
 
       return true;
@@ -1240,7 +1240,7 @@ return { 0,0 };
 //      }
 //      rWString.Empty();
 //#else
-//      __throw(todo);
+//      throw ::exception(todo);
 //#endif
    }
 
@@ -1294,7 +1294,7 @@ return { 0,0 };
       pparams->rgrc[0].right += rectangle.right;
       pparams->rgrc[0].bottom += rectangle.bottom;
 #else
-      __throw(todo);
+      throw ::exception(todo);
 #endif
    }
 
@@ -1355,7 +1355,7 @@ return { 0,0 };
          Invalidate();
       }
 #else
-      __throw(todo);
+      throw ::exception(todo);
 #endif
    }
 
@@ -1431,7 +1431,7 @@ return { 0,0 };
 ////      if (bModify)
 ////         set_window_long(GWL_STYLE, uStyle);
 ////#else
-////      __throw(todo);
+////      throw ::exception(todo);
 ////#endif
 ////      return lResult;
 //
@@ -1458,7 +1458,7 @@ return { 0,0 };
 //      if (bModify)
 //         SetWindowLong(GWL_STYLE, uStyle);
 //#else
-//      //__throw(todo);
+//      //throw ::exception(todo);
 //#endif
 
 //      pusermessage->set_lresult(lResult);
@@ -1492,7 +1492,7 @@ return { 0,0 };
          // get buttons state
          TBBUTTON button;
          _GetButton(state.m_iIndex, &button);
-         state.m_id = button.idCommand;
+         state.m_atom = button.idCommand;
 
          // ignore separators
          if (!(button.fsStyle & TBSTYLE_SEP))
@@ -1562,7 +1562,7 @@ return { 0,0 };
 //            dumpcontext << "\n}";
 //         }
 //#else
-//         __throw(todo);
+//         throw ::exception(todo);
 //
 //#endif
 //      }
@@ -1636,7 +1636,7 @@ return { 0,0 };
 //
 //#else
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //#endif
 //
@@ -1779,7 +1779,7 @@ return { 0,0 };
 
             auto pattribute = pchild->find_attribute("atom");
 
-            item->m_id = pattribute->string();
+            item->m_atom = pattribute->string();
 
             item->m_str = pchild->get_value();
 
@@ -1811,7 +1811,7 @@ return { 0,0 };
 
             item = __new(::user::toolbar_item);
 
-            item->m_id = "separator";
+            item->m_atom = "separator";
 
             item->m_str = "";
 

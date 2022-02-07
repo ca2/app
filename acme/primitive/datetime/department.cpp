@@ -1267,7 +1267,7 @@ namespace datetime
                   || (pcontext != nullptr && pcontext->matches(idCalendarNow, strText1)))
                {
                   
-                  __throw(error_bad_argument, "now cannot be span");
+                  throw ::exception(error_bad_argument, "now cannot be span");
 
                }
                else if (strText1.compare_ci("UTC") == 0)
@@ -1276,7 +1276,7 @@ namespace datetime
                }
                else
                {
-                  __throw(error_not_implemented);
+                  throw ::not_implemented();
                }
                strNumber.Empty();
                strText1.Empty();

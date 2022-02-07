@@ -396,7 +396,7 @@ namespace message
    ::user::interaction * mouse_activate::get_desktop_window()
    {
 
-      throw interface_only_exception();
+      throw ::interface_only();
 
       //      return interaction_impl::from_handle_dup(reinterpret_cast<oswindow>(m_wparam));
 

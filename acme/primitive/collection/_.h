@@ -104,7 +104,7 @@ public:
       if(iIndex != 0)
       {
 
-         __throw(error_bad_argument);
+         throw ::exception(error_bad_argument);
 
       }
 
@@ -147,7 +147,7 @@ public:
       if(iIndex != 0)
       {
 
-         __throw(error_bad_argument);
+         throw ::exception(error_bad_argument);
 
       }
 

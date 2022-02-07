@@ -47,7 +47,7 @@ namespace user
    void     print_task::run()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 

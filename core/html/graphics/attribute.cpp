@@ -12,14 +12,14 @@ namespace html
    void attribute::set_name(atom idName)
    {
 
-      m_idName = idName;
+      m_atomName = idName;
 
    }
 
    atom attribute::get_name() const
    {
 
-      return m_idName;
+      return m_atomName;
 
    }
 

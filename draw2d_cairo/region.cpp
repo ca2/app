@@ -55,7 +55,7 @@ namespace draw2d_cairo
 
       default:
 
-         throw interface_only_exception();
+         throw ::interface_only();
 
       }
 
@@ -196,7 +196,7 @@ namespace draw2d_cairo
 
       default:
 
-         throw interface_only_exception();
+         throw ::interface_only();
 
       }
 
@@ -437,7 +437,7 @@ namespace draw2d_cairo
 
       default:
 
-         throw interface_only_exception();
+         throw ::interface_only();
 
       }
 

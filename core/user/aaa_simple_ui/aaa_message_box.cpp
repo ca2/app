@@ -36,7 +36,7 @@ namespace simple_ui
       if (!estatus)
       {
 
-         __throw(estatus);
+         throw ::exception(estatus);
 
       }
 
@@ -170,7 +170,7 @@ namespace simple_ui
       if(!create_interaction(puiParent))
       {
 
-         __throw(::exception("not excepted! Failing Message box!!"));
+         throw ::exception(::exception("not excepted! Failing Message box!!"));
 
       }
 

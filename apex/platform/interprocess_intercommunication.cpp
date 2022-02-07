@@ -9,7 +9,7 @@
 interprocess_intercommunication::interprocess_intercommunication() 
 {
 
-   m_id = "::interprocess_intercommunication";
+   m_atom = "::interprocess_intercommunication";
 
    defer_create_mutex();
 
@@ -40,11 +40,11 @@ void interprocess_intercommunication::initialize_interprocess_communication(::ob
 
 #ifdef _UWP
 
-   m_idApp = strApp;
+   m_atomApp = strApp;
 
 #else
 
-   m_idApp = (::i64) ::get_current_process_id();
+   m_atomApp = (::i64) ::get_current_process_id();
 
 #endif
 
@@ -83,7 +83,7 @@ void interprocess_intercommunication::initialize_interprocess_communication(::ob
    m_prx->create(strKey);
    //{
 
-   //   __throw(error_resource);
+   //   throw ::exception(error_resource);
 
    //}
 

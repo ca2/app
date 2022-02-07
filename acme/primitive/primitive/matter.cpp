@@ -164,7 +164,7 @@ const char* matter::debug_note() const
 ::element * matter::clone() const
 {
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
    return nullptr;
 

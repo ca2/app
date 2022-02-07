@@ -42,12 +42,12 @@ public:
 
   /**
    * Static method, used to cast RegionDefine class into TextRegion class.
-   * @__throw( exception If casing is not available.
+   * @throw ::exception( exception If casing is not available.
    */
   static const TextRegion *cast(const RegionDefine *rd){
     if (rd == nullptr) return nullptr;
     const TextRegion *tr = (const TextRegion *)(rd);
-    if (tr == nullptr)  __throw(exception(string("Bad type cast exception into TextRegion")));
+    if (tr == nullptr)  throw ::exception(exception(string("Bad type cast exception into TextRegion")));
     return tr;
   }
 

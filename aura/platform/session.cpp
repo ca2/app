@@ -412,7 +412,7 @@ namespace aura
 
          string_array straApp;
 
-         __throw(todo, "filehandler");
+         throw ::exception(todo, "filehandler");
 
          //psystem->filehandler().get_extension_app(straApp, strExtension);
 
@@ -1366,7 +1366,7 @@ namespace aura
 
    //   }
 
-   //   i64 iMessage = pmouse->m_id;
+   //   i64 iMessage = pmouse->m_atom;
 
    //   if(iMessage == e_message_left_button_down
    //    //|| iMessage == e_message_left_button_up
@@ -2603,8 +2603,8 @@ namespace aura
    //void session::frame_pre_translate_message(::message::message* pmessage)
    //{
 
-   //   if (pmessage->m_id == WM_GETTEXT
-   //      || pmessage->m_id == WM_GETTEXTLENGTH
+   //   if (pmessage->m_atom == WM_GETTEXT
+   //      || pmessage->m_atom == WM_GETTEXTLENGTH
    //      )
    //   {
 
@@ -2614,7 +2614,7 @@ namespace aura
    //      return;
 
    //   }
-   //   //else if (pmessage->m_id == e_message_mouse_move)
+   //   //else if (pmessage->m_atom == e_message_mouse_move)
    //   //{
 
    //   //   pmessage->m_uiMessageFlags |= 0; // message considered pre translated

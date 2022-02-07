@@ -30,7 +30,7 @@ namespace user
       if(is_window())
          return;
       __pointer(::user::message) pusermessage(pmessage);
-      switch(pusermessage->m_id)
+      switch(pusermessage->m_atom)
       {
       case e_message_mouse_move:
       {
@@ -274,7 +274,7 @@ namespace user
    ///////////////////////////////////////////////////////////
    void tool_tip_window::OnPaint()
    {
-      throw interface_only_exception();
+      throw ::interface_only();
       /*CPaintDC spgraphics(this);
       ::draw2d::graphics_pointer & pgraphics = &spgraphics;
       pgraphics->set(m_pfont);
@@ -597,7 +597,7 @@ namespace user
 
       if(ptool->m_uiBaseToolTipText != 0xffffffff)
       {
-         throw interface_only_exception();
+         throw ::interface_only();
          //  str.load_string(ptool->m_uiBaseToolTipText);
          return true;
       }

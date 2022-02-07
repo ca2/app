@@ -38,7 +38,7 @@ namespace sockets
    i32 Event::m_unique_id = 0;
 
 
-   Event::Event(IEventOwner *from,long sec,long usec) : m_from(from), m_time(sec, usec), m_id(++m_unique_id)
+   Event::Event(IEventOwner *from,long sec,long usec) : m_from(from), m_time(sec, usec), m_atom(++m_unique_id)
    {
 
    }
@@ -61,7 +61,7 @@ namespace sockets
    i32 Event::GetID()
    {
 
-      return m_id;
+      return m_atom;
 
    }
 

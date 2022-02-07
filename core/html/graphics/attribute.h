@@ -11,7 +11,7 @@ namespace html
    public:
 
 
-      atom          m_idName;
+      atom          m_atomName;
       string      m_strValue;
 
 

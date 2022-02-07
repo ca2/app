@@ -81,7 +81,7 @@ namespace user
 
       get_client_rect(rectangleClient);
 
-      if (m_id == "separator")
+      if (m_atom == "separator")
       {
 
          _001OnButtonDrawBackground(pgraphics);
@@ -197,7 +197,7 @@ namespace user
    void menu_button::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      //if (m_id != "separator")
+      //if (m_atom != "separator")
       {
 
          //::user::button::_001OnNcDraw(pgraphics);
@@ -227,7 +227,7 @@ namespace user
             if (pmenu)
             {
 
-               uImage = pmenu->command_image(m_pmenuitem->m_id);
+               uImage = pmenu->command_image(m_pmenuitem->m_atom);
 
             }
 

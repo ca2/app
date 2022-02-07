@@ -625,9 +625,9 @@ namespace html
 #define RINOK(x) { i32 __result__ = (x); if (__result__ != 0) return __result__; }
 #endif
 
-// __throw( - exception - result exception - if not ok
+// throw ::exception( - exception - result exception - if not ok
 #ifndef TINOK
-#define TINOK(e, x) { i32 __result__ = (x); if (__result__ != 0) __throw(e(get_application(), __result__)); }
+#define TINOK(e, x) { i32 __result__ = (x); if (__result__ != 0) throw ::exception(e(get_application(), __result__)); }
 #endif
 
 

@@ -140,7 +140,7 @@ namespace user
 
       ::user::mesh::_001OnNcDraw(pgraphics);
 
-      //__throw(todo("scroll"));
+      //throw ::exception(todo("scroll"));
       //defer_draw_scroll_gap(pgraphics);
 
    }
@@ -199,7 +199,7 @@ namespace user
 
          pbrushText->create_solid(get_color(pstyle,::e_element_text));
 
-         auto pointImpactportOrg = pgraphics->GetImpactportOrg();
+         auto pointViewportOrg = pgraphics->GetViewportOrg();
 
          pgraphics->set(pbrushText);
 
@@ -254,7 +254,7 @@ namespace user
             }
          }
 
-         pgraphics->SetImpactportOrg(pointImpactportOrg);
+         pgraphics->SetViewportOrg(pointViewportOrg);
 
       }
 
@@ -2602,7 +2602,7 @@ namespace user
             else
             {
 
-               throw interface_only_exception();
+               throw ::interface_only();
 
             }
 
@@ -2875,7 +2875,7 @@ namespace user
 
       }
 
-      auto puserinteraction = get_child_by_id(pcolumn->m_id);
+      auto puserinteraction = get_child_by_id(pcolumn->m_atom);
 
       if (!puserinteraction)
       {
@@ -4154,13 +4154,11 @@ namespace user
    bool list::on_click(const ::item & item)
    {
 
-      ::topic topic;
+      ::extended_topic extendedtopic(::id_list_clicked);
 
-      topic.m_puserelement = this;
+      extendedtopic.m_puserelement = this;
 
-      topic.m_id = ::id_list_clicked;
-
-      route(&topic);
+      route(&extendedtopic);
 
       //if (m_pformcallback != nullptr)
       //{
@@ -4181,7 +4179,7 @@ namespace user
 
       //}
 
-      return topic.m_bRet;
+      return extendedtopic.m_bRet;
 
    }
 
@@ -4758,7 +4756,7 @@ namespace user
 
          list_column * pcolumn = element_at(iIndex);
 
-         if (pcolumn != nullptr && pcolumn->m_id == atom)
+         if (pcolumn != nullptr && pcolumn->m_atom == atom)
          {
 
             return iIndex;
@@ -4794,7 +4792,7 @@ namespace user
    list_column * list_column_array::get_by_control(::user::interaction * pinteraction)
    {
 
-      return get_by_control_id(pinteraction->m_id);
+      return get_by_control_id(pinteraction->m_atom);
 
    }
 
@@ -5415,7 +5413,7 @@ namespace user
 
       }
 
-      throw interface_only_exception();
+      throw ::interface_only();
 
       /*
       if(!pil->create(
@@ -6278,9 +6276,9 @@ namespace user
 
                item.m_strText.find_replace("_", " ");
 
-               auto ptopic = m_pregexFilter1->create_topic(item.m_strText);
+               auto presult = m_pregexFilter1->run(item.m_strText);
 
-               if (ptopic)
+               if (presult)
                {
 
                   if (m_eview == impact_icon)
@@ -6360,7 +6358,7 @@ namespace user
 
       auto psystem = m_psystem->m_paxissystem;
 
-      m_pregexFilter1 = psystem->create_pcre("/.*" + stra.implode(".*") + ".*/i");
+      m_pregexFilter1 = psystem->compile_pcre("/.*" + stra.implode(".*") + ".*/i");
 
       m_bFilter1 = m_pregexFilter1;//m_pregexFilter1->setRE();
 
@@ -7195,13 +7193,11 @@ namespace user
    void list::_001OnSelectionChange()
    {
 
-      ::topic topic;
+      ::extended_topic extendedtopic(::id_after_change_cur_sel);
 
-      topic.m_puserelement = this;
+      extendedtopic.m_puserelement = this;
 
-      topic.m_id = ::id_after_change_cur_sel;
-
-      route(&topic);
+      route(&extendedtopic);
 
       set_need_redraw();
 

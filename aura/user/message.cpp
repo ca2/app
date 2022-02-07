@@ -37,7 +37,7 @@ namespace user
 
    //   m_uiMessageFlags = base.m_uiMessageFlags;
    //   m_pwindow = base.m_pwindow;
-   //   m_id = base.m_id;
+   //   m_atom = base.m_atom;
    //   m_wparam = base.m_wparam;
    //   m_lparam = base.m_lparam;
    //   m_bConditional = base.m_bConditional;

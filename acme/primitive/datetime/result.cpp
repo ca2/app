@@ -165,7 +165,7 @@ datetime::result operator + (const datetime::result & val1, const datetime::resu
    else
    {
 
-      __throw(error_bad_argument, "cannot add two dates");
+      throw ::exception(error_bad_argument, "cannot add two dates");
 
    }
 
@@ -191,7 +191,7 @@ datetime::result operator - (const datetime::result & val1, const datetime::resu
    }
    else if(val1.m_bSpan && !val2.m_bSpan)
    {
-      __throw(error_bad_argument, "cannot subtract a date from a span");
+      throw ::exception(error_bad_argument, "cannot subtract a date from a span");
    }
    else if(val2.m_bSpan && !val1.m_bSpan)
    {
@@ -236,7 +236,7 @@ datetime::result operator * (const datetime::result & val1, double d)
    }
    else
    {
-      __throw(error_bad_argument, "cannot multiply a date");
+      throw ::exception(error_bad_argument, "cannot multiply a date");
    }
    return val;
 }
@@ -268,7 +268,7 @@ datetime::result operator / (const datetime::result & val1, double d)
    else
    {
       
-      __throw(error_bad_argument, "cannot multiply a date");
+      throw ::exception(error_bad_argument, "cannot multiply a date");
 
    }
 

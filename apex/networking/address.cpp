@@ -532,7 +532,7 @@ namespace net
       else
       {
 
-         __throw(error_parsing, "Unrecognized networking IP address");
+         throw ::exception(error_parsing, "Unrecognized networking IP address");
 
       }
 

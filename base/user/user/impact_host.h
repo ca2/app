@@ -24,9 +24,9 @@ namespace user
       public:
 
 
-         atom       m_id;
+         atom       m_atom;
 
-         exception(atom atom) : m_id(atom) {}
+         exception(atom atom) : m_atom(atom) {}
 
 
       };

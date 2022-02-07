@@ -31,7 +31,7 @@ namespace html
    void tag::set_name(atom idName)
    {
 
-      m_idName = idName;
+      m_atomName = idName;
 
    }
 
@@ -39,7 +39,7 @@ namespace html
    atom tag::get_name()
    {
 
-      return m_idName;
+      return m_atomName;
 
    }
 

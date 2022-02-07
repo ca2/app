@@ -261,7 +261,7 @@ namespace user
       CalcSplitBarRect(iIndex, &splitRect);
       //::point_i32 pointCursor = pMsg->pt;
 
-      if(pMsg->m_id == e_message_left_button_down)
+      if(pMsg->m_atom == e_message_left_button_down)
       {
 
          auto psession = get_session();
@@ -274,7 +274,7 @@ namespace user
             m_iState = stateDragging;
          }
       }
-      else if(pMsg->m_id == e_message_left_button_up)
+      else if(pMsg->m_atom == e_message_left_button_up)
       {
 
          if(m_iState != stateInitial)
@@ -293,7 +293,7 @@ namespace user
          }
 
       }
-      else if(pMsg->m_id == e_message_mouse_move)
+      else if(pMsg->m_atom == e_message_mouse_move)
       {
 
 //         i32   fwKeys = (i32) pMsg->wParam;        // key flags
@@ -982,7 +982,7 @@ namespace user
 
       }
 
-      ppane->m_id = atom.is_empty() ? (::atom) iIndex : atom;
+      ppane->m_atom = atom.is_empty() ? (::atom) iIndex : atom;
 
       ppane->m_bFixedSize = bFixedSize;
 
@@ -1071,7 +1071,7 @@ namespace user
 
       }
 
-      pcomponent->m_id = atom.is_empty() ? (::atom) iIndex : atom;
+      pcomponent->m_atom = atom.is_empty() ? (::atom) iIndex : atom;
 
       m_splitpanecompositea[iIndex]->m_bFixedSize = bFixedSize;
 
@@ -1295,7 +1295,7 @@ namespace user
       if (iPane < 0 || iPane >= get_pane_count())
       {
 
-         __throw(error_bad_argument);
+         throw ::exception(error_bad_argument);
 
       }
 
@@ -1356,7 +1356,7 @@ namespace user
 
       auto & ppane = m_splitpanecompositea[iPane];
 
-      return ppane->m_id;
+      return ppane->m_atom;
 
    }
 
@@ -1367,7 +1367,7 @@ namespace user
       for(index iPane = 0; iPane < m_splitpanecompositea.get_count(); iPane++)
       {
 
-         if (m_splitpanecompositea[iPane]->m_id == atom)
+         if (m_splitpanecompositea[iPane]->m_atom == atom)
          {
 
             return m_splitpanecompositea[iPane].get();

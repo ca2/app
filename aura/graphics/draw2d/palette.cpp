@@ -23,7 +23,7 @@ namespace draw2d
 //   {
 //      __UNREFERENCED_PARAMETER(pLogPalette);
 //
-//      throw ::interface_only_exception();
+//      throw ::interface_only();
 //      return false;
 //   }
 
@@ -33,7 +33,7 @@ namespace draw2d
 //
 //      __UNREFERENCED_PARAMETER(pgraphics);
 //
-//      throw ::interface_only_exception();
+//      throw ::interface_only();
 //
 //      return false;
 //
@@ -47,7 +47,7 @@ namespace draw2d
 //      __UNREFERENCED_PARAMETER(nNumEntries);
 //      __UNREFERENCED_PARAMETER(pPaletteColors);
 //
-//      throw ::interface_only_exception();
+//      throw ::interface_only();
 //      return 0;
 //   }
 
@@ -58,7 +58,7 @@ namespace draw2d
 //      __UNREFERENCED_PARAMETER(nNumEntries);
 //      __UNREFERENCED_PARAMETER(pPaletteColors);
 //
-//      throw ::interface_only_exception();
+//      throw ::interface_only();
 //      return 0;
 //   }
 
@@ -70,7 +70,7 @@ namespace draw2d
 //      __UNREFERENCED_PARAMETER(nNumEntries);
 //      __UNREFERENCED_PARAMETER(pPaletteColors);
 //
-//      throw ::interface_only_exception();
+//      throw ::interface_only();
 //
 //   }
 
@@ -80,7 +80,7 @@ namespace draw2d
 
       __UNREFERENCED_PARAMETER(color);
       
-      throw ::interface_only_exception();
+      throw ::interface_only();
       
       return 0;
 
@@ -91,7 +91,7 @@ namespace draw2d
 //   {
 //
 //      __UNREFERENCED_PARAMETER(nNumEntries);
-//      throw ::interface_only_exception();
+//      throw ::interface_only();
 //      return false;
 //
 //   }
@@ -100,7 +100,7 @@ namespace draw2d
    i32 palette::GetEntryCount()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
       return 0;
 
    }

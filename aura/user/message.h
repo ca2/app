@@ -24,7 +24,7 @@ namespace user
 
       virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam) override;
 
-      inline void change(wparam wparam, ::lparam lparam) { set(m_oswindow, m_pwindow, m_id, wparam, lparam); }
+      inline void change(wparam wparam, ::lparam lparam) { set(m_oswindow, m_pwindow, m_atom, wparam, lparam); }
 
       ::windowing::window * window() { return m_pwindow; }
 

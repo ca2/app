@@ -897,7 +897,7 @@ namespace net
       else
       {
        
-         throw not_implemented_exception();
+         throw ::not_implemented();
 
       }
 

@@ -568,7 +568,7 @@ bool db_long_set::SaveWindowRect_(const ::string & lpKey, ::user::interaction_im
 
 #else
 
-   __throw(todo);
+   throw ::exception(todo);
 
 #endif
 
@@ -741,7 +741,7 @@ bool db_long_set::SetWindowPlacement(const ::string & lpKey, ::user::interaction
 
 #else
 
-   __throw(todo);
+   throw ::exception(todo);
 
 #endif
 
@@ -778,7 +778,7 @@ bool db_long_set::SaveWindowPlacement(const ::string & lpKey, ::user::interactio
 
 #else
 
-   __throw(todo);
+   throw ::exception(todo);
 
 #endif
 

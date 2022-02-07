@@ -23,8 +23,8 @@ namespace text
          bool                       m_bSchemaOnly;
          bool                       m_bAddAlternateStyle;
 
-         atom                         m_idLocale;
-         atom                         m_idSchema;
+         atom                         m_atomLocale;
+         atom                         m_atomSchema;
 
          comparable_array < atom >    m_idaLocale;
          comparable_array < atom >    m_idaSchema;

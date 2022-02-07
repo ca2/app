@@ -149,7 +149,7 @@ namespace filemanager
       auto poperation  = __new(::filemanager::operation);
 
       poperation->m_oswindowCallback = oswindowCallback;
-      poperation->m_id = atom;
+      poperation->m_atom = atom;
       poperation->m_wparamCallback = wparamCallback;
       poperation->m_bReplaceAll = bReplaceAll;
       poperation->initialize(this);

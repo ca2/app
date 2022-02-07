@@ -34,7 +34,7 @@ namespace userex
    bool split_view::on_new_view_creator_data(::user::impact_data * pimpactdata)
    {
 
-      ::index iPane = pimpactdata->m_id.index();
+      ::index iPane = pimpactdata->m_atom.index();
 
       if (iPane < 0)
       {
@@ -80,7 +80,7 @@ namespace userex
    bool split_view::on_prepare_impact_data(::user::impact_data* pimpactdata)
    {
 
-      pimpactdata->m_id = pimpactdata->m_idTitle;
+      pimpactdata->m_atom = pimpactdata->m_atomTitle;
 
       pimpactdata->m_pplaceholder = get_pane_holder((::index) pimpactdata->m_iId);
 
@@ -100,7 +100,7 @@ namespace userex
 
       ppane->m_bFixedSize = bFixedSize;
 
-      ppane->m_id = atom;
+      ppane->m_atom = atom;
 
       ::rectangle_i32 rectangleClient;
 

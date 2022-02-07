@@ -265,7 +265,7 @@ void command_line::_001ParseCommandLineUri(const ::string & strCommandLine)
 
    m_strCommandLine = strCommandLine;
 
-   throw interface_only_exception();
+   throw ::interface_only();
 
 }
 

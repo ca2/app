@@ -100,6 +100,8 @@ namespace apex
 
 #endif
 
+      virtual void __thread_init() override;
+
 
       virtual ::application* get_main_application() override;
 

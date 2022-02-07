@@ -69,7 +69,7 @@ namespace file
       }
       catch(...)
       {
-         __throw(in_buffer_exception(E_FAIL));
+         throw ::exception(in_buffer_exception(E_FAIL));
       }
       _buffer = _bufferBase;
       _bufferLimit = _buffer + numProcessedBytes;

@@ -27,7 +27,7 @@ namespace userex
       for(i32 i = 0; i < m_menua.get_size(); i++)
       {
 
-         if(pcommand->m_id == m_menua[i]->m_id.compounded(::atom::e_type_command_probe))
+         if(pcommand->m_atom == m_menua[i]->m_atom.compounded(::atom::e_type_command_probe))
          {
 
             pcommand->enable(true);
@@ -51,7 +51,7 @@ namespace userex
       for(i32 i = 0; i < m_menua.get_size(); i++)
       {
 
-         if(pcommand->m_id == m_menua[i]->m_id.compounded(::atom::e_type_command))
+         if(pcommand->m_atom == m_menua[i]->m_atom.compounded(::atom::e_type_command))
          {
             
             // show_view where??
@@ -75,7 +75,7 @@ namespace userex
       for(i32 i = 0; i < m_menua.get_size(); i++)
       {
          
-         if(pimpactdata->m_id == m_menua[i]->m_id)
+         if(pimpactdata->m_atom == m_menua[i]->m_atom)
          {
             
             //create_context cc;
@@ -110,7 +110,7 @@ namespace userex
       for(i32 i = 0; i < m_menua.get_size(); i++)
       {
 
-         if(m_menua[i]->m_id == atom)
+         if(m_menua[i]->m_atom == atom)
          {
 
             pmenu = m_menua[i];
@@ -126,7 +126,7 @@ namespace userex
 
          pmenu = new menu;
 
-         pmenu->m_id = atom;
+         pmenu->m_atom = atom;
 
          m_menua.add(pmenu);
 
@@ -134,7 +134,7 @@ namespace userex
 
       pmenu->m_strMatter = pszMatter;
 
-      pmenu->m_id = idCommand;
+      pmenu->m_atom = idCommand;
 
    }
 

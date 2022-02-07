@@ -606,45 +606,24 @@ inline atom::atom()
 
    m_etype = e_type_null;
 
+   m_u = 0;
+
 }
 
 
 inline atom::atom(enum_type etype)
 {
 
-   if(etype == e_type_null)
-   {
+   m_etype = etype;
 
-      m_etype = e_type_null;
-
-   }
-   else if(etype == e_type_empty)
-   {
-
-      m_etype = e_type_empty;
-
-   }
-   else if(etype == e_type_integer)
-   {
-
-      m_etype = e_type_integer;
-
-      m_i = 0;
-
-   }
-   else if(etype == e_type_text)
-   {
-
-      operator = ("");
-
-   }
+   m_u = 0;
 
 }
 
 
 inline atom::atom(enum_id eid) :
    m_etype(e_type_id),
-   m_eid(eid) // used m_i to reset 64-bit field
+   m_i((::i64) eid) // used m_i to reset 64-bit field
 {
 
 }
@@ -652,7 +631,7 @@ inline atom::atom(enum_id eid) :
 
 inline atom::atom(enum_property eproperty) :
    m_etype(e_type_property),
-   m_eproperty(eproperty) // used m_i to reset 64-bit field
+   m_i((::i64)eproperty) // used m_i to reset 64-bit field
 {
 
 }
@@ -660,7 +639,7 @@ inline atom::atom(enum_property eproperty) :
 
 inline atom::atom(enum_factory efactory) :
    m_etype(e_type_factory),
-   m_efactory(efactory) // used m_i to reset 64-bit field
+   m_i((::i64)efactory) // used m_i to reset 64-bit field
 {
 
 }
@@ -668,7 +647,7 @@ inline atom::atom(enum_factory efactory) :
 
 inline atom::atom(enum_task_tool etasktool) :
    m_etype(e_type_task_tool),
-   m_etasktool(etasktool) // used m_i to reset 64-bit field
+   m_i((::i64)etasktool) // used m_i to reset 64-bit field
 {
 
 }
@@ -676,7 +655,7 @@ inline atom::atom(enum_task_tool etasktool) :
 
 inline atom::atom(enum_timer etimer) :
    m_etype(e_type_timer),
-   m_etimer(etimer)
+   m_i((::i64)etimer) // used m_i to reset 64-bit field
 {
 
 }
@@ -685,7 +664,7 @@ inline atom::atom(enum_timer etimer) :
 
 inline atom::atom(enum_message emessage) :
    m_etype(e_type_message),
-   m_emessage(emessage)
+   m_i((::i64)emessage) // used m_i to reset 64-bit field
 {
 
 }
@@ -701,7 +680,7 @@ inline atom::atom(enum_message emessage) :
 
 inline atom::atom(enum_dialog_result edialogresult) :
    m_etype(e_type_dialog_result),
-   m_edialogresult(edialogresult)
+   m_i((::i64)edialogresult) // used m_i to reset 64-bit field
 {
 
 }
@@ -709,7 +688,7 @@ inline atom::atom(enum_dialog_result edialogresult) :
 
 inline atom::atom(enum_type etype, ::i64 i) :
    m_etype(etype),
-   m_i(i)
+   m_i(i) // used m_i to reset 64-bit field
 {
 
 }

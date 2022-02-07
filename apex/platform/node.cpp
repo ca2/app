@@ -161,7 +161,7 @@ namespace apex
    void node::shell_create_link(::file::path pathObj, ::file::path pathLnk, string strDesc, ::file::path pathIco, int iIcon)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -169,7 +169,7 @@ namespace apex
    // void node::parallelization_initialize()
    // {
 
-   //    throw ::interface_only_exception();
+   //    throw ::interface_only();
 
    // }
 
@@ -177,7 +177,7 @@ namespace apex
    // void node::parallelization_finalize()
    // {
 
-   //    throw ::interface_only_exception();
+   //    throw ::interface_only();
 
    // }
 
@@ -201,7 +201,7 @@ namespace apex
    // void node::node_thread_initialize(::thread * pthread)
    // {
 
-   //    throw ::interface_only_exception();
+   //    throw ::interface_only();
 
    // }
 
@@ -209,7 +209,7 @@ namespace apex
    // void node::node_thread_finalize(::thread * pthread)
    // {
 
-   //    throw ::interface_only_exception();
+   //    throw ::interface_only();
 
    // }
 
@@ -225,9 +225,9 @@ namespace apex
    void node::_001InitializeShellOpen()
    {
 
-      __throw(::error_interface_only);
+      throw ::exception(::error_interface_only);
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -241,9 +241,9 @@ namespace apex
    void node::get_firefox_installation_info(string & strPathToExe, string & strInstallDirectory)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -279,7 +279,7 @@ namespace apex
    void node::defer_create_main_menu(const string_array & straParent, const string_array & straMenu, const string_array & straId)
    {
       
-      //throw ::interface_only_exception();
+      //throw ::interface_only();
       
    }
 
@@ -359,7 +359,7 @@ namespace apex
    void node::os_menu_item_enable(void * pitem, bool bEnable)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
       
    }
 
@@ -367,7 +367,7 @@ namespace apex
    void node::os_menu_item_check(void * pitem, bool bCheck)
    {
    
-      throw ::interface_only_exception();
+      throw ::interface_only();
       
    }
 

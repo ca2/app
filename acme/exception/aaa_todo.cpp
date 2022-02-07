@@ -20,7 +20,7 @@ todo::~todo()
 CLASS_DECL_ACME void throw_todo()
 {
 
-   __throw(todo);
+   throw ::exception(todo);
 
 }
 

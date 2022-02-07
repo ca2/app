@@ -11,19 +11,18 @@ namespace regular_expression_pcre2
    public:
 
 
-      // thread-safe, exclusive write
-      pcre2_code *               m_pcode;
-      //pcre_context_impl *        m_pcreContext;
+      pcre2_code *                  m_pcode;
+      pcre2_general_context *       m_pgeneralcontext;
 
 
       regular_expression();
-      virtual ~regular_expression();
+      ~regular_expression() override;
 
 
-      void create(const string& str) override;
+      void compile(const string& str) override;
 
 
-      __pointer(::regular_expression::topic) create_topic(const ::string & str) override;
+      __pointer(::regular_expression::result) run(const ::string & str) override;
 
 
       bool replace(string& str, const string& strPrefix, string& strRet) override;

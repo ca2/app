@@ -59,7 +59,7 @@ namespace sockets
          {
             ERROR("SctpSocket", -1, "bind() failed");
 #ifdef ENABLE_EXCEPTIONS
-            __throw(Exception("bind() failed for SctpSocket, port: " + Utility::l2string(ad.GetPort())));
+            throw ::exception(Exception("bind() failed for SctpSocket, port: " + Utility::l2string(ad.GetPort())));
 #endif
          }
          return n;

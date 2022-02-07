@@ -993,7 +993,7 @@ m_durationHeartBeat.Now();
 
       bool bIgnoreStdStd = string(pszRoot) == "app" && (string(pszRelative) == "main" || string(pszRelative) == "bergedge");
 
-      //update_appmatter(h, psession, pszRoot, pszRelative, plocaleschema->m_idLocale, plocaleschema->m_idSchema);
+      //update_appmatter(h, psession, pszRoot, pszRelative, plocaleschema->m_atomLocale, plocaleschema->m_atomSchema);
 
       ::count iCount = plocaleschema->m_idaLocale.get_count();
 
@@ -1278,7 +1278,7 @@ pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition"
    void application::TermThread(HINSTANCE hInstTerm)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -1288,7 +1288,7 @@ pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition"
    //string application::get_version()
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return "";
 
@@ -1300,7 +1300,7 @@ pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition"
 //   void application::set_env_var(const string & payload,const string & value)
 //   {
 //
-//      throw ::interface_only_exception();
+//      throw ::interface_only();
 //
 //   }
 
@@ -1309,7 +1309,7 @@ pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition"
    ::aura::printer * application::get_printer(const ::string & pszDeviceName)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
@@ -1334,7 +1334,7 @@ pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition"
    //bool application::get_temp_file_name_template(string & strRet, const ::string & lpszName, const ::string & pszExtension, const ::string & pszTemplate)
    //{
 
-   //   __throw(error_not_implemented);
+   //   throw ::not_implemented();
 
    //   return false;
 

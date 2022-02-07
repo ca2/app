@@ -66,14 +66,14 @@
     <Filter Include="Header Files\platform">
       <UniqueIdentifier>{6e6bef37-2c89-4842-a307-c57af04f938f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\const">
-      <UniqueIdentifier>{93b133e7-09a5-4366-9706-30ace0fdabfa}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\user\simple">
       <UniqueIdentifier>{96c6dd28-7346-40a8-9af1-42d218048e5e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\constant">
       <UniqueIdentifier>{7c1254ce-a663-4741-9380-0b58d03bd502}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\constant">
+      <UniqueIdentifier>{93b133e7-09a5-4366-9706-30ace0fdabfa}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -512,9 +512,6 @@
     <ClInclude Include="user\user\tab_drop_target_window.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="const\idpool.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
     <ClInclude Include="user\user\split_pane.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
@@ -523,6 +520,9 @@
     </ClInclude>
     <ClInclude Include="user\user\show.h">
       <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\idpool.h">
+      <Filter>Header Files\constant</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

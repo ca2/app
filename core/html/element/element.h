@@ -40,7 +40,7 @@ namespace html
 
       e_tag                      m_etag;
       string                     m_strBody;
-      atom                         m_idTagName;
+      atom                         m_atomTagName;
       bool                       m_bParent;
       bool                       m_bTagVisible;
       string                     m_strClass;

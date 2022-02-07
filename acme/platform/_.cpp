@@ -204,7 +204,7 @@ string get_debug_report_type_text(int iType)
    else
    {
 
-      __throw(error_bad_argument);
+      throw ::exception(error_bad_argument);
 
    }
 

@@ -59,7 +59,7 @@ public:
    __pointer(manual_reset_event)                      m_peventReady;
    __pointer(manual_reset_event)                      m_peventFinished;
 
-   enum_id                                            m_idContextReference;
+   enum_id                                            m_atomContextReference;
 
    bool                                               m_bAuraMessageQueue;
    ::duration                                         m_durationHeartBeat;

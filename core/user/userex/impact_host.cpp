@@ -77,10 +77,10 @@ namespace userex
    void impact_host::on_command(::message::command * pcommand)
    {
 
-      if (m_idaHandledImpacts.contains(pcommand->m_id))
+      if (m_idaHandledImpacts.contains(pcommand->m_atom))
       {
 
-         toggle_view(pcommand->m_id);
+         toggle_view(pcommand->m_atom);
 
       }
 
@@ -250,7 +250,7 @@ namespace userex
 
             pframewindow->m_bMoveEnable = false;
 
-            ::atom atom = pupdown->m_id;
+            ::atom atom = pupdown->m_atom;
 
             auto strTitle = pframewindow->get_window_text();
 
@@ -397,7 +397,7 @@ namespace userex
                if (m_ptemplateTab != nullptr)
                {
 
-                  string strId = pframewindow->m_id;
+                  string strId = pframewindow->m_atom;
 
                   __pointer(::user::document) pdocument = m_ptemplateTab->get_document(0);
 
@@ -406,7 +406,7 @@ namespace userex
 
                      __pointer(::userex::pane_tab_view) ptabview = pdocument->get_type_impact < ::userex::pane_tab_view >();
 
-                     ptabview->erase_tab_by_id(pframewindow->m_id);
+                     ptabview->erase_tab_by_id(pframewindow->m_atom);
 
                      if (ptabview.is_set() && ptabview->get_tab_count() <= 0)
                      {
@@ -627,7 +627,7 @@ namespace userex
          if (pcreate != nullptr)
          {
 
-            pcreate->m_id = atom;
+            pcreate->m_atom = atom;
 
             pimpactsystem->do_request(pcreate);
 

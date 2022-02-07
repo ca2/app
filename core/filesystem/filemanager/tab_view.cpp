@@ -48,13 +48,13 @@ namespace filemanager
    void tab_view::on_create_impact(::user::impact_data * pimpactdata)
    {
 
-      if(pimpactdata->m_id.is_null())
+      if(pimpactdata->m_atom.is_null())
       {
          return;
       }
-      else if (pimpactdata->m_id == "add_location"
-               || pimpactdata->m_id == "replace_name"
-               || pimpactdata->m_id == "new_folder")
+      else if (pimpactdata->m_atom == "add_location"
+               || pimpactdata->m_atom == "replace_name"
+               || pimpactdata->m_atom == "new_folder")
       {
 
          __pointer(::create) pcreate(e_create, this);
@@ -82,41 +82,41 @@ namespace filemanager
 
          form * pformview = pdocument->get_type_impact < form >();
 
-         ::topic topic(BROWSE_ID);
+         ::extended_topic extendedtopic(BROWSE_ID);
 
-         if (pimpactdata->m_id == "new_folder")
+         if (pimpactdata->m_atom == "new_folder")
          {
 
-            topic.payload(FORM_ID) = "matter://filemanager/new_folder.html";
+            extendedtopic.payload(FORM_ID) = "matter://filemanager/new_folder.html";
 
          }
-         if (pimpactdata->m_id == "replace_name")
+         if (pimpactdata->m_atom == "replace_name")
          {
 
-            topic.payload(FORM_ID) = "matter://filemanager/replace_name_in_file_system.html";
+            extendedtopic.payload(FORM_ID) = "matter://filemanager/replace_name_in_file_system.html";
 
          }
-         else if (pimpactdata->m_id == "add_location")
+         else if (pimpactdata->m_atom == "add_location")
          {
 
-            topic.payload(FORM_ID) = "matter://filemanager/add_location_1.html";
+            extendedtopic.payload(FORM_ID) = "matter://filemanager/add_location_1.html";
 
          }
 
-         topic.payload("creator") = pimpactdata->m_id;
+         extendedtopic.payload("creator") = pimpactdata->m_atom;
 
-         pdocument->update_all_views(&topic);
+         pdocument->update_all_views(&extendedtopic);
 
          //ptopic->m_pcontext = ptopic->context(id_after_browse);
 
-         topic.m_id = id_after_browse;
+         extendedtopic.m_atom = id_after_browse;
 
-         pdocument->update_all_views(&topic);
+         pdocument->update_all_views(&extendedtopic);
 
          pimpactdata->m_pdocument = pdocument;
 
       }
-      else if(pimpactdata->m_id == "filemanager::operation")
+      else if(pimpactdata->m_atom == "filemanager::operation")
       {
 
          __pointer(::create) pcreate(e_create, this);
@@ -170,7 +170,7 @@ namespace filemanager
 
          pcreate->payload("filemanager::data") = pfilemanagerdata;
 
-         string str = pimpactdata->m_id;
+         string str = pimpactdata->m_atom;
 
          ::str::begins_eat_ci(str, "verifile://");
 
@@ -286,7 +286,7 @@ namespace filemanager
       ////__update(::update)
       {
 
-         if (ptopic->m_id == id_open_document)
+         if (ptopic->m_atom == id_open_document)
          {
 
             //if (m_viewmap.get_count() == 0)
@@ -303,7 +303,7 @@ namespace filemanager
       ////__update(::update)
       {
 
-         if (ptopic->m_id == id_initialize)
+         if (ptopic->m_atom == id_initialize)
          {
 
             //               string str;
@@ -320,7 +320,7 @@ namespace filemanager
             //               }
 
          }
-         else if (ptopic->m_id == id_pop)
+         else if (ptopic->m_atom == id_pop)
          {
 
             __pointer(::user::frame_window) pframe = get_parent_frame();
@@ -340,19 +340,19 @@ namespace filemanager
 
       }
 
-      if (ptopic->m_id == id_add_location)
+      if (ptopic->m_atom == id_add_location)
       {
 
          set_current_tab_by_id("add_location");
 
       }
-      else if (ptopic->m_id == id_replace_name)
+      else if (ptopic->m_atom == id_replace_name)
       {
 
          set_current_tab_by_id("replace_name");
 
       }
-      else if (ptopic->m_id == id_new_folder)
+      else if (ptopic->m_atom == id_new_folder)
       {
 
          set_current_tab_by_id("new_folder");

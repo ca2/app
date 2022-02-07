@@ -22,7 +22,7 @@ namespace user
 
       m_strWindowText = pszName;
 
-      m_id = atom;
+      m_atom = atom;
 
    }
 
@@ -278,7 +278,7 @@ namespace user
 
       }
 
-      m_propertyCheck = fetch_property(m_id, true);
+      m_propertyCheck = fetch_property(m_atom, true);
 
    }
 

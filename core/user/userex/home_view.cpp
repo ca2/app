@@ -28,7 +28,7 @@ namespace userex
    home_view::home_view()
    {
 
-      m_idImpact = COLORSEL_IMPACT;
+      m_atomImpact = COLORSEL_IMPACT;
 
    }
 
@@ -103,7 +103,7 @@ namespace userex
 
 
 
-      //get_parent_frame()->m_id += ".color_sel";
+      //get_parent_frame()->m_atom += ".color_sel";
 
       pmessage->previous();
 
@@ -216,17 +216,15 @@ namespace userex
 
       pwindowing->release_mouse_capture();
 
-      ::topic topic;
+      ::extended_topic extendedtopic(::id_after_change_cur_sel);
 
-      topic.m_id = ::id_after_change_cur_sel;
+      extendedtopic.m_atom = m_atomImpact;
 
-      topic.m_id = m_idImpact;
+      extendedtopic.m_puserelement = this;
 
-      topic.m_puserelement = this;
+      extendedtopic.m_actioncontext = ::e_source_user;
 
-      topic.m_actioncontext = ::e_source_user;
-
-      route(&topic);
+      route(&extendedtopic);
 
    }
 

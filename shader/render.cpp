@@ -222,7 +222,7 @@ namespace app_shader
 
       string strDataId;
 
-      strDataId = m_pinteraction->m_id;
+      strDataId = m_pinteraction->m_atom;
 
       m_pcontext->m_pprogram = m_pprogram;
 

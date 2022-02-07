@@ -510,7 +510,7 @@ namespace zip
    void in_file::set_size(filesize dwNewLen)
    {
       
-      __throw(error_not_supported);
+      throw ::exception(error_not_supported);
 
    }
 

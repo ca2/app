@@ -156,7 +156,7 @@
 //
 //     ASSERT(false);
 //
-//     __throw(error_bad_argument);
+//     throw ::exception(error_bad_argument);
 //
 //  }
 //
@@ -244,7 +244,7 @@
 //
 //     ASSERT(false);
 //
-//     __throw(error_bad_argument);
+//     throw ::exception(error_bad_argument);
 //
 //  }
 //
@@ -402,7 +402,7 @@
 //   if (::is_null(pderived))
 //   {
 //
-//      __throw(::exception(::error_wrong_type));
+//      throw ::exception(::exception(::error_wrong_type));
 //
 //   }
 //
@@ -437,7 +437,7 @@
 //
 //#ifdef _DEBUG
 //
-////   ::atom atom = p->m_id;
+////   ::atom atom = p->m_atom;
 //   //char * pszType = nullptr;
 //   //
 //   //try

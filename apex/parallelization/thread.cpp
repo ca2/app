@@ -16,7 +16,7 @@ CLASS_DECL_ACME void TRACELASTERROR();
 #ifdef PARALLELIZATION_PTHREAD
 
 
-#include "acme/node/operating_system/ansi/_pthread.h"
+#include "acme/operating_system/ansi/_pthread.h"
 
 
 #endif
@@ -179,7 +179,7 @@ thread::thread()
 void thread::thread_common_construct()
 {
 
-   m_idContextReference = id_none;
+   m_atomContextReference = id_none;
 
    m_bDedicated = false;
 
@@ -267,7 +267,7 @@ void thread::term_thread()
 
    }
 
-   switch (m_idContextReference)
+   switch (m_atomContextReference)
    {
    case id_application:
    {
@@ -698,9 +698,9 @@ void thread::run()
    if (m_pelement && m_pelement != this)
    {
 
-      m_id = __type_name(m_pelement);
+      m_atom = __type_name(m_pelement);
 
-      task_set_name(m_id);
+      task_set_name(m_atom);
 
       return m_pelement->run();
 
@@ -941,7 +941,7 @@ bool thread::pump_message()
 
       get_message(&m_message, nullptr, 0, 0);
 
-      if(m_message.m_id == e_message_quit)
+      if(m_message.m_atom == e_message_quit)
       {
 
          string strType = __type_name(this);
@@ -980,7 +980,7 @@ bool thread::pump_message()
       else
       {
 
-         if (m_message.m_id == e_message_destroy_window && m_strDebugType.contains("notify_icon"))
+         if (m_message.m_atom == e_message_destroy_window && m_strDebugType.contains("notify_icon"))
          {
 
             INFORMATION("notify_icon");
@@ -1036,7 +1036,7 @@ bool thread::get_message()
 
    get_message(&message, NULL, 0, 0);
 
-   if(m_message.m_id == e_message_quit)
+   if(m_message.m_atom == e_message_quit)
    {
 
       return false;
@@ -1250,10 +1250,10 @@ bool thread::defer_pump_message()
    if (peek_message(&m_message, nullptr, 0, 0, PM_REMOVE))
    {
 
-      if(m_message.m_id == e_message_quit)
+      if(m_message.m_atom == e_message_quit)
       {
 
-         ::output_debug_string("\n\n\nthread::defer_pump_message (1) quitting (wm_quit? {PeekMessage->message : " + __string(m_message.m_id == e_message_quit ? 1 : 0) + "!}) : " + __type_name(this) + " (" + __string((u64)::get_current_itask()) + ")\n\n\n");
+         ::output_debug_string("\n\n\nthread::defer_pump_message (1) quitting (wm_quit? {PeekMessage->message : " + __string(m_message.m_atom == e_message_quit ? 1 : 0) + "!}) : " + __type_name(this) + " (" + __string((u64)::get_current_itask()) + ")\n\n\n");
 
          return false;
 
@@ -1569,7 +1569,7 @@ void thread::task_erase(::task * ptask)
       if (::is_null(ptask))
       {
 
-         __throw(error_bad_argument);
+         throw ::exception(error_bad_argument);
 
       }
 
@@ -1578,7 +1578,7 @@ void thread::task_erase(::task * ptask)
       //if (!m_pcompositea->contains(ptask) && ptask->thread_parent() != this)
       //{
 
-      //   __throw(error_bad_argument, "thread is no parent-child releationship between the threads");
+      //   throw ::exception(error_bad_argument, "thread is no parent-child releationship between the threads");
 
       //}
 
@@ -2015,7 +2015,7 @@ void thread::init_thread()
 
          get_application()->add_reference(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(get_application()));
 
-         m_idContextReference = id_application;
+         m_atomContextReference = id_application;
 
       }
       catch (...)
@@ -2025,7 +2025,7 @@ void thread::init_thread()
 
    }
 
-   if(m_idContextReference == id_none && get_session() && get_session() != this)
+   if(m_atomContextReference == id_none && get_session() && get_session() != this)
    {
 
       try
@@ -2033,7 +2033,7 @@ void thread::init_thread()
 
          get_session()->add_reference(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(get_session()));
 
-         m_idContextReference = id_session;
+         m_atomContextReference = id_session;
 
       }
       catch (...)
@@ -2045,7 +2045,7 @@ void thread::init_thread()
 
    auto psystem = get_system()->m_papexsystem;
 
-   if (m_idContextReference == id_none && psystem && psystem != this)
+   if (m_atomContextReference == id_none && psystem && psystem != this)
    {
 
       try
@@ -2053,7 +2053,7 @@ void thread::init_thread()
 
          psystem->add_reference(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(psystem));
 
-         m_idContextReference = id_system;
+         m_atomContextReference = id_system;
 
       }
       catch (...)
@@ -2063,7 +2063,7 @@ void thread::init_thread()
 
    }
 
-   if (m_idContextReference == id_none && get_task() && get_task() != this)
+   if (m_atomContextReference == id_none && get_task() && get_task() != this)
    {
 
       try
@@ -2071,7 +2071,7 @@ void thread::init_thread()
 
          get_task()->add_reference(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(get_context_thread()));
 
-         m_idContextReference = id_thread;
+         m_atomContextReference = id_thread;
 
       }
       catch (...)
@@ -2284,13 +2284,13 @@ void thread::system_pre_translate_message(::message::message * pmessage)
 void thread::process_window_procedure_exception(const ::exception & e,::message::message * pmessage)
 {
 
-   if(pmessage->m_id == e_message_create)
+   if(pmessage->m_atom == e_message_create)
    {
 
       pmessage->m_lresult = -1;
 
    }
-   else if(pmessage->m_id == e_message_paint)
+   else if(pmessage->m_atom == e_message_paint)
    {
 
       // force validation of interaction_impl to prevent getting e_message_paint again
@@ -2365,16 +2365,16 @@ void thread::branch(::enum_priority epriority, ::u32 nStackSize, u32 uiCreateFla
 
    ENSURE(m_htask == (htask_t) nullptr);
 
-   //if(m_id.is_empty())
+   //if(m_atom.is_empty())
    //{
 
-   //   m_id = __type_name(this);
+   //   m_atom = __type_name(this);
 
    //}
 
 //#ifdef __DEBUG
 //
-//   string strId = m_id;
+//   string strId = m_atom;
 //
 //   if (strId.contains_ci("forking_thread"))
 //   {
@@ -2433,7 +2433,7 @@ void thread::branch(::enum_priority epriority, ::u32 nStackSize, u32 uiCreateFla
 
    }
 
-   branch(epriority, nStackSize, uiCreateFlags);
+   ::task::branch(epriority, nStackSize, uiCreateFlags);
 
    if(m_htask == 0)
    {
@@ -2512,16 +2512,16 @@ void thread::begin_synchronously(::enum_priority epriority, ::u32 nStackSize, u3
 
    ENSURE(m_htask == (htask_t) nullptr);
 
-   //if(m_id.is_empty())
+   //if(m_atom.is_empty())
    //{
 
-   //   m_id = __type_name(this);
+   //   m_atom = __type_name(this);
 
    //}
 
 //#ifdef __DEBUG
 //
-//   string strId = m_id;
+//   string strId = m_atom;
 //
 //   if (strId.contains_ci("forking_thread"))
 //   {
@@ -2895,7 +2895,7 @@ void thread::osthread_init()
    //      if (!pthreadParent->task_add(this))
    //      {
 
-   //         if (pthreadParent->m_id.begins_ci("predicate_thread") && m_id.begins_ci("predicate_thread"))
+   //         if (pthreadParent->m_atom.begins_ci("predicate_thread") && m_atom.begins_ci("predicate_thread"))
    //         {
 
    //            pthreadParent->task_erase(this);
@@ -3091,7 +3091,7 @@ namespace apex
 //      {
 //
 //         //!!for e_message_quit please use post_quit_to_all_threads;
-//         __throw(error_bad_argument);
+//         throw ::exception(error_bad_argument);
 //
 //      }
 //
@@ -3302,7 +3302,7 @@ void thread::send_message(const ::atom & atom, wparam wparam, lparam lparam, con
    if (!atom.is_message())
    {
 
-      __throw(error_bad_argument);
+      throw ::exception(error_bad_argument);
 
    }
 
@@ -3324,7 +3324,7 @@ void thread::send_message(const ::atom & atom, wparam wparam, lparam lparam, con
 
    auto pmessage = __new(::send_thread_message(this));
 
-   pmessage->m_message.m_id = atom;
+   pmessage->m_message.m_atom = atom;
 
    pmessage->m_message.wParam = wparam;
 
@@ -3930,7 +3930,7 @@ void thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
 
       get_message_queue()->get_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax);
 
-      if(pMsg->m_id==e_message_quit)
+      if(pMsg->m_atom==e_message_quit)
       {
 
          return;
@@ -3949,7 +3949,7 @@ void thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
 
          set_finishing();
 
-         if (pMsg->m_id == e_message_quit)
+         if (pMsg->m_atom == e_message_quit)
          {
 
             return;
@@ -4044,14 +4044,14 @@ void thread::post_message(oswindow oswindow, const ::atom & atom, wparam wparam,
    if (!atom.is_message())
    {
 
-      __throw(error_bad_argument);
+      throw ::exception(error_bad_argument);
 
    }
 
    if(m_bThreadClosed)
    {
 
-      __throw(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    }
 
@@ -4262,7 +4262,7 @@ bool thread::process_message()
 
 #ifdef WINDOWS_DESKTOP
 
-      if (message.oswindow != nullptr || message.m_id == e_message_timer)
+      if (message.oswindow != nullptr || message.m_atom == e_message_timer)
       {
 
          MSG msg;
@@ -4279,7 +4279,7 @@ bool thread::process_message()
 
 #endif
 
-      if (message.m_id == e_message_event2_trying_to_remove)
+      if (message.m_atom == e_message_event2_trying_to_remove)
       {
 
          //if(msg.lParam)
@@ -4300,7 +4300,7 @@ bool thread::process_message()
          //}
 
       }
-      else if (message.m_id == e_message_system)
+      else if (message.m_atom == e_message_system)
       {
 
          if (message.wParam == e_system_message_create)
@@ -4362,7 +4362,7 @@ bool thread::process_message()
 
       }
 
-      if(message.m_id == WM_KICKIDLE)
+      if(message.m_atom == WM_KICKIDLE)
       {
 
          return true;
@@ -4581,7 +4581,7 @@ bool thread::do_events()
    while(peek_message(&msg,nullptr,0,0,PM_NOREMOVE) != false)
    {
 
-      if (msg.m_id == e_message_quit) // do not pump, otherwise main loop will not process the message
+      if (msg.m_atom == e_message_quit) // do not pump, otherwise main loop will not process the message
       {
 
          break;

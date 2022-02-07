@@ -100,7 +100,7 @@ void acme_dir::initialize(::object * pobject)
 //::file::path acme_dir::module_folder()
 //{
 //
-//   throw ::interface_only_exception();
+//   throw ::interface_only();
 //
 //   return "";
 //
@@ -709,7 +709,7 @@ void acme_dir::set_path_install_folder(const string & strPath)
 //bool acme_dir::_is(const char * path1)
 //{
 //
-//   throw ::interface_only_exception();
+//   throw ::interface_only();
 //
 //   return false;
 //
@@ -719,7 +719,7 @@ void acme_dir::set_path_install_folder(const string & strPath)
 //::file::path acme_dir::base_module()
 //{
 //
-//   throw ::interface_only_exception();
+//   throw ::interface_only();
 //
 //   return "";
 //
@@ -820,9 +820,9 @@ void acme_dir::_create2(const char * pathParam)
 //void acme_dir::_create_directory(const char * pathParam)
 //{
 //
-//   throw ::interface_only_exception();
+//   throw ::interface_only();
 //
-//   throw ::interface_only_exception();
+//   throw ::interface_only();
 //
 //}
 
@@ -854,7 +854,7 @@ bool acme_dir::is(const char * path)
 void acme_dir::rls(::file::patha & stra, const char * psz)
 {
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
 }
 
@@ -862,7 +862,7 @@ void acme_dir::rls(::file::patha & stra, const char * psz)
 void acme_dir::rls_dir(::file::patha & stra, const char * psz)
 {
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
    //return "";
 
@@ -872,7 +872,7 @@ void acme_dir::rls_dir(::file::patha & stra, const char * psz)
 void acme_dir::ls(::file::patha & stra, const char * psz)
 {
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
 }
 
@@ -880,7 +880,7 @@ void acme_dir::ls(::file::patha & stra, const char * psz)
 void acme_dir::ls_dir(::file::patha & stra, const char * psz)
 {
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
 }
 
@@ -888,7 +888,7 @@ void acme_dir::ls_dir(::file::patha & stra, const char * psz)
 void acme_dir::ls_file(::file::patha & stra, const char * psz)
 {
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
 }
 
@@ -902,7 +902,7 @@ void acme_dir::ls_file(::file::patha & stra, const char * psz)
 int acme_dir::make_path(const char * psz)
 {
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
    return -1;
 
@@ -938,7 +938,7 @@ int acme_dir::make_path(const char * psz)
 //::file::path acme_dir::module_folder()
 //{
 //
-//   throw ::interface_only_exception();
+//   throw ::interface_only();
 //
 //   return "";
 //
@@ -990,9 +990,9 @@ void acme_dir::erase(const char* path)
 string acme_dir::get_current()
 {
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
-   //throw ::interface_only_exception();
+   //throw ::interface_only();
 
 }
 
@@ -1000,9 +1000,9 @@ string acme_dir::get_current()
 void acme_dir::change_current(const char * psz)
 {
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
-   //throw ::interface_only_exception();
+   //throw ::interface_only();
 
 }
 

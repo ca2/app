@@ -67,7 +67,7 @@ namespace turboc
    void pane_view::on_create_impact(::user::impact_data * pcreatordata)
    {
 
-      switch(pcreatordata->m_id)
+      switch(pcreatordata->m_atom)
       {
       case MAIN_IMPACT:
          {

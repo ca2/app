@@ -163,7 +163,7 @@ namespace file
    int file::ungetc(int iChar)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return -1;
 
@@ -596,7 +596,7 @@ namespace file
    int file::put_character_back(int iCharacter)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return -1;
 
@@ -1005,7 +1005,7 @@ namespace file
       memory buf;
       buf.set_size(uiBufMax);
       if(buf.get_data() == nullptr)
-         __throw(error_no_memory, "no memory");
+         throw ::exception(error_no_memory, "no memory");
       try
       {
          while(true)
@@ -1090,7 +1090,7 @@ namespace file
    void file::write(const void *pdata, memsize nCount, memsize * dwWritten)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -1145,7 +1145,7 @@ namespace file
       buf.set_size(uiBufSize);
 
       if(buf.get_data() == nullptr)
-         __throw(error_no_memory);
+         throw ::exception(error_no_memory);
 
       try
       {
@@ -1204,122 +1204,122 @@ namespace file
    void file::write (char ch)
    {
       __UNREFERENCED_PARAMETER(ch);
-      throw ::interface_only_exception();
+      throw ::interface_only();
    }
 
    void file::write (uchar uch)
    {
       __UNREFERENCED_PARAMETER(uch);
-      throw ::interface_only_exception();
+      throw ::interface_only();
    }
 
    void file::write (i16 sh)
    {
       __UNREFERENCED_PARAMETER(sh);
-      throw ::interface_only_exception();
+      throw ::interface_only();
    }
 
    void file::write (u16 u)
    {
       __UNREFERENCED_PARAMETER(u);
-      throw ::interface_only_exception();
+      throw ::interface_only();
    }
 
    void file::write (unichar wch)
    {
       __UNREFERENCED_PARAMETER(wch);
-      throw ::interface_only_exception();
+      throw ::interface_only();
    }
 
    void file::write (bool b)
    {
       __UNREFERENCED_PARAMETER(b);
-      throw ::interface_only_exception();
+      throw ::interface_only();
    }
 
    void file::write (i32 i)
    {
       __UNREFERENCED_PARAMETER(i);
-      throw ::interface_only_exception();
+      throw ::interface_only();
    }
 
    void file::write (u32 u)
    {
       __UNREFERENCED_PARAMETER(u);
-      throw ::interface_only_exception();
+      throw ::interface_only();
    }
 
    void file::write (i64 i)
    {
       __UNREFERENCED_PARAMETER(i);
-      throw ::interface_only_exception();
+      throw ::interface_only();
    }
 
    void file::write (u64 u)
    {
       __UNREFERENCED_PARAMETER(u);
-      throw ::interface_only_exception();
+      throw ::interface_only();
    }
 
    void file::write (float f)
    {
       __UNREFERENCED_PARAMETER(f);
-      throw ::interface_only_exception();
+      throw ::interface_only();
    }
 
    void file::write (double d)
    {
       __UNREFERENCED_PARAMETER(d);
-      throw ::interface_only_exception();
+      throw ::interface_only();
    }
 
    void file::write (const ::rectangle_i32 & rectangle)
    {
       __UNREFERENCED_PARAMETER(pcrect);
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
    }
 
    void file::write (const size_i32 & & size)
    {
       __UNREFERENCED_PARAMETER(size);
-      throw ::interface_only_exception();
+      throw ::interface_only();
    }
 
    void file::write (::type info)
    {
       __UNREFERENCED_PARAMETER(info);
-      throw ::interface_only_exception();
+      throw ::interface_only();
    }
 
    void file::write (matter & matter)
    {
       __UNREFERENCED_PARAMETER(matter);
-      throw ::interface_only_exception();
+      throw ::interface_only();
    }
 
    void file::write (const char * psz)
    {
       __UNREFERENCED_PARAMETER(psz);
-      throw ::interface_only_exception();
+      throw ::interface_only();
    }
 
    void file::write (const atom & atom)
    {
       __UNREFERENCED_PARAMETER(atom);
-      throw ::interface_only_exception();
+      throw ::interface_only();
    }
 
    void file::write (const ::payload & payload)
    {
       __UNREFERENCED_PARAMETER(payload);
-      throw ::interface_only_exception();
+      throw ::interface_only();
    }
 
    void file::write (const ::string & str)
    {
       __UNREFERENCED_PARAMETER(str);
-      throw ::interface_only_exception();
+      throw ::interface_only();
    }
    */
 

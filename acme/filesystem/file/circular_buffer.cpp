@@ -65,7 +65,7 @@ namespace file
 
       if (l > m_q)
       {
-         __throw(error_io, "circular_file::read");
+         throw ::exception(error_io, "circular_file::read");
       }
 
       if (m_b + l > m_max) // block crosses circular border

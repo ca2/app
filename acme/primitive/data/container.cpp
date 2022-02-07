@@ -54,11 +54,11 @@ namespace data
    bool data_container_base::set_data(const ::atom & atom, ::data::data * pdata)
    {
 
-      pdata->m_id = atom;
+      pdata->m_atom = atom;
 
       pdata->initialize_data(this);
 
-      m_datamap.set_at(pdata->m_id, pdata);
+      m_datamap.set_at(pdata->m_atom, pdata);
 
       return true;
 
@@ -68,7 +68,7 @@ namespace data
    bool data_container_base::add_data(::data::data * pdata)
    {
       
-      if (m_datamap.contains(pdata->m_id))
+      if (m_datamap.contains(pdata->m_atom))
       {
 
          return false;
@@ -77,7 +77,7 @@ namespace data
 
       pdata->initialize_data(this);
 
-      m_datamap.set_at(pdata->m_id, pdata);
+      m_datamap.set_at(pdata->m_atom, pdata);
 
       return true;
 
@@ -87,7 +87,7 @@ namespace data
    bool data_container_base::erase_data(::data::data * pdata)
    {
 
-      auto bRemove = m_datamap.erase_key(pdata->m_id);
+      auto bRemove = m_datamap.erase_key(pdata->m_atom);
 
       return bRemove;
 

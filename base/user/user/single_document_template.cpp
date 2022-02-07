@@ -77,10 +77,10 @@ namespace user
    void single_document_template::on_request(::create * pcreate)
    {
 
-      if (pcreate->m_id.is_null())
+      if (pcreate->m_atom.is_null())
       {
 
-         pcreate->m_id = m_typeImpact.m_strName;
+         pcreate->m_atom = m_typeImpact.m_strName;
 
       }
 

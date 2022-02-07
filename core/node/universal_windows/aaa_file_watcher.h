@@ -41,7 +41,7 @@ namespace file
    public:
 
 
-      atom                   m_id;
+      atom                   m_atom;
 
       string               m_strFolder;
 
@@ -92,7 +92,7 @@ namespace file
    //   /// Map of atom to watch_struct pointers
    //   watch_map m_watchmap;
    //   /// The last watchid
-   //   atom m_idLast;
+   //   atom m_atomLast;
 
 
    //public:

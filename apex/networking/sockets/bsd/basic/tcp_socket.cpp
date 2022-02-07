@@ -5,7 +5,7 @@
 #ifdef PARALLELIZATION_PTHREAD
 
 
-#include "acme/node/operating_system/ansi/_pthread.h"
+#include "acme/operating_system/ansi/_pthread.h"
 
 
 #endif
@@ -1096,7 +1096,7 @@ namespace sockets
 
                FATAL("OnWrite / SSL_write " << errnr << errbuf);
 
-               //__throw(io_exception(errbuf));
+               //throw ::exception(io_exception(errbuf));
             }
             //return 0;
          }
@@ -1109,7 +1109,7 @@ namespace sockets
             i32 errnr = SSL_get_error(m_psslcontext->m_ssl,(i32)n);
             const char *errbuf = ERR_error_string(errnr,nullptr);
             INFORMATION("SSL_write() returns 0: " << errnr << ", " << errbuf);
-            //__throw(io_exception(errbuf));
+            //throw ::exception(io_exception(errbuf));
          }
 
       }
@@ -1144,7 +1144,7 @@ namespace sockets
                SetCloseAndDelete(true);
                SetFlushBeforeClose(false);
                SetLost();
-               //__throw(io_exception(bsd_socket_error(Errno)));
+               //throw ::exception(io_exception(bsd_socket_error(Errno)));
             }
             //else
             //{

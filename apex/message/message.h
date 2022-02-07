@@ -77,7 +77,7 @@ namespace message
       }
 
 
-      inline bool is_message() const { return m_id.is_message(); }
+      inline bool is_message() const { return m_atom.is_message(); }
       inline bool is_thread_message() const { return is_message() && m_oswindow == nullptr; }
 
 

@@ -291,16 +291,16 @@ namespace user
    void list_box::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if(ptopic->m_id == ::id_click)
+      if(ptopic->m_atom == ::id_click)
       {
 
-         if(ptopic->m_pextendedtopic->user_interaction() == this)
+         if(ptopic->get_extended_topic()->user_interaction() == this)
          {
 
             if (m_pcombo)
             {
 
-               m_pcombo->set_current_item(ptopic->m_pextendedtopic->m_item, ptopic->m_pextendedtopic->m_actioncontext);
+               m_pcombo->set_current_item(ptopic->get_extended_topic()->m_item, ptopic->get_extended_topic()->m_actioncontext);
 
                m_pcombo->ShowDropDown(false);
 
@@ -308,7 +308,7 @@ namespace user
             else
             {
 
-               set_current_item(ptopic->m_pextendedtopic->m_item, ptopic->m_pextendedtopic->m_actioncontext);
+               set_current_item(ptopic->get_extended_topic()->m_item, ptopic->get_extended_topic()->m_actioncontext);
 
             }
 
@@ -1250,7 +1250,7 @@ namespace user
 
             //   m_pcombo->m_plistbox.release();
 
-            //   __throw(error_resource);
+            //   throw ::exception(error_resource);
 
             //}
 

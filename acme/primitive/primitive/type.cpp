@@ -92,8 +92,8 @@ string cxxabi_demangle (const char* name)
 //{
 //
 //   m_pfactoryitem = nullptr;
-//   m_id              = atom;
-//   m_idFriendly      = idFriendly;
+//   m_atom              = atom;
+//   m_atomFriendly      = idFriendly;
 //
 //}
 //
@@ -114,8 +114,8 @@ string cxxabi_demangle (const char* name)
 //type::type(const type & info)
 //{
 //
-//   m_id              = info.m_id;
-//   m_idFriendly      = info.m_idFriendly;
+//   m_atom              = info.m_atom;
+//   m_atomFriendly      = info.m_atomFriendly;
 //   m_pfactoryitem    = info.m_pfactoryitem;
 //
 //}
@@ -126,17 +126,17 @@ string cxxabi_demangle (const char* name)
 //
 //   m_pfactoryitem = nullptr;
 //#ifdef WINDOWS
-//   m_idFriendly      = info.name();
-//   m_id              = info.raw_name();
+//   m_atomFriendly      = info.name();
+//   m_atom              = info.raw_name();
 //#elif defined(ANDROID)
-//   m_idFriendly	   = info.name();
-//   m_id			      = info.name();
+//   m_atomFriendly	   = info.name();
+//   m_atom			      = info.name();
 //#elif defined(__APPLE__)
-//   m_idFriendly      = info.name();
-//   m_id              = info.name();
+//   m_atomFriendly      = info.name();
+//   m_atom              = info.name();
 //#else
-//   m_idFriendly      = info.name();
-//   m_id              = info.name();
+//   m_atomFriendly      = info.name();
+//   m_atom              = info.name();
 //#endif
 //
 //}
@@ -146,8 +146,8 @@ string cxxabi_demangle (const char* name)
 //{
 //
 //   m_pfactoryitem = nullptr;
-//   m_id              = strName;
-//   m_idFriendly      = strFriendlyName;
+//   m_atom              = strName;
+//   m_atomFriendly      = strFriendlyName;
 //
 //}
 //
@@ -155,8 +155,8 @@ string cxxabi_demangle (const char* name)
 //type & type::operator = (const type & info)
 //{
 //
-//   m_id              = info.m_id;
-//   m_idFriendly      = info.m_idFriendly;
+//   m_atom              = info.m_atom;
+//   m_atomFriendly      = info.m_atomFriendly;
 //   m_pfactoryitem    = info.m_pfactoryitem;
 //
 //   return *this;
@@ -168,17 +168,17 @@ string cxxabi_demangle (const char* name)
 //{
 //
 //#ifdef WINDOWS
-//   m_idFriendly      = info.name();
-//   m_id              = info.raw_name();
+//   m_atomFriendly      = info.name();
+//   m_atom              = info.raw_name();
 //#elif defined(ANDROID)
-//   m_idFriendly      = info.name();
-//   m_id              = info.name();
+//   m_atomFriendly      = info.name();
+//   m_atom              = info.name();
 //#elif defined(__APPLE__)
-//   m_idFriendly      = info.name();
-//   m_id              = info.name();
+//   m_atomFriendly      = info.name();
+//   m_atom              = info.name();
 //#else
-//   m_idFriendly      = info.name();
-//   m_id              = info.name();
+//   m_atomFriendly      = info.name();
+//   m_atom              = info.name();
 //#endif
 ////   m_pfactoryitem.release();
 //
@@ -190,7 +190,7 @@ string cxxabi_demangle (const char* name)
 //bool type::operator == (const type & info) const
 //{
 //
-//   return m_id == info.m_id;
+//   return m_atom == info.m_atom;
 //
 //}
 //
@@ -200,11 +200,11 @@ string cxxabi_demangle (const char* name)
 //
 //#ifdef WINDOWS
 //
-//   return m_id == info.raw_name();
+//   return m_atom == info.raw_name();
 //
 //#else
 //
-//   return m_id == info.name();
+//   return m_atom == info.name();
 //
 //#endif // WINDOWS
 //
@@ -214,7 +214,7 @@ string cxxabi_demangle (const char* name)
 //bool type::operator == (const ::string & strName) const
 //{
 //
-//   return m_id == strName;
+//   return m_atom == strName;
 //
 //}
 //
@@ -222,7 +222,7 @@ string cxxabi_demangle (const char* name)
 //bool type::operator == (const atom & atom ) const
 //{
 //
-//   return m_id == atom ;
+//   return m_atom == atom ;
 //
 //}
 //
@@ -230,7 +230,7 @@ string cxxabi_demangle (const char* name)
 //bool type::operator != (const type & info) const
 //{
 //
-//   return m_id != info.m_id;
+//   return m_atom != info.m_atom;
 //
 //}
 //
@@ -240,11 +240,11 @@ string cxxabi_demangle (const char* name)
 //
 //#ifdef WINDOWS
 //
-//   return m_id != info.raw_name();
+//   return m_atom != info.raw_name();
 //
 //#else
 //
-//   return m_id != info.name();
+//   return m_atom != info.name();
 //
 //#endif // WINDOWS
 //
@@ -254,7 +254,7 @@ string cxxabi_demangle (const char* name)
 //bool type::operator != (const ::string & strName) const
 //{
 //
-//   return m_id != strName;
+//   return m_atom != strName;
 //
 //}
 //
@@ -262,7 +262,7 @@ string cxxabi_demangle (const char* name)
 //bool type::operator != (const atom & atom ) const
 //{
 //
-//   return m_id != atom ;
+//   return m_atom != atom ;
 //
 //}
 //
@@ -270,14 +270,14 @@ string cxxabi_demangle (const char* name)
 //const char * type::name() const
 //{
 //
-//   return m_id;
+//   return m_atom;
 //
 //}
 //
 //const char * type::friendly_name() const
 //{
 //
-//   return m_idFriendly;
+//   return m_atomFriendly;
 //
 //}
 //

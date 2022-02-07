@@ -436,7 +436,7 @@ namespace apex
       //if(!estatus)
       //{
 
-      //   __throw(::exception(estatus));
+      //   throw ::exception(::exception(estatus));
 
       //}
 
@@ -872,7 +872,7 @@ namespace apex
    //__pointer(::user::menu_interaction) session::create_menu_button(::user::style_pointer & pstyle,::user::menu_item * pitem)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return nullptr;
 
@@ -945,7 +945,7 @@ namespace apex
 
          string_array straApp;
 
-         __throw(todo, "filehandler");
+         throw ::exception(todo, "filehandler");
 
          //psystem->filehandler().get_extension_app(straApp, strExtension);
 
@@ -1221,7 +1221,7 @@ ret:
 
       //}
 
-      // __throw(todo("interaction"));
+      // throw ::exception(todo("interaction"));
       //if (psystem->m_bUser)
       //{
 
@@ -1655,7 +1655,7 @@ namespace apex
    //   }
    //   else
    //   {
-   //      __throw(::exception("not expected enum_mouse value"));
+   //      throw ::exception(::exception("not expected enum_mouse value"));
    //   }
 
 
@@ -2137,8 +2137,8 @@ namespace apex
    void session::frame_pre_translate_message(::message::message* pmessage)
    {
 
-//      if (pmessage->m_id == WM_GETTEXT
-//         || pmessage->m_id == WM_GETTEXTLENGTH
+//      if (pmessage->m_atom == WM_GETTEXT
+//         || pmessage->m_atom == WM_GETTEXTLENGTH
 //         )
 //      {
 //
@@ -2148,7 +2148,7 @@ namespace apex
 //         return;
 //
 //      }
-      //else if (pmessage->m_id == e_message_mouse_move)
+      //else if (pmessage->m_atom == e_message_mouse_move)
       //{
 
       //   pmessage->m_uiMessageFlags |= 0; // message considered pre translated

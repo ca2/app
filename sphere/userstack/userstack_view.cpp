@@ -299,7 +299,7 @@ namespace userstack
       m_oswindowWinutil           =  ::FindWindowW(nullptr, L"::ca2::account::message_wnd::winutil");
       m_oswindowBergedge          =  ::FindWindowW(nullptr, L"::ca2::account::message_wnd::bergedge");
 #else
-      __throw(todo);
+      throw ::exception(todo);
 #endif
    }
 

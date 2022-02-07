@@ -13,7 +13,7 @@ namespace user
 
 
       __pointer(interaction)        m_pinteraction;
-      ::atom                          m_id;
+      ::atom                          m_atom;
       wparam                        m_wparam;
       lparam                        m_lparam;
 

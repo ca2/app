@@ -58,9 +58,9 @@ void material_object::post_routine(const ::routine & routine)
 
 //   th__row ::interface_only_exception();
 
-   //throw ::interface_only_exception();
+   //throw ::interface_only();
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
 }
 

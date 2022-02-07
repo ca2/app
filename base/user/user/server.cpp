@@ -41,7 +41,7 @@ namespace user
          //if (!estatus)
          //{
 
-         //   __throw(estatus);
+         //   throw ::exception(estatus);
 
          //}
 
@@ -52,7 +52,7 @@ namespace user
          //if (!estatus)
          //{
 
-         //   __throw(estatus);
+         //   throw ::exception(estatus);
 
          //}
 

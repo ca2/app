@@ -36,7 +36,7 @@ namespace database
 
       //auto linkedproperty = fetch_property(atom);
 
-      auto psignal = get_application()->get_signal(linkedproperty->m_id);
+      auto psignal = get_application()->get_signal(linkedproperty->m_atom);
 
       psignal->add_handler(predicate([this, atom, linkedproperty](::topic * ptopic, ::context * pcontext)
 
@@ -385,7 +385,7 @@ namespace database
 
       defer_update_object_id();
 
-      key.m_strDataKey += "/" + __string(m_id);
+      key.m_strDataKey += "/" + __string(m_atom);
 
       return key;
 

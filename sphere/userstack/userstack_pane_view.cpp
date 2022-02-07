@@ -167,7 +167,7 @@ namespace userstack
    void pane_view::on_create_impact(::user::impact_data * pimpactdata)
    {
 
-      string strId = pimpactdata->m_id;
+      string strId = pimpactdata->m_atom;
 
       if(::str::begins_eat(strId, "app:"))
       {
@@ -219,7 +219,7 @@ namespace userstack
 
          string strIcon = Sess(pappCurrent).dir().matter("mainframe/icon48.png");
 
-         ::user::tab_pane * ppane = (::user::tab_pane *) get_pane_by_id(pimpactdata->m_id);
+         ::user::tab_pane * ppane = (::user::tab_pane *) get_pane_by_id(pimpactdata->m_atom);
 
          pappCurrent = psession->m_papplicationCurrent;
 
@@ -234,7 +234,7 @@ namespace userstack
          else
          {
 
-            ppane->set_title(pimpactdata->m_id);
+            ppane->set_title(pimpactdata->m_atom);
 
          }
 
@@ -251,7 +251,7 @@ namespace userstack
    void pane_view::_001OnMenuMessage(::message::message * pmessage)
    {
       __UNREFERENCED_PARAMETER(pmessage);
-      set_current_tab_by_id(m_pimpactdataOld->m_id);
+      set_current_tab_by_id(m_pimpactdataOld->m_atom);
    }
 
    void pane_view::install_message_routing(::channel * pchannel)
@@ -426,7 +426,7 @@ namespace userstack
 //         }
 //      }
 //#else
-//      __throw(todo);
+//      throw ::exception(todo);
 #endif
    }
 
@@ -539,7 +539,7 @@ namespace userstack
 //         launcher.execute();
 //#else
 //
-//         __throw(todo);
+//         throw ::exception(todo);
 //
 //#endif
 //
@@ -553,28 +553,28 @@ namespace userstack
       auto pinteraction = pform->new_form_control();;
       pinteraction->m_bTransparent = true;
       pinteraction->set_control_type(user::e_control_type_check_box);
-      pinteraction->m_id = "save_display_bandwidth";
+      pinteraction->m_atom = "save_display_bandwidth";
       pinteraction->set_ddx_dbflags("ca2.savings", ::e_resource_display_bandwidth);
       //pform->_001AddControl(pinteraction);
 
       pinteraction = pform->new_form_control();;
       pinteraction->m_bTransparent = true;
       pinteraction->set_control_type(user::e_control_type_check_box);
-      pinteraction->m_id = "save_processing";
+      pinteraction->m_atom = "save_processing";
       pinteraction->set_ddx_dbflags("ca2.savings", ::e_resource_processing);
       //pform->_001AddControl(pinteraction);
 
       pinteraction = pform->new_form_control();;
       pinteraction->m_bTransparent = true;
       pinteraction->set_control_type(user::e_control_type_check_box);
-      pinteraction->m_id = "save_memory";
+      pinteraction->m_atom = "save_memory";
       pinteraction->set_ddx_dbflags("ca2.savings", ::e_resource_memory);
       //pform->_001AddControl(pinteraction);
 
       pinteraction = pform->new_form_control();;
       pinteraction->m_bTransparent = true;
       pinteraction->set_control_type(user::e_control_type_check_box);
-      pinteraction->m_id = "enable_wallpaper";
+      pinteraction->m_atom = "enable_wallpaper";
       pinteraction->set_ddx_dbflags("ca2.bergedge", 0);
       //pform->_001AddControl(pinteraction);
 

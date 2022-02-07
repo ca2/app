@@ -172,7 +172,7 @@ void mq_post_thread_message(itask_t idthread, const ::atom & atom, wparam wparam
    if (atom.m_etype != ::atom::e_type_message)
    {
 
-      __throw(error_bad_argument);
+      throw ::exception(error_bad_argument);
 
    }
 

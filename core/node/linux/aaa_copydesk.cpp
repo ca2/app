@@ -443,7 +443,7 @@ gboolean clipboard_callback(gpointer data)
    else
    {
 
-      __throw(error_bad_argument);
+      throw ::exception(error_bad_argument);
 
    }
 
@@ -697,7 +697,7 @@ namespace linux
    {
 
 
-      __throw(todo);
+      throw ::exception(todo);
 
       return false;
 

@@ -24,7 +24,7 @@ namespace mail
       string_array                          m_straIndex;
       string_array                          m_straId;
 
-      string                           m_id;
+      string                           m_atom;
       string                           m_strHeaders;
       string                           m_strBody;
       property_set                     m_setHeaders;

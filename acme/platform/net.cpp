@@ -372,7 +372,7 @@ int ui_open_url(const char * psz);
 
 void openURL(const string &url_str)
 {
-//   __throw(todo);
+//   throw ::exception(todo);
 //   CFURLRef url = CFURLCreateWithBytes(
 //      nullptr,                        // allocator
 //      (::u328*)url_str.c_str(),     // URLBytes
@@ -940,7 +940,7 @@ int ui_open_url(const char* psz);
 
 void openURL(const string& url_str)
 {
-   //   __throw(todo);
+   //   throw ::exception(todo);
    //   CFURLRef url = CFURLCreateWithBytes(
    //      nullptr,                        // allocator
    //      (::u328*)url_str.c_str(),     // URLBytes

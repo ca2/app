@@ -121,7 +121,7 @@ namespace android
    //   ASSERT(__is_valid_string(lpszFileName));
 
    //   if(!open(lpszFileName, nOpenFlags))
-   //      __throw(::file::exception(::error_none, -1, lpszFileName));
+   //      throw ::exception(::file::exception(::error_none, -1, lpszFileName));
 
    //}
 
@@ -795,7 +795,7 @@ bool CLASS_DECL_APEX vfxFullPath(wstring & wstrFullPath, const wstring & wstrPat
 //void CLASS_DECL_APEX vfxThrowFileException(::object * pobject, const ::e_status & estatus, ::i32 lOsError, const char * lpszFileName /* == nullptr */)
 //{
 //
-//   __throw(::file::exception(ecause, lOsError, lpszFileName));
+//   throw ::exception(::file::exception(ecause, lOsError, lpszFileName));
 //
 //}
 

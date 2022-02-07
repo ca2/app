@@ -96,7 +96,7 @@ namespace message
 
       m_oswindow = oswindow;
 
-      m_id = atom;
+      m_atom = atom;
 
       m_wparam = wparam;
 

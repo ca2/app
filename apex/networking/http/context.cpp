@@ -637,7 +637,7 @@ namespace http
    //   ::object(pobject)
    //{
 
-   //   __throw(todo, "scripting");
+   //   throw ::exception(todo, "scripting");
    //   //m_pjs = new tinyjs();
 
    //}
@@ -646,7 +646,7 @@ namespace http
    context::pac::pac()
    {
 
-      __throw(todo, "scripting");
+      throw ::exception(todo, "scripting");
       //m_pjs = new tinyjs();
 
    }
@@ -655,7 +655,7 @@ namespace http
    context::pac::~pac()
    {
 
-      //__throw(todo("scripting"));
+      //throw ::exception(todo("scripting"));
 
 
       //if (m_pjs == nullptr)
@@ -705,7 +705,7 @@ namespace http
             return nullptr;
          }
 
-         //__throw(todo("scripting"));
+         //throw ::exception(todo("scripting"));
          //registerFunctions(ppac->m_pjs);
          //registerJavascriptFunctions(ppac->m_pjs);
          //ppac->m_pjs->execute(ppac->m_strAutoConfigScript);
@@ -814,7 +814,7 @@ namespace http
       strHost = ad.get_display_number();
 
       string payload;
-      //__throw(todo("scripting"));
+      //throw ::exception(todo("scripting"));
       //try
       //{
       //   payload = ppac->m_pjs->evaluate("FindProxyForURL('" + string(pszUrl) + "', '" + strHost + "');");
@@ -882,7 +882,7 @@ namespace http
    void context::config_proxy(const char * pszUrl, ::http::context::proxy * pproxy)
    {
 
-      //__throw(todo("xml"));
+      //throw ::exception(todo("xml"));
 
       //xml::document doc;
 
@@ -1434,11 +1434,11 @@ namespace http
 
          psession->m_scalarsourceDownloadedRate.m_plistener = set["http_downloaded_rate_listener"].cast < ::double_scalar_source::listener >();
 
-         psession->m_scalarsourceDownloadedRate.m_id = set["http_downloaded_rate_id"].atom();
+         psession->m_scalarsourceDownloadedRate.m_atom = set["http_downloaded_rate_id"].atom();
 
          psession->m_scalarsourceDownloaded.m_plistener = set["http_downloaded_listener"].cast < ::int_scalar_source::listener >();
 
-         psession->m_scalarsourceDownloaded.m_id = set["http_downloaded_id"].atom();
+         psession->m_scalarsourceDownloaded.m_atom = set["http_downloaded_id"].atom();
 
          bool bPost;
 
@@ -1665,7 +1665,7 @@ namespace http
 
                   psession.release();
 
-                  __throw(error_licensing, "realm:" + strCa2Realm + ",location:" + strLocation);
+                  throw ::exception(error_licensing, "realm:" + strCa2Realm + ",location:" + strLocation);
 
                   return false;
 
@@ -2143,11 +2143,11 @@ namespace http
 
       psocket->m_scalarsourceDownloadedRate.m_plistener = set["http_downloaded_rate_listener"].cast < ::double_scalar_source::listener >();
 
-      psocket->m_scalarsourceDownloadedRate.m_id = set["http_downloaded_rate_id"].atom();
+      psocket->m_scalarsourceDownloadedRate.m_atom = set["http_downloaded_rate_id"].atom();
 
       psocket->m_scalarsourceDownloaded.m_plistener = set["http_downloaded_listener"].cast < ::int_scalar_source::listener >();
 
-      psocket->m_scalarsourceDownloaded.m_id = set["http_downloaded_id"].atom();
+      psocket->m_scalarsourceDownloaded.m_atom = set["http_downloaded_id"].atom();
 
       if (tickTotalTimeout.is_null())
       {
@@ -2476,7 +2476,7 @@ namespace http
             
             strLocation = psocket->outheader("Location");
 
-            __throw(error_licensing, "realm:"+strCa2Realm+",location:"+ strLocation);
+            throw ::exception(error_licensing, "realm:"+strCa2Realm+",location:"+ strLocation);
 
             return false;
 

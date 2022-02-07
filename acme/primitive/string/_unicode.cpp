@@ -46,7 +46,7 @@ strsize wd16_to_wd32(wd32char* output, const wd16char* input, strsize input_size
          else
          {
 
-            __throw(error_not_supported, "wd16_to_wd32_len");
+            throw ::exception(error_not_supported, "wd16_to_wd32_len");
 
          }
 
@@ -89,7 +89,7 @@ strsize wd16_to_wd32_len(const wd16char * input, strsize input_size)
          else
          {
 
-            __throw(error_invalid_buffer, "wd16_to_wd32_len");
+            throw ::exception(error_invalid_buffer, "wd16_to_wd32_len");
 
          }
 

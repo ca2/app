@@ -164,7 +164,7 @@ namespace html
 
          //::draw2d::savedc savedc(pgraphics);
 
-         //pgraphics->SetImpactportOrg(rectangleWindow.top_left());
+         //pgraphics->SetViewportOrg(rectangleWindow.top_left());
 
          m_pedit->_000CallOnDraw(pdata->m_pcoredata->m_pgraphics);
 

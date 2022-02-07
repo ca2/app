@@ -218,7 +218,7 @@ namespace ios
 //         {
 //            pcontext->m_papexcontext->dir().create(str, papp);
 //            if(!pcontext->m_papexcontext->dir().is(str, papp))
-//               __throw(::exception("time square dir does not exist"));
+//               throw ::exception(::exception("time square dir does not exist"));
 //            straTitle.erase_all();
 //            pcontext->m_papexcontext->dir().ls(papp, str, nullptr, &straTitle);
 //            if(i < iMaxLevel)
@@ -684,7 +684,7 @@ namespace ios
 //         if(bFailIfExists)
 //         {
 //            if(exists(pszNew, papp))
-//               __throw(::exception("Failed to copy file"));
+//               throw ::exception(::exception("Failed to copy file"));
 //         }
 //         if(pcontext->m_papexcontext->dir().is(psz, papp) && (eextract == extract_first || eextract == extract_all || !(::str::ends_ci(psz, ".zip"))))
 //         {
@@ -744,7 +744,7 @@ namespace ios
 //            {
 //               string strError;
 //               strError.format("Failed to copy file \"%s\" to \"%s\" bFailIfExists=%d error=could not open output file", psz, pszNew, bFailIfExists);
-//               __throw(strError);
+//               throw ::exception(strError);
 //            }
 //
 //            file_pointer ifile;
@@ -753,7 +753,7 @@ namespace ios
 //            {
 //               string strError;
 //               strError.format("Failed to copy file \"%s\" to \"%s\" bFailIfExists=%d error=could not open input file", psz, pszNew, bFailIfExists);
-//               __throw(strError);
+//               throw ::exception(strError);
 //            }
 //
 //            ::file::output_stream ostream(ofile);
@@ -795,20 +795,20 @@ namespace ios
 //               {
 //                  string strError;
 //                  strError.format("During copy, failed to close both input file \"%s\" and output file \"%s\" bFailIfExists=%d", psz, pszNew, bFailIfExists);
-//                  __throw(strError);
+//                  throw ::exception(strError);
 //               }
 //               else
 //               {
 //                  string strError;
 //                  strError.format("During copy, failed to close input file \"%s\" bFailIfExists=%d", psz, bFailIfExists);
-//                  __throw(strError);
+//                  throw ::exception(strError);
 //               }
 //            }
 //            else if(bOutputFail)
 //            {
 //               string strError;
 //               strError.format("During copy, failed to close output file \"%s\" bFailIfExists=%d", pszNew, bFailIfExists);
-//               __throw(strError);
+//               throw ::exception(strError);
 //            }
 //
 //         }
@@ -825,14 +825,14 @@ namespace ios
 //            u32 dwError = ::get_last_error();
 //            string strError;
 //            strError.format("Failed to move file \"%s\" to \"%s\" error=%d", psz, pszNew, dwError);
-//            __throw(strError);
+//            throw ::exception(strError);
 //         }
 //#elif defined(_UWP)
 //
 //         ::winrt::Windows::Storage::StorageFile ^ file = get_os_file(psz,  0, 0, nullptr, OPEN_EXISTING, 0, nullptr);
 //
 //         if(file == nullptr)
-//            __throw(::exception("file::file_system::move Could not move file, could not open source file"));
+//            throw ::exception(::exception("file::file_system::move Could not move file, could not open source file"));
 //
 //         string strDirOld     = pcontext->m_papexcontext->dir().name(psz);
 //         string strDirNew     = pcontext->m_papexcontext->dir().name(pszNew);
@@ -870,7 +870,7 @@ namespace ios
 //            i32 err = errno;
 //            string strError;
 //            strError.format("Failed to delete file error=%d", err);
-//            __throw(strError);
+//            throw ::exception(strError);
 //         }
 //#endif
 //      }
@@ -886,7 +886,7 @@ namespace ios
 //               return;
 //            string strError;
 //            strError.format("Failed to delete file \"%s\" error=%d", psz, dwError);
-//            __throw(strError);
+//            throw ::exception(strError);
 //         }
 //#else
 //         if(erase(psz) != 0)
@@ -894,7 +894,7 @@ namespace ios
 //            i32 err = errno;
 //            string strError;
 //            strError.format("Failed to delete file error=%d", err);
-//            __throw(strError);
+//            throw ::exception(strError);
 //         }
 //#endif
 //
@@ -1151,7 +1151,7 @@ namespace ios
 //
 //#elif defined(_UWP)
 //
-//         __throw(todo);
+//         throw ::exception(todo);
 //
 //#else
 //
@@ -1223,7 +1223,7 @@ namespace ios
 //         file_pointer fileOut = App(papp).file().get_file(name, ::file::e_open_create | ::file::e_open_binary | ::file::e_open_write);
 //
 //         if(fileOut.is_null())
-//            __throw(::file::exception(-1, ::file::exception::none, name));
+//            throw ::exception(::file::exception(-1, ::file::exception::none, name));
 //
 //         return fileOut;
 //

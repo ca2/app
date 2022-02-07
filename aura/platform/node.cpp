@@ -86,7 +86,7 @@ namespace aura
    ::image_pointer node::get_file_image_by_type_identifier(int iSize, const char * pszTypeIdentifier)
    {
       
-      throw ::interface_only_exception();
+      throw ::interface_only();
       
       return nullptr;
       
@@ -96,7 +96,7 @@ namespace aura
    ::image_pointer node::get_file_image(int iSize, const char * pszPath)
    {
       
-      throw ::interface_only_exception();
+      throw ::interface_only();
       
       return nullptr;
       
@@ -178,7 +178,7 @@ namespace aura
    void* node::HICON_from_ico_file(const ::block& block)
    {
 
-      throw interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 

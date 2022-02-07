@@ -170,7 +170,7 @@ namespace user
 
       ::draw2d::savedc savedc(pgraphics);
 
-      pgraphics->OffsetImpactportOrg(rectangleClient.left, rectangleClient.top);
+      pgraphics->OffsetViewportOrg(rectangleClient.left, rectangleClient.top);
 
       ::rectangle_i32 rectangleCheckBox;
 
@@ -572,7 +572,7 @@ namespace user
       //      pgraphics->line_to(13, 6);
       //   }
       //}
-      //pgraphics->OffsetImpactportOrg(-rectangleClient.left, -rectangleClient.top);
+      //pgraphics->OffsetViewportOrg(-rectangleClient.left, -rectangleClient.top);
 
    }
 
@@ -600,7 +600,7 @@ namespace user
 //
 //         ::user::menu_command command(this);
 //
-//         command.m_id = m_id;
+//         command.m_atom = m_atom;
 //
 //         command.m_puiOther = this;
 //
@@ -686,7 +686,7 @@ namespace user
 
       pmessage->previous();
 
-      m_propertyCheck = fetch_property(m_id, true);
+      m_propertyCheck = fetch_property(m_atom, true);
 
    }
 

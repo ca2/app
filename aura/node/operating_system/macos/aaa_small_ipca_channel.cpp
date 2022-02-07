@@ -170,7 +170,7 @@ namespace aura
       rx::rx()
       {
 
-         m_id = "::aura::ipc::rx";
+         m_atom = "::aura::ipc::rx";
 
          m_preceiver    = nullptr;
 

@@ -162,7 +162,7 @@ bool oswindow_erase(UIWindow * window)
 //{
 //
 //   if(::is_null(*this))
-//      __throw(::exception("error, m_pdata cannot be nullptr to ::oswindow::set_user_interaction"));
+//      throw ::exception(::exception("error, m_pdata cannot be nullptr to ::oswindow::set_user_interaction"));
 //
 //   m_pimpl = pinteraction;
 //

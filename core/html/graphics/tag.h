@@ -9,7 +9,7 @@ namespace html
    public:
 
 
-      atom                m_idName;
+      atom                m_atomName;
       attribute_array   m_attra;
       base_ptr_array    m_baseptra;
 

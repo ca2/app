@@ -1302,7 +1302,7 @@ namespace apex
       if (::is_null(pcreate) || contains(pcreate))
       {
 
-         __throw(error_bad_argument);
+         throw ::exception(error_bad_argument);
 
       }
 

@@ -182,7 +182,7 @@ namespace user
             if(point.is_set())
             {
 
-               if(atom == point->m_id)
+               if(atom == point->m_atom)
                   return point;
                else
                   count++;

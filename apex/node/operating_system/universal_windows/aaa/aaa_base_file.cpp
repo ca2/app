@@ -1429,7 +1429,7 @@ void hfile_set_size(HANDLE h,i64 iSize)
    }
 
    if(!SetFilePointerEx(h,liMove,&liRes,dwMeth))
-      __throw(::exception("SetFilePointer error"));
+      throw ::exception(::exception("SetFilePointer error"));
 
    if(plHi != nullptr)
    {
@@ -1449,7 +1449,7 @@ void hfile_set_size(HANDLE h,i64 iSize)
    FILE_STANDARD_INFO info;
 
    if(!GetFileInformationByHandleEx(h,FileStandardInfo,&info,sizeof(info)))
-      __throw(::exception("GetFileSize Error"));
+      throw ::exception(::exception("GetFileSize Error"));
 
    if(lpdwHi != nullptr)
    {
@@ -1842,7 +1842,7 @@ int_bool file_path_is_equal(const char * psz1,const char * psz2)
 string file_get_mozilla_firefox_plugin_container_path()
 {
 
-   __throw(::exception(" todo "));
+   throw ::exception(::exception(" todo "));
 
    return "";
 

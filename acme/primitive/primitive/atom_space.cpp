@@ -30,7 +30,7 @@ const char * atom_space::get_id(const char * psz)
    if (pszNew == nullptr)
    {
 
-      __throw(error_no_memory);
+      throw ::exception(error_no_memory);
 
    }
 

@@ -43,11 +43,11 @@ namespace user
 //         {
 //         case e_control_type_static:
 //         {
-//            /*xxx            CTransparentStatic * pstatic = (CTransparentStatic *) window::FromHandlePermanent(pform->get_child_by_id(pinteraction->m_id)->GetSafeoswindow_());
+//            /*xxx            CTransparentStatic * pstatic = (CTransparentStatic *) window::FromHandlePermanent(pform->get_child_by_id(pinteraction->m_atom)->GetSafeoswindow_());
 //                        if(pstatic == nullptr || !base_class < CTransparentStatic >::bases(pstatic))
 //                        {
 //                           pstatic = new CTransparentStatic;
-//                           VERIFY(pstatic->subclass_window(pform->get_child_by_id(pinteraction->m_id)->GetSafeoswindow_()));
+//                           VERIFY(pstatic->subclass_window(pform->get_child_by_id(pinteraction->m_atom)->GetSafeoswindow_()));
 //                        }
 //                        pinteraction->m_unionwndptr.m_pstatic = pstatic;*/
 //         }
@@ -100,7 +100,7 @@ namespace user
 ////            if(pdescriptor->m_etype == e_control_type_simple_list)
 ////            {
 ////               ::user::list * plist = dynamic_cast <::user::list *>(pdescriptor->m_pcontrol);
-////               plist->m_dataid = pdescriptor->m_idPrivateDataSection;
+////               plist->m_dataid = pdescriptor->m_atomPrivateDataSection;
 ////               plist->_001SetSingleColumnMode(false);
 ////            }
 ////         }*/
@@ -218,7 +218,7 @@ namespace user
       //{
       //case BN_CLICKED:
       //{
-      //   /*      linux   ::user::button * pbutton = (::user::button *) get_child_by_id(pinteraction->m_id);
+      //   /*      linux   ::user::button * pbutton = (::user::button *) get_child_by_id(pinteraction->m_atom);
       //            i32 i = pbutton->get_check() != 0;
       //            VmsDataSet(pinteraction->m_dataid, 0, 0, i);*/
       //}
@@ -254,7 +254,7 @@ namespace user
       //{
       //case CBN_SELCHANGE:
       //{
-      //   /* linux         __pointer(::user::combo_box) pcombo = (__pointer(::user::combo_box)) get_child_by_id(pinteraction->m_id);
+      //   /* linux         __pointer(::user::combo_box) pcombo = (__pointer(::user::combo_box)) get_child_by_id(pinteraction->m_atom);
       //            i32 iSel = pcombo->current_item();
       //            if(iSel != CB_ERR)
       //            {
@@ -410,17 +410,17 @@ namespace user
 
       ::user::form_control::handle(ptopic, pcontext);
 
-      if (ptopic->m_pextendedtopic->m_bRet)
+      if (ptopic->get_extended_topic()->m_bRet)
       {
 
          return;
 
       }
 
-      if (ptopic->m_id == ::id_tab_key)
+      if (ptopic->m_atom == ::id_tab_key)
       {
 
-         __pointer(::user::primitive) pfocus = ptopic->m_pextendedtopic->user_interaction()->keyboard_get_next_focusable();
+         __pointer(::user::primitive) pfocus = ptopic->get_extended_topic()->user_interaction()->keyboard_get_next_focusable();
 
          if (pfocus != nullptr)
          {
@@ -430,10 +430,10 @@ namespace user
          }
 
       }
-      else if (ptopic->m_id == ::id_click)
+      else if (ptopic->m_atom == ::id_click)
       {
 
-         __pointer(interaction) pinteraction = ptopic->m_pextendedtopic->user_interaction();
+         __pointer(interaction) pinteraction = ptopic->get_extended_topic()->user_interaction();
 
          if (!pinteraction)
          {
@@ -450,7 +450,7 @@ namespace user
 
                _001OnButtonAction(pinteraction);
 
-               ptopic->m_pextendedtopic->m_bRet = true;
+               ptopic->get_extended_topic()->m_bRet = true;
 
             }
 
@@ -459,10 +459,10 @@ namespace user
          }
 
       }
-      else if (ptopic->m_id == ::id_set_check && ptopic->m_pextendedtopic->m_actioncontext.is_user_source())
+      else if (ptopic->m_atom == ::id_set_check && ptopic->get_extended_topic()->m_actioncontext.is_user_source())
       {
 
-         __pointer(interaction) pinteraction = ptopic->m_pextendedtopic->user_interaction();
+         __pointer(interaction) pinteraction = ptopic->get_extended_topic()->user_interaction();
 
          if (!pinteraction)
          {
@@ -478,7 +478,7 @@ namespace user
 
             //pinteraction->data_get(pdescriptor->m_datakey, ia);
 
-            __pointer(check) pcheck = ptopic->m_pextendedtopic->user_interaction();
+            __pointer(check) pcheck = ptopic->get_extended_topic()->user_interaction();
 
             if (pcheck->echeck() == ::check_checked)
             {
@@ -596,7 +596,7 @@ namespace user
       //i32 i;
       //if(data_get(pinteraction->m_datakey, i))
       //{
-      //   /* linux      ::user::button * pbutton = (::user::button *) get_child_by_id(pinteraction->m_id);
+      //   /* linux      ::user::button * pbutton = (::user::button *) get_child_by_id(pinteraction->m_atom);
       //         pbutton->SetCheck((i != 0) ? 1 : 0); */
       //}
    }
@@ -613,7 +613,7 @@ namespace user
             iptr iSel = pinteraction->GetComboBox()->m_dwaData.find_first((u32) i);
             if(iSel >= 0)
             {
-               __pointer(::user::combo_box) pcombo = (__pointer(::user::combo_box)) get_child_by_id(pinteraction->m_id);
+               __pointer(::user::combo_box) pcombo = (__pointer(::user::combo_box)) get_child_by_id(pinteraction->m_atom);
                pcombo->set_current_item(iSel);
             }
          }*/
@@ -682,7 +682,7 @@ namespace user
 
       ASSERT(pinteraction->get_control_type() == e_control_type_simple_list);
 
-      /*      ::user::list * plist = dynamic_cast<::user::list *>(get_child_by_id(pinteraction->m_id));
+      /*      ::user::list * plist = dynamic_cast<::user::list *>(get_child_by_id(pinteraction->m_atom));
 
             if(typeid(plist->GetDataInterface()) == __type(::user::simple_mesh_data))
             {
@@ -809,7 +809,7 @@ namespace user
 
 #else
 
-      __throw(todo);
+      throw ::exception(todo);
 
 #endif
 
@@ -867,7 +867,7 @@ namespace user
       if(ptopic != nullptr)
       {
 
-         if(!ptopic->m_pextendedtopic->is_modified())
+         if(!ptopic->get_extended_topic()->is_modified())
          {
 
             return;
@@ -930,7 +930,7 @@ namespace user
 
             string str;
 
-            str = papplication->load_string(pinteraction->m_id);
+            str = papplication->load_string(pinteraction->m_atom);
 
             pinteraction->set_window_text(str);
 
@@ -969,14 +969,13 @@ namespace user
 
       }
 
-      ::topic topic;
+      ::extended_topic extendedtopic(id_initialize_control);
 
-      topic.m_puserelement         = pinteraction;
-      topic.m_actioncontext = ::e_source_database;
-      topic.m_id       = ::id_initialize_control;
-      topic.m_uiEvent      = 0;
+      extendedtopic.m_puserelement         = pinteraction;
+      extendedtopic.m_actioncontext = ::e_source_database;
+      extendedtopic.m_uiEvent      = 0;
 
-      route(&topic);
+      route(&extendedtopic);
 
    }
 
@@ -1092,7 +1091,7 @@ namespace user
 //   //            ASSERT(pinteraction->m_type->IsDerivedFrom(__type(window)));
 //               if(descriptor.m_pcontrol.is_set())
 //               {
-//                  //window_id wndidTemp = get_child_by_id(pinteraction->m_id)->GetSafeoswindow_();
+//                  //window_id wndidTemp = get_child_by_id(pinteraction->m_atom)->GetSafeoswindow_();
 //                  //if(wndidTemp != nullptr)
 //                  {
 //             //xxx        VERIFY(pinteraction->m_puserinteraction->subclass_window(wndidTemp));
@@ -1107,7 +1106,7 @@ namespace user
 //                  if(descriptor.m_etype == e_control_type_simple_list)
 //                  {
 //                     ::user::list * plist = dynamic_cast <::user::list *>(descriptor.m_pcontrol);
-//                     plist->m_dataid = descriptor.m_idPrivateDataSection;
+//                     plist->m_dataid = descriptor.m_atomPrivateDataSection;
 //                     plist->_001SetSingleColumnMode(false);
 //                  }
 //               }*/
@@ -1202,7 +1201,7 @@ namespace user
 
    }
 
-   //if (ptopic->m_id == ::id_form_initialize)
+   //if (ptopic->m_atom == ::id_form_initialize)
    //{
 
    //   call_sync(get_document()->m_mapRunnablea["load"]);
@@ -1215,17 +1214,17 @@ namespace user
 
    //   ::user::form_control::handle(ptopic, pcontext);
 
-   //   if (ptopic->m_pextendedtopic->m_bRet)
+   //   if (ptopic->get_extended_topic()->m_bRet)
    //   {
 
    //      return;
 
    //   }
 
-   //   if(ptopic->m_id == ::id_tab_key)
+   //   if(ptopic->m_atom == ::id_tab_key)
    //   {
 
-   //      __pointer(::user::primitive) pfocus = ptopic->m_pextendedtopic->user_interaction()->keyboard_get_next_focusable();
+   //      __pointer(::user::primitive) pfocus = ptopic->get_extended_topic()->user_interaction()->keyboard_get_next_focusable();
 
    //      if(pfocus != nullptr)
    //      {
@@ -1235,10 +1234,10 @@ namespace user
    //      }
 
    //   }
-   //   else if(ptopic->m_id == ::id_click)
+   //   else if(ptopic->m_atom == ::id_click)
    //   {
 
-   //      __pointer(interaction) pinteraction = ptopic->m_pextendedtopic->user_interaction();
+   //      __pointer(interaction) pinteraction = ptopic->get_extended_topic()->user_interaction();
 
    //      if (!pinteraction)
    //      {
@@ -1255,7 +1254,7 @@ namespace user
 
    //            _001OnButtonAction(pinteraction);
 
-   //            ptopic->m_pextendedtopic->m_bRet = true;
+   //            ptopic->get_extended_topic()->m_bRet = true;
 
    //         }
 
@@ -1264,10 +1263,10 @@ namespace user
    //      }
 
    //   }
-   //   else if(ptopic->m_id == ::id_set_check && ptopic->m_pextendedtopic->m_actioncontext.is_user_source())
+   //   else if(ptopic->m_atom == ::id_set_check && ptopic->get_extended_topic()->m_actioncontext.is_user_source())
    //   {
 
-   //      __pointer(interaction) pinteraction = ptopic->m_pextendedtopic->user_interaction();
+   //      __pointer(interaction) pinteraction = ptopic->get_extended_topic()->user_interaction();
 
    //      if (!pinteraction)
    //      {
@@ -1283,7 +1282,7 @@ namespace user
 
    //         //pinteraction->data_get(pdescriptor->m_datakey, ia);
 
-   //         __pointer(check) pcheck = ptopic->m_pextendedtopic->user_interaction();
+   //         __pointer(check) pcheck = ptopic->get_extended_topic()->user_interaction();
 
    //         if(pcheck->echeck() == ::check_checked)
    //         {

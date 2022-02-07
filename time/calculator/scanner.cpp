@@ -845,7 +845,7 @@ namespace datetime
       token * token;
       token = new class token;
       if(token == NULL)
-         __throw(error_no_memory);
+         throw ::exception(error_no_memory);
       while(ansi_char_is_space(*input))
          input++;
       if(*input == '\0')

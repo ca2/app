@@ -70,7 +70,7 @@ namespace turboc
 
       SetPane(0,m_peditview,false);
 
-      if(m_id == "turboc_top")
+      if(m_atom == "turboc_top")
       {
 
          m_ptoggleview = create_view < toggle_view >(NULL,::rectangle_i32(),NULL,"turboc_toggle");

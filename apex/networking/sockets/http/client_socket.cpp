@@ -775,7 +775,7 @@ namespace sockets
 #elif defined(ANDROID)
       return "Mozilla/5.0 (Android; x86) AppleWebKit/537.36 (ca2, like Gecko) " + strAddUp;
 #else
-      __throw(todo);
+      throw ::exception(todo);
 #endif
 //      string str;
 //

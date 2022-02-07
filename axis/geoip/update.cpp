@@ -519,7 +519,7 @@ i16 GeoIP_update_database (char * license_key, i32 verbose, void (*f)( char * ))
 //
 //#else
 //
-//   __throw(todo);
+//   throw ::exception(todo);
 //
 //#endif
 //
@@ -1025,7 +1025,7 @@ i16 GeoIP_update_database_general (::object * pobject, char * user_id,char * lic
 //
 //#else
 //
-//   __throw(todo(pobject));
+//   throw ::exception(todo(pobject));
 //
 //#endif
 //

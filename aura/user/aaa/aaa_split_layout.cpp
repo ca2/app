@@ -949,7 +949,7 @@ namespace user
 
       }
 
-      pcomponent->m_id = atom.is_empty() ? (::atom) iIndex : atom;
+      pcomponent->m_atom = atom.is_empty() ? (::atom) iIndex : atom;
 
       m_panea[iIndex]->m_bFixedSize = bFixedSize;
 
@@ -1036,7 +1036,7 @@ namespace user
 
       }
 
-      pcomponent->m_id = atom.is_empty() ? (::atom) iIndex : atom;
+      pcomponent->m_atom = atom.is_empty() ? (::atom) iIndex : atom;
 
       m_panea[iIndex]->m_bFixedSize = bFixedSize;
 
@@ -1248,7 +1248,7 @@ namespace user
       if (iPane < 0 || iPane >= get_pane_count())
       {
 
-         __throw(error_bad_argument);
+         throw ::exception(error_bad_argument);
 
       }
 
@@ -1309,7 +1309,7 @@ namespace user
 
       Pane & pane = m_panea(iPane);
 
-      return pane.m_id;
+      return pane.m_atom;
 
    }
 
@@ -1320,7 +1320,7 @@ namespace user
       for(index iPane = 0; iPane < m_panea.get_count(); iPane++)
       {
 
-         if (m_panea[iPane]->m_id == atom)
+         if (m_panea[iPane]->m_atom == atom)
          {
 
             return iPane;

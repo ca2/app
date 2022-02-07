@@ -3,7 +3,7 @@
 #include "aura/id.h"
 #include "interaction_thread.h"
 #include "call_message_handler_task.h"
-#include "acme/node/operating_system/_user.h"
+#include "acme/operating_system/_user.h"
 #include "acme/platform/timer_array.h"
 
 
@@ -40,7 +40,7 @@ namespace user
    void primitive_impl::create_message_queue(::user::interaction * pinteraction, const ::string & lpszName)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       //return true;
 
@@ -50,7 +50,7 @@ namespace user
    //void primitive_impl::create_interaction(::user::interaction * pinteraction, ::user::primitive * pparent)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return true;
 
@@ -61,7 +61,7 @@ namespace user
 
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return false;
 
@@ -71,7 +71,7 @@ namespace user
    //void primitive_impl::create_window_ex(::user::interaction * pinteraction, __pointer(::user::system) pcs, ::user::primitive * puiParent, atom atom)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return true;
 
@@ -81,7 +81,7 @@ namespace user
    //void primitive_impl::create_interaction(::user::interaction * pinteraction, ::user::primitive * pparent)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return true;
 
@@ -1792,7 +1792,7 @@ namespace user
    void primitive_impl::show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -1800,7 +1800,7 @@ namespace user
    void primitive_impl::hide_software_keyboard(::user::primitive * pprimitive)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 

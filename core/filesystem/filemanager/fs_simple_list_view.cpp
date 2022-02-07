@@ -833,7 +833,7 @@ namespace filemanager
          {
             for(i32 i = 0; i < this->get_size(); i++)
             {
-               if(this->element_at(i).m_id == pszId)
+               if(this->element_at(i).m_atom == pszId)
 
                   return i;
             }

@@ -36,7 +36,7 @@ namespace std { enum class align_val_t : std::size_t {}; }
 //   if (block.get_size() < get_size())
 //   {
 //
-//      __throw(error_bad_argument);
+//      throw ::exception(error_bad_argument);
 //
 //   }
 //   
@@ -332,7 +332,7 @@ namespace std { enum class align_val_t : std::size_t {}; }
 //
 //      ASSERT(false);
 //
-//      __throw(error_bad_argument);
+//      throw ::exception(error_bad_argument);
 //
 //   }
 //
@@ -420,7 +420,7 @@ namespace std { enum class align_val_t : std::size_t {}; }
 //
 //      ASSERT(false);
 //
-//      __throw(error_bad_argument);
+//      throw ::exception(error_bad_argument);
 //
 //   }
 //
@@ -782,7 +782,7 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 //} // namespace str
 
 
-//inline void copy(void *, const void *) /* = 0 */ {throw ::interface_only_exception(); }
+//inline void copy(void *, const void *) /* = 0 */ {throw ::interface_only(); }
 
 
 //namespace papaya
@@ -797,7 +797,7 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 //      inline TYPE default_value()
 //      {
 //
-//         __throw(::exception("template only exception"));
+//         throw ::exception(::exception("template only exception"));
 //
 //      }
 //
@@ -1043,7 +1043,7 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 //   if (::is_null(pderived))
 //   {
 //
-//      __throw(::exception(::error_wrong_type));
+//      throw ::exception(::exception(::error_wrong_type));
 //
 //   }
 //
@@ -1078,7 +1078,7 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 //
 //#ifdef _DEBUG
 //
-////   ::atom atom = p->m_id;
+////   ::atom atom = p->m_atom;
 //   //char * pszType = nullptr;
 //   //
 //   //try

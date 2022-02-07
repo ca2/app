@@ -235,7 +235,7 @@ namespace aura
    //::message::application::::message::application(e_::message::application esignal)
    //{
 
-   //   m_id = ::message::type_application;
+   //   m_atom = ::message::type_application;
    //   m_esignal = esignal;
    //   m_bOk = true;
 
@@ -558,7 +558,7 @@ namespace aura
 
          //    psystem->on_run_exception(esp);
 
-         //    __throw(exit_exception(esp->get_application(), ::exit_application));
+         //    throw ::exception(exit_exception(esp->get_application(), ::exit_application));
 
          // }
          catch (const ::exception & e)
@@ -1138,7 +1138,7 @@ namespace aura
 //   void application::TermThread(HINSTANCE hInstTerm)
 //   {
 //
-//      throw ::interface_only_exception();
+//      throw ::interface_only();
 //
 //   }
 //
@@ -1150,7 +1150,7 @@ namespace aura
 
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return false;
 
@@ -1161,7 +1161,7 @@ namespace aura
    /*::user::document *  application::_001OpenDocumentFile(::payload payloadFile)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
@@ -1171,7 +1171,7 @@ namespace aura
    //void application::_001OnFileNew(::message::message * pmessage)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //}
 
@@ -1201,7 +1201,7 @@ namespace aura
    //void application::_001CloseApplication()
    //{
 
-   //   __throw(todo);
+   //   throw ::exception(todo);
 
    //}
 
@@ -1240,7 +1240,7 @@ namespace aura
 //   string CLASS_DECL_AURA application::get_cred(const ::string & strRequestUrl, const ::rectangle_i32 & rectangle, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive)
 // {
 
-//  __throw(error_not_implemented);
+//  throw ::not_implemented();
 
 //}
 
@@ -1250,7 +1250,7 @@ namespace aura
    //bool application::get_temp_file_name_template(string & strRet, const ::string & lpszName, const ::string & pszExtension, const ::string & pszTemplate)
    //{
 
-   //   __throw(error_not_implemented);
+   //   throw ::not_implemented();
 
    //   return false;
 
@@ -2969,7 +2969,7 @@ retry_license:
    //string application::http_get_locale_schema(const ::string & pszUrl, const ::string & pszLocale, const ::string & pszSchema)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return "";
 
@@ -3135,8 +3135,8 @@ retry_license:
    //  string strSchema(pszSchema);
 
 
-   //  localeschema.m_idLocale = pszLocale;
-   //  localeschema.m_idSchema = pszSchema;
+   //  localeschema.m_atomLocale = pszLocale;
+   //  localeschema.m_atomSchema = pszSchema;
 
 
    //  localeschema.add_locale_variant(strLocale, strSchema);
@@ -3185,8 +3185,8 @@ retry_license:
 
    //  straSchema.add_unique(value("schema").stra());
 
-   //  localeschema.m_idLocale = straLocale[0];
-   //  localeschema.m_idSchema = straSchema[0];
+   //  localeschema.m_atomLocale = straLocale[0];
+   //  localeschema.m_atomSchema = straSchema[0];
 
    //  for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
    //  {
@@ -3706,7 +3706,7 @@ retry_license:
 //
 //      ::string strContents = m_psystem->m_pacmefile->as_string(strPath.c_str());
 //
-//      __throw(todo("xml"));
+//      throw ::exception(todo("xml"));
 //
 //      //::xml::document doc;
 //
@@ -4095,7 +4095,7 @@ retry_license:
       if (pinteraction == nullptr && pmsg->oswindow != nullptr)
       {
 
-        if (pmsg->m_id == 126)
+        if (pmsg->m_atom == 126)
         {
 
            INFORMATION("e_message_display_change");
@@ -4142,7 +4142,7 @@ retry_license:
       if (pinteraction != nullptr)
       {
 
-         return pinteraction->get_message(pmsg->m_id, pmsg->wParam, pmsg->lParam);
+         return pinteraction->get_message(pmsg->m_atom, pmsg->wParam, pmsg->lParam);
 
       }
 
@@ -4155,7 +4155,7 @@ retry_license:
 
       }
 
-      pusermessage->set(pmsg->oswindow, pwindow, pmsg->m_id, pmsg->wParam, pmsg->lParam);
+      pusermessage->set(pmsg->oswindow, pwindow, pmsg->m_atom, pmsg->wParam, pmsg->lParam);
 
       return pusermessage;
 
@@ -4626,7 +4626,7 @@ retry_license:
    //{
 
 
-   //   //__throw(todo("xml"));
+   //   //throw ::exception(todo("xml"));
 
    //   //auto pdocument = __new(::xml::document);
 
@@ -5130,7 +5130,7 @@ retry_license:
 
       bool bIgnoreStdStd = string(pszRoot) == "app" && (string(pszRelative) == "main" || string(pszRelative) == "bergedge");
 
-      //update_appmatter(h, psession, pszRoot, pszRelative, plocaleschema->m_idLocale, plocaleschema->m_idSchema);
+      //update_appmatter(h, psession, pszRoot, pszRelative, plocaleschema->m_atomLocale, plocaleschema->m_atomSchema);
 
       ::count iCount = plocaleschema->m_idaLocale.get_count();
 
@@ -5444,7 +5444,7 @@ retry_license:
    //void application::TermThread(HINSTANCE hInstTerm)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //}
 
@@ -5454,7 +5454,7 @@ retry_license:
    //string application::get_version()
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return "";
 
@@ -5466,7 +5466,7 @@ retry_license:
 //   void application::set_env_var(const string & payload,const string & value)
 //   {
 //
-//      throw ::interface_only_exception();
+//      throw ::interface_only();
 //
 //   }
 
@@ -5475,7 +5475,7 @@ retry_license:
    ::draw2d::printer * application::get_printer(const ::string & pszDeviceName)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
@@ -5500,7 +5500,7 @@ retry_license:
    string application::dialog_box(const ::string & pszMatter, property_set& propertyset)
    {
 
-      __throw(todo, "core and os");
+      throw ::exception(todo, "core and os");
 
       return"";
 
@@ -5524,7 +5524,7 @@ retry_license:
    //bool application::get_temp_file_name_template(string & strRet, const ::string & lpszName, const ::string & pszExtension, const ::string & pszTemplate)
    //{
 
-   //   __throw(error_not_implemented);
+   //   throw ::not_implemented();
 
    //   return false;
 
@@ -5709,7 +5709,7 @@ retry_license:
 
    //   handle(ptopic);
 
-   //   if (ptopic->m_pextendedtopic->m_bRet)
+   //   if (ptopic->get_extended_topic()->m_bRet)
    //   {
 
    //      return;
@@ -5718,7 +5718,7 @@ retry_license:
 
    //   on_notify_control_event(pevent);
 
-   //   if (ptopic->m_pextendedtopic->m_bRet)
+   //   if (ptopic->get_extended_topic()->m_bRet)
    //   {
 
    //      return;
@@ -5954,7 +5954,7 @@ namespace aura
 
             ::message::command command;
 
-            command.m_id = idCommand;
+            command.m_atom = idCommand;
 
             auto puserinteractionMain = m_puserinteractionMain;
 
@@ -6146,7 +6146,7 @@ namespace aura
 
       // handle certain messages in thread
 
-      switch (pusermessage->m_id)
+      switch (pusermessage->m_atom)
       {
       case e_message_create:
       case e_message_paint:
@@ -6159,7 +6159,7 @@ namespace aura
       //linux ::u32 nIDP = __IDP_INTERNAL_FAILURE;   // matter message string
       const char* nIDP = "Internal Failure";
       pusermessage->m_lresult = 0;        // sensible default
-      if (pusermessage->m_id == e_message_command)
+      if (pusermessage->m_atom == e_message_command)
       {
          if (pusermessage->m_lparam == 0)
             //linux nIDP = __IDP_COMMAND_FAILURE; // command (not from a control)
@@ -7053,7 +7053,7 @@ namespace aura
 //      __UNREFERENCED_PARAMETER(hDevNames);
 //      __UNREFERENCED_PARAMETER(hDevMode);
 //      __UNREFERENCED_PARAMETER(bFreeOld);
-//      throw interface_only_exception();
+//      throw ::interface_only();
 //
 //   }
 //
@@ -7063,7 +7063,7 @@ namespace aura
 
    //::draw2d::graphics* application::CreatePrinterDC()
    //{
-   //   throw interface_only_exception();
+   //   throw ::interface_only();
    //   return nullptr;
    //}
 
@@ -7254,7 +7254,7 @@ namespace aura
    {
       //__UNREFERENCED_PARAMETER(nIDRegistryKey);
       //ASSERT(m_pszRegistryKey == nullptr);
-      //throw interface_only_exception();
+      //throw ::interface_only();
       ///*char szRegistryKey[256];
       //VERIFY(::aura::LoadString(nIDRegistryKey, szRegistryKey));
       //SetRegistryKey(szRegistryKey);*/
@@ -7779,7 +7779,7 @@ namespace aura
    //bool application::_001OnDDECommand(const ::string & pcsz)
 
    //{
-   //   throw interface_only_exception();
+   //   throw ::interface_only();
    //   //return m_pimpl->_001OnDDECommand(pcsz);
 
 
@@ -7800,7 +7800,7 @@ namespace aura
 //   ::user::interaction * application::get_desktop_window()
 //   {
 //#if defined(_UWP) || defined(__APPLE__)
-//      __throw(todo);
+//      throw ::exception(todo);
 //      /*#elif defined(LINUX)
 //
 //      //      synchronous_lock synchronouslock(&user_mutex());
@@ -7973,7 +7973,7 @@ namespace aura
 
       //__pointer(::user::message) pusermessage(pmessage);
 
-//      if (pmessage->m_id == WM_USER + 124 && pmessage->userinteraction() == nullptr)
+//      if (pmessage->m_atom == WM_USER + 124 && pmessage->userinteraction() == nullptr)
 //      {
 //
 //         /*
@@ -8332,7 +8332,7 @@ namespace aura
 //
 //      return (i32)SendMessage(oswindow, WM_COPYDATA, (wparam)osdataSender, (lparam)&cds);
 //#else
-//      __throw(todo);
+//      throw ::exception(todo);
 //#endif
 //   }
 
@@ -8348,7 +8348,7 @@ namespace aura
 
       auto pwindowing = puser->m_pwindowing;
 
-      __throw(todo);
+      throw ::exception(todo);
 
       //for (i32 i = 0; i < m_straAppInterest.get_count(); i++)
       //{
@@ -8360,7 +8360,7 @@ namespace aura
 
 #else
 
-      //__throw(todo);
+      //throw ::exception(todo);
 
 #endif
 
@@ -8730,7 +8730,7 @@ namespace aura
 
          //::user::form_callback::handle(ptopic, pcontext);
 
-         if(ptopic->m_id == id_app_activated)
+         if(ptopic->m_atom == id_app_activated)
          {
             
             if(m_puserinteractionMain)
@@ -8742,12 +8742,13 @@ namespace aura
             }
             
          }
-         if (ptopic->m_id == ::id_initialize_control)
+
+         if (ptopic->m_atom == ::id_initialize_control)
          {
 
-            auto puserinteraction = ptopic->m_pextendedtopic->m_puserelement->cast<::user::interaction>();
+            auto puserinteraction = ptopic->get_extended_topic()->m_puserelement->cast<::user::interaction>();
 
-            if (puserinteraction->m_id == __id(user_auto_start_checkbox))
+            if (puserinteraction->m_atom == __id(user_auto_start_checkbox))
             {
 
                try
@@ -8782,13 +8783,13 @@ namespace aura
             }
 
          }
-         else if (ptopic->m_id == ::id_set_check)
+         else if (ptopic->m_atom == ::id_set_check)
          {
 
-            auto puserinteraction = ptopic->m_pextendedtopic->user_interaction();
+            auto puserinteraction = ptopic->get_extended_topic()->user_interaction();
 
-            if (puserinteraction->m_id == __id(user_auto_start_checkbox)
-               && ptopic->m_pextendedtopic->m_actioncontext.is_user_source())
+            if (puserinteraction->m_atom == __id(user_auto_start_checkbox)
+               && ptopic->get_extended_topic()->m_actioncontext.is_user_source())
             {
 
                try
@@ -8807,7 +8808,7 @@ namespace aura
 
                   }
 
-                  ptopic->m_pextendedtopic->m_bRet = true;
+                  ptopic->get_extended_topic()->m_bRet = true;
 
                   return;
 
@@ -8916,7 +8917,7 @@ namespace aura
       //case MSGF_DIALOGBOX:    // handles message boxes as well.
       //   //pMainWnd = __get_main_window();
       //   if (code == MSGF_DIALOGBOX && m_puiActive != nullptr &&
-      //      pusermessage->m_id >= e_message_key_first && pusermessage->m_id <= e_message_key_last)
+      //      pusermessage->m_atom >= e_message_key_first && pusermessage->m_atom <= e_message_key_last)
       //   {
       //   }
       //   break;
@@ -9328,7 +9329,7 @@ namespace aura
 
    //      ::message::command command;
 
-   //      command.m_id = ::atom(pszCommand);
+   //      command.m_atom = ::atom(pszCommand);
 
    //      __channel(m_puserinteractionMain)->route_command_message(&command);
 

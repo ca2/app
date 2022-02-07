@@ -7,7 +7,7 @@ class CLASS_DECL_APEX interprocess_task :
 public:
 
 
-   ::atom                                m_idPid;
+   ::atom                                m_atomPid;
    ::i64                               m_iTask;
    __pointer(interprocess_call)               m_pcall;
    ::payload                                 m_var;

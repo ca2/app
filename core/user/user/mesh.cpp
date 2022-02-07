@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "core/user/user/_user.h"
-//#include "acme/node/operating_system/cross/windows/_windows.h"
+//#include "acme/operating_system/cross/windows/_windows.h"
 #include "acme/constant/timer.h"
 #include "acme/platform/timer.h"
 #include "aura/graphics/draw2d/_draw2d.h"
@@ -185,7 +185,7 @@ namespace user
 
          pbrushText->create_solid(get_color(pstyle, ::e_element_text));
 
-         const ::point_i32 & pointImpactportOrg = pgraphics->GetImpactportOrg();
+         const ::point_i32 & pointViewportOrg = pgraphics->GetViewportOrg();
 
          pgraphics->set(pbrushText);
          ::size_array sizea;
@@ -227,7 +227,7 @@ namespace user
                iStart = iNewStart;
             }
          }
-         pgraphics->SetImpactportOrg(pointImpactportOrg);
+         pgraphics->SetViewportOrg(pointViewportOrg);
       }
 
 
@@ -1957,7 +1957,7 @@ namespace user
             }
             else
             {
-               throw interface_only_exception();
+               throw ::interface_only();
             }
          }
          else
@@ -2059,7 +2059,7 @@ namespace user
             }
             else
             {
-               throw interface_only_exception();
+               throw ::interface_only();
             }
          }
          else
@@ -2186,7 +2186,7 @@ namespace user
          return_(pdrawitem->m_bOk,true);
 
          //return;
-         //__throw(::exception("subitem rectangle_i32 on icon impact? why are you asking for that now?"));
+         //throw ::exception(::exception("subitem rectangle_i32 on icon impact? why are you asking for that now?"));
       }
 
       pdrawitem->m_bOk = false;
@@ -3056,13 +3056,11 @@ namespace user
    bool mesh::on_click(const ::item & item)
    {
 
-      ::topic topic;
+      ::extended_topic extendedtopic(::id_list_clicked);
 
-      topic.m_puserelement = this;
+      extendedtopic.m_puserelement = this;
 
-      topic.m_id = ::id_list_clicked;
-
-      route(&topic);
+      route(&extendedtopic);
 
       /*if(m_pformcallback != nullptr)
       {
@@ -3391,7 +3389,7 @@ namespace user
    //   //      __pointer(::image_list) pil = pcolumn->m_pil;
    //   //   if(pil != nullptr)
    //   //      pil->DeleteImageMesh();
-   //   throw interface_only_exception();
+   //   throw ::interface_only();
    //   /*if(!pil->create(
    //   MAKEINTRESOURCE(pcolumn->m_uiSmallBitmap),
    //   pcolumn->m_iSmallImageWidth,
@@ -4552,7 +4550,7 @@ namespace user
 
       auto psystem = m_psystem->m_paxissystem;
 
-      m_pregexFilter1 = psystem->create_pcre("/.*" + stra.implode(".*") + ".*/i");
+      m_pregexFilter1 = psystem->compile_pcre("/.*" + stra.implode(".*") + ".*/i");
 
       m_bFilter1 = m_pregexFilter1;
 

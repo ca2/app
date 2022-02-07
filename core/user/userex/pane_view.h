@@ -18,7 +18,7 @@ namespace userex
          
          string   m_strMatter;
          
-         atom       m_id;
+         atom       m_atom;
 
       };
 

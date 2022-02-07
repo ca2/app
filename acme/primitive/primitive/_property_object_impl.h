@@ -3,7 +3,7 @@
 
 inline material_object::material_object(const material_object & idmatter) :
    matter(idmatter),
-   m_id(idmatter.m_id)
+   m_atom(idmatter.m_atom)
 {
 
 }
@@ -260,7 +260,7 @@ inline ::payload & property_object::get_object(const ::atom & atom)
    if (!pproperty)
    {
 
-      __throw(error_resource);
+      throw ::exception(error_resource);
 
    }
 
@@ -279,7 +279,7 @@ inline ::payload & property_object::topic(const ::atom& atom)
    if (!property)
    {
 
-      __throw(error_resource);
+      throw ::exception(error_resource);
 
    }
 

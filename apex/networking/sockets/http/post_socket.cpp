@@ -146,7 +146,7 @@ namespace sockets
          else if (m_fields.has_property("xml") && m_fields["xml"].get_type() == ::e_type_element)
          {
 
-            __throw(todo, "xml");
+            throw ::exception(todo, "xml");
 
             //::xml::node * pnode = m_fields["xml"].cast < ::xml::node >();
             //body = pnode->get_xml();
@@ -256,7 +256,7 @@ namespace sockets
          for(auto & pproperty : m_fields)
          {
 
-            atom & atom = pproperty->m_id;
+            atom & atom = pproperty->m_atom;
 
             ::payload & payload = *pproperty;
 

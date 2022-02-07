@@ -112,12 +112,12 @@ namespace user
 
          m_bLButtonDown = false;
 
-         ::topic topic;
-         topic.m_puserelement = this;
-         topic.m_id = ::id_click;
-         topic.m_actioncontext = ::e_source_user;
+         ::extended_topic extendedtopic(id_click);
 
-         route(&topic);
+         extendedtopic.m_puserelement = this;
+         extendedtopic.m_actioncontext = ::e_source_user;
+
+         route(&extendedtopic);
 
       }
 
@@ -199,7 +199,7 @@ namespace user
 //
 //#ifdef WINDOWS_DESKTOP
 //
-//      if (pusermessage->m_id != WM_DRAWITEM)
+//      if (pusermessage->m_atom != WM_DRAWITEM)
 //         return ::user::interaction::OnChildNotify(pusermessage);
 //
 //#ifdef WINDOWS_DESKTOP

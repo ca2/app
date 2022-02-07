@@ -215,7 +215,7 @@ namespace user
 
       }
 
-      ppane->m_id = atom;
+      ppane->m_atom = atom;
 
       on_change_tab_count({ ppane });
 
@@ -239,10 +239,10 @@ namespace user
       for(i32 i = 0; i < get_data()->m_tabpanecompositea.get_count(); i++)
       {
 
-         if(get_data()->m_tabpanecompositea[i]->m_id == atom)
+         if(get_data()->m_tabpanecompositea[i]->m_atom == atom)
          {
 
-            if (!bRestorableMatch && matches_restorable_tab(get_data()->m_tabpanecompositea[i]->m_id, get_data()->m_tabpanecompositea[i]->m_pplaceholder))
+            if (!bRestorableMatch && matches_restorable_tab(get_data()->m_tabpanecompositea[i]->m_atom, get_data()->m_tabpanecompositea[i]->m_pplaceholder))
             {
 
                bRestorableMatch = true;
@@ -312,7 +312,7 @@ namespace user
 
       }
 
-      ppane->m_id          = atom;
+      ppane->m_atom          = atom;
       ppane->m_pplaceholder = nullptr;
 
       auto pcontext = m_pcontext->m_pauracontext;
@@ -622,7 +622,7 @@ namespace user
 
       }
 
-      //point_i32 pointImpactportOffset = pgraphics->GetImpactportOrg();
+      //point_i32 pointViewportOffset = pgraphics->GetViewportOrg();
 
       ::rectangle_f64 rClip;
 
@@ -745,7 +745,7 @@ namespace user
             if (true)
             {
 
-               if (get_data()->m_idaSel.contains(ppane->m_id))
+               if (get_data()->m_idaSel.contains(ppane->m_atom))
                {
 
                   ppath->add_line(rectangleBorder.right, rectangleBorder.bottom, rectangleBorder.left + 1, rectangleBorder.bottom);
@@ -851,7 +851,7 @@ namespace user
 
                auto ppath = __create < ::draw2d::path > ();
 
-               if (get_data()->m_idaSel.contains(ppane->m_id))
+               if (get_data()->m_idaSel.contains(ppane->m_atom))
                {
 
                   ppath->add_line(rectangleBorder.left, rectangleClient.bottom, rectangleBorder.left, rectangleBorder.top);
@@ -1143,7 +1143,7 @@ namespace user
 
             }
 
-            if(get_data()->m_idaSel.contains(ppane->m_id))
+            if(get_data()->m_idaSel.contains(ppane->m_atom))
             {
 
                auto ppen = __create < ::draw2d::pen > ();
@@ -2574,15 +2574,13 @@ namespace user
    void tab::on_create_tabs()
    {
 
-      ::topic topic;
+      ::extended_topic extendedtopic(::id_on_create_tab);
 
-      topic.m_puserelement      = this;
+      extendedtopic.m_puserelement = this;
 
-      topic.m_ptab      = this;
+      extendedtopic.m_ptab = this;
 
-      topic.m_id    = ::id_on_create_tab;
-
-      route(&topic);
+      route(&extendedtopic);
 
    }
 
@@ -2737,7 +2735,7 @@ namespace user
       return pdata->m_tabpanecompositea.predicate_find_first([atom](auto& ptabpane)
          {
 
-            return ptabpane->m_id == atom;
+            return ptabpane->m_atom == atom;
 
          });
 
@@ -2768,7 +2766,7 @@ namespace user
 
       }
 
-      return ppane->m_id;
+      return ppane->m_atom;
 
    }
 
@@ -3180,7 +3178,7 @@ namespace user
 
    //      }
 
-   //      if (get_data()->m_tabpanecompositea[iIndex]->m_id == atom)
+   //      if (get_data()->m_tabpanecompositea[iIndex]->m_atom == atom)
    //      {
 
    //         return iIndex;
@@ -3207,7 +3205,7 @@ namespace user
    //         if(iIndex <= 0)
    //         {
 
-   //            return get_data()->m_tabpanecompositea[iIndex]->m_id;
+   //            return get_data()->m_tabpanecompositea[iIndex]->m_atom;
 
    //         }
    //         else
@@ -3451,29 +3449,29 @@ namespace user
 
       ::user::interaction::handle(ptopic, pcontext);
 
-      if (ptopic->m_id == id_get_topic_view_id)
+      if (ptopic->m_atom == id_get_topic_view_id)
       {
 
-         ptopic->m_pextendedtopic->payload(id_id) = get_current_tab_id();
+         ptopic->get_extended_topic()->payload(id_id) = get_current_tab_id();
 
-         ptopic->m_pextendedtopic->m_bRet = true;
+         ptopic->get_extended_topic()->m_bRet = true;
 
       }
-      else if (ptopic->m_id == id_set_topic_view_by_id)
+      else if (ptopic->m_atom == id_set_topic_view_by_id)
       {
 
-         set_current_tab_by_id(ptopic->m_pextendedtopic->payload(id_id));
+         set_current_tab_by_id(ptopic->get_extended_topic()->payload(id_id));
 
-         ptopic->m_pextendedtopic->m_bRet = true;
+         ptopic->get_extended_topic()->m_bRet = true;
 
       }
-      else if(ptopic->m_id == id_place_child_title_change)
+      else if(ptopic->m_atom == id_place_child_title_change)
       {
 
          for (auto& ppane : get_data()->m_tabpanecompositea)
          {
 
-            if (ppane->m_pplaceholder == ptopic->m_pextendedtopic->m_puserelement)
+            if (ppane->m_pplaceholder == ptopic->get_extended_topic()->m_puserelement)
             {
 
                auto puserinteractionpointeraChild = ppane->m_pplaceholder->m_puserinteractionpointeraChild;
@@ -3501,7 +3499,7 @@ namespace user
    void tab::rotate()
    {
 
-      __throw(todo);
+      throw ::exception(todo);
 
    }
 
@@ -3603,7 +3601,7 @@ namespace user
 
    //         client_to_screen(rectangleTabScreen);
 
-   //         if ((pmouse->m_id == e_message_left_button_down || pmouse->m_id == e_message_left_button_up) && rectangleTabScreen.contains(pmouse->m_point))
+   //         if ((pmouse->m_atom == e_message_left_button_down || pmouse->m_atom == e_message_left_button_up) && rectangleTabScreen.contains(pmouse->m_point))
    //         {
 
    //            route_message(pmouse);
@@ -3616,7 +3614,7 @@ namespace user
    //            }
 
    //         }
-   //         else if (pmouse->m_id == e_message_mouse_move)
+   //         else if (pmouse->m_atom == e_message_mouse_move)
    //         {
 
    //            route_message(pmouse);
@@ -3637,7 +3635,7 @@ namespace user
    //      }
 
    //   }
-   //   else if(pmouse->m_id == e_message_mouse_move)
+   //   else if(pmouse->m_atom == e_message_mouse_move)
    //   {
 
    //   }
@@ -3747,7 +3745,7 @@ namespace user
       for (auto ppane : array)
       {
 
-         if (ppane == nullptr || matches_restorable_tab(ppane->m_id, ppane->m_pplaceholder))
+         if (ppane == nullptr || matches_restorable_tab(ppane->m_atom, ppane->m_pplaceholder))
          {
 
             bAny = true;
@@ -3859,7 +3857,7 @@ namespace user
 
          auto ppane = panea[i].get();
 
-         strPath = ppane->m_id;
+         strPath = ppane->m_atom;
 
          if(strPrefix.is_empty() || ::str::begins_ci(strPath, strPrefix))
          {
@@ -3910,7 +3908,7 @@ namespace user
 
          auto ppane = panea[i].get();
 
-         strPath = ppane->m_id;
+         strPath = ppane->m_atom;
 
          if(strPrefix.is_empty() || ::str::begins_ci(strPath, strPrefix))
          {
@@ -3969,7 +3967,7 @@ namespace user
       for(i32 i = 0; i < panea.get_count(); i++)
       {
 
-         varId = panea[i]->m_id;
+         varId = panea[i]->m_atom;
 
          if(matches_restorable_tab(varId, panea[i]->m_pplaceholder))
          {
@@ -3994,7 +3992,7 @@ namespace user
       tab_pane_composite_array & panea = get_data()->m_tabpanecompositea;
       for(i32 i = 0; i < panea.get_count(); i++)
       {
-         varId = panea[i]->m_id;
+         varId = panea[i]->m_atom;
          if(matchany.matches(varId))
          {
             return true;

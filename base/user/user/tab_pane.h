@@ -22,7 +22,7 @@ namespace user
       ::draw2d::brush_pointer             m_pbrushFill;
       ::draw2d::brush_pointer             m_pbrushFillSel;
       ::draw2d::brush_pointer             m_pbrushFillHover;
-      atom                                  m_id;
+      atom                                  m_atom;
       ::image_pointer                     m_pimage;
       __pointer(place_holder)             m_pplaceholder;
       __pointer(impact_data)              m_pimpactdata;

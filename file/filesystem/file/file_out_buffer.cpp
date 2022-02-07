@@ -133,7 +133,7 @@ namespace file
    {
       HRESULT result = flush();
       if (result != S_OK)
-         __throw(out_buffer_exception(result));
+         throw ::exception(out_buffer_exception(result));
    }
 
 

@@ -20,7 +20,7 @@
    string os_context::get_command_line()
    {
 
-      throw interface_only_exception("this is an interface");
+      throw ::interface_only("this is an interface");
 
       return "";
 
@@ -32,7 +32,7 @@
       
       __UNREFERENCED_PARAMETER(bIfPowerOff);
 
-      throw interface_only_exception("this is an interface");
+      throw ::interface_only("this is an interface");
 
       //return false;
 
@@ -42,7 +42,7 @@
    void os_context::reboot()
    {
       
-      throw interface_only_exception("this is an interface");
+      throw ::interface_only("this is an interface");
       
       //return false;
 
@@ -54,7 +54,7 @@
       
       __UNREFERENCED_PARAMETER(lpszName);
 
-      throw interface_only_exception("this is an interface");
+      throw ::interface_only("this is an interface");
 
    }
 
@@ -65,7 +65,7 @@
       __UNREFERENCED_PARAMETER(lpszName);
       __UNREFERENCED_PARAMETER(dwPid);
 
-      throw interface_only_exception("this is an interface");
+      throw ::interface_only("this is an interface");
 
       return false;
 
@@ -78,7 +78,7 @@
       __UNREFERENCED_PARAMETER(lpszName);
       __UNREFERENCED_PARAMETER(dwPid);
       
-      throw interface_only_exception("this is an interface");
+      throw ::interface_only("this is an interface");
       return false;
 
    }
@@ -87,7 +87,7 @@
    int os_context::get_pid()
    {
       
-      throw interface_only_exception("this is an interface");
+      throw ::interface_only("this is an interface");
 
       return -1;
 
@@ -99,7 +99,7 @@
       
       __UNREFERENCED_PARAMETER(dwPid);
 
-      throw interface_only_exception("this is an interface");
+      throw ::interface_only("this is an interface");
 
       return "";
 
@@ -111,7 +111,7 @@
 
       __UNREFERENCED_PARAMETER(dwa);
 
-      throw interface_only_exception("this is an interface");
+      throw ::interface_only("this is an interface");
 
    }
 
@@ -121,7 +121,7 @@
 //   ::file::path os_context::get_module_path(HMODULE hmodule)
 //   {
 //      __UNREFERENCED_PARAMETER(hmodule);
-//      throw interface_only_exception("this is an interface");
+//      throw ::interface_only("this is an interface");
 //   }
 //
 //#endif
@@ -277,7 +277,7 @@
 
    {
 
-      __throw(error_not_implemented);
+      throw ::not_implemented();
 
       //return false;
 
@@ -299,7 +299,7 @@
    {
 
 
-      throw interface_only_exception();
+      throw ::interface_only();
 
 
       //return false;
@@ -312,7 +312,7 @@
    {
 
 
-      throw interface_only_exception();
+      throw ::interface_only();
 
 
       //return false;
@@ -325,7 +325,7 @@
    {
 
 
-      throw interface_only_exception();
+      throw ::interface_only();
 
 
       //return false;
@@ -338,7 +338,7 @@
    {
 
 
-      throw interface_only_exception();
+      throw ::interface_only();
 
 
       //return false;
@@ -351,7 +351,7 @@
    {
 
 
-      throw interface_only_exception();
+      throw ::interface_only();
 
 
    }
@@ -361,7 +361,7 @@
    {
 
 
-      throw interface_only_exception();
+      throw ::interface_only();
 
 
    }
@@ -371,7 +371,7 @@
    {
 
 
-      throw interface_only_exception();
+      throw ::interface_only();
 
 
    }
@@ -381,7 +381,7 @@
    {
 
 
-      throw interface_only_exception();
+      throw ::interface_only();
 
 
    }
@@ -410,7 +410,7 @@
 
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -585,9 +585,9 @@
    void os_context::set_dark_mode(bool bDarkMode)
    {
 
-      throw interface_only_exception();
+      throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -689,7 +689,7 @@
    void os_context::browse_file_open(property_set & set)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       //return false;
 
@@ -699,7 +699,7 @@
    void os_context::browse_file_save(property_set & set)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       //return false;
 
@@ -709,7 +709,7 @@
    void os_context::browse_folder(property_set & set)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       //return false;
 
@@ -719,7 +719,7 @@
    void os_context::browse_file_or_folder(property_set & set)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       //return false;
 

@@ -809,7 +809,7 @@ namespace user
          if(m_plistbox == nullptr)
          {
 
-            __throw(error_resource);
+            throw ::exception(error_resource);
 
          }
 
@@ -934,19 +934,19 @@ namespace user
 
       //}
 
-      if (ptopic->m_id == ::id_after_change_cur_sel)
+      if (ptopic->m_atom == ::id_after_change_cur_sel)
       {
 
-         auto puserinteraction = ptopic->m_pextendedtopic->user_interaction();
+         auto puserinteraction = ptopic->get_extended_topic()->user_interaction();
 
          if (puserinteraction == m_plistbox)
          {
 
-            set_current_item(ptopic->m_pextendedtopic->m_item, ptopic->m_pextendedtopic->m_actioncontext);
+            set_current_item(ptopic->get_extended_topic()->m_item, ptopic->get_extended_topic()->m_actioncontext);
 
             _001ShowDropDown(false);
 
-            ptopic->m_pextendedtopic->Ret();
+            ptopic->get_extended_topic()->Ret();
 
             set_need_redraw();
 
@@ -995,34 +995,34 @@ namespace user
 //   {
 //
 //#ifdef WINDOWS_DESKTOP
-//      switch (pusermessage->m_id)
+//      switch (pusermessage->m_atom)
 //      {
 //      case WM_DRAWITEM:
 //#ifdef WINDOWSEX
 //         DrawItem((LPDRAWITEMSTRUCT)pusermessage->m_lparam);
 //#else
-//         __throw(todo);
+//         throw ::exception(todo);
 //#endif
 //         break;
 //      case e_message_measure_item:
 //#ifdef WINDOWSEX
 //         MeasureItem((LPMEASUREITEMSTRUCT)pusermessage->m_lparam);
 //#else
-//         __throw(todo);
+//         throw ::exception(todo);
 //#endif
 //         break;
 //      case WM_COMPAREITEM:
 //#ifdef WINODWSEX
 //         *pResult = CompareItem((LPCOMPAREITEMSTRUCT)pusermessage->m_lparam);
 //#else
-//         __throw(todo);
+//         throw ::exception(todo);
 //#endif
 //         break;
 //      case WM_DELETEITEM:
 //#ifdef WINODWSEX
 //         DeleteItem((LPDELETEITEMSTRUCT)pusermessage->m_lparam);
 //#else
-//         __throw(todo);
+//         throw ::exception(todo);
 //#endif
 //         break;
 //      default:
@@ -1545,15 +1545,15 @@ namespace user
    //void combo_box::handle(::topic * ptopic, ::context * pcontext)
    //{
 
-   //   if(ptopic->m_id == ::id_after_change_cur_sel)
+   //   if(ptopic->m_atom == ::id_after_change_cur_sel)
    //   {
 
-   //      auto puserinteraction = ptopic->m_pextendedtopic->user_interaction();
+   //      auto puserinteraction = ptopic->get_extended_topic()->user_interaction();
 
    //      if(puserinteraction == m_plistbox)
    //      {
 
-   //         set_current_item(ptopic->m_item, ptopic->m_pextendedtopic->m_actioncontext);
+   //         set_current_item(ptopic->m_item, ptopic->get_extended_topic()->m_actioncontext);
 
    //         _001ShowDropDown(false);
 

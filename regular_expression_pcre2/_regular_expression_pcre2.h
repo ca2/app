@@ -33,11 +33,7 @@ namespace regular_expression_pcre2
 #include "regular_expression.h"
 
 
-#include "topic.h"
+#include "result.h"
 
 
-
-//#include "code_impl.h"
-//#include "context_impl.h"
-//#include "util_impl.h"
 

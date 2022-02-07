@@ -592,9 +592,9 @@ namespace html
 
          //::rectangle_i32 rectangleWindow;
          //m_pcheckbox->get_window_rect(rectangleWindow);
-         ::point_i32 pointPreviousImpactportOrg = pgraphics->GetImpactportOrg();
+         ::point_i32 pointPreviousViewportOrg = pgraphics->GetViewportOrg();
 
-         pgraphics->OffsetImpactportOrg((i32) m_box.left, (i32) m_box.top);
+         pgraphics->OffsetViewportOrg((i32) m_box.left, (i32) m_box.top);
 
          if (::is_set(m_pedit) && m_pedit->is_window() && pdata->m_pcoredata->m_bEdit)
          {
@@ -635,7 +635,7 @@ namespace html
 
          }
 
-         pgraphics->SetImpactportOrg(pointPreviousImpactportOrg);
+         pgraphics->SetViewportOrg(pointPreviousViewportOrg);
 
          /*
 

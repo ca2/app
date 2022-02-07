@@ -55,7 +55,7 @@ _AFXMT_INLINE critical_sectioncritical_section() : synchronization_object < HAND
 
    bSuccess = Init();
    if (!bSuccess)
-      __throw(error_no_memory);
+      throw ::exception(error_no_memory);
 }
 
 _AFXMT_INLINE critical_section::operator CRITICAL_SECTION*()
@@ -70,7 +70,7 @@ _AFXMT_INLINE int_bool critical_section::Lock()
    }
    __except(STATUS_NO_MEMORY == GetExceptionCode())
    {
-      __throw(error_no_memory);
+      throw ::exception(error_no_memory);
    }
    return true;
 }
@@ -93,7 +93,7 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
 //inline ::index synchronization_result::abandoned_index() const
 //{
 //   if ( !abandoned() )
-//      __throw(range_error("abandoned index out of range"));
+//      throw ::exception(range_error("abandoned index out of range"));
 //   return -(m_iEvent + (::index)result_abandon0);
 //}
 //
@@ -117,7 +117,7 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
 //inline ::index synchronization_result::signaled_index() const
 //{
 //   if ( !signaled() )
-//      __throw(range_error("signaled index out of range"));
+//      throw ::exception(range_error("signaled index out of range"));
 //   return m_iEvent;
 //}
 //
@@ -174,7 +174,7 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
 //
 //      }
 //
-//      __throw(::exception(m_strErrorMessage));
+//      throw ::exception(::exception(m_strErrorMessage));
 //
 //   }
 //
@@ -442,7 +442,7 @@ auto sync_predicate(void (* pfnBranch )(::matter * pobjectTask, enum_priority), 
 //
 //      }
 //
-//      __throw(::exception(m_strErrorMessage));
+//      throw ::exception(::exception(m_strErrorMessage));
 //
 //   }
 //

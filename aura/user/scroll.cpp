@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "aura/operating_system.h"
 #include "aura/user/_user.h"
-#include "acme/node/operating_system/_user.h"
+#include "acme/operating_system/_user.h"
 #include "aura/graphics/draw2d/graphics.h"
 
 
@@ -895,7 +895,7 @@ namespace user
 
       }
 
-      pscroll->m_id = e_message_hscroll;
+      pscroll->m_atom = e_message_hscroll;
 
       send(pscroll);
 
@@ -997,7 +997,7 @@ namespace user
 
       }
 
-      pscroll->m_id = e_message_vscroll;
+      pscroll->m_atom = e_message_vscroll;
 
       send(pscroll);
 
@@ -1147,7 +1147,7 @@ namespace user
    void scroll_base::set_page_size(const ::size_f64& size)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 

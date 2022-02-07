@@ -93,7 +93,7 @@
 //bool compress_context::unbz(::file::file* pfileOut, ::file::file* pfileIn)
 //{
 //
-//   throw ::interface_only_exception();
+//   throw ::interface_only();
 //
 //   return false;
 //
@@ -113,7 +113,7 @@
 //bool compress_context::bz(::file::file* pfileOut, ::file::file* pfileIn, int iBlockSize, int iVerbosity, int iWorkFactor)
 //{
 //
-//   throw ::interface_only_exception();
+//   throw ::interface_only();
 //
 //   return false;
 //
@@ -286,7 +286,7 @@
 //bool compress_context::zip(const ::file::path & psz, ::application * pobject)
 //{
 //
-//   __throw(todo);
+//   throw ::exception(todo);
 //
 //   return false;
 //

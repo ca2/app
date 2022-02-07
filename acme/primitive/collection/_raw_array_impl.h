@@ -376,7 +376,7 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::~raw_array()
 //   ASSERT(nNewSize >= 0);
 //
 //   if(nNewSize < 0 )
-//      __throw(error_bad_argument);
+//      throw ::exception(error_bad_argument);
 //
 //   if (nGrowBy >= 0)
 //      m_nGrowBy = nGrowBy;  // set new size_i32
@@ -399,7 +399,7 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::~raw_array()
 //      // m_nGrowBy elements, whichever is larger.
 //#ifdef SIZE_T_MAX
 //      if(nNewSize > SIZE_T_MAX/sizeof(TYPE))
-//         __throw(error_no_memory);
+//         throw ::exception(error_no_memory);
 //      ASSERT(nNewSize <= SIZE_T_MAX/sizeof(TYPE));    // no overflow
 //#endif
 //      ::count nAllocSize = maximum(nNewSize, m_nGrowBy);
@@ -452,7 +452,7 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::~raw_array()
 //      ASSERT(nNewMax >= m_nMaxSize);  // no wrap around
 //
 //      if(nNewMax  < m_nMaxSize)
-//         __throw(error_bad_argument);
+//         throw ::exception(error_bad_argument);
 //
 //#ifdef SIZE_T_MAX
 //      ASSERT(nNewMax <= SIZE_T_MAX/sizeof(TYPE)); // no overflow
@@ -517,7 +517,7 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::~raw_array()
 //   //ASSERT(nIndex >= 0);
 //
 //   if(nIndex < 0)
-//      __throw(error_bad_argument);
+//      throw ::exception(error_bad_argument);
 //
 //   if (nIndex >= this->m_nSize)
 //      this->allocate(nIndex+1, -1);
@@ -560,7 +560,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_ety
 //   ASSERT(nStartIndex >= 0);
 //
 //   if(pNewArray == nullptr || nStartIndex < 0)
-//      __throw(error_bad_argument);
+//      throw ::exception(error_bad_argument);
 //
 //   if (pNewArray->get_size() > 0)
 //   {

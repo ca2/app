@@ -164,7 +164,7 @@ namespace lite
             if(true)
             {
 
-               if(ptab->get_data()->m_idaSel.contains(pane.m_id))
+               if(ptab->get_data()->m_idaSel.contains(pane.m_atom))
                {
 
                   //ppath->start_figure();
@@ -288,7 +288,7 @@ namespace lite
 
                auto ppath = __create < ::draw2d::path > ();
 
-               if(ptab->get_data()->m_idaSel.contains(pane.m_id))
+               if(ptab->get_data()->m_idaSel.contains(pane.m_atom))
                {
 
                   if (iPane > 0)
@@ -863,7 +863,7 @@ namespace lite
 
       __pointer(::user::menu_central) pmenucentral = psession->userex()->menu();
 
-      ::u32 uImage = pmenucentral->command_image(item.m_id);
+      ::u32 uImage = pmenucentral->command_image(item.m_atom);
 
       ::user::toolbar::enum_element eelement = ::user::toolbar::e_element_item;
       ::user::toolbar::enum_element eelementImage = ::user::toolbar::element_image;
@@ -1167,7 +1167,7 @@ namespace lite
 
       __pointer(::user::menu_central) pmenucentral = psession->userex()->menu();
 
-/*      ::u32 uImage = pmenucentral->command_image(item.m_id);
+/*      ::u32 uImage = pmenucentral->command_image(item.m_atom);
 
       ::user::toolbar::enum_element eelement = ::user::toolbar::e_element_item;
 /*      ::user::toolbar::enum_element eelementImage = ::user::toolbar::element_image;
@@ -1228,7 +1228,7 @@ namespace lite
 
       ptoolbar->_001GetElementRect(iItem, rectangleImage, eelementImage);
 
-      if (item.m_id.compare_ci("separator") == 0)
+      if (item.m_atom.compare_ci("separator") == 0)
       {
          /*::rectangle_i32 rectangleSeparator;
          rectangleSeparator.left = (rectangleImage.left + rectangleImage.right) / 2 - 1;

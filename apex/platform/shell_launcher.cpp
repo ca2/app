@@ -25,9 +25,9 @@ namespace apex
    void shell_launcher::launch()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 

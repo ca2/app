@@ -35,7 +35,7 @@ namespace draw2d_cairo
       if(nPlanes != 1 || nBitcount != 32)
       {
 
-         throw interface_only_exception();
+         throw ::interface_only();
 
       }
 
@@ -284,7 +284,7 @@ namespace draw2d_cairo
    size_i32 bitmap::SetBitmapDimension(i32 nWidth, i32 nHeight)
    {
 
-      throw interface_only_exception();
+      throw ::interface_only();
 
       return ::size_i32(0, 0);
 

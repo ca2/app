@@ -17,7 +17,7 @@ namespace experience
       public:
 
          
-         ::atom                    m_id;
+         ::atom                    m_atom;
          bool                    m_bPresent;
          __pointer(button)       m_pbutton;
 

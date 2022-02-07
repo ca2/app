@@ -765,7 +765,7 @@ namespace dynamic_source
       delete lpsz;
 #elif defined(_UWP)
 
-      __throw(todo);
+      throw ::exception(todo);
 
 #else
       strNew = getenv("PATH");
@@ -775,7 +775,7 @@ namespace dynamic_source
       SetEnvironmentVariableW(L"PATH", wstring(strNew));
 #elif defined(_UWP)
 
-      __throw(todo);
+      throw ::exception(todo);
 
 #else
       setenv("PATH", strNew, 1);
@@ -790,7 +790,7 @@ namespace dynamic_source
 
 #elif defined(_UWP)
 
-      __throw(todo);
+      throw ::exception(todo);
 
 #else
       //      LPCTSTR pcsz = getenv("PATH");

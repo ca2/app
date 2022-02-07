@@ -186,13 +186,13 @@ namespace colorertake5
       doc.load(psz);
       if(doc.get_root() == nullptr)
       {
-         __throw(HRCParserException(string("main '<hrc>' block not found")));
+         throw ::exception(HRCParserException(string("main '<hrc>' block not found")));
       }
       xml::node & types = *doc.get_root();
 
       if(types.get_name() != "hrc")
       {
-         __throw(HRCParserException(string("main '<hrc>' block not found")));
+         throw ::exception(HRCParserException(string("main '<hrc>' block not found")));
       }
 
       if(versionName.is_empty())

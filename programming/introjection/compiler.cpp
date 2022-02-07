@@ -378,7 +378,7 @@ namespace introjection
 //
 //#ifdef _UWP
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //#elif defined(LINUX)
 //
@@ -414,7 +414,7 @@ namespace introjection
 //      //bResult = SetEnvironmentVariable("PATH",str) != false;
 //#elif defined(_UWP)
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //#elif defined(LINUX)
 //#else
@@ -490,9 +490,9 @@ namespace introjection
 //      for (auto & pproperty : setEnvironment)
 //      {
 //
-//         FORMATTED_TRACE("%s : %s", pproperty->m_id.to_string().c_str(), pproperty->string().c_str());
+//         FORMATTED_TRACE("%s : %s", pproperty->m_atom.to_string().c_str(), pproperty->string().c_str());
 //
-//         SetEnvironmentVariableW(wstring(pproperty->m_id), wstring(pproperty->string()));
+//         SetEnvironmentVariableW(wstring(pproperty->m_atom), wstring(pproperty->string()));
 //
 //      }
 //

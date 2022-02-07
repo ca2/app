@@ -149,9 +149,9 @@ namespace user
    void frame::add_control_bar(::user::control_bar * pcontrolbar)
    {
 
-      throw interface_only_exception();
+      throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -159,9 +159,9 @@ namespace user
    void frame::erase_control_bar(::user::control_bar * pcontrolbar)
    {
 
-      throw interface_only_exception();
+      throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -169,9 +169,9 @@ namespace user
    void frame::show_control_bar(::user::control_bar * pcontrolbar)
    {
 
-      throw interface_only_exception();
+      throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -179,9 +179,9 @@ namespace user
    void frame::hide_control_bar(::user::control_bar * pcontrolbar)
    {
 
-      throw interface_only_exception();
+      throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -458,13 +458,13 @@ namespace user
    void frame::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (ptopic->m_id == id_user_style_change)
+      if (ptopic->m_atom == id_user_style_change)
       {
 
          on_user_style_change();
 
       }
-      else if (ptopic->m_id == id_operating_system_user_color_change)
+      else if (ptopic->m_atom == id_operating_system_user_color_change)
       {
 
          set_need_redraw();

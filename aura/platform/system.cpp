@@ -845,14 +845,14 @@ namespace aura
 
       //if (!m_pxml->init1())
       //{
-      //   __throw(::exception("failed to construct system m_pxml->init1()"));
+      //   throw ::exception(::exception("failed to construct system m_pxml->init1()"));
 
       //}
 
       //if (!m_pxml->init())
       //{
 
-      //   __throw(::exception("failed to construct system m_pxml->initialize()"));
+      //   throw ::exception(::exception("failed to construct system m_pxml->initialize()"));
 
       //}
 
@@ -1678,7 +1678,7 @@ namespace aura
 
       //}
 
-      //__throw(todo("filehandler"));
+      //throw ::exception(todo("filehandler"));
 
       //estatus = __compose_new(m_pfilehandler);
 
@@ -2560,7 +2560,7 @@ namespace aura
 //
 //#else
 //
-//            __throw(todo);
+//            throw ::exception(todo);
 //
 //#endif
 //
@@ -2583,7 +2583,7 @@ namespace aura
 //
 //#if defined(_UWP)
 //
-//            __throw(todo);
+//            throw ::exception(todo);
 //
 //#else
 //            auto plauncher = __create_new<::apex::shell_launcher>();
@@ -2624,7 +2624,7 @@ namespace aura
 //
 //#ifdef _UWP
 //
-//            __throw(todo);
+//            throw ::exception(todo);
 //
 //#else
 //
@@ -2660,7 +2660,7 @@ namespace aura
 //
 //#ifdef _UWP
 //
-//            __throw(todo);
+//            throw ::exception(todo);
 //
 //#else
 //
@@ -2732,7 +2732,7 @@ namespace aura
    //string system::crypto_md5_text(const ::string & str)
    //{
 
-   //   throw interface_only_exception();
+   //   throw ::interface_only();
 
    //   return "";
 
@@ -3132,7 +3132,7 @@ namespace aura
    //string system::url_encode(const ::string & str)
    //{
 
-   //   //throw ::interface_only_exception();
+   //   //throw ::interface_only();
 
    //   return url_encode(str);
 
@@ -3522,7 +3522,7 @@ namespace aura
    //   catch (...)
    //   {
 
-   //      __throw(resource_exception("not good window anymore"));
+   //      throw ::exception(resource_exception("not good window anymore"));
 
    //   }
 
@@ -3799,7 +3799,7 @@ namespace aura
 //
 //#else
 //
-//      //__throw(todo);
+//      //throw ::exception(todo);
 //
 //      //::get_window_rect(::get_desktop_window(),prectangle);
 //
@@ -4753,7 +4753,7 @@ namespace aura
 
    //      auto ptool = __new(::task_tool);
 
-   //      ptool->m_id = etool;
+   //      ptool->m_atom = etool;
 
    //      threadtoola.add(ptool);
 
@@ -5570,7 +5570,7 @@ namespace aura
    __pointer(::data::node) system::load_xml(const ::string & pszXml)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
@@ -5739,7 +5739,7 @@ namespace aura
 
    //::filehandler::handler& system::filehandler()
    //{
-   //    __throw(todo("filehandler"));
+   //    throw ::exception(todo("filehandler"));
    //    return *m_pfilehandler;
 
    //}
@@ -5748,7 +5748,7 @@ namespace aura
    //void system::on_start_find_applications_from_cache()
    //{
 
-   //   __throw(todo, "filehandler");
+   //   throw ::exception(todo, "filehandler");
    //  // m_pfilehandler->m_ptree->erase_all();
 
    //}
@@ -5756,7 +5756,7 @@ namespace aura
    //void system::on_end_find_applications_from_cache(stream& is)
    //{
 
-   //   //__throw(todo("filehandler"));
+   //   //throw ::exception(todo("filehandler"));
    //   //is >> *m_pfilehandler;
 
    //}
@@ -5764,7 +5764,7 @@ namespace aura
    //void system::on_end_find_applications_to_cache(stream& os)
    //{
 
-   //   //__throw(todo("filehandler"));
+   //   //throw ::exception(todo("filehandler"));
    //   //os << *m_pfilehandler;
 
    //}
@@ -5772,7 +5772,7 @@ namespace aura
    //void system::on_map_application_library(::acme::library& library)
    //{
 
-   //   __throw(todo, "filehandler");
+   //   throw ::exception(todo, "filehandler");
    //   // m_pfilehandler->defer_add_library(library.m_pca2library);
 
    //}
@@ -6431,13 +6431,13 @@ namespace aura
    void system::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (ptopic->m_id == id_font_enumeration)
+      if (ptopic->m_atom == id_font_enumeration)
       {
 
          draw2d()->write_text()->handle_font_enumeration(ptopic);
 
       }
-      else if (ptopic->m_id == id_operating_system_user_color_change)
+      else if (ptopic->m_atom == id_operating_system_user_color_change)
       {
 
 
@@ -6798,9 +6798,9 @@ namespace aura
 //
 //#else
 //
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 //
-//      throw ::interface_only_exception();
+//      throw ::interface_only();
 //
 //#endif
 //

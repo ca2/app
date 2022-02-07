@@ -55,7 +55,7 @@ class system;
 
 #include "acme/constant/_.h"
 #include "acme/parallelization/_types.h"
-#include "acme/node/operating_system/parallelization.h"
+#include "acme/operating_system/parallelization.h"
 
 
 #include "acme/include/_c.h"
@@ -80,7 +80,7 @@ class duration;
 #include "acme/primitive/primitive/uid.h"
 #include "acme/primitive/primitive/estatus.h"
 #include "acme/primitive/primitive/eobject.h"
-#include "acme/node/operating_system/argcargv.h"
+#include "acme/operating_system/argcargv.h"
 #include "acme/primitive/mathematics/index.h"
 #include "acme/primitive/primitive/interlocked.h"
 #include "acme/parallelization/synchronization_result.h"
@@ -92,7 +92,7 @@ class duration;
 #include "acme/primitive/primitive/e_flag.h"
 #include "acme/primitive/primitive/element.h"
 #ifdef __APPLE__
-#include "acme/node/operating_system/apple/_apple_no_templates.h"
+#include "acme/operating_system/apple/_apple_no_templates.h"
 #endif
 
 #include "acme/parallelization/_impl_synchronization_result.h"

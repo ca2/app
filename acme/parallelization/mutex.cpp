@@ -12,7 +12,7 @@ void utc_timespec(timespec * ptimespec);
 #ifdef PARALLELIZATION_PTHREAD
 
 
-#include "acme/node/operating_system/ansi/_pthread.h"
+#include "acme/operating_system/ansi/_pthread.h"
 
 
 #endif
@@ -30,7 +30,7 @@ void utc_timespec(timespec * ptimespec);
 #include <sys/ipc.h>
 #include <sys/sem.h>
 #include <fcntl.h>
-#include "acme/node/operating_system/ansi/_pthread.h"
+#include "acme/operating_system/ansi/_pthread.h"
 #undef USE_MISC
 
 
@@ -38,7 +38,7 @@ void utc_timespec(timespec * ptimespec);
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-#include "acme/node/operating_system/ansi/_pthread.h"
+#include "acme/operating_system/ansi/_pthread.h"
 #endif
 
 
@@ -146,7 +146,7 @@ mutex::mutex(::object * pobject, bool bInitiallyOwn, const char * pstrName ARG_S
 
          DWORD dwError2 = ::GetLastError();
 
-         __throw(error_resource);
+         throw ::exception(error_resource);
 
       }
 
@@ -220,7 +220,7 @@ pacmedir->create(::file::path(strName).folder());
          if (err != EEXIST)
          {
 
-            __throw(error_resource);
+            throw ::exception(error_resource);
 
          }
 
@@ -231,7 +231,7 @@ pacmedir->create(::file::path(strName).folder());
          if (m_psem == SEM_FAILED)
          {
 
-            __throw(resource_exception(););
+            throw ::exception(resource_exception(););
 
          }
 
@@ -313,7 +313,7 @@ pacmedir->system() / "home/user/ca2/lock/mutex" / string(pstrName);
 
          const char * pszError = strerror(iErr);
 
-         __throw(error_resource);
+         throw ::exception(error_resource);
 
       }
 
@@ -421,7 +421,7 @@ get_existing:
       if(m_semid < 0)
       {
 
-         __throw(error_resource);
+         throw ::exception(error_resource);
 
       }
 
@@ -1582,8 +1582,8 @@ __pointer(mutex) open_mutex(::matter * pmatter, const char * lpszName)
       if (psem == SEM_FAILED)
       {
 
-         //__throw(resource_exception(papp,"failed to create named mutex"));
-         __throw(error_resource);
+         //throw ::exception(resource_exception(papp,"failed to create named mutex"));
+         throw ::exception(error_resource);
 
       }
 
@@ -1642,7 +1642,7 @@ __pointer(mutex) open_mutex(::matter * pmatter, const char * lpszName)
    if (iFd < 0)
    {
 
-      __throw(error_resource);
+      throw ::exception(error_resource);
 
    }
 

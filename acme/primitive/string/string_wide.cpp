@@ -62,7 +62,7 @@ CLASS_DECL_ACME natural_meta_data < string_meta_data < wd32char > > * __nil < na
 //      if (strsize != 0)
 //      {
 //
-//         __throw(error_bad_argument);
+//         throw ::exception(error_bad_argument);
 //
 //      }
 //
@@ -77,7 +77,7 @@ CLASS_DECL_ACME natural_meta_data < string_meta_data < wd32char > > * __nil < na
 //      if (pNew == nullptr)
 //      {
 //
-//         throw_memory_exception();
+//         throw no_memory();
 //
 //      }
 //

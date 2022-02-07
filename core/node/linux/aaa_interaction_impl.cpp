@@ -1334,19 +1334,19 @@ namespace linux
    void interaction_impl::message_handler(::user::message * pusermessage)
    {
 
-      if(pusermessage->m_id == e_message_timer)
+      if(pusermessage->m_atom == e_message_timer)
       {
 
          //m_pthread->step_timer();
 
       }
-      else if(pusermessage->m_id == e_message_left_button_down)
+      else if(pusermessage->m_atom == e_message_left_button_down)
       {
 
          TRACE("e_message_left_button_down (0)");
 
       }
-      else if(pusermessage->m_id == e_message_mouse_move)
+      else if(pusermessage->m_atom == e_message_mouse_move)
       {
 
          g_iMouseMove++;
@@ -1355,11 +1355,11 @@ namespace linux
          //printf("g_iMouseMove = %d\n", g_iMouseMove);
 
       }
-      else if(pusermessage->m_id == e_message_paint)
+      else if(pusermessage->m_atom == e_message_paint)
       {
 
       }
-      else if(pusermessage->m_id == e_message_left_button_up)
+      else if(pusermessage->m_atom == e_message_left_button_up)
       {
 
          TRACE("e_message_left_button_up (0)");
@@ -1426,14 +1426,14 @@ namespace linux
 
       }
 
-      if(pusermessage->m_id == e_message_key_down || pusermessage->m_id == e_message_key_up || pusermessage->m_id == e_message_char)
+      if(pusermessage->m_atom == e_message_key_down || pusermessage->m_atom == e_message_key_up || pusermessage->m_atom == e_message_char)
       {
 
          ::message::key * pkey = (::message::key *) pusermessage;
 
          psession->translate_os_key_message(pkey);
 
-         if(pusermessage->m_id == e_message_key_down)
+         if(pusermessage->m_atom == e_message_key_down)
          {
 
             try
@@ -1448,7 +1448,7 @@ namespace linux
             }
 
          }
-         else if(pusermessage->m_id == e_message_key_up)
+         else if(pusermessage->m_atom == e_message_key_up)
          {
 
             try
@@ -1468,7 +1468,7 @@ namespace linux
 
       pusermessage->m_lresult = 0;
 
-      if(pusermessage->m_id == e_message_mouse_leave)
+      if(pusermessage->m_atom == e_message_mouse_leave)
       {
 
          _000OnMouseLeave(pusermessage);
@@ -1477,15 +1477,15 @@ namespace linux
 
       }
 
-      if(pusermessage->m_id == e_message_left_button_down ||
-            pusermessage->m_id == e_message_left_button_up ||
-            pusermessage->m_id == e_message_middle_button_down ||
-            pusermessage->m_id == e_message_middle_button_up ||
-            pusermessage->m_id == e_message_right_button_down ||
-            pusermessage->m_id == e_message_right_button_up ||
-            pusermessage->m_id == e_message_mouse_move ||
-            pusermessage->m_id == e_message_mouse_move)
-//         pusermessage->m_id == e_message_mouse_wheel)
+      if(pusermessage->m_atom == e_message_left_button_down ||
+            pusermessage->m_atom == e_message_left_button_up ||
+            pusermessage->m_atom == e_message_middle_button_down ||
+            pusermessage->m_atom == e_message_middle_button_up ||
+            pusermessage->m_atom == e_message_right_button_down ||
+            pusermessage->m_atom == e_message_right_button_up ||
+            pusermessage->m_atom == e_message_mouse_move ||
+            pusermessage->m_atom == e_message_mouse_move)
+//         pusermessage->m_atom == e_message_mouse_wheel)
       {
 
          if(::is_set(m_puserinteraction) && !m_puserinteraction->m_bUserElementOk)
@@ -1495,7 +1495,7 @@ namespace linux
 
          }
 
-         if(pusermessage->m_id == e_message_left_button_down)
+         if(pusermessage->m_atom == e_message_left_button_down)
          {
 
             TRACE("e_message_left_button_down");
@@ -1554,7 +1554,7 @@ namespace linux
             }
          }
 
-         if(pusermessage->m_id == e_message_mouse_move)
+         if(pusermessage->m_atom == e_message_mouse_move)
          {
             // We are at the message handler procedure.
             // mouse messages originated from message handler and that are mouse move events should end up with the correct cursor.
@@ -1564,7 +1564,7 @@ namespace linux
             pmouse->m_ecursor = cursor_default;
          }
 
-         if(pusermessage->m_id == e_message_left_button_down)
+         if(pusermessage->m_atom == e_message_left_button_down)
          {
 
 
@@ -1580,9 +1580,9 @@ namespace linux
          return;
 
       }
-      else if(pusermessage->m_id == e_message_key_down ||
-              pusermessage->m_id == e_message_key_up ||
-              pusermessage->m_id == e_message_char)
+      else if(pusermessage->m_atom == e_message_key_down ||
+              pusermessage->m_atom == e_message_key_up ||
+              pusermessage->m_atom == e_message_char)
       {
 
          ::message::key * pkey = (::message::key *) pusermessage;
@@ -1630,7 +1630,7 @@ namespace linux
 
       }
 
-      if(pusermessage->m_id == e_message_event)
+      if(pusermessage->m_atom == e_message_event)
       {
 
          if(m_puserinteraction != nullptr)
@@ -2251,7 +2251,7 @@ namespace linux
 //
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 ////
 ////      LPDRAGLISTINFO pInfo = (LPDRAGLISTINFO)lparam;
 //
@@ -2449,7 +2449,7 @@ namespace linux
 //         try
 //         {
 ////            HANDLE hevent = (HANDLE) pprintwindow->m_event.get_os_data();
-//            //          __throw(error_not_implemented);
+//            //          throw ::not_implemented();
 //            /*            ::PrintWindow(pprintwindow->m_hwnd, pprintwindow->m_hdc, 0);
 //                        ::SetEvent(hevent);*/
 //         }
@@ -2484,14 +2484,14 @@ namespace linux
 //      HRGN rgnIntersect;
 //      HRGN rgnUpdate = nullptr;
 //
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 //      /*
 //            rgnWindow = CreateRectRgn(0, 0, 0, 0);
 //            rgnIntersect = CreateRectRgn(0, 0, 0, 0);
 //      */
 //      //      i32 iCount = wndaApp.get_count();
 //
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 //   }
 //
 //   void interaction_impl::_001OnProdevianSynch(::message::message * pmessage)
@@ -3197,7 +3197,7 @@ namespace linux
 //   bool interaction_impl::DragDetect(const ::point_i32 & point) const
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 //      //ASSERT(::is_window((oswindow) get_handle()));
 //
 //      //return ::DragDetect(get_handle(), point) != false;
@@ -3240,7 +3240,7 @@ namespace linux
 //   strsize interaction_impl::GetWindowTextLength()
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 //      //ASSERT(::is_window((oswindow) get_handle()));
 //
 //      //return ::GetWindowTextLength(get_handle());
@@ -3272,7 +3272,7 @@ namespace linux
 //   void interaction_impl::DragAcceptFiles(bool bAccept)
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 //
 //      //ASSERT(::is_window((oswindow) get_handle()));
 //      //::DragAcceptFiles(get_handle(), bAccept);
@@ -3317,7 +3317,7 @@ namespace linux
 //   ::u32 interaction_impl::ArrangeIconicWindows()
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 //
 ////      ASSERT(::is_window((oswindow) get_handle())); return ::ArrangeIconicWindows(get_handle());
 //
@@ -3330,7 +3330,7 @@ namespace linux
 //      __UNREFERENCED_PARAMETER(hRgn);
 //      __UNREFERENCED_PARAMETER(bRedraw);
 //
-//      //__throw(error_not_implemented);
+//      //throw ::not_implemented();
 //
 ////      ASSERT(::is_window((oswindow) get_handle())); return ::SetWindowRgn(get_handle(), hRgn, bRedraw);
 //      return 0;
@@ -3340,7 +3340,7 @@ namespace linux
 //   i32 interaction_impl::GetWindowRgn(HRGN hRgn)
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 //
 ////      ASSERT(::is_window((oswindow) get_handle()) && hRgn != nullptr); return ::GetWindowRgn(get_handle(), hRgn);
 //
@@ -3350,7 +3350,7 @@ namespace linux
 //   bool interaction_impl::BringWindowToTop()
 //   {
 //
-////      __throw(error_not_implemented);
+////      throw ::not_implemented();
 ////      return ::BringWindowToTop(get_handle()) != false;
 //      return true;
 //   }
@@ -3360,7 +3360,7 @@ namespace linux
 //
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 //
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      ::MapWindowPoints(get_handle(), (oswindow) puserinteractionTo->get_handle(), pPoint, nCount);
@@ -3373,7 +3373,7 @@ namespace linux
 //
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 //
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      ::MapWindowPoints(get_handle(), (oswindow) puserinteractionTo->get_handle(), (POINT32 *)prect, 2);
@@ -3473,13 +3473,13 @@ namespace linux
 //
 //   void interaction_impl::UpdateWindow()
 //   {
-//      //__throw(error_not_implemented);
+//      //throw ::not_implemented();
 //      //::UpdateWindow(get_handle());
 //   }
 //
 //   void interaction_impl::SetRedraw(bool bRedraw)
 //   {
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 //      //ASSERT(::is_window((oswindow) get_handle()));
 //      //::SendMessage(get_handle(), WM_SETREDRAW, bRedraw, 0);
 //   }
@@ -3487,7 +3487,7 @@ namespace linux
 //   bool interaction_impl::GetUpdateRect(RECT32 * prect, bool bErase)
 //
 //   {
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 //      //ASSERT(::is_window((oswindow) get_handle()));
 //      //return ::GetUpdateRect(get_handle(), prect, bErase) != false;
 //
@@ -3495,14 +3495,14 @@ namespace linux
 //
 //   i32 interaction_impl::GetUpdateRgn(draw2d::region * pRgn, bool bErase)
 //   {
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 //      //ASSERT(::is_window((oswindow) get_handle()));
 //      //return ::GetUpdateRgn(get_handle(), (HRGN)pRgn->get_handle(), bErase);
 //   }
 //
 //   void interaction_impl::Invalidate(bool bErase)
 //   {
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 //      //ASSERT(::is_window((oswindow) get_handle()));
 //      //::InvalidateRect(get_handle(), nullptr, bErase);
 //   }
@@ -3510,7 +3510,7 @@ namespace linux
 //   void interaction_impl::InvalidateRect(const ::rectangle & rectangle, bool bErase)
 //
 //   {
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 //      //ASSERT(::is_window((oswindow) get_handle()));
 //      //::InvalidateRect(get_handle(), prect, bErase);
 //
@@ -3518,7 +3518,7 @@ namespace linux
 //
 //   void interaction_impl::InvalidateRgn(::draw2d::region* pRgn, bool bErase)
 //   {
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 //      //ASSERT(::is_window((oswindow) get_handle()));
 //      //::InvalidateRgn(get_handle(), (HRGN)pRgn->get_handle(), bErase);
 //   }
@@ -3526,7 +3526,7 @@ namespace linux
 //   void interaction_impl::ValidateRect(const ::rectangle & rectangle)
 //
 //   {
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 //      //ASSERT(::is_window((oswindow) get_handle()));
 //      //::ValidateRect(get_handle(), prect);
 //
@@ -3534,7 +3534,7 @@ namespace linux
 //
 //   void interaction_impl::ValidateRgn(::draw2d::region* pRgn)
 //   {
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 //      //ASSERT(::is_window((oswindow) get_handle()));
 //      //::ValidateRgn(get_handle(), (HRGN)pRgn->get_handle());
 //   }
@@ -3570,7 +3570,7 @@ namespace linux
 //   void interaction_impl::ShowOwnedPopups(bool bShow)
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 //      //ASSERT(::is_window((oswindow) get_handle()));
 //      //::ShowOwnedPopups(get_handle(), bShow);
 //
@@ -3623,7 +3623,7 @@ namespace linux
 //   ::draw2d::graphics * interaction_impl::GetDCEx(::draw2d::region * prgnClip, ::u32 flags)
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 //      //ASSERT(::is_window((oswindow) get_handle()));
 //      //::draw2d::graphics_pointer g(this);
 //      //g->attach(::GetDCEx(get_handle(), (HRGN)prgnClip->get_handle(), flags));
@@ -3634,7 +3634,7 @@ namespace linux
 //   bool interaction_impl::LockWindowUpdate()
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 //      //ASSERT(::is_window((oswindow) get_handle()));
 //      //return ::LockWindowUpdate(get_handle()) != false;
 //
@@ -3643,7 +3643,7 @@ namespace linux
 //   void interaction_impl::UnlockWindowUpdate()
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 //      //ASSERT(::is_window((oswindow) get_handle()));
 //      //::LockWindowUpdate(nullptr);
 //
@@ -3687,7 +3687,7 @@ namespace linux
 //
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 //      //ASSERT(::is_window((oswindow) get_handle()));
 //      //return ::DrawAnimatedRects(get_handle(), idAni, prcFrom, lprcTo) != false;
 //
@@ -3699,7 +3699,7 @@ namespace linux
 //
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 //      //ASSERT(::is_window((oswindow) get_handle()));
 //      //return ::DrawCaption(get_handle(), (HDC)(dynamic_cast<::linux::graphics * >(pgraphics))->get_handle(), prc, uFlags) != false;
 //
@@ -3720,7 +3720,7 @@ namespace linux
 ////
 ////        return uEvent;
 //
-//      //__throw(error_not_implemented);
+//      //throw ::not_implemented();
 //      //ASSERT(::is_window((oswindow) get_handle()));
 //      //return ::SetTimer(get_handle(), uEvent, nElapse, pfnTimer);
 //
@@ -3867,7 +3867,7 @@ namespace linux
 //   void interaction_impl::CheckDlgButton(i32 nIDButton, ::u32 nCheck)
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      ::CheckDlgButton(get_handle(), nIDButton, nCheck);
 //
@@ -3876,7 +3876,7 @@ namespace linux
 //   void interaction_impl::CheckRadioButton(i32 nIDFirstButton, i32 nIDLastButton, i32 nIDCheckButton)
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      ::CheckRadioButton(get_handle(), nIDFirstButton, nIDLastButton, nIDCheckButton);
 //
@@ -3886,7 +3886,7 @@ namespace linux
 //
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      return ::DlgDirList(get_handle(), pPathSpec, nIDListBox, nIDStaticPath, nFileType);
 //
@@ -3897,7 +3897,7 @@ namespace linux
 //
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      return ::DlgDirListComboBox(get_handle(), pPathSpec, nIDComboBox, nIDStaticPath, nFileType);
 //
@@ -3908,7 +3908,7 @@ namespace linux
 //
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      return ::DlgDirSelectEx(get_handle(), pString, nSize, nIDListBox) != false;
 //
@@ -3919,7 +3919,7 @@ namespace linux
 //
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      return ::DlgDirSelectComboBoxEx(get_handle(), pString, nSize, nIDComboBox) != false;
 //
@@ -3954,14 +3954,14 @@ namespace linux
 //
 ////   {
 ////
-////      __throw(error_not_implemented);
+////      throw ::not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle())); return ::GetDlgItemText(get_handle(), nID, pStr, nMaxCount);}
 //
 //
 //   ::user::interaction * interaction_impl::GetNextDlgGroupItem(::user::interaction * pWndCtl, bool bPrevious) const
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      return ::linux::interaction_impl::from_handle(::GetNextDlgGroupItem(get_handle(), (oswindow) pWndCtl->get_handle(), bPrevious));
 //
@@ -3970,7 +3970,7 @@ namespace linux
 //   ::user::interaction * interaction_impl::GetNextDlgTabItem(::user::interaction * pWndCtl, bool bPrevious) const
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      return ::linux::interaction_impl::from_handle(::GetNextDlgTabItem(get_handle(), (oswindow) pWndCtl->get_handle(), bPrevious));
 //
@@ -3979,7 +3979,7 @@ namespace linux
 //   ::u32 interaction_impl::IsDlgButtonChecked(i32 nIDButton) const
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      return ::IsDlgButtonChecked(get_handle(), nIDButton);
 //
@@ -3989,7 +3989,7 @@ namespace linux
 //
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      return ::SendDlgItemMessage(get_handle(), nID, message, wparam, lparam);
 //
@@ -3999,7 +3999,7 @@ namespace linux
 //   void interaction_impl::SetDlgItemInt(i32 nID, ::u32 nValue, bool bSigned)
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      ::SetDlgItemInt(get_handle(), nID, nValue, bSigned);
 //
@@ -4009,7 +4009,7 @@ namespace linux
 //
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      ::SetDlgItemText(get_handle(), nID, pszString);
 //
@@ -4020,7 +4020,7 @@ namespace linux
 //
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      return ::ScrollWindowEx(get_handle(), dx, dy, pRectScroll, lpRectClip, (HRGN)prgnUpdate->get_handle(), lpRectUpdate, flags);
 //
@@ -4030,7 +4030,7 @@ namespace linux
 //   void interaction_impl::ShowScrollBar(::u32 nBar, bool bShow)
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      ::ShowScrollBar(get_handle(), nBar, bShow);
 //
@@ -4040,7 +4040,7 @@ namespace linux
 //   {
 //
 //
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      return ::linux::interaction_impl::from_handle(::ChildWindowFromPoint(get_handle(), point));
 //
@@ -4049,7 +4049,7 @@ namespace linux
 //   ::user::interaction * interaction_impl::ChildWindowFromPoint(const ::point_i32 & point, ::u32 nFlags)
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      return ::linux::interaction_impl::from_handle(::ChildWindowFromPointEx(get_handle(), point, nFlags));
 //
@@ -4067,7 +4067,7 @@ namespace linux
 //         return nullptr;
 //
 //      return m_puserinteraction->m_uiptraChild[0];
-//      //  __throw(error_not_implemented);
+//      //  throw ::not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      return ::linux::interaction_impl::from_handle(::GetTopWindow(get_handle()));
 //
@@ -4086,7 +4086,7 @@ namespace linux
 //   {
 //
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      return ::linux::interaction_impl::from_handle(::GetLastActivePopup(get_handle()));
 //
@@ -4116,7 +4116,7 @@ namespace linux
 //   {
 //
 //
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      return ::FlashWindow(get_handle(), bInvert) != false;
 //
@@ -4125,7 +4125,7 @@ namespace linux
 //   bool interaction_impl::ChangeClipboardChain(oswindow hWndNext)
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      return ::ChangeClipboardChain(get_handle(), hWndNext) != false;
 //
@@ -4134,7 +4134,7 @@ namespace linux
 //   oswindow interaction_impl::SetClipboardViewer()
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      return ::SetClipboardViewer(get_handle());
 //
@@ -4143,7 +4143,7 @@ namespace linux
 //   bool interaction_impl::OpenClipboard()
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      return ::OpenClipboard(get_handle()) != false;
 //
@@ -4202,7 +4202,7 @@ namespace linux
 //   void interaction_impl::HideCaret()
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 ////      ::Hidecaret(get_handle());
 //
 //   }
@@ -4210,7 +4210,7 @@ namespace linux
 //   void interaction_impl::ShowCaret()
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 ////    ::Showcaret(get_handle());
 //   }
 //
@@ -4240,7 +4240,7 @@ namespace linux
 //
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 ////      return ::SendNotifyMessage(get_handle(), message, wparam, lparam) != false;
 //
 //
@@ -4249,7 +4249,7 @@ namespace linux
 //   void interaction_impl::Print(::draw2d::graphics_pointer & pgraphics, ::u32 dwFlags) const
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      const_cast < interaction_impl * > (this)->send_message(WM_PRINT, (WPARAM)(dynamic_cast<::linux::graphics * >(pgraphics))->get_handle(), dwFlags);
 //
@@ -4258,7 +4258,7 @@ namespace linux
 //   void interaction_impl::PrintClient(::draw2d::graphics_pointer & pgraphics, ::u32 dwFlags) const
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      const_cast < interaction_impl * > (this)->send_message(WM_PRINTCLIENT, (WPARAM)(dynamic_cast<::linux::graphics * >(pgraphics))->get_handle(), dwFlags);
 //
@@ -4267,7 +4267,7 @@ namespace linux
 //   bool interaction_impl::SetWindowContextHelpId(::u32 dwContextHelpId)
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      return ::SetWindowContextHelpId(get_handle(), dwContextHelpId) != false;
 //
@@ -4276,7 +4276,7 @@ namespace linux
 //   ::u32 interaction_impl::GetWindowContextHelpId() const
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      return ::GetWindowContextHelpId(get_handle());
 //
@@ -4383,7 +4383,7 @@ namespace linux
 //             && psession->get_cursor()->m_ecursor != cursor_system)
 //       {
 
-//          __throw(error_not_implemented);
+//          throw ::not_implemented();
 // //         ::SetCursor(nullptr);
 //       }
 //       pusermessage->m_lresult  = 1;
@@ -4610,7 +4610,7 @@ namespace linux
 //   void interaction_impl::BeginModalState()
 //   {
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //      //::EnableWindow(get_handle(), false);
 //
@@ -4619,7 +4619,7 @@ namespace linux
 //   void interaction_impl::EndModalState()
 //   {
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //      //::EnableWindow(get_handle(), true);
 //
@@ -4645,7 +4645,7 @@ namespace linux
 //   void interaction_impl::CloseWindow()
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      ::CloseWindow(get_handle());
 //
@@ -4654,7 +4654,7 @@ namespace linux
 //   bool interaction_impl::OpenIcon()
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      return ::OpenIcon(get_handle()) != false;
 //
@@ -4807,7 +4807,7 @@ namespace linux
 //      else
 //      {
 //
-//         throw ::interface_only_exception();
+//         throw ::interface_only();
 //
 //      }
 //

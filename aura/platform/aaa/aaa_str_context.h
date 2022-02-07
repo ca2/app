@@ -32,7 +32,7 @@
 //   public:
 //
 //
-//      atom m_idSchema;
+//      atom m_atomSchema;
 //
 //
 //      str_schema() { InitHashTable(4 * 1024 -1); };
@@ -46,7 +46,7 @@
 //   public:
 //
 //
-//      atom       m_idLang;
+//      atom       m_atomLang;
 //
 //      inline const str_schema * get_schema(const ::atom & idSchema) const
 //      {

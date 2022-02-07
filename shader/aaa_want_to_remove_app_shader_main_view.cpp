@@ -144,7 +144,7 @@ namespace simple_shader
    bool main_impact::BaseOnControlEvent(::user::control_event * pevent)
    {
 
-      if(ptopic->m_id == ::id_click)
+      if(ptopic->m_atom == ::id_click)
       {
 
          if(ptopic->user_element_id() == "simple_shader_toggle")

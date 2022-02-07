@@ -259,7 +259,7 @@ void nano_window::on_mouse_move(int x, int y)
 }
 
 
-::atom nano_window::hit_test(int x, int y)
+nano_child * nano_window::hit_test(int x, int y)
 {
 
    return m_pinterface->hit_test(x, y);

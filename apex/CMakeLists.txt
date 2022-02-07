@@ -185,8 +185,8 @@ list(APPEND apex_source
    message/dispatcher.cpp
    message/dispatcher.h
    message/global.h
-   message/id.cpp
-   message/id.h
+   #message/id.cpp
+   #message/id.h
    message/listener_smart_pointer_array.h
    message/message.cpp
    message/message.h
@@ -512,18 +512,18 @@ list(APPEND apex_source
    progress/real.cpp
    progress/real.h
    progress/_.h
-   subject/context.cpp
-   subject/context.h
-   subject/manager.cpp
-   subject/manager.h
-   subject/process.cpp
-   subject/promise.cpp
-   subject/promise.h
-   subject/routine.cpp
-   subject/signal.cpp
-   subject/signal.h
-   subject/source.cpp
-   subject/source.h
+   topic/context.cpp
+   topic/context.h
+   topic/manager.cpp
+   topic/manager.h
+   topic/process.cpp
+   topic/promise.cpp
+   topic/promise.h
+   topic/routine.cpp
+   topic/signal.cpp
+   topic/signal.h
+   topic/source.cpp
+   topic/source.h
    template/list.h
    user/_.h
    user/_const_key.h

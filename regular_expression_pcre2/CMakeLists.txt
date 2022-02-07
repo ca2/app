@@ -12,8 +12,8 @@ list(APPEND regular_expression_pcre2_source
    framework.h
    regular_expression.cpp
    regular_expression.h
-   topic.cpp
-   topic.h
+   result.cpp
+   result.h
 )
 
 

@@ -78,7 +78,7 @@ namespace x11
 
       void update_drawing_objects() override;
 
-      ::atom hit_test(int x, int y) override;
+      nano_child * hit_test(int x, int y) override;
 
       //virtual void add_child(nano_child * pchild);
 

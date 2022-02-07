@@ -44,7 +44,7 @@ namespace aura
 #endif
 
 
-#include "aura/node/operating_system/operating_system.h"
+#include "aura/operating_system/operating_system.h"
 
 
 #include "aura/include/_include.h"

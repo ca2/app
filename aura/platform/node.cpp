@@ -5,7 +5,7 @@
 #include "node.h"
 #include "aura/user/_user.h"
 #ifdef LINUX
-#include "aura/node/operating_system/linux/x11.h"
+#include "aura/operating_system/linux/x11.h"
 #endif
 
 

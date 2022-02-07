@@ -12,9 +12,9 @@
 
 #if defined(MACOS)
 
-#include "apex/node/operating_system/ansi/_ansi.h"
-#include "apex/node/operating_system/apple/_apple.h"
-#include "apex/node/operating_system/macos/_macos.h"
+#include "apex/operating_system/ansi/_ansi.h"
+#include "apex/operating_system/apple/_apple.h"
+#include "apex/operating_system/macos/_macos.h"
 
 #elif defined(APPLE_IOS)
 
@@ -25,29 +25,29 @@
 #elif defined(LINUX)
 
 
-#include "apex/node/operating_system/ansi/_ansi.h"
-#include "apex/node/operating_system/posix/_posix.h"
-#include "apex/node/operating_system/linux/_linux.h"
-#include "apex/node/operating_system/linux/_user.h"
+#include "apex/operating_system/ansi/_ansi.h"
+#include "apex/operating_system/posix/_posix.h"
+#include "apex/operating_system/linux/_linux.h"
+#include "apex/operating_system/linux/_user.h"
 
 #elif defined(FREEBSD)
 
 
-#include "apex/node/operating_system/ansi/_ansi.h"
-#include "apex/node/operating_system/posix/_posix.h"
-#include "apex/node/operating_system/freebsd/_freebsd.h"
-#include "apex/node/operating_system/freebsd/_user.h"
+#include "apex/operating_system/ansi/_ansi.h"
+#include "apex/operating_system/posix/_posix.h"
+#include "apex/operating_system/freebsd/_freebsd.h"
+#include "apex/operating_system/freebsd/_user.h"
 
 #elif defined(_UWP)
 
-#include "apex/node/operating_system/ansi/_ansi.h"
-#include "apex/node/operating_system/windows_common/_windows_common.h"
-#include "apex/node/operating_system/universal_windows/_universal_windows.h"
+#include "apex/operating_system/ansi/_ansi.h"
+#include "apex/operating_system/windows_common/_windows_common.h"
+#include "apex/operating_system/universal_windows/_universal_windows.h"
 
 #elif defined(WINDOWS_DESKTOP)
 
-#include "apex/node/operating_system/windows_common/_windows_common.h"
-#include "apex/node/operating_system/windows/_windows.h"
+#include "apex/operating_system/windows_common/_windows_common.h"
+#include "apex/operating_system/windows/_windows.h"
 
 #elif defined(ANDROID)
 

@@ -2,14 +2,14 @@
 #pragma once
 
 
-#include "apex/node/operating_system/_c.h"
+#include "apex/operating_system/_c.h"
 
 
 #if defined(MACOS)
 
-#include "aura/node/operating_system/ansi/_c.h"
-#include "aura/node/operating_system/apple/_c.h"
-#include "aura/node/operating_system/macos/_c.h"
+#include "aura/operating_system/ansi/_c.h"
+#include "aura/operating_system/apple/_c.h"
+#include "aura/operating_system/macos/_c.h"
 
 #elif defined(APPLE_IOS)
 
@@ -19,27 +19,27 @@
 
 #elif defined(LINUX)
 
-#include "aura/node/operating_system/cairo/_c.h"
-#include "aura/node/operating_system/ansi/_c.h"
-#include "aura/node/operating_system/linux/_c.h"
+#include "aura/operating_system/cairo/_c.h"
+#include "aura/operating_system/ansi/_c.h"
+#include "aura/operating_system/linux/_c.h"
 
 #elif defined(FREEBSD)
 
-#include "aura/node/operating_system/cairo/_c.h"
-#include "aura/node/operating_system/ansi/_c.h"
-#include "aura/node/operating_system/freebsd/_c.h"
+#include "aura/operating_system/cairo/_c.h"
+#include "aura/operating_system/ansi/_c.h"
+#include "aura/operating_system/freebsd/_c.h"
 
 #elif defined(_UWP)
 
-#include "aura/node/operating_system/ansi/_c.h"
-#include "aura/node/operating_system/windows_common/_c.h"
-#include "aura/node/operating_system/universal_windows/_c.h"
+#include "aura/operating_system/ansi/_c.h"
+#include "aura/operating_system/windows_common/_c.h"
+#include "aura/operating_system/universal_windows/_c.h"
 
 #elif defined(WINDOWS_DESKTOP)
 
-#include "aura/node/operating_system/ansi/_c.h"
-#include "aura/node/operating_system/windows_common/_c.h"
-#include "aura/node/operating_system/windows/_c.h"
+#include "aura/operating_system/ansi/_c.h"
+#include "aura/operating_system/windows_common/_c.h"
+#include "aura/operating_system/windows/_c.h"
 
 #elif defined(ANDROID)
 

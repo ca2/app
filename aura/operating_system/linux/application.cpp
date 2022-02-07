@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "_linux.h"
-#include "aura/node/operating_system/linux/_linux.h"
+#include "aura/operating_system/linux/_linux.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 
 

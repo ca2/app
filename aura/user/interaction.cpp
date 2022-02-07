@@ -26,7 +26,7 @@ int g_i134 = 0;
 #define TEST_PRINT_BUFFER
 
 #ifdef WINDOWS_DESKTOP
-#include "aura/node/operating_system/windows/windowing.h"
+#include "aura/operating_system/windows/windowing.h"
 #define MESSAGE_WINDOW_PARENT HWND_MESSAGE
 #elif defined(_UWP)
 

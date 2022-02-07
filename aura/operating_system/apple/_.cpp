@@ -8,7 +8,7 @@
 
 #include "framework.h"
 #include "main.h"
-#include "aura/node/operating_system/_.h"
+#include "aura/operating_system/_.h"
 #include "aura/update.h"
 //char * ns_realpath(const ::string & pszPath);
 //char * mm_ca2_command_line();

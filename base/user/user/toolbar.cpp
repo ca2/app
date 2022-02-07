@@ -4,7 +4,7 @@
 #include "aqua/xml.h"
 //#include "acme/operating_system/_os.h"
 //#include "acme/operating_system/cross.h"
-#include "aura/node/operating_system/_user.h"
+#include "aura/operating_system/_user.h"
 #include "toolbar.h"
 #include "aura/graphics/draw2d/_draw2d.h"
 

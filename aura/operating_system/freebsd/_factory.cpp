@@ -4,7 +4,7 @@
 //#include "console.h"
 #include "_freebsd.h"
 #include "aura/node/_node.h"
-#include "aura/node/operating_system/_operating_system.h"
+#include "aura/operating_system/_operating_system.h"
 //#include "copydesk.h"
 
 

@@ -2565,7 +2565,7 @@ CLASS_DECL_AURA void __node_aura_pos_term();
 //
 //
 //
-//#include "aura/node/operating_system/_.h"
+//#include "aura/operating_system/_.h"
 //
 //
 //class update;
@@ -2876,7 +2876,7 @@ namespace write_text
 
 //#include "aura/graphics/_impl.h"
 
-#include "aura/node/operating_system/_impl.h"
+#include "aura/operating_system/_impl.h"
 
 #include "aura/platform/_impl.h"
 

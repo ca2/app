@@ -10,9 +10,9 @@ CLASS_DECL_ACME const char* executable_get_app_id();
 
 #if defined(MACOS)
 
-#include "apex/node/operating_system/ansi/_c.h"
-#include "apex/node/operating_system/apple/_c.h"
-#include "apex/node/operating_system/macos/_c.h"
+#include "apex/operating_system/ansi/_c.h"
+#include "apex/operating_system/apple/_c.h"
+#include "apex/operating_system/macos/_c.h"
 
 #elif defined(APPLE_IOS)
 
@@ -22,27 +22,27 @@ CLASS_DECL_ACME const char* executable_get_app_id();
 
 #elif defined(LINUX)
 
-#include "apex/node/operating_system/ansi/_c.h"
-#include "apex/node/operating_system/posix/_c.h"
-#include "apex/node/operating_system/linux/_c.h"
+#include "apex/operating_system/ansi/_c.h"
+#include "apex/operating_system/posix/_c.h"
+#include "apex/operating_system/linux/_c.h"
 
 #elif defined(FREEBSD)
 
-#include "apex/node/operating_system/ansi/_c.h"
-#include "apex/node/operating_system/posix/_c.h"
-#include "apex/node/operating_system/freebsd/_c.h"
+#include "apex/operating_system/ansi/_c.h"
+#include "apex/operating_system/posix/_c.h"
+#include "apex/operating_system/freebsd/_c.h"
 
 #elif defined(_UWP)
 
-#include "apex/node/operating_system/ansi/_c.h"
-#include "apex/node/operating_system/windows_common/_c.h"
-#include "apex/node/operating_system/universal_windows/_c.h"
+#include "apex/operating_system/ansi/_c.h"
+#include "apex/operating_system/windows_common/_c.h"
+#include "apex/operating_system/universal_windows/_c.h"
 
 #elif defined(WINDOWS_DESKTOP)
 
-#include "apex/node/operating_system/ansi/_c.h"
-#include "apex/node/operating_system/windows_common/_c.h"
-#include "apex/node/operating_system/windows/_c.h"
+#include "apex/operating_system/ansi/_c.h"
+#include "apex/operating_system/windows_common/_c.h"
+#include "apex/operating_system/windows/_c.h"
 
 #elif defined(ANDROID)
 

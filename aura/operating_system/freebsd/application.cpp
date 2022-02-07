@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "_freebsd.h"
-#include "aura/node/operating_system/freebsd/_freebsd.h"
+#include "aura/operating_system/freebsd/_freebsd.h"
 
 
 //#include <X11/cursorfont.h>

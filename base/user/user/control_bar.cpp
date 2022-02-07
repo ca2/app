@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "aura/operating_system.h"
 #include "base/user/user/_user.h"
-#include "aura/node/operating_system/_user.h"
+#include "aura/operating_system/_user.h"
 #include "aura/graphics/draw2d/_draw2d.h"
 
 

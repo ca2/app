@@ -12,7 +12,7 @@
 #include "aura/graphics/draw2d/image.h"
 #include "aura/graphics/draw2d/graphics.h"
 //#ifdef _UWP
-//#include "aura/node/operating_system/windows_common/draw2d_direct2d_global.h"
+//#include "aura/operating_system/windows_common/draw2d_direct2d_global.h"
 //#endif
 
 point_i32 g_pointLastBottomRight;

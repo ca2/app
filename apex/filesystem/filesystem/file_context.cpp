@@ -14,7 +14,7 @@
 #include "apex/platform/app_core.h"
 
 #elif defined(_UWP)
-#include "apex/node/operating_system/_operating_system.h"
+#include "apex/operating_system/_operating_system.h"
 #endif
 
 #include <stdio.h>

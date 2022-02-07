@@ -10,10 +10,10 @@
 #endif
 
 
-#include "apex/node/operating_system/ansi/_ansi.h"
+#include "apex/operating_system/ansi/_ansi.h"
 #include "acme/parallelization/message_queue.h"
 #ifdef LINUX
-#include "apex/node/operating_system/linux/_user.h"
+#include "apex/operating_system/linux/_user.h"
 #endif
 
 

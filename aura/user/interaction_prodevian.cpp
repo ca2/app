@@ -20,7 +20,7 @@
 #ifdef LINUX
 
 
-#include "aura/node/operating_system/ansi/_ansi.h"
+#include "aura/operating_system/ansi/_ansi.h"
 
 
 #endif

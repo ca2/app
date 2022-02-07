@@ -8,16 +8,16 @@ CLASS_DECL_ACME string executable_get_app_id(hinstance hinstance);
 
 
 #include "acme/operating_system/_.h"
-#include "apex/node/operating_system/_c.h"
+#include "apex/operating_system/_c.h"
 
 
 //CLASS_DECL_APEX string get_command_line();
 
 #if defined(MACOS)
 
-#include "apex/node/operating_system/ansi/_.h"
-#include "apex/node/operating_system/apple/_.h"
-#include "apex/node/operating_system/macos/_.h"
+#include "apex/operating_system/ansi/_.h"
+#include "apex/operating_system/apple/_.h"
+#include "apex/operating_system/macos/_.h"
 
 #elif defined(APPLE_IOS)
 
@@ -27,27 +27,27 @@ CLASS_DECL_ACME string executable_get_app_id(hinstance hinstance);
 
 #elif defined(LINUX)
 
-#include "apex/node/operating_system/ansi/_.h"
-#include "apex/node/operating_system/posix/_.h"
-#include "apex/node/operating_system/linux/_.h"
+#include "apex/operating_system/ansi/_.h"
+#include "apex/operating_system/posix/_.h"
+#include "apex/operating_system/linux/_.h"
 
 #elif defined(FREEBSD)
 
-#include "apex/node/operating_system/ansi/_.h"
-#include "apex/node/operating_system/posix/_.h"
-#include "apex/node/operating_system/freebsd/_.h"
+#include "apex/operating_system/ansi/_.h"
+#include "apex/operating_system/posix/_.h"
+#include "apex/operating_system/freebsd/_.h"
 
 #elif defined(_UWP)
 
-#include "apex/node/operating_system/ansi/_.h"
-#include "apex/node/operating_system/windows_common/_.h"
-#include "apex/node/operating_system/universal_windows/_.h"
+#include "apex/operating_system/ansi/_.h"
+#include "apex/operating_system/windows_common/_.h"
+#include "apex/operating_system/universal_windows/_.h"
 
 #elif defined(WINDOWS_DESKTOP)
 
-#include "apex/node/operating_system/ansi/_.h"
-#include "apex/node/operating_system/windows_common/_.h"
-#include "apex/node/operating_system/windows/_.h"
+#include "apex/operating_system/ansi/_.h"
+#include "apex/operating_system/windows_common/_.h"
+#include "apex/operating_system/windows/_.h"
 
 #elif defined(ANDROID)
 

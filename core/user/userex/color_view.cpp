@@ -9,7 +9,7 @@
 #include "core/user/userex/_userex.h"
 #endif
 
-#include "aura/node/operating_system/windows_common/graphics.h"
+#include "aura/operating_system/windows_common/graphics.h"
 
 
 //#if defined(__APPLE__)

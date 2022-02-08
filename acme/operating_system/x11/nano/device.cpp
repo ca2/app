@@ -6,13 +6,24 @@
 #include <X11/Xlocale.h>
 
 
-
 namespace x11
 {
 
 
+   nano_device::nano_device()
+   {
+
+      m_psurfaceMemory = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, 1, 1);
+
+      m_pdc = cairo_create(m_psurfaceMemory);
+
+   }
+
+
    nano_device::nano_device(cairo_t * pdc)
    {
+
+      m_psurfaceMemory = nullptr;
 
       m_pdc = pdc;
 
@@ -22,7 +33,19 @@ namespace x11
    nano_device::~nano_device()
    {
 
-      cairo_destroy(m_pdc);
+      if(m_pdc)
+      {
+
+         cairo_destroy(m_pdc);
+
+      }
+
+      if(m_psurfaceMemory)
+      {
+
+         cairo_surface_destroy(m_psurfaceMemory);
+
+      }
 
    }
 
@@ -75,6 +98,24 @@ namespace x11
       cairo_move_to(m_pdc, x, y + textextents.height);
 
       cairo_show_text(m_pdc, str);
+
+   }
+
+
+   ::size_i32 nano_device::get_text_extents(const ::string & str, ::nano_font * pnanofont)
+   {
+
+      cairo_set_antialias(m_pdc, CAIRO_ANTIALIAS_SUBPIXEL);
+
+      cairo_select_font_face(m_pdc, pnanofont->m_strFontName, CAIRO_FONT_SLANT_NORMAL, pnanofont->m_bBold ? CAIRO_FONT_WEIGHT_BOLD : CAIRO_FONT_WEIGHT_NORMAL);
+
+      cairo_set_font_size(m_pdc, pnanofont->m_iFontSize);
+
+      cairo_text_extents_t textextents = {};
+
+      cairo_text_extents(m_pdc, str, &textextents);
+
+      return { (int) textextents.width, (int) textextents.height };
 
    }
 

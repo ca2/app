@@ -199,11 +199,13 @@ namespace x11
 
       }
 
-      XSelectInput(m_pdisplay, m_window, ExposureMask | KeyPressMask | VisibilityChangeMask | StructureNotifyMask | ButtonPressMask | ButtonMotionMask);
+      XSelectInput(m_pdisplay, m_window, ExposureMask | KeyPressMask | VisibilityChangeMask | StructureNotifyMask | ButtonPressMask | ButtonMotionMask | ButtonReleaseMask | LeaveWindowMask);
 
       XSelectInput(m_pdisplay, windowRoot, PropertyChangeMask);
 
       create_drawing_objects();
+
+      on_create();
 
       //XMapWindow(m_pdisplay, m_window);
 
@@ -594,6 +596,21 @@ void nano_window::_on_event(XEvent *pevent)
       on_mouse_move(pevent->xmotion.x_root, pevent->xmotion.y_root);
 
    }
+   else if (pevent->type == LeaveNotify)
+   {
+
+      if(m_pinterface->m_pchildHover)
+      {
+
+         m_pinterface->m_pchildHover->on_mouse_move(-100000, -10000);
+
+         m_pinterface->m_pchildHover = nullptr;
+
+         m_pinterface->redraw();
+
+      }
+
+   }
 
 }
 
@@ -644,6 +661,8 @@ void nano_window::message_loop()
 
 
    }
+
+   output_debug_string("nano_window::message_loop exit");
 
 }
 
@@ -727,6 +746,10 @@ void nano_window::redraw()
 
    void nano_window::destroy()
    {
+
+      XUnmapWindow(m_pdisplay, m_window);
+
+      XDestroyWindow(m_pdisplay, m_window);
 
       XCloseDisplay(m_pdisplay);
 

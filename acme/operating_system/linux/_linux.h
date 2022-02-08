@@ -1,5 +1,27 @@
 #pragma once
 
+
+
+
+#include <sys/ptrace.h>
+#define wait darwin_wait
+#include <sys/wait.h>
+#undef wait
+
+
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <sys/inotify.h>
+
+
+#include <fcntl.h>
+#include <sys/file.h>
+#undef USE_MISC
+
+
+#include <dirent.h>
+
+
 //
 //#if !BROAD_PRECOMPILED_HEADER
 //#include "acme/user/user/_user.h"
@@ -84,6 +106,21 @@ CLASS_DECL_ACME const char * __get_app_name();
 
 
 #include "factory_exchange.h"
+
+
+platform_char *** process_get_pargv();
+platform_char ** process_get_argv();
+
+
+//#include "_user.h"
+
+//#include "desktop_file.h"
+//#include "x11.h"
+#include "acme/exception/engine.h"
+
+#include "exception_engine.h"
+
+
 
 
 

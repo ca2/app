@@ -16,7 +16,7 @@
 #include "acme/parallelization/install_mutex.h"
 #include "acme/primitive/text/context.h"
 
-//#include "apex/node/_node.h"
+//#include "apex/operating_system/_node.h"
 #include "node.h"
 //#include "apex/os/_os.h"
 #include "application_impl.h"
@@ -74,8 +74,8 @@ void ns_launch_app(const char * psz, const char ** argv, int iFlags);
 #ifdef _GNU_SOURCE
 #undef _GNU_SOURCE
 
-//#include "apex/node/ansios/ansios.h"
-#include "apex/node/linux/_linux.h"
+//#include "apex/operating_system/ansios/ansios.h"
+#include "apex/operating_system/linux/_linux.h"
 
 //#include <X11/cursorfont.h>
 #include <sys/time.h>
@@ -89,12 +89,12 @@ void ns_launch_app(const char * psz, const char ** argv, int iFlags);
 //#include <dlfcn.h>
 #elif defined(ANDROID)
 
-//#include "apex/node/ansios/ansios.h"
-#include "apex/node/android/_.h"
+//#include "apex/operating_system/ansios/ansios.h"
+#include "apex/operating_system/android/_.h"
 
 //#elif defined(WINDOWS_DESKTOP)
 
-//#include "apex/node/windows/windows_registry.h"
+//#include "apex/operating_system/windows/windows_registry.h"
 
 #endif
 

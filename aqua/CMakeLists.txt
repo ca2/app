@@ -49,8 +49,8 @@ list(APPEND library_source
         multimedia/file_application.h
         multimedia/multimedia.cpp
         multimedia/multimedia.h
-        os/windows/audio.cpp
-        os/_.h
+        operating_system/windows/audio.cpp
+        operating_system/_.h
         platform/_platform.h
         platform/application.cpp
         platform/application.h
@@ -117,7 +117,7 @@ list(APPEND library_source
 
 if(MACOS)
     list(APPEND aqua_source
-            os/macos/graphics.cpp
+            operating_system/macos/graphics.cpp
             )
 endif()
 

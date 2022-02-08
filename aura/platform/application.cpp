@@ -45,7 +45,7 @@ void ns_launch_app(const char * psz, const char ** argv, int iFlags);
 #undef _GNU_SOURCE
 
 //#include "aura/node/ansios/ansios.h"
-#include "aura/node/linux/_linux.h"
+#include "aura/operating_system/linux/_linux.h"
 
 //#include <X11/cursorfont.h>
 #include <sys/time.h>

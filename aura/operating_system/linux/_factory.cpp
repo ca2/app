@@ -3,7 +3,7 @@
 //#include "acme/operating_system/console.h"
 //#include "console.h"
 #include "_linux.h"
-#include "aura/node/_node.h"
+#include "aura/operating_system/_node.h"
 #include "aura/operating_system/_operating_system.h"
 //#include "copydesk.h"
 

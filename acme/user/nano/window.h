@@ -36,9 +36,10 @@ public:
    ::atom                                 m_atomLeftButtonDown;
    ::atom                                 m_atomLeftButtonUp;
    __pointer(nano_child)                  m_pchildFocus;
+   __pointer(nano_child)                  m_pchildHover;
    __pointer(nano_child)                  m_pchildCapture;
 
-
+   bool                                   m_bCapture;
    bool                                   m_bStartCentered;
 
 

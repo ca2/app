@@ -15,6 +15,8 @@ nano_window::nano_window()
 
    m_bStartCentered = false;
 
+   m_bCapture = false;
+
 }
 
 
@@ -316,6 +318,24 @@ nano_child * nano_window::get_child_by_id(const ::atom & atom)
 void nano_window::on_mouse_move(int x, int y)
 {
 
+   if(m_pchildHover)
+   {
+
+      m_pchildHover->on_mouse_move(x, y);
+
+      return;
+
+   }
+
+   if (m_pchildCapture)
+   {
+
+      m_pchildCapture->on_mouse_move(x, y);
+
+      return;
+
+   }
+
    if (m_pdragmove && m_pdragmove->m_bLButtonDown)
    {
 
@@ -340,15 +360,6 @@ void nano_window::on_mouse_move(int x, int y)
 
    }
 
-   if (m_pchildCapture)
-   {
-
-      m_pchildCapture->on_mouse_move(x, y);
-
-      return;
-
-   }
-
    auto pchild = hit_test(x, y);
 
    if (pchild)
@@ -363,8 +374,6 @@ void nano_window::on_mouse_move(int x, int y)
 
 void nano_window::on_left_button_down(int x, int y)
 {
-
-   set_capture();
 
    auto pchild = hit_test(x, y);
 
@@ -381,8 +390,10 @@ void nano_window::on_left_button_down(int x, int y)
 
    }
 
-   if (m_pdragmove && m_atomLeftButtonDown == e_dialog_result_none)
+   if (m_pdragmove && !pchild)
    {
+
+      set_capture();
 
       m_pdragmove->m_bLButtonDown = true;
 
@@ -496,7 +507,16 @@ void nano_window::get_window_rectangle(::rectangle_i32 & rectangle)
 void nano_window::set_capture()
 {
 
+   if(m_bCapture)
+   {
+
+      return;
+
+   }
+
    m_pimplementation->set_capture();
+
+   m_bCapture = true;
 
 }
 
@@ -521,7 +541,19 @@ bool nano_window::has_capture() const
 void nano_window::release_capture()
 {
 
+   m_pchildCapture = nullptr;
+
+   if(!m_bCapture)
+   {
+
+      return;
+
+   }
+
+   m_bCapture = false;
+
    m_pimplementation->release_capture();
+
 
 }
 

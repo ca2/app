@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "apex/node/linux/_linux.h"
+#include "apex/operating_system/linux/_linux.h"
 
 
 #include "aura/user/_user.h"
@@ -53,7 +53,7 @@ CLASS_DECL_AURA void __cdecl __pre_translate_message(::message::message * pmessa
 
 int_bool mq_peek_message(MESSAGE * pMsg, oswindow hWnd, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg);
 
-int_bool mq_get_message(MESSAGE * pMsg, oswindow hWnd, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
+void mq_get_message(MESSAGE * pMsg, oswindow hWnd, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
 
 i32 CLASS_DECL_AURA __linux_main(i32 argc, char * argv[]);
 
@@ -72,6 +72,15 @@ CLASS_DECL_AURA const char * __get_app_name();
 
 
 #include "factory_exchange.h"
+
+
+
+
+
+#include "_user.h"
+
+#include "desktop_file.h"
+#include "x11.h"
 
 
 

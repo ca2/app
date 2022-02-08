@@ -235,9 +235,9 @@ namespace simpledb
          if (item.i32() <= 0)
          {
 
-            pdatabase->exec("create table '" + strTable + "' (atom TEXT primary key, value BLOB)");
+            pdatabase->exec("create table '" + strTable + "' (id TEXT primary key, value BLOB)");
 
-            pdatabase->exec("create index primary_unique ON " + strTable + "(atom)");
+            pdatabase->exec("create index primary_unique ON " + strTable + "(id)");
 
          }
 

@@ -1,6 +1,13 @@
-// Created by camilo on 2022-02-06 09:28 <3ThomasBorregaardSørensen
+// Created by camilo on 2022-02-06 09:28 <3ThomasBorregaardSï¿½rensen
 #include "framework.h"
 #include "_nano.h"
+
+
+nano_still::~nano_still()
+{
+
+
+}
 
 
 void nano_still::on_draw(nano_device * pnanodevice)
@@ -10,7 +17,7 @@ void nano_still::on_draw(nano_device * pnanodevice)
 
    __pointer(nano_pen) ppenBorder;
 
-   if (m_pwindow->m_pchildFocus == this)
+   if (m_pwindow->m_pchildHover == this || m_pwindow->m_pchildFocus == this)
    {
 
       ppenBorder = m_pwindow->m_ppenBorderFocus;
@@ -67,7 +74,7 @@ void nano_still::on_mouse_move(int x, int y)
    if (m_bHyperlink)
    {
 
-      if (has_capture())
+      if (m_pwindow->m_pchildHover == this)
       {
 
          auto r = m_rectangle;
@@ -77,7 +84,7 @@ void nano_still::on_mouse_move(int x, int y)
          if (!r.contains(::point_i32(x, y)))
          {
 
-            release_capture();
+            m_pwindow->m_pchildHover = nullptr;
 
             m_pwindow->redraw();
 
@@ -87,7 +94,7 @@ void nano_still::on_mouse_move(int x, int y)
       else
       {
 
-         set_capture();
+         m_pwindow->m_pchildHover = this;
 
          m_pwindow->redraw();
 

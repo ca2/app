@@ -21,6 +21,7 @@ void operating_system_initialize_nano()
    ::factory::add_factory_item<::nano_brush>();
    ::factory::add_factory_item<::nano_font>();
    ::factory::add_factory_item<::nano_pen>();
+   ::factory::add_factory_item<::x11::nano_device, ::nano_device>();
 
 }
 

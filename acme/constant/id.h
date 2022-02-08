@@ -284,6 +284,12 @@ enum enum_id : u64
    id_task_bar_created,
 
 
+   id_video_input_device_added,
+   id_video_input_device_removed,
+
+
+
+
 };
 
 

@@ -546,19 +546,19 @@ list(APPEND library_source
 
 
 list(APPEND library_source
-   #"os/ios/window_boot 2.h"
+   #"operating_system/ios/window_boot 2.h"
    #exception/debug.h
    #operating_system/android/buffer.h
-   #os/ansios/parallelization.h
-   #os/x11/_.h
-   #os/x11/x11_button.h
-   #os/x11/x11_exception.h
-   #os/x11/x11_hook.h
-   #os/x11/x11_keyboard.h
-   #os/x11/x11_message_box.h
-   #os/x11/x11_simple_ui_display.h
-   #os/xcb/_xcb.h
-   #os/xcb/xcb_hook.h
+   #operating_system/ansios/parallelization.h
+   #operating_system/x11/_.h
+   #operating_system/x11/x11_button.h
+   #operating_system/x11/x11_exception.h
+   #operating_system/x11/x11_hook.h
+   #operating_system/x11/x11_keyboard.h
+   #operating_system/x11/x11_message_box.h
+   #operating_system/x11/x11_simple_ui_display.h
+   #operating_system/xcb/_xcb.h
+   #operating_system/xcb/xcb_hook.h
    #parallelization/file_change_event.h
    _.h
    _defer.h
@@ -874,7 +874,7 @@ list(APPEND library_source
    operating_system/windows/_windows.h
    #operating_system/windows/_windows_impl.h
    #operating_system/windows/api.h
-   #os/windows/callstack.h
+   #operating_system/windows/callstack.h
  # operating_system/windows/d2d1_1.h
  # operating_system/windows/dir.h
  # operating_system/windows/environment_variable.h
@@ -905,7 +905,7 @@ list(APPEND library_source
  # operating_system/windows_common/comptr.h
  # operating_system/windows_common/cotaskptr.h
  # operating_system/windows_common/file.h
- # #os/windows_common/graphics.h
+ # #operating_system/windows_common/graphics.h
  # operating_system/windows_common/new_api.h
  # operating_system/windows_common/parallelization.h
  # operating_system/windows_common/variant.h
@@ -1381,27 +1381,27 @@ if (UWP)
       operating_system/universal_windows/native_buffer.cpp
       operating_system/universal_windows/timer.cpp
       operating_system/universal_windows/util.cpp
-      os/universal_windows/_.cpp
-      os/universal_windows/_os_metrowin.cpp
-      os/universal_windows/application_system_run.cpp
-      os/universal_windows/aura.cpp
-      os/universal_windows/debug.cpp
-      os/universal_windows/direct2d_tls.cpp
-      os/universal_windows/dpi.cpp
-      os/universal_windows/dummy_ipc.cpp
-      os/universal_windows/exception_engine.cpp
-      os/universal_windows/file.cpp
-      os/universal_windows/file_memory_map.cpp
-      os/universal_windows/graphics.cpp
-      os/universal_windows/language.cpp
-      os/universal_windows/lock.cpp
-      os/universal_windows/main.cpp
-      os/universal_windows/parallelization.cpp
-      os/universal_windows/os_message_box.cpp
-      os/universal_windows/process.cpp
-      os/universal_windows/sockets.cpp
-      os/universal_windows/time.cpp
-      os/universal_windows/user.cpp)
+      operating_system/universal_windows/_.cpp
+      operating_system/universal_windows/_os_metrowin.cpp
+      operating_system/universal_windows/application_system_run.cpp
+      operating_system/universal_windows/aura.cpp
+      operating_system/universal_windows/debug.cpp
+      operating_system/universal_windows/direct2d_tls.cpp
+      operating_system/universal_windows/dpi.cpp
+      operating_system/universal_windows/dummy_ipc.cpp
+      operating_system/universal_windows/exception_engine.cpp
+      operating_system/universal_windows/file.cpp
+      operating_system/universal_windows/file_memory_map.cpp
+      operating_system/universal_windows/graphics.cpp
+      operating_system/universal_windows/language.cpp
+      operating_system/universal_windows/lock.cpp
+      operating_system/universal_windows/main.cpp
+      operating_system/universal_windows/parallelization.cpp
+      operating_system/universal_windows/os_message_box.cpp
+      operating_system/universal_windows/process.cpp
+      operating_system/universal_windows/sockets.cpp
+      operating_system/universal_windows/time.cpp
+      operating_system/universal_windows/user.cpp)
 
    list(APPEND library_source
       operating_system/universal_windows/exception.h
@@ -1432,40 +1432,40 @@ if (WIN32)
 #      operating_system/windows/uac_tools.cpp
 #      operating_system/windows/windows.cpp
 #      operating_system/windows/windows_desktop.cpp
-#      os/windows/_.cpp
-#      os/windows/_ansi.cpp
-#      os/windows/_wd16.cpp
-#      os/windows/_wd32.cpp
-#      os/windows/ansi_file.cpp
-#      os/windows/api.cpp
-#      os/windows/application.cpp
-      #os/windows/application_system_run.cpp
-      #os/windows/callstack.cpp
-#      os/windows/debug.cpp
-#      os/windows/dir.cpp
-#      os/windows/environment_variable.cpp
-#      os/windows/exception_engine.cpp
-#      os/windows/extract_icon.cpp
-#      os/windows/file.cpp
-      #os/windows/gdiplus.cpp
-#      os/windows/internal.cpp
-#      os/windows/itemidlist.cpp
-#      os/windows/language.cpp
-#      os/windows/library.cpp
-      #os/windows/list_serial_ports.cpp
-      #os/windows/local_memory_map.cpp
-#      os/windows/lock.cpp
-#      os/windows/main.cpp
-#      os/windows/message_loop.cpp
-#      os/windows/printer.cpp
-#      os/windows/process.cpp
-#      os/windows/registry.cpp
-#      os/windows/simple_app.cpp
-#      os/windows/parallelization.cpp
-#      os/windows/time.cpp
-#      os/windows/user.cpp
-#      os/windows/util.cpp
-#      os/windows/windowing.cpp
+#      operating_system/windows/_.cpp
+#      operating_system/windows/_ansi.cpp
+#      operating_system/windows/_wd16.cpp
+#      operating_system/windows/_wd32.cpp
+#      operating_system/windows/ansi_file.cpp
+#      operating_system/windows/api.cpp
+#      operating_system/windows/application.cpp
+      #operating_system/windows/application_system_run.cpp
+      #operating_system/windows/callstack.cpp
+#      operating_system/windows/debug.cpp
+#      operating_system/windows/dir.cpp
+#      operating_system/windows/environment_variable.cpp
+#      operating_system/windows/exception_engine.cpp
+#      operating_system/windows/extract_icon.cpp
+#      operating_system/windows/file.cpp
+      #operating_system/windows/gdiplus.cpp
+#      operating_system/windows/internal.cpp
+#      operating_system/windows/itemidlist.cpp
+#      operating_system/windows/language.cpp
+#      operating_system/windows/library.cpp
+      #operating_system/windows/list_serial_ports.cpp
+      #operating_system/windows/local_memory_map.cpp
+#      operating_system/windows/lock.cpp
+#      operating_system/windows/main.cpp
+#      operating_system/windows/message_loop.cpp
+#      operating_system/windows/printer.cpp
+#      operating_system/windows/process.cpp
+#      operating_system/windows/registry.cpp
+#      operating_system/windows/simple_app.cpp
+#      operating_system/windows/parallelization.cpp
+#      operating_system/windows/time.cpp
+#      operating_system/windows/user.cpp
+#      operating_system/windows/util.cpp
+#      operating_system/windows/windowing.cpp
       #operating_system/windows/base/
       #operating_system/windows/base/implementation.h
       #operating_system/windows/base/print_job.h
@@ -1506,49 +1506,49 @@ else ()
       operating_system/cross/windows/file.cpp
       operating_system/cross/windows/dir.cpp
       operating_system/cross/windows/time.cpp
-      #os/cross/windows/crt.cpp
-      #os/cross/windows/crt_debug.cpp
-      #os/cross/windows/datetime.cpp
-      #os/cross/windows/error.cpp
-      #os/cross/windows/locale.cpp
-      #os/cross/windows/shared_memory.cpp
-      #os/cross/windows/thread_local_storage.cpp
-      #os/cross/windows/ansios_message_loop.cpp
-      #os/cross/windows/user.cpp
-      #os/cross/windows/windows.cpp
-      #os/cross/windows/e.h
-      #os/cross/windows/message_box.h
-      #os/cross/windows/windows.h
-      #os/cross/windows/windows_base.h
-      #os/cross/windows/windows_base_tsd.h
-      #os/cross/windows/windows_common_controls.h
-      #os/cross/windows/windows_crt.h
-      #os/cross/windows/windows_crtdefs.h
-      #os/cross/windows/windows_defs.h
-      #os/cross/windows/windows_errno.h
-      #os/cross/windows/windows_error.h
-      #os/cross/windows/windows_file.h
-      #os/cross/windows/windows_gdi.h
-      #os/cross/windows/windows_guid_def.h
-      #os/cross/windows/windows_internals.h
-      #os/cross/windows/windows_mmeapi.h
-      #os/cross/windows/windows_mmsystem.h
-      #os/cross/windows/windows_nls.h
-      #os/cross/windows/windows_nt.h
-      #os/cross/windows/windows_ntstatus.h
-      #os/cross/windows/windows_ole_automation.h
-      #os/cross/windows/windows_shared_memory.h
-      #os/cross/windows/windows_thread.h
-      #os/cross/windows/windows_thread_impl.h
-      #os/cross/windows/windows_time.h
-      #os/cross/windows/windows_types.h
-      #os/cross/windows/windows_user.h
-      #os/cross/windows/windows_wincon.h
-      #os/cross/windows/windows_winnt.h
-      #os/cross/windows/_.h
-      #os/cross/_.h
-      #os/cross.h
-      #os/cross/_cross.h
+      #operating_system/cross/windows/crt.cpp
+      #operating_system/cross/windows/crt_debug.cpp
+      #operating_system/cross/windows/datetime.cpp
+      #operating_system/cross/windows/error.cpp
+      #operating_system/cross/windows/locale.cpp
+      #operating_system/cross/windows/shared_memory.cpp
+      #operating_system/cross/windows/thread_local_storage.cpp
+      #operating_system/cross/windows/ansios_message_loop.cpp
+      #operating_system/cross/windows/user.cpp
+      #operating_system/cross/windows/windows.cpp
+      #operating_system/cross/windows/e.h
+      #operating_system/cross/windows/message_box.h
+      #operating_system/cross/windows/windows.h
+      #operating_system/cross/windows/windows_base.h
+      #operating_system/cross/windows/windows_base_tsd.h
+      #operating_system/cross/windows/windows_common_controls.h
+      #operating_system/cross/windows/windows_crt.h
+      #operating_system/cross/windows/windows_crtdefs.h
+      #operating_system/cross/windows/windows_defs.h
+      #operating_system/cross/windows/windows_errno.h
+      #operating_system/cross/windows/windows_error.h
+      #operating_system/cross/windows/windows_file.h
+      #operating_system/cross/windows/windows_gdi.h
+      #operating_system/cross/windows/windows_guid_def.h
+      #operating_system/cross/windows/windows_internals.h
+      #operating_system/cross/windows/windows_mmeapi.h
+      #operating_system/cross/windows/windows_mmsystem.h
+      #operating_system/cross/windows/windows_nls.h
+      #operating_system/cross/windows/windows_nt.h
+      #operating_system/cross/windows/windows_ntstatus.h
+      #operating_system/cross/windows/windows_ole_automation.h
+      #operating_system/cross/windows/windows_shared_memory.h
+      #operating_system/cross/windows/windows_thread.h
+      #operating_system/cross/windows/windows_thread_impl.h
+      #operating_system/cross/windows/windows_time.h
+      #operating_system/cross/windows/windows_types.h
+      #operating_system/cross/windows/windows_user.h
+      #operating_system/cross/windows/windows_wincon.h
+      #operating_system/cross/windows/windows_winnt.h
+      #operating_system/cross/windows/_.h
+      #operating_system/cross/_.h
+      #operating_system/cross.h
+      #operating_system/cross/_cross.h
       )
 
 endif ()
@@ -1557,19 +1557,19 @@ endif ()
 if (WIN32 OR UWP)
 
    list(APPEND library_source
-#      os/windows_common/_dll.cpp
-#      os/windows_common/aura.cpp
-#      os/windows_common/base.cpp
-#      os/windows_common/bstring.cpp
-#      os/windows_common/com.cpp
-#      os/windows_common/debug.cpp
-#      os/windows_common/file.cpp
-      #os/windows_common/file_c.cpp
-      #os/windows_common/graphics.cpp
-      #os/windows_common/net.cpp
-#      os/windows_common/parallelization.cpp
-#      os/windows_common/time.cpp
-#      os/windows_common/unicode.cpp
+#      operating_system/windows_common/_dll.cpp
+#      operating_system/windows_common/aura.cpp
+#      operating_system/windows_common/base.cpp
+#      operating_system/windows_common/bstring.cpp
+#      operating_system/windows_common/com.cpp
+#      operating_system/windows_common/debug.cpp
+#      operating_system/windows_common/file.cpp
+      #operating_system/windows_common/file_c.cpp
+      #operating_system/windows_common/graphics.cpp
+      #operating_system/windows_common/net.cpp
+#      operating_system/windows_common/parallelization.cpp
+#      operating_system/windows_common/time.cpp
+#      operating_system/windows_common/unicode.cpp
       )
 
 endif ()
@@ -1613,7 +1613,7 @@ if (LINUX)
       operating_system/linux/thread.cpp
       operating_system/linux/trace.cpp
       operating_system/linux/util.cpp
-      #os/linux/application_system_run.cpp
+      #operating_system/linux/application_system_run.cpp
       operating_system/linux/_.cpp
       operating_system/linux/callstack.cpp
       operating_system/linux/cross_win_file.cpp
@@ -1622,7 +1622,7 @@ if (LINUX)
       operating_system/linux/exception_engine.cpp
       operating_system/linux/file.cpp
       operating_system/linux/file_lock.cpp
-      #os/linux/gdk.cpp
+      #operating_system/linux/gdk.cpp
       operating_system/linux/graphics.cpp
       operating_system/linux/library.cpp
       operating_system/linux/linux.cpp
@@ -1657,7 +1657,7 @@ if (LINUX)
       operating_system/linux/debug.h
       operating_system/linux/exception_engine.h
       operating_system/linux/file.h
-      #os/linux/gdk.h
+      #operating_system/linux/gdk.h
       operating_system/linux/linux_linux.h
       operating_system/linux/process.h
       operating_system/linux/user.h
@@ -1672,8 +1672,8 @@ endif ()
 
 if (MACOS)
    list(APPEND library_source
-      os/cross/universal_windows/cross_metrowin_user.cpp
-      os/cross/universal_windows/metrowin_user.cpp
+      operating_system/cross/universal_windows/cross_metrowin_user.cpp
+      operating_system/cross/universal_windows/metrowin_user.cpp
       #operating_system/macos/application.cpp
       #operating_system/macos/_factory.cpp
       #operating_system/macos/file.cpp
@@ -1682,34 +1682,34 @@ if (MACOS)
       #operating_system/macos/thread.cpp
       #operating_system/macos/trace.cpp
       #operating_system/macos/util.cpp
-      os/macos/_.cpp
-      #os/macos/application_system_run.cpp
-      #os/macos/clipboard.cpp
-      #os/macos/cross_win.cpp
-      #os/macos/cross_win_file.cpp
-      os/macos/debug.cpp
-      os/macos/exception_engine.cpp
-      #os/macos/file.cpp
-      #os/macos/file.mm
-      #os/macos/graphics.cpp
-      os/macos/library.cpp
-      #os/macos/list_serial_ports.cpp
-      #os/macos/lock.cpp
-      #os/macos/MessageBoxA.cpp
-      #os/macos/mm.mm
-      #os/macos/mm_graphics.mm
-      #os/macos/mm_user.mm
-      #os/macos/mmos.mm
-      #os/macos/NSPasteboard++.mm
-      #os/macos/os.cpp
-           os/macos/parallelization.cpp
-      #os/macos/process.cpp
-      #os/macos/process_pid.cpp
-      #os/macos/time.cpp
-      #os/macos/user.cpp
-      #os/macos/win_base.cpp
-      #os/macos/windowing.cpp
-      #os/macos/winpr_keycode.cpp
+      operating_system/macos/_.cpp
+      #operating_system/macos/application_system_run.cpp
+      #operating_system/macos/clipboard.cpp
+      #operating_system/macos/cross_win.cpp
+      #operating_system/macos/cross_win_file.cpp
+      operating_system/macos/debug.cpp
+      operating_system/macos/exception_engine.cpp
+      #operating_system/macos/file.cpp
+      #operating_system/macos/file.mm
+      #operating_system/macos/graphics.cpp
+      operating_system/macos/library.cpp
+      #operating_system/macos/list_serial_ports.cpp
+      #operating_system/macos/lock.cpp
+      #operating_system/macos/MessageBoxA.cpp
+      #operating_system/macos/mm.mm
+      #operating_system/macos/mm_graphics.mm
+      #operating_system/macos/mm_user.mm
+      #operating_system/macos/mmos.mm
+      #operating_system/macos/NSPasteboard++.mm
+      #operating_system/macos/os.cpp
+           operating_system/macos/parallelization.cpp
+      #operating_system/macos/process.cpp
+      #operating_system/macos/process_pid.cpp
+      #operating_system/macos/time.cpp
+      #operating_system/macos/user.cpp
+      #operating_system/macos/win_base.cpp
+      #operating_system/macos/windowing.cpp
+      #operating_system/macos/winpr_keycode.cpp
            )
 
 
@@ -1723,25 +1723,25 @@ if (MACOS)
            #operating_system/macos/_.h
            #operating_system/macos/_macos.h
            #operating_system/macos/_mm.h
-           #os/macos/cross_win_gdi.h
-           #os/macos/exception_engine.h
-           #os/macos/file.h
-           #os/macos/graphics_mm.h
-           #os/macos/internal.h
-           #os/macos/macos.h
-           #os/macos/main.h
-           #os/macos/mmos.h
-           #os/macos/mm_oswindow.h
-           #os/macos/os.h
-           #os/macos/process_c.h
-           #os/macos/user.h
-           #os/macos/windowing.h
-           #os/macos/windowing_c.h
-           #os/macos/window_impl.h
-           #os/macos/_.h
-           #os/macos/_c.h
-           #os/macos/_macos.h
-           #os/macos/_mm.h
+           #operating_system/macos/cross_win_gdi.h
+           #operating_system/macos/exception_engine.h
+           #operating_system/macos/file.h
+           #operating_system/macos/graphics_mm.h
+           #operating_system/macos/internal.h
+           #operating_system/macos/macos.h
+           #operating_system/macos/main.h
+           #operating_system/macos/mmos.h
+           #operating_system/macos/mm_oswindow.h
+           #operating_system/macos/os.h
+           #operating_system/macos/process_c.h
+           #operating_system/macos/user.h
+           #operating_system/macos/windowing.h
+           #operating_system/macos/windowing_c.h
+           #operating_system/macos/window_impl.h
+           #operating_system/macos/_.h
+           #operating_system/macos/_c.h
+           #operating_system/macos/_macos.h
+           #operating_system/macos/_mm.h
       )
 
 endif ()
@@ -1749,8 +1749,8 @@ endif ()
 
 if (IOS)
    list(APPEND library_source
-      os/cross/universal_windows/cross_metrowin_user.cpp
-      os/cross/universal_windows/metrowin_user.cpp
+      operating_system/cross/universal_windows/cross_metrowin_user.cpp
+      operating_system/cross/universal_windows/metrowin_user.cpp
       operating_system/ios/exception.cpp
       operating_system/ios/_factory.cpp
       operating_system/ios/file.cpp
@@ -1763,40 +1763,40 @@ if (IOS)
       operating_system/ios/thread.cpp
       operating_system/ios/trace.cpp
       operating_system/ios/util.cpp
-      os/ios/application_system_run.cpp
-      os/ios/aura.cpp
-      os/ios/base_user.cpp
-      os/ios/cross_win.cpp
-      os/ios/cross_win_file.cpp
-      os/ios/crypt.cpp
-      os/ios/debug.cpp
-      os/ios/error.cpp
-      os/ios/exception_engine.cpp
-      os/ios/file.cpp
-      os/ios/fontopus.cpp
-      os/ios/graphics.cpp
-      os/ios/language.cpp
-      os/ios/launcher.cpp
-      os/ios/library.cpp
-      os/ios/lock.cpp
-      os/ios/MessageBoxA_W.mm
-      os/ios/mm.mm
-      os/ios/mm_cross_gdi.mm
-      os/ios/mm_graphics.mm
-      os/ios/mm_thread.mm
-      os/ios/mm_user.mm
-      os/ios/parallelization.cpp
-      os/ios/oswindow_data.cpp
-      os/ios/process.cpp
-      os/ios/process_pid.cpp
-      os/ios/simple_shell_launcher.cpp
-      os/ios/small_ipca_channel.cpp
-      os/ios/time.cpp
-      os/ios/user.cpp
-      os/ios/win_base.cpp
-      os/ios/window.cpp
-      #"os/ios/window_boot 2.h"
-      os/ios/windowing.cpp
+      operating_system/ios/application_system_run.cpp
+      operating_system/ios/aura.cpp
+      operating_system/ios/base_user.cpp
+      operating_system/ios/cross_win.cpp
+      operating_system/ios/cross_win_file.cpp
+      operating_system/ios/crypt.cpp
+      operating_system/ios/debug.cpp
+      operating_system/ios/error.cpp
+      operating_system/ios/exception_engine.cpp
+      operating_system/ios/file.cpp
+      operating_system/ios/fontopus.cpp
+      operating_system/ios/graphics.cpp
+      operating_system/ios/language.cpp
+      operating_system/ios/launcher.cpp
+      operating_system/ios/library.cpp
+      operating_system/ios/lock.cpp
+      operating_system/ios/MessageBoxA_W.mm
+      operating_system/ios/mm.mm
+      operating_system/ios/mm_cross_gdi.mm
+      operating_system/ios/mm_graphics.mm
+      operating_system/ios/mm_thread.mm
+      operating_system/ios/mm_user.mm
+      operating_system/ios/parallelization.cpp
+      operating_system/ios/oswindow_data.cpp
+      operating_system/ios/process.cpp
+      operating_system/ios/process_pid.cpp
+      operating_system/ios/simple_shell_launcher.cpp
+      operating_system/ios/small_ipca_channel.cpp
+      operating_system/ios/time.cpp
+      operating_system/ios/user.cpp
+      operating_system/ios/win_base.cpp
+      operating_system/ios/window.cpp
+      #"operating_system/ios/window_boot 2.h"
+      operating_system/ios/windowing.cpp
       )
 
 
@@ -1826,44 +1826,44 @@ if (APPLE)
 
    list(APPEND library_source
            asset/new.cpp
-           os/apple/_.cpp
-           #os/apple/DDInvocationGrabber.h
-           #os/apple/NSObject+DDExtensions.h
-           #os/apple/NSString+SymlinksAndAliases.h
-           #os/apple/UncaughtExceptionHandler.h
-           #os/apple/_.h
-           #os/apple/_apple.h
-           #os/apple/_c_mm.h
-           #os/apple/_mm.h
-           #os/apple/_mm_common.h
-           #os/apple/debug.h
-           os/apple/exe_path.cpp
-           #os/apple/graphics.h
-           #os/apple/main.h
-           #os/apple/ns_exception.h
-           os/apple/time.cpp
-           #os/apple/time.h
-           #os/chronometer.h
+           operating_system/apple/_.cpp
+           #operating_system/apple/DDInvocationGrabber.h
+           #operating_system/apple/NSObject+DDExtensions.h
+           #operating_system/apple/NSString+SymlinksAndAliases.h
+           #operating_system/apple/UncaughtExceptionHandler.h
+           #operating_system/apple/_.h
+           #operating_system/apple/_apple.h
+           #operating_system/apple/_c_mm.h
+           #operating_system/apple/_mm.h
+           #operating_system/apple/_mm_common.h
+           #operating_system/apple/debug.h
+           operating_system/apple/exe_path.cpp
+           #operating_system/apple/graphics.h
+           #operating_system/apple/main.h
+           #operating_system/apple/ns_exception.h
+           operating_system/apple/time.cpp
+           #operating_system/apple/time.h
+           #operating_system/chronometer.h
            #timer.mm
            #exception/mm.mm
-           #os/cross/universal_windows/cross_metrowin_user.cpp
-           #os/cross/universal_windows/metrowin_user.cpp
+           #operating_system/cross/universal_windows/cross_metrowin_user.cpp
+           #operating_system/cross/universal_windows/metrowin_user.cpp
            #operating_system/apple/apple_timer.cpp
-           #os/apple/_.cpp
-           #os/apple/_apple.mm
-           #os/apple/DDInvocationGrabber.mm
-           #os/apple/debug.cpp
-           #os/apple/exe_path.cpp
-           #os/apple/graphics.cpp
-           #os/apple/image_gif.cpp
-           #os/apple/main.cpp
-           #os/apple/parallelization.cpp
-           #os/apple/ns_exception.cpp
-           #os/apple/NSObject+DDExtensions.mm
-           #os/apple/NSString+SymlinksAndAliases.mm
-           #os/apple/process.cpp
-           #os/apple/time.cpp
-           #os/apple/UncaughtExceptionHandler.mm
+           #operating_system/apple/_.cpp
+           #operating_system/apple/_apple.mm
+           #operating_system/apple/DDInvocationGrabber.mm
+           #operating_system/apple/debug.cpp
+           #operating_system/apple/exe_path.cpp
+           #operating_system/apple/graphics.cpp
+           #operating_system/apple/image_gif.cpp
+           #operating_system/apple/main.cpp
+           #operating_system/apple/parallelization.cpp
+           #operating_system/apple/ns_exception.cpp
+           #operating_system/apple/NSObject+DDExtensions.mm
+           #operating_system/apple/NSString+SymlinksAndAliases.mm
+           #operating_system/apple/process.cpp
+           #operating_system/apple/time.cpp
+           #operating_system/apple/UncaughtExceptionHandler.mm
            )
 endif ()
 
@@ -1872,8 +1872,8 @@ if (ANDROID)
 
 
    list(APPEND library_source
-      os/cross/universal_windows/cross_metrowin_user.cpp
-      os/cross/universal_windows/metrowin_user.cpp
+      operating_system/cross/universal_windows/cross_metrowin_user.cpp
+      operating_system/cross/universal_windows/metrowin_user.cpp
       operating_system/android/android.cpp
       operating_system/android/android1.cpp
       operating_system/android/error.cpp
@@ -1885,29 +1885,29 @@ if (ANDROID)
       operating_system/android/thread.cpp
       operating_system/android/trace.cpp
       operating_system/android/util.cpp
-      os/android/_bind_app.cpp
-      os/android/_bind_impact.cpp
-      os/android/_os_android.cpp
-      os/android/_os_impl.cpp
-      os/android/_os_object.cpp
-      os/android/application_system_run.cpp
-      os/android/aura.cpp
-      os/android/c.cpp
-      os/android/debug.cpp
-      os/android/dir.cpp
-      os/android/exception_engine.cpp
-      os/android/file.cpp
-      os/android/graphics.cpp
-      os/android/jni_launcher.cpp
-      os/android/language.cpp
-      os/android/launcher.cpp
-      os/android/library.cpp
-      os/android/locale.cpp
-      os/android/lock.cpp
-      os/android/main_android.cpp
-      os/android/process.cpp
-      os/android/process_pid.cpp
-      os/android/win_base.cpp
+      operating_system/android/_bind_app.cpp
+      operating_system/android/_bind_impact.cpp
+      operating_system/android/_os_android.cpp
+      operating_system/android/_os_impl.cpp
+      operating_system/android/_os_object.cpp
+      operating_system/android/application_system_run.cpp
+      operating_system/android/aura.cpp
+      operating_system/android/c.cpp
+      operating_system/android/debug.cpp
+      operating_system/android/dir.cpp
+      operating_system/android/exception_engine.cpp
+      operating_system/android/file.cpp
+      operating_system/android/graphics.cpp
+      operating_system/android/jni_launcher.cpp
+      operating_system/android/language.cpp
+      operating_system/android/launcher.cpp
+      operating_system/android/library.cpp
+      operating_system/android/locale.cpp
+      operating_system/android/lock.cpp
+      operating_system/android/main_android.cpp
+      operating_system/android/process.cpp
+      operating_system/android/process_pid.cpp
+      operating_system/android/win_base.cpp
       )
 
 
@@ -1918,28 +1918,28 @@ if (SOLARIS)
 
 
    list(APPEND library_source
-      os/solaris/solaris.cpp
-      os/solaris/solaris_cairo_keep.cpp
-      os/solaris/solaris_cross_win_file.cpp
-      os/solaris/solaris_cross_win_gdi.cpp
-      os/solaris/solaris_display.cpp
-      os/solaris/solaris_file.cpp
-      os/solaris/solaris_file_watcher.cpp
-      os/solaris/solaris_http.cpp
-      os/solaris/solaris_http_lib.cpp
-      os/solaris/solaris_launcher.cpp
-      os/solaris/solaris_library.cpp
-      os/solaris/solaris_lock.cpp
-      os/solaris/solaris_message_loop.cpp
-      os/solaris/solaris_process.cpp
-      os/solaris/solaris_process_pid.cpp
-      os/solaris/solaris_simple_shell_launcher.cpp
-      os/solaris/solaris_simple_ui.cpp
-      os/solaris/solaris_small_ipca_channel.cpp
-      os/solaris/solaris_thread.cpp
-      os/solaris/solaris_win_base.cpp
-      os/solaris/solaris_window.cpp
-      os/solaris/solaris_window_xlib.cpp)
+      operating_system/solaris/solaris.cpp
+      operating_system/solaris/solaris_cairo_keep.cpp
+      operating_system/solaris/solaris_cross_win_file.cpp
+      operating_system/solaris/solaris_cross_win_gdi.cpp
+      operating_system/solaris/solaris_display.cpp
+      operating_system/solaris/solaris_file.cpp
+      operating_system/solaris/solaris_file_watcher.cpp
+      operating_system/solaris/solaris_http.cpp
+      operating_system/solaris/solaris_http_lib.cpp
+      operating_system/solaris/solaris_launcher.cpp
+      operating_system/solaris/solaris_library.cpp
+      operating_system/solaris/solaris_lock.cpp
+      operating_system/solaris/solaris_message_loop.cpp
+      operating_system/solaris/solaris_process.cpp
+      operating_system/solaris/solaris_process_pid.cpp
+      operating_system/solaris/solaris_simple_shell_launcher.cpp
+      operating_system/solaris/solaris_simple_ui.cpp
+      operating_system/solaris/solaris_small_ipca_channel.cpp
+      operating_system/solaris/solaris_thread.cpp
+      operating_system/solaris/solaris_win_base.cpp
+      operating_system/solaris/solaris_window.cpp
+      operating_system/solaris/solaris_window_xlib.cpp)
 
 
 endif ()
@@ -1965,7 +1965,7 @@ if (FREEBSD)
       operating_system/freebsd/thread.cpp
       operating_system/freebsd/trace.cpp
       operating_system/freebsd/util.cpp
-      #os/freebsd/application_system_run.cpp
+      #operating_system/freebsd/application_system_run.cpp
       operating_system/freebsd/_.cpp
       operating_system/freebsd/callstack.cpp
       operating_system/freebsd/cross_win_file.cpp
@@ -1974,7 +1974,7 @@ if (FREEBSD)
       operating_system/freebsd/exception_engine.cpp
       operating_system/freebsd/file.cpp
       operating_system/freebsd/file_lock.cpp
-      #os/freebsd/gdk.cpp
+      #operating_system/freebsd/gdk.cpp
       operating_system/freebsd/graphics.cpp
       operating_system/freebsd/library.cpp
       operating_system/freebsd/freebsd.cpp
@@ -2009,7 +2009,7 @@ if (FREEBSD)
       operating_system/freebsd/debug.h
       operating_system/freebsd/exception_engine.h
       operating_system/freebsd/file.h
-      #os/freebsd/gdk.h
+      #operating_system/freebsd/gdk.h
       operating_system/freebsd/freebsd_freebsd.h
       operating_system/freebsd/process.h
       operating_system/freebsd/user.h

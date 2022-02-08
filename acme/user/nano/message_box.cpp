@@ -291,6 +291,7 @@ void nano_message_box::on_click(const ::atom & atom)
 
       pdetailswindow->display_synchronously(m_strDetails, m_strTitle + " : Details", e_message_box_ok);
 
+      m_atomResult.clear();
 
       return;
 

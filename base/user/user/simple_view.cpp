@@ -27,10 +27,10 @@ namespace user
    }
 
 
-   void simple_view::assert_valid() const
+   void simple_view::assert_ok() const
    {
 
-      ::user::impact::assert_valid();
+      ::user::impact::assert_ok();
 
    }
 
@@ -43,10 +43,10 @@ namespace user
    }
 
 
-   void simple_view::handle(::subject * psubject, ::context * pcontext)
+   void simple_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::user::impact::handle(psubject, pcontext);
+      ::user::impact::handle(ptopic, pcontext);
 
    }
 

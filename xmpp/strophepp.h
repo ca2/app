@@ -84,7 +84,7 @@ namespace XMPP {
 	char *getTo();
 	char *getFrom();
 	void setType(const ::string & const type);
-	void setId(const ::string & const id);
+	void setId(const ::string & const atom);
 	void setTo(const ::string & const to);
 	void setFrom(const ::string & const from);
     };
@@ -124,7 +124,7 @@ namespace XMPP {
 			void * const userdata);
 	void deleteHandler(xmpp_handler handler);
 	void addIdHandler(xmpp_handler handler,
-			  const char * const id,
+			  const char * const atom,
 			  void * const userdata);
 	void deleteIdHandler(xmpp_handler handler);
     };

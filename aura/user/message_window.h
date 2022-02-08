@@ -32,9 +32,9 @@ namespace user
 
       virtual void message_window_set_timer(uptr uId, const ::duration & duration);
 
-      virtual void message_window_post_message(const ::id & id, wparam wparam = 0,lparam lparam = 0);
+      virtual void message_window_post_message(const ::atom & atom, wparam wparam = 0,lparam lparam = 0);
 
-      virtual lresult message_window_send_message(const ::id & id, wparam wparam = 0,lparam lparam = 0);
+      virtual lresult message_window_send_message(const ::atom & atom, wparam wparam = 0,lparam lparam = 0);
 
       virtual void message_window_del_timer(uptr uId);
 

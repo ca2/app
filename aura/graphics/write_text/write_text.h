@@ -31,7 +31,7 @@ namespace write_text
       virtual void term() override;
 
 
-      virtual void handle_font_enumeration(::subject* psubject);
+      virtual void handle_font_enumeration(::topic* ptopic);
 
       
       virtual font_pointer point_font(const ::string & pszFontName, double dFontSize, int iFontWeight = e_font_weight_normal);

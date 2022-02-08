@@ -32,7 +32,7 @@
 //   public:
 //
 //
-//      id m_idSchema;
+//      atom m_atomSchema;
 //
 //
 //      str_schema() { InitHashTable(4 * 1024 -1); };
@@ -46,9 +46,9 @@
 //   public:
 //
 //
-//      id       m_idLang;
+//      atom       m_atomLang;
 //
-//      inline const str_schema * get_schema(const ::id & idSchema) const
+//      inline const str_schema * get_schema(const ::atom & idSchema) const
 //      {
 //         auto ppair = plookup(idSchema);
 //         if (ppair == nullptr)
@@ -78,7 +78,7 @@
 //      virtual ~str();
 //
 //
-//      inline const str_locale * get_locale(const ::id & idLocale) const
+//      inline const str_locale * get_locale(const ::atom & idLocale) const
 //      {
 //         
 //         auto ppair = m_map.plookup(idLocale);
@@ -98,23 +98,23 @@
 //      virtual void initialize(::object * pobject) override;
 //
 //
-//      inline auto& operator[](const ::id& id) { return m_map[id]; }
-//      inline auto& operator[](const ::id& id)const { return m_map[id]; }
+//      inline auto& operator[](const ::atom& atom) { return m_map[atom]; }
+//      inline auto& operator[](const ::atom& atom)const { return m_map[atom]; }
 //
-//      void set(const ::id & id, const ::id & idLocale, const ::id & idSchema, const ::string & psz);
-//      string get(const str_context * pcontext, const ::id & id, bool bIdAsDefaultValue = true) const;
-//      string get(const str_context * pcontext,const ::id & id,const ::id & idLocale,const ::id & idSchema,bool bIdAsDefaultValue = true) const;
-//      void get(string_array & stra, const str_context * pcontext, const ::id & id) const;
-//      void _get(string_array & stra, const str_context * pcontext, const ::id & id) const ;
+//      void set(const ::atom & atom, const ::atom & idLocale, const ::atom & idSchema, const ::string & psz);
+//      string get(const str_context * pcontext, const ::atom & atom, bool bIdAsDefaultValue = true) const;
+//      string get(const str_context * pcontext,const ::atom & atom,const ::atom & idLocale,const ::atom & idSchema,bool bIdAsDefaultValue = true) const;
+//      void get(string_array & stra, const str_context * pcontext, const ::atom & atom) const;
+//      void _get(string_array & stra, const str_context * pcontext, const ::atom & atom) const ;
 //
 //      bool load(const ::string & pszBaseDir);
-//      bool load_uistr_file(const ::id & idLocale, const ::id & idSchema, const ::string & pszFile);
+//      bool load_uistr_file(const ::atom & idLocale, const ::atom & idSchema, const ::string & pszFile);
 //
 //      string body(const ::string & psz);
 //
-//      bool matches(const str_context * pcontext, const ::id & id, const ::string & psz) const;
-//      bool begins(const str_context * pcontext, const ::string & psz, const ::id & id) const;
-//      bool begins_eat(const str_context * pcontext, string & str, const ::id & id) const;
+//      bool matches(const str_context * pcontext, const ::atom & atom, const ::string & psz) const;
+//      bool begins(const str_context * pcontext, const ::string & psz, const ::atom & atom) const;
+//      bool begins_eat(const str_context * pcontext, string & str, const ::atom & atom) const;
 //
 //
 //   };
@@ -178,9 +178,9 @@
 //      void prepare();
 //
 //
-//      const comparable_array < id > & locale_ex() const;
+//      const comparable_array < atom > & locale_ex() const;
 //
-//      const comparable_array < id > & schema_ex() const;
+//      const comparable_array < atom > & schema_ex() const;
 //
 //
 //      inline ::text::international::locale_schema & localeschema()
@@ -193,50 +193,50 @@
 //         return *m_plocaleschema;
 //      }
 //
-//      inline bool matches(const ::id & id, const ::string & psz) const
+//      inline bool matches(const ::atom & atom, const ::string & psz) const
 //      {
 //
-//         return m_pstr->matches(this, id, psz);
+//         return m_pstr->matches(this, atom, psz);
 //
 //      }
 //
 //
-//      inline bool begins(const ::id & id, const ::string & psz) const
+//      inline bool begins(const ::atom & atom, const ::string & psz) const
 //      {
 //
-//         return m_pstr->begins(this, __string(id), psz);
+//         return m_pstr->begins(this, __string(atom), psz);
 //
 //      }
 //
 //
-//      inline bool begins_eat(string & str, const ::id & id) const
+//      inline bool begins_eat(string & str, const ::atom & atom) const
 //      {
 //
-//         return m_pstr->begins_eat(this, str, id);
+//         return m_pstr->begins_eat(this, str, atom);
 //
 //      }
 //
 //
-//      inline void get(string_array & stra, const ::id & id) const
+//      inline void get(string_array & stra, const ::atom & atom) const
 //      {
 //
-//         return m_pstr->get(stra, this, id);
+//         return m_pstr->get(stra, this, atom);
 //
 //
 //      }
 //
 //
-//      inline string get(const ::id& id) const
+//      inline string get(const ::atom& atom) const
 //      {
 //         if (m_pstr == nullptr)
-//            return id.to_string();
-//         return m_pstr->get(this, id);
+//            return atom.to_string();
+//         return m_pstr->get(this, atom);
 //
 //      }
 //
-//      //virtual bool match(const regex * pregexp, string_array & stra, const ::string & psz, id pszExp, id pszRoot);
+//      //virtual bool match(const regex * pregexp, string_array & stra, const ::string & psz, atom pszExp, atom pszRoot);
 //
-//      virtual bool match(string_array & stra, const ::string & psz, id pszExp, id pszRoot) const;
+//      virtual bool match(string_array & stra, const ::string & psz, atom pszExp, atom pszRoot) const;
 //
 //
 //   };

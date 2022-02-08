@@ -119,9 +119,9 @@ namespace sockets
                   return; // read more
                }
                int p = 0;
-               short id = get_integer(m_message, p);
+               short atom = get_integer(m_message, p);
                short length = get_integer(m_message, p);
-               OnHeader(id, length);
+               OnHeader(atom, length);
                m_state = 1;
                m_length = length;
                m_ptr = 0; // bytes in m_message

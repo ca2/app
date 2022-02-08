@@ -55,7 +55,7 @@ namespace sockets
       void Init();
 
       void OnFirst();
-      void OnHeader(id key, const string & value);
+      void OnHeader(atom key, const string & value);
       void OnHeaderComplete();
       void OnData(const char *,memsize);
       void OnDataComplete();

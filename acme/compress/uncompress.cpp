@@ -19,7 +19,7 @@ uncompress::~uncompress()
 void uncompress::transfer(::file::file* pfileOut, ::file::file* pfileIn)
 {
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
 }
 

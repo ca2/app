@@ -70,7 +70,7 @@ inline void __exchange(stream & s, memory_base & memory)
 }
 
 //template < typename BLOCK_TYPE >
-//inline void __exchange(var_stream & s, memory_template < BLOCK_TYPE > & block)
+//inline void __exchange(payload_stream & s, memory_template < BLOCK_TYPE > & block)
 //{
 //   s.default_exchange(block);
 //}
@@ -127,14 +127,14 @@ inline void __exchange(stream & s, memory_base & memory)
 //   }
 //   catch (...)
 //   {
-//      __throw(error_io);
+//      throw ::exception(error_io);
 //   }
 //   if (!s.fail())
 //   {
 //      memsize size = c * sizeof(a.get_data()[0]);
 //      if (read(a.get_data(), size) != size_i32)
 //      {
-//         __throw(error_io);
+//         throw ::exception(error_io);
 //      }
 //   }
 
@@ -532,7 +532,7 @@ __pointer(BASE_TYPE) __load_object(stream & stream)
 
    }
 
-   //auto id = stream.text_to_factory_id(strText);
+   //auto atom = stream.text_to_factory_id(strText);
 
    if (!strText.begins_eat_ci("factoryless://"))
    {
@@ -659,7 +659,7 @@ inline stream & __save_object(stream & stream, BASE_TYPE * p)
 //inline void __io(property_set & set, const __pointer(TYPE) & p)
 //{
 //
-//   ((TYPE *) p.m_p)->exchange(set[id].propset());
+//   ((TYPE *) p.m_p)->exchange(set[atom].propset());
 //
 //}
 //
@@ -668,7 +668,7 @@ inline stream & __save_object(stream & stream, BASE_TYPE * p)
 //inline void __io(property_set & set, __pointer(TYPE) & p)
 //{
 //
-//   p->exchange(set[id].propset());
+//   p->exchange(set[atom].propset());
 //
 //}
 
@@ -789,24 +789,24 @@ inline void __exchange_array(::stream & stream, ARRAY & array)
 }
 
 
-inline var_stream::var_stream() : m_ppayload(new ::payload) {}
-inline var_stream::var_stream(::payload * pvar) : m_ppayload(pvar) {}
+inline payload_stream::payload_stream() : m_ppayload(new ::payload) {}
+inline payload_stream::payload_stream(::payload * pvar) : m_ppayload(pvar) {}
 
-inline ::payload & var_stream::payload() { return *m_ppayload; }
-inline const ::payload & var_stream::payload() const { return *m_ppayload; }
+inline ::payload & payload_stream::payload() { return *m_ppayload; }
+inline const ::payload & payload_stream::payload() const { return *m_ppayload; }
 
-//void var_stream::write_object(const ::id & id, ::id & idFactory, ::matter * pobject)
+//void payload_stream::write_object(const ::atom & atom, ::atom & idFactory, ::matter * pobject)
 //{
-//   var_stream stream(new ::payload(&payload()[id].propset()));
+//   payload_stream stream(new ::payload(&payload()[atom].propset()));
 //   stream.exchange("", idFactory);
 //   pobject->exchange(stream);
 //}
 
 //
-//__pointer(::matter) var_stream::read_object(const ::id & id)
+//__pointer(::matter) payload_stream::read_object(const ::atom & atom)
 //{
-//   var_stream stream(new ::payload(&payload()[id].propset()));
-//   ::id idFactory;
+//   payload_stream stream(new ::payload(&payload()[atom].propset()));
+//   ::atom idFactory;
 //   stream.exchange("", idFactory);
 //   auto pobject = __id_create<::matter>(idFactory);
 //   pobject->exchange(stream);
@@ -814,7 +814,7 @@ inline const ::payload & var_stream::payload() const { return *m_ppayload; }
 //}
 
 
-inline void stream::exchange(const ::id & id, void * pdata, memsize s)
+inline void stream::exchange(const ::atom & atom, void * pdata, memsize s)
 {
    if (is_storing())
    {
@@ -867,7 +867,7 @@ inline void __exchange(::stream & s, ::duration & duration) { s.default_exchange
 inline void __exchange(::stream & s, const char * psz) { s.write_only(psz); }
 inline void __exchange(::stream & s, string & str) { s.default_exchange(str); }
 inline void __exchange(::stream & s, ::file::path & path) { s.default_exchange(path); }
-inline void __exchange(::stream & s, ::id & id) { s.default_exchange(id); }
+inline void __exchange(::stream & s, ::atom & atom) { s.default_exchange(atom); }
 inline void __exchange(::stream & s, ::payload & payload) { s.default_exchange(payload); }
 inline void __exchange(::stream & s, ::property & property) { s.default_exchange(property); }
 inline void __exchange(::stream & s, ::property_set & set) { s.default_exchange(set); }
@@ -890,10 +890,10 @@ inline void __exchange(::stream & s, ::matter & matter)
 
 
 template < typename TYPE >
-inline var_stream & operator >> (var_stream & stream, TYPE & t)
+inline payload_stream & operator >> (payload_stream & stream, TYPE & t)
 {
 
-   stream.defer_set_loading(); stream.exchange(::id::e_type_null, t);
+   stream.defer_set_loading(); stream.exchange(::atom::e_type_null, t);
 
    return stream;
 
@@ -901,10 +901,10 @@ inline var_stream & operator >> (var_stream & stream, TYPE & t)
 
 
 template < typename TYPE >
-inline var_stream & operator << (var_stream & stream, const TYPE & t)
+inline payload_stream & operator << (payload_stream & stream, const TYPE & t)
 {
 
-   stream.defer_set_storing(); stream.exchange(::id::e_type_null, (TYPE &)t);
+   stream.defer_set_storing(); stream.exchange(::atom::e_type_null, (TYPE &)t);
 
    return stream;
 
@@ -916,7 +916,7 @@ template < typename TYPE >
 inline text_stream & operator >> (text_stream & stream, TYPE & t)
 {
 
-   stream.defer_set_loading(); stream.exchange(::id::e_type_null, t);
+   stream.defer_set_loading(); stream.exchange(::atom::e_type_null, t);
 
    return stream;
 
@@ -927,7 +927,7 @@ template < typename TYPE >
 inline text_stream & operator << (text_stream & stream, const TYPE & t)
 {
 
-   stream.defer_set_storing(); stream.exchange(::id::e_type_null, (TYPE &)t); return stream;
+   stream.defer_set_storing(); stream.exchange(::atom::e_type_null, (TYPE &)t); return stream;
 
 }
 
@@ -1048,7 +1048,7 @@ inline binary_stream & operator >> (binary_stream & stream, TYPE & t)
 
    stream.defer_set_loading();
 
-   stream.stream_exchange(::id::e_type_null, t);
+   stream.stream_exchange(::atom::e_type_null, t);
 
    return stream;
 
@@ -1061,7 +1061,7 @@ inline binary_stream & operator << (binary_stream & stream, const TYPE & t)
 
    stream.defer_set_storing();
 
-   stream.stream_exchange(::id::e_type_null, (TYPE &)t);
+   stream.stream_exchange(::atom::e_type_null, (TYPE &)t);
 
    return stream;
 
@@ -1074,7 +1074,7 @@ inline ::file::file & operator >> (::file::file & file, TYPE & t)
    if (::is_null(file))
    {
 
-      __throw(error_io);
+      throw ::exception(error_io);
 
    }
 
@@ -1108,7 +1108,7 @@ inline void assign(::memory & memory, const ::payload & payload)
 
 
 template < typename TYPE >
-void var_stream::default_exchange(TYPE & t)
+void payload_stream::default_exchange(TYPE & t)
 {
 
    try
@@ -1145,7 +1145,7 @@ void var_stream::default_exchange(TYPE & t)
 
 
 template < typename TYPE >
-void var_stream::write_only(TYPE & t)
+void payload_stream::write_only(TYPE & t)
 {
 
   if (is_loading())
@@ -1167,15 +1167,15 @@ void var_stream::write_only(TYPE & t)
 
 
 template < typename TYPE >
-inline void var_stream::var_exchange(const ::id & id, TYPE & t)
+inline void payload_stream::var_exchange(const ::atom & atom, TYPE & t)
 {
 
   ::payload * pvar = m_ppayload;
 
-  if (id.m_etype != id::e_type_null)
+  if (atom.m_etype != atom::e_type_null)
   {
 
-     m_ppayload = &m_ppayload->operator[](id);
+     m_ppayload = &m_ppayload->operator[](atom);
 
   }
 
@@ -1186,7 +1186,7 @@ inline void var_stream::var_exchange(const ::id & id, TYPE & t)
 }
 
 
-#include "_var_stream_impl.h"
+#include "_payload_stream_impl.h"
 
 
 

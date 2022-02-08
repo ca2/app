@@ -40,7 +40,7 @@ namespace html
 
       e_tag                      m_etag;
       string                     m_strBody;
-      id                         m_idTagName;
+      atom                         m_atomTagName;
       bool                       m_bParent;
       bool                       m_bTagVisible;
       string                     m_strClass;
@@ -72,8 +72,8 @@ namespace html
       //virtual void nextstyle(::user::style_context * pcontext) override;
 
 
-      element * get_element_by_name(id id);
-      element * get_element_by_id(id id);
+      element * get_element_by_name(atom atom);
+      element * get_element_by_id(atom atom);
 
       virtual element * hit_test(html_data * phtmldata, const ::point_f32 & point);
       virtual element * bound_hit_test(html_data * phtmldata, const ::point_f32 & point);

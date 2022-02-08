@@ -17,7 +17,7 @@ namespace aura
       ::file::patha                                   m_straMatterLocator;
       string_table                                    m_stringtable;
       string_table                                    m_stringtableStd;
-      map < id, id, string, string >                  m_stringmap;
+      map < atom, atom, string, string >                  m_stringmap;
 
 
       application_heap(::object * pobject)

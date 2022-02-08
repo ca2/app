@@ -1,6 +1,6 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-//#include "acme/user/_user.h"
+//#include "acme/user/user/_user.h"
 #endif
 
 //
@@ -71,7 +71,7 @@
 //CLASS_DECL_ACME void message_box(::windowing::window * pwindow, const char* pszText, const char* pszTitle, const ::e_message_box & emessagebox, const ::future & process)
 //{
 //
-//   __throw(todo("message_box"));
+//   throw ::exception(todo("message_box"));
 //   //::user::primitive* primitive = get_system()->ui_from_handle(oswindow);
 //
 //   //return get_system()->message_box(primitive, pszText, pszTitle, emessagebox, callback);

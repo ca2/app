@@ -31,9 +31,9 @@ namespace prompt
 
 
 
-   void frame::assert_valid() const
+   void frame::assert_ok() const
    {
-      simple_frame_window::assert_valid();
+      simple_frame_window::assert_ok();
    }
 
    void frame::dump(dump_context & dumpcontext) const
@@ -76,7 +76,7 @@ namespace prompt
 
 #else
 
-         __throw(todo);
+         throw ::exception(todo);
 
 #endif
 
@@ -358,7 +358,7 @@ namespace prompt
    void frame::message_queue_message_handler(::message::message * pmessage)
    {
       __pointer(::user::message) pusermessage(pmessage);
-      if(pusermessage->m_id == (WM_APP + 2000))
+      if(pusermessage->m_atom == (WM_APP + 2000))
       {
          _001OnApp2000(pusermessage);
          pusermessage->m_bRet = true;
@@ -434,7 +434,7 @@ namespace prompt
    void frame::on_command(::message::command * pcommand)
    {
 
-      if(pcommand->m_id == "app_exit")
+      if(pcommand->m_atom == "app_exit")
       {
 
          simple_frame_window::OnClose();
@@ -453,7 +453,7 @@ namespace prompt
    void frame::on_command_probe(::message::command * pcommand)
    {
 
-      if(pcommand->m_id == "app_exit")
+      if(pcommand->m_atom == "app_exit")
       {
 
          pcommand->enable();

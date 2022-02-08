@@ -20,7 +20,7 @@ namespace user
       //
       // int                           m_iKey;
 
-      ::id                                m_id;
+      ::atom                                m_atom;
       bool                                m_bNew;
       bool                                m_bVisible;
       index                               m_iNextGlobalOrderKey;

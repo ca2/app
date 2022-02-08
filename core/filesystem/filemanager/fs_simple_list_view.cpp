@@ -51,9 +51,9 @@ namespace filemanager
 
 
 
-         void list_view::assert_valid() const
+         void list_view::assert_ok() const
          {
-            simple_list_view::assert_valid();
+            simple_list_view::assert_ok();
          }
 
          void list_view::dump(dump_context & dumpcontext) const
@@ -247,10 +247,10 @@ namespace filemanager
          }
 
 
-         void list_view::handle(::subject * psubject, ::context * pcontext)
+         void list_view::handle(::topic * ptopic, ::context * pcontext)
          {
 
-            simple_list_view::handle(psubject, pcontext);
+            simple_list_view::handle(ptopic, pcontext);
 
             //if(::is_null(pobject))
             {
@@ -333,7 +333,7 @@ namespace filemanager
          {
             string strSql;
 
-            strSql = "select id, title, artist, filename, filepath from album";
+            strSql = "select atom, title, artist, filename, filepath from album";
 
             if(m_sortinfo.m_itema.get_size() > 0)
             {
@@ -833,7 +833,7 @@ namespace filemanager
          {
             for(i32 i = 0; i < this->get_size(); i++)
             {
-               if(this->element_at(i).m_id == pszId)
+               if(this->element_at(i).m_atom == pszId)
 
                   return i;
             }

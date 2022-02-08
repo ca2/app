@@ -63,15 +63,15 @@ namespace user
             if(pinteraction->get_control_type() == ::user::e_control_type_button)
             {
 
-               auto psubject = __new(::subject(::e_subject_click));
+               auto pextendedtopic = __new(::extended_topic(::id_click));
 
-               psubject->m_puserelement        = pinteraction;
+               pextendedtopic->m_puserelement        = pinteraction;
 
-               //subject.m_id                = ;
+               //topic.m_atom                = ;
 
                m_itemControl              = item;
 
-               send_message(e_message_subject,0,psubject);
+               send_message(e_message_subject,0, pextendedtopic);
 
             }
 
@@ -210,11 +210,11 @@ namespace user
    }
 
 
-   bool form_mesh::_001OnMouseActivate(::user::interaction_impl * pDesktopWnd,::u32 nHitTest,const ::id & id, lresult & iResult)
+   bool form_mesh::_001OnMouseActivate(::user::interaction_impl * pDesktopWnd,::u32 nHitTest,const ::atom & atom, lresult & iResult)
    {
       __UNREFERENCED_PARAMETER(pDesktopWnd);
       __UNREFERENCED_PARAMETER(nHitTest);
-      __UNREFERENCED_PARAMETER(id);
+      __UNREFERENCED_PARAMETER(atom);
       __UNREFERENCED_PARAMETER(iResult);
       return false;
    }
@@ -459,7 +459,7 @@ namespace user
    //   {
    //      if(m_columna[i]->m_iControl >= 0 && m_columna[i]->m_iControl < m_controldescriptorset.get_size())
    //      {
-   //         ::user::interaction * pinteractionParent, const ::id & id = m_controldescriptorset.element_at(m_columna[i]->m_iControl);
+   //         ::user::interaction * pinteractionParent, const ::atom & atom = m_controldescriptorset.element_at(m_columna[i]->m_iControl);
    //         if(pdescriptor != nullptr)
    //         {
    //            if(m_columna[i]->m_iSubItem >= 0)
@@ -491,7 +491,7 @@ namespace user
 
    //   //screen_to_client(point);
 
-   //   //if(pmouse->m_id == e_message_left_button_down)
+   //   //if(pmouse->m_atom == e_message_left_button_down)
    //   //{
    //   //
    //   //   i32 iItem;
@@ -664,7 +664,7 @@ namespace user
    }
 
 
-   void form_mesh::handle(::subject * psubject, ::context * pcontext)
+   void form_mesh::handle(::topic * ptopic, ::context * pcontext)
    {
 
 
@@ -672,7 +672,7 @@ namespace user
       //{
       ///pdescriptor->m_pcontrol->m_iEditItem = m_iControlItem;
       //}
-      return form::handle(psubject, pcontext);
+      return form::handle(ptopic, pcontext);
    }
 
 

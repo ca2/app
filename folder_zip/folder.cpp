@@ -395,7 +395,7 @@ namespace folder_zip
 
       }
 
-      strPrefix.replace("\\", "/");
+      strPrefix.replace_with("/", "\\");
 
       int err = unzGoToFirstFile(pf);
 
@@ -604,7 +604,7 @@ namespace folder_zip
    //::file::listing& file_container::perform_file_listing(::file::listing& listing)
    //{
 
-   //   throw interface_only_exception();
+   //   throw ::interface_only();
 
    //   return listing;
 
@@ -615,7 +615,7 @@ namespace folder_zip
    //::file::listing& file_container::perform_file_relative_name_listing(::file::listing& listing)
    //{
 
-   //   throw interface_only_exception();
+   //   throw ::interface_only();
 
    //   return listing;
 
@@ -647,17 +647,30 @@ namespace folder_zip
       index iFind = strFile.find(":");
       if (iFind >= 0)
          strFile = strFile.Left(iFind);
-      strFile.replace("\\", "/");
+      
+      strFile.replace_with("/", "\\");
+
       if (unzLocateFile(m_unzfile, strFile, 0) != UNZ_OK)
       {
-         strFile.replace("/", "\\");
+
+         strFile.replace_with("\\", "/");
+
          if (unzLocateFile(m_unzfile, strFile, 0) != UNZ_OK)
          {
+
             return false;
+
          }
+
       }
+
       if (unzOpenCurrentFile(m_unzfile) != UNZ_OK)
+      {
+
          return false;
+
+      }
+
       if (unzGetCurrentFileInfo(m_unzfile,
          &m_unzfileinfo,
          nullptr,
@@ -666,10 +679,16 @@ namespace folder_zip
          0,
          nullptr,
          0) != UNZ_OK)
+      {
+
          return false;
 
+      }
+
       m_iFilePosition = 0;
+
       m_strCurrent = strFile;
+
       return true;
 
    }

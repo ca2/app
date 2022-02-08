@@ -13,7 +13,7 @@ public:
    virtual ~html_form_view();
 
 
-   void assert_valid() const override;
+   void assert_ok() const override;
    void dump(dump_context & dumpcontext) const override;
 
    string GetLocationURL();
@@ -25,10 +25,10 @@ public:
    void install_message_routing(::channel * pchannel) override;
    virtual bool pre_create_window(::user::system * pusersystem) override;
    virtual void OnDraw(::draw2d::graphics_pointer & pgraphics);      // overridden to draw this ::user::impact
-   virtual void handle(::subject * psubject, ::context * pcontext) override;
+   virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
 
-   //virtual void handle(::subject * psubject, ::context * pcontext) override;
+   //virtual void handle(::topic * ptopic, ::context * pcontext) override;
    DECLARE_MESSAGE_HANDLER(_001OnSetFocus);
    DECLARE_MESSAGE_HANDLER(_001OnKillFocus);
 

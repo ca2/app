@@ -11,7 +11,7 @@ namespace regular_expression
 
    class context;
 
-   class topic;
+   class result;
 
 
 } // namespace regular_expression
@@ -26,7 +26,7 @@ using regular_expression_pointer = __pointer(::regular_expression::regular_expre
 #include "regular_expression.h"
 
 
-#include "topic.h"
+#include "result.h"
 
 
 

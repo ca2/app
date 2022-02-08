@@ -57,10 +57,10 @@ namespace http
       string UserAgent();
 
       property_set & headers();
-      property & header(id idKey);
+      property & header(atom idKey);
 
       property_set & attrs();
-      property & attr(id idKey);
+      property & attr(atom idKey);
 
 
       http::cookies & cookies();
@@ -75,7 +75,7 @@ namespace http
       return m_propertysetAttribute;
    }
 
-   inline property & transaction::attr(id idKey)
+   inline property & transaction::attr(atom idKey)
    {
       return m_propertysetAttribute[idKey];
    }
@@ -85,7 +85,7 @@ namespace http
       return m_propertysetHeader;
    }
 
-   inline property & transaction::header(id idKey)
+   inline property & transaction::header(atom idKey)
    {
       return m_propertysetHeader[idKey];
    }

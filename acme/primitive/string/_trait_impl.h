@@ -9,7 +9,7 @@ namespace str
    inline strsize utf_to_utf_length(const TYPE_TARGET *, const TYPE_SOURCE * psource, strsize srclen)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return 0;
 
@@ -100,7 +100,7 @@ namespace str
    inline strsize utf_to_utf_length(const TYPE_TARGET *, const TYPE_SOURCE * psource)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return 0;
 
@@ -190,7 +190,7 @@ namespace str
    inline void utf_to_utf(TYPE_TARGET * ptarget, const TYPE_SOURCE * psource, strsize srclen)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -296,7 +296,7 @@ namespace str
    inline void utf_to_utf(TYPE_TARGET * ptarget, const TYPE_SOURCE * psource)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -705,29 +705,29 @@ namespace str
    }
 
 
-   inline ansistring & assign(ansistring & ansistrDst, const id & id)
+   inline ansistring & assign(ansistring & ansistrDst, const atom & atom)
    {
 
-      ansistrDst.assign(id.to_string());
+      ansistrDst.assign(atom.to_string());
 
       return ansistrDst;
 
    }
 
 
-   inline wd16string & assign(wd16string & widestrDst, const id & id)
+   inline wd16string & assign(wd16string & widestrDst, const atom & atom)
    {
 
-      widestrDst.assign(id.to_string());
+      widestrDst.assign(atom.to_string());
 
       return widestrDst;
 
    }
 
-   inline wd32string& assign(wd32string& widestrDst, const id& id)
+   inline wd32string& assign(wd32string& widestrDst, const atom& atom)
    {
 
-      widestrDst.assign(id.to_string());
+      widestrDst.assign(atom.to_string());
 
       return widestrDst;
 

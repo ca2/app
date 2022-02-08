@@ -38,14 +38,16 @@ namespace userpresence
    void department::initialize(::object * pobject)
    {
 
-      auto estatus = ::acme::department::initialize(pobject);
+      //auto estatus =
 
-      if (!estatus)
-      {
+         ::acme::department::initialize(pobject);
 
-         return estatus;
-
-      }
+//      if (!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
 
       if(!m_psystem->is_true("do_not_initialize_user_presence"))
       {
@@ -54,7 +56,7 @@ namespace userpresence
          //
       }
 
-      return estatus;
+      //return estatus;
 
    }
 
@@ -64,7 +66,7 @@ namespace userpresence
 
       defer_finalize_user_presence();
 
-      return ::success;
+      //return ::success;
 
    }
 

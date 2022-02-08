@@ -5,7 +5,7 @@
 #ifdef PARALLELIZATION_PTHREAD
 
 
-#include "acme/node/operating_system/ansi/_pthread.h"
+#include "acme/operating_system/ansi/_pthread.h"
 
 
 #endif
@@ -590,14 +590,14 @@ namespace sockets
    }
 
 
-//   void tcp_socket::OnResolved(i32 id,const ::net::address & a)
+//   void tcp_socket::OnResolved(i32 atom,const ::net::address & a)
 //   {
 //
 //      auto paddressdepartment = ::net::address_department();
 //
-//      FORMATTED_INFORMATION("OnResolved id %d addr %s port %d\n",id,paddressdepartment->canonical_name(a).c_str(),a.u.s.m_port);
+//      FORMATTED_INFORMATION("OnResolved atom %d addr %s port %d\n",atom,paddressdepartment->canonical_name(a).c_str(),a.u.s.m_port);
 //
-//      if(id == m_resolver_id)
+//      if(atom == m_resolver_id)
 //      {
 //         if(a.is_valid() && a.u.s.m_port)
 //         {
@@ -621,7 +621,7 @@ namespace sockets
 //      else
 //      {
 //
-//         FATAL(log_this, "OnResolved",id,"Resolver returned wrong job id");
+//         FATAL(log_this, "OnResolved",atom,"Resolver returned wrong job atom");
 //
 //         SetCloseAndDelete();
 //      }
@@ -1096,7 +1096,7 @@ namespace sockets
 
                FATAL("OnWrite / SSL_write " << errnr << errbuf);
 
-               //__throw(io_exception(errbuf));
+               //throw ::exception(io_exception(errbuf));
             }
             //return 0;
          }
@@ -1109,7 +1109,7 @@ namespace sockets
             i32 errnr = SSL_get_error(m_psslcontext->m_ssl,(i32)n);
             const char *errbuf = ERR_error_string(errnr,nullptr);
             INFORMATION("SSL_write() returns 0: " << errnr << ", " << errbuf);
-            //__throw(io_exception(errbuf));
+            //throw ::exception(io_exception(errbuf));
          }
 
       }
@@ -1144,7 +1144,7 @@ namespace sockets
                SetCloseAndDelete(true);
                SetFlushBeforeClose(false);
                SetLost();
-               //__throw(io_exception(bsd_socket_error(Errno)));
+               //throw ::exception(io_exception(bsd_socket_error(Errno)));
             }
             //else
             //{
@@ -1922,7 +1922,7 @@ namespace sockets
       //m_psslcontext->m_pclientcontext->m_psslcontext = SSL_CTX_new(m_psslcontext->m_pclientcontext->m_psslmethod);
       SSL_CTX_set_mode(m_psslcontext->m_pclientcontext->m_psslcontext, SSL_MODE_AUTO_RETRY | SSL_MODE_RELEASE_BUFFERS) ;
       SSL_CTX_set_options(m_psslcontext->m_pclientcontext->m_psslcontext, SSL_OP_NO_COMPRESSION | SSL_CTX_get_options(m_psslcontext->m_pclientcontext->m_psslcontext));
-      // session id
+      // session atom
       int iSetSessionResult = -1;
       u32 uSessionIdMaxLen = SSL_MAX_SSL_SESSION_ID_LENGTH;
       if (context.get_length())
@@ -2135,7 +2135,7 @@ namespace sockets
       m_psslcontext->m_pclientcontext->m_psslcontext = SSL_CTX_new(m_psslcontext->m_pclientcontext->m_psslmethod);
       SSL_CTX_set_mode(m_psslcontext->m_pclientcontext->m_psslcontext, SSL_MODE_AUTO_RETRY | SSL_MODE_RELEASE_BUFFERS);
       SSL_CTX_set_options(m_psslcontext->m_pclientcontext->m_psslcontext, SSL_OP_NO_COMPRESSION | SSL_CTX_get_options(m_psslcontext->m_pclientcontext->m_psslcontext));
-      // session id
+      // session atom
       if (context.get_length())
          SSL_CTX_set_session_id_context(m_psslcontext->m_pclientcontext->m_psslcontext, (const uchar *)(const  char *)context, (u32)context.get_length());
       else
@@ -2573,7 +2573,7 @@ namespace sockets
 
       ::X509 *cert = nullptr;
 
-      ::X509_name_st *subject = nullptr;
+      ::X509_name_st *topic = nullptr;
 
 #if OPENSSL_VERSION_NUMBER >= 0x30000000L
 
@@ -2592,7 +2592,7 @@ namespace sockets
 
          char data[256];
 
-         if((subject = X509_get_subject_name(cert)) != nullptr && X509_NAME_get_text_by_NID(subject,NID_commonName,data,256) > 0)
+         if((topic = X509_get_subject_name(cert)) != nullptr && X509_NAME_get_text_by_NID(topic,NID_commonName,data,256) > 0)
          {
 
             data[255] = 0;

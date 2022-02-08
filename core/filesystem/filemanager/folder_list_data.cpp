@@ -22,7 +22,7 @@ namespace filemanager
    }
 
 
-   void folder_list_data::assert_valid() const
+   void folder_list_data::assert_ok() const
    {
 
 
@@ -80,7 +80,7 @@ namespace filemanager
 
          string_array stra;
 
-         if(!data_get(::id(), stra))
+         if(!data_get(::atom(), stra))
          {
 
             pitem->m_bOk = false;
@@ -111,7 +111,7 @@ namespace filemanager
 
       string_array wstraTotal;
 
-      if (!data_get(::id(), wstraTotal))
+      if (!data_get(::atom(), wstraTotal))
       {
 
          return;
@@ -151,7 +151,7 @@ namespace filemanager
 
       string_array straTotal;
 
-      if (!data_get(::id(), straTotal))
+      if (!data_get(::atom(), straTotal))
       {
 
          return 0;
@@ -170,7 +170,7 @@ namespace filemanager
 
       string_array straFolderPath;
 
-      data_get(::id(), straFolderPath);
+      data_get(::atom(), straFolderPath);
 
       for (i32 i = 0; i < stra.get_count(); i++)
       {
@@ -184,9 +184,9 @@ namespace filemanager
 
       }
 
-      data_set(::id(), straFolderPath);
+      data_set(::atom(), straFolderPath);
 
-      //if (!data_set(::id(), straFolderPath))
+      //if (!data_set(::atom(), straFolderPath))
       //{
 
       //   return false;
@@ -205,7 +205,7 @@ namespace filemanager
 
       string_array straFolderPath;
 
-      data_get(::id(), straFolderPath);
+      data_get(::atom(), straFolderPath);
 
       i32_array iaRecursive;
 
@@ -234,9 +234,9 @@ namespace filemanager
 
       }
 
-      data_set(::id(), straFolderPath);
+      data_set(::atom(), straFolderPath);
 
-      //if (!data_set(::id(), straFolderPath))
+      //if (!data_set(::atom(), straFolderPath))
       //{
 
       //   return false;
@@ -268,7 +268,7 @@ namespace filemanager
 
       string_array straFolderPath;
 
-      if (!data_get(::id(), straFolderPath))
+      if (!data_get(::atom(), straFolderPath))
       {
 
          return true;
@@ -314,9 +314,9 @@ namespace filemanager
 
       }
 
-      data_set(::id(), straFolderPath);
+      data_set(::atom(), straFolderPath);
 
-      //if (!data_set(::id(), straFolderPath))
+      //if (!data_set(::atom(), straFolderPath))
       //{
 
       //   return false;

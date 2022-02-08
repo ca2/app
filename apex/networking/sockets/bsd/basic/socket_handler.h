@@ -44,14 +44,14 @@ namespace sockets
       port_t                     m_socks4_port; ///< Socks4 server port number
       string                     m_socks4_userid; ///< Socks4 userid
       bool                       m_bTryDirect; ///< Try direct connection if socks4 server fails
-      //i32                        m_resolv_id; ///< Resolver id counter
+      //i32                        m_resolv_id; ///< Resolver atom counter
       //::task_pointer        m_resolver; ///< Resolver thread pointer
       //port_t                     m_resolver_port; ///< Resolver listen port
       //socket_flag_map            m_resolve_q; ///< resolve queue
       bool                       m_bEnablePool; ///< Connection pool enabled if true
-      i32                        m_next_trigger_id; ///< Unique trigger id counter
-      socket_map                 m_trigger_src; ///< mapping trigger id to source base_socket
-      socket_socket_flag_map     m_trigger_dst; ///< mapping trigger id to destination sockets
+      i32                        m_next_trigger_id; ///< Unique trigger atom counter
+      socket_map                 m_trigger_src; ///< mapping trigger atom to source base_socket
+      socket_socket_flag_map     m_trigger_dst; ///< mapping trigger atom to destination sockets
       //bool                       m_slave; ///< Indicates that this is a base_socket_handler run in socket_thread
 
 
@@ -169,18 +169,18 @@ namespace sockets
       /** Returns true if the base_socket is waiting for a resolve event. */
       //bool Resolving(base_socket *) override;
 
-      /** Fetch unique trigger id. */
+      /** Fetch unique trigger atom. */
       i32 TriggerID(base_socket *src) override;
-      /** Subscribe base_socket to trigger id. */
-      bool Subscribe(i32 id, base_socket *dst) override;
-      /** Unsubscribe base_socket from trigger id. */
-      bool Unsubscribe(i32 id, base_socket *dst) override;
+      /** Subscribe base_socket to trigger atom. */
+      bool Subscribe(i32 atom, base_socket *dst) override;
+      /** Unsubscribe base_socket from trigger atom. */
+      bool Unsubscribe(i32 atom, base_socket *dst) override;
       /** Execute OnTrigger for subscribed sockets.
-      \lparam id Trigger ID
+      \lparam atom Trigger ID
       \lparam data Data passed from source to destination
-      \lparam erase Empty trigger id source and destination maps if 'true',
+      \lparam erase Empty trigger atom source and destination maps if 'true',
       Leave them in place if 'false' - if a trigger should be called many times */
-      void Trigger(i32 id, base_socket::trigger_data & data, bool erase = true) override;
+      void Trigger(i32 atom, base_socket::trigger_data & data, bool erase = true) override;
 
       /** Indicates that the handler runs under socket_thread. */
       //void SetSlave(bool x = true) override;

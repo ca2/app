@@ -24,7 +24,7 @@ namespace aqua
    void audio::play_audio(::file::file * pfile, bool bSynch)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -84,7 +84,7 @@ namespace aqua
 
       __UNREFERENCED_PARAMETER(strImplementation);
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
@@ -94,7 +94,7 @@ namespace aqua
    void audio::speak(const ::string & strText)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -102,7 +102,7 @@ namespace aqua
    void audio::speak(const ::string & strLang, const ::string & strText, bool bSynch, const ::string & strImplementation)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -110,7 +110,7 @@ namespace aqua
    //void audio::trans_speak(const ::string & strLang, const ::string & strText, bool bSynch)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //}
 
@@ -118,7 +118,7 @@ namespace aqua
    //void audio::google_speak(const ::string & strLang, const ::string & strText, bool bSynch)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //}
 
@@ -134,7 +134,7 @@ namespace aqua
    ::file_pointer audio::get_rtp_file(const ::payload & payloadFile)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
@@ -144,7 +144,7 @@ namespace aqua
    LPWAVEOUT audio::waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
@@ -154,7 +154,7 @@ namespace aqua
    void audio::defer_initialize_audio_playback(::wave::e_purpose epurpose)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 

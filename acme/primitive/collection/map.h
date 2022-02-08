@@ -385,7 +385,7 @@ public:
    void move(association* passociation, map * pmap = nullptr);
    void move(map* pmap, ARG_KEY key);
 
-   void assert_valid() const override;
+   void assert_ok() const override;
    void dump(dump_context & dumpcontext) const override;
 
 
@@ -1171,10 +1171,10 @@ get(ARG_KEY argkey, ARG_VALUE valueDefault)
 
 
 template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
-void map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::assert_valid() const
+void map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::assert_ok() const
 {
 
-   ::matter::assert_valid();
+   ::matter::assert_ok();
 
    ASSERT(GetHashTableSize() > 0);
 

@@ -47,8 +47,8 @@ namespace user
       DECLARE_MESSAGE_HANDLER(_001OnMessageNotify);
       void _001GetSelection(::database::key & key, ::database::selection & selection) override;
       virtual void Update(bool bSave);
-      virtual bool _001SetData(const ::id & id, bool bData);
-      virtual bool _001GetData(const ::id & id, bool & bData);
+      virtual bool _001SetData(const ::atom & atom, bool bData);
+      virtual bool _001GetData(const ::atom & atom, bool & bData);
       virtual void _001FillCombo(interaction * pinteraction);
 
       void WfiOnClose() override;
@@ -58,7 +58,7 @@ namespace user
 
       void install_message_routing(::channel * pchannel) override;
       void _001InitializeFormPreData() override;
-      void handle(::subject * psubject, ::context * pcontext)  override;
+      void handle(::topic * ptopic, ::context * pcontext)  override;
       void _001Update(interaction * pinteraction) override;
       void _001UpdateCheckBox(interaction * pinteraction) override;
       void _001UpdateComboBox(interaction * pinteraction) override;
@@ -82,15 +82,15 @@ namespace user
 
 
 
-      void data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::subject * psubject = nullptr) override;
+      void data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::topic * ptopic = nullptr) override;
 
 
-      //virtual bool create_interaction(::user::interaction * pinteractionParent, const ::id & id) override;
+      //virtual bool create_interaction(::user::interaction * pinteractionParent, const ::atom & atom) override;
       //virtual bool normalize_control_descriptor_typeinfo(class ::user::control_descriptor * pdescriptor) override;
 
       bool operator == (const interaction & interaction) const;
 
-      //void handle(::subject * psubject, ::context * pcontext) override;
+      //void handle(::topic * ptopic, ::context * pcontext) override;
       void _001SetControlFactory();
 
 

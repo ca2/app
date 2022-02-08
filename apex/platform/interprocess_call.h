@@ -35,7 +35,7 @@ public:
 
    void exclude_this_app();
 
-   virtual void post(const ::id& idPid);
+   virtual void post(const ::atom& idPid);
 
    __pointer(synchronization_array) synca();
 

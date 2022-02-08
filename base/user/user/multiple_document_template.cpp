@@ -7,8 +7,8 @@ namespace user
 {
 
 
-   multiple_document_template::multiple_document_template(const ::string & pszMatter, ::type pDocClass, ::type pFrameClass, ::type pViewClass) :
-      ::user::impact_system(pszMatter, pDocClass, pFrameClass, pViewClass)
+   multiple_document_template::multiple_document_template(const ::string & pszMatter, ::type pDocClass, ::type pFrameClass, ::type pImpactClass) :
+      ::user::impact_system(pszMatter, pDocClass, pFrameClass, pImpactClass)
    {
 
       defer_create_mutex();
@@ -268,15 +268,15 @@ namespace user
       dumpcontext << "\n";
    }
 
-   void multiple_document_template::assert_valid() const
+   void multiple_document_template::assert_ok() const
    {
-      impact_system::assert_valid();
+      impact_system::assert_ok();
 
       ::count count = get_document_count();
       for(index index = 0; index < count; index++)
       {
          __pointer(::user::document) pdocument = get_document(index);
-         pdocument->assert_valid();
+         pdocument->assert_ok();
       }
 
    }

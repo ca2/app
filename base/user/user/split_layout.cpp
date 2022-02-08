@@ -261,7 +261,7 @@ namespace user
       CalcSplitBarRect(iIndex, &splitRect);
       //::point_i32 pointCursor = pMsg->pt;
 
-      if(pMsg->m_id == e_message_left_button_down)
+      if(pMsg->m_atom == e_message_left_button_down)
       {
 
          auto psession = get_session();
@@ -274,7 +274,7 @@ namespace user
             m_iState = stateDragging;
          }
       }
-      else if(pMsg->m_id == e_message_left_button_up)
+      else if(pMsg->m_atom == e_message_left_button_up)
       {
 
          if(m_iState != stateInitial)
@@ -293,7 +293,7 @@ namespace user
          }
 
       }
-      else if(pMsg->m_id == e_message_mouse_move)
+      else if(pMsg->m_atom == e_message_mouse_move)
       {
 
 //         i32   fwKeys = (i32) pMsg->wParam;        // key flags
@@ -929,7 +929,7 @@ namespace user
    }
 
 
-   bool split_layout::InsertPaneAt(index iIndex, ::user::interaction * puserinteraction, bool bFixedSize, ::id id)
+   bool split_layout::InsertPaneAt(index iIndex, ::user::interaction * puserinteraction, bool bFixedSize, ::atom atom)
    {
 
       //::count iSplitBarCount = get_pane_count();
@@ -982,7 +982,7 @@ namespace user
 
       }
 
-      ppane->m_id = id.is_empty() ? (::id) iIndex : id;
+      ppane->m_atom = atom.is_empty() ? (::atom) iIndex : atom;
 
       ppane->m_bFixedSize = bFixedSize;
 
@@ -1033,7 +1033,7 @@ namespace user
    }
 
 
-   bool split_layout::SetPane(index iIndex, ::user::interaction * puserinteraction, bool bFixedSize, id id)
+   bool split_layout::SetPane(index iIndex, ::user::interaction * puserinteraction, bool bFixedSize, atom atom)
    {
 
       ASSERT(iIndex >= 0);
@@ -1071,7 +1071,7 @@ namespace user
 
       }
 
-      pcomponent->m_id = id.is_empty() ? (::id) iIndex : id;
+      pcomponent->m_atom = atom.is_empty() ? (::atom) iIndex : atom;
 
       m_splitpanecompositea[iIndex]->m_bFixedSize = bFixedSize;
 
@@ -1169,7 +1169,7 @@ namespace user
    }
 
 
-//   void split_layout::RelayEventSplitBar(index iSplitBar, const ::id & id, WPARAM wParam, LPARAM lParam)
+//   void split_layout::RelayEventSplitBar(index iSplitBar, const ::atom & atom, WPARAM wParam, LPARAM lParam)
 //   {
 //
 //      ASSERT(false);
@@ -1181,7 +1181,7 @@ namespace user
 //
 //      CalcSplitBarRect(iSplitBar, &splitRect);
 //
-//      if(id == e_message_left_button_down)
+//      if(atom == e_message_left_button_down)
 //      {
 //
 //         i32   fwKeys = (i32) wParam;        // key flags
@@ -1195,7 +1195,7 @@ namespace user
 //            m_iState = stateDragging;
 //         }
 //      }
-//      else if(id == e_message_left_button_up)
+//      else if(atom == e_message_left_button_up)
 //      {
 ////         i32   fwKeys = wParam;        // key flags
 ////         i32 xPos = splitRect.left + (i16) LOWORD(lParam);  // horizontal position of cursor
@@ -1217,11 +1217,11 @@ namespace user
 //
 //      }
 //#ifdef WINDOWS_DESKTOP
-//      else if(id == e_message_capture_changed)
+//      else if(atom == e_message_capture_changed)
 //      {
 //      }
 //#endif
-//      else if(id == e_message_mouse_move)
+//      else if(atom == e_message_mouse_move)
 //      {
 //         i32   fwKeys = (i32) wParam;        // key flags
 //         i32 xPos = splitRect.left + (i16) LOWORD(lParam);  // horizontal position of cursor
@@ -1295,7 +1295,7 @@ namespace user
       if (iPane < 0 || iPane >= get_pane_count())
       {
 
-         __throw(error_invalid_argument);
+         throw ::exception(error_bad_argument);
 
       }
 
@@ -1340,7 +1340,7 @@ namespace user
    }
 
 
-   id split_layout::get_pane_id(index iPane)
+   atom split_layout::get_pane_id(index iPane)
    {
 
       ASSERT(iPane >= 0);
@@ -1350,24 +1350,24 @@ namespace user
       if (iPane < 0 || iPane >= get_pane_count())
       {
 
-         return id();
+         return atom();
 
       }
 
       auto & ppane = m_splitpanecompositea[iPane];
 
-      return ppane->m_id;
+      return ppane->m_atom;
 
    }
 
 
-   split_pane * split_layout::get_pane_by_id(::id id)
+   split_pane * split_layout::get_pane_by_id(::atom atom)
    {
 
       for(index iPane = 0; iPane < m_splitpanecompositea.get_count(); iPane++)
       {
 
-         if (m_splitpanecompositea[iPane]->m_id == id)
+         if (m_splitpanecompositea[iPane]->m_atom == atom)
          {
 
             return m_splitpanecompositea[iPane].get();

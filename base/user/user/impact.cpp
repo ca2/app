@@ -25,7 +25,7 @@ namespace user
 
       ::user::box::install_message_routing(pchannel);
 
-      //MESSAGE_LINK(WM_VIEW, pchannel, this, &impact::_001OnView);
+      //MESSAGE_LINK(WM_VIEW, pchannel, this, &impact::_001OnImpact);
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &impact::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &impact::on_message_left_button_up);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &impact::on_message_mouse_move);
@@ -150,26 +150,17 @@ namespace user
 
       {
 
-         ::subject subject;
+         ::extended_topic extendedtopic(::id_on_create_impact);
 
-         subject.m_puserelement              = this;
+         extendedtopic.m_puserelement              = this;
 
-         subject.m_id                      = ::e_subject_on_create_impact;
+         extendedtopic.m_actioncontext.m_pmessage    = pmessage;
 
-         subject.m_actioncontext.m_pmessage    = pmessage;
+         extendedtopic.m_actioncontext.add(e_source_initialize);
 
-         subject.m_actioncontext.add(e_source_initialize);
-
-         route(&subject);
+         route(&extendedtopic);
 
       }
-
-      //if (get_parent_frame() != nullptr)
-      //{
-
-      //   get_parent_frame()->m_interactionaCommandHandlers.add(this);
-
-      //}
 
       pmessagecreate->m_lresult = 0;
 
@@ -190,13 +181,6 @@ namespace user
 
       }
 
-      //if (get_parent_frame() != nullptr)
-      //{
-
-      //   get_parent_frame()->m_interactionaCommandHandlers.erase(this);
-
-      //}
-
       if (m_pdocument != nullptr)
       {
 
@@ -204,7 +188,6 @@ namespace user
 
       }
 
-      //   ::user::interaction::on_destroy();
    }
 
 
@@ -338,7 +321,7 @@ namespace user
    }
 
 
-   //void impact::handle(::subject * psubject, ::context * pcontext)
+   //void impact::handle(::topic * ptopic, ::context * pcontext)
    //{
 
    //   //call_update(INITIAL_UPDATE);        // initial update
@@ -346,21 +329,21 @@ namespace user
    //}
 
 
-   //void impact::handle(::subject * psubject, ::context * pcontext)
+   //void impact::handle(::topic * ptopic, ::context * pcontext)
    //{
 
-   //   ::user::box::handle(psubject, pcontext);
+   //   ::user::box::handle(ptopic, pcontext);
 
    //   //if (pHint != nullptr)
    //   //{
    //   //   if (base_class < ::update > ::bases(pHint))
    //   //   {
    //   //      ::update * pupdate = dynamic_cast < ::update * > (pHint);
-   //   //      OnViewUpdateHint(pSender, lHint, pupdate);
+   //   //      OnImpactUpdateHint(pSender, lHint, pupdate);
    //   //   }
    //   //}
 
-   //   //if(psubject->id() == id_set_edit_file)
+   //   //if(ptopic->m_atom == id_set_edit_file)
    //   //{
 
    //   //   post_simple_command(e_simple_command_set_edit_file, pobject);
@@ -393,7 +376,7 @@ namespace user
 
    //}
 
-   //void impact::OnViewUpdateHint(__pointer(::user::impact) pSender, LPARAM lHint, ::update * pHint)
+   //void impact::OnImpactUpdateHint(__pointer(::user::impact) pSender, LPARAM lHint, ::update * pHint)
    //{
    //   __UNREFERENCED_PARAMETER(pimpact);
    //   __UNREFERENCED_PARAMETER(eupdate);
@@ -421,10 +404,10 @@ namespace user
    }
 
 
-   ::id impact::get_toolbar_id()
+   ::atom impact::get_toolbar_id()
    {
 
-      return get_document()->m_pimpactsystem->m_id.to_string() + "/" + m_id.to_string();
+      return get_document()->m_pimpactsystem->m_atom.to_string() + "/" + m_atom.to_string();
 
    }
 
@@ -453,13 +436,13 @@ namespace user
    }
 
 
-   void impact::OnActivateView(bool bActivate, __pointer(::user::impact) pActivateView, __pointer(::user::impact))
+   void impact::OnActivateImpact(bool bActivate, __pointer(::user::impact) pActivateImpact, __pointer(::user::impact))
    {
-      //    UNUSED(pActivateView);   // unused in release builds
+      //    UNUSED(pActivateImpact);   // unused in release builds
 
       if (bActivate)
       {
-         //ASSERT(pActivateView == this);
+         //ASSERT(pActivateImpact == this);
 
          // take the focus if this frame/::user::impact/pane is now active
          if (IsTopParentActive())
@@ -539,7 +522,7 @@ namespace user
 
 
    /* trans
-   i32 impact::OnMouseActivate(::user::interaction_impl * pDesktopWnd, ::u32 nHitTest, const ::id & id)
+   i32 impact::OnMouseActivate(::user::interaction_impl * pDesktopWnd, ::u32 nHitTest, const ::atom & atom)
    {
    i32 nResult = ::user::interaction::OnMouseActivate(pDesktopWnd, nHitTest, message);
    if (nResult == MA_NOACTIVATE || nResult == MA_NOACTIVATEANDEAT)
@@ -558,7 +541,7 @@ namespace user
    get_handle() != oswindow_Focus && !::IsChild(get_handle(), oswindow_Focus))
    {
    // re-activate this ::user::impact
-   OnActivateView(true, this, this);
+   OnActivateImpact(true, this, this);
    }
    else
    {
@@ -728,10 +711,10 @@ namespace user
    }
 
 
-   void impact::assert_valid() const
+   void impact::assert_ok() const
    {
       
-      ::user::interaction::assert_valid();
+      ::user::interaction::assert_ok();
 
    }
 
@@ -752,7 +735,7 @@ namespace user
 
    }
 
-   //void impact::handle(::subject * psubject, ::context * pcontext)
+   //void impact::handle(::topic * ptopic, ::context * pcontext)
    //{
 
    //   __pointer(::user::message) pusermessage(pmessage);
@@ -786,16 +769,16 @@ namespace user
 
       pusersystem->m_puserprimitiveNew = pimpactAlloc;
 
-      pusersystem->m_puserprimitiveLastView = pviewLast;
+      pusersystem->m_puserprimitiveLastImpact = pviewLast;
 
       pusersystem->m_pdocumentCurrent = get_document();
 
-      return ::user::create_view(pusersystem, pimpactdata->m_pplaceholder, pimpactdata->m_id);
+      return ::user::create_view(pusersystem, pimpactdata->m_pplaceholder, pimpactdata->m_atom);
 
    }
 
 
-   __pointer(::user::interaction) impact::create_view(const ::type & type, ::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::id & id, ::user::interaction * pviewLast, ::user::impact_data * pimpactdata)
+   __pointer(::user::interaction) impact::create_view(const ::type & type, ::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::atom & atom, ::user::interaction * pviewLast, ::user::impact_data * pimpactdata)
    {
 
       __pointer(::create) pcreate(e_create_new, this);
@@ -811,9 +794,9 @@ namespace user
 
       }
 
-      pusersystem->m_typeNewView = type;
+      pusersystem->m_typeNewImpact = type;
 
-      pusersystem->m_puserprimitiveLastView = pviewLast;
+      pusersystem->m_puserprimitiveLastImpact = pviewLast;
 
       if (pdocument == nullptr)
       {
@@ -835,12 +818,12 @@ namespace user
 
       }
 
-      ::id idCreate(id);
+      ::atom idCreate(atom);
 
       if (idCreate.is_empty())
       {
 
-         idCreate = (const ::id &) pusersystem->m_typeNewView.name();
+         idCreate = (const ::atom &) pusersystem->m_typeNewImpact.name();
 
       }
 
@@ -849,7 +832,7 @@ namespace user
    }
 
 
-   __pointer(::user::interaction) create_view(const ::type & type, ::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::id & id, ::user::interaction * pviewLast)
+   __pointer(::user::interaction) create_view(const ::type & type, ::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::atom & atom, ::user::interaction * pviewLast)
    {
 
       __pointer(::create) pcreate(e_create_new, pdocument);
@@ -858,23 +841,23 @@ namespace user
 
       pusersystem = pusersystem;
 
-      pusersystem->m_typeNewView = type;
+      pusersystem->m_typeNewImpact = type;
 
-      pusersystem->m_puserprimitiveLastView = pviewLast;
+      pusersystem->m_puserprimitiveLastImpact = pviewLast;
 
       pusersystem->m_pdocumentCurrent = pdocument;
 
-      return ::user::create_view(pusersystem, puserinteractionParent, id);
+      return ::user::create_view(pusersystem, puserinteractionParent, atom);
 
    }
 
 
-   __pointer(::user::interaction) create_view(::user::system * pusersystem, ::user::interaction * puserinteractionParent, const ::id & id)
+   __pointer(::user::interaction) create_view(::user::system * pusersystem, ::user::interaction * puserinteractionParent, const ::atom & atom)
    {
 
       ASSERT(pusersystem != nullptr);
 
-      ASSERT(pusersystem->m_typeNewView || pusersystem->m_puserprimitiveNew != nullptr);
+      ASSERT(pusersystem->m_typeNewImpact || pusersystem->m_puserprimitiveNew != nullptr);
 
       ::application * papp = puserinteractionParent->get_application();
 
@@ -910,7 +893,7 @@ namespace user
          }
 
          //estatus = 
-         pobject->__id_construct(pinteraction, pusersystem->m_typeNewView);
+         pobject->__id_construct(pinteraction, pusersystem->m_typeNewImpact);
 
       }
 
@@ -925,9 +908,9 @@ namespace user
 
       pinteraction->display(e_display_normal);
 
-      pinteraction->m_id = id;
+      pinteraction->m_atom = atom;
 
-      //if (!pinteraction->create_interaction(nullptr, nullptr, WS_VISIBLE | WS_CHILD, puserinteractionParent, id, pcreate))
+      //if (!pinteraction->create_interaction(nullptr, nullptr, WS_VISIBLE | WS_CHILD, puserinteractionParent, atom, pcreate))
       //if (!pinteraction->create_child(puserinteractionParent))
 
       pinteraction->create_child(puserinteractionParent);
@@ -1112,7 +1095,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // ::user::impact second phase construction - bind to document
 
-   //const char _vfxWndFrameOrView[] = __WNDFRAMEORVIEW;
+   //const char _vfxWndFrameOrImpact[] = __WNDFRAMEORVIEW;
 
 
 
@@ -1121,14 +1104,14 @@ namespace user
    // ::user::impact drawing support
 
 
-   /*void impact::handle(::subject * psubject, ::context * pcontext)
+   /*void impact::handle(::topic * ptopic, ::context * pcontext)
    {
    call_update(INITIAL_UPDATE);        // initial update
    }*/
 
    /*   void impact::on_update(::user::impact * pSender, LPARAM lHint, object * pHint)
    {
-   ::user::impact::handle(psubject, pcontext);
+   ::user::impact::handle(ptopic, pcontext);
    }
    */
    /////////////////////////////////////////////////////////////////////////////
@@ -1184,7 +1167,7 @@ namespace user
             {
 
                // re-activate this ::user::impact
-               OnActivateView(true, this, this);
+               OnActivateImpact(true, this, this);
 
             }
             else
@@ -1212,7 +1195,7 @@ namespace user
       return ::user::box::_001CallOnDraw(pgraphics);
       //on_viewport_offset(pgraphics);
 
-      //synchronous_lock slView(mutex());
+      //synchronous_lock slImpact(mutex());
 
       ////synchronous_lock slDocument(get_document()->mutex());.
 
@@ -1251,7 +1234,7 @@ namespace user
          {
 
             // re-activate this ::user::impact
-            OnActivateView(true, this, this);
+            OnActivateImpact(true, this, this);
 
          }
          else
@@ -1339,7 +1322,7 @@ namespace user
    // // IMPLEMENT_DYNAMIC for ::user::impact is in wincore.cpp for .OBJ granularity reasons
 
    //// IMPLEMENT_DYNAMIC(CSplitterWnd, ::user::interaction)   // for __swap tuning
-   //// IMPLEMENT_DYNAMIC(CCtrlView, ::user::impact)
+   //// IMPLEMENT_DYNAMIC(CCtrlImpact, ::user::impact)
 
    /////////////////////////////////////////////////////////////////////////////
 
@@ -1361,18 +1344,18 @@ namespace user
 
 
    /*
-   __pointer(::user::interaction) impact::CreateView(__pointer(::create) pContext, ::u32 nID)
+   __pointer(::user::interaction) impact::CreateImpact(__pointer(::create) pContext, ::u32 nID)
    {
    ASSERT(is_window());
    ASSERT(pContext != nullptr);
-   ASSERT(pContext->m_typeNewView != nullptr);
+   ASSERT(pContext->m_typeNewImpact != nullptr);
 
    // Note: can be a ::user::interaction with post_non_client_destroy self cleanup
-   __pointer(::user::interaction) pview =  (psystem->alloc(pContext->m_typeNewView));
+   __pointer(::user::interaction) pview =  (psystem->alloc(pContext->m_typeNewImpact));
    if (pview == nullptr)
    {
    TRACE1("Warning: Dynamic create of ::user::impact type %hs failed.\n",
-   pContext->m_typeNewView.name());
+   pContext->m_typeNewImpact.name());
    return nullptr;
    }
    ASSERT_KINDOF(::user::interaction, pview);
@@ -1386,7 +1369,7 @@ namespace user
    }
 
    __pointer(::user::impact) pview =  (pview);
-   pview->handle(::subject * psubject, ::context * pcontext);
+   pview->handle(::topic * ptopic, ::context * pcontext);
    if (afxData.bWin4 && (pview->GetExStyle() & WS_EX_CLIENTEDGE))
    {
    // erase the 3d style from the frame, since the ::user::impact is
@@ -1398,18 +1381,18 @@ namespace user
    }*/
 
 
-   /*__pointer(::user::interaction) impact::CreateView(__pointer(::create) pContext, ::u32 nID, ::user::interaction  * puserinteractionParent)
+   /*__pointer(::user::interaction) impact::CreateImpact(__pointer(::create) pContext, ::u32 nID, ::user::interaction  * puserinteractionParent)
    {
    ASSERT(puserinteractionParent->is_window());
    ASSERT(pContext != nullptr);
-   ASSERT(pContext->m_typeNewView != nullptr);
+   ASSERT(pContext->m_typeNewImpact != nullptr);
 
    // Note: can be a interaction_impl with post_non_client_destroy self cleanup
-   ::user::interaction_impl * pview = (puserinteractionParent->psystem->alloc(pContext->m_typeNewView));
+   ::user::interaction_impl * pview = (puserinteractionParent->psystem->alloc(pContext->m_typeNewImpact));
    if (pview == nullptr)
    {
    TRACE1("Warning: Dynamic create of ::user::impact type %hs failed.\n",
-   pContext->m_typeNewView.name());
+   pContext->m_typeNewImpact.name());
    return nullptr;
    }
    ASSERT_KINDOF(interaction_impl, pview);
@@ -1422,7 +1405,7 @@ namespace user
    return nullptr;        // can't continue without a ::user::impact
    }
 
-   ( (pview))->handle(::subject * psubject, ::context * pcontext);
+   ( (pview))->handle(::topic * ptopic, ::context * pcontext);
    if (afxData.bWin4 && (pview->GetExStyle() & WS_EX_CLIENTEDGE))
    {
    // erase the 3d style from the frame, since the ::user::impact is

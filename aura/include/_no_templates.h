@@ -33,14 +33,14 @@ typedef iptr strsize;
 #include "apex/include/_no_templates.h"
 
 
-//#include "acme/node/operating_system/thread.h"
+//#include "acme/operating_system/thread.h"
 //#include "aura/platform/struct.h"
-#include "aura/node/operating_system/cross/cross.h"
-#include "aura/node/operating_system/operating_system.h"
+#include "aura/operating_system/cross/cross.h"
+#include "aura/operating_system/operating_system.h"
 
 
 #include "aura/include/_c.h"
-#include "aura/node/operating_system/apple/_c_mm.h"
+#include "aura/operating_system/apple/_c_mm.h"
 
 
 //#include "aura/platform/object_reference_count_debug.h"

@@ -49,7 +49,7 @@ namespace opengl
       if (::is_null(popengl))
       {
 
-         return ::error_failed;
+         throw_status(::error_failed);
 
       }
 
@@ -83,7 +83,7 @@ namespace opengl
 
          fprintf(stderr, "Got no EGL display.\n");
 
-         return false;
+         throw_status(::error_failed);
 
       }
 
@@ -92,7 +92,7 @@ namespace opengl
 
          fprintf(stderr, "Unable to initialize EGL\n");
 
-         return false;
+         throw_status(::error_failed);
 
       }
 
@@ -109,7 +109,7 @@ namespace opengl
 
          fprintf(stderr, "Failed to choose config (eglError: %s : 0x%x)\n", pszError, iError);
 
-         return false;
+         throw_status(::error_failed);
 
       }
 
@@ -118,7 +118,7 @@ namespace opengl
 
          fprintf(stderr, "Didn't get just one config, but %d\n", iConfigCount);
 
-         return false;
+         throw_status(::error_failed);
 
       }
 
@@ -150,7 +150,7 @@ namespace opengl
       if (m_surface == EGL_NO_SURFACE)
       {
 
-         return false;
+         throw_status(::error_failed);
 
       }
 
@@ -163,11 +163,11 @@ namespace opengl
       {
 
          //qDebug() << "context issue";
-         return false;
+         throw_status(::error_failed);
 
       }
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -186,11 +186,13 @@ namespace opengl
 
          printf("eglMakeCurrent failed!\n");
 
-         return ::error_failed;
+         //return ::error_failed;
+
+         throw_status(::error_failed);
 
       }
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -198,14 +200,16 @@ namespace opengl
    void context_egl::resize_offscreen_buffer(const ::size_i32& size)
    {
 
-      auto estatus = ::gpu::context::resize_offscreen_buffer(size);
+      //auto estatus =
+      //
+      ::gpu::context::resize_offscreen_buffer(size);
 
-      if(!estatus)
-      {
-
-         return estatus;
-
-      }
+//      if(!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
 
       EGLint pbufferAttribs[5];
       pbufferAttribs[0] = EGL_WIDTH;
@@ -220,7 +224,7 @@ namespace opengl
       if (surface == EGL_NO_SURFACE)
       {
 
-         return ::error_failed;
+         throw_status(error_failed);
 
       }
 
@@ -230,7 +234,7 @@ namespace opengl
 
       eglDestroySurface(m_display, surfaceOld);
 
-      return ::success_none;
+      //return ::success_none;
 
    }
 
@@ -238,9 +242,11 @@ namespace opengl
    void context_egl::destroy_offscreen_buffer()
    {
 
-      ::e_status estatus = error_failed;
+      //::e_status estatus = error_failed;
 
-      return estatus;
+      //return estatus;
+
+      //throw_status(error_failed);
 
    }
 
@@ -288,7 +294,7 @@ namespace opengl
 
       }
 
-      stra.replace("gl_FragColor", "fragmentColor");
+      stra.replace_with("fragmentColor", "gl_FragColor");
 
    }
 

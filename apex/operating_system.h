@@ -5,13 +5,13 @@
 #include "acme/operating_system.h"
 
 
-#include "apex/node/operating_system/_.h"
+#include "apex/operating_system/_.h"
 
 
-#include "apex/node/operating_system/_operating_system.h"
+#include "apex/operating_system/_operating_system.h"
 
 
-#include "apex/node/operating_system/_impl.h"
+#include "apex/operating_system/_impl.h"
 
 
 

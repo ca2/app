@@ -36,7 +36,7 @@ namespace std { enum class align_val_t : std::size_t {}; }
 //   if (block.get_size() < get_size())
 //   {
 //
-//      __throw(error_invalid_argument);
+//      throw ::exception(error_bad_argument);
 //
 //   }
 //   
@@ -257,34 +257,34 @@ namespace std { enum class align_val_t : std::size_t {}; }
 
 
 //template < typename RECEIVER >
-//void channel::add_route (RECEIVER * preceiver, void (RECEIVER::* phandler)(::message::message * pmessage), const ::id & id)
+//void channel::add_route (RECEIVER * preceiver, void (RECEIVER::* phandler)(::message::message * pmessage), const ::atom & atom)
 //{
 //
-//   add_receiver_route(id, preceiver, phandler);
+//   add_receiver_route(atom, preceiver, phandler);
 //
 //}
 
 
 //template < typename RECEIVER, typename MESSAGE_PRED >
-//void channel::add_route (const ::id & id, RECEIVER * preceiverDerived, MESSAGE_PRED message_predicate)
+//void channel::add_route (const ::atom & atom, RECEIVER * preceiverDerived, MESSAGE_PRED message_predicate)
 //{
 //
-//   get_typed_route < typename ::erase_reference < decltype(*preceiverDerived) >::TYPE, ::message::message >(id, preceiverDerived) = message_predicate;
+//   get_typed_route < typename ::erase_reference < decltype(*preceiverDerived) >::TYPE, ::message::message >(atom, preceiverDerived) = message_predicate;
 //
 //}
 
 
 //template < typename RECEIVER, typename MESSAGE_TYPE >
-//void channel::add_receiver_route(const ::id & id, RECEIVER* preceiver, void (RECEIVER::* phandler)(MESSAGE_TYPE* pmessage))
+//void channel::add_receiver_route(const ::atom & atom, RECEIVER* preceiver, void (RECEIVER::* phandler)(MESSAGE_TYPE* pmessage))
 //{
 //
-//   add_route(id, preceiver).m_pmessageable = __new(::message::receiver_route<RECEIVER, MESSAGE_TYPE>(preceiver, phandler));
+//   add_route(atom, preceiver).m_pmessageable = __new(::message::receiver_route<RECEIVER, MESSAGE_TYPE>(preceiver, phandler));
 //
 //}
 
 
 //template < typename RECEIVER >
-//::message::route & channel::add_route(const ::id & id, RECEIVER * preceiverDerived)
+//::message::route & channel::add_route(const ::atom & atom, RECEIVER * preceiverDerived)
 //{
 //
 //   synchronous_lock synchronouslock(defer_mutex_channel());
@@ -300,7 +300,7 @@ namespace std { enum class align_val_t : std::size_t {}; }
 //
 //   }
 //
-//   auto & proutea = m_idroute[id];
+//   auto & proutea = m_idroute[atom];
 //
 //   __pointer(::message::route) proute;
 //
@@ -332,7 +332,7 @@ namespace std { enum class align_val_t : std::size_t {}; }
 //
 //      ASSERT(false);
 //
-//      __throw(error_invalid_argument);
+//      throw ::exception(error_bad_argument);
 //
 //   }
 //
@@ -372,7 +372,7 @@ namespace std { enum class align_val_t : std::size_t {}; }
 
 
 //template < typename RECEIVER, typename MESSAGE >
-//::message::typed_route < MESSAGE > & channel::get_typed_route (const ::id & id, RECEIVER * preceiverDerived)
+//::message::typed_route < MESSAGE > & channel::get_typed_route (const ::atom & atom, RECEIVER * preceiverDerived)
 //{
 //
 //   synchronous_lock synchronouslock(s_pmutexChannel);
@@ -388,7 +388,7 @@ namespace std { enum class align_val_t : std::size_t {}; }
 //
 //   }
 //
-//   __pointer(::message::route_array) & proutea = m_idroute[id];
+//   __pointer(::message::route_array) & proutea = m_idroute[atom];
 //
 //   __pointer(::message::typed_route < MESSAGE >) proute;
 //
@@ -420,7 +420,7 @@ namespace std { enum class align_val_t : std::size_t {}; }
 //
 //      ASSERT(false);
 //
-//      __throw(error_invalid_argument);
+//      throw ::exception(error_bad_argument);
 //
 //   }
 //
@@ -782,7 +782,7 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 //} // namespace str
 
 
-//inline void copy(void *, const void *) /* = 0 */ {throw ::interface_only_exception(); }
+//inline void copy(void *, const void *) /* = 0 */ {throw ::interface_only(); }
 
 
 //namespace papaya
@@ -797,7 +797,7 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 //      inline TYPE default_value()
 //      {
 //
-//         __throw(::exception("template only exception"));
+//         throw ::exception(::exception("template only exception"));
 //
 //      }
 //
@@ -1043,7 +1043,7 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 //   if (::is_null(pderived))
 //   {
 //
-//      __throw(::exception(::error_wrong_type));
+//      throw ::exception(::exception(::error_wrong_type));
 //
 //   }
 //
@@ -1078,7 +1078,7 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 //
 //#ifdef _DEBUG
 //
-////   ::id id = p->m_id;
+////   ::atom atom = p->m_atom;
 //   //char * pszType = nullptr;
 //   //
 //   //try
@@ -1105,7 +1105,7 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 //   catch (...)
 //   {
 //
-//      //::output_debug_string("exception release pca = nullptr; (" + string(id) + ")\n");
+//      //::output_debug_string("exception release pca = nullptr; (" + string(atom) + ")\n");
 //      ::output_debug_string("exception release pca = nullptr; \n");
 //
 //   }
@@ -1119,7 +1119,7 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 //   catch (...)
 //   {
 //
-//      //::output_debug_string("exception release p->release() (" + string(id) + ")\n");
+//      //::output_debug_string("exception release p->release() (" + string(atom) + ")\n");
 //      ::output_debug_string("exception release p->release() \n");
 //
 //   }

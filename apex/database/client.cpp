@@ -16,43 +16,43 @@ namespace database
    }
 
 
-   void client::default_data_save_handling(const ::id & idParam)
+   void client::default_data_save_handling(const ::atom & idParam)
    {
 
-      ::id id(idParam);
+      ::atom atom(idParam);
 
-      auto linkedproperty = fetch_property(id);
+      auto linkedproperty = fetch_property(atom);
 
       ::payload payload;
 
-      if(data_get(id, payload))
+      if(data_get(atom, payload))
       {
 
          linkedproperty->convert(payload);
 
       }
 
-      //auto idProcedure = translate_property_id(id);
+      //auto idProcedure = translate_property_id(atom);
 
-      //auto linkedproperty = fetch_property(id);
+      //auto linkedproperty = fetch_property(atom);
 
-      auto psignal = get_application()->get_signal(linkedproperty->m_id);
+      auto psignal = get_application()->get_signal(linkedproperty->m_atom);
 
-      psignal->add_handler(predicate([this, id, linkedproperty](::subject * psubject, ::context * pcontext)
+      psignal->add_handler(predicate([this, atom, linkedproperty](::topic * ptopic, ::context * pcontext)
 
-      //connect(id, [id, linkedproperty](::message::message* pmessage)
+      //connect(atom, [atom, linkedproperty](::message::message* pmessage)
          {
 
-            data_set(id, (const ::payload&)*linkedproperty.m_pproperty);
+            data_set(atom, (const ::payload&)*linkedproperty.m_pproperty);
 
          }));
 
-      //::add_routine(get_application()->m_routinemap[idProcedure], [this, id]()
+      //::add_routine(get_application()->m_routinemap[idProcedure], [this, atom]()
       //   {
 
-      //      auto pproperty = fetch_property(id);
+      //      auto pproperty = fetch_property(atom);
 
-      //      data_set(id, (const ::payload &) *pproperty);
+      //      data_set(atom, (const ::payload &) *pproperty);
 
       //   });
 
@@ -141,7 +141,7 @@ namespace database
    //}
 
 
-   void client::_data_set(const key & key, const ::payload & payload, ::subject * psubject)
+   void client::_data_set(const key & key, const ::payload & payload, ::topic * ptopic)
    {
 
       if(::is_null(m_pdataserver))
@@ -155,12 +155,12 @@ namespace database
 
       os << payload;
 
-      m_pdataserver->_data_server_save(this, key, os->memory(), psubject);
+      m_pdataserver->_data_server_save(this, key, os->memory(), ptopic);
 
    }
 
 
-   void client::_data_set(const selection & selection, const ::payload & payload, ::subject * psubject)
+   void client::_data_set(const selection & selection, const ::payload & payload, ::topic * ptopic)
    {
 
       if (::is_null(m_pdataserver))
@@ -183,7 +183,7 @@ namespace database
 
          auto & item = selection.get_item(iItem);
 
-         m_pdataserver->_data_server_save(this, item.m_datakey, os->memory(), psubject);
+         m_pdataserver->_data_server_save(this, item.m_datakey, os->memory(), ptopic);
          //{
 
          //   bOk = false;
@@ -228,7 +228,18 @@ namespace database
 
             is.initialize(this);
 
-            is >> payload;
+            try
+            {
+
+               is >> payload;
+
+            }
+            catch (::exception&)
+            {
+
+               return false;
+
+            }
 
             //if (is.fail())
             //{
@@ -248,16 +259,16 @@ namespace database
    }
 
 
-   bool client::data_pulse_change(const key & key, ::subject * psubject)
+   bool client::data_pulse_change(const key & key, ::topic * ptopic)
    {
 
       if(m_pdataserver != nullptr)
       {
 
 
-         m_pdataserver->data_pulse_change(this, key, psubject);
+         m_pdataserver->data_pulse_change(this, key, ptopic);
 
-         //if (!m_pdataserver->data_pulse_change(this, key, psubject))
+         //if (!m_pdataserver->data_pulse_change(this, key, ptopic))
          //{
 
          //   return false;
@@ -374,7 +385,7 @@ namespace database
 
       defer_update_object_id();
 
-      key.m_strDataKey += "/" + __string(m_id);
+      key.m_strDataKey += "/" + __string(m_atom);
 
       return key;
 
@@ -418,14 +429,14 @@ namespace database
    }
 
 
-   void client::data_on_before_change(client* pclient, const key& id, ::payload& payload, ::subject * psubject)
+   void client::data_on_before_change(client* pclient, const key& atom, ::payload& payload, ::topic * ptopic)
    {
 
       //return true;
 
    }
 
-   void client::data_on_after_change(client* pclient, const key& id, const ::payload & payload, ::subject * psubject)
+   void client::data_on_after_change(client* pclient, const key& atom, const ::payload & payload, ::topic * ptopic)
    {
 
    }

@@ -75,7 +75,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories
 target_compile_definitions(app_just_message_box PRIVATE _app_just_message_box_LIBRARY)
 
 
-add_executable(_${PROJECT_NAME} platform/${SLASHED_PLATFORM}/_${PROJECT_NAME}.cpp)
+add_executable(_${PROJECT_NAME} operating-system/${SLASHED_OPERATING_SYSTEM}/_${PROJECT_NAME}.cpp)
 
 
 list(APPEND executable_references

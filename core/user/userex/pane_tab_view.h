@@ -49,7 +49,7 @@ namespace userex
 
       ::user::interaction * get_view_uie() override;
 
-      id get_view_id() override;
+      atom get_view_id() override;
 
       void on_change_cur_sel() override;
 
@@ -61,7 +61,7 @@ namespace userex
 
       bool on_place_hold(::user::interaction * pinteraction, ::user::place_holder * pholder) override;
 
-      ::user::tab_pane * create_tab_by_id(const ::id & id) override;
+      ::user::tab_pane * create_tab_by_id(const ::atom & atom) override;
 
       void on_create_impact(::user::impact_data * pimpactdata) override;
 
@@ -79,11 +79,11 @@ namespace userex
 
       //virtual bool create_app_options(::user::impact_data * pimpactdata);
 
-      void handle(::subject * psubject, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::context * pcontext) override;
 
       //void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void prepare_form(id id, ::form_document * pdocument);
+      virtual void prepare_form(atom atom, ::form_document * pdocument);
 
 
    };
@@ -115,43 +115,51 @@ public:
    void initialize(::object* pobject) override
    {
 
-      auto estatus = BASE1::initialize(pobject);
+      //auto estatus =
+      
+      BASE1::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = BASE2::initialize(pobject);
+      //estatus =
+      
+      BASE2::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = BASE3::initialize(pobject);
+      //estatus =
+      
+      BASE3::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      estatus = BASE4::initialize(pobject);
+      //estatus = 
+      
+      BASE4::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 

@@ -569,7 +569,7 @@ void payload_array::parse_network_payload(const char * & pszJson, const char * p
    {
 
       
-      //__throw(todo("thread"));
+      //throw ::exception(todo("thread"));
      /* g_iRandomNumberGenerator++;
 
       if(pthread == nullptr)
@@ -586,7 +586,7 @@ void payload_array::parse_network_payload(const char * & pszJson, const char * p
       else if(!pthread->task_get_run())
       {
 
-         __throw(::exit_exception(pthread));
+         throw ::exception(::exit_exception(pthread));
 
       }*/
 
@@ -619,7 +619,7 @@ void payload_array::parse_network_payload(const char * & pszJson, const char * p
 
          str += pszJson;
 
-         __throw(error_parsing, str);
+         throw ::exception(error_parsing, str);
 
       }
 
@@ -673,7 +673,7 @@ void var_array_skip_network_payload(const char *& pszJson, const char * pszEnd)
          
          str += pszJson;
 
-         __throw(error_parsing, str);
+         throw ::exception(error_parsing, str);
 
       }
 

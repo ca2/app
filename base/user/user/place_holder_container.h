@@ -20,7 +20,7 @@ namespace user
       void install_message_routing(::channel * pchannel);
 
 
-      //virtual bool create_interaction(::user::interaction * puiParent,id id);
+      //virtual bool create_interaction(::user::interaction * puiParent,atom atom);
 
 
       virtual ::user::place_holder * get_new_place_holder(const ::rectangle_i32 & rectangleCreate);

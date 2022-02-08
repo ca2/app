@@ -73,7 +73,7 @@ namespace simpledb
 
       string strKey = key.m_strDataKey;
 
-      strKey.replace("\\", "/");
+      strKey.replace_with("/", "\\");
 
       return pstorage->erase_key(strKey);
 
@@ -128,7 +128,7 @@ namespace simpledb
 
       string strKey = key.m_strDataKey;
 
-      strKey.replace("\\", "/");
+      strKey.replace_with("/", "\\");
 
       if (!pserver->m_bRemote || key.m_bLocalData)
       {
@@ -138,7 +138,9 @@ namespace simpledb
          if (ppair != nullptr)
          {
 
-            return getmemory.get(ppair->element2().m_memory);
+            getmemory.get(ppair->element2().m_memory);
+
+            return ppair->m_element2.m_bData;
 
          }
 
@@ -154,7 +156,7 @@ namespace simpledb
 
          // LOCAL (sqlite)
          //auto estatus = 
-         pdatabase->get_id_blob(strKey, getmemory);
+         bool bData = pdatabase->get_id_blob(strKey, getmemory);
 
          {
 
@@ -162,13 +164,26 @@ namespace simpledb
 
             stritem.m_tick.Now();
 
-            stritem.m_memory.assign(getmemory.get_data(), (memsize) getmemory.get_size());
+            stritem.m_bData = bData;
+
+            if(bData)
+            {
+
+               stritem.m_memory.assign(getmemory.get_data(), (memsize) getmemory.get_size());
+
+            }
+            else
+            {
+
+               output_debug_string("");
+
+            }
 
             pstorage->m_map[strKey] = stritem;
 
          }
 
-
+         return bData;
 
       }
       else
@@ -189,7 +204,9 @@ namespace simpledb
          if (ppair != nullptr && ppair->element2().m_tick.elapsed() < m_durationRemoteTimeout)
          {
 
-            return getmemory.get(ppair->element2().m_memory);
+            getmemory.get(ppair->element2().m_memory);
+
+            return ppair->m_element2.m_bData;
 
          }
 
@@ -301,7 +318,7 @@ namespace simpledb
 
          string strKey = key.m_strDataKey;
 
-         strKey.replace("\\", "/");
+         strKey.replace_with("/", "\\");
 
          auto pdatabase = pserver->m_pdatabaseUser;
 
@@ -330,7 +347,7 @@ namespace simpledb
 
       string strKey = key.m_strDataKey;
 
-      strKey.replace("\\", "/");
+      strKey.replace_with("/", "\\");
 
       if (!pserver->m_bRemote || key.m_bLocalData)
       {
@@ -368,8 +385,6 @@ namespace simpledb
 
          }
 
-
-
          if (pstorage->m_pthreadlocal.is_null())
          {
 
@@ -390,6 +405,8 @@ namespace simpledb
          stritem.m_tick.Now();
 
          stritem.m_memory = block;
+
+         stritem.m_bData = true;
 
          synchronous_lock synchronouslock(mutex());
 
@@ -419,6 +436,8 @@ namespace simpledb
          stritem.m_tick.Now();
 
          stritem.m_memory = block;
+
+         stritem.m_bData = true;
 
          synchronous_lock synchronouslock(mutex());
 

@@ -39,12 +39,12 @@ namespace database
       DECLARE_MESSAGE_HANDLER(data_on_after_change);
 
 
-      virtual void data_on_before_change(client* pclient, const key& id, ::payload& payload, ::subject * psubject);
-      virtual void data_on_after_change(client* pclient, const key& id, const ::payload & payload, ::subject * psubject);
+      virtual void data_on_before_change(client* pclient, const key& atom, ::payload& payload, ::topic * ptopic);
+      virtual void data_on_after_change(client* pclient, const key& atom, const ::payload & payload, ::topic * ptopic);
 
 
-      virtual void _data_set(const key& key, const ::payload & payload, ::subject * psubject = nullptr);
-      virtual void _data_set(const selection & selection, const ::payload & payload, ::subject * psubject = nullptr);
+      virtual void _data_set(const key& key, const ::payload & payload, ::topic * ptopic = nullptr);
+      virtual void _data_set(const selection & selection, const ::payload & payload, ::topic * ptopic = nullptr);
 
 
       template < typename TYPE >
@@ -64,7 +64,7 @@ namespace database
       inline void data_set(const key & key, const TYPE & t)
       {
 
-         var_stream stream;
+         payload_stream stream;
 
          stream.set_storing();
 
@@ -97,9 +97,10 @@ namespace database
       inline bool binary_get(const key & key, __pointer(TYPE) & p)
       {
 
-         binary_get(key, *p);
+         return binary_get(key, *p);
 
       }
+
 
       virtual ::payload data_get(const key & key)
       {
@@ -124,7 +125,7 @@ namespace database
       inline bool data_get(const key & key, TYPE & t)
       {
 
-         var_stream stream;
+         payload_stream stream;
 
          if (!binary_get(key, stream.payload()))
          {
@@ -148,9 +149,9 @@ namespace database
 
       }
 
-      virtual void default_data_save_handling(const ::id & id);
+      virtual void default_data_save_handling(const ::atom & atom);
 
-      virtual bool data_pulse_change(const key & key, ::subject * psubject);
+      virtual bool data_pulse_change(const key & key, ::topic * ptopic);
 
 
       virtual void set_data_key_modifier(const key & key);

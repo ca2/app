@@ -38,22 +38,22 @@ namespace console
 
       }
 
-      if(bShow && !m_pdocumenttemplate->get_document()->get_typed_view < prompt_impact >()->is_window_visible())
+      if(bShow && !m_pdocumenttemplate->get_document()->get_type_impact < prompt_impact >()->is_window_visible())
       {
          if(bCreateMini)
          {
 
-            m_pdocumenttemplate->get_document()->get_typed_view < prompt_impact >()->GetTypedParent < prompt_frame > ()->show_mini();
+            m_pdocumenttemplate->get_document()->get_type_impact < prompt_impact >()->GetTypedParent < prompt_frame > ()->show_mini();
          }
          else
          {
-            m_pdocumenttemplate->get_document()->get_typed_view < prompt_impact >()->display(e_display_normal);
+            m_pdocumenttemplate->get_document()->get_type_impact < prompt_impact >()->display(e_display_normal);
 
          }
 
       }
 
-      return *m_pdocumenttemplate->get_document()->get_typed_view < prompt_impact >();
+      return *m_pdocumenttemplate->get_document()->get_type_impact < prompt_impact >();
 
    }
 

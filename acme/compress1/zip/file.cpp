@@ -42,7 +42,7 @@ namespace zip
 //
 //      file_pointer spfile(e_create_new);
 //
-//      __throw(todo("object"));
+//      throw ::exception(todo("object"));
 //      //spfile->initialize(this);
 //
 //      try

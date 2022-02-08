@@ -97,7 +97,7 @@ namespace html
    void element::initialize_html_element(html_data * phtmldata)
    {
 
-      if (m_pparent != nullptr && m_idTagName.is_empty())
+      if (m_pparent != nullptr && m_atomTagName.is_empty())
       {
 
          m_bParent = true;
@@ -113,7 +113,7 @@ namespace html
 
       auto puser = psession->user();
 
-      m_etag = puser->m_phtml->tag_name_to_id(m_idTagName);
+      m_etag = puser->m_phtml->tag_name_to_id(m_atomTagName);
 
       if (m_etag == tag_initial)
       {
@@ -926,7 +926,7 @@ namespace html
 
          ::html::tag * ptag = dynamic_cast < ::html::tag * > (m_pbase);
 
-         m_idTagName = ptag->get_name();
+         m_atomTagName = ptag->get_name();
 
          for (i32 i = 0; i < ptag->attra().get_size(); i++)
          {
@@ -935,7 +935,7 @@ namespace html
 
          }
 
-         if (m_idTagName == __id(html_link) && get_tag()->get_attr_value("rel").compare_ci("stylesheet") == 0)
+         if (m_atomTagName == __id(html_link) && get_tag()->get_attr_value("rel").compare_ci("stylesheet") == 0)
          {
 
             __pointer(style_sheet) pstylesheet(__create_new < style_sheet > ());
@@ -963,11 +963,14 @@ namespace html
             }
             else
             {
+               
                strUrl = m_pdata->m_pcoredata->m_strPathName.sibling(strUrl);
-               strUrl.replace("/","\\");
-            }
-            auto pcontext = get_context();
+               
+               strUrl.find_replace("/","\\");
 
+            }
+
+            auto pcontext = get_context();
 
             pstylesheet->parse(phtmldata, pcontext->m_papexcontext->file().as_string(strUrl));
             phtmldata->m_pcoredata->m_stylesheeta.add(pstylesheet);
@@ -988,15 +991,15 @@ namespace html
 
          ::html::tag * ptag = dynamic_cast < ::html::tag * > (m_pparent->m_pbase);
 
-         m_idTagName = ptag->get_name();
+         m_atomTagName = ptag->get_name();
          m_strBody = pvalue->get_value();
-         if (m_idTagName == __id(html_style))
+         if (m_atomTagName == __id(html_style))
          {
             __pointer(style_sheet) pstylesheet(__create_new < style_sheet >());
             pstylesheet->parse(phtmldata, pvalue->get_value());
             phtmldata->m_pcoredata->m_stylesheeta.add(pstylesheet);
          }
-         else if (m_idTagName == __id(html_link)
+         else if (m_atomTagName == __id(html_link)
                   && m_pparent->get_tag()->get_attr_value("rel").compare_ci("stylesheet") == 0)
          {
             
@@ -1040,7 +1043,7 @@ namespace html
       string strTag(pszTag, psz - pszTag);
       if (strTag[0] == '/')
          return false;
-      m_idTagName = (id) ::str::ansi_lower(strTag);
+      m_atomTagName = (atom) ::str::ansi_lower(strTag);
       if (strTag == "!DOCTYPE")
       {
          // skip white space
@@ -1075,7 +1078,7 @@ namespace html
          psz++;
       }
 
-      if (m_idTagName == __id(html_br))
+      if (m_atomTagName == __id(html_br))
       {
 
          return true;
@@ -1126,7 +1129,7 @@ namespace html
       while (*psz != '\0' && !isspace(*psz) && *psz != '>')
          psz++;
 
-      if (pszCloseTag[0] == '/' && ansi_count_compare_ci(m_idTagName.m_psz, pszCloseTag + 1, psz - pszCloseTag - 1) == 0)
+      if (pszCloseTag[0] == '/' && ansi_count_compare_ci(m_atomTagName.m_psz, pszCloseTag + 1, psz - pszCloseTag - 1) == 0)
       {
          psz++;
          pszParam = psz;
@@ -1210,17 +1213,17 @@ namespace html
 
 
 
-   element * element::get_element_by_name(id id)
+   element * element::get_element_by_name(atom atom)
    {
       if (m_pbase->get_type() == base::type_value)
          return nullptr;
       ::html::tag * ptag = m_pbase->get_tag();
-      if (id == ptag->get_attr_value("name"))
+      if (atom == ptag->get_attr_value("name"))
          return this;
       element * pelemental = nullptr;
       for (i32 i = 0; i < m_elementalptra.get_size(); i++)
       {
-         pelemental = m_elementalptra[i]->get_element_by_name(id);
+         pelemental = m_elementalptra[i]->get_element_by_name(atom);
          if (pelemental != nullptr)
             break;
       }
@@ -1230,7 +1233,7 @@ namespace html
    }
 
 
-   element * element::get_element_by_id(id id)
+   element * element::get_element_by_id(atom atom)
    {
 
       if (m_pbase->get_type() == base::type_value)
@@ -1242,7 +1245,7 @@ namespace html
 
       ::html::tag * ptag = m_pbase->get_tag();
 
-      if (id == ptag->get_attr_value("id"))
+      if (atom == ptag->get_attr_value("id"))
       {
 
          return this;
@@ -1254,7 +1257,7 @@ namespace html
       for (i32 i = 0; i < m_elementalptra.get_size(); i++)
       {
 
-         pelemental = m_elementalptra[i]->get_element_by_id(id);
+         pelemental = m_elementalptra[i]->get_element_by_id(atom);
 
          if (pelemental != nullptr)
          {
@@ -1639,14 +1642,14 @@ namespace html
 
          str += "<";
 
-         str += m_idTagName;
+         str += m_atomTagName;
 
          for(auto & pproperty : this->m_propertyset)
          {
 
             str += " ";
 
-            str += pproperty->m_id.to_string();
+            str += pproperty->m_atom.to_string();
 
             str += "=";
 
@@ -1688,7 +1691,7 @@ namespace html
 
          str += "</";
 
-         str += m_idTagName;
+         str += m_atomTagName;
 
          str += ">";
 

@@ -12,7 +12,7 @@ namespace user
 
 
       id_map < int >          m_mapCommandImage;
-      ::i32_map < id >        m_mapImageCommand;
+      ::i32_map < atom >        m_mapImageCommand;
 
       __pointer(::image_list)      m_pil;
       __pointer(::image_list)      m_pilHue;
@@ -37,8 +37,8 @@ namespace user
       bool MenuV033AddImageMap(::object * pobject, ::xml::node * pnode);
       
 
-      int command_image(id id);
-      id image_command(int iImage);
+      int command_image(atom atom);
+      atom image_command(int iImage);
 
 
       ::write_text::font * MenuV033GetFont();

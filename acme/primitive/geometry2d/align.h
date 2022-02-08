@@ -23,7 +23,7 @@ enum enum_align
    e_align_left_center          = e_align_left | e_align_vertical_center,
    e_align_right_center         = e_align_right | e_align_vertical_center,
    e_align_center               = e_align_horizontal_center | e_align_vertical_center,
-
+   e_align_bottom_right_bias    = e_align_center | e_align_bottom_right,
 
 };
 

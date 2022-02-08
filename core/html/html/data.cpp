@@ -179,18 +179,18 @@ void html_data::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 }
 
 
-html::element* html_data::get_element_by_name(id id)
+html::element* html_data::get_element_by_name(atom atom)
 {
 
-   return m_pcoredata->get_element_by_name(id);
+   return m_pcoredata->get_element_by_name(atom);
 
 }
 
 
-html::element* html_data::get_element_by_id(id id)
+html::element* html_data::get_element_by_id(atom atom)
 {
 
-   return m_pcoredata->get_element_by_name(id);
+   return m_pcoredata->get_element_by_name(atom);
 
 }
 

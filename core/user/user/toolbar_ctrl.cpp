@@ -14,10 +14,10 @@ namespace user
    }
 
 
-   //bool toolbar_control::create_window(u32 uStyle,const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, ::id id)
+   //bool toolbar_control::create_window(u32 uStyle,const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, ::atom atom)
    //{
    //   
-   //   return create_window("ToolbarWindow32", nullptr, uStyle, puiParent, id);
+   //   return create_window("ToolbarWindow32", nullptr, uStyle, puiParent, atom);
    //   
    //}
 
@@ -32,7 +32,7 @@ namespace user
 ////      return (i32) send_message( TB_ADDBITMAP, (WPARAM)nNumButtons,
 ////         (LPARAM)&tbab);
 ////#else
-////      __throw(todo);
+////      throw ::exception(todo);
 ////#endif
 //   }
 
@@ -77,7 +77,7 @@ namespace user
 //#ifdef WINDOWS_DESKTOP
 //      SetButtonStructSize(sizeof(TBBUTTON));
 //#else
-//      __throw(todo);
+//      throw ::exception(todo);
 //#endif
 
    }
@@ -93,7 +93,7 @@ namespace user
 //#ifdef WINDOWS_DESKTOP
 //      return (HRESULT) send_message( TB_GETOBJECT, (WPARAM)&IID_IDropTarget, (LPARAM)ppDropTarget);
 //#else
-//      __throw(todo);
+//      throw ::exception(todo);
 //#endif
 
       return 0;
@@ -255,7 +255,7 @@ namespace user
 //         nSize += 256;*/
 //      }
 //#else
-//      __throw(todo);
+//      throw ::exception(todo);
 //#endif
    }
 
@@ -268,7 +268,7 @@ namespace user
 //#ifdef WINDOWS_DESKTOP
 //      ASSERT(is_window()); return send_message( TB_ENABLEBUTTON, nID, MAKELPARAM(bEnable, 0)) != false;
 //#else
-//      __throw(todo);
+//      throw ::exception(todo);
 //#endif
 
       return false;
@@ -279,7 +279,7 @@ namespace user
 //#ifdef WINDOWS_DESKTOP
 //      ASSERT(is_window()); return send_message( TB_CHECKBUTTON, nID, MAKELPARAM(bCheck, 0)) != false;
 //#else
-//      __throw(todo);
+//      throw ::exception(todo);
 //#endif
 
       return false;
@@ -290,7 +290,7 @@ namespace user
 //#ifdef WINDOWS_DESKTOP
 //      ASSERT(is_window()); return send_message( TB_PRESSBUTTON, nID, MAKELPARAM(bPress, 0)) != false;
 //#else
-//      __throw(todo);
+//      throw ::exception(todo);
 //#endif
 
       return false;
@@ -304,7 +304,7 @@ namespace user
 //#ifdef WINDOWS_DESKTOP
 //      ASSERT(is_window()); return send_message( TB_HIDEBUTTON, nID, MAKELPARAM(bHide, 0)) != false;
 //#else
-//      __throw(todo);
+//      throw ::exception(todo);
 //#endif
 
       return true;
@@ -317,7 +317,7 @@ namespace user
 //#ifdef WINDOWS_DESKTOP
 //      ASSERT(is_window()); return send_message( TB_INDETERMINATE, nID, MAKELPARAM(bIndeterminate, 0)) != false;
 //#else
-//      __throw(todo);
+//      throw ::exception(todo);
 //#endif
 
       return false;
@@ -330,7 +330,7 @@ namespace user
 //#ifdef WINDOWS_DESKTOP
 //      ASSERT(is_window()); return send_message( TB_ISBUTTONENABLED, nID) != false;
 //#else
-//      __throw(todo);
+//      throw ::exception(todo);
 //#endif
 
       return false;
@@ -344,7 +344,7 @@ namespace user
 //#ifdef WINDOWS_DESKTOP
 //      ASSERT(is_window()); return send_message( TB_ISBUTTONCHECKED, nID) != false;
 //#else
-//      __throw(todo);
+//      throw ::exception(todo);
 //#endif
 
       return false;
@@ -357,7 +357,7 @@ namespace user
 //#ifdef WINDOWS_DESKTOP
 //      ASSERT(is_window()); return send_message( TB_ISBUTTONPRESSED, nID) != false;
 //#else
-//      __throw(todo);
+//      throw ::exception(todo);
 //#endif
 
       return false;
@@ -370,7 +370,7 @@ namespace user
 //#ifdef WINDOWS_DESKTOP
 //      ASSERT(is_window()); return send_message( TB_ISBUTTONHIDDEN, nID) != false;
 //#else
-//      __throw(todo);
+//      throw ::exception(todo);
 //#endif
 
       return false;
@@ -383,7 +383,7 @@ namespace user
 //#ifdef WINDOWS_DESKTOP
 //      ASSERT(is_window()); return send_message( TB_ISBUTTONINDETERMINATE, nID) != false;
 //#else
-//      __throw(todo);
+//      throw ::exception(todo);
 //#endif
 
       return false;
@@ -397,7 +397,7 @@ namespace user
 //      ASSERT(is_window()); 
 //      return send_message( TB_SETSTATE, nID, (LPARAM) nState) != false;
 //#else
-//      __throw(todo);
+//      throw ::exception(todo);
 //#endif
 
       return false;
@@ -410,7 +410,7 @@ namespace user
 //#ifdef WINDOWS_DESKTOP
 //      ASSERT(is_window()); return (i32) send_message( TB_GETSTATE, nID);
 //#else
-//      __throw(todo);
+//      throw ::exception(todo);
 //#endif
 
       return -1;
@@ -426,7 +426,7 @@ namespace user
 //      ASSERT(is_window()); return send_message( TB_ADDBUTTONSW, nNumButtons, (LPARAM)pButtons) != false;
 //
 //#else
-//      __throw(todo);
+//      throw ::exception(todo);
 //#endif
 //   }
 //   bool toolbar_control::InsertButton(i32 nIndex, LPTBBUTTON pButton)
@@ -436,7 +436,7 @@ namespace user
 //      ASSERT(is_window()); return send_message( TB_INSERTBUTTON, nIndex, (LPARAM)pButton) != false;
 //
 //#else
-//      __throw(todo);
+//      throw ::exception(todo);
 //#endif
 //   }
 //#endif
@@ -447,7 +447,7 @@ namespace user
 //#ifdef WINDOWS_DESKTOP
 //      ASSERT(is_window()); return send_message( TB_DELETEBUTTON, nIndex) != false;
 //#else
-//      __throw(todo);
+//      throw ::exception(todo);
 //#endif
 //   }
 //
@@ -476,7 +476,7 @@ namespace user
 //
 //#else
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //#endif
 
@@ -495,7 +495,7 @@ namespace user
 //
 //#else
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //#endif
 
@@ -513,7 +513,7 @@ namespace user
 //
 //#else
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //#endif
 
@@ -532,7 +532,7 @@ namespace user
 //
 //#else
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //#endif
 
@@ -550,7 +550,7 @@ namespace user
 //
 //#else
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //#endif
 
@@ -568,7 +568,7 @@ namespace user
 //
 //#else
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //#endif
 
@@ -588,7 +588,7 @@ namespace user
 //
 //#else
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //#endif
 
@@ -604,7 +604,7 @@ namespace user
 //
 //#else
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //#endif
 
@@ -622,7 +622,7 @@ namespace user
 //
 //#else
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //#endif
 
@@ -640,7 +640,7 @@ namespace user
 //
 //#else
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //#endif
       //return pwindow;
@@ -661,7 +661,7 @@ namespace user
 //
 //#else
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //#endif
 
@@ -680,7 +680,7 @@ namespace user
 //
 //#else
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //#endif
 
@@ -696,7 +696,7 @@ namespace user
 //
 //#else
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //#endif
 
@@ -714,7 +714,7 @@ namespace user
 //
 //#else
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //#endif
 
@@ -732,7 +732,7 @@ namespace user
 //
 //#else
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //#endif
 
@@ -750,7 +750,7 @@ namespace user
 //
 //#else
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //#endif
 
@@ -768,7 +768,7 @@ namespace user
 //
 //#else
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //#endif
 
@@ -787,7 +787,7 @@ namespace user
 //
 //#else
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //#endif
 
@@ -805,7 +805,7 @@ namespace user
 //
 //#else
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //#endif
 
@@ -824,7 +824,7 @@ namespace user
 //
 //#else
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //#endif
 
@@ -842,7 +842,7 @@ namespace user
 //
 //#else
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //#endif
 
@@ -860,7 +860,7 @@ namespace user
 //
 //#else
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //#endif
 
@@ -878,7 +878,7 @@ namespace user
 //
 //#else
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //#endif
 
@@ -896,7 +896,7 @@ namespace user
 //
 //#else
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //#endif
 
@@ -916,7 +916,7 @@ namespace user
 //
 //#else
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //#endif
 
@@ -936,7 +936,7 @@ namespace user
 //
 //#else
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //#endif
 
@@ -954,7 +954,7 @@ namespace user
 //
 //#else
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //#endif
 
@@ -975,7 +975,7 @@ namespace user
 //
 //#else
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //#endif
 //
@@ -994,7 +994,7 @@ namespace user
 //
 //#else
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //#endif
 
@@ -1013,7 +1013,7 @@ namespace user
 //
 //#else
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //#endif
 
@@ -1032,7 +1032,7 @@ namespace user
 //
 //#else
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //#endif
 
@@ -1053,7 +1053,7 @@ namespace user
 //
 //#else
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //#endif
 
@@ -1070,7 +1070,7 @@ namespace user
 //
 //#else
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //#endif
 
@@ -1087,7 +1087,7 @@ namespace user
 //
 //#else
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //#endif
 
@@ -1104,7 +1104,7 @@ namespace user
 //
 //#else
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //#endif
 
@@ -1168,7 +1168,7 @@ namespace user
 //
 //#else
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //#endif
 
@@ -1185,7 +1185,7 @@ namespace user
 //
 //#else
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //#endif
 
@@ -1202,7 +1202,7 @@ namespace user
 //
 //#else
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //#endif
 
@@ -1219,7 +1219,7 @@ namespace user
 //
 //#else
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //#endif
 
@@ -1236,7 +1236,7 @@ namespace user
 //
 //#else
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //#endif
 
@@ -1279,7 +1279,7 @@ namespace user
 //
 //#else
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //#endif
 
@@ -1308,7 +1308,7 @@ namespace user
 //
 //#else
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //#endif
 
@@ -1325,7 +1325,7 @@ namespace user
 //
 //#else
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //#endif
 
@@ -1343,7 +1343,7 @@ namespace user
 //
 //#else
 //
-//      __throw(todo);
+//      throw ::exception(todo);
 //
 //#endif
 

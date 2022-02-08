@@ -40,7 +40,7 @@ namespace user
 
 
       void dump(dump_context &) const override;
-      void assert_valid() const override;
+      void assert_ok() const override;
 
 
       inline ::base::application* get_application() const { return m_pcontext ? m_pcontext->m_pbaseapplication : nullptr; }
@@ -61,8 +61,8 @@ namespace user
       void on_request(::create* pcreate) override;
 
 
-      virtual ::id get_topic_view_id();
-      virtual bool set_topic_view_by_id(::id id);
+      virtual ::atom get_topic_view_id();
+      virtual bool set_topic_view_by_id(::atom atom);
 
       virtual void update_title();
 
@@ -110,7 +110,7 @@ namespace user
       }
 
       template < class T >
-      __pointer(T) get_typed_view(index indexFind = 0) const
+      __pointer(T) get_type_impact(index indexFind = 0) const
       {
 
          synchronous_lock synchronouslock(((document *)this)->mutex());
@@ -162,7 +162,7 @@ namespace user
 
 
       template < class T >
-      __pointer(T) get_typed_view_with_id(id id) const
+      __pointer(T) get_typed_view_with_id(atom atom) const
       {
 
          synchronous_lock synchronouslock(((document *)this)->mutex());
@@ -182,7 +182,7 @@ namespace user
             if(point.is_set())
             {
 
-               if(id == point->m_id)
+               if(atom == point->m_atom)
                   return point;
                else
                   count++;
@@ -219,14 +219,16 @@ namespace user
 
          }
 
-         auto estatus = pdata->initialize_data(this);
+         //auto estatus = 
+         
+         pdata->initialize_data(this);
 
-         if (!estatus)
-         {
+         //if (!estatus)
+         //{
 
-            return estatus;
+         //   return estatus;
 
-         }
+         //}
 
          return pdata;
 
@@ -235,9 +237,9 @@ namespace user
 
 
 
-      virtual __pointer(::user::impact) get_typed_view(::type info, index indexFind = 0);
+      virtual __pointer(::user::impact) get_type_impact(::type info, index indexFind = 0);
 
-      virtual __pointer(::user::impact) get_typed_view_with_id(::type info,id id);
+      virtual __pointer(::user::impact) get_typed_view_with_id(::type info,atom atom);
 
       virtual void show_all_frames(const ::edisplay & edisplay = e_display_normal);
 
@@ -250,13 +252,13 @@ namespace user
       //   ::object *  m_pHint;
       //};
 
-      // Update Views (simple update - DAG only)
-      void id_update_all_views(const ::id & id);
-      void update_all_views(impact * pimpact, const ::id & id);
-      virtual void update_all_views(::subject * psubject);
+      // Update Impacts (simple update - DAG only)
+      void id_update_all_views(const ::atom & atom);
+      void update_all_views(impact * pimpact, const ::atom & atom);
+      virtual void update_all_views(::topic * ptopic);
 
 
-      virtual void handle(::subject * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
       //void send_update(__pointer(::user::impact) pSender, LPARAM lHint = 0L,
       //                 ::object* pHint = nullptr);
@@ -387,7 +389,7 @@ namespace user
 
       virtual bool has_toolbar();
 
-      virtual ::id get_toolbar_id();
+      virtual ::atom get_toolbar_id();
 
       virtual __pointer(toolbar) get_toolbar(::user::frame_window * pframe, bool bCreate = true);
 

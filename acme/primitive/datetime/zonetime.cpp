@@ -93,7 +93,7 @@ zonetime::zonetime(time_t zonetime, int iZoneOffset) noexcept :
       if (m_i == -1)
       {
          
-         __throw(error_invalid_argument);
+         throw ::exception(error_bad_argument);
 
       }
 
@@ -143,7 +143,7 @@ zonetime::zonetime(time_t zonetime, int iZoneOffset) noexcept :
          if (ptmTemp == nullptr)
             return nullptr;
 
-         // but don't __throw( exception or generate error...
+         // but don't throw ::exception( exception or generate error...
          // (reason for commenting out below, fat to be erased...)
          //         if(errno != 0)
          //          return nullptr;
@@ -235,12 +235,12 @@ zonetime::zonetime(time_t zonetime, int iZoneOffset) noexcept :
 
       str = strFormat;
 
-      str.replace("%Y", __string(GetZoneYear()));
-      str.replace("%m", ::str::zero_padded(__string(GetZoneMonth()), 2));
-      str.replace("%d", ::str::zero_padded(__string(GetZoneDay()), 2));
-      str.replace("%H", ::str::zero_padded(__string(GetZoneHour()), 2));
-      str.replace("%M", ::str::zero_padded(__string(GetZoneMinute()), 2));
-      str.replace("%S", ::str::zero_padded(__string(GetZoneSecond()), 2));
+      str.replace_with(__string(GetZoneYear()), "%Y");
+      str.replace_with(::str::zero_padded(__string(GetZoneMonth()), 2), "%m");
+      str.replace_with(::str::zero_padded(__string(GetZoneDay()), 2), "%d");
+      str.replace_with(::str::zero_padded(__string(GetZoneHour()), 2), "%H");
+      str.replace_with(::str::zero_padded(__string(GetZoneMinute()), 2), "%M");
+      str.replace_with(::str::zero_padded(__string(GetZoneSecond()), 2), "%S");
 
       return str;
 

@@ -24,6 +24,7 @@ public:
    ::count get_count(ARG_TYPE t, ::index start = 0, ::index last = -1, ::count countMax = -1) const;
    //bool has(ARG_TYPE t) const { return contains(t); }
    bool contains(ARG_TYPE t) const;
+   bool has(ARG_TYPE t) const { return contains(t); }
    bool contains(ARG_TYPE t, ::index start, ::index last = -1, ::count countMin = 1, ::count countMax = -1) const;
    bool contains(comparable_eq_array & a, ::count cMinCount = -1) const
    {

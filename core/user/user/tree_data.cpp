@@ -31,10 +31,10 @@ namespace user
    }
 
 
-   ::user::primitive * tree_data::get_data_bound_view(index iView)
+   ::user::primitive * tree_data::get_data_bound_view(index iImpact)
    {
 
-      return m_usertreeaBound[iView].cast < ::user::primitive >();
+      return m_usertreeaBound[iImpact].cast < ::user::primitive >();
 
    }
 
@@ -304,13 +304,13 @@ namespace user
 
    }
 
-   void tree_data::handle(::subject * psubject, ::context * pcontext)
+   void tree_data::handle(::topic * ptopic, ::context * pcontext)
    {
 
       for (auto& pusertree : m_usertreea)
       {
 
-         pusertree->handle(psubject, pcontext);
+         pusertree->handle(ptopic, pcontext);
 
       }
 

@@ -18,7 +18,7 @@
 #endif
 
 
-#include "acme/node/operating_system/ansi/_pthread.h"
+#include "acme/operating_system/ansi/_pthread.h"
 
 
 // apt install libcairo2-dev
@@ -34,6 +34,14 @@
 ::mutex * cairo_mutex();
 void init_cairo_mutex();
 void destroy_cairo_mutex();
+
+
+void destroy_pointer(cairo_surface_t* p);
+void destroy_pointer(cairo_pattern_t* p);
+
+
+using cairo_surface_holder = ::holder < cairo_surface_t* >;
+using cairo_pattern_holder = ::holder < cairo_pattern_t* >;
 
 
 #ifdef _DRAW2D_CAIRO_LIBRARY

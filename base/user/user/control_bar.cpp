@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "aura/operating_system.h"
 #include "base/user/user/_user.h"
-#include "aura/node/operating_system/_user.h"
+#include "aura/operating_system/_user.h"
 #include "aura/graphics/draw2d/_draw2d.h"
 
 
@@ -254,7 +254,7 @@ namespace user
       if (psession->is_key_pressed(::user::e_key_left_button))
          return;
 #else
-      __throw(todo);
+      throw ::exception(todo);
 #endif
 
    }
@@ -309,7 +309,7 @@ namespace user
 //
 //      ::u32 message;
 //
-//      message = pmessage->m_id.umessage();
+//      message = pmessage->m_atom.umessage();
 //
 //      // handle CBRS_FLYBY style (status bar flyby help)
 //      if (((m_dwStyle & CBRS_FLYBY) ||
@@ -319,7 +319,7 @@ namespace user
 //      {
 //      }
 #else
-//      __throw(todo);
+//      throw ::exception(todo);
 #endif
 
       // don't translate dialog messages when in Shift+F1 help mode
@@ -366,7 +366,7 @@ namespace user
 //
 //      ::u32 message;
 //
-//      message = pmessage->m_id.umessage();
+//      message = pmessage->m_atom.umessage();
 //
 //      switch (message)
 //      {
@@ -388,7 +388,7 @@ namespace user
 //
 //         // special case for TTN_NEEDTEXTA and TTN_NEEDTEXTW
 ////#ifdef WINDOWS_DESKTOP
-////            if(pmessage->m_id == WM_NOTIFY)
+////            if(pmessage->m_atom == WM_NOTIFY)
 ////            {
 ////               NMHDR* pNMHDR = (NMHDR*)pmessage->m_lparam.m_lparam;
 ////               if (pNMHDR->code == TTN_NEEDTEXTA || pNMHDR->code == TTN_NEEDTEXTW)
@@ -406,7 +406,7 @@ namespace user
 ////               }
 ////            }
 ////#else
-////            __throw(todo);
+////            throw ::exception(todo);
 ////#endif
 //         return;
 //      }
@@ -678,7 +678,7 @@ namespace user
 //    }
 
 
-   void control_bar::handle(::subject * psubject, ::context * pcontext)
+   void control_bar::handle(::topic * ptopic, ::context * pcontext)
    {
 
       // // update the indicators before becoming visible
@@ -1060,7 +1060,7 @@ namespace user
 
 #else
 
-      __throw(todo);
+      throw ::exception(todo);
 
 #endif
 
@@ -1180,9 +1180,9 @@ namespace user
    // control_bar diagnostics
 
 
-   void control_bar::assert_valid() const
+   void control_bar::assert_ok() const
    {
-      ::user::interaction::assert_valid();
+      ::user::interaction::assert_ok();
 
       ASSERT((m_dwStyle & CBRS_ALL) == m_dwStyle);
    }

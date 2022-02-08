@@ -142,7 +142,7 @@ namespace sockets
       string m_strConnectHost;
       port_t m_iConnectPort;
 
-      i32 m_resolver_id; ///< Resolver id (if any) for current open call
+      i32 m_resolver_id; ///< Resolver atom (if any) for current open call
 
       bool m_bReconnect; ///< Reconnect on lost connection flag
       bool m_bTryingReconnect; ///< Trying to reconnect
@@ -224,7 +224,7 @@ namespace sockets
 #endif
 
       /** Callback executed when resolver thread has finished a resolve request. */
-      //void OnResolved(i32 id, const ::net::address & addr) override;
+      //void OnResolved(i32 atom, const ::net::address & addr) override;
       /** Callback for 'New' ssl support - replaces SSLSocket. Internal use. */
       void OnSSLConnect() override;
       /** Callback for 'New' ssl support - replaces SSLSocket. Internal use. */

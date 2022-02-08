@@ -50,7 +50,7 @@ simpledb_set::simpledb_set(db_server * pserver, const ::string & pszTable)
       m_pdataset->query("select * from sqlite_master where type like 'table' and name like '" + m_strTable + "'");
       if (m_pdataset->num_rows()==0)
       {
-         m_pdataset->exec("create table integertable (id text primary key, value integer)");
+         m_pdataset->exec("create table integertable (atom text primary key, value integer)");
       }
       pdb->commit_transaction();
    }

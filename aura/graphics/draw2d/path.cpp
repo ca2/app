@@ -945,7 +945,7 @@ namespace draw2d
    void * path::detach()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
@@ -1492,7 +1492,7 @@ namespace draw2d
    bool path::_set(::draw2d::graphics* pgraphics, const::arc & arc)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return false;
 
@@ -1502,7 +1502,7 @@ namespace draw2d
    //bool path::_set(::draw2d::graphics* pgraphics, const ::line & line)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return false;
 
@@ -1512,7 +1512,7 @@ namespace draw2d
    bool path::_set(::draw2d::graphics* pgraphics, const ::line & line)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return false;
 
@@ -1522,7 +1522,7 @@ namespace draw2d
    //bool path::_set(::draw2d::graphics* pgraphics, const::lines& lines)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return false;
 
@@ -1532,7 +1532,7 @@ namespace draw2d
    bool path::_set(::draw2d::graphics* pgraphics, const::lines & lines)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return false;
 
@@ -1542,7 +1542,7 @@ namespace draw2d
    //bool path::_set(::draw2d::graphics* pgraphics, const ::rectangle_i32 & rectangle)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return false;
 
@@ -1552,7 +1552,7 @@ namespace draw2d
    bool path::_set(::draw2d::graphics* pgraphics, const ::rectangle_f64 & rectangle)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return false;
 
@@ -1562,7 +1562,7 @@ namespace draw2d
    //bool path::_set(::draw2d::graphics* pgraphics, const ::polygon_i32& polygon_i32)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return false;
 
@@ -1572,7 +1572,7 @@ namespace draw2d
    bool path::_set(::draw2d::graphics* pgraphics, const ::polygon_f64& polygon_f64)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return false;
 
@@ -1582,7 +1582,7 @@ namespace draw2d
    bool path::_set(::draw2d::graphics* pgraphics, const ::write_text::text_out & textout)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return false;
 
@@ -1592,7 +1592,7 @@ namespace draw2d
    bool path::_set(::draw2d::graphics* pgraphics, const ::write_text::draw_text& drawtext)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return false;
 

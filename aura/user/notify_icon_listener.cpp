@@ -217,7 +217,7 @@ namespace user
          else if(pitem->m_strId == strId)
          {
 
-            // Don't add item with duplicated id
+            // Don't add item with duplicated atom
             return false;
 
          }

@@ -20,7 +20,7 @@ namespace databaseuser
    }
 
 
-   void mesh_data::assert_valid() const
+   void mesh_data::assert_ok() const
    {
 
    }

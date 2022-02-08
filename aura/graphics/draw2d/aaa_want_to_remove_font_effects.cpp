@@ -477,7 +477,7 @@ bool CLASS_DECL_AURA TextOutU(HDC hdc, i32 x, i32 y, const ::string & pString, i
 
 #else
 
-   __throw(todo);
+   throw ::exception(todo);
 
    /*
 
@@ -518,7 +518,7 @@ CLASS_DECL_AURA bool GetTextExtentPoint32U(HDC hdc, const ::string & pString, i3
 
 #else
 
-   __throw(todo);
+   throw ::exception(todo);
 
 #endif
 
@@ -550,7 +550,7 @@ CLASS_DECL_AURA i32  DrawTextU(HDC hdc, const ::string & pchText, i32 cchText, R
 
 #else
 
-   __throw(todo);
+   throw ::exception(todo);
 
 #endif
 

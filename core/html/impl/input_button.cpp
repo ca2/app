@@ -61,12 +61,12 @@ namespace html
 
          __defer_compose_new(m_pbutton);
 
-         m_pbutton->m_id = pelemental->m_pbase->get_tag()->get_attr_value("id");
+         m_pbutton->m_atom = pelemental->m_pbase->get_tag()->get_attr_value("id");
 
-         if (m_pbutton->m_id.is_empty())
+         if (m_pbutton->m_atom.is_empty())
          {
 
-            m_pbutton->m_id = pelemental->m_pbase->get_tag()->get_attr_value("name");
+            m_pbutton->m_atom = pelemental->m_pbase->get_tag()->get_attr_value("name");
 
          }
 

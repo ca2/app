@@ -3,13 +3,13 @@ Copyright(C) Nishant Sivakumar.
 URLs - http://blog.voidnish.com and http://www.voidnish.com
 Contact : nish@voidnish.com
 */
-// ShellTrayInfoView.cpp : implementation of the notification_area class
+// ShellTrayInfoImpact.cpp : implementation of the notification_area class
 //
 #include "framework.h"
 //#if !BROAD_PRECOMPILED_HEADER
 //#include "base/user/user/_user.h"
 //#endif
-//#include "acme/node/operating_system/windows/process_data.h"
+//#include "acme/operating_system/windows/process_data.h"
 //
 //
 //namespace user
@@ -34,7 +34,7 @@ Contact : nish@voidnish.com
 //      //::DeleteObject(m_hfontHidden);
 //      //::DeleteObject(m_hfontRegular);
 //#else
-////      __throw(todo);
+////      throw ::exception(todo);
 //#endif
 //   }
 //
@@ -168,7 +168,7 @@ Contact : nish@voidnish.com
 //      //      LVIS_FOCUSED|LVIS_SELECTED,
 //      //      LVIS_FOCUSED|LVIS_SELECTED);
 //#else
-//      __throw(todo);
+//      throw ::exception(todo);
 //#endif
 //   }
 //
@@ -224,7 +224,7 @@ Contact : nish@voidnish.com
 //         ListTrayIcons(iItem - 1);
 //      }
 //#else
-//      __throw(todo);
+//      throw ::exception(todo);
 //#endif
 //   }
 //
@@ -237,7 +237,7 @@ Contact : nish@voidnish.com
 //         ListTrayIcons(iItem + 1);
 //      }
 //#else
-//      __throw(todo);
+//      throw ::exception(todo);
 //#endif
 //   }
 //

@@ -1408,12 +1408,12 @@ breakFilter2:
 
          auto & pfactoryWriteText = psystem->factory("write_text", strLibrary);
 
-         //if(pfactoryWriteText.succeeded())
-         //{
+         if(pfactoryWriteText)
+         {
 
-         //   return pfactoryWriteText;
+            return pfactoryWriteText;
 
-         //}
+         }
 
       }
 
@@ -1508,7 +1508,7 @@ breakFilter2:
 
       }
 
-      throw exception::exception(error_resource, "No write_text pluging available!!");
+      throw exception(error_resource, "No write_text pluging available!!");
 
       //destroy:
 
@@ -1535,7 +1535,7 @@ breakFilter2:
 
 #ifdef LINUX
 
-      return "linux";
+      return "pango";
 
 #else
       

@@ -25,7 +25,7 @@ namespace colorertake5
       file_type *chooseFileType(const ::string &fileName, const ::string &firstLine, i32 typeNo = 0);
 
       ::count getRegionCount();
-      class region *getRegion(i32 id);
+      class region *getRegion(i32 atom);
       class region* getRegion(const ::string &name);
 
       string getVersion();
@@ -89,7 +89,7 @@ namespace colorertake5
 /* ***** BEGIN LICENSE BLOCK *****
  * Version: MPL 1.1/GPL 2.0/LGPL 2.1
  *
- * The contents of this file are subject to the Mozilla Public License Version
+ * The contents of this file are topic to the Mozilla Public License Version
  * 1.1 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
  * http://www.mozilla.org/MPL/

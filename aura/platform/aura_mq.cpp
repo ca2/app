@@ -2,7 +2,7 @@
 #include "aura/user/_user.h"
 
 
-CLASS_DECL_AURA void message_queue_post(::windowing::window * pwindow, const ::id & id, wparam wparam, lparam lparam)
+CLASS_DECL_AURA void message_queue_post(::windowing::window * pwindow, const ::atom & atom, wparam wparam, lparam lparam)
 {
 
    //auto psession = get_session();
@@ -33,7 +33,7 @@ CLASS_DECL_AURA void message_queue_post(::windowing::window * pwindow, const ::i
 
    //if (!
    
-   pmq->post_message(pwindow->get_oswindow(), id, wparam, lparam);
+   pmq->post_message(pwindow->get_oswindow(), atom, wparam, lparam);
    //{
 
    //   return false;

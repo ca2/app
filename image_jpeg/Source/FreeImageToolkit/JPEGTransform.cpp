@@ -68,7 +68,7 @@ ls_jpeg_error_exit (j_common_ptr cinfo) {
 		// let the memory manager delete any temp files before we die
 		jpeg_destroy(cinfo);
 
-		__throw(FreeImage_GetFIFFromFormat("JPEG"));
+		throw ::exception(FreeImage_GetFIFFromFormat("JPEG"));
 	}
 }
 
@@ -258,7 +258,7 @@ JPEGTransformFromHandle(FreeImageIO* src_io, fi_handle src_handle, FreeImageIO* 
 		if(hasCrop) {
 			if(!jtransform_parse_crop_spec(&transfoptions, crop)) {
 				FreeImage_OutputMessageProc(FIF_JPEG, "Bogus crop argument %s", crop);
-				__throw((1));
+				throw ::exception((1));
 			}
 		}
 
@@ -269,7 +269,7 @@ JPEGTransformFromHandle(FreeImageIO* src_io, fi_handle src_handle, FreeImageIO* 
 		// Fails right away if perfect flag is true and transformation is not perfect
 		if( !jtransform_request_workspace(&srcinfo, &transfoptions) ) {
 			FreeImage_OutputMessageProc(FIF_JPEG, "Transformation is not perfect");
-			__throw((1));
+			throw ::exception((1));
 		}
 
 		if(left || top) {

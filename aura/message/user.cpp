@@ -49,10 +49,10 @@ namespace message
 
 
 
-   void create::set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam)
+   void create::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
    {
 
-      ::user::message::set(oswindow, pwindow, id, wparam, lparam);
+      ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
       //m_pusersystem = __user_interaction(pwindow)->payload("user_create").cast < ::user::system >();
 
@@ -161,10 +161,10 @@ namespace message
    }
 
 
-   void activate::set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam)
+   void activate::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
    {
 
-      ::user::message::set(oswindow, pwindow, id, wparam, lparam);
+      ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
       m_eactivate = (enum_activate)(LOWORD(wparam));
 
@@ -229,10 +229,10 @@ namespace message
    }
 
 
-   void key::set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam)
+   void key::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
    {
 
-      ::user::message::set(oswindow, pwindow, id, wparam, lparam);
+      ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
       m_nChar = static_cast<::u32>(wparam);
 
@@ -255,30 +255,30 @@ namespace message
    }
 
 
-   void nc_activate::set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam)
+   void nc_activate::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
    {
 
-      ::user::message::set(oswindow, pwindow, id, wparam, lparam);
+      ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
       m_bActive = wparam != false;
 
    }
 
 
-   void move::set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam)
+   void move::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
    {
 
-      ::user::message::set(oswindow, pwindow, id, wparam, lparam);
+      ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
       m_point = __point(lparam);
 
    }
 
 
-   void size::set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam)
+   void size::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
    {
 
-      ::user::message::set(oswindow, pwindow, id, wparam, lparam);
+      ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
       m_nType     = static_cast < ::u32 > (wparam);
 
@@ -336,10 +336,10 @@ namespace message
    }
 
 
-   void mouse::set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam)
+   void mouse::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
    {
 
-      ::user::message::set(oswindow, pwindow, id, wparam, lparam);
+      ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
       m_nFlags   = wparam;
 
@@ -364,10 +364,10 @@ namespace message
    }
 
 
-   void mouse_wheel::set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam)
+   void mouse_wheel::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
    {
 
-      ::user::message::set(oswindow, pwindow, id, wparam, lparam);
+      ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
       m_nFlags    = wparam;
 
@@ -378,10 +378,10 @@ namespace message
    }
 
 
-   void set_cursor::set(oswindow oswindow, ::windowing::window* pwindow, const ::id& id, wparam wparam, ::lparam lparam)
+   void set_cursor::set(oswindow oswindow, ::windowing::window* pwindow, const ::atom& atom, wparam wparam, ::lparam lparam)
    {
 
-      ::user::message::set(oswindow, pwindow, id, wparam, lparam);
+      ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
    }
 
@@ -396,7 +396,7 @@ namespace message
    ::user::interaction * mouse_activate::get_desktop_window()
    {
 
-      throw interface_only_exception();
+      throw ::interface_only();
 
       //      return interaction_impl::from_handle_dup(reinterpret_cast<oswindow>(m_wparam));
 
@@ -492,14 +492,14 @@ namespace message
    }
 
 
-   void scroll::set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam)
+   void scroll::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
    {
 
       __pointer(::user::primitive) pprimitive(lparam);
 
       m_pscrollbar = pprimitive;
 
-      ::user::message::set(oswindow, pwindow, id, wparam, lparam);
+      ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
       m_ecommand = (enum_scroll_command) (i16)LOWORD(wparam);
 
@@ -508,10 +508,10 @@ namespace message
    }
 
 
-   void show_window::set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam)
+   void show_window::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
    {
 
-      ::user::message::set(oswindow, pwindow, id, wparam, lparam);
+      ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
       m_bShow = wparam != false;
 
@@ -520,20 +520,20 @@ namespace message
    }
 
 
-   void kill_keyboard_focus::set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam)
+   void kill_keyboard_focus::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
    {
 
-      ::user::message::set(oswindow, pwindow, id, wparam, lparam);
+      ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
       m_oswindowNew = (::oswindow) wparam.m_number;
 
    }
 
 
-   void nc_hit_test::set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam)
+   void nc_hit_test::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
    {
 
-      ::user::message::set(oswindow, pwindow, id, wparam, lparam);
+      ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
       m_point.x = GET_X_LPARAM(m_lparam);
       
@@ -542,10 +542,10 @@ namespace message
    }
 
 
-   void set_keyboard_focus::set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam)
+   void set_keyboard_focus::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
    {
 
-      ::user::message::set(oswindow, pwindow, id, wparam, lparam);
+      ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
       //m_puserinteraction = psystem->ui_from_handle(reinterpret_cast<oswindow>(wparam));
 
@@ -556,20 +556,20 @@ namespace message
 
 #ifdef WINDOWS_DESKTOP
 
-   void window_pos::set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam)
+   void window_pos::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
    {
 
-      ::user::message::set(oswindow, pwindow, id, wparam, lparam);
+      ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
       m_pWINDOWPOS = reinterpret_cast<void*>(lparam.m_lparam);
 
    }
 
 
-   void nc_calc_size::set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam)
+   void nc_calc_size::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
    {
 
-      ::user::message::set(oswindow, pwindow, id, wparam, lparam);
+      ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
       m_pNCCALCSIZE_PARAMS = reinterpret_cast<void*>(lparam.m_lparam);
 
@@ -635,14 +635,16 @@ namespace message
    }
 
 
-   void object::set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam)
+   void object::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
    {
 
-      ::user::message::set(oswindow, pwindow, id, wparam, lparam);
+      ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
       __pointer(::element) pelement(lparam);
 
       m_pelement = pelement;
+
+      m_lparam = 0;
 
    }
 

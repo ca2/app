@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "acme/constant/id.h"
+#include "acme/id.h"
 #include "base/user/user/tab_pane.h"
 
 
@@ -26,10 +26,10 @@ namespace app_core_build
    }
 
 
-   void pane_view::assert_valid() const
+   void pane_view::assert_ok() const
    {
 
-      ::user::impact::assert_valid();
+      ::user::impact::assert_ok();
 
    }
 
@@ -104,7 +104,7 @@ namespace app_core_build
    void pane_view::on_create_impact(::user::impact_data * pimpactdata)
    {
 
-      switch(pimpactdata->m_id)
+      switch(pimpactdata->m_atom)
       {
       break;
       case MAIN_IMPACT:
@@ -129,11 +129,11 @@ namespace app_core_build
    }
 
 
-   void pane_view::handle(::subject * psubject, ::context * pcontext)
+   void pane_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
 
-      ::userex::pane_tab_view::handle(psubject, pcontext);
+      ::userex::pane_tab_view::handle(ptopic, pcontext);
 
    }
 

@@ -13,7 +13,7 @@ namespace user
    {
 
 
-      ::id              m_id;        // IDC of indicator: 0 => normal text area
+      ::atom              m_atom;        // IDC of indicator: 0 => normal text area
       i32               cxText;     // width of string area in pixels
                      //   on both sides there is a 3 pixel gap and
                      //   a one pixel border, making a pane 6 pixels wider
@@ -46,8 +46,8 @@ namespace user
 
       //using ::user::control_bar::create_window;
       //using ::user::control_bar::create_window_ex;
-      //virtual bool create_window(::user::interaction * puiParent,u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_BOTTOM,id nID = "status_bar");
-      //virtual bool create_window_ex(::user::interaction * puiParent,u32 dwCtrlStyle = 0,u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_BOTTOM, id nID = "status_bar");
+      //virtual bool create_window(::user::interaction * puiParent,u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_BOTTOM,atom nID = "status_bar");
+      //virtual bool create_window_ex(::user::interaction * puiParent,u32 dwCtrlStyle = 0,u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_BOTTOM, atom nID = "status_bar");
       //virtual bool create_child(::user)
       bool SetIndicators(string_array & stra);
 
@@ -56,8 +56,8 @@ namespace user
       void SetBorders(i32 cxLeft = 0, i32 cyTop = 0, i32 cxRight = 0, i32 cyBottom = 0);
 
       // standard control bar things
-      i32 CommandToIndex(id id);
-      id GetItemId(i32 nIndex);
+      i32 CommandToIndex(atom atom);
+      atom GetItemId(i32 nIndex);
       void GetItemRect(i32 nIndex, RECTANGLE_I32 * prectangle);
 
 
@@ -66,8 +66,8 @@ namespace user
       string GetPaneText(i32 nIndex);
       bool SetPaneText(i32 nIndex, const ::string & pszNewText, bool bUpdate = true);
 
-      void GetPaneInfo(i32 nIndex, id & id, ::u32& nStyle, i32& cxWidth);
-      void SetPaneInfo(i32 nIndex, const ::id & id, ::u32 nStyle, i32 cxWidth);
+      void GetPaneInfo(i32 nIndex, atom & atom, ::u32& nStyle, i32& cxWidth);
+      void SetPaneInfo(i32 nIndex, const ::atom & atom, ::u32 nStyle, i32 cxWidth);
       //void SetPaneInfo(i32 nIndex, i32 iId, ::u32 nStyle, i32 cxWidth);
       //void SetPaneInfo(i32 nIndex, const ::string & pszId, ::u32 nStyle, i32 cxWidth);
       ::u32 GetPaneStyle(i32 nIndex);
@@ -87,7 +87,7 @@ namespace user
       void CalcInsideRect(::draw2d::graphics_pointer& pgraphics, ::rectangle_i32& rectangle, bool bHorz);
       virtual void OnBarStyleChange(u32 dwOldStyle, u32 dwNewStyle) override;
 
-      void assert_valid() const override;
+      void assert_ok() const override;
       void dump(dump_context & dumpcontext) const override;
       void EnableDocking(u32 dwDockStyle);
 

@@ -20,10 +20,10 @@ task_pool::~task_pool()
 }
 
 
-__composite(::task) task_pool::defer_branch(const ::id& id, const ::routine & routine)
+__composite(::task) task_pool::defer_branch(const ::atom& atom, const ::routine & routine)
 {
 
-   auto & ptask = task(id);
+   auto & ptask = task(atom);
 
    //auto estatus = __defer_compose_new(ptask);
 

@@ -67,10 +67,10 @@ namespace user
    }
 
 
-   tab_pane * tab_data::get_tab_by_id(id id)
+   tab_pane * tab_data::get_tab_by_id(atom atom)
    {
 
-      return m_tabpanecompositea.get_by_id(id);
+      return m_tabpanecompositea.get_by_id(atom);
 
    }
 

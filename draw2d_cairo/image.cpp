@@ -104,14 +104,16 @@ namespace draw2d_cairo
             && size == m_sizeRaw)
       {
 
-         return true;
+         //return true;
+
+         return;
 
       }
 
       if (size.is_empty())
       {
 
-         return false;
+         throw_status(error_invalid_empty_argument);
 
       }
 
@@ -119,12 +121,12 @@ namespace draw2d_cairo
 
       auto pgraphics = __create < ::draw2d::graphics >();
 
-      if(pbitmap.is_null() || pgraphics.is_null())
-      {
+      //if(pbitmap.is_null() || pgraphics.is_null())
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
       if (iGoodStride < 0)
       {
@@ -137,12 +139,14 @@ namespace draw2d_cairo
 
       i32 iScan = iGoodStride;
 
-      if(!pbitmap->create_bitmap(nullptr, size, (void **) &pcolorrefRaw, &iScan))
-      {
+      pbitmap->create_bitmap(nullptr, size, (void**)&pcolorrefRaw, &iScan);
 
-         return false;
+      //if(!pbitmap->create_bitmap(nullptr, size, (void **) &pcolorrefRaw, &iScan))
+      //{
 
-      }
+      //   return false;
+
+      //}
 
       if(bPreserve)
       {
@@ -185,12 +189,13 @@ namespace draw2d_cairo
 
       set(eflagCreate);
 
-      return true;
+      //return true;
 
    }
 
 
-   bool image::dc_select(bool bSelect)
+   //bool image::dc_select(bool bSelect)
+   void image::dc_select(bool bSelect)
    {
       /*      if(bSelect)
             {
@@ -200,7 +205,9 @@ namespace draw2d_cairo
             {
                return m_spgraphics->SelectObject(m_hbitmapOriginal) != nullptr;
             }*/
-      return true;
+      
+            //return true;
+
    }
 
 
@@ -209,21 +216,23 @@ namespace draw2d_cairo
 
       ::draw2d::bitmap * pbitmap = (dynamic_cast < ::draw2d_cairo::graphics * > (pgraphics))->get_current_bitmap();
 
-      if(pbitmap == nullptr)
-      {
+      //if(pbitmap == nullptr)
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
       ::size_i32 size = pbitmap->get_size();
 
-      if(!create(size))
-      {
+      create(size);
 
-         return false;
+      //if(!create(size))
+      //{
 
-      }
+      //   return false;
+
+      //}
 
       image_source imagesource(pgraphics);
 
@@ -235,7 +244,7 @@ namespace draw2d_cairo
 
       g()->draw(imagedrawing);
 
-      return true;
+      //return true;
 
    }
 
@@ -249,7 +258,7 @@ namespace draw2d_cairo
 
       m_pgraphics.release();
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -269,7 +278,8 @@ namespace draw2d_cairo
 //
 //   }
 
-   bool image::_draw_raw(const ::rectangle_i32 & rectangleTarget, ::image * pimage, const ::point_i32 & pointSrc)
+   
+   void image::_draw_raw(const ::rectangle_i32 & rectangleTarget, ::image * pimage, const ::point_i32 & pointSrc)
    {
 
       rectangle_f64 rectangle(rectangleTarget);
@@ -292,7 +302,7 @@ namespace draw2d_cairo
 //         pgraphics->set(bitmap);
 //         return false;
 //      }
-//      __throw(todo);
+//      throw ::exception(todo);
 //      // xxx bool bOk = GetDIBits(LNX_HDC(pgraphics), (HBITMAP) pbitmap->get_os_data(), 0, cy, m_pcolorrefMap, &(m_info), DIB_RGB_COLORS) != false;
 //      // xxx pgraphics->SelectObject(pbitmap);
 //      // xxx return bOk;
@@ -462,7 +472,7 @@ namespace draw2d_cairo
    //}
 
 
-   bool image::_map(bool bApplyAlphaTransform)
+   void image::_map(bool bApplyAlphaTransform)
    {
 
       synchronous_lock ml(cairo_mutex());
@@ -470,21 +480,21 @@ namespace draw2d_cairo
       if (m_bMapped)
       {
 
-         return true;
+         return;
 
       }
 
       if (m_pcolorrefRaw == nullptr)
       {
 
-         return true;
+         return;
 
       }
 
       if (m_pbitmap.is_null())
       {
 
-         return true;
+         return;
 
       }
 
@@ -493,7 +503,7 @@ namespace draw2d_cairo
       if (surface == nullptr)
       {
 
-         return false;
+         return;
 
       }
 
@@ -545,12 +555,12 @@ namespace draw2d_cairo
 
       ((image *) this)->m_bMapped = true;
 
-      return true;
+      //return true;
 
    }
 
 
-   bool image::_unmap()
+   void image::_unmap()
    {
 
       synchronous_lock ml(cairo_mutex());
@@ -558,21 +568,21 @@ namespace draw2d_cairo
       if (!m_bMapped)
       {
 
-         return true;
+         return;
 
       }
 
       if (m_pcolorrefRaw == nullptr)
       {
 
-         return true;
+         return;
 
       }
 
       if (m_pbitmap.is_null())
       {
 
-         return true;
+         return;
 
       }
 
@@ -581,7 +591,7 @@ namespace draw2d_cairo
       if (surface == nullptr)
       {
 
-         return true;
+         return;
 
       }
 
@@ -609,17 +619,15 @@ namespace draw2d_cairo
 
       ((image *) this)->m_bMapped = false;
 
-      return true;
-
    }
 
 
    void image::SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy)
    {
 
-      __throw(todo);
+      throw ::exception(todo);
 
-      return error_not_implemented;
+      //return error_not_implemented;
 
 //      if (!create({cx, cy}))
 //      {
@@ -709,7 +717,7 @@ namespace draw2d_cairo
 //         r2       += 4;
 //      }
 
-      return true;
+      //return true;
 
    }
 
@@ -938,7 +946,7 @@ namespace draw2d_cairo
 //#endif
 
 
-   bool image::blend(const ::point_i32 & pointDstParam, ::image * pimplSrc,  const ::point_i32 & pointSrcParam, const ::size_i32 & sizeParam, byte bA)
+   void image::blend(const ::point_i32 & pointDstParam, ::image * pimplSrc,  const ::point_i32 & pointSrcParam, const ::size_i32 & sizeParam, byte bA)
    {
 
       auto size = sizeParam;
@@ -974,7 +982,11 @@ namespace draw2d_cairo
       }
 
       if (size.cx < 0)
-         return true;
+      {
+
+         return;
+
+      }
 
       if (pointDst.y < 0)
       {
@@ -983,22 +995,33 @@ namespace draw2d_cairo
       }
 
       if (size.cy < 0)
-         return true;
+      {
+
+         return;
+
+      }
 
       int xEnd = minimum(size.cx, minimum(pimplSrc->width() - pointSrc.x, pimplDst->width() - pointDst.x));
 
       int yEnd = minimum(size.cy, minimum(pimplSrc->height() - pointSrc.y, pimplDst->height() - pointDst.y));
 
       if (xEnd < 0)
-         return false;
+      {
+
+         return;
+
+      }
 
       if (yEnd < 0)
-         return false;
+      {
+
+         return;
+
+      }
 
       i32 scanDst = pimplDst->scan_size();
 
       i32 scanSrc = pimplSrc->scan_size();
-
 
       byte * pdst2;
 
@@ -1242,7 +1265,7 @@ namespace draw2d_cairo
 
       }
 
-      return true;
+      //return true;
 
    }
 

@@ -419,9 +419,9 @@ void app_core::system_init()
 
       string strPrgName = m_strAppId;
 
-      strPrgName.replace("/", ".");
+      strPrgName.replace_with(".", "/");
 
-      strPrgName.replace("_", "-");
+      strPrgName.replace_with("-", "_");
 
       m_strProgName = "com." + strPrgName;
 
@@ -1767,9 +1767,9 @@ __pointer(::application) app_core::new_application(const char* pszAppId)
 
          string strLibrary = strAppId;
 
-         strLibrary.replace("/", "_");
+         strLibrary.replace_with("_", "/");
 
-         strLibrary.replace("-", "_");
+         strLibrary.replace_with("_", "-");
 
          if (is_verbose())
          {

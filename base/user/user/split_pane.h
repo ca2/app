@@ -11,7 +11,7 @@ namespace user
    public:
 
 
-      id                                  m_id;
+      atom                                  m_atom;
       ::rectangle_i32                              m_rectangle;
       ::rectangle_i32                              m_rectangleClient;
       ::size_i32                              m_sizeFixed;

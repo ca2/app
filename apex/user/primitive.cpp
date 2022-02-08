@@ -42,7 +42,7 @@ namespace user
    void primitive::show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -50,7 +50,7 @@ namespace user
    void primitive::hide_software_keyboard(::user::primitive * pprimitive)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
 
    }
@@ -509,7 +509,7 @@ namespace user
    //bool primitive::GetWindowPos(RECTANGLE_I32 * prectangle)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return false;
 
@@ -519,7 +519,7 @@ namespace user
    //bool primitive::get_window_rect(RECTANGLE_I32 * prectangle)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return false;
 
@@ -537,7 +537,7 @@ namespace user
    //bool primitive::get_client_rect(RECTANGLE_I32 * prectangle)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return false;
 
@@ -548,7 +548,7 @@ namespace user
 
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return false;
 
@@ -559,7 +559,7 @@ namespace user
 
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return false;
 
@@ -617,7 +617,7 @@ namespace user
    bool primitive::is_ascendant(const primitive * puiIsAscendant, bool bIncludeSelf) const
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return false;
 
@@ -627,7 +627,7 @@ namespace user
    bool primitive::is_parent(const primitive * puiIsParent) const
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return false;
 
@@ -637,7 +637,7 @@ namespace user
    bool primitive::is_child(const primitive * puiIsChild) const
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return false;
 
@@ -647,7 +647,7 @@ namespace user
    bool primitive::is_descendant(const primitive * puiIsDescendant, bool bIncludeSelf) const
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return false;
 
@@ -657,7 +657,7 @@ namespace user
    bool primitive::is_descendant_of_or_owned_by(const ::user::primitive * puiAscendantCandidate, bool bIncludeSelf) const
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return false;
 
@@ -667,7 +667,7 @@ namespace user
    bool primitive::is_ascendant_or_owner_of(const ::user::primitive * puiDescendantCandidate, bool bIncludeSelf) const
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return false;
 
@@ -742,7 +742,7 @@ namespace user
    //bool primitive::SetPlacement(const ::rectangle_i32 & rectangle,::u32 nFlags)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return false;
 
@@ -844,7 +844,7 @@ namespace user
    //bool primitive::place(const ::rectangle_i32 & rectangle)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return false;
 
@@ -854,7 +854,7 @@ namespace user
    //bool primitive::RepositionWindow(i32 x,i32 y,i32 cx,i32 cy,::u32 nFlags)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return false;
 
@@ -864,7 +864,7 @@ namespace user
    //bool primitive::MoveWindow(i32 x,i32 y,::u32 nFlags)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return false;
 
@@ -874,7 +874,7 @@ namespace user
    //bool primitive::move_to(const ::point_i32 & point)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return false;
 
@@ -884,7 +884,7 @@ namespace user
    //bool primitive::SizeWindow(i32 cx,i32 cy,::u32 nFlags)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return false;
 
@@ -894,7 +894,7 @@ namespace user
    //bool primitive::set_size(const size_i32 & sz)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return false;
 
@@ -904,7 +904,7 @@ namespace user
    //bool primitive::ResizeWindow(i32 cx,i32 cy,::u32 nFlags)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return false;
 
@@ -914,7 +914,7 @@ namespace user
    //bool primitive::ResizeWindow(const size_i32 & sz,::u32 nFlags)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return false;
 
@@ -925,7 +925,7 @@ namespace user
 
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return false;
 
@@ -934,7 +934,7 @@ namespace user
    //bool primitive::defer_set_window_pos(iptr z, const  const rectangle_i32 & & rectangle, ::u32 nFlags) // only set_windows_pos if get_parent()->screen_to_client(get_window_rect) different of rectangle_i32(x, y, cx, cy)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return false;
 
@@ -944,7 +944,7 @@ namespace user
    //bool primitive::defer_set_window_pos(iptr z,i32 x,i32 y,i32 cx,i32 cy,::u32 nFlags) // only set_windows_pos if get_parent()->screen_to_client(get_window_rect) different of rectangle_i32(x, y, cx, cy)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return false;
 
@@ -954,7 +954,7 @@ namespace user
    //void primitive::_001DrawThis(::draw2d::graphics_pointer & pgraphics)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //}
 
@@ -962,7 +962,7 @@ namespace user
    //void primitive::_001DrawChildren(::draw2d::graphics_pointer & pgraphics)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //}
 
@@ -970,7 +970,7 @@ namespace user
    //void primitive::_001PrintBuffer(::draw2d::graphics_pointer & pgraphics)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //}
 
@@ -978,7 +978,7 @@ namespace user
    //void primitive::_001Print(::draw2d::graphics_pointer & pgraphics)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //}
 
@@ -986,7 +986,7 @@ namespace user
    //void primitive::_008OnDraw(::draw2d::graphics_pointer & pgraphics)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //}
 
@@ -994,7 +994,7 @@ namespace user
    //void primitive::draw_control_background(::draw2d::graphics_pointer & pgraphics)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //}
 
@@ -1002,7 +1002,7 @@ namespace user
    ::user::interaction * primitive::_001FromPoint(::point_i32 point,bool bTestedIfParentVisible)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
@@ -1020,27 +1020,27 @@ namespace user
    ::user::interaction * primitive::get_child_by_name(const ::string & strName, ::index iItem, i32 iLevel)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
    }
 
 
-   ::user::interaction * primitive::get_child_by_id(const id & id, ::index iItem, i32 iLevel)
+   ::user::interaction * primitive::get_child_by_id(const atom & atom, ::index iItem, i32 iLevel)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
    }
 
 
-   ::user::element* primitive::get_primitive_by_id(const id & id, ::index iItem, i32 iLevel)
+   ::user::element* primitive::get_primitive_by_id(const atom & atom, ::index iItem, i32 iLevel)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
@@ -1050,9 +1050,9 @@ namespace user
    void primitive::interaction_post(const ::routine & routine)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -1073,22 +1073,22 @@ namespace user
    void primitive::post(::message::message * pmessage)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       //return false;
 
    }
 
 
-   lresult primitive::send_message(const ::id & id,wparam wparam,lparam lparam, const ::point_i32& point)
+   lresult primitive::send_message(const ::atom & atom,wparam wparam,lparam lparam, const ::point_i32& point)
    {
 
-      return message_call(id, wparam, lparam, point);
+      return message_call(atom, wparam, lparam, point);
 
    }
 
 
-   lresult primitive::message_call(const ::id & id, wparam wparam, lparam lparam, const ::point_i32& point)
+   lresult primitive::message_call(const ::atom & atom, wparam wparam, lparam lparam, const ::point_i32& point)
    {
 
       return 0;
@@ -1110,7 +1110,7 @@ namespace user
    lresult primitive::send_x11_event(void * pevent)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return 0;
 
@@ -1139,7 +1139,7 @@ namespace user
    //bool primitive::ModifyStyle(u32 dwRemove,u32 dwAdd,::u32 nFlags)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return false;
 
@@ -1149,7 +1149,7 @@ namespace user
    //bool primitive::ModifyStyleEx(u32 dwRemove,u32 dwAdd,::u32 nFlags)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return false;
 
@@ -1159,7 +1159,7 @@ namespace user
    //bool primitive::display(::e_display edisplay)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return false;
 
@@ -1176,25 +1176,25 @@ namespace user
    //::user::frame * primitive::top_level_frame() const
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return nullptr;
 
    //}
 
 
-   void primitive::send_message_to_descendants(const ::id & id,wparam wparam,lparam lparam,bool bDeep,bool bOnlyPerm)
+   void primitive::send_message_to_descendants(const ::atom & atom,wparam wparam,lparam lparam,bool bDeep,bool bOnlyPerm)
 
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
    void primitive::route_message_to_descendants(::message::message * pmessage)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -1233,7 +1233,7 @@ namespace user
    void primitive::subclass_window(oswindow posdata)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       //return false;
 
@@ -1243,7 +1243,7 @@ namespace user
    oswindow primitive::unsubclass_window()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
@@ -1253,17 +1253,17 @@ namespace user
    void primitive::create_child(::user::interaction * puserinteractionParent)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       //return ::success;
 
    }
 
    
-   void primitive::create_control(::user::interaction * puserinteractionParent, const ::id & id)
+   void primitive::create_control(::user::interaction * puserinteractionParent, const ::atom & atom)
    {
 
-      m_id = id;
+      m_atom = atom;
 
       //auto estatus =
       
@@ -1292,20 +1292,20 @@ namespace user
    //bool primitive::create_interaction(::user::interaction * puiParent, ::create * pcreate, ::u32 uExStyle, ::u32 uStyle)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return false;
 
    //}
 
 
-   void primitive::create_interaction(::user::interaction * puserinteractionParent, const ::id & id)
+   void primitive::create_interaction(::user::interaction * puserinteractionParent, const ::atom & atom)
    {
 
-      if (!id.is_empty())
+      if (!atom.is_empty())
       {
 
-         m_id = id;
+         m_atom = atom;
 
       }
 
@@ -1338,11 +1338,11 @@ namespace user
    }
 
 
-   //bool primitive::create_window_ex(__pointer(::user::system) pcs, ::user::interaction * puiParent, const ::id & id)
+   //bool primitive::create_window_ex(__pointer(::user::system) pcs, ::user::interaction * puiParent, const ::atom & atom)
    void primitive::create_host()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       //return ::error_no_interface;
 
@@ -1358,7 +1358,7 @@ namespace user
    //bool primitive::BringWindowToTop()
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return false;
 
@@ -1506,7 +1506,7 @@ namespace user
    //::i32 primitive::get_window_long(i32 nIndex) const
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return 0;
 
@@ -1516,7 +1516,7 @@ namespace user
    //::i32 primitive::set_window_long(i32 nIndex,::i32 lValue)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return 0;
 
@@ -1526,7 +1526,7 @@ namespace user
    //iptr primitive::get_window_long_ptr(i32 nIndex) const
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return 0;
 
@@ -1536,9 +1536,9 @@ namespace user
    //void primitive::set_window_long_ptr(i32 nIndex, iptr lValue)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //}
 
@@ -1546,7 +1546,7 @@ namespace user
    //bool primitive::RedrawWindow(const ::rectangle_i32& rectangleUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return false;
 
@@ -1556,7 +1556,7 @@ namespace user
    ::user::interaction * primitive::ChildWindowFromPoint(const ::point_i32 & point)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
@@ -1566,7 +1566,7 @@ namespace user
    ::user::interaction * primitive::ChildWindowFromPoint(const ::point_i32 & point,::u32 nFlags)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
@@ -1598,7 +1598,7 @@ namespace user
 //      else
 //      {
 //
-//         throw ::interface_only_exception();
+//         throw ::interface_only();
 //
 //         return nullptr;
 //
@@ -1610,7 +1610,7 @@ namespace user
 //   ::user::interaction * primitive::get_next_window(bool bIgnoreChildren)
 //   {
 //
-//      throw ::interface_only_exception();
+//      throw ::interface_only();
 //
 //      return nullptr;
 //
@@ -1620,7 +1620,7 @@ namespace user
    bool primitive::is_message_only_window() const
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return false;
 
@@ -1630,7 +1630,7 @@ namespace user
    ::user::interaction * primitive::get_wnd(::u32 nCmd) const
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
@@ -1640,7 +1640,7 @@ namespace user
    //bool primitive::is_active() const
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return false;
 
@@ -1684,7 +1684,7 @@ namespace user
    //interaction * primitive::SetActiveWindow()
    //{
 
-   //   //throw ::interface_only_exception();
+   //   //throw ::interface_only();
 
    //   return nullptr;
 
@@ -1702,7 +1702,7 @@ namespace user
    ::user::interaction * primitive::GetLastActivePopup()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
@@ -1731,7 +1731,7 @@ namespace user
 
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return 0;
 
@@ -1741,7 +1741,7 @@ namespace user
    string primitive::get_window_text()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return "";
 
@@ -1751,7 +1751,7 @@ namespace user
    void primitive::get_window_text(string & rString)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -1759,7 +1759,7 @@ namespace user
    strsize primitive::get_window_text_length()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return 0;
 
@@ -1769,7 +1769,7 @@ namespace user
    //::user::interaction * primitive::EnsureTopLevel()
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return nullptr;
 
@@ -1779,7 +1779,7 @@ namespace user
    //::user::interaction * primitive::EnsureParentTopLevel()
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return nullptr;
 
@@ -1789,7 +1789,7 @@ namespace user
    ::user::interaction * primitive::get_top_level() const
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
@@ -1799,7 +1799,7 @@ namespace user
    //::user::interaction * primitive::GetParentTopLevel() const
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return nullptr;
 
@@ -1809,7 +1809,7 @@ namespace user
    //::user::frame * primitive::GetParentTopLevelFrame() const
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return nullptr;
 
@@ -1819,7 +1819,7 @@ namespace user
    //::user::frame * primitive::EnsureParentFrame()
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return nullptr;
 
@@ -1829,7 +1829,7 @@ namespace user
    //lresult primitive::default_window_procedure()
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return 0;
 
@@ -1839,7 +1839,7 @@ namespace user
    //u32 primitive::GetStyle() const
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return 0;
 
@@ -1849,7 +1849,7 @@ namespace user
    //u32 primitive::GetExStyle() const
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return 0;
 
@@ -1859,7 +1859,7 @@ namespace user
    void primitive::start_destroying_window()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       //return false;
 
@@ -1883,7 +1883,7 @@ namespace user
    ::user::interaction * primitive::get_parent() const
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
@@ -1893,7 +1893,7 @@ namespace user
    //::user::frame * primitive::get_parent_frame() const
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return nullptr;
 
@@ -1904,15 +1904,15 @@ namespace user
 
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //}
 
 
-   void primitive::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::id idLeftOver, ::u32 nFlag, RECTANGLE_I32 * prectParam, const ::rectangle_i32 & rectangleClient, bool bStretch)
+   void primitive::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag, RECTANGLE_I32 * prectParam, const ::rectangle_i32 & rectangleClient, bool bStretch)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -1920,7 +1920,7 @@ namespace user
    ::user::primitive * primitive::set_owner(::user::primitive * pinteraction)
    {
 
-      //throw ::interface_only_exception();
+      //throw ::interface_only();
 
       return nullptr;
 
@@ -1930,7 +1930,7 @@ namespace user
    ::user::primitive * primitive::set_parent(::user::primitive * pinteraction)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
@@ -1940,7 +1940,7 @@ namespace user
    ::user::interaction * primitive::get_owner() const
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
@@ -1950,7 +1950,7 @@ namespace user
    /*::user::frame * primitive::get_owner_frame() const
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
@@ -1995,7 +1995,7 @@ namespace user
    //interaction * primitive::get_parent() const
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return nullptr;
 
@@ -2005,7 +2005,7 @@ namespace user
    //::user::frame * primitive::frame() const
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return nullptr;
 
@@ -2015,7 +2015,7 @@ namespace user
    ::user::interaction * primitive::get_parent_owner() const
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
@@ -2025,7 +2025,7 @@ namespace user
    ::user::interaction * primitive::get_parent_or_owner() const
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
@@ -2035,7 +2035,7 @@ namespace user
    ::user::interaction * primitive::get_top_level_owner() const
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
@@ -2045,7 +2045,7 @@ namespace user
    void primitive::set_viewport_org(::draw2d::graphics_pointer & pgraphics)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -2053,7 +2053,7 @@ namespace user
    void primitive::viewport_client_to_screen(POINT_I32 * ppt)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -2061,7 +2061,7 @@ namespace user
    void primitive::viewport_screen_to_client(POINT_I32 * ppt)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -2069,7 +2069,7 @@ namespace user
    void primitive::viewport_client_to_screen(RECTANGLE_I32 * prectangle)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -2077,7 +2077,7 @@ namespace user
    void primitive::viewport_screen_to_client(RECTANGLE_I32 * prectangle)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -2085,7 +2085,7 @@ namespace user
    //i32 primitive::SetWindowRgn(HRGN hRgn,bool bRedraw)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return -1;
 
@@ -2095,7 +2095,7 @@ namespace user
    //i32 primitive::GetWindowRgn(HRGN hRgn)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return -1;
 
@@ -2129,7 +2129,7 @@ namespace user
    //void primitive::CheckAutoCenter()
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   //return false;
 
@@ -2139,7 +2139,7 @@ namespace user
    void primitive::CenterWindow(::user::interaction * pAlternateOwner)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -2154,7 +2154,7 @@ namespace user
    void primitive::message_handler(::message::message * pmessage)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       //return false;
 
@@ -2164,7 +2164,7 @@ namespace user
    //lresult primitive::message_handler(MESSAGE * pmessage)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return 0;
 
@@ -2178,7 +2178,7 @@ namespace user
 //
 //   {
 //
-//      throw ::interface_only_exception();
+//      throw ::interface_only();
 //
 //      return false;
 //
@@ -2189,7 +2189,7 @@ namespace user
 //
 //   {
 //
-//      throw ::interface_only_exception();
+//      throw ::interface_only();
 //
 //      return false;
 //
@@ -2202,7 +2202,7 @@ namespace user
    //bool primitive::pre_create_window(::user::system * pusersystem)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return false;
 
@@ -2239,7 +2239,7 @@ namespace user
    void primitive::update_dialog_controls(channel * ptarget)
    {
 
-      //throw ::interface_only_exception();
+      //throw ::interface_only();
 
    }
 
@@ -2247,7 +2247,7 @@ namespace user
    void primitive::SetRedraw(bool bRedraw)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -2256,7 +2256,7 @@ namespace user
 
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return false;
 
@@ -2266,7 +2266,7 @@ namespace user
    //i32 primitive::GetUpdateRgn(::draw2d::region* pRgn,bool bErase)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return -1;
 
@@ -2277,7 +2277,7 @@ namespace user
 
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //}
 
@@ -2285,7 +2285,7 @@ namespace user
    //void primitive::InvalidateRgn(::draw2d::region* pRgn,bool bErase)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //}
 
@@ -2294,7 +2294,7 @@ namespace user
 
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //}
 
@@ -2302,7 +2302,7 @@ namespace user
    //void primitive::ValidateRgn(::draw2d::region* pRgn)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //}
 
@@ -2329,7 +2329,7 @@ namespace user
    void primitive::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -2337,7 +2337,7 @@ namespace user
    void primitive::on_reposition()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -2353,7 +2353,7 @@ namespace user
    void primitive::on_show_window()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -2368,7 +2368,7 @@ namespace user
    //void primitive::ShowOwnedPopups(bool bShow)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //}
 
@@ -2376,7 +2376,7 @@ namespace user
    //bool primitive::attach(oswindow oswindow)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return false;
 
@@ -2394,37 +2394,37 @@ namespace user
    void primitive::pre_subclass_window()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
 
-   id primitive::run_modal_loop(::user::interaction * pinteraction,u32 dwFlags)
+   atom primitive::run_modal_loop(::user::interaction * pinteraction,u32 dwFlags)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
-      return ::id();
+      return ::atom();
 
    }
 
 
-   id primitive::RunModalLoop(u32 dwFlags)
+   atom primitive::RunModalLoop(u32 dwFlags)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
-      return ::id();
+      return ::atom();
 
    }
 
 
-   id primitive::_001RunModalLoop(u32 dwFlags)
+   atom primitive::_001RunModalLoop(u32 dwFlags)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
-      return id();
+      return atom();
 
    }
 
@@ -2432,35 +2432,35 @@ namespace user
    bool primitive::ContinueModal()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return false;
 
    }
 
 
-   void primitive::EndModalLoop(id nResult)
+   void primitive::EndModalLoop(atom nResult)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
 
-   void primitive::post_message(const ::id & id,wparam wparam,lparam lparam)
+   void primitive::post_message(const ::atom & atom,wparam wparam,lparam lparam)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       //return false;
 
    }
 
 
-   //bool primitive::user_post(const ::id& id, wparam wparam, lparam lparam)
+   //bool primitive::user_post(const ::atom& atom, wparam wparam, lparam lparam)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return false;
 
@@ -2470,7 +2470,7 @@ namespace user
    void primitive::SetTimer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer, bool bPeriodic, void* pdata)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       //return false;
 
@@ -2480,7 +2480,7 @@ namespace user
    void primitive::KillTimer(uptr uEvent)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       //return false;
 
@@ -2490,7 +2490,7 @@ namespace user
    //bool primitive::has_keyboard_focus() const
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return false;
 
@@ -2541,7 +2541,7 @@ namespace user
    void primitive::track_mouse_leave()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -2549,7 +2549,7 @@ namespace user
    void primitive::track_mouse_hover()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -2575,7 +2575,7 @@ namespace user
    void primitive::sketch_prepare_window_minimize(::e_activation eactivation)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -2583,7 +2583,7 @@ namespace user
    void primitive::sketch_prepare_window_maximize()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -2591,7 +2591,7 @@ namespace user
    void primitive::sketch_prepare_window_full_screen(const ::rectangle_i32 & rectangleHint)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -2599,7 +2599,7 @@ namespace user
    void primitive::sketch_prepare_window_restore(edisplay edisplay)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -2607,7 +2607,7 @@ namespace user
    void primitive::sketch_prepare_window_dock(::e_display edisplayDock)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -2615,7 +2615,7 @@ namespace user
    //void primitive::GuieProc(::message::message * pmessage)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //}
 
@@ -2623,7 +2623,7 @@ namespace user
    //void primitive::_001DeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pgraphics)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //}
 
@@ -2631,7 +2631,7 @@ namespace user
    //void primitive::_001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pgraphics)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //}
 
@@ -2639,7 +2639,7 @@ namespace user
    void primitive::OnLinkClick(const ::string & psz,const ::string & pszTarget)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -2690,7 +2690,7 @@ namespace user
    void primitive::create_message_queue(const ::string & lpszName)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       //return false;
 
@@ -2700,7 +2700,7 @@ namespace user
    void primitive::on_select()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -2708,7 +2708,7 @@ namespace user
    bool primitive::is_place_holder()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return false;
 
@@ -2726,7 +2726,7 @@ namespace user
    ::windowing::cursor * primitive::get_mouse_cursor()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
@@ -2744,7 +2744,7 @@ namespace user
    //void primitive::set_cursor(::windowing::/*cursor * pcursor)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return false;
 
@@ -2787,7 +2787,7 @@ namespace user
    //bool primitive::can_merge(::user::interaction * pinteraction)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return false;
 
@@ -2797,7 +2797,7 @@ namespace user
    //bool primitive::merge(::user::interaction * pinteraction)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return false;
 
@@ -2871,7 +2871,7 @@ namespace user
    //::user::interaction * primitive::first_child()
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return nullptr;
 
@@ -2881,7 +2881,7 @@ namespace user
    //::user::interaction * primitive::last_child()
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return nullptr;
 
@@ -2890,7 +2890,7 @@ namespace user
    //::user::interaction * primitive::first_sibling()
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return nullptr;
 
@@ -2900,7 +2900,7 @@ namespace user
    //::user::interaction * primitive::last_sibling()
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return nullptr;
 
@@ -2943,7 +2943,7 @@ namespace user
    //void primitive::mouse_hover_add(::user::interaction * pinterface)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //}
 
@@ -2951,7 +2951,7 @@ namespace user
    //bool primitive::mouse_hover_erase(::user::interaction * pinterface)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return false;
 
@@ -3021,7 +3021,7 @@ namespace user
    i32 primitive::get_descendant_level(const ::user::primitive * pinteraction) const
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return -1;
 
@@ -3031,7 +3031,7 @@ namespace user
    //bool primitive::is_descendant(const ::user::primitive * pinteraction,bool bIncludeSelf) const
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return false;
 
@@ -3043,7 +3043,7 @@ namespace user
 
       __UNREFERENCED_PARAMETER(bSet);
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       //return error_not_implemented;
 
@@ -3069,7 +3069,7 @@ namespace user
    ::user::interaction * primitive::get_focusable_descendant() const
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
@@ -3079,7 +3079,7 @@ namespace user
    void primitive::_001OnTriggerMouseInside()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -3087,7 +3087,7 @@ namespace user
    void primitive::update_data(bool bSaveAndValidate)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       //return false;
 
@@ -3097,7 +3097,7 @@ namespace user
    string primitive::get_window_default_matter()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return "";
 
@@ -3107,7 +3107,7 @@ namespace user
    string primitive::get_window_icon_matter()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return get_window_default_matter();
 
@@ -3117,7 +3117,7 @@ namespace user
    u32 primitive::get_window_default_style()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return 0;
 
@@ -3138,7 +3138,7 @@ namespace user
    bool primitive::OnCommand(::message::message * pmessage)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return false;
 
@@ -3148,7 +3148,7 @@ namespace user
    bool primitive::OnNotify(::message::message * pmessage)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return false;
 
@@ -3158,7 +3158,7 @@ namespace user
    bool primitive::OnChildNotify(::message::message * pmessage)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return false;
 
@@ -3179,7 +3179,7 @@ namespace user
    bool primitive::is_selected(::data::item * pitem)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return false;
 
@@ -3189,14 +3189,14 @@ namespace user
    bool primitive::has_command_handler(::message::command * pcommand)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return false;
 
    }
 
 
-   void primitive::handle(::subject * psubject, ::context * pcontext)
+   void primitive::handle(::topic * ptopic, ::context * pcontext)
    {
 
 
@@ -3206,7 +3206,7 @@ namespace user
    //bool primitive::track_popup_menu(::user::menu_item * pitem,i32 iFlags)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return false;
 
@@ -3216,7 +3216,7 @@ namespace user
    //__pointer(::user::menu) primitive::track_popup_xml_menu_text(string strXml,i32 iFlags)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return nullptr;
 
@@ -3226,7 +3226,7 @@ namespace user
    //__pointer(::user::menu) primitive::track_popup_xml_matter_menu(const ::string & pszMatter,i32 iFlags)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return nullptr;
 
@@ -3237,7 +3237,7 @@ namespace user
    //bool primitive::track_popup_menu(::user::menu_item * pitem,i32 iFlags,::message::message * pmessage)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return false;
 
@@ -3247,7 +3247,7 @@ namespace user
    //__pointer(::user::menu) primitive::track_popup_xml_menu_text(string strXml,i32 iFlags,::message::message * pmessage)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return nullptr;
 
@@ -3257,7 +3257,7 @@ namespace user
    //__pointer(::user::menu) primitive::track_popup_xml_matter_menu(const ::string & pszMatter,i32 iFlags,::message::message * pmessage)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return nullptr;
 
@@ -3267,7 +3267,7 @@ namespace user
    //bool primitive::track_popup_menu(::user::menu_item * pitem,i32 iFlags, const ::point_i32 & point)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return false;
 
@@ -3277,7 +3277,7 @@ namespace user
    //__pointer(::user::menu) primitive::track_popup_xml_menu(const ::payload & varXml,i32 iFlags, const ::point_i32 & point, const size_i32 & size)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return nullptr;
 
@@ -3287,7 +3287,7 @@ namespace user
    //__pointer(::user::menu) primitive::track_popup_xml_matter_menu(const ::string & pszMatter,i32 iFlags, const ::point_i32 & point)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return nullptr;
 
@@ -3297,7 +3297,7 @@ namespace user
    //__pointer(::user::menu) primitive::track_popup_xml_menu_file(::payload payloadFile, i32 iFlags, const ::point_i32 & point, const ::size_i32 & sizeMinimum)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return nullptr;
 
@@ -3332,7 +3332,7 @@ namespace user
    //void primitive::window_enable_full_screen(bool bEnable)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //}
 
@@ -3340,7 +3340,7 @@ namespace user
    //bool primitive::window_is_full_screen_enabled()
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return false;
 
@@ -3380,7 +3380,7 @@ namespace user
    //bool primitive::set_appearance(edisplay edisplay)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return false;
 
@@ -3390,7 +3390,7 @@ namespace user
    //bool primitive::set_previous_display(edisplay edisplay)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return false;
 
@@ -3410,7 +3410,7 @@ namespace user
    void primitive::keep_alive(::object * pliveobject)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -3418,29 +3418,29 @@ namespace user
    //bool primitive::set_window_position(class zorder zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return false;
 
    //}
 
 
-   id primitive::GetDlgCtrlId() const
+   atom primitive::GetDlgCtrlId() const
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
-      return id();
+      return atom();
 
    }
 
 
-   id primitive::SetDlgCtrlId(id id)
+   atom primitive::SetDlgCtrlId(atom atom)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
-      return ::id();
+      return ::atom();
 
    }
 
@@ -3450,7 +3450,7 @@ namespace user
 //   bool primitive::open_clipboard()
 //   {
 //
-//      throw ::interface_only_exception();
+//      throw ::interface_only();
 //
 //      return false;
 //
@@ -3460,7 +3460,7 @@ namespace user
 //   bool primitive::close_clipboard()
 //   {
 //
-//      throw ::interface_only_exception();
+//      throw ::interface_only();
 //
 //      return false;
 //
@@ -3670,7 +3670,7 @@ namespace user
    }
 
 
-   void primitive::add_child_handler(::matter * pmatter, const ::id & idChild, bool bPriority)
+   void primitive::add_child_handler(::matter * pmatter, const ::atom & idChild, bool bPriority)
    {
 
       auto pchild = get_primitive_by_id(idChild);
@@ -3712,12 +3712,12 @@ namespace user
    }
 
 
-//   __pointer(::message::message) primitive::get_message(const ::id & id, wparam wparam, lparam lparam)
+//   __pointer(::message::message) primitive::get_message(const ::atom & atom, wparam wparam, lparam lparam)
 //   {
 //
 //      __pointer(::message::message) pmessage;
 //
-//      auto eprototype = ::message::get_message_prototype((enum_message) id.i64(), 0);
+//      auto eprototype = ::message::get_message_prototype((enum_message) atom.i64(), 0);
 //
 //      switch (eprototype)
 //      {
@@ -3751,7 +3751,7 @@ namespace user
 //      case ::message::PrototypeTimer:
 //      {
 //         
-//         //__throw(::exception("do not use e_message_timer or Windows SetTimer/KillTimer"));
+//         //throw ::exception(::exception("do not use e_message_timer or Windows SetTimer/KillTimer"));
 //         
 //         pmessage = __new(::message::timer);
 //
@@ -3853,37 +3853,37 @@ namespace user
 //
 //      }
 //
-//      pmessage->set(get_oswindow(), get_window(), id, wparam, lparam);
+//      pmessage->set(get_oswindow(), get_window(), atom, wparam, lparam);
 //
 //      return pmessage;
 //
 //   }
 
 
-   bool primitive::call_message_handler(const ::id & id, wparam wparam, lparam lparam, const ::point_i32 & point, lresult * plresult)
+   bool primitive::call_message_handler(const ::atom & atom, wparam wparam, lparam lparam, const ::point_i32 & point, lresult * plresult)
    {
       
-      if(id == e_message_post_user)
+      if(atom == e_message_post_user)
       {
 
          if(wparam==1)
          {
 
-            auto pelement = (::element *) lparam.m_lparam;
+            __pointer(::message::message) pmessage(lparam);
 
-            __pointer(::message::message) pmessage(e_move_transfer, pelement);
+            lparam = 0;
 
             if(pmessage)
             {
 
                message_handler(pmessage);
 
-               if (pmessage->m_bRet)
-               {
+               //if (pmessage->m_bRet)
+               //{
 
                   return true;
 
-               }
+               //}
 
             }
 
@@ -3891,7 +3891,7 @@ namespace user
 
       }
 
-      auto pmessage = get_message(id, wparam, lparam);
+      auto pmessage = get_message(atom, wparam, lparam);
 
       try
       {
@@ -4135,7 +4135,7 @@ namespace user
    void primitive::on_check_change()
    {
 
-      get_application()->signal(m_propertyCheck->m_id);
+      get_application()->signal(m_propertyCheck->m_atom);
 
    }
 
@@ -4169,10 +4169,10 @@ namespace user
    }
 
 
-   //void primitive::route(::subject * psubject, ::context * pcontext)
+   //void primitive::route(::topic * ptopic, ::context * pcontext)
    //{
 
-   //   handle(psubject, pcontext);
+   //   handle(ptopic, pcontext);
 
    //}
 
@@ -4387,7 +4387,7 @@ namespace user
    void primitive::set_keyboard_focus()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -4395,7 +4395,7 @@ namespace user
    void primitive::erase_keyboard_focus()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -4403,7 +4403,7 @@ namespace user
    void primitive::clear_keyboard_focus()
    {
 
-      //throw ::interface_only_exception();
+      //throw ::interface_only();
 
    }
 

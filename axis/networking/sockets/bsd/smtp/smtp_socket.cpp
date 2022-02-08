@@ -129,7 +129,7 @@ namespace sockets
             print("Content-Type: text/plain; charset=\"utf-8\"\r\n");
             print("\r\n");
             string strBody = m_pemail->m_strBody;
-            strBody.replace("\r\n", "\n");
+            strBody.replace_with("\n", "\r\n");
             string_array stra;
             stra.add_tokens(strBody, "\n", true);
             for(i32 i = 0; i < stra.get_count(); i++)

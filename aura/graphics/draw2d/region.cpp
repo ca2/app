@@ -324,7 +324,7 @@ namespace draw2d
          m_ecombine = regionSrc.m_ecombine;
          return *this;
       default:
-         throw interface_only_exception();
+         throw ::interface_only();
       };
       return *this;
 
@@ -334,7 +334,7 @@ namespace draw2d
    bool region::get_bounding_box(RECTANGLE_I32 * prectangle, ::draw2d::graphics * pgraphics)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return false;
 
@@ -396,7 +396,7 @@ namespace draw2d
          return bOk1 && bOk2;
       }
       default:
-         throw interface_only_exception();
+         throw ::interface_only();
       };
       return false;
 
@@ -507,7 +507,7 @@ namespace draw2d
          return max_bounding_box_combine(prectangle);
 
       default:
-         throw interface_only_exception();
+         throw ::interface_only();
       }
 
    }
@@ -628,7 +628,7 @@ namespace draw2d
          return internal_combine_contains(point);
 
       default:
-         throw interface_only_exception();
+         throw ::interface_only();
       }
 
       return false;

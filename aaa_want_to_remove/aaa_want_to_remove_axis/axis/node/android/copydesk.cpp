@@ -32,7 +32,7 @@ namespace android
    void copydesk::set_filea(const ::file::patha & patha)
    {
 
-      __throw(todo);
+      throw ::exception(todo);
 
    }
 
@@ -73,7 +73,7 @@ namespace android
    void copydesk::set_plain_text(const ::string & psz)
    {
 
-      __throw(todo);
+      throw ::exception(todo);
 
 
    }
@@ -89,7 +89,7 @@ namespace android
 /*   bool copydesk::desk_to_image(::image * pimage)
    {
 
-      __throw(todo);
+      throw ::exception(todo);
 
    }
 

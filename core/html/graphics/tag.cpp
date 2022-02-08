@@ -28,23 +28,23 @@ namespace html
    }
 
 
-   void tag::set_name(id idName)
+   void tag::set_name(atom idName)
    {
 
-      m_idName = idName;
+      m_atomName = idName;
 
    }
 
 
-   id tag::get_name()
+   atom tag::get_name()
    {
 
-      return m_idName;
+      return m_atomName;
 
    }
 
 
-   attribute * tag::get_attr(id idName)
+   attribute * tag::get_attr(atom idName)
    {
 
       return m_attra.get(idName);
@@ -52,7 +52,7 @@ namespace html
    }
 
 
-   string tag::get_attr_value(id idName)
+   string tag::get_attr_value(atom idName)
    {
 
       return attra().get_value(idName);

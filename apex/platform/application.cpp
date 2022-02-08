@@ -16,7 +16,7 @@
 #include "acme/parallelization/install_mutex.h"
 #include "acme/primitive/text/context.h"
 
-//#include "apex/node/_node.h"
+//#include "apex/operating_system/_node.h"
 #include "node.h"
 //#include "apex/os/_os.h"
 #include "application_impl.h"
@@ -74,13 +74,13 @@ void ns_launch_app(const char * psz, const char ** argv, int iFlags);
 #ifdef _GNU_SOURCE
 #undef _GNU_SOURCE
 
-//#include "apex/node/ansios/ansios.h"
-#include "apex/node/linux/_linux.h"
+//#include "apex/operating_system/ansios/ansios.h"
+#include "apex/operating_system/linux/_linux.h"
 
 //#include <X11/cursorfont.h>
 #include <sys/time.h>
 #include <link.h>
-#include "acme/node/operating_system/ansi/_pthread.h"
+#include "acme/operating_system/ansi/_pthread.h"
 
 #endif
 #define _GNU_SOURCE
@@ -89,12 +89,12 @@ void ns_launch_app(const char * psz, const char ** argv, int iFlags);
 //#include <dlfcn.h>
 #elif defined(ANDROID)
 
-//#include "apex/node/ansios/ansios.h"
-#include "apex/node/android/_.h"
+//#include "apex/operating_system/ansios/ansios.h"
+#include "apex/operating_system/android/_.h"
 
 //#elif defined(WINDOWS_DESKTOP)
 
-//#include "apex/node/windows/windows_registry.h"
+//#include "apex/operating_system/windows/windows_registry.h"
 
 #endif
 
@@ -412,10 +412,10 @@ m_bAppHasInstallerChangedProtected = true;
 //   }
 
 
-void application::assert_valid() const
+void application::assert_ok() const
 {
 
-thread::assert_valid();
+thread::assert_ok();
 
 }
 
@@ -635,7 +635,7 @@ __pointer(::handle::ini) application::get_ini()
 }
 
 
-bool application::app_data_set(const ::id & id, stream & os)
+bool application::app_data_set(const ::atom & atom, stream & os)
 {
 
 return false;
@@ -643,7 +643,7 @@ return false;
 }
 
 
-bool application::app_data_get(const ::id & id, stream & is)
+bool application::app_data_get(const ::atom & atom, stream & is)
 {
 
 return false;
@@ -651,7 +651,7 @@ return false;
 }
 
 
-bool application::app_data_set(const ::id & id, ::object & obj)
+bool application::app_data_set(const ::atom & atom, ::object & obj)
 {
 
 return false;
@@ -659,7 +659,7 @@ return false;
 }
 
 
-bool application::app_data_get(const ::id & id, ::object & obj)
+bool application::app_data_get(const ::atom & atom, ::object & obj)
 {
 
 return false;
@@ -692,7 +692,7 @@ do_request(pcreate);
 //   str = pcreate->m_varFile;
 
 //      // apex commented
-//      //__throw(todo("interaction"));
+//      //throw ::exception(todo("interaction"));
 
 //   /*if (!m_pinterprocessintercommunication)
 //   {
@@ -821,7 +821,7 @@ do_request(pcreate);
 
 //    psystem->on_run_exception(esp);
 
-//    __throw(exit_exception(esp->get_application(), ::exit_application));
+//    throw ::exception(exit_exception(esp->get_application(), ::exit_application));
 
 // }
 catch (const ::exception & e)
@@ -986,12 +986,12 @@ pcreate->m_pcommandline->m_eventReady.SetEvent();
 
 //// lang string
 //// load string
-//string application::lstr(const ::id & id, string strDefault)
+//string application::lstr(const ::atom & atom, string strDefault)
 //{
 
 //   string str;
 
-//   if (!load_string(str, id))
+//   if (!load_string(str, atom))
 //   {
 
 //      if (strDefault.has_char())
@@ -1014,34 +1014,34 @@ void application::on_file_new()
 }
 
 
-//string application::load_string(const ::id & id)
+//string application::load_string(const ::atom & atom)
 //{
 //   string str;
-//   if (!load_string(str, id))
+//   if (!load_string(str, atom))
 //   {
-//      return (const string &)id;
+//      return (const string &)atom;
 //   }
 //   return str;
 //}
 
-//bool application::load_string(string & str, const ::id & id)
+//bool application::load_string(string & str, const ::atom & atom)
 //{
-//   if (!load_cached_string(str, id, true))
+//   if (!load_cached_string(str, atom, true))
 //   {
 //      return false;
 //   }
 //   return true;
 //}
 
-/*bool application::load_cached_string(string & str, const ::id & id, bool bLoadStringTable)
+/*bool application::load_cached_string(string & str, const ::atom & atom, bool bLoadStringTable)
 {
 
 ::xml::document doc;
 
-if (!doc.load(id))
+if (!doc.load(atom))
 {
 
-if (load_cached_string_by_id(str, id, bLoadStringTable))
+if (load_cached_string_by_id(str, atom, bLoadStringTable))
 {
 
 return true;
@@ -1072,10 +1072,10 @@ return false;
 }*/
 
 
-bool application::load_cached_string_by_id(string & str, const ::id & id, bool bLoadStringTable)
+bool application::load_cached_string_by_id(string & str, const ::atom & atom, bool bLoadStringTable)
 {
 
-string strId(id.str());
+string strId(atom.str());
 
 string strTable;
 
@@ -1133,7 +1133,7 @@ synchronouslock.unlock();
 
 load_string_table(strTable, "");
 
-return load_cached_string_by_id(str, id, false);
+return load_cached_string_by_id(str, atom, false);
 
 }
 
@@ -1167,7 +1167,7 @@ load_string_table("", "");
 //}
 
 
-//object * application::alloc(const  id & idType)
+//object * application::alloc(const  atom & idType)
 //{
 
 //   return psystem->alloc(this, idType);
@@ -1217,7 +1217,7 @@ return bIsUserService && bIsService;
 bool application::_001OnDDECommand(const ::string & str)
 {
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
    return false;
 
@@ -1239,7 +1239,7 @@ void application::_001CloseApplication()
 void application::get_temp_file_name_template(string & strRet, const ::string & lpszName, const ::string & pszExtension, const ::string & pszTemplate)
 {
 
-__throw(error_not_implemented);
+throw ::not_implemented();
 
 ///return false;
 
@@ -1826,7 +1826,7 @@ m_pinterprocessintercommunication->on_new_instance(
 
 //   }
 
-//   //__throw(todo("database"));
+//   //throw ::exception(todo("database"));
 
 //   //auto estatus = m_psimpledb->initialize_simpledb_server(this, pathDatabase);
 
@@ -2296,15 +2296,19 @@ try
 catch (const ::exception & e)
 {
 
-handle_exception(e);
+   handle_exception(e);
 
-//return false;
+   os_message_box(this, "Application failed to initialize (1). ", m_strAppName, e_message_box_ok, e.m_strMessage + "\n" + e.m_strDetails);
+
+   throw e;
 
 }
 catch (...)
 {
 
-//return false;
+   os_message_box(this, "Application failed to initialize (2). Unknown exception", m_strAppName);
+
+   throw "Unknown exception";
 
 }
 
@@ -2352,21 +2356,19 @@ on_update_matter_locator();
 catch (const ::exit_exception & exception)
 {
 
-__rethrow(exception);
+   handle_exception(exception);
+
+   os_message_box(this, "Application failed to initialize (3). ", m_strAppName, e_message_box_ok, exception.m_strMessage + "\n" + exception.m_strDetails);
+
+   throw exception;
 
 }
-//catch(const ::exception & e)
-//{
-//
-////m_result.add(e);
-//
-////return m_result.estatus();
-//
-//}
 catch (...)
 {
 
-//return false;
+   os_message_box(this, "Application failed to initialize (4). Unknown exception", m_strAppName);
+
+   throw "Unknown exception";
 
 }
 
@@ -3430,31 +3432,31 @@ catch(...)
 void application::init3()
 {
 
-string strFolder = m_strAppName;
+   string strFolder = m_strAppName;
 
-strFolder.replace(".", "_");
-strFolder.replace("::", "-");
-strFolder.replace(":", "_");
+   strFolder.replace_with("_", ".");
+   strFolder.replace_with("-", "::");
+   strFolder.replace_with("_", ":");
 
-m_strRelativeFolder = strFolder;
+   m_strRelativeFolder = strFolder;
 
-//if (!impl_init3())
-//{
+   //if (!impl_init3())
+   //{
 
-//   return false;
+   //   return false;
 
-//}
+   //}
 
-notify_init3();
+   notify_init3();
 
-//if (!notify_init3())
-//{
-//
-//return false;
-//
-//}
-//
-//return true;
+   //if (!notify_init3())
+   //{
+   //
+   //return false;
+   //
+   //}
+   //
+   //return true;
 
 }
 
@@ -3670,7 +3672,7 @@ bool application::check_exclusive(bool & bHandled)
       if (bGlobalIdExclusiveFail)
       {
 
-         INFORMATION("A instance of the application:<br><br>-" << m_strAppName << "with the id \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine with the same id.<br><br>Exiting this new instance.");
+         INFORMATION("A instance of the application:<br><br>-" << m_strAppName << "with the atom \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine with the same atom.<br><br>Exiting this new instance.");
 
          try
          {
@@ -3723,7 +3725,7 @@ bool application::check_exclusive(bool & bHandled)
       {
 
          // Should in some way activate the other instance
-         INFORMATION("A instance of the application:<br><br> - " << m_strAppName << " with the id \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::count with the same id.<br><br>Exiting this new instance.");
+         INFORMATION("A instance of the application:<br><br> - " << m_strAppName << " with the atom \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::count with the same atom.<br><br>Exiting this new instance.");
 
          on_exclusive_instance_conflict(bHandled, ExclusiveInstanceLocalId, get_local_mutex_id());
          //if(!)
@@ -4058,7 +4060,7 @@ bHandled = true;
 }
 
 
-void application::on_new_instance(string strModule, const ::id & iPid)
+void application::on_new_instance(string strModule, const ::atom & iPid)
 {
 
 }
@@ -4249,7 +4251,7 @@ void application::get_scalar_maximum(e_scalar escalar, i64 & i)
 string application::http_get_locale_schema(const ::string & pszUrl, const ::string & pszLocale, const ::string & pszSchema)
 {
 
-throw ::interface_only_exception();
+throw ::interface_only();
 
 return "";
 
@@ -4418,8 +4420,8 @@ void application::fill_locale_schema(::text::international::locale_schema & loca
    string strSchema(pszSchema);
 
 
-   localeschema.m_idLocale = pszLocale;
-   localeschema.m_idSchema = pszSchema;
+   localeschema.m_atomLocale = pszLocale;
+   localeschema.m_atomSchema = pszSchema;
 
 
    localeschema.add_locale_variant(strLocale, strSchema);
@@ -4466,8 +4468,8 @@ void application::fill_locale_schema(::text::international::locale_schema & loca
 
    straSchema.add_unique(payload("schema").stra());
 
-   localeschema.m_idLocale = straLocale[0];
-   localeschema.m_idSchema = straSchema[0];
+   localeschema.m_atomLocale = straLocale[0];
+   localeschema.m_atomSchema = straSchema[0];
 
    for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
    {
@@ -4687,7 +4689,7 @@ m_pcontext->m_papexcontext->os_context()->file_open(strFile);
 //}
 
 
-void application::handle(::subject * psubject, ::context * pcontext)
+void application::handle(::topic * ptopic, ::context * pcontext)
 {
 
 
@@ -4862,7 +4864,7 @@ return "";
 
 ::string strContents = m_psystem->m_pacmefile->as_string(strPath.c_str());
 
-__throw(todo, "xml");
+throw ::exception(todo, "xml");
 
 //::xml::document doc;
 
@@ -4892,7 +4894,7 @@ return nullptr;
 //LPWAVEOUT application::waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback)
 //{
 
-//   __throw(interface_only_exception(nullptr));
+//   throw ::exception(interface_only_exception(nullptr));
 
 //   return nullptr;
 
@@ -4923,7 +4925,7 @@ return true;
 }
 
 
-bool application::send_message_to_windows(const ::id & id, wparam wparam, lparam lparam) // with tbs in <3
+bool application::send_message_to_windows(const ::atom & atom, wparam wparam, lparam lparam) // with tbs in <3
 {
 
 //__pointer(::user::interaction) puserinteraction;
@@ -4981,7 +4983,7 @@ bool application::send_message_to_windows(const ::id & id, wparam wparam, lparam
 
 //}
 
-throw ::interface_only_exception();
+throw ::interface_only();
 
 return false;
 
@@ -4991,7 +4993,7 @@ return false;
 bool application::route_message_to_windows(::message::message * pmessage) // with tbs in <3
 {
 
-throw ::interface_only_exception();
+throw ::interface_only();
 
 //__pointer(::user::interaction) puserinteraction;
 
@@ -5103,12 +5105,12 @@ return "core";
 //}
 
 
-void application::post_message(const ::id & id, wparam wparam, lparam lparam )
+void application::post_message(const ::atom & atom, wparam wparam, lparam lparam )
 {
 
-//return ::thread::post_message(id, wparam, lparam);
+//return ::thread::post_message(atom, wparam, lparam);
 
-   ::thread::post_message(id, wparam, lparam);
+   ::thread::post_message(atom, wparam, lparam);
 
 }
 
@@ -5301,10 +5303,10 @@ return m_psystem->m_pacmedir->config() / m_strAppName;
 
 
 
-//__pointer(::user::document) application::defer_create_view(string strView, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::id & id)
+//__pointer(::user::document) application::defer_create_view(string strImpact, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::atom & atom)
 //{
 
-//   //auto pcontroller = pmultimedia->defer_create_view(strView, puiParent, ewindowflag, id);
+//   //auto pcontroller = pmultimedia->defer_create_view(strImpact, puiParent, ewindowflag, atom);
 
 //   //if (pcontroller)
 //   //{
@@ -5363,7 +5365,7 @@ return m_psystem->m_pacmedir->config() / m_strAppName;
 //}
 
 
-//::type application::control_type_from_id(const ::id & id, ::user::enum_control_type & econtroltype)
+//::type application::control_type_from_id(const ::atom & atom, ::user::enum_control_type & econtroltype)
 //{
 
 //   econtroltype = ::user::e_control_type_none;
@@ -5373,16 +5375,16 @@ return m_psystem->m_pacmedir->config() / m_strAppName;
 //}
 
 
-::id application::translate_property_id(const ::id & id)
+::atom application::translate_property_id(const ::atom & atom)
 {
 
-   if (id == "hide_recycle_bin")
+   if (atom == "hide_recycle_bin")
    {
 
       return id_hide_recycle_bin;
 
    }
-   else if (id == "show_recycle_bin")
+   else if (atom == "show_recycle_bin")
    {
 
       return id_show_recycle_bin;
@@ -5396,19 +5398,19 @@ return m_psystem->m_pacmedir->config() / m_strAppName;
 // if(!is_session())
 //{
 
-// return psession->translate_property_id(id);
+// return psession->translate_property_id(atom);
 
 //}
 //else
 //{
 
-// return psystem->translate_property_id(id);
+// return psystem->translate_property_id(atom);
 
 //}
 
 //}
 
-return id;
+return atom;
 
 }
 
@@ -5496,7 +5498,7 @@ bool application::start_application(bool bSynch, ::create * pcreate)
 if (bSynch)
 {
 
-   begin_synch();
+   begin_synchronously();
 
 //if (!begin_synch())
 //{
@@ -5524,7 +5526,7 @@ void application::HideApplication()
 
 //try
 //{
-__throw(todo, "interaction");
+throw ::exception(todo, "interaction");
 
 //   if (m_puserinteractionMain)
 //   {
@@ -5546,40 +5548,40 @@ __throw(todo, "interaction");
 }
 
 
-string application::load_string(const ::id & id)
+string application::load_string(const ::atom & atom)
 {
 
 synchronous_lock synchronouslock(&m_mutexStr);
 
 string str;
 
-if (m_stringmap.lookup(id, str))
+if (m_stringmap.lookup(atom, str))
 {
 
 return str;
 
 }
 
-if (!load_string(str, id))
+if (!load_string(str, atom))
 {
 
-id.to_string(str);
+atom.to_string(str);
 
 return str;
 
 }
 
-m_stringmap.set_at(id, str);
+m_stringmap.set_at(atom, str);
 
 return str;
 
 }
 
 
-bool application::load_string(string & str, const ::id & id)
+bool application::load_string(string & str, const ::atom & atom)
 {
 
-if (!load_cached_string(str, id, true))
+if (!load_cached_string(str, atom, true))
 {
 
 return false;
@@ -5591,18 +5593,18 @@ return true;
 }
 
 
-bool application::load_cached_string(string & str, const ::id & id, bool bLoadStringTable)
+bool application::load_cached_string(string & str, const ::atom & atom, bool bLoadStringTable)
 {
 
 
-//__throw(todo("xml"));
+//throw ::exception(todo("xml"));
 
 //auto pdocument = __new(::xml::document);
 
-//if (!pdocument->load(id) || !*pdocument)
+//if (!pdocument->load(atom) || !*pdocument)
 //{
 
-//   return load_cached_string_by_id(str, id, bLoadStringTable);
+//   return load_cached_string_by_id(str, atom, bLoadStringTable);
 
 //}
 
@@ -5629,10 +5631,10 @@ return false;
 }
 
 
-//bool application::load_cached_string_by_id(string & str, const ::id & id, bool bLoadStringTable)
+//bool application::load_cached_string_by_id(string & str, const ::atom & atom, bool bLoadStringTable)
 //{
 
-//   string strId(id.str());
+//   string strId(atom.str());
 
 //   string strTable;
 
@@ -5688,7 +5690,7 @@ return false;
 
 //      load_string_table(strTable, "");
 
-//      return load_cached_string_by_id(str, id, false);
+//      return load_cached_string_by_id(str, atom, false);
 
 //   }
 
@@ -5801,11 +5803,11 @@ void application::close_application()
 
 //#ifdef _UWP
 //
-//::winrt::Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(
+//::winrt::Windows::ApplicationModel::Core::CoreApplication::MainImpact->CoreWindow->Dispatcher->RunAsync(
 //::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal,
 //ref new ::winrt::Windows::UI::Core::DispatchedHandler([this]()
 //{
-//::winrt::Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->TryConsolidateAsync();
+//::winrt::Windows::UI::ImpactManagement::ApplicationImpact::GetForCurrentImpact()->TryConsolidateAsync();
 //}));
 //
 //#else
@@ -6498,7 +6500,7 @@ auto plocaleschema = __create_new < ::text::international::locale_schema >();
 
 bool bIgnoreStdStd = string(pszRoot) == "app" && (string(pszRelative) == "main" || string(pszRelative) == "bergedge");
 
-//update_appmatter(h, psession, pszRoot, pszRelative, plocaleschema->m_idLocale, plocaleschema->m_idSchema);
+//update_appmatter(h, psession, pszRoot, pszRelative, plocaleschema->m_atomLocale, plocaleschema->m_atomSchema);
 
 ::count iCount = plocaleschema->m_idaLocale.get_count();
 
@@ -6796,7 +6798,7 @@ pnode->show_wait_cursor(true);
 //void application::TermThread(HINSTANCE hInstTerm)
 //{
 
-//   throw ::interface_only_exception();
+//   throw ::interface_only();
 
 //}
 
@@ -6806,7 +6808,7 @@ pnode->show_wait_cursor(true);
 //string application::get_version()
 //{
 
-//   throw ::interface_only_exception();
+//   throw ::interface_only();
 
 //   return "";
 
@@ -6818,7 +6820,7 @@ pnode->show_wait_cursor(true);
 //   void application::set_env_var(const string & payload,const string & value)
 //   {
 //
-//      throw ::interface_only_exception();
+//      throw ::interface_only();
 //
 //   }
 
@@ -6827,7 +6829,7 @@ pnode->show_wait_cursor(true);
 //::draw2d::printer * application::get_printer(const ::string & pszDeviceName)
 //{
 
-//   throw ::interface_only_exception();
+//   throw ::interface_only();
 
 //   return nullptr;
 
@@ -6837,7 +6839,7 @@ pnode->show_wait_cursor(true);
 __pointer(::progress::real) application::show_progress(::user::interaction * puiParent, const ::string & strTitle, ::count iProgressCount)
 {
 
-   __throw(todo);
+   throw ::exception(todo);
 
    return nullptr;
 
@@ -6863,7 +6865,7 @@ void application::userfs_process_init()
 string application::dialog_box(const ::string & pszMatter, property_set& propertyset)
 {
 
-__throw(todo, "core and os");
+throw ::exception(todo, "core and os");
 
 return"";
 
@@ -6887,7 +6889,7 @@ return"";
 //bool application::get_temp_file_name_template(string & strRet,const ::string & lpszName,const ::string & pszExtension,const ::string & pszTemplate)
 //{
 
-//   __throw(error_not_implemented);
+//   throw ::not_implemented();
 
 //   return false;
 
@@ -7024,7 +7026,7 @@ void application::hotplugin_host_host_starter_start_sync(const ::string & pszCom
 
 
 
-//void application::handle(::subject * psubject, ::context * pcontext)
+//void application::handle(::topic * ptopic, ::context * pcontext)
 //{
 
 //}
@@ -7056,7 +7058,7 @@ void application::hotplugin_host_host_starter_start_sync(const ::string & pszCom
 
 //}
 
-//void application::handle(::subject * psubject, ::context * pcontext)
+//void application::handle(::topic * ptopic, ::context * pcontext)
 //{
 
 //}
@@ -7069,12 +7071,12 @@ void application::hotplugin_host_host_starter_start_sync(const ::string & pszCom
 //}
 
 
-//void application::route(::subject * psubject, ::context * pcontext)
+//void application::route(::topic * ptopic, ::context * pcontext)
 //{
 
-//   handle(psubject, pcontext);
+//   handle(ptopic, pcontext);
 
-//   if (psubject->m_bRet)
+//   if (ptopic->get_extended_topic()->m_bRet)
 //   {
 
 //      return;
@@ -7083,7 +7085,7 @@ void application::hotplugin_host_host_starter_start_sync(const ::string & pszCom
 
 //   on_notify_control_event(pevent);
 
-//   if (psubject->m_bRet)
+//   if (ptopic->get_extended_topic()->m_bRet)
 //   {
 
 //      return;
@@ -7138,34 +7140,34 @@ void application::hotplugin_host_host_starter_start_sync(const ::string & pszCom
 
 //}
 
-//bool application::app_data_set(::const ::id & id, stream & stream)
+//bool application::app_data_set(::const ::atom & atom, stream & stream)
 //{
 
-//   return data_save(id, stream);
+//   return data_save(atom, stream);
 
 //}
 
 
-//bool application::app_data_get(::const ::id & id, stream & stream)
+//bool application::app_data_get(::const ::atom & atom, stream & stream)
 //{
 
-//   return data_get(id, stream);
+//   return data_get(atom, stream);
 
 //}
 
 
-//bool application::app_data_set(::const ::id & id, ::object & obj)
+//bool application::app_data_set(::const ::atom & atom, ::object & obj)
 //{
 
-//   return data_set(id, obj);
+//   return data_set(atom, obj);
 
 //}
 
 
-//bool application::app_data_get(::const ::id & id, ::object & obj)
+//bool application::app_data_get(::const ::atom & atom, ::object & obj)
 //{
 
-//   return data_get(id, obj);
+//   return data_get(atom, obj);
 
 //}
 
@@ -7451,7 +7453,7 @@ ENSURE_ARG(pmessage != nullptr);
 
 // handle certain messages in thread
 
-switch (pmessage->m_id)
+switch (pmessage->m_atom)
 {
 case e_message_create:
 case e_message_paint:
@@ -7464,7 +7466,7 @@ return thread::process_window_procedure_exception(e, pmessage);
 //linux ::u32 nIDP = __IDP_INTERNAL_FAILURE;   // matter message string
 const ::string & nIDP = "Internal Failure";
 pmessage->m_lresult = 0;        // sensible default
-if (pmessage->m_id == e_message_command)
+if (pmessage->m_atom == e_message_command)
 {
 
    if (pmessage->m_lparam == 0)
@@ -8348,7 +8350,7 @@ return true;
 //      __UNREFERENCED_PARAMETER(hDevNames);
 //      __UNREFERENCED_PARAMETER(hDevMode);
 //      __UNREFERENCED_PARAMETER(bFreeOld);
-//      throw interface_only_exception();
+//      throw ::interface_only();
 //   }
 //
 //
@@ -8356,7 +8358,7 @@ return true;
 
 //::draw2d::graphics* application::CreatePrinterDC()
 //{
-//throw interface_only_exception();
+//throw ::interface_only();
 //return nullptr;
 //}
 
@@ -8545,7 +8547,7 @@ return true;
 //{
 ////__UNREFERENCED_PARAMETER(nIDRegistryKey);
 ////ASSERT(m_pszRegistryKey == nullptr);
-////throw interface_only_exception();
+////throw ::interface_only();
 /////*char szRegistryKey[256];
 ////VERIFY(::apex::LoadString(nIDRegistryKey, szRegistryKey));
 ////SetRegistryKey(szRegistryKey);*/
@@ -9082,7 +9084,7 @@ pmessage->m_bRet = true;
 //bool application::_001OnDDECommand(const ::string & pcsz)
 
 //{
-//   throw interface_only_exception();
+//   throw ::interface_only();
 //   //return m_pimpl->_001OnDDECommand(pcsz);
 
 
@@ -9103,7 +9105,7 @@ pmessage->m_bRet = true;
 //   ::user::interaction * application::get_desktop_window()
 //   {
 //#if defined(_UWP) || defined(__APPLE__)
-//      __throw(todo);
+//      throw ::exception(todo);
 //      /*#elif defined(LINUX)
 //
 //      //      synchronous_lock synchronouslock(&user_mutex());
@@ -9129,9 +9131,9 @@ pmessage->m_bRet = true;
 
 
 
-//void application::assert_valid() const
+//void application::assert_ok() const
 //{
-//   thread::assert_valid();
+//   thread::assert_ok();
 
 
 //   if (::get_task() != (thread*)this)
@@ -9612,7 +9614,7 @@ psession->set_app_title(m_strAppName, pszTitle);
 //
 //      return (i32)SendMessage(__hwnd(oswindow), WM_COPYDATA, (WPARAM)osdataSender, (LPARAM)&cds);
 //#else
-//      __throw(todo);
+//      throw ::exception(todo);
 //#endif
 //   }
 
@@ -9632,7 +9634,7 @@ void application::ensure_app_interest()
 //
 //#else
 //
-//      //__throw(todo);
+//      //throw ::exception(todo);
 //
 //#endif
 
@@ -9730,14 +9732,14 @@ papp = psession->start_application("application", pszAppId, spcreate);
 catch(const ::exit_exception & e)
 {
 
-__throw(e);
+throw ::exception(e);
 
 }
 catch(const const ::exception & e)
 {
 
 if(!get_application()->on_run_exception((::exception &) e))
-__throw(exit_exception());
+throw ::exception(exit_exception());
 
 }
 catch(...)
@@ -9774,7 +9776,7 @@ return papp;
 
 
 
-void application::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::subject * psubject)
+void application::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::topic * ptopic)
 {
 
 
@@ -9800,7 +9802,7 @@ void application::report_error(const ::exception & e, int iMessageFlags, const :
 
    strMessage += e.get_message();
 
-   __throw(todo, "interaction");
+   throw ::exception(todo, "interaction");
 
 }
 
@@ -9852,7 +9854,7 @@ void application::process_message_filter(i32 code, ::message::message* pmessage)
 void application::on_thread_on_idle(::thread* pthread, ::i32 lCount)
 {
 
-   __throw(todo, "interaction");
+   throw ::exception(todo, "interaction");
 
    //return ::error_failed;
 
@@ -10035,9 +10037,9 @@ string application::get_wm_class() const
 
    string strWMClass = m_strAppId;
 
-   strWMClass.replace("/", ".");
+   strWMClass.find_replace("/", ".");
 
-   strWMClass.replace("_", "-");
+   strWMClass.find_replace("_", "-");
 
    return strWMClass;
 

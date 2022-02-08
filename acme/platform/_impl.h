@@ -45,7 +45,7 @@ inline BLOCK_TYPE & memory_template < BLOCK_TYPE > ::operator = (const ::block &
    if (block.get_size() < get_size())
    {
 
-      __throw(error_invalid_argument);
+      throw ::exception(error_bad_argument);
 
    }
 
@@ -391,7 +391,7 @@ inline void to_string(string & str, const bool & b)
 #endif // __cplusplus_winrt
 
 
-inline void copy(void *, const void *) /* = 0 */ { throw_exception(error_interface_only); }
+inline void copy(void *, const void *) /* = 0 */ { throw ::interface_only(); }
 
 
 namespace papaya
@@ -406,7 +406,7 @@ namespace papaya
       inline TYPE default_value()
       {
 
-         throw interface_only_exception("template only exception");
+         throw ::interface_only("template only exception");
 
       }
 
@@ -566,7 +566,7 @@ inline i64 increment_reference_count(c_derived * & pca, const SOURCE * psource)
    if (::is_null(pderived))
    {
 
-      __throw(error_wrong_type);
+      throw ::exception(error_wrong_type);
 
    }
 
@@ -601,7 +601,7 @@ inline i64 release(c_derived *& pca OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DE
 
 #ifdef _DEBUG
 
-//   ::id id = p->m_id;
+//   ::atom atom = p->m_atom;
    //char * pszType = nullptr;
    //
    //try
@@ -628,7 +628,7 @@ inline i64 release(c_derived *& pca OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DE
    catch (...)
    {
 
-      //::output_debug_string("exception release pca = nullptr; (" + string(id) + ")\n");
+      //::output_debug_string("exception release pca = nullptr; (" + string(atom) + ")\n");
       ::output_debug_string("exception release pca = nullptr; \n");
 
    }
@@ -754,12 +754,24 @@ sequence < TYPE > ::sequence()
 
 
 template < typename TYPE >
-void sequence < TYPE > ::set_status(const ::e_status& estatus)
+void sequence < TYPE > ::fork()
+{
+
+   m_psystem->fork(__routine([this]()
+   {
+
+      on_sequence();
+
+   }));
+
+}
+
+
+template < typename TYPE >
+void sequence < TYPE > ::on_sequence()
 {
 
    critical_section_lock lock(get_sequence_critical_section());
-
-   m_p.m_estatus = estatus;
 
    if (m_pevent)
    {
@@ -768,32 +780,62 @@ void sequence < TYPE > ::set_status(const ::e_status& estatus)
 
    }
    
-   increment_reference_count();
+   while(m_stepa.has_element())
+   {
 
-   m_psystem->fork(__routine([this]()
-      {
-      
-         auto pHold = ::move_transfer(this);
+      auto pfunction = m_stepa.pop_first();
 
-         critical_section_lock lock(get_sequence_critical_section());
+      lock.unlock();
 
-         while(m_stepa.has_element())
-         {
+      pfunction->process(*this);
 
-            auto pfunction = m_stepa.pop_first();
+      lock.lock();
 
-            lock.unlock();
-
-            pfunction->process(*this);
-
-            lock.lock();
-
-         }
-
-      }));
+   }
 
 }
 
+
+//template < typename TYPE >
+//void sequence < TYPE > ::set_status(const ::e_status & estatus)
+//{
+//
+//   critical_section_lock lock(get_sequence_critical_section());
+//
+//   m_p.m_estatus = estatus;
+//
+//   if (m_pevent)
+//   {
+//
+//      m_pevent->SetEvent();
+//
+//   }
+//
+//   increment_reference_count();
+//
+//   m_psystem->fork(__routine([this]()
+//      {
+//
+//         auto pHold = ::move_transfer(this);
+//
+//         critical_section_lock lock(get_sequence_critical_section());
+//
+//         while (m_stepa.has_element())
+//         {
+//
+//            auto pfunction = m_stepa.pop_first();
+//
+//            lock.unlock();
+//
+//            pfunction->process(*this);
+//
+//            lock.lock();
+//
+//         }
+//
+//      }));
+//
+//}
 
 template < typename TYPE >
 TYPE & sequence < TYPE > ::topic(const ::duration& duration)
@@ -806,7 +848,7 @@ TYPE & sequence < TYPE > ::topic(const ::duration& duration)
 
       m_pevent = new manual_reset_event();
 
-      if (!m_pevent->wait(duration).succeeded())
+      if (!m_pevent->wait(duration))
       {
 
          lock.lock();
@@ -908,7 +950,7 @@ sequence < TYPE > & sequence < TYPE > ::then(const ::duration& duration, OPERATI
 
       lock.unlock();
 
-      if (!m_pevent->wait(duration).succeeded())
+      if (!m_pevent->wait(duration))
       {
 
          lock.lock();

@@ -29,10 +29,10 @@ namespace userex
 
 
 
-   void group_image_list_view::assert_valid() const
+   void group_image_list_view::assert_ok() const
    {
 
-      ::user::impact::assert_valid();
+      ::user::impact::assert_ok();
 
    }
 
@@ -45,20 +45,20 @@ namespace userex
    }
 
 
-   void group_image_list_view::handle(::subject * psubject, ::context * pcontext)
+   void group_image_list_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::user::impact::handle(psubject, pcontext);
+      ::user::impact::handle(ptopic, pcontext);
 
-      if (psubject->m_id == ::e_subject_item_clicked)
+      if (ptopic->m_atom == ::id_item_clicked)
       {
 
 
       }
-      else if (psubject->m_id == ::e_subject_click)
+      else if (ptopic->m_atom == ::id_click)
       {
 
-         if (psubject->user_interaction()->m_id == m_id)
+         if (ptopic->get_extended_topic()->user_interaction()->m_atom == m_atom)
          {
 
             show_menu();
@@ -67,7 +67,7 @@ namespace userex
 
       }
 
-      return ::user::impact::handle(psubject, pcontext);
+      return ::user::impact::handle(ptopic, pcontext);
 
 
    }
@@ -83,14 +83,14 @@ namespace userex
    }
 
 
-   ::userex::image_list_view * group_image_list_view::add_group(::id idGroup, string strIcon, string strTitle, ::file::path pathFolder)
+   ::userex::image_list_view * group_image_list_view::add_group(::atom idGroup, string strIcon, string strTitle, ::file::path pathFolder)
    {
 
       __pointer(group) pgroup = __new(group);
 
       pgroup->m_iIndex = m_groupa.get_size();
 
-      pgroup->m_idGroup = idGroup;
+      pgroup->m_atomGroup = idGroup;
 
       pgroup->m_strIcon = strIcon;
 
@@ -131,9 +131,9 @@ namespace userex
 
       pcreate->previous();
 
-      m_idaHandledCommands.add(m_id);
+      m_idaHandledCommands.add(m_atom);
 
-      m_buttonMenu.create_control(this, m_id);
+      m_buttonMenu.create_control(this, m_atom);
 
       m_buttonMenu.set_button_style(::user::button::style_image_and_text);
 
@@ -146,13 +146,13 @@ namespace userex
    }
 
 
-   group_image_list_view::group * group_image_list_view::get_group(::id idGroup)
+   group_image_list_view::group * group_image_list_view::get_group(::atom idGroup)
    {
 
       index iFind = m_groupa.predicate_find_first([=](auto & item)
       {
 
-         return item->m_idGroup == idGroup;
+         return item->m_atomGroup == idGroup;
 
       });
 
@@ -180,7 +180,7 @@ namespace userex
 
       }
 
-      return pgroup->m_idGroup;
+      return pgroup->m_atomGroup;
 
 
    }
@@ -210,7 +210,7 @@ namespace userex
    }
 
 
-   ::userex::image_list_view * group_image_list_view::get_group_list(::id idGroup)
+   ::userex::image_list_view * group_image_list_view::get_group_list(::atom idGroup)
    {
 
       __pointer(group) pgroup = get_group(idGroup);
@@ -263,7 +263,7 @@ namespace userex
 
       }
 
-      show_group(pgroup->m_idGroup);
+      show_group(pgroup->m_atomGroup);
 
       //auto * plist = get_group_list(strGroup);
 
@@ -293,7 +293,7 @@ namespace userex
    }
 
 
-   bool group_image_list_view::show_group(::id idGroup, ::file::path pathFolder)
+   bool group_image_list_view::show_group(::atom idGroup, ::file::path pathFolder)
    {
 
       __pointer(group) pgroup = get_group(idGroup);
@@ -328,7 +328,7 @@ namespace userex
 
       }
 
-      m_idGroup = idGroup;
+      m_atomGroup = idGroup;
 
       set_need_layout();
 
@@ -355,18 +355,18 @@ namespace userex
    }
 
 
-   //void group_image_list_view::handle(::subject * psubject, ::context * pcontext)
+   //void group_image_list_view::handle(::topic * ptopic, ::context * pcontext)
    //{
 
-   //   if (psubject->m_id == ::e_subject_item_clicked)
+   //   if (ptopic->m_atom == ::id_item_clicked)
    //   {
 
 
    //   }
-   //   else if (psubject->m_id == ::e_subject_click)
+   //   else if (ptopic->m_atom == ::id_click)
    //   {
 
-   //      if (psubject->user_interaction()->m_id == m_id)
+   //      if (ptopic->get_extended_topic()->user_interaction()->m_atom == m_atom)
    //      {
 
    //         show_menu();
@@ -375,7 +375,7 @@ namespace userex
 
    //   }
 
-   //   return ::user::impact::handle(psubject, pcontext);
+   //   return ::user::impact::handle(ptopic, pcontext);
 
    //}
 
@@ -385,13 +385,13 @@ namespace userex
 
       string str;
 
-      str = "<menubar title = \""+string(m_id)+"\" close_button=\"false\">";
+      str = "<menubar title = \""+string(m_atom)+"\" close_button=\"false\">";
 
       for (auto & pgroup : m_groupa)
       {
 
          str += "<item id=\"menu_item_";
-         str += pgroup->m_idGroup.to_string();
+         str += pgroup->m_atomGroup.to_string();
          str += "\" pimage =\"";
          str += pgroup->m_strIcon;
          str += "\">";
@@ -465,7 +465,7 @@ namespace userex
    void group_image_list_view::on_command(::message::command * pcommand)
    {
 
-      string str = pcommand->m_id;
+      string str = pcommand->m_atom;
 
       if (::str::begins_eat_ci(str, "menu_item_"))
       {
@@ -479,7 +479,7 @@ namespace userex
    ::userex::image_list_view * group_image_list_view::get_current_list()
    {
 
-      auto * pgroup = get_group(m_idGroup);
+      auto * pgroup = get_group(m_atomGroup);
 
       if (pgroup == nullptr)
       {

@@ -125,7 +125,7 @@ namespace aura
 
       string strTheme = get_theme();
 
-      //__throw(todo("core"));
+      //throw ::exception(todo("core"));
       // Sess(this).userex()->shell()->m_strShellThemePrefix = "app_core_desk/" + strTheme + "/";
 
       m_pcolors = m_mapColors[strTheme];
@@ -444,7 +444,7 @@ namespace aura
       blue->m_colorBack = argb(160, 205, 200, 250);
       lite->m_colorBack = argb(160, 255, 255, 255);
 
-      //__throw(todo("core"));
+      //throw ::exception(todo("core"));
       //Sess(this).userex()->shell()->m_straThemeableIconName.add("google-android.ico");
       //Sess(this).userex()->shell()->m_straThemeableIconName.add("Folders-OS-Windows-8-Metro.ico");
       //Sess(this).userex()->shell()->m_straThemeableIconName.add("firefox_weather.ico");
@@ -484,10 +484,10 @@ namespace aura
    }
 
 
-   void theme::handle_file_action(::file::action* psubject)
+   void theme::handle_file_action(::file::action* ptopic)
    {
 
-      //if (psubject->m_pathFile.ends_ci("weather_state.txt"))
+      //if (ptopic->m_pathFile.ends_ci("weather_state.txt"))
       //{
 
       //   (*m_prunnerChangeWeatherState)(::duration(300), [this]()

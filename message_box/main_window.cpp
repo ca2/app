@@ -69,13 +69,13 @@ namespace app_message_box
    }
 
 
-   void main_window::handle(::subject * psubject, ::context * pcontext)
+   void main_window::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (psubject->m_id == ::e_subject_click)
+      if (ptopic->m_atom == ::id_click)
       {
 
-         if (psubject->user_interaction() == m_pbuttonShowMessageBox && psubject->m_actioncontext.is_user_source())
+         if (ptopic->get_extended_topic()->user_interaction() == m_pbuttonShowMessageBox && ptopic->get_extended_topic()->m_actioncontext.is_user_source())
          {
 
             try
@@ -83,7 +83,7 @@ namespace app_message_box
 
                show_message_box();
 
-               psubject->m_bRet = true;
+               ptopic->get_extended_topic()->m_bRet = true;
 
                return;
 
@@ -103,12 +103,12 @@ namespace app_message_box
    void main_window::show_message_box()
    {
 
-      auto psequence = message_box("Showing a message box as requested.\n\nIs it ok?", nullptr, e_message_box_yes_no_cancel);
+      auto psequence = m_psystem->message_box("Showing a message box as requested.\n\nIs it ok?", nullptr, e_message_box_yes_no_cancel);
 
       psequence->then([this](auto psequence)
          {
 
-            if (psequence->m_edialogresult == e_dialog_result_yes)
+            if (psequence->m_atomResult == e_dialog_result_yes)
             {
 
                auto papplication = get_application();
@@ -116,7 +116,7 @@ namespace app_message_box
                papplication->_001TryCloseApplication();
 
             }
-            else if (psequence->m_edialogresult == e_dialog_result_cancel)
+            else if (psequence->m_atomResult == e_dialog_result_cancel)
             {
 
                show_message_box();

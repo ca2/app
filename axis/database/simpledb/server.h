@@ -33,8 +33,8 @@ namespace simpledb
       __pointer(::database::database) get_local_database();
 
       
-      virtual bool _data_server_load(::database::client * pclient, const ::database::key & id, get_memory getmemory, ::subject * psubject = nullptr) override;
-      virtual void _data_server_save(::database::client * pclient, const ::database::key & id, block block, ::subject * psubject = nullptr) override;
+      virtual bool _data_server_load(::database::client * pclient, const ::database::key & atom, get_memory getmemory, ::topic * ptopic = nullptr) override;
+      virtual void _data_server_save(::database::client * pclient, const ::database::key & atom, block block, ::topic * ptopic = nullptr) override;
 
 
       virtual void create_server_dataset();

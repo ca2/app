@@ -1081,7 +1081,7 @@ _GeoIP_lookupaddress_v6(const char *host)
    return ipnum;
 #else
 
-   __throw(todo);
+   throw ::exception(todo);
 
 #endif
 
@@ -1875,43 +1875,43 @@ i32 GeoIP_last_netmask (GeoIP* gi)
 
 
 /** return two letter country code */
-const char* GeoIP_code_by_id(i32 id)
+const char* GeoIP_code_by_id(i32 atom)
 {
-   if (id < 0 || id >= (i32) num_GeoIP_countries)
+   if (atom < 0 || atom >= (i32) num_GeoIP_countries)
       return nullptr;
 
-   return GeoIP_country_code[id];
+   return GeoIP_country_code[atom];
 }
 
 /** return three letter country code */
-const char* GeoIP_code3_by_id(i32 id)
+const char* GeoIP_code3_by_id(i32 atom)
 {
-   if (id < 0 || id >= (i32) num_GeoIP_countries)
+   if (atom < 0 || atom >= (i32) num_GeoIP_countries)
       return nullptr;
 
-   return GeoIP_country_code3[id];
+   return GeoIP_country_code3[atom];
 }
 
 
 /** return full name of country */
-const char* GeoIP_name_by_id(i32 id)
+const char* GeoIP_name_by_id(i32 atom)
 {
-   if (id < 0 || id >= (i32) num_GeoIP_countries)
+   if (atom < 0 || atom >= (i32) num_GeoIP_countries)
       return nullptr;
 
-   return GeoIP_country_name[id];
+   return GeoIP_country_name[atom];
 }
 
 /** return continent of country */
-const char* GeoIP_continent_by_id(i32 id)
+const char* GeoIP_continent_by_id(i32 atom)
 {
-   if (id < 0 || id >= (i32) num_GeoIP_countries)
+   if (atom < 0 || atom >= (i32) num_GeoIP_countries)
       return nullptr;
 
-   return GeoIP_country_continent[id];
+   return GeoIP_country_continent[atom];
 }
 
-/** return id by country code **/
+/** return atom by country code **/
 i32 GeoIP_id_by_code(const char *country)
 {
    u32 i;

@@ -20,8 +20,8 @@
 					<Add option="-std=c++17" />
 					<Add option="-fPIC" />
 					<Add option="-D_DEBUG" />
-					<Add directory="$(WORKSPACE_DIR)/../../../archive/platform-linux" />
-			<Add directory="$(WORKSPACE_DIR)/../../../archive/platform-linux/_include" />
+					<Add directory="$(WORKSPACE_DIR)/../../../operating-system/operating-system-linux" />
+			<Add directory="$(WORKSPACE_DIR)/../../../operating-system/operating-system-linux/_include" />
 				</Compiler>
 				<Linker>
 					<Add option="-m64" />
@@ -73,8 +73,8 @@
 					<Add option="-fPIC" />
 					<Add option="-O0" />
 					<Add option="-std=c++17" />
-					<Add directory="$(WORKSPACE_DIR)/../../../archive/platform-linux" />
-			<Add directory="$(WORKSPACE_DIR)/../../../archive/platform-linux/_include" />
+					<Add directory="$(WORKSPACE_DIR)/../../../operating-system/operating-system-linux" />
+			<Add directory="$(WORKSPACE_DIR)/../../../operating-system/operating-system-linux/_include" />
 				</Compiler>
 				<Linker>
 					<Add option="-pg" />
@@ -109,7 +109,7 @@
 					<Add directory="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
 				</Linker>
 				<ExtraCommands>
-					<Add before="../../platform-linux/stage/prepare_framework_h.sh $(PROJECT_DIR) $(TARGET_OBJECT_DIR)" />
+					<Add before="../../operating-system-linux/stage/prepare_framework_h.sh $(PROJECT_DIR) $(TARGET_OBJECT_DIR)" />
 					<Add before="cp -Rf $(#archive)/storage-linux/third/library/x64/* $(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
 				</ExtraCommands>
 			</Target>
@@ -125,14 +125,14 @@
 					<Add option="-g" />
 					<Add option="-D_DEBUG" />
 					<Add option="-DMEMDLEAK" />
-					<Add directory="$(WORKSPACE_DIR)/../../../archive/platform-linux" />
-			<Add directory="$(WORKSPACE_DIR)/../../../archive/platform-linux/_include" />
+					<Add directory="$(WORKSPACE_DIR)/../../../operating-system/operating-system-linux" />
+			<Add directory="$(WORKSPACE_DIR)/../../../operating-system/operating-system-linux/_include" />
 				</Compiler>
 				<Linker>
 					<Add directory="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
 				</Linker>
 				<ExtraCommands>
-					<Add before="../../platform-linux/stage/prepare_framework_h.sh $(PROJECT_DIR) $(TARGET_OBJECT_DIR)" />
+					<Add before="../../operating-system-linux/stage/prepare_framework_h.sh $(PROJECT_DIR) $(TARGET_OBJECT_DIR)" />
 				</ExtraCommands>
 			</Target>
 			<Target title="arm64_basis">
@@ -148,7 +148,7 @@
 					<Add option="-g" />
 					<Add option="-std=c++17" />
 					<Add option="-D_DEBUG" />
-					<Add directory="$(WORKSPACE_DIR)/../../../archive/platform-raspbian" />
+					<Add directory="$(WORKSPACE_DIR)/../../../operating-system/operating-system-raspbian" />
 				</Compiler>
 				<Linker>
 					<Add option="-pg" />
@@ -180,7 +180,7 @@
 					<Add directory="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
 				</Linker>
 				<ExtraCommands>
-					<Add before="../../platform-raspbian/stage/prepare_framework_h.sh $(PROJECT_DIR) $(TARGET_OBJECT_DIR)" />
+					<Add before="../../operating-system-raspbian/stage/prepare_framework_h.sh $(PROJECT_DIR) $(TARGET_OBJECT_DIR)" />
 				</ExtraCommands>
 			</Target>
 			<Target title="sanitizers">
@@ -199,8 +199,8 @@
 					<Add option="-fsanitize-recover=address" />
 					<Add option="-fsanitize=undefined" />
 					<Add option="-D_DEBUG" />
-					<Add directory="$(WORKSPACE_DIR)/../../../archive/platform-linux" />
-			<Add directory="$(WORKSPACE_DIR)/../../../archive/platform-linux/_include" />
+					<Add directory="$(WORKSPACE_DIR)/../../../operating-system/operating-system-linux" />
+			<Add directory="$(WORKSPACE_DIR)/../../../operating-system/operating-system-linux/_include" />
 				</Compiler>
 				<Linker>
 					<Add option="-Wl,-rpath=\\$$$ORIGIN" />
@@ -234,7 +234,7 @@
 					<Add directory="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
 				</Linker>
 				<ExtraCommands>
-					<Add before="../../platform-linux/stage/prepare_framework_h.sh $(PROJECT_DIR) $(TARGET_OBJECT_DIR)" />
+					<Add before="../../operating-system-linux/stage/prepare_framework_h.sh $(PROJECT_DIR) $(TARGET_OBJECT_DIR)" />
 					<Add before="cp -Rf $(#archive)/third-linux/thirdparty/library/x64/* ../$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
 				</ExtraCommands>
 			</Target>
@@ -263,8 +263,8 @@
 			<Add directory="$(WORKSPACE_DIR)/../../../source/include" />
 			<Add directory="$(WORKSPACE_DIR)/../../../source/app/_include" />
 			<Add directory="$(WORKSPACE_DIR)/../../../source/app/" />
-			<Add directory="$(WORKSPACE_DIR)/../../../archive/platform-$(#platform_modifier)" />
-			<Add directory="$(WORKSPACE_DIR)/../../../archive/platform-$(#platform_modifier)/_include" />
+			<Add directory="$(WORKSPACE_DIR)/../../../operating-system/operating-system-$(#platform_modifier)" />
+			<Add directory="$(WORKSPACE_DIR)/../../../operating-system/operating-system-$(#platform_modifier)/_include" />
 			<Add directory="$(#archive)/third-$(#platform_modifier)/third/include" />
 			<Add directory="$(#archive)/platform/include" />
 			<Add directory="$(#sensitive)/sensitive/include" />

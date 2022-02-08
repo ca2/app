@@ -187,7 +187,7 @@ namespace draw2d_opengl
    //   //case type_combine:
    //   //   return get_combine();
    //   //default:
-   //   //   throw interface_only_exception();
+   //   //   throw ::interface_only();
    //   //}
 
    //   return nullptr;

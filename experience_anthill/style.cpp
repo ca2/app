@@ -517,7 +517,7 @@ namespace experience
             if(true)
             {
 
-               if(ptab->get_data()->m_idaSel.contains(ppane->m_id))
+               if(ptab->get_data()->m_idaSel.contains(ppane->m_atom))
                {
 
                   //ppath->start_figure();
@@ -667,7 +667,7 @@ namespace experience
 
                auto ppath = __create < ::draw2d::path > ();
 
-               if(ptab->get_data()->m_idaSel.contains(ppane->m_id))
+               if(ptab->get_data()->m_idaSel.contains(ppane->m_atom))
                {
 
                   if (iPane > 0)
@@ -1249,7 +1249,7 @@ namespace experience
 //   bool style::on_ui_event(::user::e_event eevent, ::user::e_object eobject, ::user::interaction * pframewindow)
 //   {
 //
-//      if (eevent == ::e_subject_calc_item_height)
+//      if (eevent == ::id_calc_item_height)
 //      {
 //
 //         pframewindow->m_iItemHeight += 8;
@@ -1292,7 +1292,7 @@ namespace experience
 
       __pointer(::user::menu_central) pmenucentral = puser->menu();
 
-      ::u32 uImage = pmenucentral->command_image(item.m_id);
+      ::u32 uImage = pmenucentral->command_image(item.m_atom);
       
       ::user::enum_state estate = ptoolbar->get_item_user_state(iItem);
 
@@ -1620,7 +1620,7 @@ namespace experience
 
       __pointer(::user::menu_central) pmenucentral = puser->menu();
 
-      ::u32 uImage = pmenucentral->command_image(item.m_id);
+      ::u32 uImage = pmenucentral->command_image(item.m_atom);
 
       ::user::enum_state estate = ptoolbar->get_item_user_state(iItem);
 
@@ -1628,7 +1628,7 @@ namespace experience
 
       ptoolbar->_001GetElementRect(iItem, rectangleImage, ::e_element_image, estate);
 
-      if (item.m_id.compare_ci("separator") == 0)
+      if (item.m_atom.compare_ci("separator") == 0)
       {
          /*::rectangle_i32 rectangleSeparator;
          rectangleSeparator.left = (rectangleImage.left + rectangleImage.right) / 2 - 1;

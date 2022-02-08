@@ -23,9 +23,9 @@ void simple_form_list_view::install_message_routing(::channel * pchannel)
 
 
 
-void simple_form_list_view::assert_valid() const
+void simple_form_list_view::assert_ok() const
 {
-   ::user::impact::assert_valid();
+   ::user::impact::assert_ok();
 }
 
 
@@ -51,9 +51,9 @@ bool simple_form_list_view::pre_create_window(::user::system * pusersystem)
 }
 
 
-void simple_form_list_view::handle(::subject * psubject, ::context * pcontext)
+void simple_form_list_view::handle(::topic * ptopic, ::context * pcontext)
 {
 
-   BASE::handle(psubject, pcontext);
+   BASE::handle(ptopic, pcontext);
 
 }

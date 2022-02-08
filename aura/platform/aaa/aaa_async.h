@@ -280,7 +280,7 @@ namespace async
    inline void cancel_current_task()
    {
 
-      __throw(::exception("cancel_current_task"));
+      throw ::exception(::exception("cancel_current_task"));
 
    }
 

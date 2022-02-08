@@ -136,9 +136,9 @@ void api::api_login(const ::string & strConfig, const ::string & strProfile)
 void api::api_get(string& strNetworkPayload, const string& strUrl, property_set& set)
 {
 
-   throw interface_only_exception();
+   throw ::interface_only();
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
 }
 
@@ -168,9 +168,9 @@ void api::api_get(::payload& payload, const string & strUrl, property_set& set)
 void api::api_download(string strGet, const ::file::path& path, property_set& set)
 {
 
-   throw interface_only_exception();
+   throw ::interface_only();
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
 }
 
@@ -178,7 +178,7 @@ void api::api_download(string strGet, const ::file::path& path, property_set& se
 string api::api_token(bool bForce)
 {
 
-   throw interface_only_exception();
+   throw ::interface_only();
 
    return "";
 
@@ -242,10 +242,10 @@ void api::on_login_authentication_failed()
       string str = pbase64->encode(m);
 
       // Converts base64 to base64url.
-      str.replace("+", "-");
-      str.replace("/", "_");
+      str.replace_with("-", "+");
+      str.replace_with("_", "/");
       // Strips padding.
-      str.replace("=", "");
+      str.replace_with("", "=");
 
       return str;
 

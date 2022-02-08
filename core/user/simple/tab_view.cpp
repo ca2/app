@@ -16,9 +16,9 @@ simple_tab_view::~simple_tab_view()
 // simple_tab_view diagnostics
 
 
-void simple_tab_view::assert_valid() const
+void simple_tab_view::assert_ok() const
 {
-   ::user::impact::assert_valid();
+   ::user::impact::assert_ok();
 }
 
 

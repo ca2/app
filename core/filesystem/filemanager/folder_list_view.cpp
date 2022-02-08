@@ -70,13 +70,13 @@ namespace filemanager
       {
 
          auto pcolumn                     = new_list_column();
-         pcolumn->m_id                    = "check_recursive";
+         pcolumn->m_atom                    = "check_recursive";
          pcolumn->m_iWidth                = 80;
          pcolumn->m_iSubItem              = 1;
          pcolumn->m_text                  = m_pcontext->__text("text://filemanager/folder_list_view/recursive/Recursive");
 
          auto pcheckbox = __create_new <  ::user::check_box >();
-         pcheckbox->m_id = pcolumn->m_id;
+         pcheckbox->m_atom = pcolumn->m_atom;
          pcheckbox->add_function(::user::e_control_function_check_box);
          _001AddControl(pcheckbox);
 
@@ -180,12 +180,12 @@ namespace filemanager
    }
 
 
-   void folder_list_view::handle(::subject * psubject, ::context * pcontext)
+   void folder_list_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      FILEMANAGER_SHOW_IMPACT::handle(psubject, pcontext);
+      FILEMANAGER_SHOW_IMPACT::handle(ptopic, pcontext);
 
-      if (psubject->id() == INITIALIZE_ID)
+      if (ptopic->m_atom == INITIALIZE_ID)
       {
 
          if (filemanager_data()->m_bPassBk)
@@ -195,7 +195,7 @@ namespace filemanager
 
          }
 
-         initialize(__string(filemanager_data()->m_id), filemanager_data()->m_bEnableRecursiveFolderSelectionList);
+         initialize(__string(filemanager_data()->m_atom), filemanager_data()->m_bEnableRecursiveFolderSelectionList);
 
       }
 
@@ -205,7 +205,7 @@ namespace filemanager
    void folder_list_view::on_check_save(::user::interaction* puserinteraction)
    {
 
-      if (puserinteraction->m_id == "check_recursive")
+      if (puserinteraction->m_atom == "check_recursive")
       {
 
          if (m_pfolderlistdata)
@@ -227,7 +227,7 @@ namespace filemanager
    void folder_list_view::on_check_load(::user::interaction* puserinteraction)
    {
 
-      if (puserinteraction->m_id == "check_recursive")
+      if (puserinteraction->m_atom == "check_recursive")
       {
 
          if (m_pfolderlistdata)

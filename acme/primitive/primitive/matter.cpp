@@ -33,7 +33,7 @@ matter::~matter()
 }
 
 
-void matter::assert_valid() const
+void matter::assert_ok() const
 {
 
 }
@@ -164,7 +164,7 @@ const char* matter::debug_note() const
 ::element * matter::clone() const
 {
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
    return nullptr;
 
@@ -343,13 +343,13 @@ void matter::kick_idle()
 
 
 
-void matter::on_future(const ::payload & payload)
+void matter::on_sequence(const ::payload & payload)
 {
 
 }
 
 
-//::task* matter::defer_branch(const ::id& id, const ::routine & routine)
+//::task* matter::defer_branch(const ::atom& atom, const ::routine & routine)
 //{
 //
 //   auto ptasktool = taskpool();
@@ -361,7 +361,7 @@ void matter::on_future(const ::payload & payload)
 //
 //   }
 //
-//   return ptasktool->defer_branch(id, routine);
+//   return ptasktool->defer_branch(atom, routine);
 //
 //}
 
@@ -693,32 +693,32 @@ void matter::trace_log_fatal(const char * psz, ...)
 
 
 
-//void matter::future(const ::id & id, const ::payload & payload)
+//void matter::future(const ::atom & atom, const ::payload & payload)
 //{
 //
 //
 //}
 
 
-//void matter::future(::promise::update * psubject)
+//void matter::future(::promise::update * ptopic)
 //{
 //
-//   if (!psubject->is_up_to_date())
+//   if (!ptopic->is_up_to_date())
 //   {
 //
-//      handle(psubject, pcontext);
+//      handle(ptopic, pcontext);
 //
-//      if(!psubject->m_bitProcessed)
+//      if(!ptopic->m_bitProcessed)
 //      {
 //
-//         handle(psubject, pcontext);
+//         handle(ptopic, pcontext);
 //
 //      }
 //
-//      if(psubject->m_bitProcessed)
+//      if(ptopic->m_bitProcessed)
 //      {
 //
-//         handle(psubject, pcontext);
+//         handle(ptopic, pcontext);
 //
 //      }
 //
@@ -727,21 +727,21 @@ void matter::trace_log_fatal(const char * psz, ...)
 //}
 
 
-//void matter::on_subject(::promise::update *psubject)
+//void matter::on_subject(::promise::update *ptopic)
 //{
 //
 //
 //}
 
 
-//void matter::on_subject(::promise::update *psubject)
+//void matter::on_subject(::promise::update *ptopic)
 //{
 //
 //
 //}
 
 
-//void matter::on_subject(::promise::update *psubject)
+//void matter::on_subject(::promise::update *ptopic)
 //{
 //
 //
@@ -893,14 +893,14 @@ void matter::osthread_term()
 //}
 
 
-//void matter::route(::subject * psubject, ::context * pcontext)
+//void matter::route(::topic * ptopic, ::context * pcontext)
 //{
 //
 //
 //}
 
 
-//void matter::post_process(::subject * psubject, ::context * pcontext)
+//void matter::post_process(::topic * ptopic, ::context * pcontext)
 //{
 //
 //
@@ -916,6 +916,16 @@ CLASS_DECL_ACME void __call(const ::routine & routine)
    //return routine();
 
    routine();
+
+}
+
+
+__pointer(::sequence < ::conversation >) matter::message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
+{
+
+   auto psequence = m_psystem->message_box(strMessage, strTitle, emessagebox);
+
+   return psequence;
 
 }
 

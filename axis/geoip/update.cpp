@@ -519,7 +519,7 @@ i16 GeoIP_update_database (char * license_key, i32 verbose, void (*f)( char * ))
 //
 //#else
 //
-//   __throw(todo);
+//   throw ::exception(todo);
 //
 //#endif
 //
@@ -591,7 +591,7 @@ i16 GeoIP_update_database_general (::object * pobject, char * user_id,char * lic
 //   if (request_uri == nullptr)
 //      return GEOIP_OUT_OF_MEMORY_ERR;
 //
-//   /* get the file name from a web page using the product id */
+//   /* get the file name from a web page using the product atom */
 //   sprintf(request_uri,GeoIPHTTPRequestFilename,GeoIPProxyHTTP,GeoIPProxiedHost,data_axis_type,GeoIPUpdateHost);
 //   if (verbose == 1) {
 //      GeoIP_printf(f, "sending request %s \n",request_uri);
@@ -624,9 +624,9 @@ i16 GeoIP_update_database_general (::object * pobject, char * user_id,char * lic
 //   geoipfilename = _GeoIP_full_path_to(tmpstr);
 //   free(buf);
 //
-//   /* print the database product id and the database filename */
+//   /* print the database product atom and the database filename */
 //   if (verbose == 1){
-//      GeoIP_printf(f, "database product id %s database file name %s \n",data_axis_type,geoipfilename);
+//      GeoIP_printf(f, "database product atom %s database file name %s \n",data_axis_type,geoipfilename);
 //   }
 //   _GeoIP_setup_dbfilename();
 //
@@ -741,7 +741,7 @@ i16 GeoIP_update_database_general (::object * pobject, char * user_id,char * lic
 //      GeoIP_printf(f, "md5sum of ip address and license key is %s \n",hex_digest2);
 //   }
 //
-//   /* send the request using the ::account::user id,product id,
+//   /* send the request using the ::account::user atom,product atom,
 //    * md5 sum of the prev database and
 //    * the md5 sum of the license_key and ip address */
 //   if((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0)
@@ -1025,7 +1025,7 @@ i16 GeoIP_update_database_general (::object * pobject, char * user_id,char * lic
 //
 //#else
 //
-//   __throw(todo(pobject));
+//   throw ::exception(todo(pobject));
 //
 //#endif
 //

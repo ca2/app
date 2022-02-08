@@ -238,11 +238,11 @@ namespace str
 
    inline ansistring & assign(ansistring & strDst, const wd32string& wstrSrc);
 
-   inline ansistring & assign(ansistring & ansistrDst, const id & id);
+   inline ansistring & assign(ansistring & ansistrDst, const atom & atom);
 
-   inline wd16string & assign(wd16string & widestrDst, const id & id);
+   inline wd16string & assign(wd16string & widestrDst, const atom & atom);
 
-   inline wd32string & assign(wd32string & widestrDst, const id & id);
+   inline wd32string & assign(wd32string & widestrDst, const atom & atom);
 
    inline ansistring & assign(ansistring & ansistrDst, ansichar ansich);
 

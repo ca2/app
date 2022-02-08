@@ -36,9 +36,9 @@ namespace user
 
 
 
-   void split_view::assert_valid() const
+   void split_view::assert_ok() const
    {
-      impact::assert_valid();
+      impact::assert_ok();
    }
 
    void split_view::dump(dump_context & dumpcontext) const
@@ -114,7 +114,7 @@ namespace user
    }
 
 
-   void split_view::handle(::subject * psubject, ::context * pcontext)
+   void split_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
    }
@@ -224,14 +224,14 @@ namespace user
    bool split_view::on_prepare_impact_data(::user::impact_data* pimpactdata)
    {
 
-      //if (!add_tab(pimpactdata->m_id, pimpactdata->m_idTitle))
+      //if (!add_tab(pimpactdata->m_atom, pimpactdata->m_atomTitle))
       //{
 
       //   return false;
 
       //}
 
-      split_pane * ppane = m_splitpanecompositea[pimpactdata->m_id.index()];
+      split_pane * ppane = m_splitpanecompositea[pimpactdata->m_atom.index()];
 
       if (ppane != nullptr)
       {

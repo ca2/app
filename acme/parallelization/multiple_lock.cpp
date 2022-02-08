@@ -6,7 +6,7 @@
 #ifdef PARALLELIZATION_PTHREAD
 
 
-#include "acme/node/operating_system/ansi/_pthread.h"
+#include "acme/operating_system/ansi/_pthread.h"
 
 
 #endif
@@ -31,7 +31,7 @@ multiple_lock::multiple_lock(const synchronization_array & synchronizationa,bool
    if(synchronizationa.synchronization_object_count() <= 0)
    {
 
-      __throw(error_invalid_argument);
+      throw ::exception(error_bad_argument);
 
    }
 
@@ -62,7 +62,7 @@ multiple_lock::multiple_lock(::count c, const synchronization_array & synchroniz
    if (synchronizationa.has_no_synchronization_object() || c <= 0 || c > synchronizationa.synchronization_object_count() || c > MAXIMUM_WAIT_OBJECTS)
    {
 
-      __throw(error_invalid_argument);
+      throw ::exception(error_bad_argument);
 
    }
 
@@ -88,13 +88,13 @@ multiple_lock::~multiple_lock()
 }
 
 
-void multiple_lock::lock(const duration & duration, bool bWaitForAll, u32 dwWakeMask)
+::index multiple_lock::lock(const duration & duration, bool bWaitForAll, u32 dwWakeMask)
 {
 
    if (m_synchronizationa.has_no_synchronization_object())
    {
 
-      return;
+      throw_status(error_invalid_empty_argument);
 
    }
 
@@ -152,6 +152,8 @@ void multiple_lock::lock(const duration & duration, bool bWaitForAll, u32 dwWake
    }
 
    //return estatus;
+
+   return iSignaled;
 
 }
 

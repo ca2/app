@@ -67,9 +67,9 @@ namespace draw2d_opengl
    }
 
 
-   void object::assert_valid() const
+   void object::assert_ok() const
    {
-      //::object::assert_valid();
+      //::object::assert_ok();
       //ASSERT(get_handle() == nullptr ||
         // (afxData.bWin95 || ::GetObjectType(get_handle()) != 0));
    }

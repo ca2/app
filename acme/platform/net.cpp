@@ -9,7 +9,7 @@ CLASS_DECL_ACME string url_decode(const ::string & strParam)
 
    string strDecode;
 
-   str.replace("+"," ");
+   str.replace_with(" ", "+");
 
    strsize iStart = 0;
 
@@ -372,7 +372,7 @@ int ui_open_url(const char * psz);
 
 void openURL(const string &url_str)
 {
-//   __throw(todo);
+//   throw ::exception(todo);
 //   CFURLRef url = CFURLCreateWithBytes(
 //      nullptr,                        // allocator
 //      (::u328*)url_str.c_str(),     // URLBytes
@@ -560,7 +560,7 @@ CLASS_DECL_ACME string url_decode(const char* psz)
 
    string strDecode;
 
-   str.replace("+", " ");
+   str.replace_with(" ", "+");
 
    strsize iStart = 0;
 
@@ -940,7 +940,7 @@ int ui_open_url(const char* psz);
 
 void openURL(const string& url_str)
 {
-   //   __throw(todo);
+   //   throw ::exception(todo);
    //   CFURLRef url = CFURLCreateWithBytes(
    //      nullptr,                        // allocator
    //      (::u328*)url_str.c_str(),     // URLBytes

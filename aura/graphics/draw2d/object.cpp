@@ -30,15 +30,15 @@ namespace draw2d
 
       __UNREFERENCED_PARAMETER(dumpcontext);
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
 
-   void object::assert_valid() const
+   void object::assert_ok() const
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -46,7 +46,7 @@ namespace draw2d
    bool object::CreateStockObject(i32 nIndex)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return false;
 
@@ -56,7 +56,7 @@ namespace draw2d
    bool object::UnrealizeObject()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return false;
 
@@ -84,7 +84,7 @@ namespace draw2d
    ::u32 object::GetObjectType() const
    {
       
-      throw ::interface_only_exception();
+      throw ::interface_only();
       
       return 0;
 
@@ -96,7 +96,7 @@ namespace draw2d
       
       __UNREFERENCED_PARAMETER(obj);
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return false;
 
@@ -108,7 +108,7 @@ namespace draw2d
 
       __UNREFERENCED_PARAMETER(obj);
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return false;
 

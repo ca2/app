@@ -32,17 +32,17 @@ namespace browser
 
       void install_message_routing(::channel * pchannel) override;
 
-      void assert_valid() const override;
+      void assert_ok() const override;
 
       void dump(dump_context & dumpcontext) const override;
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
-      void handle(::subject * psubject, ::context * pcontext);
+      void handle(::topic * ptopic, ::context * pcontext);
       void on_change_cur_sel();
 
       virtual ::file::path prepare_menu_view();
 
-      virtual void handle(::subject * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
 
       virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics);

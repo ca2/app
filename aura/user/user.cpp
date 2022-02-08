@@ -178,16 +178,16 @@ namespace user
 
       }
 
-      auto pimpl = pwindow->m_pimpl;
+      auto puserinteractionimpl = pwindow->m_puserinteractionimpl;
 
-      if (::is_null(pimpl))
+      if (::is_null(puserinteractionimpl))
       {
 
          return nullptr;
 
       }
 
-      return pimpl->m_puserinteraction;
+      return puserinteractionimpl->m_puserinteraction;
 
    }
 
@@ -213,16 +213,16 @@ namespace user
 
       }
 
-      auto pimpl = pwindow->m_pimpl;
+      auto puserinteractionimpl = pwindow->m_puserinteractionimpl;
 
-      if (::is_null(pimpl))
+      if (::is_null(puserinteractionimpl))
       {
 
          return nullptr;
 
       }
 
-      return pimpl->m_puserinteractionCapture;
+      return puserinteractionimpl->m_puserinteractionCapture;
 
    }
 
@@ -248,16 +248,16 @@ namespace user
 
       }
 
-      auto pimpl = pwindow->m_pimpl;
+      auto puserinteractionimpl = pwindow->m_puserinteractionimpl;
 
-      if (::is_null(pimpl))
+      if (::is_null(puserinteractionimpl))
       {
 
          return nullptr;
 
       }
 
-      return pimpl->m_puserinteractionFocus1;
+      return puserinteractionimpl->m_puserinteractionFocus1;
 
    }
 
@@ -283,16 +283,16 @@ namespace user
 
       }
 
-      auto pimpl = pwindow->m_pimpl;
+      auto puserinteractionimpl = pwindow->m_puserinteractionimpl;
 
-      if (::is_null(pimpl))
+      if (::is_null(puserinteractionimpl))
       {
 
          return nullptr;
 
       }
 
-      return pimpl->m_puserinteraction;
+      return puserinteractionimpl->m_puserinteraction;
 
    }
 
@@ -346,16 +346,16 @@ namespace user
 
       }
 
-      auto pimpl = pwindow->m_pimpl;
+      auto puserinteractionimpl = pwindow->m_puserinteractionimpl;
 
-      if (::is_null(pimpl))
+      if (::is_null(puserinteractionimpl))
       {
 
          return nullptr;
 
       }
 
-      return pimpl->m_puserinteraction;
+      return puserinteractionimpl->m_puserinteraction;
 
    }
 
@@ -689,7 +689,7 @@ namespace user
    }
 
 
-   void user::SendMessageToWindows(const ::id & id,wparam wparam,lparam lparam)
+   void user::SendMessageToWindows(const ::atom & atom,wparam wparam,lparam lparam)
    {
 
       auto psession = get_session();
@@ -709,9 +709,9 @@ namespace user
             if (pinteraction != nullptr && pinteraction->is_window())
             {
 
-               pinteraction->send_message(id, wparam, lparam);
+               pinteraction->send_message(atom, wparam, lparam);
 
-               pinteraction->send_message_to_descendants(id, wparam, lparam);
+               pinteraction->send_message_to_descendants(atom, wparam, lparam);
 
             }
 
@@ -786,7 +786,7 @@ namespace user
    //void user::close_all_documents(bool bEndSession)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //}
 
@@ -815,10 +815,10 @@ namespace user
 //   }
 
 
-   //CLASS_DECL_AURA __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const ::string & pClassName, const ::string & lpWindowName, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, id id, HINSTANCE hInstance, LPVOID pParam);
+   //CLASS_DECL_AURA __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const ::string & pClassName, const ::string & lpWindowName, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, atom atom, HINSTANCE hInstance, LPVOID pParam);
 
 
-   //CLASS_DECL_AURA __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const ::string & pClassName, const ::string & pWindowName, u32 uStyle, ::user::interaction * puiParent, id id, HINSTANCE hInstance, LPVOID pParam)
+   //CLASS_DECL_AURA __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const ::string & pClassName, const ::string & pWindowName, u32 uStyle, ::user::interaction * puiParent, atom atom, HINSTANCE hInstance, LPVOID pParam)
    CLASS_DECL_AURA __pointer(::user::interaction) create_virtual_window(::object * pobject, ::user::interaction * pinteractionParent)
    {
 
@@ -1024,12 +1024,12 @@ namespace aura
 //
 //      if (psession->m_bShowPlatform)
 //      {
-//         //__pointer(::simple_frame_window) pframeApp = get_document()->get_typed_view < ::bergedge::pane_view >()->get_view_uie();
+//         //__pointer(::simple_frame_window) pframeApp = get_document()->get_type_impact < ::bergedge::pane_view >()->get_view_uie();
 //         //if(pframeApp != nullptr)
 //         //{
 //         //   pframeApp->display(e_display_full_screen);
 //         //}
-//         //__pointer(::simple_frame_window) pframe = get_document()->get_typed_view < ::bergedge::pane_view >()->get_parent_frame();
+//         //__pointer(::simple_frame_window) pframe = get_document()->get_type_impact < ::bergedge::pane_view >()->get_parent_frame();
 //         //if(pframe != nullptr)
 //         //{
 //         //   pframe->display(e_display_normal);
@@ -1037,9 +1037,9 @@ namespace aura
 //      }
 //      else
 //      {
-//         //if(get_document() != nullptr && get_document()->get_typed_view < ::bergedge::impact >() != nullptr)
+//         //if(get_document() != nullptr && get_document()->get_type_impact < ::bergedge::impact >() != nullptr)
 //         //{
-//         //   __pointer(::simple_frame_window) pframe = get_document()->get_typed_view < ::bergedge::impact >()->get_parent_frame();
+//         //   __pointer(::simple_frame_window) pframe = get_document()->get_type_impact < ::bergedge::impact >()->get_parent_frame();
 //         //   if(pframe != nullptr)
 //         //   {
 //         //      pframe->display(e_display_normal);
@@ -1261,18 +1261,18 @@ namespace aura
       //   if (get_document() != nullptr)
       //   {
 
-      //      //if(get_document()->get_typed_view < ::bergedge::pane_view >() != nullptr)
+      //      //if(get_document()->get_type_impact < ::bergedge::pane_view >() != nullptr)
       //      //{
 
-      //      //   get_document()->get_typed_view < ::bergedge::pane_view >()->set_current_tab_by_id("app:" + strAppName);
+      //      //   get_document()->get_type_impact < ::bergedge::pane_view >()->set_current_tab_by_id("app:" + strAppName);
 
-      //      //   puiParent = get_document()->get_typed_view < ::bergedge::pane_view >()->get_tab_holder(get_document()->get_typed_view < ::bergedge::pane_view >()->get_tab_by_id("app:" + strAppName));
+      //      //   puiParent = get_document()->get_type_impact < ::bergedge::pane_view >()->get_tab_holder(get_document()->get_type_impact < ::bergedge::pane_view >()->get_tab_by_id("app:" + strAppName));
 
       //      //}
       //      //else
       //      //{
 
-      //      //   puiParent = get_document()->get_typed_view < ::bergedge::impact >();
+      //      //   puiParent = get_document()->get_type_impact < ::bergedge::impact >();
 
       //      //}
 
@@ -1359,7 +1359,7 @@ namespace user
 
       }
 
-      i64 iMessage = pmouse->m_id;
+      i64 iMessage = pmouse->m_atom;
 
       if(iMessage == e_message_left_button_down
        //|| iMessage == e_message_left_button_up

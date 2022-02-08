@@ -32,7 +32,7 @@ int var_procedure()
 
    in_addr addr;
 
-   ::var_stream stream(payload);
+   ::payload_stream stream(payload);
 
    stream >> addr;
 
@@ -51,34 +51,34 @@ public:
    template < typename TYPE >
    void default_exchange(TYPE & t) { is_loading() ? read(t) : write(t); }
 
-   virtual void exchange(const ::id & id, i8 & i) { default_exchange(i); }
-   virtual void exchange(const ::id & id, string & str) { default_exchange(str); }
+   virtual void exchange(const ::atom & atom, i8 & i) { default_exchange(i); }
+   virtual void exchange(const ::atom & atom, string & str) { default_exchange(str); }
 
    
 
    template < typename OBJECT >
-   inline void exchange(const ::id & id, __pointer(OBJECT) & pobject)
+   inline void exchange(const ::atom & atom, __pointer(OBJECT) & pobject)
    {
       if (is_storing())
       {
-         write_object(id, pobject.m_p);
+         write_object(atom, pobject.m_p);
       }
       else
       {
-         pobject = read_object(id);
+         pobject = read_object(atom);
       }
    }
 
 
-   virtual void write_object(const ::id & id, const ::id & idFactory, ::matter * pobject)
+   virtual void write_object(const ::atom & atom, const ::atom & idFactory, ::matter * pobject)
    {
       exchange("id", idFactory);
       exchange("", pobject);
    }
 
-   virtual __pointer(::matter) read_object(const ::id & id)
+   virtual __pointer(::matter) read_object(const ::atom & atom)
    {
-      ::id idFactory;
+      ::atom idFactory;
       exchange("id", idFactory);
       auto pobject = __id_create<::matter>(idFactory);
       exchange("", pobject);
@@ -89,7 +89,7 @@ public:
 };
 
 
-class var_stream
+class payload_stream
 {
 public:
 
@@ -102,27 +102,27 @@ public:
    virtual void write(const ::string & str) {}
 
    template < typename TYPE >
-   void default_exchange(const ::id & id, TYPE & t) { is_loading() ? t = operator[id] : operator[id] = t; }
+   void default_exchange(const ::atom & atom, TYPE & t) { is_loading() ? t = operator[atom] : operator[atom] = t; }
 
-   virtual void exchange(const ::id & id, i8 & i) { default_exchange(id, i); }
-   virtual void exchange(const ::id & id, string & str) { default_exchange(id, str); }
-
-
+   virtual void exchange(const ::atom & atom, i8 & i) { default_exchange(atom, i); }
+   virtual void exchange(const ::atom & atom, string & str) { default_exchange(atom, str); }
 
 
 
 
-   virtual void write_object(const ::id & id, const ::id & idFactory, ::matter * pobject) override
+
+
+   virtual void write_object(const ::atom & atom, const ::atom & idFactory, ::matter * pobject) override
    {
-      var_stream stream(new ::payload(&payload()[id].propset()));
+      payload_stream stream(new ::payload(&payload()[atom].propset()));
       stream.exchange("id", idFactory);
       stream.exchange("", pobject);
    }
 
-   virtual __pointer(::contex_object) read_object(const ::id & id) override
+   virtual __pointer(::contex_object) read_object(const ::atom & atom) override
    {
-      var_stream stream(new ::payload(&payload()[id].propset()));
-      ::id idFactory;
+      payload_stream stream(new ::payload(&payload()[atom].propset()));
+      ::atom idFactory;
       stream.exchange("id", idFactory);
       auto pobject = __id_create<::matter>(idFactory);
       stream.exchange("", pobject);
@@ -135,14 +135,14 @@ public:
 //void __exchange(stream & stream, in_addr & addr) { __exchange_stringable(stream, addr); }
 //
 //
-//void __exchange(stream & stream, const ::id & id, i8 & i) { __exchange_blt(stream, i); }
-//void __exchange(stream & stream, const ::id & id, string & str) { __exchange_string(stream, str); }
-//void __exchange(stream & stream, const ::id & id, in_addr & addr) { __exchange_stringable(stream, addr); }
+//void __exchange(stream & stream, const ::atom & atom, i8 & i) { __exchange_blt(stream, i); }
+//void __exchange(stream & stream, const ::atom & atom, string & str) { __exchange_string(stream, str); }
+//void __exchange(stream & stream, const ::atom & atom, in_addr & addr) { __exchange_stringable(stream, addr); }
 //
 //
-//void __exchange(var_stream & stream, i8 & i) { __exchange_blt(stream, i); }
-//void __exchange(var_stream & stream, string & str) { __exchange_string(stream, str); }
-//void __exchange(var_stream & stream, in_addr & addr) { __exchange_stringable(stream, addr); }
+//void __exchange(payload_stream & stream, i8 & i) { __exchange_blt(stream, i); }
+//void __exchange(payload_stream & stream, string & str) { __exchange_string(stream, str); }
+//void __exchange(payload_stream & stream, in_addr & addr) { __exchange_stringable(stream, addr); }
 
 
 class window :
@@ -180,12 +180,12 @@ class exchanger
    stream * m_pstream;
 
    template
-      exchange(id, value) read / write value
+      exchange(atom, value) read / write value
    {
        if (is_storing)
-       m_pstream->write(id value)
+       m_pstream->write(atom value)
        else
-       m_pstream->read(id, value)
+       m_pstream->read(atom, value)
 
    }
       template
@@ -203,14 +203,14 @@ class exchanger
            {
 
 
-           read(id, i8) throw not_implemented;
-           read(id, i16) throw not_implemented;
-           read(id, i32) throw not_implemented;
-           read(id, i64) throw not_implemented;
-           read(id, u8) throw not_implemented;
-           read(id, u16) throw not_implemented;
-           read(id, u32) throw not_implemented;
-           read(id, u64) throw not_implemented;
+           read(atom, i8) throw not_implemented;
+           read(atom, i16) throw not_implemented;
+           read(atom, i32) throw not_implemented;
+           read(atom, i64) throw not_implemented;
+           read(atom, u8) throw not_implemented;
+           read(atom, u16) throw not_implemented;
+           read(atom, u32) throw not_implemented;
+           read(atom, u64) throw not_implemented;
 
            read(i8) throw not_implemented;
            read(i16) throw not_implemented;
@@ -221,14 +221,14 @@ class exchanger
            read(u32) throw not_implemented;
            read(u64) throw not_implemented;
 
-           write(id, i8) throw not_implemented;
-           write(id, i16) throw not_implemented;
-           write(id, i32) throw not_implemented;
-           write(id, i64) throw not_implemented;
-           write(id, u8) throw not_implemented;
-           write(id, u16) throw not_implemented;
-           write(id, u32) throw not_implemented;
-           write(id, u64) throw not_implemented;
+           write(atom, i8) throw not_implemented;
+           write(atom, i16) throw not_implemented;
+           write(atom, i32) throw not_implemented;
+           write(atom, i64) throw not_implemented;
+           write(atom, u8) throw not_implemented;
+           write(atom, u16) throw not_implemented;
+           write(atom, u32) throw not_implemented;
+           write(atom, u64) throw not_implemented;
 
            write(i8) throw not_implemented;
            write(i16) throw not_implemented;
@@ -247,14 +247,14 @@ class exchanger
            {
 
 
-           read(id, i8) read(i8)
-           read(id, i16) read(i16)
-           read(id, i32) read(i32)
-           read(id, i64) read(i64)
-           read(id, u8) read(u8)
-           read(id, u16) read(u16)
-           read(id, u32) read(u32)
-           read(id, u64) read(u64)
+           read(atom, i8) read(i8)
+           read(atom, i16) read(i16)
+           read(atom, i32) read(i32)
+           read(atom, i64) read(i64)
+           read(atom, u8) read(u8)
+           read(atom, u16) read(u16)
+           read(atom, u32) read(u32)
+           read(atom, u64) read(u64)
 
            read(i8) m_pfile->read(i8)
            read(i16) m_pfile->read(i16)
@@ -265,14 +265,14 @@ class exchanger
            read(u32) m_pfile->read(u32)
            read(u64) m_pfile->read(u64)
 
-           write(id, i8) write(i8)
-           write(id, i16) write(i16)
-           write(id, i32) write(i32)
-           write(id, i64) write(i64)
-           write(id, u8) write(u8)
-           write(id, u16) write(u16)
-           write(id, u32) write(u32)
-           write(id, u64) write(u64)
+           write(atom, i8) write(i8)
+           write(atom, i16) write(i16)
+           write(atom, i32) write(i32)
+           write(atom, i64) write(i64)
+           write(atom, u8) write(u8)
+           write(atom, u16) write(u16)
+           write(atom, u32) write(u32)
+           write(atom, u64) write(u64)
 
            write(i8) m_pfile->write(i8)
            write(i16) m_pfile->write(i16)
@@ -290,14 +290,14 @@ class exchanger
            {
 
 
-           write(id, i8) write(i8)
-           write(id, i16) write(i16)
-           write(id, i32) write(i32)
-           write(id, i64) write(i64)
-           write(id, u8) write(u8)
-           write(id, u16) write(u16)
-           write(id, u32) write(u32)
-           write(id, u64) write(u64)
+           write(atom, i8) write(i8)
+           write(atom, i16) write(i16)
+           write(atom, i32) write(i32)
+           write(atom, i64) write(i64)
+           write(atom, u8) write(u8)
+           write(atom, u16) write(u16)
+           write(atom, u32) write(u32)
+           write(atom, u64) write(u64)
 
            write(i8) m_pfile->write(i8)
            write(i16) m_pfile->write(i16)
@@ -317,14 +317,14 @@ class exchanger
            stream
            {
 
-           read(id, i8)i8 = m_ppayload->operator[](id);
-           read(id, i16) i16 = m_ppayload->operator[](id);
-           read(id, i32) i32 = m_ppayload->operator[](id);
-           read(id, i64) i64 = m_ppayload->operator[](id);
-           read(id, u8) u8 = m_ppayload->operator[](id);
-           read(id, u16) u16 = m_ppayload->operator[](id);
-           read(id, u32) u32 = m_ppayload->operator[](id);
-           read(id, u64) u64 = m_ppayload->operator[](id);
+           read(atom, i8)i8 = m_ppayload->operator[](atom);
+           read(atom, i16) i16 = m_ppayload->operator[](atom);
+           read(atom, i32) i32 = m_ppayload->operator[](atom);
+           read(atom, i64) i64 = m_ppayload->operator[](atom);
+           read(atom, u8) u8 = m_ppayload->operator[](atom);
+           read(atom, u16) u16 = m_ppayload->operator[](atom);
+           read(atom, u32) u32 = m_ppayload->operator[](atom);
+           read(atom, u64) u64 = m_ppayload->operator[](atom);
 
            read(i8) i8 = *m_ppayload
            read(i16) i16 = *m_ppayload
@@ -335,14 +335,14 @@ class exchanger
            read(u32) u32 = *m_ppayload
            read(u64) u64 = *m_ppayload
 
-           write(id, i8) write(i8)
-           write(id, i16) write(i16)
-           write(id, i32) write(i32)
-           write(id, i64) write(i64)
-           write(id, u8) write(u8)
-           write(id, u16) write(u16)
-           write(id, u32) write(u32)
-           write(id, u64) write(u64)
+           write(atom, i8) write(i8)
+           write(atom, i16) write(i16)
+           write(atom, i32) write(i32)
+           write(atom, i64) write(i64)
+           write(atom, u8) write(u8)
+           write(atom, u16) write(u16)
+           write(atom, u32) write(u32)
+           write(atom, u64) write(u64)
 
            write(i8) m_pfile->write(i8)
            write(i16) m_pfile->write(i16)

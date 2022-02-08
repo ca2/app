@@ -38,7 +38,7 @@ namespace http
       __UNREFERENCED_PARAMETER(len);
    }
 
-   void get_socket::OnHeader(id key, const string & value)
+   void get_socket::OnHeader(atom key, const string & value)
    {
 
       ::sockets::http_get_socket::OnHeader(key, value);

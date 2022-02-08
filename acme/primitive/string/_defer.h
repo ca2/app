@@ -160,13 +160,13 @@ inline void __exchange_as_string(stream & s, STRINGABLE & stringable)
 
       ::str::from(str, (const STRINGABLE &) stringable);
 
-      s.exchange(id::e_type_empty, str);
+      s.exchange(atom::e_type_empty, str);
 
    }
    else
    {
 
-      s.exchange(id::e_type_empty, str);
+      s.exchange(atom::e_type_empty, str);
 
       ::from_string(stringable, (const string &) str);
 

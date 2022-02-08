@@ -57,9 +57,9 @@ namespace html
 
          element::implement_phase1(pdata, pelemental);
 
-         ::id id = pelemental->m_pbase->get_tag()->get_attr_value("id");
+         ::atom atom = pelemental->m_pbase->get_tag()->get_attr_value("id");
 
-         id = translate_property_id(id);
+         atom = translate_property_id(atom);
 
          if(!m_pedit || !m_pedit->is_window())
          {
@@ -81,7 +81,7 @@ namespace html
 
             m_pedit->m_pform = pdata->m_pcoredata->m_pform;
 
-            m_pedit->create_control(pdata->m_pcoredata->m_puserinteraction, id);
+            m_pedit->create_control(pdata->m_pcoredata->m_puserinteraction, atom);
 
             pdata->on_create_interaction(m_pedit);
 

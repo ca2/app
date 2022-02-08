@@ -64,29 +64,29 @@ namespace simple_ui
 //   }
 //
 //
-//   bool interaction::simple_process_system_message(::message::message * pmessage, ::enum_subject esubject)
+//   bool interaction::simple_process_system_message(::message::message * pmessage, ::enum_topic etopic)
 //   {
 //
 //      __pointer(::user::message) pusermessage(pmessage);
 //
-//      if (eevent == ::e_subject_button_down)
+//      if (eevent == ::id_button_down)
 //      {
 //
 //         psession->m_puiLastLButtonDown = this;
 //
 //      }
 //
-//      ::subject subject;
+//      ::topic topic;
 //
-//      subject.m_puserinteraction = this;
+//      topic.m_puserinteraction = this;
 //
-//      subject.m_id = eevent;
+//      topic.m_atom = eevent;
 //
-//      subject.m_pmessage = pmessage;
+//      topic.m_pmessage = pmessage;
 //
-//      route(&subject);
+//      route(&topic);
 //
-//      pmessage->m_bRet = subject.m_bRet;
+//      pmessage->m_bRet = topic.m_bRet;
 //
 //      if (pmessage->m_bRet)
 //      {
@@ -100,7 +100,7 @@ namespace simple_ui
 //
 //      }
 //
-//      return subject.m_bRet;
+//      return topic.m_bRet;
 //
 //   }
 //
@@ -139,7 +139,7 @@ namespace simple_ui
 //
 //         }
 //
-//         if (!simple_process_system_message(pmessage, ::e_subject_button_down))
+//         if (!simple_process_system_message(pmessage, ::id_button_down))
 //         {
 //
 //            pmouse->m_bRet = true;
@@ -163,7 +163,7 @@ namespace simple_ui
 //      if (hit_test(pmouse->)
 //      {
 //
-//         if (!simple_process_system_message(pmessage, ::e_subject_m_button_down))
+//         if (!simple_process_system_message(pmessage, ::id_m_button_down))
 //         {
 //
 //            pmouse->m_bRet = true;
@@ -187,7 +187,7 @@ namespace simple_ui
 //      if (hit_test(pmouse->)
 //      {
 //
-//         if (!simple_process_system_message(pmessage, ::e_subject_m_button_up))
+//         if (!simple_process_system_message(pmessage, ::id_m_button_up))
 //         {
 //
 //            pmouse->m_bRet = true;
@@ -235,30 +235,30 @@ namespace simple_ui
 //         else
 //         {
 //
-//            ::subject subject;
+//            ::topic topic;
 //
-//            subject.m_puserinteraction = this;
+//            topic.m_puserinteraction = this;
 //
-//            //subject.m_id = m_id;
+//            //topic.m_atom = m_atom;
 //
-//            subject.m_id = ::e_subject_click;
+//            topic.m_atom = ::id_click;
 //
-//            subject.m_pmessage = pmouse->
+//            topic.m_pmessage = pmouse->
 //
-//            subject.m_item = item;
+//            topic.m_item = item;
 //
-//            subject.m_context.add(::e_source_user);
+//            topic.m_context.add(::e_source_user);
 //
-//            route(&subject);
+//            route(&topic);
 //
-//            pmessage->m_bRet = subject.m_bRet;
+//            pmessage->m_bRet = topic.m_bRet;
 //
 //            if (!pmessage->m_bRet)
 //            {
 //
 //               ::message::command command;
 //
-//               command.m_id = m_id;
+//               command.m_atom = m_atom;
 //
 //               command.m_puiOther = this;
 //
@@ -317,25 +317,25 @@ namespace simple_ui
 //         if (!itemOldHover)
 //         {
 //
-//            ::subject subject;
+//            ::topic topic;
 //
-//            subject.m_puserinteraction = this;
+//            topic.m_puserinteraction = this;
 //
-//            subject.m_id = ::e_subject_mouse_enter;
+//            topic.m_atom = ::id_mouse_enter;
 //
-//            route(&subject);
+//            route(&topic);
 //
 //         }
 //         else if (!item)
 //         {
 //
-//            ::subject subject;
+//            ::topic topic;
 //
-//            subject.m_puserinteraction = this;
+//            topic.m_puserinteraction = this;
 //
-//            subject.m_id = ::e_subject_mouse_leave;
+//            topic.m_atom = ::id_mouse_leave;
 //
-//            route(&subject);
+//            route(&topic);
 //
 //         }
 //
@@ -360,13 +360,13 @@ namespace simple_ui
 //
 //         set_need_redraw();
 //
-//         ::subject subject;
+//         ::topic topic;
 //
-//         subject.m_puserinteraction = this;
+//         topic.m_puserinteraction = this;
 //
-//         subject.m_id = ::e_subject_mouse_leave;
+//         topic.m_atom = ::id_mouse_leave;
 //
-//         route(&subject);
+//         route(&topic);
 //
 //      }
 //

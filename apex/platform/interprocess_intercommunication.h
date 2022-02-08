@@ -37,7 +37,7 @@
 
    //   void exclude_this_app();
 
-   //   virtual void post(const ::id& idPid);
+   //   virtual void post(const ::atom& idPid);
 
    //   __pointer(synchronization_array) synca();
 
@@ -55,14 +55,14 @@
    //public:
 
 
-   //   ::id                                m_idPid;
+   //   ::atom                                m_atomPid;
    //   ::i64                               m_iTask;
    //   __pointer(interprocess_call)               m_pcall;
    //   ::payload                                 m_var;
    //   __pointer(manual_reset_event)       m_pevReady;
 
 
-   //   task(interprocess_call* pcall, const ::id& idPid, i64 iTask);
+   //   task(interprocess_call* pcall, const ::atom& idPid, i64 iTask);
    //   virtual ~task();
 
 
@@ -88,7 +88,7 @@
 
       interlocked_i64                                             m_iTaskSeed;
       string                                                      m_strApp;
-      ::id                                                        m_idApp;
+      ::atom                                                        m_atomApp;
       string_map < __pointer(::interprocess_communication::tx) >  m_txmap;
       string_map < __pointer(::mutex) >                           m_mapAppMutex;
       __pointer(::interprocess_communication::rx)                 m_prx;
@@ -111,9 +111,9 @@
 
       void destroy() override;
 
-      virtual void defer_add_module(const ::string & strModule, const ::id & idPid);
+      virtual void defer_add_module(const ::string & strModule, const ::atom & idPid);
 
-      virtual __pointer(interprocess_task) create_task(interprocess_call * pcall, const ::id & idPid);
+      virtual __pointer(interprocess_task) create_task(interprocess_call * pcall, const ::atom & idPid);
 
       virtual __pointer(interprocess_task) get_task(i64 iTask);
 
@@ -121,11 +121,11 @@
 
       virtual __pointer(interprocess_call) create_call(const ::string & strObject, const ::string & strMember);
 
-      virtual ::interprocess_communication::tx & tx(const ::string & strApp, const ::id & idPid);
+      virtual ::interprocess_communication::tx & tx(const ::string & strApp, const ::atom & idPid);
 
       virtual id_array get_pid(const ::string & strApp);
 
-      virtual string key(const string &strApp, const ::id & idPid);
+      virtual string key(const string &strApp, const ::atom & idPid);
 
       virtual string str_from_va(const payload_array & va);
 
@@ -137,9 +137,9 @@
 
       virtual void start(const ::string & strApp);
 
-      virtual void connect(const ::string & strApp, const ::id & idPid);
+      virtual void connect(const ::string & strApp, const ::atom & idPid);
 
-      virtual void on_new_instance(const ::string & strModule, const ::id & idPid);
+      virtual void on_new_instance(const ::string & strModule, const ::atom & idPid);
 
 
    };

@@ -10,7 +10,7 @@
 #ifdef WINDOWS
 
 
-#include "aura/node/operating_system/windows_common/_c.h"
+#include "aura/operating_system/windows_common/_c.h"
 
 
 #ifndef LIBRARY_MAIN_DEBUG_BOX

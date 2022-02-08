@@ -64,7 +64,7 @@
    }
 
 
-   void log::initialize_log(enum_trace_level etracelevelMin, const ::id& id)
+   void log::initialize_log(enum_trace_level etracelevelMin, const ::atom& atom)
    {
 
       //return ::success;

@@ -20,9 +20,9 @@ namespace user
 
 
 
-   void tooltip::assert_valid() const
+   void tooltip::assert_ok() const
    {
-      ::user::interaction::assert_valid();
+      ::user::interaction::assert_ok();
    }
 
    void tooltip::dump(dump_context & dumpcontext) const

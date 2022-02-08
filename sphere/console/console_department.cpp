@@ -48,7 +48,7 @@ namespace console
 
       if(pusermessage != nullptr)
       {
-         if(pusermessage->m_id == e_message_key_down)
+         if(pusermessage->m_atom == e_message_key_down)
          {
 
             auto pkey = pmessage->m_union.m_pkey;
@@ -95,7 +95,7 @@ namespace console
 
       }
 
-      prompt_impact & i = *m_spprompt->m_pdocumenttemplate->get_document()->get_typed_view < prompt_impact >();
+      prompt_impact & i = *m_spprompt->m_pdocumenttemplate->get_document()->get_type_impact < prompt_impact >();
 
       if(bShow)
       {

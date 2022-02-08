@@ -16,7 +16,7 @@ namespace hex
          pszNext = ::str::__utf8_inc(psz);
          if (pszNext > pszEnd)
          {
-            __throw(error_parsing, "hexadecimal digit expected, premature end");
+            throw ::exception(error_parsing, "hexadecimal digit expected, premature end");
             return -1;
          }
          if ((pszNext - psz == 1) && ((*psz >= '0' && *psz <= '9') || (*psz >= 'A' && *psz <= 'F') || (*psz >= 'a' && *psz <= 'f')))
@@ -25,7 +25,7 @@ namespace hex
          }
          else
          {
-            __throw(error_parsing, "hexadecimal digit expect expected here");
+            throw ::exception(error_parsing, "hexadecimal digit expect expected here");
             return -1;
          }
       }
@@ -829,11 +829,16 @@ namespace str
       str = strCopy;
    }
 
-   string replace(const char * pszFind, const char * pszReplace, const char * psz, strsize iStart)
+   
+   string replace_with(const char * pszOld, const char * pszNew, const char * psz, strsize iStart)
    {
+      
       string str(psz);
-      str.replace(pszFind, pszReplace, iStart);
+      
+      str.replace_with(pszOld, pszNew, iStart);
+
       return str;
+
    }
 
 
@@ -868,7 +873,8 @@ namespace str
 
    }
 
-   string  random_replace(::matter * pobject, const string_array & straReplacement, const string_array & straSearch, const char * psz)
+
+   string  random_replace(::matter * pobject, const string_array & straNew, const string_array & straOld, const char * psz)
    {
 
       string str(psz);
@@ -879,20 +885,23 @@ namespace str
 
       index iStart = 0;
 
-      while((iFind = find_first(straSearch, iFound, str, iStart)) >= 0)
+      while((iFind = find_first(straOld, iFound, str, iStart)) >= 0)
       {
 
          if(iFind < iStart)
          {
-            __throw(error_parsing, "random replace error");
+
+            throw ::exception(error_parsing, "random replace error");
+
             return "";
+
          }
 
-         index i = (index) (rand() % straReplacement.get_size());
+         index i = (index) (rand() % straNew.get_size());
 
-         str = str.Left(iFind) + straReplacement[i] + str.Mid(iFind + straSearch[iFound].get_length());
+         str = str.Left(iFind) + straNew[i] + str.Mid(iFind + straOld[iFound].get_length());
 
-         iFind += straReplacement[i].get_length();
+         iFind += straNew[i].get_length();
 
          iStart = iFind;
 
@@ -901,7 +910,8 @@ namespace str
       return str;
    }
 
-   ::count utf8_replace(string & str, const char * pszFind, const char * pszReplace, strsize iStart)
+
+   ::count utf8_replace_with(string & str, const char * pszNew, const char * pszOld, strsize iStart)
    {
 
       ::count c = 0;
@@ -915,18 +925,18 @@ namespace str
       while(true)
       {
 
-         iPos = utf8_find(pszFind, str, iPos);
+         iPos = utf8_find(pszOld, str, iPos);
 
          if(iPos < 0)
             break;
 
          if(iReplaceLen < 0)
-            iReplaceLen = strlen(pszReplace);
+            iReplaceLen = strlen(pszNew);
 
          if(iFindLen < 0)
-            iFindLen = strlen(pszFind);
+            iFindLen = strlen(pszOld);
 
-         str = str.Left(iPos) + pszReplace + str.Mid(iPos + iFindLen);
+         str = str.Left(iPos) + pszNew + str.Mid(iPos + iFindLen);
 
          iPos += iReplaceLen;
 
@@ -939,7 +949,7 @@ namespace str
    }
 
 
-   string utf8_replace(const char * pszFind, const char * pszReplace, const char * psz, strsize iStart)
+   string utf8_replace_with(const char * pszNew, const char * pszOld, const char * psz, strsize iStart)
    {
 
       index iPos = iStart;
@@ -953,18 +963,18 @@ namespace str
       while(true)
       {
 
-         iPos = utf8_find(pszFind, str, iPos);
+         iPos = utf8_find(pszOld, str, iPos);
 
          if(iPos < 0)
             break;
 
          if(iReplaceLen < 0)
-            iReplaceLen = strlen(pszReplace);
+            iReplaceLen = strlen(pszNew);
 
          if(iFindLen < 0)
-            iFindLen = strlen(pszFind);
+            iFindLen = strlen(pszOld);
 
-         str = str.Left(iPos) + pszReplace + str.Mid(iPos + iFindLen);
+         str = str.Left(iPos) + pszNew + str.Mid(iPos + iFindLen);
 
          iPos += iReplaceLen;
 
@@ -973,7 +983,8 @@ namespace str
       return str;
    }
 
-   string replace_ci(const char * pszFind, const char * pszReplace, const char * psz, strsize iStart)
+
+   string replace_with_ci(const char * pszNew, const char * pszOld, const char * psz, strsize iStart)
    {
 
       index iPos = iStart;
@@ -987,18 +998,18 @@ namespace str
       while(true)
       {
 
-         iPos = find_ci(pszFind, str, iPos);
+         iPos = find_ci(pszOld, str, iPos);
 
          if(iPos < 0)
             break;
 
          if(iReplaceLen < 0)
-            iReplaceLen = strlen(pszReplace);
+            iReplaceLen = strlen(pszNew);
 
          if(iFindLen < 0)
-            iFindLen = strlen(pszFind);
+            iFindLen = strlen(pszOld);
 
-         str = str.Left(iPos) + pszReplace + str.Mid(iPos + iFindLen);
+         str = str.Left(iPos) + pszNew + str.Mid(iPos + iFindLen);
 
          iPos += iReplaceLen;
 
@@ -1007,7 +1018,8 @@ namespace str
       return str;
    }
 
-   ::count replace_ci_count(const char * pszFind, const char * pszReplace, const char * psz, strsize iStart)
+
+   ::count replace_with_ci_count(const char * pszNew, const char * pszOld, const char * psz, strsize iStart)
    {
 
       index iPos = iStart;
@@ -1023,18 +1035,18 @@ namespace str
       while (true)
       {
 
-         iPos = find_ci(pszFind, str, iPos);
+         iPos = find_ci(pszOld, str, iPos);
 
          if (iPos < 0)
             break;
 
          if (iReplaceLen < 0)
-            iReplaceLen = strlen(pszReplace);
+            iReplaceLen = strlen(pszNew);
 
          if (iFindLen < 0)
-            iFindLen = strlen(pszFind);
+            iFindLen = strlen(pszOld);
 
-         str = str.Left(iPos) + pszReplace + str.Mid(iPos + iFindLen);
+         str = str.Left(iPos) + pszNew + str.Mid(iPos + iFindLen);
 
          iPos += iReplaceLen;
 
@@ -1099,12 +1111,12 @@ namespace str
 
             make_lower(sz);
 
-            const char * pszFind = strstr(sz, szFind);
+            const char * pszOld = strstr(sz, szFind);
 
-            if(pszFind == nullptr)
+            if(pszOld == nullptr)
                return -1;
 
-            return iStart + (pszFind - sz);
+            return iStart + (pszOld - sz);
 
          }
          else
@@ -1116,12 +1128,12 @@ namespace str
 
             psz = strLow;
 
-            const char * pszFind = strstr(psz, szFind);
+            const char * pszOld = strstr(psz, szFind);
 
-            if(pszFind == nullptr)
+            if(pszOld == nullptr)
                return -1;
 
-            return iStart + (pszFind - psz);
+            return iStart + (pszOld - psz);
 
          }
 
@@ -1149,10 +1161,10 @@ namespace str
    }
 
 
-   index find_ci(const char * pszFind, const ::string & str, index iStart)
+   index find_ci(const char * pszOld, const ::string & str, index iStart)
    {
 
-      ::count iFindLen = strlen(pszFind);
+      ::count iFindLen = strlen(pszOld);
 
       index iLen = str.get_length() - iStart;
 
@@ -1170,7 +1182,7 @@ namespace str
 
       psz1 += iStart;
 
-      const char * psz2 = pszFind;
+      const char * psz2 = pszOld;
 
       while(true)
       {
@@ -1219,10 +1231,10 @@ namespace str
    }
 
 
-   index find_ci(const char * pszFind,const ::string & str,index iStart, index iLast)
+   index find_ci(const char * pszOld,const ::string & str,index iStart, index iLast)
    {
 
-      ::count iFindLen = strlen(pszFind);
+      ::count iFindLen = strlen(pszOld);
 
       index iLen = str.get_length() - iStart;
 
@@ -1233,7 +1245,7 @@ namespace str
       ::i32 len2;
 
       const char * psz1 = str;
-      const char * psz2 = pszFind;
+      const char * psz2 = pszOld;
 
       strsize iPos = 0;
 
@@ -1287,10 +1299,10 @@ namespace str
 
 
 
-   index find_file_extension(const char * pszFind,const ::string & str,index iStart, index iLast)
+   index find_file_extension(const char * pszOld,const ::string & str,index iStart, index iLast)
    {
 
-      if(pszFind == nullptr || pszFind[0] == '\0') // do not search for empty Extensions
+      if(pszOld == nullptr || pszOld[0] == '\0') // do not search for empty Extensions
          return -1;
 
       // for dir::name_is (check if base name of a file is a directory, checking if there is a simple ansi '.', may be very good start point_i32 definitive false).
@@ -1310,7 +1322,7 @@ namespace str
 
       }
 
-      ::count iFindLen = strlen(pszFind);
+      ::count iFindLen = strlen(pszOld);
 
 
 
@@ -1318,7 +1330,7 @@ namespace str
       i32 len2;
 
       const char * psz1 = str;
-      const char * psz2 = pszFind;
+      const char * psz2 = pszOld;
 
       strsize iPos = 0;
       strsize iPos2 = 0;
@@ -1396,12 +1408,12 @@ namespace str
    }
 
 
-   index utf8_find(const char * pszFind, const char * pszParam, index iStart)
+   index utf8_find(const char * pszOld, const char * pszParam, index iStart)
    {
-      if(pszFind == nullptr)
+      if(pszOld == nullptr)
          return -1;
 
-      if(*pszFind == '\0')
+      if(*pszOld == '\0')
          return 0;
 
       if(pszParam == nullptr || *pszParam == '\0')
@@ -1409,7 +1421,7 @@ namespace str
 
       const char * psz = &pszParam[iStart];
       const char * pSrc;
-      const char * pFin = pszFind;
+      const char * pFin = pszOld;
       i32 lenSrc;
       i32 lenFin;
       while(*psz)
@@ -1447,10 +1459,10 @@ namespace str
    }
 
 
-   index find_ci(const char * pszFind, const char * psz, index iStart)
+   index find_ci(const char * pszOld, const char * psz, index iStart)
    {
 
-      index iFindLen = strlen(pszFind);
+      index iFindLen = strlen(pszOld);
 
       index iLen = strlen(&psz[iStart]);
 
@@ -1462,7 +1474,7 @@ namespace str
 
          char szFind[256];
 
-         ::memcpy_dup(szFind, pszFind, iFindLen + 1);
+         ::memcpy_dup(szFind, pszOld, iFindLen + 1);
 
          make_lower(szFind);
 
@@ -1475,12 +1487,12 @@ namespace str
 
             make_lower(sz);
 
-            pszFind = strstr(sz, szFind);
+            pszOld = strstr(sz, szFind);
 
-            if(pszFind == nullptr)
+            if(pszOld == nullptr)
                return -1;
 
-            return iStart + (pszFind - sz);
+            return iStart + (pszOld - sz);
 
          }
          else
@@ -1491,12 +1503,12 @@ namespace str
 
             psz = strLow;
 
-            pszFind = strstr(psz, szFind);
+            pszOld = strstr(psz, szFind);
 
-            if(pszFind == nullptr)
+            if(pszOld == nullptr)
                return -1;
 
-            return iStart + (pszFind - psz);
+            return iStart + (pszOld - psz);
 
          }
 
@@ -1504,7 +1516,7 @@ namespace str
       else
       {
 
-         string strFindLow(pszFind, iFindLen); // avoid optimized read only string copy
+         string strFindLow(pszOld, iFindLen); // avoid optimized read only string copy
          strFindLow.make_lower();
 
          string strLow(&psz[iStart], iLen); // avoid optimized read only string copy
@@ -1521,10 +1533,10 @@ namespace str
 
    }
 
-   index find_wwci(const char * pszFind, const char * psz, index iStart)
+   index find_wwci(const char * pszOld, const char * psz, index iStart)
    {
 
-      string strFind(pszFind);
+      string strFind(pszOld);
 
       strFind.make_lower();
 
@@ -1536,10 +1548,10 @@ namespace str
 
    }
 
-   index find_awwci(const char * pszFind, const char * psz, index iStart)
+   index find_awwci(const char * pszOld, const char * psz, index iStart)
    {
 
-      string strFind(pszFind);
+      string strFind(pszOld);
 
       strFind.make_lower();
 
@@ -1551,7 +1563,7 @@ namespace str
 
    }
 
-   index find_ww(const char * pszFind, const char * psz, index iStart)
+   index find_ww(const char * pszOld, const char * psz, index iStart)
    {
 
       if(psz == nullptr)
@@ -1562,7 +1574,7 @@ namespace str
       if(pszIter == nullptr)
          return -1;
 
-      string strFind(pszFind);
+      string strFind(pszOld);
 
       while(*pszIter != '\0')
       {
@@ -1589,7 +1601,7 @@ namespace str
 
    }
 
-   index find_aww(const char * pszFind, const char * psz, index iStart)
+   index find_aww(const char * pszOld, const char * psz, index iStart)
    {
 
       if(psz == nullptr)
@@ -1600,7 +1612,7 @@ namespace str
       if(pszIter == nullptr)
          return -1;
 
-      string strFind(pszFind);
+      string strFind(pszOld);
 
       while(*pszIter != '\0')
       {
@@ -1811,8 +1823,8 @@ namespace str
             return string();
          }
       }
-      const char * pszFind = strstr(psz, pszSeparator);
-      if(pszFind == nullptr)
+      const char * pszOld = strstr(psz, pszSeparator);
+      if(pszOld == nullptr)
       {
          if(bEndIsSeparator)
          {
@@ -1825,11 +1837,11 @@ namespace str
       }
       if(bWithSeparator)
       {
-         return string(psz, pszFind - psz + 1);
+         return string(psz, pszOld - psz + 1);
       }
       else
       {
-         return string(psz, pszFind - psz);
+         return string(psz, pszOld - psz);
       }
    }
 
@@ -2114,37 +2126,37 @@ namespace str
          *pslide += 0;
          return psz;
       }
-      if(*psz++ == 0)   __throw(error_invalid_character, "invalid utf8 character");
+      if(*psz++ == 0)   throw ::exception(error_invalid_character, "invalid utf8 character");
       if(len == 1)
       {
          *pslide += 1;
          return psz;
       }
-      if(*psz++ == 0)   __throw(error_invalid_character, "invalid utf8 character");
+      if(*psz++ == 0)   throw ::exception(error_invalid_character, "invalid utf8 character");
       if(len == 2)
       {
          *pslide += 2;
          return psz;
       }
-      if(*psz++ == 0)   __throw(error_invalid_character, "invalid utf8 character");
+      if(*psz++ == 0)   throw ::exception(error_invalid_character, "invalid utf8 character");
       if(len == 3)
       {
          *pslide += 3;
          return psz;
       }
-      if(*psz++ == 0)   __throw(error_invalid_character, "invalid utf8 character");
+      if(*psz++ == 0)   throw ::exception(error_invalid_character, "invalid utf8 character");
       if(len == 4)
       {
          *pslide += 4;
          return psz;
       }
-      if(*psz++ == 0)   __throw(error_invalid_character, "invalid utf8 character");
+      if(*psz++ == 0)   throw ::exception(error_invalid_character, "invalid utf8 character");
       if(len == 5)
       {
          *pslide += 5;
          return psz;
       }
-      if(*psz++ == 0)   __throw(error_invalid_character, "invalid utf8 character");
+      if(*psz++ == 0)   throw ::exception(error_invalid_character, "invalid utf8 character");
       if(len == 6)
       {
          *pslide += 6;
@@ -2671,15 +2683,23 @@ namespace str
       index idx;
 
       strsize len = strlen(psz);
+
       for(idx = 0; idx < len; idx++)
       {
+
          if(pszParse[idx] != psz[idx])
          {
-            __throw(error_parsing, "Name does not match expected");
+
+            throw ::exception(error_parsing, "Name does not match expected");
+
             break;
+
          }
+
       }
+
       pszParse += len;
+
    }
 
 
@@ -2730,7 +2750,7 @@ namespace str
       {
          if(pszParse[idx] != psz[idx])
          {
-            __throw(error_parsing, "Name does not match expected");
+            throw ::exception(error_parsing, "Name does not match expected");
             break;
          }
       }
@@ -2745,7 +2765,7 @@ namespace str
       {
          if(pszParse[idx] != psz[idx])
          {
-            __throw(error_parsing, "Name does not match expected");
+            throw ::exception(error_parsing, "Name does not match expected");
             break;
          }
       }
@@ -2763,7 +2783,7 @@ namespace str
       }
       if(i < iMinimumCount)
       {
-         __throw(error_parsing, "Space is required");
+         throw ::exception(error_parsing, "Space is required");
       }
       pszParse = psz;
    }
@@ -2789,7 +2809,7 @@ namespace str
       if(uMax < uMin)
       {
 
-         __throw(error_invalid_argument, "maximum should be greater than minimum");
+         throw ::exception(error_bad_argument, "maximum should be greater than minimum");
 
       }
 
@@ -2811,7 +2831,7 @@ namespace str
       if(psz == pszParse)
       {
 
-         __throw(error_parsing, "empty natural found");
+         throw ::exception(error_parsing, "empty natural found");
 
       }
 
@@ -2820,13 +2840,13 @@ namespace str
       if(u < uMin)
       {
 
-         __throw(error_parsing, "natural less than minimum");
+         throw ::exception(error_parsing, "natural less than minimum");
 
       }
       else if(u > uMax)
       {
 
-         __throw(error_parsing, "natural greater than maximum");
+         throw ::exception(error_parsing, "natural greater than maximum");
 
       }
 
@@ -2846,14 +2866,14 @@ namespace str
          psz = __utf8_inc(psz);
          if(psz > pszEnd)
          {
-            __throw(error_parsing, "premature end");
+            throw ::exception(error_parsing, "premature end");
             break;
          }
          i++;
       }
       if(i < iMinimumCount)
       {
-         __throw(error_parsing, "Space is required");
+         throw ::exception(error_parsing, "Space is required");
       }
       pszParse = psz;
    }
@@ -2905,7 +2925,7 @@ namespace str
       }
       if(psz == pszParse)
       {
-         __throw(error_parsing, "no hex consumed");
+         throw ::exception(error_parsing, "no hex consumed");
          return "";
       }
       string str(pszParse, psz - pszParse);
@@ -2926,7 +2946,7 @@ namespace str
          {
             if(!::str::ch::is_letter(ca) || *ca == '\0')
             {
-               __throw(error_parsing, "NCName required here");
+               throw ::exception(error_parsing, "NCName required here");
                return "";
             }
             start = false;
@@ -2954,13 +2974,13 @@ namespace str
    //   utf8char.parse(psz); // quote character
    //   if(utf8char.m_chLen != 1)
    //   {
-   //      __throw(error_parsing, "Quote character is required here");
+   //      throw ::exception(error_parsing, "Quote character is required here");
    //      return "";
    //   }
    //   char qc = utf8char.m_sz[0];
    //   if(qc != '\"' && qc != '\\')
    //   {
-   //      __throw(error_parsing, "Quote character is required here");
+   //      throw ::exception(error_parsing, "Quote character is required here");
    //      return "";
    //   }
    //   int iPos = utf8char.m_chLen;
@@ -2971,7 +2991,7 @@ namespace str
    //      iPos += utf8char.parse(&psz[iPos]);
    //      if(utf8char.m_chLen <= 0)
    //      {
-   //         __throw(error_parsing, "Quote character is required here, premature end");
+   //         throw ::exception(error_parsing, "Quote character is required here, premature end");
    //         return "";
    //      }
    //      if(utf8char.m_chLen == 1 && utf8char.m_sz[0] == qc)
@@ -2994,7 +3014,7 @@ namespace str
       if(*psz != '\"' && *psz != '\'')
       {
 
-         __throw(error_parsing, "Quote character is required here");
+         throw ::exception(error_parsing, "Quote character is required here");
 
          return "";
 
@@ -3016,7 +3036,7 @@ skip:
          if(psz > pszEnd || *psz == '\0')
          {
 
-            __throw(error_parsing, "Quote character is required here, premature end");
+            throw ::exception(error_parsing, "Quote character is required here, premature end");
 
             return "";
 
@@ -3030,7 +3050,7 @@ skip:
             if(psz > pszEnd)
             {
 
-               __throw(error_parsing, "Quote character is required here, premature end");
+               throw ::exception(error_parsing, "Quote character is required here, premature end");
 
                return "";
 
@@ -3091,7 +3111,7 @@ skip:
       if (*psz != '\"' && *psz != '\\')
       {
 
-         __throw(error_parsing, "Quote character is required here");
+         throw ::exception(error_parsing, "Quote character is required here");
 
          return;
 
@@ -3111,7 +3131,7 @@ skip:
          if (psz > pszEnd)
          {
 
-            __throw(error_parsing, "Quote character is required here, premature end");
+            throw ::exception(error_parsing, "Quote character is required here, premature end");
 
             return;
 
@@ -3149,7 +3169,7 @@ skip:
       if (*psz != '\"' && *psz != '\\')
       {
 
-         __throw(error_parsing, "Quote character is required here");
+         throw ::exception(error_parsing, "Quote character is required here");
 
          return;
 
@@ -3169,7 +3189,7 @@ skip:
          if (psz > pszEnd)
          {
 
-            __throw(error_parsing, "Quote character is required here, premature end");
+            throw ::exception(error_parsing, "Quote character is required here, premature end");
 
             return;
 
@@ -3304,7 +3324,7 @@ skip:
       char qc = *psz; // quote character
       if(qc != '\"' && qc != '\'')
       {
-         __throw(error_parsing, "Quote character is required here, premature end");
+         throw ::exception(error_parsing, "Quote character is required here, premature end");
          return "";
       }
       psz++;
@@ -3317,12 +3337,12 @@ skip:
          pszNext = __utf8_inc(psz);
          if(pszNext > pszEnd)
          {
-            __throw(error_parsing, "Quote character is required here, premature end");
+            throw ::exception(error_parsing, "Quote character is required here, premature end");
             return "";
          }
          if (*psz == '\0')
          {
-            __throw(error_parsing, "Quote character is required here, premature end");
+            throw ::exception(error_parsing, "Quote character is required here, premature end");
             return "";
          }
          else if(*psz == qc)
@@ -3336,7 +3356,7 @@ skip:
             pszNext = __utf8_inc(psz);
             if(pszNext > pszEnd)
             {
-               __throw(error_parsing, "Quote character is required here, premature end");
+               throw ::exception(error_parsing, "Quote character is required here, premature end");
                return "";
             }
             if(*psz == 'n')
@@ -3360,12 +3380,12 @@ skip:
                {
                   if (*psz != '\\')
                   {
-                     __throw(error_parsing, "expect back slash here (for low surrogate)");
+                     throw ::exception(error_parsing, "expect back slash here (for low surrogate)");
                   }
                   psz++;
                   if (*psz != 'u' && *psz != 'U')
                   {
-                     __throw(error_parsing, "expect 'u' character here (for low surrogate)");
+                     throw ::exception(error_parsing, "expect 'u' character here (for low surrogate)");
                   }
                   psz++;
                   u[1] = ::hex::parse_u16_exc(psz, pszEnd);
@@ -3373,7 +3393,7 @@ skip:
                   if (!utf16_is_2nd_surrogate(u[1]))
                   {
 
-                     __throw(error_parsing, "expect low surrogate");
+                     throw ::exception(error_parsing, "expect low surrogate");
 
                   }
                   else
@@ -3428,7 +3448,7 @@ skip:
       char qc = *pszParse; // quote character
       if (qc != '\"' && qc != '\'')
       {
-         __throw(error_parsing, "Quote character is required here, premature end");
+         throw ::exception(error_parsing, "Quote character is required here, premature end");
          return;
       }
       psz++;
@@ -3440,12 +3460,12 @@ skip:
          pszNext = __utf8_inc(psz);
          if (pszNext > pszEnd)
          {
-            __throw(error_parsing, "Quote character is required here, premature end");
+            throw ::exception(error_parsing, "Quote character is required here, premature end");
             return;
          }
          if (*psz == '\0')
          {
-            __throw(error_parsing, "Quote character is required here, premature end");
+            throw ::exception(error_parsing, "Quote character is required here, premature end");
             return;
          }
          else if (*psz == '\"')
@@ -3459,7 +3479,7 @@ skip:
             pszNext = __utf8_inc(psz);
             if (pszNext > pszEnd)
             {
-               __throw(error_parsing, "Quote character is required here, premature end");
+               throw ::exception(error_parsing, "Quote character is required here, premature end");
                return;
             }
             if (*psz == 'n')
@@ -3480,7 +3500,7 @@ skip:
                   pszNext = __utf8_inc(psz);
                   if (pszNext > pszEnd)
                   {
-                     __throw(error_parsing, "Quote character is required here, premature end");
+                     throw ::exception(error_parsing, "Quote character is required here, premature end");
                      return;
                   }
                   if ((pszNext - psz == 1) && ((*psz >= '0' && *psz <= '9') || (*psz >= 'A' && *psz <= 'F') || (*psz >= 'a' && *psz <= 'f')))
@@ -3488,7 +3508,7 @@ skip:
                   }
                   else
                   {
-                     __throw(error_parsing, "16 bit unicode expect here");
+                     throw ::exception(error_parsing, "16 bit unicode expect here");
                      return;
                   }
 
@@ -3717,7 +3737,7 @@ skip:
       if(strQuoteChar != "\"" && strQuoteChar != "\\")
       {
 
-         __throw(error_parsing, "Quote character is required here");
+         throw ::exception(error_parsing, "Quote character is required here");
 
          return "";
 
@@ -3734,7 +3754,7 @@ skip:
          //string str = ::str::international::utf8_to_unicode(qc2);
          if(strCurrentChar.is_empty())
          {
-            __throw(error_parsing, "Quote character is required here, premature end");
+            throw ::exception(error_parsing, "Quote character is required here, premature end");
             return "";
          }
          if(strPreviousChar == "\\")
@@ -4727,6 +4747,7 @@ skip:
 
    }
 
+
    CLASS_DECL_ACME void replace_tab(strsize iOffset, string & strParam, int iWidth, strsize_array * piaTab, array < strsize * > intptra)
    {
 
@@ -4793,12 +4814,14 @@ skip:
 
    }
 
+
    CLASS_DECL_ACME void replace_tab(strsize iOffset, string & strParam, int iWidth, ::array < strsize * > iaTab)
    {
 
       return replace_tab(iOffset, strParam, iWidth, nullptr, iaTab);
 
    }
+
 
    CLASS_DECL_ACME string block(char ch, i32 iSize)
    {
@@ -4821,13 +4844,17 @@ skip:
 
 } // namespace str
 
+
 CLASS_DECL_ACME void to_string(string & str, const float & f)
 {
 
    char sz[256];
+
    sprintf(sz, "%f", f);
+
    str = sz;
-   str.replace(",", ".");
+
+   str.replace_with(".", ",");
 
 }
 
@@ -4836,27 +4863,24 @@ CLASS_DECL_ACME void to_string(string & str, const double & d)
 {
 
    char sz[256];
+
    sprintf(sz, "%f", d);
+
    str = sz;
-   str.replace(",", ".");
+
+   str.replace_with(".", ",");
 
 }
-
-
-// } // namespace str
-
-
-
 
 
 CLASS_DECL_ACME string _002Underscore(string str)
 {
 
-   str.replace("-", "_");
+   str.replace_with("_",  "-");
 
-   str.replace("/", "_");
+   str.replace_with("_", "/");
 
-   str.replace("\\", "_");
+   str.replace_with("_", "\\");
 
    return str;
 
@@ -4870,19 +4894,20 @@ namespace str
    void fix_eol(string & str)
    {
 
-      str.replace("\r\n", "\n");
+      str.replace_with("\n", "\r\n");
 
-      str.replace("\n\r", "\n");
+      str.replace_with("\n", "\n\r");
 
-      str.replace("\r", "\n");
+      str.replace_with("\n", "\r");
 
 #ifdef WINDOWS
 
-      str.replace("\n", "\r\n");
+      str.replace_with("\r\n", "\n");
 
 #endif
 
    }
+
 
    CLASS_DECL_ACME string & zero_pad(string & str, strsize lenPad)
    {

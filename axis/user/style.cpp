@@ -65,18 +65,38 @@ namespace axis
 
          bool bHover = pgraphics->m_pdrawcontext != nullptr && pgraphics->m_pdrawcontext->is_control_hover();
 
-         if (bHover)
-         {
+         //if (is_dark_mode())
+         //{
+         //   if (bHover)
+         //   {
 
-            ppen->create_solid(1 * (w + h) / 30, echeck == ::check_checked ? argb(255, 50, 80, 160) : argb(255, 80, 120, 200));
+         //      ppen->create_solid(1 * (w + h) / 30, echeck == ::check_checked ? argb(255, 150, 180, 240) : argb(255, 180, 220, 240));
 
-         }
-         else
-         {
+         //   }
+         //   else
+         //   {
 
-            ppen->create_solid(1 * (w + h) / 30, echeck == ::check_checked ? argb(255, 0, 0, 0) : argb(255, 96, 96, 96));
+         //      ppen->create_solid(1 * (w + h) / 30, echeck == ::check_checked ? argb(255, 255, 255, 255) : argb(255, 196, 196, 196));
 
-         }
+         //   }
+         //}
+         //else
+         //{
+         //   if (bHover)
+         //   {
+
+         //      ppen->create_solid(1 * (w + h) / 30, echeck == ::check_checked ? argb(255, 50, 80, 160) : argb(255, 80, 120, 200));
+
+         //   }
+         //   else
+         //   {
+
+         //      ppen->create_solid(1 * (w + h) / 30, echeck == ::check_checked ? argb(255, 0, 0, 0) : argb(255, 96, 96, 96));
+
+         //   }
+
+         //}
+
 
          ::user::e_state estate;
 

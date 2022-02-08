@@ -422,7 +422,7 @@ namespace file
    //void throw_exception(::e_status estatus, ::i32 lOsError, int iErrNo, const ::file::path & path, const ::file::e_open & eopen)
    //{
 
-   //   __throw(::file::exception(estatus, lOsError, iErrNo, path, eopen));
+   //   throw ::exception(::file::exception(estatus, lOsError, iErrNo, path, eopen));
 
    //}
 
@@ -444,7 +444,7 @@ namespace file
 //#endif // __DEBUG
 //
 //
-//      __throw(::file::exception(estatus, lOsError, pszFileName, 0));
+//      throw ::exception(::file::exception(estatus, lOsError, pszFileName, 0));
 //
 //
 //   }

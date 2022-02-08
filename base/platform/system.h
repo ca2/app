@@ -24,7 +24,7 @@ namespace base
 //
 //      // __composite(::aura::estamira)                      m_pestamira;
 //
-//      ::type                                             m_typePaneTabView;
+//      ::type                                             m_typePaneTabImpact;
 //#ifdef APPLE_IOS
 //
 //      plane_system *                                     m_pplanesystem;
@@ -79,7 +79,7 @@ namespace base
 //
 //      // for lesser cooperative GUI applications
 //      bool                                               m_bProdevianMouse;
-//      static ::id                                        idEmpty;
+//      static ::atom                                        idEmpty;
 //      __composite(class ::str::base64)                   m_pbase64;
 //
 //      ::string_to_string                                 m_mapAppLibrary;
@@ -239,7 +239,7 @@ namespace base
 //      //bool                                         m_bProcessInitialize;
 //      //bool                                         m_bProcessInitializeResult;
 //
-//      strid_map < ::acme::library* >              m_idmapCreateViewLibrary;
+//      strid_map < ::acme::library* >              m_idmapCreateImpactLibrary;
 //
 //      __pointer_array(::acme::library)                         m_libraryspa;
 //
@@ -513,7 +513,7 @@ namespace base
 //
 //      //virtual ::type * get_type_info(const ::std::type_info & info);
 //
-//      //::type * get_type_info(const ::id & idType)
+//      //::type * get_type_info(const ::atom & idType)
 //      //{
 //
 //      //   if(idType.is_empty())
@@ -546,7 +546,7 @@ namespace base
 //      virtual ::acme::library * get_library(const ::string & pszLibrary, bool bOpenCa2 = false);
 //
 //
-//      virtual ::u32 os_post_to_all_threads(const ::id & id,wparam wparam = 0,lparam lparam = 0);
+//      virtual ::u32 os_post_to_all_threads(const ::atom & atom,wparam wparam = 0,lparam lparam = 0);
 //
 //
 //      virtual void session_add(index iEdge, ::aura::session * psession);
@@ -599,13 +599,13 @@ namespace base
 //
 //
 //
-//      static inline ::id id(const ::std::type_info & info);
-//      static inline ::id id(const ::string & psz);
-//      static inline ::id id(const ::string & str);
-//      static inline ::id id(i64 i);
-//      static inline ::id_space & id();
-//      inline ::id id(const ::payload & payload);
-//      inline ::id id(const property & prop);
+//      static inline ::atom atom(const ::std::type_info & info);
+//      static inline ::atom atom(const ::string & psz);
+//      static inline ::atom atom(const ::string & str);
+//      static inline ::atom atom(i64 i);
+//      static inline ::atom_space & atom();
+//      inline ::atom atom(const ::payload & payload);
+//      inline ::atom atom(const property & prop);
 //
 //
 //      virtual i32 _001OnDebugReport(i32 i1, const ::string & psz1,i32 i2, const ::string & psz2, const ::string & psz3,va_list args);
@@ -924,7 +924,7 @@ namespace base
 //#endif
 //
 //
-//      void assert_valid() const override;
+//      void assert_ok() const override;
 //      void dump(dump_context& action_context) const override;
 //
 //
@@ -982,7 +982,7 @@ namespace base
 //      //virtual ::user::interaction_impl * impl_from_handle(void * pdata) override;
 //      //virtual ::user::interaction * ui_from_handle(void * pdata) override;
 //
-//      virtual void handle(::subject * psubject, ::context * pcontext) override;
+//      virtual void handle(::topic * ptopic, ::context * pcontext) override;
 //
 //      // virtual void on_command_create(::create* pcreate);
 //

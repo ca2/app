@@ -31,10 +31,10 @@ void html_view::install_message_routing(::channel * pchannel)
 }
 
 
-void html_view::assert_valid() const
+void html_view::assert_ok() const
 {
 
-   ::user::impact::assert_valid();
+   ::user::impact::assert_ok();
 
 }
 

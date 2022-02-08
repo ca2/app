@@ -126,7 +126,7 @@
 //// Name: add_tokens
 ////
 //// Purpose:
-//// add non overlapping ocurrences of "expression" in "subject".
+//// add non overlapping ocurrences of "expression" in "topic".
 //// Substring indicates the parenthesis order of the desired substring.
 ////
 //// Output:

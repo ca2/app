@@ -19,13 +19,13 @@ namespace simple_shader
       virtual ~main_impact();
 
 
-      void assert_valid() const override;
+      void assert_ok() const override;
 
       void dump(dump_context & dumpcontext) const override;
 
       void on_create_split_impact() override;
 
-      virtual void handle(::subject * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
       virtual bool BaseOnControlEvent(::user::control_event * pevent);
 

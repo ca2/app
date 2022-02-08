@@ -20,7 +20,7 @@ namespace user
       void install_message_routing(::channel * pchannel) override;
 
 
-      virtual void handle(::subject * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
       virtual void _001OnSelectionChange() override;
 

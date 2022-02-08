@@ -17,11 +17,11 @@ namespace sockets
    }
 
 
-   void Ajp13Socket::OnHeader( short id, short len )
+   void Ajp13Socket::OnHeader( short atom, short len )
    {
-      if (id != 0x1234)
+      if (atom != 0x1234)
       {
-         TRACE("ABORT: bad packet id: %x\n", id);
+         TRACE("ABORT: bad packet atom: %x\n", atom);
          SetCloseAndDelete();
       }
       else
@@ -263,7 +263,7 @@ namespace sockets
             put_string(msg, ptr, prop.name());
 
          }
-         __throw(error_not_implemented);
+         throw ::not_implemented();
    /*      list<string> vec = m_response.CookieNames();
          {
             for (list<string>::iterator it = vec.begin(); it != vec.end(); it++)

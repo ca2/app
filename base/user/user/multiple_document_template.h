@@ -16,7 +16,7 @@ namespace user
       ::u32 m_nUntitledCount;   // start at 0, for "Document1" title
 
 
-      multiple_document_template(const ::string & pszMatter, ::type pDocClass, ::type pFrameClass, ::type pViewClass);
+      multiple_document_template(const ::string & pszMatter, ::type pDocClass, ::type pFrameClass, ::type pImpactClass);
       virtual ~multiple_document_template();
 
 
@@ -29,7 +29,7 @@ namespace user
       virtual void set_default_title(::user::document * pdocument) override;
 
       virtual void dump(dump_context &) const override;
-      void assert_valid() const override;
+      void assert_ok() const override;
 
       //virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
       //{

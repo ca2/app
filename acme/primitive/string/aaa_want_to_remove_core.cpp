@@ -45,7 +45,7 @@
 //{
 //   __UNREFERENCED_PARAMETER(str);
 //   __UNREFERENCED_PARAMETER(context);
-//   __throw(::exception("cannot set const string"));
+//   throw ::exception(::exception("cannot set const string"));
 //}
 //
 //namespace str

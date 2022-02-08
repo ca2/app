@@ -69,8 +69,8 @@ namespace user
       DECLARE_MESSAGE_HANDLER(_001OnMessageNotify);
       virtual void _001GetSelection(::database::key & key,::database::selection & selection);
       void Update(bool bSave);
-      bool _001SetData(id uId,bool bData);
-      bool _001GetData(id uId,bool & bData);
+      bool _001SetData(atom uId,bool bData);
+      bool _001GetData(atom uId,bool & bData);
       bool _001AddControl(::user::interaction * pinteraction) override;
       //__pointer(class control_descriptor) new_form_control() override;
       void _001FillCombo(::user::interaction * pinteraction);
@@ -82,7 +82,7 @@ namespace user
 
       void install_message_routing(::channel * pchannel) override;
       virtual void _001InitializeFormPreData();
-      void handle(::subject * psubject, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::context * pcontext) override;
       void update_data(bool bSaveAndValidate) override;
       virtual void _001Update(::user::interaction * pinteraction);
       virtual void _001UpdateCheckBox(::user::interaction * pinteraction);
@@ -107,13 +107,13 @@ namespace user
 
 
 
-      virtual void data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::subject * psubject = nullptr);
+      virtual void data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::topic * ptopic = nullptr);
 
 
-      //virtual bool create_interaction(::user::interaction * pinteractionParent, const ::id & id) override;
+      //virtual bool create_interaction(::user::interaction * pinteractionParent, const ::atom & atom) override;
       //virtual bool normalize_control_descriptor_typeinfo(class ::user::control_descriptor * pdescriptor);
 
-      //void handle(::subject * psubject, ::context * pcontext) override;
+      //void handle(::topic * ptopic, ::context * pcontext) override;
       void _001SetControlFactory();
 
 
@@ -131,8 +131,8 @@ namespace user
 
       //      ::user::form_window(::object * pobject);
 
-      //virtual void handle(::subject * psubject, ::context * pcontext) override;
-      //      virtual void handle(::subject * psubject, ::context * pcontext);
+      //virtual void handle(::topic * ptopic, ::context * pcontext) override;
+      //      virtual void handle(::topic * ptopic, ::context * pcontext);
       //      DECLARE_MESSAGE_HANDLER(on_message_create);
       void _001OnTimer(::timer * ptimer) override;
       DECLARE_MESSAGE_HANDLER(_001OnUser123);

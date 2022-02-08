@@ -827,9 +827,9 @@ public:
 ////
 //// Compose, Construct, Create and Add_Reference Porngraphs
 ////
-//// __create      // return __pointer(BASE_TYPE) // _id id // _new TYPE
-//// __compose     // __composite(BASE_TYPE) &    // _id id // _new TYPE // SOURCE psource
-//// __construct   // __pointer(BASE_TYPE) &      // _id id // _new TYPE // SOURCE psource
+//// __create      // return __pointer(BASE_TYPE) // _id atom // _new TYPE
+//// __compose     // __composite(BASE_TYPE) &    // _id atom // _new TYPE // SOURCE psource
+//// __construct   // __pointer(BASE_TYPE) &      // _id atom // _new TYPE // SOURCE psource
 //// add_reference // __reference(BASE_TYPE) & SOURCE psource
 ////
 //// >>

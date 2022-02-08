@@ -40,7 +40,7 @@ public:
    index subitem_visible_index(index iSubItem);
 
 
-   index control_id_index(const ::id & id);
+   index control_id_index(const ::atom & atom);
 
    index add(list_column * pcolumn);
    //list_column * GlobalOrderGetPrevious(index iKey);
@@ -74,7 +74,7 @@ public:
    list_column * get_visible(index iIndex);
    list_column * get_by_index(index iIndex);
    list_column * get_by_subitem(index iSubItem);
-   list_column * get_by_control_id(const ::id & id);
+   list_column * get_by_control_id(const ::atom & atom);
    list_column * get_by_control(::user::interaction * pinteraction);
    list_column * get_by_config_id(const ::database::key & key);
 

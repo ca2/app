@@ -132,7 +132,7 @@
 //      if (::is_null(pcreate) || contains(pcreate))
 //      {
 //
-//         __throw(error_invalid_argument);
+//         throw ::exception(error_bad_argument);
 //
 //      }
 //

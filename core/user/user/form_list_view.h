@@ -25,7 +25,7 @@ namespace user
       inline ::core::system* get_system() const { return m_psystem ? m_psystem->m_pcoresystem : nullptr; }
 
 
-      void assert_valid() const override;
+      void assert_ok() const override;
       void dump(dump_context & dumpcontext) const override;
 
       virtual bool pre_create_window(::user::system * pusersystem) override;
@@ -37,15 +37,15 @@ namespace user
 
       void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
       virtual void on_command(::message::command* pcommand) override;
-      virtual void handle(::subject * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
       virtual void set_viewport_offset(::draw2d::graphics_pointer & pgraphics, int, int) override;
       virtual ::point_i32 get_viewport_offset() override;
       virtual ::size_f64 get_total_size() override;
 
-      //virtual void handle(::subject * psubject, ::context * pcontext) override;
+      //virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
-      virtual void OnActivateView(bool bActivate, __pointer(::user::impact) pActivateView, __pointer(::user::impact) pviewDeactivate) override;
+      virtual void OnActivateImpact(bool bActivate, __pointer(::user::impact) pActivateImpact, __pointer(::user::impact) pviewDeactivate) override;
 
       virtual index _001GetCurItem() override;
 

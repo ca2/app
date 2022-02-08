@@ -13,7 +13,7 @@ namespace file
    inline path & path::operator += (const property & property) { return operator += ((const ::payload &) property); }
    inline path path::operator + (const ::payload & payload) const { return operator + (payload.string()); }
    inline path path::operator + (const property & property) const { return operator + (property.string()); }
-   inline path path::operator + (const id & id) const { return operator + (id.str()); }
+   inline path path::operator + (const atom & atom) const { return operator + (atom.str()); }
    inline path path::operator / (const ::payload & payload) const { return operator /(::file::path(payload)); }
    inline path path::operator / (const property & property) const { return operator /(::file::path(property)); }
    inline path path::operator * (const property & property) const { return operator *(::file::path(property)); }

@@ -439,7 +439,7 @@ namespace filemanager
          if(m_iFile >= m_stra.get_size())
             return false;
 
-         pcontext->m_papexcontext->file().del(m_stra[m_iFile]);
+         pcontext->m_papexcontext->file().erase(m_stra[m_iFile]);
 
          m_iFile++;
 
@@ -466,7 +466,7 @@ namespace filemanager
 
             m_fileDst->close();
 
-            pcontext->m_papexcontext->file().del(m_stra[m_iFile]);
+            pcontext->m_papexcontext->file().erase(m_stra[m_iFile]);
 
             m_iFile++;
 
@@ -514,7 +514,7 @@ namespace filemanager
       }
       if(m_oswindowCallback != nullptr)
       {
-         m_oswindowCallback->send_message(m_id,m_wparamCallback);
+         m_oswindowCallback->send_message(m_atom,m_wparamCallback);
       }
       return true;
    }

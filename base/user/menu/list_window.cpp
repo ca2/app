@@ -253,7 +253,7 @@ namespace user
 
          }
 
-         if (pitem->m_id != "separator" && pitem->m_puserinteraction != nullptr)
+         if (pitem->m_atom != "separator" && pitem->m_puserinteraction != nullptr)
          {
 
             pitem->m_puserinteraction->set_dim(

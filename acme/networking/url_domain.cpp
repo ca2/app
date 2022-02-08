@@ -95,7 +95,7 @@ void url_domain_base::create(const char * pszServerName)
    else
    {
       
-      __throw(error_wrong_state, "not_expected");
+      throw ::exception(error_wrong_state, "not_expected");
 
    }
    const char * pszPreTopLevel2 = nullptr;
@@ -116,7 +116,7 @@ void url_domain_base::create(const char * pszServerName)
       }
       else
       {
-         __throw(error_wrong_state, "not_expected");
+         throw ::exception(error_wrong_state, "not_expected");
       }
       if(m_iCount >= 5)
       {
@@ -132,7 +132,7 @@ void url_domain_base::create(const char * pszServerName)
          }
          else
          {
-            __throw(error_wrong_state,"not_expected");
+            throw ::exception(error_wrong_state,"not_expected");
          }
       }
    }

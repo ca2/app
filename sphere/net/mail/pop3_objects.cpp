@@ -134,17 +134,17 @@ error:
 	return (err);
 }
 
-char* popgethead(popsession* session, int id){
-/* returns the header of a message id between 1 and poplast() or nullptr if bad id */
+char* popgethead(popsession* session, int atom){
+/* returns the header of a message atom between 1 and poplast() or nullptr if bad atom */
 char* resp;
 char* msg;
 	if(!session){
 		return(nullptr);
 	}
-	if((id>poplast(session)) || (id < 1)){
+	if((atom>poplast(session)) || (atom < 1)){
 		return(nullptr);
 	}
-	resp=pop3_top(session->sock,id,0);
+	resp=pop3_top(session->sock,atom,0);
 	if((!resp) || pop3_error(resp)){
 		if(resp){
 			free(resp);
@@ -160,8 +160,8 @@ char* msg;
 	return(msg);
 }
 		
-char* popgetmsg(popsession* session, int id){
-/* returns a message id between 1 to poplast() or nullptr if bad id */
+char* popgetmsg(popsession* session, int atom){
+/* returns a message atom between 1 to poplast() or nullptr if bad atom */
 char* resp=nullptr;
 char* msg=nullptr;
 
@@ -172,10 +172,10 @@ char* msg=nullptr;
 	if(!session){
 		return(nullptr);
 	}
-	if((id > poplast(session)) || (id<1)){
+	if((atom > poplast(session)) || (atom<1)){
 		return(nullptr);
 	}
-	resp=pop3_retr(session->sock,id);
+	resp=pop3_retr(session->sock,atom);
 	if((!resp) || pop3_error(resp)){
 #ifdef EBUG
 		fprintf(stderr, "error in pop3_retr: %s\n", resp);
@@ -198,24 +198,24 @@ char* msg=nullptr;
 		}
 	}
 	if(session->del){
-		popdelmsg(session, id);
+		popdelmsg(session, atom);
 	}
 #ifdef EBUG
 	fprintf(stderr, "</popgetmsg>\n");
 #endif
 	return(msg);	
 }
-int popdelmsg(popsession* session, int id){
-/* deletes a message 'id' on pop server */
+int popdelmsg(popsession* session, int atom){
+/* deletes a message 'atom' on pop server */
 /* returns -1 if no deletion (server error), 0 else */
 char* resp;
 	if(!session){
 		return(-1);
 	}
-	if((id > poplast(session)) || (id < 1)){
+	if((atom > poplast(session)) || (atom < 1)){
 		return(-1);
 	}
-	resp=pop3_dele(session->sock,id);
+	resp=pop3_dele(session->sock,atom);
 	if((!resp) || pop3_error(resp)){
 		if(resp){
 			free(resp);
@@ -235,10 +235,10 @@ char* resp;
 	session->bytes=poplast(session);
 	free(resp); 
 	
-	/* no more message of this id*/
-	session->list[id]=0;
-	free(session->uidl[id]);
-	session->uidl[id]=nullptr;
+	/* no more message of this atom*/
+	session->list[atom]=0;
+	free(session->uidl[atom]);
+	session->uidl[atom]=nullptr;
 	return(0);
 }
 int popcancel(popsession* session){
@@ -314,7 +314,7 @@ char* resp;
 
 
 int poplast(popsession* session){
-/* returns the id of the last downloadable message */
+/* returns the atom of the last downloadable message */
 	char* r=nullptr;
 	int n;
 	

@@ -8,15 +8,6 @@
     <Filter Include="Source Files\user">
       <UniqueIdentifier>{8832ff75-5113-4095-b832-a6e62e777cfd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\graphics">
-      <UniqueIdentifier>{14fc58bd-e136-4919-be5e-6efac6e33bf1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\graphics\draw2d">
-      <UniqueIdentifier>{bbcb5eb9-be41-465a-a232-c4136a47d021}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\graphics\draw3d">
-      <UniqueIdentifier>{7b756908-fa74-403f-a5ac-88be99a8b8cc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
@@ -33,17 +24,8 @@
     <Filter Include="Header Files\graphics\draw3d">
       <UniqueIdentifier>{cb60f64d-82e7-49e9-9d04-a5e35430215f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\graphics\draw2d\apple">
-      <UniqueIdentifier>{34efaa0b-f6bf-4aa5-9d45-4ce5191524d1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\graphics\draw2d\winrt">
-      <UniqueIdentifier>{180c7432-81c3-4bd3-9dbf-d970eefd11e0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\graphics\graphics">
       <UniqueIdentifier>{7244c2df-317d-4622-9d20-c9e6bf6c4e42}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\graphics\graphics">
-      <UniqueIdentifier>{272b2218-7490-41dd-9af7-993900a1cabf}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\inline">
       <UniqueIdentifier>{ca5a634b-db67-405b-b94e-e17dbe4fdeeb}</UniqueIdentifier>
@@ -53,9 +35,6 @@
     </Filter>
     <Filter Include="Header Files\const">
       <UniqueIdentifier>{d1dc7140-9c26-4249-9bf3-84fc6fbb92d7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\graphics\draw2d\no_precompiled_header">
-      <UniqueIdentifier>{df007898-a66f-47d8-aad3-693c470c1bf4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\include">
       <UniqueIdentifier>{0c0346ef-bd1c-4a0a-85b1-cfd8ef8ec242}</UniqueIdentifier>
@@ -117,9 +96,6 @@
     <Filter Include="Header Files\filesystem\filemanager">
       <UniqueIdentifier>{c21dbb0c-f9fc-4c28-a0bf-f9c3a36b5bb8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Resource Files">
-      <UniqueIdentifier>{884e337b-3347-4863-8d95-d6b0a4245427}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\windowing">
       <UniqueIdentifier>{5aa1b8be-3a9b-4bf3-b1d8-77ed4149c1b7}</UniqueIdentifier>
     </Filter>
@@ -129,47 +105,56 @@
     <Filter Include="Header Files\graphics\write_text">
       <UniqueIdentifier>{2f1acfc1-10fb-47b5-8b52-b81dfb0e47ac}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\graphics\user">
+      <UniqueIdentifier>{fe2a712a-f741-4216-9474-353b7d33f177}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gpu\game">
+      <UniqueIdentifier>{f65206ec-dbbc-4b74-a23c-3b5bf23d50a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics">
+      <UniqueIdentifier>{14fc58bd-e136-4919-be5e-6efac6e33bf1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\draw2d">
+      <UniqueIdentifier>{bbcb5eb9-be41-465a-a232-c4136a47d021}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\draw2d\apple">
+      <UniqueIdentifier>{34efaa0b-f6bf-4aa5-9d45-4ce5191524d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\draw2d\winrt">
+      <UniqueIdentifier>{180c7432-81c3-4bd3-9dbf-d970eefd11e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\draw2d\no_precompiled_header">
+      <UniqueIdentifier>{df007898-a66f-47d8-aad3-693c470c1bf4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\draw3d">
+      <UniqueIdentifier>{7b756908-fa74-403f-a5ac-88be99a8b8cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\graphics">
+      <UniqueIdentifier>{272b2218-7490-41dd-9af7-993900a1cabf}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source Files\graphics\write_text">
       <UniqueIdentifier>{9c7fbf2d-65a8-4085-8fc1-26598744d146}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\graphics\user">
       <UniqueIdentifier>{a52aa32c-8f7e-49e3-b7e4-78a433431da5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\graphics\user">
-      <UniqueIdentifier>{fe2a712a-f741-4216-9474-353b7d33f177}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\node">
-      <UniqueIdentifier>{2143d8b7-ada2-4e21-8d70-f05986ff23d2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\node\operating_system">
-      <UniqueIdentifier>{fd6c9dc3-420f-4338-8134-011390801335}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\node\operating_system\windows">
-      <UniqueIdentifier>{80b01f54-1dcf-4a68-93be-ae4edb0ac64e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\node\operating_system\windows_common">
-      <UniqueIdentifier>{49b9ae46-cb10-4690-9725-d1574f0d77f7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\node\operating_system\ansi">
-      <UniqueIdentifier>{9d014ea9-7d5f-45ed-8961-c3e48968d698}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\node">
+    <Filter Include="Header Files\operating_system">
       <UniqueIdentifier>{a3052857-61d1-403c-9c1b-7f209075ac46}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\node\operating_system">
-      <UniqueIdentifier>{563522c0-af55-4987-b901-29d505dd99a2}</UniqueIdentifier>
+    <Filter Include="Header Files\operating_system\windows">
+      <UniqueIdentifier>{ef0dd81c-ee06-4ad0-82b1-20e5f40d2775}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\node\operating_system\windows">
-      <UniqueIdentifier>{17f6820a-9db6-43b4-ba01-87dad42611ea}</UniqueIdentifier>
+    <Filter Include="Header Files\operating_system\windows_common">
+      <UniqueIdentifier>{b43f98be-7ff3-433e-b2d8-1512adb612d5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\node\operating_system\windows_common">
-      <UniqueIdentifier>{5811eda9-0179-4b82-a6cd-86dd830c632c}</UniqueIdentifier>
+    <Filter Include="Source Files\operating_system">
+      <UniqueIdentifier>{3e1712d8-ebf7-44b4-b9d3-b92cface3eb0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\node\operating_system\android">
-      <UniqueIdentifier>{282b6d12-bfe0-4e11-852e-30865588f7e9}</UniqueIdentifier>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{884e337b-3347-4863-8d95-d6b0a4245427}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\gpu\game">
-      <UniqueIdentifier>{f65206ec-dbbc-4b74-a23c-3b5bf23d50a4}</UniqueIdentifier>
+    <Filter Include="Source Files\operating_system\windows">
+      <UniqueIdentifier>{6f3d44df-0dcc-464c-aefb-ba42ef9257fe}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -707,20 +692,11 @@
     <ClInclude Include="user\style_base.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="os\windows_common\_.h">
-      <Filter>Header Files\node\operating_system\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\_.h">
-      <Filter>Header Files\node\operating_system\windows</Filter>
-    </ClInclude>
     <ClInclude Include="platform\static_start.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="message\timer.h">
       <Filter>Header Files\message</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\windowing.h">
-      <Filter>Header Files\node\operating_system\windows</Filter>
     </ClInclude>
     <ClInclude Include="message\_.h">
       <Filter>Header Files\message</Filter>
@@ -748,9 +724,6 @@
     </ClInclude>
     <ClInclude Include="inline\aaa_console.h">
       <Filter>Header Files\inline</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows_common\graphics.h">
-      <Filter>Header Files\node\operating_system\windows_common</Filter>
     </ClInclude>
     <ClInclude Include="graphics\draw2d\context_image.h">
       <Filter>Header Files\graphics\draw2d</Filter>
@@ -881,9 +854,6 @@
     <ClInclude Include="windowing\monitor.h">
       <Filter>Header Files\windowing</Filter>
     </ClInclude>
-    <ClInclude Include="os\windows\_windows.h">
-      <Filter>Header Files\node\operating_system\windows</Filter>
-    </ClInclude>
     <ClInclude Include="operating_system.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -892,12 +862,6 @@
     </ClInclude>
     <ClInclude Include="windowing\cursor.h">
       <Filter>Header Files\windowing</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\aaa_imm_context.h">
-      <Filter>Header Files\node\operating_system\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\aaa_imm_client.h">
-      <Filter>Header Files\node\operating_system\windows</Filter>
     </ClInclude>
     <ClInclude Include="user\text_composition.h">
       <Filter>Header Files\user</Filter>
@@ -971,9 +935,6 @@
     <ClInclude Include="graphics\write_text\text_box.h">
       <Filter>Header Files\graphics\write_text</Filter>
     </ClInclude>
-    <ClInclude Include="os\windows_common\aaa_draw2d_direct2d_global.h">
-      <Filter>Header Files\node\operating_system\windows_common</Filter>
-    </ClInclude>
     <ClInclude Include="platform\message_queue.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
@@ -1025,63 +986,6 @@
     <ClInclude Include="platform\progress.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="node\operating_system\windowing.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\time.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\text.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\operating_system.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\graphics.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\file.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\cross.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\chronometer.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\aaa_winpr_input.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\aaa_threading.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\aaa_process.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\aaa_console.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\aaa_binreloc.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\_user.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\_operating_system.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\_impl.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\_application.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\_.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\ansi\_.h">
-      <Filter>Header Files\node\operating_system\ansi</Filter>
-    </ClInclude>
     <ClInclude Include="user\interaction_scaler.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
@@ -1096,6 +1000,156 @@
     </ClInclude>
     <ClInclude Include="user\aaa_interaction_draw2d.h">
       <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\_.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\_2.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\_application.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\_c.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\_impl.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\_node.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\_operating_system.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\_user.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\chronometer.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\cross.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\file.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\graphics.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\_common.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\serial.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\text.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\time.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windowing.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\_.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\_c.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\_user.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\_windows.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\_windows_impl.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\aaa_d2d1_1.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\aaa_imm_client.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\aaa_imm_context.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\aaa_internal.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\aaa_itemidlist.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\gdiplus.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\graphics.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\implementation.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\opengl_buffer.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\port_forward.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\print_job.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\printer.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\top_level_enum.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\window_opengl.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\windowing.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\_.h">
+      <Filter>Header Files\operating_system\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\_c.h">
+      <Filter>Header Files\operating_system\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\_default_dll_impl.h">
+      <Filter>Header Files\operating_system\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\_file_c.h">
+      <Filter>Header Files\operating_system\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\_unicode_c.h">
+      <Filter>Header Files\operating_system\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\_windows_common.h">
+      <Filter>Header Files\operating_system\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\bstring.h">
+      <Filter>Header Files\operating_system\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\cotaskptr.h">
+      <Filter>Header Files\operating_system\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\file.h">
+      <Filter>Header Files\operating_system\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\graphics.h">
+      <Filter>Header Files\operating_system\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\multithreading.h">
+      <Filter>Header Files\operating_system\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\new_api.h">
+      <Filter>Header Files\operating_system\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\variant.h">
+      <Filter>Header Files\operating_system\windows_common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1459,9 +1513,6 @@
     <ClCompile Include="graphics\graphics\monitor.cpp">
       <Filter>Source Files\graphics\graphics</Filter>
     </ClCompile>
-    <ClCompile Include="os\android\graphics.cpp">
-      <Filter>Source Files\node\operating_system\android</Filter>
-    </ClCompile>
     <ClCompile Include="user\call_message_handler_task.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
@@ -1603,33 +1654,6 @@
     <ClCompile Include="graphics\user\close_icon.cpp">
       <Filter>Source Files\graphics\user</Filter>
     </ClCompile>
-    <ClCompile Include="os\windows_common\aaa_draw2d_direct2d_global.cpp">
-      <Filter>Source Files\node\operating_system</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\windowing.cpp">
-      <Filter>Source Files\node\operating_system</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\windows\aura.cpp">
-      <Filter>Source Files\node\operating_system\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\windows\dpi.cpp">
-      <Filter>Source Files\node\operating_system\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\windows\gdi.cpp">
-      <Filter>Source Files\node\operating_system\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\windows\graphics.cpp">
-      <Filter>Source Files\node\operating_system\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\windows\main.cpp">
-      <Filter>Source Files\node\operating_system\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\windows\monitor.cpp">
-      <Filter>Source Files\node\operating_system\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\windows\windowing.cpp">
-      <Filter>Source Files\node\operating_system\windows</Filter>
-    </ClCompile>
     <ClCompile Include="user\interaction_scaler.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
@@ -1654,6 +1678,39 @@
     <ClCompile Include="graphics\draw2d\image_source.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
+    <ClCompile Include="operating_system\_application.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\http.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\thread.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windowing.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\aura.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\dpi.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\gdi.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\graphics.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\main.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\monitor.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\windowing.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="graphics\draw2d\_impl.h">
@@ -1670,8 +1727,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="..\..\..\archive\platform-windows\version.rc">
-      <Filter>Source Files\Resource Files</Filter>
+    <ResourceCompile Include="..\..\..\operating-system\operating-system-windows\version.rc">
+      <Filter>Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>
 </Project>

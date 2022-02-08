@@ -30,10 +30,10 @@ namespace data
    }
 
    
-   void data::assert_valid() const
+   void data::assert_ok() const
    {
 
-      ::matter::assert_valid();
+      ::matter::assert_ok();
 
    }
 
@@ -96,7 +96,7 @@ namespace data
    }
 
 
-   ::user::primitive *  data::get_data_bound_view(index iView)
+   ::user::primitive *  data::get_data_bound_view(index iImpact)
    {
 
       return nullptr;
@@ -110,20 +110,20 @@ namespace data
    //  //if (m_pdatacontainerbase)
    //  //{
 
-   //  //   m_pdatacontainerbase->process(psubject);
+   //  //   m_pdatacontainerbase->process(ptopic);
 
    //  //}
 
    //}
 
 
-   void data::handle(::subject * psubject, ::context * pcontext)
+   void data::handle(::topic * ptopic, ::context * pcontext)
    {
 
       //if (m_pdatacontainerbase)
       //{
 
-      //   m_pdatacontainerbase->process(psubject);
+      //   m_pdatacontainerbase->process(ptopic);
 
       //}
 

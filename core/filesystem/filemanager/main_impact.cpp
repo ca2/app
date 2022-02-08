@@ -35,10 +35,10 @@ namespace filemanager
    }
 
 
-   void main_impact::assert_valid() const
+   void main_impact::assert_ok() const
    {
 
-      ::user::split_view::assert_valid();
+      ::user::split_view::assert_ok();
 
    }
 
@@ -147,7 +147,7 @@ namespace filemanager
    void main_impact::on_command(::message::command * pcommand)
    {
 
-      if(pcommand->m_id == "change_view")
+      if(pcommand->m_atom == "change_view")
       {
 
          if(m_ppreview->is_window_visible())
@@ -179,37 +179,37 @@ namespace filemanager
    }
 
 
-   void main_impact::handle(::subject * psubject, ::context * pcontext)
+   void main_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::filemanager_impact_base::handle(psubject, pcontext);
+      ::filemanager_impact_base::handle(ptopic, pcontext);
 
-      ::user::split_view::handle(psubject, pcontext);
+      ::user::split_view::handle(ptopic, pcontext);
 
-      if (psubject->id() == OPEN_DOCUMENT_UPDATE)
+      if (ptopic->m_atom == OPEN_DOCUMENT_UPDATE)
       {
 
          output_debug_string("filemanager::main_impact ::update_open_document");
 
       }
 
-      if (filemanager_document() == psubject->cast < ::user::document >(DOCUMENT_ID))
+      if (filemanager_document() == ptopic->get_extended_topic()->cast < ::user::document >(DOCUMENT_ID))
       {
 
-         if (psubject->id() == id_open_selection_properties)
+         if (ptopic->m_atom == id_open_selection_properties)
          {
 
             OpenSelectionProperties();
 
          }
-         else if (psubject->id() == id_pop)
+         else if (ptopic->m_atom == id_pop)
          {
 
             OnActivateFrame(e_activate_inactive, ((get_parent_frame())));
 
             get_parent_frame()->ActivateFrame(e_display_normal);
 
-            OnActivateView(true, this, this);
+            OnActivateImpact(true, this, this);
 
             set_need_redraw();
 
@@ -222,7 +222,7 @@ namespace filemanager
             }
 
          }
-         else if (psubject->id() == id_create_bars)
+         else if (ptopic->m_atom == id_create_bars)
          {
 
             __pointer(simple_frame_window) pframe = get_parent_frame();

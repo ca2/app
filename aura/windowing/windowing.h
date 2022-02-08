@@ -9,7 +9,7 @@ inline ::user::interaction_impl * __interaction_impl(::windowing::window * pwind
 
    if (::is_null(pwindow)) return nullptr;
 
-   auto pimpl = pwindow->m_pimpl.m_p;
+   auto pimpl = pwindow->m_puserinteractionimpl.m_p;
 
    if (::is_null(pimpl)) return nullptr;
 
@@ -171,8 +171,8 @@ namespace windowing
 
       virtual void load_cursor(::windowing::cursor * pcursor, ::file::path path, bool bSync, bool bCache = true);
 
-      virtual void set(::message::key * pkey, oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam);
-      virtual void set(::message::mouse * pmouse, oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam);
+      virtual void set(::message::key * pkey, oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam);
+      virtual void set(::message::mouse * pmouse, oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam);
 
       virtual void initialize_keyboard(::windowing::keyboard * pkeyboard);
 

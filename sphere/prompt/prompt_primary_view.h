@@ -26,7 +26,7 @@ namespace prompt
 
 
       virtual void _001OnAfterChangeText(const ::action_context & action_context);
-      void handle(::subject * psubject, ::context * pcontext);
+      void handle(::topic * ptopic, ::context * pcontext);
 
 
       DECLARE_MESSAGE_HANDLER(_001OnUpdateEditCopy);

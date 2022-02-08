@@ -2,7 +2,7 @@
 //#if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/_user.h"
 //#endif
-//#include "acme/constant/id.h"
+//#include "acme/id.h"
 //#include "apex/platform/app_core.h"
 #include "acme/platform/static_setup.h"
 //#include "apex/platform/str_context.h"
@@ -12,12 +12,12 @@
 //#endif // LINUX
 
 
-//namespace PLATFORM_NAMESPACE
+//namespace OPERATING_SYSTEM_NAMESPACE
 //{
 //
 //   CLASS_DECL_AURA bool adjust_monitor(index iMonitor, ::u32 dwTemperature, double dBrightness, double dGamma);
 //
-//} // namespace PLATFORM_NAMESPACE
+//} // namespace OPERATING_SYSTEM_NAMESPACE
 
 
 
@@ -34,14 +34,14 @@
 #if defined(APPLE_IOS) || defined(_UWP) || defined(ANDROID)
 
 
-namespace PLATFORM_NAMESPACE
+namespace OPERATING_SYSTEM_NAMESPACE
 {
 
 
    CLASS_DECL_AURA ::user::interaction * create_host_window();
 
 
-} // namespace PLATFORM_NAMESPACE
+} // namespace OPERATING_SYSTEM_NAMESPACE
 
 
 #endif
@@ -57,7 +57,7 @@ extern "C"
 
 #ifdef _UWP
 
-//#include "aura/node/operating_system/universal_windows/_universal_windows.h"
+//#include "aura/operating_system/universal_windows/_universal_windows.h"
 
 #elif defined(LINUX)
 
@@ -412,7 +412,7 @@ namespace aura
 
          string_array straApp;
 
-         __throw(todo, "filehandler");
+         throw ::exception(todo, "filehandler");
 
          //psystem->filehandler().get_extension_app(straApp, strExtension);
 
@@ -1366,7 +1366,7 @@ namespace aura
 
    //   }
 
-   //   i64 iMessage = pmouse->m_id;
+   //   i64 iMessage = pmouse->m_atom;
 
    //   if(iMessage == e_message_left_button_down
    //    //|| iMessage == e_message_left_button_up
@@ -1680,18 +1680,18 @@ namespace aura
 //   }
 
 
-   void session::set_bound_ui(::id idView, ::user::interaction * pinteraction)
+   void session::set_bound_ui(::atom idImpact, ::user::interaction * pinteraction)
    {
 
-      m_mapboundui.set_at(idView, pinteraction);
+      m_mapboundui.set_at(idImpact, pinteraction);
 
    }
 
 
-   ::user::primitive * session::get_bound_ui(::id idView)
+   ::user::primitive * session::get_bound_ui(::atom idImpact)
    {
 
-      auto p = m_mapboundui.plookup(idView);
+      auto p = m_mapboundui.plookup(idImpact);
 
       if (!p)
       {
@@ -1913,7 +1913,7 @@ namespace aura
 //
 //      }
 //
-//      auto puserinteraction = ::PLATFORM_NAMESPACE::create_host_window();
+//      auto puserinteraction = ::OPERATING_SYSTEM_NAMESPACE::create_host_window();
 //
 //      if(!puserinteraction)
 //      {
@@ -2388,10 +2388,10 @@ namespace aura
    //void session::check_topic_file_change()
    //{
 
-   //   if (m_varCurrentViewFile != m_varTopicFile && !m_varTopicFile.is_empty())
+   //   if (m_varCurrentImpactFile != m_varTopicFile && !m_varTopicFile.is_empty())
    //   {
 
-   //      m_varCurrentViewFile = m_varTopicFile;
+   //      m_varCurrentImpactFile = m_varTopicFile;
 
    //      request_topic_file();
 
@@ -2422,7 +2422,7 @@ namespace aura
       if (m_applicationa.lookup(pszAppId, papp) && papp)
       {
 
-         //__pointer(::bergedge::pane_view) ppaneview = get_document()->get_typed_view < ::bergedge::pane_view >();
+         //__pointer(::bergedge::pane_view) ppaneview = get_document()->get_type_impact < ::bergedge::pane_view >();
 
          //if(ppaneview != nullptr)
          //{
@@ -2603,8 +2603,8 @@ namespace aura
    //void session::frame_pre_translate_message(::message::message* pmessage)
    //{
 
-   //   if (pmessage->m_id == WM_GETTEXT
-   //      || pmessage->m_id == WM_GETTEXTLENGTH
+   //   if (pmessage->m_atom == WM_GETTEXT
+   //      || pmessage->m_atom == WM_GETTEXTLENGTH
    //      )
    //   {
 
@@ -2614,7 +2614,7 @@ namespace aura
    //      return;
 
    //   }
-   //   //else if (pmessage->m_id == e_message_mouse_move)
+   //   //else if (pmessage->m_atom == e_message_mouse_move)
    //   //{
 
    //   //   pmessage->m_uiMessageFlags |= 0; // message considered pre translated

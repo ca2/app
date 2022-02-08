@@ -116,7 +116,7 @@ bool axis_term()
 //
 //#endif
 
-   //__throw(todo);
+   //throw ::exception(todo);
    //try
    //{
 

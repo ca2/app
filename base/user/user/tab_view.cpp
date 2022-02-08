@@ -27,10 +27,10 @@ namespace user
    }
 
 
-   void tab_view::assert_valid() const
+   void tab_view::assert_ok() const
    {
 
-      impact::assert_valid();
+      impact::assert_ok();
 
    }
 
@@ -60,12 +60,12 @@ namespace user
    }
 
 
-   void tab_view::handle(::subject * psubject, ::context * pcontext)
+   void tab_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      tab::handle(psubject, pcontext);
+      tab::handle(ptopic, pcontext);
 
-      impact::handle(psubject, pcontext);
+      impact::handle(ptopic, pcontext);
 
    }
 
@@ -85,7 +85,7 @@ namespace user
    }
 
 
-   void tab_view::OnActivateView(bool bActivate, __pointer(impact) pActivateView, __pointer(impact) pDeactiveView)
+   void tab_view::OnActivateImpact(bool bActivate, __pointer(impact) pActivateImpact, __pointer(impact) pDeactiveImpact)
    {
 
       __pointer(::user::interaction) pinteraction = get_view_uie();
@@ -121,13 +121,13 @@ namespace user
       if (pview.is_set() && pview != this)
       {
 
-         pview->OnActivateView(bActivate, pActivateView, pDeactiveView);
+         pview->OnActivateImpact(bActivate, pActivateImpact, pDeactiveImpact);
 
       }
       else
       {
 
-         ::user::impact::OnActivateView(bActivate, pActivateView, pDeactiveView);
+         ::user::impact::OnActivateImpact(bActivate, pActivateImpact, pDeactiveImpact);
 
       }
 
@@ -193,7 +193,7 @@ namespace user
       if(pusermessage->m_wparam == 0 && pusermessage->m_lparam == 0)
       {
 
-         set_current_tab_by_id(m_pimpactdataOld->m_id);
+         set_current_tab_by_id(m_pimpactdataOld->m_atom);
 
       }
 
@@ -254,7 +254,7 @@ namespace user
 
       m_placeholdera.erase(ptabpane->m_pplaceholder);
 
-      id idTab = ptabpane->m_id;
+      atom idTab = ptabpane->m_atom;
 
       ::user::impact_data * pimpactdata = m_impactdatamap[idTab];
 
@@ -283,11 +283,11 @@ namespace user
       if (eposition != e_position_none)
       {
 
-         id id1 = ::user::tab::index_id(::user::tab::get_current_tab_index());
+         atom id1 = ::user::tab::index_id(::user::tab::get_current_tab_index());
 
-         id id2 = ::user::tab::index_id(iTab);
+         atom id2 = ::user::tab::index_id(iTab);
 
-         id id3 = payload(id1).string() + "->:<-" + payload(id2).string();
+         atom id3 = payload(id1).string() + "->:<-" + payload(id2).string();
 
          ::user::tab_pane * ppane1 = get_tab_by_id(id1);
 
@@ -462,15 +462,15 @@ namespace user
 
       index iTab = get_current_tab_index();
 
-      id id = index_id(iTab);
+      atom atom = index_id(iTab);
 
-      ::id idSplit;
+      ::atom idSplit;
 
       auto ptabdata = get_data();
 
       ::rectangle_i32 rectangleTabClient = ptabdata->m_rectangleTabClient;
 
-      ::user::impact_data * pimpactdata = get_impact_data(id, rectangleTabClient);
+      ::user::impact_data * pimpactdata = get_impact_data(atom, rectangleTabClient);
 
       if (pimpactdata == nullptr)
       {
@@ -527,15 +527,15 @@ namespace user
 
                synchronous_lock synchronouslock(mutex());
 
-               if (pimpactdata->m_idTitle.has_char())
+               if (pimpactdata->m_atomTitle.has_char())
                {
 
                   index iTab = get_current_tab_index();
 
-                  if (iTab >= 0 && get_data()->m_tabpanecompositea[iTab]->m_id == pimpactdata->m_id)
+                  if (iTab >= 0 && get_data()->m_tabpanecompositea[iTab]->m_atom == pimpactdata->m_atom)
                   {
 
-                     get_data()->m_tabpanecompositea[iTab]->set_title(pimpactdata->m_idTitle);
+                     get_data()->m_tabpanecompositea[iTab]->set_title(pimpactdata->m_atomTitle);
 
                   }
 
@@ -547,7 +547,7 @@ namespace user
 
       }
 
-      idSplit = pimpactdata->m_idSplit;
+      idSplit = pimpactdata->m_atomSplit;
 
       if(pimpactdata != m_pimpactdata)
       {
@@ -581,8 +581,8 @@ namespace user
 
       if (m_pimpactdataOld 
          && m_pimpactdataOld->m_eflag & ::user::e_flag_hide_on_kill_focus
-         && m_pimpactdataOld->m_id != MENU_IMPACT
-         && m_pimpactdataOld->m_id != OPTIONS_IMPACT)
+         && m_pimpactdataOld->m_atom != MENU_IMPACT
+         && m_pimpactdataOld->m_atom != OPTIONS_IMPACT)
       {
 
          output_debug_string("::user::e_flag_hide_on_kill_focus");
@@ -595,7 +595,7 @@ namespace user
       {
 
          if (m_pimpactdata->m_eflag.has(::user::e_flag_hide_all_others_on_show)
-            || m_pimpactdata->m_eflag.has(::user::e_flag_hide_topic_on_show))
+            || m_pimpactdata->m_eflag.has(::user::e_flag_hidid_on_show))
          {
 
             ::user::tab_pane_composite_array & panecompositea = get_data()->m_tabpanecompositea;
@@ -612,7 +612,7 @@ namespace user
 
                }
 
-               else if (m_pimpactdata->m_eflag & ::user::e_flag_hide_topic_on_show)
+               else if (m_pimpactdata->m_eflag & ::user::e_flag_hidid_on_show)
                {
 
                   if ((m_pimpactdata->m_eflag & ::user::e_flag_modifier_impact)
@@ -699,7 +699,7 @@ namespace user
 
       _on_change_cur_sel();
 
-      if (m_pimpactdata->m_id == MENU_IMPACT)
+      if (m_pimpactdata->m_atom == MENU_IMPACT)
       {
 
          create_impact_menu(m_pimpactdata);
@@ -715,17 +715,17 @@ namespace user
    }
 
 
-   ::user::tab_pane * tab_view::create_tab_by_id(const ::id & id)
+   ::user::tab_pane * tab_view::create_tab_by_id(const ::atom & atom)
    {
 
-      if (get_impact_data(id, get_data()->m_rectangleTabClient) == nullptr)
+      if (get_impact_data(atom, get_data()->m_rectangleTabClient) == nullptr)
       {
 
          return nullptr;
 
       }
 
-      index iTab = id_index(id);
+      index iTab = id_index(atom);
 
       if (iTab < 0)
       {
@@ -815,27 +815,27 @@ namespace user
    }
 
 
-   //::user::impact_data * tab_view::create_impact(id id, const ::rectangle_i32 & rectangleCreate, ::user::frame_window * pframewindow)
+   //::user::impact_data * tab_view::create_impact(atom atom, const ::rectangle_i32 & rectangleCreate, ::user::frame_window * pframewindow)
 
    //{
 
    //   if (m_pviewcreator == nullptr)
    //      return nullptr;
 
-   //   ::user::impact_data * pimpactdata = m_pviewcreator->::user::impact_creator::create_impact(id, rectangleCreate);
+   //   ::user::impact_data * pimpactdata = m_pviewcreator->::user::impact_creator::create_impact(atom, rectangleCreate);
 
 
    //   if (pimpactdata != nullptr)
    //   {
 
-   //      if (id_pane(id) == -1)
+   //      if (id_pane(atom) == -1)
    //      {
 
-   //         ::user::tab::add_tab("", id);
+   //         ::user::tab::add_tab("", atom);
 
    //      }
 
-   //      ::user::tab_pane * ppane = get_tab_by_id(id);
+   //      ::user::tab_pane * ppane = get_tab_by_id(atom);
 
    //      if (ppane != nullptr)
    //      {
@@ -844,7 +844,7 @@ namespace user
 
    //            synchronous_lock synchronouslock(mutex());
 
-   //            if (pimpactdata->m_strCreatorDataTitle.has_char() && ppane->m_id == pimpactdata->m_id)
+   //            if (pimpactdata->m_strCreatorDataTitle.has_char() && ppane->m_atom == pimpactdata->m_atom)
    //            {
 
    //               ppane->set_title(pimpactdata->m_strCreatorDataTitle);
@@ -870,17 +870,17 @@ namespace user
 
    //}
 
-   id tab_view::get_view_id()
+   atom tab_view::get_view_id()
    {
 
       if (m_pimpactdata == nullptr)
       {
 
-         return ::id();
+         return ::atom();
 
       }
 
-      return m_pimpactdata->m_id;
+      return m_pimpactdata->m_atom;
 
    }
 
@@ -1011,26 +1011,26 @@ namespace user
    bool tab_view::on_prepare_impact_data(::user::impact_data* pimpactdata)
    {
 
-      //if (!add_tab(pimpactdata->m_id, pimpactdata->m_idTitle))
+      //if (!add_tab(pimpactdata->m_atom, pimpactdata->m_atomTitle))
       //{
 
       //   return false;
 
       //}
 
-      auto ptabpane = get_tab_by_id(pimpactdata->m_id);
+      auto ptabpane = get_tab_by_id(pimpactdata->m_atom);
 
       if (!ptabpane)
       {
 
-         if (!add_tab(pimpactdata->m_idTitle, pimpactdata->m_id))
+         if (!add_tab(pimpactdata->m_atomTitle, pimpactdata->m_atom))
          {
 
             return false;
 
          }
 
-         ptabpane = get_tab_by_id(pimpactdata->m_id);
+         ptabpane = get_tab_by_id(pimpactdata->m_atom);
 
       }
 
@@ -1066,7 +1066,7 @@ namespace user
 
       ::user::impact_host::on_after_host_impact(pimpactdata);
 
-      __throw(todo, "experience");
+      throw ::exception(todo, "experience");
 
       //__pointer(::user::frame) pframewindow = pimpactdata->m_puserinteraction;
 

@@ -31,10 +31,10 @@ typedef iptr strsize;
 #define CLASS_DECL_APEX
 
 
-#include "acme/node/operating_system/parallelization.h"
+#include "acme/operating_system/parallelization.h"
 //#include "apex/platform/struct.h"
-#include "apex/node/operating_system/cross/cross.h"
-//#include "acme/node/operating_system/acme.h"
+#include "apex/operating_system/cross/cross.h"
+//#include "acme/operating_system/acme.h"
 
 
 #include "apex/include/_c.h"

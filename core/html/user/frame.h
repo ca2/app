@@ -24,7 +24,7 @@
 
 //   virtual ~html_frame();
 //#ifdef _DEBUG
-//   void assert_valid() const override;
+//   void assert_ok() const override;
 //   void dump(dump_context & dumpcontext) const override;
 //#endif
 //
@@ -41,7 +41,7 @@
 ////xxx   SimpleReBar       m_wndReBar;
 ////   simple_status_bar   m_statusbar;
 ////   simple_toolbar     m_toolbar;
-////   simple_toolbar     m_toolbarView;
+////   simple_toolbar     m_toolbarImpact;
 //
 //
 //   //bool              m_bFullScreen;

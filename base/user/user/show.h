@@ -69,10 +69,10 @@ namespace user
       }
 
 
-      virtual void assert_valid() const override
+      virtual void assert_ok() const override
       {
-         impact::assert_valid();
-         VIEW::assert_valid();
+         impact::assert_ok();
+         VIEW::assert_ok();
 
       }
       virtual void dump(dump_context& dumpcontext) const override
@@ -116,16 +116,16 @@ namespace user
       }
 
       //using ::user::impact::update;
-      void handle(::subject* psubject, ::context* pcontext) override
+      void handle(::topic* ptopic, ::context* pcontext) override
       {
 
-         ::user::impact::handle(psubject, pcontext);
+         ::user::impact::handle(ptopic, pcontext);
 
-         VIEW::handle(psubject, pcontext);
+         VIEW::handle(ptopic, pcontext);
 
-         ////VIEW::handle(psubject, pcontext);
+         ////VIEW::handle(ptopic, pcontext);
 
-         //if (psubject->m_bRet)
+         //if (ptopic->get_extended_topic()->m_bRet)
          //{
 
          //   return;
@@ -146,7 +146,7 @@ namespace user
 
          //   puiParent->handle(pevent);
 
-         //   if (psubject->m_bRet)
+         //   if (ptopic->get_extended_topic()->m_bRet)
          //   {
 
          //      return;
@@ -190,12 +190,12 @@ namespace user
 
 
 
-      //virtual void handle(::subject * psubject, ::context * pcontext) override
+      //virtual void handle(::topic * ptopic, ::context * pcontext) override
       //{
 
-      //   VIEW::handle(psubject, pcontext);
+      //   VIEW::handle(ptopic, pcontext);
 
-      //   if(psubject->m_bRet)
+      //   if(ptopic->get_extended_topic()->m_bRet)
       //   {
 
       //      return;
@@ -205,7 +205,7 @@ namespace user
       //   if(m_puserinteractionImpactNotify)
       //   {
 
-      //      m_puserinteractionImpactNotify->handle(psubject, pcontext);
+      //      m_puserinteractionImpactNotify->handle(ptopic, pcontext);
 
       //   }
 
@@ -214,9 +214,9 @@ namespace user
       //   if (puiParent != nullptr)
       //   {
 
-      //      puiParent->handle(psubject, pcontext);
+      //      puiParent->handle(ptopic, pcontext);
 
-      //      if (psubject->m_bRet)
+      //      if (ptopic->get_extended_topic()->m_bRet)
       //      {
 
       //         return;

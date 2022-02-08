@@ -98,10 +98,10 @@ void channel::transfer_handler(::message::dispatcher_map & dispatchermap, ::matt
 }
 
 
-::matter * channel::add_message_handler(const ::id & id, const ::message::dispatcher & dispatcher)
+::matter * channel::add_message_handler(const ::atom & atom, const ::message::dispatcher & dispatcher)
 {
 
-   auto & dispatchera = m_dispatchermap[id];
+   auto & dispatchera = m_dispatchermap[atom];
    
    // Try to not add already added dispatcher
    for (index i = 0; i < dispatchera.get_count(); i++)
@@ -128,9 +128,9 @@ void channel::transfer_handler(::message::dispatcher_map & dispatchermap, ::matt
 void channel::route_message(::message::message * pmessage)
 {
 
-   if (::is_null(pmessage)) { ASSERT(false); return; } { synchronous_lock synchronouslock(channel_mutex()); pmessage->m_pdispatchera = m_dispatchermap.pget(pmessage->m_id); } if(pmessage->m_pdispatchera == nullptr || pmessage->m_pdispatchera->is_empty()) return;
+   if (::is_null(pmessage)) { ASSERT(false); return; } { synchronous_lock synchronouslock(channel_mutex()); pmessage->m_pdispatchera = m_dispatchermap.pget(pmessage->m_atom); } if(pmessage->m_pdispatchera == nullptr || pmessage->m_pdispatchera->is_empty()) return;
 
-   if (pmessage->m_id.is_command_probe())
+   if (pmessage->m_atom.is_command_probe())
    {
 
       pmessage->m_bRet = true;
@@ -159,7 +159,7 @@ __pointer(::message::message) channel::get_message(MESSAGE * pmessage)
    pmessagemessage->set(
       pmessage->oswindow, 
       nullptr,
-      pmessage->m_id, 
+      pmessage->m_atom, 
       pmessage->wParam, 
       pmessage->lParam);
 
@@ -168,8 +168,8 @@ __pointer(::message::message) channel::get_message(MESSAGE * pmessage)
 }
 
 
-//__pointer(::message::message) channel::get_message(const ::id & id, wparam wparam, lparam lparam, const ::point_i32 & point)
-__pointer(::message::message) channel::get_message(const ::id& id, wparam wparam, lparam lparam)
+//__pointer(::message::message) channel::get_message(const ::atom & atom, wparam wparam, lparam lparam, const ::point_i32 & point)
+__pointer(::message::message) channel::get_message(const ::atom& atom, wparam wparam, lparam lparam)
 {
 
    auto pmessagemessage = __new(::message::message);
@@ -177,7 +177,7 @@ __pointer(::message::message) channel::get_message(const ::id& id, wparam wparam
    pmessagemessage->set(
       nullptr,
       nullptr,
-      id,
+      atom,
       wparam,
       lparam);
 
@@ -186,13 +186,13 @@ __pointer(::message::message) channel::get_message(const ::id& id, wparam wparam
 }
 
 
-//__pointer(::user::message) channel::get_message_base(::windowing::window * pwindow, const ::id & id, wparam wparam, lparam lparam)
+//__pointer(::user::message) channel::get_message_base(::windowing::window * pwindow, const ::atom & atom, wparam wparam, lparam lparam)
 //{
 //
-//   if (id.m_etype != ::id::e_type_message)
+//   if (atom.m_etype != ::atom::e_type_message)
 //   {
 //
-//      __throw(error_invalid_argument);
+//      throw ::exception(error_bad_argument);
 //
 //   }
 //
@@ -200,7 +200,7 @@ __pointer(::message::message) channel::get_message(const ::id& id, wparam wparam
 //
 //   __zero(msg);
 //
-//   msg.message = (::u32) id.m_emessage;
+//   msg.message = (::u32) atom.m_emessage;
 //   msg.wParam = wparam;
 //   msg.lParam = lparam;
 //
@@ -215,7 +215,7 @@ __pointer(::message::message) channel::get_message(const ::id& id, wparam wparam
 //__pointer(::user::message) channel::get_message_base(void * pevent,::user::interaction * puserinteraction)
 //{
 //
-//   __throw(todo);
+//   throw ::exception(todo);
 //
 //   return nullptr;
 //
@@ -355,9 +355,9 @@ void channel::_001SendCommand(::message::command * pcommand)
 
    {
 
-      __scoped_restore(pcommand->m_id.m_etype);
+      __scoped_restore(pcommand->m_atom.m_etype);
 
-      pcommand->m_id.set_compounded_type(::id::e_type_command);
+      pcommand->m_atom.set_compounded_type(::atom::e_type_command);
 
       route_command(pcommand, true);
 
@@ -373,9 +373,9 @@ void channel::_001SendCommandProbe(::message::command * pcommand)
 
    {
 
-      __scoped_restore(pcommand->m_id.m_etype);
+      __scoped_restore(pcommand->m_atom.m_etype);
 
-      pcommand->m_id.set_compounded_type(::id::e_type_command_probe);
+      pcommand->m_atom.set_compounded_type(::atom::e_type_command_probe);
 
       route_command(pcommand);
 
@@ -415,7 +415,7 @@ void channel::command_handler(::message::command * pcommand)
       on_command(pcommand);
 
    }
-   else if (pcommand->m_id.is_command_probe())
+   else if (pcommand->m_atom.is_command_probe())
    {
 
       pcommand->m_bHasCommandHandler = has_command_handler(pcommand);
@@ -423,7 +423,7 @@ void channel::command_handler(::message::command * pcommand)
       on_command_probe(pcommand);
 
    }
-   else if (pcommand->m_id.is_command())
+   else if (pcommand->m_atom.is_command())
    {
 
       pcommand->m_bHasCommandHandler = has_command_handler(pcommand);
@@ -432,7 +432,7 @@ void channel::command_handler(::message::command * pcommand)
    else
    {
 
-      __throw(error_not_implemented);
+      throw ::not_implemented();
 
    }
 
@@ -444,18 +444,18 @@ bool channel::has_command_handler(::message::command * pcommand)
 
    synchronous_lock synchronouslock(channel_mutex());
 
-   __scoped_restore(pcommand->m_id.m_etype);
+   __scoped_restore(pcommand->m_atom.m_etype);
 
-   pcommand->m_id.set_compounded_type(::id::e_type_command);
+   pcommand->m_atom.set_compounded_type(::atom::e_type_command);
 
-   if (m_idaHandledCommands.contains(pcommand->m_id))
+   if (m_idaHandledCommands.contains(pcommand->m_atom))
    {
 
       return true;
 
    }
 
-   auto passociation = m_dispatchermap.plookup(pcommand->m_id);
+   auto passociation = m_dispatchermap.plookup(pcommand->m_atom);
 
    if (::is_null(passociation))
    {
@@ -486,9 +486,9 @@ bool channel::has_command_handler(::message::command * pcommand)
 void channel::on_command_probe(::message::command * pcommand)
 {
 
-   __scoped_restore(pcommand->m_id.m_etype);
+   __scoped_restore(pcommand->m_atom.m_etype);
 
-   pcommand->m_id.set_compounded_type(::id::e_type_command_probe);
+   pcommand->m_atom.set_compounded_type(::atom::e_type_command_probe);
 
    route_message(pcommand);
 
@@ -505,19 +505,19 @@ void channel::on_command_probe(::message::command * pcommand)
 void channel::on_command(::message::command * pcommand)
 {
 
-   __scoped_restore(pcommand->m_id.m_etype);
+   __scoped_restore(pcommand->m_atom.m_etype);
 
-   pcommand->m_id.set_compounded_type(::id::e_type_command);
+   pcommand->m_atom.set_compounded_type(::atom::e_type_command);
 
    route_message(pcommand);
 
 }
 
 
-//bool channel::_add_message_handler(const ::id & id, ::object * preceiver, void * phandler, const ::message::handler & handler)
+//bool channel::_add_message_handler(const ::atom & atom, ::object * preceiver, void * phandler, const ::message::handler & handler)
 //{
 //
-//    auto & handlera = m_handlermap[id];
+//    auto & handlera = m_handlermap[atom];
 //
 //    if(preceiver != nullptr || phandler != nullptr)
 //    {
@@ -548,12 +548,12 @@ void channel::on_command(::message::command * pcommand)
 //}
 
 
-void channel::id_notify(const ::id & id, ::matter * pmatter)
+void channel::id_notify(const ::atom & atom, ::matter * pmatter)
 {
 
-    auto & routinea = m_routinemap[id];
+    auto & routinea = m_routinemap[atom];
 
-    routinea.add(pmatter); // pmatter is notified with id
+    routinea.add(pmatter); // pmatter is notified with atom
 
     //return ::success;
 
@@ -563,12 +563,12 @@ void channel::id_notify(const ::id & id, ::matter * pmatter)
 
 
 
-void channel::default_toggle_check_handling(const ::id & id)
+void channel::default_toggle_check_handling(const ::atom & atom)
 {
 
-   auto linkedproperty = fetch_property(id);
+   auto linkedproperty = fetch_property(atom);
 
-   add_command_handler(id, [linkedproperty](::message::message * pmessage)
+   add_command_handler(atom, [linkedproperty](::message::message * pmessage)
       {
 
          if (linkedproperty->get_bool())

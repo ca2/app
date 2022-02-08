@@ -18,7 +18,7 @@ namespace userex
          
          string   m_strMatter;
          
-         id       m_id;
+         atom       m_atom;
 
       };
 
@@ -33,8 +33,8 @@ namespace userex
       void on_create_impact(::user::impact_data * pimpactdata) override;
 
 
-      void set_new_pane_info(id id, const ::string & pszMatter);
-      void set_menu_info(id id, const ::string & pszMatter, ::id idCommand);
+      void set_new_pane_info(atom atom, const ::string & pszMatter);
+      void set_menu_info(atom atom, const ::string & pszMatter, ::atom idCommand);
    
 
       virtual void on_command_probe(::message::command * pcommand) override;

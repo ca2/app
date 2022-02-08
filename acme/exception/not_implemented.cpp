@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-not_implemented_exception::not_implemented_exception(const char * pszMessage, const ::e_status & estatus) :
+not_implemented::not_implemented(const char * pszMessage, const ::e_status & estatus) :
    ::exception(estatus,  pszMessage)
 {
 
@@ -10,7 +10,7 @@ not_implemented_exception::not_implemented_exception(const char * pszMessage, co
 }
 
 
-not_implemented_exception::~not_implemented_exception()
+not_implemented::~not_implemented()
 {
 
 }

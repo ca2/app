@@ -42,12 +42,12 @@ public:
 
   /**
    * Static method, used to cast RegionDefine class into TextRegion class.
-   * @__throw( exception If casing is not available.
+   * @throw ::exception( exception If casing is not available.
    */
   static const TextRegion *cast(const RegionDefine *rd){
     if (rd == nullptr) return nullptr;
     const TextRegion *tr = (const TextRegion *)(rd);
-    if (tr == nullptr)  __throw(exception(string("Bad type cast exception into TextRegion")));
+    if (tr == nullptr)  throw ::exception(exception(string("Bad type cast exception into TextRegion")));
     return tr;
   }
 
@@ -93,7 +93,7 @@ public:
 /* ***** BEGIN LICENSE BLOCK *****
  * Version: MPL 1.1/GPL 2.0/LGPL 2.1
  *
- * The contents of this file are subject to the Mozilla Public License Version
+ * The contents of this file are topic to the Mozilla Public License Version
  * 1.1 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
  * http://www.mozilla.org/MPL/

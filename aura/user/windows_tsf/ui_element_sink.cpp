@@ -33,7 +33,7 @@ namespace tsf
 
 
 
-   //STDMETHODIMP edit_window::OnStartComposition(ITfCompositionView * pComposition, BOOL * pfOk)
+   //STDMETHODIMP edit_window::OnStartComposition(ITfCompositionImpact * pComposition, BOOL * pfOk)
    //{
    //   OutputDebugString(TEXT("edit_window::OnStartComposition\n"));
 
@@ -73,7 +73,7 @@ namespace tsf
 
    //**************************************************************************/
 
-   //STDMETHODIMP edit_window::OnUpdateComposition(ITfCompositionView * pComposition, ITfRange * pRangeNew)
+   //STDMETHODIMP edit_window::OnUpdateComposition(ITfCompositionImpact * pComposition, ITfRange * pRangeNew)
    //{
    //   OutputDebugString(TEXT("edit_window::OnUpdateComposition\n"));
 
@@ -88,7 +88,7 @@ namespace tsf
 
    //**************************************************************************/
 
-   //STDMETHODIMP edit_window::OnEndComposition(ITfCompositionView * pComposition)
+   //STDMETHODIMP edit_window::OnEndComposition(ITfCompositionImpact * pComposition)
    //{
    //   OutputDebugString(TEXT("edit_window::OnEndComposition\n"));
 

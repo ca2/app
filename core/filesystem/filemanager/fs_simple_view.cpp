@@ -46,9 +46,9 @@ namespace filemanager
 
 
 
-         void impact::assert_valid() const
+         void impact::assert_ok() const
          {
-            ::user::split_view::assert_valid();
+            ::user::split_view::assert_ok();
          }
 
          void impact::dump(dump_context & dumpcontext) const
@@ -67,7 +67,7 @@ namespace filemanager
          }
 
 
-         void impact::CreateViews()
+         void impact::CreateImpacts()
          {
 
             SetPaneCount(2);
@@ -155,7 +155,7 @@ namespace filemanager
 
                phttpmessage->payload("request") = "";
 
-               phttpmessage->m_strUrl.format("http://file.ca2.software/ifs/ls?id=%I64d", iFolder);
+               phttpmessage->m_strUrl.format("http://file.ca2.software/ifs/ls?atom=%I64d", iFolder);
 
                phttpmessage->want_memory_response();
 

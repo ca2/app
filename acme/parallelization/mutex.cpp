@@ -12,7 +12,7 @@ void utc_timespec(timespec * ptimespec);
 #ifdef PARALLELIZATION_PTHREAD
 
 
-#include "acme/node/operating_system/ansi/_pthread.h"
+#include "acme/operating_system/ansi/_pthread.h"
 
 
 #endif
@@ -30,7 +30,7 @@ void utc_timespec(timespec * ptimespec);
 #include <sys/ipc.h>
 #include <sys/sem.h>
 #include <fcntl.h>
-#include "acme/node/operating_system/ansi/_pthread.h"
+#include "acme/operating_system/ansi/_pthread.h"
 #undef USE_MISC
 
 
@@ -38,7 +38,7 @@ void utc_timespec(timespec * ptimespec);
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-#include "acme/node/operating_system/ansi/_pthread.h"
+#include "acme/operating_system/ansi/_pthread.h"
 #endif
 
 
@@ -146,7 +146,7 @@ mutex::mutex(::object * pobject, bool bInitiallyOwn, const char * pstrName ARG_S
 
          DWORD dwError2 = ::GetLastError();
 
-         __throw(error_resource);
+         throw ::exception(error_resource);
 
       }
 
@@ -220,7 +220,7 @@ pacmedir->create(::file::path(strName).folder());
          if (err != EEXIST)
          {
 
-            __throw(error_resource);
+            throw ::exception(error_resource);
 
          }
 
@@ -231,7 +231,7 @@ pacmedir->create(::file::path(strName).folder());
          if (m_psem == SEM_FAILED)
          {
 
-            __throw(resource_exception(););
+            throw ::exception(resource_exception(););
 
          }
 
@@ -313,7 +313,7 @@ pacmedir->system() / "home/user/ca2/lock/mutex" / string(pstrName);
 
          const char * pszError = strerror(iErr);
 
-         __throw(error_resource);
+         throw ::exception(error_resource);
 
       }
 
@@ -421,7 +421,7 @@ get_existing:
       if(m_semid < 0)
       {
 
-         __throw(error_resource);
+         throw ::exception(error_resource);
 
       }
 
@@ -676,13 +676,15 @@ bool mutex::already_exists()
 #if !defined(WINDOWS)
 
 
-void mutex::_wait(const class ::wait & wait)
+bool mutex::_wait(const class ::wait & wait)
 {
 
    if(wait.is_infinite())
    {
 
-      return _wait();
+      _wait();
+
+      return true;
 
    }
 
@@ -889,10 +891,10 @@ void mutex::_wait(const class ::wait & wait)
 
       int rc = pthread_mutex_lock(&m_mutex);
 
-      if(rc < 0)
+      if(rc != 0)
       {
 
-         return error_failed;
+         throw_status(error_failed);
 
       }
 
@@ -980,9 +982,14 @@ void mutex::_wait(const class ::wait & wait)
 
             int iError = pthread_mutex_unlock(&m_mutex);
 
-            ASSERT(iError == 0);
+            if(iError != 0)
+            {
 
-            return error_wait_timeout;
+               throw_status(error_failed);
+
+            }
+
+            return false;
 
          }
          else if(rc != 0)
@@ -992,7 +999,7 @@ void mutex::_wait(const class ::wait & wait)
 
             ASSERT(iError == 0);
 
-            return error_failed;
+            throw_status(error_failed);
 
          }
 
@@ -1009,9 +1016,14 @@ void mutex::_wait(const class ::wait & wait)
 
       int iError = pthread_mutex_unlock(&m_mutex);
 
-      ASSERT(iError == 0);
+      if(iError != 0)
+      {
 
-      return signaled_base;
+         throw_status(error_failed);
+
+      }
+
+      return true;
 
    }
 
@@ -1063,7 +1075,7 @@ void mutex::_wait(const class ::wait & wait)
 }
 
 
-bool mutex::lock()
+void mutex::lock()
 {
 
 #if defined(MUTEX_NAMED_POSIX)
@@ -1108,7 +1120,7 @@ bool mutex::lock()
       if (rc < 0)
       {
 
-         return false;
+         throw_status(error_failed);
 
       }
 
@@ -1121,7 +1133,7 @@ bool mutex::lock()
 
          ASSERT(iError == 0);
 
-         return true;
+         return;
 
       }
 
@@ -1140,7 +1152,7 @@ bool mutex::lock()
 
                ASSERT(iError == 0);
 
-               return true;
+               return;
 
             }
 
@@ -1159,7 +1171,7 @@ bool mutex::lock()
 
                pthread_mutex_unlock(&m_mutex);
 
-               return true;
+               return;
 
             }
             else
@@ -1174,7 +1186,7 @@ bool mutex::lock()
 
                   ASSERT(iError == 0);
 
-                  return false;
+                  throw_status(error_failed);
 
                }
 
@@ -1189,7 +1201,7 @@ bool mutex::lock()
 
             ASSERT(false);
 
-            return false;
+            throw_status(error_failed);
 
          }
 
@@ -1200,7 +1212,7 @@ bool mutex::lock()
          if (rc < 0)
          {
 
-            return false;
+            throw_status(error_failed);
 
          }
 
@@ -1245,10 +1257,10 @@ bool mutex::lock()
 
       int rc = pthread_mutex_lock(&m_mutex);
 
-      if(rc < 0)
+      if(rc != 0)
       {
 
-         return false;
+         throw_status(error_failed);
 
       }
 
@@ -1257,14 +1269,14 @@ bool mutex::lock()
 
          rc = pthread_cond_wait(&m_cond, &m_mutex);
 
-         if(rc < 0)
+         if(rc != 0)
          {
 
             int iError = pthread_mutex_unlock(&m_mutex);
 
             ASSERT(iError == 0);
 
-            return false;
+            throw_status(error_failed);
 
          }
 
@@ -1283,12 +1295,12 @@ bool mutex::lock()
 
       if(iError != 0)
       {
-       
-         return false;
+
+         throw_status(error_failed);
          
       }
 
-      return true;
+      return;
 
    }
 
@@ -1309,24 +1321,15 @@ bool mutex::lock()
 
 #endif
 
-   return true;
-
 }
 
 
 bool mutex::lock(const class ::wait & wait)
 {
 
-   auto estatus = this->wait(wait);
+   auto bOk = this->wait(wait);
 
-   if (!estatus.signaled())
-   {
-
-      return false;
-
-   }
-
-   return true;
+   return bOk;
 
 }
 
@@ -1334,14 +1337,14 @@ bool mutex::lock(const class ::wait & wait)
 void mutex::_wait()
 {
 
-   if (!lock())
-   {
-
-      return error_failed;
-
-   }
-
-   return signaled_base;
+   lock();
+//   {
+//
+//      return error_failed;
+//
+//   }
+//
+//   return signaled_base;
 
 }
 
@@ -1387,7 +1390,7 @@ void mutex::unlock()
       if (rc < 0)
       {
 
-         return false;
+         throw_status(error_failed);
 
       }
 
@@ -1400,7 +1403,7 @@ void mutex::unlock()
 
          ASSERT(iError == 0);
 
-         return false;
+         throw_status(error_failed);
 
       }
 
@@ -1430,7 +1433,12 @@ void mutex::unlock()
 
       ASSERT(iError == 0);
 
-      return rc == 0;
+      if(rc != 0)
+      {
+
+         throw_status(error_failed);
+
+      }
 
    }
    else
@@ -1462,7 +1470,7 @@ void mutex::unlock()
       if(rc < 0)
       {
 
-         return false;
+         throw_status(error_failed);
 
       }
 
@@ -1475,11 +1483,9 @@ void mutex::unlock()
 
          ASSERT(iError == 0);
 
-         return false;
+         throw_status(error_failed);
 
       }
-
-      rc = 0;
 
       if(m_count > 1)
       {
@@ -1492,14 +1498,18 @@ void mutex::unlock()
 
          rc = pthread_cond_signal(&m_cond);
 
-         if(rc == 0)
+         if(rc != 0)
          {
 
-            m_thread = 0;
+            int iError = pthread_mutex_unlock(&m_mutex);
 
-            m_count = 0;
+            throw_status(error_failed);
 
          }
+
+         m_thread = 0;
+
+         m_count = 0;
 
       }
 
@@ -1507,12 +1517,12 @@ void mutex::unlock()
 
       if(iError != 0)
       {
-         
-         return false;
+
+         throw_status(error_failed);
          
       }
 
-      return true;
+      //return true;
 
    }
 
@@ -1572,8 +1582,8 @@ __pointer(mutex) open_mutex(::matter * pmatter, const char * lpszName)
       if (psem == SEM_FAILED)
       {
 
-         //__throw(resource_exception(papp,"failed to create named mutex"));
-         __throw(error_resource);
+         //throw ::exception(resource_exception(papp,"failed to create named mutex"));
+         throw ::exception(error_resource);
 
       }
 
@@ -1632,7 +1642,7 @@ __pointer(mutex) open_mutex(::matter * pmatter, const char * lpszName)
    if (iFd < 0)
    {
 
-      __throw(error_resource);
+      throw ::exception(error_resource);
 
    }
 

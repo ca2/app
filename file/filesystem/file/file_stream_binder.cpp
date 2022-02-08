@@ -142,7 +142,7 @@ namespace file
          eva.add(&_readStreamIsClosedEvent);
          if(!eva.wait(false, duration::infinite()).signaled())
          {
-            __throw(error_resource);
+            throw ::exception(error_resource);
          }
       }
       if (processedSize != nullptr)

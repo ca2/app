@@ -54,7 +54,7 @@ namespace sockets
       IEventOwner *     m_from;
       EventTime         m_time;
       static i32        m_unique_id;
-      i32               m_id;
+      i32               m_atom;
       
       
       

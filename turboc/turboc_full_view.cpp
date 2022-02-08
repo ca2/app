@@ -22,10 +22,10 @@ namespace turboc
    }
 
 
-   void full_view::assert_valid() const
+   void full_view::assert_ok() const
    {
 
-      ::aura::impact::assert_valid();
+      ::aura::impact::assert_ok();
 
    }
 
@@ -72,7 +72,7 @@ namespace turboc
 
    void full_view::on_update(::aura::impact * pSender,e_update eupdate,object* pupdate)
    {
-      __UNREFERENCED_PARAMETER(psubject);
+      __UNREFERENCED_PARAMETER(ptopic);
    }
 
 

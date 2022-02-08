@@ -78,17 +78,17 @@ namespace url
       bool param_has_char(const ::string & strUrl, const ::string & strKey);
       bool has_param_replace(string & strUrl, const ::string & strKey, const ::string & strValue);
 
-      virtual bool locale_is_eu(id pszLocale);
-      virtual bool locale_is_asia(id pszLocale);
-      virtual bool locale_is_africa(id pszLocale);
-      virtual bool locale_is_america(id pszLocale);
-      virtual bool locale_is_caribe(id pszLocale);
-      virtual bool locale_is_middle_east(id pszLocale);
-      virtual bool locale_is_south_america(id pszLocale);
-      virtual bool locale_is_latin_america(id pszLocale);
-      virtual bool locale_is_north_america(id pszLocale);
-      virtual bool locale_is_central_america(id pszLocale);
-      virtual bool locale_is_oceania(id pszLocale);
+      virtual bool locale_is_eu(atom pszLocale);
+      virtual bool locale_is_asia(atom pszLocale);
+      virtual bool locale_is_africa(atom pszLocale);
+      virtual bool locale_is_america(atom pszLocale);
+      virtual bool locale_is_caribe(atom pszLocale);
+      virtual bool locale_is_middle_east(atom pszLocale);
+      virtual bool locale_is_south_america(atom pszLocale);
+      virtual bool locale_is_latin_america(atom pszLocale);
+      virtual bool locale_is_north_america(atom pszLocale);
+      virtual bool locale_is_central_america(atom pszLocale);
+      virtual bool locale_is_oceania(atom pszLocale);
       
       
       virtual bool server_ends(string strUrl, string strRoot);

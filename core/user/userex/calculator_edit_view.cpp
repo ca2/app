@@ -6,7 +6,7 @@
 #include "axis/mathematics/calculator/_.h"
 #include "calculator_edit_view.h"
 #include "aura/update.h"
-#include "acme/constant/id.h"
+#include "acme/id.h"
 
 
 namespace calculator
@@ -68,9 +68,9 @@ namespace calculator
 
       auto pplaineditview = this;
 
-      //auto psubject = pplaineditview->subject(id_after_change_text);
+      //auto ptopic = pplaineditview->topic(id_after_change_text);
 
-      //psubject->add_listener(this);
+      //ptopic->add_listener(this);
 
       add_handler(this);
 
@@ -93,10 +93,10 @@ namespace calculator
    }
 
 
-   void plain_edit_view::handle(::subject * psubject, ::context * pcontext)
+   void plain_edit_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (psubject->id() == id_after_change_text)
+      if (ptopic->m_atom == id_after_change_text)
       {
 
          {
@@ -222,7 +222,7 @@ namespace calculator
             {
 
                pelement = pparser->parse(strExp);
-               //__throw(::exception("now a simple exception here"));
+               //throw ::exception(::exception("now a simple exception here"));
 
             }
             catch (const ::exception & exception)
@@ -383,11 +383,11 @@ namespace calculator
 
       auto pplaineditview = this;
 
-      ::subject subject(id_after_change_text);
+      ::extended_topic extendedtopic(id_after_change_text);
 
-      subject.m_puserelement = this;
+      extendedtopic.m_puserelement = this;
 
-      route(&subject);
+      route(&extendedtopic);
 
       plain_edit::plain_edit_on_after_change_text(pgraphics, context);
 

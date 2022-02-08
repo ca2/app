@@ -42,7 +42,7 @@ namespace user
 
 
       virtual ::count               get_data_bound_view_count() const override;
-      virtual ::user::primitive *   get_data_bound_view(index iView) override;
+      virtual ::user::primitive *   get_data_bound_view(index iImpact) override;
 
 
 
@@ -68,7 +68,7 @@ namespace user
       virtual bool      selection_set(::data::item * pitem,bool bIfNotInSelection = false,bool bIfParentInSelection = false) override;
       virtual bool      selection_set(index iIndex,::data::item * pitem,bool bIfNotInSelection = false,bool bIfParentInSelection = false) override;
 
-      virtual void handle(::subject * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
       virtual void on_fill_children() override;
 

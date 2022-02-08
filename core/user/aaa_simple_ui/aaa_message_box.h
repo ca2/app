@@ -35,14 +35,14 @@ namespace simple_ui
 
       bool on_action(const ::string & pszId) override;
 
-      virtual void create_a_button(id id, const ::string & pszText);
-      virtual void create_b_button(id id, const ::string & pszText);
-      virtual void create_button(__pointer_array(tap) & tapa, id id, const ::string & pszText);
+      virtual void create_a_button(atom atom, const ::string & pszText);
+      virtual void create_b_button(atom atom, const ::string & pszText);
+      virtual void create_button(__pointer_array(tap) & tapa, atom atom, const ::string & pszText);
 
 
       virtual void pre_translate_message(::message::message * pmessage) override;
 
-      //virtual void EndModalLoop(id nResult);
+      //virtual void EndModalLoop(atom nResult);
 
       virtual bool has_pending_graphical_update() override;
 

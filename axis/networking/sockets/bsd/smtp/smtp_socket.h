@@ -59,7 +59,7 @@ namespace sockets
       /** \return 'false' to abort */
       //virtual bool OnRcptTo(const EmailAddress& addr) = 0;
 
-      //virtual void OnHeader(id idKey, const string & value) = 0;
+      //virtual void OnHeader(atom idKey, const string & value) = 0;
 
       //virtual void OnHeaderComplete() = 0;
 

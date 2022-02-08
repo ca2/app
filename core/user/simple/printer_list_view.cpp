@@ -47,7 +47,7 @@ void simple_printer_list_view::on_message_create(::message::message * pmessage)
 
 #else
 
-   //__throw(todo);
+   //throw ::exception(todo);
 
 #endif
 
@@ -67,7 +67,7 @@ void simple_printer_list_view::on_message_create(::message::message * pmessage)
 //
 //   free(infoa);
 //#else
-//   //__throw(todo);
+//   //throw ::exception(todo);
 //#endif
 
 

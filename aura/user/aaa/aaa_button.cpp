@@ -272,7 +272,7 @@ namespace user
 
       }
 
-      m_ppropertyCheck = fetch_property(m_id, true);
+      m_ppropertyCheck = fetch_property(m_atom, true);
 
       if (m_ppropertyCheck)
       {
@@ -462,12 +462,12 @@ namespace user
       if (iKey == ::user::e_key_return || iKey == ::user::e_key_space)
       {
 
-         ::subject subject;
-         subject.m_puserinteraction = this;
-         subject.m_id = ::e_subject_click;
-         subject.m_pmessage = pmessage;
-         route(&subject);
-         pmessage->m_bRet = subject.m_bRet;
+         ::topic topic;
+         topic.m_puserinteraction = this;
+         topic.m_atom = ::id_click;
+         topic.m_pmessage = pmessage;
+         route(&topic);
+         pmessage->m_bRet = topic.m_bRet;
          if (pmessage->m_bRet)
          {
             pkey->m_lresult = 1;
@@ -548,10 +548,10 @@ namespace user
    }
 
 
-   void button::handle(::subject * psubject, ::context * pcontext)
+   void button::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      interaction::handle(psubject, pcontext);
+      interaction::handle(ptopic, pcontext);
 
    }
 
@@ -1124,7 +1124,7 @@ namespace user
 
    i32 button::BaseToolTipGetIndex()
    {
-      // use window dialog control id as the index
+      // use window dialog control atom as the index
       return (i32)GetDlgCtrlId();
    }
 

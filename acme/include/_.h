@@ -152,7 +152,7 @@ namespace acme
    } // namespace posix
 
 
-   namespace PLATFORM_NAMESPACE
+   namespace OPERATING_SYSTEM_NAMESPACE
    {
 
 
@@ -160,7 +160,7 @@ namespace acme
       class buffer;
 
 
-   } // namespace PLATFORM_NAMESPACE
+   } // namespace OPERATING_SYSTEM_NAMESPACE
 
 
 } // namespace acme
@@ -184,14 +184,14 @@ namespace apex
    };
 
 
-   namespace PLATFORM_NAMESPACE
+   namespace OPERATING_SYSTEM_NAMESPACE
    {
 
 
       class node;
 
 
-   } // namespace PLATFORM_NAMESPACE
+   } // namespace OPERATING_SYSTEM_NAMESPACE
 
 
 } // namespace apex
@@ -215,14 +215,14 @@ namespace aura
    };
 
 
-   namespace PLATFORM_NAMESPACE
+   namespace OPERATING_SYSTEM_NAMESPACE
    {
 
 
       class node;
 
 
-   } // namespace PLATFORM_NAMESPACE
+   } // namespace OPERATING_SYSTEM_NAMESPACE
 
 
 } // namespace aura
@@ -248,14 +248,14 @@ namespace windowing_universal_windows
 } // namespace windowing_universal_windows
 
 
-namespace PLATFORM_NAMESPACE
+namespace OPERATING_SYSTEM_NAMESPACE
 {
 
 
    class node;
 
 
-} // namespace PLATFORM_NAMESPACE
+} // namespace OPERATING_SYSTEM_NAMESPACE
 
 
 namespace windowing_x11
@@ -351,7 +351,7 @@ namespace desktop_environment_xfce
 #define ___STR(s) #s
 #define __STR(s) ___STR(s)
 #define __IDENTIFIER(identifier) identifier
-#define PLATFORM_INCLUDE(include) __STR(__IDENTIFIER(PLATFORM_NAMESPACE)/include)
+#define PLATFORM_INCLUDE(include) __STR(__IDENTIFIER(OPERATING_SYSTEM_NAMESPACE)/include)
 
 #ifndef  __STRING
 #  define   __STRING(x) "x"
@@ -466,7 +466,7 @@ struct INT_STRING
 };
 
 
-#include "acme/node/operating_system/windows_common/arg_sec_attrs.h"
+#include "acme/operating_system/windows_common/arg_sec_attrs.h"
 
 
 template < typename CONCRETE >
@@ -496,6 +496,8 @@ template<class T>
 
 class matter;
 class element;
+class stream;
+class payload_stream;
 
 
 
@@ -509,7 +511,7 @@ template < typename T >
 concept a_enum = std::is_enum < T >::value;
 
 template < typename T >
-concept primitive_integral = std::is_integral < T >::value || std::is_enum < T >::value || std::same_as < T, ::e_status2 >;
+concept primitive_integral = std::is_integral < T >::value || std::is_enum < T >::value || std::same_as < T, ::e_status >;
 
 template < typename T >
 concept primitive_integer = std::is_integral < T >::value;
@@ -720,7 +722,7 @@ class acme_file;
 class acme_path;
 
 
-namespace PLATFORM_NAMESPACE
+namespace OPERATING_SYSTEM_NAMESPACE
 {
 
 
@@ -731,14 +733,13 @@ namespace PLATFORM_NAMESPACE
    class acme_path;
 
 
-} // namespace PLATFORM_NAMESPACE
+} // namespace OPERATING_SYSTEM_NAMESPACE
 
 
-CLASS_DECL_ACME int __assert_failed_line(const char *pszFileName, int iLineNumber);
-
+// returns true if it should continue...
+CLASS_DECL_ACME bool __assert_failed_line(const char *pszFileName, int iLineNumber);
 
 CLASS_DECL_ACME int is_debugger_attached(void);
-
 
 CLASS_DECL_ACME void debug_print(const char *psz, ...);
 
@@ -794,7 +795,7 @@ CLASS_DECL_ACME int throw_assert_exception(const char *pszFileName, int iLineNum
 
 
 #define _ASSUME(cond)      do { bool _gen__condVal=!!(cond); ASSERT(_gen__condVal); __analysis_assume(_gen__condVal); } while(0)
-#define ASSERT_VALID(pOb)  ::__assert_valid_object(pOb, __FILE__, __LINE__)
+#define ASSERT_VALID(pOb)  ::__assert_object_ok(pOb, __FILE__, __LINE__)
 
 
 #else
@@ -895,21 +896,15 @@ CLASS_DECL_ACME int throw_assert_exception(const char *pszFileName, int iLineNum
 CLASS_DECL_ACME int trailingBytesForUTF8(char ch);
 
 
-//namespace subject
-//{
-
-   class signal;
-   class backing;
-   class manager;
-   class subject;
-   class context;
-   class routine;
-   class handler;
-   template < typename RESULT > class process;
-
-
-
-//} // namespace subject
+class signal;
+class backing;
+class manager;
+class topic;
+class context;
+class routine;
+class handler;
+template < typename RESULT > class process;
+class extended_topic;
 
 
 CLASS_DECL_ACME int trailingBytesForUTF8(char ch);
@@ -990,7 +985,7 @@ enum enum_optional
 #include <intsafe.h>
 #else
 
-#include "acme/node/operating_system/cross/windows/_include.h"
+#include "acme/operating_system/cross/windows/_include.h"
 
 #endif
 
@@ -1113,7 +1108,7 @@ CLASS_DECL_ACME ::enum_priority get_os_class_scheduling_priority(i32 iCa2Priorit
 //#include "acme/multimedia/_c.h"
 
 
-#include "acme/node/operating_system/argcargv.h"
+#include "acme/operating_system/argcargv.h"
 
 
 
@@ -1677,7 +1672,7 @@ inline u32 u32_hash(ARG_KEY key) { return (u32) (uptr_hash<ARG_KEY>(key)); }
 // #define __exception(TYPE) __base(TYPE, pe, e)
 
 #define __rethrow(pe) throw pe;
-#define __throw_exit(estatus) __throw(exit_exception(estatus))
+#define __throw_exit(estatus) throw ::exception(exit_exception(estatus))
 
 
 #undef _
@@ -1738,9 +1733,9 @@ class synchronization_object;
 
 #include "acme/primitive/mathematics/_.h"
 
-//#include "acme/user/_const.h"
+//#include "acme/user/user/_const.h"
 
-//#include "acme/user/_experience_const.h"
+//#include "acme/user/user/_experience_const.h"
 
 #include "acme/filesystem/file/_const.h"
 
@@ -1820,20 +1815,11 @@ class task;
 
 #include "_forward_declaration.h"
 
-//
-//namespace subject
-//{
-
 
 using handler_pointer = __pointer(handler);
 using manager_pointer = __pointer(manager);
-using subject_pointer = __pointer(subject);
+using extended_topic_pointer = __pointer(extended_topic);
 using context_pointer = __pointer(context);
-
-
-
-
-//} // namespace subject
 
 
 template<typename THREAD_POINTER>
@@ -2264,7 +2250,7 @@ class channel;
 class dump_context;
 
 
-class id_space;
+class atom_space;
 
 
 class ptra;
@@ -2288,7 +2274,7 @@ class critical_section;
 class mutex;
 
 
-class id;
+class atom;
 
 namespace colorertake5
 {
@@ -2682,9 +2668,9 @@ namespace html
 #define RINOK(x) { i32 __result__ = (x); if (__result__ != 0) return __result__; }
 #endif
 
-// __throw( - exception - result exception - if not ok
+// throw ::exception( - exception - result exception - if not ok
 #ifndef TINOK
-#define TINOK(e, x) { i32 __result__ = (x); if (__result__ != 0) __throw(e(get_application(), __result__)); }
+#define TINOK(e, x) { i32 __result__ = (x); if (__result__ != 0) throw ::exception(e(get_application(), __result__)); }
 #endif
 
 
@@ -2740,7 +2726,7 @@ CLASS_DECL_ACME void __node_acme_pos_term();
 #define ARRAY_SIZE(a) (sizeof(a)/sizeof(*(a)))
 
 
-class id;
+class atom;
 
 
 namespace calculator
@@ -2823,7 +2809,7 @@ namespace text
 
 
 // C-includes
-//#include "acme/node/operating_system/os.h"
+//#include "acme/operating_system/os.h"
 
 
 class thread_parameter;
@@ -2832,7 +2818,7 @@ class thread_parameter;
 #include "acme/primitive/primitive/interlocked.h"
 #include "acme/primitive/primitive/interlocked_long_pulse.h"
 #include "acme/primitive/primitive/type.h"
-#include "acme/primitive/primitive/id.h"
+#include "acme/primitive/primitive/atom.h"
 #include "acme/primitive/primitive/uid.h"
 
 
@@ -2895,7 +2881,7 @@ inline bool is_set(const TYPE & t)
 }
 
 
-//#include "acme/user/primitive.h"
+//#include "acme/user/user/primitive.h"
 
 
 
@@ -2929,6 +2915,8 @@ inline T * set_heap_allocated(T * p) { p->set_heap_allocated();  return p; }
 
 
 #include "acme/primitive/primitive/pointer.h"
+
+#include "acme/primitive/primitive/holder.h"
 
 
 template < typename FROM, typename TO_POINTER >
@@ -2968,15 +2956,11 @@ namespace message
 #include "acme/platform/routine.h"
 
 
-//#include "acme/primitive/subject/handler.h"
-
-
 template<class POINTER_TYPE>
 inline auto &__typed(__pointer(POINTER_TYPE) &p) { return *p; }
 
 
 class duration;
-
 
 #include "acme/parallelization/wait.h"
 
@@ -2997,8 +2981,6 @@ using memory_file_pointer = __pointer(::memory_file);
 using folder_pointer = __pointer(::folder);
 
 using folder_pointer = __pointer(::folder);
-
-class stream;
 
 
 class binary_stream;
@@ -3316,9 +3298,15 @@ class CLASS_DECL_ACME integral_byte { public: integral_byte(memsize memsize = 1)
 #include "acme/parallelization/synchronization_result.h"
 
 
-#include "acme/subject/handler.h"
+template < typename TYPE > class sequence;
+
+
+
+#include "acme/topic/topic.h"
+#include "acme/topic/handler.h"
 #include "acme/primitive/primitive/e_flag.h"
 #include "acme/primitive/primitive/element.h"
+#include "acme/user/user/conversation.h"
 #include "acme/primitive/primitive/tracer.h"
 #include "acme/primitive/primitive/matter.h"
 #include "acme/primitive/primitive/material_object.h"
@@ -3476,7 +3464,7 @@ struct MESSAGE
 {
 
    ::oswindow              oswindow;
-   ::id                    m_id;
+   ::atom                    m_atom;
    wparam                  wParam;
    lparam                  lParam;
    point_i32               pt;
@@ -3505,8 +3493,8 @@ template < class TYPE, class ARG_TYPE = const TYPE & >
 class list;
 
 
-template < typename TYPE, typename ARG_TYPE = typename argument_of < TYPE >::type, typename PAIR = pair < ::id, TYPE, typename argument_of < ::id >::type, ARG_TYPE > >
-using id_map = ::map < id, TYPE, typename argument_of < ::id >::type, ARG_TYPE, PAIR >;
+template < typename TYPE, typename ARG_TYPE = typename argument_of < TYPE >::type, typename PAIR = pair < ::atom, TYPE, typename argument_of < ::atom >::type, ARG_TYPE > >
+using id_map = ::map < atom, TYPE, typename argument_of < ::atom >::type, ARG_TYPE, PAIR >;
 
 using routine_array = ::array < routine >;
 using routine_list = ::list < routine >;
@@ -3523,7 +3511,7 @@ void add_routine(routine_array& array, PRED pred);
 //void add_process(process_array &array, PRED pred);
 
 
-//} // namespace subject
+//} // namespace topic
 
 
 using exception_array = ::array < ::exception >;
@@ -3562,7 +3550,7 @@ CLASS_DECL_ACME task_bitset& task_flag();
 //#include "acme/exception/extended_pointer.h"
 
 
-#include "acme/user/conversation.h"
+#include "acme/user/user/conversation.h"
 
 
 //CLASS_DECL_ACME __pointer(::extended::future < ::conversation >) xxxshow_error_message(const string& strMessage, const string& strTitle, const ::e_message_box& emessagebox = e_message_box_ok);
@@ -3581,8 +3569,6 @@ CLASS_DECL_ACME task_bitset& task_flag();
 #include "acme/primitive/collection/_.h"
 
 #include "acme/platform/predicate_routine.h"
-
-//#include "acme/platform/predicate_handler.h"
 
 #include "acme/platform/predicate_process.h"
 
@@ -3627,10 +3613,10 @@ namespace draw2d
 #define OPTIONAL_BASE_BODY                                                          \
 public:                                                                             \
    void on_initialize_object() override {}         \
-   void assert_valid() const override {}                                    \
+   void assert_ok() const override {}                                    \
    void dump(dump_context&) const override {}                               \
-   void handle(::subject*,::context*) override {}    \
-   //void on_subject(::subject::subject*, ::context*) override {} \
+   void handle(::topic*,::context*) override {}    \
+   //void on_subject(::topic::topic*, ::context*) override {} \
 
 
 #define OPTIONAL_INTERACTION_BODY                                                   \
@@ -3727,22 +3713,22 @@ inline bool is_callstack_enabled(e_callstack ecallstack) { return (i64) get_call
 //#include "acme/memory/plex.h"
 
 
-#include "acme/primitive/primitive/id.h"
+#include "acme/primitive/primitive/atom.h"
 
 
-inline bool is_filemanager(::id id) { return is_impact_group(id.i64(), FILEMANAGER_IMPACT); }
+inline bool is_filemanager(::atom atom) { return is_impact_group(atom.i64(), FILEMANAGER_IMPACT); }
 
 
-inline bool is_filemanager_group(::id id, ::i64 iGroup)
+inline bool is_filemanager_group(::atom atom, ::i64 iGroup)
 {
-   return is_impact_subgroup(id.i64(), FILEMANAGER_IMPACT + iGroup);
+   return is_impact_subgroup(atom.i64(), FILEMANAGER_IMPACT + iGroup);
 }
 
 
-inline bool is_color_sel(::id id) { return is_impact_group(id.i64(), COLORSEL_IMPACT); }
+inline bool is_color_sel(::atom atom) { return is_impact_group(atom.i64(), COLORSEL_IMPACT); }
 
 
-inline bool is_font_sel(::id id) { return is_impact_group(id.i64(), FONTSEL_IMPACT); }
+inline bool is_font_sel(::atom atom) { return is_impact_group(atom.i64(), FONTSEL_IMPACT); }
 
 
 #include "acme/primitive/string/composite.h"
@@ -3756,19 +3742,19 @@ inline bool is_font_sel(::id id) { return is_impact_group(id.i64(), FONTSEL_IMPA
 namespace acme
 {
 
-   inline ::id id(const class ::payload & payload);
+   inline ::atom atom(const class ::payload & payload);
 
-   inline ::id id(const property &prop);
+   inline ::atom atom(const property &prop);
 
-   inline ::id id(const ::std::type_info &info);
+   inline ::atom atom(const ::std::type_info &info);
 
-   inline ::id id(const char *psz);
+   inline ::atom atom(const char *psz);
 
-   inline ::id id(const string &str);
+   inline ::atom atom(const string &str);
 
-   inline ::id id(i64 i);
+   inline ::atom atom(i64 i);
 
-   inline id_space &id();
+   inline atom_space &atom();
 
 
 } //namespace acme
@@ -3794,7 +3780,7 @@ inline auto &__typed(__composite(POINTER_TYPE) *pp) { return *pp->operator POINT
 #include "acme/filesystem/file/file.h"
 #include "acme/filesystem/file/stream.h"
 #include "acme/filesystem/file/binary_stream.h"
-#include "acme/filesystem/file/var_stream.h"
+#include "acme/filesystem/file/payload_stream.h"
 #include "acme/filesystem/file/string_file.h"
 #include "acme/filesystem/file/text_stream.h"
 
@@ -3867,16 +3853,13 @@ using lresult = iptr;
 #include "acme/filesystem/file/string_file.h"
 
 
-#include "acme/filesystem/file/var_stream.h"
+#include "acme/filesystem/file/payload_stream.h"
 
 
-//#include "acme/primitive/str/str_format.h"
+#include "acme/primitive/primitive/payload2.h"
 
 
-#include "acme/primitive/primitive/var2.h"
-
-
-#include "acme/primitive/primitive/id_space.h"
+#include "acme/primitive/primitive/atom_space.h"
 
 
 namespace mathematics
@@ -3907,7 +3890,7 @@ namespace mathematics
 
 
 
-#include "acme/node/operating_system/_.h"
+#include "acme/operating_system/_.h"
 
 
 
@@ -3959,10 +3942,10 @@ namespace acme
 
 ///#include "acme/primitive/primitive/job.h"
 
-//#include "acme/user/simple/message_box.h"
+//#include "acme/user/user/simple/message_box.h"
 
 
-//#include "acme/user/impact_data.h"
+//#include "acme/user/user/impact_data.h"
 
 //#include "acme/platform/log.h"
 
@@ -4079,12 +4062,12 @@ struct lib_main_int
 //} // namespace zip
 //
 
-#include "acme/node/operating_system/text.h"
+#include "acme/operating_system/text.h"
 
 
 #ifdef ANDROID
 
-#include "acme/node/operating_system/android/_os_local.h"
+#include "acme/operating_system/android/_os_local.h"
 
 class os_local;
 class os_remote;
@@ -4101,7 +4084,7 @@ void set_osremote(os_remote * posremote);
 
 #include "acme/process/_.h"
 
-#include "acme/node/operating_system/process.h"
+#include "acme/operating_system/process.h"
 
 
 
@@ -4152,7 +4135,7 @@ namespace xml
 #define new ACME_NEW
 
 
-//#include "acme/node/operating_system/chronometer.h"
+//#include "acme/operating_system/chronometer.h"
 
 
 #include "acme/platform/number.h"
@@ -4254,10 +4237,10 @@ class wcsdup_array;
 #include "acme/graphics/draw2d/_.h"
 
 
-#include "acme/user/_.h"
+#include "acme/user/user/_.h"
 
 
-#include "acme/user/ewindowflag.h"
+#include "acme/user/user/ewindowflag.h"
 
 
 #include "acme/platform/node.h"
@@ -4320,8 +4303,9 @@ namespace user
 DECLARE_ENUMERATION(e_element, enum_element);
 
 
-#include "acme/subject/item.h"
-#include "acme/subject/subject.h"
+#include "acme/topic/item.h"
+//#include "acme/topic/topic.h"
+#include "acme/topic/extended_topic.h"
 
 
 
@@ -4438,7 +4422,7 @@ class task_tool;
 #include "acme/filesystem/file/_impl.h"
 
 
-#include "acme/filesystem/file/_var_stream_impl.h"
+#include "acme/filesystem/file/_payload_stream_impl.h"
 
 
 #include "acme/filesystem/file/_text_stream_impl.h"
@@ -4464,11 +4448,10 @@ class task_tool;
 #include "acme/filesystem/file/_text_stream_impl.h"
 
 
-
 #include "acme/filesystem/filesystem/_impl.h"
 
 
-#include "acme/primitive/primitive/_id_impl.h"
+#include "acme/primitive/primitive/_atom_impl.h"
 
 
 #include "acme/primitive/primitive/_payload_impl.h"

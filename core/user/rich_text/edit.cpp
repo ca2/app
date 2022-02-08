@@ -58,10 +58,10 @@ namespace user
       }
 
 
-      void edit::assert_valid() const
+      void edit::assert_ok() const
       {
 
-         ::user::interaction::assert_valid();
+         ::user::interaction::assert_ok();
 
       }
 
@@ -469,10 +469,10 @@ namespace user
       }
 
 
-      void edit::handle(::subject * psubject, ::context * pcontext)
+      void edit::handle(::topic * ptopic, ::context * pcontext)
       {
 
-         return ::user::interaction::handle(psubject, pcontext);
+         return ::user::interaction::handle(ptopic, pcontext);
 
       }
 
@@ -515,19 +515,17 @@ namespace user
 
          {
 
-            ::subject subject;
+            ::extended_topic extendedtopic(::id_key_down);
 
-            subject.m_puserelement = this;
+            extendedtopic.m_puserelement = this;
 
-            subject.m_id = ::e_subject_key_down;
+            extendedtopic.m_actioncontext.m_pmessage = pmessage;
 
-            subject.m_actioncontext.m_pmessage = pmessage;
+            extendedtopic.m_actioncontext = ::e_source_user;
 
-            subject.m_actioncontext = ::e_source_user;
+            route(&extendedtopic);
 
-            route(&subject);
-
-            if (subject.m_bRet)
+            if (extendedtopic.m_bRet)
             {
 
                return;
@@ -577,17 +575,17 @@ namespace user
          else if (pkey->m_ekey == ::user::e_key_escape)
          {
 
-            ::subject subject;
+            ::extended_topic extendedtopic(::id_escape);
 
-            subject.m_puserelement = this;
+            extendedtopic.m_puserelement = this;
 
-            subject.m_id = ::e_subject_escape;
+            extendedtopic.m_atom = ::id_escape;
 
-            subject.m_actioncontext = ::e_source_user;
+            extendedtopic.m_actioncontext = ::e_source_user;
 
-            route(&subject);
+            route(&extendedtopic);
 
-            if (!subject.m_bRet && subject.m_bOk)
+            if (!extendedtopic.m_bRet && extendedtopic.m_bOk)
             {
 
                on_action("escape");
@@ -814,7 +812,7 @@ namespace user
       }
 
 
-      void edit::on_after_change(::enum_subject esubject)
+      void edit::on_after_change(const ::atom & atom)
       {
 
       }

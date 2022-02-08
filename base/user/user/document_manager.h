@@ -42,7 +42,7 @@ namespace user
       document_manager();
       virtual ~document_manager();
 
-      void assert_valid() const override;
+      void assert_ok() const override;
       void dump(dump_context & dumpcontext) const override;
 
       virtual void add_document_template(::user::impact_system * ptemplate);
@@ -57,7 +57,7 @@ namespace user
       virtual void close_all_documents(bool bEndApp); // close documents before exiting
       virtual ::count get_open_document_count();
 
-      void handle(::subject * psubject, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::context * pcontext) override;
 
       virtual bool do_prompt_file_name(::payload & payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
 

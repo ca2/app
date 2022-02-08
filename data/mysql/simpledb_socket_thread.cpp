@@ -138,7 +138,7 @@ namespace simpledb
       {
 
 
-         throw interface_only_exception();
+         throw ::interface_only();
 
 
       }

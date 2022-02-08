@@ -25,14 +25,8 @@ public:
 
       //m_bFork = true;
 
-      auto estatus = initialize(pobject);
+      initialize(pobject);
 
-      if (!estatus)
-      {
-
-         __throw(estatus);
-
-      }
 
    }
 
@@ -48,7 +42,7 @@ public:
 
       m_predicate();
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -412,7 +406,7 @@ public:
 
    }
 
-   virtual void     run() override
+   virtual void run() override
    {
 
       for (m_index.m_i = m_index.m_iIndex; m_index.m_i < m_index.m_cCount; m_index.m_i += m_index.m_iScan)
@@ -422,7 +416,7 @@ public:
 
       }
 
-      return ::success;
+      //return ::success;
 
    }
 

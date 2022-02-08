@@ -19,7 +19,7 @@ namespace file
    bool edit_item_base::read_byte(u8 * pbyte, ::file::edit_file * pfile)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return false;
 
@@ -490,7 +490,7 @@ namespace file
       if(pfile == nullptr)
       {
 
-         __throw(error_invalid_argument);
+         throw ::exception(error_bad_argument);
 
       }
 
@@ -954,7 +954,7 @@ namespace file
          
          str = buf;
          
-         str.replace("\n","\r\n");
+         str.replace_with("\r\n", "\n");
          
          pfile->print(str);
          

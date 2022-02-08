@@ -20,7 +20,7 @@ namespace userfs
 
       void add_fs_item(list_item & item);
 
-      //__pointer(list_item) get_item(index i, const ::id & id);
+      //__pointer(list_item) get_item(index i, const ::atom & atom);
 
       __pointer(list_item) get_item(index i);
 

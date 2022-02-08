@@ -459,12 +459,12 @@ public:
    inline void clear_id(::u64 u) { m_pimpl->clear_id(u); }
 
 
-   inline bool has_property(id id) const { return m_pimpl.is_set() && m_pimpl->has_property(id); }
-   inline bool erase_key(id id) { return m_pimpl.is_set() && m_pimpl->erase_key(id); }
-   inline ::payload value(id id) { return m_pimpl->payload(id); }
-   inline ::payload value(id id) const { return m_pimpl->payload(id); }
-   inline property & set(id id) { return m_pimpl->set(id); }
-   inline ::payload find_property(id id) const { return m_pimpl->find_property(id); }
+   inline bool has_property(atom atom) const { return m_pimpl.is_set() && m_pimpl->has_property(atom); }
+   inline bool erase_key(atom atom) { return m_pimpl.is_set() && m_pimpl->erase_key(atom); }
+   inline ::payload value(atom atom) { return m_pimpl->payload(atom); }
+   inline ::payload value(atom atom) const { return m_pimpl->payload(atom); }
+   inline property & set(atom atom) { return m_pimpl->set(atom); }
+   inline ::payload find_property(atom atom) const { return m_pimpl->find_property(atom); }
    inline property_set & propset() { return m_pimpl->propset(); }
 
    inline void clear_color_transform() { m_pimpl->m_bColorMatrix = false; }

@@ -67,14 +67,14 @@ namespace universal_windows
 #endif
 
 
-namespace PLATFORM_NAMESPACE
+namespace OPERATING_SYSTEM_NAMESPACE
 {
 
 
    class interaction_impl;
 
 
-} // namespace PLATFORM_NAMESPACE
+} // namespace OPERATING_SYSTEM_NAMESPACE
 
 
 #include "aura/graphics/draw2d/_.h"
@@ -225,7 +225,7 @@ CLASS_DECL_AURA void aura_ref();
 //
 //#define ASSERT(f)          ((void) ((f) || (is_debugger_attached() && !::__assert_failed_line(__FILE__, __LINE__) && (::debug_break(), 0)) || (!is_debugger_attached() && (throw_assert_exception(__FILE__, __LINE__), 0))))
 //#define _ASSUME(cond)       do { bool _gen__condVal=!!(cond); ASSERT(_gen__condVal); __analysis_assume(_gen__condVal); } while(0)
-//#define ASSERT_VALID(pOb)  ::__assert_valid_object(pOb, __FILE__, __LINE__)
+//#define ASSERT_VALID(pOb)  ::__assert_object_ok(pOb, __FILE__, __LINE__)
 //
 //
 //#else
@@ -938,12 +938,12 @@ CLASS_DECL_AURA void aura_ref();
 //#include "aura/graphics/draw2d/_const.h"
 
 
-namespace PLATFORM_NAMESPACE
+namespace OPERATING_SYSTEM_NAMESPACE
 {
 
    class buffer;
 
-} // namespace PLATFORM_NAMESPACE
+} // namespace OPERATING_SYSTEM_NAMESPACE
 
 
 namespace windowing_universal_windows
@@ -1386,7 +1386,7 @@ using image_pointer_array = __pointer_array(::image);
 //
 //
 //#include "aura/user/_const.h"
-#include "acme/user/_const_key.h"
+#include "acme/user/user/_const_key.h"
 
 namespace draw2d
 {
@@ -1605,7 +1605,7 @@ class form_document;
 //
 //class dump_context;
 //
-//class id_space;
+//class atom_space;
 //class ptra;
 //class factory_item_base;
 //class fixed_alloc_no_sync;
@@ -1615,7 +1615,7 @@ class form_document;
 //class channel;
 //class critical_section;
 //class ::mutex;
-//class id;
+//class atom;
 //
 //namespace colorertake5
 //{
@@ -2247,9 +2247,9 @@ namespace draw2d
 //#define RINOK(x) { i32 __result__ = (x); if (__result__ != 0) return __result__; }
 //#endif
 //
-//// __throw( - exception - result exception - if not ok
+//// throw ::exception( - exception - result exception - if not ok
 //#ifndef TINOK
-//#define TINOK(e, x) { i32 __result__ = (x); if (__result__ != 0) __throw(e(get_application(), __result__)); }
+//#define TINOK(e, x) { i32 __result__ = (x); if (__result__ != 0) throw ::exception(e(get_application(), __result__)); }
 //#endif
 //
 //
@@ -2339,7 +2339,7 @@ CLASS_DECL_AURA void __node_aura_pos_term();
 //
 //
 //class ::payload;
-//class id;
+//class atom;
 //
 //
 //namespace calculator
@@ -2397,7 +2397,7 @@ CLASS_DECL_AURA void __node_aura_pos_term();
 //#include "aura/primitive/primitive/interlocked_long.h"
 //#include "aura/primitive/primitive/interlocked_long_pulse.h"
 //#include "aura/primitive/primitive/type.h"
-//#include "aura/primitive/primitive/id.h"
+//#include "aura/primitive/primitive/atom.h"
 //#include "aura/primitive/primitive/uid.h"
 //
 //
@@ -2565,7 +2565,7 @@ CLASS_DECL_AURA void __node_aura_pos_term();
 //
 //
 //
-//#include "aura/node/operating_system/_.h"
+//#include "aura/operating_system/_.h"
 //
 //
 //class update;
@@ -2816,14 +2816,14 @@ namespace draw2d
 #include "aura/game/_.h"
 
 
-//namespace PLATFORM_NAMESPACE
+//namespace OPERATING_SYSTEM_NAMESPACE
 //{
 //
 //
 //   class window;
 //
 //
-//} // namespace PLATFORM_NAMESPACE
+//} // namespace OPERATING_SYSTEM_NAMESPACE
 
 
 #include "aura/windowing/_windowing.h"
@@ -2876,7 +2876,7 @@ namespace write_text
 
 //#include "aura/graphics/_impl.h"
 
-#include "aura/node/operating_system/_impl.h"
+#include "aura/operating_system/_impl.h"
 
 #include "aura/platform/_impl.h"
 

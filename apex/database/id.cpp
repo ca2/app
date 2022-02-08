@@ -4,34 +4,34 @@
 namespace database
 {
 
-//   bool id::is_null()
+//   bool atom::is_null()
 //   {
-//      return m_id.is_empty();
+//      return m_atom.is_empty();
 //   }
 
-//   ::id id::get_id()
+//   ::atom atom::get_id()
 //   {
-//      return m_id;
+//      return m_atom;
 //   }
 //
-//   void id::set_id(::id id)
+//   void atom::set_id(::atom atom)
 //   {
-//      m_id = id;
+//      m_atom = atom;
 //   }
 //
-//   id & id::operator += (const char * psz)
+//   atom & atom::operator += (const char * psz)
 //   {
 //
-//      m_id += psz;
+//      m_atom += psz;
 //
 //      return *this;
 //
 //   }
 //
-//   id id::operator + (const id & id) const
+//   atom atom::operator + (const atom & atom) const
 //   {
 //
-//      return m_id + id.m_id;
+//      return m_atom + atom.m_atom;
 //
 //   }
 

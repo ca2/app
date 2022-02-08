@@ -86,7 +86,7 @@ namespace userfs
 #endif
 
 
-   void tree::assert_valid() const
+   void tree::assert_ok() const
    {
 
    }
@@ -283,7 +283,7 @@ namespace userfs
 
       control.set_type(::user::form_control_type_edit);
       control.m_iKey = FILE_MANAGER_ID_FILE_NAME;
-      pinteraction->m_id = FILE_MANAGER_ID_FILE_NAME;
+      pinteraction->m_atom = FILE_MANAGER_ID_FILE_NAME;
       control.set_data_type(::user::form_control_data_type_string);
 
       i32 iControl =  _001AddControl(control);
@@ -610,27 +610,27 @@ namespace userfs
 
 
 
-   void tree::handle(::subject * psubject, ::context * pcontext)
+   void tree::handle(::topic * ptopic, ::context * pcontext)
    {
 
       ////__update(::update)
       {
 
-         if (psubject->id() == id_initialize)
+         if (ptopic->m_atom == id_initialize)
          {
 
          }
-         if (psubject->id() == id_filter)
+         if (ptopic->m_atom == id_filter)
          {
 
-            if (psubject->payload(id_filter).is_empty())
+            if (ptopic->get_extended_topic()->payload(id_filter).is_empty())
             {
                //               FilterClose();
             }
             else
             {
                //             FilterBegin();
-               //           Filter1(psubject->payload(id_filter));
+               //           Filter1(ptopic->get_extended_topic()->payload(id_filter));
                //         FilterApply();
             }
 

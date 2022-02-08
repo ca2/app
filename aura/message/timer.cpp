@@ -6,10 +6,10 @@ namespace message
 {
 
 
-   void timer::set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam)
+   void timer::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
    {
 
-      ::user::message::set(oswindow, pwindow, id, wparam, lparam);
+      ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
       m_uEvent = static_cast<::u32>(wparam);
 

@@ -63,7 +63,7 @@ namespace user
 
    void document_manager::UnregisterShellFileTypes()
    {
-      throw interface_only_exception();
+      throw ::interface_only();
       /*   ASSERT(!m_templateptra.is_empty());  // must have some doc templates
 
       string strPathName, strTemp;
@@ -82,7 +82,7 @@ namespace user
       // enough info to register it
       if (!ptemplate->GetDocString(strFileTypeName,
       impact_system::regFileTypeName))
-      strFileTypeName = strFileTypeId;    // use id name
+      strFileTypeName = strFileTypeId;    // use atom name
 
       ASSERT(strFileTypeId.find(' ') == -1);  // no spaces allowed
 
@@ -152,7 +152,7 @@ namespace user
    void document_manager::RegisterShellFileTypes(bool bCompat)
    {
       __UNREFERENCED_PARAMETER(bCompat);
-      throw interface_only_exception();
+      throw ::interface_only();
 
       /*   ASSERT(!m_templateptra.is_empty());  // must have some doc templates
 
@@ -193,7 +193,7 @@ namespace user
       // enough info to register it
       if (!ptemplate->GetDocString(strFileTypeName,
       impact_system::regFileTypeName))
-      strFileTypeName = strFileTypeId;    // use id name
+      strFileTypeName = strFileTypeId;    // use atom name
 
       ASSERT(strFileTypeId.find(' ') == -1);  // no spaces allowed
 
@@ -711,10 +711,10 @@ namespace user
    }
 
 
-   void document_manager::assert_valid() const
+   void document_manager::assert_ok() const
    {
 
-      object::assert_valid();
+      object::assert_ok();
 
       ::count count = m_templateptra.get_count();
 
@@ -757,7 +757,7 @@ namespace user
       if(pcreate->m_pcommandline->m_varFile.is_empty())
       {
 
-         __throw(error_invalid_argument);
+         throw ::exception(error_bad_argument);
 
       }
 
@@ -893,7 +893,7 @@ namespace user
    }
 
 
-   void document_manager::handle(::subject * psubject, ::context * pcontext)
+   void document_manager::handle(::topic * ptopic, ::context * pcontext)
    {
 
       auto templateptra = m_templateptra;
@@ -901,7 +901,7 @@ namespace user
       for(auto & ptemplate : templateptra.ptra())
       {
 
-         ptemplate->handle(psubject, pcontext);
+         ptemplate->handle(ptopic, pcontext);
 
       }
 

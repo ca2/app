@@ -195,18 +195,18 @@ namespace sockets
       //virtual bool ResolverReady() = 0;
       /** Returns true if socket waiting for a resolve event. */
       //virtual bool Resolving(base_socket *) = 0;
-      /** Fetch unique trigger id. */
+      /** Fetch unique trigger atom. */
       virtual int TriggerID(base_socket *src) = 0;
-      /** Subscribe socket to trigger id. */
-      virtual bool Subscribe(int id, base_socket *dst) = 0;
-      /** Unsubscribe socket from trigger id. */
-      virtual bool Unsubscribe(int id, base_socket *dst) = 0;
+      /** Subscribe socket to trigger atom. */
+      virtual bool Subscribe(int atom, base_socket *dst) = 0;
+      /** Unsubscribe socket from trigger atom. */
+      virtual bool Unsubscribe(int atom, base_socket *dst) = 0;
       /** Execute OnTrigger for subscribed sockets.
-      \lparam id Trigger ID
+      \lparam atom Trigger ID
       \lparam data Data passed from source to destination
-      \lparam erase Empty trigger id source and destination maps if 'true',
+      \lparam erase Empty trigger atom source and destination maps if 'true',
       Leave them in place if 'false' - if a trigger should be called many times */
-      virtual void Trigger(int id, base_socket::trigger_data & data, bool erase = true) = 0;
+      virtual void Trigger(int atom, base_socket::trigger_data & data, bool erase = true) = 0;
       /** Indicates that the handler runs under socket_thread. */
       //virtual void SetSlave(bool x = true) = 0;
       /** Indicates that the handler runs under socket_thread. */

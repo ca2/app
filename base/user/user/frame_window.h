@@ -35,7 +35,7 @@ namespace user
       boolean                                      m_bWindowFrame;
       bool                                         m_bLayered;
       i32                                          m_iFrameData;
-      ::id                                         m_idHelp;         // xxx mrs
+      ::atom                                         m_atomHelp;         // xxx mrs
       ::user::impact_system *                      m_pdocumenttemplate;
 
       i32                                          m_nWindow;  // general purpose interaction_impl number - display as ":n"
@@ -87,19 +87,19 @@ namespace user
       void common_construct();
 
 
-      void assert_valid() const override;
+      void assert_ok() const override;
       virtual void dump(dump_context & dc) const override;
 
 
 
       void install_message_routing(::channel * pchannel) override;
 
-      virtual ::id get_topic_view_id();
-      virtual bool set_topic_view_by_id(const ::id & id);
+      virtual ::atom get_topic_view_id();
+      virtual bool set_topic_view_by_id(const ::atom & atom);
 
 
-      virtual void update_active_document(::subject * psubject);
-      virtual void update_active_document(const ::id & id);
+      virtual void update_active_document(::topic * ptopic);
+      virtual void update_active_document(const ::atom & atom);
 
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
@@ -163,23 +163,23 @@ namespace user
       void hide_control_bar(::user::control_bar * pcontrolbar) override;
 
 
-      virtual __pointer(toolbar) get_toolbar(const ::id & idToolBar, bool bCreate = true, const ::string & strToolbar = nullptr, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP, const ::type & type = "user::toolbar");
+      virtual __pointer(toolbar) get_toolbar(const ::atom & idToolBar, bool bCreate = true, const ::string & strToolbar = nullptr, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP, const ::type & type = "user::toolbar");
 
 
-      virtual __pointer(toolbar) create_toolbar(const ::id & idToolbar, const ::string & strToolbar = nullptr, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP, const ::type & type = "user::toolbar") ;
+      virtual __pointer(toolbar) create_toolbar(const ::atom & idToolbar, const ::string & strToolbar = nullptr, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP, const ::type & type = "user::toolbar") ;
 
       //   template < class TOOLBAR >
-      // bool load_toolbar(id idToolBar, const ::string & pszToolBar,u32 dwCtrlStyle = TBSTYLE_FLAT,u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
+      // bool load_toolbar(atom idToolBar, const ::string & pszToolBar,u32 dwCtrlStyle = TBSTYLE_FLAT,u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
       template < class TOOLBAR >
-      void load_toolbar(const ::id & idToolbar, const ::string & strToolbar = nullptr, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP);
+      void load_toolbar(const ::atom & idToolbar, const ::string & strToolbar = nullptr, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP);
 
 
-      //   virtual bool load_toolbar(id idToolBar, const ::string & pszToolBar, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP) override
+      //   virtual bool load_toolbar(atom idToolBar, const ::string & pszToolBar, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP) override
       //   {
       //      return load_toolbar < ::user::toolbar >(idToolBar, pszToolBar, dwCtrlStyle, uStyle);
       //   }
 
-//      virtual void load_toolbar(const ::id & idToolbar, const ::string & strToolBar = nullptr, u32 dwCtrlStyle = TBSTYLE_FLAT,u32 uStyle = CBRS_ALIGN_TOP);
+//      virtual void load_toolbar(const ::atom & idToolbar, const ::string & strToolBar = nullptr, u32 dwCtrlStyle = TBSTYLE_FLAT,u32 uStyle = CBRS_ALIGN_TOP);
 //      {
 //
 //         return load_toolbar < ::user::toolbar >(idToolbar, strToolBar, dwCtrlStyle, uStyle);
@@ -188,7 +188,7 @@ namespace user
 
 
       ::user::interaction * get_active_view() const override;           // active ::user::impact or nullptr
-      void set_active_view(::user::impact * pViewNew, bool bNotify = true) override;
+      void set_active_view(::user::impact * pImpactNew, bool bNotify = true) override;
       // active ::user::impact or nullptr, bNotify == false if focus should not be set
 
       // Active frame (for frames within frames -- MDI)
@@ -297,7 +297,7 @@ namespace user
 //#ifdef WINDOWS_DESKTOP
 //      virtual void OnDropFiles(HDROP hDropInfo);
 //#endif
-      bool OnSetCursor(__pointer(::user::interaction) pwindow, ::u32 nHitTest, const ::id & id);
+      bool OnSetCursor(__pointer(::user::interaction) pwindow, ::u32 nHitTest, const ::atom & atom);
       //LRESULT OnCommandHelp(WPARAM wParam, LPARAM lParam);
       //LRESULT OnHelpHitTest(WPARAM wParam, LPARAM lParam);
       //LRESULT OnActivateTopLevel(WPARAM wParam, LPARAM lParam);
@@ -313,7 +313,7 @@ namespace user
       virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
 
-      virtual void handle(::subject * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
 
       __pointer(::user::interaction) WindowDataGetWnd();

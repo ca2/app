@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "core/user/user/_user.h"
 #include "aura/update.h"
-#include "acme/constant/id.h"
+#include "acme/id.h"
 
 
 namespace user
@@ -29,38 +29,38 @@ namespace user
    }
 
 
-   void form_list_view::handle(::subject * psubject, ::context * pcontext)
+   void form_list_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::user::form_view::handle(psubject, pcontext);
+      ::user::form_view::handle(ptopic, pcontext);
 
-      ::user::list_view::handle(psubject, pcontext);
+      ::user::list_view::handle(ptopic, pcontext);
 
       ////__update(::update)
       {
 
-         if(psubject->id() == id_browse)
+         if(ptopic->m_atom == id_browse)
          {
 
-            if(!psubject->payload(id_form).is_empty())
+            if(!ptopic->get_extended_topic()->payload(id_form).is_empty())
             {
 
-               string strMatter = m_pcontext->m_papexcontext->dir().matter(psubject->payload(id_form));
+               string strMatter = m_pcontext->m_papexcontext->dir().matter(ptopic->get_extended_topic()->payload(id_form));
 
                if(get_document()->on_open_document(strMatter))
                {
 
-                  m_strPath = psubject->payload(id_form);
+                  m_strPath = ptopic->get_extended_topic()->payload(id_form);
 
                }
 
             }
 
          }
-         else if(psubject->id() == id_get_form_view)
+         else if(ptopic->m_atom == id_get_form_view)
          {
 
-            psubject->payload(id_form) = this;
+            ptopic->get_extended_topic()->payload(id_form) = this;
 
          }
 
@@ -69,9 +69,9 @@ namespace user
       if(m_pcallback != nullptr)
       {
 
-         psubject->payload(id_form) = this;
+         ptopic->get_extended_topic()->payload(id_form) = this;
 
-         m_pcallback->handle(psubject, pcontext);
+         m_pcallback->handle(ptopic, pcontext);
 
       }
 
@@ -119,12 +119,12 @@ namespace user
    }
 
 
-   void form_list_view::assert_valid() const
+   void form_list_view::assert_ok() const
    {
 
-      form_list::assert_valid();
-      form_view::assert_valid();
-      list_view::assert_valid();
+      form_list::assert_ok();
+      form_view::assert_ok();
+      list_view::assert_ok();
 
    }
 
@@ -212,37 +212,37 @@ namespace user
    }
 
 
-   //void form_list_view::handle(::subject * psubject, ::context * pcontext)
+   //void form_list_view::handle(::topic * ptopic, ::context * pcontext)
    //{
 
-   //   form_view::handle(psubject, pcontext);
+   //   form_view::handle(ptopic, pcontext);
 
-   //   list_view::handle(psubject, pcontext);
+   //   list_view::handle(ptopic, pcontext);
 
    //}
 
 
-   void form_list_view::OnActivateView(bool bActivate, __pointer(::user::impact) pActivateView, __pointer(::user::impact) pviewDeactive)
+   void form_list_view::OnActivateImpact(bool bActivate, __pointer(::user::impact) pActivateImpact, __pointer(::user::impact) pviewDeactive)
    {
-      //    UNUSED(pActivateView);   // unused in release builds
+      //    UNUSED(pActivateImpact);   // unused in release builds
 
       if (bActivate && m_pcontrolEdit.is_null())
       {
-         //ASSERT(pActivateView == this);
+         //ASSERT(pActivateImpact == this);
 
          // take the focus if this frame/::user::impact/pane is now active
          if (IsTopParentActive())
          {
 
-            if(get_wnd()->m_pimpl2)
+            if(get_wnd()->m_pinteractionimpl)
             {
 
-               __pointer(::user::interaction) puiFocus = get_wnd()->m_pimpl2->m_puserinteractionFocus1;
+               __pointer(::user::interaction) puiFocus = get_wnd()->m_pinteractionimpl->m_puserinteractionFocus1;
 
                if (puiFocus.is_null() || !is_ascendant_of(puiFocus, true))
                {
 
-                  get_wnd()->m_pimpl2->m_puserinteractionFocus1 = this;
+                  get_wnd()->m_pinteractionimpl->m_puserinteractionFocus1 = this;
 
                }
 

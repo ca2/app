@@ -59,9 +59,9 @@ namespace helloworld
    {
    }
 
-   void impact::assert_valid() const
+   void impact::assert_ok() const
    {
-      user::box::assert_valid();
+      user::box::assert_ok();
    }
 
    void impact::dump(dump_context & dumpcontext) const
@@ -183,10 +183,10 @@ namespace helloworld
    }
 
 
-   void impact::handle(::subject * psubject, ::context * pcontext)
+   void impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      impact_base::handle(psubject, pcontext);
+      impact_base::handle(ptopic, pcontext);
 
       ::update * pupdate = dynamic_cast < ::update *> (pupdate);
 
@@ -198,7 +198,7 @@ namespace helloworld
          if (peditview != nullptr)
          {
 
-            if (pupdate->m_ehint == id_after_change_text && psubject->user_interaction() == peditview)
+            if (pupdate->m_ehint == id_after_change_text && ptopic->get_extended_topic()->user_interaction() == peditview)
             {
 
                string strText;

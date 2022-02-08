@@ -101,7 +101,7 @@
 //      ::mutex                                         m_mutexStr;
 //      string_table                                    m_stringtable;
 //      string_table                                    m_stringtableStd;
-//      map < id, id, string, string >                  m_stringmap;
+//      map < atom, atom, string, string >                  m_stringmap;
 //
 //      id_map < __pointer(::channel) >                 m_mapNotify;
 //
@@ -163,18 +163,18 @@
 //      virtual void initialize(::object * pobject) override;
 //
 //
-//      void assert_valid() const override;
+//      void assert_ok() const override;
 //      void dump(dump_context & dumpcontext) const override;
 //
 //
 //      virtual string __get_text(string str) override;
 //
 //
-//      //virtual bool app_data_get(const ::id & id, stream & os) override;
-//      //virtual bool app_data_set(const ::id & id, stream & is) override;
+//      //virtual bool app_data_get(const ::atom & atom, stream & os) override;
+//      //virtual bool app_data_set(const ::atom & atom, stream & is) override;
 //
-//      //virtual bool app_data_set(const ::id & id, object & obj) override;
-//      //virtual bool app_data_get(const ::id & id, object & obj) override;
+//      //virtual bool app_data_set(const ::atom & atom, object & obj) override;
+//      //virtual bool app_data_get(const ::atom & atom, object & obj) override;
 //
 ////      virtual void     interactive_credentials(::account::credentials * pcredentials) override;
 //
@@ -183,11 +183,11 @@
 //
 //      //virtual string load_podata(string strLang, bool bOnlyHeader);
 //
-//      virtual string load_string(const ::id & id);
-//      virtual bool load_string(string & str, const ::id & id);
+//      virtual string load_string(const ::atom & atom);
+//      virtual bool load_string(string & str, const ::atom & atom);
 //      virtual void load_string_table();
-//      virtual bool load_cached_string(string & str, const ::id & id, bool bLoadStringTable);
-//      virtual bool load_cached_string_by_id(string & str, const ::id & id, bool bLoadStringTable);
+//      virtual bool load_cached_string(string & str, const ::atom & atom, bool bLoadStringTable);
+//      virtual bool load_cached_string_by_id(string & str, const ::atom & atom, bool bLoadStringTable);
 //      virtual void load_string_table(const string & pszApp, const string & pszId);
 //
 //
@@ -339,9 +339,9 @@
 //
 //      virtual void on_update_view(::user::impact * pview, ::user::impact * pviewSender, LPARAM lHint, object * pHint);
 //
-//      virtual void handle(::subject * psubject, ::context * pcontext) override;
+//      virtual void handle(::topic * ptopic, ::context * pcontext) override;
 //      virtual void on_notify_control_event(::user::control_event* pevent);
-//      virtual void route(::subject * psubject, ::context * pcontext);
+//      virtual void route(::topic * ptopic, ::context * pcontext);
 //
 //
 //
@@ -384,7 +384,7 @@
 //      virtual ::file::path appconfig_folder();
 //
 //
-//      //void assert_valid() const override;
+//      //void assert_ok() const override;
 //      //void dump(dump_context & dumpcontext) const override;
 //
 //
@@ -392,11 +392,11 @@
 //      virtual ::handle::ini get_ini();
 //
 //
-//      virtual bool app_data_set(const ::id & id, stream & os);
-//      virtual bool app_data_get(const ::id & id, stream & is);
+//      virtual bool app_data_set(const ::atom & atom, stream & os);
+//      virtual bool app_data_get(const ::atom & atom, stream & is);
 //
-//      virtual bool app_data_set(const ::id & id, ::object & obj);
-//      virtual bool app_data_get(const ::id & id, ::object & obj);
+//      virtual bool app_data_set(const ::atom & atom, ::object & obj);
+//      virtual bool app_data_get(const ::atom & atom, ::object & obj);
 //
 //      void install_message_routing(::channel * pchannel) override;
 //
@@ -409,7 +409,7 @@
 //
 //
 //
-//      //virtual void notify_changed(const ::id & id, const ::action_context & action_context);
+//      //virtual void notify_changed(const ::atom & atom, const ::action_context & action_context);
 //
 //
 //      virtual ::file::path local_application_path();
@@ -644,7 +644,7 @@
 //      /// bHandled true if some action was done in response to the external new additional instance creation
 //      virtual bool on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine);
 //
-//      virtual void on_new_instance(string strModule, const ::id & idPid);
+//      virtual void on_new_instance(string strModule, const ::atom & idPid);
 //
 //      virtual string get_local_mutex_id();
 //      virtual string get_global_mutex_id();
@@ -734,7 +734,7 @@
 //      virtual void _001FranceExit();
 //
 //
-//      virtual string lstr(const ::id & id, string strDefault = "") override;
+//      virtual string lstr(const ::atom & atom, string strDefault = "") override;
 //
 //
 //
@@ -758,7 +758,7 @@
 //
 //      virtual string get_app_user_friendly_task_bar_name();
 //
-//      virtual void handle(::subject * psubject, ::context * pcontext) override;
+//      virtual void handle(::topic * ptopic, ::context * pcontext) override;
 //
 //      //virtual bool compress_ungz(::file::file * pfileUncompressed, ::file::file * pfileCompressed);
 //
@@ -800,7 +800,7 @@
 //      virtual void add_frame(::user::interaction * puserinteraction);
 //      virtual void erase_frame(::user::interaction * puserinteraction);
 //
-//      virtual bool send_message_to_windows(const ::id & id, wparam wparam, lparam lparam); // with tbs in <3
+//      virtual bool send_message_to_windows(const ::atom & atom, wparam wparam, lparam lparam); // with tbs in <3
 //
 //      virtual bool route_message_to_windows(::message::message * pmessage); // with tbs in <3
 //
@@ -817,14 +817,14 @@
 //      virtual ::user::document * place_hold(::user::interaction * pinteraction);
 //
 //
-//      virtual bool post_message(const ::id & id, WPARAM wParam = 0, lparam lParam = 0) override;
+//      virtual bool post_message(const ::atom & atom, WPARAM wParam = 0, lparam lParam = 0) override;
 //
 //
 //      //virtual ::draw2d::icon * set_icon(object * pobject, ::draw2d::icon * picon, bool bBigIcon);
 //
 //      //virtual ::draw2d::icon * get_icon(object * pobject, bool bBigIcon) const;
 //
-//      //virtual void handle(::subject * psubject, ::context * pcontext);
+//      //virtual void handle(::topic * ptopic, ::context * pcontext);
 //
 //
 //
@@ -839,18 +839,18 @@
 //      virtual void on_graphics_ready();
 //
 //      virtual ::type user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype);
-//      virtual ::type control_type_from_id(const ::id & id, ::user::enum_control_type & econtroltype);
+//      virtual ::type control_type_from_id(const ::atom & atom, ::user::enum_control_type & econtroltype);
 //
 //
-//      virtual ::id translate_property_id(const ::id & id) override;
-//      //virtual property fetch_property(const ::id & id) override;
+//      virtual ::atom translate_property_id(const ::atom & atom) override;
+//      //virtual property fetch_property(const ::atom & atom) override;
 //
 //      virtual void get_time(struct timeval *point_i32);
 //
 //      virtual void close(e_end eend);
 //
 //
-//      virtual __pointer(::user::document) defer_create_view(string strView, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::id & id = nullptr);
+//      virtual __pointer(::user::document) defer_create_view(string strView, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::atom & atom = nullptr);
 //
 //
 //      virtual void HideApplication();
@@ -905,7 +905,7 @@
 //      virtual void on_create_split_view(::user::split_view* pview);
 //
 //
-//      //virtual ::type control_type_from_id(const ::id& id, ::user::enum_control_type& econtroltype) override;
+//      //virtual ::type control_type_from_id(const ::atom& atom, ::user::enum_control_type& econtroltype) override;
 //
 //
 //      virtual bool base_support();
@@ -1204,7 +1204,7 @@
 //      //virtual ::aura::printer* get_printer(const ::string & pszDeviceName) override;
 //
 //
-//      //void assert_valid() const override;
+//      //void assert_ok() const override;
 //      //virtual void dump(dump_context& dumpcontext) const override;
 //
 //
@@ -1257,7 +1257,7 @@
 //
 //
 //
-//      //void assert_valid() const override;
+//      //void assert_ok() const override;
 //      //virtual void dump(dump_context & action_context) const;
 //
 //
@@ -1331,7 +1331,7 @@
 //      //virtual bool _001OnAgreeExit() override;
 //      //virtual void france_exit() override;
 //
-//      virtual void prepare_form(id id, ::form_document* pdocument);
+//      virtual void prepare_form(atom atom, ::form_document* pdocument);
 //
 //
 //      virtual void report_error(::exception* pexception, int iMessageFlags, const ::string & pszTopic);
@@ -1352,7 +1352,7 @@
 //
 //      //void install_message_routing(::channel * pchannel) override;
 //
-//      //virtual void handle(::subject * psubject, ::context * pcontext) override;
+//      //virtual void handle(::topic * ptopic, ::context * pcontext) override;
 //
 //      //virtual void process_init() override;
 //
@@ -1361,7 +1361,7 @@
 //      virtual void     create_impact_system();
 //
 //      //virtual ::type user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
-//      //virtual ::type control_type_from_id(const ::id& id, ::user::enum_control_type& econtroltype) override;
+//      //virtual ::type control_type_from_id(const ::atom& atom, ::user::enum_control_type& econtroltype) override;
 //
 //
 //      virtual void on_create_impact(::user::impact_data* pimpactdata) override;
@@ -1398,11 +1398,11 @@
 //
 //      //virtual ::draw2d::icon* get_icon(object* pobject, bool bBigIcon) const override;
 //
-//      //virtual void handle(::subject * psubject, ::context * pcontext) override;
+//      //virtual void handle(::topic * ptopic, ::context * pcontext) override;
 //
 //      virtual ::user::interaction* create_menu_interaction();
 //
-////      virtual __pointer(::user::document) defer_create_view(string strView, ::user::interaction* puiParent, ewindowflag ewindowflag = e_window_flag_none, const ::id& id = nullptr) override;
+////      virtual __pointer(::user::document) defer_create_view(string strView, ::user::interaction* puiParent, ewindowflag ewindowflag = e_window_flag_none, const ::atom& atom = nullptr) override;
 //
 //      // multimedia
 //

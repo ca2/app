@@ -17,7 +17,7 @@ namespace text
    public:
 
 
-      ::id m_idSchema;
+      ::atom m_atomSchema;
 
 
       schema() { InitHashTable(4 * 1024 -1); };
@@ -31,9 +31,9 @@ namespace text
    public:
 
 
-      ::id       m_idLocale;
+      ::atom       m_atomLocale;
 
-      inline const schema * get_schema(const ::id & idSchema) const
+      inline const schema * get_schema(const ::atom & idSchema) const
       {
          auto ppair = plookup(idSchema);
          if (ppair == nullptr)
@@ -63,7 +63,7 @@ namespace text
       ~table() override;
 
 
-      inline const locale * get_locale(const ::id & idLocale) const
+      inline const locale * get_locale(const ::atom & idLocale) const
       {
          
          auto ppair = m_map.plookup(idLocale);
@@ -83,23 +83,23 @@ namespace text
       virtual void initialize(::object * pobject) override;
 
 
-      inline auto& operator[](const ::id& id) { return m_map[id]; }
-      inline auto& operator[](const ::id& id)const { return m_map[id]; }
+      inline auto& operator[](const ::atom& atom) { return m_map[atom]; }
+      inline auto& operator[](const ::atom& atom)const { return m_map[atom]; }
 
-      void set(const ::id & id, const ::id & idLocale, const ::id & idSchema, const char * psz);
-      string get(const context * pcontext, const ::id & id, bool bIdAsDefaultValue = true) const;
-      string get(const context * pcontext,const ::id & id,const ::id & idLocale,const ::id & idSchema,bool bIdAsDefaultValue = true) const;
-      void get(string_array & stra, const context * pcontext, const ::id & id) const;
-      void _get(string_array & stra, const context * pcontext, const ::id & id) const ;
+      void set(const ::atom & atom, const ::atom & idLocale, const ::atom & idSchema, const char * psz);
+      string get(const context * pcontext, const ::atom & atom, bool bIdAsDefaultValue = true) const;
+      string get(const context * pcontext,const ::atom & atom,const ::atom & idLocale,const ::atom & idSchema,bool bIdAsDefaultValue = true) const;
+      void get(string_array & stra, const context * pcontext, const ::atom & atom) const;
+      void _get(string_array & stra, const context * pcontext, const ::atom & atom) const ;
 
       bool load(const char * pszBaseDir);
-      bool load_uistr_file(const ::id & idLocale, const ::id & idSchema, ::file::file * pfile);
+      bool load_uistr_file(const ::atom & idLocale, const ::atom & idSchema, ::file::file * pfile);
 
       string body(const char * psz);
 
-      bool matches(const context * pcontext, const ::id & id, const char * psz) const;
-      bool begins(const context * pcontext, const char * psz, const ::id & id) const;
-      bool begins_eat(const context * pcontext, string & str, const ::id & id) const;
+      bool matches(const context * pcontext, const ::atom & atom, const char * psz) const;
+      bool begins(const context * pcontext, const char * psz, const ::atom & atom) const;
+      bool begins_eat(const context * pcontext, string & str, const ::atom & atom) const;
 
 
    };
@@ -137,8 +137,9 @@ namespace text
       context();
       ~context() override;
 
-
-      virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+#ifdef _DEBUG
+      
+      i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
       {
 
          return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -146,14 +147,16 @@ namespace text
       }
 
 
-      virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+      i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
       {
 
          return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
       }
 
-
+#endif
+      
+      
       inline void defer_ok(table * ptable)
       {
 
@@ -174,9 +177,9 @@ namespace text
       void prepare();
 
 
-      const comparable_array < ::id > & locale_ex() const;
+      const comparable_array < ::atom > & locale_ex() const;
 
-      const comparable_array < ::id > & schema_ex() const;
+      const comparable_array < ::atom > & schema_ex() const;
 
 
       inline ::text::international::locale_schema & localeschema()
@@ -195,50 +198,50 @@ namespace text
       }
 
 
-      inline bool matches(const ::id & id, const char * psz) const
+      inline bool matches(const ::atom & atom, const char * psz) const
       {
 
-         return m_ptable->matches(this, id, psz);
+         return m_ptable->matches(this, atom, psz);
 
       }
 
 
-      inline bool begins(const ::id & id, const char * psz) const
+      inline bool begins(const ::atom & atom, const char * psz) const
       {
 
-         return m_ptable->begins(this, __string(id), psz);
+         return m_ptable->begins(this, __string(atom), psz);
 
       }
 
 
-      inline bool begins_eat(string & str, const ::id & id) const
+      inline bool begins_eat(string & str, const ::atom & atom) const
       {
 
-         return m_ptable->begins_eat(this, str, id);
+         return m_ptable->begins_eat(this, str, atom);
 
       }
 
 
-      inline void get(string_array & stra, const ::id & id) const
+      inline void get(string_array & stra, const ::atom & atom) const
       {
 
-         return m_ptable->get(stra, this, id);
+         return m_ptable->get(stra, this, atom);
 
 
       }
 
 
-      inline string get(const ::id& id) const
+      inline string get(const ::atom& atom) const
       {
          if (m_ptable == nullptr)
-            return id.to_string();
-         return m_ptable->get(this, id);
+            return atom.to_string();
+         return m_ptable->get(this, atom);
 
       }
 
-      //virtual bool match(const regex * pregexp, string_array & stra, const char * psz, id pszExp, id pszRoot);
+      //virtual bool match(const regex * pregexp, string_array & stra, const char * psz, atom pszExp, atom pszRoot);
 
-      //virtual bool match(string_array & stra, const char * psz, ::id pszExp, ::id pszRoot) const;
+      //virtual bool match(string_array & stra, const char * psz, ::atom pszExp, ::atom pszRoot) const;
 
 
    };

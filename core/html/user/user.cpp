@@ -16,7 +16,7 @@ namespace core
 
 
       m_typeHtmlDocument = typeid(html_document);
-      m_typeHtmlView = typeid(html_view);
+      m_typeHtmlImpact = typeid(html_view);
 
       ::factory::add_factory_item < html_document >();
       ::factory::add_factory_item < html_view >();

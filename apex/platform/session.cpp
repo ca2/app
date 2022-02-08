@@ -11,14 +11,14 @@
 #if defined(APPLE_IOS) || defined(_UWP) || defined(ANDROID)
 
 
-namespace PLATFORM_NAMESPACE
+namespace OPERATING_SYSTEM_NAMESPACE
 {
 
 
    CLASS_DECL_APEX ::user::interaction * create_host_window();
 
 
-} // namespace PLATFORM_NAMESPACE
+} // namespace OPERATING_SYSTEM_NAMESPACE
 
 
 #endif
@@ -39,7 +39,7 @@ int_bool point_is_window_origin(POINT_I32 ptHitTest, ::windowing::window * pwind
 
 #ifdef _UWP
 
-#include "apex/node/operating_system/universal_windows/_universal_windows.h"
+#include "apex/operating_system/universal_windows/_universal_windows.h"
 
 #elif defined(LINUX)
 
@@ -436,7 +436,7 @@ namespace apex
       //if(!estatus)
       //{
 
-      //   __throw(::exception(estatus));
+      //   throw ::exception(::exception(estatus));
 
       //}
 
@@ -694,7 +694,7 @@ namespace apex
 
       }
 
-      m_varCurrentViewFile = pcreate->m_pcommandline->m_varFile;
+      m_varCurrentImpactFile = pcreate->m_pcommandline->m_varFile;
 
       //string strApp;
 
@@ -730,9 +730,9 @@ namespace apex
          else if (m_bShowPlatform)
          {
             //create_bergedge(pcreate);
-            //if(get_document() != nullptr && get_document()->get_typed_view < ::bergedge::impact >() != nullptr)
+            //if(get_document() != nullptr && get_document()->get_type_impact < ::bergedge::impact >() != nullptr)
             //{
-            //   __pointer(::simple_frame_window) pframe =  (get_document()->get_typed_view < ::bergedge::impact >()->get_parent_frame());
+            //   __pointer(::simple_frame_window) pframe =  (get_document()->get_type_impact < ::bergedge::impact >()->get_parent_frame());
             //   if(pframe != nullptr)
             //   {
             //      pframe->display(e_display_normal);
@@ -872,7 +872,7 @@ namespace apex
    //__pointer(::user::menu_interaction) session::create_menu_button(::user::style_pointer & pstyle,::user::menu_item * pitem)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return nullptr;
 
@@ -945,7 +945,7 @@ namespace apex
 
          string_array straApp;
 
-         __throw(todo, "filehandler");
+         throw ::exception(todo, "filehandler");
 
          //psystem->filehandler().get_extension_app(straApp, strExtension);
 
@@ -1221,7 +1221,7 @@ ret:
 
       //}
 
-      // __throw(todo("interaction"));
+      // throw ::exception(todo("interaction"));
       //if (psystem->m_bUser)
       //{
 
@@ -1655,7 +1655,7 @@ namespace apex
    //   }
    //   else
    //   {
-   //      __throw(::exception("not expected enum_mouse value"));
+   //      throw ::exception(::exception("not expected enum_mouse value"));
    //   }
 
 
@@ -1716,10 +1716,10 @@ namespace apex
 
    //   auto psession = get_session();
 
-   //   if (psession->m_varCurrentViewFile != psession->m_varTopicFile && !psession->m_varTopicFile.is_empty())
+   //   if (psession->m_varCurrentImpactFile != psession->m_varTopicFile && !psession->m_varTopicFile.is_empty())
    //   {
 
-   //      psession->m_varCurrentViewFile = psession->m_varTopicFile;
+   //      psession->m_varCurrentImpactFile = psession->m_varTopicFile;
 
    //      request_topic_file();
 
@@ -1740,18 +1740,18 @@ namespace apex
 
    //   string strAppName = app.m_strAppName;
 
-   //   //if(get_document()->get_typed_view < ::bergedge::pane_view >() != nullptr)
+   //   //if(get_document()->get_type_impact < ::bergedge::pane_view >() != nullptr)
    //   //{
 
-   //   //   get_document()->get_typed_view < ::bergedge::pane_view >()->set_current_tab_by_id("app:" + strAppName);
+   //   //   get_document()->get_type_impact < ::bergedge::pane_view >()->set_current_tab_by_id("app:" + strAppName);
 
-   //   //   holderptra.add(get_document()->get_typed_view < ::bergedge::pane_view >()->get_tab_holder(get_document()->get_typed_view < ::bergedge::pane_view >()->get_tab_by_id("app:" + strAppName)));
+   //   //   holderptra.add(get_document()->get_type_impact < ::bergedge::pane_view >()->get_tab_holder(get_document()->get_type_impact < ::bergedge::pane_view >()->get_tab_by_id("app:" + strAppName)));
 
    //   //}
    //   //else
    //   //{
 
-   //   //   holderptra.add(get_document()->get_typed_view < ::bergedge::impact >());
+   //   //   holderptra.add(get_document()->get_type_impact < ::bergedge::impact >());
 
    //   //}
 
@@ -1780,7 +1780,7 @@ namespace apex
       if (m_applicationa.lookup(pszAppId, papp) && papp)
       {
 
-         //__pointer(::bergedge::pane_view) ppaneview = get_document()->get_typed_view < ::bergedge::pane_view >();
+         //__pointer(::bergedge::pane_view) ppaneview = get_document()->get_type_impact < ::bergedge::pane_view >();
 
          //if(ppaneview != nullptr)
          //{
@@ -2137,8 +2137,8 @@ namespace apex
    void session::frame_pre_translate_message(::message::message* pmessage)
    {
 
-//      if (pmessage->m_id == WM_GETTEXT
-//         || pmessage->m_id == WM_GETTEXTLENGTH
+//      if (pmessage->m_atom == WM_GETTEXT
+//         || pmessage->m_atom == WM_GETTEXTLENGTH
 //         )
 //      {
 //
@@ -2148,7 +2148,7 @@ namespace apex
 //         return;
 //
 //      }
-      //else if (pmessage->m_id == e_message_mouse_move)
+      //else if (pmessage->m_atom == e_message_mouse_move)
       //{
 
       //   pmessage->m_uiMessageFlags |= 0; // message considered pre translated

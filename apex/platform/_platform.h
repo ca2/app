@@ -305,7 +305,7 @@ namespace apex
 ////class CMiniFrameWnd;// half-height caption frame wnd
 ////
 ////// views on a document
-////class CScrollView;  // a scrolling ::user::impact
+////class CScrollImpact;  // a scrolling ::user::impact
 //
 ///*class single_document_template;
 //class multiple_document_template;

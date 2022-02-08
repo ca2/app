@@ -55,9 +55,9 @@ void html_form_view::OnDraw(::draw2d::graphics_pointer & pgraphics)
 /////////////////////////////////////////////////////////////////////////////
 // html_form_view diagnostics
 
-void html_form_view::assert_valid() const
+void html_form_view::assert_ok() const
 {
-   ::user::form_view::assert_valid();
+   ::user::form_view::assert_ok();
 }
 
 void html_form_view::dump(dump_context & dumpcontext) const
@@ -68,7 +68,7 @@ void html_form_view::dump(dump_context & dumpcontext) const
 /////////////////////////////////////////////////////////////////////////////
 // html_form_view message handlers
 
-// vmpLightView.cpp : implementation of the html_form_view class
+// vmpLightImpact.cpp : implementation of the html_form_view class
 //
 
 

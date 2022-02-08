@@ -25,7 +25,7 @@
 //   }
 //
 //
-//   const comparable_array < id > & str_context::locale_ex() const
+//   const comparable_array < atom > & str_context::locale_ex() const
 //   {
 //
 //      return m_plocaleschema->m_idaLocale;
@@ -33,7 +33,7 @@
 //   }
 //
 //   
-//   const comparable_array < id > & str_context::schema_ex() const
+//   const comparable_array < atom > & str_context::schema_ex() const
 //   {
 //
 //      return m_plocaleschema->m_idaLocale;
@@ -52,8 +52,8 @@
 //   void str_context::prepare()
 //   {
 //
-//      static ::id idEn("en");
-//      static ::id idStd("_std");
+//      static ::atom idEn("en");
+//      static ::atom idStd("_std");
 //
 //
 //      m_plocale               = nullptr;
@@ -70,26 +70,26 @@
 //      if(m_plocaleschema != nullptr)
 //      {
 //
-//         if(!m_plocaleschema->m_idLocale.is_empty())
+//         if(!m_plocaleschema->m_atomLocale.is_empty())
 //         {
 //
-//            m_plocale = (str_locale *) m_pstr->get_locale(m_plocaleschema->m_idLocale);
+//            m_plocale = (str_locale *) m_pstr->get_locale(m_plocaleschema->m_atomLocale);
 //
 //            if(m_plocale != nullptr)
 //            {
 //
-//               if(!m_plocaleschema->m_idSchema.is_empty() && m_plocaleschema->m_idSchema != m_plocaleschema->m_idLocale)
+//               if(!m_plocaleschema->m_atomSchema.is_empty() && m_plocaleschema->m_atomSchema != m_plocaleschema->m_atomLocale)
 //               {
-//                  m_pschema = (str_schema *) m_plocale->get_schema(m_plocaleschema->m_idSchema);
+//                  m_pschema = (str_schema *) m_plocale->get_schema(m_plocaleschema->m_atomSchema);
 //               }
-//               m_pschemaLocale = (str_schema *)m_plocale->get_schema(m_plocaleschema->m_idSchema);
+//               m_pschemaLocale = (str_schema *)m_plocale->get_schema(m_plocaleschema->m_atomSchema);
 //            }
 //         }
 //
-//         if(!m_plocaleschema->m_idSchema.is_empty())
+//         if(!m_plocaleschema->m_atomSchema.is_empty())
 //         {
 //
-//            const str_locale * plocale = m_pstr->get_locale(m_plocaleschema->m_idSchema);
+//            const str_locale * plocale = m_pstr->get_locale(m_plocaleschema->m_atomSchema);
 //
 //            if(plocale != nullptr)
 //            {
@@ -107,7 +107,7 @@
 //         for(i32 i = 0; i < m_plocaleschema->m_idaLocale.get_count(); i++)
 //         {
 //
-//            ::id & idLocale = m_plocaleschema->m_idaLocale[i];
+//            ::atom & idLocale = m_plocaleschema->m_idaLocale[i];
 //
 //
 //            if(stridaFailedLocale.contains(idLocale))
@@ -121,7 +121,7 @@
 //               continue;
 //            }
 //
-//            ::id & idSchema = m_plocaleschema->m_idaSchema[i];
+//            ::atom & idSchema = m_plocaleschema->m_idaSchema[i];
 //
 //
 //            str_schema * pschema = (str_schema * ) plocale->get_schema(idSchema);
@@ -263,15 +263,15 @@
 //   }
 //
 //
-//   void str::set(const ::id & id, const ::id & idLocale, const ::id & idSchema, const ::string & psz)
+//   void str::set(const ::atom & atom, const ::atom & idLocale, const ::atom & idSchema, const ::string & psz)
 //   {
 //
-//      (*this)[idLocale][idSchema][id] = psz;
+//      (*this)[idLocale][idSchema][atom] = psz;
 //
 //   }
 //
 //
-//   string str::get(const str_context * pcontext,const ::id & id, bool bIdAsDefaultValue) const
+//   string str::get(const str_context * pcontext,const ::atom & atom, bool bIdAsDefaultValue) const
 //   {
 //
 //      if (pcontext == nullptr)
@@ -281,8 +281,8 @@
 //
 //      }
 //
-//      static ::id idEn("en");
-//      static ::id idStd("_std");
+//      static ::atom idEn("en");
+//      static ::atom idStd("_std");
 //
 //      string str;
 //      if(pcontext != nullptr)
@@ -293,7 +293,7 @@
 //         if(pcontext->m_papexcontext->m_pschema != nullptr)
 //         {
 //
-//            str = (*pcontext->m_papexcontext->m_pschema)[id];
+//            str = (*pcontext->m_papexcontext->m_pschema)[atom];
 //            if(str.has_char())
 //               return str;
 //
@@ -301,7 +301,7 @@
 //
 //         if(pcontext->m_papexcontext->m_pschemaLocale != nullptr)
 //         {
-//            str = (*pcontext->m_papexcontext->m_pschemaLocale)[id];
+//            str = (*pcontext->m_papexcontext->m_pschemaLocale)[atom];
 //            if(str.has_char())
 //               return str;
 //         }
@@ -309,7 +309,7 @@
 //         for(i32 i = 0; i < pcontext->m_papexcontext->m_schemaptra.get_count(); i++)
 //         {
 //
-//            str = (*pcontext->m_papexcontext->m_schemaptra[i])[id];
+//            str = (*pcontext->m_papexcontext->m_schemaptra[i])[atom];
 //            if(str.has_char())
 //               return str;
 //
@@ -318,21 +318,21 @@
 //      }
 //      if(pcontext != nullptr && pcontext->m_papexcontext->m_pschemaSchemaEn != nullptr)
 //      {
-//         str = (*pcontext->m_papexcontext->m_pschemaSchemaEn)[id];// lang=pszStyle style=en
+//         str = (*pcontext->m_papexcontext->m_pschemaSchemaEn)[atom];// lang=pszStyle style=en
 //         if(str.has_char())
 //            return str;
 //      }
-//      str = (*m_pschemaEn)[id]; // lang=en style=en
+//      str = (*m_pschemaEn)[atom]; // lang=en style=en
 //      if(str.has_char())
 //         return str;
 //      if(pcontext != nullptr && pcontext->m_papexcontext->m_pschemaSchemaStd != nullptr)
 //      {
-//         str = (*pcontext->m_papexcontext->m_pschemaSchemaStd)[id];// lang=pszStyle style=en
+//         str = (*pcontext->m_papexcontext->m_pschemaSchemaStd)[atom];// lang=pszStyle style=en
 //         if(str.has_char())
 //            return str;
 //      }
 //
-//      str = (*m_pschemaStd)[id]; // lang=_std style=_std
+//      str = (*m_pschemaStd)[atom]; // lang=_std style=_std
 //
 //      if(str.has_char())
 //      {
@@ -344,7 +344,7 @@
 //      if(bIdAsDefaultValue)
 //      {
 //
-//         return id.to_string();
+//         return atom.to_string();
 //
 //      }
 //      else
@@ -356,7 +356,7 @@
 //
 //   }
 //
-//   string str::get(const str_context * pcontext,const ::id & id,const ::id & idLocale,const ::id & idSchema,bool bIdAsDefaultValue) const
+//   string str::get(const str_context * pcontext,const ::atom & atom,const ::atom & idLocale,const ::atom & idSchema,bool bIdAsDefaultValue) const
 //   {
 //
 //      if(!idLocale.is_empty())
@@ -371,7 +371,7 @@
 //               const str_schema * pschema = plocale->get_schema(idSchema);
 //               if(pschema != nullptr)
 //               {
-//                  str = (*pschema)[id];
+//                  str = (*pschema)[atom];
 //                  if(str.has_char())
 //                     return str;
 //               }
@@ -380,22 +380,22 @@
 //            const str_schema * pschema = plocale->get_schema(idLocale);
 //            if(pschema != nullptr)
 //            {
-//               str = (*pschema)[id];
+//               str = (*pschema)[atom];
 //               if(str.has_char())
 //                  return str;
 //            }
 //         }
 //      }
-//      return get(pcontext,id,bIdAsDefaultValue);
+//      return get(pcontext,atom,bIdAsDefaultValue);
 //   }
 //
 //
-//   void str::get(string_array & stra, const str_context * pcontext, const ::id & id) const
+//   void str::get(string_array & stra, const str_context * pcontext, const ::atom & atom) const
 //   {
 //
-//      _get(stra, pcontext, id);
+//      _get(stra, pcontext, atom);
 //
-//      ::id id2;
+//      ::atom id2;
 //
 //      index i = 0;
 //
@@ -406,7 +406,7 @@
 //
 //         stra2.erase_all();
 //
-//         id2 = string(id.m_psz) + "[" + __string(i) + "]";
+//         id2 = string(atom.m_psz) + "[" + __string(i) + "]";
 //
 //         _get(stra2, pcontext, id2);
 //
@@ -421,7 +421,7 @@
 //   }
 //
 //
-//   void str::_get(string_array & stra, const str_context * pcontext, const ::id & id) const
+//   void str::_get(string_array & stra, const str_context * pcontext, const ::atom & atom) const
 //   {
 //
 //      if (pcontext == nullptr)
@@ -431,8 +431,8 @@
 //
 //      }
 //
-//      static ::id idEn("en");
-//      static ::id idStd("_std");
+//      static ::atom idEn("en");
+//      static ::atom idStd("_std");
 //
 //      string str;
 //      if(pcontext != nullptr)
@@ -443,7 +443,7 @@
 //         if(pcontext->m_papexcontext->m_pschema != nullptr)
 //         {
 //
-//            str = (*pcontext->m_papexcontext->m_pschema)[id];
+//            str = (*pcontext->m_papexcontext->m_pschema)[atom];
 //            if(str.has_char())
 //               stra.add(str);
 //
@@ -451,7 +451,7 @@
 //
 //         if(pcontext->m_papexcontext->m_pschemaLocale != nullptr)
 //         {
-//            str = (*pcontext->m_papexcontext->m_pschemaLocale)[id];
+//            str = (*pcontext->m_papexcontext->m_pschemaLocale)[atom];
 //            if(str.has_char())
 //               stra.add(str);
 //         }
@@ -459,7 +459,7 @@
 //         for(i32 i = 0; i < pcontext->m_papexcontext->m_schemaptra.get_count(); i++)
 //         {
 //
-//            str = (*pcontext->m_papexcontext->m_schemaptra[i])[id];
+//            str = (*pcontext->m_papexcontext->m_schemaptra[i])[atom];
 //            if(str.has_char())
 //               stra.add(str);
 //
@@ -470,26 +470,26 @@
 //      if(pcontext != nullptr && pcontext->m_papexcontext->m_pschemaSchemaEn != nullptr)
 //      {
 //
-//         str = (*pcontext->m_papexcontext->m_pschemaSchemaEn)[id];// lang=pszStyle style=en
+//         str = (*pcontext->m_papexcontext->m_pschemaSchemaEn)[atom];// lang=pszStyle style=en
 //         if(str.has_char())
 //            stra.add(str);
 //
 //      }
 //
-//      str = (*m_pschemaEn)[id]; // lang=en style=en
+//      str = (*m_pschemaEn)[atom]; // lang=en style=en
 //      if(str.has_char())
 //         stra.add(str);
 //
 //      if(pcontext != nullptr && pcontext->m_papexcontext->m_pschemaSchemaStd != nullptr)
 //      {
 //
-//         str = (*pcontext->m_papexcontext->m_pschemaSchemaStd)[id];// lang=pszStyle style=en
+//         str = (*pcontext->m_papexcontext->m_pschemaSchemaStd)[atom];// lang=pszStyle style=en
 //         if(str.has_char())
 //            stra.add(str);
 //
 //      }
 //
-//      str = (*m_pschemaStd)[id]; // lang=_std style=_std
+//      str = (*m_pschemaStd)[atom]; // lang=_std style=_std
 //      if(str.has_char())
 //         stra.add(str);
 //
@@ -630,7 +630,7 @@
 //   };
 //
 //
-//   bool str::load_uistr_file(const ::id & pszLang, const ::id & pszStyle, const ::string & pszFilePath)
+//   bool str::load_uistr_file(const ::atom & pszLang, const ::atom & pszStyle, const ::string & pszFilePath)
 //   {
 //
 //      memory mem;
@@ -832,11 +832,11 @@
 //   }
 //
 //
-//   bool str::matches(const str_context * pcontext, const ::id & id, const ::string & psz) const
+//   bool str::matches(const str_context * pcontext, const ::atom & atom, const ::string & psz) const
 //   {
 //
-//      static ::id idEn("en");
-//      static ::id idStd("_std");
+//      static ::atom idEn("en");
+//      static ::atom idStd("_std");
 //
 //      string str;
 //      if(pcontext != nullptr)
@@ -847,7 +847,7 @@
 //         if(pcontext->m_papexcontext->m_pschema != nullptr)
 //         {
 //
-//            str = (*pcontext->m_papexcontext->m_pschema)[id];
+//            str = (*pcontext->m_papexcontext->m_pschema)[atom];
 //            if(!str.compare_ci(psz))
 //               return true;
 //
@@ -855,7 +855,7 @@
 //
 //         if(pcontext->m_papexcontext->m_pschemaLocale != nullptr)
 //         {
-//            str = (*pcontext->m_papexcontext->m_pschemaLocale)[id];
+//            str = (*pcontext->m_papexcontext->m_pschemaLocale)[atom];
 //            if(!str.compare_ci(psz))
 //               return true;
 //         }
@@ -863,7 +863,7 @@
 //         for(i32 i = 0; i < pcontext->m_papexcontext->m_schemaptra.get_count(); i++)
 //         {
 //
-//            str = (*pcontext->m_papexcontext->m_schemaptra[i])[id];
+//            str = (*pcontext->m_papexcontext->m_schemaptra[i])[atom];
 //            if(!str.compare_ci(psz))
 //               return true;
 //
@@ -874,20 +874,20 @@
 //      if(pcontext != nullptr && pcontext->m_papexcontext->m_pschemaSchemaEn != nullptr)
 //      {
 //
-//         str = (*pcontext->m_papexcontext->m_pschemaSchemaEn)[id];// lang=pszStyle style=en
+//         str = (*pcontext->m_papexcontext->m_pschemaSchemaEn)[atom];// lang=pszStyle style=en
 //         if(!str.compare_ci(psz))
 //            return true;
 //
 //      }
 //
-//      str = (*m_pschemaEn)[id]; // lang=en style=en
+//      str = (*m_pschemaEn)[atom]; // lang=en style=en
 //      if(!str.compare_ci(psz))
 //         return true;
 //
 //      if(pcontext != nullptr && pcontext->m_papexcontext->m_pschemaSchemaStd != nullptr)
 //      {
 //
-//         str = (*pcontext->m_papexcontext->m_pschemaSchemaStd)[id];// lang=pszStyle style=en
+//         str = (*pcontext->m_papexcontext->m_pschemaSchemaStd)[atom];// lang=pszStyle style=en
 //         if(!str.compare_ci(psz))
 //            return true;
 //
@@ -901,11 +901,11 @@
 //   }
 //
 //
-//   bool str::begins(const str_context * pcontext, const ::string & pszTopic, const ::id & id) const
+//   bool str::begins(const str_context * pcontext, const ::string & pszTopic, const ::atom & atom) const
 //   {
 //
-//      static ::id idEn("en");
-//      static ::id idStd("_std");
+//      static ::atom idEn("en");
+//      static ::atom idStd("_std");
 //
 //      string str;
 //      if(pcontext != nullptr)
@@ -916,7 +916,7 @@
 //         if(pcontext->m_papexcontext->m_pschema != nullptr)
 //         {
 //
-//            str = (*pcontext->m_papexcontext->m_pschema)[id];
+//            str = (*pcontext->m_papexcontext->m_pschema)[atom];
 //            if(str.has_char() && ::str::begins_ci(pszTopic, str))
 //               return true;
 //
@@ -924,7 +924,7 @@
 //
 //         if(pcontext->m_papexcontext->m_pschemaLocale != nullptr)
 //         {
-//            str = (*pcontext->m_papexcontext->m_pschemaLocale)[id];
+//            str = (*pcontext->m_papexcontext->m_pschemaLocale)[atom];
 //            if(str.has_char() && ::str::begins_ci(pszTopic, str))
 //               return true;
 //         }
@@ -932,7 +932,7 @@
 //         for(i32 i = 0; i < pcontext->m_papexcontext->m_schemaptra.get_count(); i++)
 //         {
 //
-//            str = (*pcontext->m_papexcontext->m_schemaptra[i])[id];
+//            str = (*pcontext->m_papexcontext->m_schemaptra[i])[atom];
 //            if(str.has_char() && ::str::begins_ci(pszTopic, str))
 //               return true;
 //
@@ -943,20 +943,20 @@
 //      if(pcontext != nullptr && pcontext->m_papexcontext->m_pschemaSchemaEn != nullptr)
 //      {
 //
-//         str = (*pcontext->m_papexcontext->m_pschemaSchemaEn)[id];// lang=pszStyle style=en
+//         str = (*pcontext->m_papexcontext->m_pschemaSchemaEn)[atom];// lang=pszStyle style=en
 //         if(str.has_char() && ::str::begins_ci(pszTopic, str))
 //            return true;
 //
 //      }
 //
-//      str = (*m_pschemaEn)[id]; // lang=en style=en
+//      str = (*m_pschemaEn)[atom]; // lang=en style=en
 //      if(str.has_char() && ::str::begins_ci(pszTopic, str))
 //         return true;
 //
 //      if(pcontext != nullptr && pcontext->m_papexcontext->m_pschemaSchemaStd != nullptr)
 //      {
 //
-//         str = (*pcontext->m_papexcontext->m_pschemaSchemaStd)[id];// lang=pszStyle style=en
+//         str = (*pcontext->m_papexcontext->m_pschemaSchemaStd)[atom];// lang=pszStyle style=en
 //         if(str.has_char() && ::str::begins_ci(pszTopic, str))
 //            return true;
 //
@@ -970,11 +970,11 @@
 //   }
 //
 //
-//   bool str::begins_eat(const str_context * pcontext, string & strTopic, const ::id & id) const
+//   bool str::begins_eat(const str_context * pcontext, string & strTopic, const ::atom & atom) const
 //   {
 //
-//      static ::id idEn("en");
-//      static ::id idStd("_std");
+//      static ::atom idEn("en");
+//      static ::atom idStd("_std");
 //
 //      string str;
 //      if(pcontext != nullptr)
@@ -985,7 +985,7 @@
 //         if(pcontext->m_papexcontext->m_pschema != nullptr)
 //         {
 //
-//            str = (*pcontext->m_papexcontext->m_pschema)[id];
+//            str = (*pcontext->m_papexcontext->m_pschema)[atom];
 //            if(str.has_char() && strTopic.begins_eat_ci(str))
 //               return true;
 //
@@ -993,7 +993,7 @@
 //
 //         if(pcontext->m_papexcontext->m_pschemaLocale != nullptr)
 //         {
-//            str = (*pcontext->m_papexcontext->m_pschemaLocale)[id];
+//            str = (*pcontext->m_papexcontext->m_pschemaLocale)[atom];
 //            if(str.has_char() && ::str::begins_eat_ci(strTopic, str))
 //               return true;
 //         }
@@ -1001,7 +1001,7 @@
 //         for(i32 i = 0; i < pcontext->m_papexcontext->m_schemaptra.get_count(); i++)
 //         {
 //
-//            str = (*pcontext->m_papexcontext->m_schemaptra[i])[id];
+//            str = (*pcontext->m_papexcontext->m_schemaptra[i])[atom];
 //            if(str.has_char() && ::str::begins_eat_ci(strTopic, str))
 //               return true;
 //
@@ -1012,20 +1012,20 @@
 //      if(pcontext != nullptr && pcontext->m_papexcontext->m_pschemaSchemaEn != nullptr)
 //      {
 //
-//         str = (*pcontext->m_papexcontext->m_pschemaSchemaEn)[id];// lang=pszStyle style=en
+//         str = (*pcontext->m_papexcontext->m_pschemaSchemaEn)[atom];// lang=pszStyle style=en
 //         if(str.has_char() && ::str::begins_eat_ci(strTopic, str))
 //            return true;
 //
 //      }
 //
-//      str = (*m_pschemaEn)[id]; // lang=en style=en
+//      str = (*m_pschemaEn)[atom]; // lang=en style=en
 //      if(str.has_char() && ::str::begins_eat_ci(strTopic, str))
 //         return true;
 //
 //      if(pcontext != nullptr && pcontext->m_papexcontext->m_pschemaSchemaStd != nullptr)
 //      {
 //
-//         str = (*pcontext->m_papexcontext->m_pschemaSchemaStd)[id];// lang=pszStyle style=en
+//         str = (*pcontext->m_papexcontext->m_pschemaSchemaStd)[atom];// lang=pszStyle style=en
 //         if(str.has_char() && ::str::begins_eat_ci(strTopic, str))
 //            return true;
 //
@@ -1039,7 +1039,7 @@
 //
 //
 //
-//   bool str_context::match(string_array & stra, const ::string & psz, id idExpression, id idRoot) const
+//   bool str_context::match(string_array & stra, const ::string & psz, atom idExpression, atom idRoot) const
 //   {
 //
 //      synchronous_lock synchronouslock(mutex());

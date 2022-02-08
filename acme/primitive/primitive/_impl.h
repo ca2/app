@@ -106,15 +106,15 @@ inline stream & operator >> (stream & stream, type & type)
 #include "acme/primitive/primitive/trait_predicate.h"
 
 
-//inline ::payload matter::topic(const ::id & id)
+//inline ::payload matter::topic(const ::atom & atom)
 //{
 //
-//   auto pproperty = fetch_property(id);
+//   auto pproperty = fetch_property(atom);
 //
 //   if (!pproperty)
 //   {
 //
-//      __throw(error_resource);
+//      throw ::exception(error_resource);
 //
 //   }
 //
@@ -123,13 +123,13 @@ inline stream & operator >> (stream & stream, type & type)
 //}
 
 
-inline ::index property_set::find_index(const ::id & id, ::index i) const
+inline ::index property_set::find_index(const ::atom & atom, ::index i) const
 {
 
    for(; i < m_nSize; i++)
    {
 
-      if (m_pData[i]->m_id == id)
+      if (m_pData[i]->m_atom == atom)
       {
 
          return i;
@@ -144,15 +144,15 @@ inline ::index property_set::find_index(const ::id & id, ::index i) const
 
 #undef new
 
-inline property & property_set::get(const ::id & id)
+inline property & property_set::get(const ::atom & atom)
 {
 
-   auto pproperty = find(id);
+   auto pproperty = find(atom);
 
    if (!pproperty)
    {
 
-      pproperty = new property(id);
+      pproperty = new property(atom);
 
       add_item(pproperty);
 
@@ -164,10 +164,10 @@ inline property & property_set::get(const ::id & id)
 
 #define new ACME_NEW
 
-inline ::property * property_set::find(const ::id & id) const
+inline ::property * property_set::find(const ::atom & atom) const
 {
 
-   auto iFind = find_index(id);
+   auto iFind = find_index(atom);
 
    if(__not_found(iFind))
    {
@@ -181,10 +181,10 @@ inline ::property * property_set::find(const ::id & id) const
 }
 
 
-inline ::payload property_set::operator()(const ::id & id, const ::payload & varDefault) const
+inline ::payload property_set::operator()(const ::atom & atom, const ::payload & varDefault) const
 {
 
-   auto pproperty = find(id);
+   auto pproperty = find(atom);
 
    if (!pproperty)
    {
@@ -198,10 +198,10 @@ inline ::payload property_set::operator()(const ::id & id, const ::payload & var
 }
 
 
-inline ::payload & property_set::topic(const id & id)
+inline ::payload & property_set::topic(const atom & atom)
 {
 
-   return set(id);
+   return set(atom);
 
 }
 
@@ -209,15 +209,15 @@ inline ::payload & property_set::topic(const id & id)
 #undef new
 
 
-inline ::payload & property_set::set(const ::id & id)
+inline ::payload & property_set::set(const ::atom & atom)
 {
 
-   auto pproperty = find(id);
+   auto pproperty = find(atom);
 
    if (!pproperty)
    {
 
-      pproperty = new property(id);
+      pproperty = new property(atom);
 
       add_item(pproperty);
 
@@ -230,7 +230,7 @@ inline ::payload & property_set::set(const ::id & id)
 
 #define new ACME_NEW
 
-//inline property * payload::find_property(const ::id & id) const
+//inline property * payload::find_property(const ::atom & atom) const
 //{
 //
 //   if (!casts_to(e_type_property_set))
@@ -240,20 +240,20 @@ inline ::payload & property_set::set(const ::id & id)
 //
 //   }
 //
-//   return propset().find(id);
+//   return propset().find(atom);
 //
 //}
 
 
-//inline property & payload::get_property(const ::id & id)
+//inline property & payload::get_property(const ::atom & atom)
 //{
 //
-//   return propset().get(id);
+//   return propset().get(atom);
 //
 //}
 
 
-inline string  id::operator +(const char * psz) const
+inline string  atom::operator +(const char * psz) const
 {
 
    return to_string() + psz;
@@ -261,7 +261,7 @@ inline string  id::operator +(const char * psz) const
 }
 
 
-inline string  id::operator +(const ::string & str) const
+inline string  atom::operator +(const ::string & str) const
 {
 
    return to_string() +str;
@@ -269,83 +269,83 @@ inline string  id::operator +(const ::string & str) const
 }
 
 
-inline CLASS_DECL_ACME id id::operator + (const id & id) const
-{
+//inline CLASS_DECL_ACME string atom::operator + (const atom & atom) const
+//{
+//
+//   if (is_integer())
+//   {
+//
+//      if (atom.is_integer())
+//      {
+//
+//         return (iptr)(m_i + atom.m_i);
+//
+//      }
+//      else if (atom.is_text())
+//      {
+//
+//         return __string(m_i) + "." + string(atom.m_psz);
+//
+//      }
+//      else
+//      {
+//
+//         return *this;
+//
+//      }
+//
+//   }
+//   else if (atom.is_integer())
+//   {
+//
+//      if (is_text())
+//      {
+//
+//         return string(m_psz) + "." + __string(atom.m_i);
+//
+//      }
+//      else
+//      {
+//
+//         return atom;
+//
+//      }
+//
+//   }
+//   else if (is_text())
+//   {
+//
+//      if (atom.is_text())
+//      {
+//
+//         return string(m_psz) + string(atom.m_psz);
+//
+//      }
+//      else
+//      {
+//
+//         return *this;
+//
+//      }
+//
+//   }
+//   else if (atom.is_text())
+//   {
+//
+//      return atom;
+//
+//   }
+//   else
+//   {
+//
+//      return ::atom();
+//
+//   }
+//
+//}
 
-   if (is_integer())
-   {
 
-      if (id.is_integer())
-      {
-
-         return (iptr)(m_i + id.m_i);
-
-      }
-      else if (id.is_text())
-      {
-
-         return __string(m_i) + "." + string(id.m_psz);
-
-      }
-      else
-      {
-
-         return *this;
-
-      }
-
-   }
-   else if (id.is_integer())
-   {
-
-      if (is_text())
-      {
-
-         return string(m_psz) + "." + __string(id.m_i);
-
-      }
-      else
-      {
-
-         return id;
-
-      }
-
-   }
-   else if (is_text())
-   {
-
-      if (id.is_text())
-      {
-
-         return string(m_psz) + string(id.m_psz);
-
-      }
-      else
-      {
-
-         return *this;
-
-      }
-
-   }
-   else if (id.is_text())
-   {
-
-      return id;
-
-   }
-   else
-   {
-
-      return ::id();
-
-   }
-
-}
-
-
-inline bool property_set::has_property(id idName) const
+inline bool property_set::has_property(atom idName) const
 {
 
    if (::is_null(this))
@@ -362,7 +362,7 @@ inline bool property_set::has_property(id idName) const
 }
 
 
-inline bool property_set::is_true(id idName, bool bDefault) const
+inline bool property_set::is_true(atom idName, bool bDefault) const
 {
 
    const property * pproperty = find(idName);
@@ -379,7 +379,7 @@ inline bool property_set::is_true(id idName, bool bDefault) const
 }
 
 
-inline ::payload property_set::value(id idName) const
+inline ::payload property_set::value(atom idName) const
 {
 
    property * pproperty = find(idName);
@@ -396,7 +396,7 @@ inline ::payload property_set::value(id idName) const
 }
 
 
-inline ::payload property_set::value(id idName, ::payload varDefault) const
+inline ::payload property_set::value(atom idName, ::payload varDefault) const
 {
 
    property * pproperty = find(idName);
@@ -510,25 +510,25 @@ inline __pointer(::handle::ini) operator ""_pini(const char * psz, size_t s)
 //inline class ::payload & payload::operator *= (const class property & property) { operator *=(property);  return *this; }
 
 
-inline ::property * payload::find_property(const ::id & id) const
+inline ::property * payload::find_property(const ::atom & atom) const
 {
 
    if (m_etype == e_type_payload_pointer)
    {
 
-      return m_ppayload->find_property(id);
+      return m_ppayload->find_property(atom);
 
    }
    else if (m_etype == e_type_property)
    {
 
-      return m_pproperty->find_property(id);
+      return m_pproperty->find_property(atom);
 
    }
    else if (m_etype == e_type_property_set)
    {
 
-      return m_ppropertyset->find_property(id);
+      return m_ppropertyset->find_property(atom);
 
    }
 
@@ -537,25 +537,25 @@ inline ::property * payload::find_property(const ::id & id) const
 }
 
 
-inline ::index payload::property_index(const ::id & id) const
+inline ::index payload::property_index(const ::atom & atom) const
 {
 
    if (m_etype == e_type_payload_pointer)
    {
 
-      return m_ppayload->property_index(id);
+      return m_ppayload->property_index(atom);
 
    }
    else if (m_etype == e_type_property)
    {
 
-      return m_pproperty->property_index(id);
+      return m_pproperty->property_index(atom);
 
    }
    else if (m_etype == e_type_property_set)
    {
 
-      return m_ppropertyset->find_index(id);
+      return m_ppropertyset->find_index(atom);
 
    }
 
@@ -564,120 +564,31 @@ inline ::index payload::property_index(const ::id & id) const
 }
 
 
-inline property & payload::get_property(const ::id & id)
+inline property & payload::get_property(const ::atom & atom)
 {
 
    if (m_etype == e_type_payload_pointer)
    {
 
-      return m_ppayload->get_property(id);
+      return m_ppayload->get_property(atom);
 
    }
    else if (m_etype == e_type_property)
    {
 
-      return m_pproperty->get_property(id);
+      return m_pproperty->get_property(atom);
 
    }
    else if (m_etype == e_type_property_set)
    {
 
-      return m_ppropertyset->get(id);
+      return m_ppropertyset->get(atom);
 
    }
 
-   return as_propset()[id];
+   return as_propset()[atom];
 
 }
-
-
-inline bool id::begins(const ::string & strPrefix) const
-{
-
-   if (strPrefix.is_empty())
-   {
-
-      return true;
-
-   }
-
-   if (is_empty())
-   {
-
-      return false;
-
-   }
-   else if (is_integer())
-   {
-
-      char sz[64];
-
-      ansi_from_i64(sz, m_i);
-
-      return ::str::begins(sz, strPrefix);
-
-   }
-   else if (is_text())
-   {
-
-      return ::str::begins(m_psz, strPrefix);
-
-   }
-   else
-   {
-
-      __throw(error_wrong_type, "Unexpected::id m_etype");
-
-      return false;
-
-   }
-
-}
-
-
-inline bool id::begins_ci(const ::string & strPrefix) const
-{
-
-   if (strPrefix.is_empty())
-   {
-
-      return true;
-
-   }
-
-   if (is_empty())
-   {
-
-      return false;
-
-   }
-   else if (is_integer())
-   {
-
-      char sz[64];
-
-      ansi_from_i64(sz, m_i);
-
-      return ::str::begins(sz, strPrefix);
-
-   }
-   else if (is_text())
-   {
-
-      return ::str::begins_ci(m_psz, strPrefix);
-
-   }
-   else
-   {
-
-      __throw(error_wrong_type, "Unexpected ::id m_etype");
-
-      return false;
-
-   }
-
-}
-
 
 template < class T >
 template < typename VAR >
@@ -747,9 +658,9 @@ inline ___pointer < T >  & ___pointer < T >::operator = (const payload_type < VA
          else
          {
 
-            ::id id = stream.text_to_factory_id(strText);
+            ::atom atom = stream.text_to_factory_id(strText);
 
-            if(is_set() && __type_name(m_p) == id)
+            if(is_set() && __type_name(m_p) == atom)
             {
 
                ::output_debug_string("POINTER: loading into existing matter of same class type (2)");
@@ -766,7 +677,7 @@ inline ___pointer < T >  & ___pointer < T >::operator = (const payload_type < VA
                   ::output_debug_string("POINTER: stream::alloc_object_from_text failed (2.1)");
 
                }
-               else if(__type_name(p) != id.to_string())
+               else if(__type_name(p) != atom.to_string())
                {
 
                   ::output_debug_string("POINTER: allocated matter type is different from streamed matter type (2.2)");
@@ -871,10 +782,10 @@ inline bool succeeded(const ::property & property)
 //
 //
 //template < typename BASE_TYPE >
-//inline __pointer(BASE_TYPE) matter::__id_create(const ::id & id)
+//inline __pointer(BASE_TYPE) matter::__id_create(const ::atom & atom)
 //{
 //
-//   auto p = ::__id_create<BASE_TYPE>(id);
+//   auto p = ::__id_create<BASE_TYPE>(atom);
 //
 //   if (p)
 //   {
@@ -1138,10 +1049,10 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobject, bool bCreate)
 //
 //
 //template < typename BASE_TYPE >
-//inline void matter::__id_compose(__composite(BASE_TYPE) & pusermessage, const ::id & id)
+//inline void matter::__id_compose(__composite(BASE_TYPE) & pusermessage, const ::atom & atom)
 //{
 //
-//   auto & pfactory = ::factory::get_factory_item(id);
+//   auto & pfactory = ::factory::get_factory_item(atom);
 //
 //   if (!pfactory)
 //   {
@@ -1281,10 +1192,10 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobject, bool bCreate)
 //
 //
 //template < typename TYPE >
-//inline void matter::__id_construct(__pointer(TYPE) & p, const ::id & id)
+//inline void matter::__id_construct(__pointer(TYPE) & p, const ::atom & atom)
 //{
 //
-//   auto estatus = ::__id_construct(p, id);
+//   auto estatus = ::__id_construct(p, atom);
 //
 //   if (estatus && p)
 //   {
@@ -1648,10 +1559,10 @@ inline stream & operator >> (stream & is, ___pointer < T > & sp)
 
 //
 //template < typename TYPE >
-//inline void matter::set(const ::id & id, const TYPE & t)
+//inline void matter::set(const ::atom & atom, const TYPE & t)
 //{
 //
-//   ::assign(value(id), t);
+//   ::assign(value(atom), t);
 //
 //   set(e_object_property_set_modified);
 //
@@ -1659,10 +1570,10 @@ inline stream & operator >> (stream & is, ___pointer < T > & sp)
 //
 //
 //template < typename TYPE >
-//inline void matter::get(const ::id & id, TYPE & t)
+//inline void matter::get(const ::atom & atom, TYPE & t)
 //{
 //
-//   ::assign(t, value(id));
+//   ::assign(t, value(atom));
 //
 //}
 //
@@ -1825,10 +1736,10 @@ inline payload::operator ::memory() const
 
 
 
-inline bool type::operator == (const ::id& id) const
+inline bool type::operator == (const ::atom& atom) const
 {
 
-   return m_strName == id.to_string();
+   return m_strName == atom.to_string();
 
 }
 
@@ -1852,8 +1763,8 @@ inline bool type::operator == (const ::id& id) const
 
 //
 //template < typename TYPE_CHAR >
-//inline string_base < TYPE_CHAR >::string_base(const id& id) :
-//   string_base(id.to_string())
+//inline string_base < TYPE_CHAR >::string_base(const atom& atom) :
+//   string_base(atom.to_string())
 //{
 //
 //
@@ -1879,8 +1790,8 @@ inline bool type::operator == (const ::id& id) const
 
 //
 //template < typename TYPE_CHAR >
-//inline string_base < TYPE_CHAR >::string_base(id & id) :
-//   string_base(id.to_string())
+//inline string_base < TYPE_CHAR >::string_base(atom & atom) :
+//   string_base(atom.to_string())
 //{
 //
 //
@@ -2030,10 +1941,10 @@ inline bool type::operator == (const ::id& id) const
 //
 
 //template < typename TYPE >
-//inline __pointer(TYPE) element::cast(const ::id & id)
+//inline __pointer(TYPE) element::cast(const ::atom & atom)
 //{
 //
-//   return value(id).cast < TYPE>();
+//   return value(atom).cast < TYPE>();
 //
 //}
 
@@ -2167,7 +2078,7 @@ inline ::payload __visible(::payload varOptions, bool bVisible)
 
 
 
-inline bool property_set::get_string(string& strResult, const id& idKey) const
+inline bool property_set::get_string(string& strResult, const atom& idKey) const
 {
 
    auto pproperty = find_property(idKey);
@@ -2377,10 +2288,10 @@ inline __pointer(TYPE) object::__create()
 
 
 template < typename TYPE >
-inline __pointer(TYPE) object::__id_create(const ::id& id)
+inline __pointer(TYPE) object::__id_create(const ::atom& atom)
 {
 
-   auto pfactory = ::factory::get_factory_item(id);
+   auto pfactory = ::factory::get_factory_item(atom);
    
    if (!pfactory)
    {
@@ -2440,13 +2351,6 @@ inline __pointer(TYPE) object::__create_new()
 
       p->initialize(this);
       
-      //if(!estatus)
-      //{
-      //   
-      //   return estatus;
-      //   
-      //}
-
    }
 
    return ::move(p);
@@ -2631,10 +2535,10 @@ inline void object::__raw_compose(__composite(BASE_TYPE)& pusermessage, const __
 
 
 template < typename BASE_TYPE >
-inline void object::__id_compose(__composite(BASE_TYPE)& pusermessage, const ::id& id)
+inline void object::__id_compose(__composite(BASE_TYPE)& pusermessage, const ::atom& atom)
 {
 
-   auto& pfactory = ::factory::get_factory_item(id);
+   auto& pfactory = ::factory::get_factory_item(atom);
 
    if (!pfactory)
    {
@@ -2816,7 +2720,7 @@ inline void object::__construct(__pointer(TYPE) & p)
    if (!p)
    {
 
-      ERROR("object::__construct object("<< __type_name(ptypeNew) << ") is not of type \"" + __type_name < TYPE >() + "\"");
+      ERROR("object::__construct object("<< __type_name(ptypeNew) << ") is not of type \"" << __type_name < TYPE >() << "\"");
 
       throw_status(::error_wrong_type);
    
@@ -2828,10 +2732,10 @@ inline void object::__construct(__pointer(TYPE) & p)
 
 
 template < typename TYPE >
-inline void object::__id_construct(__pointer(TYPE)& p, const ::id& id)
+inline void object::__id_construct(__pointer(TYPE)& p, const ::atom& atom)
 {
 
-   auto pfactory = ::factory::get_factory_item(id);
+   auto pfactory = ::factory::get_factory_item(atom);
 
    if (!pfactory)
    {
@@ -3012,6 +2916,38 @@ inline void object::__refer(__reference(BASE_TYPE)& preference, const SOURCE* ps
    }
 
    add_reference(preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+
+}
+
+
+template < typename BASE_TYPE, typename SOURCE >
+inline void object::__defer_refer(__reference(BASE_TYPE)& preference, const __pointer(SOURCE)& psource  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+{
+
+   __defer_refer(preference, psource.get()  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+
+}
+
+
+template < typename BASE_TYPE, typename SOURCE >
+inline void object::__defer_refer(__reference(BASE_TYPE)& preference, const SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+{
+
+   if (preference.get() != psource)
+   {
+
+      __release(preference);
+
+      preference = psource;
+
+      if (preference)
+      {
+
+         add_reference(preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+
+      }
+
+   }
 
 }
 
@@ -3249,10 +3185,10 @@ inline ::file_pointer object::get_writer(const ::payload& payloadFile, const ::f
 
 
 //template < typename TYPE >
-//inline void object::set(const ::id& id, const TYPE& t)
+//inline void object::set(const ::atom& atom, const TYPE& t)
 //{
 //
-//   ::assign(payload(id), t);
+//   ::assign(payload(atom), t);
 //
 //   set(e_object_property_set_modified);
 //
@@ -3260,10 +3196,10 @@ inline ::file_pointer object::get_writer(const ::payload& payloadFile, const ::f
 
 
 //template < typename TYPE >
-//inline void object::get(const ::id& id, TYPE& t)
+//inline void object::get(const ::atom& atom, TYPE& t)
 //{
 //
-//   ::assign(t, payload(id));
+//   ::assign(t, payload(atom));
 //
 //}
 
@@ -3385,11 +3321,11 @@ inline void object::__construct(::task_pointer& p, void (TYPE::* pfn)(), enum_pr
    if (!p)
    {
 
-      return error_failed;
+      throw_status(error_failed);
 
    }
 
-   return p->m_estatus;
+   //return p->m_estatus;
 
 }
 
@@ -3404,12 +3340,12 @@ inline void object::__construct_below_normal(::task_pointer& p, void (TYPE::* pf
 
 
 template < typename TYPE >
-inline ::task_pointer object::defer_branch(const ::id& id, void(TYPE::* pfn)(), enum_priority epriority)
+inline ::task_pointer object::defer_branch(const ::atom& atom, void(TYPE::* pfn)(), enum_priority epriority)
 {
 
    auto pfork = fork(pfn, epriority);
 
-   get_property_set()[__id(thread)][id] = pfork;
+   get_property_set()[__id(thread)][atom] = pfork;
 
    return pfork;
 
@@ -3464,7 +3400,7 @@ inline __pointer(task) object::fork(PREDICATE predicate, ::enum_priority epriori
 
    }
 
-   auto ptask = this->branch_task(proutine, epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
+   auto ptask = this->branch_element(proutine, epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
 
    if(!ptask)
    {
@@ -3478,10 +3414,10 @@ inline __pointer(task) object::fork(PREDICATE predicate, ::enum_priority epriori
 }
 
 
-//inline routine_array * property_object::_routine_array(const ::id& id)
+//inline routine_array * property_object::_routine_array(const ::atom& atom)
 //{
 //
-//   auto passociation = m_pmapPropertyRoutine->plookup(id);
+//   auto passociation = m_pmapPropertyRoutine->plookup(atom);
 //
 //   if (::is_null(passociation))
 //   {
@@ -3497,7 +3433,7 @@ inline __pointer(task) object::fork(PREDICATE predicate, ::enum_priority epriori
 
 
 template < typename POSTING_OBJECT, typename POSTING_METHOD, typename OBJECT_POINTER, typename OBJECT_METHOD, typename PAYLOAD_REFERENCE >
-void material_object::__send_payload(POSTING_OBJECT pposting, POSTING_METHOD posting_method, OBJECT_POINTER pobject, OBJECT_METHOD method, PAYLOAD_REFERENCE & payload)
+bool material_object::__send_payload(POSTING_OBJECT pposting, POSTING_METHOD posting_method, OBJECT_POINTER pobject, OBJECT_METHOD method, PAYLOAD_REFERENCE & payload)
 {
 
    auto psynchronization = __new(::promise::synchronization);
@@ -3537,7 +3473,7 @@ void material_object::__send_payload(POSTING_OBJECT pposting, POSTING_METHOD pos
 
       psynchronization->m_evResponse.SetEvent();
 
-      return error_timeout;
+      return false;
 
    }
 
@@ -3545,14 +3481,15 @@ void material_object::__send_payload(POSTING_OBJECT pposting, POSTING_METHOD pos
 
    psynchronization->m_evReady.wait();
 
-   if(!psynchronization->m_estatus)
-   {
-
-      return psynchronization->m_estatus;
-
-   }
-
-   return psynchronization->m_estatus;
+//   if(!psynchronization->m_estatus)
+//   {
+//
+//      return psynchronization->m_estatus;
+//
+//   }
+//
+//   return psynchronization->m_estatus;
+   return true;
 
 }
 
@@ -3809,7 +3746,7 @@ inline payload_cast::operator property_set () const
 }
 
 
-inline id::id(const ::lparam & lparam)
+inline atom::atom(const ::lparam & lparam)
 {
 
    m_etype = e_type_integer;

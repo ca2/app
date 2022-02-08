@@ -32,7 +32,7 @@ namespace userfs
 
       //virtual ::aura::application * get_application() const override;
 
-      void assert_valid() const override;
+      void assert_ok() const override;
       void dump(dump_context & dumpcontext) const override;
 
 

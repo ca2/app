@@ -27,7 +27,7 @@ namespace apex
    void apex::shell_create_link(::file::path pathObj, ::file::path pathLnk, string strDesc, ::file::path pathIco, int iIcon)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -35,7 +35,7 @@ namespace apex
    // void apex::parallelization_initialize()
    // {
 
-   //    throw ::interface_only_exception();
+   //    throw ::interface_only();
 
    // }
    
@@ -43,7 +43,7 @@ namespace apex
    // void apex::parallelization_finalize()
    // {
 
-   //    throw ::interface_only_exception();
+   //    throw ::interface_only();
 
    // }
 
@@ -51,7 +51,7 @@ namespace apex
    void apex::thread_initialize(::thread* pthread)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -59,7 +59,7 @@ namespace apex
    void apex::thread_finalize(::thread* pthread)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -67,7 +67,7 @@ namespace apex
    // void apex::node_thread_initialize(::thread* pthread)
    // {
 
-   //    throw ::interface_only_exception();
+   //    throw ::interface_only();
 
    // }
 
@@ -75,7 +75,7 @@ namespace apex
    // void apex::node_thread_finalize(::thread* pthread)
    // {
 
-   //    throw ::interface_only_exception();
+   //    throw ::interface_only();
 
    // }
 
@@ -91,9 +91,9 @@ namespace apex
    void apex::_001InitializeShellOpen()
    {
 
-      __throw(::error_interface_only);
+      throw ::exception(::error_interface_only);
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -107,9 +107,9 @@ namespace apex
    void apex::get_firefox_installation_info(string& strPathToExe, string& strInstallDirectory)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
     }
 

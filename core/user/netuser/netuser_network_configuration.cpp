@@ -35,7 +35,7 @@ namespace usernet
       if(m_pdocument != nullptr)
       {
 
-         m_pimpact = m_pdocument->get_typed_view < ::user::form > ();
+         m_pimpact = m_pdocument->get_type_impact < ::user::form > ();
 
          m_pimpact->set_form_callback(this);
 
@@ -62,7 +62,7 @@ namespace usernet
       if(m_pdocument != nullptr)
       {
 
-         m_pimpact = m_pdocument->get_typed_view < ::user::form > ();
+         m_pimpact = m_pdocument->get_type_impact < ::user::form > ();
 
          m_pimpact->set_form_callback(this);
 
@@ -109,15 +109,15 @@ namespace usernet
    }
 
 
-   void network_configuration::handle(::subject * psubject, ::context * )
+   void network_configuration::handle(::topic * ptopic, ::context * )
    {
 
       auto pcontext = get_context();
 
-      if(psubject->m_id == ::e_subject_click)
+      if(ptopic->m_atom == ::id_click)
       {
 
-         if(psubject->user_interaction()->m_id == "submit")
+         if(ptopic->get_extended_topic()->user_interaction()->m_atom == "submit")
          {
 
             auto pinteraction = m_pimpact->get_child_by_name("server");
@@ -129,7 +129,7 @@ namespace usernet
             if(strServer.get_length() == 0)
             {
 
-               pcontext->m_papexcontext->file().del(pcontext->m_papexcontext->dir().appdata()/ "proxy.xml");
+               pcontext->m_papexcontext->file().erase(pcontext->m_papexcontext->dir().appdata()/ "proxy.xml");
 
             }
             else

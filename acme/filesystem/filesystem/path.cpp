@@ -108,8 +108,8 @@ namespace file
    }
 
 
-//   path::path(const id & id,e_path epath, int iDir) :
-//      path(string(id), epath, iDir)
+//   path::path(const atom & atom,e_path epath, int iDir) :
+//      path(string(atom), epath, iDir)
 //   {
 //
 //   }
@@ -475,7 +475,7 @@ namespace file
       if (m_epath == e_path_url || strPath.Right(3) == "://")
       {
 
-         str.replace("\\", "/");
+         str.replace_with("/", "\\");
 
          str.trim_left("/");
 

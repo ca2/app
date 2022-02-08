@@ -81,7 +81,7 @@ namespace draw2d_opengl
       m_pdevmode = (DEVMODE *)malloc(iSize);
       if (!DocumentProperties(nullptr, pprinter->m_hPrinter, (char *)(const ::string &)pprinter->m_strName, m_pdevmode, nullptr, DM_OUT_BUFFER))
       {
-         __throw(::exception("failed to get printer DocumentProperties"));
+         throw ::exception(::exception("failed to get printer DocumentProperties"));
          return false;
       }
       return true;
@@ -89,7 +89,7 @@ namespace draw2d_opengl
 
    bool printer::document_properties::close()
    {
-      //__throw(todo);
+      //throw ::exception(todo);
       if (m_hdc != nullptr)
       {
          ::DeleteDC(m_hdc);

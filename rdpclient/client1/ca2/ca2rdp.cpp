@@ -257,12 +257,12 @@ BOOL ca2rdp_post_connect(freerdp* instance)
    return true;
 }
 
-BOOL ca2rdp_verify_certificate(freerdp* instance, char* subject, char* issuer, char* fingerprint)
+BOOL ca2rdp_verify_certificate(freerdp* instance, char* topic, char* issuer, char* fingerprint)
 {
    char answer;
 
    printf("Certificate details:\n");
-   printf("\tSubject: %s\n", subject);
+   printf("\tSubject: %s\n", topic);
    printf("\tIssuer: %s\n", issuer);
    printf("\tThumbprint: %s\n", fingerprint);
    printf("The above X.509 certificate could not be verified, possibly because you do not have "
@@ -313,14 +313,14 @@ static int ca2rdp_receive_channel_data(freerdp* instance, int channelId, byte* d
 //
 //	if (event)
 //	{
-//		switch (GetMessageType(event->id))
+//		switch (GetMessageType(event->atom))
 //		{
 //			case CliprdrChannel_MonitorReady:
 //				ca2rdp_process_cb_monitor_ready_event(channels, instance);
 //				break;
 //
 //			default:
-//				WLog_ERR(TAG, "ca2rdp_process_channel_event: unknown event type %d\n", GetMessageType(event->id));
+//				WLog_ERR(TAG, "ca2rdp_process_channel_event: unknown event type %d\n", GetMessageType(event->atom));
 //				break;
 //		}
 //

@@ -82,7 +82,7 @@ namespace hotplugin
    }
 
 
-   void host::post_message(const ::id & id, wparam wparam, lparam lparam)
+   void host::post_message(const ::atom & atom, wparam wparam, lparam lparam)
 
    {
 
@@ -378,7 +378,7 @@ namespace hotplugin
 
       m_bHostStarterStart = true;
 
-      __throw(todo);
+      throw ::exception(todo);
 
       //::install::starter_start * pstart    = new ::install::starter_start(pobject);
 
@@ -411,7 +411,7 @@ namespace hotplugin
 
       m_bHostStarterStart = true;
 
-      __throw(todo);
+      throw ::exception(todo);
 
       //::install::starter_start * pstart = new ::install::starter_start(pobject);
 
@@ -485,7 +485,7 @@ namespace hotplugin
       try
       {
 
-         __throw(todo);
+         throw ::exception(todo);
 
          //::draw2d::bitmap_pointer b(e_create);
 
@@ -524,7 +524,7 @@ namespace hotplugin
       try
       {
 
-         __throw(todo);
+         throw ::exception(todo);
 
          //simple_bitmap b;
 
@@ -625,7 +625,7 @@ namespace hotplugin
    }
 
 
-   void host::plugin_message_handler(const ::id & id,wparam wparam,lparam lparam, bool bEnsureTx)
+   void host::plugin_message_handler(const ::atom & atom,wparam wparam,lparam lparam, bool bEnsureTx)
 
    {
 

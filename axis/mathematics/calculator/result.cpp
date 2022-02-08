@@ -31,7 +31,7 @@ namespace calculator
          else if(m_dI == 0.0)
          {
             return 0.0;
-            //__throw(::exception("<h1>undefined</h1>: <strong>could</strong> be any <strong>well defined</strong> result:<br> <strong>specif details</strong>: seems to be too small modulus"));
+            //throw ::exception(::exception("<h1>undefined</h1>: <strong>could</strong> be any <strong>well defined</strong> result:<br> <strong>specif details</strong>: seems to be too small modulus"));
          }
          else
          {
@@ -47,7 +47,7 @@ namespace calculator
          else if(m_dR == 0.0)
          {
             return 0.0;
-            //__throw(::exception("<h1>undefined</h1>: <strong>could</strong> be any <strong>well defined</strong> result:<br> <strong>specif details</strong>: seems to be too small modulus"));
+            //throw ::exception(::exception("<h1>undefined</h1>: <strong>could</strong> be any <strong>well defined</strong> result:<br> <strong>specif details</strong>: seems to be too small modulus"));
          }
          else
          {

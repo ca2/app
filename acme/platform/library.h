@@ -22,7 +22,7 @@ namespace acme
       library();
       ~library() override;
 
-      void assert_valid() const override;
+      void assert_ok() const override;
       void dump(dump_context &) const override;
 
       void     initialize_matter(::matter * pmatter) override;
@@ -69,7 +69,7 @@ namespace acme
       // virtual bool contains_app(const char* pszAppId);
 
 
-      //virtual void get_create_view_id_list(::array < ::id > & ida);
+      //virtual void get_create_view_id_list(::array < ::atom > & ida);
 
 
       //virtual string get_root();

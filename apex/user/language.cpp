@@ -139,7 +139,7 @@ namespace user
 //
 //#endif
 
-      __throw(todo);
+      throw ::exception(todo);
 
       return "";
 
@@ -321,7 +321,7 @@ namespace user
 
             }
 
-            str.replace("\\n", "\n");
+            str.replace_with("\n", "\\n");
 
             if (iState == 0)
             {

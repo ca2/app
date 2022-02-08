@@ -125,7 +125,7 @@ namespace sockets
       unsigned short m_socks4_dstport; ///< socks4 support
       unsigned long m_socks4_dstip; ///< socks4 support
 
-      int m_resolver_id; ///< Resolver id (if any) for current open call
+      int m_resolver_id; ///< Resolver atom (if any) for current open call
 
       bool m_bReconnect; ///< Reconnect on lost connection flag
       bool m_bTryingReconnect; ///< Trying to reconnect
@@ -234,8 +234,8 @@ namespace sockets
 
 
       /** Callback executed when resolver thread has finished a resolve request. */
-      void OnResolved(int id, const ::net::address & addr);
-      //void OnResolved(int id,in6_addr& a,port_t port);
+      void OnResolved(int atom, const ::net::address & addr);
+      //void OnResolved(int atom,in6_addr& a,port_t port);
       /** Callback for 'New' ssl support - replaces SSLSocket. Internal use. */
       void OnSSLConnect();
       /** Callback for 'New' ssl support - replaces SSLSocket. Internal use. */

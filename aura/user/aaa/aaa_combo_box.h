@@ -125,11 +125,11 @@ namespace user
 
       virtual void plain_edit_on_after_change_text(::draw2d::graphics_pointer& pgraphics, const ::action_context & action_context) override;
 
-      virtual void handle(::subject * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
 
 
-      virtual bool create_window(::user::interaction * puiParent, const ::id & id) override;
+      virtual bool create_window(::user::interaction * puiParent, const ::atom & atom) override;
 
       //::count get_count();
       //index current_item();
@@ -219,7 +219,7 @@ namespace user
       virtual bool keyboard_focus_is_focusable() override;
 
 
-      virtual void handle(::subject * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
 
    };

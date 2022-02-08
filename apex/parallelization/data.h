@@ -111,7 +111,7 @@
 //inline ::boolean& task_boolean(enum_thread_boolean ethreadboolean)
 //{
 //
-//   //return ::get_task()->payload(id);
+//   //return ::get_task()->payload(atom);
 //   return t_booleana[ethreadboolean];
 //
 //}
@@ -123,7 +123,7 @@
 //inline ::payload & thread_payload(enum_thread_payload ethreadpayload)
 //{
 //
-//   //return ::get_task()->payload(id);
+//   //return ::get_task()->payload(atom);
 //   return t_payloada[ethreadpayload];
 //
 //}

@@ -434,10 +434,10 @@ namespace sockets
    }
 
 
-   void socket_handler::SetSocks4Userid(const string & id)
+   void socket_handler::SetSocks4Userid(const string & atom)
    {
 
-      m_socks4_userid = id;
+      m_socks4_userid = atom;
 
    }
 
@@ -456,7 +456,7 @@ namespace sockets
       }
       add(resolv);
       m_resolve_q[p] = true;
-      FORMATTED_TRACE(" *** Resolve '%s:%d' id#%d  m_resolve_q size_i32: %d  p: %p\n", host, port, resolv -> GetId(), m_resolve_q.get_size(), p);
+      FORMATTED_TRACE(" *** Resolve '%s:%d' atom#%d  m_resolve_q size_i32: %d  p: %p\n", host, port, resolv -> GetId(), m_resolve_q.get_size(), p);
       return resolv -> GetId();
    }
 
@@ -751,55 +751,55 @@ namespace sockets
 
    int socket_handler::TriggerID(base_socket *src)
    {
-      int id = m_next_trigger_id++;
-      m_trigger_src[id] = src;
-      return id;
+      int atom = m_next_trigger_id++;
+      m_trigger_src[atom] = src;
+      return atom;
    }
 
 
-   bool socket_handler::Subscribe(int id, base_socket *dst)
+   bool socket_handler::Subscribe(int atom, base_socket *dst)
    {
-      if(m_trigger_src.plookup(id) != nullptr)
+      if(m_trigger_src.plookup(atom) != nullptr)
       {
-         if(m_trigger_dst[id].plookup(dst) != nullptr)
+         if(m_trigger_dst[atom].plookup(dst) != nullptr)
          {
-            m_trigger_dst[id][dst] = true;
+            m_trigger_dst[atom][dst] = true;
             return true;
          }
-         //INFO(log_this, dst, "Subscribe", id, "Already subscribed");
+         //INFO(log_this, dst, "Subscribe", atom, "Already subscribed");
          return false;
       }
-      //INFO(log_this, dst, "Subscribe", id, "Trigger id not found");
+      //INFO(log_this, dst, "Subscribe", atom, "Trigger atom not found");
       return false;
    }
 
 
-   bool socket_handler::Unsubscribe(int id, base_socket *dst)
+   bool socket_handler::Unsubscribe(int atom, base_socket *dst)
    {
-      if (m_trigger_src.plookup(id) != nullptr)
+      if (m_trigger_src.plookup(atom) != nullptr)
       {
-         if(m_trigger_dst[id].plookup(dst) != nullptr)
+         if(m_trigger_dst[atom].plookup(dst) != nullptr)
          {
-            m_trigger_dst[id].erase_key(dst);
+            m_trigger_dst[atom].erase_key(dst);
             return true;
          }
-         //INFO(log_this, dst, "Unsubscribe", id, "Not subscribed");
+         //INFO(log_this, dst, "Unsubscribe", atom, "Not subscribed");
          return false;
       }
-      //INFO(log_this, dst, "Unsubscribe", id, "Trigger id not found");
+      //INFO(log_this, dst, "Unsubscribe", atom, "Trigger atom not found");
       return false;
    }
 
 
-   void socket_handler::Trigger(int id, socket::trigger_data& data, bool erase)
+   void socket_handler::Trigger(int atom, socket::trigger_data& data, bool erase)
    {
       
-      if(m_trigger_src.plookup(id) != nullptr)
+      if(m_trigger_src.plookup(atom) != nullptr)
       {
          
-         data.SetSource( m_trigger_src[id]);
+         data.SetSource( m_trigger_src[atom]);
 
-         auto ppair = m_trigger_dst[id].get_start();
+         auto ppair = m_trigger_dst[atom].get_start();
 
          while(ppair != nullptr)
          {
@@ -809,7 +809,7 @@ namespace sockets
             if (Valid(dst))
             {
                
-               dst->OnTrigger(id, data);
+               dst->OnTrigger(atom, data);
 
             }
             
@@ -820,9 +820,9 @@ namespace sockets
          if (erase)
          {
 
-            m_trigger_src.erase_key(id);
+            m_trigger_src.erase_key(atom);
 
-            m_trigger_dst.erase_key(id);
+            m_trigger_dst.erase_key(atom);
 
          }
 
@@ -830,7 +830,7 @@ namespace sockets
       else
       {
          
-         //INFO(log_this, nullptr, "Trigger", id, "Trigger id not found");
+         //INFO(log_this, nullptr, "Trigger", atom, "Trigger atom not found");
 
       }
 

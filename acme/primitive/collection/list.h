@@ -299,7 +299,7 @@ public:
    template < typename ITERATOR >
    inline void erase(const ITERATOR & begin, const ITERATOR & last) { ::erase(*this, begin, last); }
 
-   void assert_valid() const override;
+   void assert_ok() const override;
    void dump(dump_context & dumpcontext) const override;
 
 
@@ -1729,10 +1729,10 @@ inline typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE >::rever
 
 
 template<class TYPE, class ARG_TYPE>
-void list<TYPE, ARG_TYPE>::assert_valid() const
+void list<TYPE, ARG_TYPE>::assert_ok() const
 {
 
-   matter::assert_valid();
+   matter::assert_ok();
 
    if (this->m_count == 0)
    {

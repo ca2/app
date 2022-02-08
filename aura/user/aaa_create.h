@@ -14,7 +14,7 @@ namespace user
 
       //bool                           m_bAutoWindowFrame;
       boolean                          m_bWindowFrame;
-      ::type                           m_typeNewView;
+      ::type                           m_typeNewImpact;
       //::user::document *             m_pdocumentCurrent;
       ::object *                       m_pdocumentCurrent;
       ::user::primitive *              m_puiNew;
@@ -24,7 +24,7 @@ namespace user
       ::object *                       m_ptemplateNewDocument;
 
       // original impact/frame
-      ::user::primitive *              m_puiLastView;
+      ::user::primitive *              m_puiLastImpact;
       ::user::primitive *              m_puiCurrentFrame;
       //__pointer(impact_data)         m_pimpactdata;
       __pointer(::matter)              m_pimpactdata;

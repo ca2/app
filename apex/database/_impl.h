@@ -51,12 +51,14 @@ namespace database
       }
 
       memory_stream stream;
+
       if (!m_pdataserver->_data_server_load(this, key, stream->memory()))
       {
 
          return false;
 
       }
+
       ////if (!m_pdataserver->_data_server_load(this, key, stream->memory()))
       //{
 

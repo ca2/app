@@ -225,11 +225,11 @@ namespace html
    string html::special_chars(const ::string & psz)
    {
       string str(psz);
-      str.replace("&", "&amp;");
-      str.replace("\"", "&quot;"); // quando ENT_NOQUOTES n縊 est・definida.
-      str.replace("'", "&#039;"); // apenas quando ENT_QUOTES est・definida.
-      str.replace("<", "&lt;");
-      str.replace(">", "&gt;");
+      str.replace_with("&amp;"     , "&"     );
+      str.replace_with( "&quot;"   , "\""    ); // quando ENT_NOQUOTES n縊 est・definida.
+      str.replace_with("&#039;"    , "'"     ); // apenas quando ENT_QUOTES est・definida.
+      str.replace_with("&lt;"      , "<"     );
+      str.replace_with("&gt;"     ,  ">"     );
       return str;
    }
 
@@ -371,7 +371,7 @@ namespace html
          if (iParseLen)
          {
 
-            str.replace(str.Mid(iCurPos, iParseLen), strChar);
+            str.replace_with(strChar, str.Mid(iCurPos, iParseLen));
 
          }
 
@@ -403,7 +403,7 @@ namespace html
          && etag != tag_script;
 
    }
-   e_tag html::tag_name_to_id(id idTag)
+   e_tag html::tag_name_to_id(atom idTag)
    {
 
       if (idTag.is_empty())
@@ -532,7 +532,7 @@ namespace html
    }
 
 
-   id html::concat(id id1, id id2)
+   atom html::concat(atom id1, atom id2)
    {
 
       if (id1 == __id(html_margin))
@@ -682,9 +682,9 @@ namespace html
 
       }
 
-      id idConcatFallback = (id)(id1.str() + id2.str());
+      atom idConcatFallback = (atom)(id1.str() + id2.str());
 
-      INFORMATION("id not pre setup concat html " << idConcatFallback.m_psz);
+      INFORMATION("atom not pre setup concat html " << idConcatFallback.m_psz);
 
       return idConcatFallback;
 
@@ -741,7 +741,7 @@ namespace html
 
          strDisplay.make_lower();
 
-         id idDisplay = strDisplay;
+         atom idDisplay = strDisplay;
 
          if(idDisplay == __id(html_none))
             return e_display_none;

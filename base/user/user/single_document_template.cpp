@@ -7,8 +7,8 @@ namespace user
 {
 
 
-   single_document_template::single_document_template(const ::string & pszMatter, ::type pDocClass, ::type pFrameClass, ::type pViewClass) :
-      ::user::impact_system(pszMatter, pDocClass, pFrameClass, pViewClass)
+   single_document_template::single_document_template(const ::string & pszMatter, ::type pDocClass, ::type pFrameClass, ::type pImpactClass) :
+      ::user::impact_system(pszMatter, pDocClass, pFrameClass, pImpactClass)
    {
 
       defer_create_mutex();
@@ -77,10 +77,10 @@ namespace user
    void single_document_template::on_request(::create * pcreate)
    {
 
-      if (pcreate->m_id.is_null())
+      if (pcreate->m_atom.is_null())
       {
 
-         pcreate->m_id = m_typeImpact.m_strName;
+         pcreate->m_atom = m_typeImpact.m_strName;
 
       }
 
@@ -374,10 +374,10 @@ namespace user
    }
 
 
-   void single_document_template::assert_valid() const
+   void single_document_template::assert_ok() const
    {
 
-      impact_system::assert_valid();
+      impact_system::assert_ok();
 
    }
 

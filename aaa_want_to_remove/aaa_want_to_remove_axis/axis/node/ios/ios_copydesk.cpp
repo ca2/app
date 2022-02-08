@@ -24,7 +24,7 @@ namespace ios
 //      if(!m_p->OpenClipboard())
 //         return 0;
       i32 iCount = 0;
-      __throw(todo);
+      throw ::exception(todo);
       /* xxx HDROP hdrop = (HDROP) ::GetClipboardData(CF_HDROP);
       if(hdrop != nullptr)
       {
@@ -42,7 +42,7 @@ namespace ios
          return;
 //      if(!m_p->OpenClipboard())
       //       return;
-      __throw(todo);
+      throw ::exception(todo);
       /* HDROP hdrop = (HDROP) ::GetClipboardData(CF_HDROP);
       string str;
       for(i32 i = 0; i < iCount; i++)
@@ -69,7 +69,7 @@ namespace ios
          iLen += ::str::international::utf8_to_unicode_count(patha[i]) + 1;
       }
 
-      __throw(todo);
+      throw ::exception(todo);
 
       /* xxx
 
@@ -117,10 +117,10 @@ namespace ios
       if(!::user::copydesk::initialize())
          return false;
 
-      //    if(!m_p->CreateEx(0, psystem->RegisterWndClass(0), nullptr, 0, rectangle(0, 0, 0, 0), nullptr, id()))
+      //    if(!m_p->CreateEx(0, psystem->RegisterWndClass(0), nullptr, 0, rectangle(0, 0, 0, 0), nullptr, atom()))
       //     return false;
 
-//      if(!m_p->CreateEx(0, nullptr, nullptr, 0, rectangle(0, 0, 0, 0), nullptr, id()))
+//      if(!m_p->CreateEx(0, nullptr, nullptr, 0, rectangle(0, 0, 0, 0), nullptr, atom()))
       //       return false;
 
       return true;
@@ -164,7 +164,7 @@ namespace ios
 //         return;
 //      }
 
-      __throw(todo);
+      throw ::exception(todo);
 
       /*
 
@@ -194,7 +194,7 @@ namespace ios
 
    string copydesk::get_plain_text()
    {
-      __throw(todo);
+      throw ::exception(todo);
       return "";
       /* xxx
             if (IsClipboardFormatAvailable(CF_UNICODETEXT))
@@ -229,7 +229,7 @@ namespace ios
 //      if(!m_p->OpenClipboard())
 //         return false;
       bool bOk = false;
-      __throw(todo);
+      throw ::exception(todo);
       /* xxx
             HBITMAP hbitmap = (HBITMAP) ::GetClipboardData(CF_BITMAP);
             try

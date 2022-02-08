@@ -36,10 +36,10 @@ namespace filemanager
    }
 
 
-   void folder_list::assert_valid() const
+   void folder_list::assert_ok() const
    {
 
-      ::user::impact::assert_valid();
+      ::user::impact::assert_ok();
 
    }
 
@@ -393,12 +393,12 @@ namespace filemanager
 
 
 
-   void folder_list::handle(::subject * psubject, ::context * pcontext)
+   void folder_list::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::filemanager_impact_base::handle(psubject, pcontext);
+      ::filemanager_impact_base::handle(ptopic, pcontext);
 
-      if (psubject->id() == INITIALIZE_ID)
+      if (ptopic->m_atom == INITIALIZE_ID)
       {
 
          if (filemanager_data()->m_bPassBk)

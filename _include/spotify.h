@@ -3081,7 +3081,7 @@ SP_LIBEXPORT(const ::string &) sp_playlist_get_description(sp_playlist *playlist
  * Get description for a playlist
  *
  * @param[in]  playlist       Playlist object
- * @param[out] image          20 byte image id
+ * @param[out] image          20 byte image atom
 
  * @return                    true if playlist has an image, false if not
  *
@@ -3461,7 +3461,7 @@ SP_LIBEXPORT(sp_playlist_type) sp_playlistcontainer_playlist_type(sp_playlistcon
 SP_LIBEXPORT(sp_error) sp_playlistcontainer_playlist_folder_name(sp_playlistcontainer *pc, int index, char *buffer, int buffer_size);
 
 /**
- * Return the folder id at @a index
+ * Return the folder atom at @a index
  *
  * @param[in]  pc        Playlist container
  * @param[in]  index     Index in playlist container. Should be in the interval [0, sp_playlistcontainer_num_playlists() - 1]

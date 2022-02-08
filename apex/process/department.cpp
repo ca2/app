@@ -109,7 +109,7 @@ namespace operating_system
 
 #else
 
-      __throw(todo);
+      throw ::exception(todo);
 
 #endif
 

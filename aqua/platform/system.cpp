@@ -319,7 +319,7 @@ namespace aqua
 
             //}
 
-            m_bAudio = true;
+            m_bAudio = ::is_set(m_paudio);
 
             //return estatus;
 
@@ -332,6 +332,12 @@ namespace aqua
    }
 
 
+   bool system::has_audio()
+   {
+
+      return !m_bAudio.undefined() && m_bAudio.is_true();
+
+   }
 
 
 } // namespace aqua

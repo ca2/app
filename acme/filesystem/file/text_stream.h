@@ -27,7 +27,7 @@ inline void __string_exchange(text_stream & s, const char * psz);
 inline void __string_exchange(text_stream & s, char * sz);
 inline void __string_exchange(text_stream & s, string & str);
 inline void __string_exchange(text_stream & s, ::file::path & path);
-inline void __string_exchange(text_stream & s, ::id & id);
+inline void __string_exchange(text_stream & s, ::atom & atom);
 inline void __string_exchange(text_stream & s, void * & p);
 //inline void __string_exchange(text_stream & s, oswindow & oswindow);
 inline void __string_exchange(text_stream & s, wchar_t sz[]);
@@ -148,24 +148,24 @@ public:
    void write_only(TYPE & t) { is_loading() ? throw_status(error_io) : write(t); }
 
    template < typename TYPE >
-   void exchange(const ::id & id, TYPE & t) { ::__string_exchange(*this, t); }
+   void exchange(const ::atom & atom, TYPE & t) { ::__string_exchange(*this, t); }
 
 
-   //virtual void exchange(const ::id &, i8 & i) { default_exchange(i); }
-   //virtual void exchange(const ::id &, i16 & i) { default_exchange(i); }
-   //virtual void exchange(const ::id &, i32 & i) { default_exchange(i); }
-   //virtual void exchange(const ::id &, i64 & i) { default_exchange(i); }
-   //virtual void exchange(const ::id &, u8 & u) { default_exchange(u); }
-   //virtual void exchange(const ::id &, u16 & u) { default_exchange(u); }
-   //virtual void exchange(const ::id &, u32 & u) { default_exchange(u); }
-   //virtual void exchange(const ::id &, u64 & u) { default_exchange(u); }
-   //virtual void exchange(const ::id &, float & f) { default_exchange(f); }
-   //virtual void exchange(const ::id &, double & d) { default_exchange(d); }
-   //virtual void exchange(const ::id &, ::datetime::time & time) { default_exchange(time.m_time); }
-   //virtual void exchange(const ::id &, const char * psz) { write_only(psz); }
-   //virtual void exchange(const ::id &, string & str) { default_exchange(str); }
-   //virtual void exchange(const ::id &, ::file::path & path) { default_exchange(path); }
-   //virtual void exchange(const ::id &, ::id & id) { default_exchange(id); }
+   //virtual void exchange(const ::atom &, i8 & i) { default_exchange(i); }
+   //virtual void exchange(const ::atom &, i16 & i) { default_exchange(i); }
+   //virtual void exchange(const ::atom &, i32 & i) { default_exchange(i); }
+   //virtual void exchange(const ::atom &, i64 & i) { default_exchange(i); }
+   //virtual void exchange(const ::atom &, u8 & u) { default_exchange(u); }
+   //virtual void exchange(const ::atom &, u16 & u) { default_exchange(u); }
+   //virtual void exchange(const ::atom &, u32 & u) { default_exchange(u); }
+   //virtual void exchange(const ::atom &, u64 & u) { default_exchange(u); }
+   //virtual void exchange(const ::atom &, float & f) { default_exchange(f); }
+   //virtual void exchange(const ::atom &, double & d) { default_exchange(d); }
+   //virtual void exchange(const ::atom &, ::datetime::time & time) { default_exchange(time.m_time); }
+   //virtual void exchange(const ::atom &, const char * psz) { write_only(psz); }
+   //virtual void exchange(const ::atom &, string & str) { default_exchange(str); }
+   //virtual void exchange(const ::atom &, ::file::path & path) { default_exchange(path); }
+   //virtual void exchange(const ::atom &, ::atom & atom) { default_exchange(atom); }
 
    virtual bool is_stream_null();
    virtual bool is_stream_set();
@@ -191,7 +191,7 @@ public:
    //virtual void write(const RECTANGLE_I32 & rectangle) override;
 
    virtual void write (const char * psz) override;
-   virtual void write(const ::id & id) override;
+   virtual void write(const ::atom & atom) override;
    virtual void write(const ::string & str) override;
    virtual void write(const property_set& set) override;
    template < typename TYPE >
@@ -227,7 +227,7 @@ public:
    virtual void read (double & d) override;
    virtual void read(string & str) override;
    virtual void read(property_set& set) override;
-   virtual void read(::id & id) override;
+   virtual void read(::atom & atom) override;
 
    template < typename TYPE >
    void network_payload_read(TYPE & matter);

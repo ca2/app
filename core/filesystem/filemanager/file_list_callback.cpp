@@ -67,9 +67,9 @@ namespace filemanager
       return 0;
    }
 
-   void file_list_callback::InitializeActionButton(id id, __pointer(::user::button) pbutton)
+   void file_list_callback::InitializeActionButton(atom atom, __pointer(::user::button) pbutton)
    {
-      switch (id)
+      switch (atom)
       {
       case 0: // ExecuteButton
       {
@@ -84,7 +84,7 @@ namespace filemanager
       }
    }
 
-   void file_list_callback::OnButtonAction(id i, __pointer(::file::item)  item)
+   void file_list_callback::OnButtonAction(atom i, __pointer(::file::item)  item)
    {
       __UNREFERENCED_PARAMETER(i);
       __UNREFERENCED_PARAMETER(item);
@@ -92,20 +92,20 @@ namespace filemanager
 
 
 
-   bool file_list_callback::GetMenuItemCallback(id iId)
+   bool file_list_callback::GetMenuItemCallback(atom iId)
    {
       __UNREFERENCED_PARAMETER(iId);
       return false;
    }
 
-   void file_list_callback::OnMenuItemAction(id iId, const ::file::item_array & itema)
+   void file_list_callback::OnMenuItemAction(atom iId, const ::file::item_array & itema)
    {
       __UNREFERENCED_PARAMETER(iId);
       __UNREFERENCED_PARAMETER(itema);
    }
 
 
-   void file_list_callback::GetMenuItemUpdate(id iId, const ::file::item_array & itema, ::message::command * pcommand)
+   void file_list_callback::GetMenuItemUpdate(atom iId, const ::file::item_array & itema, ::message::command * pcommand)
    {
 
       __UNREFERENCED_PARAMETER(iId);
@@ -115,7 +115,7 @@ namespace filemanager
    }
 
 
-   __pointer(::image_list) file_list_callback::GetActionButtonImageList(id i)
+   __pointer(::image_list) file_list_callback::GetActionButtonImageList(atom i)
    {
 
       __UNREFERENCED_PARAMETER(i);

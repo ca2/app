@@ -46,7 +46,7 @@ public:
 
       m_predicate();
 
-      return ::success;
+      //return ::success;
 
    }
 

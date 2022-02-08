@@ -21,11 +21,11 @@ namespace userpresence
 
 
       department();
-      virtual ~department();
+      ~department() override;
 
 
-      virtual void initialize(::object * pobject) override;
-      virtual void destroy() override;
+      void initialize(::object * pobject) override;
+      void destroy() override;
 
 
       virtual bool defer_initialize_user_presence();
@@ -36,7 +36,7 @@ namespace userpresence
 
       virtual bool is_initialized();
 
-      virtual void _001OnTimer(::timer * ptimer) override;
+      void _001OnTimer(::timer * ptimer) override;
 
 
       bool on_ui_mouse_message(::user::mouse * pmouse);

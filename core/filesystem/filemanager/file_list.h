@@ -31,7 +31,7 @@ namespace filemanager
       virtual ~file_list();
 
 
-      void assert_valid() const override;
+      void assert_ok() const override;
       void dump(dump_context & dumpcontext) const override;
 
 
@@ -49,7 +49,7 @@ namespace filemanager
       //void FileSize();
 
       void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
-      virtual void handle(::subject * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * ptopic, ::context * pcontext) override;
       virtual bool pre_create_window(::user::system * pusersystem) override;
 
       virtual void on_command_probe(::message::command * pcommand) override;
@@ -67,7 +67,7 @@ namespace filemanager
 
 
 
-      virtual id data_get_current_list_layout_id() override;
+      virtual atom data_get_current_list_layout_id() override;
 
 
 

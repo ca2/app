@@ -12,7 +12,7 @@
  * the Software without restriction, including without limitation the rights to
  * uxse, cxopy, mxodify, mxerge, pxublish, dxistribute, sxublicense, and/or sxell copies
  * of the Software, and to permit persons to whom the Software is furnished to do
- * so, subject to the following conditions:
+ * so, topic to the following conditions:
 
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
@@ -2027,7 +2027,7 @@ CScriptVarLink *tinyjs::factor(bool &execute)
       l->match('{');
       while (l->tk != '}')
       {
-         string id = l->tkStr;
+         string atom = l->tkStr;
          // we only allow strings or IDs on the left hand side of an initialisation
          if (l->tk==LEX_STR) l->match(LEX_STR);
          else l->match(LEX_ID);
@@ -2035,7 +2035,7 @@ CScriptVarLink *tinyjs::factor(bool &execute)
          if (execute)
          {
             CScriptVarLink *a = axis(execute);
-            contents->addChild(id, a->payload);
+            contents->addChild(atom, a->payload);
             CLEAN(a);
          }
          // no need to clean here, as it will definitely be used
@@ -2090,7 +2090,7 @@ CScriptVarLink *tinyjs::factor(bool &execute)
          l->match('(');
          while (l->tk != ')')
          {
-            //string id = l->tkStr;
+            //string atom = l->tkStr;
             // we only allow strings or IDs on the left hand side of an initialisation
             //if (l->tk==LEX_STR) l->match(LEX_STR);
             //else l->match(LEX_ID);

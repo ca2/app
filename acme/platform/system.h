@@ -121,6 +121,8 @@ public:
 
    virtual void defer_audio();
 
+   virtual bool has_audio();
+
    virtual void init1();
 
    //virtual logger & log() { return *m_plogger; }
@@ -262,9 +264,9 @@ public:
    virtual void on_end();
 
    //using ::manager::on_subject;
-   //virtual void on_subject(::subject * psubject) override;
+   //virtual void on_subject(::topic * ptopic) override;
 
-   virtual ::duration get_update_poll_time(const ::id& id);
+   virtual ::duration get_update_poll_time(const ::atom& atom);
 
    virtual ::acme::library* on_get_library(const ::string &pszLibrary);
 
@@ -397,22 +399,22 @@ public:
 
    ::task_tool* task_tool(::enum_task_tool etool);
 
-   virtual bool is_task_on(itask_t id);
+   virtual bool is_task_on(itask_t atom);
 
    virtual bool is_active(::task* ptask);
 
-   virtual void set_task_on(itask_t id);
+   virtual void set_task_on(itask_t atom);
 
-   virtual void set_task_off(itask_t id);
+   virtual void set_task_off(itask_t atom);
 
 
-   static inline ::id id(const ::std::type_info& info);
-   static inline ::id id(const char * psz);
-   static inline ::id id(const string& str);
-   static inline ::id id(i64 i);
-   static inline ::id_space& id();
-   inline ::id id(const ::payload& payload);
-   inline ::id id(const property& prop);
+   static inline ::atom atom(const ::std::type_info& info);
+   static inline ::atom atom(const char * psz);
+   static inline ::atom atom(const string& str);
+   static inline ::atom atom(i64 i);
+   static inline ::atom_space& atom();
+   inline ::atom atom(const ::payload& payload);
+   inline ::atom atom(const property& prop);
 
    virtual void check_exit();
 
@@ -420,7 +422,7 @@ public:
    //virtual __pointer(::regular_expression::context) create_regular_expression_context(const ::string &pszStyle, int iCount);
    virtual __pointer(::regular_expression::context) get_regular_expression_context(const ::string &pszStyle);
 
-   virtual ::regular_expression_pointer create_pcre(const string& str);
+   virtual ::regular_expression_pointer compile_pcre(const string& str);
    virtual __pointer(::regular_expression::context) get_pcre_context();
    //virtual int system::pcre_add_tokens(string_array& stra, const string& strTopic, const string& strRegexp, int nCount)
 
@@ -470,6 +472,8 @@ public:
 
    
    virtual bool fast_is_decompressable_folder(const ::file::path & path);
+
+   __pointer(::sequence < ::conversation >) message_box(const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok);
 
 
 };

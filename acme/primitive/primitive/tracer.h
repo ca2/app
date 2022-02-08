@@ -86,8 +86,11 @@ public:
 
    }
 
-
+   tracer & operator << (const exception & exception);
+   tracer & operator << (const e_status & estatus);
+   tracer & operator << (const enum_status& estatus);
    tracer & operator << (const string & str);
+   tracer & operator << (const char * psz);
    tracer & operator << (enum_flush);
    tracer & operator << (const integral_byte & memsize);
 

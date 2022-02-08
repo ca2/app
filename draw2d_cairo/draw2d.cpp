@@ -43,32 +43,35 @@ namespace draw2d_cairo
    void draw2d::initialize(::object * pobject)
    {
 
-      auto estatus = ::draw2d::draw2d::initialize(pobject);
+      //auto estatus = 
+      
+      ::draw2d::draw2d::initialize(pobject);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
-
 
 
    void draw2d::init1()
    {
 
-      if (!::draw2d::draw2d::init1())
-      {
+      ::draw2d::draw2d::init1();
 
-         return false;
+      //if (!::draw2d::draw2d::init1())
+      //{
 
-      }
+      //   return false;
 
-      return true;
+      //}
+
+      //return true;
 
    }
 
@@ -76,12 +79,14 @@ namespace draw2d_cairo
    void draw2d::process_init()
    {
 
-      if (!::draw2d::draw2d::process_init())
-      {
+      ::draw2d::draw2d::process_init();
 
-         return false;
+      //if (!::draw2d::draw2d::process_init())
+      //{
 
-      }
+      //   return false;
+
+      //}
 
 //      synchronous_lock synchronouslock(mutex());
 //
@@ -92,7 +97,7 @@ namespace draw2d_cairo
 //
 //      }
 
-      return true;
+      //return true;
 
    }
 
@@ -100,14 +105,16 @@ namespace draw2d_cairo
    void draw2d::init()
    {
 
-      if (!::draw2d::draw2d::init())
-      {
+      ::draw2d::draw2d::init();
 
-         return false;
+      //if (!::draw2d::draw2d::init())
+      //{
 
-      }
+      //   return false;
 
-      return true;
+      //}
+
+      //return true;
 
    }
 
@@ -186,7 +193,7 @@ namespace draw2d_cairo
 
       m_alpha_spread__32CC_filterMap.erase_all();
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -196,9 +203,11 @@ namespace draw2d_cairo
 
       m_papi.release();
 
-      auto estatus = ::draw2d::draw2d::destroy();
+      //auto estatus = 
+      
+      ::draw2d::draw2d::destroy();
 
-      return estatus;
+      //return estatus;
 
    }
 

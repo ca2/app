@@ -31,7 +31,7 @@ namespace regular_expression_pcre2
    }
 
 
-   void regular_expression::create(const string& str)
+   void regular_expression::compile(const string& str)
    {
 
       m_str = str;
@@ -74,25 +74,35 @@ namespace regular_expression_pcre2
 
 
 
-   __pointer(::regular_expression::topic) regular_expression::create_topic(const string& str)
+   __pointer(::regular_expression::result) regular_expression::run(const string& str)
    {
 
-      auto ptopic = __new(class topic);
+      auto presult = __new(class result);
 
-      ptopic->m_pregularexpression = this;
+      presult->m_pregularexpression = this;
 
-      //auto estatus = 
-      
-      ptopic->create(str);
+      presult->m_str = str;
 
-      //if(!estatus)
-      //{
+      presult->m_pmatchdata = pcre2_match_data_create(m_iRangeCount + 1, m_pgeneralcontext);
 
-      //   return nullptr;
+      auto iMatchResult = pcre2_match(m_pcode, (PCRE2_SPTR)m_str.c_str(), m_str.get_length(), 0, 0, presult->m_pmatchdata, nullptr);
 
-      //}
+      if (iMatchResult < 0)
+      {
 
-      return ptopic;
+         presult->m_cMatchCount = -1;
+
+         set_fail();
+
+         return nullptr;
+
+      }
+
+      presult->m_cMatchCount = pcre2_get_ovector_count(presult->m_pmatchdata);
+
+      set_ok();
+
+      return presult;
 
    }
 

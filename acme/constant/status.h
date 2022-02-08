@@ -119,6 +119,8 @@ error_wait_timeout,
 error_need_restart_application_to_activate_feature,
 error_function_entry_not_found,
 error_some_error_has_occurred,
+error_library_not_found,
+error_library_not_loaded,
 
 
 error_time_bag = INT_FAILURE_STATUS(STATUS_RANGE_EXCEPTION),
@@ -169,7 +171,7 @@ error_rtf_table,
 
 error_exception = INT_FAILURE_STATUS(STATUS_RANGE_EXCEPTION),
 error_standard_exception,
-error_invalid_argument,
+error_bad_argument,
 error_index_out_of_bounds,
 error_unexpected,  // "This shouldn't ever happen"
 error_unexpected_result, // "This shouldn't ever happen" for integer result

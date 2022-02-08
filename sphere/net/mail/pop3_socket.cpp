@@ -175,7 +175,7 @@ namespace mail
    {
       if(m_ppop3->m_straId.get_size() == 0)
          return false;
-      m_ppop3->m_id = m_ppop3->m_straId[0];
+      m_ppop3->m_atom = m_ppop3->m_straId[0];
       string strSend;
       strSend.format("RETR %s\r\n", m_ppop3->m_straIndex[0]);
       Send((const ::string &) strSend);

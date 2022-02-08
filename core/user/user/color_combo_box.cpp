@@ -48,7 +48,7 @@ namespace user
 
       pcreate->previous();
 
-      //__throw(todo("style"));
+      //throw ::exception(todo("style"));
 
       //::rectangle_f64 r(2, 2, 2, 2);
 
@@ -115,7 +115,7 @@ namespace user
 
                m_pdocument = puser->m_mapimpactsystem[COLORSEL_IMPACT]->open_document_file(get_application(), ::e_type_null, __visible(false).is_true());
 
-               m_pimpact = m_pdocument->get_typed_view < ::userex::color_view >();
+               m_pimpact = m_pdocument->get_type_impact < ::userex::color_view >();
 
                m_pimpact->m_bCompact = true;
 
@@ -173,21 +173,21 @@ namespace user
    }
 
 
-   void color_combo_box::handle(::subject * psubject, ::context * pcontext)
+   void color_combo_box::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if(psubject->m_puserelement == m_pimpact)
+      if(ptopic->get_extended_topic()->m_puserelement == m_pimpact)
       {
 
-         psubject->m_puserelement = this;
+         ptopic->get_extended_topic()->m_puserelement = this;
 
-         psubject->m_puserelement->m_id = m_id;
+         ptopic->get_extended_topic()->m_puserelement->m_atom = m_atom;
 
          m_hls = m_pimpact->m_hls;
 
       }
 
-      ::user::interaction::handle(psubject, pcontext);
+      ::user::interaction::handle(ptopic, pcontext);
 
    }
 

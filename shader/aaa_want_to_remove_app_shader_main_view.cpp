@@ -28,10 +28,10 @@ namespace simple_shader
    }
 
 
-   void main_impact::assert_valid() const
+   void main_impact::assert_ok() const
    {
 
-      ::user::split_view::assert_valid();
+      ::user::split_view::assert_ok();
 
    }
 
@@ -44,10 +44,10 @@ namespace simple_shader
    }
 
 
-   void main_impact::handle(::subject * psubject, ::context * pcontext)
+   void main_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::user::split_view::handle(psubject, pcontext);
+      ::user::split_view::handle(ptopic, pcontext);
 
    }
 
@@ -144,10 +144,10 @@ namespace simple_shader
    bool main_impact::BaseOnControlEvent(::user::control_event * pevent)
    {
 
-      if(psubject->m_id == ::e_subject_click)
+      if(ptopic->m_atom == ::id_click)
       {
 
-         if(psubject->user_element_id() == "simple_shader_toggle")
+         if(ptopic->user_element_id() == "simple_shader_toggle")
          {
 
             m_pimpact->on_layout(pgraphics);

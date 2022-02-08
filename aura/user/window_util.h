@@ -115,9 +115,9 @@ namespace user
       __pointer(::user::interaction) find_first(oswindow oswindow);
 
       //::user::oswindow_array get_hwnda();
-      void send_message(const ::id & id, wparam wparam = 0, lparam lparam = 0);
+      void send_message(const ::atom & atom, wparam wparam = 0, lparam lparam = 0);
 
-      void send_message_to_descendants(const ::id & id, wparam wparam = 0, lparam lparam = 0, bool bRecursive = true);
+      void send_message_to_descendants(const ::atom & atom, wparam wparam = 0, lparam lparam = 0, bool bRecursive = true);
 
 
       interaction_array & operator = (const __pointer_array(::user::interaction) & a);

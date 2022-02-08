@@ -70,12 +70,12 @@ namespace sockets
    #endif
 
       /** get peer addresses of an association. */
-      i32 getpaddrs(sctp_assoc_t id,list<string>&);
+      i32 getpaddrs(sctp_assoc_t atom,list<string>&);
       /** get all bound addresses of an association. */
-      i32 getladdrs(sctp_assoc_t id,list<string>&);
+      i32 getladdrs(sctp_assoc_t atom,list<string>&);
 
       /** sctp_peeloff */
-      i32 PeelOff(sctp_assoc_t id);
+      i32 PeelOff(sctp_assoc_t atom);
 
       /** recvmsg callback */
       virtual void OnReceiveMessage(const char *buf,memsize sz,struct sockaddr *sa,socklen_t sa_len,struct sctp_sndrcvinfo *sinfo,i32 msg_flags) = 0;

@@ -463,7 +463,7 @@ class channel;
 
 class dump_context;
 
-class id_space;
+class atom_space;
 class ptra;
 class factory_item_base;
 class fixed_alloc_no_sync;
@@ -473,7 +473,7 @@ class thread;
 class channel;
 class critical_section;
 class mutex;
-class id;
+class atom;
 
 namespace colorertake5
 {
@@ -625,9 +625,9 @@ namespace html
 #define RINOK(x) { i32 __result__ = (x); if (__result__ != 0) return __result__; }
 #endif
 
-// __throw( - exception - result exception - if not ok
+// throw ::exception( - exception - result exception - if not ok
 #ifndef TINOK
-#define TINOK(e, x) { i32 __result__ = (x); if (__result__ != 0) __throw(e(get_application(), __result__)); }
+#define TINOK(e, x) { i32 __result__ = (x); if (__result__ != 0) throw ::exception(e(get_application(), __result__)); }
 #endif
 
 
@@ -717,7 +717,7 @@ namespace aura
 
 
 class payload;
-class id;
+class atom;
 
 
 namespace calculator
@@ -833,7 +833,7 @@ namespace core
 
 //#include "apex/primitive/primitive/object.h"
 
-#include "apex/subject/_.h"
+#include "apex/topic/_.h"
 
 //#include "apex/primitive/primitive/object.h"
 
@@ -861,7 +861,7 @@ namespace core
 
 #if defined(LINUX)
 
-#include "apex/node/operating_system/ansi/_.h"
+#include "apex/operating_system/ansi/_.h"
 
 #elif defined(_UWP)
 //
@@ -1030,7 +1030,7 @@ namespace zip
 } // namespace zip
 
 
-//#include "apex/node/operating_system/text.h"
+//#include "apex/operating_system/text.h"
 
 #include "apex/process/process.h"
 
@@ -1197,7 +1197,7 @@ namespace xml
 
 // C++ Includes
 //#include "apex/os/_.h"
-//#include "apex/node/_.h"
+//#include "apex/operating_system/_.h"
 
 
 #include "apex/parallelization/data.h"
@@ -1262,7 +1262,7 @@ namespace mathematics
 #ifndef WINDOWS_DESKTOP
 
 
-#include "apex/node/operating_system/cross/windows/windows_thread_impl.h"
+#include "apex/operating_system/cross/windows/windows_thread_impl.h"
 
 
 #endif

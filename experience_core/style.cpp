@@ -60,6 +60,8 @@ namespace experience
          ::rectangle_i32 rectangleIcon;
          ::rectangle_i32 rectangleClose;
 
+         //return true;
+
          ptab->get_data()->m_ppen->create_solid(1,rgb(32,32,32));
 
          pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias_grid_fit);
@@ -151,7 +153,7 @@ namespace experience
 
                auto ppath = __create < ::draw2d::path > ();
 
-               if(ptab->get_data()->m_idaSel.contains(ppane->m_id))
+               if(ptab->get_data()->m_idaSel.contains(ppane->m_atom))
                {
 
                   ppath->begin_figure();
@@ -275,7 +277,7 @@ namespace experience
 
                auto ppath = __create < ::draw2d::path >();
 
-               if(ptab->get_data()->m_idaSel.contains(ppane->m_id))
+               if(ptab->get_data()->m_idaSel.contains(ppane->m_atom))
                {
 
                   if (iPane != iCurrentTab)

@@ -489,7 +489,12 @@ namespace filemanager
 
       auto puser = user();
 
-      __compose(m_pimagelist, puser->shell()->GetImageList(filemanager_data()->m_iIconSize));;
+      if (::is_null(m_pimagelist))
+      {
+
+         __compose(m_pimagelist, puser->shell()->GetImageList(filemanager_data()->m_iIconSize));;
+
+      }
 
       m_usertreea.predicate_each([](auto & ptree)
       {
@@ -749,10 +754,10 @@ namespace filemanager
    }
 
 
-   void tree::assert_valid() const
+   void tree::assert_ok() const
    {
 
-      ::data::tree::assert_valid();
+      ::data::tree::assert_ok();
 
    }
 
@@ -803,10 +808,10 @@ namespace filemanager
    }
 
 
-   void tree::handle(::subject * psubject, ::context * pcontext)
+   void tree::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::filemanager_impact_base::handle(psubject, pcontext);
+      ::filemanager_impact_base::handle(ptopic, pcontext);
 
    }
 

@@ -19,7 +19,7 @@
 //
 ////void foo()
 ////{
-////   __throw(::exception());
+////   throw ::exception(::exception());
 ////}
 //
 //
@@ -92,12 +92,12 @@
 ////      if(true)
 ////      {
 ////         AUTO(debug_puts("two"));
-////         debug_puts("one"); // compiler knows this doesn't __throw(new
+////         debug_puts("one"); // compiler knows this doesn't throw ::exception(new
 ////      }
 ////      if(true)
 ////      {
 ////         AUTO(debug_puts("three"));
-//////         foo(); // might __throw( an exception
+//////         foo(); // might throw ::exception( an exception
 ////      }
 ////   }
 ////   catch(...)

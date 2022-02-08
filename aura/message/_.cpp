@@ -28,13 +28,13 @@ namespace message
 //         return false;
 //
 //      // redundant e_message_mouse_move and e_message_non_client_mouse_move
-//      if(pusermessage->is_message() && (pusermessage->m_id == e_message_mouse_move || pusermessage->m_id == e_message_non_client_mouse_move))
+//      if(pusermessage->is_message() && (pusermessage->m_atom == e_message_mouse_move || pusermessage->m_atom == e_message_non_client_mouse_move))
 //      {
 //         return true;
 //      }
 //
 //      // e_message_paint and WM_SYSTIMER (caret blink)
-//      return pusermessage->m_id != e_message_paint && pusermessage->m_id != 0x0118;
+//      return pusermessage->m_atom != e_message_paint && pusermessage->m_atom != 0x0118;
 //
 //   }
 //

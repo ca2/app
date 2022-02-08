@@ -43,7 +43,7 @@ namespace user
       pToolBar->set_item_style(m_iIndex, estyleNew);
 
 #else
-      __throw(todo);
+      throw ::exception(todo);
 #endif
    }
 
@@ -75,7 +75,7 @@ namespace user
       pToolBar->set_item_style(m_iIndex, estyleNew | e_toolbar_item_style_checkbox);
 
 #else
-      __throw(todo);
+      throw ::exception(todo);
 #endif
    }
 

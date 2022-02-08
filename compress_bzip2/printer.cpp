@@ -93,7 +93,7 @@ namespace draw2d_gdiplus
       m_pdevmode = (DEVMODE *)malloc(iSize);
       if (!DocumentProperties(nullptr, pprinter->m_hPrinter, (LPWSTR)(LPCWSTR)pprinter->m_wstrName, m_pdevmode, nullptr, DM_OUT_BUFFER))
       {
-         __throw(::exception("failed to get printer DocumentProperties"));
+         throw ::exception(::exception("failed to get printer DocumentProperties"));
          return false;
       }
       return true;

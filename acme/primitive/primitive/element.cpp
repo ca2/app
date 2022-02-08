@@ -79,7 +79,7 @@ void element::call_member(::i64 iId)
 //
 
 
-void element::handle(::subject * psubject, ::context * pcontext)
+void element::handle(::topic * ptopic, ::context * pcontext)
 {
 
 
@@ -222,7 +222,7 @@ bool element::wait(const ::duration & duration)
 void element::add_composite(::element * pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
-   //__throw(error_not_implemented);
+   //throw ::not_implemented();
 
    pelement->increment_reference_count();
 
@@ -355,6 +355,11 @@ void element::exchange(stream& s)
 
 }
 
+
+void element::exchange(payload_stream& s)
+{
+
+}
 
 stream & element::write(stream& s) const
 {

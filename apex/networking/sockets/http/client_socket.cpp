@@ -267,7 +267,7 @@ namespace sockets
    }
 
 
-   void http_client_socket::OnHeader(id key, const string & value)
+   void http_client_socket::OnHeader(atom key, const string & value)
    {
 
 #if HEAVY_HTTP_LOG
@@ -775,7 +775,7 @@ namespace sockets
 #elif defined(ANDROID)
       return "Mozilla/5.0 (Android; x86) AppleWebKit/537.36 (ca2, like Gecko) " + strAddUp;
 #else
-      __throw(todo);
+      throw ::exception(todo);
 #endif
 //      string str;
 //

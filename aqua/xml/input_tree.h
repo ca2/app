@@ -34,10 +34,10 @@ namespace xml
 
 
       template < typename TYPE >
-      bool load_attribute(const ::id & id, TYPE & t, const ::payload & payload = e_type_new)
+      bool load_attribute(const ::atom & atom, TYPE & t, const ::payload & payload = e_type_new)
       {
 
-         if (m_pnode->find_attribute(id, t))
+         if (m_pnode->find_attribute(atom, t))
          {
 
             return true;

@@ -9,17 +9,17 @@ namespace html
 {
 
 
-   void attribute::set_name(id idName)
+   void attribute::set_name(atom idName)
    {
 
-      m_idName = idName;
+      m_atomName = idName;
 
    }
 
-   id attribute::get_name() const
+   atom attribute::get_name() const
    {
 
-      return m_idName;
+      return m_atomName;
 
    }
 
@@ -43,7 +43,7 @@ namespace html
 
    // attribute_array
 
-   __pointer(attribute) attribute_array::get(id idName)
+   __pointer(attribute) attribute_array::get(atom idName)
    {
 
       for(i32 i = 0; i < this->get_size(); i++)
@@ -59,7 +59,7 @@ namespace html
    }
 
 
-   __pointer(attribute) attribute_array::get(id idName) const
+   __pointer(attribute) attribute_array::get(atom idName) const
    {
 
       return const_cast < attribute_array * > (this)->get(idName);
@@ -67,7 +67,7 @@ namespace html
    }
 
 
-   string attribute_array::get_value(id idName) const
+   string attribute_array::get_value(atom idName) const
    {
 
       auto pattribute = get(idName);

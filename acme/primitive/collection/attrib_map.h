@@ -40,7 +40,7 @@ namespace papaya
 
 
 
-using id_to_id = id_map < id >;
+using id_to_id = id_map < atom >;
 
 
 using id_to_index = id_map < index >;

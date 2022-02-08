@@ -1,6 +1,6 @@
 #include "framework.h"
-#include "acme/user/check.h"
-#include "acme/user/text.h"
+#include "acme/user/user/check.h"
+#include "acme/user/user/text.h"
 #include "aura/user/_menu.h"
 
 

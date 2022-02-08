@@ -17,7 +17,7 @@ namespace file
          if(_virtPos == Size)
             return 0;
          else
-            __throw(system_exception(E_FAIL));
+            throw ::exception(system_exception(E_FAIL));
       }
 
       if (_curRem == 0)
@@ -58,7 +58,7 @@ namespace file
       case STREAM_SEEK_CUR: newVirtPos += _virtPos; break;
       case STREAM_SEEK_END: newVirtPos += Size; break;
       default:
-         __throw(system_exception(STG_E_INVALIDFUNCTION));
+         throw ::exception(system_exception(STG_E_INVALIDFUNCTION));
       }
       if (_virtPos != newVirtPos)
          _curRem = 0;

@@ -13,7 +13,7 @@ namespace fs
    }
 
 
-   void data::assert_valid() const
+   void data::assert_ok() const
    {
 
    }

@@ -8,7 +8,7 @@ class CLASS_DECL_ACME acme_path :
 public:
 
 
-   ::PLATFORM_NAMESPACE::acme_path *   m_pplatformpath;
+   ::OPERATING_SYSTEM_NAMESPACE::acme_path *   m_pplatformpath;
 
 
    acme_dir *                          m_pacmedir;
@@ -40,7 +40,7 @@ public:
 
    virtual void create_symbolic_link(const char * pszLink, const char * pszSource);
 
-   virtual void is_symbolic_link(const char * pszLink);
+   virtual bool is_symbolic_link(const char * pszLink);
 
    virtual ::file::path symbolic_link_destination(const char * pszLink);
 

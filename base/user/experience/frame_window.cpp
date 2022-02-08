@@ -48,13 +48,13 @@ namespace experience
 
 //#ifdef WINDOWS_DESKTOP
 //
-//      if (pmessage->m_id == WM_GETTEXT)
+//      if (pmessage->m_atom == WM_GETTEXT)
 //      {
 //
 //         return;
 //
 //      }
-//      else if (pmessage->m_id == WM_GETTEXTLENGTH)
+//      else if (pmessage->m_atom == WM_GETTEXTLENGTH)
 //      {
 //
 //         return;
@@ -64,16 +64,16 @@ namespace experience
 //
 //#endif
 
-         if (pmessage->m_id == e_message_mouse_move)
+         if (pmessage->m_atom == e_message_mouse_move)
       {
 
          return;
 
       }
-      else if (pmessage->m_id == e_message_key_down
-         || pmessage->m_id == e_message_key_up
-         || pmessage->m_id == e_message_sys_key_down
-         || pmessage->m_id == e_message_sys_key_up)
+      else if (pmessage->m_atom == e_message_key_down
+         || pmessage->m_atom == e_message_key_up
+         || pmessage->m_atom == e_message_sys_key_down
+         || pmessage->m_atom == e_message_sys_key_up)
       {
 
          auto pkey = pmessage->m_union.m_pkey;
@@ -83,7 +83,7 @@ namespace experience
          if (pkey->userinteraction() == this)
          {
 
-            if (pmessage->m_id == e_message_key_down || pmessage->m_id == e_message_sys_key_down)
+            if (pmessage->m_atom == e_message_key_down || pmessage->m_atom == e_message_sys_key_down)
             {
 
                if (!m_bFullScreenOnMaximize)
@@ -135,7 +135,7 @@ namespace experience
                }
 
             }
-            else if (pmessage->m_id == e_message_key_up || pmessage->m_id == e_message_sys_key_up)
+            else if (pmessage->m_atom == e_message_key_up || pmessage->m_atom == e_message_sys_key_up)
             {
 
                if (pkey->m_ekey == ::user::e_key_return)
@@ -296,10 +296,10 @@ namespace experience
    void frame_window::message_handler(::message::message* pusermessage)
    {
 
-//      int iMessage = pusermessage->m_id;
+//      int iMessage = pusermessage->m_atom;
 
 
-      //if (pusermessage->m_id == WM_GETTEXT)
+      //if (pusermessage->m_atom == WM_GETTEXT)
       //{
 
       //   _008GetWindowText(pusermessage);
@@ -317,7 +317,7 @@ namespace experience
       //   return;
 
       //}
-      //else if (pusermessage->m_id == WM_GETTEXTLENGTH)
+      //else if (pusermessage->m_atom == WM_GETTEXTLENGTH)
       //{
 
       //   _008GetWindowTextLength(pusermessage);
@@ -676,19 +676,17 @@ namespace experience
    }
 
 
-   void frame_window::handle(::subject * psubject, ::context * pcontext)
+   void frame_window::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (psubject->m_id == ::e_subject_click && m_pframe != nullptr)
+      if (ptopic->m_atom == ::id_click && m_pframe != nullptr)
       {
 
-         ::id id = psubject->user_interaction()->GetDlgCtrlId();
+         auto atom = ptopic->get_extended_topic()->user_element_id();
 
-         string str(__string(id));
+         FORMATTED_TRACE("frame_window::handle_event btn_clkd=%s", atom.to_string().c_str());
 
-         FORMATTED_TRACE("frame_window::handle_event btn_clkd=%s", str.c_str());
-
-         auto ebutton = m_pframe->get_control_box()->get_control_box_button_type(id);
+         auto ebutton = m_pframe->get_control_box()->get_control_box_button_type(atom);
 
          switch (ebutton)
          {
@@ -700,7 +698,7 @@ namespace experience
 
             set_need_redraw();
 
-            psubject->m_bRet = true;
+            ptopic->get_extended_topic()->m_bRet = true;
 
             return;
 
@@ -712,7 +710,7 @@ namespace experience
 
             set_need_redraw();
 
-            psubject->m_bRet = true;
+            ptopic->get_extended_topic()->m_bRet = true;
 
             return;
 
@@ -730,7 +728,7 @@ namespace experience
 
             post_redraw();
 
-            psubject->m_bRet = true;
+            ptopic->get_extended_topic()->m_bRet = true;
 
             return;
 
@@ -740,7 +738,7 @@ namespace experience
 
             frame_experience_restore();
 
-            psubject->m_bRet = true;
+            ptopic->get_extended_topic()->m_bRet = true;
 
             return;
 
@@ -752,7 +750,7 @@ namespace experience
 
             set_need_redraw();
 
-            psubject->m_bRet = true;
+            ptopic->get_extended_topic()->m_bRet = true;
 
             return;
 
@@ -764,7 +762,7 @@ namespace experience
 
             set_need_redraw();
 
-            psubject->m_bRet = true;
+            ptopic->get_extended_topic()->m_bRet = true;
 
             return;
 
@@ -784,7 +782,7 @@ namespace experience
 
             post_redraw();
 
-            psubject->m_bRet = true;
+            ptopic->get_extended_topic()->m_bRet = true;
 
             return;
 
@@ -796,7 +794,7 @@ namespace experience
 
             set_need_redraw();
 
-            psubject->m_bRet = true;
+            ptopic->get_extended_topic()->m_bRet = true;
 
             return;
 
@@ -807,7 +805,7 @@ namespace experience
          }
 
       }
-      else if (psubject->id() == id_app_activated)
+      else if (ptopic->m_atom == id_app_activated)
       {
 
          frame_toggle_restore();
@@ -820,10 +818,10 @@ namespace experience
    void frame_window::on_command(::message::command * pcommand)
    {
 
-      if (pcommand->m_id == ::e_message_system_command && m_pframe != nullptr)
+      if (pcommand->m_atom == ::e_message_system_command && m_pframe != nullptr)
       {
 
-         auto ebutton = m_pframe->get_control_box()->get_control_box_button_type(pcommand->m_id);
+         auto ebutton = m_pframe->get_control_box()->get_control_box_button_type(pcommand->m_atom);
 
          switch (ebutton)
          {
@@ -2117,7 +2115,7 @@ namespace experience
 //
 //         //::rectangle_i32 rectangleWindow;
 //
-//         //psubject->user_interaction()->get_window_rect(rectangleWindow);
+//         //ptopic->get_extended_topic()->user_interaction()->get_window_rect(rectangleWindow);
 //
 //         ///dock_manager()->m_pointCursorOrigin = rectangleWindow.center();
 //
@@ -2333,10 +2331,10 @@ namespace experience
 
 
 
-   //void frame_window::handle(::subject * psubject, ::context * pcontext)
+   //void frame_window::handle(::topic * ptopic, ::context * pcontext)
    //{
 
-   //   if(psubject->id() == id_app_activated)
+   //   if(ptopic->m_atom == id_app_activated)
    //   {
 
    //      frame_toggle_restore();

@@ -30,7 +30,7 @@ CLASS_DECL_APEX string __apex_get_text(string str);
 //bool apex_thread_get_run();
 
 #ifdef RASPBIAN
-#define PLATFORM_NAMESPACE linux
+#define OPERATING_SYSTEM_NAMESPACE linux
 #endif
 
 #if defined(__APPLE__)

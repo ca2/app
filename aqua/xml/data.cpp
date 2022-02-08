@@ -31,7 +31,7 @@ namespace xml
       //if (!estatus)
       //{
 
-      //   __throw(estatus);
+      //   throw ::exception(estatus);
 
       //}
 

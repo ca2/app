@@ -47,13 +47,13 @@ namespace user
          pitemNewChild->m_bPopup = false;
          if(strCommand.is_empty())
          {
-            pitemNewChild->m_id = "separator";
+            pitemNewChild->m_atom = "separator";
             m_iSeparatorCount++;
          }
          else
          {
             m_iFullHeightItemCount++;
-            pitemNewChild->m_id = strCommand;
+            pitemNewChild->m_atom = strCommand;
             pitemNewChild->m_iLevel = 0;
             pitemNewChild->m_puserinteraction->set_window_text(strCommandTitle);
          }
@@ -108,7 +108,7 @@ namespace user
       if(pnode->get_name() == "separator")
       {
 
-         m_id = "separator";
+         m_atom = "separator";
 
          if(m_pmenu->m_pmenuParent != nullptr)
          {
@@ -123,11 +123,11 @@ namespace user
 
          m_iFullHeightItemCount++;
 
-         ::id id = pnode->attribute("id");
+         ::atom atom = pnode->attribute("id");
 
-         id = translate_property_id(id);
+         atom = translate_property_id(atom);
 
-         m_id = id;
+         m_atom = atom;
 
          string strText;
 
@@ -282,9 +282,9 @@ namespace user
 
          }
 
-         pinteraction->create_control(pmenu, pitem->m_id);
+         pinteraction->create_control(pmenu, pitem->m_atom);
 
-         //if (!pinteraction->create_control(pmenu, pitem->m_id))
+         //if (!pinteraction->create_control(pmenu, pitem->m_atom))
          //{
 
          //   return false;
@@ -342,7 +342,7 @@ namespace user
    }
 
 
-   menu_item * menu_item::find(id id)
+   menu_item * menu_item::find(atom atom)
    {
 
       if(m_pmenuitema.is_null())
@@ -351,7 +351,7 @@ namespace user
 
       }
 
-      return m_pmenuitema->find(id);
+      return m_pmenuitema->find(atom);
 
    }
 
@@ -367,7 +367,7 @@ namespace user
 
    }
 
-   menu_item * menu_item_ptra::find(id id)
+   menu_item * menu_item_ptra::find(atom atom)
    {
 
       menu_item * pitemFind;
@@ -377,14 +377,14 @@ namespace user
 
          menu_item * pitem = element_at(i);
 
-         if(pitem->m_id  == id)
+         if(pitem->m_atom  == atom)
          {
 
             return pitem;
 
          }
 
-         pitemFind = pitem->find(id);
+         pitemFind = pitem->find(atom);
 
          if(pitemFind != nullptr)
          {

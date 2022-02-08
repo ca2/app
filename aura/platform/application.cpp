@@ -4,7 +4,6 @@
 #include "apex/platform/app_core.h"
 #include "acme/platform/profiler.h"
 #include "acme/primitive/text/context.h"
-//#include "apex/compress/zip/context.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/platform/node.h"
@@ -46,7 +45,7 @@ void ns_launch_app(const char * psz, const char ** argv, int iFlags);
 #undef _GNU_SOURCE
 
 //#include "aura/node/ansios/ansios.h"
-#include "aura/node/linux/_linux.h"
+#include "aura/operating_system/linux/_linux.h"
 
 //#include <X11/cursorfont.h>
 #include <sys/time.h>
@@ -236,7 +235,7 @@ namespace aura
    //::message::application::::message::application(e_::message::application esignal)
    //{
 
-   //   m_id = ::message::type_application;
+   //   m_atom = ::message::type_application;
    //   m_esignal = esignal;
    //   m_bOk = true;
 
@@ -373,10 +372,10 @@ namespace aura
    //}
 
 
-   void application::assert_valid() const
+   void application::assert_ok() const
    {
 
-      ::application::assert_valid();
+      ::application::assert_ok();
 
    }
 
@@ -559,7 +558,7 @@ namespace aura
 
          //    psystem->on_run_exception(esp);
 
-         //    __throw(exit_exception(esp->get_application(), ::exit_application));
+         //    throw ::exception(exit_exception(esp->get_application(), ::exit_application));
 
          // }
          catch (const ::exception & e)
@@ -726,12 +725,12 @@ namespace aura
 
    //// lang string
    //// load string
-   //string application::lstr(const ::id & id, string strDefault)
+   //string application::lstr(const ::atom & atom, string strDefault)
    //{
 
    //   string str;
 
-   //   if (!load_string(str, id))
+   //   if (!load_string(str, atom))
    //   {
 
    //      if (strDefault.has_char())
@@ -754,34 +753,34 @@ namespace aura
    //}
 
 
-   //string application::load_string(const ::id & id)
+   //string application::load_string(const ::atom & atom)
    //{
    //   string str;
-   //   if (!load_string(str, id))
+   //   if (!load_string(str, atom))
    //   {
-   //      return (const string &)id;
+   //      return (const string &)atom;
    //   }
    //   return str;
    //}
 
-   //bool application::load_string(string & str, const ::id & id)
+   //bool application::load_string(string & str, const ::atom & atom)
    //{
-   //   if (!load_cached_string(str, id, true))
+   //   if (!load_cached_string(str, atom, true))
    //   {
    //      return false;
    //   }
    //   return true;
    //}
 
-   /*bool application::load_cached_string(string & str, const ::id & id, bool bLoadStringTable)
+   /*bool application::load_cached_string(string & str, const ::atom & atom, bool bLoadStringTable)
    {
 
       ::xml::document doc;
 
-      if (!doc.load(id))
+      if (!doc.load(atom))
       {
 
-         if (load_cached_string_by_id(str, id, bLoadStringTable))
+         if (load_cached_string_by_id(str, atom, bLoadStringTable))
          {
 
             return true;
@@ -812,10 +811,10 @@ namespace aura
    }*/
 
 
-   //bool application::load_cached_string_by_id(string & str, const ::id & id, bool bLoadStringTable)
+   //bool application::load_cached_string_by_id(string & str, const ::atom & atom, bool bLoadStringTable)
    //{
 
-   //   string strId(id.str());
+   //   string strId(atom.str());
 
    //   string strTable;
 
@@ -873,7 +872,7 @@ namespace aura
 
    //      load_string_table(strTable, "");
 
-   //      return load_cached_string_by_id(str, id, false);
+   //      return load_cached_string_by_id(str, atom, false);
 
    //   }
 
@@ -907,7 +906,7 @@ namespace aura
    //}
 
 
-   //object * application::alloc(const  id & idType)
+   //object * application::alloc(const  atom & idType)
    //{
 
    //   return psystem->alloc(this, idType);
@@ -1139,7 +1138,7 @@ namespace aura
 //   void application::TermThread(HINSTANCE hInstTerm)
 //   {
 //
-//      throw ::interface_only_exception();
+//      throw ::interface_only();
 //
 //   }
 //
@@ -1151,7 +1150,7 @@ namespace aura
 
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return false;
 
@@ -1162,7 +1161,7 @@ namespace aura
    /*::user::document *  application::_001OpenDocumentFile(::payload payloadFile)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
@@ -1172,7 +1171,7 @@ namespace aura
    //void application::_001OnFileNew(::message::message * pmessage)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //}
 
@@ -1202,7 +1201,7 @@ namespace aura
    //void application::_001CloseApplication()
    //{
 
-   //   __throw(todo);
+   //   throw ::exception(todo);
 
    //}
 
@@ -1241,7 +1240,7 @@ namespace aura
 //   string CLASS_DECL_AURA application::get_cred(const ::string & strRequestUrl, const ::rectangle_i32 & rectangle, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive)
 // {
 
-//  __throw(error_not_implemented);
+//  throw ::not_implemented();
 
 //}
 
@@ -1251,7 +1250,7 @@ namespace aura
    //bool application::get_temp_file_name_template(string & strRet, const ::string & lpszName, const ::string & pszExtension, const ::string & pszTemplate)
    //{
 
-   //   __throw(error_not_implemented);
+   //   throw ::not_implemented();
 
    //   return false;
 
@@ -1632,7 +1631,9 @@ namespace aura
 
       //m_atomSystemTopic    = ::GlobalAddAtomW(L"system");
 
-      //auto estatus = 
+      //auto estatus =
+
+#ifdef WINDOWS
       
       __compose(m_pshellopen);
 
@@ -1646,6 +1647,8 @@ namespace aura
       //estatus = 
       
       m_pshellopen->initialize_shell_open();
+
+#endif
 
       //if (!estatus)
       //{
@@ -2196,9 +2199,9 @@ retry_license:
 
       string strFolder = m_strAppName;
 
-      strFolder.replace(".", "_");
-      strFolder.replace("::", "-");
-      strFolder.replace(":", "_");
+      strFolder.replace_with("_", ".");
+      strFolder.replace_with("-", "::");
+      strFolder.replace_with("_", ":");
 
       m_strRelativeFolder = strFolder;
 
@@ -2495,7 +2498,7 @@ retry_license:
 //            if (bGlobalIdExclusiveFail)
 //            {
 //
-//               TRACE("A instance of the application:<br><br>-" + string(m_strAppName) + "with the id \"" + get_local_mutex_id() + "\" <br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine with the same id.<br><br>Exiting this new instance.");
+//               TRACE("A instance of the application:<br><br>-" + string(m_strAppName) + "with the atom \"" + get_local_mutex_id() + "\" <br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine with the same atom.<br><br>Exiting this new instance.");
 //
 //               try
 //               {
@@ -2558,7 +2561,7 @@ retry_license:
 //               {
 //
 //                  // Should in some way activate the other instance
-//                  TRACE("A instance of the application:<br><br>           - " + string(m_strAppName) + "with the id \"" + get_local_mutex_id() + "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::count with the same id.<br><br>Exiting this new instance.");
+//                  TRACE("A instance of the application:<br><br>           - " + string(m_strAppName) + "with the atom \"" + get_local_mutex_id() + "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::count with the same atom.<br><br>Exiting this new instance.");
 //
 //                  if(!on_exclusive_instance_conflict(bHandled, ExclusiveInstanceLocalId, get_local_mutex_id()))
 //                  {
@@ -2780,7 +2783,7 @@ retry_license:
    //}
 
 
-   //void application::on_new_instance(string strModule, const ::id & iPid)
+   //void application::on_new_instance(string strModule, const ::atom & iPid)
    //{
 
    //}
@@ -2966,7 +2969,7 @@ retry_license:
    //string application::http_get_locale_schema(const ::string & pszUrl, const ::string & pszLocale, const ::string & pszSchema)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return "";
 
@@ -3132,8 +3135,8 @@ retry_license:
    //  string strSchema(pszSchema);
 
 
-   //  localeschema.m_idLocale = pszLocale;
-   //  localeschema.m_idSchema = pszSchema;
+   //  localeschema.m_atomLocale = pszLocale;
+   //  localeschema.m_atomSchema = pszSchema;
 
 
    //  localeschema.add_locale_variant(strLocale, strSchema);
@@ -3182,8 +3185,8 @@ retry_license:
 
    //  straSchema.add_unique(value("schema").stra());
 
-   //  localeschema.m_idLocale = straLocale[0];
-   //  localeschema.m_idSchema = straSchema[0];
+   //  localeschema.m_atomLocale = straLocale[0];
+   //  localeschema.m_atomSchema = straSchema[0];
 
    //  for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
    //  {
@@ -3407,7 +3410,7 @@ retry_license:
 //   }
 //
 //
-//   void application::handle(::subject * psubject, ::context * pcontext)
+//   void application::handle(::topic * ptopic, ::context * pcontext)
 //   {
 //
 //
@@ -3703,7 +3706,7 @@ retry_license:
 //
 //      ::string strContents = m_psystem->m_pacmefile->as_string(strPath.c_str());
 //
-//      __throw(todo("xml"));
+//      throw ::exception(todo("xml"));
 //
 //      //::xml::document doc;
 //
@@ -3934,7 +3937,7 @@ retry_license:
    }
 
 
-   bool application::send_message_to_windows(const ::id & id, wparam wparam, lparam lparam) // with tbs in <3
+   bool application::send_message_to_windows(const ::atom & atom, wparam wparam, lparam lparam) // with tbs in <3
    {
 
       __pointer(::user::interaction) puserinteraction;
@@ -3954,7 +3957,7 @@ retry_license:
                   try
                   {
 
-                     puserinteraction->send_message(id, wparam, lparam);
+                     puserinteraction->send_message(atom, wparam, lparam);
 
                   }
                   catch (...)
@@ -3965,7 +3968,7 @@ retry_license:
                   try
                   {
 
-                     puserinteraction->send_message_to_descendants(id, wparam, lparam);
+                     puserinteraction->send_message_to_descendants(atom, wparam, lparam);
 
                   }
                   catch (...)
@@ -4092,7 +4095,7 @@ retry_license:
       if (pinteraction == nullptr && pmsg->oswindow != nullptr)
       {
 
-        if (pmsg->m_id == 126)
+        if (pmsg->m_atom == 126)
         {
 
            INFORMATION("e_message_display_change");
@@ -4107,15 +4110,15 @@ retry_license:
 
         pwindow = pwindowing->window(pmsg->oswindow);
 
-        auto pinteractionimpl = pwindow->m_pimpl;
+        auto puserinteractionimpl = pwindow->m_puserinteractionimpl;
 
-        if (pinteractionimpl != nullptr)
+        if (puserinteractionimpl != nullptr)
         {
 
            try
            {
 
-              pinteraction = pinteractionimpl->m_puserinteraction;
+              pinteraction = puserinteractionimpl->m_puserinteraction;
 
            }
            catch (...)
@@ -4130,7 +4133,7 @@ retry_license:
         if (pinteraction == nullptr)
         {
 
-           pinteraction = pinteractionimpl;
+           pinteraction = puserinteractionimpl;
 
         }
 
@@ -4139,7 +4142,7 @@ retry_license:
       if (pinteraction != nullptr)
       {
 
-         return pinteraction->get_message(pmsg->m_id, pmsg->wParam, pmsg->lParam);
+         return pinteraction->get_message(pmsg->m_atom, pmsg->wParam, pmsg->lParam);
 
       }
 
@@ -4152,7 +4155,7 @@ retry_license:
 
       }
 
-      pusermessage->set(pmsg->oswindow, pwindow, pmsg->m_id, pmsg->wParam, pmsg->lParam);
+      pusermessage->set(pmsg->oswindow, pwindow, pmsg->m_atom, pmsg->wParam, pmsg->lParam);
 
       return pusermessage;
 
@@ -4185,10 +4188,10 @@ retry_license:
    //}
 
 
-   void application::post_message(const ::id & id, wparam wparam, lparam lparam )
+   void application::post_message(const ::atom & atom, wparam wparam, lparam lparam )
    {
 
-      ::thread::post_message(id, wparam, lparam);
+      ::thread::post_message(atom, wparam, lparam);
 
    }
 
@@ -4344,10 +4347,10 @@ retry_license:
    }
 
 
-   //__pointer(::user::document) application::defer_create_view(string strView, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::id & id)
+   //__pointer(::user::document) application::defer_create_view(string strImpact, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::atom & atom)
    //{
 
-   //   //auto pcontroller = pmultimedia->defer_create_view(strView, puiParent, ewindowflag, id);
+   //   //auto pcontroller = pmultimedia->defer_create_view(strImpact, puiParent, ewindowflag, atom);
 
    //   //if (pcontroller)
    //   //{
@@ -4406,28 +4409,28 @@ retry_license:
    //}
 
 
-   ::id application::translate_property_id(const ::id & id)
+   ::atom application::translate_property_id(const ::atom & atom)
    {
-      return ::aqua::application::translate_property_id(id);
+      return ::aqua::application::translate_property_id(atom);
       //if(!is_system())
       //{
 
         // if(!is_session())
          //{
 
-           // return psession->translate_property_id(id);
+           // return psession->translate_property_id(atom);
 
          //}
          //else
          //{
 
-           // return psystem->translate_property_id(id);
+           // return psystem->translate_property_id(atom);
 
          //}
 
       //}
 
-      return id;
+      return atom;
 
    }
 
@@ -4574,40 +4577,40 @@ retry_license:
    }
 
 
-   //string application::load_string(const ::id & id)
+   //string application::load_string(const ::atom & atom)
    //{
 
    //   synchronous_lock synchronouslock(&m_mutexStr);
 
    //   string str;
 
-   //   if (m_stringmap.lookup(id, str))
+   //   if (m_stringmap.lookup(atom, str))
    //   {
 
    //      return str;
 
    //   }
 
-   //   if (!load_string(str, id))
+   //   if (!load_string(str, atom))
    //   {
 
-   //      id.to_string(str);
+   //      atom.to_string(str);
 
    //      return str;
 
    //   }
 
-   //   m_stringmap.set_at(id, str);
+   //   m_stringmap.set_at(atom, str);
 
    //   return str;
 
    //}
 
 
-   //bool application::load_string(string & str, const ::id & id)
+   //bool application::load_string(string & str, const ::atom & atom)
    //{
 
-   //   if (!load_cached_string(str, id, true))
+   //   if (!load_cached_string(str, atom, true))
    //   {
 
    //      return false;
@@ -4619,18 +4622,18 @@ retry_license:
    //}
 
 
-   //bool application::load_cached_string(string & str, const ::id & id, bool bLoadStringTable)
+   //bool application::load_cached_string(string & str, const ::atom & atom, bool bLoadStringTable)
    //{
 
 
-   //   //__throw(todo("xml"));
+   //   //throw ::exception(todo("xml"));
 
    //   //auto pdocument = __new(::xml::document);
 
-   //   //if (!pdocument->load(id) || !*pdocument)
+   //   //if (!pdocument->load(atom) || !*pdocument)
    //   //{
 
-   //   //   return load_cached_string_by_id(str, id, bLoadStringTable);
+   //   //   return load_cached_string_by_id(str, atom, bLoadStringTable);
 
    //   //}
 
@@ -4657,10 +4660,10 @@ retry_license:
    //}
 
 
-   //bool application::load_cached_string_by_id(string & str, const ::id & id, bool bLoadStringTable)
+   //bool application::load_cached_string_by_id(string & str, const ::atom & atom, bool bLoadStringTable)
    //{
 
-   //   string strId(id.str());
+   //   string strId(atom.str());
 
    //   string strTable;
 
@@ -4716,7 +4719,7 @@ retry_license:
 
    //      load_string_table(strTable, "");
 
-   //      return load_cached_string_by_id(str, id, false);
+   //      return load_cached_string_by_id(str, atom, false);
 
    //   }
 
@@ -5127,7 +5130,7 @@ retry_license:
 
       bool bIgnoreStdStd = string(pszRoot) == "app" && (string(pszRelative) == "main" || string(pszRelative) == "bergedge");
 
-      //update_appmatter(h, psession, pszRoot, pszRelative, plocaleschema->m_idLocale, plocaleschema->m_idSchema);
+      //update_appmatter(h, psession, pszRoot, pszRelative, plocaleschema->m_atomLocale, plocaleschema->m_atomSchema);
 
       ::count iCount = plocaleschema->m_idaLocale.get_count();
 
@@ -5441,7 +5444,7 @@ retry_license:
    //void application::TermThread(HINSTANCE hInstTerm)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //}
 
@@ -5451,7 +5454,7 @@ retry_license:
    //string application::get_version()
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return "";
 
@@ -5463,7 +5466,7 @@ retry_license:
 //   void application::set_env_var(const string & payload,const string & value)
 //   {
 //
-//      throw ::interface_only_exception();
+//      throw ::interface_only();
 //
 //   }
 
@@ -5472,7 +5475,7 @@ retry_license:
    ::draw2d::printer * application::get_printer(const ::string & pszDeviceName)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
@@ -5497,7 +5500,7 @@ retry_license:
    string application::dialog_box(const ::string & pszMatter, property_set& propertyset)
    {
 
-      __throw(todo, "core and os");
+      throw ::exception(todo, "core and os");
 
       return"";
 
@@ -5521,7 +5524,7 @@ retry_license:
    //bool application::get_temp_file_name_template(string & strRet, const ::string & lpszName, const ::string & pszExtension, const ::string & pszTemplate)
    //{
 
-   //   __throw(error_not_implemented);
+   //   throw ::not_implemented();
 
    //   return false;
 
@@ -5656,7 +5659,7 @@ retry_license:
 //
 //
 
-   //void application::handle(::subject * psubject, ::context * pcontext)
+   //void application::handle(::topic * ptopic, ::context * pcontext)
    //{
 
    //}
@@ -5688,7 +5691,7 @@ retry_license:
 
    //}
 
-   //void application::handle(::subject * psubject, ::context * pcontext)
+   //void application::handle(::topic * ptopic, ::context * pcontext)
    //{
 
    //}
@@ -5701,12 +5704,12 @@ retry_license:
    //}
 
 
-   //void application::route(::subject * psubject, ::context * pcontext)
+   //void application::route(::topic * ptopic, ::context * pcontext)
    //{
 
-   //   handle(psubject);
+   //   handle(ptopic);
 
-   //   if (psubject->m_bRet)
+   //   if (ptopic->get_extended_topic()->m_bRet)
    //   {
 
    //      return;
@@ -5715,7 +5718,7 @@ retry_license:
 
    //   on_notify_control_event(pevent);
 
-   //   if (psubject->m_bRet)
+   //   if (ptopic->get_extended_topic()->m_bRet)
    //   {
 
    //      return;
@@ -5770,34 +5773,34 @@ retry_license:
 
       //}
 
-      //bool application::app_data_set(::const ::id & id, stream & stream)
+      //bool application::app_data_set(::const ::atom & atom, stream & stream)
       //{
 
-      //   return data_save(id, stream);
+      //   return data_save(atom, stream);
 
       //}
 
 
-      //bool application::app_data_get(::const ::id & id, stream & stream)
+      //bool application::app_data_get(::const ::atom & atom, stream & stream)
       //{
 
-      //   return data_get(id, stream);
+      //   return data_get(atom, stream);
 
       //}
 
 
-      //bool application::app_data_set(::const ::id & id, ::object & obj)
+      //bool application::app_data_set(::const ::atom & atom, ::object & obj)
       //{
 
-      //   return data_set(id, obj);
+      //   return data_set(atom, obj);
 
       //}
 
 
-      //bool application::app_data_get(::const ::id & id, ::object & obj)
+      //bool application::app_data_get(::const ::atom & atom, ::object & obj)
       //{
 
-      //   return data_get(id, obj);
+      //   return data_get(atom, obj);
 
       //}
 
@@ -5927,7 +5930,7 @@ namespace aura
       if (m_puserinteractionMain != nullptr)
       {
 
-         ::id idCommand(pszCommand);
+         ::atom idCommand(pszCommand);
 
          __pointer(::user::interaction) pinteraction = m_puserinteractionMain.get();
 
@@ -5951,7 +5954,7 @@ namespace aura
 
             ::message::command command;
 
-            command.m_id = idCommand;
+            command.m_atom = idCommand;
 
             auto puserinteractionMain = m_puserinteractionMain;
 
@@ -6143,7 +6146,7 @@ namespace aura
 
       // handle certain messages in thread
 
-      switch (pusermessage->m_id)
+      switch (pusermessage->m_atom)
       {
       case e_message_create:
       case e_message_paint:
@@ -6156,7 +6159,7 @@ namespace aura
       //linux ::u32 nIDP = __IDP_INTERNAL_FAILURE;   // matter message string
       const char* nIDP = "Internal Failure";
       pusermessage->m_lresult = 0;        // sensible default
-      if (pusermessage->m_id == e_message_command)
+      if (pusermessage->m_atom == e_message_command)
       {
          if (pusermessage->m_lparam == 0)
             //linux nIDP = __IDP_COMMAND_FAILURE; // command (not from a control)
@@ -7050,7 +7053,7 @@ namespace aura
 //      __UNREFERENCED_PARAMETER(hDevNames);
 //      __UNREFERENCED_PARAMETER(hDevMode);
 //      __UNREFERENCED_PARAMETER(bFreeOld);
-//      throw interface_only_exception();
+//      throw ::interface_only();
 //
 //   }
 //
@@ -7060,7 +7063,7 @@ namespace aura
 
    //::draw2d::graphics* application::CreatePrinterDC()
    //{
-   //   throw interface_only_exception();
+   //   throw ::interface_only();
    //   return nullptr;
    //}
 
@@ -7251,7 +7254,7 @@ namespace aura
    {
       //__UNREFERENCED_PARAMETER(nIDRegistryKey);
       //ASSERT(m_pszRegistryKey == nullptr);
-      //throw interface_only_exception();
+      //throw ::interface_only();
       ///*char szRegistryKey[256];
       //VERIFY(::aura::LoadString(nIDRegistryKey, szRegistryKey));
       //SetRegistryKey(szRegistryKey);*/
@@ -7776,7 +7779,7 @@ namespace aura
    //bool application::_001OnDDECommand(const ::string & pcsz)
 
    //{
-   //   throw interface_only_exception();
+   //   throw ::interface_only();
    //   //return m_pimpl->_001OnDDECommand(pcsz);
 
 
@@ -7797,7 +7800,7 @@ namespace aura
 //   ::user::interaction * application::get_desktop_window()
 //   {
 //#if defined(_UWP) || defined(__APPLE__)
-//      __throw(todo);
+//      throw ::exception(todo);
 //      /*#elif defined(LINUX)
 //
 //      //      synchronous_lock synchronouslock(&user_mutex());
@@ -7822,9 +7825,9 @@ namespace aura
 
 
 
-   //void application::assert_valid() const
+   //void application::assert_ok() const
    //{
-   //   thread::assert_valid();
+   //   thread::assert_ok();
 
 
    //   if (::get_task() != (thread*)this)
@@ -7970,7 +7973,7 @@ namespace aura
 
       //__pointer(::user::message) pusermessage(pmessage);
 
-//      if (pmessage->m_id == WM_USER + 124 && pmessage->userinteraction() == nullptr)
+//      if (pmessage->m_atom == WM_USER + 124 && pmessage->userinteraction() == nullptr)
 //      {
 //
 //         /*
@@ -8329,7 +8332,7 @@ namespace aura
 //
 //      return (i32)SendMessage(oswindow, WM_COPYDATA, (wparam)osdataSender, (lparam)&cds);
 //#else
-//      __throw(todo);
+//      throw ::exception(todo);
 //#endif
 //   }
 
@@ -8345,7 +8348,7 @@ namespace aura
 
       auto pwindowing = puser->m_pwindowing;
 
-      __throw(todo);
+      throw ::exception(todo);
 
       //for (i32 i = 0; i < m_straAppInterest.get_count(); i++)
       //{
@@ -8357,7 +8360,7 @@ namespace aura
 
 #else
 
-      //__throw(todo);
+      //throw ::exception(todo);
 
 #endif
 
@@ -8380,7 +8383,7 @@ namespace aura
    }
 
 
-   void application::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::subject * psubject)
+   void application::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::topic * ptopic)
    {
 
    }
@@ -8497,7 +8500,7 @@ namespace aura
    //}
 
 
-   void application::prepare_form(id id, ::form_document* pdocument)
+   void application::prepare_form(atom atom, ::form_document* pdocument)
    {
 
 
@@ -8565,10 +8568,10 @@ namespace aura
    }
 
 
-   ::type application::control_type_from_id(const ::id& id, ::user::enum_control_type& econtroltype)
+   ::type application::control_type_from_id(const ::atom& atom, ::user::enum_control_type& econtroltype)
    {
 
-      string str(id);
+      string str(atom);
 
       if (str.begins_ci("edit_"))
       {
@@ -8579,7 +8582,7 @@ namespace aura
 
       }
 
-      return ::aura::application::control_type_from_id(id, econtroltype);
+      return ::aura::application::control_type_from_id(atom, econtroltype);
 
    }
 
@@ -8720,14 +8723,14 @@ namespace aura
    //   }
 
 
-      void application::handle(::subject * psubject, ::context * pcontext)
+      void application::handle(::topic * ptopic, ::context * pcontext)
       {
 
-         //::aqua::application::handle(psubject, pcontext);
+         //::aqua::application::handle(ptopic, pcontext);
 
-         //::user::form_callback::handle(psubject, pcontext);
+         //::user::form_callback::handle(ptopic, pcontext);
 
-         if(psubject->m_id == id_app_activated)
+         if(ptopic->m_atom == id_app_activated)
          {
             
             if(m_puserinteractionMain)
@@ -8739,12 +8742,13 @@ namespace aura
             }
             
          }
-         if (psubject->m_id == ::e_subject_initialize_control)
+
+         if (ptopic->m_atom == ::id_initialize_control)
          {
 
-            auto puserinteraction = psubject->m_puserelement->cast<::user::interaction>();
+            auto puserinteraction = ptopic->get_extended_topic()->m_puserelement->cast<::user::interaction>();
 
-            if (puserinteraction->m_id == __id(user_auto_start_checkbox))
+            if (puserinteraction->m_atom == __id(user_auto_start_checkbox))
             {
 
                try
@@ -8779,13 +8783,13 @@ namespace aura
             }
 
          }
-         else if (psubject->m_id == ::e_subject_set_check)
+         else if (ptopic->m_atom == ::id_set_check)
          {
 
-            auto puserinteraction = psubject->user_interaction();
+            auto puserinteraction = ptopic->get_extended_topic()->user_interaction();
 
-            if (puserinteraction->m_id == __id(user_auto_start_checkbox)
-               && psubject->m_actioncontext.is_user_source())
+            if (puserinteraction->m_atom == __id(user_auto_start_checkbox)
+               && ptopic->get_extended_topic()->m_actioncontext.is_user_source())
             {
 
                try
@@ -8804,7 +8808,7 @@ namespace aura
 
                   }
 
-                  psubject->m_bRet = true;
+                  ptopic->get_extended_topic()->m_bRet = true;
 
                   return;
 
@@ -8913,7 +8917,7 @@ namespace aura
       //case MSGF_DIALOGBOX:    // handles message boxes as well.
       //   //pMainWnd = __get_main_window();
       //   if (code == MSGF_DIALOGBOX && m_puiActive != nullptr &&
-      //      pusermessage->m_id >= e_message_key_first && pusermessage->m_id <= e_message_key_last)
+      //      pusermessage->m_atom >= e_message_key_first && pusermessage->m_atom <= e_message_key_last)
       //   {
       //   }
       //   break;
@@ -9167,10 +9171,10 @@ namespace aura
    }
 
 
-   //__pointer(::user::document) application::defer_create_view(string strView, ::user::interaction* puiParent, ewindowflag ewindowflag, const ::id& id)
+   //__pointer(::user::document) application::defer_create_view(string strImpact, ::user::interaction* puiParent, ewindowflag ewindowflag, const ::atom& atom)
    //{
 
-   //   auto pcontroller = ::aura::application::defer_create_view(strView, puiParent, ewindowflag, id);
+   //   auto pcontroller = ::aura::application::defer_create_view(strImpact, puiParent, ewindowflag, atom);
 
    //   if (pcontroller)
    //   {
@@ -9325,7 +9329,7 @@ namespace aura
 
    //      ::message::command command;
 
-   //      command.m_id = ::id(pszCommand);
+   //      command.m_atom = ::atom(pszCommand);
 
    //      __channel(m_puserinteractionMain)->route_command_message(&command);
 

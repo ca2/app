@@ -9,7 +9,7 @@
 #include "core/user/userex/_userex.h"
 #endif
 
-#include "aura/node/operating_system/windows_common/graphics.h"
+#include "aura/operating_system/windows_common/graphics.h"
 
 
 //#if defined(__APPLE__)
@@ -367,7 +367,7 @@ namespace userex
 
       m_bCompact = false;
 
-      m_idView = COLORSEL_IMPACT;
+      m_atomImpact = COLORSEL_IMPACT;
 
       m_bLButtonPressed = false;
 
@@ -381,10 +381,10 @@ namespace userex
    }
 
 
-   void color_view::assert_valid() const
+   void color_view::assert_ok() const
    {
 
-      ::user::impact::assert_valid();
+      ::user::impact::assert_ok();
 
    }
 
@@ -417,18 +417,18 @@ namespace userex
    }
 
 
-   void color_view::handle(::subject * psubject, ::context * pcontext)
+   void color_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::user::impact::handle(psubject, pcontext);
+      ::user::impact::handle(ptopic, pcontext);
 
    }
 
 
-   //void color_view::handle(::subject * psubject, ::context * pcontext)
+   //void color_view::handle(::topic * ptopic, ::context * pcontext)
    //{
 
-   //   ::user::impact::handle(psubject, pcontext);
+   //   ::user::impact::handle(ptopic, pcontext);
 
    //}
 
@@ -450,7 +450,7 @@ namespace userex
 
 
 
-      //get_parent_frame()->m_id += ".color_sel";
+      //get_parent_frame()->m_atom += ".color_sel";
 
       pmessage->previous();
 
@@ -565,15 +565,13 @@ namespace userex
          if(has_handler())
          {
 
-            ::subject subject;
+            ::extended_topic extendedtopic(::id_after_change_cur_hover);
 
-            subject.m_id = ::e_subject_after_change_cur_hover;
+            extendedtopic.m_puserelement = this;
 
-            subject.m_puserelement = this;
+            extendedtopic.m_actioncontext = ::e_source_user;
 
-            subject.m_actioncontext = ::e_source_user;
-
-            route(&subject);
+            route(&extendedtopic);
                
          }
 
@@ -592,15 +590,13 @@ namespace userex
          if(has_handler())
          {
 
-            ::subject subject;
+            ::extended_topic extendedtopic(::id_after_change_cur_hover);
 
-            subject.m_id = ::e_subject_after_change_cur_hover;
+            extendedtopic.m_puserelement = this;
 
-            subject.m_puserelement = this;
+            extendedtopic.m_actioncontext = ::e_source_user;
 
-            subject.m_actioncontext = ::e_source_user;
-
-            route(&subject);
+            route(&extendedtopic);
                
          }
 
@@ -881,15 +877,13 @@ namespace userex
       if(has_handler())
       {
 
-         ::subject subject;
+         ::extended_topic extendedtopic(::id_after_change_cur_sel);
 
-         subject.m_id = ::e_subject_after_change_cur_sel;
+         extendedtopic.m_puserelement = this;
 
-         subject.m_puserelement = this;
+         extendedtopic.m_actioncontext = ::e_source_user;
 
-         subject.m_actioncontext = ::e_source_user;
-
-         route(&subject);
+         route(&extendedtopic);
             
       }
 

@@ -9,7 +9,7 @@
 interprocess_intercommunication::interprocess_intercommunication() 
 {
 
-   m_id = "::interprocess_intercommunication";
+   m_atom = "::interprocess_intercommunication";
 
    defer_create_mutex();
 
@@ -40,11 +40,11 @@ void interprocess_intercommunication::initialize_interprocess_communication(::ob
 
 #ifdef _UWP
 
-   m_idApp = strApp;
+   m_atomApp = strApp;
 
 #else
 
-   m_idApp = (::i64) ::get_current_process_id();
+   m_atomApp = (::i64) ::get_current_process_id();
 
 #endif
 
@@ -83,7 +83,7 @@ void interprocess_intercommunication::initialize_interprocess_communication(::ob
    m_prx->create(strKey);
    //{
 
-   //   __throw(error_resource);
+   //   throw ::exception(error_resource);
 
    //}
 
@@ -147,7 +147,7 @@ void interprocess_intercommunication::start(const ::string & strApp)
    
    plauncher->initialize_app_launcher(this, process_platform_dir_name2(), strApp);
 
-   id idPid = -1;
+   atom idPid = -1;
 
    {
 
@@ -156,7 +156,7 @@ void interprocess_intercommunication::start(const ::string & strApp)
       if(ida.is_empty())
       {
 
-         branch_task(plauncher);
+         branch_element(plauncher);
 
          int iStep = 0;
 
@@ -210,7 +210,7 @@ started:
 }
 
 
-void interprocess_intercommunication::connect(const ::string & strApp, const ::id & idPid)
+void interprocess_intercommunication::connect(const ::string & strApp, const ::atom & idPid)
 {
 
    string strKey = strApp + ":" + __string(idPid);
@@ -234,7 +234,7 @@ void interprocess_intercommunication::connect(const ::string & strApp, const ::i
 }
 
 
-::interprocess_communication::tx & interprocess_intercommunication::tx(const ::string & strApp, const ::id & iPid)
+::interprocess_communication::tx & interprocess_intercommunication::tx(const ::string & strApp, const ::atom & iPid)
 {
 
    string strKey = strApp + ":" + __string(iPid);
@@ -258,7 +258,7 @@ void interprocess_intercommunication::connect(const ::string & strApp, const ::i
 }
 
 
-string interprocess_intercommunication::key(const string &strApp, const ::id & idPid)
+string interprocess_intercommunication::key(const string &strApp, const ::atom & idPid)
 {
 
    string strKey;
@@ -477,7 +477,7 @@ void interprocess_intercommunication::on_interprocess_receive(::interprocess_com
 }
 
 
-__pointer(interprocess_task) interprocess_intercommunication::create_task(interprocess_call * pcall, const ::id & idPid)
+__pointer(interprocess_task) interprocess_intercommunication::create_task(interprocess_call * pcall, const ::atom & idPid)
 {
 
    auto pobjectTask = __new(interprocess_task(pcall, idPid, m_iTaskSeed++));
@@ -571,7 +571,7 @@ void interprocess_intercommunication::on_interprocess_call(::payload & payload, 
 }
 
 
-void interprocess_intercommunication::on_new_instance(const ::string & strModule, const ::id & idPid)
+void interprocess_intercommunication::on_new_instance(const ::string & strModule, const ::atom & idPid)
 {
 
    defer_add_module(strModule, idPid);
@@ -693,7 +693,7 @@ repeat:
 }
 
 
-void interprocess_intercommunication::defer_add_module(const ::string & strModule, const ::id & idPid)
+void interprocess_intercommunication::defer_add_module(const ::string & strModule, const ::atom & idPid)
 {
    
    auto psystem = m_psystem;

@@ -5,7 +5,7 @@
 
 //
 //
-//inline id::id(const char * psz)
+//inline atom::atom(const char * psz)
 //{
 //
 //   m_all = {};
@@ -13,30 +13,30 @@
 //   if(psz != nullptr)
 //   {
 //
-//      operator = (::apex::system::id(psz));
+//      operator = (::apex::system::atom(psz));
 //
 //   }
 //
 //}
 //
 //
-//inline id::id(const ::string & str)
+//inline atom::atom(const ::string & str)
 //{
 //
 //   m_all = {};
 //
-//   operator = (::apex::system::id(str.c_str()));
+//   operator = (::apex::system::atom(str.c_str()));
 //
 //}
 //
 //
-//inline id::id(const type & type) :
-//   id((const string &) type.to_string())
+//inline atom::atom(const type & type) :
+//   atom((const string &) type.to_string())
 //{
 //
 //}
 //
-//inline id & id::operator = (::i32 i)
+//inline atom & atom::operator = (::i32 i)
 //{
 //   
 //   m_etype     = type_integer;
@@ -48,7 +48,7 @@
 //}
 //
 //
-//inline id & id::operator = (::i64 i)
+//inline atom & atom::operator = (::i64 i)
 //{
 //
 //   m_etype     = type_integer;
@@ -60,7 +60,7 @@
 //}
 //
 //
-//inline id & id::operator = (::u64 u)
+//inline atom & atom::operator = (::u64 u)
 //{
 //   
 //   m_etype     = type_integer;
@@ -72,7 +72,7 @@
 //}
 //
 //
-//inline id & id::operator = (const ::enum_property & eproperty)
+//inline atom & atom::operator = (const ::enum_property & eproperty)
 //{
 //
 //   m_etype = type_property;
@@ -84,7 +84,7 @@
 //}
 //
 //
-//inline id & id::operator = (const ::enum_factory & efactory)
+//inline atom & atom::operator = (const ::enum_factory & efactory)
 //{
 //
 //   m_etype = type_factory;
@@ -96,7 +96,7 @@
 //}
 //
 //
-//inline id& id::operator = (const ::enum_task_tool & ethreadtool)
+//inline atom& atom::operator = (const ::enum_task_tool & ethreadtool)
 //{
 //
 //   m_etype = type_thread_tool;

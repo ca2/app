@@ -7,8 +7,8 @@
 //#include "acme/primitive/primitive/create.h"
 //#include "acme/primitive/primitive/edit.h"
 #include "acme/primitive/primitive/factory.h"
-#include "acme/primitive/primitive/id.h"
-#include "acme/primitive/primitive/id_space.h"
+#include "acme/primitive/primitive/atom.h"
+#include "acme/primitive/primitive/atom_space.h"
 #include "acme/primitive/primitive/interlocked.h"
 #include "acme/primitive/primitive/interlocked_long_pulse.h"
 //#include "acme/primitive/primitive/job.h"
@@ -22,7 +22,7 @@
 #include "acme/primitive/primitive/property_set_papaya.h"
 
 
-#include "acme/user/_const_key.h"
+#include "acme/user/user/_const_key.h"
 
 
 //#include "acme/primitive/primitive/object.h"
@@ -65,10 +65,10 @@ void release(TYPE *& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 //   htask_t* phthread = nullptr);
 
 
-//CLASS_DECL_ACME void launch_action(action* psubject);
+//CLASS_DECL_ACME void launch_action(action* ptopic);
 
 
-//#include "acme/primitive/subject/_.h"
+//#include "acme/primitive/topic/_.h"
 
 
 // class CLASS_DECL_ACME parents :

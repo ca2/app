@@ -18,7 +18,7 @@ namespace user
       virtual ~step_slider();
 
       
-      //bool create_window(::user::interaction * puserinteractionParent, id id);
+      //bool create_window(::user::interaction * puserinteractionParent, atom atom);
 
 
       void install_message_routing(::channel * pchannel) override;

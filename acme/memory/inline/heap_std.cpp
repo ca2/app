@@ -378,7 +378,7 @@ void * _memory_reallocate_debug(void * pmemory, memsize size, i32 nBlockUse, con
    else
    {
 
-      __throw(error_exception);
+      throw ::exception(error_exception);
 
    }
 
@@ -404,7 +404,7 @@ void * _memory_reallocate_debug(void * pmemory, memsize size, i32 nBlockUse, con
    else
    {
 
-      __throw(error_exception);
+      throw ::exception(error_exception);
 
    }
 

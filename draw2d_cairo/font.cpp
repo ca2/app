@@ -107,7 +107,7 @@ namespace draw2d_cairo
 
 #endif
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -147,7 +147,7 @@ namespace draw2d_cairo
 
       ::write_text::font::destroy();
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -160,7 +160,7 @@ namespace draw2d_cairo
    }
 
 
-   bool font::create(::draw2d::graphics * pgraphics, i8 iCreate)
+   void font::create(::draw2d::graphics * pgraphics, i8 iCreate)
    {
 
 #if defined(USE_PANGO)
@@ -172,7 +172,9 @@ namespace draw2d_cairo
 
          WARNING("Invalid size for font: pango_font_description_set_size: assertion 'size >= 0' failed");
 
-         return false;
+         //return false;
+
+         throw_status(error_wrong_state);
 
       }
 
@@ -250,7 +252,7 @@ namespace draw2d_cairo
 
 #endif
 
-      return m_osdata[0];
+      //return m_osdata[0];
 
    }
 

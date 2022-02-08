@@ -390,17 +390,17 @@ namespace sqlite
 //
 //               output_debug_string(pszErrorMessage);
 //            }
-//            //__throw(::database::exception(get_error_message()));
+//            //throw ::exception(::database::exception(get_error_message()));
 //         }
 ////         if (setErr(sqlite3_exec((sqlite3 *)get_handle(), "PRAGMA synchronous=OFF", nullptr, nullptr, &err)) != SQLITE_OK)
 ////         {
 ////            fprintf(stderr, "Error: %s", err);
-////            __throw(::database::exception(get_error_message()));
+////            throw ::exception(::database::exception(get_error_message()));
 ////         }
          //if (setErr(sqlite3_exec((sqlite3 *)get_handle(), "PRAGMA temp_store=MEMORY", nullptr, nullptr, &err)) != SQLITE_OK)
          //{
          //   FORMATTED_TRACE("Error: %s", err);
-         //   //__throw(::database::exception(get_error_message()));
+         //   //throw ::exception(::database::exception(get_error_message()));
          //}
 
          m_bActive = true;
@@ -494,7 +494,7 @@ namespace sqlite
 
          auto pcontext = get_context();
 
-         pcontext->m_papexcontext->file().del(m_strName);
+         pcontext->m_papexcontext->file().erase(m_strName);
 
       }
       catch (...)
@@ -521,7 +521,7 @@ namespace sqlite
 
    //   }
 
-   //   i32 id;
+   //   i32 atom;
 
    //   database::result_set res;
 
@@ -539,9 +539,9 @@ namespace sqlite
    //   if (res.m_records.get_size() == 0)
    //   {
 
-   //      id = 1;
+   //      atom = 1;
 
-   //      sprintf(sqlcmd,"insert into %s (nextid,seq_name) values (%d,'%s')",sequence_table.c_str(),id,sname);
+   //      sprintf(sqlcmd,"insert into %s (nextid,seq_name) values (%d,'%s')",sequence_table.c_str(),atom,sname);
 
    //      if((last_err = sqlite3_exec((sqlite3 *)m_psqlite,sqlcmd,nullptr,nullptr,nullptr)) != SQLITE_OK)
    //      {
@@ -550,18 +550,18 @@ namespace sqlite
 
    //      }
 
-   //      return id;
+   //      return atom;
    //   }
    //   else
    //   {
 
-   //      id = res.m_records[0][0].i32() + 1;
+   //      atom = res.m_records[0][0].i32() + 1;
 
-   //      sprintf(sqlcmd,"update %s dataset nextid=%d where seq_name = '%s'",sequence_table.c_str(),id,sname);
+   //      sprintf(sqlcmd,"update %s dataset nextid=%d where seq_name = '%s'",sequence_table.c_str(),atom,sname);
 
    //      if ((last_err = sqlite3_exec((sqlite3 *) m_psqlite,sqlcmd,nullptr,nullptr,nullptr)) != SQLITE_OK) return DB_UNEXPECTED_RESULT;
 
-   //      return id;
+   //      return atom;
 
    //   }
 
@@ -613,10 +613,15 @@ namespace sqlite
 
    string database::escape(const ::string & psz)
    {
+      
       string str(psz);
-      str.replace("\'", "\'\'");
-      str.replace("\"", "\"\"");
+      
+      str.replace_with("\'\'", "\'");
+
+      str.replace_with("\"\"", "\"");
+
       return str;
+
    }
 
 

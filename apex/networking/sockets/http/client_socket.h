@@ -72,7 +72,7 @@ namespace sockets
       void Url(const string & url_in,string & host,port_t& port);
 
       void OnFirst() override;
-      void OnHeader(id,const string &) override;
+      void OnHeader(atom,const string &) override;
       void OnHeaderComplete() override;
       void OnData(const char *,memsize) override;
       void OnDelete() override;

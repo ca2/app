@@ -118,7 +118,7 @@ BOOL InitInstance(::helloaura::render * prender, HINSTANCE hInstance, int nCmdSh
 //  e_message_destroy  - post a quit message and return
 //
 //
-LRESULT CALLBACK WndProc(HWND hWnd, const ::id & id, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK WndProc(HWND hWnd, const ::atom & atom, WPARAM wParam, LPARAM lParam)
 {
 
    ::helloaura::render * prender;
@@ -230,7 +230,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, const ::id & id, WPARAM wParam, LPARAM lPara
 }
 
 // Message handler for about box.
-INT_PTR CALLBACK About(HWND hDlg, const ::id & id, WPARAM wParam, LPARAM lParam)
+INT_PTR CALLBACK About(HWND hDlg, const ::atom & atom, WPARAM wParam, LPARAM lParam)
 {
    __UNREFERENCED_PARAMETER(lParam);
    switch (message)

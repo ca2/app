@@ -59,7 +59,7 @@ LARGE_INTEGER g_largeintegerFrequency;
 
 //#ifdef WINDOWS_DESKTOP
 //
-//#include "acme/node/operating_system/windows/callstack.h"
+//#include "acme/operating_system/windows/callstack.h"
 //
 //#endif
 
@@ -123,7 +123,7 @@ void finalize_global_message_queue();
 
 
 #ifdef RASPBIAN
-#define PLATFORM_NAMESPACE linux
+#define OPERATING_SYSTEM_NAMESPACE linux
 #endif
 
 
@@ -235,7 +235,7 @@ namespace acme
    array < matter* >* g_paAura;
 
 
-   //::map < ::id, const ::id&, ::id, const ::id& >* g_pmapRTL;
+   //::map < ::atom, const ::atom&, ::atom, const ::atom& >* g_pmapRTL;
 
    //plex_heap_alloc_array* g_pheap;
 
@@ -557,7 +557,7 @@ namespace acme
 
       //xxdebug_box("acme.dll base_static_start (0)", "box", e_message_box_ok);
 
-      //g_pengine = new ::PLATFORM_NAMESPACE::exception_engine();
+      //g_pengine = new ::OPERATING_SYSTEM_NAMESPACE::exception_engine();
 
       g_pmutexGlobals = new ::mutex();
 
@@ -581,7 +581,7 @@ namespace acme
 
       ::mathematics::initialize_mathematics();
 
-      ::id_space::s_pidspace = new id_space();
+      ::atom_space::s_pidspace = new atom_space();
 
 //      ::acme::idpool::init();
 
@@ -952,7 +952,7 @@ namespace acme
 
       finalize_global_message_queue();
 
-      ::acme::del(::id_space::s_pidspace);
+      ::acme::del(::atom_space::s_pidspace);
 
       ::mathematics::finalize_mathematics();
 

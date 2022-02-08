@@ -195,7 +195,12 @@ void image_list::color_blend(image_list* pimagelistSource, const ::color::color&
 
    copy_from(pimagelistSource);
 
-   m_pimage->g()->fill_rectangle(m_pimage->rectangle(), color & opacity);
+   if (::is_ok(m_pimage.get()))
+   {
+
+      m_pimage->g()->fill_rectangle(m_pimage->rectangle(), color & opacity);
+
+   }
 
 }
 

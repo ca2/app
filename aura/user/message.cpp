@@ -17,14 +17,14 @@ namespace user
    }
 
 
-   //user::user(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam)
+   //user::user(oswindow oswindow, ::layered * playeredUserPrimitive, const ::atom & atom, wparam wparam, ::lparam lparam)
    //{
 
    //   m_uiMessageFlags = 0;
    //   m_lresult = 0;
    //   m_bDestroyed = false;
    //   m_bDoSystemDefault = true;
-   //   set(oswindow, playeredUserPrimitive, id, wparam, lparam);
+   //   set(oswindow, playeredUserPrimitive, atom, wparam, lparam);
 
 
    //   //papplication->tellme_destroyed(puserinteraction, &m_bDestroyed);
@@ -37,7 +37,7 @@ namespace user
 
    //   m_uiMessageFlags = base.m_uiMessageFlags;
    //   m_pwindow = base.m_pwindow;
-   //   m_id = base.m_id;
+   //   m_atom = base.m_atom;
    //   m_wparam = base.m_wparam;
    //   m_lparam = base.m_lparam;
    //   m_bConditional = base.m_bConditional;
@@ -75,12 +75,12 @@ namespace user
    }
 
 
-   void message::set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam)
+   void message::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
    {
 
       m_pwindow = pwindow;
 
-      ::message::message::set(oswindow, pwindow, id, wparam, lparam);
+      ::message::message::set(oswindow, pwindow, atom, wparam, lparam);
 
    }
 
@@ -113,10 +113,10 @@ namespace user
 
    //}
 
-   //void timer::set(::user::primitive * puserinteraction,const ::id & id,wparam wparam,::lparam lparam)
+   //void timer::set(::user::primitive * puserinteraction,const ::atom & atom,wparam wparam,::lparam lparam)
    //{
 
-   //   base::set(puserinteraction,id,wparam,lparam);
+   //   base::set(puserinteraction,atom,wparam,lparam);
 
    //   m_uEvent = static_cast<::u32>(wparam);
 

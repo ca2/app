@@ -121,7 +121,7 @@ namespace simpledb
    }
 
    /*
-   bool socket::http_filter_response_header(id key, string & strValue)
+   bool socket::http_filter_response_header(atom key, string & strValue)
    {
       if(strKey.compare_ci("Location") == 0)
       {

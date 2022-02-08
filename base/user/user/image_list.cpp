@@ -57,10 +57,10 @@ namespace user
    }
 
 
-   void image_list::assert_valid() const
+   void image_list::assert_ok() const
    {
 
-      ::user::box::assert_valid();
+      ::user::box::assert_ok();
 
    }
 
@@ -155,13 +155,13 @@ namespace user
 
       }
 
-      ::subject subject(e_subject_image_list_action);
+      ::extended_topic extendedtopic(id_image_list_action);
 
-      subject.m_item      = item;
+      extendedtopic.m_item = item;
 
-      subject.m_puserelement      = this;
+      extendedtopic.m_puserelement = this;
 
-      route(&subject);
+      route(&extendedtopic);
 
       _001SetSelection(iaSel, ::e_source_user);
 
@@ -665,10 +665,10 @@ namespace user
    }
 
 
-   void image_list_view::assert_valid() const
+   void image_list_view::assert_ok() const
    {
 
-      ::user::image_list::assert_valid();
+      ::user::image_list::assert_ok();
 
    }
 
@@ -709,18 +709,18 @@ namespace user
    }
 
 
-   void image_list_view::handle(::subject * psubject, ::context * pcontext)
+   void image_list_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::user::impact::handle(psubject, pcontext);
+      ::user::impact::handle(ptopic, pcontext);
 
-      if (psubject->id() == id_after_change_text)
+      if (ptopic->m_atom == id_after_change_text)
       {
 
-         __throw(todo, "core");
+         throw ::exception(todo, "core");
          //auto * peditview = _001TypedWindow < ::userex::top_edit_view >();
 
-         //if (peditview != nullptr && psubject->user_interaction() == peditview)
+         //if (peditview != nullptr && ptopic->get_extended_topic()->user_interaction() == peditview)
          //{
 
          //   string strText;
@@ -783,17 +783,15 @@ namespace user
 
          m_iaSel = ia;
 
-         ::subject subject;
+         ::extended_topic extendedtopic(::id_after_change_cur_sel);
 
-         subject.m_puserelement = this;
+         extendedtopic.m_puserelement = this;
 
-         //subject.m_id = m_id;
+         extendedtopic.m_item = current_item();
 
-         subject.m_item = current_item();
+         extendedtopic.m_atom = ::id_after_change_cur_sel;
 
-         subject.m_id = ::e_subject_after_change_cur_sel;
-
-         route(&subject);
+         route(&extendedtopic);
 
       }
 

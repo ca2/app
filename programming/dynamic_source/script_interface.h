@@ -68,9 +68,9 @@ namespace dynamic_source
       script_manager* manager();
 
 
-      virtual void set_session_payload(const ::id & id, const ::payload & payload);
-      virtual ::payload get_session_payload(const ::id & id);
-      virtual ::id session_id(const ::id & id = nullptr);
+      virtual void set_session_payload(const ::atom & atom, const ::payload & payload);
+      virtual ::payload get_session_payload(const ::atom & atom);
+      virtual ::atom session_id(const ::atom & atom = nullptr);
 
       virtual string get_auth_email();
       virtual void set_auth_email(const string & strEmail);
@@ -87,25 +87,25 @@ namespace dynamic_source
 
 
       virtual void print_r(::payload payload);
-      property& request(const ::id & id);
+      property& request(const ::atom & atom);
       property_set& geta();
       property_set& posta();
       http::cookies& cookies();
       property_set& requesta();
 
-      property& inheader(const ::id & id);
-      property& outheader(const ::id & id);
+      property& inheader(const ::atom & atom);
+      property& outheader(const ::atom & atom);
 
-      property& inattr(const ::id & id);
-      property& outattr(const ::id & id);
+      property& inattr(const ::atom & atom);
+      property& outattr(const ::atom & atom);
 
-      virtual string& gstr(const ::id & id);
-      virtual property& gprop(const ::id & id);
+      virtual string& gstr(const ::atom & atom);
+      virtual property& gprop(const ::atom & atom);
 
-      inline property& get(const ::id & id);
-      inline property& post(const ::id & id);
-      inline http::cookie& get_cookie(const ::id & id);
-      inline http::cookie& set_cookie(const ::id & id);
+      inline property& get(const ::atom & atom);
+      inline property& post(const ::atom & atom);
+      inline http::cookie& get_cookie(const ::atom & atom);
+      inline http::cookie& set_cookie(const ::atom & atom);
 
       void uri_set_var(string& strUrl, const ::string & pszUrl, const ::string & pszKey, ::payload payload);
       void uri_set_param(string& strUrl, const ::string & pszUrl, const ::string & pszKey, const string& strParam);

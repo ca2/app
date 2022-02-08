@@ -3,8 +3,8 @@
 
 
 
-#include "acme/user/check.h"
-#include "acme/user/text.h"
+#include "acme/user/user/check.h"
+#include "acme/user/user/text.h"
 
 
 namespace message
@@ -31,7 +31,7 @@ namespace message
 
 
       __pointer(::channel)                        m_pcommandtargetSource;
-      id                                           m_idControl;     // menu item or other index
+      atom                                           m_atomControl;     // menu item or other index
       index                                        m_iIndex;
       ::count                                      m_iCount;        // last + 1 for iterating m_iIndex
       __pointer_array(::channel)                   m_commandtargetptraHandle;
@@ -56,13 +56,13 @@ namespace message
 
 
       command(::object * pobject = nullptr);
-      command(const ::id & id);
+      command(const ::atom & atom);
 
 
       void common_construct();
 
-      bool is_command()const { return m_id.is_command(); }
-      bool is_command_probe() const { return m_id.is_command_probe(); }
+      bool is_command()const { return m_atom.is_command(); }
+      bool is_command_probe() const { return m_atom.is_command_probe(); }
 
       void handle(::channel * pcommandtarget);
       bool is_handled(::channel * pcommandtarget);

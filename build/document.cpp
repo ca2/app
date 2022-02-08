@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "acme/constant/id.h"
+#include "acme/id.h"
 #include "acme/exception/parsing.h"
 
 
@@ -24,10 +24,10 @@ namespace app_core_build
 
 
 
-   void document::assert_valid() const
+   void document::assert_ok() const
    {
 
-      ::user::document::assert_valid();
+      ::user::document::assert_ok();
 
    }
 
@@ -61,7 +61,7 @@ namespace app_core_build
    bool document::on_open_document(const ::payload & payloadFile)
    {
 
-      impact * pview = get_typed_view < impact >();
+      impact * pview = get_type_impact < impact >();
 
       if(pview == nullptr)
       {

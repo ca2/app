@@ -95,7 +95,7 @@ namespace xml
 
       
       node *                  get_child( const char * name);
-      node *                  get_child_with_attribute(const char * pcszName, const ::id & idAttribute, const ::payload & varAttribute, index iStart = 0);
+      node *                  get_child_with_attribute(const char * pcszName, const ::atom & idAttribute, const ::payload & varAttribute, index iStart = 0);
 
       string                  get_simple_path() const;
       index_array             get_indexed_path() const;
@@ -151,17 +151,17 @@ namespace xml
 
       bool contains(const ::property_set & set) const { return m_set.contains(set); }
       
-      ::property *            find_attribute(const ::id & id) { return m_set.find_property(id); }
+      ::property *            find_attribute(const ::atom & atom) { return m_set.find_property(atom); }
 
       template < typename TYPE >
-      bool find_attribute(const ::id & id, TYPE & t) { return m_set.find(id, t); }
+      bool find_attribute(const ::atom & atom, TYPE & t) { return m_set.find(atom, t); }
 
-      ::property              attribute(const ::id & id) { return m_set[id]; }
+      ::property              attribute(const ::atom & atom) { return m_set[atom]; }
       ::property *            attribute_at(index i) { return m_set.element_at(i); }
-      ::property *            set_attribute(const property & property) { return set_attribute(property.m_id, property); }
-      ::property *            set_attribute(const ::id & id, const ::payload & payload = ::e_type_new);
-      bool                    erase_attribute(::property * pproperty) { return erase_attribute(pproperty->m_id); }
-      bool                    erase_attribute(const ::id & id) { return m_set.erase_by_name(id) > 0; }
+      ::property *            set_attribute(const property & property) { return set_attribute(property.m_atom, property); }
+      ::property *            set_attribute(const ::atom & atom, const ::payload & payload = ::e_type_new);
+      bool                    erase_attribute(::property * pproperty) { return erase_attribute(pproperty->m_atom); }
+      bool                    erase_attribute(const ::atom & atom) { return m_set.erase_by_name(atom) > 0; }
 
 
       bool from_row_column_v2(const string2a & str2a);

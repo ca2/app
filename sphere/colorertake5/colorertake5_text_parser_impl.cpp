@@ -540,7 +540,7 @@ namespace colorertake5
             clearLine = gy;
             str = lineSource->getLine(gy);
             /*if (str == nullptr){
-               __throw(exception(string("nullptr string passed into the parser: ")+__string(gy)));
+               throw ::exception(exception(string("nullptr string passed into the parser: ")+__string(gy)));
                gy = gy2;
                break;
             };*/
@@ -583,8 +583,8 @@ namespace colorertake5
             if (picked != nullptr && gx+11 <= matchend.s[0] && ((const ::string &)str)[gx] == 'C')
             {
                i32 ci;
-               static char id[] = "fnq%Qtrjhg";
-               for(ci = 0; ci < 10; ci++) if (((const ::string &)str)[gx+1+ci] != id[ci]-5) break;
+               static char atom[] = "fnq%Qtrjhg";
+               for(ci = 0; ci < 10; ci++) if (((const ::string &)str)[gx+1+ci] != atom[ci]-5) break;
                if (ci == 10)
                {
                   addRegion(gy, gx, gx+11, picked);
@@ -626,7 +626,7 @@ namespace colorertake5
 /* ***** BEGIN LICENSE BLOCK *****
  * Version: MPL 1.1/GPL 2.0/LGPL 2.1
  *
- * The contents of this file are subject to the Mozilla Public License Version
+ * The contents of this file are topic to the Mozilla Public License Version
  * 1.1 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
  * http://www.mozilla.org/MPL/

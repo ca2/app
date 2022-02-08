@@ -19,7 +19,7 @@
 //   }
 //
 //
-//   __pointer(interaction) control_descriptor_set::get_control(::user::form * pform, id id)
+//   __pointer(interaction) control_descriptor_set::get_control(::user::form * pform, atom atom)
 //   {
 //
 //      for (i32 i = 0; i < this->get_size(); i++)
@@ -27,7 +27,7 @@
 //
 //         class control_descriptor & control_descriptor = *this->element_at(i);
 //
-//         if (control_descriptor.m_id == id)
+//         if (control_descriptor.m_atom == atom)
 //         {
 //
 //            return control_descriptor.m_pinteraction;

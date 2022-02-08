@@ -68,7 +68,7 @@
 //      else
 //      {
 //
-//         __throw(error_not_supported);
+//         throw ::exception(error_not_supported);
 //
 //      }
 //#else

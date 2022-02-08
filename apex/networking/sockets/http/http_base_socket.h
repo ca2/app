@@ -44,7 +44,7 @@ namespace sockets
 
 
       virtual void OnFirst();
-      virtual void OnHeader(id idKey, const string & value);
+      virtual void OnHeader(atom idKey, const string & value);
       virtual void OnHeaderComplete();
       virtual void OnData(const char *, memsize);
       virtual void OnDataComplete();

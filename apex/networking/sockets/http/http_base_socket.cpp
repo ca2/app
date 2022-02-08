@@ -52,7 +52,7 @@ namespace sockets
    }
 
 
-   void http_base_socket::OnHeader(id key, const string & value)
+   void http_base_socket::OnHeader(atom key, const string & value)
    {
 
       http_socket::OnHeader(key, value);

@@ -304,7 +304,7 @@ filesize memory_file::get_position() const
    if (!is_valid())
    {
 
-      __throw(error_io, "memory_file::get_position");
+      throw ::exception(error_io, "memory_file::get_position");
 
    }
 
@@ -470,10 +470,10 @@ string memory_file::get_string() const
 }
 
 
-void memory_file::assert_valid() const
+void memory_file::assert_ok() const
 {
 
-   file::assert_valid();
+   file::assert_ok();
 
 }
 
@@ -550,7 +550,7 @@ void memory_file::write_file(::file::file* pfileIn, memsize uiBufSize)
 
       auto size = pfileIn->get_size();
 
-      if (increase_internal_data_size(size))
+      if (increase_internal_data_size((memsize) size))
       {
 
          auto read = pfileIn->read((byte *) get_internal_data() + get_position(), size);

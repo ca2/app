@@ -66,7 +66,7 @@ namespace simpledb
    void manager::message_queue_message_handler(::message::message * pmessage)
    {
       __pointer(::message::database) pusermessage(pmessage);
-      if(pusermessage->m_id == WM_APP + 13)
+      if(pusermessage->m_atom == WM_APP + 13)
       {
          //if(wparam == 0)
          // ((script *) lparam)->Load(false);
@@ -74,7 +74,7 @@ namespace simpledb
          // ((script *) lparam)->Unload(false);
          pusermessage->m_bRet = true;
       }
-      else if(pusermessage->m_id == WM_APP + 14)
+      else if(pusermessage->m_atom == WM_APP + 14)
       {
       }
    }

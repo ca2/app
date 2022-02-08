@@ -85,7 +85,7 @@ namespace user
       bool IsTipEnabled();
       void EnableTip(bool bEnable = true);
       bool HideTip();
-      //virtual bool create(::user::interaction * puserinteraction, const id & id);
+      //virtual bool create(::user::interaction * puserinteraction, const atom & atom);
       bool CalcRect(::draw2d::graphics_pointer & pgraphics, RECTANGLE_I32 * prectangle, const ::rectangle_i32 & lprectToolScreen, const ::string & pcsz);
 
       void ShowTip(i32 iTool, bool bForce = false);

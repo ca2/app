@@ -27,12 +27,12 @@ namespace user
    }
 
 
-   void list_view::handle(::subject * psubject, ::context * pcontext)
+   void list_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      BASE_VIEW::handle(psubject, pcontext);
+      BASE_VIEW::handle(ptopic, pcontext);
 
-      if (psubject->id() == id_initial)
+      if (ptopic->m_atom == id_initial)
       {
 
          _001OnUpdateItemCount();

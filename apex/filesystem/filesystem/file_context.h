@@ -41,7 +41,7 @@ public:
 
    virtual void copy(::payload varTarget, ::payload varSource, bool bFailIfExists = false, e_extract eextract = extract_first);
    virtual void move(const ::file::path & pathNew, const ::file::path & path);
-   virtual void del(const ::file::path & path);
+   virtual void erase(const ::file::path & path);
    virtual ::file::path duplicate(const ::file::path & path);
    virtual ::file::path paste(const ::file::path & pathLocation, const ::file::path & path);
    virtual void rename(const ::file::path & pathNew, const ::file::path & path);
@@ -58,7 +58,7 @@ public:
    virtual void set_status(const ::file::path & path, const ::file::file_status & status);
 
 
-   virtual void replace(const ::file::path & pszContext, const string & pszFind, const string & pszReplace);
+   virtual void replace_with(const ::file::path & pszContext, const string & pszNew, const string & pszOld);
 
 
    virtual bool is_file_or_dir(const ::file::path & path, ::payload * pvarQuery, ::file::enum_type * petype);
@@ -114,18 +114,11 @@ public:
 
       auto preader = get_reader(payloadFile);
 
-      if (!preader)
-      {
-
-         return preader.m_estatus;
-
-      }
-
       binary_stream stream(preader);
 
       stream.defer_set_loading();
 
-      stream.exchange(::id::e_type_null, t);
+      stream.exchange(::atom::e_type_null, t);
 
       //return stream.fail() ? ::error_failed : ::success;
 
@@ -138,18 +131,11 @@ public:
 
       auto pwriter = get_writer(payloadFile);
 
-      if (!pwriter)
-      {
-
-         return pwriter.m_estatus;
-
-      }
-
       binary_stream stream(pwriter);
 
       stream.defer_set_storing();
 
-      stream.exchange(::id::e_type_null, t);
+      stream.exchange(::atom::e_type_null, t);
 
       //return stream.fail() ? ::error_failed : ::success;
 
@@ -163,6 +149,9 @@ public:
    virtual ::payload as_network_payload(const ::payload & payloadFile, bool bNoExceptionOnFail = true);
    virtual string as_string(const ::payload & payloadFile, bool bNoExceptionOnFail = true);
    virtual bool as_memory(const ::payload & payloadFile, memory_base & mem, bool bNoExceptionOnFail = true);
+   virtual memsize read(const ::payload& payloadFile, void * p, filesize position, memsize size, bool bNoExceptionOnFail = true);
+   virtual memsize read_beginning(const ::payload& payloadFile, void * p, memsize size, bool bNoExceptionOnFail = true);
+   virtual memory beginning(const ::payload& payloadFile, memsize size, bool bNoExceptionOnFail = true);
 
 
    inline string_array lines(const ::payload & payloadFile, bool bAddEmpty = true, bool bNoExceptionOnFail = true)
@@ -200,7 +189,7 @@ public:
    virtual ::file::path sys_temp_unique(const ::file::path & lpszName);
 
 
-   virtual ::file::path replace_extension(const ::file::path & pszFile, const char * pszExtension);
+   virtual ::file::path replace_with_extension(const char * pszExtension,  const ::file::path & pszFile);
    virtual void set_extension(::file::path & str, const char * pszExtension);
 
 
@@ -302,16 +291,7 @@ public:
 
       auto writer = get_writer(payloadFile);
 
-      if(!writer)
-      {
-
-         return writer.m_estatus;
-
-      }
-
       *writer << a;
-
-      return writer.m_estatus;
 
    }
 
@@ -336,13 +316,11 @@ public:
 
       *reader >> a;
 
-      return reader.m_estatus;
-
    }
 
 
    template < class ARRAY >
-   bool to_array(ARRAY & a, const ::payload & payloadFile)
+   void to_array(ARRAY & a, const ::payload & payloadFile)
    {
 
       auto pfile = get_reader(payloadFile);

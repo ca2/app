@@ -166,13 +166,13 @@ CLASS_DECL_ACME void mq_clear(itask_t idthread)
 }
 
 
-void mq_post_thread_message(itask_t idthread, const ::id & id, wparam wparam, lparam lparam)
+void mq_post_thread_message(itask_t idthread, const ::atom & atom, wparam wparam, lparam lparam)
 {
 
-   if (id.m_etype != ::id::e_type_message)
+   if (atom.m_etype != ::atom::e_type_message)
    {
 
-      __throw(error_invalid_argument);
+      throw ::exception(error_bad_argument);
 
    }
 
@@ -185,7 +185,7 @@ void mq_post_thread_message(itask_t idthread, const ::id & id, wparam wparam, lp
 
    }
 
-   pmq->post_message(nullptr, id.m_emessage, wparam, lparam);
+   pmq->post_message(nullptr, atom.m_emessage, wparam, lparam);
 
 }
 
@@ -193,7 +193,7 @@ void mq_post_thread_message(itask_t idthread, const ::id & id, wparam wparam, lp
 CLASS_DECL_ACME int_bool mq_peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg)
 {
 
-   auto pmq = ::get_message_queue(::get_current_ithread(), false);
+   auto pmq = ::get_message_queue(::get_current_itask(), false);
 
    if (pmq == nullptr)
    {
@@ -214,26 +214,19 @@ CLASS_DECL_ACME int_bool mq_peek_message(MESSAGE * pMsg, oswindow oswindow, ::u3
 }
 
 
-CLASS_DECL_ACME int_bool mq_get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
+CLASS_DECL_ACME void mq_get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
 {
 
-   auto pmq = ::get_message_queue(::get_current_ithread(), true);
+   auto pmq = ::get_message_queue(::get_current_itask(), true);
 
    if (pmq == nullptr)
    {
 
-      return false;
+      throw_status(error_failed);
 
    }
 
-   if (!pmq->get_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax))
-   {
-
-      return false;
-
-   }
-
-   return true;
+   pmq->get_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax);
 
 }
 

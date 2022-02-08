@@ -10,8 +10,8 @@ public:
    menu_view();
 
 
-   void handle(::subject * psubject, ::context * pcontext) override;
-   //virtual void handle(::subject * psubject, ::context * pcontext);
+   void handle(::topic * ptopic, ::context * pcontext) override;
+   //virtual void handle(::topic * ptopic, ::context * pcontext);
    DECLARE_MESSAGE_HANDLER(on_message_create);
    void _001OnTimer(::timer * ptimer) override;
    //DECLARE_MESSAGE_HANDLER(_001OnUser123);

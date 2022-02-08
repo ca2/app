@@ -97,8 +97,8 @@ namespace user
 
       MESSAGE_LINK(e_message_create, pchannel, this, &list::on_message_create);
       //      //MESSAGE_LINK(e_message_timer,           pchannel, this, &list::_001OnTimer);
-      add_command_handler("list_view_auto_arrange", this, &list::_001OnListViewAutoArrange);
-      add_command_prober("list_view_auto_arrange", this, &list::_001OnUpdateListViewAutoArrange);
+      add_command_handler("list_view_auto_arrange", this, &list::_001OnListImpactAutoArrange);
+      add_command_prober("list_view_auto_arrange", this, &list::_001OnUpdateListImpactAutoArrange);
 
    }
 
@@ -140,7 +140,7 @@ namespace user
 
       ::user::mesh::_001OnNcDraw(pgraphics);
 
-      //__throw(todo("scroll"));
+      //throw ::exception(todo("scroll"));
       //defer_draw_scroll_gap(pgraphics);
 
    }
@@ -166,7 +166,7 @@ namespace user
 
       pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias_grid_fit);
 
-      if (m_bLockViewUpdate)
+      if (m_bLockImpactUpdate)
       {
 
          return;
@@ -1768,20 +1768,20 @@ namespace user
       if (m_eview == impact_list)
       {
 
-         ::rectangle_i32 rectangleView;
+         ::rectangle_i32 rectangleImpact;
 
-         get_client_rect(&rectangleView);
+         get_client_rect(&rectangleImpact);
 
-         index dHeight = (::index) ((rectangleView.height() / m_dItemHeight) * m_dItemHeight);
+         index dHeight = (::index) ((rectangleImpact.height() / m_dItemHeight) * m_dItemHeight);
 
-         index iWidth = rectangleView.width();
+         index iWidth = rectangleImpact.width();
 
-         int iViewRowCount = 1;
+         int iImpactRowCount = 1;
 
          if(m_dItemHeight > 0)
          {
 
-            iViewRowCount = (int) maximum(1, dHeight / m_dItemHeight);
+            iImpactRowCount = (int) maximum(1, dHeight / m_dItemHeight);
 
          }
 
@@ -1794,28 +1794,28 @@ namespace user
 
          }
 
-         return iViewRowCount * iColumnCount;
+         return iImpactRowCount * iColumnCount;
 
       }
       else if (m_eview == impact_icon)
       {
 
-         ::rectangle_i32 rectangleView;
+         ::rectangle_i32 rectangleImpact;
 
-         get_client_rect(&rectangleView);
+         get_client_rect(&rectangleImpact);
 
          const ::size_i32 & sizeItem = get_item_size();
 
-         return maximum((rectangleView.width() / sizeItem.cx) * (rectangleView.height() / sizeItem.cy),
+         return maximum((rectangleImpact.width() / sizeItem.cx) * (rectangleImpact.height() / sizeItem.cy),
                     m_piconlayout->m_iaDisplayToStrict.get_max_a() + 1);
 
       }
       else if (m_eview == impact_report)
       {
 
-         ::rectangle_i32 rectangleView;
+         ::rectangle_i32 rectangleImpact;
 
-         get_client_rect(&rectangleView);
+         get_client_rect(&rectangleImpact);
 
          if (m_dItemHeight == 0)
          {
@@ -1826,7 +1826,7 @@ namespace user
          else
          {
 
-            double dHeight = rectangleView.height();
+            double dHeight = rectangleImpact.height();
 
             if (m_bTopText)
             {
@@ -2226,12 +2226,12 @@ namespace user
 
          index iItem = -1;
 
-         int iViewRowCount = 1;
+         int iImpactRowCount = 1;
 
          if(m_dItemHeight > 0)
          {
 
-            iViewRowCount = (int) maximum(1, dHeight / m_dItemHeight);
+            iImpactRowCount = (int) maximum(1, dHeight / m_dItemHeight);
 
          }
 
@@ -2253,7 +2253,7 @@ namespace user
 
          }
 
-         iItem = iColumn * iViewRowCount + iRow;
+         iItem = iColumn * iImpactRowCount + iRow;
 
          if (iItem < 0)
          {
@@ -2602,7 +2602,7 @@ namespace user
             else
             {
 
-               throw interface_only_exception();
+               throw ::interface_only();
 
             }
 
@@ -2674,11 +2674,11 @@ namespace user
          if (dHeight != 0 && m_dItemHeight != 0)
          {
 
-            int iViewRowCount = (int) maximum(1, dHeight / m_dItemHeight);
+            int iImpactRowCount = (int) maximum(1, dHeight / m_dItemHeight);
 
-            int iColumn = (int) (pdrawitem->m_iItem / iViewRowCount);
+            int iColumn = (int) (pdrawitem->m_iItem / iImpactRowCount);
 
-            int iRow = pdrawitem->m_iItem % iViewRowCount;
+            int iRow = pdrawitem->m_iItem % iImpactRowCount;
 
             pdrawitem->m_rectangleItem.left = iColumn * m_iItemWidth;
 
@@ -2875,7 +2875,7 @@ namespace user
 
       }
 
-      auto puserinteraction = get_child_by_id(pcolumn->m_id);
+      auto puserinteraction = get_child_by_id(pcolumn->m_atom);
 
       if (!puserinteraction)
       {
@@ -4154,18 +4154,16 @@ namespace user
    bool list::on_click(const ::item & item)
    {
 
-      ::subject subject;
+      ::extended_topic extendedtopic(::id_list_clicked);
 
-      subject.m_puserelement = this;
+      extendedtopic.m_puserelement = this;
 
-      subject.m_id = ::e_subject_list_clicked;
-
-      route(&subject);
+      route(&extendedtopic);
 
       //if (m_pformcallback != nullptr)
       //{
 
-      //   m_pformcallback->route(&subject);
+      //   m_pformcallback->route(&topic);
 
       //}
       //else if (get_form() != nullptr)
@@ -4181,7 +4179,7 @@ namespace user
 
       //}
 
-      return subject.m_bRet;
+      return extendedtopic.m_bRet;
 
    }
 
@@ -4356,7 +4354,7 @@ namespace user
       if (pcolumn == nullptr)
       {
 
-         return id();
+         return atom();
 
       }
 
@@ -4750,7 +4748,7 @@ namespace user
    }
 
 
-   index list_column_array::control_id_index(const ::id & id)
+   index list_column_array::control_id_index(const ::atom & atom)
    {
 
       for (index iIndex = 0; iIndex < this->get_size(); iIndex++)
@@ -4758,7 +4756,7 @@ namespace user
 
          list_column * pcolumn = element_at(iIndex);
 
-         if (pcolumn != nullptr && pcolumn->m_id == id)
+         if (pcolumn != nullptr && pcolumn->m_atom == atom)
          {
 
             return iIndex;
@@ -4781,10 +4779,10 @@ namespace user
    }
 
 
-   list_column * list_column_array::get_by_control_id(const ::id & id)
+   list_column * list_column_array::get_by_control_id(const ::atom & atom)
    {
 
-      auto iIndex = subitem_index((::index) id);
+      auto iIndex = subitem_index((::index) atom);
 
       return get_by_index(iIndex);
 
@@ -4794,7 +4792,7 @@ namespace user
    list_column * list_column_array::get_by_control(::user::interaction * pinteraction)
    {
 
-      return get_by_control_id(pinteraction->m_id);
+      return get_by_control_id(pinteraction->m_atom);
 
    }
 
@@ -5276,11 +5274,11 @@ namespace user
 
       _001RemoveAllColumns();
 
-      auto keepLockViewUpdate = keep(m_bLockViewUpdate);
+      auto keepLockImpactUpdate = keep(m_bLockImpactUpdate);
 
       _001InsertColumns();
 
-      keepLockViewUpdate.KeepAway();
+      keepLockImpactUpdate.KeepAway();
 
       DIDDXHeaderLayout(false);
 
@@ -5415,7 +5413,7 @@ namespace user
 
       }
 
-      throw interface_only_exception();
+      throw ::interface_only();
 
       /*
       if(!pil->create(
@@ -6276,11 +6274,11 @@ namespace user
 
                item.m_strText.make_lower();
 
-               item.m_strText.replace("_", " ");
+               item.m_strText.find_replace("_", " ");
 
-               auto ptopic = m_pregexFilter1->create_topic(item.m_strText);
+               auto presult = m_pregexFilter1->run(item.m_strText);
 
-               if (ptopic)
+               if (presult)
                {
 
                   if (m_eview == impact_icon)
@@ -6360,7 +6358,7 @@ namespace user
 
       auto psystem = m_psystem->m_paxissystem;
 
-      m_pregexFilter1 = psystem->create_pcre("/.*" + stra.implode(".*") + ".*/i");
+      m_pregexFilter1 = psystem->compile_pcre("/.*" + stra.implode(".*") + ".*/i");
 
       m_bFilter1 = m_pregexFilter1;//m_pregexFilter1->setRE();
 
@@ -6792,12 +6790,12 @@ namespace user
       }
    }
 
-   id list::data_get_current_sort_id()
+   atom list::data_get_current_sort_id()
    {
       return data_get_sort_id(m_eview);
    }
 
-   id list::data_get_sort_id(EView eview)
+   atom list::data_get_sort_id(EImpact eview)
    {
 
       return ::user::mesh::data_get_sort_id(eview);
@@ -6824,7 +6822,7 @@ namespace user
    }
 
 
-   list::EView list::_001GetView()
+   list::EImpact list::_001GetImpact()
    {
 
       return m_eview;
@@ -6876,7 +6874,7 @@ namespace user
    }
 
 
-   id list::data_get_current_list_layout_id()
+   atom list::data_get_current_list_layout_id()
    {
 
       return "list";
@@ -7151,13 +7149,13 @@ namespace user
       return m_flags.has(flag_auto_arrange);
    }
 
-   void list::_001OnListViewAutoArrange(::message::message * pmessage)
+   void list::_001OnListImpactAutoArrange(::message::message * pmessage)
    {
       __UNREFERENCED_PARAMETER(pmessage);
       auto_arrange(!get_auto_arrange());
    }
 
-   void list::_001OnUpdateListViewAutoArrange(::message::message * pmessage)
+   void list::_001OnUpdateListImpactAutoArrange(::message::message * pmessage)
    {
       __pointer(::message::command) pcommand(pmessage);
       pcommand->_001SetCheck(get_auto_arrange());
@@ -7195,13 +7193,11 @@ namespace user
    void list::_001OnSelectionChange()
    {
 
-      ::subject subject;
+      ::extended_topic extendedtopic(::id_after_change_cur_sel);
 
-      subject.m_puserelement = this;
+      extendedtopic.m_puserelement = this;
 
-      subject.m_id = ::e_subject_after_change_cur_sel;
-
-      route(&subject);
+      route(&extendedtopic);
 
       set_need_redraw();
 
@@ -7453,7 +7449,7 @@ namespace user
 
                pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-               pimage->get_graphics()->fill_rectangle(pimage->size(), 0);
+               pimage->get_graphics()->fill_rectangle(pimage->size(), ::color::transparent);
 
                get_image_list()->draw(pimage->g(), (i32)m_iImage,
                                       point_i32(m_plist->m_iIconBlurRadius*iRate, m_plist->m_iIconBlurRadius *iRate), m_rectangleImage.size(), ::point_i32(), 0);
@@ -7499,16 +7495,21 @@ namespace user
 
             m_pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-            image_source imagesource(pimage);
+            if (::is_ok(pimage))
+            {
 
-            rectangle_f64 rectangleDib(m_rectangleImage.top_left() - size_i32(m_plist->m_iIconBlurRadius *iRate, m_plist->m_iIconBlurRadius * iRate),
-                      m_rectangleImage.size() + size_i32(m_plist->m_iIconBlurRadius *iRate * 2, m_plist->m_iIconBlurRadius * iRate * 2));
+               image_source imagesource(pimage);
 
-            image_drawing_options imagedrawingoptions(rectangleDib);
+               rectangle_f64 rectangleDib(m_rectangleImage.top_left() - size_i32(m_plist->m_iIconBlurRadius * iRate, m_plist->m_iIconBlurRadius * iRate),
+                  m_rectangleImage.size() + size_i32(m_plist->m_iIconBlurRadius * iRate * 2, m_plist->m_iIconBlurRadius * iRate * 2));
 
-            image_drawing imagedrawing(imagedrawingoptions, imagesource);
+               image_drawing_options imagedrawingoptions(rectangleDib);
 
-            m_pgraphics->draw(imagedrawing);
+               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+               m_pgraphics->draw(imagedrawing);
+
+            }
 
             ::rectangle_i32 rectangleI;
 
@@ -7865,7 +7866,7 @@ namespace user
    }
 
 
-   ::e_align list::get_draw_text_align(EView eview)
+   ::e_align list::get_draw_text_align(EImpact eview)
    {
 
       return m_pdrawmeshitem->m_ealign;
@@ -7873,7 +7874,7 @@ namespace user
    }
 
 
-   ::e_draw_text list::get_draw_text_flags(EView eview)
+   ::e_draw_text list::get_draw_text_flags(EImpact eview)
    {
 
       return m_pdrawmeshitem->m_edrawtext;

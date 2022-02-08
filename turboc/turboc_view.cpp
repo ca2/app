@@ -76,9 +76,9 @@ namespace turboc
    {
    }
 
-   void impact::assert_valid() const
+   void impact::assert_ok() const
    {
-      ::aura::impact::assert_valid();
+      ::aura::impact::assert_ok();
    }
 
    void impact::dump(dump_context & dumpcontext) const
@@ -165,7 +165,7 @@ namespace turboc
 
    void impact::on_update(::aura::impact * pSender, e_update eupdate, object* pupdate)
    {
-      __UNREFERENCED_PARAMETER(psubject);
+      __UNREFERENCED_PARAMETER(ptopic);
    }
 
    bool impact::in_anime()

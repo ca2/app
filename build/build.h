@@ -4,7 +4,7 @@
 #pragma once
 
 
-namespace app_build
+namespace app_core_build
 {
 
 

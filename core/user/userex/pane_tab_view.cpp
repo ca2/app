@@ -56,7 +56,7 @@ namespace userex
    }
 
 
-   id pane_tab_view::get_view_id()
+   atom pane_tab_view::get_view_id()
    {
 
       return ::user::tab_view::get_view_id();
@@ -123,7 +123,7 @@ namespace userex
 
             puiNext = pinteraction->get_parent();
 
-            if (puiNext == nullptr || (pinteraction->m_pimpl) != nullptr)
+            if (puiNext == nullptr || (pinteraction->m_pprimitiveimpl) != nullptr)
             {
 
                break;
@@ -245,7 +245,7 @@ namespace userex
 
       ::user::tab_view::on_change_cur_sel();
 
-      if (m_pimpactdataOld != nullptr && is_filemanager(m_pimpactdataOld->m_id))
+      if (m_pimpactdataOld != nullptr && is_filemanager(m_pimpactdataOld->m_atom))
       {
 
          if (get_parent_frame()->ContinueModal())
@@ -263,7 +263,7 @@ namespace userex
          }
 
       }
-      else if(m_pimpactdata->m_id == OPTIONS_IMPACT)
+      else if(m_pimpactdata->m_atom == OPTIONS_IMPACT)
       {
 
          if (::is_set(m_pdocumentMenu))
@@ -288,7 +288,7 @@ namespace userex
 
             }
 
-            auto pformview = m_pdocumentMenu->get_typed_view < ::user::form_view>();
+            auto pformview = m_pdocumentMenu->get_type_impact < ::user::form_view>();
 
             pformview->get_form()->add_handler(get_application());
 
@@ -322,21 +322,21 @@ namespace userex
    bool pane_tab_view::on_after_create_impact_data(::user::impact_data * pimpactdata)
    {
 
-      ::index iVisibleIndex = id_visible_index(pimpactdata->m_id);
+      ::index iVisibleIndex = id_visible_index(pimpactdata->m_atom);
 
       if (iVisibleIndex < 0)
       {
 
          __keep(m_bDisableSavingRestorableTabs, true);
 
-         if (!add_tab(pimpactdata->m_idTitle, pimpactdata->m_id, true, false, pimpactdata->m_pplaceholder))
+         if (!add_tab(pimpactdata->m_atomTitle, pimpactdata->m_atom, true, false, pimpactdata->m_pplaceholder))
          {
 
             return false;
 
          }
 
-         iVisibleIndex = id_visible_index(pimpactdata->m_id);
+         iVisibleIndex = id_visible_index(pimpactdata->m_atom);
 
          if (iVisibleIndex < 0)
          {
@@ -369,7 +369,7 @@ namespace userex
 
       pimpactdata->m_pimpactdata = (void *)pimpactdata;
 
-      if (matches_restorable_tab(pimpactdata->m_id, pimpactdata->m_pplaceholder))
+      if (matches_restorable_tab(pimpactdata->m_atom, pimpactdata->m_pplaceholder))
       {
 
          save_restorable_tabs();
@@ -399,7 +399,7 @@ namespace userex
          if(panea[iTab]->m_pplaceholder == pholder)
          {
 
-            ::user::impact_data * pimpactdata = get_impact_data(panea[iTab]->m_id, false);
+            ::user::impact_data * pimpactdata = get_impact_data(panea[iTab]->m_atom, false);
 
             if(pimpactdata != nullptr)
             {
@@ -424,10 +424,10 @@ namespace userex
    }
 
 
-   ::user::tab_pane * pane_tab_view::create_tab_by_id(const ::id & id)
+   ::user::tab_pane * pane_tab_view::create_tab_by_id(const ::atom & atom)
    {
 
-      ::user::impact_data * pimpactdata = get_impact_data(id, get_data()->m_rectangleTabClient);
+      ::user::impact_data * pimpactdata = get_impact_data(atom, get_data()->m_rectangleTabClient);
 
       if(pimpactdata == nullptr)
       {
@@ -436,7 +436,7 @@ namespace userex
 
       }
 
-      index iIndex = id_index(pimpactdata->m_id);
+      index iIndex = id_index(pimpactdata->m_atom);
 
       if (iIndex < 0)
       {
@@ -459,13 +459,13 @@ namespace userex
 
       auto psystem = m_psystem->m_paurasystem;
 
-//      if(pimpactdata->m_id.is_text() && psystem->m_idmapCreateViewLibrary.lookup(pimpactdata->m_id,plibrary) && plibrary != nullptr)
+//      if(pimpactdata->m_atom.is_text() && psystem->m_idmapCreateImpactLibrary.lookup(pimpactdata->m_atom,plibrary) && plibrary != nullptr)
 //      {
 //
 //
 //      }
 //      else
-         if (pimpactdata->m_id == "account")
+         if (pimpactdata->m_atom == "account")
       {
 
          __pointer(::account::impact) pview = create_view < ::account::impact >();
@@ -482,13 +482,13 @@ namespace userex
          }
 
       }
-      else if (pimpactdata->m_id == MENU_IMPACT)
+      else if (pimpactdata->m_atom == MENU_IMPACT)
       {
 
 //         create_menu_impact(pimpactdata);
 
       }
-      else if (pimpactdata->m_id == OPTIONS_IMPACT)
+      else if (pimpactdata->m_atom == OPTIONS_IMPACT)
       {
 
          auto puser = user()->m_pcoreuser;
@@ -498,7 +498,7 @@ namespace userex
          pimpactdata->m_eflag.add(::user::e_flag_hide_on_kill_focus);
 
       }
-      else if (is_font_sel(pimpactdata->m_id))
+      else if (is_font_sel(pimpactdata->m_atom))
       {
 
          pimpactdata->m_eflag.add(::user::e_flag_modifier_impact);
@@ -527,7 +527,7 @@ namespace userex
 
          auto pdocument = ptemplate->open_document_file(get_application(), ::e_type_null, __visible(true).is_true(), pimpactdata->m_pplaceholder);
 
-         m_pfontview = pdocument->get_typed_view < font_view >();
+         m_pfontview = pdocument->get_type_impact < font_view >();
 
          m_pfontview->set_need_layout();
 
@@ -547,7 +547,7 @@ namespace userex
          }
 
       }
-      else if (is_color_sel(pimpactdata->m_id))
+      else if (is_color_sel(pimpactdata->m_atom))
       {
 
          pimpactdata->m_eflag.add(::user::e_flag_modifier_impact);
@@ -564,7 +564,7 @@ namespace userex
 
          auto pdocument = pimpactsystem->open_document_file(get_application(), ::e_type_null, __visible(false).is_true(), pimpactdata->m_pplaceholder);
 
-         m_pcolorview = pdocument->get_typed_view < color_view >();
+         m_pcolorview = pdocument->get_type_impact < color_view >();
 
          pdocument->m_pviewTopic->set_notify_user_interaction(this);
 
@@ -582,12 +582,12 @@ namespace userex
          }
 
       }
-      else if(is_filemanager(pimpactdata->m_id))
+      else if(is_filemanager(pimpactdata->m_atom))
       {
 
          pimpactdata->m_eflag.add(::user::e_flag_tool_impact);
 
-         auto pfilemanagerdata = cast < ::filemanager::data >("data." + pimpactdata->m_id.str());
+         auto pfilemanagerdata = cast < ::filemanager::data >("data." + pimpactdata->m_atom.str());
 
          auto pcontext = m_pcontext;
          
@@ -598,7 +598,7 @@ namespace userex
          if (pfilemanagerdata.is_null())
          {
 
-            pfilemanagerdata = puser->filemanager(pimpactdata->m_id);
+            pfilemanagerdata = puser->filemanager(pimpactdata->m_atom);
 
          }
 
@@ -611,7 +611,7 @@ namespace userex
 
          pfilemanagerdata->m_puserinteractionParent = pimpactdata->m_pplaceholder;
 
-         //pfilemanagerdata->m_id = pimpactdata->m_id;
+         //pfilemanagerdata->m_atom = pimpactdata->m_atom;
 
          if (has_property("filemanager_toolbar")
                && payload("filemanager_toolbar").m_etype == ::e_type_property_set)
@@ -687,7 +687,7 @@ namespace userex
          }
 
       }
-      //else if(pimpactdata->m_id == "tabbed_file_manager")
+      //else if(pimpactdata->m_atom == "tabbed_file_manager")
       //{
 
       //   __pointer(::create) cc(e_create);
@@ -723,16 +723,16 @@ namespace userex
       //   }
 
       //}
-      //else if (pimpactdata->m_id == "app_options")
+      //else if (pimpactdata->m_atom == "app_options")
       //{
 
       //   create_app_options(pimpactdata);
 
       //}
-      else if (pimpactdata->m_id.is_text())
+      else if (pimpactdata->m_atom.is_text())
       {
 
-         if (::str::begins_ci(pimpactdata->m_id.m_psz, "form_"))
+         if (::str::begins_ci(pimpactdata->m_atom.m_psz, "form_"))
          {
 
             auto pcontext = m_pcontext;
@@ -746,15 +746,15 @@ namespace userex
             if (pdocument.is_set())
             {
 
-               m_mapForm[pimpactdata->m_id] = pdocument;
+               m_mapForm[pimpactdata->m_atom] = pdocument;
 
-               pdocument->m_id = string("document.") + string(pimpactdata->m_id);
+               pdocument->m_atom = string("document.") + string(pimpactdata->m_atom);
 
                ::user::impact * pview = pdocument->get_view(0);
 
                pimpactdata->m_puserinteraction = pview->get_parent_frame();
 
-               prepare_form(pimpactdata->m_id, pdocument);
+               prepare_form(pimpactdata->m_atom, pdocument);
 
             }
 
@@ -838,20 +838,20 @@ namespace userex
    }
 
 
-   void pane_tab_view::handle(::subject * psubject, ::context * pcontext)
+   void pane_tab_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::user::tab_view::handle(psubject, pcontext);
+      ::user::tab_view::handle(ptopic, pcontext);
 
-      if (psubject->m_id == ::e_subject_context_menu_close)
+      if (ptopic->m_atom == ::id_context_menu_close)
       {
 
          if (m_pimpactdataOld != nullptr)
          {
 
-            set_current_tab_by_id(m_pimpactdataOld->m_id);
+            set_current_tab_by_id(m_pimpactdataOld->m_atom);
 
-            psubject->m_bRet = true;
+            ptopic->get_extended_topic()->m_bRet = true;
 
             return;
 
@@ -859,7 +859,7 @@ namespace userex
 
       }
 
-      ::user::tab_view::handle(psubject, pcontext);
+      ::user::tab_view::handle(ptopic, pcontext);
 
 
    }
@@ -875,18 +875,18 @@ namespace userex
 //   }
 
 
-   //void pane_tab_view::handle(::subject * psubject, ::context * pcontext)
+   //void pane_tab_view::handle(::topic * ptopic, ::context * pcontext)
    //{
 
-   //   if (psubject->m_id == ::e_subject_context_menu_close)
+   //   if (ptopic->m_atom == ::id_context_menu_close)
    //   {
 
    //      if (m_pimpactdataOld != nullptr)
    //      {
 
-   //         set_current_tab_by_id(m_pimpactdataOld->m_id);
+   //         set_current_tab_by_id(m_pimpactdataOld->m_atom);
 
-   //         psubject->m_bRet = true;
+   //         ptopic->get_extended_topic()->m_bRet = true;
 
    //         return;
 
@@ -894,7 +894,7 @@ namespace userex
 
    //   }
 
-   //   ::user::tab_view::handle(psubject, pcontext);
+   //   ::user::tab_view::handle(ptopic, pcontext);
 
    //}
 
@@ -913,7 +913,7 @@ namespace userex
 
    //   }
 
-   //   payload("app_options_title") = get_tab_by_id(pimpactdata->m_id)->get_title();
+   //   payload("app_options_title") = get_tab_by_id(pimpactdata->m_atom)->get_title();
 
    //   auto pcontext = m_pcontext;
    //   
@@ -923,7 +923,7 @@ namespace userex
 
    //   m_pdocAppOptions = puser->create_child_form(this, this, pimpactdata->m_pplaceholder, strAppOptions);
 
-   //   //auto pform = m_pdocAppOptions->get_typed_view<::user::form>();
+   //   //auto pform = m_pdocAppOptions->get_type_impact<::user::form>();
 
    //   //if (pform)
    //   //{
@@ -947,12 +947,12 @@ namespace userex
    //}
 
 
-   void pane_tab_view::prepare_form(id id, ::form_document * pdocument)
+   void pane_tab_view::prepare_form(atom atom, ::form_document * pdocument)
    {
 
       auto papplication = get_application();
 
-      papplication->prepare_form(id, pdocument);
+      papplication->prepare_form(atom, pdocument);
 
    }
 
@@ -962,7 +962,7 @@ namespace userex
 
       ::user::tab_view::_001OnRemoveTab(ptab);
 
-      m_impactdatamap.erase_key(ptab->m_id);
+      m_impactdatamap.erase_key(ptab->m_atom);
 
    }
 

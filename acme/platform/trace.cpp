@@ -2,7 +2,7 @@
 #include "acme/operating_system.h"
 #include <stdio.h>
 //#ifndef WINDOWS
-//#include "acme/node/operating_system/cross/windows/_windows.h"
+//#include "acme/operating_system/cross/windows/_windows.h"
 //#endif
 #include "trace.h"
 
@@ -378,10 +378,50 @@ CLASS_DECL_ACME const char *  get_windows_message_name(::u32 nMsg)
 }
 
 
+tracer& tracer::operator << (const exception& exception)
+{
+
+   m_str += exception.m_strMessage  + " (" + __string(exception.m_estatus) + ")";
+
+   return *this;
+
+}
+
+
+tracer& tracer::operator << (const e_status& estatus)
+{
+
+   m_str += __string(estatus);
+
+   return *this;
+
+}
+
+
+tracer& tracer::operator << (const enum_status& estatus)
+{
+
+   m_str += __string(estatus);
+
+   return *this;
+
+}
+
+
 tracer & tracer::operator << (const string & str)
 {
 
    m_str += str;
+
+   return *this;
+
+}
+
+
+tracer & tracer::operator << (const char * psz)
+{
+
+   m_str += string(psz);
 
    return *this;
 

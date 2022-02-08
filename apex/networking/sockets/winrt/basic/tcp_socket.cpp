@@ -395,10 +395,10 @@ namespace sockets
    }
 
 
-   void tcp_socket::OnResolved(int id, const ::net::address & addr)
+   void tcp_socket::OnResolved(int atom, const ::net::address & addr)
    {
-      FORMATTED_TRACE("tcp_socket::OnResolved id %d addr %x port %d\n", id, addr.get_display_number(), addr.get_service_number());
-      if (id == m_resolver_id)
+      FORMATTED_TRACE("tcp_socket::OnResolved atom %d addr %x port %d\n", atom, addr.get_display_number(), addr.get_service_number());
+      if (atom == m_resolver_id)
       {
          if(open(addr))
          {
@@ -415,15 +415,15 @@ namespace sockets
       }
       else
       {
-         FATAL(log_this, "OnResolved", id, "Resolver returned wrong job id");
+         FATAL(log_this, "OnResolved", atom, "Resolver returned wrong job atom");
          SetCloseAndDelete();
       }
    }
 
 
-   /*   void tcp_socket::OnResolved(int id,in6_addr& a,port_t port)
+   /*   void tcp_socket::OnResolved(int atom,in6_addr& a,port_t port)
       {
-         if (id == m_resolver_id)
+         if (atom == m_resolver_id)
          {
             ipv6_address ad(get_application(), a, port);
             if (ad.IsValid())
@@ -440,7 +440,7 @@ namespace sockets
          }
          else
          {
-            FATAL(log_this, "OnResolved", id, "Resolver returned wrong job id");
+            FATAL(log_this, "OnResolved", atom, "Resolver returned wrong job atom");
             SetCloseAndDelete();
          }
       }*/
@@ -1456,14 +1456,14 @@ namespace sockets
       }
 
       //X509 *cert = nullptr;
-      //X509_NAME *subject = nullptr;
+      //X509_NAME *topic = nullptr;
 
       //cert = SSL_get_peer_certificate(m_ssl);
       //bool ok = false;
       //if (cert != nullptr && strlen(common_name) > 0)
       //{
       //   char data[256];
-      //   if ((subject = X509_get_subject_name(cert)) != nullptr && X509_NAME_get_text_by_NID(subject, NID_commonName, data, 256) > 0)
+      //   if ((topic = X509_get_subject_name(cert)) != nullptr && X509_NAME_get_text_by_NID(topic, NID_commonName, data, 256) > 0)
       //   {
       //      data[255] = 0;
       //      if (ansi_count_compare_ci(data, common_name, 255) == 0)

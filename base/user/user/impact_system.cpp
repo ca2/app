@@ -13,14 +13,14 @@ namespace user
 {
 
 
-   impact_system::impact_system(const ::id & id, const ::type & typeDocument, const ::type & typeFrame, const ::type & typeImpact)
+   impact_system::impact_system(const ::atom & atom, const ::type & typeDocument, const ::type & typeFrame, const ::type & typeImpact)
    {
 
       m_bHiddenOnNotifyIcon = false;
 
       m_puserinteractionOwner = nullptr;
 
-      m_id = id;
+      m_atom = atom;
       m_typeDocument = typeDocument;
       m_typeFrame = typeFrame;
       m_typeImpact = typeImpact;
@@ -169,7 +169,7 @@ namespace user
 
       bool bAddToTitle = is_true("add_to_title");
 
-      ASSERT(m_id.has_char());
+      ASSERT(m_atom.has_char());
 
       __pointer(::user::system) pusersystem = pcreate->m_pmatterUserPayload;
 
@@ -197,7 +197,7 @@ namespace user
       else
       {
 
-         pusersystem->m_typeNewView = m_typeImpact;
+         pusersystem->m_typeNewImpact = m_typeImpact;
 
       }
 
@@ -243,7 +243,7 @@ namespace user
 
       pframe->m_pdocumenttemplate = this;
 
-      if (!pusersystem->m_typeNewView)
+      if (!pusersystem->m_typeNewImpact)
       {
 
          CATEGORY_WARNING(appmsg,"Warning: creating frame with no default ::user::impact.\n");
@@ -279,7 +279,7 @@ namespace user
       __pointer(::user::interaction) puserinteractionParent = pcreate->m_puserprimitiveParent;
 
       // create new from resource
-      if (!pframe->LoadFrame(m_id,
+      if (!pframe->LoadFrame(m_atom,
                              //WS_OVERLAPPEDWINDOW |
                              (bAddToTitle ? FWS_ADDTOTITLE : 0),   // default frame styles
          puserinteractionParent,
@@ -402,7 +402,7 @@ namespace user
    {
       channel::dump(dumpcontext);
 
-      dumpcontext << "m_strMatter = " << m_id.to_string();
+      dumpcontext << "m_strMatter = " << m_atom.to_string();
       dumpcontext << "\nm_strDocStrings: " << m_strDocStrings;
 
       if (m_typeDocument)
@@ -425,28 +425,28 @@ namespace user
       dumpcontext << "\n";
    }
 
-   void impact_system::assert_valid() const
+   void impact_system::assert_ok() const
    {
-      channel::assert_valid();
+      channel::assert_ok();
 
       ::count count = get_document_count();
       for (index index = 0; index < count; index++)
       {
          __pointer(::user::document) pdocument = get_document(index);
-         pdocument->assert_valid();
+         pdocument->assert_ok();
       }
    }
 
 
-   void impact_system::handle(::subject * psubject, ::context * pcontext)
+   void impact_system::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      update_all_views(psubject);
+      update_all_views(ptopic);
 
    }
 
 
-   void impact_system::update_all_views(::subject * psubject)
+   void impact_system::update_all_views(::topic * ptopic)
    {
 
       ::count count = get_document_count();
@@ -456,7 +456,7 @@ namespace user
 
          ::user::document * pdocument = get_document(index);
 
-         pdocument->update_all_views(psubject);
+         pdocument->update_all_views(ptopic);
 
       }
 
@@ -493,7 +493,7 @@ namespace user
    }
 
 
-   void impact_system::update_all_views(::user::impact * pimpact, const ::id & id)
+   void impact_system::update_all_views(::user::impact * pimpact, const ::atom & atom)
    {
 
       ::count count = get_document_count();
@@ -503,7 +503,7 @@ namespace user
 
          ::user::document * pdocument = get_document(index);
 
-         pdocument->update_all_views(pimpact, id);
+         pdocument->update_all_views(pimpact, atom);
 
       }
 

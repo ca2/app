@@ -519,7 +519,7 @@ namespace core
       {
 
          psystem = __new(::user::multiple_document_template(
-                        m_ptemplateForm->m_id,
+                        m_ptemplateForm->m_atom,
                         m_ptemplateForm->m_typeDocument,
                         m_ptemplateForm->m_typeFrame,
                         type));
@@ -576,7 +576,7 @@ namespace core
 
       }
 
-      __pointer(::user::form_window) pform = pdocument->get_typed_view < ::user::form_window >();
+      __pointer(::user::form_window) pform = pdocument->get_type_impact < ::user::form_window >();
 
       return pdocument;
 
@@ -607,7 +607,7 @@ namespace core
 
       //}
 
-      ////process_subject(pbox->m_idResponse);
+      ////process_subject(pbox->m_atomResponse);
 
       //return psequence;
 
@@ -708,25 +708,25 @@ namespace core
 
       //return pfuture;
 
-      ////if(pbox->m_idResponse == "ok")
+      ////if(pbox->m_atomResponse == "ok")
       ////{
 
       ////   return e_dialog_result_ok;
 
       ////}
-      ////else if(pbox->m_idResponse == "yes")
+      ////else if(pbox->m_atomResponse == "yes")
       ////{
 
       ////   return e_dialog_result_yes;
 
       ////}
-      ////else if(pbox->m_idResponse == "no")
+      ////else if(pbox->m_atomResponse == "no")
       ////{
 
       ////   return e_dialog_result_no;
 
       ////}
-      ////else if(pbox->m_idResponse == "cancel")
+      ////else if(pbox->m_atomResponse == "cancel")
       ////{
 
       ////   return e_dialog_result_cancel;
@@ -957,7 +957,7 @@ namespace core
 
       auto pdocument = m_mapimpactsystem[COLORSEL_IMPACT]->open_document_file(puiOwner->get_application(), ::e_type_null, __visible(true));
 
-      __pointer(::userex::color_view) pview = pdocument->get_typed_view < ::userex::color_view >();
+      __pointer(::userex::color_view) pview = pdocument->get_type_impact < ::userex::color_view >();
 
       __pointer(::user::frame_window) pframe = pview->top_level_frame();
 
@@ -1061,7 +1061,7 @@ namespace core
 
       }
 
-      __pointer(::user::form_window) pform = pdocument->get_typed_view < ::user::form_window >();
+      __pointer(::user::form_window) pform = pdocument->get_type_impact < ::user::form_window >();
 
       if (pform.is_set())
       {
@@ -1145,7 +1145,7 @@ namespace core
 
       }
 
-      __pointer(::user::form_window) pform = pdocument->get_typed_view < ::user::form_window >();
+      __pointer(::user::form_window) pform = pdocument->get_type_impact < ::user::form_window >();
 
       if (pform.is_set() && ::is_null(pform->get_form_callback()))
       {
@@ -1236,7 +1236,7 @@ namespace core
 
       }
 
-      __pointer(::user::form_window) pform = pdocument->get_typed_view < ::user::form_window >();
+      __pointer(::user::form_window) pform = pdocument->get_type_impact < ::user::form_window >();
 
       if (pform.is_set())
       {
@@ -1313,7 +1313,7 @@ namespace core
 
       }
 
-      __pointer(::user::form_window) pform = pdocument->get_typed_view < ::user::form_window >();
+      __pointer(::user::form_window) pform = pdocument->get_type_impact < ::user::form_window >();
 
       if (pform.is_set())
       {
@@ -1360,7 +1360,7 @@ namespace core
          }
 
          auto psystemNew = __new(::user::multiple_document_template(
-                                m_ptemplateChildForm->m_id,
+                                m_ptemplateChildForm->m_atom,
                                 typeDocument,
                                 m_ptemplateChildForm->m_typeFrame,
                                 type));
@@ -1421,7 +1421,7 @@ namespace core
 
       }
 
-      __pointer(::user::form_window) pform = pdocument->get_typed_view < ::user::form_window >();
+      __pointer(::user::form_window) pform = pdocument->get_type_impact < ::user::form_window >();
 
       return pdocument;
 
@@ -1441,7 +1441,7 @@ namespace core
 
       __pointer(::form_document) pdocument = ::user::__document(pcreate);
 
-      __pointer(::user::place_holder) pholder = pdocument->get_typed_view < ::user::place_holder  >();
+      __pointer(::user::place_holder) pholder = pdocument->get_type_impact < ::user::place_holder  >();
 
       pholder->place_hold(pinteraction);
 
@@ -1993,10 +1993,10 @@ namespace core
    //}
 
 
-   void user::will_use_view_hint(::id idView)
+   void user::will_use_view_hint(::atom idImpact)
    {
 
-      if (idView == FILEMANAGER_IMPACT)
+      if (idImpact == FILEMANAGER_IMPACT)
       {
 
          if (m_mapimpactsystem[FILEMANAGER_IMPACT] != nullptr)
@@ -2006,7 +2006,7 @@ namespace core
 
          }
 
-         m_mapimpactsystem[FILEMANAGER_IMPACT] = filemanager(idView)->m_pdocumenttemplate;
+         m_mapimpactsystem[FILEMANAGER_IMPACT] = filemanager(idImpact)->m_pdocumenttemplate;
 
          //add_factory_item <::user::color_view >();
 
@@ -2020,7 +2020,7 @@ namespace core
          //add_document_template(user()->m_mapimpactsystem[COLORSEL_IMPACT]);
 
       }
-      else if (idView == COLORSEL_IMPACT)
+      else if (idImpact == COLORSEL_IMPACT)
       {
 
          if (m_mapimpactsystem[COLORSEL_IMPACT] != nullptr)
@@ -2045,7 +2045,7 @@ namespace core
          m_mapimpactsystem[COLORSEL_IMPACT] = ptemplate;
 
       }
-      else if (idView == FONTSEL_IMPACT)
+      else if (idImpact == FONTSEL_IMPACT)
       {
 
          if (m_bFontSelInitialized)

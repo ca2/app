@@ -21,7 +21,7 @@ namespace windowing
       void *                                    m_pWindow2;
 
       __pointer(::windowing::display)           m_pdisplay;
-      __pointer(::user::interaction_impl)       m_pimpl;
+      __pointer(::user::interaction_impl)       m_puserinteractionimpl;
       string                                    m_strDebug;
       __pointer(::message_queue)                m_pmessagequeue;
       ::duration                                m_durationLastMouseMove;
@@ -45,7 +45,7 @@ namespace windowing
       void on_initialize_object() override;
 
 
-      void assert_valid() const override;
+      void assert_ok() const override;
       void dump(dump_context & dumpcontext) const override;
 
 
@@ -58,6 +58,7 @@ namespace windowing
 
 
       virtual void create_window(::user::interaction_impl * pimpl);
+
 
 
       virtual void set_keyboard_focus();
@@ -155,9 +156,9 @@ namespace windowing
 
       virtual void win_update_graphics();
 
-      virtual lresult send_message(const ::id & id, wparam wParam = 0, lparam lParam = nullptr);
+      virtual lresult send_message(const ::atom & atom, wparam wParam = 0, lparam lParam = nullptr);
 
-      virtual bool post_message(const ::id & id, wparam wParam = 0, lparam lParam = nullptr);
+      virtual bool post_message(const ::atom & atom, wparam wParam = 0, lparam lParam = nullptr);
 
 
       virtual void set_window_text(const ::string & pszString);
@@ -294,9 +295,8 @@ namespace windowing
 
       bool is_branch_current() const override;
 
-
-
-
+      
+      itask_t get_itask() const;
 
 
    };

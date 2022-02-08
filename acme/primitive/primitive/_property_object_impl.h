@@ -3,7 +3,7 @@
 
 inline material_object::material_object(const material_object & idmatter) :
    matter(idmatter),
-   m_id(idmatter.m_id)
+   m_atom(idmatter.m_atom)
 {
 
 }
@@ -18,9 +18,9 @@ inline property_object::property_object(const property_object & object) :
 }
 
 
-inline bool property_object::has_property(const id & id) const { return m_ppropertyset && m_ppropertyset->has_property(id); }
-inline property * property_object::lookup_property(const id& id) const { return m_ppropertyset ? m_ppropertyset->find(id) : nullptr; }
-inline bool property_object::erase_key(const id & id) { return m_ppropertyset && m_ppropertyset->erase_by_name(id); }
+inline bool property_object::has_property(const atom & atom) const { return m_ppropertyset && m_ppropertyset->has_property(atom); }
+inline property * property_object::lookup_property(const atom& atom) const { return m_ppropertyset ? m_ppropertyset->find(atom) : nullptr; }
+inline bool property_object::erase_key(const atom & atom) { return m_ppropertyset && m_ppropertyset->erase_by_name(atom); }
 inline property_set & property_object::get_property_set() { defer_propset(); return *m_ppropertyset; }
 inline const property_set & property_object::get_property_set() const { ((property_object *)this)->defer_propset(); return *m_ppropertyset; }
 
@@ -52,7 +52,7 @@ inline void property_object::defer_propset() { m_psystem->__defer_construct_new(
 
 
 
-inline property * property_object::find_property(const id & id) const
+inline property * property_object::find_property(const atom & atom) const
 {
 
    if (!m_ppropertyset)
@@ -62,12 +62,12 @@ inline property * property_object::find_property(const id & id) const
 
    }
 
-   return m_ppropertyset->find(id);
+   return m_ppropertyset->find(atom);
 
 }
 
 
-inline string property_object::find_string(const ::id & id, const ansichar * pszDefault) const
+inline string property_object::find_string(const ::atom & atom, const ansichar * pszDefault) const
 {
 
    if (!m_ppropertyset)
@@ -77,7 +77,7 @@ inline string property_object::find_string(const ::id & id, const ansichar * psz
 
    }
 
-   auto pproperty = m_ppropertyset->find(id);
+   auto pproperty = m_ppropertyset->find(atom);
 
    if (!pproperty)
    {
@@ -91,7 +91,7 @@ inline string property_object::find_string(const ::id & id, const ansichar * psz
 }
 
 
-inline ::i32 property_object::find_i32(const ::id & id, ::i32 iDefault) const
+inline ::i32 property_object::find_i32(const ::atom & atom, ::i32 iDefault) const
 {
 
    if (!m_ppropertyset)
@@ -101,7 +101,7 @@ inline ::i32 property_object::find_i32(const ::id & id, ::i32 iDefault) const
 
    }
 
-   auto pproperty = m_ppropertyset->find(id);
+   auto pproperty = m_ppropertyset->find(atom);
 
    if (!pproperty)
    {
@@ -115,7 +115,7 @@ inline ::i32 property_object::find_i32(const ::id & id, ::i32 iDefault) const
 }
 
 
-inline ::u32 property_object::find_u32(const ::id & id, ::u32 iDefault) const
+inline ::u32 property_object::find_u32(const ::atom & atom, ::u32 iDefault) const
 {
 
    if (!m_ppropertyset)
@@ -125,7 +125,7 @@ inline ::u32 property_object::find_u32(const ::id & id, ::u32 iDefault) const
 
    }
 
-   auto pproperty = m_ppropertyset->find(id);
+   auto pproperty = m_ppropertyset->find(atom);
 
    if (!pproperty)
    {
@@ -139,18 +139,18 @@ inline ::u32 property_object::find_u32(const ::id & id, ::u32 iDefault) const
 }
 
 
-template < typename TYPE > inline TYPE & property_object::get_cast(const ::id & id, TYPE * pDefault)
+template < typename TYPE > inline TYPE & property_object::get_cast(const ::atom & atom, TYPE * pDefault)
 {
 
-   return payload(id).get_cast <TYPE>(pDefault);
+   return payload(atom).get_cast <TYPE>(pDefault);
 
 }
 
 
-template < typename TYPE > inline __pointer(TYPE) property_object::cast(const ::id & id) const
+template < typename TYPE > inline __pointer(TYPE) property_object::cast(const ::atom & atom) const
 {
 
-   auto pproperty = find_property(id);
+   auto pproperty = find_property(atom);
 
    if (!pproperty)
    {
@@ -164,58 +164,58 @@ template < typename TYPE > inline __pointer(TYPE) property_object::cast(const ::
 }
 
 
-inline ::payload & property_object::payload(const id & id)
+inline ::payload & property_object::payload(const atom & atom)
 {
 
    auto & set = get_property_set();
 
-   return set.get(id);
+   return set.get(atom);
 
 }
 
 
-inline bool property_object::is_true(const ::id & id) const
+inline bool property_object::is_true(const ::atom & atom) const
 {
 
-   return m_ppropertyset && payload(id).is_true();
+   return m_ppropertyset && payload(atom).is_true();
 
 }
 
 
-inline bool property_object::is_false(const ::id& id) const
+inline bool property_object::is_false(const ::atom& atom) const
 {
 
-   return !is_true(id);
+   return !is_true(atom);
 
 }
 
 
-inline bool property_object::is_true(const ::id & id, const ::payload & varDefault, bool bDefault = false) const
+inline bool property_object::is_true(const ::atom & atom, const ::payload & varDefault, bool bDefault = false) const
 {
 
-   return payload(id).is_true(varDefault, bDefault);
+   return payload(atom).is_true(varDefault, bDefault);
 
 }
 
 
-inline ::payload & property_object::operator[](const ::id & id) { return payload(id); }
+inline ::payload & property_object::operator[](const ::atom & atom) { return payload(atom); }
 
-inline ::payload property_object::operator[](const ::id & id) const { return find_property(id); }
+inline ::payload property_object::operator[](const ::atom & atom) const { return find_property(atom); }
 
-inline ::payload property_object::payload(const ::id & id) const { return find_property(id); }
+inline ::payload property_object::payload(const ::atom & atom) const { return find_property(atom); }
 
-inline ::payload property_object::payload(const ::id & id, const ::payload & varDefault) const { return operator()(id, varDefault); }
+inline ::payload property_object::payload(const ::atom & atom, const ::payload & varDefault) const { return operator()(atom, varDefault); }
 
-inline ::payload property_object::operator()(const ::id & id) const { return find_payload(id, ::error_not_found); }
+inline ::payload property_object::operator()(const ::atom & atom) const { return find_payload(atom, ::error_not_found); }
 
-inline ::payload property_object::operator()(const ::id & id, const ::payload & varDefault) const { return find_payload(id, varDefault); }
+inline ::payload property_object::operator()(const ::atom & atom, const ::payload & varDefault) const { return find_payload(atom, varDefault); }
 
-inline ::payload property_object::find_payload(const ::id & id) const { return find_payload(id, ::error_not_found); }
+inline ::payload property_object::find_payload(const ::atom & atom) const { return find_payload(atom, ::error_not_found); }
 
-inline ::payload property_object::find_payload(const ::id & id, const ::payload & varDefault) const
+inline ::payload property_object::find_payload(const ::atom & atom, const ::payload & varDefault) const
 {
 
-   auto pproperty = find_property(id);
+   auto pproperty = find_property(atom);
 
    if (!pproperty)
    {
@@ -228,15 +228,15 @@ inline ::payload property_object::find_payload(const ::id & id, const ::payload 
 
 }
 
-inline ::payload property_object::attribute(const ::id & id) { return payload(id); }
+inline ::payload property_object::attribute(const ::atom & atom) { return payload(atom); }
 
-inline ::property * property_object::find_attribute(const ::id & id) { return find_property(id); }
+inline ::property * property_object::find_attribute(const ::atom & atom) { return find_property(atom); }
 
 template < typename TYPE >
-inline bool property_object::find_attribute(const ::id & id, TYPE & t)
+inline bool property_object::find_attribute(const ::atom & atom, TYPE & t)
 {
 
-   auto p = find_property(id);
+   auto p = find_property(atom);
 
    if (!p)
    {
@@ -252,15 +252,15 @@ inline bool property_object::find_attribute(const ::id & id, TYPE & t)
 }
 
 
-inline ::payload & property_object::get_object(const ::id & id)
+inline ::payload & property_object::get_object(const ::atom & atom)
 {
 
-   auto pproperty = &payload(id);
+   auto pproperty = &payload(atom);
 
    if (!pproperty)
    {
 
-      __throw(error_resource);
+      throw ::exception(error_resource);
 
    }
 
@@ -271,15 +271,15 @@ inline ::payload & property_object::get_object(const ::id & id)
 
 
 
-inline ::payload & property_object::topic(const ::id& id)
+inline ::payload & property_object::topic(const ::atom& atom)
 {
 
-   auto property = fetch_property(id);
+   auto property = fetch_property(atom);
 
    if (!property)
    {
 
-      __throw(error_resource);
+      throw ::exception(error_resource);
 
    }
 

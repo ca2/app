@@ -49,7 +49,7 @@ namespace experience
    bool size_manager::on_message_left_button_down(::message::mouse * pmouse)
    {
 
-      ASSERT(pmouse->m_id == e_message_left_button_down || pmouse->m_id == e_message_non_client_left_button_down);
+      ASSERT(pmouse->m_atom == e_message_left_button_down || pmouse->m_atom == e_message_non_client_left_button_down);
 
       if(!m_pframewindow->is_sizing_enabled())
       {
@@ -165,7 +165,7 @@ namespace experience
 
       }
 
-      ASSERT(pmouse->m_id == e_message_mouse_move || pmouse->m_id == e_message_non_client_mouse_move);
+      ASSERT(pmouse->m_atom == e_message_mouse_move || pmouse->m_atom == e_message_non_client_mouse_move);
 
       if(m_ehittestSizing != hittest_none)
       {

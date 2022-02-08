@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "aqua/xml.h"
 #include "apex/platform/app_core.h"
-#include "acme/constant/id.h"
+#include "acme/id.h"
 #include "acme/platform/profiler.h"
 #include "acme/platform/static_setup.h"
 #include "axis/constant/idpool.h"
@@ -562,10 +562,10 @@ namespace axis
    }
 
 
-   void system::assert_valid() const
+   void system::assert_ok() const
    {
 
-      ::thread::assert_valid();
+      ::thread::assert_ok();
 
    }
 

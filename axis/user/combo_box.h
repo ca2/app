@@ -79,7 +79,7 @@ namespace user
       virtual index _001FindListText(const ::string & str) const;
       virtual count _001GetListCount() const;
 
-      //virtual bool create_interaction(::user::interaction * pinteractionParent, const ::id & id) override;
+      //virtual bool create_interaction(::user::interaction * pinteractionParent, const ::atom & atom) override;
 
       virtual bool get_element_rect(RECTANGLE_I32 * prectangle, enum_element eelement) override;
 
@@ -116,11 +116,11 @@ namespace user
 
       virtual void plain_edit_on_after_change_text(::draw2d::graphics_pointer& pgraphics, const ::action_context & action_context) override;
 
-      virtual void handle(::subject * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
 
 
-      //virtual bool create_interaction(::user::interaction * puiParent, const ::id & id) override;
+      //virtual bool create_interaction(::user::interaction * puiParent, const ::atom & atom) override;
 
       //::count get_count();
       //::item current_item() override;
@@ -217,7 +217,7 @@ namespace user
       virtual bool keyboard_focus_is_focusable() const override;
 
 
-      //virtual void handle(::subject * psubject, ::context * pcontext) override;
+      //virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
 
    };

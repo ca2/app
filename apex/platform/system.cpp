@@ -5,7 +5,7 @@
 #include "apex/platform/machine_event_central.h"
 #include "apex/platform/app_core.h"
 #include "acme/id.h"
-//#include "apex/node/_node.h"
+//#include "apex/operating_system/_node.h"
 #include "acme/platform/profiler.h"
 #include "acme/platform/static_setup.h"
 #include "apex/id.h"
@@ -33,9 +33,9 @@
 
 ///const ::string & g_pszMultimediaLibraryName = nullptr;
 
-void apex_system_update(const ::id & id, const ::payload & payload);
+void apex_system_update(const ::atom & atom, const ::payload & payload);
 
-void apex_system_set_modified(const ::id& id);
+void apex_system_set_modified(const ::atom& atom);
 
 
 // CLASS_DECL_APEX void multimedia_set_library_name(const ::string & psz)
@@ -103,7 +103,7 @@ string get_user_name()
 
 }
 
-//#include "acme/node/operating_system/windows/_c.h"
+//#include "acme/operating_system/windows/_c.h"
 #endif
 
 
@@ -531,7 +531,7 @@ namespace apex
    __pointer(::factory::factory) & system::node_factory()
    {
 
-      auto & pfactory = factory("apex", PLATFORM_NAME);
+      auto & pfactory = factory("apex", OPERATING_SYSTEM_NAME);
 
       if(!pfactory)
       {
@@ -579,7 +579,7 @@ namespace apex
 #endif
 
 
-      // estatus = ([a-z0-9_]+)_factory("apex", PLATFORM_NAME);
+      // estatus = ([a-z0-9_]+)_factory("apex", OPERATING_SYSTEM_NAME);
 
       // if (!estatus)
       // {
@@ -842,14 +842,14 @@ namespace apex
 
       //if (!m_pxml->init1())
       //{
-      //   __throw(::exception("failed to construct system m_pxml->init1()"));
+      //   throw ::exception(::exception("failed to construct system m_pxml->init1()"));
 
       //}
 
       //if (!m_pxml->init())
       //{
 
-      //   __throw(::exception("failed to construct system m_pxml->initialize()"));
+      //   throw ::exception(::exception("failed to construct system m_pxml->initialize()"));
 
       //}
 
@@ -1038,9 +1038,9 @@ pacmedir->create("/ca2core");
 
       string strLogTime = pdatetime->international().get_date_time_for_file_with_no_spaces();
 
-      strLogTime.replace("-", "/");
+      strLogTime.replace_with("/", "-");
 
-      strLogTime.replace("_", "/");
+      strLogTime.replace_with("/", "_");
 
       {
 
@@ -1144,14 +1144,14 @@ pacmedir->create("/ca2core");
 
       auto & pfactoryCrypto = factory("crypto", "openssl");
 
-      if (!pfactoryCrypto)
-      {
+      //if (!pfactoryCrypto)
+      //{
 
-         WARNING("Could not open crypto openssl plugin.");
+      //   WARNING("Could not open crypto openssl plugin.");
 
-         //return pfactoryCrypto;
+      //   //return pfactoryCrypto;
 
-      }
+      //}
 
       pfactoryCrypto->merge_to_global_factory();
 
@@ -1291,7 +1291,7 @@ pacmedir->create("/ca2core");
 
 
 
-      //__throw(todo("filehandler"));
+      //throw ::exception(todo("filehandler"));
 
       //estatus = __compose_new(m_pfilehandler);
 
@@ -1375,7 +1375,7 @@ pacmedir->create("/ca2core");
       {
 
          ///if (!
-         m_papexsession->begin_synch();
+         m_papexsession->begin_synchronously();
          //{
 
          //   output_debug_string("\nFailed to begin_synch the session (::apex::session or ::apex::session derived)");
@@ -1784,6 +1784,38 @@ pacmedir->create("/ca2core");
    }
 
 
+   void system::__thread_init()
+   {
+
+      try
+      {
+
+         ::apex::context::__thread_init();
+
+      }
+      catch (exception & exception)
+      {
+
+         string strMessage;
+         
+         strMessage += "Failed to initialize application\n";
+         strMessage += "\n";
+         strMessage += exception.m_strMessage + "\n";
+         strMessage += "(" + __string(exception.m_estatus) + ")";
+
+         string strTitle;
+
+         strTitle = "Exception during initialization";
+
+         os_message_box(this, strMessage, strTitle, e_message_box_ok | e_message_box_icon_exclamation);
+
+         throw exception;
+
+      }
+
+   }
+
+
    ::application* system::get_main_application()
    {
 
@@ -1852,9 +1884,9 @@ pacmedir->create("/ca2core");
 
       string strApplicationServerName = m_strAppId;
 
-      strApplicationServerName.replace("/", ".");
+      strApplicationServerName.replace_with(".", "/");
 
-      strApplicationServerName.replace("_", "-");
+      strApplicationServerName.replace_with("-", "_");
 
       return strApplicationServerName;
 
@@ -1933,7 +1965,7 @@ pacmedir->create("/ca2core");
    }
 
 
-   //void system::post_to_all_threads(const ::id & id, WPARAM wparam, LPARAM lparam)
+   //void system::post_to_all_threads(const ::atom & atom, WPARAM wparam, LPARAM lparam)
    //{
 
    //   synchronous_lock synchronouslock(m_mutexThread);
@@ -2080,10 +2112,10 @@ pacmedir->create("/ca2core");
    }
 
 
-   ::u32 system::os_post_to_all_threads(const ::id & id,wparam wparam,lparam lparam)
+   ::u32 system::os_post_to_all_threads(const ::atom & atom,wparam wparam,lparam lparam)
    {
 
-      post_to_all_threads(id,wparam,lparam);
+      post_to_all_threads(atom,wparam,lparam);
 
       return 0;
 
@@ -2167,7 +2199,7 @@ pacmedir->create("/ca2core");
 
       string strPrint(str);
 
-      strPrint.replace("%","%%");
+      strPrint.replace_with("%%", "%");
 
       //if(m_ptracelog)
       //{
@@ -2472,7 +2504,7 @@ pacmedir->create("/ca2core");
 
 #else
 
-            __throw(todo);
+            throw ::exception(todo);
 
 #endif
 
@@ -2495,7 +2527,7 @@ pacmedir->create("/ca2core");
 
 #if defined(_UWP)
 
-            __throw(todo);
+            throw ::exception(todo);
 
 #else
 
@@ -2535,7 +2567,7 @@ pacmedir->create("/ca2core");
 
 #ifdef _UWP
 
-            __throw(todo);
+            throw ::exception(todo);
 
 #else
 
@@ -2569,7 +2601,7 @@ pacmedir->create("/ca2core");
 
 #ifdef _UWP
 
-            __throw(todo);
+            throw ::exception(todo);
 
 #else
 
@@ -2639,7 +2671,7 @@ pacmedir->create("/ca2core");
    //string system::crypto_md5_text(const ::string & str)
    //{
 
-   //   throw interface_only_exception();
+   //   throw ::interface_only();
 
    //   return "";
 
@@ -3054,7 +3086,7 @@ pacmedir->create("/ca2core");
    //string system::url_encode(const ::string & str)
    //{
 
-   //   //throw ::interface_only_exception();
+   //   //throw ::interface_only();
 
    //   return url_encode(str);
 
@@ -3407,7 +3439,7 @@ pacmedir->create("/ca2core");
 //   void system::enum_display_monitors()
 //   {
 //
-//   __throw(todo("aura"));
+//   throw ::exception(todo("aura"));
 ////#ifdef WINDOWS_DESKTOP
 ////
 ////      m_monitorinfoa.erase_all();
@@ -3479,8 +3511,8 @@ pacmedir->create("/ca2core");
 
          stra.explode("/", strAppId);
 
-         strProj.replace_ci("-", "_");
-         strProj.replace_ci("/", "_");
+         strProj.replace_with_ci("_", "-");
+         strProj.replace_with_ci("_", "/");
 
          //strProj = "..\\..\\..\\" + stra[0] + "\\" + stra[1] + "\\" + stra[1] + ".vcxproj";
 
@@ -3762,7 +3794,7 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
 
          string * pstrNew = new string(strUrl);
 
-         ::winrt::Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal,
+         ::winrt::Windows::ApplicationModel::Core::CoreApplication::MainImpact->CoreWindow->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal,
             ref new ::winrt::Windows::UI::Core::DispatchedHandler([pstrNew]()
                {
 
@@ -4080,7 +4112,7 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
 
          string strCmd = path + " " + strParam;
 
-         strCmd.replace("\'", "\\\'");
+         strCmd.find_replace("\'", "\\\'");
 
          strParam = " -c '" + strCmd + "'";
 
@@ -4241,7 +4273,7 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
    {
       string strId(pszId);
       string strMutex;
-      strMutex.format("Local\\ca2_application_local_mutex:%s, id:%s", pszAppName.c_str(), strId.c_str());
+      strMutex.format("Local\\ca2_application_local_mutex:%s, atom:%s", pszAppName.c_str(), strId.c_str());
       return strMutex;
    }
 
@@ -4256,7 +4288,7 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
    {
       string strId(pszId);
       string strMutex;
-      strMutex.format("Global\\ca2_application_global_mutex:%s, id:%s", pszAppName.c_str(), strId.c_str());
+      strMutex.format("Global\\ca2_application_global_mutex:%s, atom:%s", pszAppName.c_str(), strId.c_str());
       return strMutex;
    }
 
@@ -4301,7 +4333,7 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
 
    //      auto ptool = __new(::task_tool);
 
-   //      ptool->m_id = etool;
+   //      ptool->m_atom = etool;
 
    //      threadtoola.add(ptool);
 
@@ -4312,16 +4344,16 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
    //}
 
 
-   //__pointer(::subject) system::new_subject(const MESSAGE& message)
+   //__pointer(::topic) system::new_subject(const MESSAGE& message)
    //{
 
-   //   auto id = (::iptr)message.wParam;
+   //   auto atom = (::iptr)message.wParam;
 
-   //   auto psubject = subject(id);
+   //   auto ptopic = topic(atom);
 
-   //   psubject->m_pobjectTopic = (::object*) message.lParam.m_lparam;
+   //   ptopic->m_pobjectTopic = (::object*) message.lParam.m_lparam;
 
-   //   return psubject;
+   //   return ptopic;
 
    //}
 
@@ -4383,7 +4415,7 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
 
 #ifdef WINDOWS_DESKTOP
 #elif defined(_UWP)
-#include "apex/node/operating_system/universal_windows/_universal_windows.h"
+#include "apex/operating_system/universal_windows/_universal_windows.h"
 #endif
 
 
@@ -4435,7 +4467,7 @@ namespace apex
    __pointer(::data::node) system::load_xml(const ::string & pszXml)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
@@ -4445,7 +4477,7 @@ namespace apex
    void system::on_start_find_applications_from_cache()
    {
 
-      __throw(todo, "filehandler");
+      throw ::exception(todo, "filehandler");
      // m_pfilehandler->m_ptree->erase_all();
 
    }
@@ -4454,7 +4486,7 @@ namespace apex
    void system::on_end_find_applications_from_cache(stream& is)
    {
 
-      //__throw(todo("filehandler"));
+      //throw ::exception(todo("filehandler"));
       //is >> *m_pfilehandler;
 
    }
@@ -4462,7 +4494,7 @@ namespace apex
    void system::on_end_find_applications_to_cache(stream& os)
    {
 
-      //__throw(todo("filehandler"));
+      //throw ::exception(todo("filehandler"));
       //os << *m_pfilehandler;
 
    }
@@ -4470,7 +4502,7 @@ namespace apex
    void system::on_map_application_library(::acme::library& library)
    {
 
-      __throw(todo, "filehandler");
+      throw ::exception(todo, "filehandler");
       // m_pfilehandler->defer_add_library(library.m_pca2library);
 
    }
@@ -4651,7 +4683,7 @@ namespace apex
 
          set["cookies"] = pcookies;
 
-         m_pcontext->m_papexcontext->file().del(filename);
+         m_pcontext->m_papexcontext->file().erase(filename);
 
          return m_pcontext->m_papexcontext->http().download(str, strLocation, set);
 
@@ -4775,14 +4807,14 @@ namespace apex
 
    //   m_libraryspa.add(plibrary);
 
-   //   ::array < ::id > ida;
+   //   ::array < ::atom > ida;
 
    //   plibrary->get_create_view_id_list(ida);
 
    //   for (i32 i = 0; i < ida.get_count(); i++)
    //   {
 
-   //      m_idmapCreateViewLibrary.set_at(ida[i], plibrary);
+   //      m_idmapCreateImpactLibrary.set_at(ida[i], plibrary);
 
    //   }
 
@@ -4841,10 +4873,10 @@ namespace apex
 #endif
 
 
-   void system::assert_valid() const
+   void system::assert_ok() const
    {
 
-      ::thread::assert_valid();
+      ::thread::assert_ok();
 
    }
 
@@ -4921,7 +4953,7 @@ namespace apex
    }
 
    
-   void system::handle(::subject * psubject, ::context * pcontext)
+   void system::handle(::topic * ptopic, ::context * pcontext)
    {
 
 //      auto psignal = get_signal((::enum_id) iUpdate);
@@ -4930,10 +4962,10 @@ namespace apex
 //
 //      psignal->notify();
       
-      if(psubject->id() == id_set_dark_mode)
+      if(ptopic->get_extended_topic()->m_atom == id_set_dark_mode)
       {
          
-         if(psubject->m_payload.is_true())
+         if(ptopic->get_extended_topic()->m_payload.is_true())
          {
 
             m_pnode->background_color(::color::black);
@@ -4947,7 +4979,7 @@ namespace apex
          }
          
       }
-      else if (psubject->id() == id_operating_system_user_theme_change)
+      else if (ptopic->m_atom == id_operating_system_user_theme_change)
       {
 
          auto pnode = node();
@@ -4960,20 +4992,12 @@ namespace apex
             m_strOsUserTheme = strTheme;
 
          }
-         else
-         {
-
-            psubject->m_esubject = e_subject_not_modified;
-
-         }
-
-         //m_pnode->defer_update_dark_mode();
 
       }
-      else if (psubject->id() == id_open_hyperlink)
+      else if (ptopic->m_atom == id_open_hyperlink)
       {
 
-         auto plink = psubject->m_payload.cast < ::hyperlink >();
+         auto plink = ptopic->get_extended_topic()->m_payload.cast < ::hyperlink >();
 
          if (plink)
          {
@@ -4994,13 +5018,13 @@ namespace apex
          }
 
       }
-      else if(psubject->id() == id_app_activated)
+      else if(ptopic->m_atom == id_app_activated)
       {
          
          if(::is_set(m_papplicationMain))
          {
          
-            m_papplicationMain->handle(psubject, pcontext);
+            m_papplicationMain->handle(ptopic, pcontext);
             
          }
          
@@ -5290,21 +5314,21 @@ namespace apex
 } // namespace apex
 
 
-//void apex_system_update(const ::id & id, const ::payload & payload)
+//void apex_system_update(const ::atom & atom, const ::payload & payload)
 //{
 //
-//   psystem->process_subject(id, payload);
+//   psystem->process_subject(atom, payload);
 //
 //}
 
 //
 //
-//void apex_system_set_modified(const ::id& id)
+//void apex_system_set_modified(const ::atom& atom)
 //{
 //
 //
 //
-//   psystem->set_modified(id);
+//   psystem->set_modified(atom);
 //
 //}
 //
@@ -5312,11 +5336,11 @@ namespace apex
 //{
 //
 //
-//   void system::on_subject(::subject* psubject)
+//   void system::on_subject(::topic* ptopic)
 //   {
 //
 //
-//      ::manager::on_subject(psubject);
+//      ::manager::on_subject(ptopic);
 //
 //   }
 //

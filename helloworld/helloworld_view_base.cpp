@@ -35,9 +35,9 @@ namespace helloworld
    {
    }
 
-   void impact_base::assert_valid() const
+   void impact_base::assert_ok() const
    {
-      user::box::assert_valid();
+      user::box::assert_ok();
    }
 
    void impact_base::dump(dump_context & dumpcontext) const

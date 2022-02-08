@@ -36,7 +36,7 @@ namespace draw2d
    {
 
 
-      __throw(todo);
+      throw ::exception(todo);
       /*string str(pcsz);
 
       strsize iLen = str.get_length();

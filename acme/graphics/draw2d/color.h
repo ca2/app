@@ -154,6 +154,9 @@ namespace color
       ::u32 get_bgr() const;
       ::u32 get_rgba() const;
       ::u32 get_bgra() const;
+#ifdef WINDOWS
+      ::u32 get_COLORREF() const;
+#endif
 
       //   operator rgb & () {return m_rgb;}
       //   operator const rgb & () const {return m_rgb;}

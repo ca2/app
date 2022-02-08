@@ -2,16 +2,16 @@
 
 
 //#define MSG_TYPE_LINK(emessagetype, pchannel, preceiver, phandler) \
-//   pchannel->add_route(preceiver, phandler, ::id((::message::enum_type)(emessagetype)))
+//   pchannel->add_route(preceiver, phandler, ::atom((::message::enum_type)(emessagetype)))
 //
 //#define MESSAGE_LINK(int_message, pchannel, preceiver, phandler) \
-//   pchannel->add_route(preceiver, phandler, ::id(::id((index) (int_message)), ::message::e_type_message))
+//   pchannel->add_route(preceiver, phandler, ::atom(::atom((index) (int_message)), ::message::e_type_message))
 //
-//#define ON_TYPED_MESSAGE(id, MESSAGE, name) \
-//   this->get_typed_route < typename ::erase_reference < decltype(*this) >::TYPE, MESSAGE >(id, this) = [this](MESSAGE * p ## name)
+//#define ON_TYPED_MESSAGE(atom, MESSAGE, name) \
+//   this->get_typed_route < typename ::erase_reference < decltype(*this) >::TYPE, MESSAGE >(atom, this) = [this](MESSAGE * p ## name)
 //
-//#define ON_MESSAGE(id) \
-//   ON_TYPED_MESSAGE(id, ::message::message, message)
+//#define ON_MESSAGE(atom) \
+//   ON_TYPED_MESSAGE(atom, ::message::message, message)
 //
 //#define ON_WM_SHOWWINDOW \
 //   ON_TYPED_MESSAGE(e_message_show_window, ::message::show_window, showwindow)

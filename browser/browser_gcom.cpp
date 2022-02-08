@@ -31,9 +31,9 @@ namespace browser
    {
    }
 
-   void gcom::assert_valid() const
+   void gcom::assert_ok() const
    {
-      user::box::assert_valid();
+      user::box::assert_ok();
    }
 
    void gcom::dump(dump_context & dumpcontext) const
@@ -58,7 +58,7 @@ namespace browser
 
       __pointer(::message::create) pcreate(pmessage);
 
-      m_id = "browser_gcom";
+      m_atom = "browser_gcom";
 
       pcreate->previous();
 
@@ -76,10 +76,10 @@ namespace browser
    }
 
 
-   void gcom::handle(::subject * psubject, ::context * pcontext)
+   void gcom::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      __UNREFERENCED_PARAMETER(psubject);
+      __UNREFERENCED_PARAMETER(ptopic);
 
    }
 

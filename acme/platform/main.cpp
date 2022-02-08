@@ -3,7 +3,7 @@
 //
 #include "framework.h"
 #ifdef LINUX
-#include "acme/node/operating_system/ansi/binreloc.h"
+#include "acme/operating_system/ansi/binreloc.h"
 #endif
 #include "acme/platform/set_app_id.h"
 

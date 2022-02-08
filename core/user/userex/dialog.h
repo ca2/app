@@ -4,11 +4,11 @@
 //#include "aura/user/html/html/html.h"
 
 
-CLASS_DECL_CORE void DDX_Control(::user::data_exchange * pdx, id idControl, ::user::interaction & control);
-CLASS_DECL_CORE void DDX_Text(::user::data_exchange * pdx, id idControl, string & str);
+CLASS_DECL_CORE void DDX_Control(::user::data_exchange * pdx, atom idControl, ::user::interaction & control);
+CLASS_DECL_CORE void DDX_Text(::user::data_exchange * pdx, atom idControl, string & str);
 CLASS_DECL_CORE void DDV_MaxChars(::user::data_exchange * pdx, string & str, i32 iMax);
-CLASS_DECL_CORE void DDX_Check(::user::data_exchange * pdx, id idControl, i32 & iBool);
-CLASS_DECL_CORE void DDX_Check(::user::data_exchange * pdx, id idControl, bool & b);
+CLASS_DECL_CORE void DDX_Check(::user::data_exchange * pdx, atom idControl, i32 & iBool);
+CLASS_DECL_CORE void DDX_Check(::user::data_exchange * pdx, atom idControl, bool & b);
 
 class CLASS_DECL_CORE dialog :
    virtual public ::user::form_callback
@@ -28,7 +28,7 @@ public:
 
    virtual void on_position_parent_frame();
 
-   virtual void EndModalLoop(id nResult);
+   virtual void EndModalLoop(atom nResult);
 
    virtual bool show(const ::string & pszMatter = nullptr);
 
@@ -51,7 +51,7 @@ public:
    //virtual bool OnInitDialog();
    // substituir, replace _001Initialize
    
-   virtual void handle(::subject * psubject, ::context * pcontext) override;
+   virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
 
 };

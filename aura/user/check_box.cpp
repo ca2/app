@@ -74,17 +74,13 @@ namespace user
          if(has_handler())
          {
 
-            ::subject subject;
+            ::extended_topic extendedtopic(::id_set_check);
 
-            subject.m_puserelement = this;
+            extendedtopic.m_puserelement = this;
 
-            //subject.m_id = m_id;
+            extendedtopic.m_actioncontext = context;
 
-            subject.m_id = ::e_subject_set_check;
-
-            subject.m_actioncontext = context;
-
-            route(&subject);
+            route(&extendedtopic);
             
          }
 
@@ -604,7 +600,7 @@ namespace user
 //
 //         ::user::menu_command command(this);
 //
-//         command.m_id = m_id;
+//         command.m_atom = m_atom;
 //
 //         command.m_puiOther = this;
 //
@@ -665,10 +661,10 @@ namespace user
    }
 
 
-   void check_box::handle(::subject * psubject, ::context * pcontext)
+   void check_box::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      interaction::handle(psubject, pcontext);
+      interaction::handle(ptopic, pcontext);
 
    }
 
@@ -690,7 +686,7 @@ namespace user
 
       pmessage->previous();
 
-      m_propertyCheck = fetch_property(m_id, true);
+      m_propertyCheck = fetch_property(m_atom, true);
 
    }
 

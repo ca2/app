@@ -198,7 +198,7 @@ namespace user
       virtual ~control_bar();
 
 
-      void assert_valid() const override;
+      void assert_ok() const override;
       void dump(dump_context & dumpcontext) const override;
 
 
@@ -283,7 +283,7 @@ namespace user
       friend class BaseDockBar;
 
 
-      virtual void handle(::subject * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
 
 

@@ -61,7 +61,7 @@ namespace file
    void path_object::exchange(::stream& s)
    {
 
-      s.exchange(id::e_type_null, (::file::path&) * this);
+      s.exchange(atom::e_type_null, (::file::path&) * this);
 
    }
 

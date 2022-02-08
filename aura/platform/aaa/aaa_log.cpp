@@ -84,7 +84,7 @@ pacmedir->system() / "trace.txt";
    }
 
 
-   void log::initialize_aura_log(enum_trace_level etracelevelMin, const ::id & id)
+   void log::initialize_aura_log(enum_trace_level etracelevelMin, const ::atom & atom)
    {
 
       auto estatus = __compose_new(m_ptrace);
@@ -175,7 +175,7 @@ pacmedir->system() / "trace.txt";
 
       }
 
-      m_id = id;
+      m_atom = atom;
 
       m_bInitialized = true;
 
@@ -475,7 +475,7 @@ pacmedir->system() / "log.txt"))
 
          strIndex.format("%d-%05d", get_current_process_id(), iRetry);
 
-         m_strLogPath = ::dir::appdata() / string(m_id) / strDatetime + "-" + strIndex + ".ca2log";
+         m_strLogPath = ::dir::appdata() / string(m_atom) / strDatetime + "-" + strIndex + ".ca2log";
 
          try
          {
@@ -648,7 +648,7 @@ skip_further_possible_recursive_impossible_logging_in_file:
    //void log::initialize_aura_log(enum_trace_level etracelevelMin, const ::string & pszId)
    //{
 
-   //   //if (!initialize(id(pszId)))
+   //   //if (!initialize(atom(pszId)))
    //   //{
 
    //   //   return false;
@@ -714,7 +714,7 @@ skip_further_possible_recursive_impossible_logging_in_file:
    }
 
 
-   //void log::initialize(e_traceid id)
+   //void log::initialize(e_traceid atom)
    //{
 
 

@@ -47,7 +47,7 @@ namespace user
 
       //virtual void font_list_update();
 
-      //void assert_valid() const override;
+      //void assert_ok() const override;
       //void dump(dump_context & dumpcontext) const override;
 
       //virtual bool get_color(::color::color & color32, e_color ecolor, ::user::interaction * pinteraction) override;
@@ -59,7 +59,7 @@ namespace user
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void handle(::subject * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
 
       virtual ::item current_item() override;

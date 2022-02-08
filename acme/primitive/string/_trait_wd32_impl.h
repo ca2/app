@@ -363,7 +363,7 @@ namespace str
    //
    //   //if(nDestLength >= 0)
    //   //{
-   //   //   __throw(::exception("I am wasting this branching (if(nDestLength >= 0) to tell you that nDestLength should be negative so the buffer is already correct size... or you like incorrect size_i32? Go to Facebook and click in Like for Community \"I Like incorrect size_i32!!\", there should exist such community... there are so many things in the multi bramas... The hardware will check again if you didn't dirtied any other process... (only another process, though)... and you're probably be fired or even not be hired if incorrect size_i32"));
+   //   //   throw ::exception(::exception("I am wasting this branching (if(nDestLength >= 0) to tell you that nDestLength should be negative so the buffer is already correct size... or you like incorrect size_i32? Go to Facebook and click in Like for Community \"I Like incorrect size_i32!!\", there should exist such community... there are so many things in the multi bramas... The hardware will check again if you didn't dirtied any other process... (only another process, though)... and you're probably be fired or even not be hired if incorrect size_i32"));
    //   //}
    //
    //   wd32_to_ansi(pszDest,pszSrc,nSrcLength);
@@ -398,13 +398,13 @@ namespace str
    //   if(size > UINT_MAX)
    //   {
    //      // API only allows u32 size_i32
-   //      __throw(error_invalid_argument);
+   //      throw ::exception(error_bad_argument);
    //   }
    //   u32 dwSize=static_cast<u32>(size);
    //   bool fSuccess=::OemToCharBuffA(pstrString,pstrString,dwSize) != 0;
    //   if(!fSuccess)
    //   {
-   //      __throw(last_error_exception());
+   //      throw ::exception(last_error_exception());
    //   }
    //
    //#endif
@@ -420,13 +420,13 @@ namespace str
    //   if(size > UINT_MAX)
    //   {
    //      // API only allows u32 size_i32
-   //      __throw(error_invalid_argument);
+   //      throw ::exception(error_bad_argument);
    //   }
    //   u32 dwSize=static_cast<u32>(size);
    //   bool fSuccess=::CharToOemBuffA(pstrString,pstrString,dwSize) != 0;
    //   if(!fSuccess)
    //   {
-   //      __throw(last_error_exception());
+   //      throw ::exception(last_error_exception());
    //   }
    //
    //#endif

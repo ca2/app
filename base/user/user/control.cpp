@@ -44,7 +44,7 @@
 //      //
 //      //#else
 //      //
-//      //      //throw interface_only_exception();
+//      //      //throw ::interface_only();
 //      //
 //      //#endif
 //      //
@@ -67,13 +67,13 @@
 //
 //      pcreate->previous();
 //
-//      ::subject subject;
+//      ::topic topic;
 //
-//      subject.m_puserinteraction = this;
+//      topic.m_puserinteraction = this;
 //
-//      subject.m_id = ::e_subject_create;
+//      topic.m_atom = ::id_create;
 //
-//      route(&subject);
+//      route(&topic);
 //
 //   }
 //
@@ -114,7 +114,7 @@
 //   }
 //
 //
-//   bool control::_003CallCustomWindowProc(__pointer(::user::interaction) puserinteraction, const ::id & id, wparam wparam, lparam lparam, LRESULT& lresult)
+//   bool control::_003CallCustomWindowProc(__pointer(::user::interaction) puserinteraction, const ::atom & atom, wparam wparam, lparam lparam, LRESULT& lresult)
 //
 //   {
 //
@@ -315,7 +315,7 @@
 //   }
 //
 //
-//   bool control::create_interaction(::user::interaction * pinteractionParent, const ::id & id)
+//   bool control::create_interaction(::user::interaction * pinteractionParent, const ::atom & atom)
 //   {
 //
 //      m_pdescriptor = pdescriptor;
@@ -323,7 +323,7 @@
 //      try
 //      {
 //
-//         if (!create_interaction(pdescriptor->m_puserinteractionParent, pdescriptor->m_id))
+//         if (!create_interaction(pdescriptor->m_puserinteractionParent, pdescriptor->m_atom))
 //         {
 //
 //            m_pdescriptor.release();
@@ -477,15 +477,15 @@
 //
 //      //}
 //
-//      ::subject subject;
+//      ::topic topic;
 //
-//      subject.m_puserinteraction = this;
+//      topic.m_puserinteraction = this;
 //
-//      subject.m_id = ::e_subject_set_focus;
+//      topic.m_atom = ::id_set_focus;
 //
-//      route(&subject);
+//      route(&topic);
 //
-//      pmessage->m_bRet =  subject.m_bRet;
+//      pmessage->m_bRet =  topic.m_bRet;
 //
 //   }
 //
@@ -495,17 +495,17 @@
 //
 //      __pointer(::message::kill_focus) pkillfocus(pmessage);
 //
-//      ::subject subject;
+//      ::topic topic;
 //
-//      subject.m_puserinteraction = this;
+//      topic.m_puserinteraction = this;
 //
-//      //subject.m_id = m_id;
+//      //topic.m_atom = m_atom;
 //
-//      subject.m_id = ::e_subject_kill_focus;
+//      topic.m_atom = ::id_kill_focus;
 //
-//      route(&subject);
+//      route(&topic);
 //
-//      pkillfocus->m_bRet = subject.m_bRet;
+//      pkillfocus->m_bRet = topic.m_bRet;
 //
 //   }
 //
@@ -521,7 +521,7 @@
 //
 //      ASSERT_KINDOF(::user::interaction, puserinteraction);
 //
-//      __pointer(::user::interaction) pinteraction = puserinteraction->get_child_by_id(m_idControl);
+//      __pointer(::user::interaction) pinteraction = puserinteraction->get_child_by_id(m_atomControl);
 //
 //      __pointer(control) pcontrolex = (pinteraction.m_p);
 //
@@ -612,14 +612,14 @@
 //   }
 //
 //
-//   id control_cmd_ui::GetControlCommand(id id)
+//   atom control_cmd_ui::GetControlCommand(atom atom)
 //   {
-//      ::id idCommand;
-//      if (m_mapControlCommand.lookup(id, idCommand))
+//      ::atom idCommand;
+//      if (m_mapControlCommand.lookup(atom, idCommand))
 //      {
-//         return id;
+//         return atom;
 //      }
-//      return id;
+//      return atom;
 //   }
 //
 //
@@ -672,17 +672,17 @@
 ////            //#ifdef WINDOWS_DESKTOP
 ////            //            puserinteraction->send_message(control::g_uiMessage, control::MessageParamGetBaseControlExPtr, (LPARAM) &pcontrolex);
 ////            //#else
-////            __throw(todo(puserinteraction->get_application()));
+////            throw ::exception(todo(puserinteraction->get_application()));
 ////            //#endif
 ////         }
 ////         if (pcontrolex != nullptr)
 ////         {
 ////
-////            id idControl = puserinteraction->GetDlgCtrlId();
+////            atom idControl = puserinteraction->GetDlgCtrlId();
 ////
 ////            // xxx         state.m_nIndex = uId;
 ////            state.m_iCount = -1;
-////            state.m_id = m_commandui.GetControlCommand(idControl);
+////            state.m_atom = m_commandui.GetControlCommand(idControl);
 ////            state.m_bContinueRouting = false;
 ////
 ////            // ignore separators
@@ -728,12 +728,12 @@
 ////
 ////#ifdef WINDOWS
 ////
-////         const ::id & id = ((wParam >> 16) & 0xffff);
+////         const ::atom & atom = ((wParam >> 16) & 0xffff);
 ////
 ////
 ////         if (emessage == BN_CLICKED)
 ////         {
-////            //xxx id idCommand = m_commandui.GetControlCommand(wParam & 0xffff);
+////            //xxx atom idCommand = m_commandui.GetControlCommand(wParam & 0xffff);
 ////            //::message::command command(idCommand);
 ////            //xxx get_window()->get_parent_frame()->_001SendCommand(&command);
 ////         }
@@ -846,17 +846,17 @@
 //
 //   //   }
 //
-//   //   ::subject subject;
+//   //   ::topic topic;
 //
-//   //   //subject.m_id = m_id;
+//   //   //topic.m_atom = m_atom;
 //
-//   //   subject.m_puserinteraction = this;
+//   //   topic.m_puserinteraction = this;
 //
-//   //   subject.m_id = e_event_mouse_leave;
+//   //   topic.m_atom = e_event_mouse_leave;
 //
-//   //   subject.m_pmessage = pmessage;
+//   //   topic.m_pmessage = pmessage;
 //
-//   //   route(&subject);
+//   //   route(&topic);
 //
 //   //}
 //
@@ -892,7 +892,7 @@
 //   //}
 //
 //
-//   void control::route(::subject * psubject, ::context * pcontext)
+//   void control::route(::topic * ptopic, ::context * pcontext)
 //   {
 //
 //      ::user::box::route_handling(pevent);
@@ -908,10 +908,10 @@
 //   }
 //
 //
-//   void control::handle(::subject * psubject, ::context * pcontext)
+//   void control::handle(::topic * ptopic, ::context * pcontext)
 //   {
 //
-//      ::user::box::handle(psubject, pcontext);
+//      ::user::box::handle(ptopic, pcontext);
 //
 //   }
 //

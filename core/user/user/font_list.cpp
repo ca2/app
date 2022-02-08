@@ -24,7 +24,7 @@ namespace user
       m_flagNonClient.add(non_client_hover_rect);
 
       m_bFirstShown = false;
-      m_idView = FONTSEL_IMPACT;
+      m_atomImpact = FONTSEL_IMPACT;
       m_scrolldataVertical.m_bScrollEnable = true;
       m_bEnsureVisible = false;
 
@@ -99,7 +99,7 @@ namespace user
       else
       {
 
-         __throw(todo);
+         throw ::exception(todo);
 
       }
 
@@ -172,17 +172,15 @@ namespace user
          if(has_handler())
          {
 
-            ::subject subject;
+            ::extended_topic extendedtopic(::id_after_change_cur_sel);
 
-            subject.m_puserelement = this;
+            extendedtopic.m_puserelement = this;
 
-            subject.m_id = ::e_subject_after_change_cur_sel;
+            extendedtopic.m_actioncontext = ::e_source_user;
 
-            subject.m_actioncontext = ::e_source_user;
+            extendedtopic.m_item = item;
 
-            subject.m_item = item;
-
-            route(&subject);
+            route(&extendedtopic);
             
          }
 
@@ -223,15 +221,13 @@ namespace user
          if(has_handler())
          {
 
-            ::subject subject;
+            ::extended_topic extendedtopic(::id_after_change_cur_hover);
 
-            subject.m_puserelement = this;
+            extendedtopic.m_puserelement = this;
 
-            subject.m_id = ::e_subject_after_change_cur_hover;
+            extendedtopic.m_actioncontext = ::e_source_user;
 
-            subject.m_actioncontext = ::e_source_user;
-
-            route(&subject);
+            route(&extendedtopic);
                
          }
 
@@ -242,12 +238,12 @@ namespace user
    }
 
 
-   void font_list::handle(::subject * psubject, ::context * pcontext)
+   void font_list::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      list_box::handle(psubject, pcontext);
+      list_box::handle(ptopic, pcontext);
 
-      if (psubject->m_id == id_font_list_total_size)
+      if (ptopic->m_atom == id_font_list_total_size)
       {
 
          set_need_layout();
@@ -596,7 +592,7 @@ namespace user
 
             psystem->signal(id_font_enumeration);
 
-            //psystem->handle_subject(psubject);
+            //psystem->handle_subject(ptopic);
 
             //fork([this]()
   //             {

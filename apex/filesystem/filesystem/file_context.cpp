@@ -14,7 +14,7 @@
 #include "apex/platform/app_core.h"
 
 #elif defined(_UWP)
-#include "apex/node/operating_system/_operating_system.h"
+#include "apex/operating_system.h"
 #endif
 
 #include <stdio.h>
@@ -200,7 +200,7 @@ bool file_context::is_file_or_dir(const ::file::path &path, ::payload *pvarQuery
 ::payload file_context::length(const ::file::path &path, ::payload *pvarQuery)
 {
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
    return false;
 
@@ -337,7 +337,7 @@ file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPref
       if (!m_pcontext->m_papexcontext->dir().is(str))
       {
 
-         __throw(error_path_not_found, "time square dir does not exist");
+         throw ::exception(error_path_not_found, "time square dir does not exist");
 
       }
 
@@ -532,7 +532,7 @@ bool file_context::try_create_file(const ::file::path &path, bool bTryDelete)
 
       }
 
-      m_pcontext->m_papexcontext->file().del(path);
+      m_pcontext->m_papexcontext->file().erase(path);
 
       if (m_pcontext->m_papexcontext->file().exists(path))
       {
@@ -692,6 +692,84 @@ bool file_context::as_memory(const ::payload &payloadFile, memory_base &mem, boo
 }
 
 
+memsize file_context::read(const ::payload& payloadFile, void * p, filesize position, memsize size, bool bNoExceptionOnFail)
+{
+
+   file_pointer pfile;
+
+   try
+   {
+
+      pfile = get_file(payloadFile, ::file::e_open_share_deny_none | ::file::e_open_read | ::file::e_open_binary | (bNoExceptionOnFail ? ::file::e_open_no_exception_on_open : 0));
+
+      if (!pfile)
+      {
+
+         return -1;
+
+      }
+      else if (::failed(pfile->m_estatus))
+      {
+
+         return -1;
+
+      }
+
+   }
+   catch (const ::exception& exception)
+   {
+
+      if (bNoExceptionOnFail)
+      {
+
+         return -1;
+
+      }
+
+      throw exception;
+
+   }
+
+   memsize sizeToRead = minimum(size, pfile->get_size() - position);
+
+   if (position > 0)
+   {
+
+      pfile->set_position(position);
+
+   }
+
+   auto sizeRead = pfile->read(p, sizeToRead);
+
+   return sizeRead;
+
+}
+
+
+memsize file_context::read_beginning(const ::payload& payloadFile, void* p, memsize size, bool bNoExceptionOnFail)
+{
+
+   return read(payloadFile, p, 0, size, bNoExceptionOnFail);
+   
+}
+
+
+memory file_context::beginning(const ::payload& payloadFile, memsize size, bool bNoExceptionOnFail)
+{
+
+   memory mem;
+
+   mem.set_size(size);
+
+   auto sizeRead = read(payloadFile, mem.get_data(), mem.get_size(), bNoExceptionOnFail);
+
+   mem.set_size(sizeRead);
+
+   return ::move(mem);
+
+}
+
+
 void file_context::put_lines(const ::payload &payloadFile, const string_array &stra, const plain_text_file_options & options)
 {
 
@@ -789,7 +867,7 @@ void file_context::get_lines(string_array &stra, const ::payload &payloadFile, b
    try
    {
 
-      pfile = get_file(payloadFile, ::file::e_open_share_deny_none | ::file::e_open_read | ::file::e_open_text | (bNoExceptionIfFailToOpen ? ::file::e_open_no_exception_on_open : 0));
+      pfile = get_file(payloadFile, ::file::e_open_share_deny_none | ::file::e_open_read | ::file::e_open_binary | (bNoExceptionIfFailToOpen ? ::file::e_open_no_exception_on_open : 0));
 
       if (!pfile)
       {
@@ -943,7 +1021,7 @@ void file_context::add_contents(const ::payload &payloadFile, const char *pcszCo
    if (is_null(pcszContents))
    {
 
-      throw_status(error_invalid_argument);
+      throw_status(error_bad_argument);
 
    }
 
@@ -1145,7 +1223,7 @@ void file_context::calculate_main_resource_memory()
 
    string strPath(path);
 
-   strPath.replace("\\", "/");
+   strPath.replace_with("/", "\\");
 
    if (!pfolder->locate(strPath))
    {
@@ -1162,8 +1240,6 @@ void file_context::calculate_main_resource_memory()
       return nullptr;
 
    }
-
-   char buffer[1024];
 
    auto pfileOutput = create_memory_file();
 
@@ -1217,7 +1293,7 @@ bool file_context::resource_is_file_or_dir(const char* path)
 
    string strPath(path);
 
-   strPath.replace("\\", "/");
+   strPath.replace_with("/", "\\");
 
    strPath.trim_right("\\/");
 
@@ -1370,7 +1446,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
             string strError;
             strError.format("Failed to copy file \"%s\" to \"%s\" bFailIfExists=%d error=could not open input file",
                             varSource.get_file_path().c_str(), varNew.get_file_path().c_str(), bFailIfExists);
-            __throw(::error_io, strError);
+            throw ::exception(::error_io, strError);
          }
 
          binary_stream ostream(ofile);
@@ -1459,14 +1535,14 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
             strError.format(
                "During copy, failed to close both input file \"%s\" and output file \"%s\" bFailIfExists=%d",
                varSource.get_file_path().c_str(), varTarget.get_file_path().c_str(), bFailIfExists);
-            __throw(::error_io, strError);
+            throw ::exception(::error_io, strError);
          }
          else
          {
             string strError;
             strError.format("During copy, failed to close input file \"%s\" bFailIfExists=%d",
                             varSource.get_file_path().c_str(), bFailIfExists);
-            __throw(::error_io, strError);
+            throw ::exception(::error_io, strError);
          }
       }
       else if (bOutputFail)
@@ -1474,7 +1550,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
          string strError;
          strError.format("During copy, failed to close output file \"%s\" bFailIfExists=%d",
                          varTarget.get_file_path().c_str(), bFailIfExists);
-         __throw(::error_io, strError);
+         throw ::exception(::error_io, strError);
       }
 
    }
@@ -1493,9 +1569,9 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 void file_context::move(const ::file::path &pszNew, const ::file::path &psz)
 {
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
-   //throw ::interface_only_exception();
+   //throw ::interface_only();
 
 //#ifdef WINDOWS_DESKTOP
 //
@@ -1540,7 +1616,7 @@ void file_context::move(const ::file::path &pszNew, const ::file::path &psz)
 //
 //      strError.Format("Failed to move file \"%s\" to \"%s\" error=%d", psz, pszNew, dwError);
 //
-//      __throw(io_exception(::error_io, strError));
+//      throw ::exception(io_exception(::error_io, strError));
 //
 //   }
 //
@@ -1553,7 +1629,7 @@ void file_context::move(const ::file::path &pszNew, const ::file::path &psz)
 //
 //      //output_debug_string("test");
 //
-//      __throw(::exception("file::file_context::move Could not move file, could not open source file"));
+//      throw ::exception(::exception("file::file_context::move Could not move file, could not open source file"));
 //
 //   }
 //
@@ -1593,7 +1669,7 @@ void file_context::move(const ::file::path &pszNew, const ::file::path &psz)
 //      i32 err = errno;
 //      string strError;
 //      strError.Format("Failed to delete file error=%d", err);
-//      __throw(::exception(strError));
+//      throw ::exception(::exception(strError));
 //   }
 //#endif
 //
@@ -1602,12 +1678,12 @@ void file_context::move(const ::file::path &pszNew, const ::file::path &psz)
 }
 
 
-void file_context::del(const ::file::path & path)
+void file_context::erase(const ::file::path & path)
 {
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
-   //throw ::interface_only_exception();
+   //throw ::interface_only();
 
 //#ifdef WINDOWS_DESKTOP
 //
@@ -1647,7 +1723,7 @@ void file_context::del(const ::file::path & path)
 //   return;
 //   string strError;
 //   strError.Format("Failed to delete file \"%s\" error=%d", psz, dwError);
-//   __throw(io_exception(strError));
+//   throw ::exception(io_exception(strError));
 //   }*/
 //
 //
@@ -1660,7 +1736,7 @@ void file_context::del(const ::file::path & path)
 //      {
 //         string strError;
 //         strError.Format("Failed to delete file error=%d", err);
-//         __throw(::exception(strError));
+//         throw ::exception(::exception(strError));
 //      }
 //   }
 //#endif
@@ -1815,7 +1891,7 @@ void file_context::get_status(const ::file::path &path, ::file::file_status &sta
    __UNREFERENCED_PARAMETER(path);
    __UNREFERENCED_PARAMETER(status);
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
    //return false;
 
@@ -1828,37 +1904,41 @@ void file_context::set_status(const ::file::path &path, const ::file::file_statu
    __UNREFERENCED_PARAMETER(path);
    __UNREFERENCED_PARAMETER(status);
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
    //return ::success;
 
 }
 
 
-void file_context::replace(const ::file::path &pszContext, const string &pszFind, const string &pszReplace)
+void file_context::replace_with(const ::file::path & pathContext, const string & strNew, const string & strOld)
 {
 
-   //::extended::status e;
+   ::file::listing listing;
 
-   ::file::listing straTitle;
-   m_pcontext->m_papexcontext->dir().ls(straTitle, pszContext);
-   string strOld;
-   string strNew;
-   //string strFail;
-   ::file::path pathContext = pszContext;
-   for (i32 i = 0; i < straTitle.get_size(); i++)
+   string strOldName;
+
+   string strNewName;
+
+   m_pcontext->m_papexcontext->dir().ls(listing, pathContext);
+
+   for (i32 i = 0; i < listing.get_size(); i++)
    {
-      strOld = straTitle[i].name();
-      strNew = strOld;
-      strNew.replace(pszFind, pszReplace);
-      if (strNew != strOld)
+      
+      strOldName = listing[i].name();
+      
+      strNewName = strOldName;
+
+      strNewName.replace_with(strNew, strOld);
+
+      if (strNewName != strOldName)
       {
          // TODO(camilo) : should there be a way to chain or return multiple exceptions... instead of ::extended::status specifile file smart...
          // why not a super smart chained super hand heroe smarter pointerer that can contain vector of any excepction based on
          // ::exception like (::file::exception) (I supposed ::file::exception is already based on ::exception OMG CAMILO!!!)
          // and may be then replace could do replace for example on HTTP servers and return may io_exception and not tighted
          // to a barely translated io exception into a empty ::file::exception with improper filled members....
-         move(pathContext / strNew, pathContext / strOld);
+         move(pathContext / strNewName, pathContext / strOldName);
 
       }
 
@@ -1898,7 +1978,7 @@ void file_context::transfer(::file::file *pfileOut, ::file::file *pfileIn)
 bool file_context::is_read_only(const ::file::path &psz)
 {
 
-   //throw ::interface_only_exception();
+   //throw ::interface_only();
 
    return false;
 
@@ -1917,7 +1997,7 @@ bool file_context::is_read_only(const ::file::path &psz)
 //
 //#elif defined(_UWP)
 //
-//   __throw(todo);
+//   throw ::exception(todo);
 //
 //#else
 //
@@ -1936,7 +2016,7 @@ bool file_context::is_read_only(const ::file::path &psz)
 file_pointer file_context::resource_get_file(const ::file::path & path)
 {
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
    return nullptr;
 
@@ -2021,37 +2101,38 @@ file_pointer file_context::get(const ::file::path &name)
 }
 
 
-::file::path file_context::replace_extension(const ::file::path &pszFile, const char *pszExtension)
+::file::path file_context::replace_with_extension(const char * pszExtension, const ::file::path & path)
 {
 
-   ::file::path strFile(pszFile);
+   ::file::path pathNew(path);
 
-   set_extension(strFile, pszExtension);
+   set_extension(pathNew, pszExtension);
 
-   return strFile;
+   return pathNew;
 
 }
 
 
-void file_context::set_extension(::file::path &strFile, const char *pszExtension)
+void file_context::set_extension(::file::path & path, const char * pszExtension)
 {
 
-   strsize iEnd = strFile.reverse_find('.');
+   strsize iEnd = path.reverse_find('.');
 
    if (iEnd < 0)
    {
 
-      iEnd = strFile.get_length();
+      iEnd = path.get_length();
 
    }
 
-   strFile = strFile.Left(iEnd) + ::str::has_char(pszExtension, ".");
+   path = path.Left(iEnd) + ::str::has_char(pszExtension, ".");
 
 }
 
 
 void file_context::normalize(string &str)
 {
+
    if (str.is_empty())
    {
 
@@ -2130,7 +2211,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //   if (pfile.is_null())
 //   {
 //
-//      __throw(::exception("failed"));
+//      throw ::exception(::exception("failed"));
 //
 //   }
 //
@@ -2172,7 +2253,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //      string strRelative = stra[i].relative();
 //      write_gen_string(pfile, &ctx, strRelative);
 //      if (pfile2->open(stra[i], ::file::e_open_read | ::file::e_open_binary).failed())
-//         __throw(::exception("failed"));
+//         throw ::exception(::exception("failed"));
 //      write_n_number(pfile, &ctx, (i32)pfile2->get_size());
 //      while ((uRead = pfile2->read(buf, iBufSize)) > 0)
 //      {
@@ -2199,7 +2280,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //   file_pointer pfile = get_file(pszFile, ::file::e_open_read | ::file::e_open_binary);
 //
 //   if (pfile.is_null())
-//      __throw(::exception("failed"));
+//      throw ::exception(::exception("failed"));
 //
 //   read_gen_string(pfile, nullptr, strVersion);
 //
@@ -2231,7 +2312,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //         ::file::path strPath = ::file::path(pszDir) / strRelative;
 //         m_pcontext->m_papexcontext->dir().create(strPath.folder());
 //         if (pfile2->open(strPath, ::file::e_open_create | ::file::e_open_binary | ::file::e_open_write).failed())
-//            __throw(::exception("failed"));
+//            throw ::exception(::exception("failed"));
 //         read_n_number(pfile, &ctx, iLen);
 //         while (iLen > 0)
 //         {
@@ -2245,7 +2326,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //         pfile2->close();
 //         strMd5New = __string(ctx);
 //         if (strMd5 != strMd5New)
-//            __throw(::exception("failed"));
+//            throw ::exception(::exception("failed"));
 //      }
 //   }
 //
@@ -2298,7 +2379,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //   }
 //
 //   if (ch != 'n')
-//      __throw(::exception("failed"));
+//      throw ::exception(::exception("failed"));
 //
 //   if (pctx != nullptr)
 //   {
@@ -2400,7 +2481,7 @@ string file_context::md5(const ::payload &payloadFile)
 string file_context::nessie(const ::payload &payloadFile)
 {
 
-   __throw(todo, "nessie");
+   throw ::exception(todo, "nessie");
 
    return "";
 
@@ -2438,7 +2519,7 @@ string file_context::nessie(const ::payload &payloadFile)
 void file_context::get_last_write_time(filetime_t *pfiletime, const string &strFilename)
 {
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
    //return false;
 
@@ -2576,7 +2657,7 @@ void file_context::post_output(const ::file::path & pathOut, const ::file::path 
 
       INFORMATION("Failed to rename \"downloading\" file from " << pathDownloading << " to " << pathOut);
 
-      del(pathDownloading);
+      erase(pathDownloading);
 
       throw_status(error_io);
 
@@ -2797,11 +2878,11 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, const ::f
       }
 
 #ifdef WINDOWS
-      pathCache.replace("://", "_\\");
-      pathCache.replace("?", "_");
-      pathCache.replace(":", "_");
+      pathCache.replace_with("_\\", "://");
+      pathCache.replace_with("_", "?");
+      pathCache.replace_with("_", ":");
 #else
-      pathCache.replace("://", "_/");
+      pathCache.replace_with("_/", "://");
 #endif
       pathCache = m_pcontext->m_papexcontext->dir().cache() / pathCache;
 
@@ -2931,7 +3012,7 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, const ::f
    if (!preader)
    {
 
-      preader = get_file(payloadFile, eopenFlags | ::file::e_open_read);
+      preader = get_file(payloadFile, eopenFlags | ::file::e_open_read | ::file::e_open_no_exception_on_open);
 
    }
 
@@ -3043,7 +3124,22 @@ file_pointer file_context::get_file(const ::payload &payloadFile, const ::file::
 
          //INFORMATION("::file::file_context::get_file file with empty name!!");
 
-         throw io_exception(::error_file_not_found);
+         if(eopenFlags & ::file::e_open_no_exception_on_open)
+         {
+
+            __construct_new(pfile);
+
+            pfile->m_estatus = error_file_not_found;
+
+            return pfile;
+
+         }
+         else
+         {
+
+            throw io_exception(::error_file_not_found);
+
+         }
 
       }
       else if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str::find_file_extension("zip:", path) >= 0))
@@ -3651,7 +3747,7 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
 void file_context::crypto_set(const ::payload &payloadFile, const char *pszData, const char *pszSalt)
 {
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
    ///return false;
 
@@ -3661,7 +3757,7 @@ void file_context::crypto_set(const ::payload &payloadFile, const char *pszData,
 void file_context::crypto_get(const ::payload &payloadFile, string &str, const char *pszSalt)
 {
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
    ///return false;
 

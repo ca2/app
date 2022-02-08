@@ -23,7 +23,7 @@ namespace sockets
    void sync_socket_handler::handle(socket * psocket)
    {
       if(m_psocket != nullptr)
-         __throw(::exception()); // busy
+         throw ::exception(::exception()); // busy
       m_psocket = psocket;
       m_psocket->m_pcallback = this;
       m_handler.add(m_psocket);
@@ -105,12 +105,12 @@ namespace sockets
          iTimeout = m_iDefaultTimeout;
       memsize uiLen = 0;
       if(read(&uiLen, 4) != 4)
-         __throw(::exception());
+         throw ::exception(::exception());
       ntohl((u_long) uiLen);
       memory memory;
       memory.set_size(uiLen);
       if(read(memory, uiLen) != uiLen)
-         __throw(::exception());
+         throw ::exception(::exception());
    }
 
    void sync_socket_handler::write_payload_v1(const char * xml_payload, int iTimeout)

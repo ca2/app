@@ -170,7 +170,7 @@ CLASS_DECL_ACME ::file::path dir_base_module();
 
 #include "text_stream.h"
 
-#include "var_stream.h"
+#include "payload_stream.h"
 
 
 
@@ -234,7 +234,7 @@ namespace file
    bool output(::file::file* pfileOut, TRANSFER* ptransfer, bool (TRANSFER::* pfn)(::file::file* pfileOut, ::file::file* pfileIn), ::file::file* pfileIn)
    {
 
-      throw ::exception(error_not_implemented);
+      throw ::not_implemented();
 
    }
 

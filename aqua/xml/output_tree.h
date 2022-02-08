@@ -20,7 +20,7 @@ namespace xml
       virtual ~output_tree();
 
 
-      void set_attribute(const ::id & id, const ::payload & payload);
+      void set_attribute(const ::atom & atom, const ::payload & payload);
 
       //void set_attr(const char * pcszName, i64 iValue, bool bOptional = true);
 

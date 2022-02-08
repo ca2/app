@@ -94,7 +94,7 @@ namespace experience
       if (rectangleWork.is_empty())
       {
 
-         __throw(error_failed);
+         throw ::exception(error_failed);
 
       }
 

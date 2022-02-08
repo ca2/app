@@ -27,7 +27,7 @@ namespace data
 
 
       listener_array                               m_listenera;
-      ::id                 m_id;
+      ::atom                 m_atom;
 
 
       data();
@@ -35,7 +35,7 @@ namespace data
 
 
       virtual void dump(dump_context &) const override;
-      void assert_valid() const override;
+      void assert_ok() const override;
 
 
       virtual ::data::data_container_base* get_data_container();
@@ -45,7 +45,7 @@ namespace data
       virtual ::user::primitive * get_data_bound_view(index iInteraction);
 
       //void signal(::signal * psignal) override;
-      void handle(::subject * psubject, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::context * pcontext) override;
 
       virtual void on_update_data(i32 iHint);
 

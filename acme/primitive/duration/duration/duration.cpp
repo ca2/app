@@ -4,7 +4,7 @@
 void duration::normalize()
 {
 
-   m_iSecond += m_iSecond / SECOND_NANOS;
+   m_iSecond += m_iNanosecond / SECOND_NANOS;
 
    m_iNanosecond %= SECOND_NANOS;
 
@@ -79,7 +79,7 @@ void duration::set(i64 i, enum_unit eunit)
       raw_set(i * 60 * 60, 0);
       break;
    default:
-      __throw(error_invalid_argument, "Unknown time duration unit");
+      throw ::exception(error_bad_argument, "Unknown time duration unit");
 
    };
 
@@ -109,7 +109,7 @@ void duration::set(long double d, enum_unit eunit)
       fset(d * 60.0 * 60.0, 0.0);
       break;
    default:
-      __throw(error_invalid_argument, "Unknown time duration unit");
+      throw ::exception(error_bad_argument, "Unknown time duration unit");
 
    };
 }

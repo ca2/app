@@ -30,7 +30,7 @@ namespace data
 
          pdata->m_listenera.add_unique(this);
 
-         m_datamap.set_at(pdata->m_id, pdata);
+         m_datamap.set_at(pdata->m_atom, pdata);
 
          return true;
 
@@ -40,7 +40,7 @@ namespace data
 
          pdata->m_listenera.erase(this);
 
-         m_datamap.erase_key(pdata->m_id);
+         m_datamap.erase_key(pdata->m_atom);
 
          //::papaya::map::erase_value(m_datamap, pdata);
 

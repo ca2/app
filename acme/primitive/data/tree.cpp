@@ -18,7 +18,7 @@ namespace data
       //if (m_proot == nullptr)
       //{
 
-      //   __throw(error_no_memory);
+      //   throw ::exception(error_no_memory);
 
       //}
 
@@ -514,7 +514,7 @@ namespace data
       }
       break;
       default:
-         __throw(error_not_supported);
+         throw ::exception(error_not_supported);
       }
 
       pitemNew->m_ptree = this;
@@ -735,13 +735,13 @@ namespace data
    //}
 
 
-   void tree::handle(::subject * psubject, ::context * pcontext)
+   void tree::handle(::topic * ptopic, ::context * pcontext)
    {
 
       for (auto& ptree : m_treea)
       {
 
-         ptree->handle(psubject, pcontext);
+         ptree->handle(ptopic, pcontext);
 
       }
 
@@ -749,7 +749,7 @@ namespace data
 
 
 
-   //void tree::handle(::subject * psubject, ::context * pcontext)
+   //void tree::handle(::topic * ptopic, ::context * pcontext)
    //{
 
    //}

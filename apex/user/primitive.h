@@ -2,9 +2,9 @@
 #pragma once
 
 
-#include "acme/user/check.h"
-#include "acme/user/text.h"
-#include "acme/user/element.h"
+#include "acme/user/user/check.h"
+#include "acme/user/user/text.h"
+#include "acme/user/user/element.h"
 
 
 namespace user
@@ -141,11 +141,11 @@ namespace user
 
       void update_dialog_controls(channel * ptarget) override;
       void CenterWindow(::user::interaction * pAlternateOwner = nullptr)  override;
-      id run_modal_loop(::user::interaction * pinteraction, u32 dwFlags = 0) override;
-      id RunModalLoop(u32 dwFlags = 0)  override;
-      id _001RunModalLoop(u32 dwFlags = 0)  override;
+      atom run_modal_loop(::user::interaction * pinteraction, u32 dwFlags = 0) override;
+      atom RunModalLoop(u32 dwFlags = 0)  override;
+      atom _001RunModalLoop(u32 dwFlags = 0)  override;
       bool ContinueModal()  override;
-      void EndModalLoop(id nResult)  override;
+      void EndModalLoop(atom nResult)  override;
 
 
 
@@ -214,14 +214,14 @@ namespace user
       string get_class_name() override;
 
       
-      void create_interaction(::user::interaction * puserinteractionParent, const ::id & id = nullptr) override;
+      void create_interaction(::user::interaction * puserinteractionParent, const ::atom & atom = nullptr) override;
 
 
       void create_host() override;
       void create_child(::user::interaction * puserinteractionParent) override;
-      void create_control(::user::interaction * puserinteractionParent, const ::id & id) override;
+      void create_control(::user::interaction * puserinteractionParent, const ::atom & atom) override;
 
-      //virtual bool create_window_ex(__pointer(::user::system) pcs, ::user::interaction * puiParent, const ::id & id);
+      //virtual bool create_window_ex(__pointer(::user::system) pcs, ::user::interaction * puiParent, const ::atom & atom);
       //virtual void CalcWindowRect(RECTANGLE_I32 * pClientRect,::u32 nAdjustType = adjustBorder);
 
 
@@ -254,9 +254,9 @@ namespace user
       virtual lresult send(::message::message * pmessage);
       virtual void post(::message::message * pmessage);
 
-      lresult send_message(const ::id & id, wparam wparam = 0, lparam lparam = 0, const ::point_i32& point = nullptr) override;
+      lresult send_message(const ::atom & atom, wparam wparam = 0, lparam lparam = 0, const ::point_i32& point = nullptr) override;
 
-      lresult message_call(const ::id & id, wparam wparam = 0, lparam lparam = 0, const ::point_i32& point = nullptr) override;
+      lresult message_call(const ::atom & atom, wparam wparam = 0, lparam lparam = 0, const ::point_i32& point = nullptr) override;
       lresult message_call(::message::message * pmessage) override;
 
 
@@ -266,11 +266,11 @@ namespace user
 
 #endif
 
-      void post_message(const ::id & id, wparam wparam = 0,lparam lparam = 0)override;
+      void post_message(const ::atom & atom, wparam wparam = 0,lparam lparam = 0)override;
 
       void post_simple_command(const enum_simple_command & ecommand,lparam lParam = 0) override;
 
-      //virtual bool user_post(const ::id& id, wparam wparam = 0, lparam lparam = 0);
+      //virtual bool user_post(const ::atom& atom, wparam wparam = 0, lparam lparam = 0);
 
       //virtual bool ModifyStyle(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0);
       //virtual bool ModifyStyleEx(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0);
@@ -297,8 +297,8 @@ namespace user
       virtual bool is_child_of(const primitive * puiIsParent) const; 
       virtual bool is_descendant_of(const primitive * puiIsAscendant, bool bIncludeSelf) const; 
 
-      id GetDlgCtrlId() const override;
-      id SetDlgCtrlId(::id id) override;
+      atom GetDlgCtrlId() const override;
+      atom SetDlgCtrlId(::atom atom) override;
 
 //
 //#ifdef WINDOWS_DESKTOP
@@ -339,8 +339,8 @@ namespace user
       void OnLinkClick(const ::string & psz,const ::string & pszTarget = nullptr) override;
 
       ::user::interaction * get_child_by_name(const ::string & strName, ::index iItem = -1, i32 iLevel = -1) override;
-      ::user::interaction * get_child_by_id(const ::id & id, ::index iItem = -1, i32 iLevel = -1) override;
-      ::user::element * get_primitive_by_id(const ::id & id, ::index iItem = -1, i32 iLevel = -1) override;
+      ::user::interaction * get_child_by_id(const ::atom & atom, ::index iItem = -1, i32 iLevel = -1) override;
+      ::user::element * get_primitive_by_id(const ::atom & atom, ::index iItem = -1, i32 iLevel = -1) override;
 
 
       ::user::interaction * get_wnd() const override;
@@ -363,7 +363,7 @@ namespace user
 
       bool is_top_level_window() const override;
 
-      void send_message_to_descendants(const ::id & id, wparam wParam = 0, lparam lParam = 0,bool bDeep = true,bool bOnlyPerm = false) override;
+      void send_message_to_descendants(const ::atom & atom, wparam wParam = 0, lparam lParam = 0,bool bDeep = true,bool bOnlyPerm = false) override;
 
       void route_message_to_descendants(::message::message * pmessage) override;
       void pre_translate_message(::message::message * pmessage) override;
@@ -373,7 +373,7 @@ namespace user
       //virtual bool is_descendant(const ::user::primitive * pinteraction,bool bIncludeSelf = false) const;
        ::user::interaction * get_focusable_descendant() const override;
 
-      void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::id idLeftOver, ::u32 nFlag = reposDefault, RECTANGLE_I32 * prectParam = nullptr, const ::rectangle_i32 & rectangleClient = nullptr, bool bStretch = true) override;
+      void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag = reposDefault, RECTANGLE_I32 * prectParam = nullptr, const ::rectangle_i32 & rectangleClient = nullptr, bool bStretch = true) override;
 
       ::user::interaction * ChildWindowFromPoint(const ::point_i32 & point) override;
       virtual ::user::interaction * ChildWindowFromPoint(const ::point_i32 & point,::u32 nFlags) override;
@@ -409,7 +409,7 @@ namespace user
       //virtual void default_window_procedure(::message::message * pmessage);
 
 
-      bool call_message_handler(const ::id & id, wparam wparam = 0, lparam lparam = 0, const ::point_i32 & point = nullptr,lresult * presult = nullptr) override;
+      bool call_message_handler(const ::atom & atom, wparam wparam = 0, lparam lparam = 0, const ::point_i32 & point = nullptr,lresult * presult = nullptr) override;
 
 
       //virtual void GuieProc(::message::message * pmessage);
@@ -453,7 +453,7 @@ namespace user
       virtual enum_type get_window_type() override;
 
 
-      virtual void add_child_handler(::matter * pmatter, const ::id & idChild, bool bPriority = false) override;
+      virtual void add_child_handler(::matter * pmatter, const ::atom & idChild, bool bPriority = false) override;
 
 
       virtual void on_simple_command(::message::simple_command * psimplecommand);
@@ -474,9 +474,9 @@ namespace user
 
       bool has_command_handler(::message::command * pcommand) override;
 
-      //virtual void route(::subject * psubject, ::context * pcontext);
+      //virtual void route(::topic * ptopic, ::context * pcontext);
 
-      void handle(::subject * psubject, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::context * pcontext) override;
 
       //virtual void on_notify_control_event(control_event* pevent);
 
@@ -546,8 +546,8 @@ namespace user
       void _001OnExitFullScreen() override;
       void _001OnExitZoomed() override;
 
-      //virtual lresult send_message(const ::id & id, wparam wparam = 0, lparam lparam = 0);
-      //virtual bool post_message(const ::id & id, wparam wParam = 0, lparam lParam = 0);
+      //virtual lresult send_message(const ::atom & atom, wparam wparam = 0, lparam lparam = 0);
+      //virtual bool post_message(const ::atom & atom, wparam wParam = 0, lparam lParam = 0);
       //virtual void message_handler(::message::message * pmessage);
       //virtual void pre_translate_message(::message::message * pmessage);
 

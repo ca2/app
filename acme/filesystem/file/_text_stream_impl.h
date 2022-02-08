@@ -29,7 +29,7 @@ inline void __string_exchange(text_stream & s, const char * psz) { s.write_only(
 inline void __string_exchange(text_stream & s, char * psz) { s.string_exchange(psz); }
 inline void __string_exchange(text_stream & s, string & str) { s.string_exchange(str); }
 inline void __string_exchange(text_stream & s, ::file::path & path) { s.string_exchange(path); }
-inline void __string_exchange(text_stream & s, ::id & id) { s.string_exchange(id); }
+inline void __string_exchange(text_stream & s, ::atom & atom) { s.string_exchange(atom); }
 inline void __string_exchange(text_stream & s, void * & p) { s.number_exchange((::iptr &)p); }
 inline void __string_exchange(text_stream & s, wchar_t wsz[]) { s.string_exchange(wsz); }
 //inline void __string_exchange(text_stream & s, matter & matter) { s.network_payload_exchange(matter); }
@@ -64,7 +64,7 @@ template < typename TYPE >
 inline void text_stream::network_payload_write(const TYPE & t)
 {
 
-   var_stream s;
+   payload_stream s;
 
    string strNetworkPayload;
 
@@ -83,7 +83,7 @@ template < typename TYPE >
 inline void text_stream::network_payload_read(TYPE & t)
 {
 
-   var_stream s;
+   payload_stream s;
 
    string strNetworkPayload;
 

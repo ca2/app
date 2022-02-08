@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "base/user/user/_user.h"
 #include "aura/update.h"
-#include "acme/constant/id.h"
+#include "acme/id.h"
 
 
 namespace user
@@ -20,14 +20,14 @@ namespace user
    }
 
 
-   void form_view::handle(::subject * psubject, ::context * pcontext)
+   void form_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      //::user::impact::handle(psubject, pcontext);
+      //::user::impact::handle(ptopic, pcontext);
 
-      form_window::handle(psubject, pcontext);
+      form_window::handle(ptopic, pcontext);
 
-      if (psubject->m_id == ::e_subject_form_initialize && psubject->user_interaction() == this)
+      if (ptopic->m_atom == ::id_form_initialize && ptopic->get_extended_topic()->user_interaction() == this)
       {
 
          if (get_document())
@@ -39,35 +39,35 @@ namespace user
          }
 
       }
-      else if (psubject->id() == id_browse)
+      else if (ptopic->m_atom == id_browse)
       {
 
-         if (!psubject->payload(id_form).is_empty())
+         if (!ptopic->get_extended_topic()->payload(id_form).is_empty())
          {
 
-            if (get_document()->on_open_document(psubject->payload(id_form)))
+            if (get_document()->on_open_document(ptopic->get_extended_topic()->payload(id_form)))
             {
 
-               m_strPath = psubject->payload(id_form);
+               m_strPath = ptopic->get_extended_topic()->payload(id_form);
 
             }
 
          }
 
       }
-      else if (psubject->id() == id_get_form_view)
+      else if (ptopic->m_atom == id_get_form_view)
       {
 
-         psubject->payload(id_form) = this;
+         ptopic->get_extended_topic()->payload(id_form) = this;
 
       }
 
       if(m_pcallback != nullptr)
       {
 
-         psubject->payload(id_form) = this;
+         ptopic->get_extended_topic()->payload(id_form) = this;
 
-         m_pcallback->handle(psubject, pcontext);
+         m_pcallback->handle(ptopic, pcontext);
 
       }
 
@@ -310,12 +310,12 @@ namespace user
    }
 
 
-   //void form_view::handle(::subject * psubject, ::context * pcontext)
+   //void form_view::handle(::topic * ptopic, ::context * pcontext)
    //{
 
-   //   form_window::handle(psubject, pcontext);
+   //   form_window::handle(ptopic, pcontext);
 
-   //   if (psubject->m_id == ::e_subject_form_initialize && psubject->user_interaction() == this)
+   //   if (ptopic->m_atom == ::id_form_initialize && ptopic->get_extended_topic()->user_interaction() == this)
    //   {
 
    //      if (get_document())

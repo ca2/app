@@ -33,7 +33,7 @@ xfplayer_view_line::xfplayer_view_line()
    m_dAnimateProgress = 0;
    m_iIndent = 0;
    m_dAnimateProgressIncrement = 1.0;
-   m_dXfplayerViewLineBlend = 1.0;
+   m_dXfplayerImpactLineBlend = 1.0;
    m_iIndex = 0;
 
 }
@@ -194,12 +194,12 @@ bool xfplayer_view_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool
 
    double dBlend;
 
-   if (m_dXfplayerViewLineBlend <= 0.0)
+   if (m_dXfplayerImpactLineBlend <= 0.0)
       return true;
-   if (m_dXfplayerViewLineBlend >= 1.0)
+   if (m_dXfplayerImpactLineBlend >= 1.0)
       dBlend = 1.0;
    else
-      dBlend = m_dXfplayerViewLineBlend;
+      dBlend = m_dXfplayerImpactLineBlend;
 
    pgraphics->set(m_pfont);
 
@@ -1077,7 +1077,7 @@ xfplayer_view_line & xfplayer_view_line::operator = (const xfplayer_view_line & 
    m_pfont = src.m_pfont;
    m_bEnhancedEmboss = src.m_bEnhancedEmboss;
    m_bCacheEmboss = false;
-   m_dXfplayerViewLineBlend = src.m_dXfplayerViewLineBlend;
+   m_dXfplayerImpactLineBlend = src.m_dXfplayerImpactLineBlend;
    m_iIndex = src.m_iIndex;
    return *this;
 }
@@ -1544,7 +1544,7 @@ void xfplayer_view_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, con
 
    m_bCacheEmboss = true;
 
-   //FORMATTED_TRACE("CLyricViewLine::CacheEmboss: %s\n", pcsz);
+   //FORMATTED_TRACE("CLyricImpactLine::CacheEmboss: %s\n", pcsz);
 
    ::size_i32 size;
 
@@ -1634,9 +1634,9 @@ void xfplayer_view_line::PrepareURLLinks()
 
    auto psystem = m_psystem->m_pcoresystem;
 
-   auto pregex = psystem->create_pcre("/^|\\s|([;\"()]+))(((((http|https)://))|(www\\.))[0-9a-zA-Z./\\-_?=]+)(([;\"()]+)|\\s|$/");
+   auto pregex = psystem->compile_pcre("/^|\\s|([;\"()]+))(((((http|https)://))|(www\\.))[0-9a-zA-Z./\\-_?=]+)(([;\"()]+)|\\s|$/");
 
-   auto ptopic = pregex->create_topic(m_str);
+   auto ptopic = pregex->run(m_str);
 
    auto & rangea = ptopic->get_range_array();
 
@@ -2011,7 +2011,7 @@ void xfplayer_view_line::set_blend(double d)
 
    }
 
-   m_dXfplayerViewLineBlend = d;
+   m_dXfplayerImpactLineBlend = d;
 
 }
 
@@ -2126,7 +2126,7 @@ bool xfplayer_view_line::has_link()
 }
 
 
-inline XfplayerViewLineSelection & xfplayer_view_line::GetSelection()
+inline XfplayerImpactLineSelection & xfplayer_view_line::GetSelection()
 {
 
    single_lock synchronouslock(m_pContainer->mutex());

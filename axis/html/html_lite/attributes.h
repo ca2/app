@@ -280,7 +280,7 @@ public:
          if (nElemCount)
          {
             if ((m_parrAttrib = new CElemAttrArray) == nullptr)
-               __throw(error_no_memory);
+               throw ::exception(error_no_memory);
 
             LiteHTMLElemAttr   *pItem = nullptr;
             m_parrAttrib->allocate(nElemCount);
@@ -291,7 +291,7 @@ public:
                if ((pItem = new LiteHTMLElemAttr(rSource[iElem])) == nullptr)
                {
                   eraseAll();
-                  __throw(error_no_memory);
+                  throw ::exception(error_no_memory);
                   return;
                }
 

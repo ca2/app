@@ -64,7 +64,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories
 target_compile_definitions(app_message_box PRIVATE _APP_MESSAGE_BOX_LIBRARY)
 
 
-add_executable(_${PROJECT_NAME} platform/${SLASHED_PLATFORM}/_${PROJECT_NAME}.cpp)
+add_executable(_${PROJECT_NAME} operating-system/${SLASHED_OPERATING_SYSTEM}/_${PROJECT_NAME}.cpp)
 
 
 list(APPEND executable_references
@@ -79,23 +79,23 @@ list(APPEND executable_references
 
 if(LINUX OR FREEBSD)
 
-    add_custom_command(
-       COMMAND ${APPLICATION_BUILD_HELPER} ${PROJECT_SOURCE_DIR}
-       COMMAND ${CMAKE_COMMAND} -E touch ${PROJECT_BINARY_DIR}/matter.timestamp
-       OUTPUT ${PROJECT_BINARY_DIR}/matter.timestamp
-       WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
-       BYPRODUCTS ${PROJECT_SOURCE_DIR}/.link_object/_matter.zip.o
-       DEPENDS application_matter.txt matter.txt _console_application_build_helper
-       VERBATIM
-    )
-
-    add_custom_target(${PROJECT_NAME}_matter
-       DEPENDS ${PROJECT_BINARY_DIR}/matter.timestamp
-       )
+#    add_custom_command(
+#       COMMAND ${APPLICATION_BUILD_HELPER} ${PROJECT_SOURCE_DIR}
+#       COMMAND ${CMAKE_COMMAND} -E touch ${PROJECT_BINARY_DIR}/matter.timestamp
+#       OUTPUT ${PROJECT_BINARY_DIR}/matter.timestamp
+#       WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+#       BYPRODUCTS ${PROJECT_SOURCE_DIR}/.link_object/_matter.zip.o
+#       DEPENDS application_matter.txt matter.txt _console_application_build_helper
+#       VERBATIM
+#    )
+#
+#    add_custom_target(${PROJECT_NAME}_matter
+#       DEPENDS ${PROJECT_BINARY_DIR}/matter.timestamp
+#       )
 
     list(APPEND executable_references ${PROJECT_SOURCE_DIR}/.link_object/_matter.zip.o)
 
-    add_dependencies(${PROJECT_NAME} ${PROJECT_NAME}_matter)
+#    add_dependencies(${PROJECT_NAME} ${PROJECT_NAME}_matter)
 
 endif()
 
@@ -117,7 +117,7 @@ endif ()
 
 
 add_dependencies(_app_message_box ${app_common_dependencies})
-add_dependencies(app_message_box apex_${PLATFORM_NAME})
+add_dependencies(app_message_box apex_${OPERATING_SYSTEM_NAME})
 add_dependencies(app_message_box ${default_node})
 add_dependencies(_app_message_box ${default_draw2d})
 add_dependencies(_app_message_box ${default_write_text})

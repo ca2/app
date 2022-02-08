@@ -294,7 +294,7 @@
 //   inline void cancel_current_task()
 //   {
 //
-//      __throw(error_cancelled, "cancel_current_task");
+//      throw ::exception(error_cancelled, "cancel_current_task");
 //
 //   }
 //

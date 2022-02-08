@@ -653,22 +653,22 @@ namespace sockets
       //int Resolve(const string & host,port_t port = 0);
       //int Resolve6(const string & host, port_t port = 0);
       /** Callback returning a resolved ::net::address.
-      \lparam id Resolve ID from Resolve call
+      \lparam atom Resolve ID from Resolve call
       \lparam a resolved ip address/port
       \lparam port port number passed to Resolve */
-      //virtual void OnResolved(int id, const ::net::address & addr);
-      //virtual void OnResolved(int id, in6_addr & a, port_t port);
+      //virtual void OnResolved(int atom, const ::net::address & addr);
+      //virtual void OnResolved(int atom, in6_addr & a, port_t port);
       /** Request asynchronous reverse dns lookup.
       \lparam a in_addr to be translated */
       //int Resolve(in_addr a);
       //int Resolve(in6_addr& a);
       /** Callback returning reverse resolve results.
-      \lparam id Resolve ID
+      \lparam atom Resolve ID
       \lparam name Resolved hostname */
-      //virtual void OnReverseResolved(int id,const string & name);
+      //virtual void OnReverseResolved(int atom,const string & name);
       /** Callback indicating failed dns lookup.
-      \lparam id Resolve ID */
-      //virtual void OnResolveFailed(int id);
+      \lparam atom Resolve ID */
+      //virtual void OnResolveFailed(int atom);
       //@}
       /** \name Thread Support */
       //@{
@@ -711,14 +711,14 @@ namespace sockets
 
       /** \name Triggers */
       //@{
-      /** Subscribe to trigger id. */
-      void Subscribe(int id);
-      /** Unsubscribe from trigger id. */
-      void Unsubscribe(int id);
+      /** Subscribe to trigger atom. */
+      void Subscribe(int atom);
+      /** Unsubscribe from trigger atom. */
+      void Unsubscribe(int atom);
       /** Trigger callback, with data passed from source to destination. */
-      virtual void OnTrigger(int id, const trigger_data & data);
+      virtual void OnTrigger(int atom, const trigger_data & data);
       /** Trigger cancelled because source has been deleted (as in delete). */
-      virtual void OnCancelled(SOCKET id);
+      virtual void OnCancelled(SOCKET atom);
       //@}
 
 

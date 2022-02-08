@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "acme/constant/id.h"
+#include "acme/id.h"
 #include "aura/platform/app_core.h"
 
 
@@ -55,7 +55,7 @@ RetryBuildNumber:
 
    iRetry++;
 
-   strBuild = http_get(strSpaIgnitionBaseUrl + "/query?node=build&configuration=" + strConfiguration + "&id=" + string(pszAppId));
+   strBuild = http_get(strSpaIgnitionBaseUrl + "/query?node=build&configuration=" + strConfiguration + "&atom=" + string(pszAppId));
 
    ::str::_008Trim(strBuild);
 

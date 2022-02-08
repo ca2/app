@@ -8,7 +8,7 @@ void tiny_array < TYPE > ::allocate(::i32 iCount)
    if (iCount < 0)
    {
 
-      __throw(error_invalid_argument);
+      throw ::exception(error_bad_argument);
 
       return;
 
@@ -101,7 +101,7 @@ TYPE & tiny_array < TYPE > ::element_at_grow(::i32 iIndex)
    if (iIndex < 0)
    {
 
-      __throw(error_invalid_argument);
+      throw ::exception(error_bad_argument);
 
    }
 

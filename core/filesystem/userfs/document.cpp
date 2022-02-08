@@ -4,7 +4,7 @@
 #include "_userfs.h"
 #endif
 
-#include "acme/constant/id.h"
+#include "acme/id.h"
 
 
 namespace userfs
@@ -61,10 +61,10 @@ namespace userfs
    //}
 
 
-   void document::assert_valid() const
+   void document::assert_ok() const
    {
 
-      ::user::document::assert_valid();
+      ::user::document::assert_ok();
 
    }
 
@@ -267,13 +267,13 @@ namespace userfs
 
       }
 
-      ::subject subject(id_synchronize_path);
+      ::extended_topic extendedtopic(id_synchronize_path);
 
-      subject.m_pfileitem = pitem;
+      extendedtopic.m_pfileitem = pitem;
 
-      subject.m_actioncontext = context + ::e_source_sync;
+      extendedtopic.m_actioncontext = context + ::e_source_sync;
 
-      update_all_views(&subject);
+      update_all_views(&extendedtopic);
 
       return true;
 

@@ -295,7 +295,7 @@ e_message_queue_sentinel =    0x0379,
 //   enum_message m_emessage;
 //    
 //   emessage(enum_message emessage = e_message_null):m_emessage(emessage) {}
-//   emessage(const ::id & id) : m_emessage(emessage.m_emessage) {}
+//   emessage(const ::atom & atom) : m_emessage(emessage.m_emessage) {}
 //
 //   operator enum_message& () { return m_emessage; }
 //   operator enum_message() const { return m_emessage; }

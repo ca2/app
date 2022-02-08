@@ -27,7 +27,7 @@ namespace regular_expression
    ::regular_expression_pointer context::compile(const ::string & str)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 

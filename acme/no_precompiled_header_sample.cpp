@@ -1,16 +1,17 @@
-
+#define NO_TEMPLATE
 
 struct DURATION;
 
 
 class matter;
-class subject;
+class topic;
 class context;
 class payload;
 class duration;
 class task_pool;
 class object;
 class stream;
+class payload_stream;
 
 
 namespace message
@@ -32,7 +33,9 @@ namespace message
 #include "acme/primitive/primitive/atomic.h"
 #include "acme/primitive/primitive/interlocked_count.h"
 #include "acme/primitive/primitive/estatus.h"
-#include "acme/subject/handler.h"
+#include "acme/primitive/primitive/atom.h"
+#include "acme/topic/topic.h"
+#include "acme/topic/handler.h"
 #include "acme/primitive/primitive/e_flag.h"
 #include "acme/primitive/primitive/element.h"
 #include "acme/filesystem/file/translatable.h"

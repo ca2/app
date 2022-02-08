@@ -4,13 +4,16 @@
 #include "operating_system/operating_system.h"
 
 
-#include "acme/node/operating_system/_.h"
+#include "acme/operating_system/_.h"
 
 
-#include "acme/node/operating_system/_operating_system.h"
+#include "acme/operating_system/_operating_system.h"
 
 
-#include "acme/node/operating_system/_impl.h"
+#include "acme/operating_system/_common.h"
+
+
+#include "acme/operating_system/_impl.h"
 
 
 

@@ -7,16 +7,16 @@ class CLASS_DECL_ACME material_object :
 public:
 
 
-   ::id                                m_id;
+   ::atom                                m_atom;
    ::e_status                         m_estatus;
 
 
    material_object() { }
-   material_object(const ::id & id) : m_id(id) {}
+   material_object(const ::atom & atom) : m_atom(atom) {}
    material_object(const material_object & object);
    material_object(material_object && object) :
       matter(::move(object)),
-      m_id(::move(object.m_id))
+      m_atom(::move(object.m_atom))
    {  }
    ~material_object() override;
 
@@ -35,7 +35,7 @@ public:
    
    
    //// <3TBS_!! handle -> command_handler <3TBS_(I need to suck you)!!
-   virtual void handle_command(const ::id & id);
+   virtual void handle_command(const ::atom & atom);
 
 
 
@@ -56,7 +56,7 @@ public:
 
 
    template < typename POSTING_OBJECT, typename POSTING_METHOD, typename OBJECT_POINTER, typename OBJECT_METHOD, typename PAYLOAD_REFERENCE >
-   void __send_payload(POSTING_OBJECT pposting, POSTING_METHOD posting_method, OBJECT_POINTER pobject, OBJECT_METHOD objectmethod, PAYLOAD_REFERENCE & payload);
+   bool __send_payload(POSTING_OBJECT pposting, POSTING_METHOD posting_method, OBJECT_POINTER pobject, OBJECT_METHOD objectmethod, PAYLOAD_REFERENCE & payload);
 
    template < typename POSTING_OBJECT, typename POSTING_METHOD >
    void __send_routine(POSTING_OBJECT pposting, POSTING_METHOD posting_method, const ::routine & routine);

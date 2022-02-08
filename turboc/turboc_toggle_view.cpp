@@ -32,7 +32,7 @@ namespace turboc
    void toggle_view::on_update(::aura::impact * pSender,e_update eupdate,object* pupdate)
    {
 
-      ::aura::impact::handle(psubject, pcontext);
+      ::aura::impact::handle(ptopic, pcontext);
 
    }
 

@@ -166,7 +166,7 @@ void __transfer_to_writer(WRITER & writer, ::file::file * pfileIn, memsize uiBuf
    buf.set_size(uiBufSize);
 
    if (buf.get_data() == nullptr)
-      __throw(error_no_memory);
+      throw ::exception(error_no_memory);
 
    try
    {

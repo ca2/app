@@ -367,7 +367,7 @@ void _single_lock::_wait()
 }
 
 
-void _single_lock::_wait(const duration & durationTimeOut)
+bool _single_lock::_wait(const class ::wait & wait)
 {
 
    //::e_status estatus(signaled_base);
@@ -384,9 +384,9 @@ void _single_lock::_wait(const duration & durationTimeOut)
 
       //return estatus;
 
-      return;
+      //throw_status(error_invalid_empty_argument);
 
-
+      return true;
 
 
    }
@@ -394,7 +394,9 @@ void _single_lock::_wait(const duration & durationTimeOut)
    //try
    //{
 
-      /*estatus = */ m_psync->_wait(durationTimeOut);
+      /*estatus = */
+
+      bool bOk = m_psync->_wait(wait);
 
    //}
    //catch (...)
@@ -406,9 +408,16 @@ void _single_lock::_wait(const duration & durationTimeOut)
 
    //m_bAcquired = estatus.signaled();
 
+   if(bOk)
+   {
+
       m_bAcquired = true;
 
+   }
+
    //return estatus;
+
+   return bOk;
 
 }
 
@@ -483,13 +492,12 @@ void _single_lock::unlock(::i32 lCount, ::i32 * pPrevCount /* = nullptr */)
 }
 
 
-
-
-bool _single_lock::is_locked()
+bool _single_lock::is_locked() const
 {
 
    return m_bAcquired;
 
 }
+
 
 

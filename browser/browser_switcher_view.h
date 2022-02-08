@@ -19,15 +19,15 @@ namespace browser
       virtual ~switcher_view();
 
 
-      void assert_valid() const override;
+      void assert_ok() const override;
 
       void dump(dump_context & dumpcontext) const override;
 
       void on_create_split_impact();
 
-      virtual void handle(::subject * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
-      virtual void handle(::subject * psubject, ::context * pcontext);
+      virtual void handle(::topic * ptopic, ::context * pcontext);
       virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics);
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
 

@@ -23,7 +23,7 @@ namespace text
    }
 
 
-   const comparable_array < ::id > & context::locale_ex() const
+   const comparable_array < ::atom > & context::locale_ex() const
    {
 
       return m_plocaleschema->m_idaLocale;
@@ -31,7 +31,7 @@ namespace text
    }
 
    
-   const comparable_array < ::id > & context::schema_ex() const
+   const comparable_array < ::atom > & context::schema_ex() const
    {
 
       return m_plocaleschema->m_idaLocale;
@@ -50,8 +50,8 @@ namespace text
    void context::prepare()
    {
 
-      static ::id idEn("en");
-      static ::id idStd("_std");
+      static ::atom idEn("en");
+      static ::atom idStd("_std");
 
 
       m_plocale               = nullptr;
@@ -68,26 +68,26 @@ namespace text
       if(m_plocaleschema != nullptr)
       {
 
-         if(!m_plocaleschema->m_idLocale.is_empty())
+         if(!m_plocaleschema->m_atomLocale.is_empty())
          {
 
-            m_plocale = (locale *) m_ptable->get_locale(m_plocaleschema->m_idLocale);
+            m_plocale = (locale *) m_ptable->get_locale(m_plocaleschema->m_atomLocale);
 
             if(m_plocale != nullptr)
             {
 
-               if(!m_plocaleschema->m_idSchema.is_empty() && m_plocaleschema->m_idSchema != m_plocaleschema->m_idLocale)
+               if(!m_plocaleschema->m_atomSchema.is_empty() && m_plocaleschema->m_atomSchema != m_plocaleschema->m_atomLocale)
                {
-                  m_pschema = (schema *) m_plocale->get_schema(m_plocaleschema->m_idSchema);
+                  m_pschema = (schema *) m_plocale->get_schema(m_plocaleschema->m_atomSchema);
                }
-               m_pschemaLocale = (schema *)m_plocale->get_schema(m_plocaleschema->m_idSchema);
+               m_pschemaLocale = (schema *)m_plocale->get_schema(m_plocaleschema->m_atomSchema);
             }
          }
 
-         if(!m_plocaleschema->m_idSchema.is_empty())
+         if(!m_plocaleschema->m_atomSchema.is_empty())
          {
 
-            const locale * plocale = m_ptable->get_locale(m_plocaleschema->m_idSchema);
+            const locale * plocale = m_ptable->get_locale(m_plocaleschema->m_atomSchema);
 
             if(plocale != nullptr)
             {
@@ -105,7 +105,7 @@ namespace text
          for(i32 i = 0; i < m_plocaleschema->m_idaLocale.get_count(); i++)
          {
 
-            ::id & idLocale = m_plocaleschema->m_idaLocale[i];
+            ::atom & idLocale = m_plocaleschema->m_idaLocale[i];
 
 
             if(stridaFailedLocale.contains(idLocale))
@@ -119,7 +119,7 @@ namespace text
                continue;
             }
 
-            ::id & idSchema = m_plocaleschema->m_idaSchema[i];
+            ::atom & idSchema = m_plocaleschema->m_idaSchema[i];
 
 
             schema * pschema = (schema * ) plocale->get_schema(idSchema);
@@ -252,15 +252,15 @@ namespace text
    }
 
 
-   void table::set(const ::id & id, const ::id & idLocale, const ::id & idSchema, const char * psz)
+   void table::set(const ::atom & atom, const ::atom & idLocale, const ::atom & idSchema, const char * psz)
    {
 
-      (*this)[idLocale][idSchema][id] = psz;
+      (*this)[idLocale][idSchema][atom] = psz;
 
    }
 
 
-   string table::get(const context * pcontext,const ::id & id, bool bIdAsDefaultValue) const
+   string table::get(const context * pcontext,const ::atom & atom, bool bIdAsDefaultValue) const
    {
 
       if (pcontext == nullptr)
@@ -270,8 +270,8 @@ namespace text
 
       }
 
-      static ::id idEn("en");
-      static ::id idStd("_std");
+      static ::atom idEn("en");
+      static ::atom idStd("_std");
 
       string table;
       if(pcontext != nullptr)
@@ -282,7 +282,7 @@ namespace text
          if(pcontext->m_pschema != nullptr)
          {
 
-            table = (*pcontext->m_pschema)[id];
+            table = (*pcontext->m_pschema)[atom];
             if(table.has_char())
                return table;
 
@@ -290,7 +290,7 @@ namespace text
 
          if(pcontext->m_pschemaLocale != nullptr)
          {
-            table = (*pcontext->m_pschemaLocale)[id];
+            table = (*pcontext->m_pschemaLocale)[atom];
             if(table.has_char())
                return table;
          }
@@ -298,7 +298,7 @@ namespace text
          for(i32 i = 0; i < pcontext->m_schemaptra.get_count(); i++)
          {
 
-            table = (*pcontext->m_schemaptra[i])[id];
+            table = (*pcontext->m_schemaptra[i])[atom];
             if(table.has_char())
                return table;
 
@@ -307,21 +307,21 @@ namespace text
       }
       if(pcontext != nullptr && pcontext->m_pschemaSchemaEn != nullptr)
       {
-         table = (*pcontext->m_pschemaSchemaEn)[id];// lang=pszStyle style=en
+         table = (*pcontext->m_pschemaSchemaEn)[atom];// lang=pszStyle style=en
          if(table.has_char())
             return table;
       }
-      table = (*m_pschemaEn)[id]; // lang=en style=en
+      table = (*m_pschemaEn)[atom]; // lang=en style=en
       if(table.has_char())
          return table;
       if(pcontext != nullptr && pcontext->m_pschemaSchemaStd != nullptr)
       {
-         table = (*pcontext->m_pschemaSchemaStd)[id];// lang=pszStyle style=en
+         table = (*pcontext->m_pschemaSchemaStd)[atom];// lang=pszStyle style=en
          if(table.has_char())
             return table;
       }
 
-      table = (*m_pschemaStd)[id]; // lang=_std style=_std
+      table = (*m_pschemaStd)[atom]; // lang=_std style=_std
 
       if(table.has_char())
       {
@@ -333,7 +333,7 @@ namespace text
       if(bIdAsDefaultValue)
       {
 
-         return id.to_string();
+         return atom.to_string();
 
       }
       else
@@ -345,7 +345,7 @@ namespace text
 
    }
 
-   string table::get(const context * pcontext,const ::id & id,const ::id & idLocale,const ::id & idSchema,bool bIdAsDefaultValue) const
+   string table::get(const context * pcontext,const ::atom & atom,const ::atom & idLocale,const ::atom & idSchema,bool bIdAsDefaultValue) const
    {
 
       if(!idLocale.is_empty())
@@ -360,7 +360,7 @@ namespace text
                const schema * pschema = plocale->get_schema(idSchema);
                if(pschema != nullptr)
                {
-                  table = (*pschema)[id];
+                  table = (*pschema)[atom];
                   if(table.has_char())
                      return table;
                }
@@ -369,22 +369,22 @@ namespace text
             const schema * pschema = plocale->get_schema(idLocale);
             if(pschema != nullptr)
             {
-               table = (*pschema)[id];
+               table = (*pschema)[atom];
                if(table.has_char())
                   return table;
             }
          }
       }
-      return get(pcontext,id,bIdAsDefaultValue);
+      return get(pcontext,atom,bIdAsDefaultValue);
    }
 
 
-   void table::get(string_array & stra, const context * pcontext, const ::id & id) const
+   void table::get(string_array & stra, const context * pcontext, const ::atom & atom) const
    {
 
-      _get(stra, pcontext, id);
+      _get(stra, pcontext, atom);
 
-      ::id id2;
+      ::atom id2;
 
       index i = 0;
 
@@ -395,7 +395,7 @@ namespace text
 
          stra2.erase_all();
 
-         id2 = string(id.m_psz) + "[" + __string(i) + "]";
+         id2 = string(atom.m_psz) + "[" + __string(i) + "]";
 
          _get(stra2, pcontext, id2);
 
@@ -410,7 +410,7 @@ namespace text
    }
 
 
-   void table::_get(string_array & stra, const context * pcontext, const ::id & id) const
+   void table::_get(string_array & stra, const context * pcontext, const ::atom & atom) const
    {
 
       if (pcontext == nullptr)
@@ -420,8 +420,8 @@ namespace text
 
       }
 
-      static ::id idEn("en");
-      static ::id idStd("_std");
+      static ::atom idEn("en");
+      static ::atom idStd("_std");
 
       string table;
       if(pcontext != nullptr)
@@ -432,7 +432,7 @@ namespace text
          if(pcontext->m_pschema != nullptr)
          {
 
-            table = (*pcontext->m_pschema)[id];
+            table = (*pcontext->m_pschema)[atom];
             if(table.has_char())
                stra.add(table);
 
@@ -440,7 +440,7 @@ namespace text
 
          if(pcontext->m_pschemaLocale != nullptr)
          {
-            table = (*pcontext->m_pschemaLocale)[id];
+            table = (*pcontext->m_pschemaLocale)[atom];
             if(table.has_char())
                stra.add(table);
          }
@@ -448,7 +448,7 @@ namespace text
          for(i32 i = 0; i < pcontext->m_schemaptra.get_count(); i++)
          {
 
-            table = (*pcontext->m_schemaptra[i])[id];
+            table = (*pcontext->m_schemaptra[i])[atom];
             if(table.has_char())
                stra.add(table);
 
@@ -459,26 +459,26 @@ namespace text
       if(pcontext != nullptr && pcontext->m_pschemaSchemaEn != nullptr)
       {
 
-         table = (*pcontext->m_pschemaSchemaEn)[id];// lang=pszStyle style=en
+         table = (*pcontext->m_pschemaSchemaEn)[atom];// lang=pszStyle style=en
          if(table.has_char())
             stra.add(table);
 
       }
 
-      table = (*m_pschemaEn)[id]; // lang=en style=en
+      table = (*m_pschemaEn)[atom]; // lang=en style=en
       if(table.has_char())
          stra.add(table);
 
       if(pcontext != nullptr && pcontext->m_pschemaSchemaStd != nullptr)
       {
 
-         table = (*pcontext->m_pschemaSchemaStd)[id];// lang=pszStyle style=en
+         table = (*pcontext->m_pschemaSchemaStd)[atom];// lang=pszStyle style=en
          if(table.has_char())
             stra.add(table);
 
       }
 
-      table = (*m_pschemaStd)[id]; // lang=_std style=_std
+      table = (*m_pschemaStd)[atom]; // lang=_std style=_std
       if(table.has_char())
          stra.add(table);
 
@@ -619,7 +619,7 @@ namespace text
    };
 
 
-   bool table::load_uistr_file(const ::id& pszLang, const ::id& pszStyle, ::file::file *  pfile)
+   bool table::load_uistr_file(const ::atom& pszLang, const ::atom& pszStyle, ::file::file *  pfile)
    {
 
       memory mem;
@@ -814,17 +814,17 @@ end:
    string table::body(const char * psz)
    {
       string table(psz);
-      table.replace("\\r", "\r");
-      table.replace("\\n", "\n");
+      table.replace_with("\r", "\\r");
+      table.replace_with("\n", "\\n");
       return table;
    }
 
 
-   bool table::matches(const context * pcontext, const ::id & id, const char * psz) const
+   bool table::matches(const context * pcontext, const ::atom & atom, const char * psz) const
    {
 
-      static ::id idEn("en");
-      static ::id idStd("_std");
+      static ::atom idEn("en");
+      static ::atom idStd("_std");
 
       string table;
       if(pcontext != nullptr)
@@ -835,7 +835,7 @@ end:
          if(pcontext->m_pschema != nullptr)
          {
 
-            table = (*pcontext->m_pschema)[id];
+            table = (*pcontext->m_pschema)[atom];
             if(!table.compare_ci(psz))
                return true;
 
@@ -843,7 +843,7 @@ end:
 
          if(pcontext->m_pschemaLocale != nullptr)
          {
-            table = (*pcontext->m_pschemaLocale)[id];
+            table = (*pcontext->m_pschemaLocale)[atom];
             if(!table.compare_ci(psz))
                return true;
          }
@@ -851,7 +851,7 @@ end:
          for(i32 i = 0; i < pcontext->m_schemaptra.get_count(); i++)
          {
 
-            table = (*pcontext->m_schemaptra[i])[id];
+            table = (*pcontext->m_schemaptra[i])[atom];
             if(!table.compare_ci(psz))
                return true;
 
@@ -862,20 +862,20 @@ end:
       if(pcontext != nullptr && pcontext->m_pschemaSchemaEn != nullptr)
       {
 
-         table = (*pcontext->m_pschemaSchemaEn)[id];// lang=pszStyle style=en
+         table = (*pcontext->m_pschemaSchemaEn)[atom];// lang=pszStyle style=en
          if(!table.compare_ci(psz))
             return true;
 
       }
 
-      table = (*m_pschemaEn)[id]; // lang=en style=en
+      table = (*m_pschemaEn)[atom]; // lang=en style=en
       if(!table.compare_ci(psz))
          return true;
 
       if(pcontext != nullptr && pcontext->m_pschemaSchemaStd != nullptr)
       {
 
-         table = (*pcontext->m_pschemaSchemaStd)[id];// lang=pszStyle style=en
+         table = (*pcontext->m_pschemaSchemaStd)[atom];// lang=pszStyle style=en
          if(!table.compare_ci(psz))
             return true;
 
@@ -889,11 +889,11 @@ end:
    }
 
 
-   bool table::begins(const context * pcontext, const char * pszTopic, const ::id & id) const
+   bool table::begins(const context * pcontext, const char * pszTopic, const ::atom & atom) const
    {
 
-      static ::id idEn("en");
-      static ::id idStd("_std");
+      static ::atom idEn("en");
+      static ::atom idStd("_std");
 
       string table;
       if(pcontext != nullptr)
@@ -904,7 +904,7 @@ end:
          if(pcontext->m_pschema != nullptr)
          {
 
-            table = (*pcontext->m_pschema)[id];
+            table = (*pcontext->m_pschema)[atom];
             if(table.has_char() && ::str::begins_ci(pszTopic, table))
                return true;
 
@@ -912,7 +912,7 @@ end:
 
          if(pcontext->m_pschemaLocale != nullptr)
          {
-            table = (*pcontext->m_pschemaLocale)[id];
+            table = (*pcontext->m_pschemaLocale)[atom];
             if(table.has_char() && ::str::begins_ci(pszTopic, table))
                return true;
          }
@@ -920,7 +920,7 @@ end:
          for(i32 i = 0; i < pcontext->m_schemaptra.get_count(); i++)
          {
 
-            table = (*pcontext->m_schemaptra[i])[id];
+            table = (*pcontext->m_schemaptra[i])[atom];
             if(table.has_char() && ::str::begins_ci(pszTopic, table))
                return true;
 
@@ -931,20 +931,20 @@ end:
       if(pcontext != nullptr && pcontext->m_pschemaSchemaEn != nullptr)
       {
 
-         table = (*pcontext->m_pschemaSchemaEn)[id];// lang=pszStyle style=en
+         table = (*pcontext->m_pschemaSchemaEn)[atom];// lang=pszStyle style=en
          if(table.has_char() && ::str::begins_ci(pszTopic, table))
             return true;
 
       }
 
-      table = (*m_pschemaEn)[id]; // lang=en style=en
+      table = (*m_pschemaEn)[atom]; // lang=en style=en
       if(table.has_char() && ::str::begins_ci(pszTopic, table))
          return true;
 
       if(pcontext != nullptr && pcontext->m_pschemaSchemaStd != nullptr)
       {
 
-         table = (*pcontext->m_pschemaSchemaStd)[id];// lang=pszStyle style=en
+         table = (*pcontext->m_pschemaSchemaStd)[atom];// lang=pszStyle style=en
          if(table.has_char() && ::str::begins_ci(pszTopic, table))
             return true;
 
@@ -958,11 +958,11 @@ end:
    }
 
 
-   bool table::begins_eat(const context * pcontext, string & strTopic, const ::id & id) const
+   bool table::begins_eat(const context * pcontext, string & strTopic, const ::atom & atom) const
    {
 
-      static ::id idEn("en");
-      static ::id idStd("_std");
+      static ::atom idEn("en");
+      static ::atom idStd("_std");
 
       string table;
       if(pcontext != nullptr)
@@ -973,7 +973,7 @@ end:
          if(pcontext->m_pschema != nullptr)
          {
 
-            table = (*pcontext->m_pschema)[id];
+            table = (*pcontext->m_pschema)[atom];
             if(table.has_char() && strTopic.begins_eat_ci(table))
                return true;
 
@@ -981,7 +981,7 @@ end:
 
          if(pcontext->m_pschemaLocale != nullptr)
          {
-            table = (*pcontext->m_pschemaLocale)[id];
+            table = (*pcontext->m_pschemaLocale)[atom];
             if(table.has_char() && ::str::begins_eat_ci(strTopic, table))
                return true;
          }
@@ -989,7 +989,7 @@ end:
          for(i32 i = 0; i < pcontext->m_schemaptra.get_count(); i++)
          {
 
-            table = (*pcontext->m_schemaptra[i])[id];
+            table = (*pcontext->m_schemaptra[i])[atom];
             if(table.has_char() && ::str::begins_eat_ci(strTopic, table))
                return true;
 
@@ -1000,20 +1000,20 @@ end:
       if(pcontext != nullptr && pcontext->m_pschemaSchemaEn != nullptr)
       {
 
-         table = (*pcontext->m_pschemaSchemaEn)[id];// lang=pszStyle style=en
+         table = (*pcontext->m_pschemaSchemaEn)[atom];// lang=pszStyle style=en
          if(table.has_char() && ::str::begins_eat_ci(strTopic, table))
             return true;
 
       }
 
-      table = (*m_pschemaEn)[id]; // lang=en style=en
+      table = (*m_pschemaEn)[atom]; // lang=en style=en
       if(table.has_char() && ::str::begins_eat_ci(strTopic, table))
          return true;
 
       if(pcontext != nullptr && pcontext->m_pschemaSchemaStd != nullptr)
       {
 
-         table = (*pcontext->m_pschemaSchemaStd)[id];// lang=pszStyle style=en
+         table = (*pcontext->m_pschemaSchemaStd)[atom];// lang=pszStyle style=en
          if(table.has_char() && ::str::begins_eat_ci(strTopic, table))
             return true;
 
@@ -1026,7 +1026,7 @@ end:
    }
 
 
-   //bool context::match(string_array & stra, const char * psz, ::id idExpression, ::id idRoot) const
+   //bool context::match(string_array & stra, const char * psz, ::atom idExpression, ::atom idRoot) const
    //{
 
    //   synchronous_lock synchronouslock(mutex());

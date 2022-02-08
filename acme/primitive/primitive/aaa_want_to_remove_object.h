@@ -60,7 +60,7 @@ public:
    virtual bool task_get_run();
 
    virtual void defer_update_object_id();
-   virtual ::id calc_default_object_id() const;
+   virtual ::atom calc_default_object_id() const;
 
 
    __pointer(thread) fork(
@@ -112,7 +112,7 @@ public:
 
 
    
-   virtual string lstr(id id, string strDefault = "");
+   virtual string lstr(atom atom, string strDefault = "");
 
    
    virtual string __get_text(string str);
@@ -296,7 +296,7 @@ inline i64 release(c_derived * & pca)
 
 #ifdef _DEBUG
 
-   ::id id = p->m_id;
+   ::atom atom = p->m_atom;
    //char * pszType = nullptr;
    //
    //try
@@ -323,7 +323,7 @@ inline i64 release(c_derived * & pca)
    catch (...)
    {
 
-      ::output_debug_string("exception release pca = nullptr; (" + string(id) + ")\n");
+      ::output_debug_string("exception release pca = nullptr; (" + string(atom) + ")\n");
 
    }
 
@@ -336,7 +336,7 @@ inline i64 release(c_derived * & pca)
    catch(...)
    {
 
-      ::output_debug_string("exception release p->release() (" + string(id) + ")\n");
+      ::output_debug_string("exception release p->release() (" + string(atom) + ")\n");
 
    }
 

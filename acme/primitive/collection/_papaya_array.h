@@ -56,7 +56,7 @@ namespace papaya
 //#ifdef _UWP
 //
 //      template < typename T, typename ITEM >
-//      inline ::index find_first_item(::winrt::Windows::Foundation::Collections::IVectorView < T > ^ ivectorview, const ITEM & item)
+//      inline ::index find_first_item(::winrt::Windows::Foundation::Collections::IVectorImpact < T > ^ ivectorview, const ITEM & item)
 //      {
 //
 //         for (::u32 u = 0; u < ivectorview->Size; u++)
@@ -77,7 +77,7 @@ namespace papaya
 //
 //
 //      template < typename T, typename ITEM >
-//      inline bool contains_item(::winrt::Windows::Foundation::Collections::IVectorView < T > ^ ivectorview, const ITEM & item)
+//      inline bool contains_item(::winrt::Windows::Foundation::Collections::IVectorImpact < T > ^ ivectorview, const ITEM & item)
 //      {
 //
 //         auto iFindFirst = find_first_item(ivectorview, item);

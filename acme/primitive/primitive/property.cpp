@@ -14,7 +14,7 @@ void prop_id_debug(::matter * pobject);
 
 
 //property::property(const property & property) :
-//   m_id(property.m_id),
+//   m_atom(property.m_atom),
 //   m_var(property)
 //{
 //
@@ -77,11 +77,11 @@ void prop_id_debug(::matter * pobject);
 //
 ////      m_iIndex = prop.m_iIndex;
 //
-//      if(m_id.is_empty())
+//      if(m_atom.is_empty())
 //      {
 //
 //         output_debug_string("\nHI!! Shouldn't you use a matter find this by use matter and set a breakpoint here!!!\n");
-//         m_id = property.m_id;
+//         m_atom = property.m_atom;
 //
 //      }
 //
@@ -107,33 +107,33 @@ void prop_id_debug(::matter * pobject);
 ////   m_var(property)
 ////{
 ////
-////   m_id = property.m_id;
+////   m_atom = property.m_atom;
 ////
 ////}
 //
 //
-////property::property(property_set * pset, const id & id) :
+////property::property(property_set * pset, const atom & atom) :
 ////   m_ppropertyset(pset)
 ////{
 ////
-////   m_id = id;
+////   m_atom = atom;
 ////
 ////   if (m_ppropertyset)
 ////   {
 ////
-////      m_ppropertyset->find(id, m_var);
+////      m_ppropertyset->find(atom, m_var);
 ////
 ////   }
 ////
 ////}
 //
 //
-////property::property(property_set * pset, const id & id, const ::payload &  ::payload, ::matter * pobject) :
+////property::property(property_set * pset, const atom & atom, const ::payload &  ::payload, ::matter * pobject) :
 ////   m_ppropertyset(pset),
 ////   m_var(payload)
 ////{
 ////
-////   m_id = id;
+////   m_atom = atom;
 ////
 ////   if(::is_set(pobject))
 ////   {
@@ -198,12 +198,12 @@ void prop_id_debug(::matter * pobject);
 //
 //void property::parse_network_payload(const char * & pszJson,const char * pszEnd)
 //{
-//   ::property_parse_network_payload_id(m_id, pszJson, pszEnd);
+//   ::property_parse_network_payload_id(m_atom, pszJson, pszEnd);
 //   ::property_parse_network_payload_value(m_var,pszJson,pszEnd);
 //}
 //
 //
-void property_parse_network_payload_id(id & id, const char *& pszJson, const char * pszEnd)
+void property_parse_network_payload_id(atom & atom, const char *& pszJson, const char * pszEnd)
 {
 
    ::str::consume_spaces(pszJson, 0, pszEnd);
@@ -216,7 +216,7 @@ void property_parse_network_payload_id(id & id, const char *& pszJson, const cha
 
    ::str::consume_quoted_value_ex2(pszJson, pszEnd, &psz, iBuffer);
 
-   id = psz;
+   atom = psz;
 
    if (iBuffer > sizeof(sz))
    {
@@ -261,7 +261,7 @@ void property_skip_network_payload_value(const char *& pszJson, const char * psz
 string & property::get_http_post(::string & str) const
 {
 
-   str += m_id.str();
+   str += m_atom.str();
 
    str += "=";
 
@@ -316,7 +316,7 @@ string & property::get_http_post(::string & str) const
 //bool property::is_false() const
 //{
 //
-//   return m_id.is_empty() && is_false();
+//   return m_atom.is_empty() && is_false();
 //
 //}
 //
@@ -362,7 +362,7 @@ string & property::get_http_post(::string & str) const
 //   default:
 //      if(const_cast<property *>(this)->get_count() == 1)
 //         return const_cast<property *>(this)->get_value();
-//      __throw(::exception("unsuported!!"));
+//      throw ::exception(::exception("unsuported!!"));
 //   }
 //}
 //
@@ -375,7 +375,7 @@ string & property::get_http_post(::string & str) const
 ////void property::io(::stream & stream)
 ////{
 ////
-////   stream(m_id);
+////   stream(m_atom);
 ////   stream(m_var);
 ////
 ////}
@@ -435,7 +435,7 @@ string & property::get_http_post(::string & str) const
 ////   if(pchannel)
 ////   {
 ////
-////      pchannel->send_update((::enum_id) m_id.i64(), context);
+////      pchannel->send_update((::enum_id) m_atom.i64(), context);
 ////
 ////   }
 ////
@@ -1477,7 +1477,7 @@ string & property::get_http_post(::string & str) const
 //void prop_id_debug(::matter * pobject)
 //{
 //
-//   comparable_array < ::id > idaSchema;
+//   comparable_array < ::atom > idaSchema;
 //
 //   property_set set;
 //
@@ -1893,7 +1893,7 @@ void on_property_destruct(property* pproperty)
       for (auto p : g_propertya)
       {
 
-         output_debug_string("prop(\"" + p->m_id.to_string() + "\")=\""+p->to_string()+"\";\n");
+         output_debug_string("prop(\"" + p->m_atom.to_string() + "\")=\""+p->to_string()+"\";\n");
 
          iCount--;
 

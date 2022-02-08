@@ -138,7 +138,7 @@ namespace user
    }
 
 
-//   ::user::toolbar * frame::get_toolbar(const ::id & idToolBar)
+//   ::user::toolbar * frame::get_toolbar(const ::atom & idToolBar)
 //   {
 //
 //      return nullptr;
@@ -149,9 +149,9 @@ namespace user
    void frame::add_control_bar(::user::control_bar * pcontrolbar)
    {
 
-      throw interface_only_exception();
+      throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -159,9 +159,9 @@ namespace user
    void frame::erase_control_bar(::user::control_bar * pcontrolbar)
    {
 
-      throw interface_only_exception();
+      throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -169,9 +169,9 @@ namespace user
    void frame::show_control_bar(::user::control_bar * pcontrolbar)
    {
 
-      throw interface_only_exception();
+      throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -179,14 +179,14 @@ namespace user
    void frame::hide_control_bar(::user::control_bar * pcontrolbar)
    {
 
-      throw interface_only_exception();
+      throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
 
-//   __pointer(::utoolbar) frame::load_toolbar(const ::id & idToolbar, const ::string & strToolbar, u32 dwCtrlStyle, u32 uStyle, const ::type & type)
+//   __pointer(::utoolbar) frame::load_toolbar(const ::atom & idToolbar, const ::string & strToolbar, u32 dwCtrlStyle, u32 uStyle, const ::type & type)
 //   {
 //
 //      return false;
@@ -210,7 +210,7 @@ namespace user
    }
 
 
-   void frame::set_active_view(::user::impact* pViewNew, bool bNotify)
+   void frame::set_active_view(::user::impact* pImpactNew, bool bNotify)
    {
 
 
@@ -455,16 +455,16 @@ namespace user
 
 
 
-   void frame::handle(::subject * psubject, ::context * pcontext)
+   void frame::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (psubject->m_id == id_user_style_change)
+      if (ptopic->m_atom == id_user_style_change)
       {
 
          on_user_style_change();
 
       }
-      else if (psubject->m_id == id_operating_system_user_color_change)
+      else if (ptopic->m_atom == id_operating_system_user_color_change)
       {
 
          set_need_redraw();

@@ -123,7 +123,7 @@ namespace user
       virtual void reset_content();
 
 
-      void handle(::subject * psubject, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::context * pcontext) override;
 
 
    };

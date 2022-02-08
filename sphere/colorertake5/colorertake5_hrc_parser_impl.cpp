@@ -155,13 +155,13 @@ namespace colorertake5
       return regionNamesVector.get_size();
    }
 
-   class region *HRCParserImpl::getRegion(i32 id)
+   class region *HRCParserImpl::getRegion(i32 atom)
    {
-      if (id < 0 || id >= regionNamesVector.get_size())
+      if (atom < 0 || atom >= regionNamesVector.get_size())
       {
          return nullptr;
       }
-      return regionNamesVector.element_at(id);
+      return regionNamesVector.element_at(atom);
    }
 
    class region* HRCParserImpl::getRegion(const ::string &name)
@@ -186,13 +186,13 @@ namespace colorertake5
       doc.load(psz);
       if(doc.get_root() == nullptr)
       {
-         __throw(HRCParserException(string("main '<hrc>' block not found")));
+         throw ::exception(HRCParserException(string("main '<hrc>' block not found")));
       }
       xml::node & types = *doc.get_root();
 
       if(types.get_name() != "hrc")
       {
-         __throw(HRCParserException(string("main '<hrc>' block not found")));
+         throw ::exception(HRCParserException(string("main '<hrc>' block not found")));
       }
 
       if(versionName.is_empty())
@@ -1152,7 +1152,7 @@ namespace colorertake5
 /* ***** BEGIN LICENSE BLOCK *****
 * Version: MPL 1.1/GPL 2.0/LGPL 2.1
 *
-* The contents of this file are subject to the Mozilla Public License Version
+* The contents of this file are topic to the Mozilla Public License Version
 * 1.1 (the "License"); you may not use this file except in compliance with
 * the License. You may obtain a copy of the License at
 * http://www.mozilla.org/MPL/

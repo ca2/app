@@ -13,7 +13,7 @@
 //	   in the Software without restriction, including without limitation the rights
 //	   to uxse, cxopy, mxodify, mxerge, pxublish, dxistribute, sxublicense, and/or sxell
 //	   copies of the Software, and to permit persons to whom the Software is
-//	   furnished to do so, subject to the following conditions:
+//	   furnished to do so, topic to the following conditions:
 //
 //
 #include "framework.h"
@@ -96,20 +96,20 @@ namespace file
       if (m_listenera.is_empty())
       {
 
-         m_pwatcher->erase_watch(m_id);
+         m_pwatcher->erase_watch(m_atom);
 
       }
 
    }
 
 
-   void watch::handle_action(action * psubject)
+   void watch::handle_action(action * ptopic)
    {
 
       for (auto & plistener : m_listenera.ptra())
       {
 
-         plistener->handle_file_action(psubject);
+         plistener->handle_file_action(ptopic);
 
       }
 
@@ -176,7 +176,7 @@ namespace file
    {
 
       m_pThis = nullptr;
-      m_idLast = 0;
+      m_atomLast = 0;
       m_bCreateWatchThread = true;
 
    }
@@ -204,60 +204,32 @@ namespace file
 
       __pointer(watch) pwatch;
 
-      try
+      __construct(pwatch);
+
+      pwatch->m_pwatcher = this;
+
+      pwatch->m_atom = ++m_atomLast;
+
+      m_watchmap[pwatch->m_atom] = pwatch;
+
+      if (m_bCreateWatchThread)
       {
 
-         __construct(pwatch);
-
-         pwatch->m_pwatcher = this;
-
-         pwatch->m_id = ++m_idLast;
-
-         m_watchmap[pwatch->m_id] = pwatch;
-
-         if (m_bCreateWatchThread)
+         if (m_htask == nullptr)
          {
-
-//            auto estatus = __construct_new(m_pthread);
-//
-//            if (!estatus)
-//            {
-//
-//               return estatus;
-//
-//            }
-// 
-//             
-//
-
-            if (m_htask == nullptr)
-            {
-               /*auto estatus = */ begin_thread();
-
-             /*  if (!estatus)
-               {
-
-                  return estatus;
-
-               }*/
-
-            }
-
-         }
-
-         if (!pwatch->open(pathFolder, bRecursive))
-         {
-
-            m_watchmap.erase_key(pwatch->m_id);
-
-            return -1;
+               
+            branch();
 
          }
 
       }
-      catch (...)
+
+      if (!pwatch->open(pathFolder, bRecursive))
       {
 
+         m_watchmap.erase_key(pwatch->m_atom);
+
+         return -1;
 
       }
 
@@ -272,7 +244,7 @@ namespace file
 
       pwatch->m_pathFolder = pathFolder;
 
-      return pwatch->m_id;
+      return pwatch->m_atom;
 
    }
 

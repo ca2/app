@@ -142,7 +142,7 @@ namespace simpledb
       else if(pusermessage->m_wparam == 1)
       {
 
-         throw interface_only_exception();
+         throw ::interface_only();
 
       }
 

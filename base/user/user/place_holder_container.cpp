@@ -125,7 +125,7 @@ namespace user
    }
 
 
-   //bool place_holder_container::create_interaction(::user::interaction * puiParent,id id)
+   //bool place_holder_container::create_interaction(::user::interaction * puiParent,atom atom)
    //{
 
    //   return ::user::interaction::create_interaction(puiParent) != false;

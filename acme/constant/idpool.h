@@ -19,263 +19,263 @@ namespace acme
 
       static idpool * g_pthis;
 
-      ::id xml;
+      ::atom xml;
 
-      ::id eu;
-      ::id uk;
-      ::id fi;
-      ::id gr;
-      ::id nl;
-      ::id be;
-      ::id it;
-      ::id cz;
-
-
-      ::id dk;
-      ::id en_uk;
-      ::id lu;
-      ::id ie;
-      ::id no;
-      ::id cy;
-      ::id su;
-      ::id lv;
-      ::id li;
-      ::id hu;
-      ::id sk;
-      ::id si;
-      ::id ro;
-      ::id kz;
-      ::id ru;
-      ::id pl;
-      ::id tr;
-      ::id ee;
-      ::id asia;
-      ::id vn;
-      ::id in;
-      ::id kg;
-      ::id kr;
-      ::id my;
-      ::id ph;
-      ::id sg;
+      ::atom eu;
+      ::atom uk;
+      ::atom fi;
+      ::atom gr;
+      ::atom nl;
+      ::atom be;
+      ::atom it;
+      ::atom cz;
 
 
-      ::id zh;
-      ::id sy;
-      ::id ps;
-      ::id ar;
-      ::id bo;
-      ::id cl;
-      ::id co;
-      ::id gs;
-      ::id py;
-      ::id uy;
-      ::id ve;
-      ::id amdesur;
-      ::id au;
-      ::id oceania;
-      ::id nz;
-      ::id tl;
-      ::id ug;
-      ::id sc;
-      ::id cm;
-      ::id za;
-      ::id africa;
-      ::id us;
-      ::id caribe;
-      ::id ht;
-      ::id cu;
-      ::id tc;
-      ::id centralam;
-      ::id bz;
-      ::id america;
-
-      ::id cc;
-      ::id se;
-      ::id sv_se;
-      ::id sv;
+      ::atom dk;
+      ::atom en_uk;
+      ::atom lu;
+      ::atom ie;
+      ::atom no;
+      ::atom cy;
+      ::atom su;
+      ::atom lv;
+      ::atom li;
+      ::atom hu;
+      ::atom sk;
+      ::atom si;
+      ::atom ro;
+      ::atom kz;
+      ::atom ru;
+      ::atom pl;
+      ::atom tr;
+      ::atom ee;
+      ::atom asia;
+      ::atom vn;
+      ::atom in;
+      ::atom kg;
+      ::atom kr;
+      ::atom my;
+      ::atom ph;
+      ::atom sg;
 
 
-      ::id at;
-      ::id de_at;
-      ::id de;
-      ::id de_de;
+      ::atom zh;
+      ::atom sy;
+      ::atom ps;
+      ::atom ar;
+      ::atom bo;
+      ::atom cl;
+      ::atom co;
+      ::atom gs;
+      ::atom py;
+      ::atom uy;
+      ::atom ve;
+      ::atom amdesur;
+      ::atom au;
+      ::atom oceania;
+      ::atom nz;
+      ::atom tl;
+      ::atom ug;
+      ::atom sc;
+      ::atom cm;
+      ::atom za;
+      ::atom africa;
+      ::atom us;
+      ::atom caribe;
+      ::atom ht;
+      ::atom cu;
+      ::atom tc;
+      ::atom centralam;
+      ::atom bz;
+      ::atom america;
 
-      ::id br;
-      ::id pt_br;
-      ::id pt;
-
-      ::id es;
-
-      ::id cn;
-      ::id zh_cn;
-      ::id zh_tw;
-      ::id hk;
-
-      ::id ja;
-      ::id jp;
-      ::id ja_jp;
-
-      ::id fr;
-      ::id fr_ca;
-      ::id ca;
-
-      ::id en;
-      ::id en_us;
-      ::id en_ca;
-      ::id std;
-
-      ::id pe;
-      ::id mx;
-      ::id ec;
-
-      ::id tw;
-
-      ::id earth;
-      ::id vg;
-      ::id ae;
-      ::id il;
+      ::atom cc;
+      ::atom se;
+      ::atom sv_se;
+      ::atom sv;
 
 
-      ::id http_host;
-      ::id http_version;
-      ::id http_status_code;
-      ::id http_status;
-      ::id http_method;
-      ::id http_protocol;
-      ::id http_referer;
-      ::id https;
+      ::atom at;
+      ::atom de_at;
+      ::atom de;
+      ::atom de_de;
 
-      ::id query_string;
+      ::atom br;
+      ::atom pt_br;
+      ::atom pt;
 
-      ::id content_length;
-      ::id content_type;
-      ::id connection;
-      ::id location;
-      ::id set_cookie;
-      ::id cookie;
-      ::id cache_control;
-      ::id pragma;
-      ::id expires;
-      ::id host;
-      ::id referer;
+      ::atom es;
 
-      ::id close;
+      ::atom cn;
+      ::atom zh_cn;
+      ::atom zh_tw;
+      ::atom hk;
 
-      ::id put;
+      ::atom ja;
+      ::atom jp;
+      ::atom ja_jp;
 
-      ::id remote_addr;
-      ::id request_uri;
+      ::atom fr;
+      ::atom fr_ca;
+      ::atom ca;
 
-      ::id accept_encoding;
-      ::id content_encoding;
+      ::atom en;
+      ::atom en_us;
+      ::atom en_ca;
+      ::atom std;
 
-      ::id keep_alive;
+      ::atom pe;
+      ::atom mx;
+      ::atom ec;
 
-      ::id user_agent;
-      ::id from;
-      ::id accept_language;
+      ::atom tw;
 
-
-      ::id accept;
+      ::atom earth;
+      ::atom vg;
+      ::atom ae;
+      ::atom il;
 
 
+      ::atom http_host;
+      ::atom http_version;
+      ::atom http_status_code;
+      ::atom http_status;
+      ::atom http_method;
+      ::atom http_protocol;
+      ::atom http_referer;
+      ::atom https;
 
-      ::id html_none;
-      ::id html_unknown;
-      ::id html_new;
-      ::id html_initial;
-      ::id html_html;
-      ::id html_head;
-      ::id html_title;
-      ::id html_meta;
-      ::id html_link;
-      ::id html_style;
-      ::id html_script;
-      ::id html_body;
-      ::id html_span;
-      ::id html_h1;
-      ::id html_h2;
-      ::id html_h3;
-      ::id html_h4;
-      ::id html_h5;
-      ::id html_p;
-      ::id html_table;
-      ::id html_tbody;
-      ::id html_tr;
-      ::id html_td;
-      ::id html_div;
-      ::id html_br;
-      ::id html_form;
-      ::id html_input;
-      ::id html_select;
-      ::id html_option;
-      ::id html_img;
-      ::id html_font;
-      ::id html_li;
-      ::id html_a;
-      ::id html_strong;
+      ::atom query_string;
 
+      ::atom content_length;
+      ::atom content_type;
+      ::atom connection;
+      ::atom location;
+      ::atom set_cookie;
+      ::atom cookie;
+      ::atom cache_control;
+      ::atom pragma;
+      ::atom expires;
+      ::atom host;
+      ::atom referer;
 
-      ::id html_class;
+      ::atom close;
 
+      ::atom put;
 
-      ::id html_display;
-      ::id html_margin;
-      ::id html_border;
-      ::id html_padding;
+      ::atom remote_addr;
+      ::atom request_uri;
 
-      ::id html_block;
-      ::id html_inline;
-      ::id html_table_row;
-      ::id html_table_cell;
+      ::atom accept_encoding;
+      ::atom content_encoding;
 
-      ::id html_margin_left;
-      ::id html_margin_top;
-      ::id html_margin_right;
-      ::id html_margin_bottom;
-      ::id html_border_left;
-      ::id html_border_top;
-      ::id html_border_right;
-      ::id html_border_bottom;
-      ::id html_padding_left;
-      ::id html_padding_top;
-      ::id html_padding_right;
-      ::id html_padding_bottom;
+      ::atom keep_alive;
+
+      ::atom user_agent;
+      ::atom from;
+      ::atom accept_language;
 
 
-      ::id html_css_suffix_left;
-      ::id html_css_suffix_top;
-      ::id html_css_suffix_right;
-      ::id html_css_suffix_bottom;
-
-      ::id html_css_suffix_width;
-      ::id html_css_suffix_left_width;
-      ::id html_css_suffix_top_width;
-      ::id html_css_suffix_right_width;
-      ::id html_css_suffix_bottom_width;
-
-      ::id html_css_suffix_color;
-      ::id html_css_suffix_left_color;
-      ::id html_css_suffix_top_color;
-      ::id html_css_suffix_right_color;
-      ::id html_css_suffix_bottom_color;
+      ::atom accept;
 
 
-      ::id html_border_width;
-      ::id html_border_left_width;
-      ::id html_border_top_width;
-      ::id html_border_right_width;
-      ::id html_border_bottom_width;
 
-      ::id html_border_color;
-      ::id html_border_left_color;
-      ::id html_border_top_color;
-      ::id html_border_right_color;
-      ::id html_border_bottom_color;
+      ::atom html_none;
+      ::atom html_unknown;
+      ::atom html_new;
+      ::atom html_initial;
+      ::atom html_html;
+      ::atom html_head;
+      ::atom html_title;
+      ::atom html_meta;
+      ::atom html_link;
+      ::atom html_style;
+      ::atom html_script;
+      ::atom html_body;
+      ::atom html_span;
+      ::atom html_h1;
+      ::atom html_h2;
+      ::atom html_h3;
+      ::atom html_h4;
+      ::atom html_h5;
+      ::atom html_p;
+      ::atom html_table;
+      ::atom html_tbody;
+      ::atom html_tr;
+      ::atom html_td;
+      ::atom html_div;
+      ::atom html_br;
+      ::atom html_form;
+      ::atom html_input;
+      ::atom html_select;
+      ::atom html_option;
+      ::atom html_img;
+      ::atom html_font;
+      ::atom html_li;
+      ::atom html_a;
+      ::atom html_strong;
 
-      ::id user_auto_start_checkbox;
 
-      ::id thread;
+      ::atom html_class;
+
+
+      ::atom html_display;
+      ::atom html_margin;
+      ::atom html_border;
+      ::atom html_padding;
+
+      ::atom html_block;
+      ::atom html_inline;
+      ::atom html_table_row;
+      ::atom html_table_cell;
+
+      ::atom html_margin_left;
+      ::atom html_margin_top;
+      ::atom html_margin_right;
+      ::atom html_margin_bottom;
+      ::atom html_border_left;
+      ::atom html_border_top;
+      ::atom html_border_right;
+      ::atom html_border_bottom;
+      ::atom html_padding_left;
+      ::atom html_padding_top;
+      ::atom html_padding_right;
+      ::atom html_padding_bottom;
+
+
+      ::atom html_css_suffix_left;
+      ::atom html_css_suffix_top;
+      ::atom html_css_suffix_right;
+      ::atom html_css_suffix_bottom;
+
+      ::atom html_css_suffix_width;
+      ::atom html_css_suffix_left_width;
+      ::atom html_css_suffix_top_width;
+      ::atom html_css_suffix_right_width;
+      ::atom html_css_suffix_bottom_width;
+
+      ::atom html_css_suffix_color;
+      ::atom html_css_suffix_left_color;
+      ::atom html_css_suffix_top_color;
+      ::atom html_css_suffix_right_color;
+      ::atom html_css_suffix_bottom_color;
+
+
+      ::atom html_border_width;
+      ::atom html_border_left_width;
+      ::atom html_border_top_width;
+      ::atom html_border_right_width;
+      ::atom html_border_bottom_width;
+
+      ::atom html_border_color;
+      ::atom html_border_left_color;
+      ::atom html_border_top_color;
+      ::atom html_border_right_color;
+      ::atom html_border_bottom_color;
+
+      ::atom user_auto_start_checkbox;
+
+      ::atom thread;
 
       idpool();
 

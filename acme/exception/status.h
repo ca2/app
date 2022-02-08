@@ -81,9 +81,9 @@ public:
 
    operator int() const { return is_ok() != false; }
 
-   operator void() const { return m_estatus; }
+   operator ::enum_status() const { return m_estatus; }
 
-   [[nodiscard]] ::e_status estatus() const { return m_estatus; }
+   [[nodiscard]] ::enum_status estatus() const { return m_estatus; }
 
    [[nodiscard]] bool is_ok() const { return ::succeeded(m_estatus); }
 

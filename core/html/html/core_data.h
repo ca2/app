@@ -258,8 +258,8 @@ namespace html
       void on_image_loaded(image* pimage);
 
 
-      ::html::element* get_element_by_name(id id);
-      ::html::element* get_element_by_id(id id);
+      ::html::element* get_element_by_name(atom atom);
+      ::html::element* get_element_by_id(atom atom);
 
       void delete_contents();
       void destroy() override;
@@ -277,7 +277,7 @@ namespace html
 
       i32 create_font(::html::element* pelemental);
 
-      virtual void handle(::subject * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
 
    };

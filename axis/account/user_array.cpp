@@ -114,7 +114,7 @@ namespace account
       try
       {
 
-         pcontext->m_papexcontext->file().del(m_psystem->m_pacmedir->appdata()/"license_auth/00001.data");
+         pcontext->m_papexcontext->file().erase(m_psystem->m_pacmedir->appdata()/"license_auth/00001.data");
 
       }
       catch(...)
@@ -125,7 +125,7 @@ namespace account
       try
       {
 
-         pcontext->m_papexcontext->file().del(m_psystem->m_pacmedir->appdata()/"license_auth/00002.data");
+         pcontext->m_papexcontext->file().erase(m_psystem->m_pacmedir->appdata()/"license_auth/00002.data");
 
       }
       catch(...)

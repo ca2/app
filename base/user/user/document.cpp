@@ -66,9 +66,9 @@ namespace user
    }
 
 
-   void document::assert_valid() const
+   void document::assert_ok() const
    {
-      ::object::assert_valid();
+      ::object::assert_ok();
 
       ::count count = get_view_count();
       for (index index = 0; index < count; index++)
@@ -346,10 +346,10 @@ namespace user
    }
 
 
-   ::id document::get_toolbar_id()
+   ::atom document::get_toolbar_id()
    {
 
-      return m_pimpactsystem->m_id.to_string() + "/top";
+      return m_pimpactsystem->m_atom.to_string() + "/top";
 
    }
 
@@ -390,7 +390,7 @@ namespace user
    }
 
 
-   ::id document::get_topic_view_id()
+   ::atom document::get_topic_view_id()
    {
 
       auto psignal = get_signal(id_get_topic_view_id);
@@ -402,12 +402,12 @@ namespace user
    }
 
 
-   bool document::set_topic_view_by_id(::id id)
+   bool document::set_topic_view_by_id(::atom atom)
    {
 
       auto psignal = get_signal(id_get_topic_view_id);
 
-      psignal->payload(id_id) = id;
+      psignal->payload(id_id) = atom;
 
       update_all_views(psignal);
 
@@ -561,18 +561,18 @@ namespace user
    }
 
 
-   __pointer(::user::impact) document::get_typed_view(::type info, index indexFind)
+   __pointer(::user::impact) document::get_type_impact(::type info, index indexFind)
    {
 
       single_lock synchronouslock(mutex(), true);
 
-      ::count countView = get_view_count();
+      ::count countImpact = get_view_count();
 
       ::count countFind = 0;
 
       __pointer(::user::impact) pview;
 
-      for (index index = 0; index < countView; index++)
+      for (index index = 0; index < countImpact; index++)
       {
 
          pview = get_view(index);
@@ -602,18 +602,18 @@ namespace user
    }
 
 
-   __pointer(::user::impact) document::get_typed_view_with_id(::type info, id id)
+   __pointer(::user::impact) document::get_typed_view_with_id(::type info, atom atom)
    {
       single_lock synchronouslock(mutex(), true);
-      ::count countView = get_view_count();
+      ::count countImpact = get_view_count();
       ::count countFind = 0;
       __pointer(::user::impact) pview;
-      for (index index = 0; index < countView; index++)
+      for (index index = 0; index < countImpact; index++)
       {
          pview = get_view(index);
          if (info == __type_name(pview))
          {
-            if (id == pview->m_id)
+            if (atom == pview->m_atom)
                return pview;
             else
                countFind++;
@@ -861,13 +861,7 @@ namespace user
       if (!on_open_document(payloadFile))
       {
 
-         m_bNew = false;
-
-         m_bModified = false;
-
-         m_path.Empty();
-
-         m_strTitle.Empty();
+         m_bNew = true;
 
       }
       else
@@ -875,13 +869,13 @@ namespace user
 
          m_bNew = false;
 
-         m_bModified = false;
-
-         m_path = payloadFile;
-
-         m_strTitle = payloadFile.get_file_path().name();
-
       }
+
+      m_bModified = false;
+
+      m_path = payloadFile.get_file_path();
+
+      m_strTitle = m_path.name();
 
       return true;
 
@@ -970,7 +964,7 @@ namespace user
 
       auto preader = pcontext->m_papexcontext->file().get_reader(payloadFile, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
 
-      if (!preader)
+      if (!::is_ok(preader))
       {
 
          report_load_exception(payloadFile, preader, "__IDP_FAILED_TO_OPEN_DOC");
@@ -1021,9 +1015,9 @@ namespace user
 
       auto pcontext = get_context();
 
-      auto pwriter = pcontext->m_papexcontext->file().get_writer(payloadFile, ::file::e_open_defer_create_directory | ::file::e_open_create | ::file::e_open_read | ::file::e_open_write | ::file::e_open_share_exclusive);
+      auto pwriter = pcontext->m_papexcontext->file().get_writer(payloadFile, ::file::e_open_defer_create_directory | ::file::e_open_create | ::file::e_open_read | ::file::e_open_write | ::file::e_open_share_exclusive | ::file::e_open_no_exception_on_open);
 
-      if(!pwriter)
+      if(!::is_ok(pwriter))
       {
 
          ::file::path path = payloadFile.get_file_path();
@@ -1254,7 +1248,7 @@ namespace user
          //   else*/ if (base_class < ::file::exception >::bases(e))
          //   {
          //      ::file::exception * pfe = dynamic_cast <::file::exception *> (e);
-         //      // throw interface_only_exception();
+         //      // throw ::interface_only();
          //      CATEGORY_WARNING(appmsg, "Reporting file I/O exception on Save/Load with lOsError = $%lX.\n",
          //         pfe->m_lOsError);
 
@@ -1302,7 +1296,7 @@ namespace user
          //{
          //   string strTitle = ::file::path(pszPathName).title();
 
-         //   //throw interface_only_exception();
+         //   //throw ::interface_only();
          //   /*
          //   ::aura::FormatString1(prompt, nIDP, strTitle);*/
          //}
@@ -1398,7 +1392,7 @@ namespace user
 
       prompt = _("MessageBoxChangedFileAskToSave");
 
-      prompt.replace("%1", strName);
+      prompt.replace_with(strName, "%1");
 
       if (m_bAutoSaveModified)
       {
@@ -1554,7 +1548,7 @@ namespace user
             try
             {
 
-               pcontext->m_papexcontext->file().del(newName);
+               pcontext->m_papexcontext->file().erase(newName);
 
             }
             catch(const ::exception &)
@@ -1758,7 +1752,7 @@ namespace user
       if (pview->m_pdocument)
       {
 
-         throw_status(::error_invalid_argument);// must not be already attached
+         throw_status(::error_bad_argument);// must not be already attached
 
       }
 
@@ -1788,7 +1782,7 @@ namespace user
       if(pview->get_document() != this)
       {
 
-         throw_status(::error_invalid_argument); // must be attached to us
+         throw_status(::error_bad_argument); // must be attached to us
 
       }
 
@@ -1904,30 +1898,30 @@ namespace user
    }
 
 
-   void document::id_update_all_views(const ::id & id)
+   void document::id_update_all_views(const ::atom & atom)
    {
 
-      update_all_views(nullptr, id);
+      update_all_views(nullptr, atom);
 
    }
 
 
-   void document::update_all_views(::subject * psubject)
+   void document::update_all_views(::topic * ptopic)
    {
 
-      ASSERT(psubject->m_psender == nullptr || !m_viewa.is_empty());
+      ASSERT((!ptopic->get_extended_topic() || ptopic->get_extended_topic()->m_psender == nullptr) || !m_viewa.is_empty());
 
       for (auto & pview : m_viewa.ptra())
       {
 
          ASSERT_VALID(pview);
 
-         if (pview != psubject->m_psender)
+         if (!ptopic->get_extended_topic() || pview != ptopic->get_extended_topic()->m_psender)
          {
 
-            pview->handle(psubject, nullptr);
+            pview->handle(ptopic, nullptr);
 
-            if(psubject->m_bRet)
+            if(ptopic->get_extended_topic() && ptopic->get_extended_topic()->m_bRet)
             {
 
                break;
@@ -1941,22 +1935,22 @@ namespace user
    }
 
 
-   void document::handle(::subject * psubject, ::context * pcontext)
+   void document::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      update_all_views(psubject);
+      update_all_views(ptopic);
 
    }
 
 
-   void document::update_all_views(impact * pimpactSender, const ::id & id)
+   void document::update_all_views(impact * pimpactSender, const ::atom & atom)
    {
 
-      auto psubject = create_subject(id);
+      auto pextendedtopic = create_extended_topic(atom);
 
-      psubject->m_psender = pimpactSender;
+      pextendedtopic->m_psender = pimpactSender;
 
-      update_all_views(psubject);
+      update_all_views(pextendedtopic);
 
    }
 

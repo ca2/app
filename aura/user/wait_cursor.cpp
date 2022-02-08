@@ -13,7 +13,7 @@ wait_cursor::wait_cursor(::object * pobject)
    //if (!estatus)
    //{
 
-   //   __throw(estatus);
+   //   throw ::exception(estatus);
 
    //}
 

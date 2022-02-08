@@ -5,7 +5,7 @@ namespace message
 {
 
 
-   //message::message(const ::id & id) :
+   //message::message(const ::atom & atom) :
    //{
 
    //   //common_construct();
@@ -88,15 +88,15 @@ namespace message
    }
 
 
-   //void message::set(oswindow oswindow, ::windowing::window * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam, const ::point_i32 & point)
-   void message::set(oswindow oswindow, ::windowing::window* playeredUserPrimitive, const ::id& id, wparam wparam, ::lparam lparam)
+   //void message::set(oswindow oswindow, ::windowing::window * playeredUserPrimitive, const ::atom & atom, wparam wparam, ::lparam lparam, const ::point_i32 & point)
+   void message::set(oswindow oswindow, ::windowing::window* playeredUserPrimitive, const ::atom& atom, wparam wparam, ::lparam lparam)
    {
       
       //initialize(playeredUserPrimitive);
 
       m_oswindow = oswindow;
 
-      m_id = id;
+      m_atom = atom;
 
       m_wparam = wparam;
 

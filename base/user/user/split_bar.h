@@ -25,7 +25,7 @@ namespace user
 
 
       split_bar();
-      virtual ~split_bar();
+      ~split_bar() override;
 
 
       void install_message_routing(::channel * pchannel);
@@ -39,6 +39,7 @@ namespace user
       virtual bool pre_create_window(::user::system * pusersystem);
 
 
+      DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
       DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_move);

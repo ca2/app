@@ -21,10 +21,10 @@ namespace turboc
    }
 
 
-   void main_impact::assert_valid() const
+   void main_impact::assert_ok() const
    {
 
-      ::user::split_view::assert_valid();
+      ::user::split_view::assert_ok();
 
    }
 
@@ -39,7 +39,7 @@ namespace turboc
 
    void main_impact::on_update(::aura::impact * pSender,e_update eupdate,object* pupdate)
    {
-      ::user::split_view::handle(psubject, pcontext);
+      ::user::split_view::handle(ptopic, pcontext);
    }
 
 
@@ -108,13 +108,13 @@ namespace turboc
 
 
 
-   void main_impact::handle(::subject * psubject, ::context * pcontext)
+   void main_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if(psubject->m_id == ::e_subject_click)
+      if(ptopic->m_atom == ::id_click)
       {
 
-         if(psubject->user_element_id() == "turboc_toggle")
+         if(ptopic->user_element_id() == "turboc_toggle")
          {
 
             if(m_pimpact->m_bLite && !papplication->m_bLoadAiFont)

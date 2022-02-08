@@ -172,7 +172,7 @@
 //#define ENSURE_SUCCEEDED(hr) ENSURE_THROW(SUCCEEDED(hr), hr)
 //#endif // ENSURE
 //
-///* Used inside COM methods that do not want to __throw( */
+///* Used inside COM methods that do not want to throw ::exception( */
 //#ifndef ENSURE_RETURN_HR
 //#define ENSURE_RETURN_HR(expr, hr)          \
 //do {                                           \
@@ -183,7 +183,7 @@
 //#endif
 //
 //
-///* Used inside COM methods that do not want to __throw( */
+///* Used inside COM methods that do not want to throw ::exception( */
 //#ifndef ENSURE_RETURN
 //#define ENSURE_RETURN(expr) ENSURE_RETURN_HR(expr, E_FAIL)
 //#endif
@@ -334,7 +334,7 @@
 //
 ///*
 //This is called when something really bad happens -- so bad
-//that we consider it dangerous to even __throw( an exception
+//that we consider it dangerous to even throw ::exception( an exception
 //*/
 //#ifndef _FATAL_SHUTDOWN
 //#define _FATAL_SHUTDOWN do { ::TerminateProcess(::GetCurrentProcess(), 0); } while(0);

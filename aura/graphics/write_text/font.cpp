@@ -103,7 +103,7 @@ namespace write_text
 
       __UNREFERENCED_PARAMETER(dumpcontext);
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -1019,7 +1019,7 @@ namespace write_text
 //
 //#else
 //
-//   __throw(todo);
+//   throw ::exception(todo);
 //
 //   /*
 //
@@ -1060,7 +1060,7 @@ namespace write_text
 //
 //#else
 //
-//   __throw(todo);
+//   throw ::exception(todo);
 //
 //#endif
 //
@@ -1092,7 +1092,7 @@ namespace write_text
 //
 //#else
 //
-//   __throw(todo);
+//   throw ::exception(todo);
 //
 //#endif
 //

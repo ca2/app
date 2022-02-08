@@ -34,9 +34,9 @@ namespace filemanager
 
 
 
-   void left_view::assert_valid() const
+   void left_view::assert_ok() const
    {
-      ::user::split_view::assert_valid();
+      ::user::split_view::assert_ok();
    }
 
    void left_view::dump(dump_context & dumpcontext) const
@@ -82,12 +82,12 @@ namespace filemanager
    }
 
 
-   void left_view::handle(::subject * psubject, ::context * pcontext)
+   void left_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::filemanager_impact_base::handle(psubject, pcontext);
+      ::filemanager_impact_base::handle(ptopic, pcontext);
 
-      ::user::split_view::handle(psubject, pcontext);
+      ::user::split_view::handle(ptopic, pcontext);
 
 //      //__update(::update)
 //      {
@@ -95,12 +95,12 @@ namespace filemanager
 //         if (filemanager_document() == pupdate->m_pdocument)
 //         {
 //
-//            //if (psubject->id() == id_initialize)
+//            //if (ptopic->m_atom == id_initialize)
 //            //{
 //
 //            //   string str;
 //
-//            //   str.format("frame(%s)", filemanager_data()->m_id.str().c_str());
+//            //   str.format("frame(%s)", filemanager_data()->m_atom.str().c_str());
 //
 //            //   __pointer(::user::frame_window) pframe = get_parent_frame();
 //

@@ -122,7 +122,7 @@ public:
 		if (_Bits <= _Pos)
 		{
 
-			__throw(error_index_out_of_bounds, "bitset index outside range");
+			throw ::exception(error_index_out_of_bounds, "bitset index outside range");
 
 		}
 
@@ -455,17 +455,17 @@ private:
 
 	void _Xinv() const
    {	// report invalid string matter in bitset conversion
-		__throw(error_invalid_argument, "invalid bitset<N> char");
+		throw ::exception(error_bad_argument, "invalid bitset<N> char");
 	}
 
 	void _Xoflo() const
 	{	// report converted value too big to represent
-		__throw(error_overflow, "bitset<N> overflow");
+		throw ::exception(error_overflow, "bitset<N> overflow");
 	}
 
 	void _Xran() const
 	{	// report bit index out of range
-		__throw(error_range, "invalid bitset<N> position");
+		throw ::exception(error_range, "invalid bitset<N> position");
 	}
 
 };

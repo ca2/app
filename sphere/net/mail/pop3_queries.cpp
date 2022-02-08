@@ -208,7 +208,7 @@ int tr;    /* total received */
 	return(buf);
 }
       
-char* pop3_list(pop3sock_t sock, int id){
+char* pop3_list(pop3sock_t sock, int atom){
 /* performs a "LIST" pop query and returns server's (long) response */
 int r;
 char query[POPBUF]; /* total query "LIST ID\n" string is < 512 */
@@ -217,8 +217,8 @@ char* buf;
 #ifdef EBUG
 	fprintf(stderr,"<pop3_list>\n");
 #endif
-	if(id>0){
-		snprintf(query,POPBUF,"LIST %d\r\n",id);
+	if(atom>0){
+		snprintf(query,POPBUF,"LIST %d\r\n",atom);
 	}else{
 		snprintf(query,POPBUF,"LIST\r\n");
 	}
@@ -244,10 +244,10 @@ char* buf;
       return(nullptr);
    }
    buf[r]='\0';
-	if(id>0){/* +OK id size_i32 */
+	if(atom>0){/* +OK atom size_i32 */
 		return(buf); /* 512 bytes are enough as say RFC 1939 */
 	}
-	/* else : +OK X messages (YYY octets)\n id size_i32\n... */
+	/* else : +OK X messages (YYY octets)\n atom size_i32\n... */
 	if(pop3_error(buf)){
 #ifdef EBUG
 		fprintf(stderr,"%s",buf);
@@ -261,7 +261,7 @@ char* buf;
 }
 
 
-char* pop3_retr(pop3sock_t sock, int id){
+char* pop3_retr(pop3sock_t sock, int atom){
 int r;
 char query[POPBUF];
 char *buf;
@@ -269,7 +269,7 @@ char *buf;
 #ifdef EBUG
    fprintf(stderr, "<pop3_retr>\n");
 #endif
-   snprintf(query, POPBUF, "RETR %d\r\n", id);
+   snprintf(query, POPBUF, "RETR %d\r\n", atom);
    r=pop3_send(sock, query, strlen(query));
    if(r == -1){
       perror("pop3_retr.send");
@@ -308,17 +308,17 @@ char *buf;
    }
 }
 
-char* pop3_dele(pop3sock_t sock, int id){
+char* pop3_dele(pop3sock_t sock, int atom){
 /* performs a "DELE" pop query and returns server's <512 bytes response */
 char query[POPBUF]; /* total "DELE X\n" string < 512 */
 
-	if(id<=0){
+	if(atom<=0){
 #ifdef EBUG
-		fprintf(stderr,"pop3_dele : won't delete %d\n",id);
+		fprintf(stderr,"pop3_dele : won't delete %d\n",atom);
 #endif
 		return(nullptr);
 	}
-	snprintf(query,POPBUF,"DELE %d\r\n",id);
+	snprintf(query,POPBUF,"DELE %d\r\n",atom);
 	return(pop3_query(sock,query));
 }
 
@@ -336,7 +336,7 @@ char query[]="RSET\r\n";
 	return(pop3_query(sock,query));
 }
 
-char* pop3_top(pop3sock_t sock, int id, int lines){
+char* pop3_top(pop3sock_t sock, int atom, int lines){
 /* performs a "TOP" pop query and returns server's (long) response */
 int r;
 char query[POPBUF]; /* total "TOP X Y\n" is < 512 */
@@ -345,7 +345,7 @@ char* buf;
 #ifdef EBUG
 	fprintf(stderr,"<pop3_top>\n");
 #endif
-	snprintf(query,POPBUF,"TOP %d %d\r\n",id,lines);
+	snprintf(query,POPBUF,"TOP %d %d\r\n",atom,lines);
 #ifdef EBUG
 	fprintf(stderr,"send %s",query);
 #endif
@@ -381,7 +381,7 @@ char* buf;
 	return(recv_rest(sock,buf,r,POPBUF));
 }
 
-char* pop3_uidl(pop3sock_t sock, int id){
+char* pop3_uidl(pop3sock_t sock, int atom){
 /* performs a "UIDL" pop query and returns server's (long) response */
 int r;
 char query[POPBUF]; /* total "UIDL X\n" is < 512 */
@@ -390,8 +390,8 @@ char* buf;
 #ifdef EBUG
 	fprintf(stderr,"<pop3_uidl>\n");
 #endif
-	if(id>0){
-		snprintf(query,POPBUF,"UIDL %d\r\n",id);
+	if(atom>0){
+		snprintf(query,POPBUF,"UIDL %d\r\n",atom);
 	}else{
 		snprintf(query,POPBUF,"UIDL\r\n");
 	}
@@ -419,7 +419,7 @@ char* buf;
    }
    buf[r]='\0';
    
-	if(id>0){/* +OK id sig */
+	if(atom>0){/* +OK atom sig */
 #ifdef EBUG
 		if(pop3_error(buf)){
 			fprintf(stderr,"%s",buf);
@@ -428,7 +428,7 @@ char* buf;
 		/* anyway, we return the short buf, error or not */
 		return(buf); /* 512 are enough as say RFC 1939 */
 	}
-	/* else : +OK\n id sig\nid sig\nid sig\n... */
+	/* else : +OK\n atom sig\nid sig\nid sig\n... */
 	if(pop3_error(buf)){
 #ifdef EBUG
 		fprintf(stderr,"%s",buf);

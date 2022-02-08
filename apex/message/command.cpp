@@ -20,13 +20,13 @@ namespace message
    }
 
 
-   command::command(const ::id & id) :
-      material_object(id)
+   command::command(const ::atom & atom) :
+      material_object(atom)
    {
 
       common_construct();
 
-      m_id.set_compounded_type(::id::e_type_command);
+      m_atom.set_compounded_type(::atom::e_type_command);
       m_bRadioChanged = false;
 
    }
@@ -250,7 +250,7 @@ namespace message
    void command::do_probe(channel * ptarget)
    {
 
-      if (m_id.is_empty())
+      if (m_atom.is_empty())
          return;     // ignore invalid IDs
 
       ENSURE_VALID(ptarget);

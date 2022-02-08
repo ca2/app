@@ -27,10 +27,10 @@ namespace user
    }
 
 
-   void progress::assert_valid() const
+   void progress::assert_ok() const
    {
 
-      ::user::interaction::assert_valid();
+      ::user::interaction::assert_ok();
 
    }
 

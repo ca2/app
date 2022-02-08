@@ -24,10 +24,10 @@ namespace helloworld
 
 
 
-   void document::assert_valid() const
+   void document::assert_ok() const
    {
 
-      ::user::document::assert_valid();
+      ::user::document::assert_ok();
 
    }
 
@@ -51,7 +51,7 @@ namespace helloworld
    bool document::on_open_document(const ::payload & payloadFile)
    {
 
-      impact * pview = get_typed_view < impact >();
+      impact * pview = get_type_impact < impact >();
 
       if(pview == nullptr)
       {
@@ -72,31 +72,31 @@ namespace helloworld
 /*      if(pview->m_prender->m_pimageImage->load_image(payloadFile))
       {
 
-         get_typed_view < impact >()->m_strImage = payloadFile["url"];
+         get_type_impact < impact >()->m_strImage = payloadFile["url"];
 
          {
 
-            synchronous_lock slText(get_typed_view < impact >() != nullptr  ? &get_typed_view < impact >()->m_mutexText : nullptr);
+            synchronous_lock slText(get_type_impact < impact >() != nullptr  ? &get_type_impact < impact >()->m_mutexText : nullptr);
 
-            get_typed_view < impact >()->m_strHelloWorld = "image:" + get_typed_view < impact >()->m_strImage + "," + get_typed_view < impact >()->m_strHelloWorld;
+            get_type_impact < impact >()->m_strHelloWorld = "image:" + get_type_impact < impact >()->m_strImage + "," + get_type_impact < impact >()->m_strHelloWorld;
 
-            get_typed_view < impact >()->set_need_layout(true);
+            get_type_impact < impact >()->set_need_layout(true);
 
          }
 
       }
-      else if(get_typed_view < ::user::plain_edit_view >() != nullptr
+      else if(get_type_impact < ::user::plain_edit_view >() != nullptr
               && pcontext->m_papexcontext->file().exists(payloadFile)
               && (str = pcontext->m_papexcontext->file().as_string(payloadFile)).has_char())
       {
 
-         get_typed_view < ::user::plain_edit_view >()->_001SetText(str.Left(84),::e_source_user);
+         get_type_impact < ::user::plain_edit_view >()->_001SetText(str.Left(84),::e_source_user);
 
       }
-      else if(get_typed_view < ::userex::pane_tab_view >() != nullptr)
+      else if(get_type_impact < ::userex::pane_tab_view >() != nullptr)
       {
 
-         get_typed_view < ::userex::pane_tab_view >()->set_current_tab_by_id(::helloworld::PaneViewHelloWorld);
+         get_type_impact < ::userex::pane_tab_view >()->set_current_tab_by_id(::helloworld::PaneViewHelloWorld);
 
       }
 

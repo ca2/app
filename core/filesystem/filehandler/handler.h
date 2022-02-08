@@ -12,7 +12,7 @@ namespace filehandler
 
 
 
-      enum e_topic_type
+      enum id_type
       {
          topic_type_root,
          topic_type_extension,
@@ -23,7 +23,7 @@ namespace filehandler
       __composite(tree_interface)      m_ptree;
 
 
-      e_topic_type                     m_etopictype;
+      id_type                     m_etopictype;
       string                           m_strTopic;
       string_array                     m_straHandlerLibrary;
       string_array                     m_straMenuLibrary;

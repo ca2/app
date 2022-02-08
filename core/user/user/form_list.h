@@ -82,12 +82,12 @@ namespace user
       virtual void _001UpdateEdit(::user::interaction * pinteraction) override;
       virtual bool _001SaveEdit(::user::interaction * pinteraction) override;
 
-      virtual bool _001OnMouseActivate(::user::interaction_impl * pDesktopWnd,::u32 nHitTest,const ::id & id,lresult & iResult) override;
+      virtual bool _001OnMouseActivate(::user::interaction_impl * pDesktopWnd,::u32 nHitTest,const ::atom & atom,lresult & iResult) override;
 
 
       void install_message_routing(::channel * pchannel) override;
 
-      void handle(::subject * psubject, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::context * pcontext) override;
 
       virtual void _001OnColumnChange() override;
 

@@ -619,18 +619,18 @@ namespace write_text
    }
 
 
-//   void font_list::on_subject(::subject * psubject)
+//   void font_list::on_subject(::topic * ptopic)
 //   {
 //
-//      ::manager::on_subject(psubject);
+//      ::manager::on_subject(ptopic);
 //
 //   }
 
 
-   void font_list::handle(::subject * psubject, ::context * pcontext)
+   void font_list::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::enum_id eid = (::enum_id)psubject->id().i64();
+      ::enum_id eid = (::enum_id)ptopic->m_atom.i64();
 
       if (eid == id_font_enumeration)
       {
@@ -641,7 +641,7 @@ namespace write_text
 
          auto pwritetext = pdraw2d->write_text();
 
-         pwritetext->handle_font_enumeration(psubject);
+         pwritetext->handle_font_enumeration(ptopic);
 
       }
       else if (eid == id_font_extents)

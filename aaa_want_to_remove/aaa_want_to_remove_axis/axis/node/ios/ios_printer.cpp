@@ -75,7 +75,7 @@ namespace ios2
   //    m_pdevmode = (DEVMODE *) malloc(iSize);
     //  if(!DocumentProperties(nullptr, pprinter->m_hPrinter, (char *) (const ::string &) pprinter->m_strName, m_pdevmode, nullptr, DM_OUT_BUFFER))
       //{
-        // __throw(::exception("failed to get printer DocumentProperties"));
+        // throw ::exception(::exception("failed to get printer DocumentProperties"));
          return false;
       //}
       //return true;
@@ -85,7 +85,7 @@ namespace ios2
    {
       if(m_hdc != nullptr)
       {
-         __throw(todo);
+         throw ::exception(todo);
 //         ::DeleteDC(m_hdc);
          m_hdc = nullptr;
       }

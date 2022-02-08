@@ -115,7 +115,7 @@ CLASS_DECL_CORE bool __node_core_pos_term();
 
 #if defined(LINUX)
 
-#include "aura/node/operating_system/ansi/_.h"
+#include "aura/operating_system/ansi/_.h"
 
 #elif defined(_UWP)
 //
@@ -160,7 +160,7 @@ CLASS_DECL_CORE bool __node_core_pos_term();
 
 #include "core/networking/_.h"
 
-#include "core/os/text.h"
+#include "core/operating_system/text.h"
 
 #ifdef ANDROID
 
@@ -239,7 +239,7 @@ namespace ftp
 //#include "core/gpu/gpu/_.h"
 
 
-#include "core/os/chronometer.h"
+#include "core/operating_system/chronometer.h"
 
 
 
@@ -247,10 +247,10 @@ namespace ftp
 
 
 // C++ Includes
-#include "core/os/_.h"
+#include "core/operating_system/_.h"
 
 // C++ Includes
-#include "core/node/_.h"
+#include "core/operating_system/_.h"
 
 
 #include "core/user/_.h"
@@ -262,7 +262,7 @@ namespace ftp
 #include "core/networking/_impl.h"
 
 
-#include "core/os/_impl.h"
+#include "core/operating_system/_impl.h"
 
 
 #include "core/platform/_impl.h"

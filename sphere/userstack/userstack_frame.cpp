@@ -81,9 +81,9 @@ namespace userstack
 
 
 
-   void frame::assert_valid() const
+   void frame::assert_ok() const
    {
-      simple_frame_window::assert_valid();
+      simple_frame_window::assert_ok();
    }
 
    void frame::dump(dump_context & dumpcontext) const
@@ -232,12 +232,12 @@ namespace userstack
    void frame::message_queue_message_handler(::message::message * pmessage)
    {
       __pointer(::user::message) pusermessage(pmessage);
-      if(pusermessage->m_id == (WM_APP + 2000))
+      if(pusermessage->m_atom == (WM_APP + 2000))
       {
          _001OnApp2000(pusermessage);
          pusermessage->m_bRet = true;
       }
-      else if(pusermessage->m_id == WM_COPYDATA)
+      else if(pusermessage->m_atom == WM_COPYDATA)
       {
 #ifdef WINDOWS_DESKTOP
          i32 iEdge = 0;
@@ -250,7 +250,7 @@ namespace userstack
             psession->open_by_file_extension(strPath);
          }
 #else
-         __throw(todo);
+         throw ::exception(todo);
 #endif
       }
 
@@ -290,7 +290,7 @@ namespace userstack
                hide();
             }
 #else
-            __throw(todo);
+            throw ::exception(todo);
 #endif
          }
       }
@@ -327,7 +327,7 @@ namespace userstack
 #ifdef WINDOWS_DESKTOP
          pusermessage->m_lresult = (LRESULT) top_level_frame()->get_safe_handle();
 #else
-         __throw(todo);
+         throw ::exception(todo);
 #endif
       }
       pusermessage->m_bRet = true;
@@ -421,7 +421,7 @@ namespace userstack
 
 #else
 
-      __throw(todo);
+      throw ::exception(todo);
 
 #endif
 

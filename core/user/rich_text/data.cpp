@@ -825,7 +825,7 @@ namespace user
 
          update_span_cache(m_spana);
 
-         m_pedit->on_after_change(::e_subject_after_change_text);
+         m_pedit->on_after_change(::id_after_change_text);
 
       }
 
@@ -967,7 +967,7 @@ namespace user
 
          }
 
-         m_pedit->on_after_change(::e_subject_after_change_text_format);
+         m_pedit->on_after_change(::id_after_change_text_format);
 
       }
 
@@ -1233,9 +1233,9 @@ namespace user
 
             __pointer(span) pspan = m_spana[iSpan];
 
-            pspan->m_str.replace("\n", "");
+            pspan->m_str.find_replace("\n", "");
 
-            pspan->m_str.replace("\r", "");
+            pspan->m_str.find_replace("\r", "");
 
             auto pformat = pspan->format();
 

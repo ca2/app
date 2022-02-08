@@ -4,14 +4,14 @@
 #include "interaction_prodevian.h"
 #include "interaction_thread.h"
 #include "acme/parallelization/message_queue.h"
-#include "acme/node/operating_system/_user.h"
+#include "acme/operating_system/_user.h"
 #include "aura/graphics/draw2d/graphics.h"
 
 
 #ifdef PARALLELIZATION_PTHREAD
 
 
-#include "acme/node/operating_system/ansi/_pthread.h"
+#include "acme/operating_system/ansi/_pthread.h"
 
 
 #endif
@@ -20,7 +20,7 @@
 #ifdef LINUX
 
 
-#include "aura/node/operating_system/ansi/_ansi.h"
+#include "aura/operating_system/ansi/_ansi.h"
 
 
 #endif
@@ -246,35 +246,7 @@ namespace user
 
             pump_runnable();
 
-            if (!m_puserinteraction)
-            {
-
-               break;
-
-            }
-
-            if (!m_pimpl)
-            {
-
-               break;
-
-            }
-
             if (!prodevian_iteration())
-            {
-
-               break;
-
-            }
-
-            if (!m_puserinteraction)
-            {
-
-               break;
-
-            }
-
-            if (!m_pimpl)
             {
 
                break;
@@ -297,17 +269,10 @@ namespace user
       if (m_puserinteraction)
       {
 
-         if (!(m_puserinteraction->m_ewindowflag & e_window_flag_is_window))
+         if (m_puserinteraction->is_destroying())
          {
 
-            if (!m_pimpl->is_destroying())
-            {
-
-               m_pimpl->set_destroying();
-
-               m_puserinteraction->post_message(e_message_destroy_window);
-
-            }
+           m_puserinteraction->post_message(e_message_destroy_window);
 
          }
 
@@ -430,47 +395,35 @@ namespace user
 
          }
 
-         if (m_puserinteraction->m_ewindowflag & e_window_flag_embedded_prodevian)
-         {
+         ASSERT(!(m_puserinteraction->m_ewindowflag & e_window_flag_embedded_prodevian));
+         ASSERT(m_puserinteraction->m_pinteractionimpl.is_set());
 
-            bHasProdevian = false;
+         bHasProdevian = m_puserinteraction->has_prodevian();
 
-         }
-         else if (m_puserinteraction->m_pimpl2.is_null())
-         {
+         //synchronous_lock synchronouslock(m_pimpl->mutex());
 
-            bHasProdevian = false;
+         // if (bHasProdevian)
+         // {
 
-         }
-         else
-         {
+         //    output_debug_string("has_prodevian");
 
-            bHasProdevian = m_puserinteraction->has_prodevian();
-
-            //synchronous_lock synchronouslock(m_pimpl->mutex());
-
-            // if (bHasProdevian)
-            // {
-
-            //    output_debug_string("has_prodevian");
-
-            // }
-
-         }
+         // }
+//
+//         }
 
       }
 
       if (!(m_puserinteraction->m_ewindowflag & e_window_flag_embedded_prodevian))
       {
 
-         if (m_puserinteraction->m_pimpl2.is_null() || !bHasProdevian)
+         if (m_puserinteraction->m_pinteractionimpl.is_null() || !bHasProdevian)
          {
 
             m_puserinteraction->m_ewindowflag -= e_window_flag_redraw_in_queue;
 
             get_message(&m_message, NULL, 0, 0);
 
-            if(m_message.m_id == e_message_quit)
+            if(m_message.m_atom == e_message_quit)
             {
 
                CATEGORY_INFORMATION(prodevian, "Prodevian has quit!! " << strType);
@@ -493,7 +446,7 @@ namespace user
             while (peek_message(&m_message, NULL, 0, 0, PM_NOREMOVE))
             {
 
-               if (m_message.m_id == e_message_redraw || m_message.m_id == WM_KICKIDLE)
+               if (m_message.m_atom == e_message_redraw || m_message.m_atom == WM_KICKIDLE)
                {
 
                   iSkipped++;
@@ -516,13 +469,13 @@ namespace user
 
    #endif
 
-            if (m_message.m_id == e_message_null)
+            if (m_message.m_atom == e_message_null)
             {
 
                return true;
 
             }
-            else if (m_message.m_id != e_message_redraw)
+            else if (m_message.m_atom != e_message_redraw)
             {
 
                return true;
@@ -544,13 +497,13 @@ namespace user
             while (peek_message(&m_message, NULL, 0, 0, PM_REMOVE))
             {
 
-               if (m_message.m_id == e_message_null)
+               if (m_message.m_atom == e_message_null)
                {
 
                   return true;
 
                }
-               else if (m_message.m_id != e_message_redraw)
+               else if (m_message.m_atom != e_message_redraw)
                {
 
                   return true;
@@ -683,7 +636,7 @@ namespace user
 
          //i64 i2 = get_nanos();
 
-         // calculates the next/new frame id
+         // calculates the next/new frame atom
          //m_iFrameId = (m_durationNow + durationFrame - 1) / (durationFrame);
 
          //m_durationNextFrame = m_iFrameId * durationFrame;
@@ -1435,7 +1388,7 @@ namespace user
 
       //auto estatus = 
       
-      m_pimpl2->m_pprodevian->post_routine(routine);
+      m_pinteractionimpl->m_pprodevian->post_routine(routine);
 
       //if (!estatus)
       //{

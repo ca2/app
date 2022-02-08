@@ -29,7 +29,7 @@ namespace apex
       FILE *                              m_pfile;
       bool                                m_bInitialized;
       string                              m_strLogPath;
-      id                                  m_id;
+      atom                                  m_atom;
       i32                                 m_iYear;
       i32                                 m_iMonth;
       i32                                 m_iDay;
@@ -45,9 +45,9 @@ namespace apex
       //void print(const char * psz, ...) override;
 
 
-      void initialize_log(enum_trace_level etracelevelMin, const ::id & id) override;
+      void initialize_log(enum_trace_level etracelevelMin, const ::atom & atom) override;
 
-      //virtual bool initialize(id id);
+      //virtual bool initialize(atom atom);
       void destroy() override;
 
       void process_init() override;

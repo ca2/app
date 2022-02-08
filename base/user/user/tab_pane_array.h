@@ -16,7 +16,7 @@ namespace user
       virtual ~tab_pane_composite_array();
 
 
-      virtual tab_pane * get_by_id(id id);
+      virtual tab_pane * get_by_id(atom atom);
       ::count get_visible_count();
 
    };

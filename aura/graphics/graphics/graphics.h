@@ -21,7 +21,7 @@ namespace graphics
       {
 
          ::uptr                                    m_uptrBuffer;
-         ::PLATFORM_NAMESPACE::buffer *            m_pPlatformBuffer;
+         ::OPERATING_SYSTEM_NAMESPACE::buffer *            m_pPlatformBuffer;
          ::windowing_universal_windows::buffer *   m_pWindowingUniversalWindowsBuffer;
          ::windowing_win32::buffer *               m_pWindowingWin32Buffer;
 

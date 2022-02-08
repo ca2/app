@@ -3,39 +3,40 @@ project(draw2d_cairo CXX)
 
 
 list(APPEND library_source
-        _.cpp
-        _.h
-        _impl.h
-        bitmap.cpp
-        bitmap.h
-        brush.cpp
-        brush.h
-        cairo.cpp
-        draw2d.cpp
-        draw2d.h
-        _factory.cpp
+   _.cpp
+   _cairo.cpp
+   _.h
+   _impl.h
+   bitmap.cpp
+   bitmap.h
+   brush.cpp
+   brush.h
+   cairo.cpp
+   draw2d.cpp
+   draw2d.h
+   _factory.cpp
 
-        font.cpp
-        font.h
-        framework.cpp
-        framework.h
-        graphics.cpp
-        graphics.h
-        image.cpp
-        image.h
-        keep.cpp
-        keep.h
-        object.cpp
-        object.h
-        palette.cpp
-        palette.h
-        path.cpp
-        path.h
-        pen.cpp
-        pen.h
-        preview_dc.cpp
-        region.cpp
-        region.h)
+   font.cpp
+   font.h
+   framework.cpp
+   framework.h
+   graphics.cpp
+   graphics.h
+   image.cpp
+   image.h
+   keep.cpp
+   keep.h
+   object.cpp
+   object.h
+   palette.cpp
+   palette.h
+   path.cpp
+   path.h
+   pen.cpp
+   pen.h
+   preview_dc.cpp
+   region.cpp
+   region.h)
 
 
 add_library(draw2d_cairo SHARED ${library_source})

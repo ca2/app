@@ -69,7 +69,7 @@ namespace hotplugin
       virtual bool         reload_plugin();
 
       virtual void delete_this() override;
-      virtual void handle(::subject * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * ptopic, ::context * pcontext) override;
       // Host location is not the updated url - if there is a way to update the url and
       // maintain the same plugin instance, what would lead to an out-of-date location url.
       // It is the location url of the page that hosts the plugin when the plugin was created.
@@ -78,11 +78,11 @@ namespace hotplugin
       //virtual void set_finish() override;
 
 
-      //virtual property fetch_property(const ::id & id) override;
+      //virtual property fetch_property(const ::atom & atom) override;
 
 
       virtual void         redraw();
-      virtual void         post_message(const ::id & id, wparam wparam, lparam lparam);
+      virtual void         post_message(const ::atom & atom, wparam wparam, lparam lparam);
 
       virtual oswindow         get_host_window();
 
@@ -140,7 +140,7 @@ namespace hotplugin
       virtual i32 x11_message_handler(void * pevent);
 #endif
       virtual void message_handler(::user::message * pusermessage) override;
-      virtual void plugin_message_handler(const ::id & id, wparam wparam, lparam lparam, bool bEnsureTx);
+      virtual void plugin_message_handler(const ::atom & atom, wparam wparam, lparam lparam, bool bEnsureTx);
 
       virtual void plugin_message_handler(MESSAGE * pmsg,bool bEnsureTx);
 
@@ -188,7 +188,7 @@ namespace hotplugin
 
       virtual void destroy() override;
       //void install_message_routing(::channel * pchannel) override;
-      //virtual void handle(::subject * psubject, ::context * pcontext) override;
+      //virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
 
    };

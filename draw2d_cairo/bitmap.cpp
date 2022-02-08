@@ -35,7 +35,7 @@ namespace draw2d_cairo
       if(nPlanes != 1 || nBitcount != 32)
       {
 
-         throw interface_only_exception();
+         throw ::interface_only();
 
       }
 
@@ -110,11 +110,13 @@ namespace draw2d_cairo
 //#endif
 //
 //
-   bool bitmap::create_bitmap(::draw2d::graphics * pgraphics, const ::size_i32 & size, void ** ppdata, int * pstride)
+
+
+   void bitmap::create_bitmap(::draw2d::graphics * pgraphics, const ::size_i32 & size, void ** ppdata, int * pstride)
    {
 
-      try
-      {
+      //try
+      //{
 
          synchronous_lock ml(cairo_mutex());
 
@@ -200,7 +202,7 @@ namespace draw2d_cairo
 
                   m_psurface = nullptr;
 
-                  return false;
+                  throw_status(error_failed);
 
                }
 
@@ -208,7 +210,7 @@ namespace draw2d_cairo
             else
             {
 
-               return false;
+               throw_status(error_failed);
 
             }
 
@@ -232,25 +234,25 @@ namespace draw2d_cairo
 
          m_size = size;
 
-         return true;
+         //return true;
 
-      }
-      catch(...)
-      {
+      //}
+      //catch(...)
+      //{
 
-      }
+      //}
 
-      destroy();
+      //destroy();
 
-      return false;
+      //return false;
 
    }
 
 
-   bool bitmap::CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy, ::u32 flInit, const void *pjBits, ::u32 iUsage)
+   void bitmap::CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy, ::u32 flInit, const void *pjBits, ::u32 iUsage)
    {
 
-      return false;
+      //return false;
 
    }
 
@@ -282,7 +284,7 @@ namespace draw2d_cairo
    size_i32 bitmap::SetBitmapDimension(i32 nWidth, i32 nHeight)
    {
 
-      throw interface_only_exception();
+      throw ::interface_only();
 
       return ::size_i32(0, 0);
 
@@ -320,25 +322,27 @@ namespace draw2d_cairo
    }
 
 
-   bool bitmap::CreateCompatibleBitmap(::draw2d::graphics * pgraphics, i32 cx, i32 cy)
+   void bitmap::CreateCompatibleBitmap(::draw2d::graphics * pgraphics, i32 cx, i32 cy)
    {
 
       if(!CreateBitmap(pgraphics, cx, cy, 1, 32, nullptr, cx * sizeof(color32_t)))
       {
 
-         return false;
+         throw_status(error_failed);
 
       }
 
-      return true;
+      //return true;
 
    }
 
 
-   bool bitmap::CreateDiscardableBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight)
+   void bitmap::CreateDiscardableBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight)
    {
 
-      return CreateCompatibleBitmap(pgraphics, nWidth, nHeight);
+      //return CreateCompatibleBitmap(pgraphics, nWidth, nHeight);
+
+      CreateCompatibleBitmap(pgraphics, nWidth, nHeight);
 
    }
 
@@ -389,7 +393,7 @@ namespace draw2d_cairo
    }
 
 
-   bool bitmap::attach(void * psurface)
+   void bitmap::attach(void * psurface)
    {
 
       synchronous_lock ml(cairo_mutex());
@@ -402,7 +406,7 @@ namespace draw2d_cairo
 
       m_osdata[0] = m_psurface;
 
-      return true;
+      //return true;
 
    }
 
@@ -415,7 +419,9 @@ namespace draw2d_cairo
       if (m_psurface == nullptr)
       {
 
-         return ::success_none;
+         //return ::success_none;
+
+         return;
 
       }
 
@@ -423,7 +429,7 @@ namespace draw2d_cairo
 
       m_psurface = nullptr;
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -435,7 +441,7 @@ namespace draw2d_cairo
 
       ::draw2d::bitmap::destroy();
 
-      return ::success;
+      //return ::success;
 
    }
 

@@ -54,12 +54,12 @@ public:
 
   /** Static method, used to cast RegionDefine class into
       StyledRegion class.
-      @__throw( exception If casing is not available.
+      @throw ::exception( exception If casing is not available.
   */
   static const StyledRegion *cast(const RegionDefine *rd){
     if (rd == nullptr) return nullptr;
     const StyledRegion *sr = (const StyledRegion *)(rd);
-    if (sr == nullptr) __throw(exception(string("Bad type cast exception into StyledRegion")));
+    if (sr == nullptr) throw ::exception(exception(string("Bad type cast exception into StyledRegion")));
     return sr;
   }
   /** Completes region define with it's parent values.
@@ -99,7 +99,7 @@ public:
 /* ***** BEGIN LICENSE BLOCK *****
  * Version: MPL 1.1/GPL 2.0/LGPL 2.1
  *
- * The contents of this file are subject to the Mozilla Public License Version
+ * The contents of this file are topic to the Mozilla Public License Version
  * 1.1 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
  * http://www.mozilla.org/MPL/

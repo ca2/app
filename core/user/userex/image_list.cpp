@@ -213,9 +213,9 @@ namespace userex
    }
 
 
-   void image_list_view::assert_valid() const
+   void image_list_view::assert_ok() const
    {
-      ::user::image_list_view::assert_valid();
+      ::user::image_list_view::assert_ok();
    }
 
    void image_list_view::dump(dump_context & dumpcontext) const
@@ -327,13 +327,13 @@ namespace userex
 
       }
 
-      ::id id = get_document()->m_pimpactsystem->m_id;
+      ::atom atom = get_document()->m_pimpactsystem->m_atom;
 
       string strText;
 
       auto papplication = get_application();
 
-      papplication->data_get(m_id + ".cur_text", strText);
+      papplication->data_get(m_atom + ".cur_text", strText);
 
    }
 
@@ -344,17 +344,17 @@ namespace userex
    }
 
 
-   void image_list_view::handle(::subject * psubject, ::context * pcontext)
+   void image_list_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::user::image_list_view::handle(psubject, pcontext);
+      ::user::image_list_view::handle(ptopic, pcontext);
 
-      if (psubject->id() == id_after_change_text)
+      if (ptopic->m_atom == id_after_change_text)
       {
 
          auto * peditview = _001TypedWindow < ::userex::top_edit_view >();
 
-         if (peditview != nullptr && psubject->m_puserelement == peditview)
+         if (peditview != nullptr && ptopic->get_extended_topic()->m_puserelement == peditview)
          {
 
             string strText;

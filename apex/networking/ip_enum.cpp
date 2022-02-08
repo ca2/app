@@ -23,7 +23,7 @@ namespace net
 
       __UNREFERENCED_PARAMETER(ipa);
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return 0;
 

@@ -49,10 +49,10 @@ void simple_scroll_bar::install_message_routing(::channel * pchannel)
 }
 
 
-//bool simple_scroll_bar::create_interaction(const ::string & pszClassName, const ::string & pszWindowName, u32 uStyle, ::user::interaction * puiParent, const ::id & id, ::create * pcreate)
+//bool simple_scroll_bar::create_interaction(const ::string & pszClassName, const ::string & pszWindowName, u32 uStyle, ::user::interaction * puiParent, const ::atom & atom, ::create * pcreate)
 //{
 //
-//   if(!::user::interaction::create_interaction(pszClassName, pszWindowName, uStyle, puiParent, id, pcreate))
+//   if(!::user::interaction::create_interaction(pszClassName, pszWindowName, uStyle, puiParent, atom, pcreate))
 //   {
 //
 //      return false;
@@ -64,10 +64,10 @@ void simple_scroll_bar::install_message_routing(::channel * pchannel)
 //}
 
 
-//bool simple_scroll_bar::create_interaction(enum_orientation eorientation, u32 uStyle, ::user::interaction * puiParent, ::id id)
+//bool simple_scroll_bar::create_interaction(enum_orientation eorientation, u32 uStyle, ::user::interaction * puiParent, ::atom atom)
 //{
 //
-//   if(!::user::scroll_bar::create_interaction(eorientation, uStyle, puiParent, id))
+//   if(!::user::scroll_bar::create_interaction(eorientation, uStyle, puiParent, atom))
 //   {
 //
 //      return false;

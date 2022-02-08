@@ -17,7 +17,7 @@ namespace file
          {
             _overflow = true;
             if (!_overflowIsAllowed)
-               __throw(system_exception(E_FAIL));
+               throw ::exception(system_exception(E_FAIL));
             if (processedSize != nullptr)
                *processedSize = size;
             return;

@@ -82,7 +82,7 @@ namespace datetime
       {
          ASSERT(pFormat != nullptr);
          if (pFormat == nullptr)
-            __throw(error_invalid_argument);
+            throw ::exception(error_bad_argument);
 
          string strBuffer;
          // string hmsFormats [_CTIMESPANFORMATS] = {"%ca","%02ld","%d"};

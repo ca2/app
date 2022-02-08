@@ -141,7 +141,7 @@ namespace simpledb
 //
 //                     i32 iResult = sqlite3_prepare_v2(
 //                        (sqlite3 *)pdatabase->get_handle(),
-//                        "REPLACE INTO blobtable (id, value) values (:id, :value);",
+//                        "REPLACE INTO blobtable (atom, value) values (:atom, :value);",
 //                        -1,
 //                        &pstorage->m_pstmtReplace, nullptr);
 //
@@ -158,7 +158,7 @@ namespace simpledb
 //
 //                     }
 //
-//                     pstorage->m_iReplaceId = sqlite3_bind_parameter_index(pstorage->m_pstmtReplace, ":id");
+//                     pstorage->m_iReplaceId = sqlite3_bind_parameter_index(pstorage->m_pstmtReplace, ":atom");
 //
 //                     pstorage->m_iReplaceValue = sqlite3_bind_parameter_index(pstorage->m_pstmtReplace, ":value");
 //

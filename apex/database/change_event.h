@@ -17,7 +17,7 @@ namespace database
       server *                m_pserver;
       client *                m_pclient;
       key                     m_datakey;
-      ::subject *    m_pupdate;
+      ::topic *    m_pupdate;
       bool                    m_bOk;
       ::payload *               m_ppayload;
 

@@ -31,7 +31,7 @@
 //
 //   bool                 m_bNeedUpdate;
 //   ::text_translator *  m_ptexttranslator;
-//   ::id                 m_id;
+//   ::atom                 m_atom;
 //   string               m_str;
 //
 //

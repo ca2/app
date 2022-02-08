@@ -62,7 +62,7 @@ namespace dynamic_source
 
 #ifdef WINDOWS
 
-      strName.replace("/", "\\");
+      strName.replace_with("\\", "/");
 
 #endif
 
@@ -90,7 +90,9 @@ namespace dynamic_source
       string strName(lpcszName);
 
 #ifdef WINDOWS
-      strName.replace("/", "\\");
+
+      strName.find_replace("/", "\\");
+
 #endif
 
       single_lock synchronouslock(mutex(), true);
@@ -143,7 +145,7 @@ namespace dynamic_source
 
       }
       
-      strName.replace("\\", "/");
+      strName.find_replace("\\", "/");
 
       m_pmanager->include_has_script(strName);
 

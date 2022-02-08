@@ -151,7 +151,7 @@ namespace sockets
 
          WARNING("base_socket::close", 0, "file descriptor invalid");
 
-         __throw(error_io);
+         throw ::exception(error_io);
 
       }
 

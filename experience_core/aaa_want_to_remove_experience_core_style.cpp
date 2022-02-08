@@ -85,7 +85,7 @@ namespace experience_lite
             if(true)
             {
 
-               if(ptab->get_data()->m_idaSel.contains(pane.m_id))
+               if(ptab->get_data()->m_idaSel.contains(pane.m_atom))
                {
 
                   //ppath->start_figure();
@@ -185,7 +185,7 @@ namespace experience_lite
 
                ::draw2d::path_pointer path(this_create);
 
-               if(ptab->get_data()->m_idaSel.contains(pane.m_id))
+               if(ptab->get_data()->m_idaSel.contains(pane.m_atom))
                {
 
                   ppath->add_line(rectangleBorder.left,rectangleClient.bottom,rectangleBorder.left,rectangleBorder.top);

@@ -30,10 +30,10 @@ namespace user
 
 
 
-   //bool static_control::create_interaction(::user::interaction * puiParent,id id)
+   //bool static_control::create_interaction(::user::interaction * puiParent,atom atom)
    //{
 
-   //   return ::user::interaction::create_interaction(puiParent, id);
+   //   return ::user::interaction::create_interaction(puiParent, atom);
 
    //}
 
@@ -112,12 +112,12 @@ namespace user
 
          m_bLButtonDown = false;
 
-         ::subject subject;
-         subject.m_puserelement = this;
-         subject.m_id = ::e_subject_click;
-         subject.m_actioncontext = ::e_source_user;
+         ::extended_topic extendedtopic(id_click);
 
-         route(&subject);
+         extendedtopic.m_puserelement = this;
+         extendedtopic.m_actioncontext = ::e_source_user;
+
+         route(&extendedtopic);
 
       }
 
@@ -199,7 +199,7 @@ namespace user
 //
 //#ifdef WINDOWS_DESKTOP
 //
-//      if (pusermessage->m_id != WM_DRAWITEM)
+//      if (pusermessage->m_atom != WM_DRAWITEM)
 //         return ::user::interaction::OnChildNotify(pusermessage);
 //
 //#ifdef WINDOWS_DESKTOP

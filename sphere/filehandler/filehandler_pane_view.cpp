@@ -56,9 +56,9 @@ namespace filehandler
 
 
 
-   void pane_view::assert_valid() const
+   void pane_view::assert_ok() const
    {
-      ::user::impact::assert_valid();
+      ::user::impact::assert_ok();
    }
 
    void pane_view::dump(dump_context & dumpcontext) const
@@ -87,10 +87,10 @@ namespace filehandler
    }
 
 
-   void pane_view::handle(::subject * psubject, ::context * pcontext)
+   void pane_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      __UNREFERENCED_PARAMETER(psubject);
+      __UNREFERENCED_PARAMETER(ptopic);
 
    }
 
@@ -108,7 +108,7 @@ namespace filehandler
 
       //         __pointer(application) papp =  (( (get_parent_frame()))->get_application());
 
-      string strFile = pimpactdata->m_id;
+      string strFile = pimpactdata->m_atom;
 
       if(::str::begins_eat_ci(strFile, "default_file_handler://"))
       {
@@ -124,7 +124,7 @@ namespace filehandler
 
       }
 
-      switch(pimpactdata->m_id)
+      switch(pimpactdata->m_atom)
       {
       case impact_new:
       {
@@ -175,7 +175,7 @@ namespace filehandler
    void pane_view::_001OnMenuMessage(::message::message * pmessage)
    {
       __UNREFERENCED_PARAMETER(pmessage);
-      set_current_tab_by_id(m_pimpactdataOld->m_id);
+      set_current_tab_by_id(m_pimpactdataOld->m_atom);
    }
 
    void pane_view::install_message_routing(::channel * pchannel)

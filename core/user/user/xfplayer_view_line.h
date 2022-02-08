@@ -32,7 +32,7 @@ public:
    bool                             m_bColonPrefix;
 
 
-   XfplayerViewLineSelection        m_selection;
+   XfplayerImpactLineSelection        m_selection;
    byte *                           m_lpBitmapData;
    ::draw2d::graphics_extension     m_dcextension;
 
@@ -81,7 +81,7 @@ public:
    index_array                      m_iaLinkEnd;
 
 
-   double                           m_dXfplayerViewLineBlend;
+   double                           m_dXfplayerImpactLineBlend;
    i32                              m_nFont;
    ::rectangle_i32                           m_rectangleInvalidate;
    i32                              m_iAnimateType;
@@ -212,8 +212,8 @@ public:
    virtual void _001OnTimer(::timer * ptimer);
    DECLARE_MESSAGE_HANDLER(OnSetCursor);
 
-   XfplayerViewLineSelection::enum_state GetSelectionState();
-   XfplayerViewLineSelection & GetSelection();
+   XfplayerImpactLineSelection::enum_state GetSelectionState();
+   XfplayerImpactLineSelection & GetSelection();
    ::user::interaction * get_interaction();
 
 

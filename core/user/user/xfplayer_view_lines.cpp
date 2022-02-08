@@ -81,11 +81,11 @@ void xfplayer_view_linea::Prepare()
    }
 }
 
-void xfplayer_view_linea::Prepare(xfplayer_view_line *pViewLine)
+void xfplayer_view_linea::Prepare(xfplayer_view_line *pImpactLine)
 
 {
    synchronous_lock synchronouslock(mutex());
-   pViewLine->m_pContainer = this;
+   pImpactLine->m_pContainer = this;
 
 }
 
@@ -214,7 +214,7 @@ void xfplayer_view_linea::set_blend(double dBlend)
 }
 
 
-XfplayerViewLineSelection & xfplayer_view_linea::GetSelection()
+XfplayerImpactLineSelection & xfplayer_view_linea::GetSelection()
 {
    return m_selection;
 }

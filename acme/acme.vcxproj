@@ -39,7 +39,7 @@
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>app</RootNamespace>
     <ProjectName>acme</ProjectName>
-    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">
@@ -95,35 +95,35 @@
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\archive\platform-windows\Common.props" />
+    <Import Project="..\..\..\operating-system\operating-system-windows\Common.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\archive\platform-windows\Common.props" />
+    <Import Project="..\..\..\operating-system\operating-system-windows\Common.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\archive\platform-windows\Common.props" />
+    <Import Project="..\..\..\operating-system\operating-system-windows\Common.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\archive\platform-windows\Common.props" />
+    <Import Project="..\..\..\operating-system\operating-system-windows\Common.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\archive\platform-windows\Common.props" />
+    <Import Project="..\..\..\operating-system\operating-system-windows\Common.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\archive\platform-windows\Common.props" />
+    <Import Project="..\..\..\operating-system\operating-system-windows\Common.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\archive\platform-windows\Common.props" />
+    <Import Project="..\..\..\operating-system\operating-system-windows\Common.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\archive\platform-windows\Common.props" />
+    <Import Project="..\..\..\operating-system\operating-system-windows\Common.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
@@ -183,7 +183,7 @@
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_ACME_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-windows/include;$(__archive)third-windows/third/include;$(__archive)third-windows/third/include/include;$(SolutionDir)../../../archive/platform-windows/_include;$(SolutionDir)../../../archive/platform-windows;$(SolutionDir)../../../archive/platform-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__operating_system)local/include;$(__operating_system)third-windows/$(PlatformName)/$(Configuration)/include;$(__operating_system)third-windows/include;$(__operating_system)third-windows/third/include;$(__operating_system)third-windows/third/include/include;$(SolutionDir)../../../operating-system/operating-system-windows/_include;$(SolutionDir)../../../operating-system/operating-system-windows;$(SolutionDir)../../../operating-system/operating-system-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <StringPooling>false</StringPooling>
       <ExceptionHandling>Async</ExceptionHandling>
@@ -215,7 +215,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(OutDir)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(OutDir)</AdditionalLibraryDirectories>
       <EntryPointSymbol>
       </EntryPointSymbol>
       <IgnoreSpecificDefaultLibraries>
@@ -223,9 +223,9 @@
       <SubSystem>Windows</SubSystem>
     </Link>
     <PreBuildEvent>
-      <Command>xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\binary\*.* $(OutDir)
-xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\binary\*.* $(OutDir)
-xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\*.pdb $(OutDir)</Command>
+      <Command>xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\binary\*.* $(OutDir)
+xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\third\binary\*.* $(OutDir)
+xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\library\*.pdb $(OutDir)</Command>
     </PreBuildEvent>
     <Manifest>
       <AdditionalManifestFiles>
@@ -259,7 +259,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_ACME_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-windows/include;$(__archive)third-windows/third/include;$(__archive)third-windows/third/include/include;$(SolutionDir)../../../archive/platform-windows/_include;$(SolutionDir)../../../archive/platform-windows;$(SolutionDir)../../../archive/platform-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__operating_system)local/include;$(__operating_system)third-windows/$(PlatformName)/$(Configuration)/include;$(__operating_system)third-windows/include;$(__operating_system)third-windows/third/include;$(__operating_system)third-windows/third/include/include;$(SolutionDir)../../../operating-system/operating-system-windows/_include;$(SolutionDir)../../../operating-system/operating-system-windows;$(SolutionDir)../../../operating-system/operating-system-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <StringPooling>false</StringPooling>
       <ExceptionHandling>Async</ExceptionHandling>
@@ -292,7 +292,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>pcre.lib;zlib.lib;bzip2.lib;libcrypto.lib;libssl.lib;dwrite.lib;d2d1.lib;d3d11.lib;dxgi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <EntryPointSymbol>
       </EntryPointSymbol>
       <IgnoreSpecificDefaultLibraries>
@@ -301,9 +301,9 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
       <ShowProgress>NotSet</ShowProgress>
     </Link>
     <PreBuildEvent>
-      <Command>xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\binary\*.* $(OutDir)
-xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\binary\*.* $(OutDir)
-xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\*.pdb $(OutDir)</Command>
+      <Command>xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\binary\*.* $(OutDir)
+xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\third\binary\*.* $(OutDir)
+xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\library\*.pdb $(OutDir)</Command>
     </PreBuildEvent>
     <Manifest>
       <AdditionalManifestFiles>
@@ -345,7 +345,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_ACME_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-windows/include;$(__archive)third-windows/third/include;$(__archive)third-windows/third/include/include;$(SolutionDir)../../../archive/platform-windows/_include;$(SolutionDir)../../../archive/platform-windows;$(SolutionDir)../../../archive/platform-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__operating_system)local/include;$(__operating_system)third-windows/$(PlatformName)/$(Configuration)/include;$(__operating_system)third-windows/include;$(__operating_system)third-windows/third/include;$(__operating_system)third-windows/third/include/include;$(SolutionDir)../../../operating-system/operating-system-windows/_include;$(SolutionDir)../../../operating-system/operating-system-windows;$(SolutionDir)../../../operating-system/operating-system-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -375,7 +375,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
     </ClCompile>
     <Link>
       <AdditionalDependencies>zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(OutDir)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(OutDir)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
       <EntryPointSymbol>
@@ -388,9 +388,9 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
     <PreBuildEvent>
-      <Command>xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\binary\*.* $(OutDir)
-xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\binary\*.* $(OutDir)
-xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\*.pdb $(OutDir)</Command>
+      <Command>xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\binary\*.* $(OutDir)
+xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\third\binary\*.* $(OutDir)
+xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\library\*.pdb $(OutDir)</Command>
     </PreBuildEvent>
     <Manifest>
       <AdditionalManifestFiles>
@@ -424,7 +424,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_ACME_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-windows/include;$(__archive)third-windows/third/include;$(__archive)third-windows/third/include/include;$(SolutionDir)../../../archive/platform-windows/_include;$(SolutionDir)../../../archive/platform-windows;$(SolutionDir)../../../archive/platform-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__operating_system)local/include;$(__operating_system)third-windows/$(PlatformName)/$(Configuration)/include;$(__operating_system)third-windows/include;$(__operating_system)third-windows/third/include;$(__operating_system)third-windows/third/include/include;$(SolutionDir)../../../operating-system/operating-system-windows/_include;$(SolutionDir)../../../operating-system/operating-system-windows;$(SolutionDir)../../../operating-system/operating-system-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -463,7 +463,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>pcre.lib;zlib.lib;bzip2.lib;libcrypto.lib;libssl.lib;dwrite.lib;d2d1.lib;d3d11.lib;dxgi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
       <EntryPointSymbol>
@@ -479,9 +479,9 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
       </MergeSections>
     </Link>
     <PreBuildEvent>
-      <Command>xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\binary\*.* $(OutDir)
-xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\binary\*.* $(OutDir)
-xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\*.pdb $(OutDir)</Command>
+      <Command>xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\binary\*.* $(OutDir)
+xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\third\binary\*.* $(OutDir)
+xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\library\*.pdb $(OutDir)</Command>
     </PreBuildEvent>
     <Manifest>
       <AdditionalManifestFiles>
@@ -522,7 +522,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_ACME_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-windows/include;$(__archive)third-windows/third/include;$(__archive)third-windows/third/include/include;$(SolutionDir)../../../archive/platform-windows/_include;$(SolutionDir)../../../archive/platform-windows;$(SolutionDir)../../../archive/platform-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__operating_system)local/include;$(__operating_system)third-windows/$(PlatformName)/$(Configuration)/include;$(__operating_system)third-windows/include;$(__operating_system)third-windows/third/include;$(__operating_system)third-windows/third/include/include;$(SolutionDir)../../../operating-system/operating-system-windows/_include;$(SolutionDir)../../../operating-system/operating-system-windows;$(SolutionDir)../../../operating-system/operating-system-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -555,7 +555,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
     </ClCompile>
     <Link>
       <AdditionalDependencies>zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(OutDir)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(OutDir)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <EntryPointSymbol>
@@ -565,9 +565,9 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
       </MapFileName>
     </Link>
     <PreBuildEvent>
-      <Command>xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\binary\*.* $(OutDir)
-xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\binary\*.* $(OutDir)
-xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\*.pdb $(OutDir)</Command>
+      <Command>xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\binary\*.* $(OutDir)
+xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\third\binary\*.* $(OutDir)
+xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\library\*.pdb $(OutDir)</Command>
     </PreBuildEvent>
     <CustomBuildStep>
       <Command>
@@ -598,7 +598,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_ACME_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-windows/include;$(__archive)third-windows/third/include;$(__archive)third-windows/third/include/include;$(SolutionDir)../../../archive/platform-windows/_include;$(SolutionDir)../../../archive/platform-windows;$(SolutionDir)../../../archive/platform-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__operating_system)local/include;$(__operating_system)third-windows/$(PlatformName)/$(Configuration)/include;$(__operating_system)third-windows/include;$(__operating_system)third-windows/third/include;$(__operating_system)third-windows/third/include/include;$(SolutionDir)../../../operating-system/operating-system-windows/_include;$(SolutionDir)../../../operating-system/operating-system-windows;$(SolutionDir)../../../operating-system/operating-system-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -632,7 +632,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>pcre.lib;zlib.lib;bzip2.lib;libcrypto.lib;libssl.lib;dwrite.lib;d2d1.lib;d3d11.lib;dxgi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <EntryPointSymbol>
@@ -642,9 +642,9 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
       </MapFileName>
     </Link>
     <PreBuildEvent>
-      <Command>xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\binary\*.* $(OutDir)
-xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\binary\*.* $(OutDir)
-xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\*.pdb $(OutDir)</Command>
+      <Command>xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\binary\*.* $(OutDir)
+xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\third\binary\*.* $(OutDir)
+xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\library\*.pdb $(OutDir)</Command>
     </PreBuildEvent>
     <CustomBuildStep>
       <Command>
@@ -683,7 +683,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_ACME_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-windows/include;$(__archive)third-windows/third/include;$(__archive)third-windows/third/include/include;$(SolutionDir)../../../archive/platform-windows/_include;$(SolutionDir)../../../archive/platform-windows;$(SolutionDir)../../../archive/platform-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__operating_system)local/include;$(__operating_system)third-windows/$(PlatformName)/$(Configuration)/include;$(__operating_system)third-windows/include;$(__operating_system)third-windows/third/include;$(__operating_system)third-windows/third/include/include;$(SolutionDir)../../../operating-system/operating-system-windows/_include;$(SolutionDir)../../../operating-system/operating-system-windows;$(SolutionDir)../../../operating-system/operating-system-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -713,7 +713,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
     </ClCompile>
     <Link>
       <AdditionalDependencies>zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(OutDir)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(OutDir)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>
@@ -725,9 +725,9 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
     <PreBuildEvent>
-      <Command>xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\binary\*.* $(OutDir)
-xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\binary\*.* $(OutDir)
-xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\*.pdb $(OutDir)</Command>
+      <Command>xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\binary\*.* $(OutDir)
+xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\third\binary\*.* $(OutDir)
+xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\library\*.pdb $(OutDir)</Command>
     </PreBuildEvent>
     <CustomBuildStep>
       <Command>
@@ -758,7 +758,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_ACME_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-windows/include;$(__archive)third-windows/third/include;$(__archive)third-windows/third/include/include;$(SolutionDir)../../../archive/platform-windows/_include;$(SolutionDir)../../../archive/platform-windows;$(SolutionDir)../../../archive/platform-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__operating_system)local/include;$(__operating_system)third-windows/$(PlatformName)/$(Configuration)/include;$(__operating_system)third-windows/include;$(__operating_system)third-windows/third/include;$(__operating_system)third-windows/third/include/include;$(SolutionDir)../../../operating-system/operating-system-windows/_include;$(SolutionDir)../../../operating-system/operating-system-windows;$(SolutionDir)../../../operating-system/operating-system-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <ExceptionHandling>Async</ExceptionHandling>
@@ -783,7 +783,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>pcre.lib;zlib.lib;bzip2.lib;libcrypto.lib;libssl.lib;dwrite.lib;d2d1.lib;d3d11.lib;dxgi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>
@@ -796,9 +796,9 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
     <PreBuildEvent>
-      <Command>xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\binary\*.* $(OutDir)
-xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\third\binary\*.* $(OutDir)
-xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Configuration)\library\*.pdb $(OutDir)</Command>
+      <Command>xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\binary\*.* $(OutDir)
+xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\third\binary\*.* $(OutDir)
+xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\library\*.pdb $(OutDir)</Command>
     </PreBuildEvent>
     <CustomBuildStep>
       <Command>
@@ -835,12 +835,14 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
     <ClCompile Include="compress\compress.cpp" />
     <ClCompile Include="compress\uncompress.cpp" />
     <ClCompile Include="constant\idpool.cpp" />
+    <ClCompile Include="exception\no_memory.cpp" />
     <ClCompile Include="exception\engine.cpp" />
     <ClCompile Include="exception\extended_status.cpp" />
     <ClCompile Include="exception\file.cpp" />
     <ClCompile Include="exception\file_open.cpp" />
     <ClCompile Include="exception\interface_only.cpp" />
     <ClCompile Include="exception\io.cpp" />
+    <ClCompile Include="exception\library_not_loaded.cpp" />
     <ClCompile Include="exception\not_implemented.cpp" />
     <ClCompile Include="exception\parsing.cpp" />
     <ClCompile Include="exception\callstack.cpp" />
@@ -872,6 +874,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
     <ClCompile Include="filesystem\file\dir2.cpp" />
     <ClCompile Include="filesystem\file\exception.cpp" />
     <ClCompile Include="filesystem\file\folder.cpp" />
+    <ClCompile Include="filesystem\file\payload_stream.cpp" />
     <ClCompile Include="filesystem\file\stdio_file.cpp" />
     <ClCompile Include="filesystem\file\streamable.cpp" />
     <ClCompile Include="filesystem\file\streamable_composite.cpp" />
@@ -922,7 +925,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
     <ClInclude Include="constant\source.h" />
     <ClInclude Include="constant\status.h" />
     <ClInclude Include="constant\status_range_authentication.h" />
-    <ClInclude Include="constant\subject.h" />
+    <ClInclude Include="constant\aaa_topic.h" />
     <ClInclude Include="constant\thread.h" />
     <ClInclude Include="constant\timer.h" />
     <ClInclude Include="constant\_.h" />
@@ -932,6 +935,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
     <ClInclude Include="exception\file_open.h" />
     <ClInclude Include="exception\interface_only.h" />
     <ClInclude Include="exception\io.h" />
+    <ClInclude Include="exception\library_not_loaded.h" />
     <ClInclude Include="exception\not_implemented.h" />
     <ClInclude Include="exception\serialization.h" />
     <ClInclude Include="filesystem\filesystem\acme_file.h" />
@@ -1029,6 +1033,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="memory\memory.cpp" />
     <ClCompile Include="memory\memory_allocate.cpp" />
     <ClCompile Include="memory\memory_management.cpp" />
     <ClCompile Include="memory\os_alloc\bounds_check.cpp">
@@ -1079,40 +1084,6 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
     <ClCompile Include="networking\url.cpp" />
     <ClCompile Include="networking\url_department.cpp" />
     <ClCompile Include="networking\url_domain.cpp" />
-    <ClCompile Include="node\operating_system\ansi\base.cpp" />
-    <ClCompile Include="node\operating_system\ansi\datetime.cpp" />
-    <ClCompile Include="node\operating_system\ansi\debug.cpp" />
-    <ClCompile Include="node\operating_system\ansi\exception_engine.cpp" />
-    <ClCompile Include="node\operating_system\ansi\file.cpp" />
-    <ClCompile Include="node\operating_system\ansi\file_raw.cpp" />
-    <ClCompile Include="node\operating_system\ansi\file_std.cpp" />
-    <ClCompile Include="node\operating_system\ansi\language.cpp" />
-    <ClCompile Include="node\operating_system\ansi\memory.cpp" />
-    <ClCompile Include="node\operating_system\ansi\process.cpp" />
-    <ClCompile Include="node\operating_system\ansi\user.cpp" />
-    <ClCompile Include="node\operating_system\ansi\win.cpp" />
-    <ClCompile Include="node\operating_system\argcargv.cpp" />
-    <ClCompile Include="node\operating_system\chronometer.cpp" />
-    <ClCompile Include="node\operating_system\console.cpp" />
-    <ClCompile Include="node\operating_system\debug.cpp" />
-    <ClCompile Include="node\operating_system\file.cpp" />
-    <ClCompile Include="node\operating_system\http.cpp" />
-    <ClCompile Include="node\operating_system\parallelization.cpp" />
-    <ClCompile Include="node\operating_system\time.cpp" />
-    <ClCompile Include="node\operating_system\windowing.cpp" />
-    <ClCompile Include="node\operating_system\windows\base_file.cpp" />
-    <ClCompile Include="node\operating_system\windows\library.cpp" />
-    <ClCompile Include="node\operating_system\windows\parallelization.cpp" />
-    <ClCompile Include="node\operating_system\windows\process.cpp" />
-    <ClCompile Include="node\operating_system\windows\windows.cpp" />
-    <ClCompile Include="node\operating_system\windows_common\api.cpp" />
-    <ClCompile Include="node\operating_system\windows_common\base_file.cpp" />
-    <ClCompile Include="node\operating_system\windows_common\dll.cpp" />
-    <ClCompile Include="node\operating_system\windows_common\parallelization.cpp" />
-    <ClCompile Include="node\operating_system\windows_common\time.cpp" />
-    <ClCompile Include="node\operating_system\windows_common\unicode.cpp" />
-    <ClCompile Include="node\operating_system\windows_common\windows_common.cpp" />
-    <ClCompile Include="node\operating_system\_.cpp" />
     <ClCompile Include="no_precompiled_header_sample.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">NotUsing</PrecompiledHeader>
@@ -1123,6 +1094,39 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="operating_system\argcargv.cpp" />
+    <ClCompile Include="operating_system\chronometer.cpp" />
+    <ClCompile Include="operating_system\console.cpp" />
+    <ClCompile Include="operating_system\debug.cpp" />
+    <ClCompile Include="operating_system\file.cpp" />
+    <ClCompile Include="operating_system\http.cpp" />
+    <ClCompile Include="operating_system\node_serial.cpp" />
+    <ClCompile Include="operating_system\parallelization.cpp" />
+    <ClCompile Include="operating_system\time.cpp" />
+    <ClCompile Include="operating_system\windowing.cpp" />
+    <ClCompile Include="operating_system\windows\file.cpp" />
+    <ClCompile Include="operating_system\windows\library.cpp" />
+    <ClCompile Include="operating_system\windows\message_box.cpp" />
+    <ClCompile Include="operating_system\windows\nano\brush.cpp" />
+    <ClCompile Include="operating_system\windows\nano\device.cpp" />
+    <ClCompile Include="operating_system\windows\nano\font.cpp" />
+    <ClCompile Include="operating_system\windows\nano\object.cpp" />
+    <ClCompile Include="operating_system\windows\nano\pen.cpp" />
+    <ClCompile Include="operating_system\windows\nano\window.cpp" />
+    <ClCompile Include="operating_system\windows\nano\_nano.cpp" />
+    <ClCompile Include="operating_system\windows\parallelization.cpp" />
+    <ClCompile Include="operating_system\windows\process.cpp" />
+    <ClCompile Include="operating_system\windows\windows.cpp" />
+    <ClCompile Include="operating_system\windows_common\api.cpp" />
+    <ClCompile Include="operating_system\windows_common\dll.cpp" />
+    <ClCompile Include="operating_system\windows_common\file.cpp" />
+    <ClCompile Include="operating_system\windows_common\parallelization.cpp" />
+    <ClCompile Include="operating_system\windows_common\time.cpp" />
+    <ClCompile Include="operating_system\windows_common\unicode.cpp" />
+    <ClCompile Include="operating_system\windows_common\windows_common.cpp" />
+    <ClCompile Include="operating_system\winpr_keycode.cpp" />
+    <ClCompile Include="operating_system\winpr_scancode.cpp" />
+    <ClCompile Include="operating_system\_.cpp" />
     <ClCompile Include="parallelization\cleanup_task.cpp" />
     <ClCompile Include="parallelization\condition.cpp" />
     <ClCompile Include="parallelization\condition_variable.cpp" />
@@ -1267,15 +1271,31 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
     <ClCompile Include="process\_.cpp" />
     <ClCompile Include="regular_expression\context.cpp" />
     <ClCompile Include="regular_expression\regular_expression.cpp" />
-    <ClCompile Include="regular_expression\topic.cpp" />
-    <ClCompile Include="subject\handler.cpp" />
-    <ClCompile Include="subject\item.cpp" />
-    <ClCompile Include="subject\subject.cpp" />
-    <ClCompile Include="user\check.cpp" />
-    <ClCompile Include="user\element.cpp" />
-    <ClCompile Include="user\os_colors.cpp" />
-    <ClCompile Include="user\os_theme_colors.cpp" />
-    <ClCompile Include="user\text.cpp" />
+    <ClCompile Include="regular_expression\result.cpp" />
+    <ClCompile Include="topic\extended_topic.cpp" />
+    <ClCompile Include="topic\handler.cpp" />
+    <ClCompile Include="topic\item.cpp" />
+    <ClCompile Include="topic\topic.cpp" />
+    <ClCompile Include="user\nano\brush.cpp" />
+    <ClCompile Include="user\nano\button.cpp" />
+    <ClCompile Include="user\nano\child.cpp" />
+    <ClCompile Include="user\nano\details_window.cpp" />
+    <ClCompile Include="user\nano\device.cpp" />
+    <ClCompile Include="user\nano\font.cpp" />
+    <ClCompile Include="user\nano\message_box.cpp" />
+    <ClCompile Include="user\nano\object.cpp" />
+    <ClCompile Include="user\nano\pen.cpp" />
+    <ClCompile Include="user\nano\still.cpp" />
+    <ClCompile Include="user\nano\window.cpp" />
+    <ClCompile Include="user\nano\window_implementation.cpp" />
+    <ClCompile Include="user\nano\window_interface.cpp" />
+    <ClCompile Include="user\nano\_nano.cpp" />
+    <ClCompile Include="user\user\check.cpp" />
+    <ClCompile Include="user\user\drag_move.cpp" />
+    <ClCompile Include="user\user\element.cpp" />
+    <ClCompile Include="user\user\os_colors.cpp" />
+    <ClCompile Include="user\user\os_theme_colors.cpp" />
+    <ClCompile Include="user\user\text.cpp" />
     <ClCompile Include="_.cpp" />
     <ClInclude Include="astr.h" />
     <ClInclude Include="callback.h" />
@@ -1293,7 +1313,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
     <ClInclude Include="exception\aaa_invalid_index.h" />
     <ClInclude Include="exception\aaa_invalid_type.h" />
     <ClInclude Include="exception\aaa_io.h" />
-    <ClInclude Include="exception\aaa_memory.h" />
+    <ClInclude Include="exception\no_memory.h" />
     <ClInclude Include="exception\aaa_not_implemented.h" />
     <ClInclude Include="exception\aaa_not_installed.h" />
     <ClInclude Include="exception\aaa_not_licensed.h" />
@@ -1385,36 +1405,52 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
     <ClInclude Include="networking\url_department.h" />
     <ClInclude Include="networking\url_domain.h" />
     <ClInclude Include="networking\_.h" />
-    <ClInclude Include="node\operating_system\aaa_c2.h" />
-    <ClInclude Include="node\operating_system\argcargv.h" />
-    <ClInclude Include="node\operating_system\chronometer.h" />
-    <ClInclude Include="node\operating_system\console.h" />
-    <ClInclude Include="node\operating_system\cross.h" />
-    <ClInclude Include="node\operating_system\file.h" />
-    <ClInclude Include="node\operating_system\graphics.h" />
-    <ClInclude Include="node\operating_system\microsecond_sleep.h" />
-    <ClInclude Include="node\operating_system\os_windowing2.h" />
-    <ClInclude Include="node\operating_system\parallelization.h" />
-    <ClInclude Include="node\operating_system\process.h" />
-    <ClInclude Include="node\operating_system\text.h" />
-    <ClInclude Include="node\operating_system\time.h" />
-    <ClInclude Include="node\operating_system\user.h" />
-    <ClInclude Include="node\operating_system\windows\process.h" />
-    <ClInclude Include="node\operating_system\windows\_.h" />
-    <ClInclude Include="node\operating_system\windows\_windows.h" />
-    <ClInclude Include="node\operating_system\windows_common\api.h" />
-    <ClInclude Include="node\operating_system\windows_common\parallelization.h" />
-    <ClInclude Include="node\operating_system\windows_common\_.h" />
-    <ClInclude Include="node\operating_system\windows_common\_windows_common.h" />
-    <ClInclude Include="node\operating_system\winpr_input.h" />
-    <ClInclude Include="node\operating_system\_.h" />
-    <ClInclude Include="node\operating_system\_aaa_c.h" />
-    <ClInclude Include="node\operating_system\_application.h" />
-    <ClInclude Include="node\operating_system\_const_console.h" />
-    <ClInclude Include="node\operating_system\_impl.h" />
-    <ClInclude Include="node\operating_system\_operating_system.h" />
-    <ClInclude Include="node\operating_system\_user.h" />
     <ClInclude Include="operating_system.h" />
+    <ClInclude Include="operating_system\aaa_c2.h" />
+    <ClInclude Include="operating_system\aaa_node2.h" />
+    <ClInclude Include="operating_system\argcargv.h" />
+    <ClInclude Include="operating_system\chronometer.h" />
+    <ClInclude Include="operating_system\console.h" />
+    <ClInclude Include="operating_system\cross.h" />
+    <ClInclude Include="operating_system\file.h" />
+    <ClInclude Include="operating_system\graphics.h" />
+    <ClInclude Include="operating_system\microsecond_sleep.h" />
+    <ClInclude Include="operating_system\_common.h" />
+    <ClInclude Include="operating_system\os_windowing2.h" />
+    <ClInclude Include="operating_system\parallelization.h" />
+    <ClInclude Include="operating_system\process.h" />
+    <ClInclude Include="operating_system\serial.h" />
+    <ClInclude Include="operating_system\text.h" />
+    <ClInclude Include="operating_system\time.h" />
+    <ClInclude Include="operating_system\user.h" />
+    <ClInclude Include="operating_system\windows\nano\aaa_nano_child.h" />
+    <ClInclude Include="operating_system\windows\nano\aaa_nano_message_box.h" />
+    <ClInclude Include="operating_system\windows\nano\brush.h" />
+    <ClInclude Include="operating_system\windows\nano\device.h" />
+    <ClInclude Include="operating_system\windows\nano\font.h" />
+    <ClInclude Include="operating_system\windows\nano\object.h" />
+    <ClInclude Include="operating_system\windows\nano\pen.h" />
+    <ClInclude Include="operating_system\windows\nano\window.h" />
+    <ClInclude Include="operating_system\windows\nano\_nano.h" />
+    <ClInclude Include="operating_system\windows\process.h" />
+    <ClInclude Include="operating_system\windows\_.h" />
+    <ClInclude Include="operating_system\windows\_c.h" />
+    <ClInclude Include="operating_system\windows\_windows.h" />
+    <ClInclude Include="operating_system\windows_common\api.h" />
+    <ClInclude Include="operating_system\windows_common\arg_sec_attrs.h" />
+    <ClInclude Include="operating_system\windows_common\parallelization.h" />
+    <ClInclude Include="operating_system\windows_common\_.h" />
+    <ClInclude Include="operating_system\windows_common\_c.h" />
+    <ClInclude Include="operating_system\windows_common\_windows_common.h" />
+    <ClInclude Include="operating_system\winpr_input.h" />
+    <ClInclude Include="operating_system\_.h" />
+    <ClInclude Include="operating_system\_aaa_c.h" />
+    <ClInclude Include="operating_system\_application.h" />
+    <ClInclude Include="operating_system\_c.h" />
+    <ClInclude Include="operating_system\_const_console.h" />
+    <ClInclude Include="operating_system\_impl.h" />
+    <ClInclude Include="operating_system\_operating_system.h" />
+    <ClInclude Include="operating_system\_user.h" />
     <ClInclude Include="parallelization\cleanup_task.h" />
     <ClInclude Include="parallelization\common.h" />
     <ClInclude Include="parallelization\condition.h" />
@@ -1722,7 +1758,8 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
     <ClInclude Include="primitive\primitive\enumeration1.h" />
     <ClInclude Include="primitive\primitive\enum_bitset.h" />
     <ClInclude Include="primitive\primitive\e_flag.h" />
-    <ClInclude Include="primitive\primitive\id_array.h" />
+    <ClInclude Include="primitive\primitive\holder.h" />
+    <ClInclude Include="primitive\primitive\atom_array.h" />
     <ClInclude Include="primitive\primitive\interlocked.h" />
     <ClInclude Include="primitive\primitive\interlocked_count.h" />
     <ClInclude Include="primitive\primitive\object.h" />
@@ -1743,7 +1780,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
     <ClInclude Include="primitive\primitive\system.h" />
     <ClInclude Include="primitive\primitive\tracer.h" />
     <ClInclude Include="primitive\primitive\work.h" />
-    <ClInclude Include="primitive\primitive\_id_impl.h" />
+    <ClInclude Include="primitive\primitive\_atom_impl.h" />
     <ClInclude Include="primitive\primitive\_interlocked_count_impl.h" />
     <ClInclude Include="primitive\primitive\_payload_impl.h" />
     <ClInclude Include="primitive\promise\signalization.h" />
@@ -1775,24 +1812,41 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
     <ClInclude Include="process\_.h" />
     <ClInclude Include="regular_expression\context.h" />
     <ClInclude Include="regular_expression\regular_expression.h" />
-    <ClInclude Include="regular_expression\topic.h" />
+    <ClInclude Include="regular_expression\result.h" />
     <ClInclude Include="regular_expression\_regular_expression.h" />
-    <ClInclude Include="subject\handler.h" />
-    <ClInclude Include="subject\item.h" />
-    <ClInclude Include="subject\subject.h" />
+    <ClInclude Include="topic\extended_topic.h" />
+    <ClInclude Include="topic\handler.h" />
+    <ClInclude Include="topic\item.h" />
+    <ClInclude Include="topic\topic.h" />
     <ClInclude Include="update.h" />
-    <ClInclude Include="user\check.h" />
-    <ClInclude Include="user\conversation.h" />
-    <ClInclude Include="user\element.h" />
-    <ClInclude Include="user\ewindowflag.h" />
-    <ClInclude Include="user\os_colors.h" />
-    <ClInclude Include="user\os_theme_colors.h" />
-    <ClInclude Include="user\text.h" />
-    <ClInclude Include="user\theme_colors.h" />
-    <ClInclude Include="user\_.h" />
-    <ClInclude Include="user\_const.h" />
-    <ClInclude Include="user\_const_key.h" />
-    <ClInclude Include="user\_style.h" />
+    <ClInclude Include="user\nano\brush.h" />
+    <ClInclude Include="user\nano\button.h" />
+    <ClInclude Include="user\nano\child.h" />
+    <ClInclude Include="user\nano\device.h" />
+    <ClInclude Include="user\nano\font.h" />
+    <ClInclude Include="user\nano\details_window.h" />
+    <ClInclude Include="user\nano\message_box.h" />
+    <ClInclude Include="user\nano\object.h" />
+    <ClInclude Include="user\nano\pen.h" />
+    <ClInclude Include="user\nano\still.h" />
+    <ClInclude Include="user\nano\window.h" />
+    <ClInclude Include="user\nano\window_implementation.h" />
+    <ClInclude Include="user\nano\window_interface.h" />
+    <ClInclude Include="user\nano\_nano.h" />
+    <ClInclude Include="user\user\aaa_action_item_exchange.h" />
+    <ClInclude Include="user\user\check.h" />
+    <ClInclude Include="user\user\conversation.h" />
+    <ClInclude Include="user\user\drag_move.h" />
+    <ClInclude Include="user\user\element.h" />
+    <ClInclude Include="user\user\ewindowflag.h" />
+    <ClInclude Include="user\user\os_colors.h" />
+    <ClInclude Include="user\user\os_theme_colors.h" />
+    <ClInclude Include="user\user\text.h" />
+    <ClInclude Include="user\user\theme_colors.h" />
+    <ClInclude Include="user\user\_.h" />
+    <ClInclude Include="user\user\_const.h" />
+    <ClInclude Include="user\user\_const_key.h" />
+    <ClInclude Include="user\user\_style.h" />
     <ClInclude Include="version\version.h" />
     <ClInclude Include="filesystem\file\_var_stream_impl.h" />
     <ClInclude Include="filesystem\file\___serialization_draft.h" />
@@ -1809,7 +1863,6 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
     <ClCompile Include="filesystem\file\stream.cpp" />
     <ClCompile Include="filesystem\file\string_file.cpp" />
     <ClCompile Include="filesystem\file\text_file.cpp" />
-    <ClCompile Include="filesystem\file\var_stream.cpp" />
     <ClCompile Include="primitive\collection\2d_array.cpp" />
     <ClCompile Include="primitive\collection\array.cpp" />
     <ClCompile Include="primitive\collection\bit_array.cpp" />
@@ -1849,8 +1902,8 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
     <ClCompile Include="primitive\primitive\edit.cpp" />
     <ClCompile Include="primitive\primitive\factory.cpp" />
     <ClCompile Include="primitive\primitive\handler.cpp" />
-    <ClCompile Include="primitive\primitive\id.cpp" />
-    <ClCompile Include="primitive\primitive\id_space.cpp" />
+    <ClCompile Include="primitive\primitive\atom.cpp" />
+    <ClCompile Include="primitive\primitive\atom_space.cpp" />
     <ClCompile Include="primitive\primitive\interlocked_long.cpp" />
     <ClCompile Include="primitive\primitive\interlocked_long_pulse.cpp" />
     <ClCompile Include="primitive\primitive\memory.cpp" />
@@ -2029,8 +2082,8 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
     <ClInclude Include="primitive\primitive\action_context.h" />
     <ClInclude Include="primitive\primitive\eobject.h" />
     <ClInclude Include="primitive\primitive\factory.h" />
-    <ClInclude Include="primitive\primitive\id.h" />
-    <ClInclude Include="primitive\primitive\id_space.h" />
+    <ClInclude Include="primitive\primitive\atom.h" />
+    <ClInclude Include="primitive\primitive\atom_space.h" />
     <ClInclude Include="primitive\primitive\interlocked_long_pulse.h" />
     <ClInclude Include="primitive\primitive\papaya.h" />
     <ClInclude Include="primitive\primitive\logic.h" />
@@ -2059,7 +2112,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
     <ClInclude Include="primitive\primitive\uid.h" />
     <ClInclude Include="primitive\primitive\util.h" />
     <ClInclude Include="primitive\primitive\value.h" />
-    <ClInclude Include="primitive\primitive\var2.h" />
+    <ClInclude Include="primitive\primitive\payload2.h" />
     <ClInclude Include="primitive\primitive\virtual_memory.h" />
     <ClInclude Include="primitive\primitive\property_set_papaya.h" />
     <ClInclude Include="primitive\primitive\_defer.h" />
@@ -2176,7 +2229,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\archive\storage-windows\$(PlatformName)\$(Con
     <None Include="primitive\datetime\_impl.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="..\..\..\archive\platform-windows\version.rc" />
+    <ResourceCompile Include="..\..\..\operating-system\operating-system-windows\version.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1589,10 +1589,10 @@ end_processing_adding:
 
                for(; p; p++)
                {
-                  //SOCKET id = 0;
+                  //SOCKET atom = 0;
                   //socket_pointer src;
 
-                  //iterator->get_pair(id, src);
+                  //iterator->get_pair(atom, src);
 
                   if (p->m_psocket == psocket)
                   {
@@ -1714,9 +1714,9 @@ end_processing_adding:
    }
 
 
-   void socket_handler::SetSocks4Userid(const string & id)
+   void socket_handler::SetSocks4Userid(const string & atom)
    {
-      m_socks4_userid = id;
+      m_socks4_userid = atom;
    }
 
 
@@ -1750,7 +1750,7 @@ end_processing_adding:
 //
 //      m_resolve_q[pbasesocket] = true;
 //
-//      FORMATTED_INFORMATION(" *** Resolve '%s:%d' id#%d  m_resolve_q size_i32: %d  base_socket: %p\n", host.c_str(), port, presolvsocket->GetId(), m_resolve_q.get_size(), pbasesocket));
+//      FORMATTED_INFORMATION(" *** Resolve '%s:%d' atom#%d  m_resolve_q size_i32: %d  base_socket: %p\n", host.c_str(), port, presolvsocket->GetId(), m_resolve_q.get_size(), pbasesocket));
 //
 //      return presolvsocket->GetId();
 //
@@ -2224,76 +2224,76 @@ end_processing_adding:
 
    i32 socket_handler::TriggerID(base_socket * src)
    {
-      i32 id = m_next_trigger_id++;
-      m_trigger_src[id] = src;
-      return id;
+      i32 atom = m_next_trigger_id++;
+      m_trigger_src[atom] = src;
+      return atom;
    }
 
 
-   bool socket_handler::Subscribe(i32 id, base_socket * psocketDst)
+   bool socket_handler::Subscribe(i32 atom, base_socket * psocketDst)
    {
-      if (m_trigger_src.plookup(id) != nullptr)
+      if (m_trigger_src.plookup(atom) != nullptr)
       {
-         if (m_trigger_dst[id].plookup(psocketDst) != nullptr)
+         if (m_trigger_dst[atom].plookup(psocketDst) != nullptr)
          {
-            m_trigger_dst[id][psocketDst] = true;
+            m_trigger_dst[atom][psocketDst] = true;
             return true;
          }
 
-         _INFORMATION(psocketDst, "Subscribe " << id << " Already subscribed");
+         _INFORMATION(psocketDst, "Subscribe " << atom << " Already subscribed");
 
          return false;
       }
 
-      _INFORMATION(psocketDst, "Subscribe " << id << " Trigger id not found");
+      _INFORMATION(psocketDst, "Subscribe " << atom << " Trigger atom not found");
 
       return false;
 
    }
 
 
-   bool socket_handler::Unsubscribe(i32 id, base_socket * psocketDst)
+   bool socket_handler::Unsubscribe(i32 atom, base_socket * psocketDst)
    {
 
-      if (m_trigger_src.plookup(id) != nullptr)
+      if (m_trigger_src.plookup(atom) != nullptr)
       {
 
-         if (m_trigger_dst[id].plookup(psocketDst) != nullptr)
+         if (m_trigger_dst[atom].plookup(psocketDst) != nullptr)
          {
 
-            m_trigger_dst[id].erase_key(psocketDst);
+            m_trigger_dst[atom].erase_key(psocketDst);
 
             return true;
 
          }
 
-         _INFORMATION(psocketDst, "Unsubscribe " << id << " Not subscribed");
+         _INFORMATION(psocketDst, "Unsubscribe " << atom << " Not subscribed");
 
          return false;
       }
 
-      _INFORMATION(psocketDst, "Unsubscribe " << id << " Trigger id not found");
+      _INFORMATION(psocketDst, "Unsubscribe " << atom << " Trigger atom not found");
 
       return false;
       
    }
 
 
-   void socket_handler::Trigger(i32 id, socket::trigger_data& data, bool bErase)
+   void socket_handler::Trigger(i32 atom, socket::trigger_data& data, bool bErase)
    {
 
-      if (m_trigger_src.contains(id))
+      if (m_trigger_src.contains(atom))
       {
 
-         data.SetSource(m_trigger_src[id]);
+         data.SetSource(m_trigger_src[atom]);
 
-         m_trigger_dst[id].pairs().each([&](auto & pair)
+         m_trigger_dst[atom].pairs().each([&](auto & pair)
             {
 
                if (this->Valid(pair.m_pbasesocket))
                {
 
-                  pair.m_pbasesocket->OnTrigger(id, data);
+                  pair.m_pbasesocket->OnTrigger(atom, data);
 
                }
 
@@ -2302,8 +2302,8 @@ end_processing_adding:
          if (bErase)
          {
 
-            m_trigger_src.erase_key(id);
-            m_trigger_dst.erase_key(id);
+            m_trigger_src.erase_key(atom);
+            m_trigger_dst.erase_key(atom);
 
          }
 
@@ -2311,7 +2311,7 @@ end_processing_adding:
       else
       {
 
-         INFORMATION("Trigger " << id << " Trigger id not found");
+         INFORMATION("Trigger " << atom << " Trigger atom not found");
 
       }
 

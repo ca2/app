@@ -78,7 +78,8 @@
       __pointer(callstack)    m_pcallstack;
       bool                    m_bHandled;
       bool                    m_bContinue;
-      string                  m_strMessage;
+      string                  m_strMessage; // Message for the user
+      string                  m_strDetails; // Details about exception (if available/applicable)
       string                  m_strException;
 
       // A exception class is meant to be a small utility/tool class.
@@ -101,7 +102,7 @@
 
 
       exception();
-      exception(const ::e_status & estatus, const char * pszMessage = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr);
+      exception(const ::e_status & estatus, const char * pszMessage = nullptr, const char * pszDetails = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr);
       virtual ~exception();
 
 
@@ -310,9 +311,9 @@ public:
    
    int m_iErrNo;
 
-   error_number(::e_status estatus, int iError, const char * pszMessage = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr ) :
+   error_number(::e_status estatus, int iError, const char * pszMessage = nullptr, const char * pszDetails = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr ) :
    ::exception(
-                          estatus, pszMessage, iSkip, caller_address),
+                          estatus, pszMessage, pszDetails, iSkip, caller_address),
    m_iErrNo(iError)
    {
    }

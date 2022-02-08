@@ -216,8 +216,8 @@ namespace user
       m_scrolldataVertical.m_bScrollEnable = false;
 
       m_dy = -1;
-      m_iViewOffset = 0;
-      m_iViewSize = 0;
+      m_iImpactOffset = 0;
+      m_iImpactSize = 0;
       m_bLMouseDown = false;
       m_bRMouseDown = false;
       m_durationCaretPeriod = 1_s;
@@ -296,10 +296,10 @@ namespace user
    }
 
 
-   void plain_edit::handle(::subject * psubject, ::context * pcontext)
+   void plain_edit::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if(psubject->id() == id_current_text_changed)
+      if(ptopic->m_atom == id_current_text_changed)
       {
 
          queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
@@ -317,7 +317,7 @@ namespace user
       else
       {
 
-         ::user::interaction::handle(psubject, pcontext);
+         ::user::interaction::handle(ptopic, pcontext);
 
       }
 
@@ -461,7 +461,7 @@ namespace user
 
       double y = rectangleClient.top;
 
-      _001GetViewSel(iSelBegOriginal, iSelEndOriginal);
+      _001GetImpactSel(iSelBegOriginal, iSelEndOriginal);
 
       iSelBeg = iSelBegOriginal;
 
@@ -916,7 +916,7 @@ namespace user
 
       }
 
-      m_propertyText = fetch_property(m_id, true);
+      m_propertyText = fetch_property(m_atom, true);
 
       if(m_propertyText && !m_propertyText->is_empty())
       {
@@ -925,7 +925,7 @@ namespace user
 
       }
 
-      //m_ppropertyText = fetch_property(m_id, true);
+      //m_ppropertyText = fetch_property(m_atom, true);
 
       //add_change_notification(m_ppropertyText);
 
@@ -1146,19 +1146,17 @@ namespace user
 
       {
 
-         ::subject subject;
+         ::extended_topic extendedtopic(::id_key_down);
 
-         subject.m_puserelement = this;
+         extendedtopic.m_puserelement = this;
 
-         subject.m_id = ::e_subject_key_down;
+         extendedtopic.m_actioncontext.m_pmessage = pmessage;
 
-         subject.m_actioncontext.m_pmessage = pmessage;
+         extendedtopic.m_actioncontext = ::e_source_user;
 
-         subject.m_actioncontext = ::e_source_user;
+         route(&extendedtopic);
 
-         route(&subject);
-
-         if (subject.m_bRet)
+         if (extendedtopic.m_bRet)
          {
 
             return;
@@ -1188,17 +1186,15 @@ namespace user
          if ((!m_bMultiLine || m_bSendEnterKey) && get_parent() != nullptr)
          {
 
-            ::subject subject;
+            ::extended_topic extendedtopic(::id_enter_key);
 
-            subject.m_puserelement = this;
+            extendedtopic.m_puserelement = this;
 
-            subject.m_id = ::e_subject_enter_key;
+            extendedtopic.m_actioncontext = ::e_source_user;
 
-            subject.m_actioncontext = ::e_source_user;
+            route(&extendedtopic);
 
-            route(&subject);
-
-            if(!subject.m_bRet && subject.m_bOk)
+            if(!extendedtopic.m_bRet && extendedtopic.m_bOk)
             {
 
                on_action("submit");
@@ -1231,17 +1227,15 @@ namespace user
 
             pkey->previous();
 
-            ::subject subject;
+            ::extended_topic extendedtopic(::id_tab_key);
 
-            subject.m_puserelement = this;
+            extendedtopic.m_puserelement = this;
 
-            subject.m_id = ::e_subject_tab_key;
+            extendedtopic.m_actioncontext = ::e_source_user;
 
-            subject.m_actioncontext = ::e_source_user;
+            route(&extendedtopic);
 
-            route(&subject);
-
-            if(!subject.m_bRet && subject.m_bOk)
+            if(!extendedtopic.m_bRet && extendedtopic.m_bOk)
             {
 
                keyboard_set_focus_next();
@@ -1266,17 +1260,15 @@ namespace user
       else if (pkey->m_ekey == ::user::e_key_escape)
       {
 
-         ::subject subject;
+         ::extended_topic extendedtopic(::id_escape);
 
-         subject.m_puserelement = this;
+         extendedtopic.m_puserelement = this;
 
-         subject.m_id = ::e_subject_escape;
+         extendedtopic.m_actioncontext = ::e_source_user;
 
-         subject.m_actioncontext = ::e_source_user;
+         route(&extendedtopic);
 
-         route(&subject);
-
-         if(!subject.m_bRet && subject.m_bOk)
+         if(!extendedtopic.m_bRet && extendedtopic.m_bOk)
          {
 
             on_action("escape");
@@ -1541,7 +1533,7 @@ namespace user
 
          string strPack = m.element1();
 
-         str.replace(strPack, m.element2());
+         str.replace_with(m.element2(), strPack);
 
       }
 
@@ -2103,9 +2095,9 @@ namespace user
 
          m_iLineEnd = 0;
 
-         m_iViewOffset = 0;
+         m_iImpactOffset = 0;
 
-         m_iViewSize = 0;
+         m_iImpactSize = 0;
 
          return;
 
@@ -2160,21 +2152,21 @@ namespace user
 
       }
 
-      m_iViewOffset = m_iaLineBeg[m_iLineStart];
+      m_iImpactOffset = m_iaLineBeg[m_iLineStart];
 
       strsize iProperBeg = m_iaLineBeg[m_iLineEnd - 1];
 
       strsize iLen = m_iaLineLen[m_iLineEnd - 1];
 
-      m_iViewSize = iProperBeg + iLen - m_iViewOffset;
+      m_iImpactSize = iProperBeg + iLen - m_iImpactOffset;
 
       index iLineStart;
 
       index iLineEnd;
 
-      index iViewOffset;
+      index iImpactOffset;
 
-      index iViewSize;
+      index iImpactSize;
 
       if (iLineUpdate < 0)
       {
@@ -2183,9 +2175,9 @@ namespace user
 
          iLineEnd = m_iLineEnd;
 
-         iViewOffset = m_iViewOffset;
+         iImpactOffset = m_iImpactOffset;
 
-         iViewSize = m_iViewSize;
+         iImpactSize = m_iImpactSize;
 
       }
       else
@@ -2195,13 +2187,13 @@ namespace user
 
          iLineEnd = iLineStart + 1;
 
-         iViewOffset = m_iaLineBeg[iLineStart];
+         iImpactOffset = m_iaLineBeg[iLineStart];
 
          iProperBeg = m_iaLineBeg[iLineEnd - 1];
 
          iLen = m_iaLineLen[iLineEnd - 1];
 
-         iViewSize = iProperBeg + iLen - iViewOffset;
+         iImpactSize = iProperBeg + iLen - iImpactOffset;
 
       }
 
@@ -2209,26 +2201,26 @@ namespace user
 
       memory mem;
 
-      mem.set_size(iViewSize + 1);
+      mem.set_size(iImpactSize + 1);
 
       strsize iRead;
 
       {
 
-         m_ptree->m_peditfile->seek(iViewOffset, ::e_seek_set);
+         m_ptree->m_peditfile->seek(iImpactOffset, ::e_seek_set);
 
-         iRead = m_ptree->m_peditfile->read(mem.get_data(), iViewSize);
+         iRead = m_ptree->m_peditfile->read(mem.get_data(), iImpactSize);
 
-         if (iRead < iViewSize)
+         if (iRead < iImpactSize)
          {
 
             TRACE("ops1");
 
-            iViewSize = iRead;
+            iImpactSize = iRead;
 
          }
 
-         mem.get_data()[iViewSize] = 0;
+         mem.get_data()[iImpactSize] = 0;
 
       }
 
@@ -2254,12 +2246,12 @@ namespace user
 
          iStrLen = maximum(0, iLen - (m_iaLineEnd[iLine] & 255));
 
-         if (iPos + iStrLen > m_iViewSize)
+         if (iPos + iStrLen > m_iImpactSize)
          {
 
             TRACE("ops3");
 
-            iStrLen = iViewSize - iPos;
+            iStrLen = iImpactSize - iPos;
 
             if (iStrLen <= 0)
             {
@@ -2293,7 +2285,7 @@ namespace user
 
          iPos += iLen;
 
-         if (iPos > iViewSize)
+         if (iPos > iImpactSize)
          {
 
             TRACE("ops2");
@@ -2473,13 +2465,13 @@ namespace user
             if(psession->m_bProgrammerMode)
             {
 
-               strText.replace("\n", "\\n");
+               strText.replace_with("\\n", "\n");
 
             }
             else
             {
 
-               strText.replace("\n", "");
+               strText.replace_with("", "\n");
 
             }
 
@@ -2491,13 +2483,13 @@ namespace user
             if (psession->m_bProgrammerMode)
             {
 
-               strText.replace("\r", "\\r");
+               strText.replace_with("\\r", "\r");
 
             }
             else
             {
 
-               strText.replace("\r", "");
+               strText.replace_with("", "\r");
 
             }
 
@@ -2549,9 +2541,9 @@ namespace user
 
          m_iLineEnd = 0;
 
-         m_iViewOffset = 0;
+         m_iImpactOffset = 0;
 
-         m_iViewSize = 0;
+         m_iImpactSize = 0;
 
          m_sizeTotal = rectangleClient.size();
 
@@ -2612,21 +2604,21 @@ namespace user
 
       }
 
-      m_iViewOffset = m_iaLineBeg[m_iLineStart];
+      m_iImpactOffset = m_iaLineBeg[m_iLineStart];
 
       strsize iProperBeg = m_iaLineBeg[m_iLineEnd - 1];
 
       strsize iLen = m_iaLineLen[m_iLineEnd - 1];
 
-      m_iViewSize = iProperBeg + iLen - m_iViewOffset;
+      m_iImpactSize = iProperBeg + iLen - m_iImpactOffset;
 
       index iLineStart;
 
       index iLineEnd;
 
-      index iViewOffset;
+      index iImpactOffset;
 
-      index iViewSize;
+      index iImpactSize;
 
       if (iLineUpdate < 0)
       {
@@ -2635,9 +2627,9 @@ namespace user
 
          iLineEnd = m_iLineEnd;
 
-         iViewOffset = m_iViewOffset;
+         iImpactOffset = m_iImpactOffset;
 
-         iViewSize = m_iViewSize;
+         iImpactSize = m_iImpactSize;
 
       }
       else
@@ -2647,13 +2639,13 @@ namespace user
 
          iLineEnd = iLineStart + 1;
 
-         iViewOffset = m_iaLineBeg[iLineStart];
+         iImpactOffset = m_iaLineBeg[iLineStart];
 
          iProperBeg = m_iaLineBeg[iLineEnd - 1];
 
          iLen = m_iaLineLen[iLineEnd - 1];
 
-         iViewSize = iProperBeg + iLen - iViewOffset;
+         iImpactSize = iProperBeg + iLen - iImpactOffset;
 
       }
 
@@ -2661,26 +2653,26 @@ namespace user
 
       memory mem;
 
-      mem.set_size(iViewSize + 1);
+      mem.set_size(iImpactSize + 1);
 
       strsize iRead;
 
       {
 
-         m_ptree->m_peditfile->seek(iViewOffset, ::e_seek_set);
+         m_ptree->m_peditfile->seek(iImpactOffset, ::e_seek_set);
 
-         iRead = m_ptree->m_peditfile->read(mem.get_data(), iViewSize);
+         iRead = m_ptree->m_peditfile->read(mem.get_data(), iImpactSize);
 
-         if (iRead < iViewSize)
+         if (iRead < iImpactSize)
          {
 
             TRACE("ops1");
 
-            iViewSize = iRead;
+            iImpactSize = iRead;
 
          }
 
-         mem.get_data()[iViewSize] = 0;
+         mem.get_data()[iImpactSize] = 0;
 
       }
 
@@ -2709,12 +2701,12 @@ namespace user
 
          iStrLen = maximum(0, iLen - (m_iaLineEnd[iLine] & 255));
 
-         if (iPos + iStrLen > m_iViewSize)
+         if (iPos + iStrLen > m_iImpactSize)
          {
 
             TRACE("ops3");
 
-            iStrLen = iViewSize - iPos;
+            iStrLen = iImpactSize - iPos;
 
             if (iStrLen <= 0)
             {
@@ -2752,7 +2744,7 @@ namespace user
 
          iPos += iLen;
 
-         if (iPos > iViewSize)
+         if (iPos > iImpactSize)
          {
 
             TRACE("ops2");
@@ -3151,7 +3143,7 @@ namespace user
 
          plain_edit_one_line_up(pgraphics);
 
-         if (m_iViewOffset == 0)
+         if (m_iImpactOffset == 0)
          {
 
             iLine = 0;
@@ -3218,7 +3210,7 @@ namespace user
 
       }
 
-      return m_iViewOffset + iOffset + iColumn;
+      return m_iImpactOffset + iOffset + iColumn;
 
    }
 
@@ -3517,7 +3509,7 @@ end:
 
 
 
-   void plain_edit::_001GetViewSel(strsize & iSelBeg, strsize & iSelEnd) const
+   void plain_edit::_001GetImpactSel(strsize & iSelBeg, strsize & iSelEnd) const
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -3536,9 +3528,9 @@ end:
       else
       {
 
-         iSelBeg = m_ptree->m_iSelBeg - m_iViewOffset;
+         iSelBeg = m_ptree->m_iSelBeg - m_iImpactOffset;
 
-         iSelEnd = m_ptree->m_iSelEnd - m_iViewOffset;
+         iSelEnd = m_ptree->m_iSelEnd - m_iImpactOffset;
 
          if (iSelBeg < 0)
          {
@@ -5042,7 +5034,7 @@ finished_update:
                         iCode |= 0x80000000;
                      }
                      //str = psession->keyboard().process_key(pkey);
-                     __throw(todo, "keyboard");
+                     throw ::exception(todo, "keyboard");
                   }
 
                   insert_text(str, false, e_source_user);
@@ -5636,7 +5628,7 @@ finished_update:
 
       double dHeight = 0.;
 
-      m_iViewOffset = 0;
+      m_iImpactOffset = 0;
 
       ::count iLineSize;
 
@@ -5651,7 +5643,7 @@ finished_update:
 
          dHeight += m_dLineHeight;
 
-         m_iViewOffset += iLineSize;
+         m_iImpactOffset += iLineSize;
 
          i++;
 
@@ -5666,7 +5658,7 @@ finished_update:
       //CreateLineIndex();
       //m_peditor->modifyEvent(0);
       /*   char flag;
-         m_iViewOffset = 0;
+         m_iImpactOffset = 0;
          i32 iLineSize;
          ::u32 uRead;
          i32 iPos = 0;
@@ -6163,13 +6155,13 @@ finished_update:
       if(has_handler())
       {
 
-         auto psubject = create_subject(::e_subject_after_change_text);
+         auto pextendedtopic = create_extended_topic(::id_after_change_text);
 
-         psubject->m_puserelement = this;
+         pextendedtopic->m_puserelement = this;
 
-         psubject->m_actioncontext = actioncontext;
+         pextendedtopic->m_actioncontext = actioncontext;
 
-         route(psubject);
+         route(pextendedtopic);
 
       }
 
@@ -6190,7 +6182,7 @@ finished_update:
       
       _001GetSelText(str);
 
-      str.replace("\r", "\r\n");
+      str.replace_with("\r\n", "\r");
       
       auto pwindow = window();
 
@@ -6230,17 +6222,15 @@ finished_update:
       if(m_bEnterKeyOnPaste)
       {
 
-         ::subject subject;
+         ::extended_topic extendedtopic(::id_enter_key);
 
-         subject.m_puserelement = this;
+         extendedtopic.m_puserelement = this;
 
-         subject.m_id = ::e_subject_enter_key;
+         extendedtopic.m_actioncontext = ::e_source_paste;
 
-         subject.m_actioncontext = ::e_source_paste;
+         route(&extendedtopic);
 
-         route(&subject);
-
-         if(!subject.m_bRet && subject.m_bOk)
+         if(!extendedtopic.m_bRet && extendedtopic.m_bOk)
          {
 
             on_action("submit");
@@ -6300,10 +6290,10 @@ finished_update:
    }
 
 
-   //bool plain_edit::create_interaction(::user::interaction * puserinteractionParent, const ::id & id)
+   //bool plain_edit::create_interaction(::user::interaction * puserinteractionParent, const ::atom & atom)
    //{
 
-   //   if (!::user::interaction::create_interaction(puserinteractionParent, id))
+   //   if (!::user::interaction::create_interaction(puserinteractionParent, atom))
    //   {
 
    //      TRACE("Failed to create control");

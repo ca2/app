@@ -204,7 +204,7 @@ string get_debug_report_type_text(int iType)
    else
    {
 
-      __throw(error_invalid_argument);
+      throw ::exception(error_bad_argument);
 
    }
 
@@ -249,7 +249,7 @@ int __cdecl debug_report(int iType, wchar_t const* pszFile, int iLine, wchar_t c
    va_start(argList, pszFormat);
    string strFormat;
    strFormat = pszFormat;
-   strFormat.replace("%s", "%S");
+   strFormat.replace_with("%S", "%s");
    strExtra.format(strFormat, argList);
    va_end(argList);
 
@@ -318,16 +318,16 @@ extern "C"
 //}
 //
 //
-//void system_update(const ::id & id, const ::payload & payload)
+//void system_update(const ::atom & atom, const ::payload & payload)
 //{
 //
 //   if(g_pfnCallUpdateSystem)
 //   {
 //
-//      g_pfnCallUpdateSystem(id, payload);
+//      g_pfnCallUpdateSystem(atom, payload);
 //
 //   }
-//   else if(id == id_dark_mode)
+//   else if(atom == id_dark_mode)
 //   {
 //
 //      ::user::os_calc_dark_mode();
@@ -348,13 +348,13 @@ extern "C"
 //}
 //
 //
-//void system_set_modified(const ::id & id)
+//void system_set_modified(const ::atom & atom)
 //{
 //
 //   if (g_pfnSetModifiedSystem)
 //   {
 //
-//      g_pfnSetModifiedSystem(id);
+//      g_pfnSetModifiedSystem(atom);
 //
 //   }
 //

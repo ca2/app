@@ -784,7 +784,7 @@ namespace html
          draw2d::graphics_extension(pdata->m_pcoredata->get_application()).get_text_extent(pgraphics, unitext("gGYIﾍ"), size3);
          i32 maxcy = size3.cy;
 
-         _001GetViewSel(iSelStart, iSelEnd);
+         _001GetImpactSel(iSelStart, iSelEnd);
          strsize iCursor = iSelEnd;
          sort::sort(iSelStart, iSelEnd);
 

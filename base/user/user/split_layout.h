@@ -48,12 +48,12 @@ namespace user
       virtual i32 get_normal_dimension();
       virtual i32 get_ortogonal_dimension();
 
-      //void RelayEventSplitBar(index iSplitBar, const ::id & id, WPARAM wParam, LPARAM lParam);
+      //void RelayEventSplitBar(index iSplitBar, const ::atom & atom, WPARAM wParam, LPARAM lParam);
       enum_orientation GetSplitOrientation();
       i32 GetMaxPos(index iPane);
       i32 GetMinPos(index iPane);
-      bool InsertPaneAt(index iIndex, ::user::interaction * puserinteraction, bool bFixedSize, id idPane = id());
-      bool SetPane(index iIndex, ::user::interaction* puserinteraction, bool bFixedSize, id idPane = id());
+      bool InsertPaneAt(index iIndex, ::user::interaction * puserinteraction, bool bFixedSize, atom idPane = atom());
+      bool SetPane(index iIndex, ::user::interaction* puserinteraction, bool bFixedSize, atom idPane = atom());
       bool RemovePaneAt(index iIndex);
       void SetPaneFixedSize(index iIndex, SIZE_I32 * pSize);
       void CalcSplitBarRect(index iIndex, RECTANGLE_I32 * prectangle);
@@ -66,8 +66,8 @@ namespace user
       virtual __pointer(::user::interaction) get_pane_window(index iPane);
       virtual __pointer(::user::place_holder) get_pane_holder(index iPane);
       virtual ::rectangle_i32 & get_pane_rect(index iPane);
-      virtual id get_pane_id(index iPane);
-      virtual split_pane * get_pane_by_id(::id id);
+      virtual atom get_pane_id(index iPane);
+      virtual split_pane * get_pane_by_id(::atom atom);
 
 
       virtual ::count get_pane_count();

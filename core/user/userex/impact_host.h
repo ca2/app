@@ -30,7 +30,7 @@ namespace userex
 //      };
 //
 //
-//      string         m_strView;
+//      string         m_strImpact;
 //      enum_type         m_etype;
 //
 //
@@ -49,7 +49,7 @@ namespace userex
       ::size_i32                                    m_sizeTabbedFrame;
       string_map < __pointer(::user::document) >       m_mapdoc;
       string_map < simple_frame_window * >      m_mapframe;
-      id_array                                  m_idaHandledViews;
+      id_array                                  m_idaHandledImpacts;
 
       __pointer(::user::single_document_template)      m_ptemplateTab;
 
@@ -63,32 +63,32 @@ namespace userex
 
       void install_message_routing(::channel * pchannel) override;
 
-      void assert_valid() const override;
+      void assert_ok() const override;
       void dump(dump_context & dumpcontext) const override;
 
-      virtual void handle(::subject * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
 
       virtual __pointer(::userex::pane_tab_view) get_pane_tab_view();
 
       virtual bool _001IsCompactMode();
 
-      virtual void _001OnView(::id idView);
-      virtual void show_view(::id idView);
-      virtual void hide_view(::id idView);
-      virtual void toggle_view(::id idView);
-      virtual void defer_show_view(::id idView);
-      virtual __pointer(::user::impact) _001GetView(::id idView);
-      virtual __pointer(::simple_frame_window) _001GetFrame(::id idView);
-      virtual __pointer(::user::impact) _001DetachView(::id idView);
-      virtual bool _001AttachView(::id idView);
-      virtual void _001DefaultLayoutView(::id idView);
-      virtual __pointer(::user::impact) get_view(::id idView);
-      virtual __pointer(::user::document) get_doc(::id idView);
-      virtual bool defer_create_view(::id idView, ::create * pcreate = nullptr);
-      //virtual __pointer(::user::document) detach_doc(::id idView);
-      //virtual bool attach(__pointer(::user::document) pdocument, ::id idView);
-      //virtual bool toggle(__pointer(::user::document) pdocument, ::id idView);
+      virtual void _001OnImpact(::atom idImpact);
+      virtual void show_view(::atom idImpact);
+      virtual void hide_view(::atom idImpact);
+      virtual void toggle_view(::atom idImpact);
+      virtual void defer_show_view(::atom idImpact);
+      virtual __pointer(::user::impact) _001GetImpact(::atom idImpact);
+      virtual __pointer(::simple_frame_window) _001GetFrame(::atom idImpact);
+      virtual __pointer(::user::impact) _001DetachImpact(::atom idImpact);
+      virtual bool _001AttachImpact(::atom idImpact);
+      virtual void _001DefaultLayoutImpact(::atom idImpact);
+      virtual __pointer(::user::impact) get_view(::atom idImpact);
+      virtual __pointer(::user::document) get_doc(::atom idImpact);
+      virtual bool defer_create_view(::atom idImpact, ::create * pcreate = nullptr);
+      //virtual __pointer(::user::document) detach_doc(::atom idImpact);
+      //virtual bool attach(__pointer(::user::document) pdocument, ::atom idImpact);
+      //virtual bool toggle(__pointer(::user::document) pdocument, ::atom idImpact);
 
       virtual bool OnUpDownTargetAttach(::user::interaction * pupdown) override;
       virtual bool OnUpDownTargetDetach(::user::interaction * pupdown) override;

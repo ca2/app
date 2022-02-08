@@ -65,7 +65,7 @@ void update::run()
 
       }
 
-      system_call_update(m_id);
+      system_call_update(m_atom);
 
       if(m_bModified)
       {
@@ -86,7 +86,7 @@ void update::run()
 void update::notify()
 {
 
-   auto psubject = new_action(m_iUpdate);
+   auto ptopic = new_action(m_iUpdate);
 
    pupdate->m_pupdatenotificationtask = this;
 

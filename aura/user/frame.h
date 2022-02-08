@@ -143,7 +143,7 @@ namespace user
       virtual void on_user_style_change();
 
 
-      void handle(::subject * psubject, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::context * pcontext) override;
 
 
       void display_previous_restore() override;
@@ -158,7 +158,7 @@ namespace user
       virtual ::user::tool_window * tool_window(enum_tool etool, bool bCreate = false);
 
 
-      //virtual ::user::toolbar * get_toolbar(const ::id & idToolBar);
+      //virtual ::user::toolbar * get_toolbar(const ::atom & idToolBar);
 
       virtual void add_control_bar(::user::control_bar * pcontrolbar);
       virtual void erase_control_bar(::user::control_bar * pcontrolbar);
@@ -168,7 +168,7 @@ namespace user
       void hide_control_bar(::user::control_bar * pcontrolbar) override;
 
 
-      //virtual __pointer(toolbar) create_toolbar(const ::id & idToolbar, const ::string & strToolbar = nullptr, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP, const ::type & type = "user::toolbar");
+      //virtual __pointer(toolbar) create_toolbar(const ::atom & idToolbar, const ::string & strToolbar = nullptr, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP, const ::type & type = "user::toolbar");
 
 
       virtual void on_create_bars();
@@ -177,7 +177,7 @@ namespace user
 
 
       virtual ::user::interaction * get_active_view() const;
-      virtual void set_active_view(::user::impact * pViewNew, bool bNotify = true);
+      virtual void set_active_view(::user::impact * pImpactNew, bool bNotify = true);
 
       virtual void ActivateFrame(::e_display edisplay = e_display_undefined);
 

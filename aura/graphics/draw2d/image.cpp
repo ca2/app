@@ -119,7 +119,7 @@ concrete < ::size_i32 > image::image_source_size() const
 ::draw2d::bitmap_pointer image::get_bitmap() const
 {
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
    return nullptr;
 
@@ -130,7 +130,7 @@ concrete < ::size_i32 > image::image_source_size() const
 ::draw2d::bitmap_pointer image::detach_bitmap()
 {
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
    return nullptr;
 
@@ -180,9 +180,9 @@ void image::defer_realize(::draw2d::graphics* pgraphics) const
 void image::create_ex(const ::size_i32 & size, ::color32_t * pcolorref, int iScan, ::enum_flag eflagCreate, int iGoodStride, bool bPreserve)
 {
 
-   throw interface_only_exception();
+   throw ::interface_only();
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
 }
 
@@ -206,9 +206,9 @@ void image::initialize(const ::size_i32 & size, ::color32_t * pcolorref, int iSc
 //void image::initialize(const ::size_i32 & size, ::color32_t * pcolorref, int iScan, ::eobject eobjectCreate)
 //{
 //
-//   throw interface_only_exception();
+//   throw ::interface_only();
 //
-//   throw ::interface_only_exception();
+//   throw ::interface_only();
 //
 //}
 
@@ -244,7 +244,7 @@ void image::dc_select(bool bSelect)
 
    __UNREFERENCED_PARAMETER(bSelect);
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
    //return false;
 
@@ -263,7 +263,7 @@ void image::create(::draw2d::graphics* pgraphics)
 
    }
 
-   throw interface_only_exception();
+   throw ::interface_only();
 
    //return ::error_failed;
 
@@ -504,7 +504,7 @@ void image::destroy()
 //   __UNREFERENCED_PARAMETER(point);
 //   __UNREFERENCED_PARAMETER(size);
 //   __UNREFERENCED_PARAMETER(pointSrc);
-//   throw ::interface_only_exception();
+//   throw ::interface_only();
 //
 //   return false;
 //
@@ -3000,7 +3000,7 @@ void image::BitBlt(::image* pimage, i32 op)
    if (op == 123) // zero dest rgb, invert alpha, and OR src rgb
    {
 
-      __throw(todo);
+      throw ::exception(todo);
       //stretch(pimage);
 
    }
@@ -5348,7 +5348,7 @@ void image::RadialFill(
 void image::SetIconMask(::draw2d::icon* picon, i32 cx, i32 cy)
 {
 
-   //      __throw(todo);
+   //      throw ::exception(todo);
    //
    //      // xxx todo create(width(), height());
    //
@@ -5361,7 +5361,7 @@ void image::SetIconMask(::draw2d::icon* picon, i32 cx, i32 cy)
    //      // White blend image_impl
    //      image_impl pimage1;
    //
-   //      __throw(todo);
+   //      throw ::exception(todo);
    //
    //      // xxx todo pimage1->create(width(), height());
    //
@@ -5369,7 +5369,7 @@ void image::SetIconMask(::draw2d::icon* picon, i32 cx, i32 cy)
    //
    //#ifdef _UWP
    //
-   //      throw interface_only_exception();
+   //      throw ::interface_only();
    //
    //#else
    //
@@ -5387,14 +5387,14 @@ void image::SetIconMask(::draw2d::icon* picon, i32 cx, i32 cy)
    //      image_impl pimage2;
    //
    //
-   //      __throw(todo);
+   //      throw ::exception(todo);
    //
    //      // xxx todo pimage2->create(width(), height());
    //      pimage2->Fill(0, 0, 0, 0);
    //
    //#ifdef _UWP
    //
-   //      throw interface_only_exception();
+   //      throw ::interface_only();
    //
    //#else
    //
@@ -5410,13 +5410,13 @@ void image::SetIconMask(::draw2d::icon* picon, i32 cx, i32 cy)
    //
    //      // Mask image_impl
    //      image_impl imageM;
-   //      __throw(todo);
+   //      throw ::exception(todo);
    //
    //      // xxx todo imageM.create(width(), height());
    //
    //#ifdef _UWP
    //
-   //      throw interface_only_exception();
+   //      throw ::interface_only();
    //
    //#else
    //
@@ -5582,7 +5582,7 @@ void image::rotate(image * pimage, const ::angle& angle, double dScale)
             for (i32 j = 0; j < cy; j++)
             {
 
-               pimage->colorref()[i * s + j] = colorref()[j * srcS + (cx - i - 1)];
+               colorref()[i * s + j] = pimage->colorref()[j * srcS + (cx - i - 1)];
 
             }
 
@@ -7004,7 +7004,7 @@ void image::_set_mipmap(::draw2d::e_mipmap emipmap)
       //if (!create({ (int)newcx, (int)newcy }))
       //{
 
-      //   __throw(error_resource);
+      //   throw ::exception(error_resource);
 
       //}
 
@@ -7084,7 +7084,7 @@ void image::_set_mipmap(::draw2d::e_mipmap emipmap)
       //if (!create({ (i32)newcx, (i32)newcy }))
       //{
 
-      //   __throw(error_resource);
+      //   throw ::exception(error_resource);
 
       //}
 
@@ -7397,7 +7397,7 @@ void image::set_alpha_mode(::draw2d::enum_alpha_mode emode)
 //   __UNREFERENCED_PARAMETER(i);
 //   __UNREFERENCED_PARAMETER(iAngle);
 //
-//   throw ::interface_only_exception();
+//   throw ::interface_only();
 //
 //   return 0;
 //
@@ -7410,7 +7410,7 @@ void image::set_alpha_mode(::draw2d::enum_alpha_mode emode)
 //   __UNREFERENCED_PARAMETER(i);
 //   __UNREFERENCED_PARAMETER(iAngle);
 //
-//   throw ::interface_only_exception();
+//   throw ::interface_only();
 //
 //   //return 0;
 //
@@ -7423,7 +7423,7 @@ void image::set_alpha_mode(::draw2d::enum_alpha_mode emode)
 //   __UNREFERENCED_PARAMETER(i);
 //   __UNREFERENCED_PARAMETER(iAngle);
 //
-//   throw ::interface_only_exception();
+//   throw ::interface_only();
 //
 //   return 0;
 //
@@ -7436,7 +7436,7 @@ void image::set_alpha_mode(::draw2d::enum_alpha_mode emode)
 //   __UNREFERENCED_PARAMETER(i);
 //   __UNREFERENCED_PARAMETER(iAngle);
 //
-//   throw ::interface_only_exception();
+//   throw ::interface_only();
 //
 //   return 0;
 //
@@ -7444,12 +7444,12 @@ void image::set_alpha_mode(::draw2d::enum_alpha_mode emode)
 
 /*   i32 image::width()
    {
-      throw ::interface_only_exception();
+      throw ::interface_only();
    }
 
    i32 image::height()
    {
-      throw ::interface_only_exception();
+      throw ::interface_only();
    }
 
    i64 image::area()
@@ -8736,7 +8736,7 @@ void image::set_mapped()
 //      // default implementation does nothing, image_impl should be now updated (before calling update interaction_impl)
 //      // and ready to be queried if post queried
 //
-////      throw ::interface_only_exception();
+////      throw ::interface_only();
 //
 //
 //      return true;
@@ -8750,7 +8750,7 @@ void image::set_mapped()
 //   __UNREFERENCED_PARAMETER(puserinteraction);
 //   __UNREFERENCED_PARAMETER(pmessage);
 
-//   throw ::interface_only_exception();
+//   throw ::interface_only();
 
 //   return false;
 
@@ -9739,7 +9739,7 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image* m_p, i32 dx, i32 dy, void* pf
 stream& image::write(::stream& stream) const
 {
 
-   //__throw(todo("write_link"));
+   //throw ::exception(todo("write_link"));
    //if(stream.write_link(this))
    //{
 
@@ -9781,7 +9781,7 @@ stream& image::write(::stream& stream) const
 stream& image::read(::stream& stream)
 {
 
-   //__throw(todo("write_link"));
+   //throw ::exception(todo("write_link"));
    //string strLink;
 
    //bool bReadOnly;

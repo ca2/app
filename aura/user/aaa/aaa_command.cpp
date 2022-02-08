@@ -20,12 +20,12 @@ namespace user
    }
 
 
-   command::command(const ::id & id)
+   command::command(const ::atom & atom)
    {
 
       common_construct();
       m_emessage           = ::e_message_system_command;
-      m_id                          = id;
+      m_atom                          = atom;
       m_bRadioChanged               = false;
 
    }
@@ -243,7 +243,7 @@ namespace user
    void command::do_probe(channel * ptarget)
    {
 
-      if(m_id.is_empty())
+      if(m_atom.is_empty())
          return;     // ignore invalid IDs
 
       ENSURE_VALID(ptarget);

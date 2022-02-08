@@ -69,7 +69,7 @@ namespace filemanager
 
       __pointer(::user::document) pdocument = ::user::__document(pcreate);
 
-      __pointer(::userex::pane_tab_view) pview = pdocument->get_typed_view < ::userex::pane_tab_view > ();
+      __pointer(::userex::pane_tab_view) pview = pdocument->get_type_impact < ::userex::pane_tab_view > ();
 
       m_ptabview = pview;
 
@@ -122,7 +122,7 @@ namespace filemanager
 
    void file_properties_form::on_create_impact(::user::impact_data * pimpactdata)
    {
-      switch(pimpactdata->m_id)
+      switch(pimpactdata->m_atom)
       {
       case 1:
       {
@@ -137,7 +137,7 @@ namespace filemanager
 
          if(m_pdocGeneral != nullptr)
          {
-            m_pviewGeneral = m_pdocGeneral->get_typed_view < ::user::form > ();
+            m_pviewGeneral = m_pdocGeneral->get_type_impact < ::user::form > ();
             m_pviewGeneral->set_form_callback(this);
             pimpactdata->m_pdocument = m_pdocGeneral;
             pimpactdata->m_puserinteraction = m_pviewGeneral->get_parent_frame();
@@ -179,13 +179,13 @@ namespace filemanager
       }
    }
 
-   void file_properties_form::handle(::subject * psubject, ::context * pcontext)
+   void file_properties_form::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if(psubject->m_id == ::e_subject_click)
+      if(ptopic->m_atom == ::id_click)
       {
 
-         if(psubject->user_interaction()->m_id == "submit")
+         if(ptopic->get_extended_topic()->user_interaction()->m_atom == "submit")
          {
 
          }

@@ -807,12 +807,12 @@ namespace mysql
       string strSql;
       string strAgent(psz);
       string strTable(pszTable);
-      strSql = "SELECT id FROM " + strTable + " WHERE value='" + strAgent + "'";
+      strSql = "SELECT atom FROM " + strTable + " WHERE value='" + strAgent + "'";
       string strId = query_item(strSql);
 
       if (strId.is_empty())
       {
-         strId = query_item("SELECT maximum(id) FROM " + strTable + " ORDER BY id");
+         strId = query_item("SELECT maximum(atom) FROM " + strTable + " ORDER BY atom");
          if (strId.is_empty())
          {
             strId = string("0000000000000000") + string("0000000000000000") + string("0000000000000000") + string("0000000000000000")
@@ -824,13 +824,13 @@ namespace mysql
          {
             ::str::increment_digit_letter(strId);
          }
-         strSql = "INSERT INTO " + strTable + "(`id`, `value`) VALUES('" + strId + "', '" + strAgent + "')";
+         strSql = "INSERT INTO " + strTable + "(`atom`, `value`) VALUES('" + strId + "', '" + strAgent + "')";
          if (!query(strSql))
             return false;
       }
       if (pszUser != nullptr)
       {
-         if (!query("UPDATE " + strTable + " SET `user` = '" + string(pszUser) + "' WHERE `id` = '" + strId + "'"))
+         if (!query("UPDATE " + strTable + " SET `user` = '" + string(pszUser) + "' WHERE `atom` = '" + strId + "'"))
             return false;
       }
       return strId;
@@ -855,7 +855,7 @@ namespace mysql
       if (psz == nullptr)
       {
 
-         __throw(error_no_memory);
+         throw ::exception(error_no_memory);
 
       }
 

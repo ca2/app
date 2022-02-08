@@ -116,9 +116,9 @@ namespace write_text
    void drawer::get_text_metrics(::write_text::text_metric* pmetrics)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -126,9 +126,9 @@ namespace write_text
    void drawer::TextOutRaw(double x, double y, const block& block)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -301,6 +301,8 @@ namespace write_text
             ptextout->m_point.x = 0;
 
             ptextout->m_point.y = y;
+
+            ptextout->m_pfont = pfont;
 
             textouta.add_text_out(ptextout);
 

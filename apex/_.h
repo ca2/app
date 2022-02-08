@@ -49,7 +49,7 @@ namespace apex
 #endif
 
 
-#include "apex/node/operating_system/operating_system.h"
+#include "apex/operating_system/_common.h"
 
 
 #include "apex/include/_include.h"

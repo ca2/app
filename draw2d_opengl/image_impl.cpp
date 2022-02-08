@@ -213,7 +213,7 @@ namespace draw2d_opengl
 
       }
 
-      __throw(todo("::opengl::image"));
+      throw ::exception(todo("::opengl::image"));
 
       //bool bOk = GetDIBits(GL2D_HDC(pgraphics), (HBITMAP) pbitmap->get_os_data(), 0, m_size.cy, get_data(), &(m_bitmapinfo), DIB_RGB_COLORS) != false;
 
@@ -449,7 +449,7 @@ namespace draw2d_opengl
    //      color32_t colorrefaN[2];
    //      colorrefaN[0] = _colorrefN;
    //      colorrefaN[1] = _colorrefN;
-   //      __throw(todo);
+   //      throw ::exception(todo);
    //   }
 
    //}

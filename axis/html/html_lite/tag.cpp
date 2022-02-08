@@ -204,7 +204,7 @@ lite_html_tag::~lite_html_tag()
          if ((pcollAttr = new LiteHTMLAttributes) == nullptr)
          {
 //            TRACE0("(Error) lite_html_tag::parseFromStr: Out of memory.\n");
-            __throw(error_no_memory);
+            throw ::exception(error_no_memory);
             return (0U);
          }
 

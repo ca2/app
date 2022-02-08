@@ -1563,7 +1563,7 @@ static int_bool DLL_CALLCONV
 
          if ((bpp != 24) && (bpp != 8))
          {
-            __throw(sError);
+            throw ::exception(sError);
          }
 
          if(bpp == 8)
@@ -1571,7 +1571,7 @@ static int_bool DLL_CALLCONV
             // allow grey, reverse grey and palette
             if ((color_type != FIC_MINISBLACK) && (color_type != FIC_MINISWHITE) && (color_type != FIC_PALETTE))
             {
-               __throw(sError);
+               throw ::exception(sError);
             }
          }
 
@@ -1592,7 +1592,7 @@ static int_bool DLL_CALLCONV
             // If we get here, the JPEG code has signaled an error.
             // We need to clean up the JPEG object, close the input file, and return.
             jpeg_destroy_compress(&cinfo);
-            __throw((const ::string &)nullptr);
+            throw ::exception((const ::string &)nullptr);
          }
 
          // Now we can initialize the JPEG compression object
@@ -1768,7 +1768,7 @@ static int_bool DLL_CALLCONV
             byte *target = (byte*)malloc(pitch * sizeof(byte));
             if (target == nullptr)
             {
-               __throw(FI_MSG_ERROR_MEMORY);
+               throw ::exception(FI_MSG_ERROR_MEMORY);
             }
 
             while (cinfo.next_scanline < cinfo.image_height)
@@ -1806,7 +1806,7 @@ static int_bool DLL_CALLCONV
             byte *target = (byte*)malloc(cinfo.image_width * 3);
             if (target == nullptr)
             {
-               __throw(FI_MSG_ERROR_MEMORY);
+               throw ::exception(FI_MSG_ERROR_MEMORY);
             }
 
             while (cinfo.next_scanline < cinfo.image_height)
@@ -1838,7 +1838,7 @@ static int_bool DLL_CALLCONV
             byte *target = (byte *)malloc(cinfo.image_width);
             if (target == nullptr)
             {
-               __throw(FI_MSG_ERROR_MEMORY);
+               throw ::exception(FI_MSG_ERROR_MEMORY);
             }
 
             for(i = 0; i < 256; i++)

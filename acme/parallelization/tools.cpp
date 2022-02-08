@@ -26,7 +26,7 @@ task_group::task_group(::matter * pmatter, ::enum_priority epriority)
    //if (!estatus)
    //{
 
-   //   __throw(estatus);
+   //   throw ::exception(estatus);
 
    //}
 
@@ -440,7 +440,7 @@ void task_group::select_tool(task_tool* ptool)
 
       auto & pitem = ptool->item_at(i);
 
-      pitem = m_psystem->__id_create < ::task_tool_item > (ptool->m_id);
+      pitem = m_psystem->__id_create < ::task_tool_item > (ptool->m_atom);
 
       pitem->m_ptask = ptask;
 

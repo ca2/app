@@ -300,7 +300,7 @@ namespace windowing
 
 //CLASS_DECL_ACME u32 random_processor_index_generator();
 
-CLASS_DECL_ACME int_bool post_message(::windowing::window * pwindow, const ::id & id, wparam wparam, lparam lparam);
+CLASS_DECL_ACME void post_message(::windowing::window * pwindow, const ::atom & atom, wparam wparam, lparam lparam);
 
 
 
@@ -329,7 +329,7 @@ class thread;
 
 
    //CLASS_DECL_ACME bool task_registered(::task * ptask);
-   //CLASS_DECL_ACME bool task_id_registered(itask_t id);
+   //CLASS_DECL_ACME bool task_id_registered(itask_t atom);
 
    //CLASS_DECL_ACME void task_register(itask_t itask, ::task * ptask);
 
@@ -370,7 +370,7 @@ CLASS_DECL_ACME void thread_release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
 
 #ifdef __cplusplus_winrt
 
-#include "acme/node/operating_system/universal_windows/parallelization_winrt.h"
+#include "acme/operating_system/universal_windows/parallelization_winrt.h"
 
 #endif
 

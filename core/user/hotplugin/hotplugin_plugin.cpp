@@ -137,7 +137,7 @@ namespace hotplugin
       }
    }
 
-   void plugin::post_message(const ::id & id, wparam wparam, lparam lparam)
+   void plugin::post_message(const ::atom & atom, wparam wparam, lparam lparam)
 
    {
       if(m_phost != nullptr)
@@ -183,10 +183,10 @@ namespace hotplugin
    }
 
 
-   void plugin::handle(::subject * psubject, ::context * pcontext)
+   void plugin::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::user::interaction::handle(psubject, pcontext);
+      ::user::interaction::handle(ptopic, pcontext);
 
    }
 
@@ -232,7 +232,7 @@ namespace hotplugin
 
 #ifdef WINDOWS
 
-   /*   LRESULT plugin::message_handler(const ::id & id, wparam wparam, lparam lparam)
+   /*   LRESULT plugin::message_handler(const ::atom & atom, wparam wparam, lparam lparam)
 
       {
          return 0;
@@ -278,7 +278,7 @@ namespace hotplugin
 
 #else
 
-         __throw(::exception("not implemented"));
+         throw ::exception(::exception("not implemented"));
 
 #endif
 
@@ -807,7 +807,7 @@ pacmedir->create(dir::appdata() / "time" / "aura");
             if(bCreate)
             {
 
-               __throw(::exception("resource_exception"));
+               throw ::exception(::exception("resource_exception"));
 
             }
 
@@ -844,7 +844,7 @@ pacmedir->create(dir::appdata() / "time" / "aura");
 //            if(bCreateFile)
 //            {
 //
-//               __throw(::exception("resource exception"));
+//               throw ::exception(::exception("resource exception"));
 //
 //            }
 //            else
@@ -874,7 +874,7 @@ pacmedir->create(dir::appdata() / "time" / "aura");
 //         {
 //            CloseHandle(m_hfileBitmap);
 //            m_hfileBitmap = INVALID_HANDLE_VALUE;
-//            __throw(::exception("resource exception"));
+//            throw ::exception(::exception("resource exception"));
 //         }
 //
 //#elif defined(WINDOWS)
@@ -893,7 +893,7 @@ pacmedir->create(dir::appdata() / "time" / "aura");
 //         {
 //            CloseHandle(m_hfileBitmap);
 //            m_hfileBitmap = INVALID_HANDLE_VALUE;
-//            __throw(::exception("resource exception"));
+//            throw ::exception(::exception("resource exception"));
 //         }
 //#else
 //
@@ -934,7 +934,7 @@ pacmedir->create(dir::appdata() / "time" / "aura");
 //            ::close(m_hfileBitmap);
 //            m_hfileBitmap = -1;
 //#endif
-//            __throw(::exception("resource exception"));
+//            throw ::exception(::exception("resource exception"));
 //         }
 
          m_pmutexBitmap = new ::mutex(e_create_new, false, string("Global\\app_app_nest-") + hex::lower_from((iptr)this));
@@ -1073,14 +1073,14 @@ pacmedir->create(dir::appdata() / "time" / "aura");
    void plugin::message_handler(::user::message * pusermessage)
    {
 
-      const ::id & id;
+      const ::atom & atom;
 
       wparam wparam;
 
       lparam lparam;
 
 
-      message = (::u32) (LPARAM) pusermessage->m_id.i64();
+      message = (::u32) (LPARAM) pusermessage->m_atom.i64();
 
       wparam     = pusermessage->m_wparam;
 
@@ -1107,7 +1107,7 @@ pacmedir->create(dir::appdata() / "time" / "aura");
    }
 
 
-   void plugin::plugin_message_handler(const ::id & id, wparam wparam, lparam lparam, bool bEnsureTx)
+   void plugin::plugin_message_handler(const ::atom & atom, wparam wparam, lparam lparam, bool bEnsureTx)
 
    {
 

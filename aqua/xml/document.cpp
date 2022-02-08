@@ -26,7 +26,7 @@ namespace xml
    document & document::operator = (const document & document)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return *this;
 

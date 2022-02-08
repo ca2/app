@@ -24,9 +24,9 @@ namespace prompt
 
 
 
-   void pane_view::assert_valid() const
+   void pane_view::assert_ok() const
    {
-      ::user::impact::assert_valid();
+      ::user::impact::assert_ok();
    }
 
    void pane_view::dump(dump_context & dumpcontext) const
@@ -56,10 +56,10 @@ namespace prompt
    }
 
 
-   void pane_view::handle(::subject * psubject, ::context * pcontext)
+   void pane_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::user::tab_view::handle(psubject, pcontext);
+      ::user::tab_view::handle(ptopic, pcontext);
 
    }
 
@@ -108,7 +108,7 @@ namespace prompt
 
    void pane_view::on_create_impact(::user::impact_data * pimpactdata)
    {
-      switch(pimpactdata->m_id)
+      switch(pimpactdata->m_atom)
       {
       case CONTEXT_MENU_IMPACT:
       {
@@ -244,17 +244,17 @@ namespace prompt
          if(pdocument == nullptr)
             return;
          ::user::impact_data * pimpactdata = new ::user::impact_data;
-         __pointer(::user::impact) pview = pdocument->get_typed_view < ::user::impact > ();
+         __pointer(::user::impact) pview = pdocument->get_type_impact < ::user::impact > ();
          auto pupdate = new_update();
          pupdate->m_actioncontext = ::e_source_system;
-         psubject->id() = id_browse;
-         psubject->payload(id_form) = "filemanager\\replace_name_in_file_system.xhtml";
+         ptopic->m_atom = id_browse;
+         ptopic->get_extended_topic()->payload(id_form) = "filemanager\\replace_name_in_file_system.xhtml";
          pdocument->update_all_views(pupdate);
 
-         psubject->id() = id_get_form_view;
+         ptopic->m_atom = id_get_form_view;
          pdocument->update_all_views(pupdate);
 
-         psubject->id() = id_after_browse;
+         ptopic->m_atom = id_after_browse;
          pdocument->update_all_views(pupdate);
 
 
@@ -279,7 +279,7 @@ namespace prompt
 
       __UNREFERENCED_PARAMETER(pmessage);
 
-      set_current_tab_by_id(m_pimpactdataOld->m_id);
+      set_current_tab_by_id(m_pimpactdataOld->m_atom);
 
    }
 
@@ -299,7 +299,7 @@ namespace prompt
    void pane_view::rotate()
    {
 
-      id idNew;
+      atom idNew;
 
       if (get_view_id() == FILEMANAGER_IMPACT)
       {
@@ -329,19 +329,19 @@ namespace prompt
    }
 
 
-   void pane_view::handle(::subject * psubject, ::context * pcontext)
+   void pane_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::prompt::form_callback::handle(psubject, pcontext);
+      ::prompt::form_callback::handle(ptopic, pcontext);
 
-      if(psubject->m_bRet)
+      if(ptopic->get_extended_topic()->m_bRet)
       {
 
          return;
 
       }
 
-      ::userex::pane_tab_view::handle(psubject, pcontext);
+      ::userex::pane_tab_view::handle(ptopic, pcontext);
 
    }
 

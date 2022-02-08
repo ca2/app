@@ -6,7 +6,7 @@
 #ifdef PARALLELIZATION_PTHREAD
 
 
-#include "acme/node/operating_system/ansi/_pthread.h"
+#include "acme/operating_system/ansi/_pthread.h"
 
 
 #endif
@@ -40,7 +40,7 @@ message_queue::~message_queue()
 }
 
 
-void message_queue::post_message(oswindow oswindow, const ::id & id, wparam wparam, lparam lparam)
+void message_queue::post_message(oswindow oswindow, const ::atom & atom, wparam wparam, lparam lparam)
 {
 
    if (m_bQuit)
@@ -53,7 +53,7 @@ void message_queue::post_message(oswindow oswindow, const ::id & id, wparam wpar
 
    MESSAGE message;
 
-   message.m_id = id;
+   message.m_atom = atom;
    message.oswindow = oswindow;
    message.wParam = wparam;
    message.lParam = lparam;
@@ -77,7 +77,7 @@ void message_queue::post_message(const MESSAGE & message)
 
    }
 
-   if (message.m_id == e_message_quit)
+   if (message.m_atom == e_message_quit)
    {
 
       ::output_debug_string("message_queue::post_message e_message_quit\n");
@@ -95,19 +95,21 @@ void message_queue::post_message(const MESSAGE & message)
 }
 
 
-//void message_queue::kick_idle()
-//{
-//
-//   _synchronous_lock synchronouslock(mutex());
-//
-//   m_bKickIdle = true;
-//
-//   m_eventNewMessage.set_event();
-//
-//}
+void message_queue::kick_idle()
+{
+
+   //_synchronous_lock synchronouslock(mutex());
+
+   //m_bKickIdle = true;
+
+   //m_eventNewMessage.set_event();
+
+   post_message(nullptr, e_message_kick_idle, 0, 0);
+
+}
 
 
-bool message_queue::get_message(MESSAGE * pmessage, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, const ::duration & duration)
+void message_queue::get_message(MESSAGE * pmessage, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, const ::duration & duration)
 {
 
    if (wMsgFilterMax == 0)
@@ -127,7 +129,7 @@ bool message_queue::get_message(MESSAGE * pmessage, oswindow oswindow, ::u32 wMs
 
          auto & message = m_messagea[i];
 
-         if (message.m_id == e_message_quit)
+         if (message.m_atom == e_message_quit)
          {
 
             m_bQuit = true;
@@ -139,11 +141,11 @@ bool message_queue::get_message(MESSAGE * pmessage, oswindow oswindow, ::u32 wMs
             // 2021-07-22 15:03 BRT quit message would be last message and empty message queue?
             m_messagea.erase_all();
 
-            return false;
+            return;
 
          }
 
-         auto iMessage = message.m_id.i64();
+         auto iMessage = message.m_atom.i64();
 
          if ((oswindow == nullptr || message.oswindow == oswindow) && iMessage >= wMsgFilterMin && iMessage <= wMsgFilterMax)
          {
@@ -154,7 +156,7 @@ bool message_queue::get_message(MESSAGE * pmessage, oswindow oswindow, ::u32 wMs
 
             //m_bKickIdle = false;
 
-            return true;
+            return;
 
          }
 
@@ -213,7 +215,7 @@ bool message_queue::peek_message(MESSAGE * pMsg, oswindow oswindow,::u32 wMsgFil
 
       MESSAGE & msg = m_messagea[i];
 
-      if((oswindow == nullptr || msg.oswindow == oswindow) && msg.m_id.i64() >= wMsgFilterMin && msg.m_id.i64() <= wMsgFilterMax)
+      if((oswindow == nullptr || msg.oswindow == oswindow) && msg.m_atom.i64() >= wMsgFilterMin && msg.m_atom.i64() <= wMsgFilterMax)
       {
 
          *pMsg = msg;

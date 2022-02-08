@@ -66,7 +66,6 @@ enum enum_id : u64
    id_after_change_text,
    id_after_change_text_delayed,
    id_delete_contents,
-   id_key_down,
    id_select_main_tab,
    id_new_destination,
    id_xxxid_current_area,
@@ -88,8 +87,6 @@ enum enum_id : u64
    id_netshare, // ["address"]
    id_playback_start,
    id_playback_stop,
-   id_load_projects,
-   id_show_view,
    id_email_changed,
    id_open_email,
    id_synchronize_locations,
@@ -227,13 +224,71 @@ enum enum_id : u64
    id_term_instance,
 
 
-      id_hide_recycle_bin,
-      id_show_recycle_bin,
+   id_hide_recycle_bin,
+   id_show_recycle_bin,
+   id_not_modified,
       
 
    // procedures:
 
    // callbacks:
+
+   // user topic
+      
+   id_initialize_control = 1'073'741'824, // 0x40000000
+   id_action,
+   id_left_button_down,
+   id_left_button_double_click,
+   id_click,
+   id_context_menu,
+   //subjectnt_m_button_down,
+   //subjectnt_m_button_up,
+   id_list_clicked,
+   //subjectnt_mouse_enter,
+   //subjectnt_mouse_leave,
+   id_set_check,
+   id_timer,
+   id_enter_key,
+   id_escape,
+   id_tab_key,
+   id_key_down,
+   id_after_change_text_format,
+   id_after_change_cur_sel,
+   id_after_change_cur_hover,
+   id_mouse_enter,
+   id_mouse_leave,
+   id_timebar_change,
+   id_menu_hover,
+   id_context_menu_close,
+   id_set_focus,
+   id_kill_focus,
+   id_on_create_impact,
+   id_on_create_tab,
+   id_form_initialize,
+   id_create,
+   id_layout,
+   id_calc_item_height,
+   id_change_view_style,
+   id_item_clicked,
+   id_image_list_action,
+   id_load_form_data,
+   id_save_form_data,
+   id_close_app,
+   id_switch,
+
+
+   id_show_view,
+   id_load_projects,
+
+
+   id_task_bar_created,
+
+
+   id_video_input_device_added,
+   id_video_input_device_removed,
+
+
+
 
 };
 

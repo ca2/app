@@ -176,7 +176,7 @@ namespace filemanager
 
       return ::error_not_implemented;
 
-      //__throw(todo("core"));
+      //throw ::exception(todo("core"));
       ////add_factory_item <form >();
       ////add_factory_item <document >();
       ////add_factory_item <child_frame >();
@@ -206,7 +206,7 @@ namespace filemanager
 
       ////__compose_new(this, m_pmap);
 
-      //__throw(todo("core"));
+      //throw ::exception(todo("core"));
       ////psession->userex()->shell()->initialize(&Session);
 
       ////auto pmulti = __new(::user::multiple_document_template(
@@ -255,32 +255,32 @@ namespace filemanager
    }
 
 
-   //__pointer(data) component::filemanager_create_data(id id)
+   //__pointer(data) component::filemanager_create_data(atom atom)
    //{
 
-   //   if (!is_filemanager(id))
+   //   if (!is_filemanager(atom))
    //   {
 
    //      return nullptr;
 
    //   }
 
-   //   __throw(todo("core"));
+   //   throw ::exception(todo("core"));
    //   //auto pdata = __new(data);
 
    //   //pdata->initialize_filemanager_data(this);
 
-   //   //pdata->m_id = id;
+   //   //pdata->m_atom = atom;
 
-   //   //filemanager_set_data(id, pdata);
+   //   //filemanager_set_data(atom, pdata);
 
    //   //__pointer(::user::multiple_document_template) pdoctemplate;
 
-   //   //string strTemplateId = id;
+   //   //string strTemplateId = atom;
 
    //   //strTemplateId.replace("::", "/");
 
-   //   //if (is_filemanager_group(id, TABBED_GROUP))
+   //   //if (is_filemanager_group(atom, TABBED_GROUP))
    //   //{
    //   //   pdoctemplate = __new(::user::multiple_document_template(
    //   //                       strTemplateId,
@@ -289,7 +289,7 @@ namespace filemanager
    //   //                       __type(tab_view)));
 
    //   //}
-   //   //else if (is_filemanager_group(id, LIST_GROUP))
+   //   //else if (is_filemanager_group(atom, LIST_GROUP))
    //   //{
 
    //   //   pdoctemplate = __new(::user::multiple_document_template(
@@ -299,7 +299,7 @@ namespace filemanager
    //   //                       __type(file_list)));
 
    //   //}
-   //   //else if (is_filemanager_group(id, FOLDER_SELECTION_LIST_GROUP))
+   //   //else if (is_filemanager_group(atom, FOLDER_SELECTION_LIST_GROUP))
    //   //{
 
    //   //   pdoctemplate = __new(::user::multiple_document_template(
@@ -329,13 +329,13 @@ namespace filemanager
    //}
 
 
-   void component::filemanager_set_data(id id, data * pdata)
+   void component::filemanager_set_data(atom atom, data * pdata)
    {
 
-      __throw(todo("core"));
+      throw ::exception(todo("core"));
       //add_reference(pdata);
 
-      //__compose(datamap()[id], pdata);
+      //__compose(datamap()[atom], pdata);
 
    }
 
@@ -582,7 +582,7 @@ pacmedir->localconfig() / "user.component";
    document * component::find_filemanager(::payload payloadFile)
    {
 
-      __throw(todo("core"));
+      throw ::exception(todo("core"));
       //__pointer(document) pdocument;
 
       //for (index i = 0; i < m_pdocumenttemplateProject->get_document_count(); i++)
@@ -656,7 +656,7 @@ pacmedir->localconfig() / "user.component";
 
       //pdocument->Initialize(pcreate == nullptr ? true : pcreate->m_bMakeVisible, false);
 
-      //tab_view * ptabview = pdocument->get_typed_view < tab_view >();
+      //tab_view * ptabview = pdocument->get_type_impact < tab_view >();
 
       //if (ptabview != nullptr)
       //{
@@ -679,7 +679,7 @@ pacmedir->localconfig() / "user.component";
    document * component::restore_filemanager(::payload payloadFile, ::create * pcreate, ::fs::data * pfsdata, callback * pcallback)
    {
 
-      __throw(todo("core"));
+      throw ::exception(todo("core"));
       //filemanager()->m_filepath = payloadFile.get_file_path();
 
       //filemanager()->m_pcreate = pcreate;
@@ -751,10 +751,10 @@ pacmedir->localconfig() / "user.component";
    }
 
 
-   data * component::filemanager(::id id)
+   data * component::filemanager(::atom atom)
    {
 
-      auto & pdata = datamap()[id];
+      auto & pdata = datamap()[atom];
 
       if (pdata)
       {
@@ -763,11 +763,11 @@ pacmedir->localconfig() / "user.component";
 
       }
 
-      __throw(todo("core"));
+      throw ::exception(todo("core"));
  /*     if (!pdata)
       {
 
-         __compose(pdata, filemanager_create_data(id));
+         __compose(pdata, filemanager_create_data(atom));
 
       }*/
 
@@ -777,7 +777,7 @@ pacmedir->localconfig() / "user.component";
 
 
 
-//document * component::open_main(::aura::application * pappOnBehalfOf, ::id id, ::create * pcreate, ::fs::data * pfsdata, ::filemanager::__pointer(data) pdata, callback * pcallback)
+//document * component::open_main(::aura::application * pappOnBehalfOf, ::atom atom, ::create * pcreate, ::fs::data * pfsdata, ::filemanager::__pointer(data) pdata, callback * pcallback)
 //{
 
 //   ::file::path pathFolder;
@@ -819,7 +819,7 @@ pacmedir->localconfig() / "user.component";
 
 //   document * pdocument;
 
-//   if (id.i64() < -1 || id.i64() == m_pdocumenttemplateProject->get_document_count())
+//   if (atom.i64() < -1 || atom.i64() == m_pdocumenttemplateProject->get_document_count())
 //   {
 
 //      pcreate->prop("component::template") = this;
@@ -849,17 +849,17 @@ pacmedir->localconfig() / "user.component";
 //      }
 
 //   }
-//   else if (id.i64() < m_pdocumenttemplateProject->get_document_count())
+//   else if (atom.i64() < m_pdocumenttemplateProject->get_document_count())
 //   {
 
-//      pdocument = m_pdocumenttemplateProject->get_document((index)id);
+//      pdocument = m_pdocumenttemplateProject->get_document((index)atom);
 
 //   }
 
 //   if (pdocument != nullptr)
 //   {
 
-//      tab_view * ptabview = pdocument->get_typed_view < tab_view >();
+//      tab_view * ptabview = pdocument->get_type_impact < tab_view >();
 
 //      if (pathFolder.m_iDir == 1)
 //      {
@@ -906,7 +906,7 @@ pacmedir->localconfig() / "user.component";
 //}
 
 
-//document * component::open(::aura::application * pappOnBehalfOf, id id, ::create * pcreateParam, ::fs::data * pfsdata, ::filemanager::__pointer(data) pdata, callback * pcallback)
+//document * component::open(::aura::application * pappOnBehalfOf, atom atom, ::create * pcreateParam, ::fs::data * pfsdata, ::filemanager::__pointer(data) pdata, callback * pcallback)
 //{
 
 //   ::file::path pathFolder;
@@ -950,7 +950,7 @@ pacmedir->localconfig() / "user.component";
 
 //   document * pdocument;
 
-//   if (id.i64() < -1 || id.i64() == m_pdocumenttemplate->get_document_count())
+//   if (atom.i64() < -1 || atom.i64() == m_pdocumenttemplate->get_document_count())
 //   {
 
 //      pcreate->prop("component::template") = this;
@@ -980,10 +980,10 @@ pacmedir->localconfig() / "user.component";
 //      }
 
 //   }
-//   else if (id.i64() < m_pdocumenttemplate->get_document_count())
+//   else if (atom.i64() < m_pdocumenttemplate->get_document_count())
 //   {
 
-//      pdocument = m_pdocumenttemplate->get_document((index)id);
+//      pdocument = m_pdocumenttemplate->get_document((index)atom);
 
 //   }
 
@@ -1123,7 +1123,7 @@ pacmedir->localconfig() / "user.component";
 //   {
 
 //      pdocument->filemanager_data()->m_datakey.m_strDataKey.format("%s(%d)",
-//            psession->component().m_idFileManager.str(),
+//            psession->component().m_atomFileManager.str(),
 //            pdocument->filemanager_data()->m_iDocument);
 
 //   }

@@ -83,7 +83,7 @@ namespace userfs
       virtual bool on_click(const ::item & item) override;
 
 
-      virtual void handle(::subject * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * ptopic, ::context * pcontext) override;
       virtual bool pre_create_window(::user::system * pusersystem) override;
 
       DECLARE_MESSAGE_HANDLER(_001OnHScroll);
@@ -99,7 +99,7 @@ namespace userfs
       virtual void _001OnTimer(::timer * ptimer) override;
 
 
-      void assert_valid() const override;
+      void assert_ok() const override;
       void dump(dump_context & dumpcontext) const override;
 
       __pointer(::user::mesh_data) create_mesh_data() override;

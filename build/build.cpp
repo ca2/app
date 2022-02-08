@@ -25,7 +25,7 @@ m_bStdout = false;
    void build::prepare_build()
    {
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -33,7 +33,7 @@ m_bStdout = false;
    void build::do_build()
    {
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -41,25 +41,29 @@ m_bStdout = false;
    void build::run()
    {
 
-      auto estatus = prepare_build();
+      //auto estatus =
+      //
+      prepare_build();
 
-      if (!estatus)
-      {
+//      if (!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
 
-         return estatus;
+      //estatus =
+      //
+      do_build();
 
-      }
-
-      estatus = do_build();
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      return estatus;
+//      if (!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
+//
+//      return estatus;
 
    }
 
@@ -142,11 +146,11 @@ m_bStdout = false;
       if(bTimeout)
       {
 
-         return error_timeout;
+         throw_status(error_wait_timeout);
 
       }
 
-      return ::success;
+      //return ::success;
 
    }
 

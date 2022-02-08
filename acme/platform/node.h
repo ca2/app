@@ -50,11 +50,11 @@ namespace acme
       ::apex::posix::node *                  m_pApexPosix;
       ::aura::posix::node *                  m_pAuraPosix;
 
-      ::acme::PLATFORM_NAMESPACE::node *     m_pAcmePlatform;
-      ::apex::PLATFORM_NAMESPACE::node *     m_pApexPlatform;
-      ::aura::PLATFORM_NAMESPACE::node *     m_pAuraPlatform;
+      ::acme::OPERATING_SYSTEM_NAMESPACE::node *     m_pAcmePlatform;
+      ::apex::OPERATING_SYSTEM_NAMESPACE::node *     m_pApexPlatform;
+      ::aura::OPERATING_SYSTEM_NAMESPACE::node *     m_pAuraPlatform;
 
-      ::PLATFORM_NAMESPACE::node *           m_pNode;
+      ::OPERATING_SYSTEM_NAMESPACE::node *           m_pNode;
 
 
       ::windowing_win32::node *              m_pWindowingWin32Node;
@@ -165,12 +165,12 @@ namespace acme
       virtual ::file::path get_last_run_application_path(const ::string & strAppId);
       virtual void  set_last_run_application_path(const string& strAppId);
 
-      virtual void is_keyboard_hook_enabled(::user::interaction * puserinteractionEnablePrompt);
+      virtual ::e_status is_keyboard_hook_enabled(::user::interaction * puserinteractionEnablePrompt);
 
       virtual void install_keyboard_hook(::matter * pmatterListener);
       virtual void uninstall_keyboard_hook(::matter * pmatterListener);
       
-      virtual void is_mouse_hook_enabled(::user::interaction * puserinteractionEnablePrompt);
+      virtual ::e_status is_mouse_hook_enabled(::user::interaction * puserinteractionEnablePrompt);
 
       virtual void install_mouse_hook(::matter * pmatterListener);
       virtual void uninstall_mouse_hook(::matter * pmatterListener);
@@ -272,11 +272,11 @@ namespace acme
 
       virtual void node_quit();
 
-      virtual bool should_launch_on_node(::subject * psubject);
+      virtual bool should_launch_on_node(::topic * ptopic);
 
-      virtual bool defer_launch_on_node(::subject * psubject);
+      virtual bool defer_launch_on_node(::topic * ptopic);
 
-      virtual bool launch_on_node(::subject * psubject);
+      virtual bool launch_on_node(::topic * ptopic);
 
 
       virtual string get_user_name();

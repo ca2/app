@@ -55,7 +55,7 @@ namespace draw2d_cairo
 
       default:
 
-         throw interface_only_exception();
+         throw ::interface_only();
 
       }
 
@@ -196,7 +196,7 @@ namespace draw2d_cairo
 
       default:
 
-         throw interface_only_exception();
+         throw ::interface_only();
 
       }
 
@@ -437,7 +437,7 @@ namespace draw2d_cairo
 
       default:
 
-         throw interface_only_exception();
+         throw ::interface_only();
 
       }
 
@@ -556,10 +556,7 @@ namespace draw2d_cairo
 
       }
 
-      return ::success;
-
-
-
+      //return ::success;
 
    }
 
@@ -567,16 +564,18 @@ namespace draw2d_cairo
    void region::destroy()
    {
 
-      auto estatus = ::draw2d::region::destroy();
+      //auto estatus = 
+      
+      ::draw2d::region::destroy();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      //return estatus;
 
    }
 

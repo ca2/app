@@ -1,10 +1,10 @@
 #include "framework.h"
 
 
-interprocess_task::interprocess_task(interprocess_call* pcall, const ::id& idPid, i64 iTask) :
+interprocess_task::interprocess_task(interprocess_call* pcall, const ::atom& idPid, i64 iTask) :
    //::object(pcall),
    m_pcall(pcall),
-   m_idPid(idPid),
+   m_atomPid(idPid),
    m_pevReady(__new(manual_reset_event)),
    m_iTask(iTask)
 {
@@ -23,7 +23,7 @@ interprocess_task::~interprocess_task()
 void interprocess_task::do_task(const string& strObject, const string& strMember, const payload_array& payloada)
 {
 
-   ::interprocess_communication::tx& txc = m_pcall->m_pinterprocessintercommunication->tx(m_pcall->m_strApp, m_idPid);
+   ::interprocess_communication::tx& txc = m_pcall->m_pinterprocessintercommunication->tx(m_pcall->m_strApp, m_atomPid);
 
    string strVara = m_pcall->m_pinterprocessintercommunication->str_from_va(payloada);
 
@@ -31,7 +31,7 @@ void interprocess_task::do_task(const string& strObject, const string& strMember
 
    string strSource;
 
-   string strPid = __string(m_pcall->m_pinterprocessintercommunication->m_idApp);
+   string strPid = __string(m_pcall->m_pinterprocessintercommunication->m_atomApp);
 
    strSource.format(" from %s:%s ", m_pcall->m_pinterprocessintercommunication->m_strApp.c_str(), strPid.c_str());
 

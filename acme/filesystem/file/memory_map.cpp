@@ -151,7 +151,7 @@ namespace file
    string memory_map::calculate_path_from_name(const ::string & strName)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return "";
 

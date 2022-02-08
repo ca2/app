@@ -78,7 +78,7 @@ namespace sockets
          {
             __error("SctpSocket", -1, "bind() failed");
 #ifdef ENABLE_EXCEPTIONS
-            __throw(Exception("bind() failed for SctpSocket, port: " + Utility::l2string(ad.GetPort())));
+            throw ::exception(Exception("bind() failed for SctpSocket, port: " + Utility::l2string(ad.GetPort())));
 #endif
          }
          return n;
@@ -261,10 +261,10 @@ namespace sockets
 #endif
 
 
-   int SctpSocket::getpaddrs(sctp_assoc_t id,list<string>& vec)
+   int SctpSocket::getpaddrs(sctp_assoc_t atom,list<string>& vec)
    {
       struct sockaddr *p = nullptr;
-      int n = sctp_getpaddrs(GetSocket(), id, &p);
+      int n = sctp_getpaddrs(GetSocket(), atom, &p);
       if (!n || n == -1)
       {
          WARNING("SctpSocket", -1, "sctp_getpaddrs failed");
@@ -279,10 +279,10 @@ namespace sockets
    }
 
 
-   int SctpSocket::getladdrs(sctp_assoc_t id,list<string>& vec)
+   int SctpSocket::getladdrs(sctp_assoc_t atom,list<string>& vec)
    {
       struct sockaddr *p = nullptr;
-      int n = sctp_getladdrs(GetSocket(), id, &p);
+      int n = sctp_getladdrs(GetSocket(), atom, &p);
       if (!n || n == -1)
       {
          WARNING("SctpSocket", -1, "sctp_getladdrs failed");
@@ -297,9 +297,9 @@ namespace sockets
    }
 
 
-   int SctpSocket::PeelOff(sctp_assoc_t id)
+   int SctpSocket::PeelOff(sctp_assoc_t atom)
    {
-      int n = sctp_peeloff(GetSocket(), id);
+      int n = sctp_peeloff(GetSocket(), atom);
       if (n == -1)
       {
          WARNING("SctpSocket", -1, "PeelOff failed");

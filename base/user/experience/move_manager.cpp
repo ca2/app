@@ -93,7 +93,7 @@ namespace experience
 
       }
 
-      ASSERT(pmouse->m_id == e_message_mouse_move || pmouse->m_id == e_message_non_client_mouse_move);
+      ASSERT(pmouse->m_atom == e_message_mouse_move || pmouse->m_atom == e_message_non_client_mouse_move);
 
       auto psession = get_session()->m_paurasession;
 

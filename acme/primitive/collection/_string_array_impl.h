@@ -36,7 +36,7 @@ template < typename Type, typename RawType, enum_type t_etypePayload >
 Type string_array_base < Type, RawType, t_etypePayload >::get_at(::index nIndex) const
 {
    if (nIndex < 0 || nIndex >= this->m_nSize)
-      __throw(error_index_out_of_bounds);
+      throw ::exception(error_index_out_of_bounds);
    return get_data()[nIndex];
 }
 
@@ -44,7 +44,7 @@ Type string_array_base < Type, RawType, t_etypePayload >::get_at(::index nIndex)
 //void string_array_base < Type, RawType, t_etypePayload >::set_at(::index nIndex, const char * newElement)
 //{
 //   if (nIndex < 0 || nIndex >= this->m_nSize)
-//      __throw(error_index_out_of_bounds);
+//      throw ::exception(error_index_out_of_bounds);
 //   get_data()[nIndex] = newElement;
 //}
 //
@@ -53,7 +53,7 @@ template < typename Type, typename RawType, enum_type t_etypePayload >
 void string_array_base < Type, RawType, t_etypePayload >::set_at(::index nIndex, const Type & newElement)
 {
    if (nIndex < 0 || nIndex >= this->m_nSize)
-      __throw(error_index_out_of_bounds);
+      throw ::exception(error_index_out_of_bounds);
    get_data()[nIndex] = newElement;
 }
 
@@ -62,7 +62,7 @@ template < typename Type, typename RawType, enum_type t_etypePayload >
 Type & string_array_base < Type, RawType, t_etypePayload >::element_at(::index nIndex)
 {
    if (nIndex < 0 || nIndex >= this->m_nSize)
-      __throw(error_index_out_of_bounds);
+      throw ::exception(error_index_out_of_bounds);
    return get_data()[nIndex];
 }
 
@@ -71,7 +71,7 @@ template < typename Type, typename RawType, enum_type t_etypePayload >
 const Type & string_array_base < Type, RawType, t_etypePayload >::element_at(::index nIndex) const
 {
    if (nIndex < 0 || nIndex >= this->m_nSize)
-      __throw(error_index_out_of_bounds);
+      throw ::exception(error_index_out_of_bounds);
    return get_data()[nIndex];
 }
 

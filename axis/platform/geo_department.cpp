@@ -137,11 +137,11 @@ namespace geo
          try
          {
 
-            file.del(pathFolder / "weather-cit.bin");
-            file.del(pathFolder / "weather-cil.bin");
-            file.del(pathFolder / "weather-ids.bin");
-            file.del(pathFolder / "weather-lon.bin");
-            file.del(pathFolder / "weather-lat.bin");
+            file.erase(pathFolder / "weather-cit.bin");
+            file.erase(pathFolder / "weather-cil.bin");
+            file.erase(pathFolder / "weather-ids.bin");
+            file.erase(pathFolder / "weather-lon.bin");
+            file.erase(pathFolder / "weather-lat.bin");
 
             m_straCityLo.erase_all();
             m_straCity.erase_all();
@@ -384,7 +384,7 @@ namespace geo
 
       strTry = strQueryLo;
 
-      strTry.replace("'", "");
+      strTry.replace_with("", "'");
 
       if (bPrefix)
       {
@@ -440,24 +440,24 @@ namespace geo
 
       strTry = strQueryLo;
 
-      strTry.replace("st.", "saint");
-      strTry.replace(unitext("são"), "sao");
-      strTry.replace(unitext("ž"), "z");
-      strTry.replace(unitext("á"), "a");
-      strTry.replace(unitext("à"), "a");
-      strTry.replace(unitext("ä"), "a");
-      strTry.replace(unitext("é"), "e");
-      strTry.replace(unitext("è"), "e");
-      strTry.replace(unitext("ë"), "e");
-      strTry.replace(unitext("í"), "i");
-      strTry.replace(unitext("ì"), "i");
-      strTry.replace(unitext("ï"), "i");
-      strTry.replace(unitext("ó"), "o");
-      strTry.replace(unitext("ò"), "o");
-      strTry.replace(unitext("ö"), "o");
-      strTry.replace(unitext("ú"), "u");
-      strTry.replace(unitext("ù"), "u");
-      strTry.replace(unitext("ü"), "u");
+      strTry.replace_with("saint", "st.");
+      strTry.replace_with("sao", unitext("são"));
+      strTry.replace_with("z", unitext("ž"));
+      strTry.replace_with("a", unitext("á"));
+      strTry.replace_with("a", unitext("à"));
+      strTry.replace_with("a", unitext("ä"));
+      strTry.replace_with("e", unitext("é"));
+      strTry.replace_with("e", unitext("è"));
+      strTry.replace_with("e", unitext("ë"));
+      strTry.replace_with("i", unitext("í"));
+      strTry.replace_with("i", unitext("ì"));
+      strTry.replace_with("i", unitext("ï"));
+      strTry.replace_with("o", unitext("ó"));
+      strTry.replace_with("o", unitext("ò"));
+      strTry.replace_with("o", unitext("ö"));
+      strTry.replace_with("u", unitext("ú"));
+      strTry.replace_with("u", unitext("ù"));
+      strTry.replace_with("u", unitext("ü"));
 
       if (bPrefix)
       {
@@ -526,7 +526,7 @@ namespace geo
 
       property_set set;
 
-      string strUrl = "http://api.openweathermap.org/data/2.5/weather?id=" + __string(pcity->m_iId) + "&APPID=" + string(pszId);
+      string strUrl = "http://api.openweathermap.org/data/2.5/weather?atom=" + __string(pcity->m_iId) + "&APPID=" + string(pszId);
 
       auto psystem = get_system()->m_paxissystem;
 
@@ -1277,6 +1277,8 @@ namespace geo
    ::datetime::department::time_zone department::get_time_zone(openweather_city* pcity)
    {
 
+
+
       if (is_null(pcity))
       {
 
@@ -1305,7 +1307,7 @@ namespace geo
 
             auto pfile = m_pcontext->m_papexcontext->file().get_reader(path);
 
-            if (pfile)
+            if (::is_ok(pfile))
             {
 
                ::binary_stream reader(pfile);
@@ -1843,7 +1845,7 @@ namespace geo
 
             synchronous_lock synchronouslock(&m_mutexLocalityTimeZone);
 
-            writer << m_cityTimeZone;
+            writer << m_localityTimeZone;
 
          }
 

@@ -111,7 +111,7 @@ namespace programming
 #elif defined(_DEBUG)
 
       m_strDynamicSourceConfiguration = "basis";
-      m_strDynamicSourceStage = "time-" PLATFORM_NAME;
+      m_strDynamicSourceStage = "time-" OPERATING_SYSTEM_NAME;
 
 #else
 
@@ -209,7 +209,7 @@ namespace programming
 
 #endif
 
-      m_strTime = m_pcontext->m_papexcontext->dir().install() / ("time-" PLATFORM_NAME);
+      m_strTime = m_pcontext->m_papexcontext->dir().install() / ("time-" OPERATING_SYSTEM_NAME);
 
 #ifdef WINDOWS_DESKTOP
 
@@ -388,7 +388,7 @@ namespace programming
       for (auto& pproperty : setEnvironment)
       {
 
-         SetEnvironmentVariableW(wstring(pproperty->m_id), wstring(pproperty->string()));
+         SetEnvironmentVariableW(wstring(pproperty->m_atom), wstring(pproperty->string()));
 
       }
 
@@ -402,20 +402,20 @@ namespace programming
       //   if (!::str::ends(strFolder, "/") && !::str::ends(strFolder, "\\"))
       //      strFolder += "/";
       //   string strTemplate;
-      //   string strSource = "platform/time-" PLATFORM_NAME"/dynamic_source/";
+      //   string strSource = "platform/time-" OPERATING_SYSTEM_NAME"/dynamic_source/";
       //   strSource += lpcszSource;
       //
       ::file::path pathN = m_pathProjectDir;
       pathN -= 3;
       string strN = pathN;
-      strN.replace("\\", "/");
+      strN.find_replace("\\", "/");
       strN += "/";
       //
       //
       //   //#ifdef _DEBUG
       //   strTemplate = strFolder / strSource;
       //   //#else
-      //   // strTemplate = strFolder, "app/time-" PLATFORM_NAME"/aura/account/app/main/matter/dynamic_source_cl.bat", false);
+      //   // strTemplate = strFolder, "app/time-" OPERATING_SYSTEM_NAME"/aura/account/app/main/matter/dynamic_source_cl.bat", false);
       //   //#endif
       //   string str;
       //   str = m_pcontext->m_papexcontext->file().as_string(strTemplate);
@@ -438,7 +438,7 @@ namespace programming
       //   //#ifdef _DEBUG
       //   strCmd = strFolder / strDest;
       //   //#else
-      //   // strCmd = strFolder, "app\\time-" PLATFORM_NAME"\\aura\\account\\app\\main\\front\\dynamic_source_cl.bat", false);
+      //   // strCmd = strFolder, "app\\time-" OPERATING_SYSTEM_NAME"\\aura\\account\\app\\main\\front\\dynamic_source_cl.bat", false);
       //   //#endif
       //   m_pcontext->m_papexcontext->dir().create(strCmd.folder());
       //   //m_pcontext->m_papexcontext->file().put_text_utf8(strCmd, str);
@@ -588,7 +588,7 @@ namespace programming
       if (!::str::ends(strFolder, "/") && !::str::ends(strFolder, "\\"))
          strFolder += "/";
       string strTemplate;
-      string strSource = "archive/platform-" PLATFORM_NAME "/_stage/dynamic_source/";
+      string strSource = "operating-system/operating-system-" OPERATING_SYSTEM_NAME "/_stage/dynamic_source/";
       strSource += lpcszSource;
 
       //   string strN = m_pmanager->m_strNetnodePath;
@@ -606,17 +606,17 @@ namespace programming
       /*string strVars = getenv("VS100COMNTOOLS");
       m_pcontext->m_papexcontext->file().path().eat_end_level(strVars, 2, "/");
       strVars += "vc/bin/vcvars32.bat";*/
-      str.replace("%VS_VARS%", m_strEnv);
-      str.replace("%VS_VARS_PLAT2%", m_strPlat2);
+      str.find_replace("%VS_VARS%", m_strEnv);
+      str.find_replace("%VS_VARS_PLAT2%", m_strPlat2);
 
       string strV(m_pcontext->m_papexcontext->dir().install());
-      strV.replace("\\", "/");
+      strV.find_replace("\\", "/");
       if (!::str::ends(strV, "/") && !::str::ends(strV, "\\"))
          strV += "/";
-      str.replace("%CA2_ROOT%", strV);
-      str.replace("%PROJECT_DIR%", m_pathProjectDir);
-      str.replace("%NETNODE_ROOT%", strN);
-      str.replace("%SDK1%", m_strSdk1);
+      str.find_replace("%CA2_ROOT%", strV);
+      str.find_replace("%PROJECT_DIR%", m_pathProjectDir);
+      str.find_replace("%NETNODE_ROOT%", strN);
+      str.find_replace("%SDK1%", m_strSdk1);
       //str.replace("%DVP%", strDVP_B);
 
       string strDest = m_strDynamicSourceStage / "front" / lpcszDest;

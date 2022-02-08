@@ -22,7 +22,7 @@ public:
    void construct(const synchronization_array & synca,bool bInitialLock = false);
 
 
-   void lock(const duration & tickTimeout = duration::infinite(), bool bWaitForAll = true, u32 dwWakeMask = 0);
+   ::index lock(const duration & tickTimeout = duration::infinite(), bool bWaitForAll = true, u32 dwWakeMask = 0);
    void unlock();
    void unlock(::i32 lCount, ::i32 * lPrevCount = nullptr);
    bool is_locked(index dwItem);

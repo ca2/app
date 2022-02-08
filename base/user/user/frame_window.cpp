@@ -186,7 +186,7 @@ namespace user
    }
 
 
-   void frame_window::update_active_document(::subject * psubject)
+   void frame_window::update_active_document(::topic * ptopic)
    {
 
       auto pdocument = get_active_document();
@@ -198,12 +198,12 @@ namespace user
 
       }
 
-      pdocument->update_all_views(psubject);
+      pdocument->update_all_views(ptopic);
 
    }
 
 
-   void frame_window::update_active_document(const ::id & id)
+   void frame_window::update_active_document(const ::atom & atom)
    {
 
       auto pdocument = get_active_document();
@@ -215,12 +215,12 @@ namespace user
 
       }
 
-      pdocument->id_update_all_views(id);
+      pdocument->id_update_all_views(atom);
 
    }
 
 
-   ::id frame_window::get_topic_view_id()
+   ::atom frame_window::get_topic_view_id()
    {
 
       auto pdocument = get_active_document();
@@ -237,7 +237,7 @@ namespace user
    }
 
 
-   bool frame_window::set_topic_view_by_id(const ::id & id)
+   bool frame_window::set_topic_view_by_id(const ::atom & atom)
    {
 
       auto pdocument = get_active_document();
@@ -249,7 +249,7 @@ namespace user
 
       }
 
-      return pdocument->set_topic_view_by_id(id);
+      return pdocument->set_topic_view_by_id(atom);
 
    }
 
@@ -303,13 +303,13 @@ namespace user
    }
 
 
-   void frame_window::assert_valid() const
+   void frame_window::assert_ok() const
    {
 
       try
       {
 
-         ::user::interaction::assert_valid();
+         ::user::interaction::assert_ok();
 
       }
       catch (...)
@@ -481,7 +481,7 @@ namespace user
             if (pkey->m_ekey == ::user::e_key_p)
             {
 
-               __pointer(::user::interaction_impl) pimpl = m_pimpl;
+               __pointer(::user::interaction_impl) pimpl = m_pprimitiveimpl;
 
                if (pimpl.is_set())
                {
@@ -655,12 +655,12 @@ namespace user
       */
    }
 
-   bool frame_window::OnSetCursor(__pointer(::user::interaction) pwindow, ::u32 nHitTest, const ::id & id)
+   bool frame_window::OnSetCursor(__pointer(::user::interaction) pwindow, ::u32 nHitTest, const ::atom & atom)
    {
       
       __UNREFERENCED_PARAMETER(pwindow);
       __UNREFERENCED_PARAMETER(nHitTest);
-      __UNREFERENCED_PARAMETER(id);
+      __UNREFERENCED_PARAMETER(atom);
       
       __pointer(::user::frame_window) pFrameWnd = top_level_frame();
 
@@ -793,7 +793,7 @@ namespace user
    {
       __UNREFERENCED_PARAMETER(bShow);
       // walk through all top-level windows
-      throw interface_only_exception();
+      throw ::interface_only();
       /*   oswindow oswindow = ::GetWindow(::get_desktop_window(), GW_CHILD);
       while (oswindow != nullptr)
       {
@@ -834,7 +834,7 @@ namespace user
       //         ::SetFocus(nullptr);
       //#else
       //
-      //         __throw(todo);
+      //         throw ::exception(todo);
       //
       //#endif
       //
@@ -906,7 +906,7 @@ namespace user
 
    //   auto pusersystem = __new(::user::system (dwExStyle, pszClassName, pszWindowName, uStyle, rectangle, pcreate));
 
-   //   if (!::user::interaction::create_window_ex(pusersystem, puiParent, pcreate->m_id))
+   //   if (!::user::interaction::create_window_ex(pusersystem, puiParent, pcreate->m_atom))
    //   {
 
    //      TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: failed to create frame_window.\n");
@@ -926,7 +926,7 @@ namespace user
       if (pusersystem != nullptr)
       {
 
-         if (pusersystem->m_typeNewView || pusersystem->m_puserprimitiveNew != nullptr)
+         if (pusersystem->m_typeNewImpact || pusersystem->m_puserprimitiveNew != nullptr)
          {
 
             if (::user::create_view(pusersystem, this, FIRST_PANE).is_null())
@@ -1075,7 +1075,7 @@ namespace user
 
       //auto pusersystem = __new(::user::system (0L, nullptr, m_strFrameTitle, dwDefaultStyle, rectangleFrame, pcreate));
 
-      //if (!create_window_ex(pusersystem, puiParent, pcreate->m_id))
+      //if (!create_window_ex(pusersystem, puiParent, pcreate->m_atom))
       //{
 
       //   return false;   // will self destruct on failure normally
@@ -1221,7 +1221,7 @@ namespace user
          // send initial update to all views (and other controls) in the frame
          send_message_to_descendants(e_message_system_update, INITIAL_UPDATE, (lparam)0, true, true);
 
-         // give ::user::impact a chance to save the focus (CFormView needs this)
+         // give ::user::impact a chance to save the focus (CFormImpact needs this)
          if (pview != nullptr)
          {
 
@@ -1236,7 +1236,7 @@ namespace user
          if (pview != nullptr)
          {
 
-            pview->OnActivateView(true, pview, pview);
+            pview->OnActivateImpact(true, pview, pview);
 
          }
 
@@ -1295,7 +1295,7 @@ namespace user
    void frame_window::OnClose()
    {
 
-      throw interface_only_exception();
+      throw ::interface_only();
       /*if (m_lpfnCloseProc != nullptr)
       (*m_lpfnCloseProc)(this);
 
@@ -1409,21 +1409,21 @@ namespace user
    // Delegate scroll messages to active ::user::impact as well
    void frame_window::OnHScroll(::u32, ::u32, CScrollBar*)
    {
-      __pointer(::user::interaction) pActiveView = get_active_view();
-      if (pActiveView != nullptr)
+      __pointer(::user::interaction) pActiveImpact = get_active_view();
+      if (pActiveImpact != nullptr)
       {
          // trans const MESSAGE* pMsg = GetCurrentMessage();
-         // trans pActiveView->SendMessage(e_message_hscroll, pMsg->wParam, pMsg->lParam);
+         // trans pActiveImpact->SendMessage(e_message_hscroll, pMsg->wParam, pMsg->lParam);
       }
    }
 
    void frame_window::OnVScroll(::u32, ::u32, CScrollBar*)
    {
-      __pointer(::user::interaction) pActiveView = get_active_view();
-      if (pActiveView != nullptr)
+      __pointer(::user::interaction) pActiveImpact = get_active_view();
+      if (pActiveImpact != nullptr)
       {
          // trans      const MESSAGE* pMsg = GetCurrentMessage();
-         // trans      pActiveView->SendMessage(e_message_vscroll, pMsg->wParam, pMsg->lParam);
+         // trans      pActiveImpact->SendMessage(e_message_vscroll, pMsg->wParam, pMsg->lParam);
       }
    }
    */
@@ -1442,19 +1442,19 @@ namespace user
    //   //thread *pThread = get_task();
    //   //ASSERT(pThread);
    //   
-   //   __pointer(::user::impact) pActiveView = get_active_view();
+   //   __pointer(::user::impact) pActiveImpact = get_active_view();
 
-   //   if (pActiveView == nullptr)
+   //   if (pActiveImpact == nullptr)
    //   {
 
-   //      pActiveView = GetActiveFrame()->get_active_view();
+   //      pActiveImpact = GetActiveFrame()->get_active_view();
 
    //   }
 
-   //   if (pActiveView != nullptr)
+   //   if (pActiveImpact != nullptr)
    //   {
 
-   //      pActiveView->OnActivateView(false, pActiveView, pActiveView);
+   //      pActiveImpact->OnActivateImpact(false, pActiveImpact, pActiveImpact);
 
    //   }
 
@@ -1495,23 +1495,23 @@ namespace user
 
       // get active ::user::impact (use active frame if no active ::user::impact)
       
-      __pointer(::user::impact) pActiveView = get_active_view();
+      __pointer(::user::impact) pActiveImpact = get_active_view();
 
-      if (pActiveView == nullptr)
+      if (pActiveImpact == nullptr)
       {
 
-         pActiveView = GetActiveFrame()->get_active_view();
+         pActiveImpact = GetActiveFrame()->get_active_view();
 
       }
 
       // when frame gets activated, re-activate current ::user::impact
-      if (pActiveView != nullptr)
+      if (pActiveImpact != nullptr)
       {
          if (pactivate->m_eactivate != e_activate_inactive && !pactivate->m_bMinimized)
-            pActiveView->OnActivateView(true, pActiveView, pActiveView);
+            pActiveImpact->OnActivateImpact(true, pActiveImpact, pActiveImpact);
 
          // always notify the ::user::impact of frame activations
-         pActiveView->OnActivateFrame(pactivate->m_eactivate, this);
+         pActiveImpact->OnActivateFrame(pactivate->m_eactivate, this);
       }
 
       set_need_redraw();
@@ -1666,12 +1666,12 @@ namespace user
 
       RepositionBars();
 
-      throw ::interface_only_exception();
+      //throw ::interface_only();
 
    }
 
 
-   __pointer(toolbar) frame_window::get_toolbar(const ::id & idToolbar, bool bCreate, const ::string & strToolbarParam, u32 dwCtrlStyle, u32 uStyle, const ::type & type)
+   __pointer(toolbar) frame_window::get_toolbar(const ::atom & idToolbar, bool bCreate, const ::string & strToolbarParam, u32 dwCtrlStyle, u32 uStyle, const ::type & type)
    {
 
       auto & ptoolbartransport = m_mapToolbar[idToolbar];
@@ -1695,7 +1695,7 @@ namespace user
    }
 
 
-   __pointer(toolbar) frame_window::create_toolbar(const ::id & idToolbar, const ::string & strToolbarParam, u32 dwCtrlStyle, u32 uStyle, const ::type & type)
+   __pointer(toolbar) frame_window::create_toolbar(const ::atom & idToolbar, const ::string & strToolbarParam, u32 dwCtrlStyle, u32 uStyle, const ::type & type)
    {
 
       auto ptoolbar = __id_create < toolbar >(type);
@@ -1781,11 +1781,11 @@ namespace user
       if (pviewOld != nullptr && bNotify)
       {
 
-         pviewOld->OnActivateView(false, pviewNew, pviewOld);
+         pviewOld->OnActivateImpact(false, pviewNew, pviewOld);
 
       }
 
-      // if the OnActivateView moves the active interaction_impl,
+      // if the OnActivateImpact moves the active interaction_impl,
       //    that will veto this machine
       if (m_pviewActive != nullptr)
       {
@@ -1803,7 +1803,7 @@ namespace user
          if (bNotify)
          {
 
-            pviewNew->OnActivateView(true, pviewNew, pviewOld);
+            pviewNew->OnActivateImpact(true, pviewNew, pviewOld);
 
          }
 
@@ -1855,7 +1855,7 @@ namespace user
       __UNREFERENCED_PARAMETER(nID);
       __UNREFERENCED_PARAMETER(rMessage);
       // load appropriate string
-      throw interface_only_exception();
+      throw ::interface_only();
       /*   char * psz = rMessage.GetBuffer(255);
 
       if (::aura::LoadString(nID, psz) != 0)
@@ -2319,7 +2319,7 @@ namespace user
 //
 //#else
 //
-//      throw interface_only_exception();
+//      throw ::interface_only();
 //
 //#endif
 //
@@ -2419,10 +2419,10 @@ namespace user
    }
 
 
-//   void frame_window::load_toolbar(const ::id & idToolbar, const ::string & strToolbar, u32 dwCtrlStyle, u32 uStyle)
+//   void frame_window::load_toolbar(const ::atom & idToolbar, const ::string & strToolbar, u32 dwCtrlStyle, u32 uStyle)
 //   {
 //
-//      throw ::interface_only_exception();
+//      throw ::interface_only();
 //
 //      return false;
 //
@@ -2516,10 +2516,10 @@ namespace user
    }
 
 
-   void frame_window::handle(::subject * psubject, ::context * pcontext)
+   void frame_window::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::user::interaction::handle(psubject, pcontext);
+      ::user::interaction::handle(ptopic, pcontext);
 
    }
 

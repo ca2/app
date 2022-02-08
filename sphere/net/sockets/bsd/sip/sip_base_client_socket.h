@@ -70,7 +70,7 @@ namespace sockets
       /** For each header line this callback is executed.
          \param key Http header name
          \param value Http header value */
-      virtual void OnHeader(id idKey, const string & value);
+      virtual void OnHeader(atom idKey, const string & value);
       /** Callback fires when all http headers have been received. */
       virtual void OnHeaderComplete();
       /** Chunk of http body data recevied. */

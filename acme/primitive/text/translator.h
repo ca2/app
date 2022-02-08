@@ -23,7 +23,7 @@ namespace text
       void translate_text_data();
 
       data* clone_text_data(const data* ptextdata);
-      data* create_text_data(const ::id& id);
+      data* create_text_data(const ::atom& atom);
       void destroy_text_data(data* ptextdata);
 
 

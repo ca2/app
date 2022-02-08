@@ -14,7 +14,7 @@ namespace user
       __pointer(::user::document) m_pdocument;
 
 
-      single_document_template(const ::string & pszMatter, ::type pDocClass, ::type pFrameClass, ::type pViewClass);
+      single_document_template(const ::string & pszMatter, ::type pDocClass, ::type pFrameClass, ::type pImpactClass);
       virtual ~single_document_template();
 
       virtual void add_document(::user::document * pDoc) override;
@@ -25,7 +25,7 @@ namespace user
       virtual void set_default_title(::user::document * pdocument) override;
 
       virtual void dump(dump_context &) const override;
-      void assert_valid() const override;
+      void assert_ok() const override;
 
 
    };

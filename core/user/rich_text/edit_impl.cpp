@@ -100,10 +100,10 @@ namespace user
       }
 
 
-      void edit_impl::assert_valid() const
+      void edit_impl::assert_ok() const
       {
 
-         ::user::interaction::assert_valid();
+         ::user::interaction::assert_ok();
 
       }
 
@@ -940,15 +940,15 @@ namespace user
       }
 
 
-      void edit_impl::handle(::subject * psubject, ::context * pcontext)
+      void edit_impl::handle(::topic * ptopic, ::context * pcontext)
       {
 
-         if (psubject->m_id == ::e_subject_after_change_cur_sel)
+         if (ptopic->m_atom == ::id_after_change_cur_sel)
          {
 
             auto pformattool = get_format_tool(false);
 
-            if (psubject->user_interaction() == pformattool)
+            if (ptopic->get_extended_topic()->user_interaction() == pformattool)
             {
 
                if (pformattool->m_eattribute & attribute_align)
@@ -970,7 +970,7 @@ namespace user
 
                set_keyboard_focus();
 
-               //psubject->Ret();
+               //ptopic->Ret();
 
                //return;
 
@@ -978,7 +978,7 @@ namespace user
 
          }
 
-         return ::user::interaction::handle(psubject, pcontext);
+         return ::user::interaction::handle(ptopic, pcontext);
 
       }
 
@@ -1032,19 +1032,17 @@ namespace user
 
          {
 
-            ::subject subject;
+            ::extended_topic extendedtopic(::id_key_down);
 
-            subject.m_puserelement = this;
+            extendedtopic.m_puserelement = this;
 
-            subject.m_id = ::e_subject_key_down;
+            extendedtopic.m_actioncontext.m_pmessage = pmessage;
 
-            subject.m_actioncontext.m_pmessage = pmessage;
+            extendedtopic.m_actioncontext = ::e_source_user;
 
-            subject.m_actioncontext = ::e_source_user;
+            route(&extendedtopic);
 
-            route(&subject);
-
-            if (subject.m_bRet)
+            if (extendedtopic.m_bRet)
             {
 
                return;
@@ -1094,17 +1092,15 @@ namespace user
          else if (pkey->m_ekey == ::user::e_key_escape)
          {
 
-            ::subject subject;
+            ::extended_topic extendedtopic(::id_escape);
 
-            subject.m_puserelement = this;
+            extendedtopic.m_puserelement = this;
 
-            subject.m_id = ::e_subject_escape;
+            extendedtopic.m_actioncontext = ::e_source_user;
 
-            subject.m_actioncontext = ::e_source_user;
+            route(&extendedtopic);
 
-            route(&subject);
-
-            if (!subject.m_bRet && subject.m_bOk)
+            if (!extendedtopic.m_bRet && extendedtopic.m_bOk)
             {
 
                on_action("escape");
@@ -1362,7 +1358,7 @@ namespace user
 
                //index i = find_span(m_pdata->m_spana, i1);
 
-               on_after_change(::e_subject_after_change_text);
+               on_after_change(::id_after_change_text);
 
                set_need_redraw();
 
@@ -1382,7 +1378,7 @@ namespace user
 
                //index i = find_span(m_pdata->m_spana, i1);
 
-               on_after_change(::e_subject_after_change_text);
+               on_after_change(::id_after_change_text);
 
                set_need_redraw();
 
@@ -1582,7 +1578,7 @@ namespace user
 
                               m_pdata->m_iSelBeg = m_pdata->m_iSelEnd = i1;
 
-                              on_after_change(::e_subject_after_change_text);
+                              on_after_change(::id_after_change_text);
 
                               set_need_redraw();
 
@@ -1600,7 +1596,7 @@ namespace user
 
                               m_pdata->m_iSelBeg = m_pdata->m_iSelEnd = i1 - iDecLen;
 
-                              on_after_change(::e_subject_after_change_text);
+                              on_after_change(::id_after_change_text);
 
                               set_need_redraw();
 
@@ -1977,20 +1973,20 @@ namespace user
       }
 
 
-      void edit_impl::on_after_change(::enum_subject esubject)
+      void edit_impl::on_after_change(const ::atom & atom)
       {
 
          m_pdata->optimize_data();
 
-         ::subject subject(esubject);
+         ::extended_topic extendedtopic(atom);
 
-         //subject.m_id = eevent;
+         //topic.m_atom = eevent;
 
-         //subject.m_id = m_id;
+         //topic.m_atom = m_atom;
 
-         subject.m_puserelement = this;
+         extendedtopic.m_puserelement = this;
 
-         route(&subject);
+         route(&extendedtopic);
 
          set_need_layout();
 

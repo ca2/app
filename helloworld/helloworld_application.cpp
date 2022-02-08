@@ -171,7 +171,7 @@ namespace helloworld
       if (m_varTopicQuery["wfi_maximize"].is_set())
       {
 
-         pcreate->m_pcommandline->m_varQuery["document"].cast < document >()->get_typed_view < ::userex::pane_tab_view >()->top_level_frame()->_001WindowMaximize();
+         pcreate->m_pcommandline->m_varQuery["document"].cast < document >()->get_type_impact < ::userex::pane_tab_view >()->top_level_frame()->_001WindowMaximize();
 
       }
 

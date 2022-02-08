@@ -2,7 +2,7 @@
 
 class xfplayer_view_line;
 
-class CLASS_DECL_CORE XfplayerViewLineSelectionItem  
+class CLASS_DECL_CORE XfplayerImpactLineSelectionItem  
 {
 protected:
 
@@ -14,16 +14,16 @@ protected:
 
       // Construction / Destruction
 public:
-   XfplayerViewLineSelectionItem();
-   XfplayerViewLineSelectionItem(
+   XfplayerImpactLineSelectionItem();
+   XfplayerImpactLineSelectionItem(
       index      iLineStart,
       index      iLineEnd,
       strsize      iCharStart,
       strsize      iCharEnd
       );
-   virtual ~XfplayerViewLineSelectionItem();
+   virtual ~XfplayerImpactLineSelectionItem();
 
-   XfplayerViewLineSelectionItem & operator =(const XfplayerViewLineSelectionItem & item);
+   XfplayerImpactLineSelectionItem & operator =(const XfplayerImpactLineSelectionItem & item);
 
    void NormalizeSel();
    bool Intersect(xfplayer_view_line & viewline);
@@ -42,7 +42,7 @@ public:
 };
 
 
-class CLASS_DECL_CORE XfplayerViewLineSelection :
+class CLASS_DECL_CORE XfplayerImpactLineSelection :
    virtual object
 {
 public:
@@ -64,9 +64,9 @@ public:
 //      TypeMaskEndHere = 2,
    };
 
-   array < XfplayerViewLineSelectionItem, XfplayerViewLineSelectionItem> m_itema;
+   array < XfplayerImpactLineSelectionItem, XfplayerImpactLineSelectionItem> m_itema;
 
-   XfplayerViewLineSelectionItem m_item;
+   XfplayerImpactLineSelectionItem m_item;
       
 
    index               m_iLineStartSource;
@@ -77,10 +77,10 @@ public:
    i32               m_etype; 
    enum_state            m_estate;
 
-   XfplayerViewLineSelection();
-   virtual ~XfplayerViewLineSelection();
+   XfplayerImpactLineSelection();
+   virtual ~XfplayerImpactLineSelection();
 
-   bool get_item(XfplayerViewLineSelectionItem & item, xfplayer_view_line & viewline);
+   bool get_item(XfplayerImpactLineSelectionItem & item, xfplayer_view_line & viewline);
    enum_state GetState();
 
    virtual void relay_event(xfplayer_view_line & viewline, ::message::message * pmessage);
@@ -99,7 +99,7 @@ public:
 
 
 
-   XfplayerViewLineSelection & operator =(XfplayerViewLineSelection & selection);
+   XfplayerImpactLineSelection & operator =(XfplayerImpactLineSelection & selection);
 
    bool OnMouseMove(xfplayer_view_line & viewline, ::u32 user, const ::point_i32 & point);
    bool OnLButtonDown(xfplayer_view_line & viewline, ::u32 user, const ::point_i32 & point);

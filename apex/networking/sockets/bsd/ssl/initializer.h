@@ -69,7 +69,7 @@ namespace sockets
       /** SSL; ::mutex locking function callback. */
       //static void SSL_locking_function(i32 mode, i32 n, const char *file, i32 line);
 
-      /** Return thread id. */
+      /** Return thread atom. */
       //static unsigned long SSL_id_function();
 
 

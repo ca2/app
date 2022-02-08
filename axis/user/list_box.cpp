@@ -107,7 +107,7 @@ namespace user
          if (puserinteractionHost)
          {
 
-            auto pimpl = puserinteractionHost->m_pimpl.cast<::user::interaction_impl>();
+            auto pimpl = puserinteractionHost->m_pinteractionimpl;
 
             if (pimpl)
             {
@@ -288,19 +288,19 @@ namespace user
    }
 
 
-   void list_box::handle(::subject * psubject, ::context * pcontext)
+   void list_box::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if(psubject->m_id == ::e_subject_click)
+      if(ptopic->m_atom == ::id_click)
       {
 
-         if(psubject->user_interaction() == this)
+         if(ptopic->get_extended_topic()->user_interaction() == this)
          {
 
             if (m_pcombo)
             {
 
-               m_pcombo->set_current_item(psubject->m_item, psubject->m_actioncontext);
+               m_pcombo->set_current_item(ptopic->get_extended_topic()->m_item, ptopic->get_extended_topic()->m_actioncontext);
 
                m_pcombo->ShowDropDown(false);
 
@@ -308,7 +308,7 @@ namespace user
             else
             {
 
-               set_current_item(psubject->m_item, psubject->m_actioncontext);
+               set_current_item(ptopic->get_extended_topic()->m_item, ptopic->get_extended_topic()->m_actioncontext);
 
             }
 
@@ -334,7 +334,7 @@ namespace user
          if(puserinteractionHost)
          {
 
-            auto pimpl = puserinteractionHost->m_pimpl.cast<::user::interaction_impl>();
+            auto pimpl = puserinteractionHost->m_pinteractionimpl;
 
             if (pimpl)
             {
@@ -1106,7 +1106,7 @@ namespace user
          if (rectangleItem.contains(item.m_pointHitTest))
          {
 
-            item  = {::e_element_item, iItem };
+            item  = ::item(::e_element_item, iItem );
 
             return;
 
@@ -1250,7 +1250,7 @@ namespace user
 
             //   m_pcombo->m_plistbox.release();
 
-            //   __throw(error_resource);
+            //   throw ::exception(error_resource);
 
             //}
 

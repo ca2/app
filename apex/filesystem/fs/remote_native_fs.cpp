@@ -35,7 +35,7 @@ namespace fs
 
       defer_initialize();
 
-      __throw(todo, "xml");
+      throw ::exception(todo, "xml");
 
       //xml::document doc;
 
@@ -100,7 +100,7 @@ namespace fs
          if(str == "You have not logged in! Exiting!")
          {
 
-            __throw(error_authorization, "uifs://You are not authorized!!");
+            throw ::exception(error_authorization, "uifs://You are not authorized!!");
 
          }
 
@@ -108,7 +108,7 @@ namespace fs
 
       }
 
-      __throw(todo, "xml");
+      throw ::exception(todo, "xml");
 
       //xml::document doc;
 

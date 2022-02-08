@@ -29,7 +29,7 @@ namespace user
       virtual __pointer(::user::interaction) BaseToolTipGetWnd();
 
       tool_tip_window *  m_pbasetooltiphdl;      // Base tooltip handler
-      ::u32              m_uiBaseToolTipText;    // Base tooltip text id
+      ::u32              m_uiBaseToolTipText;    // Base tooltip text atom
 
    };
 

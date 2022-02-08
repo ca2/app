@@ -81,9 +81,9 @@ namespace html
 
          element::implement_phase1(pdata, pelement);
 
-         ::id id = pelement->m_pbase->get_tag()->get_attr_value("id");
+         ::atom atom = pelement->m_pbase->get_tag()->get_attr_value("id");
 
-         id = translate_property_id(id);
+         atom = translate_property_id(atom);
 
          if(!m_pcheckbox || !m_pcheckbox->is_window())
          {
@@ -92,7 +92,7 @@ namespace html
 
             m_pcheckbox->m_pform = pdata->m_pcoredata->m_pform;
 
-            m_pcheckbox->create_control(pdata->m_pcoredata->m_puserinteraction, id);
+            m_pcheckbox->create_control(pdata->m_pcoredata->m_puserinteraction, atom);
 
             pdata->on_create_interaction(m_pcheckbox);
 
@@ -115,7 +115,7 @@ namespace html
          else
          {
 
-            m_pcheckbox->m_id = id;
+            m_pcheckbox->m_atom = atom;
 
          }
 
@@ -124,15 +124,15 @@ namespace html
          if(pdata->m_pcoredata->m_pform != nullptr)
          {
 
-            auto psubject = create_subject(::e_subject_initialize_control);
+            auto ptopic = create_extended_topic(::id_initialize_control);
 
-            psubject->m_puserelement = m_pcheckbox;
+            ptopic->get_extended_topic()->m_puserelement = m_pcheckbox;
 
-            psubject->m_actioncontext = ::action_context(::e_source_data) +  ::e_source_load;
+            ptopic->get_extended_topic()->m_actioncontext = ::action_context(::e_source_data) +  ::e_source_load;
 
-            psubject->m_uiEvent = 0;
+            ptopic->m_uiEvent = 0;
 
-            pdata->m_pcoredata->m_pform->route(psubject);
+            pdata->m_pcoredata->m_pform->route(ptopic);
 
          }
 

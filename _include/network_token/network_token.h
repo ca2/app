@@ -2187,7 +2187,7 @@ namespace network_token {
 		 */
 		bool has_issuer() const noexcept { return has_payload_claim("iss"); }
 		/**
-		 * Check if subject is present ("sub")
+		 * Check if topic is present ("sub")
 		 * \return true if present, false otherwise
 		 */
 		bool has_subject() const noexcept { return has_payload_claim("sub"); }
@@ -2212,7 +2212,7 @@ namespace network_token {
 		 */
 		bool has_issued_at() const noexcept { return has_payload_claim("iat"); }
 		/**
-		 * Check if token id is present ("jti")
+		 * Check if token atom is present ("jti")
 		 * \return true if present, false otherwise
 		 */
 		bool has_id() const noexcept { return has_payload_claim("jti"); }
@@ -2224,8 +2224,8 @@ namespace network_token {
 		 */
 		typename json_traits::string_type get_issuer() const { return get_payload_claim("iss").as_string(); }
 		/**
-		 * Get subject claim
-		 * \return subject as string
+		 * Get topic claim
+		 * \return topic as string
 		 * \throw std::runtime_error If claim was not present
 		 * \throw std::bad_cast Claim was present but not a string (Should not happen in a valid token)
 		 */
@@ -2264,8 +2264,8 @@ namespace network_token {
 		 */
 		date get_issued_at() const { return get_payload_claim("iat").as_date(); }
 		/**
-		 * Get id claim
-		 * \return id as string
+		 * Get atom claim
+		 * \return atom as string
 		 * \throw std::runtime_error If claim was not present
 		 * \throw std::bad_cast Claim was present but not a string (Should not happen in a valid token)
 		 */
@@ -2314,7 +2314,7 @@ namespace network_token {
 		 */
 		bool has_content_type() const noexcept { return has_header_claim("cty"); }
 		/**
-		 * Check if key id is present ("kid")
+		 * Check if key atom is present ("kid")
 		 * \return true if present, false otherwise
 		 */
 		bool has_key_id() const noexcept { return has_header_claim("kid"); }
@@ -2340,8 +2340,8 @@ namespace network_token {
 		 */
 		typename json_traits::string_type get_content_type() const { return get_header_claim("cty").as_string(); }
 		/**
-		 * Get key id claim
-		 * \return key id as string
+		 * Get key atom claim
+		 * \return key atom as string
 		 * \throw std::runtime_error If claim was not present
 		 * \throw std::bad_cast Claim was present but not a string (Should not happen in a valid token)
 		 */
@@ -2494,43 +2494,43 @@ namespace network_token {
 		builder() = default;
 		/**
 		 * Set a header claim.
-		 * \param id Name of the claim
+		 * \param atom Name of the claim
 		 * \param c Claim to add
 		 * \return *this to allow for method chaining
 		 */
-		builder& set_header_claim(const typename json_traits::string_type& id, typename json_traits::value_type c) {
-			header_claims[id] = std::move(c);
+		builder& set_header_claim(const typename json_traits::string_type& atom, typename json_traits::value_type c) {
+			header_claims[atom] = std::move(c);
 			return *this;
 		}
 
 		/**
 		 * Set a header claim.
-		 * \param id Name of the claim
+		 * \param atom Name of the claim
 		 * \param c Claim to add
 		 * \return *this to allow for method chaining
 		 */
-		builder& set_header_claim(const typename json_traits::string_type& id, basic_claim<json_traits> c) {
-			header_claims[id] = c.to_json();
+		builder& set_header_claim(const typename json_traits::string_type& atom, basic_claim<json_traits> c) {
+			header_claims[atom] = c.to_json();
 			return *this;
 		}
 		/**
 		 * Set a payload claim.
-		 * \param id Name of the claim
+		 * \param atom Name of the claim
 		 * \param c Claim to add
 		 * \return *this to allow for method chaining
 		 */
-		builder& set_payload_claim(const typename json_traits::string_type& id, typename json_traits::value_type c) {
-			payload_claims[id] = std::move(c);
+		builder& set_payload_claim(const typename json_traits::string_type& atom, typename json_traits::value_type c) {
+			payload_claims[atom] = std::move(c);
 			return *this;
 		}
 		/**
 		 * Set a payload claim.
-		 * \param id Name of the claim
+		 * \param atom Name of the claim
 		 * \param c Claim to add
 		 * \return *this to allow for method chaining
 		 */
-		builder& set_payload_claim(const typename json_traits::string_type& id, basic_claim<json_traits> c) {
-			payload_claims[id] = c.to_json();
+		builder& set_payload_claim(const typename json_traits::string_type& atom, basic_claim<json_traits> c) {
+			payload_claims[atom] = c.to_json();
 			return *this;
 		}
 		/**
@@ -2560,9 +2560,9 @@ namespace network_token {
 			return set_header_claim("cty", typename json_traits::value_type(str));
 		}
 		/**
-		 * \brief Set key id claim
+		 * \brief Set key atom claim
 		 *
-		 * \param str Key id to set
+		 * \param str Key atom to set
 		 * \return *this to allow for method chaining
 		 */
 		builder& set_key_id(typename json_traits::string_type str) {
@@ -2577,7 +2577,7 @@ namespace network_token {
 			return set_payload_claim("iss", typename json_traits::value_type(str));
 		}
 		/**
-		 * Set subject claim
+		 * Set topic claim
 		 * \param str Subject to set
 		 * \return *this to allow for method chaining
 		 */
@@ -2619,7 +2619,7 @@ namespace network_token {
 		 */
 		builder& set_issued_at(const date& d) { return set_payload_claim("iat", basic_claim<json_traits>(d)); }
 		/**
-		 * Set id claim
+		 * Set atom claim
 		 * \param str ID to set
 		 * \return *this to allow for method chaining
 		 */
@@ -3011,7 +3011,7 @@ namespace network_token {
 		}
 
 		/**
-		 * Set a subject to check for.
+		 * Set a topic to check for.
 		 * Check is casesensitive.
 		 * \param sub Subject to check for.
 		 * \return *this to allow chaining
@@ -3041,12 +3041,12 @@ namespace network_token {
 			return with_audience(s);
 		}
 		/**
-		 * Set an id to check for.
+		 * Set an atom to check for.
 		 * Check is casesensitive.
-		 * \param id ID to check for.
+		 * \param atom ID to check for.
 		 * \return *this to allow chaining
 		 */
-		verifier& with_id(const typename json_traits::string_type& id) { return with_claim("jti", basic_claim_t(id)); }
+		verifier& with_id(const typename json_traits::string_type& atom) { return with_claim("jti", basic_claim_t(atom)); }
 
 		/**
 		 * Specify a claim to check for using the specified operation.
@@ -3171,8 +3171,8 @@ namespace network_token {
 		typename json_traits::string_type get_algorithm() const { return get_jwk_claim("alg").as_string(); }
 
 		/**
-		 * Get key id claim
-		 * \return key id as string
+		 * Get key atom claim
+		 * \return key atom as string
 		 * \throw std::runtime_error If claim was not present
 		 * \throw std::bad_cast Claim was present but not a string (Should not happen in a valid token)
 		 */
@@ -3266,7 +3266,7 @@ namespace network_token {
 		bool has_curve() const noexcept { return has_jwk_claim("crv"); }
 
 		/**
-		 * Check if key id is present ("kid")
+		 * Check if key atom is present ("kid")
 		 * \return true if present, false otherwise
 		 */
 		bool has_key_id() const noexcept { return has_jwk_claim("kid"); }

@@ -834,7 +834,7 @@ namespace aura
    }
 
 
-   void library::get_create_view_id_list(::array < id > & ida)
+   void library::get_create_view_id_list(::array < atom > & ida)
    {
 
       synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);

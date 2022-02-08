@@ -31,7 +31,7 @@ namespace database
    //field_definition_item & field_definition_item::operator = (const xml::node & nodeConst)
    //{
 
-   //   __throw(todo("xml"));
+   //   throw ::exception(todo("xml"));
    //   //xml::node & node = const_cast < xml::node & > (nodeConst);
    //   //m_strName = node.attribute("name");
    //   //if(!node.find_attribute("size", m_iSize))

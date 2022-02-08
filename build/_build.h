@@ -6,17 +6,17 @@
 
 #include "build.h"
 
-
-#if defined(LINUX)
-
-
-#include "linux.h"
-
-
-#else
-
-
-#error "not implemented"
-
-
-#endif
+//
+//#if defined(LINUX)
+//
+//
+//#include "linux.h"
+//
+//
+//#else
+//
+//
+//#error "not implemented"
+//
+//
+//#endif

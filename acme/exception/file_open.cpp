@@ -3,7 +3,7 @@
 
 
 file_open_exception::file_open_exception(::e_status estatus, const char* pszMessage, i32 iSkip) :
-   ::exception(estatus, pszMessage, iSkip)
+   ::exception(estatus, pszMessage, nullptr, iSkip)
 {
 
 }

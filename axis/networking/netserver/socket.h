@@ -28,7 +28,7 @@ namespace netserver
 
       virtual void simple_file_server(const ::string & pszPath, bool bMatter = false);
 
-      virtual bool http_filter_response_header(id key, string_array & straValue);
+      virtual bool http_filter_response_header(atom key, string_array & straValue);
 
 
    };

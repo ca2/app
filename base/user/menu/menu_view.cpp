@@ -38,10 +38,10 @@ namespace user
    }
 
 
-   void menu_view::assert_valid() const
+   void menu_view::assert_ok() const
    {
 
-      ::user::impact::assert_valid();
+      ::user::impact::assert_ok();
 
    }
 
@@ -81,7 +81,7 @@ namespace user
 
       auto itemHit = item;
 
-      ::id idCommand;
+      ::atom idCommand;
 
       if (itemHit.menu_view_command() >= 0)
       {
@@ -105,7 +105,7 @@ namespace user
             if (pnodeItem != nullptr)
             {
 
-               idCommand = pnodeItem->attribute("id").id();
+               idCommand = pnodeItem->attribute("id").atom();
 
             }
 
@@ -128,7 +128,7 @@ namespace user
 
          ::message::command command;
 
-         command.m_id = idCommand;
+         command.m_atom = idCommand;
 
          route_command(&command);
 
@@ -171,13 +171,13 @@ namespace user
 
       //set_topic_text("menu_view> ");
 
-      auto id = get_document()->m_pimpactsystem->m_id;
+      auto atom = get_document()->m_pimpactsystem->m_atom;
 
       string strText;
 
       auto papplication = get_application();
 
-      papplication->data_get(m_id + ".cur_text", strText);
+      papplication->data_get(m_atom + ".cur_text", strText);
 
       auto pcontext = m_pcontext->m_pauracontext;
 
@@ -220,17 +220,17 @@ namespace user
    }
 
 
-   void menu_view::handle(::subject * psubject, ::context * pcontext)
+   void menu_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::user::impact::handle(psubject, pcontext);
+      ::user::impact::handle(ptopic, pcontext);
 
-      if (psubject->id() == id_after_change_text)
+      if (ptopic->m_atom == id_after_change_text)
       {
 
          auto peditview = _001TypedWindow < ::user::plain_edit_view >();
 
-         if (peditview != nullptr && psubject->m_puserelement == peditview)
+         if (peditview != nullptr && ptopic->get_extended_topic()->m_puserelement == peditview)
          {
 
             string strText;
@@ -324,7 +324,7 @@ namespace user
          if (rectangle.contains(item.m_pointHitTest))
          {
 
-            item = { ::e_element_item, iPos, iMenu, -1 };
+            item = ::item(::e_element_item, iPos, iMenu, -1);
 
             return;
 
@@ -340,7 +340,7 @@ namespace user
             if (rectangle.contains(item.m_pointHitTest))
             {
 
-               item = { ::e_element_item, iPos, iMenu, iCommand };
+               item = ::item(::e_element_item, iPos, iMenu, iCommand);
 
                return;
 
@@ -529,13 +529,13 @@ namespace user
                   pgraphics->move_to(rectangle.left + 1, rectangle.top);
                   pgraphics->line_to(rectangle.left + 1, rectangle.bottom - 1);
 
-                  pimage1 = m_pimageMap[pnodeItem->attribute("id").id()];
+                  pimage1 = m_pimageMap[pnodeItem->attribute("id").atom()];
 
                }
                else
                {
 
-                  pimage1 = m_pimageMapGray[pnodeItem->attribute("id").id()];
+                  pimage1 = m_pimageMapGray[pnodeItem->attribute("id").atom()];
 
                }
 
@@ -717,7 +717,7 @@ namespace user
             if (pimage1)
             {
 
-               m_pimageMap[pnode->child_at(iCommand)->attribute("id").id()] = pimage1;
+               m_pimageMap[pnode->child_at(iCommand)->attribute("id").atom()] = pimage1;
 
                ::image_pointer pimageGray;
 
@@ -727,7 +727,7 @@ namespace user
 
                pimageGray->saturation(0.0);
 
-               m_pimageMapGray[pnode->child_at(iCommand)->attribute("id").id()] = pimageGray;
+               m_pimageMapGray[pnode->child_at(iCommand)->attribute("id").atom()] = pimageGray;
 
             }
 

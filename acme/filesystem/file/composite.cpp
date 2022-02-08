@@ -164,10 +164,10 @@ namespace file
    }
 
 
-   void reference::assert_valid() const
+   void reference::assert_ok() const
    {
 
-      return m_pfile->assert_valid();
+      return m_pfile->assert_ok();
 
    }
 

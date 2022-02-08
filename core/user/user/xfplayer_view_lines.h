@@ -7,7 +7,7 @@ class CLASS_DECL_CORE xfplayer_view_linea :
 public:
 
 
-   XfplayerViewLineSelection        m_selection;
+   XfplayerImpactLineSelection        m_selection;
    ::user::interaction *            m_pinteraction;
    index                            m_iFirstVisible;
    index                            m_iLastVisible;
@@ -23,13 +23,13 @@ public:
    void SetRenderWindow(::user::interaction_impl * pwindow);
    void SetEffect(i32 iEffect);
    void set_user_interaction(__pointer(::user::interaction) pinteraction);
-   void Prepare(xfplayer_view_line * pViewLine);
+   void Prepare(xfplayer_view_line * pImpactLine);
 
    void Prepare();
 
    index GetFirstVisibleLineIndex();
    index GetLastVisibleLineIndex();
-   void OnChildSetVisible(xfplayer_view_line * pViewLine, bool bVisible);
+   void OnChildSetVisible(xfplayer_view_line * pImpactLine, bool bVisible);
 
 
    
@@ -46,7 +46,7 @@ public:
    virtual void _001OnTimer(::timer * ptimer);
    DECLARE_MESSAGE_HANDLER(OnSetCursor);
 
-   XfplayerViewLineSelection & GetSelection();
+   XfplayerImpactLineSelection & GetSelection();
 
    void get_sel_text(string & strSelText, const ::string & pszLineSeparator = "\r\n");
    string get_sel_text(const ::string & pszLineSeparator = "\r\n");

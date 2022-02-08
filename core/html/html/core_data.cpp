@@ -202,10 +202,10 @@ namespace html
    }
 
 
-   void core_data::handle(::subject * psubject, ::context * pcontext)
+   void core_data::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      html_data::handle(psubject, pcontext);
+      html_data::handle(ptopic, pcontext);
 
    }
 
@@ -327,11 +327,11 @@ namespace html
          for (auto & pinteraction : m_pform->m_puserinteractionpointeraChild->interactiona())
          {
             
-            auto psubject = create_subject(::e_subject_initialize_control);
+            auto pextendedtopic = create_extended_topic(::id_initialize_control);
 
-            psubject->m_puserelement = pinteraction;
+            pextendedtopic->m_puserelement = pinteraction;
 
-            m_pform->route(psubject);
+            m_pform->route(pextendedtopic);
 
          }
 
@@ -404,11 +404,11 @@ namespace html
       if (m_pcallback != nullptr)
       {
          
-         auto psubject = create_subject(::e_subject_form_initialize);
+         auto pextendedtopic = create_extended_topic(::id_form_initialize);
 
-         psubject->m_puserelement = m_puserinteraction;
+         pextendedtopic->m_puserelement = m_puserinteraction;
          
-         m_puserinteraction->route(psubject);
+         m_puserinteraction->route(pextendedtopic);
 
       }
 
@@ -456,18 +456,18 @@ namespace html
    }
 
 
-   ::html::element * core_data::get_element_by_name(id id)
+   ::html::element * core_data::get_element_by_name(atom atom)
    {
 
-      return m_pelement->get_element_by_name(id);
+      return m_pelement->get_element_by_name(atom);
 
    }
 
 
-   ::html::element * core_data::get_element_by_id(id id)
+   ::html::element * core_data::get_element_by_id(atom atom)
    {
 
-      return m_pelement->get_element_by_id(id);
+      return m_pelement->get_element_by_id(atom);
 
    }
 
@@ -561,7 +561,7 @@ namespace html
 
          strUrl = m_strPathName.sibling(strUrl);
 
-         strUrl.replace("/", "\\");
+         strUrl.find_replace("/", "\\");
 
       }
 

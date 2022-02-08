@@ -502,10 +502,10 @@ namespace experience
       }
 
 
-      //void frame::handle(::subject * psubject, ::context * pcontext)
+      //void frame::handle(::topic * ptopic, ::context * pcontext)
       //{
 
-      //   if(psubject->m_id == id_user_style_change)
+      //   if(ptopic->m_atom == id_user_style_change)
       //   {
 
       //      on_style_change();
@@ -779,7 +779,7 @@ namespace experience
 
                ::draw2d::icon * picon = m_pframewindow->m_pdrawicon;
 
-               if (picon != nullptr)
+               if (::is_ok(picon))
                {
 
                   image_source imagesource(picon);

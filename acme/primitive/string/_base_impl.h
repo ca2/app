@@ -1008,13 +1008,14 @@ strsize string_base < TYPE_CHAR >::Insert(strsize iIndex, const CHAR_TYPE * psz)
    return(nNewLength);
 }
 
+
 template < typename TYPE_CHAR >
-strsize string_base < TYPE_CHAR >::replace(CHAR_TYPE chOld, CHAR_TYPE chNew, strsize iStart)
+strsize string_base < TYPE_CHAR >::replace_with(CHAR_TYPE charNew, CHAR_TYPE charOld, strsize iStart)
 {
    strsize nCount = 0;
 
    // i16-circuit the nop case
-   if (chOld != chNew)
+   if (charOld != charNew)
    {
       // otherwise modify each character that matches in the string_base < TYPE_CHAR >
       bool bCopied = false;
@@ -1025,14 +1026,14 @@ strsize string_base < TYPE_CHAR >::replace(CHAR_TYPE chOld, CHAR_TYPE chNew, str
       while (iChar < nLength)
       {
          // replace instances of the specified character only
-         if (pszBuffer[iChar] == chOld)
+         if (pszBuffer[iChar] == charOld)
          {
             if (!bCopied)
             {
                bCopied = true;
                pszBuffer = get_string_buffer(nLength);
             }
-            pszBuffer[iChar] = chNew;
+            pszBuffer[iChar] = charNew;
             nCount++;
          }
          iChar = strsize((pszBuffer + iChar + 1) - pszBuffer);
@@ -1046,9 +1047,18 @@ strsize string_base < TYPE_CHAR >::replace(CHAR_TYPE chOld, CHAR_TYPE chNew, str
    return(nCount);
 }
 
+//template < typename TYPE_CHAR >
+//strsize string_base < TYPE_CHAR >::xxx_replace(CHAR_TYPE charOld, CHAR_TYPE charNew, strsize iStart)
+//{
+//
+//   return replace_with(charNew, charOld, iStart);
+//
+//}
+
+
 template < typename TYPE_CHAR >
-template < raw_pointer_castable < TYPE_CHAR > PCHAR1, raw_pointer_castable < TYPE_CHAR > PCHAR2 >
-strsize string_base < TYPE_CHAR >::replace(PCHAR1 pszOld, PCHAR2 pszNew, strsize iStart)
+template < raw_pointer_castable < TYPE_CHAR > PCHARNEW, raw_pointer_castable < TYPE_CHAR > PCHAROLD >
+strsize string_base < TYPE_CHAR >::replace_with(PCHARNEW pszNew, PCHAROLD pszOld, strsize iStart)
 {
    // can't have is_empty or nullptr pszOld
 
@@ -1113,8 +1123,8 @@ strsize string_base < TYPE_CHAR >::replace(PCHAR1 pszOld, PCHAR2 pszNew, strsize
 
 
 template < typename TYPE_CHAR >
-template < raw_pointer_castable < TYPE_CHAR > PCHAR1, raw_pointer_castable < TYPE_CHAR > PCHAR2 >
-strsize string_base < TYPE_CHAR >::replace_ci(PCHAR1 pszOld, PCHAR2 pszNew, strsize iStart)
+template < raw_pointer_castable < TYPE_CHAR > PCHARNEW, raw_pointer_castable < TYPE_CHAR > PCHAROLD >
+strsize string_base < TYPE_CHAR >::replace_with_ci(PCHARNEW pszOld, PCHAROLD pszNew, strsize iStart)
 {
    // can't have is_empty or nullptr pszOld
 
@@ -1178,8 +1188,8 @@ strsize string_base < TYPE_CHAR >::replace_ci(PCHAR1 pszOld, PCHAR2 pszNew, strs
 }
 
 template < typename TYPE_CHAR >
-template < raw_pointer_castable < TYPE_CHAR > PCHAR1, raw_pointer_castable < TYPE_CHAR > PCHAR2 >
-::count string_base < TYPE_CHAR >::replace_count(PCHAR1 pszOld, PCHAR2 pszNew, strsize iStart)
+template < raw_pointer_castable < TYPE_CHAR > PCHARNEW, raw_pointer_castable < TYPE_CHAR > PCHAROLD >
+::count string_base < TYPE_CHAR >::replace_with_count(PCHARNEW pszOld, PCHAROLD pszNew, strsize iStart)
 {
    // can't have is_empty or nullptr pszOld
 
@@ -1259,8 +1269,8 @@ template < raw_pointer_castable < TYPE_CHAR > PCHAR1, raw_pointer_castable < TYP
 
 
 template < typename TYPE_CHAR >
-template < raw_pointer_castable < TYPE_CHAR > PCHAR1, raw_pointer_castable < TYPE_CHAR > PCHAR2 >
-::count string_base < TYPE_CHAR >::replace_ci_count(PCHAR1 pszOld, PCHAR2 pszNew, strsize iStart)
+template < raw_pointer_castable < TYPE_CHAR > PCHARNEW, raw_pointer_castable < TYPE_CHAR > PCHAROLD >
+::count string_base < TYPE_CHAR >::replace_with_ci_count(PCHARNEW pszOld, PCHAROLD pszNew, strsize iStart)
 {
    // can't have is_empty or nullptr pszOld
 
@@ -2595,7 +2605,7 @@ string_base < TYPE_CHAR > string_base < TYPE_CHAR >::left_trimmed(const CHAR_TYP
 template < typename TYPE_CHAR >
 void string_base < TYPE_CHAR >::AnsiToOem()
 {
-   __throw(error_what_exclamation_exclamation, "AnsiToOem WTF AnsiToOem ANSI is already WTF, Oem is very WTF, and what to say about ANSItoOEM");
+   throw ::exception(error_what_exclamation_exclamation, "AnsiToOem WTF AnsiToOem ANSI is already WTF, Oem is very WTF, and what to say about ANSItoOEM");
    //strsize nLength = get_length();
    //CHAR_TYPE* pszBuffer = get_string_buffer(nLength);
    //::str::ConvertToOem(pszBuffer, nLength + 1);
@@ -2606,7 +2616,7 @@ void string_base < TYPE_CHAR >::AnsiToOem()
 template < typename TYPE_CHAR >
 void string_base < TYPE_CHAR >::OemToAnsi()
 {
-   __throw(error_what_exclamation_exclamation, "AnsiToOem WTF AnsiToOem ANSI is already WTF, Oem is very WTF, and what to say about ANSItoOEM Ah?!?! :/ OEMtoANSI, now a bit lesser (or more?) WTF, WHAT?! WTF Power 10!!");
+   throw ::exception(error_what_exclamation_exclamation, "AnsiToOem WTF AnsiToOem ANSI is already WTF, Oem is very WTF, and what to say about ANSItoOEM Ah?!?! :/ OEMtoANSI, now a bit lesser (or more?) WTF, WHAT?! WTF Power 10!!");
    //strsize nLength = get_length();
    //CHAR_TYPE* pszBuffer = get_string_buffer(nLength);
    //::str::convert_to_ansi(pszBuffer, nLength + 1);
@@ -2755,7 +2765,7 @@ string_base < TYPE_CHAR > string_base < TYPE_CHAR >::span_including(const CHAR_T
    if (pszCharSet == nullptr)
    {
 
-      __throw(error_invalid_argument);
+      throw ::exception(error_bad_argument);
 
    }
 
@@ -2774,7 +2784,7 @@ string_base < TYPE_CHAR > string_base < TYPE_CHAR >::span_excluding(const CHAR_T
    if (pszCharSet == nullptr)
    {
 
-      __throw(error_invalid_argument);
+      throw ::exception(error_bad_argument);
 
    }
 
@@ -2819,7 +2829,7 @@ void string_base < TYPE_CHAR >::format_arguments(const CHAR_TYPE* pszFormat, va_
    if (pszFormat == nullptr)
    {
 
-      __throw(error_invalid_argument);
+      throw ::exception(error_bad_argument);
 
    }
 
@@ -3219,6 +3229,8 @@ inline bool string_base < TYPE_CHAR > ::ends_eat_ci(const string_base& strPrefix
 }
 
 
+
+
 template < typename TYPE_CHAR >
 inline string_base < TYPE_CHAR >& string_base < TYPE_CHAR > ::ensure_begins(const string_base& strPrefix)
 {
@@ -3374,6 +3386,79 @@ inline bool string_base < TYPE_CHAR > ::ends_eat_ci(const CHAR_TYPE* psz)
    return ::str::ends_eat_ci(*this, psz);
 
 }
+
+
+template < typename TYPE_CHAR >
+inline bool string_base < TYPE_CHAR > ::begins_eaten(string_base & strEaten, const CHAR_TYPE * psz)
+{
+
+   if (!::str::begins(*this, psz))
+   {
+
+      return false;
+
+   }
+
+   strEaten = c_str() + ::str::length(psz);
+
+   return true;
+
+}
+
+
+template < typename TYPE_CHAR >
+inline bool string_base < TYPE_CHAR > ::ends_eaten(string_base & strEaten, const CHAR_TYPE * psz)
+{
+
+   if (!::str::begins(*this, psz))
+   {
+
+      return false;
+
+   }
+
+   strEaten = string(c_str(), length()- ::str::length(psz));
+
+   return true;
+
+}
+
+
+template < typename TYPE_CHAR >
+inline bool string_base < TYPE_CHAR > ::begins_eaten_ci(string_base & strEaten, const CHAR_TYPE * psz)
+{
+
+   if (!::str::begins_ci(*this, psz))
+   {
+
+      return false;
+
+   }
+
+   strEaten = c_str() + ::str::length(psz);
+
+   return true;
+
+}
+
+
+template < typename TYPE_CHAR >
+inline bool string_base < TYPE_CHAR > ::ends_eaten_ci(string_base & strEaten, const CHAR_TYPE * psz)
+{
+
+   if (!::str::begins(*this, psz))
+   {
+
+      return false;
+
+   }
+
+   strEaten = string(c_str(), length() - ::str::length(psz));
+
+   return true;
+
+}
+
 
 
 template < typename TYPE_CHAR >
@@ -5126,7 +5211,7 @@ string_base < TYPE_CHAR > string_base < TYPE_CHAR >::Tokenize(PCHAR pszTokens, s
    ASSERT(iStart >= 0);
 
    if (iStart < 0)
-      __throw(error_invalid_argument);
+      throw ::exception(error_bad_argument);
 
    if ((pszTokens == nullptr) || (*pszTokens == (char)0))
    {

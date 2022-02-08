@@ -42,10 +42,10 @@ namespace user
    }
 
 
-   void controller::assert_valid() const
+   void controller::assert_ok() const
    {
 
-      channel::assert_valid();
+      channel::assert_ok();
 
    }
 

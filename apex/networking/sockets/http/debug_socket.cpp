@@ -71,7 +71,7 @@ namespace sockets
    }
 
 
-   void http_debug_socket::OnHeader(id key, const string & value)
+   void http_debug_socket::OnHeader(atom key, const string & value)
    {
       if(key == __id(content_length))
          m_content_length = atoi(value);

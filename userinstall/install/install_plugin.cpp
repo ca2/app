@@ -33,7 +33,7 @@
 
 void simple_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers)
 {
-   //__throw(::exception("integer_exception" + __string($1)));
+   //throw ::exception(::exception("integer_exception" + __string($1)));
 }
 
 #endif // defined WINDOWS
@@ -103,7 +103,7 @@ pacmedir->system() / "config\\plugin\\version.txt");
 
 #ifdef _UWP
 
-      __throw(::exception("todo")); // aura::ipc::ipc
+      throw ::exception(::exception("todo")); // aura::ipc::ipc
 
 #else
 
@@ -250,7 +250,7 @@ pacmedir->system() / "config\\plugin\\version.txt");
 
 #ifdef _UWP
 
-      __throw(::exception("todo"));
+      throw ::exception(::exception("todo"));
 
 #else
 
@@ -837,7 +837,7 @@ run_install:
 
 #ifdef _UWP
 
-      __throw(::exception("todo"));
+      throw ::exception(::exception("todo"));
 
 #else
 
@@ -1274,7 +1274,7 @@ run_install:
       // this enables spaadmin to install ca files to ca folder, because npca2 would not use any ca shared libraries.
       if(m_phost->m_bRunningSpaAdmin)
       {
-         __throw(todo);
+         throw ::exception(todo);
          /*if(!_c_lock_is_active("Global\\::ca::account::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784"))
          {
             m_phost->m_bRunningSpaAdmin = false;
@@ -1625,7 +1625,7 @@ restart:
 
 #ifdef _UWP
 
-         __throw(::exception("todo"));
+         throw ::exception(::exception("todo"));
 
 #else
 

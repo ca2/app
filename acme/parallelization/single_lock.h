@@ -42,11 +42,11 @@ public:
    ~_single_lock();
 
 
-   void _wait();
-   void _wait(const duration & duration);
-   void unlock();
-   void unlock(::i32 lCount, ::i32 * lPrevCount = nullptr);
-   bool is_locked();
+   void _wait() override;
+   bool _wait(const class ::wait & wait) override;
+   void unlock() override;
+   void unlock(::i32 lCount, ::i32 * lPrevCount = nullptr) override;
+   bool is_locked() const override;
 
 
 };

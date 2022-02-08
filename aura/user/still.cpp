@@ -19,6 +19,7 @@ namespace user
       m_estockicon = e_stock_icon_none;
       m_estyle = style_none;
       m_iClick = 0;
+      m_ealignText = e_align_center;
 
       m_flagNonClient -= non_client_background;
       m_flagNonClient -= non_client_focus_rect;
@@ -138,7 +139,7 @@ namespace user
    //   if (hit_test(pmouse->)
    //   {
 
-   //      if (!simple_process_system_message(pmessage, ::e_subject_button_down))
+   //      if (!simple_process_system_message(pmessage, ::id_button_down))
    //      {
 
    //         psession->m_puiLastLButtonDown = this;
@@ -168,7 +169,7 @@ namespace user
    //   if (hit_test(point, eelement) >= 0)
    //   {
 
-   //      if (!simple_process_system_message(pmessage, ::e_subject_m_button_down))
+   //      if (!simple_process_system_message(pmessage, ::id_m_button_down))
    //      {
 
    //         //psession->m_puiLastLButtonDown = this;
@@ -198,7 +199,7 @@ namespace user
    //   if (hit_test(point, eelement) >= 0)
    //   {
 
-   //      if (!simple_process_system_message(pmessage, ::e_subject_m_button_up))
+   //      if (!simple_process_system_message(pmessage, ::id_m_button_up))
    //      {
 
    //         //psession->m_puiLastLButtonDown = this;
@@ -245,22 +246,22 @@ namespace user
    //   //   else
    //   //   {
 
-   //   //      ::subject subject;
+   //   //      ::topic topic;
 
-   //   //      subject.m_puserinteraction = this;
+   //   //      topic.m_puserinteraction = this;
 
-   //   //      subject.m_id = ::e_subject_click;
+   //   //      topic.m_atom = ::id_click;
 
-   //   //      route(&subject);
+   //   //      route(&topic);
 
-   //   //      pmessage->m_bRet = subject.m_bRet;
+   //   //      pmessage->m_bRet = topic.m_bRet;
 
    //   //      if (!pmessage->m_bRet)
    //   //      {
 
    //   //         ::message::command command;
 
-   //   //         command.m_id = m_id;
+   //   //         command.m_atom = m_atom;
 
    //   //         command.m_puiOther = this;
 
@@ -308,18 +309,18 @@ namespace user
 
    //   //   if (iOldHover == -1)
    //   //   {
-   //   //      ::subject subject;
-   //   //      subject.m_puserinteraction = this;
-   //   //      subject.m_id = ::e_subject_mouse_enter;
+   //   //      ::topic topic;
+   //   //      topic.m_puserinteraction = this;
+   //   //      topic.m_atom = ::id_mouse_enter;
    //   //      get_parent()->send_message(
    //   //      e_message_event, 0, (LPARAM)&ev);
    //   //      //               m_bActionHover = true;
    //   //   }
    //   //   else if (iHover == -1)
    //   //   {
-   //   //      ::subject subject;
-   //   //      subject.m_puserinteraction = this;
-   //   //      subject.m_id = ::e_subject_mouse_leave;
+   //   //      ::topic topic;
+   //   //      topic.m_puserinteraction = this;
+   //   //      topic.m_atom = ::id_mouse_leave;
    //   //      get_parent()->send_message(
    //   //      e_message_event, 0, (LPARAM)&ev);
    //   //      //             m_bActionHover = false;
@@ -339,9 +340,9 @@ namespace user
    //   //if (iOldHover >= 0)
    //   //{
    //   //   set_need_redraw();
-   //   //   ::subject subject;
-   //   //   subject.m_puserinteraction = this;
-   //   //   subject.m_id = ::e_subject_mouse_leave;
+   //   //   ::topic topic;
+   //   //   topic.m_puserinteraction = this;
+   //   //   topic.m_atom = ::id_mouse_leave;
    //   //   if (get_parent() != nullptr)
    //   //   {
    //   //      get_parent()->send_message(e_message_event, 0, (LPARAM)&ev);
@@ -481,10 +482,10 @@ namespace user
       //}
 
 
-      if (m_id.has_char())
+      if (m_atom.has_char())
       {
 
-         string strText = _(m_id);
+         string strText = _(m_atom);
 
          set_window_text(strText);
 
@@ -528,7 +529,7 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      ::e_align ealign = (enum_align)get_int(pstyle, ::user::e_int_edit_text_align, ::user::e_state_none, e_align_left_center);
+      ::e_align ealign = (enum_align)get_int(pstyle, ::user::e_int_edit_text_align, ::user::e_state_none, m_ealignText);
 
       ::e_draw_text edrawtext = (enum_draw_text)get_int(pstyle, ::user::e_int_edit_draw_text_flags, ::user::e_state_none, e_draw_text_single_line);
 
@@ -543,17 +544,30 @@ namespace user
 
       m_ptextouta->text_outa().erase_all();
 
-      auto pfont = get_font(pstyle, ::e_element_none);
+      __pointer(::write_text::font) pfont;
+      
+      if (m_pfont)
+      {
+
+         pfont = m_pfont;
+
+      }
+      else
+      {
+
+         pfont = get_font(pstyle, ::e_element_none);
+
+      }
 
       pgraphics->create_simple_multiline_layout(*m_ptextouta, strText, rectangleClient, pfont, ealign, etextwrap);
 
    }
 
 
-   //bool still::create_interaction(::user::interaction * pinteractionParent, const ::id & id)
+   //bool still::create_interaction(::user::interaction * pinteractionParent, const ::atom & atom)
    //{
 
-   //   return interaction::create_interaction(pinteractionParent, id);
+   //   return interaction::create_interaction(pinteractionParent, atom);
 
    //}
 
@@ -729,7 +743,18 @@ namespace user
 
       string strText(get_window_text());
 
-      pgraphics->set_font(this, ::e_element_none);
+      if (m_pfont)
+      {
+
+         pgraphics->set(m_pfont);
+
+      }
+      else
+      {
+
+         pgraphics->set_font(this, ::e_element_none);
+
+      }
 
       pgraphics->draw_text(strText, rectangleText, e_align_top_left);
 
@@ -755,19 +780,17 @@ namespace user
       if (iKey == ::user::e_key_return || iKey == ::user::e_key_space)
       {
 
-         ::subject subject;
+         ::extended_topic extendedtopic(::id_click);
 
-         subject.m_puserelement = this;
+         extendedtopic.m_puserelement = this;
 
-         subject.m_id = ::e_subject_click;
+         extendedtopic.m_actioncontext.m_pmessage = pmessage;
 
-         subject.m_actioncontext.m_pmessage = pmessage;
+         extendedtopic.m_actioncontext.add(e_source_user);
 
-         subject.m_actioncontext.add(e_source_user);
+         route(&extendedtopic);
 
-         route(&subject);
-
-         pmessage->m_bRet = subject.m_bRet;
+         pmessage->m_bRet = extendedtopic.m_bRet;
 
          if (pmessage->m_bRet)
          {
@@ -1020,7 +1043,7 @@ namespace user
 
    i32 still::BaseToolTipGetIndex()
    {
-      // use window dialog control id as the index
+      // use window dialog control atom as the index
       return (i32)GetDlgCtrlId();
    }
 

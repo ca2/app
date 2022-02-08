@@ -331,7 +331,7 @@ filesize stdio_file::get_size() const
 }
 
 
-void stdio_file::assert_valid() const
+void stdio_file::assert_ok() const
 {
 
 }

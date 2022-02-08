@@ -4,16 +4,16 @@
 #define APPLICATION_CONSUMER_BODY                                                      \
                                                                                        \
                                                                                        \
-void assert_valid() const override                                                     \
+void assert_ok() const override                                                     \
 {                                                                                      \
                                                                                        \
-   BASE1::assert_valid();                                                              \
+   BASE1::assert_ok();                                                              \
                                                                                        \
-   BASE2::assert_valid();                                                              \
+   BASE2::assert_ok();                                                              \
                                                                                        \
-   BASE3::assert_valid();                                                              \
+   BASE3::assert_ok();                                                              \
                                                                                        \
-   BASE4::assert_valid();                                                              \
+   BASE4::assert_ok();                                                              \
                                                                                        \
 }                                                                                      \
                                                                                        \
@@ -49,16 +49,16 @@ void on_initialize_object() override                                            
                                                                                        \
 }                                                                                      \
                                                                                        \
-void handle(::subject * psubject, ::context * pcontext) override \
+void handle(::topic * ptopic, ::context * pcontext) override \
 {                                                                                      \
                                                                                        \
-   BASE1::handle(psubject, pcontext);                                              \
+   BASE1::handle(ptopic, pcontext);                                              \
                                                                                        \
-   BASE2::handle(psubject, pcontext);                                              \
+   BASE2::handle(ptopic, pcontext);                                              \
                                                                                        \
-   BASE3::handle(psubject, pcontext);                                              \
+   BASE3::handle(ptopic, pcontext);                                              \
                                                                                        \
-   BASE4::handle(psubject, pcontext);                                              \
+   BASE4::handle(ptopic, pcontext);                                              \
                                                                                        \
 }            
 //void signal(::signal * psignal) override                            \

@@ -42,12 +42,12 @@ namespace text
    }
 
 
-   data* translator::create_text_data(const ::id& id)
+   data* translator::create_text_data(const ::atom& atom)
    {
 
       data* ptextdata = new data(this);
 
-      ptextdata->m_id = id;
+      ptextdata->m_atom = atom;
 
       return ptextdata;
 
@@ -59,7 +59,7 @@ namespace text
 
       data* ptextdata = new data(this);
 
-      ptextdata->m_id = ptextdataParam->m_id;
+      ptextdata->m_atom = ptextdataParam->m_atom;
 
       ptextdata->m_str = ptextdataParam->m_str;
 

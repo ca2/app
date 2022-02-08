@@ -7,14 +7,14 @@ class CLASS_DECL_APEX interprocess_task :
 public:
 
 
-   ::id                                m_idPid;
+   ::atom                                m_atomPid;
    ::i64                               m_iTask;
    __pointer(interprocess_call)               m_pcall;
    ::payload                                 m_var;
    __pointer(manual_reset_event)       m_pevReady;
 
 
-   interprocess_task(interprocess_call* pcall, const ::id& idPid, i64 iTask);
+   interprocess_task(interprocess_call* pcall, const ::atom& idPid, i64 iTask);
    virtual ~interprocess_task();
 
 

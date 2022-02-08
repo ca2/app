@@ -61,7 +61,7 @@ public:
    ~matter() override;
 
 
-   virtual void  assert_valid() const;
+   virtual void  assert_ok() const;
    virtual void  dump(dump_context& dumpcontext) const;
 
 
@@ -153,7 +153,7 @@ public:
 
 
 
-   //virtual ::task * defer_branch(const ::id & id, const ::routine & routine);
+   //virtual ::task * defer_branch(const ::atom & atom, const ::routine & routine);
 
 
    void delete_this() override;
@@ -277,12 +277,12 @@ public:
    virtual void trace_last_status();
 
 
-   virtual void on_future(const ::payload & payload);
+   virtual void on_sequence(const ::payload & payload);
 
    virtual void clear_member() { }
 
 
-
+   __pointer(::sequence < ::conversation >) message_box(const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok);
 
 
 };

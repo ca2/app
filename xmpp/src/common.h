@@ -126,9 +126,9 @@ struct _xmpp_handlist_t {
 	    unsigned long period;
 	    u64 last_stamp;
 	};
-	/* id handlers */
+	/* atom handlers */
 	struct {
-	    char *id;
+	    char *atom;
 	};
 	/* normal handlers */
 	struct {
@@ -250,7 +250,7 @@ void handler_add_timed(xmpp_conn_t * const conn,
 		       void * const userdata);
 void handler_add_id(xmpp_conn_t * const conn,
 		    xmpp_handler handler,
-		    const char * const id,
+		    const char * const atom,
 		    void * const userdata);
 void handler_add(xmpp_conn_t * const conn,
 		 xmpp_handler handler,

@@ -15,14 +15,14 @@ namespace user
    }
 
 
-   button::button(const ::string & pszName, const ::id & id)
+   button::button(const ::string & pszName, const ::atom & atom)
    {
 
       user_button_construct();
 
       m_strWindowText = pszName;
 
-      m_id = id;
+      m_atom = atom;
 
    }
 
@@ -278,7 +278,7 @@ namespace user
 
       }
 
-      m_propertyCheck = fetch_property(m_id, true);
+      m_propertyCheck = fetch_property(m_atom, true);
 
    }
 
@@ -307,10 +307,10 @@ namespace user
    }
 
 
-   //bool button::create_interaction(::user::interaction * pinteractionParent, const ::id & id)
+   //bool button::create_interaction(::user::interaction * pinteractionParent, const ::atom & atom)
    //{
 
-   //   return interaction::create_interaction(pinteractionParent, id);
+   //   return interaction::create_interaction(pinteractionParent, atom);
 
    //}
 
@@ -470,19 +470,17 @@ namespace user
       if (iKey == ::user::e_key_return || iKey == ::user::e_key_space)
       {
 
-         ::subject subject;
+         ::extended_topic extendedtopic(::id_click);
 
-         subject.m_puserelement = this;
+         extendedtopic.m_puserelement = this;
 
-         subject.m_id = ::e_subject_click;
+         extendedtopic.m_actioncontext.m_pmessage = pkey;
 
-         subject.m_actioncontext.m_pmessage = pkey;
+         extendedtopic.m_actioncontext.add(e_source_user);
 
-         subject.m_actioncontext.add(e_source_user);
+         route(&extendedtopic);
 
-         route(&subject);
-
-         pmessage->m_bRet = subject.m_bRet;
+         pmessage->m_bRet = extendedtopic.m_bRet;
 
          if (pmessage->m_bRet)
          {
@@ -566,10 +564,10 @@ namespace user
    }
 
 
-   void button::handle(::subject * psubject, ::context * pcontext)
+   void button::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      interaction::handle(psubject, pcontext);
+      interaction::handle(ptopic, pcontext);
 
    }
 
@@ -1200,7 +1198,7 @@ namespace user
 
    i32 button::BaseToolTipGetIndex()
    {
-      // use window dialog control id as the index
+      // use window dialog control atom as the index
       return (i32)GetDlgCtrlId();
    }
 

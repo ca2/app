@@ -102,7 +102,7 @@ namespace prompt
 //
 //#else
 //
-//         __throw(todo);
+//         throw ::exception(todo);
 //
 //#endif
 

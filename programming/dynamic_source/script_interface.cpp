@@ -150,7 +150,7 @@ namespace dynamic_source
       else
       {
 
-         throw ::interface_only_exception();
+         throw ::interface_only();
 
       }
 
@@ -196,20 +196,20 @@ namespace dynamic_source
    //}
 
 
-   void script_interface::set_session_payload(const ::id & id, const ::payload &)
+   void script_interface::set_session_payload(const ::atom & atom, const ::payload &)
    {
 
    }
 
 
-   ::payload script_interface::get_session_payload(const ::id & id)
+   ::payload script_interface::get_session_payload(const ::atom & atom)
    {
 
       return ::payload(::e_type_new);
 
    }
 
-   ::id script_interface::session_id(const ::id & id)
+   ::atom script_interface::session_id(const ::atom & atom)
    {
 
       return "";
@@ -332,7 +332,7 @@ namespace dynamic_source
       property_set& script_interface::inattra()
       {
 
-         throw ::interface_only_exception();
+         throw ::interface_only();
 
          return *(property_set *)nullptr;
 
@@ -358,7 +358,7 @@ namespace dynamic_source
       property_set& script_interface::geta()
       {
 
-         throw ::interface_only_exception();
+         throw ::interface_only();
 
          return *(property_set *)nullptr;
 
@@ -369,7 +369,7 @@ namespace dynamic_source
       property_set& script_interface::posta()
       {
 
-         throw ::interface_only_exception();
+         throw ::interface_only();
 
          return *(property_set *)nullptr;
 
@@ -380,7 +380,7 @@ namespace dynamic_source
       http::cookies& script_interface::cookies()
       {
 
-         throw ::interface_only_exception();
+         throw ::interface_only();
 
          return *(http::cookies *)nullptr;
 
@@ -390,107 +390,107 @@ namespace dynamic_source
       property_set& script_interface::requesta()
       {
 
-         throw ::interface_only_exception();
+         throw ::interface_only();
 
          return *(property_set *)nullptr;
 
       }
 
 
-      property& script_interface::inheader(id id)
+      property& script_interface::inheader(atom atom)
       {
 
-         throw ::interface_only_exception();
+         throw ::interface_only();
 
          return *(property *)nullptr;
 
       }
 
 
-      property& script_interface::outheader(id id)
+      property& script_interface::outheader(atom atom)
       {
 
-         throw ::interface_only_exception();
+         throw ::interface_only();
 
          return *(property *)nullptr;
 
       }
 
 
-      property& script_interface::inattr(id id)
+      property& script_interface::inattr(atom atom)
       {
 
-         throw ::interface_only_exception();
+         throw ::interface_only();
 
          return *(property *)nullptr;
 
       }
 
 
-      property& script_interface::outattr(id id)
+      property& script_interface::outattr(atom atom)
       {
 
-         throw ::interface_only_exception();
+         throw ::interface_only();
 
          return *(property *)nullptr;
 
       }
 
 
-      string& script_interface::gstr(id id)
+      string& script_interface::gstr(atom atom)
       {
 
-         throw ::interface_only_exception();
+         throw ::interface_only();
 
          return *(string *)nullptr;
 
       }
 
 
-      property& script_interface::gprop(id id)
+      property& script_interface::gprop(atom atom)
       {
 
-         throw ::interface_only_exception();
+         throw ::interface_only();
 
          return *(property *)nullptr;
 
       }
 
 
-      property& script_interface::get(id idKey)
+      property& script_interface::get(atom idKey)
       {
 
-         throw ::interface_only_exception();
+         throw ::interface_only();
 
          return *(property *)nullptr;
 
       }
 
 
-      property& script_interface::post(id idKey)
+      property& script_interface::post(atom idKey)
       {
 
-         throw ::interface_only_exception();
+         throw ::interface_only();
 
          return *(property *)nullptr;
 
       }
 
 
-      http::cookie& script_interface::get_cookie(id idKey)
+      http::cookie& script_interface::get_cookie(atom idKey)
       {
 
-         throw ::interface_only_exception();
+         throw ::interface_only();
 
          return *(http::cookie *)nullptr;
 
       }
 
 
-      http::cookie& script_interface::set_cookie(id idKey)
+      http::cookie& script_interface::set_cookie(atom idKey)
       {
 
-         throw ::interface_only_exception();
+         throw ::interface_only();
 
          return *(http::cookie *)nullptr;
 

@@ -11,12 +11,12 @@ namespace html
    public:
 
 
-      id          m_idName;
+      atom          m_atomName;
       string      m_strValue;
 
 
-      void set_name(id idName);
-      id get_name() const;
+      void set_name(atom idName);
+      atom get_name() const;
 
       void set_value(const ::string & pszValue);
       string get_value() const;
@@ -30,9 +30,9 @@ namespace html
    public:
 
 
-      __pointer(class attribute) get(id idName);
-      __pointer(class attribute) get(id idName) const;
-      string get_value(id idName) const;
+      __pointer(class attribute) get(atom idName);
+      __pointer(class attribute) get(atom idName) const;
+      string get_value(atom idName) const;
 
 
    };

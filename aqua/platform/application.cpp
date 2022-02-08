@@ -87,15 +87,15 @@ namespace aqua
    }
 
 
-   bool application::load_cached_string(string& str, const ::id& id, bool bLoadStringTable)
+   bool application::load_cached_string(string& str, const ::atom& atom, bool bLoadStringTable)
    {
 
       auto pdocument = __create_new<::xml::document>();
 
-      if (!pdocument->load(id))
+      if (!pdocument->load(atom))
       {
 
-         return load_cached_string_by_id(str, id, bLoadStringTable);
+         return load_cached_string_by_id(str, atom, bLoadStringTable);
 
       }
 

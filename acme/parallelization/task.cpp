@@ -6,7 +6,7 @@
 #ifdef PARALLELIZATION_PTHREAD
 
 
-#include "acme/node/operating_system/ansi/_pthread.h"
+#include "acme/operating_system/ansi/_pthread.h"
 
 
 #endif
@@ -128,7 +128,7 @@ void task::add_task(::object* pobjectTask)
 bool task::is_current_task() const
 {
 
-   auto itaskCurrent = ::get_current_ithread();
+   auto itaskCurrent = ::get_current_itask();
 
    return itaskCurrent == m_itask;
 
@@ -146,7 +146,7 @@ bool task::is_current_task() const
 bool task::task_set_name(const char* pszTaskName)
 {
    
-   if(::get_current_ithread() == m_itask)
+   if(::get_current_itask() == m_itask)
    {
       
       ::task_set_name(pszTaskName);
@@ -336,7 +336,7 @@ void task::stop_task()
 
    // but it should wait for thread to finish...
 
-   __throw(todo);
+   throw ::exception(todo);
 
    //return estatus;
 
@@ -373,7 +373,6 @@ void* task::s_os_task(void* p)
 
          ptask->main();
 
-
       }
       catch (::exit_exception & exitexception)
       {
@@ -386,9 +385,16 @@ void* task::s_os_task(void* p)
       catch (::exception& exception)
       {
 
-         _ERROR(ptask, "Exception reached task procedure");
+         _ERROR(ptask, "Exception reached task procedure : " << exception);
 
       }
+      catch(...)
+      {
+
+         _ERROR(ptask, "Exception reached task procedure (...)");
+
+      }
+
 
       clear_message_queue(ptask->m_itask);
 
@@ -714,9 +720,9 @@ void task::term_task()
 //
 //   //      }
 //
-//   //      m_id = __type_name(pelement);
+//   //      m_atom = __type_name(pelement);
 //
-//   //      task_set_name(m_id);
+//   //      task_set_name(m_atom);
 //
 //   //      m_pelement.m_p = nullptr;
 //
@@ -734,7 +740,7 @@ void task::term_task()
 bool task::do_events()
 {
    
-   throw interface_only_exception("tasks don't have message queue, threads do");
+   throw ::interface_only("tasks don't have message queue, threads do");
 
    return true;
 
@@ -744,7 +750,7 @@ bool task::do_events()
 bool task::defer_pump_message()
 {
 
-   throw interface_only_exception("tasks don't have message queue, threads do");
+   throw ::interface_only("tasks don't have message queue, threads do");
 
    return false;
 
@@ -754,7 +760,7 @@ bool task::defer_pump_message()
 bool task::has_message() const
 {
 
-   throw interface_only_exception("tasks don't have message queue, threads do");
+   throw ::interface_only("tasks don't have message queue, threads do");
 
    return false;
 
@@ -770,7 +776,7 @@ bool task::has_message() const
 //
 //   m_pelement = pelement;
 //
-//   m_id = __type_name(pelement);
+//   m_atom = __type_name(pelement);
 //
 //   return branch(epriority, nStackSize, uCreateFlags ADD_PARAM_SEC_ATTRS);
 //
@@ -780,28 +786,28 @@ bool task::has_message() const
 void task::branch(::enum_priority epriority, u32 nStackSize, u32 uCreateFlags ARG_SEC_ATTRS)
 {
 
-   if (m_id.is_empty())
+   if (m_atom.is_empty())
    {
 
       if (m_pelement)
       {
 
-         m_id = __type_name(m_pelement);
+         m_atom = __type_name(m_pelement);
 
       }
       else
       {
 
-         m_id = __type_name(this);
+         m_atom = __type_name(this);
 
       }
 
    }
 
-   if (m_id.is_empty() || m_id == "task" || m_id == "thread")
+   if (m_atom.is_empty() || m_atom == "task" || m_atom == "thread")
    {
 
-      __throw(error_invalid_argument);
+      throw ::exception(error_bad_argument);
 
       ///return ::error_failed;
 
@@ -816,7 +822,7 @@ void task::branch(::enum_priority epriority, u32 nStackSize, u32 uCreateFlags AR
 
 #ifdef __DEBUG
 
-   string strId = m_id;
+   string strId = m_atom;
 
    if (strId.contains_ci("forking_thread"))
    {
@@ -932,7 +938,7 @@ void task::branch(::enum_priority epriority, u32 nStackSize, u32 uCreateFlags AR
       else
       {
 
-         __throw(error_invalid_usage);
+         throw ::exception(error_invalid_usage);
 
       }
 
@@ -968,6 +974,219 @@ void task::branch(::enum_priority epriority, u32 nStackSize, u32 uCreateFlags AR
 
    pthread_create(
       (pthread_t *) &m_htask,
+      &taskAttr,
+      &task::s_os_task,
+      this);
+
+#endif
+
+   if (!m_htask)
+   {
+
+      m_bIsRunning = false;
+
+      throw_status(error_wrong_state);
+
+      //return ::error_failed;
+
+   }
+
+   //return ::success;
+
+}
+
+
+void task::begin_synchronously(::enum_priority epriority, u32 nStackSize, u32 uCreateFlags ARG_SEC_ATTRS)
+{
+
+   if (m_atom.is_empty())
+   {
+
+      if (m_pelement)
+      {
+
+         m_atom = __type_name(m_pelement);
+
+      }
+      else
+      {
+
+         m_atom = __type_name(this);
+
+      }
+
+   }
+
+   if (m_atom.is_empty() || m_atom == "task" || m_atom == "thread")
+   {
+
+      throw ::exception(error_bad_argument);
+
+      ///return ::error_failed;
+
+   }
+
+   //   if (::is_null(m_pelement))
+   //   {
+   //
+   //      m_pelement = this;
+   //
+   //   }
+
+#ifdef __DEBUG
+
+   string strId = m_atom;
+
+   if (strId.contains_ci("forking_thread"))
+   {
+
+#if 0
+
+#ifdef WINDOWS_DESKTOP
+
+      ::exception_engine().reset();
+
+      OS_DWORD                dwDisplacement;
+
+      OS_DWORD                uia[4096];
+
+      dwDisplacement = 0;
+
+      ::u32 maxframes = sizeof(uia) / sizeof(uia[0]);
+
+      ULONG BackTraceHash;
+
+      int iAddressWrite = RtlCaptureStackBackTrace(0, maxframes, reinterpret_cast<PVOID *>(&uia), &BackTraceHash);
+
+      char sz[1024];
+
+      __zero(sz);
+
+      engine_symbol(sz, sizeof(sz), &dwDisplacement, uia[5]);
+
+      u32 uiLine = 0;
+
+      {
+         critical_section_lock csl(&::exception_engine().m_criticalsection);
+
+         engine_fileline(uia[5], 0, 0, &uiLine, nullptr);
+
+      }
+
+      strId = string(sz) + "(" + __string(uiLine) + ") :: forking_thread";
+
+#endif
+
+#endif
+
+   }
+
+   m_pszDebug = strdup(strId);
+
+#endif
+
+   /*auto estatus =*/ task_caller_on_init();
+
+   //if (!estatus)
+   //{
+
+   //   return estatus;
+
+   //}
+
+   //if (m_pobjectParent && m_bIsPredicate)
+   //{
+
+   //   //auto pthreadParent = calc_parent_thread();
+
+   //   m_pobjectParent->task_add(this);
+
+
+   //   if (pthreadParent)
+   //   {
+
+   //
+
+   //   }
+
+   //}
+
+   // __task_procedure() should release this (pelement)
+   //increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS_FUNCTION_LINE);
+
+   m_bIsRunning = true;
+
+   set(e_flag_task_started);
+
+   if (::is_null(m_pobjectParentTask))
+   {
+
+      auto pobjectParentTask = ::get_task();
+
+      if (::is_null(pobjectParentTask))
+      {
+
+         pobjectParentTask = m_pcontext;
+
+      }
+
+      if (::is_null(pobjectParentTask))
+      {
+
+         pobjectParentTask = m_psystem;
+
+      }
+
+      if (pobjectParentTask)
+      {
+
+         if (pobjectParentTask != this)
+         {
+
+            pobjectParentTask->add_task(this);
+
+         }
+
+      }
+      else
+      {
+
+         throw ::exception(error_invalid_usage);
+
+      }
+
+   }
+
+#ifdef WINDOWS
+
+   DWORD dwThread = 0;
+
+   m_htask = ::CreateThread((LPSECURITY_ATTRIBUTES)PARAM_SEC_ATTRS, nStackSize, (LPTHREAD_START_ROUTINE) & ::task::s_os_task, (LPVOID)(task *)this, uCreateFlags, &dwThread);
+
+   m_itask = dwThread;
+
+#else
+
+   pthread_attr_t taskAttr;
+
+   pthread_attr_init(&taskAttr);
+
+   if (nStackSize > 0)
+   {
+
+      pthread_attr_setstacksize(&taskAttr, nStackSize); // Set the stack size of the task
+
+   }
+
+   if (!m_bJoinable)
+   {
+
+      pthread_attr_setdetachstate(&taskAttr, PTHREAD_CREATE_DETACHED); // Set task to detached state. No need for pthread_join
+
+   }
+
+   pthread_create(
+      (pthread_t *)&m_htask,
       &taskAttr,
       &task::s_os_task,
       this);
@@ -1064,7 +1283,7 @@ void task::kick_idle()
 bool task::is_branch_current() const
 {
 
-   return ::get_current_ithread() == m_itask;
+   return ::get_current_itask() == m_itask;
 
 }
 

@@ -111,7 +111,7 @@ namespace draw2d
       ~graphics() override;
 
 
-      void assert_valid() const override;
+      void assert_ok() const override;
       void dump(dump_context & dumpcontext) const override;
       
       
@@ -189,7 +189,7 @@ namespace draw2d
 
       virtual void on_begin_draw();
 
-      virtual void fill_contains(const point_f64 & point);
+      virtual bool fill_contains(const point_f64 & point);
 
       void draw_ca2(int x,int y,int z,const ::color::color & colorBk,const ::color::color & color);
       void draw_ca2_with_border(int x,int y,int z,int b,const ::color::color & colorBk,const ::color::color & color,const ::color::color & colorOut);

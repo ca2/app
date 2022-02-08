@@ -24,12 +24,12 @@ namespace app_core_build
 
       void install_message_routing(::channel * pchannel) override;
 
-      void assert_valid() const override;
+      void assert_ok() const override;
 
       void dump(dump_context & dumpcontext) const override;
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
-      void handle(::subject * psubject, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::context * pcontext) override;
       void on_change_cur_sel() override;
 
 

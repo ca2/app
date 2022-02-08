@@ -283,12 +283,12 @@ namespace simpledb
    }
 
 
-   bool server::_data_server_load(::database::client * pclient, const ::database::key & id, get_memory getmemory, ::subject * psubject)
+   bool server::_data_server_load(::database::client * pclient, const ::database::key & atom, get_memory getmemory, ::topic * ptopic)
    {
 
       ::database::key key;
 
-      key = pclient->calc_data_key(id);
+      key = pclient->calc_data_key(atom);
 
       string strType = __type_name(pclient);
 
@@ -311,12 +311,12 @@ namespace simpledb
    }
 
 
-   void server::_data_server_save(::database::client * pclient, const ::database::key & id, block block, ::subject * psubject)
+   void server::_data_server_save(::database::client * pclient, const ::database::key & atom, block block, ::topic * ptopic)
    {
 
       ::database::key key;
 
-      key = pclient->calc_data_key(id);
+      key = pclient->calc_data_key(atom);
 
       string strType = __type_name(pclient);
 

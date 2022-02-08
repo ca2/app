@@ -33,7 +33,7 @@ namespace macos
 
          CFRelease(error);
 
-         __throw(error_resource);
+         throw ::exception(error_resource);
 
       }
 

@@ -1259,7 +1259,7 @@ namespace browser
 /*   //         if (!pimage->load_image(strImage, false, true))
    //         {
 
-   //            __throw(::exception("Failed to load \"" + strImage + "\""));
+   //            throw ::exception(::exception("Failed to load \"" + strImage + "\""));
 
    //         }
 

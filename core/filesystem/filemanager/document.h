@@ -33,7 +33,7 @@ namespace filemanager
       inline ::core::system* get_system() const { return m_psystem ? m_psystem->m_pcoresystem : nullptr; }
 
       
-      void assert_valid() const override;
+      void assert_ok() const override;
       void dump(dump_context & dumpcontext) const override;
 
 
@@ -106,7 +106,7 @@ namespace filemanager
       virtual void OnFileManagerBrowse(const ::action_context & action_context);
       virtual void OpenSelectionProperties();
 
-      virtual void GetActiveViewSelection(::file::item_array & itema);
+      virtual void GetActiveImpactSelection(::file::item_array & itema);
 
 
       virtual void FileManagerSaveAs(::user::document * pdocument);
@@ -134,8 +134,8 @@ namespace filemanager
 
       virtual bool HandleDefaultFileManagerItemCmdMsg(::message::command * pcommand,::file::item_array & itema);
 
-      void PopViews();
-      void CreateViews();
+      void PopImpacts();
+      void CreateImpacts();
       void OpenFolder(::file::item * item, const ::action_context & action_context);
       void filemanager_initialize(bool bMakeVisible, bool bInitialBrowsePath = true);
       void filemanager_initialize(bool bMakeVisible, const ::file::path & path);
@@ -147,7 +147,7 @@ namespace filemanager
       //virtual ::user::toolbar * get_toolbar(::user::frame * pframe, bool bCreate) override;
 
 
-      ::id get_toolbar_id() override;
+      ::atom get_toolbar_id() override;
 
 
       virtual void start_full_browse(__pointer(::file::item) pitem, const ::action_context & action_context);

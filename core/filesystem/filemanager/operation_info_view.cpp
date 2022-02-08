@@ -138,9 +138,9 @@ namespace filemanager
 //      //MESSAGE_LINK(e_message_timer,pchannel,this,&operation_info_view::_001OnTimer);
    }
 
-   void operation_info_view::assert_valid() const
+   void operation_info_view::assert_ok() const
    {
-      ::user::impact::assert_valid();
+      ::user::impact::assert_ok();
    }
    void operation_info_view::dump(dump_context & context) const
    {

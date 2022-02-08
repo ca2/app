@@ -72,12 +72,12 @@ namespace sockets
    #endif
 
       /** get peer addresses of an association. */
-      int getpaddrs(sctp_assoc_t id,list<string>&);
+      int getpaddrs(sctp_assoc_t atom,list<string>&);
       /** get all bound addresses of an association. */
-      int getladdrs(sctp_assoc_t id,list<string>&);
+      int getladdrs(sctp_assoc_t atom,list<string>&);
 
       /** sctp_peeloff */
-      int PeelOff(sctp_assoc_t id);
+      int PeelOff(sctp_assoc_t atom);
 
       /** recvmsg callback */
       virtual void OnReceiveMessage(const char *buf,memsize sz,struct sockaddr *sa,socklen_t sa_len,struct sctp_sndrcvinfo *sinfo,int msg_flags) = 0;

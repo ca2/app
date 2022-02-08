@@ -24,10 +24,10 @@ namespace userex
    }
 
 
-   void top_view::assert_valid() const
+   void top_view::assert_ok() const
    {
 
-      ::user::split_view::assert_valid();
+      ::user::split_view::assert_ok();
 
    }
 
@@ -40,10 +40,10 @@ namespace userex
    }
 
 
-   void top_view::handle(::subject * psubject, ::context * pcontext)
+   void top_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::user::split_view::handle(psubject, pcontext);
+      ::user::split_view::handle(ptopic, pcontext);
 
    }
 

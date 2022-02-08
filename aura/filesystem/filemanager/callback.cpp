@@ -29,7 +29,7 @@ namespace filemanager
       __UNREFERENCED_PARAMETER(straCommand);
       __UNREFERENCED_PARAMETER(straCommandTitle);
       __UNREFERENCED_PARAMETER(context);
-      __throw(todo, "core");
+      throw ::exception(todo, "core");
       //if (pdata->m_pdocument != nullptr)
       //{
       //   pdata->m_pdocument->OpenSelectionProperties();
@@ -40,7 +40,7 @@ namespace filemanager
    {
       __UNREFERENCED_PARAMETER(itema);
       __UNREFERENCED_PARAMETER(context);
-      __throw(todo, "core");
+      throw ::exception(todo, "core");
       //if (pdata->m_pdocument != nullptr)
       //{
       //   pdata->m_pdocument->OpenSelectionProperties();
@@ -68,11 +68,11 @@ namespace filemanager
    }
 
    
-   void callback::on_file_manager_item_command(::filemanager::data * pdata, id id, const ::file::item_array & itema)
+   void callback::on_file_manager_item_command(::filemanager::data * pdata, atom atom, const ::file::item_array & itema)
    {
    
       __UNREFERENCED_PARAMETER(pdata);
-      __UNREFERENCED_PARAMETER(id);
+      __UNREFERENCED_PARAMETER(atom);
       __UNREFERENCED_PARAMETER(itema);
    
    }
@@ -88,30 +88,30 @@ namespace filemanager
    }
 
 
-   void callback::on_file_manager_initialize_form_pre_data(::filemanager::data * pdata, id id, ::user::form * pinteractionForm)
+   void callback::on_file_manager_initialize_form_pre_data(::filemanager::data * pdata, atom atom, ::user::form * pinteractionForm)
    {
       
       __UNREFERENCED_PARAMETER(pdata);
-      __UNREFERENCED_PARAMETER(id);
+      __UNREFERENCED_PARAMETER(atom);
       __UNREFERENCED_PARAMETER(pinteractionForm);
 
    }
 
 
-   //bool callback::GetFileManagerItemCallback(::filemanager::data * pdata, id id, const ::file::item_array & itema)
+   //bool callback::GetFileManagerItemCallback(::filemanager::data * pdata, atom atom, const ::file::item_array & itema)
    //{
    //   __UNREFERENCED_PARAMETER(pdata);
-   //   __UNREFERENCED_PARAMETER(id);
+   //   __UNREFERENCED_PARAMETER(atom);
    //   __UNREFERENCED_PARAMETER(itema);
    //   return false;
    //}
 
 
-   bool callback::get_file_manager_item_callback(::filemanager::data * pdata, id id, const ::file::item_array & itema)
+   bool callback::get_file_manager_item_callback(::filemanager::data * pdata, atom atom, const ::file::item_array & itema)
    {
       
       __UNREFERENCED_PARAMETER(pdata);
-      __UNREFERENCED_PARAMETER(id);
+      __UNREFERENCED_PARAMETER(atom);
       __UNREFERENCED_PARAMETER(itema);
 
       return false;

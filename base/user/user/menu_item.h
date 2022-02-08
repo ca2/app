@@ -11,7 +11,7 @@ namespace user
    public:
 
 
-      id                               m_id;
+      atom                               m_atom;
       __pointer(menu_item_ptra)        m_pmenuitema;
       __pointer(menu_item)             m_pmenuitemParent;
       i32                              m_iFullHeightItemCount;
@@ -48,7 +48,7 @@ namespace user
       virtual bool contains_menu_item(menu_item * pitem, bool bRecursive = true) const;
 
       bool IsPopup();
-      menu_item * find(id id);
+      menu_item * find(atom atom);
 
 
    };
@@ -67,7 +67,7 @@ namespace user
       virtual ~menu_item_ptra();
 
 
-      menu_item * find(id id);
+      menu_item * find(atom atom);
 
    };
 

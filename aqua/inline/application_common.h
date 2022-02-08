@@ -8,7 +8,7 @@
 //
 //#ifdef LINUX
 //
-//#include "acme/node/operating_system/ansi/binreloc.h"
+//#include "acme/operating_system/ansi/binreloc.h"
 //
 //const char* br_init_get_symbol();
 //

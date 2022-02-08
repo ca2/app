@@ -24,7 +24,7 @@ namespace user
          ~edit() override;
 
 
-         virtual void on_after_change(::enum_subject esubject);
+         virtual void on_after_change(const ::atom & atom);
          double get_rotate() override;
 
 
@@ -41,7 +41,7 @@ namespace user
 
          virtual void do_layout();
 
-         void assert_valid() const override;
+         void assert_ok() const override;
          void dump(dump_context & dumpcontext) const override;
 
          virtual bool _001GetItemText(string & str, index iItem);
@@ -114,7 +114,7 @@ namespace user
          virtual void keyboard_focus_OnChar(::message::message * pmessage) override;
 
 
-         virtual void handle(::subject * psubject, ::context * pcontext) override;
+         virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
 
          virtual strsize _001GetTextLength() const override;

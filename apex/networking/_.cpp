@@ -497,7 +497,7 @@ CLASS_DECL_APEX void to_string(string & str, const sockaddr & addr)
    else
    {
 
-      throw ::exception(error_invalid_argument, "unexpected address family");
+      throw ::exception(error_bad_argument, "unexpected address family");
 
    }
 
@@ -522,7 +522,7 @@ CLASS_DECL_APEX void from_string(const sockaddr & addr, string & str)
    else
    {
 
-      throw ::exception(error_invalid_argument, "unexpected address family");
+      throw ::exception(error_bad_argument, "unexpected address family");
 
    }
 
@@ -701,7 +701,7 @@ CLASS_DECL_APEX u32 c_inet_addr(const char * src)
       else
       {
 
-         throw ::exception(error_invalid_argument, "not expected");
+         throw ::exception(error_bad_argument, "not expected");
 
       }
 
@@ -897,7 +897,7 @@ namespace net
       else
       {
        
-         throw not_implemented_exception();
+         throw ::not_implemented();
 
       }
 

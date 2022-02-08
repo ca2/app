@@ -37,7 +37,7 @@
 //      if (!psystem)
 //      {
 //
-//         __throw(error_resource);
+//         throw ::exception(error_resource);
 //
 //      }
 //
@@ -46,7 +46,7 @@
 //      if (!papplicationStartup)
 //      {
 //
-//         __throw(error_resource);
+//         throw ::exception(error_resource);
 //
 //      }
 //

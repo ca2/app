@@ -174,7 +174,7 @@ namespace calculator
          }
          else
          {
-            __throw(::exception("unknown function"));
+            throw ::exception(::exception("unknown function"));
          }
          expect(token::type_open_paren);
          i32 iElem = 1;

@@ -17,10 +17,10 @@ simple_pane_document::~simple_pane_document()
 
 
 
-void simple_pane_document::assert_valid() const
+void simple_pane_document::assert_ok() const
 {
 
-   ::user::document::assert_valid();
+   ::user::document::assert_ok();
 
 }
 

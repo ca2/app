@@ -19,7 +19,7 @@ namespace turboc
       virtual ~main_impact();
 
 
-      void assert_valid() const override;
+      void assert_ok() const override;
 
       void dump(dump_context & dumpcontext) const override;
 
@@ -27,7 +27,7 @@ namespace turboc
 
       virtual void on_update(::aura::impact * pSender,e_update eupdate,object* pHint);
 
-      virtual void handle(::subject * psubject, ::context * pcontext);
+      virtual void handle(::topic * ptopic, ::context * pcontext);
 
 
    };

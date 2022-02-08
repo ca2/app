@@ -79,8 +79,11 @@ public:
 
    virtual void set_file_status(const ::string & strFileName, const ::file::file_status& status);
 
-
+   virtual void edit_link_target(const ::file::path & path, const ::file::path & pathLink);
+   virtual void edit_link_folder(const ::file::path & path, const ::file::path & pathLink);
    virtual bool resolve_link(::file::path & path, const ::string & strSource, string * pstrDirectory = nullptr, string * pstrParams = nullptr);
+   virtual bool has_alias_in_path(const char * psz, bool bNoUI = false, bool bNoMount = false);
+   virtual bool is_alias(const char * psz);
 
    virtual void initialize_wallpaper_fileset(::file::set* pfileset, bool bAddSearch);
 

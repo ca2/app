@@ -49,13 +49,34 @@ namespace str
 
    void CLASS_DECL_ACME copy(string & str, const ansichar * pcsz, i32 iCount);
 
-   string CLASS_DECL_ACME replace(const ansichar * pszFind, const ansichar * pszReplace, const ansichar * psz, strsize iStart = 0);
-   string CLASS_DECL_ACME replace_ci(const ansichar * pszFind, const ansichar * pszReplace, const ansichar * psz, strsize iStart = 0);
-   ::count CLASS_DECL_ACME replace_ci_count(const ansichar * pszFind, const ansichar * pszReplace, const ansichar * psz, strsize iStart = 0);
-   ::count CLASS_DECL_ACME utf8_replace(string & str, const ansichar * pszFind, const ansichar * pszReplace, strsize iStart = 0);
-   string CLASS_DECL_ACME utf8_replace(const ansichar * pszFind, const ansichar * pszReplace, const ansichar * psz, strsize iStart = 0);
+   string CLASS_DECL_ACME replace_with(const ansichar * pszNew, const ansichar * pszOld, const ansichar * psz, strsize iStart = 0);
+   string CLASS_DECL_ACME replace_with_ci(const ansichar * pszNew, const ansichar * pszOld, const ansichar * psz, strsize iStart = 0);
+   ::count CLASS_DECL_ACME replace_with_ci_count(const ansichar * pszNew, const ansichar * pszOld, const ansichar * psz, strsize iStart = 0);
+   ::count CLASS_DECL_ACME utf8_replace_with(string & str, const ansichar * pszNew, const ansichar * pszOld, strsize iStart = 0);
+   string CLASS_DECL_ACME utf8_replace_with(const ansichar * pszNew, const ansichar * pszOld, const ansichar * psz, strsize iStart = 0);
 
-   string CLASS_DECL_ACME random_replace(::matter * pmatter, const string_array & straReplacement, const string_array & straSearch, const ansichar * psz);
+   inline string find_replace(const ansichar * pszOld, const ansichar * pszNew, const ansichar * psz, strsize iStart = 0)
+   {
+      return replace_with(pszNew, pszOld, psz, iStart);
+   }
+   inline string find_replace_ci(const ansichar * pszOld, const ansichar * pszNew, const ansichar * psz, strsize iStart = 0)
+   {
+      return replace_with_ci(pszNew, pszOld, psz, iStart);
+   }
+   inline ::count find_replace_ci_count(const ansichar * pszOld, const ansichar * pszNew, const ansichar * psz, strsize iStart = 0)
+   {
+      return replace_with_ci_count(pszNew, pszOld, psz, iStart);
+   }
+   inline ::count utf8_find_replace(string & str, const ansichar * pszOld, const ansichar * pszNew, strsize iStart = 0)
+   {
+      return utf8_replace_with(str, pszNew, pszOld, iStart);
+   }
+   inline string utf8_find_replace(const ansichar * pszOld, const ansichar * pszNew, const ansichar * psz, strsize iStart = 0)
+   {
+      return utf8_replace_with(pszNew, pszOld, psz, iStart);
+   }
+
+   string CLASS_DECL_ACME random_replace(::matter * pmatter, const string_array & straNew, const string_array & straOld, const ansichar * psz);
 
    strsize CLASS_DECL_ACME find_first(const string_array & straSearch, index & iFound, const ::string & str, index iStart = 0);
 
@@ -161,7 +182,7 @@ template < size_t n >
 inline  void           from_string(wd32char sz[n], const ansichar * psz);
 
 
-inline  void           from_string(::id & id, const ansichar * psz);
+inline  void           from_string(::atom & atom, const ansichar * psz);
 
 inline void from_string(::element & element, const ansichar * psz);
 
@@ -254,8 +275,10 @@ namespace str
 
    CLASS_DECL_ACME string pad(const ansichar * psz, ::count iLen, const ansichar * pszPattern, e_pad epad);
 
-   inline ::count ilen(const ansichar * psz) { return (count) strlen(psz); }
-   inline i64 len(const ansichar * psz) { return (i64) strlen(psz); }
+
+   inline i64 length(const ansichar * pansichar) { return (i64) ansi_length(pansichar); }
+   inline i64 length(const wd16char * pwd16char) { return (i64) wd16_length(pwd16char); }
+   inline i64 length(const wd32char * pwd32char) { return (i64) wd32_length(pwd32char); }
 
 
    template < typename TYPE >

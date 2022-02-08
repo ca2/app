@@ -412,7 +412,7 @@ public:
    Type surround_and_implode(const Type& strSeparator = nullptr,const Type& pszPrefix = nullptr,const Type& pszSuffix = nullptr,::index iStart = 0,::count iCount = -1);
 
 
-   comparable_array < id > get_comparable_ida() const;
+   comparable_array < atom > get_comparable_ida() const;
 
    ::count explode_command_line(const Type & str, address_array < char * > * argv = nullptr);
 
@@ -441,7 +441,7 @@ public:
    bool operator != (const RawStringArray & a) const;
 
 
-   void replace(const Type& pszSearch,const Type& pszReplace);
+   void replace_with(const Type& pszNew, const Type& pszOld);
 
 
    //void write(stream & ostream) const;
@@ -1316,10 +1316,10 @@ void string_array_base < Type, RawType, t_etypePayload >::insert_at(::index nSta
 //
 //
 //template < typename Type, typename RawType, enum_type t_etypePayload >
-//void string_array_base < Type, RawType, t_etypePayload >::assert_valid() const
+//void string_array_base < Type, RawType, t_etypePayload >::assert_ok() const
 //{
 //
-//   matter::assert_valid();
+//   matter::assert_ok();
 //
 //   if(this->m_pData == nullptr)
 //   {
@@ -3426,16 +3426,17 @@ bool string_array_base < Type, RawType, t_etypePayload > ::operator != (const ty
 
 
 template < typename Type, typename RawType, enum_type t_etypePayload >
-void string_array_base < Type, RawType, t_etypePayload > ::replace(const Type& pszSearch,const Type& pszReplace)
-
+void string_array_base < Type, RawType, t_etypePayload > ::replace_with(const Type& pszNew, const Type& pszOld)
 {
+
    for(::index i = 0; i < this->get_size(); i++)
    {
-      this->element_at(i).replace(pszSearch,pszReplace);
+
+      this->element_at(i).replace_with(pszNew, pszOld);
 
    }
-}
 
+}
 
 
 template < typename Type, typename RawType, enum_type t_etypePayload >
@@ -4372,7 +4373,7 @@ Type & string_array_base < Type, RawType, t_etypePayload > ::random_element()
    if(this->is_empty())
    {
 
-      __throw(error_wrong_state, "invalid call");
+      throw ::exception(error_wrong_state, "invalid call");
 
    }
 
@@ -4388,7 +4389,7 @@ const Type & string_array_base < Type, RawType, t_etypePayload > ::random_elemen
    if(this->is_empty())
    {
 
-      __throw(error_wrong_state, "invalid call");
+      throw ::exception(error_wrong_state, "invalid call");
 
    }
 
@@ -4404,7 +4405,7 @@ Type string_array_base < Type, RawType, t_etypePayload > ::pop_random_element()
    if(this->is_empty())
    {
 
-      __throw(error_wrong_state, "invalid call");
+      throw ::exception(error_wrong_state, "invalid call");
 
    }
 
@@ -4452,10 +4453,10 @@ void string_array_base < Type, RawType, t_etypePayload > ::make_upper()
 
 
 template < typename Type, typename RawType, enum_type t_etypePayload >
-comparable_array < id > string_array_base < Type, RawType, t_etypePayload > ::get_comparable_ida() const
+comparable_array < atom > string_array_base < Type, RawType, t_etypePayload > ::get_comparable_ida() const
 {
 
-   comparable_array < id > ida;
+   comparable_array < atom > ida;
 
    for(::index i = 0; i < get_count(); i++)
    {

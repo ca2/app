@@ -13,7 +13,7 @@ namespace file
          if(_virtPos == _size)
             return 0;
          else
-            __throw(system_exception(E_FAIL));
+            throw ::exception(system_exception(E_FAIL));
       }
       memsize rem = _size - _virtPos;
       if (rem < size_i32)
@@ -39,7 +39,7 @@ namespace file
       case ::e_seek_current: _virtPos += offset; break;
       case ::e_seek_end: _virtPos = _size + offset; break;
       default: 
-         __throw(system_exception(STG_E_INVALIDFUNCTION));
+         throw ::exception(system_exception(STG_E_INVALIDFUNCTION));
       }
       return _virtPos;
    }

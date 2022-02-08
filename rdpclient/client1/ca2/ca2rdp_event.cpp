@@ -24,10 +24,10 @@
 
 #include <freerdp/locale/keyboard.h>
 
-CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_mouse_button_event(rdpInput* input,const ::id & id,POINT_I32 pt);
+CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_mouse_button_event(rdpInput* input,const ::atom & atom,POINT_I32 pt);
 CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_keyboard_event(rdpInput* input,BOOL down,::u32 scancode);
 
-CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_event(void* vinput,int bKey,int down,::u32 scancode,const ::id & id,POINT_I32 pt)
+CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_event(void* vinput,int bKey,int down,::u32 scancode,const ::atom & atom,POINT_I32 pt)
 {
 rdpInput * input = (rdpInput *) vinput;
    if(bKey)
@@ -171,7 +171,7 @@ rdpInput * input = (rdpInput *) vinput;
 //
 //}
 
-void ca2rdp_send_mouse_button_event(rdpInput* input, const ::id & id, POINT_I32 pt)
+void ca2rdp_send_mouse_button_event(rdpInput* input, const ::atom & atom, POINT_I32 pt)
 {
 
 	::u3216 flags = 0;

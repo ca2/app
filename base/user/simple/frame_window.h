@@ -13,12 +13,12 @@ public:
    bool                                            m_bProdevianFrame : 1;
    bool                                            m_bFirstShow : 1;
    bool                                            m_bPendingSaveWindowRect : 1;
-   bool                                            m_bDefaultCreateToolbar : 1;
    bool                                            m_bTransparentFrameEnable : 1;
    bool                                            m_bCustomFrameBefore : 1;
+   bool                                            m_bToolbar : 1;
    __pointer(::user::tool_window)                  m_ptoolwindowFont;
-   ::duration                                          m_durationLastSaveWindowRect;
-   ::duration                                          m_durationLastSaveWindowRectRequest;
+   ::duration                                      m_durationLastSaveWindowRect;
+   ::duration                                      m_durationLastSaveWindowRectRequest;
    ::image_pointer                                 m_pimageBk;
    ::rectangle_i32                                 m_FullScreenWindowRect;
    draw2d::fastblur                                m_blur;
@@ -81,7 +81,7 @@ public:
 
    virtual ::color::color get_border_main_body_color() override;
 
-   void ViewOnActivateFrame(__pointer(::user::impact) pview, ::u32 user, __pointer(::user::interaction) pframe);
+   void ImpactOnActivateFrame(__pointer(::user::impact) pview, ::u32 user, __pointer(::user::interaction) pframe);
 
    virtual void ToggleFullScreen();
    virtual void WfiOnFullScreen() override;
@@ -111,7 +111,7 @@ public:
 
    void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pgraphics) override;
 
-   //virtual bool LoadToolBar(::type sptype,id idToolBar, const ::string & pszToolBar,u32 dwCtrlStyle = TBSTYLE_FLAT,u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
+   //virtual bool LoadToolBar(::type sptype,atom idToolBar, const ::string & pszToolBar,u32 dwCtrlStyle = TBSTYLE_FLAT,u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
 
 
 
@@ -137,7 +137,7 @@ public:
    virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
 
 
-   //void command_handler(const ::id & id) override;
+   //void command_handler(const ::atom & atom) override;
 
 
    virtual bool _001CanEnterScreenSaver() override;
@@ -149,9 +149,9 @@ public:
    DECLARE_MESSAGE_HANDLER(on_message_size);
    DECLARE_MESSAGE_HANDLER(on_message_close);
    DECLARE_MESSAGE_HANDLER(on_message_show_window);
-   DECLARE_MESSAGE_HANDLER(_001OnViewFullScreen);
+   DECLARE_MESSAGE_HANDLER(_001OnImpactFullScreen);
    DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
-   DECLARE_MESSAGE_HANDLER(_001OnUpdateViewFullScreen);
+   DECLARE_MESSAGE_HANDLER(_001OnUpdateImpactFullScreen);
    DECLARE_MESSAGE_HANDLER(_001OnToggleCustomFrame);
    DECLARE_MESSAGE_HANDLER(_001OnUpdateToggleCustomFrame);
    DECLARE_MESSAGE_HANDLER(_001OnToggleTransparentFrame);
@@ -188,7 +188,7 @@ public:
    virtual string get_window_default_matter() override;
 
 
-   void assert_valid() const override;
+   void assert_ok() const override;
    void dump(dump_context & dumpcontext) const override;
 
 
@@ -209,7 +209,7 @@ public:
 
    void _001OnQueryEndSession(::message::message * pmessage);
 
-   void handle(::subject * psubject, ::context * pcontext) override;
+   void handle(::topic * ptopic, ::context * pcontext) override;
 
    void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
@@ -245,9 +245,9 @@ public:
 
    virtual void call_notification_area_action(const ::string & pszId);
 
-   //virtual void OnNotifyIconContextMenu(const ::id & idNotifyIcon);
-   //virtual void OnNotifyIconLButtonDblClk(const ::id& idNotifyIcon);
-   //virtual void OnNotifyIconLButtonDown(const ::id& idNotifyIcon);
+   //virtual void OnNotifyIconContextMenu(const ::atom & idNotifyIcon);
+   //virtual void OnNotifyIconLButtonDblClk(const ::atom& idNotifyIcon);
+   //virtual void OnNotifyIconLButtonDown(const ::atom& idNotifyIcon);
 
    virtual void notification_area_action(const ::string & pszId);
 

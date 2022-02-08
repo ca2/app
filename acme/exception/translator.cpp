@@ -56,33 +56,33 @@
 //      switch (ppointers->ExceptionRecord->ExceptionCode)
 //      {
 //#ifdef WINDOWS_DESKTOP
-//      case EXCEPTION_NO_MEMORY:                 __throw(::windows::standard_no_memory(ppointers));                  break;
+//      case EXCEPTION_NO_MEMORY:                 throw ::exception(::windows::standard_no_memory(ppointers));                  break;
 //#endif
-//      case EXCEPTION_ACCESS_VIOLATION:          __throw(::windows::standard_access_violation(ppointers));           break;
-//      case EXCEPTION_DATATYPE_MISALIGNMENT:     __throw(::windows::standard_datatype_misalignment(ppointers));      break;
-//      case EXCEPTION_BREAKPOINT:                __throw(::windows::standard_breakpoint(ppointers));                 break;
-//      case EXCEPTION_SINGLE_STEP:               __throw(::windows::standard_single_step(ppointers));                break;
-//      case EXCEPTION_ARRAY_BOUNDS_EXCEEDED:     __throw(::windows::standard_array_bounds_exceeded(ppointers));      break;
-//      case EXCEPTION_FLT_DENORMAL_OPERAND:      __throw(::windows::standard_flt_denormal_operand(ppointers));       break;
-//      case EXCEPTION_FLT_DIVIDE_BY_ZERO:        __throw(::windows::standard_flt_divide_by_zero(ppointers));         break;
-//      case EXCEPTION_FLT_INEXACT_RESULT:        __throw(::windows::standard_flt_inexact_result(ppointers));         break;
-//      case EXCEPTION_FLT_INVALID_OPERATION:     __throw(::windows::standard_flt_invalid_operation(ppointers));      break;
-//      case EXCEPTION_FLT_OVERFLOW:              __throw(::windows::standard_flt_overflow(ppointers));               break;
-//      case EXCEPTION_FLT_STACK_CHECK:           __throw(::windows::standard_flt_stack_check(ppointers));            break;
-//      case EXCEPTION_FLT_UNDERFLOW:             __throw(::windows::standard_flt_underflow(ppointers));              break;
-//      case EXCEPTION_INT_DIVIDE_BY_ZERO:        __throw(::windows::standard_int_divide_by_zero(ppointers));         break;
-//      case EXCEPTION_INT_OVERFLOW:              __throw(::windows::standard_int_overflow(ppointers));               break;
-//      case EXCEPTION_PRIV_INSTRUCTION:          __throw(::windows::standard_priv_instruction(ppointers));           break;
-//      case EXCEPTION_IN_PAGE_ERROR:             __throw(::windows::standard_in_page_error(ppointers));              break;
-//      case EXCEPTION_ILLEGAL_INSTRUCTION:       __throw(::windows::standard_illegal_instruction(ppointers));        break;
-//      case EXCEPTION_NONCONTINUABLE_EXCEPTION:  __throw(::windows::standard_noncontinuable_exception(ppointers));   break;
-//      case EXCEPTION_STACK_OVERFLOW:            __throw(::windows::standard_stack_overflow(ppointers));             break;
-//      case EXCEPTION_INVALID_DISPOSITION:       __throw(::windows::standard_invalid_disposition(ppointers));        break;
-//      case EXCEPTION_GUARD_PAGE:                __throw(::windows::standard_guard_page(ppointers));                 break;
-//      case EXCEPTION_INVALID_HANDLE:            __throw(::windows::standard_invalid_handle(ppointers));             break;
-//      case 0xE06D7363:                          __throw(::windows::standard_microsoft_cpp(ppointers));              break;
-//      case 0x40080201:                          __throw(::windows::standard_winrt_originate_error(ppointers));      break;
-//      default:                                  __throw(::windows::standard_exception(ppointers));                  break;
+//      case EXCEPTION_ACCESS_VIOLATION:          throw ::exception(::windows::standard_access_violation(ppointers));           break;
+//      case EXCEPTION_DATATYPE_MISALIGNMENT:     throw ::exception(::windows::standard_datatype_misalignment(ppointers));      break;
+//      case EXCEPTION_BREAKPOINT:                throw ::exception(::windows::standard_breakpoint(ppointers));                 break;
+//      case EXCEPTION_SINGLE_STEP:               throw ::exception(::windows::standard_single_step(ppointers));                break;
+//      case EXCEPTION_ARRAY_BOUNDS_EXCEEDED:     throw ::exception(::windows::standard_array_bounds_exceeded(ppointers));      break;
+//      case EXCEPTION_FLT_DENORMAL_OPERAND:      throw ::exception(::windows::standard_flt_denormal_operand(ppointers));       break;
+//      case EXCEPTION_FLT_DIVIDE_BY_ZERO:        throw ::exception(::windows::standard_flt_divide_by_zero(ppointers));         break;
+//      case EXCEPTION_FLT_INEXACT_RESULT:        throw ::exception(::windows::standard_flt_inexact_result(ppointers));         break;
+//      case EXCEPTION_FLT_INVALID_OPERATION:     throw ::exception(::windows::standard_flt_invalid_operation(ppointers));      break;
+//      case EXCEPTION_FLT_OVERFLOW:              throw ::exception(::windows::standard_flt_overflow(ppointers));               break;
+//      case EXCEPTION_FLT_STACK_CHECK:           throw ::exception(::windows::standard_flt_stack_check(ppointers));            break;
+//      case EXCEPTION_FLT_UNDERFLOW:             throw ::exception(::windows::standard_flt_underflow(ppointers));              break;
+//      case EXCEPTION_INT_DIVIDE_BY_ZERO:        throw ::exception(::windows::standard_int_divide_by_zero(ppointers));         break;
+//      case EXCEPTION_INT_OVERFLOW:              throw ::exception(::windows::standard_int_overflow(ppointers));               break;
+//      case EXCEPTION_PRIV_INSTRUCTION:          throw ::exception(::windows::standard_priv_instruction(ppointers));           break;
+//      case EXCEPTION_IN_PAGE_ERROR:             throw ::exception(::windows::standard_in_page_error(ppointers));              break;
+//      case EXCEPTION_ILLEGAL_INSTRUCTION:       throw ::exception(::windows::standard_illegal_instruction(ppointers));        break;
+//      case EXCEPTION_NONCONTINUABLE_EXCEPTION:  throw ::exception(::windows::standard_noncontinuable_exception(ppointers));   break;
+//      case EXCEPTION_STACK_OVERFLOW:            throw ::exception(::windows::standard_stack_overflow(ppointers));             break;
+//      case EXCEPTION_INVALID_DISPOSITION:       throw ::exception(::windows::standard_invalid_disposition(ppointers));        break;
+//      case EXCEPTION_GUARD_PAGE:                throw ::exception(::windows::standard_guard_page(ppointers));                 break;
+//      case EXCEPTION_INVALID_HANDLE:            throw ::exception(::windows::standard_invalid_handle(ppointers));             break;
+//      case 0xE06D7363:                          throw ::exception(::windows::standard_microsoft_cpp(ppointers));              break;
+//      case 0x40080201:                          throw ::exception(::windows::standard_winrt_originate_error(ppointers));      break;
+//      default:                                  throw ::exception(::windows::standard_exception(ppointers));                  break;
 //      };
 //
 //   }
@@ -240,28 +240,28 @@
 //      switch (ppointers->ExceptionRecord->ExceptionCode)
 //      {
 //#ifdef WINDOWS_DESKTOP
-//      case EXCEPTION_NO_MEMORY:                 __throw(::windows::standard_no_memory(ppointers));                  break;
+//      case EXCEPTION_NO_MEMORY:                 throw ::exception(::windows::standard_no_memory(ppointers));                  break;
 //#endif
-//      case EXCEPTION_ACCESS_VIOLATION:          __throw(::windows::standard_access_violation(ppointers));           break;
-//      case EXCEPTION_DATATYPE_MISALIGNMENT:     __throw(::windows::standard_datatype_misalignment(ppointers));      break;
-//      case EXCEPTION_BREAKPOINT:                __throw(::windows::standard_breakpoint(ppointers));                 break;
-//      case EXCEPTION_SINGLE_STEP:               __throw(::windows::standard_single_step(ppointers));                break;
-//      case EXCEPTION_ARRAY_BOUNDS_EXCEEDED:     __throw(::windows::standard_array_bounds_exceeded(ppointers));      break;
-//      case EXCEPTION_FLT_DENORMAL_OPERAND:      __throw(::windows::standard_flt_denormal_operand(ppointers));       break;
-//      case EXCEPTION_FLT_DIVIDE_BY_ZERO:        __throw(::windows::standard_flt_divide_by_zero(ppointers));         break;
-//      case EXCEPTION_FLT_INEXACT_RESULT:        __throw(::windows::standard_flt_inexact_result(ppointers));         break;
-//      case EXCEPTION_FLT_INVALID_OPERATION:     __throw(::windows::standard_flt_invalid_operation(ppointers));      break;
-//      case EXCEPTION_FLT_OVERFLOW:              __throw(::windows::standard_flt_overflow(ppointers));               break;
-//      case EXCEPTION_FLT_STACK_CHECK:           __throw(::windows::standard_flt_stack_check(ppointers));            break;
-//      case EXCEPTION_FLT_UNDERFLOW:             __throw(::windows::standard_flt_underflow(ppointers));              break;
-//      case EXCEPTION_INT_DIVIDE_BY_ZERO:        __throw(::windows::standard_int_divide_by_zero(ppointers));         break;
-//      case EXCEPTION_INT_OVERFLOW:              __throw(::windows::standard_int_overflow(ppointers));               break;
-//      case EXCEPTION_PRIV_INSTRUCTION:          __throw(::windows::standard_priv_instruction(ppointers));           break;
-//      case EXCEPTION_IN_PAGE_ERROR:             __throw(::windows::standard_in_page_error(ppointers));              break;
-//      case EXCEPTION_ILLEGAL_INSTRUCTION:       __throw(::windows::standard_illegal_instruction(ppointers));        break;
-//      case EXCEPTION_NONCONTINUABLE_EXCEPTION:  __throw(::windows::standard_noncontinuable_exception(ppointers));   break;
-//      case EXCEPTION_STACK_OVERFLOW:            __throw(::windows::standard_stack_overflow(ppointers));             break;
-//      case EXCEPTION_INVALID_DISPOSITION:       __throw(::windows::standard_invalid_disposition(ppointers));        break;
+//      case EXCEPTION_ACCESS_VIOLATION:          throw ::exception(::windows::standard_access_violation(ppointers));           break;
+//      case EXCEPTION_DATATYPE_MISALIGNMENT:     throw ::exception(::windows::standard_datatype_misalignment(ppointers));      break;
+//      case EXCEPTION_BREAKPOINT:                throw ::exception(::windows::standard_breakpoint(ppointers));                 break;
+//      case EXCEPTION_SINGLE_STEP:               throw ::exception(::windows::standard_single_step(ppointers));                break;
+//      case EXCEPTION_ARRAY_BOUNDS_EXCEEDED:     throw ::exception(::windows::standard_array_bounds_exceeded(ppointers));      break;
+//      case EXCEPTION_FLT_DENORMAL_OPERAND:      throw ::exception(::windows::standard_flt_denormal_operand(ppointers));       break;
+//      case EXCEPTION_FLT_DIVIDE_BY_ZERO:        throw ::exception(::windows::standard_flt_divide_by_zero(ppointers));         break;
+//      case EXCEPTION_FLT_INEXACT_RESULT:        throw ::exception(::windows::standard_flt_inexact_result(ppointers));         break;
+//      case EXCEPTION_FLT_INVALID_OPERATION:     throw ::exception(::windows::standard_flt_invalid_operation(ppointers));      break;
+//      case EXCEPTION_FLT_OVERFLOW:              throw ::exception(::windows::standard_flt_overflow(ppointers));               break;
+//      case EXCEPTION_FLT_STACK_CHECK:           throw ::exception(::windows::standard_flt_stack_check(ppointers));            break;
+//      case EXCEPTION_FLT_UNDERFLOW:             throw ::exception(::windows::standard_flt_underflow(ppointers));              break;
+//      case EXCEPTION_INT_DIVIDE_BY_ZERO:        throw ::exception(::windows::standard_int_divide_by_zero(ppointers));         break;
+//      case EXCEPTION_INT_OVERFLOW:              throw ::exception(::windows::standard_int_overflow(ppointers));               break;
+//      case EXCEPTION_PRIV_INSTRUCTION:          throw ::exception(::windows::standard_priv_instruction(ppointers));           break;
+//      case EXCEPTION_IN_PAGE_ERROR:             throw ::exception(::windows::standard_in_page_error(ppointers));              break;
+//      case EXCEPTION_ILLEGAL_INSTRUCTION:       throw ::exception(::windows::standard_illegal_instruction(ppointers));        break;
+//      case EXCEPTION_NONCONTINUABLE_EXCEPTION:  throw ::exception(::windows::standard_noncontinuable_exception(ppointers));   break;
+//      case EXCEPTION_STACK_OVERFLOW:            throw ::exception(::windows::standard_stack_overflow(ppointers));             break;
+//      case EXCEPTION_INVALID_DISPOSITION:       throw ::exception(::windows::standard_invalid_disposition(ppointers));        break;
 //      };
 //
 //   }

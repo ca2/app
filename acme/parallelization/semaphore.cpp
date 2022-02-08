@@ -6,7 +6,7 @@
 #ifdef PARALLELIZATION_PTHREAD
 
 
-#include "acme/node/operating_system/ansi/_pthread.h"
+#include "acme/operating_system/ansi/_pthread.h"
 
 
 #endif
@@ -15,13 +15,13 @@
 #if defined(LINUX) || defined(__APPLE__) || defined(FREEBSD)
 #include <sys/ipc.h>
 #include <sys/sem.h>
-#include "acme/node/operating_system/ansi/_ansi.h"
+#include "acme/operating_system/ansi/_ansi.h"
 #elif defined(ANDROID)
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <semaphore.h>
-#include "acme/node/operating_system/ansi/_ansi.h"
+#include "acme/operating_system/ansi/_ansi.h"
 #endif
 
 
@@ -38,7 +38,7 @@ semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const char * pstrName
    if (m_hsync == nullptr)
    {
 
-      __throw(error_resource);
+      throw ::exception(error_resource);
 
    }
 
@@ -63,14 +63,14 @@ semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const char * pstrName
       {
 
          if (errno != EEXIST)
-            __throw(error_resource);
+            throw ::exception(error_resource);
 
          // We're not first.  Try again
 
          m_psem = sem_open(m_strName,0);
 
          if (m_psem == SEM_FAILED)
-            __throw(error_resource);
+            throw ::exception(error_resource);
 
       }
 
@@ -167,7 +167,7 @@ synchronization_result semaphore::wait(const duration & durationTimeout)
 
 #elif defined(LINUX) || defined(SOLARIS) || defined(FREEBSD)
 
-void semaphore::wait(const class ::wait & wait)
+bool semaphore::wait(const class ::wait & wait)
 {
 
    int iRet = 0;
@@ -254,7 +254,7 @@ void semaphore::wait(const class ::wait & wait)
 //}
 
 
-void semaphore::wait(const class ::wait & wait)
+bool semaphore::wait(const class ::wait & wait)
 {
 
 //   struct sigaction alarm;
@@ -277,8 +277,15 @@ void semaphore::wait(const class ::wait & wait)
       sb.sem_flg  = 0;
 
       int i = semop(static_cast < i32 > (m_hsync), &sb, 1);
+      
+      if(i != 0)
+      {
+         
+         throw_status(error_exception);
+         
+      }
 
-      return i == 0 ? signaled_base : error_failed;
+      return true;
 
    }
 
@@ -300,7 +307,7 @@ void semaphore::wait(const class ::wait & wait)
       if(i == 0)
       {
 
-         return signaled_base;
+         return true;
 
       }
 
@@ -316,7 +323,7 @@ void semaphore::wait(const class ::wait & wait)
          if(tRemaining > wait)
          {
 
-            return error_wait_timeout;
+            return false;
 
          }
 
@@ -324,7 +331,7 @@ void semaphore::wait(const class ::wait & wait)
       else
       {
 
-         return error_failed;
+         throw_status(error_exception);
 
       }
 
@@ -414,7 +421,7 @@ void semaphore::unlock(::i32 lCount, ::i32 * pPrevCount)
    if(lCount + semctl_arg.val > m_lMaxCount)
    {
 
-      return false;
+      throw_status(error_failed);
 
    }
 
@@ -422,7 +429,7 @@ void semaphore::unlock(::i32 lCount, ::i32 * pPrevCount)
 
    semctl(static_cast < i32 > (m_hsync), 0, SETVAL, semctl_arg);
 
-   return true;
+   //return true;
 
 #endif
 

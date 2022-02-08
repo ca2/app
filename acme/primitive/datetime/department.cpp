@@ -472,7 +472,7 @@ namespace datetime
 
       string str = get_date_time_for_file(timeshift);
 
-      str.replace(" ", "_");
+      str.replace_with("_", " ");
 
       return str;
 
@@ -675,7 +675,7 @@ namespace datetime
          return 30;
       }
       
-      throw ::exception(error_invalid_argument);
+      throw ::exception(error_bad_argument);
 
 
    }
@@ -812,7 +812,7 @@ namespace datetime
 
          strV.format("%02d", ISO_WN(time.year(timeshift), time.month(timeshift), time.day(timeshift)));
 
-         strFormat.replace("%V", strV);
+         strFormat.replace_with(strV, "%V");
 
       }
 
@@ -886,17 +886,17 @@ namespace datetime
          if (iMinDiff <= 1)
          {
             strTime = pcontext->get("about 1 minute and %SECONDS% seconds ago");
-            strTime.replace("%SECONDS%", __string((timeNow - time).GetSeconds()));
+            strTime.replace_with(__string((timeNow - time).GetSeconds()), "%SECONDS%");
          }
          else if (iMinDiff <= 2)
          {
             strTime = pcontext->get("about 2 minutes and %SECONDS% seconds ago");
-            strTime.replace("%SECONDS%", __string((timeNow - time).GetSeconds()));
+            strTime.replace_with(__string((timeNow - time).GetSeconds()), "%SECONDS%");
          }
          else
          {
             strTime = pcontext->get("about %MINUTES% minutes ago");
-            strTime.replace("%MINUTES%", __string(iMinDiff));
+            strTime.replace_with(__string(iMinDiff), "%MINUTES%");
          }
       }
       else if (iHouDiff <= 24)
@@ -913,7 +913,7 @@ namespace datetime
          else
          {
             strTime = pcontext->get("about %HOURS% hours ago");
-            strTime.replace("%HOURS%", __string(iHouDiff));
+            strTime.replace_with(__string(iHouDiff), "%HOURS%");
          }
       }
       else
@@ -1205,15 +1205,15 @@ namespace datetime
    result department::span_parse_time(const ::text::context* pcontext, const string & strSpanExpression, const ::time_shift & timeshift)
    {
 
-      static id idCalendarDay("calendar:day");
-      static id idCalendarDays("calendar:days");
-      static id idCalendarWeek("calendar:week");
-      static id idCalendarWeeks("calendar:weeks");
-      static id idCalendarYear("calendar:year");
-      static id idCalendarYears("calendar:years");
-      static id idCalendarHour("calendar:hour");
-      static id idCalendarHours("calendar:hours");
-      static id idCalendarNow("calendar:now");
+      static atom idCalendarDay("calendar:day");
+      static atom idCalendarDays("calendar:days");
+      static atom idCalendarWeek("calendar:week");
+      static atom idCalendarWeeks("calendar:weeks");
+      static atom idCalendarYear("calendar:year");
+      static atom idCalendarYears("calendar:years");
+      static atom idCalendarHour("calendar:hour");
+      static atom idCalendarHours("calendar:hours");
+      static atom idCalendarNow("calendar:now");
 
       result time;
       time.m_bSpan = true;
@@ -1267,7 +1267,7 @@ namespace datetime
                   || (pcontext != nullptr && pcontext->matches(idCalendarNow, strText1)))
                {
                   
-                  __throw(error_invalid_argument, "now cannot be span");
+                  throw ::exception(error_bad_argument, "now cannot be span");
 
                }
                else if (strText1.compare_ci("UTC") == 0)
@@ -1276,7 +1276,7 @@ namespace datetime
                }
                else
                {
-                  __throw(error_not_implemented);
+                  throw ::not_implemented();
                }
                strNumber.Empty();
                strText1.Empty();
@@ -1571,17 +1571,23 @@ namespace datetime
 
       auto pdatetime = m_psystem->datetime();
 
-      auto pcre1 = psystem->create_pcre("^\\s*((\\d+)\\s*/\\s*(\\d+))((\\d|$)?!)");
+      auto pcre1 = psystem->compile_pcre("^\\s*((\\d+)\\s*/\\s*(\\d+))((\\d|$)?!)");
 
-      auto ptopic = pcre1->create_topic(str);
+      auto presult = pcre1->run(str);
 
-      if (!bBaseTime && ptopic && ptopic->get_count() >= 5)
+      if (!bBaseTime && presult && presult->get_count() >= 5)
       {
+
          time = ::datetime::time::now();
-         i32 i1 = atoi(ptopic->get_match(2));
-         i32 i2 = atoi(ptopic->get_match(3));
+
+         i32 i1 = atoi(presult->get_match(2));
+
+         i32 i2 = atoi(presult->get_match(3));
+
          i32 iCount = 0;
+
          bool bFirst = false;
+
          if (i1 != i2
             && i1 >= 1 && i1 <= 12
             && i2 >= 1 && i2 <=

@@ -13,12 +13,12 @@ namespace user
 
 
       __pointer(interaction)        m_pinteraction;
-      ::id                          m_id;
+      ::atom                          m_atom;
       wparam                        m_wparam;
       lparam                        m_lparam;
 
 
-      call_message_handler_task(interaction * pinteraction, const ::id & id, wparam wparam, lparam lparam);
+      call_message_handler_task(interaction * pinteraction, const ::atom & atom, wparam wparam, lparam lparam);
       virtual ~call_message_handler_task();
 
 

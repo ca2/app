@@ -16,7 +16,7 @@ namespace user
       virtual ~split_view();
 
 
-      void assert_valid() const override;
+      void assert_ok() const override;
       void dump(dump_context & dumpcontext) const override;
 
       void install_message_routing(::channel * pchannel) override;
@@ -25,7 +25,7 @@ namespace user
       virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void handle(::subject * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * ptopic, ::context * pcontext) override;
       virtual bool create_split_impact();
       virtual void on_create_split_impact();
 
@@ -34,7 +34,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_show_window);
 
       template < class VIEW >
-      inline __pointer(VIEW) create_pane_view(index iPane, id id = ::id(), ::user::interaction * pviewLast = nullptr);
+      inline __pointer(VIEW) create_pane_view(index iPane, atom atom = ::atom(), ::user::interaction * pviewLast = nullptr);
 
       virtual bool on_prepare_impact_data(::user::impact_data* pimpactdata) override;
       

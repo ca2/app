@@ -79,13 +79,13 @@ namespace userex
 
       auto pkey = pmessage->m_union.m_pkey;
 
-      ::subject subject(id_key_down);
+      ::extended_topic extendedtopic(id_key_down);
 
-      subject.m_puserelement = this;
+      extendedtopic.m_puserelement = this;
 
-      subject.m_ekey = pkey->m_ekey;
+      extendedtopic.m_ekey = pkey->m_ekey;
 
-      get_document()->update_all_views(&subject);
+      get_document()->update_all_views(&extendedtopic);
 
       if (pkey->m_ekey == ::user::e_key_return)
       {
@@ -127,13 +127,13 @@ namespace userex
             if (::is_set(pdocument))
             {
 
-               auto psubject = create_subject(id_after_change_text_delayed);
+               auto pextendedtopic = create_extended_topic(id_after_change_text_delayed);
 
-               psubject->m_puserelement = this;
+               pextendedtopic->m_puserelement = this;
 
-               psubject->payload(id_enter_key_pressed) = bEnterKeyPressed;
+               pextendedtopic->payload(id_enter_key_pressed) = bEnterKeyPressed;
 
-               pdocument->update_all_views(psubject);
+               pdocument->update_all_views(pextendedtopic);
 
             }
 
@@ -144,7 +144,7 @@ namespace userex
    }
 
 
-   void top_edit_view::handle(::subject * psubject, ::context * pcontext)
+   void top_edit_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
    }
@@ -158,13 +158,13 @@ namespace userex
 
          auto ptopeditview = this;
 
-         auto psubject = create_subject(id_after_change_text);
+         auto pextendedtopic = create_extended_topic(id_after_change_text);
 
-         psubject->m_psender = this;
+         pextendedtopic->m_psender = this;
 
-         psubject->m_puserelement = this;
+         pextendedtopic->m_puserelement = this;
 
-         get_document()->update_all_views(psubject);
+         get_document()->update_all_views(pextendedtopic);
 
          if (m_durationDelayedAfterChange > 0_s)
          {

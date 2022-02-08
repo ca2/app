@@ -171,7 +171,7 @@ namespace draw2d
       if (cx <= 0 || cy <= 0 || radius <= 0)
       {
 
-         throw_status(error_invalid_argument);
+         throw_status(error_bad_argument);
 
       }
 

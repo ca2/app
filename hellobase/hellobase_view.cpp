@@ -59,9 +59,9 @@ namespace hellobase
    {
    }
 
-   void impact::assert_valid() const
+   void impact::assert_ok() const
    {
-      user::box::assert_valid();
+      user::box::assert_ok();
    }
 
    void impact::dump(dump_context & dumpcontext) const
@@ -166,10 +166,10 @@ namespace hellobase
    }
 
 
-   void impact::handle(::subject * psubject, ::context * pcontext)
+   void impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      impact_base::handle(psubject, pcontext);
+      impact_base::handle(ptopic, pcontext);
 
       ::update * pupdate = dynamic_cast < ::update *> (pupdate);
 

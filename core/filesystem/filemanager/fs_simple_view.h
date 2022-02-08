@@ -41,11 +41,11 @@ namespace filemanager
             void open_folder(i64 iFolder);
             void start_music();
             void start_root();
-            void CreateViews();
+            void CreateImpacts();
 
             void set_request_interface(::object * prequestinterface);
 
-            void assert_valid() const override;
+            void assert_ok() const override;
             void dump(dump_context & dumpcontext) const override;
 
             DECLARE_MESSAGE_HANDLER(on_request_response);

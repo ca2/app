@@ -130,7 +130,7 @@ namespace user
 
 //#else
 
-      //__throw(todo);
+      //throw ::exception(todo);
 
 //#endif
 
@@ -811,7 +811,7 @@ namespace user
       //catch (...)
       //{
 
-      //   __throw(::exception("no more a window"));
+      //   throw ::exception(::exception("no more a window"));
 
       //}
 

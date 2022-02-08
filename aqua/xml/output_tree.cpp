@@ -75,10 +75,10 @@ namespace xml
    }
 
 
-   void output_tree::set_attribute(const ::id & id, const ::payload & payload)
+   void output_tree::set_attribute(const ::atom & atom, const ::payload & payload)
    {
 
-      m_pnode->set_attribute(id, payload);
+      m_pnode->set_attribute(atom, payload);
 
    }
 

@@ -175,7 +175,7 @@ namespace draw2d
    void graphics::attach_hdc(hdc hdc)
    {
 
-      throw interface_only_exception();
+      throw ::interface_only();
 
       //return false;
 
@@ -185,7 +185,7 @@ namespace draw2d
    hdc graphics::detach_hdc()
    {
 
-      throw interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
@@ -195,7 +195,7 @@ namespace draw2d
    void graphics::AttachPrinter(hdc hdc)
    {
 
-      throw interface_only_exception();
+      throw ::interface_only();
 
       //return false;
 
@@ -205,7 +205,7 @@ namespace draw2d
    hdc graphics::DetachPrinter()
    {
 
-      throw interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
@@ -436,7 +436,7 @@ namespace draw2d
       if (::is_null(pbitmap))
       {
 
-         throw_status(error_invalid_argument);
+         throw_status(error_bad_argument);
 
       }
 
@@ -454,7 +454,7 @@ namespace draw2d
       if (::is_null(ppen))
       {
 
-         throw_status(error_invalid_argument);
+         throw_status(error_bad_argument);
 
       }
 
@@ -469,7 +469,7 @@ namespace draw2d
       if (::is_null(pbrush))
       {
 
-         throw_status(error_invalid_argument);
+         throw_status(error_bad_argument);
 
       }
 
@@ -484,7 +484,7 @@ namespace draw2d
       if (::is_null(pregion))
       {
 
-         throw_status(error_invalid_argument);
+         throw_status(error_bad_argument);
 
       }
 
@@ -777,7 +777,7 @@ namespace draw2d
    void graphics::draw_rectangle(const ::rectangle_f64 & rectangle, ::draw2d::pen * ppen)
    {
       
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       //return false;
 
@@ -1017,7 +1017,7 @@ namespace draw2d
    void graphics::fill_polygon(const POINT_F64 * ppoints, count nCount)
    {
       
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       //return false;
 
@@ -1027,7 +1027,7 @@ namespace draw2d
    void graphics::draw_polygon(const POINT_F64 * ppoints, count nCount)
    {
       
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       //return false;
 
@@ -1126,7 +1126,7 @@ namespace draw2d
       if (!has_blender())
       {
 
-         throw_status(error_invalid_argument);
+         throw_status(error_bad_argument);
 
       }
 
@@ -2506,7 +2506,7 @@ namespace draw2d
    }
 
 
-      void graphics::assert_valid() const
+      void graphics::assert_ok() const
    {
 
 
@@ -2927,7 +2927,7 @@ namespace draw2d
 //   i32 graphics::OffsetClipRgn(const ::size_i32 & size)
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 //      return 0;
 //
 //      /*
@@ -3107,30 +3107,32 @@ namespace draw2d
          return;
       case e_shape_intersect_clip:
          _intersect_clip();
+         break;
       case e_shape_rectangle:
          _add_shape(pshape->shape < ::rectangle >());
+         break;
       case e_shape_ellipse:
          _add_shape(pshape->shape < ::ellipse >());
+         break;
 //      case e_shape_lines:
 //         return _add_shape(pshape->shape < ::lines >());
       case e_shape_polygon:
          _add_shape(pshape->shape < ::polygon >());
-      default:
          break;
-            
+      default:
+         throw_status(error_not_implemented);
+         break;
       }
 
-      throw_status(error_not_implemented);
-      
    }
 
 
    void graphics::_intersect_clip()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -3138,9 +3140,9 @@ namespace draw2d
    void graphics::_add_shape(const ::rectangle_f64 & rectangle)
    {
    
-      throw ::interface_only_exception();
+      throw ::interface_only();
    
-      throw ::interface_only_exception();
+      throw ::interface_only();
    
    }
 
@@ -3148,9 +3150,9 @@ namespace draw2d
    //void graphics::_add_shape(const ::rectangle_f64 & rectangle)
    //{
    //
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
    //
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
    //
    //}
 
@@ -3158,9 +3160,9 @@ namespace draw2d
    //void graphics::_add_shape(const ::ellipse & ellipse)
    //{
    //
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
    //
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
    //
    //}
 
@@ -3168,9 +3170,9 @@ namespace draw2d
    void graphics::_add_shape(const ::ellipse & ellipse)
    {
    
-      throw ::interface_only_exception();
+      throw ::interface_only();
    
-      throw ::interface_only_exception();
+      throw ::interface_only();
    
    }
 
@@ -3178,9 +3180,9 @@ namespace draw2d
    //void graphics::_add_shape(const ::polygon_i32 & polygon_i32)
    //{
    //
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
    //
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
    //
    //}
 
@@ -3188,9 +3190,9 @@ namespace draw2d
    void graphics::_add_shape(const ::polygon_f64 & polygon_i32)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -3692,22 +3694,22 @@ namespace draw2d
       if(edrawtext & e_draw_text_expand_tabs)
       {
 
-         str.replace("\t", "        ");
+         str.replace_with("        ", "\t");
 
       }
       else
       {
 
-         str.replace("\t", "");
+         str.replace_with(" ", "\t");
 
       }
 
       if(edrawtext & e_draw_text_single_line)
       {
 
-         str.replace("\rectangle_i32", "");
+         str.replace_with("", "\r");
 
-         str.replace("\n", "");
+         str.replace_with("", "\n");
 
          text_out(rectangleParam.left + dx, rectangleParam.top + dy, str);
 
@@ -4873,7 +4875,7 @@ namespace draw2d
       else
       {
 
-         throw interface_only_exception();
+         throw ::interface_only();
 
       }
 
@@ -5109,12 +5111,12 @@ namespace draw2d
    }
 
 
-   void graphics::fill_contains(const point_f64 & point)
+   bool graphics::fill_contains(const point_f64 & point)
    {
 
-      __throw(error_not_implemented);
+      throw ::not_implemented();
 
-      //return false;
+      return false;
 
    }
 
@@ -5816,7 +5818,7 @@ namespace draw2d
    void graphics::clear_current_point()
    {
 
-      __throw(todo);
+      throw ::exception(todo);
 
       //return ::success_none;
 

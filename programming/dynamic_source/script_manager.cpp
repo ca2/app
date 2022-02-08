@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "_.h"
 #include "apex/filesystem/filesystem/file_watcher.h"
-#include "acme/constant/id.h"
+#include "acme/id.h"
 #include "aura/user/_user.h"
 
 
@@ -765,7 +765,7 @@ namespace dynamic_source
       delete lpsz;
 #elif defined(_UWP)
 
-      __throw(todo);
+      throw ::exception(todo);
 
 #else
       strNew = getenv("PATH");
@@ -775,7 +775,7 @@ namespace dynamic_source
       SetEnvironmentVariableW(L"PATH", wstring(strNew));
 #elif defined(_UWP)
 
-      __throw(todo);
+      throw ::exception(todo);
 
 #else
       setenv("PATH", strNew, 1);
@@ -785,14 +785,12 @@ namespace dynamic_source
       // just verifying
 
 #ifdef WINDOWS_DESKTOP
-      dwSize = GetEnvironmentVariableW(L"PATH", nullptr, 0);
-      lpsz = new wchar_t[dwSize + 1024];
-      dwSize = GetEnvironmentVariableW(L"PATH", lpsz, dwSize + 1024);
-      TRACE(lpsz);
-      delete lpsz;
+
+      string strPath = m_psystem->node()->get_environment_variable("PATH");
+
 #elif defined(_UWP)
 
-      __throw(todo);
+      throw ::exception(todo);
 
 #else
       //      LPCTSTR pcsz = getenv("PATH");
@@ -1641,10 +1639,10 @@ namespace dynamic_source
 
       ::file::path strPath = strScriptPath;
 
-      strPath.replace(":/",".");
-      strPath.replace(":\\",".");
-      strPath.replace("/",".");
-      strPath.replace("\\",".");
+      strPath.find_replace(":/",".");
+      strPath.find_replace(":\\",".");
+      strPath.find_replace("/",".");
+      strPath.find_replace("\\",".");
 #ifdef WINDOWS
       return ::file::path("C:\\netnode")/ m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_strStagePlatform / m_pcompiler->m_strDynamicSourceConfiguration / strPath;
 #else
@@ -1669,7 +1667,7 @@ namespace dynamic_source
 
       ::file::path strTransformName = strName;
 
-      strTransformName.replace(":","");
+      strTransformName.find_replace(":","");
 
       ::file::path strScript;
 

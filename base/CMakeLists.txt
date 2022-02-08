@@ -237,7 +237,7 @@ list(APPEND library_source
 if(WIN32)
 
     list(APPEND library_source
-        node/windows/frame_window.cpp
+        operating_system/windows/frame_window.cpp
         )
 
 endif()
@@ -245,7 +245,7 @@ endif()
 if(LINUX)
 
     list(APPEND library_source
-            node/linux/frame_window.cpp
+            operating_system/linux/frame_window.cpp
             )
 
 endif()

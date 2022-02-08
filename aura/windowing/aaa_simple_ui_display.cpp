@@ -259,10 +259,10 @@ namespace windowing
    }
 
 
-   void simple_ui_display::on_subject(::subject *psubject, ::context *pcontext)
+   void simple_ui_display::on_subject(::topic *ptopic, ::context *pcontext)
    {
 
-      if (psubject->id() == id_os_user_theme)
+      if (ptopic->m_atom == id_os_user_theme)
       {
 
          m_bOsUserThemeColorModified = true;

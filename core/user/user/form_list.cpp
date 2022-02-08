@@ -2,7 +2,7 @@
 #include "core/user/user/_user.h"
 #include "axis/user/validate.h"
 #include "aura/update.h"
-#include "acme/constant/id.h"
+#include "acme/id.h"
 
 
 namespace user
@@ -76,13 +76,13 @@ namespace user
             if (pinteraction->get_control_type() == ::user::e_control_type_button)
             {
 
-               auto psubject = __new(::subject(e_subject_click));
+               auto pextendedtopic = __new(::extended_topic(id_click));
 
-               psubject->m_puserelement = pinteraction;
+               pextendedtopic->m_puserelement = pinteraction;
 
                m_itemControl = item;
 
-               send_message(e_message_subject, 0, psubject);
+               send_message(e_message_subject, 0, pextendedtopic);
 
             }
 
@@ -163,15 +163,15 @@ namespace user
             if (pinteraction->get_control_type() == ::user::e_control_type_button)
             {
 
-               auto psubject = __new(::subject);
+               auto pextendedtopic = __new(::extended_topic(::id_click));
 
-               psubject->m_puserelement = pinteraction;
+               pextendedtopic->m_puserelement = pinteraction;
 
-               psubject->m_id = ::e_subject_click;
+               pextendedtopic->m_atom = ::id_click;
 
                m_itemControl = item;
 
-               send_message(e_message_subject, 0, psubject);
+               send_message(e_message_subject, 0, pextendedtopic);
 
             }
 
@@ -221,10 +221,10 @@ namespace user
 
          __pointer(::user::list_column) pcolumn = m_columna.get_by_subitem(item.subitem_index());
 
-         if (pcolumn.is_set() && pcolumn->m_id)
+         if (pcolumn.is_set() && pcolumn->m_atom)
          {
 
-            auto pinteraction = get_child_by_id(pcolumn->m_id);
+            auto pinteraction = get_child_by_id(pcolumn->m_atom);
 
             if (pinteraction)
             {
@@ -347,7 +347,7 @@ namespace user
 
       ::user::list_column * pcolumn = m_columna.get_by_subitem(iSubItem);
 
-      if (!pcolumn || pcolumn->m_id.is_empty())
+      if (!pcolumn || pcolumn->m_atom.is_empty())
       {
 
          return nullptr;
@@ -671,9 +671,9 @@ break_click:;
          //{
          //   ::database::selection_item & item = selection.get_item(0);
          //   __pointer(::user::edit_text) ptext = nullptr;
-         //   if (get_child_by_id(pinteraction->m_id) != nullptr)
+         //   if (get_child_by_id(pinteraction->m_atom) != nullptr)
          //   {
-         //      ptext = get_child_by_id(pinteraction->m_id);
+         //      ptext = get_child_by_id(pinteraction->m_atom);
          //   }
          //   if (ptext == nullptr && pinteraction != nullptr)
          //   {
@@ -681,7 +681,7 @@ break_click:;
          //   }
          //   if (ptext == nullptr)
          //      return;
-         //   if (data_get(pinteraction->m_dataid.m_id + "." + item.m_id.m_id, payload))
+         //   if (data_get(pinteraction->m_dataid.m_atom + "." + item.m_atom.m_atom, payload))
          //   {
          //      switch (payload.get_type())
          //      {
@@ -830,13 +830,13 @@ break_click:;
 
          //auto pformlist = this;
 
-         ::subject subject(id_control_saved);
+         ::extended_topic extendedtopic(id_control_saved);
 
-         subject.m_puserelement = pinteraction;
+         extendedtopic.m_puserelement = pinteraction;
 
-         route(&subject);
+         route(&extendedtopic);
          
-         //pformlist->handle_subject(psubject);
+         //pformlist->handle_subject(ptopic);
 
          return true;
 
@@ -845,7 +845,7 @@ break_click:;
       ASSERT(pinteraction->get_control_type() == e_control_type_edit || pinteraction->get_control_type() == e_control_type_edit_plain_text
              || pinteraction->get_control_type() == e_control_type_combo_box);
 
-      //auto pinteraction = get_child_by_id(pinteraction->m_id);
+      //auto pinteraction = get_child_by_id(pinteraction->m_atom);
 
       //if (!pinteraction)
       //{
@@ -921,13 +921,13 @@ break_click:;
 
          //auto pformlist = this;
 
-         ::subject subject(id_control_saved);
+         ::extended_topic extendedtopic(id_control_saved);
 
-         subject.m_puserelement = pinteraction;
+         extendedtopic.m_puserelement = pinteraction;
 
-         route(&subject);
+         route(&extendedtopic);
 
-         //pformlist->handle_subject(psubject);
+         //pformlist->handle_subject(ptopic);
 
          if (pinteraction->has_function(::user::e_control_function_duplicate_on_check_box))
          {
@@ -1050,12 +1050,12 @@ break_click:;
    }
 
 
-   bool form_list::_001OnMouseActivate(::user::interaction_impl * pDesktopWnd,::u32 nHitTest,const ::id & id, lresult & iResult)
+   bool form_list::_001OnMouseActivate(::user::interaction_impl * pDesktopWnd,::u32 nHitTest,const ::atom & atom, lresult & iResult)
    {
 
       __UNREFERENCED_PARAMETER(pDesktopWnd);
       __UNREFERENCED_PARAMETER(nHitTest);
-      __UNREFERENCED_PARAMETER(id);
+      __UNREFERENCED_PARAMETER(atom);
       __UNREFERENCED_PARAMETER(iResult);
       return false;
    }
@@ -1210,7 +1210,7 @@ break_click:;
    void form_list::_001OnAddColumn(list_column * pcolumn)
    {
 
-      //if (pcolumn->M-id >= 0)
+      //if (pcolumn->M-atom >= 0)
       //{
 
       //   m_controldescriptorset[pcolumn->m_iControl]->m_iSubItem = pcolumn->subitem_index();
@@ -1295,7 +1295,7 @@ break_click:;
          for (index i = 0; i < m_columna.get_size(); i++)
          {
 
-               auto pdescriptor = get_child_by_id(m_columna[i]->m_id);
+               auto pdescriptor = get_child_by_id(m_columna[i]->m_atom);
 
                if (pdescriptor != nullptr)
                {
@@ -1331,7 +1331,7 @@ break_click:;
 //
 //      screen_to_client(point);
 //
-//      if (pmouse->m_id == e_message_left_button_down)
+//      if (pmouse->m_atom == e_message_left_button_down)
 //      {
 //
 //         index iItem;
@@ -1637,7 +1637,7 @@ break_click:;
 
          auto puserinteraction = get_control(pcolumn, iItem);
 
-         if (pcolumn->m_id
+         if (pcolumn->m_atom
                && puserinteraction != nullptr
                && _001IsSubItemEnabled(iItem, pcolumn->m_iSubItem))
          {
@@ -1883,13 +1883,13 @@ break_click:;
 
 
 
-   void form_list::handle(::subject * psubject, ::context * pcontext)
+   void form_list::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (psubject->m_id == ::e_subject_set_check)
+      if (ptopic->m_atom == ::id_set_check)
       {
 
-         auto puserinteraction = psubject->user_interaction();
+         auto puserinteraction = ptopic->get_extended_topic()->user_interaction();
 
          auto iSubItem = puserinteraction->m_iSubItem;
 
@@ -1903,10 +1903,10 @@ break_click:;
          }
 
       }
-      else if (psubject->m_id == ::e_subject_after_change_cur_sel)
+      else if (ptopic->m_atom == ::id_after_change_cur_sel)
       {
 
-         if (m_pcontrolEdit == psubject->user_interaction())
+         if (m_pcontrolEdit == ptopic->get_extended_topic()->user_interaction())
          {
 
             if (m_pcontrolEdit->has_function(::user::e_control_function_data_selection))
@@ -1914,14 +1914,14 @@ break_click:;
 
                _001SaveEdit(m_pcontrolEdit);
 
-               psubject->m_bRet = true;
+               ptopic->get_extended_topic()->m_bRet = true;
 
             }
 
          }
 
       }
-      else if (psubject->m_id == ::e_subject_enter_key)
+      else if (ptopic->m_atom == ::id_enter_key)
       {
 
          if(m_pcontrolEdit != nullptr)
@@ -1931,12 +1931,12 @@ break_click:;
 
             _001HideControl(m_pcontrolEdit);
 
-            psubject->m_bRet = true;
+            ptopic->get_extended_topic()->m_bRet = true;
 
          }
 
       }
-      else if (psubject->m_id == ::e_subject_tab_key)
+      else if (ptopic->m_atom == ::id_tab_key)
       {
 
          index iItem = 0;
@@ -1954,7 +1954,7 @@ break_click:;
 
             _001HideControl(m_pcontrolEdit);
 
-            psubject->m_bRet = true;
+            ptopic->get_extended_topic()->m_bRet = true;
 
          }
 
@@ -1982,15 +1982,15 @@ break_click:;
 
             _001PlaceControl(pinteraction, iItem);
 
-            psubject->m_bRet = true;
+            ptopic->get_extended_topic()->m_bRet = true;
 
          }
 
       }
-      else if (psubject->m_id == ::e_subject_key_down)
+      else if (ptopic->m_atom == ::id_key_down)
       {
 
-         SCAST_PTR(::message::key, pkey, psubject->m_actioncontext.m_pmessage.m_p);
+         SCAST_PTR(::message::key, pkey, ptopic->get_extended_topic()->m_actioncontext.m_pmessage.m_p);
 
          if (pkey->m_ekey == e_key_down || pkey->m_ekey == e_key_up
                || pkey->m_ekey == e_key_left || pkey->m_ekey == e_key_right)
@@ -2050,7 +2050,7 @@ break_click:;
                _001SaveEdit(m_pcontrolEdit);
                _001HideControl(m_pcontrolEdit);
 
-               psubject->m_bRet = true;
+               ptopic->get_extended_topic()->m_bRet = true;
 
             }
 
@@ -2112,7 +2112,7 @@ break_click:;
 
                }
 
-               psubject->m_bRet = true;
+               ptopic->get_extended_topic()->m_bRet = true;
 
             }
 
@@ -2120,14 +2120,14 @@ break_click:;
 
       }
 
-      if (psubject->m_bRet)
+      if (ptopic->get_extended_topic()->m_bRet)
       {
 
          return;
 
       }
 
-      return form_mesh::handle(psubject, pcontext);
+      return form_mesh::handle(ptopic, pcontext);
    }
 
 
@@ -2142,7 +2142,7 @@ break_click:;
    ::user::interaction* form_list::get_control(::user::list_column* pcolumn, ::index iItem)
    {
 
-      auto pinteractionTemplate = get_child_by_id(pcolumn->m_id);
+      auto pinteractionTemplate = get_child_by_id(pcolumn->m_atom);
 
       if (::is_null(pinteractionTemplate))
       {
@@ -2177,7 +2177,7 @@ break_click:;
 
       }
 
-      pinteraction->m_id = pcolumn->m_id;
+      pinteraction->m_atom = pcolumn->m_atom;
 
       pinteraction->m_iItem = iItem;
 
@@ -2204,7 +2204,7 @@ break_click:;
    void form_list::_001DrawSubItem(draw_list_item * pdrawitem)
    {
 
-      if (pdrawitem->m_pcolumn->m_id)
+      if (pdrawitem->m_pcolumn->m_atom)
       {
 
          auto rScreen = pdrawitem->m_rectangleSubItem;
@@ -2421,10 +2421,10 @@ ok_control:;
 
       __pointer(::user::list_column) pcolumn = m_columna.get_by_subitem(iSubItem);
 
-      if (pcolumn.is_set() && pcolumn->m_id)
+      if (pcolumn.is_set() && pcolumn->m_atom)
       {
 
-         auto pinteraction = get_child_by_id(pcolumn->m_id);
+         auto pinteraction = get_child_by_id(pcolumn->m_atom);
 
          if (pinteraction->has_function(::user::e_control_function_check_box))
          {
@@ -2473,10 +2473,10 @@ ok_control:;
 
       __pointer(::user::list_column) pcolumn = m_columna.get_by_subitem(iSubItem);
 
-      if (pcolumn.is_set() && pcolumn->m_id)
+      if (pcolumn.is_set() && pcolumn->m_atom)
       {
 
-         auto pinteraction = get_child_by_id(pcolumn->m_id);
+         auto pinteraction = get_child_by_id(pcolumn->m_atom);
 
          if (pinteraction)
          {
@@ -2517,10 +2517,10 @@ ok_control:;
 
       __pointer(::user::list_column) pcolumn = m_columna.get_by_subitem(iSubItem);
 
-      if (pcolumn.is_set() && pcolumn->m_id)
+      if (pcolumn.is_set() && pcolumn->m_atom)
       {
 
-         auto pinteraction = get_child_by_id(pcolumn->m_id);
+         auto pinteraction = get_child_by_id(pcolumn->m_atom);
 
          if (pinteraction)
          {

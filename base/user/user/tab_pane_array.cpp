@@ -20,12 +20,12 @@ namespace user
    }
 
 
-   tab_pane * tab_pane_composite_array::get_by_id(id id)
+   tab_pane * tab_pane_composite_array::get_by_id(atom atom)
    {
 
       for (i32 i = 0; i < this->get_count(); i++)
       {
-         if (this->element_at(i)->m_id == id)
+         if (this->element_at(i)->m_atom == atom)
          {
             return element_at(i);
          }

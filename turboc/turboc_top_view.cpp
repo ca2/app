@@ -21,10 +21,10 @@ namespace turboc
    }
 
 
-   void top_view::assert_valid() const
+   void top_view::assert_ok() const
    {
 
-      ::user::split_view::assert_valid();
+      ::user::split_view::assert_ok();
 
    }
 
@@ -39,7 +39,7 @@ namespace turboc
 
    void top_view::on_update(::aura::impact * pSender,e_update eupdate,object* pupdate)
    {
-      ::user::split_view::handle(psubject, pcontext);
+      ::user::split_view::handle(ptopic, pcontext);
    }
 
 
@@ -70,7 +70,7 @@ namespace turboc
 
       SetPane(0,m_peditview,false);
 
-      if(m_id == "turboc_top")
+      if(m_atom == "turboc_top")
       {
 
          m_ptoggleview = create_view < toggle_view >(NULL,::rectangle_i32(),NULL,"turboc_toggle");

@@ -52,17 +52,17 @@ namespace user
 
          check::_001SetCheck(echeck, context);
 
-         ::subject subject;
+         ::topic topic;
 
-         subject.m_puserinteraction = this;
+         topic.m_puserinteraction = this;
 
-         //subject.m_id = m_id;
+         //topic.m_atom = m_atom;
 
-         subject.m_id = ::e_subject_set_check;
+         topic.m_atom = ::id_set_check;
 
-         subject.m_actioncontext = context;
+         topic.m_actioncontext = context;
 
-         route(&subject);
+         route(&topic);
 
          set_need_redraw();
 
@@ -568,7 +568,7 @@ namespace user
 //
 //         ::user::menu_command command(this);
 //
-//         command.m_id = m_id;
+//         command.m_atom = m_atom;
 //
 //         command.m_puiOther = this;
 //
@@ -629,10 +629,10 @@ namespace user
    }
 
 
-   void check_box::handle(::subject * psubject, ::context * pcontext)
+   void check_box::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      interaction::handle(psubject, pcontext);
+      interaction::handle(ptopic, pcontext);
 
    }
 
@@ -654,7 +654,7 @@ namespace user
 
       pmessage->previous();
 
-      m_ppropertyCheck = fetch_property(m_id, true);
+      m_ppropertyCheck = fetch_property(m_atom, true);
 
       add_update_notification(m_ppropertyCheck);
 

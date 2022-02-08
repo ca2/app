@@ -31,9 +31,9 @@ namespace filemanager
    }
 
 
-   void impact::assert_valid() const
+   void impact::assert_ok() const
    {
-      ::user::split_view::assert_valid();
+      ::user::split_view::assert_ok();
    }
 
    void impact::dump(dump_context & dumpcontext) const
@@ -54,13 +54,13 @@ namespace filemanager
 
       auto papplication = get_application();
 
-      bool bPathView = papplication->is_false("no_path_view");
+      bool bPathImpact = papplication->is_false("no_path_view");
 
-      SetPaneCount(bPathView ? 2 : 1);
+      SetPaneCount(bPathImpact ? 2 : 1);
 
       SetSplitOrientation(e_orientation_horizontal);
 
-      if (bPathView)
+      if (bPathImpact)
       {
 
          set_position(0, 24);
@@ -87,7 +87,7 @@ namespace filemanager
       }
 
 
-      main_impact * pmainview = create_pane_view < main_impact >(bPathView ? 1 : 0);
+      main_impact * pmainview = create_pane_view < main_impact >(bPathImpact ? 1 : 0);
 
       if (pmainview == nullptr)
       {
@@ -103,26 +103,26 @@ namespace filemanager
    }
 
 
-   void impact::handle(::subject * psubject, ::context * pcontext)
+   void impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::filemanager_impact_base::handle(psubject, pcontext);
+      ::filemanager_impact_base::handle(ptopic, pcontext);
 
-      ::user::split_view::handle(psubject, pcontext);
+      ::user::split_view::handle(ptopic, pcontext);
 
       auto psystem = m_psystem->m_paurasystem;
 
-      auto pdocumentSubject = psubject->cast < ::user::document >(id_document);
+      auto pdocumentSubject = ptopic->get_extended_topic()->cast < ::user::document >(id_document);
 
       if (filemanager_document() == pdocumentSubject)
       {
 
-         //if (psubject->id() == id_initialize)
+         //if (ptopic->m_atom == id_initialize)
          //{
 
          //   string str;
 
-         //   str.format("(%s)", filemanager_data()->m_id.str().c_str());
+         //   str.format("(%s)", filemanager_data()->m_atom.str().c_str());
 
          //   __pointer(::database::client) pframe = get_parent_frame();
 
@@ -135,7 +135,7 @@ namespace filemanager
 
          //}
          //else
-         if (psubject->id() == id_pop)
+         if (ptopic->m_atom == id_pop)
          {
 
             OnActivateFrame(e_activate_inactive, get_parent_frame());
@@ -149,12 +149,12 @@ namespace filemanager
 
             }
 
-            OnActivateView(true, this, this);
+            OnActivateImpact(true, this, this);
 
             set_need_redraw();
 
          }
-         else if (psubject->id() == id_create_bars)
+         else if (ptopic->m_atom == id_create_bars)
          {
 
             __pointer(simple_frame_window) pframe = get_parent_frame();
@@ -167,7 +167,7 @@ namespace filemanager
             }
 
          }
-         else if (psubject->id() == id_topic_start)
+         else if (ptopic->m_atom == id_topic_start)
          {
 
             if (filemanager_document()->m_emode != ::userfs::mode_import && get_pane_count() == 2)
@@ -217,7 +217,7 @@ namespace filemanager
                else if (path.final_extension().has_char())
                {
 
-                  string strExtension = psubject->payload("file_extension");
+                  string strExtension = ptopic->get_extended_topic()->payload("file_extension");
 
                   if (strExtension.has_char())
                   {
@@ -240,9 +240,9 @@ namespace filemanager
 
                strName = strPrefix + pdatetime->international().get_date_time() + strSuffix;
 
-               strName.replace(":", "-");
+               strName.find_replace(":", "-");
 
-               ptopview->m_pedit->_001SetText(strName, psubject->m_actioncontext);
+               ptopview->m_pedit->_001SetText(strName, ptopic->get_extended_topic()->m_actioncontext);
 
                filemanager_data()->m_pdocument->m_strTopic = strName;
 
@@ -261,7 +261,7 @@ namespace filemanager
             }
 
          }
-         else if (psubject->id() == id_topic_cancel)
+         else if (ptopic->m_atom == id_topic_cancel)
          {
 
             if (base_class < ::filemanager::save_as_view >::bases(get_pane_window(0)))
@@ -272,13 +272,13 @@ namespace filemanager
             }
 
          }
-         else if (psubject->id() == id_topic_ok)
+         else if (ptopic->m_atom == id_topic_ok)
          {
 
             if (filemanager_document()->m_emode == ::userfs::mode_import)
             {
 
-               psubject->m_bRet = filemanager_data()->m_pdocumentTopic->on_filemanager_open(filemanager_document(), psubject->m_pfileitem->m_filepathUser);
+               ptopic->get_extended_topic()->m_bRet = filemanager_data()->m_pdocumentTopic->on_filemanager_open(filemanager_document(), ptopic->get_extended_topic()->m_pfileitem->m_filepathUser);
 
             }
 

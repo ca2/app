@@ -21,12 +21,12 @@ namespace user
    }
 
 
-   void notify_icon::create_notify_icon(const ::id & id, ::user::interaction * pinteractionNotify, ::windowing::icon * picon)
+   void notify_icon::create_notify_icon(const ::atom & atom, ::user::interaction * pinteractionNotify, ::windowing::icon * picon)
    {
       
-      throw ::interface_only_exception();
+      throw ::interface_only();
       
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -51,9 +51,9 @@ namespace user
 
       }
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -135,9 +135,9 @@ namespace user
    void notify_icon::call_notification_area_action(const char * pszId)
    {
 
-      ::id id(pszId);
+      ::atom atom(pszId);
 
-      auto pcommand = __new(::message::command(id));
+      auto pcommand = __new(::message::command(atom));
 
       route_command(pcommand);
 
@@ -159,10 +159,10 @@ namespace user
 
       ::channel::on_command(pcommand);
 
-      //if (pcommand->m_id.is_text())
+      //if (pcommand->m_atom.is_text())
       //{
 
-      //   string strId(pcommand->m_id);
+      //   string strId(pcommand->m_atom);
 
       //   call_notification_area_action(strId);
 
@@ -170,7 +170,7 @@ namespace user
       //else
       //{
 
-      //   WARNING("notification area action id is number or enum?!?!");
+      //   WARNING("notification area action atom is number or enum?!?!");
 
       //}
 

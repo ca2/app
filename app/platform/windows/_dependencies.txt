@@ -1,3 +1,0 @@
-platform-windows/draw2d_gdiplus
-platform-windows/node_windows
-app/crypto_openssl

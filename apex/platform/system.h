@@ -100,6 +100,8 @@ namespace apex
 
 #endif
 
+      virtual void __thread_init() override;
+
 
       virtual ::application* get_main_application() override;
 
@@ -171,7 +173,7 @@ namespace apex
       //::task_tool * task_tool(::enum_task_tool etool);
 
 
-      //virtual __pointer(::subject) new_subject(const MESSAGE& message);
+      //virtual __pointer(::topic) new_subject(const MESSAGE& message);
 
       //virtual string install_get_platform() override;
       //virtual void install_set_platform(const ::string & pszPlatform) override;
@@ -401,7 +403,7 @@ namespace apex
 
       //virtual ::type * get_type_info(const ::std::type_info & info);
 
-      //::type * get_type_info(const ::id & idType)
+      //::type * get_type_info(const ::atom & idType)
       //{
 
       //   if(idType.is_empty())
@@ -430,7 +432,7 @@ namespace apex
       //virtual __pointer(::acme::library) get_library(const ::string& str);
 
 
-      virtual ::u32 os_post_to_all_threads(const ::id & id,wparam wparam = 0,lparam lparam = 0);
+      virtual ::u32 os_post_to_all_threads(const ::atom & atom,wparam wparam = 0,lparam lparam = 0);
 
 
       virtual void on_add_session(::apex::session* psession);
@@ -454,7 +456,7 @@ namespace apex
       virtual void term_thread() override;
 
 
-      //virtual void post_to_all_threads(const ::id& id, wparam wparam, lparam lparam);
+      //virtual void post_to_all_threads(const ::atom& atom, wparam wparam, lparam lparam);
 
 
       virtual void thread_loop() override;
@@ -777,7 +779,7 @@ namespace apex
 
 
 
-      void assert_valid() const override;
+      void assert_ok() const override;
       void dump(dump_context& action_context) const override;
 
 
@@ -828,7 +830,7 @@ namespace apex
 
 
       void post_quit_to_all_threads();
-      void post_to_all_threads(const ::id& id, wparam wparam, lparam lparam);
+      void post_to_all_threads(const ::atom& atom, wparam wparam, lparam lparam);
 
       //virtual bool get_monitor_rectangle(index iMonitor, RECTANGLE_I32* prectangle) override;
 
@@ -847,7 +849,7 @@ namespace apex
       void route_command(::message::command * pcommand, bool bRouteToKeyDescendant) override;
 
       //void signal(::signal * psignal) override;
-      void handle(::subject * psubject, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::context * pcontext) override;
 
       // virtual void on_command_create(::create* pcreate);
 

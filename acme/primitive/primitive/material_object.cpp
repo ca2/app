@@ -37,7 +37,7 @@ material_object::~material_object()
 
 
 // <3TBS_!! handle -> command_handler <3TBS_(I need to suck you)!!
-void material_object::handle_command(const ::id & id)
+void material_object::handle_command(const ::atom & atom)
 {
    
    //return ::success_none;
@@ -58,9 +58,9 @@ void material_object::post_routine(const ::routine & routine)
 
 //   th__row ::interface_only_exception();
 
-   //throw ::interface_only_exception();
+   //throw ::interface_only();
 
-   throw ::interface_only_exception();
+   throw ::interface_only();
 
 }
 

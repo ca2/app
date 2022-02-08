@@ -433,7 +433,7 @@ namespace hotplugin
       if(m_pcomposersystem != nullptr)
          return true;
 
-      __throw(todo(nullptr));
+      throw ::exception(todo(nullptr));
 
 //      try
 //      {

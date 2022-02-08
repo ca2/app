@@ -68,7 +68,7 @@ namespace filemanager
       virtual void initialize_filemanager_tree(document * pdocument);
 
 
-      void assert_valid() const override;
+      void assert_ok() const override;
       void dump(dump_context & dumpcontext) const override;
 
       virtual void _001InsertColumns() override;
@@ -112,7 +112,7 @@ namespace filemanager
 
       void RenameFile(i32 iLine, string & str, const ::action_context & action_context);
 
-      virtual void handle(::subject * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
 
       DECLARE_MESSAGE_HANDLER(on_message_context_menu);

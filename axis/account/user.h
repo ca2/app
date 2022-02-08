@@ -28,7 +28,7 @@ namespace account
       string                                    m_strLoginStats;
       string                                    m_strServerInfo;
       string                                    m_strAuthResponse;
-      i32                                       m_iView;
+      i32                                       m_iImpact;
       string                                    m_strForm;
       bool                                      m_bDeferRegistration;
       string_array                                   m_straSiblingServers;

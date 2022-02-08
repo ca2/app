@@ -6,7 +6,7 @@
 #include "aura/gpu/gpu/_gpu.h"
 //#include "aqua/xml/_.h"
 //#include "apex/platform/app_core.h"
-//#include "acme/constant/id.h"
+//#include "acme/id.h"
 //#include "aura/node/_node.h"
 //#include "acme/platform/profiler.h"
 #include "acme/platform/static_setup.h"
@@ -103,7 +103,7 @@ namespace aura
 
 
 
-   //class ::id system::idEmpty;
+   //class ::atom system::idEmpty;
 
    //system * system::g_p = nullptr;
    ::mutex * g_pmutexImage = nullptr;
@@ -589,7 +589,7 @@ namespace aura
    __pointer(::factory::factory) & system::node_factory()
    {
 
-      auto & pfactory = factory("node", PLATFORM_NAME);
+      auto & pfactory = factory("node", OPERATING_SYSTEM_NAME);
 
 //#ifdef LINUX
 //
@@ -845,14 +845,14 @@ namespace aura
 
       //if (!m_pxml->init1())
       //{
-      //   __throw(::exception("failed to construct system m_pxml->init1()"));
+      //   throw ::exception(::exception("failed to construct system m_pxml->init1()"));
 
       //}
 
       //if (!m_pxml->init())
       //{
 
-      //   __throw(::exception("failed to construct system m_pxml->initialize()"));
+      //   throw ::exception(::exception("failed to construct system m_pxml->initialize()"));
 
       //}
 
@@ -1678,7 +1678,7 @@ namespace aura
 
       //}
 
-      //__throw(todo("filehandler"));
+      //throw ::exception(todo("filehandler"));
 
       //estatus = __compose_new(m_pfilehandler);
 
@@ -2149,10 +2149,10 @@ namespace aura
    }
 
 
-   //::u32 system::os_post_to_all_threads(const ::id & id,wparam wparam,lparam lparam)
+   //::u32 system::os_post_to_all_threads(const ::atom & atom,wparam wparam,lparam lparam)
    //{
 
-   //   post_to_all_threads(id, wparam, lparam);
+   //   post_to_all_threads(atom, wparam, lparam);
 
    //   return 0;
 
@@ -2560,7 +2560,7 @@ namespace aura
 //
 //#else
 //
-//            __throw(todo);
+//            throw ::exception(todo);
 //
 //#endif
 //
@@ -2583,7 +2583,7 @@ namespace aura
 //
 //#if defined(_UWP)
 //
-//            __throw(todo);
+//            throw ::exception(todo);
 //
 //#else
 //            auto plauncher = __create_new<::apex::shell_launcher>();
@@ -2624,7 +2624,7 @@ namespace aura
 //
 //#ifdef _UWP
 //
-//            __throw(todo);
+//            throw ::exception(todo);
 //
 //#else
 //
@@ -2660,7 +2660,7 @@ namespace aura
 //
 //#ifdef _UWP
 //
-//            __throw(todo);
+//            throw ::exception(todo);
 //
 //#else
 //
@@ -2732,7 +2732,7 @@ namespace aura
    //string system::crypto_md5_text(const ::string & str)
    //{
 
-   //   throw interface_only_exception();
+   //   throw ::interface_only();
 
    //   return "";
 
@@ -3132,7 +3132,7 @@ namespace aura
    //string system::url_encode(const ::string & str)
    //{
 
-   //   //throw ::interface_only_exception();
+   //   //throw ::interface_only();
 
    //   return url_encode(str);
 
@@ -3522,7 +3522,7 @@ namespace aura
    //   catch (...)
    //   {
 
-   //      __throw(resource_exception("not good window anymore"));
+   //      throw ::exception(resource_exception("not good window anymore"));
 
    //   }
 
@@ -3799,7 +3799,7 @@ namespace aura
 //
 //#else
 //
-//      //__throw(todo);
+//      //throw ::exception(todo);
 //
 //      //::get_window_rect(::get_desktop_window(),prectangle);
 //
@@ -4063,7 +4063,7 @@ namespace aura
 //
 //         string * pstrNew = new string(strUrl);
 //
-//         ::winrt::Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal,
+//         ::winrt::Windows::ApplicationModel::Core::CoreApplication::MainImpact->CoreWindow->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal,
 //            ref new ::winrt::Windows::UI::Core::DispatchedHandler([pstrNew]()
 //               {
 //
@@ -4568,7 +4568,7 @@ namespace aura
    //{
    //   string strId(pszId);
    //   string strMutex;
-   //   strMutex.format("Local\\ca2_application_local_mutex:%s, id:%s", pszAppName, strId.c_str());
+   //   strMutex.format("Local\\ca2_application_local_mutex:%s, atom:%s", pszAppName, strId.c_str());
    //   return strMutex;
    //}
 
@@ -4583,7 +4583,7 @@ namespace aura
    //{
    //   string strId(pszId);
    //   string strMutex;
-   //   strMutex.format("Global\\ca2_application_global_mutex:%s, id:%s", pszAppName, strId.c_str());
+   //   strMutex.format("Global\\ca2_application_global_mutex:%s, atom:%s", pszAppName, strId.c_str());
    //   return strMutex;
    //}
 
@@ -4753,7 +4753,7 @@ namespace aura
 
    //      auto ptool = __new(::task_tool);
 
-   //      ptool->m_id = etool;
+   //      ptool->m_atom = etool;
 
    //      threadtoola.add(ptool);
 
@@ -5146,7 +5146,7 @@ namespace aura
 #ifdef WINDOWS_DESKTOP
 //#include "aura/os/windows/windows_system_interaction_impl.h"
 #elif defined(_UWP)
-//#include "aura/node/operating_system/universal_windows/_universal_windows.h"
+//#include "aura/operating_system/universal_windows/_universal_windows.h"
 #endif
 
 
@@ -5570,7 +5570,7 @@ namespace aura
    __pointer(::data::node) system::load_xml(const ::string & pszXml)
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return nullptr;
 
@@ -5739,7 +5739,7 @@ namespace aura
 
    //::filehandler::handler& system::filehandler()
    //{
-   //    __throw(todo("filehandler"));
+   //    throw ::exception(todo("filehandler"));
    //    return *m_pfilehandler;
 
    //}
@@ -5748,7 +5748,7 @@ namespace aura
    //void system::on_start_find_applications_from_cache()
    //{
 
-   //   __throw(todo, "filehandler");
+   //   throw ::exception(todo, "filehandler");
    //  // m_pfilehandler->m_ptree->erase_all();
 
    //}
@@ -5756,7 +5756,7 @@ namespace aura
    //void system::on_end_find_applications_from_cache(stream& is)
    //{
 
-   //   //__throw(todo("filehandler"));
+   //   //throw ::exception(todo("filehandler"));
    //   //is >> *m_pfilehandler;
 
    //}
@@ -5764,7 +5764,7 @@ namespace aura
    //void system::on_end_find_applications_to_cache(stream& os)
    //{
 
-   //   //__throw(todo("filehandler"));
+   //   //throw ::exception(todo("filehandler"));
    //   //os << *m_pfilehandler;
 
    //}
@@ -5772,7 +5772,7 @@ namespace aura
    //void system::on_map_application_library(::acme::library& library)
    //{
 
-   //   __throw(todo, "filehandler");
+   //   throw ::exception(todo, "filehandler");
    //   // m_pfilehandler->defer_add_library(library.m_pca2library);
 
    //}
@@ -6218,14 +6218,14 @@ namespace aura
 
    //   m_libraryspa.add(plibrary);
 
-   //   ::array < ::id > ida;
+   //   ::array < ::atom > ida;
 
    //   plibrary->get_create_view_id_list(ida);
 
    //   for (i32 i = 0; i < ida.get_count(); i++)
    //   {
 
-   //      m_idmapCreateViewLibrary.set_at(ida[i], plibrary);
+   //      m_idmapCreateImpactLibrary.set_at(ida[i], plibrary);
 
    //   }
 
@@ -6314,10 +6314,10 @@ namespace aura
    //}
 
 
-   void system::assert_valid() const
+   void system::assert_ok() const
    {
 
-      ::thread::assert_valid();
+      ::thread::assert_ok();
 
    }
 
@@ -6419,31 +6419,31 @@ namespace aura
 
 
 
-//   void system::on_subject(::subject * psubject)
+//   void system::on_subject(::topic * ptopic)
 //   {
 //
 //
-//      ::aqua::system::on_subject(psubject);
+//      ::aqua::system::on_subject(ptopic);
 //
 //   }
 
 
-   void system::handle(::subject * psubject, ::context * pcontext)
+   void system::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (psubject->m_id == id_font_enumeration)
+      if (ptopic->m_atom == id_font_enumeration)
       {
 
-         draw2d()->write_text()->handle_font_enumeration(psubject);
+         draw2d()->write_text()->handle_font_enumeration(ptopic);
 
       }
-      else if (psubject->m_id == id_operating_system_user_color_change)
+      else if (ptopic->m_atom == id_operating_system_user_color_change)
       {
 
 
       }
 
-      ::aqua::system::handle(psubject, pcontext);
+      ::aqua::system::handle(ptopic, pcontext);
 
    }
 
@@ -6798,9 +6798,9 @@ namespace aura
 //
 //#else
 //
-//      __throw(error_not_implemented);
+//      throw ::not_implemented();
 //
-//      throw ::interface_only_exception();
+//      throw ::interface_only();
 //
 //#endif
 //
@@ -6827,7 +6827,7 @@ namespace aura
    ::type system::get_pane_tab_view_type_info()
    {
 
-      return m_typePaneTabView;
+      return m_typePaneTabImpact;
 
    }
 

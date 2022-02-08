@@ -353,7 +353,7 @@ bool db_str_set::load(const ::string & lpKey, string & strValue)
 
       string strSql;
       strSql.format(
-         "select value FROM stringtable WHERE id = '%s';",
+         "select value FROM stringtable WHERE atom = '%s';",
          strKey);
 
 
@@ -403,7 +403,7 @@ bool db_str_set::save(const ::string & lpKey, const ::string & lpcsz)
       if(load(lpKey, str))
       {
          strSql.format(
-            "UPDATE stringtable SET value = '%s' WHERE id = '%s';",
+            "UPDATE stringtable SET value = '%s' WHERE atom = '%s';",
             strValue,
             strKey);
 
@@ -419,7 +419,7 @@ bool db_str_set::save(const ::string & lpKey, const ::string & lpcsz)
       {
 
          strSql.format(
-            "INSERT INTO stringtable (id, value) values ('%s', '%s');",
+            "INSERT INTO stringtable (atom, value) values ('%s', '%s');",
             strKey,
             strValue);
 

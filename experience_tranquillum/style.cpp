@@ -120,16 +120,38 @@ namespace tranquillum
          if (econtroltype == ::user::e_control_type_tab)
          {
 
-            if (eelement == ::e_element_tab_layout_background)
+            if (is_dark_mode())
             {
 
-               return argb(255, 242, 250, 253);
+               if (eelement == ::e_element_tab_layout_background)
+               {
+
+                  return argb(255, 51, 51, 45);
+
+               }
+               else if (eelement == ::e_element_tab_client_background)
+               {
+
+                  return argb(255, 51, 51, 51);
+
+               }
 
             }
-            else if (eelement == ::e_element_tab_client_background)
+            else
             {
 
-               return argb(255, 255, 255, 255);
+               if (eelement == ::e_element_tab_layout_background)
+               {
+
+                  return argb(255, 242, 250, 253);
+
+               }
+               else if (eelement == ::e_element_tab_client_background)
+               {
+
+                  return argb(255, 255, 255, 255);
+
+               }
 
             }
 
@@ -170,45 +192,107 @@ namespace tranquillum
 
       }
 
-      if (eelement == ::e_element_background)
-      {
-
-         if (estate & ::user::e_state_selected)
+         if (eelement == ::e_element_check)
          {
 
-            return argb(255, 80, 80, 80);
+            if (is_dark_mode())
+            {
+               return argb(255, 215, 215, 215);
+
+            }
+            else
+            {
+
+               return argb(255,40,40, 40);
+
+            }
+
+         }
+      else if (eelement == ::e_element_background)
+      {
+
+         if (is_dark_mode())
+         {
+
+            if (estate & ::user::e_state_selected)
+            {
+
+               return argb(255, 120, 120, 120);
+
+            }
+            else
+            {
+
+               return argb(255, 51, 51, 51);
+
+            }
 
          }
          else
          {
 
-            return ::color::color(255, 255, 255, 255);
+            if (estate & ::user::e_state_selected)
+            {
+
+               return argb(255, 80, 80, 80);
+
+            }
+            else
+            {
+
+               return ::color::color(255, 255, 255, 255);
+
+            }
 
          }
-
-
          
       }
       else if (eelement == ::e_element_text)
       {
 
 
-
-         if (estate & ::user::e_state_new_input)
-         {
-            return argb(255, 192, 192, 192);
-
-         }
-         else if (estate & ::user::e_state_selected)
+         if (is_dark_mode())
          {
 
-            return argb(255, 255, 255, 255);
+            if (estate & ::user::e_state_new_input)
+            {
+               return argb(255, 128, 128, 128);
+
+            }
+            else if (estate & ::user::e_state_selected)
+            {
+
+               return argb(255, 40, 40, 40);
+
+            }
+            else
+            {
+
+               return argb(255, 200, 200, 200);
+
+            }
+
 
          }
          else
          {
+            if (estate & ::user::e_state_new_input)
+            {
+               return argb(255, 192, 192, 192);
 
-            return argb(255, 80, 80, 80);
+            }
+            else if (estate & ::user::e_state_selected)
+            {
+
+               return argb(255, 255, 255, 255);
+
+            }
+            else
+            {
+
+               return argb(255, 80, 80, 80);
+
+            }
 
          }
 
@@ -216,22 +300,55 @@ namespace tranquillum
       else if (eelement == ::e_element_item_text)
       {
 
-         if (estate & ::user::e_state_new_input)
+         if (is_dark_mode())
          {
+            if (estate & ::user::e_state_new_input)
+            {
 
-            return argb(255, 192, 192, 192);
+               return argb(255, 128, 128, 128);
 
-         }
-         else if (estate & ::user::e_state_selected)
-         {
+            }
+            else if (estate & ::user::e_state_hover)
+            {
 
-            return argb(255, 255, 255, 255);
+               return argb(255, 30, 30, 30);
+
+
+            }
+            else if (estate & ::user::e_state_selected)
+            {
+
+               return argb(255, 40, 40, 40);
+
+            }
+            else
+            {
+
+               return argb(255, 200, 200, 200);
+
+            }
 
          }
          else
          {
+            if (estate & ::user::e_state_new_input)
+            {
 
-            return argb(255, 80, 80, 80);
+               return argb(255, 192, 192, 192);
+
+            }
+            else if (estate & ::user::e_state_selected)
+            {
+
+               return argb(255, 255, 255, 255);
+
+            }
+            else
+            {
+
+               return argb(255, 80, 80, 80);
+
+            }
 
          }
 
@@ -239,6 +356,47 @@ namespace tranquillum
       else if (eelement == ::e_element_item_background)
       {
 
+      if (is_dark_mode())
+      {
+         if (estate & ::user::e_state_new_input)
+         {
+
+            return argb(255, 128, 128, 128);
+
+         }
+         else if (estate & ::user::e_state_hover)
+         {
+
+            if (estate & ::user::e_state_selected)
+            {
+
+               return argb(255, 200, 200, 240);
+
+            }
+            else
+            {
+               return argb(255, 220, 220, 220);
+
+            }
+
+         }
+         else if (estate & ::user::e_state_selected)
+         {
+
+            return argb(255, 200, 200, 200);
+
+         }
+         else
+         {
+
+            return argb(255, 40, 40, 40);
+
+
+
+         }
+      }
+      else
+      {
          if (estate & ::user::e_state_new_input)
          {
 
@@ -272,7 +430,10 @@ namespace tranquillum
 
             return argb(255, 255, 255, 255);
 
+
+
          }
+      }
 
       }
 
@@ -703,7 +864,7 @@ namespace tranquillum
             if (true)
             {
 
-               if (ptab->get_data()->m_idaSel.contains(pane.m_id))
+               if (ptab->get_data()->m_idaSel.contains(pane.m_atom))
                {
 
                   ::rectangle_i32 rSel;
@@ -845,7 +1006,7 @@ namespace tranquillum
 
                auto ppath = __create < ::draw2d::path > ();
 
-               if (ptab->get_data()->m_idaSel.contains(pane.m_id))
+               if (ptab->get_data()->m_idaSel.contains(pane.m_atom))
                {
 
                   ::rectangle_i32 rSel;
@@ -1086,10 +1247,10 @@ namespace tranquillum
 
 
 
-//   bool style::on_ui_event(::enum_subject esubject, ::user::e_object eobject, ::user::interaction * pframewindow)
+//   bool style::on_ui_event(::enum_topic etopic, ::user::e_object eobject, ::user::interaction * pframewindow)
 //   {
 //
-//      if (eevent == ::e_subject_calc_item_height)
+//      if (eevent == ::id_calc_item_height)
 //      {
 //
 //         pframewindow->m_iItemHeight += 8;
@@ -1141,7 +1302,7 @@ namespace tranquillum
 
    //   bool bHover = ptoolbar->m_itemHover == iItem;
 
-   //   ::u32 uImage = psession->userex()->menu()->command_image(item.m_id);
+   //   ::u32 uImage = psession->userex()->menu()->command_image(item.m_atom);
 
    //   ::user::toolbar::enum_element eelement = ::user::toolbar::e_element_item;
    //   ::user::toolbar::enum_element eelementImage = ::user::toolbar::element_image;
@@ -1447,7 +1608,7 @@ namespace tranquillum
 
    //   bool bHover = ptoolbar->m_itemHover == iItem;
 
-   //   ::u32 uImage = psession->userex()->menu()->command_image(item.m_id);
+   //   ::u32 uImage = psession->userex()->menu()->command_image(item.m_atom);
 
    //   ::user::toolbar::enum_element eelement = ::user::toolbar::e_element_item;
    //   ::user::toolbar::enum_element eelementImage = ::user::toolbar::element_image;
@@ -1505,7 +1666,7 @@ namespace tranquillum
 
    //   ptoolbar->_001GetElementRect(iItem, rectangleImage, eelementImage);
 
-   //   if (item.m_id.compare_ci("separator") == 0)
+   //   if (item.m_atom.compare_ci("separator") == 0)
    //   {
    //      /*::rectangle_i32 rectangleSeparator;
    //      rectangleSeparator.left = (rectangleImage.left + rectangleImage.right) / 2 - 1;

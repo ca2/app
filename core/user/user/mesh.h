@@ -18,7 +18,7 @@ namespace user
 
    public:
 
-      enum EView
+      enum EImpact
       {
          impact_grid,
          impact_list,
@@ -160,7 +160,7 @@ namespace user
 
       index                            m_iDisplayItemFocus;
 
-      bool                             m_bLockViewUpdate;
+      bool                             m_bLockImpactUpdate;
       i32                              m_iItemWidth;
 
       index                            m_iDisplayItemHover;
@@ -195,7 +195,7 @@ namespace user
       //    ::write_text::font_pointer                m_pfontHover;
       ::draw2d::pen_pointer                 m_ppenFocused;
       ::draw2d::pen_pointer                 m_ppenHighlight;
-      EView                            m_eview;
+      EImpact                            m_eview;
       flags < enum_flag >                 m_flags;
       __pointer(icon_layout)           m_piconlayout;
       __pointer(mesh_layout)           m_pmeshlayout;
@@ -338,9 +338,9 @@ namespace user
 
       virtual void data_get_DisplayToStrict();
       virtual void data_set_DisplayToStrict();
-      virtual id data_get_current_sort_id();
-      virtual id data_get_sort_id(EView eview);
-      virtual id data_get_current_mesh_layout_id();
+      virtual atom data_get_current_sort_id();
+      virtual atom data_get_sort_id(EImpact eview);
+      virtual atom data_get_current_mesh_layout_id();
 
       virtual bool query_drop(index iDisplayDrop,index iDisplayDrag);
       virtual bool do_drop(index iDisplayDrop,index iDisplayDrag);
@@ -455,8 +455,8 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(_001OnVScroll);
       DECLARE_MESSAGE_HANDLER(_001OnHScroll);
-      DECLARE_MESSAGE_HANDLER(_001OnUpdateMeshViewAutoArrange);
-      DECLARE_MESSAGE_HANDLER(_001OnMeshViewAutoArrange);
+      DECLARE_MESSAGE_HANDLER(_001OnUpdateMeshImpactAutoArrange);
+      DECLARE_MESSAGE_HANDLER(_001OnMeshImpactAutoArrange);
 
 
       virtual void _001OnTimer(::timer * ptimer) override;
@@ -511,9 +511,9 @@ namespace user
 
       virtual void  _001SetHighlightRange(range & range);
 
-      virtual void _001SetView(EView eview, bool bLayout = true);
+      virtual void _001SetImpact(EImpact eview, bool bLayout = true);
 
-      virtual EView  _001GetView();
+      virtual EImpact  _001GetImpact();
 
 
       virtual i32 get_wheel_scroll_delta() override;

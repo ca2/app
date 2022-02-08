@@ -9,6 +9,8 @@
 #include "acme/parallelization/synchronously_keep_bit.h"
 
 
+
+
 object::~object() = default;
 
 
@@ -272,14 +274,14 @@ void object::add_reference(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG_COMM
 //}
 
 
-::subject_pointer object::create_subject(const ::id & id)
+::extended_topic_pointer object::create_extended_topic(const ::atom & atom)
 {
 
-   auto psubject = __new(subject(id));
+   auto pextendedtopic = __new(extended_topic(atom));
 
-   psubject->initialize(this);
+   pextendedtopic->initialize(this);
 
-   return ::move(psubject);
+   return ::move(pextendedtopic);
 
 }
 
@@ -303,13 +305,13 @@ void object::dev_log(string strMessage)
 }
 
 
-//array < ::routine >* object::routinea(const ::id& id)
+//array < ::routine >* object::routinea(const ::atom& atom)
 //{
 //
 //   //if (m_pmeta)
 //   //{
 //
-//   //   auto p = m_pmeta->m_mapRoutine.plookup(id);
+//   //   auto p = m_pmeta->m_mapRoutine.plookup(atom);
 //
 //   //   if (p)
 //   //   {
@@ -325,7 +327,7 @@ void object::dev_log(string strMessage)
 //}
 
 
-//array < ::future >* object::processa(const ::id & idProcess)
+//array < ::future >* object::processa(const ::atom & idProcess)
 //{
 //
 //   if (m_pmeta)
@@ -429,15 +431,15 @@ void object::call_routine2(const ::routine & routine)
 
 
 
-::text::text object::__text(const ::id& id)
+::text::text object::__text(const ::atom& atom)
 {
 
-   return m_pcontext->__text(id);
+   return m_pcontext->__text(atom);
 
 }
 
 
-//void object::send_payload(const ::id & idProcess, const ::payload & payload)
+//void object::send_payload(const ::atom & idProcess, const ::payload & payload)
 //{
 //
 //   auto pprocessa = processa(idProcess);
@@ -452,34 +454,34 @@ void object::call_routine2(const ::routine & routine)
 //}
 //
 
-//void object::add_routine(const ::id& id, const ::routine& routine)
+//void object::add_routine(const ::atom& atom, const ::routine& routine)
 //{
 //
-//   get_meta()->m_mapRoutine[id].add(routine);
+//   get_meta()->m_mapRoutine[atom].add(routine);
 //
 //}
 
 
-//void object::add_process(const ::id & id, const ::future & process)
+//void object::add_process(const ::atom & atom, const ::future & process)
 //{
 //
-//   get_meta()->m_mapProcess[id].add(process);
+//   get_meta()->m_mapProcess[atom].add(process);
 //
 //}
 
 
-//void object::add_each_routine_from(const ::id& id, ::object* pobjectSource)
+//void object::add_each_routine_from(const ::atom& atom, ::object* pobjectSource)
 //{
 //
 //   if (pobjectSource)
 //   {
 //
-//      auto proutinea = pobjectSource->routinea(id);
+//      auto proutinea = pobjectSource->routinea(atom);
 //
 //      if (proutinea)
 //      {
 //
-//         get_meta()->m_mapRoutine[id].add(*proutinea);
+//         get_meta()->m_mapRoutine[atom].add(*proutinea);
 //
 //      }
 //
@@ -488,18 +490,18 @@ void object::call_routine2(const ::routine & routine)
 //}
 
 
-//void object::add_each_process_from(const ::id & id, ::object * pobjectSource)
+//void object::add_each_process_from(const ::atom & atom, ::object * pobjectSource)
 //{
 //
 //   if (pobjectSource)
 //   {
 //
-//      auto pprocessa = pobjectSource->processa(id);
+//      auto pprocessa = pobjectSource->processa(atom);
 //
 //      if (pprocessa)
 //      {
 //
-//         get_meta()->m_mapProcess[id].add(*pprocessa);
+//         get_meta()->m_mapProcess[atom].add(*pprocessa);
 //
 //      }
 //
@@ -670,10 +672,10 @@ bool object::is_running() const
 void object::defer_update_object_id()
 {
 
-   if (m_id.is_empty())
+   if (m_atom.is_empty())
    {
 
-      m_id = calc_default_object_id();
+      m_atom = calc_default_object_id();
 
    }
 
@@ -683,7 +685,7 @@ void object::defer_update_object_id()
 
 
 
-::id object::calc_default_object_id() const
+::atom object::calc_default_object_id() const
 {
 
    string strType = __type_name(this);
@@ -842,7 +844,7 @@ void object::on_request(::create * pcreate)
    //   if (!estatus)
    //   {
 
-   //      __throw(estatus);
+   //      throw ::exception(estatus);
 
    //   }
 
@@ -851,7 +853,7 @@ void object::on_request(::create * pcreate)
    //   if (!estatus)
    //   {
 
-   //      __throw(estatus);
+   //      throw ::exception(estatus);
 
    //   }
 
@@ -985,14 +987,14 @@ void     object::run()
 //
 //   //on_finalize();
 //
-//   if (string(m_id).contains("::rx"))
+//   if (string(m_atom).contains("::rx"))
 //   {
 //
 //      output_debug_string("::rx destroy");
 //
 //   }
 //
-//   if (string(m_id).contains("::interprocess_intercommunication"))
+//   if (string(m_atom).contains("::interprocess_intercommunication"))
 //   {
 //
 //      output_debug_string("::interprocess_intercommunication destroy");
@@ -1032,7 +1034,7 @@ void object::add_task(::object* pobjectTask)
    if(::is_null(pobjectTask))
    {
 
-      __throw(error_invalid_argument);
+      throw ::exception(error_bad_argument);
 
       return;
 
@@ -1041,7 +1043,7 @@ void object::add_task(::object* pobjectTask)
    if(pobjectTask == this)
    {
 
-      __throw(error_invalid_argument);
+      throw ::exception(error_bad_argument);
 
       return;
 
@@ -1052,7 +1054,7 @@ void object::add_task(::object* pobjectTask)
    if(is_ascendant_task(pobjectTask))
    {
 
-      __throw(error_invalid_argument);
+      throw ::exception(error_bad_argument);
 
       return;
 
@@ -1126,7 +1128,7 @@ void object::erase_task(::object* pobjectTask)
    if (pobjectTask->m_pobjectParentTask != this)
    {
 
-      __throw(error_invalid_argument);
+      throw ::exception(error_bad_argument);
 
       return;
 
@@ -1159,7 +1161,7 @@ void object::transfer_tasks_from(::object* ptask)
    if(::is_null(ptask))
    {
 
-      __throw(error_invalid_argument);
+      throw ::exception(error_bad_argument);
 
       return;
 
@@ -1168,7 +1170,7 @@ void object::transfer_tasks_from(::object* ptask)
    if(ptask == this)
    {
 
-      __throw(error_invalid_argument);
+      throw ::exception(error_bad_argument);
 
       return;
 
@@ -1179,7 +1181,7 @@ void object::transfer_tasks_from(::object* ptask)
    if(is_ascendant_task(ptask))
    {
 
-      __throw(error_invalid_argument);
+      throw ::exception(error_bad_argument);
 
       return;
 
@@ -1760,10 +1762,10 @@ void object::branch_each(const ::routine_array& routinea)
 }
 
 
-::task_pointer object::defer_branch(const ::id& id, const ::routine & routine, enum_priority epriority)
+::task_pointer object::defer_branch(const ::atom& atom, const ::routine & routine, enum_priority epriority)
 {
 
-   auto ptask = get_property_set()[__id(thread)][id].cast < ::task>();
+   auto ptask = get_property_set()[__id(thread)][atom].cast < ::task>();
 
    if(ptask && ptask->is_running())
    {
@@ -1776,7 +1778,7 @@ void object::branch_each(const ::routine_array& routinea)
 
    ptask->m_pelement = routine;
 
-   get_property_set()[__id(thread)][id] = ptask;
+   get_property_set()[__id(thread)][atom] = ptask;
 
    ptask->branch();
 
@@ -1785,7 +1787,7 @@ void object::branch_each(const ::routine_array& routinea)
 }
 
 
-__pointer(task) object::branch_task(element * pelement, ::enum_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
+__pointer(task) object::branch_element(element * pelement, ::enum_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
 {
 
    if (::is_null(pelement))
@@ -1806,16 +1808,9 @@ __pointer(task) object::branch_task(element * pelement, ::enum_priority epriorit
 
    ptask->m_pelement = pelement;
 
-   ptask->m_id = typeid(*pelement).name();
+   ptask->m_atom = typeid(*pelement).name();
 
-   /*auto estatus =*/ ptask->branch(epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
-
-   //if (!estatus)
-   //{
-
-   //   return estatus;
-
-   //}
+   ptask->branch(epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
 
    return ptask;
 
@@ -1825,7 +1820,7 @@ __pointer(task) object::branch_task(element * pelement, ::enum_priority epriorit
 __pointer(task) object::branch(::enum_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
 {
 
-   auto ptask = branch_task(this, epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
+   auto ptask = branch_element(this, epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
 
    return ptask;
 
@@ -1839,6 +1834,12 @@ void object::handle_exception(const ::exception& e)
    {
 
       __rethrow(e);
+
+   }
+   else if (e.estatus() == error_library_not_found)
+   {
+
+      ::os_message_box(this, e.m_strMessage);
 
    }
 
@@ -1955,7 +1956,7 @@ void object::task_erase(::task* ptask)
       if (::is_null(ptask))
       {
 
-         __throw(error_invalid_argument);
+         throw ::exception(error_bad_argument);
 
       }
 
@@ -1964,7 +1965,7 @@ void object::task_erase(::task* ptask)
       //if (!m_pcompositea->contains(ptask) && ptask->thread_parent() != this)
       //{
 
-      //   __throw(error_invalid_argument, "thread is no parent-child releationship between the threads");
+      //   throw ::exception(error_bad_argument, "thread is no parent-child releationship between the threads");
 
       //}
 
@@ -2228,11 +2229,11 @@ void object::message_receiver_destruct()
 void object::_001OnUpdate(::message::message* pmessage)
 {
 
-   //::subject subject(this, (::iptr)pmessage->m_wparam);
+   //::topic topic(this, (::iptr)pmessage->m_wparam);
 
-   //subject.m_payload = (::element*)(::iptr)pmessage->m_lparam;
+   //topic.m_payload = (::element*)(::iptr)pmessage->m_lparam;
 
-   //process(&subject);
+   //process(&topic);
 
 }
 
@@ -2284,10 +2285,10 @@ void object::install_message_routing(::channel* pchannel)
 //}
 
 
-//void object::add_update_notification(const ::id & id, bool bCreate)
+//void object::add_update_notification(const ::atom & atom, bool bCreate)
 //{
 //
-//   auto pproperty = fetch_property(id, bCreate);
+//   auto pproperty = fetch_property(atom, bCreate);
 //
 //   if (!pproperty)
 //   {
@@ -2301,7 +2302,7 @@ void object::install_message_routing(::channel* pchannel)
 //}
 
 
-//void object::add_update_notification(const ::id & id, ::object * pobject)
+//void object::add_update_notification(const ::atom & atom, ::object * pobject)
 //{
 //
 //   if (::is_null(pobject))
@@ -2318,7 +2319,7 @@ void object::install_message_routing(::channel* pchannel)
 //
 //   }
 //
-//   auto pproperty = pobject->m_ppropertyset->find(id);
+//   auto pproperty = pobject->m_ppropertyset->find(atom);
 //
 //   if (!pproperty)
 //   {
@@ -2489,13 +2490,13 @@ void call_sync(const ::routine_array& methoda)
 
 
 
-string object::get_text(const ::payload& payload, const ::id& id)
+string object::get_text(const ::payload& payload, const ::atom& atom)
 {
 
-   if (payload.has_property(id) && payload[id].has_char())
+   if (payload.has_property(atom) && payload[atom].has_char())
    {
 
-      return payload[id];
+      return payload[atom];
 
    }
 
@@ -2512,7 +2513,7 @@ string object::get_text(const ::payload& payload, const ::id& id)
 
    //auto strExtension = payload.get_file_path().extension();
 
-   //if (strExtension == __string(id))
+   //if (strExtension == __string(atom))
    //{
 
    //   return "";
@@ -2715,21 +2716,21 @@ element* object::get_taskpool_container()
 //__pointer(BASE_TYPE) file_as(const ::payload& payloadFile);
 
 //
-//void object::add_routine(const ::id& idRoutine, const ::routine& routine)
+//void object::add_routine(const ::atom& idRoutine, const ::routine& routine)
 //{
 //
 //
 //}
 
 //
-//void object::add_each_routine_from(const ::id& idRoutine, ::object* pobjectSource)
+//void object::add_each_routine_from(const ::atom& idRoutine, ::object* pobjectSource)
 //{
 //
 //
 //}
 
 //
-//array < ::routine >* object::routinea(const ::id& idRoutine)
+//array < ::routine >* object::routinea(const ::atom& idRoutine)
 //{
 //
 //   return nullptr;
@@ -2737,7 +2738,7 @@ element* object::get_taskpool_container()
 //}
 
 //
-//void object::call_routine(const ::id& idRoutine)
+//void object::call_routine(const ::atom& idRoutine)
 //{
 //
 //
@@ -2899,7 +2900,7 @@ void object::initialize(::object* pobject)
 //
 //   pthread->m_pelement = routine;
 //
-//   pthread->m_id = __type_name(pthread->m_pelement);
+//   pthread->m_atom = __type_name(pthread->m_pelement);
 //
 //   pthread->begin_thread();
 //
@@ -2956,7 +2957,7 @@ void object::initialize(::object* pobject)
 
 //inline ::application * application() const { return m_papplication; }
 
-//string object::get_text(const ::payload& payload, const ::id& id)
+//string object::get_text(const ::payload& payload, const ::atom& atom)
 //{
 //
 //   return "";
@@ -3037,7 +3038,7 @@ void object::operator()()
 //inline __pointer(BASE_TYPE) __create();
 
 //template < typename BASE_TYPE >
-//inline __pointer(BASE_TYPE) __id_create(const ::id& id);
+//inline __pointer(BASE_TYPE) __id_create(const ::atom& atom);
 
 //template < typename TYPE >
 //inline __pointer(TYPE) __create_new();
@@ -3060,7 +3061,7 @@ void object::operator()()
 //inline void __compose(__composite(BASE_TYPE)& pusermessage, const __pointer(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 //template < typename BASE_TYPE >
-//inline void __id_compose(__composite(BASE_TYPE)& pusermessage, const ::id& id);
+//inline void __id_compose(__composite(BASE_TYPE)& pusermessage, const ::atom& atom);
 
 //template < typename BASE_TYPE >
 //inline void __raw_compose(__composite(BASE_TYPE)& pusermessage);
@@ -3084,7 +3085,7 @@ void object::operator()()
 //inline void __defer_compose(__composite(BASE_TYPE)& pusermessage) { return !pusermessage ? __compose(pusermessage) : void(::success); }
 
 //template < typename BASE_TYPE >
-//inline void __defer_id_compose(__composite(BASE_TYPE)& pusermessage, const ::id& id) { return !pusermessage ? __id_compose(pusermessage) : void(::success); }
+//inline void __defer_id_compose(__composite(BASE_TYPE)& pusermessage, const ::atom& atom) { return !pusermessage ? __id_compose(pusermessage) : void(::success); }
 
 //template < typename TYPE >
 //inline void __defer_raw_compose_new(__composite(TYPE)& ptype) { return !ptype ? __raw_compose_new(ptype) : void(::success); }
@@ -3099,7 +3100,7 @@ void object::operator()()
 //inline void __construct(__pointer(BASE_TYPE)& pusermessage);
 
 //template < typename BASE_TYPE >
-//inline void __id_construct(__pointer(BASE_TYPE)& pusermessage, const ::id& id);
+//inline void __id_construct(__pointer(BASE_TYPE)& pusermessage, const ::atom& atom);
 
 //template < typename TYPE >
 //inline void __construct_new(__pointer(TYPE)& pusermessage);
@@ -3307,10 +3308,10 @@ void object::operator()()
 //}
 
 
-//::id object::calc_default_object_id() const
+//::atom object::calc_default_object_id() const
 //{
 //
-//   return ::id();
+//   return ::atom();
 //
 //}
 
@@ -3445,7 +3446,7 @@ void object::operator()()
 //}
 
 // ::user::document* open_document_file(::application* pappOnBehalfOf);
-// ::user::document* open_document_file(::application* pappOnBehalfOf, const ::payload& payloadFile, const ::payload & varOptions, ::user::interaction* puiParent = nullptr, ewindowflag eflag = e_window_flag_none, ::id id = ::id());
+// ::user::document* open_document_file(::application* pappOnBehalfOf, const ::payload& payloadFile, const ::payload & varOptions, ::user::interaction* puiParent = nullptr, ewindowflag eflag = e_window_flag_none, ::atom atom = ::atom());
 // ::user::document* open_document_file(::application* pappOnBehalfOf, const ::payload& payloadFile);
 // ::user::document* create_subdocument(::user::impact_data* pimpactdata);
 
@@ -3458,7 +3459,7 @@ void object::operator()()
 //}
 
 
-//string object::lstr(const ::id& id, string strDefault)
+//string object::lstr(const ::atom& atom, string strDefault)
 //{
 //
 //   return "";
@@ -3653,8 +3654,8 @@ bool object::IsSerializable() const
 
 
 //void add_update_notification(property * pproperty);
-//void add_update_notification(const ::id & id, bool bCreate = true);
-//void property_notify(const ::id & id, ::matter * pmatter);
+//void add_update_notification(const ::atom & atom, bool bCreate = true);
+//void property_notify(const ::atom & atom, ::matter * pmatter);
 
 
 //   inline void format_topic_text(const char * psz, ...)
@@ -3711,7 +3712,7 @@ bool object::IsSerializable() const
 
 
    //template < typename TYPE >
-   //::thread_pointer __start_thread(const ::id& id, void(TYPE::* pfn)(), enum_priority epriority = e_priority_normal);
+   //::thread_pointer __start_thread(const ::atom& atom, void(TYPE::* pfn)(), enum_priority epriority = e_priority_normal);
 
 
 //matter* object::get_taskpool_container()

@@ -147,7 +147,7 @@ namespace xml
    //{
 
    //   if(pnode->get_document() != m_spdata.m_p)
-   //      __throw(::exception("unmatched xml document"));
+   //      throw ::exception(::exception("unmatched xml document"));
 
    //   edit_item * pitem = add_new(this);
 

@@ -268,10 +268,10 @@ void text_stream::write(const char * psz)
 }
 
 
-void text_stream::write(const ::id & id)
+void text_stream::write(const ::atom & atom)
 {
 
-   write(id.to_string());
+   write(atom.to_string());
 
 }
 
@@ -366,14 +366,14 @@ void text_stream::read(i32 & i)
 {
    u64 uRead = m_p->read(&i, sizeof(i));
    if (uRead != sizeof(i))
-      __throw(error_io, "failed to read i32");
+      throw ::exception(error_io, "failed to read i32");
 }
 
 void text_stream::read(u32 & u)
 {
    u64 uRead = m_p->read(&u, sizeof(u));
    if (uRead != sizeof(u))
-      __throw(error_io, "failed to read u32");
+      throw ::exception(error_io, "failed to read u32");
 }
 
 
@@ -475,7 +475,7 @@ void text_stream::read(property_set& set)
 }
 
 
-void text_stream::read(::id & id)
+void text_stream::read(::atom & atom)
 {
 
    string str;
@@ -483,7 +483,7 @@ void text_stream::read(::id & id)
    read(str);
 
 
-   id = str;
+   atom = str;
 
 
 }
@@ -516,7 +516,7 @@ void text_stream::write(const void * psz, strsize s)
 //void text_stream::network_payload_write(const ::matter & matter)
 //{
 //
-//   var_stream s;
+//   payload_stream s;
 //
 //   string strNetworkPayload;
 //
@@ -534,7 +534,7 @@ void text_stream::write(const void * psz, strsize s)
 //void text_stream::network_payload_read(::matter & matter)
 //{
 //
-//   var_stream s;
+//   payload_stream s;
 //
 //   string strNetworkPayload;
 //

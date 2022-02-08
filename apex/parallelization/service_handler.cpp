@@ -74,9 +74,9 @@ service* service_handler::get_service()
    //void service_handler::enable_service()
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //}
 
@@ -84,9 +84,9 @@ service* service_handler::get_service()
    //void service_handler::disable_service()
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //}
 
@@ -95,9 +95,9 @@ service* service_handler::get_service()
    void service_handler::start_service()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 
@@ -105,9 +105,9 @@ service* service_handler::get_service()
    void service_handler::stop_service()
    {
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
    }
 

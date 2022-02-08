@@ -28,7 +28,7 @@ namespace userex
    home_view::home_view()
    {
 
-      m_idView = COLORSEL_IMPACT;
+      m_atomImpact = COLORSEL_IMPACT;
 
    }
 
@@ -40,10 +40,10 @@ namespace userex
    }
 
 
-   void home_view::assert_valid() const
+   void home_view::assert_ok() const
    {
 
-      ::user::impact::assert_valid();
+      ::user::impact::assert_ok();
 
    }
 
@@ -70,18 +70,18 @@ namespace userex
    }
 
 
-   void home_view::handle(::subject * psubject, ::context * pcontext)
+   void home_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::user::impact::handle(psubject, pcontext);
+      ::user::impact::handle(ptopic, pcontext);
 
    }
 
 
-   //void home_view::handle(::subject * psubject, ::context * pcontext)
+   //void home_view::handle(::topic * ptopic, ::context * pcontext)
    //{
 
-   //   ::user::impact::handle(psubject, pcontext);
+   //   ::user::impact::handle(ptopic, pcontext);
 
    //}
 
@@ -103,7 +103,7 @@ namespace userex
 
 
 
-      //get_parent_frame()->m_id += ".color_sel";
+      //get_parent_frame()->m_atom += ".color_sel";
 
       pmessage->previous();
 
@@ -216,17 +216,15 @@ namespace userex
 
       pwindowing->release_mouse_capture();
 
-      ::subject subject;
+      ::extended_topic extendedtopic(::id_after_change_cur_sel);
 
-      subject.m_id = ::e_subject_after_change_cur_sel;
+      extendedtopic.m_atom = m_atomImpact;
 
-      subject.m_id = m_idView;
+      extendedtopic.m_puserelement = this;
 
-      subject.m_puserelement = this;
+      extendedtopic.m_actioncontext = ::e_source_user;
 
-      subject.m_actioncontext = ::e_source_user;
-
-      route(&subject);
+      route(&extendedtopic);
 
    }
 

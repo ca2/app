@@ -409,7 +409,7 @@ namespace user
    }
 
 
-   void interaction_array::send_message(const ::id & id, wparam wparam, lparam lparam)
+   void interaction_array::send_message(const ::atom & atom, wparam wparam, lparam lparam)
 
    {
       for (i32 i = 0; i < this->interaction_count(); i++)
@@ -418,7 +418,7 @@ namespace user
          try
          {
 
-            this->interaction_at(i)->send_message(id, wparam, lparam);
+            this->interaction_at(i)->send_message(atom, wparam, lparam);
 
          }
          catch (...)
@@ -431,7 +431,7 @@ namespace user
    }
 
 
-   void interaction_array::send_message_to_descendants(const ::id & id, wparam wparam, lparam lparam, bool bRecursive)
+   void interaction_array::send_message_to_descendants(const ::atom & atom, wparam wparam, lparam lparam, bool bRecursive)
    {
 
       for (i32 i = 0; i < this->interaction_count(); i++)
@@ -440,7 +440,7 @@ namespace user
          try
          {
 
-            this->interaction_at(i)->send_message_to_descendants(id, wparam, lparam, bRecursive);
+            this->interaction_at(i)->send_message_to_descendants(atom, wparam, lparam, bRecursive);
 
          }
          catch (...)
@@ -583,7 +583,7 @@ namespace user
 //
 //#else
 //
-//      throw interface_only_exception();
+//      throw ::interface_only();
 //
 //#endif
 //

@@ -84,10 +84,10 @@ namespace user
    }
 
 
-   id impact_host::get_view_id()
+   atom impact_host::get_view_id()
    {
 
-      return id(::e_type_empty);
+      return atom(::e_type_empty);
 
    }
 
@@ -120,22 +120,22 @@ namespace user
    }
 
 
-   impact_data * impact_host::new_impact_data(const id & id, const ::id & idTitle)
+   impact_data * impact_host::new_impact_data(const atom & atom, const ::atom & idTitle)
    {
 
-      auto pimpactdata  = __new(::user::impact_data(id, idTitle));
+      auto pimpactdata  = __new(::user::impact_data(atom, idTitle));
 
-      m_impactdatamap[id] = pimpactdata;
+      m_impactdatamap[atom] = pimpactdata;
 
       return pimpactdata;
 
    }
 
 
-   impact_data * impact_host::allocate_impact_data(const id & id, const ::id & idTitle)
+   impact_data * impact_host::allocate_impact_data(const atom & atom, const ::atom & idTitle)
    {
 
-      impact_data * pimpactdata = new_impact_data(id, idTitle);
+      impact_data * pimpactdata = new_impact_data(atom, idTitle);
 
       try
       {
@@ -185,10 +185,10 @@ namespace user
    }
 
 
-   impact_data * impact_host::create_impact(const ::id & id, const ::string & strTitle,  impact_creator * pcreator)
+   impact_data * impact_host::create_impact(const ::atom & atom, const ::string & strTitle,  impact_creator * pcreator)
    {
 
-      impact_data * pimpactdata = allocate_impact_data(id, strTitle);
+      impact_data * pimpactdata = allocate_impact_data(atom, strTitle);
 
       try
       {
@@ -199,7 +199,7 @@ namespace user
       catch (const exception& exception)
       {
 
-         if (exception.m_id == id)
+         if (exception.m_atom == atom)
          {
 
             //::acme::del(pimpactdata);
@@ -302,7 +302,7 @@ namespace user
       }
       catch (const exception& exception)
       {
-         if (exception.m_id == pimpactdata->m_id)
+         if (exception.m_atom == pimpactdata->m_atom)
          {
 
             //::acme::del(pimpactdata);
@@ -317,7 +317,7 @@ namespace user
       catch (const ::exception & exception)
       {
 
-         m_impactdatamap.erase_key(pimpactdata->m_id);
+         m_impactdatamap.erase_key(pimpactdata->m_atom);
 
          handle_exception(exception);
 
@@ -337,29 +337,29 @@ namespace user
 
 
 /*
-   ::user::impact_data * impact_host::get_impact_data(const id& id, bool bCallOnCreateView)
+   ::user::impact_data * impact_host::get_impact_data(const atom& atom, bool bCallOnCreateImpact)
    {
 
-      if(!bCallOnCreateView)
+      if(!bCallOnCreateImpact)
       {
 
          synchronous_lock synchronouslock(mutex());
 
-         return m_impactdatamap[id];
+         return m_impactdatamap[atom];
 
       }
 
       auto rectangleClient = get_child_rect();
 
-      return get_impact_data(id, rectangleClient, bCallOnCreateView);
+      return get_impact_data(atom, rectangleClient, bCallOnCreateImpact);
 
    }*/
 
 
-   ::user::impact_data * impact_host::get_impact_data(const id& id,bool bCallOnCreateView)
+   ::user::impact_data * impact_host::get_impact_data(const atom& atom,bool bCallOnCreateImpact)
    {
 
-      auto & pimpactdata = m_impactdatamap[id];
+      auto & pimpactdata = m_impactdatamap[atom];
 
       if (pimpactdata != nullptr)
       {
@@ -368,16 +368,16 @@ namespace user
 
       }
 
-      if (!bCallOnCreateView)
+      if (!bCallOnCreateImpact)
       {
 
-         pimpactdata = allocate_impact_data(id, "");
+         pimpactdata = allocate_impact_data(atom, "");
 
          return pimpactdata;
 
       }
 
-      pimpactdata = create_impact(id, "");
+      pimpactdata = create_impact(atom, "");
 
       if (pimpactdata == nullptr)
       {
@@ -401,7 +401,7 @@ namespace user
       //   && pupdown->m_eupdown != updown_none)
       //{
 
-      //   string strView = pupdown->m_id;
+      //   string strImpact = pupdown->m_atom;
 
       //   auto& app = papplication;
 
@@ -412,9 +412,9 @@ namespace user
 
       //      bool bShow = false;
 
-      //      ::str::begins_eat_ci(strView, "frame::");
+      //      ::str::begins_eat_ci(strImpact, "frame::");
 
-      //      pdataclient->data_set("frame::" + strView + ".visible", bShow);
+      //      pdataclient->data_set("frame::" + strImpact + ".visible", bShow);
 
       //   }
 
@@ -433,7 +433,7 @@ namespace user
       //   && pupdown->m_eupdown != updown_none)
       //{
 
-      //   string strView = pupdown->m_id;
+      //   string strImpact = pupdown->m_atom;
 
       //   auto pdataclient = papplication->cast < ::database::client > ();
 
@@ -442,9 +442,9 @@ namespace user
 
       //      bool bShow = false;
 
-      //      ::str::begins_eat_ci(strView, "frame::");
+      //      ::str::begins_eat_ci(strImpact, "frame::");
 
-      //      pdataclient->data_set("frame::" + strView + ".visible", bShow);
+      //      pdataclient->data_set("frame::" + strImpact + ".visible", bShow);
 
       //   }
 
@@ -463,7 +463,7 @@ namespace user
       //   && pupdown->m_eupdown != updown_none)
       //{
 
-      //   string strView = pupdown->m_id;
+      //   string strImpact = pupdown->m_atom;
 
       //   auto pdataclient = papplication->cast < ::database::client >();
 
@@ -472,9 +472,9 @@ namespace user
 
       //      bool bShow = false;
 
-      //      ::str::begins_eat_ci(strView, "frame::");
+      //      ::str::begins_eat_ci(strImpact, "frame::");
 
-      //      pdataclient->data_set("frame::" + strView + ".visible", bShow);
+      //      pdataclient->data_set("frame::" + strImpact + ".visible", bShow);
       //
       //   }
 
@@ -493,7 +493,7 @@ namespace user
          && pupdown->m_eupdown != updown_none)
       {
 
-         string strView = pupdown->m_id;
+         string strImpact = pupdown->m_atom;
 
          auto pdataclient = papplication->cast < ::database::client >();
 
@@ -502,9 +502,9 @@ namespace user
 
             bool bShow = false;
 
-            ::str::begins_eat_ci(strView, "frame::");
+            ::str::begins_eat_ci(strImpact, "frame::");
 
-            pdataclient->data_set("frame::" + strView + ".visible", bShow);
+            pdataclient->data_set("frame::" + strImpact + ".visible", bShow);
 
          }
 
@@ -512,10 +512,10 @@ namespace user
 
    }
 
-   ::user::impact_data * impact_host::impact_host_get_impact_data(const id& id, const ::id& idTitle, ::user::interaction* pinteraction, ::user::document* pdocument)
+   ::user::impact_data * impact_host::impact_host_get_impact_data(const atom& atom, const ::atom& idTitle, ::user::interaction* pinteraction, ::user::document* pdocument)
    {
 
-      auto pimpactdata = m_impactdatamap[id];
+      auto pimpactdata = m_impactdatamap[atom];
 
       if (pimpactdata)
       {
@@ -524,7 +524,7 @@ namespace user
 
       }
 
-      pimpactdata = allocate_impact_data(id, idTitle);
+      pimpactdata = allocate_impact_data(atom, idTitle);
 
       if (!pimpactdata)
       {
@@ -547,7 +547,7 @@ namespace user
    ::user::place_holder * impact_host::updown_target_get_place_holder(::user::interaction* pinteraction, ::user::document* pdocument)
    {
 
-      auto pimpactdata = impact_host_get_impact_data(pinteraction->m_id, pinteraction->get_window_text(), pinteraction, pdocument);
+      auto pimpactdata = impact_host_get_impact_data(pinteraction->m_atom, pinteraction->get_window_text(), pinteraction, pdocument);
 
       if (::is_null(pimpactdata))
       {
@@ -561,7 +561,7 @@ namespace user
    }
 
 
-   impact_data * impact_host::host_impact(const id & id, const ::id & idTitle, ::user::interaction * pinteraction, ::user::document * pdocument)
+   impact_data * impact_host::host_impact(const atom & atom, const ::atom & idTitle, ::user::interaction * pinteraction, ::user::document * pdocument)
    {
 
 
@@ -573,7 +573,7 @@ namespace user
       INFORMATION("");
 
 
-      auto pimpactdata = impact_host_get_impact_data(id, idTitle, pinteraction, pdocument);
+      auto pimpactdata = impact_host_get_impact_data(atom, idTitle, pinteraction, pdocument);
 
       if (::is_null(pimpactdata))
       {
@@ -697,7 +697,7 @@ namespace user
    }
 
 
-   void impact_host::handle(::subject * psubject, ::context * pcontext)
+   void impact_host::handle(::topic * ptopic, ::context * pcontext)
    {
 
    }

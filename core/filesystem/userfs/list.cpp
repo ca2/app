@@ -141,10 +141,10 @@ namespace userfs
    }
 
 
-   void list::assert_valid() const
+   void list::assert_ok() const
    {
 
-      ::user::form_list_view::assert_valid();
+      ::user::form_list_view::assert_ok();
 
    }
 
@@ -157,7 +157,7 @@ namespace userfs
    }
 
 
-   void list::handle(::subject * psubject, ::context * pcontext)
+   void list::handle(::topic * ptopic, ::context * pcontext)
    {
 
 
@@ -559,7 +559,7 @@ namespace userfs
       __pointer(::user::button) pbutton =  (pinteraction);
       if(pcallback != nullptr && pbutton != nullptr)
       {
-      pcallback->InitializeActionButton(((i32) pinteraction->m_id) - 1000, pbutton);
+      pcallback->InitializeActionButton(((i32) pinteraction->m_atom) - 1000, pbutton);
       } */
    }
 
@@ -585,7 +585,7 @@ namespace userfs
       }
       item.m_strPath         = pdata->item(iStrict).m_strPath;
       item.m_strExtra        = pdata->item(iStrict).m_strExtra;
-      pcallback->OnButtonAction((i32) pinteraction->m_id - 1000, item);
+      pcallback->OnButtonAction((i32) pinteraction->m_atom - 1000, item);
       } */
    }
 

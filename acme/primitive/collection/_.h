@@ -10,7 +10,7 @@ inline ::count __iterable_count(const ITERABLE & iterable);
 //
 //
 //template < typename T >
-//inline ::count __iterable_count(::winrt::Windows::Foundation::Collections::IVectorView < T > ^ a)
+//inline ::count __iterable_count(::winrt::Windows::Foundation::Collections::IVectorImpact < T > ^ a)
 //{
 //
 //   return a.Size;
@@ -104,7 +104,7 @@ public:
       if(iIndex != 0)
       {
 
-         __throw(error_invalid_argument);
+         throw ::exception(error_bad_argument);
 
       }
 
@@ -147,7 +147,7 @@ public:
       if(iIndex != 0)
       {
 
-         __throw(error_invalid_argument);
+         throw ::exception(error_bad_argument);
 
       }
 

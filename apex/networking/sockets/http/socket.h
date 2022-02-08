@@ -66,7 +66,7 @@ namespace sockets
       /** For each header line this callback is executed.
       \lparam key Http header name
       \lparam value Http header value */
-      virtual void OnHeader(id key, const string & value);
+      virtual void OnHeader(atom key, const string & value);
       /** Callback fires when all http headers have been received. */
       virtual void OnHeaderComplete();
       /** Chunk of http body data recevied. */

@@ -3,7 +3,7 @@
 
 //template < class TYPE, class ARG_TYPE, class BASE_ARRAY >
 //index_array & sort_array < TYPE, ARG_TYPE, BASE_ARRAY >::
-//defer_update(const ::id & id)
+//defer_update(const ::atom & atom)
 //{
 //
 //   __pointer(sort_index) & sortindex = m_indexmap[fCompare];

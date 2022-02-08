@@ -15,7 +15,7 @@ namespace acme
          if((iDest % INT_ALIGN) != (iSrc %INT_ALIGN))
          {
 
-            __throw(error_invalid_argument, "i32 aligned only");
+            throw ::exception(error_bad_argument, "i32 aligned only");
 
          }
 

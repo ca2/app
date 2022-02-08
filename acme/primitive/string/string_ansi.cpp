@@ -66,7 +66,7 @@ CLASS_DECL_ACME natural_meta_data < string_meta_data < ansichar > > * __nil < na
 //   {
 //      ASSERT(__is_valid_address(pch,nLength*sizeof(unichar),false));
 //      if(pch == nullptr)
-//         __throw(error_invalid_argument);
+//         throw ::exception(error_bad_argument);
 //
 //      //strsize nDestLength = str::get_char_length(pch,nLength);
 //      strsize nDestLength = nLength * 4;
@@ -96,7 +96,7 @@ CLASS_DECL_ACME natural_meta_data < string_meta_data < ansichar > > * __nil < na
 //   {
 //      ASSERT(__is_valid_address(pch,nLength*sizeof(wd32char),false));
 //      if(pch == nullptr)
-//         __throw(error_invalid_argument);
+//         throw ::exception(error_bad_argument);
 //
 //      strsize nDestLength = str::get_char_length(pch,nLength);
 //      char * pszBuffer = GetBuffer(nDestLength);
@@ -113,7 +113,7 @@ CLASS_DECL_ACME natural_meta_data < string_meta_data < ansichar > > * __nil < na
 //   {
 //      ASSERT(__is_valid_address(pch,nLength*sizeof(unichar),false));
 //      if(pch == nullptr)
-//         __throw(error_invalid_argument);
+//         throw ::exception(error_bad_argument);
 //
 //      strsize nDestLength = str::get_char_length(pch,nLength);
 //      char * pszBuffer = GetBuffer(nDestLength);
@@ -478,7 +478,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //   //if(nDestLength >= 0)
 //   //{
-//   //   __throw(::exception("I am wasting this branching (if(nDestLength >= 0) to tell you that nDestLength should be negative so the buffer is already correct size... or you like incorrect size_i32? Go to Facebook and click in Like for Community \"I Like incorrect size_i32!!\", there should exist such community... there are so many things in the multi bramas... The hardware will check again if you didn't dirtied any other process... (only another process, though)... and you're probably be fired or even not be hired if incorrect size_i32"));
+//   //   throw ::exception(::exception("I am wasting this branching (if(nDestLength >= 0) to tell you that nDestLength should be negative so the buffer is already correct size... or you like incorrect size_i32? Go to Facebook and click in Like for Community \"I Like incorrect size_i32!!\", there should exist such community... there are so many things in the multi bramas... The hardware will check again if you didn't dirtied any other process... (only another process, though)... and you're probably be fired or even not be hired if incorrect size_i32"));
 //   //}
 //
 //   wd32_to_ansi(pszDest,pszSrc,nSrcLength);
@@ -611,7 +611,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //#ifdef _UWP
 //
-//   __throw(todo);
+//   throw ::exception(todo);
 //
 //#elif defined(WINDOWS_DESKTOP)
 //
@@ -646,13 +646,13 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   if(size > UINT_MAX)
 //   {
 //      // API only allows u32 size_i32
-//      __throw(error_invalid_argument);
+//      throw ::exception(error_bad_argument);
 //   }
 //   u32 dwSize=static_cast<u32>(size);
 //   bool fSuccess=::OemToCharBuffA(pstrString,pstrString,dwSize) != 0;
 //   if(!fSuccess)
 //   {
-//      __throw(last_error_exception());
+//      throw ::exception(last_error_exception());
 //   }
 //
 //#endif
@@ -668,13 +668,13 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   if(size > UINT_MAX)
 //   {
 //      // API only allows u32 size_i32
-//      __throw(error_invalid_argument);
+//      throw ::exception(error_bad_argument);
 //   }
 //   u32 dwSize=static_cast<u32>(size);
 //   bool fSuccess=::CharToOemBuffA(pstrString,pstrString,dwSize) != 0;
 //   if(!fSuccess)
 //   {
-//      __throw(last_error_exception());
+//      throw ::exception(last_error_exception());
 //   }
 //
 //#endif
@@ -689,7 +689,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 ////string::operator class string_composite()
 ////{
 ////   class string_composite reference;
-////   reference.set_string(*this,::subject::source::op(::source_cast));
+////   reference.set_string(*this,::topic::source::op(::source_cast));
 ////   return reference;
 ////}
 ////
@@ -1841,7 +1841,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   ASSERT(iStart >= 0);
 //
 //   if(iStart < 0)
-//      __throw(error_invalid_argument);
+//      throw ::exception(error_bad_argument);
 //
 //   if((pszTokens == nullptr) || (*pszTokens == (char)0))
 //   {
@@ -2966,7 +2966,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //{
 //   ASSERT(__is_valid_string(pszCharSet));
 //   if(pszCharSet == nullptr)
-//      __throw(error_invalid_argument);
+//      throw ::exception(error_bad_argument);
 //
 //   return(Left(str::string_span_including(m_psz,pszCharSet)));
 //}
@@ -2976,7 +2976,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //{
 //   ASSERT(__is_valid_string(pszCharSet));
 //   if(pszCharSet == nullptr)
-//      __throw(error_invalid_argument);
+//      throw ::exception(error_bad_argument);
 //
 //   return(Left(str::string_span_excluding(m_psz,pszCharSet)));
 //}
@@ -3008,7 +3008,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   ASSERT(__is_valid_string(pszFormat));
 //
 //   if(pszFormat == nullptr)
-//      __throw(error_invalid_argument);
+//      throw ::exception(error_bad_argument);
 //   va_list ptr;
 //   va_copy(ptr, args);
 //   strsize nLength = str::get_formatted_length(pszFormat,args);
@@ -3037,7 +3037,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   if(dwResult == 0)
 //   {
 //
-//      throw_memory_exception();
+//      throw no_memory();
 //
 //   }
 //
@@ -3064,7 +3064,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   BSTR bstrResult = str::AllocSysString(m_psz,get_length());
 //   if(bstrResult == nullptr)
 //   {
-//      throw_memory_exception();
+//      throw no_memory();
 //   }
 //   return(bstrResult);
 //}
@@ -3076,7 +3076,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   if(!str::ReAllocSysString(m_psz,pbstr,
 //                                      get_length()))
 //   {
-//      throw_memory_exception();
+//      throw no_memory();
 //   }
 //   ASSERT(*pbstr != nullptr);
 //   return(*pbstr);
@@ -3116,7 +3116,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //
 //// Load the string from resource 'nID'
-////bool load_string(id id);
+////bool load_string(atom atom);
 //
 //// Load the string from resource 'nID' in module 'hInstance'
 ///*    bool load_string(HINSTANCE hInstance,::u32 nID )
@@ -3215,7 +3215,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //void __cdecl string::format_message(const char * pszFormat,...)
 //{
 //   if(pszFormat == nullptr)
-//      __throw(error_invalid_argument);
+//      throw ::exception(error_bad_argument);
 //
 //   va_list argList;
 //   va_start(argList,pszFormat);
@@ -3227,9 +3227,9 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 ////#endif
 //
-//bool string::load_string(::matter * pobject,id id)
+//bool string::load_string(::matter * pobject,atom atom)
 //{
-//   return App(pobject).load_string(*this,id);
+//   return App(pobject).load_string(*this,atom);
 //}
 //
 //

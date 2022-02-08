@@ -45,10 +45,10 @@ namespace axis
    }
 
 
-   void application::assert_valid() const
+   void application::assert_ok() const
    {
 
-      thread::assert_valid();
+      thread::assert_ok();
 
    }
 
@@ -113,7 +113,7 @@ namespace axis
    //}
 
 
-   bool application::app_data_set(const ::id & id, stream & os)
+   bool application::app_data_set(const ::atom & atom, stream & os)
    {
 
       return false;
@@ -121,7 +121,7 @@ namespace axis
    }
 
 
-   bool application::app_data_get(const ::id & id, stream & is)
+   bool application::app_data_get(const ::atom & atom, stream & is)
    {
 
       return false;
@@ -129,7 +129,7 @@ namespace axis
    }
 
 
-   bool application::app_data_set(const ::id & id, ::object & obj)
+   bool application::app_data_set(const ::atom & atom, ::object & obj)
    {
 
       return false;
@@ -137,7 +137,7 @@ namespace axis
    }
 
 
-   bool application::app_data_get(const ::id & id, ::object & obj)
+   bool application::app_data_get(const ::atom & atom, ::object & obj)
    {
 
       return false;
@@ -257,7 +257,7 @@ namespace axis
 //   string CLASS_DECL_AXIS application::get_cred(const ::string & strRequestUrl, const ::rectangle_i32 & rectangle, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive)
 // {
 
-//  __throw(error_not_implemented);
+//  throw ::not_implemented();
 
 //}
 
@@ -1196,7 +1196,7 @@ namespace axis
 
          }
 
-         //__throw(todo("database"));
+         //throw ::exception(todo("database"));
 
          //auto estatus = 
          
@@ -1314,9 +1314,9 @@ namespace axis
 
       string strFolder = m_strAppName;
 
-      strFolder.replace(".", "_");
-      strFolder.replace("::", "-");
-      strFolder.replace(":", "_");
+      strFolder.replace_with("_", ".");
+      strFolder.replace_with("-", "::");
+      strFolder.replace_with("_", ":");
 
       m_strRelativeFolder = strFolder;
 
@@ -1550,7 +1550,7 @@ namespace axis
    //string application::http_get_locale_schema(const ::string & pszUrl, const ::string & pszLocale, const ::string & pszSchema)
    //{
 
-   //   throw ::interface_only_exception();
+   //   throw ::interface_only();
 
    //   return "";
 
@@ -2192,10 +2192,10 @@ namespace axis
    }
 
 
-   ::type application::control_type_from_id(const ::id& id, ::user::enum_control_type& econtroltype)
+   ::type application::control_type_from_id(const ::atom& atom, ::user::enum_control_type& econtroltype)
    {
 
-      string str(id);
+      string str(atom);
 
       if (str.begins_ci("still_"))
       {
@@ -2238,7 +2238,7 @@ namespace axis
 
       }
 
-      return ::axis::application::control_type_from_id(id, econtroltype);
+      return ::axis::application::control_type_from_id(atom, econtroltype);
 
    }
 

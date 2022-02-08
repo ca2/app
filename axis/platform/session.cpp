@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "axis/user/_user.h"
-#include "acme/constant/id.h"
+#include "acme/id.h"
 #include "apex/platform/app_core.h"
 #include "acme/platform/static_setup.h"
 
@@ -18,14 +18,14 @@ CLASS_DECL_AXIS ::user::interaction * create_system_message_window(::object* pob
 #if defined(APPLE_IOS) || defined(_UWP) || defined(ANDROID)
 
 
-namespace PLATFORM_NAMESPACE
+namespace OPERATING_SYSTEM_NAMESPACE
 {
 
 
    CLASS_DECL_AXIS ::user::interaction * create_host_window();
 
 
-} // namespace PLATFORM_NAMESPACE
+} // namespace OPERATING_SYSTEM_NAMESPACE
 
 
 #endif
@@ -49,7 +49,7 @@ int_bool point_is_window_origin(POINT_I32 ptHitTest, oswindow oswindowExclude, i
 
 #ifdef _UWP
 
-//#include "aura/node/operating_system/_uwp.h"
+//#include "aura/operating_system/_uwp.h"
 
 #elif defined(LINUX)
 

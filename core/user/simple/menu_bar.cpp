@@ -201,7 +201,7 @@ void simple_menu_bar::pre_translate_message(::message::message * pmessage)
 
    __pointer(::user::message) pusermessage(pmessage);
 
-   if (pusermessage->m_id == WM_USER && pusermessage->userinteraction() == this)
+   if (pusermessage->m_atom == WM_USER && pusermessage->userinteraction() == this)
    {
 
       if (pusermessage->m_wparam == 33)
@@ -213,7 +213,7 @@ void simple_menu_bar::pre_translate_message(::message::message * pmessage)
 
    }
 
-   INFORMATION("simple_menu_bar::pre_translate_message messageID="<<pusermessage->m_id.i64()<<" wParam="<<pusermessage->m_wparam.m_number<<" lParam=" << pusermessage->m_lparam.m_lparam);
+   INFORMATION("simple_menu_bar::pre_translate_message messageID="<<pusermessage->m_atom.i64()<<" wParam="<<pusermessage->m_wparam.m_number<<" lParam=" << pusermessage->m_lparam.m_lparam);
 
    return simple_toolbar::pre_translate_message(pmessage);
 
@@ -638,15 +638,15 @@ index simple_menu_bar::_001HitTest(const POINT_I32 *ppoint)
 }*/
 
 
-//bool simple_menu_bar::create_window(::user::interaction * puiParent, u32 uStyle, ::id id)
+//bool simple_menu_bar::create_window(::user::interaction * puiParent, u32 uStyle, ::atom atom)
 //{
 //
-//   return create_window_ex(puiParent, 0, uStyle, id);
+//   return create_window_ex(puiParent, 0, uStyle, atom);
 //
 //}
 
 
-//bool simple_menu_bar::create_window_ex(::user::interaction * puiParent, u32 dwCtrlStyle, u32 uStyle, ::id id)
+//bool simple_menu_bar::create_window_ex(::user::interaction * puiParent, u32 dwCtrlStyle, u32 uStyle, ::atom atom)
 //{
 //
 //   ASSERT_VALID(puiParent);   // must have a parent
@@ -656,7 +656,7 @@ index simple_menu_bar::_001HitTest(const POINT_I32 *ppoint)
 //
 //   // save the style
 //   m_dwStyle = (uStyle & CBRS_ALL);
-//   if (id == __IDW_TOOLBAR)
+//   if (atom == __IDW_TOOLBAR)
 //      m_dwStyle |= CBRS_HIDE_INPLACE;
 //
 //   uStyle &= ~CBRS_ALL;
@@ -670,7 +670,7 @@ index simple_menu_bar::_001HitTest(const POINT_I32 *ppoint)
 //   //   ASSERT(gen_DropDownWidth != -1);
 //
 //   // create the oswindow
-//   if (!::user::interaction::create_window(nullptr, nullptr, uStyle, puiParent, id))
+//   if (!::user::interaction::create_window(nullptr, nullptr, uStyle, puiParent, atom))
 //   {
 //
 //      return false;

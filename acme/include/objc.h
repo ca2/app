@@ -26,11 +26,11 @@
 
 #if defined(APPLE_IOS)
 
-#include "acme/node/operating_system/ios/ios_m.h"
+#include "acme/operating_system/ios/ios_m.h"
 
 #else
 
-#include "acme/node/operating_system/macos/_mm.h"
+#include "acme/operating_system/macos/_mm.h"
 
 #endif
 

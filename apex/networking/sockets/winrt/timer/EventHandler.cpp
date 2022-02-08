@@ -131,7 +131,7 @@ namespace sockets
 
    void EventHandler::EventLoop()
    {
-      __throw(todo);
+      throw ::exception(todo);
       /*
       while (!m_quit)
       {

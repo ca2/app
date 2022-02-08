@@ -28,10 +28,10 @@ namespace user
    }
 
 
-   void menu_list_view::assert_valid() const
+   void menu_list_view::assert_ok() const
    {
       
-      impact::assert_valid();
+      impact::assert_ok();
       
    }
 

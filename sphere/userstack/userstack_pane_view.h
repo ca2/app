@@ -43,7 +43,7 @@ namespace userstack
       void check_desktop_dir(const ::file::path & psz);
 
       void _001InitializeFormPreData(::user::form * pform) override;
-      void handle(::subject * psubject, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::context * pcontext) override;
 
       /*   virtual void OnFileManagerOpenContextMenuFolder(
             ::filemanager::data * pdata,
@@ -55,11 +55,11 @@ namespace userstack
 
       virtual void set_display(i32 iDisplay);
 
-      virtual void handle(::subject * psubject, ::context * pcontext) override;
+      virtual void handle(::topic * ptopic, ::context * pcontext) override;
       virtual bool pre_create_window(::user::system * pusersystem) override;
 
 
-      void assert_valid() const override;
+      void assert_ok() const override;
       void dump(dump_context & dumpcontext) const override;
 
 

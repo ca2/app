@@ -37,7 +37,7 @@ namespace folder_zip
 
 
 
-   void file::assert_valid() const
+   void file::assert_ok() const
    {
 
 
@@ -61,7 +61,7 @@ namespace folder_zip
 //
 //      file_pointer spfile(e_create_new);
 //
-//      __throw(todo("object"));
+//      throw ::exception(todo("object"));
 //      //spfile->initialize(this);
 //
 //      try
@@ -324,7 +324,7 @@ void file::write(const void* pdata, memsize nCount)
       else
       {
 
-         throw ::exception(error_invalid_argument, "zip::folder::seek invalid seek option");
+         throw ::exception(error_bad_argument, "zip::folder::seek invalid seek option");
 
       }
 
@@ -400,7 +400,7 @@ void file::write(const void* pdata, memsize nCount)
    void file::set_size(filesize dwNewLen)
    {
 
-      __throw(error_not_supported);
+      throw ::exception(error_not_supported);
 
    }
 

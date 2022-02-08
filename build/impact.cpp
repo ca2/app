@@ -24,10 +24,10 @@ namespace app_core_build
 
 #ifdef _DEBUG
 
-   void impact::assert_valid() const
+   void impact::assert_ok() const
    {
 
-      ::user::impact::assert_valid();
+      ::user::impact::assert_ok();
 
    }
 
@@ -41,10 +41,10 @@ namespace app_core_build
 #endif //_DEBUG
 
 
-   void impact::handle(::subject* psubject, ::context* pcontext)
+   void impact::handle(::topic* ptopic, ::context* pcontext)
    {
 
-      ::user::impact::handle(psubject, pcontext);
+      ::user::impact::handle(ptopic, pcontext);
 
    }
 
@@ -102,7 +102,7 @@ namespace app_core_build
 //
 //#else
 //
-//      throw not_implemented_exception();
+//      throw ::not_implemented();
 //
 //#endif
 //
@@ -151,7 +151,7 @@ namespace app_core_build
    for (auto& pproperty : setEnvironment)
    {
 
-      SetEnvironmentVariableW(wstring(pproperty->m_id), wstring(pproperty->string()));
+      SetEnvironmentVariableW(wstring(pproperty->m_atom), wstring(pproperty->string()));
 
    }
 
@@ -172,7 +172,7 @@ namespace app_core_build
 //
 //      //process->prop("inherit") = false;
 //
-//      string strCompiler = "msbuild \"C:/basis/archive/platform-windows/_seed/basic.sln\" -p:Configuration=basis;Platform=x64";
+//      string strCompiler = "msbuild \"C:/basis/operating-system/operating-system-windows/_seed/basic.sln\" -p:Configuration=basis;Platform=x64";
 //
 //      m_straLine.add(strCompiler);
 //

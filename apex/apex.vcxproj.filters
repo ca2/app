@@ -183,44 +183,35 @@
     <Filter Include="Source Files\networking\oauth2">
       <UniqueIdentifier>{1538148d-fc75-4abd-8efe-fb63727756a8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\node">
-      <UniqueIdentifier>{2e6f7822-4519-4001-b156-8c4f960467d8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\node\operating_system">
-      <UniqueIdentifier>{2143d8b7-ada2-4e21-8d70-f05986ff23d2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\node\operating_system\windows">
-      <UniqueIdentifier>{86d2834e-09c6-41d1-96bd-14ce9c2ec6d7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\node\operating_system\windows_common">
-      <UniqueIdentifier>{ecfa807a-2647-4487-8f5c-b74590581454}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\node">
-      <UniqueIdentifier>{80a4a565-9d81-4b24-aa5f-182a5fe7961b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\node\operating_system">
-      <UniqueIdentifier>{a3052857-61d1-403c-9c1b-7f209075ac46}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\node\operating_system\ansi">
-      <UniqueIdentifier>{3e3eb7e6-b2d0-4ef9-8057-41cbc4350638}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\node\operating_system\windows">
-      <UniqueIdentifier>{0340e17b-87ca-4077-82ec-28142c2d373a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\node\operating_system\windows_common">
-      <UniqueIdentifier>{b94bd312-2829-4680-a780-b95f8c3c91dc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\subject">
-      <UniqueIdentifier>{8c14af4a-58b5-448e-98d3-17f2a2ec8244}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\subject">
-      <UniqueIdentifier>{9de9273b-1c23-4a67-a244-075fc3af4d01}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\platform\parallelization">
       <UniqueIdentifier>{f5fb0b8d-82f2-4a87-b245-1747ef8e70a3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\constant">
       <UniqueIdentifier>{f8ac833f-c335-48be-81bf-1c8408752720}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\topic">
+      <UniqueIdentifier>{9de9273b-1c23-4a67-a244-075fc3af4d01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\topic">
+      <UniqueIdentifier>{8c14af4a-58b5-448e-98d3-17f2a2ec8244}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\topic\NewFilter1">
+      <UniqueIdentifier>{4f1d0a2b-d52d-4b65-89f2-433210095582}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\topic\NewFilter2">
+      <UniqueIdentifier>{1f173ac5-75e1-4ae9-affc-45e529c3c63a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\operating_system">
+      <UniqueIdentifier>{5a23bae4-4aab-4c79-9560-d50e73d825d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\operating_system">
+      <UniqueIdentifier>{80a4a565-9d81-4b24-aa5f-182a5fe7961b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\operating_system\windows_common">
+      <UniqueIdentifier>{59224cb7-9c92-4497-8a2a-1ebd4b503ee9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\operating_system\windows">
+      <UniqueIdentifier>{80626ba4-913d-4a38-9abd-e9e1157a097d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -677,9 +668,6 @@
     <ClInclude Include="message\global.h">
       <Filter>Header Files\message</Filter>
     </ClInclude>
-    <ClInclude Include="message\id.h">
-      <Filter>Header Files\message</Filter>
-    </ClInclude>
     <ClInclude Include="message\listener_smart_pointer_array.h">
       <Filter>Header Files\message</Filter>
     </ClInclude>
@@ -1100,99 +1088,6 @@
     <ClInclude Include="networking\sockets\base\socket_thread.h">
       <Filter>Header Files\networking\sockets\base</Filter>
     </ClInclude>
-    <ClInclude Include="node\operating_system\winpr_input.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\windowing.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\thread.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\text.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\operating_system.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\graphics.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\file.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\cross.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\binreloc.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\apex.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\aaa_process.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\aaa_c2.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\_operating_system.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\_impl.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\_application.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\_.h">
-      <Filter>Header Files\node\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\windows_common\_windows_common.h">
-      <Filter>Header Files\node\operating_system\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\windows_common\_.h">
-      <Filter>Header Files\node\operating_system\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\windows\windowing.h">
-      <Filter>Header Files\node\operating_system\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\windows\_windows.h">
-      <Filter>Header Files\node\operating_system\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\operating_system\windows\_.h">
-      <Filter>Header Files\node\operating_system\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="subject\_.h">
-      <Filter>Header Files\subject</Filter>
-    </ClInclude>
-    <ClInclude Include="subject\_impl.h">
-      <Filter>Header Files\subject</Filter>
-    </ClInclude>
-    <ClInclude Include="subject\aaa_handler.h">
-      <Filter>Header Files\subject</Filter>
-    </ClInclude>
-    <ClInclude Include="subject\context.h">
-      <Filter>Header Files\subject</Filter>
-    </ClInclude>
-    <ClInclude Include="subject\manager.h">
-      <Filter>Header Files\subject</Filter>
-    </ClInclude>
-    <ClInclude Include="subject\predicate.h">
-      <Filter>Header Files\subject</Filter>
-    </ClInclude>
-    <ClInclude Include="subject\promise.h">
-      <Filter>Header Files\subject</Filter>
-    </ClInclude>
-    <ClInclude Include="subject\promise1.h">
-      <Filter>Header Files\subject</Filter>
-    </ClInclude>
-    <ClInclude Include="subject\signal.h">
-      <Filter>Header Files\subject</Filter>
-    </ClInclude>
-    <ClInclude Include="subject\source.h">
-      <Filter>Header Files\subject</Filter>
-    </ClInclude>
     <ClInclude Include="platform\thread_set.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
@@ -1207,6 +1102,93 @@
     </ClInclude>
     <ClInclude Include="application.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="topic\_.h">
+      <Filter>Header Files\topic</Filter>
+    </ClInclude>
+    <ClInclude Include="topic\_impl.h">
+      <Filter>Header Files\topic</Filter>
+    </ClInclude>
+    <ClInclude Include="topic\context.h">
+      <Filter>Header Files\topic</Filter>
+    </ClInclude>
+    <ClInclude Include="topic\manager.h">
+      <Filter>Header Files\topic</Filter>
+    </ClInclude>
+    <ClInclude Include="topic\predicate.h">
+      <Filter>Header Files\topic</Filter>
+    </ClInclude>
+    <ClInclude Include="topic\promise.h">
+      <Filter>Header Files\topic</Filter>
+    </ClInclude>
+    <ClInclude Include="topic\promise1.h">
+      <Filter>Header Files\topic</Filter>
+    </ClInclude>
+    <ClInclude Include="topic\signal.h">
+      <Filter>Header Files\topic</Filter>
+    </ClInclude>
+    <ClInclude Include="topic\source.h">
+      <Filter>Header Files\topic</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\_.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\_aaa.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\_aaa_node.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\_application.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\_c.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\_impl.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\_operating_system.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\aaa_c2.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\aaa_operating_system_windowing.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\aaa_process.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\apex.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\binreloc.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\cross.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\file.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\graphics.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\_common.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\text.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\thread.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windowing.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\winpr_input.h">
+      <Filter>Header Files\operating_system</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1259,9 +1241,6 @@
       <Filter>Source Files\message</Filter>
     </ClCompile>
     <ClCompile Include="message\channel.cpp">
-      <Filter>Source Files\message</Filter>
-    </ClCompile>
-    <ClCompile Include="message\id.cpp">
       <Filter>Source Files\message</Filter>
     </ClCompile>
     <ClCompile Include="message\message.cpp">
@@ -1690,66 +1669,6 @@
     <ClCompile Include="networking\http\response.cpp">
       <Filter>Source Files\networking\http</Filter>
     </ClCompile>
-    <ClCompile Include="node\operating_system\_application.cpp">
-      <Filter>Source Files\node\operating_system</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\debug.cpp">
-      <Filter>Source Files\node\operating_system</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\http.cpp">
-      <Filter>Source Files\node\operating_system</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\openssl_crypt.cpp">
-      <Filter>Source Files\node\operating_system</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\operating_system.cpp">
-      <Filter>Source Files\node\operating_system</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\thread.cpp">
-      <Filter>Source Files\node\operating_system</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\windows_common\file.cpp">
-      <Filter>Source Files\node\operating_system\windows_common</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\windows\_.cpp">
-      <Filter>Source Files\node\operating_system\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\windows\dpi.cpp">
-      <Filter>Source Files\node\operating_system\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\windows\gdi.cpp">
-      <Filter>Source Files\node\operating_system\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\windows\main.cpp">
-      <Filter>Source Files\node\operating_system\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\windows\menu.cpp">
-      <Filter>Source Files\node\operating_system\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\windows\thread.cpp">
-      <Filter>Source Files\node\operating_system\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\windows\user.cpp">
-      <Filter>Source Files\node\operating_system\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\windows\windowing.cpp">
-      <Filter>Source Files\node\operating_system\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\ansi\base.cpp">
-      <Filter>Source Files\node\operating_system\ansi</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\ansi\exception_engine.cpp">
-      <Filter>Source Files\node\operating_system\ansi</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\ansi\file.cpp">
-      <Filter>Source Files\node\operating_system\ansi</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\ansi\language.cpp">
-      <Filter>Source Files\node\operating_system\ansi</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\ansi\win.cpp">
-      <Filter>Source Files\node\operating_system\ansi</Filter>
-    </ClCompile>
     <ClCompile Include="networking\http\signal.cpp">
       <Filter>Source Files\networking\http</Filter>
     </ClCompile>
@@ -1764,30 +1683,6 @@
     </ClCompile>
     <ClCompile Include="platform\interprocess_intercommunication.cpp">
       <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="subject\context.cpp">
-      <Filter>Source Files\subject</Filter>
-    </ClCompile>
-    <ClCompile Include="subject\handler.cpp">
-      <Filter>Source Files\subject</Filter>
-    </ClCompile>
-    <ClCompile Include="subject\manager.cpp">
-      <Filter>Source Files\subject</Filter>
-    </ClCompile>
-    <ClCompile Include="subject\process.cpp">
-      <Filter>Source Files\subject</Filter>
-    </ClCompile>
-    <ClCompile Include="subject\promise.cpp">
-      <Filter>Source Files\subject</Filter>
-    </ClCompile>
-    <ClCompile Include="subject\routine.cpp">
-      <Filter>Source Files\subject</Filter>
-    </ClCompile>
-    <ClCompile Include="subject\signal.cpp">
-      <Filter>Source Files\subject</Filter>
-    </ClCompile>
-    <ClCompile Include="subject\source.cpp">
-      <Filter>Source Files\subject</Filter>
     </ClCompile>
     <ClCompile Include="message\dispatcher.cpp">
       <Filter>Source Files\message</Filter>
@@ -1804,6 +1699,75 @@
     <ClCompile Include="platform\api_client.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
+    <ClCompile Include="topic\context.cpp">
+      <Filter>Source Files\topic</Filter>
+    </ClCompile>
+    <ClCompile Include="topic\handler.cpp">
+      <Filter>Source Files\topic</Filter>
+    </ClCompile>
+    <ClCompile Include="topic\manager.cpp">
+      <Filter>Source Files\topic</Filter>
+    </ClCompile>
+    <ClCompile Include="topic\process.cpp">
+      <Filter>Source Files\topic</Filter>
+    </ClCompile>
+    <ClCompile Include="topic\promise.cpp">
+      <Filter>Source Files\topic</Filter>
+    </ClCompile>
+    <ClCompile Include="topic\routine.cpp">
+      <Filter>Source Files\topic</Filter>
+    </ClCompile>
+    <ClCompile Include="topic\signal.cpp">
+      <Filter>Source Files\topic</Filter>
+    </ClCompile>
+    <ClCompile Include="topic\source.cpp">
+      <Filter>Source Files\topic</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\_application.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\debug.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\http.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\openssl_crypt.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\operating_system.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\thread.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\_.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\dpi.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\gdi.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\main.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows_common\file.cpp">
+      <Filter>Source Files\operating_system\windows_common</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\menu.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\thread.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\user.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\windowing.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="filesystem\_impl.h">
@@ -1811,7 +1775,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="..\..\..\archive\platform-windows\version.rc">
+    <ResourceCompile Include="..\..\..\operating-system\operating-system-windows\version.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>

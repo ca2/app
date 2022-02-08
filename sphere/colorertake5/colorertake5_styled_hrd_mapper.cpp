@@ -36,14 +36,14 @@ namespace colorertake5
 
       if(!hbasedoc.load(str))
       {
-         __throw(exception("Error loading HRD file"));
+         throw ::exception(exception("Error loading HRD file"));
       }
 
       xml::node & hbase = *hbasedoc.get_root();
 
       if(hbase.get_name() != "hrd")
       {
-         __throw(exception("Error loading HRD file"));
+         throw ::exception(exception("Error loading HRD file"));
       }
 
       for(__pointer(::xml::node)curel = hbase.first_child(); curel; curel = curel->get_next_sibling())
@@ -126,7 +126,7 @@ namespace colorertake5
 /* ***** BEGIN LICENSE BLOCK *****
  * Version: MPL 1.1/GPL 2.0/LGPL 2.1
  *
- * The contents of this file are subject to the Mozilla Public License Version
+ * The contents of this file are topic to the Mozilla Public License Version
  * 1.1 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
  * http://www.mozilla.org/MPL/

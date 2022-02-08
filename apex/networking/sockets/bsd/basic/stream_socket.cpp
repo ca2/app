@@ -205,7 +205,7 @@ namespace sockets
    i32 stream_socket::Protocol()
    {
       
-      throw ::interface_only_exception();
+      throw ::interface_only();
 
       return -1;
 

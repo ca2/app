@@ -69,7 +69,7 @@ static int freerdp_client_rdp_file_set_integer(rdpFile* file, const ::string & n
 
 	if (_stricmp(name, "use multimon") == 0)
 		file->UseMultiMon = value;
-	else if (_stricmp(name, "screen mode id") == 0)
+	else if (_stricmp(name, "screen mode atom") == 0)
 		file->ScreenModeId = value;
 	else if (_stricmp(name, "span monitors") == 0)
 		file->SpanMonitors = value;
@@ -83,7 +83,7 @@ static int freerdp_client_rdp_file_set_integer(rdpFile* file, const ::string & n
 		file->DesktopWidth = value;
 	else if (_stricmp(name, "desktopheight") == 0)
 		file->DesktopHeight = value;
-	else if (_stricmp(name, "desktop size_i32 id") == 0)
+	else if (_stricmp(name, "desktop size_i32 atom") == 0)
 		file->DesktopSizeId = value;
 	else if (_stricmp(name, "session bpp") == 0)
 		file->SessionBpp = value;

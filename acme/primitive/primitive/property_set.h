@@ -15,7 +15,7 @@ public:
    using property_ptra::erase;
 
 
-   __declare_iterator(name_iterator, &(*this->m_pelement)->m_id);
+   __declare_iterator(name_iterator, &(*this->m_pelement)->m_atom);
    __declare_iterator(value_iterator, &(*this->m_pelement)->m_var);
 
 
@@ -26,31 +26,31 @@ public:
    virtual ~property_set();
 
 
-   ::count erase_by_name(const id & idName);
+   ::count erase_by_name(const atom & idName);
    ::count erase_by_name(string_array & straName);
 
    virtual ::matter * source_channel();
 
-   inline ::payload operator()(const id & id, const ::payload & varDefault = ::error_not_found) const;
+   inline ::payload operator()(const atom & atom, const ::payload & varDefault = ::error_not_found) const;
 
    string _001Replace(const ::string & str) const;
 
    inline string format(const ::string & str) const { return _001Replace(str); }
 
-   inline property & operator[](const id & id) { return get(id); }
-   inline const property & operator[](const id & id) const { return *find(id); }
+   inline property & operator[](const atom & atom) { return get(atom); }
+   inline const property & operator[](const atom & atom) const { return *find(atom); }
 
-   inline property & operator[](const char * pszName) { return operator [](::id(pszName)); }
-   inline const property & operator[](const char * pszName) const { return operator [](::id(pszName)); }
+   inline property & operator[](const char * pszName) { return operator [](::atom(pszName)); }
+   inline const property & operator[](const char * pszName) const { return operator [](::atom(pszName)); }
 
-   inline property & operator[](const ::string & strName) { return operator [](::id(strName)); }
-   inline const property & operator[](const ::string & strName) const { return operator [](::id(strName)); }
+   inline property & operator[](const ::string & strName) { return operator [](::atom(strName)); }
+   inline const property & operator[](const ::string & strName) const { return operator [](::atom(strName)); }
 
-   inline property & operator[](::index iIndex) { return operator [](::id(iIndex)); }
-   inline const property & operator[](::index iIndex) const { return operator [](::id(iIndex)); }
+   inline property & operator[](::index iIndex) { return operator [](::atom(iIndex)); }
+   inline const property & operator[](::index iIndex) const { return operator [](::atom(iIndex)); }
 
-   inline property & operator[](const ::payload & payload) { return operator [](::id(payload)); }
-   inline const property & operator[](const ::payload & payload) const { return operator [](::id(payload)); }
+   inline property & operator[](const ::payload & payload) { return operator [](::atom(payload)); }
+   inline const property & operator[](const ::payload & payload) const { return operator [](::atom(payload)); }
 
 #ifdef OS64BIT
 
@@ -59,9 +59,9 @@ public:
 
 #endif
 
-   inline ::payload & topic(const id & id);
+   inline ::payload & topic(const atom & atom);
 
-   ::payload & set(const id & id);
+   ::payload & set(const atom & atom);
 
    property & at(index iId);
    ::payload at(index iId) const;
@@ -101,13 +101,13 @@ public:
    ::count erase_value(const ::payload & payload, ::count countMin = 0, ::count countMax = -1);
    ::count erase_value(const char * psz, ::count countMin = 0, ::count countMax = -1);
 
-   bool has_property(id idName) const;
+   bool has_property(atom idName) const;
 
-   bool is_true(id idName, bool bDefault = false) const;
+   bool is_true(atom idName, bool bDefault = false) const;
 
-   bool is_false(id idName) const { auto p = find(idName); return !p || p->is_false(); }
+   bool is_false(atom idName) const { auto p = find(idName); return !p || p->is_false(); }
 
-   bool is_set_false(id idName) const { auto p = find(idName); return !p || p->is_set_false(); }
+   bool is_set_false(atom idName) const { auto p = find(idName); return !p || p->is_set_false(); }
 
    bool is_set_empty(::count countMinimum = 1) const;
    bool has_properties(::count countMinimum = 1) const;
@@ -116,10 +116,10 @@ public:
    inline auto names(index iStart = 0, index iEnd = -1) const { return name_iterator(iStart, iEnd, this); }
 
 
-   inline property & set_at(const ::id & id, const ::payload & payload)
+   inline property & set_at(const ::atom & atom, const ::payload & payload)
    {
 
-      auto & property = get(id);
+      auto & property = get(atom);
 
       property = payload;
 
@@ -127,53 +127,53 @@ public:
 
    }
 
-   inline bool get_string(string& strResult, const id & idKey) const;
+   inline bool get_string(string& strResult, const atom & idKey) const;
 
-   inline ::payload get_value(id idName);
+   inline ::payload get_value(atom idName);
 
-   inline ::payload value(id idName) const;
+   inline ::payload value(atom idName) const;
 
-   inline ::payload value(id idName, ::payload varDefault) const;
+   inline ::payload value(atom idName, ::payload varDefault) const;
 
    template < typename TYPE >
-   inline void exchange(const ::id & id, TYPE & t)
+   inline void exchange(const ::atom & atom, TYPE & t)
    {
 
       if (is_storing())
       {
 
-         operator[](id) = t;
+         operator[](atom) = t;
 
       }
       else
       {
 
-         t = operator[](id);
+         t = operator[](atom);
 
       }
 
    }
 
    template < typename TYPE >
-   inline void exchange(const ::id & id, const TYPE & t)
+   inline void exchange(const ::atom & atom, const TYPE & t)
    {
 
       if (is_storing())
       {
 
-         operator[](id) = t;
+         operator[](atom) = t;
 
       }
       else
       {
 
-         __throw(error_invalid_argument);
+         throw ::exception(error_bad_argument);
 
       }
 
    }
 
-   inline void exchange( const ::id & id, bool & b)
+   inline void exchange( const ::atom & atom, bool & b)
    {
 
       if (is_storing())
@@ -182,13 +182,13 @@ public:
          if (b)
          {
 
-            operator[](id) = true;
+            operator[](atom) = true;
 
          }
          else
          {
 
-            erase_by_name(id);
+            erase_by_name(atom);
 
          }
 
@@ -196,41 +196,41 @@ public:
       else
       {
 
-         b = is_true(id);
+         b = is_true(atom);
 
       }
 
    }
 
-   ::count unset(const id & idName);
+   ::count unset(const atom & idName);
 
-   bool is_new(const id & idName) const;
+   bool is_new(const atom & idName) const;
 
-   bool is_null(const id & idName) const;
+   bool is_null(const atom & idName) const;
 
-   bool is_new_or_null(const id & idName) const;
+   bool is_new_or_null(const atom & idName) const;
 
    
    using property_ptra::is_empty;
 
-   bool is_empty(const id & idName) const;
+   bool is_empty(const atom & idName) const;
 
-   ::index find_index(const ::id & id, ::index iStart = 0) const;
+   ::index find_index(const ::atom & atom, ::index iStart = 0) const;
 
-   property * find(const ::id & id) const;
+   property * find(const ::atom & atom) const;
 
-   property & get(const ::id & id);
+   property & get(const ::atom & atom);
 
 
-   inline property * find_property(const id & id) const { return find(id); }
-   inline property & get_property(const ::id & id) { return get(id); }
+   inline property * find_property(const atom & atom) const { return find(atom); }
+   inline property & get_property(const ::atom & atom) { return get(atom); }
 
 
    template < typename TYPE >
-   bool find(const ::id & id, TYPE & t)
+   bool find(const ::atom & atom, TYPE & t)
    {
 
-      auto pproperty = find(id);
+      auto pproperty = find(atom);
 
       if (!pproperty)
       {
@@ -302,7 +302,7 @@ public:
 
 
    template < class T >
-   __pointer(T) cast(id idName, T * pDefault = nullptr)
+   __pointer(T) cast(atom idName, T * pDefault = nullptr)
    {
 
       if (!has_property(idName))
@@ -314,7 +314,7 @@ public:
 
 
    template < class T >
-   __pointer(T) cast(id idName, T * pDefault = nullptr) const
+   __pointer(T) cast(atom idName, T * pDefault = nullptr) const
    {
 
       return ((property_set *) this)->cast < T >(idName, pDefault);

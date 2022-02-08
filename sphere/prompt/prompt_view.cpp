@@ -62,9 +62,9 @@ namespace prompt
    // impact diagnostics
 
 
-   void impact::assert_valid() const
+   void impact::assert_ok() const
    {
-      ::user::impact::assert_valid();
+      ::user::impact::assert_ok();
    }
 
    void impact::dump(dump_context & dumpcontext) const
@@ -96,10 +96,10 @@ namespace prompt
 
 
 
-   void impact::handle(::subject * psubject, ::context * pcontext)
+   void impact::handle(::topic * ptopic, ::context * pcontext)
    {
       
-      if(psubject->id() == id_update_current_area)
+      if(ptopic->m_atom == id_update_current_area)
       {
 
          SetTimer(::e_timer_update_current_area, 100, nullptr);

@@ -53,14 +53,14 @@ public:
   };
 
 public:
-  ID3_Frame(ID3_FrameID id = ID3FID_NOFRAME);
+  ID3_Frame(ID3_FrameID atom = ID3FID_NOFRAME);
   ID3_Frame(const ID3_Frame&);
 
   virtual ~ID3_Frame();
   
   void        Clear();
 
-  bool        SetID(ID3_FrameID id);
+  bool        SetID(ID3_FrameID atom);
   ID3_FrameID GetID() const;
   
   ID3_Field*  GetField(ID3_FieldID name) const;
@@ -85,10 +85,10 @@ public:
   bool        GetCompression() const;
   size_t      GetDataSize() const;
 
-  bool        SetEncryptionID(uchar id);
+  bool        SetEncryptionID(uchar atom);
   uchar       GetEncryptionID() const;
   
-  bool        SetGroupingID(uchar id);
+  bool        SetGroupingID(uchar atom);
   uchar       GetGroupingID() const;
 
   Iterator*  CreateIterator();

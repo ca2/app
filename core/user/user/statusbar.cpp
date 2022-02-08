@@ -49,14 +49,14 @@ namespace user
    }
 
 
-   //bool status_bar::create_window(::user::interaction * puiParent, u32 uStyle, id strId)
+   //bool status_bar::create_window(::user::interaction * puiParent, u32 uStyle, atom strId)
    //{
 
    //   return create_window_ex(puiParent, 0, uStyle, strId);
 
    //}
 
-//   bool status_bar::create_window_ex(::user::interaction * puiParent,u32 dwCtrlStyle,u32 uStyle, id strId)
+//   bool status_bar::create_window_ex(::user::interaction * puiParent,u32 dwCtrlStyle,u32 uStyle, atom strId)
 //   {
 //
 //      ASSERT_VALID(puiParent);   // must have a parent
@@ -111,7 +111,7 @@ namespace user
 //         HFONT hFont = (HFONT)send_message(WM_GETFONT);
       ::draw2d::graphics_pointer spgraphicsScreen(e_create, this);
 
-      //__throw(todo);
+      //throw ::exception(todo);
       /*         HGDIOBJ hOldFont = nullptr;
                if (hFont != nullptr)
                   hOldFont = spgraphicsScreen->set(hFont);*/
@@ -119,9 +119,9 @@ namespace user
       __STATUSPANE* pSBP = _GetPanePtr(0);
       for (i32 i = 0; i < stra.get_count(); i++)
       {
-         pSBP->m_id = stra[i];
+         pSBP->m_atom = stra[i];
          pSBP->nFlags |= SBPF_UPDATE;
-         if (pSBP->m_id.has_char())
+         if (pSBP->m_atom.has_char())
          {
             /* xxx            if (!pSBP->strText.load_string(pSBP->strId))
                         {
@@ -147,7 +147,7 @@ namespace user
 //            if (i == 0)
 //               pSBP->nStyle |= (SBPS_STRETCH | SBPS_NOBORDERS);
 //#else
-//            __throw(todo);
+//            throw ::exception(todo);
 //#endif
          }
          ++pSBP;
@@ -214,7 +214,7 @@ namespace user
 //                       ::GetSystemMetrics(SM_CXBORDER) * 2;
 //      }
 //#else
-//      __throw(todo);
+//      throw ::exception(todo);
 //#endif
    }
 //
@@ -297,7 +297,7 @@ namespace user
 //         }
 //      }
 //#else
-//      __throw(todo);
+//      throw ::exception(todo);
 //#endif
    }
 
@@ -308,7 +308,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // status_bar attribute access
 
-   i32 status_bar::CommandToIndex(id id)
+   i32 status_bar::CommandToIndex(atom atom)
    {
       ASSERT_VALID(this);
 
@@ -318,17 +318,17 @@ namespace user
       for (i32 i = 0; i < m_panecompositea.get_count(); i++)
       {
          __STATUSPANE* pSBP = _GetPanePtr(i);
-         if (pSBP->m_id == id)
+         if (pSBP->m_atom == atom)
             return i;
       }
 
       return -1;
    }
 
-   id status_bar::GetItemId(i32 nIndex)
+   atom status_bar::GetItemId(i32 nIndex)
    {
       ASSERT_VALID(this);
-      return _GetPanePtr(nIndex)->m_id;
+      return _GetPanePtr(nIndex)->m_atom;
    }
 
    void status_bar::GetItemRect(i32 nIndex, RECTANGLE_I32 * prectangle)
@@ -344,7 +344,7 @@ namespace user
 //         ::SetRectEmpty(prectangle);
 //
 //#else
-//      __throw(todo);
+//      throw ::exception(todo);
 //#endif
    }
 //
@@ -373,26 +373,26 @@ namespace user
 //      }
    }
 
-   void status_bar::GetPaneInfo(i32 nIndex, id & id, ::u32& nStyle,
+   void status_bar::GetPaneInfo(i32 nIndex, atom & atom, ::u32& nStyle,
                                 i32& cxWidth)
    {
       ASSERT_VALID(this);
 
       __STATUSPANE* pSBP = _GetPanePtr(nIndex);
-      id = pSBP->m_id;
+      atom = pSBP->m_atom;
       nStyle = pSBP->nStyle;
       cxWidth = pSBP->cxText;
    }
 
 
-   void status_bar::SetPaneInfo(i32 nIndex, const ::id & id, ::u32 nStyle, i32 cxWidth)
+   void status_bar::SetPaneInfo(i32 nIndex, const ::atom & atom, ::u32 nStyle, i32 cxWidth)
    {
 
       ASSERT_VALID(this);
 
       bool bChanged = false;
       __STATUSPANE* pSBP = _GetPanePtr(nIndex);
-      pSBP->m_id = id;
+      pSBP->m_atom = atom;
       if (pSBP->nStyle != nStyle)
       {
          if ((pSBP->nStyle ^ nStyle) & SBPS_STRETCH)
@@ -494,7 +494,7 @@ namespace user
 //      TEXTMETRICW tm;
       {
          // os independence
-         throw interface_only_exception();
+         throw ::interface_only();
          /*      CClientDC spgraphics(nullptr);
                HFONT hFont = (HFONT)SendMessage(WM_GETFONT);
                HGDIOBJ hOldFont = nullptr;
@@ -569,7 +569,7 @@ namespace user
 //      pnccalcsize->m_pparams->rgrc[0].right += rectangle.right;
 //      pnccalcsize->m_pparams->rgrc[0].bottom += rectangle.bottom;
 //#else
-//      __throw(todo);
+//      throw ::exception(todo);
 //#endif
 }
 //
@@ -609,7 +609,7 @@ namespace user
 
 //#ifdef WINDOWS_DESKTOP
 //
-//      if (pmessage->m_id != WM_DRAWITEM)
+//      if (pmessage->m_atom != WM_DRAWITEM)
 //      {
 //
 //         return ::user::interaction::OnChildNotify(pmessage);
@@ -667,7 +667,7 @@ namespace user
       pwindowpos->previous();
       m_dwStyle = uStyle;
 #else
-      __throw(todo);
+      throw ::exception(todo);
 #endif
    }
 
@@ -858,7 +858,7 @@ namespace user
 
 #else
 
-      __throw(todo);
+      throw ::exception(todo);
 
 #endif
 
@@ -896,7 +896,7 @@ namespace user
       state.m_iCount = (::u32)m_panecompositea.get_count();
       for (state.m_iIndex = 0; state.m_iIndex < state.m_iCount; state.m_iIndex++)
       {
-         state.m_id = _GetPanePtr((i32) state.m_iIndex)->m_id;
+         state.m_atom = _GetPanePtr((i32) state.m_iIndex)->m_atom;
 
          // allow the statusbar itself to have update handlers
          ::user::interaction::on_command_probe(&state);
@@ -923,9 +923,9 @@ namespace user
    // status_bar diagnostics
 
 
-   void status_bar::assert_valid() const
+   void status_bar::assert_ok() const
    {
-      ::user::control_bar::assert_valid();
+      ::user::control_bar::assert_ok();
    }
 
    void status_bar::dump(dump_context & dumpcontext) const
@@ -938,7 +938,7 @@ namespace user
          {
             __STATUSPANE * ppane = ((status_bar *) this)->_GetPanePtr(i);
             dumpcontext << "\nstatus pane[" << i << "] = {";
-            dumpcontext << "\n\tnID = " << (const ::string &) ppane->m_id;
+            dumpcontext << "\n\tnID = " << (const ::string &) ppane->m_atom;
             dumpcontext << "\n\tnStyle = " << ppane->nStyle;
             dumpcontext << "\n\tcxText = " << ppane->cxText;
             dumpcontext << "\n\tstrText = " << ppane->strText;
@@ -962,7 +962,7 @@ namespace user
    {
       if(&pane == this)
          return *this;
-      m_id = pane.m_id;        // IDC of indicator: 0 => normal text area
+      m_atom = pane.m_atom;        // IDC of indicator: 0 => normal text area
       cxText = pane.cxText;     // width of string area in pixels
       //   on both sides there is a 3 pixel gap and
       //   a one pixel border, making a pane 6 pixels wider

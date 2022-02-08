@@ -63,7 +63,7 @@ static set_app_id g_setappid(__APP_ID);
 //
 #ifdef LINUX
 
-#include "apex/node/operating_system/binreloc.h"
+#include "apex/operating_system/binreloc.h"
 
 const char* br_init_get_symbol();
 

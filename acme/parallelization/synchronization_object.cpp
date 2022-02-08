@@ -315,7 +315,9 @@ bool synchronization_object::_wait(const class ::wait & wait)
 
 #endif
 
-//   return error_failed;
+   throw_status(error_interface_only);
+
+   return false;
 
 }
 
@@ -336,10 +338,10 @@ void synchronization_object::acquire_ownership()
 }
 
 
-//void synchronization_object::assert_valid() const
+//void synchronization_object::assert_ok() const
 //{
 //
-//   matter::assert_valid();
+//   matter::assert_ok();
 //
 //}
 

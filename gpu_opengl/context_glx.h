@@ -4,7 +4,7 @@
 #include "aura/operating_system.h"
 
 
-#include "aura/operating_system/_operating_system.h"
+//#include "aura/operating_system/_operating_system.h"
 //#include "windowing_x11/_.h"
 #include <GL/glx.h>
 #include <GL/glu.h>

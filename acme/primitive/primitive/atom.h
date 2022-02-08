@@ -18,6 +18,14 @@ class lparam;
 
 
 
+// Lets (AMajor.AMinor) (BMajor.BMinor)
+// compare_square(AMajor - BMajor, AMinor - BMinor)
+// Maybe it is better to cache MAJOR_COMPARISON into a variable?
+#define __atom_compare_square(MAJOR_COMPARISON, MINOR_COMPARISON) \
+((__atom_sgn(MAJOR_COMPARISON) != 0) ? (__atom_sgn(MAJOR_COMPARISON)) : (__atom_sgn(MINOR_COMPARISON)))
+
+
+
 #ifndef NO_TEMPLATE
 
 
@@ -36,17 +44,6 @@ int __atom_sgn(T x)
 {
 
    return (((T) 0) < x) - (x < ((T) 0));
-
-}
-
-
-template <typename A, typename B>
-int __atom_compare_square(A a, B b)
-{
-
-   auto aSgn = __atom_sgn(a);
-
-   return aSgn ? aSgn : __atom_sgn(b);
 
 }
 
@@ -75,10 +72,6 @@ int __atom_compare_square(A a, B b)
 #define __atom_str_is_empty(psz) (__atom_is_null_ptr(psz) || *psz == '\0')
 
 
-// Lets (AMajor.AMinor) (BMajor.BMinor)
-// compare_square(AMajor - BMajor, AMinor - BMinor)
-#define __atom_compare_square(MAJOR_COMPARISON, MINOR_COMPARISON) \
-(__atom_sgn(MAJOR_COMPARISON) != 0 ? (__atom_sgn(MAJOR_COMPARISON)) : (__atom_sgn(MINOR_COMPARISON)))
 
 
 inline int __atom_safe_strcmp(const char * a, const char * b)
@@ -740,7 +733,9 @@ inline atom::atom(UNSIGNED u)
 inline int atom::compare(const atom & atom) const
 {
 
-   return __atom_compare_square(m_iType - atom.m_iType, m_iBody - atom.m_iBody);
+   auto compare = m_iType - atom.m_iType;
+
+   return __atom_compare_square(compare, m_iBody - atom.m_iBody);
 
 }
 
@@ -809,7 +804,9 @@ inline atom & atom::operator = (const atom & atom)
 inline int atom::compare(const ::string & str) const
 {
 
-   return __atom_compare_square(primitive_type() - e_type_text, ansi_compare(m_psz, str.c_str()));
+   auto iCompare = primitive_type() - e_type_text;
+
+   return __atom_compare_square(iCompare, ansi_compare(m_psz, str.c_str()));
 
 }
 
@@ -971,7 +968,9 @@ inline string atom::str() const
 inline int atom::compare(const char * psz) const
 {
 
-   return __atom_compare_square(primitive_type() - e_type_text, __atom_safe_strcmp(m_psz, psz));
+   auto iCompare = primitive_type() - e_type_text;
+
+   return __atom_compare_square(iCompare, __atom_safe_strcmp(m_psz, psz));
 
 }
 
@@ -1032,7 +1031,9 @@ template < primitive_integral INTEGRAL >
 inline int atom::compare(INTEGRAL i) const
 {
 
-   return __atom_compare_square((::i32)primitive_type() - (::i32)e_type_integer, (::i64) m_i - (::i64)i);
+   auto compare = (::i32)primitive_type() - (::i32)e_type_integer;
+
+   return __atom_compare_square(compare, (::i64) m_i - (::i64)i);
 
 }
 
@@ -1097,7 +1098,9 @@ inline bool atom::operator >= (INTEGRAL i) const
 inline int atom::compare(::enum_id eid) const
 {
 
-   return __atom_compare_square(m_etype - e_type_id, m_i - eid);
+   auto compare = m_etype - e_type_id;
+
+   return __atom_compare_square(compare, m_i - eid);
 
 }
 
@@ -1153,7 +1156,9 @@ inline bool atom::operator >= (::enum_id eid) const
 inline int atom::compare(::enum_message emessage) const
 {
 
-   return __atom_compare_square(m_etype - e_type_message, m_emessage - emessage);
+   auto compare = m_etype - e_type_message;
+
+   return __atom_compare_square(compare, m_emessage - emessage);
 
 }
 
@@ -1267,7 +1272,9 @@ inline bool atom::operator >= (::enum_message emessage) const
 inline int atom::compare(::enum_dialog_result edialogresult) const
 {
 
-   return __atom_compare_square(m_etype - e_type_dialog_result, m_edialogresult - edialogresult);
+   auto compare = m_etype - e_type_dialog_result;
+
+   return __atom_compare_square(compare, m_edialogresult - edialogresult);
 
 }
 

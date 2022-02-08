@@ -43,7 +43,7 @@ namespace user
 
          string strId;
 
-         pchild->find_attribute("atom", strId);
+         pchild->find_attribute("id", strId);
 
          string strImage;
 

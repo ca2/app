@@ -1245,7 +1245,7 @@ namespace html
 
       ::html::tag * ptag = m_pbase->get_tag();
 
-      if (atom == ptag->get_attr_value("atom"))
+      if (atom == ptag->get_attr_value("id"))
       {
 
          return this;

@@ -548,6 +548,26 @@
 
    }
 
+   
+   bool os_context::has_alias_in_path(const char * psz, bool bNoUI, bool bNoMount)
+   {
+
+      throw interface_only();
+
+      return false;
+
+   }
+
+
+   bool os_context::is_alias(const char * psz)
+   {
+
+      throw interface_only();
+
+      return false;
+
+   }
+
 
    void os_context::initialize_wallpaper_fileset(::file::set* pfileset, bool bAddSearch)
    {

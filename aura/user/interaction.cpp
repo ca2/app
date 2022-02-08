@@ -4488,7 +4488,7 @@ return "";
       for (auto& pitem : m_useritema)
       {
 
-         if (*pitem == item)
+         if (*pitem == (ITEM_BASE_ADDITIONS &) item)
          {
 
             return pitem;
@@ -15940,7 +15940,7 @@ order(zorderParam);
 
             bool bSameUserInteractionAsMouseDown = psession->m_puiLastLButtonDown == this;
 
-            bool bSameItemAsMouseDown = m_itemLButtonDown == item;
+            bool bSameItemAsMouseDown = (const item_base &) m_itemLButtonDown == (const item_base &) item;
 
             TRACE("interaction::on_message_left_button_up item=" << (int) item.m_iItem<<", SameUserInteractionAsMsDwn="<< (int) bSameUserInteractionAsMouseDown<<", SameItemAsMsDwn=" << (int) bSameItemAsMouseDown);
 

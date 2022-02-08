@@ -550,7 +550,7 @@ void memory_file::write_file(::file::file* pfileIn, memsize uiBufSize)
 
       auto size = pfileIn->get_size();
 
-      if (increase_internal_data_size(size))
+      if (increase_internal_data_size((memsize) size))
       {
 
          auto read = pfileIn->read((byte *) get_internal_data() + get_position(), size);

@@ -792,7 +792,7 @@ namespace aura
       if (doc.get_name() == "string")
       {
 
-         string strId = doc.attribute("atom");
+         string strId = doc.attribute("id");
 
          if (load_cached_string_by_id(str, strId, bLoadStringTable))
          {
@@ -4642,7 +4642,7 @@ retry_license:
    //   //if (pnodeRoot->get_name() == "string")
    //   //{
 
-   //   //   string strId = pnodeRoot->attribute("atom");
+   //   //   string strId = pnodeRoot->attribute("id");
 
    //   //   if (!load_cached_string_by_id(str, strId, bLoadStringTable))
    //   //   {

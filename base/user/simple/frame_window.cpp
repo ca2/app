@@ -4158,7 +4158,7 @@ string simple_frame_window::notification_area_get_xml_menu()
       else
       {
 
-         pdocument->root()->add_child("item", { "atom", pitem->m_strId }, pitem->m_strName);
+         pdocument->root()->add_child("item", { "id", pitem->m_strId }, pitem->m_strName);
 
       }
 

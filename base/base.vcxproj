@@ -832,7 +832,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="include\_.cpp" />
-    <ClCompile Include="node\windows\frame_window.cpp" />
+    <ClCompile Include="operating_system\windows\frame_window.cpp" />
     <ClCompile Include="platform\application.cpp" />
     <ClCompile Include="platform\session.cpp" />
     <ClCompile Include="platform\system.cpp" />

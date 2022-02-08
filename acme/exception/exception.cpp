@@ -337,7 +337,7 @@ void __cdecl __clearerr_s(FILE *stream)
 //      i32     nDisposition;
 ////      ::u32    nHelpContext;
 //
-//      // nHelpContext should come with the message "<helpcontext atom=\"123\" />"
+//      // nHelpContext should come with the message "<helpcontext id=\"123\" />"
 //      strErrorMessage = get_message();
 //      //if (get_message(strErrorMessage, &nHelpContext))
 //      //   nDisposition = message_box(nullptr, strErrorMessage, nType);

@@ -2639,13 +2639,7 @@
     <ClInclude Include="exception\library_not_loaded.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
-    <ClInclude Include="operating-system\operating-system\_.h">
-      <Filter>Header Files\operating_system</Filter>
-    </ClInclude>
     <ClInclude Include="operating_system\_.h">
-      <Filter>Header Files\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\_2.h">
       <Filter>Header Files\operating_system</Filter>
     </ClInclude>
     <ClInclude Include="operating_system\_aaa_c.h">
@@ -2860,6 +2854,9 @@
     </ClInclude>
     <ClInclude Include="user\nano\details_window.h">
       <Filter>Header Files\user\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\_common.h">
+      <Filter>Header Files\operating_system</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

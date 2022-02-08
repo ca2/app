@@ -23,12 +23,6 @@
     <Filter Include="Source Files\user\experience">
       <UniqueIdentifier>{e8e7e51f-6779-4c4f-a216-d4b1836c328d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\node">
-      <UniqueIdentifier>{927aabd0-68ea-4a3e-8e94-f937c9736e4e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\node\windows">
-      <UniqueIdentifier>{28a64074-a430-491f-8487-bebfb7b69277}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\user\menu">
       <UniqueIdentifier>{72a49cdf-de09-4494-98c0-e9c3981b16a5}</UniqueIdentifier>
     </Filter>
@@ -74,6 +68,12 @@
     </Filter>
     <Filter Include="Header Files\constant">
       <UniqueIdentifier>{93b133e7-09a5-4366-9706-30ace0fdabfa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\operating_system">
+      <UniqueIdentifier>{927aabd0-68ea-4a3e-8e94-f937c9736e4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\operating_system\windows">
+      <UniqueIdentifier>{28a64074-a430-491f-8487-bebfb7b69277}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -733,9 +733,6 @@
     <ClCompile Include="user\user\toolbar.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="node\windows\frame_window.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
     <ClCompile Include="user\simple\scroll_bar.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
@@ -768,6 +765,9 @@
     </ClCompile>
     <ClCompile Include="constant\idpool.cpp">
       <Filter>Source Files\constant</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\frame_window.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

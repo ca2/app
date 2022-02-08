@@ -123,44 +123,11 @@
     <Filter Include="Header Files\version">
       <UniqueIdentifier>{1a6906fa-8c35-4bf2-bc58-b25cfc385b90}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\os">
-      <UniqueIdentifier>{2143d8b7-ada2-4e21-8d70-f05986ff23d2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\os\windows">
-      <UniqueIdentifier>{7c9e8b3c-e264-4f20-9815-a48c293c2e0b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\os">
-      <UniqueIdentifier>{a3052857-61d1-403c-9c1b-7f209075ac46}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\os\windows">
-      <UniqueIdentifier>{0340e17b-87ca-4077-82ec-28142c2d373a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\inline">
       <UniqueIdentifier>{96281a04-f5af-4de8-9967-e043784683f7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\os\windows_common">
-      <UniqueIdentifier>{839bef16-eab1-45e2-86bc-46e5da228ba0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\include">
       <UniqueIdentifier>{8099a888-7e34-4494-9367-f8f06df947d2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\node">
-      <UniqueIdentifier>{8d083486-dfc2-424c-afff-3af7c44fc9da}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\node\windows">
-      <UniqueIdentifier>{9cf34409-2b05-4959-b93c-8605c3551661}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\node\windows_common">
-      <UniqueIdentifier>{c2d7f5a1-76e1-4a24-8d82-47142e6e7821}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\node">
-      <UniqueIdentifier>{a6d92c38-1c42-49f8-b15a-2a56e421e205}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\node\windows">
-      <UniqueIdentifier>{39efcfa2-db07-4180-9fa3-9c343b0286e0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\node\windows_common">
-      <UniqueIdentifier>{effb1ba7-4829-40c5-8b89-1530557ff297}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\user\rich_text">
       <UniqueIdentifier>{1f8857d1-9865-4be5-9c1d-5011d1678273}</UniqueIdentifier>
@@ -185,21 +152,6 @@
     </Filter>
     <Filter Include="Source Files\asset">
       <UniqueIdentifier>{a486d7b0-00f0-4a4d-94a8-fcd139a0f458}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\os\cross">
-      <UniqueIdentifier>{b0540f08-ec3c-405e-bf72-94e3e74d8ba7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\os\cross\windows">
-      <UniqueIdentifier>{5e5621e3-f5f9-4dc8-a934-b897c70beef8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\node\windows\aaa_want_to_erase">
-      <UniqueIdentifier>{215313b5-b90e-441d-b56f-df831d7eb007}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\node\windows\aaa_want_to_erase">
-      <UniqueIdentifier>{5403372a-4b5a-41b9-b6ce-743f746b7558}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\os\windows\a">
-      <UniqueIdentifier>{9b965169-7168-48c3-8541-31b93c1a5321}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\platform">
       <UniqueIdentifier>{f57d3b13-dbb9-46ec-8239-a2edf6b2f99d}</UniqueIdentifier>
@@ -824,63 +776,6 @@
     <ClInclude Include="version\version.h">
       <Filter>Header Files\version</Filter>
     </ClInclude>
-    <ClInclude Include="os\chronometer.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\_.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\_application.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\_c.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\_impl.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\_os.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\aura_gdk.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\binreloc.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\console.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\file.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\graphics.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\os_windowing2.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\process.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\text.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\threading.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\time.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windowing.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\winpr_input.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
     <ClInclude Include="id.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1157,120 +1052,6 @@
     <ClInclude Include="const\charset.h">
       <Filter>Header Files\const</Filter>
     </ClInclude>
-    <ClInclude Include="os\core.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\cross.h">
-      <Filter>Header Files\os\cross</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\_.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_want_to_erase\a.h">
-      <Filter>Header Files\node\windows\aaa_want_to_erase</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_want_to_erase\aaa_want_to_erase_handle.h">
-      <Filter>Header Files\node\windows\aaa_want_to_erase</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_want_to_erase\aaa_want_to_erase_printer.h">
-      <Filter>Header Files\node\windows\aaa_want_to_erase</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_want_to_erase\aaa_want_to_erase_RoundWindowApp.h">
-      <Filter>Header Files\node\windows\aaa_want_to_erase</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_want_to_erase\aaa_want_to_erase_simple_hold_handle.h">
-      <Filter>Header Files\node\windows\aaa_want_to_erase</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_want_to_erase\buffer.h">
-      <Filter>Header Files\node\windows\aaa_want_to_erase</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_want_to_erase\command.h">
-      <Filter>Header Files\node\windows\aaa_want_to_erase</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_want_to_erase\console.h">
-      <Filter>Header Files\node\windows\aaa_want_to_erase</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_want_to_erase\copydesk.h">
-      <Filter>Header Files\node\windows\aaa_want_to_erase</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_want_to_erase\crypto.h">
-      <Filter>Header Files\node\windows\aaa_want_to_erase</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_want_to_erase\dir_context.h">
-      <Filter>Header Files\node\windows\aaa_want_to_erase</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_want_to_erase\dir_system.h">
-      <Filter>Header Files\node\windows\aaa_want_to_erase</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_want_to_erase\exception.h">
-      <Filter>Header Files\node\windows\aaa_want_to_erase</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_want_to_erase\factory_exchange.h">
-      <Filter>Header Files\node\windows\aaa_want_to_erase</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_want_to_erase\file.h">
-      <Filter>Header Files\node\windows\aaa_want_to_erase</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_want_to_erase\file_context.h">
-      <Filter>Header Files\node\windows\aaa_want_to_erase</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_want_to_erase\file_find.h">
-      <Filter>Header Files\node\windows\aaa_want_to_erase</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_want_to_erase\file_os_watcher.h">
-      <Filter>Header Files\node\windows\aaa_want_to_erase</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_want_to_erase\file_system.h">
-      <Filter>Header Files\node\windows\aaa_want_to_erase</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_want_to_erase\folder_watch.h">
-      <Filter>Header Files\node\windows\aaa_want_to_erase</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_want_to_erase\interaction_impl.h">
-      <Filter>Header Files\node\windows\aaa_want_to_erase</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_want_to_erase\ip_enum.h">
-      <Filter>Header Files\node\windows\aaa_want_to_erase</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_want_to_erase\os_context.h">
-      <Filter>Header Files\node\windows\aaa_want_to_erase</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_want_to_erase\pipe.h">
-      <Filter>Header Files\node\windows\aaa_want_to_erase</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_want_to_erase\process.h">
-      <Filter>Header Files\node\windows\aaa_want_to_erase</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_want_to_erase\registry.h">
-      <Filter>Header Files\node\windows\aaa_want_to_erase</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_want_to_erase\serial.h">
-      <Filter>Header Files\node\windows\aaa_want_to_erase</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_want_to_erase\shell.h">
-      <Filter>Header Files\node\windows\aaa_want_to_erase</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_want_to_erase\shell1.h">
-      <Filter>Header Files\node\windows\aaa_want_to_erase</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_want_to_erase\stdio_file.h">
-      <Filter>Header Files\node\windows\aaa_want_to_erase</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_want_to_erase\system_interaction_impl.h">
-      <Filter>Header Files\node\windows\aaa_want_to_erase</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_want_to_erase\thread.h">
-      <Filter>Header Files\node\windows\aaa_want_to_erase</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_want_to_erase\tts_speaker.h">
-      <Filter>Header Files\node\windows\aaa_want_to_erase</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_want_to_erase\uac_tools.h">
-      <Filter>Header Files\node\windows\aaa_want_to_erase</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_want_to_erase\user.h">
-      <Filter>Header Files\node\windows\aaa_want_to_erase</Filter>
-    </ClInclude>
     <ClInclude Include="const\idpool.h">
       <Filter>Header Files\const</Filter>
     </ClInclude>
@@ -1283,26 +1064,8 @@
     <ClInclude Include="user\user\_tree.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="os\windows\_.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\_c.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\_windows.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\_windows_impl.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
     <ClInclude Include="user\userex\user.h">
       <Filter>Header Files\user\userex</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\_.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\_windows.h">
-      <Filter>Header Files\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="platform\application.h">
       <Filter>Header Files\platform</Filter>
@@ -1378,9 +1141,6 @@
     </ClInclude>
     <ClInclude Include="const\aaa_message.h">
       <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_shell.h">
-      <Filter>Header Files\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="user\user\aaa_shell.h">
       <Filter>Header Files\user\user</Filter>
@@ -1981,9 +1741,6 @@
     <ClCompile Include="include\_.cpp">
       <Filter>Source Files\include</Filter>
     </ClCompile>
-    <ClCompile Include="node\windows_common\application.cpp">
-      <Filter>Source Files\node\windows_common</Filter>
-    </ClCompile>
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -2007,111 +1764,6 @@
     </ClCompile>
     <ClCompile Include="asset\cube_new.cpp">
       <Filter>Source Files\asset</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\aaa_want_to_erase\aaa_want_to_erase_handle.cpp">
-      <Filter>Source Files\node\windows\aaa_want_to_erase</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\aaa_want_to_erase\aaa_want_to_erase_printer.cpp">
-      <Filter>Source Files\node\windows\aaa_want_to_erase</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\aaa_want_to_erase\aaa_want_to_erase_shell1.cpp">
-      <Filter>Source Files\node\windows\aaa_want_to_erase</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\aaa_want_to_erase\application.cpp">
-      <Filter>Source Files\node\windows\aaa_want_to_erase</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\aaa_want_to_erase\console.cpp">
-      <Filter>Source Files\node\windows\aaa_want_to_erase</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\aaa_want_to_erase\copydesk.cpp">
-      <Filter>Source Files\node\windows\aaa_want_to_erase</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\aaa_want_to_erase\crypto.cpp">
-      <Filter>Source Files\node\windows\aaa_want_to_erase</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\aaa_want_to_erase\dir_context.cpp">
-      <Filter>Source Files\node\windows\aaa_want_to_erase</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\aaa_want_to_erase\dir_system.cpp">
-      <Filter>Source Files\node\windows\aaa_want_to_erase</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\aaa_want_to_erase\_factory.cpp">
-      <Filter>Source Files\node\windows\aaa_want_to_erase</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\aaa_want_to_erase\file.cpp">
-      <Filter>Source Files\node\windows\aaa_want_to_erase</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\aaa_want_to_erase\file_context.cpp">
-      <Filter>Source Files\node\windows\aaa_want_to_erase</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\aaa_want_to_erase\file_find.cpp">
-      <Filter>Source Files\node\windows\aaa_want_to_erase</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\aaa_want_to_erase\file_os_watcher.cpp">
-      <Filter>Source Files\node\windows\aaa_want_to_erase</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\aaa_want_to_erase\file_system.cpp">
-      <Filter>Source Files\node\windows\aaa_want_to_erase</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\aaa_want_to_erase\frame_window.cpp">
-      <Filter>Source Files\node\windows\aaa_want_to_erase</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\aaa_want_to_erase\graphics_buffer.cpp">
-      <Filter>Source Files\node\windows\aaa_want_to_erase</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\aaa_want_to_erase\interaction_impl.cpp">
-      <Filter>Source Files\node\windows\aaa_want_to_erase</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\aaa_want_to_erase\interaction_impl_message_bypass.cpp">
-      <Filter>Source Files\node\windows\aaa_want_to_erase</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\aaa_want_to_erase\ip_enum.cpp">
-      <Filter>Source Files\node\windows\aaa_want_to_erase</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\aaa_want_to_erase\os_context.cpp">
-      <Filter>Source Files\node\windows\aaa_want_to_erase</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\aaa_want_to_erase\pipe.cpp">
-      <Filter>Source Files\node\windows\aaa_want_to_erase</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\aaa_want_to_erase\process.cpp">
-      <Filter>Source Files\node\windows\aaa_want_to_erase</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\aaa_want_to_erase\registry.cpp">
-      <Filter>Source Files\node\windows\aaa_want_to_erase</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\aaa_want_to_erase\serial.cpp">
-      <Filter>Source Files\node\windows\aaa_want_to_erase</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\aaa_want_to_erase\shell.cpp">
-      <Filter>Source Files\node\windows\aaa_want_to_erase</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\aaa_want_to_erase\stdio_file.cpp">
-      <Filter>Source Files\node\windows\aaa_want_to_erase</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\aaa_want_to_erase\system_interaction_impl.cpp">
-      <Filter>Source Files\node\windows\aaa_want_to_erase</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\aaa_want_to_erase\thread.cpp">
-      <Filter>Source Files\node\windows\aaa_want_to_erase</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\aaa_want_to_erase\timer.cpp">
-      <Filter>Source Files\node\windows\aaa_want_to_erase</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\aaa_want_to_erase\trace.cpp">
-      <Filter>Source Files\node\windows\aaa_want_to_erase</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\aaa_want_to_erase\tts_speaker.cpp">
-      <Filter>Source Files\node\windows\aaa_want_to_erase</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\aaa_want_to_erase\uac_tools.cpp">
-      <Filter>Source Files\node\windows\aaa_want_to_erase</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\aaa_want_to_erase\windows.cpp">
-      <Filter>Source Files\node\windows\aaa_want_to_erase</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\aaa_want_to_erase\windows_desktop.cpp">
-      <Filter>Source Files\node\windows\aaa_want_to_erase</Filter>
     </ClCompile>
     <ClCompile Include="user\userex\user.cpp">
       <Filter>Source Files\user\userex</Filter>

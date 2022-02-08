@@ -1392,7 +1392,7 @@ void simple_toolbar::on_hit_test(::item & item)
       if (m_itema[iItem]->m_rectangle.contains(item.m_pointHitTest))
       {
 
-         item = {::e_element_item, iItem};
+         item = ::item( ::e_element_item, iItem );
 
          return;
 

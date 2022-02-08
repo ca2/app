@@ -1053,7 +1053,7 @@ return true;
 if (doc.get_name() == "string")
 {
 
-string strId = doc.attribute("atom");
+string strId = doc.attribute("id");
 
 if (load_cached_string_by_id(str, strId, bLoadStringTable))
 {
@@ -5613,7 +5613,7 @@ bool application::load_cached_string(string & str, const ::atom & atom, bool bLo
 //if (pnodeRoot->get_name() == "string")
 //{
 
-//   string strId = pnodeRoot->attribute("atom");
+//   string strId = pnodeRoot->attribute("id");
 
 //   if (!load_cached_string_by_id(str, strId, bLoadStringTable))
 //   {

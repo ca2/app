@@ -105,7 +105,7 @@ namespace user
             if (pnodeItem != nullptr)
             {
 
-               idCommand = pnodeItem->attribute("atom").atom();
+               idCommand = pnodeItem->attribute("id").atom();
 
             }
 
@@ -324,7 +324,7 @@ namespace user
          if (rectangle.contains(item.m_pointHitTest))
          {
 
-            item = { ::e_element_item, iPos, iMenu, -1 };
+            item = ::item(::e_element_item, iPos, iMenu, -1);
 
             return;
 
@@ -340,7 +340,7 @@ namespace user
             if (rectangle.contains(item.m_pointHitTest))
             {
 
-               item = { ::e_element_item, iPos, iMenu, iCommand };
+               item = ::item(::e_element_item, iPos, iMenu, iCommand);
 
                return;
 
@@ -529,13 +529,13 @@ namespace user
                   pgraphics->move_to(rectangle.left + 1, rectangle.top);
                   pgraphics->line_to(rectangle.left + 1, rectangle.bottom - 1);
 
-                  pimage1 = m_pimageMap[pnodeItem->attribute("atom").atom()];
+                  pimage1 = m_pimageMap[pnodeItem->attribute("id").atom()];
 
                }
                else
                {
 
-                  pimage1 = m_pimageMapGray[pnodeItem->attribute("atom").atom()];
+                  pimage1 = m_pimageMapGray[pnodeItem->attribute("id").atom()];
 
                }
 
@@ -717,7 +717,7 @@ namespace user
             if (pimage1)
             {
 
-               m_pimageMap[pnode->child_at(iCommand)->attribute("atom").atom()] = pimage1;
+               m_pimageMap[pnode->child_at(iCommand)->attribute("id").atom()] = pimage1;
 
                ::image_pointer pimageGray;
 
@@ -727,7 +727,7 @@ namespace user
 
                pimageGray->saturation(0.0);
 
-               m_pimageMapGray[pnode->child_at(iCommand)->attribute("atom").atom()] = pimageGray;
+               m_pimageMapGray[pnode->child_at(iCommand)->attribute("id").atom()] = pimageGray;
 
             }
 

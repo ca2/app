@@ -196,7 +196,7 @@ namespace url
    }
 
 
-   string department::object_get_query(const ::string & strParam) // atom=1
+   string department::object_get_query(const ::string & strParam) // id=1
    {
 
       string str(strParam);
@@ -237,7 +237,7 @@ namespace url
    }
 
 
-   string department::get_query(const ::string & strParam) // atom=1
+   string department::get_query(const ::string & strParam) // id=1
    {
 
       return object_get_query(get_object(strParam));

@@ -40,30 +40,6 @@ CLASS_DECL_APEX void dll_processes(u32_array & dwa, string_array & straProcesses
 //}
 
 
-char * ns_resolve_alias(const char * psz, bool bNoUI, bool bNoMount);
-
-
-#ifndef __APPLE__
-
-bool context::_os_resolve_alias(::file::path & path, const char * psz, ::user::primitive * pinteraction, bool bNoUI, bool bNoMount)
-{
-
-   char * pszTarget = ns_resolve_alias(psz, bNoUI, bNoMount);
-
-   if(::is_null(pszTarget))
-   {
-
-      return false;
-
-   }
-
-   path = ::string_from_strdup(pszTarget);
-
-   return true;
-
-}
-
-#endif
 
 //
 //CLASS_DECL_APEX bool _os_resolve_alias(::object * pobject, ::file::path & path, const char * psz, ::user::primitive * pinteraction, bool bNoUI, bool bNoMount)

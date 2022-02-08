@@ -72,14 +72,14 @@ public:
 
    virtual void write_object(const ::atom & atom, const ::atom & idFactory, ::matter * pobject)
    {
-      exchange("atom", idFactory);
+      exchange("id", idFactory);
       exchange("", pobject);
    }
 
    virtual __pointer(::matter) read_object(const ::atom & atom)
    {
       ::atom idFactory;
-      exchange("atom", idFactory);
+      exchange("id", idFactory);
       auto pobject = __id_create<::matter>(idFactory);
       exchange("", pobject);
       return pobject;
@@ -115,7 +115,7 @@ public:
    virtual void write_object(const ::atom & atom, const ::atom & idFactory, ::matter * pobject) override
    {
       payload_stream stream(new ::payload(&payload()[atom].propset()));
-      stream.exchange("atom", idFactory);
+      stream.exchange("id", idFactory);
       stream.exchange("", pobject);
    }
 
@@ -123,7 +123,7 @@ public:
    {
       payload_stream stream(new ::payload(&payload()[atom].propset()));
       ::atom idFactory;
-      stream.exchange("atom", idFactory);
+      stream.exchange("id", idFactory);
       auto pobject = __id_create<::matter>(idFactory);
       stream.exchange("", pobject);
       return pobject;

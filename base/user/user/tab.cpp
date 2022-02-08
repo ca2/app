@@ -2383,7 +2383,7 @@ namespace user
             if(rectangleScroll.contains(item.m_pointHitTest))
             {
 
-               item = { ::e_element_tab_near_scroll, -1 };
+               item = ::item(::e_element_tab_near_scroll, -1);
 
                return;
 
@@ -2397,7 +2397,7 @@ namespace user
             if(rectangleScroll.contains(item.m_pointHitTest))
             {
 
-               item = { ::e_element_tab_far_scroll, -1 };
+               item = ::item(::e_element_tab_far_scroll, -1);
 
                return;
 
@@ -2436,7 +2436,7 @@ namespace user
                      if(rectangleText.contains(item.m_pointHitTest))
                      {
 
-                        item = { (enum_element)((int)e_element_split + iTitle), iIndex };
+                        item = ::item((enum_element)((int)e_element_split + iTitle), iIndex );
 
                         return;
 
@@ -2458,7 +2458,7 @@ namespace user
             if(rectangle.contains(item.m_pointHitTest))
             {
 
-               item = { e_element_close_tab_button, iIndex };
+               item = ::item(e_element_close_tab_button, iIndex);
 
                return;
 
@@ -2472,7 +2472,7 @@ namespace user
             if(rectangle.contains(item.m_pointHitTest))
             {
 
-               item = { e_element_tab, iIndex };
+               item = ::item(e_element_tab, iIndex);
 
                return;
 

@@ -14,7 +14,7 @@
 #include "apex/platform/app_core.h"
 
 #elif defined(_UWP)
-#include "apex/operating_system/_operating_system.h"
+#include "apex/operating_system.h"
 #endif
 
 #include <stdio.h>
@@ -867,7 +867,7 @@ void file_context::get_lines(string_array &stra, const ::payload &payloadFile, b
    try
    {
 
-      pfile = get_file(payloadFile, ::file::e_open_share_deny_none | ::file::e_open_read | ::file::e_open_text | (bNoExceptionIfFailToOpen ? ::file::e_open_no_exception_on_open : 0));
+      pfile = get_file(payloadFile, ::file::e_open_share_deny_none | ::file::e_open_read | ::file::e_open_binary | (bNoExceptionIfFailToOpen ? ::file::e_open_no_exception_on_open : 0));
 
       if (!pfile)
       {

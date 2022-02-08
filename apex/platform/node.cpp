@@ -103,14 +103,14 @@ namespace apex
 
          strFooter__ += "<br/>";
          strFooter__ += "<br/>";
-         strFooter__ += "<input type=\"checkbox\" atom=\"text_to_speech_azure.checkbox\" />";
+         strFooter__ += "<input type=\"checkbox\" id=\"text_to_speech_azure.checkbox\" />";
          strFooter__ += "&nbsp;Azure";
          strFooter__ += "<br/>";
          strFooter__ += "<br/>";
 
          strFooter__ += "<br/>";
          strFooter__ += "<br/>";
-         strFooter__ += "<input type=\"checkbox\" atom=\"text_to_speech_google.checkbox\" />";
+         strFooter__ += "<input type=\"checkbox\" id=\"text_to_speech_google.checkbox\" />";
          strFooter__ += "&nbsp;Google";
          strFooter__ += "<br/>";
          strFooter__ += "<br/>";
@@ -119,7 +119,7 @@ namespace apex
 
          strFooter__ += "<br/>";
          strFooter__ += "<br/>";
-         strFooter__ += "<input type=\"checkbox\" atom=\"text_to_speech_sapi.checkbox\" />";
+         strFooter__ += "<input type=\"checkbox\" id=\"text_to_speech_sapi.checkbox\" />";
          strFooter__ += "&nbsp;Microsoft Speech API";
          strFooter__ += "<br/>";
          strFooter__ += "<br/>";

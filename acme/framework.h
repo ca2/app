@@ -11,6 +11,7 @@
 
 
 #include "acme/platform/_platform.h"
+#include "acme/operating_system.h"
 #include "acme/_defer.h"
 
 

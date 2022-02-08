@@ -606,15 +606,6 @@ namespace file
    bool file::read_string(string & str)
    {
 
-      int i = get_character();
-
-      if (i == EOF)
-      {
-
-         return false;
-
-      }
-
       memory mem;
 
       str.Empty();
@@ -654,13 +645,6 @@ namespace file
 
          }
 
-         if ((char)i == '\n')
-         {
-
-            return true;
-
-         }
-
          if ((char)i == '\r')
          {
 
@@ -678,6 +662,14 @@ namespace file
             return true;
 
          }
+         else if ((char)i == '\n')
+         {
+
+            return true;
+
+         }
+
+
 
          char ch = i;
 

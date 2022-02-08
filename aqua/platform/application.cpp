@@ -104,7 +104,7 @@ namespace aqua
       if (pnodeRoot->get_name() == "string")
       {
 
-         string strId = pnodeRoot->attribute("atom");
+         string strId = pnodeRoot->attribute("id");
 
          if (!load_cached_string_by_id(str, strId, bLoadStringTable))
          {

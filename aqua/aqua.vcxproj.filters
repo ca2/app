@@ -55,29 +55,20 @@
     <Filter Include="Source Files\game">
       <UniqueIdentifier>{a7fafa56-be62-4b65-8e63-2449a2d57b82}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\os">
-      <UniqueIdentifier>{fe52dbf4-68f8-442f-a754-9f6b79f5908a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\os">
-      <UniqueIdentifier>{78fbcce4-d5d1-47f5-94fb-2af447d0ef28}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\os\windows">
-      <UniqueIdentifier>{67a44733-0a0b-4eca-95c8-fda0ff76b3b3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\node">
-      <UniqueIdentifier>{d77e15ab-fc03-42af-855b-f31189092ab1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\node\windows">
-      <UniqueIdentifier>{bc8bf4fa-94f8-41d2-87f2-5079dc0646af}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\node">
-      <UniqueIdentifier>{ed3da094-dc16-4724-bb04-3c6cdfdc4635}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\node\windows">
-      <UniqueIdentifier>{a940bded-2113-4ed9-a6f9-1f71bb5f4b69}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\xml">
       <UniqueIdentifier>{85117e5a-8f8f-4cc3-928b-dc7789d8938d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\operating_system">
+      <UniqueIdentifier>{ed3da094-dc16-4724-bb04-3c6cdfdc4635}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\operating_system\windows">
+      <UniqueIdentifier>{a940bded-2113-4ed9-a6f9-1f71bb5f4b69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\operating_system">
+      <UniqueIdentifier>{d77e15ab-fc03-42af-855b-f31189092ab1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\operating_system\windows">
+      <UniqueIdentifier>{bc8bf4fa-94f8-41d2-87f2-5079dc0646af}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -171,9 +162,6 @@
     <ClInclude Include="game\_.h">
       <Filter>Header Files\game</Filter>
     </ClInclude>
-    <ClInclude Include="os\_.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
     <ClInclude Include="include\_.h">
       <Filter>Header Files\include</Filter>
     </ClInclude>
@@ -215,12 +203,6 @@
     </ClInclude>
     <ClInclude Include="inline\library.h">
       <Filter>Header Files\inline</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\system.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\_windows.h">
-      <Filter>Header Files\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="platform\_impl.h">
       <Filter>Header Files\platform</Filter>
@@ -302,6 +284,15 @@
     </ClInclude>
     <ClInclude Include="multimedia\audio\text_to_speech_client.h">
       <Filter>Header Files\multimedia\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\_windows.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\system.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\_.h">
+      <Filter>Header Files\operating_system</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -419,14 +410,14 @@
     <ClCompile Include="game\game.cpp">
       <Filter>Source Files\game</Filter>
     </ClCompile>
-    <ClCompile Include="os\windows\audio.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\system.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
     <ClCompile Include="multimedia\audio\text_to_speech_client.cpp">
       <Filter>Source Files\multimedia\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\system.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\audio.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

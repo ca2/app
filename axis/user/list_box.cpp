@@ -1106,7 +1106,7 @@ namespace user
          if (rectangleItem.contains(item.m_pointHitTest))
          {
 
-            item  = {::e_element_item, iItem };
+            item  = ::item(::e_element_item, iItem );
 
             return;
 

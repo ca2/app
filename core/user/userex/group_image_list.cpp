@@ -390,7 +390,7 @@ namespace userex
       for (auto & pgroup : m_groupa)
       {
 
-         str += "<item atom=\"menu_item_";
+         str += "<item id=\"menu_item_";
          str += pgroup->m_atomGroup.to_string();
          str += "\" pimage =\"";
          str += pgroup->m_strIcon;

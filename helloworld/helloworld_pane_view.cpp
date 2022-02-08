@@ -472,7 +472,7 @@ namespace helloworld
 
             string strName = path.name();
 
-            strBilbo += "<input type=\"checkbox\" atom=\"bilbo" + str::from(i) + "\" />bilbo &quot;" + strName + "&quot;<br/>\n<br/>";
+            strBilbo += "<input type=\"checkbox\" id=\"bilbo" + str::from(i) + "\" />bilbo &quot;" + strName + "&quot;<br/>\n<br/>";
 
             i++;
 

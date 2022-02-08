@@ -268,6 +268,13 @@ public:
 
    }
 
+
+   item(enum_element eelement, const enum_id & id)
+      : item(eelement, -1, -1, -1, id)
+   {
+
+   }
+
    item(enum_element eelement = ::e_element_none, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, const ::atom & atom = ::atom::e_type_null, const ::user::e_flag uFlags = ::user::e_flag_none)
    {
 
@@ -369,7 +376,14 @@ public:
    
    bool operator == (const ::TOPIC & topic)  const { return ((TOPIC *) this == (TOPIC *) &topic) ? true : !memcmp((TOPIC *) this, (TOPIC *) &topic, sizeof(TOPIC)); }
    bool operator != (const ::TOPIC & topic)  const { return !operator == (topic); }
-   
+
+
+   item & operator = (const ITEM_BASE_ADDITIONS & itembaseadditions) { if ((ITEM_BASE_ADDITIONS *)this != (ITEM_BASE_ADDITIONS *)&itembaseadditions) memcpy((ITEM_BASE_ADDITIONS *)this, (ITEM_BASE_ADDITIONS *)&itembaseadditions, sizeof(ITEM_BASE_ADDITIONS)); return *this; }
+
+   bool operator == (const ITEM_BASE_ADDITIONS & itembaseadditions)  const { return ((ITEM_BASE_ADDITIONS *)this == (ITEM_BASE_ADDITIONS *)&itembaseadditions) ? true : !memcmp((ITEM_BASE_ADDITIONS *)this, (ITEM_BASE_ADDITIONS *)&itembaseadditions, sizeof(ITEM_BASE_ADDITIONS)); }
+   bool operator != (const ITEM_BASE_ADDITIONS & itembaseadditions)  const { return !operator==(itembaseadditions); }
+
+
    
    item & operator = (const ITEM_BASE & itembase) { if ((TOPIC *) this != (TOPIC *) &itembase) memcpy((TOPIC *) this,(TOPIC *)  &itembase, sizeof(ITEM_BASE)); return *this; }
 

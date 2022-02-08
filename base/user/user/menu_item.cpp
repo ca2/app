@@ -123,7 +123,7 @@ namespace user
 
          m_iFullHeightItemCount++;
 
-         ::atom atom = pnode->attribute("atom");
+         ::atom atom = pnode->attribute("id");
 
          atom = translate_property_id(atom);
 

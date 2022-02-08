@@ -10,6 +10,9 @@
 #include "acme/operating_system/_operating_system.h"
 
 
+#include "acme/operating_system/_common.h"
+
+
 #include "acme/operating_system/_impl.h"
 
 

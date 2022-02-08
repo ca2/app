@@ -135,7 +135,7 @@ namespace core
 
          strOptionsHtml += "<br/>";
          strOptionsHtml += "<br/>";
-         strOptionsHtml += "<input type=\"checkbox\" atom=\"user_auto_start_checkbox\" />";
+         strOptionsHtml += "<input type=\"checkbox\" id=\"user_auto_start_checkbox\" />";
          strOptionsHtml += "&nbsp;Enable Auto Start";
          strOptionsHtml += "<br/>";
          strOptionsHtml += "<br/>";

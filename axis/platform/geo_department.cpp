@@ -1277,6 +1277,8 @@ namespace geo
    ::datetime::department::time_zone department::get_time_zone(openweather_city* pcity)
    {
 
+
+
       if (is_null(pcity))
       {
 
@@ -1843,7 +1845,7 @@ namespace geo
 
             synchronous_lock synchronouslock(&m_mutexLocalityTimeZone);
 
-            writer << m_cityTimeZone;
+            writer << m_localityTimeZone;
 
          }
 

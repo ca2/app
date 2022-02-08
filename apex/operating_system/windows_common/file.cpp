@@ -317,44 +317,5 @@
 //}
 
 
-namespace apex
-{
-
-
-   bool context::_os_resolve_alias(::file::path& path, const char* psz, bool bNoUI, bool bNoMount)
-   {
-
-      if (os_is_alias(psz))
-      {
-
-         return os_context()->resolve_link(path, psz, nullptr, nullptr);
-
-      }
-
-      return false;
-
-   }
-
-   //
-   //CLASS_DECL_APEX  bool _os_may_have_alias(const char* psz)
-   //{
-   //
-   //   string str(psz);
-   //
-   //   return str.ends_ci(".lnk") || str.contains_ci(".lnk/") || str.contains_ci(".lnk\\");
-   //
-   //}
-
-
-   bool context::os_is_alias(const char* psz)
-   {
-
-      return ::str::ends_ci(psz, ".lnk");
-
-   }
-
-
-} // namespace apex
-
 
 

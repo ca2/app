@@ -1777,7 +1777,7 @@ return { 0,0 };
 
             item = __new(::user::toolbar_item);
 
-            auto pattribute = pchild->find_attribute("atom");
+            auto pattribute = pchild->find_attribute("id");
 
             item->m_atom = pattribute->string();
 

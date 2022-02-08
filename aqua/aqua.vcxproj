@@ -72,9 +72,9 @@
     <ClInclude Include="multimedia\multimedia.h" />
     <ClInclude Include="multimedia\_.h" />
     <ClInclude Include="multimedia\_c.h" />
-    <ClInclude Include="node\windows\system.h" />
-    <ClInclude Include="node\windows\_windows.h" />
-    <ClInclude Include="os\_.h" />
+    <ClInclude Include="operating_system\windows\system.h" />
+    <ClInclude Include="operating_system\windows\_windows.h" />
+    <ClInclude Include="operating_system\_.h" />
     <ClInclude Include="platform\application.h" />
     <ClInclude Include="platform\session.h" />
     <ClInclude Include="platform\system.h" />
@@ -134,8 +134,8 @@
     <ClCompile Include="multimedia\exception.cpp" />
     <ClCompile Include="multimedia\file_application.cpp" />
     <ClCompile Include="multimedia\multimedia.cpp" />
-    <ClCompile Include="node\windows\system.cpp" />
-    <ClCompile Include="os\windows\audio.cpp" />
+    <ClCompile Include="operating_system\windows\audio.cpp" />
+    <ClCompile Include="operating_system\windows\system.cpp" />
     <ClCompile Include="platform\application.cpp" />
     <ClCompile Include="platform\session.cpp" />
     <ClCompile Include="platform\system.cpp" />

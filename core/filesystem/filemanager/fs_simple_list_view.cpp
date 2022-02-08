@@ -345,7 +345,7 @@ namespace filemanager
                   switch(item.m_iSubItem)
                   {
                   case SubItemId:
-                     strSql += "atom";
+                     strSql += "id";
                      break;
                   case SubItemTitle:
                      strSql += "title";
@@ -533,7 +533,7 @@ namespace filemanager
             if(iFind < pdocument->m_fileinfo.m_iaUpdate.get_size())
             {
             fv = pdocument->m_fileinfo.m_iaUpdate[iFind];
-            if(pds->find_first("atom", fv))
+            if(pds->find_first("id", fv))
             {
             PostFillTask(pds->fv("filepath").get_asString(), uEvent);
             break;
@@ -547,7 +547,7 @@ namespace filemanager
             else if(iFind < pdocument->m_fileinfo.m_iaRemove.get_size())
             {
             fv = pdocument->m_fileinfo.m_iaRemove[iFind];
-            if(pds->find_first("atom", fv))
+            if(pds->find_first("id", fv))
             {
             iaRemove.add(pdocument->m_fileinfo.m_iaRemove[iFind]);
             pdocument->m_fileinfo.m_iaRemove.erase_at(iFind);
@@ -742,7 +742,7 @@ namespace filemanager
 
             }
 
-            pxmldocument->root()->attribute("atom").as(m_iParentFolder);
+            pxmldocument->root()->attribute("id").as(m_iParentFolder);
 
             auto pnodeFolder = pxmldocument->root()->get_child("folder");
 
@@ -762,7 +762,7 @@ namespace filemanager
                {
 
                   item.m_iParent = m_iParentFolder;
-                  pnodeItem->attribute("atom").as(item.m_iFolder);
+                  pnodeItem->attribute("id").as(item.m_iFolder);
                   pnodeItem->attribute("name").as(item.m_strTitle);
 
                   /*            if(wstrType == "normal")

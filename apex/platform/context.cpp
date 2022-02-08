@@ -80,7 +80,7 @@ namespace apex
 
       iRetry++;
 
-      strBuild = http_get(strSpaIgnitionBaseUrl + "/query?node=build&configuration=" + strConfiguration + "&atom=" + string(pszAppId));
+      strBuild = http_get(strSpaIgnitionBaseUrl + "/query?node=build&configuration=" + strConfiguration + "&id=" + string(pszAppId));
 
       ::str::_008Trim(strBuild);
 
@@ -815,7 +815,104 @@ namespace apex
 
    }
 
+
+
+   //
+   //CLASS_DECL_APEX  bool _os_may_have_alias(const char* psz)
+   //{
+   //
+   //   string str(psz);
+   //
+   //   return str.ends_ci(".lnk") || str.contains_ci(".lnk/") || str.contains_ci(".lnk\\");
+   //
+   //}
+
+
+   bool context::os_resolve_alias(::file::path & path, const char * psz, bool bNoUI, bool bNoMount)
+   {
+
+      if (_os_resolve_alias(path, psz, bNoUI, bNoMount))
+      {
+
+         return true;
+
+      }
+
+      if (_os_has_alias_in_path(psz))
+      {
+
+         ::file::patha patha;
+
+         ::file::patha pathaRelative;
+
+         path.ascendants_path(patha, &pathaRelative);
+
+         for (index i = 0; i < patha.get_count(); i++)
+         {
+
+            ::file::path pathAlias = patha[i];
+
+#ifndef LINUX
+            if (os_is_alias(pathAlias))
+#endif
+            {
+
+               ::file::path pathTargetFolder;
+
+               if (_os_resolve_alias(pathTargetFolder, pathAlias, bNoUI, bNoMount))
+               {
+
+                  path = pathTargetFolder / pathaRelative[i];
+
+                  return true;
+
+               }
+
+            }
+
+         }
+
+      }
+
+      return false;
+
+   }
+
+
+   bool context::_os_has_alias_in_path(const char * psz, bool bNoUI, bool bNoMount)
+   {
+
+      return os_context()->has_alias_in_path(psz);
+
+   }
+
+
+
+   bool context::_os_resolve_alias(::file::path & path, const char * psz, bool bNoUI, bool bNoMount)
+   {
+
+      if (os_is_alias(psz))
+      {
+
+         return os_context()->resolve_link(path, psz, nullptr, nullptr);
+
+      }
+
+      return false;
+
+   }
+
    
+   bool context::os_is_alias(const char * psz)
+   {
+
+      return os_context()->is_alias(psz);
+
+      //return ::str::ends_ci(psz, ".lnk");
+
+   }
+
+
    bool context::perform_file_listing(::file::listing & listing)
    {
 

@@ -124,7 +124,7 @@ namespace apex
 
       virtual bool os_resolve_alias(::file::path& path, const char* psz, bool bNoUI = false, bool bNoMount = false);
 
-      //CLASS_DECL_APEX bool os_is_folder_alias(::object * pobject, const char * psz, bool bNoUI = false, bool bNoMount = false);
+      virtual bool _os_has_alias_in_path(const char * psz, bool bNoUI = false, bool bNoMount = false);
 
       virtual bool _os_resolve_alias(::file::path& path, const char* psz, bool bNoUI, bool bNoMount);
 

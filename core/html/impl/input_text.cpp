@@ -57,7 +57,7 @@ namespace html
 
          element::implement_phase1(pdata, pelemental);
 
-         ::atom atom = pelemental->m_pbase->get_tag()->get_attr_value("atom");
+         ::atom atom = pelemental->m_pbase->get_tag()->get_attr_value("id");
 
          atom = translate_property_id(atom);
 

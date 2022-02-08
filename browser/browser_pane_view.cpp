@@ -573,7 +573,7 @@ namespace browser
 
             string strName = path.title();
 
-            strBilbo += "<input type=\"checkbox\" atom=\"slide" + str::from(i) + "\" />slide &quot;" + strName + "&quot;<br/>\n<br/>";
+            strBilbo += "<input type=\"checkbox\" id=\"slide" + str::from(i) + "\" />slide &quot;" + strName + "&quot;<br/>\n<br/>";
 
             i++;
 

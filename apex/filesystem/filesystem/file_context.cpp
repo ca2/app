@@ -937,7 +937,7 @@ void file_context::put_memory(const ::payload &payloadFile, const block & block)
                      ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_share_deny_write |
                      ::file::e_open_defer_create_directory);
 
-   if (!pfile)
+   if (!::is_ok(pfile))
    {
 
       throw_status(error_io);

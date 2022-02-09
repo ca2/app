@@ -185,7 +185,7 @@ namespace filemanager
       if(ptopic->m_atom == ::id_click)
       {
 
-         if(ptopic->get_extended_topic()->user_interaction()->m_atom == "submit")
+         if(ptopic->user_interaction()->m_atom == "submit")
          {
 
          }

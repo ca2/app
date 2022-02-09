@@ -42,15 +42,15 @@ namespace user
          if(ptopic->m_atom == id_browse)
          {
 
-            if(!ptopic->get_extended_topic()->payload(id_form).is_empty())
+            if(!ptopic->payload(id_form).is_empty())
             {
 
-               string strMatter = m_pcontext->m_papexcontext->dir().matter(ptopic->get_extended_topic()->payload(id_form));
+               string strMatter = m_pcontext->m_papexcontext->dir().matter(ptopic->payload(id_form));
 
                if(get_document()->on_open_document(strMatter))
                {
 
-                  m_strPath = ptopic->get_extended_topic()->payload(id_form);
+                  m_strPath = ptopic->payload(id_form);
 
                }
 
@@ -60,7 +60,7 @@ namespace user
          else if(ptopic->m_atom == id_get_form_view)
          {
 
-            ptopic->get_extended_topic()->payload(id_form) = this;
+            ptopic->payload(id_form) = this;
 
          }
 
@@ -69,7 +69,7 @@ namespace user
       if(m_pcallback != nullptr)
       {
 
-         ptopic->get_extended_topic()->payload(id_form) = this;
+         ptopic->payload(id_form) = this;
 
          m_pcallback->handle(ptopic, pcontext);
 

@@ -155,13 +155,13 @@ namespace user
 
       }
 
-      ::extended_topic extendedtopic(id_image_list_action);
+      auto ptopic = __new(::topic(id_image_list_action));
 
-      extendedtopic.m_item = item;
+      ptopic->m_item = item;
 
-      extendedtopic.m_puserelement = this;
+      ptopic->m_puserelement = this;
 
-      route(&extendedtopic);
+      route(ptopic);
 
       _001SetSelection(iaSel, ::e_source_user);
 
@@ -720,7 +720,7 @@ namespace user
          throw ::exception(todo, "core");
          //auto * peditview = _001TypedWindow < ::userex::top_edit_view >();
 
-         //if (peditview != nullptr && ptopic->get_extended_topic()->user_interaction() == peditview)
+         //if (peditview != nullptr && ptopic->user_interaction() == peditview)
          //{
 
          //   string strText;
@@ -783,15 +783,15 @@ namespace user
 
          m_iaSel = ia;
 
-         ::extended_topic extendedtopic(::id_after_change_cur_sel);
+         auto ptopic = __new(::topic(::id_after_change_cur_sel));
 
-         extendedtopic.m_puserelement = this;
+         ptopic->m_puserelement = this;
 
-         extendedtopic.m_item = current_item();
+         ptopic->m_item = current_item();
 
-         extendedtopic.m_atom = ::id_after_change_cur_sel;
+         ptopic->m_atom = ::id_after_change_cur_sel;
 
-         route(&extendedtopic);
+         route(ptopic);
 
       }
 

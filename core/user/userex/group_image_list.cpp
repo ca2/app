@@ -58,7 +58,7 @@ namespace userex
       else if (ptopic->m_atom == ::id_click)
       {
 
-         if (ptopic->get_extended_topic()->user_interaction()->m_atom == m_atom)
+         if (ptopic->user_interaction()->m_atom == m_atom)
          {
 
             show_menu();
@@ -366,7 +366,7 @@ namespace userex
    //   else if (ptopic->m_atom == ::id_click)
    //   {
 
-   //      if (ptopic->get_extended_topic()->user_interaction()->m_atom == m_atom)
+   //      if (ptopic->user_interaction()->m_atom == m_atom)
    //      {
 
    //         show_menu();

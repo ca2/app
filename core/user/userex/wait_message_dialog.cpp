@@ -37,7 +37,7 @@ namespace userex
       
       dialog::handle(ptopic, pcontext);
       
-      if(ptopic->get_extended_topic()->user_interaction() == m_pform)
+      if(ptopic->user_interaction() == m_pform)
       {
       
          if(ptopic->m_atom == ::id_create)
@@ -58,7 +58,7 @@ namespace userex
          else if(ptopic->m_atom == ::id_timer)
          {
             
-            if(ptopic->get_extended_topic()->m_etimer == e_timer_reload)
+            if(ptopic->m_etimer == e_timer_reload)
             {
 
                on_timeout_check();
@@ -71,11 +71,11 @@ namespace userex
       else if(ptopic->m_atom == ::id_click)
       {
 
-         m_atomResponse = ptopic->get_extended_topic()->user_interaction()->m_atom;
+         m_atomResponse = ptopic->user_interaction()->m_atom;
 
          EndModalLoop(m_atomResponse);
 
-         ptopic->get_extended_topic()->m_bRet = true;
+         ptopic->m_bRet = true;
 
       }
 

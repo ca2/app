@@ -74,13 +74,13 @@ namespace user
          if(has_handler())
          {
 
-            ::extended_topic extendedtopic(::id_set_check);
+            auto ptopic = __new(::topic(::id_set_check));
 
-            extendedtopic.m_puserelement = this;
+            ptopic->m_puserelement = this;
 
-            extendedtopic.m_actioncontext = context;
+            ptopic->m_actioncontext = context;
 
-            route(&extendedtopic);
+            route(ptopic);
             
          }
 

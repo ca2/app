@@ -383,11 +383,11 @@ namespace calculator
 
       auto pplaineditview = this;
 
-      ::extended_topic extendedtopic(id_after_change_text);
+      auto ptopic = __new(::topic(id_after_change_text));
 
-      extendedtopic.m_puserelement = this;
+      ptopic->m_puserelement = this;
 
-      route(&extendedtopic);
+      route(ptopic);
 
       plain_edit::plain_edit_on_after_change_text(pgraphics, context);
 

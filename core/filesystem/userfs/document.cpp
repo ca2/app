@@ -267,13 +267,13 @@ namespace userfs
 
       }
 
-      ::extended_topic extendedtopic(id_synchronize_path);
+      auto ptopic = __new(::topic(id_synchronize_path));
 
-      extendedtopic.m_pfileitem = pitem;
+      ptopic->m_pfileitem = pitem;
 
-      extendedtopic.m_actioncontext = context + ::e_source_sync;
+      ptopic->m_actioncontext = context + ::e_source_sync;
 
-      update_all_views(&extendedtopic);
+      update_all_views(&ptopic->;
 
       return true;
 

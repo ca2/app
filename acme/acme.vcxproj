@@ -1765,6 +1765,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="primitive\primitive\object.h" />
     <ClInclude Include="primitive\primitive\object_meta.h" />
     <ClInclude Include="primitive\primitive\osdata_array.h" />
+    <ClInclude Include="primitive\primitive\particle.h" />
     <ClInclude Include="primitive\primitive\payload_type.h" />
     <ClInclude Include="primitive\primitive\property_object.h" />
     <ClInclude Include="primitive\primitive\material_object.h" />

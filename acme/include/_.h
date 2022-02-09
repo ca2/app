@@ -1818,8 +1818,11 @@ class task;
 
 using handler_pointer = __pointer(handler);
 using manager_pointer = __pointer(manager);
-using extended_topic_pointer = __pointer(extended_topic);
 using context_pointer = __pointer(context);
+
+
+using topic_pointer = __pointer(topic);
+using extended_topic_pointer = __pointer(extended_topic);
 
 
 template<typename THREAD_POINTER>
@@ -3302,7 +3305,7 @@ template < typename TYPE > class sequence;
 
 
 
-#include "acme/topic/topic.h"
+#include "acme/primitive/primitive/particle.h"
 #include "acme/topic/handler.h"
 #include "acme/primitive/primitive/e_flag.h"
 #include "acme/primitive/primitive/element.h"
@@ -4304,7 +4307,7 @@ DECLARE_ENUMERATION(e_element, enum_element);
 
 
 #include "acme/topic/item.h"
-//#include "acme/topic/topic.h"
+#include "acme/topic/topic.h"
 #include "acme/topic/extended_topic.h"
 
 

@@ -1909,19 +1909,19 @@ namespace user
    void document::update_all_views(::topic * ptopic)
    {
 
-      ASSERT((!ptopic->get_extended_topic() || ptopic->get_extended_topic()->m_psender == nullptr) || !m_viewa.is_empty());
+      ASSERT((!ptopic->get_extended_topic() || ptopic->m_psender == nullptr) || !m_viewa.is_empty());
 
       for (auto & pview : m_viewa.ptra())
       {
 
          ASSERT_VALID(pview);
 
-         if (!ptopic->get_extended_topic() || pview != ptopic->get_extended_topic()->m_psender)
+         if (!ptopic->get_extended_topic() || pview != ptopic->m_psender)
          {
 
             pview->handle(ptopic, nullptr);
 
-            if(ptopic->get_extended_topic() && ptopic->get_extended_topic()->m_bRet)
+            if(ptopic->get_extended_topic() && ptopic->m_bRet)
             {
 
                break;
@@ -1946,7 +1946,7 @@ namespace user
    void document::update_all_views(impact * pimpactSender, const ::atom & atom)
    {
 
-      auto pextendedtopic = create_extended_topic(atom);
+      auto pextendedtopic = create_topic(atom);
 
       pextendedtopic->m_psender = pimpactSender;
 

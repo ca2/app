@@ -112,12 +112,12 @@ namespace user
 
          m_bLButtonDown = false;
 
-         ::extended_topic extendedtopic(id_click);
+         auto ptopic = __new(::topic(id_click));
 
-         extendedtopic.m_puserelement = this;
-         extendedtopic.m_actioncontext = ::e_source_user;
+         ptopic->m_puserelement = this;
+         ptopic->m_actioncontext = ::e_source_user;
 
-         route(&extendedtopic);
+         route(ptopic);
 
       }
 

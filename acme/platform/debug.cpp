@@ -85,7 +85,7 @@ void debug_object_event_promisse_predicate()
 //
 //   auto pupdate = new_update();
 //
-//   ptopic->get_extended_topic()->payload(id_filter) = "*.jpg";
+//   ptopic->payload(id_filter) = "*.jpg";
 //
 //}
 

@@ -63,7 +63,7 @@ namespace write_text
 
          update();
 
-         ptopic->get_extended_topic()->set_modified();
+         ptopic->set_modified();
 
       }
 
@@ -211,7 +211,7 @@ namespace write_text
 
       m_bUpdating = false;
 
-      ptopic->get_extended_topic()->set_modified();
+      ptopic->set_modified();
 
       //ptopic->m_atom = id_handle;
 

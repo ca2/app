@@ -327,7 +327,7 @@ namespace html
          for (auto & pinteraction : m_pform->m_puserinteractionpointeraChild->interactiona())
          {
             
-            auto pextendedtopic = create_extended_topic(::id_initialize_control);
+            auto pextendedtopic = create_topic(::id_initialize_control);
 
             pextendedtopic->m_puserelement = pinteraction;
 
@@ -404,7 +404,7 @@ namespace html
       if (m_pcallback != nullptr)
       {
          
-         auto pextendedtopic = create_extended_topic(::id_form_initialize);
+         auto pextendedtopic = create_topic(::id_form_initialize);
 
          pextendedtopic->m_puserelement = m_puserinteraction;
          

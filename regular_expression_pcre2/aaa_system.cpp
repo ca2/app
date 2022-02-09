@@ -6,7 +6,7 @@ namespace axis
 {
 
 
-   __pointer(regex) system::create_pcre(const string& str)
+   __pointer(regex) system::compile_pcre(const string& str)
    {
 
       return pcre_regex::compile(str);

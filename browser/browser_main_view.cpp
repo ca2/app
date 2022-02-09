@@ -156,7 +156,7 @@ namespace browser
 
             m_pimpact->on_layout(pgraphics);
 
-            ptopic->get_extended_topic()->m_bRet = true;
+            ptopic->m_bRet = true;
             return;
 
          }

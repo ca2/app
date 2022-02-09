@@ -95,7 +95,7 @@ void source::route(::topic * ptopic, ::context * pcontext)
 
          }
 
-         if (ptopic->get_extended_topic()->m_bRet)
+         if (ptopic->m_bRet)
          {
 
             break;

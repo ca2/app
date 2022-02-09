@@ -342,7 +342,7 @@ namespace browser
    void pane_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if(m_pdocMenu != nullptr && dynamic_cast < ::user::impact * > (ptopic->get_form()) == m_pdocMenu->get_view(0) && ptopic->get_extended_topic()->user_interaction() != nullptr)
+      if(m_pdocMenu != nullptr && dynamic_cast < ::user::impact * > (ptopic->get_form()) == m_pdocMenu->get_view(0) && ptopic->user_interaction() != nullptr)
       {
 
          if(ptopic->m_atom == ::id_after_change_text)
@@ -395,7 +395,7 @@ namespace browser
                {
                }
 
-               ptopic->get_extended_topic()->m_bRet = true;
+               ptopic->m_bRet = true;
                return;
 
 
@@ -427,7 +427,7 @@ namespace browser
 
 
          }
-         else if (ptopic->m_atom == ::id_set_check && ptopic->get_extended_topic()->user_interaction() != nullptr)
+         else if (ptopic->m_atom == ::id_set_check && ptopic->user_interaction() != nullptr)
          {
 
             string strCheck = ptopic->user_element_id();
@@ -436,13 +436,13 @@ namespace browser
             if (::str::begins_eat_ci(strCheck, "slide"))
             {
 
-               if (ptopic->get_extended_topic()->user_interaction() != nullptr && !ptopic->m_context.is(::e_source_initialize)
+               if (ptopic->user_interaction() != nullptr && !ptopic->m_context.is(::e_source_initialize)
                      && !ptopic->m_context.is(::e_source_sync))
                {
 
                   int iCheck = atoi(strCheck);
 
-                  __pointer(::user::check) pcheck = ptopic->get_extended_topic()->user_interaction();
+                  __pointer(::user::check) pcheck = ptopic->user_interaction();
 
                   if (m_pviewLastBilbo != nullptr && pcheck.is_set())
                   {
@@ -457,7 +457,7 @@ namespace browser
 
                   }
 
-                  ptopic->get_extended_topic()->m_bRet = true;
+                  ptopic->m_bRet = true;
                   return;
 
 
@@ -470,7 +470,7 @@ namespace browser
       else
       {
 
-         if (m_pfontview != nullptr && ptopic->get_extended_topic()->user_interaction() == m_pfontview->m_pimpact)
+         if (m_pfontview != nullptr && ptopic->user_interaction() == m_pfontview->m_pimpact)
          {
 
             if (ptopic->m_atom == ::id_after_change_cur_sel)
@@ -509,7 +509,7 @@ namespace browser
             }
 
          }
-         else if (ptopic->get_extended_topic()->user_interaction() == m_pcolorview)
+         else if (ptopic->user_interaction() == m_pcolorview)
          {
 
 

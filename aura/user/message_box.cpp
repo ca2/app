@@ -245,7 +245,7 @@ namespace user
       else if (ptopic->m_atom == ::id_click)
       {
 
-         m_atomResult = ptopic->get_extended_topic()->m_puserelement->m_atom;
+         m_atomResult = ptopic->m_puserelement->m_atom;
 
          m_estatus = ::success;
 
@@ -462,7 +462,7 @@ namespace user
    //   if (ptopic->m_atom == ::id_click)
    //   {
 
-   //      m_edialogresult = (enum_dialog_result) ptopic->get_extended_topic()->m_puserelement->m_atom.i64();
+   //      m_edialogresult = (enum_dialog_result) ptopic->m_puserelement->m_atom.i64();
 
    //      ::extended::asynchronous <::conversation>::sequence()->set_status(::success);
 

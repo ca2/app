@@ -2574,13 +2574,13 @@ namespace user
    void tab::on_create_tabs()
    {
 
-      ::extended_topic extendedtopic(::id_on_create_tab);
+      auto ptopic = __new(::topic(::id_on_create_tab));
 
-      extendedtopic.m_puserelement = this;
+      ptopic->m_puserelement = this;
 
-      extendedtopic.m_ptab = this;
+      ptopic->m_ptab = this;
 
-      route(&extendedtopic);
+      route(ptopic);
 
    }
 
@@ -3452,17 +3452,17 @@ namespace user
       if (ptopic->m_atom == id_get_topic_view_id)
       {
 
-         ptopic->get_extended_topic()->payload(id_id) = get_current_tab_id();
+         ptopic->payload(id_id) = get_current_tab_id();
 
-         ptopic->get_extended_topic()->m_bRet = true;
+         ptopic->m_bRet = true;
 
       }
       else if (ptopic->m_atom == id_set_topic_view_by_id)
       {
 
-         set_current_tab_by_id(ptopic->get_extended_topic()->payload(id_id));
+         set_current_tab_by_id(ptopic->payload(id_id));
 
-         ptopic->get_extended_topic()->m_bRet = true;
+         ptopic->m_bRet = true;
 
       }
       else if(ptopic->m_atom == id_place_child_title_change)
@@ -3471,7 +3471,7 @@ namespace user
          for (auto& ppane : get_data()->m_tabpanecompositea)
          {
 
-            if (ppane->m_pplaceholder == ptopic->get_extended_topic()->m_puserelement)
+            if (ppane->m_pplaceholder == ptopic->m_puserelement)
             {
 
                auto puserinteractionpointeraChild = ppane->m_pplaceholder->m_puserinteractionpointeraChild;

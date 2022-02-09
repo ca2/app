@@ -3056,11 +3056,11 @@ namespace user
    bool mesh::on_click(const ::item & item)
    {
 
-      ::extended_topic extendedtopic(::id_list_clicked);
+      auto ptopic = __new(::topic(::id_list_clicked));
 
-      extendedtopic.m_puserelement = this;
+      ptopic->m_puserelement = this;
 
-      route(&extendedtopic);
+      route(ptopic);
 
       /*if(m_pformcallback != nullptr)
       {

@@ -851,7 +851,7 @@ namespace userex
 
             set_current_tab_by_id(m_pimpactdataOld->m_atom);
 
-            ptopic->get_extended_topic()->m_bRet = true;
+            ptopic->m_bRet = true;
 
             return;
 
@@ -886,7 +886,7 @@ namespace userex
 
    //         set_current_tab_by_id(m_pimpactdataOld->m_atom);
 
-   //         ptopic->get_extended_topic()->m_bRet = true;
+   //         ptopic->m_bRet = true;
 
    //         return;
 

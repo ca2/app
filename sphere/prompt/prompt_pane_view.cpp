@@ -248,7 +248,7 @@ namespace prompt
          auto pupdate = new_update();
          pupdate->m_actioncontext = ::e_source_system;
          ptopic->m_atom = id_browse;
-         ptopic->get_extended_topic()->payload(id_form) = "filemanager\\replace_name_in_file_system.xhtml";
+         ptopic->payload(id_form) = "filemanager\\replace_name_in_file_system.xhtml";
          pdocument->update_all_views(pupdate);
 
          ptopic->m_atom = id_get_form_view;
@@ -334,7 +334,7 @@ namespace prompt
 
       ::prompt::form_callback::handle(ptopic, pcontext);
 
-      if(ptopic->get_extended_topic()->m_bRet)
+      if(ptopic->m_bRet)
       {
 
          return;

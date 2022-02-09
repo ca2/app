@@ -193,7 +193,7 @@ namespace filemanager
 
       }
 
-      if (filemanager_document() == ptopic->get_extended_topic()->cast < ::user::document >(DOCUMENT_ID))
+      if (filemanager_document() == ptopic->cast < ::user::document >(DOCUMENT_ID))
       {
 
          if (ptopic->m_atom == id_open_selection_properties)

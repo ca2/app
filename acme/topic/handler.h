@@ -10,7 +10,7 @@
 
 // ThomasBorregaardS�rense!! Like handlers
 class CLASS_DECL_ACME handler :
-   virtual public ::topic
+   virtual public ::particle
 {
 public:
 

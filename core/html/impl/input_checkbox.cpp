@@ -124,11 +124,11 @@ namespace html
          if(pdata->m_pcoredata->m_pform != nullptr)
          {
 
-            auto ptopic = create_extended_topic(::id_initialize_control);
+            auto ptopic = create_topic(::id_initialize_control);
 
-            ptopic->get_extended_topic()->m_puserelement = m_pcheckbox;
+            ptopic->m_puserelement = m_pcheckbox;
 
-            ptopic->get_extended_topic()->m_actioncontext = ::action_context(::e_source_data) +  ::e_source_load;
+            ptopic->m_actioncontext = ::action_context(::e_source_data) +  ::e_source_load;
 
             ptopic->m_uiEvent = 0;
 

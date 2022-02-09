@@ -217,7 +217,7 @@ void filemanager_impact_base::handle(::topic * ptopic, ::context * pcontext)
    if (ptopic->m_atom == id_initialize)
    {
 
-      if (filemanager_document() == ptopic->get_extended_topic()->cast < ::user::document >(DOCUMENT_ID))
+      if (filemanager_document() == ptopic->cast < ::user::document >(DOCUMENT_ID))
       {
 
          __pointer(::database::client) pclient = get_parent_frame();
@@ -241,11 +241,11 @@ void filemanager_impact_base::handle(::topic * ptopic, ::context * pcontext)
 
       __pointer(::core::application) papplication = get_application();
 
-      auto pfileitem = ptopic->get_extended_topic()->m_pfileitem;
+      auto pfileitem = ptopic->m_pfileitem;
 
       auto bFileManagerItemSet = ::is_set(filemanager_item());
 
-      bool bEqualFilePath = bFileManagerItemSet && papplication->is_equal_file_path(ptopic->get_extended_topic()->m_pfileitem->m_filepathFinal, filemanager_item()->m_filepathFinal);
+      bool bEqualFilePath = bFileManagerItemSet && papplication->is_equal_file_path(ptopic->m_pfileitem->m_filepathFinal, filemanager_item()->m_filepathFinal);
 
       if (pfileitem && (bFileManagerItemSet && bEqualFilePath))
       {
@@ -254,7 +254,7 @@ void filemanager_impact_base::handle(::topic * ptopic, ::context * pcontext)
          for (index i = 0; i < DBG_LOOP; i++)
          {
 
-            browse_sync(ptopic->get_extended_topic()->m_actioncontext + ::e_source_sync);
+            browse_sync(ptopic->m_actioncontext + ::e_source_sync);
 
          }
 
@@ -262,7 +262,7 @@ void filemanager_impact_base::handle(::topic * ptopic, ::context * pcontext)
       else
       {
 
-         knowledge(ptopic->get_extended_topic()->m_pfileitem->m_filepathUser, ptopic->get_extended_topic()->m_actioncontext + ::e_source_sync);
+         knowledge(ptopic->m_pfileitem->m_filepathUser, ptopic->m_actioncontext + ::e_source_sync);
 
       }
 

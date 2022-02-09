@@ -3182,13 +3182,13 @@ void simple_frame_window::handle(::topic * ptopic, ::context * pcontext)
       defer_create_notification_icon();
 
    }
-   else if(ptopic->get_extended_topic()->user_interaction() == m_pnotifyicon)
+   else if(ptopic->user_interaction() == m_pnotifyicon)
    {
 
       if(ptopic->m_atom == ::id_context_menu)
       {
 
-         //OnNotifyIconContextMenu(ptopic->get_extended_topic()->m_puserelement->m_atom);
+         //OnNotifyIconContextMenu(ptopic->m_puserelement->m_atom);
 
          auto psession = get_session();
 
@@ -3206,13 +3206,13 @@ void simple_frame_window::handle(::topic * ptopic, ::context * pcontext)
       else if(ptopic->m_atom == ::id_left_button_double_click)
       {
 
-         //OnNotifyIconLButtonDblClk(ptopic->get_extended_topic()->m_puserelement->m_atom);
+         //OnNotifyIconLButtonDblClk(ptopic->m_puserelement->m_atom);
 
       }
       else if(ptopic->m_atom == ::id_left_button_down)
       {
 
-         //OnNotifyIconLButtonDown(ptopic->get_extended_topic()->m_puserelement->m_atom);
+         //OnNotifyIconLButtonDown(ptopic->m_puserelement->m_atom);
 
          default_notify_icon_topic();
 
@@ -3225,7 +3225,7 @@ void simple_frame_window::handle(::topic * ptopic, ::context * pcontext)
 
    ::experience::frame_window::handle(ptopic, pcontext);
 
-   if(ptopic->get_extended_topic()->m_bRet)
+   if(ptopic->m_bRet)
    {
 
       return;

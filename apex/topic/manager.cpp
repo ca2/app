@@ -187,7 +187,7 @@ void manager::__s_erase_signal_handler_from_any_source(::matter* pmatter)
 //
 //      auto ptopic = topic(atom);
 //
-//      ptopic->get_extended_topic()->m_actioncontext = actioncontext;
+//      ptopic->m_actioncontext = actioncontext;
 //
 //      process(ptopic);
 //
@@ -268,7 +268,7 @@ void manager::on_property_changed(property * pproperty, const ::action_context &
 //
 //      auto ptopic = topic(atom);
 //
-//      ptopic->get_extended_topic()->m_payload = payload;
+//      ptopic->_extended_topic()->m_payload = payload;
 //
 //      process(ptopic);
 //
@@ -283,7 +283,7 @@ void manager::on_property_changed(property * pproperty, const ::action_context &
 //      if (::is_set(ptopic))
 //      {
 //
-//         ptopic->get_extended_topic()->set_modified();
+//         ptopic->set_modified();
 //
 //      }
 //
@@ -317,7 +317,7 @@ void manager::on_property_changed(property * pproperty, const ::action_context &
 //{
 
 
-//   auto ptopic = __new(::topic(atom, pmatter));
+//   auto ptopic = __new(::topic(atom, pmatter));;
 
 //   return ptopic;
 

@@ -2,23 +2,18 @@
 // Changed to extended on 2022-02-04 18:08 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "acme/platform/object_reference_count_debug.h"
-#include "acme/user/user/check.h"
-#include "acme/user/user/text.h"
-#include "acme/user/user/element.h"
 
 
 extended_topic::extended_topic(const ::atom & atom) :
-   ::TOPIC(atom),
+   ::PARTICLE(atom),
+   ::particle(atom),
    ::topic(atom),
    ::material_object(atom),
    ::property_object(atom),
    ::object(atom)
 {
 
-   m_bOk = true;
-   m_bRet = false;
    m_ptab = nullptr;
-   m_bRet = false;
 
 }
 
@@ -26,7 +21,6 @@ extended_topic::extended_topic(const ::atom & atom) :
 extended_topic::~extended_topic()
 {
 
-   m_pmatter.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS_FUNCTION_LINE);
 
 }
 
@@ -91,110 +85,50 @@ extended_topic::~extended_topic()
 }*/
 
 
-::user::form * extended_topic::get_form()
-{
-
-   auto puserelement = m_puserelement;
-
-   if (::is_null(puserelement))
-   {
-
-      return nullptr;
-
-   }
-
-   return puserelement->get_form();
-
-}
-
-
-::user::form * extended_topic::get_parent_form()
-{
-
-   auto puserelement = m_puserelement;
-
-   if (::is_null(puserelement))
-   {
-
-      return nullptr;
-
-   }
-
-   return puserelement->get_parent_form();
-
-}
+//::user::form * extended_topic::get_form()
+//{
+//
+//   auto puserelement = m_puserelement;
+//
+//   if (::is_null(puserelement))
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   return puserelement->get_form();
+//
+//}
 
 
-::user::interaction * extended_topic::user_interaction()
-{
-
-   if (::is_null(m_puserelement))
-   {
-
-      return nullptr;
-
-   }
-
-   return m_puserelement->m_puserinteraction;
-
-}
-
-
-void extended_topic::Nok()
-{
-
-   m_bOk = false;
-
-   m_bRet = true;
-
-}
-
-void extended_topic::Ret()
-{
-
-   m_bRet = true;
-
-}
-
-void extended_topic::Ok()
-{
-
-   m_bOk = true;
-
-   m_bRet = true;
-
-}
+//::user::form * extended_topic::get_parent_form()
+//{
+//
+//   auto puserelement = m_puserelement;
+//
+//   if (::is_null(puserelement))
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   return puserelement->get_parent_form();
+//
+//}
 
 
-::atom extended_topic::user_element_id() const
-{
-
-   if (::is_null(m_puserelement))
-   {
-
-      return ::atom::e_type_null;
-
-   }
-
-   return m_puserelement->m_atom;
-
-}
-
-
-::extended_topic * extended_topic::get_extended_topic()
-{
-
-   return this;
-
-}
-
-
-const ::extended_topic * extended_topic::get_extended_topic() const
-{
-
-   return this;
-
-}
-
-
-
+//
+//}
+//
+//
+//const ::extended_topic * extended_topic::get_extended_topic() const
+//{
+//
+//   return this;
+//
+//}
+//
+//
+//

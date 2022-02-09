@@ -302,7 +302,7 @@ namespace helloworld
    void pane_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if(m_pdocMenu != nullptr && dynamic_cast < ::user::impact * > (pview) == m_pdocMenu->get_view(0) && ptopic->get_extended_topic()->user_interaction() != nullptr)
+      if(m_pdocMenu != nullptr && dynamic_cast < ::user::impact * > (pview) == m_pdocMenu->get_view(0) && ptopic->user_interaction() != nullptr)
       {
 
          if(ptopic->m_atom == ::id_after_change_text)
@@ -383,7 +383,7 @@ namespace helloworld
 
 
          }
-         else if (ptopic->m_atom == ::id_set_check && ptopic->get_extended_topic()->user_interaction() != nullptr)
+         else if (ptopic->m_atom == ::id_set_check && ptopic->user_interaction() != nullptr)
          {
 
             string strCheck = ptopic->user_element_id();
@@ -392,7 +392,7 @@ namespace helloworld
             if (::str::begins_eat_ci(strCheck, "bilbo"))
             {
 
-               if (ptopic->get_extended_topic()->user_interaction() != nullptr && !ptopic->m_context.is_source(::e_source_initialize)
+               if (ptopic->user_interaction() != nullptr && !ptopic->m_context.is_source(::e_source_initialize)
                      && !ptopic->m_context.is_source(::e_source_sync))
                {
 
@@ -401,7 +401,7 @@ namespace helloworld
                   if (m_pviewLastBilbo != nullptr)
                   {
 
-                     m_pviewLastBilbo->m_prender->m_bilboa[iCheck - 1].m_bNew = ptopic->get_extended_topic()->user_interaction()->_001GetCheck() == ::check_checked;
+                     m_pviewLastBilbo->m_prender->m_bilboa[iCheck - 1].m_bNew = ptopic->user_interaction()->_001GetCheck() == ::check_checked;
 
                      m_pviewLastBilbo->m_prender->defer_update_bilbo();
 
@@ -415,22 +415,22 @@ namespace helloworld
 
          //if(ptopic->user_element_id() == "clockverse")
          //   {
-         //      papplication->set_binding_clockverse_country_time_zone_set_on_hover(ptopic->get_extended_topic()->user_interaction()->_001GetCheck() == ::check_checked);
+         //      papplication->set_binding_clockverse_country_time_zone_set_on_hover(ptopic->user_interaction()->_001GetCheck() == ::check_checked);
          //      return true;
          //   }
          //   else if(ptopic->user_element_id() == "clockverse_auto")
          //   {
-         //      papplication->set_auto_launch_clockverse_on_hover(ptopic->get_extended_topic()->user_interaction()->_001GetCheck() == ::check_checked);
+         //      papplication->set_auto_launch_clockverse_on_hover(ptopic->user_interaction()->_001GetCheck() == ::check_checked);
          //      return true;
          //   }
          //   else if(ptopic->user_element_id() == "flag")
          //   {
-         //      papplication->set_binding_flag_country_ca2_domain_image_on_hover(ptopic->get_extended_topic()->user_interaction()->_001GetCheck() == ::check_checked);
+         //      papplication->set_binding_flag_country_ca2_domain_image_on_hover(ptopic->user_interaction()->_001GetCheck() == ::check_checked);
          //      return true;
          //   }
          //   else if(ptopic->user_element_id() == "flag_auto")
          //   {
-         //      papplication->set_auto_launch_flag_on_hover(ptopic->get_extended_topic()->user_interaction()->_001GetCheck() == ::check_checked);
+         //      papplication->set_auto_launch_flag_on_hover(ptopic->user_interaction()->_001GetCheck() == ::check_checked);
          //      return true;
          //   }
          //}
@@ -515,7 +515,7 @@ namespace helloworld
       {
 
          if (pupdate->m_ehint == CONTROL_EVENT_UPDATE
-               && ptopic->get_extended_topic()->user_interaction() == m_pfontview
+               && ptopic->user_interaction() == m_pfontview
                && m_pviewLast != nullptr)
          {
 

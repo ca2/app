@@ -2059,7 +2059,7 @@ namespace filemanager
       else if (!m_bStatic && ptopic->m_atom == id_synchronize_path)
       {
 
-         if (ptopic->get_extended_topic()->m_pfileitem->m_filepathUser != filemanager_item()->m_filepathUser)
+         if (ptopic->m_pfileitem->m_filepathUser != filemanager_item()->m_filepathUser)
          {
 
             return;
@@ -2096,7 +2096,7 @@ namespace filemanager
       else if (ptopic->m_atom == id_filter)
       {
 
-         if (ptopic->get_extended_topic()->payload(id_filter).is_empty())
+         if (ptopic->payload(id_filter).is_empty())
          {
 
             FilterClose();
@@ -2107,7 +2107,7 @@ namespace filemanager
 
             FilterBegin();
 
-            Filter1(ptopic->get_extended_topic()->payload(id_filter).as_string());
+            Filter1(ptopic->payload(id_filter).as_string());
 
          }
 
@@ -2118,7 +2118,7 @@ namespace filemanager
          if (get_parent_frame()->get_active_view() == (this))
          {
 
-            get_selected_items(*ptopic->get_extended_topic()->cast <::file::item_array>(id_selected));
+            get_selected_items(*ptopic->cast <::file::item_array>(id_selected));
 
          }
 
@@ -2126,14 +2126,14 @@ namespace filemanager
       else if (ptopic->m_atom == id_after_browse)
       {
 
-         if (ptopic->get_extended_topic()->payload(id_after_browse) == "filemanager\\replace_name_in_file_system.xhtml")
+         if (ptopic->payload(id_after_browse) == "filemanager\\replace_name_in_file_system.xhtml")
          {
 
             //html::matter * pelemental = dynamic_cast < html::matter * > (pupdate->m_pformview->get_html_data()->get_element_by_name("encontrar"));
 
             //html::impl::input_text * pinput = dynamic_cast < html::impl::input_text * > (pelemental->m_pimpl);
 
-            __pointer(::user::interaction) puserinteractionParent = ptopic->get_extended_topic()->m_puserelement;
+            __pointer(::user::interaction) puserinteractionParent = ptopic->m_puserelement;
 
             auto pinteraction = puserinteractionParent->get_child_by_id("encontrar");
 
@@ -2142,7 +2142,7 @@ namespace filemanager
             if (pitem)
             {
 
-               pinteraction->_001SetText(ptopic->get_extended_topic()->payload(id_name), ptopic->get_extended_topic()->m_actioncontext);
+               pinteraction->_001SetText(ptopic->payload(id_name), ptopic->m_actioncontext);
 
             }
 
@@ -2151,14 +2151,14 @@ namespace filemanager
          if (ptopic->m_atom == id_replace_name)
          {
 
-            if (ptopic->get_extended_topic()->payload(id_find).has_char())
+            if (ptopic->payload(id_find).has_char())
             {
 
                auto pcontext = get_context();
 
                ::file::path pathFolder = filemanager_item()->get_user_path();
 
-               pcontext->m_papexcontext->file().replace_with(pathFolder, ptopic->get_extended_topic()->payload(id_replace), ptopic->get_extended_topic()->payload(id_find));
+               pcontext->m_papexcontext->file().replace_with(pathFolder, ptopic->payload(id_replace), ptopic->payload(id_find));
 
             }
 
@@ -2166,16 +2166,16 @@ namespace filemanager
          else if (ptopic->m_atom == id_new_folder)
          {
 
-            if (ptopic->get_extended_topic()->payload(id_folder).has_char())
+            if (ptopic->payload(id_folder).has_char())
             {
 
-               ::file::path pathFolder = filemanager_item()->get_user_path() / ptopic->get_extended_topic()->payload(id_folder);
+               ::file::path pathFolder = filemanager_item()->get_user_path() / ptopic->payload(id_folder);
 
                auto pcontext = get_context();
 
                pcontext->m_papexcontext->dir().create(pathFolder);
 
-               ptopic->get_extended_topic()->m_bRet = true;
+               ptopic->m_bRet = true;
 
             }
 

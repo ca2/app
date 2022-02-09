@@ -5709,7 +5709,7 @@ retry_license:
 
    //   handle(ptopic);
 
-   //   if (ptopic->get_extended_topic()->m_bRet)
+   //   if (ptopic->m_bRet)
    //   {
 
    //      return;
@@ -5718,7 +5718,7 @@ retry_license:
 
    //   on_notify_control_event(pevent);
 
-   //   if (ptopic->get_extended_topic()->m_bRet)
+   //   if (ptopic->m_bRet)
    //   {
 
    //      return;
@@ -8746,7 +8746,7 @@ namespace aura
          if (ptopic->m_atom == ::id_initialize_control)
          {
 
-            auto puserinteraction = ptopic->get_extended_topic()->m_puserelement->cast<::user::interaction>();
+            auto puserinteraction = ptopic->m_puserelement->cast<::user::interaction>();
 
             if (puserinteraction->m_atom == __id(user_auto_start_checkbox))
             {
@@ -8786,10 +8786,10 @@ namespace aura
          else if (ptopic->m_atom == ::id_set_check)
          {
 
-            auto puserinteraction = ptopic->get_extended_topic()->user_interaction();
+            auto puserinteraction = ptopic->user_interaction();
 
             if (puserinteraction->m_atom == __id(user_auto_start_checkbox)
-               && ptopic->get_extended_topic()->m_actioncontext.is_user_source())
+               && ptopic->m_actioncontext.is_user_source())
             {
 
                try
@@ -8808,7 +8808,7 @@ namespace aura
 
                   }
 
-                  ptopic->get_extended_topic()->m_bRet = true;
+                  ptopic->m_bRet = true;
 
                   return;
 

@@ -7076,7 +7076,7 @@ void application::hotplugin_host_host_starter_start_sync(const ::string & pszCom
 
 //   handle(ptopic, pcontext);
 
-//   if (ptopic->get_extended_topic()->m_bRet)
+//   if (ptopic->m_bRet)
 //   {
 
 //      return;
@@ -7085,7 +7085,7 @@ void application::hotplugin_host_host_starter_start_sync(const ::string & pszCom
 
 //   on_notify_control_event(pevent);
 
-//   if (ptopic->get_extended_topic()->m_bRet)
+//   if (ptopic->m_bRet)
 //   {
 
 //      return;

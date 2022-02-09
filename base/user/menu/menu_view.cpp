@@ -230,7 +230,7 @@ namespace user
 
          auto peditview = _001TypedWindow < ::user::plain_edit_view >();
 
-         if (peditview != nullptr && ptopic->get_extended_topic()->m_puserelement == peditview)
+         if (peditview != nullptr && ptopic->m_puserelement == peditview)
          {
 
             string strText;

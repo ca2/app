@@ -496,7 +496,7 @@ namespace axis
 //      if (strStyle.compare_ci("pcre") == 0)
 //      {
 //
-//         return create_pcre(str);
+//         return compile_pcre(str);
 //
 //      }
 //

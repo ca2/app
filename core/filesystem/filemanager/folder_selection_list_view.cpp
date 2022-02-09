@@ -175,11 +175,11 @@ namespace filemanager
 
       auto pdocument = get_document();
 
-      ::extended_topic extendedtopic(id_synchronize_folder_selection);
+      auto ptopic = __new(::topic(id_synchronize_folder_selection));
 
-      extendedtopic.m_actioncontext = context + ::e_source_selection;
+      ptopic->m_actioncontext = context + ::e_source_selection;
 
-      pdocument->update_all_views(&extendedtopic);
+      pdocument->update_all_views(&ptopic->;
 
    }
 

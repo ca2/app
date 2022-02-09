@@ -515,17 +515,17 @@ namespace user
 
          {
 
-            ::extended_topic extendedtopic(::id_key_down);
+            auto ptopic = __new(::topic(::id_key_down));
 
-            extendedtopic.m_puserelement = this;
+            ptopic->m_puserelement = this;
 
-            extendedtopic.m_actioncontext.m_pmessage = pmessage;
+            ptopic->m_actioncontext.m_pmessage = pmessage;
 
-            extendedtopic.m_actioncontext = ::e_source_user;
+            ptopic->m_actioncontext = ::e_source_user;
 
-            route(&extendedtopic);
+            route(ptopic);
 
-            if (extendedtopic.m_bRet)
+            if (ptopic->m_bRet)
             {
 
                return;
@@ -575,17 +575,17 @@ namespace user
          else if (pkey->m_ekey == ::user::e_key_escape)
          {
 
-            ::extended_topic extendedtopic(::id_escape);
+            auto ptopic = __new(::topic(::id_escape));
 
-            extendedtopic.m_puserelement = this;
+            ptopic->m_puserelement = this;
 
-            extendedtopic.m_atom = ::id_escape;
+            ptopic->m_atom = ::id_escape;
 
-            extendedtopic.m_actioncontext = ::e_source_user;
+            ptopic->m_actioncontext = ::e_source_user;
 
-            route(&extendedtopic);
+            route(ptopic);
 
-            if (!extendedtopic.m_bRet && extendedtopic.m_bOk)
+            if (!ptopic->m_bRet && ptopic->m_bOk)
             {
 
                on_action("escape");

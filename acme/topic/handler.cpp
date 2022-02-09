@@ -21,27 +21,29 @@ CLASS_DECL_ACME void __call(handler * phandler, const ::atom & atom, i64 iData, 
    else
    {
 
-      ::extended_topic topic(atom);
+      auto pextendedtopic = pmatter->m_psystem->_create_extended_topic(atom);
 
       if (iData != 0)
       {
 
-         topic.m_payload = iData;
+         pextendedtopic->m_payload = iData;
 
       }
 
       if (pmatter != nullptr)
       {
 
-         topic.m_pmatter = pmatter;
+         pextendedtopic->m_pmatter = pmatter;
 
       }
 
-      phandler->handle(&topic, nullptr);
+      phandler->handle(pextendedtopic, nullptr);
 
    }
 
 }
+
+
 //
 //
 //void handler::call(enum_message emessage, i64 iData, ::matter * pmatter)
@@ -76,5 +78,6 @@ void handler::call(const ::atom & atom, i64 iData, ::matter * pmatter)
 //   return __call(this, eid, iData, pmatter);
 //
 //}
+
 
 

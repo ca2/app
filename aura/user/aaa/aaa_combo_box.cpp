@@ -1674,7 +1674,7 @@ namespace user
       if(ptopic->m_atom == ::id_after_change_cur_sel)
       {
 
-         if(ptopic->get_extended_topic()->user_interaction() == m_plist)
+         if(ptopic->user_interaction() == m_plist)
          {
 
             if (ptopic->m_item == e_element_item)

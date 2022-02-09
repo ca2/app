@@ -4,25 +4,21 @@
 
 
 class CLASS_DECL_ACME extended_topic :
-   virtual public object
+   virtual public ::topic,
+   virtual public ::object
 {
 public:
 
 
    ::user::interaction *                  m_ptab;
-   ::user::interaction *                  m_pform;
    u64                                    m_uiEvent;
    enum_timer                             m_etimer;
-   ::action_context                       m_actioncontext;
    u32                                    m_uiVKey;
    u32                                    m_uiFlags;
-   bool                                   m_bRet;
-   bool                                   m_bOk;
    ::datetime::time                       m_timeOuterBeg;
    ::datetime::time                       m_timeOuterEnd;
    ::datetime::time                       m_timeBeg;
    ::datetime::time                       m_timeEnd;
-   item                                   m_item;
 
 
    ::user::enum_key                       m_ekey;
@@ -31,10 +27,7 @@ public:
    bool                                   m_bModified;
    ::duration                             m_durationSleep;
 
-   __pointer(::matter)                    m_pmatter;
    __pointer(::property_object)           m_pobjectTopic;
-   __pointer(::property_object)           m_psender;
-   __pointer(::user::element)             m_puserelement; // user::interaction
    __pointer(::file::item)                m_pfileitem;
 
 
@@ -51,40 +44,11 @@ public:
 #endif
 
 
-   ::topic & operator=(const ::atom & atom)
-   {
-
-      m_atom = atom;
-
-      return *this;
-
-   }
-
-
-   inline bool operator==(const ::atom & atom) const { return m_atom == atom || m_atom == FULL_ID; }
-
-   //inline bool operator==(const ::atom & atom) const { return m_atom == atom || m_atom == FULL_ID; }
-
-   inline ::atom &atom() { return m_atom; }
-
-   inline const ::atom &atom() const { return m_atom; }
-
-   void Ret();
-   void Ok();
-   void Nok();
-
-
-   ::atom user_element_id() const;
-
-
-   virtual ::user::form * get_form();
-   virtual ::user::form * get_parent_form();
-   virtual ::user::interaction * user_interaction();
-
-
-   ::extended_topic * get_extended_topic();
-   const ::extended_topic * get_extended_topic() const override;
+   virtual ::extended_topic * _extended_topic() { return this; }
+   virtual const ::extended_topic * _extended_topic() const { return this; }
 
 
 };
+
+
 

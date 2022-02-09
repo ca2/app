@@ -98,7 +98,7 @@ namespace browser
 
             pview->m_prender->m_bLite = !pview->m_prender->m_bLite;
 
-            ptopic->get_extended_topic()->m_bRet = true;
+            ptopic->m_bRet = true;
             return;
 
          }
@@ -110,7 +110,7 @@ namespace browser
 
             m_pimpact->on_layout(pgraphics);
 
-            ptopic->get_extended_topic()->m_bRet = true;
+            ptopic->m_bRet = true;
             return;
 
          }

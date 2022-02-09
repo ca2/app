@@ -71,7 +71,7 @@ struct ITEM_DATA_ADDITIONS
 
 
 struct ITEM_BASE :
-   public TOPIC,
+   public PARTICLE,
    public ITEM_BASE_ADDITIONS
 {
 
@@ -80,7 +80,7 @@ struct ITEM_BASE :
 
 
 struct ITEM_DATA :
-   public TOPIC,
+   public PARTICLE,
    public ITEM_BASE_ADDITIONS,
    public ITEM_DATA_ADDITIONS
 {
@@ -96,7 +96,7 @@ struct ITEM_DATA :
 
 
 class CLASS_DECL_ACME item_base :
-   virtual public ::topic,
+   virtual public ::particle,
    virtual public ITEM_BASE_ADDITIONS
 {
 public:
@@ -109,8 +109,8 @@ public:
 
 
    item_base(const item_base & itembase) :
-      TOPIC(itembase),
-      topic(itembase),
+      PARTICLE(itembase),
+      particle(itembase),
       ITEM_BASE_ADDITIONS(itembase)
    {
 
@@ -118,8 +118,8 @@ public:
 
 
    item_base(item_base && itembase) :
-      TOPIC(::move(itembase)),
-      topic(::move(itembase)),
+      PARTICLE(::move(itembase)),
+      particle(::move(itembase)),
       ITEM_BASE_ADDITIONS(::move(itembase))
    {
 
@@ -134,31 +134,31 @@ public:
    inline ::index list_item_index() const { return (::index) m_iListItem; }
 
    
-   item_base & operator = (const ::topic & topic) { if ((TOPIC *) this != (TOPIC *) &topic) memcpy((TOPIC *) this, (TOPIC *) &topic, sizeof(TOPIC)); return *this; }
+   item_base & operator = (const ::particle & particle) { if ((PARTICLE *) this != (PARTICLE *) &particle) memcpy((PARTICLE *) this, (PARTICLE *) &particle, sizeof(PARTICLE)); return *this; }
 
 
-   bool operator == (const ::topic & topic)  const { return ((TOPIC *)this == (TOPIC *)&topic) ? true : !memcmp((TOPIC *) this, (TOPIC *) &topic, sizeof(TOPIC)); }
-   bool operator != (const ::topic & topic)  const { return !operator == (topic); }
+   bool operator == (const ::particle & particle)  const { return ((PARTICLE *)this == (PARTICLE *)&particle) ? true : !memcmp((PARTICLE *) this, (PARTICLE *) &particle, sizeof(PARTICLE)); }
+   bool operator != (const ::particle & particle)  const { return !operator == (particle); }
 
    
-   item_base & operator = (const item_base & itembase) { if ((TOPIC *) this != (TOPIC *) &itembase) memcpy((TOPIC *) this, (TOPIC *) &itembase, sizeof(ITEM_BASE)); return *this; }
+   item_base & operator = (const item_base & itembase) { if ((PARTICLE *) this != (PARTICLE *) &itembase) memcpy((PARTICLE *) this, (PARTICLE *) &itembase, sizeof(ITEM_BASE)); return *this; }
 
 
-   bool operator == (const ::item_base & itembase)  const { return ((TOPIC *)this == (TOPIC *)&itembase) ? true : !memcmp((TOPIC *) this, (TOPIC *) &itembase, sizeof(ITEM_BASE)); }
+   bool operator == (const ::item_base & itembase)  const { return ((PARTICLE *)this == (PARTICLE *)&itembase) ? true : !memcmp((PARTICLE *) this, (PARTICLE *) &itembase, sizeof(ITEM_BASE)); }
    bool operator != (const ::item_base & itembase)  const { return !operator == (itembase); }
    
 
-   item_base & operator = (const ::TOPIC & topic) { if ((TOPIC *) this != (TOPIC *) &topic) memcpy((TOPIC *) this, (TOPIC *) &topic, sizeof(TOPIC)); return *this; }
+   item_base & operator = (const ::PARTICLE & particle) { if ((PARTICLE *) this != (PARTICLE *) &particle) memcpy((PARTICLE *) this, (PARTICLE *) &particle, sizeof(PARTICLE)); return *this; }
 
 
-   bool operator == (const ::TOPIC & topic)  const { return ((TOPIC *)this == (TOPIC *)&topic) ? true : !memcmp((TOPIC *) this, (TOPIC *) &topic, sizeof(TOPIC)); }
-   bool operator != (const ::TOPIC & topic)  const { return !operator == (topic); }
+   bool operator == (const ::PARTICLE & particle)  const { return ((PARTICLE *)this == (PARTICLE *)&particle) ? true : !memcmp((PARTICLE *) this, (PARTICLE *) &particle, sizeof(PARTICLE)); }
+   bool operator != (const ::PARTICLE & particle)  const { return !operator == (particle); }
 
    
-   item_base & operator = (const ITEM_BASE & itembase) { if ((TOPIC *)this != (TOPIC *)&itembase) memcpy((TOPIC *) this, (TOPIC *) &itembase, sizeof(ITEM_BASE)); return *this; }
+   item_base & operator = (const ITEM_BASE & itembase) { if ((PARTICLE *)this != (PARTICLE *)&itembase) memcpy((PARTICLE *) this, (PARTICLE *) &itembase, sizeof(ITEM_BASE)); return *this; }
 
 
-   bool operator == (const ::ITEM_BASE & itembase)  const { return ((TOPIC *)this == (TOPIC *)&itembase) ? true : !memcmp((TOPIC *) this, (TOPIC *) &itembase, sizeof(ITEM_BASE)); }
+   bool operator == (const ::ITEM_BASE & itembase)  const { return ((PARTICLE *)this == (PARTICLE *)&itembase) ? true : !memcmp((PARTICLE *) this, (PARTICLE *) &itembase, sizeof(ITEM_BASE)); }
    bool operator != (const ::ITEM_BASE & itembase)  const { return !operator == (itembase); }
 
 
@@ -179,8 +179,8 @@ public:
 
 
    item_data(const item_data & itemdata) :
-      TOPIC(itemdata),
-      topic(itemdata),
+      PARTICLE(itemdata),
+      particle(itemdata),
       ITEM_BASE_ADDITIONS(itemdata),
       item_base(itemdata),
       ITEM_DATA_ADDITIONS(itemdata)
@@ -190,8 +190,8 @@ public:
 
 
    item_data(item_data && itemdata) :
-      TOPIC(::move(itemdata)),
-      topic(::move(itemdata)),
+      PARTICLE(::move(itemdata)),
+      particle(::move(itemdata)),
       ITEM_BASE_ADDITIONS(::move(itemdata)),
       item_base(::move(itemdata)),
       ITEM_DATA_ADDITIONS(::move(itemdata))
@@ -201,42 +201,42 @@ public:
 
    
    
-   item_data & operator = (const ::topic & topic) { if ((TOPIC*) this != (TOPIC *) &topic) memcpy((TOPIC *) this, (TOPIC *) &topic, sizeof(TOPIC)); return *this; }
+   item_data & operator = (const ::particle & particle) { if ((PARTICLE*) this != (PARTICLE *) &particle) memcpy((PARTICLE *) this, (PARTICLE *) &particle, sizeof(PARTICLE)); return *this; }
 
 
-   bool operator == (const ::topic & topic)  const { return ((TOPIC *)this == (TOPIC *)&topic) ? true : !memcmp((TOPIC *) this, (TOPIC *) &topic, sizeof(TOPIC)); }
-   bool operator != (const ::topic & topic)  const { return !operator == (topic); }
+   bool operator == (const ::particle & particle)  const { return ((PARTICLE *)this == (PARTICLE *)&particle) ? true : !memcmp((PARTICLE *) this, (PARTICLE *) &particle, sizeof(PARTICLE)); }
+   bool operator != (const ::particle & particle)  const { return !operator == (particle); }
    
    
-   item_data & operator = (const item_base & itembase) { if ((TOPIC *) this != (TOPIC *) &itembase) memcpy((TOPIC *) this, (TOPIC *) &itembase, sizeof(ITEM_BASE)); return *this; }
+   item_data & operator = (const item_base & itembase) { if ((PARTICLE *) this != (PARTICLE *) &itembase) memcpy((PARTICLE *) this, (PARTICLE *) &itembase, sizeof(ITEM_BASE)); return *this; }
 
-   bool operator == (const item_base & itembase)  const { return ((TOPIC *)this == (TOPIC *)&itembase) ? true : !memcmp((TOPIC *) this, (TOPIC *) &itembase, sizeof(ITEM_BASE)); }
+   bool operator == (const item_base & itembase)  const { return ((PARTICLE *)this == (PARTICLE *)&itembase) ? true : !memcmp((PARTICLE *) this, (PARTICLE *) &itembase, sizeof(ITEM_BASE)); }
    bool operator != (const item_base & itembase)  const { return !operator==(itembase); }
    
    
-   item_data & operator = (const item_data & itemdata) { if ((TOPIC *) this != (TOPIC *)&itemdata) memcpy((TOPIC *) this, (TOPIC *) &itemdata, sizeof(ITEM_DATA)); return *this; }
+   item_data & operator = (const item_data & itemdata) { if ((PARTICLE *) this != (PARTICLE *)&itemdata) memcpy((PARTICLE *) this, (PARTICLE *) &itemdata, sizeof(ITEM_DATA)); return *this; }
 
-   bool operator == (const item_data & itemdata)  const { return ((TOPIC *) this == (TOPIC *)&itemdata) ? true : !memcmp((TOPIC *) this, (TOPIC *) &itemdata, sizeof(ITEM_DATA)); }
+   bool operator == (const item_data & itemdata)  const { return ((PARTICLE *) this == (PARTICLE *)&itemdata) ? true : !memcmp((PARTICLE *) this, (PARTICLE *) &itemdata, sizeof(ITEM_DATA)); }
    bool operator != (const item_data & itemdata)  const { return !operator==(itemdata); }
 
 
-   item_data & operator = (const ::TOPIC & topic) { if ((TOPIC *)this != (TOPIC *)&topic) memcpy((TOPIC *) this, (TOPIC *) &topic, sizeof(TOPIC)); return *this; }
+   item_data & operator = (const ::PARTICLE & particle) { if ((PARTICLE *)this != (PARTICLE *)&particle) memcpy((PARTICLE *) this, (PARTICLE *) &particle, sizeof(PARTICLE)); return *this; }
 
 
-   bool operator == (const ::TOPIC & topic)  const { return ((TOPIC *)this == (TOPIC *)&topic) ? true : !memcmp((TOPIC *) this, (TOPIC *) &topic, sizeof(TOPIC)); }
-   bool operator != (const ::TOPIC & topic)  const { return !operator == (topic); }
+   bool operator == (const ::PARTICLE & particle)  const { return ((PARTICLE *)this == (PARTICLE *)&particle) ? true : !memcmp((PARTICLE *) this, (PARTICLE *) &particle, sizeof(PARTICLE)); }
+   bool operator != (const ::PARTICLE & particle)  const { return !operator == (particle); }
    
    
-   item_data & operator = (const ITEM_BASE & itembase) { if ((TOPIC *) this != (TOPIC *) &itembase) memcpy((TOPIC *) this, (TOPIC *) &itembase, sizeof(ITEM_BASE)); return *this; }
+   item_data & operator = (const ITEM_BASE & itembase) { if ((PARTICLE *) this != (PARTICLE *) &itembase) memcpy((PARTICLE *) this, (PARTICLE *) &itembase, sizeof(ITEM_BASE)); return *this; }
 
-   bool operator == (const ITEM_BASE & itembase)  const { return ((TOPIC *)this == (TOPIC *)&itembase) ? true : !memcmp((TOPIC *) this, (TOPIC *) &itembase, sizeof(ITEM_BASE)); }
+   bool operator == (const ITEM_BASE & itembase)  const { return ((PARTICLE *)this == (PARTICLE *)&itembase) ? true : !memcmp((PARTICLE *) this, (PARTICLE *) &itembase, sizeof(ITEM_BASE)); }
    bool operator != (const ITEM_BASE & itembase)  const { return !operator==(itembase); }
    
    
 
-   item_data & operator = (const ITEM_DATA & itemdata) { if ((TOPIC *)this != (TOPIC *)&itemdata) memcpy((TOPIC *) this, (TOPIC *) &itemdata, sizeof(ITEM_DATA)); return *this; }
+   item_data & operator = (const ITEM_DATA & itemdata) { if ((PARTICLE *)this != (PARTICLE *)&itemdata) memcpy((PARTICLE *) this, (PARTICLE *) &itemdata, sizeof(ITEM_DATA)); return *this; }
 
-   bool operator == (const ITEM_DATA & itemdata)  const { return ((TOPIC *)this == (TOPIC *)&itemdata) ? true : !memcmp((TOPIC *) this, (TOPIC *) &itemdata, sizeof(ITEM_DATA)); }
+   bool operator == (const ITEM_DATA & itemdata)  const { return ((PARTICLE *)this == (PARTICLE *)&itemdata) ? true : !memcmp((PARTICLE *) this, (PARTICLE *) &itemdata, sizeof(ITEM_DATA)); }
    bool operator != (const ITEM_DATA & itemdata)  const { return !operator==(itemdata); }
 
 
@@ -311,8 +311,8 @@ public:
 
 
    item(const item & item):
-      TOPIC(item),
-      topic(item),
+      PARTICLE(item),
+      particle(item),
       ITEM_BASE_ADDITIONS(item),
       item_base(item),
       ITEM_DATA_ADDITIONS(item),
@@ -324,8 +324,8 @@ public:
 
 
    item(item && item) :
-      TOPIC(::move(item)),
-      topic(::move(item)),
+      PARTICLE(::move(item)),
+      particle(::move(item)),
       ITEM_BASE_ADDITIONS(::move(item)),
       item_base(::move(item)),
       ITEM_DATA_ADDITIONS(::move(item)),
@@ -351,31 +351,31 @@ public:
    
    
    
-   item & operator = (const ::topic & topic) { if ((TOPIC *) this != (TOPIC *)&topic) memcpy((TOPIC *) this, (TOPIC *) &topic, sizeof(TOPIC)); return *this; }
+   item & operator = (const ::particle & particle) { if ((PARTICLE *) this != (PARTICLE *)&particle) memcpy((PARTICLE *) this, (PARTICLE *) &particle, sizeof(PARTICLE)); return *this; }
 
 
-   bool operator == (const ::topic & topic)  const { return ((TOPIC *) this == (TOPIC *)&topic) ? true : !memcmp((TOPIC *) this, (TOPIC *) &topic, sizeof(TOPIC)); }
-   bool operator != (const ::topic & topic)  const { return !operator == (topic); }
+   bool operator == (const ::particle & particle)  const { return ((PARTICLE *) this == (PARTICLE *)&particle) ? true : !memcmp((PARTICLE *) this, (PARTICLE *) &particle, sizeof(PARTICLE)); }
+   bool operator != (const ::particle & particle)  const { return !operator == (particle); }
    
    
-   item & operator = (const item_base & itembase) { if ((void *) this != (void *) &itembase) memcpy((TOPIC *) this, (TOPIC *) &itembase, sizeof(ITEM_BASE)); return *this; }
+   item & operator = (const item_base & itembase) { if ((void *) this != (void *) &itembase) memcpy((PARTICLE *) this, (PARTICLE *) &itembase, sizeof(ITEM_BASE)); return *this; }
 
-   bool operator == (const item_base & itembase)  const { return ((TOPIC *) this == (TOPIC *)&itembase) ? true : !memcmp((TOPIC *) this, (TOPIC *) &itembase, sizeof(ITEM_BASE)); }
+   bool operator == (const item_base & itembase)  const { return ((PARTICLE *) this == (PARTICLE *)&itembase) ? true : !memcmp((PARTICLE *) this, (PARTICLE *) &itembase, sizeof(ITEM_BASE)); }
    bool operator != (const item_base & itembase)  const { return !operator==(itembase); }
    
    
 
-   item & operator = (const item_data & itemdata) { if ((TOPIC *) this != (TOPIC *) &itemdata) memcpy((TOPIC *) this, (TOPIC *) &itemdata, sizeof(ITEM_DATA)); return *this; }
+   item & operator = (const item_data & itemdata) { if ((PARTICLE *) this != (PARTICLE *) &itemdata) memcpy((PARTICLE *) this, (PARTICLE *) &itemdata, sizeof(ITEM_DATA)); return *this; }
 
-   bool operator == (const item_data & itemdata)  const { return ((TOPIC *) this == (TOPIC *) &itemdata) ? true : !memcmp((TOPIC *) this, (TOPIC *) &itemdata, sizeof(ITEM_DATA)); }
+   bool operator == (const item_data & itemdata)  const { return ((PARTICLE *) this == (PARTICLE *) &itemdata) ? true : !memcmp((PARTICLE *) this, (PARTICLE *) &itemdata, sizeof(ITEM_DATA)); }
    bool operator != (const item_data & itemdata)  const { return !operator==(itemdata); }
    
    
-   item & operator = (const ::TOPIC & topic) { if ((TOPIC *) this != (TOPIC *) &topic) memcpy((TOPIC *) this, (TOPIC *) &topic, sizeof(TOPIC)); return *this; }
+   item & operator = (const ::PARTICLE & particle) { if ((PARTICLE *) this != (PARTICLE *) &particle) memcpy((PARTICLE *) this, (PARTICLE *) &particle, sizeof(PARTICLE)); return *this; }
 
    
-   bool operator == (const ::TOPIC & topic)  const { return ((TOPIC *) this == (TOPIC *) &topic) ? true : !memcmp((TOPIC *) this, (TOPIC *) &topic, sizeof(TOPIC)); }
-   bool operator != (const ::TOPIC & topic)  const { return !operator == (topic); }
+   bool operator == (const ::PARTICLE & particle)  const { return ((PARTICLE *) this == (PARTICLE *) &particle) ? true : !memcmp((PARTICLE *) this, (PARTICLE *) &particle, sizeof(PARTICLE)); }
+   bool operator != (const ::PARTICLE & particle)  const { return !operator == (particle); }
 
 
    item & operator = (const ITEM_BASE_ADDITIONS & itembaseadditions) { if ((ITEM_BASE_ADDITIONS *)this != (ITEM_BASE_ADDITIONS *)&itembaseadditions) memcpy((ITEM_BASE_ADDITIONS *)this, (ITEM_BASE_ADDITIONS *)&itembaseadditions, sizeof(ITEM_BASE_ADDITIONS)); return *this; }
@@ -385,22 +385,22 @@ public:
 
 
    
-   item & operator = (const ITEM_BASE & itembase) { if ((TOPIC *) this != (TOPIC *) &itembase) memcpy((TOPIC *) this,(TOPIC *)  &itembase, sizeof(ITEM_BASE)); return *this; }
+   item & operator = (const ITEM_BASE & itembase) { if ((PARTICLE *) this != (PARTICLE *) &itembase) memcpy((PARTICLE *) this,(PARTICLE *)  &itembase, sizeof(ITEM_BASE)); return *this; }
 
-   bool operator == (const ITEM_BASE & itembase)  const { return ((TOPIC *) this == (TOPIC *) &itembase) ? true : !memcmp((TOPIC *) this, (TOPIC *) &itembase, sizeof(ITEM_BASE)); }
+   bool operator == (const ITEM_BASE & itembase)  const { return ((PARTICLE *) this == (PARTICLE *) &itembase) ? true : !memcmp((PARTICLE *) this, (PARTICLE *) &itembase, sizeof(ITEM_BASE)); }
    bool operator != (const ITEM_BASE & itembase)  const { return !operator==(itembase); }
    
    
 
-   item & operator = (const ITEM_DATA & itemdata) { if ((TOPIC *) this != (TOPIC *) &itemdata) memcpy((TOPIC *) this, (TOPIC *) &itemdata, sizeof(ITEM_DATA)); return *this; }
+   item & operator = (const ITEM_DATA & itemdata) { if ((PARTICLE *) this != (PARTICLE *) &itemdata) memcpy((PARTICLE *) this, (PARTICLE *) &itemdata, sizeof(ITEM_DATA)); return *this; }
 
-   bool operator == (const ITEM_DATA & itemdata)  const { return ((TOPIC *) this == (TOPIC *) &itemdata) ? true : !memcmp((TOPIC *) this, (TOPIC *) &itemdata, sizeof(ITEM_DATA)); }
+   bool operator == (const ITEM_DATA & itemdata)  const { return ((PARTICLE *) this == (PARTICLE *) &itemdata) ? true : !memcmp((PARTICLE *) this, (PARTICLE *) &itemdata, sizeof(ITEM_DATA)); }
    bool operator != (const ITEM_DATA & itemdata)  const { return !operator==(itemdata); }
 
 
-   item & operator = (const item & item) { if ((TOPIC *) this != (TOPIC *) &item) memcpy((TOPIC *) this, (TOPIC *) &item, sizeof(ITEM_DATA)); return *this; }
+   item & operator = (const item & item) { if ((PARTICLE *) this != (PARTICLE *) &item) memcpy((PARTICLE *) this, (PARTICLE *) &item, sizeof(ITEM_DATA)); return *this; }
 
-   bool operator == (const item & item)  const { return ((TOPIC *) this == (TOPIC *) &item) ? true : !memcmp((TOPIC *) this, (TOPIC *) &item, sizeof(ITEM_DATA)); }
+   bool operator == (const item & item)  const { return ((PARTICLE *) this == (PARTICLE *) &item) ? true : !memcmp((PARTICLE *) this, (PARTICLE *) &item, sizeof(ITEM_DATA)); }
    bool operator != (const item & item)  const { return !operator==(item); }
 
    item& operator = (enum_element eelement);

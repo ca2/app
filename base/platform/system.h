@@ -665,7 +665,7 @@ namespace base
 //
 //      //virtual void on_request(::create * pcreate) override;
 //
-//      __pointer(regex) create_pcre(const string& str);
+//      __pointer(regex) compile_pcre(const string& str);
 //      __pointer(regex_context) create_pcre_context(int iCount);
 //      virtual int pcre_add_tokens(string_array& stra, const string& strTopic, const string& strRegexp, int nCount);
 //

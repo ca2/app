@@ -987,7 +987,7 @@ namespace user
 
       //      ptopic->m_atom = id_place_child_title_change;
 
-      //      ptopic->get_extended_topic()->user_interaction() = pholder;
+      //      ptopic->user_interaction() = pholder;
 
       //      pparent->apply(ptopic);
 
@@ -1518,11 +1518,11 @@ namespace user
 
       }
 
-      ::extended_topic extendedtopic(::id_set_focus);
+      auto ptopic = __new(::topic(::id_set_focus));
 
-      extendedtopic.m_puserelement = this;
+      ptopic->m_puserelement = this;
 
-      route(&extendedtopic);
+      route(ptopic);
 
    }
 
@@ -1555,11 +1555,11 @@ namespace user
 
       }
 
-      ::extended_topic extendedtopic(::id_kill_focus);
+      auto ptopic = __new(::topic(::id_kill_focus));
 
-      extendedtopic.m_puserelement = this;
+      ptopic->m_puserelement = this;
 
-      route(&extendedtopic);
+      route(ptopic);
 
    }
 
@@ -4615,11 +4615,11 @@ return "";
 
       m_bReposition = true;
 
-      ::extended_topic extendedtopic(::id_create);
+      auto ptopic = __new(::topic(::id_create));
 
-      extendedtopic.m_puserelement = this;
+      ptopic->m_puserelement = this;
 
-      route(&extendedtopic);
+      route(ptopic);
 
       //auto psession = get_session();
 
@@ -9536,7 +9536,7 @@ void interaction::EndModalLoop(atom idResult)
 //
 //      handle(ptopic, pcontext);
 //
-//      if (ptopic->get_extended_topic()->m_bRet)
+//      if (ptopic->m_bRet)
 //      {
 //
 //         return;
@@ -9545,7 +9545,7 @@ void interaction::EndModalLoop(atom idResult)
 //
 //      on_notify_control_event(pevent);
 //
-//      if (ptopic->get_extended_topic()->m_bRet)
+//      if (ptopic->m_bRet)
 //      {
 //
 //         return;
@@ -9565,7 +9565,7 @@ void interaction::EndModalLoop(atom idResult)
 //
 //         pusercallback->handle(ptopic, pcontext);
 //
-//         if (ptopic->get_extended_topic()->m_bRet)
+//         if (ptopic->m_bRet)
 //         {
 //
 //            return;
@@ -9581,7 +9581,7 @@ void interaction::EndModalLoop(atom idResult)
 //
 //         pinteractionBind->handle(ptopic, pcontext);
 //
-//         if (ptopic->get_extended_topic()->m_bRet)
+//         if (ptopic->m_bRet)
 //         {
 //
 //            return;
@@ -14151,12 +14151,12 @@ order(zorderParam);
       if (pkey->m_ekey == ::user::e_key_tab)
       {
 
-         ::extended_topic extendedtopic(::id_tab_key);
+         auto ptopic = __new(::topic(::id_tab_key));
 
-         extendedtopic.m_puserelement = dynamic_cast <::user::interaction *> (this);
-         extendedtopic.m_actioncontext = ::e_source_user;
+         ptopic->m_puserelement = dynamic_cast <::user::interaction *> (this);
+         ptopic->m_actioncontext = ::e_source_user;
 
-         route(&extendedtopic);
+         route(ptopic);
 
       }
 
@@ -14421,15 +14421,15 @@ order(zorderParam);
       if(has_handler())
       {
 
-         ::extended_topic extendedtopic(::id_after_change_cur_sel);
+         auto ptopic = __new(::topic(::id_after_change_cur_sel));
 
-         extendedtopic.m_puserelement = this;
+         ptopic->m_puserelement = this;
 
-         extendedtopic.m_item = item;
+         ptopic->m_item = item;
 
-         extendedtopic.m_actioncontext = context;
+         ptopic->m_actioncontext = context;
 
-         route(&extendedtopic);
+         route(ptopic);
 
          set_need_redraw();
 
@@ -15967,21 +15967,21 @@ order(zorderParam);
                   if(has_handler())
                   {
 
-                     ::extended_topic extendedtopic(id_click);
+                     auto ptopic = __new(::topic(id_click));
 
-                     extendedtopic.m_puserelement = this;
+                     ptopic->m_puserelement = this;
 
-                     extendedtopic.m_item = item;
+                     ptopic->m_item = item;
 
-                     extendedtopic.m_actioncontext.m_pmessage = pmouse;
+                     ptopic->m_actioncontext.m_pmessage = pmouse;
 
-                     extendedtopic.m_actioncontext.add(::e_source_user);
+                     ptopic->m_actioncontext.add(::e_source_user);
 
-                     route(&extendedtopic);
+                     route(ptopic);
 
-                     INFORMATION("interaction::on_message_left_button_up route_btn_clked=" << (int)extendedtopic.m_bRet);
+                     INFORMATION("interaction::on_message_left_button_up route_btn_clked=" << (int)ptopic->m_bRet);
 
-                     pmessage->m_bRet = extendedtopic.m_bRet;
+                     pmessage->m_bRet = ptopic->m_bRet;
                   
                   }
 

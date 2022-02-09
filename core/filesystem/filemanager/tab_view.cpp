@@ -82,36 +82,36 @@ namespace filemanager
 
          form * pformview = pdocument->get_type_impact < form >();
 
-         ::extended_topic extendedtopic(BROWSE_ID);
+         auto ptopic = __new(::topic(BROWSE_ID));
 
          if (pimpactdata->m_atom == "new_folder")
          {
 
-            extendedtopic.payload(FORM_ID) = "matter://filemanager/new_folder.html";
+            ptopic->payload(FORM_ID) = "matter://filemanager/new_folder.html";
 
          }
          if (pimpactdata->m_atom == "replace_name")
          {
 
-            extendedtopic.payload(FORM_ID) = "matter://filemanager/replace_name_in_file_system.html";
+            ptopic->payload(FORM_ID) = "matter://filemanager/replace_name_in_file_system.html";
 
          }
          else if (pimpactdata->m_atom == "add_location")
          {
 
-            extendedtopic.payload(FORM_ID) = "matter://filemanager/add_location_1.html";
+            ptopic->payload(FORM_ID) = "matter://filemanager/add_location_1.html";
 
          }
 
-         extendedtopic.payload("creator") = pimpactdata->m_atom;
+         ptopic->payload("creator") = pimpactdata->m_atom;
 
-         pdocument->update_all_views(&extendedtopic);
+         pdocument->update_all_views(&ptopic->;
 
          //ptopic->m_pcontext = ptopic->context(id_after_browse);
 
-         extendedtopic.m_atom = id_after_browse;
+         ptopic->m_atom = id_after_browse;
 
-         pdocument->update_all_views(&extendedtopic);
+         pdocument->update_all_views(&ptopic->;
 
          pimpactdata->m_pdocument = pdocument;
 

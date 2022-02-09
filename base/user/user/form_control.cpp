@@ -377,10 +377,10 @@ namespace user
       if (ptopic->m_atom == ::id_create)
       {
 
-         if (is_child(ptopic->get_extended_topic()->user_interaction()))
+         if (is_child(ptopic->user_interaction()))
          {
 
-            ptopic->get_extended_topic()->user_interaction()->m_pform = this;
+            ptopic->user_interaction()->m_pform = this;
 
          }
 
@@ -388,10 +388,10 @@ namespace user
       else if (ptopic->m_atom == ::id_set_focus)
       {
 
-         if (!_001OnControlSetFocus(ptopic->get_extended_topic()->user_interaction()))
+         if (!_001OnControlSetFocus(ptopic->user_interaction()))
          {
 
-            ptopic->get_extended_topic()->Nok();
+            ptopic->Nok();
 
             return;
 
@@ -401,10 +401,10 @@ namespace user
       else if (ptopic->m_atom == ::id_kill_focus)
       {
 
-         if (!_001OnControlKillFocus(ptopic->get_extended_topic()->user_interaction()))
+         if (!_001OnControlKillFocus(ptopic->user_interaction()))
          {
 
-            ptopic->get_extended_topic()->Nok();
+            ptopic->Nok();
 
             return;
 
@@ -417,7 +417,7 @@ namespace user
 
       //   m_pcallback->handle(ptopic, pcontext);
 
-      //   if(ptopic->get_extended_topic()->m_bRet)
+      //   if(ptopic->m_bRet)
       //   {
 
       //      return;
@@ -428,7 +428,7 @@ namespace user
 
       ::user::interaction::handle(ptopic, pcontext);
 
-      if (ptopic->get_extended_topic()->m_bRet)
+      if (ptopic->m_bRet)
       {
 
          return;
@@ -438,7 +438,7 @@ namespace user
       if (ptopic->m_atom == ::id_tab_key)
       {
 
-         __pointer(::user::primitive) pfocus = ptopic->get_extended_topic()->user_interaction()->keyboard_get_next_focusable();
+         __pointer(::user::primitive) pfocus = ptopic->user_interaction()->keyboard_get_next_focusable();
 
          if (pfocus != nullptr)
          {
@@ -451,7 +451,7 @@ namespace user
       else if (ptopic->m_atom == ::id_click)
       {
 
-         __pointer(interaction) pinteraction = ptopic->get_extended_topic()->user_interaction();
+         __pointer(interaction) pinteraction = ptopic->user_interaction();
 
          if (::is_null(pinteraction))
          {
@@ -468,7 +468,7 @@ namespace user
 
                _001OnButtonAction(pinteraction);
 
-               ptopic->get_extended_topic()->m_bRet = true;
+               ptopic->m_bRet = true;
 
                return;
 
@@ -483,10 +483,10 @@ namespace user
          }
 
       }
-      else if (ptopic->m_atom == ::id_set_check && ptopic->get_extended_topic()->m_actioncontext.is_user_source())
+      else if (ptopic->m_atom == ::id_set_check && ptopic->m_actioncontext.is_user_source())
       {
 
-         __pointer(interaction) pinteraction = ptopic->get_extended_topic()->user_interaction();
+         __pointer(interaction) pinteraction = ptopic->user_interaction();
 
          if (!pinteraction)
          {
@@ -513,7 +513,7 @@ namespace user
 
             pclient->data_get(pinteraction->m_datakey, ia);
 
-            __pointer(check) pcheck = ptopic->get_extended_topic()->user_interaction();
+            __pointer(check) pcheck = ptopic->user_interaction();
 
             if (pcheck->echeck() == ::check_checked)
             {
@@ -539,7 +539,7 @@ namespace user
 
          m_pcallback->handle(ptopic, pcontext);
 
-         if (ptopic->get_extended_topic()->m_bRet)
+         if (ptopic->m_bRet)
          {
 
             return;
@@ -955,7 +955,7 @@ namespace user
       if (bSaveAndValidate)
       {
 
-         pextendedtopic = create_extended_topic(::id_save_form_data);
+         pextendedtopic = create_topic(::id_save_form_data);
 
          m_bNeedSaveFormData = false;
 
@@ -963,7 +963,7 @@ namespace user
       else
       {
 
-         pextendedtopic = create_extended_topic(::id_load_form_data);
+         pextendedtopic = create_topic(::id_load_form_data);
 
          m_bNeedLoadFormData = false;
 
@@ -1051,13 +1051,13 @@ namespace user
    void form_control::_001OnInitializeForm(::user::interaction * pinteraction)
    {
 
-      ::extended_topic extendedtopic(::id_initialize_control);
+      auto ptopic = __new(::topic(::id_initialize_control));
 
-      extendedtopic.m_puserelement        = pinteraction;
-      extendedtopic.m_actioncontext       = ::e_source_database;
-      extendedtopic.m_uiEvent             = 0;
+      ptopic->m_puserelement        = pinteraction;
+      ptopic->m_actioncontext       = ::e_source_database;
+      ptopic->m_uiEvent             = 0;
 
-      route(&extendedtopic);
+      route(ptopic);
 
    }
 
@@ -1310,10 +1310,10 @@ namespace user
    //   if (ptopic->m_atom == ::id_create)
    //   {
 
-   //      if (is_child(ptopic->get_extended_topic()->user_interaction()))
+   //      if (is_child(ptopic->user_interaction()))
    //      {
 
-   //         ptopic->get_extended_topic()->user_interaction()->m_pform = this;
+   //         ptopic->user_interaction()->m_pform = this;
 
    //      }
 
@@ -1321,10 +1321,10 @@ namespace user
    //   else if(ptopic->m_atom == ::id_set_focus)
    //   {
 
-   //      if(!_001OnControlSetFocus(ptopic->get_extended_topic()->user_interaction()))
+   //      if(!_001OnControlSetFocus(ptopic->user_interaction()))
    //      {
 
-   //         ptopic->get_extended_topic()->Nok();
+   //         ptopic->Nok();
 
    //         return;
 
@@ -1334,10 +1334,10 @@ namespace user
    //   else if(ptopic->m_atom == ::id_kill_focus)
    //   {
 
-   //      if(!_001OnControlKillFocus(ptopic->get_extended_topic()->user_interaction()))
+   //      if(!_001OnControlKillFocus(ptopic->user_interaction()))
    //      {
 
-   //         ptopic->get_extended_topic()->Nok();
+   //         ptopic->Nok();
 
    //         return;
 
@@ -1350,7 +1350,7 @@ namespace user
 
    //   //   m_pcallback->handle(ptopic, pcontext);
 
-   //   //   if(ptopic->get_extended_topic()->m_bRet)
+   //   //   if(ptopic->m_bRet)
    //   //   {
 
    //   //      return;
@@ -1361,7 +1361,7 @@ namespace user
 
    //   ::user::interaction::handle(ptopic, pcontext);
 
-   //   if(ptopic->get_extended_topic()->m_bRet)
+   //   if(ptopic->m_bRet)
    //   {
 
    //      return;
@@ -1371,7 +1371,7 @@ namespace user
    //   if(ptopic->m_atom == ::id_tab_key)
    //   {
 
-   //      __pointer(::user::primitive) pfocus = ptopic->get_extended_topic()->user_interaction()->keyboard_get_next_focusable();
+   //      __pointer(::user::primitive) pfocus = ptopic->user_interaction()->keyboard_get_next_focusable();
 
    //      if(pfocus != nullptr)
    //      {
@@ -1384,7 +1384,7 @@ namespace user
    //   else if(ptopic->m_atom == ::id_click)
    //   {
 
-   //      __pointer(interaction) pinteraction = ptopic->get_extended_topic()->user_interaction();
+   //      __pointer(interaction) pinteraction = ptopic->user_interaction();
 
    //      if (::is_null(pinteraction))
    //      {
@@ -1401,7 +1401,7 @@ namespace user
 
    //            _001OnButtonAction(pinteraction);
 
-   //            ptopic->get_extended_topic()->m_bRet = true;
+   //            ptopic->m_bRet = true;
 
    //            return;
 
@@ -1416,10 +1416,10 @@ namespace user
    //      }
 
    //   }
-   //   else if(ptopic->m_atom == ::id_set_check && ptopic->get_extended_topic()->m_actioncontext.is_user_source())
+   //   else if(ptopic->m_atom == ::id_set_check && ptopic->m_actioncontext.is_user_source())
    //   {
 
-   //      __pointer(interaction) pinteraction = ptopic->get_extended_topic()->user_interaction();
+   //      __pointer(interaction) pinteraction = ptopic->user_interaction();
 
    //      if (!pinteraction)
    //      {
@@ -1446,7 +1446,7 @@ namespace user
 
    //         pclient->data_get(pinteraction->m_datakey, ia);
 
-   //         __pointer(check) pcheck = ptopic->get_extended_topic()->user_interaction();
+   //         __pointer(check) pcheck = ptopic->user_interaction();
 
    //         if(pcheck->echeck() == ::check_checked)
    //         {
@@ -1472,7 +1472,7 @@ namespace user
 
    //      m_pcallback->handle(ptopic, pcontext);
 
-   //      if (ptopic->get_extended_topic()->m_bRet)
+   //      if (ptopic->m_bRet)
    //      {
 
    //         return;
@@ -1653,26 +1653,26 @@ namespace user
       if(m_pcallback != nullptr)
       {
 
-         ::extended_topic extendedtopic(id_timer);
+         auto ptopic = __new(::topic(id_timer));
 
-         extendedtopic.m_puserelement = this;
+         ptopic->m_puserelement = this;
 
-         extendedtopic.m_uiEvent = ptimer->m_uEvent;
+         ptopic->m_uiEvent = ptimer->m_uEvent;
 
-         extendedtopic.m_etimer = ptimer->m_etimer;
+         ptopic->m_etimer = ptimer->m_etimer;
 
          auto papplication = get_application();
 
-         papplication->route(&extendedtopic);
+         papplication->route(ptopic);
 
-         if(extendedtopic.m_bRet)
+         if(ptopic->m_bRet)
          {
 
             return;
 
          }
 
-         m_pcallback->route(&extendedtopic);
+         m_pcallback->route(ptopic);
 
       }
 

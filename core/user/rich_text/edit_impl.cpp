@@ -948,7 +948,7 @@ namespace user
 
             auto pformattool = get_format_tool(false);
 
-            if (ptopic->get_extended_topic()->user_interaction() == pformattool)
+            if (ptopic->user_interaction() == pformattool)
             {
 
                if (pformattool->m_eattribute & attribute_align)
@@ -1032,17 +1032,17 @@ namespace user
 
          {
 
-            ::extended_topic extendedtopic(::id_key_down);
+            auto ptopic = __new(::topic(::id_key_down));
 
-            extendedtopic.m_puserelement = this;
+            ptopic->m_puserelement = this;
 
-            extendedtopic.m_actioncontext.m_pmessage = pmessage;
+            ptopic->m_actioncontext.m_pmessage = pmessage;
 
-            extendedtopic.m_actioncontext = ::e_source_user;
+            ptopic->m_actioncontext = ::e_source_user;
 
-            route(&extendedtopic);
+            route(ptopic);
 
-            if (extendedtopic.m_bRet)
+            if (ptopic->m_bRet)
             {
 
                return;
@@ -1092,15 +1092,15 @@ namespace user
          else if (pkey->m_ekey == ::user::e_key_escape)
          {
 
-            ::extended_topic extendedtopic(::id_escape);
+            auto ptopic = __new(::topic(::id_escape));
 
-            extendedtopic.m_puserelement = this;
+            ptopic->m_puserelement = this;
 
-            extendedtopic.m_actioncontext = ::e_source_user;
+            ptopic->m_actioncontext = ::e_source_user;
 
-            route(&extendedtopic);
+            route(ptopic);
 
-            if (!extendedtopic.m_bRet && extendedtopic.m_bOk)
+            if (!ptopic->m_bRet && ptopic->m_bOk)
             {
 
                on_action("escape");
@@ -1978,15 +1978,15 @@ namespace user
 
          m_pdata->optimize_data();
 
-         ::extended_topic extendedtopic(atom);
+         auto ptopic = __new(::topic(atom));
 
          //topic.m_atom = eevent;
 
          //topic.m_atom = m_atom;
 
-         extendedtopic.m_puserelement = this;
+         ptopic->m_puserelement = this;
 
-         route(&extendedtopic);
+         route(ptopic);
 
          set_need_layout();
 

@@ -176,12 +176,12 @@ namespace user
    void color_combo_box::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if(ptopic->get_extended_topic()->m_puserelement == m_pimpact)
+      if(ptopic->m_puserelement == m_pimpact)
       {
 
-         ptopic->get_extended_topic()->m_puserelement = this;
+         ptopic->m_puserelement = this;
 
-         ptopic->get_extended_topic()->m_puserelement->m_atom = m_atom;
+         ptopic->m_puserelement->m_atom = m_atom;
 
          m_hls = m_pimpact->m_hls;
 

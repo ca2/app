@@ -830,11 +830,11 @@ break_click:;
 
          //auto pformlist = this;
 
-         ::extended_topic extendedtopic(id_control_saved);
+         auto ptopic = __new(::topic(id_control_saved));
 
-         extendedtopic.m_puserelement = pinteraction;
+         ptopic->m_puserelement = pinteraction;
 
-         route(&extendedtopic);
+         route(ptopic);
          
          //pformlist->handle_subject(ptopic);
 
@@ -921,11 +921,11 @@ break_click:;
 
          //auto pformlist = this;
 
-         ::extended_topic extendedtopic(id_control_saved);
+         auto ptopic = __new(::topic(id_control_saved));
 
-         extendedtopic.m_puserelement = pinteraction;
+         ptopic->m_puserelement = pinteraction;
 
-         route(&extendedtopic);
+         route(ptopic);
 
          //pformlist->handle_subject(ptopic);
 
@@ -1889,7 +1889,7 @@ break_click:;
       if (ptopic->m_atom == ::id_set_check)
       {
 
-         auto puserinteraction = ptopic->get_extended_topic()->user_interaction();
+         auto puserinteraction = ptopic->user_interaction();
 
          auto iSubItem = puserinteraction->m_iSubItem;
 
@@ -1906,7 +1906,7 @@ break_click:;
       else if (ptopic->m_atom == ::id_after_change_cur_sel)
       {
 
-         if (m_pcontrolEdit == ptopic->get_extended_topic()->user_interaction())
+         if (m_pcontrolEdit == ptopic->user_interaction())
          {
 
             if (m_pcontrolEdit->has_function(::user::e_control_function_data_selection))
@@ -1914,7 +1914,7 @@ break_click:;
 
                _001SaveEdit(m_pcontrolEdit);
 
-               ptopic->get_extended_topic()->m_bRet = true;
+               ptopic->m_bRet = true;
 
             }
 
@@ -1931,7 +1931,7 @@ break_click:;
 
             _001HideControl(m_pcontrolEdit);
 
-            ptopic->get_extended_topic()->m_bRet = true;
+            ptopic->m_bRet = true;
 
          }
 
@@ -1954,7 +1954,7 @@ break_click:;
 
             _001HideControl(m_pcontrolEdit);
 
-            ptopic->get_extended_topic()->m_bRet = true;
+            ptopic->m_bRet = true;
 
          }
 
@@ -1982,7 +1982,7 @@ break_click:;
 
             _001PlaceControl(pinteraction, iItem);
 
-            ptopic->get_extended_topic()->m_bRet = true;
+            ptopic->m_bRet = true;
 
          }
 
@@ -1990,7 +1990,7 @@ break_click:;
       else if (ptopic->m_atom == ::id_key_down)
       {
 
-         SCAST_PTR(::message::key, pkey, ptopic->get_extended_topic()->m_actioncontext.m_pmessage.m_p);
+         SCAST_PTR(::message::key, pkey, ptopic->m_actioncontext.m_pmessage.m_p);
 
          if (pkey->m_ekey == e_key_down || pkey->m_ekey == e_key_up
                || pkey->m_ekey == e_key_left || pkey->m_ekey == e_key_right)
@@ -2050,7 +2050,7 @@ break_click:;
                _001SaveEdit(m_pcontrolEdit);
                _001HideControl(m_pcontrolEdit);
 
-               ptopic->get_extended_topic()->m_bRet = true;
+               ptopic->m_bRet = true;
 
             }
 
@@ -2112,7 +2112,7 @@ break_click:;
 
                }
 
-               ptopic->get_extended_topic()->m_bRet = true;
+               ptopic->m_bRet = true;
 
             }
 
@@ -2120,7 +2120,7 @@ break_click:;
 
       }
 
-      if (ptopic->get_extended_topic()->m_bRet)
+      if (ptopic->m_bRet)
       {
 
          return;

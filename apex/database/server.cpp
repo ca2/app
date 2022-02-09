@@ -125,7 +125,7 @@ namespace database
          if (::is_set(ptopic))
          {
 
-            ptopic->get_extended_topic()->m_pmatter = m_clienta.element_at(i);
+            ptopic->m_pmatter = m_clienta.element_at(i);
 
          }
 

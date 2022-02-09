@@ -23,7 +23,7 @@ namespace browser
 
       m_dFps                     = 0.0;
 
-      m_ppcre = psystem->create_pcre("\\:\\-\\)");
+      m_ppcre = psystem->compile_pcre("\\:\\-\\)");
 
    }
 

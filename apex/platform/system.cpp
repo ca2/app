@@ -4962,10 +4962,10 @@ namespace apex
 //
 //      psignal->notify();
       
-      if(ptopic->get_extended_topic()->m_atom == id_set_dark_mode)
+      if(ptopic->m_atom == id_set_dark_mode)
       {
          
-         if(ptopic->get_extended_topic()->m_payload.is_true())
+         if(ptopic->_extended_topic()->m_payload.is_true())
          {
 
             m_pnode->background_color(::color::black);
@@ -4997,7 +4997,7 @@ namespace apex
       else if (ptopic->m_atom == id_open_hyperlink)
       {
 
-         auto plink = ptopic->get_extended_topic()->m_payload.cast < ::hyperlink >();
+         auto plink = ptopic->_extended_topic()->m_payload.cast < ::hyperlink >();
 
          if (plink)
          {

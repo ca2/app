@@ -119,7 +119,7 @@ namespace filemanager
 
       ::user::impact::handle(ptopic, pcontext);
 
-      if (ptopic->m_atom == INITIALIZE_ID && ptopic->get_extended_topic()->m_puserelement == this)
+      if (ptopic->m_atom == INITIALIZE_ID && ptopic->m_puserelement == this)
       {
          //            filemanager_document() = pupdate->filemanager_document();
          /*            m_pserverNext = simpledb::AppGet()->GetDataServer();
@@ -137,14 +137,14 @@ namespace filemanager
       }
       else if (ptopic->m_atom == FILTER_ID)
       {
-         /*if(ptopic->get_extended_topic()->payload(id_filter).is_empty())
+         /*if(ptopic->payload(id_filter).is_empty())
          {
          FilterClose();
          }
          else
          {
          FilterBegin();
-         Filter1(ptopic->get_extended_topic()->payload(id_filter));
+         Filter1(ptopic->payload(id_filter));
          FilterApply();
          }*/
       }
@@ -377,7 +377,7 @@ namespace filemanager
             }
 
          }
-         else if (ptopic->get_extended_topic()->m_puserelement == this && ptopic->m_atom == id_initialize)
+         else if (ptopic->m_puserelement == this && ptopic->m_atom == id_initialize)
          {
             //            filemanager_document() = pupdate->filemanager_document();
             /*            m_pserverNext = simpledb::AppGet()->GetDataServer();
@@ -395,14 +395,14 @@ namespace filemanager
          }
          else if (ptopic->m_atom == id_filter)
          {
-            /*if(ptopic->get_extended_topic()->payload(id_filter).is_empty())
+            /*if(ptopic->payload(id_filter).is_empty())
             {
             FilterClose();
             }
             else
             {
             FilterBegin();
-            Filter1(ptopic->get_extended_topic()->payload(id_filter));
+            Filter1(ptopic->payload(id_filter));
             FilterApply();
             }*/
          }

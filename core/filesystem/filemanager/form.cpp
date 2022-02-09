@@ -22,31 +22,31 @@ namespace filemanager
       if(ptopic->m_atom == ::id_click)
       {
 
-         if(ptopic->get_extended_topic()->user_interaction()->m_atom == "lfs")
+         if(ptopic->user_interaction()->m_atom == "lfs")
          {
 
-            ::extended_topic extendedtopic(BROWSE_ID);
+            auto ptopic = __new(::topic(BROWSE_ID));
 
-            extendedtopic.payload(id_form) = "filemanager_add_location_lfs.xhtml";
+            ptopic->payload(id_form) = "filemanager_add_location_lfs.xhtml";
 
-            get_document()->update_all_views(&extendedtopic);
+            get_document()->update_all_views(&ptopic->;
 
             auto pinteraction = get_child_by_name("lfs");
 
             pinteraction->_001SetText(filemanager_item()->m_filepathUser,::e_source_user);
 
          }
-         else if(ptopic->get_extended_topic()->user_interaction()->m_atom == "ftp")
+         else if(ptopic->user_interaction()->m_atom == "ftp")
          {
 
-            ::extended_topic extendedtopic(id_browse);
+            auto ptopic = __new(::topic(id_browse));
 
-            extendedtopic.payload(id_form) = "filemanager_add_location_ftp.xhtml";
+            ptopic->payload(id_form) = "filemanager_add_location_ftp.xhtml";
 
-            get_document()->update_all_views(&extendedtopic);
+            get_document()->update_all_views(&ptopic->;
 
          }
-         else if(ptopic->get_extended_topic()->user_interaction()->m_atom == "submit")
+         else if(ptopic->user_interaction()->m_atom == "submit")
          {
 
             if(m_strPath == "filemanager_add_location_lfs.xhtml")
@@ -74,33 +74,33 @@ namespace filemanager
             else if(m_atomCreator == "replace_name")
             {
 
-               ::extended_topic extendedtopic(id_replace_name);
+               auto ptopic = __new(::topic(id_replace_name));
 
                auto pinteraction = get_child_by_name("find");
 
-               pinteraction->_001GetText(extendedtopic.payload(id_find).as_string());
+               pinteraction->_001GetText(ptopic->payload(id_find).as_string());
 
                pinteraction = get_child_by_name("replace");
 
-               pinteraction->_001GetText(extendedtopic.payload(id_replace).as_string());
+               pinteraction->_001GetText(ptopic->payload(id_replace).as_string());
 
                auto pdocument =  filemanager_document();
 
-               pdocument->update_all_views(&extendedtopic);
+               pdocument->update_all_views(&ptopic->;
 
             }
             else if (m_atomCreator == "new_folder")
             {
                
-               ::extended_topic extendedtopic(id_new_folder);
+               auto ptopic = __new(::topic(id_new_folder));
 
                auto pinteraction = get_child_by_name("name");
 
-               pinteraction->_001GetText(extendedtopic.payload(id_text).as_string());
+               pinteraction->_001GetText(ptopic->payload(id_text).as_string());
 
                auto pdocument = filemanager_document();
 
-               pdocument->update_all_views(&extendedtopic);
+               pdocument->update_all_views(&ptopic->;
 
             }
 

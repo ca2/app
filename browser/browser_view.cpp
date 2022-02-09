@@ -47,7 +47,7 @@ namespace browser
 
       m_b001LayoutIgnoreEmpty = false;
 
-      m_ppcre = psystem->create_pcre("\\:\\-\\)");
+      m_ppcre = psystem->compile_pcre("\\:\\-\\)");
 
    }
 
@@ -264,7 +264,7 @@ namespace browser
 
          auto * peditview = _001TypedWindow < ::userex::top_edit_view >();
 
-         if (peditview != nullptr && ptopic->get_extended_topic()->user_interaction() == peditview)
+         if (peditview != nullptr && ptopic->user_interaction() == peditview)
          {
 
             string strText;

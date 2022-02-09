@@ -208,9 +208,9 @@ void html_form::on_layout(::draw2d::graphics_pointer & pgraphics)
 
    {
 
-      auto ptopic = create_extended_topic(::id_layout);
+      auto ptopic = create_topic(::id_layout);
 
-      ptopic->get_extended_topic()->m_puserelement = this;
+      ptopic->m_puserelement = this;
 
       route(ptopic);
 
@@ -858,7 +858,7 @@ void html_form_view::handle(::topic * ptopic, ::context * pcontext)
 
          defer_html_layout();
 
-         on_document_complete(ptopic->get_extended_topic()->payload(id_url));
+         on_document_complete(ptopic->payload(id_url));
 
          get_parent_frame()->set_active_view(this);
 
@@ -874,19 +874,19 @@ void html_form_view::handle(::topic * ptopic, ::context * pcontext)
       if (ptopic->m_atom == id_browse)
       {
 
-         if (!ptopic->get_extended_topic()->payload(id_form).is_empty())
+         if (!ptopic->payload(id_form).is_empty())
          {
 
             ::file::path matter;
 
             auto pcontext = get_context();
 
-            matter = pcontext->m_papexcontext->dir().matter(ptopic->get_extended_topic()->payload(id_form));
+            matter = pcontext->m_papexcontext->dir().matter(ptopic->payload(id_form));
 
             if (get_document()->on_open_document(matter))
             {
 
-               m_strPath = ptopic->get_extended_topic()->payload(id_form);
+               m_strPath = ptopic->payload(id_form);
 
             }
 
@@ -894,7 +894,7 @@ void html_form_view::handle(::topic * ptopic, ::context * pcontext)
          else if (ptopic->m_atom == id_get_form_view)
          {
 
-            ptopic->get_extended_topic()->payload(id_form) = this;
+            ptopic->payload(id_form) = this;
 
          }
 
@@ -903,7 +903,7 @@ void html_form_view::handle(::topic * ptopic, ::context * pcontext)
       if (m_pcallback != nullptr)
       {
 
-         ptopic->get_extended_topic()->payload(id_form) = this;
+         ptopic->payload(id_form) = this;
 
          m_pcallback->handle(ptopic, pcontext);
 
@@ -940,7 +940,7 @@ void html_view::handle(::topic * ptopic, ::context * pcontext)
 
          }
          
-         on_document_complete(ptopic->get_extended_topic()->payload(id_url));
+         on_document_complete(ptopic->payload(id_url));
 
          set_need_layout();
 

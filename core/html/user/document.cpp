@@ -239,11 +239,11 @@ bool html_document::on_open_document(const ::payload & payloadFile)
 
    auto phtmldocument = this;
 
-   ::extended_topic extendedtopic(id_document_complete);
+   auto ptopic = __new(::topic(id_document_complete));
 
-   extendedtopic.payload(id_url) = payloadFile;
+   ptopic->payload(id_url) = payloadFile;
 
-   phtmldocument->update_all_views(&extendedtopic);
+   phtmldocument->update_all_views(&ptopic->;
 
    //data_set({ "LastOpenedFile", true }, get_file_path());
 
@@ -281,7 +281,7 @@ void html_document::soft_reload()
 //
 //   ptopic->m_atom = id_document_complete;
 //
-//   ptopic->get_extended_topic()->payload(id_url) = get_file_path();
+//   ptopic->payload(id_url) = get_file_path();
 //
 //   update_all_views(pupdate);
 

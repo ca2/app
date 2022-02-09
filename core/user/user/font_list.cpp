@@ -172,15 +172,15 @@ namespace user
          if(has_handler())
          {
 
-            ::extended_topic extendedtopic(::id_after_change_cur_sel);
+            auto ptopic = __new(::topic(::id_after_change_cur_sel));
 
-            extendedtopic.m_puserelement = this;
+            ptopic->m_puserelement = this;
 
-            extendedtopic.m_actioncontext = ::e_source_user;
+            ptopic->m_actioncontext = ::e_source_user;
 
-            extendedtopic.m_item = item;
+            ptopic->m_item = item;
 
-            route(&extendedtopic);
+            route(ptopic);
             
          }
 
@@ -221,13 +221,13 @@ namespace user
          if(has_handler())
          {
 
-            ::extended_topic extendedtopic(::id_after_change_cur_hover);
+            auto ptopic = __new(::topic(::id_after_change_cur_hover));
 
-            extendedtopic.m_puserelement = this;
+            ptopic->m_puserelement = this;
 
-            extendedtopic.m_actioncontext = ::e_source_user;
+            ptopic->m_actioncontext = ::e_source_user;
 
-            route(&extendedtopic);
+            route(ptopic);
                
          }
 

@@ -75,7 +75,7 @@ namespace app_message_box
       if (ptopic->m_atom == ::id_click)
       {
 
-         if (ptopic->get_extended_topic()->user_interaction() == m_pbuttonShowMessageBox && ptopic->get_extended_topic()->m_actioncontext.is_user_source())
+         if (ptopic->user_interaction() == m_pbuttonShowMessageBox && ptopic->m_actioncontext.is_user_source())
          {
 
             try
@@ -83,7 +83,7 @@ namespace app_message_box
 
                show_message_box();
 
-               ptopic->get_extended_topic()->m_bRet = true;
+               ptopic->m_bRet = true;
 
                return;
 

@@ -470,17 +470,17 @@ namespace user
       if (iKey == ::user::e_key_return || iKey == ::user::e_key_space)
       {
 
-         ::extended_topic extendedtopic(::id_click);
+         auto ptopic = __new(::topic(::id_click));
 
-         extendedtopic.m_puserelement = this;
+         ptopic->m_puserelement = this;
 
-         extendedtopic.m_actioncontext.m_pmessage = pkey;
+         ptopic->m_actioncontext.m_pmessage = pkey;
 
-         extendedtopic.m_actioncontext.add(e_source_user);
+         ptopic->m_actioncontext.add(e_source_user);
 
-         route(&extendedtopic);
+         route(ptopic);
 
-         pmessage->m_bRet = extendedtopic.m_bRet;
+         pmessage->m_bRet = ptopic->m_bRet;
 
          if (pmessage->m_bRet)
          {

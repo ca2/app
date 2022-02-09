@@ -11,21 +11,20 @@ public:
 
    bool                                   m_bRet : 1;
    e_source                               m_esource;
-   __pointer_array(::matter)        m_objecta;
-   __pointer(::acme::message)       m_pmessage;
-
+   __pointer(__pointer_array(::matter))   m_pobjecta;
+   __pointer(::acme::message)             m_pmessage;
 
 
    action_context() { }
    action_context(::enum_source esource) : m_esource(esource) {  }
-   action_context(const action_context & action_context) : m_esource(action_context.m_esource), m_objecta(action_context.m_objecta) {}
+   action_context(const action_context & action_context) : m_esource(action_context.m_esource), m_pobjecta(action_context.m_pobjecta) {}
    virtual ~action_context() {}
 
 
    inline void add(e_source esource) { m_esource.add(esource); }
-   inline void add(const matter * pobject) { m_objecta.add((::matter *) pobject); }
-   inline index find(const matter * pobject) const { return m_objecta.find_first(pobject); }
-   inline bool contains(const matter * pobject) const { return m_objecta.contains(pobject); }
+   inline void add(const matter * pobject) { if (m_pobjecta) m_pobjecta = __new(__pointer_array(::matter)); m_pobjecta->add((::matter *)pobject); }
+   inline index find(const matter * pobject) const { return !m_pobjecta ? -1 : m_pobjecta->find_first(pobject); }
+   inline bool contains(const matter * pobject) const { return !m_pobjecta ? false : m_pobjecta->contains(pobject); }
 
    inline bool is(e_source esource) const { return m_esource.has(esource); }
    inline bool is_user_source() const { return is(e_source_user); }
@@ -43,7 +42,7 @@ public:
       if (this != &action_context)
       {
          m_esource = action_context.m_esource;
-         m_objecta = action_context.m_objecta;
+         m_pobjecta = action_context.m_pobjecta;
       }
       return *this;
    }

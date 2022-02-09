@@ -112,7 +112,7 @@ namespace filemanager
 
       auto psystem = m_psystem->m_paurasystem;
 
-      auto pdocumentSubject = ptopic->get_extended_topic()->cast < ::user::document >(id_document);
+      auto pdocumentSubject = ptopic->cast < ::user::document >(id_document);
 
       if (filemanager_document() == pdocumentSubject)
       {
@@ -217,7 +217,7 @@ namespace filemanager
                else if (path.final_extension().has_char())
                {
 
-                  string strExtension = ptopic->get_extended_topic()->payload("file_extension");
+                  string strExtension = ptopic->payload("file_extension");
 
                   if (strExtension.has_char())
                   {
@@ -242,7 +242,7 @@ namespace filemanager
 
                strName.find_replace(":", "-");
 
-               ptopview->m_pedit->_001SetText(strName, ptopic->get_extended_topic()->m_actioncontext);
+               ptopview->m_pedit->_001SetText(strName, ptopic->m_actioncontext);
 
                filemanager_data()->m_pdocument->m_strTopic = strName;
 
@@ -278,7 +278,7 @@ namespace filemanager
             if (filemanager_document()->m_emode == ::userfs::mode_import)
             {
 
-               ptopic->get_extended_topic()->m_bRet = filemanager_data()->m_pdocumentTopic->on_filemanager_open(filemanager_document(), ptopic->get_extended_topic()->m_pfileitem->m_filepathUser);
+               ptopic->m_bRet = filemanager_data()->m_pdocumentTopic->on_filemanager_open(filemanager_document(), ptopic->m_pfileitem->m_filepathUser);
 
             }
 

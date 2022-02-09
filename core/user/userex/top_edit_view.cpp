@@ -79,13 +79,13 @@ namespace userex
 
       auto pkey = pmessage->m_union.m_pkey;
 
-      ::extended_topic extendedtopic(id_key_down);
+      auto ptopic = __new(::topic(id_key_down));
 
-      extendedtopic.m_puserelement = this;
+      ptopic->m_puserelement = this;
 
-      extendedtopic.m_ekey = pkey->m_ekey;
+      ptopic->m_ekey = pkey->m_ekey;
 
-      get_document()->update_all_views(&extendedtopic);
+      get_document()->update_all_views(&ptopic->;
 
       if (pkey->m_ekey == ::user::e_key_return)
       {
@@ -127,7 +127,7 @@ namespace userex
             if (::is_set(pdocument))
             {
 
-               auto pextendedtopic = create_extended_topic(id_after_change_text_delayed);
+               auto pextendedtopic = create_topic(id_after_change_text_delayed);
 
                pextendedtopic->m_puserelement = this;
 
@@ -158,7 +158,7 @@ namespace userex
 
          auto ptopeditview = this;
 
-         auto pextendedtopic = create_extended_topic(id_after_change_text);
+         auto pextendedtopic = create_topic(id_after_change_text);
 
          pextendedtopic->m_psender = this;
 

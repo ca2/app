@@ -117,7 +117,7 @@ namespace usernet
       if(ptopic->m_atom == ::id_click)
       {
 
-         if(ptopic->get_extended_topic()->user_interaction()->m_atom == "submit")
+         if(ptopic->user_interaction()->m_atom == "submit")
          {
 
             auto pinteraction = m_pimpact->get_child_by_name("server");

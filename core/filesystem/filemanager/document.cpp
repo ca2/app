@@ -241,13 +241,13 @@ namespace filemanager
 
          __pointer(document) pdocument = this;
 
-         ::extended_topic extendedtopic(TOPIC_OK_ID);
+         auto ptopic = __new(::topic(TOPIC_OK_ID));
 
-         extendedtopic.payload(DOCUMENT_ID) = pdocument;
+         ptopic->payload(DOCUMENT_ID) = pdocument;
 
-         extendedtopic.m_pfileitem = itema.get_first_pointer();
+         ptopic->m_pfileitem = itema.get_first_pointer();
 
-         pdocument->update_all_views(&extendedtopic);
+         pdocument->update_all_views(&ptopic->;
 
          pfilemanagerdata->m_pdocumentTopic = nullptr;
 
@@ -663,13 +663,13 @@ namespace filemanager
       if (!fs_data()->is_zero_latency(pitem->m_filepathFinal))
       {
 
-         ::extended_topic extendedtopic(SYNCHRONIZE_PATH_ID);
+         auto ptopic = __new(::topic(SYNCHRONIZE_PATH_ID));
 
-         extendedtopic.m_actioncontext = context + ::e_source_sync + ::e_source_system;
+         ptopic->m_actioncontext = context + ::e_source_sync + ::e_source_system;
 
-         extendedtopic.m_pfileitem = pitem;
+         ptopic->m_pfileitem = pitem;
 
-         update_all_views(&extendedtopic);
+         update_all_views(&ptopic->;
 
       }
 
@@ -696,13 +696,13 @@ namespace filemanager
 
       }
 
-      ::extended_topic extendedtopic(SYNCHRONIZE_PATH_ID);
+      auto ptopic = __new(::topic(SYNCHRONIZE_PATH_ID));
 
-      extendedtopic.m_actioncontext = context + ::e_source_sync;
+      ptopic->m_actioncontext = context + ::e_source_sync;
 
-      extendedtopic.m_pfileitem = pitem;
+      ptopic->m_pfileitem = pitem;
 
-      update_all_views(&extendedtopic);
+      update_all_views(&ptopic->;
 
    }
 
@@ -744,7 +744,7 @@ namespace filemanager
    void document::OpenSelectionProperties()
    {
 
-      auto pextendedtopic = create_extended_topic(id_open_selection_properties);
+      auto pextendedtopic = create_topic(id_open_selection_properties);
 
       update_all_views(pextendedtopic);
 
@@ -1011,11 +1011,11 @@ namespace filemanager
       if (m_emode == ::userfs::mode_saving || m_emode == ::userfs::mode_export)
       {
 
-         ::extended_topic extendedtopic(id_topic_ok);
+         auto ptopic = __new(::topic(id_topic_ok));
 
-         extendedtopic.payload(id_document) = this;
+         ptopic->payload(id_document) = this;
 
-         update_all_views(&extendedtopic);
+         update_all_views(&ptopic->;
 
       }
 
@@ -1032,11 +1032,11 @@ namespace filemanager
       if (m_emode == ::userfs::mode_import)
       {
 
-         ::extended_topic extendedtopic(id_topic_ok);
+         auto ptopic = __new(::topic(id_topic_ok));
 
-         extendedtopic.payload(id_document) = this;
+         ptopic->payload(id_document) = this;
 
-         update_all_views(&extendedtopic);
+         update_all_views(&ptopic->;
 
       }
 
@@ -1051,11 +1051,11 @@ namespace filemanager
       if (m_emode == ::userfs::mode_saving)
       {
 
-         ::extended_topic extendedtopic(id_topic_ok);
+         auto ptopic = __new(::topic(id_topic_ok));
 
-         extendedtopic.payload(id_document) = this;
+         ptopic->payload(id_document) = this;
 
-         update_all_views(&extendedtopic);
+         update_all_views(&ptopic->;
 
       }
 
@@ -1069,13 +1069,13 @@ namespace filemanager
 
       CreateImpacts();
 
-      ::extended_topic extendedtopic(id_create_bars);
+      auto ptopic = __new(::topic(id_create_bars));
 
-      extendedtopic.payload(id_document) = this;
+      ptopic->payload(id_document) = this;
 
       browse(path, ::e_source_database);
 
-      update_all_views(&extendedtopic);
+      update_all_views(&ptopic->;
 
       if (bMakeVisible)
       {
@@ -1094,9 +1094,9 @@ namespace filemanager
 
       CreateImpacts();
 
-      auto ptopic = create_extended_topic(id_create_bars);
+      auto ptopic = create_topic(id_create_bars);
 
-      ptopic->get_extended_topic()->payload(id_document) = this;
+      ptopic->payload(id_document) = this;
 
       if (bInitialBrowsePath)
       {
@@ -1186,7 +1186,7 @@ namespace filemanager
 
       {
 
-         auto ptopic = create_extended_topic(id_initialize);
+         auto ptopic = create_topic(id_initialize);
 
          ptopic->payload(id_document) = this;
 
@@ -1196,7 +1196,7 @@ namespace filemanager
 
       {
 
-         auto ptopic = create_extended_topic(id_synchronize_locations);
+         auto ptopic = create_topic(id_synchronize_locations);
 
          ptopic->m_actioncontext = ::e_source_sync;
 
@@ -1214,11 +1214,11 @@ namespace filemanager
 
       {
 
-         extended_topic extendedtopic(id_create_bars);
+         extended_topic ptopic->id_create_bars);
 
-         extendedtopic.payload(id_document) = this;
+         ptopic->payload(id_document) = this;
 
-         update_all_views(&extendedtopic);
+         update_all_views(&ptopic->;
 
       }
 
@@ -1334,11 +1334,11 @@ namespace filemanager
    void document::GetActiveImpactSelection(::file::item_array & itema)
    {
 
-      ::extended_topic extendedtopic(id_get_active_view_selection);
+      auto ptopic = __new(::topic(id_get_active_view_selection));
 
-      update_all_views(&extendedtopic);
+      update_all_views(&ptopic->;
 
-      itema = *extendedtopic.cast < ::file::item_array>(id_selected);
+      itema = *ptopic->cast < ::file::item_array>(id_selected);
 
    }
 
@@ -1356,7 +1356,7 @@ namespace filemanager
 
       {
 
-         auto pextendedtopic = create_extended_topic(id_topic_start);
+         auto pextendedtopic = create_topic(id_topic_start);
 
          pextendedtopic->payload(id_document) = pdocumentFilemanager;
 
@@ -1366,7 +1366,7 @@ namespace filemanager
 
       {
 
-         auto pextendedtopic = create_extended_topic(id_create_bars);
+         auto pextendedtopic = create_topic(id_create_bars);
 
          pdocumentFilemanager->update_all_views(pextendedtopic);
 
@@ -1388,11 +1388,11 @@ namespace filemanager
 
       {
 
-         ::extended_topic extendedtopic(id_topic_start);
+         auto ptopic = __new(::topic(id_topic_start));
 
-         extendedtopic.payload(id_document) = pdocumentFilemanager;
+         ptopic->payload(id_document) = pdocumentFilemanager;
 
-         pdocumentFilemanager->update_all_views(&extendedtopic);
+         pdocumentFilemanager->update_all_views(&ptopic->;
 
       }
 
@@ -1420,11 +1420,11 @@ namespace filemanager
 
       {
 
-         ::extended_topic extendedtopic(id_topic_start);
+         auto ptopic = __new(::topic(id_topic_start));
 
-         extendedtopic.payload(id_document) = pdocumentFilemanager;
+         ptopic->payload(id_document) = pdocumentFilemanager;
 
-         pdocumentFilemanager->update_all_views(&extendedtopic);
+         pdocumentFilemanager->update_all_views(&ptopic->;
 
       }
 

@@ -294,13 +294,13 @@ namespace user
       if(ptopic->m_atom == ::id_click)
       {
 
-         if(ptopic->get_extended_topic()->user_interaction() == this)
+         if(ptopic->user_interaction() == this)
          {
 
             if (m_pcombo)
             {
 
-               m_pcombo->set_current_item(ptopic->get_extended_topic()->m_item, ptopic->get_extended_topic()->m_actioncontext);
+               m_pcombo->set_current_item(ptopic->m_item, ptopic->m_actioncontext);
 
                m_pcombo->ShowDropDown(false);
 
@@ -308,7 +308,7 @@ namespace user
             else
             {
 
-               set_current_item(ptopic->get_extended_topic()->m_item, ptopic->get_extended_topic()->m_actioncontext);
+               set_current_item(ptopic->m_item, ptopic->m_actioncontext);
 
             }
 

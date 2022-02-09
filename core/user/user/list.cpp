@@ -4154,11 +4154,11 @@ namespace user
    bool list::on_click(const ::item & item)
    {
 
-      ::extended_topic extendedtopic(::id_list_clicked);
+      auto ptopic = __new(::topic(::id_list_clicked));
 
-      extendedtopic.m_puserelement = this;
+      ptopic->m_puserelement = this;
 
-      route(&extendedtopic);
+      route(ptopic);
 
       //if (m_pformcallback != nullptr)
       //{
@@ -4179,7 +4179,7 @@ namespace user
 
       //}
 
-      return extendedtopic.m_bRet;
+      return ptopic->m_bRet;
 
    }
 
@@ -7193,11 +7193,11 @@ namespace user
    void list::_001OnSelectionChange()
    {
 
-      ::extended_topic extendedtopic(::id_after_change_cur_sel);
+      auto ptopic = __new(::topic(::id_after_change_cur_sel));
 
-      extendedtopic.m_puserelement = this;
+      ptopic->m_puserelement = this;
 
-      route(&extendedtopic);
+      route(ptopic);
 
       set_need_redraw();
 

@@ -81,6 +81,10 @@ public:
 
    virtual void on_initialize_object();
 
+
+   //virtual ::topic_pointer _create_topic(const ::atom & atom);
+
+
    inline bool has_error() const {return m_uError != 0;}
 
    //inline bool is_set() const { return ::is_set(this); }
@@ -283,6 +287,7 @@ public:
 
 
    __pointer(::sequence < ::conversation >) message_box(const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok);
+
 
 
 };

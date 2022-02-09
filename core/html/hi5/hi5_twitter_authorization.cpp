@@ -302,7 +302,7 @@ namespace hi5
          if(ptopic->m_atom == ::id_click || ptopic->m_atom == ::id_enter_key)
          {
 
-            if(ptopic->get_extended_topic()->user_interaction()->m_atom == "submit" || ptopic->m_atom == ::id_enter_key)
+            if(ptopic->user_interaction()->m_atom == "submit" || ptopic->m_atom == ::id_enter_key)
             {
 
                auto pinteraction = m_pviewAuth->get_child_by_name("pin");

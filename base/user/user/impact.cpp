@@ -150,15 +150,15 @@ namespace user
 
       {
 
-         ::extended_topic extendedtopic(::id_on_create_impact);
+         auto ptopic = __new(::topic(::id_on_create_impact));
 
-         extendedtopic.m_puserelement              = this;
+         ptopic->m_puserelement              = this;
 
-         extendedtopic.m_actioncontext.m_pmessage    = pmessage;
+         ptopic->m_actioncontext.m_pmessage    = pmessage;
 
-         extendedtopic.m_actioncontext.add(e_source_initialize);
+         ptopic->m_actioncontext.add(e_source_initialize);
 
-         route(&extendedtopic);
+         route(ptopic);
 
       }
 

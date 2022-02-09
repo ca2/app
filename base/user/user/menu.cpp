@@ -914,11 +914,11 @@ namespace user
    void menu::defer_close()
    {
 
-      ::extended_topic extendedtopic(id_context_menu_close);
+      auto ptopic = __new(::topic(id_context_menu_close));
 
-      route(&extendedtopic);
+      route(ptopic);
 
-      if (!m_bInline && !extendedtopic.m_bRet)
+      if (!m_bInline && !ptopic->m_bRet)
       {
 
          post_message(e_message_close);
@@ -934,7 +934,7 @@ namespace user
       if (ptopic->m_atom == ::id_click)
       {
 
-         if (m_pitemClose.is_set() && ptopic->get_extended_topic()->user_interaction() == m_pitemClose->m_puserinteraction)
+         if (m_pitemClose.is_set() && ptopic->user_interaction() == m_pitemClose->m_puserinteraction)
          {
 
             defer_close();
@@ -943,12 +943,12 @@ namespace user
          else
          {
 
-            __pointer(::user::menu_item) pitem = ptopic->get_extended_topic()->user_interaction()->m_pmenuitem;
+            __pointer(::user::menu_item) pitem = ptopic->user_interaction()->m_pmenuitem;
 
             if (pitem != nullptr && !pitem->m_bPopup)
             {
 
-               if (ptopic->get_extended_topic()->user_interaction()->m_atom.begins(astr.ingSysCommand))
+               if (ptopic->user_interaction()->m_atom.begins(astr.ingSysCommand))
                {
 
                   auto pchannelNotify = get_notify_channel();
@@ -960,7 +960,7 @@ namespace user
 
                      //puiTarget->_001SendCommand(&command);
 
-                     pchannelNotify->handle_command(ptopic->get_extended_topic()->user_interaction()->m_atom);
+                     pchannelNotify->handle_command(ptopic->user_interaction()->m_atom);
 
                   }
 
@@ -970,7 +970,7 @@ namespace user
 
                   auto pchannelNotify = m_pchannelNotify;
 
-                  atom idCommand = ptopic->get_extended_topic()->user_interaction()->m_atom;
+                  atom idCommand = ptopic->user_interaction()->m_atom;
 
                   idCommand = translate_property_id(idCommand);
 
@@ -983,11 +983,11 @@ namespace user
 
                      ::message::command command(idCommand);
 
-                     command.m_actioncontext = ptopic->get_extended_topic()->m_actioncontext;
+                     command.m_actioncontext = ptopic->m_actioncontext;
 
                      pchannelNotify->_001SendCommand(&command);
 
-                     ptopic->get_extended_topic()->m_bRet = command.m_bRet;
+                     ptopic->m_bRet = command.m_bRet;
 
                   }
 
@@ -1002,18 +1002,18 @@ namespace user
 //      {
 //
 //         if (m_pitemClose.is_set()
-//               && ptopic->get_extended_topic()->user_interaction() != m_pitemClose->m_puserinteraction)
+//               && ptopic->user_interaction() != m_pitemClose->m_puserinteraction)
 //         {
 //
 //            if (!m_bInline)
 //            {
 //
-//               if (ptopic->get_extended_topic()->user_interaction()->m_pmenuitem != m_pmenuitemSub)
+//               if (ptopic->user_interaction()->m_pmenuitem != m_pmenuitemSub)
 //               {
 //
 //                  {
 //
-//                     __pointer(::user::menu_item) pitem = ptopic->get_extended_topic()->user_interaction()->m_pmenuitem;
+//                     __pointer(::user::menu_item) pitem = ptopic->user_interaction()->m_pmenuitem;
 //
 //                     if (pitem)
 //                     {
@@ -1042,7 +1042,7 @@ namespace user
 //
 //                           ::rectangle_i32 rectangle;
 //
-//                           ptopic->get_extended_topic()->user_interaction()->get_window_rect(rectangle);
+//                           ptopic->user_interaction()->get_window_rect(rectangle);
 //
 //                           m_psubmenu->update_position(rectangle.top_right());
 //
@@ -1081,7 +1081,7 @@ namespace user
 //
 //         }
 //
-//         ptopic->get_extended_topic()->m_bRet = true;
+//         ptopic->m_bRet = true;
 //
 //         return;
 //
@@ -1094,7 +1094,7 @@ namespace user
 //            m_atomTimerMenu.is_empty();
 //         }
 //
-//         ptopic->get_extended_topic()->m_bRet = true;
+//         ptopic->m_bRet = true;
 //
 //         return;
 //

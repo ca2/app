@@ -137,14 +137,14 @@ namespace app_core_build
    //   if(ptopic->m_atom == ::id_click)
    //   {
 
-   //      if(ptopic->get_extended_topic()->user_interaction()->m_atom == "hellomultiverse_toggle")
+   //      if(ptopic->user_interaction()->m_atom == "hellomultiverse_toggle")
    //      {
 
    //         m_pimpact->m_prender->m_bLite = !m_pimpact->m_prender->m_bLite;
 
    //         m_pimpact->set_need_layout();
 
-   //         ptopic->get_extended_topic()->m_bRet = true;
+   //         ptopic->m_bRet = true;
 
    //         return;
 

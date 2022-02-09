@@ -316,13 +316,13 @@ namespace user
    void format_tool::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (ptopic->get_extended_topic()->m_actioncontext.is_user_source())
+      if (ptopic->m_actioncontext.is_user_source())
       {
 
          if (ptopic->m_atom == ::id_click)
          {
 
-            if (ptopic->get_extended_topic()->user_interaction()->m_atom == "font_bold")
+            if (ptopic->user_interaction()->m_atom == "font_bold")
             {
 
                m_pbuttonBold->_001ToggleCheck(::e_source_user);
@@ -331,10 +331,10 @@ namespace user
 
                update_data(true);
 
-               ptopic->get_extended_topic()->Ret();
+               ptopic->Ret();
 
             }
-            else if (ptopic->get_extended_topic()->user_interaction()->m_atom == "font_italic")
+            else if (ptopic->user_interaction()->m_atom == "font_italic")
             {
 
                m_pbuttonItalic->_001ToggleCheck(::e_source_user);
@@ -343,10 +343,10 @@ namespace user
 
                update_data(true);
 
-               ptopic->get_extended_topic()->Ret();
+               ptopic->Ret();
 
             }
-            else if (ptopic->get_extended_topic()->user_interaction()->m_atom == "font_underline")
+            else if (ptopic->user_interaction()->m_atom == "font_underline")
             {
 
                m_pbuttonUnderline->_001ToggleCheck(::e_source_user);
@@ -355,10 +355,10 @@ namespace user
 
                update_data(true);
 
-               ptopic->get_extended_topic()->Ret();
+               ptopic->Ret();
 
             }
-            else if (ptopic->get_extended_topic()->user_interaction()->m_atom == "font_subscript")
+            else if (ptopic->user_interaction()->m_atom == "font_subscript")
             {
 
                m_pbuttonSubscript->_001ToggleCheck(::e_source_user);
@@ -374,10 +374,10 @@ namespace user
 
                update_data(true);
 
-               ptopic->get_extended_topic()->Ret();
+               ptopic->Ret();
 
             }
-            else if (ptopic->get_extended_topic()->user_interaction()->m_atom == "font_superscript")
+            else if (ptopic->user_interaction()->m_atom == "font_superscript")
             {
 
                m_pbuttonSuperscript->_001ToggleCheck(::e_source_user);
@@ -393,11 +393,11 @@ namespace user
 
                update_data(true);
 
-               ptopic->get_extended_topic()->Ret();
+               ptopic->Ret();
 
             }
 
-            else if (ptopic->get_extended_topic()->user_interaction()->m_atom == "e_align_left")
+            else if (ptopic->user_interaction()->m_atom == "e_align_left")
             {
 
                m_pbuttonAlignLeft->_001SetCheck(::check_checked, ::e_source_user);
@@ -420,10 +420,10 @@ namespace user
 
                update_data(true);
 
-               ptopic->get_extended_topic()->Ret();
+               ptopic->Ret();
 
             }
-            else if (ptopic->get_extended_topic()->user_interaction()->m_atom == "e_align_center")
+            else if (ptopic->user_interaction()->m_atom == "e_align_center")
             {
 
                m_pbuttonAlignCenter->_001SetCheck(::check_checked, ::e_source_user);
@@ -446,10 +446,10 @@ namespace user
 
                update_data(true);
 
-               ptopic->get_extended_topic()->Ret();
+               ptopic->Ret();
 
             }
-            else if (ptopic->get_extended_topic()->user_interaction()->m_atom == "e_align_right")
+            else if (ptopic->user_interaction()->m_atom == "e_align_right")
             {
 
                m_pbuttonAlignRight->_001SetCheck(::check_checked, ::e_source_user);
@@ -472,10 +472,10 @@ namespace user
 
                update_data(true);
 
-               ptopic->get_extended_topic()->Ret();
+               ptopic->Ret();
 
             }
-            else if (ptopic->get_extended_topic()->user_interaction()->m_atom == "font_foreground")
+            else if (ptopic->user_interaction()->m_atom == "font_foreground")
             {
 
                fork([&]()
@@ -489,14 +489,14 @@ namespace user
          else if (ptopic->m_atom == ::id_after_change_text)
          {
 
-            if (ptopic->get_extended_topic()->user_interaction()->m_atom == "combo_size")
+            if (ptopic->user_interaction()->m_atom == "combo_size")
             {
 
                m_eattribute |= ::user::rich_text::attribute_size;
 
                update_data(true);
 
-               ptopic->get_extended_topic()->Ret();
+               ptopic->Ret();
 
             }
 
@@ -504,14 +504,14 @@ namespace user
          else if (ptopic->m_atom == ::id_enter_key)
          {
 
-            if (ptopic->get_extended_topic()->user_interaction()->m_atom == "combo_size")
+            if (ptopic->user_interaction()->m_atom == "combo_size")
             {
 
                m_eattribute |= ::user::rich_text::attribute_size;
 
                update_data(true);
 
-               ptopic->get_extended_topic()->Ret();
+               ptopic->Ret();
 
             }
 
@@ -519,24 +519,24 @@ namespace user
          else if (ptopic->m_atom == ::id_after_change_cur_sel)
          {
 
-            if (ptopic->get_extended_topic()->user_interaction()->m_atom == "combo_family")
+            if (ptopic->user_interaction()->m_atom == "combo_family")
             {
 
                m_eattribute |= ::user::rich_text::attribute_family;
 
                update_data(true);
 
-               ptopic->get_extended_topic()->Ret();
+               ptopic->Ret();
 
             }
-            else if (ptopic->get_extended_topic()->user_interaction()->m_atom == "combo_size")
+            else if (ptopic->user_interaction()->m_atom == "combo_size")
             {
 
                m_eattribute |= ::user::rich_text::attribute_size;
 
                update_data(true);
 
-               ptopic->get_extended_topic()->Ret();
+               ptopic->Ret();
 
             }
 
@@ -544,7 +544,7 @@ namespace user
 
       }
 
-      if (ptopic->get_extended_topic()->m_bRet)
+      if (ptopic->m_bRet)
       {
 
          return;
@@ -687,13 +687,13 @@ namespace user
 
          m_pformata->first()->m_bUpdated = false;
 
-         ::extended_topic extendedtopic(::id_after_change_cur_sel);
+         auto ptopic = __new(::topic(::id_after_change_cur_sel));
 
-         extendedtopic.m_puserelement = this;
+         ptopic->m_puserelement = this;
 
          //topic.m_atom = m_atom;
 
-         route(&extendedtopic);
+         route(ptopic);
 
       }
       else

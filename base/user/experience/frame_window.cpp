@@ -682,7 +682,7 @@ namespace experience
       if (ptopic->m_atom == ::id_click && m_pframe != nullptr)
       {
 
-         auto atom = ptopic->get_extended_topic()->user_element_id();
+         auto atom = ptopic->user_element_id();
 
          FORMATTED_TRACE("frame_window::handle_event btn_clkd=%s", atom.to_string().c_str());
 
@@ -698,7 +698,7 @@ namespace experience
 
             set_need_redraw();
 
-            ptopic->get_extended_topic()->m_bRet = true;
+            ptopic->m_bRet = true;
 
             return;
 
@@ -710,7 +710,7 @@ namespace experience
 
             set_need_redraw();
 
-            ptopic->get_extended_topic()->m_bRet = true;
+            ptopic->m_bRet = true;
 
             return;
 
@@ -728,7 +728,7 @@ namespace experience
 
             post_redraw();
 
-            ptopic->get_extended_topic()->m_bRet = true;
+            ptopic->m_bRet = true;
 
             return;
 
@@ -738,7 +738,7 @@ namespace experience
 
             frame_experience_restore();
 
-            ptopic->get_extended_topic()->m_bRet = true;
+            ptopic->m_bRet = true;
 
             return;
 
@@ -750,7 +750,7 @@ namespace experience
 
             set_need_redraw();
 
-            ptopic->get_extended_topic()->m_bRet = true;
+            ptopic->m_bRet = true;
 
             return;
 
@@ -762,7 +762,7 @@ namespace experience
 
             set_need_redraw();
 
-            ptopic->get_extended_topic()->m_bRet = true;
+            ptopic->m_bRet = true;
 
             return;
 
@@ -782,7 +782,7 @@ namespace experience
 
             post_redraw();
 
-            ptopic->get_extended_topic()->m_bRet = true;
+            ptopic->m_bRet = true;
 
             return;
 
@@ -794,7 +794,7 @@ namespace experience
 
             set_need_redraw();
 
-            ptopic->get_extended_topic()->m_bRet = true;
+            ptopic->m_bRet = true;
 
             return;
 
@@ -2115,7 +2115,7 @@ namespace experience
 //
 //         //::rectangle_i32 rectangleWindow;
 //
-//         //ptopic->get_extended_topic()->user_interaction()->get_window_rect(rectangleWindow);
+//         //ptopic->user_interaction()->get_window_rect(rectangleWindow);
 //
 //         ///dock_manager()->m_pointCursorOrigin = rectangleWindow.center();
 //

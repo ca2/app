@@ -937,16 +937,16 @@ namespace user
       if (ptopic->m_atom == ::id_after_change_cur_sel)
       {
 
-         auto puserinteraction = ptopic->get_extended_topic()->user_interaction();
+         auto puserinteraction = ptopic->user_interaction();
 
          if (puserinteraction == m_plistbox)
          {
 
-            set_current_item(ptopic->get_extended_topic()->m_item, ptopic->get_extended_topic()->m_actioncontext);
+            set_current_item(ptopic->m_item, ptopic->m_actioncontext);
 
             _001ShowDropDown(false);
 
-            ptopic->get_extended_topic()->Ret();
+            ptopic->Ret();
 
             set_need_redraw();
 
@@ -1548,12 +1548,12 @@ namespace user
    //   if(ptopic->m_atom == ::id_after_change_cur_sel)
    //   {
 
-   //      auto puserinteraction = ptopic->get_extended_topic()->user_interaction();
+   //      auto puserinteraction = ptopic->user_interaction();
 
    //      if(puserinteraction == m_plistbox)
    //      {
 
-   //         set_current_item(ptopic->m_item, ptopic->get_extended_topic()->m_actioncontext);
+   //         set_current_item(ptopic->m_item, ptopic->m_actioncontext);
 
    //         _001ShowDropDown(false);
 

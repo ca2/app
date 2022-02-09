@@ -8,82 +8,87 @@
 class extended_topic;
 
 
-struct TOPIC
-{
-public:
-   
-
-   class ::atom         m_atom;
-
-   TOPIC()
-   {
-
-   }
-
-
-   TOPIC(const class ::atom & atom) :
-      m_atom(atom)
-   {
-
-   }
-
-
-   TOPIC(const TOPIC & topic) :
-      m_atom(topic.m_atom)
-   {
-
-   }
-
-
-   TOPIC(TOPIC && topic) :
-      m_atom(topic.m_atom)
-   {
-
-   }
-
-
-};
-   
-
-
 class CLASS_DECL_ACME topic :
-   virtual public TOPIC
+   virtual public ::element
 {
 public:
 
 
-   topic()
+   bool                                   m_bRet;
+   bool                                   m_bOk;
+   item                                   m_item;
+   ::action_context                       m_actioncontext;
+   __pointer(::property_object)           m_psender;
+   __pointer(::user::element)             m_puserelement; // user::interaction
+   __pointer(::matter)                    m_pmatter;
+
+
+   topic(const ::atom & atom) : 
+      ::PARTICLE(atom),
+      ::particle(atom)
+   { 
+   
+      m_bOk = true;
+      m_bRet = false;
+
+   }
+
+   ~topic() override 
+   { 
+   
+      m_pmatter.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS_FUNCTION_LINE);
+   
+   }
+
+
+   void Nok()
    {
+
+      m_bOk = false;
+
+      m_bRet = true;
 
    }
 
 
-   topic(const class ::atom & atom) :
-      TOPIC(atom)
+   void Ret()
    {
+
+      m_bRet = true;
 
    }
 
 
-   topic(const topic & topic) :
-      TOPIC(topic)
+   void Ok()
    {
+
+      m_bOk = true;
+
+      m_bRet = true;
 
    }
 
 
-   topic(topic && topic) :
-      TOPIC(topic)
-   {
+   virtual ::user::interaction * user_interaction();
 
-   }
+   ::atom user_element_id() const;
 
 
-   virtual ::extended_topic * get_extended_topic();
-   virtual const ::extended_topic * get_extended_topic() const;
+   virtual ::extended_topic * _extended_topic() { return nullptr; }
+   virtual const ::extended_topic * _extended_topic() const { return nullptr; }
 
 
 };
    
+
+inline ::topic_pointer create_topic(const ::atom & atom)
+{
+
+   auto ptopic = __new(::topic(atom));;
+
+   return ::move(ptopic);
+
+}
+
 
 

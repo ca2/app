@@ -83,7 +83,7 @@ namespace userex
 
       ptopic->m_puserelement = this;
 
-      ptopic->m_ekey = pkey->m_ekey;
+      ptopic->_extended_topic()->m_ekey = pkey->m_ekey;
 
       get_document()->update_all_views(ptopic);
 

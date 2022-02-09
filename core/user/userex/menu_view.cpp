@@ -114,26 +114,26 @@ void menu_view::_001OnTimer(::timer * ptimer)
    if(m_pcallback != nullptr)
    {
 
-      auto ptopic = __new(::topic(::id_timer));
+      auto pextendedtopic = create_extended_topic(::id_timer);
 
-      ptopic->m_uiEvent = ptimer->m_uEvent;
+      pextendedtopic->m_uiEvent = ptimer->m_uEvent;
       
-      ptopic->m_etimer = ptimer->m_etimer;
+      pextendedtopic->m_etimer = ptimer->m_etimer;
 
-      ptopic->m_puserelement = this;
+      pextendedtopic->m_puserelement = this;
 
       auto papplication = get_application();
 
-      papplication->route(ptopic);
+      papplication->route(pextendedtopic);
 
-      if(ptopic->m_bRet)
+      if(pextendedtopic->m_bRet)
       {
 
          return;
 
       }
 
-      m_pcallback->route(ptopic);
+      m_pcallback->route(pextendedtopic);
 
    }
 

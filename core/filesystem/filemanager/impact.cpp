@@ -278,7 +278,7 @@ namespace filemanager
             if (filemanager_document()->m_emode == ::userfs::mode_import)
             {
 
-               ptopic->m_bRet = filemanager_data()->m_pdocumentTopic->on_filemanager_open(filemanager_document(), ptopic->m_pfileitem->m_filepathUser);
+               ptopic->m_bRet = filemanager_data()->m_pdocumentTopic->on_filemanager_open(filemanager_document(), ptopic->_extended_topic()->m_pfileitem->m_filepathUser);
 
             }
 

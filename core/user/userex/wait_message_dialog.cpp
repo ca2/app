@@ -58,7 +58,7 @@ namespace userex
          else if(ptopic->m_atom == ::id_timer)
          {
             
-            if(ptopic->m_etimer == e_timer_reload)
+            if(ptopic->_extended_topic()->m_etimer == e_timer_reload)
             {
 
                on_timeout_check();

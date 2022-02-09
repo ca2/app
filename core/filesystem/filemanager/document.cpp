@@ -245,7 +245,7 @@ namespace filemanager
 
          ptopic->_extended_topic()->payload(DOCUMENT_ID) = pdocument;
 
-         ptopic->m_pfileitem = itema.get_first_pointer();
+         ptopic->_extended_topic()->m_pfileitem = itema.get_first_pointer();
 
          pdocument->update_all_views(ptopic);
 
@@ -667,7 +667,7 @@ namespace filemanager
 
          ptopic->m_actioncontext = context + ::e_source_sync + ::e_source_system;
 
-         ptopic->m_pfileitem = pitem;
+         ptopic->_extended_topic()->m_pfileitem = pitem;
 
          update_all_views(ptopic);
 
@@ -700,7 +700,7 @@ namespace filemanager
 
       ptopic->m_actioncontext = context + ::e_source_sync;
 
-      ptopic->m_pfileitem = pitem;
+      ptopic->_extended_topic()->m_pfileitem = pitem;
 
       update_all_views(ptopic);
 
@@ -1214,9 +1214,9 @@ namespace filemanager
 
       {
 
-         extended_topic ptopic->id_create_bars);
+         auto ptopic = create_topic(id_create_bars);
 
-         ptopic->_extended_topic()->payload(id_document) = this;
+         ptopic->payload(id_document) = this;
 
          update_all_views(ptopic);
 

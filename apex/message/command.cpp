@@ -21,6 +21,9 @@ namespace message
 
 
    command::command(const ::atom & atom) :
+      ::PARTICLE(atom),
+      ::particle(atom),
+      ::property_object(atom),
       material_object(atom)
    {
 

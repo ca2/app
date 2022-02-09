@@ -2059,7 +2059,7 @@ namespace filemanager
       else if (!m_bStatic && ptopic->m_atom == id_synchronize_path)
       {
 
-         if (ptopic->m_pfileitem->m_filepathUser != filemanager_item()->m_filepathUser)
+         if (ptopic->_extended_topic()->m_pfileitem->m_filepathUser != filemanager_item()->m_filepathUser)
          {
 
             return;

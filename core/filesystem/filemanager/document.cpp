@@ -696,13 +696,13 @@ namespace filemanager
 
       }
 
-      auto ptopic = create_topic(SYNCHRONIZE_PATH_ID);
+      auto pextendedtopic = create_extended_topic(SYNCHRONIZE_PATH_ID);
 
-      ptopic->m_actioncontext = context + ::e_source_sync;
+      pextendedtopic->m_pfileitem = pitem;
 
-      ptopic->_extended_topic()->m_pfileitem = pitem;
+      pextendedtopic->m_actioncontext = context + ::e_source_sync;
 
-      update_all_views(ptopic);
+      update_all_views(pextendedtopic);
 
    }
 

@@ -3312,7 +3312,8 @@ template < typename TYPE > class sequence;
 #include "acme/user/user/conversation.h"
 #include "acme/primitive/primitive/tracer.h"
 #include "acme/primitive/primitive/matter.h"
-#include "acme/primitive/primitive/material_object.h"
+//#include "acme/primitive/primitive/linked_property.h"
+
 
 
 #include "acme/constant/idpool.h"
@@ -3523,12 +3524,14 @@ using exception_array = ::array < ::exception >;
 #include "acme/primitive/primitive/linked_property.h"
 
 
+#include "acme/primitive/primitive/property_object.h"
+
 
 #include "acme/exception/extended_status.h"
 
 
 
-#include "acme/primitive/primitive/property_object.h"
+#include "acme/primitive/primitive/material_object.h"
 
 
 #include "acme/primitive/primitive/enum_bitset.h"

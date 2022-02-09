@@ -41,7 +41,7 @@ namespace aura
 
 
 class CLASS_DECL_ACME object :
-   virtual public property_object
+   virtual public material_object
 {
 protected:
 

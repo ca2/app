@@ -9,7 +9,7 @@ class extended_topic;
 
 
 class CLASS_DECL_ACME topic :
-   virtual public ::element
+   virtual public ::property_object
 {
 public:
 

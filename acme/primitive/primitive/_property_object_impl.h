@@ -1,21 +1,17 @@
 #pragma once
 
 
-inline material_object::material_object(const material_object & idmatter) :
-   matter(idmatter),
-   m_atom(idmatter.m_atom)
+inline property_object::property_object(const property_object & propertyobject) :
+   ::PARTICLE(propertyobject),
+   ::particle(propertyobject),
+   ::element(propertyobject),
+   ::matter(propertyobject),
+   m_ppropertyset(propertyobject.m_ppropertyset)
 {
 
 }
 
-inline property_object::property_object(const property_object & object) :
-      material_object(object),
-      m_pia(__new(::i64_array(*object.m_pia))),
-      m_estatus(object.m_estatus),
-      m_ppropertyset(__new(::property_set(*object.m_ppropertyset)))
-{
 
-}
 
 
 inline bool property_object::has_property(const atom & atom) const { return m_ppropertyset && m_ppropertyset->has_property(atom); }
@@ -24,8 +20,6 @@ inline bool property_object::erase_key(const atom & atom) { return m_ppropertyse
 inline property_set & property_object::get_property_set() { defer_propset(); return *m_ppropertyset; }
 inline const property_set & property_object::get_property_set() const { ((property_object *)this)->defer_propset(); return *m_ppropertyset; }
 
-
-inline ::i64_array& property_object::idarray() const { m_psystem->__defer_construct_new(((property_object*)this)->m_pia); return *m_pia; }
 
 inline bool property_object::contains(const property_set & set) const
 {
@@ -286,4 +280,23 @@ inline ::payload & property_object::topic(const ::atom& atom)
    return *property.m_pproperty;
 
 }
+
+
+
+inline material_object::material_object(const material_object & materialobject) :
+   ::PARTICLE(materialobject),
+   ::particle(materialobject),
+   ::element(materialobject),
+   ::matter(materialobject),
+   ::property_object(materialobject),
+   m_pmapPropertyRoutine(materialobject.m_pmapPropertyRoutine),
+   m_pia(materialobject.m_pia)
+{
+
+}
+
+
+inline ::i64_array & material_object::idarray() const { m_psystem->__defer_construct_new(((material_object *)this)->m_pia); return *m_pia; }
+
+
 

@@ -45,6 +45,18 @@ void material_object::handle_command(const ::atom & atom)
 }
 
 
+void material_object::destroy()
+{
+
+   ::property_object::destroy();
+
+   m_pmapPropertyRoutine.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+
+   m_pia.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+
+}
+
+
 bool material_object::is_branch_current() const
 {
 
@@ -73,5 +85,58 @@ void material_object::send_routine(const ::routine & routine)
    //return send_object(e_message_system, e_system_message_method, routine, durationTimeout);
 
 }
+
+
+routine_array * material_object::routine_array(const ::atom & atom, bool bCreate)
+{
+
+   if (!bCreate)
+   {
+
+      auto passociation = m_pmapPropertyRoutine->plookup(atom);
+
+      if (::is_null(passociation))
+      {
+
+         return nullptr;
+
+      }
+
+      return &passociation->m_element2;
+
+   }
+
+   m_psystem->__defer_construct_new(m_pmapPropertyRoutine);
+
+   return &m_pmapPropertyRoutine->operator[](atom);
+
+}
+
+
+void material_object::add_routine(const ::atom & atom, const ::routine & routine)
+{
+
+   if (!routine)
+   {
+
+      throw_status(error_bad_argument);
+
+   }
+
+   auto proutinea = routine_array(atom, true);
+
+   if (!proutinea)
+   {
+
+      throw_status(error_resource);
+
+   }
+
+   proutinea->add(routine);
+
+   //return ::success;
+
+}
+
 
 

@@ -12,25 +12,23 @@ class object;
 
 
 class CLASS_DECL_ACME property_object :
-   virtual public material_object
+   virtual public ::matter
 {
 public:
 
 
-   ::e_status                                      m_estatus;
-   __pointer(::id_map < ::routine_array >)         m_pmapPropertyRoutine;
-   __pointer(::i64_array)                          m_pia;
    __pointer(property_set)                         m_ppropertyset;
 
 
    property_object() { }
-   property_object(const ::atom& atom) : material_object(atom) {}
-   property_object(const property_object & object);
-   property_object(property_object && object) :
-      material_object(::move(object)),
-      m_pia(::move(object.m_pia)),
-      m_estatus(object.m_estatus),
-      m_ppropertyset(::move(object.m_ppropertyset))
+   property_object(const ::atom& atom) : PARTICLE(atom), ::particle(atom) {}
+   property_object(const property_object & propertyobject);
+   property_object(property_object && propertyobject) :
+      ::PARTICLE(::move(propertyobject)),
+      ::particle(::move(propertyobject)),
+      ::element(::move(propertyobject)),
+      ::matter(::move(propertyobject)),
+      m_ppropertyset(::move(propertyobject.m_ppropertyset))
       {  }
    ~property_object() override;
 
@@ -104,18 +102,7 @@ public:
 
    //inline ::routine_array * _routine_array(const ::atom& atom);
 
-   ::routine_array * routine_array(const ::atom& atom, bool bCreate = false);
-
 //#endif
-
-
-   void add_routine(const ::atom& atom, const ::routine& routine);
-
-
-
-   inline ::i64_array& idarray() const;
-
-
 
 
 
@@ -174,7 +161,7 @@ public:
 
    template < typename TYPE > inline TYPE & get_cast(const ::atom & atom, TYPE * pDefault = nullptr);
 
-   using material_object::cast;
+   //using material_object::cast;
 
    template < typename TYPE > inline __pointer(TYPE) cast(const ::atom & atom) const;
 

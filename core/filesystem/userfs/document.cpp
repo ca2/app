@@ -273,7 +273,7 @@ namespace userfs
 
       ptopic->m_actioncontext = context + ::e_source_sync;
 
-      update_all_views(&ptopic->;
+      update_all_views(ptopic);
 
       return true;
 

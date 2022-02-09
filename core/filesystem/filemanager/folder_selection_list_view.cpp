@@ -179,7 +179,7 @@ namespace filemanager
 
       ptopic->m_actioncontext = context + ::e_source_selection;
 
-      pdocument->update_all_views(&ptopic->;
+      pdocument->update_all_views(ptopic);
 
    }
 

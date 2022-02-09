@@ -2,26 +2,33 @@
 
 
 class CLASS_DECL_ACME material_object :
-   virtual public matter
+   virtual public ::property_object
 {
 public:
 
 
-   ::atom                                m_atom;
-   ::e_status                         m_estatus;
+   __pointer(::id_map < ::routine_array >)         m_pmapPropertyRoutine;
+   __pointer(::i64_array)                          m_pia;
 
 
    material_object() { }
-   material_object(const ::atom & atom) : m_atom(atom) {}
+   material_object(const ::atom & atom) : PARTICLE(atom), ::particle(atom), ::property_object(atom) {}
    material_object(const material_object & object);
-   material_object(material_object && object) :
-      matter(::move(object)),
-      m_atom(::move(object.m_atom))
+   material_object(material_object && materialobject) :
+      ::PARTICLE(::move(materialobject)),
+      ::particle(::move(materialobject)),
+      ::element(::move(materialobject)),
+      ::matter(::move(materialobject)),
+      ::property_object(::move(materialobject)),
+      m_pmapPropertyRoutine(::move(materialobject.m_pmapPropertyRoutine)),
+      m_pia(::move(materialobject.m_pia))
    {  }
    ~material_object() override;
 
 
    virtual ::string get_string() const;
+
+   using ::property_object::cast;
 
    template < typename TYPE >
    inline __pointer(TYPE) cast() { return this; }
@@ -45,6 +52,8 @@ public:
 //      u32 nStackSize = 0,
 //      u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
 
+   void destroy() override;
+
 
    virtual bool is_branch_current() const;
 
@@ -60,6 +69,20 @@ public:
 
    template < typename POSTING_OBJECT, typename POSTING_METHOD >
    void __send_routine(POSTING_OBJECT pposting, POSTING_METHOD posting_method, const ::routine & routine);
+
+
+
+   ::routine_array * routine_array(const ::atom & atom, bool bCreate = false);
+
+
+   void add_routine(const ::atom & atom, const ::routine & routine);
+
+
+
+   inline ::i64_array & idarray() const;
+
+
+
 
 
 };

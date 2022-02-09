@@ -85,7 +85,7 @@ namespace userex
 
       ptopic->m_ekey = pkey->m_ekey;
 
-      get_document()->update_all_views(&ptopic->;
+      get_document()->update_all_views(ptopic);
 
       if (pkey->m_ekey == ::user::e_key_return)
       {

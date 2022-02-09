@@ -247,7 +247,7 @@ namespace filemanager
 
          ptopic->m_pfileitem = itema.get_first_pointer();
 
-         pdocument->update_all_views(&ptopic->;
+         pdocument->update_all_views(ptopic);
 
          pfilemanagerdata->m_pdocumentTopic = nullptr;
 
@@ -669,7 +669,7 @@ namespace filemanager
 
          ptopic->m_pfileitem = pitem;
 
-         update_all_views(&ptopic->;
+         update_all_views(ptopic);
 
       }
 
@@ -702,7 +702,7 @@ namespace filemanager
 
       ptopic->m_pfileitem = pitem;
 
-      update_all_views(&ptopic->;
+      update_all_views(ptopic);
 
    }
 
@@ -1015,7 +1015,7 @@ namespace filemanager
 
          ptopic->_extended_topic()->payload(id_document) = this;
 
-         update_all_views(&ptopic->;
+         update_all_views(ptopic);
 
       }
 
@@ -1036,7 +1036,7 @@ namespace filemanager
 
          ptopic->_extended_topic()->payload(id_document) = this;
 
-         update_all_views(&ptopic->;
+         update_all_views(ptopic);
 
       }
 
@@ -1055,7 +1055,7 @@ namespace filemanager
 
          ptopic->_extended_topic()->payload(id_document) = this;
 
-         update_all_views(&ptopic->;
+         update_all_views(ptopic);
 
       }
 
@@ -1075,7 +1075,7 @@ namespace filemanager
 
       browse(path, ::e_source_database);
 
-      update_all_views(&ptopic->;
+      update_all_views(ptopic);
 
       if (bMakeVisible)
       {
@@ -1218,7 +1218,7 @@ namespace filemanager
 
          ptopic->_extended_topic()->payload(id_document) = this;
 
-         update_all_views(&ptopic->;
+         update_all_views(ptopic);
 
       }
 
@@ -1336,7 +1336,7 @@ namespace filemanager
 
       auto ptopic = __new(::topic(id_get_active_view_selection));
 
-      update_all_views(&ptopic->;
+      update_all_views(ptopic);
 
       itema = *ptopic->cast < ::file::item_array>(id_selected);
 
@@ -1392,7 +1392,7 @@ namespace filemanager
 
          ptopic->_extended_topic()->payload(id_document) = pdocumentFilemanager;
 
-         pdocumentFilemanager->update_all_views(&ptopic->;
+         pdocumentFilemanager->update_all_views(ptopic);
 
       }
 
@@ -1424,7 +1424,7 @@ namespace filemanager
 
          ptopic->_extended_topic()->payload(id_document) = pdocumentFilemanager;
 
-         pdocumentFilemanager->update_all_views(&ptopic->;
+         pdocumentFilemanager->update_all_views(ptopic);
 
       }
 

@@ -105,13 +105,13 @@ namespace filemanager
 
          ptopic->_extended_topic()->payload("creator") = pimpactdata->m_atom;
 
-         pdocument->update_all_views(&ptopic->;
+         pdocument->update_all_views(ptopic);
 
          //ptopic->m_pcontext = ptopic->context(id_after_browse);
 
          ptopic->m_atom = id_after_browse;
 
-         pdocument->update_all_views(&ptopic->;
+         pdocument->update_all_views(ptopic);
 
          pimpactdata->m_pdocument = pdocument;
 

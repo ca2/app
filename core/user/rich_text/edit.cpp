@@ -515,7 +515,7 @@ namespace user
 
          {
 
-            auto ptopic = __new(::topic(::id_key_down));
+            auto ptopic = create_topic(::id_key_down);
 
             ptopic->m_puserelement = this;
 
@@ -575,7 +575,7 @@ namespace user
          else if (pkey->m_ekey == ::user::e_key_escape)
          {
 
-            auto ptopic = __new(::topic(::id_escape));
+            auto ptopic = create_topic(::id_escape);
 
             ptopic->m_puserelement = this;
 

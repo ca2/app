@@ -267,7 +267,7 @@ namespace userfs
 
       }
 
-      auto ptopic = __new(::topic(id_synchronize_path));
+      auto ptopic = create_topic(id_synchronize_path);
 
       ptopic->_extended_topic()->m_pfileitem = pitem;
 

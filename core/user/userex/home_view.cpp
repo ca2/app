@@ -216,7 +216,7 @@ namespace userex
 
       pwindowing->release_mouse_capture();
 
-      auto ptopic = __new(::topic(::id_after_change_cur_sel));
+      auto ptopic = create_topic(::id_after_change_cur_sel);
 
       ptopic->m_atom = m_atomImpact;
 

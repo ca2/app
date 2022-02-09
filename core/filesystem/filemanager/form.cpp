@@ -25,7 +25,7 @@ namespace filemanager
          if(ptopic->user_interaction()->m_atom == "lfs")
          {
 
-            auto ptopic = __new(::topic(BROWSE_ID));
+            auto ptopic = create_topic(BROWSE_ID);
 
             ptopic->payload(id_form) = "filemanager_add_location_lfs.xhtml";
 
@@ -39,7 +39,7 @@ namespace filemanager
          else if(ptopic->user_interaction()->m_atom == "ftp")
          {
 
-            auto ptopic = __new(::topic(id_browse));
+            auto ptopic = create_topic(id_browse);
 
             ptopic->payload(id_form) = "filemanager_add_location_ftp.xhtml";
 
@@ -74,7 +74,7 @@ namespace filemanager
             else if(m_atomCreator == "replace_name")
             {
 
-               auto ptopic = __new(::topic(id_replace_name));
+               auto ptopic = create_topic(id_replace_name);
 
                auto pinteraction = get_child_by_name("find");
 
@@ -92,7 +92,7 @@ namespace filemanager
             else if (m_atomCreator == "new_folder")
             {
                
-               auto ptopic = __new(::topic(id_new_folder));
+               auto ptopic = create_topic(id_new_folder);
 
                auto pinteraction = get_child_by_name("name");
 

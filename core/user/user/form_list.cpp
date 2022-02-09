@@ -830,7 +830,7 @@ break_click:;
 
          //auto pformlist = this;
 
-         auto ptopic = __new(::topic(id_control_saved));
+         auto ptopic = create_topic(id_control_saved);
 
          ptopic->m_puserelement = pinteraction;
 
@@ -921,7 +921,7 @@ break_click:;
 
          //auto pformlist = this;
 
-         auto ptopic = __new(::topic(id_control_saved));
+         auto ptopic = create_topic(id_control_saved);
 
          ptopic->m_puserelement = pinteraction;
 

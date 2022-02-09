@@ -239,7 +239,7 @@ bool html_document::on_open_document(const ::payload & payloadFile)
 
    auto phtmldocument = this;
 
-   auto ptopic = __new(::topic(id_document_complete));
+   auto ptopic = create_topic(id_document_complete);
 
    ptopic->payload(id_url) = payloadFile;
 

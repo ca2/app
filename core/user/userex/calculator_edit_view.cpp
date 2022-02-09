@@ -383,7 +383,7 @@ namespace calculator
 
       auto pplaineditview = this;
 
-      auto ptopic = __new(::topic(id_after_change_text));
+      auto ptopic = create_topic(id_after_change_text);
 
       ptopic->m_puserelement = this;
 

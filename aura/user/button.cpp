@@ -470,7 +470,7 @@ namespace user
       if (iKey == ::user::e_key_return || iKey == ::user::e_key_space)
       {
 
-         auto ptopic = __new(::topic(::id_click));
+         auto ptopic = create_topic(::id_click);
 
          ptopic->m_puserelement = this;
 

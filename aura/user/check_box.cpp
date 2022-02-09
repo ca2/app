@@ -74,7 +74,7 @@ namespace user
          if(has_handler())
          {
 
-            auto ptopic = __new(::topic(::id_set_check));
+            auto ptopic = create_topic(::id_set_check);
 
             ptopic->m_puserelement = this;
 

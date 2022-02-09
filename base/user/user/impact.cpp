@@ -150,7 +150,7 @@ namespace user
 
       {
 
-         auto ptopic = __new(::topic(::id_on_create_impact));
+         auto ptopic = create_topic(::id_on_create_impact);
 
          ptopic->m_puserelement              = this;
 

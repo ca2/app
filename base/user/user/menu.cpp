@@ -914,7 +914,7 @@ namespace user
    void menu::defer_close()
    {
 
-      auto ptopic = __new(::topic(id_context_menu_close));
+      auto ptopic = create_topic(id_context_menu_close);
 
       route(ptopic);
 

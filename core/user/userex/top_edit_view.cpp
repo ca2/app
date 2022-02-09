@@ -79,7 +79,7 @@ namespace userex
 
       auto pkey = pmessage->m_union.m_pkey;
 
-      auto ptopic = __new(::topic(id_key_down));
+      auto ptopic = create_topic(id_key_down);
 
       ptopic->m_puserelement = this;
 

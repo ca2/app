@@ -317,7 +317,7 @@ void manager::on_property_changed(property * pproperty, const ::action_context &
 //{
 
 
-//   auto ptopic = __new(::topic(atom, pmatter));;
+//   auto ptopic = create_topic(atom, pmatter);;
 
 //   return ptopic;
 

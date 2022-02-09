@@ -565,7 +565,7 @@ namespace userex
          if(has_handler())
          {
 
-            auto ptopic = __new(::topic(::id_after_change_cur_hover));
+            auto ptopic = create_topic(::id_after_change_cur_hover);
 
             ptopic->m_puserelement = this;
 
@@ -590,7 +590,7 @@ namespace userex
          if(has_handler())
          {
 
-            auto ptopic = __new(::topic(::id_after_change_cur_hover));
+            auto ptopic = create_topic(::id_after_change_cur_hover);
 
             ptopic->m_puserelement = this;
 
@@ -877,7 +877,7 @@ namespace userex
       if(has_handler())
       {
 
-         auto ptopic = __new(::topic(::id_after_change_cur_sel));
+         auto ptopic = create_topic(::id_after_change_cur_sel);
 
          ptopic->m_puserelement = this;
 

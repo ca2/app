@@ -82,7 +82,7 @@ namespace filemanager
 
          form * pformview = pdocument->get_type_impact < form >();
 
-         auto ptopic = __new(::topic(BROWSE_ID));
+         auto ptopic = create_topic(BROWSE_ID);
 
          if (pimpactdata->m_atom == "new_folder")
          {

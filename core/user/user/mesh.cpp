@@ -3056,7 +3056,7 @@ namespace user
    bool mesh::on_click(const ::item & item)
    {
 
-      auto ptopic = __new(::topic(::id_list_clicked));
+      auto ptopic = create_topic(::id_list_clicked);
 
       ptopic->m_puserelement = this;
 

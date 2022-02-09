@@ -687,7 +687,7 @@ namespace user
 
          m_pformata->first()->m_bUpdated = false;
 
-         auto ptopic = __new(::topic(::id_after_change_cur_sel));
+         auto ptopic = create_topic(::id_after_change_cur_sel);
 
          ptopic->m_puserelement = this;
 

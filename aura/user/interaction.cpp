@@ -1536,7 +1536,7 @@ namespace user
 
       }
 
-      auto ptopic = __new(::topic(::id_set_focus));
+      auto ptopic = create_topic(::id_set_focus);
 
       ptopic->m_puserelement = this;
 
@@ -1573,7 +1573,7 @@ namespace user
 
       }
 
-      auto ptopic = __new(::topic(::id_kill_focus));
+      auto ptopic = create_topic(::id_kill_focus);
 
       ptopic->m_puserelement = this;
 
@@ -4633,7 +4633,7 @@ return "";
 
       m_bReposition = true;
 
-      auto ptopic = __new(::topic(::id_create));
+      auto ptopic = create_topic(::id_create);
 
       ptopic->m_puserelement = this;
 
@@ -14169,7 +14169,7 @@ order(zorderParam);
       if (pkey->m_ekey == ::user::e_key_tab)
       {
 
-         auto ptopic = __new(::topic(::id_tab_key));
+         auto ptopic = create_topic(::id_tab_key);
 
          ptopic->m_puserelement = dynamic_cast <::user::interaction *> (this);
          ptopic->m_actioncontext = ::e_source_user;
@@ -14439,7 +14439,7 @@ order(zorderParam);
       if(has_handler())
       {
 
-         auto ptopic = __new(::topic(::id_after_change_cur_sel));
+         auto ptopic = create_topic(::id_after_change_cur_sel);
 
          ptopic->m_puserelement = this;
 
@@ -15985,7 +15985,7 @@ order(zorderParam);
                   if(has_handler())
                   {
 
-                     auto ptopic = __new(::topic(id_click));
+                     auto ptopic = create_topic(id_click);
 
                      ptopic->m_puserelement = this;
 

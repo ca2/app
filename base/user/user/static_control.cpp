@@ -112,7 +112,7 @@ namespace user
 
          m_bLButtonDown = false;
 
-         auto ptopic = __new(::topic(id_click));
+         auto ptopic = create_topic(id_click);
 
          ptopic->m_puserelement = this;
          ptopic->m_actioncontext = ::e_source_user;

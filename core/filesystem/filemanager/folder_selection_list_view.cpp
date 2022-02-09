@@ -175,7 +175,7 @@ namespace filemanager
 
       auto pdocument = get_document();
 
-      auto ptopic = __new(::topic(id_synchronize_folder_selection));
+      auto ptopic = create_topic(id_synchronize_folder_selection);
 
       ptopic->m_actioncontext = context + ::e_source_selection;
 

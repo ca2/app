@@ -241,7 +241,7 @@ namespace filemanager
 
          __pointer(document) pdocument = this;
 
-         auto ptopic = __new(::topic(TOPIC_OK_ID));
+         auto ptopic = create_topic(TOPIC_OK_ID);
 
          ptopic->payload(DOCUMENT_ID) = pdocument;
 
@@ -663,7 +663,7 @@ namespace filemanager
       if (!fs_data()->is_zero_latency(pitem->m_filepathFinal))
       {
 
-         auto ptopic = __new(::topic(SYNCHRONIZE_PATH_ID));
+         auto ptopic = create_topic(SYNCHRONIZE_PATH_ID);
 
          ptopic->m_actioncontext = context + ::e_source_sync + ::e_source_system;
 
@@ -696,7 +696,7 @@ namespace filemanager
 
       }
 
-      auto ptopic = __new(::topic(SYNCHRONIZE_PATH_ID));
+      auto ptopic = create_topic(SYNCHRONIZE_PATH_ID);
 
       ptopic->m_actioncontext = context + ::e_source_sync;
 
@@ -1011,7 +1011,7 @@ namespace filemanager
       if (m_emode == ::userfs::mode_saving || m_emode == ::userfs::mode_export)
       {
 
-         auto ptopic = __new(::topic(id_topic_ok));
+         auto ptopic = create_topic(id_topic_ok);
 
          ptopic->payload(id_document) = this;
 
@@ -1032,7 +1032,7 @@ namespace filemanager
       if (m_emode == ::userfs::mode_import)
       {
 
-         auto ptopic = __new(::topic(id_topic_ok));
+         auto ptopic = create_topic(id_topic_ok);
 
          ptopic->payload(id_document) = this;
 
@@ -1051,7 +1051,7 @@ namespace filemanager
       if (m_emode == ::userfs::mode_saving)
       {
 
-         auto ptopic = __new(::topic(id_topic_ok));
+         auto ptopic = create_topic(id_topic_ok);
 
          ptopic->payload(id_document) = this;
 
@@ -1069,7 +1069,7 @@ namespace filemanager
 
       CreateImpacts();
 
-      auto ptopic = __new(::topic(id_create_bars));
+      auto ptopic = create_topic(id_create_bars);
 
       ptopic->payload(id_document) = this;
 
@@ -1334,7 +1334,7 @@ namespace filemanager
    void document::GetActiveImpactSelection(::file::item_array & itema)
    {
 
-      auto ptopic = __new(::topic(id_get_active_view_selection));
+      auto ptopic = create_topic(id_get_active_view_selection);
 
       update_all_views(ptopic);
 
@@ -1388,7 +1388,7 @@ namespace filemanager
 
       {
 
-         auto ptopic = __new(::topic(id_topic_start));
+         auto ptopic = create_topic(id_topic_start);
 
          ptopic->payload(id_document) = pdocumentFilemanager;
 
@@ -1420,7 +1420,7 @@ namespace filemanager
 
       {
 
-         auto ptopic = __new(::topic(id_topic_start));
+         auto ptopic = create_topic(id_topic_start);
 
          ptopic->payload(id_document) = pdocumentFilemanager;
 

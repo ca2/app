@@ -155,7 +155,7 @@ namespace user
 
       }
 
-      auto ptopic = __new(::topic(id_image_list_action));
+      auto ptopic = create_topic(id_image_list_action);
 
       ptopic->m_item = item;
 
@@ -783,7 +783,7 @@ namespace user
 
          m_iaSel = ia;
 
-         auto ptopic = __new(::topic(::id_after_change_cur_sel));
+         auto ptopic = create_topic(::id_after_change_cur_sel);
 
          ptopic->m_puserelement = this;
 

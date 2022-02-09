@@ -4154,7 +4154,7 @@ namespace user
    bool list::on_click(const ::item & item)
    {
 
-      auto ptopic = __new(::topic(::id_list_clicked));
+      auto ptopic = create_topic(::id_list_clicked);
 
       ptopic->m_puserelement = this;
 
@@ -7193,7 +7193,7 @@ namespace user
    void list::_001OnSelectionChange()
    {
 
-      auto ptopic = __new(::topic(::id_after_change_cur_sel));
+      auto ptopic = create_topic(::id_after_change_cur_sel);
 
       ptopic->m_puserelement = this;
 

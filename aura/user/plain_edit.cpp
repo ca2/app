@@ -1146,7 +1146,7 @@ namespace user
 
       {
 
-         auto ptopic = __new(::topic(::id_key_down));
+         auto ptopic = create_topic(::id_key_down);
 
          ptopic->m_puserelement = this;
 
@@ -1186,7 +1186,7 @@ namespace user
          if ((!m_bMultiLine || m_bSendEnterKey) && get_parent() != nullptr)
          {
 
-            auto ptopic = __new(::topic(::id_enter_key));
+            auto ptopic = create_topic(::id_enter_key);
 
             ptopic->m_puserelement = this;
 
@@ -1227,7 +1227,7 @@ namespace user
 
             pkey->previous();
 
-            auto ptopic = __new(::topic(::id_tab_key));
+            auto ptopic = create_topic(::id_tab_key);
 
             ptopic->m_puserelement = this;
 
@@ -1260,7 +1260,7 @@ namespace user
       else if (pkey->m_ekey == ::user::e_key_escape)
       {
 
-         auto ptopic = __new(::topic(::id_escape));
+         auto ptopic = create_topic(::id_escape);
 
          ptopic->m_puserelement = this;
 
@@ -6222,7 +6222,7 @@ finished_update:
       if(m_bEnterKeyOnPaste)
       {
 
-         auto ptopic = __new(::topic(::id_enter_key));
+         auto ptopic = create_topic(::id_enter_key);
 
          ptopic->m_puserelement = this;
 

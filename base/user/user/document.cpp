@@ -1909,19 +1909,19 @@ namespace user
    void document::update_all_views(::topic * ptopic)
    {
 
-      ASSERT((!ptopic->get_extended_topic() || ptopic->m_psender == nullptr) || !m_viewa.is_empty());
+      ASSERT(ptopic->m_psender == nullptr || !m_viewa.is_empty());
 
       for (auto & pview : m_viewa.ptra())
       {
 
          ASSERT_VALID(pview);
 
-         if (!ptopic->get_extended_topic() || pview != ptopic->m_psender)
+         if (pview != ptopic->m_psender)
          {
 
             pview->handle(ptopic, nullptr);
 
-            if(ptopic->get_extended_topic() && ptopic->m_bRet)
+            if(ptopic->m_bRet)
             {
 
                break;

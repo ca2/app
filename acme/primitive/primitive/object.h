@@ -321,7 +321,7 @@ public:
 
    }
 
-   virtual ::extended_topic_pointer _create_extended_topic(const ::atom & atom);
+   virtual ::extended_topic_pointer create_extended_topic(const ::atom & atom);
 
    virtual void dev_log(string str);
 

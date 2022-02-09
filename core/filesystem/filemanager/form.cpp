@@ -27,7 +27,7 @@ namespace filemanager
 
             auto ptopic = __new(::topic(BROWSE_ID));
 
-            ptopic->payload(id_form) = "filemanager_add_location_lfs.xhtml";
+            ptopic->_extended_topic()->payload(id_form) = "filemanager_add_location_lfs.xhtml";
 
             get_document()->update_all_views(&ptopic->;
 
@@ -41,7 +41,7 @@ namespace filemanager
 
             auto ptopic = __new(::topic(id_browse));
 
-            ptopic->payload(id_form) = "filemanager_add_location_ftp.xhtml";
+            ptopic->_extended_topic()->payload(id_form) = "filemanager_add_location_ftp.xhtml";
 
             get_document()->update_all_views(&ptopic->;
 
@@ -78,11 +78,11 @@ namespace filemanager
 
                auto pinteraction = get_child_by_name("find");
 
-               pinteraction->_001GetText(ptopic->payload(id_find).as_string());
+               pinteraction->_001GetText(ptopic->_extended_topic()->payload(id_find).as_string());
 
                pinteraction = get_child_by_name("replace");
 
-               pinteraction->_001GetText(ptopic->payload(id_replace).as_string());
+               pinteraction->_001GetText(ptopic->_extended_topic()->payload(id_replace).as_string());
 
                auto pdocument =  filemanager_document();
 
@@ -96,7 +96,7 @@ namespace filemanager
 
                auto pinteraction = get_child_by_name("name");
 
-               pinteraction->_001GetText(ptopic->payload(id_text).as_string());
+               pinteraction->_001GetText(ptopic->_extended_topic()->payload(id_text).as_string());
 
                auto pdocument = filemanager_document();
 

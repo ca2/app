@@ -274,7 +274,7 @@ void object::add_reference(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG_COMM
 //}
 
 
-::extended_topic_pointer object::_create_extended_topic(const ::atom & atom)
+::extended_topic_pointer object::create_extended_topic(const ::atom & atom)
 {
 
    auto pextendedtopic = __new(::extended_topic(atom));

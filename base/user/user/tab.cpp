@@ -2574,13 +2574,13 @@ namespace user
    void tab::on_create_tabs()
    {
 
-      auto ptopic = __new(::topic(::id_on_create_tab));
+      auto pextendedtopic = create_extended_topic(::id_on_create_tab);
 
-      ptopic->m_puserelement = this;
+      pextendedtopic->m_puserelement = this;
 
-      ptopic->m_ptab = this;
+      pextendedtopic->m_ptab = this;
 
-      route(ptopic);
+      route(pextendedtopic);
 
    }
 
@@ -3452,7 +3452,7 @@ namespace user
       if (ptopic->m_atom == id_get_topic_view_id)
       {
 
-         ptopic->payload(id_id) = get_current_tab_id();
+         ptopic->_extended_topic()->payload(id_id) = get_current_tab_id();
 
          ptopic->m_bRet = true;
 
@@ -3460,7 +3460,7 @@ namespace user
       else if (ptopic->m_atom == id_set_topic_view_by_id)
       {
 
-         set_current_tab_by_id(ptopic->payload(id_id));
+         set_current_tab_by_id(ptopic->_extended_topic()->payload(id_id));
 
          ptopic->m_bRet = true;
 

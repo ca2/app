@@ -3453,9 +3453,9 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
             auto ptopic = ::aura::get_system()->topic(eid);
 
-            ptopic->payload("return") = is_return_key((XIRawEvent*)cookie->data);
+            ptopic->_extended_topic()->payload("return") = is_return_key((XIRawEvent*)cookie->data);
 
-            ptopic->payload("space") = is_space_key((XIRawEvent*)cookie->data);
+            ptopic->_extended_topic()->payload("space") = is_space_key((XIRawEvent*)cookie->data);
 
             ::context context;
 

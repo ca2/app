@@ -241,7 +241,7 @@ bool html_document::on_open_document(const ::payload & payloadFile)
 
    auto ptopic = __new(::topic(id_document_complete));
 
-   ptopic->payload(id_url) = payloadFile;
+   ptopic->_extended_topic()->payload(id_url) = payloadFile;
 
    phtmldocument->update_all_views(&ptopic->;
 
@@ -281,7 +281,7 @@ void html_document::soft_reload()
 //
 //   ptopic->m_atom = id_document_complete;
 //
-//   ptopic->payload(id_url) = get_file_path();
+//   ptopic->_extended_topic()->payload(id_url) = get_file_path();
 //
 //   update_all_views(pupdate);
 

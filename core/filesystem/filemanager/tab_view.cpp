@@ -87,23 +87,23 @@ namespace filemanager
          if (pimpactdata->m_atom == "new_folder")
          {
 
-            ptopic->payload(FORM_ID) = "matter://filemanager/new_folder.html";
+            ptopic->_extended_topic()->payload(FORM_ID) = "matter://filemanager/new_folder.html";
 
          }
          if (pimpactdata->m_atom == "replace_name")
          {
 
-            ptopic->payload(FORM_ID) = "matter://filemanager/replace_name_in_file_system.html";
+            ptopic->_extended_topic()->payload(FORM_ID) = "matter://filemanager/replace_name_in_file_system.html";
 
          }
          else if (pimpactdata->m_atom == "add_location")
          {
 
-            ptopic->payload(FORM_ID) = "matter://filemanager/add_location_1.html";
+            ptopic->_extended_topic()->payload(FORM_ID) = "matter://filemanager/add_location_1.html";
 
          }
 
-         ptopic->payload("creator") = pimpactdata->m_atom;
+         ptopic->_extended_topic()->payload("creator") = pimpactdata->m_atom;
 
          pdocument->update_all_views(&ptopic->;
 

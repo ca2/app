@@ -969,13 +969,13 @@ namespace user
 
       }
 
-      auto ptopic = __new(::topic(id_initialize_control));
+      auto pextendedtopic = create_extended_topic(id_initialize_control);
 
-      ptopic->m_puserelement         = pinteraction;
-      ptopic->m_actioncontext = ::e_source_database;
-      ptopic->m_uiEvent      = 0;
+      pextendedtopic->m_puserelement         = pinteraction;
+      pextendedtopic->m_actioncontext        = ::e_source_database;
+      pextendedtopic->m_uiEvent              = 0;
 
-      route(ptopic);
+      route(pextendedtopic);
 
    }
 

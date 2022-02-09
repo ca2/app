@@ -1051,13 +1051,13 @@ namespace user
    void form_control::_001OnInitializeForm(::user::interaction * pinteraction)
    {
 
-      auto ptopic = __new(::topic(::id_initialize_control));
+      auto pextendedtopic = create_extended_topic(::id_initialize_control);
 
-      ptopic->m_puserelement        = pinteraction;
-      ptopic->m_actioncontext       = ::e_source_database;
-      ptopic->m_uiEvent             = 0;
+      pextendedtopic->m_puserelement        = pinteraction;
+      pextendedtopic->m_actioncontext       = ::e_source_database;
+      pextendedtopic->m_uiEvent             = 0;
 
-      route(ptopic);
+      route(pextendedtopic);
 
    }
 
@@ -1653,26 +1653,26 @@ namespace user
       if(m_pcallback != nullptr)
       {
 
-         auto ptopic = __new(::topic(id_timer));
+         auto pextendedtopic = __new(::extended_topic(id_timer));
 
-         ptopic->m_puserelement = this;
+         pextendedtopic->m_puserelement = this;
 
-         ptopic->m_uiEvent = ptimer->m_uEvent;
+         pextendedtopic->m_uiEvent = ptimer->m_uEvent;
 
-         ptopic->m_etimer = ptimer->m_etimer;
+         pextendedtopic->m_etimer = ptimer->m_etimer;
 
          auto papplication = get_application();
 
-         papplication->route(ptopic);
+         papplication->route(pextendedtopic);
 
-         if(ptopic->m_bRet)
+         if(pextendedtopic->m_bRet)
          {
 
             return;
 
          }
 
-         m_pcallback->route(ptopic);
+         m_pcallback->route(pextendedtopic);
 
       }
 

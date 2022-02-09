@@ -243,7 +243,7 @@ namespace filemanager
 
          auto ptopic = __new(::topic(TOPIC_OK_ID));
 
-         ptopic->payload(DOCUMENT_ID) = pdocument;
+         ptopic->_extended_topic()->payload(DOCUMENT_ID) = pdocument;
 
          ptopic->m_pfileitem = itema.get_first_pointer();
 
@@ -1013,7 +1013,7 @@ namespace filemanager
 
          auto ptopic = __new(::topic(id_topic_ok));
 
-         ptopic->payload(id_document) = this;
+         ptopic->_extended_topic()->payload(id_document) = this;
 
          update_all_views(&ptopic->;
 
@@ -1034,7 +1034,7 @@ namespace filemanager
 
          auto ptopic = __new(::topic(id_topic_ok));
 
-         ptopic->payload(id_document) = this;
+         ptopic->_extended_topic()->payload(id_document) = this;
 
          update_all_views(&ptopic->;
 
@@ -1053,7 +1053,7 @@ namespace filemanager
 
          auto ptopic = __new(::topic(id_topic_ok));
 
-         ptopic->payload(id_document) = this;
+         ptopic->_extended_topic()->payload(id_document) = this;
 
          update_all_views(&ptopic->;
 
@@ -1071,7 +1071,7 @@ namespace filemanager
 
       auto ptopic = __new(::topic(id_create_bars));
 
-      ptopic->payload(id_document) = this;
+      ptopic->_extended_topic()->payload(id_document) = this;
 
       browse(path, ::e_source_database);
 
@@ -1096,7 +1096,7 @@ namespace filemanager
 
       auto ptopic = create_topic(id_create_bars);
 
-      ptopic->payload(id_document) = this;
+      ptopic->_extended_topic()->payload(id_document) = this;
 
       if (bInitialBrowsePath)
       {
@@ -1188,7 +1188,7 @@ namespace filemanager
 
          auto ptopic = create_topic(id_initialize);
 
-         ptopic->payload(id_document) = this;
+         ptopic->_extended_topic()->payload(id_document) = this;
 
          update_all_views(ptopic);
 
@@ -1200,7 +1200,7 @@ namespace filemanager
 
          ptopic->m_actioncontext = ::e_source_sync;
 
-         ptopic->payload(id_document) = this;
+         ptopic->_extended_topic()->payload(id_document) = this;
 
          update_all_views(ptopic);
 
@@ -1216,7 +1216,7 @@ namespace filemanager
 
          extended_topic ptopic->id_create_bars);
 
-         ptopic->payload(id_document) = this;
+         ptopic->_extended_topic()->payload(id_document) = this;
 
          update_all_views(&ptopic->;
 
@@ -1390,7 +1390,7 @@ namespace filemanager
 
          auto ptopic = __new(::topic(id_topic_start));
 
-         ptopic->payload(id_document) = pdocumentFilemanager;
+         ptopic->_extended_topic()->payload(id_document) = pdocumentFilemanager;
 
          pdocumentFilemanager->update_all_views(&ptopic->;
 
@@ -1422,7 +1422,7 @@ namespace filemanager
 
          auto ptopic = __new(::topic(id_topic_start));
 
-         ptopic->payload(id_document) = pdocumentFilemanager;
+         ptopic->_extended_topic()->payload(id_document) = pdocumentFilemanager;
 
          pdocumentFilemanager->update_all_views(&ptopic->;
 

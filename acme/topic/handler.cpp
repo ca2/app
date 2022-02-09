@@ -21,7 +21,7 @@ CLASS_DECL_ACME void __call(handler * phandler, const ::atom & atom, i64 iData, 
    else
    {
 
-      auto pextendedtopic = pmatter->m_psystem->_create_extended_topic(atom);
+      auto pextendedtopic = pmatter->m_psystem->create_extended_topic(atom);
 
       if (iData != 0)
       {

@@ -701,9 +701,9 @@ pacmedir->create(pathDVP_Folder);
       string strBuildCmd;
 
 #if defined(LINUX) || defined(MACOS)
-      strBuildCmd.format(m_pcontext->m_papexcontext->dir().install() / "archive" / "operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bash");
+      strBuildCmd.format(m_pcontext->m_papexcontext->dir().install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bash");
 #else
-      strBuildCmd.format(m_pcontext->m_papexcontext->dir().install() / "archive" / ("operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source_" + m_strVsTools) / m_strDynamicSourceConfiguration + ::file::path("_c") + m_strPlat1 + ".bat");
+      strBuildCmd.format(m_pcontext->m_papexcontext->dir().install() / "operating-system" / ("operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source_" + m_strVsTools) / m_strDynamicSourceConfiguration + ::file::path("_c") + m_strPlat1 + ".bat");
 #endif
 
       str = m_pcontext->m_papexcontext->file().as_string(strBuildCmd);
@@ -868,9 +868,9 @@ pacmedir->create(pathDVP_Folder);
          //strBuildCmd;
 
 #if defined(LINUX) || defined(MACOS)
-         strBuildCmd.format(m_pcontext->m_papexcontext->dir().install() / "archive" / "operating-system-" OPERATING_SYSTEM_NAME"\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bash");
+         strBuildCmd.format(m_pcontext->m_papexcontext->dir().install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME"\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bash");
 #else
-         strBuildCmd.format(m_pcontext->m_papexcontext->dir().install() / "archive" / ("operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source_" + m_strVsTools) / m_strDynamicSourceConfiguration + ::file::path("_l") + m_strPlat1 + ".bat");
+         strBuildCmd.format(m_pcontext->m_papexcontext->dir().install() / "operating-system" / ("operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source_" + m_strVsTools) / m_strDynamicSourceConfiguration + ::file::path("_l") + m_strPlat1 + ".bat");
 #endif
 
          str = m_pcontext->m_papexcontext->file().as_string(strBuildCmd);
@@ -1465,8 +1465,8 @@ pacmedir->create(pathDVP_Folder);
       string vars2batSrc;
       string vars1batDst;
       string vars2batDst;
-      vars1batSrc = m_pcontext->m_papexcontext->dir().install() / "archive" / "operating-system-" OPERATING_SYSTEM_NAME "/_stage/dynamic_source/vc_vars.bat";
-      vars2batSrc = m_pcontext->m_papexcontext->dir().install() / "archive" / "operating-system-" OPERATING_SYSTEM_NAME "/_stage/dynamic_source/vc_vars_query_registry.bat";
+      vars1batSrc = m_pcontext->m_papexcontext->dir().install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "/_stage/dynamic_source/vc_vars.bat";
+      vars2batSrc = m_pcontext->m_papexcontext->dir().install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "/_stage/dynamic_source/vc_vars_query_registry.bat";
       vars1batDst = m_pcontext->m_papexcontext->dir().install() / m_strDynamicSourceStage / "front/vc_vars.bat";
       vars2batDst = m_pcontext->m_papexcontext->dir().install() / m_strDynamicSourceStage / "front/vc_vars_query_registry.bat";
       try
@@ -1511,9 +1511,9 @@ pacmedir->create(pathDVP_Folder);
 //         strCmd = m_pcontext->m_papexcontext->dir().install() / m_strDynamicSourceStage / "front" / m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bat";
 //#endif
 #ifdef LINUX
-         strCmd.format(m_pcontext->m_papexcontext->dir().install() / "archive" / "operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bash");
+         strCmd.format(m_pcontext->m_papexcontext->dir().install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bash");
 #else
-         strCmd.format(m_pcontext->m_papexcontext->dir().install() / "archive" / "operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + ::file::path("_libc") + m_strPlat1 + ".bat");
+         strCmd.format(m_pcontext->m_papexcontext->dir().install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + ::file::path("_libc") + m_strPlat1 + ".bat");
 #endif
 
          //#else
@@ -1685,9 +1685,9 @@ pacmedir->create(pathDVP_Folder);
 //         ".bat";
 //#endif
 #ifdef LINUX
-      strCmd.format(m_pcontext->m_papexcontext->dir().install() / "archive" / "operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_libl" + m_strPlat1 + ".bash");
+      strCmd.format(m_pcontext->m_papexcontext->dir().install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_libl" + m_strPlat1 + ".bash");
 #else
-      strCmd.format(m_pcontext->m_papexcontext->dir().install() / "archive" / "operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + ::file::path("_libl") + m_strPlat1 + ".bat");
+      strCmd.format(m_pcontext->m_papexcontext->dir().install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + ::file::path("_libl") + m_strPlat1 + ".bat");
 #endif
       //#else
       // strCmd.format(strFolder, "app\\_stage\\aura\\account\\app\\main\\front\\dynamic_source_libl.bat", false));

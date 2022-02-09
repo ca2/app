@@ -3452,7 +3452,7 @@ namespace user
       if (ptopic->m_atom == id_get_topic_view_id)
       {
 
-         ptopic->_extended_topic()->payload(id_id) = get_current_tab_id();
+         ptopic->payload(id_id) = get_current_tab_id();
 
          ptopic->m_bRet = true;
 
@@ -3460,7 +3460,7 @@ namespace user
       else if (ptopic->m_atom == id_set_topic_view_by_id)
       {
 
-         set_current_tab_by_id(ptopic->_extended_topic()->payload(id_id));
+         set_current_tab_by_id(ptopic->payload(id_id));
 
          ptopic->m_bRet = true;
 

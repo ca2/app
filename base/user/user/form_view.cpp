@@ -42,13 +42,13 @@ namespace user
       else if (ptopic->m_atom == id_browse)
       {
 
-         if (!ptopic->_extended_topic()->payload(id_form).is_empty())
+         if (!ptopic->payload(id_form).is_empty())
          {
 
-            if (get_document()->on_open_document(ptopic->_extended_topic()->payload(id_form)))
+            if (get_document()->on_open_document(ptopic->payload(id_form)))
             {
 
-               m_strPath = ptopic->_extended_topic()->payload(id_form);
+               m_strPath = ptopic->payload(id_form);
 
             }
 
@@ -58,14 +58,14 @@ namespace user
       else if (ptopic->m_atom == id_get_form_view)
       {
 
-         ptopic->_extended_topic()->payload(id_form) = this;
+         ptopic->payload(id_form) = this;
 
       }
 
       if(m_pcallback != nullptr)
       {
 
-         ptopic->_extended_topic()->payload(id_form) = this;
+         ptopic->payload(id_form) = this;
 
          m_pcallback->handle(ptopic, pcontext);
 

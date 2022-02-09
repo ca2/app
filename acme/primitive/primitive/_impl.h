@@ -3807,3 +3807,19 @@ template < typename OBJECT >
    return c;
 
 }
+
+
+
+inline ::topic_pointer matter::create_topic(const ::atom & atom)
+{
+
+   auto ptopic = __new(::topic(atom));
+
+   ptopic->m_psystem = m_psystem;
+
+   return ::move(ptopic);
+
+}
+
+
+

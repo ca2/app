@@ -327,11 +327,11 @@ namespace html
          for (auto & pinteraction : m_pform->m_puserinteractionpointeraChild->interactiona())
          {
             
-            auto pextendedtopic = create_topic(::id_initialize_control);
+            auto ptopic = create_topic(::id_initialize_control);
 
-            pextendedtopic->m_puserelement = pinteraction;
+            ptopic->m_puserelement = pinteraction;
 
-            m_pform->route(pextendedtopic);
+            m_pform->route(ptopic);
 
          }
 

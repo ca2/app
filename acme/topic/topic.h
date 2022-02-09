@@ -90,14 +90,4 @@ public:
 };
    
 
-inline ::topic_pointer create_topic(const ::atom & atom)
-{
-
-   auto ptopic = __new(::topic(atom));;
-
-   return ::move(ptopic);
-
-}
-
-
 

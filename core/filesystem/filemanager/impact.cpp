@@ -217,7 +217,7 @@ namespace filemanager
                else if (path.final_extension().has_char())
                {
 
-                  string strExtension = ptopic->_extended_topic()->payload("file_extension");
+                  string strExtension = ptopic->payload("file_extension");
 
                   if (strExtension.has_char())
                   {

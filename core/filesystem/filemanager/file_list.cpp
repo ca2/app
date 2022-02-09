@@ -2096,7 +2096,7 @@ namespace filemanager
       else if (ptopic->m_atom == id_filter)
       {
 
-         if (ptopic->_extended_topic()->payload(id_filter).is_empty())
+         if (ptopic->payload(id_filter).is_empty())
          {
 
             FilterClose();
@@ -2107,7 +2107,7 @@ namespace filemanager
 
             FilterBegin();
 
-            Filter1(ptopic->_extended_topic()->payload(id_filter).as_string());
+            Filter1(ptopic->payload(id_filter).as_string());
 
          }
 
@@ -2126,7 +2126,7 @@ namespace filemanager
       else if (ptopic->m_atom == id_after_browse)
       {
 
-         if (ptopic->_extended_topic()->payload(id_after_browse) == "filemanager\\replace_name_in_file_system.xhtml")
+         if (ptopic->payload(id_after_browse) == "filemanager\\replace_name_in_file_system.xhtml")
          {
 
             //html::matter * pelemental = dynamic_cast < html::matter * > (pupdate->m_pformview->get_html_data()->get_element_by_name("encontrar"));
@@ -2142,7 +2142,7 @@ namespace filemanager
             if (pitem)
             {
 
-               pinteraction->_001SetText(ptopic->_extended_topic()->payload(id_name), ptopic->m_actioncontext);
+               pinteraction->_001SetText(ptopic->payload(id_name), ptopic->m_actioncontext);
 
             }
 
@@ -2151,14 +2151,14 @@ namespace filemanager
          if (ptopic->m_atom == id_replace_name)
          {
 
-            if (ptopic->_extended_topic()->payload(id_find).has_char())
+            if (ptopic->payload(id_find).has_char())
             {
 
                auto pcontext = get_context();
 
                ::file::path pathFolder = filemanager_item()->get_user_path();
 
-               pcontext->m_papexcontext->file().replace_with(pathFolder, ptopic->_extended_topic()->payload(id_replace), ptopic->_extended_topic()->payload(id_find));
+               pcontext->m_papexcontext->file().replace_with(pathFolder, ptopic->payload(id_replace), ptopic->payload(id_find));
 
             }
 
@@ -2166,10 +2166,10 @@ namespace filemanager
          else if (ptopic->m_atom == id_new_folder)
          {
 
-            if (ptopic->_extended_topic()->payload(id_folder).has_char())
+            if (ptopic->payload(id_folder).has_char())
             {
 
-               ::file::path pathFolder = filemanager_item()->get_user_path() / ptopic->_extended_topic()->payload(id_folder);
+               ::file::path pathFolder = filemanager_item()->get_user_path() / ptopic->payload(id_folder);
 
                auto pcontext = get_context();
 

@@ -977,7 +977,7 @@ namespace user
    }
 
 
-   ::user::form * interaction::get_form_user_element()
+   ::user::element * interaction::get_form_user_element()
    {
 
       return get_form();
@@ -985,7 +985,7 @@ namespace user
    }
 
 
-   ::user::form * interaction::get_parent_form_user_element()
+   ::user::element * interaction::get_parent_form_user_element()
    {
 
       return get_parent_form();

@@ -582,8 +582,8 @@ namespace user
       virtual double get_rotate();
       ::user::form * get_form() override;
       ::user::form * get_parent_form() override;
-      ::user::form * get_form_user_element() override;
-      ::user::form * get_parent_form_user_element() override;
+      ::user::element * get_form_user_element() override;
+      ::user::element * get_parent_form_user_element() override;
 
       ::user::interaction * get_user_interaction() override;
 

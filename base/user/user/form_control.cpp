@@ -950,12 +950,12 @@ namespace user
 
       ::user::interaction::update_data(bSaveAndValidate);
 
-      __pointer(::extended_topic) pextendedtopic;
+      ::topic_pointer ptopic;
 
       if (bSaveAndValidate)
       {
 
-         pextendedtopic = create_topic(::id_save_form_data);
+         ptopic = create_topic(::id_save_form_data);
 
          m_bNeedSaveFormData = false;
 
@@ -963,19 +963,17 @@ namespace user
       else
       {
 
-         pextendedtopic = create_topic(::id_load_form_data);
+         ptopic = create_topic(::id_load_form_data);
 
          m_bNeedLoadFormData = false;
 
       }
 
-      pextendedtopic->m_bOk = true;
+      ptopic->m_bOk = true;
 
-      pextendedtopic->m_puserelement = this;
+      ptopic->m_puserelement = this;
 
-      route(pextendedtopic);
-
-      //return ptopic->m_bOk;
+      route(ptopic);
 
    }
 

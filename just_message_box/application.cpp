@@ -86,8 +86,37 @@ namespace app_just_message_box
    void application::show_message_box()
    {
 
-      //auto pprocess = message_box("Showing a message box as requested.\n\nIs it ok?", nullptr, e_message_box_yes_no_cancel);
+      while (true)
+      {
 
+
+         auto result = os_message_box(this, "Showing a message box as requested.\n\nIs it ok?", nullptr, e_message_box_yes_no_cancel);
+
+
+         if (result == e_dialog_result_yes)
+         {
+
+            _001TryCloseApplication();
+
+            break;
+
+         }
+         else  if (result == e_dialog_result_no)
+         {
+
+            os_message_box(this, "No!", nullptr, e_message_box_ok);
+
+         }
+         else  if (result == e_dialog_result_cancel)
+         {
+
+            os_message_box(this, "Cancel", nullptr, e_message_box_ok);
+
+         }
+
+      }
+
+   
       //pprocess->then([this](auto future)
       //               {
 

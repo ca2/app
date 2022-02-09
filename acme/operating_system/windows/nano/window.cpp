@@ -558,11 +558,32 @@ namespace windows
 
          }
             break;
+         case WM_ERASEBKGND:
+            return 1;
          case WM_PAINT:
             {
                PAINTSTRUCT paintstruct{};
-               HDC hdc = BeginPaint(m_hwnd, &paintstruct);
+               HDC hdcWindow = BeginPaint(m_hwnd, &paintstruct);
+
+               HDC hdc = ::CreateCompatibleDC(hdcWindow);
+
+               ::rectangle_i32 rectangleClient;
+
+               ::GetClientRect(m_hwnd, (LPRECT) &rectangleClient);
+
+               HBITMAP hbitmap = ::CreateCompatibleBitmap(hdcWindow, rectangleClient.width(), rectangleClient.height());
+
+               HGDIOBJ hbitmapOld = ::SelectObject(hdc, hbitmap);
+
                _draw(hdc);
+
+
+               ::BitBlt(hdcWindow, 0, 0, rectangleClient.width(), rectangleClient.height(),
+                  hdc, 0, 0, SRCCOPY);
+
+               hbitmapOld = ::SelectObject(hdc, hbitmapOld);
+
+               ::DeleteDC(hdc);
                EndPaint(m_hwnd, &paintstruct);
             }
             break;

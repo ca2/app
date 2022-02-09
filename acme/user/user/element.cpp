@@ -289,6 +289,22 @@ namespace user
    }
 
 
+   ::user::element * element::get_form_user_element()
+   {
+
+      return nullptr;
+
+   }
+
+
+   ::user::element * element::get_parent_form_user_element()
+   {
+
+      return nullptr;
+
+   }
+
+
    void element::enable_window(bool bEnable)
    {
 

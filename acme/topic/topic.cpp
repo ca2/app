@@ -91,3 +91,56 @@
 
 }
 
+
+::user::form * topic::get_form() const
+{
+
+   if (::is_null(m_puserelement))
+   {
+
+      return nullptr;
+
+   }
+
+   return m_puserelement->get_form();
+
+}
+
+
+::user::element * topic::get_form_user_element() const
+{
+
+   if (::is_null(m_puserelement))
+   {
+
+      return nullptr;
+
+   }
+
+   return m_puserelement->get_form_user_element();
+
+}
+
+
+bool topic::is_about(::user::element * pelement) const
+{
+
+   auto pform = get_form();
+
+   if (::is_null(pform))
+   {
+
+      return false;
+
+   }
+
+   if (get_form_user_element() == pelement)
+   {
+
+      return true;
+
+   }
+
+   return false;
+
+}

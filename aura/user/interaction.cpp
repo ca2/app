@@ -960,6 +960,39 @@ namespace user
    }
 
 
+   ::user::form * interaction::get_parent_form()
+   {
+
+      auto pform = get_form();
+
+      if (::is_null(pform))
+      {
+
+         return nullptr;
+
+      }
+
+      return pform;
+
+   }
+
+
+   ::user::form * interaction::get_form_user_element()
+   {
+
+      return get_form();
+
+   }
+
+
+   ::user::form * interaction::get_parent_form_user_element()
+   {
+
+      return get_parent_form();
+
+   }
+
+
    ::element *interaction::get_taskpool_container()
    {
 
@@ -998,21 +1031,6 @@ namespace user
    }
 
 
-   ::user::form *interaction::get_parent_form()
-   {
-
-      auto pform = get_form();
-
-      if (::is_null(pform))
-      {
-
-         return nullptr;
-
-      }
-
-      return pform;
-
-   }
 
 
    ::user::interaction *interaction::get_user_interaction()

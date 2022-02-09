@@ -109,6 +109,10 @@ namespace user
 
       virtual ::user::form * get_parent_form();
 
+      virtual ::user::element * get_form_user_element();
+
+      virtual ::user::element * get_parent_form_user_element();
+
       virtual void enable_window(bool bEnable = true);
 
       virtual void PreSubClassWindow();

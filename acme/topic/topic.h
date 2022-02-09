@@ -78,6 +78,15 @@ public:
    virtual const ::extended_topic * _extended_topic() const { return nullptr; }
 
 
+   virtual ::user::form * get_form() const;
+
+
+   virtual ::user::element * get_form_user_element() const;
+
+
+   virtual bool is_about(::user::element * pelement) const;
+
+
 };
    
 

@@ -102,6 +102,10 @@ void stdio_file::open(const ::file::path & path, const ::string & strAttributes,
 
 #ifdef WINDOWS
 
+   bool bTriedSetFileNormal = false;
+
+   try_again:
+
    wstring wstrPath(path);
 
    wstring wstrAttributes(strAttributes);
@@ -132,6 +136,33 @@ void stdio_file::open(const ::file::path & path, const ::string & strAttributes,
             return;
 
          }
+
+#ifdef WINDOWS
+
+         if (estatus == error_file_access_denied)
+         {
+
+            if (m_psystem->m_pacmefile->exists(path))
+            {
+
+               if (!bTriedSetFileNormal)
+               {
+
+                  m_psystem->m_pacmefile->set_file_normal(path);
+
+                  m_psystem->m_pacmefile->clear_read_only(path);
+
+                  bTriedSetFileNormal = true;
+
+                  goto try_again;
+
+               }
+
+            }
+
+         }
+
+#endif
 
          throw_status(estatus, string("Error with file: ") + path);
 

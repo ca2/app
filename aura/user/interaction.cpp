@@ -6549,14 +6549,14 @@ void interaction::RedrawWindow(const ::rectangle_i32& rectangleUpdate, ::draw2d:
 ::user::interaction * interaction::ChildWindowFromPoint(const ::point_i32 & point)
 {
 
-      if (m_pprimitiveimpl == nullptr)
-      {
+   if (m_pprimitiveimpl == nullptr)
+   {
 
-         return nullptr;
+      return nullptr;
 
-      }
+   }
 
-      return m_pprimitiveimpl->ChildWindowFromPoint(point);
+   return m_pprimitiveimpl->ChildWindowFromPoint(point);
 
 }
 
@@ -6564,14 +6564,14 @@ void interaction::RedrawWindow(const ::rectangle_i32& rectangleUpdate, ::draw2d:
 ::user::interaction * interaction::ChildWindowFromPoint(const ::point_i32 & point, ::u32 nFlags)
 {
 
-      if (m_pprimitiveimpl == nullptr)
-      {
+   if (m_pprimitiveimpl == nullptr)
+   {
 
-         return nullptr;
+      return nullptr;
 
-      }
+   }
 
-      return m_pprimitiveimpl->ChildWindowFromPoint(point, nFlags);
+   return m_pprimitiveimpl->ChildWindowFromPoint(point, nFlags);
 
 }
 

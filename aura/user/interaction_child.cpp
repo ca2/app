@@ -418,10 +418,12 @@ namespace user
    void interaction_child::destroy_window()
    {
 
+      auto puserinteraction = m_puserinteraction;
+
       try
       {
 
-         m_puserinteraction->send_message(e_message_destroy);
+         puserinteraction->send_message(e_message_destroy);
 
       }
       catch (...)
@@ -433,7 +435,7 @@ namespace user
       try
       {
 
-         m_puserinteraction->send_message(e_message_non_client_destroy);
+         puserinteraction->send_message(e_message_non_client_destroy);
 
       }
       catch (...)

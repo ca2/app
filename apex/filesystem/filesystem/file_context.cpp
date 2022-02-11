@@ -2884,7 +2884,7 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, const ::f
 #else
       pathCache.replace_with("_/", "://");
 #endif
-      pathCache = m_pcontext->m_papexcontext->dir().cache() / pathCache;
+      pathCache = m_pcontext->m_papexcontext->dir().cache() / (pathCache + ".cache");
 
    }
 

@@ -15958,6 +15958,14 @@ order(zorderParam);
 
             bool bSameUserInteractionAsMouseDown = psession->m_puiLastLButtonDown == this;
 
+            PARTICLE * p1 = &m_itemLButtonDown;
+
+            PARTICLE * p2 = &item;
+
+            int iSize = sizeof(ITEM_BASE);
+
+            int iMemCmp = !memcmp(p1, p2, iSize);
+
             bool bSameItemAsMouseDown = (const item_base &) m_itemLButtonDown == (const item_base &) item;
 
             TRACE("interaction::on_message_left_button_up item=" << (int) item.m_iItem<<", SameUserInteractionAsMsDwn="<< (int) bSameUserInteractionAsMouseDown<<", SameItemAsMsDwn=" << (int) bSameItemAsMouseDown);

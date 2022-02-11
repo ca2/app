@@ -285,7 +285,14 @@ void app_core::system_init()
 
       string strCommandLine(pwsz);
 
-      stra1 = get_c_args_from_string(strCommandLine);
+      //stra1 = get_c_args_from_string(strCommandLine);
+
+      /// <summary>
+      /// This no_escape_get_c_args_from_string
+      /// considers the string literally,
+      /// that is, it doesn't parse escape sequences.
+      /// </summary>
+      stra1 = no_escape_get_c_args_from_string(strCommandLine);
 
    }
 

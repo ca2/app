@@ -2861,6 +2861,9 @@
     <ClInclude Include="primitive\primitive\particle.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
+    <ClInclude Include="inline\implement_console.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">

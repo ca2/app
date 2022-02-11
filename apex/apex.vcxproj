@@ -237,8 +237,7 @@
       <SubSystem>Windows</SubSystem>
     </Link>
     <PreBuildEvent>
-      <Command>
-      </Command>
+      <Command>$(SolutionDir)..\..\..\operating-system\tool-windows\bin\application_build_helper "$(ProjectDir)" "$(ProjectName)"</Command>
     </PreBuildEvent>
     <Manifest>
       <AdditionalManifestFiles>
@@ -315,8 +314,7 @@
       <ShowProgress>NotSet</ShowProgress>
     </Link>
     <PreBuildEvent>
-      <Command>
-      </Command>
+      <Command>$(SolutionDir)..\..\..\operating-system\tool-windows\bin\application_build_helper "$(ProjectDir)" "$(ProjectName)"</Command>
     </PreBuildEvent>
     <Manifest>
       <AdditionalManifestFiles>
@@ -397,8 +395,7 @@
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
     <PreBuildEvent>
-      <Command>
-      </Command>
+      <Command>$(SolutionDir)..\..\..\operating-system\tool-windows\bin\application_build_helper "$(ProjectDir)" "$(ProjectName)"</Command>
     </PreBuildEvent>
     <Manifest>
       <AdditionalManifestFiles>
@@ -486,8 +483,7 @@
       </MergeSections>
     </Link>
     <PreBuildEvent>
-      <Command>
-      </Command>
+      <Command>$(SolutionDir)..\..\..\operating-system\tool-windows\bin\application_build_helper "$(ProjectDir)" "$(ProjectName)"</Command>
     </PreBuildEvent>
     <Manifest>
       <AdditionalManifestFiles>
@@ -567,8 +563,7 @@
       </MapFileName>
     </Link>
     <PreBuildEvent>
-      <Command>
-      </Command>
+      <Command>$(SolutionDir)..\..\..\operating-system\tool-windows\bin\application_build_helper "$(ProjectDir)" "$(ProjectName)"</Command>
     </PreBuildEvent>
     <CustomBuildStep>
       <Command>
@@ -644,8 +639,7 @@
       </MapFileName>
     </Link>
     <PreBuildEvent>
-      <Command>
-      </Command>
+      <Command>$(SolutionDir)..\..\..\operating-system\tool-windows\bin\application_build_helper "$(ProjectDir)" "$(ProjectName)"</Command>
     </PreBuildEvent>
     <CustomBuildStep>
       <Command>
@@ -725,8 +719,7 @@
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
     <PreBuildEvent>
-      <Command>
-      </Command>
+      <Command>$(SolutionDir)..\..\..\operating-system\tool-windows\bin\application_build_helper $(ProjectDir) $(ProjectName)</Command>
     </PreBuildEvent>
     <CustomBuildStep>
       <Command>
@@ -795,8 +788,7 @@
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
     <PreBuildEvent>
-      <Command>
-      </Command>
+      <Command>$(SolutionDir)..\..\..\operating-system\tool-windows\bin\application_build_helper "$(ProjectDir)" "$(ProjectName)"</Command>
     </PreBuildEvent>
     <CustomBuildStep>
       <Command>

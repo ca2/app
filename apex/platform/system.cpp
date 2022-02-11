@@ -1032,6 +1032,10 @@ pacmedir->create("/ca2core");
 
       //}
 
+      auto pid = get_current_process_id();
+
+      string strPid = __string(pid);
+
       auto psystem = m_psystem;
 
       auto pdatetime = psystem->datetime();
@@ -1061,7 +1065,7 @@ pacmedir->create("/ca2core");
 
          string strAppId = m_strAppId;
 
-         string strCmdLineDumpFileName = strAppId / strLogTime + "-command_line.txt";
+         string strCmdLineDumpFileName = strAppId / (strLogTime + "-pid" + strPid + "-command_line.txt");
 
          ::file::path pathCmdLineDumpFile = m_psystem->m_pacmedir->home() / "application" / strCmdLineDumpFileName;
 
@@ -1104,7 +1108,7 @@ pacmedir->create("/ca2core");
 
          string strAppId = m_strAppId;
 
-         string strEnvDumpFileName = strAppId / strLogTime + "-environment_variables.txt";
+         string strEnvDumpFileName = strAppId / strLogTime + "-pid" + strPid + "-environment_variables.txt";
 
          ::file::path pathEnvDumpFile = m_psystem->m_pacmedir->home() / "application" / strEnvDumpFileName;
 
@@ -1807,7 +1811,15 @@ pacmedir->create("/ca2core");
 
          strTitle = "Exception during initialization";
 
-         os_message_box(this, strMessage, strTitle, e_message_box_ok | e_message_box_icon_exclamation);
+         string strDetails;
+
+         strDetails += strMessage + "\n";
+         strDetails += "\n";
+         strDetails += "PID: " + __string(::get_current_process_id()) + "\n";
+         strDetails += "Working Directory: " + m_psystem->m_pacmedir->get_current() + "\n\n";
+         strDetails += "command line: " + string(m_psystem->m_strCommandLine) + "\n\n";
+
+         os_message_box(this, strMessage, strTitle, e_message_box_ok | e_message_box_icon_exclamation, strDetails);
 
          throw exception;
 

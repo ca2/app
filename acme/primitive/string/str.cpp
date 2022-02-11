@@ -3103,7 +3103,7 @@ skip:
    }
 
 
-   void consume_quoted_value_ex2(const char * & pszParse, const char * pszEnd, char ** ppsz, strsize & iBufferSize)
+   void no_escape_consume_quoted_value(const char * & pszParse, const char * pszEnd, char ** ppsz, strsize & iBufferSize)
    {
 
       const char * psz = pszParse;
@@ -3160,6 +3160,54 @@ skip:
       pszParse = psz;
 
    }
+
+
+   string no_escape_consume_quoted_value(const char *& pszParse, const char * pszEnd)
+   {
+
+      const char * psz = pszParse;
+
+      if (*psz != '\"' && *psz != '\\')
+      {
+
+         throw ::exception(error_parsing, "Quote character is required here");
+
+         return{};
+
+      }
+
+      char qc = *psz;
+
+      psz++;
+
+      const char * pszStart = psz;
+
+      while (*psz != qc)
+      {
+
+         psz = __utf8_inc(psz);
+
+         if (psz > pszEnd)
+         {
+
+            throw ::exception(error_parsing, "Quote character is required here, premature end");
+
+            return{};
+
+         }
+
+      }
+
+      string str(pszStart, psz - pszStart);
+
+      psz++;
+
+      pszParse = psz;
+
+      return ::move(str);
+
+   }
+
 
    void skip_quoted_value_ex2(const char * & pszParse, const char * pszEnd)
    {

@@ -249,7 +249,8 @@ namespace str
    CLASS_DECL_ACME string consume_non_spaces(string & str);
    CLASS_DECL_ACME string consume_nc_name(const ansichar * & pszParse);
    //CLASS_DECL_ACME string consume_quoted_value(const ansichar * & pszParse);
-   CLASS_DECL_ACME void consume_quoted_value_ex2(const ansichar * & pszParse, const ansichar * pszEnd, ansichar ** ppsz, strsize & iBufferSize);
+   CLASS_DECL_ACME void no_escape_consume_quoted_value(const ansichar * & pszParse, const ansichar * pszEnd, ansichar ** ppsz, strsize & iBufferSize);
+   CLASS_DECL_ACME string no_escape_consume_quoted_value(const ansichar *& pszParse, const ansichar * pszEnd);
    CLASS_DECL_ACME void skip_quoted_value_ex2(const ansichar * & pszParse, const ansichar * pszEnd);
    CLASS_DECL_ACME string consume_quoted_value(const ansichar * & pszParse, const ansichar * pszEnd = nullptr);
    CLASS_DECL_ACME string consume_quoted_value_ex(const ansichar * & pszParse,const ansichar * pszEnd);

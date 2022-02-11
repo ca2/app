@@ -28,6 +28,8 @@ int main(int argc, platform_char ** argv, platform_char ** envp)
 
    class ::main main;
 
+   //Sleep(30'000);
+
    main.m_argc = argc;
 #ifdef WINDOWS
    main.m_wargv = argv;

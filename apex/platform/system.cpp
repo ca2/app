@@ -1814,6 +1814,7 @@ pacmedir->create("/ca2core");
          string strDetails;
 
          strDetails += strMessage + "\n";
+         strDetails += exception.m_strDetails + "\n\n";
          strDetails += "\n";
          strDetails += "PID: " + __string(::get_current_process_id()) + "\n";
          strDetails += "Working Directory: " + m_psystem->m_pacmedir->get_current() + "\n\n";

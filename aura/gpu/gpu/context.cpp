@@ -146,7 +146,7 @@ namespace gpu
       if (::is_null(pgpu))
       {
 
-         throw_status(error_null_pointer);
+         throw ::exception(error_null_pointer);
 
       }
 
@@ -157,7 +157,7 @@ namespace gpu
       if (!::is_ok(m_pbuffer->m_pimage))
       {
 
-         throw_status(error_resource);
+         throw ::exception(error_resource);
 
       }
 

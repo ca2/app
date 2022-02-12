@@ -41,7 +41,7 @@ service* service_handler::get_service()
       if (!pservice)
       {
 
-         throw_status(error_resource);
+         throw ::exception(error_resource);
 
       }
 
@@ -60,7 +60,7 @@ service* service_handler::get_service()
       if (!m_pservice)
       {
 
-         throw_status(error_resource);
+         throw ::exception(error_resource);
 
       }
 

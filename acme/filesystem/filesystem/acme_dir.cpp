@@ -833,14 +833,14 @@ bool acme_dir::is(const char * path)
    if(::is_null(path))
    {
 
-      throw_status(error_null_pointer);
+      throw ::exception(error_null_pointer);
 
    }
 
    if(*path == '\0')
    {
 
-      throw_status(error_bad_argument);
+      throw ::exception(error_bad_argument);
 
    }
 

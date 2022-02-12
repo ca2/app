@@ -101,7 +101,7 @@ void object::add_composite(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG_COMM
    if (!m_pcompositea->add_unique(pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS))
    {
 
-      throw_status(success_none);
+      throw ::exception(success_none);
 
 //#ifdef _DEBUG
 //
@@ -1793,7 +1793,7 @@ __pointer(task) object::branch_element(element * pelement, ::enum_priority eprio
    if (::is_null(pelement))
    {
 
-      throw_status(error_failed);
+      throw ::exception(error_failed);
 
    }
 
@@ -1802,7 +1802,7 @@ __pointer(task) object::branch_element(element * pelement, ::enum_priority eprio
    if (!ptask)
    {
 
-      throw_status(error_failed);
+      throw ::exception(error_failed);
 
    }
 
@@ -2045,7 +2045,7 @@ void object::sleep(const ::duration& duration)
       if (m_psystem && m_psystem->is_finishing())
       {
 
-         throw_status(error_exit_system);
+         throw ::exception(error_exit_system);
 
       }
 
@@ -2094,7 +2094,7 @@ void object::sleep(const ::duration& duration)
       if (m_psystem && m_psystem->is_finishing())
       {
 
-         throw_status(error_exit_system);
+         throw ::exception(error_exit_system);
 
       }
 

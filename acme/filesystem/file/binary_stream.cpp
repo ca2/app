@@ -575,7 +575,7 @@ void binary_stream::read(atom & atom)
 //   if (path.is_empty())
 //   {
 //
-//      throw_status(error_io);
+//      throw ::exception(error_io);
 //
 //      return;
 //
@@ -590,7 +590,7 @@ void binary_stream::read(atom & atom)
 //   catch (...)
 //   {
 //
-//      throw_status(error_io);
+//      throw ::exception(error_io);
 //
 //   }
 //
@@ -607,7 +607,7 @@ void binary_stream::read(atom & atom)
 //   if (path.is_empty())
 //   {
 //
-//      throw_status(error_io);
+//      throw ::exception(error_io);
 //
 //      return;
 //
@@ -622,7 +622,7 @@ void binary_stream::read(atom & atom)
 //   catch (...)
 //   {
 //
-//      throw_status(error_io);
+//      throw ::exception(error_io);
 //
 //   }
 //
@@ -1106,7 +1106,7 @@ void binary_stream::read(block & block)
    if (u != block.get_size())
    {
 
-      throw_status(error_io);
+      throw ::exception(error_io);
 
       return;
 

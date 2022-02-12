@@ -106,7 +106,7 @@ namespace user
          else if(m_puserinteractionpointeraChild->interaction_count() > 1)
          {
 
-            throw exception(error_wrong_state);
+            throw ::exception(error_wrong_state);
 
          }
 

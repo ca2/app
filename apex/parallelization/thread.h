@@ -585,7 +585,7 @@ inline void while_predicateicate_Sleep(int iTime, PRED pred)
 
    }
 
-   throw_status(error_timeout);
+   throw ::exception(error_timeout);
 
 }
 

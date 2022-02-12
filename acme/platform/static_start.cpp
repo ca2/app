@@ -13,6 +13,15 @@ void initialize_memory_management();
 void finalize_memory_management();
 
 
+#ifdef WINDOWS
+
+
+::mutex* g_pmutexSymDbgHelp;
+
+
+#endif
+
+
 //namespace main_memory_allocate_heap
 //{
 //
@@ -475,6 +484,14 @@ namespace acme
       //g_pmapFontFaceName = nullptr;
 
 
+#ifdef WINDOWS
+
+
+      g_pmutexSymDbgHelp = nullptr;
+
+
+#endif
+
 
    }
 
@@ -727,6 +744,16 @@ namespace acme
 
 #endif
 
+
+#ifdef WINDOWS
+
+
+      g_pmutexSymDbgHelp = new ::mutex();
+
+
+#endif
+
+
    }
 
 
@@ -971,6 +998,16 @@ namespace acme
 
 #endif
 
+
+#ifdef WINDOWS
+
+
+      ::acme::del(g_pmutexSymDbgHelp);
+
+
+#endif
+
+
       delete_all_release_on_end();
 
       ::finalize_sequence_critical_section();
@@ -1053,7 +1090,7 @@ namespace acme
       __node_acme_pre_init();
       //{
 
-      //   throw_status(error_failed);
+      //   throw ::exception(error_failed);
 
       //}
 
@@ -1064,7 +1101,7 @@ namespace acme
       __node_acme_pos_init();
       //{
 
-      //   throw_status(error_failed);
+      //   throw ::exception(error_failed);
 
       //}
 

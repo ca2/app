@@ -11,6 +11,8 @@ nano_message_box::nano_message_box()
 
    m_bStartCentered = true;
 
+   m_strLabelDetails = "Details...";
+
 }
 
 
@@ -59,6 +61,27 @@ void nano_message_box::add_button(const char * pszText, enum_dialog_result edial
 }
 
 
+void nano_message_box::defer_create_details_still()
+{
+
+   if (m_strDetails.has_char())
+   {
+
+      m_pstillDetails = __new(nano_still);
+
+      m_pstillDetails->m_atom = "details";
+
+      m_pstillDetails->m_strText = m_strLabelDetails;
+
+      m_pstillDetails->m_bHyperlink = true;
+
+      add_child(m_pstillDetails);
+
+   }
+
+}
+
+
 ::count get_line_count(const ::string & str)
 {
 
@@ -95,8 +118,6 @@ void nano_message_box::calculate_size()
    int y = (hScreen - h) / 2;
 
    m_rectangle.set_dim(x, y, w, h);
-
-
 
 }
 
@@ -148,20 +169,7 @@ void nano_message_box::display_synchronously(const ::string & strMessage, const 
          break;
    }
 
-   if (strDetails.has_char())
-   {
-
-      m_pstillDetails = __new(nano_still);
-
-      m_pstillDetails->m_atom = "details";
-
-      m_pstillDetails->m_strText = "Details...";
-
-      m_pstillDetails->m_bHyperlink = true;
-
-      add_child(m_pstillDetails);
-
-   }
+   defer_create_details_still();
 
    if (emessagebox & e_message_box_default_button_mask)
    {
@@ -207,7 +215,6 @@ void nano_message_box::display_synchronously(const ::string & strMessage, const 
    }
 
    create();
-
 
    nano_window::display_synchronously();
 
@@ -281,7 +288,6 @@ CLASS_DECL_ACME ::atom os_message_box(::object * pobject, const char * pszMessag
 void nano_message_box::on_click(const ::atom & atom)
 {
 
-
    if (atom == "details")
    {
 
@@ -289,7 +295,7 @@ void nano_message_box::on_click(const ::atom & atom)
 
       pdetailswindow->m_strMessage = m_strDetails;
 
-      pdetailswindow->display_synchronously(m_strDetails, m_strTitle + " : Details", e_message_box_ok);
+      pdetailswindow->display_synchronously(m_strDetails, m_strTitle + " : Details", e_message_box_ok, m_strDetails);
 
       m_atomResult.clear();
 

@@ -4042,6 +4042,9 @@
     <ClCompile Include="user\nano\details_window.cpp">
       <Filter>Source Files\user\nano</Filter>
     </ClCompile>
+    <ClCompile Include="operating_system\windows\callstack.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="primitive\string\aaa_want_to_remove_str.inl">

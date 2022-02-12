@@ -1585,7 +1585,7 @@ CScriptVar *CScriptVar::ref()
 
 void CScriptVar::unref()
 {
-   if (refs<=0) debug_print("OMFG, we have unreffed too far!\n");
+   if (refs<=0) throw ::exception(error_wrong_state, "OMFG, we have unreffed too far!\n");
    if ((--refs)==0)
    {
       delete this;

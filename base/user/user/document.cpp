@@ -360,7 +360,7 @@ namespace user
       if (!has_toolbar())
       {
 
-         throw_status(error_wrong_state);
+         throw ::exception(error_wrong_state);
 
       }
 
@@ -1752,14 +1752,14 @@ namespace user
       if (pview->m_pdocument)
       {
 
-         throw_status(::error_bad_argument);// must not be already attached
+         throw ::exception(::error_bad_argument);// must not be already attached
 
       }
 
       if (!m_viewa.add_unique(pview))
       {
 
-         throw_status(::error_already_added);// must not be already added
+         throw ::exception(::error_already_added);// must not be already added
 
       }
 
@@ -1782,14 +1782,14 @@ namespace user
       if(pview->get_document() != this)
       {
 
-         throw_status(::error_bad_argument); // must be attached to us
+         throw ::exception(::error_bad_argument); // must be attached to us
 
       }
 
       if (m_viewa.erase(pview) < 0)
       {
 
-         throw_status(::error_not_found);
+         throw ::exception(::error_not_found);
 
       }
 

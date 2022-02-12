@@ -225,7 +225,7 @@ namespace apex
       }
 
 
-      set_callstack_mask({ get_callstack_mask(), callstack_fork_global});
+      //set_callstack_mask({ get_callstack_mask(), callstack_fork_global});
 
 #if !defined(_UWP) && !defined(ANDROID)
 
@@ -309,22 +309,22 @@ namespace apex
 
       //}
 
-      {
+      // {
 
-         bool bGlobalEnableStackTrace = true;
+      //    bool bGlobalEnableStackTrace = true;
 
-         ::file::path pathNoExceptionStackTrace = m_psystem->m_pacmedir->config() / "system/no_exception_stack_trace.txt";
+      //    ::file::path pathNoExceptionStackTrace = m_psystem->m_pacmedir->config() / "system/no_exception_stack_trace.txt";
 
-         if (m_psystem->m_pacmefile->exists(pathNoExceptionStackTrace))
-         {
+      //    if (m_psystem->m_pacmefile->exists(pathNoExceptionStackTrace))
+      //    {
 
-            bGlobalEnableStackTrace = false;
+      //       bGlobalEnableStackTrace = false;
 
-         }
+      //    }
 
-         ::exception::exception_enable_stack_trace(bGlobalEnableStackTrace);
+      //    ::exception::enable_call_stack_back_trace(bGlobalEnableStackTrace);
 
-      }
+      // }
 
       //add_factory_item < ::stdio_file, ::file::text_file >();
       //add_factory_item < ::stdio_file, ::file::file >();
@@ -1817,8 +1817,15 @@ pacmedir->create("/ca2core");
          strDetails += exception.m_strDetails + "\n\n";
          strDetails += "\n";
          strDetails += "PID: " + __string(::get_current_process_id()) + "\n";
-         strDetails += "Working Directory: " + m_psystem->m_pacmedir->get_current() + "\n\n";
-         strDetails += "command line: " + string(m_psystem->m_strCommandLine) + "\n\n";
+         //strDetails += "Working Directory: " + string(GetCurrentDirectory()) + "\n\n";
+         strDetails += "command line: " + string(m_strCommandLine) + "\n\n";
+
+         if (exception.m_strCallstack)
+         {
+
+            strDetails += string(exception.m_strCallstack);
+
+         }
 
          os_message_box(this, strMessage, strTitle, e_message_box_ok | e_message_box_icon_exclamation, strDetails);
 
@@ -4230,7 +4237,7 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
       if (!m_pcontext->m_papexcontext->file().exists(strBrowserPath) || !m_pcontext->m_papexcontext->dir().is(strBrowserDir))
       {
 
-         throw_status(error_not_found);
+         throw ::exception(error_not_found);
 
       }
 

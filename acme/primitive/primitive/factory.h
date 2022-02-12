@@ -166,7 +166,7 @@ namespace factory
          if (!pNew)
          {
 
-            throw_status(error_no_factory);
+            throw ::exception(error_no_factory);
 
          }
 
@@ -175,7 +175,7 @@ namespace factory
          if (!p)
          {
 
-            throw_status(error_no_interface);
+            throw ::exception(error_no_interface);
 
          }
 

@@ -149,7 +149,7 @@ public:
       if (!pfactory)
       {
 
-         throw_status(error_resource);
+         throw ::exception(error_resource);
 
       }
 

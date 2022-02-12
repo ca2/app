@@ -193,22 +193,22 @@ namespace aura
 
       //}
 
-      {
+      //{
 
-         bool bGlobalEnableStackTrace = true;
+      //   bool bGlobalEnableStackTrace = true;
 
-         ::file::path pathNoExceptionStackTrace = m_psystem->m_pacmedir->config() / "system/no_exception_stack_trace.txt";
+      //   ::file::path pathNoExceptionStackTrace = m_psystem->m_pacmedir->config() / "system/no_exception_stack_trace.txt";
 
-         if (m_psystem->m_pacmefile->exists(pathNoExceptionStackTrace))
-         {
+      //   if (m_psystem->m_pacmefile->exists(pathNoExceptionStackTrace))
+      //   {
 
-            bGlobalEnableStackTrace = false;
+      //      bGlobalEnableStackTrace = false;
 
-         }
+      //   }
 
-         ::exception::exception_enable_stack_trace(bGlobalEnableStackTrace);
+      //   ::exception::exception_enable_stack_trace(bGlobalEnableStackTrace);
 
-      }
+      //}
  
       //([a-z0-9_]+)_factory(::factory_item::get_factory());
 
@@ -1499,7 +1499,7 @@ namespace aura
       if (!pfactoryImaging)
       {
 
-         throw_status(error_resource, "No imaging pluging available!!.");
+         throw ::exception(error_resource, "No imaging pluging available!!.");
 
       }
 

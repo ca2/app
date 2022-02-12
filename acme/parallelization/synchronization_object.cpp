@@ -307,7 +307,7 @@ bool synchronization_object::_wait(const class ::wait & wait)
    else
    {
 
-      throw_status(estatus);
+      throw ::exception(estatus);
 
       return false;
 
@@ -315,7 +315,7 @@ bool synchronization_object::_wait(const class ::wait & wait)
 
 #endif
 
-   throw_status(error_interface_only);
+   throw ::exception(error_interface_only);
 
    return false;
 

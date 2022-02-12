@@ -4,7 +4,7 @@
 //#include <Shellapi.h>
 #endif
 
-extern int g_iCallStackLevel;
+//extern int g_iCallStackLevel;
 
 #define DUMP_FILE_EXCEPTION_BACK_TRACE 0
 
@@ -34,7 +34,7 @@ namespace file
 
 
 
-   const char* status_message(const ::e_status & estatus)
+   const char* status_short_description(const ::e_status & estatus)
    {
 
       if (estatus < error_file ||
@@ -53,40 +53,40 @@ namespace file
    static const char szUnknown[] = "unknown";
 
 
-      CLASS_DECL_ACME bool should_ignore_file_exception_callstack(const ::e_status & estatus)
-      {
+      //CLASS_DECL_ACME bool should_ignore_file_exception_callstack(const ::e_status & estatus)
+      //{
 
-         if (estatus == error_file_not_found)
-         {
+      //   if (estatus == error_file_not_found)
+      //   {
 
-            if (g_iCallStackLevel >= 3)
-            {
+      //      if (g_iCallStackLevel >= 3)
+      //      {
 
-               return true;
+      //         return true;
 
-            }
+      //      }
 
-         }
+      //   }
 
-         if (estatus == error_bad_path)
-         {
+      //   if (estatus == error_bad_path)
+      //   {
 
-            if (g_iCallStackLevel >= 3)
-            {
+      //      if (g_iCallStackLevel >= 3)
+      //      {
 
-               return true;
+      //         return true;
 
-            }
+      //      }
 
-         }
+      //   }
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
       exception::exception(const ::e_status & estatus, ::u32 uLastError, int iErrNo, const ::file::path & path, const ::file::e_open & eopen) :
          ::exception(estatus)
-         //::io_exception(::error_io, nullptr, should_ignore_file_exception_callstack(estatus) ? SKIP_callstack : callstack_DEFAULT_SKIP)
+         //::io_exception(::error_io, nullptr, should_ignore_file_exception_callstack(estatus) ? SKIP_CALLSTACK : CALLSTACK_DEFAULT_SKIP)
       {
 
          m_estatus = estatus;
@@ -105,12 +105,12 @@ namespace file
 
          //m_bDumpBackTrace = DUMP_FILE_EXCEPTION_BACK_TRACE != 0 && !(m_eopen & ::file::e_open_no_callstack);
 
-         const char* psz = ::file::status_message(estatus);
+         const char* psz = ::file::status_short_description(estatus);
 
          if (psz == NULL)
          {
 
-            psz = ::file::status_message(error_file);
+            psz = ::file::status_short_description(error_file);
 
          }
 
@@ -360,29 +360,29 @@ namespace file
 #define EDEADLOCK       EDEADLK
 #endif
 
-      void throw_exception(const ::e_status & estatus, ::i32 lOsError, int iErrNo, const ::file::path& path, const ::file::e_open & eopen)
-      {
+      //void throw_exception(const ::e_status & estatus, ::i32 lOsError, int iErrNo, const ::file::path& path, const ::file::e_open & eopen)
+      //{
 
-         throw exception(estatus, lOsError, iErrNo, path, eopen);
+      //   throw ::exception(estatus, lOsError, iErrNo, path, eopen);
 
-      }
-
-
-      void throw_status(const ::e_status & estatus, ::i32 lOsError, const ::file::path& path)
-      {
-
-         throw exception(estatus, lOsError, -1, path, e_null);
-
-      }
+      //}
 
 
-      void throw_stdio_exception(const ::e_status & estatus, ::i32 lDOSError, const ::file::path& path)
-      {
+      //void throw ::exception(const ::e_status & estatus, ::i32 lOsError, const ::file::path& path)
+      //{
 
-         throw exception(estatus,
-                         0, ::file::dos_to_os_error(lDOSError), path);
+      //   throw ::exception(estatus, lOsError, -1, path, e_null);
 
-      }
+      //}
+
+
+      //void throw_stdio_exception(const ::e_status & estatus, ::i32 lDOSError, const ::file::path& path)
+      //{
+
+      //   throw ::exception(estatus,
+      //                   0, ::file::dos_to_os_error(lDOSError), path);
+
+      //}
 
 
 #ifdef WINDOWS
@@ -391,7 +391,7 @@ namespace file
       //void throw_os_error(DWORD dwLastError, const ::file::path& path)
       //{
 
-      //   throw_status(os_error_to_status(dwLastError), dwLastError, path);
+      //   throw ::exception(os_error_to_status(dwLastError), dwLastError, path);
 
       //}
 
@@ -399,12 +399,12 @@ namespace file
 #endif
 
 
-      void  throw_errno(int iErrNo, const ::file::path& path)
-      {
+      //void  throw_errno(int iErrNo, const ::file::path& path)
+      //{
 
-         throw_exception(errno_to_status(iErrNo), -1, iErrNo, path, e_null);
+      //   throw _exception(errno_to_status(iErrNo), -1, iErrNo, path, e_null);
 
-      }
+      //}
 
 
 
@@ -426,12 +426,12 @@ namespace file
 
    //}
 
-//   void throw_status(const ::e_status & estatus, ::i32 lOsError, const ::file::path& path)
+//   void throw ::exception(const ::e_status & estatus, ::i32 lOsError, const ::file::path& path)
 //   {
 //
 //#ifdef __DEBUG
 //
-//      const char* psz = ::file:status_message(estatus);
+//      const char* psz = ::file:status_short_description(estatus);
 //
 //      string strFormat;
 //

@@ -290,7 +290,7 @@ namespace filemanager
          if (!open_src_dst(m_stra[m_iFile], strName, m_str))
          {
 
-            throw_status(error_failed);
+            throw ::exception(error_failed);
 
          }
 
@@ -312,7 +312,7 @@ namespace filemanager
          if (!open_src_dst(m_stra[m_iFile], strPath, m_str))
          {
 
-            throw_status(error_failed);
+            throw ::exception(error_failed);
 
          }
 

@@ -540,7 +540,7 @@ void memory_base::fread(FILE * pfile)
          if(::ferror(pfile))
          {
 
-            ::file::throw_status(error_file, errno, "");
+            throw ::file::exception(error_file, -1, errno, "");
 
          }
 
@@ -2005,7 +2005,7 @@ void memory_base::patch_line_suffix(const ::block& blockPrefix, const block& blo
    if (iStart < 0)
    {
 
-      throw_status(error_not_found);
+      throw ::exception(error_not_found);
 
    }
 

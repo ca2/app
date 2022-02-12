@@ -1774,7 +1774,7 @@ namespace aura
          {
             //return false;
 
-            throw_status(error_authentication_none);
+            throw ::exception(error_authentication_none);
 
          }
 
@@ -1798,7 +1798,7 @@ retry_license:
 
             //return false;
 
-            throw_status(error_licensing);
+            throw ::exception(error_licensing);
 
          }
 

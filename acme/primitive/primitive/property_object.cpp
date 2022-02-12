@@ -659,7 +659,7 @@ void property_object::run_property(const ::atom& atom)
    if (!pproperty)
    {
 
-      ///throw_status(error_not_found);
+      ///throw ::exception(error_not_found);
 
       return;
 

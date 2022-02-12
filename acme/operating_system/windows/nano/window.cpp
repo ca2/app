@@ -83,7 +83,7 @@ namespace windows
       if (!RegisterClassEx(&wndclassex))
       {
 
-         throw_status(error_failed, "Failed to register nano message box window class.");
+         throw ::exception(error_failed, "Failed to register nano message box window class.");
 
       }
 
@@ -159,7 +159,7 @@ namespace windows
 
       if (hwnd == NULL)
       {
-         throw_status(error_failed, "Failed to create nano message box window.");
+         throw ::exception(error_failed, "Failed to create nano message box window.");
          return;
       }
 
@@ -492,7 +492,7 @@ namespace windows
       if (res != ERROR_SUCCESS) 
       {
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -704,7 +704,7 @@ namespace windows
 //   if (!RegisterClassEx(&wndclassex))
 //   {
 //
-//      throw_status(error_failed, "Failed to register nano message box window class.");
+//      throw ::exception(error_failed, "Failed to register nano message box window class.");
 //
 //   }
 //

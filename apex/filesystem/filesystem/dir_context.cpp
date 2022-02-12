@@ -435,7 +435,7 @@ bool dir_context::ls(::file::listing & listing)
       if (!pfactory)
       {
 
-         throw_status(error_no_factory);
+         throw ::exception(error_no_factory);
 
       }
       else
@@ -446,7 +446,7 @@ bool dir_context::ls(::file::listing & listing)
          if (!pfolder)
          {
 
-            throw_status(error_no_factory);
+            throw ::exception(error_no_factory);
 
          }
          else
@@ -513,7 +513,7 @@ bool dir_context::ls_relative_name(::file::listing & listing)
       if (!pfactory)
       {
 
-         throw_status(error_no_factory);
+         throw ::exception(error_no_factory);
 
       }
       else
@@ -524,7 +524,7 @@ bool dir_context::ls_relative_name(::file::listing & listing)
          if (!pfolder)
          {
 
-            throw_status(error_no_factory);
+            throw ::exception(error_no_factory);
 
          }
          else

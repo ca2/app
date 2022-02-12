@@ -61,7 +61,7 @@ namespace message
       if (!m_commandtargetptraHandle.add_unique(pcommandtarget))
       {
 
-         throw_status(error_already_added);
+         throw ::exception(error_already_added);
 
       }
 

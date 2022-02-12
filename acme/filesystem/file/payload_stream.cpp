@@ -272,7 +272,7 @@ void payload_stream::read(block & block)
    if (m_ppayload->m_etype != e_type_memory || ::is_null(m_ppayload->m_pmemory))
    {
 
-      throw_status(error_io);
+      throw ::exception(error_io);
 
       return;
 
@@ -283,7 +283,7 @@ void payload_stream::read(block & block)
       || m_ppayload->m_pmemory->get_data() == nullptr)
    {
 
-      throw_status(error_io);
+      throw ::exception(error_io);
 
       return;
 

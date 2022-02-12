@@ -146,7 +146,7 @@ m_bStdout = false;
       if(bTimeout)
       {
 
-         throw_status(error_wait_timeout);
+         throw ::exception(error_wait_timeout);
 
       }
 

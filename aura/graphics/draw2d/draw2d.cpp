@@ -385,7 +385,7 @@ namespace draw2d
       if (strText.is_empty())
       {
 
-         throw_status(error_null_pointer);
+         throw ::exception(error_null_pointer);
 
       }
 
@@ -1508,7 +1508,7 @@ breakFilter2:
 
       }
 
-      throw exception(error_resource, "No write_text pluging available!!");
+      throw ::exception(error_resource, "No write_text pluging available!!");
 
       //destroy:
 

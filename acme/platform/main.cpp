@@ -118,7 +118,16 @@ void __main(main& main)
 
    ::e_status estatusEnd = error_failed;
 
-   auto psystem = platform_create_system(main.m_strAppId);
+   string strAppId;
+
+   if (!main.m_bConsole)
+   {
+
+      strAppId = main.m_strAppId;
+
+   }
+
+   auto psystem = platform_create_system(strAppId);
 
    /*estatus =*/ psystem->system_construct(main);
 

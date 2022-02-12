@@ -7469,7 +7469,7 @@ void payload::run()
    else
    {
 
-      throw_status(error_wrong_type);
+      throw ::exception(error_wrong_type);
 
    }
 

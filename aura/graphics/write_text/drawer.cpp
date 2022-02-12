@@ -37,7 +37,7 @@ namespace write_text
       if (::is_null(pfont))
       {
 
-         throw_status(error_null_pointer);
+         throw ::exception(error_null_pointer);
 
          //return ::error_failed;
 

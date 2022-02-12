@@ -174,7 +174,7 @@ namespace draw2d_cairo
 
          //return false;
 
-         throw_status(error_wrong_state);
+         throw ::exception(error_wrong_state);
 
       }
 

@@ -115,7 +115,7 @@ namespace sockets
       if (!m_psystem)
       {
 
-         throw_status(error_resource);
+         throw ::exception(error_resource);
 
       }
 
@@ -124,7 +124,7 @@ namespace sockets
       if (!m_paddressdepartment)
       {
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 

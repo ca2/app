@@ -4,12 +4,14 @@
 #include "framework.h"
 #include "acme/operating_system.h"
 #include "_nano.h"
+#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_file.h"
 
 
 nano_details_window::nano_details_window()
 {
 
-   
+   m_strLabelDetails = "Dump to file";
 
 }
 
@@ -40,6 +42,40 @@ void nano_details_window::calculate_size()
 
 
 }
+
+
+void nano_details_window::on_click(const ::atom& atom)
+{
+
+
+   if (atom == "details")
+   {
+
+      //string m_strDetails;
+
+      string strAppId;
+
+      strAppId = m_psystem->m_strAppId;
+
+      ::file::path pathFolder = m_psystem->m_pacmedir->home() / "application" / strAppId / "details";
+
+      auto pathDetails = m_psystem->m_pacmefile->time_put_contents(pathFolder, "details", "txt", m_strDetails);
+
+      m_psystem->node()->shell_execute_async(pathDetails, "");
+
+      //pdetailswindow->display_synchronously(m_strDetails, m_strTitle + " : Details", e_message_box_ok, m_strDetails);
+
+      //m_atomResult.clear();
+
+      return;
+
+   }
+
+   nano_message_box::on_click(atom);
+
+
+}
+
 
 
 

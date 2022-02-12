@@ -4139,7 +4139,7 @@ return "";
       if (phostwindow == nullptr)
       {
 
-         throw_status(error_wrong_state);
+         throw ::exception(error_wrong_state);
 
       }
 
@@ -7374,7 +7374,7 @@ void interaction::destroy_window()
 //   if (!m_pprimitiveimpl)
 //   {
 //
-//      throw_status(error_wrong_state);
+//      throw ::exception(error_wrong_state);
 //
 //   }
 
@@ -10133,7 +10133,7 @@ void interaction::set_mouse_capture()
    if (::is_null(pwindowThis))
    {
 
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    }
 
@@ -10142,7 +10142,7 @@ void interaction::set_mouse_capture()
    if (::is_null(pprimitiveimpl))
    {
 
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    }
 
@@ -11538,7 +11538,7 @@ void interaction::mouse_hover_add(::user::interaction * pinterface)
 
       //return false;
 
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    }
 
@@ -11547,7 +11547,7 @@ void interaction::mouse_hover_add(::user::interaction * pinterface)
    if(!pprimitiveimpl)
    {
 
-      throw_status(error_null_pointer);
+      throw ::exception(error_null_pointer);
 
    }
 
@@ -14548,7 +14548,7 @@ order(zorderParam);
       if (m_ptooltip.is_null())
       {
 
-         //throw_status(error_wrong_state);
+         //throw ::exception(error_wrong_state);
 
          return;
 
@@ -14750,7 +14750,7 @@ order(zorderParam);
       if (puiTop == nullptr)
       {
 
-         throw_status(error_null_pointer);
+         throw ::exception(error_null_pointer);
 
       }
 
@@ -14763,7 +14763,7 @@ order(zorderParam);
 
          //return false;
 
-         throw_status(error_null_pointer);
+         throw ::exception(error_null_pointer);
 
       }
 
@@ -15211,7 +15211,7 @@ order(zorderParam);
 
          //return error_failed;
 
-         throw_status(error_null_pointer);
+         throw ::exception(error_null_pointer);
 
       }
 
@@ -15239,7 +15239,7 @@ order(zorderParam);
 
          //return error_failed;
 
-         throw_status(error_null_pointer);
+         throw ::exception(error_null_pointer);
 
       }
 
@@ -15330,7 +15330,7 @@ order(zorderParam);
          if (m_pprimitiveimpl.is_null())
          {
 
-            throw_status(error_null_pointer);
+            throw ::exception(error_null_pointer);
 
          }
 
@@ -15345,7 +15345,7 @@ order(zorderParam);
          if (::is_null(pwindow))
          {
 
-            throw_status(error_null_pointer);
+            throw ::exception(error_null_pointer);
 
          }
 
@@ -15365,7 +15365,7 @@ order(zorderParam);
          if (m_pprimitiveimpl.is_null())
          {
 
-            throw_status(error_null_pointer);
+            throw ::exception(error_null_pointer);
 
          }
 
@@ -15380,7 +15380,7 @@ order(zorderParam);
          if (::is_null(pwindow))
          {
 
-            throw_status(error_null_pointer);
+            throw ::exception(error_null_pointer);
 
          }
             
@@ -15399,7 +15399,7 @@ order(zorderParam);
 
          //return error_failed;
 
-         throw_status(error_null_pointer);
+         throw ::exception(error_null_pointer);
 
       }
 
@@ -17449,7 +17449,7 @@ order(zorderParam);
       if (strClass.find(",") >= 0)
       {
 
-         throw_status(error_bad_argument);
+         throw ::exception(error_bad_argument);
 
       }
 

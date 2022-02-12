@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 
+
 const char * strcatdup(const char * psz1, const char * psz2)
 {
    
@@ -44,180 +45,109 @@ const char * strcatdup(const char * psz1, const char * psz2)
 }
 
 
-
-
 #if defined(APPLE_IOS)
 
-bool ::exception::s_bDoStackTrace = false;
+bool ::exception::s_bEnableCallStackBackTrace = false;
 
 #elif defined(ANDROID)
 
-bool ::exception::s_bDoStackTrace = true;
+bool ::exception::s_bEnableCallStackBackTrace = true;
 
 #elif defined(MACOS)
 
-bool ::exception::s_bDoStackTrace = false;
+bool ::exception::s_bEnableCallStackBackTrace = false;
 
 #else
 
-bool ::exception::s_bDoStackTrace = true;
+bool ::exception::s_bEnableCallStackBackTrace = true;
 
 #endif
 
-//namespace exception
-//{
-//
 
-//   ::exception(const ::e_status & estatus, i32 iSkip, void * caller_address) :
-//      exception(nullptr, estatus, iSkip, caller_address)
-//   {
-//
-//   }
-//
-//
-
-   exception::exception()
-   {
+exception::exception()
+{
 
 
-   }
+}
 
-   exception::exception(const ::e_status & estatus, const char * pszMessage, const char * pszDetails, i32 iSkip, void * caller_address)
-   {
+
+exception::exception(const ::e_status & estatus, const char * pszMessage, const char * pszDetails, i32 iSkip, void * caller_address)
+{
 
 #if !defined(__SANITIZE_ADDRESS__)
 
-      if (s_bDoStackTrace && iSkip != SKIP_callstack)
+   if (s_bEnableCallStackBackTrace && iSkip != SKIP_CALLSTACK)
+   {
+
+      if (iSkip == CALLSTACK_DEFAULT_SKIP_TRIGGER)
       {
 
-         if (iSkip == CALLSTACK_DEFAULT_SKIP_TRIGGER)
-         {
-
-            iSkip = callstack_DEFAULT_SKIP;
-
-         }
-
-         m_pcallstack = new callstack(callstack::default_format(), iSkip, caller_address);
+         iSkip = CALLSTACK_DEFAULT_SKIP;
 
       }
 
-#endif
-
-      //debug_print("log:exception");
-
-      //if (pszMessage == nullptr)
-      //{
-
-      //   debug_print(":(nullptr)");
-
-      //}
-      //else
-      //{
-
-      //   debug_print(":(\"%s\")", pszMessage);
-
-      //}
-
-      m_bDumpBackTrace = true;
-
-      defer_failed(m_estatus, error_exception);
-
-      m_estatus = estatus;
-
-      m_bHandled = false;
-
-      m_bContinue = true;
-
-      m_strMessage = pszMessage;
-
-      m_strDetails = pszDetails;
-
-      //m_strMessage.format("%s (%0x16" PRIestatus ":%s)", pszMessage, estatus.m_estatus, __string(estatus).c_str());
-         
-   }
-
-
-   exception::~exception()
-   {
-
-      if (::is_set(m_pcallstack))
-      {
-
-         ::release(m_pcallstack);
-
-      }
+      m_strCallstack = get_callstack(callstack_default_format(), iSkip, caller_address);
 
    }
-
-
-   void exception::exception_enable_stack_trace(bool bEnable)
-   {
-
-      s_bDoStackTrace = bEnable;
-
-   }
-
-
-   string exception::get_message() const
-   {
-
-      string strMessage;
-
-      strMessage = string("exception: ") + estatus_to_string(m_estatus);
-
-      strMessage += m_strMessage;
-
-      return strMessage;
-
-   }
-
-
-//} // namespace exception
-
-
-#ifdef APPLE_IOS
-
-
-
-#else
-
-
-// thread_object < string > t_strNote;
-
-
-//string __get_thread_note()
-//{
-//   
-//   return thread_property("strNote");
-//
-//}
-//
-//
-//void __set_thread_note(const char * pszNote)
-//{
-//   
-//   thread_property("strNote") = pszNote;
-//
-//}
-
 
 #endif
 
+   m_bDumpBackTrace = true;
+
+   defer_failed(m_estatus, error_exception);
+
+   m_estatus = estatus;
+
+   m_bHandled = false;
+
+   m_bContinue = true;
+
+   m_strMessage = pszMessage;
+
+   m_strDetails = pszDetails;
+
+}
 
 
+exception::~exception()
+{
 
+}
+
+
+void exception::enable_call_stack_back_trace(bool bEnable)
+{
+
+   s_bEnableCallStackBackTrace = bEnable;
+
+}
+
+
+string exception::get_message() const
+{
+
+   string strMessage;
+
+   strMessage += get_status_message(m_estatus) + "\n";
+
+   strMessage += m_strMessage;
+
+   return strMessage;
+
+}
 
 
 errno_t c_runtime_error_check(errno_t error)
 {
+
    switch(error)
    {
    case ENOMEM:
-      throw ::exception(error_no_memory);
+      throw ::exception(error_no_memory, nullptr, nullptr, CALLSTACK_DEFAULT_SKIP + 1);
       break;
    case EINVAL:
    case ERANGE:
-      throw ::exception(error_bad_argument);
+      throw ::exception(error_bad_argument, nullptr, nullptr, CALLSTACK_DEFAULT_SKIP + 1);
       break;
 #if defined(WINDOWS)
    case STRUNCATE:
@@ -225,96 +155,107 @@ errno_t c_runtime_error_check(errno_t error)
    case 0:
       break;
    default:
-      throw ::exception(error_bad_argument);
+      throw ::exception(error_bad_argument, nullptr, nullptr, CALLSTACK_DEFAULT_SKIP + 1);
       break;
    }
+   
    return error;
+
 }
+
 
 void __cdecl __clearerr_s(FILE *stream)
 {
+
 #ifdef WINDOWS
+
    C_RUNTIME_ERROR_CHECK(::clearerr_s(stream));
+
 #else
+
    clearerr(stream);
+
    C_RUNTIME_ERROR_CHECK(errno);
+
 #endif
+
 }
+
 
 //
 //namespace exception
 //{
 
 
-   CLASS_DECL_ACME void throw_interface_only(const char * pszMessage)
-   {
+   // CLASS_DECL_ACME void throw_interface_only(const char * pszMessage)
+   // {
 
-      throw ::exception(error_interface_only, pszMessage);
+   //    throw ::exception(error_interface_only, pszMessage);
 
-   }
-
-
-   CLASS_DECL_ACME void throw_not_implemented(const char * pszMessage)
-   {
-
-      throw ::exception(error_not_implemented, pszMessage);
-
-   }
+   // }
 
 
-   string get_all_messages(const array < exception > & a)
-   {
+   // CLASS_DECL_ACME void throw_not_implemented(const char * pszMessage)
+   // {
 
-      ::count c = a.get_count();
+   //    throw ::exception(error_not_implemented, pszMessage);
 
-      if (c <= 0)
-      {
+   // }
 
-         return "";
 
-      }
-      else if (c == 1)
-      {
+   // string get_all_messages(const array < exception > & a)
+   // {
 
-         return a[0].m_strMessage;
+   //    ::count c = a.get_count();
 
-      }
-      else
-      {
+   //    if (c <= 0)
+   //    {
 
-         string str;
+   //       return "";
 
-         index i = 0;
+   //    }
+   //    else if (c == 1)
+   //    {
 
-         a.predicate_each(
+   //       return a[0].m_strMessage;
 
-         [&](auto & e)
-         {
+   //    }
+   //    else
+   //    {
 
-            str += __string(++i);
+   //       string str;
 
-            str += ". ";
+   //       index i = 0;
 
-            str += e.m_strMessage;
+   //       a.predicate_each(
 
-            str += ";";
+   //       [&](auto & e)
+   //       {
 
-            if (i < c)
-            {
+   //          str += __string(++i);
 
-               str += " ";
+   //          str += ". ";
 
-            }
+   //          str += e.m_strMessage;
 
-         }
+   //          str += ";";
 
-         );
+   //          if (i < c)
+   //          {
 
-         return str;
+   //             str += " ";
 
-      }
+   //          }
 
-   }
+   //       }
+
+   //       );
+
+   //       return str;
+
+   //    }
+
+   // }
 
 
    //void exception_pointer::rethrow_exit()
@@ -352,50 +293,56 @@ void __cdecl __clearerr_s(FILE *stream)
 //   }
 //
 
-   void exception::defer_dump_back_trace()
-   {
+   
+   //void exception::defer_dump_back_trace()
+   //{
 
-      if (m_bDumpBackTrace)
-      {
+   //   if (m_bDumpBackTrace)
+   //   {
 
-         dump_back_trace();
+   //      dump_back_trace();
 
-      }
+   //   }
 
-   }
+   //}
 
 
-   void exception::dump_back_trace()
-   {
-
-      if (::is_set(m_pcallstack))
-      {
-
-#ifdef ANDROID
-
-         string_array stra;
-
-         stra.add_lines(m_pcallstack->m_pszCallStack);
-
-         for (auto& str : stra)
-         {
-
-            output_debug_string(str);
-
-         }
-
-#else
-
-         debug_print(m_pcallstack->m_pszCallStack);
-
-#endif
-
-      }
-
-   }
+//   void exception::dump_back_trace()
+//   {
+//
+//      if (::is_set(m_pcallstack))
+//      {
+//
+//#ifdef ANDROID
+//
+//         string_array stra;
+//
+//         stra.add_lines(m_pcallstack->m_pszCallStack);
+//
+//         for (auto& str : stra)
+//         {
+//
+//            output_debug_string(str);
+//
+//         }
+//
+//#else
+//
+//         debug_print(m_pcallstack->m_pszCallStack);
+//
+//#endif
+//
+//      }
+//
+//   }
+// 
+// 
+// 
 //
 //
 //} // namespace exception
+
+
 
 //template < typename T >
 //void __rethrow(T * pexception)
@@ -409,7 +356,6 @@ void __cdecl __clearerr_s(FILE *stream)
 //
 
 
-
 //CLASS_DECL_ACME __pointer(::exception) __trace_context_move_throw_exception(::matter * trace_context, ::exception * pexceptionNew)
 //{
 //
@@ -420,14 +366,10 @@ void __cdecl __clearerr_s(FILE *stream)
 //}
 
 
-
-
-
-
-const char* status_message(const ::e_status & estatus)
+const char* status_short_description(const ::e_status & estatus)
 {
 
-   auto psz = ::file::status_message(estatus);
+   auto psz = ::file::status_short_description(estatus);
 
    if (::is_set(psz))
    {
@@ -461,23 +403,23 @@ const char* status_message(const ::e_status & estatus)
 }
 
 
-thread_local bool t_bAvoidBadStatusException = false;
+// thread_local bool t_bAvoidBadStatusException = false;
 
 
-CLASS_DECL_ACME bool avoid_bad_status_exception()
-{
+// CLASS_DECL_ACME bool avoid_bad_status_exception()
+// {
 
-   return t_bAvoidBadStatusException;
+//    return t_bAvoidBadStatusException;
 
-}
+// }
 
 
-CLASS_DECL_ACME void set_avoid_bad_status_exception(bool bSet)
-{
+// CLASS_DECL_ACME void set_avoid_bad_status_exception(bool bSet)
+// {
 
-   t_bAvoidBadStatusException = bSet;
+//    t_bAvoidBadStatusException = bSet;
 
-}
+// }
 
 
 string estatus_to_string(::e_status estatus)

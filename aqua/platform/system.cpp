@@ -219,7 +219,7 @@ namespace aqua
             //if (!pelement)
             //{
 
-            //   throw_status()
+            //   throw ::exception()
 
             //   //return error_no_factory;
 
@@ -242,7 +242,7 @@ namespace aqua
       catch (...)
       {
 
-         throw_status(error_exception);
+         throw ::exception(error_exception);
 
       }
 

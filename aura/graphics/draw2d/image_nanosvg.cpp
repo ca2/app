@@ -101,7 +101,7 @@ void image::nanosvg(char * pszXml, double dDpi)
    if (::is_null(psvgimage))
    {
 
-      throw_status(error_null_pointer);
+      throw ::exception(error_null_pointer);
 
    }
 
@@ -146,7 +146,7 @@ void image::create_nanosvg(char * pszXml, double dDpi)
    if (::is_null(psvgimage))
    {
 
-      throw_status(error_null_pointer);
+      throw ::exception(error_null_pointer);
 
    }
 

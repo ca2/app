@@ -675,7 +675,7 @@ void task_set_name(const char * pszTaskName)
       if (error)
       {
    
-         throw_status(error_failed);
+         throw ::exception(error_failed);
    
       }
    

@@ -985,7 +985,7 @@ void task::branch(::enum_priority epriority, u32 nStackSize, u32 uCreateFlags AR
 
       m_bIsRunning = false;
 
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
       //return ::error_failed;
 
@@ -1198,7 +1198,7 @@ void task::begin_synchronously(::enum_priority epriority, u32 nStackSize, u32 uC
 
       m_bIsRunning = false;
 
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
       //return ::error_failed;
 

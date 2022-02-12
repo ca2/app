@@ -186,7 +186,7 @@ void interprocess_intercommunication::start(const ::string & strApp)
 
          }
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 

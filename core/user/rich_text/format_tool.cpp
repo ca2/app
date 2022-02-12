@@ -613,7 +613,7 @@ namespace user
       if (m_pformata->is_empty() || !m_pformata->first())
       {
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 

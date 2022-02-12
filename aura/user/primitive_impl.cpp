@@ -1441,7 +1441,7 @@ namespace user
       if (::is_null(m_puserinteraction))
       {
 
-         throw_status(error_wrong_state);
+         throw ::exception(error_wrong_state);
 
       }
 

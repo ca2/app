@@ -2447,7 +2447,7 @@ void thread::branch(::enum_priority epriority, ::u32 nStackSize, u32 uiCreateFla
 
       decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
-      throw_status(error_resource);
+      throw ::exception(error_resource);
 
    }
 
@@ -2474,7 +2474,7 @@ void thread::branch(::enum_priority epriority, ::u32 nStackSize, u32 uiCreateFla
 
          ::e_status estatusExit = m_estatus;
 
-         throw_status(estatusExit);
+         throw ::exception(estatusExit);
 
       }
 
@@ -2603,7 +2603,7 @@ void thread::begin_synchronously(::enum_priority epriority, ::u32 nStackSize, u3
 
       decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
-      throw_status(error_resource);
+      throw ::exception(error_resource);
 
    }
 
@@ -2630,7 +2630,7 @@ void thread::begin_synchronously(::enum_priority epriority, ::u32 nStackSize, u3
 
          ::e_status estatusExit = m_estatus;
 
-         throw_status(estatusExit);
+         throw ::exception(estatusExit);
 
       }
 
@@ -3233,7 +3233,7 @@ void thread::post_message(const ::atom & atom, wparam wparam, lparam lparam)
 
          auto estatus = ::get_last_status();
 
-         throw_status(estatus);
+         throw ::exception(estatus);
 
       }
 
@@ -3263,14 +3263,14 @@ void thread::send_element(const ::atom & atom, wparam wparam, ::element * peleme
    if (!atom.is_message())
    {
 
-      throw_status(error_bad_argument);
+      throw ::exception(error_bad_argument);
 
    }
 
    if(m_bThreadClosed)
    {
 
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    }
 
@@ -3285,7 +3285,7 @@ void thread::send_element(const ::atom & atom, wparam wparam, ::element * peleme
    {
 
 
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    }
 
@@ -3309,7 +3309,7 @@ void thread::send_message(const ::atom & atom, wparam wparam, lparam lparam, con
    if(m_bThreadClosed)
    {
 
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    }
 
@@ -3999,7 +3999,7 @@ void thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
 
          auto estatus = last_error_to_status(lastError);
 
-         throw_status(estatus);
+         throw ::exception(estatus);
 
       }
       else if (iRet == 0)

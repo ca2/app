@@ -126,7 +126,7 @@ namespace compress_bzip2
       if (err != BZ_OK || memory.get_data() == nullptr)
       {
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -200,7 +200,7 @@ namespace compress_bzip2
       if (ret < 0)
       {
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }// ? ::success : ::error_failed;
 

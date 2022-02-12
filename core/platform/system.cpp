@@ -87,7 +87,7 @@ namespace core
       if (!__rich_text_initialize())
       {
 
-         throw_status(error_not_initialized);
+         throw ::exception(error_not_initialized);
 
       }
 

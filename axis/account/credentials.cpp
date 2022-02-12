@@ -134,7 +134,7 @@ namespace account
       if(!m_bInteractive)
       {
 
-         throw_status(error_credentials_no_valid_cached_credentials);
+         throw ::exception(error_credentials_no_valid_cached_credentials);
 
       }
 
@@ -354,7 +354,7 @@ namespace account
 
          set("open", strOpenResult);
 
-         throw_status(error_authentication);
+         throw ::exception(error_authentication);
 
       }
 

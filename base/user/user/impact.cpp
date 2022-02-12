@@ -218,7 +218,7 @@ namespace user
       if (!m_pdocument && pdocument)
       {
 
-         throw_status(error_wrong_type);
+         throw ::exception(error_wrong_type);
 
       }
 
@@ -418,7 +418,7 @@ namespace user
       if (!has_toolbar())
       {
 
-         throw_status(error_wrong_state);
+         throw ::exception(error_wrong_state);
 
       }
 
@@ -727,7 +727,7 @@ namespace user
       if (!m_puserinteractionImpactNotify && puserinteractionNotify)
       {
 
-         throw_status(error_wrong_type);
+         throw ::exception(error_wrong_type);
 
       }
 

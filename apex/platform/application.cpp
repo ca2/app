@@ -1723,7 +1723,7 @@ __raw_compose(m_pinterprocessintercommunication, create_interprocess_intercommun
 //if (!m_pinterprocessintercommunication)
 //{
 //
-//   throw_status()
+//   throw ::exception()
 //
 ////return ::error_failed;
 //

@@ -769,7 +769,7 @@ namespace factory
       if (!pfactoryinterface)
       {
 
-         throw_status(error_no_factory);
+         throw ::exception(error_no_factory);
 
       }
 

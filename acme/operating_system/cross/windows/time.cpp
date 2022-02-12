@@ -1241,7 +1241,7 @@ CLASS_DECL_ACME void GetSystemTime(system_time_t * systime)
       if(!SystemTimeToFileTime(psystemtime, pfiletime))
       {
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -1256,7 +1256,7 @@ CLASS_DECL_ACME void GetSystemTime(system_time_t * systime)
       if(!FileTimeToSystemTime(pfiletime, psystemtime))
       {
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -1271,7 +1271,7 @@ CLASS_DECL_ACME void GetSystemTime(system_time_t * systime)
       if(!FileTimeToLocalFileTime(pfiletime, pfiletimeLocal))
       {
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 

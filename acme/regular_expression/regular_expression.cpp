@@ -35,7 +35,7 @@ namespace regular_expression
    __pointer(result) regular_expression::run(const ::string & str)
    {
 
-      throw_status(error_interface_only, "missing \"" + str + "\" runned by regular expression \"" + m_str + "\"");
+      throw ::exception(error_interface_only, "missing \"" + str + "\" runned by regular expression \"" + m_str + "\"");
 
       return nullptr;
 

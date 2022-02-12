@@ -53,7 +53,7 @@ namespace compress_zlib
       if (inflateInit2(&zstream, 16 + MAX_WBITS) != Z_OK)
       {
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 

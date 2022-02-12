@@ -1051,7 +1051,7 @@ namespace acme
       if (::is_null(pfnFactory))
       {
 
-         throw_status(error_function_entry_not_found);
+         throw ::exception(error_function_entry_not_found);
 
       }
 

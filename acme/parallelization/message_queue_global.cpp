@@ -222,7 +222,7 @@ CLASS_DECL_ACME void mq_get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMs
    if (pmq == nullptr)
    {
 
-      throw_status(error_failed);
+      throw ::exception(error_failed);
 
    }
 

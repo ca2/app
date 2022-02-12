@@ -127,9 +127,7 @@ void set_verbose(bool bVerbose)
 }
 
 
-
-//extern "C"
-CLASS_DECL_ACME void debug_print(const char* pszFormat, ...)
+CLASS_DECL_ACME void debug_print(const char * pszFormat, ...)
 {
 
    if (is_ptr_null(pszFormat, 1024))
@@ -139,92 +137,20 @@ CLASS_DECL_ACME void debug_print(const char* pszFormat, ...)
 
    }
 
-   va_list argList;
+   va_list args;
 
-   va_start(argList, pszFormat);
+   va_start(args, pszFormat);
 
-   char sz[4096];
+   string str;
 
-   vsnprintf(sz, sizeof(sz), pszFormat, argList);
+   str.format_arguments(pszFormat, args);
 
-   ::output_debug_string(sz);
+   ::output_debug_string(str);
 
-   va_end(argList);
+   va_end(args);
 
 }
 
-
-
-
-//int g_iMemoryCounters = -1;
-
-//CLASS_DECL_ACME::mutex * g_pmutexMemoryCounters = nullptr;
-
-//
-//
-//
-//CLASS_DECL_ACME void __tracea(::matter * pmatter, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
-//{
-//
-//   //if (::is_null(::get_context_system()))
-//   if (::is_null(pmatter->m_psystem))
-//   {
-//
-//      pmatter->__simple_tracea(elevel, pszFunction, pszFile, iLine, psz);
-//
-//      return;
-//
-//   }
-//
-//   pmatter->m_psystem->__tracea(elevel, pszFunction, pszFile, iLine, psz);
-//
-//}
-//
-
-//CLASS_DECL_ACME void __tracef(const ::matter * pmatter, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...)
-//{
-//
-//   va_list list;
-//
-//   va_start(list, pszFormat);
-//
-//   try
-//   {
-//
-//      __tracev(pmatter, elevel, pszFunction, pszFile, iLine, pszFormat, list);
-//
-//   }
-//   catch (...)
-//   {
-//
-//   }
-//
-//   va_end(list);
-//
-//}
-
-
-//CLASS_DECL_ACME void __tracev(::matter * pmatter, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args)
-//{
-//
-//   if (::is_null(pmatter->m_psystem))
-//   {
-//
-//      pmatter->__simple_tracev(elevel, pszFunction, pszFile, iLine, pszFormat, args);
-//
-//      return;
-//
-//   }
-//
-//   pmatter->m_psystem->__tracev(elevel, pszFunction, pszFile, iLine, pszFormat, args);
-//
-//}
-
-//
-//
-//
-//
-//
 
 
 ::e_status _003CountStatus(::count countSuccess, ::count countFailed)
@@ -272,38 +198,44 @@ CLASS_DECL_ACME void debug_print(const char* pszFormat, ...)
 }
 
 
-string get_status_message(::e_status estatus)
+string get_status_message(const ::e_status & estatus)
 {
    
-   if(estatus == ::success)
-   {
+   // if(estatus == ::success)
+   // {
       
-      return "success";
+   //    return "success";
       
-   }
-   else if(estatus == ::error_failed)
-   {
+   // }
+   // else if(estatus == ::error_failed)
+   // {
     
-      return "error_failed";
+   //    return "error_failed";
       
-   }
+   // }
       
-   string str;
+   // string str;
       
-   if(estatus)
-   {
+   // if(estatus)
+   // {
     
-      str.format("success status (%" PRId64 ")", (::i64) estatus.m_estatus);
+   //    str.format("success status (%" PRId64 ")", (::i64) estatus.m_estatus);
       
-   }
-   else
-   {
+   // }
+   // else
+   // {
          
-      str.format("failure status (%" PRId64 ")", (::i64) estatus.m_estatus);
+   //    str.format("failure status (%" PRId64 ")", (::i64) estatus.m_estatus);
          
-   }
+   // }
 
-   return str;
+   string strMessage;
+
+   strMessage += __string(estatus) + "\n";
+
+   strMessage += status_short_description(estatus);
+
+   return strMessage;
   
 }
 
@@ -314,7 +246,19 @@ string __string(const ::enum_status & estatus)
 
    string str = "estatus=";
 
-   if(estatus == error_not_implemented)
+   if(estatus == success)
+   {
+
+      str += "success";
+
+   }
+   else if(::succeeded(estatus))
+   {
+
+      str += "\"succeeded status=" + ::hex::lower_from(estatus) + "...\"";
+
+   }
+   else if(estatus == error_not_implemented)
    {
 
       str += "error_not_implemented";
@@ -344,22 +288,28 @@ string __string(const ::enum_status & estatus)
       str += "error_library_not_found";
 
    }
+   else if(estatus == error_failed)
+   {
+
+      str += "error_failed";
+
+   }
+   else if (estatus == error_already_exists)
+   {
+
+      str += "error_already_exists";
+
+   }
+   else if (estatus == error_wrong_state)
+   {
+
+      str += "error_wrong_state";
+
+   }
    else if(failed(estatus))
    {
 
-      str += "\"failed...\"";
-
-   }
-   else if(estatus == success)
-   {
-
-      str += "success";
-
-   }
-   else if(estatus == success)
-   {
-
-      str += "\"succeeded\"";
+      str += "\"failed status=" + ::hex::lower_from(estatus) + "...\"";
 
    }
 

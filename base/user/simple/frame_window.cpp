@@ -650,7 +650,7 @@ void simple_frame_window::initialize_frame_window_experience()
    {
 
 
-      throw_status(error_null_pointer);
+      throw ::exception(error_null_pointer);
 
    }
 

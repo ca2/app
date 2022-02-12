@@ -94,7 +94,7 @@ multiple_lock::~multiple_lock()
    if (m_synchronizationa.has_no_synchronization_object())
    {
 
-      throw_status(error_invalid_empty_argument);
+      throw ::exception(error_invalid_empty_argument);
 
    }
 

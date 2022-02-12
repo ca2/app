@@ -119,7 +119,7 @@ void material_object::add_routine(const ::atom & atom, const ::routine & routine
    if (!routine)
    {
 
-      throw_status(error_bad_argument);
+      throw ::exception(error_bad_argument);
 
    }
 
@@ -128,7 +128,7 @@ void material_object::add_routine(const ::atom & atom, const ::routine & routine
    if (!proutinea)
    {
 
-      throw_status(error_resource);
+      throw ::exception(error_resource);
 
    }
 

@@ -410,7 +410,7 @@ pacmedir->create(path.folder());
       if (m_iFile == hFileNull)
       {
 
-         ::file::throw_status(error_bad_argument, -1, m_path);
+         throw ::file::exception(error_bad_argument, -1, m_path);
 
       }
 

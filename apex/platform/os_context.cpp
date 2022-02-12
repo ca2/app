@@ -418,7 +418,7 @@
    void os_context::edit_link_target(const ::file::path & path, const ::file::path & pathLink)
    {
 
-      throw_status(error_interface_only);
+      throw ::exception(error_interface_only);
 
    }
 
@@ -426,7 +426,7 @@
    void os_context::edit_link_folder(const ::file::path & path, const ::file::path & pathLink)
    {
 
-      throw_status(error_interface_only);
+      throw ::exception(error_interface_only);
 
    }
 

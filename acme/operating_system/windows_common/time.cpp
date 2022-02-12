@@ -122,7 +122,7 @@ void system_time_to_file_time(filetime_t* pfiletime, const system_time_t* psyste
    if (!SystemTimeToFileTime((const SYSTEMTIME*)psystemtime, (FILETIME*)pfiletime))
    {
 
-      throw_status(error_failed);
+      throw ::exception(error_failed);
 
    }
 

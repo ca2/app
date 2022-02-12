@@ -331,7 +331,7 @@ namespace account
 
          defer_failed(m_estatusAuthentication, error_credentials);
 
-         throw_status(m_estatusAuthentication);
+         throw ::exception(m_estatusAuthentication);
 
       }
 

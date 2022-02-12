@@ -235,7 +235,7 @@ void task_set_name(const ::string & psz)
    if(iError != 0)
    {
 
-      throw_status(error_failed);
+      throw ::exception(error_failed);
 
    }
 

@@ -15,6 +15,8 @@ public:
    string                              m_strDetails;
    string                              m_strTitle;
 
+   string                              m_strLabelDetails;
+
 
    __pointer_array(nano_button)        m_buttona;
    __pointer(nano_still)               m_pstillDetails;
@@ -32,6 +34,8 @@ public:
    void on_click(const ::atom & atom) override;
 
    void add_button(const char * pszText, enum_dialog_result edialogresult);
+
+   void defer_create_details_still();
 
    void on_create() override;
 

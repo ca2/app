@@ -202,7 +202,7 @@ namespace draw2d_cairo
 
                   m_psurface = nullptr;
 
-                  throw_status(error_failed);
+                  throw ::exception(error_failed);
 
                }
 
@@ -210,7 +210,7 @@ namespace draw2d_cairo
             else
             {
 
-               throw_status(error_failed);
+               throw ::exception(error_failed);
 
             }
 
@@ -328,7 +328,7 @@ namespace draw2d_cairo
       if(!CreateBitmap(pgraphics, cx, cy, 1, 32, nullptr, cx * sizeof(color32_t)))
       {
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 

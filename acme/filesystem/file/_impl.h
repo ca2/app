@@ -248,7 +248,7 @@ inline stream & operator <<(stream & s, const __pointer_array(TYPE) & a)
       if (matter.is_null())
       {
 
-         throw_status(error_io);
+         throw ::exception(error_io);
 
          return s;
 
@@ -281,7 +281,7 @@ inline stream & operator >>(stream & s, __pointer_array(TYPE) & a)
    if (c < 0)
    {
 
-      throw_status(error_io);
+      throw ::exception(error_io);
 
    }
 
@@ -295,7 +295,7 @@ inline stream & operator >>(stream & s, __pointer_array(TYPE) & a)
       if (!pmatter)
       {
 
-         throw_status(error_io);
+         throw ::exception(error_io);
 
          break;
 
@@ -526,7 +526,7 @@ __pointer(BASE_TYPE) __load_object(stream & stream)
 
       //stream.setstate(::file::failbit);
 
-      throw_status(error_io);
+      throw ::exception(error_io);
 
       return nullptr;
 
@@ -546,7 +546,7 @@ __pointer(BASE_TYPE) __load_object(stream & stream)
    if (!p)
    {
 
-      throw_status(error_io);
+      throw ::exception(error_io);
 
       return nullptr;
 
@@ -1151,7 +1151,7 @@ void payload_stream::write_only(TYPE & t)
   if (is_loading())
   {
 
-     throw_status(error_io);
+     throw ::exception(error_io);
 
   }
   else

@@ -47,7 +47,7 @@ namespace user
 
          //return error_failed;
 
-         throw_status(error_exception);
+         throw ::exception(error_exception);
 
       }
 

@@ -283,7 +283,7 @@ graphics::~graphics()
          if (cairo_surface_status(psurface) != CAIRO_STATUS_SUCCESS)
          {
 
-            throw_status(error_resource);
+            throw ::exception(error_resource);
 
          }
 
@@ -294,7 +294,7 @@ graphics::~graphics()
       if (hsurfaceNew == nullptr)
       {
 
-         throw_status(error_resource);
+         throw ::exception(error_resource);
 
       }
 
@@ -305,7 +305,7 @@ graphics::~graphics()
       if (m_pdc == nullptr)
       {
 
-         throw_status(error_resource);
+         throw ::exception(error_resource);
 
       }
 
@@ -468,7 +468,7 @@ point_f64 graphics::SetBrushOrg(const ::point_f64 & point)
       if (pbitmap == nullptr)
       {
 
-         throw_status(error_null_pointer);
+         throw ::exception(error_null_pointer);
 
       }
 
@@ -760,7 +760,7 @@ void graphics::Arc(double x1, double y1, double x2, double y2, double x3, double
    if (radiusx == 0.0 || radiusy == 0.0)
    {
 
-      throw_status(error_invalid_empty_argument);
+      throw ::exception(error_invalid_empty_argument);
 
    }
 
@@ -1382,7 +1382,7 @@ void graphics::_draw_raw(const ::rectangle_f64 & rectangleTarget, ::image * pima
       if (::is_null(pimage))
       {
 
-         throw_status(error_null_pointer);
+         throw ::exception(error_null_pointer);
 
       }
 
@@ -1391,14 +1391,14 @@ void graphics::_draw_raw(const ::rectangle_f64 & rectangleTarget, ::image * pima
       if (::is_null(pgraphicsSrc))
       {
 
-         throw_status(error_wrong_state);
+         throw ::exception(error_wrong_state);
 
       }
 
       if (pgraphicsSrc->get_os_data() == nullptr)
       {
 
-         throw_status(error_wrong_state);
+         throw ::exception(error_wrong_state);
 
       }
 
@@ -1414,7 +1414,7 @@ void graphics::_draw_raw(const ::rectangle_f64 & rectangleTarget, ::image * pima
       if (psurface == nullptr)
       {
 
-         throw_status(error_wrong_state);
+         throw ::exception(error_wrong_state);
 
       }
 
@@ -1423,7 +1423,7 @@ void graphics::_draw_raw(const ::rectangle_f64 & rectangleTarget, ::image * pima
       if (ppattern == nullptr)
       {
 
-         throw_status(error_wrong_state);
+         throw ::exception(error_wrong_state);
 
       }
 
@@ -1523,7 +1523,7 @@ void graphics::_stretch_raw(const ::rectangle_f64 & rectangleTarget, ::image * p
     {
 
         //return false;
-       throw_status(error_null_pointer);
+       throw ::exception(error_null_pointer);
 
     }
 
@@ -1532,7 +1532,7 @@ void graphics::_stretch_raw(const ::rectangle_f64 & rectangleTarget, ::image * p
     if (::is_null(pgraphicsSrc))
     {
 
-       throw_status(error_null_pointer);
+       throw ::exception(error_null_pointer);
 
     }
 
@@ -1564,7 +1564,7 @@ void graphics::_stretch_raw(const ::rectangle_f64 & rectangleTarget, ::image * p
     if (pgraphicsSrc == nullptr || pgraphicsSrc->get_os_data() == nullptr)
     {
 
-       throw_status(error_null_pointer);
+       throw ::exception(error_null_pointer);
 
     }
 
@@ -1573,7 +1573,7 @@ void graphics::_stretch_raw(const ::rectangle_f64 & rectangleTarget, ::image * p
     if (psurface == nullptr)
     {
 
-       throw_status(error_null_pointer);
+       throw ::exception(error_null_pointer);
 
     }
 
@@ -1582,7 +1582,7 @@ void graphics::_stretch_raw(const ::rectangle_f64 & rectangleTarget, ::image * p
     if (ppattern == nullptr)
     {
 
-       throw_status(error_null_pointer);
+       throw ::exception(error_null_pointer);
 
     }
 
@@ -1865,14 +1865,14 @@ void graphics::get_text_metrics(::write_text::text_metric * lpMetrics)
    if(::is_null(pfont))
    {
 
-      throw_status(error_null_pointer);
+      throw ::exception(error_null_pointer);
 
    }
 
    if(pfont->m_dFontSize <= 0.0 || pfont->m_dFontWidth <= 0.0)
    {
 
-      throw_status(error_null_pointer);
+      throw ::exception(error_null_pointer);
 
    }
 
@@ -1892,7 +1892,7 @@ void graphics::get_text_metrics(::write_text::text_metric * lpMetrics)
     if(!pdesc)
     {
 
-       throw_status(error_failed);
+       throw ::exception(error_failed);
 
     }
 
@@ -2680,7 +2680,7 @@ void graphics::draw_path(::draw2d::path * ppath)
     if (!_set(ppath))
     {
 
-       throw_status(error_failed);
+       throw ::exception(error_failed);
 
     }
 
@@ -2698,7 +2698,7 @@ void graphics::fill_path(::draw2d::path * ppath)
     if (!_set(ppath))
     {
 
-       throw_status(error_failed);
+       throw ::exception(error_failed);
 
     }
 
@@ -2716,7 +2716,7 @@ void graphics::draw_path(::draw2d::path * ppath, ::draw2d::pen * ppen)
     if (!_set(ppath))
     {
 
-       throw_status(error_failed);
+       throw ::exception(error_failed);
 
     }
 
@@ -2734,7 +2734,7 @@ void graphics::fill_path(::draw2d::path * ppath, ::draw2d::brush * pbrush)
     if (!_set(ppath))
     {
 
-       throw_status(error_failed);
+       throw ::exception(error_failed);
 
     }
 
@@ -3648,14 +3648,14 @@ void graphics::internal_draw_text_pango(const block & block, const ::rectangle_f
     if(::is_null(pfont))
     {
 
-       throw_status(error_null_pointer);
+       throw ::exception(error_null_pointer);
 
     }
 
     if(pfont->m_dFontSize <= 0.0 || pfont->m_dFontWidth <= 0.0)
     {
 
-       throw_status(error_wrong_state);
+       throw ::exception(error_wrong_state);
 
     }
 
@@ -3664,7 +3664,7 @@ void graphics::internal_draw_text_pango(const block & block, const ::rectangle_f
     if(!pdesc)
     {
 
-       throw_status(error_null_pointer);
+       throw ::exception(error_null_pointer);
 
     }
 
@@ -3796,7 +3796,7 @@ void graphics::internal_draw_text(const ::block & block, const ::rectangle_f64 &
     if (str.is_empty())
     {
 
-       throw_status(error_invalid_empty_argument);
+       throw ::exception(error_invalid_empty_argument);
 
     }
 
@@ -3805,14 +3805,14 @@ void graphics::internal_draw_text(const ::block & block, const ::rectangle_f64 &
     if (m_pfont.is_null())
     {
 
-       throw_status(error_null_pointer);
+       throw ::exception(error_null_pointer);
 
     }
 
     if (m_pfont->m_dFontWidth <= 0.0)
     {
 
-       throw_status(error_wrong_state);
+       throw ::exception(error_wrong_state);
 
     }
 
@@ -4039,14 +4039,14 @@ void graphics::get_text_extent(size_f64 & size, const char * lpszString, strsize
 
       //return false;
 
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    }
 
    if(m_pfont->m_dFontWidth <= 0.0)
    {
 
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    }
 
@@ -4067,7 +4067,7 @@ void graphics::get_text_extent(size_f64 & size, const char * lpszString, strsize
       if(::is_null(pdesc))
       {
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -4453,7 +4453,7 @@ void graphics::set_alpha_mode(::draw2d::enum_alpha_mode ealphamode)
         if (m_pdc == nullptr)
         {
 
-           throw_status(error_wrong_state);
+           throw ::exception(error_wrong_state);
 
         }
 
@@ -4649,7 +4649,7 @@ void graphics::blur(bool bExpand, double dRadius, const ::rectangle_f64 & rectan
     if (ppattern == nullptr)
     {
 
-       throw_status(error_wrong_state);
+       throw ::exception(error_wrong_state);
 
     }
 
@@ -5733,7 +5733,7 @@ void graphics::flush()
     if (ppattern == nullptr)
     {
 
-       throw_status(error_null_pointer);
+       throw ::exception(error_null_pointer);
 
     }
 
@@ -5744,7 +5744,7 @@ void graphics::flush()
     if (psurface == nullptr)
     {
 
-       throw_status(error_null_pointer);
+       throw ::exception(error_null_pointer);
 
     }
 
@@ -6167,7 +6167,7 @@ void graphics::_set(const ::draw2d::matrix & matrix)
     if(m_pdc == nullptr)
     {
 
-       throw_status(error_null_pointer);
+       throw ::exception(error_null_pointer);
 
     }
 

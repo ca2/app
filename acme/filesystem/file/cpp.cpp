@@ -55,7 +55,7 @@ namespace file
       if(feof(pfile))
       {
 
-         throw_status(::success_end_of_file);
+         throw ::exception(::success_end_of_file);
 
       }
 
@@ -63,7 +63,7 @@ namespace file
 
       auto estatus = failed_errno_to_status(iErrNo);
 
-      throw_status(estatus);
+      throw ::exception(estatus);
 
    }
 

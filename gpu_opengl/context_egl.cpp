@@ -49,7 +49,7 @@ namespace opengl
       if (::is_null(popengl))
       {
 
-         throw_status(::error_failed);
+         throw ::exception(::error_failed);
 
       }
 
@@ -83,7 +83,7 @@ namespace opengl
 
          fprintf(stderr, "Got no EGL display.\n");
 
-         throw_status(::error_failed);
+         throw ::exception(::error_failed);
 
       }
 
@@ -92,7 +92,7 @@ namespace opengl
 
          fprintf(stderr, "Unable to initialize EGL\n");
 
-         throw_status(::error_failed);
+         throw ::exception(::error_failed);
 
       }
 
@@ -109,7 +109,7 @@ namespace opengl
 
          fprintf(stderr, "Failed to choose config (eglError: %s : 0x%x)\n", pszError, iError);
 
-         throw_status(::error_failed);
+         throw ::exception(::error_failed);
 
       }
 
@@ -118,7 +118,7 @@ namespace opengl
 
          fprintf(stderr, "Didn't get just one config, but %d\n", iConfigCount);
 
-         throw_status(::error_failed);
+         throw ::exception(::error_failed);
 
       }
 
@@ -150,7 +150,7 @@ namespace opengl
       if (m_surface == EGL_NO_SURFACE)
       {
 
-         throw_status(::error_failed);
+         throw ::exception(::error_failed);
 
       }
 
@@ -163,7 +163,7 @@ namespace opengl
       {
 
          //qDebug() << "context issue";
-         throw_status(::error_failed);
+         throw ::exception(::error_failed);
 
       }
 
@@ -188,7 +188,7 @@ namespace opengl
 
          //return ::error_failed;
 
-         throw_status(::error_failed);
+         throw ::exception(::error_failed);
 
       }
 
@@ -224,7 +224,7 @@ namespace opengl
       if (surface == EGL_NO_SURFACE)
       {
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -246,7 +246,7 @@ namespace opengl
 
       //return estatus;
 
-      //throw_status(error_failed);
+      //throw ::exception(error_failed);
 
    }
 

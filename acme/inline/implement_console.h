@@ -39,6 +39,11 @@ int main(int argc, platform_char ** argv, platform_char ** envp)
    main.m_envp = envp;
 #endif
 
+#ifdef __APP_ID
+   main.m_strAppId = __APP_ID;
+#endif
+
+
    main.m_pfnImplement = &::implement;
 
    main.m_bConsole = true;

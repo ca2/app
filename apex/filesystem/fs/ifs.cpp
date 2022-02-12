@@ -116,7 +116,7 @@ bool ifs::has_subdir(const ::file::path & path)
 
       dir.m_durationLast.now();
 
-      throw_status(error_failed);
+      throw ::exception(error_failed);
 
       return listing;
 

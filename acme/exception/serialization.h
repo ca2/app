@@ -8,7 +8,7 @@ class CLASS_DECL_ACME serialization_exception :
 public:
 
 
-   serialization_exception(::e_status estatus = ::error_serialization, const char* pszMessage = nullptr, i32 iSkip = callstack_DEFAULT_SKIP);
+   serialization_exception(::e_status estatus = ::error_serialization, const char* pszMessage = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP);
    ~serialization_exception() override;
 
 

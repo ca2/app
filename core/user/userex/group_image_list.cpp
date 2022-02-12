@@ -259,7 +259,7 @@ namespace userex
       if (!pgroup)
       {
 
-         throw_status(error_not_found);
+         throw ::exception(error_not_found);
 
       }
 

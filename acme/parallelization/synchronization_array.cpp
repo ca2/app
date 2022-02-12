@@ -196,7 +196,7 @@ void synchronization_array::wait()
    if (is_empty())
    {
 
-      throw_status(error_failed);
+      throw ::exception(error_failed);
 
    }
 
@@ -310,7 +310,7 @@ void synchronization_array::wait()
    else if (failed(estatus))
    {
 
-      throw_status(estatus);
+      throw ::exception(estatus);
 
    }
 

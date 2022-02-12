@@ -19,4 +19,8 @@ public:
    void calculate_size() override;
 
 
+
+   void on_click(const ::atom& atom) override;
+
+
 };

@@ -338,6 +338,11 @@ void system::process_init()
 
    m_pacmedir->initialize(this);
 
+
+   //throw ::exception(error_failed);
+
+
+
    //if (!estatus)
    //{
 
@@ -464,7 +469,7 @@ void system::open_link(string strUrl, string strProfile, string strTarget)
 void system::open_url(string strUrl, string strProfile, string strTarget)
 {
 
-   throw_status(::error_interface_only);
+   throw ::exception(::error_interface_only);
 
 }
 
@@ -836,7 +841,7 @@ void system::init_system()
 
       //FATAL("node_factory has failed (status=" << (const void &) pfactory << ")");
 
-      throw_status(error_resource);
+      throw ::exception(error_resource);
 
    }
 
@@ -934,7 +939,7 @@ __pointer(::acme::library) system::create_library(const ::string& strLibrary)
    if (!plibrary->is_opened())
    {
 
-      throw_status(error_failed);
+      throw ::exception(error_failed);
 
    }
 
@@ -953,7 +958,7 @@ __pointer(::acme::library)& system::library(const ::string& str)
    if (str.is_empty())
    {
 
-      throw_status(error_bad_argument);
+      throw ::exception(error_bad_argument);
 
    }
 
@@ -1043,7 +1048,7 @@ __pointer(::factory::factory)& system::factory(const ::string& strComponent, con
 #endif
 
       //pfactory = (const ::extended::status&)plibrary;
-      throw_status(error_resource);
+      throw ::exception(error_resource);
 
    }
 
@@ -1077,7 +1082,7 @@ __pointer(::factory::factory)& system::factory(const ::string& strLibraryRequest
    if (!plibrary)
    {
 
-      throw_status(error_resource);
+      throw ::exception(error_resource);
 
    }
 
@@ -1391,7 +1396,7 @@ __pointer(::regular_expression::context) system::get_regular_expression_context(
       if(!pfactory)
       {
 
-         throw_status(error_resource);
+         throw ::exception(error_resource);
 
       }
 
@@ -1685,6 +1690,8 @@ __pointer(::factory::factory) & system::folder_factory()
 void system::system_construct(const ::main & main)
 {
 
+   m_strAppId = main.m_strAppId;
+
    enum_trace_level etracelevel;
 
    if(is_debugger_attached())
@@ -1827,7 +1834,7 @@ void system::new_compress(::compress ** ppcompress, const char* pszImplementatio
    if (!pcompress)
    {
 
-      throw_status(error_resource);
+      throw ::exception(error_resource);
 
    }
 
@@ -1848,7 +1855,7 @@ void system::new_uncompress(::uncompress ** ppuncompress, const char* pszImpleme
    if (!puncompress)
    {
 
-      throw_status(error_resource);
+      throw ::exception(error_resource);
 
    }
 
@@ -2089,7 +2096,7 @@ __pointer(class ::system) platform_create_system(const char* pszAppId)
 
    }
 
-   psystem->m_strAppId = strAppId;
+   //psystem->m_strAppId = strAppId;
 
    return ::move(psystem);
 

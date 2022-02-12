@@ -1382,7 +1382,7 @@ namespace user
       if (!is_graphical())
       {
 
-         throw_status(error_wrong_state);
+         throw ::exception(error_wrong_state);
 
       }
 

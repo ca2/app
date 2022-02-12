@@ -26,7 +26,7 @@ namespace account
    void authenticator::pre_authenticate(credentials * pcredentials)
    {
 
-      throw_status(error_pre_authentication);
+      throw ::exception(error_pre_authentication);
       
    }
 
@@ -34,7 +34,7 @@ namespace account
    void authenticator::authenticate(credentials * pcredentials)
    {
 
-      throw_status(error_authentication_none);
+      throw ::exception(error_authentication_none);
 
    }
 

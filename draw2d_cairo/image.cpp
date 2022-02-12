@@ -113,7 +113,7 @@ namespace draw2d_cairo
       if (size.is_empty())
       {
 
-         throw_status(error_invalid_empty_argument);
+         throw ::exception(error_invalid_empty_argument);
 
       }
 

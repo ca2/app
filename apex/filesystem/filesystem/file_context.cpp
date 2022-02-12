@@ -781,7 +781,7 @@ void file_context::put_lines(const ::payload &payloadFile, const string_array &s
       if (!pfile)
       {
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -940,7 +940,7 @@ void file_context::put_memory(const ::payload &payloadFile, const block & block)
    if (!::is_ok(pfile))
    {
 
-      throw_status(error_io);
+      throw ::exception(error_io);
 
    }
 
@@ -981,7 +981,7 @@ void file_context::add_contents(const ::payload &payloadFile, const void *pvoidC
    if (!pfile)
    {
 
-      throw_status(error_io);
+      throw ::exception(error_io);
 
    }
 
@@ -1021,7 +1021,7 @@ void file_context::add_contents(const ::payload &payloadFile, const char *pcszCo
    if (is_null(pcszContents))
    {
 
-      throw_status(error_bad_argument);
+      throw ::exception(error_bad_argument);
 
    }
 
@@ -1040,7 +1040,7 @@ void file_context::put_memory(const ::payload &payloadFile, ::file::file *pfileS
    if (!pfile)
    {
 
-      throw_status(error_io);
+      throw ::exception(error_io);
 
    }
 
@@ -1089,7 +1089,7 @@ void file_context::put_text_utf8(const ::payload &payloadFile, const ::block & b
    if (!pfile)
    {
 
-      throw_status(error_io);
+      throw ::exception(error_io);
 
    }
 
@@ -1397,7 +1397,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
          if (exists(varTarget))
          {
 
-            throw_status(error_failed);
+            throw ::exception(error_failed);
 
          }
 
@@ -1861,7 +1861,7 @@ __pointer(::handle::ini) file_context::get_ini(const ::payload& payloadFile)
    if (!preader)
    {
 
-      throw_status(error_io);
+      throw ::exception(error_io);
 
    }
 
@@ -2174,7 +2174,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 
       // rename should work only on files in the same directory/folder
 
-      throw_status(::error_failed);
+      throw ::exception(::error_failed);
 
    }
 
@@ -2659,7 +2659,7 @@ void file_context::post_output(const ::file::path & pathOut, const ::file::path 
 
       erase(pathDownloading);
 
-      throw_status(error_io);
+      throw ::exception(error_io);
 
    }
 
@@ -2763,7 +2763,7 @@ file_pointer file_context::data_get_file(string strData, const ::file::e_open &e
 
    INFORMATION("::file::file_context::data_get_file Failed");
 
-   //throw_status(error_failed);
+   //throw ::exception(error_failed);
    //return ::error_failed;
 
    return nullptr;
@@ -2779,7 +2779,7 @@ folder_pointer file_context::get_folder(::file::file *pfile, const char * pszImp
    if (!pfactory)
    {
 
-     throw_status(::error_failed);
+     throw ::exception(::error_failed);
 
    }
 
@@ -2788,7 +2788,7 @@ folder_pointer file_context::get_folder(::file::file *pfile, const char * pszImp
    if (!pfolder)
    {
 
-      throw_status(::error_failed);
+      throw ::exception(::error_failed);
 
    }
 

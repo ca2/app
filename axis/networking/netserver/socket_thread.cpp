@@ -83,7 +83,7 @@ namespace netserver
 
          TRACE(strMessage);
 
-         throw_status(error_bad_argument);
+         throw ::exception(error_bad_argument);
 
       }
 

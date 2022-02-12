@@ -94,7 +94,7 @@ namespace compress_zlib
       if (deflateInit2(&zstream, iLevel, Z_DEFLATED, 16 + MAX_WBITS, 9, Z_DEFAULT_STRATEGY) != Z_OK)
       {
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -164,7 +164,7 @@ namespace compress_zlib
       if (status < 0)
       {
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 

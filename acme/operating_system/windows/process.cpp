@@ -143,7 +143,7 @@ CLASS_DECL_ACME void command_system(string& strOutput, string& strError, int& iE
 
       auto estatus = last_error_to_status(dwLastError);
 
-      throw_status(estatus);
+      throw ::exception(estatus);
 
    }
 
@@ -159,7 +159,7 @@ CLASS_DECL_ACME void command_system(string& strOutput, string& strError, int& iE
 
       auto estatus = last_error_to_status(dwLastError);
 
-      throw_status(estatus);
+      throw ::exception(estatus);
 
    }
 
@@ -179,7 +179,7 @@ CLASS_DECL_ACME void command_system(string& strOutput, string& strError, int& iE
 
       auto estatus = last_error_to_status(dwLastError);
 
-      throw_status(estatus);
+      throw ::exception(estatus);
 
    }
 
@@ -198,7 +198,7 @@ CLASS_DECL_ACME void command_system(string& strOutput, string& strError, int& iE
 
       auto estatus = last_error_to_status(dwLastError);
 
-      throw_status(estatus);
+      throw ::exception(estatus);
 
    }
 
@@ -238,7 +238,7 @@ CLASS_DECL_ACME void command_system(string& strOutput, string& strError, int& iE
 
       auto estatus = last_error_to_status(dwLastError);
 
-      throw_status(estatus);
+      throw ::exception(estatus);
 
    }
 

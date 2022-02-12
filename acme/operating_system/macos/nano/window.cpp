@@ -179,7 +179,7 @@ namespace macos
 //         //fprintf(stderr,
 //         //"Cannot open display\n");
 //        // exit(1);
-//        throw_status(error_null_pointer);
+//        throw ::exception(error_null_pointer);
 //      }
 //
 ////
@@ -422,7 +422,7 @@ void nano_window::on_mouse_move(int x, int y)
 //   if (!RegisterClassEx(&wndclassex))
 //   {
 //
-//      throw_status(error_failed, "Failed to register nano message box window class.");
+//      throw ::exception(error_failed, "Failed to register nano message box window class.");
 //
 //   }
 //
@@ -782,7 +782,7 @@ void nano_window::redraw()
 //                       GrabModeAsync, GrabModeAsync, None, None, CurrentTime) != GrabSuccess)
 //      {
 //
-//         throw_status(error_exception);
+//         throw ::exception(error_exception);
 //
 //      }
 
@@ -817,7 +817,7 @@ void nano_window::redraw()
 //      if(status == BadDrawable)
 //      {
 //
-//         throw_status(error_exception);
+//         throw ::exception(error_exception);
 //
 //      }
 //
@@ -845,7 +845,7 @@ void nano_window::redraw()
 //      if(status == BadDrawable)
 //      {
 //
-//         throw_status(error_exception);
+//         throw ::exception(error_exception);
 //
 //      }
 //
@@ -907,7 +907,7 @@ void nano_window::redraw()
 //
 //      printf("window atom # 0x%lx does not exists!", window);
 //
-//      throw_status(error_exception);
+//      throw ::exception(error_exception);
 //
 //   }
 //
@@ -916,7 +916,7 @@ void nano_window::redraw()
 //
 //      printf("XGetWindowProperty failed!");
 //
-//      throw_status(error_exception);
+//      throw ::exception(error_exception);
 //
 //   }
 //

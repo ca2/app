@@ -1761,7 +1761,7 @@ __pointer(::application) app_core::new_application(const char* pszAppId)
    if (!papp)
    {
 
-      if (strAppId.is_empty())
+      if (strAppId.is_empty() || m_bConsole)
       {
 
          papp = __create < ::application >();

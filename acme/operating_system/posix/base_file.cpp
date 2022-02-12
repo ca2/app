@@ -743,7 +743,7 @@ bool is_directory(const char * path)
 
       }
 
-      throw_status(estatus);
+      throw ::exception(estatus);
 
    }
 
@@ -778,7 +778,7 @@ bool file_exists(const char * path)
 
       }
 
-      throw_status(estatus);
+      throw ::exception(estatus);
 
    }
 
@@ -873,7 +873,7 @@ void create_directory(const char * path)
 
       auto estatus = errno_to_status(errno);
 
-      throw_status(estatus);
+      throw ::exception(estatus);
 
    }
 
@@ -889,7 +889,7 @@ void erase_directory(const char * path)
 
       auto estatus =  errno_to_status(errno);
 
-      throw_status(estatus);
+      throw ::exception(estatus);
 
    }
 
@@ -905,7 +905,7 @@ void file_delete(const char * path)
 
       auto estatus = errno_to_status(errno);
 
-      throw_status(estatus);
+      throw ::exception(estatus);
 
    }
 

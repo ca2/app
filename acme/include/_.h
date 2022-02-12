@@ -741,7 +741,7 @@ CLASS_DECL_ACME bool __assert_failed_line(const char *pszFileName, int iLineNumb
 
 CLASS_DECL_ACME int is_debugger_attached(void);
 
-CLASS_DECL_ACME void debug_print(const char *psz, ...);
+CLASS_DECL_ACME void debug_print(const char * pszFormat, ...);
 
 CLASS_DECL_ACME void throw_todo();
 
@@ -3149,8 +3149,8 @@ class memory_base;
 #include "acme/exception/status.h"
 
 
-inline void throw_status(const ::e_status& estatus, const char * pszMessage = nullptr);
-inline void throw_status(const ::enum_status& estatus, const char* pszMessage = nullptr);
+//inline void throw ::exception(const ::e_status& estatus, const char * pszMessage = nullptr);
+//inline void throw ::exception(const ::enum_status& estatus, const char* pszMessage = nullptr);
 
 
 
@@ -3702,14 +3702,13 @@ class callstack;
 CLASS_DECL_ACME __pointer(callstack) get_callstack(const char *pszFormat = "%f(%l) %s\n", iptr iSkip = -1000,
                                                    void *caller_address = nullptr, iptr iCount = -1);
 
-CLASS_DECL_ACME __pointer(callstack) get_callstack(e_callstack ecallstack, int iCallStackAddUp = 0);
+//CLASS_DECL_ACME __pointer(callstack) get_callstack(e_callstack ecallstack, int iCallStackAddUp = 0);
 
-CLASS_DECL_ACME void set_callstack_mask(enumeration<e_callstack> ecallstack);
+//CLASS_DECL_ACME void set_callstack_mask(enumeration<e_callstack> ecallstack);
 
-CLASS_DECL_ACME e_callstack get_callstack_mask();
+//CLASS_DECL_ACME e_callstack get_callstack_mask();
 
-
-inline bool is_callstack_enabled(e_callstack ecallstack) { return (i64) get_callstack_mask() & (i64) ecallstack; }
+//inline bool is_callstack_enabled(e_callstack ecallstack) { return (i64) get_callstack_mask() & (i64) ecallstack; }
 
 
 #include "acme/platform/fixed_alloc.h"
@@ -3900,7 +3899,7 @@ namespace mathematics
 
 
 
-CLASS_DECL_ACME string get_status_message(::e_status estatus);
+CLASS_DECL_ACME string get_status_message(const ::e_status & estatus);
 
 
 #include "acme/platform/flags.h"

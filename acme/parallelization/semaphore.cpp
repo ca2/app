@@ -281,7 +281,7 @@ bool semaphore::wait(const class ::wait & wait)
       if(i != 0)
       {
          
-         throw_status(error_exception);
+         throw ::exception(error_exception);
          
       }
 
@@ -331,7 +331,7 @@ bool semaphore::wait(const class ::wait & wait)
       else
       {
 
-         throw_status(error_exception);
+         throw ::exception(error_exception);
 
       }
 
@@ -421,7 +421,7 @@ void semaphore::unlock(::i32 lCount, ::i32 * pPrevCount)
    if(lCount + semctl_arg.val > m_lMaxCount)
    {
 
-      throw_status(error_failed);
+      throw ::exception(error_failed);
 
    }
 

@@ -3678,7 +3678,7 @@ namespace user
       if (::is_null(pchild))
       {
 
-         throw_status(error_not_found);
+         throw ::exception(error_not_found);
 
       }
 

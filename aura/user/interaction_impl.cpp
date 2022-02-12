@@ -2782,14 +2782,14 @@ namespace user
 
          //return false;
 
-         throw_status(error_wrong_state);
+         throw ::exception(error_wrong_state);
 
       }
 
       if(!m_puserinteraction->m_pthreadUserInteraction)
       {
 
-         throw_status(error_wrong_state);
+         throw ::exception(error_wrong_state);
 
       }
 
@@ -2798,7 +2798,7 @@ namespace user
       if(!pwindow)
       {
 
-         throw_status(error_wrong_state);
+         throw ::exception(error_wrong_state);
 
       }
 
@@ -2807,7 +2807,7 @@ namespace user
       if(!oswindow)
       {
 
-         throw_status(error_wrong_state);
+         throw ::exception(error_wrong_state);
 
       }
 
@@ -2830,7 +2830,7 @@ namespace user
       if(::is_null(pmessagequeue))
       {
          
-         throw_status(error_wrong_state);
+         throw ::exception(error_wrong_state);
          
       }
 
@@ -4423,7 +4423,7 @@ namespace user
 
          //return error_failed;
 
-         throw_status(error_wrong_state);
+         throw ::exception(error_wrong_state);
 
       }
 
@@ -4432,7 +4432,7 @@ namespace user
       if (::is_null(puserthread))
       {
 
-         throw_status(error_wrong_state);
+         throw ::exception(error_wrong_state);
 
       }
 

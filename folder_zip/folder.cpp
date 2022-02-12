@@ -372,7 +372,7 @@ namespace folder_zip
       if (pf == nullptr)
       {
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
          //return listing;
 
@@ -462,7 +462,7 @@ namespace folder_zip
 
          //return listing;
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 

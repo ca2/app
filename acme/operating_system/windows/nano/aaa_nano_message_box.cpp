@@ -179,7 +179,7 @@ void nano_message_box::on_draw(HDC hdc)
 //   if (!RegisterClassEx(&wndclassex))
 //   {
 //
-//      throw_status(error_failed, "Failed to register nano message box window class.");
+//      throw ::exception(error_failed, "Failed to register nano message box window class.");
 //
 //   }
 //

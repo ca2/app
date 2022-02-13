@@ -99,6 +99,19 @@ namespace fs
 
       }
 
+      ::file::path pathDropboxApp = m_pcontext->m_papexcontext->defer_process_path("dropbox-app://");
+
+      if(pathDropboxApp.has_char() && m_pcontext->m_papexcontext->dir().is(pathDropboxApp))
+      {
+
+         ::file::path & path = listing.insert_at(0, "dropbox-app://");
+
+         path.m_iDir = 1;
+
+         listing.m_straTitle.insert_at(0, unitext("Dropbox-App"));
+
+      }
+
       ::file::path pathOneDrive = m_pcontext->m_papexcontext->defer_process_path("onedrive://");
       
       if(pathOneDrive.has_char() && m_pcontext->m_papexcontext->dir().is(pathOneDrive))

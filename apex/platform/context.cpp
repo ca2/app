@@ -462,6 +462,12 @@ namespace apex
          path = dir().dropbox() / path;
 
       }
+      else if (::str::begins_eat_ci(path, "dropbox-app://"))
+      {
+
+         path = dir().dropbox_app() / path;
+
+      }
       else if (::str::begins_eat_ci(path, "onedrive://"))
       {
 

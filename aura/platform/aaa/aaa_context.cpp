@@ -404,6 +404,12 @@ string context::defer_get_file_title(string strParam)
       path = dir().dropbox() / path;
 
    }
+   else if (::str::begins_eat_ci(path, "dropbox-app://"))
+   {
+
+      path = dir().dropbox_app() / path;
+
+   }
    else if (::str::begins_eat_ci(path, "onedrive://"))
    {
 

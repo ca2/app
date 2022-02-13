@@ -147,6 +147,8 @@
       virtual ::file::path dropbox();
       virtual ::file::path onedrive();
 
+      virtual ::file::path dropbox_app();
+
       virtual ::file::path standalone();
 
 

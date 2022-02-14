@@ -167,7 +167,7 @@ namespace universal_windows
       if (lpszResult == nullptr && !feof(m_pStream))
       {
          clearerr(m_pStream);
-         ::file::throw_errno(_doserrno, m_path);
+         ::throw ::file::exception(_doserrno, m_path);
       }
       return lpszResult;
    }

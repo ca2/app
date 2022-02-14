@@ -1,4 +1,4 @@
-// Created by camilo on 2022-02-11 09:27 PM <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-02-11 09:27 PM <3ThomasBorregaardSï¿½rensen!!
 #include "framework.h"
 #include "acme/exception/engine.h"
 #include <dbghelp.h>
@@ -81,7 +81,7 @@ string get_callstack(const char* pszFormat, i32 iSkip, void * caller_address, in
 
 	  string strLine;
 
-	  strLine.format("%d: %s - %x\n", frames - i - iSkip - 1, psymbolinfo->Name, psymbolinfo->Address);
+	  strLine.format("%d: %s - %x\n", frames - i - 1, psymbolinfo->Name, psymbolinfo->Address);
 
 	  strCallstack += strLine;
 
@@ -124,6 +124,4 @@ string get_callstack(const char* pszFormat, i32 iSkip, void * caller_address, in
 //   return psz;
 //
 //}
-
-
 

@@ -23,12 +23,12 @@ namespace factory
    }
 
 
-    CLASS_DECL_ACME factory_array * get_factory_item_array()
-    {
-
-       return ::acme::static_start::g_staticstart.m_pfactorya;
-
-    }
+//    CLASS_DECL_ACME factory_array * get_factory_item_array()
+//    {
+//
+//       return ::acme::static_start::g_staticstart.m_pfactorya;
+//
+//    }
 
 
     CLASS_DECL_ACME critical_section * get_factory_critical_section()
@@ -47,15 +47,22 @@ namespace factory
     }
 
 
+   CLASS_DECL_ACME factory * get_factory(const ::atom & atomSource)
+   {
 
-    void factory_init()
+      return ::acme::static_start::g_staticstart.m_pfactory;
+
+   }
+
+
+   void factory_init()
     {
 
-       ::acme::static_start::g_staticstart.m_pfactory = new factory();
+       ::acme::static_start::g_staticstart.m_pfactory = __new(factory());
 
-       ::acme::static_start::g_staticstart.m_pfactory->m_mapGlobalFactory.InitHashTable(16189);
+       ::acme::static_start::g_staticstart.m_pfactory->InitHashTable(16189);
 
-       ::acme::static_start::g_staticstart.m_pfactorya = new factory_array();
+       //::acme::static_start::g_staticstart.m_pfactorya = new factory_array();
 
 
 
@@ -77,9 +84,9 @@ namespace factory
 
       critical_section_lock synchronouslock(::acme::static_start::g_staticstart.m_pcriticalsectionFactory);
 
-      ::acme::static_start::g_staticstart.m_pfactory->m_mapGlobalFactory.erase_all();
+      ::acme::static_start::g_staticstart.m_pfactory->erase_all();
 
-      ::acme::static_start::g_staticstart.m_pfactorya->erase_all();
+      ::acme::static_start::g_staticstart.m_mapFactory.erase_all();
 
    }
 
@@ -88,9 +95,11 @@ namespace factory
 
       critical_section_lock synchronouslock(::acme::static_start::g_staticstart.m_pcriticalsectionFactory);
 
-      ::acme::del(::acme::static_start::g_staticstart.m_pfactorya);
+      ::acme::static_start::g_staticstart.m_pfactory.release();
 
-      ::acme::del(::acme::static_start::g_staticstart.m_pfactory);
+      //::acme::del(::acme::static_start::g_staticstart.m_pfactorya);
+
+      //::acme::del(::acme::static_start::g_staticstart.m_pfactory);
 
    }
 
@@ -98,24 +107,10 @@ namespace factory
    void factory::merge(const ::factory::factory* pfactory)
    {
 
-      for (auto& pair : pfactory->m_mapGlobalFactory)
+      for (auto& pair : *pfactory)
       {
 
-         m_mapGlobalFactory.set_at(pair.m_element1, pair.m_element2);
-
-      }
-
-      for (auto& pair : pfactory->m_mapFactory)
-      {
-
-         auto& map = m_mapFactory[pair.m_element1];
-
-         for (auto& pair2 : pair.m_element2)
-         {
-
-            map.set_at(pair2.m_element1, pair2.m_element2);
-
-         }
+         set_at(pair.m_element1, pair.m_element2);
 
       }
 
@@ -128,6 +123,23 @@ namespace factory
       ::factory::get_factory()->merge(this);
 
    }
+
+
+//   void merge_library_to_global_factory(const ::atom & atomSource)
+//   {
+//
+//      auto & mapFactory = ::factory::get_factory()->m_mapFactory[atomSource];
+//
+//      auto & mapGlobalFactory = ::factory::get_factory()->m_mapGlobalFactory;
+//
+//      for (auto& pair : mapFactory)
+//      {
+//
+//         mapGlobalFactory.set_at(pair.m_element1, pair.m_element2);
+//
+//      }
+//
+//   }
 
 
 } // namespace factory

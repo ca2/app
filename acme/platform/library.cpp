@@ -1046,18 +1046,18 @@ namespace acme
 
       string strFactory = factory_name(strLibrary);
 
-      auto pfnFactory = get < PFN_factory >(strFactory);
-
-      if (::is_null(pfnFactory))
-      {
-
-         throw ::exception(error_function_entry_not_found);
-
-      }
+//      auto pfnFactory = get < PFN_factory >(strFactory);
+//
+//      if (::is_null(pfnFactory))
+//      {
+//
+//         throw ::exception(error_function_entry_not_found);
+//
+//      }
 
       auto pfactory = m_psystem->__create_new < ::factory::factory >();
 
-      pfnFactory(pfactory);
+      //pfnFactory(pfactory);
 
       return pfactory;
 
@@ -1065,8 +1065,6 @@ namespace acme
 
 
 } // namespace acme
-
-
 
 
 #if defined(LINUX) || defined(FREEBSD)

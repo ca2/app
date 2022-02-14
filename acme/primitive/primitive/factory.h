@@ -125,23 +125,22 @@ namespace factory
    };
 
 
+   using factory_base = id_map < __pointer(factory_item_interface) >;
+
+
    class CLASS_DECL_ACME factory :
-      virtual public ::element
+      virtual public factory_base
    {
    public:
 
 
-      id_map < __pointer(factory_item_interface) >             m_mapGlobalFactory;
-      id_map < id_map < __pointer(factory_item_interface) > >  m_mapFactory;
-
-
       inline __pointer(::factory::factory_item_interface) & get_factory_item(const ::atom & atom);
 
-      inline __pointer(::factory::factory_item_interface) & get_factory_item_from(const ::atom& atom, const ::atom & atomSource);
+      //inline __pointer(::factory::factory_item_interface) & get_factory_item_from(const ::atom& atom, const ::atom & atomSource);
 
       inline ::factory::factory_item_interface * get_factory_item(const ::atom& atom) const;
 
-      inline ::factory::factory_item_interface * get_factory_item_from(const ::atom& atom, const ::atom & atomSource) const;
+      //inline ::factory::factory_item_interface * get_factory_item_from(const ::atom& atom, const ::atom & atomSource) const;
 
       template < typename BASE_TYPE >
       inline __pointer(::factory::factory_item_interface) & get_factory_item();
@@ -149,14 +148,14 @@ namespace factory
       template < typename BASE_TYPE >
       inline __pointer(::factory::factory_item_interface) & get_factory_item(const ::atom& atom);
 
-      template < typename BASE_TYPE >
-      inline __pointer(::factory::factory_item_interface) & get_factory_item_from(const ::atom & atomSource);
+      //template < typename BASE_TYPE >
+      //inline __pointer(::factory::factory_item_interface) & get_factory_item_from(const ::atom & atomSource);
 
       template < typename TYPE, typename BASE_TYPE = TYPE >
       inline __pointer(::factory::factory_item_base < BASE_TYPE >) _add_factory_item();
 
-      template < typename TYPE, typename BASE_TYPE >
-      inline __pointer(::factory::factory_item_base < BASE_TYPE >) _add_factory_item_from(const ::atom& atomSource);
+      //template < typename TYPE, typename BASE_TYPE >
+      //inline __pointer(::factory::factory_item_base < BASE_TYPE >) _add_factory_item_from(const ::atom& atomSource);
 
 
       template < typename BASE_TYPE >
@@ -240,9 +239,11 @@ namespace factory
    using factory_array = __pointer_array(factory_item_interface);
 
 
-   CLASS_DECL_ACME factory_array * get_factory_item_array();
+   //CLASS_DECL_ACME factory_array * get_factory_item_array();
 
    CLASS_DECL_ACME factory * get_factory();
+
+   CLASS_DECL_ACME factory * get_factory(const ::atom & atomSource);
 
    CLASS_DECL_ACME void factory_init();
 
@@ -289,6 +290,8 @@ namespace factory
 
    }
 
+
+   //void merge_library_to_global_factory(const ::atom & atomSource);
 
 
 } // namespace factory

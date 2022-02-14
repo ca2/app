@@ -22,7 +22,7 @@ namespace factory
 
       auto pfactory = __new(::factory::factory_item< TYPE, BASE_TYPE >());
 
-      ::factory::get_factory()->m_mapGlobalFactory.set_at(atom, pfactory);
+      ::factory::get_factory()->set_at(atom, pfactory);
 
       return pfactory;
 

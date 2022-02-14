@@ -449,4 +449,40 @@ string estatus_to_string(::e_status estatus)
 //}
 
 
+void exception_message_box(::object * pobject, ::exception & exception, const ::string & strMoreDetails)
+{
+
+
+   string strMessage;
+
+   strMessage += "Failed to initialize application\n";
+   strMessage += "\n";
+   strMessage += exception.m_strMessage + "\n";
+   strMessage += "(" + __string(exception.m_estatus) + ")";
+
+   string strTitle;
+
+   strTitle = "Exception during initialization";
+
+   string strDetails;
+
+   strDetails += strMessage + "\n";
+   strDetails += exception.m_strDetails + "\n\n";
+   strDetails += "\n";
+   strDetails += "PID: " + __string(::get_current_process_id()) + "\n";
+   //strDetails += "Working Directory: " + string(GetCurrentDirectory()) + "\n\n";
+   strDetails += strMoreDetails;
+
+   if (exception.m_strCallstack)
+   {
+
+   strDetails += string(exception.m_strCallstack);
+
+   }
+
+   os_message_box(pobject, strMessage, strTitle, e_message_box_ok | e_message_box_icon_exclamation, strDetails);
+
+}
+
+
 

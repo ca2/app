@@ -3725,11 +3725,11 @@ class message_box;
 CLASS_DECL_ACME string merge_colon_args(const array<string_array> &str2a);
 
 
-class callstack;
+//class callstack;
 
 
-CLASS_DECL_ACME __pointer(callstack) get_callstack(const char *pszFormat = "%f(%l) %s\n", iptr iSkip = -1000,
-                                                   void *caller_address = nullptr, iptr iCount = -1);
+//CLASS_DECL_ACME __pointer(callstack) get_callstack(const char *pszFormat = "%f(%l) %s\n", iptr iSkip = -1000,
+                                                   //void *caller_address = nullptr, iptr iCount = -1);
 
 //CLASS_DECL_ACME __pointer(callstack) get_callstack(e_callstack ecallstack, int iCallStackAddUp = 0);
 

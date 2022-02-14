@@ -15,6 +15,9 @@
 CLASS_DECL_ACME void clear_message_queue(itask_t idthread);
 
 
+void exception_message_box(::object * pobject, ::exception & exception, const ::string & strMoreDetails);
+
+
 task::task()
 {
 
@@ -305,22 +308,37 @@ void task::main()
 void task::run()
 {
 
-   /*auto estatus =*/ run_posted_routines();
-
-   //if (!estatus)
-   //{
-
-   //   return estatus;
-
-   //}
-
-   if (defer_implement(m_psystem))
+   try
    {
 
-      //return m_psystem->m_estatus;
+      /*auto estatus =*/ run_posted_routines();
 
-      return;
+      //if (!estatus)
+      //{
 
+      //   return estatus;
+
+      //}
+
+      if (defer_implement(m_psystem))
+      {
+
+         //return m_psystem->m_estatus;
+
+         return;
+
+
+      }
+
+   }
+   catch(::exception & exception)
+   {
+
+      string strMoreDetails;
+
+      strMoreDetails = "task::run";
+
+      exception_message_box(this, exception, strMoreDetails);
 
    }
 

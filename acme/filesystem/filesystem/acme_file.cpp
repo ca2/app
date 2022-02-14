@@ -1454,9 +1454,35 @@ void acme_file::_erase(const char * path)
 ::file::path acme_file::time_put_contents(const ::file::path& pathFolder, const ::string& strPrefix, const ::string& strExtension, const ::string& str)
 {
 
-   throw interface_only();
+   ::file::path path;
 
-   return {};
+   int i = 0;
+
+   while (true)
+   {
+
+      string strHexadecimal;
+
+      strHexadecimal.format("%08x", i);
+
+      path = pathFolder / (strPrefix + "-" + strHexadecimal + "." + strExtension);
+
+      if (exists(path))
+      {
+
+         i++;
+
+         continue;
+
+      }
+
+      put_contents(path, str);
+
+      break;
+
+   }
+
+   return path;
 
 }
 

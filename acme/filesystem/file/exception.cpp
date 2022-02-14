@@ -399,7 +399,7 @@ namespace file
 #endif
 
 
-      //void  throw_errno(int iErrNo, const ::file::path& path)
+      //void  throw ::file::exception(errno_to_status(errno), (int iErrNo, const ::file::path& path)
       //{
 
       //   throw _exception(errno_to_status(iErrNo), -1, iErrNo, path, e_null);
@@ -450,7 +450,7 @@ namespace file
 //   }
 
 
-   //void throw_errno(i32 nErrno, const char* pszFileName /* = nullptr */)
+   //void throw ::file::exception(errno_to_status(errno), (i32 nErrno, const char* pszFileName /* = nullptr */)
 
    //{
 

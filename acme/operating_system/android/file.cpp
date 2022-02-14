@@ -345,7 +345,7 @@ pacmedir->create(path.folder());
             {
 
             }
-            ::file::throw_errno(errno, m_path);
+            ::throw ::file::exception(errno, m_path);
          }
          else if(iRead == 0)
          {

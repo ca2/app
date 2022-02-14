@@ -136,6 +136,10 @@ namespace acme
       auto operator *() {return *m_p;}
       auto operator *() const  {return *m_p;}
 
+
+      POINTER get() {return m_p;}
+      const POINTER get() const {return m_p;}
+
    };
 
 

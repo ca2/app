@@ -174,15 +174,14 @@ namespace acme
       bool m_bRef;
 
 
-      critical_section *               m_pcriticalsectionFactory;
-      ::factory::factory *             m_pfactory = nullptr;
-      ::factory::factory_array *       m_pfactorya = nullptr;
-
+      critical_section *                           m_pcriticalsectionFactory;
+      __pointer(::factory::factory)                m_pfactory;
+      id_map < __pointer(::factory::factory) >     m_mapFactory;
 
 
       static_start();
-
       ~static_start();
+
 
       static static_start g_staticstart;
 

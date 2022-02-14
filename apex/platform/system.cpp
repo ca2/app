@@ -24,6 +24,9 @@
 #include "acme/primitive/string/base64.h"
 
 
+void exception_message_box(::object * pobject, ::exception & exception, const ::string & strMoreDetails);
+
+
 //extern ::apex::system* g_papexsystem;
 
 //CLASS_DECL_APEX void apex_generate_random_bytes(void* p, memsize s);
@@ -1800,34 +1803,11 @@ pacmedir->create("/ca2core");
       catch (exception & exception)
       {
 
-         string strMessage;
-         
-         strMessage += "Failed to initialize application\n";
-         strMessage += "\n";
-         strMessage += exception.m_strMessage + "\n";
-         strMessage += "(" + __string(exception.m_estatus) + ")";
+         string strMoreDetails;
 
-         string strTitle;
+         strMoreDetails = "command line: " + string(m_strCommandLine) + "\n\n"
 
-         strTitle = "Exception during initialization";
-
-         string strDetails;
-
-         strDetails += strMessage + "\n";
-         strDetails += exception.m_strDetails + "\n\n";
-         strDetails += "\n";
-         strDetails += "PID: " + __string(::get_current_process_id()) + "\n";
-         //strDetails += "Working Directory: " + string(GetCurrentDirectory()) + "\n\n";
-         strDetails += "command line: " + string(m_strCommandLine) + "\n\n";
-
-         if (exception.m_strCallstack)
-         {
-
-            strDetails += string(exception.m_strCallstack);
-
-         }
-
-         os_message_box(this, strMessage, strTitle, e_message_box_ok | e_message_box_icon_exclamation, strDetails);
+         exception_message_box(this, exception, strMoreDetails);
 
          throw exception;
 

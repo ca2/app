@@ -736,8 +736,6 @@ namespace acme
       init();
 
 
-      ::factory::add_factory_item < manual_reset_event >();
-
 #ifdef LINUX
 
 //!!!      x11_hook_init();

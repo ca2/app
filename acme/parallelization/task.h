@@ -13,6 +13,9 @@ class CLASS_DECL_ACME task :
 public:
 
 
+   //Creatable(task);
+
+
    bool                                            m_bAvoidProcedureFork : 1;
    bool                                            m_bIsRunning : 1;
    bool                                            m_bIsPredicate : 1; // Is helper thread (as opposite to a "main" thread)

@@ -24,6 +24,10 @@ namespace user
    {
    public:
 
+
+      __creatable(user);
+
+
       ::axis::user* m_paxisuser;
       ::base::user* m_pbaseuser;
       ::bred::user* m_pbreduser;

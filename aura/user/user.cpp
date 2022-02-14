@@ -399,13 +399,13 @@ namespace user
    void user::init1()
    {
 
-      ::factory::add_factory_item <::user::button >();
-      ::factory::add_factory_item <::user::check_box >();
-      ::factory::add_factory_item <::user::still >();
+      ::factory::_add_factory_item <::user::button >();
+      ::factory::_add_factory_item <::user::check_box >();
+      ::factory::_add_factory_item <::user::still >();
       //add_factory_item <::user::document >();
-#ifdef WINDOWS_DESKTOP
-      ::factory::add_factory_item <::user::message_window >();
-#endif
+//#ifdef WINDOWS_DESKTOP
+//      ::factory::add_factory_item <::user::message_window >();
+//#endif
       //add_factory_item <::user::simple_view >();
       //add_factory_item <::user::place_holder >();
       //add_factory_item <::user::font_combo_box >();
@@ -444,7 +444,7 @@ namespace user
 
       //}
 
-      ::factory::add_factory_item <::user::plain_edit >();
+      ::factory::_add_factory_item <::user::plain_edit >();
 
 
 

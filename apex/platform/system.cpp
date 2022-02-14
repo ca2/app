@@ -117,9 +117,9 @@ namespace apex
 
       m_papexsystem = this;
 
-      ::factory::add_factory_item < ::thread >();
+      //::factory::add_factory_item < ::thread >();
 
-      ::factory::add_factory_item<::apex::idpool, ::acme::idpool >();
+      //::factory::add_factory_item<::apex::idpool, ::acme::idpool >();
 
       m_edisplay = e_display_default;
 
@@ -148,8 +148,8 @@ namespace apex
    void system::common_construct()
    {
 
-      ::factory::add_factory_item < ::apex::session >();
-      ::factory::add_factory_item < ::application >();
+      //::factory::add_factory_item < ::apex::session >();
+      //::factory::add_factory_item < ::application >();
       //add_factory_item < ::imaging >();
 
       m_bSimpleMessageLoop = false;
@@ -328,28 +328,28 @@ namespace apex
 
       //add_factory_item < ::stdio_file, ::file::text_file >();
       //add_factory_item < ::stdio_file, ::file::file >();
-      ::factory::add_factory_item < ::i64_array >();
-      ::factory::add_factory_item < ::double_array >();
-      ::factory::add_factory_item < ::acme::library >();
+      ::factory::_add_factory_item < ::i64_array >();
+      ::factory::_add_factory_item < ::double_array >();
+      ::factory::_add_factory_item < ::acme::library >();
 
-      ::factory::add_factory_item < ::file::path_object >();
+      ::factory::_add_factory_item < ::file::path_object >();
 
-      ::factory::add_factory_item < string_array >();
-      ::factory::add_factory_item < memory >();
-      ::factory::add_factory_item < memory_file >();
-      ::factory::add_factory_item < int_array >();
+      ::factory::_add_factory_item < string_array >();
+      ::factory::_add_factory_item < memory >();
+      ::factory::_add_factory_item < memory_file >();
+      ::factory::_add_factory_item < int_array >();
 
-      ::factory::add_factory_item < ::file::path_object >();
-      ::factory::add_factory_item < ::i64_array >();
-      ::factory::add_factory_item < ::double_array >();
-      ::factory::add_factory_item < ::acme::library >();
+      //::factory::add_factory_item < ::file::path_object >();
+      //::factory::add_factory_item < ::i64_array >();
+      //::factory::add_factory_item < ::double_array >();
+      //::factory::add_factory_item < ::acme::library >();
 
-      ::factory::add_factory_item < ::file::path_object >();
+      //::factory::add_factory_item < ::file::path_object >();
 
-      ::factory::add_factory_item < string_array >();
-      ::factory::add_factory_item < memory >();
-      ::factory::add_factory_item < memory_file >();
-      ::factory::add_factory_item < int_array >();
+      //::factory::add_factory_item < string_array >();
+      //::factory::add_factory_item < memory >();
+      //::factory::add_factory_item < memory_file >();
+      //::factory::add_factory_item < int_array >();
 
       ///estatus = 
       __compose_new(m_pdatetime);
@@ -551,9 +551,9 @@ namespace apex
    {
 
       
-      ::factory::add_factory_item<::create>();
-      ::factory::add_factory_item<command_line>();
-      ::factory::add_factory_item<http::context>();
+      ::factory::_add_factory_item<::create>();
+      ::factory::_add_factory_item<command_line>();
+      ::factory::_add_factory_item<http::context>();
 
       //auto estatus = 
       ::system::process_init();

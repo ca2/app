@@ -1,10 +1,15 @@
 #pragma once
 
 
+
+
 class CLASS_DECL_CORE simple_pane_document :
    public ::user::document
 {
 public:
+
+
+   DECLARE_CREATABLE(simple_pane_document);
 
 
    simple_pane_document();

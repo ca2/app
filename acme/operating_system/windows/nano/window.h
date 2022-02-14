@@ -12,6 +12,9 @@ namespace windows
    public:
 
 
+      //CreatableFromBase(nano_window, ::nano_window_implementation);
+
+
       HWND m_hwnd;
 //      HFONT m_hfont;
 //      COLORREF m_crText;

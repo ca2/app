@@ -1,5 +1,8 @@
 #include "framework.h"
 #include "acme/platform/static_start_internal.h"
+#include "acme/platform/simple_log.h"
+
+
 
 
 namespace factory
@@ -50,9 +53,21 @@ namespace factory
 
        ::acme::static_start::g_staticstart.m_pfactory = new factory();
 
-       ::acme::static_start::g_staticstart.m_pfactory->InitHashTable(16189);
+       ::acme::static_start::g_staticstart.m_pfactory->m_mapGlobalFactory.InitHashTable(16189);
 
        ::acme::static_start::g_staticstart.m_pfactorya = new factory_array();
+
+
+
+       ____creatable(manual_reset_event);
+       ____creatable(task);
+
+
+       ____creatable_from_base(simple_log, logger);
+
+
+       //operating_system_initialize_nano();
+
 
     }
 
@@ -62,7 +77,7 @@ namespace factory
 
       critical_section_lock synchronouslock(::acme::static_start::g_staticstart.m_pcriticalsectionFactory);
 
-      ::acme::static_start::g_staticstart.m_pfactory->erase_all();
+      ::acme::static_start::g_staticstart.m_pfactory->m_mapGlobalFactory.erase_all();
 
       ::acme::static_start::g_staticstart.m_pfactorya->erase_all();
 
@@ -83,10 +98,24 @@ namespace factory
    void factory::merge(const ::factory::factory* pfactory)
    {
 
-      for (auto& pair : *pfactory)
+      for (auto& pair : pfactory->m_mapGlobalFactory)
       {
 
-         set_at(pair.m_element1, pair.m_element2);
+         m_mapGlobalFactory.set_at(pair.m_element1, pair.m_element2);
+
+      }
+
+      for (auto& pair : pfactory->m_mapFactory)
+      {
+
+         auto& map = m_mapFactory[pair.m_element1];
+
+         for (auto& pair2 : pair.m_element2)
+         {
+
+            map.set_at(pair2.m_element1, pair2.m_element2);
+
+         }
 
       }
 

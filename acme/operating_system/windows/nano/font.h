@@ -14,6 +14,8 @@ namespace windows
    {
    public:
 
+      //CreatableFromBase(nano_font, ::nano_font);
+
 
       nano_font();
       ~nano_font() override;

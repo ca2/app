@@ -16,6 +16,9 @@ namespace apex
    public:
 
 
+      __creatable(session);
+
+
       class CLASS_DECL_APEX map:
          virtual public ::map < index, __pointer(::apex::session) >
       {

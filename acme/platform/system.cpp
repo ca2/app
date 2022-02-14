@@ -6,7 +6,6 @@
 #include "acme/filesystem/filesystem/acme_path.h"
 #include "acme/platform/static_start_internal.h"
 #include "acme/platform/static_setup.h"
-#include "simple_log.h"
 #include "acme/filesystem/file/transfer.h"
 #include "acme/compress/_.h"
 #include "library.h"
@@ -42,9 +41,9 @@ m_bJoinable = true;
 
    trace_category_static_init(this);
 
-   ::factory::add_factory_item < simple_log, logger >();
+   //____creatable_from_base(simple_log, logger);
 
-   ::factory::add_factory_item < task >();
+   //____creatable(task);
       
    m_bPostedInitialRequest = false;
 
@@ -53,7 +52,7 @@ m_bJoinable = true;
    //m_pcleanuptask = __new(::parallelization::cleanup_task);
 
    //m_pcleanuptask->begin();
-   ::factory::add_factory_item<acme::idpool>();
+   ::factory::_add_factory_item<acme::idpool>();
 
    //m_pacme = nullptr;
    //m_pacmedir = nullptr;

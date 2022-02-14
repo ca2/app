@@ -13,6 +13,9 @@ namespace aura
    public:
 
 
+      __creatable_from_base(session, ::apex::session);
+
+
       bool                                                  m_bAcceptsFirstResponder;
 
       ::user::interaction_impl *                            m_pimplPendingFocus2;

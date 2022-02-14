@@ -143,10 +143,10 @@ namespace aura
       m_bFinalizeIfNoSessionSetting = true;
       m_bFinalizeIfNoSession = false;
 
-      ::factory::add_factory_item < ::aura::session, ::apex::session >();
-      ::factory::add_factory_item < ::aura::application, ::application >();
-      ::factory::add_factory_item < ::aura::idpool, ::acme::idpool >();
-      ::factory::add_factory_item < ::user::user >();
+      //::factory::add_factory_item < ::aura::session, ::apex::session >();
+      //::factory::add_factory_item < ::aura::application, ::application >();
+      //::factory::add_factory_item < ::aura::idpool, ::acme::idpool >();
+      //::factory::add_factory_item < ::user::user >();
 
 
 
@@ -222,7 +222,7 @@ namespace aura
 
       ::draw2d::static_initialize();
 
-      ::factory::add_factory_item < ::draw2d::icon >();
+      ::factory::_add_factory_item < ::draw2d::icon >();
 
     
 //#ifdef WINDOWS_DESKTOP
@@ -1183,7 +1183,7 @@ namespace aura
       //if (::succeeded(estatus))
       //{
 
-         ::factory::add_factory_item < ::draw2d::task_tool_item >(::e_task_tool_draw2d);
+         ::factory::_add_factory_item < ::draw2d::task_tool_item >(::e_task_tool_draw2d);
 
       //}
 

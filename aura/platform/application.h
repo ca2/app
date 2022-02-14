@@ -13,6 +13,9 @@ namespace aura
    public:
 
 
+      __creatable_from_base(application, ::application);
+
+
       void* m_pnativeapp;
 
 

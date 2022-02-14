@@ -14,6 +14,9 @@ namespace acme
    public:
 
 
+      //Creatable(idpool);
+
+
       static idpool * g_pidpool;
 
 

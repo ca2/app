@@ -8,11 +8,13 @@
 void operating_system_initialize_nano()
 {
 
-   ::factory::add_factory_item < ::windows::nano_window, ::nano_window_implementation >();
-   ::factory::add_factory_item < ::windows::nano_brush, ::nano_brush >();
-   ::factory::add_factory_item < ::windows::nano_font, ::nano_font >();
-   ::factory::add_factory_item < ::windows::nano_pen, ::nano_pen >();
-   ::factory::add_factory_item < ::windows::nano_device, ::nano_device >();
+
+   ____creatable_from_base(::windows::nano_window, ::nano_window_implementation);
+   ____creatable_from_base(::windows::nano_brush, ::nano_brush);
+   ____creatable_from_base(::windows::nano_font, ::nano_font);
+   ____creatable_from_base(::windows::nano_pen, ::nano_pen);
+   ____creatable_from_base(::windows::nano_device, ::nano_device);
+
 
 }
 

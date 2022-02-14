@@ -10,7 +10,17 @@ namespace factory
 
       critical_section_lock cs(get_factory_critical_section());
 
-      return (*get_factory())[atom];
+      return (get_factory()->m_mapGlobalFactory)[atom];
+
+   }
+
+
+   inline __pointer(factory_item_interface)& get_factory_item(const ::atom& atom, const ::atom& atomSource)
+   {
+
+      critical_section_lock cs(get_factory_critical_section());
+
+      return (get_factory()->m_mapFactory)[atomSource][atom];
 
    }
 
@@ -20,7 +30,7 @@ namespace factory
 
       critical_section_lock cs(get_factory_critical_section());
 
-      auto passociation = get_factory()->get_association(atom);
+      auto passociation = get_factory()->m_mapGlobalFactory.get_association(atom);
 
       if (::is_null(passociation))
       {
@@ -47,13 +57,21 @@ namespace factory
 
       critical_section_lock cs(get_factory_critical_section());
 
-      get_factory()->set_at(atom, pfactory);
+      get_factory()->m_mapGlobalFactory.set_at(atom, pfactory);
 
    }
 
+   inline void set_factory_from(const ::atom& atom, const ::string & strSource, const __pointer(factory_item_interface)& pfactory)
+   {
+
+      critical_section_lock cs(get_factory_critical_section());
+
+      get_factory()->m_mapFactory[strSource].set_at(atom, pfactory);
+
+   }
 
    template < typename TYPE, typename BASE >
-   inline void add_factory_item(const ::atom & atom)
+   inline void _add_factory_item(const ::atom & atom)
    {
 
       set_factory(atom, __new(factory_item < TYPE, BASE >()));
@@ -723,7 +741,17 @@ namespace factory
       critical_section_lock cs(::factory::get_factory_critical_section());
 
 
-      return (*this)[atom];
+      return m_mapGlobalFactory[atom];
+
+   }
+
+
+   inline __pointer(::factory::factory_item_interface)& factory::get_factory_item_from(const ::atom& atom, const ::atom& atomSource)
+   {
+
+      critical_section_lock cs(::factory::get_factory_critical_section());
+
+      return m_mapFactory[atomSource][atom];
 
    }
 
@@ -733,7 +761,7 @@ namespace factory
 
       critical_section_lock cs(::factory::get_factory_critical_section());
 
-      auto p = this->plookup(atom);
+      auto p = m_mapGlobalFactory.plookup(atom);
 
       if (!p)
       {
@@ -747,6 +775,34 @@ namespace factory
    }
 
 
+   inline ::factory::factory_item_interface* factory::get_factory_item_from(const ::atom& atom, const ::atom & atomSource) const
+   {
+
+      critical_section_lock cs(::factory::get_factory_critical_section());
+
+      auto p = m_mapFactory.plookup(atomSource);
+
+      if (!p)
+      {
+
+         return nullptr;
+
+      }
+
+      auto p1 = p->m_element2.plookup(atomSource);
+
+      if (!p1)
+      {
+
+         return nullptr;
+
+      }
+
+      return p1->m_element2;
+
+   }
+
+
    template < typename BASE_TYPE >
    inline __pointer(::factory::factory_item_interface)& factory::get_factory_item()
    {
@@ -756,6 +812,19 @@ namespace factory
       strTypename = ::demangle(strTypename);
 
       return get_factory_item(strTypename);
+
+   }
+
+
+   template < typename BASE_TYPE >
+   inline __pointer(::factory::factory_item_interface)& factory::get_factory_item_from(const ::atom & atomSource)
+   {
+
+      string strTypename(typeid(BASE_TYPE).name());
+
+      strTypename = ::demangle(strTypename);
+
+      return get_factory_item_from(strTypename, atomSource);
 
    }
 
@@ -779,7 +848,7 @@ namespace factory
 
 
    template < typename TYPE, typename BASE_TYPE>
-   inline __pointer(::factory::factory_item_base < BASE_TYPE >) factory::add_factory_item()
+   inline __pointer(::factory::factory_item_base < BASE_TYPE >) factory::_add_factory_item()
    {
 
       critical_section_lock lock(::factory::get_factory_critical_section());
@@ -787,6 +856,21 @@ namespace factory
       auto pfactory = __new(::factory::factory_item< TYPE, BASE_TYPE >());
 
       get_factory_item < BASE_TYPE >() = pfactory;
+
+      return pfactory;
+
+   }
+
+
+   template < typename TYPE, typename BASE_TYPE>
+   inline __pointer(::factory::factory_item_base < BASE_TYPE >) factory::_add_factory_item_from(const ::atom & atomSource)
+   {
+
+      critical_section_lock lock(::factory::get_factory_critical_section());
+
+      auto pfactory = __new(::factory::factory_item< TYPE, BASE_TYPE >());
+
+      get_factory_item_from < BASE_TYPE >(atomSource) = pfactory;
 
       return pfactory;
 

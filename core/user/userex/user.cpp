@@ -141,6 +141,9 @@ namespace core
       
       ::factory::add_factory_item < ::simple_toolbar >();
 
+
+      //::factory::add_factory_item < ::simple_pane_document >();
+
       //if (!create_user_shell())
       //{
 

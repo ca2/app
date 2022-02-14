@@ -156,6 +156,11 @@ namespace serial
    {
    public:
 
+
+
+      ///__creatable_from_library(acme_dir, ::acme_dir, "acme_windows_common");
+
+
       /*!
        * Creates a serial matter and opens the port if a port is specified,
        * otherwise it remains closed until serial::serial::open is called.

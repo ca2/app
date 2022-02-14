@@ -490,6 +490,35 @@ template<class T>
    class pointer_array;
 
 
+#define _creatable(expr) inline static auto s_pfactory = expr
+
+
+#define ____creatable(type) ::factory::_add_factory_item < type >()
+
+
+#define ____creatable_from_base(type, base) ::factory::_add_factory_item < type, base >()
+
+
+#define ____creatable_from_id(type, id) ::factory::_add_factory_item < type >(id)
+
+
+#define ____creatable_from_library(type, base, source) ::factory::_add_factory_item_from < type, base >(source)
+
+
+#define __creatable_from_library(type, base, source) _creatable(____creatable_from_library(type, base, source))
+
+
+#define __creatable_from_id(type, id) _creatable(____creatable_from_id(type, id))
+
+
+#define __creatable_from_base(type, base) _creatable(____creatable_from_base(type, base))
+
+
+#define __creatable_from_library(type, base, source) _creatable(____creatable_from_library(type, base, source))
+
+
+#define __creatable(type) _creatable(____creatable(type))
+
 
 #include <type_traits>
 

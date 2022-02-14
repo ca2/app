@@ -17,6 +17,9 @@ namespace crypto_openssl
    public:
 
 
+      __creatable_from_library(initializer, ::crypto::initializer, "crypto_openssl");
+
+
 #if OPENSSL_VERSION_NUMBER < 0x10100000L
 
 

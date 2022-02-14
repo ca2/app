@@ -13,6 +13,9 @@ namespace windows
    public:
 
 
+      //CreatableFromBase(nano_device, ::nano_device);
+
+
       HDC         m_hdc;
       bool        m_bDelete;
 

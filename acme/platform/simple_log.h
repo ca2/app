@@ -12,6 +12,9 @@ class CLASS_DECL_ACME simple_log :
 {
 public:
 
+   
+   //CreatableFromBase(simple_log, logger);
+
 
    bool m_bReallySimple;
 

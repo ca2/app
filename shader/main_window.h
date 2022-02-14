@@ -11,6 +11,9 @@ namespace app_shader
    public:
 
 
+      __creatable(main_window);
+
+
       string                                 m_strCurrentShaderPath;
       // map : shader path - render
       string_map < __pointer(render) >       m_maprender;

@@ -17,6 +17,8 @@ namespace crypto_openssl
    public:
 
 
+      __creatable_from_library(crypto, ::crypto::crypto, "crypto_openssl");
+
       // salt here may be dangerous for the universe
 
       __composite(::crypto::initializer)    m_pinitializer;

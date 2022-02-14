@@ -8,11 +8,11 @@ class CLASS_DECL_ACME acme_file :
 public:
 
 
-   ::OPERATING_SYSTEM_NAMESPACE::acme_file* m_pplatformfile;
-   acme_dir* m_pacmedir;
-   acme_path* m_pacmepath;
+   ::OPERATING_SYSTEM_NAMESPACE::acme_file *    m_pplatformfile;
+   acme_dir *                                   m_pacmedir;
+   acme_path *                                  m_pacmepath;
 
-   ::file::path                        m_pathExecutable;
+   ::file::path                                 m_pathExecutable;
 
 
    acme_file();

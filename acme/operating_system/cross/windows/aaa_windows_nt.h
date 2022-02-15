@@ -395,26 +395,26 @@ typedef wd16char        WCHAR,      *PWCHAR;
 typedef unsigned short  WCHAR,      *PWCHAR;
 #endif
 
-/* 'Extended/Wide' numerical types */
-#ifndef _ULONGLONG_
-# define _ULONGLONG_
-# ifdef _MSC_VER
-typedef signed ::i64   ::i64,  *PLONGLONG;
-typedef ::u64 ULONGLONG, *PULONGLONG;
-# else
-typedef signed long long DECLSPEC_ALIGN(8) LONGLONG, * PLONGLONG;
-typedef unsigned long long DECLSPEC_ALIGN(8) ULONGLONG, * PULONGLONG;
-#endif
-#endif
+///* 'Extended/Wide' numerical types */
+//#ifndef _ULONGLONG_
+//# define _ULONGLONG_
+//# ifdef _MSC_VER
+//typedef signed ::i64   ::i64,  *PLONGLONG;
+//typedef ::u64 ULONGLONG, *PULONGLONG;
+//# else
+//typedef signed long long DECLSPEC_ALIGN(8) LONGLONG, * PLONGLONG;
+//typedef unsigned long long DECLSPEC_ALIGN(8) ULONGLONG, * PULONGLONG;
+//#endif
+//#endif
 
-#ifndef _DWORDLONG_
-# define _DWORDLONG_
-# ifdef _MSC_VER
-typedef ULONGLONG DWORDLONG, *PDWORDLONG;
-# else
-typedef ULONGLONG DECLSPEC_ALIGN(8) DWORDLONG,   *PDWORDLONG;
-# endif
-#endif
+//#ifndef _DWORDLONG_
+//# define _DWORDLONG_
+//# ifdef _MSC_VER
+//typedef ULONGLONG DWORDLONG, *PDWORDLONG;
+//# else
+//typedef ULONGLONG DECLSPEC_ALIGN(8) DWORDLONG,   *PDWORDLONG;
+//# endif
+//#endif
 
 /* ANSI string types */
 typedef char           *PCH,        *LPCH;

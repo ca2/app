@@ -624,7 +624,7 @@ return 0;
 
 }
 
-#define STATUS_ACCESS_VIOLATION          (0xC0000005)
+//#define STATUS_ACCESS_VIOLATION          (0xC0000005)
 
 /******************************************************************************
  *  NtQueryPerformanceCounter	[NTDLL.@]

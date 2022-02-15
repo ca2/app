@@ -8,8 +8,10 @@
 task::task()
 {
 
-   m_bitCoInitialize = false;
-   m_bitIsRunning = false;
+#ifdef WINDOWS
+   m_bCoInitialize = false;
+#endif
+   m_bIsRunning = false;
    m_bIsPredicate = true;
    m_htask = null_hthread;
    m_itask = 0;
@@ -76,25 +78,27 @@ bool task::task_set_name(const char* pszThreadName)
       m_strTaskTag = m_strTaskName;
 
    }
+   
+   ::task_set_name(m_htask, pszThreadName);
 
-   if (!::task_set_name(m_htask, pszThreadName))
-   {
-
-      return false;
-
-   }
+//   if (!::task_set_name(m_htask, pszThreadName))
+//   {
+//
+//      return false;
+//
+//   }
 
    return true;
 
 }
 
 
-bool task::task_get_run() const
-{
-
-   return !m_bSetFinish;
-
-}
+//bool task::task_get_run() const
+//{
+//
+//   return !m_bSetFinish;
+//
+//}
 
 
 bool task::task_active() const
@@ -108,17 +112,17 @@ bool task::task_active() const
 bool task::is_running() const
 {
 
-   return m_bitIsRunning;
+   return m_bIsRunning;
 
 }
 
 
-::object * task::thread_parent()
-{
-
-   return __object(m_pobjectParent);
-
-}
+//::object * task::thread_parent()
+//{
+//
+//   return __object(m_pobjectParent);
+//
+//}
 
 
 bool task::is_thread() const
@@ -128,72 +132,72 @@ bool task::is_thread() const
 
 }
 
-
-#ifdef WINDOWS
-DWORD WINAPI task::s_os_task(void* p)
-#else
-void* task::s_os_task(void* p)
-#endif
-{
-
-   try
-   {
-
-      ::task* pthread = (::task*) p;
-
-      ::set_task(pthread OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(pthread));
-
-      pthread->release(OBJECT_REFERENCE_COUNT_DEBUG_P_FUNCTION_LINE(pthread));
-
-      pthread->do_task();
-
-#if OBJECT_REFERENCE_COUNT_DEBUG
-
-      if (pthread->m_countReference > 1)
-      {
-
-         __check_pending_releases(pthread);
-
-      }
-
-#endif
-
-      ::thread_release(OBJECT_REFERENCE_COUNT_DEBUG_P_NOTE(pthread, ""));
-
-   }
-   catch (...)
-   {
-
-   }
-
-   return 0;
-
-}
-
-
-void task::add_notify(::matter* pmatter)
-{
-
-   synchronous_lock synchronouslock(mutex());
-
-   notify_array().add_item(pmatter OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
-
-}
-
-
-void task::erase_notify(::matter* pmatter)
-{
-
-   synchronous_lock synchronouslock(mutex());
-
-   if (m_pnotifya)
-   {
-
-      m_pnotifya->erase_item(pmatter OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
-
-   }
-
-}
+//
+//#ifdef WINDOWS
+//DWORD WINAPI task::s_os_task(void* p)
+//#else
+//void* task::s_os_task(void* p)
+//#endif
+//{
+//
+//   try
+//   {
+//
+//      ::task* pthread = (::task*) p;
+//
+//      ::set_task(pthread OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(pthread));
+//
+//      pthread->release(OBJECT_REFERENCE_COUNT_DEBUG_P_FUNCTION_LINE(pthread));
+//
+//      pthread->do_task();
+//
+//#if OBJECT_REFERENCE_COUNT_DEBUG
+//
+//      if (pthread->m_countReference > 1)
+//      {
+//
+//         __check_pending_releases(pthread);
+//
+//      }
+//
+//#endif
+//
+//      ::thread_release(OBJECT_REFERENCE_COUNT_DEBUG_P_NOTE(pthread, ""));
+//
+//   }
+//   catch (...)
+//   {
+//
+//   }
+//
+//   return 0;
+//
+//}
+//
+//
+//void task::add_notify(::matter* pmatter)
+//{
+//
+//   synchronous_lock synchronouslock(mutex());
+//
+//   notify_array().add_item(pmatter OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
+//
+//}
+//
+//
+//void task::erase_notify(::matter* pmatter)
+//{
+//
+//   synchronous_lock synchronouslock(mutex());
+//
+//   if (m_pnotifya)
+//   {
+//
+//      m_pnotifya->erase_item(pmatter OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
+//
+//   }
+//
+//}
 
 
 bool task::on_get_task_name(string & strTaskName)

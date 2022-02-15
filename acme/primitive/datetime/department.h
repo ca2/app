@@ -75,23 +75,23 @@ namespace datetime
       };
 
 
-      class CLASS_DECL_ACME str:
-         virtual public ::object
-      {
-      public:
-
-
-         department* m_pdatetime;
-         
-         
-         str();
-
-         virtual void initialize(::object * pobject) override;
-         
-         string get_date_time(const ::time_shift& timeshift = ::time_shift::none());
-
-
-      };
+//      class CLASS_DECL_ACME str:
+//         virtual public ::object
+//      {
+//      public:
+//
+//
+//         department* m_pdatetime;
+//
+//
+//         str();
+//
+//         void initialize(::object * pobject) override;
+//
+//         string get_date_time(const ::time_shift& timeshift = ::time_shift::none());
+//
+//
+//      };
 
 
       class CLASS_DECL_ACME time_zone
@@ -122,7 +122,7 @@ namespace datetime
 
 
       __pointer(::datetime::department::international)   m_pinternational;
-      __pointer(::datetime::department::str)             m_pstr;
+      //__pointer(::datetime::department::str)             m_pstr;
 
 
 
@@ -160,7 +160,7 @@ namespace datetime
       static time_t s_mktime(i32 iHour,i32 iMinute,i32 iSecond,i32 iMonth,i32 iDay,i32 iYear, const time_shift& timezone = ::time_shift::none());
 
       inline class  international& international() { return *m_pinternational; }
-      inline class str& str() { return* m_pstr; }
+      //inline class str& str() { return* m_pstr; }
 
       string strftime(const string & str, const ::datetime::time & time, const time_shift& timezone = ::time_shift::none());
       string strftime(const string & str, const time_shift& timezone = ::time_shift::none());

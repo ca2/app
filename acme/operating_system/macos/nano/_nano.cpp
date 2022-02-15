@@ -16,10 +16,11 @@
 void operating_system_initialize_nano()
 {
 
-   ::factory::add_factory_item<::macos::nano_window, ::nano_window_implementation>();
-   ::factory::add_factory_item<::nano_brush>();
-   ::factory::add_factory_item<::nano_font>();
-   ::factory::add_factory_item<::nano_pen>();
+   ::factory::_add_factory_item<::macos::nano_window, ::nano_window_implementation>();
+   ::factory::_add_factory_item<::quartz2d::nano_device, ::nano_device>();
+   ::factory::_add_factory_item<::nano_brush>();
+   ::factory::_add_factory_item<::nano_font>();
+   ::factory::_add_factory_item<::nano_pen>();
 
 }
 

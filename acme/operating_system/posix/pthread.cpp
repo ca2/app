@@ -9,12 +9,22 @@
 
 #endif
 
+
+#if !defined(WINDOWS)
+
+
+#define MWMO_WAITALL        0x0001
+#define MWMO_ALERTABLE      0x0002
+
+
+#endif
+
+
 #ifdef ANDROID
 
 #include <sys/prctl.h>
 
 #endif
-
 
 
 message_queue * get_message_queue(itask_t idthread, bool bCreate);

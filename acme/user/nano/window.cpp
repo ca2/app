@@ -8,6 +8,10 @@
 
 nano_window::nano_window()
 {
+   
+   m_iFontSize = 14;
+   
+   m_efont = e_font_sans;
 
    enable_drag_move();
 
@@ -200,9 +204,9 @@ void nano_window::create_drawing_objects()
 
       __construct(m_pfont);
 
-      m_pfont->m_iFontSize = 14;
+      m_pfont->m_iFontSize = m_iFontSize;
 
-      m_pfont->m_strFontName = m_psystem->node()->font_name(e_font_sans);
+      m_pfont->m_strFontName = m_psystem->node()->font_name(m_efont);
 
    }
 

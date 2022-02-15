@@ -43,7 +43,7 @@ struct unhandled_report
           << std::dec << std::endl;
 
       m_os << "The stack trace: " << std::endl;
-      sym_engine::stack_trace(m_os, pex->ContextRecord);
+      sym_engine::xxxstack_trace(m_os, pex->ContextRecord);
       
       return EXCEPTION_CONTINUE_SEARCH; 
    }

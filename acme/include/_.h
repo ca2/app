@@ -1014,7 +1014,7 @@ enum enum_optional
 #include <intsafe.h>
 #else
 
-#include "acme/operating_system/cross/windows/_include.h"
+//#include "acme/operating_system/cross/windows/_include.h"
 
 #endif
 
@@ -3692,8 +3692,9 @@ class context_image;
 
 //#include "acme/primitive/geometry3d/_.h"
 
+//class message_box;
 
-class message_box;
+CLASS_DECL_ACME::atom os_message_box(::object * pobject, const char * pszMessage, const char * pszTitle = nullptr, enum_message_box emessagebox = e_message_box_ok, const ::string & strDetails = nullptr);
 
 #include "acme/memory/counter.h"
 

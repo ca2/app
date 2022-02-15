@@ -31,7 +31,9 @@ task::task()
    m_bCheckingChildrenTask = false;
    //m_pthread = nullptr;
    m_bMessageThread = false;
+#ifdef WINDOWS
    m_bCoInitialize = false;
+#endif
    m_bIsRunning = false;
    m_bIsPredicate = true;
    

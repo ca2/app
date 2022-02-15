@@ -65,15 +65,15 @@ const char * callstack::get_dup(const char * pszFormat, i32 iSkip, int iCount)
 
 #if defined(LINUX)
 
-   psz = strdup(::exception_engine().stack_trace(iSkip, m_caller_address, m_pszFormat, m_iCount));
+   psz = strdup(::exception_engine().xxxstack_trace(iSkip, m_caller_address, m_pszFormat, m_iCount));
 
 #elif defined(MACOS)
 
-   psz = strdup(::exception_engine().stack_trace(iSkip, m_caller_address, m_pszFormat, m_iCount));
+   psz = strdup(::exception_engine().xxxstack_trace(iSkip, m_caller_address, m_pszFormat, m_iCount));
 
 #else
 
-   ::exception_engine().stack_trace(iSkip, m_pszFormat, m_iCount);
+   ::exception_engine().xxxstack_trace(iSkip, m_pszFormat, m_iCount);
 
    psz = _strdup(::exception_engine()._strS);
 
@@ -83,7 +83,7 @@ const char * callstack::get_dup(const char * pszFormat, i32 iSkip, int iCount)
 
 }
 
-const char * callstack::stack_trace() const
+const char * callstack::xxxstack_trace() const
 {
 
    return m_pszCallStack;

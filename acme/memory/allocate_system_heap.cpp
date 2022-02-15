@@ -150,7 +150,7 @@ void * system_heap_realloc_debug(void * p,  memsize size, i32 nBlockUse, const c
    //else
    //{
    //   string strCallStack;
-   //   g_ee->stack_trace(1);
+   //   g_ee->xxxstack_trace(1);
    //   pblock->m_pszCallStack = strdup(g_ee->_strS);
    //   pblock->m_pszFileName = strdup(pszFileName == nullptr ? "" : pszFileName);
    //}
@@ -293,7 +293,7 @@ else
    {
       piUse[i] = pblock->m_iBlockUse;
       pszFile[i] = pblock->m_pszFileName== nullptr ? nullptr : _strdup(pblock->m_pszFileName);
-      pszCallStack[i] = pblock->m_iStack <= 0 ? nullptr :_strdup(::exception_engine().stack_trace(pblock->m_puiStack, pblock->m_iStack));
+      pszCallStack[i] = pblock->m_iStack <= 0 ? nullptr :_strdup(::exception_engine().xxxstack_trace(pblock->m_puiStack, pblock->m_iStack));
       puiLine[i] = pblock->m_uiLine;
       psize] = pblock->m_size;
 

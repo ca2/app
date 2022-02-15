@@ -9,7 +9,7 @@
 #pragma once
 
 
-#include "acme/operating_system/cross/windows/windows_defs.h"
+//#include "acme/operating_system/cross/windows/windows_defs.h"
 
 void copy(CGRect * prectTarget, const RECTANGLE_I32 * prectSource);
 void copy(RECTANGLE_I32 * prectTarget, const CGRect * prectSource);

@@ -82,7 +82,7 @@ CLASS_DECL_ACME string get_callstack(const char * pszFormat = callstack_default_
 //
 //   void trace(const char* pszFormat = default_format(), i32 uiSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, int iCount = -1);
 //
-//   //string stack_trace() const;
+//   //string xxxstack_trace() const;
 //
 //};
 //

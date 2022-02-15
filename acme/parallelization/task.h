@@ -19,7 +19,9 @@ public:
    bool                                            m_bAvoidProcedureFork : 1;
    bool                                            m_bIsRunning : 1;
    bool                                            m_bIsPredicate : 1; // Is helper thread (as opposite to a "main" thread)
+#ifdef WINDOWS
    bool                                            m_bCoInitialize : 1;
+#endif
    bool                                            m_bMessageThread : 1;
    bool                                            m_bTaskToolsForIncreasedFps : 1;
 #ifdef PARALLELIZATION_PTHREAD

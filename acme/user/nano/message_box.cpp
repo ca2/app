@@ -235,7 +235,6 @@ void nano_message_box::on_create()
 
    }
 
-
 }
 
 

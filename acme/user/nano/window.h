@@ -41,6 +41,8 @@ public:
 
    bool                                   m_bCapture;
    bool                                   m_bStartCentered;
+   int                                    m_iFontSize;
+   enum_font                              m_efont;
 
 
    nano_window();

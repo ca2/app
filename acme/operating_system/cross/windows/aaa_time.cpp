@@ -1157,28 +1157,7 @@ CLASS_DECL_ACME void GetSystemTime(system_time_t * systime)
    }
 
 
-   void system_time_to_time(time_t * ptime, const system_time_t * psystemtime, i32 nDST)
-   {
-
-      struct tm tm;
-
-      //auto estatus =
-
-      system_time_to_tm(&tm, psystemtime);
-
-//      if(!estatus)
-//      {
-//
-//         return estatus;
-//
-//      }
-
-      *ptime = timegm(&tm);
-
-      //return ::success;
-
-   }
-
+   
 
 //   void node::system_time_to_tm(tm * ptm, const system_time_t * psystemtime)
 //   {
@@ -1250,20 +1229,7 @@ CLASS_DECL_ACME void GetSystemTime(system_time_t * systime)
    }
 
 
-   void file_time_to_system_time(system_time_t * psystemtime, const filetime_t * pfiletime)
-   {
-
-      if(!FileTimeToSystemTime(pfiletime, psystemtime))
-      {
-
-         throw ::exception(error_failed);
-
-      }
-
-      //return ::success;
-
-   }
-
+   
 
    void file_time_to_local_file_time(filetime_t * pfiletimeLocal, const filetime_t * pfiletime)
    {

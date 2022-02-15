@@ -10,6 +10,8 @@
 
 nano_details_window::nano_details_window()
 {
+   
+   m_efont = e_font_monospace;
 
    m_strLabelDetails = "Dump to file";
 

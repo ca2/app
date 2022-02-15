@@ -44,8 +44,8 @@ public:
 #endif
 
 
-   virtual ::extended_topic * _extended_topic() { return this; }
-   virtual const ::extended_topic * _extended_topic() const { return this; }
+   ::extended_topic * _extended_topic() override { return this; }
+   const ::extended_topic * _extended_topic() const override { return this; }
 
 
 };

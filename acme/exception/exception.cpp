@@ -1,5 +1,4 @@
 #include "framework.h"
-
 #include <stdio.h>
 
 
@@ -45,24 +44,23 @@ const char * strcatdup(const char * psz1, const char * psz2)
 }
 
 
-#if defined(APPLE_IOS)
-
-bool ::exception::s_bEnableCallStackBackTrace = false;
-
-#elif defined(ANDROID)
+//#if defined(APPLE_IOS)
+//
+//bool ::exception::s_bEnableCallStackBackTrace = false;
+//
+//#elif defined(ANDROID)
+//
+//bool ::exception::s_bEnableCallStackBackTrace = true;
+//
+//#elif defined(MACOS)
+//
+//bool ::exception::s_bEnableCallStackBackTrace = false;
+//
+//#else
 
 bool ::exception::s_bEnableCallStackBackTrace = true;
 
-#elif defined(MACOS)
-
-bool ::exception::s_bEnableCallStackBackTrace = false;
-
-#else
-
-bool ::exception::s_bEnableCallStackBackTrace = true;
-
-#endif
-
+//#endif
 
 exception::exception()
 {

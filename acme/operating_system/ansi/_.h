@@ -10,6 +10,34 @@ CLASS_DECL_ACME void* memmem(const void* l, size_t l_len, const void* s, size_t 
 #endif
 
 
+#ifdef __cplusplus
+
+
+class CLASS_DECL_ACME int_handle
+{
+public:
+
+
+   int m_i;
+
+   int_handle(int i = -1)
+   {
+
+      m_i = i;
+
+   }
+
+   ~int_handle();
+
+
+   operator int() const {return m_i;}
+   operator int &() {return m_i;}
+
+
+};
+
+
+#endif
 
 
 //#if !defined(WINDOWS)

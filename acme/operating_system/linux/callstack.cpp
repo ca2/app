@@ -1,59 +1,9 @@
 #include "framework.h"
+#include "acme/operating_system/ansi/callstack.h"
 #include "_linux.h"
 #include <execinfo.h>
-#include <cxxabi.h>
+//#include <cxxabi.h>
 #undef USE_MISC
-
-string stack_trace(void * const * ppui, int c, const char * pszFormat);
-
-//namespace linux
-//{
-//
-//
-//   callstack::callstack()
-//   {
-//
-//   }
-//
-//
-//   callstack::~callstack()
-//   {
-//
-//   }
-
-
-//   const char * callstack::get_dup(const char * pszFormat, i32 iSkip, int iCount)
-//   {
-//
-//      return nullptr;
-//
-//   //   if (iSkip >= 0)
-//   //   {
-//   //
-//   //      iSkip++;
-//   //
-//   //   }
-//   //
-//   //   const char * psz;
-//   //
-//   //   synchronous_lock synchronouslock(::exception_engine().mutex());
-//   //
-//   //   ::exception_engine().stack_trace(iSkip, nullptr, m_pszFormat, m_iCount);
-//   //
-//   //   psz = _strdup(::exception_engine()._strS);
-//   //
-//   //   return psz;
-//   //
-//   }
-
-
-//} // namespace linux
-
-
-
-
-
-
 
 string get_callstack(const char* pszFormat, i32 iSkip, void * caller_address, int iCount)
 {
@@ -65,22 +15,7 @@ string get_callstack(const char* pszFormat, i32 iSkip, void * caller_address, in
 
    auto frames = ::backtrace(stack, iMaximumFramesToCapture);
 
-//   if(caller_address != nullptr)
-//   {
-//
-//      array[1] = caller_address;
-//
-//   }
-
-   return stack_trace(stack, frames, pszFormat);
-
-
-
-
-   //return ::exception_engine().stack_trace(m_addressa));
-
-//   synchronous_lock synchronouslock(g_pmutexSymDbgHelp);
-
+   return _ansi_stack_trace(stack, frames, pszFormat);
 
 }
 
@@ -120,173 +55,6 @@ public:
 
 };
 
-
-string stack_trace(void * const * ppui, int frames, const char * pszFormat)
-{
-
-   ::string strCallstack;
-
-   ::acme::malloc < char ** > messages(::backtrace_symbols(ppui, frames));
-
-   //char szN[24];
-
-   //*_strS = '\0';
-
-   //char syscom[1024];
-
-   //const char * func;
-   //const char * file;
-   //unsigned iLine;
-
-   auto ppMessages = messages.get();
-
-   int i = 0;
-
-   for (; i < frames && *ppMessages != nullptr; ++i, ppMessages++)
-   {
-#ifdef __USE_BFD
-
-      if(resolve_addr_file_func_line(((void **)ppui)[i], &file, &func, iLine))
-         {
-
-
-            ansi_concatenate(_strS, file);
-            ansi_concatenate(_strS, ":");
-            ansi_from_u64(szN, iLine, 10);
-            ansi_concatenate(_strS, szN);
-            ansi_concatenate(_strS, ":1: warning: ");
-
-         }
-#endif // __USE_BFD
-
-      auto pmessage = *ppMessages;
-
-      printf("%s", pmessage);
-
-      char * pszMangledName = nullptr;
-
-      char * pszOffsetBegin = nullptr;
-
-      char * pszOffsetEnd = nullptr;
-
-      // find parantheses and +address offset surrounding mangled name
-      for (char * psz = pmessage; *psz; ++psz)
-      {
-
-         if (*psz == '(')
-         {
-
-            pszMangledName = psz;
-
-         }
-         else if (*psz == '+')
-         {
-
-            pszOffsetBegin = psz;
-
-         }
-         else if (*psz == ')')
-         {
-
-            pszOffsetEnd = psz;
-
-            break;
-
-         }
-
-      }
-
-      if (pszMangledName && pszOffsetBegin && pszOffsetEnd && pszMangledName < pszOffsetBegin)
-      {
-
-         *pszMangledName++ = '\0';
-         *pszOffsetBegin++ = '\0';
-         *pszOffsetEnd++ = '\0';
-
-         i32 status;
-
-         acme::malloc<char *> pszRealName = abi::__cxa_demangle(pszMangledName, 0, 0, &status);
-
-         const char * pszSymbolName;
-
-         if (status == 0)
-         {
-
-            pszSymbolName = pszRealName;
-
-         }
-         else
-         {
-
-            pszSymbolName = pszMangledName;
-
-         }
-
-//
-//         ansi_concatenate(_strS, "[bt]: (");
-//         ansi_from_u64(szN, i, 10);
-//         ansi_concatenate(_strS, szN);
-//         ansi_concatenate(_strS, ") ");
-//         ansi_concatenate(_strS, messages[i]);
-//         ansi_concatenate(_strS, " : ");
-//
-//         if (status == 0)
-//         {
-//
-//            ansi_concatenate(_strS, real_name);
-//
-//         }
-//         else
-//         {
-//
-//            ansi_concatenate(_strS, mangled_name);
-//
-//         }
-//
-//         ansi_concatenate(_strS, "+");
-//         ansi_concatenate(_strS, offset_begin);
-//         ansi_concatenate(_strS, offset_end);
-//         ansi_concatenate(_strS,"\n");
-//
-//         if(real_name != nullptr)
-//         {
-//
-//            free(real_name);
-//
-//         }
-//
-//      }
-//      else
-//      {
-//
-//         ansi_concatenate(_strS, "[bt]: (");
-//         ansi_from_u64(szN, i, 10);
-//         ansi_concatenate(_strS, szN);
-//         ansi_concatenate(_strS, ") ");
-//         ansi_concatenate(_strS, messages[i]);
-//
-//      }
-//
-//      ansi_concatenate(_strS,"\n");
-
-         string strLine;
-
-         strLine.format("%d: %s - %x\n", frames - i - 1, pszSymbolName, pszOffsetEnd);
-
-         strCallstack += strLine;
-
-      }
-
-   }
-
-   //strCallstack
-
-   return strCallstack;
-
-}
-
-
-//#endif
 
 
 //} // namespace exception
@@ -462,3 +230,75 @@ bool resolve_addr_file_func_line(void *address, const char * * filename, const c
 
 
 #endif
+
+
+void backtrace_symbol_parse(string & strSymbolName, string & strAddress, char * pmessage, void * address)
+{
+
+   char * pszMangledName = nullptr;
+
+   char * pszOffsetBegin = nullptr;
+
+   char * pszOffsetEnd = nullptr;
+
+   // find parantheses and +address offset surrounding mangled name
+   for (char * psz = pmessage; *psz; ++psz)
+   {
+
+      if (*psz == '(')
+      {
+
+         pszMangledName = psz;
+
+      }
+      else if (*psz == '+')
+      {
+
+         pszOffsetBegin = psz;
+
+      }
+      else if (*psz == ')')
+      {
+
+         pszOffsetEnd = psz;
+
+         break;
+
+      }
+
+   }
+
+   if (pszMangledName && pszOffsetBegin && pszOffsetEnd && pszMangledName < pszOffsetBegin)
+   {
+
+      *pszMangledName++ = '\0';
+      *pszOffsetBegin++ = '\0';
+      *pszOffsetEnd++ = '\0';
+
+      i32 status;
+
+      acme::malloc < char * > pszRealName = abi::__cxa_demangle(pszMangledName, 0, 0, &status);
+
+      const char * pszSymbolName;
+
+      if (status == 0)
+      {
+
+         strSymbolName = pszRealName;
+
+      }
+      else
+      {
+
+         strSymbolName = pszMangledName;
+
+      }
+
+      strAddress = pszOffsetEnd;
+
+   }
+
+}
+
+
+

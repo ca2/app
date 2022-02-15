@@ -51,7 +51,7 @@ public:
 
    const char * get_dup(const char * pszFormat = default_format(), i32 uiSkip = CALL_STACK_DEFAULT_SKIP_TRIGGER, int iCount = -1);
 
-   const char * stack_trace() const;
+   const char * xxxstack_trace() const;
 
 };
 

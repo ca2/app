@@ -1177,23 +1177,50 @@ namespace acme
    string node::font_name(enum_font efont)
    {
 
-//      auto psystem = m_psystem;
-//
-//#ifdef WINDOWS
-//
-//      return windows_font_name(efont);
-//
-//#elif defined(LINUX)
-//
-//      auto elinuxdistribution = psystem->get_linux_distribution();
-//
-//      return linux_font_name(elinuxdistribution, efont);
-//
-//#else
+      if(efont == e_font_sans)
+      {
+         
+         return FONT_SANS;
+         
+      }
+      else if(efont == e_font_sans_ex)
+      {
+         
+         return FONT_SANS_EX;
+         
+      }
+      else if(efont == e_font_sans_fx)
+      {
+         
+         return FONT_SANS_FX;
+         
+      }
+      else if(efont == e_font_serif)
+      {
+         
+         return FONT_SERIF;
+         
+      }
+      else if(efont == e_font_serif_ex)
+      {
+         
+         return FONT_SERIF_EX;
+         
+      }
+      else if(efont == e_font_serif_fx)
+      {
+         
+         return FONT_SERIF_FX;
+         
+      }
+      else if(efont == e_font_monospace)
+      {
+         
+         return FONT_MONO;
+         
+      }
 
       return "Helvetica";
-
-//#endif
 
    }
 

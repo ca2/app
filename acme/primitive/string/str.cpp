@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/primitive/string/_str.h"
 #include <stdio.h>
 
 
@@ -76,7 +77,7 @@ decode_utf16_pair(u16 *units)
 namespace str
 {
 
-   CLASS_DECL_ACME e_err g_eerr = err_none;
+   CLASS_DECL_ACME enum_error g_eerror = ::str::e_error_none;
 
 
 //    const char trailingBytesForUTF8[256] =
@@ -2070,49 +2071,49 @@ namespace str
 
       }
 
-      clear_err();
+      clear_error();
 
       char len =  1 + trailingBytesForUTF8(*psz);
       if(len == 0)      return psz;
       if(*psz++ == 0)
       {
-         set_err(err_invalid_utf8_character);
+         set_error(e_error_invalid_utf8_character);
          return nullptr;
       }
       if(len == 1)      return psz;
       if(*psz++ == 0)
       {
-         set_err(err_invalid_utf8_character);
+         set_error(e_error_invalid_utf8_character);
          return nullptr;
       }
       if(len == 2)      return psz;
       if(*psz++ == 0)
       {
-         set_err(err_invalid_utf8_character);
+         set_error(e_error_invalid_utf8_character);
          return nullptr;
       }
       if(len == 3)      return psz;
       if(*psz++ == 0)
       {
-         set_err(err_invalid_utf8_character);
+         set_error(e_error_invalid_utf8_character);
          return nullptr;
       }
       if(len == 4)      return psz;
       if(*psz++ == 0)
       {
-         set_err(err_invalid_utf8_character);
+         set_error(e_error_invalid_utf8_character);
          return nullptr;
       }
       if(len == 5)      return psz;
       if(*psz++ == 0)
       {
-         set_err(err_invalid_utf8_character);
+         set_error(e_error_invalid_utf8_character);
          return nullptr;
       }
       if(len == 6)      return psz;
 
       {
-         set_err(err_invalid_utf8_character);
+         set_error(e_error_invalid_utf8_character);
          return nullptr;
       }
    }
@@ -3961,14 +3962,14 @@ skip:
       return str;
    }
 
-   string pad(const char * psz, ::count iLen, const char * pszPattern, e_pad epad)
+   string pad(const char * psz, ::count iLen, const char * pszPattern, enum_pad epad)
    {
       string str;
       str = psz;
       if(pszPattern == nullptr || strlen(pszPattern) == 0)
          return str;
       i32 i = 0;
-      if(epad == pad_left)
+      if(epad == e_pad_left)
       {
          while(str.get_length() < iLen)
          {
@@ -3978,7 +3979,7 @@ skip:
             i++;
          }
       }
-      else if(epad == pad_right)
+      else if(epad == e_pad_right)
       {
          while(str.get_length() < iLen)
          {

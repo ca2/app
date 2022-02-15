@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "acme/operating_system/_os.h"
+#include "acme/operating_system.h"
 
 
 synchronization_array::synchronization_array()

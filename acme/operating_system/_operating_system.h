@@ -66,4 +66,7 @@
 CLASS_DECL_ACME int __node_is_debugger_attached();
 
 
+CLASS_DECL_ACME enum_dialog_result message_box_for_console(const char* psz, const char* pszTitle, const ::enum_message_box& emessagebox);
+
+
 

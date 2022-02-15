@@ -36,13 +36,19 @@ inline int32_t days_from_1jan(int32_t year,int32_t month,int32_t day)
 // seconds since Epoch in UTC
 inline time_t make_utc_time(struct tm const *t)
 {
-  int year = t->tm_year + 1900;
-  int month = t->tm_mon;
-  if(month > 11)
-  {
-    year += month/12;
-    month %= 12;
-  }
+
+   int year = t->tm_year + 1900;
+   
+   int month = t->tm_mon;
+  
+   if(month > 11)
+   {
+    
+      year += month/12;
+    
+      month %= 12;
+  
+   }
   else if(month < 0)
   {
     int years_diff = (-month + 11)/12;
@@ -58,10 +64,8 @@ inline time_t make_utc_time(struct tm const *t)
   time_t result = seconds_in_day * days_since_epoch + 3600 * t->tm_hour + 60 * t->tm_min + t->tm_sec;
 
   return result;
+
 }
-
-
-
 
 
 class filetime;

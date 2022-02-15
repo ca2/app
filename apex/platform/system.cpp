@@ -24,7 +24,7 @@
 #include "acme/primitive/string/base64.h"
 
 
-void exception_message_box(::object * pobject, ::exception & exception, const ::string & strMoreDetails);
+CLASS_DECL_ACME void exception_message_box(::object * pobject, ::exception & exception, const ::string & strMoreDetails);
 
 
 //extern ::apex::system* g_papexsystem;
@@ -1805,7 +1805,7 @@ pacmedir->create("/ca2core");
 
          string strMoreDetails;
 
-         strMoreDetails = "command line: " + string(m_strCommandLine) + "\n\n"
+         strMoreDetails = "command line: " + string(m_strCommandLine) + "\n\n";
 
          exception_message_box(this, exception, strMoreDetails);
 

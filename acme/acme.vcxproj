@@ -1392,6 +1392,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="memory\property_memory_allocate.h" />
     <ClInclude Include="memory\secondary_memory_allocate.h" />
     <ClInclude Include="memory\_.h" />
+    <ClInclude Include="memory\_memory.h" />
     <ClInclude Include="memory\__aligned_memory_allocate.h" />
     <ClInclude Include="memory\counter.h" />
     <ClInclude Include="memory\memory_allocate.h" />
@@ -1697,6 +1698,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="primitive\duration\integral\_.h" />
     <ClInclude Include="primitive\duration\integral\_impl.h" />
     <ClInclude Include="primitive\duration\_.h" />
+    <ClInclude Include="primitive\duration\_duration.h" />
     <ClInclude Include="primitive\duration\_struct.h" />
     <ClInclude Include="primitive\geometry2d\angle.h" />
     <ClInclude Include="primitive\geometry2d\arc.h" />

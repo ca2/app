@@ -3161,6 +3161,9 @@ class memory_base;
 #include "acme/memory/chunk.h"
 
 
+#include "acme/memory/_memory.h"
+
+
 #include "acme/memory/memory.h"
 
 
@@ -4383,6 +4386,9 @@ class task_tool;
 
 #include "acme/platform/system.h"
 
+
+
+#include "acme/primitive/duration/_duration.h"
 
 
 

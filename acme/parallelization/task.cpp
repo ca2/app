@@ -15,7 +15,7 @@
 CLASS_DECL_ACME void clear_message_queue(itask_t idthread);
 
 
-void exception_message_box(::object * pobject, ::exception & exception, const ::string & strMoreDetails);
+CLASS_DECL_ACME void exception_message_box(::object * pobject, ::exception & exception, const ::string & strMoreDetails);
 
 
 task::task()

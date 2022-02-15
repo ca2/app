@@ -339,19 +339,19 @@ void erase_directory(const char* path)
 
 
 
-int_handle::~int_handle()
-{
+// int_handle::~int_handle()
+// {
 
-   if (m_i >= 0)
-   {
+//    if (m_i >= 0)
+//    {
 
-      ::_close(m_i);
+//       ::_close(m_i);
 
-      m_i = -1;
+//       m_i = -1;
 
-   }
+//    }
 
-}
+// }
 
 
 

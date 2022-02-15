@@ -2864,6 +2864,12 @@
     <ClInclude Include="inline\implement_console.h">
       <Filter>Header Files\inline</Filter>
     </ClInclude>
+    <ClInclude Include="memory\_memory.h">
+      <Filter>Header Files\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\_duration.h">
+      <Filter>Header Files\primitive\duration</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">

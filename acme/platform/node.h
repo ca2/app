@@ -295,9 +295,9 @@ namespace acme
       virtual double get_time_zone();
 
 
-
-
       virtual string font_name(enum_font efont);
+
+
       //virtual string font_name(enum_operating_system eoperatingsystem, int iVariant, enum_font efont);
 
 

@@ -22,6 +22,7 @@ public:
 
    }
 
+
    integral_duration(enum_now)
    {
 

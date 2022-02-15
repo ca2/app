@@ -284,27 +284,24 @@ void tm_to_system_time(system_time_t * psystemtime, const tm * ptm)
 }
 
 
-void system_time_to_time(time_t * ptime, const system_time_t * psystemtime, i32 nDST)
-{
 
-   struct tm tm;
 
-   system_time_to_tm(&tm, psystemtime);
+void FileTimeToSystemTime(const filetime_t* pfiletime, system_time_t* psystemtime);
 
-   *ptime = timegm(&tm);
 
-}
+
+void SystemTimeToFileTime(const system_time_t* psystemtime, filetime_t* pfiletime);
+
+
+
+void GetSystemTime(system_time_t* psystemtime);
+
 
 
 void file_time_to_system_time(system_time_t * psystemtime, const filetime_t * pfiletime)
 {
 
-   if(!FileTimeToSystemTime(pfiletime, psystemtime))
-   {
-
-      throw ::exception(error_failed);
-
-   }
+   FileTimeToSystemTime(pfiletime, psystemtime);
 
 }
 
@@ -312,14 +309,7 @@ void file_time_to_system_time(system_time_t * psystemtime, const filetime_t * pf
 void system_time_to_file_time(filetime_t * pfiletime, const system_time_t * psystemtime)
 {
 
-   if(!SystemTimeToFileTime(psystemtime, pfiletime))
-   {
-
-      throw ::exception(error_failed);
-
-   }
-
-   ///return ::success;
+   SystemTimeToFileTime(psystemtime, pfiletime);
 
 }
 

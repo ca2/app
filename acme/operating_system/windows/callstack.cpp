@@ -81,7 +81,7 @@ string get_callstack(const char* pszFormat, i32 iSkip, void * caller_address, in
 
 	  string strLine;
 
-	  strLine.format("%d: %s - %x\n", frames - i - 1, psymbolinfo->Name, psymbolinfo->Address);
+	  strLine.format("%02d : %" PRIdPTR " : %s\n", frames - i - 1, psymbolinfo->Address, psymbolinfo->Name);
 
 	  strCallstack += strLine;
 

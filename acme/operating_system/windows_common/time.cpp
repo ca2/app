@@ -89,14 +89,14 @@ int gettimeofday(struct timeval * tp, void * tz)
 }
 
 
-void get_system_time(system_time_t* psystemtime)
-{
-
-   ::GetSystemTime((LPSYSTEMTIME)psystemtime);
-
-   //return ::success;
-
-}
+//void get_system_time(system_time_t* psystemtime)
+//{
+//
+//   ::GetSystemTime((LPSYSTEMTIME)psystemtime);
+//
+//   //return ::success;
+//
+//}
 
 
 
@@ -105,30 +105,30 @@ void get_system_time(system_time_t* psystemtime)
 void system_time_to_time(time_t* ptime, const system_time_t* psystemtime, i32 nDST)
 {
 
-   struct tm tm;
+  struct tm tm;
 
-   __copy(tm, psystemtime);
+  __copy(tm, psystemtime);
 
-   *ptime = make_utc_time(&tm);
+  *ptime = make_utc_time(&tm);
 
-   //return ::success;
-
-}
-
-
-void system_time_to_file_time(filetime_t* pfiletime, const system_time_t* psystemtime)
-{
-
-   if (!SystemTimeToFileTime((const SYSTEMTIME*)psystemtime, (FILETIME*)pfiletime))
-   {
-
-      throw ::exception(error_failed);
-
-   }
-
-   //return success;
+  //return ::success;
 
 }
+
+
+//void system_time_to_file_time(filetime_t* pfiletime, const system_time_t* psystemtime)
+//{
+//
+//   if (!SystemTimeToFileTime((const SYSTEMTIME*)psystemtime, (FILETIME*)pfiletime))
+//   {
+//
+//      throw ::exception(error_failed);
+//
+//   }
+//
+//   //return success;
+//
+//}
 
 
 void time_to_system_time(system_time_t* psystemtime, const time_t* ptime)
@@ -184,24 +184,24 @@ CLASS_DECL_ACME void time_to_file_time(filetime_t* pfiletime, const time_t* ptim
 //   return GetFileTime(hFile, pCreationTime, lpLastAccessTime, lpLastWriteTime) != false;
 //
 //}
-
-
-
-CLASS_DECL_ACME void file_time_to_system_time(system_time_t * psystemtime, const filetime_t * pfiletime)
-{
-
-   FileTimeToSystemTime((FILETIME*)pfiletime, (SYSTEMTIME*)psystemtime);
-   //{
-
-   //   return error_failed;
-
-   //}
-
-   //return ::success;
-
-}
-
-
+//
+//
+//
+//CLASS_DECL_ACME void file_time_to_system_time(system_time_t * psystemtime, const filetime_t * pfiletime)
+//{
+//
+//   FileTimeToSystemTime((FILETIME*)pfiletime, (SYSTEMTIME*)psystemtime);
+//   //{
+//
+//   //   return error_failed;
+//
+//   //}
+//
+//   //return ::success;
+//
+//}
+//
+//
 
 
 //
@@ -229,4 +229,47 @@ CLASS_DECL_ACME int_bool get_filetime(HANDLE hFile, LPFILETIME pCreationTime, LP
    return GetFileTime(hFile, pCreationTime, lpLastAccessTime, lpLastWriteTime) != false;
 
 }
+
+
+
+
+
+void FileTimeToSystemTime(const filetime_t* pfiletime, system_time_t* psystemtime)
+{
+
+   if (!FileTimeToSystemTime((LPFILETIME) pfiletime, (LPSYSTEMTIME) psystemtime))
+   {
+
+      throw ::exception(error_failed);
+
+   }
+
+}
+
+
+
+void SystemTimeToFileTime(const system_time_t* psystemtime, filetime_t* pfiletime)
+{
+
+   if (!SystemTimeToFileTime((LPSYSTEMTIME)pfiletime, (LPFILETIME)psystemtime))
+   {
+
+      throw ::exception(error_failed);
+
+   }
+
+}
+
+
+
+void GetSystemTime(system_time_t* psystemtime)
+{
+
+
+   GetSystemTime((LPSYSTEMTIME)psystemtime);
+
+
+}
+
+
 

@@ -447,7 +447,7 @@ string estatus_to_string(::e_status estatus)
 //}
 
 
-void exception_message_box(::object * pobject, ::exception & exception, const ::string & strMoreDetails)
+CLASS_DECL_ACME void exception_message_box(::object * pobject, ::exception & exception, const ::string & strMoreDetails)
 {
 
 
@@ -469,12 +469,18 @@ void exception_message_box(::object * pobject, ::exception & exception, const ::
    strDetails += "\n";
    strDetails += "PID: " + __string(::get_current_process_id()) + "\n";
    //strDetails += "Working Directory: " + string(GetCurrentDirectory()) + "\n\n";
-   strDetails += strMoreDetails;
+   
+   if (strMoreDetails.has_char())
+   {
+
+      strDetails += strMoreDetails + "\n";
+
+   }
 
    if (exception.m_strCallstack)
    {
 
-   strDetails += string(exception.m_strCallstack);
+      strDetails += "\n\n" + string(exception.m_strCallstack);
 
    }
 

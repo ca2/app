@@ -623,6 +623,7 @@ inline void to_string(string & str, const TYPE & t)
 }
 
 
+
 //inline void to_string(string & str, const element & t)
 //{
 
@@ -1250,10 +1251,11 @@ inline void to_string(string& str, const unsigned long & ul)
 
 #endif
 
-CLASS_DECL_ACME void to_string(string& str, const float& f);
+
+CLASS_DECL_ACME void to_string(string& str, const float & f);
 
 
-CLASS_DECL_ACME void to_string(string& str, const double& d);
+CLASS_DECL_ACME void to_string(string& str, const double & d);
 
 
 #if defined(ANDROID) || defined(RASPBIAN)

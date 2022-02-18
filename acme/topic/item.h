@@ -428,7 +428,7 @@ public:
    item & operator = (const item & item)
    {
 
-      item_base::operator=(item);
+      item_data::operator=(item);
 
       m_pDraw2dGraphics = item.m_pDraw2dGraphics;
 
@@ -439,7 +439,7 @@ public:
    }
 
 
-   bool operator == (const item & item) const { return item_base::operator ==(*this); }
+   bool operator == (const item & item) const { return item_base::operator ==(item); }
    bool operator != (const item & item) const { return !operator==(item); }
 
 

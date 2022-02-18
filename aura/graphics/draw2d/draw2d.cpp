@@ -1365,7 +1365,7 @@ breakFilter2:
       //if (::succeeded(estatus))
       //{
 
-        ::factory::_add_factory_item < ::draw2d::task_tool_item >(::e_task_tool_draw2d);
+        ::factory::add_factory_item < ::draw2d::task_tool_item >(::e_task_tool_draw2d);
 
       //}
 

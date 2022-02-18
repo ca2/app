@@ -13,7 +13,7 @@ namespace aura
    public:
 
 
-      __creatable_from_base(session, ::apex::session);
+      //__creatable_from_base(session, ::apex::session);
 
 
       bool                                                  m_bAcceptsFirstResponder;

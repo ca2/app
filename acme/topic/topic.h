@@ -17,6 +17,7 @@ public:
    bool                                   m_bRet;
    bool                                   m_bOk;
    item                                   m_item;
+   ::user::enum_key                       m_ekey;
    ::action_context                       m_actioncontext;
    __pointer(::property_object)           m_psender;
    __pointer(::user::element)             m_puserelement; // user::interaction

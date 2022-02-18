@@ -10,8 +10,6 @@ namespace folder_zip
    {
    public:
 
-      __creatable_from_library(folder, ::folder, "folder_zip");
-
 
       file_pointer            m_pfile;
       file_pointer            m_pbuffile1;

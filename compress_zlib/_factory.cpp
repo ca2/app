@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-__FACTORY_EXPORT void compress_zlib_factory(::factory::factory * pfactory)
+CLASS_DECL_COMPRESS_ZLIB void compress_zlib_factory(::factory::factory * pfactory)
 {
 
    pfactory->add_factory_item < ::compress_zlib::compress, ::compress >();

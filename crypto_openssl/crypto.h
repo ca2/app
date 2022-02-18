@@ -17,7 +17,7 @@ namespace crypto_openssl
    public:
 
 
-      __creatable_from_library(crypto, ::crypto::crypto, "crypto_openssl");
+      //__creatable_from_base(crypto, ::crypto::crypto);
 
       // salt here may be dangerous for the universe
 

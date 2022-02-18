@@ -9,7 +9,7 @@ class CLASS_DECL_CORE simple_pane_document :
 public:
 
 
-   DECLARE_CREATABLE(simple_pane_document);
+   //__creatable(simple_pane_document);
 
 
    simple_pane_document();

@@ -5,15 +5,15 @@
 #include "_nano.h"
 
 
-void operating_system_initialize_nano()
+void operating_system_initialize_nano(::factory::factory * pfactory)
 {
 
 
-   ____creatable_from_base(::windows::nano_window, ::nano_window_implementation);
-   ____creatable_from_base(::windows::nano_brush, ::nano_brush);
-   ____creatable_from_base(::windows::nano_font, ::nano_font);
-   ____creatable_from_base(::windows::nano_pen, ::nano_pen);
-   ____creatable_from_base(::windows::nano_device, ::nano_device);
+   pfactory->add_factory_item < ::windows::nano_window, ::nano_window_implementation >();
+   pfactory->add_factory_item < ::windows::nano_brush, ::nano_brush >();
+   pfactory->add_factory_item < ::windows::nano_font, ::nano_font >();
+   pfactory->add_factory_item < ::windows::nano_pen, ::nano_pen >();
+   pfactory->add_factory_item < ::windows::nano_device, ::nano_device >();
 
 
 }

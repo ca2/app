@@ -140,6 +140,7 @@ namespace acme
 
 
    class node;
+   class library;
 
 
    namespace posix
@@ -357,6 +358,7 @@ namespace desktop_environment_xfce
 #  define   __STRING(x) "x"
 #endif
 
+
 #include "acme/exception/_c.h"
 
 
@@ -490,34 +492,51 @@ template<class T>
    class pointer_array;
 
 
-#define _creatable(expr) inline static auto s_pfactory = expr
-
-
-#define ____creatable(type) ::factory::_add_factory_item < type >()
-
-
-#define ____creatable_from_base(type, base) ::factory::_add_factory_item < type, base >()
-
-
-#define ____creatable_from_id(type, id) ::factory::_add_factory_item < type >(id)
-
-
-#define ____creatable_from_library(type, base, source) ::factory::_add_factory_item_from < type, base >(source)
-
-
-#define __creatable_from_library(type, base, source) _creatable(____creatable_from_library(type, base, source))
-
-
-#define __creatable_from_id(type, id) _creatable(____creatable_from_id(type, id))
-
-
-#define __creatable_from_base(type, base) _creatable(____creatable_from_base(type, base))
-
-
-#define __creatable_from_library(type, base, source) _creatable(____creatable_from_library(type, base, source))
-
-
-#define __creatable(type) _creatable(____creatable(type))
+//#define __FACTORY(xxx) __CONCAT(xxx, _factory)
+//
+//#define DECLARE_FACTORY(decl, xxx) extern "C" decl void __FACTORY(xxx)(::factory::factory * pfactory)
+//
+//#define BEGIN_FACTORY(xxx) extern "C" CLASS_DECL_EXPORT void __FACTORY(xxx)(::factory::factory * pfactory) { 
+//
+//#define FACTORY_DEPENDENCY(aaa) __FACTORY(aaa)(pfactory);
+//
+//#define FACTORY_ITEM(iii) iii::_add_to_factory(pfactory);
+//
+//#define END_FACTORY() }
+//
+//
+//#define _creatable(expr) static void _add_to_factory(::factory::factory * pfactory) { pfactory->expr; }
+//#define _creatable2(expr1, expr2) static void _add_to_factory(::factory::factory * pfactory) { pfactory->expr1; pfactory->expr2; }
+//
+//
+//#define ____creatable(type) add_factory_item < type >()
+//
+//
+//#define ____creatable_from_base(type, base) add_factory_item < type, base >()
+//
+//
+//#define ____creatable_from_id(type, id) add_factory_item < type >(id)
+//
+//
+////#define ____creatable_from_library(type, base, source) ::factory::_add_factory_item_from < type, base >(source)
+//
+//
+////#define __creatable_from_library(type, base, source) _creatable(____creatable_from_library(type, base, source))
+//
+//
+//#define __creatable_from_id(type, id) _creatable(____creatable_from_id(type, id))
+//
+//
+//#define __creatable_from_base(type, base) _creatable(____creatable_from_base(type, base))
+//
+//
+//#define __creatable_and_from_base(type, base) _creatable(____creatable(type), ____creatable_from_base(type, base))
+//
+//
+////#define __creatable_from_library(type, base, source) _creatable(____creatable_from_library(type, base, source))
+//
+//
+//#define __creatable(type) _creatable(____creatable(type))
 
 
 #include <type_traits>

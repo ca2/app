@@ -20,9 +20,6 @@ class CLASS_DECL_APEX thread :
 public:
 
 
-   __creatable(thread);
-
-
    class CLASS_DECL_APEX file_info :
       virtual public object
    {

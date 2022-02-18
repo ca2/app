@@ -44,6 +44,10 @@ public:
    virtual void on_left_button_down(int x, int y);
    virtual void on_left_button_up(int x, int y);
    virtual void on_click(const ::atom & atom);
+   virtual void on_right_button_down(int x, int y);
+   virtual void on_right_button_up(int x, int y);
+   virtual void on_right_click(const ::atom & atom);
+
 
    //virtual LRESULT window_procedure(UINT message, WPARAM wparam, LPARAM lparam);
 

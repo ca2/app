@@ -46,20 +46,6 @@ void nano_message_box::on_draw(nano_device * pnanodevice)
 }
 
 
-void nano_message_box::add_button(const char * pszText, enum_dialog_result edialogresult)
-{
-
-   auto pbutton = __new(nano_button);
-
-   pbutton->m_strText = pszText;
-   pbutton->m_atom = edialogresult;
-
-   m_buttona.add(pbutton);
-
-   add_child(pbutton);
-
-}
-
 
 void nano_message_box::defer_create_details_still()
 {
@@ -305,6 +291,25 @@ void nano_message_box::on_click(const ::atom & atom)
    m_atomResult = atom;
 
    destroy();
+
+}
+
+
+void nano_message_box::on_right_click(const ::atom & atom)
+{
+
+   auto pbutton = __create_new < popup_button >();
+
+   pbutton->display_synchronously("Dump to File...");
+
+   auto idResult = pbutton->get_result();
+
+   if (idResult == e_dialog_result_yes)
+   {
+
+      display_temporary_file_with_text(m_strMessage + "\n\n" + m_strDetails);
+
+   }
 
 }
 

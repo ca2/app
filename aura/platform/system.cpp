@@ -129,6 +129,25 @@ namespace aura
    }
 
 
+   system::~system()
+   {
+
+      ::acme::del(g_pmutexImage);
+
+      //#if !defined(WIN32)
+      //
+      //      if(m_pnode)
+      //      {
+      //
+      //         m_pnode->os_post_quit();
+      //
+      //      }
+      //      
+      //#endif
+
+   }
+
+
    void system::common_construct()
    {
 
@@ -143,10 +162,10 @@ namespace aura
       m_bFinalizeIfNoSessionSetting = true;
       m_bFinalizeIfNoSession = false;
 
-      //::factory::add_factory_item < ::aura::session, ::apex::session >();
-      //::factory::add_factory_item < ::aura::application, ::application >();
-      //::factory::add_factory_item < ::aura::idpool, ::acme::idpool >();
-      //::factory::add_factory_item < ::user::user >();
+      ::factory::add_factory_item < ::aura::session, ::apex::session >();
+      ::factory::add_factory_item < ::aura::application, ::application >();
+      ::factory::add_factory_item < ::aura::idpool, ::acme::idpool >();
+      ::factory::add_factory_item < ::user::user >();
 
 
 
@@ -222,7 +241,7 @@ namespace aura
 
       ::draw2d::static_initialize();
 
-      ::factory::_add_factory_item < ::draw2d::icon >();
+      ::factory::add_factory_item < ::draw2d::icon >();
 
     
 //#ifdef WINDOWS_DESKTOP
@@ -400,23 +419,6 @@ namespace aura
 //   }
 
 
-   system::~system()
-   {
-
-      ::acme::del(g_pmutexImage);
-      
-//#if !defined(WIN32)
-//
-//      if(m_pnode)
-//      {
-//
-//         m_pnode->os_post_quit();
-//
-//      }
-//      
-//#endif
-
-   }
 
 
    //class ::user::window_map & system::window_map()
@@ -1183,7 +1185,7 @@ namespace aura
       //if (::succeeded(estatus))
       //{
 
-         ::factory::_add_factory_item < ::draw2d::task_tool_item >(::e_task_tool_draw2d);
+         ::factory::add_factory_item < ::draw2d::task_tool_item >(::e_task_tool_draw2d);
 
       //}
 

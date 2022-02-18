@@ -428,6 +428,70 @@ namespace windows
    }
 
 
+   void nano_window::on_right_button_down(int x, int y)
+   {
+
+      //SetCapture(m_hwnd);
+
+      //m_atomLeftButtonDown = hit_test(x, y);
+
+      //if (m_pdragmove && m_atomLeftButtonDown == e_dialog_result_none)
+      //{
+
+      //   m_pdragmove->m_bLButtonDown = true;
+
+      //   m_pdragmove->m_bDrag = false;
+
+      //   point_i32 pointCursor(x, y);
+
+      //   pointCursor += m_rectangle.origin();
+
+      //   m_pdragmove->m_pointLButtonDown = pointCursor;
+
+      //   m_pdragmove->m_sizeLButtonDownOffset = m_pdragmove->m_pointLButtonDown - m_rectangle.origin();
+
+      //   return;
+
+      //}
+
+      m_pinterface->on_right_button_down(x, y);
+
+   }
+
+
+   void nano_window::on_right_button_up(int x, int y)
+   {
+
+      //ReleaseCapture();
+
+      //if (m_pdragmove && (m_pdragmove->m_bLButtonDown || m_pdragmove->m_bDrag))
+      //{
+
+      //   m_pdragmove->m_bLButtonDown = false;
+
+      //   m_pdragmove->m_bDrag = false;
+
+      //   return;
+
+      //}
+
+      //m_atomLeftButtonUp = hit_test(x, y);
+
+      //if (m_atomLeftButtonUp == m_atomLeftButtonDown && m_atomLeftButtonUp != e_dialog_result_none)
+      //{
+
+      //   m_atomResult = m_atomLeftButtonUp;
+
+      //   on_click(m_atomResult);
+
+      //}
+
+      m_pinterface->on_right_button_up(x, y);
+
+   }
+
+
+
    ::atom nano_window::get_result()
    {
 
@@ -558,6 +622,28 @@ namespace windows
 
          }
             break;
+         case WM_RBUTTONDOWN:
+         {
+
+            POINT point{ GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam) };
+
+            ::ClientToScreen(m_hwnd, &point);
+
+            on_right_button_down(point.x, point.y);
+
+         }
+         break;
+         case WM_RBUTTONUP:
+         {
+
+            POINT point{ GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam) };
+
+            ::ClientToScreen(m_hwnd, &point);
+
+            on_right_button_up(point.x, point.y);
+
+         }
+         break;
          case WM_ERASEBKGND:
             return 1;
          case WM_PAINT:
@@ -804,6 +890,13 @@ namespace windows
 
 
    void nano_window::on_click(const ::atom & atom)
+   {
+
+
+   }
+
+
+   void nano_window::on_right_click(const ::atom & atom)
    {
 
 

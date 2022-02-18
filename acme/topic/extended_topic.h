@@ -21,7 +21,6 @@ public:
    ::datetime::time                       m_timeEnd;
 
 
-   ::user::enum_key                       m_ekey;
    ::payload                              m_payload;
    ::i64                                  m_iUpdateSerial;
    bool                                   m_bModified;

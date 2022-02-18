@@ -225,6 +225,14 @@ void simple_scroll_bar::on_message_left_button_down(::message::message * pmessag
 void simple_scroll_bar::on_message_left_button_up(::message::message * pmessage)
 {
 
+   auto psession = get_session();
+
+   auto puser = psession->user();
+
+   auto pwindowing = puser->windowing();
+
+   pwindowing->release_mouse_capture();
+
    auto pmouse = pmessage->m_union.m_pmouse;
 
    if (!m_itemCurrent)
@@ -233,14 +241,6 @@ void simple_scroll_bar::on_message_left_button_up(::message::message * pmessage)
       return;
 
    }
-
-   auto psession = get_session();
-
-   auto puser = psession->user();
-
-   auto pwindowing = puser->windowing();
-
-   pwindowing->release_mouse_capture();
 
    KillTimer(((uptr)this));
 

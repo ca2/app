@@ -10,6 +10,9 @@ namespace opengl
    {
    public:
 
+      
+      //__creatable_from_base(opengl, ::gpu::approach);
+
 
 #ifdef WINDOWS_DESKTOP
 

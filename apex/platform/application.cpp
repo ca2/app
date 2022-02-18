@@ -2298,7 +2298,7 @@ catch (const ::exception & e)
 
    handle_exception(e);
 
-   os_message_box(this, "Application failed to initialize (1). ", m_strAppName, e_message_box_ok, e.m_strMessage + "\n" + e.m_strDetails);
+   os_message_box(this, "Application failed to initialize (1).\n\n" + e.m_strMessage , m_strAppName, e_message_box_ok, e.m_strMessage + "\n" + e.m_strDetails);
 
    throw e;
 
@@ -2359,6 +2359,15 @@ catch (const ::exit_exception & exception)
    handle_exception(exception);
 
    os_message_box(this, "Application failed to initialize (3). ", m_strAppName, e_message_box_ok, exception.m_strMessage + "\n" + exception.m_strDetails);
+
+   throw exception;
+
+}
+catch (const ::exception & exception)
+{
+
+   os_message_box(this, "Application failed to initialize (4). Unknown exception", m_strAppName, e_message_box_ok,
+      exception.m_strMessage + "\n\n" + exception.m_strDetails);
 
    throw exception;
 

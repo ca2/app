@@ -15,7 +15,7 @@ namespace apex
    public:
 
 
-      __creatable_from_base(idpool, ::acme::idpool);
+      //__creatable_from_base(idpool, ::acme::idpool);
 
 
       static idpool * g_pthis;

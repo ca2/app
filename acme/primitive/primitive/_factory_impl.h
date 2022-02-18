@@ -73,7 +73,7 @@ namespace factory
 
 
    template < typename TYPE, typename BASE >
-   inline void _add_factory_item(const ::atom & atom)
+   inline void add_factory_item(const ::atom & atom)
    {
 
       set_factory(atom, __new(factory_item < TYPE, BASE >()));
@@ -852,7 +852,7 @@ namespace factory
 
 
    template < typename TYPE, typename BASE_TYPE>
-   inline __pointer(::factory::factory_item_base < BASE_TYPE >) factory::_add_factory_item()
+   inline __pointer(::factory::factory_item_base < BASE_TYPE >) factory::add_factory_item()
    {
 
       critical_section_lock lock(::factory::get_factory_critical_section());

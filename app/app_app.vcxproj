@@ -957,6 +957,7 @@
     <ClInclude Include="main_window.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="_app_app.h" />
+    <ClInclude Include="_factory.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\..\operating-system\operating-system-windows\version.rc" />

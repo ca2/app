@@ -1,8 +1,7 @@
 #include "framework.h"
 #include "acme/platform/static_start_internal.h"
 #include "acme/platform/simple_log.h"
-
-
+#include "acme/platform/library.h"
 
 
 namespace factory
@@ -50,7 +49,16 @@ namespace factory
    CLASS_DECL_ACME factory * get_factory(const ::atom & atomSource)
    {
 
-      return ::acme::static_start::g_staticstart.m_pfactory;
+      auto & pfactory = ::acme::static_start::g_staticstart.m_mapFactory[atomSource];
+
+      if (!pfactory)
+      {
+
+         pfactory = __new(::factory::factory);
+
+      }
+
+      return pfactory;
 
    }
 
@@ -66,11 +74,11 @@ namespace factory
 
 
 
-       ____creatable(manual_reset_event);
-       ____creatable(task);
+       ::factory::add_factory_item < manual_reset_event >();
+       ::factory::add_factory_item < task >();
 
 
-       ____creatable_from_base(simple_log, logger);
+       ::factory::add_factory_item < simple_log, logger >();
 
 
        //operating_system_initialize_nano();
@@ -114,6 +122,20 @@ namespace factory
 
       }
 
+      if (pfactory->m_plibrary)
+      {
+
+         auto pfactoryImplicit = pfactory->m_plibrary->create_factory();
+
+         for (auto& pair : *pfactoryImplicit)
+         {
+
+            set_at(pair.m_element1, pair.m_element2);
+
+         }
+
+      }
+
    }
 
 
@@ -123,6 +145,52 @@ namespace factory
       ::factory::get_factory()->merge(this);
 
    }
+
+
+   void factory::set_currently_loading_library()
+   {
+
+      if (m_plibrary)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      //if (::acme::library::loading_library() != nullptr)
+      //{
+
+      //   m_plibrary = ::acme::library::loading_library();
+
+      //}
+
+   }
+
+
+   //CLASS_DECL_ACME::factory::factory * loading_library_factory()
+   //{
+
+   //   auto plibrary = ::acme::library::loading_library();
+   // 
+   //   if (::is_null(plibrary))
+   //   {
+
+   //      return nullptr;
+
+   //   }
+
+   //   auto pfactory = plibrary->get_factory();
+
+   //   if (::is_null(pfactory))
+   //   {
+
+   //      return nullptr;
+
+   //   }
+
+   //   return pfactory;
+
+   //}
 
 
 //   void merge_library_to_global_factory(const ::atom & atomSource)

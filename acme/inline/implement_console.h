@@ -26,6 +26,8 @@ int main(int argc, platform_char ** argv, platform_char ** envp)
 #endif
 {
 
+   //__FACTORY(FACTORY)(::factory::get_factory());
+
    class ::main main;
 
    //Sleep(30'000);

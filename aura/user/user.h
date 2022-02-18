@@ -25,7 +25,7 @@ namespace user
    public:
 
 
-      __creatable(user);
+      //__creatable(user);
 
 
       ::axis::user* m_paxisuser;

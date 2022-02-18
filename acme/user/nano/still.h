@@ -26,7 +26,7 @@ public:
    bool is_focusable() const override;
 
 
-   virtual void resize_to_fit();
+   //virtual void resize_to_fit();
 
 
 };

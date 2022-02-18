@@ -1151,6 +1151,9 @@
     <ClInclude Include="operating_system\windows_common\variant.h">
       <Filter>Header Files\operating_system\windows_common</Filter>
     </ClInclude>
+    <ClInclude Include="_factory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="graphics\draw2d\apple\image_gif.cpp">
@@ -1710,6 +1713,9 @@
     </ClCompile>
     <ClCompile Include="operating_system\windows\windowing.cpp">
       <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="_factory.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

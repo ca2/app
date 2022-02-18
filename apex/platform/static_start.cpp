@@ -401,7 +401,7 @@ namespace apex
 
       //::thread::g_pthreadmap = new ::thread_map();
 
-      ::factory::_add_factory_item < ::apex::context, ::acme::context >();
+      ::factory::add_factory_item < ::apex::context, ::acme::context >();
 
 
 #if OBJECT_TYPE_COUNTER

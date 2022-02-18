@@ -106,15 +106,15 @@ bool nano_still::is_focusable() const
 }
 
 
-void nano_still::resize_to_fit()
-{
-
-   auto pdevice = __create < nano_device >();
-
-   auto size = pdevice->get_text_extents(m_strText, m_pwindow->m_pfont);
-
-   m_rectangle.right = m_rectangle.left + size.cx;
-
-   m_rectangle.bottom = m_rectangle.top + size.cy;
-
-}
+//void nano_still::resize_to_fit()
+//{
+//
+//   auto pdevice = __create < nano_device >();
+//
+//   auto size = pdevice->get_text_extents(m_strText, m_pwindow->m_pfont);
+//
+//   m_rectangle.right = m_rectangle.left + size.cx;
+//
+//   m_rectangle.bottom = m_rectangle.top + size.cy;
+//
+//}

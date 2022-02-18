@@ -134,6 +134,10 @@ namespace factory
    public:
 
 
+      ::atom                                 m_atomSource;
+      __pointer(::acme::library)             m_plibrary;
+
+
       inline __pointer(::factory::factory_item_interface) & get_factory_item(const ::atom & atom);
 
       //inline __pointer(::factory::factory_item_interface) & get_factory_item_from(const ::atom& atom, const ::atom & atomSource);
@@ -152,10 +156,10 @@ namespace factory
       //inline __pointer(::factory::factory_item_interface) & get_factory_item_from(const ::atom & atomSource);
 
       template < typename TYPE, typename BASE_TYPE = TYPE >
-      inline __pointer(::factory::factory_item_base < BASE_TYPE >) _add_factory_item();
+      inline __pointer(::factory::factory_item_base < BASE_TYPE >) add_factory_item();
 
       //template < typename TYPE, typename BASE_TYPE >
-      //inline __pointer(::factory::factory_item_base < BASE_TYPE >) _add_factory_item_from(const ::atom& atomSource);
+      //inline __pointer(::factory::factory_item_base < BASE_TYPE >) add_factory_item_from(const ::atom& atomSource);
 
 
       template < typename BASE_TYPE >
@@ -164,6 +168,8 @@ namespace factory
       void merge(const ::factory::factory* pfactory);
 
       void merge_to_global_factory() const;
+
+      void set_currently_loading_library();
 
 
       //template < typename BASE_TYPE >
@@ -308,15 +314,15 @@ namespace factory
 
 
    template < typename TYPE, typename BASE_TYPE = TYPE >
-   inline __pointer(::factory::factory_item_base < BASE_TYPE >) _add_factory_item();
+   inline __pointer(::factory::factory_item_base < BASE_TYPE >) add_factory_item();
 
 
    template < typename TYPE, typename BASE_TYPE = TYPE >
-   inline __pointer(::factory::factory_item_base < BASE_TYPE >) _add_factory_item(const ::atom& atom);
+   inline __pointer(::factory::factory_item_base < BASE_TYPE >) add_factory_item(const ::atom& atom);
 
 
    template < typename TYPE, typename BASE_TYPE = TYPE >
-   inline __pointer(::factory::factory_item_base < BASE_TYPE >) _add_factory_item_from(const ::atom& atomSource);
+   inline __pointer(::factory::factory_item_base < BASE_TYPE >) add_factory_item_from(const ::atom& atomSource);
 
 
    template < typename TYPE, typename BASE_TYPE = TYPE >

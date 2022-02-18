@@ -7,6 +7,7 @@
 #include "acme/primitive/primitive/malloc.h"
 #include "acme/astr.h"
 #include "acme/platform/simple_log.h"
+#include "acme/platform/library.h"
 
 
 void initialize_memory_management();
@@ -751,12 +752,16 @@ namespace acme
 
 #endif
 
+      //::acme::library::s_pmutexLoading = new ::mutex();
+
 
    }
 
 
    static_start::~static_start()
    {
+
+      //::acme::del(::acme::library::s_pmutexLoading);
 
       ::user::os_term_theme_colors();
 

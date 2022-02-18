@@ -11,7 +11,7 @@ namespace app_shader
    public:
 
 
-      __creatable(main_window);
+      //__creatable(main_window);
 
 
       string                                 m_strCurrentShaderPath;

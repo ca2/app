@@ -15,7 +15,7 @@ virtual public ::application_exit
 public:
 
 
-   __creatable(application);
+   //__creatable(application);
 
       void* m_pnativeapp;
 

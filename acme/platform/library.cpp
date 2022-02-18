@@ -13,6 +13,10 @@ namespace acme
 
    const char * psz_empty_app_id = "";
 
+   //::mutex* library::s_pmutexLoading = nullptr;
+   //::acme::library* library::s_plibraryLoading = nullptr;
+
+
    library::library()
    {
 
@@ -163,7 +167,18 @@ namespace acme
          //else
          //{
 
-            m_plibrary = __node_library_open(pszPath, m_strMessage);
+      //{
+
+         //synchronous_lock synchronouslock(s_pmutexLoading);
+
+         //__keep(s_plibraryLoading, this, nullptr);
+
+         m_plibrary = __node_library_open(pszPath, m_strMessage);
+
+      //}
+            
+            
+      //s_plibraryLoading = nullptr;
 
 ///         }
 
@@ -199,6 +214,14 @@ namespace acme
       //return true;
 
    }
+
+
+   //::acme::library* library::loading_library()
+   //{
+
+   //   return s_plibraryLoading;
+
+   //}
 
 
    //bool library::open_library(string strTitle)
@@ -1041,23 +1064,63 @@ namespace acme
    //}
 
 
-   __pointer(::factory::factory) library::create_factory(const ::string & strLibrary)
+//   __pointer(::factory::factory) library::create_factory(const ::string & strLibrary)
+//   {
+//
+//      string strFactory = factory_name(strLibrary);
+//
+////      auto pfnFactory = get < PFN_factory >(strFactory);
+////
+////      if (::is_null(pfnFactory))
+////      {
+////
+////         throw ::exception(error_function_entry_not_found);
+////
+////      }
+//
+//      auto pfactory = m_psystem->__create_new < ::factory::factory >();
+//
+//      //pfactory->m_plibrary = this;
+//
+//      //pfnFactory(pfactory);
+//
+//      return pfactory;
+//
+//   }
+
+
+   __pointer(::factory::factory) library::create_factory()
    {
 
-      string strFactory = factory_name(strLibrary);
+      string strName = m_strName;
 
-//      auto pfnFactory = get < PFN_factory >(strFactory);
-//
-//      if (::is_null(pfnFactory))
-//      {
-//
-//         throw ::exception(error_function_entry_not_found);
-//
-//      }
+      auto pfactory = ::factory::get_factory(strName);
 
-      auto pfactory = m_psystem->__create_new < ::factory::factory >();
+      if (!pfactory)
+      {
 
-      //pfnFactory(pfactory);
+         throw ::exception(error_wrong_state);
+
+      }
+
+      string strFactoryFunction;
+
+      strFactoryFunction = strName + "_factory";
+
+      auto pfnFactory = get < PFN_factory >(strFactoryFunction);
+
+      if (::is_null(pfnFactory))
+      {
+
+         string strDetails;
+
+         strDetails = "Function \"" + strFactoryFunction + "\" wasn't found";
+      
+         throw ::exception(error_function_entry_not_found, "Function \""+strFactoryFunction + "\" not found", strDetails);
+      
+      }
+
+      pfnFactory(pfactory);
 
       return pfactory;
 

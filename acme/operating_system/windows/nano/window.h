@@ -75,6 +75,12 @@ namespace windows
 
       void on_click(const ::atom & atom) override;
 
+      void on_right_button_down(int x, int y) override;
+
+      void on_right_button_up(int x, int y) override;
+
+      void on_right_click(const ::atom & atom) override;
+
       virtual LRESULT window_procedure(UINT message, WPARAM wparam, LPARAM lparam);
 
       void move_to(int x, int y) override;

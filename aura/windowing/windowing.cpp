@@ -51,7 +51,7 @@ namespace windowing
       __refer(m_puser, puser);
 
 
-      ::factory::_add_factory_item < cursor_manager >();
+      ::factory::add_factory_item < cursor_manager >();
 
       //if(!estatus)
       //{

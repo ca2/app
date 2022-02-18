@@ -2900,7 +2900,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 
       }
 
-      return dropbox() / "application" / m_psystem->m_papplicationStartup->m_strAppId;
+      return dropbox() / "application" / m_psystem->m_papplicationMain->m_strAppId;
 
    }
 

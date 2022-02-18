@@ -52,7 +52,7 @@ m_bJoinable = true;
    //m_pcleanuptask = __new(::parallelization::cleanup_task);
 
    //m_pcleanuptask->begin();
-   ::factory::_add_factory_item<acme::idpool>();
+   ::factory::add_factory_item<acme::idpool>();
 
    //m_pacme = nullptr;
    //m_pacmedir = nullptr;
@@ -1051,7 +1051,7 @@ __pointer(::factory::factory)& system::factory(const ::string& strComponent, con
 
    }
 
-   pfactory = plibrary->create_factory(strLibrary);
+   pfactory = plibrary->create_factory();
 
    return pfactory;
 
@@ -1085,7 +1085,7 @@ __pointer(::factory::factory)& system::factory(const ::string& strLibraryRequest
 
    }
 
-   pfactory = plibrary->create_factory(strLibrary);
+   pfactory = plibrary->create_factory();
 
    if (!pfactory)
    {

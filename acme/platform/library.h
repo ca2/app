@@ -1,8 +1,6 @@
 #pragma once
 
 
-
-
 namespace acme
 {
 
@@ -19,6 +17,10 @@ namespace acme
       string                                          m_strMessage;
 
 
+      //static ::mutex *                                s_pmutexLoading;
+      //static ::acme::library *                        s_plibraryLoading;
+
+
       library();
       ~library() override;
 
@@ -32,6 +34,9 @@ namespace acme
       //virtual void open(const char * pszPath,bool bAutoClose = true,bool bCa2Path = false);
 
       virtual void open(const char* pszPath);
+
+
+      //static ::acme::library* loading_library();
 
       //virtual bool open_library(string strTitle = "");
 
@@ -110,7 +115,9 @@ namespace acme
       //virtual void _load_factory(__pointer(::factory::factory) & pfactory, const ::string& strComponent);
 
       //virtual void factory_exchange(const ::string & strName = nullptr, ::factory::factory * pfactory = nullptr);
-      virtual __pointer(::factory::factory) create_factory(const ::string& strLibrary);
+      //virtual __pointer(::factory::factory) create_factory(const ::string& strLibrary);
+
+      virtual __pointer(::factory::factory) create_factory();
 
 
    };
@@ -217,5 +224,35 @@ typedef ::matter * NEW_MATTER();
 
 typedef NEW_MATTER* PFN_NEW_MATTER;
 
-
+//
+//
+//namespace factory
+//{
+//
+//
+//   template < typename TYPE, typename BASE_TYPE>
+//   inline __pointer(::factory::factory_item_base < BASE_TYPE >) _add_factory_item_from(const ::atom & atomSource)
+//   {
+//
+//      critical_section_lock lock(::factory::get_factory_critical_section());
+//
+//      if (::acme::library::loading_library() != nullptr)
+//      {
+//
+//         return ::acme::library::loading_library()->get_factory()->add_factory_item < TYPE, BASE_TYPE >();
+//
+//      }
+//      
+//      auto pfactoryitem = __new(::factory::factory_item< TYPE, BASE_TYPE >());
+//
+//      ::factory::get_factory_item < BASE_TYPE >(atomSource) = pfactoryitem;
+//
+//      return pfactoryitem;
+//
+//   }
+//
+//
+//} // namespace factory
+//
+//
 

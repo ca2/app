@@ -35,14 +35,21 @@ public:
    __pointer_array(nano_child)            m_childa;
    ::atom                                 m_atomLeftButtonDown;
    ::atom                                 m_atomLeftButtonUp;
+   ::atom                                 m_atomRightButtonDown;
+   ::atom                                 m_atomRightButtonUp;
    __pointer(nano_child)                  m_pchildFocus;
    __pointer(nano_child)                  m_pchildHover;
    __pointer(nano_child)                  m_pchildCapture;
+
+   string                                 m_strDetails;
 
    bool                                   m_bCapture;
    bool                                   m_bStartCentered;
    int                                    m_iFontSize;
    enum_font                              m_efont;
+
+
+   __pointer_array(nano_button)           m_buttona;
 
 
    nano_window();
@@ -84,6 +91,9 @@ public:
    void on_left_button_down(int x, int y) override;
    void on_left_button_up(int x, int y) override;
    void on_click(const ::atom & atom) override;
+   void on_right_button_down(int x, int y) override;
+   void on_right_button_up(int x, int y) override;
+   void on_right_click(const ::atom & atom) override;
 
    void move_to(int x, int y) override;
 
@@ -104,6 +114,12 @@ public:
    void release_capture() override;
 
    void set_cursor(enum_cursor ecursor) override;
+
+
+   void add_button(const char * pszText, enum_dialog_result edialogresult);
+
+
+   void display_temporary_file_with_text(const ::string & str);
 
    
    __pointer(nano_device) create_device();

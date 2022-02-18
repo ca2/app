@@ -399,9 +399,9 @@ namespace user
    void user::init1()
    {
 
-      ::factory::_add_factory_item <::user::button >();
-      ::factory::_add_factory_item <::user::check_box >();
-      ::factory::_add_factory_item <::user::still >();
+      ::factory::add_factory_item <::user::button >();
+      ::factory::add_factory_item <::user::check_box >();
+      ::factory::add_factory_item <::user::still >();
       //add_factory_item <::user::document >();
 //#ifdef WINDOWS_DESKTOP
 //      ::factory::add_factory_item <::user::message_window >();
@@ -444,7 +444,7 @@ namespace user
 
       //}
 
-      ::factory::_add_factory_item <::user::plain_edit >();
+      ::factory::add_factory_item <::user::plain_edit >();
 
 
 

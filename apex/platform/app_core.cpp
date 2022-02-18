@@ -1833,7 +1833,7 @@ __pointer(::application) app_core::new_application(const char* pszAppId)
 
          }
 
-         auto pfactory = plibrary->create_factory(strLibrary);
+         auto pfactory = plibrary->create_factory();
 
          if (pfactory)
          {

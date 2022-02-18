@@ -102,7 +102,20 @@ exception::exception(const ::e_status & estatus, const char * pszMessage, const 
 
    m_strMessage = pszMessage;
 
-   m_strDetails = pszDetails;
+   string strDetails;
+
+   strDetails = pszDetails;
+
+   if (strDetails.has_char())
+   {
+
+      strDetails += "\n\n";
+
+   }
+
+   strDetails += m_strCallstack;
+
+   m_strDetails = strDetails;
 
 }
 

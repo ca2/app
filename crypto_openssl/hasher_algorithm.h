@@ -13,7 +13,7 @@ namespace crypto_openssl
    public:
 
 
-      __creatable_from_library(hasher_algorithm, ::crypto::hasher_algorithm, "crypto_openssl");
+      //__creatable_from_base(hasher_algorithm, ::crypto::hasher_algorithm);
 
 
       //int SHA1_Init(SHA_CTX* c);

@@ -4,6 +4,8 @@
 #include "framework.h"
 #include "_nano.h"
 #include "acme/id.h"
+#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_file.h"
 
 
 nano_window::nano_window()
@@ -292,6 +294,22 @@ void nano_window::add_child(nano_child * pchild)
 }
 
 
+void nano_window::add_button(const char * pszText, enum_dialog_result edialogresult)
+{
+
+   auto pbutton = __new(nano_button);
+
+   pbutton->m_strText = pszText;
+   pbutton->m_atom = edialogresult;
+
+   m_buttona.add(pbutton);
+
+   add_child(pbutton);
+
+}
+
+
+
 nano_child * nano_window::get_child_by_id(const ::atom & atom)
 {
 
@@ -466,10 +484,76 @@ void nano_window::on_left_button_up(int x, int y)
 }
 
 
+void nano_window::on_right_button_down(int x, int y)
+{
+
+   auto pchild = hit_test(x, y);
+
+   if (pchild)
+   {
+
+      m_atomRightButtonDown = pchild->m_atom;
+
+   }
+   else
+   {
+
+      m_atomRightButtonDown = e_dialog_result_none;
+
+   }
+
+
+   if (::is_set(pchild) && pchild->is_focusable())
+   {
+
+      pchild->set_focus();
+
+   }
+
+}
+
+
+void nano_window::on_right_button_up(int x, int y)
+{
+
+   release_capture();
+
+   auto pchild = hit_test(x, y);
+
+   if (pchild)
+   {
+
+      m_atomRightButtonUp = pchild->m_atom;
+
+   }
+   else
+   {
+
+      m_atomRightButtonUp = e_dialog_result_none;
+
+   }
+
+   if (m_atomRightButtonUp == m_atomRightButtonDown)
+   {
+
+      on_right_click(m_atomLeftButtonUp);
+
+   }
+
+}
+
+
 void nano_window::on_click(const ::atom & atom)
 {
 
    
+}
+
+
+void nano_window::on_right_click(const ::atom & atom)
+{
+
+
 }
 
 
@@ -572,4 +656,18 @@ __pointer(nano_device) nano_window::create_device()
 }
 
 
+void nano_window::display_temporary_file_with_text(const ::string & str)
+{
+
+   string strAppId;
+
+   strAppId = m_psystem->m_strAppId;
+
+   ::file::path pathFolder = m_psystem->m_pacmedir->home() / "application" / strAppId / "details";
+
+   auto pathDetails = m_psystem->m_pacmefile->time_put_contents(pathFolder, "details", "txt", str);
+
+   m_psystem->node()->shell_execute_async(pathDetails, "");
+
+}
 

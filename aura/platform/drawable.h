@@ -12,7 +12,7 @@ namespace aura
 
 
       drawable();
-      virtual ~drawable();
+      ~drawable() override;
 
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
@@ -34,18 +34,15 @@ namespace aura
 
       virtual bool is_composite();
 
-      virtual void hit_test(::item & item, const ::point_i32 & point);
-      virtual void on_hit_test(::item & item);
+      virtual ::item_pointer hit_test(::message::mouse * pmouse);
 
-      virtual void hit_test(::item & item, ::message::mouse * pmouse);
+      virtual ::item_pointer hit_test(const ::point_i32 & point);
 
-      virtual ::item hit_test(const ::point_i32 & point);
-
-      virtual ::item hit_test(::message::mouse * pmouse);
-
+      virtual ::item_pointer on_hit_test(const ::point_i32 & point);
 
 
    };
+
 
    //class CLASS_DECL_AURA draw_interface :
    //   virtual public drawable

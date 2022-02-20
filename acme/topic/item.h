@@ -77,6 +77,7 @@ struct ITEM_DATA_ADDITIONS
    ::point_i32                   m_pointHitTest;
    ::rectangle_i32               m_rectangle;
    u64                           m_uFlags;
+   __pointer(::element)          m_pelement;
    
 
    ITEM_DATA_ADDITIONS & operator = (const ITEM_DATA_ADDITIONS & itemdataadditions)
@@ -88,6 +89,7 @@ struct ITEM_DATA_ADDITIONS
       m_pointHitTest = itemdataadditions.m_pointHitTest;
       m_rectangle = itemdataadditions.m_rectangle;
       m_uFlags = itemdataadditions.m_uFlags;
+      m_pelement = itemdataadditions.m_pelement;
 
       return *this;
       
@@ -471,12 +473,15 @@ public:
    ::index operator - (::i64 iItemSub) { return (::index) (m_iItem - iItemSub); }
 
 
-   bool in_range(enum_element eelement, int iCount) const { return m_eelement >= eelement && m_eelement < eelement + iCount; }
+   bool in_element_range(enum_element eelement, int iCount) const { return m_eelement >= eelement && m_eelement < eelement + iCount; }
 
    bool is_valid_item(::count c) const { return m_iItem >= 0 && m_iItem < c; }
 
 
 };
+
+
+using item_pointer = __pointer(::item);
 
 
 //} // namespace item
@@ -489,5 +494,63 @@ inline bool is_set(const ::item * pitem)
 
 }
 
+
+inline bool is_element(const ::item * pitem, ::enum_element eelement)
+{
+
+   return ::is_set((const void *)pitem) && pitem->is_set() && pitem->m_eelement == eelement;
+
+}
+
+
+inline bool is_item(const ::item * pitem, ::index iItem)
+{
+
+   return ::is_set((const void *)pitem) && pitem->is_set()
+      && pitem->m_iItem == iItem;
+
+}
+
+
+inline bool is_subitem(const ::item * pitem, ::index iSubItem)
+{
+
+   return ::is_set((const void *)pitem) && pitem->is_set()
+      && pitem->m_iSubItem == iSubItem;
+
+}
+
+inline bool subitem_less_than(const ::item * pitem, ::index iSubItem)
+{
+
+   return ::is_set((const void *)pitem) && pitem->is_set()
+      && pitem->m_iSubItem < iSubItem;
+
+}
+
+
+inline bool in_element_range(const ::item * pitem, enum_element eelement, int iCount)
+{
+
+   return ::is_set((const void *)pitem) && pitem->is_set() &&
+      pitem->in_element_range(eelement, iCount);
+
+}
+
+
+inline __pointer(::item) new_item_with_index(::index iIndex)
+{
+
+   return __new(::item(::e_element_item, iIndex));
+
+}
+
+
+inline bool is_same_item(const ::item * pitem1, const ::item * pitem2)
+{
+
+   return *pitem1 == *pitem2;
+
+}
 
 

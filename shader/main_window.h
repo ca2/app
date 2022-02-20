@@ -45,7 +45,7 @@ namespace app_shader
 
       virtual void update_shader(const ::string & strShaderPath);
 
-      virtual bool on_click(const ::item& item) override;
+      virtual bool on_click(::item * pitem) override;
 
       virtual void switch_shader();
 

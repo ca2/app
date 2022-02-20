@@ -644,7 +644,7 @@ namespace user
    }
 
 
-   bool check_box::on_click(const ::item & item)
+   bool check_box::on_click(::item * pitem)
    {
 
       m_dPosition = 0.0;
@@ -656,7 +656,6 @@ namespace user
       _001ToggleCheck(::e_source_user);
 
       return true;
-
 
    }
 

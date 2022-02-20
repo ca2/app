@@ -59,7 +59,7 @@ namespace user
       bool                             m_bDisableSavingRestorableTabs;
       bool                             m_bShowTabs;
       bool                             m_bNoTabs;
-      item                             m_itemClick;
+      ::item_pointer                   m_pitemClick;
       ::write_text::font_pointer           m_pfontTab;
       //__pointer(::create)              m_pcreate;
       ::count                          m_iRestoredTabCount;
@@ -157,7 +157,7 @@ namespace user
       virtual void _001OnTabClick(::index iTab);
       virtual void _001OnTabClose(::index iTab);
       virtual ::user::interaction * GetNotifyWnd();
-      void on_hit_test(::item & item) override;
+      ::item_pointer on_hit_test(const ::point_i32 & point) override;
       virtual enum_position DragHitTest(const ::point_i32 & point);
       virtual void GetDragRect(RECTANGLE_I32 * prectangle, enum_position eposition);
 

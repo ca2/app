@@ -85,7 +85,7 @@ namespace userfs
    }
 
 
-   bool list::on_click(const ::item & item)
+   bool list::on_click(::item * pitem)
    {
 
       ::user::range range;

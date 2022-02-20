@@ -479,9 +479,9 @@ namespace user
 
          }
 
-         m_itemHover = hit_test(pmouse);
+         m_pitemHover = hit_test(pmouse);
 
-         if (m_itemHover.is_set())
+         if (::is_set(m_pitemHover))
          {
 
             auto psession = get_session();
@@ -501,10 +501,10 @@ namespace user
          if (m_bSelDrag)
          {
 
-            if (m_itemHover.m_iItem != m_pdata->m_iSelEnd)
+            if (::is_item(m_pitemHover, m_pdata->m_iSelEnd))
             {
 
-               m_pdata->m_iSelEnd = m_itemHover;
+               m_pdata->m_iSelEnd = m_pitemHover;
 
                m_pdata->internal_update_sel_char();
 
@@ -651,7 +651,7 @@ namespace user
 
 
 
-      void edit_impl::on_hit_test(::item & item)
+      ::item_pointer edit_impl::on_hit_test(const ::point_i32 &point)
       {
 
          //::point_f64 pointHit = item.m_pointHitTest;
@@ -679,9 +679,9 @@ namespace user
 
          //}
 
+         //return m_pdata->hit_test(point);
 
-
-         item = m_pdata->hit_test(item.m_pointHitTest);
+         return nullptr;
 
       }
 

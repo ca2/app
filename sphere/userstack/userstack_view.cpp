@@ -304,7 +304,7 @@ namespace userstack
    }
 
 
-   void impact::on_hit_test(::item & item)
+   ::item_pointer impact::on_hit_test(const ::point_i32 &point)
    {
       
       ::rectangle_i32 rectangleArea;

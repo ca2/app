@@ -812,7 +812,20 @@ void system::call_init_system()
 
    //auto estatus = init_system();
 
-   init_system();
+   try
+   {
+
+      init_system();
+
+   }
+   catch (::exception & exception)
+   {
+
+      os_message_box(this, exception.m_strMessage, m_strAppId, e_message_box_ok, exception.m_strDetails);
+
+      m_estatus = exception.m_estatus;
+
+   }
 
    //if(!estatus)
    //{

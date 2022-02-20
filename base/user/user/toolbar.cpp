@@ -516,27 +516,17 @@ namespace user
          }
 
          // item is enabled
-         if (m_itemPressed)
+         if (::is_item(m_pitemPressed, iItem))
          {
 
-            if (m_itemPressed == iItem)
-            {
-
-               estate |= e_toolbar_item_state_pressed;
-
-            }
+            estate |= e_toolbar_item_state_pressed;
 
          }
 
-         if (m_itemHover)
+         if (::is_item(m_pitemHover, iItem))
          {
 
-            if (m_itemHover == iItem)
-            {
-
-               estate |= e_toolbar_item_state_hover;
-
-            }
+            estate |= e_toolbar_item_state_hover;
 
          }
 

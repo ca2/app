@@ -51,7 +51,7 @@ namespace user
 
       auto color = puserinteraction->get_color(pstyle, ::e_element_background);
 
-      if (puserinteraction->m_itemHover == ::e_element_close_icon)
+      if (puserinteraction->m_pitemHover->m_eelement == ::e_element_close_icon)
       {
 
          color.alpha = 180;

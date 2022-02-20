@@ -78,7 +78,7 @@ simple_toolbar::simple_toolbar()
    m_rectangleBorder.set(9, 9);
    // end lakic
 
-   m_itemCurrent = -1;
+   //m_pitemCurrent = -1;
 
    //m_bTransparentBackground = true;
 
@@ -270,7 +270,7 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    for (index iItem = 0; iItem < m_itema.get_size(); iItem++)
    {
 
-      if (m_itemHover != iItem)
+      if (::is_item(m_pitemHover, iItem))
       {
 
          _001DrawItem(pgraphics, iItem);
@@ -279,10 +279,10 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    }
 
-   if (m_itemHover.is_set())
+   if (::is_set(m_pitemHover))
    {
 
-      _001DrawItem(pgraphics, m_itemHover);
+      _001DrawItem(pgraphics, m_pitemHover);
 
    }
 
@@ -311,7 +311,7 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 //   if (m_bTransparentBackground)
 //   {
 //      class imaging & imaging = psystem->imaging();
-//      if (m_itemHover)
+//      if (m_pitemHover)
 //      {
 //         imaging.color_blend(
 //         pgraphics,
@@ -1275,7 +1275,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 //
 //      _001Hover(point);
 //
-//      if (m_itemHover)
+//      if (m_pitemHover)
 //      {
 //
 //         pmouse->m_bRet = true;
@@ -1298,9 +1298,9 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 //
 //   auto point = screen_to_client(pmouse->m_point);
 //
-//   m_itemCurrent = hit_test(pmouse);
+//   m_pitemCurrent = hit_test(pmouse);
 //
-//   if (m_itemCurrent)
+//   if (m_pitemCurrent)
 //   {
 //
 //      pmouse->m_bRet = true;
@@ -1336,12 +1336,12 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 //
 //      auto item = hit_test(pmouse);
 //
-//      if (item && item == m_itemCurrent)
+//      if (item && item == m_pitemCurrent)
 //      {
 //
-//         m_itemCurrent = item; // update point_i32 and flags
+//         m_pitemCurrent = item; // update point_i32 and flags
 //
-//         on_click(m_itemCurrent);
+//         on_click(m_pitemCurrent);
 //
 //         pmouse->m_bRet = true;
 //
@@ -1365,7 +1365,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 //
 //      }
 //
-//      m_itemCurrent = -1;
+//      m_pitemCurrent = -1;
 //
 //      set_need_redraw();
 //
@@ -1383,18 +1383,18 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 //}
 
 
-void simple_toolbar::on_hit_test(::item & item)
+::item_pointer simple_toolbar::on_hit_test(const ::point_i32 &point)
 {
 
    for (index iItem = 0; iItem < m_itema.get_size(); iItem++)
    {
 
-      if (m_itema[iItem]->m_rectangle.contains(item.m_pointHitTest))
+      if (m_itema[iItem]->m_rectangle.contains(point))
       {
 
-         item = ::item( ::e_element_item, iItem );
+         //item = ::item( ::e_element_item, iItem );
 
-         return;
+         return m_itema[iItem];
 
       }
 
@@ -1405,9 +1405,9 @@ void simple_toolbar::on_hit_test(::item & item)
    if (has_mouse_capture())
    {
 
-      item = ::e_element_none;
+      //item = ::e_element_none;
 
-      return;
+      return nullptr;
 
    }
 
@@ -1417,20 +1417,20 @@ void simple_toolbar::on_hit_test(::item & item)
 
    screen_to_client(rectangleWindow);
 
-   if (rectangleWindow.contains(item.m_pointHitTest))
+   if (rectangleWindow.contains(point))
    {
 
-      item = ::e_element_none;
+      //item = ::e_element_none;
 
-      return;
+      return nullptr;
 
    }
    else
    {
 
-      item = ::e_element_none;
+      //item = ::e_element_none;
 
-      return;
+      return nullptr;
 
    }
 
@@ -1442,12 +1442,12 @@ void simple_toolbar::on_hit_test(::item & item)
 //
 //   auto itemHover = hit_test(pmouse);
 //
-//   if (m_itemHover != itemHover)
+//   if (m_pitemHover != itemHover)
 //   {
 //
 //      track_mouse_leave();
 //
-//      m_itemHover = itemHover;
+//      m_pitemHover = itemHover;
 //
 //      OnUpdateHover();
 //
@@ -1501,19 +1501,19 @@ void simple_toolbar::_001OnTimer(::timer * ptimer)
 }
 
 
-bool simple_toolbar::on_click(const ::item & item)
+bool simple_toolbar::on_click(::item * pitem)
 {
 
    __pointer(::user::interaction) puserinteraction = get_owner();
 
-   if (!item.is_set())
+   if (!::is_set(pitem))
    {
 
       return false;
 
    }
 
-   ::message::command command(m_itema[item]->m_atom);
+   ::message::command command(pitem->m_atom);
 
    puserinteraction->_001SendCommand(&command);
 
@@ -2514,7 +2514,7 @@ size_i32 simple_toolbar::CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics
 //
 //   __pointer(::user::message) pusermessage(pmessage);
 //
-//   m_itemHover = ::e_element_none;
+//   m_pitemHover = ::e_element_none;
 //
 //   OnUpdateHover();
 //

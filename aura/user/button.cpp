@@ -338,7 +338,7 @@ namespace user
          crBk = argb(255, 127, 127, 127);
 
       }
-      else if (m_itemHover.is_set())
+      else if (m_pitemHover && m_pitemHover->is_set())
       {
 
          // Hover Background
@@ -383,7 +383,7 @@ namespace user
          crBorder = argb(255, 255, 255, 255);
 
       }
-      else if (m_itemHover.is_set())
+      else if (::is_set(m_pitemHover))
       {
 
          crBorder = argb(255, 100, 100, 200);
@@ -511,7 +511,7 @@ namespace user
    //      crText = argb(255, 0, 0, 0);
 
    //   }
-   //   else if (m_itemHover.is_set())
+   //   else if (::is_set(m_pitemHover))
    //   {
 
    //      crText = argb(255, 80, 80, 80);
@@ -546,7 +546,7 @@ namespace user
          crBackground = argb(255, 240, 240, 240);
 
       }
-      else if (m_itemHover.is_set())
+      else if (::is_set(m_pitemHover))
       {
 
          crBackground = argb(255, 240, 240, 240);
@@ -759,7 +759,7 @@ namespace user
 
       }
 
-//      if(m_itemHover)
+//      if(m_pitemHover)
 //      {
 //
 //         pgraphics->fill_rectangle(::rectangle_i32(0, 0, 20, 20), argb(255, 255, 0, 0));
@@ -796,7 +796,7 @@ namespace user
 
       if(echeck() == ::check_checked && ::is_ok(m_pbitmap->m_pimageSel))
          pimage = m_pbitmap->m_pimageSel;
-      else if(m_itemHover.is_set() && is_window_enabled() && ::is_ok(m_pbitmap->m_pimageHover))
+      else if(::is_set(m_pitemHover) && is_window_enabled() && ::is_ok(m_pbitmap->m_pimageHover))
          pimage = m_pbitmap->m_pimageHover;
       else if(::is_ok(m_pbitmap->m_pimageFocus) && has_keyboard_focus())
          pimage = m_pbitmap->m_pimageFocus;   // third image for focused
@@ -892,7 +892,7 @@ namespace user
 
          if (echeck() == ::check_checked && ::is_ok(m_pbitmap->m_pimageSel))
             pimage = m_pbitmap->m_pimageSel;
-         else if (m_itemHover.is_set() && is_window_enabled() && ::is_ok(m_pbitmap->m_pimageHover))
+         else if (::is_set(m_pitemHover) && is_window_enabled() && ::is_ok(m_pbitmap->m_pimageHover))
             pimage = m_pbitmap->m_pimageHover;
          else if (::is_ok(m_pbitmap->m_pimageFocus) && has_keyboard_focus())
            pimage = m_pbitmap->m_pimageFocus;   // third image for focused
@@ -970,7 +970,7 @@ namespace user
 
       }
 
-      if(m_itemHover.is_set())
+      if(::is_set(m_pitemHover))
       {
 
          color.hls_rate(0.0,0.2,0.0);
@@ -1229,7 +1229,7 @@ namespace user
 
          }
 
-         bItemHover     = m_itemHover.is_set();
+         bItemHover     = ::is_set(m_pitemHover);
 
          bSubItemHover  = bItemHover;
 

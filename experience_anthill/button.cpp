@@ -205,7 +205,7 @@ namespace experience
    }
 
 
-   void button::on_hit_test(::item & item)
+   ::item_pointer button::on_hit_test(const ::point_i32 &point)
    {
 
       synchronous_lock synchronouslock(mutex());

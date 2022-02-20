@@ -65,7 +65,7 @@ namespace experience
             crText = m_pcontrolbox->m_colorButtonForeDisabled;
 
          }
-         else if (m_itemHover.is_set())
+         else if (::is_set(m_pitemHover))
          {
 
             pgraphics->set(m_pcontrolbox->m_pbrushButtonBackSel);
@@ -199,7 +199,7 @@ namespace experience
       }
 
 
-      void button::on_hit_test(::item & item)
+      ::item_pointer button::on_hit_test(const ::point_i32 &point)
       {
 
          synchronous_lock synchronouslock(mutex());
@@ -207,22 +207,18 @@ namespace experience
          if (m_spregion.is_null())
          {
 
-            item = ::e_element_none;
-
-            return;
+            return nullptr;
 
          }
 
-         if (!m_spregion->contains(item.m_pointHitTest))
+         if (!m_spregion->contains(point))
          {
 
-            item = ::e_element_none;
-
-            return;
+            return nullptr;
 
          }
 
-         item = ::e_element_client;
+         return __new(::item(::e_element_client));
 
       }
 

@@ -108,7 +108,7 @@ namespace user
                pgraphics->set_text_color(argb(255, 160, 160, 160));
 
             }
-            else if (should_hover() && (m_itemHover.is_set() || psession->m_puiLastLButtonDown == this))
+            else if (should_hover() && (::is_set(m_pitemHover) || psession->m_puiLastLButtonDown == this))
             {
 
                pgraphics->fill_rectangle(rectangleClient, argb(255, 200, 200, 230));
@@ -412,7 +412,7 @@ namespace user
 
    //}
 
-   //void still::on_hit_test(::item & item)
+   //::item_pointer still::on_hit_test(const ::point_i32 &point)
    //{
 
    //   return control::hit_test(pmouse);
@@ -652,7 +652,7 @@ namespace user
          // Backround Pressed
          crBk = argb(255, 192, 192, 250);
       }
-      else if (m_itemHover.is_set())
+      else if (::is_set(m_pitemHover))
       {
          crBk = argb(255, 220, 220, 250);
       }
@@ -692,7 +692,7 @@ namespace user
       {
          crBorder = argb(255, 255, 255, 255);
       }
-      else if (m_itemHover.is_set())
+      else if (::is_set(m_pitemHover))
       {
          crBorder = argb(255, 100, 100, 200);
       }
@@ -743,7 +743,7 @@ namespace user
          //         pgraphics->set_text_color(pstyle->m_colorTextPress);
          pbrushText->create_solid(get_color(pstyle, e_element_text, e_state_pressed));
       }
-      else if (m_itemHover.is_set())
+      else if (::is_set(m_pitemHover))
       {
          //         pgraphics->set_text_color(pstyle->m_colorTextHover);
          pbrushText->create_solid(get_color(pstyle, e_element_text, e_state_hover));
@@ -841,7 +841,7 @@ namespace user
             pgraphics->fill_rectangle(rectangleClient, get_color(pstyle, e_element_background, e_state_disabled));
 
          }
-         else if (m_itemHover.is_set() || is_left_button_pressed())
+         else if (::is_set(m_pitemHover) || is_left_button_pressed())
          {
 
             //pgraphics->draw_inset_3d_rectangle(rectangleClient,pstyle->_001GetColor(color_border_hover),pstyle->_001GetColor(color_border_hover));

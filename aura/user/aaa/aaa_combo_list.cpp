@@ -577,7 +577,7 @@ namespace user
       if (m_pcombo)
       {
 
-         m_pcombo->m_itemHover = m_pcombo->m_itemCurrent;
+         m_pcombo->m_pitemHover = m_pcombo->m_pitemCurrent;
 
          set_need_redraw();
 
@@ -682,19 +682,19 @@ namespace user
       else if (pkey->m_ekey == ::user::e_key_down)
       {
 
-         m_pcombo->m_itemHover = minimum(m_pcombo->m_itemHover + 1, m_pcombo->_001GetListCount() - 1);
+         m_pcombo->m_pitemHover = minimum(m_pcombo->m_pitemHover + 1, m_pcombo->_001GetListCount() - 1);
 
       }
       else if (pkey->m_ekey == ::user::e_key_up)
       {
 
-         m_pcombo->m_itemHover = maximum(m_pcombo->m_itemHover - 1, 0);
+         m_pcombo->m_pitemHover = maximum(m_pcombo->m_pitemHover - 1, 0);
 
       }
       else if (pkey->m_ekey == ::user::e_key_return)
       {
 
-         m_pcombo->set_current_item(m_pcombo->m_itemHover, ::e_source_user);
+         m_pcombo->set_current_item(m_pcombo->m_pitemHover, ::e_source_user);
 
          m_pcombo->ShowDropDown(false);
 
@@ -866,10 +866,10 @@ namespace user
 
       //auto itemHover = hit_test(pmouse);
 
-      //if (itemHover != m_pcombo->m_itemHover)
+      //if (itemHover != m_pcombo->m_pitemHover)
       //{
 
-      //   m_pcombo->m_itemHover = itemHover.m_iItem;
+      //   m_pcombo->m_pitemHover = itemHover.m_iItem;
 
       //   set_need_redraw();
 
@@ -906,7 +906,7 @@ namespace user
    }
 
 
-   void list_box::on_hit_test(::item & item)
+   ::item_pointer list_box::on_hit_test(const ::point_i32 &point)
    {
 
       if (m_pcombo == nullptr)
@@ -1034,16 +1034,16 @@ namespace user
 
       }
 
-      m_pcombo->m_itemHover = current_item();
+      m_pcombo->m_pitemHover = current_item();
 
-      if (!m_pcombo->m_itemHover.is_set())
+      if (!m_pcombo->::is_set(m_pitemHover))
       {
 
-         m_pcombo->m_itemHover = 0;
+         m_pcombo->m_pitemHover = 0;
 
       }
 
-      _001EnsureVisible(m_pcombo->m_itemHover);
+      _001EnsureVisible(m_pcombo->m_pitemHover);
 
       if (!is_window())
       {

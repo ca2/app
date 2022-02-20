@@ -1950,7 +1950,7 @@ namespace user
 
             }
 
-            m_itemHover = e_element_client;
+            m_pitemHover = __new(::item(e_element_client));
 
          }
 
@@ -1962,7 +1962,7 @@ namespace user
    void plain_edit::on_message_mouse_leave(::message::message * pmessage)
    {
 
-      m_itemHover = e_element_none;
+      m_pitemHover = __new(::item(e_element_none));
 
       set_need_redraw();
 

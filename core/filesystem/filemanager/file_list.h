@@ -93,8 +93,8 @@ namespace filemanager
       virtual void _001OnTimer(::timer * ptimer) override;
 
 
-      virtual bool on_click(const ::item & item) override;
-      virtual bool on_right_click(const ::item & item) override;
+      virtual bool on_click(::item * pitem) override;
+      virtual bool on_right_click(::item * pitem) override;
 
       virtual void _001OnAfterSort() override;
 

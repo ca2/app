@@ -37,7 +37,7 @@ namespace user
       m_econtroltype = ::user::e_control_type_tree;
 
       m_pitemFirstVisible        = nullptr;
-      m_itemHover                = nullptr;
+      m_pitemHover                = nullptr;
       m_iItemCount               = 0;
       m_dItemHeight              = 18.0;
       m_iImageExpand             = -1;
@@ -592,7 +592,7 @@ namespace user
 
    void tree::on_message_mouse_leave(::message::message * pmessage)
    {
-      m_itemHover = nullptr;
+      m_pitemHover = nullptr;
       set_need_redraw();
       pmessage->m_bRet = true;
    }
@@ -777,7 +777,7 @@ namespace user
    }
 
 
-   bool tree::on_click(const ::item & item)
+   bool tree::on_click(::item * pitem)
    {
 
       return false;
@@ -785,7 +785,7 @@ namespace user
    }
 
 
-   bool tree::on_right_click(const ::item & item)
+   bool tree::on_right_click(::item * pitem)
    {
 
       return false;
@@ -1319,10 +1319,10 @@ namespace user
 
       //}
 
-      if(pitem != m_itemHover)
+      if(pitem != m_pitemHover)
       {
 
-         m_itemHover = pitem;
+         m_pitemHover = pitem;
 
          set_need_redraw();
 
@@ -1908,7 +1908,7 @@ namespace user
       if (pitem == nullptr)
       {
 
-         m_itemHover = nullptr;
+         m_pitemHover = nullptr;
 
          return true;
 
@@ -1921,7 +1921,7 @@ namespace user
 
       }
 
-      return m_itemHover == pitem;
+      return m_pitemHover == pitem;
 
    }
 
@@ -1964,7 +1964,7 @@ namespace user
    bool tree::is_hover(const ::data::tree_item * pitem) const
    {
 
-      return pitem && m_itemHover == pitem;
+      return pitem && m_pitemHover == pitem;
 
    }
 
@@ -1972,14 +1972,14 @@ namespace user
    bool tree::is_hover(const ::data::item * pitem) const
    {
 
-      if (!pitem || !m_itemHover)
+      if (!pitem || !m_pitemHover)
       {
 
          return false;
 
       }
 
-      if (m_itemHover->m_pdataitem != pitem)
+      if (m_pitemHover->m_pdataitem != pitem)
       {
 
          return false;

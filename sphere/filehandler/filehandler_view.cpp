@@ -121,7 +121,7 @@ namespace filehandler
       color32_t color32;
       __pointer(::aura::application) papp = pview->get_application();
       
-      bool bHover = pview->m_itemHover == m_iIndex;
+      bool bHover = pview->m_pitemHover == m_iIndex;
 
       color32 = bHover ? argb(255, 230, 255, 230) : argb(255, 200, 255, 200);
       if(!Sess(papp).savings().is_trying_to_save(::e_resource_processing)
@@ -269,7 +269,7 @@ namespace filehandler
    }
 
 
-   void impact::on_hit_test(::item & item)
+   ::item_pointer impact::on_hit_test(const ::point_i32 &point)
    {
 
       if (m_plist.is_null())

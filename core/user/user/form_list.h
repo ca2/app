@@ -61,8 +61,8 @@ namespace user
       virtual void _001PlaceControl(::user::interaction * pinteraction, index iEditItem, bool bClick = false, bool bOnlySizeAndPosition = false) override;
       virtual void _001OnShowControl(::user::interaction * pinteraction);
       ::user::interaction * _001GetControl(index iItem, index iSubItem) override;
-      virtual bool on_click(const ::item & item) override;
-      virtual bool on_right_click(const ::item & item) override;
+      virtual bool on_click(::item * pitem) override;
+      virtual bool on_right_click(::item * pitem) override;
       void _001OnTimer(::timer * ptimer) override;
 
       using list::_001GetSelection;

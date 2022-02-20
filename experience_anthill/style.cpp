@@ -548,9 +548,9 @@ namespace experience
 
                   pgraphics->draw_path(ppath);
 
-                  if (ptab->m_itemHover == iTab
-                     && ptab->m_itemHover != ::e_element_close_tab_button
-                     && !ptab->m_itemHover.in_range(::e_element_split, 100))
+                  if (ptab->m_pitemHover == iTab
+                     && ptab->m_pitemHover != ::e_element_close_tab_button
+                     && !ptab->m_pitemHover.in_range(::e_element_split, 100))
                   {
 
                      pgraphics->set(ptab->get_font(pstyle, ::user::e_state_selected | ::user::e_state_hover));
@@ -579,9 +579,9 @@ namespace experience
 
                   ppath->close_figure();
 
-                  if (ptab->m_itemHover == iTab
-                     && ptab->m_itemHover != ::e_element_close_tab_button
-                     && !ptab->m_itemHover.in_range(::e_element_split, 100))
+                  if (ptab->m_pitemHover == iTab
+                     && ptab->m_pitemHover != ::e_element_close_tab_button
+                     && !ptab->m_pitemHover.in_range(::e_element_split, 100))
                   {
 
                      ppane->m_pbrushFillHover->CreateLinearGradientBrush(rectangleBorder.top_left(),rectangleBorder.bottom_left(),argb(230,215,215,210),argb(250,235,235,230));
@@ -707,9 +707,9 @@ namespace experience
                   
                   auto pstyle = ptab->get_style(pgraphics);
 
-                  if (ptab->m_itemHover == iTab
-                     && ptab->m_itemHover != ::e_element_close_tab_button
-                     && !ptab->m_itemHover.in_range(::e_element_split, 100))
+                  if (ptab->m_pitemHover == iTab
+                     && ptab->m_pitemHover != ::e_element_close_tab_button
+                     && !ptab->m_pitemHover.in_range(::e_element_split, 100))
                   {
 
                      pgraphics->set(ptab->get_font(pstyle, ::user::e_state_selected | ::user::e_state_hover));
@@ -749,9 +749,9 @@ namespace experience
 
                   ppath->close_figure();
 
-                  if (ptab->m_itemHover == iTab
-                     && ptab->m_itemHover != ::e_element_close_tab_button
-                     && !ptab->m_itemHover.in_range(::e_element_split, 100))
+                  if (ptab->m_pitemHover == iTab
+                     && ptab->m_pitemHover != ::e_element_close_tab_button
+                     && !ptab->m_pitemHover.in_range(::e_element_split, 100))
                   {
 
                      ppane->m_pbrushFillHover->CreateLinearGradientBrush(rectangleBorder.top_left(),rectangleBorder.bottom_left(),argb(230,215,215,210),argb(250,235,235,230));
@@ -838,8 +838,8 @@ namespace experience
 
                pgraphics->set(ptab->get_font(pstyle, ::e_element_close_tab_button));
 
-               if (ptab->m_itemHover == iTab
-                  && ptab->m_itemHover == ::e_element_close_tab_button)
+               if (ptab->m_pitemHover == iTab
+                  && ptab->m_pitemHover == ::e_element_close_tab_button)
                {
 
                   pbrushText = ptab->get_data()->m_pbrushCloseHover;
@@ -905,7 +905,7 @@ namespace experience
                rectangleEmp.deflate(1,1);
                ::draw2d::enum_alpha_mode emode = pgraphics->m_ealphamode;
                pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-               if(ptab->m_itemHover == (::enum_element)(::e_element_split + i))
+               if(ptab->m_pitemHover == (::enum_element)(::e_element_split + i))
                {
 
                   pgraphics->fill_rectangle(rectangleEmp,argb(128, 150, 184, 255));
@@ -1614,7 +1614,7 @@ namespace experience
 
       auto estyle = ptoolbar->get_item_style(iItem);
 
-//      bool bHover = ptoolbar->m_itemHover == iItem;
+//      bool bHover = ptoolbar->m_pitemHover == iItem;
 
       auto puser = user();
 

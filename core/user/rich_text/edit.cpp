@@ -341,10 +341,10 @@ namespace user
       }
 
 
-      void edit::on_hit_test(::item & item)
+      ::item_pointer edit::on_hit_test(const ::point_i32 &point)
       {
 
-         ::user::interaction::on_hit_test(item);
+         return ::user::interaction::on_hit_test(point);
 
       }
 

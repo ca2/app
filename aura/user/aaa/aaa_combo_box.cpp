@@ -261,7 +261,7 @@ namespace user
          if (psession->get_focus_ui() == this)
          {
 
-            if (m_itemHover)
+            if (m_pitemHover)
             {
 
                colorDropDown = ::color::color(200, 200, 250, 255);
@@ -278,7 +278,7 @@ namespace user
          else
          {
 
-            if (m_itemHover)
+            if (m_pitemHover)
             {
 
                colorDropDown = ::color::color(200, 200, 250, 255);
@@ -370,7 +370,7 @@ namespace user
       if(m_bEdit)
       {
 
-         if(!m_itemCurrent)
+         if(!m_pitemCurrent)
          {
 
             ::user::plain_edit::_001GetText(str);
@@ -379,7 +379,7 @@ namespace user
          else
          {
 
-            _001GetListText(m_itemCurrent, str);
+            _001GetListText(m_pitemCurrent, str);
 
          }
 
@@ -387,7 +387,7 @@ namespace user
       else
       {
 
-         if(!m_itemCurrent)
+         if(!m_pitemCurrent)
          {
 
             str = m_strText;
@@ -396,7 +396,7 @@ namespace user
          else
          {
 
-            _001GetListText(m_itemCurrent, str);
+            _001GetListText(m_pitemCurrent, str);
 
          }
 
@@ -453,7 +453,7 @@ namespace user
    }
 
 
-   void combo_box::on_hit_test(::item & item)
+   ::item_pointer combo_box::on_hit_test(const ::point_i32 &point)
    {
 
       ::rectangle rectangleElement;
@@ -571,7 +571,7 @@ namespace user
       if (is_window_enabled())
       {
 
-         if (!m_bEdit || m_itemHover == e_element_drop_down)
+         if (!m_bEdit || m_pitemHover == e_element_drop_down)
          {
 
             pmouse->m_ecursor = cursor_arrow;
@@ -590,7 +590,7 @@ namespace user
 
       __UNREFERENCED_PARAMETER(pmessage);
 
-      m_itemHover = e_element_none;
+      m_pitemHover = e_element_none;
 
       set_need_redraw();
 
@@ -806,10 +806,10 @@ namespace user
    void combo_box::set_current_item(const ::item & item, const ::action_context & context)
    {
 
-      if (m_itemCurrent != item)
+      if (m_pitemCurrent != item)
       {
 
-         m_itemCurrent = item;
+         m_pitemCurrent = item;
 
          ::topic topic;
 
@@ -859,7 +859,7 @@ namespace user
    //item combo_box::current_item()
    //{
 
-   //   return m_itemCurrent;
+   //   return m_pitemCurrent;
 
    //}
 
@@ -910,12 +910,12 @@ namespace user
 
       }
 
-      m_itemCurrent = _001FindListText(str);
+      m_pitemCurrent = _001FindListText(str);
 
       if (m_plist.is_set())
       {
 
-         m_plist->on_change_combo_sel(m_itemCurrent);
+         m_plist->on_change_combo_sel(m_pitemCurrent);
 
       }
 
@@ -1158,8 +1158,8 @@ namespace user
 
       m_straValue.erase_all();
 
-      m_itemCurrent = -1;
-      m_itemHover = -1;
+      m_pitemCurrent = -1;
+      m_pitemHover = -1;
 
    }
 
@@ -1552,7 +1552,7 @@ namespace user
    bool combo_box::has_action_hover()
    {
 
-      return ::user::plain_edit::m_itemHover || is_drop_down();
+      return ::user::plain_edit::m_pitemHover || is_drop_down();
 
    }
 

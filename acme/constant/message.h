@@ -93,6 +93,7 @@ enum enum_message : ::i64
    e_message_ime_end_composition          = 0x010E,
    e_message_ime_composition              = 0x010F,
 
+   e_message_device_change                = 0x0219,
 
    e_message_ime_set_context              = 0x0281,
    e_message_ime_notify                   = 0x0282,

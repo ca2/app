@@ -119,7 +119,7 @@ namespace app_app
       if (::is_set(pitem))
       {
 
-         bool bHover = m_itemHover == ::e_element_close_button;
+         bool bHover = m_pitemHover == ::e_element_close_button;
 
          double dSourcePeriod;
          

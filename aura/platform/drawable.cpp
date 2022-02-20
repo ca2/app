@@ -34,33 +34,22 @@ namespace aura
    }
 
 
-   void drawable::hit_test(::item& item, const ::point_i32& point)
+   ::item_pointer drawable::hit_test(const ::point_i32& point)
    {
 
-      __UNREFERENCED_PARAMETER(item);
       __UNREFERENCED_PARAMETER(point);
 
+      return nullptr;
+
    }
 
 
-   void drawable::on_hit_test(::item& item)
+   ::item_pointer drawable::on_hit_test(const ::point_i32 & point)
    {
 
-      __UNREFERENCED_PARAMETER(item);
+      return nullptr;
 
    }
-
-
-   //drawable::drawable()
-   //{
-
-   //}
-
-
-   //drawable::~drawable()
-   //{
-
-   //}
 
 
    void drawable::_000OnDraw(::draw2d::graphics_pointer& pgraphics)
@@ -75,6 +64,7 @@ namespace aura
       _000OnDraw(pgraphics);
 
    }
+
 
    void drawable::_001DeferPaintLayeredWindowBackground(::draw2d::graphics_pointer& pgraphics)
    {
@@ -129,32 +119,38 @@ namespace aura
 
    bool drawable::is_composite()
    {
+
       return false;
+
    }
 
 
-   void drawable::hit_test(::item& item, ::message::mouse* pmouse)
+   item_pointer drawable::hit_test(::message::mouse* pmouse)
    {
 
-      hit_test(item, pmouse->m_point);
+      return nullptr;
+
+      //return hit_test(pmouse->m_point);
 
    }
 
 
-   ::item drawable::hit_test(const ::point_i32& point)
-   {
+   //::item * drawable::hit_test(const ::point_i32& point)
+   //{
 
-      ::item item; hit_test(item, point); return item;
+   //   ::item item; hit_test(item, point); return item;
 
-   }
+   //}
 
 
-   ::item drawable::hit_test(::message::mouse* pmouse)
-   {
+   //::item * drawable::hit_test(::message::mouse* pmouse)
+   //{
 
-      return hit_test(pmouse->m_point);
+   //   return nullptr;
 
-   }
+   //   //return hit_test(pmouse->m_point);
+
+   //}
 
 
 } // namespace aura

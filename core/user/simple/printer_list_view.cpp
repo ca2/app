@@ -80,10 +80,10 @@ void simple_printer_list_view::on_message_create(::message::message * pmessage)
 }
 
 
-bool simple_printer_list_view::on_click(const ::item & itemClick)
+bool simple_printer_list_view::on_click(::item * pitem)
 {
 
-   if (!itemClick.is_set())
+   if (!::is_set(pitem))
    {
 
       return false;
@@ -91,7 +91,7 @@ bool simple_printer_list_view::on_click(const ::item & itemClick)
    }
    ::user::list_item item(this);
    item.m_plist = this;
-   item.m_iItem = itemClick.m_iItem;
+   item.m_iItem = pitem->m_iItem;
    item.m_iSubItem = 0;
    item.m_iListItem = -1;
    m_psimplemeshdata->_001GetItemText(&item);

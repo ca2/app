@@ -861,7 +861,7 @@
 //   //}
 //
 //
-//   //void control::on_hit_test(::item & item)
+//   //::item_pointer control::on_hit_test(const ::point_i32 &point)
 //   //{
 //
 //   //   auto rectangleClient = get_client_rect();

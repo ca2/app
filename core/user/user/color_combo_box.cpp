@@ -199,10 +199,10 @@ namespace user
 
       __UNREFERENCED_PARAMETER(pmessage);
 
-      if (!m_itemHover.is_set())
+      if (!::is_set(m_pitemHover))
       {
 
-         m_itemHover = ::e_element_client;
+         m_pitemHover = __new(::item(::e_element_client));
 
          set_need_redraw();
 
@@ -220,7 +220,7 @@ namespace user
 
       __UNREFERENCED_PARAMETER(pmessage);
 
-      m_itemHover = ::e_element_none;
+      m_pitemHover = nullptr;
 
       set_need_redraw();
 
@@ -318,7 +318,7 @@ namespace user
       //   if (psession->get_focus_ui() == this)
       //   {
 
-      //      if (m_itemHover)
+      //      if (m_pitemHover)
       //      {
 
       //         colorDropDown = color_action_hover_border_color;
@@ -335,7 +335,7 @@ namespace user
       //   else
       //   {
 
-      //      if (m_itemHover)
+      //      if (m_pitemHover)
       //      {
 
       //         colorDropDown = color_action_hover_border_color;

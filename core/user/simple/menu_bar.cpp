@@ -164,7 +164,7 @@ bool simple_menu_bar::_track_popup_menu(index iItem)
    INFORMATION("simple_menu_bar::_track_popup_menu" << iItem);
    
    m_iTracking = iItem;
-   m_itemPressed = iItem;
+   m_pitemPressed = __new(::item(::e_element_item, iItem));
    set_need_redraw();
    ::rectangle_i32 rectangle;
    _001GetElementRect(iItem, rectangle, ::e_element_item, ::user::e_state_none);
@@ -881,7 +881,7 @@ void simple_menu_bar::_001OnDropDown(index iItem)
 }
 
 
-bool simple_menu_bar::on_click(const ::item & item)
+bool simple_menu_bar::on_click(::item * pitem)
 {
    
    return false;
@@ -892,7 +892,7 @@ bool simple_menu_bar::on_click(const ::item & item)
 //void simple_menu_bar::OnUpdateHover()
 //{
 //
-//   if (m_itemHover)
+//   if (m_pitemHover)
 //   {
 //
 //      //_track_popup_menu(m_iHover);

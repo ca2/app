@@ -4032,7 +4032,7 @@ namespace user
                   if(m_iClick == 1)
                   {
 
-                     if (!on_click({::e_element_item, _001DisplayToStrict(iDisplayItemLButtonUp)}))
+                     if (!on_click(new_item_with_index(_001DisplayToStrict(iDisplayItemLButtonUp))))
                      {
 
                         //index iItem = _001DisplayToStrict(iDisplayItemLButtonUp);
@@ -4151,7 +4151,7 @@ namespace user
 
 
 
-   bool list::on_click(const ::item & item)
+   bool list::on_click(::item * pitem)
    {
 
       auto ptopic = create_topic(::id_list_clicked);
@@ -4184,10 +4184,10 @@ namespace user
    }
 
 
-   bool list::on_right_click(const ::item & item)
+   bool list::on_right_click(::item * pitem)
    {
 
-      __UNREFERENCED_PARAMETER(item);
+      __UNREFERENCED_PARAMETER(pitem);
 
       return false;
 
@@ -4391,7 +4391,7 @@ namespace user
                {
 
                   //_001OnItemClick(iItem);
-                  on_click({ ::e_element_item, iItem });
+                  on_click(new_item_with_index(iItem));
 
                }
 
@@ -7204,7 +7204,7 @@ namespace user
    }
 
 
-   void list::set_current_item(const ::item & item, const ::action_context & context)
+   void list::set_current_item(::item * pitem, const ::action_context & context)
    {
 
       auto iCurrentSelection = m_rangeSelection.get_current_item();
@@ -7212,7 +7212,7 @@ namespace user
       if(iCurrentSelection >= 0)
       {
 
-         if (item == iCurrentSelection)
+         if (::is_item(pitem, iCurrentSelection))
          {
 
             //return ::success;
@@ -7225,14 +7225,14 @@ namespace user
 
       m_rangeSelection.clear();
 
-      if (item.is_set())
+      if (::is_set(pitem))
       {
 
          item_range itemrange;
 
-         itemrange.set_lower_bound(item);
+         itemrange.set_lower_bound(pitem->item_index());
 
-         itemrange.set_upper_bound(item);
+         itemrange.set_upper_bound(pitem->item_index());
 
          m_rangeSelection.add_item(itemrange);
 
@@ -7262,13 +7262,25 @@ namespace user
    }
 
 
-   item list::current_item()
+   item_pointer list::current_item()
    {
+
       if (m_rangeSelection.get_item_count() != 1)
-         return -1;
+      {
+       
+         return nullptr;
+
+      }
+      
       if (m_rangeSelection.ItemAt(0).get_lower_bound() == m_rangeSelection.ItemAt(0).get_upper_bound() && m_rangeSelection.ItemAt(0).get_lower_bound() >= 0)
-         return m_rangeSelection.ItemAt(0).get_lower_bound();
-      return -1;
+      {
+      
+         return new_item_with_index(m_rangeSelection.ItemAt(0).get_lower_bound());
+
+      }
+
+      return nullptr;
+
    }
 
 
@@ -7292,8 +7304,11 @@ namespace user
 
    ::count list::_001GetGroupItemCount(index iGroup)
    {
+      
       __UNREFERENCED_PARAMETER(iGroup);
+
       return -1;
+
    }
 
 

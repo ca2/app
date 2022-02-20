@@ -13,13 +13,14 @@ namespace user
 
 
       picture_interaction();
-      virtual ~picture_interaction();
+      ~picture_interaction() override;
+
 
       using ::user::interaction::hit_test;
-      virtual void hit_test(::item & item, const ::point_i32 & point) override;
+      virtual ::item_pointer hit_test(const ::point_i32 & point) override;
 
       using ::user::interaction::on_hit_test;
-      virtual void on_hit_test(::item & item) override;
+      virtual ::item_pointer on_hit_test(const ::point_i32 & point) override;
 
       virtual ::size_f64 get_request_size() override;
 

@@ -17,48 +17,48 @@ namespace user
    }
 
 
-   void picture_interaction::hit_test(::item & item, const ::point_i32 & point)
+   ::item_pointer picture_interaction::hit_test(const ::point_i32 & point)
    {
 
       if (is_picture_enabled())
       {
 
-         item.m_pointScreen = point;
+         //item.m_pointScreen = point;
 
-         auto pointClient = get_parent()->_001ScreenToClient(item.m_pointScreen);
+         //auto pointClient = get_parent()->_001ScreenToClient(item.m_pointScreen);
 
-         item.m_pointClient = drag_rtransform(pointClient);
+         //item.m_pointClient = drag_rtransform(pointClient);
 
-         item.m_pointClient += m_ppictureimpl->m_rectangle.size() / 2;
+         //item.m_pointClient += m_ppictureimpl->m_rectangle.size() / 2;
 
-         item.m_pointHitTest = item.m_pointClient + m_pointScroll;
+         //item.m_pointHitTest = item.m_pointClient + m_pointScroll;
 
-         on_hit_test(item);
+         return on_hit_test(point);
 
       }
       else
       {
 
-         return ::user::interaction::hit_test(item, point);
+         return ::user::interaction::hit_test(point);
 
       }
 
    }
 
 
-   void picture_interaction::on_hit_test(::item & item)
+   ::item_pointer picture_interaction::on_hit_test(const ::point_i32 &point)
    {
 
       if (is_picture_enabled())
       {
 
-         ::user::picture::on_hit_test(item);
+         return ::user::picture::on_hit_test(point);
 
       }
       else
       {
 
-         ::user::interaction::on_hit_test(item);
+         return ::user::interaction::on_hit_test(point);
 
       }
 

@@ -3184,9 +3184,19 @@ auto tickStartWithLock = ::duration::now();
 
 #ifdef __DEBUG
 
-            m_itemHover.set_drawn();
+            if (m_pitemHover)
+            {
 
-            m_itemCurrent.set_drawn();
+               m_pitemHover->set_drawn();
+
+            }
+
+            if (m_pitemCurrent)
+            {
+
+               m_pitemCurrent->set_drawn();
+
+            }
 
             auto tickEnd = ::duration::now();
 
@@ -4500,7 +4510,7 @@ return "";
    }
 
 
-   ::item* interaction::get_user_item(const ::item& item)
+   ::item_pointer interaction::get_user_item(const ::item& item)
    {
 
       for (auto& pitem : m_useritema)
@@ -8959,7 +8969,7 @@ void interaction::on_configuration_change(::user::primitive * pprimitiveSource)
 
       auto psession = get_session();
 
-      if (has_hover() && (m_itemHover.is_set() || psession->m_puiLastLButtonDown == this))
+      if (has_hover() && (::is_set(m_pitemHover) || psession->m_puiLastLButtonDown == this))
       {
 
          return ::user::e_state_hover;
@@ -14424,17 +14434,17 @@ order(zorderParam);
    }
 
 
-   void interaction::set_current_item(const ::item & item, const ::action_context & context)
+   void interaction::set_current_item(::item *pitem, const ::action_context & context)
    {
 
-      if (m_itemCurrent == item)
+      if (m_pitemCurrent == pitem)
       {
 
          return;
 
       }
 
-      m_itemCurrent = item;
+      m_pitemCurrent = pitem;
 
       if(has_handler())
       {
@@ -14443,7 +14453,7 @@ order(zorderParam);
 
          ptopic->m_puserelement = this;
 
-         ptopic->m_item = item;
+         ptopic->m_pitem = pitem;
 
          ptopic->m_actioncontext = context;
 
@@ -14460,18 +14470,18 @@ order(zorderParam);
    }
 
 
-   item interaction::current_item()
+   item_pointer interaction::current_item()
    {
 
-      return m_itemCurrent;
+      return m_pitemCurrent;
 
    }
 
 
-   item interaction::hover_item()
+   item_pointer interaction::hover_item()
    {
 
-      return m_itemHover;
+      return m_pitemHover;
 
    }
 
@@ -15036,24 +15046,29 @@ order(zorderParam);
    }
 
 
-   bool interaction::on_click(const ::item & item)
+   bool interaction::on_click(::item *pitem)
    {
 
-      if (item == ::e_element_close_button
-         || item == ::e_element_close_icon)
+      if (::is_set(pitem))
       {
 
-         post_message(e_message_close);
+         if (pitem->m_eelement == ::e_element_close_button
+            || pitem->m_eelement == ::e_element_close_icon)
+         {
 
-         return true;
+            post_message(e_message_close);
 
-      }
-      else if (item == ::e_element_switch_button)
-      {
+            return true;
 
-         post_message(e_message_switch);
+         }
+         else if (pitem->m_eelement == ::e_element_switch_button)
+         {
 
-         return true;
+            post_message(e_message_switch);
+
+            return true;
+
+         }
 
       }
 
@@ -15062,7 +15077,7 @@ order(zorderParam);
    }
 
 
-   bool interaction::on_right_click(const ::item & item)
+   bool interaction::on_right_click(::item * pitem)
    {
 
       return false;
@@ -15777,9 +15792,9 @@ order(zorderParam);
 
       }
 
-      hit_test(m_itemLButtonDown, pmouse);
+      m_pitemLButtonDown = hit_test(pmouse);
 
-      if(m_pdragmove && m_itemLButtonDown && m_itemLButtonDown == e_element_client)
+      if(m_pdragmove && ::is_set(m_pitemLButtonDown) && m_pitemLButtonDown->m_eelement == e_element_client)
       {
 
          get_wnd()->show_keyboard(false);
@@ -15803,7 +15818,7 @@ order(zorderParam);
       if (m_bClickDefaultMouseHandling || m_bHoverDefaultMouseHandling)
       {
 
-         if (m_itemLButtonDown.is_set())
+         if (::is_set(m_pitemLButtonDown))
          {
 
             auto psession = get_session();
@@ -15954,28 +15969,28 @@ order(zorderParam);
          if(m_bClickDefaultMouseHandling)
          {
 
-            auto item = hit_test(pmouse);
+            auto pitemLeftButtonUp = hit_test(pmouse);
 
             bool bSameUserInteractionAsMouseDown = psession->m_puiLastLButtonDown == this;
 
-            PARTICLE * p1 = &m_itemLButtonDown;
+            PARTICLE * p1 = m_pitemLButtonDown;
 
-            PARTICLE * p2 = &item;
+            PARTICLE * p2 = pitemLeftButtonUp;
 
             int iSize = sizeof(ITEM_BASE);
 
             int iMemCmp = !memcmp(p1, p2, iSize);
 
-            bool bSameItemAsMouseDown = (const item_base &) m_itemLButtonDown == (const item_base &) item;
+            bool bSameItemAsMouseDown = ::is_same_item(m_pitemLButtonDown, pitemLeftButtonUp);
 
-            TRACE("interaction::on_message_left_button_up item=" << (int) item.m_iItem<<", SameUserInteractionAsMsDwn="<< (int) bSameUserInteractionAsMouseDown<<", SameItemAsMsDwn=" << (int) bSameItemAsMouseDown);
+            TRACE("interaction::on_message_left_button_up item=" << (int)pitemLeftButtonUp->m_iItem<<", SameUserInteractionAsMsDwn="<< (int) bSameUserInteractionAsMouseDown<<", SameItemAsMsDwn=" << (int) bSameItemAsMouseDown);
 
-            if (m_itemLButtonDown.is_set() && bSameUserInteractionAsMouseDown && bSameItemAsMouseDown)
+            if (::is_set(m_pitemLButtonDown) && bSameUserInteractionAsMouseDown && bSameItemAsMouseDown)
             {
 
                psession->m_puiLastLButtonDown = nullptr;
 
-               pmessage->m_bRet = on_click(item);
+               pmessage->m_bRet = on_click(m_pitemLButtonDown);
 
                INFORMATION("interaction::on_message_left_button_up on_click_ret=" << (int) pmessage->m_bRet);
                
@@ -15997,7 +16012,7 @@ order(zorderParam);
 
                      ptopic->m_puserelement = this;
 
-                     ptopic->m_item = item;
+                     ptopic->m_pitem = m_pitemLButtonDown;
 
                      ptopic->m_actioncontext.m_pmessage = pmouse;
 
@@ -16252,9 +16267,11 @@ order(zorderParam);
 
          }
 
-         update_hover(pmouse->m_point, false);
+         auto pointCursorClient = _001ScreenToClient(pmouse->m_point);
 
-         if (m_itemHover)
+         update_hover(pointCursorClient, false);
+
+         if (::is_set(m_pitemHover))
          {
 
             track_mouse_leave();
@@ -16273,20 +16290,18 @@ order(zorderParam);
 
       auto pointClient = point;
 
-      auto itemHitTest = hit_test(pointClient);
+      auto pitemHitTest = hit_test(pointClient);
 
       bool bAnyHoverChange = false;
 
-      if (itemHitTest != m_itemHover)
+      if (pitemHitTest != m_pitemHover)
       {
 
          g_iMouseHoverCount++;
 
          //auto itemHitTest2 = hit_test(pointClient);
 
-         m_itemHover = itemHitTest;
-
-
+         m_pitemHover = pitemHitTest;
 
          bAnyHoverChange = true;
 
@@ -16295,7 +16310,7 @@ order(zorderParam);
       if (!bAvoidRedraw)
       {
 
-         if (bAnyHoverChange || !m_itemHover.is_drawn())
+         if (bAnyHoverChange || (!m_pitemHover ||!m_pitemHover->is_drawn()))
          {
 
             set_need_redraw();
@@ -16321,16 +16336,16 @@ order(zorderParam);
       if (::is_set(pmouse))
       {
 
-         if (m_itemHover != m_itemHoverMouse)
+         if (m_pitemHover != m_pitemHoverMouse)
          {
 
-            auto itemOldMouseHover = m_itemHoverMouse;
+            auto pitemOldMouseHover = m_pitemHoverMouse;
 
-            m_itemHoverMouse = m_itemHover;
+            m_pitemHoverMouse = m_pitemHover;
 
             bAnyHoverChange = true;
 
-            if (m_itemHoverMouse.is_set() && !itemOldMouseHover.is_set())
+            if (::is_set(m_pitemHoverMouse) && !::is_set(pitemOldMouseHover))
             {
 
                track_mouse_hover();
@@ -16338,7 +16353,7 @@ order(zorderParam);
                //simple_on_control_event(pmouse, e_event_mouse_enter);
 
             }
-            else if (!m_itemHoverMouse.is_set() && itemOldMouseHover.is_set())
+            else if (!::is_set(m_pitemHoverMouse) && ::is_set(pitemOldMouseHover))
             {
 
                //simple_on_control_event(pmouse, e_event_mouse_leave);
@@ -16351,7 +16366,7 @@ order(zorderParam);
 
       }
 
-      if (bAnyHoverChange || !m_itemHover.is_drawn())
+      if (bAnyHoverChange || (!::is_set(m_pitemHover) || !m_pitemHover->is_drawn()))
       {
 
          if (!bAvoidRedraw)
@@ -16375,15 +16390,15 @@ order(zorderParam);
 
       synchronous_lock synchronouslock(mutex());
 
-      auto itemOldHover = m_itemHover;
+      auto pitemOldHover = m_pitemHover;
 
-      auto itemOldHoverMouse = m_itemHoverMouse;
+      auto pitemOldHoverMouse = m_pitemHoverMouse;
 
-      m_itemHover = ::e_element_none;
+      m_pitemHover = nullptr;
 
-      m_itemHoverMouse = ::e_element_none;
+      m_pitemHoverMouse = nullptr;
 
-      if (itemOldHover.is_set() || itemOldHoverMouse.is_set())
+      if (pitemOldHover.is_set() || pitemOldHoverMouse.is_set())
       {
 
          set_need_redraw();
@@ -16397,21 +16412,27 @@ order(zorderParam);
    }
 
 
-   void interaction::hit_test(::item & item, const ::point_i32 & point)
+   ::item_pointer interaction::hit_test(::message::mouse * pmouse)
    {
 
-      item.m_pointScreen = point;
+      ::point_i32 pointClient;
 
-      _screen_to_client(item.m_pointClient, item.m_pointScreen);
+      _screen_to_client(pointClient, pmouse->m_point);
 
-      item.m_pointHitTest = item.m_pointClient + m_pointScroll;
-
-      on_hit_test(item);
+      return hit_test(pointClient);
 
    }
 
 
-   void interaction::on_hit_test(::item & item)
+   ::item_pointer interaction::hit_test(const ::point_i32 & point)
+   {
+
+      return on_hit_test(point);
+
+   }
+
+
+   ::item_pointer interaction::on_hit_test(const ::point_i32 & point)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -16426,25 +16447,21 @@ order(zorderParam);
 
             auto pgraphics = pitem->m_pDraw2dGraphics.cast <::draw2d::graphics>();
 
-            if (ppath->contains(pgraphics, item.m_pointHitTest))
+            if (ppath->contains(pgraphics, point))
             {
 
-               item = *pitem;
-
-               return;
+               return pitem;
 
             }
 
          }
-         else if (get_rect(*pitem))
+         else 
          {
 
-            if (pitem->m_rectangle.contains(item.m_pointHitTest))
+            if (pitem->m_rectangle.contains(point))
             {
 
-               item = *pitem;
-
-               return;
+               return pitem;
 
             }
 
@@ -16454,60 +16471,59 @@ order(zorderParam);
 
       auto rectangle = this->rectangle(::e_element_client);
 
-      if (!rectangle.contains(item.m_pointClient))
+      if (!rectangle.contains(point))
       {
 
          if(m_bMouseHoverOnCapture && has_mouse_capture())
          {
 
-            item = e_element_non_client;
+            return __new(::item(e_element_non_client));
 
          }
          else
          {
 
-            item = e_element_none;
+            return __new(::item(e_element_none));
 
          }
-
 
       }
       else
       {
 
-         item = e_element_client;
+         return __new(::item(e_element_client));
 
       }
 
    }
 
 
-   bool interaction::get_rect(::item& item)
-   {
+   //bool interaction::get_rect(::item * pitem)
+   //{
 
-      auto pitem = get_user_item(item);
+   //   auto pitem = get_user_item(*pitem);
 
-      if (pitem)
-      {
+   //   if (pitem)
+   //   {
 
-         item.m_rectangle = pitem->m_rectangle;
+   //      item.m_rectangle = pitem->m_rectangle;
 
-         return true;
+   //      return true;
 
-      }
+   //   }
 
-      if (!item.is_set())
-      {
+   //   if (!item.is_set())
+   //   {
 
-         return false;
+   //      return false;
 
-      }
+   //   }
 
-      get_client_rect(item.m_rectangle);
+   //   get_client_rect(item.m_rectangle);
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
    bool interaction::on_action(const ::string & pszId)
@@ -16575,16 +16591,13 @@ order(zorderParam);
    }
 
 
-   __pointer(::item) interaction::add_user_item(const ::item & item)
+   void interaction::add_user_item(item * pitem)
    {
-
-      __pointer(::item) pitem = __new(::item(item));
 
       m_useritema.add(pitem);
 
-      return pitem;
-
    }
+
 
    void interaction::_001DrawItems(::draw2d::graphics_pointer& pgraphics)
    {
@@ -17214,7 +17227,7 @@ order(zorderParam);
 
          }
 
-         if (m_itemHover.is_set())
+         if (::is_set(m_pitemHover))
          {
 
             estate |= e_state_hover;

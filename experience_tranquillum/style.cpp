@@ -887,9 +887,9 @@ namespace tranquillum
 
                   pgraphics->draw_path(ppath);
 
-                  if (ptab->m_itemHover == iTab
-                     && ptab->m_itemHover != ::e_element_close_tab_button
-                     && !ptab->m_itemHover.in_range(::e_element_split, 100))
+                  if (::is_item(ptab->m_pitemHover, iTab)
+                     && !::is_element(ptab->m_pitemHover, ::e_element_close_tab_button)
+                     && !::in_element_range(ptab->m_pitemHover, ::e_element_split, 100))
                   {
 
                      pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected | ::user::e_state_hover);
@@ -920,9 +920,9 @@ namespace tranquillum
 
                   ppath->close_figure();
 
-                  if (ptab->m_itemHover == iTab
-                     && ptab->m_itemHover != ::e_element_close_tab_button
-                     && !ptab->m_itemHover.in_range(::e_element_split, 100))
+                  if (::is_item(ptab->m_pitemHover, iTab)
+                     && !::is_element(ptab->m_pitemHover, ::e_element_close_tab_button)
+                     && !::in_element_range(ptab->m_pitemHover,::e_element_split, 100))
                   {
 
                      pane.m_pbrushFillHover->CreateLinearGradientBrush(rectangleBorder.top_left(), rectangleBorder.bottom_left(), argb(230, 215, 215, 210), argb(250, 235, 235, 230));
@@ -1029,9 +1029,9 @@ namespace tranquillum
 
                   pgraphics->draw_path(ppath);
 
-                  if (ptab->m_itemHover == iTab
-                     && ptab->m_itemHover != ::e_element_close_tab_button
-                     && !ptab->m_itemHover.in_range(::e_element_split, 100))
+                  if (::is_item(ptab->m_pitemHover, iTab)
+                     && !::is_element(ptab->m_pitemHover, ::e_element_close_tab_button)
+                     && !::in_element_range(ptab->m_pitemHover, ::e_element_split, 100))
                   {
 
                      pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_hover);
@@ -1051,9 +1051,9 @@ namespace tranquillum
                else
                {
 
-                  if (ptab->m_itemHover == iTab
-                     && ptab->m_itemHover != ::e_element_close_tab_button
-                     && !ptab->m_itemHover.in_range(::e_element_split, 100))
+                  if (::is_item(ptab->m_pitemHover, iTab)
+                     && !::is_element(ptab->m_pitemHover, ::e_element_close_tab_button)
+                     && !::in_element_range(ptab->m_pitemHover, ::e_element_split, 100))
                   {
 
                      pane.m_pbrushFillHover->CreateLinearGradientBrush(rectangleBorder.top_left(), rectangleBorder.bottom_left(), argb(230, 215, 215, 210), argb(250, 235, 235, 230));
@@ -1140,8 +1140,8 @@ namespace tranquillum
 
                pgraphics->set_font(ptab, ::e_element_close_tab_button);
 
-               if (ptab->m_itemHover == iTab
-                  && ptab->m_itemHover == ::e_element_close_tab_button)
+               if (::is_item(ptab->m_pitemHover, iTab)
+                  && ::is_element(ptab->m_pitemHover, ::e_element_close_tab_button))
                {
 
                   pbrushText = ptab->get_data()->m_pbrushCloseHover;
@@ -1211,7 +1211,7 @@ namespace tranquillum
                rectangleEmp.deflate(1,1);
                ::draw2d::enum_alpha_mode emode = pgraphics->m_ealphamode;
                pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-               if(ptab->m_itemHover.m_iItem == ((int) ::e_element_split) + i)
+               if(::is_item(ptab->m_pitemHover, (::index)::e_element_split + i))
                {
                   
                   pgraphics->fill_rectangle(rectangleEmp,argb(128,149,184,255));
@@ -1300,7 +1300,7 @@ namespace tranquillum
 
    //   ::u32 nStyle = ptoolbar->GetButtonStyle(iItem);
 
-   //   bool bHover = ptoolbar->m_itemHover == iItem;
+   //   bool bHover = ptoolbar->m_pitemHover == iItem;
 
    //   ::u32 uImage = psession->userex()->menu()->command_image(item.m_atom);
 
@@ -1606,7 +1606,7 @@ namespace tranquillum
 
    //   ::u32 nStyle = ptoolbar->GetButtonStyle(iItem);
 
-   //   bool bHover = ptoolbar->m_itemHover == iItem;
+   //   bool bHover = ptoolbar->m_pitemHover == iItem;
 
    //   ::u32 uImage = psession->userex()->menu()->command_image(item.m_atom);
 

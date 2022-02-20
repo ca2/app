@@ -26,7 +26,7 @@ namespace user
 
       pgraphics->set(pbrush);
 
-      if (puserinteraction->m_itemHover == ::e_element_close_button)
+      if (puserinteraction->m_pitemHover == ::e_element_close_button)
       {
 
          color.m_iA = 180;

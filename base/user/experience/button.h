@@ -16,14 +16,13 @@ namespace experience
       ::draw2d::region_pointer      m_pregion;
 
 
-
       button();
-      virtual ~button();
+      ~button() override;
 
 
       virtual void install_message_routing(::channel* pchannel) override;
 
-      virtual void on_hit_test(::item & item) override;
+      virtual ::item_pointer on_hit_test(const ::point_i32 & point) override;
 
       virtual void UpdateWndRgn();
 

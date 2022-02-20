@@ -43,7 +43,7 @@ namespace user
 
       defer_set_icon();
 
-      add_user_item({ ::e_element_close_button, ::id_close_app });
+      add_user_item(__new(::item( ::e_element_close_button, ::id_close_app)));
 
    }
 

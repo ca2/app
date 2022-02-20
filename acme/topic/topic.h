@@ -16,7 +16,7 @@ public:
 
    bool                                   m_bRet;
    bool                                   m_bOk;
-   item                                   m_item;
+   ::item_pointer                         m_pitem;
    ::user::enum_key                       m_ekey;
    ::action_context                       m_actioncontext;
    __pointer(::property_object)           m_psender;

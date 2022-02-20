@@ -77,30 +77,30 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
 
 
-      virtual void on_hit_test(::item & item) override;
+      ::item_pointer on_hit_test(const ::point_i32 & point) override;
 
 
-      virtual ::item current_item() override;
-      virtual ::item hover_item() override;
+      ::item_pointer current_item() override;
+      ::item_pointer hover_item() override;
 
 
-      virtual bool keyboard_focus_is_focusable() const override;
-      virtual bool keyboard_focus_OnKillFocus(oswindow oswindowNew) override;
+      bool keyboard_focus_is_focusable() const override;
+      bool keyboard_focus_OnKillFocus(oswindow oswindowNew) override;
 
 
-      virtual bool has_pending_graphical_update() override;
+      bool has_pending_graphical_update() override;
 
 
       void on_drop_down(const ::rectangle_i32 & rectangleWindow, const ::size_i32 & sizeFull);
 
 
-      virtual void _on_show_window() override;
+      void _on_show_window() override;
 
 
-      virtual bool on_set_owner(::user::primitive * pprimitive) override;
+      bool on_set_owner(::user::primitive * pprimitive) override;
 
 
-      void set_current_item(const ::item & item, const ::action_context & context) override;
+      void set_current_item(::item * pitem, const ::action_context & context) override;
       virtual void set_current_item_by_data(uptr u, const ::action_context& action_context);
       virtual void set_current_item_by_string_value(const string& strValue, const ::action_context& action_context);
       virtual string get_current_item_string_value();

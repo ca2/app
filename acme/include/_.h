@@ -2803,6 +2803,9 @@ namespace calculator
 template < typename POINTER_TYPE >
 class cotaskptr;
 
+template < typename POINTER_TYPE >
+class cotaskptr_array;
+
 #endif
 
 

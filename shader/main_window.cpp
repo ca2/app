@@ -78,7 +78,7 @@ namespace app_shader
 
       {
 
-         add_user_item({ ::e_element_switch_button, ::id_close_app });
+         add_user_item(__new(::item(::e_element_switch_button, ::id_close_app )));
 
          auto pitem = get_user_item(::e_element_switch_button);
 
@@ -233,10 +233,10 @@ namespace app_shader
    }
 
 
-   bool main_window::on_click(const ::item& item)
+   bool main_window::on_click(::item * pitem)
    {
 
-      if (::user::interaction::on_click(item))
+      if (::user::interaction::on_click(pitem))
       {
 
          return true;

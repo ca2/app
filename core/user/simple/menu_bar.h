@@ -63,7 +63,7 @@ protected:
 
    //virtual index _001GetHoverItem() override;
    //virtual void OnUpdateHover() override;
-   virtual bool on_click(const ::item & item) override;
+   virtual bool on_click(::item * pitem) override;
    void _001OnDropDown(index iItem);
    //index _001GetHoverItem();
    //void _001Hover(const ::point_i32 & point);

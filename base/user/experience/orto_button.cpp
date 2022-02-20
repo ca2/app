@@ -55,7 +55,7 @@ namespace experience
          crText = argb(255, 49, 50, 23);
 
       }
-      else if (m_itemHover.is_set())
+      else if (::is_set(m_pitemHover))
       {
 
          pgraphics->fill_rectangle(rectangleClient, argb(190, 49, 50, 23));
@@ -249,28 +249,24 @@ namespace experience
 
 
 
-   void orto_button::on_hit_test(::item & item)
+   ::item_pointer orto_button::on_hit_test(const ::point_i32 &point)
    {
 
       if (m_spregion.is_null())
       {
 
-         item = ::e_element_none;
-
-         return;
+         return __new(::item(::e_element_none));
 
       }
 
-      if (!m_spregion->contains(item.m_pointHitTest))
+      if (!m_spregion->contains(point))
       {
 
-         item = ::e_element_none;
-
-         return;
+         return __new(::item(::e_element_none));
 
       }
 
-      item = ::e_element_client;
+      return __new(::item(::e_element_client));
 
    }
 

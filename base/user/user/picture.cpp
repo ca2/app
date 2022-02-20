@@ -123,23 +123,21 @@ namespace user
    }
 
 
-   void picture::on_hit_test(::item & item)
+   ::item_pointer picture::on_hit_test(const ::point_i32 &point)
    {
 
       ASSERT(is_picture_enabled());
 
       //_rtransform_point(point);
 
-      if (m_ppictureimpl->m_rectangle.contains(item.m_pointHitTest))
+      if (m_ppictureimpl->m_rectangle.contains(point))
       {
 
-         item = 0;
-
-         return;
+         return __new(::item(e_element_client));
 
       }
 
-      item = -1;
+      return nullptr;
 
    }
 
@@ -892,16 +890,16 @@ namespace user
    }
 
 
-   void picture::hit_test(::item & item, const ::point_i32 & point)
+   ::item_pointer picture::hit_test(const ::point_i32 & point)
    {
 
-      item.m_pointScreen = point;
+      //item.m_pointScreen = point;
 
-      item.m_pointClient = _rtransform(item.m_pointScreen);
+      //item.m_pointClient = _rtransform(item.m_pointScreen);
 
-      item.m_pointHitTest = item.m_pointClient;
+      //item.m_pointHitTest = item.m_pointClient;
 
-      on_hit_test(item);
+      return on_hit_test(point);
 
    }
 

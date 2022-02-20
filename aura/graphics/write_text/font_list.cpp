@@ -354,7 +354,7 @@ namespace write_text
          if (bCheckHover && rectangle.contains_y(pointCursor.y))
          {
 
-            m_puserinteraction->m_itemHover = __new(::item({ ::e_element_item, i }));
+            m_puserinteraction->m_pitemHover = __new(::item({ ::e_element_item, i }));
 
             m_iHover = i;
 
@@ -1483,7 +1483,7 @@ namespace write_text
 
 
 
-   ::item font_list::hit_test(const ::point_i32& point)
+   ::item_pointer font_list::hit_test(const ::point_i32& point)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -1504,7 +1504,7 @@ namespace write_text
    }
 
 
-   ::item font_list::hit_test_wide(const ::point_i32 & point)
+   ::item_pointer font_list::hit_test_wide(const ::point_i32 & point)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -1514,7 +1514,7 @@ namespace write_text
       if (!pfontlistdata)
       {
 
-         return ::e_element_none;
+         return nullptr;
 
       }
 
@@ -1524,7 +1524,7 @@ namespace write_text
          if (pfontlistdata->element_at(m_iHover)->m_box[BOX_HOVER].m_rectangle.contains(point))
          {
 
-            return ::item(::e_element_item, m_iHover);
+            return __new(::item(::e_element_item, m_iHover));
 
          }
 
@@ -1543,18 +1543,18 @@ namespace write_text
          if (pfontlistdata->element_at(iItem)->m_box[BOX].m_rectangle.contains(point))
          {
 
-            return ::item(::e_element_item, iItem);
+            return __new(::item(::e_element_item, iItem));
 
          }
 
       }
 
-      return ::e_element_none;
+      return nullptr;
 
    }
 
 
-   ::item font_list::hit_test_single_column(const ::point_i32 & point)
+   ::item_pointer font_list::hit_test_single_column(const ::point_i32 & point)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -1564,7 +1564,7 @@ namespace write_text
       if (!pfontlistdata)
       {
 
-         return ::e_element_none;
+         return nullptr;
 
       }
 
@@ -1585,13 +1585,13 @@ namespace write_text
          if (rectangle.contains(point))
          {
 
-            return { ::e_element_item, iItem };
+            return __new(::item(::e_element_item, iItem));
 
          }
 
       }
 
-      return ::e_element_none;
+      return nullptr;
 
    }
 

@@ -143,20 +143,20 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      auto item = hit_test(pmouse);
+      auto pitem = hit_test(pmouse);
 
       auto psession = get_session();
 
       psession->user()->set_mouse_focus_LButtonDown(this);
 
-      if (item.m_iItem != m_pfontlist->m_iSel)
+      if (::is_item(pitem, m_pfontlist->m_iSel))
       {
 
-         m_pfontlist->m_iSel = (index) item.m_iItem;
+         m_pfontlist->m_iSel = (index) pitem->m_iItem;
 
          set_need_redraw();
 
-         auto iItem = item.m_iItem;
+         auto iItem = pitem->item_index();
 
          auto pfontenumerationitema = m_pfontlist->m_pfontenumeration->m_pfontenumerationitema;
 
@@ -178,7 +178,7 @@ namespace user
 
             ptopic->m_actioncontext = ::e_source_user;
 
-            ptopic->m_item = item;
+            ptopic->m_pitem = pitem;
 
             route(ptopic);
             
@@ -198,14 +198,14 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      auto item = hit_test(pmouse);
+      auto pitem = hit_test(pmouse);
 
-      if (m_pfontlist->m_iHover != item.m_iItem)
+      if (m_pfontlist->m_iHover != pitem->m_iItem)
       {
 
-         m_pfontlist->m_iHover = item.item_index();
+         m_pfontlist->m_iHover = pitem->item_index();
 
-         auto iItem = item.m_iItem;
+         auto iItem = pitem->m_iItem;
 
          auto pfontenumerationitema = m_pfontlist->m_pfontenumeration->m_pfontenumerationitema;
 
@@ -474,7 +474,7 @@ namespace user
    }
 
 
-   item font_list::current_item()
+   item_pointer font_list::current_item()
    {
 
       synchronous_lock synchronouslock(m_pfontlist->mutex());
@@ -482,23 +482,23 @@ namespace user
       if (m_pfontlist->m_iSel < 0)
       {
 
-         return -1;
+         return nullptr;
 
       }
 
       if (m_pfontlist->m_iSel >= m_pfontlist->m_pfontlistdata->get_count())
       {
 
-         return -1;
+         return nullptr;
 
       }
 
-      return m_pfontlist->m_iSel;
+      return __new(::item(e_element_item, m_pfontlist->m_iSel));
 
    }
 
 
-   item font_list::hover_item()
+   item_pointer font_list::hover_item()
    {
 
       synchronous_lock synchronouslock(m_pfontlist->mutex());
@@ -506,26 +506,26 @@ namespace user
       if (m_pfontlist->m_iHover < 0)
       {
 
-         return -1;
+         return nullptr;
 
       }
 
       if (m_pfontlist->m_iHover >= m_pfontlist->m_pfontlistdata->get_count())
       {
 
-         return -1;
+         return nullptr;
 
       }
 
-      return m_pfontlist->m_iHover;
+      return __new(::item(::e_element_item,m_pfontlist->m_iHover));
 
    }
 
 
-   void font_list::on_hit_test(::item & item)
+   ::item_pointer font_list::on_hit_test(const ::point_i32 &point)
    {
 
-      item = m_pfontlist->hit_test(item.m_pointHitTest);
+      return m_pfontlist->hit_test(point);
 
    }
 
@@ -607,7 +607,7 @@ namespace user
       else
       {
 
-         auto iItem = current_item().m_iItem;
+         auto iItem = current_item()->m_iItem;
 
          auto pfontenumerationitema = m_pfontlist->m_pfontenumeration->m_pfontenumerationitema;
 

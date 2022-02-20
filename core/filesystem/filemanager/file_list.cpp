@@ -79,18 +79,18 @@ namespace filemanager
 
 
 
-   bool file_list::on_click(const ::item & item)
+   bool file_list::on_click(::item * pitem)
    {
 
-      if (item.m_iSubItem == m_iNameSubItem ||
+      if (::is_item(pitem, m_iNameSubItem) ||
          ((m_eview == impact_list || m_eview == impact_report)
-         && item.m_iSubItem < 0))
+         && subitem_less_than(pitem, 0)))
       {
 
          if (!_017OpenSelected(true, ::e_source_user))
          {
 
-            index iStrict = item.item_index();
+            index iStrict = pitem->item_index();
 
             auto pitem = fs_list_item(iStrict);
 
@@ -100,15 +100,15 @@ namespace filemanager
 
       }
 
-      return ::user::list::on_click(item);
+      return ::user::list::on_click(pitem);
 
    }
 
 
-   bool file_list::on_right_click(const ::item & item)
+   bool file_list::on_right_click(::item * pitem)
    {
 
-      if(item.is_set())
+      if(::is_set(pitem))
       {
 
          _017OpenContextMenuSelected(::e_source_user);

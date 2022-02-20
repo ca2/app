@@ -147,33 +147,34 @@ void simple_scroll_bar::on_message_mouse_move(::message::message * pmessage)
 }
 
 
-bool simple_scroll_bar::scrollbar_action(const ::item & item, ::draw2d::graphics_pointer & pgraphics)
+bool simple_scroll_bar::scrollbar_action(const ::item * pitem, ::draw2d::graphics_pointer & pgraphics)
 {
 
-   switch(item.m_eelement)
+   switch(pitem->m_eelement)
    {
    case ::e_element_scrollbar_rectA:
       return scrollbar_lineA(pgraphics);
    case ::e_element_scrollbar_rectB:
       return scrollbar_lineB(pgraphics);
    case ::e_element_scrollbar_pageA:
-      return scrollbar_pageA(item.m_pointClient, pgraphics);
+      return scrollbar_pageA(pitem->m_pointClient, pgraphics);
    case ::e_element_scrollbar_pageB:
-      return scrollbar_pageB(item.m_pointClient, pgraphics);
+      return scrollbar_pageB(pitem->m_pointClient, pgraphics);
    default:
       return false;
    }
 
 }
 
+
 void simple_scroll_bar::on_message_left_button_down(::message::message * pmessage)
 {
 
    auto pmouse = pmessage->m_union.m_pmouse;
 
-   m_itemCurrent = hit_test(pmouse);
+   m_pitemCurrent = hit_test(pmouse);
 
-   if(!m_itemCurrent.is_set())
+   if(!m_pitemCurrent.is_set())
    {
 
       pmouse->m_bRet = false;
@@ -194,14 +195,14 @@ void simple_scroll_bar::on_message_left_button_down(::message::message * pmessag
 
    auto pgraphics = pdraw2d->create_memory_graphics();
 
-   if(m_itemCurrent == ::e_element_scrollbar_rect)
+   if(::is_set(m_pitemCurrent) && m_pitemCurrent->m_eelement == ::e_element_scrollbar_rect)
    {
 
       m_bTracking = true;
 
       SetTimer(43212345, 10_ms, nullptr);
 
-      m_pointTrack = m_itemCurrent.m_pointClient;
+      m_pointTrack = m_pitemCurrent->m_pointClient;
 
       GetTrackRect(m_rectangleTrack, pgraphics);
 
@@ -211,7 +212,7 @@ void simple_scroll_bar::on_message_left_button_down(::message::message * pmessag
    else
    {
 
-      if(scrollbar_action(m_itemCurrent, pgraphics))
+      if(scrollbar_action(m_pitemCurrent, pgraphics))
       {
 
          SetTimer((uptr) this,300_ms,nullptr);
@@ -235,7 +236,7 @@ void simple_scroll_bar::on_message_left_button_up(::message::message * pmessage)
 
    auto pmouse = pmessage->m_union.m_pmouse;
 
-   if (!m_itemCurrent)
+   if (!m_pitemCurrent)
    {
 
       return;
@@ -275,7 +276,7 @@ void simple_scroll_bar::on_message_left_button_up(::message::message * pmessage)
    
    }
          
-   m_itemCurrent = ::e_element_none;
+   m_pitemCurrent = nullptr;
 
    pmouse->m_bRet = true;
 
@@ -793,7 +794,7 @@ void simple_scroll_bar::_001OnTimer(::timer * ptimer)
 
       auto pgraphics = pdraw2d->create_memory_graphics();
 
-      if(!scrollbar_action(m_itemCurrent, pgraphics))
+      if(!scrollbar_action(m_pitemCurrent, pgraphics))
       {
 
          KillTimer(ptimer->m_uEvent);
@@ -1578,7 +1579,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    ::rectangle_i32 rectangle;
 
-   if (m_itemCurrent == ::e_element_scrollbar_pageA || m_itemHover== ::e_element_scrollbar_pageA)
+   if (::is_element(m_pitemCurrent, ::e_element_scrollbar_pageA) || ::is_element(m_pitemHover, ::e_element_scrollbar_pageA))
    {
 
       GetPageARect(rectangleClient, rectangleTrack, rectangle, pgraphics);
@@ -1592,7 +1593,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
       pgraphics->fill_rectangle(rectangle);
 
    }
-   else if (m_itemCurrent == ::e_element_scrollbar_pageB || m_itemHover== ::e_element_scrollbar_pageB)
+   else if (::is_element(m_pitemCurrent, ::e_element_scrollbar_pageB) || ::is_element(m_pitemHover, ::e_element_scrollbar_pageB))
    {
 
       GetPageBRect(rectangleClient, rectangleTrack, rectangle, pgraphics);
@@ -1791,7 +1792,7 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphi
 }
 
 
-void simple_scroll_bar::on_hit_test(::item & item)
+::item_pointer simple_scroll_bar::on_hit_test(const ::point_i32 &point)
 {
 
    ::rectangle_i32 rectangleTrack;
@@ -1804,10 +1805,10 @@ void simple_scroll_bar::on_hit_test(::item & item)
 
    GetTrackRect(rectangleTrack, pgraphics);
 
-   if(rectangleTrack.contains(item.m_pointClient))
+   if(rectangleTrack.contains(point))
    {
 
-      item = ::e_element_scrollbar_rect;
+      return __new(::item(::e_element_scrollbar_rect));
 
    }
    else
@@ -1821,45 +1822,37 @@ void simple_scroll_bar::on_hit_test(::item & item)
 
       GetPageARect(rectangleClient, rectangleTrack, rectangle, pgraphics);
 
-      if (rectangle.contains(item.m_pointClient))
+      if (rectangle.contains(point))
       {
 
-         item = ::e_element_scrollbar_pageA;
-
-         return;
+         return __new(::item(::e_element_scrollbar_pageA));
 
       }
 
       GetPageBRect(rectangleClient, rectangleTrack, rectangle, pgraphics);
 
-      if (rectangle.contains(item.m_pointClient))
+      if (rectangle.contains(point))
       {
 
-         item = ::e_element_scrollbar_pageB;
-
-         return;
+         return __new(::item(::e_element_scrollbar_pageB));
 
       }
 
-      if (m_rectangleA.contains(item.m_pointClient))
+      if (m_rectangleA.contains(point))
       {
 
-         item = ::e_element_scrollbar_rectA;
-
-         return;
+         return __new(::item(::e_element_scrollbar_rectA));
 
       }
 
-      if (m_rectangleB.contains(item.m_pointClient))
+      if (m_rectangleB.contains(point))
       {
 
-         item = ::e_element_scrollbar_rectB;
-
-         return;
+         return __new(::item(::e_element_scrollbar_rectB));
 
       }
 
-      item = ::e_element_none;
+      return nullptr;
 
    }
 
@@ -1869,7 +1862,7 @@ void simple_scroll_bar::on_hit_test(::item & item)
 ::color::color simple_scroll_bar::scrollbar_color_strong(::user::style * pstyle, ::enum_element eelement)
 {
 
-   if (m_itemCurrent == eelement || m_itemHover== eelement)
+   if (::is_element(m_pitemCurrent, eelement) || ::is_element(m_pitemHover, eelement))
    {
 
       auto color = get_color(pstyle, ::e_element_scrollbar_strong, ::user::e_state_hover);
@@ -1892,9 +1885,9 @@ void simple_scroll_bar::on_hit_test(::item & item)
 ::color::color simple_scroll_bar::scrollbar_color(::user::style* pstyle, ::enum_element eelement)
 {
 
-   if(m_itemCurrent == eelement || m_itemHover== eelement)
+   if(::is_element(m_pitemCurrent, eelement) || ::is_element(m_pitemHover, eelement))
    {
-
+      
       auto color = get_color(pstyle, eelement, ::user::e_state_hover);
 
       return color.is_ok() ? color : argb(100, 190, 180, 250);
@@ -1915,7 +1908,7 @@ void simple_scroll_bar::on_hit_test(::item & item)
 ::color::color simple_scroll_bar::scrollbar_border_color(::user::style* pstyle, ::enum_element eelement)
 {
 
-   if(m_itemCurrent == eelement || m_itemHover== eelement)
+   if(::is_element(m_pitemCurrent, eelement) || ::is_element(m_pitemHover, eelement))
    {
 
       auto color = get_color(pstyle, ::e_element_border, ::user::e_state_hover);
@@ -1938,7 +1931,7 @@ void simple_scroll_bar::on_hit_test(::item & item)
 ::color::color simple_scroll_bar::scrollbar_lite_border_color(::user::style* pstyle, ::enum_element eelement)
 {
 
-   if(m_itemCurrent == eelement || m_itemHover== eelement)
+   if (::is_element(m_pitemCurrent, eelement) || ::is_element(m_pitemHover, eelement))
    {
 
       auto color = get_color(pstyle, ::e_element_lite_border, ::user::e_state_hover);
@@ -1961,7 +1954,7 @@ void simple_scroll_bar::on_hit_test(::item & item)
 ::color::color simple_scroll_bar::scrollbar_draw_color(::user::style* pstyle, ::enum_element eelement)
 {
 
-   if (m_itemCurrent == eelement || m_itemHover == eelement)
+   if (::is_element(m_pitemCurrent, eelement) || ::is_element(m_pitemHover, eelement))
    {
 
       auto color = get_color(pstyle, ::e_element_scrollbar_draw, ::user::e_state_hover);

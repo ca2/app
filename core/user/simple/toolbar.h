@@ -82,8 +82,8 @@ public:
    //enumeration < ::enum_toolbar_item_style > GetItemStyle(index iItem);
    void _001SetImageList(__pointer(::image_list) imagelist);
    void _001DiscardImageList();
-   virtual bool on_click(const ::item & item) override;
-   virtual void on_hit_test(::item & item) override;
+   virtual bool on_click(::item * pitem) override;
+   virtual ::item_pointer on_hit_test(const ::point_i32 & point) override;
    //void _001Hover(const ::point_i32 & point, bool bRedraw = true);
    //void _001Hover(bool bRedraw = true);
 

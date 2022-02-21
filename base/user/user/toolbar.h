@@ -6,29 +6,36 @@ namespace user
 
 
    class toolbar_item:
-      virtual public object
+      virtual public ::item
    {
    public:
 
 
-      index                               m_iIndex;
+      //index                               m_iIndex;
       index                               m_iImage;
       ::image_pointer                     m_pimage;
-      atom                                  m_atom;
+      //atom                                  m_atom;
       e_toolbar_item_state                m_estate;
       e_toolbar_item_style                m_estyle;
       string                              m_str;
-      ::rectangle_i32                              m_rectangle;
+      //::rectangle_i32                              m_rectangle;
       bool                                m_bEnableIfHasCommandHandler;
       ::write_text::font_pointer              m_pfont;
 
 
       toolbar_item();
-      virtual ~toolbar_item();
+      ~toolbar_item() override;
 
 
    };
 
+
+   inline toolbar_item * __toolbar_item(::item * pitem)
+   {
+
+      return (toolbar_item*) pitem->m_data[0];
+
+   }
 
 
    class toolbar_control; // forward object (see afxcmn.h for definition)
@@ -54,7 +61,7 @@ namespace user
 //      };
 
 
-      __pointer_array(toolbar_item)    m_itema;
+      //__pointer_array(toolbar_item)    m_itema;
 
       bool                             m_bDelayedButtonLayout; // used to manage when button on_layout should be done
 
@@ -67,7 +74,7 @@ namespace user
 
 
       toolbar();
-      virtual ~toolbar();
+      ~toolbar() override;
 
 
       //using ::user::control_bar::create_interaction;

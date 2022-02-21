@@ -14437,7 +14437,7 @@ order(zorderParam);
    void interaction::set_current_item(::item *pitem, const ::action_context & context)
    {
 
-      if (m_pitemCurrent == pitem)
+      if (::is_same_item(m_pitemCurrent, pitem))
       {
 
          return;
@@ -15973,17 +15973,9 @@ order(zorderParam);
 
             bool bSameUserInteractionAsMouseDown = psession->m_puiLastLButtonDown == this;
 
-            PARTICLE * p1 = m_pitemLButtonDown;
-
-            PARTICLE * p2 = pitemLeftButtonUp;
-
-            int iSize = sizeof(ITEM_BASE);
-
-            int iMemCmp = !memcmp(p1, p2, iSize);
-
             bool bSameItemAsMouseDown = ::is_same_item(m_pitemLButtonDown, pitemLeftButtonUp);
 
-            TRACE("interaction::on_message_left_button_up item=" << (int)pitemLeftButtonUp->m_iItem<<", SameUserInteractionAsMsDwn="<< (int) bSameUserInteractionAsMouseDown<<", SameItemAsMsDwn=" << (int) bSameItemAsMouseDown);
+            //TRACE("interaction::on_message_left_button_up item=" << (int)pitemLeftButtonUp->m_iItem<<", SameUserInteractionAsMsDwn="<< (int) bSameUserInteractionAsMouseDown<<", SameItemAsMsDwn=" << (int) bSameItemAsMouseDown);
 
             if (::is_set(m_pitemLButtonDown) && bSameUserInteractionAsMouseDown && bSameItemAsMouseDown)
             {
@@ -16294,12 +16286,10 @@ order(zorderParam);
 
       bool bAnyHoverChange = false;
 
-      if (pitemHitTest != m_pitemHover)
+      if (!::is_same_item(pitemHitTest, m_pitemHover))
       {
 
          g_iMouseHoverCount++;
-
-         //auto itemHitTest2 = hit_test(pointClient);
 
          m_pitemHover = pitemHitTest;
 
@@ -16419,7 +16409,16 @@ order(zorderParam);
 
       _screen_to_client(pointClient, pmouse->m_point);
 
-      return hit_test(pointClient);
+      auto pitem = hit_test(pointClient);
+
+      if (pitem.is_set())
+      {
+
+         pitem->m_pointScreen = pmouse->m_point;
+
+      }
+
+      return pitem;
 
    }
 
@@ -16427,7 +16426,16 @@ order(zorderParam);
    ::item_pointer interaction::hit_test(const ::point_i32 & point)
    {
 
-      return on_hit_test(point);
+      auto pitem = on_hit_test(point);
+
+      if (pitem.is_set())
+      {
+
+         pitem->m_pointClient = point;
+
+      }
+
+      return pitem;
 
    }
 
@@ -16471,27 +16479,20 @@ order(zorderParam);
 
       auto rectangle = this->rectangle(::e_element_client);
 
-      if (!rectangle.contains(point))
+      if (rectangle.contains(point))
       {
 
-         if(m_bMouseHoverOnCapture && has_mouse_capture())
-         {
+         auto pitemClient = __new(::item(e_element_client));
 
-            return __new(::item(e_element_non_client));
+         pitemClient->m_rectangle = rectangle;
 
-         }
-         else
-         {
-
-            return __new(::item(e_element_none));
-
-         }
+         return pitemClient;
 
       }
       else
       {
 
-         return __new(::item(e_element_client));
+         return nullptr;
 
       }
 

@@ -1097,7 +1097,7 @@ namespace user
          if (rectangleItem.contains(point))
          {
 
-            return __new(::item(::e_element_item, iItem ));
+            return new_item_with_index(iItem);
 
          }
 

@@ -476,7 +476,7 @@ namespace user
    e_toolbar_item_style toolbar::get_item_style(index iIndex)
    {
 
-      return m_itema[iIndex]->m_estyle;
+      return m_useritema[iIndex].cast <toolbar_item>()->m_estyle;
 
    }
 
@@ -484,7 +484,7 @@ namespace user
    void toolbar::set_item_style(index iIndex, const e_toolbar_item_style &estyle)
    {
 
-      m_itema[iIndex]->m_estyle = estyle;
+      m_useritema[iIndex].cast <toolbar_item>()->m_estyle = estyle;
 
    }
 
@@ -495,9 +495,9 @@ namespace user
    ::e_toolbar_item_state toolbar::get_item_state(::index iItem)
    {
 
-      auto estate = m_itema[iItem]->m_estate;
+      auto estate = m_useritema[iItem].cast <toolbar_item>()->m_estate;
 
-      auto estyle = m_itema[iItem]->m_estyle;
+      auto estyle = m_useritema[iItem].cast <toolbar_item>()->m_estyle;
 
       if (!(estyle & e_toolbar_item_style_separator))
       {
@@ -1662,7 +1662,7 @@ return { 0,0 };
    index toolbar::_001GetItemCount()
    {
 
-      return (index)m_itema.get_size();
+      return (index)m_useritema.get_size();
 
    }
 
@@ -1674,10 +1674,10 @@ return { 0,0 };
       //if(m_bDelayedButtonLayout)
       //   on_layout(pgraphics);
 
-      if(iItem >= 0 && iItem < m_itema.get_size())
+      if(iItem >= 0 && iItem < m_useritema.get_size())
       {
 
-         *prectangle = m_itema[iItem]->m_rectangle;
+         *prectangle = m_useritema[iItem]->m_rectangle;
 
 
          return true;
@@ -1704,14 +1704,14 @@ return { 0,0 };
    ::user::toolbar_item * toolbar::_001GetItem(index iItem)
    {
 
-      if(iItem < 0 || iItem >= m_itema.get_size())
+      if(iItem < 0 || iItem >= m_useritema.get_size())
       {
 
          return nullptr;
 
       }
 
-      return m_itema[iItem];
+      return m_useritema[iItem].cast <toolbar_item>();
 
    }
 
@@ -1719,14 +1719,14 @@ return { 0,0 };
    bool toolbar::_001SetItem(index iItem,::user::toolbar_item *pitem)
    {
 
-      if(iItem < 0 || iItem >= m_itema.get_size())
+      if(iItem < 0 || iItem >= m_useritema.get_size())
       {
 
          return false;
 
       }
 
-      m_itema[iItem] = pitem;
+      m_useritema[iItem] = pitem;
 
       return true;
 
@@ -1739,7 +1739,7 @@ return { 0,0 };
 
       synchronous_lock synchronouslock(mutex());
 
-      m_itema.erase_all();
+      m_useritema.erase_all();
 
       auto pxmldocument = __create_new < xml::document >();
 
@@ -1793,7 +1793,7 @@ return { 0,0 };
 
             item->m_estyle -= e_toolbar_item_style_separator;
 
-            m_itema.add(item);
+            m_useritema.add(item);
 
          }
          else if(pchild->get_name() == "separator")
@@ -1807,7 +1807,7 @@ return { 0,0 };
 
             item->m_estyle |= e_toolbar_item_style_separator;
 
-            m_itema.add(item);
+            m_useritema.add(item);
 
          }
 
@@ -1821,7 +1821,7 @@ return { 0,0 };
    void toolbar::set_item_state(index iIndex, const e_toolbar_item_state &estate)
    {
 
-      m_itema[iIndex]->m_estate = estate;
+      m_useritema[iIndex].cast <toolbar_item>()->m_estate = estate;
 
    }
 
@@ -1829,8 +1829,8 @@ return { 0,0 };
    toolbar_item::toolbar_item()
    {
 
-
-      m_iIndex                      = -1;
+      m_data[0] = this;
+      //m_iIndex                      = -1;
       m_iImage                      = -1;
       m_estate                      = e_toolbar_item_state_none;
       m_estyle                      = e_toolbar_item_style_none;

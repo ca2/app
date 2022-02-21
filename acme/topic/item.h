@@ -78,6 +78,7 @@ struct ITEM_DATA_ADDITIONS
    ::rectangle_i32               m_rectangle;
    u64                           m_uFlags;
    __pointer(::element)          m_pelement;
+   void *                        m_data[4];
    
 
    ITEM_DATA_ADDITIONS & operator = (const ITEM_DATA_ADDITIONS & itemdataadditions)
@@ -365,7 +366,7 @@ public:
 
    void set_drawn() { m_uFlags |= ITEM_DRAWN; }
 
-   bool is_set() const { return m_eelement != ::e_element_none; }
+   bool is_set() const { return m_atom.is_set() || m_eelement != ::e_element_none; }
 
    operator bool() const { return is_set(); }
 
@@ -549,8 +550,45 @@ inline __pointer(::item) new_item_with_index(::index iIndex)
 inline bool is_same_item(const ::item * pitem1, const ::item * pitem2)
 {
 
-   return *pitem1 == *pitem2;
+   if (::is_set(pitem1))
+   {
+
+      if (::is_set(pitem2))
+      {
+
+         return *pitem1 == *pitem2;
+
+      }
+      else
+      {
+
+         return false;
+
+      }
+
+   }
+   else if (::is_set(pitem2))
+   {
+
+      return false;
+
+   }
+   else
+   {
+
+      return true;
+
+   }
 
 }
+
+
+inline enum_element item_element(const ::item * pitem)
+{
+
+   return ::is_set(pitem) ? pitem->m_eelement : e_element_none;
+
+}
+
 
 

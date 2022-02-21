@@ -37,25 +37,47 @@ public:
 
    inline string format(const ::string & str) const { return _001Replace(str); }
 
-   inline property & operator[](const atom & atom) { return get(atom); }
-   inline const property & operator[](const atom & atom) const { return *find(atom); }
+   inline property & payload(const atom & atom) { return get(atom); }
+   inline const property & payload(const atom & atom) const { return *find(atom); }
 
-   inline property & operator[](const char * pszName) { return operator [](::atom(pszName)); }
-   inline const property & operator[](const char * pszName) const { return operator [](::atom(pszName)); }
+   inline property & payload(const char * pszName) { return operator [](::atom(pszName)); }
+   inline const property & payload(const char * pszName) const { return operator [](::atom(pszName)); }
 
-   inline property & operator[](const ::string & strName) { return operator [](::atom(strName)); }
-   inline const property & operator[](const ::string & strName) const { return operator [](::atom(strName)); }
+   inline property & payload(const ::string & strName) { return operator [](::atom(strName)); }
+   inline const property & payload(const ::string & strName) const { return operator [](::atom(strName)); }
 
-   inline property & operator[](::index iIndex) { return operator [](::atom(iIndex)); }
-   inline const property & operator[](::index iIndex) const { return operator [](::atom(iIndex)); }
+   inline property & payload(::index iIndex) { return operator [](::atom(iIndex)); }
+   inline const property & payload(::index iIndex) const { return operator [](::atom(iIndex)); }
 
-   inline property & operator[](const ::payload & payload) { return operator [](::atom(payload)); }
-   inline const property & operator[](const ::payload & payload) const { return operator [](::atom(payload)); }
+   inline property & payload(const ::payload & payload) { return operator [](::atom(payload)); }
+   inline const property & payload(const ::payload & payload) const { return operator [](::atom(payload)); }
 
 #ifdef OS64BIT
 
-   inline property & operator[](i32 iIndex) { return operator []((::index) iIndex); }
-   inline const property & operator[](i32 iIndex) const { return operator []((::index) iIndex); }
+   inline property & payload(i32 iIndex) { return operator []((::index) iIndex); }
+   inline const property & payload(i32 iIndex) const { return operator []((::index) iIndex); }
+
+#endif
+
+   inline property & operator[](const atom & atom) { return payload(atom); }
+   inline const property & operator[](const atom & atom) const { return payload(atom); }
+
+   inline property & operator[](const char * pszName) { return payload(pszName); }
+   inline const property & operator[](const char * pszName) const { return payload(pszName); }
+
+   inline property & operator[](const ::string & strName) { return payload(strName); }
+   inline const property & operator[](const ::string & strName) const { return payload(strName); }
+
+   inline property & operator[](::index iIndex) { return payload(iIndex); }
+   inline const property & operator[](::index iIndex) const { return payload(iIndex); }
+
+   inline property & operator[](const ::payload & payloadKey) { return payload(payloadKey); }
+   inline const property & operator[](const ::payload & payloadKey) const { return payload(payloadKey); }
+
+#ifdef OS64BIT
+
+   inline property & operator[](i32 iIndex) { return payload(iIndex); }
+   inline const property & operator[](i32 iIndex) const { return payload(iIndex); }
 
 #endif
 
@@ -134,6 +156,10 @@ public:
    inline ::payload value(atom idName) const;
 
    inline ::payload value(atom idName, ::payload varDefault) const;
+
+   bool payload_bool(const atom & atom, bool bDefault = false) const;
+   ::string payload_string(const atom & atom, const ::string & strDefault = "") const;
+   ::file::path payload_file_path(const atom & atom, const ::file::path & pathDefault = "") const;
 
    template < typename TYPE >
    inline void exchange(const ::atom & atom, TYPE & t)

@@ -989,6 +989,13 @@ namespace user
 
                      ptopic->m_bRet = command.m_bRet;
 
+                     if (ptopic->m_bRet)
+                     {
+
+                        return;
+
+                     }
+
                   }
 
                }

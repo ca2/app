@@ -1730,7 +1730,7 @@ namespace user
          }
 
       }
-      else if(m_pitemClick->m_eelement == e_element_tab_far_scroll)
+      else if(::is_element(m_pitemClick, e_element_tab_far_scroll))
       {
 
          if(m_iTabScroll < m_iTabScrollMax)
@@ -1754,12 +1754,12 @@ namespace user
 
       }
 
-      if(m_pitemClick->m_iItem >= 0)
+      if(::is_set(m_pitemClick) && m_pitemClick->m_iItem >= 0)
       {
 
          index iIndex = get_current_tab_index();
 
-         if(::is_item(m_pitemClick, e_element_close_tab_button))
+         if(::is_element(m_pitemClick, e_element_close_tab_button))
          {
 
             get_data()->m_iClickTab = m_pitemClick->m_iItem;
@@ -1776,11 +1776,11 @@ namespace user
 
             get_data()->m_iClickTab = m_pitemClick->m_iItem;
 
-            set_mouse_capture();
+            //set_mouse_capture();
 
             //SetTimer(e_timer_drag_start, 300, nullptr);
 
-            g_tickDragStart.Now();
+            //g_tickDragStart.Now();
 
             pmouse->m_bRet = true;
 

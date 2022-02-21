@@ -119,7 +119,7 @@ namespace app_app
       if (::is_set(pitem))
       {
 
-         bool bHover = m_pitemHover == ::e_element_close_button;
+         bool bHover = ::is_element(m_pitemHover, ::e_element_close_button);
 
          double dSourcePeriod;
          
@@ -196,7 +196,9 @@ namespace app_app
 
          auto pointCursor = pwindow->get_mouse_cursor_position();
 
-         update_hover(pointCursor);
+         auto pointCursorClient = _001ScreenToClient(pointCursor);
+
+         update_hover(pointCursorClient);
 
       }
 

@@ -181,7 +181,7 @@ size_i32 simple_toolbar::CalcSimpleLayout(::draw2d::graphics_pointer& pgraphics)
 
    ::size_i32 sizeResult;
 
-   nCount = m_itema.get_count();
+   nCount = m_useritema.get_count();
 
    if (nCount > 0)
    {
@@ -267,10 +267,10 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
 //   select_user_schema();
 
-   for (index iItem = 0; iItem < m_itema.get_size(); iItem++)
+   for (index iItem = 0; iItem < m_useritema.get_size(); iItem++)
    {
 
-      if (::is_item(m_pitemHover, iItem))
+      if (!::is_item(m_pitemHover, iItem))
       {
 
          _001DrawItem(pgraphics, iItem);
@@ -426,10 +426,10 @@ void simple_toolbar::on_command_probe(::user::frame_window * ptarget, bool bDisa
    for (state.m_iIndex = 0; state.m_iIndex < state.m_iCount; state.m_iIndex++)
    {
 
-      if (m_itema[state.m_iIndex]->m_atom != "separator")
+      if (m_useritema[state.m_iIndex]->m_atom != "separator")
       {
 
-         state.m_atom = m_itema[state.m_iIndex]->m_atom;
+         state.m_atom = m_useritema[state.m_iIndex]->m_atom;
 
          // allow reflections
          //if (::user::interaction::on_command(0,
@@ -452,7 +452,7 @@ void simple_toolbar::on_command_probe(::user::frame_window * ptarget, bool bDisa
          //if (!state.m_bEnableChanged)
          //{
          //
-         //   if (m_itema[state.m_iIndex]->m_bEnableIfHasCommandHandler)
+         //   if (m_useritema[state.m_iIndex]->m_bEnableIfHasCommandHandler)
          //   {
 
          //      if (!state.m_bHasCommandHandler)
@@ -507,7 +507,7 @@ size_i32 simple_toolbar::CalcSize(::draw2d::graphics_pointer & pgraphics, index 
 
    index buttonx, buttony;
 
-   auto iC = minimum(nCount, m_itema.get_size());
+   auto iC = minimum(nCount, m_useritema.get_size());
 
    ::rectangle_i32 rectangleItemPad = get_item_pad();
 
@@ -531,11 +531,11 @@ size_i32 simple_toolbar::CalcSize(::draw2d::graphics_pointer & pgraphics, index 
 
       bFirstInRow = false;
 
-      ::user::toolbar_item & item = m_itema(i);
+      ::user::toolbar_item & item = *::user::__toolbar_item(m_useritema[i]);
 
       //index cySep = item.m_iImage;
 
-      if (m_itema[i]->m_estyle & e_toolbar_item_style_separator)
+      if (item.m_estyle & e_toolbar_item_style_separator)
       {
 
          buttonx = sSeparator.cx;
@@ -575,16 +575,16 @@ size_i32 simple_toolbar::CalcSize(::draw2d::graphics_pointer & pgraphics, index 
 
       }
 
-      if (m_itema[i]->m_estate & e_toolbar_item_state_hidden)
+      if (item.m_estate & e_toolbar_item_state_hidden)
       {
 
          continue;
 
       }
 
-      m_itema[i]->m_rectangle.left = cur.x;
+      item.m_rectangle.left = cur.x;
 
-      m_itema[i]->m_rectangle.right = (::i32) (cur.x + buttonx);
+      item.m_rectangle.right = (::i32) (cur.x + buttonx);
 
       cur.x += (::i32) buttonx; //  +sPress.cx;
 
@@ -592,15 +592,15 @@ size_i32 simple_toolbar::CalcSize(::draw2d::graphics_pointer & pgraphics, index 
 
       cur.y = (::i32) maximum(cur.y, buttony);
 
-      if (m_itema[i]->m_estate & e_toolbar_item_state_wrap)
+      if (item.m_estate & e_toolbar_item_state_wrap)
       {
 
          for (int j = iRowStart; j <= i; j++)
          {
 
-            m_itema[i]->m_rectangle.top = sizeResult.cy;
+            item.m_rectangle.top = sizeResult.cy;
 
-            m_itema[i]->m_rectangle.bottom = sizeResult.cy + cur.y;
+            item.m_rectangle.bottom = sizeResult.cy + cur.y;
 
          }
 
@@ -621,7 +621,7 @@ size_i32 simple_toolbar::CalcSize(::draw2d::graphics_pointer & pgraphics, index 
 
          cur.y = 0;
 
-         if (m_itema[i]->m_estyle & e_toolbar_item_style_separator)
+         if (item.m_estyle & e_toolbar_item_style_separator)
          {
 
             sizeResult.cy += sSeparator.cy;
@@ -637,9 +637,9 @@ size_i32 simple_toolbar::CalcSize(::draw2d::graphics_pointer & pgraphics, index 
    for (int j = iRowStart; j < i; j++)
    {
 
-      m_itema[j]->m_rectangle.top = sizeResult.cy;
+      m_useritema[j]->m_rectangle.top = sizeResult.cy;
 
-      m_itema[j]->m_rectangle.bottom = sizeResult.cy + cur.y;
+      m_useritema[j]->m_rectangle.bottom = sizeResult.cy + cur.y;
 
    }
 
@@ -682,6 +682,13 @@ void simple_toolbar::_001DrawItem(::draw2d::graphics_pointer & pgraphics, index 
 void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgraphics, index iItem)
 {
 
+   if (::is_null(m_useritema[iItem]))
+   {
+
+      return;
+
+   }
+
    pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
    ::rectangle_i32 rectangleItem;
@@ -692,7 +699,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
    m_dFontSize = pgraphics->m_pfont->m_dFontSize;
 
-   ::user::toolbar_item & item = m_itema(iItem);
+   auto pitem = ::user::__toolbar_item(m_useritema[iItem]);
 
    auto estyle = get_item_style(iItem);
 
@@ -702,7 +709,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
    __pointer(::user::menu_central) pmenucentral = puser->menu();
 
-   ::u32 uImage = pmenucentral->command_image(item.m_atom);
+   ::u32 uImage = pmenucentral->command_image(pitem->m_atom);
    
    auto estate = get_item_user_state(iItem);
 
@@ -795,14 +802,14 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
             }
 
-            if (item.m_pimage->is_set())
+            if (pitem->m_pimage->is_set())
             {
 
                ::rectangle_i32 rectangle;
 
                _001GetElementRect(iItem, rectangle, ::e_element_image, estate);
 
-               image_source imagesource(item.m_pimage);
+               image_source imagesource(pitem->m_pimage);
 
                image_drawing_options imagedrawingoptions(rectangle);
 
@@ -851,14 +858,14 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
          }
 
-         if (item.m_pimage->is_set())
+         if (pitem->m_pimage->is_set())
          {
 
             ::rectangle_i32 rectangle;
 
             _001GetElementRect(iItem, rectangle, ::e_element_image, estate);
 
-            image_source imagesource(item.m_pimage);
+            image_source imagesource(pitem->m_pimage);
 
             image_drawing_options imagedrawingoptions(rectangle);
 
@@ -894,7 +901,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
          }
 
-         if (item.m_pimage->is_set())
+         if (pitem->m_pimage->is_set())
          {
 
             ::rectangle_i32 rectangle;
@@ -911,7 +918,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
                //    }
 
-               image_source imagesource(item.m_pimage);
+               image_source imagesource(pitem->m_pimage);
 
                image_drawing_options imagedrawingoptions(rectangle);
 
@@ -946,7 +953,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
    }
 
-   if (item.m_str.has_char())
+   if (pitem->m_str.has_char())
    {
 
       pgraphics->set_font(this, ::e_element_none);
@@ -975,7 +982,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
       if (_001GetElementRect(iItem, rectangleText, ::e_element_text, estate) && rectangleText.right > 0)
       {
 
-         pgraphics->_DrawText(item.m_str, rectangleText, e_align_bottom_left, e_draw_text_no_prefix);
+         pgraphics->_DrawText(pitem->m_str, rectangleText, e_align_bottom_left, e_draw_text_no_prefix);
 
       }
 
@@ -987,7 +994,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 bool simple_toolbar::_001GetElementRect(index iItem, RECTANGLE_I32 * prectangle, ::enum_element eelement, ::user::enum_state estate)
 {
 
-   if (iItem < 0 || iItem >= m_itema.get_size())
+   if (iItem < 0 || iItem >= m_useritema.get_size())
    {
 
       return false;
@@ -1000,7 +1007,7 @@ bool simple_toolbar::_001GetElementRect(index iItem, RECTANGLE_I32 * prectangle,
 
    ::rectangle_i32 rectangle;
 
-   ::user::toolbar_item & item = m_itema(iItem);
+   ::user::toolbar_item & item = *::user::__toolbar_item(m_useritema[iItem]);
 
    if ((item.m_estyle & e_toolbar_item_style_separator) != 0)
    {
@@ -1215,15 +1222,17 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 
       output_debug_string("please_center_align");
 
-      if (m_itema.has_elements())
+      if (m_useritema.has_elements())
       {
 
-         CalcSize(pgraphics, (index)(m_itema.get_count()));
+         CalcSize(pgraphics, (index)(m_useritema.get_count()));
 
-         for (index i = 0; i < m_itema.get_count(); i++)
+         for (index i = 0; i < m_useritema.get_count(); i++)
          {
 
-            if (m_itema[i]->m_estate & e_toolbar_item_state_wrap || i == m_itema.get_upper_bound())
+            auto pitem = ::user::__toolbar_item(m_useritema[i]);
+
+            if (pitem->m_estate & e_toolbar_item_state_wrap || i == m_useritema.get_upper_bound())
             {
 
                int iTotalX = 0;
@@ -1231,7 +1240,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
                for (index j = 0; j <= i; j++)
                {
 
-                  iTotalX += m_itema[j]->m_rectangle.width() + get_item_spacing().cx;
+                  iTotalX += m_useritema[j]->m_rectangle.width() + get_item_spacing().cx;
 
                }
 
@@ -1240,7 +1249,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
                for (index j = 0; j <= i; j++)
                {
 
-                  m_itema[j]->m_rectangle.offset(offsetx, 0);
+                  m_useritema[j]->m_rectangle.offset(offsetx, 0);
 
                }
 
@@ -1386,15 +1395,15 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 ::item_pointer simple_toolbar::on_hit_test(const ::point_i32 &point)
 {
 
-   for (index iItem = 0; iItem < m_itema.get_size(); iItem++)
+   for (index iItem = 0; iItem < m_useritema.get_size(); iItem++)
    {
 
-      if (m_itema[iItem]->m_rectangle.contains(point))
+      if (m_useritema[iItem]->m_rectangle.contains(point))
       {
 
          //item = ::item( ::e_element_item, iItem );
 
-         return m_itema[iItem];
+         return m_useritema[iItem];
 
       }
 
@@ -1730,7 +1739,7 @@ void simple_tool_command::SetText(const ::string &, const ::action_context & con
 //etoolbar_item_state simple_toolbar::get_item_state(index iItem)
 //{
 //
-//   return m_itema[iItem]->m_estate;
+//   return m_useritema[iItem]->m_estate;
 //
 //}
 //
@@ -1738,7 +1747,7 @@ void simple_tool_command::SetText(const ::string &, const ::action_context & con
 //bool simple_toolbar::set_item_state(index iItem, const etoolbar_item_state & estate)
 //{
 //
-//   return m_itema[iItem]->m_estate;
+//   return m_useritema[iItem]->m_estate;
 //
 //}
 
@@ -1746,7 +1755,7 @@ void simple_tool_command::SetText(const ::string &, const ::action_context & con
 //enumeration < ::enum_toolbar_item_style > simple_toolbar::GetButtonStyle(index nIndex)
 //{
 //
-//   __pointer(::user::toolbar_item) pitem = m_itema[nIndex];
+//   __pointer(::user::toolbar_item) pitem = m_useritema[nIndex];
 //
 //   if (!pitem)
 //   {
@@ -1763,7 +1772,7 @@ void simple_tool_command::SetText(const ::string &, const ::action_context & con
 //void simple_toolbar::SetButtonStyle(index nIndex, ::u32 nStyle)
 //{
 //
-//   __pointer(::user::toolbar_item) pitem = m_itema[nIndex];
+//   __pointer(::user::toolbar_item) pitem = m_useritema[nIndex];
 //
 //   if (!pitem)
 //   {
@@ -1870,16 +1879,18 @@ index simple_toolbar::WrapToolBar(::draw2d::graphics_pointer & pgraphics, index 
 
    string str;
 
-   auto iC = minimum(nCount, m_itema.get_count());
+   auto iC = minimum(nCount, m_useritema.get_count());
 
    bool bFirstInRow = true;
 
    for (index i = 0; i < iC; i++)
    {
 
-      m_itema[i]->m_estate -= e_toolbar_item_state_wrap;
+      auto pitem = ::user::__toolbar_item(m_useritema[i]);
 
-      if (m_itema[i]->m_estate & e_toolbar_item_state_hidden)
+      pitem->m_estate -= e_toolbar_item_state_wrap;
+
+      if (pitem->m_estate & e_toolbar_item_state_hidden)
       {
 
          continue;
@@ -1890,7 +1901,7 @@ index simple_toolbar::WrapToolBar(::draw2d::graphics_pointer & pgraphics, index 
 
       index dx, dxNext;
 
-      if (m_itema[i]->m_estyle & e_toolbar_item_style_separator)
+      if (pitem->m_estyle & e_toolbar_item_style_separator)
       {
 
          dx = sSeparator.cx;
@@ -1903,14 +1914,14 @@ index simple_toolbar::WrapToolBar(::draw2d::graphics_pointer & pgraphics, index 
 
          dx = rectangleItemPad.left;
 
-         if (m_itema[i]->m_pimage->is_set())
+         if (pitem->m_pimage->is_set())
          {
 
-            dx += m_itema[i]->m_pimage->height();
+            dx += pitem->m_pimage->height();
 
          }
 
-         if (str.has_char() && m_itema[i]->m_pimage->is_set())
+         if (str.has_char() && pitem->m_pimage->is_set())
          {
 
             dx += iImageSpacing;
@@ -1937,15 +1948,15 @@ index simple_toolbar::WrapToolBar(::draw2d::graphics_pointer & pgraphics, index 
       if (x + dx > nWidth - rectangleBorder.right)
       {
 
-         for (index j = i; j >= 0 && !(m_itema[j]->m_estate & e_toolbar_item_state_wrap); j--)
+         for (index j = i; j >= 0 && !(::user::__toolbar_item(m_useritema[j])->m_estate & e_toolbar_item_state_wrap); j--)
          {
 
             // find last separator that isn't hidden
             // a separator that has a command ID is not
             // a separator, but a custom control.
-            if ((m_itema[j]->m_estyle & e_toolbar_item_style_separator) &&
-                  (m_itema[j]->m_atom == "separator") &&
-                  !(m_itema[j]->m_estate & e_toolbar_item_state_hidden))
+            if ((::user::__toolbar_item(m_useritema[j])->m_estyle & e_toolbar_item_style_separator) &&
+                  (::user::__toolbar_item(m_useritema[j])->m_atom == "separator") &&
+                  !(::user::__toolbar_item(m_useritema[j])->m_estate & e_toolbar_item_state_hidden))
             {
 
                bFound = true;
@@ -1956,7 +1967,7 @@ index simple_toolbar::WrapToolBar(::draw2d::graphics_pointer & pgraphics, index 
 
                bFirstInRow = true;
 
-               m_itema[j]->m_estate |= e_toolbar_item_state_wrap;
+               ::user::__toolbar_item(m_useritema[j])->m_estate |= e_toolbar_item_state_wrap;
 
                nResult++;
 
@@ -1969,14 +1980,14 @@ index simple_toolbar::WrapToolBar(::draw2d::graphics_pointer & pgraphics, index 
          if (!bFound)
          {
 
-            for (index j = i - 1; j >= 0 && !(m_itema[j]->m_estate & e_toolbar_item_state_wrap); j--)
+            for (index j = i - 1; j >= 0 && !(::user::__toolbar_item(m_useritema[j])->m_estate & e_toolbar_item_state_wrap); j--)
             {
 
                // Never wrap anything that is hidden,
                // or any custom controls
-               if ((m_itema[j]->m_estate & e_toolbar_item_state_hidden) ||
-                     ((m_itema[j]->m_estyle & e_toolbar_item_style_separator) &&
-                      (m_itema[j]->m_atom != "separator")))
+               if ((::user::__toolbar_item(m_useritema[j])->m_estate & e_toolbar_item_state_hidden) ||
+                     ((::user::__toolbar_item(m_useritema[j])->m_estyle & e_toolbar_item_style_separator) &&
+                      (::user::__toolbar_item(m_useritema[j])->m_atom != "separator")))
                {
 
                   continue;
@@ -1991,7 +2002,7 @@ index simple_toolbar::WrapToolBar(::draw2d::graphics_pointer & pgraphics, index 
 
                bFirstInRow = true;
 
-               m_itema[j]->m_estate |= e_toolbar_item_state_wrap;
+               ::user::__toolbar_item(m_useritema[j])->m_estate |= e_toolbar_item_state_wrap;
 
                nResult++;
 
@@ -2266,7 +2277,7 @@ size_i32 simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, u32 
          for (i = 0; i < nCount; i++)
          {
 
-            if ((m_itema[i]->m_estyle & e_toolbar_item_style_separator) && (m_itema[i]->m_atom != "separator"))
+            if ((::user::__toolbar_item(m_useritema[i])->m_estyle & e_toolbar_item_style_separator) && (m_useritema[i]->m_atom != "separator"))
             {
 
                nControlCount++;
@@ -2285,12 +2296,12 @@ size_i32 simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, u32 
             for (index i = 0; i < nCount; i++)
             {
 
-               if ((m_itema[i]->m_estyle & e_toolbar_item_style_separator) && (m_itema[i]->m_atom != "separator"))
+               if ((::user::__toolbar_item(m_useritema[i])->m_estyle & e_toolbar_item_style_separator) && (m_useritema[i]->m_atom != "separator"))
                {
 
                   pControl[nControlCount].nIndex = i;
 
-                  pControl[nControlCount].strId = m_itema[i]->m_atom;
+                  pControl[nControlCount].strId = m_useritema[i]->m_atom;
 
                   ::rectangle_i32 rectangle;
 
@@ -2320,7 +2331,7 @@ size_i32 simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, u32 
          for (i = 0; i < nCount; i++)
          {
 
-            // _SetButton(i, &m_itema[i]);
+            // _SetButton(i, &m_useritema[i]);
             //
             // GetButtonText(i, str);
             //
@@ -2414,7 +2425,7 @@ size_i32 simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, u32 
 
       }
 
-      //delete[] m_itema;
+      //delete[] m_useritema;
 
    }
 
@@ -2445,7 +2456,7 @@ size_i32 simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, u32 
 void simple_toolbar::GetButtonText(index i, string &str)
 {
 
-   if (i < 0 || i >= m_itema.get_count())
+   if (i < 0 || i >= m_useritema.get_count())
    {
 
       str.Empty();
@@ -2454,7 +2465,7 @@ void simple_toolbar::GetButtonText(index i, string &str)
 
    }
 
-   if (m_itema[i].is_null())
+   if (m_useritema[i].is_null())
    {
 
       str.Empty();
@@ -2463,7 +2474,7 @@ void simple_toolbar::GetButtonText(index i, string &str)
 
    }
 
-   str = m_itema[i]->m_str;
+   str = ::user::__toolbar_item(m_useritema[i])->m_str;
 
 }
 
@@ -2528,7 +2539,7 @@ size_i32 simple_toolbar::CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics
 void simple_toolbar::SetItemImage(index iItem, index iImage)
 {
 
-   m_itema[iItem]->m_iImage = iImage;
+   ::user::__toolbar_item(m_useritema[iItem])->m_iImage = iImage;
 
 }
 
@@ -2550,7 +2561,7 @@ void simple_toolbar::SetItemImage(index iItem, index iImage)
 void simple_toolbar::RemoveAllTools()
 {
 
-   m_itema.erase_all();
+   m_useritema.erase_all();
 
 }
 

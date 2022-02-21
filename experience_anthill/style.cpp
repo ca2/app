@@ -548,9 +548,9 @@ namespace experience
 
                   pgraphics->draw_path(ppath);
 
-                  if (ptab->m_pitemHover == iTab
-                     && ptab->m_pitemHover != ::e_element_close_tab_button
-                     && !ptab->m_pitemHover.in_range(::e_element_split, 100))
+                  if (::is_item(ptab->m_pitemHover, iTab)
+                     && !::is_element(ptab->m_pitemHover, ::e_element_close_tab_button)
+                     && !::in_element_range(ptab->m_pitemHover,::e_element_split, 100))
                   {
 
                      pgraphics->set(ptab->get_font(pstyle, ::user::e_state_selected | ::user::e_state_hover));
@@ -579,9 +579,9 @@ namespace experience
 
                   ppath->close_figure();
 
-                  if (ptab->m_pitemHover == iTab
-                     && ptab->m_pitemHover != ::e_element_close_tab_button
-                     && !ptab->m_pitemHover.in_range(::e_element_split, 100))
+                  if (::is_item(ptab->m_pitemHover, iTab)
+                     && !::is_element(ptab->m_pitemHover, ::e_element_close_tab_button)
+                     && !::in_element_range(ptab->m_pitemHover, ::e_element_split, 100))
                   {
 
                      ppane->m_pbrushFillHover->CreateLinearGradientBrush(rectangleBorder.top_left(),rectangleBorder.bottom_left(),argb(230,215,215,210),argb(250,235,235,230));
@@ -707,9 +707,9 @@ namespace experience
                   
                   auto pstyle = ptab->get_style(pgraphics);
 
-                  if (ptab->m_pitemHover == iTab
-                     && ptab->m_pitemHover != ::e_element_close_tab_button
-                     && !ptab->m_pitemHover.in_range(::e_element_split, 100))
+                  if (::is_item(ptab->m_pitemHover, iTab)
+                     && !::is_element(ptab->m_pitemHover, ::e_element_close_tab_button)
+                     && !::in_element_range(ptab->m_pitemHover, ::e_element_split, 100))
                   {
 
                      pgraphics->set(ptab->get_font(pstyle, ::user::e_state_selected | ::user::e_state_hover));
@@ -749,9 +749,9 @@ namespace experience
 
                   ppath->close_figure();
 
-                  if (ptab->m_pitemHover == iTab
-                     && ptab->m_pitemHover != ::e_element_close_tab_button
-                     && !ptab->m_pitemHover.in_range(::e_element_split, 100))
+                  if (::is_item(ptab->m_pitemHover, iTab)
+                     && !::is_element(ptab->m_pitemHover, ::e_element_close_tab_button)
+                     && !::in_element_range(ptab->m_pitemHover, ::e_element_split, 100))
                   {
 
                      ppane->m_pbrushFillHover->CreateLinearGradientBrush(rectangleBorder.top_left(),rectangleBorder.bottom_left(),argb(230,215,215,210),argb(250,235,235,230));
@@ -838,8 +838,8 @@ namespace experience
 
                pgraphics->set(ptab->get_font(pstyle, ::e_element_close_tab_button));
 
-               if (ptab->m_pitemHover == iTab
-                  && ptab->m_pitemHover == ::e_element_close_tab_button)
+               if (::is_item(ptab->m_pitemHover, iTab)
+                  && ::is_element(ptab->m_pitemHover,::e_element_close_tab_button))
                {
 
                   pbrushText = ptab->get_data()->m_pbrushCloseHover;
@@ -905,7 +905,7 @@ namespace experience
                rectangleEmp.deflate(1,1);
                ::draw2d::enum_alpha_mode emode = pgraphics->m_ealphamode;
                pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-               if(ptab->m_pitemHover == (::enum_element)(::e_element_split + i))
+               if(::is_element(ptab->m_pitemHover, (::enum_element)(::e_element_split + i)))
                {
 
                   pgraphics->fill_rectangle(rectangleEmp,argb(128, 150, 184, 255));
@@ -1284,7 +1284,7 @@ namespace experience
 
       pgraphics->set_font(ptoolbar, ::e_element_none);
 
-      ::user::toolbar_item & item = ptoolbar->m_itema(iItem);
+      auto pitem = ::user::__toolbar_item(ptoolbar->m_useritema[iItem]);
 
       auto estyle = ptoolbar->get_item_style(iItem);
 
@@ -1292,7 +1292,7 @@ namespace experience
 
       __pointer(::user::menu_central) pmenucentral = puser->menu();
 
-      ::u32 uImage = pmenucentral->command_image(item.m_atom);
+      ::u32 uImage = pmenucentral->command_image(pitem->m_atom);
       
       ::user::enum_state estate = ptoolbar->get_item_user_state(iItem);
 
@@ -1428,14 +1428,14 @@ namespace experience
 
                }
 
-               if (item.m_pimage->is_set())
+               if (pitem->m_pimage->is_set())
                {
 
                   ::rectangle_i32 rectangle;
 
                   ptoolbar->_001GetElementRect(iItem, rectangle, ::e_element_image, ::user::e_state_hover);
 
-                  image_source imagesource(item.m_pimage, ::rectangle_f64(rectangle.size()));
+                  image_source imagesource(pitem->m_pimage, ::rectangle_f64(rectangle.size()));
 
                   image_drawing_options imagedrawingoptions(rectangle);
 
@@ -1479,14 +1479,14 @@ namespace experience
 
             }
 
-            if (item.m_pimage->is_set())
+            if (pitem->m_pimage->is_set())
             {
 
                ::rectangle_i32 rectangle;
 
                ptoolbar->_001GetElementRect(iItem, rectangle, ::e_element_image, ::user::e_state_pressed);
 
-               image_source imagesource(item.m_pimage, ::rectangle_f64(rectangle.size()));
+               image_source imagesource(pitem->m_pimage, ::rectangle_f64(rectangle.size()));
 
                image_drawing_options imagedrawingoptions(rectangle);
 
@@ -1522,14 +1522,14 @@ namespace experience
 
             }
 
-            if (item.m_pimage->is_set())
+            if (pitem->m_pimage->is_set())
             {
 
                ::rectangle_i32 rectangle;
 
                ptoolbar->_001GetElementRect(iItem, rectangle, ::e_element_image, ::user::e_state_none);
 
-               image_source imagesource(item.m_pimage, ::rectangle_f64(rectangle.size()));
+               image_source imagesource(pitem->m_pimage, ::rectangle_f64(rectangle.size()));
 
                image_drawing_options imagedrawingoptions(rectangle);
 
@@ -1562,7 +1562,7 @@ namespace experience
 
       }
 
-      if (item.m_str.has_char())
+      if (pitem->m_str.has_char())
       {
 
          pgraphics->set_font(ptoolbar, ::e_element_none);
@@ -1589,7 +1589,7 @@ namespace experience
          if (ptoolbar->_001GetElementRect(iItem, rectangleText, ::e_element_text, ::user::e_state_none) && rectangleText.right > 0)
          {
 
-            pgraphics->_DrawText(item.m_str, rectangleText, e_align_bottom_left, e_draw_text_no_prefix);
+            pgraphics->_DrawText(pitem->m_str, rectangleText, e_align_bottom_left, e_draw_text_no_prefix);
 
          }
 
@@ -1610,7 +1610,7 @@ namespace experience
 
       pgraphics->set_font(ptoolbar, ::e_element_none);
 
-      ::user::toolbar_item & item = ptoolbar->m_itema(iItem);
+      auto pitem = ::user::__toolbar_item(ptoolbar->m_useritema[iItem]);
 
       auto estyle = ptoolbar->get_item_style(iItem);
 
@@ -1620,7 +1620,7 @@ namespace experience
 
       __pointer(::user::menu_central) pmenucentral = puser->menu();
 
-      ::u32 uImage = pmenucentral->command_image(item.m_atom);
+      ::u32 uImage = pmenucentral->command_image(pitem->m_atom);
 
       ::user::enum_state estate = ptoolbar->get_item_user_state(iItem);
 
@@ -1628,7 +1628,7 @@ namespace experience
 
       ptoolbar->_001GetElementRect(iItem, rectangleImage, ::e_element_image, estate);
 
-      if (item.m_atom.compare_ci("separator") == 0)
+      if (pitem->m_atom.compare_ci("separator") == 0)
       {
          /*::rectangle_i32 rectangleSeparator;
          rectangleSeparator.left = (rectangleImage.left + rectangleImage.right) / 2 - 1;
@@ -1702,14 +1702,14 @@ namespace experience
 
                }
 
-               if (item.m_pimage->is_set())
+               if (pitem->m_pimage->is_set())
                {
 
                   ::rectangle_i32 rectangle;
 
                   ptoolbar->_001GetElementRect(iItem, rectangle, ::e_element_image, ::user::e_state_hover);
 
-                  image_source imagesource(item.m_pimage, ::rectangle_f64(rectangle.size()));
+                  image_source imagesource(pitem->m_pimage, ::rectangle_f64(rectangle.size()));
 
                   image_drawing_options imagedrawingoptions(rectangle);
 
@@ -1753,14 +1753,14 @@ namespace experience
 
             }
 
-            if (item.m_pimage->is_set())
+            if (pitem->m_pimage->is_set())
             {
 
                ::rectangle_i32 rectangle;
 
                ptoolbar->_001GetElementRect(iItem, rectangle, ::e_element_image, ::user::e_state_pressed);
 
-               image_source imagesource(item.m_pimage);
+               image_source imagesource(pitem->m_pimage);
 
                image_drawing_options imagedrawingoptions(rectangle);
 
@@ -1811,14 +1811,14 @@ namespace experience
 
             }
 
-            if (item.m_pimage->is_set())
+            if (pitem->m_pimage->is_set())
             {
 
                ::rectangle_i32 rectangle;
 
                ptoolbar->_001GetElementRect(iItem, rectangle, ::e_element_image, estate);
 
-               image_source imagesource(item.m_pimage);
+               image_source imagesource(pitem->m_pimage);
 
                image_drawing_options imagedrawingoptions(rectangle);
 
@@ -1851,7 +1851,7 @@ namespace experience
 
       }
 
-      if (item.m_str.has_char())
+      if (pitem->m_str.has_char())
       {
 
          pgraphics->set_font(ptoolbar, ::e_element_none);
@@ -1884,7 +1884,7 @@ namespace experience
 
             pgraphics->set(pbrushText);
 
-            pgraphics->draw_text(item.m_str, rectangleText, e_align_bottom_left, e_draw_text_no_prefix);
+            pgraphics->draw_text(pitem->m_str, rectangleText, e_align_bottom_left, e_draw_text_no_prefix);
 
          }
 

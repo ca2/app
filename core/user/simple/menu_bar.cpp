@@ -402,13 +402,19 @@ i32_spreadset * prel,
 
 void simple_menu_bar::RemoveAllButtons()
 {
-   m_itema.erase_all();
+   
+   m_useritema.erase_all();
+
 }
+
 
 void simple_menu_bar::_001OnMenuChar(::message::message * pmessage)
 {
+
    pmessage->previous();
+
 }
+
 
 void simple_menu_bar::OnUpdateCmdUI(__pointer(::user::frame_window)pTarget, bool bDisableIfNoHndler)
 {

@@ -833,7 +833,7 @@ namespace user
    void combo_box::set_current_item(::item * pitem, const ::action_context & actioncontext)
    {
 
-      if (m_pitemCurrent == pitem)
+      if (::is_same_item(m_pitemCurrent, pitem))
       {
 
          return;

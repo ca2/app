@@ -562,9 +562,11 @@ public:
    inline bool is_null() const;
    inline bool is_empty() const;
    inline bool has_char() const;
-   inline void empty();
+   inline bool is_set() const { return !is_empty(); }
+   
+   inline void Empty();
    inline void clear();
-
+   
 
    inline iptr CompareNoCase(const char * psz) const { return compare_ci(psz); }
    inline iptr compare_ci(const char * psz) const;
@@ -1375,7 +1377,7 @@ inline bool atom::has_char() const
 }
 
 
-inline void atom::empty()
+inline void atom::Empty()
 {
 
    m_etype  = e_type_empty;

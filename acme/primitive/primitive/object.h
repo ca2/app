@@ -1336,8 +1336,8 @@ CLASS_DECL_ACME void call_sync(const ::routine_array& routinea);
 
 
 
-#define __PROPERTIES(xxx)\
-class xxx ## _properties: \
+#define __PROPERTIES(xxx) \
+class __ ## xxx ## _properties : \
    public property_set \
 { \
 public: \
@@ -1348,10 +1348,15 @@ public: \
 
 
 #define __END_PROPERTIES(xxx) }; \
-xxx ## _properties & properties() {return *m_pobjectproperties;} \
-const xxx ## _properties & properties() const {return *m_pobjectproperties;} \
-inline void create_object_properties() { m_pobjectproperties = m_ppropertyset = __new(xxx ## _properties());} \
-__pointer(xxx ## _properties) m_pobjectproperties
+__ ## xxx ## _properties &  xxx ## _properties() {return *m_p ## xxx ## properties;} \
+const __ ## xxx ## _properties & xxx ## _properties() const {return *m_p ## xxx ## properties;} \
+inline void create_ ## xxx ## _properties() \
+{ \
+   if(::is_set(m_p ## xxx ## properties)) return; \
+   m_p ## xxx ## properties = __new(__ ## xxx ## _properties()); \
+   m_ppropertyset = m_p ## xxx ## properties; \
+} \
+__pointer(__ ## xxx ## _properties) m_p ## xxx ## properties
 
 
 
